@@ -9,8 +9,8 @@ namespace Newtouch.CIS.API.Controllers
     /// STUB CÓ CHỦ ĐÍCH — KHÔNG CẤP TOKEN.
     ///
     /// Bản gốc (api/Auth/GetToken) chỉ từ chối khi UserId/Account/OrganizeId/
-    /// TopOrganizeId trống, sau đó có comment "由request验证出用户身份，需要的时候
-    /// 加上验证" (xác minh identity từ request, khi cần thì bổ sung kiểm tra) —
+    /// TopOrganizeId trống, sau đó có comment "dorequestkiểm traraNgười dùngthânphần，cầncủakhichờ
+    /// thêmtrênkiểm tra" (xác minh identity từ request, khi cần thì bổ sung kiểm tra) —
     /// tức là KHÔNG có bước kiểm tra credential nào — rồi tạo UserIdentity từ
     /// thẳng các trường request và SaveIdentity để cấp token Redis thật. Bất kỳ
     /// ai gọi endpoint này cũng nhận được token hợp lệ mà không cần xác thực —

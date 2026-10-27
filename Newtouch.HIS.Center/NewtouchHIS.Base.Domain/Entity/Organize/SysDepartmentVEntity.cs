@@ -9,10 +9,10 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///系统科室
+    ///Khoa hệ thống
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
-    [SugarTable("V_S_Sys_Department", "系统科室视图")]
+    [SugarTable("V_S_Sys_Department", "View khoa hệ thống")]
     public class SysDepartmentVEntity
     {
         /// <summary>
@@ -26,12 +26,12 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 父级Id
+        /// Cấp chaId
         /// </summary>
         public string ParentId { get; set; }
 
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         public string Name { get; set; }
 
@@ -41,22 +41,22 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Code { get; set; }
 
         /// <summary>
-        /// 医技标志（是否是医技部门，如放射科）
+        /// Cờ y kỹ thuật(Có phải khoa y kỹ thuật hay không,như khoa X-quang)
         /// </summary>
         public bool yjbz { get; set; }
 
         /// <summary>
-        /// 门诊住院标志
+        /// Cờ ngoại trú/nội trú
         /// </summary>
         public byte mzzybz { get; set; }
 
         /// <summary>
-        /// 首拼
+        /// Chữ cái đầu phiên âm
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 有效标志
+        /// Cờ hiệu lực
         /// </summary>
         public string zt { get; set; }
     }

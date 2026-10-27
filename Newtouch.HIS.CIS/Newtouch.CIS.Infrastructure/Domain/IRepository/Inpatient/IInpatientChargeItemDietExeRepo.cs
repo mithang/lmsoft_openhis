@@ -6,23 +6,23 @@ using Newtouch.CIS.Repository;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 13:27
-    /// 描 述：住院通用膳食请求库
+    /// Tác giả: 冬林
+    /// Ngày：2018-06-28 13:27
+    /// Mô tả：Nhập việnChungăn uốngyêu cầukho
     /// </summary>
     public interface IInpatientChargeItemDietExeRepo : IRepositoryBase<InpatientChargeItemDietExeEntity>
     {
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưubảngphiếu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">thựcthểđối tượng</param>
+        /// <param name="keyValue">Khóa chínhGiá trị</param>
         void SubmitForm(InpatientChargeItemDietExeEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// XóaDữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Khóa chínhGiá trị</param>
         void DeleteForm(string keyValue);
 
     }

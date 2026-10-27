@@ -3,82 +3,82 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 盘点信息
+    /// Thông tin kiểm kê
     /// </summary>
     public class InventoryInfoVO
     {
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 药品规格
+        /// Quy cách thuốc
         /// </summary>
         public string ypgg { get; set; }
 
         /// <summary>
-        /// 药厂名称=cd
+        /// Tên hãng thuốc=cd
         /// </summary>
         public string ycmc { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Phiên âm
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 大类代码
+        /// Mã loại lớn
         /// </summary>
         public string dlCode { get; set; }
 
         /// <summary>
-        /// 盘点明细ID
+        /// Chi tiết kiểm kêID
         /// </summary>
         public string pdmxId { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 频次
+        /// Tần suất
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn dùng
         /// </summary>
         public string yxq { get; set; }
 
         /// <summary>
-        /// 理论数量
+        /// Số lượng lý thuyết
         /// </summary>
         public string llsl { get; set; }
 
         /// <summary>
-        /// 实际数量
+        /// Số lượng thực tế
         /// </summary>
         public int sjsl { get; set; }
 
         /// <summary>
-        /// 部门单位
+        /// Đơn vị bộ phận
         /// </summary>
         public string deptdw { get; set; }
 
         /// <summary>
-        /// 药库数量
+        /// Số lượng kho thuốc
         /// </summary>
         public int yksl { get; set; }
 
         /// <summary>
-        /// 批发价
+        /// Giá bán buôn
         /// </summary>
         public decimal? pfj { get; set; }
 
@@ -88,138 +88,138 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public decimal? lsj { get; set; }
 
         /// <summary>
-        /// 药库批发价
+        /// Giá bán buôn kho thuốc
         /// </summary>
         public decimal? ykpfj { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// Giá bán lẻ kho thuốc
         /// </summary>
         public decimal? yklsj { get; set; }
 
         /// <summary>
-        /// 转换因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 门诊住院标志
+        /// Cờ ngoại trú/nội trú
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 部门实际数 （与最小单位实际数组合使用）
+        /// Số thực tế bộ phận （Dùng kết hợp với số thực tế đơn vị nhỏ nhất）
         /// </summary>
         public int deptSjsl { get; set; }
 
         /// <summary>
-        /// 最小单位实际数 （与部门实际数组合使用）
+        /// Số thực tế đơn vị nhỏ nhất （Dùng kết hợp với số thực tế bộ phận）
         /// </summary>
         public int minSjsl { get; set; }
 
         /// <summary>
-        /// 包装单位
+        /// Đơn vị đóng gói
         /// </summary>
         public string bzdw { get; set; }
 
         /// <summary>
-        /// 最小单位
+        /// Đơn vị nhỏ nhất
         /// </summary>
         public string zxdw { get; set; }
 
         /// <summary>
-        /// 理论批发金额
+        /// Số tiền bán buôn lý thuyết
         /// </summary>
         public decimal? llpfje { get; set; }
 
         /// <summary>
-        /// 理论零售金额
+        /// Số tiền bán lẻ lý thuyết
         /// </summary>
         public decimal? lllsje { get; set; }
 
         /// <summary>
-        /// 实际批发金额
+        /// Số tiền bán buôn thực tế
         /// </summary>
         public decimal? sjpfje { get; set; }
 
         /// <summary>
-        /// 实际零售金额
+        /// Số tiền bán lẻ thực tế
         /// </summary>
         public decimal? sjlsje { get; set; }
 
         /// <summary>
-        /// 盘点时间
+        /// Thời gian kiểm kê
         /// </summary>
         public string pdsj { get; set; }
 
         /// <summary>
-        /// 账册序号
+        /// Số thứ tự sổ sách
         /// </summary>
         public string zcxh { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 理论最小包装数量
+        /// Số lượng đóng gói tối thiểu lý thuyết
         /// </summary>
         public string llsl_zxbz { get; set; }
 
         /// <summary>
-        /// 实际包装数量
+        /// Số lượng đóng gói thực tế
         /// </summary>
         public string sjslstr { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
         /// <summary>
-        /// 零售差异金额
+        /// Số tiền chênh lệch bán lẻ
         /// </summary>
         public decimal? pdlsjcy { get; set; }
         /// <summary>
-        /// 批发差异金额
+        /// Số tiền chênh lệch bán buôn
         /// </summary>
         public decimal? pdpfjcy { get; set; }
         /// <summary>
-        /// 盘点数差异 = 实际数-理论数
+        /// Chênh lệch số kiểm kê = Số thực tế-Số lý thuyết
         /// </summary>
         public string pdscy { get; set; }
 
         /// <summary>
-        /// 进价
+        /// Giá nhập
         /// </summary>
         public decimal? jj { get; set; }
 
         /// <summary>
-        /// 数量盈亏 = 实际数 - 理论数
+        /// Lãi lỗ Số lượng = Số thực tế - Số lý thuyết
         /// </summary>
         //public int? slyk { get; set; }
         /// <summary>
-        /// 实盘金额 = 实际数 * 零售金额(实)
+        /// Số tiền kiểm kê thực tế = Số thực tế * Số tiền bán lẻ(thực)
         /// </summary>
         public decimal? spje { get; set; }
         /// <summary>
-        /// 盘前金额 = 理论数 * 零售金额(理)
+        /// Số tiền trước kiểm kê = Số lý thuyết * Số tiền bán lẻ(lý)
         /// </summary>
         public decimal? pqje { get; set; }
         /// <summary>
-        /// 盈亏金额 = 实盘金额 - 盘前金额
+        /// Số tiền lãi lỗ = Số tiền kiểm kê thực tế - Số tiền trước kiểm kê
         /// </summary>
         public decimal? ykje { get; set; }
 
         /// <summary>
-        /// 追溯码
+        /// Mã truy xuất
         /// </summary>
         public string zsm { get; set; }
 
         /// <summary>
-        /// 是否拆零
-        /// 1： 是
-        /// 2： 否
+        /// Có chia lẻ không
+        /// 1： Có
+        /// 2： Không
         /// </summary>
         public int? sfcl { get; set; }
 

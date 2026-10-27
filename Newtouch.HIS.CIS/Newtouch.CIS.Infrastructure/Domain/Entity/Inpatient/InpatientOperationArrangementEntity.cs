@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：周珏琦
-    /// 日 期：2019-02-11 15:37
-    /// 描 述：手术安排
+    /// Tác giả: 周珏琦
+    /// Ngày：2019-02-11 15:37
+    /// Mô tả：Sắp xếp phẫu thuật
     /// </summary>
     [SugarTable("zy_OperationArrangement")]
     public class InpatientOperationArrangementEntity
@@ -25,7 +25,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 临时医嘱id
+        /// Y lệnh tạm thờiid
         /// </summary>
         public string lsyzid { get; set; }
         /// <summary>
@@ -34,45 +34,45 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// 安排日期
+        /// anxếpNgày
         /// </summary>
         /// <returns></returns>
         public DateTime aprq { get; set; }
         /// <summary>
-        /// 手术地址
+        /// Phẫu thuậtĐịa chỉ
         /// </summary>
         /// <returns></returns>
         public string ssAddr { get; set; }
         /// <summary>
-        /// 紧急
+        /// gấpgấp
         /// </summary>
         /// <returns></returns>
         public string urgent { get; set; }
         /// <summary>
-        /// 手术医生ID
+        /// Phẫu thuậtBác sĩID
         /// </summary>
         /// <returns></returns>
         public string surgeonId { get; set; }
         /// <summary>
-        /// 手术医生姓名
+        /// Phẫu thuậtBác sĩHọ tên
         /// </summary>
         public string surgeonName { get; set; }
         /// <summary>
-        /// 助手ID
+        /// giúptayID
         /// </summary>
         /// <returns></returns>
         public string assistant { get; set; }
         /// <summary>
-        /// 助手姓名
+        /// giúptayHọ tên
         /// </summary>
         public string assistantName { get; set; }
         /// <summary>
-        /// 麻醉方式
+        /// Phương pháp gây mê
         /// </summary>
         /// <returns></returns>
         public string anesthesiaType { get; set; }
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         /// <returns></returns>
         public string remark { get; set; }

@@ -16,16 +16,16 @@ using System.Text;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 13:27
-    /// 描 述：住院病人生命体征
+    /// Tác giả: 冬林
+    /// Ngày：2018-06-28 13:27
+    /// Mô tả：Nhập việnbệnh nhândấu hiệu sinh tồn
     /// </summary>
     public class InpatientVitalSignsRepo : RepositoryBase<InpatientVitalSignsEntity>, IInpatientVitalSignsRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Mặc địnhHàm khởi tạosố
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFtrêndướivănNhà máy</param>
         public InpatientVitalSignsRepo()
             : base()
         {
@@ -33,7 +33,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 护理分页查询
+        /// điều dưỡngphúttrangTra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -100,7 +100,7 @@ namespace Newtouch.Repository
 			//                drop table #tmp");
 			//            return this.FindList<InpatientVitalSignsDto>(sb.ToString(), pars.ToArray());
 
-			//2021-2-2 解决Chinese_PRC_CI_AS 改为查询存储过程
+			//2021-2-2 giải决Chinese_PRC_CI_AS sửalàTra cứutồn tạitrữquatrình
 			var pars = new List<SqlParameter>();
 			pars.Add(new SqlParameter("@orgId", orgId));
 			pars.Add(new SqlParameter("@kssj", kssj.Value.Date));
@@ -113,7 +113,7 @@ namespace Newtouch.Repository
 		}
 
 		/// <summary>
-		/// 护理查询(不分页)
+		/// điều dưỡngTra cứu(khôngphúttrang)
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="orgId"></param>
@@ -148,7 +148,7 @@ where a.OrganizeId = @orgId and a.zt = '1'");
         }
 
         /// <summary>
-        /// 护理查询
+        /// điều dưỡngTra cứu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -178,29 +178,29 @@ where OrganizeId = @orgId and zt = '1'");
                 pars.Add(new SqlParameter("@searchZyh", "%" + zyh.Trim() + "%"));
             }
 
-            //按时间排序
+            //theoThời gianThứ tự
             sb.Append(" order by rq,sj");
 
             return this.FindList<InpatientVitalSignsEntity>(sb.ToString(), pars.ToArray());
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưubảngphiếu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">thựcthểđối tượng</param>
+        /// <param name="keyValue">Khóa chínhGiá trị</param>
         public void SubmitForm(InpatientVitalSignsEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
                 if (this.IQueryable(p => p.zyh == entity.zyh && p.rq == entity.rq && p.sj == entity.sj && p.Id != keyValue && p.zt == "1").Any())
                 {
-                    throw new FailedException("InpatientVitalSigns_Repeated_Error", "重复录入");
+                    throw new FailedException("InpatientVitalSigns_Repeated_Error", "trùng lặpnhập");
                 }
                 var dbEntity = this.FindEntity(keyValue);
                 if (dbEntity.OrganizeId != entity.OrganizeId)
                 {
-                    throw new FailedException("Error", "操作异常");
+                    throw new FailedException("Error", "Thao tácNgoại lệ");
                 }
                 //properties
                 var ignoreProps = new List<string>() { "Id", "CreateTime", "CreatorCode" };
@@ -212,7 +212,7 @@ where OrganizeId = @orgId and zt = '1'");
             {
                 if (this.IQueryable(p => p.zyh == entity.zyh && p.rq == entity.rq && p.sj == entity.sj && p.zt == "1").Any())
                 {
-                    throw new FailedException("InpatientVitalSigns_Repeated_Error", "重复录入");
+                    throw new FailedException("InpatientVitalSigns_Repeated_Error", "trùng lặpnhập");
                 }
                 entity.Create(true);
                 this.Insert(entity);
@@ -220,20 +220,20 @@ where OrganizeId = @orgId and zt = '1'");
         }
 
         /// <summary>
-        /// 删除数据
+        /// XóaDữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Khóa chínhGiá trị</param>
         public void DeleteForm(string keyValue)
         {
             var dbEntity = this.FindEntity(keyValue);
-            dbEntity.zt = "0";  //无效
+            dbEntity.zt = "0";  //Vô hiệu
             dbEntity.Modify(keyValue);
             this.Update(dbEntity);
         }
 
         /*****************************************************************/
         /// <summary>
-        /// 获取三测单绘制所需数据
+        /// LấyPhiếu đo ba chỉ số绘chếsởcầnDữ liệu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>

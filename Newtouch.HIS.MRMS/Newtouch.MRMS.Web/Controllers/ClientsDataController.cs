@@ -9,7 +9,7 @@ using NewtouchHIS.Lib.Framework.Filter;
 namespace Newtouch.MRMS.Web.Controllers
 {
     /// <summary>
-    /// Home/Index加载 giờ 默认加载的 缓存数据 (ported from the binary
+    /// Khi tải Home/Index, dữ liệu bộ nhớ đệm được tải mặc định (ported from the binary
     /// FrameworkBase ClientsDataController base; Core equivalent is
     /// ClientsDataBaseController with async menu/enum lists).
     /// </summary>
@@ -32,7 +32,7 @@ namespace Newtouch.MRMS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取同步的部分
+        /// Lấy phần đồng bộ
         /// </summary>
         [HttpGet]
         [HandlerAjaxOnly]
@@ -45,7 +45,7 @@ namespace Newtouch.MRMS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取异步的部分
+        /// Lấy phần không đồng bộ
         /// </summary>
         [HttpGet]
         [HandlerAjaxOnly]

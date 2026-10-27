@@ -1,49 +1,49 @@
 ﻿namespace NewtouchHIS.Lib.Base.Model.DRG
 {
     /// <summary>
-    /// 病案首页Drg分组信息
+    /// Thông tin nhóm Drg trang đầu bệnh án
     /// </summary>
     public class DrgMedicalRecord
     {
         /// <summary>
-        /// 病案首页号
-        /// 唯一标识、不重复
+        /// Số trang đầu bệnh án
+        /// Định danh duy nhất, không trùng lặp
         /// </summary>
         public String Index { get; set; }
         /// <summary>
-        /// 性别代码
+        /// Mã giới tính
         /// </summary>
         public String gender { get; set; }
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public int age { get; set; }
         /// <summary>
-        /// 新生儿年龄
+        /// Tuổi trẻ sơ sinh
         /// </summary>
         public int ageDay { get; set; }
         /// <summary>
-        /// 新生儿体重
+        /// Cân nặng trẻ sơ sinh
         /// </summary>
         public int weight { get; set; }
         /// <summary>
-        /// 出院科室
+        /// Khoa xuất viện
         /// </summary>
         public String dept { get; set; }
         /// <summary>
-        /// 住院天数
+        /// Số ngày nằm viện
         /// </summary>
         public int inHospitalTime { get; set; }
         /// <summary>
-        /// 离院方式
+        /// Cách thức rời viện
         /// </summary>
         public String leavingType { get; set; }
         /// <summary>
-        /// 诊断列表
+        /// Danh sách chẩn đoán
         /// </summary>
         public String[] zdList { get; set; }
         /// <summary>
-        /// 手术及操作列表
+        /// Danh sách phẫu thuật và thủ thuật
         /// </summary>
         public String[] ssList { get; set; }
         public String remark { get; set; }
@@ -55,25 +55,25 @@
         }
     }
     /// <summary>
-    /// DRG分组病案信息
-    /// （with版本选择）
+    /// DRGThông tin bệnh án nhóm
+    /// (with lựa chọn phiên bản)
     /// </summary>
     public class DrgAreaMedicalRecord : DrgMedicalRecord
     {
         /// <summary>
-        /// 分组器版本
+        /// Phiên bản bộ nhóm
         /// </summary>
         public string version { get; set; }
         public int? versionPolicy { get; set; }
     }
     /// <summary>
-    /// DRG分组病案信息
-    /// （with版本选择，List&Array）
+    /// DRGThông tin bệnh án nhóm
+    /// (with lựa chọn phiên bản,List&Array)
     /// </summary>
     public class DrgAreaMedicalRecordS
     {
         /// <summary>
-        /// 分组器版本
+        /// Phiên bản bộ nhóm
         /// </summary>
         public string version { get; set; }
         public int? versionPolicy { get; set; }

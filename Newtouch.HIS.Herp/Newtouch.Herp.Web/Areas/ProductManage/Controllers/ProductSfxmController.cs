@@ -13,7 +13,7 @@ using NewtouchHIS.Lib.Base.Extension;
 namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
 {
     /// <summary>
-    /// 物资收费项目对照表
+    /// Bảng đối chiếu khoản thu vật tư
     /// </summary>
     [Area("ProductManage")]
     public class ProductSfxmController : ControllerBase

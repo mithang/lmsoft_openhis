@@ -26,7 +26,7 @@ where zt=1 and organizeId=@OrganizeId
 and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
             if (ddzt != 0)
             {
-                sql += " and ddzt=@ddzt";//已传报
+                sql += " and ddzt=@ddzt";//Đã báo cáo
             }
             var parms = new List<SugarParameter>
             {
@@ -59,7 +59,7 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
         }
 
         /// <summary>
-        /// 更新采购单的订单编号
+        /// Cập nhật mã đơn hàng của đơn mua sắm
         /// </summary>
         /// <param name="cgId"></param>
         /// <param name="ddbh"></param>
@@ -94,7 +94,7 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
                 entity.ddsj = DateTime.Now.ToString("yyyy-MM-dd HH:ss:mm");
                 //entity.ddbh = "CG" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
                 entity.yyjhdh = "CG" + DateTime.Now.ToString("yyyyMMddHHmmssfff");
-                entity.ddzt = 1; //1已保存
+                entity.ddzt = 1; //1 Đã lưu
                 //entity.zt = "1";
                 //entity.CreatorCode = user.rygh;
                 //entity.CreateTime = DateTime.Now;

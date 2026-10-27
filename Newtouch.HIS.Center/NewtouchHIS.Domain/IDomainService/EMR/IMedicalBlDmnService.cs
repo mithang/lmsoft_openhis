@@ -22,28 +22,28 @@ namespace NewtouchHIS.Domain.IDomainService.EMR
         /// <returns></returns>
         Task<MedicalBllxItemVo> MedicalbllxRecord(string orgId, DBEnum db = DBEnum.EmrDb);
         /// <summary>
-        /// 病历模板
+        /// Mẫu bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="db"></param>
         /// <returns></returns>
         Task<MedicalBlMbItemVo> MedicalblmbRecord(string orgId, DBEnum db = DBEnum.EmrDb);
         /// <summary>
-        /// 病历类型树
+        /// Cây loại bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="db"></param>
         /// <returns></returns>
         Task<MedicalBllxMbTreeVo> MedicalbllxTreeRecord(string orgId, DBEnum db = DBEnum.EmrDb);
         /// <summary>
-        /// 住院病人列表
+        /// Danh sách bệnh nhân nội trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="db"></param>
         /// <returns></returns>
         Task<List<MedicalPatientVo>> MedicalCenterPatInfo(string brbz,DateTime ksrq,DateTime jsrq, string srz, string orgId, DBEnum db = DBEnum.EmrDb);
         /// <summary>
-        /// 诊断列表
+        /// Danh sách chẩn đoán
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -51,7 +51,7 @@ namespace NewtouchHIS.Domain.IDomainService.EMR
         /// <returns></returns>
         Task<List<MedDiagListVo>> MedicalCenterDiaglist(string zyh, string orgId, DBEnum db = DBEnum.EmrDb);
         /// <summary>
-        /// 病历文书tree
+        /// Văn bản bệnh ántree
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

@@ -54,7 +54,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
             return View();
         }
 
-        #region DC病历文书
+        #region Văn bản bệnh án DC
 
         // PORT STUB: the DCSoft writer service page has no .NET Core equivalent.
         // Kept as an explicit error instead of a 404 so callers get a clear message.
@@ -65,18 +65,23 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
 
         #endregion
 
-        #region 质控中心接口调用
+        #region Gọi API trung tâm kiểm soát chất lượng
         public IActionResult GetPatList(string brbz, DateTime ksrq, DateTime jsrq, string srz)
         {
             string token = AuthenManageHelper.GetToken();
+            // Ô tìm kiếm để trống được model binder chuyển thành null, mà center
+            // API lại bắt buộc brbz/srz phải có giá trị (null -> code 20000,
+            // data null). Chuỗi rỗng nghĩa là "không lọc theo nội dung" và
+            // center chấp nhận (đã kiểm chứng: brbz/srz "" -> 10000 + dữ liệu
+            // theo khoảng ngày). Không bịa dữ liệu, chỉ tránh null lan sang center.
             var reqObj = new
             {
                 Data = new
                 {
-                    brbz = brbz,
+                    brbz = brbz ?? "",
                     ksrq = ksrq,
                     jsrq = jsrq,
-                    srz = srz
+                    srz = srz ?? ""
                 },
                 AppId = AuthenManageHelper.appId,
                 OrganizeId = OrganizeId,
@@ -85,12 +90,26 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
             AuthenTokenHelper apiResp = JsonConvert.DeserializeObject<AuthenTokenHelper>(AuthenManageHelper.HttpPost(reqObj.ToJson(),
                 AuthenManageHelper.SiteConmonAPIHost + "api/MedicalBl/MedicalCenterPatInfo", token));
 
-            var data = JsonConvert.DeserializeObject<List<PatientDataVo>>(apiResp.BusData.data.ToString());
+            // Phòng thủ null: center API trả BusData = null khi token lỗi, hoặc
+            // BusData.data = null khi tham số lọc trống bị validation từ chối
+            // (vd. brbz/srz null -> code 20000, data null). Trước đây dòng dưới
+            // ném NullReferenceException và lưới bệnh nhân rỗng kèm lỗi 500.
+            // Không bịa dữ liệu: thiếu dữ liệu nguồn thì trả danh sách rỗng.
+            List<PatientDataVo> data;
+            if (apiResp?.BusData?.data == null)
+            {
+                data = new List<PatientDataVo>();
+            }
+            else
+            {
+                data = JsonConvert.DeserializeObject<List<PatientDataVo>>(apiResp.BusData.data.ToString())
+                    ?? new List<PatientDataVo>();
+            }
             return Content(data.ToJson());
         }
 
         /// <summary>
-        /// 诊断列表
+        /// Danh sách chẩn đoán
         /// </summary>
         public IActionResult GetMedicalCenterDiag(string zyh)
         {
@@ -105,12 +124,23 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
             AuthenTokenHelper apiResp = JsonConvert.DeserializeObject<AuthenTokenHelper>(AuthenManageHelper.HttpPost(reqObj.ToJson(),
                 AuthenManageHelper.SiteConmonAPIHost + "api/MedicalBl/MedicalCenterDiaglist", token));
 
-            var data = JsonConvert.DeserializeObject<List<MedicalHomeDiagVo>>(apiResp.BusData.data.ToString());
+            // Phòng thủ null, cùng mẫu GetPatList: center trả BusData/data null
+            // thì trả danh sách rỗng thay vì NRE ở .ToString(). Không bịa dữ liệu.
+            List<MedicalHomeDiagVo> data;
+            if (apiResp?.BusData?.data == null)
+            {
+                data = new List<MedicalHomeDiagVo>();
+            }
+            else
+            {
+                data = JsonConvert.DeserializeObject<List<MedicalHomeDiagVo>>(apiResp.BusData.data.ToString())
+                    ?? new List<MedicalHomeDiagVo>();
+            }
             return Content(data.ToJson());
         }
 
         /// <summary>
-        /// 病历文书tree
+        /// Cây văn bản bệnh án
         /// </summary>
         public IActionResult GetMedicalCenterBlTree(string zyh)
         {
@@ -125,7 +155,18 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
             AuthenTokenHelper apiResp = JsonConvert.DeserializeObject<AuthenTokenHelper>(AuthenManageHelper.HttpPost(reqObj.ToJson(),
                 AuthenManageHelper.SiteConmonAPIHost + "api/MedicalBl/MedicalCenterBlwsTree", token));
 
-            var data = JsonConvert.DeserializeObject<List<MedRecordTree>>(apiResp.BusData.data.ToString());
+            // Phòng thủ null, cùng mẫu GetPatList: center trả BusData/data null
+            // thì cây rỗng thay vì NRE ở .ToString() / data.Count. Không bịa dữ liệu.
+            List<MedRecordTree> data;
+            if (apiResp?.BusData?.data == null)
+            {
+                data = new List<MedRecordTree>();
+            }
+            else
+            {
+                data = JsonConvert.DeserializeObject<List<MedRecordTree>>(apiResp.BusData.data.ToString())
+                    ?? new List<MedRecordTree>();
+            }
             var treeList = new List<TreeGridModel>();
             if (data.Count > 0)
             {
@@ -158,7 +199,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
         }
 
         /// <summary>
-        /// 门诊住院检验检查申请单
+        /// Đơn xin xét nghiệm/kiểm tra ngoại trú và nội trú
         /// </summary>
         public IActionResult GetInspectionExaminationRecore(string jzh, DateTime ksrq, DateTime jsrq, string reportType, string mzzybz)
         {
@@ -175,7 +216,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
 
         #endregion
 
-        #region 质控消息
+        #region Thông báo kiểm soát chất lượng
         public IActionResult GetTyzkxm(string bllx, string keyword)
         {
             var data = _qcitemdataRepo.IQueryable(p => p.BlmbId == bllx && p.OrganizeId == this.OrganizeId && p.zt == "1" && p.Name.Contains(keyword)).ToList();
@@ -294,7 +335,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
         }
         #endregion
 
-        #region 评分
+        #region Chấm điểm
         public IActionResult Getybbxbldata(string bllx, string zyh)
         {
             var list = _qcblzkDmn.Getybbxbldata(bllx, this.OrganizeId, zyh);
@@ -302,7 +343,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
         }
 
         /// <summary>
-        /// 保存评分
+        /// Lưu điểm chấm
         /// </summary>
         public IActionResult SaveScoreDate(List<ScoreEntity> entity, string bllx, string blmc, string zyh)
         {

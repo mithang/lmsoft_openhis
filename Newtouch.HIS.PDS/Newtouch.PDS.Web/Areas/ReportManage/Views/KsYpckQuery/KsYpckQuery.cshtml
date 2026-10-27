@@ -47,7 +47,7 @@
     </div>
 </form>
 <script>
-    //初始化输入码
+    //Khởi tạo mã nhập
     function InitSrm() {
         $("#keyword").newtouchBatchFloatingSelector({
             clickautotrigger: true,
@@ -72,7 +72,7 @@
                 { label: 'Đơn giá lẻ', name: 'lsjdjdw', width: 120, align: 'center' },//Giá lẻ theo đơn vị khoa
                 { label: 'Số đăng ký', name: 'pzwh', width: 150, align: 'center' },
                 { label: 'Nhà sản xuất', name: 'sccj', width: 200, align: 'left' },
-                { label: 'pfj', name: 'pfj', hidden: true },//部门单位批发价
+                { label: 'pfj', name: 'pfj', hidden: true },//Giá bán buôn đơn vị bộ phận
                 { label: 'lsj', name: 'lsj', hidden: true },//Giá lẻ theo đơn vị khoa
                 { label: 'ykpfj', name: 'ykpfj', hidden: true },
                 { label: 'yklsj', name: 'yklsj', hidden: true },
@@ -92,7 +92,7 @@
     $(function () {
         InitSrm();
         $('#if_data').css('height', $(window).height() - 85);
-        //查询
+        //Truy vấn
         $("#btn_search").click(function () {
 
             if ($("#keyword").val() == "" || $("#keyword").val() == null) {

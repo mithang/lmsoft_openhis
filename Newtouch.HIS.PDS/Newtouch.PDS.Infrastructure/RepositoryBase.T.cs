@@ -6,7 +6,7 @@ using FrameworkBase.MultiOrg.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 仓储实现
+    /// Triển khai kho
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>
     public partial class RepositoryBase<TEntity> : Infrastructure.EF.RepositoryBase<TEntity> where TEntity : class, new()
@@ -18,17 +18,17 @@ namespace Newtouch.HIS.Repository
 
 
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         
         /// <summary>
-        /// 更新部分字段
+        /// Cập nhật một phần trường
         /// </summary>
         /// <param name="entity"></param>
-        /// <param name="dstnFieldNameList">目标列</param>
-        /// <param name="ignoreFieldNameList">排除列</param>
-        /// <param name="attach">是否需要将Entity附加上上下文（如果这个Entity是从dbcontext查出来的，false）</param>
+        /// <param name="dstnFieldNameList">Cột đích</param>
+        /// <param name="ignoreFieldNameList">Cột loại trừ</param>
+        /// <param name="attach">Có cần khôngEntityThêm ngữ cảnh vào（Nếu cái nàyEntitylà từdbcontexttra ra，false）</param>
         /// <returns></returns>
         public override int Update(TEntity entity, IEnumerable<string> dstnFieldNameList = null, IEnumerable<string> ignoreFieldNameList = null, bool attach = true)
         {

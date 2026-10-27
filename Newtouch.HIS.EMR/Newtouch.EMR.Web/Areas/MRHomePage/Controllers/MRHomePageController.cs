@@ -203,13 +203,13 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
             var data = "";
             if (dto != null && dto.Count > 0)
             {
-                //结算病人信息
+                //Thông tin bệnh nhân đã thanh toán
                 var jsbrxx = _MainRecordDmnService.SettlementQuery(zyh, this.OrganizeId);
-                //是否同步动态参数信息
+                //Có đồng bộ thông tin tham số động hay không
                 var dtcsxx = _MainRecordDmnService.DiagnosticSave(Code, this.OrganizeId);
-                //结算病人是否允许新增修改诊断 ON 可编辑  OFF 不可编辑
+                //Bệnh nhân đã thanh toán có được phép thêm/sửa chẩn đoán hay không ON Có thể chỉnh sửa  OFF Không thể chỉnh sửa
                 var outpatDiagModify = _MainRecordDmnService.DiagnosticSave("OutpatDiagModifyOpen", this.OrganizeId);
-                //判断是否结算病人
+                //Phán đoán có phải bệnh nhân đã thanh toán hay không
                 if (jsbrxx.Count > 0)
                 {
                     if (outpatDiagModify.Count > 0)
@@ -220,28 +220,28 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                         }
                         else
                         {
-                            //保存诊断
+                            //Lưu chẩn đoán
                             _MainRecordDmnService.ZdListSubmit(dto, OrganizeId);
                             data = "Lưu thông tin chẩn đoán thành công";
                             if (dtcsxx.Count > 0)
                             {
                                 if (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on")
                                 {
-                                    //同步诊断信息至CIS出院诊断
+                                    //Đồng bộ thông tin chẩn đoán sangCISChẩn đoán ra viện
                                     _MainRecordDmnService.SynchronizationZD(zyh, this.OrganizeId);
                                 }
                             }
                         }
                     }
                     else {
-                        //保存诊断
+                        //Lưu chẩn đoán
                         _MainRecordDmnService.ZdListSubmit(dto, OrganizeId);
                         data = "Lưu thông tin chẩn đoán thành công";
                         if (dtcsxx.Count > 0)
                         {
                             if (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on")
                             {
-                                //同步诊断信息至CIS出院诊断
+                                //Đồng bộ thông tin chẩn đoán sangCISChẩn đoán ra viện
                                 _MainRecordDmnService.SynchronizationZD(zyh, this.OrganizeId);
                             }
                         }
@@ -249,14 +249,14 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                     }
                 }
                 else {
-                    //没有结算并且参数开启时同步和保存诊断
+                    //Khi chưa thanh toán và tham số được bật thì đồng bộ và lưu chẩn đoán
                     _MainRecordDmnService.ZdListSubmit(dto, OrganizeId);
                     data = "Lưu thông tin chẩn đoán thành công";
 
                     if (dtcsxx.Count > 0) {
                         if (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on")
                         {
-                            //同步诊断信息
+                            //Đồng bộ thông tin chẩn đoán
                             _MainRecordDmnService.SynchronizationZD(zyh, this.OrganizeId);
                         }
                     }
@@ -275,7 +275,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
             return Success("Lưu phẫu thuật thành công");
         }
         /// <summary>
-        /// 病案首页-保存基本信息
+        /// Trang đầu bệnh án-Lưu thông tin cơ bản
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="reldto"></param>
@@ -308,31 +308,31 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                 {
                     //_MainRecordDmnService.ZdListSubmit(zddto, OrganizeId);
 
-                    //结算病人信息
+                    //Thông tin bệnh nhân đã thanh toán
                     var jsbrxx = _MainRecordDmnService.SettlementQuery(zyh, this.OrganizeId);
-                    //是否同步动态参数信息
+                    //Có đồng bộ thông tin tham số động hay không
                     var dtcsxx = _MainRecordDmnService.DiagnosticSave(Code, this.OrganizeId);
-                    //结算病人是否允许新增修改诊断
+                    //Bệnh nhân đã thanh toán có được phép thêm/sửa chẩn đoán hay không
                     var outpatDiagModify = _MainRecordDmnService.DiagnosticSave("OutpatDiagModifyOpen", this.OrganizeId);
-                    //判断是否结算病人
+                    //Phán đoán có phải bệnh nhân đã thanh toán hay không
                     if (jsbrxx.Count > 0)
                     { 
                         if (outpatDiagModify.Count > 0)
                         {
-                            // ON 开关开启  可编辑  OFF  不可编辑
+                            // ON Bật công tắc  Có thể chỉnh sửa  OFF  Không thể chỉnh sửa
                             if (outpatDiagModify[0].Value != "OFF" || outpatDiagModify[0].Value != "off")
                             {
-                                //保存诊断
+                                //Lưu chẩn đoán
                                 _MainRecordDmnService.ZdListSubmit(zddto, OrganizeId);
                             }
                         }
                         else {
-                            //保存诊断
+                            //Lưu chẩn đoán
                             _MainRecordDmnService.ZdListSubmit(zddto, OrganizeId);
                             if (dtcsxx.Count > 0) {
                                 if (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on")
                                 {
-                                    //同步诊断信息
+                                    //Đồng bộ thông tin chẩn đoán
                                     _MainRecordDmnService.SynchronizationZD(zyh, this.OrganizeId);
                                 }
                             }
@@ -340,13 +340,13 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                     }
                     else
                     {
-                        //保存诊断
+                        //Lưu chẩn đoán
                         _MainRecordDmnService.ZdListSubmit(zddto, OrganizeId);
                         if (dtcsxx.Count > 0)
                         {
                             if (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on")
                             {
-                                //同步诊断信息
+                                //Đồng bộ thông tin chẩn đoán
                                 _MainRecordDmnService.SynchronizationZD(zyh, this.OrganizeId);
                             }
                         }
@@ -519,7 +519,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
             }
             return Success();
         }
-        #region 医保相关
+        #region Liên quan đến bảo hiểm y tế
         public string DocumentAuditYB<T>(T entity)
         {
             string errmsg = "";
@@ -555,7 +555,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
         {
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.ReportServerHOST = EmrConfig.GetAppConfigValue("ReportServer.HOST");
-            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //是否是医院管理员
+            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //Có phải quản trị viên bệnh viện hay không
             ViewBag.CurUserCode = this.UserIdentity.UserCode;
             ViewBag.curUsergh = UserIdentity.rygh;
         }

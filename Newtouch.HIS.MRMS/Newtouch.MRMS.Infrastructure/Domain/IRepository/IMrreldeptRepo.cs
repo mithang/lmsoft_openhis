@@ -17,30 +17,30 @@ using Newtouch.MR.ManageSystem.Infrastructure;
 namespace Newtouch.MR.ManageSystem.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-20 13:45
-    /// 描 述：病案科室与his科室关系表
+    /// Tạo: chl
+    /// Ngày: 2019-11-20 13:45
+    /// Mô tả: Bảng quan hệ khoa bệnh án và khoa HIS
     /// </summary>
     public interface IMrreldeptRepo : IRepositoryBase<MrreldeptEntity>
     {
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu(Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         int SubmitForm(MrreldeptEntity entity,string keyValue);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         int Save(MrreldeptEntity entity);
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         int DeleteForm(string keyValue);
 
     }

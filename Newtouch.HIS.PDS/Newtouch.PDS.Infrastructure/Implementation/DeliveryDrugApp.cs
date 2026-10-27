@@ -20,7 +20,7 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 发药
+    /// Phát thuốc
     /// </summary>
     public class DeliveryDrugApp : ProcessorFun<string>
     {
@@ -33,17 +33,17 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Kiểm tra
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
         {
-            if (string.IsNullOrWhiteSpace(Request)) throw new FailedException("处方号不能为空");
+            if (string.IsNullOrWhiteSpace(Request)) throw new FailedException("Số đơn thuốc không được để trống");
             return new ActResult();
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Application.Implementation
                     TimeStamp = DateTime.Now
                 };
                 var apiResp = SiteSettAPIHelper.Request<object, DefaultResponse>("api/OutpatientPharmacy/UpdatefyztByFY", ztObj);
-                LogCore.Info("UpdatefyztByFY", string.Format("门诊发药同步发药状态; \n request:{0} \n response:{1} ; ", ztObj.ToJson(), apiResp.ToJson()));
+                LogCore.Info("UpdatefyztByFY", string.Format("Đồng bộ trạng thái phát thuốc ngoại trú; \n request:{0} \n response:{1} ; ", ztObj.ToJson(), apiResp.ToJson()));
             });
         }
     }

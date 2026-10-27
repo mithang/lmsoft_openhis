@@ -62,7 +62,7 @@ namespace newtouchyibao.Models
 {
     /// <summary>
     /// Minimal stand-ins for the binary newtouchyibao.dll insurance-review
-    /// DTOs (Sqtx = 申请). Members are exactly those assigned by
+    /// DTOs (Sqtx = Đăng ký). Members are exactly those assigned by
     /// MedicalRecordController.getXmCfJson / getYpCfJson. The real yibao
     /// service contract (field meanings beyond these assignments) is not
     /// available on Linux, so the insurance-review submission path is a

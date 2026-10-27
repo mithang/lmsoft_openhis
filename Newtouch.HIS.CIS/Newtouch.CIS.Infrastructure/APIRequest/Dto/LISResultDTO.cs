@@ -12,11 +12,11 @@ namespace Newtouch.CIS.APIRequest.Dto
 
             public string type { get; set; }
             /// <summary>
-            /// LIS 数据库连接字符串
+            /// LIS Dữ liệukhoKết nốichữkýchuỗi
             /// </summary>
             public string Ado_lis { get; set; }
             /// <summary>
-            /// LIS 病人 ID
+            /// LIS bệnh nhân ID
             /// </summary>
             public string brxx_id { get; set; }
             public string brxx_tmh { get; set; }

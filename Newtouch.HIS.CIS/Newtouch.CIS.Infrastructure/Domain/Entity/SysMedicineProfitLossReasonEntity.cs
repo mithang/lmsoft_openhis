@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 科室备药药品损益原因
+    /// Khoachuẩn bị thuốcThuốcnguyên nhân lãi lỗ
     /// </summary>
     [SugarTable("xt_ksbysyyy")]
 
@@ -29,7 +29,7 @@ namespace Newtouch.Domain.Entity
         public string syyy { get; set; }
 
         /// <summary>
-        /// 0 报损，1 报溢
+        /// 0 Báo hỏng，1 báo thừa
         /// </summary>
         public string sybz { get; set; }
 

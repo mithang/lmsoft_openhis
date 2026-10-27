@@ -15,7 +15,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 {
     /// <summary>
-    /// 药房窗口
+    /// Cửa sổ nhà thuốc
     /// </summary>
     public class ReportManagementController : ControllerBase
     {
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Success(isSuccess);
         }
         /// <summary>
-        /// 新增保存主报表
+        /// Thêm và lưu báo cáo chính
         /// </summary>
         /// <param name="ReortMXListVO"></param>
         /// <returns></returns>
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Success(isSuccess);
         }
         /// <summary>
-        /// 停止或者开启报表
+        /// Dừng hoặc bật báo cáo
         /// </summary>
         /// <param name="ReportId"></param>
         /// <param name="ReportStatus"></param>
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Success(isSuccess);
         }
         /// <summary>
-        /// 报表明细删除
+        /// Xóa chi tiết báo cáo
         /// </summary>
         /// <param name="ReportId"></param>
         /// <returns></returns>
@@ -87,7 +87,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Success(isSuccess);
         }
         /// <summary>
-        /// 主单据删除
+        /// Xóa chứng từ chính
         /// </summary>
         /// <param name="ReportId"></param>
         /// <returns></returns>
@@ -97,7 +97,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Success(isSuccess);
         }
         /// <summary>
-        /// 获取报表内容
+        /// Lấy nội dung báo cáo
         /// </summary>
         /// <returns></returns>
         public IActionResult GetReportTree(string keyword,string ReportType)

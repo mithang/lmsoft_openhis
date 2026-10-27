@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统收费大类
+    /// Loại thu phí lớn hệ thống
     /// </summary>
     [Table("xt_sfdl")]
     [SugarTable("xt_sfdl")]
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string TopOrganizeId { get; set; }
 
         /// <summary>
-        /// 0 通用 1 门诊 2住院
+        /// 0 Chung 1 Ngoại trú 2Nội trú
         /// </summary>
         public string mzzybz { get; set; }
 

@@ -11,7 +11,7 @@ using Newtouch.Herp.Infrastructure;
 namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 {
     /// <summary>
-    /// 库存盘点 (kiểm kê tồn kho).
+    /// Kiểm kê tồn kho.
     /// InventoryQuery grid data comes from normal JSON actions, so it is
     /// ported fully; only its SSRS print buttons (tempCode 1262/1263) are
     /// stubbed in the view. Index() is inherited from the controller base

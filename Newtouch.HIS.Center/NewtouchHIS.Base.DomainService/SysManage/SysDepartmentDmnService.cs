@@ -16,17 +16,17 @@ namespace NewtouchHIS.Base.DomainService
             return result.Name;
         }
         /// <summary>
-        /// 获取实体列表
+        /// Lấy danh sách thực thể
         /// </summary>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="keyword">Từ khóa lọc</param>
         public async Task<List<SysDepartmentEntity>> GetList(string keyword = null)
         {
             return await FindAllWithAttr<SysDepartmentEntity>();
         }
         /// <summary>
-        /// 获取实体列表
+        /// Lấy danh sách thực thể
         /// </summary>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="keyword">Từ khóa lọc</param>
         public async Task<List<SysDepartmentEntity>> GetListByOrg(string organizeId)
         {
             return await GetByWhere<SysDepartmentEntity>(p=>p.OrganizeId== organizeId,true,p=>p.CreateTime,OrderByType.Desc);

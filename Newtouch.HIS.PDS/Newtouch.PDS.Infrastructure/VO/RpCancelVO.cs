@@ -2,22 +2,22 @@ namespace Newtouch.HIS.Domain.VO
 {
 
     /// <summary>
-    /// 取消排药信息
+    /// Hủy thông tin xếp thuốc
     /// </summary>
     public class RpCancelVo
     {
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get;set;}
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
         
         /// <summary>
-        /// 药房部门编码
+        /// Mã bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
     }

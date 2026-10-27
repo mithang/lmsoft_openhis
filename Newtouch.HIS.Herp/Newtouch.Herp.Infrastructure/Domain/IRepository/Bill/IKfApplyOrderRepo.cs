@@ -3,13 +3,13 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 申领单
+    /// Phiếu lĩnh
     /// </summary>
     public interface IKfApplyOrderRepo : IRepositoryBase<KfApplyOrderEntity>
     {
 
         /// <summary>
-        /// 查询申领单住信息
+        /// Truy vấn thông tin chính phiếu lĩnh
         /// </summary>
         /// <param name="sldh"></param>
         /// <param name="organizeId"></param>

@@ -31,14 +31,14 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
 
-        //绩效指标
+        //Chỉ số hiệu quả
         public IActionResult PerformanceIndicator()
         {
             return View();
         }
 
         /// <summary>
-        /// 总人次 平均人次
+        /// Tổng lượt người Lượt người bình quân
         /// </summary>
         /// <returns></returns>
         public IActionResult SelectPerformanceIndicator(string orgId, string year)
@@ -48,7 +48,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// 总人次 平均人次
+        /// Tổng lượt người Lượt người bình quân
         /// </summary>
         /// <returns></returns>
         public IActionResult PerformanceMonthIndicator(string orgId, string year,int month)

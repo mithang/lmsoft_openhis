@@ -6,7 +6,7 @@ using SqlSugar;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 单位维护 (Base DB: wz_unit).
+    /// Bảo trì đơn vị (Base DB: wz_unit).
     /// </summary>
     public class WzUnitRepo : RepositoryBase<WzUnitEntity>, IWzUnitRepo
     {

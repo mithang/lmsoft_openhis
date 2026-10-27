@@ -1,4 +1,4 @@
-# 在部署包中构建镜像
+# Build image trong g贸i tri峄僴 khai
 
 FROM mcr.microsoft.com/dotnet/aspnet:6.0-windowsservercore-ltsc2019
 WORKDIR /app

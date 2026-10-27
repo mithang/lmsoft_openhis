@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.IRepository.Settlement
     public interface ISysMedicineAuthorityRelationRepo : IRepositoryBase<SysMedicineAuthorityRelationEntity>
     {
         /// <summary>
-        /// 获取实体数据
+        /// Lấy dữ liệu thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

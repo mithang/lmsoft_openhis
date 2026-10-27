@@ -7,8 +7,8 @@
 <ul id="myTab" class="nav nav-tabs">
     <li class="active"><a href="#xz" data-toggle="tab">Danh mục loại tải xuống</a></li>
     <li><a href="#cx" data-toggle="tab">Danh mục loại truy vấn</a></li>
-    @*<li><a href="#zdcx" data-toggle="tab">字典表查询</a></li>
-    <li><a href="#yzry" data-toggle="tab">医执人员信息查询</a></li>*@
+    @*<li><a href="#zdcx" data-toggle="tab">Tra cứu bảng từ điển</a></li>
+    <li><a href="#yzry" data-toggle="tab">Tra cứu thông tin nhân viên hành nghề y</a></li>*@
 </ul>
 <div id="myTabContent" class="tab-content">
     <div class="tab-pane fade in active" id="xz">
@@ -310,7 +310,7 @@
 
 
         }
-        //目录查询类
+        //Loại tra cứu danh mục
         $('#btmlcx').change(function () {
             if ($('#btmlcx').val() == "0") {
                 return;
@@ -354,7 +354,7 @@
             gridList2();
         });
 
-        //目录查询返回值
+        //Giá trị trả về tra cứu danh mục
         function DirectoryQuery()
 		{
 			var type = $('#sjly').val();
@@ -422,7 +422,7 @@
             return ResultData;
         }
 
-        //字典表查询
+        //Tra cứu bảng từ điển
         $("#btn_zdcx").click(function () {
             var type = $('#zdtype').val();
             if (!type) {
@@ -466,7 +466,7 @@
         }
 
 
-        //字典表查询返回值
+        //Giá trị trả về tra cứu bảng từ điển
         function DictionaryTable() {
             var type = $('#zdtype').val();
             var parentValue = $('#zdparentValue').val();
@@ -509,7 +509,7 @@
         })
 
 
-        //医执人员信息查询
+        //Tra cứu thông tin nhân viên hành nghề y
         $("#btn_zdcx").click(function () {
             $('#gridList4').remove();
             $("#gbox_gridList4").remove();

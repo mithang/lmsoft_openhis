@@ -6,12 +6,12 @@ using Newtouch.Core.Common;
 namespace Newtouch.HIS.Application
 {
     /// <summary>
-    /// 角色App
+    /// Vai tròApp
     /// </summary>
     public interface IRoleApp
     {
         /// <summary>
-        /// 组织机构 角色列表 带 分页
+        /// Tổ chức Danh sách vai trò mang Phân trang
         /// </summary>
         /// <param name="topOrganizeId"></param>
         /// <param name="pagination"></param>
@@ -20,20 +20,20 @@ namespace Newtouch.HIS.Application
         List<SysRoleEntity> GetPagintionList(string topOrganizeId, Pagination pagination, string keyword = null);
 
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         SysRoleEntity GetForm(string keyValue);
 
         /// <summary>
-        /// 删除实体
+        /// Xóa thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         void DeleteForm(string keyValue);
 
         /// <summary>
-        /// 提交保存
+        /// Gửi và lưu
         /// </summary>
         /// <param name="roleEntity"></param>
         /// <param name="permissionIds"></param>

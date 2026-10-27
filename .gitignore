@@ -23,3 +23,6 @@ TestResults/
 # OS
 .DS_Store
 Thumbs.db
+
+# Delivery artifact (screenshots zip, delivered separately — never commit)
+shots-roles.zip

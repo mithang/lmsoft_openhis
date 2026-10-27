@@ -49,15 +49,15 @@ namespace Newtouch.Domain.DTO
 
 
     public class RtnToQhd
-    {   // 药品
+    {   // Thuốc
         public List<PrescriptionDto>  ypMessage { get; set; }
-        //检验
+        //Xét nghiệm
         public List<PrescriptionDto> lisMessage { get; set; }
-        //检查
+        //Kiểm tra
         public List<PrescriptionDto> pacsMessage { get; set; }
-        //治疗
+        //Điều trị
         public List<PrescriptionDto> zlMessage { get; set; }
-        //康复
+        //Phục hồi chức năng
         public List<PrescriptionDto> kfMessage { get; set; }
     }
 }

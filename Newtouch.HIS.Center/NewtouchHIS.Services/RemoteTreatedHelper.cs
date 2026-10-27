@@ -6,7 +6,7 @@ namespace NewtouchHIS.Services
     public class RemoteTreatedHelper
     {
         /// <summary>
-        /// 音视频Cuộc họpAPI
+        /// Âm thanh/hình ảnhCuộc họpAPI
         /// </summary>
         protected static string OuterMediaMeettingAPIHost
         {
@@ -22,25 +22,25 @@ namespace NewtouchHIS.Services
         }
 
         /// <summary>
-        /// 获取音视频用户 Token
+        /// Lấy người dùng âm thanh/hình ảnh Token
         /// </summary>
         public readonly static string OuterMediaTokenRoute = $"{OuterMediaMeettingAPIHost}chatroom/rest/rtc/token";
         /// <summary>
-        /// 获取音视频Cuộc họp地址
+        /// Lấy âm thanh/hình ảnhCuộc họpĐịa chỉ
         /// </summary>
         public readonly static string RemoteTreatedMeettingRoute = $"chatroom/index.html";
         /// <summary>
-        /// 厂商，新致公司：xinzhi
+        /// Nhà cung cấp,Công ty XinZhi:xinzhi
         /// </summary>
         public static string Organization = AppSettings.GetConfig("RemoteTreated:SKey") ?? "xinzhi";
         /// <summary>
-        /// Secret 为厂商使用密码
+        /// Secret Mật khẩu nhà cung cấp dùng
         /// </summary>
         static string Secret = AppSettings.GetConfig("RemoteTreated:Organization") ?? "8a8e2a0db12343f589d7721762b94490";
         static string AES_IV = "A-16-Byte-String";
 
         /// <summary>
-        /// 组装请求头 Header
+        /// Lắp ráp header yêu cầu Header
         /// </summary>
         /// <returns></returns>
         public static Dictionary<string, string> HeaderItems()
@@ -58,7 +58,7 @@ namespace NewtouchHIS.Services
             return dic;
         }
         /// <summary>
-        /// 获取Rtcuserid
+        /// LấyRtcuserid
         /// </summary>
         /// <param name="Rtcuserid"></param>
         /// <returns></returns>
@@ -69,28 +69,28 @@ namespace NewtouchHIS.Services
         }
 
         /// <summary>
-        /// DateTime转时间戳
+        /// DateTimeChuyển thành timestamp
         /// </summary>
         /// <param name="dateTime"></param>
         /// <returns></returns>
         public static long GetTimeStamp(DateTime dateTime)
         {
-            // 开始时间
+            // Thời gian bắt đầu
             DateTime startTime = new(1970, 1, 1, 8, 0, 0);
-            // 10位的时间戳
+            // 10timestamp 10 chữ số
             long timeStamp = Convert.ToInt64(dateTime.Subtract(startTime).TotalSeconds);
-            // 13位的时间戳
+            // 13timestamp 10 chữ số
             //long timeStamp = Convert.ToInt64(dateTime.Subtract(_dtStart).TotalMilliseconds);
             return timeStamp;
         }
         /// <summary>
-        /// 时间戳转DateTime
+        /// Chuyển timestamp thànhDateTime
         /// </summary>
         /// <param name="timeStamp"></param>
         /// <returns></returns>
         public static DateTime GetDateTime(long timeStamp)
         {
-            // 开始时间
+            // Thời gian bắt đầu
             DateTime startTime = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Local);
             long lTime = long.Parse(timeStamp + "0000000");
             return startTime.Add(new TimeSpan(lTime)).AddHours(8);

@@ -68,7 +68,7 @@
 		$('#layout iframe').css('height', h);
 		setTimeout(function () { submit(); }, 100);
 	});
-	 //刷新列表
+	 //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }
@@ -79,7 +79,7 @@
         @*var srcUrl2 = '@Html.Raw(reportUrl)' + "?tempCode=1222" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&orgId=" + OrgId + "&ksrq=" + $('#ksrq').val() + "&jsrq=" + $('#jsrq').val();
         return srcUrl2;*@
     }
-    //治疗项目选择浮层绑定
+    //Liên kết lớp nổi chọn mục điều trị
     $('#zyh').newtouchBatchFloatingSelector({
         width: 520,
         height: 200,

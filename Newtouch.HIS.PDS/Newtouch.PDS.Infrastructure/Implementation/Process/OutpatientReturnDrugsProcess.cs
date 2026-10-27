@@ -22,7 +22,7 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// 门诊退药
+    /// Trả thuốc ngoại trú
     /// </summary>
     public class OutpatientReturnDrugsProcess : ProcessorFun<tyInfo>
     {
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         {
             if (Request == null || Request.tyDrugDetail == null || Request.tyDrugDetail.Count == 0)
             {
-                throw new FailedException("请传入需要退药的药品");
+                throw new FailedException("Vui lòng truyền thuốc cần trả");
             }
 
             return base.Validata();
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
             }
 
             actResult.IsSucceed = false;
-            actResult.ResultMsg = "退药数必须大于零";
+            actResult.ResultMsg = "Số lượng trả thuốc phải lớn hơn 0";
         }
 
         protected override void Action(ActResult actResult)
@@ -102,7 +102,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
                     var apiResp = SiteSettAPIHelper.Request<object, DefaultResponse>("api/OutpatientPharmacy/OutpatientDrugWithdrawalNotify", request);
                     if (apiResp == null || apiResp.data == null)
                     {
-                        errorMsg.Append(string.Format("处方【{0}】门诊退药接口异常，请联系管理员；", p.cfh));
+                        errorMsg.Append(string.Format("Đơn thuốc【{0}】Giao diện trả thuốc ngoại trú bất thường，Vui lòng liên hệ quản trị viên；", p.cfh));
                     }
                 }
                 catch (Exception e)

@@ -18,7 +18,7 @@ namespace Newtouch.Domain.DTO.InputDto.Outpatient
         public string CheckNumber { get; set; }
         public string FileDesc { get; set; }
         /// <summary>
-        /// 远程医疗上传，压缩文件前缀（his机构标志）
+        /// xatrìnhy tếTải lên，ápthu nhỏvănmụctrướchậu tố（hisCơ sởCờ）
         /// </summary>
         public string Sjscjgmc { get; set; }
     }

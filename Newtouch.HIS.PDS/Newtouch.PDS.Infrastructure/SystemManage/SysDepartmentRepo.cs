@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
         
         /// <summary>
-        /// 获取机构科室列表
+        /// Lấy danh sách khoa của cơ sở
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据Code获取名称
+        /// TheoCodeLấy tên
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

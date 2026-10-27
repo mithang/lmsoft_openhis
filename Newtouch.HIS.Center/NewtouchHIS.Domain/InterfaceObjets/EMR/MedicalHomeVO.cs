@@ -3,16 +3,16 @@
 namespace NewtouchHIS.Domain.InterfaceObjets
 {
     /// <summary>
-    /// Bệnh nhân病案首页
+    /// Bệnh nhânTrang đầu bệnh án
     /// </summary>
     public class MedicalHomeVO: MedicalHomeBaseVO
     {
         /// <summary>
-        /// 诊断列表
+        /// Danh sách chẩn đoán
         /// </summary>
         public List<MedicalHomeDiagEntity> DiagList { get; set; }
         /// <summary>
-        /// 手术列表
+        /// Danh sách phẫu thuật
         /// </summary>
         public List<MedicalHomeOperationEntity> OperationList { get; set; }
     }
@@ -35,7 +35,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         /// <returns></returns>
         public string XM { get; set; }
         /// <summary>
-        /// 身份证号
+        /// Số CMND
         /// </summary>
         /// <returns></returns>
         public string SFZH { get; set; }
@@ -43,191 +43,191 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string XB_Rel { get; set; }
         public DateTime CSRQ { get; set; }
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         /// <returns></returns>
         public decimal NL { get; set; }
         /// <summary>
-        /// 新生儿年龄
+        /// Tuổi trẻ sơ sinh
         /// </summary>
         /// <returns></returns>
         public decimal? BZYZSNL { get; set; }
 
         /// <summary>
-        /// 新生儿出生体重(克)
+        /// Cân nặng khi sinh của trẻ sơ sinh(gam)
         /// </summary>
         /// <returns></returns>
         public decimal? XSECSTZ { get; set; }
 
         /// <summary>
-        /// 新生儿入院体重(克）
+        /// Cân nặng khi nhập viện của trẻ sơ sinh(gam)
         /// </summary>
         /// <returns></returns>
         public decimal? XSERYTZ { get; set; }
         /// <summary>
-        /// 电话
+        /// Điện thoại
         /// </summary>
         /// <returns></returns>
         public string DH { get; set; }
         /// <summary>
-        /// 入院途径
+        /// Đường nhập viện
         /// </summary>
         /// <returns></returns>
         public string RYTJ { get; set; }
 
         /// <summary>
-        /// 入院时间
+        /// Thời gian nhập viện
         /// </summary>
         /// <returns></returns>
         public DateTime RYSJ { get; set; }
         /// <summary>
-        /// 入院科别
+        /// Khoa nhập viện
         /// </summary>
         /// <returns></returns>
         public string RYKB { get; set; }
 
         /// <summary>
-        /// 入院病房
+        /// Phòng bệnh nhập viện
         /// </summary>
         /// <returns></returns>
         public string RYBF { get; set; }
         /// <summary>
-        /// 代码：科室代码
+        /// Mã:Mã khoa
         /// </summary>
         /// <returns></returns>
         public string CYKB { get; set; }
 
         /// <summary>
-        /// 出院病房
+        /// Phòng bệnh xuất viện
         /// </summary>
         /// <returns></returns>
         public string CYBF { get; set; }
 
         /// <summary>
-        /// 实际住院(天)
+        /// Nội trú thực tế(ngày)
         /// </summary>
         /// <returns></returns>
         public string SJZYTS { get; set; }
 
         /// <summary>
-        /// 门(急)诊诊断
+        /// Ngoại(Cấp)chẩn đoán khám
         /// </summary>
         /// <returns></returns>
         public string MZZD { get; set; }
 
         /// <summary>
-        /// 疾病Mã
+        /// BệnhMã
         /// </summary>
         /// <returns></returns>
         public string MZZDDM { get; set; }
         /// <summary>
-        /// 是否病危和病重
+        /// Có nguy kịch và bệnh nặng hay không
         /// </summary>
         /// <returns></returns>
         public string BWHBZ { get; set; }        
         /// <summary>
-        /// 药物过敏
+        /// Dị ứng thuốc
         /// </summary>
         /// <returns></returns>
         public string YWGM { get; set; }
 
         /// <summary>
-        /// 过敏药物疾病
+        /// Bệnh do thuốc dị ứng
         /// </summary>
         /// <returns></returns>
         public string GMYW { get; set; }
         /// <summary>
-        /// 科主任
+        /// Trưởng khoa
         /// </summary>
         /// <returns></returns>
         public string KZR { get; set; }
 
         /// <summary>
-        /// 主任（副主任）医师
+        /// Chủ nhiệm(Phó chủ nhiệm)Bác sĩ
         /// </summary>
         /// <returns></returns>
         public string ZRYS { get; set; }
 
         /// <summary>
-        /// 主诊医师
+        /// Bác sĩ khám chính
         /// </summary>
         /// <returns></returns>
         public string ZZYS { get; set; }
 
         /// <summary>
-        /// 主治医师
+        /// Bác sĩ điều trị chính
         /// </summary>
         /// <returns></returns>
         public string ZZYS1 { get; set; }
 
 
         /// <summary>
-        /// 住院医师
+        /// Bác sĩ nội trú
         /// </summary>
         /// <returns></returns>
         public string ZYYS { get; set; }
 
         /// <summary>
-        /// 责任护士
+        /// Y tá phụ trách
         /// </summary>
         /// <returns></returns>
         public string ZRHS { get; set; }
 
         /// <summary>
-        /// 进修医师
+        /// Bác sĩ tu nghiệp
         /// </summary>
         /// <returns></returns>
         public string JXYS { get; set; }
 
         /// <summary>
-        /// 实习医师
+        /// Bác sĩ thực tập
         /// </summary>
         /// <returns></returns>
         public string SXYS { get; set; }
 
         /// <summary>
-        /// Mã员
+        /// Mãviên
         /// </summary>
         /// <returns></returns>
         public string BMY { get; set; }
 
         /// <summary>
-        /// 代码：病案质量
+        /// Mã:Chất lượng bệnh án
         /// </summary>
         /// <returns></returns>
         public string BAZL { get; set; }
 
         /// <summary>
-        /// 质控医师
+        /// Bác sĩ kiểm soát chất lượng
         /// </summary>
         /// <returns></returns>
         public string ZKYS { get; set; }
 
         /// <summary>
-        /// 质控护士
+        /// Y tá kiểm soát chất lượng
         /// </summary>
         /// <returns></returns>
         public string ZKHS { get; set; }
 
         /// <summary>
-        /// 质控日期
+        /// Ngày kiểm soát chất lượng
         /// </summary>
         /// <returns></returns>
         public DateTime? ZKRQ { get; set; }
 
         /// <summary>
-        /// 离院方式
+        /// Cách rời viện
         /// </summary>
         /// <returns></returns>
         public string LYFS { get; set; }
         /// <summary>
-        /// 总费用
+        /// Tổng chi phí
         /// </summary>
         /// <returns></returns>
         public decimal? ZFY { get; set; }
 
         /// <summary>
-        /// 自付金额
+        /// Số tiền tự trả
         /// </summary>
         /// <returns></returns>
         public decimal? ZFJE { get; set; }

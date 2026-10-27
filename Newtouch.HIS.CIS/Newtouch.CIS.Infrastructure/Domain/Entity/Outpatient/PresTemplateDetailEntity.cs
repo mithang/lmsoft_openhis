@@ -23,7 +23,7 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 关联模板表
+        /// liên kếtbảng mẫu
         /// </summary>
         public string mbId { get; set; }
 
@@ -33,7 +33,7 @@ namespace Newtouch.Domain.Entity
         public string xmCode { get; set; }
 
         /// <summary>
-        /// 冗余字段
+        /// Dư thừachữđoạn
         /// </summary>
         public string xmmc { get; set; }
 
@@ -43,27 +43,27 @@ namespace Newtouch.Domain.Entity
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 冗余代码
+        /// Dư thừaMã
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 针对康复处方
+        /// kimđốiPhục hồi chức năngĐơn thuốc
         /// </summary>
         public int? mczll { get; set; }
 
         /// <summary>
-        /// 针对药品
+        /// kimđốiThuốc
         /// </summary>
         public decimal? mcjl { get; set; }
 
         /// <summary>
-        /// 针对药品
+        /// kimđốiThuốc
         /// </summary>
         public string mcjldw { get; set; }
 
         /// <summary>
-        /// 针对药品
+        /// kimđốiThuốc
         /// </summary>
         public string yfCode { get; set; }
 
@@ -73,12 +73,12 @@ namespace Newtouch.Domain.Entity
         public string pcCode { get; set; }
 
         /// <summary>
-        /// 针对药品
+        /// kimđốiThuốc
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 针对康复处方
+        /// kimđốiPhục hồi chức năngĐơn thuốc
         /// </summary>
         public int? zl { get; set; }
 
@@ -127,11 +127,11 @@ namespace Newtouch.Domain.Entity
         public string Remark { get; set; }
 
         /// <summary>
-        /// 执行科室（药品的领药部门 yfbmCode）
+        /// Khoa thực hiện（ThuốccủalĩnhthuốcKhoa phòng yfbmCode）
         /// </summary>
         public string zxks { get; set; }
         /// <summary>
-        /// 排序
+        /// Thứ tự
         /// </summary>
         public int? px { get; set; }
         

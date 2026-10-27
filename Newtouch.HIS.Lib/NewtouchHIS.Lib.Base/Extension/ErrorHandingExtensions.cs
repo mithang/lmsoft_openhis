@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Lib.Base.Extension
 {
     /// <summary>
-    /// 自定义错误处理的扩展方法
+    /// Phương thức mở rộng xử lý lỗi tùy chỉnh
     /// </summary>
     public static class ErrorHandlingExtensions
     {

@@ -3,42 +3,42 @@ using System;
 namespace Newtouch.Herp.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 调价提交
+    /// Gửi điều chỉnh giá
     /// </summary>
     public class SubmitPriceAdjustmentRequestDTO
     {
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 零售价 与转化因子对应，一般为部门单位价格
+        /// Giá bán lẻ tương ứng với hệ số chuyển đổi，thường là giá đơn vị khoa phòng
         /// </summary>
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 原零售价 与转化因子对应，一般为部门单位价格
+        /// Giá bán lẻ gốc tương ứng với hệ số chuyển đổi，thường là giá đơn vị khoa phòng
         /// </summary>
         public decimal ylsj { get; set; }
 
         /// <summary>
-        /// 单位 与zhyz对应，一般为部门单位
+        /// Đơn vị với zhyz tương ứng，thường là đơn vị khoa phòng
         /// </summary>
         public string dwmc { get; set; }
 
         /// <summary>
-        /// 调整文件
+        /// Tệp điều chỉnh
         /// </summary>
         public string tzwj { get; set; }
 
         /// <summary>
-        /// 执行时间
+        /// Thời gian thực thi
         /// </summary>
         public DateTime zxsj { get; set; }
     }

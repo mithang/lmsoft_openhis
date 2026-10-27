@@ -37,7 +37,7 @@ namespace Newtouch.MRMS.Web.Areas.ReportManage.Controllers
             return View();
         }
 
-        //获取Thông tin nội trú
+        //LấyThông tin nội trú
         public IActionResult GetPagintionHospitalList(Pagination pagination,  string jkkh, string keyword)
         {
 
@@ -53,24 +53,24 @@ namespace Newtouch.MRMS.Web.Areas.ReportManage.Controllers
 	        return Content(data.ToJson());
         }
 
-		//TheoIDTruy vấn病案信息
+		//Truy vấn thông tin bệnh án theo ID
         public IActionResult GetFormJson(string id)
         {
 	        var entity = _MrbasyRepo.FindEntity(id);
 	        return Content(entity.ToJson());
         }
 
-		//Theoid获取Thông tin chẩn đoán
+		//Lấy thông tin chẩn đoán theo id
 		public IActionResult GetPagintionZdList(Pagination pagination, string id)
 		{
 			var pat = new List<zys_zdVO>();
 			if (id != "")
 			{
-				//获取Chẩn đoán ngoại trú
+				//LấyChẩn đoán ngoại trú
 				var mzzdList = _PatientHistoryDmnService.GetmzzdList(OrganizeId, id);
-				//获取Chẩn đoán xuất viện和Chẩn đoán khác
+				//Lấy chẩn đoán xuất viện và chẩn đoán khác
 				var zdList = _PatientHistoryDmnService.GetzdList(OrganizeId, id);
-				//拼接Chẩn đoán数据
+				//NốiChẩn đoánDữ liệu
 				foreach (var mzzdObj in mzzdList)
 				{
 					pat.Add(mzzdObj);
@@ -93,7 +93,7 @@ namespace Newtouch.MRMS.Web.Areas.ReportManage.Controllers
 		}
 
 
-		//获取Thông tin phẫu thuật
+		//LấyThông tin phẫu thuật
 		public IActionResult GetPagintionSSList(string id)
 		{
 			IList<zys_ssVO> pat = new List<zys_ssVO>();

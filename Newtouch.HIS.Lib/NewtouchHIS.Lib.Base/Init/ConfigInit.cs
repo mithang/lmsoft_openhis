@@ -5,15 +5,15 @@ namespace NewtouchHIS.Lib.Base
     public static class ConfigInitHelper
     {
         /// <summary>
-        /// 数据库配置
+        /// Cấu hình cơ sở dữ liệu
         /// </summary>
         public static BusinessDB DbConfig { get; set; }
         /// <summary>
-        /// 业务系统配置
+        /// Cấu hình hệ thống nghiệp vụ
         /// </summary>
         public static BusinessConfig SysConfig { get; set; }
         /// <summary>
-        /// 跨域设置
+        /// Thiết lập liên miền
         /// </summary>
         public static AccessConfig? AccessSetting { get; set; }
 
@@ -23,7 +23,7 @@ namespace NewtouchHIS.Lib.Base
     public static class CacheConfig
     {
         /// <summary>
-        /// 用户缓存-token标识
+        /// Bộ nhớ đệm người dùng - định danh token
         /// </summary>
         public static string Cache_UserToken => "HisToken:User_";
 

@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Application.Implementation
                                 return true;
 
                                 #endregion
-                                errorMsg = string.Format("执行item {0} 失败", item);
+                                errorMsg = string.Format("Thực hiệnitem {0} Thất bại", item);
                                 cts.Cancel();
                                 return false;
                             }, cts.Token);
@@ -105,7 +105,7 @@ namespace Newtouch.HIS.Application.Implementation
                     const string sql = "insert into aa VALUES (12312, 23, 123);";
                     var cf = db.FindList<MzCfEntity>(sql);
                     db.Commit();
-                    return "成功";
+                    return "thành công";
                 }
             }
             catch (Exception e)

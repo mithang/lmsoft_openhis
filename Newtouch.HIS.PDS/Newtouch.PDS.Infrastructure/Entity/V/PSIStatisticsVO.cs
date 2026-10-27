@@ -1,108 +1,108 @@
 namespace Newtouch.HIS.Domain.Entity.V
 {
     /// <summary>
-    /// 进销存统计容器
+    /// Vùng chứa thống kê nhập xuất tồn
     /// </summary>
     public class PsiStatisticsVo
     {
         /// <summary>
-        /// 药品单位
+        /// Đơn vị thuốc
         /// </summary>
         public string Ypdm { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 药品规格
+        /// Quy cách thuốc
         /// </summary>
         public string ypgg { get; set; }
 
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 进价
+        /// Giá nhập
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 零售价
+        /// Giá bán lẻ
         /// </summary>
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 期初数量
+        /// Số lượng đầu kỳ
         /// </summary>
         public int qcsl { get; set; }
 
         /// <summary>
-        /// 入库数量
+        /// Số lượng nhập kho
         /// </summary>
         public int rksl { get; set; }
 
         /// <summary>
-        /// 出库数量
+        /// Số lượng xuất kho
         /// </summary>
         public int cksl { get; set; }
 
         /// <summary>
-        /// 损益数量
+        /// Số lượng lãi lỗ
         /// </summary>
         public int sysl { get; set; }
 
         /// <summary>
-        /// 期初数量
+        /// Số lượng đầu kỳ
         /// </summary>
         public int qmsl { get; set; }
 
         /// <summary>
-        /// 期初批发总额
+        /// Tổng giá bán buôn đầu kỳ
         /// </summary>
         public decimal qcpfze { get; set; }
 
         /// <summary>
-        /// 入库批发总额
+        /// Tổng giá bán buôn nhập kho
         /// </summary>
         public decimal rkpfze { get; set; }
 
         /// <summary>
-        /// 出库批发总额
+        /// Tổng giá bán buôn xuất kho
         /// </summary>
         public decimal ckpfze { get; set; }
 
         /// <summary>
-        /// 损益批发总额
+        /// Tổng giá bán buôn lãi lỗ
         /// </summary>
         public decimal sypfze { get; set; }
 
         /// <summary>
-        /// 期末批发总额
+        /// Tổng giá bán buôn cuối kỳ
         /// </summary>
         public decimal qmpfze { get; set; }
 
         /// <summary>
-        /// 调价损益总额
+        /// Tổng lãi lỗ điều chỉnh giá
         /// </summary>
         public decimal tjsyze { get; set; }
         /// <summary>
-        /// 盘盈数量
+        /// Số lượng thừa kiểm kê
         /// </summary>
         public int pysl { get; set; }
         /// <summary>
-        /// 盘亏数量
+        /// Số lượng thiếu kiểm kê
         /// </summary>
         public int pksl { get; set; }
         /// <summary>
-        /// 盘盈总额
+        /// Tổng thừa kiểm kê
         /// </summary>
         public decimal pyze { get; set; }
         /// <summary>
-        /// 盘亏总额
+        /// Tổng thiếu kiểm kê
         /// </summary>
         public decimal pkze { get; set; }
     }

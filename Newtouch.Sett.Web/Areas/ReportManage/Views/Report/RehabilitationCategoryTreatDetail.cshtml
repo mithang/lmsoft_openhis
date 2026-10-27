@@ -41,10 +41,10 @@
                 @*<td class="formValue">
                         <div class="btn-group" data-toggle="buttons" onchange="submit()">
                             <label class="btn btn-default active">
-                                <input type="radio" name="datatype" id="datatype" checked="checked" class="toggle" value="inpatient">门诊
+                                <input type="radio" name="datatype" id="datatype" checked="checked" class="toggle" value="inpatient">Ngoại trú
                             </label>
                             <label class="btn btn-default">
-                                <input type="radio" name="datatype" id="datatype" value="住院" class="toggle">住院
+                                <input type="radio" name="datatype" id="datatype" value="住院" class="toggle">Nội trú
                             </label>
                         </div>
                     </td>*@
@@ -98,7 +98,7 @@
         var h = $(window).height() - 55
         $('#layout iframe').css('height', h);
 
-        //加载康复类别
+        //Nạp loại phục hồi
         $("#kflb").bindSelect({
             url: "/Com/GetSelectItemsDetailListByItemCode?code=RehabTreatmentMethod",
         });
@@ -108,7 +108,7 @@
     function getUrl() {
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";

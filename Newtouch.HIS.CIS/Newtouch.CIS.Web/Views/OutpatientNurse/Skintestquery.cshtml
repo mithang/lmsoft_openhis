@@ -7,25 +7,25 @@
 @*<div class="topPanel" style="height:50px;line-height:30px">
     <table class="form">
         <tr>
-            <th class="formTitle">查询日期：</th>
+            <th class="formTitle">Ngày tra cứu：</th>
             <td class="formValue" colspan="2">
                 <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 <span style="margin-left:1%;float:left">—</span>
                 <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
             </td>
-            <th class="formTitle">门诊号/姓名</th>
+            <th class="formTitle">Số khám ngoại trú/Họ tên</th>
             <td class="formValue">
-                <input id="cxtjtext" type="text" class="form-control" placeholder="门诊号/姓名" />
+                <input id="cxtjtext" type="text" class="form-control" placeholder="Số khám ngoại trú/Họ tên" />
             </td>
-            <th class="formTitle">药品名称</th>
+            <th class="formTitle">Tên thuốc</th>
             <td class="formValue">
-                <input id="ypmctext" type="text" class="form-control" placeholder="药品名称" />
+                <input id="ypmctext" type="text" class="form-control" placeholder="Tên thuốc" />
             </td>
             <th class="formTitle"></th>
             <td class="formValue">
                 <div class="btn-group">
                     <a id="btn_input" class="btn btn-primary" onclick="InputResult()" style="width:80px;">
-                        <i class="fa fa-refresh"></i>查询
+                        <i class="fa fa-refresh"></i>Tra cứu
                     </a>
                 </div>
             </td>
@@ -80,7 +80,7 @@
     $(".dv-body").height($(window).height());
     $(".dv-body").width($(window).width());
     $(function() {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt, tính lại rộng cao
             $(".dv-body").height($(window).height());
         });
         
@@ -109,7 +109,7 @@
             postData: { keyword: keyword, kssj: kssj, jssj: jssj },
             url: "/OutpatientNurse/skintesfrom",
             height: $(window).height() - 130,
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            shrinkToFit: true,   //true:theo tỷ lệVDkhởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
             autowidth: true,
             colModel: [
                 { label: 'gmxxid', name: 'gmxxid', align: 'center', hidden: true, key: true  },
@@ -140,7 +140,7 @@
             //} 
         });
     }
-    //取消Thực hiện
+    //HủyThực hiện
     function cancelRow(rowid) {
         var rowData = $("#gridList").jqGrid('getRowData', rowid);
         if (rowData==null) {
@@ -163,7 +163,7 @@
             }
         });
     }
-    //Test da再次Thực hiện
+    //Test dalại lầnThực hiện
     function InputResult() {
         var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");
         if (selRowIds.length == 0) {

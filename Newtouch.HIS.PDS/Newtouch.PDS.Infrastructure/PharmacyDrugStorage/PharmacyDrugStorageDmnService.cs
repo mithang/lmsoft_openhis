@@ -24,21 +24,21 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 药房库存
+    /// Tồn kho nhà thuốc
     /// </summary>
     public class PharmacyDrugStorageDmnService : DmnServiceBase, IPharmacyDrugStorageDmnService
     {
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         
         /// <summary>
-        /// 库存量查询
+        /// Truy vấn lượng tồn kho
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inputCode"></param>
-        /// <param name="tybz">停用标志</param>
+        /// <param name="tybz">Cờ ngừng dùng</param>
         /// <param name="zt"></param>
         /// <param name="noShow0Kc"></param>
         /// <returns></returns>
@@ -83,7 +83,7 @@ WHERE yp.OrganizeId =@OrganizeId
             }
             if (noShow0Kc)
             {
-                sql.AppendLine("	AND ( kcxx.Kcsl >0)  --1:不显示零库存 0:显示零库存");
+                sql.AppendLine("	AND ( kcxx.Kcsl >0)  --1:Không hiển thị tồn kho bằng 0 0:Hiển thị tồn kho bằng 0");
             }
             sql.AppendLine("	GROUP BY yp.ypmc, yp.ypCode, ypsx.ypgg ,yfbm.yfbmmc,kcxx.yfbmCode,bmypxx.Zcxh,yp.ycmc,yp.pfj,yp.lsj,yp.bzs,yp.py, kcxx.zhyz ");
             var list = QueryWithPage<MedicineStockQueryVO>(sql.ToString(), pagination, paraList.ToArray());
@@ -91,7 +91,7 @@ WHERE yp.OrganizeId =@OrganizeId
         }
 
         /// <summary>
-        /// 库存量查询明细
+        /// Chi tiết truy vấn lượng tồn kho
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
@@ -134,7 +134,7 @@ group by  kcxx.yxq,kcxx.ph, kcxx.pc, kcxx.ypkw, kcxx.zt, yfbm.yfbmmc, kcxx.djsl,
         }
 
         /// <summary>
-        /// 单据查询 主信息
+        /// Truy vấn chứng từ Thông tin chính
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="qsrj"></param>
@@ -174,9 +174,9 @@ left join NewtouchHIS_Base..sys_department(nolock) depart on crkdj.Rkbm = depart
 left join NewtouchHIS_Base.dbo.V_S_xt_ypcrkfs(nolock) ypcrkfs on ypcrkfs.crkfsCode = crkdj.Crkfsdm
 where crkdj.OrganizeId =@Organizeid ");
             sb.AppendLine("and ( ");
-            sb.AppendLine(" (crkdj.djlx = " + (int)EnumDanJuLX.yaopinruku + " and ckypgys.gysCode is not null and rkyfbm.yfbmCode is not null) --药品入库 ");
-            sb.AppendLine(" or(crkdj.djlx = " + (int)EnumDanJuLX.waibucuku + " and ckyfbm.yfbmCode=@YfbmCode)--外部出库 ");
-            sb.AppendLine(" or(rkyfbm.yfbmCode is not null or ckyfbm.yfbmCode is not null)--药房 <->药库 ");
+            sb.AppendLine(" (crkdj.djlx = " + (int)EnumDanJuLX.yaopinruku + " and ckypgys.gysCode is not null and rkyfbm.yfbmCode is not null) --Nhập kho thuốc ");
+            sb.AppendLine(" or(crkdj.djlx = " + (int)EnumDanJuLX.waibucuku + " and ckyfbm.yfbmCode=@YfbmCode)--Xuất kho ra ngoài ");
+            sb.AppendLine(" or(rkyfbm.yfbmCode is not null or ckyfbm.yfbmCode is not null)--Nhà thuốc <->Kho thuốc ");
             sb.AppendLine(") ");
             sb.AppendLine(" and(crkdj.Rkbm = @YfbmCode or crkdj.Ckbm = @YfbmCode) ");
             var par = new List<SugarParameter>();
@@ -207,7 +207,7 @@ where crkdj.OrganizeId =@Organizeid ");
             }
             if (!string.IsNullOrWhiteSpace(shzt))
             {
-                //单据审核状态 0:未审核 1:已通过 2：未通过
+                //Trạng thái duyệt chứng từ 0:Chưa duyệt 1:Đã đạt 2：Không đạt
                 sb.Append(" and crkdj.shzt = @shzt");
                 par.Add(new SugarParameter("@shzt", shzt));
             }
@@ -228,7 +228,7 @@ group by crkdj.djlx, crkdj.shzt, crkdj.crkId , crkdj.Pdh ,crkdj.Czsj, ypcrkfs.cr
         }
 
         /// <summary>
-        /// 单据查询 主信息
+        /// Truy vấn chứng từ Thông tin chính
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -266,9 +266,9 @@ left join NewtouchHIS_Base.dbo.V_S_xt_ypcrkfs(nolock) ypcrkfs on ypcrkfs.crkfsCo
 where crkdj.OrganizeId =@Organizeid  and crkdj.zt='1'
 ");
             sb.AppendLine("and ( ");
-            sb.AppendLine(" (crkdj.djlx = " + (int)EnumDanJuLX.yaopinruku + " and ckypgys.gysCode is not null and rkyfbm.yfbmCode is not null) --药品入库 ");
-            sb.AppendLine(" or(crkdj.djlx = " + (int)EnumDanJuLX.waibucuku + " and ckyfbm.yfbmCode=@YfbmCode)--外部出库 ");
-            sb.AppendLine(" or(rkyfbm.yfbmCode is not null or ckyfbm.yfbmCode is not null)--药房 <->药库 ");
+            sb.AppendLine(" (crkdj.djlx = " + (int)EnumDanJuLX.yaopinruku + " and ckypgys.gysCode is not null and rkyfbm.yfbmCode is not null) --Nhập kho thuốc ");
+            sb.AppendLine(" or(crkdj.djlx = " + (int)EnumDanJuLX.waibucuku + " and ckyfbm.yfbmCode=@YfbmCode)--Xuất kho ra ngoài ");
+            sb.AppendLine(" or(rkyfbm.yfbmCode is not null or ckyfbm.yfbmCode is not null)--Nhà thuốc <->Kho thuốc ");
             sb.AppendLine(") ");
             sb.AppendLine(" and(crkdj.Rkbm = @YfbmCode or crkdj.Ckbm = @YfbmCode) ");
             var par = new List<SugarParameter>();
@@ -302,7 +302,7 @@ where crkdj.OrganizeId =@Organizeid  and crkdj.zt='1'
             }
             if (!string.IsNullOrWhiteSpace(param.shzt))
             {
-                //单据审核状态 0:未审核 1:已通过 2：未通过
+                //Trạng thái duyệt chứng từ 0:Chưa duyệt 1:Đã đạt 2：Không đạt
                 sb.AppendLine(" and crkdj.shzt = @shzt ");
                 par.Add(new SugarParameter("@shzt", param.shzt));
             }
@@ -319,7 +319,7 @@ where crkdj.OrganizeId =@Organizeid  and crkdj.zt='1'
             return QueryWithPage<ReceiptQueryVO>(cc.ToString(), param.pagination, par.ToArray());
         }
         /// <summary>
-        /// 科室备药查询 主信息
+        /// Truy vấn chuẩn bị thuốc cho khoa Thông tin chính
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -354,7 +354,7 @@ where ksby.OrganizeId=@Organizeid
             return QueryWithPage<DrupreparationVO>(sb.ToString(), param.pagination, par.ToArray());
         }
         /// <summary>
-        /// 过去供应商
+        /// Nhà cung cấp trước
         /// </summary>
         /// <param name="gys"></param>
         /// <param name="djlx"></param>
@@ -391,7 +391,7 @@ where ksby.OrganizeId=@Organizeid
         }
 
         /// <summary>
-        /// 单据查询明细
+        /// Chi tiết truy vấn chứng từ
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="djlx"></param>
@@ -400,9 +400,9 @@ where ksby.OrganizeId=@Organizeid
         public IList<ReceiptQueryDetailVO> SelectReceipDetailInfo(string crkId, int djlx, string orgId)
         {
             var sb = new StringBuilder(@"
-select crkmxId,ISNULL(RTRIM(LTRIM(Fph)),'') Fph,yp.ypmc,ypsfdl.dlmc yplbmc,ph, pc,ypsx.ypgg gg,yp.bzdw dw --药房、药库之间进销存都用包装单位
+select crkmxId,ISNULL(RTRIM(LTRIM(Fph)),'') Fph,yp.ypmc,ypsfdl.dlmc yplbmc,ph, pc,ypsx.ypgg gg,yp.bzdw dw --Nhà thuốc、Giữa các kho thuốc nhập xuất tồn đều dùng đơn vị đóng gói
 ,yp.ycmc sccj,yp.py,crkmx.kl,crkmx.Thyy thyy
-,crkmx.sl --药房、药库之间进销存都用包装单位数量 ");
+,crkmx.sl --Nhà thuốc、Giữa các kho thuốc nhập xuất tồn đều dùng Số lượng đơn vị đóng gói ");
             if (new[] { (int)EnumDanJuLX.yaopinruku }.Contains(djlx))
             {
                 sb.AppendLine(@"
@@ -428,19 +428,19 @@ INNER JOIN NewtouchHIS_Base.dbo.V_S_xt_ypsx(nolock) ypsx on ypsx.ypId = yp.ypId 
 INNER JOIN NewtouchHIS_Base.dbo.V_S_xt_sfdl(nolock) ypsfdl on ypsfdl.dlCode = yp.dlCode and ypsfdl.OrganizeId = crkdj.OrganizeId ");
             if (new[] { (int)EnumDanJuLX.yaopinruku, (int)EnumDanJuLX.neibufayaotuihui }.Contains(djlx))
             {
-                ////用入库部门 取账册号
+                ////Dùng bộ phận nhập kho Lấy số sổ sách
                 //sb.Append(@" left join xt_yp_bmypxx(nolock) bmypxx on bmypxx.Ypdm = crkmx.Ypdm and bmypxx.yfbmCode = crkdj.rkbm and bmypxx.OrganizeId = crkdj.OrganizeId ");
 
-                //用入库部门 取计算转换因子
+                //Dùng bộ phận nhập kho Lấy hệ số chuyển đổi tính toán
                 sb.Append(@"
 left join NewtouchHIS_Base.dbo.V_S_xt_yfbm(nolock) zhyzYfbm on zhyzYfbm.yfbmCode = crkdj.rkbm and zhyzYfbm.OrganizeId = crkdj.OrganizeId");
             }
             else
             {
-                ////用出库部门 取账册号
+                ////Dùng bộ phận xuất kho Lấy số sổ sách
                 //sb.Append(@" left join xt_yp_bmypxx(nolock) bmypxx on bmypxx.Ypdm = crkmx.Ypdm and bmypxx.yfbmCode = crkdj.ckbm and bmypxx.OrganizeId = crkdj.OrganizeId");
 
-                //用出库部门 取计算转换因子
+                //Dùng bộ phận xuất kho Lấy hệ số chuyển đổi tính toán
                 sb.Append(@"
 left join NewtouchHIS_Base.dbo.V_S_xt_yfbm(nolock) zhyzYfbm on zhyzYfbm.yfbmCode = crkdj.ckbm and zhyzYfbm.OrganizeId = crkdj.OrganizeId");
             }
@@ -455,10 +455,10 @@ where crkmx.crkId = @crkId
             });
         }
 
-        #region 库存盘点
+        #region Kiểm kê tồn kho
 
         /// <summary>
-        /// 获取盘点日期 top 500
+        /// Lấy ngày kiểm kê top 500
         /// </summary>
         /// <returns></returns>
         public List<InventoryDateDropDownVO> GetPdDateDropdownList()
@@ -480,7 +480,7 @@ where crkmx.crkId = @crkId
         }
 
         /// <summary>
-        /// 获取未完成的盘点时间
+        /// Lấy thời gian kiểm kê chưa hoàn thành
         /// </summary>
         /// <returns></returns>
         public List<InventoryDateDropDownVO> GetHangUpPdDates()
@@ -502,7 +502,7 @@ where crkmx.crkId = @crkId
         }
 
         /// <summary>
-        /// 获取药品类别（盘点）
+        /// Lấy loại thuốc（Kiểm kê）
         /// </summary>
         /// <returns></returns>
         public List<MedicineCategoryVO> GetMedicineCategoryList()
@@ -524,7 +524,7 @@ ORDER BY sfdl.px,sfdl.dlCode
         }
 
         /// <summary>
-        /// 生成盘点信息
+        /// Tạo thông tin kiểm kê
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
@@ -542,7 +542,7 @@ ORDER BY sfdl.px,sfdl.dlCode
         }
 
         /// <summary>
-        /// 转化页面显示数量  XX盒XX片
+        /// Chuyển đổi số lượng hiển thị trên trang  XXhộpXXviên
         /// </summary>
         /// <returns></returns>
         public string GetYfbmYpComplexYpSlandDw(int sl, string ypCode)
@@ -561,7 +561,7 @@ ORDER BY sfdl.px,sfdl.dlCode
         }
 
         /// <summary>
-        /// 查询盘点药品信息
+        /// Truy vấn thông tin thuốc kiểm kê
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="pdId"></param>
@@ -590,11 +590,11 @@ SELECT  pdxxmx.pdmxId ,
 		CONVERT(VARCHAR(10),pdxxmx.Yxq,120) yxq,
 		yp.bzdw, 
 		yp.zxdw,
-		CONVERT(VARCHAR(10),pdxxmx.Llsl,50)+yp.zxdw llsl_zxbz ,--理论最小包装数量
-		(select dbo.[f_getYfbmYpComplexYpSlandDw](pdxxmx.Llsl,@yfbmCode,yp.ypcode,@OrganizeId)) llsl ,--理论药房单位数量 
-		(select dbo.[f_getYfbmYpComplexYpSlandDw](pdxxmx.Sjsl,@yfbmCode,yp.ypcode,@OrganizeId)) sjslstr ,--实际药房单位数量 
-		(select dbo.[f_getYfbmYpComplexYpSlandDw]((pdxxmx.Sjsl-pdxxmx.Llsl),@yfbmCode,yp.ypcode,@OrganizeId)) pdscy,--盘点数差异
-		pdxxmx.sjsl sjsl, --实际最小包装数量
+		CONVERT(VARCHAR(10),pdxxmx.Llsl,50)+yp.zxdw llsl_zxbz ,--Số lượng đóng gói tối thiểu lý thuyết
+		(select dbo.[f_getYfbmYpComplexYpSlandDw](pdxxmx.Llsl,@yfbmCode,yp.ypcode,@OrganizeId)) llsl ,--Số lượng đơn vị nhà thuốc lý thuyết 
+		(select dbo.[f_getYfbmYpComplexYpSlandDw](pdxxmx.Sjsl,@yfbmCode,yp.ypcode,@OrganizeId)) sjslstr ,--Số lượng đơn vị nhà thuốc thực tế 
+		(select dbo.[f_getYfbmYpComplexYpSlandDw]((pdxxmx.Sjsl-pdxxmx.Llsl),@yfbmCode,yp.ypcode,@OrganizeId)) pdscy,--Chênh lệch số kiểm kê
+		pdxxmx.sjsl sjsl, --Số lượng đóng gói tối thiểu thực tế
 		Floor(pdxxmx.sjsl / pdxxmx.zhyz) deptSjsl,
 		dbo.f_getyfbmDw(@yfbmCode,yp.ypCode,@OrganizeId) deptdw ,
 		(pdxxmx.sjsl % pdxxmx.zhyz) minSjsl,
@@ -608,8 +608,8 @@ SELECT  pdxxmx.pdmxId ,
         , CONVERT(NUMERIC(12,2),pdxxmx.Lsj*pdxxmx.Llsl/pdxxmx.Zhyz) lllsje
         , CONVERT(NUMERIC(12,2),pdxxmx.Pfj*pdxxmx.Sjsl/pdxxmx.Zhyz) sjpfje
         , CONVERT(NUMERIC(12,2),pdxxmx.Lsj*pdxxmx.Sjsl/pdxxmx.Zhyz) sjlsje
-		, CONVERT(NUMERIC(12,2),pdxxmx.Lsj*(pdxxmx.Sjsl-pdxxmx.Llsl)/pdxxmx.Zhyz) pdlsjcy --盘点零售价差异
-		, CONVERT(NUMERIC(12,2),pdxxmx.Pfj*(pdxxmx.Sjsl-pdxxmx.Llsl)/pdxxmx.Zhyz) pdpfjcy --盘点进价差异
+		, CONVERT(NUMERIC(12,2),pdxxmx.Lsj*(pdxxmx.Sjsl-pdxxmx.Llsl)/pdxxmx.Zhyz) pdlsjcy --Chênh lệch giá bán lẻ kiểm kê
+		, CONVERT(NUMERIC(12,2),pdxxmx.Pfj*(pdxxmx.Sjsl-pdxxmx.Llsl)/pdxxmx.Zhyz) pdpfjcy --Chênh lệch giá nhập kiểm kê
 		,@pdsj pdsj,pdxxmx.Llsl lsl,pdxxmx.Sjsl sjs,pdxxmx.zsm, pdxxmx.sfcl
 FROM xt_yp_pdxxmx(NOLOCK) pdxxmx
 INNER JOIN xt_yp_pdxx(NOLOCK) pdxx ON pdxx.pdId=pdxxmx.pdId
@@ -632,16 +632,16 @@ AND (pdxxmx.Sjsl>0 OR pdxxmx.Llsl>0)
             }
             switch (kcxs)
             {
-                case (int)EnumKCXS.Xslkc://显示零库存
+                case (int)EnumKCXS.Xslkc://Hiển thị tồn kho bằng 0
                     strSql.AppendLine("AND (Llsl = 0 OR Sjsl = 0) ");
                     break;
-                case (int)EnumKCXS.Bxsllslwl: //不显示理论数量为0
+                case (int)EnumKCXS.Bxsllslwl: //Không hiển thị số lượng lý thuyết là0
                     strSql.AppendLine("AND Llsl <> 0 ");
                     break;
-                case (int)EnumKCXS.Bxssjslwl:  //不显示实际数量为0
+                case (int)EnumKCXS.Bxssjslwl:  //Không hiển thị số lượng thực tế là0
                     strSql.AppendLine("AND Sjsl <> 0 ");
                     break;
-                case (int)EnumKCXS.Bxslzdwl:  //不显示两者都为0
+                case (int)EnumKCXS.Bxslzdwl:  //Không hiển thị cả hai đều là0
                     strSql.AppendLine("AND (Llsl <> 0 AND Sjsl<>0) ");
                     break;
             }
@@ -666,7 +666,7 @@ AND (pdxxmx.Sjsl>0 OR pdxxmx.Llsl>0)
         }
 
         /// <summary>
-        /// 查询盘点药品信息 单位独立
+        /// Truy vấn thông tin thuốc kiểm kê Đơn vị độc lập
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="pdId"></param>
@@ -691,10 +691,10 @@ SELECT  pdxxmx.pdmxId ,
 		CONVERT(VARCHAR(10),pdxxmx.Yxq,120) yxq,
 		yp.bzdw, 
 		yp.zxdw,
-		CONVERT(VARCHAR(10),pdxxmx.Llsl,50)+yp.zxdw llsl_zxbz ,--理论最小包装数量
-		(select dbo.[f_getYfbmYpComplexYpSlandDw](pdxxmx.Llsl,@yfbmCode,yp.ypcode,@OrganizeId)) llsl ,--理论药房单位数量 
-		(select dbo.[f_getYfbmYpComplexYpSlandDw](pdxxmx.Sjsl,@yfbmCode,yp.ypcode,@OrganizeId)) sjslstr ,--实际药房单位数量 
-		pdxxmx.sjsl sjsl, --实际最小包装数量
+		CONVERT(VARCHAR(10),pdxxmx.Llsl,50)+yp.zxdw llsl_zxbz ,--Số lượng đóng gói tối thiểu lý thuyết
+		(select dbo.[f_getYfbmYpComplexYpSlandDw](pdxxmx.Llsl,@yfbmCode,yp.ypcode,@OrganizeId)) llsl ,--Số lượng đơn vị nhà thuốc lý thuyết 
+		(select dbo.[f_getYfbmYpComplexYpSlandDw](pdxxmx.Sjsl,@yfbmCode,yp.ypcode,@OrganizeId)) sjslstr ,--Số lượng đơn vị nhà thuốc thực tế 
+		pdxxmx.sjsl sjsl, --Số lượng đóng gói tối thiểu thực tế
 		Floor(pdxxmx.sjsl / pdxxmx.zhyz) deptSjsl,
 		dbo.f_getyfbmDw(@yfbmCode, yp.ypCode, @OrganizeId) deptdw ,
 		pdxxmx.sjsl minSjsl,
@@ -733,16 +733,16 @@ AND pdxx.yfbmCode = @yfbmCode
             }
             switch (kcxs)
             {
-                case (int)EnumKCXS.Xslkc://显示零库存
+                case (int)EnumKCXS.Xslkc://Hiển thị tồn kho bằng 0
                     strSql.AppendLine("AND (Llsl = 0 OR Sjsl = 0) ");
                     break;
-                case (int)EnumKCXS.Bxsllslwl: //不显示理论数量为0
+                case (int)EnumKCXS.Bxsllslwl: //Không hiển thị số lượng lý thuyết là0
                     strSql.AppendLine("AND Llsl <> 0 ");
                     break;
-                case (int)EnumKCXS.Bxssjslwl:  //不显示实际数量为0
+                case (int)EnumKCXS.Bxssjslwl:  //Không hiển thị số lượng thực tế là0
                     strSql.AppendLine("AND Sjsl <> 0 ");
                     break;
-                case (int)EnumKCXS.Bxslzdwl:  //不显示两者都为0
+                case (int)EnumKCXS.Bxslzdwl:  //Không hiển thị cả hai đều là0
                     strSql.AppendLine("AND (Llsl <> 0 AND Sjsl<>0) ");
                     break;
             }
@@ -761,7 +761,7 @@ AND pdxx.yfbmCode = @yfbmCode
         }
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúc kiểm kê
         /// </summary>
         /// <returns></returns>
         public string EndInventoryInfo(string pdId)
@@ -776,17 +776,17 @@ AND pdxx.yfbmCode = @yfbmCode
         }
 
         /// <summary>
-        /// 取消盘点 
-        /// 删除 盘点信息（xt_yp_pdxx）、盘点信息明细（xt_yp_pdxxmx）
+        /// Hủy kiểm kê 
+        /// Xóa Thông tin kiểm kê（xt_yp_pdxx）、Chi tiết thông tin kiểm kê（xt_yp_pdxxmx）
         /// </summary>
         public void CancelInventory_old(string pdId)
         {
             using (var db = new EFDbTransaction().BeginTrans())
             {
-                //删除盘点表
+                //Xóa bảng kiểm kê
                 var inventoryEntity = db.FindEntity<SysMedicineInventoryEntity>(pdId);
                 db.Delete(inventoryEntity);
-                //删除盘点明细表
+                //Xóa bảng chi tiết kiểm kê
                 var inventoryDetailEntityList = db.IQueryable<SysMedicineInventoryDetailEntity>().Where(a => a.pdId == pdId).ToList();
                 foreach (var item in inventoryDetailEntityList)
                 {
@@ -797,8 +797,8 @@ AND pdxx.yfbmCode = @yfbmCode
         }
 
         /// <summary>
-        /// 取消盘点 
-        /// 删除 盘点信息（xt_yp_pdxx）、盘点信息明细（xt_yp_pdxxmx）
+        /// Hủy kiểm kê 
+        /// Xóa Thông tin kiểm kê（xt_yp_pdxx）、Chi tiết thông tin kiểm kê（xt_yp_pdxxmx）
         /// </summary>
         public void CancelInventory(string pdId)
         {
@@ -828,14 +828,14 @@ END
             }).FirstOrDefault();
             if (result == 0)
             {
-                throw new Exception("取消失败！");
+                throw new Exception("Hủy thất bại！");
             }
         }
         #endregion
 
-        #region 库存结转
+        #region Kết chuyển tồn kho
         /// <summary>
-        /// 获取药品特殊属性
+        /// Lấy thuộc tính đặc biệt của thuốc
         /// </summary>
         /// <returns></returns>
         public List<DrugSpecialPropertiesVO> GetDrugSpecialPropertiesList()
@@ -857,7 +857,7 @@ END
         }
 
         /// <summary>
-        /// 查询需要结转的药品信息 (主表为库存及明细)
+        /// Truy vấn thông tin thuốc cần kết chuyển (Bảng chính là tồn kho và chi tiết)
         /// </summary>
         /// <returns></returns>
         public List<NeedCarryOverMedicineVO> SelectNeedCarryOverMedicineList()
@@ -886,7 +886,7 @@ where kcxx.yfbmCode=@YfbmCode ");
         }
 
         /// <summary>
-        /// 结转 
+        /// Kết chuyển 
         /// </summary>
         /// <param name="list"></param>
         /// <param name="zq"></param>
@@ -894,7 +894,7 @@ where kcxx.yfbmCode=@YfbmCode ");
         /// <param name="jssj"></param>
         public void CarryOverMedicine(List<NeedCarryOverMedicineVO> list, string zq, DateTime kssj, DateTime jssj)
         {
-            //将需结转的药品全部插入到结转表
+            //Chèn tất cả thuốc cần kết chuyển vào bảng kết chuyển
             using (var db = new EFDbTransaction().BeginTrans())
             {
                 foreach (var item in list)
@@ -925,7 +925,7 @@ where kcxx.yfbmCode=@YfbmCode ");
         }
 
         /// <summary>
-        /// 查询已结转药品 （主表是结转表）
+        /// Truy vấn thuốc đã kết chuyển （Bảng chính là bảng kết chuyển）
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zq"></param>
@@ -977,10 +977,10 @@ and jz.OrganizeId=@OrganizeId
 
         #endregion
 
-        #region 进销存统计
+        #region Thống kê nhập xuất tồn
 
         /// <summary>
-        /// 得到结转账期和账期对应的开始结束时间
+        /// Lấy kỳ kết chuyển và thời gian bắt đầu/kết thúc tương ứng của kỳ
         /// </summary>
         /// <returns></returns>
         public List<AccountPeriodDropDownVO> GetAccountPeriodDropDownList()
@@ -996,7 +996,7 @@ and jz.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 药品类别 （进销存）
+        /// Loại thuốc （Nhập xuất tồn）
         /// </summary>
         /// <returns></returns>
         public List<MedicineCategoryVO> GetMedicineCategoryList2()
@@ -1017,7 +1017,7 @@ ORDER BY sfdl.px,sfdl.dlCode
         }
 
         /// <summary>
-        /// 进销存统计
+        /// Thống kê nhập xuất tồn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kszq"></param>
@@ -1064,7 +1064,7 @@ ORDER BY sfdl.px,sfdl.dlCode
                 new SugarParameter("@perRows", pagination.rows),
                 new SugarParameter("@orderByParam", sortby)
             };
-            //中标标志
+            //Cờ trúng thầu
             var outParameter = new SugarParameter("@records", System.Data.DbType.Int32) { Direction = ParameterDirection.Output };
             paraList.Add(outParameter);
             var list = FindList<PSIStatisticsVO>("exec sp_yp_jxctj @kszq, @jszq,@ksjzsj,@jsjzsj,@inputCode, @deptCode, @OrganizeId, @drugType, @dosage,@sub ,@drugState,@rate, @currPageIndex, @perRows, @orderByParam, @records output", paraList.ToArray());
@@ -1075,10 +1075,10 @@ ORDER BY sfdl.px,sfdl.dlCode
 
         #endregion
 
-        #region 通过药房代码获取药库
+        #region Lấy kho thuốc theo mã nhà thuốc
 
         /// <summary>
-        /// 通过药房代码获取药库
+        /// Lấy kho thuốc theo mã nhà thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="yfbmCode"></param>
@@ -1104,10 +1104,10 @@ AND a.zt='1'
         }
         #endregion
 
-        #region  通过药库代码获取药房
+        #region  Lấy nhà thuốc theo mã kho thuốc
 
         /// <summary>
-        /// 通过药库代码获取发药药房
+        /// Lấy nhà thuốc phát thuốc theo mã kho thuốc
         /// </summary>
         /// <param name="ykbmCode"></param>
         /// <param name="organizeId"></param>
@@ -1133,10 +1133,10 @@ AND (B.yfbmCode LIKE '%'+@keyword+'%' OR B.yfbmmc LIKE '%'+@keyword+'%' OR B.yfb
         }
         #endregion
 
-        #region  通过药房代码获取科室
+        #region  Lấy khoa theo mã nhà thuốc
 
         /// <summary>
-        /// 通过药房代码获取科室
+        /// Lấy khoa theo mã nhà thuốc
         /// </summary>
         /// <param name="ykbmCode"></param>
         /// <param name="orgId"></param>
@@ -1163,10 +1163,10 @@ AND (b.Name LIKE '%'+@keyword+'%' OR b.py LIKE '%'+@keyword+'%' OR b.Code LIKE '
         }
         #endregion
 
-        #region 资源预定
+        #region Đặt trước tài nguyên
 
         /// <summary>
-        /// 资源预定 （冻结库存，写mz_cfmxph表）
+        /// Đặt trước tài nguyên （Đóng băng tồn kho，ghimz_cfmxphbảng）
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -1191,7 +1191,7 @@ AND (b.Name LIKE '%'+@keyword+'%' OR b.py LIKE '%'+@keyword+'%' OR b.Code LIKE '
         }
 
         /// <summary>
-        /// 门诊处方预定（冻结库存）
+        /// Đặt trước đơn ngoại trú（Đóng băng tồn kho）
         /// </summary>
         /// <param name="apiResp"></param>
         /// <param name="cfnm"></param>
@@ -1201,7 +1201,7 @@ AND (b.Name LIKE '%'+@keyword+'%' OR b.py LIKE '%'+@keyword+'%' OR b.Code LIKE '
         {
             if (vo.zje <= 0)
             {
-                return "总金额不能为零";
+                return "Tổng Số tiền không thể bằng 0";
             }
             using (var db = new EFDbTransaction().BeginTrans())
             {
@@ -1228,7 +1228,7 @@ AND (b.Name LIKE '%'+@keyword+'%' OR b.py LIKE '%'+@keyword+'%' OR b.Code LIKE '
         }
 
         /// <summary>
-        /// 门诊处方预定（冻结库存）
+        /// Đặt trước đơn ngoại trú（Đóng băng tồn kho）
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -1250,7 +1250,7 @@ AND (b.Name LIKE '%'+@keyword+'%' OR b.py LIKE '%'+@keyword+'%' OR b.Code LIKE '
         }
 
         /// <summary>
-        /// 住院医嘱执行（冻结库存）
+        /// Thực hiện y lệnh nội trú（Đóng băng tồn kho）
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -1273,11 +1273,11 @@ AND (b.Name LIKE '%'+@keyword+'%' OR b.py LIKE '%'+@keyword+'%' OR b.Code LIKE '
         }
 
         /// <summary>
-        /// 医嘱执行 获取药品单价
+        /// Thực hiện y lệnh Lấy đơn giá thuốc
         /// </summary>
-        /// <param name="organizeId">组织ID</param>
-        /// <param name="yfbmCode">发药药房</param>
-        /// <param name="ypCode">药品编码</param>
+        /// <param name="organizeId">Tổ chứcID</param>
+        /// <param name="yfbmCode">Nhà thuốc phát thuốc</param>
+        /// <param name="ypCode">Mã thuốc</param>
         /// <returns></returns>
         public MedicineDjandZhyzVO GetZYYPdj(string organizeId, string yfbmCode, string ypCode)
         {

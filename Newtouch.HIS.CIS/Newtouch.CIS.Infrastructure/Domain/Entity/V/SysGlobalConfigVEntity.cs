@@ -4,18 +4,18 @@ using SqlSugar;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 全局配置
+    /// toàncụccấu hình
     /// </summary>
     [SugarTable("V_S_Sys_GlobalConfig")]
     public class SysGlobalConfigVEntity
     {
         /// <summary>
-        /// 编码
+        /// Mã
         /// </summary>
         public string Code { get; set; }
 
         /// <summary>
-        /// 值
+        /// Giá trị
         /// </summary>
         public string Value { get; set; }
 

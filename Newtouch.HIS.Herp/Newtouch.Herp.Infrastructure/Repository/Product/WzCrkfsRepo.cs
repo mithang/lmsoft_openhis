@@ -7,7 +7,7 @@ using SqlSugar;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 出入库方式 (Base DB: wz_crkfs; original SelectData queried
+    /// Phương thức nhập/xuất kho (Base DB: wz_crkfs; original SelectData queried
     /// NewtouchHIS_Base.dbo.wz_crkfs explicitly).
     /// </summary>
     public class WzCrkfsRepo : RepositoryBase<WzCrkfsEntity>, IWzCrkfsRepo

@@ -10,9 +10,9 @@ namespace Newtouch.Herp.Domain.IRepository.Purchase
 {
     public interface IPurchaseLocationRepo : IRepositoryBase<PurchaseLocationEntity>
     {
-        //更新或新增
+        //Cập nhật hoặc thêm mới
         string SubmitForm(PurchaseLocationEntity entity, string orgId, string keyValue);
-        //更新配送点状态
+        //Cập nhật trạng thái điểm phân phối
         int LocationStateUpdate(string Id, string orgId, int psdzt);
     }
 }

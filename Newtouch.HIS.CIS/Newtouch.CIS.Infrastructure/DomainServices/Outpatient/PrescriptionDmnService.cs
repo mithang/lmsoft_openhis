@@ -22,12 +22,12 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 历史处方树明细
+        /// lịch sửĐơn thuốccâychi tiết
         /// </summary>
         /// <param name="cfId"></param>
         public IList<HistoryPresFormSelectVO> GetHistoryPresDetailByCfId(string cfId)
         {
-            //处方明细
+            //Đơn thuốcchi tiết
             var sql = @"
 SELECT cfmxId,Createtime, zh, xmmc, cfmx.ypmc, ypgg,
  cast(isnull(mcjl,0) as varchar)+'('+mcjldw+')' AS mcjl,
@@ -53,39 +53,39 @@ WHERE cfmx.cfId=@cfId and cfmx.zt='1' --and cfmx.ypmc is not null
         }
 
         /// <summary>
-        /// 根据cfId或cfmxIdStr查询明细
+        /// TheocfIdhoặccfmxIdStrTra cứuchi tiết
         /// </summary>
         /// <param name="cflx"></param>
         /// <param name="cfId"></param>
         /// <param name="cfmxIdStr"></param>
-        /// 20190619 huangshanshan 去除cf.zt='1'和cfmx.zt='1'的限制，可复制作废处方
+        /// 20190619 huangshanshan đitrừcf.zt='1'vàcfmx.zt='1'củahạnchế，có thểsao chépHủy đơn thuốc
         /// <returns></returns>
         public List<PrescriptionDetailQueryVO> GetPresDetailList(int cflx, string cfId, string cfmxIdStr)
         { 
             var sql = "";
             var pars = new List<SqlParameter>();
             List<PrescriptionDetailQueryVO> list = new List<PrescriptionDetailQueryVO>();
-            if (cflx == (int)EnumCflx.RehabPres)   //康复处方
+            if (cflx == (int)EnumCflx.RehabPres)   //Phục hồi chức năngĐơn thuốc
             {
                 sql += @"
 SELECT cf.cfId, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw, 
-        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0) AS zl,   --根据最新的dwjls，算出总量
-        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0)*isnull(sfxm.dj,0) je,   --根据最新的dwjls和dj，算出总额
+        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0) AS zl,   --theo mới nhấtdwjls，Tính ra tổng lượng
+        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0)*isnull(sfxm.dj,0) je,   --theo mới nhấtdwjlsvàdj，Tính ra tổng số
         ";
             }
-            else if (cflx == (int)EnumCflx.RegularItemPres|| cflx == (int)EnumCflx.Yyhc)   //常规项目处方  医用耗材处方
+            else if (cflx == (int)EnumCflx.RegularItemPres|| cflx == (int)EnumCflx.Yyhc)   //Hạng mục thông thườngĐơn thuốc  ydùngVật tư tiêu haoĐơn thuốc
             {
                 sql += @"
 SELECT cf.cfId, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw, cfmx.ztId,cfmx.ztmc , 
-        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0) AS zl,   --根据最新的dwjls，算出总量
-        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0)*isnull(sfxm.dj,0) je,   --根据最新的dwjls和dj，算出总额
+        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0) AS zl,   --theo mới nhấtdwjls，Tính ra tổng lượng
+        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0)*isnull(sfxm.dj,0) je,   --theo mới nhấtdwjlsvàdj，Tính ra tổng số
         ";
             }
-            if (cflx == (int)EnumCflx.InspectionPres || cflx == (int)EnumCflx.ExaminationPres)   //检验、检查处方
+            if (cflx == (int)EnumCflx.InspectionPres || cflx == (int)EnumCflx.ExaminationPres)   //Xét nghiệm、Kiểm traĐơn thuốc
             {
                 sql += @"
 SELECT cf.cfId, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw, 
-        CONVERT(DECIMAL(9,2),(isnull(cfmx.sl,0)*isnull(sfxm.dj,0))) je,   --根据最新的dj，算出总额
+        CONVERT(DECIMAL(9,2),(isnull(cfmx.sl,0)*isnull(sfxm.dj,0))) je,   --theo mới nhấtdj，Tính ra tổng số
         ";
             }
             if (cflx == (int)EnumCflx.RehabPres || cflx == (int)EnumCflx.RegularItemPres || cflx == (int)EnumCflx.Yyhc || cflx == (int)EnumCflx.InspectionPres || cflx == (int)EnumCflx.ExaminationPres)
@@ -102,7 +102,7 @@ SELECT cf.cfId, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw
         cfmx.urgent,
         cfmx.bw,
 cfmx.purpose,
-cfmx.Remark,   --嘱托
+cfmx.Remark,   --Dặn dò
 cfmx.zxks,
 Department.Name AS zxksmc,
 cfmx.zxsj 
@@ -133,15 +133,15 @@ WHERE 1=1";
                     pars.Add(new SqlParameter("@cfmxIdStr", cfmxIdStr));
                 }
             }
-            if (cflx == (int)EnumCflx.WMPres || cflx == (int)EnumCflx.TCMPres) //药品处方
+            if (cflx == (int)EnumCflx.WMPres || cflx == (int)EnumCflx.TCMPres) //ThuốcĐơn thuốc
             {
                 sql = @"
 SELECT cf.cfId, cfmx.ypCode,cfmx.ypmc,cfmx.mcjl,cfmx.mcjldw,cfmx.mcjldw AS mcjldwwwwwww
 ,yp.jldw AS redundant_jldw
 ,cfmx.yfCode,cfmx.pcCode,cfmx.sl,cfmx.zl,cfmx.dw,
-        CONVERT(DECIMAL(9,2),(isnull(cfmx.sl,0)*(yp.lsj / yp.bzs * yp.mzcls))) AS je,  --根据最新的dj算出je
+        CONVERT(DECIMAL(9,2),(isnull(cfmx.sl,0)*(yp.lsj / yp.bzs * yp.mzcls))) AS je,  --theo mới nhấtdjtính raje
         cfmx.zh,cf.tieshu,cf.cfyf,cf.djbz,
-        yp.lsj / yp.bzs * yp.mzcls AS dj,  --最新的dj
+        yp.lsj / yp.bzs * yp.mzcls AS dj,  --mới nhấtdj
         yp.mzcldw AS dw,
         pc.yzpcmc AS pcmc,
         yp.ypgg,
@@ -152,7 +152,7 @@ SELECT cf.cfId, cfmx.ypCode,cfmx.ypmc,cfmx.mcjl,cfmx.mcjldw,cfmx.mcjldw AS mcjld
 		yfbm.yfbmmc zxksmc,
 yp.jx jxCode,
 cfmx.ds,
-cfmx.Remark    --嘱托
+cfmx.Remark    --Dặn dò
 FROM xt_cfmx cfmx
 INNER JOIN xt_cf(nolock) cf
     ON cf.cfId=cfmx.cfId
@@ -186,7 +186,7 @@ WHERE 1=1";
             return list;
         }
         /// <summary>
-        /// 医保患者审核收费项目是否含自费
+        /// Bảo hiểm y tếBệnh nhânPhê duyệtMục thu phílàKhôngchứatự chi trả
         /// </summary>
         /// <param name="sfxmCode"></param>
         /// <param name="cflx"></param>
@@ -227,7 +227,7 @@ WHERE 1=1";
         }
 
 		/// <summary>
-		/// 开立物资项目冻结库存数量
+		/// mởlậpvật tưMụcđôngkếtTồn khoSố lượng
 		/// </summary>
 		/// <param name="cfh"></param>
 		/// <param name="orgId"></param>
@@ -236,7 +236,7 @@ WHERE 1=1";
 		{
 			foreach (var item in cfh)
 			{
-				string sql = "exec [开立物资冻结库存量] @cfh,@orgId,@rygh";//"exec NewtouchHIS_herp..herp_开立物资冻结库存量 @cfh,@orgId,@rygh";
+				string sql = "exec [开立物资冻结库存量] @cfh,@orgId,@rygh";//"exec NewtouchHIS_herp..herp_mởlậpvật tưđôngkếtTồn kholượng @cfh,@orgId,@rygh";
                 var pars = new List<SqlParameter>();
 				pars.Add(new SqlParameter("@cfh", item));
 				pars.Add(new SqlParameter("@orgId", orgId));
@@ -247,7 +247,7 @@ WHERE 1=1";
 			return 1;
 		}
 		/// <summary>
-		/// 开立物资项目冻结库存数量作废
+		/// mởlậpvật tưMụcđôngkếtTồn khoSố lượngHủy bỏ
 		/// </summary>
 		/// <param name="cfh"></param>
 		/// <param name="orgId"></param>
@@ -258,7 +258,7 @@ WHERE 1=1";
 			{
 				return 1;
 			}
-			string sql = "exec 开立物资冻结库存量_作废 @cfh,@orgId,@rygh";//"exec NewtouchHIS_herp..herp_开立物资冻结库存量_作废 @cfh,@orgId,@rygh";
+			string sql = "exec 开立物资冻结库存量_作废 @cfh,@orgId,@rygh";//"exec NewtouchHIS_herp..herp_mởlậpvật tưđôngkếtTồn kholượng_Hủy bỏ @cfh,@orgId,@rygh";
             var pars = new List<SqlParameter>();
 			pars.Add(new SqlParameter("@cfh", cfh));
 			pars.Add(new SqlParameter("@orgId", orgId));
@@ -268,7 +268,7 @@ WHERE 1=1";
 			return 1;
 		}
         /// <summary>
-        /// 医保电子处方
+        /// Bảo hiểm y tếđiện tửĐơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="orgId"></param>

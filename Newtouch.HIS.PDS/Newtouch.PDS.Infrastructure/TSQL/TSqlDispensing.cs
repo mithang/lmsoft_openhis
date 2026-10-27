@@ -1,24 +1,24 @@
 namespace Newtouch.Infrastructure.TSQL
 {
     /// <summary>
-    /// 发药
+    /// Phát thuốc
     /// </summary>
     public class TSqlDispensing
     {
-        #region 门诊预定 冻结库存
+        #region Đặt trước ngoại trú Đóng băng tồn kho
 
         /// <summary>
-        /// 资源预定
+        /// Đặt trước tài nguyên
         /// </summary>
         public const string mz_yp_book = @"
-DECLARE @ypmc VARCHAR(200);--药品名称
-DECLARE @yfmc VARCHAR(200);--药房名称
+DECLARE @ypmc VARCHAR(200);--Tên thuốc
+DECLARE @yfmc VARCHAR(200);--Tên nhà thuốc
 SELECT @ypmc=yp.ypmc 
 FROM NewtouchHIS_Base.dbo.V_S_xt_yp yp
 INNER JOIN NewtouchHIS_Base.dbo.V_S_xt_ypsx ypsx ON ypsx.ypId=yp.ypId AND ypsx.OrganizeId=yp.OrganizeId
 WHERE yp.ypCode=@ypdm AND yp.OrganizeId=@OrganizeId
 
---验证 1：药品是否有效
+--Kiểm tra 1：Thuốc có hiệu lực không
 IF ISNULL(@ypmc, '')=''
 BEGIN
 	SELECT '药品无效';
@@ -27,14 +27,14 @@ END
 
 SELECT @yfmc=yfbmmc FROM NewtouchHIS_Base.dbo.V_S_xt_yfbm WHERE yfbmCode=@yfbmCode AND zt='1' AND OrganizeId=@OrganizeId
 
---验证 2：药房是否有效
+--Kiểm tra 2：Nhà thuốc có hiệu lực không
 IF ISNULL(@yfmc, '')=''
 BEGIN
 	SELECT '指定的药房暂未开放';
 	RETURN;
 END 
 
---验证 3：部门是否拥有该药品
+--Kiểm tra 3：Bộ phận có sở hữu thuốc này không
 IF NOT EXISTS(SELECT 1 FROM dbo.xt_yp_bmypxx(NOLOCK) WHERE yfbmCode=@yfbmCode AND Ypdm=@ypdm AND OrganizeId=@OrganizeId AND zt='1')
 BEGIN
 	SELECT CONCAT(@yfmc, '未开放', @ypmc) ;
@@ -47,7 +47,7 @@ SET TRANSACTION ISOLATION LEVEL READ COMMITTED
 DECLARE @kyck INT
 DECLARE @curkcId VARCHAR(50); 
 DECLARE @curkysl INT;
-DECLARE @sykc INT;--剩余库存
+DECLARE @sykc INT;--Tồn kho còn lại
 DECLARE @yxq DATETIME;
 
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#kcData') AND type='U')
@@ -73,16 +73,16 @@ BEGIN TRY
 	WHILE @sykc > 0 AND EXISTS(SELECT 1 FROM #kcData)
 	BEGIN
 		SELECT TOP 1 @curkcId=kcId, @curkysl=kysl FROM #kcData ORDER BY yxq
-		DECLARE @curkjsl INT;--扣减数量
+		DECLARE @curkjsl INT;--Số lượng khấu trừ
 		IF @curkysl>@sykc 
 		BEGIN
-			--当前批号批次库存足够
+			--Tồn kho lô/số lô hiện tại đủ
 			SET @curkjsl=@sykc;
 			SET @sykc=0;		
 		END
 		ELSE
 		BEGIN
-			--当前批号批次库存不足
+			--Tồn kho lô/số lô hiện tại không đủ
 			SET @curkjsl=@curkysl;
 			SET @sykc=@sykc-@curkysl;
 		END  
@@ -122,7 +122,7 @@ END CATCH
 
 
         /// <summary>
-        /// 门诊资源预定（冻结库存，生成排药明细）
+        /// Đặt trước tài nguyên ngoại trú（Đóng băng tồn kho，Tạo chi tiết xếp thuốc）
         /// </summary>
         public const string mz_yp_book_v2 = @"
 DECLARE @resultMsg VARCHAR(500);
@@ -155,7 +155,7 @@ BEGIN
 	DECLARE @kyck INT
 	DECLARE @curkcId VARCHAR(50); 
 	DECLARE @curkysl INT;
-	DECLARE @sykc INT;--剩余库存
+	DECLARE @sykc INT;--Tồn kho còn lại
 	DECLARE @yxq DATETIME;
 
 	WHILE EXISTS(SELECT 1 FROM #rpDetail)
@@ -170,32 +170,32 @@ BEGIN
 		AND yp.zt='1'
 		AND yp.OrganizeId=@OrganizeId
 
-		--效验 1:药品是否有效
+		--Kiểm tra 1:Thuốc có hiệu lực không
 		IF ISNULL(@ypId,0)=0
 		BEGIN
 			SET @resultMsg=CONCAT('处方【',@cfh,'】的药品【',@ypmc,'】无效');
 			BREAK;
 		END 
 		
-		--验证 2：药房是否有效
+		--Kiểm tra 2：Nhà thuốc có hiệu lực không
 		IF ISNULL(@yfbmId,0)=0
 		BEGIN
 			SET @resultMsg=CONCAT('药房部门代码为【',@yfbmCode, '】的药房未开放') ;
 			BREAK;
 		END 
 
-		--验证 3：部门是否拥有该药品
+		--Kiểm tra 3：Bộ phận có sở hữu thuốc này không
 		IF ISNULL(@bmypId,'')=''
 		BEGIN
 			SET @resultMsg=CONCAT('药房部门【',@yfbmmc,'】没有药品【',@ypmc, '】的权限') ;
 			BREAK;
 		END
 
-		SET @kyck=0;--可用库存
-		SET @curkcId=''; --当前库存ID
-		SET @curkysl =0;--当前库存数量
-		SET @sykc =0;--剩余库存
-		SET @yxq='';--有效期
+		SET @kyck=0;--Tồn kho khả dụng
+		SET @curkcId=''; --Tồn kho hiện tạiID
+		SET @curkysl =0;--Số lượng tồn kho hiện tại
+		SET @sykc =0;--Tồn kho còn lại
+		SET @yxq='';--Hạn dùng
 
 		IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#kcData') AND type='U')
 		BEGIN
@@ -225,16 +225,16 @@ BEGIN
 		WHILE @sykc > 0 AND EXISTS(SELECT 1 FROM #kcData)
 		BEGIN
 			SELECT TOP 1 @curkcId=kcId, @curkysl=kysl FROM #kcData ORDER BY yxq
-			DECLARE @curkjsl INT;--扣减数量
+			DECLARE @curkjsl INT;--Số lượng khấu trừ
 			IF @curkysl>=@sykc 
 			BEGIN
-				--当前批号批次库存足够
+				--Tồn kho lô/số lô hiện tại đủ
 				SET @curkjsl=@sykc;
 				SET @sykc=0;		
 			END
 			ELSE
 			BEGIN
-				--当前批号批次库存不足
+				--Tồn kho lô/số lô hiện tại không đủ
 				SET @curkjsl=@curkysl;
 				SET @sykc=@sykc-@curkysl;
 			END  
@@ -258,7 +258,7 @@ BEGIN
 					  '0' , -- gjzt - char(1)
 					  @yfbmCode , -- fyyf - varchar(50)
 					  @cfh,  -- cfh - varchar(50)
-					  @Id --cfmxId BIGINT 处方明细ID
+					  @Id --cfmxId BIGINT Chi tiết đơn thuốcID
 			FROM #kcData WHERE kcId=@curkcId ;
 
 			DELETE FROM #kcData WHERE kcId=@curkcId
@@ -287,10 +287,10 @@ SELECT @resultMsg resultMsg;
 
         #endregion
 
-        #region 门诊取消预定 解冻
+        #region Hủy đặt trước ngoại trú Giải đông
 
         /// <summary>
-        /// 门诊取消预定 解冻 （精简版）
+        /// Hủy đặt trước ngoại trú Giải đông （Bản rút gọn）
         /// </summary>
         public const string mz_yp_book_cancel_simplify = @"
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#mxph') AND type='U')
@@ -376,12 +376,12 @@ END CATCH
 SELECT @resultMsg resultMsg;
 ";
         /// <summary>
-        /// 门诊取消预定 解冻--按照cfmxphid解冻
+        /// Hủy đặt trước ngoại trú Giải đông--TheocfmxphidGiải đông
         /// </summary>
         public const string mz_yp_book_cancel_v2 = @"
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#ArrData') AND type='U')
 BEGIN
-	DROP TABLE #ArrData; --排药数据
+	DROP TABLE #ArrData; --Dữ liệu xếp thuốc
 END
 
 BEGIN TRY
@@ -469,12 +469,12 @@ END CATCH
 ";
 
         /// <summary>
-        /// 门诊取消预定 解冻
+        /// Hủy đặt trước ngoại trú Giải đông
         /// </summary>
         public const string mz_yp_book_cancel = @"
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#ArrData') AND type='U')
 BEGIN
-	DROP TABLE #ArrData; --排药数据
+	DROP TABLE #ArrData; --Dữ liệu xếp thuốc
 END
 
 BEGIN TRY
@@ -563,10 +563,10 @@ END CATCH
 
         #endregion
 
-        #region 门诊发药处方明细查询
+        #region Truy vấn chi tiết đơn phát thuốc ngoại trú
 
         /// <summary>
-        /// 门诊发药处方明细查询
+        /// Truy vấn chi tiết đơn phát thuốc ngoại trú
         /// </summary>
         public const string mz_fy_cfmx = @"
 SELECT a.czh, a.Fph, a.cfh,convert(varchar(50),a.cfnm) cfnm,a.ypCode, a.ypmc, a.gg, CONVERT(INT,a.zxdwsl/a.zhyz) sl, a.dw, a.dj, a.ycmc, a.je, ISNULL(a.jl,0) jl, a.jldw, a.yfmc, a.yszt, a.ysmc, a.sfsj,a.gjybdm
@@ -612,13 +612,13 @@ order by czh
 
 		#endregion
 
-		#region 门诊发药
+		#region Phát thuốc ngoại trú
 
 		/// <summary>
-		/// 门诊发药
+		/// Phát thuốc ngoại trú
 		/// </summary>
 		public const string mz_yp_delivery = @"
---处理页面输入追溯码
+--Xử lý trang nhập mã truy xuất
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#zsminput') AND type='U')
 		BEGIN
 			DROP TABLE #kcData;
@@ -696,7 +696,7 @@ BEGIN
 		IF @sumDjsl<@zxsl
 		BEGIN
 			--SELECT @ypmc=ypmc FROM NewtouchHIS_Base.dbo.V_C_xt_yp WHERE zt='1' AND OrganizeId=@OrganizeId AND ypCode=@ypCode
-			--SET @resultMsg=CONCAT('批次【',@pc,'】、批号【',@ph,'】的药品【',@ypmc,'】已冻结库存不足')
+			--SET @resultMsg=CONCAT('Lô【',@pc,'】、Số lô【',@ph,'】của thuốc【',@ypmc,'】Tồn kho đã đóng băng không đủ')
 			--BREAK;
 			WHILE EXISTS(SELECT 1 FROM #kcData) AND @sysl>0
 			BEGIN
@@ -782,10 +782,10 @@ SELECT @resultMsg resultMsg
 
         #endregion
 
-        #region 住院预定 冻结库存
+        #region Đặt trước nội trú Đóng băng tồn kho
 
         /// <summary>
-        /// 住院预定 冻结库存
+        /// Đặt trước nội trú Đóng băng tồn kho
         /// </summary>
         public const string zy_yp_book = @"
 DECLARE @resultMsg VARCHAR(500);
@@ -815,7 +815,7 @@ BEGIN
 	DECLARE @kyck INT
 	DECLARE @curkcId VARCHAR(50); 
 	DECLARE @curkysl INT;
-	DECLARE @sykc INT;--剩余库存
+	DECLARE @sykc INT;--Tồn kho còn lại
 	DECLARE @yxq DATETIME;
 
 	WHILE EXISTS(SELECT 1 FROM #yzDetail)
@@ -830,32 +830,32 @@ BEGIN
 		AND yp.zt='1'
 		AND yp.OrganizeId=@OrganizeId
 
-		--效验 1:药品是否有效
+		--Kiểm tra 1:Thuốc có hiệu lực không
 		IF ISNULL(@ypId,0)=0
 		BEGIN
 			SET @resultMsg=CONCAT('编码为【',@ypCode,'】的药品无效');
 			BREAK;
 		END 
 		
-		--验证 2：药房是否有效
+		--Kiểm tra 2：Nhà thuốc có hiệu lực không
 		IF ISNULL(@yfbmId,0)=0
 		BEGIN
 			SET @resultMsg=CONCAT('药房部门代码为【',@yfbmCode, '】的药房未开放') ;
 			BREAK;
 		END 
 
-		--验证 3：部门是否拥有该药品
+		--Kiểm tra 3：Bộ phận có sở hữu thuốc này không
 		IF ISNULL(@bmypId,'')=''
 		BEGIN
 			SET @resultMsg=CONCAT('药房部门【',@yfbmmc,'】没有药品【',@ypmc, '】的权限') ;
 			BREAK;
 		END
 
-		SET @kyck=0;--可用库存
-		SET @curkcId=''; --当前库存ID
-		SET @curkysl =0;--当前库存数量
-		SET @sykc =0;--剩余库存
-		SET @yxq='';--有效期
+		SET @kyck=0;--Tồn kho khả dụng
+		SET @curkcId=''; --Tồn kho hiện tạiID
+		SET @curkysl =0;--Số lượng tồn kho hiện tại
+		SET @sykc =0;--Tồn kho còn lại
+		SET @yxq='';--Hạn dùng
 
 		IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#kcData') AND type='U')
 		BEGIN
@@ -877,16 +877,16 @@ BEGIN
 		WHILE @sykc > 0 AND EXISTS(SELECT 1 FROM #kcData)
 		BEGIN
 			SELECT TOP 1 @curkcId=kcId, @curkysl=kysl FROM #kcData ORDER BY yxq
-			DECLARE @curkjsl INT;--扣减数量
+			DECLARE @curkjsl INT;--Số lượng khấu trừ
 			IF @curkysl>=@sykc 
 			BEGIN
-				--当前批号批次库存足够
+				--Tồn kho lô/số lô hiện tại đủ
 				SET @curkjsl=@sykc;
 				SET @sykc=0;		
 			END
 			ELSE
 			BEGIN
-				--当前批号批次库存不足
+				--Tồn kho lô/số lô hiện tại không đủ
 				SET @curkjsl=@curkysl;
 				SET @sykc=@sykc-@curkysl;
 			END  
@@ -944,7 +944,7 @@ SELECT @resultMsg resultMsg
 ";
 
         /// <summary>
-        /// 住院药品取消冻结，并物理删除医嘱信息（慎用）
+        /// Hủy đóng băng thuốc nội trú，và xóa vật lý thông tin y lệnh（Thận trọng khi dùng）
         /// </summary>
         public const string zy_yp_cancelForzen_deleteData = @"
 DECLARE @resultMsg VARCHAR(500);
@@ -995,11 +995,11 @@ SELECT @resultMsg resultMsg
 
         #endregion
 
-        #region 门诊取消结算 库存解冻
+        #region Hủy thanh toán ngoại trú Giải đông tồn kho
         public const string mz_yp_cancelSett_kcjd = @"
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#CancalSettData') AND type='U')
 BEGIN
-	DROP TABLE #CancalSettData; --排药数据
+	DROP TABLE #CancalSettData; --Dữ liệu xếp thuốc
 END
 
 BEGIN TRY

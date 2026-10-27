@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取列表
+        /// Lấydanh sách
         /// </summary>
         /// <returns></returns>
         public List<InspectionCategoryEntity> GetListByOrg(string orgId)
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Repository
             {
                 if (this.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId && p.dlCode == entity.dlCode && p.Id != keyValue))
                 {
-                    throw new FailedException("编号不可重复");
+                    throw new FailedException("Số hiệu không được trùng lặp");
                 }
                 
                 entity.Modify(keyValue);
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Repository
             {
                 if (this.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId && p.dlCode == entity.dlCode))
                 {
-                    throw new FailedException("编号不可重复");
+                    throw new FailedException("Số hiệu không được trùng lặp");
                 }
                 entity.Create(true);
                 this.Insert(entity);
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="orgId"></param>

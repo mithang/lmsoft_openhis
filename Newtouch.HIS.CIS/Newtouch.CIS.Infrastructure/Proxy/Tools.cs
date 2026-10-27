@@ -2,15 +2,15 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy
 {
     /// <summary>
-    /// 工具类
+    /// côngcụ thểloại
     /// </summary>
     public static class Tools
     {
         /// <summary>
-        /// 获取性别代码
+        /// LấyGiới tínhMã
         /// </summary>
         /// <param name="gender"></param>
-        /// <returns>返回中医对应的性别代码</returns>
+        /// <returns>Quay lạitrongytương ứngcủaGiới tínhMã</returns>
         public static string GetGenderCode(string gender)
         {
             switch (gender.Trim())
@@ -32,59 +32,59 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// 转换成中医对应的证件类型编码
+        /// chuyểnđổithànhtrongytương ứngcủachứngmụcMã loại
         /// </summary>
-        /// <param name="zjlx">证件类型</param>
-        /// <returns>中医对应的证件类型编码</returns>
+        /// <param name="zjlx">chứngmụcLoại</param>
+        /// <returns>trongytương ứngcủachứngmụcMã loại</returns>
         public static string CardTypeCodeChange(int zjlx)
         {
             switch (zjlx)
             {
-                case 1://身份证
+                case 1://chứng minh nhân dân
                     return "01";
-                case 2://护照
+                case 2://Hộ chiếu
                     return "03";
-                case 3://军官证
+                case 3://Giấy chứng nhận sĩ quan
                     return "04";
-                case 9://其他
+                case 9://khác
                 default:
                     return "99";
             }
         }
 
         /// <summary>
-        /// 获取证件名称
+        /// LấychứngmụcTên
         /// </summary>
-        /// <param name="zjlx">cis证件类型</param>
-        /// <returns>中医对应的证件类型名称</returns>
+        /// <param name="zjlx">cischứngmụcLoại</param>
+        /// <returns>trongytương ứngcủachứngmụcTên loại</returns>
         public static string GetCardType(int zjlx)
         {
             var code = CardTypeCodeChange(zjlx);
             switch (code)
             {
                 case "01":
-                    return "居民身份证";
+                    return "cư dânchứng minh nhân dân";
                 case "02":
-                    return "居民户口本";
+                    return "cư dân户miệngbản";
                 case "03":
-                    return "护照";
+                    return "Hộ chiếu";
                 case "04":
-                    return "军官证";
+                    return "Giấy chứng nhận sĩ quan";
                 case "05":
-                    return "驾驶证";
+                    return "驾驶chứng";
                 case "06":
-                    return "港澳居民来往内地通行证";
+                    return "港澳cư dânđếntớitrongđịathôngdòngchứng";
                 case "07":
-                    return "太晚居民来往内地通行证";
+                    return "太晚cư dânđếntớitrongđịathôngdòngchứng";
                 case "09":
                 default:
-                    return "其他法定有效证件";
+                    return "khácphương phápđịnhhiệu lựcchứngmục";
 
             }
         }
 
         /// <summary>
-        /// 转换成中医对应的婚姻状况编码
+        /// chuyểnđổithànhtrongytương ứngcủaTình trạng hôn nhânMã
         /// </summary>
         /// <param name="hf"></param>
         /// <returns></returns>
@@ -92,9 +92,9 @@ namespace Newtouch.CIS.Proxy
         {
             switch (hf)
             {
-                case 0://未婚
+                case 0://chưa婚
                     return "10";
-                case 1://已婚
+                case 1://đã kết hôn
                     return "20";
                 case 9:
                 default:
@@ -103,7 +103,7 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// 转换成中医对应的婚姻状况编码
+        /// chuyểnđổithànhtrongytương ứngcủaTình trạng hôn nhânMã
         /// </summary>
         /// <param name="hf"></param>
         /// <returns></returns>
@@ -113,27 +113,27 @@ namespace Newtouch.CIS.Proxy
             switch (code)
             {
                 case "10":
-                    return "未婚";
+                    return "chưa婚";
                 case "20":
-                    return "已婚";
+                    return "đã kết hôn";
                 case "21":
-                    return "初婚";
+                    return "ban đầu婚";
                 case "22":
-                    return "再婚";
+                    return "lại婚";
                 case "23":
-                    return "复婚";
+                    return "lại婚";
                 case "30":
-                    return "丧偶";
+                    return "丧chẵn";
                 case "40":
                     return "离婚";
                 case "90":
                 default:
-                    return "未知";
+                    return "chưa biết";
             }
         }
 
         /// <summary>
-        /// 本地病人性质转中医馆病人性质
+        /// bảnđịabệnh nhânTính chấtchuyểntrongyquánbệnh nhânTính chất
         /// </summary>
         /// <param name="brxz"></param>
         /// <returns></returns>
@@ -141,11 +141,11 @@ namespace Newtouch.CIS.Proxy
         {
             switch (brxz)
             {
-                case "1"://本地 自费
-                    return "2";// 中医馆 自费
-                case "0"://本地 自费
+                case "1"://cục bộ tự chi trả
+                    return "2";// trongyquán tự chi trả
+                case "0"://cục bộ tự chi trả
                 default:
-                    return "1";// 中医馆 自费
+                    return "1";// trongyquán tự chi trả
             }
         }
     }

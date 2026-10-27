@@ -26,7 +26,7 @@ namespace Newtouch.DomainServices.Inpatient
         { }
 
         /// <summary>
-        /// 内部类定义(一次性使用)
+        /// trongbộloạiđịnhnghĩa(một lầntínhSử dụng)
         /// </summary>
         public class UncheckedAdviceCount
         {
@@ -39,7 +39,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// 获取在病区的病人对象集合
+        /// LấyởKhu bệnhcủabệnh nhânđối tượngtậphợp
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -232,7 +232,7 @@ WHERE   1 = 1");
         }
 
         /// <summary>
-        /// 获取已出区的病人对象集合
+        /// Lấyđãra khỏi khucủabệnh nhânđối tượngtậphợp
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -304,13 +304,13 @@ FROM    dbo.zy_brxxk zyxx
         }
 
         /// <summary>
-        /// 住院病人筛选
+        /// Nhập việnbệnh nhânLọc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="bq"></param>
         /// <param name="zyh"></param>
         /// <param name="xm"></param>
-        /// <param name="zybz">在院标志，多个用逗号分割</param>
+        /// <param name="zybz">ởviệnCờ，nhiềucáidùng逗sốphútcắt</param>
         /// <returns></returns>
         public IList<InPatientPatientSearchVO> GetInPatSearchPaginationList(Pagination pagination, string orgId, string bq, string zyh, string xm,string ch, string bqCode, string zybz = null)
         {
@@ -372,7 +372,7 @@ where zyxx.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 住院号、姓名、卡号获取病人基本信息 姓名，性别，年龄，病人性质、入院日期
+        /// Số nhập viện、Họ tên、Số thẻLấybệnh nhânThông tin cơ bản Họ tên，Giới tính，Tuổi，bệnh nhânTính chất、Ngày nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -400,7 +400,7 @@ where zyxx.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 住院号获取病人基本信息 姓名，性别，年龄，病人性质
+        /// Số nhập việnLấybệnh nhânThông tin cơ bản Họ tên，Giới tính，Tuổi，bệnh nhânTính chất
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -445,13 +445,13 @@ where zyxx.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 住院病人筛选
+        /// Nhập việnbệnh nhânLọc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="bq"></param>
         /// <param name="zyh"></param>
         /// <param name="xm"></param>
-        /// <param name="zybz">在院标志，多个用逗号分割</param>
+        /// <param name="zybz">ởviệnCờ，nhiềucáidùng逗sốphútcắt</param>
         /// <returns></returns>
         public IList<InPatientNursingInputVO> GetInPatSearchList(string orgId, string bq,DateTime rq,string sj, string zyh, string zybz = null)
         {
@@ -493,7 +493,7 @@ where zyxx.OrganizeId = @orgId";
             return this.FindList<InPatientNursingInputVO>(sql,  pars.ToArray());
         }
         /// <summary>
-        /// 获取全部病人树信息
+        /// LấyTất cảbệnh nhâncâythông tin
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -511,11 +511,11 @@ left join zy_cwsyjlk cw with(nolock) on cw.zyh=b.zyh and cw.organizeid=b.Organiz
             {
                 switch (zyzt)
                 {
-                    case "zy"://在院：不是已出院，不是作废记录，不是取消入院
+                    case "zy"://Đang nằm viện：Không phải đã xuất viện，Không phải bản ghi đã hủy，Không phải hủy nhập viện
                         sql += " and b.zybz in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Bqz));
                         break;
-                    case "cy"://出院：已出院状态
+                    case "cy"://Xuất viện：Trạng thái đã xuất viện
                         sql += " and b.zybz in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Ycy + "," + (int)EnumZYBZ.Djz));
                         break;
@@ -549,7 +549,7 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
             return this.FirstOrDefault<InpWardPatTreeVO>(sql, par.ToArray());
         }
         /// <summary>
-        /// 住院多病人护理录入
+        /// Nhập việnnhiềubệnh nhânđiều dưỡngnhập
         /// </summary>
         /// <param name="entity"></param>
         public void submitmutiple(List<InpatientVitalSignsEntity> entity,string orgId,int? sjd,DateTime rq, string flag)
@@ -566,14 +566,14 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
                         }
                         if (db.IQueryable<InpatientVitalSignsEntity>(p => p.zyh == item.zyh && p.rq == item.rq && p.sj == item.sj && p.zdysjd == item.zdysjd && p.lrflag == item.lrflag && p.zt == "1").Any())
                         {
-                            throw new FailedException("InpatientVitalSigns_Repeated_Error", "重复录入");
+                            throw new FailedException("InpatientVitalSigns_Repeated_Error", "trùng lặpnhập");
                         }
                         item.OrganizeId = orgId;
                         
                         item.rq = rq;
                         item.lrflag = flag;
                         item.Create(true);
-                        if (flag == "1")//自定义录入
+                        if (flag == "1")//tựđịnhnghĩanhập
                         {
                             item.zdysjd = sjd.ToString();
                         }
@@ -709,12 +709,12 @@ where prejs_id=@prejs_id
             catch (Exception ex)
             {
 
-                throw new FailedException("查询错误" + ex.Message);
+                throw new FailedException("Tra cứuLỗi" + ex.Message);
             }
 
         }
         /// <summary>
-        /// 预交金额度提醒
+        /// tạm ứngSố tiềnđộnhắcnhắc
         /// </summary>
         /// <param name="patlist"></param>
         /// <param name="orgId"></param>
@@ -760,8 +760,8 @@ zyxx.zt = 1 and  zyxx.OrganizeId=@orgId and zyxx.zyh in (select col from dbo.f_s
 
 			var val1 = outParameter1.Value;
 			var val2 = outParameter2.Value;
-			var val3 = outParameter3.Value;//状态
-			var val4 = outParameter4.Value;//错误信息
+			var val3 = outParameter3.Value;//Trạng thái
+			var val4 = outParameter4.Value;//Lỗithông tin
 			RefSuccess reflist = new RefSuccess();
 			if (val1 != null)
 			{

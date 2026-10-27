@@ -75,7 +75,7 @@ and b.OrganizeId = @orgId
             {
                 return;
             }
-            //权限list
+            //Quyềnlist
             var authorityLists = new List<SysMedicineAuthorityRelationEntity>();
             foreach (var item in AuthorityList.Where(p => !string.IsNullOrWhiteSpace(p)).Distinct())
             {
@@ -111,7 +111,7 @@ and b.OrganizeId = @orgId
         }
 
         /// <summary>
-        /// 获取系统人员 分页列表
+        /// Lấy nhân viên hệ thống Danh sách phân trang
         /// </summary>
         /// <param name="topOrganizeId"></param>
         /// <param name="pagination"></param>

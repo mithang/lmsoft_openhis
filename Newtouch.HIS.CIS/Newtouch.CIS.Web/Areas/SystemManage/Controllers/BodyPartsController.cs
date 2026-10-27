@@ -32,7 +32,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取列表
+        /// Lấydanh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -53,7 +53,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// Khi sửa thông tin，thông tinmangđếnmớitrangmặt
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             return Content(entity.ToJson());
         }
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// Khi sửa thông tin，thông tinmangđếnmớitrangmặt
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -78,7 +78,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -90,7 +90,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             return Success("Thao tác thành công.");
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -102,7 +102,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             return Success("Thao tác thành công.");
         }
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             return Success("Xóa thành công.");
         }
         /// <summary>
-        /// 删除检查部位
+        /// XóaKiểm traVị trí
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -122,7 +122,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             return Success("Xóa thành công.");
         }
         /// <summary>
-        /// 部位类别
+        /// Vị tríLoại
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -136,7 +136,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 检查部位类别
+        /// Kiểm traVị tríLoại
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -151,7 +151,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 系统部位 浮层
+        /// Hệ thốngVị trí lớp nổi
         /// </summary>
         /// <returns></returns>
 
@@ -175,7 +175,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         
 
         /// <summary>
-        /// 影像部位 浮层
+        /// Hình ảnhVị trí lớp nổi
         /// </summary>
         /// <returns></returns>
 

@@ -15,7 +15,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string yslbdm { get; set; }
         
         /// <summary>
-        /// 医嘱类别
+        /// Loại y lệnh
         /// </summary>
         public string yzlb { get; set; }
     }

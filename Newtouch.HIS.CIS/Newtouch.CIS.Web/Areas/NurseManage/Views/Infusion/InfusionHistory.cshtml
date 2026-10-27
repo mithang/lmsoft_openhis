@@ -54,7 +54,7 @@
     var $gridMxList = $("#gridRpList");
     var currentMzh = "";
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
 
         });
@@ -116,9 +116,9 @@
         }).trigger('reloadGrid');
     });
 
-    //获取选中checkbox的ID
+    //LấyĐã chọncheckboxcủaID
     function getCheckedIds() {
-        var selRowIds = jQuery("#gridRpList").jqGrid("getGridParam", "selarrrow");//选中的id
+        var selRowIds = jQuery("#gridRpList").jqGrid("getGridParam", "selarrrow");//Đã chọncủaid
         if (selRowIds == null || selRowIds.length === 0) return;
         var ids = "";
         var ypids = "";
@@ -130,26 +130,26 @@
         return ids + "|"+ypids;
     }
 
-    //回车事件绑定
+    //Sự kiện Entergắn
     $(window).keyup(function (event) {
         if (event.keyCode == 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //初始化
+    //Khởi tạo
     function Initial() {
         gridList();
     }
 
-    //组装患者信息查询条件
+    //lắp rápThông tin bệnh nhânĐiều kiện tìm kiếm
     function getGridPatPar() {
         return { kh: $("#txtkh").val(),mzh: $("#txtmzh").val(), fph: $("#txtfph").val(), kssj: $("#txtsfkssj").val(), jssj: $("#txtsfjssj").val() }
     }
 
-    //主表信息
+    //chínhbảngthông tin
     function gridList() {
-        //患者信息
+        //Thông tin bệnh nhân
         $gridList.dataGrid({
             url: "/NurseManage/Infusion/PatientHistoryListQuery",
             postData: getGridPatPar(),
@@ -172,7 +172,7 @@
                     }).trigger('reloadGrid');
             }
         });
-        //输液药品信息
+        //truyền dịchThuốcthông tin
         var checkTrigger = false;
         var list = new Array();
         var liststu = false;
@@ -220,7 +220,7 @@
                     var rowData = $("#gridRpList").jqGrid('getRowData', rowIndex);
                     var ids = $("#gridRpList").jqGrid('getRowData_AllLine');
 
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     for (var i = 0; i < ids.length; i++) {
                         if (ids[i].cfh == rowData.cfh && ids[i].cfh != "") {
                             if (s == true) {
@@ -244,15 +244,15 @@
                 if (list.length > 0) {
 
                     for (j = j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Cùng nhómĐã chọn
                         {
                             j = j + 1;
                             $("#gridRpList").jqGrid("setSelection", list[j - 1], true);
 
                         }
-                        else { //同组取消选中
+                        else { //Cùng nhómHủyĐã chọn
                             //j = j + 1;
-                            $("#gridRpList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                            $("#gridRpList").jqGrid("setSelection", list[j], false);      //Hủykhôngkích hoạtonselectrow
                         }
 
                     }

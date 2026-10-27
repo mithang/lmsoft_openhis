@@ -10,7 +10,7 @@ using Newtouch.Domain.IRepository.DeptStorageManage;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 损益原因
+    /// nguyên nhân lãi lỗ
     /// </summary>
     public class KcSyyyRepo : RepositoryBase<DeptKcSyyyEntity>, IDeptKcSyyyRepo
     {

@@ -18,7 +18,7 @@ using Newtouch.Domain.IRepository;
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
-    /// Home/Index加载时 默认加载的 缓存数据
+    /// Home/Indextảikhi Mặc địnhtảicủa chậmtồn tạiDữ liệu
     /// </summary>
     public class ClientsDataController : ClientsDataBaseController
     {
@@ -26,11 +26,11 @@ namespace Newtouch.CIS.Web.Controllers
 
         private readonly ISysUserDmnService _sysUserDmnService;
         /// <summary>
-        /// 民族
+        /// dântộc
         /// </summary>
         private readonly ISysNationRepo _sysNationRepo;
         /// <summary>
-        /// 国籍
+        /// quốc tịch
         /// </summary>
         private readonly ISysNationalityRepo _sysNationalityRepo;
 
@@ -89,20 +89,20 @@ namespace Newtouch.CIS.Web.Controllers
             object sysStaffDutyList = null, doctorInHosBookkeep = null, sysPatientNatureList = null,sysDepartList = null;
             if (!string.IsNullOrWhiteSpace(opr.OrganizeId))
             {
-                sysStaffDutyList = _sysUserDmnService.GetStaffDutyListByOrganizeId(opr.OrganizeId);//（医生，健康教练）
-                doctorInHosBookkeep = _sysUserDmnService.GetStaffByDutyCode(opr.OrganizeId, "Doctor");//住院记账获取门诊医生
-                sysDepartList = _sysDepartmentRepo.GetList(opr.OrganizeId, "1");//科室
-                sysPatientNatureList = _sysNationalityRepo.GetBRXZList(opr.OrganizeId);//Tính chất bệnh nhân,报销政策
+                sysStaffDutyList = _sysUserDmnService.GetStaffDutyListByOrganizeId(opr.OrganizeId);//（Bác sĩ，sức khỏehuấn luyện viên）
+                doctorInHosBookkeep = _sysUserDmnService.GetStaffByDutyCode(opr.OrganizeId, "Doctor");//Ghi nợ nội trúLấyNgoại trúBác sĩ
+                sysDepartList = _sysDepartmentRepo.GetList(opr.OrganizeId, "1");//Khoa
+                sysPatientNatureList = _sysNationalityRepo.GetBRXZList(opr.OrganizeId);//Tính chất bệnh nhân,báobánchính sách
             }
 
             var data = new
             {
-                sysDepartList = sysDepartList == null ? null : sysDepartList.ToJson(new[] { "Name", "Code", "yjbz", "py", "zlks" }),    //科室
+                sysDepartList = sysDepartList == null ? null : sysDepartList.ToJson(new[] { "Name", "Code", "yjbz", "py", "zlks" }),    //Khoa
                 sysPatientNatureList = sysPatientNatureList,
-                sysStaffDutyList = sysStaffDutyList == null ? null : sysStaffDutyList.ToJson(new[] { "StaffGh", "StaffName", "StaffPY", "DutyCode" }),//健康教练，医生
-                sysNationList = _sysNationRepo.GetmzList(),//民族
-                SysForCashPayList = _sysNationalityRepo.GetCashPay(), //获取现金支付方式
-                sysNationalityList = _sysNationalityRepo.GetgjList()//国籍
+                sysStaffDutyList = sysStaffDutyList == null ? null : sysStaffDutyList.ToJson(new[] { "StaffGh", "StaffName", "StaffPY", "DutyCode" }),//sức khỏehuấn luyện viên，Bác sĩ
+                sysNationList = _sysNationRepo.GetmzList(),//dântộc
+                SysForCashPayList = _sysNationalityRepo.GetCashPay(), //LấyhiệnkimPhương thức thanh toán
+                sysNationalityList = _sysNationalityRepo.GetgjList()//quốc tịch
         };
             return Content(data.ToJson());
         }

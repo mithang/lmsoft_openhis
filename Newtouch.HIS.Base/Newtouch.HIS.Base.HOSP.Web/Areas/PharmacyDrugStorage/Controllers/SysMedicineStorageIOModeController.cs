@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.PharmacyDrugStorage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -75,7 +75,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.PharmacyDrugStorage.Controllers
         {
             var entity = _sysMedicineStorageIOModeRepo.FindEntity(p => p.crkfsId == keyValue);
             if (entity == null) return Error("Không tìm thấy phương thức phát thuốc đã chỉ định");
-            return _sysMedicineStorageIOModeRepo.Delete(entity) > 0 ? Success() : Error("删除失败");
+            return _sysMedicineStorageIOModeRepo.Delete(entity) > 0 ? Success() : Error("Xóa thất bại");
         }
     }
 }

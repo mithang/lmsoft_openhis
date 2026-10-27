@@ -5,17 +5,17 @@ namespace NewtouchHIS.Lib.Base.Utilities
     public class RemoteTreatedHelper
     {
         /// <summary>
-        /// 厂商，新致公司：xinzhi
+        /// Nhà sản xuất, công ty Newtouch:xinzhi
         /// </summary>
         public static string Organization = AppSettings.GetConfig("RemoteTreated:SKey") ?? "xinzhi";
         /// <summary>
-        /// Secret 为厂商使用密码
+        /// Secret Mật khẩu dùng cho nhà sản xuất
         /// </summary>
         static string Secret = AppSettings.GetConfig("RemoteTreated:Organization") ?? "8a8e2a0db12343f589d7721762b94490";
         static string AES_IV = "A-16-Byte-String";
 
         /// <summary>
-        /// 组装请求头 Header
+        /// Lắp ráp tiêu đề yêu cầu Header
         /// </summary>
         /// <returns></returns>
         public static Dictionary<string, string> HeaderItems()
@@ -33,7 +33,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
             return dic;
         }
         /// <summary>
-        /// 获取Rtcuserid
+        /// LấyRtcuserid
         /// </summary>
         /// <param name="Rtcuserid"></param>
         /// <returns></returns>
@@ -44,28 +44,28 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// DateTime转时间戳
+        /// DateTimeChuyển thành dấu thời gian
         /// </summary>
         /// <param name="dateTime"></param>
         /// <returns></returns>
         public static long GetTimeStamp(DateTime dateTime)
         {
-            // 开始时间
+            // Thời gian bắt đầu
             DateTime startTime = new(1970, 1, 1, 8, 0, 0);
-            // 10位的时间戳
+            // 10bit dấu thời gian
             long timeStamp = Convert.ToInt64(dateTime.Subtract(startTime).TotalSeconds);
-            // 13位的时间戳
+            // 13bit dấu thời gian
             //long timeStamp = Convert.ToInt64(dateTime.Subtract(_dtStart).TotalMilliseconds);
             return timeStamp;
         }
         /// <summary>
-        /// 时间戳转DateTime
+        /// Dấu thời gian chuyển thànhDateTime
         /// </summary>
         /// <param name="timeStamp"></param>
         /// <returns></returns>
         public static DateTime GetDateTime(long timeStamp)
         {
-            // 开始时间
+            // Thời gian bắt đầu
             DateTime startTime = TimeZoneInfo.ConvertTime(new DateTime(1970, 1, 1), TimeZoneInfo.Local);
             long lTime = long.Parse(timeStamp + "0000000");
             return startTime.Add(new TimeSpan(lTime)).AddHours(8);

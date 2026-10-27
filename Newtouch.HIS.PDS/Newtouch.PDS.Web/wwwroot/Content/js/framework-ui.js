@@ -67,7 +67,7 @@ $.najax = function (options) {
 }
 $.loading = function (bool, text) {
     var $loadingpage = top.$("#loadingPage"); var $loadingtext = $loadingpage.find('.loading-content'); if (bool) { $loadingpage.show(); } else { if ($loadingtext.attr('istableloading') == undefined) { $loadingpage.hide(); } }
-    if (!!text) { $loadingtext.html(text); } else { $loadingtext.html("数据加载中，请稍后…"); }
+    if (!!text) { $loadingtext.html(text); } else { $loadingtext.html("Đang tải dữ liệu，Vui lòng chờ…"); }
 
     var iiiiiw = top.$('body').width();
     var iiiiih = top.$('body').height();
@@ -114,8 +114,8 @@ $.currentWindow = function (iframeId) {
             }
         }
         catch (err) {
-            //跨域 等
-            //保证continue
+            //Khác miền v.v.
+            //Đảm bảocontinue
         }
     }
     return null;
@@ -131,12 +131,12 @@ $.modalOpen = function (options) {
     options.url = $.getUrlWithHost(options.url);
     var defaults = {
         id: null,
-        title: '系统窗口',
+        title: 'Cửa sổ hệ thống',
         width: "100px",
         height: "100px",
         url: '',
         shade: 0.3,
-        btn: ['确认', '关闭'],
+        btn: ['Xác nhận', 'Đóng'],
         btnclass: ['btn btn-primary', 'btn btn-danger'],
         callBack: null,
         showleftlalbel: false,
@@ -159,7 +159,7 @@ $.modalOpen = function (options) {
         btnclass: options.btnclass,
         showleftlalbel: options.showleftlalbel,
         leftlabel: {
-            text: options.leftlabeltext || "确认并关闭"
+            text: options.leftlabeltext || "Xác nhận và đóng"
             , checked: options.leftlalbelchecked
         },
         yes: function () {
@@ -189,12 +189,12 @@ $.modalOpen = function (options) {
     }
     top.layer.open(configss);
 }
-$.modalConfirm = function (content, callBack, close, confirmOptions) { var defaults = { icon: "fa-exclamation-circle", title: "系统提示", btn: ['确认', '取消'], btnclass: ['btn btn-primary', 'btn btn-danger'], }; var confirmOptions = $.extend(defaults, confirmOptions); top.layer.confirm(content, confirmOptions, function () { callBack(true); if (!(close === false)) { top.layer.closeAll('dialog'); } }, function () { callBack(false); }); }
+$.modalConfirm = function (content, callBack, close, confirmOptions) { var defaults = { icon: "fa-exclamation-circle", title: "Nhắc nhở hệ thống", btn: ['Xác nhận', 'Hủy'], btnclass: ['btn btn-primary', 'btn btn-danger'], }; var confirmOptions = $.extend(defaults, confirmOptions); top.layer.confirm(content, confirmOptions, function () { callBack(true); if (!(close === false)) { top.layer.closeAll('dialog'); } }, function () { callBack(false); }); }
 $.modalAlert = function (content, type) {
     var icon = ""; if (type == 'success') { icon = "fa-check-circle"; }
     if (type == 'error') { icon = "fa-times-circle"; }
     if (type == 'warning') { icon = "fa-exclamation-circle"; }
-    top.layer.alert(content, { icon: icon, title: "系统提示", btn: ['确认'], btnclass: ['btn btn-primary'], }); if (top.top.$('.layui-layer-dialog').length == 1) { top.top.$('.layui-layer-dialog').trigger('focus'); }
+    top.layer.alert(content, { icon: icon, title: "Nhắc nhở hệ thống", btn: ['Xác nhận'], btnclass: ['btn btn-primary'], }); if (top.top.$('.layui-layer-dialog').length == 1) { top.top.$('.layui-layer-dialog').trigger('focus'); }
 }
 $.modalMsg = function (content, type, msgtime) {
     if (!msgtime) { msgtime = 2000; }
@@ -217,7 +217,7 @@ $.modalClose = function (iframeId) {
                 iframeId = window.name;
             }
         }
-        var index = top.layer.getFrameIndex(iframeId); //先得到当前iframe层的索引
+        var index = top.layer.getFrameIndex(iframeId); //Lấy hiện tại trướciframechỉ Số của lớp
         var $IsdialogClose = top.$("#layui-layer" + index).find('.layui-layer-btn').find("#IsdialogClose");
         var IsClose = $IsdialogClose.is(":checked");
         if ($IsdialogClose.length == 0) {
@@ -238,24 +238,24 @@ $.getFailedAlertMessage = function (data) {
             msgMapList = top.top.$.clients.get($.getCurrentAppId(), "SysFailedCodeMessageMapList");
         }
         catch (eeeeeeeee) {
-            //为了兼容以前的版本
+            //Để tương thích với phiên bản trước
             msgMapList = top.top.clients.SysFailedCodeMessageMapList;
         }
         if (msgMapList) { for (i = 0; i < msgMapList.length; i++) { if (data.code == msgMapList[i].code) { msg = msgMapList[i].msg; i = msgMapList.length; } } }
     }
     if (!msg) { msg = data.msg; }
     if (!msg) { msg = data.message; }
-    if (!msg) { msg = "错误代码：" + data.code; }
+    if (!msg) { msg = "Mã lỗi：" + data.code; }
     return msg;
 }; $.xhrSuccessDataExCheckHandle = function (data, alertbierror) {
     if (data && data.state == 'error') {
         if (data.code === 'SESSION_TIMEOUT') { top.top.location.href = '/Login/Index'; return false; }
         else if (data.code === 'SESSION_SIDELINED') { top.top.location.href = '/Login/Index'; return false; }
         else if (data.code === 'SYSTEM_ERROR') {
-            $.modalConfirm('程序发生内部错误<br/>点击“异常详情”按钮查看详情', function (flag) {
+            $.modalConfirm('Chương trình xảy ra lỗi nội bộ<br/>Nhấp“Chi tiết ngoại lệ”Nút xem chi tiết', function (flag) {
                 if (flag) { ; }
-                else { var exStackTrace = $.htmlEncode(data.exStackTrace); top.layer.open({ type: 1, title: '异常详情', area: ['700px', '500px'], closeBtn: 1, shadeClose: true, skin: 'divSysExceptionDetail', content: '<h3>' + data.message + '</h3><div>' + exStackTrace + '</div>' }); }
-            }, null, { btn: ['确认', '异常详情'] });
+                else { var exStackTrace = $.htmlEncode(data.exStackTrace); top.layer.open({ type: 1, title: 'Chi tiết ngoại lệ', area: ['700px', '500px'], closeBtn: 1, shadeClose: true, skin: 'divSysExceptionDetail', content: '<h3>' + data.message + '</h3><div>' + exStackTrace + '</div>' }); }
+            }, null, { btn: ['Xác nhận', 'Chi tiết ngoại lệ'] });
         }
         else { if (alertbierror === undefined || alertbierror === true) { $.modalAlert($.getFailedAlertMessage(data), data.state); } }
         return false;
@@ -263,7 +263,7 @@ $.getFailedAlertMessage = function (data) {
     return true;
 }
 $.submitForm = function (options) {
-    var defaults = { url: "", param: [], loading: "正在提交数据...", success: null, close: true, successwithtipmsg: true }; var options = $.extend(defaults, options); $.loading(true, options.loading); window.setTimeout(function () {
+    var defaults = { url: "", param: [], loading: "Đang gửi dữ liệu...", success: null, close: true, successwithtipmsg: true }; var options = $.extend(defaults, options); $.loading(true, options.loading); window.setTimeout(function () {
         if ($('[name=__RequestVerificationToken]').length > 0) { options.param["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val(); }
         $.najax({
             url: options.url, data: options.param, type: "post", loadingtext: options.loading, success: function (data) {
@@ -277,7 +277,7 @@ $.submitForm = function (options) {
     }, 10);
 }
 $.deleteForm = function (options) {
-    var defaults = { prompt: "注：您确定要删除该项数据吗？", url: "", param: [], loading: "正在删除数据...", success: null, close: true }; var options = $.extend(defaults, options); if ($('[name=__RequestVerificationToken]').length > 0) { options.param["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val(); }
+    var defaults = { prompt: "chú thích：Bạn có chắc muốn xóa mục dữ liệu này không？", url: "", param: [], loading: "Đang xóa dữ liệu...", success: null, close: true }; var options = $.extend(defaults, options); if ($('[name=__RequestVerificationToken]').length > 0) { options.param["__RequestVerificationToken"] = $('[name=__RequestVerificationToken]').val(); }
     $.modalConfirm(options.prompt, function (r) {
         if (r) {
             $.loading(true, options.loading); window.setTimeout(function () {
@@ -318,7 +318,7 @@ $.fn.formSerialize = function (formdate, forlabel) {
         var $this = $(this);
         var id = $this.attr('id');
         if (!!!id) {
-            return; //没有id属性 continue
+            return; //Không cóidThuộc tính continue
         }
         var type = $this.attr('type'); switch (type) {
             case "checkbox": postdata[id] = $this.is(":checked"); break; case 'radio': postdata[id] = element.find('input[name="' + id + '"]:checked').val(); break; default: var value = ($this.val() == null || $this.val() == "") ? "" : $this.val(); if (!$.request("keyValue")) { value = value.replace(/&nbsp;/g, ''); }
@@ -346,10 +346,10 @@ $.fn.bindSelect = function (options) {
         pleaseselectText: null,
         handlenoresult: true,
         dropdownAutoWidth: !1,
-        selectedValue: null,    //选中项
+        selectedValue: null,    //Mục đã chọn
         data: null,
         datasource: null,
-        minimumResultsForSearch: Infinity   //不显示search
+        minimumResultsForSearch: Infinity   //Không hiển thịsearch
     };
     var options = $.extend(defaults, options);
     var $element = $(this);
@@ -364,7 +364,7 @@ $.fn.bindSelect = function (options) {
         else {
             options.pleaseselect = false;
         }
-        $element.html('');  //先清空
+        $element.html('');  //Xóa trước
         if (options.pleaseselect === true) {
             $element.append($("<option value=''>" + options.pleaseselectText + "</option>"));
         }
@@ -379,7 +379,7 @@ $.fn.bindSelect = function (options) {
         }
         else {
             if (options.pleaseselect !== true && options.handlenoresult === true) {
-                //处理noresult，又un pleaseselect
+                //Xử lýnoresult，lạiun pleaseselect
                 $element.append($("<option value=''>No results found</option>"));
             }
         }
@@ -389,7 +389,7 @@ $.fn.bindSelect = function (options) {
         });
         $element.on("change", function (e) {
             if (options.change != null) {
-                //modified by sunny  此处因为下拉框选项添加了‘请选择’,索引位置不正确
+                //modified by sunny  Ở đây vì tùy chọn hộp thả xuống đã thêm‘Vui lòng chọn’,Vị trí chỉ Số không đúng
                 //options.change(data[$(this).find("option:selected").index()]);
                 options.change(data);
             }
@@ -484,10 +484,10 @@ $.addNum = function (num1, num2) {
     m = Math.pow(10, Math.max(sq1, sq2)); return (num1 * m + num2 * m) / m;
 }
 /**
- ** 减法函数，用来得到精确的减法结果
- ** 说明：javascript的减法结果会有误差，在两个浮点数相减的时候会比较明显。这个函数返回较为精确的减法结果。
- ** 调用：accSub(arg1,arg2)
- ** 返回值：arg1减去arg2的精确结果
+ ** Hàm trừ，Dùng để có kết quả trừ chính xác
+ ** Giải thích：javascriptkết quả trừ sẽ có sai Số，Khi hai Số thực trừ nhau sẽ rõ ràng hơn。Hàm này trả về kết quả trừ khá chính xác。
+ ** Gọi：accSub(arg1,arg2)
+ ** Giá trị trả về：arg1trừ điarg2kết quả chính xác của
  **/
 $.accSub = function (arg1, arg2) {
     if (!!!arg2) {
@@ -506,11 +506,11 @@ $.accSub = function (arg1, arg2) {
     catch (e) {
         r2 = 0;
     }
-    m = Math.pow(10, Math.max(r1, r2)); //last modify by deeka //动态控制精度长度
+    m = Math.pow(10, Math.max(r1, r2)); //last modify by deeka //Điều khiển động độ dài chính xác
     n = (r1 >= r2) ? r1 : r2;
     return ((parseFloat(arg1) * m - parseFloat(arg2) * m) / m).toFixed(n);
 }
-/* 获取性别 */
+/* Lấy giới tính */
 $.getGender = function (value) {
     if (value === undefined || value === null) {
         return '';
@@ -521,13 +521,13 @@ $.getGender = function (value) {
     }
     return valStr == '1' ? '男' : (valStr == '2' ? '女' : (valStr == '3' ? '不详' : ''));
 }
-/* 获取性别 */
+/* Lấy giới tính */
 $.getGenderCode = function (value) {
     if (value === undefined || value === null) {
-        return '3'; //3不详
+        return '3'; //3Không rõ
     }
     var valStr = $.trim(value.toString());
-    return valStr == "男" ? "1" : (valStr == "女" ? "2" : "3"); //1男2女3不详
+    return valStr == "男" ? "1" : (valStr == "女" ? "2" : "3"); //1 Nam 2 Nữ 3 Không rõ
 }
 $.undefinedwith0 = function (value) {
     if (value === undefined || value === null || value === '') { return 0; }
@@ -561,7 +561,7 @@ $.enum = {
             enumsTemp = top.top.$.clients.get($.getCurrentAppId(), "enums");
         }
         catch (eeeeeeeee) {
-            //为了兼容以前的版本
+            //Để tương thích với phiên bản trước
             enumsTemp = top.top.clients.enums;
         }
         if (enumsTemp) {
@@ -604,7 +604,7 @@ $.itemDetails = {
             itemDetailsTemp = top.top.$.clients.get($.getCurrentAppId(), "itemDetails");
         }
         catch (eeeeeeeee) {
-            //为了兼容以前的版本
+            //Để tương thích với phiên bản trước
             itemDetailsTemp = top.top.clients.itemDetails;
         }
         if (itemDetailsTemp) {
@@ -639,7 +639,7 @@ $(function () { $('select[data-ItemType]').each(function () { $(this).itemDetail
         return obj;
     }
 };
-//$('any').val() 返回undefined ，nval返回空串
+//$('any').val() Trả vềundefined ，nvalTrả về chuỗi rỗng
 $.fn.nval = function () {
     var val = $(this).val();
     if (!!val || !isNaN(val)) {
@@ -650,7 +650,7 @@ $.fn.nval = function () {
     }
 }
 
-//三方目录对照扩展
+//Mở rộng đối chiếu danh mục ba bên
 $.CataComparison = {
     getItems: function (ttMark, code) {
         var cataComparisonList = top.top.$.clients.get($.getCurrentAppId(), "CataloguesComparisonList");

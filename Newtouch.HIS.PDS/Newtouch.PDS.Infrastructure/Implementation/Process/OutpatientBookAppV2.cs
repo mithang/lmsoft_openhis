@@ -19,7 +19,7 @@ using Newtouch.PDS.Requset.ResourcesOperate;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// 门诊排药V2.0 2019-09-18
+    /// Xếp thuốc ngoại trúV2.0 2019-09-18
     /// </summary>
     public class OutpatientBookAppV2 : ProcessorFun<OutpatientBookRequestDTO>
     {
@@ -33,29 +33,29 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 验证
+        /// Kiểm tra
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
         {
-            if (Request.Items == null || Request.Items.Count == 0) throw new FailedException("项目/药品不能为空");
-            if (string.IsNullOrWhiteSpace(Request.OrganizeId)) throw new FailedException("OrganizeId(组织结构代码) 必传");
+            if (Request.Items == null || Request.Items.Count == 0) throw new FailedException("Hạng mục/Thuốc không được để trống");
+            if (string.IsNullOrWhiteSpace(Request.OrganizeId)) throw new FailedException("OrganizeId(Mã cơ cấu tổ chức) Bắt buộc truyền");
             try
             {
                 Parallel.ForEach(Request.Items, p =>
                 {
-                    if (string.IsNullOrWhiteSpace(p.ItemCode)) throw new FailedException("ItemCode(项目编号) 必传。");
-                    if (string.IsNullOrWhiteSpace(p.Cfh)) throw new FailedException("Cfh(处方号) 必填。");
-                    if (string.IsNullOrWhiteSpace(p.CardNo)) throw new FailedException("CardNo(卡号) 必填。");
+                    if (string.IsNullOrWhiteSpace(p.ItemCode)) throw new FailedException("ItemCode(Số hiệu hạng mục) Bắt buộc truyền。");
+                    if (string.IsNullOrWhiteSpace(p.Cfh)) throw new FailedException("Cfh(Số đơn thuốc) Bắt buộc nhập。");
+                    if (string.IsNullOrWhiteSpace(p.CardNo)) throw new FailedException("CardNo(Số thẻ) Bắt buộc nhập。");
                     var rpCount = new fyDmnService(new DefaultDatabaseFactory(), false).ExistEffectiveRp(p.Cfh, p.Yfbm, Request.OrganizeId);
-                    if (rpCount > 0) throw new Exception("已存在处方【" + p.Cfh + "】，不可重复提交。");
+                    if (rpCount > 0) throw new Exception("Đã tồn tại đơn thuốc【" + p.Cfh + "】，Không thể gửi trùng lặp。");
                     var ypxx = new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(Request.OrganizeId,
                         p.ItemCode);
-                    if (ypxx == null) throw new Exception("未找到项目【" + (string.IsNullOrWhiteSpace(p.ItemName) ? p.ItemCode : p.ItemName) + "】。");
+                    if (ypxx == null) throw new Exception("Không tìm thấy hạng mục【" + (string.IsNullOrWhiteSpace(p.ItemName) ? p.ItemCode : p.ItemName) + "】。");
                     p.ItemName = string.IsNullOrWhiteSpace(p.ItemName) ? ypxx.ypmc : p.ItemName;
                     if (p.Zhyz <= 0)
                     {
-                        if (ypxx.mzcls == null) throw new Exception("项目【" + p.ItemName + "】门诊拆零数为空。");
+                        if (ypxx.mzcls == null) throw new Exception("Hạng mục【" + p.ItemName + "】Số chia lẻ ngoại trú trống。");
                         p.Zhyz = (int)ypxx.mzcls;
                     }
 
@@ -72,12 +72,12 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 预处理 组装mz_cf和mz_cfmx数据
+        /// Tiền xử lý Lắp rápmz_cfvàmz_cfmxDữ liệu
         /// </summary>
         /// <param name="actResult"></param>
         protected override void BeforeAction(ActResult actResult)
         {
-            Parallel.For(0, 2, i => //组装数据
+            Parallel.For(0, 2, i => //Lắp ráp dữ liệu
             {
                 switch (i)
                 {
@@ -121,7 +121,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 组装门诊处方信息
+        /// Lắp ráp thông tin đơn ngoại trú
         /// </summary>
         /// <returns></returns>
         private List<MzCfEntity> AssembleMzCfEntity()
@@ -152,7 +152,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 组装门诊处方明细信息
+        /// Lắp ráp thông tin chi tiết đơn ngoại trú
         /// </summary>
         /// <returns></returns>
         private List<MzCfmxEntity> AssembleMzCfmxEntity()

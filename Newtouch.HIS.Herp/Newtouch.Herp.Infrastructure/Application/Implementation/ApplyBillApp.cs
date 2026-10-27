@@ -1,34 +1,58 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
 using Newtouch.Herp.Application.Interface;
+using Newtouch.Herp.Domain.DTO.InputDto;
 using Newtouch.Herp.Domain.Entity;
+using Newtouch.Herp.Domain.Entity.VEntity;
+using Newtouch.Herp.Domain.IDomainServices;
 using Newtouch.Herp.Domain.IRepository;
+using Newtouch.Herp.Infrastructure;
 using Newtouch.Herp.Infrastructure.Enum;
 
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 申领单管理 (Core port)
+    /// Quản lý phiếu lĩnh (Core port, parity audit 2026-10-27).
+    /// SubmitApplyOutStock is a faithful port of the original (which built
+    /// one out-stock bill per warehouse and ran DeptApplyOutStockProcess);
+    /// the earlier port returned an explicit stub because that process was
+    /// not ported yet. It is ported now (DeptApplyOutStockProcess.cs).
+    /// Receipt number: the original built it from the PROTECTED
+    /// chukuzhikeshi Description via GBK pinyin initials; GBK pinyin is not
+    /// available on this Linux runtime, so the prefix is the explicit
+    /// "CKZKS" used by the Web-side ReceiptNoHelper for the same type.
     /// </summary>
     public class ApplyBillApp : AppBase, IApplyBillApp
     {
         private readonly IKfApplyOrderRepo _kfApplyOrderRepo;
         private readonly IKfApplyOrderDetailRepo _kfApplyOrderDetailRepo;
+        private readonly IWzCrkfsRepo _crkFs;
+        private readonly IKfKcxxRepo _kfKcxxRepo;
+        private readonly IWzProductDmnService _wzProductDmnService;
+        private readonly IKfCrkdjRepo _kfCrkdjRepo;
+        private readonly IKfCrkmxRepo _kfCrkmxRepo;
+        private readonly IKfKcxxDmnService _kfKcxxDmnService;
 
-        // Original relied on binary field injection; Core port injects explicitly.
-        // NOTE: the original ctor also declared IWzCrkfsRepo / IKfKcxxRepo /
-        // IWzProductDmnService for SubmitApplyOutStock, but those implementations
-        // are not ported in this copy (Product/Storage areas), so they are NOT
-        // constructor dependencies here; SubmitApplyOutStock is an explicit stub
-        // until DeptApplyOutStockProcess + inventory services exist.
         public ApplyBillApp(IKfApplyOrderRepo kfApplyOrderRepo,
-            IKfApplyOrderDetailRepo kfApplyOrderDetailRepo)
+        IKfApplyOrderDetailRepo kfApplyOrderDetailRepo,
+        IWzCrkfsRepo crkFs, IKfKcxxRepo kfKcxxRepo,
+        IWzProductDmnService wzProductDmnService,
+        IKfCrkdjRepo kfCrkdjRepo, IKfCrkmxRepo kfCrkmxRepo,
+        IKfKcxxDmnService kfKcxxDmnService)
         {
             _kfApplyOrderRepo = kfApplyOrderRepo;
             _kfApplyOrderDetailRepo = kfApplyOrderDetailRepo;
+            _crkFs = crkFs;
+            _kfKcxxRepo = kfKcxxRepo;
+            _wzProductDmnService = wzProductDmnService;
+            _kfCrkdjRepo = kfCrkdjRepo;
+            _kfCrkmxRepo = kfCrkmxRepo;
+            _kfKcxxDmnService = kfKcxxDmnService;
         }
 
         /// <summary>
-        /// 提交科室申领单
+        /// Gửi phiếu lĩnh của khoa phòng
         /// </summary>
         /// <param name="sld"></param>
         /// <param name="sldmx"></param>
@@ -62,7 +86,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 提交申领发货
+        /// Gửi phát hàng theo phiếu lĩnh
         /// </summary>
         /// <param name="ckmx"></param>
         /// <param name="organizeId"></param>
@@ -70,13 +94,96 @@ namespace Newtouch.Herp.Application.Implementation
         /// <returns></returns>
         public string SubmitApplyOutStock(List<VApplyBillDetailEntity> ckmx, string organizeId, string userCode)
         {
-            // STUB (explicit, per task rules): the original runs
-            // DeptApplyOutStockProcess, which needs IKfKcxxDmnService inventory
-            // updates + IWzCrkfsRepo + IWzProductDmnService implementations that
-            // are not ported in this copy (StorageManage/Product areas). No fake
-            // stock movement is performed; returns an error string so the caller
-            // surfaces this notice instead of silently succeeding.
-            return "Chức năng phát hàng theo phiếu lĩnh chưa khả dụng: quy trình xuất kho (DeptApplyOutStockProcess) phụ thuộc module Quản lý kho chưa được chuyển đổi.";
+            var result = "";
+            try
+            {
+                if (ckmx == null || ckmx.Count == 0) return "Chi tiết xuất kho không được để trống!";
+                var crkfs = _crkFs.SelectData("1").FirstOrDefault();
+                foreach (var rkbm in ckmx.Select(p => p.rkbm).Distinct())
+                {
+                    var partCkmx = ckmx.FindAll(p => p.rkbm == rkbm && p.bmdwsysl >= p.xfsl && p.sl >= p.bmdwsysl);
+                    if (partCkmx.Count == 0) continue;
+                    var djInfDto = new DjInfDTO
+                    {
+                        crkdj = new KfCrkdjEntity
+                        {
+                            auditState = ((int)EnumAuditState.Adopt).ToString(), // Không cần duyệt thủ công
+                            Pdh = "CKZKS" + DateTime.Now.ToString("yyyyMMddHHmmss"),
+                            deliveryNo = "",
+                            crkfs = crkfs == null ? "" : crkfs.Id,
+                            rkbm = rkbm,
+                            OrganizeId = organizeId,
+                            ckczy = userCode,
+                            shczy = userCode,
+                            ckbm = Constants.CurrentKf.currentKfId,
+                            rksj = DateTime.Now,
+                            rkczy = userCode,
+                            cksj = DateTime.Now,
+                            zt = ((int)Enumzt.Enable).ToString(),
+                            djlx = (int)EnumOutOrInStorageBillType.chukuzhikeshi,
+                            CreateTime = DateTime.Now,
+                            CreatorCode = userCode,
+                        },
+                        crkdjmx = new List<KfCrkmxEntity>(),
+                        applyBillDetail = partCkmx
+                    };
+                    djInfDto.crkdj.Create(false);
+                    foreach (var item in partCkmx)
+                    {
+                        var kcxx = _kfKcxxRepo.SelectData(djInfDto.crkdj.ckbm, item.productId);
+                        if (kcxx == null || kcxx.Count == 0) throw new Exception(string.Format("{0} không tìm thấy tồn kho hợp lệ", item.wzmc));
+                        if (kcxx.Sum(p => p.kcsl - p.djsl) < item.xfsl * item.zhyz) throw new Exception(string.Format("{0} tồn kho không đủ", item.wzmc));
+                        var wzxx = _wzProductDmnService.GetProductInfo(item.productId, organizeId);
+                        if (wzxx == null) throw new Exception(string.Format("{0} đã bị vô hiệu", item.wzmc));
+                        var sysl = item.xfsl * item.zhyz;
+                        foreach (var kcmx in kcxx.OrderBy(p => p.yxq))
+                        {
+                            if (sysl <= 0) break;
+                            var curkykc = kcmx.kcsl - kcmx.djsl;
+                            var crkmx = new KfCrkmxEntity
+                            {
+                                productId = item.productId,
+                                lsj = wzxx.lsj * item.zhyz,
+                                jj = wzxx.jj * item.zhyz,
+                                unitId = item.bmdwId,
+                                unitName = item.bmdwmc,
+                                zhyz = item.zhyz,
+                                yxq = kcmx.yxq,
+                                scrq = null,
+                                fph = "",
+                                pc = kcmx.pc,
+                                ph = kcmx.ph,
+                                remark = "",
+                                ckbmkc = kcmx.kcsl,
+                                rkbmkc = 0,
+                                zt = ((int)Enumzt.Enable).ToString(),
+                                CreateTime = DateTime.Now,
+                                CreatorCode = userCode
+                            };
+                            crkmx.Create(false);
+                            djInfDto.crkdjmx.Add(crkmx);
+                            if (curkykc >= sysl)
+                            {
+                                crkmx.sl = sysl;
+                                sysl = 0;
+                            }
+                            else
+                            {
+                                crkmx.sl = curkykc;
+                                sysl -= curkykc;
+                            }
+                        }
+                    }
+
+                    var partResult = new DeptApplyOutStockProcess(djInfDto, _kfCrkdjRepo, _kfCrkmxRepo, _kfKcxxDmnService, _kfApplyOrderRepo, _kfApplyOrderDetailRepo).Process();
+                    if (!partResult.IsSucceed) throw new Exception(partResult.ResultMsg);
+                }
+            }
+            catch (Exception e)
+            {
+                result = e.Message;
+            }
+            return result;
         }
     }
 }

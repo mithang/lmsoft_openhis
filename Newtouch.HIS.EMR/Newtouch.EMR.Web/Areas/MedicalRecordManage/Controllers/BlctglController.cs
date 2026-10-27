@@ -18,9 +18,9 @@ using Newtouch.EMR.Domain.IDomainServices;
 namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 {
     /// <summary>
-    /// 创 建：hyj
-    /// 日 期：2018-09-07 15:46
-    /// 描 述：词条管理
+    /// Người tạo：hyj
+    /// Ngày：2018-09-07 15:46
+    /// Mô tả：Quản lý từ mục
     /// </summary>
     [Area("MedicalRecordManage")]
     public class BlctglController : OrgControllerBase
@@ -31,7 +31,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         private char[] trimstr = { ' ', '-', '\'', '\"', '\\', '\n', '\r' };
 
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
         /// <param name="blctglRepo"></param>
         public BlctglController(IBlctglRepo blctglRepo, ICommonDmnService commonDmnService)
@@ -94,9 +94,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         }
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult GetFormJson(string keyValue)
         {
@@ -114,10 +114,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult SubmitForm(BlctglEntity entity, string keyValue)
         {
@@ -158,9 +158,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
 
         public IActionResult DeleteForm(string delCTID)
@@ -178,7 +178,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return View();
         }
         /// <summary>
-        /// 诊断列表
+        /// Danh sách chẩn đoán
         /// </summary>
         /// <returns></returns>
         public IActionResult ShowDiagList()
@@ -187,7 +187,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         ///// <summary>
-        ///// 诊断 检索
+        ///// Tìm kiếm chẩn đoán
         ///// </summary>
         ///// <param name="keyword"></param>
         ///// <returns></returns>

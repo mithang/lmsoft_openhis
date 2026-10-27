@@ -62,9 +62,9 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
         #endregion
 
-        #region Kỹ thuật viên trị liệu工作 Danh sách
+        #region Kỹ thuật viên trị liệuCông việc Danh sách
         /// <summary>
-        /// 查询治疗师工作列表
+        /// tratra cứuđiều trịđiều trịsưcônglàmcộtbảng
         /// </summary>
         /// <returns></returns>
         public IActionResult GetGridJson(Pagination pagination, string BeginDate, string EndDate, string hzxm, string zls, string dl)
@@ -81,7 +81,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
         #endregion
 
-        #region Kỹ thuật viên trị liệu工作 Thời gian
+        #region Kỹ thuật viên trị liệuCông việc Thời gian
         public IActionResult GetpbGridJson(Pagination pagination, int? year, int? month, string ysgh)
         {
             var rows = _therapeutistCompleteDmnService.GetTherapeutistWorkPlanList(pagination, year, month, ysgh, OrganizeId);
@@ -102,7 +102,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// 新增排班时，提交到数据库
+        /// mớithêmxếpcathời gian，nêunộpđếnsốdữ liệukho
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -113,7 +113,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        ///获取单个治疗师单个月份排班
+        ///đượclấyphiếucáiđiều trịđiều trịsưphiếucáithángphầnxếpca
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -124,7 +124,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// 编辑单个治疗师排班
+        /// mãbiên tậpphiếucáiđiều trịđiều trịsưxếpca
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -135,7 +135,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// 删除排班
+        /// xóatrừxếpca
         /// </summary>
         /// <param name="keyvalue"></param>
         /// <returns></returns>
@@ -146,7 +146,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
         #endregion
 
-        #region Kỹ thuật viên trị liệu工作 Thống kê
+        #region Kỹ thuật viên trị liệuCông việc Thống kê
         public IActionResult GetStaffReport(Pagination pagination, string ysgh, string year, string month)
         {
             var rows = _therapeutistCompleteDmnService.GetStaffReport(pagination, OrganizeId, ysgh, year, month);
@@ -155,7 +155,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         #endregion
 
         /// <summary>
-        /// 治疗师工作效率柱状图
+        /// điều trịđiều trịsưcônglàmhiệu quảtỷ lệcộttrạng tháibiểu đồ
         /// </summary>
         public IActionResult GetVisitSC()
         {
@@ -175,7 +175,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
             if (string.IsNullOrWhiteSpace(time) || string.IsNullOrWhiteSpace(type))
             {
                 return Content("");
-                //throw FailedException("类型或时间为空！");
+                //throw FailedException("loạiloạihoặcthời giangiữalàrỗng！");
             }
             time = (int.Parse(time) + 1).ToString();
             var data = _therapeutistCompleteDmnService.GetVisitDetailSC(pagination, OrganizeId, type, time);

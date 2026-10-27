@@ -51,7 +51,7 @@
         SetCurrentPageCfmb(tabname);
     });
     function SetCurrentPageCfmb(tabName) {
-        var tempExpandCflx = expandCflx;    //有效期为一次
+        var tempExpandCflx = expandCflx;    //Hạn hiệu lựclàmột lần
         expandCflx = null;
         $(tabName).treeview({
             height: $(window).height() - 100,
@@ -61,16 +61,16 @@
                 if (!item.value) {
                     return;
                 }
-                if (item.value == '@Html.Raw(((int)@EnumCflx.RehabPres).ToString())') {   //康复
-                    $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/RehabForm?mbId=" + item.Ex1);  //item.Ex1为模板Id
+                if (item.value == '@Html.Raw(((int)@EnumCflx.RehabPres).ToString())') {   //Phục hồi chức năng
+                    $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/RehabForm?mbId=" + item.Ex1);  //item.Ex1làmẫuId
                 }
-                if (item.value == '@Html.Raw(((int)@EnumCflx.RegularItemPres).ToString())') {   //常规项目
-                    $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/RegularItemForm?mbId=" + item.Ex1);  //item.Ex1为模板Id
+                if (item.value == '@Html.Raw(((int)@EnumCflx.RegularItemPres).ToString())') {   //Hạng mục thông thường
+                    $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/RegularItemForm?mbId=" + item.Ex1);  //item.Ex1làmẫuId
                 }
-                else if (item.value == '@Html.Raw(((int)@EnumCflx.WMPres).ToString())') {   //西药
+                else if (item.value == '@Html.Raw(((int)@EnumCflx.WMPres).ToString())') {   //Thuốc Tây
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/WMForm?mbId=" + item.Ex1);
                 }
-                else if (item.value == '@Html.Raw(((int)@EnumCflx.TCMPres).ToString())') {   //中药
+                else if (item.value == '@Html.Raw(((int)@EnumCflx.TCMPres).ToString())') {   //Thuốc Đông y
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/PresTemplate/TCMForm?mbId=" + item.Ex1);
                 }
             }

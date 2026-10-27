@@ -12,7 +12,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.DomainServices.StorageManage
 {
     /// <summary>
-    /// 损益信息
+    /// Thông tin chênh lệch
     /// </summary>
     public class KcSyxxDmnService : DmnServiceBase, IKcSyxxDmnService
     {
@@ -21,7 +21,7 @@ namespace Newtouch.Herp.DomainServices.StorageManage
         }
 
         /// <summary>
-        /// 获取损益明细信息
+        /// Lấy thông tin chi tiết chênh lệch
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>

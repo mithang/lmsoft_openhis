@@ -107,24 +107,24 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function() {
         $('#btn_search').trigger('click');
     });
 
-    //行编辑
+    //dòngSửa
     function EnableInlineEditBox() {
         var ids = $("#gridmxList").getDataIDs();
         $.each(ids, function () {
             var rowid = String(this);
-            //打开编辑模式
+            //MởSửachế độ
             $("#gridmxList").jqGrid('editRow', rowid, false, initInlineFunc);
         })
     }
 
-    //Phòng khám行编辑
+    //Phòng khámdòngSửa
     function initInlineFunc(rowid) {
-        //医生浮层
+        //Bác sĩlớp nổi
         $("#" + rowid + "_ysxm").newtouchFloatingSelector({
             url: '/SystemManage/SysStaff/GetStaffListByDutyCode',
             width: 300,
@@ -148,22 +148,22 @@
     }
 
 	
-    //保存
+    //Lưu
     function newtouch_event_f8() {
         var rowIds = $("#gridmxList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             var saveResult = $("#gridmxList").saveRow(rowIds[i], null, null, null,  function (callbackRowId) { }, null);
 
             if (!saveResult) {
-                EnableInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                return;   //保存失败，则return
+                EnableInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
+                return;   //Lưu thất bại，thìreturn
             }
         }
 
-        //项目
+        //Mục
         var zsyslist = $("#gridmxList").jqGrid('getRowData_AllLine', null, true);
 
-        $.each(zsyslist, function (idx, val) {    //去掉action
+        $.each(zsyslist, function (idx, val) {    //Bỏaction
             //$("#txt_doctor").attr("data-StaffGh", "");
             //$.each(top.window.clients.sysStaffDutyList, function (idx2, val2) {
             //    if (val.ysxm == val2.StaffName) {
@@ -171,10 +171,10 @@
             //    }
             //})
             delete val.operate;
-            delete this.action;   //去掉action
+            delete this.action;   //Bỏaction
         })
 
-        //判断医生不重复
+        //kiểm traBác sĩkhôngtrùng lặp
         var flag = true;
         $.each(zsyslist, function (idx, val) {
             $.each(zsyslist, function (idx2, val2) {
@@ -185,14 +185,14 @@
             })
         })
 
-        //同科室医生重复
+        //cùngKhoaBác sĩtrùng lặp
         if (flag == false) {
             $.modalAlert("Bác sĩKhông thểPhân bổ nhiềuPhòng khám,Vui lòng phân bổ lại", 'warning');
-            EnableInlineEditBox();//重新编辑
-            ////清空
+            EnableInlineEditBox();//lạiSửa
+            ////Xóa trắng
             //newtouch_globalevent_f4();
             //$("#gridmxList").clearGridData();
-            ////刷新
+            ////Làm mới
             //$("#gridmxList").jqGrid('setGridParam', {
             //    page: 1,
             //}).trigger('reloadGrid');
@@ -207,7 +207,7 @@
             type: "POST",
             success: function (data) {
                 if (data.length == 0) {
-                    //更新
+                    //Cập nhật
                     console.log(gridmxList);
                     $.najax({
                         url: "/NurseManage/OutpatientConsult/SaveConsultDoctor",
@@ -216,10 +216,10 @@
                         type: "POST",
                         success: function (data) {
                             $.modalAlert("Lưu thành công", 'warning');
-                            //清空
+                            //Xóa trắng
                             newtouch_globalevent_f4();
                             $("#gridmxList").clearGridData();
-                            //刷新
+                            //Làm mới
                             $("#gridmxList").jqGrid('setGridParam', {
                                 page: 1,
                             }).trigger('reloadGrid');
@@ -228,13 +228,13 @@
                         }
                     });
                 } else {
-                    //医生与其他科室重复
+                    //Bác sĩvàKhácKhoatrùng lặp
                     $.modalAlert("Bác sĩKhông thểPhân bổ nhiềuPhòng khám,Vui lòng phân bổ lại", 'warning');
-                    EnableInlineEditBox();//重新编辑
-                    ////清空
+                    EnableInlineEditBox();//lạiSửa
+                    ////Xóa trắng
                     //newtouch_globalevent_f4();
                     //$("#gridmxList").clearGridData();
-                    ////刷新
+                    ////Làm mới
                     //$("#gridmxList").jqGrid('setGridParam', {
                     //    page: 1,
                     //}).trigger('reloadGrid');
@@ -246,7 +246,7 @@
         });
     }
 
-    //Phòng khám信息弹出页（小屏）
+    //Phòng khámthông tinTrang bật lên（nhỏmàn hình）
     function ConsultInfo(zsCode) {
         
         if (!zsCode) {
@@ -254,7 +254,7 @@
             return;
         }
         //if (!gh) {
-        //    $.modalAlert("请绑定医生", 'warning');
+        //    $.modalAlert("vui lònggắnBác sĩ", 'warning');
         //    return;
         //}
         window.open("/NurseManage/OutpatientConsult/ConsultInfo?zsCode=" + zsCode, "_blank", "height = 500, width = 300, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");

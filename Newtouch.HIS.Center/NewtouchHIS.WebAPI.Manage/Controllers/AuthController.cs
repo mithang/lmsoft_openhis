@@ -5,18 +5,18 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.WebAPI.Manage.Controllers
 {
     /// <summary>
-    /// 鉴权管理
+    /// Quản lý xác thực
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
-    [Obsolete("该功能即将下线，请访问鉴权中心")]
+    [Obsolete("Chức năng này sắp ngừng,Vui lòng truy cập trung tâm xác thực")]
     public class AuthController : ControllerBase
     {
         public AuthController()
         {
         }
         /// <summary>
-        /// 第三方系统获取Token
+        /// Hệ thống thứ ba lấyToken
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -35,7 +35,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
             return null;
         }
         /// <summary>
-        /// 内部Web系统获取Token
+        /// Nội bộWebHệ thống lấyToken
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

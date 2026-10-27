@@ -10,7 +10,7 @@ using System.Linq;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 组织机构DmnService
+    /// Tổ chứcDmnService
     /// </summary>
     public class SysOrganizeDmnService : DmnServiceBase, ISysOrganizeDmnService
     {
@@ -23,7 +23,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取组织机构已授权的应用列表
+        /// Lấy danh sách ứng dụng tổ chức đã được ủy quyền
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -42,7 +42,7 @@ select ApplicationId from Sys_OrganizeApplication where OrganizeId in (select Id
         }
 
         /// <summary>
-        /// 是否含有下级机构，有下级机构返回true
+        /// Có chứa tổ chức cấp dưới không，Có tổ chức cấp dưới thì trả vềtrue
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -89,7 +89,7 @@ select ApplicationId from Sys_OrganizeApplication where OrganizeId in (select Id
         }
 
         /// <summary>
-        /// 获取Org名称
+        /// LấyOrgTên
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -100,7 +100,7 @@ select ApplicationId from Sys_OrganizeApplication where OrganizeId in (select Id
         }
 
         /// <summary>
-        /// 获取 UserId 对应的 医疗机构 List
+        /// Lấy UserId tương ứng Cơ sở y tế List
         /// </summary>
         /// <returns></returns>
         public IList<SysOrganizeEntity> GetMedicalOrganizeListByUserId(string userId)
@@ -119,7 +119,7 @@ where a.zt = '1' and b.zt = '1' and c.zt = '1' and c.Id is not null and a.UserId
         #region Khoa
 
         /// <summary>
-        /// 获取科室列表
+        /// Lấy danh sách khoa
         /// </summary>
         /// <returns></returns>
         public List<SysDepartmentVO> GetListByOrg(string organizeId)
@@ -135,10 +135,10 @@ order by dept.CreateTime desc";
         }
 
         /// <summary>
-        /// 更新科室关联病区
+        /// Cập nhật khu bệnh liên kết khoa
         /// </summary>
         /// <param name="deptId"></param>
-        /// <param name="wardList">病区Code List</param>
+        /// <param name="wardList">Khu bệnhCode List</param>
         /// <param name="OrganizeId"></param>
         public void UpdateDepartmentWard(string deptId, string[] wardList, string OrganizeId)
         {

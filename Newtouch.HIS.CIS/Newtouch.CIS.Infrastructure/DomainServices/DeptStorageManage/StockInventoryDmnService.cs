@@ -21,7 +21,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.DomainServices.DeptStorageManage
 {
     /// <summary>
-    /// 库存盘点
+    /// Tồn khoKiểm kê
     /// </summary>
     public class StockInventoryDmnService : DmnServiceBase, IStockInventoryDmnService
     {
@@ -33,7 +33,7 @@ namespace Newtouch.DomainServices.DeptStorageManage
         }
 
         /// <summary>
-        /// 获取盘点时间
+        /// LấyKiểm kêThời gian
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -60,7 +60,7 @@ ORDER BY a.CreateTime DESC
         }
 
         /// <summary>
-        /// 获取未完成的盘点时间
+        /// LấychưaHoàn thànhcủaKiểm kêThời gian
         /// </summary>
         /// <returns></returns>
         public List<VInventoryDateDropDownEntity> GetHangUpPdDates(string warehouseId, string organizeId)
@@ -85,7 +85,7 @@ GROUP BY pdxx.Id, pdxx.Kssj, pdxx.Jssj, pdxx.CreateTime
         }
 
         /// <summary>
-        /// 生成盘点信息
+        /// tạoKiểm kêthông tin
         /// </summary>
         public string GenerateInventoryInfo(string warehouseId, string organizeId)
         {
@@ -190,7 +190,7 @@ FROM (
 }
 
         /// <summary>
-        /// 获取盘点信息
+        /// LấyKiểm kêthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -239,16 +239,16 @@ FROM (
 //             }
 //             switch (param.kcxs)
 //             {
-//                 case (int)EnumKCXS.Xslkc://显示零库存
+//                 case (int)EnumKCXS.Xslkc://Hiển thịkhôngTồn kho
 //                     sql.AppendLine("AND (mx.Llsl = 0 OR mx.Sjsl = 0) ");
 //                     break;
-//                 case (int)EnumKCXS.Bxsllslwl://不显示理论数量为0
+//                 case (int)EnumKCXS.Bxsllslwl://khôngHiển thịlýluậnSố lượnglà0
 //                     sql.AppendLine("AND mx.Llsl <> 0 ");
 //                     break;
-//                 case (int)EnumKCXS.Bxssjslwl://不显示实际数量为0
+//                 case (int)EnumKCXS.Bxssjslwl://khôngHiển thịthực tếSố lượnglà0
 //                     sql.AppendLine("AND mx.Llsl Sjsl <> 0 ");
 //                     break;
-//                 case (int)EnumKCXS.Bxslzdwl://不显示两者都为0
+//                 case (int)EnumKCXS.Bxslzdwl://khôngHiển thịhaingườiđềulà0
 //                     sql.AppendLine("AND (mx.Llsl <> 0 OR mx.Sjsl <> 0) ");
 //                     break;
 //             }
@@ -256,7 +256,7 @@ FROM (
 //         }
 
         /// <summary>
-        /// 获取盘点信息
+        /// LấyKiểm kêthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -277,9 +277,9 @@ FROM (
        wz.gg,
        SUM(mx.llsl)                                      AS lsl,
        SUM(mx.sjsl)                                      AS sjsl,
-       zxdw.name                                         AS deptdw,   -- 最小单位
-       zxdw.name                                         AS zxdw,     -- 同上
-zhyz,     -- 商品表自带最小换算
+       zxdw.name                                         AS deptdw,   -- Đơn vị nhỏ nhất
+       zxdw.name                                         AS zxdw,     -- cùngtrên
+zhyz,     -- thươngphẩmbảngtựmangnhấtnhỏđổitính
        mx.lsj,
        ISNULL(wz.py,'')                                  AS py,
        pdxx.CreateTime
@@ -336,8 +336,8 @@ LEFT JOIN NewtouchHIS_Base.dbo.wz_unit zxdw
         }
 
         /// <summary>
-        /// 取消盘点 
-        /// 删除 盘点信息（xt_yp_pdxx）、盘点信息明细（xt_yp_pdxxmx）
+        /// HủyKiểm kê 
+        /// Xóa Kiểm kêthông tin（xt_yp_pdxx）、Kiểm kêthông tinchi tiết（xt_yp_pdxxmx）
         /// </summary>
         public void CancelInventory(long pdId)
         {
@@ -367,12 +367,12 @@ END
             }).FirstOrDefault();
             if (result == 0)
             {
-                throw new Exception("取消失败！");
+                throw new Exception("Hủythất bại！");
             }
         }
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúcKiểm kê
         /// </summary>
         /// <returns></returns>
         public string EndInventory(long pdId, string organizeId, string creatorCode)
@@ -387,7 +387,7 @@ END
         }
 
         /// <summary>
-        /// 批量保存损益信息
+        /// lôlượngLưulãi lỗthông tin
         /// </summary>
         /// <param name="syList"></param>
         /// <param name="warehouseId"></param>
@@ -404,7 +404,7 @@ END
                     _kcSyxxRepo.Insert(p);
                     if (_kfKcxxDmnService.UpdateKcsl(p.productId, p.pc, p.Ph, warehouseId, p.Sysl, organizeId, p.CreatorCode) <= 0)
                     {
-                        throw new Exception("修改库存数量失败");
+                        throw new Exception("SửaTồn khoSố lượngthất bại");
                     }
                     ++ret;
                 });
@@ -414,7 +414,7 @@ END
         }
 
         /// <summary>
-        /// 保存变更后的盘点明细
+        /// LưuđổihơnsaucủaKiểm kêchi tiết
         /// </summary>
         /// <param name="saveInventoryDto"></param>
         /// <param name="pdId"></param>

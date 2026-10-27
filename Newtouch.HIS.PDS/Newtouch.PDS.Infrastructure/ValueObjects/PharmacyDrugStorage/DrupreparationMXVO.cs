@@ -3,58 +3,58 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 单据查询明细
+    /// Chi tiết truy vấn chứng từ
     /// </summary>
     public class DrupreparationMXVO
     {
         /// <summary>
-        /// 药品大类代码
+        /// Mã loại lớn thuốc
         /// </summary>
         public string ypdlCode { get; set; }
 
         /// <summary>
-        /// 药品类别名称
+        /// Tên loại thuốc
         /// </summary>
         public string yplbmc { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Phiên âm
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        ///生产厂家
+        ///Nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
         
 
         /// <summary>
-        /// 数量 申请数量
+        /// Số lượng Số lượng xin
         /// </summary>
         public string sl { get; set; }
 
         /// <summary>
-        /// 数量 带单位
+        /// Số lượng kèm đơn vị
         /// </summary>
         public string slanddw { get; set; }
 
         /// <summary>
-        /// 批发总额
+        /// Tổng giá bán buôn
         /// </summary>
         public decimal? pjze { get; set; }
 
         /// <summary>
-        ///零售总额
+        ///Tổng giá bán lẻ
         /// </summary>
         public decimal? ljze { get; set; }
     }

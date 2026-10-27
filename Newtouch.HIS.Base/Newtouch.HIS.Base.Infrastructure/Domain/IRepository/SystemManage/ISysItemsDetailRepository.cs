@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysItemsDetailRepository : IRepositoryBase<SysItemsDetailEntity>
     {
         /// <summary>
-        /// 获取公共字典项List
+        /// Lấy mục từ điển chungList
         /// </summary>
         /// <param name="itemId"></param>
         /// <param name="keyword"></param>
@@ -19,16 +19,16 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<SysItemsDetailEntity> GetCommonList(string itemId = null, string keyword = null);
 
         /// <summary>
-        /// 获取 单一组织机构 字典项List
+        /// Lấy Tổ chức đơn nhất Mục từ điểnList
         /// </summary>
-        /// <param name="orgId">医疗机构Id，不传时差共享的</param>
+        /// <param name="orgId">Cơ sở y tếId，không truyền thì dùng chung theo chênh lệch</param>
         /// <param name="itemId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<SysItemsDetailVO> GetListByOrgId(string orgId = null, string itemId = null, string keyword = null);
 
         /// <summary>
-        /// 更新、保存字典项
+        /// Cập nhật、Lưu mục từ điển
         /// </summary>
         /// <param name="itemsDetailEntity"></param>
         /// <param name="keyValue"></param>

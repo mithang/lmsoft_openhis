@@ -37,7 +37,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 药品用法 检索
+        /// Cách dùng thuốc Tìm kiếm
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -74,7 +74,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             return Json(list);
         }
         /// <summary>
-        /// 科室 下拉 
+        /// Khoa dướikéo 
         /// </summary>
         /// <returns></returns>
         public IActionResult SelectDepartmentList(string keyword, string zlks)
@@ -88,7 +88,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
 		/// <summary>
-		/// 诊断 检索
+		/// Chẩn đoán Tìm kiếm
 		/// </summary>
 		/// <param name="keyword"></param>
 		/// <returns></returns>
@@ -103,7 +103,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
 		/// <summary>
-		/// 症侯 检索
+		/// hội chứng Tìm kiếm
 		/// </summary>
 		/// <param name="keyword"></param>
 		/// <returns></returns>
@@ -114,7 +114,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
 		/// <summary>
-		/// 获取代煎费
+		/// Lấysắc hộphí
 		/// </summary>
 		/// <returns></returns>
 		public JsonResult GetDjFee()
@@ -124,7 +124,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
 		/// <summary>
-		/// 长临标志
+		/// dài hạn/tạm thờiCờ
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult GetYzlb()
@@ -137,7 +137,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
 		/// <summary>
-		/// 获取医生开药权限
+		/// LấyBác sĩmởthuốcQuyền
 		/// </summary>
 		/// <returns></returns>
 		public int GetPermissions(string tsypzl,string dlcode,string kssqxjb)
@@ -148,7 +148,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
         /// <summary>
-        /// 系统Phòng khám
+        /// Hệ thốngPhòng khám
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

@@ -34,7 +34,7 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// 门诊药房Controller
+    /// Nhà thuốc ngoại trúController
     /// </summary>
     public class OutPatientPharmacyController : ControllerBase
     {
@@ -50,9 +50,9 @@ namespace Newtouch.HIS.Web.Controllers
         private readonly ISysYpksfypzEntityRepo _ISysYpksfypzEntityRepo;
         private readonly string _OrganizeId = OperatorProvider.GetCurrent().OrganizeId;//Tổ chứcid
 
-        #region 后台指向页面
+        #region Trang máy chủ trỏ tới
         /// <summary>
-        /// 门诊排药
+        /// Xếp thuốc ngoại trú
         /// </summary>
         /// <returns></returns>
         public IActionResult DrugArrangement()
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 门诊发药查询
+        /// Truy vấn phát thuốc ngoại trú
         /// </summary>
         /// <returns></returns>
         public IActionResult DrugSearch()
@@ -76,9 +76,9 @@ namespace Newtouch.HIS.Web.Controllers
         }
         #endregion
 
-        #region 公共调用
+        #region Gọi chung
         /// <summary>
-        /// 加载配置
+        /// Tải cấu hình
         /// </summary>
         /// <returns></returns>
         public IActionResult Loadconfig()
@@ -87,19 +87,19 @@ namespace Newtouch.HIS.Web.Controllers
             var pycxjgsj = _sysConfigRepo.GetValueByCode("pycxjgsj", OrganizeId);
             if (pycxjgsj == "" || string.IsNullOrWhiteSpace(pycxjgsj))
             {
-                throw new FailedException("请先配置排药查询间隔时间");
+                throw new FailedException("Vui lòng cấu hình thời gian khoảng cách truy vấn xếp thuốc trước");
             }
 
             var isAutoPy = _sysConfigRepo.GetValueByCode("IsAutoPy", OrganizeId);
             if (isAutoPy == "" || string.IsNullOrWhiteSpace(isAutoPy))
             {
-                throw new FailedException("请先配置自动排药");
+                throw new FailedException("Vui lòng cấu hình tự động xếp thuốc trước");
             }
 
             var isAutoFy = _sysConfigRepo.GetValueByCode("IsAutoFy", OrganizeId);
             if (isAutoFy == "" || string.IsNullOrWhiteSpace(isAutoFy))
             {
-                throw new FailedException("请先配置自动发药");
+                throw new FailedException("Vui lòng cấu hình tự động phát thuốc trước");
             }
 
             config.pycxjgsj = int.Parse(pycxjgsj);
@@ -109,7 +109,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 保存配置
+        /// Lưu cấu hình
         /// </summary>
         /// <param name="configInfo"></param>
         /// <returns></returns>
@@ -124,11 +124,11 @@ namespace Newtouch.HIS.Web.Controllers
         }
         #endregion
 
-        #region 补打发药信息
+        #region In bổ sung thông tin phát thuốc
 
 
         /// <summary>
-        /// 补打发药单
+        /// In bổ sung đơn phát thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult RePrintMedicineDoc()
@@ -139,7 +139,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 补打发药信息 加载处方信息
+        /// In bổ sung thông tin phát thuốc Tải thông tin đơn thuốc
         /// </summary>
         /// <param name="fph"></param>
         /// <param name="keyword"></param>
@@ -163,7 +163,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region old code
 
         /// <summary>
-        /// 初始化排药员
+        /// Khởi tạo nhân viên xếp thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult initPYY()
@@ -173,7 +173,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 加载获取排药统计信息
+        /// Tải thông tin thống kê xếp thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult loadpyhj()
@@ -182,7 +182,7 @@ namespace Newtouch.HIS.Web.Controllers
 
             if (yyqconfig == "" || string.IsNullOrWhiteSpace(yyqconfig))
             {
-                throw new FailedException("请先配置发药有效期");
+                throw new FailedException("Vui lòng cấu hình hạn dùng phát thuốc trước");
             }
 
             var yxq = int.Parse(yyqconfig);
@@ -197,7 +197,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 加载获取排药主表信息
+        /// Tải thông tin bảng chính xếp thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult PyInfoSearch()
@@ -206,7 +206,7 @@ namespace Newtouch.HIS.Web.Controllers
 
             if (yyqconfig == "" || string.IsNullOrWhiteSpace(yyqconfig))
             {
-                throw new FailedException("请先配置发药有效期");
+                throw new FailedException("Vui lòng cấu hình hạn dùng phát thuốc trước");
             }
             var yxq = int.Parse(yyqconfig);
             var reqObj = new
@@ -220,11 +220,11 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 return Content(apiResp.data.ToJson());
             }
-            throw new FailedException("排药接口信息获取失败");
+            throw new FailedException("Lấy thông tin giao diện xếp thuốc thất bại");
         }
 
         /// <summary>
-        /// 加载获取排药子表信息
+        /// Tải thông tin bảng con xếp thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult pyDeailInfoSearch(string pCfh)
@@ -239,14 +239,14 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 排药
+        /// Xếp thuốc
         /// </summary>
-        /// <param name="cfnm">处方内码</param>
-        /// <param name="sfck">收费窗口</param>
+        /// <param name="cfnm">Mã nội bộ đơn thuốc</param>
+        /// <param name="sfck">Cửa sổ thu phí</param>
         /// <returns></returns>
         public IActionResult SetPyInfo(string cfnm, string sfck)
         {
-            //1. 获取处方药品信息
+            //1. Lấy thông tin thuốc đơn thuốc
             var reqObj = new
             {
                 cfnm = cfnm,
@@ -255,9 +255,9 @@ namespace Newtouch.HIS.Web.Controllers
             var apiResp = SiteSettAPIHelper.Request<object, DefaultResponse>("api/OutpatientPharmacy/GetpyParListBycfnm", reqObj);
             if (apiResp.code != Newtouch.Common.Web.APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                throw new FailedException("处方信息接口获取失败");
+                throw new FailedException("Lấy thông tin giao diện đơn thuốc thất bại");
             }
-            //2. 获取处方总金额和领药药房
+            //2. Lấy tổng Số tiền đơn thuốc và nhà thuốc nhận thuốc
             reqObj = new
             {
                 cfnm = cfnm,
@@ -266,18 +266,18 @@ namespace Newtouch.HIS.Web.Controllers
             var apicfRep = SiteSettAPIHelper.Request<object, DefaultResponse>("api/OutpatientPharmacy/GetcfInfoBycfnm", reqObj);
             if (apicfRep.code != Newtouch.Common.Web.APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                throw new FailedException("处方总金额和领药药房接口获取失败");
+                throw new FailedException("Lấy tổng Số tiền đơn thuốc và nhà thuốc nhận thuốc giao diện thất bại");
             }
             var vo = apicfRep.data.ToJson().ToList<cdInfoVO>().FirstOrDefault();
 
-            //3. 循环配药
+            //3. Lặp chuẩn bị thuốc
             var res = _pharmacyDrugStorageDmnService.OutPatientBookItem(apiResp.data, cfnm, vo);
             if (!string.IsNullOrWhiteSpace(res))
             {
                 return Error(res);
             }
 
-            //5. 更新发放状态
+            //5. Cập nhật trạng thái phát
             var reqzt = new
             {
                 cfnm = cfnm,
@@ -288,7 +288,7 @@ namespace Newtouch.HIS.Web.Controllers
             var apiztRep = SiteSettAPIHelper.Request<object, DefaultResponse>("api/OutpatientPharmacy/Updatefyzt", reqzt);
             if (apiztRep.code != Newtouch.Common.Web.APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                throw new FailedException("配药接口处理失败");
+                throw new FailedException("Xử lý giao diện chuẩn bị thuốc thất bại");
             }
             return Success("Cấp thuốc thành công！");
         }
@@ -298,7 +298,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// 门诊排药查询
+        /// Truy vấn xếp thuốc ngoại trú
         /// </summary>
         /// <returns></returns>
         public IActionResult DrugArrangementQuery()
@@ -309,7 +309,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 门诊排药查询
+        /// Truy vấn xếp thuốc ngoại trú
         /// </summary>
         /// <returns></returns>
         public IActionResult OutpatientDrugArrangementForzenQuery()
@@ -320,7 +320,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 加载获取排药主表信息
+        /// Tải thông tin bảng chính xếp thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult QueryCfs()
@@ -330,11 +330,11 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 return Content(((List<MzCfEntity>)queryResult.Data).ToJson());
             }
-            throw new FailedException(queryResult != null ? queryResult.ResultMsg : "获取处方失败");
+            throw new FailedException(queryResult != null ? queryResult.ResultMsg : "Lấy đơn thuốc thất bại");
         }
 
         /// <summary>
-        /// 异步拉取新结算处方
+        /// Kéo không đồng bộ đơn thanh toán mới
         /// </summary>
         /// <returns></returns>
         public IActionResult WaitingDispenseMedicineQuery()
@@ -365,14 +365,14 @@ namespace Newtouch.HIS.Web.Controllers
                 {
                     return Content(((List<MzCfEntity>)downloadResult.Data).ToJson()); ;
                 }
-                LogCore.Fatal("QueryCfsApp WaitingDispenseMedicineQuery fail", message: downloadResult != null ? downloadResult.ResultMsg : "下载处方失败", addInfo: tags);
+                LogCore.Fatal("QueryCfsApp WaitingDispenseMedicineQuery fail", message: downloadResult != null ? downloadResult.ResultMsg : "Tải xuống đơn thuốc thất bại", addInfo: tags);
             }
             LogCore.Fatal("QueryCfsApp WaitingDispenseMedicineQuery fail", message: apiResp.ToJson(), addInfo: tags);
-            return Error("异步拉取新结算处方失败");
+            return Error("Kéo không đồng bộ đơn thanh toán mới thất bại");
         }
 
         /// <summary>
-        /// 获取处方信息
+        /// Lấy thông tin đơn thuốc
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -422,7 +422,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取处方信息
+        /// Lấy thông tin đơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult GetCfInfo(string cfh)
@@ -432,7 +432,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 加载获取排药子表信息
+        /// Tải thông tin bảng con xếp thuốc
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -479,7 +479,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 加载获取排药子表信息
+        /// Tải thông tin bảng con xếp thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult QueryCfmx(string pCfh)
@@ -497,7 +497,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取患者姓名和收费时间
+        /// Lấy tên bệnh nhân và thời gian thu phí
         /// </summary>
         /// <returns></returns>
         public IActionResult GetXmAndSfsj(Pagination pagination)
@@ -505,7 +505,7 @@ namespace Newtouch.HIS.Web.Controllers
             var result = _mzCfRepo.GetXmAndCardNo(pagination, Constants.CurrentYfbm.yfbmCode, OrganizeId);
             if (result == null)
             {
-                throw new FailedException("所有待排完成，请同步新处方！");
+                throw new FailedException("Tất cả chờ xếp hoàn thành，Vui lòng đồng bộ đơn thuốc mới！");
             }
 
             var data = new
@@ -519,7 +519,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 加载获取排药子表信息
+        /// Tải thông tin bảng con xếp thuốc
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -558,7 +558,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取排药处方
+        /// Lấy đơn thuốc xếp thuốc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="xm"></param>
@@ -567,8 +567,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="ksmc"></param>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
-        /// <param name="jszt">结算状态 0-未结算 1-已结算 2/其他-全部</param>
-        /// <param name="settExpired">结算已过期 1-是 0-否</param>
+        /// <param name="jszt">Trạng thái thanh toán 0-Chưa thanh toán 1-Đã thanh toán 2/Khác-Tất cả</param>
+        /// <param name="settExpired">Thanh toán đã hết hạn 1-Có 0-Không</param>
         /// <returns></returns>
         public IActionResult QueryDrugArrangementRpByPage(Pagination pagination, string xm, string cardNo, string invoiceNo, string ksmc, DateTime kssj, DateTime jssj, int jszt, string settExpired)
         {
@@ -588,7 +588,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取排药处方
+        /// Lấy đơn thuốc xếp thuốc
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="cardNo"></param>
@@ -596,7 +596,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="ksmc"></param>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
-        /// <param name="jszt">结算状态 0-未结算 1-已结算 其他-全部</param>
+        /// <param name="jszt">Trạng thái thanh toán 0-Chưa thanh toán 1-Đã thanh toán Khác-Tất cả</param>
         /// <returns></returns>
         public IActionResult QueryDrugArrangementRp(string xm, string cardNo, string invoiceNo, string ksmc, DateTime kssj, DateTime jssj, int jszt)
         {
@@ -612,7 +612,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取排药处方明细
+        /// Lấy chi tiết đơn thuốc xếp thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="cardNo"></param>
@@ -629,7 +629,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 取消门诊排药
+        /// Hủy xếp thuốc ngoại trú
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="cardNo"></param>
@@ -638,7 +638,7 @@ namespace Newtouch.HIS.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(cfh))
             {
-                throw new FailedException("请选择操作的患者！");
+                throw new FailedException("Vui lòng chọn bệnh nhân cần thao tác！");
             }
 
             string result;
@@ -654,7 +654,7 @@ namespace Newtouch.HIS.Web.Controllers
             return string.IsNullOrWhiteSpace(result) ? Success("Thao tác thành công") : Error(result);
         }
         /// <summary>
-        /// 门诊排药
+        /// Xếp thuốc ngoại trú
         /// </summary>
         /// <returns></returns>
         public IActionResult DrugArrangement2018()
@@ -663,7 +663,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 门诊排药
+        /// Xếp thuốc ngoại trú
         /// </summary>
         /// <returns></returns>
         public IActionResult DrugArrangement2019()
@@ -672,7 +672,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 排药
+        /// Xếp thuốc
         /// </summary>
         /// <param name="patients"></param>
         /// <returns></returns>
@@ -681,7 +681,7 @@ namespace Newtouch.HIS.Web.Controllers
         {
             if (patients == null || patients.Length <= 0)
             {
-                throw new FailedException("请选择需要排药的患者！");
+                throw new FailedException("Vui lòng chọn bệnh nhân cần xếp thuốc！");
             }
 
             var errorMsg = new StringBuilder();
@@ -693,7 +693,7 @@ namespace Newtouch.HIS.Web.Controllers
             }
             if (string.IsNullOrWhiteSpace(errorMsg.ToString()))
             {
-                return Success("排药成功");
+                return Success("Xếp thuốc thành công");
             }
 
             throw new FailedException(errorMsg.ToString());
@@ -708,7 +708,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region old code
 
         /// <summary>
-        /// 查询门诊发药主表信息
+        /// Truy vấn thông tin bảng chính phát thuốc ngoại trú
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -724,7 +724,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 查询门诊发药子表信息
+        /// Truy vấn thông tin bảng con phát thuốc ngoại trú
         /// </summary>
         /// <param name="cfh"></param>
         /// <returns></returns>
@@ -742,14 +742,14 @@ namespace Newtouch.HIS.Web.Controllers
             var apiResp = SiteSettAPIHelper.Request<object, DefaultResponse>("api/OutpatientPharmacy/GetfyDetailInfoList", reqObj);
             if (apiResp.code != Newtouch.Common.Web.APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                throw new FailedException("门诊发药处方明细查询失败");
+                throw new FailedException("Truy vấn chi tiết đơn phát thuốc ngoại trú thất bại");
             }
             var result = _fyDmnService.GetDetailInfo(apiResp.data.ToJson().ToList<fyDetailListRequest>()).ToJson();
             return Content(result);
         }
 
         ///// <summary>
-        ///// 门诊发药
+        ///// Phát thuốc ngoại trú
         ///// </summary>
         ///// <param name="pCfh"></param>
         ///// <returns></returns>
@@ -757,7 +757,7 @@ namespace Newtouch.HIS.Web.Controllers
         //{
         //    if (string.IsNullOrEmpty(pCfh))
         //    {
-        //        return Error(string.Format("处方{0} 没有要发药的信息！", pCfh));
+        //        return Error(string.Format("Đơn thuốc{0} Không có thông tin cần phát thuốc！", pCfh));
         //    }
         //    var reqObj = new
         //    {
@@ -769,11 +769,11 @@ namespace Newtouch.HIS.Web.Controllers
         //    var apiResp = SiteSettAPIHelper.Request<DefaultResponse>("api/OutpatientPharmacy/GetfyDetailCFInfo", reqObj);
         //    if (apiResp.data == null || apiResp.data.ToJson() == "")
         //    {
-        //        return Error("该处方不存在发药信息");
+        //        return Error("Đơn thuốc này không tồn tại thông tin phát thuốc");
         //    }
         //    var reqdata = apiResp.data.ToJson().ToList<GetfyDetailCFList>();
         //    var data = _fyDmnService.MzDistributingMedicines(reqdata);
-        //    if (data == null || data.Count <= 0) return Error(string.Format("处方{0} 发药失败", pCfh));
+        //    if (data == null || data.Count <= 0) return Error(string.Format("Đơn thuốc{0} Phát thuốc thất bại", pCfh));
         //    var ztObj = new
         //    {
         //        cfnm = string.Join(",", data),
@@ -786,7 +786,7 @@ namespace Newtouch.HIS.Web.Controllers
         //}
 
         ///// <summary>
-        ///// 全部发药
+        ///// Phát thuốc tất cả
         ///// </summary>
         ///// <param name="cfh"></param>
         ///// <returns></returns>
@@ -796,7 +796,7 @@ namespace Newtouch.HIS.Web.Controllers
         //    {
         //        if (string.IsNullOrEmpty(item))
         //        {
-        //            return Error(string.Format("处方{0}没有要发药的信息！", item));
+        //            return Error(string.Format("Đơn thuốc{0}Không có thông tin cần phát thuốc！", item));
         //        }
         //        var reqObj = new
         //        {
@@ -808,13 +808,13 @@ namespace Newtouch.HIS.Web.Controllers
         //        var apiResp = SiteSettAPIHelper.Request<DefaultResponse>("api/OutpatientPharmacy/GetfyDetailCFInfo", reqObj);
         //        if (apiResp.data.ToJson() == null || (apiResp.data.ToJson() == ""))
         //        {
-        //            return Error(string.Format("处方{0}不存在发药信息", item));
+        //            return Error(string.Format("Đơn thuốc{0}Không tồn tại thông tin phát thuốc", item));
         //        }
         //        var reqdata = apiResp.data.ToJson().ToList<GetfyDetailCFList>();
         //        var data = _fyDmnService.MzDistributingMedicines(reqdata);
         //        if (data == null || data.Count <= 0)
         //        {
-        //            return Error(string.Format("处方{0} 发药失败", item));
+        //            return Error(string.Format("Đơn thuốc{0} Phát thuốc thất bại", item));
         //        }
 
         //        var ztObj = new
@@ -833,7 +833,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region new Phát thuốc ngoại trú
 
         /// <summary>
-        /// 门诊发发药
+        /// Phát thuốc ngoại trú
         /// </summary>
         /// <returns></returns>
         public IActionResult DrugDelivery2018()
@@ -849,13 +849,13 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取患者姓名和收费时间
+        /// Lấy tên bệnh nhân và thời gian thu phí
         /// </summary>
         /// <returns></returns>
         public IActionResult GetFyXmAndSfsj(Pagination pagination, string keyword = "")
         {
             var result = _mzCfRepo.GetXmAndCardNo(pagination, Constants.CurrentYfbm.yfbmCode, OrganizeId, keyword, EnumFybz.Yp);
-            if (result == null) throw new FailedException("所有待排完成，请同步新处方！");
+            if (result == null) throw new FailedException("Tất cả chờ xếp hoàn thành，Vui lòng đồng bộ đơn thuốc mới！");
             var data = new
             {
                 rows = result,
@@ -867,7 +867,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取发药处方信息
+        /// Lấy thông tin đơn phát thuốc
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="xm"></param>
@@ -936,7 +936,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 加载获取排药子表信息
+        /// Tải thông tin bảng con xếp thuốc
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -977,7 +977,7 @@ namespace Newtouch.HIS.Web.Controllers
         private static object threadLocker = new object();
 
         /// <summary>
-        /// 加载获取排药子表信息
+        /// Tải thông tin bảng con xếp thuốc
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -1003,13 +1003,13 @@ namespace Newtouch.HIS.Web.Controllers
             }
             catch (Exception e)
             {
-                LogCore.Error("QueryFyCfmxV2 error", e, "门诊发药获取处方明细异常");
+                LogCore.Error("QueryFyCfmxV2 error", e, "Ngoại lệ lấy chi tiết đơn phát thuốc ngoại trú");
             }
 
             return Content(result.ToJson());
         }
         /// <summary>
-        /// 按照处方进行查询明细
+        /// Truy vấn chi tiết theo đơn thuốc
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="xm"></param>
@@ -1028,12 +1028,12 @@ namespace Newtouch.HIS.Web.Controllers
             }
             catch (Exception e)
             {
-                LogCore.Error("QueryFyCfmxV2_new error", e, "门诊发药获取处方明细异常");
+                LogCore.Error("QueryFyCfmxV2_new error", e, "Ngoại lệ lấy chi tiết đơn phát thuốc ngoại trú");
             }
             return Content(result.ToJson());
         }
         /// <summary>
-        /// 查询门诊发药主表信息
+        /// Truy vấn thông tin bảng chính phát thuốc ngoại trú
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -1048,7 +1048,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 预退药 处方明细查询
+        /// Trả thuốc trước Truy vấn chi tiết đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <returns></returns>
@@ -1068,7 +1068,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 查询门诊发药子表信息
+        /// Truy vấn thông tin bảng con phát thuốc ngoại trú
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="operateType"></param>
@@ -1085,7 +1085,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 全部发药
+        /// Phát thuốc tất cả
         /// </summary>
         /// <param name="patients"></param>
         /// <returns></returns>
@@ -1107,7 +1107,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取处方号
+        /// Lấy số đơn thuốc
         /// </summary>
         /// <param name="patients"></param>
         /// <returns></returns>
@@ -1118,7 +1118,7 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 if (patients == null || patients.Length <= 0)
                 {
-                    throw new FailedException("请选择需要打印的处方！");
+                    throw new FailedException("Vui lòng chọn đơn thuốc cần in！");
                 }
 
                 foreach (var item in patients)
@@ -1132,14 +1132,14 @@ namespace Newtouch.HIS.Web.Controllers
             }
             catch (Exception e)
             {
-                LogCore.Error("GetAllNeedPrintRpByXm error", e, "门诊发药获取处方信息失败");
+                LogCore.Error("GetAllNeedPrintRpByXm error", e, "Lấy thông tin đơn thuốc phát thuốc ngoại trú thất bại");
             }
 
             return result.ToString();
         }
 
         /// <summary>
-        /// 通过处方号获取组号
+        /// Lấy số nhóm theo số đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <returns></returns>
@@ -1167,10 +1167,10 @@ namespace Newtouch.HIS.Web.Controllers
 
         #endregion
 
-        #region 门诊发药查询
+        #region Truy vấn phát thuốc ngoại trú
 
         /// <summary>
-        /// 门诊发药查询显示详细信息
+        /// Truy vấn phát thuốc ngoại trú hiển thị chi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="cfnm"></param>
@@ -1192,10 +1192,10 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(data.ToJson());
         }
 
-        #region 门诊发药查询 new
+        #region Truy vấn phát thuốc ngoại trú new
 
         /// <summary>
-        /// 获取发药标志
+        /// Lấy cờ phát thuốc
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -1220,7 +1220,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 门诊发药查询界面，主表信息
+        /// Giao diện truy vấn phát thuốc ngoại trú，Thông tin bảng chính
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -1261,10 +1261,10 @@ namespace Newtouch.HIS.Web.Controllers
 
         #endregion
 
-        #region 门诊退药
+        #region Trả thuốc ngoại trú
 
         /// <summary>
-        /// 门诊退药
+        /// Trả thuốc ngoại trú
         /// </summary>
         /// <returns></returns>
         public IActionResult DrugRepercussion()
@@ -1283,7 +1283,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 查询门诊退药主表信息
+        /// Truy vấn thông tin bảng chính trả thuốc ngoại trú
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -1309,7 +1309,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 查询门诊退药子表信息
+        /// Truy vấn thông tin bảng con trả thuốc ngoại trú
         /// </summary>
         /// <param name="pCfh"></param>
         /// <returns></returns>
@@ -1332,7 +1332,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region Trả thuốc  new
 
         /// <summary>
-        /// 查询门诊发药主表信息
+        /// Truy vấn thông tin bảng chính phát thuốc ngoại trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -1349,7 +1349,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 门诊退药操作
+        /// Thao tác trả thuốc ngoại trú
         /// </summary>
         /// <param name="tyParam"></param>
         /// <returns></returns>
@@ -1371,7 +1371,7 @@ namespace Newtouch.HIS.Web.Controllers
 
         #endregion
 
-        #region 门诊处方查询
+        #region Truy vấn đơn ngoại trú
 
         public IActionResult PrescriptionDetailFrom()
         {
@@ -1427,13 +1427,13 @@ namespace Newtouch.HIS.Web.Controllers
 
         #endregion
 
-        #region  电子处方审核
+        #region  Duyệt đơn điện tử
         public IActionResult ElectronicPrescription()
         {
             return View();
         }
         /// <summary>
-        /// 获取电子处方病人信息
+        /// Lấy thông tin bệnh nhân đơn điện tử
         /// </summary>
         /// <returns></returns>
         public IActionResult GetElectronicPrescription(Pagination pagination, string isysh, string keyword = "")
@@ -1449,7 +1449,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 获取发药处方信息
+        /// Lấy thông tin đơn phát thuốc
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -1459,7 +1459,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(rpList.ToJson());
         }
         /// <summary>
-        /// 获取处方明细信息
+        /// Lấy thông tin chi tiết đơn thuốc
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -1469,7 +1469,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-		/// 门诊就诊登记修改获取
+		/// Sửa đăng ký khám ngoại trú lấy
 		/// </summary>
 		/// <param name="mzh"></param>
 		/// <returns></returns>
@@ -1479,7 +1479,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(model.ToJson());
         }
         /// <summary>
-        /// 修改审核不通过意见
+        /// Sửa ý kiến duyệt không đạt
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="ysshyj"></param>

@@ -5,35 +5,35 @@ using NewtouchHIS.Lib.Base.Model;
 namespace Newtouch.EMR.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2018-08-30 11:31
-    /// 描 述：住院患者信息
+    /// Người tạo：chl
+    /// Ngày：2018-08-30 11:31
+    /// Mô tả：Thông tin bệnh nhân nội trú
     /// </summary>
     public interface IZybrjbxxRepo : IRepositoryBase<ZybrjbxxEntity>
     {
 
         ZybrjbxxEntity GetZybrjbxx(string zyh, string OrganizeId);
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void SubmitForm(ZybrjbxxEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void DeleteForm(string keyValue);
         /// <summary>
-        /// 提交病案
+        /// Nộp hồ sơ bệnh án
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="OrgId"></param>
         /// <param name="user"></param>
         void CommitRecord(string zyh, string OrgId, string user);
         /// <summary>
-        /// 退回病案
+        /// Trả lại bệnh án
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="OrgId"></param>

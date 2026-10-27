@@ -6,106 +6,106 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 住院药品医嘱执行批号
+    /// Số lô thực hiện y lệnh thuốc nội trú
     /// </summary>
     [Table("zy_ypyzzxph")]
     [SugarTable("zy_ypyzzxph")]
     public class ZyYpyzzxphEntity : IEntity<ZyYpyzzxphEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// Khóa chínhID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public long Id { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 医嘱ID
+        /// Y lệnhID
         /// </summary>
         public string yzId { get; set; }
 
         /// <summary>
-        /// 医嘱执行ID
+        /// Thực hiện y lệnhID
         /// </summary>
         public string zxId { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 最小单位数量
+        /// Số lượng đơn vị nhỏ nhất
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn dùng
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 发药药房代码
+        /// Mã nhà thuốc phát thuốc
         /// </summary>
         public string fyyf { get; set; }
 
         /// <summary>
-        /// 归架状态 0-未归架  1-已归架
+        /// Trạng thái xếp kệ 0-Chưa xếp lên kệ  1-Đã xếp lên kệ
         /// </summary>
         public string gjzt { get; set; }
 
         /// <summary>
-        /// 组号
+        /// Số nhóm
         /// </summary>
         public int? zh { get; set; }
 
         /// <summary>
-        /// 住院药品信息ID，zy_ypyzxx表主键
+        /// Thông tin thuốc nội trúID，zy_ypyzxxKhóa chính bảng
         /// </summary>
         public long? zyypxxId { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 状态  0-无效  1-有效
+        /// Trạng thái  0-Không hiệu lực  1-Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人员
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人员
+        /// Nhân viên sửa đổi cuối
         /// </summary>
         public string LastModifierCode { get; set; }
     }

@@ -3,107 +3,107 @@ using System;
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 物资库存分批次批号汇总
+    /// Tổng hợp tồn kho vật tư theo lô và số lô
     /// </summary>
     public class VProductStorageDetailEntity
     {
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô hàng
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn sử dụng
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 部门单位名称
+        /// Tên đơn vị khoa phòng
         /// </summary>
         public string bmdwmc { get; set; }
 
         /// <summary>
-        /// 最小单位名称
+        /// Tên đơn vị nhỏ nhất
         /// </summary>
         public string zxdwmc { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 部门冻结数量  带单位
+        /// Số lượng đóng băng của khoa phòng  Kèm đơn vị
         /// </summary>
         public string bmdjslStr { get; set; }
 
         /// <summary>
-        /// 库存数量
+        /// Số lượng tồn kho
         /// </summary>
         public int? kcsl { get; set; }
 
         /// <summary>
-        /// 冻结数量
+        /// Số lượng đóng băng
         /// </summary>
         public int? djsl { get; set; }
 
         /// <summary>
-        /// 部门库存数量 带单位
+        /// Số lượng tồn kho của khoa phòng Kèm đơn vị
         /// </summary>
         public string bmkcslStr { get; set; }
 
         /// <summary>
-        /// 进价总金额
+        /// Tổng số tiền giá nhập
         /// </summary>
         public decimal jjze { get; set; }
 
         /// <summary>
-        /// 进价
+        /// Giá nhập
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 类别名称
+        /// Tên loại
         /// </summary>
         public string lb { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 品牌
+        /// Thương hiệu
         /// </summary>
         public string brand { get; set; }
 
         /// <summary>
-        /// 生产厂商名称
+        /// Tên hãng sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// 单价单位
+        /// Đơn vị đơn giá
         /// </summary>
         public string bmjjdjdw { get; set; }
     }

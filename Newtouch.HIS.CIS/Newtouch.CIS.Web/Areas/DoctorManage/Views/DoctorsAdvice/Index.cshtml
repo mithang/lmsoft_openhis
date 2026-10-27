@@ -2,30 +2,30 @@
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
 
-    //只看医嘱查询
+    //chỉxemY lệnhTra cứu
     var isOnlyLook = Context.Request.Query["IsOnlyLook"] == "true" ? true : false;
     var kssj = Context.Request.Query["kssj"];
 
-    //开关：是否开放检验检查
+    //Công tắc：Có mở khôngXét nghiệmKiểm tra
     var IsOpenJyJcSwitch = ViewBag.IsOpenJyJcSwitch as bool?;
 
-    //合理用药接口
-    var isOpenRationalUse = (ViewBag.isOpenRationalUse); //是否开启合理用药审核接口
+    //hợplýdùngthuốcgiao diện
+    var isOpenRationalUse = (ViewBag.isOpenRationalUse); //CóKhôngbậthợplýdùngthuốcPhê duyệtgiao diện
 
-    //开关：门诊是否开放膳食医嘱
+    //Công tắc：Ngoại trúCó mở khôngăn uốngY lệnh
     var ISOpenSsyz = (ViewBag.ISOpenSsyz as bool?);
 
-    //开关：住院是否中草药医嘱
+    //Công tắc：Nhập việnCóKhôngtrongthảo dượcY lệnh
     var ISOpenzcyyz = (ViewBag.ISOpenzcyyzSwitch as bool?);
-    //开关：是否开康复医嘱
+    //Công tắc：CóKhôngmởPhục hồi chức năngY lệnh
     var IsOpenRehabSwitch = ViewBag.IsOpenRehabSwitch as bool?;
 
-    //开关：是否开放医用耗材处方
+    //Công tắc：Có mở khôngydùngVật tư tiêu haoĐơn thuốc
     var iSOpenWzhc = (ViewBag.ISOpenWzhc as bool?);
-    //欠费医嘱Thực hiện开关
+    //nợ phíY lệnhThực hiệnCông tắc
     var ISOpenqfswith = (ViewBag.isqfswith);
     var isopenPriorReview = (ViewBag.isopenPriorReview);
-    //秦皇岛智能审核事前提醒配置
+    //Tần Hoàng Đảotrícó thểPhê duyệtnhắc trướccấu hình
     var medicalInsurance = SysConfigReader.String("medicalInsurance");
     var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
     var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
@@ -151,7 +151,7 @@
     }
 
 </style>
-@*导航栏*@
+@*Thanh điều hướng*@
 <ul class="nav nav-tabs navb-bg" id="myTab" style="position:fixed;top:0;z-index:100009;width:99%">
     <li role="presentation"><a href="#linkyzcx" role="tab" data-toggle="tab">Y lệnhTra cứu</a></li>
 
@@ -224,37 +224,37 @@
         else
         {
             @Html.Partial("AdviceList")
-            @Html.Partial("~/Areas/DoctorManage/Views/Orginal/Index.cshtml")@*项目录入*@
-            @Html.Partial("~/Areas/DoctorManage/Views/Medicine/Index.cshtml")@*药品录入*@
-            @Html.Partial("~/Areas/DoctorManage/Views/Words/Index.cshtml")@*文字录入*@
-            @Html.Partial("~/Areas/DoctorManage/Views/Takemedicine/Index.cshtml")@*出院带药*@
-            @Html.Partial("~/Areas/DoctorManage/Views/Medicine/TCMMedicine.cshtml")@*中草药*@
+            @Html.Partial("~/Areas/DoctorManage/Views/Orginal/Index.cshtml")@*Mụcnhập*@
+            @Html.Partial("~/Areas/DoctorManage/Views/Medicine/Index.cshtml")@*Thuốcnhập*@
+            @Html.Partial("~/Areas/DoctorManage/Views/Words/Index.cshtml")@*văn bảnnhập*@
+            @Html.Partial("~/Areas/DoctorManage/Views/Takemedicine/Index.cshtml")@*Xuất việnmang thuốc*@
+            @Html.Partial("~/Areas/DoctorManage/Views/Medicine/TCMMedicine.cshtml")@*trongthảo dược*@
             if (IsOpenJyJcSwitch == true)
             {
-                @Html.Partial("~/Areas/DoctorManage/Views/Apply/Inspection.cshtml")@*检验检查医嘱*@
+                @Html.Partial("~/Areas/DoctorManage/Views/Apply/Inspection.cshtml")@*Xét nghiệmKiểm traY lệnh*@
                 @Html.Partial("~/Areas/DoctorManage/Views/Apply/Examination.cshtml")
             }
             if (iSOpenWzhc == true)
             {
-                @Html.Partial("~/Areas/DoctorManage/Views/Orginal/ConsumablesIndex.cshtml")@*物资耗材医嘱*@
+                @Html.Partial("~/Areas/DoctorManage/Views/Orginal/ConsumablesIndex.cshtml")@*vật tưVật tư tiêu haoY lệnh*@
             }
             if (IsOpenRehabSwitch == true)
             {
-                @Html.Partial("~/Areas/DoctorManage/Views/Rehab/Index.cshtml")@*康复医嘱*@
+                @Html.Partial("~/Areas/DoctorManage/Views/Rehab/Index.cshtml")@*Phục hồi chức năngY lệnh*@
             }
-            @Html.Partial("~/Areas/DoctorManage/Views/DietaryAdvice/Index.cshtml")@*膳食医嘱*@
+            @Html.Partial("~/Areas/DoctorManage/Views/DietaryAdvice/Index.cshtml")@*ăn uốngY lệnh*@
         }
     </div>
 </div>
 <script>
     window.alldataArray = [];
     var transferbool = false;
-    $('#myTab a:first').trigger('click'); //初始化显示哪个tab
+    $('#myTab a:first').trigger('click'); //Khởi tạoHiển thịnàotab
     var yjjzhmsg="";
     var currentobj = JSON.parse(sessionStorage.getItem('currentobj'));
     if (currentobj) {
         //sessionStorage.removeItem("currentobj");
-        $('#myTab a:first').trigger('click'); //初始化显示哪个tab
+        $('#myTab a:first').trigger('click'); //Khởi tạoHiển thịnàotab
         showPatientBasicInfo();
        // patyjjqf(currentobj.zyh)
     }
@@ -350,9 +350,9 @@
 		$("#jemx").attr("name", "hide");
 		$("#jemxsm").hide();
 	});
-    //验证当前操作是否存在病人
+    //kiểm trahiện tạiThao tácCóKhôngtồn tạiởbệnh người
     function patobjValidate() {
-        //当前是否选中病人
+        //hiện tạiCóKhôngĐã chọnbệnh người
         if (currentobj == undefined || currentobj.zyh == "" || isNaN(currentobj.zyh)) {
             $.modalAlert("Thiếu bệnh nhân", 'warning');
             return false;
@@ -454,7 +454,7 @@
         $.modalConfirm("Hiện tại trang còn dữ liệu y lệnh chưa lưu, có vẫn cần chuyển không?", function (flag) {
             if (flag) {
                 transferbool = true;
-                $('#myTab a[href="' + TargetHref + '"]').tab('show')//.trigger('click'); //初始化显示哪个tab
+                $('#myTab a[href="' + TargetHref + '"]').tab('show')//.trigger('click'); //Khởi tạoHiển thịnàotab
             } else {
                 return false;
             }
@@ -463,7 +463,7 @@
     }
     $('a[data-toggle="tab"]').on('click', function (e, v) {
         var currentlink = $('.nav-tabs').find("li.active a").attr("href");
-        if (currentlink!== "#linkyzcx") {//医嘱查询不提示
+        if (currentlink!== "#linkyzcx") {//Y lệnhTra cứukhôngNhắc nhở
             if ($("#gridmedicine:visible").length == 1 && $("#gridmedicine").jqGrid('getDataIDs').length > 0) {
                 e.preventDefault();
                 e.stopPropagation();
@@ -509,10 +509,10 @@
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             $('#floatPreTemplateTree').hide();
             var targetHref = $(e.target).attr('href');
-            if (targetHref.indexOf('linkjy') == -1 && targetHref.indexOf('linkjc') == -1) {     //检验检查页
+            if (targetHref.indexOf('linkjy') == -1 && targetHref.indexOf('linkjc') == -1) {     //Xét nghiệmKiểm tratrang
                 $('#floatInspectTemplateTree').hide();
             } else {
-                $('#floatInspectTemplateTree').show();   //显示检验检查模板树
+                $('#floatInspectTemplateTree').show();   //Hiển thịXét nghiệmKiểm tramẫucây
             }
             transferPage($(this).attr('href'));
             transferbool = false;
@@ -554,7 +554,7 @@
                     SaveInspection(null);
                 }
             }
-                //按组套保存
+                //theoBộ mẫuLưu
             else if (relatedTargetHref.indexOf('#linkjy') != -1 && $("#alreadyJYAppliedGroupList:visible").length == 1) {
                 if ($("#alreadyJYAppliedGroupList").jqGrid('getDataIDs').length > 0) {
                     SaveInspectionbyZt(null);
@@ -591,7 +591,7 @@
         { color: '#2d61d9', zhcolor: ['#17194c', '#002c8b', '#2d61db', '#6a8ee4', '#97b8e5'] }
     ];
 
-    //获取处方呈现颜色
+    //LấyĐơn thuốchiển thịhiệnmàu sắc
     function getZhColor(zh) {
         var matched = $.jsonWhere(cfColorArr, function (v) {
             if (v.zh === zh) {
@@ -617,10 +617,10 @@
             cfColorArr.push({ zh: zh, color: thisColor });
             return thisColor;
         }
-        return '#ddd';  //颜色用完了 默认一个颜色
+        return '#ddd';  //màu sắcdùngxongđã Mặc địnhmột màu
     }
 
-    //计算频次数量
+    //Tính toánTần suấtSố lượng
     function getpcsl(zxcs, zxzq, zxzqdw)
     {
         debugger;
@@ -629,7 +629,7 @@
             return;
         }
         var rtnsl;
-        switch (zxzqdw) {//1：天，2：小时，3：分钟
+        switch (zxzqdw) {//1：ngày，2：giờ，3：Phút
             case "1":
                 rtnsl = (zxcs / zxzq);
                 break;
@@ -646,7 +646,7 @@
         return rtnsl;
     }
 
-    //计算药品数量
+    //Tính toánThuốcSố lượng
     function getypsl(jlzhxs, zyzhxs, ypjl, dwlb, zxcs, zxzq, zxzqdw, ts, qzfs)
     {
         debugger;
@@ -655,21 +655,21 @@
             $.modalAlert("Đơn vịLoạikhông được để trống", 'error');
             return;
         }
-        var qzint = ypjl * ts;//默认住院单位 ，不需转换
-        if (dwlb == 1) {//剂量单位 转换成剂量单位
+        var qzint = ypjl * ts;//Mặc địnhĐơn vị nhập viện ，khôngcầnchuyểnđổi
+        if (dwlb == 1) {//Đơn vị liều chuyểnđổithànhĐơn vị liều
             qzint = parseFloat((qzint / (jlzhxs * zyzhxs)).toFixed(10));
         }
         if (qzfs == "day") {
             zysl = Number(Math.ceil(qzint * getpcsl(zxcs, zxzq, zxzqdw)));
         } else if (qzfs == "times") {
-            if(zxzq>1)//按大包装售卖情况
+            if(zxzq>1)//theolớngóilắpbán卖tình hình
                 zysl = Number(Math.ceil(qzint * getpcsl(zxcs, zxzq, zxzqdw)));
             else
                 zysl = Number(Math.ceil(qzint) * getpcsl(zxcs, zxzq, zxzqdw));
         }
         return zysl;
     }
-    //提交医嘱到后台
+    //GửiY lệnhđếnmáy chủ
     function submitService(gridTakeData) {
         $.najax({
             url: "/DoctorManage/Medicine/SubmitdoctorService",
@@ -692,7 +692,7 @@
                 $('#alreadyJCAppliedList').clearGridData();
                 $('#alreadyJCAppliedGroupList').clearGridData();
                 $('#gridssyz').clearGridData();
-                //合理用药
+                //hợplýdùngthuốc
                 debugger
                 if ( '@(isOpenRationalUse)' === 'ON'){
                     $.ajax({
@@ -705,11 +705,11 @@
                         success: function (reqdata) {
                             if (reqdata.data) {
                                 if (reqdata.message != "" ) {
-                                    // 判断 Cfstate 是否为 "1" 或 "2"
+                                    // kiểm tra Cfstate CóKhônglà "1" hoặc "2"
                                     if (reqdata.data.Cfstate === "1" || reqdata.data.Cfstate === "2") {
                                         
-                                        // 你可以根据需要进一步处理 infoList，如果需要进行筛选可以在此处进行
-                                        HlyyDrugInfo(reqdata.data);  // 传递 InfoList 数据
+                                        // bạncó thểlấyTheocầnvàomộtbướcchỗlý infoList，VDnếucầnvàodòngLọccó thểlấyởnàychỗvàodòng
+                                        HlyyDrugInfo(reqdata.data);  // truyền InfoList Dữ liệu
                                         $('#drugInfoModal').modal('show');
                                     }
                                 } else {
@@ -721,7 +721,7 @@
 
                 }
                 
-                //事前提醒
+                //nhắc trước
                 switch("@medicalInsurance")
                 {
                     case "qinhuangdao":
@@ -744,7 +744,7 @@
                         }
                     });
                 } else {
-                    //事前审核接口
+                    //việctrướcPhê duyệtgiao diện
                     PriorReview(gridTakeData, resp.data);
                     $.modalMsg("Lưu thành công", 'success');
                     if (gridTakeData[0].yzlx ==@Html.Raw((int)EnumYzlx.zcy).ToString()) {
@@ -760,7 +760,7 @@
     function yzsqtx(gridTakeData,yzcfh)
     {
         $.ajax({
-            url: "http://127.0.0.1:33333/api/YiBao/DetailAuditFront_3101",//智能审核
+            url: "http://127.0.0.1:33333/api/YiBao/DetailAuditFront_3101",//trícó thểPhê duyệt
             dataType: "json",
             data: { zyh: currentobj.zyh, operatorId: '@curOpr.UserCode', operatorName: '@curOpr.UserName',orgId: '@(curOpr.OrganizeId)', yzh: yzcfh,txlx:"zy" },
             type: "POST",
@@ -773,14 +773,14 @@
                             $.modalAlert("Thông tin vi phạm duyệt trước:" + bfDataReturn.output.result[0].vola_cont, 'error');
                         }
                         //else {
-                        //    $.modalAlert("医保保存成功，但审核失败：【" + bfDataReturn.err_msg + "】请联系HIS工程师", 'error');
+                        //    $.modalAlert("Bảo hiểm y tếLưu thành công，nhưngPhê duyệtthất bại：【" + bfDataReturn.err_msg + "】vui lòngliênhệHISKỹ sư", 'error');
                         //}
                     } else {
 
                     }
                 }
                 //else {
-                //    $.modalAlert("医保保存成功，但审核失败：【" + bfDataReturn.err_msg + "】请联系HIS工程师", 'error');
+                //    $.modalAlert("Bảo hiểm y tếLưu thành công，nhưngPhê duyệtthất bại：【" + bfDataReturn.err_msg + "】vui lòngliênhệHISKỹ sư", 'error');
                 //}
             }
         })
@@ -795,7 +795,7 @@
         //        if(reqdata)
         //        {
         //            $.ajax({
-        //                url: "http://127.0.0.1:33333/api/QHDSmartCheck/IntelligentCheck",//智能审核
+        //                url: "http://127.0.0.1:33333/api/QHDSmartCheck/IntelligentCheck",//trícó thểPhê duyệt
         //                dataType: "json",
         //                data: {jydm:reqdata.jydm,xmldata:reqdata.xmldata},
         //                type: "POST",
@@ -821,7 +821,7 @@
         //                            //window.open("/MedicalRecord/AdvanceRemind", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
         //                            $.modalOpen({
         //                                id: "WarnDetail",
-        //                                title: "医嘱事前提醒",
+        //                                title: "Y lệnhnhắc trước",
         //                                url:"/MedicalRecord/AdvanceRemind",
         //                                width: "800px",
         //                                height: "600px",
@@ -850,7 +850,7 @@
         });
     }
 
-    //另存为模板
+    //Lưu thành mẫu
     function saveAsTemplate(mbObj,mxList){
         $.modalOpen({
             id: "Form",
@@ -882,11 +882,11 @@
     }
 
 
-    //清空 所有文本、处方、Đơn thuốc lịch sử、grid列表
+    //Xóa trắng tất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
     function newtouch_event_f4() {
         window.alldataArray = [];
     }
-   //事前审核接口调用
+   //việctrướcPhê duyệtgiao diệngọi
     function PriorReview(gridTakeData, yzcfh) {
         if ("@isopenPriorReview" == "ON" && currentobj.brxzdm != "0") {
             var GetMAC = "";
@@ -918,7 +918,7 @@
 
                 }
             });
-        //病案质量审核服务
+        //bệnhánchấtlượngPhê duyệtphụcvụ
         $.ajax({
             url: "/DoctorManage/Medicine/GetBashData",
             dataType: "json",
@@ -958,7 +958,7 @@
         //    async: false,
         //    success: function (reqdata) {
         //        if (reqdata.message != "") {
-        //            $.modalAlert("删除事前审核内容接口调用失败:" + reqdata.message, 'warning');
+        //            $.modalAlert("XóaviệctrướcPhê duyệtnội dunggiao diệngọithất bại:" + reqdata.message, 'warning');
         //            return false;
         //        }
         //    }
@@ -972,7 +972,7 @@
         //    async: false,
         //    success: function (reqdata) {
         //        if (reqdata.message != "") {
-        //            $.modalAlert("获取诊断信息失败:" + reqdata.message, 'warning');
+        //            $.modalAlert("LấyChẩn đoánthông tinthất bại:" + reqdata.message, 'warning');
         //            return false;
         //        }
         //    }

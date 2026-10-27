@@ -78,9 +78,9 @@
         GridSyxxmx();
     });
 
-    //初始化
+    //Khởi tạo
     function Init() {
-        //加载损益原因
+        //tảinguyên nhân lãi lỗ
         $("#ddlSYYY").bindSelect({
             url: "/NurseManage/ProfitAndLoss/GetLossProfitReasonListByType",
             id: "Id",
@@ -95,11 +95,11 @@
             }
         );
          $("#btn_print").click(function () {
-            var syqk = ""; //全部
+            var syqk = ""; //Tất cả
             if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Profit') {
-                syqk = 1;  //报溢
+                syqk = 1;  //báo thừa
             } else if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-                syqk = 0;  //报损
+                syqk = 0;  //Báo hỏng
             }
             var url = '@reportUrl' + "?tempCode=1328" + "&systemCode=" + '@reportSystemCode' + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=@ViewBag.OrganizeId&warehouseId=@Constants.DeptCode";
             url += "&sybz=" + syqk;
@@ -110,7 +110,7 @@
         });
     }
 
-    //损益信息明细
+    //lãi lỗthông tinchi tiết
     function GridSyxxmx() {
         var $gridSyxxmxList = $("#gridSYXXMXList");
         $gridSyxxmxList.dataGrid({
@@ -126,7 +126,7 @@
                 { label: 'Nguyên nhân thừa thiếu', name: 'syyy', width: 120, align: 'left' },
                 { label: 'Số chứng từ', name: 'djh', width: 160, align: 'left' },
                 { label: 'Vật tưTên', name: 'wzmc', width: 120, align: 'left' },
-                { label: 'Thừa thiếuSố lượng', name: 'syslStr', width: 55, align: 'right' },//带单位
+                { label: 'Thừa thiếuSố lượng', name: 'syslStr', width: 55, align: 'right' },//mangĐơn vị
                 {
                     label: 'Giá nhập', name: 'jj', width: 70, align: 'right',
                     formatter: function (val) { return val.toFixed(4); }},
@@ -150,7 +150,7 @@
             sortname: 'bgsj desc',
             viewrecords: true,
             loadComplete: function (data) {
-                ComputePjzeAndLjze();//计算标题栏中的批价总额和零价总额
+                ComputePjzeAndLjze();//Tính toándấuđềcộttrongcủalôgiátổngmứcvàkhônggiátổngmức
             }
         });
         $("#btn_search").click(function () {
@@ -162,22 +162,22 @@
         });
     }
 
-    //查询条件
+    //Điều kiện tìm kiếm
     function getSearchPostData() {
         var startTime = $("#txtStartDate").val();
         var endTime = $("#txtEndDate").val();
         var syyy = $("#ddlSYYY").val();
         var inputCode = $("#txtINPUTCODE").val();
-        var syqk = -1; //全部
+        var syqk = -1; //Tất cả
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Profit') {
-            syqk = 1;  //报溢
+            syqk = 1;  //báo thừa
         } else if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-            syqk = 0;  //报损
+            syqk = 0;  //Báo hỏng
         }
         return { startTime: startTime, endTime: endTime, syyy: syyy, inputCode: inputCode, sybz: syqk };
     };
 
-    //计算标题栏中的批价总额和零价总额
+    //Tính toándấuđềcộttrongcủalôgiátổngmứcvàkhônggiátổngmức
     function ComputePjzeAndLjze() {
         var titleLjze = 0;
         var count = $("#gridSYXXMXList").getGridParam('records');

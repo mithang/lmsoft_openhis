@@ -5,14 +5,14 @@ using Newtouch.Herp.Domain.IRepository;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 采购计划
+    /// Kế hoạch mua sắm
     /// </summary>
     public class CgPurchaseOrderRepo : RepositoryBase<CgPurchaseOrderEntity>, ICgPurchaseOrderRepo
     {
         
 
         /// <summary>
-        /// 撤销采购计划
+        /// Hủy kế hoạch mua sắm
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>
@@ -34,7 +34,7 @@ WHERE cgdh=@cgdh AND OrganizeId=@OrganizeId AND zt='1'
         }
 
         /// <summary>
-        /// 查询采购计划
+        /// Truy vấn kế hoạch mua sắm
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>

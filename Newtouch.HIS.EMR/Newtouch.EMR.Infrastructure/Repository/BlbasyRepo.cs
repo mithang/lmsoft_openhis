@@ -10,23 +10,23 @@ using SqlSugar;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// 创 建：hyj
-    /// 日 期：2018-09-19 19:07
-    /// 描 述：病案首页
+    /// Người tạo：hyj
+    /// Ngày：2018-09-19 19:07
+    /// Mô tả：Trang đầu bệnh án
     /// </summary>
     public class BlbasyRepo : RepositoryBase<BlbasyEntity>, IBlbasyRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFFactory ngữ cảnh EF</param>
 
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(BlbasyEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -53,9 +53,9 @@ namespace Newtouch.EMR.Repository
             return this.FindEntity(p => p.Id == ID);
         }
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.Id == keyValue);

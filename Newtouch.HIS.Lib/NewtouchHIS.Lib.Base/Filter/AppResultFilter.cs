@@ -10,12 +10,12 @@ namespace NewtouchHIS.Lib.Base.Filter
 {
 
     /// <summary>
-    /// WebApi返回结果过滤器，统一返回数据格式
+    /// WebApiBộ lọc kết quả trả về, thống nhất định dạng dữ liệu trả về
     /// </summary>
     public class AppResultFilter : Attribute, IActionFilter, IResultFilter, IExceptionFilter
     {
         /// <summary>
-        /// 请求时长计时开始
+        /// Bắt đầu tính thời gian yêu cầu
         /// </summary>
         private readonly Stopwatch watch = new Stopwatch();
 
@@ -24,56 +24,56 @@ namespace NewtouchHIS.Lib.Base.Filter
 
         }
 
-        #region 缓存参数 将内容保存到缓存，以便后面方便获取
+        #region Tham số bộ nhớ đệm: lưu nội dung vào bộ nhớ đệm để tiện lấy sau này
         /// <summary>
-        /// 请求参数
+        /// Tham số yêu cầu
         /// </summary>
         private object? request { get; set; }
 
         /// <summary>
-        /// 返回内容
+        /// Nội dung trả về
         /// </summary>
         private Result? rets { get; set; }
 
         /// <summary>
-        /// 请求路径
+        /// Đường dẫn yêu cầu
         /// </summary>
         private string? path { get; set; }
         #endregion
 
 
         /// <summary>
-        /// 返回结果执行之前
+        /// Trước khi thực thi kết quả trả về
         /// </summary>
         /// <param name="context"></param>
         public void OnActionExecuting(ActionExecutingContext context)
         {
-            watch.Start();//开始  
-            //获取请求路径
+            watch.Start();//Bắt đầu  
+            //Lấy đường dẫn yêu cầu
             this.path = context.HttpContext.Request.Path;
 
-            //获取请求头信息，如果请求头包含验证内容
+            //Lấy thông tin tiêu đề yêu cầu, nếu tiêu đề yêu cầu chứa nội dung kiểm tra
             var Headers = context.HttpContext.Request.Headers;
             //var Token = Headers["Token"];
 
-            //获取请求参数
+            //Lấy tham số yêu cầu
             this.request = context.ActionArguments;
         }
 
         /// <summary>
-        /// 返回结果执行之后
+        /// Sau khi thực thi kết quả trả về
         /// </summary>
         /// <param name="context"></param>
         public void OnActionExecuted(ActionExecutedContext context)
         {
             watch.Stop();
-            //根据实际需求进行具体实现
+            //Triển khai cụ thể theo nhu cầu thực tế
             if (context.Result is ObjectResult)
             {
                 var objectResult = context.Result as ObjectResult;
                 if (objectResult == null || objectResult.Value == null)
                 {
-                    context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.NotFound, Message = "未找到资源", TimeOut = watch.ElapsedMilliseconds });
+                    context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.NotFound, Message = "Không tìm thấy tài nguyên", TimeOut = watch.ElapsedMilliseconds });
                 }
                 else
                 {
@@ -85,8 +85,8 @@ namespace NewtouchHIS.Lib.Base.Filter
                         return;
                     }
                     context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "Yêu cầu thành công", BusData = objectResult.Value, TimeOut = watch.ElapsedMilliseconds });
-                    //判读是否返回的是元组
-                    //返回数据并且返回总行数 public async Task<（List<object>,int）> Paging(PagingBaseRequest parameter) { retuen ( new List<object>{ },1000) }
+                    //Xác định xem giá trị trả về có phải là tuple không
+                    //Trả về dữ liệu và trả về tổng số dòng public async Task<(List<object>,int)> Paging(PagingBaseRequest parameter) { retuen ( new List<object>{ },1000) }
                     if (objectResult.DeclaredType != null && objectResult.DeclaredType.Name == "ValueTuple`2")
                     {
                         dynamic value = objectResult.Value;
@@ -94,11 +94,11 @@ namespace NewtouchHIS.Lib.Base.Filter
                         {
                             if (value.Item1 is int)
                             {
-                                //返回元组格式（int,List<object>）
+                                //Trả về định dạng tuple (int,List<object>)
                                 context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "Yêu cầu thành công", TimeOut = watch.ElapsedMilliseconds, BusData = new { Count = value.Item1, Data = value.Item2 } });
                             }
                             else
-                                //返回元组格式（List<object>,int）
+                                //Trả về định dạng tuple (List<object>,int)
                                 context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "Yêu cầu thành công", TimeOut = watch.ElapsedMilliseconds, BusData = new { Count = value.Item2, Data = value.Item1 } });
                         }
                     }
@@ -125,7 +125,7 @@ namespace NewtouchHIS.Lib.Base.Filter
         }
 
         /// <summary>
-        /// 生成结果前 这个时候已经能够拿到要返回的数据了
+        /// Trước khi tạo kết quả, lúc này đã có thể lấy được dữ liệu cần trả về
         /// </summary>
         /// <param name="context"></param>
         public void OnResultExecuting(ResultExecutingContext context)
@@ -135,7 +135,7 @@ namespace NewtouchHIS.Lib.Base.Filter
                 var objectResult = context.Result as ObjectResult;
                 if (objectResult!.Value == null)
                 {
-                    context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.NotFound, Message = "未找到资源", TimeOut = watch.ElapsedMilliseconds });
+                    context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.NotFound, Message = "Không tìm thấy tài nguyên", TimeOut = watch.ElapsedMilliseconds });
                 }
                 else
                 {
@@ -153,8 +153,8 @@ namespace NewtouchHIS.Lib.Base.Filter
                         return;
                     }
 
-                    //判读是否返回的是元组
-                    //返回数据并且返回总行数 public async Task<（List<object>,int）> Paging(PagingBaseRequest parameter) { retuen ( new List<object>{ },1000) }
+                    //Xác định xem giá trị trả về có phải là tuple không
+                    //Trả về dữ liệu và trả về tổng số dòng public async Task<(List<object>,int)> Paging(PagingBaseRequest parameter) { retuen ( new List<object>{ },1000) }
                     if (objectResult.DeclaredType != null && objectResult.DeclaredType.Name == "ValueTuple`2")
                     {
                         dynamic value = objectResult.Value;
@@ -162,11 +162,11 @@ namespace NewtouchHIS.Lib.Base.Filter
                         {
                             if (value.Item1 is int)
                             {
-                                //返回元组格式（int,List<object>）
+                                //Trả về định dạng tuple (int,List<object>)
                                 context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "Yêu cầu thành công", TimeOut = watch.ElapsedMilliseconds, BusData = new { Count = value.Item1, Data = value.Item2 } });
                             }
                             else
-                                //返回元组格式（List<object>,int）
+                                //Trả về định dạng tuple (List<object>,int)
                                 context.Result = new JsonResult(new Result { HttpStatus = HttpStatusCode.OK, Message = "Yêu cầu thành công", TimeOut = watch.ElapsedMilliseconds, BusData = new { Count = value.Item2, Data = value.Item1 } });
                         }
                     }
@@ -195,7 +195,7 @@ namespace NewtouchHIS.Lib.Base.Filter
 
 
         /// <summary>
-        /// 生成结果后 看需求实现
+        /// Sau khi tạo kết quả, triển khai theo nhu cầu
         /// </summary>
         /// <param name="context"></param>
         public void OnResultExecuted(ResultExecutedContext context)
@@ -203,18 +203,18 @@ namespace NewtouchHIS.Lib.Base.Filter
 
         }
         /// <summary>
-        /// 异常
+        /// ngoại lệ
         /// </summary>
         /// <param name="context"></param>
         /// <exception cref="NotImplementedException"></exception>
         public void OnException(ExceptionContext context)
         {
-            //是否存在未处理的错误
+            //Có tồn tại lỗi chưa được xử lý không
             if (context.ExceptionHandled == false)
             {
-                //标记错误为已处理
+                //Đánh dấu lỗi là đã xử lý
                 context.ExceptionHandled = true;
-                //告诉浏览器这是正常返回
+                //Cho trình duyệt biết đây là giá trị trả về bình thường
                 context.HttpContext.Response.StatusCode = 200;
                 context.HttpContext.Response.ContentType = "application/json; charset=utf-8";
                 string errormsg = "";
@@ -222,14 +222,14 @@ namespace NewtouchHIS.Lib.Base.Filter
 #if DEBUG
                 errormsg = $"PATH:{path}======";
 #endif
-                errormsg = $"【异常】：{errormsg}{context.Exception.Message}";
-                //获取请求头参数列表
+                errormsg = $"[Ngoại lệ]:{errormsg}{context.Exception.Message}";
+                //Lấy danh sách tham số tiêu đề yêu cầu
                 //var Headers_keys = "Token";
                 //object hk = context.HttpContext.Request.Headers.Where(x => Headers_keys.Contains(x.Key)).ToList();
 
                 string[] privateMsg = { Directory.GetCurrentDirectory() };
                 errormsg = errormsg.Replace(privateMsg[0], string.Empty);
-                //错误信息
+                //Thông tin lỗi
                 switch (context.Exception)
                 {
                     case FailedException ex:
@@ -239,7 +239,7 @@ namespace NewtouchHIS.Lib.Base.Filter
                         result = Result.BuildResult(context.Exception.InnerException, errormsg, watch.ElapsedMilliseconds, ResponseResultCode.ERROR);
                         break;
                 }
-                //返回错误内容
+                //Trả về nội dung lỗi
                 context.Result = new JsonResult(result);
             }
 

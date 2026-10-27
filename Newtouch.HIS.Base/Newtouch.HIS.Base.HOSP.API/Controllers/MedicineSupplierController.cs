@@ -8,7 +8,7 @@ using Newtouch.HIS.Domain.IRepository;
 
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
-    /// <summary>药品提供商</summary>
+    /// <summary>Nhà cung cấp thuốc</summary>
     [Route("api/MedicineSupplier")]
     [ApiController]
     public class MedicineSupplierController : ApiControllerBase

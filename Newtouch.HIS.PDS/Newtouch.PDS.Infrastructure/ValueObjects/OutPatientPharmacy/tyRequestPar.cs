@@ -3,286 +3,286 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
 {
     /// <summary>
-    /// 退药操作参数
+    /// Tham số thao tác trả thuốc
     /// </summary>
     public class tyRequestPar
     {
         /// <summary>
-        /// 处方明细内码
+        /// Mã nội bộ chi tiết đơn thuốc
         /// </summary>
         public int cfmxnm { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 频号
+        /// Số tần suất
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 频次
+        /// Tần suất
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 药品
+        /// Thuốc
         /// </summary>
         public string yp { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public int sl { get; set; }
     }
 
     /// <summary>
-    /// 退药信息
+    /// Thông tin trả thuốc
     /// </summary>
     public class tyInfo
     {
         /// <summary>
-        /// 退药部门
+        /// Bộ phận trả thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 操作者
+        /// Người thao tác
         /// </summary>
         public string userCode { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 退药单单号
+        /// Số đơn trả thuốc
         /// </summary>
         public string returnDrugBillNo { get; set; }
 
         /// <summary>
-        /// 退药药品明细
+        /// Chi tiết thuốc trả
         /// </summary>
         public List<tyParam> tyDrugDetail { get; set; }
 
         /// <summary>
-        /// 退药单单号
+        /// Số đơn trả thuốc
         /// </summary>
         public string zytyapplyno { get; set; }
 
     }
 
     /// <summary>
-    /// 住院退药请求信息
+    /// Thông tin yêu cầu trả thuốc nội trú
     /// </summary>
     public class HospitalizationReturnDrugParem
     {
         /// <summary>
-        /// 退药单单号
+        /// Số đơn trả thuốc
         /// </summary>
         public string returnDrugBillNo { get; set; }
 
         /// <summary>
-        /// 退药申请单单号
+        /// Số đơn xin trả thuốc
         /// </summary>
         public string applyNo { get; set; }
 
         /// <summary>
-        /// 药房部么代码
+        /// Mã bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 操作者
+        /// Người thao tác
         /// </summary>
         public string userCode { get; set; }
 
         /// <summary>
-        /// 退药明细
+        /// Chi tiết trả thuốc
         /// </summary>
         public List<TyRpInfo> rpInfo { get; set; }
     }
 
     /// <summary>
-    /// 退药医嘱细腻
+    /// Chi tiết y lệnh trả thuốc
     /// </summary>
     public class TyRpInfo
     {
         /// <summary>
-        /// 医嘱ID
+        /// Y lệnhID
         /// </summary>
         public string yzId { get; set; }
 
         /// <summary>
-        /// 医嘱执行批次
+        /// Lô thực hiện y lệnh
         /// </summary>
         public List<ExecuteBatchDetail> executeBatchDetail { get; set; }
     }
 
     /// <summary>
-    /// 执行批次信息
+    /// Thông tin lô thực hiện
     /// </summary>
     public class ExecuteBatchDetail
     {
 
         /// <summary>
-        /// 医嘱执行ID
+        /// Thực hiện y lệnhID
         /// </summary>
         public string zxId { get; set; }
 
         /// <summary>
-        /// 退药医嘱明细
+        /// Chi tiết y lệnh trả thuốc
         /// </summary>
         public List<RpDetail> tyRpDetail { get; set; }
     }
 
     /// <summary>
-    /// 医嘱明细
+    /// Chi tiết y lệnh
     /// </summary>
     public class RpDetail
     {
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số quy đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 药品批次信息
+        /// Thông tin lô thuốc
         /// </summary>
         public List<DrugBatch> drugBatch { get; set; }
 
 
         /// <summary>
-        /// 追溯码
+        /// Mã truy xuất
         /// </summary>
         public string zsm { get; set; }
 
         /// <summary>
-        /// 是否拆零
-        /// 1： 是
-        /// 2： 否
+        /// Có chia lẻ không
+        /// 1： Có
+        /// 2： Không
         /// </summary>
         public int? sfcl { get; set; }
     }
 
     /// <summary>
-    /// 药品批次信息
+    /// Thông tin lô thuốc
     /// </summary>
     public class DrugBatch
     {
 
         /// <summary>
-        /// 数量(部门单位数量，zhyz*sl=最小单位数量)
+        /// Số lượng(Số lượng đơn vị bộ phận，zhyz*sl=Số lượng đơn vị nhỏ nhất)
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 频次
+        /// Tần suất
         /// </summary>
         public string pc { get; set; }
     }
 
     /// <summary>
-    /// 退药操作参数
+    /// Tham số thao tác trả thuốc
     /// </summary>
     public class tyParam
     {
         /// <summary>
-        /// 医嘱ID
+        /// Y lệnhID
         /// </summary>
         public string yzId { get; set; }
 
         /// <summary>
-        /// 医嘱执行ID
+        /// Thực hiện y lệnhID
         /// </summary>
         public string zxId { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 频次
+        /// Tần suất
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 数量(部门单位数量，zhyz*sl=最小单位数量)
+        /// Số lượng(Số lượng đơn vị bộ phận，zhyz*sl=Số lượng đơn vị nhỏ nhất)
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số quy đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 退药申请单单号
+        /// Số đơn xin trả thuốc
         /// </summary>
         public string applyNo { get; set; }
 
         /// <summary>
-        /// 药房部么代码
+        /// Mã bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 操作者
+        /// Người thao tác
         /// </summary>
         public string userCode { get; set; }
 
         /// <summary>
-        /// 成组号
+        /// Số nhóm
         /// </summary>
         public string czh { get; set; }
 
@@ -290,14 +290,14 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
         public string zyh { get; set; }
 
         /// <summary>
-        /// 追溯码
+        /// Mã truy xuất
         /// </summary>
         public string zsm { get; set; }
 
         /// <summary>
-        /// 是否拆零
-        /// 1： 是
-        /// 2： 否
+        /// Có chia lẻ không
+        /// 1： Có
+        /// 2： Không
         /// </summary>
         public int? sfcl { get; set; }
     }

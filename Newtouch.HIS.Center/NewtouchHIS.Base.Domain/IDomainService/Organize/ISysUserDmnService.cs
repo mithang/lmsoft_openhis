@@ -6,25 +6,25 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.Base.Domain.Organize
 {
     /// <summary>
-    /// 用户接口
+    /// Giao diện người dùng
     /// </summary>
     public interface ISysUserDmnService : IScopedDependency
     {
         /// <summary>
-        /// 系统用户（分页）
+        /// Người dùng hệ thống(Phân trang)
         /// </summary>
         /// <param name="request"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<PageResponseRow<List<SysUserVO>>> GetPagintionUserList(OLPagination<QueryParamsBase> request, string orgId);
         /// <summary>
-        /// 根据OrganizeId获取 系统人员VO（且有对应的SysUser）
+        /// TheoOrganizeIdLấy Nhân viên hệ thốngVO(và có tương ứngSysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         Task<List<SysUserStaffVO>> GetSatffVOListByOrg(string orgId, string? toporgId);
         /// <summary>
-        /// Tổ chức用户树（科室分组）
+        /// Tổ chứcCây người dùng(Nhóm theo khoa)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>

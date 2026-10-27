@@ -31,7 +31,7 @@
         jyjcparam = jyjcmbLx;
 		var TemplateId = $('#Template')[0].value;
 		var ztKeyword = $('#ztKeyword').val();
-        $("#divInspectTempTree").html(''); //先清空掉
+        $("#divInspectTempTree").html(''); //Xóa trắng trướcrớt
         $("#divInspectTempTree").treeview({
             height: $(window).height() - 100,
             slimscroll: false,
@@ -58,7 +58,7 @@
                         url: "/TemplateManage/InspectionTemplate/GetGPackageDetailByZtId",
                         postData: { ztId: item.id, mbId: item.parentnodes }
                     }).trigger("reloadGrid");
-                    $grid.jqGrid("setCaption", item.text);   //重置caption属性值
+                    $grid.jqGrid("setCaption", item.text);   //Đặt lạicaptionThuộc tínhGiá trị
                 }
                 if ($griddetail) {
                     $griddetail.clearGridData();
@@ -91,19 +91,19 @@
     });
 
     /**
-     * ***********************套餐显示**********************************
+     * ***********************góiHiển thị**********************************
      */
     function getActionDel(id) {
         return "<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;' onclick='deleteGroupData(\"" + id + "\")'></i>";
     }
     function getGroupInfo($grid, ztId, parentid) {
-        var ztcd = $grid.getDataIDs();//删除完项目之后再进行清空
+        var ztcd = $grid.getDataIDs();//XóaxongMụccủasaulạivàodòngXóa trắng
         if (ztcd.length==0) {
             lsid = "";
         }
         if (lsid == null || lsid == "") {
             lsid = parentid;
-        }//如果开始没有项目直接赋值
+        }//VDnếuBắt đầuKhông cóMụctrực tiếpGán giá trị
         else {
                 if (parentid != lsid) {
                     $.modalAlert("Cùng một phiếu không thể kê nhiều mục loại lớn", "warning");
@@ -174,7 +174,7 @@
             }
         });
     }
-    //删除已选组套明细
+    //XóađãchọnBộ mẫuchi tiết
     function deleteGroupData(selRowId) {
         if (!!selRowId) {
             var $grid;

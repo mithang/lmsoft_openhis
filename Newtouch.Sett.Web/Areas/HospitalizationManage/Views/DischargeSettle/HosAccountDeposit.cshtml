@@ -83,7 +83,7 @@
         zffsmc,
         zfmoney,
         pzh;
-    //nạp tiềnvàhoàn款Phán đoán
+    //nạp tiềnvàhoànkhoảnPhán đoán
     function CheckDeposit() {
         patid = $("#patid").val();
 
@@ -91,8 +91,8 @@
         var reg = /^(-?\d+)(\.\d+)?$/;
         zfmoney = $("#txtmoney").val();
         var ddlzffs = $("#ddlzffs option:selected");//Lấy mục đã chọn
-        zffsbh = ddlzffs.val();//拿tớiĐã chọn项củagiá trị
-        zffsmc = ddlzffs.text();//拿tớiĐã chọn项của文này
+        zffsbh = ddlzffs.val();//lấytớiĐã chọnmụccủagiá trị
+        zffsmc = ddlzffs.text();//lấytớiĐã chọnmụccủavănnày
         pzh = $("#txtlpzh").val();
         if (zffsbh == -1 || zffsmc == "") {
             $.modalAlert("Thiếu phương thức thanh toán", 'warning');

@@ -35,7 +35,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         //}
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <returns></returns>
         public IActionResult SaveData( List<TherapistSuggestionEntity> mxList,string delRowIds, string blh,string brlx,string mzzyh)

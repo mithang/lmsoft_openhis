@@ -5,90 +5,90 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.DTO.OutOrInStoredOperate
 {
     /// <summary>
-    /// 冻结库存并生成单据信息处理过程参数
+    /// Tham Số quá trình xử lý đóng băng tồn kho và tạo thông tin chứng từ
     /// </summary>
     public class FrozenStockAndGenerateCrkdjDTO
     {
 
         /// <summary>
-        /// 当前药房部门 出库部门
+        /// Bộ phận nhà thuốc hiện tại Bộ phận xuất kho
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 操作员
+        /// Nhân viên thao tác
         /// </summary>
         public string userCode { get; set; }
 
         /// <summary>
-        /// 入库部门
+        /// Bộ phận nhập kho
         /// </summary>
         public string rkbm { get; set; }
 
         /// <summary>
-        /// 需冻结的药品信息
+        /// Thông tin thuốc cần đóng băng
         /// </summary>
         public List<FrozenedMedicineInfoDTO> frozenseMedicines { get; set; }
     }
 
     /// <summary>
-    /// 需冻结的药品信息
+    /// Thông tin thuốc cần đóng băng
     /// </summary>
     public class FrozenedMedicineInfoDTO
     {
 
         /// <summary>
-        /// 总共需要冻结的数量  最小单位
+        /// Tổng Số lượng cần đóng băng  Đơn vị nhỏ nhất
         /// </summary>
         public int djsl { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 申领单明细ID
+        /// Chi tiết đơn lĩnhID
         /// </summary>
         public string sldmxId { get; set; }
 
         /// <summary>
-        /// 转化因子 目前为最小单位转化因子
+        /// Hệ số quy đổi Hiện là hệ số quy đổi đơn vị nhỏ nhất
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 包装数
+        /// Số lượng đóng gói
         /// </summary>
         public int bzs { get; set; }
 
         /// <summary>
-        /// 可用库存 最小单位
+        /// Tồn kho khả dụng Đơn vị nhỏ nhất
         /// </summary>
         public int kykc { get; set; }
 
         /// <summary>
-        /// 最小单位进价
+        /// Giá nhập đơn vị nhỏ nhất
         /// </summary>
         public decimal zxdwjj { get; set; }
 
         /// <summary>
-        /// 最小单位批发价
+        /// Giá bán buôn đơn vị nhỏ nhất
         /// </summary>
         public decimal zxdwpfj { get; set; }
 
         /// <summary>
-        /// 最小单位零售价
+        /// Giá bán lẻ đơn vị nhỏ nhất
         /// </summary>
         public decimal zxdwlsj { get; set; }
 
         /// <summary>
-        /// 冻结药品批次信息
+        /// Thông tin lô thuốc đóng băng
         /// </summary>
         public List<FrozenBatchesDetailVEntity> frozenedMedicineBatchs { get; set; }
     }

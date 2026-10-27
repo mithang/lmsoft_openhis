@@ -9,12 +9,12 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// xml序列化扩展
+    /// xmlthứ tựcộthóamở rộngtriển
     /// </summary>
     public static class XmlSerializerExt
     {
         /// <summary>
-        /// object 转 xml
+        /// object chuyển xml
         /// </summary>
         /// <param name="ob"></param>
         /// <param name="encoding"></param>
@@ -29,7 +29,7 @@ namespace Newtouch.Infrastructure
         
 
         /// <summary>
-        /// xml 转 object
+        /// xml chuyển object
         /// </summary>
         /// <param name="xml"></param>
         /// <param name="encoding"></param>
@@ -186,21 +186,21 @@ namespace Newtouch.Infrastructure
         }
         
         /// <summary>
-        /// uuid转短串
+        /// uuidchuyểnngắnchuỗi
         public static string GenerateShortUUIDFromString(string uuidString)
         {
-            // 将原始 UUID 字符串转换为字节数组
+            // sẽgốcbắt đầu UUID chữkýchuỗichuyểnđổilàchữtiếtsốnhóm
             byte[] bytes = Encoding.UTF8.GetBytes(uuidString);
 
-            // 使用 MD5 哈希算法
+            // Sử dụng MD5 bămtínhphương pháp
             using (MD5 md5 = MD5.Create())
             {
                 byte[] hashBytes = md5.ComputeHash(bytes);
 
-                // 将哈希结果转换为十六进制字符串
+                // sẽbămkếtnếuchuyểnđổilàmườisáuvàochếchữkýchuỗi
                 string hashString = BitConverter.ToString(hashBytes).Replace("-", "");
 
-                // 截取前 6 个字符作为短串
+                // 截lấytrước 6 cáichữkýlàmlàngắnchuỗi
                 return hashString.Substring(0, 6);
             }
         }

@@ -206,11 +206,11 @@
         </div>
             <div>
                 <input type="text" id="message" />
-                <input type="button" id="sendmessage" value="发送" />
+                <input type="button" id="sendmessage" value="gửi" />
             </div>
     </div>*@
-<!--jQuery库是必需的,默认情况下在_Layout.cshtml引用. -->
-<!--引用SignalR库. -->
+<!--jQuerykhoCóphảicầncủa,Mặc địnhtình hìnhdướiở_Layout.cshtmldẫndùng. -->
+<!--dẫndùngSignalRkho. -->
 <!-- ASP.NET Core SignalR client (port of the old jquery.signalR 2.x proxy). Hub route: /signalr (ChatHub). -->
 <script src="/js/signalr.min.js"></script>
 <script>
@@ -218,7 +218,7 @@
         // ASP.NET Core SignalR: ChatHub at /signalr, server event addNewMessageToPage.
         var connection = new signalR.HubConnectionBuilder().withUrl("/signalr").build();
 
-        // 定义服务器端调用的客户端addNewMessageToPage来处理接收到的消息.
+        // địnhnghĩaphụcvụdụng cụđầugọicủakhách hàngđầuaddNewMessageToPageđếnchỗlýnhậnthuđếncủahủytin.
         connection.on("addNewMessageToPage", function (name, message) {
             if (name == $('#displayname').val()) {
                 $('#discussion').append('<li class="msgright"><p class="touxiangright">' + htmlEncode(name)+'</p><p class="msgcardright">' + htmlEncode(message) + '</p></li >');
@@ -226,29 +226,29 @@
             else {
                 $('#discussion').append('<li class="msgleft"><p class="touxiangleft">' + htmlEncode(name) +'</p><p class="msgcardleft">' + htmlEncode(message) + '</p></li >');
             }
-            // 将消息添加到ul上.
+            // sẽhủytinThêmđếnultrên.
             //$('#discussion').append('<li class="msgleft"><p class="msgcardleft>' + htmlEncode(name)+htmlEncode(message)
             //    + '</p></li>');
         };
 
-        // 获取用户名.
+        // LấyNgười dùngtên.
         $('#displayname').val(prompt('Vui lòng nhập tên của bạn:', ''));
 
-        // 设置焦点到输入框.
+        // Cài đặttiêu điểmđiểmđếnnhậpkhung.
         $('#message').focus();
 
-        // 开始Liên kết服务器，Liên kết成功后为Gửi按钮注册click事件.
+        // Bắt đầuLiên kếtphụcvụdụng cụ，Liên kếtthành côngsaulàGửiNútLưu ýsáchclicksự kiện.
         connection.start().then(function () {
             $('#sendbtn').click(function () {
-                // 调用服务器端集线器的Send方法.
+                // gọiphụcvụdụng cụđầutậpđườngdụng cụcủaSendPhương pháp.
                 connection.invoke("Send", $('#displayname').val(), $('#message').val());
-                // 清空输入框信息并获取焦点.
+                // Xóa trắngnhậpkhungthông tinvàLấytiêu điểmđiểm.
                 $('#message').val('').focus();
             });
         });
     });
 
-    // 这个可选功能将html-encodes消息显示在页面上.
+    // nàycó thểchọncôngcó thểsẽhtml-encodeshủytinHiển thịởtrangmặttrên.
     function htmlEncode(value) {
         var encodedValue = $('<div />').text(value).html();
         return encodedValue;

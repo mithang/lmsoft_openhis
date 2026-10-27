@@ -9,12 +9,12 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.Domain.IDomainServices
 {
     /// <summary>
-    /// 就诊信息
+    /// Khám bệnhthông tin
     /// </summary>
     public interface ITreatmentDmnService
     {
         /// <summary>
-        /// 查询就诊信息
+        /// Tra cứuKhám bệnhthông tin
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -23,7 +23,7 @@ namespace Newtouch.Domain.IDomainServices
 
         TreatEntityObj SelectTreatmentEntitie(string mzh, string orgId);
         /// <summary>
-        /// 查询患者就诊信息
+        /// Tra cứuBệnh nhânKhám bệnhthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
@@ -34,7 +34,7 @@ namespace Newtouch.Domain.IDomainServices
         /// <returns></returns>
         IList<PatientVisitInfoVO> GetPatientVisitList(Pagination pagination, string kh, string xm, string jzlx, string jszt, DateTime? kssj, DateTime? jssj, string orgId);
         /// <summary>
-        /// 获取住院信息
+        /// LấyNhập việnthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>

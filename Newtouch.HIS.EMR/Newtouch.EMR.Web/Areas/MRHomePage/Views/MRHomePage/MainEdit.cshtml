@@ -2,7 +2,7 @@
 @{
     Layout = null;
     var justshow = ViewBag.justshow;
-    //报表链接
+    //Liên kết báo cáo
     var reportUrl = EmrConfig.GetAppConfigValue("ReportUrl");
     var reportSystemCode = EmrConfig.GetAppConfigValue("ReportSystemCode");
 }
@@ -59,13 +59,13 @@
                     @Html.Partial("_BottomButtonsView", new Newtouch.EMR.Web.Models.BottomButtonViewModel()
                     {
                         ShowKeyList = new int[] { 8,9 },
-                        //F2Text="保存基本信息",
-                        //F3Text = "保存诊断",
-                        //F6Text = "保存手术",
-                        //F7Text = "完整病案保存",
+                        //F2 Text="Lưu thông tin cơ bản",
+                        //F3 Text = "Lưu chẩn đoán",
+                        //F6 Text = "Lưu phẫu thuật",
+                        //F7 Text = "Lưu toàn bộ hồ sơ bệnh án",
                         F8Text = "Xem trước và in",
                         F9Text = "Xem trước in trang phụ"
-                        //F10Text = "同步费用"
+                        //F10 Text = "Đồng bộ chi phí"
                     })
                 }
                 else
@@ -127,7 +127,7 @@
                     SyncFee(JSON.stringify(data));
 
                     /*Đặt giá trị mặc định */
-                    //入院途径
+                    //Đường nhập viện
                     debugger;
                     $('#select2-RYTJ-container').each(function () {
                         var myvalue = 'Ngoại trú';
@@ -292,12 +292,12 @@
     }
 
     function amountcheck(str) {
-        //金额 只允许正数
+        //Số tiền chỉ cho phép số dương
         //var exp = /(^[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^(0){1}$)|(^[0-9]\.[0-9]([0-9])?$)/; 
-        //金额 允许正(+)负数
+        //Số tiền cho phép số dương(+) số âm
         //var exp = /(^([+-]?)[1-9]([0-9]+)?(\.[0-9]{1,2})?$)|(^([+-]?)(0){1}$)|(^([+-]?)[0-9]\.[0-9]([0-9])?$)/; 
 
-        //金额 允许正负数
+        //Số tiền cho phép số dương và số âm
         var exp = /(^([-]?)[1-9]([0-9]+)?(\.[0-9]{1,4})?$)|(^([-]?)(0){1}$)|(^([-]?)[0-9]\.[0-9]([0-9])?$)/;
         if (exp.test(str)) {
             return true;
@@ -305,7 +305,7 @@
             return false;
         }
     }
-    //费用格式校验
+    //Kiểm tra định dạng chi phí
     function amtCheck() {
         var jecheck = "";
         $("#dv_fee input[attr-desc]").each(
@@ -321,7 +321,7 @@
 
         return jecheck;
     }
-    //患者信息参数
+    //Tham số thông tin bệnh nhân
     function getfromPara() {
         var para = $("#frm_edit").formSerialize();
         savecitycode(para);
@@ -474,7 +474,7 @@
             return false;
         }
         //if (para.RYZD == "") {
-        //    $.modalAlert('患者信息 入院诊断没有填写', 'warning');
+        //    $.modalAlert('Thông tin bệnh nhân: chẩn đoán nhập viện chưa được điền', 'warning');
         //    return false;
         //}
         var idCard = para.SFZH;
@@ -578,16 +578,16 @@
             return false
         }
         if (para.CYSJ != "") {
-            // 计算两个日期之间的毫秒差
+            // Tính chênh lệch mili giây giữa hai ngày
             var differenceInMilliseconds = Date.parse(para.CYSJ) - Date.parse(para.RYSJ);
-            // 将毫秒差转换为天数(不包含不满一天的部分)
+            // Chuyển chênh lệch mili giây thành số ngày(không bao gồm phần chưa đầy một ngày)
             var days = Math.floor(differenceInMilliseconds / 1000 / 86400);
-            // 如果有剩余的毫秒(即不满一天的部分), 加一天
+            // Nếu còn mili giây dư(tức là phần chưa đầy một ngày), cộng thêm một ngày
             if (differenceInMilliseconds % (1000 * 86400) !== 0) {
                 days += 1;
             }
             //if (para.SJZYTS != days) {
-            //    $.modalAlert('患者信息 入院时间和出院时间计算的天数【' + days + '】跟实际住院天数【' + para.SJZYTS + '】不等', 'warning');
+            //    $.modalAlert('Số ngày tính từ thời gian nhập viện và ra viện trong thông tin bệnh nhân【' + days + '】so với số ngày nội trú thực tế【' + para.SJZYTS + '】không bằng nhau', 'warning');
             //    return false
             //}
             //var date = parseInt((Date.parse(para.CYSJ) - Date.parse(para.RYSJ)) / 1000 / 86400);
@@ -769,11 +769,11 @@
             return false;
         }
         if (para.RYQ_T == "" || para.RYQ_XS == "" || para.RYQ_F=="") {
-            //$.modalAlert('住院信息 颅脑损伤患者昏迷(入院前)时间必填', 'warning');
+            //$.modalAlert('Thông tin nội trú: hôn mê do chấn thương sọ não(Trước khi nhập viện) thời gian bắt buộc phải nhập', 'warning');
             //return false;
         }
         if (para.RYH_T == "" || para.RYH_XS == "" || para.RYH_F == "") {
-            //$.modalAlert('住院信息 颅脑损伤患者昏迷(入院后)时间必填', 'warning');
+            //$.modalAlert('Thông tin nội trú: hôn mê do chấn thương sọ não(Sau khi nhập viện) thời gian bắt buộc phải nhập', 'warning');
             //return false;
         }
         if (para.YYGRQK == 1 && para.YYGRSSXG != "") {
@@ -880,7 +880,7 @@
         }
         return parseFloat(val);
     }
-    //功能键操作区
+    //Khu vực thao tác phím chức năng
 	function newtouch_event_f2() {
         var para = getfromPara();
         if (testandverify(para)==false) {
@@ -898,7 +898,7 @@
             }
         })
     }
-    //诊断保存
+    //Lưu chẩn đoán
 	function newtouch_event_f3() {
 	    var msg = "";
 	    var ids = $("#gridzdList").getDataIDs();
@@ -941,7 +941,7 @@
 	    });
 
 	}
-    //手术列表
+    //Danh sách phẫu thuật
     function newtouch_event_f6() {
         var msg = "";
         var ids = $("#gridopList").getDataIDs();
@@ -1088,7 +1088,7 @@
         }
     }
     /******************************************************/
-    //上传医保
+    //Tải lên bảo hiểm y tế
     function newtouch_event_f101() {
         GetblData("7600");
         if (ret == 1) {
@@ -1120,7 +1120,7 @@
 
     function Upload(jsondata) {
         $.ajax({
-            url: "http://127.0.0.1:33333/api/QHDSmartCheck/MedicalRecordUpload",//智能审核
+            url: "http://127.0.0.1:33333/api/QHDSmartCheck/MedicalRecordUpload",//Kiểm tra thông minh
             dataType: "json",
             data: jsondata,
             type: "POST",

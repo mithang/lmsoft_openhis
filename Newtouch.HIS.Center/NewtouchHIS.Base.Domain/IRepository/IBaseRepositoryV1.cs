@@ -9,49 +9,49 @@ namespace NewtouchHIS.Base.Domain
     {
         #region Add
         /// <summary>
-        /// 增加单条数据
+        /// Thêm một bản ghi
         /// </summary>
-        /// <param name="model">实体对象</param>
-        /// <returns>操作是否成功</returns>
+        /// <param name="model">Đối tượng thực thể</param>
+        /// <returns>Thao tác có thành công hay không</returns>
         public Task<bool> Add(T model);
 
         /// <summary>
-        /// 增加多条数据
+        /// Thêm nhiều bản ghi
         /// </summary>
-        /// <param name="list">实体集合</param>
-        /// <returns>操作是否成功</returns>
+        /// <param name="list">Tập hợp thực thể</param>
+        /// <returns>Thao tác có thành công hay không</returns>
         public Task<bool> AddRange(List<T> list);
 
 
         /// <summary>
-        /// 添加单条数据，并返回 自增列
+        /// Thêm một bản ghi,và trả về Cột tự tăng
         /// </summary>
-        /// <param name="model">实体对象</param>
+        /// <param name="model">Đối tượng thực thể</param>
         /// <returns></returns>
         public Task<bool> AddReturnIdentity(T model);
 
         /// <summary>
-        /// 增加单条数据 ，并返回 实体
+        /// Thêm một bản ghi ,và trả về Thực thể
         /// </summary>
-        /// <param name="model">实体对象</param>
+        /// <param name="model">Đối tượng thực thể</param>
         /// <returns></returns>
         public Task<T> AddReturnEntity(T model);
 
 
         /// <summary>
-        /// 只添加指定列
+        /// Chỉ thêm cột chỉ định
         /// </summary>
-        /// <param name="model">实体对象</param>
-        /// <param name="columns">指定要添加的列</param>
+        /// <param name="model">Đối tượng thực thể</param>
+        /// <param name="columns">Cột chỉ định cần thêm</param>
         /// <returns></returns>
         public Task<bool> AddColumns(T model, params string[] columns);
 
 
         /// <summary>
-        /// 不插入指定列
+        /// Không chèn cột chỉ định
         /// </summary>
-        /// <param name="model">实体对象</param>
-        /// <param name="IgnoreColumns">要忽略的列</param>
+        /// <param name="model">Đối tượng thực thể</param>
+        /// <param name="IgnoreColumns">Cột cần bỏ qua</param>
         /// <returns></returns>
         public Task<bool> AddColumnsByIgnoreColumns(T model, params string[] IgnoreColumns);
 
@@ -61,27 +61,27 @@ namespace NewtouchHIS.Base.Domain
         #region Delete
 
         /// <summary>
-        /// 根据Khóa chính删除，并返回操作是否成功
+        /// TheoKhóa chínhXóa,và trả về thao tác có thành công hay không
         /// </summary>
-        /// <typeparam name="S">Khóa chính的类型</typeparam>
+        /// <typeparam name="S">Khóa chínhkiểu</typeparam>
         /// <param name="key">Khóa chính</param>
         /// <returns></returns>
         public Task<bool> Delete<S>(S key);
 
 
         /// <summary>
-        /// 根据Khóa chính删除，并返回操作是否成功
+        /// TheoKhóa chínhXóa,và trả về thao tác có thành công hay không
         /// </summary>
-        /// <typeparam name="S">Khóa chính类型</typeparam>
+        /// <typeparam name="S">Khóa chínhLoại</typeparam>
         /// <param name="keys">Khóa chính</param>
         /// <returns></returns>
         public Task<bool> DeleteRange<S>(params S[] keys);
 
 
         /// <summary>
-        /// 根据条件删除，并返回操作是否成功
+        /// Xóa theo điều kiện,và trả về thao tác có thành công hay không
         /// </summary>
-        /// <param name="where">条件</param>
+        /// <param name="where">Điều kiện</param>
         /// <returns></returns>
         public Task<bool> DeleteWhere(Expression<Func<T, bool>> where);
 
@@ -91,7 +91,7 @@ namespace NewtouchHIS.Base.Domain
         #region Update
 
         /// <summary>
-        /// 根据Khóa chính更新 ，返回操作是否成功
+        /// TheoKhóa chínhCập nhật ,trả về thao tác có thành công hay không
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
@@ -99,74 +99,74 @@ namespace NewtouchHIS.Base.Domain
 
 
         /// <summary>
-        /// 根据Khóa chính更新，返回操作是否成功
+        /// TheoKhóa chínhCập nhật,trả về thao tác có thành công hay không
         /// </summary>
-        /// <param name="list">实体集合</param>
+        /// <param name="list">Tập hợp thực thể</param>
         /// <returns></returns>
         public Task<bool> UpdateRange(List<T> list);
 
 
         /// <summary>
-        /// 根据指定 列条件 更新 ，并返回操作是否成功
+        /// Theo chỉ định Điều kiện cột Cập nhật ,và trả về thao tác có thành công hay không
         /// </summary>
-        /// <param name="model">实体对象</param>
-        /// <param name="expression">列条件 例如： t=>t.id>5 </param>
+        /// <param name="model">Đối tượng thực thể</param>
+        /// <param name="expression">Điều kiện cột Ví dụ: t=>t.id>5 </param>
         public Task<bool> Update(T model, Expression<Func<T, object>> expression);
 
 
         /// <summary>
-        /// 根据Khóa chính，更新指定列,返回操作是否成功
+        /// TheoKhóa chính,Cập nhật cột chỉ định,trả về thao tác có thành công hay không
         /// </summary>
-        /// <param name="model">实体对象</param>
-        /// <param name="columns">要更新的列</param>
+        /// <param name="model">Đối tượng thực thể</param>
+        /// <param name="columns">Cột cần cập nhật</param>
         /// <returns></returns>
         public Task<bool> UpdateColumns(T model, params string[] columns);
 
 
         /// <summary>
-        /// 根据Khóa chính，更新指定列,返回操作是否成功
+        /// TheoKhóa chính,Cập nhật cột chỉ định,trả về thao tác có thành công hay không
         /// </summary>
-        /// <param name="model">实体对象</param>
-        /// <param name="columns">要更新的列</param>
+        /// <param name="model">Đối tượng thực thể</param>
+        /// <param name="columns">Cột cần cập nhật</param>
         /// <returns></returns>
         public Task<bool> UpdateColumns(T model, Expression<Func<T, object>> columns);
 
 
         /// <summary>
-        /// 根据Khóa chính ， 忽略更新指定列，返回操作是否成功
+        /// TheoKhóa chính , Bỏ qua cập nhật cột chỉ định,trả về thao tác có thành công hay không
         /// </summary>
-        /// <param name="model">实体对象</param>
-        /// <param name="columns">不更新的 忽略列</param>
+        /// <param name="model">Đối tượng thực thể</param>
+        /// <param name="columns">không cập nhật Cột bỏ qua</param>
         /// <returns></returns>
         public Task<bool> UpdateColumnsByIgnoreColumns(T model, params string[] columns);
 
 
         /// <summary>
-        /// 根据Khóa chính ， 忽略更新指定列，返回操作是否成功
+        /// TheoKhóa chính , Bỏ qua cập nhật cột chỉ định,trả về thao tác có thành công hay không
         /// </summary>
-        /// <param name="model">实体对象</param>
-        /// <param name="columns">不更新的 忽略列</param>
+        /// <param name="model">Đối tượng thực thể</param>
+        /// <param name="columns">không cập nhật Cột bỏ qua</param>
         /// <returns></returns>
         public Task<bool> UpdateColumnsByIgnoreColumns(T model, Expression<Func<T, object>> columns);
 
         /// <summary>
-        /// 根据Khóa chính更新 列
+        /// TheoKhóa chínhCập nhật Cột
         /// </summary>
-        /// <param name="model">实体对象</param>
-        /// <param name="ignoreAllNullColumns">是否 NULL的列不更新</param>
-        /// <param name="isOffIdentity">是否忽略 自增列</param>
-        /// <param name="ignoreAllDefaultValue">是否 忽略默认值列</param>
+        /// <param name="model">Đối tượng thực thể</param>
+        /// <param name="ignoreAllNullColumns">Có hay không NULLcột không cập nhật</param>
+        /// <param name="isOffIdentity">Có bỏ qua hay không Cột tự tăng</param>
+        /// <param name="ignoreAllDefaultValue">Có hay không Bỏ qua cột giá trị mặc định</param>
         /// <returns></returns>
         public Task<bool> UpdateNotNullColumns(T model, bool ignoreAllNullColumns, bool isOffIdentity = false, bool ignoreAllDefaultValue = false);
 
 
-        //4.6.0.7 联表更新
+        //4.6.0.7 Cập nhật nối bảng
 
         /// <summary>
-        /// //根据不同条件执行更新不同的列 
+        /// //Theo điều kiện khác nhau thực thi cập nhật cột khác nhau 
         /// </summary>
-        /// <param name="model">实体对象</param>
-        /// <param name="dic">条件（key：要更新的列，value：条件是否更新此列）</param>
+        /// <param name="model">Đối tượng thực thể</param>
+        /// <param name="dic">Điều kiện(key:Cột cần cập nhật,value:Điều kiện có cập nhật cột này hay không)</param>
         /// <returns></returns>
         public Task<bool> UpdateIF(T model, Dictionary<Expression<Func<T, object>>, bool> dic);
 
@@ -176,43 +176,43 @@ namespace NewtouchHIS.Base.Domain
         #region Query
 
         /// <summary>
-        /// 查询所有数据
+        /// Truy vấn tất cả dữ liệu
         /// </summary>
         /// <returns></returns>
         public Task<List<T>> FindAll(bool isOrderBy = false, Expression<Func<T, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 取前 num 条数据
+        /// Lấy đầu num bản ghi
         /// </summary>
-        /// <param name="num">取前几条</param>
+        /// <param name="num">Lấy mấy bản ghi đầu</param>
         /// <returns></returns>
         public Task<List<T>> getTakeList(int num, bool isOrderBy = false, Expression<Func<T, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 获取单表 分页数据
+        /// Lấy dữ liệu một bảng Dữ liệu phân trang
         /// </summary>
-        /// <param name="skip">跳过几条</param>
-        /// <param name="take">取几条</param>
-        /// <param name="whereExp">跳过几条</param>
-        /// <param name="orderBy">排序条件</param>
-        /// <param name="orderByType">排序类型（Asc、Desc）</param>
+        /// <param name="skip">Bỏ qua mấy bản ghi</param>
+        /// <param name="take">Lấy mấy bản ghi</param>
+        /// <param name="whereExp">Bỏ qua mấy bản ghi</param>
+        /// <param name="orderBy">Điều kiện sắp xếp</param>
+        /// <param name="orderByType">Kiểu sắp xếp(Asc,Desc)</param>
         /// <returns></returns>
         public Task<List<T>> getPageList(int skip, int take, Expression<Func<T, bool>> whereExp, Expression<Func<T, object>> orderBy, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 获取符合条件的前 num 条数据
+        /// Lấy các bản ghi đầu thỏa điều kiện num bản ghi
         /// </summary>
-        /// <param name="where">条件</param>
-        /// <param name="num">取前几条</param>
+        /// <param name="where">Điều kiện</param>
+        /// <param name="num">Lấy mấy bản ghi đầu</param>
         /// <returns></returns> 
         public Task<List<T>> getTakeList(Expression<Func<T, bool>> where, int num, bool isOrderBy = false, Expression<Func<T, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 根据Khóa chính查询
+        /// TheoKhóa chínhTruy vấn
         /// </summary>
         /// <param name="pkValue">Khóa chính</param>
         /// <returns></returns>
@@ -220,197 +220,197 @@ namespace NewtouchHIS.Base.Domain
 
 
         /// <summary>
-        /// 根据条件获取 单条数据 
+        /// Lấy theo điều kiện Một bản ghi 
         /// </summary>
-        /// <param name="where">条件</param>
+        /// <param name="where">Điều kiện</param>
         /// <returns></returns>
         public Task<T> getFirstOrDefault(Expression<Func<T, bool>> where);
 
 
         /// <summary>
-        /// 根据Khóa chính In  查询
+        /// TheoKhóa chính In  Truy vấn
         /// </summary>
-        /// <typeparam name="S">Khóa chính的类型</typeparam>
-        /// <param name="list">Khóa chính In 操作的结果集</param>
+        /// <typeparam name="S">Khóa chínhkiểu</typeparam>
+        /// <param name="list">Khóa chính In Tập kết quả của thao tác</param>
         /// <returns></returns>
         public Task<List<T>> getByIn<S>(List<S> list, bool isOrderBy = false, Expression<Func<T, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 根据指定列 In 查询
+        /// Theo cột chỉ định In Truy vấn
         /// </summary>
-        /// <typeparam name="S">指定列的类型</typeparam>
-        /// <param name="column">指定列</param>
-        /// <param name="list">指定列 In 操作 的结果集</param>
+        /// <typeparam name="S">Kiểu của cột chỉ định</typeparam>
+        /// <param name="column">Cột chỉ định</param>
+        /// <param name="list">Cột chỉ định In Thao tác tập kết quả</param>
         /// <returns></returns>
         public Task<List<T>> getByIn<S>(Expression<Func<T, object>> column, List<S> list, bool isOrderBy = false, Expression<Func<T, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 根据指定列 Not In (!Contain)查询
+        /// Theo cột chỉ định Not In (!Contain)Truy vấn
         /// </summary>
-        /// <typeparam name="S">指定列类型</typeparam>
-        /// <param name="list">Not In的结果集</param>
-        /// <param name="field">指定列</param>
+        /// <typeparam name="S">Kiểu cột chỉ định</typeparam>
+        /// <param name="list">Not Intập kết quả</param>
+        /// <param name="field">Cột chỉ định</param>
         /// <returns></returns>
         public Task<List<T>> getByNotIn<S>(List<S> list, object field, bool isOrderBy = false, Expression<Func<T, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 根据条件 查询
+        /// Theo điều kiện Truy vấn
         /// </summary>
-        /// <param name="where">条件</param>
+        /// <param name="where">Điều kiện</param>
         /// <returns></returns>
         public Task<List<T>> getByWhere(Expression<Func<T, bool>> where, bool isOrderBy = false, Expression<Func<T, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 单个条件 根据 isWhere 判断 是否使用此条件进行查询
+        /// Một điều kiện Theo isWhere Xét Có sử dụng điều kiện này để truy vấn hay không
         /// </summary>
-        /// <param name="isWhere">判断是否使用此查询条件的条件</param>
-        /// <param name="where">查询条件</param>
+        /// <param name="isWhere">Điều kiện xét có sử dụng điều kiện truy vấn này hay không</param>
+        /// <param name="where">Điều kiện truy vấn</param>
         /// <returns></returns>
         public Task<List<T>> getByWhereIF(bool isWhere, Expression<Func<T, bool>> where, bool isOrderBy = false, Expression<Func<T, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 多个条件 根据 wheres.value  判断是否使用 此 wheres.key 的条件
+        /// Nhiều điều kiện Theo wheres.value  Xét có sử dụng hay không này wheres.key điều kiện
         /// </summary>
-        /// <param name="wheres">查询条件</param>
+        /// <param name="wheres">Điều kiện truy vấn</param>
         /// <returns></returns>
         public Task<List<T>> getByWhereIF(Dictionary<Expression<Func<T, bool>>, bool> wheres, bool isOrderBy = false, Expression<Func<T, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 查询 指定列的值 在 start至end 之间的数据
+        /// Truy vấn Giá trị của cột chỉ định tại startđếnend dữ liệu trong khoảng
         /// </summary>
-        /// <param name="value">指定类</param>
-        /// <param name="start">开始</param>
-        /// <param name="end">结束</param>
+        /// <param name="value">Lớp chỉ định</param>
+        /// <param name="start">Bắt đầu</param>
+        /// <param name="end">Kết thúc</param>
         /// <returns></returns>
         public Task<List<T>> getByBetween(object value, object start, object end, bool isOrderBy = false, Expression<Func<T, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 判断是否存在这条记录
+        /// Xét bản ghi này có tồn tại hay không
         /// </summary>
-        /// <param name="where">条件</param>
+        /// <param name="where">Điều kiện</param>
         /// <returns></returns>
         public Task<bool> getIsAny(Expression<Func<T, bool>> where);
 
 
         /// <summary>
-        /// 单表分页查询
+        /// Truy vấn phân trang một bảng
         /// </summary>
-        /// <typeparam name="T">要查询的表</typeparam>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页面容量</param>
-        /// <param name="isWhere">是否需要条件查询</param>
-        /// <param name="whereExp">查询条件</param>
-        /// <param name="isOrderBy">是否需要排序条件</param>
-        /// <param name="orderBy">排序条件</param>
-        /// <param name="orderByType">排序类型（Asc、Desc）</param>
+        /// <typeparam name="T">Bảng cần truy vấn</typeparam>
+        /// <param name="pageIndex">Số trang</param>
+        /// <param name="pageSize">Số bản ghi mỗi trang</param>
+        /// <param name="isWhere">Có cần truy vấn theo điều kiện hay không</param>
+        /// <param name="whereExp">Điều kiện truy vấn</param>
+        /// <param name="isOrderBy">Có cần điều kiện sắp xếp hay không</param>
+        /// <param name="orderBy">Điều kiện sắp xếp</param>
+        /// <param name="orderByType">Kiểu sắp xếp(Asc,Desc)</param>
         /// <returns></returns>
         public Task<List<T>> getPageList<T>(int pageIndex, int pageSize, bool isWhere = false, Expression<Func<T, bool>> whereExp = null, bool isOrderBy = false, Expression<Func<T, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 两表查询，
+        /// Truy vấn hai bảng,
         /// </summary>
-        /// <typeparam name="T1">左表</typeparam>
-        /// <typeparam name="T2">右表</typeparam>
-        /// <param name="joinExp">联表方式，联表字段（主外键关系）</param>
-        /// <param name="selectExp">联表查询的结果</param>
-        /// <param name="isWhere">是否需要查询条件</param>
-        /// <param name="whereExp">条件查询</param>
-        /// <param name="isOrderBy">是否需要排序</param>
-        /// <param name="orderBy">排序条件</param>
-        /// <param name="orderByType">排序类型（Asc、Desc）</param>
+        /// <typeparam name="T1">Bảng trái</typeparam>
+        /// <typeparam name="T2">Bảng phải</typeparam>
+        /// <param name="joinExp">Cách nối bảng,Trường nối bảng(Quan hệ khóa chính - khóa ngoại)</param>
+        /// <param name="selectExp">Kết quả truy vấn nối bảng</param>
+        /// <param name="isWhere">Có cần điều kiện truy vấn hay không</param>
+        /// <param name="whereExp">Truy vấn theo điều kiện</param>
+        /// <param name="isOrderBy">Có cần sắp xếp hay không</param>
+        /// <param name="orderBy">Điều kiện sắp xếp</param>
+        /// <param name="orderByType">Kiểu sắp xếp(Asc,Desc)</param>
         /// <returns></returns>
         public Task<dynamic> getJoinList<T1, T2>(Expression<Func<T1, T2, JoinQueryInfos>> joinExp, Expression<Func<T1, T2, dynamic>> selectExp, bool isWhere = false, Expression<Func<T1, T2, bool>> whereExp = null, bool isOrderBy = false, Expression<Func<T1, T2, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 两表 分页查询，
+        /// Hai bảng Truy vấn phân trang,
         /// </summary>
-        /// <typeparam name="T1">左表</typeparam>
-        /// <typeparam name="T2">右表</typeparam>
-        /// <param name="joinExp">联表方式，联表字段（主外键关系）</param>
-        /// <param name="selectExp">联表查询的结果</param>
-        /// <param name="isWhere">是否需要查询条件</param>
-        /// <param name="whereExp">条件查询</param>
-        /// <param name="isOrderBy">是否需要排序</param>
-        /// <param name="orderBy">排序条件</param>
-        /// <param name="orderByType">排序类型（Asc、Desc）</param>
+        /// <typeparam name="T1">Bảng trái</typeparam>
+        /// <typeparam name="T2">Bảng phải</typeparam>
+        /// <param name="joinExp">Cách nối bảng,Trường nối bảng(Quan hệ khóa chính - khóa ngoại)</param>
+        /// <param name="selectExp">Kết quả truy vấn nối bảng</param>
+        /// <param name="isWhere">Có cần điều kiện truy vấn hay không</param>
+        /// <param name="whereExp">Truy vấn theo điều kiện</param>
+        /// <param name="isOrderBy">Có cần sắp xếp hay không</param>
+        /// <param name="orderBy">Điều kiện sắp xếp</param>
+        /// <param name="orderByType">Kiểu sắp xếp(Asc,Desc)</param>
         /// <returns></returns>
         public Task<dynamic> getJoinPageList<T1, T2>(int pageIndex, int pageSize, Expression<Func<T1, T2, JoinQueryInfos>> joinExp, Expression<Func<T1, T2, dynamic>> selectExp, bool isWhere = false, Expression<Func<T1, T2, bool>> whereExp = null, bool isOrderBy = false, Expression<Func<T1, T2, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 三表连接 查询
+        /// Nối ba bảng Truy vấn
         /// </summary>
-        /// <typeparam name="T1">表1</typeparam>
-        /// <typeparam name="T2">表2</typeparam>
-        /// <typeparam name="T3">表3</typeparam>
-        /// <param name="joinExp">联表方式，联表字段（主外键关系）</param>
-        /// <param name="selectExp">联表查询的结果</param>
-        /// <param name="isWhere">是否需要查询条件</param>
-        /// <param name="whereExp">查询条件</param>
-        /// <param name="isOrderBy">是否需要排序条件</param>
-        /// <param name="orderBy">排序条件</param>
-        /// <param name="orderByType">排序类型（Asc、Desc）</param>
+        /// <typeparam name="T1">Bảng1</typeparam>
+        /// <typeparam name="T2">Bảng2</typeparam>
+        /// <typeparam name="T3">Bảng3</typeparam>
+        /// <param name="joinExp">Cách nối bảng,Trường nối bảng(Quan hệ khóa chính - khóa ngoại)</param>
+        /// <param name="selectExp">Kết quả truy vấn nối bảng</param>
+        /// <param name="isWhere">Có cần điều kiện truy vấn hay không</param>
+        /// <param name="whereExp">Điều kiện truy vấn</param>
+        /// <param name="isOrderBy">Có cần điều kiện sắp xếp hay không</param>
+        /// <param name="orderBy">Điều kiện sắp xếp</param>
+        /// <param name="orderByType">Kiểu sắp xếp(Asc,Desc)</param>
         /// <returns></returns>
         public Task<dynamic> getJoinList<T1, T2, T3>(Expression<Func<T1, T2, T3, JoinQueryInfos>> joinExp, Expression<Func<T1, T2, T3, dynamic>> selectExp, bool isWhere = false, Expression<Func<T1, T2, bool>> whereExp = null, bool isOrderBy = false, Expression<Func<T1, T2, T3, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 三表连接 分页 查询
+        /// Nối ba bảng Phân trang Truy vấn
         /// </summary>
-        /// <typeparam name="T1">表1</typeparam>
-        /// <typeparam name="T2">表2</typeparam>
-        /// <typeparam name="T3">表3</typeparam>
-        /// <param name="joinExp">联表方式，联表字段（主外键关系）</param>
-        /// <param name="selectExp">联表查询的结果</param>
-        /// <param name="isWhere">是否需要查询条件</param>
-        /// <param name="whereExp">查询条件</param>
-        /// <param name="isOrderBy">是否需要排序条件</param>
-        /// <param name="orderBy">排序条件</param>
-        /// <param name="orderByType">排序类型（Asc、Desc）</param>
+        /// <typeparam name="T1">Bảng1</typeparam>
+        /// <typeparam name="T2">Bảng2</typeparam>
+        /// <typeparam name="T3">Bảng3</typeparam>
+        /// <param name="joinExp">Cách nối bảng,Trường nối bảng(Quan hệ khóa chính - khóa ngoại)</param>
+        /// <param name="selectExp">Kết quả truy vấn nối bảng</param>
+        /// <param name="isWhere">Có cần điều kiện truy vấn hay không</param>
+        /// <param name="whereExp">Điều kiện truy vấn</param>
+        /// <param name="isOrderBy">Có cần điều kiện sắp xếp hay không</param>
+        /// <param name="orderBy">Điều kiện sắp xếp</param>
+        /// <param name="orderByType">Kiểu sắp xếp(Asc,Desc)</param>
         /// <returns></returns>
         public Task<dynamic> getJoinList<T1, T2, T3>(int pageIndex, int pageSize, Expression<Func<T1, T2, T3, JoinQueryInfos>> joinExp, Expression<Func<T1, T2, T3, dynamic>> selectExp, bool isWhere = false, Expression<Func<T1, T2, bool>> whereExp = null, bool isOrderBy = false, Expression<Func<T1, T2, T3, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc);
 
 
         /// <summary>
-        /// 执行查询sql语句 ，返回数据集
+        /// Thực thi truy vấnsqlcâu lệnh ,Trả về tập dữ liệu
         /// </summary>
-        /// <param name="sql">sql语句</param>
+        /// <param name="sql">sqlcâu lệnh</param>
         /// <returns></returns>
         public Task<List<T>> getListBySql(string sql);
 
 
         /// <summary>
-        /// 执行非查询sql语句，返回操作是否成功
+        /// Thực thi câu lệnh không truy vấnsqlcâu lệnh,trả về thao tác có thành công hay không
         /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="parameters">参数化</param>
+        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public Task<bool> ExecuteCommandSql(string sql, params SugarParameter[] parameters);
 
 
         /// <summary>
-        /// 执行查询sql语句，返回查询的结果集
+        /// Thực thi truy vấnsqlcâu lệnh,Trả về tập kết quả truy vấn
         /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="parameters">参数化</param>
+        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public Task<List<T>> getListBySqlQuery(string sql, params SugarParameter[] parameters);
 
 
         /// <summary>
-        /// 执行查询sql语句，返回 第一行第一列
+        /// Thực thi truy vấnsqlcâu lệnh,Trả về Hàng đầu tiên, cột đầu tiên
         /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="parameters">参数化</param>
+        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public Task<object> getScalar(string sql, params SugarParameter[] parameters);
 
@@ -422,28 +422,28 @@ namespace NewtouchHIS.Base.Domain
 
 
         /// <summary>
-        /// 使用存储过程，返回结果集
+        /// Sử dụng stored procedure,Trả về tập kết quả
         /// </summary>
-        /// <param name="procedureName">存储过程名称 </param>
-        /// <param name="parameters">参数，支持 output</param>
+        /// <param name="procedureName">Tên stored procedure </param>
+        /// <param name="parameters">Tham số,Hỗ trợ output</param>
         /// <returns></returns>
         public Task<DataTable> UseStoredProcedure(string procedureName, params SugarParameter[] parameters);
 
 
         /// <summary>
-        /// 使用事务 ，无返回值
+        /// Sử dụng transaction ,Không có giá trị trả về
         /// </summary>
-        /// <param name="action">执行动作</param>
-        /// <param name="errorCallBack">错误回调</param>
+        /// <param name="action">Hành động thực thi</param>
+        /// <param name="errorCallBack">Callback lỗi</param>
         public DbResult<bool> UseTran(Action action, Action<Exception> errorCallBack);
 
 
         /// <summary>
-        /// 使用事务，有返回值
+        /// Sử dụng transaction,Có giá trị trả về
         /// </summary>
-        /// <typeparam name="S">返回值类型</typeparam>
-        /// <param name="func">执行动作</param>
-        /// <param name="errorCallBack">错误回调</param>
+        /// <typeparam name="S">Kiểu giá trị trả về</typeparam>
+        /// <param name="func">Hành động thực thi</param>
+        /// <param name="errorCallBack">Callback lỗi</param>
         public DbResult<S> UseTran<S>(Func<S> func, Action<Exception> errorCallBack);
 
 

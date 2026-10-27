@@ -1,37 +1,37 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 药房部门 药品 库存数量、单位
+    /// Bộ phận nhà thuốc Thuốc Số lượng tồn kho、Đơn vị
     /// </summary>
     public class DepartmentMedicineStockUnitVO
     {
         /// <summary>
-        /// 发药部门单位
+        /// Đơn vị bộ phận phát thuốc
         /// </summary>
         public string fybmdw { get; set; }
 
         /// <summary>
-        /// 发药部门转化因子
+        /// Hệ số chuyển đổi bộ phận phát thuốc
         /// </summary>
         public decimal fybmzhyz { get; set; }
 
         /// <summary>
-        /// 库存数量（对应最小单位）
+        /// Số lượng tồn kho（Đơn vị nhỏ nhất tương ứng）
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// 现有库存数量+单位（以药库的方式来显示）
+        /// Số lượng tồn kho hiện có+Đơn vị（Hiển thị theo cách kho thuốc）
         /// </summary>
         public string kcslandDw { get; set; }
 
         /// <summary>
-        /// 单位（当前药房部门 药品 单位）
+        /// Đơn vị（Bộ phận nhà thuốc hiện tại Thuốc Đơn vị）
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 本部该改药品 转换因子
+        /// Thuốc bộ phận này cần sửa Hệ số chuyển đổi
         /// </summary>
         public decimal bbmzhyz { get; set; }
     }

@@ -156,11 +156,11 @@
     });
 
 	function GetQueryValue(queryName) {
-		var query = decodeURI(window.location.search.substring(1));//将url转码, 如果不是当前地址链接, 可以在这里填写需要的链接
-		var vars = query.split("&");//分割字符串, 将url切割成数组形式的对象
+		var query = decodeURI(window.location.search.substring(1));//chuyểnurlChuyển mã, Nếu không phải liên kết địa chỉ hiện tại, Có thể điền liên kết cần thiết tại đây
+		var vars = query.split("&");//Tách chuỗi, chuyểnurlCắt thành đối tượng dạng mảng
 		for (var i = 0; i < vars.length; i++) {
-			var pair = vars[i].split("=");//再次分割成数组
-			if (pair[0] == queryName) { return pair[1]; }//如果匹配输出结果
+			var pair = vars[i].split("=");//Tách lại thành mảng
+			if (pair[0] == queryName) { return pair[1]; }//Nếu khớp thì xuất kết quả
 
 		}
 		return null;
@@ -184,11 +184,11 @@
             onnodedbclick: function (item) {
                 if (item.Ex1 != 'p') {
                     $("#blid").val(item.id + "|" + blid);
-                    if (doctype==".html")//新编辑器病历格式
+                    if (doctype==".html")//Định dạng bệnh án của trình soạn thảo mới
                         loadbackBl(item.id + "|" + blid);
                     else
                         $("#history").trigger("click");
-                    //top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病历操作", enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + item.id + "&bllx=" + item.value + "&zyh=" + "@ViewBag.zyh" + "&mzh=" + "@ViewBag.mzh" + "&jzbl=1&blid2=" + blId + "&bllx2=" + bllx + "&blxtmc_yj=" + blxtmc_yj, AppId: "EMR" });
+                    //top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Thao tác bệnh án", enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + item.id + "&bllx=" + item.value + "&zyh=" + "@ViewBag.zyh" + "&mzh=" + "@ViewBag.mzh" + "&jzbl=1&blid2=" + blId + "&bllx2=" + bllx + "&blxtmc_yj=" + blxtmc_yj, AppId: "EMR" });
                 }
             }
         });

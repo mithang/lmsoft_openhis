@@ -4,17 +4,17 @@ using System.Text;
 namespace NewtouchHIS.Lib.Base.Security
 {
     /// <summary>
-    /// DES 加密 解密
+    /// DES Mã hóa giải mã
     /// </summary>
     public class DESEncrypt
     {
         private static string DESKey = "Newtouch_desencrypt_2016";
 
         /// <summary> 
-        /// 加密数据
+        /// Dữ liệu mã hóa
         /// </summary> 
-        /// <param name="text">明文</param> 
-        /// <param name="sKey">秘钥，默认使用‘默认秘钥’</param> 
+        /// <param name="text">Văn bản rõ</param> 
+        /// <param name="sKey">Khóa bí mật, mặc định sử dụng‘Khóa bí mật mặc định’</param> 
         /// <returns></returns> 
         public static string Encrypt(string text, string sKey)
         {
@@ -46,10 +46,10 @@ namespace NewtouchHIS.Lib.Base.Security
         }
 
         /// <summary> 
-        /// 解密数据
+        /// Dữ liệu giải mã
         /// </summary> 
-        /// <param name="text">密文</param> 
-        /// <param name="sKey">秘钥，默认使用‘默认秘钥’</param> 
+        /// <param name="text">Văn bản mật</param> 
+        /// <param name="sKey">Khóa bí mật, mặc định sử dụng‘Khóa bí mật mặc định’</param> 
         /// <returns></returns> 
         public static string Decrypt(string text, string? sKey = null)
         {
@@ -86,11 +86,11 @@ namespace NewtouchHIS.Lib.Base.Security
             des.GenerateKey();
             des.GenerateIV();
 
-            // 加密数据
+            // Dữ liệu mã hóa
             byte[] plainText = System.Text.Encoding.UTF8.GetBytes("Hello, DES!");
             byte[] encryptedData = EncryptData(plainText, des.Key, des.IV);
 
-            // 解密数据
+            // Dữ liệu giải mã
             byte[] decryptedData = DecryptData(encryptedData, des.Key, des.IV);
             string decryptedText = System.Text.Encoding.UTF8.GetString(decryptedData);
         }

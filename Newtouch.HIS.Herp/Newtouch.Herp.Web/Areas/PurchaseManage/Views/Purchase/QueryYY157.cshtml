@@ -115,7 +115,7 @@
 
         //gridList();
 
-        //搜索框隐藏显示控制
+        //Điều khiển ẩn/hiện hộp tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -127,7 +127,7 @@
         TabGridHide();
     });
 
-    //隐藏搜索框并显示箭头
+    //Ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -137,7 +137,7 @@
         }
     }
 
-    //初始化浮层
+    //Khởi tạo lớp nổi
     function InitFloat() {
         //Nhà cung cấp vật tư
         $("#qy").newtouchBatchFloatingSelector({
@@ -216,9 +216,9 @@
     }
 
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp chuột，Xóa chi tiết trước sau đó tải lại tất cả chi tiết của các dòng đã chọn
         $.najax({
             type: "Get",
             url: "/PurchaseManage/Purchase/GetGridJsonYY158",

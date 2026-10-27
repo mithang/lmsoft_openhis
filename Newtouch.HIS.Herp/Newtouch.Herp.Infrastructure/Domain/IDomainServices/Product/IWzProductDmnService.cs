@@ -7,7 +7,7 @@ using Newtouch.Herp.Domain.ValueObjects;
 namespace Newtouch.Herp.Domain.IDomainServices
 {
     /// <summary>
-    /// 物资操作
+    /// Thao tác vật tư
     /// </summary>
     public interface IWzProductDmnService
     {
@@ -22,13 +22,13 @@ namespace Newtouch.Herp.Domain.IDomainServices
         IList<VWzProductEntity> GetList(Pagination pagination, string organizeId, string lb, string zt, string keyWord);
 
         /// <summary>
-        /// 根据ID删除物资信息
+        /// Theo ID Xóa thông tin vật tư
         /// </summary>
         /// <param name="id"></param>
         void DeleteProduct(string id);
 
         /// <summary>
-        /// 根据物资单位关联关系ID获取物资和单位信息
+        /// Theo quan hệ liên kết đơn vị vật tư ID Lấy thông tin vật tư và đơn vị
         /// </summary>
         /// <param name="relId"></param>
         /// <param name="organizeId"></param>
@@ -36,7 +36,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         List<VProductUnitEntity> GetProductAndUnitByProId(string relId, string organizeId);
 
         /// <summary>
-        /// 获取本部门物资类别
+        /// Lấy loại vật tư của khoa phòng mình
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -45,7 +45,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         List<VBmwzlbEntity> GetBmWzLb(string warehouseId, string organizeId, string zt = "1");
 
         /// <summary>
-        /// 修改物资价格
+        /// Sửa giá vật tư
         /// </summary>
         /// <param name="id"></param>
         /// <param name="lsj"></param>
@@ -56,7 +56,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         int UpdateProductPrice(string id, decimal lsj, string userCode, string organizeId, string zt = "1");
 
         /// <summary>
-        /// 获取物资信息
+        /// Lấy thông tin vật tư
         /// </summary>
         /// <param name="id"></param>
         /// <param name="organizeId"></param>
@@ -64,7 +64,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         VProductInfoEntity GetProductInfo(string id, string organizeId);
 
         /// <summary>
-        /// 获取待处理事件总数
+        /// Lấy tổng số sự kiện chờ xử lý
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -72,7 +72,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         NeedDealCountVO GetNeedDealCountByZkf(string warehouseId, string organizeId);
 
         /// <summary>
-        /// 获取待处理事件总数
+        /// Lấy tổng số sự kiện chờ xử lý
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -80,13 +80,13 @@ namespace Newtouch.Herp.Domain.IDomainServices
         NeedDealCountVO GetNeedDealCountByKskf(string warehouseId, string organizeId);
 
         /// <summary>
-        /// 获取物资代码
+        /// Lấy mã vật tư
         /// </summary>
         /// <returns></returns>
         string GetProductCode();
 
         /// <summary>
-        /// 检查物资代码是否已存在
+        /// Kiểm tra mã vật tư đã tồn tại chưa
         /// </summary>
         /// <param name="productCode"></param>
         /// <param name="keyValue"></param>
@@ -94,7 +94,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         string CheckProductCode(string productCode, string keyValue);
 
         /// <summary>
-        /// 插入物资数据并同步到收费项目中
+        /// Chèn dữ liệu vật tư và đồng bộ vào hạng mục thu phí
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
@@ -103,23 +103,23 @@ namespace Newtouch.Herp.Domain.IDomainServices
 		int InsertTOSfxm(string orgid, string wzcode);
 
         /// <summary>
-        /// 更新物资数据并同步到收费项目中
+        /// Cập nhật dữ liệu vật tư và đồng bộ vào hạng mục thu phí
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         int updateProductToSfxm(WzProductEntity entity);
 
         /// <summary>
-        /// 获取产品明细
+        /// Lấy chi tiết sản phẩm
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="organizeId"></param>
-        /// <param name="topCount">默认 top 500</param>
+        /// <param name="topCount">Mặc định top 500</param>
         /// <returns></returns>
         List<VProductInfoDo> SelectProductDetail(string keyword, string organizeId, int topCount = 500);
 
         /// <summary>
-        /// 查询物资所有单位
+        /// Truy vấn tất cả đơn vị của vật tư
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="organizeId"></param>

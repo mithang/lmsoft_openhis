@@ -10,7 +10,7 @@ namespace NewtouchHIS.Base.DomainService
     public class SysUserStaffDutyDmnService : BaseDmnService<SysStaffDutyComplexVEntity>, ISysUserStaffDutyDmnService
     {
         /// <summary>
-        /// 人员岗位关联关系 List
+        /// Quan hệ liên kết nhân viên - vị trí List
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="staffId"></param>
@@ -28,7 +28,7 @@ namespace NewtouchHIS.Base.DomainService
             }
         }
         /// <summary>
-        /// 查询员工列表
+        /// Truy vấn danh sách nhân viên
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>

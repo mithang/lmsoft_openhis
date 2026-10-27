@@ -32,8 +32,8 @@ left join [NewtouchHIS_Base].dbo.sys_department dept on gh.ks=dept. Code and  gh
 left join [NewtouchHIS_Base].dbo.xt_zs  zs on staff.gh=zs.ys and staff.OrganizeId=zs.OrganizeId and staff.zt=zs.zt
 where 
 gh.zt=1 and gh.organizeId=@orgId and gh.ghzt<>'2'
-and jzbz=1  --待就诊
-and mjzbz=3  --专家门诊
+and jzbz=1  --Chờ khám
+and mjzbz=3  --Khám chuyên gia
 and ghrq >=@ghrq+' 00:00:00' and ghrq<=@ghrq+' 23:59:59'
 --and ghrq >='2023-01-01 00:00:00' and ghrq<='2023-06-15 23:59:59'
 
@@ -67,8 +67,8 @@ left join mz_ghzs ghzs on gh.ghnm=ghzs.ghnm and gh.OrganizeId=ghzs.OrganizeId an
 left join [NewtouchHIS_Base].dbo.xt_zs  zs on ghzs.zsCode=zs.zsCode and ghzs.OrganizeId=zs.OrganizeId and ghzs.zt=zs.zt
 where 
 gh.zt=1 and gh.organizeId=@orgId and gh.ghzt<>'2'
-and jzbz=1  --待就诊
-and mjzbz=1  --专家门诊
+and jzbz=1  --Chờ khám
+and mjzbz=1  --Khám chuyên gia
 and ghrq >=@ghrq+' 00:00:00' and ghrq<=@ghrq+' 23:59:59'
 --and ghrq >='2023-01-01 00:00:00' and ghrq<='2023-06-15 23:59:59'
 
@@ -91,7 +91,7 @@ and ghrq >=@ghrq+' 00:00:00' and ghrq<=@ghrq+' 23:59:59'
         }
 
         /// <summary>
-        /// 获取诊室列表
+        /// LấyPhòng khámdanh sách
         /// </summary>
         /// <param name="ksCode"></param>
         /// <param name="keyword"></param>
@@ -120,7 +120,7 @@ select py,zsCode code,zsmc Name from [NewtouchHIS_Base].dbo.xt_zs  where zt=1 an
         }
 
         /// <summary>
-        /// 根据科室获取各诊室待就诊患者数量
+        /// TheoKhoaLấymỗiPhòng khámchờKhám bệnhBệnh nhânSố lượng
         /// </summary>
         /// <param name="ksCode"></param>
         /// <param name="orgId"></param>
@@ -135,7 +135,7 @@ select dept.name ksmc, zsmc,count(*) num
 left join [NewtouchHIS_Base].dbo.xt_zs  zs on ghzs.zsCode=zs.zsCode and ghzs.OrganizeId=zs.OrganizeId and ghzs.zt=zs.zt
  where 
 gh.zt=1 and gh.organizeId=@orgId
-and jzbz=1  --待就诊
+and jzbz=1  --Chờ khám
  and mjzbz=1
 and ghrq >=@ghrq+' 00:00:00' and ghrq<=@ghrq+' 23:59:59'
 --and ghrq >='2023-01-01 00:00:00' and ghrq<='2023-06-15 23:59:59'
@@ -156,7 +156,7 @@ and ghrq >=@ghrq+' 00:00:00' and ghrq<=@ghrq+' 23:59:59'
         }
 
         /// <summary>
-        /// 获取分诊叫号列表
+        /// Lấyphútkhámgọisốdanh sách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ksCode"></param>
@@ -177,8 +177,8 @@ and ghrq >=@ghrq+' 00:00:00' and ghrq<=@ghrq+' 23:59:59'
 //left join [NewtouchHIS_Base].dbo.xt_zs  zs on ghzs.zsCode=zs.zsCode and ghzs.OrganizeId=zs.OrganizeId and ghzs.zt=zs.zt
 //where 
 //gh.zt=1 and gh.organizeId=@orgId
-//and jzbz=1  --待就诊
-//and mjzbz=1  --专家门诊
+//and jzbz=1  --chờKhám bệnh
+//and mjzbz=1  --chuyên giaNgoại trú
 //and ghrq >=@ghrq+' 00:00:00' and ghrq<=@ghrq+' 23:59:59'
 //--and ghrq >='2023-01-01 00:00:00' and ghrq<='2023-06-15 23:59:59'
 //and zs.zsCode is not null
@@ -208,10 +208,10 @@ and ghrq >=@ghrq+' 00:00:00' and ghrq<=@ghrq+' 23:59:59'
 
         }
 
-        #region 分诊科室
+        #region phầnkhámKhoa
 
         /// <summary>
-        /// 根据查询条件获取有效科室列表
+        /// TheoĐiều kiện tìm kiếmLấyHiệu lựcKhoadanh sách
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -228,7 +228,7 @@ and ghrq >=@ghrq+' 00:00:00' and ghrq<=@ghrq+' 23:59:59'
         }
 
         /// <summary>
-        /// 获取科室下的诊室及医生
+        /// LấyKhoadướicủaPhòng khámvàBác sĩ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyValue"></param>
@@ -254,7 +254,7 @@ where zs.zt=1 and zs.OrganizeId = @orgId ";
 
         #endregion
 
-        #region 诊室信息（小屏）
+        #region Thông tin phòng khám（nhỏmàn hình）
         public OutpatientConsultInfoVO GetConsultInfo(string orgId, string zsCode,string ghrq) {
 
             var inParameters = new List<SqlParameter>();
@@ -335,7 +335,7 @@ where a.zt='1' and a.OrganizeId=@orgid";
 				,new SqlParameter("@orgid", orgid),new SqlParameter("@mzh",mzh) });
 		}
         /// <summary>
-        /// 叫号修改状态
+        /// gọisốSửaTrạng thái
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="calledstu"></param>
@@ -351,7 +351,7 @@ where a.zt='1' and a.OrganizeId=@orgid and a.mzh=@mzh and b.ghnm is not null";
 				,new SqlParameter("@orgid", orgid),new SqlParameter("@mzh",mzh) });
 		}
         /// <summary>
-        /// 验证叫号状态
+        /// kiểm tragọisốTrạng thái
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgid"></param>
@@ -367,7 +367,7 @@ where a.zt='1' and a.OrganizeId=@orgid and a.mzh=@mzh  and b.ghnm is not null";
 			return this.FirstOrDefault<int>(sqlstr, par.ToArray());
 		}
         /// <summary>
-        /// 获取机构名称
+        /// LấyTên cơ sở
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

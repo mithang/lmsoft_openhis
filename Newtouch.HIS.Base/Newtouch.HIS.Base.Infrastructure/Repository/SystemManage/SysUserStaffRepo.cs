@@ -36,9 +36,9 @@ namespace Newtouch.HIS.Repository
                         throw new FailedException("Nhân viên hệ thống bị gán trùng");
                     }
                 }
-                //先 del
+                //Trước del
                 db.Delete<SysUserStaffEntity>(p => p.UserId == userId);
-                //再添加
+                //Thêm tiếp
                 foreach (var staffId in staffIdArr)
                 {
                     var userStaffentity = new SysUserStaffEntity();

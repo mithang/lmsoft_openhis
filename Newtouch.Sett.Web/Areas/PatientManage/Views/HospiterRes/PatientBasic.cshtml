@@ -2,13 +2,13 @@
     ViewBag.Title = "Bệnh nhân Quản lý";
     Layout = "~/Views/Shared/_Form.cshtml";
 
-    //是否和医保交易
+    //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
-    //是否和新农合交易
+    //Có giao dịch với nông thôn mới hay không
     var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-    //医保所属地
+    //Nơi quản lý BHYT
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
-    //出生年月的格式 是否精确到具体时间
+    //rasinhnămthángcủađịnh dạngkiểu làkhôngtinhxác nhậnđếncụthểthời giangiữa
     var csnyFormat = "yyyy-MM-dd";
     if (SysConfigReader.Bool("PatientBasicInfo_Birthday_withTime", false).Value)
     {
@@ -36,8 +36,8 @@
 <form id="form1">
     <div class="panel panel-default">
         @*<ul class="nav nav-tabs" role="tablist" id="myTab">
-                <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">患者基本信息</a></li>
-                <li role="presentation"><a href="#extentInfo" role="tab" data-toggle="tab">拓展信息</a></li>
+                <li role="presentation"><a href="#basicInfo" role="tab" data-toggle="tab">Thông tin cơ bản bệnh nhân</a></li>
+                <li role="presentation"><a href="#extentInfo" role="tab" data-toggle="tab">Thông tin mở rộng</a></li>
             </ul>*@
         <div class="panel-heading navb-bg">
             Thông tin cơ bản
@@ -55,13 +55,13 @@
                             </td>
                             <td class="formValue">
                                 <input type="text" id="kh" class="form-control form-an">
-                                <!-- 默认空白，非医保卡 -->
+                                <!-- mặc địnhnhậnrỗngtrắng，khôngy tếbảo hiểmthẻ -->
                                 <input type="hidden" id="cardtype" value="" />
                                 <input type="hidden" id="cbdbm" value="" />
                                 <input type="hidden" id="sbbh" value="" />
                                 <input type="hidden" id="accountattr" value="" />
                                 <input type="hidden" id="cblb" value="" />
-                                <!--地域编号 0本地 1外地 此处用于异地医保标记-->
+                                <!--địalĩnh vựcmãsố 0Cục bộ 1Nơi khác nàynơidùngtạikhácđịay tếbảo hiểmtiêughi-->
                                 <input type="hidden" id="dybh" value="" />
                                 <input type="hidden" id="xzlx" value="" />
                                 <input type="hidden" id="grbh" value="" />
@@ -134,7 +134,7 @@
 
                 </div>
                 @*<div class="panel-heading navb-bg">
-                        基础信息
+                        Thông tin cơ sở
                     </div>*@
                 <table class="form" style="width: 98%; border: 0">
                     @*<tr>*@
@@ -228,7 +228,7 @@
                         <td class="formTitle">hôn nhân Không</td>
                         <td class="formValue formDdlSelectorTd">
                             @*<select class="form-control form-an-end" id="hf" name="hf">
-                                <option value="">==请选择==</option>
+                                <option value="">==Vui lòng chọn==</option>
                             </select>*@
                             @Html.DropDownList("hf", EnumHF.wh.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control form-an" })
                         </td>
@@ -379,7 +379,7 @@
                         <input type="text" id="dwdh" class="form-control form-an form-an-end">
                     </td>
 
-                    @*<td class="formTitle">备注</td>
+                    @*<td class="formTitle">Ghi chú</td>
                         <td class="formValue">
                             <input type="text" id="bz" class="form-control form-an form-an-end">
                         </td>*@
@@ -431,8 +431,8 @@
 <script type="text/javascript" src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/PatientManage/HospiterRes/PatientBasic.js",false)"></script>
 <script src="~/Content/js/jquery.citys.js"></script>
 <script type="text/javascript">
-    var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
-    var medicalInsurance = '@medicalInsurance';//医保所属地配置:区分医院所属医保区域
+    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+    var medicalInsurance = '@medicalInsurance';//cấu hình địa phương BHYT:phân biệt khu vực BHYT của bệnh viện
 
     var zjpz = "@ViewBag.zjpz";
     var khpz = "@ViewBag.khpz";
@@ -517,16 +517,16 @@
                 });
             }
             else {
-                //是新登记
+                //làmớiđăngghi
                 if (khpz === 'ON') {
                     $("#kh").attr("disabled", "disabled").css("background-color", "#f1f4f6");
                 }
                 if (blhpz == 'ON') {
-                    //病历号自动生成
+                    //bệnhlịchsốtựđộngsinhthành
                     $("#blh").attr("disabled", "disabled").css("background-color", "#f1f4f6");
                 }
                 if (khpz === 'ON' || blhpz === 'ON') {
-                    //同步请求后台 获取最新虚拟卡号/自动生成病历号
+                    //cùngbướcvui lòngyêu cầusauđài đượclấynhấtmớiảodự kiếnthẻsố/tựđộngsinhthànhbệnhlịchsố
                     $.ajax({
                         url: "/PatientManage/HospiterRes/GetNewCardNoAndBLH",
                         data: { khsc: khsc, blhsc: blhsc },
@@ -551,11 +551,11 @@
                         $('#mz').val("");
                         $("#hf").val("");
                         
-                        //默认显示国籍gj2 -43
+                        //mặc địnhnhậnhiển thịhiển thịquốc giatịchgj2 -43
                         $("#gj2").val("CHN").trigger('change');
-                        //默认联系方式zjlxfs
+                        //mặc địnhnhậnliênhệphươngkiểuzjlxfs
                         $("#zjlxfs").val("shoujihao").trigger('change');
-                        //默认现住址20-1-8 citylist_XDZ
+                        //mặc địnhnhậnhiệnnhập việnđịa chỉ20-1-8 citylist_XDZ
                         //setTimeout(function () {
                         //    setTheDefaultCity();
                         //}, 1000);
@@ -564,9 +564,9 @@
             }
         });
 
-        //填充
+        //điền
         function fillForm() {
-            if (patientform) {//社保
+            if (patientform) {//BHXH
                 var yibaoCardInfo = patientform;
                 if (yibaoCardInfo) {
                     switch (yibaoCardInfo.ybVer) {
@@ -612,12 +612,12 @@
                         $('#kh').val(yibaoCardInfo.kh);
                     }
                     if (!!!keyValue) {
-                        //是新增
+                        //là thêm mới
                         $('#cardtype').val(yibaoCardInfo.jzlx);
-                        $('#kh').val(yibaoCardInfo.kh);    //个人编号 暂作为系统卡号
+                        $('#kh').val(yibaoCardInfo.kh);    //Số hiệu cá nhân Tạm thời làm số thẻ hệ thống
                     }
                     else {
-                        //是修改
+                        //là sửa
                         if ($('#kh').val() !== yibaoCardInfo.kh) {
                             $.modalAlert("Lỗi: không phải cùng một thẻ", 'error');
                             return false;
@@ -626,41 +626,41 @@
                     $('#cardtype').val(yibaoCardInfo.jzlx);
 
                     $('#cblb').val(ybPatInfo.accountattr);
-                    //重庆医保，根据返回的行政区划编码区分本地和异地就医人员，本地就医人员的行政区划编码长度小于6位，异地就医人员的行政区划编码为6位
-                    //新接口统筹区划统一6位50开头var bkbz = sm01Info.accountattr.substr(11, 1)
+                    //BHYT Trùng Khánh，Dựa vào mã hành chính trả về để phân biệt người khám tại chỗ và khác địa phương，Độ dài mã hành chính của người khám tại chỗ nhỏ hơn6vị trí，Mã hành chính của người khám khác địa phương là6vị trí
+                    //Giao diện mới thống nhất khu vực điều phối6vị trí50phần đầuvar bkbz = sm01Info.accountattr.substr(11, 1)
                     if (ybPatInfo.accountattr.substr(11, 1) == "Y") {
                         $('#dybh').val("1");
                     } else {
                         $('#dybh').val("0");
                     }
                     khsc = false;
-                    //社保编号
-                    $('#sbbh').val(yibaoCardInfo.kh);  //个人编号
-                    //参保地编码
-                    $('#cbdbm').val(ybPatInfo.xzqh);    //分中心编号
+                    //Số BHXH
+                    $('#sbbh').val(yibaoCardInfo.kh);  //Số hiệu cá nhân
+                    //Mã nơi tham gia bảo hiểm
+                    $('#cbdbm').val(ybPatInfo.xzqh);    //Số hiệu trung tâm chi nhánh
                     $('#phone').val(ybPatInfo.lxdh);
                     $('#accountattr').val(ybPatInfo.accountattr);
-                    //身份证 等等赋值
-                    $('#xm').val(ybPatInfo.xm);    //姓名
-                    //证件类型 医保字典0身份证 1护照
+                    //CMND/CCCD v.v. gán giá trị
+                    $('#xm').val(ybPatInfo.xm);    //Họ tên
+                    //loại giấy tờ Từ điển BHYT0CMND/CCCD 1Hộ chiếu
                     var thisZjlx = '1';
                     if (!!thisZjlx)
                         $("#zjlx").val(thisZjlx).trigger('change');
                     if (!!ybPatInfo.sfzh) {
-                        $('#zjh').val(ybPatInfo.sfzh);   //证件号
+                        $('#zjh').val(ybPatInfo.sfzh);   //Số giấy tờ
                     }
                     var idCard = ybPatInfo.sfzh;
                     var birthday = idCard.substring(6, 10) + "-" + idCard.substring(10, 12) + "-" + idCard.substring(12, 14);
                     $('#csny').val(birthday);
                     setAge($('#csny').val());
-                    $('#xian_dz').val(ybPatInfo.txdz);//使用地址
-                    //性别 医保字典1男2女
+                    $('#xian_dz').val(ybPatInfo.txdz);//Dùng địa chỉ
+                    //Giới tính Từ điển BHYT1Nam2Nữ
                     $("input[name=xb]").parent().removeClass('active');
                     $("input[name=xb]").removeAttr('checked'); 
                     if (ybPatInfo.xb == '1')
-                        $("input[name=xb]:eq(0)").trigger('click'); //男
+                        $("input[name=xb]:eq(0)").trigger('click'); //Nam
                     else if (ybPatInfo.xb == '2')
-                        $("input[name=xb]:eq(1)").trigger('click'); //女
+                        $("input[name=xb]:eq(1)").trigger('click'); //Nữ
                     
                     $("#brxzmc").val(yibaoCardInfo.brxzmc).attr("data-label", yibaoCardInfo.brxzdm);
 
@@ -689,8 +689,8 @@
                         }
                     }
                 } else
-                    ybPatInfo2 = yibaoCardInfo.output.insuinfo[0];//参保信息
-                //var ybPatInfo3 = yibaoCardInfo.output.cardecinfo;//卡信息
+                    ybPatInfo2 = yibaoCardInfo.output.insuinfo[0];//thông tin tham gia bảo hiểm
+                //var ybPatInfo3 = yibaoCardInfo.output.cardecinfo;//Thông tin thẻ
                 if (ybPatInfo) {
                     if (yibaoCardInfo.kh == null || yibaoCardInfo.kh == "") {
                         $.ajax({
@@ -707,12 +707,12 @@
                         $('#kh').val(yibaoCardInfo.kh);
                     }
                     if (!!!keyValue) {
-                        //是新增
+                        //là thêm mới
                         $('#cardtype').val(yibaoCardInfo.jzlx);
-                        $('#kh').val(yibaoCardInfo.kh);    //个人编号 暂作为系统卡号
+                        $('#kh').val(yibaoCardInfo.kh);    //Số hiệu cá nhân Tạm thời làm số thẻ hệ thống
                     }
                     else {
-                        //是修改
+                        //là sửa
                         if ($('#kh').val() !== yibaoCardInfo.kh) {
                             $.modalAlert("Lỗi: không phải cùng một thẻ", 'error');
                             return false;
@@ -721,42 +721,42 @@
                     $('#cardtype').val(yibaoCardInfo.jzlx);
 
                     $('#cblb').val(ybPatInfo2.psn_type);
-                    //重庆医保，根据返回的行政区划编码区分本地和异地就医人员，本地就医人员的行政区划编码长度小于6位，异地就医人员的行政区划编码为6位
-                    //新接口统筹区划统一6位50开头
+                    //BHYT Trùng Khánh，Dựa vào mã hành chính trả về để phân biệt người khám tại chỗ và khác địa phương，Độ dài mã hành chính của người khám tại chỗ nhỏ hơn6vị trí，Mã hành chính của người khám khác địa phương là6vị trí
+                    //Giao diện mới thống nhất khu vực điều phối6vị trí50phần đầu
                     if (!!ybPatInfo2.insuplc_admdvs && ybPatInfo2.insuplc_admdvs.length == 6 && yibaoCardInfo.kh != null && yibaoCardInfo.kh.substring(0, 1) == "#") {
                         $('#dybh').val("1");
                     } else {
                         $('#dybh').val("0");
                     }
-                    $('#xzlx').val(ybPatInfo2.insutype);//险种类型
-                    $('#grbh').val(ybPatInfo.psn_no);//人员编号
-                    $('#accountattr').val(ybPatInfo.accountattr);//账户标志
+                    $('#xzlx').val(ybPatInfo2.insutype);//Loại bảo hiểm
+                    $('#grbh').val(ybPatInfo.psn_no);//Số hiệu nhân viên
+                    $('#accountattr').val(ybPatInfo.accountattr);//tài khoảnhộtiêuchí
                     khsc = false;
-                    //社保编号
-                    $('#sbbh').val(yibaoCardInfo.kh);  //个人编号
-                    //参保地编码
-                    $('#cbdbm').val(ybPatInfo2.insuplc_admdvs);    //分中心编号
+                    //Số BHXH
+                    $('#sbbh').val(yibaoCardInfo.kh);  //Số hiệu cá nhân
+                    //Mã nơi tham gia bảo hiểm
+                    $('#cbdbm').val(ybPatInfo2.insuplc_admdvs);    //Số hiệu trung tâm chi nhánh
                     //$('#phone').val(ybPatInfo.lxdh);
-                    //身份证 等等赋值
-                    $('#xm').val(ybPatInfo.psn_name);    //姓名
-                    //证件类型 医保字典0身份证 1护照
+                    //CMND/CCCD v.v. gán giá trị
+                    $('#xm').val(ybPatInfo.psn_name);    //Họ tên
+                    //loại giấy tờ Từ điển BHYT0CMND/CCCD 1Hộ chiếu
                     thisZjlx = '1';
                     if (!!thisZjlx)
                         $("#zjlx").val(thisZjlx).trigger('change');
                     if (!!ybPatInfo.certno) {
-                        $('#zjh').val(ybPatInfo.certno);   //证件号
+                        $('#zjh').val(ybPatInfo.certno);   //Số giấy tờ
                         var birth = ybPatInfo.brdy;
-                        $('#csny').val($.getDate({ date: birth })); //出生年月
-                        setAge($('#csny').val());  //年龄计算
+                        $('#csny').val($.getDate({ date: birth })); //Năm sinh
+                        setAge($('#csny').val());  //nămtuổitínhtính
                     }
-                    //$('#xian_dz').val(ybPatInfo.zz);//使用地址
-                    //性别 医保字典1男2女
+                    //$('#xian_dz').val(ybPatInfo.zz);//Dùng địa chỉ
+                    //Giới tính Từ điển BHYT1Nam2Nữ
                     $("input[name=xb]").parent().removeClass('active');
                     $("input[name=xb]").removeAttr('checked'); 
                     if (ybPatInfo.gend == '1')
-                        $("input[name=xb]:eq(0)").trigger('click'); //男
+                        $("input[name=xb]:eq(0)").trigger('click'); //Nam
                     else if (ybPatInfo.gend == '2')
-                        $("input[name=xb]:eq(1)").trigger('click'); //女
+                        $("input[name=xb]:eq(1)").trigger('click'); //Nữ
 
                     $("#brxzmc").val(yibaoCardInfo.brxzmc).attr("data-label", yibaoCardInfo.brxzdm);
                     //var resultObjArr = new Array();
@@ -780,7 +780,7 @@
                     //                    $("#brxzmc").val(data.brxzmc).attr("data-label", data.brxz);
                     //                }
                     //                else {
-                    //                    $("#brxzmc").val('普通医保').attr("data-label", '1');
+                    //                    $("#brxzmc").val('BHYT thường').attr("data-label", '1');
                     //                }
                     //            }
                     //        });
@@ -791,7 +791,7 @@
 
                     //}
                     //else {
-                    //    $("#brxzmc").val('普通医保').attr("data-label", '11');
+                    //    $("#brxzmc").val('BHYT thường').attr("data-label", '11');
                     //}
                 }
                 else {

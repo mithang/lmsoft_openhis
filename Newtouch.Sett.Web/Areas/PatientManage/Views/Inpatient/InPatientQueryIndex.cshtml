@@ -5,14 +5,14 @@
     var isZFtoYB = SysConfigReader.Bool("Inpatient_Open_ZF_to_YB", false).Value;
     var isYBtoZF = SysConfigReader.Bool("Inpatient_Open_YB_to_ZF", false).Value;
 
-    //是否和医保交易
+    //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
-    //是否和新农合交易
+    //Có giao dịch với nông thôn mới hay không
     var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-    //医保所属地，区分系统将执行何处医保逻辑
+    //Nơi quản lý BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
     var opr = OperatorProvider.GetCurrent();
-    //就诊凭证类型是否从医保端获取
+    //Loại chứng từ khám có lấy từ phía BHYT không
     var YB_Jzpzl = SysConfigReader.String("YB_Jzpzl");
 }
 <style>
@@ -125,7 +125,7 @@
                     <input type="button" id="btn_dzbl" class="btn btn-info" style="display:block;" value="Tải lên bệnh án điện tử" />
                 </td>
                 @*<td class="formValue" colspan="2">
-                        <input id="txtsfz" type="hidden" class="form-control form-an" placeholder="身份证(异地病人)">
+                        <input id="txtsfz" type="hidden" class="form-control form-an" placeholder="CMND/CCCD(bệnh nhân khác địa phương)">
                     </td>*@
             </tr>
         </table>
@@ -192,18 +192,18 @@
                 { label: 'cbdbm', name: 'cbdbm', width: 80, align: 'left', hidden: true },
                 { label: 'Tính chất chi phí', name: 'brxzmc', width: 80, align: 'left' },
                 //{
-                //    label: '入院状态', name: 'rybq', width: 50, align: 'left', formatter: function (cellvalue) {
+                //    label: 'vàoviệntrạng tháitrạng thái', name: 'rybq', width: 50, align: 'left', formatter: function (cellvalue) {
                 //        return $.enum.getDescByValue("EnumWzjb", cellvalue);
                 //    }
                 //},
 
-                //{ label: '已产生费用', name: 'zyfy', width: 80, align: 'left' },
-                //{ label: '预交费', name: 'yjj', width: 50, align: 'left' },
+                //{ label: 'đãsảnsinhphídùng', name: 'zyfy', width: 80, align: 'left' },
+                //{ label: 'trướcnộpphí', name: 'yjj', width: 50, align: 'left' },
                 { label: 'jzh', name: 'jzh', width: 80, align: 'left', hidden: true },
                 { label: 'brxzlb', name: 'brxzlb', width: 80, align: 'left', hidden: true },
-                //{ label: '病区', name: 'bqmc', width: 80, align: 'left' },
+                //{ label: 'Khoa bệnh', name: 'bqmc', width: 80, align: 'left' },
                 //{
-                //    label: '最后更新时间', name: 'UpdateTime', width: 80, align: 'left',
+                //    label: 'nhấtsauhơnmớithời giangiữa', name: 'UpdateTime', width: 80, align: 'left',
                 //    formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 //},
             ],
@@ -227,7 +227,7 @@
         });
     }
 
-    //回车事件
+    //sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -351,10 +351,10 @@
             re = [];
         Array.isArray(data)
             ? (function () {
-                //对象
+                //đối tượng
                 f
                     ? (function () {
-                        //存在过滤
+                        //lưutạiqualọc
                         sj.forEach(function (obj) {
                             let one = [];
                             filter.forEach(function (no) {
@@ -364,7 +364,7 @@
                         });
                     })()
                     : (function () {
-                        //不存在过滤
+                        //khônglưutạiqualọc
                         sj.forEach(function (obj) {
                             let col = Object.keys(obj);
                             let one = [];
@@ -381,7 +381,7 @@
         return re;
     };
 
-    // 转换数据
+    // chuyểnđổisốdữ liệu
     function sheetChangeData(data) {
         let ws = {};
         let range = {
@@ -436,13 +436,13 @@
         for (let i = 0; i != s.length; ++i) view[i] = s.charCodeAt(i) & 0xff;
         return buf;
     };
-    //日期编号
+    //ngàykỳmãsố
     function datenum(v, date1904) {
         if (date1904) v += 1462;
         let epoch = Date.parse(v);
         return (epoch - new Date(Date.UTC(1899, 11, 30))) / (24 * 60 * 60 * 1000);
     };
-    //列宽
+    //cộtrộng
     function columnwidths(columnWidths) {
         let out = [];
         out = columnWidths.map(function (item) {
@@ -451,18 +451,18 @@
         return out;
     }
 
-    ////纸张设置
+    ////giấytrươngđặtđặt
     //function pageSetupFunction() {
     //    var page = writextag('pageSetup', null, {
-    //        papersize: '9',//纸张大小 9为44纸
-    //        scale: '100',//缩放大小
-    //        orientation: 'portrait',// 纸张方向landscape 为横向 portrait 为纵向
+    //        papersize: '9',//giấytrươnglớnnhỏ 9là44giấy
+    //        scale: '100',//thu hẹpđặtlớnnhỏ
+    //        orientation: 'portrait',// giấytrươngphươnghướnglandscape lànganghướng portrait làdọchướng
     //        horizontalDpi: '4294967292',
     //        verticalDpi : '4294967292'
     //    });
     //    return page;
     //}
-    ////边距设置
+    ////bênkhoảng cáchđặtđặt
     //function pageMagins() {
     //    var margins = {
     //        left: '0.7', right: '0.7',
@@ -475,34 +475,34 @@
 @if (isZFtoYB || isYBtoZF)
 {
 <script type="text/javascript">
-        var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
-        var openXnhSett = '@openXnhSett' === 'True';//开关配置：新农合患者是否使用新农合交易流程
+        var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+        var openXnhSett = '@openXnhSett' === 'True';//cấu hình công tắc：Bệnh nhân nông thôn mới có dùng quy trình giao dịch nông thôn mới không
         var medicalInsurance = '@medicalInsurance';
         var zyh = '';
         var kh = "";
         var jzh = '';
 
-        //结算清单上传
+        //Tải lên bảng quyết toán
         $('#btn_jsqd').click(function () {
             uploadData("1")
         });
-        //病案首页上传
+        //Tải lên trang đầu bệnh án
         $('#btn_basy').click(function () {
             uploadData("2")
         });
-        //住院医嘱上传
+        //Tải lên y lệnh nhập viện
         $('#btn_zyyz').click(function () {
             uploadData("3")
         });
-        //临床检查上传
+        //Tải lên kiểm tra lâm sàng
         $('#btn_lcjc').click(function () {
             uploadData("4")
         });
-        //病理检查报告上传
+        //Tải lên báo cáo kiểm tra bệnh lý
         $('#btn_bljcbg').click(function () {
             uploadData("5")
         });
-        //电子病历上传
+        //Tải lên bệnh án điện tử
         $('#btn_dzbl').click(function () {
             uploadData("6")
         });
@@ -585,7 +585,7 @@
             if (flag) {
                 var d = $("#txtsfz").val();
                 dkfsxz();
-                //判断是否第一次医保就诊
+                //xétđoạnlàkhôngthứmộtlầny tếbảo hiểmthìkhám
                 //readCard();
                 //$.ajax({
                 //    url: "/PatientManage/Inpatient/CheckFistYbVisit",
@@ -597,7 +597,7 @@
                 //        if (ckdata.data === "0" && $("#txtsfz").val()=="") {
                 //            $.modalOpen({
                 //                id: "Form",
-                //                title: "免卡登记",
+                //                title: "Đăng ký không cần thẻ",
                 //                url: "/PatientManage/HospiterRes/PatientBasic?parent=" + "ZYZfToYb",
                 //                width: "1000px",
                 //                height: "824px",
@@ -622,7 +622,7 @@
         var title = "Cách đọc thẻ";
         var url = "/PatientManage/Inpatient/dkfsxz?zyh=" + zyh + "&ryfs=" + ryfs + "&ydsfz=" + ydsfz + "&newzyh=" + newzyh;
         @*if ('@YB_Jzpzl' === 'ON') {
-            title = "自费转医保";
+            title = "Chuyển tự phí sang BHYT";
             url = "/PatientManage/Inpatient/ZFToYBForm?zyh=" + zyh + "&ryfs=" + ryfs + "&ydsfz=" + ydsfz + "&newzyh=" + newzyh;
         }*@
         $.modalOpen({
@@ -671,14 +671,14 @@
         if (yibaoCardInfo) {
             if (yibaoCardInfo.infcode == "0") {
                 if (!yibaoCardInfo || !yibaoCardInfo.output.baseinfo || !yibaoCardInfo.output.insuinfo[0]) {
-                    $.modalAlert("读卡失败:" + yibaoCardInfo.err_msg, 'error');
+                    $.modalAlert("Đọc thẻ thất bại:" + yibaoCardInfo.err_msg, 'error');
                     return;
                 }
                 var ybklx = ydsfzh.length > 0 ? "02" : "03";
-                cardInfo1 = yibaoCardInfo.output.baseinfo; //医保基本信息
-                cardInfo2 = yibaoCardInfo.output.insuinfo[0];//参保信息
+                cardInfo1 = yibaoCardInfo.output.baseinfo; //thông tin cơ bản BHYT
+                cardInfo2 = yibaoCardInfo.output.insuinfo[0];//thông tin tham gia bảo hiểm
                 if (ybklx !== "02") {
-                    cardInfo3 = yibaoCardInfo.output.cardecinfo;//卡信息
+                    cardInfo3 = yibaoCardInfo.output.cardecinfo;//Thông tin thẻ
                 }
 
                 yibaoCardInfo.readCardCardType = "2";
@@ -688,10 +688,10 @@
                 localStorage.setItem("patientform", JSON.stringify(yibaoCardInfo));
 
             } else {
-                $.modalAlert("刷卡失败:" + yibaoCardInfo.err_msg, 'error');
+                $.modalAlert("Quẹt thẻ thất bại:" + yibaoCardInfo.err_msg, 'error');
             }
         } else {
-            $.modalAlert("刷卡获取医保信息失败！失败原因：医保中心无信息返回，请重试！", 'error');
+            $.modalAlert("Quẹt thẻ lấy thông tin BHYT thất bại！Nguyên nhân thất bại：Trung tâm BHYT không trả thông tin，vui lòng thử lại！", 'error');
         }
     }*@
 
@@ -753,7 +753,7 @@
                 }
             });
     });
-    //选中家庭参合人列表返回数据
+    //Dữ liệu trả về danh sách người tham gia nông thôn mới đã chọn
     function GetSelectedpatient(obj) {
         if (!!obj) {
             var patXnhInfo= {
@@ -826,7 +826,7 @@
                         //    prm_yka103: "GZ1908122947977",
                         //    prm_aae011: "",
                         //    prm_aae036: $.getTime(),
-                        //    prm_aae013: "重新计费",
+                        //    prm_aae013: "Tính phí lại",
                         //    prm_ykb065: ybPreSettleReq.data.sbbf,
                         //    prm_ykc141: "GF001"
                         //};
@@ -842,7 +842,7 @@
                         //    }
                         //});
                         //if (ybjshtReturn.Code == 0) {
-                        //    $.modalAlert("结算回退成功！", 'success');
+                        //    $.modalAlert("Hoàn tác quyết toán thành công！", 'success');
                         //    var parameter1 = { "astr_jylsh": ybjshtReturn.jylsh, "astr_jyyzm": ybjshtReturn.jyyzm };
                         //    $.ajax({
                         //        url: "http://127.0.0.1:12345/api/YiBao/YibaoConfirm",
@@ -1020,14 +1020,14 @@
         }
         return seleRow;
     }
-    ///科室
+    ///Khoa
     $("#ksmc").newtouchBatchFloatingSelector({
         height: 200,
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
 
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysDepartList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -1051,13 +1051,13 @@
             return;
         },
     });
-    ///病区
+    ///Khoa bệnh
     $("#bqmc").newtouchBatchFloatingSelector({
         height: 200,
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             var ks = $("#ksmc").attr("data-label");
             var bqlist = top.window.clients.sysWardDeptRelation.filter((item) => item.ks == ks);

@@ -44,17 +44,17 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// 手术安排录入 视图
+        /// Sắp xếp phẫu thuậtnhập xemhình
         /// </summary>
         /// <returns></returns>
         public IActionResult ArrangeForm()
         {
-            ViewBag.OperationAssistant = _sysConfigRepo.GetIntValueByCode("OperationAssistant", OrganizeId, 3);//住院手术助手个数
+            ViewBag.OperationAssistant = _sysConfigRepo.GetIntValueByCode("OperationAssistant", OrganizeId, 3);//Nhập việnPhẫu thuậtgiúptaycáisố
             return View();
         }
 
         /// <summary>
-        /// 手术安排总览 视图
+        /// Sắp xếp phẫu thuậttổngxem xemhình
         /// </summary>
         /// <returns></returns>
         public IActionResult ArrangeQuery()
@@ -63,7 +63,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// 手术补录 视图
+        /// Phẫu thuậtbổ sungghi xemhình
         /// </summary>
         /// <returns></returns>
         public IActionResult OperationSupplement()
@@ -72,7 +72,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// 收费项目单条录入 视图
+        /// Mục thu phíphiếudòngnhập xemhình
         /// </summary>
         /// <returns></returns>
         public IActionResult originalCharge()
@@ -81,7 +81,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// 手术安排列表查询
+        /// Sắp xếp phẫu thuậtdanh sáchTra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -100,7 +100,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// 手术安排内容
+        /// Sắp xếp phẫu thuậtnội dung
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -112,7 +112,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// 提交保存手术安排数据
+        /// GửiLưuSắp xếp phẫu thuậtDữ liệu
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="keyvalue"></param>
@@ -128,7 +128,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// 获取手术病人(手术补录)
+        /// LấyPhẫu thuậtbệnh người(Phẫu thuậtbổ sungghi)
         /// </summary>
         /// <returns></returns>
         public IActionResult GetOperatPatSearchList()
@@ -137,7 +137,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// 提交手术补录费用
+        /// GửiPhẫu thuậtbổ sungghiChi phí
         /// </summary>
         /// <param name="FeeDetails"></param>
         /// <returns></returns>
@@ -145,15 +145,15 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         {
 
             InpatientPatientInfoEntity zybr = _IInpatientPatientInfoRepo.GetByZyh(OrganizeId, zyh);
-            if (zybr == null)//住院病人判空
+            if (zybr == null)//Nhập việnbệnh ngườiphántrống
                 throw new Exception(string.Format("orgId:{0}, Số nhập viện:{1} Bệnh nhânKhông tồn tại", OrganizeId, zyh));
             InpatientOperationArrangementEntity Arrangement = _inpatientOperationArrangementRepo.FindEntity(p => p.zyh == zyh && p.zt == "1");
-            if (Arrangement == null)//手术安排判空
+            if (Arrangement == null)//Sắp xếp phẫu thuậtphántrống
                 throw new Exception("Vui lòng vào giao diện “Sắp xếp phẫu thuật”, nhập thông tin liên quan đến phẫu thuật.");
             string lsDepartment = _IIBaseDataDmnService.GetDoctorDepartCode(OrganizeId, Arrangement.surgeonId);
-            if (lsDepartment.Length == 0)//手术医生科室判空
+            if (lsDepartment.Length == 0)//Phẫu thuậtBác sĩKhoaphántrống
                 throw new Exception("LấyPhẫu thuậtBác sĩKhoathất bại!");
-            //赋值
+            //Gán giá trị
             foreach (InpatientFeeDetailEntity item in RequestItems)
             {
                 item.jzks = UserIdentity.DepartmentCode;
@@ -164,28 +164,28 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 item.qqrq = item.zxrq = DateTime.Now;
                 item.zfdj = item.yhdj = item.yhje = item.flzfje = 0;
                 item.zfje = item.zje;
-                item.yzxz = 7;//手术费用
+                item.yzxz = 7;//Phẫu thuậtChi phí
                 item.gdzxbz = 1;
                 item.zt = "1";
-                item.ysksdm = item.DeptCode = lsDepartment;//手术医生科室
+                item.ysksdm = item.DeptCode = lsDepartment;//Phẫu thuậtBác sĩKhoa
                 item.WardCode = item.qrksdm = item.zxksdm = zybr.WardCode;
                 item.cwdm = zybr.BedCode;
                 item.ysgh = zybr.ysgh;
             }
-            RequestItems = RequestItems.FindAll(p => p.sl > 0);//去除计费表的退费信息
+            RequestItems = RequestItems.FindAll(p => p.sl > 0);//đitrừtínhphíbảngcủaHoàn phíthông tin
             _iIOperationDmnService.InpatientFeeDetailSubmit(OrganizeId, zyh, RequestItems);
             return Success();
         }
 
         /// <summary>
-        /// 获取住院病人手术费用
+        /// LấyNhập việnbệnh ngườiPhẫu thuậtChi phí
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         public IActionResult getSupplement(string zyh)
         {
             return Content((new List<OperatFeeVO>()).ToJson());
-            //return Content(_iIOperationDmnService.GetOperatFee(OrganizeId, zyh, "7").ToJson());//手术费用
+            //return Content(_iIOperationDmnService.GetOperatFee(OrganizeId, zyh, "7").ToJson());//Phẫu thuậtChi phí
         }
     }
 }

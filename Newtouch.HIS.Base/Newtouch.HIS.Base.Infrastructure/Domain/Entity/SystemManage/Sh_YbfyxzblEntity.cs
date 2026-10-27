@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.Entity.SystemManage
 {
     /// <summary>
-    /// 医保病人性质
+    /// Tính chất bệnh nhân BHYT
     /// </summary>
     [SugarTable("Sh_Ybfyxzbl")]
     public class Sh_YbfyxzblEntity : EntityBase

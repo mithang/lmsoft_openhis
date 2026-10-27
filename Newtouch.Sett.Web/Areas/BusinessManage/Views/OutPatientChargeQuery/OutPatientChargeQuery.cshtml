@@ -85,7 +85,7 @@
 <script>
     $(function () {
         gridJSListData();
-        //回车
+        //nhấn Enter
         enterEvent();
     })
     $(".form_datetime").datetimepicker({
@@ -94,7 +94,7 @@
         minView: 2,
         autoclose: true
     });
-    //门诊挂号结算查询
+    //ngoại trúkhámtreosốkếttínhtratra cứu
     function gridJSListData() {
         var $gridJSList = $("#gridJSList");
         $gridJSList.dataGrid({
@@ -130,11 +130,11 @@
             sortname: 'CreateTime desc',
             viewrecords: true,
 
-            ////单击事件
+            ////sự kiện nhấn
             //onSelectRow: function ()
             //{
             //    debugger;
-            //    //每次双击，先清空上一条明细 和合计
+            //    //Mỗi lần nhấn đúp，xóa chi tiết dòng trước trước Và tổng cộng
             //    $('#gridJSMXList').jqGrid("clearGridData");
             //    $("#table_HJ").remove();
             //    $.ajax({
@@ -145,10 +145,10 @@
             //        success: function (ajaxresp) {
             //            if (ajaxresp.state == 'success') {
             //                $('#gridJSMXList').newtouchLocalDataGrid(null, ajaxresp.data.ghRecordsDetails);
-            //                //动态加载合计信息
+            //                //Tải động thông tin tổng cộng
             //                $("#HjDiv").append("<table class='form' id='table_HJ'>")
             //                $("#table_HJ").append(" <tr>");
-            //                //加载页面下方的费用大类合计
+            //                //Tải tổng cộng loại chi phí lớn ở dưới trang
             //                for (i = 0; i < ajaxresp.data.dlhj.length; i++) {
             //                    $("#table_HJ").append("<th class='formTitle'>" + ajaxresp.data.dlhj[i].dlmc + "</th>");
             //                    $("#table_HJ").append("<td class='formValue'><label>" + ajaxresp.data.dlhj[i].jehj + "</label></td>");
@@ -159,7 +159,7 @@
             //        }
             //    });
             //},
-            //Grid 加载完成后调用
+            //Grid thêmtảixongthànhsauđiềudùng
             gridComplete: function () {
                  afterCompleteFunction();
             },
@@ -172,7 +172,7 @@
 
     }
 
-    //已退/重打 背景色为红色 
+    //Đã hoàn/In lại Màu nền là đỏ 
     function afterCompleteFunction()
     {
         var ids = $("#gridJSList").getDataIDs();
@@ -185,10 +185,10 @@
         }
     }
 
-    //双击事件
+    //đôinhấnviệchạng
     function btn_edit()
     {
-        ////每次双击，先清空上一条明细 和合计
+        ////Mỗi lần nhấn đúp，xóa chi tiết dòng trước trước Và tổng cộng
         $('#gridJSMXList').jqGrid("clearGridData");
         $("#table_HJ").remove();
         $.ajax({
@@ -199,10 +199,10 @@
             success: function (ajaxresp) {
                 if (ajaxresp.state == 'success') {
                     $('#gridJSMXList').newtouchLocalDataGrid(null, ajaxresp.data.ghRecordsDetails);
-                    //动态加载合计信息
+                    //Tải động thông tin tổng cộng
                     $("#HjDiv").append("<table class='form' id='table_HJ'>")
                     $("#table_HJ").append(" <tr>");
-                    //加载页面下方的费用大类合计
+                    //Tải tổng cộng loại chi phí lớn ở dưới trang
                     for (i = 0; i < ajaxresp.data.dlhj.length; i++) {
                         $("#table_HJ").append("<th class='formTitle'>" + ajaxresp.data.dlhj[i].dlmc + "</th>");
                         $("#table_HJ").append("<td class='formValue'><label>" + ajaxresp.data.dlhj[i].jehj + "</label></td>");
@@ -214,7 +214,7 @@
         });
     }
 
-    //门诊结算明细 jGrid声明
+    //Chi tiết quyết toán ngoại trú jGridkhai báo
     $('#gridJSMXList').newtouchLocalDataGrid({
         height: 100,
         unwritten: false,
@@ -232,10 +232,10 @@
         ]
     });
 
-    //回车 跳到下一个控件
+    //nhấn Enter nhảyđếndướimộtcáiđiều khiểnhạng
     function enterEvent()
     {
-        //回车键
+        //quayxephím
         $("#txtkh").keypress(function (e) {
             if (e.keyCode == 13) {
                 if ($("#txtkh").val().trim().length == 28) {

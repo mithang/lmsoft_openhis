@@ -29,7 +29,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
         }
 
         /// <summary>
-        /// 获取当前组织下的系统药品信息
+        /// Lấy thông tin thuốc hệ thống thuộc tổ chức hiện tại
         /// </summary>
         /// <returns></returns>
         public IList<SysMedicineVO> GetPaginationList(string organizeId, Pagination pagination, string zt, string ypflCode, string keyword = null)
@@ -86,7 +86,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
 
         /// <summary>
-        /// 获取当前组织下的系统药品信息
+        /// Lấy thông tin thuốc hệ thống thuộc tổ chức hiện tại
         /// </summary>
         /// <returns></returns>
         public IList<SysMedicineVO> GetPaginationListdm(string organizeId, Pagination pagination, string type, string keyword = null)
@@ -144,7 +144,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
             return this.QueryWithPage<SysMedicineVO>(sql, pagination, par);
         }
-        /// 目录对照查询
+        /// Truy vấn đối chiếu danh mục
 		/// </summary>
 		/// <returns></returns>
 		public IList<SysMedicineMldzxxVO> GetPaginationListMldzxx(string organizeId, Pagination pagination, string type, string keyword = null)
@@ -258,7 +258,7 @@ left join  xt_mldz mldz on xm.sfxmCode=mldz.code
             return this.QueryWithPage<SysMedicineMldzxxVO>(sql, pagination, par);
         }
         /// <summary>
-        /// 查询医保药品信息
+        /// Truy vấn thông tin thuốc BHYT
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="ypmc"></param>
@@ -321,14 +321,14 @@ from dbo.gb_ypxx
             }
             //if (!string.IsNullOrEmpty(py))
             //{
-            //	sql += "  and 注册名称 like @ypmc";
+            //	sql += "  and Tên đăng ký like @ypmc";
             //	pars.Add(new SugarParameter("@ypmc", "%" + ypmc + "%"));
             //}
             return this.FindList<G_yb_ypxxVO>(sql, pars.ToArray());
         }
 
         /// <summary>
-        /// 保存药品医保对码
+        /// Lưu mã đối chiếu BHYT thuốc
         /// </summary>
         /// <param name="ybxx"></param>
         /// <param name="ypid"></param>
@@ -350,7 +350,7 @@ from dbo.gb_ypxx
         //            }
         //            if (!string.IsNullOrEmpty(ybxx.jyl))
         //            {
-        //                ypsxEntity.ybbz = "1";//存在国家医保代码 不查看药品本身属性 直接默认医保
+        //                ypsxEntity.ybbz = "1";//Tồn tại mã BHYT quốc gia Không xem thuộc tính bản thân thuốc Trực tiếp mặc định BHYT
         //                ypEntity.zfxz = EnumZFXZv2.J.GetDescription().Contains(ybxx.jyl) ? "4" : EnumZFXZv2.Y.GetDescription().Contains(ybxx.jyl) ? "5" : EnumZFXZv2.B.GetDescription().Contains(ybxx.jyl) ? "6" : "1";
         //            }
 
@@ -366,7 +366,7 @@ from dbo.gb_ypxx
         //}
 
         /// <summary>
-        /// 查询系统材料信息
+        /// Truy vấn thông tin vật tư hệ thống
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="pagination"></param>
@@ -418,7 +418,7 @@ from dbo.gb_ypxx
         }
 
         /// <summary>
-        /// 查询医保材料信息 根据系统材料信息
+        /// Truy vấn thông tin vật tư BHYT Theo thông tin vật tư hệ thống
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="ypmc"></param>
@@ -464,7 +464,7 @@ from gb_clxx )a where 1=1 ";
             return this.FindList<G_yb_clxxVO>(sql, pars.ToArray());
         }
         /// <summary>
-        /// 保存材料对码
+        /// Lưu mã đối chiếu vật tư
         /// </summary>
         /// <param name="ybxx"></param>
         /// <param name="ypid"></param>
@@ -507,7 +507,7 @@ from gb_clxx )a where 1=1 ";
 
 
         /// <summary>
-        /// 查询系统项目信息
+        /// Truy vấn thông tin hạng mục hệ thống
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="pagination"></param>
@@ -558,7 +558,7 @@ from gb_clxx )a where 1=1 ";
             return this.QueryWithPage<SysChargeItemVO>(sql, pagination, par);
         }
         /// <summary>
-        /// 查询医保项目信息 根据系统项目信息
+        /// Truy vấn thông tin hạng mục BHYT Theo thông tin hạng mục hệ thống
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="ypmc"></param>
@@ -592,7 +592,7 @@ from gb_sfxm)a where 1=1 ";
         }
 
         /// <summary>
-        /// 保存项目对码
+        /// Lưu mã đối chiếu hạng mục
         /// </summary>
         /// <param name="ybxx"></param>
         /// <param name="ypid"></param>
@@ -629,7 +629,7 @@ from gb_sfxm)a where 1=1 ";
         //}
 
         /// <summary>
-        /// 获取系统人员信息
+        /// Lấy thông tin nhân sự hệ thống
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -656,7 +656,7 @@ WHERE x.ypId =@ypId
         }
 
         /// <summary>
-        /// 获取系统人员信息
+        /// Lấy thông tin nhân sự hệ thống
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>
@@ -685,7 +685,7 @@ AND x.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 新增药品信息以及药属性信息表
+        /// Thêm thông tin thuốc và bảng thông tin thuộc tính thuốc
         /// </summary>
         /// <param name="model"></param>
         /// <param name="ypId"></param>
@@ -713,7 +713,7 @@ AND x.OrganizeId=@OrganizeId
 
                         model.ypId = ypId.Value;
                         ypEntity.pfj = model.pfj;
-                        model.OrganizeId = ypEntity.OrganizeId;//组织 机构 不能变
+                        model.OrganizeId = ypEntity.OrganizeId;//Tổ chức Cơ sở Không thể thay đổi
                         UpdateEnityProperties(ypEntity, ypsxEntity, model);
                         var strSql = new StringBuilder();
                         strSql.Append(@"  UPDATE [NewtouchHIS_Base].dbo.xt_yp
@@ -771,7 +771,7 @@ where ypId=@ypId");
                         };
                         db.ExecuteSqlCommand(strSql.ToString(), paraList);
 
-                        //更新药品属性
+                        //Cập nhật thuộc tính thuốc
                         var strSql2 = new StringBuilder();
                         strSql2.Append(@"  UPDATE [NewtouchHIS_Base].dbo.xt_ypsx
 SET ypId=@ypId,OrganizeId=@OrganizeId,ypCode=@ypCode,shbz=@shbz,tsbz=@tsbz,jsbz=@jsbz,gzy=@gzy,mzy=@mzy,yljsy=@yljsy,zbbz=@zbbz,zlff=@zlff,sjap=@sjap,yl=@yl,yldw=@yldw,ypgg=@ypgg,ybdm=@ybdm,syts=@syts,dczdjl=@dczdjl,dczdsl=@dczdsl,ljzdjl=@ljzdjl,ljzdsl=@ljzdsl,pzwh=@pzwh,yptssx=@yptssx,ypflCode=@ypflCode,jzlx=@jzlx,mrbzq=@mrbzq,zjtzsj=@zjtzsj,xglx=@xglx,ghdw=@ghdw,ypcd=@ypcd,CreatorCode=@CreatorCode,CreateTime=@CreateTime,LastModifyTime=@LastModifyTime,LastModifierCode=@LastModifierCode,zt=@zt,px=@px,xzyy=@xzyy,xzyysm=@xzyysm,LastYBUploadTime=@LastYBUploadTime,mrjl=@mrjl,mrpc=@mrpc,ybbz=@ybbz,xnhybdm=@xnhybdm,gjybdm=@gjybdm,ybmlscrq=@ybmlscrq,gjybmc=@gjybmc,xjbs=@xjbs,dcxl=@dcxl,mbxl=@mbxl,mryf=@mryf,ybgg=@ybgg
@@ -842,15 +842,15 @@ where ypId=@ypId");
             else
             {
                 model.ypId = 0;
-                //新增
+                //Thêm mới
                 var ypEntity = new SysMedicineBaseVO();
                 var ypsxEntity = new SysMedicinePropertyBaseVO();
 
-                //插入药品
+                //Chèn thuốc
                 UpdateEnityProperties(ypEntity, ypsxEntity, model);
                 //ypEntity.Create();
                 //_sysMedicineRepository.Insert(ypEntity);
-                //插入药品属性
+                //Chèn thuộc tính thuốc
                 ypsxEntity.ypId = ypEntity.ypId;
                 //ypsxEntity.Create();
                 //_sysMedicinePropertyRepo.Insert(ypsxEntity);
@@ -858,7 +858,7 @@ where ypId=@ypId");
                 {
                     using (var db = new EFDbTransaction().BeginTrans())
                     {
-                        //插入药品
+                        //Chèn thuốc
                         var strSql = new StringBuilder();
                         strSql.Append(@"insert into [NewtouchHIS_Base].dbo.xt_yp
                                   (ypCode,ypmc,OrganizeId,ypqz,yphz,spm,py,cfl,cfdw,jl,jldw,bzs,bzdw,mzcls,mzcldw,zycls,zycldw,zxdw,djdw,lsj,pfj,zfbl,zfxz,dlCode,jx,ycmc,medid,medextid,ypbzdm,nbdl,mzzybz,CreatorCode,CreateTime,LastModifyTime,LastModifierCode,zt,px,lsbz,mjzbz,yfCode,isKss,kssId,jybz,bz,cxjje,tsypbz)
@@ -914,7 +914,7 @@ where ypId=@ypId");
                         };
                         db.ExecuteSqlCommand(strSql.ToString(), paraList);
 
-                        //插入药品属性
+                        //Chèn thuộc tính thuốc
                         var strSql2 = new StringBuilder();
                         strSql2.Append(@"insert into [NewtouchHIS_Base].dbo.xt_ypsx
                                   (ypId,OrganizeId,ypCode,shbz,tsbz,jsbz,gzy,mzy,yljsy,zbbz,zlff,sjap,yl,yldw,ypgg,ybdm,syts,dczdjl,dczdsl,ljzdjl,ljzdsl,pzwh,yptssx,ypflCode,jzlx,mrbzq,zjtzsj,xglx,ghdw,ypcd,CreatorCode,CreateTime,LastModifyTime,LastModifierCode,zt,px,xzyy,xzyysm,LastYBUploadTime,mrjl,mrpc,ybbz,xnhybdm,gjybdm,ybmlscrq,gjybmc,xjbs,dcxl,mbxl,mryf,ybgg)
@@ -985,7 +985,7 @@ where ypId=@ypId");
         }
 
         /// <summary>
-        /// 医保同步修改最后上传时间
+        /// Đồng bộ BHYT sửa thời gian tải lên cuối
         /// </summary>
         /// <param name="ypId"></param>
         /// <returns></returns>
@@ -998,7 +998,7 @@ where ypId=@ypId");
         //            var ypsxEntity = db.IQueryable<SysMedicinePropertyEntity>().Where(p => p.ypId == ypId).FirstOrDefault();
         //            if (ypsxEntity == null)
         //            {
-        //                error = "HIS中查无此药";
+        //                error = "HISTrong truy vấn không có thuốc này";
         //                return false;
         //            }
         //            ypsxEntity.LastYBUploadTime = System.DateTime.Now;
@@ -1011,7 +1011,7 @@ where ypId=@ypId");
         //    }
         //    catch
         //    {
-        //        error = "HIS更新药品同步医保时间失败";
+        //        error = "HISCập nhật thời gian đồng bộ BHYT thuốc thất bại";
         //        return false;
         //    }
         //}
@@ -1019,17 +1019,17 @@ where ypId=@ypId");
         #region private methods
 
         /// <summary>
-        /// 拼装值
+        /// Giá trị lắp ráp
         /// </summary>
         /// <param name="ypEntity"></param>
         /// <param name="ypsxEntity"></param>
         /// <param name="model"></param>
         public void UpdateEnityProperties(SysMedicineBaseVO modelyp, SysMedicinePropertyBaseVO modelypsx, SysMedicineVO model)
         {
-            #region 药品信息表值
+            #region Giá trị bảng thông tin thuốc
             modelyp.bzdw = model.bzdw;
             modelyp.bzs = model.bzs;
-            modelyp.cfdw = "";//默认
+            modelyp.cfdw = "";//Mặc định
             modelyp.cfl = decimal.Parse("0.0000");
             //modelyp.cldw = model.cldw;
             //modelyp.cls = model.cls;
@@ -1037,28 +1037,28 @@ where ypId=@ypId");
             modelyp.dlCode = model.dlCode;
             modelyp.jl = model.jl;
             modelyp.jldw = model.jldw; ;
-            modelyp.jx = model.jx;//( or liek ) and bgbz='0' and zt='1' 根据代码/姓名/首拼获取剂型信息获得
+            modelyp.jx = model.jx;//( or liek ) and bgbz='0' and zt='1' Theo mã/Họ tên/Lấy thông tin dạng bào chế theo chữ đầu phiên âm
             modelyp.lsj = model.lsj;
-            modelyp.medextid = 0;//默认
-            modelyp.medid = 0;//默认
+            modelyp.medextid = 0;//Mặc định
+            modelyp.medid = 0;//Mặc định
             modelyp.mzcldw = model.mzcldw;
             modelyp.mzcls = model.mzcls;
-            modelyp.mzzybz = "1";//门诊住院标志默认1
+            modelyp.mzzybz = "1";//Cờ ngoại trú/nội trú mặc định1
             modelyp.nbdl = model.nbdl;
             modelyp.pfj = model.pfj;
             modelyp.px = model.px;
             modelyp.py = model.py;
             modelyp.spm = model.spm;
-            modelyp.OrganizeId = model.OrganizeId;    //组织机构Id
+            modelyp.OrganizeId = model.OrganizeId;    //Tổ chứcId
             modelyp.ycmc = model.ycmc;
-            modelyp.ypbzdm = model.ypbzdm;//药品包装代码默认3
+            modelyp.ypbzdm = model.ypbzdm;//Mã đóng gói thuốc mặc định3
             modelyp.bz = model.bz;
-            modelyp.cxjje = model.cxjje;//超限价金额
+            modelyp.cxjje = model.cxjje;//Số tiền vượt giá giới hạn
             modelyp.ypId = model.ypId;
             modelyp.ypCode = model.ypCode;
             modelyp.ypmc = model.ypmc;
-            modelyp.yphz = "";//默认
-            modelyp.ypqz = "";//默认
+            modelyp.yphz = "";//Mặc định
+            modelyp.ypqz = "";//Mặc định
             modelyp.zfbl = model.zfbl;
             modelyp.zfxz = model.zfxz;
             modelyp.zt = model.zt;
@@ -1071,8 +1071,8 @@ where ypId=@ypId");
             modelyp.tsypbz = model.tsypbz;
             #endregion
 
-            #region 药品SX值
-            modelypsx.OrganizeId = model.OrganizeId;    //组织机构Id
+            #region ThuốcSXgiá trị
+            modelypsx.OrganizeId = model.OrganizeId;    //Tổ chứcId
             modelypsx.dczdjl = model.dczdjl;
             modelypsx.dczdsl = model.dczdsl;
             modelypsx.ghdw = model.ghdw;
@@ -1121,7 +1121,7 @@ where ypId=@ypId");
         #endregion
 
         /// <summary>
-        /// 获取药品系数
+        /// Lấy hệ số thuốc
         /// </summary>
         /// <param name="name"></param>
         /// <returns></returns>
@@ -1135,7 +1135,7 @@ where ypId=@ypId");
         }
 
 
-        //药品用法
+        //Cách dùng thuốc
         public IList<SysMedicineUsageVO> GetUsageFloat(string keyword)
         {
             var sql = @"select * from [NewtouchHIS_Base].dbo.xt_ypyf(nolock) where zt = '1' and (yfCode like @searchKeyword or yfmc like @searchKeyword or py like @searchKeyword) order by py asc";
@@ -1148,7 +1148,7 @@ where ypId=@ypId");
         #region SysMedicineRepo
 
         /// <summary>
-        /// 获取医保字典库药品List
+        /// Lấy thuốc từ kho từ điển BHYTList
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -1166,7 +1166,7 @@ where ypId=@ypId");
                 //and (yka003 like @searchKeyword or yka003 like @searchKeyword or yka389 like @searchKeyword or yka601 like @searchKeyword)
                 //order by yka389 asc";
                 var sql = @"select top 200  cod.ypmc, cod.ypdm ybdm,  cod.gg,  cod.ycmc,cod.ypxz ybxz,case cod.ypxz when '" + ((int)EnumZFXZv2.J).ToString() +
-                    "' then '甲类' when '" + ((int)EnumZFXZv2.Y).ToString() +
+                    "' then 'Loại giáp' when '" + ((int)EnumZFXZv2.Y).ToString() +
                     @"' then '乙类' else '丙类' end  ypxz, cod.py py, cod.ybdj ybdj, cod.gjybdm gjybdm,cod.ypjx jxmc,cod.pzwh pzwh
 from NewtouchHIS_Base..Cqyb_ybItemCode cod
 where 1=1 and cod.zt=1 and cod.OrganizeId=@orgId";
@@ -1183,12 +1183,12 @@ where 1=1 and cod.zt=1 and cod.OrganizeId=@orgId";
             }
             catch
             {
-                //没有这张表
+                //Không có bảng này
                 return null;
             }
         }
         /// <summary>
-        /// 查询医保姓名表信息
+        /// Truy vấn thông tin bảng tên BHYT
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="keyword"></param>
@@ -1224,7 +1224,7 @@ where 1=1 and cod.zt=1 and cod.OrganizeId=@orgId";
         }
 
         /// <summary>
-        /// 获取医保字典库药品List
+        /// Lấy thuốc từ kho từ điển BHYTList
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -1250,7 +1250,7 @@ WHERE   (name LIKE @searchKeyword or code like @searchKeyword or pcode like @sea
             }
             catch
             {
-                //没有这张表
+                //Không có bảng này
                 return null;
             }
         }

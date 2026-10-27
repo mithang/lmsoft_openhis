@@ -25,31 +25,31 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 关联处方表
+        /// liên kếtĐơn thuốcbảng
         /// </summary>
         public string cfId { get; set; }
 
         /// <summary>
-        /// 关联base库的收费项目表
+        /// liên kếtbasekhocủaMục thu phíbảng
         /// </summary>
         public string xmCode { get; set; }
 
         /// <summary>
-        /// 冗余字段
+        /// Dư thừachữđoạn
         /// </summary>
         public string xmmc { get; set; }
 
         /// <summary>
-        /// 关联base库的药品表
+        /// liên kếtbasekho của thuốcbảng
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 冗余代码
+        /// Dư thừaMã
         /// </summary>
         public string ypmc { get; set; }
         /// <summary>
-        /// 每次治疗量  针对康复项目
+        /// Liều mỗi lần điều trị  kimđốiPhục hồi chức năngMục
         /// </summary>
         public int? mczll { get; set; }
         /// <summary>
@@ -59,17 +59,17 @@ namespace Newtouch.Domain.Entity
         public decimal? mcjl { get; set; }
 
         /// <summary>
-        /// 取base库的药品属性表
+        /// lấybasekhocủaThuộc tính thuốcbảng
         /// </summary>
         public string mcjldw { get; set; }
 
         /// <summary>
-        /// 关联base库的药品用法表
+        /// liên kếtbasekhocủaCách dùng thuốcbảng
         /// </summary>
         public string yfCode { get; set; }
 
         /// <summary>
-        /// 关联base库的医嘱频次
+        /// liên kếtbasekhocủaTần suất y lệnh
         /// </summary>
         public string pcCode { get; set; }
 
@@ -84,7 +84,7 @@ namespace Newtouch.Domain.Entity
         public int sl { get; set; }
 
         /// <summary>
-        /// 总计费数量
+        /// tổngtínhphíSố lượng
         /// </summary>
         public int? zl { get; set; }
 
@@ -158,41 +158,41 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public DateTime? zxsj { get; set; }
         /// <summary>
-        /// 医保唯一码
+        /// Bảo hiểm y tếduy nhấtmộtmã
         /// </summary>
         public string ybwym { get; set; }
         /// <summary>
-        /// 限制使用标志0无限制 1不符合限制规定 2符合限制规定
+        /// hạnchếSử dụngCờ0khônghạnchế 1khôngkýhợphạnchếquyđịnh 2kýhợphạnchếquyđịnh
         /// </summary>
         public string xzsybz { get; set; }
         /// <summary>
-        /// 天数
+        /// Số ngày
         /// </summary>
         public decimal? ts { get; set; }
         /// <summary>
-        /// 组套所属模板
+        /// Bộ mẫusởthuộcmẫu
         /// </summary>
         public string ztmbId { get; set; }
         /// <summary>
-        /// 组套id
+        /// Bộ mẫuid
         /// </summary>
         public string ztId { get; set; }
         /// <summary>
-        /// 组套名称
+        /// Tên bộ mẫu
         /// </summary>
         public string ztmc { get; set; }
         /// <summary>
-        /// 组套编号
+        /// Bộ mẫuSố hiệu
         /// </summary>
         public string ztCode { get; set; }
 
         /// <summary>
-        /// 抗生素原因
+        /// Kháng sinhnguyên nhân
         /// </summary>
         public string kssReason { get; set; }
 
         /// <summary>
-        /// 部位方法
+        /// Vị tríPhương pháp
         /// </summary>
         public string bwff { get; set; }
 
@@ -200,22 +200,22 @@ namespace Newtouch.Domain.Entity
 
         public int? px { get; set; }
         /// <summary>
-        /// 滴速
+        /// tốc độ truyền
         /// </summary>
         public int? ds { get; set; }
 
         /// <summary>
-        /// 转自费标志
+        /// Chuyển sang tự chi trảCờ
         /// </summary>
         public int? zzfbz { get; set; }
 
-        //皮试标志
+        //dathửCờ
         public string ispsbz { get; set; }
 
-        //留观标志
+        //giữxemCờ
         public string islgbz { get; set; }
         /// <summary>
-        /// 组套数量
+        /// Bộ mẫuSố lượng
         /// </summary>
         public int? ztsl { get; set; }
         /// <summary>
@@ -224,11 +224,11 @@ namespace Newtouch.Domain.Entity
         public int? sfzt { get; set; }
         public string zysm { get; set; }
         /// <summary>
-        /// 用法对应的项目组套
+        /// Cách dùngtương ứngcủaMụcBộ mẫu
         /// </summary>
         public string syncfbz { get; set; }
         /// <summary>
-        /// 国家医保代码
+        /// Mã BHYT quốc gia
         /// </summary>
         public string gjybdm { get; set; }
     }

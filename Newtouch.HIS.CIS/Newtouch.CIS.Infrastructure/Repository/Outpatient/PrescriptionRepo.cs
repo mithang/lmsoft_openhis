@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 更新处方收费标志和同步标志
+        /// hơnĐơn thuốc mớiCờ thu phívàĐồng bộCờ
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="tbbz"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 更新处方收费标志
+        /// hơnĐơn thuốc mớiCờ thu phí
         /// </summary>
         /// <param name="part"></param>
         /// <param name="organizeId"></param>
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 更新处方收费标志
+        /// hơnĐơn thuốc mớiCờ thu phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfh"></param>
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Repository
             var entity = this.IQueryable().FirstOrDefault(a => a.OrganizeId == orgId && a.cfh == cfh && a.zt == "1");
             if (entity == null)
             {
-                throw new FailedException("prescription is not exist", "该处方不存在");
+                throw new FailedException("prescription is not exist", "Đơn thuốckhôngtồn tạiở");
             }
 
             entity.sfbz = sfbz;
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 更新处方退标志
+        /// hơnĐơn thuốc mớitrảCờ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cfh"></param>
@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Repository
             var entity = this.IQueryable().FirstOrDefault(a => a.OrganizeId == orgId && a.cfh == cfh && a.zt == "1" && a.sfbz);
             if (entity == null)
             {
-                throw new FailedException("prescription is not exist", "该处方不存在");
+                throw new FailedException("prescription is not exist", "Đơn thuốckhôngtồn tạiở");
             }
 
             entity.tbz = tbz;
@@ -114,7 +114,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取处方信息
+        /// LấyĐơn thuốcthông tin
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="orgId"></param>
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取处方信息
+        /// LấyĐơn thuốcthông tin
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="sfbz"></param>

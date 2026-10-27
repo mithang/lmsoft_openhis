@@ -13,7 +13,7 @@ namespace Newtouch.Domain.IDomainServices.Outpatient
         IList<OutpatientConsultRecordVO> GetConsultRecordGridJson(Pagination pagination, string orgId, string kssj, string jssj, string ysgh);
         IList<OutpatientConsultDetailVO> GetConsultDetailGridJson(Pagination pagination, string orgId, string kssj, string jssj, string ysgh, string keyword);
         /// <summary>
-        /// 查询门诊详细资料
+        /// Tra cứuNgoại trúchi tiếttàiliệu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -23,7 +23,7 @@ namespace Newtouch.Domain.IDomainServices.Outpatient
         /// <returns></returns>
         IList<OutpatientDetailVO> GetOutpatientDetailGridJson(Pagination pagination, string orgId, string kssj, string jssj,string yscode);
         /// <summary>
-        /// 查询门诊详细资料处方明细
+        /// Tra cứuNgoại trúchi tiếttàiliệuĐơn thuốcchi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -33,7 +33,7 @@ namespace Newtouch.Domain.IDomainServices.Outpatient
         /// <returns></returns>
         IList<OutpatientDetailMXVO> GetOutpatientDetailMXGridJson(string mzh,string orgId);
         /// <summary>
-        /// 门诊预约信息查询
+        /// Ngoại trúđặt hẹnthông tinTra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>

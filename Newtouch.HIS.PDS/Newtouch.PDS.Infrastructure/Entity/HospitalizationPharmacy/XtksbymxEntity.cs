@@ -6,14 +6,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 住院药品医嘱操作记录
+    /// Bản ghi thao tác y lệnh thuốc nội trú
     /// </summary>
     [Table("xt_bqksbymx")]
     [SugarTable("xt_bqksbymx")]
     public class XtksbymxEntity : IEntity<XtksbymxEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// Khóa chínhID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
@@ -29,27 +29,27 @@ namespace Newtouch.HIS.Domain.Entity
         public string lsj { get; set; }
         public string zje { get; set; }
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
 
         /// <summary>
-        /// 修改用户
+        /// Người sửa đổi
         /// </summary>
         public string CreatorCode { get; set; }
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime CreateTime { get; set; }
 
 
         /// <summary>
-        /// 最后修改用户
+        /// Người sửa đổi cuối
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
         public string gg { get; set; }

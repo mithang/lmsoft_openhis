@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity.Dictionary
 {
     [Tenant(DBEnum.BaseDb)]
-    [SugarTable("xt_ypjx", "药品剂型")]
+    [SugarTable("xt_ypjx", "Dạng bào chế thuốc")]
     public partial class DrugFormulationEntity : ISysEntity
     {
         /// <summary>

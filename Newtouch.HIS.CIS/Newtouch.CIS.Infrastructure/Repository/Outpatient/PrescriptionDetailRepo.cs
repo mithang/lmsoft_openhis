@@ -10,7 +10,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 处方明细
+    /// Đơn thuốcchi tiết
     /// </summary>
     public class PrescriptionDetailRepo : RepositoryBase<PrescriptionDetailEntity>, IPrescriptionDetailRepo
     {
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取处方明细
+        /// LấyĐơn thuốcchi tiết
         /// </summary>
         /// <param name="cfId"></param>
         /// <returns></returns>
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Repository
 
         }
         /// <summary>
-        /// 获取处方明细
+        /// LấyĐơn thuốcchi tiết
         /// </summary>
         /// <param name="cfId"></param>
         /// <returns></returns>

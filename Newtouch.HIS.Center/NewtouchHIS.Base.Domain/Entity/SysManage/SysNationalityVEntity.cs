@@ -5,10 +5,10 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity.SysManage
 {
     ///<summary>
-    /// 系统岗位
+    /// Vị trí hệ thống
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
-    [SugarTable("V_S_xt_gj", "国籍")]
+    [SugarTable("V_S_xt_gj", "Quốc tịch")]
     public partial class SysNationalityVEntity : ISysEntity
     {
         /// <summary>
@@ -22,17 +22,17 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string gjCode { get; set; }
 
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         public string gjmc { get; set; }
 
         /// <summary>
-        /// 首拼
+        /// Chữ cái đầu phiên âm
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 有效标志
+        /// Cờ hiệu lực
         /// </summary>
         public string zt { get; set; }
     }

@@ -75,16 +75,16 @@
 		</div>
 		@*<table class="form">
 			<tr>
-				<th class="formTitle">耗材代码：</th>
+				<th class="formTitle">Mã vật tư tiêu hao：</th>
 				<td class="formValue" colspan="3">
-					<input id="txt_gjybdm" type="text" style="width:300px;" class="form-control form-an" placeholder="耗材代码">
+					<input id="txt_gjybdm" type="text" style="width:300px;" class="form-control form-an" placeholder="Mã vật tư tiêu hao">
 				</td>
 
 				<td class="formValue" colspan="2">
-					<input type="button" id="btn_searchyb" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
+					<input type="button" id="btn_searchyb" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tìm kiếm" />
 				</td>
 				<td class="formValue" colspan="2">
-					<input type="button" id="btn_save" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="对码" />
+					<input type="button" id="btn_save" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Đối mã" />
 				</td>
 				<th class="formTitle"></th>
 				<td class="formValue"></td>
@@ -125,7 +125,7 @@
 				{ label: "Tên BHYT quốc gia", name: "gjybmc", width: 200, align: 'center', sortable: false },
 				{ label: 'Quy cách', name: 'gg', width: 110, align: 'center', sortable: false},
 				  { label: 'Số đăng ký', name: 'ypzsm', width: 140, align: 'center', sortable: false },
-				//{ label: '剂型', name: 'jxmc', width: 60, align: 'center', sortable: false },
+				//{ label: 'Dạng bào chế', name: 'jxmc', width: 60, align: 'center', sortable: false },
 				{ label: 'Nhà sản xuất', name: 'ycmc', width: 180, align: 'center', sortable: false },
 				{
 					label: 'Tính chất tự trả', name: 'zfxz', width: 60, align: 'center', sortable: false, formatter: function (cellvalue, a, b) {
@@ -174,14 +174,14 @@
 	}
 
 
-	//结算明细 jGrid声明
+	//Chi tiết quyết toán jGridKhai báo
 	$('#gridJSMXList').newtouchLocalDataGrid({
 		height: $(window).height() - 520,
 		caption: "Thông tin vật tư BHYT",
 		unwritten: false,
 		colModel: [
 			{ label: 'Mã vật tư quốc gia', name: 'hcdm', width: 180, align: 'center' },
-			//{ label: '医保名称', name: 'zcmc', width: 200, align: 'center' },
+			//{ label: 'Tên BHYT', name: 'zcmc', width: 200, align: 'center' },
 			{ label: 'Tên vật tư BHYT', name: 'djcpmc', width: 80, align: 'center' },
 			{ label: 'Số quy cách mẫu', name: 'ggxhs', width: 100, align: 'center' },
 			{ label: 'Doanh nghiệp vật tư', name: 'hcqy', width: 180, align: 'center' },
@@ -195,10 +195,10 @@
 			{ label: 'Phân loại cấp 1', name: 'yjfl', width: 140, align: 'center' },
 			{ label: 'Phân loại cấp 2', name: 'ejfl', width: 120, align: 'center' },
 			{ label: 'Phân loại cấp 3', name: 'sjfl', width: 100, align: 'center' },
-			//{ label: '最小包装数量', name: 'zxbzsl', width: 40, align: 'center' },
-			//{ label: '最小制剂单位', name: 'zxzjdw', width: 40, align: 'center' },
-			//{ label: '最小包装单位', name: 'zxbzdw', width: 80, align: 'center' },
-			//{ label: '编号', name: 'bh', width: 80, align: 'center' },
+			//{ label: 'Số lượng đóng gói nhỏ nhất', name: 'zxbzsl', width: 40, align: 'center' },
+			//{ label: 'Đơn vị bào chế nhỏ nhất', name: 'zxzjdw', width: 40, align: 'center' },
+			//{ label: 'Đơn vị đóng gói nhỏ nhất', name: 'zxbzdw', width: 80, align: 'center' },
+			//{ label: 'Số hiệu', name: 'bh', width: 80, align: 'center' },
 
 
 		],
@@ -243,7 +243,7 @@
 		$("#txt_pzwh").val("");
 		$("#txt_scqy").val("");
 		console.log(gjybdm);
-		//每次单击，先清空上一条明细 和合计
+		//Mỗi lần nhấp，Xóa chi tiết dòng trước và tổng cộng
 		$('#gridJSMXList').jqGrid("clearGridData");
 		$.najax({
 			type: "POST",
@@ -257,7 +257,7 @@
 	}
 
 
-	//保存对码
+	//Lưu đối mã
 	function btn_save() {
 
 		var ypids = $("#gridList").jqGrid('getGridParam', 'selrow');

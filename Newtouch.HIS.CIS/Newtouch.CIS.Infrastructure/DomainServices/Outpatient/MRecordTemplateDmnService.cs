@@ -58,20 +58,20 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 查询模板明细
+        /// Tra cứumẫuchi tiết
         /// </summary>
         /// <param name="mbId"></param>
         public MRTemplateBO SelectTemplateDetailByMbId(string mbId, string orgId)
         {
-            //病历
+            //Hồ sơ
             var mbEntity = _mRTemplateRepo.IQueryable().Where(a => a.mbId == mbId && a.zt == "1").FirstOrDefault();
             if (mbEntity == null)
             {
-                throw new FailedException("数据异常，未查询出病历模板信息");
+                throw new FailedException("Dữ liệu bất thường，chưaTra cứuraHồ sơmẫuthông tin");
             }
-            //西医诊断
+            //Chẩn đoán Tây y
             //var wmdiagnosisEntityList = _mrTemplateWMDiagnosisRepo.IQueryable().Where(a => a.mbId == mbId && a.OrganizeId == orgId && a.zt == "1").ToList();
-            //添加cid10  lixin 20181016
+            //Thêmcid10  lixin 20181016
             var xysql = @"  SELECT a.zdCode,a.zdmc,a.zdlx,a.ysbz,b.icd10 FROM Newtouch_CIS.dbo.xt_blmbxyzd a  LEFT JOIN[NewtouchHIS_Base].[dbo].[V_S_xt_zd] b ON a.zdCode = b.zdCode AND (a.OrganizeId=b.OrganizeId OR b.OrganizeId='*')  AND a.zt = '1' AND b.zt = '1' WHERE a.mbId = @mbId AND a.OrganizeId = @orgId ";
             var wmdiagnosisEntityList = this.FindList<WMDiagnosisHtmlVO>(xysql, new[] { new System.Data.SqlClient.SqlParameter("@mbId", mbId), new System.Data.SqlClient.SqlParameter("@orgId", orgId) });
             List<WMDiagnosisHtmlVO> xyzdList = new List<WMDiagnosisHtmlVO>();
@@ -88,7 +88,7 @@ namespace Newtouch.DomainServices
                     xyzdList.Add(zdVo);
                 }
             }
-            //中医诊断
+            //Chẩn đoán YHCT
             //var tcmdiagnosisEntityList = _mrTemplateTCMDiagnosisRepo.IQueryable().Where(a => a.mbId == mbId && a.OrganizeId == orgId && a.zt == "1").ToList();
             var zysql = @"  SELECT a.zdCode,a.zdmc,a.zdlx,a.ysbz,a.zhCode,a.zhmc, b.icd10 FROM Newtouch_CIS.dbo.xt_blmbzyzd a  LEFT JOIN[NewtouchHIS_Base].[dbo].[V_S_xt_zd] b ON a.zdCode = b.zdCode AND (a.OrganizeId=b.OrganizeId OR b.OrganizeId='*')  AND a.zt = '1' AND b.zt = '1' WHERE a.mbId = @mbId AND a.OrganizeId = @orgId ";
             var tcmdiagnosisEntityList = this.FindList<TCMDiagnosisHtmlVO>(zysql, new[] { new System.Data.SqlClient.SqlParameter("@mbId", mbId), new System.Data.SqlClient.SqlParameter("@orgId", orgId) });
@@ -123,7 +123,7 @@ namespace Newtouch.DomainServices
             //var mbztList =_cfTemplateGroupPackageRepo.IQueryable().Where(a => a.mbId == mbId && a.OrganizeId == orgId && a.zt == "1").Select(a => new CfTemplateGroupPackageEntity { mbztId=a.mbztId, OrganizeId=a.OrganizeId, ztId=a.mbId, ztmc=a.mbmc, mbId=a.ztId, mbmc=a.ztmc, CreateTime=a.CreateTime, CreatorCode=a.CreatorCode, LastModifyTime=a.LastModifyTime, LastModifierCode=a.LastModifierCode, zt=a.zt,cflx=a.cflx }).OrderBy(a => a.cflx).ThenByDescending(a => a.CreateTime).ToList();
             var bo = new MRTemplateBO()
             {
-                //模板
+                //mẫu
                 mbmc = mbEntity.mbmc,
                 zs = mbEntity.zs,
                 xbs = mbEntity.xbs,
@@ -133,9 +133,9 @@ namespace Newtouch.DomainServices
                 yjs = mbEntity.yjs,
                 gms = mbEntity.gms,
                 hy = mbEntity.hy,
-                //西医诊断
+                //Chẩn đoán Tây y
                 xyzdList = xyzdList,
-                //中医诊断
+                //Chẩn đoán YHCT
                 zyzdList = zyzdList,
                 mbztList = mbztList
             };
@@ -144,7 +144,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="blmbObject"></param>
         /// <param name="zdList"></param>
@@ -152,7 +152,7 @@ namespace Newtouch.DomainServices
         {
             using (var db = new EFDbTransaction().BeginTrans())
             {
-                if (!string.IsNullOrWhiteSpace(blmbObject.mbId))  //修改
+                if (!string.IsNullOrWhiteSpace(blmbObject.mbId))  //Sửa
                 {
                     blmbObject.Modify();
                     blmbObject.zt = "1";
@@ -165,7 +165,7 @@ namespace Newtouch.DomainServices
                 }
                 else
                 {
-                    //新增就诊表
+                    //Thêm mớiKhám bệnhbảng
                     blmbObject.mbId = Guid.NewGuid().ToString();
                     blmbObject.Create();
 
@@ -230,7 +230,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 删除模板
+        /// Xóamẫu
         /// </summary>
         /// <param name="mbId"></param>
         public void DeleteTemplate(string mbId)

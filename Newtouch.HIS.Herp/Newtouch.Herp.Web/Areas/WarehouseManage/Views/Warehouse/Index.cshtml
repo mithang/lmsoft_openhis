@@ -83,12 +83,12 @@
         });
     }
 
-    //回车触发Tra cứu事件
+    //Nhấn Enter để kích hoạt sự kiện Tra cứu
     $("#txt_keyword").keydownEnterEvent(function() {
         $("#btn_search").trigger("click");
     });
 
-    //新增
+    //Thêm mới
     function btn_add() {
         $.modalOpen({
             id: "Form",
@@ -98,7 +98,7 @@
             height: "550px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function() {
-                    $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                    $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết củagrid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                 });
@@ -126,7 +126,7 @@
             height: "550px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function() {
-                    $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                    $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết củagrid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                 });
@@ -150,7 +150,7 @@
             url: "/WarehouseManage/Warehouse/DeleteForm",
             param: { keyValue: keyValue },
             success: function () {
-                $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết củagrid
                 $("#gridList").resetSelection();
                 $("#gridList").trigger("reloadGrid");
             }
@@ -180,7 +180,7 @@
             height: "600px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function() {
-                    $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                    $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết củagrid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                 });

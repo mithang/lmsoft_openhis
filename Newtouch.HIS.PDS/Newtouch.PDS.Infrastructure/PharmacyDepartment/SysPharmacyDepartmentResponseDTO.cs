@@ -3,7 +3,7 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.PDS.Requset.PharmacyDepartment
 {
     /// <summary>
-    /// 药房部门
+    /// Bộ phận nhà thuốc
     /// </summary>
     public class SysPharmacyDepartmentResponseDto 
     {
@@ -13,37 +13,37 @@ namespace Newtouch.PDS.Requset.PharmacyDepartment
         public int yfbmId { get; set; }
 
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         public string yfbmmc { get; set; }
 
         /// <summary>
-        /// 编码
+        /// Mã
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 门诊住院标志
+        /// Cờ ngoại trú/nội trú
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 药剂部门级别
+        /// Cấp bộ phận dược
         /// </summary>
         public byte yjbmjb { get; set; }
 
         /// <summary>
-        /// 关联科室
+        /// Khoa liên kết
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 有效标志
+        /// Cờ hiệu lực
         /// </summary>
         public string zt { get; set; }
     }

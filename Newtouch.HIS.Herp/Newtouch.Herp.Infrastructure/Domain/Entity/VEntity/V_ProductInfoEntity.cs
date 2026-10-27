@@ -3,240 +3,240 @@ using System;
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 物资
+    /// Vật tư
     /// </summary>
     public class VProductInfoEntity
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chức Id（Bệnh viện có nghiệp vụ cụ thể）
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 物资名称(必填)
+        /// Tên vật tư(Bắt buộc)
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
-        /// 类别、大类(必填)
+        /// Loại、Nhóm lớn(Bắt buộc)
         /// </summary>
         public string typeId { get; set; }
 
         /// <summary>
-        /// 注册证号
+        /// Số giấy đăng ký
         /// </summary>
         public string zczh { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 图片路径
+        /// Đường dẫn hình ảnh
         /// </summary>
         public string imageUrl { get; set; }
 
         /// <summary>
-        /// 品牌
+        /// Thương hiệu
         /// </summary>
         public string brand { get; set; }
 
         /// <summary>
-        /// 型号规格
+        /// Model và quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 供应商ID
+        /// Nhà cung cấp ID
         /// </summary>
         public string supplierId { get; set; }
 
         /// <summary>
-        /// 供应商名称
+        /// Tên nhà cung cấp
         /// </summary>
         public string supplierName { get; set; }
 
         /// <summary>
-        /// 最小单位
+        /// Đơn vị nhỏ nhất
         /// </summary>
         public string minUnit { get; set; }
 
         /// <summary>
-        /// 最小起订数
+        /// Số lượng đặt tối thiểu
         /// </summary>
         public int? zxqds { get; set; }
 
         /// <summary>
-        /// 进价，最小单位 
+        /// Giá nhập，Đơn vị nhỏ nhất 
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 零售价 最小单位
+        /// Giá bán lẻ Đơn vị nhỏ nhất
         /// </summary>
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 是否零库存
+        /// Có phải tồn kho bằng 0 không
         /// </summary>
         public string sflkc { get; set; }
 
         /// <summary>
-        /// 是否复用
+        /// Có tái sử dụng không
         /// </summary>
         public string sffy { get; set; }
 
         /// <summary>
-        /// 是否跟台
+        /// Có theo ca mổ không
         /// </summary>
         public string sfgt { get; set; }
 
         /// <summary>
-        /// 状态  0:作废；1.有效
+        /// Trạng thái  0:Hủy bỏ；1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 物资代码
+        /// Mã vật tư
         /// </summary>
         public string productCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa đổi cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 
 		/// <summary>
-		/// 物资细分代码(采购)
+		/// Mã phân loại chi tiết vật tư(Mua sắm)
 		/// </summary>
 		public string hcgjybdm { get; set; }
 
 		/// <summary>
-		/// 医疗物资标志(同步到BASE库中) 1:医疗物资 0: 其他物资(不需要同步)
+		/// Cờ vật tư y tế(Đồng bộ vào BASE CSDL) 1:Vật tư y tế 0: Vật tư khác(không cần đồng bộ)
 		/// </summary>
 		public string iswzsame { get; set; }
 
 		/// <summary>
-		/// 自负性质
+		/// Tính chất tự trả
 		/// </summary>
 		public string zfxz { get; set; }
 
 		/// <summary>
-		/// 自负比例
+		/// Tỷ lệ tự trả
 		/// </summary>
 		public decimal? zfbl { get; set; }
 
 		/// <summary>
-		/// 国家医保代码
+		/// Mã BHYT quốc gia
 		/// </summary>
 		public string gjybdm { get; set; }
 
 		/// <summary>
-		/// 省医保代码
+		/// Mã BHYT tỉnh
 		/// </summary>
 		public string ybdm { get; set; }
         
         /// <summary>
-        /// 账簿类别
+        /// Loại sổ sách
         /// </summary>
         public string zblb { get; set; }
         /// <summary>
-        /// 核算类别
+        /// Loại hạch toán
         /// </summary>
         public string hslb { get; set; }
         public int? kcyjz { get; set; }
 	}
 
     /// <summary>
-    /// 产品信息
+    /// Thông tin sản phẩm
     /// </summary>
     public class VProductInfoDo
     {
         /// <summary>
-        /// 产品ID
+        /// Sản phẩm ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 产品名称
+        /// Tên sản phẩm
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 类别名称
+        /// Tên loại
         /// </summary>
         public string lbmc { get; set; }
 
         /// <summary>
-        /// 品牌
+        /// Thương hiệu
         /// </summary>
         public string brand { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 最小单位名称
+        /// Tên đơn vị nhỏ nhất
         /// </summary>
         public string zxdwmc { get; set; }
 
         /// <summary>
-        /// 最小单位ID
+        /// Đơn vị nhỏ nhất ID
         /// </summary>
         public string unitId { get; set; }
 
         /// <summary>
-        /// 生产厂家
+        /// Hãng sản xuất
         /// </summary>
         public string sccj { get; set; }
     }
 
     /// <summary>
-    /// 物资单位
+    /// Đơn vị vật tư
     /// </summary>
     public class ProductUnit
     {
 
         /// <summary>
-        /// 单位ID
+        /// Đơn vị ID
         /// </summary>
         public string unitId { get; set; }
 
         /// <summary>
-        /// 单位名称
+        /// Tên đơn vị
         /// </summary>
         public string dwmc { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 产品ID
+        /// Sản phẩm ID
         /// </summary>
         public string productId { get; set; }
     }

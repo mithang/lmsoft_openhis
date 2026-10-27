@@ -21,7 +21,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
 
         /// <summary>
-        /// 获取当前组织下的系统药品信息
+        /// Lấy thông tin thuốc hệ thống thuộc tổ chức hiện tại
         /// </summary>
         /// <returns></returns>
         public IList<SysMedicineElectronicPrescriptionVO> GetPaginationList(Pagination pagination, string genname, string medListCodg, string listType, string zt)

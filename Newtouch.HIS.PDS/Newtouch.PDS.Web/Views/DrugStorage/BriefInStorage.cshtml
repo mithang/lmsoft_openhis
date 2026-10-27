@@ -158,13 +158,13 @@ F8Text = "Đăng ký nhập kho"
             window.initLayout("MyTabGrid");
         });
         gridRKMX([]);
-        initialRKFS();//加载入库方式
-        initialYPGYS();//注册药品供应商的浮层
-        initialRKDH();//加载入库单号
+        initialRKFS();//Tải phương thức nhập kho
+        initialYPGYS();//Lớp nổi đăng ký nhà cung cấp thuốc
+        initialRKDH();//Tải số nhập kho
         $('#txtYXQ').val(Getyxq($("#txtSCRQ").val()));
     });
 
-    //入库方式
+    //Phương thức nhập kho
     function initialRKFS() {
         $("#ddlRKFS").bindSelect({
             url: "/MedicineStorageIOMode/MedicineStorageIOModeList?crkbz=0",
@@ -194,7 +194,7 @@ F8Text = "Đăng ký nhập kho"
         });
     }
 
-    //加载入库单号
+    //Tải số nhập kho
     function initialRKDH() {
         $.najax({
             url: "/DrugStorage/initialRKDH?r=" + Math.random(),
@@ -206,7 +206,7 @@ F8Text = "Đăng ký nhập kho"
         });
     }
 
-    //输入码
+    //Mã nhập
     $("#txtSRM").newtouchBatchFloatingSelector({
         clickautotrigger: true,
         height: 300,
@@ -289,12 +289,12 @@ F8Text = "Đăng ký nhập kho"
 
     });
 
-    //供应商code变更，药品明细div清空
+    //Nhà cung cấpcodeThay đổi，Chi tiết thuốcdivXóa
     function ChangeGYSCODE() {
         ClearRKMX();
     }
 
-    //入库明细
+    //Chi tiết nhập kho
     function gridRKMX(mydata) {
         var $gridRkmx = $("#gridRKMX");
         $gridRkmx.newtouchLocalDataGrid({
@@ -347,7 +347,7 @@ F8Text = "Đăng ký nhập kho"
                 { label: 'Rkzhyz', name: 'Rkzhyz', hidden: true, align: 'left' },
                 { label: 'Ysjg', name: 'Ysjg', hidden: true, align: 'left' },
                 { label: 'rkbmkc', name: 'rkbmkc', hidden: true },
-                { label: 'sl', name: 'sl', hidden: true }, //最后保存到数据库的数量
+                { label: 'sl', name: 'sl', hidden: true }, //Số lượng lưu cuối cùng vào cơ sở dữ liệu
                 { label: 'kxdw', name: 'kxdw', hidden: true }  //Đơn vị có thể chọn
             ],
             ondblClickRow: function (rowid) {
@@ -356,7 +356,7 @@ F8Text = "Đăng ký nhập kho"
         }, mydata);
     }
 
-    //双击
+    //Nhấp đúp
     function gridDbclickRow(rowid) {
         if (rowid) {
             var getRowData = $("#gridRKMX").jqGrid('getRowData', rowid);
@@ -392,7 +392,7 @@ F8Text = "Đăng ký nhập kho"
         }
     }
 
-    //重置
+    //Đặt lại
     function newtouch_event_f7() {
         initialRKDH(); //Đổi số đơn
         $("#txtGYSCODE").val("");
@@ -403,26 +403,26 @@ F8Text = "Đăng ký nhập kho"
         $('#gridRKMX').jqGrid("clearGridData");
     }
 
-    //回车加载grid
+    //Tải bằng Entergrid
     $('#txtWG').keydownEnterEvent(function () {
-        if ($('#editRowId').val()) {            //是修改
-            newtouch_event_f3();    //模拟 Sửa nút Nhấn
+        if ($('#editRowId').val()) {            //là sửa đổi
+            newtouch_event_f3();    //Mô phỏng Sửa nút Nhấn
         }
         else {
-            newtouch_event_f2();    //模拟 Nút xác nhận Nhấn
+            newtouch_event_f2();    //Mô phỏng Nút xác nhận Nhấn
         }
     });
 
-    //获取明细
+    //Lấy chi tiết
     function getEditRowData() {
         var count = $("#gridRKMX").getGridParam('records');
         if (count < 1) {
-            //检查主数据
+            //Kiểm tra dữ liệu chính
             if (!CheckMainData()) {
                 return false;
             }
         }
-        //检查明细
+        //Kiểm tra chi tiết
         if (!CheckDetailData()) {
             return false;
         }
@@ -431,7 +431,7 @@ F8Text = "Đăng ký nhập kho"
         if ($("#ddlRKDW").find("option:selected").text() === $("#txtYPMC").attr('data-bzdw')) {
             sl = parseFloat($("#txtRKSL").val());
         } else {
-            sl = parseFloat($("#txtRKSL").val() / parseFloat($("#txtSRM").attr('data-bzs'))); //如果选择的入库单位：Đơn vị kho thuốc,则sl为入库数量/Hệ số chuyển đổi，后面保存到数据库
+            sl = parseFloat($("#txtRKSL").val() / parseFloat($("#txtSRM").attr('data-bzs'))); //Nếu đơn vị nhập kho đã chọn：Đơn vị kho thuốc,thìsllà số lượng nhập kho/Hệ số chuyển đổi，Sau đó lưu vào cơ sở dữ liệu
         }
         var data = [{
             dlmc: $("#txtSRM").attr('data-dlmc'),
@@ -439,8 +439,8 @@ F8Text = "Đăng ký nhập kho"
             ypdm: $("#txtSRM").val(),
             ypmc: $("#txtYPMC").val(),
             gg: $("#txtGG").val(),
-            sl: sl,   //最后保存到数据库的数量
-            rksl: $("#txtRKSL").val(),   //页面上的入库数量
+            sl: sl,   //Số lượng lưu cuối cùng vào cơ sở dữ liệu
+            rksl: $("#txtRKSL").val(),   //Số lượng nhập kho trên trang
             dw: $("#ddlRKDW").find("option:selected").text(),
             kxdw: $("#kxdw").val(),
             ph: $("#txtPH").val(),
@@ -468,7 +468,7 @@ F8Text = "Đăng ký nhập kho"
     }
 
 
-    //添加按钮
+    //Thêm nút
     function newtouch_event_f2() {
         if ($("#txtYXQ").val() <= $("#txtSCRQ").val()) {
             $.modalMsg("Hạn sử dụng phải muộn hơn ngày sản xuất của thuốc", "warning", 1500);
@@ -476,18 +476,18 @@ F8Text = "Đăng ký nhập kho"
         }
         var count = $("#gridRKMX").getGridParam('records');
         if (count < 1) {
-            //检查主数据
+            //Kiểm tra dữ liệu chính
             if (!CheckMainData()) {
                 return false;
             }
         }
-        //检查明细
+        //Kiểm tra chi tiết
         if (!CheckDetailData()) {
             return false;
         }
-        //获取明细
+        //Lấy chi tiết
         var data = getEditRowData();
-        //检查重复项
+        //Kiểm tra mục trùng lặp
         var isRepeatedAdd = false;
         $.each($("#gridRKMX").getDataIDs(), function () {
             var rowData = $("#gridRKMX").jqGrid('getRowData', this);
@@ -501,7 +501,7 @@ F8Text = "Đăng ký nhập kho"
             return false;
         }
         $("#gridRKMX").newtouchLocalDataGrid(null, data);
-        ComputeRKZE();//计算入库金额
+        ComputeRKZE();//Tính số tiền nhập kho
         DisableControls();//Vô hiệu hóa
         ClearRKMX();
     }
@@ -515,19 +515,19 @@ F8Text = "Đăng ký nhập kho"
         if ($('#editRowId').val()) {
             var count = $("#gridRKMX").getGridParam('records');
             if (count < 1) {
-                //检查主数据
+                //Kiểm tra dữ liệu chính
                 if (!CheckMainData()) {
                     return false;
                 }
             }
-            //检查明细
+            //Kiểm tra chi tiết
             if (!CheckDetailData()) {
                 return false;
             }
-            //获取明细
+            //Lấy chi tiết
             var data = getEditRowData();
-            $('#gridRKMX').jqGrid("delRowData", $('#editRowId').val()); //先remove掉那一行
-            //检查重复项
+            $('#gridRKMX').jqGrid("delRowData", $('#editRowId').val()); //trướcremovebỏ dòng đó
+            //Kiểm tra mục trùng lặp
             var isRepeatedAdd = false;
             $.each($("#gridRKMX").getDataIDs(), function () {
                 var rowData = $("#gridRKMX").jqGrid('getRowData', this);
@@ -541,21 +541,21 @@ F8Text = "Đăng ký nhập kho"
                 return false;
             }
             $("#gridRKMX").newtouchLocalDataGrid(null, data);
-            ComputeRKZE();//计算入库金额
+            ComputeRKZE();//Tính số tiền nhập kho
             DisableControls();//Vô hiệu hóa
             ClearRKMX();
         }
         else {
-            //获取grid当前选中的那一行
+            //LấygridDòng đang được chọn
             var seleId = $('#gridRKMX').jqGrid('getGridParam', 'selrow');
             if (seleId) {
-                //请求修改该行
+                //Yêu cầu sửa dòng đó
                 gridDbclickRow(seleId);
             }
         }
     }
 
-    //删除
+    //Xóa
     function newtouch_event_f6() {
         var delRowid = $("#gridRKMX").jqGrid('getGridParam', 'selrow');
         if (!delRowid) {
@@ -564,13 +564,13 @@ F8Text = "Đăng ký nhập kho"
         }
         $('#gridRKMX').jqGrid('delRowData', delRowid);
         ComputeRKZE();//Tính tổng nhập kho
-        //清空
+        //Xóa
         //$("#txtGYSCODE").val("");
         //$("#txtGYSMC").val("");
         EnabledSysBasicInfo();//Bật
     }
 
-    //入库
+    //Nhập kho
     function newtouch_event_f8() {
         var crkdj = Object();
         crkdj.pdh = $("#txtRKDH").val();
@@ -589,7 +589,7 @@ F8Text = "Đăng ký nhập kho"
             success: function (data) {
                 if (data.state === 'success') {
                     $.modalAlert("Đăng ký nhập kho đã được gửi", 'success');
-                    newtouch_event_f7();//新入库：Số chứng từ mới Xóa trống dữ liệu chính Xóa trống chi tiết
+                    newtouch_event_f7();//Nhập kho mới：Số chứng từ mới Xóa trống dữ liệu chính Xóa trống chi tiết
                     $('#gridRKMX').jqGrid("clearGridData");//Xóa trốngGrid
                 }
                 else {
@@ -600,7 +600,7 @@ F8Text = "Đăng ký nhập kho"
 
     }
 
-    //数量失焦,计算批发金额 零售金额
+    //Số lượng mất tiêu điểm,Tính số tiền bán buôn Số tiền bán lẻ
     function RKSL_Leave() {
         if ($("#txtRKSL").val() === "") {
             return false;
@@ -623,13 +623,13 @@ F8Text = "Đăng ký nhập kho"
         $("#txtPFZE").val((pfj * sl).toFixed(4));
         $("#txtLSZE").val((lsj * sl).toFixed(4));
 
-        //重算入库单价
+        //Tính lại đơn giá nhập kho
         JJZE_Leave();
-        //计算扣率
+        //Tính tỷ lệ khấu trừ
         ComputeKL();
     }
 
-    //进价总额失焦，计算入库单价
+    //Tổng giá nhập mất tiêu điểm，Tính đơn giá nhập kho
     function JJZE_Leave() {
         if (isNaN($("#txtJJZE").val())) {
             $.modalMsg("Định dạng tổng giá nhập sai", "warning", 1000);
@@ -642,9 +642,9 @@ F8Text = "Đăng ký nhập kho"
             return false;
         }
         var sl;
-        if ($("#ddlRKDW").find("option:selected").text() === $("#txtYPMC").attr('data-bzdw')) {    //如果选择的可退单位：Đơn vị kho thuốc Số lượng=Nhập số lượng
+        if ($("#ddlRKDW").find("option:selected").text() === $("#txtYPMC").attr('data-bzdw')) {    //Nếu đơn vị có thể trả đã chọn：Đơn vị kho thuốc Số lượng=Nhập số lượng
             sl = parseFloat($("#txtRKSL").val());
-        } else {   //可退单位：Đơn vị nhỏ nhất，Số lượng=Nhập số lượng/Hệ số chuyển đổi
+        } else {   //Đơn vị có thể trả：Đơn vị nhỏ nhất，Số lượng=Nhập số lượng/Hệ số chuyển đổi
             sl = roundingBy4she6ru5chengshuang(parseFloat($("#txtRKSL").val()) / parseFloat($("#txtSRM").attr('data-bzs')), 4);
         }
         var jjze = parseFloat($("#txtJJZE").val());
@@ -654,7 +654,7 @@ F8Text = "Đăng ký nhập kho"
         ComputeKL();
     }
 
-    //计算扣率
+    //Tính tỷ lệ khấu trừ
     function ComputeKL() {
         if ($("#txtJJ").val() === "") {
             return;
@@ -662,10 +662,10 @@ F8Text = "Đăng ký nhập kho"
         var pfj = parseFloat($("#txtPFJ").val());
         var jj = parseFloat($("#txtJJ").val());
 
-        $("#txtKL").val(roundingBy4she6ru5chengshuang((pfj * 100 / jj), 2));  //五舍六入
+        $("#txtKL").val(roundingBy4she6ru5chengshuang((pfj * 100 / jj), 2));  //Làm tròn 5 bỏ 6 lên
     }
 
-    //计算入库总额
+    //Tính tổng nhập kho
     function ComputeRKZE() {
         var rkze = 0;
         var count = $("#gridRKMX").getGridParam('records');
@@ -675,14 +675,14 @@ F8Text = "Đăng ký nhập kho"
                 var getRowZje = $("#gridRKMX").getRowData(rowIds[i]).zje;
                 rkze = parseFloat(rkze) + parseFloat(getRowZje);
             }
-            //入库金额
+            //Số tiền nhập kho
             $("#txtRKZE").html(rkze.toFixed(2));
         } else {
             $("#txtRKZE").html('');
         }
     }
 
-    //当有效期发生变更，药品批次也随之变更
+    //Khi hạn dùng thay đổi，Lô thuốc cũng thay đổi theo
     function updatePC() {
         var date = new Date();
         var hours = date.getHours().toString();
@@ -704,7 +704,7 @@ F8Text = "Đăng ký nhập kho"
         $("#txtPC").val($("#txtYXQ").val().replace(/-/g, "").toString() + currentTime);
     }
 
-    //校验主数据
+    //Kiểm tra dữ liệu chính
     function CheckMainData() {
         if ($("#txtRKDH").val() === "") {
             $.modalMsg("Số phiếu nhập kho trống", "warning", 1000);
@@ -721,7 +721,7 @@ F8Text = "Đăng ký nhập kho"
         return true;
     }
 
-    //校验明细数据
+    //Kiểm tra dữ liệu chi tiết
     function CheckDetailData() {
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if ($("#txtSRM").val() === "") {
@@ -748,7 +748,7 @@ F8Text = "Đăng ký nhập kho"
         return true;
     }
 
-    //清空明细
+    //Xóa chi tiết
     function ClearRKMX() {
         newtouch_globalevent_f4();
         $("#ddlRKDW").empty();
@@ -758,21 +758,21 @@ F8Text = "Đăng ký nhập kho"
 
     }
 
-    //禁用
+    //Vô hiệu hóa
     function DisableControls() {
         $("#txtGYSCODE").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
         $("#txtRKRQ").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
         $("#ddlRKFS").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
     }
 
-    //启用
+    //Bật
     function EnabledSysBasicInfo() {
         $("#txtGYSCODE").removeAttr("disabled").removeAttr("style");
         $("#txtRKRQ").removeAttr("disabled").removeAttr("style");
         $("#ddlRKFS").removeAttr("disabled").removeAttr("style");
     }
 
-    //有效期默认加12个月
+    //Hạn dùng mặc định cộng12tháng
     function Getyxq(scrq) {
         var s = scrq.split('-');
         var year = Number($('#txtSCRQ').val().split('-')[0]) + 1;

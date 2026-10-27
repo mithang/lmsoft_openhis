@@ -2,7 +2,7 @@
     ViewBag.Title = "Xét nghiệmPhiếu";
     Layout = "~/Views/Shared/_Form.cshtml";
     var pacsHost = SiteUrl.GetUrl("OuterPacsServiceHost", "");
-    var YjzxRportSwith = SysConfigReader.String("openYjzxSwitch");//医技管理功能开关 --报告上传方式
+    var YjzxRportSwith = SysConfigReader.String("openYjzxSwitch");//kỹ thuật y họcQuản lýcôngcó thểCông tắc --báo cáoTải lênphươngkiểu
     var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
 
@@ -47,7 +47,7 @@
         var ztmc = $('#ztmc').val();
         $("#gridList").jqGrid('setGridParam', {
             postData: { mzzyh: mzzyh, type: type, ztmc: ztmc, kssj: kssj, jssj: jssj },
-        }).trigger('reloadGrid'); //重新加载当前表格
+        }).trigger('reloadGrid'); //lạitảihiện tạibảngô
     });
 
     function gridList() {
@@ -63,14 +63,14 @@
             height: $(window).height() - 120,
             colModel: [
                 { label: 'Họ tên', name: 'xm', align: 'left', hidden: true},
-                //{ label: '性别', name: 'xb', align: 'left', hidden: true },
+                //{ label: 'Giới tính', name: 'xb', align: 'left', hidden: true },
                 { label: 'Số phiếu', name: 'lissqdh', align: 'left', width:'200px' },
                 { label: 'Tên bộ mẫu', name: 'ztmc', align: 'left', width: '240px' },
                 { label: 'Đề nghịThời gian', name: 'sqsj', align: 'left', width: '150px' },
                 { label: 'PhiếuTrạng thái', name: 'syncStatus', align: 'left', width: '80px' },
                 { label: 'blh', name: 'blh', hidden: true },
                //{ label: 'ztId', name: 'ztId', hidden: true },
-               //{ label: '总金额', name: 'zje' ,align: 'left'}
+               //{ label: 'Tổng số tiền', name: 'zje' ,align: 'left'}
                 {
                     label: "Thao tác", name: "", align: "center", width: 100,
                     formatter: function (cellvalue, options, rowobject) {
@@ -102,7 +102,7 @@
                 //金风易通 LIS 2024-4-28
                 window.open("@pacsHost/doctor-api/api/viewer?type=1&pid=" + blh + "&areaCode=" + "@curOpr.OrganizeId", "_blank");
                 //$.ajax({
-                //    url: "http://127.0.0.1:22228/api/CQSmartCheck/GetLisReport",//lis报告
+                //    url: "http://127.0.0.1:22228/api/CQSmartCheck/GetLisReport",//lisbáo cáo
                 //    dataType: "json",
                 //    data: { type: type, brxx_id: lissqdh },
                 //    type: "POST",
@@ -121,7 +121,7 @@
         } else {
             
             $.ajax({
-                url: "http://127.0.0.1:22228/api/CQSmartCheck/GetLisReport",//lis报告
+                url: "http://127.0.0.1:22228/api/CQSmartCheck/GetLisReport",//lisbáo cáo
                 dataType: "json",
                 data: { type: type, brxx_id: $gridList.jqGridRowValue().lissqdh },
                 type: "POST",

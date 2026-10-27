@@ -17,9 +17,9 @@
                 success: function (data) {
                     var rtndata = JSON.parse(data.message);
                     $("#form1").formSerialize(rtndata.srxx);
-                    //收入信息
+                    //Thông tin thu nhập
                     initsrxxtable(rtndata.srxxList, rtndata.srxx.siteId);
-                    //成本详情
+                    //Chi tiết chi phí
                     initcbxxtable(rtndata.cbxxList);
                     $('#jgss').html(rtndata.srxx.jgss).formatCurrency();
                     $('#grsss').html(rtndata.srxx.grsss).formatCurrency();
@@ -28,7 +28,7 @@
                     $('#zdmc').html(rtndata.srxx.zdmc);
                     $('#cjr').html(rtndata.srxx.cjr);
                     $('#shr').html(rtndata.srxx.shr);
-                    //附件信息
+                    //Thông tin tệp đính kèm
                     var fjhtml = "";
                     if (rtndata.fjxx != null && rtndata.fjxx.length > 0)
                     {
@@ -90,7 +90,7 @@
         $('#srcol').after(html);
     }
 
-    //查看收费金额详情
+    //Xem chi tiết số tiền thu phí
     function btn_detail(dlcode, type, siteId) {
         $.modalOpen({
             id: "ViewChargeMoneyDetail",
@@ -168,7 +168,7 @@
             dataType: "json",
             success: function () {
                 $.modalMsg("Thao tác thành công", "success");
-                $.currentWindow().$('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                $.currentWindow().$('#gridList').jqGrid("clearGridData"); //Xóa chi tiết củagrid
                 $.currentWindow().$("#btn_search").trigger("click");
                 $.modalClose();
             }

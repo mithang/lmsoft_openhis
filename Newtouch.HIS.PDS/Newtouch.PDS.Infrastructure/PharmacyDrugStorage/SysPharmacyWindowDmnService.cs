@@ -20,7 +20,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
     public class SysPharmacyWindowDmnService : DmnServiceBase, ISysPharmacyWindowDmnService
     {
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
                 if (checkList.Count > 0)
                 {
-                    throw new FailedException("窗口编号不能重复！");
+                    throw new FailedException("Mã cửa sổ không thể trùng lặp！");
                 }
                 try
                 {
@@ -97,7 +97,7 @@ where yfckId=@yfckId");
                 var checkList = FindList<SysPharmacyWindowVO>(checkSql, parList.ToArray());
                 if (checkList.Count > 0)
                 {
-                    throw new FailedException("窗口编号不能重复！");
+                    throw new FailedException("Mã cửa sổ không thể trùng lặp！");
                 }
                 try
                 {

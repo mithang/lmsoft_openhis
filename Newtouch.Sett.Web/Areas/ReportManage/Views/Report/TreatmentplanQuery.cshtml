@@ -1,7 +1,7 @@
 @{
     ViewBag.Title = "TreatmentplanQuery";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //报表链接
+    //Liên kết báo cáo
     var reportUrl = SysConfigReader.OrgReportLink();
 }
 
@@ -73,7 +73,7 @@
         }
     }
    
-    //治疗项目选择浮层绑定
+    //Liên kết lớp nổi chọn mục điều trị
     $('#zyh').newtouchBatchFloatingSelector({
         width: 500,
         height: 200,
@@ -117,11 +117,11 @@
             }
         ]
     });
-   //治疗项目选择浮层绑定
+   //Liên kết lớp nổi chọn mục điều trị
     $('#sfxmmc').sfxmFloatingSelector({
         djDecimalPlaces: 4,
         searchType: "sfxm",
-        leftshift: 150, //整体左偏移
+        leftshift: 150, //lệch trái toàn bộ
         ajaxparameters: function ($thisinput) {
             return "mzzybz=2&dllb=2&sfdllx=Rehab&keyword=" + $.trim($thisinput.val());
         },
@@ -157,7 +157,7 @@
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
                 if (((val.StaffPY && val.StaffPY.toLowerCase().indexOf(keyword.toLowerCase()) >= 0)
@@ -239,7 +239,7 @@
         init();
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }
@@ -252,7 +252,7 @@
         else {
             reportServerHOST += "/ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2f门诊治疗计划查询"
         }
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (reportServerHOST.indexOf('&rc:Stylesheet') == -1) {
                 reportServerHOST += "&rc:Stylesheet=MyStyleSheet";

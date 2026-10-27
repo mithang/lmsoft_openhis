@@ -275,33 +275,33 @@
 <script type="text/javascript">
     var aabb="";
     var eleDv;//
-    var zyh;//住院号
-    var bedCode;//床位代码
-    var bqdm = $("#bqc").val();//病区代码
+    var zyh;//Số nhập viện
+    var bedCode;//giường ký tựMã
+    var bqdm = $("#bqc").val();//Khu bệnhMã
     var bedInfoStr = "";
-    var qqlx = 0;//0新入区，1转区
+    var qqlx = 0;//0mớivàokhu，1chuyển khu
     var ysgh;
     var ysmc;
     var djrq;
-    var lastcwCode = null; //转区-前一个床位
-    var DeptCode = null; //当前科室
+    var lastcwCode = null; //chuyển khu-trướcmộtgiường ký tự
+    var DeptCode = null; //hiện tạiKhoa
     $(document).ready(function () {
 
         DefaultCheck();
     });
-    //默认选中根节点.
+    //Mặc địnhĐã chọngốctiếtđiểm.
     function DefaultCheck() {
         debugger;
         var dss = $("div[id^='wardTree_']:first").attr("id");
-        var firstid = $("div[id^='wardTree_']:first").attr("id").replace("wardTree_", "");//根节点病区代码
-        //var firstid = $("div[id^='BQtree_']:first").attr("id").replace("BQtree_", "");//根节点病区代码
-        //var firstid = "nkbq01";//根节点病区代码
+        var firstid = $("div[id^='wardTree_']:first").attr("id").replace("wardTree_", "");//gốctiếtđiểmKhu bệnhMã
+        //var firstid = $("div[id^='BQtree_']:first").attr("id").replace("BQtree_", "");//gốctiếtđiểmKhu bệnhMã
+        //var firstid = "nkbq01";//gốctiếtđiểmKhu bệnhMã
         
         //var addstyleid = 'BQtree_' + firstid;
         var addstyleid = 'wardTree_' + firstid;
         var item = new Object();
         item.id = firstid;
-        $("#" + addstyleid + "").addClass('bbit-tree-selected');//增加选中样式
+        $("#" + addstyleid + "").addClass('bbit-tree-selected');//tăng thêmĐã chọnkiểu
         wardTree_onnodeclick(item);
         //$("div[id^='wardTree_']").each(function () {
         //    var tpath = $(this).attr("tpath");
@@ -343,7 +343,7 @@
     
     $("#ul_bed").on("click", "li", function () {
         
-        //选中变色
+        //Đã chọnđổimàu
         $(this).siblings().css("background-color", "#AFEEEE").css("border", "1px solid #AFEEEE");
         //$("#ul_bed li,#ul_new li").css("background-color", "#bfbdbd").css("border", "1px solid #bfbdbd");
         $(this).css("background-color", "#00a0e9").css("border", "1px solid #00a0e9");
@@ -371,7 +371,7 @@
         getPatInitList(bqdm);
         //InitTZ();
     })
-    //初始化患者列表
+    //Khởi tạoDanh sách bệnh nhân
     function getPatInitList(bqdm)
     {
         $.loading(true, "sss");
@@ -389,7 +389,7 @@
                     $.each(ajaxresp.rows, function (n, item) {
                         var hzxb = "";
                         if (item.xb == "男") {
-                            //1男 2女 3混
+                            //1Nam 2Nữ 3Hỗn hợp
                             hzxb = "fa-mars";
                         }
                         if (item.xb == "女") {
@@ -397,7 +397,7 @@
                         }
 
                         var nls = "";
-                        if (item.nlshow == "0" || item.nlshow == null || item.nlshow == "") {//数据为0表示nlshow为空
+                        if (item.nlshow == "0" || item.nlshow == null || item.nlshow == "") {//Dữ liệulà0biểu thịnlshowlàtrống
                             nls = item.nl + " tuổi";
                         } else {
                             nls = item.nlshow;
@@ -411,7 +411,7 @@
             }
         });
     }
-    //初始化病床列表
+    //Khởi tạobệnhgiườngdanh sách
     function getBedInitList(bqdm, cwlb) {
        
         var strdata = "bqdm="+bqdm+"&cwlb=" + cwlb;
@@ -430,11 +430,11 @@
                         var hidInfo = "{\"zyh\":\"" + item.zyh + "\",\"name\":\"" + item.xm + "\",\"xb\":\"" + item.xb + "\",\"doctor\":\"" + item.ysmc + "\",\"cwCode\":\"" + item.cwCode + "\",\"type\":\"" + item.zyh + "\",\"bedNo\":\"" + item.cwmc + "\"}";
                         var hzxb = "";
                         bedInfoStr += '"' + item.cwCode + '"' + ':[{"cwCode":"' + item.cwCode + '","zyh":"' + item.zyh + '","cwsystu":"' + item.cwsystu + '"}],';
-                        //床位是否占用
+                        //giường ký tựCóKhôngchiếmdùng
                         if (item.sfzy) {
 
                             if (item.xb == "1") {
-                                //1男 2女 3混
+                                //1Nam 2Nữ 3Hỗn hợp
                                 hzxb = "fa-mars";
                                 color = "#00a0e9";
                             }
@@ -452,14 +452,14 @@
                         }
                         else {
                             if (item.cwlx == "1") {
-                                //1男 2女 3混
-                                cwlx = "男";
+                                //1Nam 2Nữ 3Hỗn hợp
+                                cwlx = "Nam";
                             }
                             if (item.cwlx == "2") {
-                                cwlx = "女";
+                                cwlx = "Nữ";
                             }
                             if (item.cwlx == "3") {
-                                cwlx = "混";
+                                cwlx = "Hỗn hợp";
                             }
                             $("#ul_bed").append("<li bedNo=\"" + item.bfNo + "-" + item.cwmc + "\" cwCode=\"" + item.cwCode + "\" noPatient=\"true\" menuclick=\"true\"  patXb=\"" + cwlx + "\">\<div class=\"dv-bed dv-bedNo\"><span class=\"dv-sp\" style=\"vertical-align: -50%;\">" + item.bfNo + "-" + item.cwmc + "</span></div><div class=\"dv-bed \"><i class=\"fa fa-bed border\" aria-hidden=\"true\" style=\"font-size:1.8rem; color:#ffffff\"></i><span class=\"dv-sp patName\">Giường trống(" + cwlx + ")</span><i class=\"fa  patxb\" aria-hidden=\"true\" style=\"color:#ffffff\"></i></div><div class=\"dv-bed\"><i class=\"fa fa-user-md\" aria-hidden=\"true\" style=\"font-size:1.8rem;margin:7px 8px 5px 8px; color:#00a0e9\"></i><span class=\"dv-sp patDoctor\"></span></div><div class=\"dv-bed\"><span class=\"dv-sp patType\"></span></div><input type=\"hidden\" name=\"hid_patInfo\" value='" + hidInfo + "' /></li>");
                         }
@@ -478,7 +478,7 @@
         getBedInitList(bqdm, $(this).val());
     });
 
-    //计算宽高
+    //Tính toánrộngcao
     function CalculationHW() {
         $(".dv-body").height($(window).height());
         $(".dv-body").width($(window).width());
@@ -489,7 +489,7 @@
     }
     CalculationHW();
     //$(function () {
-    //    $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+    //    $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt, tính lại rộng cao
     //        CalculationHW();
     //    });
     //    $('#gridBqList').jqGrid("clearGridData");
@@ -506,7 +506,7 @@
     //    });
     //});
 
-    //拖拽和右键菜单事件加载
+    //kéo thảvàphảiphímmenuphiếusự kiệntải
     function InitTZ(isBed)
     {
         var eleDvTarget = $(".dv-right-bed li[noPatient=true]");
@@ -541,7 +541,7 @@
                 ev.dataTransfer.effectAllowed = "move";
                 ev.dataTransfer.setData("text", ev.target.innerHTML);
                 //ev.dataTransfer.setDragImage(ev.target, 0, 0);
-                eleDv = ev.target;//转床时
+                eleDv = ev.target;//chuyểngiườngkhi
                 eleBeDv = ev.target;
                 return true;
             };
@@ -591,9 +591,9 @@
         }
         var currentEv = null;
 
-        //右键菜单
+        //phảiphímmenuphiếu
         //var beds = {
-        //    'A02-1床': { bedNo: 'First row', description: 'Lorem ipsum dolor sit amet' },
+        //    'A02-1giường': { bedNo: 'First row', description: 'Lorem ipsum dolor sit amet' },
         //    '1001-2001B': { bedNo: 'Second row', description: 'Nemo enim ipsam voluptatem quia voluptas' },
         //    '1001-2002A': { bedNo: 'Third row', description: 'Ut enim ad minima veniam' }
         //};
@@ -774,7 +774,7 @@
             ]
         });
     }
-    //弹出入区时间和危重类型输入框
+    //bậtravàokhuThời gianvànguytrọngLoạinhậpkhung
     function OpenRqdjForm() {
         debugger;
         $.modalOpen({
@@ -825,7 +825,7 @@
         });
     }
 
-    //转床
+    //chuyểngiường
     function TransferBed(eleBeDv) {
         $.modalConfirm("Xác nhận chuyển giường?", function (flag) {
             if (flag) {
@@ -860,7 +860,7 @@
 
 
 
-    //病区列表
+    //Khu bệnhdanh sách
 
     
 

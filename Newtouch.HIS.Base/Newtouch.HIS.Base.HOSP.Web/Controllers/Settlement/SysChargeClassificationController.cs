@@ -14,7 +14,7 @@ using System.Linq;
 namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 {
     /// <summary>
-    /// 收费分类
+    /// Phân loại thu phí
     /// </summary>
     public class SysChargeClassificationController : ControllerBase
     {
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             this._SysOrganizeDmnService = sysOrganizeDmnService;
         }
 
-        //收费树形分类（医院） 下拉 数据源
+        //Phân loại cây thu phí（Bệnh viện） Thả xuống Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetTreeSelectJson(string organizeId, string treeidFieldName = "Code")
@@ -60,7 +60,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// 获取列表
+        /// Lấy danh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="SysPatiChargeAddEntity"></param>
         /// <param name="keyValue"></param>

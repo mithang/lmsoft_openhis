@@ -22,7 +22,7 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// 预约管理
+    /// đặt hẹnQuản lý
     /// </summary>
     [Area("SystemManage")]
     public class BespeakRegisterManageController : OrgControllerBase
@@ -48,7 +48,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 预约挂号管理
+        /// đặt hẹnđăng ký khámQuản lý
         /// </summary>
         /// <returns></returns>
         public IActionResult BespeakRegister()
@@ -59,7 +59,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取主列表
+        /// Lấychínhdanh sách
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -77,7 +77,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取挂号Xếp lịch
+        /// Lấyđăng ký khámXếp lịch
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -96,7 +96,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取挂号Xếp lịch日期
+        /// Lấyđăng ký khámXếp lịchNgày
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="gh"></param>
@@ -117,7 +117,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取Khung giờ
+        /// LấyKhung giờ
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
@@ -132,7 +132,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// Khi sửa thông tin，thông tinmangđếnmớitrangmặt
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
@@ -144,7 +144,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -155,7 +155,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -170,7 +170,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取专家
+        /// Lấychuyên gia
         /// </summary>
         /// <param name="deptCode"></param>
         /// <returns></returns>
@@ -184,7 +184,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取多个Guid
+        /// LấynhiềucáiGuid
         /// </summary>
         /// <param name="rowCount"></param>
         /// <returns></returns>
@@ -200,7 +200,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取追加行HTML
+        /// LấyđuổithêmdòngHTML
         /// </summary>
         /// <param name="lastRegDate"></param>
         /// <param name="regTime"></param>
@@ -218,7 +218,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取科室预约挂号信息
+        /// LấyKhoađặt hẹnđăng ký khámthông tin
         /// </summary>
         /// <param name="deptCode"></param>
         /// <returns></returns>
@@ -230,7 +230,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取科室默认预约挂号
+        /// LấyKhoaMặc địnhđặt hẹnđăng ký khám
         /// </summary>
         /// <param name="deptCode"></param>
         /// <returns></returns>
@@ -240,7 +240,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 根据科室和工号组装预约挂号信息
+        /// TheoKhoavàMã nhân viênlắp rápđặt hẹnđăng ký khámthông tin
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="gh"></param>
@@ -253,7 +253,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取可预约总人数和已预约数
+        /// Lấycó thểđặt hẹntổng ngườisốvàđãđặt hẹnsố
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
@@ -265,7 +265,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存预约
+        /// Lưuđặt hẹn
         /// </summary>
         /// <param name="yyId"></param>
         /// <param name="brId"></param>
@@ -280,7 +280,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 取消预约挂号
+        /// Hủyđặt hẹnđăng ký khám
         /// </summary>
         /// <param name="yyId"></param>
         /// <returns></returns>
@@ -290,17 +290,17 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取科室或医生预约Xếp lịch
+        /// LấyKhoahoặcBác sĩđặt hẹnXếp lịch
         /// </summary>
-        /// <param name="year">预约年</param>
-        /// <param name="month">预约月</param>
-        /// <param name="deptCode">挂号科室</param>
-        /// <param name="ysgh">专家工号</param>
+        /// <param name="year">đặt hẹnnăm</param>
+        /// <param name="month">đặt hẹnTháng</param>
+        /// <param name="deptCode">đăng ký khámKhoa</param>
+        /// <param name="ysgh">chuyên giaMã nhân viên</param>
         /// <returns></returns>
         public IActionResult GetAllBespeakRegisterByMonth(int year, int month, string deptCode, string ysgh)
         {
             if (month <= 0) throw new Exception("Tháng truyền vào không hợp lệ, vui lòng truyền số tự nhiên");
-            var mzlx = string.IsNullOrWhiteSpace(ysgh) ? "1" : "3";//门诊住院标志 1：普通门诊  2：急诊   3：专家门诊
+            var mzlx = string.IsNullOrWhiteSpace(ysgh) ? "1" : "3";//Dấu hiệu ngoại trú/nội trú 1：thông thườngNgoại trú  2：gấpkhám   3：chuyên giaNgoại trú
             var beginTime = Convert.ToDateTime(year + "-" + month + "-01");
             var endTime = beginTime.AddMonths(1).AddDays(-1);
             var yyghDetail = _mzyyghDmnService.SelectMzyyghDetail(mzlx, deptCode, ysgh, beginTime, endTime, OrganizeId);
@@ -308,7 +308,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 生成预约Xếp lịch日历
+        /// tạođặt hẹnXếp lịchngàylịch
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>

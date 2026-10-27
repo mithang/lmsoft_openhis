@@ -10,7 +10,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
 {
     /// <summary>
-    /// Bệnh nhân基础信息管理(自费优先)
+    /// Bệnh nhânQuản lý thông tin cơ bản(Ưu tiên tự chi trả)
     /// </summary>
     [Route("api/patient")]
     [ApiController]
@@ -24,8 +24,8 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
             _patientAddressDmn = patientAddressDmn;
         }
         /// <summary>
-        /// Bệnh nhân基本信息查询 
-        /// 自费优先
+        /// Bệnh nhânTruy vấn thông tin cơ bản 
+        /// Ưu tiên tự chi trả
         /// </summary>
         /// <param name="request"></param>
         /// <returns>List</returns>
@@ -47,7 +47,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
         }
 
         /// <summary>
-        /// Bệnh nhân地址信息查询
+        /// Bệnh nhânTruy vấn thông tin địa chỉ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
         }
 
         /// <summary>
-        /// Bệnh nhân地址信息更新
+        /// Bệnh nhânCập nhật thông tin địa chỉ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
         }
 
         /// <summary>
-        /// Bệnh nhân地址信息添加
+        /// Bệnh nhânThêm thông tin địa chỉ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -113,7 +113,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
         }
 
         /// <summary>
-        /// Bệnh nhân地址信息删除
+        /// Bệnh nhânXóa thông tin địa chỉ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -135,7 +135,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PatientCenter.Controllers
         }
 
         /// <summary>
-        /// 获取订单收件人信息
+        /// Lấy thông tin người nhận đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

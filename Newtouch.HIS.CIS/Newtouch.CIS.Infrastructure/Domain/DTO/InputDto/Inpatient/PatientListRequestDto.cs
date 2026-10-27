@@ -4,7 +4,7 @@ using System;
 namespace Newtouch.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 请求在病区病人信息参数
+    /// yêu cầuởKhu bệnhThông tin bệnh nhântham số
     /// </summary>
     public class PatientzbqRequestDto
     {

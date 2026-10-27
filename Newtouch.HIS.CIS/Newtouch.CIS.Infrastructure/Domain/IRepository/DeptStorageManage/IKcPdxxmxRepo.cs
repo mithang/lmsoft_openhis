@@ -6,12 +6,12 @@ using Newtouch.CIS.Repository;
 namespace Newtouch.Domain.IRepository.DeptStorageManage
 {
     /// <summary>
-    /// 库存明细
+    /// Tồn khochi tiết
     /// </summary>
     public interface IKcPdxxmxRepo : IRepositoryBase<KcPdxxmxEntity>
     {
         /// <summary>
-        /// 盘点保存时 变更数量
+        /// Kiểm kêLưukhi đổihơnSố lượng
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         void UpdateSlBySaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList);

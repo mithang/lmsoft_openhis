@@ -99,17 +99,17 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
         $("#OrganizeId").change(function () {
-            //病区下拉
+            //Thả xuống khu bệnh
             $("#bqCode").bindSelect({
                 url: "/SysWardBed/GetWardBindSelect?orgId=" + $('#OrganizeId').val()
             });
 
-            //组织对应的科室下拉框加载
+            //Tải hộp thả xuống khoa tương ứng với tổ chức
             $("#ksCode").bindSelect({
                 url: "/Department/GetTreeSelectJson?treeidFieldName=Code&organizeId=" + $('#OrganizeId').val()
             });

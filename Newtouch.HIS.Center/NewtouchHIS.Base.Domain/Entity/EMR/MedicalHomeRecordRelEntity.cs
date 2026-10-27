@@ -404,13 +404,13 @@ namespace NewtouchHIS.Base.Domain.Entity.EMR
         public string LXRDZ_JD { get; set; }
 
         /// <summary>
-        /// 输血反应
+        /// Phản ứng truyền máu
         /// </summary>
         /// <returns></returns>
         public string SXFY { get; set; }
 
         /// <summary>
-        /// 临床路径变异原因
+        /// Nguyên nhân biến dị đường lâm sàng
         /// </summary>
         /// <returns></returns>
         public string BYYY { get; set; }

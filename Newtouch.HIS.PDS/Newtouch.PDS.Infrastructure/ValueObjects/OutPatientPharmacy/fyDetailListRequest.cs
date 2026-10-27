@@ -1,87 +1,87 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 接口返回处方明细初步信息
+    /// Thông tin sơ bộ chi tiết đơn thuốc giao diện trả về
     /// </summary>
     public class fyDetailListRequest
     {
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 处方明细ID
+        /// Chi tiết đơn thuốcID
         /// </summary>
         public int cfmxId { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal dj { get; set; }
 
         /// <summary>
-        /// 价格
+        /// Giá
         /// </summary>
         public decimal je { get; set; }
 
         /// <summary>
-        /// 处方内码
+        /// Mã nội bộ đơn thuốc
         /// </summary>
         public int cfnm { get; set; }
 
         /// <summary>
-        /// 药厂名称
+        /// Tên hãng thuốc
         /// </summary>
         public string ycmc { get; set; }
 
         /// <summary>
-        /// 剂量
+        /// Liều lượng
         /// </summary>
         public decimal jl { get; set; }
 
         /// <summary>
-        /// 剂量单位
+        /// Đơn vị liều lượng
         /// </summary>
         public string jldw { get; set; }
 
         /// <summary>
-        /// 用法名称
+        /// Tên cách dùng
         /// </summary>
         public string yfmc { get; set; }
 
         /// <summary>
-        /// 时间安排 （频次）
+        /// Sắp xếp thời gian （Tần suất）
         /// </summary>
         public string sjap { get; set; }
 
         /// <summary>
-        /// 用量
+        /// Liều dùng
         /// </summary>
         public decimal yl { get; set; }
 
         /// <summary>
-        /// 用量单位
+        /// Đơn vị liều dùng
         /// </summary>
         public string yldw { get; set; }
 
@@ -91,7 +91,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string yszt { get; set; }
 
         /// <summary>
-        /// 频次
+        /// Tần suất
         /// </summary>
         public short plh { get; set; }
     }

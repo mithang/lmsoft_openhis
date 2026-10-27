@@ -8,7 +8,7 @@ namespace Newtouch.Domain.IDomainServices
     public interface IPresTemplateDmnService
     {
         /// <summary>
-        /// 查询模板明细
+        /// Tra cứumẫuchi tiết
         /// </summary>
         /// <param name="mbId"></param>
         /// <param name="orgId"></param>
@@ -16,7 +16,7 @@ namespace Newtouch.Domain.IDomainServices
         PresTemplateBO SelectPresDetailByMbId(string mbId, string orgId,string cflx=null);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="mbObj"></param>
         /// <param name="mxList"></param>
@@ -24,7 +24,7 @@ namespace Newtouch.Domain.IDomainServices
 
          void DeleteTemplate(string mbId, string orgId);
         /// <summary>
-        /// 处方模板检索
+        /// Đơn thuốcmẫuTìm kiếm
         /// </summary>
         /// <param name="cflx"></param>
         /// <param name="mblx"></param>

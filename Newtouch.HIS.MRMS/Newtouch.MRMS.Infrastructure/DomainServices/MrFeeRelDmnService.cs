@@ -33,10 +33,10 @@ namespace Newtouch.MR.ManageSystem.DomainServices
 
 
         /// <summary>
-        /// 获取分页实体列表
+        /// Lấy danh sách thực thể phân trang
         /// </summary>
-        /// <param name="pagination">分页</param>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="pagination">Phân trang</param>
+        /// <param name="keyword">Từ khóa lọc</param>
         public IList<bafeeRelVO> GetPagintionList(Pagination pagination, string keyword, string organizeId,string code)
         {
             var sql = new StringBuilder();
@@ -69,7 +69,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
         }
 
         /// <summary>
-        /// 获取二级 三级收费大类
+        /// Lấycấp 2 cấp 3Nhóm thu phí lớn
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -104,13 +104,13 @@ where zt='1'  and organizeid=@orgId and  Lev!=1";
 
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu(Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public int SubmitForm(bafeeRelVO entity)
         {
-                //his科室代码存在 更新
+                //Mã khoa HIS đã tồn tại Cập nhật
                 string sql = "update [mr_dic_sfxmrel] set feetypecode=@feetypecode ,zt='1' ,LastModifyTime=@LastModifyTime ,LastModifierCode=@LastModifierCode where id = @id and organizeId=@organizeId";
                 SugarParameter[] para ={
                 new SugarParameter("@feetypecode",entity.feetypecode?? ""),
@@ -143,7 +143,7 @@ where zt='1'  and organizeid=@orgId and  Lev!=1";
 
 		}
 
-		//根据树单选显示项目列表
+		//Hiển thị danh sách mục chọn đơn theo cây
 		public IList<bafeeRelVO> GetPagintionListById(Pagination pagination, string organizeId, string id)
 		{
 			var sql = new StringBuilder();
@@ -164,7 +164,7 @@ where zt='1'  and organizeid=@orgId and  Lev!=1";
 			return this.QueryWithPage<bafeeRelVO>(sql.ToString(), pagination, pars == null ? null : pars.ToArray());
 		}
 
-		//根据树多选显示项目列表
+		//Hiển thị danh sách mục chọn nhiều theo cây
 		public IList<bafeeRelVO> GetPagintionListByCodes(Pagination pagination, string organizeId, string ids)
 		{
 			ids = confirmEnding(ids, ",");
@@ -217,7 +217,7 @@ where zt='1'  and organizeid=@orgId and  Lev!=1";
 
 		}
 
-		//显示未分类项目列表
+		//Hiển thị danh sách mục chưa phân loại
 		public IList<itemEntity> GetPagintionItem(Pagination pagination, string organizeId, string keyword,string hissfdl,string code)
 		{
 			var sql = new StringBuilder();

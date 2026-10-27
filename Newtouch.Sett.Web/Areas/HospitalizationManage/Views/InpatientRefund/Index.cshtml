@@ -195,7 +195,7 @@
                 $("#ryrq").text((ajaxresp.data.InpatientSettPatInfo.ryrq && ajaxresp.data.InpatientSettPatInfo.ryrq.length >= 10 ? ajaxresp.data.InpatientSettPatInfo.ryrq.substring(0, 10) : ""));
 
                 //Chi tiết tính phí、Phân trang；Tổng số tiềnTổng cộng
-                //拼接ThuốcvàMục，Sắp xếp lại tập hợp
+                //GhépThuốcvàMục，Sắp xếp lại tập hợp
                 //var c = ajaxresp.data.InpatientSettleItemBO.TreatmentItemList.concat(ajaxresp.data.InpatientSettleItemBO.DrugList).sort(function (a, b) { return new Date(a.tdrq) - new Date(b.tdrq); });
                 var c = ajaxresp.data.InpatientSettleItemBO.TreatmentItemList.sort(function (a, b) { return new Date(a.tdrq) - new Date(b.tdrq); });
                 //console.info(c);
@@ -292,7 +292,7 @@
 
     //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        //GridNạp xong thì bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt và gọieditRow方法
+        //GridNạp xong thì bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt và gọieditRowphương thức
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
@@ -363,13 +363,13 @@
         });
     }
 
-    //具体Lưuthực hiện
+    //cụthểLưuthực hiện
     function RefundMethod() {
         //Lấy dữ liệu tất cả các dòng đã chọn
         var needRefundData = $("#gridList").jqGrid('getRowData_AllLine', true);
         for (var i = 0; i < needRefundData.length; i++) {
             var je = roundingBy4she6ru5chengshuang((parseFloat(needRefundData[i].dj) * parseFloat(needRefundData[i].tsl)), 2);
-            //choGridtrongcủa字段hoànSố tiền赋giá trị
+            //choGridtrongcủatrườnghoànSố tiềngángiá trị
             $('#gridList').jqGrid('setCell', needRefundData[i].jqRowId, 'tje', je);
         }
         var lastdata = $("#gridList").jqGrid('getRowData_AllLine', true, false);

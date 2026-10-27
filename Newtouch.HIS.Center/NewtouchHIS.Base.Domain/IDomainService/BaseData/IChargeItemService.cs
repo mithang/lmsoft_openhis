@@ -8,21 +8,21 @@ namespace NewtouchHIS.Base.Domain.IDomainService
     public interface IChargeItemService : IScopedDependency
     {
         /// <summary>
-        /// 收费大类
+        /// Nhóm thu phí lớn
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         Task<List<SysChargeCategoryVO>> GetChargeCategory(QueryParamsBase query);
         /// <summary>
-        /// 收费项目列表
+        /// Danh sách hạng mục thu phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         Task<List<SysChargeItemVO>> GetChargeItemList(QueryParamsBase query);
         /// <summary>
-        /// 收费项目列表(分页)
+        /// Danh sách hạng mục thu phí(Phân trang)
         /// </summary>
         /// <param name="query"></param>
         /// <returns></returns>

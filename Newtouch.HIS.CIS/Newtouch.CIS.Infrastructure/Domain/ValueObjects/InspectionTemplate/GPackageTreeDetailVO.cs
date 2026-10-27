@@ -50,7 +50,7 @@ namespace Newtouch.Domain.ValueObjects
         public int sl { get; set; }
 		public int? px { get; set; }
         /// <summary>
-        /// 组合金额
+        /// nhómhợpSố tiền
         /// </summary>
         public decimal? zhje { get; set; }
     }

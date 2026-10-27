@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.MRQC.Web.Controllers
 {
     /// <summary>
-    /// 首页 (pilot landing page; the original portal frame views depended on
+    /// Trang chủ (pilot landing page; the original portal frame views depended on
     /// Framework-only helpers and are replaced by a minimal landing view)
     /// </summary>
     public class HomeController : Controller

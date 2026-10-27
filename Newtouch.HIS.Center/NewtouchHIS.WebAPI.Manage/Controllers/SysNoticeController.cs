@@ -18,7 +18,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
         [Route("PushMsg")]
         public async Task<IActionResult> PushMsg([FromQuery]string content)
         {
-            await _hubContext.Clients.All.SendAsync("ShowMsg",new {Title="模拟消息推送",MsgContent="12344444"});
+            await _hubContext.Clients.All.SendAsync("ShowMsg",new {Title="Đẩy thông báo mô phỏng",MsgContent="12344444"});
             return Ok(content);
         }
 

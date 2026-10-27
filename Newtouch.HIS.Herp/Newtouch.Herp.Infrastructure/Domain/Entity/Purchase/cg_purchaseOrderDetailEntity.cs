@@ -6,73 +6,73 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 采购_采购计划明细
+    /// Mua sắm_Chi tiết kế hoạch mua sắm
     /// </summary>
     [SugarTable("cg_purchaseOrderDetail")]
     public class CgPurchaseOrderDetailEntity : IEntity<CgPurchaseOrderDetailEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// Khóa chính ID
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public long Id { get; set; }
 
         /// <summary>
-        /// 采购计划单ID
+        /// Phiếu kế hoạch mua sắm ID
         /// </summary>
         public long purchaseId { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 计划采购数 sl*zhyz=最小单位数量
+        /// Số lượng mua theo kế hoạch sl*zhyz=Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 实际采购数 sjsl*zhyz=最小单位数量
+        /// Số lượng mua thực tế sjsl*zhyz=Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int sjsl { get; set; }
 
         /// <summary>
-        /// 单位ID（冗余）
+        /// Đơn vị ID（Dư thừa）
         /// </summary>
         public string unitId { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 状态 0:作废；1.有效
+        /// Trạng thái 0:Hủy bỏ；1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建用户ID
+        /// Người dùng tạo ID
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户ID
+        /// Người dùng sửa đổi cuối ID
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 供应商
+        /// Nhà cung cấp
         /// </summary>
         public string supplierId { get; set; }
         public string supplierName { get; set; }

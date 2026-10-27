@@ -11,63 +11,63 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysLogEntity : EntityBase
     {
         /// <summary>
-        /// 日志主键
+        /// Khóa chính nhật ký
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// 日期
+        /// Ngày
         /// </summary>
         public DateTime? Date { get; set; }
 
         /// <summary>
-        /// 用户名
+        /// Tên người dùng
         /// </summary>
         public string Account { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string NickName { get; set; }
 
         /// <summary>
-        /// 类型
+        /// Loại
         /// </summary>
         public string Type { get; set; }
 
         /// <summary>
-        /// IP地址
+        /// IPĐịa chỉ
         /// </summary>
         public string IPAddress { get; set; }
 
         /// <summary>
-        /// IP所在城市
+        /// IPThành phố nơi ở
         /// </summary>
         public string IPAddressName { get; set; }
 
         /// <summary>
-        /// 系统模块Id
+        /// Mô-đun hệ thốngId
         /// </summary>
         public string ModuleId { get; set; }
 
         /// <summary>
-        /// 系统模块
+        /// Mô-đun hệ thống
         /// </summary>
         public string ModuleName { get; set; }
 
         /// <summary>
-        /// 结果
+        /// Kết quả
         /// </summary>
         public bool? Result { get; set; }
 
         /// <summary>
-        /// 描述
+        /// Mô tả
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 

@@ -7,12 +7,12 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 结转
+    /// Kết chuyển
     /// </summary>
     public interface ISysMedicineStockCarryDownDmnService
     {
         /// <summary>
-        /// 查询已结转药品
+        /// Truy vấn thuốc đã kết chuyển
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="jzsj"></param>
@@ -21,33 +21,33 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<CarryOverMedicineVO> SelectCarryDownMedicineList(Pagination pagination, string jzsj, string keyWork);
 
         /// <summary>
-        /// 结转 将需结转的药品全部插入到结转表
+        /// Kết chuyển Chèn tất cả thuốc cần kết chuyển vào bảng kết chuyển
         /// </summary>
         /// <param name="list"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
-        /// <param name="jzsj">结转时间</param>
+        /// <param name="jzsj">Thời gian kết chuyển</param>
         string CarryOverMedicine(List<NeedCarryOverMedicineVO> list, string yfbmCode, string organizeId, DateTime jzsj);
 
         /// <summary>
-        /// 结转 将需结转的药品全部插入到结转表
+        /// Kết chuyển Chèn tất cả thuốc cần kết chuyển vào bảng kết chuyển
         /// </summary>
         /// <param name="list"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
         /// <param name="jzsj"></param>
-        /// <param name="userCode">结转时间</param>
+        /// <param name="userCode">Thời gian kết chuyển</param>
         /// <returns></returns>
         string CarryOverMedicine(List<NeedCarryOverMedicineVO> list, string yfbmCode, string organizeId, DateTime jzsj, string userCode);
 
         /// <summary>
-        /// 结转 将需结转的药品全部插入到结转表
+        /// Kết chuyển Chèn tất cả thuốc cần kết chuyển vào bảng kết chuyển
         /// </summary>
         /// <param name="list"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
         /// <param name="jzsj"></param>
-        /// <param name="userCode">结转时间</param>
+        /// <param name="userCode">Thời gian kết chuyển</param>
         /// <returns></returns>
          string CarryOverMedicine(string yfbmCode, string organizeId, DateTime jzsj, string userCode);
     }

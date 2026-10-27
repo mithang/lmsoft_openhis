@@ -102,11 +102,11 @@ namespace NewtouchHIS.Lib.Redis
         public async Task RemoveKeysLeftLike(string key)
         {
             var redisResult = await _database.ScriptEvaluateAsync(LuaScript.Prepare(
-                //Redis的keys模糊查询：
+                //Redistruy vấn mờ các keys:
                 " local res = redis.call('KEYS', @keywords) " +
                 " return res "), new { @keywords = $"{InitKey(key)}*" });
             if (!redisResult.IsNull)
-                await _database.KeyDeleteAsync((RedisKey[])redisResult); //删除一组key
+                await _database.KeyDeleteAsync((RedisKey[])redisResult); //Xóa một nhómkey
         }
 
         public async Task<long> GetIncr(string key)
@@ -126,7 +126,7 @@ namespace NewtouchHIS.Lib.Redis
             var qty = await _database.StringIncrementAsync(InitKey(key));
             if (qty == 1)
             {
-                //设置过期时间
+                //Thiết lập thời gian hết hạn
                 await _database.KeyExpireAsync(key, expTimeSpan);
             }
 
@@ -223,7 +223,7 @@ namespace NewtouchHIS.Lib.Redis
 
         #endregion
 
-        #region 有序集合(Sorted Set)
+        #region Tập hợp có thứ tự(Sorted Set)
 
         //public async Task<bool> SortedSetAddAsync(string redisKey, string redisValue, DateTime time)
         //{

@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
         }
         [HttpGet]
         /// <summary>
-        /// 获取就诊人数（门诊记账、住院记账）
+        /// Lấy số lượng người khám（Ghi nợ ngoại trú、Ghi nợ nội trú）
         /// </summary>
         public IActionResult GetVisitNum()
         {
@@ -76,7 +76,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
         }
 
         /// <summary>
-        /// 获取业务字段的随机产生值（自增+Format）
+        /// Lấy giá trị sinh ngẫu nhiên của trường nghiệp vụ（Tự tăng+Format）
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgIdIsStar"></param>
@@ -111,7 +111,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
             }
             //else if(orgId == topOrgId)
             //{
-            //    value = null;   //???????????????这样合适么
+            //    value = null;   //???????????????Như vậy có hợp lý không
             //}
             else
             {

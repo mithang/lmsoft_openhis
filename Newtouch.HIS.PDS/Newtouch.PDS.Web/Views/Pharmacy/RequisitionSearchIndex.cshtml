@@ -51,7 +51,7 @@
 
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
@@ -59,7 +59,7 @@
         gridDJMainRecords();
     });
 
-    //申领单主记录
+    //Bản ghi chính đơn lĩnh
     function gridDJMainRecords() {
         var $gridDjMainRecords = $("#gridDJMainRecords");
         $gridDjMainRecords.dataGrid({
@@ -69,7 +69,7 @@
             colModel: [
                 { label: 'sldId', name: 'sldId', hidden: true, align: 'left' },
                 { label: 'Số đơn lĩnh', name: 'Sldh', width: 150, align: 'left' },
-                //{ label: '申领部门', name: 'slbmmc', width: 80, align: 'left' },
+                //{ label: 'Bộ phận lĩnh', name: 'slbmmc', width: 80, align: 'left' },
                 { label: 'Khoa phát thuốc', name: 'ckbmmc', width: 80, align: 'left' },
                 { label: 'Thời gian lĩnh', name: 'CreateTime', width: 150, align: 'left', formatter: 'date', formatoptions: { srcformat: 'y-m-d H:i', newformat: 'y-m-d H:i' }},
                 {
@@ -129,9 +129,9 @@
         return { startDate: startDate, endDate: endDate, sldh: sldh, ffzt: ffzt, from: "query" };
     };
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        //每次单击，先清空明细 再重新加载所有选中行明细
+        //Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $('#gridDJMXInfo').jqGrid("clearGridData");
         $.najax({
             type: "POST",

@@ -33,11 +33,11 @@
     //        }
     //    });
     //}
-    //总金额合计
+    //tổngtiềnmứchợptính
     //function loadJfmxByZyh2(data) {
-    //    //$('#gridFeeList').jqGrid("clearGridData");   //早F4过了
+    //    //$('#gridFeeList').jqGrid("clearGridData");   //sớmF4quarồi
     //    $("#gridFeeList").newtouchLocalDataGrid(null, data);
-    //    //总金额
+    //    //Tổng số tiền
     //    var zje = 0;
     //    $.each(data, function () {
     //        if (this.je) {
@@ -112,9 +112,9 @@
     }
 
     function getFeeZje() {
-        //总金额
+        //Tổng số tiền
         var zje = 0;
-        var ids = $("#gridFeeInfoList").getDataIDs();//返回数据表的ID数组["66","39"..] 
+        var ids = $("#gridFeeInfoList").getDataIDs();//của bảng dữ liệu trả vềIDmảng["66","39"..] 
         for (var i = 0; i < ids.length; i++) {
             var rowData = $("#gridFeeInfoList").getRowData(ids[i]);
             if (!!rowData.je) {

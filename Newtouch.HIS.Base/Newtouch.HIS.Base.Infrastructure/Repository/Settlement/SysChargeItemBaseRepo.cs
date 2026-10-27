@@ -10,7 +10,7 @@ using System.Linq;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 收费项目
+    /// Hạng mục thu phí
     /// </summary>
     public class SysChargeItemBaseRepo : RepositoryBase<SysChargeItemBaseEntity>, ISysChargeItemBaseRepo
     {
@@ -48,13 +48,13 @@ namespace Newtouch.HIS.Repository
         {
             if (keyValue.HasValue && keyValue.Value > 0)
             {
-                //Code重复判断
+                //CodeKiểm tra trùng lặp
                 if (this.IQueryable().Any(p => p.sfxmCode == entity.sfxmCode && p.sfxmId != keyValue.Value && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                SysChargeItemBaseEntity oldEntity = null;   //变更前Entity
+                SysChargeItemBaseEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //Code重复判断
+                //CodeKiểm tra trùng lặp
                 if (this.IQueryable().Any(p => p.sfxmCode == entity.sfxmCode && p.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("Mã không được trùng lặp");
@@ -80,7 +80,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 医保同步修改最后上传时间
+        /// Đồng bộ BHYT sửa thời gian tải lên cuối cùng
         /// </summary>
         /// <param name="ypId"></param>
         /// <returns></returns>

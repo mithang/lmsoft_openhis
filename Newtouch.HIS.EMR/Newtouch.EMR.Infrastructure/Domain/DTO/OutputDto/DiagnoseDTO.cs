@@ -18,7 +18,7 @@ namespace Newtouch.EMR.Domain.DTO
     public class DiagnoseDocDTO : DiagnoseDTO
     {
         /// <summary>
-        /// 诊断分类 1	初步诊断 2	修正诊断 3	确定诊断 4	补充诊断
+        /// Phân loại chẩn đoán 1	Chẩn đoán sơ bộ 2	Chẩn đoán sửa đổi 3	Chẩn đoán xác định 4	Chẩn đoán bổ sung
         /// </summary>
         public string zdfl { get; set; }
         public int? px { get; set; }

@@ -7,7 +7,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
     public interface IHttpClientHelper
     {
         /// <summary>
-        /// Post请求
+        /// Postyêu cầu
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
@@ -15,7 +15,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
         /// <returns></returns>
         Task<T> PostAsync<T>(string url, string data);
         /// <summary>
-        /// Post请求（Header添加 Authorization）
+        /// PostYêu cầu (Header thêm Authorization)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
@@ -24,7 +24,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
         /// <returns></returns>
         Task<T> PostAsync<T>(string url, string data, string token);
         /// <summary>
-        /// Post请求（支持Https）
+        /// PostYêu cầu (hỗ trợ Https)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>

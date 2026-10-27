@@ -41,7 +41,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
         {
             return View();
         }
-        //手术排班安排
+        //Sắp xếp lịch phẫu thuật
         public IActionResult ArrangementDetail()
         {
             return View();
@@ -78,57 +78,57 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
         }
         public IActionResult GetGridList(Pagination pagination, QueryArrangeDto dto)
         {
-            #region 测试数据
+            #region Dữ liệu kiểm tra
             //object[] list = new[]{
             //    new{
             //        applyno="ss0000001",
             //        oparrangeno="20191001002",
-            //        xm="张三",
-            //        xb="男",
+            //        xm="Nguyễn Văn A",
+            //        xb="Nam",
             //        nl="26",
             //        zyh="001",
             //        patid="12345",
-            //        bq="一病区",
+            //        bq="Khoa 1",
             //        ch="C098",
             //        rysj="2019-10-1",
-            //        ryzd="阑尾炎",
+            //        ryzd="Viêm ruột thừa",
             //        sqssrq="2019-10-1 10:00",
-            //        sqssmc="阑尾切除术1",
-            //        sqzdys="医生1",
-            //        sqzt="已审核",
+            //        sqssmc="Cắt ruột thừa1",
+            //        sqzdys="Bác sĩ 1",
+            //        sqzt="Đã duyệt",
             //        sssj="2019-10-1 10:00",
-            //        ssmc="阑尾切除术1",
-            //        zdys="医生1",
+            //        ssmc="Cắt ruột thừa1",
+            //        zdys="Bác sĩ 1",
             //        yszs1="ys01",
             //        yszs2="ys02",
-            //        xshs="hs01",  //洗手护士
-            //        xhhs="hs02",  //巡回护士
-            //        ssroom="手术室1",
+            //        xshs="hs01",  //Y tá rửa tay
+            //        xhhs="hs02",  //Y tá lưu động
+            //        ssroom="Phòng phẫu thuật 1",
             //        ssno="2"
             //    },
             //    new{
             //        applyno="ss0000002",
             //        oparrangeno="",
-            //        xm="张三",
-            //        xb="男",
+            //        xm="Nguyễn Văn A",
+            //        xb="Nam",
             //        nl="26",
             //        zyh="001",
             //        patid="12345",
-            //        bq="一病区",
+            //        bq="Khoa 1",
             //        ch="C098",
             //        rysj="2019-10-1",
-            //        ryzd="阑尾炎",
+            //        ryzd="Viêm ruột thừa",
             //        sqssrq="2019-10-1 15:30",
-            //        sqssmc="阑尾切除术2",
-            //        sqzdys="医生1",
-            //        sqzt="待审核",
+            //        sqssmc="Cắt ruột thừa2",
+            //        sqzdys="Bác sĩ 1",
+            //        sqzt="Chờ duyệt",
             //        sssj="",
             //        ssmc="",
             //        zdys="",
             //        yszs1="",
             //        yszs2="",
-            //        xshs="",  //洗手护士
-            //        xhhs="",  //巡回护士
+            //        xshs="",  //Y tá rửa tay
+            //        xhhs="",  //Y tá lưu động
             //        ssroom="",
             //        ssno=""
             //    }
@@ -136,7 +136,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
             //return Content(list.ToJson());
             #endregion
 
-            //时间格式转换
+            //Chuyển đổi định dạng thời gian
             if (dto.ksrq != null)
             {
                 dto.ksrq = string.Format("{0:yyyy-MM-dd HH:mm:ss.fff}", dto.ksrq).ToDate();
@@ -168,11 +168,11 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
                 entity.OrganizeId = OrganizeId;
             }
             var ApplyId = keyValue;
-            //申请编号转换为手术安排Id
+            //Chuyển số đơn đăng ký thành lịch phẫu thuậtId
             var ArrangeId = getArrangeIdByApplyId(ApplyId);
-            //安排表申请状态改为已审核
+            //Đổi trạng thái đơn của bảng xếp lịch thành Đã duyệt
             _ORApplyInfoRepo.UpdateSqzt(ApplyId, "2");
-            //申请表申请状态改为已排班
+            //Đổi trạng thái đơn của bảng đơn đăng ký thành Đã xếp lịch
             _ORArrangementRepo.SubmitForm(entity, ApplyId, ArrangeId);
             return Success("Thao tác thành công.");
         }
@@ -205,7 +205,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// 获取手术申请详情(手术排班页)
+        /// Lấy chi tiết đơn đăng ký phẫu thuật(Trang xếp lịch phẫu thuật)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -254,10 +254,10 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
 
         public IActionResult DeleteForm(string keyValue)
         {
-            //更新排班手术状态
+            //Cập nhật trạng thái phẫu thuật đã xếp lịch
             var ArrangeId = getArrangeIdByApplyId(keyValue);
             _ORArrangementRepo.DeleteForm(ArrangeId);
-            //取消排班更新手术申请状态(1.已申请)
+            //Hủy xếp lịch, cập nhật trạng thái đơn đăng ký(1.Đã đăng ký)
             _ORApplyInfoRepo.UpdateSqzt(keyValue, "1");
             return Success("Thao tác thành công.");
         }

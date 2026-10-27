@@ -7,26 +7,26 @@ using System.Collections.Generic;
 namespace Newtouch.OR.ManageSystem.Repository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-06 10:22
-    /// 描 述：手术人员记录
+    /// Tạo bởi：chl
+    /// Ngày：2019-11-06 10:22
+    /// Mô tả：Hồ sơ nhân viên phẫu thuật
     /// </summary>
     public class OROpStaffRecordRepo : RepositoryBase<OROpStaffRecordEntity>, IOROpStaffRecordRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFFactory ngữ cảnh</param>
         public OROpStaffRecordRepo()
         {
             
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public int SubmitForm(OROpStaffRecordEntity entity, string keyValue)
         {
             var flag = this.IQueryable().Any(p => p.ssxh == entity.ssxh && p.rylb == entity.rylb && p.px == entity.px && p.zt == "1");
@@ -73,9 +73,9 @@ namespace Newtouch.OR.ManageSystem.Repository
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public int DeleteForm(string keyValue)
         {
             var dbEntity = this.FindEntity(keyValue);

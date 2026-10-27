@@ -24,14 +24,14 @@ namespace Newtouch.HIS.Domain.IRepository
 
 
         /// <summary>
-        /// 更新病区信息
+        /// Cập nhật thông tin khu bệnh
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
         void submitForm(SysWardEntity entity, int? keyValue);
 
         /// <summary>
-        /// 获取所有病区列表
+        /// Lấy danh sách tất cả khu bệnh
         /// </summary>
         List<SysWardEntity> SelectWardList(string orgId);
     }

@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         public void SubmitForm(RehabChargeItemComparisonEntity entity, string sfxmdzId)
         {
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(string sfxmdzId, string OrganizeId)

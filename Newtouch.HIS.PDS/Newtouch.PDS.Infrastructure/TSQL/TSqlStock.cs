@@ -1,12 +1,12 @@
 namespace Newtouch.Infrastructure.TSQL
 {
     /// <summary>
-    /// 库存
+    /// Tồn kho
     /// </summary>
     public class TSqlStock
     {
         /// <summary>
-        /// 批量直接出库
+        /// Xuất kho trực tiếp hàng loạt
         /// </summary>
         public const string direct_delivery_batch_search = @"
 SELECT s.ypdm, s.ypmc, s.dlmc, s.gg, s.ycmc, dbo.f_getComplexYpSlandDw(s.kysl, s.ckbmzhyz, s.ckbmbmdw, s.zxdw) slStr
@@ -31,7 +31,7 @@ FROM (
 ";
 
         /// <summary>
-        /// 直接批量出库
+        /// Xuất kho hàng loạt trực tiếp
         /// </summary>
         public const string direct_delivery_batch_submit = @"
 BEGIN TRANSACTION
@@ -39,10 +39,10 @@ BEGIN TRY
 	IF OBJECT_ID(N'tempdb..#djmx', N'U') IS NOT NULL
 	DROP TABLE #djmx
 
-	--获取明细
+	--Lấy chi tiết
 	SELECT NEWID() crkmxId,s.ypdm,s.ph,s.pc,s.yxq,s.cd,s.ypmc,s.ykjj
 		,CONVERT(NUMERIC(11,4),s.ykpfj/s.bzs*s.Ckzhyz) pfj,CONVERT(NUMERIC(11,4),s.yklsj/s.bzs*s.Ckzhyz) lsj,s.ykpfj,s.yklsj,CONVERT(NUMERIC(11,2),s.zxdwjj*s.kysl) zje
-		,CONVERT(INT,s.kysl/s.Ckzhyz) sl,s.Rkzhyz,s.kcsl Ckbmkc,s.kysl kykcsl,s.Ckzhyz,s.ckdw,CONVERT(NUMERIC(11,4),s.zxdwjj*s.Ckzhyz) jj --出库部门单位进价
+		,CONVERT(INT,s.kysl/s.Ckzhyz) sl,s.Rkzhyz,s.kcsl Ckbmkc,s.kysl kykcsl,s.Ckzhyz,s.ckdw,CONVERT(NUMERIC(11,4),s.zxdwjj*s.Ckzhyz) jj --Giá nhập đơn vị bộ phận xuất kho
 	INTO #djmx
 	FROM (
 		SELECT kcxx.ypdm,kcxx.ph,kcxx.pc,kcxx.yxq,yp.pfj ykpfj,yp.lsj yklsj,yp.ypmc
@@ -67,7 +67,7 @@ BEGIN TRY
 		RETURN;
 	END 
 	
-	--保存出入库单据主信息
+	--Lưu thông tin chính chứng từ xuất nhập kho
 	INSERT dbo.xt_yp_crkdj( crkId ,OrganizeId ,djlx ,Pdh ,Rkbm ,Ckbm ,Rksj ,Cksj ,Rkczy ,Ckczy ,Crkfsdm ,Czsj ,Sqsj ,Shczy ,shzt ,zt ,px ,CreatorCode ,CreateTime ,LastModifyTime ,LastModifierCode)
 	VALUES  ( @crkId , -- crkId - varchar(50)
 			  @Organizeid , -- OrganizeId - varchar(50)
@@ -133,7 +133,7 @@ BEGIN TRY
 		AND ISNULL(LTRIM(RTRIM(yxq)),'')=ISNULL(LTRIM(RTRIM(@yxq)),'') 
 		AND zt='1' AND (kcsl-djsl)>0 AND yfbmCode=@yfbmCode AND OrganizeId=@Organizeid
 
-		--判断库存是否足够出库
+		--Kiểm tra tồn kho có đủ xuất kho không
 		IF @tmpkcsl<@kykcsl
 		BEGIN
 			SELECT '【'+@ypmc+'】库存不足';
@@ -211,7 +211,7 @@ BEGIN TRY
 			END 
 		END 
 		
-		--插入出入库明细
+		--Chèn chi tiết xuất nhập kho
 		INSERT INTO dbo.xt_yp_crkmx( crkmxId ,crkId ,Ypdm ,Ph ,Yxq ,Pfj ,Lsj ,Ykpfj ,Yklsj ,Zje ,Sl ,Rkzhyz ,Rkbmkc ,Ckzhyz ,Ckbmkc, ckdw ,jj ,cd ,pc ,zt ,px ,CreatorCode ,CreateTime ,LastModifyTime ,LastModifierCode)
 		VALUES  ( @crkmxId , -- crkmxId - varchar(50)
 				  @crkId , -- crkId - varchar(50)
@@ -251,8 +251,8 @@ BEGIN TRY
 	END 
 END TRY
 BEGIN CATCH
-    SELECT Error_message() as ErrorMessage  --错误的具体信息
-    ROLLBACK TRANSACTION  ---由于出错，这里回滚到开始，第一条语句也没有插入成功。
+    SELECT Error_message() as ErrorMessage  --Thông tin cụ thể của lỗi
+    ROLLBACK TRANSACTION  ---Do xảy ra lỗi，Ở đây quay lại điểm bắt đầu，Câu lệnh đầu tiên cũng không chèn thành công。
 	RETURN 
 END CATCH
 SELECT '';
@@ -260,7 +260,7 @@ COMMIT TRANSACTION
 ";
 
         /// <summary>
-        /// 冻结库存（减库存使用  内部发药退回）
+        /// Đóng băng tồn kho（Sử dụng giảm tồn kho  Trả lại phát thuốc nội bộ）
         /// </summary>
         public const string frozen_stock_Reduce_use_by_returninward = @"
 BEGIN TRANSACTION
@@ -292,7 +292,7 @@ BEGIN TRY
 	
 	SELECT kcId, (kcsl-djsl) kykc INTO #tmpkcxx FROM dbo.xt_yp_kcxx WHERE ypdm=@ypdm AND pc=@pc AND ph=@ph AND OrganizeId=@Organizeid AND yfbmCode=@yfbmCode AND zt='1'
 
-	DECLARE @sykc INT; -- 剩余库存
+	DECLARE @sykc INT; -- Tồn kho còn lại
 	DECLARE @kcid VARCHAR(50);
 	DECLARE @curkykc INT;
 	SET @sykc=@sl;
@@ -323,7 +323,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 冻结库存（减库存使用  直接出库）
+        /// Đóng băng tồn kho（Sử dụng giảm tồn kho  Xuất kho trực tiếp）
         /// </summary>
         public const string frozen_stock_Reduce_use_by_deliveryDirect = @"
 BEGIN TRANSACTION
@@ -348,7 +348,7 @@ BEGIN TRY
 	
 	SELECT kcId, (kcsl-djsl) kykc INTO #tmpkcxx FROM dbo.xt_yp_kcxx WHERE ypdm=@ypdm AND pc=@pc AND ph=@ph AND OrganizeId=@Organizeid AND yfbmCode=@yfbmCode AND zt='1'
 
-	DECLARE @sykc INT; -- 剩余库存
+	DECLARE @sykc INT; -- Tồn kho còn lại
 	DECLARE @kcid VARCHAR(50);
 	DECLARE @curkykc INT;
 	SET @sykc=@sl;
@@ -379,7 +379,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 生成盘点信息
+        /// Tạo thông tin kiểm kê
         /// </summary>
         public const string generate_inventoryInfo = @"
 BEGIN TRANSACTION;
@@ -496,7 +496,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúc kiểm kê
         /// </summary>
         public const string end_inventoryInfo = @"
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects where id=object_id(N'tempdb..#tmpypjspd') and type='U')
@@ -526,10 +526,10 @@ BEGIN TRY
 		DECLARE @pc VARCHAR(50);
 		DECLARE @Yxq DATETIME;
 		DECLARE @Sysl INT;
-		DECLARE @djh VARCHAR(50);--输出参数
-		DECLARE @Sykc INT;--剩余库存
-		DECLARE @Pfj MONEY;--批发价
-		DECLARE @Lsj MONEY;--零售价
+		DECLARE @djh VARCHAR(50);--Tham Số đầu ra
+		DECLARE @Sykc INT;--Tồn kho còn lại
+		DECLARE @Pfj MONEY;--Giá bán buôn
+		DECLARE @Lsj MONEY;--Giá bán lẻ
 		DECLARE @Ykpfj MONEY;
 		DECLARE @Yklsj MONEY; 
 		DECLARE @Zhyz INT;
@@ -545,12 +545,12 @@ BEGIN TRY
 			If Isnull(@Kcsl,0) + @Sysl < 0
 			BEGIN
 				--ROLLBACK TRANSACTION
-				--SELECT Rtrim(Convert(Varchar(12),@Ypdm)) + '库存不足！' ;
+				--SELECT Rtrim(Convert(Varchar(12),@Ypdm)) + 'Tồn kho không đủ！' ;
 				--RETURN;
 				SET @Sysl=-1*@Kcsl;	
 			END		
 			
-			--生成报损报溢单号
+			--Tạo Số đơn báo hỏng báo thừa
 			EXEC sp_yp_Getypdjh '报损报溢单', @OrganizeId, @yfbmCode, @djh output
 			UPDATE xt_yp_kcxx Set Kcsl = Kcsl + @Sysl, LastModifierCode=@CreatorCode, LastModifyTime=GETDATE() Where yfbmCode = @yfbmCode And Ypdm = @Ypdm And Isnull(Ph,'') = @Ph AND Isnull(pc,'') = @pc And Isnull(Yxq,'1899-01-01') = Isnull(@Yxq,'1899-01-01') AND OrganizeId=@OrganizeId
 
@@ -583,7 +583,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 作废  减库存
+        /// Hủy bỏ  Giảm tồn kho
         /// </summary>
         public const string cancel_subtract_kcsl = @"
 BEGIN TRY 
@@ -598,7 +598,7 @@ BEGIN TRY
 	WHERE pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND yfbmCode=@yfbmCode AND ypdm=@ypdm AND zt=@zt
 	IF @totalDjsl>0  
 	BEGIN
-		-- 有冻结说明正在被使用，作废可能导致后期扣库存库存不足
+		-- Có đóng băng nghĩa là đang được sử dụng，Hủy bỏ có thể dẫn tới sau này trừ tồn kho không đủ
 		SELECT '该批次存在冻结库存，不能作废';
 		RETURN;
 	END
@@ -615,9 +615,9 @@ BEGIN TRY
 	SELECT kcId, kcsl INTO #allkcxx FROM dbo.xt_yp_kcxx 
 	WHERE ypdm=@ypdm AND yfbmCode=@yfbmCode AND OrganizeId=@OrganizeId AND pc=@pc AND ph=@ph AND zt=@zt
 
-	DECLARE @kcsl INT; --当前可用库存
-	DECLARE @kcId VARCHAR(50); --当前库存ID
-	DECLARE @sykc INT; --剩余库存
+	DECLARE @kcsl INT; --Tồn kho khả dụng hiện tại
+	DECLARE @kcId VARCHAR(50); --Tồn kho hiện tạiID
+	DECLARE @sykc INT; --Tồn kho còn lại
 	SET @sykc=@sl;
 	WHILE(EXISTS(SELECT 1 FROM #allkcxx) AND @sykc>0)
 	BEGIN
@@ -645,7 +645,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 冻结库存并返回冻结信息
+        /// Đóng băng tồn kho và trả về thông tin đóng băng
         /// </summary>
         public const string frozen_stork_and_return_frozenInfo = @"
 BEGIN TRANSACTION
@@ -653,7 +653,7 @@ BEGIN TRY
 	IF OBJECT_ID(N'tempdb..#returnData', N'U') IS NOT NULL	
 	DROP TABLE #returnData
 
-	--返回表类型
+	--Trả về loại bảng
 	CREATE TABLE #returnData
 	(
 		ypdm VARCHAR(50) ,
@@ -670,7 +670,7 @@ BEGIN TRY
 		VALUES  ( '', -- ypdm - varchar(50)
 		          '', -- pc - varchar(50)
 		          '', -- ph - varchar(50)
-				  0, --jj -DECIMAL(11,4) 药库单位进价
+				  0, --jj -DECIMAL(11,4) Giá nhập đơn vị kho thuốc
 		          0, -- djsl - int
 				  GETDATE(),
 		          '目标数量必须大于等于零'  -- errorMsg - varchar(200)
@@ -693,7 +693,7 @@ BEGIN TRY
 		VALUES  ( '', -- ypdm - varchar(50)
 		          '', -- pc - varchar(50)
 		          '', -- ph - varchar(50)
-				  0, --jj -DECIMAL(11,4) 药库单位进价
+				  0, --jj -DECIMAL(11,4) Giá nhập đơn vị kho thuốc
 		          0, -- djsl - int
 				  GETDATE(),
 		          '【'+@ypmc+'】'+'库存不足'  -- errorMsg - varchar(200)
@@ -743,7 +743,7 @@ BEGIN CATCH
 	VALUES  ( '', -- ypdm - varchar(50)
 			  '', -- pc - varchar(50)
 			  '', -- ph - varchar(50)
-			  0, --jj -DECIMAL(11,4) 药库单位进价
+			  0, --jj -DECIMAL(11,4) Giá nhập đơn vị kho thuốc
 			  0, -- djsl - int
 			  GETDATE(),
 			  ERROR_MESSAGE()  -- errorMsg - varchar(200)
@@ -753,7 +753,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 库存结转
+        /// Kết chuyển tồn kho
         /// </summary>
         public const string yp_xt_kcjz_v2 = @"
 BEGIN TRY
@@ -805,7 +805,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 库存结转
+        /// Kết chuyển tồn kho
         /// </summary>
         public const string yp_xt_kcjz = @"
 BEGIN TRY
@@ -858,7 +858,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 扣库存
+        /// Trừ tồn kho
         /// </summary>
         public const string SubtractStock = @"
 DECLARE @kykc INT, @ypmc VARCHAR(200);
@@ -920,7 +920,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// 科室备药发药
+        /// Phát thuốc chuẩn bị cho khoa
         /// </summary>
         public const string KsbyStock = @"IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#ypkc') AND type='U')
 BEGIN

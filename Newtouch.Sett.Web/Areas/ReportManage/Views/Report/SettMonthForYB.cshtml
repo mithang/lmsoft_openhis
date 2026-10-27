@@ -57,7 +57,7 @@
             return;
         }
 
-        //同步费用
+        //Đồng bộ chi phí
         $.ajax({
             url: "/ReportManage/Report/SettMonthForYB",
             dataType: "json",
@@ -85,7 +85,7 @@
 
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }
@@ -97,7 +97,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:Stylesheet') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";

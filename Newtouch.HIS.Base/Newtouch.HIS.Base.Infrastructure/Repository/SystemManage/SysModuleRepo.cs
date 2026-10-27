@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         /// <returns></returns>
         public IList<SysModuleEntity> GetValidList()

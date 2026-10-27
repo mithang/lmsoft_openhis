@@ -1,0 +1,66 @@
+﻿
+@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<script>
+    var from = $.request("from");
+    var organizeId = $.request("organizeId");
+    var isContansChildOrg = $.request("isContansChildOrg");
+    var keyValue = $.request("keyValue");
+    var isShowEmpty = $.request("isShowEmpty");
+    var isExpand = $.request("isExpand");
+    var callbackType = $.request("callbackType");
+    var single = $.request("single");
+    var fromDialog = $.request("fromDialog");
+    $(function () {
+        initControl();
+    })
+    function initControl() {
+        $("#userStaffTree").treeview({
+            height: 400,
+            slimscroll: false,
+            showcheck: true,
+            url: "/SysManage/User/GetSysUserSelectorTree",
+            param: { from: from, organizeId: organizeId, isContansChildOrg: isContansChildOrg, keyValue: keyValue, isShowEmpty: isShowEmpty, isExpand: isExpand }
+        });
+    }
+    function submitForm() {
+        var treeSeleData;
+        if (callbackType == 'json') {
+            treeSeleData = $("#userStaffTree").getCheckedNodeObjArray();
+            if (single == 'true' && treeSeleData.length != 1) {
+                $.modalAlert('chọn tối đa một mục', 'warning');
+                return;
+            }
+        }
+        else {
+            treeSeleData = $("#userStaffTree").getCheckedValues();  //Valuestương ứngUserId/
+            if (single == 'true' && treeSeleData.length != 1) {
+                $.modalAlert('chọn tối đa một mục', 'warning');
+                return;
+            }
+            treeSeleData = String(treeSeleData);
+        }
+
+        if (false) {
+
+        }
+        else if (fromDialog) {
+            //hành vi mặc định，callbacktrướcDialogphương thức
+            top.top.window.frames[fromDialog].userStaffTreeCallback(treeSeleData);
+        }
+        else {
+            //hành vi mặc định，callbackphương thức của trang trước
+            $.currentWindow().window.userStaffTreeCallback(treeSeleData);
+        }
+    }
+</script>
+<form id="form1">
+    <div class="widget-body">
+        <div id="userStaffTree"></div>
+    </div>
+</form>
+
+

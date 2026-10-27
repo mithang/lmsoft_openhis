@@ -62,12 +62,12 @@
             url: "/ReportManage/YpckQuery/GetSysDepartmentList",
             dropdownAutoWidth: true
         });
-        $("#bqmc").bindSelect({ //病区信息集合
+        $("#bqmc").bindSelect({ //Tập hợp thông tin khu bệnh
             url: "/HospitalizationPharmacy/GetBQSelectJson",
             id: "bqCode",
             text: "bqmc"
         });
-        $("#ypdl").bindSelect({ //病区信息集合
+        $("#ypdl").bindSelect({ //Tập hợp thông tin khu bệnh
             url: "/ReportManage/JsYpcx/GetDlList",
             id: "dlcode",
             text: "dlmc"
@@ -75,7 +75,7 @@
 
         $('#if_data').css('height', $(window).height() - 85);
 
-        //查询
+        //Truy vấn
         $("#btn_search").click(function () {
             var ksname = "";
             if ($("#depa").find("option:selected").text()!="全部") {

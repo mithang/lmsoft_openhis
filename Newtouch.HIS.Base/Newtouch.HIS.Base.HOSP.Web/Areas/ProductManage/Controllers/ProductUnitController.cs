@@ -12,7 +12,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.HIS.Base.HOSP.Web.Areas.ProductManage.Controllers
 {
     /// <summary>
-    /// 物资单位
+    /// Đơn vị vật tư
     /// </summary>
     [Area("ProductManage")]
     public class ProductUnitController : ControllerBase
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 获取物资单位列表
+        /// Lấy danh sách đơn vị vật tư
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 物资单位维护 表单提交
+        /// Bảo trì đơn vị vật tư Gửi biểu mẫu
         /// </summary>
         /// <param name="wzUnitEntity"></param>
         /// <param name="keyWord"></param>

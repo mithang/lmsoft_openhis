@@ -10,26 +10,26 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IAuxiliaryDictionaryRepo : IRepositoryBase<SysAuxiliaryDictionaryEntity>
     {
         /// <summary>
-        /// 获取当前组织下的所有有效词典
+        /// Lấyhiện tạitổ chứcdướicủatất cảHiệu lựctừ điển
         /// </summary>
         /// <returns></returns>
         IList<SysAuxiliaryDictionaryEntity> GetValidListByOrg(string orgId, bool withCache = false);
 
         /// <summary>
-        /// 获取词典列表
+        /// Lấytừ điểndanh sách
         /// </summary>
         /// <returns></returns>
         List<SysAuxiliaryDictionaryEntity> GetListByOrg(string orgId);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
         void SubmitForm(SysAuxiliaryDictionaryEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="orgId"></param>

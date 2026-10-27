@@ -14,7 +14,7 @@ using SqlSugar;
 namespace Newtouch.Herp.Application.Implementation
 {
 /// <summary>
-/// 采购订单 (Core port)
+/// Đơn hàng mua sắm (Core port)
 /// </summary>
 public class PurchasingOrderApp: AppBase, IPurchasingOrderApp
 {
@@ -29,7 +29,7 @@ _cgOrderDetailRepo = cgOrderDetailRepo;
 }
 
 /// <summary>
-/// 提交采购订购单.
+/// Gửi đơn đặt mua sắm.
 /// Inlined port of SubmitGeneratingPurchaseprocess (the original
 /// ProcessorFun&lt;T&gt; base does not exist in this copy): same validation,
 /// same grouping by supplier (one sub-order per supplier), same header +
@@ -138,7 +138,7 @@ return "";
 }
 
 /// <summary>
-/// 审核采购单
+/// Duyệt đơn mua sắm
 /// </summary>
 /// <param name="orderNo"></param>
 /// <param name="orderType"></param>

@@ -13,21 +13,21 @@ namespace NewtouchHIS.Domain.IDomainService.PatientCenter
     public interface IPatientInfoDmnService:IScopedDependency
     {
         /// <summary>
-        /// Bệnh nhân基本信息查询（基础）
+        /// Bệnh nhânTruy vấn thông tin cơ bản(Cơ sở)
         /// </summary>
         /// <param name="patIndex"></param>
-        /// <param name="brxz">优先获取卡类型信息</param>
+        /// <param name="brxz">Ưu tiên lấy thông tin loại thẻ</param>
         /// <returns></returns>
         Task<SysPatInfoVO> PatientQuery(SysPatIndexVO patIndex, EnumBrxz? brxz);
         /// <summary>
-        /// 根据Patid 查询患者信息
+        /// TheoPatid Truy vấn thông tin bệnh nhân
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<SysPatInfoVO> GetPatientbyPatid(int patid, string orgId);
         /// <summary>
-        /// 查询Bệnh nhân就诊卡信息 List
+        /// Truy vấnBệnh nhânThông tin thẻ khám List
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="orgId"></param>

@@ -6,61 +6,61 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain
 {
     /// <summary>
-    /// 药品出入库方式
+    /// Phương thức xuất nhập kho thuốc
     /// </summary>
     [Table("xt_ypcrkfs")]
     [SugarTable("xt_ypcrkfs")]
     public class XtypcrkfsEntity : IEntity<XtypcrkfsEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public int crkfsId { get; set; }
 
         /// <summary>
-        /// 出入库方式代码
+        /// Mã phương thức xuất nhập kho
         /// </summary>
         public string crkfsCode { get; set; }
 
         /// <summary>
-        /// 出入库方式名称
+        /// Tên phương thức xuất nhập kho
         /// </summary>
         public string crkfsmc { get; set; }
 
         /// <summary>
-        /// 出入库备注 0:入库  1：出库
+        /// Ghi chú xuất nhập kho 0:Nhập kho  1：Xuất kho
         /// </summary>
         public string crkbz { get; set; }
 
         /// <summary>
-        /// 状态 1：有效  0：无效
+        /// Trạng thái 1：Hiệu lực  0：Không hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改着
+        /// đang sửa
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 修改时间    
+        /// Thời gian sửa đổi    
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
     }

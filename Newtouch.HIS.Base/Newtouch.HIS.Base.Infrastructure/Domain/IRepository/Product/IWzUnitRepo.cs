@@ -4,7 +4,7 @@ using Newtouch.HIS.Repository;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 单位
+    /// Đơn vị
     /// </summary>
     public interface IWzUnitRepo : IRepositoryBase<WzUnitEntity>
     {

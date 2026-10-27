@@ -115,12 +115,12 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function() {
         $('#btn_search').trigger('click');
     });
 
-    //新增
+    //Thêm mới
     function newtouch_event_f7() {
         var mainRowId = $gridList.jqGrid("getGridParam", "selrow");
         var mRowData = $gridList.jqGrid("getRowData", mainRowId);
@@ -142,7 +142,7 @@
 
     }
 
-    //修改
+    //Sửa
     function newtouch_event_f8() {
         var detailRowid = $gridmxList.jqGrid("getGridParam", "selrow");
         if (!(detailRowid)) {
@@ -171,12 +171,12 @@
     }
 
 
-    //删除
+    //Xóa
     function deleteItem(itemId) {
         newtouch_event_f9(itemId);
     }
 
-    //删除
+    //Xóa
     function newtouch_event_f9(rowid) {
         if (!rowid) {
             rowid = $gridmxList.jqGrid("getGridParam", "selrow");
@@ -208,7 +208,7 @@
     //function btn_add() {
     //    $.modalOpen({
     //        id: "Form",
-    //        title: "新增词典",
+    //        title: "Thêm mớitừ điển",
     //        url: "/SystemManage/AuxiliaryDictionary/Form",
     //        width: "550px",
     //        height: "470px",
@@ -221,13 +221,13 @@
     //function btn_edit() {
     //    var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
     //    if (!(seleRowid)) {
-    //        $.modalAlert("请选中一条信息", 'warning');
+    //        $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
     //        return;
     //    }
     //    var keyValue = $("#gridList").jqGridRowValue().ysgh;
     //    $.modalOpen({
     //        id: "Form",
-    //        title: "修改词典",
+    //        title: "Sửatừ điển",
     //        url: "/SystemManage/AuxiliaryDictionary/Form?keyValue=" + keyValue,
     //        width: "550px",
     //        height: "470px",
@@ -240,7 +240,7 @@
     //function btn_delete() {
     //    var keyValue = $("#gridList").jqGridRowValue().Id;
     //    if (!!!keyValue) {
-    //        $.modalAlert("请选中一条信息", 'warning');
+    //        $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
     //        return;
     //    }
     //    $.deleteForm({

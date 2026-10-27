@@ -11,16 +11,16 @@ using Newtouch.CIS.Repository;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// 创 建：周珏琦
-    /// 日 期：2019-01-28 13:27
-    /// 描 述：手术安排表
+    /// Tác giả: 周珏琦
+    /// Ngày：2019-01-28 13:27
+    /// Mô tả：Sắp xếp phẫu thuậtbảng
     /// </summary>
     public class InpatientOperationArrangementRepo : RepositoryBase<InpatientOperationArrangementEntity>, IInpatientOperationArrangementRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Mặc địnhHàm khởi tạosố
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFtrêndướivănNhà máy</param>
         public InpatientOperationArrangementRepo()
             : base()
         {
@@ -28,10 +28,10 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưubảngphiếu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">thựcthểđối tượng</param>
+        /// <param name="keyValue">Khóa chínhGiá trị</param>
         public bool SubmitForm(InpatientOperationArrangementEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -63,9 +63,9 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 删除数据
+        /// XóaDữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Khóa chínhGiá trị</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.Id == keyValue);

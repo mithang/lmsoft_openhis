@@ -4,13 +4,13 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_08
 {
     /// <summary>
-    /// 提取处方请求体
+    /// nhắclấyĐơn thuốcyêu cầuthể
     /// </summary>
     [XmlRoot("Request")]
     public class ReceiveRequestEntity : RequestBase
     {
         /// <summary>
-        /// 接收信息请求体
+        /// nhậnthuthông tinyêu cầuthể
         /// </summary>
         public Receive Receive { get; set; }
 

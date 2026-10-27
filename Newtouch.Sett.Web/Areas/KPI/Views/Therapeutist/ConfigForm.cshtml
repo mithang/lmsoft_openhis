@@ -129,7 +129,7 @@
             url: "/SystemManage/SysChargeCategory/GetListJson?dllbs=2",
         });
 
-        //绑定 治疗师选择 树
+        //gắn Chọn trị liệu sư cây
         $('#gh').focus(function () {
             var initIdSelected = selectedRehabDoctorStaffId;
             $.modalOpen({
@@ -149,7 +149,7 @@
 
     }
 
-    //治疗师树 选择 回调
+    //Cây trị liệu sư Chọn gọi lại
     function staffTreeCallback(treeSeleData) {
         if (treeSeleData.length == 1) {
             $('#gh').val(treeSeleData[0].text);

@@ -6,13 +6,13 @@ namespace NewtouchHIS.Base.Domain.Organize
     public interface ISysOrgDmnService : IScopedDependency
     {
         /// <summary>
-        /// 获取当前Tổ chức列表 
+        /// Lấy hiện tạiTổ chứcDanh sách 
         /// </summary>
         /// <param name="topOrgId"></param>
         /// <returns></returns>
         Task<List<SysOrgVo>> GetOrganizeList(string? topOrgId, bool showTopOrg = false);
         /// <summary>
-        /// Tổ chức 递归查询
+        /// Tổ chức Truy vấn đệ quy
         /// </summary>
         /// <param name="parentOrgId"></param>
         /// <returns></returns>

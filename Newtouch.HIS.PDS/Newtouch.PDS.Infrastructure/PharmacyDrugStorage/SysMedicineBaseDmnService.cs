@@ -24,7 +24,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
 
         /// <summary>
-        /// 根据关键字查询药品大分类
+        /// Truy vấn loại lớn thuốc theo từ khóa
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
         }
 
         /// <summary>
-        /// 获得所有列表
+        /// Nhận tất cả danh sách
         /// </summary>
         public List<SysMedicalOrderFrequencyVO> GetOrderFrequencyList(string orgId, string keyword = null)
         {
@@ -83,7 +83,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
         }
 
         /// <summary>
-        /// 收费大类
+        /// Loại thu phí lớn
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
         }
 
         /// <summary>
-        /// 药品剂型
+        /// Dạng bào chế thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -110,7 +110,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
 
         /// <summary>
-        /// 查询药品单位
+        /// Truy vấn đơn vị thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

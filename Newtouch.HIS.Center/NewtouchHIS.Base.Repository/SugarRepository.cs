@@ -7,35 +7,35 @@ using System.Runtime.CompilerServices;
 namespace NewtouchHIS.Base.Repository
 {
     /// <summary>
-    /// SqlSugar 单例仓储+多库
+    /// SqlSugar Kho singleton+Đa cơ sở dữ liệu
     /// </summary>
     public class SugarRepository<TEntity> : SimpleClient<TEntity> where TEntity : class, new()
     {
-        protected ITenant dbTran => SqlSugarDbContext.Db;//多租户事务、GetConnection、IsAnyConnection等功能
+        protected ITenant dbTran => SqlSugarDbContext.Db;//Transaction đa tenant,GetConnection,IsAnyConnectionvà các chức năng
         public SugarRepository()
         {
-            //单例模式
-            base.Context = SqlSugarDbContext.Db.GetConnectionScopeWithAttr<TEntity>();//根据实体特性获取子Db
+            //Mẫu singleton
+            base.Context = SqlSugarDbContext.Db.GetConnectionScopeWithAttr<TEntity>();//Lấy cơ sở dữ liệu con theo đặc tính thực thểDb
         }
 
         public SugarRepository(string db)
         {
-            //单例模式
-            base.Context = SqlSugarDbContext.Db.GetConnection(db);//根据实体特性获取子Db
+            //Mẫu singleton
+            base.Context = SqlSugarDbContext.Db.GetConnection(db);//Lấy cơ sở dữ liệu con theo đặc tính thực thểDb
         }
 
         /// <summary>
-        /// 扩展方法，自带方法不能满足的时候可以添加新方法
+        /// Phương thức mở rộng,Khi phương thức có sẵn không đáp ứng được thì có thể thêm phương thức mới
         /// </summary>
         /// <returns></returns>
         public List<TEntity> CommQuery(string json)
         {
-            //base.Context.Queryable<T>().ToList();可以拿到SqlSugarClient 做复杂操作
+            //base.Context.Queryable<T>().ToList();có thể lấy đượcSqlSugarClient để làm thao tác phức tạp
             return null;
         }
-        #region 主库不一致实体表操作
+        #region Thao tác bảng thực thể không nhất quán với cơ sở dữ liệu chính
         /// <summary>
-        /// 当前程序库调用
+        /// Lời gọi thư viện chương trình hiện tại
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="model"></param>
@@ -43,11 +43,11 @@ namespace NewtouchHIS.Base.Repository
         public async Task<long> Add<T>(T model) where T : class, new()
         {
             var i = await Task.Run(() => Context.Insertable<T>(model).ExecuteCommand());
-            //返回的i是long类型,这里你可以根据你的业务需要进行处理
+            //trả vềiCólongLoại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
         /// <summary>
-        /// 当前程序库调用
+        /// Lời gọi thư viện chương trình hiện tại
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="model"></param>
@@ -55,36 +55,36 @@ namespace NewtouchHIS.Base.Repository
         public async Task<long> Delete<T>(T model) where T : class, new()
         {
             var i = await Task.Run(() => Context.Deleteable<T>(model).ExecuteCommand());
-            //返回的i是long类型,这里你可以根据你的业务需要进行处理
+            //trả vềiCólongLoại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
         public async Task<bool> Update<T>(T model) where T : class, new()
         {
-            //这种方式会以Khóa chính为条件
+            //Cách này sẽ lấyKhóa chínhlàm điều kiện
             var i = await Task.Run(() => Context.Updateable<T>(model).ExecuteCommand());
             return i > 0;
         }
         #endregion
-        #region 主库一致实体表操作
+        #region Thao tác bảng thực thể nhất quán với cơ sở dữ liệu chính
         /// <summary>
-        /// 写入实体数据
+        /// Ghi dữ liệu thực thể
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         public async Task<long> Add(TEntity model)
         {
             var i = await Task.Run(() => Context.Insertable(model).ExecuteCommand());
-            //返回的i是long类型,这里你可以根据你的业务需要进行处理
+            //trả vềiCólongLoại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
         public async Task<long> AddRange(List<TEntity> model)
         {
             var i = await Task.Run(() => Context.Insertable(model).ExecuteCommand());
-            //返回的i是long类型,这里你可以根据你的业务需要进行处理
+            //trả vềiCólongLoại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
         /// <summary>
-        /// 根据ID列表删除
+        /// TheoIDXóa theo danh sách
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 根据ID删除
+        /// TheoIDXóa
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -106,31 +106,31 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 更新实体数据
+        /// Cập nhật dữ liệu thực thể
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         public async Task<bool> Update(TEntity model)
         {
-            //这种方式会以Khóa chính为条件
+            //Cách này sẽ lấyKhóa chínhlàm điều kiện
             var i = await Task.Run(() => Context.Updateable(model).ExecuteCommand());
             return i > 0;
         }
         /// <summary>
-        /// 批量更新实体数据
+        /// Cập nhật hàng loạt dữ liệu thực thể
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         public async Task<bool> UpdateRange(List<TEntity> model)
         {
-            //这种方式会以Khóa chính为条件
+            //Cách này sẽ lấyKhóa chínhlàm điều kiện
             var i = await Task.Run(() => Context.Updateable(model).ExecuteCommand());
             return i > 0;
         }
 
         #region Query
         /// <summary>
-        /// 根据Khóa chính查询
+        /// TheoKhóa chínhTruy vấn
         /// </summary>
         /// <param name="pkValue">Khóa chính</param>
         /// <returns></returns>
@@ -140,7 +140,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 查询所有数据
+        /// Truy vấn tất cả dữ liệu
         /// </summary>
         /// <param name="objId"></param>
         /// <returns></returns>
@@ -150,7 +150,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 查询所有数据
+        /// Truy vấn tất cả dữ liệu
         /// </summary>
         /// <returns></returns>
         public async Task<List<TEntity>> FindAll(bool isOrderBy = false, Expression<Func<TEntity, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
@@ -159,9 +159,9 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 取前 num 条数据
+        /// Lấy đầu num bản ghi
         /// </summary>
-        /// <param name="num">取前几条</param>
+        /// <param name="num">Lấy mấy bản ghi đầu</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetTakeList(int num, bool isOrderBy = false, Expression<Func<TEntity, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -169,13 +169,13 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 获取单表 分页数据
+        /// Lấy dữ liệu một bảng Dữ liệu phân trang
         /// </summary>
-        /// <param name="skip">跳过几条</param>
-        /// <param name="take">取几条</param>
-        /// <param name="whereExp">跳过几条</param>
-        /// <param name="orderBy">排序条件</param>
-        /// <param name="orderByType">排序类型（Asc、Desc）</param>
+        /// <param name="skip">Bỏ qua mấy bản ghi</param>
+        /// <param name="take">Lấy mấy bản ghi</param>
+        /// <param name="whereExp">Bỏ qua mấy bản ghi</param>
+        /// <param name="orderBy">Điều kiện sắp xếp</param>
+        /// <param name="orderByType">Kiểu sắp xếp(Asc,Desc)</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetPageList(int skip, int take, Expression<Func<TEntity, bool>> whereExp, Expression<Func<TEntity, object>> orderBy, OrderByType orderByType = OrderByType.Asc)
         {
@@ -183,10 +183,10 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 获取符合条件的前 num 条数据
+        /// Lấy các bản ghi đầu thỏa điều kiện num bản ghi
         /// </summary>
-        /// <param name="where">条件</param>
-        /// <param name="num">取前几条</param>
+        /// <param name="where">Điều kiện</param>
+        /// <param name="num">Lấy mấy bản ghi đầu</param>
         /// <returns></returns> 
         public async Task<List<TEntity>> GetTakeList(Expression<Func<TEntity, bool>> where, int num, bool isOrderBy = false, Expression<Func<TEntity, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -194,20 +194,20 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 根据条件获取 单条数据 
+        /// Lấy theo điều kiện Một bản ghi 
         /// </summary>
-        /// <param name="where">条件</param>
+        /// <param name="where">Điều kiện</param>
         /// <returns></returns>
         public async Task<TEntity> GetFirstOrDefault(Expression<Func<TEntity, bool>> where)
         {
-            return await Context.Queryable<TEntity>().FirstAsync(where);//查询单条没有数据返回NULL, Single超过1条会报错，First不会
+            return await Context.Queryable<TEntity>().FirstAsync(where);//Truy vấn một bản ghi, không có dữ liệu thì trả vềNULL, Singlevượt quá1bản ghi sẽ báo lỗi,Firstsẽ không
         }
 
         /// <summary>
-        /// 根据Khóa chính In  查询
+        /// TheoKhóa chính In  Truy vấn
         /// </summary>
-        /// <typeparam name="S">Khóa chính的类型</typeparam>
-        /// <param name="list">Khóa chính In 操作的结果集</param>
+        /// <typeparam name="S">Khóa chínhkiểu</typeparam>
+        /// <param name="list">Khóa chính In Tập kết quả của thao tác</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetByIn<S>(List<S> list, bool isOrderBy = false, Expression<Func<TEntity, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -215,11 +215,11 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 根据指定列 In 查询
+        /// Theo cột chỉ định In Truy vấn
         /// </summary>
-        /// <typeparam name="S">指定列的类型</typeparam>
-        /// <param name="column">指定列</param>
-        /// <param name="list">指定列 In 操作 的结果集</param>
+        /// <typeparam name="S">Kiểu của cột chỉ định</typeparam>
+        /// <param name="column">Cột chỉ định</param>
+        /// <param name="list">Cột chỉ định In Thao tác tập kết quả</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetByIn<S>(Expression<Func<TEntity, object>> column, List<S> list, bool isOrderBy = false, Expression<Func<TEntity, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -227,11 +227,11 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 根据指定列 Not In (!Contain)查询
+        /// Theo cột chỉ định Not In (!Contain)Truy vấn
         /// </summary>
-        /// <typeparam name="S">指定列类型</typeparam>
-        /// <param name="list">Not In的结果集</param>
-        /// <param name="field">指定列</param>
+        /// <typeparam name="S">Kiểu cột chỉ định</typeparam>
+        /// <param name="list">Not Intập kết quả</param>
+        /// <param name="field">Cột chỉ định</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetByNotIn<S>(List<S> list, object field, bool isOrderBy = false, Expression<Func<TEntity, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -239,16 +239,16 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 根据条件 查询
+        /// Theo điều kiện Truy vấn
         /// </summary>
-        /// <param name="where">条件</param>
+        /// <param name="where">Điều kiện</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetByWhere(Expression<Func<TEntity, bool>> where, bool isOrderBy = false, Expression<Func<TEntity, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
             return await Context.Queryable<TEntity>().Where(where).OrderByIF(isOrderBy, orderBy, orderByType).ToListAsync();
         }
         /// <summary>
-        /// Where 同库表查询
+        /// Where Truy vấn bảng cùng cơ sở dữ liệu
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="where"></param>
@@ -262,10 +262,10 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 单个条件 根据 isWhere 判断 是否使用此条件进行查询
+        /// Một điều kiện Theo isWhere Xét Có sử dụng điều kiện này để truy vấn hay không
         /// </summary>
-        /// <param name="isWhere">判断是否使用此查询条件的条件</param>
-        /// <param name="where">查询条件</param>
+        /// <param name="isWhere">Điều kiện xét có sử dụng điều kiện truy vấn này hay không</param>
+        /// <param name="where">Điều kiện truy vấn</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetByWhereIF(bool isWhere, Expression<Func<TEntity, bool>> where, bool isOrderBy = false, Expression<Func<TEntity, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -273,9 +273,9 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 多个条件 根据 wheres.value  判断是否使用 此 wheres.key 的条件
+        /// Nhiều điều kiện Theo wheres.value  Xét có sử dụng hay không này wheres.key điều kiện
         /// </summary>
-        /// <param name="wheres">查询条件</param>
+        /// <param name="wheres">Điều kiện truy vấn</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetByWhereIF(Dictionary<Expression<Func<TEntity, bool>>, bool> wheres, bool isOrderBy = false, Expression<Func<TEntity, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -288,11 +288,11 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 查询 指定列的值 在 start至end 之间的数据
+        /// Truy vấn Giá trị của cột chỉ định tại startđếnend dữ liệu trong khoảng
         /// </summary>
-        /// <param name="value">指定类</param>
-        /// <param name="start">开始</param>
-        /// <param name="end">结束</param>
+        /// <param name="value">Lớp chỉ định</param>
+        /// <param name="start">Bắt đầu</param>
+        /// <param name="end">Kết thúc</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetByBetween(object value, object start, object end, bool isOrderBy = false, Expression<Func<TEntity, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -300,9 +300,9 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 判断是否存在这条记录
+        /// Xét bản ghi này có tồn tại hay không
         /// </summary>
-        /// <param name="where">条件</param>
+        /// <param name="where">Điều kiện</param>
         /// <returns></returns>
         public async Task<bool> GetIsAny(Expression<Func<TEntity, bool>> where)
         {
@@ -310,17 +310,17 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 两表查询，
+        /// Truy vấn hai bảng,
         /// </summary>
-        /// <typeparam name="T1">左表</typeparam>
-        /// <typeparam name="T2">右表</typeparam>
-        /// <param name="joinExp">联表方式，联表字段（主外键关系）</param>
-        /// <param name="selectExp">联表查询的结果</param>
-        /// <param name="isWhere">是否需要查询条件</param>
-        /// <param name="whereExp">条件查询</param>
-        /// <param name="isOrderBy">是否需要排序</param>
-        /// <param name="orderBy">排序条件</param>
-        /// <param name="orderByType">排序类型（Asc、Desc）</param>
+        /// <typeparam name="T1">Bảng trái</typeparam>
+        /// <typeparam name="T2">Bảng phải</typeparam>
+        /// <param name="joinExp">Cách nối bảng,Trường nối bảng(Quan hệ khóa chính - khóa ngoại)</param>
+        /// <param name="selectExp">Kết quả truy vấn nối bảng</param>
+        /// <param name="isWhere">Có cần điều kiện truy vấn hay không</param>
+        /// <param name="whereExp">Truy vấn theo điều kiện</param>
+        /// <param name="isOrderBy">Có cần sắp xếp hay không</param>
+        /// <param name="orderBy">Điều kiện sắp xếp</param>
+        /// <param name="orderByType">Kiểu sắp xếp(Asc,Desc)</param>
         /// <returns></returns>
         public async Task<List<object>> GetJoinList<T1, T2>(Expression<Func<T1, T2, JoinQueryInfos>> joinExp, Expression<Func<T1, T2, dynamic>> selectExp, bool isWhere = false, Expression<Func<T1, T2, bool>> whereExp = null, bool isOrderBy = false, Expression<Func<T1, T2, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -330,18 +330,18 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 三表连接 查询
+        /// Nối ba bảng Truy vấn
         /// </summary>
-        /// <typeparam name="T1">表1</typeparam>
-        /// <typeparam name="T2">表2</typeparam>
-        /// <typeparam name="T3">表3</typeparam>
-        /// <param name="joinExp">联表方式，联表字段（主外键关系）</param>
-        /// <param name="selectExp">联表查询的结果</param>
-        /// <param name="isWhere">是否需要查询条件</param>
-        /// <param name="whereExp">查询条件</param>
-        /// <param name="isOrderBy">是否需要排序条件</param>
-        /// <param name="orderBy">排序条件</param>
-        /// <param name="orderByType">排序类型（Asc、Desc）</param>
+        /// <typeparam name="T1">Bảng1</typeparam>
+        /// <typeparam name="T2">Bảng2</typeparam>
+        /// <typeparam name="T3">Bảng3</typeparam>
+        /// <param name="joinExp">Cách nối bảng,Trường nối bảng(Quan hệ khóa chính - khóa ngoại)</param>
+        /// <param name="selectExp">Kết quả truy vấn nối bảng</param>
+        /// <param name="isWhere">Có cần điều kiện truy vấn hay không</param>
+        /// <param name="whereExp">Điều kiện truy vấn</param>
+        /// <param name="isOrderBy">Có cần điều kiện sắp xếp hay không</param>
+        /// <param name="orderBy">Điều kiện sắp xếp</param>
+        /// <param name="orderByType">Kiểu sắp xếp(Asc,Desc)</param>
         /// <returns></returns>
         public async Task<dynamic> GetJoinList<T1, T2, T3>(Expression<Func<T1, T2, T3, JoinQueryInfos>> joinExp, Expression<Func<T1, T2, T3, dynamic>> selectExp, bool isWhere = false, Expression<Func<T1, T2, bool>> whereExp = null, bool isOrderBy = false, Expression<Func<T1, T2, T3, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -351,9 +351,9 @@ namespace NewtouchHIS.Base.Repository
        
 
         /// <summary>
-        /// 执行查询sql语句 ，返回数据集
+        /// Thực thi truy vấnsqlcâu lệnh ,Trả về tập dữ liệu
         /// </summary>
-        /// <param name="sql">sql语句</param>
+        /// <param name="sql">sqlcâu lệnh</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetListBySql(string sql)
         {
@@ -362,10 +362,10 @@ namespace NewtouchHIS.Base.Repository
 
         #region Ado 
         /// <summary>
-        /// 执行非查询sql语句，返回操作是否成功
+        /// Thực thi câu lệnh không truy vấnsqlcâu lệnh,trả về thao tác có thành công hay không
         /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="parameters">参数化</param>
+        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<bool> ExecuteCommandSql(string sql, params SugarParameter[] parameters)
         {
@@ -373,10 +373,10 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 执行查询sql语句，返回查询的结果集
+        /// Thực thi truy vấnsqlcâu lệnh,Trả về tập kết quả truy vấn
         /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="parameters">参数化</param>
+        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<List<TEntity>> GetListBySqlQuery(string sql, params SugarParameter[] parameters)
         {
@@ -384,10 +384,10 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 执行查询sql语句，返回 第一行第一列
+        /// Thực thi truy vấnsqlcâu lệnh,Trả về Hàng đầu tiên, cột đầu tiên
         /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="parameters">参数化</param>
+        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<object> GetScalar(string sql, params SugarParameter[] parameters)
         {
@@ -399,34 +399,34 @@ namespace NewtouchHIS.Base.Repository
         #endregion
         #endregion
 
-        #region 根据表 DB Attr特性查询 适用于与主库同库非主体实体表
+        #region Theo bảng DB AttrTruy vấn theo đặc tính Áp dụng cho bảng thực thể không chủ thể cùng cơ sở dữ liệu với cơ sở dữ liệu chính
 
         #region Add Update Delete
         /// <summary>
-        /// [DB Attr]写入实体数据
+        /// [DB Attr]Ghi dữ liệu thực thể
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         public async Task<long> AddWithAttr<T>(T model) where T : class, new()
         {
             var i = await Task.Run(() => dbTran.GetConnectionScopeWithAttr<T>().Insertable(model).ExecuteCommand());
-            //返回的i是long类型,这里你可以根据你的业务需要进行处理
+            //trả vềiCólongLoại,tại đây bạn có thể xử lý theo nhu cầu nghiệp vụ của mình
             return i;
         }
 
         /// <summary>
-        /// [DB Attr]更新实体数据
+        /// [DB Attr]Cập nhật dữ liệu thực thể
         /// </summary>
         /// <param name="model"></param>
         /// <returns></returns>
         public async Task<bool> UpdateWithAttr<T>(T model) where T : class, new()
         {
-            //这种方式会以Khóa chính为条件
+            //Cách này sẽ lấyKhóa chínhlàm điều kiện
             var i = await Task.Run(() => dbTran.GetConnectionScopeWithAttr<T>().Updateable(model).ExecuteCommand());
             return i > 0;
         }
         /// <summary>
-        /// [DB Attr]根据ID列表删除
+        /// [DB Attr]TheoIDXóa theo danh sách
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -437,7 +437,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// [DB Attr]根据ID删除
+        /// [DB Attr]TheoIDXóa
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -449,7 +449,7 @@ namespace NewtouchHIS.Base.Repository
         #endregion
 
         /// <summary>
-        /// 根据Khóa chính查询
+        /// TheoKhóa chínhTruy vấn
         /// </summary>
         /// <param name="pkValue">Khóa chính</param>
         /// <returns></returns>
@@ -459,7 +459,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 查询所有数据
+        /// Truy vấn tất cả dữ liệu
         /// </summary>
         /// <param name="objId"></param>
         /// <returns></returns>
@@ -469,7 +469,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 查询所有数据
+        /// Truy vấn tất cả dữ liệu
         /// </summary>
         /// <returns></returns>
         public async Task<List<T>> FindAllWithAttr<T>(bool isOrderBy = false, Expression<Func<T, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
@@ -477,16 +477,16 @@ namespace NewtouchHIS.Base.Repository
             return await dbTran.GetConnectionScopeWithAttr<T>().Queryable<T>().OrderByIF(isOrderBy, orderBy, orderByType).ToListAsync();
         }
         /// <summary>
-        /// [DB Attr]根据条件获取 单条数据 
+        /// [DB Attr]Lấy theo điều kiện Một bản ghi 
         /// </summary>
-        /// <param name="where">条件</param>
+        /// <param name="where">Điều kiện</param>
         /// <returns></returns>
         public async Task<T> GetFirstOrDefaultWithAttr<T>(Expression<Func<T, bool>> where)
         {
-            return await dbTran.GetConnectionScopeWithAttr<T>().Queryable<T>().Where(where).FirstAsync();//查询单条没有数据返回NULL, Single超过1条会报错，First不会
+            return await dbTran.GetConnectionScopeWithAttr<T>().Queryable<T>().Where(where).FirstAsync();//Truy vấn một bản ghi, không có dữ liệu thì trả vềNULL, Singlevượt quá1bản ghi sẽ báo lỗi,Firstsẽ không
         }
         /// <summary>
-        ///  根据条件 查询（根据 T 的Db 特性查询）
+        ///  Theo điều kiện Truy vấn(Theo T củaDb Truy vấn theo đặc tính)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="where"></param>
@@ -500,17 +500,17 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 两表查询，(根据 T1 的Db 特性查询)
+        /// Truy vấn hai bảng,(Theo T1 củaDb Truy vấn theo đặc tính)
         /// </summary>
-        /// <typeparam name="T1">左表</typeparam>
-        /// <typeparam name="T2">右表</typeparam>
-        /// <param name="joinExp">联表方式，联表字段（主外键关系）</param>
-        /// <param name="selectExp">联表查询的结果</param>
-        /// <param name="isWhere">是否需要查询条件</param>
-        /// <param name="whereExp">条件查询</param>
-        /// <param name="isOrderBy">是否需要排序</param>
-        /// <param name="orderBy">排序条件</param>
-        /// <param name="orderByType">排序类型（Asc、Desc）</param>
+        /// <typeparam name="T1">Bảng trái</typeparam>
+        /// <typeparam name="T2">Bảng phải</typeparam>
+        /// <param name="joinExp">Cách nối bảng,Trường nối bảng(Quan hệ khóa chính - khóa ngoại)</param>
+        /// <param name="selectExp">Kết quả truy vấn nối bảng</param>
+        /// <param name="isWhere">Có cần điều kiện truy vấn hay không</param>
+        /// <param name="whereExp">Truy vấn theo điều kiện</param>
+        /// <param name="isOrderBy">Có cần sắp xếp hay không</param>
+        /// <param name="orderBy">Điều kiện sắp xếp</param>
+        /// <param name="orderByType">Kiểu sắp xếp(Asc,Desc)</param>
         /// <returns></returns>
         public async Task<List<object>> GetJoinListWithAttr<T1, T2>(string db, Expression<Func<T1, T2, JoinQueryInfos>> joinExp, Expression<Func<T1, T2, dynamic>> selectExp, bool isWhere = false, Expression<Func<T1, T2, bool>> whereExp = null, bool isOrderBy = false, Expression<Func<T1, T2, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -521,9 +521,9 @@ namespace NewtouchHIS.Base.Repository
 
         #region DbMuti Query 
         /// <summary>
-        /// 根据条件 查询 (choose db)
+        /// Theo điều kiện Truy vấn (choose db)
         /// </summary>
-        /// <param name="where">条件</param>
+        /// <param name="where">Điều kiện</param>
         /// <returns></returns>
         public async Task<List<T>> GetByWhere<T>(string db, Expression<Func<T, bool>> where, bool isOrderBy = false, Expression<Func<T, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -532,17 +532,17 @@ namespace NewtouchHIS.Base.Repository
 
 
         /// <summary>
-        /// 两表查询，(choose db)
+        /// Truy vấn hai bảng,(choose db)
         /// </summary>
-        /// <typeparam name="T1">左表</typeparam>
-        /// <typeparam name="T2">右表</typeparam>
-        /// <param name="joinExp">联表方式，联表字段（主外键关系）</param>
-        /// <param name="selectExp">联表查询的结果</param>
-        /// <param name="isWhere">是否需要查询条件</param>
-        /// <param name="whereExp">条件查询</param>
-        /// <param name="isOrderBy">是否需要排序</param>
-        /// <param name="orderBy">排序条件</param>
-        /// <param name="orderByType">排序类型（Asc、Desc）</param>
+        /// <typeparam name="T1">Bảng trái</typeparam>
+        /// <typeparam name="T2">Bảng phải</typeparam>
+        /// <param name="joinExp">Cách nối bảng,Trường nối bảng(Quan hệ khóa chính - khóa ngoại)</param>
+        /// <param name="selectExp">Kết quả truy vấn nối bảng</param>
+        /// <param name="isWhere">Có cần điều kiện truy vấn hay không</param>
+        /// <param name="whereExp">Truy vấn theo điều kiện</param>
+        /// <param name="isOrderBy">Có cần sắp xếp hay không</param>
+        /// <param name="orderBy">Điều kiện sắp xếp</param>
+        /// <param name="orderByType">Kiểu sắp xếp(Asc,Desc)</param>
         /// <returns></returns>
         public async Task<List<object>> GetJoinList<T1, T2>(string db, Expression<Func<T1, T2, JoinQueryInfos>> joinExp, Expression<Func<T1, T2, dynamic>> selectExp, bool isWhere = false, Expression<Func<T1, T2, bool>> whereExp = null, bool isOrderBy = false, Expression<Func<T1, T2, object>> orderBy = null, OrderByType orderByType = OrderByType.Asc)
         {
@@ -550,12 +550,12 @@ namespace NewtouchHIS.Base.Repository
                 .OrderByIF(isOrderBy, orderBy).Select(selectExp).ToListAsync();
         }
 
-        #region Ado 不推荐
+        #region Ado Không khuyên dùng
         /// <summary>
-        /// 执行非查询sql语句，返回操作是否成功(choose db)
+        /// Thực thi câu lệnh không truy vấnsqlcâu lệnh,trả về thao tác có thành công hay không(choose db)
         /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="parameters">参数化</param>
+        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<bool> ExecuteCommandSql(string db, string sql, params SugarParameter[] parameters)
         {
@@ -563,10 +563,10 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 执行查询sql语句，返回查询的结果集(choose db)
+        /// Thực thi truy vấnsqlcâu lệnh,Trả về tập kết quả truy vấn(choose db)
         /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="parameters">参数化</param>
+        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<List<T>> GetListBySqlQuery<T>(string db, string sql, List<DbParameter> parameters)
         {
@@ -579,10 +579,10 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// 执行查询sql语句，返回 第一行第一列(choose db)
+        /// Thực thi truy vấnsqlcâu lệnh,Trả về Hàng đầu tiên, cột đầu tiên(choose db)
         /// </summary>
-        /// <param name="sql">sql语句</param>
-        /// <param name="parameters">参数化</param>
+        /// <param name="sql">sqlcâu lệnh</param>
+        /// <param name="parameters">Tham số hóa</param>
         /// <returns></returns>
         public async Task<object> GetScalar(string db, string sql, params SugarParameter[] parameters)
         {

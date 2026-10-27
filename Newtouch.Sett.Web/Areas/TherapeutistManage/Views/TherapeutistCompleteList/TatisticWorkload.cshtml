@@ -4,7 +4,7 @@
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <script>
-    var Editing_ysList = []; //编辑域中的人员
+    var Editing_ysList = []; //Nhân viên trong vùng soạn thảo
     $(function () {
         $('#zls').click(function () {
             var initIdSelected = "";
@@ -31,7 +31,7 @@
         gridList();
     });
 
-    //人员树 选择 回调
+    //Cây nhân viên Chọn gọi lại
     function staffTreeCallback(treeSeleData) {
         Editing_ysList = [];
         var zlsNames = "";
@@ -48,7 +48,7 @@
 
     function init() {
         var date = new Date;
-        //年份
+        //Năm
         $("#Year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -61,7 +61,7 @@
             },
             selectedValue: 1900 + date.getYear(),
         });
-        //月份
+        //Tháng
         $("#Month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -190,7 +190,7 @@
 @*@Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel
     {
         ShowKeyList = new int[] { 9 },
-        F9Text = "导出"
+        F9Text = "Xuất"
     })*@
 
 

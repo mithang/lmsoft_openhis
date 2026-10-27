@@ -23,23 +23,23 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 组套详情
+        /// Bộ mẫuChi tiết
         /// </summary>
         /// <param name="ztId"></param>
         public GroupPackageDetailBO GetGroupPackageDetail(string ztId, string orgId)
         {
             if (string.IsNullOrWhiteSpace(ztId))
             {
-                throw new FailedException("数据异常，ztId为空或null");
+                throw new FailedException("Dữ liệu bất thường，ztIdlàtrốnghoặcnull");
             }
 
-            //组套信息
+            //Bộ mẫuthông tin
             var ztEntity = _groupPackageRepo.IQueryable().Where(a => a.ztId == ztId).FirstOrDefault();
             if (ztEntity == null)
             {
-                throw new FailedException("数据异常，没有找到组套信息");
+                throw new FailedException("Dữ liệu bất thường，Không cótìmđếnBộ mẫuthông tin");
             }
-            //组套项目
+            //Bộ mẫuMục
             var sql = @"
 SELECT ztxm.sfxmCode,ztxm.sfxmmc,ztxm.sfdl,ztxm.dj,ztxm.dw,
         sfdl.dlmc AS sfdlmc,ztxm.sl,ztxm.px 
@@ -59,7 +59,7 @@ WHERE ztxm.OrganizeId=@orgId
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="ztobj"></param>
         /// <param name="ztxmlist"></param>
@@ -67,14 +67,14 @@ WHERE ztxm.OrganizeId=@orgId
         {
             using (var db = new EFDbTransaction().BeginTrans())
             {
-                //组套
-                if (!string.IsNullOrWhiteSpace(ztobj.ztId))  //修改
+                //Bộ mẫu
+                if (!string.IsNullOrWhiteSpace(ztobj.ztId))  //Sửa
                 {
                     ztobj.Modify();
 
                     db.Update(ztobj);
 
-                    db.Delete<GroupPackageItemEntity>(a => a.ztId == ztobj.ztId); //先全删，再新增
+                    db.Delete<GroupPackageItemEntity>(a => a.ztId == ztobj.ztId); //trướctoànxóa，lạiThêm mới
                 }
                 else
                 {
@@ -84,7 +84,7 @@ WHERE ztxm.OrganizeId=@orgId
                     db.Insert(ztobj);
                 }
 
-                //组套项目
+                //Bộ mẫuMục
                 if (ztxmlist != null)
                 {
                     foreach (var item in ztxmlist)
@@ -112,7 +112,7 @@ WHERE ztxm.OrganizeId=@orgId
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="ztId"></param>
         public void DeleteData(string ztId)

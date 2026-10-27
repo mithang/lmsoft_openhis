@@ -33,7 +33,7 @@
 
 
 
-    //保存
+    //Lưu
     function SubmitForm() {
         if (!DataValidate()) {
             return;
@@ -54,7 +54,7 @@
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#FPHSZJE").val() === "") {
             $.modalAlert("Tổng số tiền hóa đơn bao gồm thuế là bắt buộc", 'warning');

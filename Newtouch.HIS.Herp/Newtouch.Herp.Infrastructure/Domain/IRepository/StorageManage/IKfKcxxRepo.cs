@@ -4,13 +4,13 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 库存信息
+    /// Thông tin tồn kho
     /// </summary>
     public interface IKfKcxxRepo : IRepositoryBase<KfKcxxEntity>
     {
 
         /// <summary>
-        /// 查询库存信息
+        /// Truy vấn thông tin tồn kho
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="productId"></param>
@@ -18,7 +18,7 @@ namespace Newtouch.Herp.Domain.IRepository
         List<KfKcxxEntity> SelectData(string warehouseId, string productId);
 
         /// <summary>
-        /// 修改库存状态
+        /// Sửa trạng thái tồn kho
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="ph"></param>

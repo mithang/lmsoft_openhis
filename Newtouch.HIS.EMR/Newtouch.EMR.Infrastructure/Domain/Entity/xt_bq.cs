@@ -8,16 +8,16 @@ using SqlSugar;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 系统病区
+    /// Khu bệnh hệ thống
     /// </summary>
     public class xt_bq
     {
         /// <summary>
-        ///病区ID
+        ///Khu bệnh ID
         /// </summary>
         public string bqCode { get; set; }
         /// <summary>
-        /// 病区名称
+        /// Tên khu bệnh
         /// </summary>
         public string bqmc { get; set; }
     }

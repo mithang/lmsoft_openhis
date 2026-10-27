@@ -17,7 +17,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 获取有效民族下拉框
+        /// LấyHiệu lựcdântộchộp thả xuống
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

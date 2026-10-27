@@ -10,11 +10,15 @@ namespace Newtouch.Herp.Web.Areas.SystemManage.Controllers
     /// menu pages; they redirect to the same notice.
     /// </summary>
     [Area("SystemManage")]
+    // NOTE: literal Redirect, NOT RedirectToAction: the app registers the
+    // non-area default route before the areas route, so RedirectToAction
+    // drops the area value and generates /SystemManage/SysX (this controller
+    // itself) -> infinite 302 loop. The literal path is unambiguous.
     public class SysUserController : ControllerBase
     {
-        public override IActionResult Index() => RedirectToAction("SysUser", "SystemManage");
-        public IActionResult PersonalInfo() => RedirectToAction("SysUser", "SystemManage");
-        public IActionResult Roles() => RedirectToAction("SysUser", "SystemManage");
-        public IActionResult Selector() => RedirectToAction("SysUser", "SystemManage");
+        public override IActionResult Index() => Redirect("/SystemManage/SystemManage/SysUser");
+        public IActionResult PersonalInfo() => Redirect("/SystemManage/SystemManage/SysUser");
+        public IActionResult Roles() => Redirect("/SystemManage/SystemManage/SysUser");
+        public IActionResult Selector() => Redirect("/SystemManage/SystemManage/SysUser");
     }
 }

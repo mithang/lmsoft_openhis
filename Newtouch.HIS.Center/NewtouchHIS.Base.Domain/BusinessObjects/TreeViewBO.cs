@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain
 {
     /// <summary>
-    /// wdtree 数据源 Model
+    /// wdtree Nguồn dữ liệu Model
     /// </summary>
     public class TreeViewModel
     {
@@ -17,12 +17,12 @@ namespace NewtouchHIS.Base.Domain
         public string id { get; set; }
 
         /// <summary>
-        /// parentId 对应树形上级的id
+        /// parentId tương ứng với id cấp trên trong câyid
         /// </summary>
         public string parentId { get; set; }
 
         /// <summary>
-        /// 显示文本
+        /// Văn bản hiển thị
         /// </summary>
         public string text { get; set; }
 
@@ -32,27 +32,27 @@ namespace NewtouchHIS.Base.Domain
         public string value { get; set; }
 
         /// <summary>
-        /// 选中状态
+        /// Trạng thái được chọn
         /// </summary>
         public int? checkstate { get; set; }
 
         /// <summary>
-        /// 是否show check
+        /// Có hay khôngshow check
         /// </summary>
         public bool showcheck { get; set; }
 
         /// <summary>
-        /// 是否已加载子节点
+        /// Đã tải nút con hay chưa
         /// </summary>
         public bool complete { get; set; }
 
         /// <summary>
-        /// 是否 展开（if has child）
+        /// Có hay không Mở rộng(if has child)
         /// </summary>
         public bool isexpand { get; set; }
 
         /// <summary>
-        /// 是否有下级
+        /// Có cấp dưới hay không
         /// </summary>
         public bool hasChildren { get; set; }
 
@@ -72,47 +72,47 @@ namespace NewtouchHIS.Base.Domain
         public string Code { get; set; }
 
         /// <summary>
-        /// 扩展字段1
+        /// Trường mở rộng1
         /// </summary>
         public string Ex1 { get; set; }
 
         /// <summary>
-        /// 扩展字段2
+        /// Trường mở rộng2
         /// </summary>
         public string Ex2 { get; set; }
 
         /// <summary>
-        /// 扩展字段3
+        /// Trường mở rộng3
         /// </summary>
         public string Ex3 { get; set; }
 
         /// <summary>
-        /// 扩展字段4
+        /// Trường mở rộng4
         /// </summary>
         public string Ex4 { get; set; }
 
         /// <summary>
-        /// 扩展字段5
+        /// Trường mở rộng5
         /// </summary>
         public string Ex5 { get; set; }
 
         /// <summary>
-        /// 扩展字段6
+        /// Trường mở rộng6
         /// </summary>
         public string Ex6 { get; set; }
 
     }
 
     /// <summary>
-    /// 构造 wdtree json
+    /// Xây dựng wdtree json
     /// </summary>
     public static class TreeView
     {
         /// <summary>
-        /// 构造 wdtree json
+        /// Xây dựng wdtree json
         /// </summary>
         /// <param name="data"></param>
-        /// <param name="parentId">最顶层元素的ParentId</param>
+        /// <param name="parentId">ParentId của phần tử tầng cao nhấtParentId</param>
         /// <returns></returns>
         public static string TreeViewJson(this List<TreeViewModel> data, string parentId = "0")
         {

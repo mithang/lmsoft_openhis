@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    /// Nhóm tin nhắn配置表
+    /// Nhóm tin nhắnBảng cấu hình
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Msg_NoticeGroup", "MsgNoticeGroupEntity")]
@@ -20,56 +20,56 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Id { get; set; }
         
         /// <summary>
-        /// 组标签
-        /// 系统Tin nhắn / 院内Tin nhắn /科室内部Tin nhắn  质控Tin nhắn
+        /// Nhãn nhóm
+        /// Hệ thốngTin nhắn / Trong việnTin nhắn /Nội bộ khoaTin nhắn  Kiểm soát chất lượngTin nhắn
         /// </summary>
         [Required(ErrorMessage = "GroupTag không được để trống")]
         public string GroupTag { get; set; }
         /// <summary>
-        /// 组名称
+        /// Tên nhóm
         /// </summary>
         [Required(ErrorMessage = "GroupName không được để trống")]
         public string GroupName { get; set; }
         /// <summary>
-        /// Nhóm tin nhắn说明
+        /// Nhóm tin nhắnGiải thích
         /// </summary>
         public string? GroupDesc { get; set; }
         /// <summary>
-        /// 相关业务类型 GroupYwlxEnum
+        /// Loại nghiệp vụ liên quan GroupYwlxEnum
         /// </summary>
         [Required(ErrorMessage = "GroupYwlx không được để trống")]
         public int GroupYwlx { get; set; }
         /// <summary>
-        /// 决定了通知对象范围  MsgNoticeRangeEnum
+        /// Quyết định phạm vi đối tượng nhận thông báo  MsgNoticeRangeEnum
         /// </summary>
         [Required(ErrorMessage = "NoticeRange không được để trống")]
         public int NoticeRange { get; set; }
         /// <summary>
-        /// 显示主题 
-        /// 如 您有新的质控Tin nhắn，请即时查看
+        /// Chủ đề hiển thị 
+        /// Như Bạn có thông báo kiểm soát chất lượng mớiTin nhắn,vui lòng xem ngay
         /// </summary>
         public string? DefaultTitle { get; set; }
         /// <summary>
-        /// 详细内容
-        /// 展开显示
+        /// Nội dung chi tiết
+        /// Mở rộng hiển thị
         /// </summary>
         public string? DefaultContent { get; set; }
         /// <summary>
-        /// 内容关联数据 Json格式 可转化对象
+        /// Dữ liệu liên kết nội dung JsonĐịnh dạng Đối tượng có thể chuyển đổi
         /// </summary>
         public string? DefaultContentData { get; set; }
         /// <summary>
-        /// 默认跳转路径 
-        /// 不为空时要求 AppId  không được để trống
+        /// Đường dẫn chuyển mặc định 
+        /// Khi không rỗng yêu cầu AppId  không được để trống
         /// </summary>
         public string? DefaultOpenPath { get; set; }
         /// <summary>
-        /// 路径参数
-        /// 格式： zyh={0}，id={1}
+        /// Tham số đường dẫn
+        /// Định dạng: zyh={0},id={1}
         /// </summary>
         public string? DefaultOpenPathPara { get; set; }
         /// <summary>
-        /// 应用Id
+        /// Ứng dụngId
         /// </summary>
         public string? AppId { get; set; }
         ///// <summary>

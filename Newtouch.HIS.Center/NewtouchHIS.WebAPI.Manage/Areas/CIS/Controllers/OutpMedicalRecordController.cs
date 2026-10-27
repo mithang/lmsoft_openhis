@@ -11,7 +11,7 @@ using NewtouchHIS.WebAPI.Manage.Controllers;
 namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
 {
     /// <summary>
-    /// 门诊病历
+    /// Bệnh án ngoại trú
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -31,7 +31,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
         {
             if(string.IsNullOrWhiteSpace(request.OrganizeId)||request.Data==null||string.IsNullOrWhiteSpace(request.Data.mzh))
             {
-                return new BusResult<List<OutpPrescriptionDataVO>> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức、Thông tin cơ bản của bệnh nhân không được để trống" };
+                return new BusResult<List<OutpPrescriptionDataVO>> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức,Thông tin cơ bản của bệnh nhân không được để trống" };
             }
             var data = await _outpMedical.OutpPrescriptionDataByMzh(request.Data.mzh,request.OrganizeId);
             return new BusResult<List<OutpPrescriptionDataVO>> { Data = new List<OutpPrescriptionDataVO>() };

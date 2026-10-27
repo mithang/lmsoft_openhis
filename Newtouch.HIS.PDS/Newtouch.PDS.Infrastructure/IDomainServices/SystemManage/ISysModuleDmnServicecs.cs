@@ -11,46 +11,46 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface ISysModuleDmnService
     {
         /// <summary>
-        /// 根据角色 获取 配置的 权限 菜单
+        /// Theo vai trò Lấy đã cấu hình Quyền Thực đơn
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
         IList<SysModuleEntity> GetMenuListByTopOrg(string topOrgId, IList<string> roleIdList, bool isRoot = false, bool isAdministrator = false);
 
         /// <summary>
-        /// 获取系统菜单
+        /// Lấy thực đơn hệ thống
         /// </summary>
         /// <returns></returns>
         IList<SysModuleVO> GetMenuListByTopOrg(string topOrgId);
 
         /// <summary>
-        /// 获取系统菜单 按钮
+        /// Lấy thực đơn hệ thống Nút
         /// </summary>
         /// <param name="moduleId"></param>
         /// <returns></returns>
         IList<SysModuleButtonVO> GetMenuButtonListByTopOrg(string topOrgId, string moduleId);
 
         /// <summary>
-        /// 获取当前机构 已开放 的菜单
+        /// Lấy cơ sở hiện tại Đã mở thực đơn của
         /// </summary>
         /// <returns></returns>
         IList<SysModuleEntity> GetOpenMenuListByTopOrg(string topOrgId);
 
         /// <summary>
-        /// 获取当前机构 已开放 的菜单
+        /// Lấy cơ sở hiện tại Đã mở thực đơn của
         /// </summary>
         /// <returns></returns>
         IList<SysModuleButtonEntity> GetOpenMenuButtonListByTopOrg(string topOrgId);
 
         /// <summary>
-        /// 提交新建、更新 菜单
+        /// Gửi mới、Cập nhật Thực đơn
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
         void SubmitForm(SysModuleEntity moduleEntity, string keyValue, string topOrgId = null);
 
         /// <summary>
-        /// 提交新建、更新 权限按钮
+        /// Gửi mới、Cập nhật Nút quyền
         /// </summary>
         /// <param name="moduleButtonEntity"></param>
         /// <param name="keyValue"></param>
@@ -58,26 +58,26 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 
         /// <summary>
-        /// （菜单、菜单按钮）获取应用已授权的组织机构列表
+        /// （Thực đơn、Nút thực đơn）Lấy danh sách tổ chức ứng dụng đã ủy quyền
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
         IList<SysOrganizeVEntity> GetAuthedOrgListByModuleId(string moduleId, int itemType);
 
         /// <summary>
-        /// （菜单、菜单按钮）将菜单授权给指定机构
+        /// （Thực đơn、Nút thực đơn）Ủy quyền thực đơn cho cơ sở chỉ định
         /// </summary>
         /// <param name="moduleId"></param>
         void UpdateAuthOrganizeList(string moduleId, string orgList, int itemType);
 
         /// <summary>
-        /// （菜单、菜单按钮）将菜单授权给所有机构
+        /// （Thực đơn、Nút thực đơn）Ủy quyền thực đơn cho tất cả cơ sở
         /// </summary>
         /// <param name="moduleId"></param>
         void AuthAllOrganize(string moduleId, int itemType);
 
         /// <summary>
-        /// （菜单、菜单按钮）撤销全部授权（组织机构）
+        /// （Thực đơn、Nút thực đơn）Thu hồi tất cả ủy quyền（Tổ chức）
         /// </summary>
         /// <param name="moduleId"></param>
         void AuthCancelAllOrganize(string moduleId, int itemType);

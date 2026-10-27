@@ -1,62 +1,62 @@
 namespace Newtouch.Domain.DTO
 {
     /// <summary>
-    /// 远程医疗请求参数
+    /// xatrìnhy tếyêu cầutham số
     /// </summary>
     public class IntegrateRcDto
     {
         /// <summary>
-        /// 医生账号
+        /// Bác sĩTài khoản
         /// </summary>
         public string doctorId { get; set; }
 
         /// <summary>
-        /// 医生姓名
+        /// Bác sĩHọ tên
         /// </summary>
         public string doctorName { get; set; }
 
         /// <summary>
-        /// 患者ID
+        /// Bệnh nhânID
         /// </summary>
         public string patientId { get; set; }
 
         /// <summary>
-        /// 患者姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string patientName { get; set; }
 
         /// <summary>
-        /// 患者手机号
+        /// Bệnh nhânSố điện thoại
         /// </summary>
         public string mobile { get; set; }
 
         /// <summary>
-        /// 患者身份证号
+        /// Bệnh nhânCMND/CCCDsố
         /// </summary>
         public string certid { get; set; }
 
         /// <summary>
-        /// 患者性别: 1 男 2 女
+        /// Bệnh nhânGiới tính: 1 Nam 2 Nữ
         /// </summary>
         public string gender { get; set; }
 
         /// <summary>
-        /// 患者出生日期
+        /// Bệnh nhânNgày sinh
         /// </summary>
         public string birthday { get; set; }
 
         /// <summary>
-        /// 患者类型: 1 自费 2 医保
+        /// Bệnh nhânLoại: 1 tự chi trả 2 Bảo hiểm y tế
         /// </summary>
         public string patientType { get; set; }
 
         /// <summary>
-        /// 医保卡卡号或者就诊卡卡号
+        /// Bảo hiểm y tếthẻSố thẻhoặcKhám bệnhthẻSố thẻ
         /// </summary>
         public string series { get; set; }
 
         /// <summary>
-        /// 机构编码
+        /// Cơ sởMã
         /// </summary>
         public string organCode { get; set; }
     }

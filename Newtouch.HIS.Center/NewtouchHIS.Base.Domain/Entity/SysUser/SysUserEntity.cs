@@ -5,7 +5,7 @@ using SqlSugar;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///用户表
+    ///Bảng người dùng
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Sys_User", "SysUserEntity")]
@@ -14,7 +14,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public SysUserEntity() { }
 
         /// <summary>
-        /// Desc:用户Khóa chính
+        /// Desc:Người dùngKhóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -31,7 +31,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string TopOrganizeId { get; set; }
 
         /// <summary>
-        /// Desc:账户
+        /// Desc:Tài khoản
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -48,7 +48,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string LanguageType { get; set; }
 
         /// <summary>
-        /// Desc:创建时间
+        /// Desc:Thời gian tạo
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -57,7 +57,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// Desc:创建用户
+        /// Desc:Người tạo
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -66,7 +66,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// Desc:最后修改时间
+        /// Desc:Thời gian sửa đổi cuối
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -74,7 +74,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Desc:最后修改用户
+        /// Desc:Người sửa đổi cuối
         /// Default:
         /// Nullable:True
         /// </summary>           

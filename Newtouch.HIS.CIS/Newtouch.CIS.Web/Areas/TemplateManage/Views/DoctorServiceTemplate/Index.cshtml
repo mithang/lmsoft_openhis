@@ -25,7 +25,7 @@
             <li><a href="#" name="#department" data-type=@Html.Raw(((int)EnumCfMbLx.department).ToString())>Khoa</a></li>
             @*@if (ViewBag.bhbq)
             {
-            <li><a href="#" name="#ward" data-type=@Html.Raw(((int)EnumTcfw.Ward).ToString())>病区</a></li>
+            <li><a href="#" name="#ward" data-type=@Html.Raw(((int)EnumTcfw.Ward).ToString())>Khu bệnh</a></li>
             }*@
             <li><a href="#" name="#hospital" data-type=@Html.Raw(((int)EnumCfMbLx.hospital).ToString())>Toàn viện</a></li>
         </ul>
@@ -63,7 +63,7 @@
     var expandyzlx = null;
 
     $("#beveltabs a").on("click", function (e) {
-        var tempExpandyzlx = expandyzlx;    //有效期为一次
+        var tempExpandyzlx = expandyzlx;    //Hạn hiệu lựclàmột lần
         expandyzlx = null;
         $($(this).attr('name') + "Tree").treeview({
             height: $(window).height() - 100,
@@ -74,19 +74,19 @@
                     return;
                 }
 
-                if (item.value == '@Html.Raw(((int)EnumYzlx.Yp).ToString())') {   //药品
-                    $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/DoctorServiceTemplate/MedicineForm?mbId=" + item.Ex1);  //item.Ex1为模板Id
-                } else if (item.value == '@Html.Raw(((int)@EnumYzlx.Wz).ToString())') {   //文字
+                if (item.value == '@Html.Raw(((int)EnumYzlx.Yp).ToString())') {   //Thuốc
+                    $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/DoctorServiceTemplate/MedicineForm?mbId=" + item.Ex1);  //item.Ex1làmẫuId
+                } else if (item.value == '@Html.Raw(((int)@EnumYzlx.Wz).ToString())') {   //văn bản
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/DoctorServiceTemplate/WordForm?mbId=" + item.Ex1);
-                } else if (item.value == '@Html.Raw(((int)@EnumYzlx.sfxm).ToString())') {   //项目
+                } else if (item.value == '@Html.Raw(((int)@EnumYzlx.sfxm).ToString())') {   //Mục
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/DoctorServiceTemplate/ItemForm?mbId=" + item.Ex1);
-                } else if (item.value == '@Html.Raw(((int)@EnumYzlx.Cydy).ToString())') {   //出院带药
+                } else if (item.value == '@Html.Raw(((int)@EnumYzlx.Cydy).ToString())') {   //Xuất việnmang thuốc
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/DoctorServiceTemplate/TakeMedicineForm?mbId=" + item.Ex1);
-                }else if (item.value == '@Html.Raw(((int)@EnumYzlx.ssyz).ToString())') {   //膳食医嘱
+                }else if (item.value == '@Html.Raw(((int)@EnumYzlx.ssyz).ToString())') {   //ăn uốngY lệnh
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/DoctorServiceTemplate/FoodForm?mbId=" + item.Ex1);
-                }else if (item.value == '@Html.Raw(((int)@EnumYzlx.zcy).ToString())') {   //中草药
+                }else if (item.value == '@Html.Raw(((int)@EnumYzlx.zcy).ToString())') {   //trongthảo dược
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/DoctorServiceTemplate/TCMmedicineForm?mbId=" + item.Ex1);
-                }else if(item.value == '@Html.Raw(((int)@EnumYzlx.rehab).ToString())'){    //康复
+                }else if(item.value == '@Html.Raw(((int)@EnumYzlx.rehab).ToString())'){    //Phục hồi chức năng
                     $("#iframerightiframerightiframeright").attr("src", "/TemplateManage/DoctorServiceTemplate/RehabForm?mbId=" + item.Ex1);
                 }
             }

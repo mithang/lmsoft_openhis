@@ -1,7 +1,7 @@
 @{
     ViewBag.Title = "Thống kê phát thuốc";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //报表链接
+    //Liên kết báo cáo
     //var reportUrl = SysConfigReader.OrgReportLink();
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
@@ -36,14 +36,14 @@
                         <option value="6">Theo loại thuốc cơ bản</option>
                     </select>
                 </td>
-                @*<th class="formTitle">是否门诊：</th>
+                @*<th class="formTitle">Có phải ngoại trú không：</th>
                 <td class="formValue">
                     <select id="ismz" class="form-control">
                         <option value="0">Không</option>
                         <option value="1" selected="selected">Có</option>
                     </select>
                 </td>*@
-                @*<th class="formTitle">是否住院：</th>
+                @*<th class="formTitle">Có phải nội trú không：</th>
         <td class="formValue">
             <select id="iszy" class="form-control">
                 <option value="0">Không</option>
@@ -75,7 +75,7 @@
     });
 
     function initControl() {
-        //药品分类
+        //Phân loại thuốc
         $('#ypflMc').newtouchFloatingSelector({
             width: 300,
             height: 300,
@@ -127,7 +127,7 @@
         $('#layout iframe').css('height', h);
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

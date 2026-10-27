@@ -5,94 +5,94 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
     public class DRGEnum
     {
         /// <summary>
-        /// DRG分组器版本
+        /// DRGPhiên bản bộ nhóm
         /// </summary>
         public enum EnumDrgGrouperType
         {
             /// <summary>
-            /// CHS-DRG 1.0修订版、西安版、成都版
+            /// CHS-DRG 1.0 bản sửa đổi, bản Tây An, bản Thành Đô
             /// </summary>
-            [Description("CHS-DRG 1.0修订版、西安版、成都版")]
+            [Description("CHS-DRG 1.0 bản sửa đổi, bản Tây An, bản Thành Đô")]
             chs_drg_10 = 10,
             /// <summary>
-            /// CHS-DRG 1.1标准版、铜川版、临沂版
+            /// CHS-DRG 1.1 bản tiêu chuẩn, bản Đồng Xuyên, bản Lâm Nghi
             /// </summary>
-            [Description("CHS-DRG 1.1标准版、铜川版、临沂版")]
+            [Description("CHS-DRG 1.1 bản tiêu chuẩn, bản Đồng Xuyên, bản Lâm Nghi")]
             chs_drg_11 = 11,
             /// <summary>
-            /// 北京版
+            /// Bản Bắc Kinh
             /// </summary>
-            [Description("北京版")]
+            [Description("Bản Bắc Kinh")]
             beijing_2022 = 1100001,
             /// <summary>
-            /// 临汾版
+            /// Bản Lâm Phần
             /// </summary>
-            [Description("临汾版")]
+            [Description("Bản Lâm Phần")]
             linfen_2022 = 1410001,
             /// <summary>
-            /// 无锡版
+            /// Bản Vô Tích
             /// </summary>
-            [Description("无锡版")]
+            [Description("Bản Vô Tích")]
             wuxi_2022 = 3202001,
             /// <summary>
-            /// 常州版
+            /// Bản Thường Châu
             /// </summary>
-            [Description("常州版")]
+            [Description("Bản Thường Châu")]
             changzhou_2022 = 3204001,
             /// <summary>
-            /// 苏州版
+            /// Bản Tô Châu
             /// </summary>
-            [Description("苏州版")]
+            [Description("Bản Tô Châu")]
             suzhou_2023 = 3205002,
             /// <summary>
-            /// 盐城版
+            /// Bản Diêm Thành
             /// </summary>
-            [Description("盐城版")]
+            [Description("Bản Diêm Thành")]
             yancheng_2023 = 3209002,
             /// <summary>
-            /// 泰州版
+            /// Bản Thái Châu
             /// </summary>
-            [Description("泰州版")]
+            [Description("Bản Thái Châu")]
             taizhou_2022 = 3212001,
             /// <summary>
-            /// 福州版
+            /// Bản Phúc Châu
             /// </summary>
-            [Description("福州版")]
+            [Description("Bản Phúc Châu")]
             fuzhou_2022 = 3501001,
             /// <summary>
-            /// 青岛版
+            /// Bản Thanh Đảo
             /// </summary>
-            [Description("青岛版")]
+            [Description("Bản Thanh Đảo")]
             qingdao_2023 = 3702002,
             /// <summary>
-            /// 烟台版
+            /// Bản Yên Đài
             /// </summary>
-            [Description("烟台版")]
+            [Description("Bản Yên Đài")]
             yantai_2023 = 3706002,
             /// <summary>
-            /// 武汉版
+            /// Bản Vũ Hán
             /// </summary>
-            [Description("武汉版")]
+            [Description("Bản Vũ Hán")]
             wuhan_2022 = 4201001,
             /// <summary>
-            /// 长株潭衡区域版
+            /// Bản khu vực Trường - Chu - Đàm - Hành
             /// </summary>
-            [Description("长株潭衡区域版")]
+            [Description("Bản khu vực Trường - Chu - Đàm - Hành")]
             changsha_2022 = 4301001,
             /// <summary>
-            /// 兰州版
+            /// Bản Lan Châu
             /// </summary>
-            [Description("兰州版")]
+            [Description("Bản Lan Châu")]
             lanzhou_2023 = 6201002,
             /// <summary>
-            /// 庆阳版
+            /// Bản Khánh Dương
             /// </summary>
-            [Description("庆阳版")]
+            [Description("Bản Khánh Dương")]
             qingyang_2023 = 6210002,
             /// <summary>
-            /// 乌鲁木齐版
+            /// Bản Ô Lỗ Mộc Tề
             /// </summary>
-            [Description("乌鲁木齐版")]
+            [Description("Bản Ô Lỗ Mộc Tề")]
             wlmq_2022 = 6501001,
 
         }
@@ -101,14 +101,14 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         public enum EnumDrgGrouperTypePolicy
         {
             /// <summary>
-            /// CHS-DRG 1.1标准版、铜川版、临沂版
+            /// CHS-DRG 1.1 bản tiêu chuẩn, bản Đồng Xuyên, bản Lâm Nghi
             /// </summary>
-            [Description("CHS-DRG 1.1标准版、铜川版、临沂版")]
+            [Description("CHS-DRG 1.1 bản tiêu chuẩn, bản Đồng Xuyên, bản Lâm Nghi")]
             ChsDrg11Policy = 11,
             /// <summary>
-            /// 武汉版
+            /// Bản Vũ Hán
             /// </summary>
-            [Description("武汉版")]
+            [Description("Bản Vũ Hán")]
             DrgWuhan2022Policy = 4201001,
         }
     }

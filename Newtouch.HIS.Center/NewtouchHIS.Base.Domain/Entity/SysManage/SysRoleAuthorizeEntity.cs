@@ -5,14 +5,14 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///角色授权表
+    ///Bảng ủy quyền vai trò
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
-    [SugarTable("Sys_RoleAuthorize", "角色菜单权限")]
+    [SugarTable("Sys_RoleAuthorize", "Quyền menu vai trò")]
     public partial class SysRoleAuthorizeEntity:ISysEntity
     {
         /// <summary>
-        /// Desc:角色授权Khóa chính
+        /// Desc:Ủy quyền vai tròKhóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -20,7 +20,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Desc:对象Khóa chính
+        /// Desc:Đối tượngKhóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -29,7 +29,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string RoleId { get; set; }
 
         /// <summary>
-        /// Desc:项目Khóa chính
+        /// Desc:Hạng mụcKhóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -38,7 +38,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string ItemId { get; set; }
 
         /// <summary>
-        /// Desc:排序码
+        /// Desc:Mã sắp xếp
         /// Default:
         /// Nullable:True
         /// </summary>           

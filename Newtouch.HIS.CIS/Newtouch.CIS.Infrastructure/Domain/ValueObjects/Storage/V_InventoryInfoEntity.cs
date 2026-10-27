@@ -7,97 +7,97 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// 盘点信息
+    /// Kiểm kêthông tin
     /// </summary>
     public class VInventoryInfoEntity
     {
         /// <summary>
-        /// 物资名称
+        /// vật tưTên
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 理论数（带单位）
+        /// lýluậnsố（mangĐơn vị）
         /// </summary>
         public string llsl { get; set; }
         
         /// <summary>
-        /// 物资ID
+        /// vật tưID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 部门单位数量
+        /// Khoa phòngĐơn vịSố lượng
         /// </summary>
         public int deptSjsl { get; set; }
 
         /// <summary>
-        /// 部门单位
+        /// Khoa phòngĐơn vị
         /// </summary>
         public string deptdw { get; set; }
 
         /// <summary>
-        /// 最小单位数量
+        /// Đơn vị nhỏ nhấtSố lượng
         /// </summary>
         public int minSjsl { get; set; }
 
         /// <summary>
-        /// 最小单位
+        /// Đơn vị nhỏ nhất
         /// </summary>
         public string zxdw { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// chuyểnhóavìcon
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn hiệu lực
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 零售单价
+        /// khôngbánĐơn giá
         /// </summary>
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 理论零售总额
+        /// lýluậntổng bán lẻ
         /// </summary>
         public decimal lllsje { get; set; }
 
         /// <summary>
-        /// 实际零售总额
+        /// thực tếtổng bán lẻ
         /// </summary>
         public decimal sjlsje { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 盘点明细ID
+        /// Kiểm kêchi tiếtID
         /// </summary>
         public long pdmxId { get; set; }
         
         /// <summary>
-        /// 盘点创建时间
+        /// Kiểm kêThời gian tạo
         /// </summary>
         public DateTime? CreateTime { get; set; }
     }

@@ -10,7 +10,7 @@ using FrameworkBase.MultiOrg.Infrastructure;
 namespace Newtouch.HIS.DomainServices.Medicine
 {
     /// <summary>
-    /// 部门 药品
+    /// Bộ phận Thuốc
     /// </summary>
     public class DepartmentMedicineInfoDmnService : DmnServiceBase, IDepartmentMedicineInfoDmnService
     {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.DomainServices.Medicine
         }
 
         /// <summary>
-        /// 根据药房代码、药品代码 获取药房的 药品 的 库存数量和单位
+        /// Theo mã nhà thuốc、Mã thuốc Lấy của nhà thuốc Thuốc của Số lượng và đơn vị tồn kho
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="ypCode"></param>
@@ -74,7 +74,7 @@ SELECT @fybmdw AS fybmdw, @fybmzhyz AS fybmzhyz, * FROM #tmp
         }
 
         /// <summary>
-        /// 获取 内部申领 药品数据源
+        /// Lấy Lĩnh nội bộ Nguồn dữ liệu thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="fybm"></param>
@@ -85,12 +85,12 @@ SELECT @fybmdw AS fybmdw, @fybmzhyz AS fybmzhyz, * FROM #tmp
 SELECT TOP 500 * FROM 
 (
 	select  K.ypdm ypCode,Y.ypmc,Y.ycmc,S.ypgg,L.dlmc as ypdlmc
-	,dbo.f_getComplexYpSlandDw(sum(case when K.yxq >= getdate() then K.kcsl else 0 end), Y.bzs, Y.bzdw, Y.zxdw) Klslanddw --可领库存
-	,sum(case when K.yxq >= getdate() then K.kcsl else 0 end) Kcsl	--库存数量 库存数量存的一定是 最小单位
-	,Y.zxdw Kcsldw	--最小单位
-	,Y.pfj	--批发价
-	,Y.lsj	--零售价
-	,Y.bzs ykzhyz   --药库转换因子（计算价格用的）
+	,dbo.f_getComplexYpSlandDw(sum(case when K.yxq >= getdate() then K.kcsl else 0 end), Y.bzs, Y.bzdw, Y.zxdw) Klslanddw --Tồn kho có thể lĩnh
+	,sum(case when K.yxq >= getdate() then K.kcsl else 0 end) Kcsl	--Số lượng tồn kho Số lượng tồn kho lưu nhất định là Đơn vị nhỏ nhất
+	,Y.zxdw Kcsldw	--Đơn vị nhỏ nhất
+	,Y.pfj	--Giá bán buôn
+	,Y.lsj	--Giá bán lẻ
+	,Y.bzs ykzhyz   --Hệ số chuyển đổi kho thuốc（Dùng để tính giá）
 	from XT_YP_KCXX(NOLOCK) K
 	INNER JOIN [NewtouchHIS_Base]..V_S_xt_yp(nolock) Y on K.ypdm=Y.YpCode and Y.OrganizeId = K.OrganizeId
 	INNER JOIN [NewtouchHIS_Base]..V_S_xt_ypsx(nolock) S on S.ypCode=Y.ypCode and S.OrganizeId = K.OrganizeId
@@ -99,7 +99,7 @@ SELECT TOP 500 * FROM
 	INNER JOIN [NewtouchHIS_Base]..V_S_xt_sfdl(nolock) L on L.dlCode=Y.dlCode and L.OrganizeId = K.OrganizeId
 	where K.yfbmCode = @fybm and K.Tybz = 0
 	and (@keyword = '' or Y.ypCode Like @searchkeyword or Y.ypmc Like @searchkeyword or Y.spm Like @searchkeyword or Y.py Like @searchkeyword)
-	and M.mzzybz = '0'  --药库
+	and M.mzzybz = '0'  --Kho thuốc
 	and K.OrganizeId = @OrganizeId
 	group by K.ypdm,Y.ypmc,Y.ycmc,Y.bzs,Y.bzdw,Y.zxdw,Y.pfj,Y.lsj,S.ypgg,L.dlmc
 ) as tttt

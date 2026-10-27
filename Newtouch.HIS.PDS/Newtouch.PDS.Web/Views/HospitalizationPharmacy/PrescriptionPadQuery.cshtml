@@ -76,7 +76,7 @@
 <script type="text/javascript">
     var $gridList = $("#gridList");
     $(function () {
-        $("#bqmc").bindSelect({ //病区信息集合
+        $("#bqmc").bindSelect({ //Tập hợp thông tin khu bệnh
             url: "/HospitalizationPharmacy/GetBQSelectJson",
             id: "bqCode",
             text: "bqmc"
@@ -84,7 +84,7 @@
         dispenseMedicinGridList();
     });
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
@@ -126,7 +126,7 @@
                     }
                 }
             ],
-            //caption: "处方笺列表",
+            //caption: "Danh sách đơn thuốc",
             pager: "#gridPager",
             sortname: 'kssj',
             viewrecords: true,
@@ -143,11 +143,11 @@
             var zxrq = $("#gridList").jqGrid('getRowData', rowId).kssj;
             //$.modalOpen({
             //    id: "GetCfDetail",
-            //    title: "处方明细",
+            //    title: "Chi tiết đơn thuốc",
             //    url: "/HospitalizationPharmacy/PrescriptionDetailFrom?cfh=" + cfh + "&yzxz="+yzxz+"&zxrq="+zxrq,
             //    width: "950px",
             //    height: "600px",
-            //    btn: ['', '关闭'],
+            //    btn: ['', 'Đóng'],
             //    callBack: function (iframeId) {
             //    }
             //});
@@ -236,7 +236,7 @@
         var zxrq = seleRow[0].kssj.substring(0, 10);
         var tempCode = "33";//Thuốc
         if (yzlx == "10")
-            tempCode = "1022" //中药
+            tempCode = "1022" //Thuốc Trung dược
         var rpturl = '@reportUrl' + "?tempCode=" + tempCode + "&systemCode=PDS&orgId=" + '@ViewBag.OrganizeId' + "&zxrq=" + zxrq + "&lyxh=" + lyxh;
         window.open(rpturl + "&zyh=" + zyh + "&yzhs=" + cfh, "_blank",
             "height = 500, width = 1195, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");

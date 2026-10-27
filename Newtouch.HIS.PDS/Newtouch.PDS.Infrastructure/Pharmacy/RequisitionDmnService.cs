@@ -20,7 +20,7 @@ using NewtouchHIS.Lib.Base.Exceptions;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 内部申领
+    /// Lĩnh nội bộ
     /// </summary>
     public class RequisitionDmnService : DmnServiceBase, IRequisitionDmnService
     {
@@ -28,12 +28,12 @@ namespace Newtouch.HIS.DomainServices
 
         
         /// <summary>
-        /// 新申领 提交保存
+        /// Lĩnh mới Gửi và lưu
         /// </summary>
-        /// <param name="sldh">申领单号</param>
-        /// <param name="fybmCode">发药部门</param>
-        /// <param name="slbmCode">申领部门（当前登录用户药房部门）</param>
-        /// <param name="mxList">申领药品明细</param>
+        /// <param name="sldh">Số đơn lĩnh</param>
+        /// <param name="fybmCode">Bộ phận phát thuốc</param>
+        /// <param name="slbmCode">Bộ phận lĩnh（Bộ phận nhà thuốc người dùng đăng nhập hiện tại）</param>
+        /// <param name="mxList">Chi tiết thuốc lĩnh</param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         public bool SubmitRequisition(string sldh, string fybmCode, string slbmCode, IList<RequisitionDepartmentMedicineSubmitItemVO> mxList, string orgId)
@@ -55,18 +55,18 @@ namespace Newtouch.HIS.DomainServices
                 {
                     if (!db.IQueryable<SysPharmacyDepartmentMedicineEntity>().Any(p => p.yfbmCode == slbmCode && p.Ypdm == mx.ypCode))
                     {
-                        throw new FailedException("不能申领，请先完善本部门药品信息，药品代码：" + mx.ypCode);
+                        throw new FailedException("Không thể lĩnh，Vui lòng hoàn thiện thông tin thuốc bộ phận này trước，Mã thuốc：" + mx.ypCode);
                     }
                     var mxEntity = new SysMedicineRequisitionDetailEntity
                     {
                         sldId = mainEntity.sldId,
                         ypCode = mx.ypCode,
                         //Yxrq = mx.Yxq,
-                        Zhyz = mx.bbmzhyz,  //发药部门的转换因子
+                        Zhyz = mx.bbmzhyz,  //Hệ số chuyển đổi của bộ phận phát thuốc
                         //ph = "",
                         //pc = "",
-                        slsl = mx.slsl,    //转换成最小单位，保存之
-                        yfsl = 0,   //已发数量
+                        slsl = mx.slsl,    //Chuyển thành đơn vị nhỏ nhất，lưu nó
+                        yfsl = 0,   //Số lượng đã phát
                     };
                     mxEntity.Create(true);
                     db.Insert(mxEntity);
@@ -77,16 +77,16 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 内部申领单 查询
+        /// Đơn lĩnh nội bộ Truy vấn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
         /// <param name="startDate"></param>
         /// <param name="endDate"></param>
         /// <param name="sldh"></param>
-        /// <param name="slbm">申领部门</param>
-        /// <param name="ckbm">出库部门</param>
-        /// <param name="ffzt">发放状态</param>
+        /// <param name="slbm">Bộ phận lĩnh</param>
+        /// <param name="ckbm">Bộ phận xuất kho</param>
+        /// <param name="ffzt">Trạng thái phát</param>
         /// <param name="allUseableFfzt"></param>
         /// <returns></returns>
         public IList<RequisitionSelectVO> RequisitionSearch(Pagination pagination, string orgId, DateTime? startDate, DateTime? endDate
@@ -142,7 +142,7 @@ and sld.OrganizeId =@Organizeid
         }
 
         /// <summary>
-        /// 内部申领单 明细查询
+        /// Đơn lĩnh nội bộ Truy vấn chi tiết
         /// </summary>
         /// <param name="sldId"></param>
         /// <param name="orgId"></param>
@@ -151,7 +151,7 @@ and sld.OrganizeId =@Organizeid
         {
             if (string.IsNullOrWhiteSpace(sldId))
             {
-                throw new FailedException("缺少参数：sldId");
+                throw new FailedException("Thiếu tham Số：sldId");
             }
             var strSql = new StringBuilder(@"
 SELECT yp.ypmc ypmc, sldmx.ph, sldmx.pc, sldmx.Yxrq, 

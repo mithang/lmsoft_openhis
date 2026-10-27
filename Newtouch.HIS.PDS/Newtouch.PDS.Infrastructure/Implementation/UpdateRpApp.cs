@@ -11,7 +11,7 @@ using Newtouch.PDS.Requset.ResourcesOperate;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 处方更新
+    /// Cập nhật đơn thuốc
     /// </summary>
     public class UpdateRpApp : ProcessorFun<UpdateRpRequset>
     {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IOutpatientPrescriptionDetailBatchNumberRepo outpatientPrescriptionDetailBatchNumberRepo;
         private readonly IfyDmnService fyDmnService;
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="request"></param>
         public UpdateRpApp(UpdateRpRequset request) : base(request)
@@ -27,23 +27,23 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Kiểm tra
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
         {
-            if (Request.Cfmx == null) throw new FailedException("处方明细不能为空");
-            if (string.IsNullOrWhiteSpace(Request.Cfh)) throw new FailedException("处方号 必填");
+            if (Request.Cfmx == null) throw new FailedException("Chi tiết đơn thuốc không được để trống");
+            if (string.IsNullOrWhiteSpace(Request.Cfh)) throw new FailedException("Số đơn thuốc Bắt buộc nhập");
             Request.Cfmx.ForEach(p =>
             {
-                if (string.IsNullOrWhiteSpace(p.YpCode)) throw new FailedException("ItemCode(项目编号) 必填");
+                if (string.IsNullOrWhiteSpace(p.YpCode)) throw new FailedException("ItemCode(Số hiệu hạng mục) Bắt buộc nhập");
             });
-            if (string.IsNullOrWhiteSpace(Request.OrganizeId)) throw new FailedException("OrganizeId(组织结构代码) 必填");
+            if (string.IsNullOrWhiteSpace(Request.OrganizeId)) throw new FailedException("OrganizeId(Mã cơ cấu tổ chức) Bắt buộc nhập");
             return new ActResult();
         }
 
         /// <summary>
-        /// 预处理 先原处方药品归架
+        /// Tiền xử lý Xếp kệ thuốc đơn gốc trước
         /// </summary>
         protected override void BeforeAction(ActResult actResult)
         {
@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -60,11 +60,11 @@ namespace Newtouch.HIS.Application.Implementation
             var result = new OutpatientBookApp(AssembleBookAppRequest()).Process();
             if (result.IsSucceed) return;
             actResult.IsSucceed = false;
-            actResult.ResultMsg = string.Format(@"释放原来冻结库存成功，但新冻结库存失败。 \n 失败原因：{0}", result.ResultMsg);
+            actResult.ResultMsg = string.Format(@"Giải phóng tồn kho đóng băng gốc thành công，Nhưng đóng băng tồn kho mới thất bại。 \n Lý do thất bại：{0}", result.ResultMsg);
         }
 
         /// <summary>
-        /// 组装预定报文
+        /// Lắp ráp bản tin đặt trước
         /// </summary>
         /// <returns></returns>
         private OutpatientBookRequestDTO AssembleBookAppRequest()

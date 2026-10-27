@@ -111,7 +111,7 @@
     })
 
     $(document).ready(function () {
-        // 设置组织机构不可编辑
+        // Đặt tổ chức không thể sửa
         if (keyValue && orgId) {
             $("#OrganizeId").prop("disabled", true); // Đặt hộp chọn không cho sửa
             $("#OrganizeId").css("background-color", "#e9ecef"); // Làm mờ đi
@@ -119,7 +119,7 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
             selectedValue: $.request('orgId'),
@@ -142,7 +142,7 @@
         }
     });
 
-    //提交
+    //Gửi
     function submitForm() {
         if (!$('#form1').formValid()) {
             return false;

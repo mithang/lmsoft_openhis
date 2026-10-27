@@ -22,16 +22,16 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 查询上一次结转的时间
+        /// Truy vấn thời gian kết chuyển lần trước
         /// </summary>
         /// <returns></returns>
         public CarryOverLastAccountPeriodAndCarrayTimeVO GetLastAccountPeriodAndCarrayTime()
         {
-            var lastEntity = new CarryOverLastAccountPeriodAndCarrayTimeVO();  //上一次结转时间
+            var lastEntity = new CarryOverLastAccountPeriodAndCarrayTimeVO();  //Thời gian kết chuyển lần trước
             var organizeId = Common.Operator.OperatorProvider.GetCurrent().OrganizeId;
             var yfbmCode = Constants.CurrentYfbm.yfbmCode;
             var entity = IQueryable().Where(a => a.zt == "1" && a.OrganizeId == organizeId && a.yfbmCode == yfbmCode);
-            if (!entity.Any())    //未曾结转过
+            if (!entity.Any())    //Chưa từng kết chuyển
             {
                 lastEntity.lastCarrayTime = DateTime.Now.ToString("yyyy-01-01 00:00:00");
             }
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Repository
                 lastEntity.lastAccountPeriod = entity2.Select(a => a.zq).FirstOrDefault();
                 if (lastEntity.lastCarrayTime == null)
                 {
-                    throw new FailedException("获取上一次结转时间失败");
+                    throw new FailedException("Lấy thời gian kết chuyển lần trước thất bại");
                 }
             }
             return lastEntity;

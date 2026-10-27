@@ -117,7 +117,7 @@
 <script>
     var $gridMxList = $("#gridMxInfo");
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
@@ -134,14 +134,14 @@
         Initial();
     });
 
-    //回车事件绑定
+    //Sự kiện Entergắn
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //初始化
+    //Khởi tạo
     function Initial() {
         getLbSelectTree();
         gridList();
@@ -165,7 +165,7 @@
         })
     }
 
-    //隐藏搜索框并显示箭头
+    //Ẩntìm kiếmkhungvàHiển thịmũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -177,14 +177,14 @@
         }
     }
 
-    //类别
+    //Loại
     function getLbSelectTree() {
         $("#lb").bindSelect({
             url: "/NurseManage/DepartmentSupplies/GetPatientTreeSelectJson"
         });
     }
 
-    //主表信息
+    //chínhbảngthông tin
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -262,7 +262,7 @@
         })
     }
 
-    //明细信息
+    //chi tiếtthông tin
     function gridMxInfo() {
         $gridMxList.dataGrid({
             url: "",
@@ -305,7 +305,7 @@
         });
     }
 
-    //设置库存有效与否
+    //Cài đặtTồn khoHiệu lựcvàKhông
     function operateZt(obj) {
         var zt = "1";
         var mxId = $gridMxList.getRowData($(obj).attr("rowId")).Id;
@@ -324,7 +324,7 @@
             dataType: "json",
             success: function (data) {
                 if (data.state === 'success') {
-                    //$.modalMsg("修改库存状态成功", "success", 1000);
+                    //$.modalMsg("SửaTồn khoTrạng tháithành công", "success", 1000);
                 }
                 else {
                     $.modalMsg(data, "error", 1000);
@@ -333,11 +333,11 @@
         });
     }
 
-    //获取url中的参数
+    //Lấyurltrongcủatham số
     function getQueryString(name) {
-        // 匹配目标参数
+        // khớpphốiMục tiêutham số
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
+        var result = window.location.search.substr(1).match(reg); // đốiquerystringkhớpphốiMục tiêutham số
         if (result != null) {
             return decodeURIComponent(result[2]);
         } else {

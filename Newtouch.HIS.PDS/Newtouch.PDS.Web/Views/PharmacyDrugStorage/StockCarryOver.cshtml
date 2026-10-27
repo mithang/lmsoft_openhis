@@ -43,18 +43,18 @@
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
         gridDrugsList();//Thông tin thuốc
-        ddlZQList();//加载账期
+        ddlZQList();//Tải kỳ sổ sách
         $("#btn_jz").click(function () {
             CarryOverMedicine();
         });
     });
 
-    //加载账期
+    //Tải kỳ sổ sách
     function ddlZQList() {
         CheckddlZQList();
         $("#ddlZQ2").bindSelect({
@@ -64,7 +64,7 @@
         });
     }
 
-    //不可倒叙结转，不可选择已结账期
+    //Không thể kết chuyển ngược thứ tự，Không thể chọn kỳ đã quyết toán
     function CheckddlZQList() {
         $.najax({
             url: "/PharmacyDrugStorage/GetLastAccountPeriod",
@@ -92,13 +92,13 @@
         });
     }
 
-    //结转
+    //Kết chuyển
     function CarryOverMedicine() {
         if (!$("#ddlZQ1").find("option:selected").text()) {
             $.modalAlert("Chưa chọn kỳ sổ sách", 'warning');
         }
         var zq = $("#ddlZQ1").find("option:selected").text();
-        //获取最后一次结转时间
+        //Lấy thời gian kết chuyển lần cuối
         var lastCarryTime;
         $.najax({
             type: "get",
@@ -126,7 +126,7 @@
                                 success: function (ajaxresp) {
                                     if (ajaxresp.state === 'success') {
                                         $.modalAlert("Kết chuyển thành công", 'success');
-                                        ddlZQList();//刷新账期
+                                        ddlZQList();//Làm mới kỳ sổ sách
                                         $("#btn_search").trigger('click');
                                     }
                                     else {
@@ -138,14 +138,14 @@
                         } else {
                             return false;
                         }
-                    }, true); //true:modalConfirm不关闭dialog
+                    }, true); //true:modalConfirmKhông đóngdialog
 
                 }
             }
         });
     }
 
-    //药品信息
+    //Thông tin thuốc
     function gridDrugsList() {
         var captionCon = "Tổng cộng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Trang hiện tại Tổng giá bán buôn：" + "" + "đ&nbsp;&nbsp;&nbsp;&nbsp;Tổng tiền bán lẻ：" + "" + "đ</span>";
         var $gridDrugsList = $("#gridDrugsList");
@@ -173,25 +173,25 @@
             sortname: 'CreateTime desc',
             viewrecords: true,
             loadComplete: function (data) {
-                ComputePjzeAndLsze();//计算标题栏中的批价总额和零售总额
+                ComputePjzeAndLsze();//Tính tổng giá bán buôn và tổng giá bán lẻ trong thanh tiêu đề
             }
         });
 
-        //查询
+        //Truy vấn
         $("#btn_search").click(function () {
             $gridDrugsList.jqGrid('setGridParam', {
                 postData: getSearchPostData(), url: '/PharmacyDrugStorage/SelectCarryOverMedicineList'
             }).trigger('reloadGrid');
         });
     }
-    //查询条件
+    //Điều kiện truy vấn
     function getSearchPostData() {
         var zq = $("#ddlZQ2").find("option:selected").text();
         var inputCode = $("#txtSRM").val();
         return { zq: zq, inputCode: inputCode };
     };
 
-    //计算标题栏中的批价总额和零售总额
+    //Tính tổng giá bán buôn và tổng giá bán lẻ trong thanh tiêu đề
     function ComputePjzeAndLsze() {
         var titlePjze = 0;
         var titleLsze = 0;

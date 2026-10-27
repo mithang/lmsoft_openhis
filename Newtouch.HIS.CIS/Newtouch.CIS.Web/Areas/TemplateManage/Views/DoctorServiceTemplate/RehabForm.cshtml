@@ -73,11 +73,11 @@
             datatype: 'local',
             data: localdata,
             height: $(window).height() - 200,
-            //altRows: true,//隔行换色
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            //altRows: true,//Đổi màu xen kẽ dòng
+            shrinkToFit: true,   //true:theo tỷ lệVDkhởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
             autowidth: true,
-            rownumbers: true,  //是否显示Số thứ tự
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            rownumbers: true,  //CóKhôngHiển thịSố thứ tự
+            editurl: "clientArray",  //dòngSửakhông gửi lên máy chủGửiDữ liệu
             unwritten: false,
             colModel: [
                   {
@@ -137,8 +137,8 @@
                 { label: 'Thao tác', name: 'action', width: 30, align: 'center' },
                 { name: 'yzlx', hidden: true }
             ],
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
+            editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
             pager: "gridkfxmPager",
             loadComplete: function () {
                 if (localdata && localdata.length == 0) {
@@ -148,13 +148,13 @@
             gridComplete: function () {
                 var ids = $("#gridkfxm").getDataIDs();
                 $.each(ids, function () {
-                    $gridkfxm.jqGrid('editRow', this, true, initKFInlineFunc);  //editRow：打开编辑模式 initKFInlineFunc:初始化浮层
+                    $gridkfxm.jqGrid('editRow', this, true, initKFInlineFunc);  //editRow：MởSửachế độ initKFInlineFunc:Khởi tạolớp nổi
 
-                    //给每次剂量单位填充option  （只能这么写简单，虽然我也知道这样写不好）
-                    var jldw = $("#" + this + "_redundant_jldw").val();    //剂量单位
-                    var dw = $("#" + this + "_dw").val();     //门诊单位
+                    //chomỗi lầnĐơn vị liềuđiềnoption  （chỉcó thểnàysaoviếtđơn giảnphiếu，Mặc dùtôicũngBiếtnàydạngviếtkhôngtốt）
+                    var jldw = $("#" + this + "_redundant_jldw").val();    //Đơn vị liều
+                    var dw = $("#" + this + "_dw").val();     //Đơn vị ngoại trú
                     if (!!dw) {
-                        //这种找素的方法不可取，但由于select没有id属性
+                        //cách tìm phần tử nàyPhương phápkhông nên dùng，nhưng doselectKhông cóidThuộc tính
                         $("#" + this + "_mcjl").parent().next().children('select').html('');
                         if (jldw == dw) {
                             $("#" + this + "_mcjl").parent().next().children('select').append('<option>' + jldw + '</option>');
@@ -172,14 +172,14 @@
                             $($("#" + this + "_mcjl").parent().next().children('select')).val(selectedjldw).trigger('change')
                         }
                     }
-                    //隐藏grid底部滚动条
+                    //Ẩngridthanh cuộn dưới cùng
                     $gridkfxm.closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
 
                 });
             }
         });
 
-        //二级菜单
+        //Menu cấp 2
         $gridkfxm.jqGrid('setGroupHeaders', {
             useColSpanStyle: true,
             groupHeaders: [
@@ -193,7 +193,7 @@
                     titleText: 'MụcCách dùng'
                 }]
         });
-        //自定义按钮
+        //Nút tùy chỉnh
         $gridkfxm.navGrid('#gridkfxmPager',
             { edit: false, add: false, del: false, search: false, refresh: false, view: false, position: "left", cloneToTop: false })
             .navButtonAdd('#gridkfxmPager',
@@ -208,7 +208,7 @@
             })
     }
     function initKFInlineFunc(rowid) {
-        //部分列只读
+        //Một số cột chỉ đọc
         $("#" + rowid + "_dj").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_ypgg").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_dw").css('background-color', '#f6f7fb').attr('readonly', 'true');
@@ -216,7 +216,7 @@
         $("#" + rowid + "_pcmc").attr('readonly', 'true');
         $("#" + rowid + "_je").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_zxksmc").attr('autocomplete', 'off');
-        //药品浮层
+        //Lớp nổi thuốc
         $("#" + rowid + "_xmmc").sfxmFloatingSelector({
             width: 720,
             djDecimalPlaces: 4,
@@ -233,7 +233,7 @@
                 $("#" + rowid + "_dwjls").val($this.attr('data-dwjls'));
             }
         });
-        //Thực hiện科室浮层
+        //Thực hiệnKhoalớp nổi
         $("#" + rowid + "_zxksmc").newtouchBatchFloatingSelector({
             height: 170,
             width: 300,
@@ -255,7 +255,7 @@
             },
         });
 
-        //频次浮层
+        //Lớp nổi tần suất
         $("#" + rowid + "_pcmc").pcFloatingSelector({
             showtext: 'yzpcmc',
             attrcols: ['yzpcmc', 'yzpcCode', 'zxcs', 'zxzq', 'zxzqdw'],
@@ -273,12 +273,12 @@
             calitemsl(rowid);
         });
 
-        //部位浮层
+        //Vị trílớp nổi
         $("#" + rowid + "_bw").bwFloatingSelector({
             showtext: 'bwmc',
             attrcols: ['bwmc', 'bwCode'],
             checkItemActivity: function ($li, $thisinput) {
-                var selected = false;//默认没有选中当前值
+                var selected = false;//Mặc địnhKhông cóĐã chọnhiện tạiGiá trị
                 var selectval = $thisinput.val();
                 if (selectval) {
                     selectval = selectval.split(',');
@@ -305,7 +305,7 @@
             },
         });
 
-        //嘱托浮层
+        //Lớp nổi dặn dò
         $("#" + rowid + "_ztnr").ztFloatingSelector({
             height: 100,
             itemdbclickhandler: function ($this) {
@@ -314,7 +314,7 @@
         });
     }
     function calitemsl(rowid) {
-        //单位计量数/每次治疗量*频次
+        //Số lượng đơn vị tính/Liều mỗi lần điều trị*Tần suất
         var dwjls = $("#" + rowid + "_dwjls").val();
         var mczll = $("#" + rowid + "_ypjl").val();
         var zxcs = $("#" + rowid + "_zxcs").val();
@@ -351,7 +351,7 @@
         var qzint = Number(getpcsl(zxcs, zxzq, zxzqdw));
         return qzint * Math.floor(mczll / dwjls);
     }
-    //计算频次数量
+    //Tính toánTần suấtSố lượng
     function getpcsl(zxcs, zxzq, zxzqdw) {
         if (isNaN(zxzqdw) || zxzqdw == "") {
             $.modalAlert("Thực hiệnChu kỳĐơn vịkhông được để trống", 'error');
@@ -375,7 +375,7 @@
         return rtnsl;
     }
 
-    //新处方 按钮
+    //Đơn thuốc mới Nút
     function newKFPresData() {
         var dataRow = {
             Id: Math.random().toString() + new Date().getMilliseconds(),
@@ -386,7 +386,7 @@
 
     }
 
-    //删除明细
+    //Xóa chi tiết
     function deleteKFRowData(selRowId) {
         if (!!selRowId) {
             $("#gridkfxm").jqGrid("delRowData", selRowId);
@@ -398,18 +398,18 @@
         return "<input class='btn btn-default btn-md btn_del' type='button' value='Delete' title='Xóa' onclick='deleteKFRowData($(this).parent().parent().attr(\"id\"))'/>";
     }
 
-    //保存
+    //Lưu
     function Save() {
-        if (ValidateI()) {//验证数据
-            //获取所有行Id，遍历使编辑框处于保存状态
+        if (ValidateI()) {//kiểm traDữ liệu
+            //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
             var rowIds = $("#gridkfxm").jqGrid('getDataIDs');
             for (var i = 0; i < rowIds.length; i++) {
                 if (calitemsl(rowIds[i])) {
                     var saveResult = $("#gridkfxm").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
                     if (!saveResult) {
-                        EnableIInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                        return;   //保存失败，则return
+                        EnableIInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
+                        return;   //Lưu thất bại，thìreturn
                     }
                 } else {
                     return;
@@ -419,7 +419,7 @@
             if (gridkfxmData.length < 1) {
                 $.modalAlert("Hiện tạiKhông cóLưunội dung gói", 'warning');
             }
-            $.each(gridkfxmData, function () {    //去掉action
+            $.each(gridkfxmData, function () {    //Bỏaction
                 for (var i = 0; i < $(this).length; i++) {
                     delete $(this)[i].action;
                 }
@@ -447,9 +447,9 @@
     });
     }
 
-    //提交到后台
+    //Gửiđếnmáy chủ
     function submitService(gridmedicineData) {
-        //套餐表
+        //bảng gói
         var mbObj = {
             Id: mbId,
             tcfw: $('#mblx').val(),//$.currentWindow().$('#current').attr('data-type'),
@@ -475,9 +475,9 @@
     });
     }
 
-    //验证
+    //kiểm tra
     function ValidateI() {
-        //是否有数据
+        //CóKhôngcóDữ liệu
         var data = $("#gridkfxm").jqGrid('getRowData_AllLine', null, true);
         if (data.length == 0) {
             $.modalAlert("Thiếu dữ liệu gói", 'warning');

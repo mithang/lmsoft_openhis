@@ -22,7 +22,7 @@ namespace Newtouch.HIS.DomainServices.Rehabilitation
         #region Hạng mục thu phí phục hồi chức năng
 
         /// <summary>
-        /// 获得所有列表(康复收费项目)
+        /// Lấy tất cả danh sách(Hạng mục thu phí phục hồi chức năng)
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -52,7 +52,7 @@ WHERE sfxm.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 修改form(康复收费项目)
+        /// Sửaform(Hạng mục thu phí phục hồi chức năng)
         /// </summary>
         /// <param name="sfxmId"></param>
         /// <returns></returns>
@@ -81,10 +81,10 @@ WHERE sfxm.OrganizeId=@OrganizeId
         #endregion
 
 
-        #region 康复收费项目对照
+        #region Đối chiếu hạng mục thu phí phục hồi chức năng
 
         /// <summary>
-        /// 获得所有列表(康复收费项目对照)
+        /// Lấy tất cả danh sách(Đối chiếu hạng mục thu phí phục hồi chức năng)
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="OrganizeId"></param>
@@ -112,7 +112,7 @@ WHERE sfxm.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 修改form(康复收费项目对照)
+        /// Sửaform(Đối chiếu hạng mục thu phí phục hồi chức năng)
         /// </summary>
         /// <param name="sfxmdzId"></param>
         /// <returns></returns>
@@ -135,7 +135,7 @@ WHERE sfxm.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 收费项目检索
+        /// Tìm kiếm hạng mục thu phí
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -150,15 +150,15 @@ WHERE sfxm.OrganizeId=@OrganizeId
 WITH cteTree
         AS (SELECT *
               FROM V_S_xt_sfdl
-              WHERE dlCode = 'FZLXM01' --第一个查询作为递归的基点(锚点)
+              WHERE dlCode = 'FZLXM01' --Truy vấn đầu tiên làm điểm cơ sở đệ quy(Điểm neo)
             UNION ALL
-            SELECT V_S_xt_sfdl.*     --第二个查询作为递归成员， 下属成员的结果为空时，此递归结束。
+            SELECT V_S_xt_sfdl.*     --Truy vấn thứ hai làm thành viên đệ quy， Khi kết quả thành viên cấp dưới rỗng，Đệ quy này kết thúc。
               FROM
                    cteTree INNER JOIN V_S_xt_sfdl ON cteTree.dlId= V_S_xt_sfdl.ParentId
 				   )
 select top 800 * from(
 select sfxmCode, sfxmmc, a.sfdlCode sfdlCode, b.dlmc sfdlmc, dw, dj, a.py, a.duration
-,'2' yzlx   --1Thuốc 2项目
+,'2' yzlx   --1Thuốc 2Hạng mục
 ,px
 from V_S_xt_sfxm(nolock) a
 left join V_S_xt_sfdl(nolock) b

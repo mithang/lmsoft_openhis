@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改和添加病区信息
+        /// Sửa và thêm thông tin khu bệnh
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("Mã phòng không được trùng lặp!");
                 }
 
-                SysWardRoomEntity oldEntity = null;   //变更前Entity
+                SysWardRoomEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

@@ -6,256 +6,256 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 中医馆_推送患者
+    /// trongyquán_đẩyBệnh nhân
     /// </summary>
     [SugarTable("cmm_his_01")]
     public class CmmHis01Entity
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 患者编号（一个患者对应一个编号，且与身份证号码一一对应），对应接口id字段，本地保存blh
+        /// Bệnh nhânSố hiệu（mộtBệnh nhântương ứngmộtSố hiệu，vàvàCMND/CCCDsốmãmộtmộttương ứng），tương ứnggiao diệnidchữđoạn，bảnđịaLưublh
         /// </summary>
         public string cmmId { get; set; }
 
         /// <summary>
-        /// 患者姓名
-        /// 必填
+        /// Tên bệnh nhân
+        /// bắt buộc
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
-        /// 患者性别编码
-        /// 必填
+        /// Bệnh nhânGiới tínhMã
+        /// bắt buộc
         /// </summary>
         public string genderCode { get; set; }
 
         /// <summary>
-        /// 患者性别
-        /// 必填
+        /// Bệnh nhânGiới tính
+        /// bắt buộc
         /// </summary>
         public string gender { get; set; }
 
         /// <summary>
-        /// 出生日期 YYYYMMDD
-        /// 必填
+        /// Ngày sinh YYYYMMDD
+        /// bắt buộc
         /// </summary>
         public string birthday { get; set; }
 
         /// <summary>
-        /// 证件类型编码
-        /// 必填
+        /// chứngmụcMã loại
+        /// bắt buộc
         /// </summary>
         public string cardTypeCode { get; set; }
 
         /// <summary>
-        /// 证件类型（一般指居民身份证号）
-        /// 必填
+        /// chứngmụcLoại（Bình thườngchỉcư dânCMND/CCCDsố）
+        /// bắt buộc
         /// </summary>
         public string cardType { get; set; }
 
         /// <summary>
-        /// 证件号码
-        /// 必填
+        /// Số giấy tờ
+        /// bắt buộc
         /// </summary>
         public string cardNo { get; set; }
 
         /// <summary>
-        /// 职业编码
+        /// chức业Mã
         /// </summary>
         public string occupationCode { get; set; }
 
         /// <summary>
-        /// 职业
+        /// chức业
         /// </summary>
         public string occupation { get; set; }
 
         /// <summary>
-        /// 婚姻状况编码
+        /// Tình trạng hôn nhânMã
         /// </summary>
         public string marriedCode { get; set; }
 
         /// <summary>
-        /// 婚姻状况
+        /// Tình trạng hôn nhân
         /// </summary>
         public string married { get; set; }
 
         /// <summary>
-        /// 国籍编码
+        /// quốc tịchMã
         /// </summary>
         public string countryCode { get; set; }
 
         /// <summary>
-        /// 国籍
+        /// quốc tịch
         /// </summary>
         public string country { get; set; }
 
         /// <summary>
-        /// 民族编码
+        /// dântộcMã
         /// </summary>
         public string nationalityCode { get; set; }
 
         /// <summary>
-        /// 民族
+        /// dântộc
         /// </summary>
         public string nationality { get; set; }
 
         /// <summary>
-        /// 家庭住址省份编码
-        /// 必填
+        /// nhàTỉnh địa chỉ nhàMã
+        /// bắt buộc
         /// </summary>
         public string provinceCode { get; set; }
 
         /// <summary>
-        /// 家庭住址市级编码
-        /// 必填
+        /// nhàThành phố địa chỉ nhàcấpMã
+        /// bắt buộc
         /// </summary>
         public string cityCode { get; set; }
 
         /// <summary>
-        /// 家庭住址区县编码（保持与云平台的行政区划编码一致）
-        /// 必填
+        /// nhàĐịa chỉ nhàkhuhuyệnMã（bảogiữvàmâybìnhbàncủaPhân vùng hành chínhMãnhất quán）
+        /// bắt buộc
         /// </summary>
         public string areaCode { get; set; }
 
         /// <summary>
-        /// 家庭住址省份
+        /// nhàTỉnh địa chỉ nhà
         /// </summary>
         public string province { get; set; }
 
         /// <summary>
-        /// 家庭住址市级
+        /// nhàThành phố địa chỉ nhàcấp
         /// </summary>
         public string city { get; set; }
 
         /// <summary>
-        /// 家庭住址区县
+        /// nhàĐịa chỉ nhàkhuhuyện
         /// </summary>
         public string area { get; set; }
 
         /// <summary>
-        /// 街道信息
+        /// phốđườngthông tin
         /// </summary>
         public string streetInfo { get; set; }
 
         /// <summary>
-        /// 邮编
+        /// bưubiên
         /// </summary>
         public string postcode { get; set; }
 
         /// <summary>
-        /// 联系人名称
+        /// Người liên hệTên
         /// </summary>
         public string ctName { get; set; }
 
         /// <summary>
-        /// 与联系人关系
+        /// vàNgười liên hệquan hệ
         /// </summary>
         public string ctRoleId { get; set; }
 
         /// <summary>
-        /// 联系人地址
+        /// Người liên hệĐịa chỉ
         /// </summary>
         public string ctAddr { get; set; }
 
         /// <summary>
-        /// 联系人电话
+        /// Người liên hệĐiện thoại
         /// </summary>
         public string ctTelephone { get; set; }
 
         /// <summary>
-        /// 患者类型编码
+        /// Bệnh nhânMã loại
         /// </summary>
         public string patiTypeCode { get; set; }
 
         /// <summary>
-        /// 患者类型
+        /// Bệnh nhânLoại
         /// </summary>
         public string patiType { get; set; }
 
         /// <summary>
-        /// 患者电话
+        /// Bệnh nhânĐiện thoại
         /// </summary>
         public string telephone { get; set; }
 
         /// <summary>
-        /// 门诊号, 即就诊流水号
-        /// 必填
+        /// Số khám ngoại trú, tứcKhám bệnhdòngchảysố
+        /// bắt buộc
         /// </summary>
         public string outpatientNo { get; set; }
 
         /// <summary>
-        /// 机构编码
-        /// 必填
+        /// Cơ sởMã
+        /// bắt buộc
         /// </summary>
         public string orgCode { get; set; }
 
         /// <summary>
-        /// 发送应用程序，指定为：HIS
+        /// gửiứngdùngtrìnhthứ tự，chỉđịnhlà：HIS
         /// </summary>
         public string sender { get; set; }
 
         /// <summary>
-        /// 接收应用程序，指定为：EMR,HEAL,PLAT
+        /// nhậnthuứngdùngtrìnhthứ tự，chỉđịnhlà：EMR,HEAL,PLAT
         /// </summary>
         public string receiver { get; set; }
 
         /// <summary>
-        /// 发送时间，格式：yyyyMMddHHmmss
+        /// Thời gian gửi，định dạng：yyyyMMddHHmmss
         /// </summary>
         public string sendTime { get; set; }
 
         /// <summary>
-        /// 消息类型：TCM_HIS_01
+        /// hủytinLoại：TCM_HIS_01
         /// </summary>
         public string msgType { get; set; }
 
         /// <summary>
-        /// 消息 ID(应用程序编码+发 送 时 间 ) ， 如 ：HIS20170606020202
+        /// hủytin ID(ứngdùngtrìnhthứ tựMã+phát gửi khi giữa ) ， nếu ：HIS20170606020202
         /// </summary>
         public string msgID { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 返回结果状态码  1： 成功； 0：失败
+        /// Quay lạikếtnếuTrạng tháimã  1： thành công； 0：thất bại
         /// </summary>
         public string resultCode { get; set; }
 
         /// <summary>
-        /// 返回结果描述  成功；失败(补充失败原因描述)
+        /// Quay lạikếtnếuMô tả  thành công；thất bại(Bổ sungthất bạinguyên nhânMô tả)
         /// </summary>
         public string resultDesc { get; set; }
 
         /// <summary>
-        /// 状态     1:有效  0：无效
+        /// Trạng thái     1:Hiệu lực  0：Vô hiệu
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// tạongười
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者
+        /// Sửangười
         /// </summary>
         public string LastModifierCode { get; set; }
     }

@@ -6,13 +6,13 @@ using Newtouch.Herp.Domain.Entity.VEntity;
 namespace Newtouch.Herp.Domain.IDomainServices
 {
     /// <summary>
-    /// 采购单
+    /// Đơn mua sắm
     /// </summary>
     public interface ICgOrderDmnService
     {
 
         /// <summary>
-        /// 查询采购单信息
+        /// Truy vấn thông tin đơn mua sắm
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orderNo"></param>
@@ -26,7 +26,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
            int orderProcess, string organizeId, DateTime kssj, DateTime jssj);
 
         /// <summary>
-        /// 查询采购单明细
+        /// Truy vấn chi tiết đơn mua sắm
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="organizeId"></param>
@@ -34,14 +34,14 @@ namespace Newtouch.Herp.Domain.IDomainServices
         List<VCgOrderDetailEntity> SelectCgOrderDetailGroupByCgdh(string orderNo, string organizeId);
 
         /// <summary>
-        /// 查询采购单明细
+        /// Truy vấn chi tiết đơn mua sắm
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         List<VCgOrderDetailEntity> SelectCgOrderDetailNoCgdh(string orderNo, string organizeId);
         /// <summary>
-        /// 外部入库-采购单引用from视图
+        /// Nhập kho ngoài-Tham chiếu đơn mua sắm from Khung nhìn
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -52,7 +52,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         List<VCgOrderRkEntity> SelectCgOrderView(DateTime kssj, DateTime jssj, string fph, string orderNo, string organizeId);
 
         /// <summary>
-        /// 外部入库-采购单引用
+        /// Nhập kho ngoài-Tham chiếu đơn mua sắm
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -62,14 +62,14 @@ namespace Newtouch.Herp.Domain.IDomainServices
         /// <returns></returns>
         List<VCgOrderDetailEntity> SelectCgOrderDetail(string subOrderNo, string organizeId);
         /// <summary>
-        /// 采购单明细导入入库列表
+        /// Danh sách nhập kho nhập từ chi tiết đơn mua sắm
         /// </summary>
         /// <param name="subOrderNo"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         List<VCgOrderImportEntity> SelectCgOrderDetailImport(string subOrderNo, string organizeId);
         /// <summary>
-        /// 补填采购单发票号
+        /// Bổ sung số hóa đơn đơn mua sắm
         /// </summary>
         /// <param name="subOrderNo"></param>
         /// <param name="fph"></param>

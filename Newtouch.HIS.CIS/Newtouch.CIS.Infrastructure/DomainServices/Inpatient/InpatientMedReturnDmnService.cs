@@ -28,7 +28,7 @@ namespace Newtouch.DomainServices
 
         }
         /// <summary>
-        /// 获取病区发药患者树
+        /// LấyKhu bệnhphát thuốcBệnh nhâncây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -98,7 +98,7 @@ and e.zybz not in (" + (int)EnumZYBZ.Ycy + "," + (int)EnumZYBZ.Wry + "," + (int)
 from v_yzisfy a with(nolock) --zy_fyqqk a with(nolock)
 left join [NewtouchHIS_Base].[dbo].[V_C_xt_yp] b with(nolock) on a.[ypdm]=b.ypcode and a.OrganizeId=b.OrganizeId and b.zt='1'
 where a.OrganizeId=@orgId and a.zt='1' and a.tybz in (" + (int)EnumMedSTflag.Receive + "," + (int)EnumMedSTflag.PartReturn + @") 
-and zyh=@zyh and a.fybz in('2','3')--查询已发药和未完全退完的
+and zyh=@zyh and a.fybz in('2','3')--Tra cứuđãphát thuốcvàchưaxongtoàntrảxongcủa
 and not exists(select 1 from zy_tyjl  b with(nolock) 
 			    where b.fyid=a.id and b.zt='1') ";
             if (!string.IsNullOrWhiteSpace(kssj) && !string.IsNullOrWhiteSpace(jssj))
@@ -232,7 +232,7 @@ and exists (
                             ClientNo = Guid.NewGuid(),
                             TimeStamp = DateTime.Now.ToString()
                         };
-                        //调用药房药库接口请求退药，返回IsSucceed==true 则全部成功，若false 则认为全部失败 
+                        //gọiNhà thuốcKho thuốcgiao diệnyêu cầutrảthuốc，Quay lạiIsSucceed==true thìTất cảthành công，nếufalse thìnhậnlàTất cảthất bại 
                         var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>(
                         "/api/ResourcesOperate/HospitalizatiionReturnDispensingMedicine", reqobj, autoAppendToken: false);
 
@@ -244,11 +244,11 @@ and exists (
                                 db.Commit();
                             }
                         }
-                        else //黄杉杉修改于2019.05.24 药房药库请求返回不支持 （5 药品已退 6 已申请退药） 两种情况，所以不做处理
+                        else //hoàng杉杉Sửatại2019.05.24 Nhà thuốcKho thuốcyêu cầuQuay lạikhôngHỗ trợ （5 Thuốcđãtrả 6 Đã gửi đơntrảthuốc） hailoạitình hình，sởlấykhônglàmchỗlý
                         //if (apires.code == APIRequestHelper.ResponseResultCode.FAIL && apires.sub_msg != "")
                         //{
 
-                        //    var data = Tools.Json.ToObject<List<InpMedReturnResultDataDto>>(apires.data.ToString()); //接口返回数据 
+                        //    var data = Tools.Json.ToObject<List<InpMedReturnResultDataDto>>(apires.data.ToString()); //giao diệnQuay lạiDữ liệu 
                         //medList = "";
                         //if (data != null)
                         //{
@@ -256,7 +256,7 @@ and exists (
                         //    {
                         //        if (item.ErrorCode == "5" || item.ErrorCode == "6")
                         //        {
-                        //            //5 药品已退 6 已申请退药
+                        //            //5 Thuốcđãtrả 6 Đã gửi đơntrảthuốc
                         //            var list = yzList.Where(p => p.yzId == item.yzId).Where(p => p.ypCode == item.ypCode).Where(p => p.zxrq == item.zxrq);
                         //            foreach (InpMedReturnNeedDto fyItem in list)
                         //            {
@@ -279,7 +279,7 @@ and exists (
                         //    var hastyjl = this.FindList<InpatientMedicineReturnEntity>(sql, new[] { new SqlParameter("@medList", medL), new SqlParameter("@orgId ", user.OrganizeId) });
                         //    if (hastyjl.Count > 0)
                         //    {
-                        //        //更新发药请求库对应医嘱为退药状态
+                        //        //Cập nhậtphát thuốcyêu cầukhotương ứngY lệnhlàtrảthuốcTrạng thái
                         //        sql = @"update a
                         //            set a.tybz=@tybz,a.LastModifierCode=@modificode,a.[LastModifyTime]=getdate()
                         //            from zy_fyqqk a 
@@ -299,18 +299,18 @@ and exists (
                         //        db.Commit();
                         //    }
                         //}
-                        //throw new FailedException("退药申请失败，" + errMsg);
+                        //throw new FailedException("trảthuốcGửi đơn thất bại，" + errMsg);
 
                         //}
                         //else
                         {
-                            throw new FailedException("退药申请失败，请重试");
+                            throw new FailedException("trảthuốcGửi đơn thất bại，vui lòngtrọngthử");
                         }
                     }
                 }
                 catch (FailedException ex)
                 {
-                    throw new FailedException("退药申请失败，" + ex.Msg);
+                    throw new FailedException("trảthuốcGửi đơn thất bại，" + ex.Msg);
                 }
             }
             return tyxh;
@@ -330,7 +330,7 @@ and exists (
                         {
                             int ypsl = ime.ypsl;
                             if (item.yzlx == 10) {
-                                ypsl = Convert.ToInt32(ime.mcsl ?? 0)*ime.ypsl; //中药需ypsl*每次数量 =中药总数量
+                                ypsl = Convert.ToInt32(ime.mcsl ?? 0)*ime.ypsl; //Thuốc Đông ycầnypsl*mỗi lầnSố lượng =Thuốc Đông ytổngSố lượng
                             }
                             ime.ytsl = (ime.ytsl ?? 0) + item.tsl;
                             if (ime.ytsl == ypsl)
@@ -339,7 +339,7 @@ and exists (
                             }
                             else if (ime.ytsl > ypsl)
                             {
-                                throw new FailedException("退药数量不能大于发药数量");
+                                throw new FailedException("trảthuốcSố lượngkhông thểLớn hơnphát thuốcSố lượng");
                             } else if (ime.ytsl < ypsl) {
                                 ime.tybz = (int)EnumMedSTflag.PartReturn;
                             }
@@ -387,7 +387,7 @@ and exists (
                 }
                 catch (Exception)
                 {
-                    throw new FailedException("退药申请失败，请重试");
+                    throw new FailedException("trảthuốcGửi đơn thất bại，vui lòngtrọngthử");
                 }
              
             }
@@ -395,8 +395,8 @@ and exists (
                 //int flag = this.ExecuteSqlCommand(sql, para);
                 //if (flag != 0)
                 //{
-                //    //生成退药请求
-                //    //生成退药序号
+                //    //tạotrảthuốcyêu cầu
+                //    //tạotrảthuốcthứ tựsố
                 //    int tyxh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueIntValue("zy_tyxh", user.OrganizeId);
                 //    if (tyxh > 0)
                 //    {
@@ -423,13 +423,13 @@ and exists (
 
                 //    }
                 //    else {
-                //        throw new FailedException("退药申请失败(序号)，请重试");
+                //        throw new FailedException("trảthuốcGửi đơn thất bại(thứ tựsố)，vui lòngtrọngthử");
                 //    }
 
                 //}
                 //else
                 //{
-                //    throw new FailedException("退药申请失败(发药状态)，请重试");
+                //    throw new FailedException("trảthuốcGửi đơn thất bại(phát thuốcTrạng thái)，vui lòngtrọngthử");
                 //}
             //}
         }

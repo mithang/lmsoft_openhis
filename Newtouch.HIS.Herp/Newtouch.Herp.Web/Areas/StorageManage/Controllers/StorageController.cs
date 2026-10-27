@@ -16,14 +16,13 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 {
     /// <summary>
-    /// 库存管理 (quản lý tồn kho).
+    /// Quản lý tồn kho.
     /// Cross-area note (integration update): IWzCrkfsRepo (Product),
     /// IKfCrkdjDmnService and IApplyBillApp (Bill) and IGysSupplierRepo
     /// (Supplier) are all integrated and injected via the constructor.
     /// No lazy cross-area resolution remains in this controller.
-    /// SaveDeliveryToDepartment is additionally blocked: its
-    /// DeliveryToDepartmentProcess (ProcessorFun base) is not ported,
-    /// so it returns an explicit stub error.
+    /// SaveDeliveryToDepartment runs the ported DeliveryToDepartmentProcess
+    /// (parity audit 2026-10-27), exactly like the original.
     /// WarehouseStorageQuery grid data comes from a normal JSON action, so it
     /// is ported fully; only its SSRS print button (tempCode 1269) is stubbed
     /// in the view.
@@ -41,12 +40,13 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         private readonly IKfCrkdjDmnService _kfCrkdjDmnService;
         private readonly IApplyBillApp _applyBillApp;
         private readonly IGysSupplierRepo _gysSupplierRepo;
+        private readonly IKfKcxxDmnService _kfKcxxDmnService;
 
         public StorageController(IStorageManageDmnService storageDmnService, IStorageApp storageApp,
             IKfWarehouseRepo kfWarehouseRepo, IKfKcxxRepo kfKcxxRepo,
             IRelWarehouseDeptRepo relWarehouseDeptRepo, IRelProductWarehouseRepo relProductWarehouseRepo,
             IWzCrkfsRepo wzCrkfsRepo, IKfCrkdjDmnService kfCrkdjDmnService, IApplyBillApp applyBillApp,
-            IGysSupplierRepo gysSupplierRepo)
+            IGysSupplierRepo gysSupplierRepo, IKfKcxxDmnService kfKcxxDmnService)
         {
             _storageDmnService = storageDmnService;
             _storageApp = storageApp;
@@ -58,9 +58,10 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
             _kfCrkdjDmnService = kfCrkdjDmnService;
             _applyBillApp = applyBillApp;
             _gysSupplierRepo = gysSupplierRepo;
+            _kfKcxxDmnService = kfKcxxDmnService;
         }
 
-        #region 物资获取
+        #region Lấy vật tư
 
         [HttpGet]
         public IActionResult DepartmentStockListQuery(string key, string gysId, string deliveryNo)
@@ -113,7 +114,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
         #endregion
 
-        #region 库存量查询
+        #region Truy vấn lượng tồn kho
 
         public IActionResult WarehouseStorageQuery()
         {
@@ -163,7 +164,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
         #endregion
 
-        #region 过期库存查询
+        #region Truy vấn tồn kho quá hạn
 
         public IActionResult ExpiredStorageQuery()
         {
@@ -186,7 +187,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
         #endregion
 
-        #region 外部入库
+        #region Nhập kho ngoài
 
         public IActionResult InStorage()
         {
@@ -228,7 +229,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
         #endregion
 
-        #region 外部出库
+        #region Xuất kho ngoài
 
         public IActionResult OutStorage()
         {
@@ -260,7 +261,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
         #endregion
 
-        #region 直接出库
+        #region Xuất kho trực tiếp
 
         public IActionResult DirectDelivery()
         {
@@ -294,7 +295,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
         #endregion
 
-        #region 内部发货退回
+        #region Trả lại hàng giao nội bộ
 
         public IActionResult DeliveryOfReturn()
         {
@@ -327,7 +328,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
         #endregion
 
-        #region 出库至科室
+        #region Xuất kho tới khoa
 
         public IActionResult DeliveryToDepartment()
         {
@@ -354,14 +355,16 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
         public IActionResult SaveDeliveryToDepartment(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {
-            // Explicit stub: the original DeliveryToDepartmentProcess
-            // (ProcessorFun base) is not ported, so this action cannot run
-            // even though IKfCrkdjDmnService itself is now integrated.
-            return Error("Chức năng xuất kho tới khoa chưa tích hợp: thiếu DeliveryToDepartmentProcess (lớp xử lý nền tảng ProcessorFun chưa được chuyển đổi).");
+            var result = new Newtouch.Herp.Application.Implementation.DeliveryToDepartmentProcess(
+                new DjInfDTO { crkdj = crkdj, crkdjmx = crkdjmx == null ? null : crkdjmx.ToList() },
+                _kfKcxxDmnService, _kfCrkdjDmnService).Process();
+            if (result.IsSucceed)
+                _storageDmnService.SynchWz(crkdj.Pdh, this.UserIdentity.UserCode, this.OrganizeId);
+            return result.IsSucceed ? Success() : Error(result.ResultMsg);
         }
         #endregion
 
-        #region 科室申领
+        #region Khoa lĩnh
 
         public IActionResult DepartmentApply()
         {
@@ -382,7 +385,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
         #endregion
 
-        #region 申领出库
+        #region Xuất kho lĩnh
 
         public IActionResult ApplyOutStock()
         {

@@ -408,7 +408,7 @@
     });
 
     function initControl() {
-        //病人意识
+        //bệnh ngườiýbiết
         $("#hlys").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -424,7 +424,7 @@
                 return resultObjArr;
             }
         });
-        //饮食
+        //uốngăn
         $("#brfood").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -440,7 +440,7 @@
                 return resultObjArr;
             }
         });
-        //皮肤情况
+        //datình hình
         $("#pfqk").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -456,7 +456,7 @@
                 return resultObjArr;
             }
         });
-        //管道护理
+        //quảnđườngđiều dưỡng
         $("#gdhl").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -479,7 +479,7 @@
     //bindItemFloator("dbcsbz", "DefecationFreqMemo");
     bindItemFloator("xyfs", "OxygenUptakeMed");
     function bindItemFloator(inputId, itemType) {
-        //绑定字典
+        //gắntừ điển
         $("#" + inputId).newtouchFloatingSelector({
             height: 200,
             width: 330,
@@ -492,7 +492,7 @@
                 { label: 'Tên', name: 'Name', widthratio: 60 },
             ],
             itemdbclickhandler: function ($thistr, $thisinput) {
-                //保存时验证val和data-Name一致
+                //Lưukhikiểm travalvàdata-Namenhất quán
                 $thisinput.attr('data-Code', $thistr.attr('data-Code'));
                 $thisinput.attr('data-Name', $thistr.attr('data-Name'));
                 $thisinput.val($thistr.attr('data-Name'));
@@ -551,7 +551,7 @@
        
         data.sj = $("[name=optionsSj]:checked").val() || null;
         data.twclfs = $("[name=optionsTwclfs]:checked").val() || null;
-        //字典
+        //từ điển
         data.tzclbz = $('#tzclbz').val() == $('#tzclbz').attr('data-Name') ? $('#tzclbz').attr('data-Code') : null;
         //data.dbcsbz = $('#dbcsbz').val() == $('#dbcsbz').attr('data-Name') ? $('#dbcsbz').attr('data-Code') : null;
         data.xyfs = $('#xyfs').val() == $('#xyfs').attr('data-Name') ? $('#xyfs').attr('data-Code') : null;
@@ -580,9 +580,9 @@
             data.twclfs = null;
         }
 
-        // 注释 by haijiang.mo 根据需求，取消体温必填的要求
+        // Lưu ýgiải thích by haijiang.mo Theocầncầu，HủyNhiệt độbắt buộccủacầncầu
         // if (!data.brzt && !data.twclfs) {
-        //    $.modalAlert("请输入体温", "warning");
+        //    $.modalAlert("vui lòngnhậpNhiệt độ", "warning");
         //    return;
         // }
 
@@ -592,7 +592,7 @@
             close: false,
             success: function () {
                 newtouch_globalevent_f4();
-                //保存成功回调
+                //Lưu thành côngvềgọi
                 callback();
                 if (true) {
                     //setTimeout("$('#zyh').trigger('click');", 2500);

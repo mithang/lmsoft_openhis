@@ -17,7 +17,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// 用法联动维护
+    /// Cách dùngliênđộngBảo trì
     /// </summary>
     [Area("SystemManage")]
     public class UsageLinkageController : OrgControllerBase
@@ -34,7 +34,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取主列表
+        /// Lấychínhdanh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="yfCode"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// Khi sửa thông tin，thông tinmangđếnmớitrangmặt
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -68,7 +68,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -88,7 +88,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

@@ -6,33 +6,33 @@ using Newtouch.OR.ManageSystem.Domain.DTO.OutputDto;
 namespace Newtouch.OR.ManageSystem.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-10-31 14:15
-    /// 描 述：手术字典表
+    /// Tạo bởi：chl
+    /// Ngày：2019-10-31 14:15
+    /// Mô tả：Bảng từ điển phẫu thuật
     /// </summary>
     public interface IOROperationRepo : IRepositoryBase<OROperationEntity>
     {
         /// <summary>
-        /// 获取分页实体列表
+        /// Lấy danh sách thực thể phân trang
         /// </summary>
-        /// <param name="pagination">分页</param>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="pagination">Phân trang</param>
+        /// <param name="keyword">Từ khóa lọc</param>
         IList<OROperationEntity> GetPagintionList(Pagination pagination, string keyword,string organizeId);
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         int SubmitForm(OROperationEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         int DeleteForm(string keyValue);
         /// <summary>
-        /// 获取手术列表
+        /// Lấy danh sách phẫu thuật
         /// </summary>
         /// <param name="organizeId"></param>
         /// <returns></returns>

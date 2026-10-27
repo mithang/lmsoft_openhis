@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.IRepository
     {
 
         /// <summary>
-        /// 外部出库变更库存冻结数量
+        /// Xuất kho ra ngoài thay đổi số lượng đóng băng tồn kho
         /// </summary>
         /// <param name="kcId"></param>
         /// <param name="djsl"></param>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.IRepository
         SysMedicineStockInfoEntity FindEntity(string yfbmCode, string organizeId, string pc);
 
         /// <summary>
-        /// 修改库存状态
+        /// Sửa trạng thái tồn kho
         /// </summary>
         /// <param name="ypdm"></param>
         /// <param name="ph"></param>
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Domain.IRepository
         int UpdateZt(string ypdm, string ph, string pc, string zt, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 计算可用库存 当前方法无日志
+        /// Tính tồn kho khả dụng Phương thức hiện tại không có nhật ký
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
@@ -57,7 +57,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<SysMedicineStockInfoEntity> SelectData(string ypCode, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 计算可用库存 当前方法无日志
+        /// Tính tồn kho khả dụng Phương thức hiện tại không có nhật ký
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="pc"></param>
@@ -69,9 +69,9 @@ namespace Newtouch.HIS.Domain.IRepository
            string organizeId);
 
         /// <summary>
-        /// 减少冻结库存
+        /// Giảm tồn kho đóng băng
         /// </summary>
-        /// <param name="sl">最小单位数量 要减去的库存数</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất Số tồn kho cần trừ</param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="ypCode"></param>
@@ -83,9 +83,9 @@ namespace Newtouch.HIS.Domain.IRepository
            string userCode);
 
         /// <summary>
-        /// 减少djsl和kcsl
+        /// Giảmdjslvàkcsl
         /// </summary>
-        /// <param name="sl">最小单位数量 要减去的库存数</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất Số tồn kho cần trừ</param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="ypCode"></param>
@@ -97,9 +97,9 @@ namespace Newtouch.HIS.Domain.IRepository
            string userCode);
 
         /// <summary>
-        /// 减少冻结库存
+        /// Giảm tồn kho đóng băng
         /// </summary>
-        /// <param name="sl">最小单位数量 要减去的库存数</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất Số tồn kho cần trừ</param>
         /// <param name="kcId"></param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>

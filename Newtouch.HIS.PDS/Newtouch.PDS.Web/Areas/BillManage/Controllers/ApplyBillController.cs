@@ -13,16 +13,16 @@ using Newtouch.HIS.Application.Implementation.Process;
 namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
 {
     /// <summary>
-    /// 内部申领单
+    /// Đơn lĩnh nội bộ
     /// </summary>
     [Area("BillManage")]
     public class ApplyBillController : ControllerBase
     {
         private readonly IApplyDmnService applyDmnService;
 
-        #region 内部申领单查询
+        #region Truy vấn đơn lĩnh nội bộ
         /// <summary>
-        /// 内部申领单查询
+        /// Truy vấn đơn lĩnh nội bộ
         /// </summary>
         /// <returns></returns>
         public IActionResult Query()
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取申领单主信息
+        /// Lấy thông tin chính đơn lĩnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ffzt"></param>
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取申领单主信息
+        /// Lấy thông tin chính đơn lĩnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ffzt"></param>
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         #region Xuất kho theo đơn lĩnh
 
         /// <summary>
-        /// 申领出库
+        /// Xuất kho theo đơn lĩnh
         /// </summary>
         /// <returns></returns>
         public IActionResult ApplyOutStock()
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取申领出库明细
+        /// Lấy chi tiết xuất kho theo đơn lĩnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sldIds"></param>
@@ -111,7 +111,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取申领出库明细
+        /// Lấy chi tiết xuất kho theo đơn lĩnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sldIds"></param>
@@ -123,7 +123,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 提交发药
+        /// Gửi phát thuốc
         /// </summary>
         /// <param name="fymx"></param>
         /// <returns></returns>

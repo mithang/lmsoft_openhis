@@ -117,7 +117,7 @@
     var orgId = '@(ViewBag.OrgId)';
     $(function () {
         gridList();
-        //搜索框隐藏显示控制
+        //Điều khiển ẩn/hiện hộp tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -130,7 +130,7 @@
         BindGys();
     })
 
-    //隐藏搜索框并显示箭头
+    //Ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -228,9 +228,9 @@
         window.open(uri);
     }
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $.najax({
             type: "Get",
             url: "/OutOrInStoredManage/Purchase/QueryPurchaseDetailbyId",
@@ -244,7 +244,7 @@
             }
         });
     }
-    //单据明细
+    //Chi tiết chứng từ
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 200,
         unwritten: false,
@@ -268,7 +268,7 @@
         ]
     });
 
-    //新建
+    //Tạo mới
     $('#btn_add').click(function () {
         $.modalOpen({
             id: "PurchasePlanForm",
@@ -286,7 +286,7 @@
         });
     });
 
-    //修改未审批单据
+    //Sửa chứng từ chưa phê duyệt
     function Updatedjmx(cgId, ddzt)
     {
         if (ddzt != "1") {
@@ -305,16 +305,16 @@
             }
         });
     }
-    //审核
+    //Duyệt
     $('#btn_receive').click(function () {
         DjshUpdate(2);
     });
-    //审核撤销
+    //Thu hồi duyệt
     $('#btn_cancalreceive').click(function () {
         DjshUpdate(1);
     });
 
-    //作废
+    //Hủy bỏ
     $('#btn_delete').click(function () {
         DjshUpdate(3);
     });
@@ -359,7 +359,7 @@
         });
     }
 
-    //绑定供应商
+    //Gắn nhà cung cấp
     function BindGys() {
         $.najax({
             type: "Get",
@@ -385,7 +385,7 @@
         });
     }
 
-    //补发票号
+    //Bổ sung số hóa đơn
     function UpdateFph(obj) {
         var fph = $(obj).val();
         var cgId = $("#gridList").getRowData($(obj).attr("rowid")).cgId;

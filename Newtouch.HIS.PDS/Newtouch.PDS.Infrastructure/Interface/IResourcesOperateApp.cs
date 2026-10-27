@@ -7,94 +7,94 @@ using Newtouch.PDS.Requset.Zyypyz;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 取消预定
+    /// Hủy đặt trước
     /// </summary>
     public interface IResourcesOperateApp
     {
         /// <summary>
-        /// 门诊预定
+        /// Đặt trước ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         ActResult OutpatientBook(OutpatientBookRequestDTO request);
 
         /// <summary>
-        /// 门诊预定修改
+        /// Sửa đặt trước ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         ActResult OutpatientBookModify(OutpatientBookModifyRequestDTO request);
 
         /// <summary>
-        /// 门诊取消预定
+        /// Hủy đặt trước ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         string OutpatientCancelBook(OutpatientCancelPartBookRequestDTO request);
 
         /// <summary>
-        /// 门诊取消预定
+        /// Hủy đặt trước ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         string OutpatientCancelBook(OutpatientCancelAllBookRequestDTO request);
 
         /// <summary>
-        /// 门诊退费 冻结库存返还
+        /// Trả phí ngoại trú Trả lại tồn kho đóng băng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         string OutpatientCancelDjYpReturn(OutpatientCancelAllBookRequestDTO request);
 
         /// <summary>
-        /// 门诊确定资源（commit）
+        /// Xác định tài nguyên ngoại trú（commit）
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         string OutpatientCommit(OutpatientCommitRequestDTO request);
 
         /// <summary>
-        /// 门诊退药
+        /// Trả thuốc ngoại trú
         /// </summary>
         /// <param name="tyParam"></param>
         /// <returns></returns>
         string OutpatientReturnDrugs(tyInfo tyParam, out List<string> returnDrugBillNoList);
 
         /// <summary>
-        /// (未发药前)部分退药
+        /// (Trước khi phát thuốc)Trả thuốc một phần
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         string OutpatientPartReturnBeforeDispensingMedicine(OutpatientPartReturnBeforeDispensingMedicineRequestDTO request);
 
         /// <summary>
-        /// 住院保存医嘱  落地医嘱信息、排药、冻结库存
+        /// Lưu y lệnh nội trú  Lưu thông tin y lệnh、Xếp thuốc、Đóng băng tồn kho
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         ActResult HospitalizatiionBook(ZyypyzzxRequest request);
 
         /// <summary>
-        /// 住院退药
+        /// Trả thuốc nội trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         string HospitalizatiionReturnDispensingMedicine(HospitalizatiionReturnDispensingMedicineRequestDTO request);
 
         /// <summary>
-        /// 住院退药
+        /// Trả thuốc nội trú
         /// </summary>
         /// <param name="tyDetail"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <param name="returnDrugBillNo">退药单号</param>
+        /// <param name="returnDrugBillNo">Số đơn trả thuốc</param>
         /// <returns></returns>
         string HospitalizatiionReturnMedicine(List<tyParam> tyDetail, string yfbmCode, string organizeId,
             string userCode, out string returnDrugBillNo);
 
         /// <summary>
-        /// 门诊取消排药
+        /// Hủy xếp thuốc ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

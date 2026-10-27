@@ -34,7 +34,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
         #region Trang
         /// <summary>
-        /// 门诊就诊记录
+        /// Ngoại trúKhám bệnhghi chép
         /// </summary>
         /// <returns></returns>
         public IActionResult ConsultRecord()
@@ -45,7 +45,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// 门诊就诊详情
+        /// Ngoại trúKhám bệnhChi tiết
         /// </summary>
         /// <returns></returns>
         public IActionResult ConsultDetail()
@@ -55,7 +55,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             return View();
         }
         /// <summary>
-        /// 查询门诊详细资料
+        /// Tra cứuNgoại trúchi tiếttàiliệu
         /// </summary>
         /// <returns></returns>
         public IActionResult QueryOutpatientDetail()
@@ -65,7 +65,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             return View();
         }
         /// <summary>
-        /// 查询门诊预约记录
+        /// Tra cứuNgoại trúđặt hẹnghi chép
         /// </summary>
         /// <returns></returns>
         public IActionResult QueryOutpatientReservation()
@@ -103,7 +103,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             return Content(data.ToJson());
         }
         #endregion
-        #region Tra cứuNgoại trú详细Tài liệu
+        #region Tra cứuNgoại trúchi tiếtTài liệu
         public IActionResult GetOutpatientDetailGridJson(Pagination pagination, string kssj, string jssj)
         {
             var data = new

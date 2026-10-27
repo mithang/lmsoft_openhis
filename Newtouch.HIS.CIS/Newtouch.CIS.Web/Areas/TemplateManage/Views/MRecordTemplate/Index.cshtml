@@ -216,22 +216,22 @@
                         $('#mbmc').val(ajaxresp.mbmc);
                         $('#form1').formSerialize(ajaxresp);
 
-                        $('#tablexyzd .minusToggleCircle').trigger('click');  //先还原
+                        $('#tablexyzd .minusToggleCircle').trigger('click');  //trướckhôi phục
 
-                        $('#tablezyzd .minusToggleCircle').trigger('click');  //先还原
+                        $('#tablezyzd .minusToggleCircle').trigger('click');  //trướckhôi phục
 
-                        //3.填充诊断
+                        //3.điềnChẩn đoán
                         if (ajaxresp.xyzdList && ajaxresp.xyzdList.length && ajaxresp.xyzdList.length > 0) {
                             for (var i = 0; i < ajaxresp.xyzdList.length; i++) {
                                 if(ajaxresp.xyzdList.length>1 &&  i< ajaxresp.xyzdList.length-1)
                                 {
-                                    //先append
+                                    //trướcappend
                                     var number = $('#tablexyzd .zdText').length + 1;
                                     var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk'+ number +'" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd'+ number +'" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
                                     $newTr.appendTo($('#tablexyzd'));
                                 }
 
-                                //再赋值
+                                //lạiGán giá trị
                                 for (var j = 0; j < $('#tablexyzd .zdText').length; j++) {
                                     if(i==j){
                                         $($('#tablexyzd .zdText')[j]).val(ajaxresp.xyzdList[i].zdmc);
@@ -242,7 +242,7 @@
                             }
                         }
                         else{
-                            //清空主诊断
+                            //Xóa trắngchínhChẩn đoán
                             $('#tablexyzd .zdText').val('');
                             $('#tablexyzd .zdText').attr("data-zdCode",'');
                             $('#tablexyzd .chkValue').prop('checked' ,false);
@@ -252,12 +252,12 @@
                             for (var i = 0; i < ajaxresp.zyzdList.length; i++) {
                                 if(ajaxresp.zyzdList.length>1 &&  i< ajaxresp.zyzdList.length-1)
                                 {
-                                    //先append
+                                    //trướcappend
                                     var number = $('#tablezyzd .zdText').length + 1;
                                     var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk'+ number +'" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd'+ number +'" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">Triệu chứng</th><td class="formValue"><input type="text" id="zh'+ number +'" class="form-control activeValue focusInput zhText" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
                                     $newTr.appendTo($('#tablezyzd'));
                                 }
-                                //再赋值
+                                //lạiGán giá trị
                                 for (var j = 0; j < $('#tablezyzd .zdText').length; j++) {
                                     if(i==j){
                                         $($('#tablezyzd .zdText')[j]).val(ajaxresp.zyzdList[i].zdmc);
@@ -270,7 +270,7 @@
                             }
                         }
                         else{
-                            //清空主诊断
+                            //Xóa trắngchínhChẩn đoán
                             $('#tablezyzd .zdText').val('');
                             $('#tablezyzd .zdText').attr("data-zdCode", '');
                             $('#tablezyzd .chkValue').prop('checked' ,false);
@@ -278,21 +278,21 @@
                             $('#tablezyzd .zhText').attr("data-zhCode",'');
                         }
                         $("#groupPackageListGridList").clearGridData();
-                        initGroupPackageGrid(ajaxresp.mbztList);    //收费项目
+                        initGroupPackageGrid(ajaxresp.mbztList);    //Mục thu phí
                     }
                 });
             }
         });
     });
 
-    //valid的扩展样式
+    //validcủakiểu mở rộng
     var valOptions = {
         errorPlacement: function (error, element) {
             element.parents('.formValue').addClass('has-error');
         }
     }
 
-    //西医诊断浮层
+    //Chẩn đoán Tây ylớp nổi
     function bindXyzdFloatingSelector($ele){
         $ele.zdFloatingSelector({
             zdlx:"WM",
@@ -300,7 +300,7 @@
             itemdbclickhandler: function ($thistr, $thisinput) {
                 $thisinput.val($thistr.attr('data-zdmc'))
                     .attr('data-zdCode', $thistr.attr('data-zdCode'));
-                //显示 隐藏 删除icon
+                //Hiển thị Ẩn Xóaicon
                 if (!!$.trim($thisinput.val())) {
                     $thisinput.siblings('.fa.fa-times').show();
                 }
@@ -312,7 +312,7 @@
     }
     bindXyzdFloatingSelector($("#tablexyzd .zdText"));
 
-    //中医诊断浮层
+    //Chẩn đoán YHCTlớp nổi
     function bindZyzdFloatingSelector($ele){
         $ele.zdFloatingSelector({
             zdlx:"TCM",
@@ -320,7 +320,7 @@
             itemdbclickhandler: function ($thistr, $thisinput) {
                 $thisinput.val($thistr.attr('data-zdmc'))
                     .attr('data-zdCode', $thistr.attr('data-zdCode'));
-                //显示 隐藏 删除icon
+                //Hiển thị Ẩn Xóaicon
                 if (!!$.trim($thisinput.val())) {
                     $thisinput.siblings('.fa.fa-times').show();
                 }
@@ -332,13 +332,13 @@
     }
     bindZyzdFloatingSelector($("#tablezyzd .zdText"));
 
-    //症侯浮层
+    //hội chứnglớp nổi
     function bindZyzhFloatingSelector($ele){
         $ele.zyzhFloatingSelector({
             itemdbclickhandler: function ($thistr, $thisinput) {
                 $thisinput.val($thistr.attr('data-zhmc'))
                     .attr('data-zhCode', $thistr.attr('data-zhCode'));
-                //显示 隐藏 删除icon
+                //Hiển thị Ẩn Xóaicon
                 if (!!$.trim($thisinput.val())) {
                     $thisinput.siblings('.fa.fa-times').show();
                 }
@@ -348,30 +348,30 @@
             }
         });
     }
-    //症侯浮层
+    //hội chứnglớp nổi
     bindZyzhFloatingSelector($("#tablezyzd .zhText"));
 
-    //西医诊断 新增
+    //Chẩn đoán Tây y Thêm mới
     $('#tablexyzd .plusToggleCircle').click(function () {
         var number = $('#tablexyzd .zdText').length + 1;
         var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk'+ number +'" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd'+ number +'" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
         $newTr.appendTo($(this).closest('table'));
-        //西医诊断浮层
+        //Chẩn đoán Tây ylớp nổi
         bindXyzdFloatingSelector($newTr.find(".zdText"));
     });
 
-    //中医诊断 新增
+    //Chẩn đoán YHCT Thêm mới
     $('#tablezyzd .plusToggleCircle').click(function () {
         var number = $('#tablezyzd .zdText').length + 1;
         var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk'+ number +'" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd'+ number +'" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">Triệu chứng</th><td class="formValue"><input type="text" id="zh'+ number +'" class="form-control activeValue focusInput zhText" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
         $newTr.appendTo($(this).closest('table'));
-        //中医诊断浮层
+        //Chẩn đoán YHCTlớp nổi
         bindZyzdFloatingSelector($newTr.find(".zdText"));
-        //症侯浮层
+        //hội chứnglớp nổi
         bindZyzhFloatingSelector($newTr.find(".zhText"));
     });
 
-    //隐藏 显示 删除icon
+    //Ẩn Hiển thị Xóaicon
     $('#form1').on('keyup click change blur', '.activeValue', function(){
         if (!!$.trim($(this).val())) {
             $(this).siblings('.fa.fa-times').show();
@@ -381,23 +381,23 @@
         }
     });
 
-    //清空icon事件
+    //Xóa trắngiconsự kiện
     $('#form1').on('click', '.fa.fa-times', function(){
         $(this).siblings('input.form-control').val('');
         $(this).siblings('textarea.form-control').val('');
         $(this).hide();
     });
 
-    //删除icon
+    //Xóaicon
     $('#form1').on('click', '.minusToggleCircle', function(){
         $(this).closest('tr').remove();
     })
     
     cfzutaoFloatingSelector();
     
-    //处方模板组套
+    //Đơn thuốcmẫuBộ mẫu
     function cfzutaoFloatingSelector(){
-        //默认options
+        //Mặc địnhoptions
         var defaults = {
             width: 350,
             height: 280,
@@ -434,7 +434,7 @@
                     name: 'cflx',
                     widthratio: 20,
                     formatter: function(value, options, row) {
-                        // 将数字值转换为汉字
+                        // sẽsốchữGiá trịchuyểnđổilàHánchữ
                         const prescriptionTypes = {
                             1: "Thuốc TâyĐơn thuốc",
                             2: "Thuốc YHCTĐơn thuốc",
@@ -443,7 +443,7 @@
                             3: "Phục hồi chức năngĐơn thuốc",
                             6: "Thường quyMụcĐơn thuốc",
                         };
-                        return prescriptionTypes[value] || "Loại không rõ"; // 默认值为 "未知类型"
+                        return prescriptionTypes[value] || "Loại không rõ"; // Mặc địnhGiá trịlà "Không xác địnhLoại"
                     }
                 },
                 { label: 'Mô tả', name: 'Description', widthratio: 30, hidden: true},
@@ -455,7 +455,7 @@
         $('#txtZutaoSel').newtouchFloatingSelector(options);
     }
 
-    //处方组套浮层
+    //Đơn thuốcBộ mẫulớp nổi
     //$('#txtZutaoSel').cfzutaoFloatingSelector({
     //    mblx:  0,
     //    cflx:$("#cflx").val(),
@@ -472,7 +472,7 @@
     //            }
     //        });
     //        if (returnFlag) {
-    //            $.modalAlert("不可重复添加", 'warning');
+    //            $.modalAlert("khôngcó thểtrùng lặpThêm", 'warning');
     //            return;
     //        }
     //        btn_addItem($thistr);
@@ -481,16 +481,16 @@
 
     function initGroupPackageGrid(data) {
         $('#groupPackageListGridList').newtouchLocalDataGrid({
-            height: 200, // 增加高度，确保内容不会被挤压
+            height: 200, // tăng thêmcaođộ，xácbảonội dungkhôngsẽbị挤áp
             unwritten: false,
             caption: "Bộ mẫuThông tin",
             colModel: [
                 { label: 'mbId', name: 'mbId', width: 120, hidden: true, align: 'left' },
-                { label: 'MẫuTên', name: 'mbmc', width: 200, align: 'left'  },  // 调整宽度
+                { label: 'MẫuTên', name: 'mbmc', width: 200, align: 'left'  },  // gọichỉnhrộngđộ
                 { label: 'Đơn thuốcLoại', name: 'cflx', width: 120, align: 'left',
                     formatter: function(value, options, row) {
                         debugger;
-                            // 如果值是数字，则转换为汉字
+                            // VDnếuGiá trịCósốchữ，thìchuyểnđổilàHánchữ
                             if (typeof value === 'number' || Number.isInteger(value)) {
                                 const prescriptionTypes = {
                                     1: "Thuốc TâyĐơn thuốc",
@@ -502,7 +502,7 @@
                                 };
                                 return prescriptionTypes[value] || "Loại không rõ";
                             }
-                            // 如果不是数字，直接返回原值
+                            // VDnếukhôngCósốchữ，trực tiếpQuay lạigốcGiá trị
                             return value;
                       }
                 },
@@ -513,22 +513,22 @@
 
     function btn_addItem($thistr) {
         $('#groupPackageListGridList').newtouchLocalDataGrid(null, [{
-            mbId: $thistr.attr('data-mbId'),        // 对应表格中的 cfmbId
-            mbmc: $thistr.attr('data-mbmc'),        // 对应表格中的 模板名称 (mbmc)
-            cflx: $thistr.attr('data-cflx'),                          // 用汉字替代数字，显示处方类型
-            Description: $thistr.attr('data-Description'),  // 对应表格中的 描述
-            Remark: $thistr.attr('data-Remark')     // 对应表格中的 注意事项
+            mbId: $thistr.attr('data-mbId'),        // tương ứngbảngôtrongcủa cfmbId
+            mbmc: $thistr.attr('data-mbmc'),        // tương ứngbảngôtrongcủa Tên mẫu (mbmc)
+            cflx: $thistr.attr('data-cflx'),                          // dùngHánchữthaythaysốchữ，Hiển thịĐơn thuốcLoại
+            Description: $thistr.attr('data-Description'),  // tương ứngbảngôtrongcủa Mô tả
+            Remark: $thistr.attr('data-Remark')     // tương ứngbảngôtrongcủa Lưu ýviệc mục
         }]);
     }
 
-    //保存
+    //Lưu
     function newtouch_event_f8(){
-        //必填信息验证
+        //bắt buộcthông tinkiểm tra
         if (!$('#form2').formValid(valOptions)) {
             $.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
             return;
         }
-        //病历信息
+        //Hồ sơthông tin
         var blmbObject = {
             mbId: $('#mbId').val(),
             mbmc: $('#mbmc').val(),
@@ -540,16 +540,16 @@
             clfa: $('#clfa').val()
         }
 
-        //西医诊断
+        //Chẩn đoán Tây y
         var xyzdArray = new Array();
         for (var i = 0; i < $('#tablexyzd .zdText').length; i++) {
             var zdObj = new Object();
             zdObj.zdmc = $($('#tablexyzd .zdText')[i]).val();
             zdObj.zdCode = $($('#tablexyzd .zdText')[i]).attr('data-zdCode');
             zdObj.ysbz = $($('#tablexyzd .zdText')[i]).siblings('.chkValue').is(':checked')
-            if (zdObj.zdmc && zdObj.zdmc) {    //为的是排除空诊断
+            if (zdObj.zdmc && zdObj.zdmc) {    //làcủaCóxếptrừtrốngChẩn đoán
                 if (i == 0) {
-                    zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //默认第一个诊断为主诊断  1：主诊断 2副诊断
+                    zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
                 }
                 else {
                     zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Deputy).ToString());
@@ -559,7 +559,7 @@
             }
         }
 
-        //中医诊断
+        //Chẩn đoán YHCT
         var zyzdArray = new Array();
         for (var i = 0; i < $('#tablezyzd .zdText').length; i++) {
             var zdObj = new Object();
@@ -568,9 +568,9 @@
             zdObj.ysbz = $($('#tablexyzd .zdText')[i]).siblings('.chkValue').is(':checked')
             zdObj.zhmc = $($('#tablezyzd .zhText')[i]).val();
             zdObj.zhCode = $($('#tablezyzd .zhText')[i]).attr('data-zhCode');
-            if (zdObj.zdmc && zdObj.zdmc) {    //为的是排除空诊断
+            if (zdObj.zdmc && zdObj.zdmc) {    //làcủaCóxếptrừtrốngChẩn đoán
                 if (i == 0) {
-                    zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //默认第一个诊断为主诊断  1：主诊断 2副诊断
+                    zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
                 }
                 else {
                     zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Deputy).ToString());
@@ -579,7 +579,7 @@
                 zyzdArray.push(zdObj)
             }
         }
-        //组套
+        //Bộ mẫu
         var mbztlist = $("#groupPackageListGridList").jqGrid('getRowData_AllLine', null, true);
         debugger;
         const prescriptionTypes = {
@@ -593,9 +593,9 @@
 
         for (var i = 0; i < mbztlist.length; i++) {
             if (prescriptionTypes[mbztlist[i].cflx] !== undefined) {
-                mbztlist[i].cflx = prescriptionTypes[mbztlist[i].cflx]; // 转换为数字
+                mbztlist[i].cflx = prescriptionTypes[mbztlist[i].cflx]; // chuyểnđổilàsốchữ
             } else {
-                mbztlist[i].cflx = "Loại không rõ"; // 未找到对应汉字时设置为“未知类型”
+                mbztlist[i].cflx = "Loại không rõ"; // chưatìmđếntương ứngHánchữkhiCài đặtlà“Không xác địnhLoại”
             }
         }
         $.najax({
@@ -605,16 +605,16 @@
             type: "POST",
             success: function (data) {
                 $.modalAlert("Lưu thành công", 'success');
-                //刷新左边树
+                //Làm mớitráibêncây
                 $.currentWindow().$('#current').trigger('click');
-                //清空
+                //Xóa trắng
                 newtouch_globalevent_f4();
             }
         });
        
     }
     
-    //新增模板
+    //Thêm mớimẫu
     function newtouch_event_f3(){
         newtouch_globalevent_f4();
         $("#groupPackageListGridList").clearGridData();
@@ -624,7 +624,7 @@
         $('#form1 .minusToggleCircle').trigger('click');
     }
 
-    //删除模板
+    //Xóamẫu
     function newtouch_event_f6(){
         if(!!!$('#mbId').val()){
             $.modalAlert("Vui lòng chọnMẫu", 'warning');
@@ -648,7 +648,7 @@
     }
 
  
-    //删除项目
+    //XóaMục
     function btn_removeItem() {
         var rowid = $("#groupPackageListGridList").jqGrid("getGridParam", "selrow");
         $('#groupPackageListGridList').jqGrid("delRowData", rowid);

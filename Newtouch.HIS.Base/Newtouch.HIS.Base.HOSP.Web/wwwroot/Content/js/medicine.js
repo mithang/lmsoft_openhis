@@ -1,4 +1,4 @@
-﻿//药品名称
+﻿//Tên thuốc
 $.fn.ypFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector({
         width: 600,
@@ -21,7 +21,7 @@ $.fn.ypFloatingSelector = function (options) {
     });
 }
 
-//药品分类
+//Phân loại thuốc
 $.fn.ypflFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector( {
         url: '/PharmacyDrugStorage/SysMedicineClassification/GetListSelectJson',

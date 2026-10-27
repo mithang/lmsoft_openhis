@@ -95,10 +95,10 @@
             <div class="panel-heading navb-bg">KhoaChọn</div>
             @*<ul class="nav nav-tabs" role="tablist" id="resources">
                     <li role="presentation" class="active">
-                        <a href="#dv-dept" role="tab" data-toggle="tab" id="li_dept" aria-expanded="true">科室</a>
+                        <a href="#dv-dept" role="tab" data-toggle="tab" id="li_dept" aria-expanded="true">Khoa</a>
                     </li>
                     <li role="presentation">
-                        <a href="#dv-zj" role="tab" data-toggle="tab" id="li_zj">专家</a>
+                        <a href="#dv-zj" role="tab" data-toggle="tab" id="li_zj">chuyên gia</a>
                     </li>
                 </ul>*@
             <div style="width: 300px; overflow-x: auto; margin: 0;">
@@ -209,7 +209,7 @@
         };
     });
 
-    //获取科室信息
+    //LấyKhoathông tin
     function deptGridList() {
         $deptGridList.dataGrid({
             url: "/SystemManage/SysDepartment/GetSelectJson",
@@ -221,20 +221,20 @@
                 { label: 'KhoaTên', name: 'Name', width: 150, align: 'left' }
             ],
             onSelectRow: function (rowid) {
-                //标记科室
+                //dấughiKhoa
                 var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
                 $("#sp_deptName").html("/ " + rowData.Name);
                 $("#sp_zjName").html("");
-                //获取专家信息
+                //Lấychuyên giathông tin
                 rowData = $deptGridList.jqGrid('getRowData', rowid);
                 getZjData(rowData.Code);
-                //获取焦点科室已维护预约挂号
+                //Lấytiêu điểmđiểmKhoađãBảo trìđặt hẹnđăng ký khám
                 getDeptRegData(rowData.Code);
             }
         });
     }
 
-    //获取科室预约
+    //LấyKhoađặt hẹn
     function getDeptRegData(ksCode) {
         $.najax({
             url: "/SystemManage/BespeakRegisterManage/GetRegDataHtmlByKs",
@@ -253,7 +253,7 @@
         });
     }
 
-    //获取专家信息
+    //Lấychuyên giathông tin
     function getZjData(ksCode) {
         if (ksCode == null || ksCode === "") {
             var rowid = $('#deptGridList').jqGrid('getGridParam', 'selrow');
@@ -264,7 +264,7 @@
             var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
             ksCode = rowData.Code;
         }
-        $('#zjGridList').jqGrid("clearGridData");//每次双击，先清空明细 再重新加载所有选中行明细
+        $('#zjGridList').jqGrid("clearGridData");//mỗi lầnnhấp đúp，Xóa trắng chi tiết trước lạilạitảitất cảĐã chọndòngchi tiết
         $.najax({
             url: "/SystemManage/BespeakRegisterManage/GetStaff",
             data: { deptCode: ksCode },
@@ -280,7 +280,7 @@
         });
     }
 
-    //获取专家信息
+    //Lấychuyên giathông tin
     $("#zjGridList").newtouchLocalDataGrid({
         height: ($(window).height() - 120)/2-35,
         width: 250,
@@ -293,12 +293,12 @@
         onSelectRow: function (rowid) {
             var rowData = $('#zjGridList').jqGrid('getRowData', rowid);
             $("#sp_zjName").html("/ " + rowData.Name);
-            //获取专家信息
+            //Lấychuyên giathông tin
             getZjRegData(rowData.gh);
         }
     });
 
-    //获取科室预约
+    //LấyKhoađặt hẹn
     function getZjRegData(gh) {
         var rowid = $('#deptGridList').jqGrid('getGridParam', 'selrow');
         var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
@@ -319,14 +319,14 @@
         });
     }
 
-    //重置
+    //Đặt lại
     function newtouch_event_f7() {
         var rowid = $('#deptGridList').jqGrid('getGridParam', 'selrow');
         var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
         getDeptRegData(rowData.Code);
     }
 
-    //保存
+    //Lưu
     function newtouch_event_f8() {
         var deptRowid = $('#deptGridList').jqGrid('getGridParam', 'selrow');
         if (!deptRowid) {
@@ -373,24 +373,24 @@
         });
     }
 
-    //刷新Xếp lịch信息
+    //Làm mớiXếp lịchthông tin
     function refleshData() {
         var rowid = $('#deptGridList').jqGrid('getGridParam', 'selrow');
         if (!rowid) {
             return;
         }
-        //标记科室
+        //dấughiKhoa
         var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
         $("#sp_deptName").html("/ " + rowData.Name);
         $("#sp_zjName").html("");
-        //获取专家信息
+        //Lấychuyên giathông tin
         rowData = $deptGridList.jqGrid('getRowData', rowid);
         getZjData(rowData.Code);
-        //获取焦点科室已维护预约挂号
+        //Lấytiêu điểmđiểmKhoađãBảo trìđặt hẹnđăng ký khám
         getDeptRegData(rowData.Code);
     }
 
-    //添加列
+    //Thêmcột
     function addColumn() {
         var alltr = $("#tbd_content").find("tr");
         if (alltr.length != undefined && alltr.length != null && alltr.length > 0) {
@@ -410,7 +410,7 @@
         }
     }
 
-    //添加列
+    //Thêmcột
     function buildColHtml(guids) {
         var firstColId = guids[0];
         for (var i = 0; i < guids.length; i++) {
@@ -435,7 +435,7 @@
         }
     }
 
-    //添加行
+    //Thêmdòng
     function addRow() {
         var lastRegDate = $("#tbd_content tr:last").attr("attr-regDate");
         if (lastRegDate == undefined || lastRegDate == "") return;
@@ -465,7 +465,7 @@
         });
     }
 
-    //列全选
+    //cộtChọn tất cả
     $("#thd_content").on("click", "input[name=chk_reg_col]", function () {
         if ($(this).is(":checked")) {
             var sourceId = this.id;
@@ -483,7 +483,7 @@
             });
         }
     });
-    //行全选
+    //dòngChọn tất cả
     $("#tbd_content").on("click", "input[name=chk_reg_row]",function () {
         if ($(this).is(":checked")) {
             $(this).parent().parent().parent().find("input[name=chk_reg]").each(function () {

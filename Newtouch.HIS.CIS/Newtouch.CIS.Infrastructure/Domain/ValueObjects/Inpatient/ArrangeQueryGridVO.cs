@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.Domain.ValueObjects.Inpatient
 {
     /// <summary>
-    /// 手术医嘱查询Grid View
+    /// Phẫu thuậtY lệnhTra cứuGrid View
     /// </summary>
     public class ArrangeQueryGridVO
     {
@@ -25,17 +25,17 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string ztmc { get; set; }
 
         /// <summary>
-        /// 手术医生姓名
+        /// Phẫu thuậtBác sĩHọ tên
         /// </summary>
         public string surgeonName { get; set; }
 
         /// <summary>
-        /// 手术地址
+        /// Phẫu thuậtĐịa chỉ
         /// </summary>
         public string ssAddr { get; set; }
 
         /// <summary>
-        /// 手术日期
+        /// Ngày phẫu thuật
         /// </summary>
         public DateTime? aprq { get; set; }
     }

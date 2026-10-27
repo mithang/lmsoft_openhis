@@ -87,6 +87,7 @@ builder.Services.AddScoped<Newtouch.Sett.Domain.IHospMedicinFeeApp, Newtouch.Set
 builder.Services.AddScoped<Newtouch.Sett.Domain.IHosPatAccDmnService, Newtouch.Sett.Domain.HosPatAccDmnServiceStub>();
 builder.Services.AddScoped<Newtouch.Sett.Domain.IAccountManageApp, Newtouch.Sett.Domain.AccountManageAppStub>();
 builder.Services.AddScoped<Newtouch.Sett.Domain.IItemDmnService, Newtouch.Sett.Domain.ItemDmnServiceStub>();
+builder.Services.AddScoped<Newtouch.Sett.Domain.ITreatmentportfolioRepo, Newtouch.Sett.Repository.TreatmentportfolioRepo>();
 builder.Services.AddScoped<Newtouch.Sett.Domain.ISysChargeTemplateRepo, Newtouch.Sett.Domain.SysChargeTemplateRepoStub>();
 builder.Services.AddScoped<Newtouch.Sett.Domain.ISysChargeTemplateItemMappRepo, Newtouch.Sett.Repository.SysChargeTemplateItemMappRepo>();
 builder.Services.AddScoped<Newtouch.Sett.Domain.IHospPatientBasicInfoRepo, Newtouch.Sett.Repository.HospPatientBasicInfoRepo>();

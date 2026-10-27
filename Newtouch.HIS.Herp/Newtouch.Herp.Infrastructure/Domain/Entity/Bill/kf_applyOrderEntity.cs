@@ -6,69 +6,69 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 出入库单据
+    /// Chứng từ nhập/xuất kho
     /// </summary>
     [SugarTable("kf_applyOrder")]
     public class KfApplyOrderEntity : IEntity<KfApplyOrderEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public long Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chức Id（Bệnh viện có nghiệp vụ cụ thể）
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 单据类型 1-科室申领；2-库房申领
+        /// Loại chứng từ 1-Khoa phòng lĩnh；2-Kho lĩnh
         /// </summary>
         public int applyType { get; set; }
 
         /// <summary>
-        /// 申领单号
+        /// Số phiếu lĩnh
         /// </summary>
         public string sldh { get; set; }
 
         /// <summary>
-        /// 入库部门
+        /// Khoa nhập kho
         /// </summary>
         public string rkbm { get; set; }
 
         /// <summary>
-        /// 出库部门
+        /// Khoa xuất kho
         /// </summary>
         public string ckbm { get; set; }
 
         /// <summary>
-        /// 0:待处理；1:审核通过；2:审核不通过；3:配送；4:部分完成；5:完成；6:拒收
+        /// 0:Chờ xử lý；1:Đã duyệt；2:Không duyệt；3:Phân phối；4:Hoàn thành một phần；5:Hoàn thành；6:Từ chối nhận
         /// </summary>
         public int applyProcess { get; set; }
 
         /// <summary>
-        /// 状态 0:作废；1.有效
+        /// Trạng thái 0:Hủy bỏ；1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa đổi cuối
         /// </summary>
         public string LastModifierCode { get; set; }
     }

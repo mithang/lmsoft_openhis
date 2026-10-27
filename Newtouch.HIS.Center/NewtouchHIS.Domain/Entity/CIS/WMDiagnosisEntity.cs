@@ -7,7 +7,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
     [Tenant(DBEnum.CisDb)]
     [SugarTable("xt_xyzd", "WMDiagnosisEntity")]
     /// <summary>
-    /// 西医诊断
+    /// Chẩn đoán tây y
     /// </summary>
     public class WMDiagnosisEntity:IEntity
     {
@@ -16,43 +16,43 @@ namespace NewtouchHIS.Domain.Entity.CIS
 
 
         /// <summary>
-        /// 关联就诊表
+        /// Bảng khám liên kết
         /// </summary>
         public string jzId { get; set; }
 
         /// <summary>
-        /// 枚举 1 主诊断 2 辅诊断
+        /// Enum 1 Chẩn đoán chính 2 Chẩn đoán phụ
         /// </summary>
         public int zdlx { get; set; }
 
         /// <summary>
-        /// 关联base库 系统诊断表
+        /// Liên kếtbaseCơ sở dữ liệu Bảng chẩn đoán hệ thống
         /// </summary>
         public string zdCode { get; set; }
 
         /// <summary>
-        /// 冗余字段
+        /// Trường dư thừa
         /// </summary>
         public string zdmc { get; set; }
 
         /// <summary>
-        /// 疑似标志
+        /// Cờ nghi ngờ
         /// </summary>
         public string? ysbz { get; set; }
         /// <summary>
-        /// 西医诊断备注
+        /// Ghi chú chẩn đoán tây y
         /// </summary>
         public string? zdbz { get; set; }
         ///// <summary>
-        ///// 牙位图类型
+        ///// Loại sơ đồ vị trí răng
         ///// </summary>
         //public string ywlx { get; set; }
         ///// <summary>
-        ///// 牙位图位置
+        ///// Vị trí sơ đồ răng
         ///// </summary>
         //public string ywstr { get; set; }
         ///// <summary>
-        ///// 牙位图显示
+        ///// Hiển thị sơ đồ răng
         ///// </summary>
         //public string ywxs { get; set; }
     }

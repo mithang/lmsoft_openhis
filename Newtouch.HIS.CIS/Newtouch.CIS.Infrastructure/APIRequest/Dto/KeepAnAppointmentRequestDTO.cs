@@ -7,17 +7,17 @@ namespace Newtouch.CIS.APIRequest.Dto
     {
 
         /// <summary>
-        /// 预约挂号主键 mz_yygh.id
+        /// đặt hẹnđăng ký khámKhóa chính mz_yygh.id
         /// </summary>
         public string mzyyghId { get; set; }
 
         /// <summary>
-        /// 赴约时间
+        /// 赴hẹnThời gian
         /// </summary>
         public DateTime arrivalDate { get; set; }
 
         /// <summary>
-        /// 现场处理挂号人员
+        /// hiệntrườngchỗlýđăng ký khám ngườiviên
         /// </summary>
         public string arrivalOpereater { get; set; }
     }

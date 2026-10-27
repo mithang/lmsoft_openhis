@@ -107,7 +107,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -116,7 +116,7 @@
     {
         return true;
         if ('@opeator.IsRoot' == 'False' && '@opeator.IsAdministrator' == 'False' && '@opeator.IsHospAdministrator' == 'False') {
-            if (ysgh != '@opeator.rygh') {  //仅个人模板可修改删除
+            if (ysgh != '@opeator.rygh') {  //Chỉ mẫu cá nhân mới có thể sửa/xóa
                 return false;
             }
             else {

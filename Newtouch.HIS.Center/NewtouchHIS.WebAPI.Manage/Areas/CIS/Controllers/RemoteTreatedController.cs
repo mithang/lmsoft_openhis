@@ -19,7 +19,7 @@ using static NewtouchHIS.Lib.Common.HisEnum;
 namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
 {
     /// <summary>
-    /// 远程诊疗
+    /// Khám chữa bệnh từ xa
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -39,7 +39,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             _remoteTreatedDmn = remoteTreatedDmn;
         }
         /// <summary>
-        /// 远程诊疗Step1：第三方Đăng kýHIS远程诊疗（仅自费）
+        /// Khám chữa bệnh từ xaStep1:Bên thứ baĐăng kýHISKhám chữa bệnh từ xa(Chỉ tự chi trả)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -57,18 +57,18 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             }
             if (string.IsNullOrWhiteSpace(request.Data.xm) || string.IsNullOrWhiteSpace(request.Data.kh) || request.Data.patid == null)
             {
-                return new BusResult<TreatedApplyReponse> { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng của bệnh nhân：Mã định danh bệnh nhân、Họ tên bệnh nhân、Thẻ khám bệnh không được để trống" };
+                return new BusResult<TreatedApplyReponse> { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng của bệnh nhân:Mã định danh bệnh nhân,Họ tên bệnh nhân,Thẻ khám bệnh không được để trống" };
             }
-            //校验患者信息、科室医生
+            //Kiểm tra thông tin bệnh nhân,Bác sĩ khoa
             var patInfo = await _patientInfoDmn.GetPatientbyPatid(Convert.ToInt32(request.Data.patid), request.OrganizeId);
             var card = await _patientInfoDmn.GetPatientCard(Convert.ToInt32(request.Data.patid), request.OrganizeId, request.Data.kh);
             if (card.Count == 0)
             {
                 return new BusResult<TreatedApplyReponse> { code = ResponseResultCode.FAIL, msg = "Thông tin thẻ bệnh nhân bất thường" };
             }
-            //查找医生信息
+            //Tìm thông tin bác sĩ
             var doc = await _sysStaffDmn.GetStaffDeptByGh(request.Data.ysgh, request.OrganizeId);
-            //暂不校验科室
+            //Tạm thời không kiểm tra khoa
             if (doc.Count == 0)
             {
                 return new BusResult<TreatedApplyReponse> { code = ResponseResultCode.FAIL, msg = "Không tìm thấy thông tin bác sĩ liên quan" };
@@ -95,12 +95,12 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
                 }
             };
         }
-        #region HIS 内部
+        #region HIS Nội bộ
         /// <summary>
-        /// 远程诊疗Step1：HIS医生同意Đăng ký发起诊疗Cuộc họp
+        /// Khám chữa bệnh từ xaStep1:HISBác sĩ đồng ýĐăng kýKhởi xướng khám chữa bệnhCuộc họp
         /// </summary>
         /// <param name="request"></param>
-        /// <returns>Cuộc họp号，诊疗用户Token、Cuộc họp地址</returns>
+        /// <returns>Cuộc họpSố,Người dùng khám chữa bệnhToken,Cuộc họpĐịa chỉ</returns>
         [HttpPost]
         [Route("DoctorMeetingApply")]
         public async Task<BusResult<MeettingResponse>> DoctorMeetingApplyAsync(Request<TreatedUserRequest> request)
@@ -109,7 +109,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             {
                 return new BusResult<MeettingResponse> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức và thông tin đăng ký quan trọng không được để trống" };
             }
-            //查询Đăng ký是否正常 
+            //Truy vấnĐăng kýCó bình thường hay không 
             var apply = await _remoteTreatedDmn.TreatedApplyInfo(request.Data.applyId, request.OrganizeId);
             if (apply == null || (apply.sqzt != (int)EmunRemoteTreatedStu.dqr && apply.sqzt != (int)EmunRemoteTreatedStu.jzz))
             {
@@ -119,12 +119,12 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             {
                 throw new FailedException($"Thời gian đăng ký khám chữa bệnh: {apply.sqsj} đã hết hạn");
             }
-            //双方均可发起Cuộc họp
+            //Cả hai bên đều có thể khởi xướngCuộc họp
             if (!(apply.sqr == request.Data.usercode || apply.ysgh == request.Data.usercode))
             {
                 return new BusResult<MeettingResponse> { code = ResponseResultCode.FAIL, msg = "Cuộc họp khám chữa bệnh phải do bác sĩ khám chữa bệnh hoặc người đăng ký khám chữa bệnh khởi tạo" };
             }
-            //该Đăng ký尚未生成Cuộc họp号 生成聊天室房间号
+            //Bản đăng ký nàyĐăng kýchưa tạoCuộc họpSố Tạo số phòng trò chuyện
             if (string.IsNullOrWhiteSpace(apply.mettingId) || request.Data.roomReset)
             {
                 ChatRoom cr = new ChatRoom();
@@ -139,25 +139,25 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             var tokenResp = await TreatedMeetingToken(tokenReq);
             if (apply.sqzt != (int)EmunRemoteTreatedStu.jzz || !string.IsNullOrWhiteSpace(request.Data.mzh))
             {
-                //回写远程Đăng ký
+                //Ghi lại từ xaĐăng ký
                 apply.sqzt = (int)EmunRemoteTreatedStu.jzz;
                 apply.mzh = request.Data.mzh;
                 var modifyApply = await _remoteTreatedDmn.ModifiedApplyStu(apply.Adapt<TreatedApplyEntity>(), request.AppId);
                 if (!modifyApply)
                 {
-                    return new BusResult<MeettingResponse> { code = ResponseResultCode.FAIL, msg = "Ghi lại số cuộc họp thất bại，Vui lòng đăng ký lại cuộc họp" };
+                    return new BusResult<MeettingResponse> { code = ResponseResultCode.FAIL, msg = "Ghi lại số cuộc họp thất bại,Vui lòng đăng ký lại cuộc họp" };
                 }
             }
-            //通知云诊所 
-            //Đăng kýId  同意诊疗 ：True Cuộc họp号：roomid
+            //Thông báo phòng khám điện toán đám mây 
+            //Đăng kýId  Đồng ý khám chữa bệnh :True Cuộc họpSố:roomid
             return new BusResult<MeettingResponse> { code = ResponseResultCode.SUCCESS, Data = tokenResp };
         }
         #endregion
 
         /// <summary>
-        /// 远程诊疗Step3： 普通用户加入Cuộc họp
-        /// 返回值用于Cuộc họp室页面验证
-        /// To:第三方、HIS
+        /// Khám chữa bệnh từ xaStep3: Người dùng thông thường tham giaCuộc họp
+        /// Giá trị trả về dùng choCuộc họpkiểm chứng trang phòng
+        /// To:Bên thứ ba,HIS
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -185,8 +185,8 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
         }
 
         /// <summary>
-        /// 诊疗信息查询 by HISĐăng ký khám chữa bệnhId
-        /// To:第三方、HIS
+        /// Truy vấn thông tin khám chữa bệnh by HISĐăng ký khám chữa bệnhId
+        /// To:Bên thứ ba,HIS
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -206,7 +206,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             return new BusResult<TreatedApplyVO> { code = ResponseResultCode.SUCCESS, Data = response };
         }
         /// <summary>
-        /// 拒绝Đăng ký khám chữa bệnh 
+        /// Từ chốiĐăng ký khám chữa bệnh 
         /// To:HIS
         /// </summary>
         /// <param name="request"></param>
@@ -234,7 +234,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             }
             if (response.sqzt != (int)EmunRemoteTreatedStu.dqr)
             {
-                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Trạng thái đăng ký đã thay đổi，Không thể từ chối" };
+                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Trạng thái đăng ký đã thay đổi,Không thể từ chối" };
             }
             response.sqzt = (int)EmunRemoteTreatedStu.yth;
             var cancel = await _remoteTreatedDmn.ModifiedApplyStu(response.Adapt<TreatedApplyEntity>(), request.AppId);
@@ -249,10 +249,10 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
         //    return resp;
         //}
 
-        #region 外部系统 Only
+        #region Hệ thống ngoài Only
         /// <summary>
-        /// 撤销Đăng ký khám chữa bệnh 
-        /// To:第三方
+        /// Thu hồiĐăng ký khám chữa bệnh 
+        /// To:Bên thứ ba
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -279,7 +279,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             }
             if (response.sqzt != (int)EmunRemoteTreatedStu.dqr)
             {
-                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Trạng thái đăng ký đã thay đổi，Không thể thu hồi" };
+                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Trạng thái đăng ký đã thay đổi,Không thể thu hồi" };
             }
             response.sqzt = (int)EmunRemoteTreatedStu.ycx;
             var cancel = await _remoteTreatedDmn.ModifiedApplyStu(response.Adapt<TreatedApplyEntity>(), request.AppId);
@@ -287,8 +287,8 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
         }
 
         /// <summary>
-        /// 发药通知 
-        /// To:第三方
+        /// Thông báo phát thuốc 
+        /// To:Bên thứ ba
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -311,15 +311,15 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             }
             response.sqzt = (int)EmunRemoteTreatedStu.yfy;
             var fy = await _remoteTreatedDmn.ModifiedApplyStu(response.Adapt<TreatedApplyEntity>(), request.AppId);
-            //调用第三方 诊疗结果通知 接口
+            //Gọi bên thứ ba Thông báo kết quả khám chữa bệnh Giao diện
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, msg = "Cập nhật trạng thái phát thuốc thành công", Data = fy };
         }
 
         #endregion
 
         /// <summary>
-        /// 诊疗用户身份信息解密
-        /// To:第三方、HIS
+        /// Giải mã thông tin danh tính người dùng khám chữa bệnh
+        /// To:Bên thứ ba,HIS
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -339,7 +339,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
 
         #region private
         /// <summary>
-        /// 音视频服务接口封装
+        /// Đóng gói giao diện dịch vụ âm thanh/hình ảnh
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -373,7 +373,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             resp.organization = RemoteTreatedHelper.Organization;
             resp.device = tokenReq.device;
             resp.roompath = RemoteTreatedHelper.RemoteTreatedMeettingRoute;
-            //自动解密
+            //Tự động giải mã
             resp.rtcuserid = await Task.Run(() => RemoteTreatedHelper.GetRtcuser(tokenResp.rtcuserid));
             return resp;
         }

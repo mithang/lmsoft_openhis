@@ -23,7 +23,7 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 1 检验 2 检查
+        /// 1 Xét nghiệm 2 Kiểm tra
         /// </summary>
         public int Type { get; set; }
 
@@ -33,7 +33,7 @@ namespace Newtouch.Domain.Entity
         public string mbmc { get; set; }
 
         /// <summary>
-        /// 对应 jyjc_dl 非收费大类
+        /// tương ứng jyjc_dl khôngNhóm thu phí lớn
         /// </summary>
         public string dlCode { get; set; }
 

@@ -31,7 +31,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 发药
+    /// Phát thuốc
     /// </summary>
     public class fyDmnService : DmnServiceBase, IfyDmnService
     {
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取发药明细
+        /// Lấy chi tiết phát thuốc
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取发药明细
+        /// Lấy chi tiết phát thuốc
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>
@@ -83,7 +83,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊发药
+        /// Phát thuốc ngoại trú
         /// </summary>
         /// <param name="detaildata"></param>
         /// <param name="yfbmCode"></param>
@@ -128,7 +128,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊发药
+        /// Phát thuốc ngoại trú
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
@@ -146,7 +146,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊发药V2.0
+        /// Phát thuốc ngoại trúV2.0
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
@@ -167,7 +167,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 执行门诊发药
+        /// Thực hiện phát thuốc ngoại trú
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
@@ -182,7 +182,7 @@ namespace Newtouch.HIS.DomainServices
                 {
 
                     var cfmx = new MzCfmxRepo(new DefaultDatabaseFactory()).SelectData(cfh, organizeId);
-                    if (cfmx == null || cfmx.Count == 0) return "未找到处方明细";
+                    if (cfmx == null || cfmx.Count == 0) return "Không tìm thấy chi tiết đơn thuốc";
                     var mxphRepo = new OutpatientPrescriptionDetailBatchNumberRepo(new DefaultDatabaseFactory());
                     var kcxxRepo = new SysMedicineStockInfoRepo(new DefaultDatabaseFactory());
 
@@ -199,9 +199,9 @@ namespace Newtouch.HIS.DomainServices
                         {
                             if (mxph.sl <= 0) continue;
                             var kcxxs = kcxxRepo.SelectData(ypCode, mxph.ph, mxph.pc, yfbmCode, organizeId);
-                            if (kcxxs == null || kcxxs.Count == 0) return string.Format("药品代码为{0}、批次{1}、批号{2}的药品未找到库存信息", ypCode, mxph.pc, mxph.ph);
-                            if (kcxxs.Sum(p => p.djsl) < mxph.sl) return string.Format("药品代码为{0}、批次{1}、批号{2}的药品已冻结库存不足", ypCode, mxph.pc, mxph.ph);
-                            if (kcxxs.Sum(p => p.kcsl) < mxph.sl) return string.Format("药品代码为{0}、批次{1}、批号{2}的药品库存不足", ypCode, mxph.pc, mxph.ph);
+                            if (kcxxs == null || kcxxs.Count == 0) return string.Format("Mã thuốc là{0}、Lô{1}、Số lô{2}thuốc không tìm thấy thông tin tồn kho", ypCode, mxph.pc, mxph.ph);
+                            if (kcxxs.Sum(p => p.djsl) < mxph.sl) return string.Format("Mã thuốc là{0}、Lô{1}、Số lô{2}thuốc đã đóng băng tồn kho không đủ", ypCode, mxph.pc, mxph.ph);
+                            if (kcxxs.Sum(p => p.kcsl) < mxph.sl) return string.Format("Mã thuốc là{0}、Lô{1}、Số lô{2}tồn kho thuốc không đủ", ypCode, mxph.pc, mxph.ph);
                             var sysl = mxph.sl;
                             foreach (var kcxx in kcxxs)
                             {
@@ -258,7 +258,7 @@ namespace Newtouch.HIS.DomainServices
 
 
         /// <summary>
-        /// 门诊发药
+        /// Phát thuốc ngoại trú
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
@@ -270,7 +270,7 @@ namespace Newtouch.HIS.DomainServices
             using (var db = new EFDbTransaction().BeginTrans())
             {
                 var cfmx = _mxCfmxRepo.IQueryable(p => p.cfh == cfh && p.zt == "1" && p.OrganizeId == organizeId);
-                if (!cfmx.Any()) return "未找到处方明细";
+                if (!cfmx.Any()) return "Không tìm thấy chi tiết đơn thuốc";
                 var errorMsg = new StringBuilder();
                 var cts = new CancellationTokenSource();
                 try
@@ -324,7 +324,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊发药
+        /// Phát thuốc ngoại trú
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="ypCode"></param>
@@ -346,7 +346,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊发药
+        /// Phát thuốc ngoại trú
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>
@@ -363,7 +363,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// GetfyDetailCFList转换成fyMeidicneInfo
+        /// GetfyDetailCFListChuyển thànhfyMeidicneInfo
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>
@@ -398,7 +398,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// fydisplayDetailInfo 转化成 fyMeidicneInfo
+        /// fydisplayDetailInfo Chuyển thành fyMeidicneInfo
         /// </summary>
         /// <param name="dataList"></param>
         /// <returns></returns>
@@ -420,7 +420,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊退药（mz_cfmxph验证）
+        /// Trả thuốc ngoại trú（mz_cfmxphKiểm tra）
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>
@@ -436,7 +436,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊发药查询页面 验证mz_cfmxph
+        /// Trang truy vấn phát thuốc ngoại trú Kiểm tramz_cfmxph
         /// </summary>
         /// <param name="reqdata"></param>
         /// <param name="gjzt"></param>
@@ -457,7 +457,7 @@ namespace Newtouch.HIS.DomainServices
 
         #region new MZHandOutDetailQuery code
         /// <summary>
-        /// 门诊发药查询显示详细信息(mz_cfmxph验证)
+        /// Truy vấn phát thuốc ngoại trú hiển thị chi tiết(mz_cfmxphKiểm tra)
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>
@@ -476,7 +476,7 @@ namespace Newtouch.HIS.DomainServices
         #endregion
 
         /// <summary>
-        /// 获取收货部门
+        /// Lấy bộ phận nhận hàng
         /// </summary>
         /// <returns></returns>
         public List<DrugSpecialPropertiesVO> GetMeidicineSHBMList()
@@ -494,10 +494,10 @@ namespace Newtouch.HIS.DomainServices
             return FindList<DrugSpecialPropertiesVO>(strSql.ToString(), param).ToList();
         }
 
-        #region 修改处方
+        #region Sửa đơn thuốc
 
         /// <summary>
-        /// 归还冻结库存
+        /// Trả lại tồn kho đóng băng
         /// </summary>
         /// <param name="list"></param>
         public void ReleaseFrozenStock(List<OutpatientPrescriptionDetailBatchNumberEntity> list)
@@ -530,7 +530,7 @@ namespace Newtouch.HIS.DomainServices
         #endregion
 
         /// <summary>
-        /// 获取发药药品详细
+        /// Lấy chi tiết thuốc phát
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="operateType"></param>
@@ -582,7 +582,7 @@ AND mxph.fyyf=@YfbmCode
         }
 
         /// <summary>
-        /// 门诊发药
+        /// Phát thuốc ngoại trú
         /// </summary>
         /// <param name="cfh"></param>
         /// <returns></returns>
@@ -602,7 +602,7 @@ AND mxph.fyyf=@YfbmCode
         }
 
         /// <summary>
-        /// 获取已发处方
+        /// Lấy đơn thuốc đã phát
         /// </summary>
         /// <param name="keyWord"></param>
         /// <param name="fph"></param>
@@ -650,7 +650,7 @@ AND mxph.fyyf=@YfbmCode
         }
 
         /// <summary>
-        /// 获取发药信息
+        /// Lấy thông tin phát thuốc
         /// </summary>
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>
@@ -671,7 +671,7 @@ AND mxph.fyyf=@YfbmCode
         }
 
         /// <summary>
-        /// 门诊发药处方明细查询
+        /// Truy vấn chi tiết đơn phát thuốc ngoại trú
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="cardNo"></param>
@@ -702,7 +702,7 @@ AND mxph.fyyf=@YfbmCode
             return FindListNoLog<CfmxVO>(TSqlDispensing.mz_fy_cfmx_new, param);
         }
         /// <summary>
-        /// 已发药查询 处方信息
+        /// Truy vấn đã phát thuốc Thông tin đơn thuốc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword">cardNo or xm</param>
@@ -752,7 +752,7 @@ AND czjl.operateType=1
         }
 
         /// <summary>
-        /// 查询处方信息
+        /// Truy vấn thông tin đơn thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="fph"></param>
@@ -796,7 +796,7 @@ AND cf.lyyf=@yfbmCode
         }
 
         /// <summary>
-        /// 查询处方明细
+        /// Truy vấn chi tiết đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
@@ -844,12 +844,12 @@ INNER JOIN NewtouchHIS_Base.dbo.V_S_xt_ypsx ypsx ON ypsx.ypId=yp.ypId AND ypsx.O
         }
 
         /// <summary>
-        /// 判断是该处方是否存在
+        /// Kiểm tra đơn thuốc này có tồn tại không
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
-        /// <returns>返回有效的处方数</returns>
+        /// <returns>Trả về số đơn thuốc hiệu lực</returns>
         public int ExistEffectiveRp(string cfh, string yfbmCode, string organizeId)
         {
             const string sql =
@@ -864,7 +864,7 @@ INNER JOIN NewtouchHIS_Base.dbo.V_S_xt_ypsx ypsx ON ypsx.ypId=yp.ypId AND ypsx.O
         }
 
         /// <summary>
-        /// 根据卡号和姓名获取处方信息
+        /// Lấy thông tin đơn thuốc theo số thẻ và họ tên
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="cardNo"></param>
@@ -906,7 +906,7 @@ AND cf.jsnm>0
             where p.zt='1' and p.organizeid=@orgId", new SugarParameter[] { new SugarParameter("@orgId", orgId) });
         }
 
-        #region 药品、耗材使用情况
+        #region Thuốc、Tình hình sử dụng vật tư
         public List<YfMaterialTjVo> GetMaterialList(Pagination pagination, string orgId, string ks, string ry, string slly, DateTime kssj,
             DateTime jssj, string keyword)
         {
@@ -959,7 +959,7 @@ and sfxm.sfxmmc like '%' + @xmmc + '%'  ";
 
         #endregion
 
-        #region 门诊处方
+        #region Đơn ngoại trú
         public IList<MzcfcxList> GetMzcfList(Pagination pagination, MzcfcxVo req)
         {
             var parms = new List<SugarParameter> { };
@@ -1021,9 +1021,9 @@ where  a.zt='1' and a.OrganizeId=@orgId
         }
         #endregion
 
-        #region 电子处方信息获取病人信息
+        #region Thông tin đơn điện tử lấy thông tin bệnh nhân
         /// <summary>
-        /// 根据卡号和姓名获取处方信息
+        /// Lấy thông tin đơn thuốc theo số thẻ và họ tên
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="cardNo"></param>

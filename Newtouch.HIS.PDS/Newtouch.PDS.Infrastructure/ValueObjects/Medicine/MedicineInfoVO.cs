@@ -1,7 +1,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 本部门药品信息显示信息
+    /// Thông tin hiển thị thông tin thuốc bộ phận này
     /// </summary>
     public class MedicineInfoVO
     {
@@ -22,27 +22,27 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string syzt { get; set; }
 
         /// <summary>
-        /// 药库库存
+        /// Tồn kho kho thuốc
         /// </summary>
         public decimal? YkKcsl { get; set; }
 
         /// <summary>
-        /// 药库库位
+        /// Vị trí kho thuốc
         /// </summary>
         public string YkDw { get; set; }
 
         /// <summary>
-        /// 部门单位
+        /// Đơn vị bộ phận
         /// </summaYkDwry>
         public string deptdw { get; set; }
 
         /// <summary>
-        /// 零售价
+        /// Giá bán lẻ
         /// </summary>
         public decimal? lsj { get; set; }
 
         /// <summary>
-        /// 批发价
+        /// Giá bán buôn
         /// </summary>
         public decimal? pfj { get; set; }
 
@@ -82,11 +82,11 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string klsl { get; set; }
 
         /// <summary>
-        /// 本部门药品ID XT_YP_BMYPXX 主键
+        /// Bộ phận thuốc nàyID XT_YP_BMYPXX Khóa chính
         /// </summary>
         public string bmypId { get; set; }
         /// <summary>
-        /// 有效期
+        /// Hạn dùng
         /// </summary>
         public System.DateTime? yxq { get; set; }
     }

@@ -121,20 +121,20 @@
 </div>
 
 <script>
-    var interval = 5 * 60 * 1000; // 5分钟的毫秒数
+    var interval = 5 * 60 * 1000; // 5phânchuôngcủachútgiâysố
     $(function () {
 
         $('#main_div').height($(window).height());
         gridJSListData();
         setInterval(function () {
-            // 每隔五分钟执行一次
+            // mỗicáchnămphânchuôngthực hiệnthực hiệnmộtlần
             gridJSListData();
         }, interval);
     });
 
     function gridJSListData() {
        
-        //banner统计数据
+        //bannerthốngtínhsốdữ liệu
         $.ajax({
             type: "GET",
             url: "/DeanInquiryManage/DailyUpdates/GetJRDTBanner",
@@ -158,8 +158,8 @@
         var $gridJsList = $("#gridJSListjrdtmz");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 130,
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/DailyUpdates/GetJrdt",
             colModel: [
                 { label: 'Ngoại trú Khoa', name: 'mzks',  align: 'left' },
@@ -175,8 +175,8 @@
         var $gridJsList = $("#gridJSListmzcf");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 130,
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/DailyUpdates/GetMzcf",
             colModel: [
                 { label: 'Khoản mục', name: 'xm',align: 'left' },
@@ -197,8 +197,8 @@
         var $gridJsList = $("#gridJSListmzfy");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 130,
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/DailyUpdates/GetMzfy",
             colModel: [
                 { label: 'Chi phí Phân loại', name: 'fyfl',align: 'left' },
@@ -213,8 +213,8 @@
         var $gridJsList = $("#gridJSListzyzcl");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 130,
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/DailyUpdates/GetZyzcl",
             colModel: [
                 { label: 'Khoản mục', name: 'xm', align: 'left' },
@@ -228,8 +228,8 @@
         var $gridJsList = $("#gridJSListmzghtj");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 130,
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/DailyUpdates/GetMzghtj",
             colModel: [
                 { label: 'Loại đăng ký khám', name: 'ghlx', align: 'left' },
@@ -243,8 +243,8 @@
         var $gridJsList = $("#gridJSListzyhztj");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 130,
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/DailyUpdates/GetZyhztj",
             colModel: [
                 { label: 'Khoản mục', name: 'xm', align: 'left' },

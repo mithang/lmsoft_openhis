@@ -4,42 +4,42 @@ using System.Collections.Generic;
 namespace Newtouch.Herp.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 调价盈亏查询
+    /// Truy vấn lãi/lỗ điều chỉnh giá
     /// </summary>
     public class PriceAdjustmentProfitLossDTO
     {
         /// <summary>
-        /// 关键字
+        /// Từ khóa
         /// </summary>
         public string keyWord { get; set; }
 
         /// <summary>
-        /// 开始时间
+        /// Thời gian bắt đầu
         /// </summary>
         public DateTime startTime { get; set; }
 
         /// <summary>
-        /// 结束时间
+        /// Thời gian kết thúc
         /// </summary>
         public DateTime endTime { get; set; }
 
         /// <summary>
-        /// 查询库房
+        /// Truy vấn kho
         /// </summary>
         public string kfbm { get; set; }
 
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 是否显示零库存 1：是 0：否
+        /// Có hiển thị tồn kho bằng 0 không 1：Có 0：Không
         /// </summary>
         public string lkc { get; set; }
 
         /// <summary>
-        /// 可选库房
+        /// Kho có thể chọn
         /// </summary>
         public List<string> kfList { get; set; }
     }

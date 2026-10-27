@@ -2,7 +2,7 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 药品调价执行
+    /// Thực hiện điều chỉnh giá thuốc
     /// </summary>
     public class PriceAdjustmentProfitLossVO
     {

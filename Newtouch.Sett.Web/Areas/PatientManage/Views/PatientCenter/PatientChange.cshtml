@@ -30,9 +30,9 @@
                 <td class="formValue">
                     <input id="txt_zyh" name="txt_zyh" type="text" class="form-control form-an" placeholder="Vui lòng nhập số nhập viện" />
                 </td>
-                @*<th class="formTitle">姓名：</th>
+                @*<th class="formTitle">Họ tên：</th>
                 <td class="formValue">
-                    <input id="txt_xm" name="txt_xm" type="text" class="form-control form-an form-an-end" placeholder="请输入姓名或首拼" />
+                    <input id="txt_xm" name="txt_xm" type="text" class="form-control form-an form-an-end" placeholder="Nhập họ tên hoặc mã đầu" />
                 </td>*@
                 <td style="padding-left: 20px;">
                     <button type="button" id="btn_search" class="btn btn-primary btn-md">&nbsp;Tra cứu&nbsp;</button>
@@ -44,7 +44,7 @@
         </table>
     </div>
 </div>
-<!--患者信息 包括病历号  姓名 -->
+<!--Thông tin bệnh nhân Bao gồm số hồ sơ bệnh án  Họ tên -->
 <form id="formPatSer" style="margin:2px;margin-top:10px;">
     <div class="gridPanel">
         <table id="patGridList" rel="formPatSer"></table>
@@ -56,7 +56,7 @@
     var ywlx = $.request("ywlx");
     var zyh = "";
     var mzh = "";
-    //上一个window对象
+    //cái trước đówindowđối tượng
     var prevWindow;
     var patcenter;
     if ('@(from)' !== '') {
@@ -72,7 +72,7 @@
         obj.blh = $.request("blh");
         obj.ywlx = ywlx;
         var searInfo = new PatSearchInfo();
-        //加载数据
+        //Nạp dữ liệu
         searInfo.init(obj);
 
         //$('#txt_xm').keyupEnterEvent(function () {
@@ -82,7 +82,7 @@
             zyh = $("#txt_zyh").val();
         }
         getPatientlist();
-        //查询
+        //Tra cứu
         $("#btn_search").click(function () {
             getPatientlist();
             //$("#patGridList").jqGrid('setGridParam', {
@@ -93,7 +93,7 @@
         });
     });
     var PatSearchInfo = (function () {
-        //加载列表
+        //Tải danh sách
         var loadGrid = function (data) {
             var $gridList = $("#patGridList");
             $gridList.dataGrid({
@@ -142,7 +142,7 @@
 
         }
 
-        //加载事件
+        //Tải sự kiện
         myPatSearchInfo.prototype.init = function (data) {
             if (data.blh === "null") {
                 $("#txt_blh").val("");
@@ -154,7 +154,7 @@
         return myPatSearchInfo;
     }());
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn một dòng
     function btn_edit() {
         PatSearchConfirm();
     }
@@ -172,15 +172,15 @@
         obj.endTime = $.currentWindow().$("#js").val();
         var pat = patcenter.find(p => p.zyh == obj.zyh);
         prevWindow.GetPatQueryAjax(pat);
-        //关闭窗口
+        //đóng cửa sổ
         ReceiptCancle();
     }
-    //确定 主页面调用
+    //xác nhận Gọi từ trang chính
     function PatSearchConfirm() {
         PatDbGrid();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }

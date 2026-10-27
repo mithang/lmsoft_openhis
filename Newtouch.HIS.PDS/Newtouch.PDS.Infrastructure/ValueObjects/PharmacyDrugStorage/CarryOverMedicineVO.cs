@@ -3,82 +3,82 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 查询已结转的药品
+    /// Truy vấn thuốc đã kết chuyển
     /// </summary>
     public class CarryOverMedicineVO
     {
         /// <summary>
-        /// 结转时间
+        /// Thời gian kết chuyển
         /// </summary>
         public string Jzsj { get; set; }
 
         /// <summary>
-        /// 账期
+        /// Kỳ sổ sách
         /// </summary>
         public string zq { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 结转数量
+        /// Số lượng kết chuyển
         /// </summary>
         public int? jzsl { get; set; }
 
         /// <summary>
-        /// 结转数量 带单位
+        /// Số lượng kết chuyển kèm đơn vị
         /// </summary>
         public string jzslstr { get; set; }
 
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 频次
+        /// Tần suất
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 药厂名称/生产厂家
+        /// Tên hãng thuốc/Nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// 批发价
+        /// Giá bán buôn
         /// </summary>
         public decimal? pfj { get; set; }
 
         /// <summary>
-        /// 零售价
+        /// Giá bán lẻ
         /// </summary>
         public decimal? lsj { get; set; }
 
         /// <summary>
-        /// 批发金额
+        /// Số tiền bán buôn
         /// </summary>
         public decimal? pfze { get; set; }
 
         /// <summary>
-        /// 零售金额
+        /// Số tiền bán lẻ
         /// </summary>
         public decimal? lsze { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
     }

@@ -4,12 +4,12 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 科室发药
+    /// Phát thuốc cho khoa
     /// </summary>
     public interface IDeliveryToDepartmentDmnService
     {
         /// <summary>
-        /// 提交科室发药
+        /// Gửi phát thuốc cho khoa
         /// </summary>
         /// <returns></returns>
         string SubmitDeliveryToDepartment(SysMedicineStorageIOReceiptEntity dj, List<SysMedicineStorageIOReceiptDetailEntity> mx);

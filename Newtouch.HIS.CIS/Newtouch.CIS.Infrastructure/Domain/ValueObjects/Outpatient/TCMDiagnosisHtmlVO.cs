@@ -15,17 +15,17 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public int zdlx { get; set; }
         /// <summary>
-        /// 疑似标志
+        /// Nghi ngờCờ
         /// </summary>
         public bool ysbz { get; set; }
 
         /// <summary>
-        /// 症候编码
+        /// hội chứngMã
         /// </summary>
         public string zhCode { get; set; }
 
         /// <summary>
-        /// 症候名称
+        /// hội chứngTên
         /// </summary>
         public string zhmc { get; set; }
         /// <summary>
@@ -33,7 +33,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string icd10 { get; set; }
         /// <summary>
-        /// 中医诊断备注
+        /// Chẩn đoán YHCTGhi chú
         /// </summary>
         public string zdbz { get; set; }
     }

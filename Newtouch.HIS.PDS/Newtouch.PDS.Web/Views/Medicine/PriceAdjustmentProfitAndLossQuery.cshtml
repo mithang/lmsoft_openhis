@@ -41,8 +41,8 @@
 
 <script>
     $(function () {
-        initYfbmDdl(); //加载药房部门ddl
-        gridList(); //加载Grid
+        initYfbmDdl(); //Tải bộ phận nhà thuốcddl
+        gridList(); //Đang tảiGrid
     });
     var gridop = null;
     function gridList() {
@@ -149,14 +149,14 @@
             width: "600px",
             height: "350px",
             callBack: function (iframeId) {
-                //结果
+                //Kết quả
                 var restArr = top.frames[iframeId].GetChoosedCols();
                 if (!!!restArr || !!!restArr.length || restArr.length == 0) {
                     $.modalAlert("Vui lòng chọn cột xuất", 'error');
                     return false;
                 }
                 var isContainFilter = top.frames[iframeId].GetIsContainFilter();
-                //关闭选择窗口
+                //Đóng cửa sổ chọn
                 $.modalClose("ExcelExportChooseColumns");
                 //
                 exportCols = $.jsonWhere(exportCols, function (v) {
@@ -168,7 +168,7 @@
                     }
                     return matched;
                 });
-                //导出
+                //Xuất
                 Export(isContainFilter);
             }
         });
@@ -186,7 +186,7 @@
         //$.najax({
         //    type: "POST",
         //    url: "/Medicine/ExcelGet",
-        //    loading: $.loading("正在导出Excle文件"),
+        //    loading: $.loading("Đang xuấtExcleTệp"),
         //    data: { startTime: startTime, endTime: endTime, Srm: srm, ddlyfbm: ddlyfbm, Lkc: lkc, isContainFilter: isContainFilter, yfykmc: yfykmc, colStanWidth: "70", cols: cols },
         //    alerterror: false,
         //    success: function (res) {
@@ -201,7 +201,7 @@
         url += "&Lkc=" + lkc;
         url += "&isContainFilter=" + isContainFilter;
         url += "&yfykmc=" + yfykmc;
-        url += "&colStanWidth=" + "70";  //列宽度标准列
+        url += "&colStanWidth=" + "70";  //Cột tiêu chuẩn chiều rộng cột
         //var cols = JSON.stringify(exportCols);
         //top.$.cookie('ExportExcelCols', cols, { path: "/" });
         //url += "&cols=" + cols;

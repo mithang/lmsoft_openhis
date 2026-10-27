@@ -2,88 +2,88 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.RCIntegrateRequest
 {
     /// <summary>
-    /// 远程会诊集成请求体
+    /// xatrìnhsẽkhámtậpthànhyêu cầuthể
     /// </summary>
     public class RCIntegrateRequestEntity
     {
         /// <summary>
-        /// 平台用户唯一：医生登录系统的用户名
-        /// 必填
+        /// bìnhbànNgười dùngduy nhấtmột：Bác sĩĐăng nhậpHệ thốngcủaNgười dùngtên
+        /// bắt buộc
         /// </summary>
         public string openid { get; set; }
 
         /// <summary>
-        /// 用户名称
-        /// 必填
+        /// Người dùngTên
+        /// bắt buộc
         /// </summary>
         public string userName { get; set; }
 
         /// <summary>
-        /// 平台病人 id
-        /// 必填
+        /// bìnhbànbệnh nhân id
+        /// bắt buộc
         /// </summary>
         public string patientId { get; set; }
 
         /// <summary>
-        /// 病人就诊流水号
+        /// bệnh nhânKhám bệnhdòngchảysố
         /// </summary>
         public string series { get; set; }
 
         /// <summary>
-        /// 病人姓名
-        /// 必填
+        /// bệnh nhânHọ tên
+        /// bắt buộc
         /// </summary>
         public string patientName { get; set; }
 
         /// <summary>
-        /// 病人手机号
+        /// bệnh nhânSố điện thoại
         /// </summary>
         public string mobile { get; set; }
 
         /// <summary>
-        /// 18 位身份证号
-        /// 必填
+        /// 18  ký tựCMND/CCCDsố
+        /// bắt buộc
         /// </summary>
         public string certid { get; set; }
 
         /// <summary>
-        /// 性别 1 男 2 女
-        /// 必填
+        /// Giới tính 1 Nam 2 Nữ
+        /// bắt buộc
         /// </summary>
         public string gender { get; set; }
 
         /// <summary>
         /// yyyy-MM-dd
-        /// 必填
+        /// bắt buộc
         /// </summary>
         public string birthday { get; set; }
 
         /// <summary>
-        /// 医保类型 1 自费 2 医保
-        /// 必填
+        /// Bảo hiểm y tếLoại 1 tự chi trả 2 Bảo hiểm y tế
+        /// bắt buộc
         /// </summary>
         public string patientType { get; set; }
 
         /// <summary>
-        /// 医保卡卡号或者就诊卡卡号
+        /// Bảo hiểm y tếthẻSố thẻhoặcKhám bệnhthẻSố thẻ
         /// </summary>
         public string cardId { get; set; }
 
         /// <summary>
-        /// 机构编码
-        /// 必填
+        /// Cơ sởMã
+        /// bắt buộc
         /// </summary>
         public string organCode { get; set; }
 
         /// <summary>
-        /// 调用 pc 端指定模块:test
-        /// 必填
+        /// gọi pc đầuchỉđịnhmẫukhối:test
+        /// bắt buộc
         /// </summary>
         public string m { get; set; }
 
         /// <summary>
-        /// 调用 pc 端指定模块的某个方法:/eh.bus.web.cloud.wizard.Wizard
-        /// 必填
+        /// gọi pc đầuchỉđịnhmẫukhốicủanào đócáiPhương pháp:/eh.bus.web.cloud.wizard.Wizard
+        /// bắt buộc
         /// </summary>
         public string clz { get; set; }
     }

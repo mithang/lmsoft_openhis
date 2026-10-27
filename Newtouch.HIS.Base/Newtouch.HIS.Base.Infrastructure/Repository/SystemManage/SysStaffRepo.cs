@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// 获取机构下所以系统人员（不包括子机构）
+        /// Lấy tất cả nhân viên hệ thống thuộc tổ chức（Không bao gồm tổ chức con）
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// 获取管理人员Id列表 根据UserId
+        /// Lấy nhân viên quản lýIdDanh sách TheoUserId
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>

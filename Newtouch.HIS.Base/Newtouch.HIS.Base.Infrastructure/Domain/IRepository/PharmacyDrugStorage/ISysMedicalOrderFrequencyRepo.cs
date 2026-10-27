@@ -11,22 +11,22 @@ namespace Newtouch.HIS.Domain.IRepository
     {
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         void SubmitForm(SysMedicalOrderFrequencyEntity entity, int? yzpcId);
 
         /// <summary>
-        /// 获得所有列表
+        /// Lấy tất cả danh sách
         /// </summary>
         List<SysMedicalOrderFrequencyEntity> GetOrderFrequencyList(string orgId, string keyword = null);
 
         /// <summary>
-        /// 修改form
+        /// Sửaform
         /// </summary>
         SysMedicalOrderFrequencyEntity GetOrderFrequencyEntity(int? yzpcId, string orgId);
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         void DeleteForm(string orgId, int yzpcId);
     }

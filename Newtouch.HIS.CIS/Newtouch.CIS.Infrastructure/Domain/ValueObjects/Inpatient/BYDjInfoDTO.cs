@@ -7,12 +7,12 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Inpatient
 {
     /// <summary>
-    /// 单据内容
+    /// phiếucứnội dung
     /// </summary>
     public class BYDjInfoDTO
     {
         /// <summary>
-        /// 入库部门
+        /// Nhập khoKhoa phòng
         /// </summary>
         public string rkbm { get; set; }
         public string yfbm { get; set; }
@@ -23,149 +23,149 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string shzt { get; set; }
         public string isdeldj { get; set; }
         /// <summary>
-        /// 明细
+        /// chi tiết
         /// </summary>
         public List<DjDetailDTO> mx { get; set; }
     }
 
     /// <summary>
-    /// 单据明细
+    /// phiếucứchi tiết
     /// </summary>
     public class DjDetailDTO
     {
         /// <summary>
-        /// 申领单明细id
+        /// đăng kýlĩnhphiếuchi tiếtid
         /// </summary>
         public string sldmxId { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypdm { get; set; }
         
 
         /// <summary>
-        /// 批发价  部门单位
+        /// Giá bán buôn  Khoa phòngĐơn vị
         /// </summary>
         public string pfj { get; set; }
         /// <summary>
-        ///规格
+        ///Quy cách
         /// </summary>
         public string  gg { get; set; }
         /// <summary>
-        /// 零售价  部门单位
+        /// Giá bán lẻ  Khoa phòngĐơn vị
         /// </summary>
         public string lsj { get; set; }
 
         /// <summary>
-        /// 进价  药库单位
+        /// vàogiá  Đơn vị kho thuốc
         /// </summary>
         public string jj { get; set; }
 
         /// <summary>
-        /// 药库单位批发价
+        /// Đơn vị kho thuốcGiá bán buôn
         /// </summary>
         public string ykpfj { get; set; }
 
         /// <summary>
-        /// 药库单位零售价
+        /// Đơn vị kho thuốcGiá bán lẻ
         /// </summary>
         public string yklsj { get; set; }
 
         /// <summary>
-        /// 总金额  进价总金额
+        /// Tổng số tiền  vàogiáTổng số tiền
         /// </summary>
         public string zje { get; set; }
 
         /// <summary>
-        /// 数量 部门单位数量 与出库转化因子对应
+        /// Số lượng Khoa phòngĐơn vịSố lượng vàXuất khochuyểnhóavìcontương ứng
         /// </summary>
         public string sl { get; set; }
 
         /// <summary>
-        /// 出库部门库存  最小单位
+        /// Xuất khoKhoa phòngTồn kho  Đơn vị nhỏ nhất
         /// </summary>
         public int? ckbmkc { get; set; }
 
         /// <summary>
-        /// 出库单位（单位名称）
+        /// Xuất khoĐơn vị（Tên đơn vị）
         /// </summary>
         public string ckdw { get; set; }
 
         /// <summary>
-        /// 入库部门库存  最小单位
+        /// Nhập khoKhoa phòngTồn kho  Đơn vị nhỏ nhất
         /// </summary>
         public int? rkbmkc { get; set; }
 
         /// <summary>
-        /// 入库部门转化因子
+        /// Nhập khoKhoa phòngchuyểnhóavìcon
         /// </summary>
         public int? rkzhyz { get; set; }
 
         /// <summary>
-        /// 入库单位（单位名称）
+        /// Nhập khoĐơn vị（Tên đơn vị）
         /// </summary>
         public string rkdw { get; set; }
         public string dw { get; set; }
         /// <summary>
-        /// 出库部门转化因子
+        /// Xuất khoKhoa phòngchuyểnhóavìcon
         /// </summary>
         public int? ckzhyz { get; set; }
 
         /// <summary>
-        /// 产地
+        /// Nơi sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// 扣率
+        /// khấutỷ lệ
         /// </summary>
         public decimal? kl { get; set; }
 
         /// <summary>
-        /// 开票日期
+        /// mở票Ngày
         /// </summary>
         public string kprq { get; set; }
 
         /// <summary>
-        /// 生产日期
+        /// sinhsản xuấtNgày
         /// </summary>
         public string scrq { get; set; }
 
         /// <summary>
-        /// 退货原因
+        /// trả hàngnguyên nhân
         /// </summary>
         public string thyy { get; set; }
         /// <summary>
-        /// 药库单位批发价
+        /// Đơn vị kho thuốcGiá bán buôn
         /// </summary>
         public decimal pfjze { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
         /// <summary>
-        /// 科室编码
+        /// Mã khoa
         /// </summary>
         public string ksbm { get; set; }
         /// <summary>
-        /// 药品类别
+        /// ThuốcLoại
         /// </summary>
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn hiệu lực
         /// </summary>
         public string yxq { get; set; }
         public string zhyz { get; set; }

@@ -18,7 +18,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 {
 
     /// <summary>
-    /// 系统人员 扩展
+    /// hệthốngngườiviên Mở rộng
     /// </summary>
     [Area("SystemManage")]
 
@@ -32,12 +32,12 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取岗位人员
+        /// đượclấyvị trívịngườiviên
         /// </summary>
-        /// <param name="orgId">组织机构Id</param>
-        /// <param name="dutyCode">岗位Code</param>
-        /// <param name="ks">科室</param>
-        /// <param name="keyword">关键字 匹配人员名称或工号</param>
+        /// <param name="orgId">Tổ chứcId</param>
+        /// <param name="dutyCode">Chức vụCode</param>
+        /// <param name="ks">Khoa</param>
+        /// <param name="keyword">Từ khóa conphốingườiviêntêngọihoặccôngsố</param>
         /// <returns></returns>
 
         public IActionResult Selector()

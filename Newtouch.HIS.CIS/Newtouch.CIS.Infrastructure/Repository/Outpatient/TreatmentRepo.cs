@@ -15,7 +15,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 就诊信息
+    /// Khám bệnhthông tin
     /// </summary>
     public class TreatmentRepo : RepositoryBase<TreatmentEntity>, ITreatmentRepo
     {
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 已就诊 就诊中 列表( 已就诊： 只能查看自己名下的患者)
+        /// đãKhám bệnh Khám bệnhtrong danh sách( đãKhám bệnh： chỉcó thểXemtựtựtêndướicủaBệnh nhân)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -94,16 +94,16 @@ AND ss.DepartmentCode=jz.jzks
 		{
 			var sql = @"select * from (
 select 
-Mdtrt_ID,--医保就诊id
+Mdtrt_ID,--Bảo hiểm y tếKhám bệnhid
 PSN_NO,--
 PSN_NAME,--
-CERTNO,--身份证号
+CERTNO,--Số chứng minh nhân dân
 PSN_CERT_TYPE,--
 a.MED_TYPE,
-MZHM, --社保卡号
+MZHM, --Số thẻ bảo hiểm xã hội
 convert(varchar(20),AGE)AGE,
 convert(varchar(20),BRXB)BRXB,
-convert(varchar(50),SBXH)SBXH,--挂号内码
+convert(varchar(50),SBXH)SBXH,--Mã nội bộ đăng ký
 convert(varchar(50),BRID)BRID,
 convert(varchar(50),INSUTYPE)INSUTYPE,b.ecToken
 from [192.168.0.100].[bshrp].[dbo].[kk_1] a
@@ -121,16 +121,16 @@ left join NewtouchHIS_Sett..mz_gh b  on b.ecToken is not null and b.ecToken=a.SB
 		public IList<RegisteredInfoRespVO> GetghList(string xm, string blh, string orgid)
 		{
 			var sql = @"select 
-Mdtrt_ID,--医保就诊id
+Mdtrt_ID,--Bảo hiểm y tếKhám bệnhid
 PSN_NO,--
 PSN_NAME,--
-CERTNO,--身份证号
+CERTNO,--Số chứng minh nhân dân
 PSN_CERT_TYPE,--
 MED_TYPE,
-MZHM, --社保卡号
+MZHM, --Số thẻ bảo hiểm xã hội
 convert(varchar(20),AGE)AGE,
 convert(varchar(20),BRXB)BRXB,
-convert(varchar(50),SBXH)SBXH,--挂号内码
+convert(varchar(50),SBXH)SBXH,--Mã nội bộ đăng ký
 convert(varchar(50),BRID)BRID,
 convert(varchar(50),INSUTYPE)INSUTYPE
 from [192.168.0.100].[bshrp].[dbo].[kk_1]  
@@ -143,7 +143,7 @@ from [192.168.0.100].[bshrp].[dbo].[kk_1]
 		}
 		
 		/// <summary>
-		/// 恢复就诊
+		/// khôi phụclạiKhám bệnh
 		/// </summary>
 		/// <param name="orgId"></param>
 		/// <param name="jzId"></param>
@@ -152,7 +152,7 @@ from [192.168.0.100].[bshrp].[dbo].[kk_1]
             var entity = this.FindEntity(a => a.jzId == jzId && a.OrganizeId == orgId && a.zt == "1");
             if (entity == null)
             {
-                throw new FailedException("未查询到就诊记录，恢复就诊失败");
+                throw new FailedException("chưaTra cứuđếnKhám bệnhghi chép，khôi phụclạiKhám bệnhthất bại");
             }
             entity.jzzt = (int)EnumJzzt.Treating;
             entity.Modify();
@@ -200,7 +200,7 @@ WHERE mzh=@mzh AND OrganizeId=@OrganizeId AND zt='1'
         }
 
         /// <summary>
-        ///修改CmmPatId
+        ///SửaCmmPatId
         /// </summary>
         /// <param name="cmmPatId"></param>
         /// <param name="jzId"></param>

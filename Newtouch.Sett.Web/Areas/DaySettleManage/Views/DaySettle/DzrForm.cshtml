@@ -177,11 +177,11 @@
 <script>
 
 	function checkMoney(obj) {
-		obj.value = obj.value.replace(/[^\d.]/g, "");  //清除“数字”和“.”以外的字符
-		obj.value = obj.value.replace(/\.{2,}/g, "."); //只保留第一个. 清除多余的
+		obj.value = obj.value.replace(/[^\d.]/g, "");  //Xóa“chữ số”và“.”ký tự ngoài
+		obj.value = obj.value.replace(/\.{2,}/g, "."); //chỉ giữ lại ký tự đầu tiên. xóa phần thừa
 		obj.value = obj.value.replace(".", "$#$").replace(/\./g, "").replace("$#$", ".");
-		obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3');//只能输入两个小数
-		if (obj.value.indexOf(".") < 0 && obj.value != "") {//以上已经过滤，此处控制的是如果没有小数点，首位不能为类似于 01、02的金额
+		obj.value = obj.value.replace(/^(\-)*(\d+)\.(\d\d).*$/, '$1$2.$3');//chỉ được nhập hai chữ số thập phân
+		if (obj.value.indexOf(".") < 0 && obj.value != "") {//bằngtrênđãquaqualọc，nàynơiđiều khiểnchếcủalànhưkết quảkhôngcónhỏsốđiểm，đầuvịkhôngcó thểlàloạigiốngtại 01、02củatiềnmức
 			obj.value = parseFloat(obj.value);
 		}
 	}
@@ -234,15 +234,15 @@
 		$.loading(true, "Bắt đầu yêu cầu đối chiếu sổ sách, vui lòng chờ!!");
 
 		var dzsjinput = {
-			daycollate: $("#daycollate").val(), //对帐日 日期格式 8 非空
-			daycount: $("#daycount").val(),//对帐日中心流水号数量 数字格式 B 非空
-			totalcuraccpay: $("#totalcuraccpay").val(), //当年帐户支付总额 数字格式 A 非空
-			totalhisaccpay: $("#totalhisaccpay").val(), //历年帐户支付总额 数字格式 A 非空
-			totalcashpay: $("#totalcashpay").val(), //现金自负总额 数字格式 A 非空
-			totaltcpay: $("#totaltcpay").val(), //统筹支付总额 数字格式 A 非空
-			totaldffjpay: $("#totaldffjpay").val(), //附加支付总额 数字格式 A 非空
-			totalflzf: $("#totalflzf").val(), //分类自负总额 数字格式 A 非空
-			totalfybjsfw: $("#totalfybjsfw").val(), //非医保结算范围费用总额总额
+			daycollate: $("#daycollate").val(), //Ngày đối chiếu Định dạng ngày 8 Không rỗng
+			daycount: $("#daycount").val(),//Số lượng mã giao dịch trung tâm ngày đối chiếu Định dạng số B Không rỗng
+			totalcuraccpay: $("#totalcuraccpay").val(), //Tổng thanh toán tài khoản trong năm Định dạng số A Không rỗng
+			totalhisaccpay: $("#totalhisaccpay").val(), //Tổng thanh toán tài khoản các năm Định dạng số A Không rỗng
+			totalcashpay: $("#totalcashpay").val(), //Tổng tự trả tiền mặt Định dạng số A Không rỗng
+			totaltcpay: $("#totaltcpay").val(), //Tổng thanh toán điều phối Định dạng số A Không rỗng
+			totaldffjpay: $("#totaldffjpay").val(), //Tổng thanh toán thêm Định dạng số A Không rỗng
+			totalflzf: $("#totalflzf").val(), //Tổng tự trả theo phân loại Định dạng số A Không rỗng
+			totalfybjsfw: $("#totalfybjsfw").val(), //Tổng chi phí ngoài phạm vi quyết toán không phải BHYT
 			operatorId: '@(opr.rygh)',
 			operatorName: '@(opr.UserName)',
 			hisId: "0",
@@ -331,15 +331,15 @@
     });
 	function AcceptClick(callBack) {
 		var dzsjinput = {
-			daycollate: $("#daycollate").val(), //对帐日 日期格式 8 非空
-			daycount: $("#daycount").val(),//对帐日中心流水号数量 数字格式 B 非空
-			totalcuraccpay: $("#totalcuraccpay").val(), //当年帐户支付总额 数字格式 A 非空
-			totalhisaccpay: $("#totalhisaccpay").val(), //历年帐户支付总额 数字格式 A 非空
-			totalcashpay: $("#totalcashpay").val(), //现金自负总额 数字格式 A 非空
-			totaltcpay: $("#totaltcpay").val(), //统筹支付总额 数字格式 A 非空
-			totaldffjpay: $("#totaldffjpay").val(), //附加支付总额 数字格式 A 非空
-			totalflzf: $("#totalflzf").val(), //分类自负总额 数字格式 A 非空
-			totalfybjsfw: $("#totalfybjsfw").val(), //非医保结算范围费用总额总额
+			daycollate: $("#daycollate").val(), //Ngày đối chiếu Định dạng ngày 8 Không rỗng
+			daycount: $("#daycount").val(),//Số lượng mã giao dịch trung tâm ngày đối chiếu Định dạng số B Không rỗng
+			totalcuraccpay: $("#totalcuraccpay").val(), //Tổng thanh toán tài khoản trong năm Định dạng số A Không rỗng
+			totalhisaccpay: $("#totalhisaccpay").val(), //Tổng thanh toán tài khoản các năm Định dạng số A Không rỗng
+			totalcashpay: $("#totalcashpay").val(), //Tổng tự trả tiền mặt Định dạng số A Không rỗng
+			totaltcpay: $("#totaltcpay").val(), //Tổng thanh toán điều phối Định dạng số A Không rỗng
+			totaldffjpay: $("#totaldffjpay").val(), //Tổng thanh toán thêm Định dạng số A Không rỗng
+			totalflzf: $("#totalflzf").val(), //Tổng tự trả theo phân loại Định dạng số A Không rỗng
+			totalfybjsfw: $("#totalfybjsfw").val(), //Tổng chi phí ngoài phạm vi quyết toán không phải BHYT
 		};
 		callBack(dzsjinput);
 		$.modalClose();

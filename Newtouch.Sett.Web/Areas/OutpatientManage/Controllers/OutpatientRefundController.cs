@@ -441,7 +441,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
             if (apiResp != null && apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                new NLogger().Info(string.Format("（ĐãThu phíChưa发药）Thuốcđơn thuốc变更通知PDS，Thất bại：{0}、{1}", reqObj.ToJson(), apiResp.ToJson()));
+                new NLogger().Info(string.Format("（ĐãThu phíChưaphát thuốc）Thuốcđơn thuốcthông báo thay đổiPDS，Thất bại：{0}、{1}", reqObj.ToJson(), apiResp.ToJson()));
             }
         }
 
@@ -538,7 +538,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                   "/api/ResourcesOperate/OutpatientCancelDjYpReturn", cancalreqObj);
                     if (apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
                     {
-                        AppLogger.Info(string.Format("đơn thuốcHoàn phí返还冻结库存Cập nhậtAPI同步đếnPDS，Số đơn thuốc：{0}，结果：{1}、{2}", tcfh, apiRespPush.code, apiRespPush.sub_code));
+                        AppLogger.Info(string.Format("đơn thuốcHoàn phítrả lại tồn kho bị đóng băngCập nhậtAPIđồng bộđếnPDS，Số đơn thuốc：{0}，kết quả：{1}、{2}", tcfh, apiRespPush.code, apiRespPush.sub_code));
                     }
                 }
             }
@@ -551,11 +551,11 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                            "api/Prescription/UpdateChargeTbz", reqObj);
             if (apiResp != null)
             {
-                AppLogger.Info(string.Format("đơn thuốchoàn标志Trạng tháiCập nhậtAPI同步đếnCIS，Số đơn thuốc：{0}，结果：{1}、{2}", string.Join(",", tcfh), apiResp.code, apiResp.sub_code));
+                AppLogger.Info(string.Format("đơn thuốchoàndấu hiệuTrạng tháiCập nhậtAPIđồng bộđếnCIS，Số đơn thuốc：{0}，kết quả：{1}、{2}", string.Join(",", tcfh), apiResp.code, apiResp.sub_code));
             }
             else
             {
-                AppLogger.Info(string.Format("đơn thuốchoàn标志Cập nhậtAPI同步đếnCIS，Số đơn thuốc：{0}，结果：ChưaLấy到响应，同步Thất bại", string.Join(",", tcfh)));
+                AppLogger.Info(string.Format("đơn thuốchoàndấu hiệuCập nhậtAPIđồng bộđếnCIS，Số đơn thuốc：{0}，kết quả：ChưaLấyđến phản hồi，đồng bộThất bại", string.Join(",", tcfh)));
             }
         }
 

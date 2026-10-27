@@ -9,12 +9,12 @@ using Newtouch.HIS.Domain.ValueObjects;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 内部发药申请
+    /// Đơn xin phát thuốc nội bộ
     /// </summary>
     public interface IApplyDmnService
     {
         /// <summary>
-        /// 提交内部发药申请
+        /// Gửi đơn xin phát thuốc nội bộ
         /// </summary>
         /// <param name="sysMedicineRequisitionEntity"></param>
         /// <param name="sysMedicineRequisitionDetailEntities"></param>
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string SubmitApply(SysMedicineRequisitionEntity sysMedicineRequisitionEntity, List<SysMedicineRequisitionDetailEntity> sysMedicineRequisitionDetailEntities);
 
         /// <summary>
-        /// 获取申领单主信息
+        /// Lấy thông tin chính đơn lĩnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="ffzt"></param>
@@ -31,12 +31,12 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <param name="endTime"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeid"></param>
-        /// <param name="slbm">申领部门</param>
+        /// <param name="slbm">Bộ phận lĩnh</param>
         /// <returns></returns>
         IList<ApplyMainVEntity> GetApplyMainInfo(Pagination pagination, int ffzt, string djh, DateTime startTime, DateTime endTime, string yfbmCode, string organizeid, string slbm = "");
 
         /// <summary>
-        /// 获取申领单明细
+        /// Lấy chi tiết đơn lĩnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sldId"></param>
@@ -45,36 +45,36 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<ApplyDetailVEntity> GetApplyDetails(Pagination pagination, string sldId, string organizeid);
 
         /// <summary>
-        /// 获取申领出库明细
+        /// Lấy chi tiết xuất kho theo đơn lĩnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sldIds"></param>
-        /// <param name="yfbmCode">当前部门</param>
+        /// <param name="yfbmCode">Bộ phận hiện tại</param>
         /// <param name="organizeid"></param>
         /// <returns></returns>
         IList<ApplyOutStockVEntity> GetApplyOutStockDetail(Pagination pagination, string sldIds, string yfbmCode, string organizeid);
 
         /// <summary>
-        /// 修改申领单发放状态
+        /// Sửa trạng thái phát đơn lĩnh
         /// </summary>
         /// <param name="sldId"></param>
-        /// <param name="ffzt">目标状态</param>
+        /// <param name="ffzt">Trạng thái đích</param>
         /// <param name="organizeid"></param>
         /// <returns></returns>
         string UpgradeStatus(string sldId, int ffzt, string organizeid);
 
         /// <summary>
-        /// 提交申领发药 以申领单为原子，结果只有两种 1.全部成功 2.全部失败   没有成功一半的情况 
+        /// Gửi phát thuốc theo đơn lĩnh Lấy đơn lĩnh làm nguyên tử，Kết quả chỉ có hai loại 1.Tất cả thành công 2.Tất cả thất bại   Không có trường hợp thành công một nửa 
         /// </summary>
-        /// <param name="group">同一申领单发药信息</param>
-        /// <param name="source">全部发药信息</param>
+        /// <param name="group">Thông tin phát thuốc của cùng một đơn lĩnh</param>
+        /// <param name="source">Tất cả thông tin phát thuốc</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
         /// <returns></returns>
         string SubmitAppOutStock(List<ApplyOutStockVEntity> group, List<ApplyOutStockVEntity> source, string organizeId, string userCode);
 
         /// <summary>
-        /// 根据单据ID获取出入库单据明细
+        /// Theo chứng từIDLấy chi tiết chứng từ xuất nhập kho
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="djlx"></param>

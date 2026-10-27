@@ -8,7 +8,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Repository
 {
     /// <summary>
-    /// 门诊预约挂号
+    /// Ngoại trúđặt hẹnđăng ký khám
     /// </summary>
     public class MzyyghRepo : RepositoryBase<MzyyghEntity>, IMzyyghRepo
     {
@@ -17,7 +17,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 根据ID删除已预约挂号
+        /// TheoIDXóađãđặt hẹnđăng ký khám
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -30,7 +30,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 赴约
+        /// 赴hẹn
         /// </summary>
         /// <param name="id"></param>
         /// <param name="arrivalDate"></param>

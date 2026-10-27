@@ -12,7 +12,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.EMR
 
     }
     /// <summary>
-    /// 出入院诊断
+    /// Chẩn đoán vào/ra viện
     /// </summary>
     public class MedDiagListVo
     {
@@ -26,7 +26,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.EMR
 
     }
     /// <summary>
-    /// 病历文书tree
+    /// Văn bản bệnh ántree
     /// </summary>
     public class MedRecordTree 
     {

@@ -2,7 +2,7 @@
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
 
-    //医保所属地，区分系统将执行何处医保逻辑
+    //Nơi quản lý BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
     var opr = OperatorProvider.GetCurrent();
 }
@@ -22,7 +22,7 @@
 </ul>
 
 <div id="myTabContent" class="tab-content">
-    @*医保病人数据上传  *@
+    @*y tếbảo hiểmbệnhngườisốdữ liệutrênchuyển  *@
     <div class="tab-pane fade in active" id="ybbrsjsc">
         <div class="panel panel-default">
             <div class="panel-heading navb-bg">
@@ -90,7 +90,7 @@
             <div id="gridPager"></div>
         </div>
     </div>
-    @*自费病人数据上传  *@
+    @*tựphíbệnhngườisốdữ liệutrênchuyển  *@
 <div class="tab-pane fade" id="zfbrsjsc">
     <div class="panel panel-default">
         <div class="panel-heading navb-bg">
@@ -225,7 +225,7 @@
         });
     }
 
-    //回车事件
+    //sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -333,8 +333,8 @@
             $.modalAlert("Chưa chọn bản ghi nào", "warning");
             return;
         }
-        //if (seleRow.zybz == '已出院') {
-        //    $.modalAlert("患者已出院", "error");
+        //if (seleRow.zybz == 'Đã xuất viện') {
+        //    $.modalAlert("Bệnh nhân đã xuất viện", "error");
         //    return;
         //}
         else if (seleRow.zybz == '作废记录') {
@@ -348,14 +348,14 @@
         return seleRow;
     }
 
-    ///科室
+    ///Khoa
     $("#ksmc").newtouchBatchFloatingSelector({
         height: 200,
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
 
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysDepartList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -379,13 +379,13 @@
             return;
         },
     });
-    ///病区
+    ///Khoa bệnh
     $("#bqmc").newtouchBatchFloatingSelector({
         height: 200,
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             var ks = $("#ksmc").attr("data-label");
             var bqlist = top.window.clients.sysWardDeptRelation.filter((item) => item.ks == ks);
@@ -415,27 +415,27 @@
         },
     });
 
-    /*自费病人上传的逻辑*/
+    /*Logic tải lên bệnh nhân tự phí*/
 
-    // 门诊和住院对应的选项
+    // ngoại trúkhámvànhập việnviệnđốiphảicủachọnhạng
     var mzOptions = [
-        { value: '4205', text: '【4205】Bệnh nhân tự phí Ngoại trú医 thông tin tải lên' },
-        { value: '4206', text: '【4206】Bệnh nhân tự phí Ngoại trú医 thông tin Xóa' },
+        { value: '4205', text: '【4205】Tải lên thông tin y tế ngoại trú của bệnh nhân tự phí' },
+        { value: '4206', text: '【4206】Xóa thông tin y tế ngoại trú của bệnh nhân tự phí' },
         { value: '4203', text: '【4203】Hoàn thành tải lên thông tin khám và chi tiết phí của bệnh nhân tự trả' },
         { value: '4201', text: '【4201】Tải lên thông tin chi tiết phí bệnh nhân tự trả (đã bỏ)' }
     ];
 
     var zyOptions = [
-        //{ value: '4201A', text: '【4201A】自费病人住院费用明细信息上传' },
+        //{ value: '4201A', text: '【4201A】tựphíbệnhngườinhập việnviệnphídùngrõchi tiếtthông tintintrênchuyển' },
         { value: '4202', text: '【4202】Bệnh nhân tự phí Nhập viện khám và Thông tin chẩn đoán tải lên' },
         { value: '4204', text: '【4204】Bệnh nhân tự phí Chi tiết phí nhập viện Xóa' },
         { value: '4203', text: '【4203】Hoàn thành tải lên thông tin khám và chi tiết phí của bệnh nhân tự trả' },
         { value: '4201', text: '【4201】Tải lên thông tin chi tiết phí bệnh nhân tự trả (đã bỏ)' }
     ];
-    // 根据选中的值动态更新选项
+    // căndữ liệuchọntrongcủagiá trịđộngtrạng tháihơnmớichọnhạng
     function updateZfscselOptions(options) {
         var zfscsel = document.getElementById('zfscsel');
-        zfscsel.innerHTML = ''; // 清空现有选项
+        zfscsel.innerHTML = ''; // xóarỗnghiệncóchọnhạng
 
         options.forEach(function (option) {
             var opt = document.createElement('option');
@@ -445,7 +445,7 @@
         });
     }
 
-    // 监听门诊/住院选择框的变化
+    // giám sátnghengoại trúkhám/nhập việnviệnchọnchọnkhungcủađổihóa
     document.getElementById('zflxscsel').addEventListener('change', function () {
         var selectedValue = this.value;
         if (selectedValue === 'mz') {
@@ -457,13 +457,13 @@
     });
 
     $(function () {
-        // 初始默认选择门诊
+        // đầubắt đầumặc địnhnhậnchọnchọnngoại trúkhám
         updateZfscselOptions(mzOptions);
         gridJSListData()
     })
 
 
-    //获取列表的查询条件
+    //đượclấycộtbảngcủatratra cứudònghạng
     function getSearchPostData() {
         var zflx = $("#zflxscsel").val();
         var xm = $("#txtxm").val();
@@ -477,12 +477,12 @@
 
     };
 
-    //查询结算信息列表
+    //tratra cứukếttínhthông tintincộtbảng
     function gridJSListData() {
         var zflx = $("#zflxscsel").val();
         var gridSort = 'CreateTime asc';
         if (zflx === 'mz') {
-            $('.zyzfgridPanel').hide();  // 隐藏 zyzfgridPanel
+            $('.zyzfgridPanel').hide();  // ẩn zyzfgridPanel
             $('.mzzfgridPanel').show();
             var $gridJsList = $("#mzzfgridList");
             $gridJsList.dataGrid({
@@ -527,7 +527,7 @@
                 viewrecords: true,
             });
         } else if (zflx === 'zy') {
-            $('.mzzfgridPanel').hide();  // 隐藏 mzzfgridPanel
+            $('.mzzfgridPanel').hide();  // ẩn mzzfgridPanel
             $('.zyzfgridPanel').show();
             var $gridJsList = $("#zyzfgridList");
             $gridJsList.dataGrid({
@@ -584,7 +584,7 @@
         }
     }
 
-    //查询
+    //Tra cứu
     $("#btn_zfsearch").click(function () {
         sxGridJSListData()
     });

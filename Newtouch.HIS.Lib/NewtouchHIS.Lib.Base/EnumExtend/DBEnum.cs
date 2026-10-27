@@ -3,31 +3,31 @@
 namespace NewtouchHIS.Lib.Base.EnumExtend
 {
     /// <summary>
-    /// 多租户
+    /// Đa thuê bao
     /// </summary>
     public enum DBEnum
     {
-        [Description("后台管理数据库")]
+        [Description("Cơ sở dữ liệu quản lý hậu trường")]
         BaseDb = 1,
-        [Description("结算系统数据库")]
+        [Description("Cơ sở dữ liệu hệ thống quyết toán")]
         SettDb = 2,
-        [Description("医护协同数据库")]
+        [Description("Cơ sở dữ liệu phối hợp y tế - điều dưỡng")]
         CisDb = 3,
-        [Description("药房药库数据库")]
+        [Description("Cơ sở dữ liệu nhà thuốc - kho thuốc")]
         PdsDb = 4,
-        [Description("电子病历系统数据库")]
+        [Description("Cơ sở dữ liệu hệ thống bệnh án điện tử")]
         EmrDb = 5,
-        [Description("病案系统数据库")]
+        [Description("Cơ sở dữ liệu hệ thống bệnh án")]
         MrmsDb = 6,
-        [Description("质控系统数据库")]
+        [Description("Cơ sở dữ liệu hệ thống kiểm soát chất lượng")]
         MrQcDb = 7,
-        [Description("统一平台数据库")]
+        [Description("Cơ sở dữ liệu nền tảng thống nhất")]
         UnionDb = 8,
-        [Description("手术管理系统")]
+        [Description("Hệ thống quản lý phẫu thuật")]
         OrDb = 9,
-        [Description("物资耗材管理系统")]
+        [Description("Hệ thống quản lý vật tư tiêu hao")]
         HerpDb = 10,
-        [Description("接口数据库")]
+        [Description("Cơ sở dữ liệu giao diện")]
         InterfaceDb = 11,
     }
 

@@ -6,74 +6,74 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 供应商联系人
+    /// Người liên hệ nhà cung cấp
     /// </summary>
     [SugarTable("gys_contacts")]
     public class GysContactsEntity : IEntity<GysContactsEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chức Id（Bệnh viện có nghiệp vụ cụ thể）
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 联系人姓名
+        /// Tên người liên hệ
         /// </summary>
         public string contactName { get; set; }
 
 		/// <summary>
-        /// 供应商ID
+        /// Nhà cung cấp ID
         /// </summary>
         public string supplierId { get; set; }
 
         /// <summary>
-        /// 手机
+        /// Điện thoại di động
         /// </summary>
         public string telphone { get; set; }
 
         /// <summary>
-        /// 职责
+        /// Chức trách
         /// </summary>
         public string duties { get; set; }
 
         /// <summary>
-        /// 固话
+        /// Điện thoại cố định
         /// </summary>
         public string phone { get; set; }
 
         /// <summary>
-        /// 邮箱
+        /// Email
         /// </summary>
         public string email { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人	
+        /// Người sửa đổi cuối	
         /// </summary>
         public string LastModifierCode { get; set; }
     }

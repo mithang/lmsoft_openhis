@@ -6,102 +6,102 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 物资_调价损益
+    /// Vật tư_Chênh lệch điều chỉnh giá
     /// </summary>
     [SugarTable("wz_priceAdjustmentProfitAndLoss")]
     public class WzPriceAdjustmentProfitAndLossEntity : IEntity<WzPriceAdjustmentProfitAndLossEntity>
     {
         /// <summary>
-        /// 主键 调价损益序号
+        /// Khóa chính Số thứ tự chênh lệch điều chỉnh giá
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public string TjsyId { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chức Id（Bệnh viện có nghiệp vụ cụ thể）
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 库房ID
+        /// Kho ID
         /// </summary>
         public string warehouseId { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô hàng
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 修改类型
+        /// Loại sửa đổi
         /// </summary>
         public DateTime tjsj { get; set; }
 
         /// <summary>
-        /// 调价文件
+        /// Tệp điều chỉnh giá
         /// </summary>
         public string tjwj { get; set; }
 
         /// <summary>
-        /// 当时数量
+        /// Số lượng lúc đó
         /// </summary>
         public int dssl { get; set; }
 
         /// <summary>
-        /// 原零售价
+        /// Giá bán lẻ gốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal ylsj { get; set; }
 
         /// <summary>
-        /// 新零售价
+        /// Giá bán lẻ mới
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal xlsj { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 零售价调价利润
+        /// Lợi nhuận điều chỉnh giá bán lẻ
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal lsjtjlr { get; set; }
         
         /// <summary>
-        /// 状态  0:作废；1.有效
+        /// Trạng thái  0:Hủy bỏ；1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa đổi cuối
         /// </summary>
         public string LastModifierCode { get; set; }
     }

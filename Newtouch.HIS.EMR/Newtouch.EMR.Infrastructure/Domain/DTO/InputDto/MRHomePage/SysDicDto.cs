@@ -20,12 +20,12 @@ namespace Newtouch.EMR.Domain.DTO.InputDto.MRHomePage
     {
         public string Id { get; set; }
         /// <summary>
-        /// 是否选中
+        /// Có được chọn hay không
         /// </summary>
         public int ischeck{get;set;}
     }
     /// <summary>
-    /// 中医症候
+    /// Chứng hậu Đông y
     /// </summary>
     public class SysDiagZyzh
     {

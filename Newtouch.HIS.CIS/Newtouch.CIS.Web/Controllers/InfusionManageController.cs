@@ -21,7 +21,7 @@ using NewtouchHIS.Lib.Framework.Attributes;
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
-    /// 输液管理 移动端
+    /// truyền dịchQuản lý chuyểnđộngđầu
     /// </summary>
     public class InfusionManageController : ControllerBase
     {
@@ -35,7 +35,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 输液信息查询
+        /// truyền dịchthông tinTra cứu
         /// </summary>
         /// <param name="tags"></param>
         /// <param name="organizeId"></param>

@@ -483,3 +483,102 @@ as 000000; all viewed personally by the verifier):
   + APIs (5320/5331/5332/5333/5334/5335/5336/5337) + center (8015/8016).
 
 - Role screenshots 2026-10-27 (admin 000000 only): 1009 PNGs in shots-roles/ across all 11 Web apps; full coverage table in roles-shots-progress.md (per-app progress files alongside).
+
+## Soát tiếng Trung thư mục Lib dùng chung (Newtouch.HIS.Lib) — 2026-10-27
+- Phạm vi: toàn bộ Newtouch.HIS.Lib, 106 file .cs (13.842 dòng, không có .cshtml/.js/.resx trong Lib).
+  Tất cả file .cs đều UTF-8 có BOM, không file nào mập mờ encoding, không chuyển đổi encoding.
+  Snapshot trước sửa lưu tại /tmp/lib-cjk-before.txt; backup bản gốc các file đã đổi tại /tmp/lib-backup/.
+- Trước sửa: 1.576 dòng chứa CJK, 10.648 ký tự CJK. Sau sửa: còn 4 dòng CJK, tất cả đều là keeps
+  (xem dưới). Số dòng mỗi file không đổi so với snapshot (đối chiếu 106/106 file, 0 lệch);
+  diff với backup cho thấy mọi dòng thay đổi đều là dòng chứa CJK gốc, cộng thêm 6 dòng chỉ đổi
+  dấu hai chấm toàn giác ： thành : (không chứa ký tự CJK, không đụng token code).
+- Đã đổi: 94 file, 1.578 dòng. Trong đó: 211 chuỗi literal chứa CJK đã dịch sang tiếng Việt có dấu
+  (154 literal [Description(...)] hiển thị trên UI/dropdown + 57 message lỗi, exception, validation,
+  log) và 1.363 dòng comment/doc XML/region đã dịch. Không build, không khởi động app, không
+  commit, không ghi database, không copy DLL, không sửa bản sao Lib trong Center, không sửa
+  his-dll-common, không sửa file ngoài Lib (git status của Lib = đúng 94 file trên).
+- Đếm CJK trước/sau theo subproject (dòng chứa CJK): DrgGroup.chs_drg_10 0→0; chs_drg_11 16→0;
+  wuhan_2022 16→0; Lib.Base 730→2 (keeps); Lib.Common 138→0; Lib.DataBaseSvr 14→0;
+  Lib.Redis 374→2 (keeps); Lib.Services 288→0.
+- Keeps (không sửa, kèm lý do):
+  * Lib.Base/Extension/JsonExtensions.cs:2 và Utilities/Json/LimitPropsContractResolver.cs:2 —
+    "* Copyright © 2023 Newtouch 版权所有": dòng bản quyền của vendor, giữ nguyên.
+  * Lib.Redis/RedisCoreEx.cs:2083-2084 — ghi chú bản quyền bài viết CSDN của tác giả "牛奶咖啡13"
+    và link gốc blog.csdn.net: trích dẫn tác quyền bên thứ ba, dịch sẽ sai lệch nguồn.
+  * Lib.Base/Dictionary/city.json (3.443 dòng CJK): từ điển dữ liệu địa danh hành chính Trung Quốc
+    (tỉnh/thành/quận) — dữ liệu tra cứu, dịch sẽ làm sai khớp mã địa danh.
+  * 28 file .dat DRG (DATA/ + ICD/ trong 3 thư mục DrgGroup.*): tên bệnh/chẩn đoán/phẫu thuật và
+    tên nhóm DRG chuyên môn — dữ liệu đầu vào của engine nhóm DRG, dịch sẽ phá khớp mã ICD/DRG.
+  * File .csproj/.props/.targets: không chứa CJK (đã kiểm tra), thuộc nhóm project nên ngoài diện sửa.
+  * Không có chuỗi logic/so sánh, câu SQL, giá trị config hay tiền tố số chứng từ nào chứa CJK trong
+    Lib (đã grep kiểm tra: mọi CJK đều nằm trong comment hoặc string literal hiển thị/message);
+    các mô tả enum [Description(...)] được dịch vì chúng chỉ dùng để hiển thị dropdown qua
+    GetDescription()/getEnumNameValueDescInfo, không dùng để so sánh với dữ liệu DB.
+  * Các ký tự ①-⑳ trong header RedisCoreEx đã chuyển thành (1)-(20); dấu toàn giác còn lại duy
+    nhất nằm trong 2 dòng keep CSDN.
+- Dữ liệu tiếng Trung từ database quan sát được (không sửa code để che, chờ user quyết ghi DB):
+  * Tên hiển thị lấy từ bảng từ điển HIS (vd: đơn vị thuốc xt_ypdw mà ClinicEnum ghi chú
+    "对应 HIS:[xt_ypdw]"): nếu UI đọc tên từ DB thì vẫn hiện tiếng Trung dù Description enum đã Việt hóa.
+  * Tên module/quyền hệ thống lưu trong DB (bằng chứng ngoài Lib: Base app so sánh
+    p.Name == "系统管理"/"角色管理"...): các chuỗi này thuộc worker app/Base, không thuộc Lib.
+  * Nội dung DRG/city nêu trên: nếu hiển thị lên UI thì vẫn là tiếng Trung do dữ liệu gốc.
+- Việc còn lại cho giai đoạn đồng bộ sau (không thuộc worker này): build lại các app dùng Lib
+  (cả ProjectReference lẫn HintPath tới his-dll-common/Net6) để DLL nhận bản dịch; worker này
+  không copy DLL đi đâu theo đúng giao việc.
+
+## Center parity audit 2026-10-27 (worker Center, không commit/push, không ghi DB)
+
+- Đối chiếu source với gốc V2.2 qua `git show V2.2:` (không dùng working-copy dich-tieng-viet):
+  file .cs 338/338 khớp đường dẫn; action live AuthCenter 5 + WebAPI.Manage 121 = 126
+  (cộng 5 method bị comment-out sẵn ở cả gốc lẫn port: RemoteTreated.GotoMeeting,
+  LIS.HisPatientRequestQuery, DrugStorage.DrugStorageQueryAsync, Booking.InpatientBaseInfo,
+  SysUser.GetUserAsync — tổng đếm thô 131 cả hai bên); property 3102/3102 khớp tên;
+  route attribute 0 file lệch; tham số action 0 file lệch. Subproject chia sẻ
+  (Domain/DomainService/Repository/Services/Base.*): 266 file, 2798 property.
+- MÀN HÌNH: N/A — 0 .cshtml cả gốc lẫn port. Thay bằng route GET: chỉ 2 endpoint
+  HttpGet thật (SysNotice PushMsg, getmsg/{nick}/{id}, SignalR test, khớp gốc);
+  getmsg không token → envelope HttpStatus 401 "Xác thực token thất bại:".
+- FIX DUY NHẤT (phạm vi Center): DRG engine. Trước audit, DrgGroupByMedRecord với
+  record hợp lệ → 20000 "type initializer for 'drg_group.Base' threw",
+  DirectoryNotFoundException DATA/SS_VALID.dat (engine nhị phân đọc bảng từ DATA/
+  ở thư mục gốc app, nhưng source chỉ có DATA/<version>/DATA/*.dat và không gì
+  copy ra output). Fix: thêm vào NewtouchHIS.WebAPI.Manage.csproj Content copy
+  DATA/chs_drg_11/DATA/*.dat → DATA/ output (PreserveNewest) + build Release 0 lỗi
+  + restart 8016 (PID cũ 3960 → 30182 → 30436 sau build; 8015 PID 3912 không động).
+  Sau fix, cùng record mẫu trong comment của controller → 10000, drg HC15, mdc MDCH,
+  adrg HC1. Lưu ý: message engine trả vẫn là tiếng Trung từ file .dat dữ liệu gốc
+  (VD "胆总管结石伴胆管炎") — đây là output dữ liệu, không phải chuỗi UI, không dịch
+  (dịch .dat sẽ phá khớp mã). Version wuhan_2022 CHƯA live-test: engine chỉ đọc một
+  DATA/ gốc nên một thời điểm chỉ một version chiếm DATA/ (đổi version = đổi bộ file
+  lúc deploy, không phải sửa code); config mặc định là chs_drg_11.
+- Kiểm chứng lại 5 mục cũ (đều KHÔNG hồi quy): (1) Sett proxy: route
+  api/Outpatient/OutpatientRegist TỒN TẠI trên 8016 nhưng proxy tới SettHttpUrl —
+  config đang chạy (Development) là localhost:17361 (appsettings.json là 7002, cả hai
+  đều chết, ss không có listener), probe → 20000 "Connection refused (localhost:17361)";
+  33/33 action Sett (28) + OrderCenter (5) đều proxy kiểu này, code khớp gốc 100% —
+  host Sett-API gốc là Newtouch.HIS.Sett.API (api/OutpBook/BookingESB, api/OrderCenter,
+  api/PatientAnon), chưa từng được port thành host; KHÔNG bịa host mới → quyết định
+  còn lại cho người dùng (port Sett.API thành host mới hay để hỏng). CIS gọi đúng
+  8016 qua SiteConmonAPIHost = SiteApiManageHost. (2) DRG: xem fix trên; cổng
+  validation vẫn đúng (null data → 40004, list rỗng → version required).
+  (3) GetAppToken MRQC/CIS/EMR → 10000 + JWT thật; unknown NOPE → 40004 tiếng Việt;
+  MsgQueue NoticeQuery Bearer → 40004 "Không tìm thấy dữ liệu khả dụng"; no-token →
+  401 "Xác thực token thất bại:"; MedicalCenterPatInfo Bearer → 10000, 1 dòng thật
+  (Xm "阿炳" là dữ liệu DB, ngoài phạm vi); DoctorMeetingApply applyId giả → 40004
+  cổng validation, không ghi; thiếu usercode → 20000 "Mã nhân viên không được để trống".
+  (4) Config cũ còn nguyên: AuthCenter HIS.BaseAPI Domain 8017 → 127.0.0.1:7001;
+  RedisConfig "Connection" đúng cả 2 host; Top_OrganizeId cần ghi chính xác lại:
+  AuthCenter appsettings.json = 6d5752a7 (đúng cho login: Sys_User.TopOrganizeId đều
+  là 6d5752a7), 8016 đang chạy (Development) = d8ee85f8 (đúng cho SysOrg: org duy nhất
+  trong demo DB là 6d5752a7 với TopOrganizeId = d8ee85f8; GetOrgList live trả 1 org
+  "Benh vien Newtouch HIS") — cùng một key phục vụ 2 ngữ nghĩa khác nhau nên KHÔNG
+  đồng bộ 2 file thành một giá trị; 8016 appsettings.json (không chạy) = 6d5752a7
+  là lệch tiềm ẩn nếu chạy Production, nhưng launcher ghim Development nên không sửa
+  để khỏi phá luồng SysOrg đang chạy đúng. (5) GetOpenId: grep toàn Center port = 0,
+  `git grep` gốc V2.2 trong WebAPI.Manage = 0 — xác nhận không tồn tại, không bịa.
+- Ghi nhận khác: log authcenter.log còn 50 dòng chứa JWT (hành vi built-in, không sửa
+  theo giao việc); module API GetToken vẫn stub (MRQC API 5320: không Token →
+  40004 GETTOKEN_DISABLED, không bật lại); không sửa source Lib, không copy DLL nào
+  vào his-dll-common/Net6; không ghi DB (mọi probe ghi chỉ tới cổng validation hoặc
+  downstream chết; sqlcmd chỉ SELECT); không commit, không push; port 8015/8016 ổn
+  định cuối audit. Không có ảnh UI (Center API thuần) — bằng chứng là response live.

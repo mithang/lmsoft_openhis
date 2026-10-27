@@ -63,7 +63,7 @@
                     <input id="sfxmCode" type="text" style="display:none;" class="form-control" />
                     <input id="sfdlCode" type="text" style="display:none;" class="form-control" />
                     <input id="sfdlmc" type="text" style="display:none;" class="form-control" />
-                    <!-- 医嘱类型 2项目 1药品 -->
+                    <!-- Kiểu y lệnh 2Mục 1Thuốc -->
                     <input id="yzlx" type="text" style="display:none;" class="form-control" />
                     <input id="yfdm" type="text" style="display:none;" class="form-control" />
                     <input id="zfbl" type="text" style="display:none;" class="form-control" />
@@ -161,7 +161,7 @@
         $('#zyh').val(zyh);
         gridListData();
     });
-    //加载收费项目
+    //tảiMục thu phí
     function initControl() {
         $.ajax({
             url: "/NurseManage/OrderExecution/GetlsorcqyzData",
@@ -204,7 +204,7 @@
         //});
 
     }
-    //仅清除输入域的内容
+    //chỉxóanhậplĩnh vựccủanội dung
     function clearJZInfo() {
         newtouch_globalevent_f4(null, {
             container: "#BookKeep",
@@ -212,7 +212,7 @@
         });
     }
 
-    //删除其中一条数据
+    //Xóacủa nótrongmột dòngDữ liệu
     function delData() {
         var $gridList = $("#gridList");
         var id = $gridList.jqGrid("getGridParam", "selrow");
@@ -227,10 +227,10 @@
                 }
             }
             if (matchedIndex === -1) {
-                return; //应该是异常
+                return; //ứngCóNgoại lệ
             }
-            xmjf.remove(matchedIndex);   //移除新记账
-            ////删除医嘱或停止医嘱
+            xmjf.remove(matchedIndex);   //loại bỏmớighisổ
+            ////XóaY lệnhhoặcDừngY lệnh
             //$.najax({
             //    url: "/NurseManage/OrderExecution/DeleteOrder",
             //    data: { yzxz: rowData.yzxz, yzh: yzh, zh: zh, ItemFeeVO: xmjf },
@@ -238,7 +238,7 @@
             //    type: "POST",
             //    //async: false,
             //    success: function (data) {
-            //        if (data.message == "保存成功！") {
+            //        if (data.message == "Lưu thành công！") {
             //            $.modalAlert(data.message, 'success');
             //        }
             //        else {
@@ -256,13 +256,13 @@
         }
     }
 
-    //重新绑定grid
+    //lạigắngrid
     function fillDataToGrid() {
         $('#gridList').jqGrid("clearGridData");
         $("#gridList").newtouchLocalDataGrid(null, xmjf);
     }
 
-    //绑定grid
+    //gắngrid
     function gridListData() {
         var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
@@ -335,7 +335,7 @@
 
 
 
-    //保存操作
+    //Lưu thao tác
     function btn_Save() {
         if ($("#xm").html() == "" && $("#zyh").val() == "") {
             $.modalAlert("Vui lòng chọnBệnh nhânvà nhấpTra cứu!", 'error');
@@ -387,13 +387,13 @@
         }
         var newRowData = getEditRowData();
         if (!(checkEditingRowData(newRowData))) {
-            //数据是否完善，检查必填项
+            //Dữ liệuCóKhônghoàn thiện，Kiểm trabắt buộc mục
             return;
         }
 
         newRowData.newid = Math.random().toString() + new Date().getMilliseconds();
 
-        xmjf.unshift(newRowData);   //作为新项添加 //”数组最前端“
+        xmjf.unshift(newRowData);   //làmlàmới mụcThêm //”sốnhómnhấttrướcđầu“
         fillDataToGrid();
         clearJZInfo();
 
@@ -401,7 +401,7 @@
     }
 
     $('#sl').keydownEnterEvent(function (event) {
-        if ($('#sl').hasClass('form-an-cur')) { //缺陷-由上一个enter过来的
+        if ($('#sl').hasClass('form-an-cur')) { //thiếu陷-domột cái trướcenterquađếncủa
             $('#sl').removeClass('form-an-cur')
             return;
         }
@@ -417,7 +417,7 @@
     $('#pcmc').keydownEnterEvent(function (event) {
         //$('#btn_bottombutton_f2').trigger('click');
     });
-    //请求 编辑 行
+    //yêu cầu Sửa dòng
     function gridEditRow(rowid) {
         if (rowid) {
             var rowData = $("#gridList").jqGrid('getRowData', rowid);
@@ -426,12 +426,12 @@
                     return v && v.newid == rowData.newid;
                 });
                 if (!rowDataArr || rowDataArr.length == 0) {
-                    return; //为什么没找到
+                    return; //làgìsaokhôngtìmđến
                 }
                 rowData = rowDataArr[0];
-                //通过rowData.newid从对象数组中取出该行数据
-                editingNewid = rowData.newid;    //正在修改的行
-                //序列化至编辑域中
+                //thông quarowData.newidtừđối tượngsốnhómtronglấyradòngDữ liệu
+                editingNewid = rowData.newid;    //đangởSửacủadòng
+                //thứ tựcộthóađếnSửalĩnh vựctrong
                 $('#sl').val(rowData.sl);
                 $('#jzks').val(rowData.ksmc);
                 $('#jzks').attr('data-label', rowData.ks);
@@ -465,20 +465,20 @@
         }
     }
 
-    //修改按钮
+    //Sửa nút
     function newtouch_event_f3() {
         if (editingNewid) {
-            //提交修改
+            //GửiSửa
             var data = getEditRowData();
             if (!(checkEditingRowData(data))) {
-                //数据是否完善，检查必填项
+                //Dữ liệuCóKhônghoàn thiện，Kiểm trabắt buộc mục
                 return;
             }
             var updategoon = function () {
                 data.newid = editingNewid;
-                //检查重复项
+                //Kiểm tratrùng lặp mục
 
-                //先在xm数组中找到之
+                //trướcởxmsốnhómtrongtìmđếncủa
                 var matchedIndex = -1;
                 for (var ii = 0; ii < xmjf.length; ii++) {
                     if (xmjf[ii].newid == data.newid) {
@@ -487,17 +487,17 @@
                     }
                 }
                 if (matchedIndex == -1) {
-                    return; //应该是异常
+                    return; //ứngCóNgoại lệ
                 }
-                xmjf.remove(matchedIndex);   //移除该项
-                xmjf.unshift(data);   //作为新项添加    //”数组最前端“
+                xmjf.remove(matchedIndex);   //loại bỏ mục
+                xmjf.unshift(data);   //làmlàmới mụcThêm    //”sốnhómnhấttrướcđầu“
 
-                //重新将xm数组呈现至grid
+                //lạisẽxmsốnhómhiển thịhiệnđếngrid
                 fillDataToGrid();
 
                 clearJZInfo();
 
-                editingNewid = null;    //正在修改的行
+                editingNewid = null;    //đangởSửacủadòng
 
                 bottomButtonsReset();
 
@@ -518,16 +518,16 @@
             }
         }
         else {
-            //申请修改 获取grid当前选中的那一行
+            //Đăng kýSửa Lấygridhiện tạiĐã chọncủađómộtdòng
             var seleId = $('#gridList').jqGrid('getGridParam', 'selrow');
             if (seleId) {
-                //请求修改该行
+                //yêu cầuSửadòng
                 gridEditRow(seleId);
             }
         }
     }
 
-    //获取编辑域的对象数据
+    //LấySửalĩnh vựccủađối tượngDữ liệu
     function getEditRowData() {
         var data = {
             sl: $('#sl').val(),
@@ -565,7 +565,7 @@
         return data;
     }
 
-    //检查正在编辑的数据（待提交）的完整性
+    //Kiểm trađangởSửacủaDữ liệu（chờGửi）củaxongchỉnhtính
     function checkEditingRowData(rowData) {
         var ryrq = new Date($('#ryrq').html());
         var cyrq = new Date($('#cyrq').html());
@@ -606,7 +606,7 @@
         return false;
     }
 
-    //按钮重置
+    //NútĐặt lại
     function bottomButtonsReset() {
         $('#btn_bottombutton_f2').removeAttr('disabled');
         $('#btn_bottombutton_f3').attr('disabled', 'disabled');
@@ -628,11 +628,11 @@
             //}
         }
     });
-    //F9取消修改
+    //F9HủySửa
     function newtouch_event_f9() {
         clearJZInfo();
 
-        editingNewid = null;    //正在修改的行
+        editingNewid = null;    //đangởSửacủadòng
 
         $("#gridList").resetSelection();
 

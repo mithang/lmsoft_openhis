@@ -79,20 +79,20 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
-        //组织对应的科室下拉框加载
+        //Tải hộp thả xuống khoa tương ứng với tổ chức
         $("#OrganizeId").bind("change", function () {
             var organizeId = $(this).val();
-            //获取药房部门
+            //Lấy khoa dược
             $("#yfbmCode").bindSelect({
                 url: "/PharmacyWindow/PharmacyDepartmentList?organizeId=" + organizeId,
                 id: "yfbmCode",
                 text: "yfbmmc",
             })
-            //获取收费大类
+            //Lấy danh mục thu phí lớn
             $("#dlCode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + organizeId,
             })

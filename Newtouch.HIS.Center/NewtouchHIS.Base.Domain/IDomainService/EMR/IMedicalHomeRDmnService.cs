@@ -8,14 +8,14 @@ namespace NewtouchHIS.Base.Domain.IDomainService.EMR
     public interface IMedicalHomeRDmnService: IScopedDependency
     {
         /// <summary>
-        /// 查询Bệnh nhân病案首页
+        /// Truy vấnBệnh nhânTrang đầu bệnh án
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         Task<MedicalHomeVO> MedicalHomeQuery(string zyh, string orgId, DBEnum db = DBEnum.EmrDb);
         /// <summary>
-        /// Bệnh nhân病案首页（DRG分组格式）
+        /// Bệnh nhânTrang đầu bệnh án(DRGĐịnh dạng phân nhóm)
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

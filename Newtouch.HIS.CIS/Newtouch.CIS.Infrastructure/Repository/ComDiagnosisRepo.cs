@@ -16,15 +16,15 @@ namespace Newtouch.Repository
     public class ComDiagnosisRepo : RepositoryBase<ComDiagnosisEntity>, IComDiagnosisRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Mặc địnhHàm khởi tạosố
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFtrêndướivănNhà máy</param>
         public ComDiagnosisRepo()
             : base()
         {
 
         }
-        //获取常用诊断信息--浮层
+        //Lấythường dùngChẩn đoánthông tin--lớp nổi
         public IList<ComDiagnosisVO> GetComDiagnosis(string ys,string ks, string orgId, string type,string keyword,string lx)
         {
             try
@@ -55,10 +55,10 @@ namespace Newtouch.Repository
             }
             catch (Exception ex)
             {
-                throw new FailedException("错误信息："+ex.Message);
+                throw new FailedException("Lỗithông tin："+ex.Message);
             }
         }
-        //获取常用诊断信息--维护
+        //Lấythường dùngChẩn đoánthông tin--Bảo trì
         public IList<ComDiagnosisVO> GetComDiagnosisAdmin(string ys, string ks, string orgId, string type, string keyword, string lx)
         {
             try
@@ -89,10 +89,10 @@ namespace Newtouch.Repository
             }
             catch (Exception ex)
             {
-                throw new FailedException("错误信息：" + ex.Message);
+                throw new FailedException("Lỗithông tin：" + ex.Message);
             }
         }
-        //获取诊断记录信息
+        //LấyHồ sơ chẩn đoánthông tin
         public List<ComDiagnosisVO> GetDiagsLists(string orgId, string type, string mzh)
         {
             try
@@ -124,11 +124,11 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             catch (Exception ex)
             {
 
-                throw new FailedException("错误信息：" + ex.Message);
+                throw new FailedException("Lỗithông tin：" + ex.Message);
             }
             
         }
-        //获取诊断拼音
+        //LấyChẩn đoánPinyin
         public List<ComDiagnosisVO> Getzdpy( string zdmc, string zdbm)
         {
             try
@@ -142,11 +142,11 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             catch (Exception ex)
             {
 
-                throw new FailedException("错误信息：" + ex.Message);
+                throw new FailedException("Lỗithông tin：" + ex.Message);
             }
 
         }
-        //添加常用诊断
+        //Thêmthường dùngChẩn đoán
         public void SubmitDiag(ComDiagnosisEntity entity)
         {
             try
@@ -154,7 +154,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
                 ComDiagnosisEntity zdbm = this.FindEntity(p => p.cyzdbm == entity.cyzdbm && p.cyzdtype == entity.cyzdtype && p.ys == entity.ys);
                 if (zdbm != null)
                 {
-                    throw new FailedException("不能添加重复常用诊断");
+                    throw new FailedException("không thểThêmtrùng lặpthường dùngChẩn đoán");
                 }
                 else
                 {
@@ -167,11 +167,11 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             catch (Exception ex)
             {
 
-                throw new FailedException("错误信息：" + ex.Message);
+                throw new FailedException("Lỗithông tin：" + ex.Message);
             }
 
         }
-        //删除常用诊断
+        //Xóathường dùngChẩn đoán
         public void DelDiagnosticTemplate(string Id)
         {
             try
@@ -182,7 +182,7 @@ where jz.OrganizeId=@orgId and jz.zt='1' and jz.mzh=@mzh ");
             catch (Exception ex)
             {
 
-                throw new FailedException("错误信息：" + ex.Message);
+                throw new FailedException("Lỗithông tin：" + ex.Message);
             }
 
         }

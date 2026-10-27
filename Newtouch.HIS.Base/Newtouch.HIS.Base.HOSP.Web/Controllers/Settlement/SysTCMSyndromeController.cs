@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 {
     /// <summary>
-    /// 中医证候
+    /// Chứng hậu Đông y
     /// </summary>
     public class SysTCMSyndromeController : ControllerBase
     {

@@ -11,7 +11,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.HIS.Base.HOSP.Web.Areas.ProductManage.Controllers
 {
     /// <summary>
-    /// 出入库方式
+    /// Phương thức nhập/xuất kho
     /// </summary>
     [Area("ProductManage")]
     public class ProductCrkfsController : ControllerBase
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 获取出入库方式列表
+        /// Lấy danh sách phương thức nhập/xuất kho
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 获取出入库方式信息
+        /// Lấy thông tin phương thức nhập/xuất kho
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.ProductManage.Controllers
         }
 
         /// <summary>
-        /// 物资单位维护 表单提交
+        /// Bảo trì đơn vị vật tư Gửi biểu mẫu
         /// </summary>
         /// <param name="wzCrkfsEntity"></param>
         /// <param name="keyWord"></param>

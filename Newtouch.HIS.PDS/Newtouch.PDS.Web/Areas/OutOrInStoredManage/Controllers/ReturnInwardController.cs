@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 {
     /// <summary>
-    /// 内部发药退回
+    /// Trả lại phát thuốc nội bộ
     /// </summary>
     [Area("OutOrInStoredManage")]
     public class ReturnInwardController : ControllerBase
     {
         /// <summary>
-        /// 提交内部发药退回请求
+        /// Gửi yêu cầu trả lại phát thuốc nội bộ
         /// </summary>
         /// <returns></returns>
         [HttpPost]

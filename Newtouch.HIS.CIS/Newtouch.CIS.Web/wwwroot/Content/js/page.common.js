@@ -1,6 +1,6 @@
-//频次 通用 浮层选择器
+//Tần suất Chung lớp nổibộ chọn
 $.fn.pcFloatingSelector = function (options) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 280,
 		height: 280,
@@ -18,9 +18,9 @@ $.fn.pcFloatingSelector = function (options) {
 	$(this).frequencyNewtouchFloatingSelector(options);
 }
 
-//药品用法 通用 浮层选择器
+//Cách dùng thuốc Chung lớp nổibộ chọn
 $.fn.yfFloatingSelector = function (options) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 250,
 		height: 200,
@@ -42,20 +42,20 @@ $.fn.yfFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//收费项目 浮层（包括药品、项目，也可以非治疗项目）
+//Mục thu phí lớp nổi（góigồmThuốc、Mục，cũngcó thểlấyHạng mục không điều trị）
 $.fn.sfxmFloatingSelector = function (options) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 	    width: 1550,
 		height: 380,
 		clickautotrigger: true,
 		url: '/SystemManage/BaseData/SelectSfxmYp',
-		ajaxparameters: null,   //请指定
-		itemdbclickhandler: null,   //请指定
-		djDecimalPlaces: 2,  //单价精度 默认2
-		searchType: null,   //仅控制列显隐，不参与筛选//检索目标 "yp,sfxm"、"yp"、"sfxm"、"yp.kc"、"sfxm.dwjls"、"yp,sfxm.dwjls"、"yp.kc,sfxm"、"yp.kc,sfxm.dwjls"
-		showColModel: null,   //可指定 [{name:;widthratio:;},{name:;widthratio:;}] widthratio可选
-		ypkccbjc: true,    //药品库存初步检查   是否被控制 是否库存0
+		ajaxparameters: null,   //vui lòngchỉđịnh
+		itemdbclickhandler: null,   //vui lòngchỉđịnh
+		djDecimalPlaces: 2,  //Đơn giátinhđộ Mặc định2
+		searchType: null,   //chỉđiều khiểncộthiển隐，khôngtham sốvàLọc//Tìm kiếmMục tiêu "yp,sfxm"、"yp"、"sfxm"、"yp.kc"、"sfxm.dwjls"、"yp,sfxm.dwjls"、"yp.kc,sfxm"、"yp.kc,sfxm.dwjls"
+		showColModel: null,   //có thểchỉđịnh [{name:;widthratio:;},{name:;widthratio:;}] widthratiocó thểchọn
+		ypkccbjc: true,    //ThuốcTồn khoban đầubướcKiểm tra   CóKhôngbịđiều khiển CóKhôngTồn kho0
 
 		colModel: [
 			{ label: 'Mã', name: 'sfxmCode', widthratio: 6 },
@@ -65,7 +65,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 				, hidden: true
 			},
 			{ label: 'Y lệnhLoại', name: 'yzlx', hidden: true },
-			{ label: '首拼', name: 'py', widthratio: 5, hidden: true },
+			{ label: 'Mã đầu chữ', name: 'py', widthratio: 5, hidden: true },
 			{ label: 'Thu phíLoại lớn', name: 'sfdlCode', hidden: true },
 			{
 				label: 'Thu phíLoại lớn', name: 'sfdlmc'
@@ -78,16 +78,16 @@ $.fn.sfxmFloatingSelector = function (options) {
 					return (!!cellvalue || cellvalue == 0) ? (parseFloat(cellvalue).toFixed(options.djDecimalPlaces ? options.djDecimalPlaces : 2)) : '';
 				}
 			},
-			{ label: '计价策略', name: 'jjcl', hidden: true },
+			{ label: 'Chiến lược tính giá', name: 'jjcl', hidden: true },
 			{
 				label: 'Số lượng tính', name: 'dwjls', widthratio: 8, formatter: function (cellvalue) {
 					return !!cellvalue ? cellvalue : '';
 				}
 				, hidden: true
 			},
-			//{ label: '报销政策', name: 'zfxz', hidden: true },
+			//{ label: 'báobánchính sách', name: 'zfxz', hidden: true },
 			//{
-			//    label: '报销政策', name: 'zfxzmc', widthratio: 8, formatter: function (cellvalue, a, b) {
+			//    label: 'báobánchính sách', name: 'zfxzmc', widthratio: 8, formatter: function (cellvalue, a, b) {
 			//        return $.enum.getDescByValue("EnumZiFuXingZhi", b.zfxz);
 			//    }
 			//},
@@ -97,7 +97,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 					return $.enum.getDescByValue("EnumZiFuXingZhi", b.zfxz);
 				}
 			},
-			{ label: '自负比例', name: 'zfbl', widthratio: 3,hidden: true },
+			{ label: 'Tỷ lệ tự trả', name: 'zfbl', widthratio: 3,hidden: true },
 			{ label: 'Đặc biệtThuốcDấu hiệu', name: 'tsypbz', hidden: true },
 			{
 				label: 'Đặc biệtThuốcDấu hiệu', name: 'tsypbzmc', hidden: true, formatter: function (cellvalue, a, b) {
@@ -132,7 +132,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 					return $.enum.getDescByValue("EnumKss", b.kssqxjb);
 				} },
 			{
-			    label: 'BHYT限价', name: 'cxjje', formatter: function (cellvalue, a, b) {
+			    label: 'BHYThạngiá', name: 'cxjje', formatter: function (cellvalue, a, b) {
 					if (b.cxjje == null) {
 						return "0.00"
 					}
@@ -151,13 +151,13 @@ $.fn.sfxmFloatingSelector = function (options) {
 			},
 			{
 				label: 'Tồn kho', name: 'clkcsl', formatter: function (cellvalue, a, b) {
-					//给的kcsl是最小单位的，这里要显示门诊/住院单位的数量
-					return b.yzlx === '1' ? (!!b.kcsl && !!b.cls ? (parseInt(b.kcsl / b.cls)) : '无') : '';
+					//chocủakcslCóĐơn vị nhỏ nhấtcủa，đâycầnHiển thịNgoại trú/Đơn vị nhập việncủaSố lượng
+					return b.yzlx === '1' ? (!!b.kcsl && !!b.cls ? (parseInt(b.kcsl / b.cls)) : 'không') : '';
 				}, widthratio: 4, hidden: true
 			},
 			{
 				label: 'Kháng sinh', name: 'isKss', formatter: function (cellvalue, a, b) {
-					return cellvalue == '1' ? '是' : '否';
+					return cellvalue == '1' ? 'là' : 'Không';
 				}, widthratio: 3, hidden: true
 			},
 			{
@@ -194,7 +194,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 
 	if (!!!options.searchType) {
 
-		options.searchType = "yp,sfxm"; //默认
+		options.searchType = "yp,sfxm"; //Mặc định
 	}
 	if (options.searchType && !!!options.showColModel) {
 	    var colsfxmmc = null;
@@ -274,7 +274,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 			}
 		});
 		if (!!colsfxmmc && !!colgg && !!colsfdlmc && !!coldwjls && !!colyfbmmc && !!colclkcsl && !!colkzbz) {
-			//已被占用50宽
+			//đãbịchiếmdùng50rộng
 			switch (options.searchType) {
 				case "yp": 
 					colsfxmmc.widthratio = 10;
@@ -421,7 +421,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 	}
 
 	if (options.showColModel) {
-		//[{name:;widthratio:;},{name:;widthratio:;}] widthratio可选
+		//[{name:;widthratio:;},{name:;widthratio:;}] widthratiocó thểchọn
 		$.each(options.colModel, function () {
 			var thisCol = this;
 			var matchedShow = $.jsonWhere(options.showColModel, function (v) {
@@ -445,7 +445,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 			
 			if ($iiithis.attr('data-yzlx') == '1') {
 				if ((!isNaN($iiithis.attr('data-clkcsl')) && parseInt($iiithis.attr('data-clkcsl')) <= 0) || $iiithis.attr('data-clkcsl') == '无') {
-					$.modalAlert("Không thểKê无Tồn khoThuốc", 'warning');
+					$.modalAlert("Không thểKêkhôngTồn khoThuốc", 'warning');
 					return false;
 				}
 				if ($iiithis.attr('data-kzbz') == '控制') {
@@ -459,9 +459,9 @@ $.fn.sfxmFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//系统科室 浮层选择器
+//Hệ thốngKhoa lớp nổibộ chọn
 $.fn.ksFloatingSelector = function (options) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 300,
 		height: 180,
@@ -486,9 +486,9 @@ $.fn.ksFloatingSelector = function (options) {
 
 	$(this).newtouchFloatingSelector(options);
 }
-//处方模板浮层
+//Đơn thuốcmẫulớp nổi
 $.fn.cfzutaoFloatingSelector12 = function (options) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 350,
 		height: 280,
@@ -507,7 +507,7 @@ $.fn.cfzutaoFloatingSelector12 = function (options) {
 				name: 'cflx',
 				widthratio: 20,
 				formatter: function(value, options, row) {
-					// 将数字值转换为汉字
+					// sẽsốchữGiá trịchuyểnđổilàHánchữ
 					const prescriptionTypes = {
 						1: "Thuốc TâyĐơn thuốc",
 						2: "Thuốc YHCTĐơn thuốc",
@@ -516,7 +516,7 @@ $.fn.cfzutaoFloatingSelector12 = function (options) {
 						5: "Phục hồi chức năngĐơn thuốc",
 						6: "Thường quy项目Đơn thuốc",
 					};
-					return prescriptionTypes[value] || "Loại không rõ"; // 默认值为 "未知类型"
+					return prescriptionTypes[value] || "Loại không rõ"; // Mặc địnhGiá trịlà "Không xác địnhLoại"
 				}
 			},
 			{ label: 'Mô tả', name: 'Description', widthratio: 30, hidden: true},
@@ -528,9 +528,9 @@ $.fn.cfzutaoFloatingSelector12 = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//组套 浮层选择器
+//Bộ mẫu lớp nổibộ chọn
 $.fn.zutaoFloatingSelector = function (options) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 350,
 		height: 280,
@@ -556,9 +556,9 @@ $.fn.zutaoFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//系统部位 浮层选择器
+//Hệ thốngVị trí lớp nổibộ chọn
 $.fn.bwFloatingSelector = function (options, data) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 300,
 		height: 250,
@@ -576,9 +576,9 @@ $.fn.bwFloatingSelector = function (options, data) {
 	$(this).multiquencyNewtouchFloatingSelector(options, data);
 }
 
-//系统部位 浮层选择器
+//Hệ thốngVị trí lớp nổibộ chọn
 $.fn.yxbwFloatingSelector = function (options, data) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 300,
 		height: 200,
@@ -597,14 +597,14 @@ $.fn.yxbwFloatingSelector = function (options, data) {
 }
 
 
-//系统嘱托 浮层选择器
+//Hệ thốngDặn dò lớp nổibộ chọn
 $.fn.ztFloatingSelector = function (options) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 300,
 		height: 280,
 		focusautotrigger: true,
-		caption: "Chọn嘱托",
+		caption: "ChọnDặn dò",
 		url: '/SystemManage/DoctorRemark/GetSysDoctorRemark',
 		ajaxparameters: function ($thisinput) {
 			return "keyword=" + $.trim($thisinput.val());
@@ -620,22 +620,22 @@ $.fn.ztFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//医生站--》文字录入--》指示文本框按钮
+//Bác sĩtrạm--》văn bảnnhập--》chỉhiển thịvăn bảnkhungNút
 //$.fn.zsFloatingSelector = function (options) {
 //    var defaults = {
 //        width: 400,
 //        height: 400,
 //        focusautotrigger: true,
-//        caption: "手术内容",
+//        caption: "Phẫu thuậtnội dung",
 //        url: '/SystemManage/DoctorRemark/surgery_record',
 //        ajaxparameters: function ($thisinput) {
 //            return "keyword=" + $.trim($thisinput.val());
 //        },
 //        itemdbclickhandler: null,
 //        colModel: [
-//            { label: '手术名称', name: 'ssmc', widthratio: 33 },
-//            { label: '手术时间', name: 'sssj', widthratio: 33 },
-//            { label: '主刀医生', name: 'Name', widthratio: 33 }
+//            { label: 'Tên phẫu thuật', name: 'ssmc', widthratio: 33 },
+//            { label: 'Thời gian phẫu thuật', name: 'sssj', widthratio: 33 },
+//            { label: 'Bác sĩ mổ chính', name: 'Name', widthratio: 33 }
 //        ]
 //    };
 //    var options = $.extend(defaults, options);
@@ -645,7 +645,7 @@ $.fn.ztFloatingSelector = function (options) {
 
 
 
-//诊断
+//Chẩn đoán
 $.fn.zdFloatingSelector = function (options) {
 	var defaults = {
 		url: '/SystemManage/SysBaseData/GetDiagnosisList',
@@ -667,7 +667,7 @@ $.fn.zdFloatingSelector = function (options) {
 			{ label: 'Tên', name: 'zdmc', widthratio: 60 },
 			{ label: 'Pinyin', name: 'py', widthratio: 20 },
 			{ label: 'icd10', name: 'icd10', widthratio: 20 },
-			{ label: 'icd10Bổ sung码', name: 'icd10fjm', hidden: true }
+			{ label: 'icd10Bổ sungmã', name: 'icd10fjm', hidden: true }
 		]
 	};
 	var options = $.extend(defaults, options);
@@ -675,7 +675,7 @@ $.fn.zdFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//症候
+//hội chứng
 $.fn.zyzhFloatingSelector = function (options) {
 	var defaults = {
 		url: '/SystemManage/SysBaseData/GetTCMSymptomsList',
@@ -698,7 +698,7 @@ $.fn.zyzhFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//岗位人员选择器
+//vị trí ký tự ngườiviênbộ chọn
 $.fn.dutyStaffFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector({
 		url: '/SystemManage/SysStaff/GetStaffListByDutyCode',
@@ -712,10 +712,10 @@ $.fn.dutyStaffFloatingSelector = function (options) {
 			{ label: 'StaffGh', name: 'StaffGh', hidden: true },
 			{ label: 'ks', name: 'ks', hidden: true },
 			{ label: 'Bác sĩTên', name: 'StaffName', widthratio: 48 },
-			{ label: 'Tên khoa称', name: 'ksmc', widthratio: 50 },
+			{ label: 'Tên khoagọi là', name: 'ksmc', widthratio: 50 },
 		],
 		itemdbclickhandler: function ($thistr, $thisinput) {
-			//保存时验证val和data-Name一致
+			//Lưukhikiểm travalvàdata-Namenhất quán
 			$thisinput.attr('data-StaffGh', $thistr.attr('data-StaffGh'));
 			$thisinput.attr('data-ks', $thistr.attr('data-ks'));
 			$thisinput.attr('data-ksmc', $thistr.attr('data-ksmc'));
@@ -724,9 +724,9 @@ $.fn.dutyStaffFloatingSelector = function (options) {
 	});
 }
 
-//普通膳食指示
+//thông thườngăn uốngchỉhiển thị
 $.fn.yszsFloatingSelector = function (options, data) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 300,
 		height: 280,
@@ -743,16 +743,16 @@ $.fn.yszsFloatingSelector = function (options, data) {
 	$(this).multiFoodFloatingSelector(options, data);
 }
 
-//医嘱类别（长临） 浮层选择器
+//Loại y lệnh（dài hạn/tạm thời） lớp nổibộ chọn
 $.fn.yzlbFloatingSelector = function (options, data) {
-	//默认options
+	//Mặc địnhoptions
 	var defaults = {
 		width: 100,
 		height: 40,
 		focusautotrigger: true,
 		isinputchangetriggered: false,
 		mutiselect: true,
-		caption: "ChọnY lệnh类别",
+		caption: "ChọnY lệnhLoại",
 		url: '/SystemManage/SysBaseData/GetYzlb',
 		ajaxparameters: function ($thisinput) {
 			return "";
@@ -763,9 +763,9 @@ $.fn.yzlbFloatingSelector = function (options, data) {
 }
 
 
-//系统诊室 浮层选择器
+//Phòng khám hệ thống lớp nổibộ chọn
 $.fn.zsFloatingSelector = function (options) {
-    //默认options
+    //Mặc địnhoptions
     var defaults = {
         width: 300,
         height: 180,

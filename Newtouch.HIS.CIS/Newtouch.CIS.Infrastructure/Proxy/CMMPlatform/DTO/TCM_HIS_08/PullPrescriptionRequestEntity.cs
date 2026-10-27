@@ -6,110 +6,110 @@ using System.Xml.Serialization;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_08
 {
     /// <summary>
-    /// 提取处方请求体
+    /// nhắclấyĐơn thuốcyêu cầuthể
     /// </summary>
     [XmlRoot("Request")]
     public class PullPrescriptionRequestEntity : RequestBase
     {
         /// <summary>
-        /// 处方信息体
+        /// Đơn thuốcthông tinthể
         /// </summary>
         public Prescription Prescription { get; set; }
     }
 
     /// <summary>
-    /// 处方信息体
+    /// Đơn thuốcthông tinthể
     /// </summary>
     public class Prescription
     {
         /// <summary>
-        /// 就诊流水号
-        /// 必填
+        /// Khám bệnhdòngchảysố
+        /// bắt buộc
         /// </summary>
         public string serialNo { get; set; }
 
         /// <summary>
-        /// 机构编码
-        /// 必填
+        /// Cơ sởMã
+        /// bắt buộc
         /// </summary>
         public string orgCode { get; set; }
 
         /// <summary>
-        /// 直接选方的方子名称
+        /// trực tiếpchọnphươngcủaphươngconTên
         /// </summary>
         public string preName { get; set; }
 
         /// <summary>
-        /// 药方信息集合
+        /// thuốcphươngthông tintậphợp
         /// </summary>
         public List<DrugData> drugDataList { get; set; }
     }
 
     /// <summary>
-    /// 药方信息集合
+    /// thuốcphươngthông tintậphợp
     /// </summary>
     public class DrugData
     {
 
         /// <summary>
-        /// 药品名称
-        /// 必填
+        /// Tên thuốc
+        /// bắt buộc
         /// </summary>
         public string drugName { get; set; }
 
         /// <summary>
-        /// 药品编码
-        /// 必填
+        /// Mã thuốc
+        /// bắt buộc
         /// </summary>
         public string drugCode { get; set; }
 
         /// <summary>
-        /// 药品单位
+        /// Đơn vị thuốc
         /// </summary>
         public string drugUnit { get; set; }
 
         /// <summary>
-        /// 数量
-        /// 必填
+        /// Số lượng
+        /// bắt buộc
         /// </summary>
         public string drugQuantity { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string note { get; set; }
     }
 
     /// <summary>
-    /// 药方扩展信息
+    /// thuốcphươngmở rộngtriểnthông tin
     /// </summary>
     public class DrugDataEx : SfxmYpSelectResultVO
     {
         /// <summary>
-        /// 药品名称
-        /// 必填
+        /// Tên thuốc
+        /// bắt buộc
         /// </summary>
         public string drugName { get; set; }
 
         /// <summary>
-        /// 药品编码
-        /// 必填
+        /// Mã thuốc
+        /// bắt buộc
         /// </summary>
         public string drugCode { get; set; }
 
         /// <summary>
-        /// 药品单位
+        /// Đơn vị thuốc
         /// </summary>
         public string drugUnit { get; set; }
 
         /// <summary>
-        /// 数量
-        /// 必填
+        /// Số lượng
+        /// bắt buộc
         /// </summary>
         public string drugQuantity { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string note { get; set; }
     }

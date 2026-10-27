@@ -1,87 +1,87 @@
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// 进销存统计
+    /// vàobántồn tạiThống kê
     /// </summary>
     public class VPsiStatisticsEntity
     {
         /// <summary>
-        /// 物资ID
+        /// vật tưID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// vật tưTên
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 类别名称
+        /// Tên loại
         /// </summary>
         public string lbmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 本部门单位名称
+        /// bảnKhoa phòngTên đơn vị
         /// </summary>
         public string bmdwmc { get; set; }
 
         /// <summary>
-        /// 期初数量，带单位
+        /// kỳban đầuSố lượng，mangĐơn vị
         /// </summary>
         public string qcsl { get; set; }
 
         /// <summary>
-        /// 入库数量，带单位
+        /// Nhập khoSố lượng，mangĐơn vị
         /// </summary>
         public string rksl { get; set; }
 
         /// <summary>
-        /// 出库数量，带单位
+        /// Xuất khoSố lượng，mangĐơn vị
         /// </summary>
         public string cksl { get; set; }
 
         /// <summary>
-        /// 损益数量，带单位
+        /// lãi lỗSố lượng，mangĐơn vị
         /// </summary>
         public string sysl { get; set; }
 
         /// <summary>
-        /// 期末数量，带单位
+        /// cuối kỳSố lượng，mangĐơn vị
         /// </summary>
         public string qmsl { get; set; }
 
         /// <summary>
-        /// 期初零售总额
+        /// kỳban đầutổng bán lẻ
         /// </summary>
         public decimal qclsze { get; set; }
 
         /// <summary>
-        /// 入库零售总额
+        /// Nhập khotổng bán lẻ
         /// </summary>
         public decimal rklsze { get; set; }
 
         /// <summary>
-        /// 出库零售总额
+        /// Xuất khotổng bán lẻ
         /// </summary>
         public decimal cklsze { get; set; }
 
         /// <summary>
-        /// 损益零售总额
+        /// lãi lỗtổng bán lẻ
         /// </summary>
         public decimal sylsze { get; set; }
 
         /// <summary>
-        /// 期末零售总额
+        /// cuối kỳtổng bán lẻ
         /// </summary>
         public decimal qmlsze { get; set; }
 
         /// <summary>
-        /// 调价损益零售总额
+        /// gọigiálãi lỗtổng bán lẻ
         /// </summary>
         public decimal tjsyze { get; set; }
     }

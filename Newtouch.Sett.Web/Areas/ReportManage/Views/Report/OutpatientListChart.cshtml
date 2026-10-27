@@ -37,7 +37,7 @@
     <iframe class="ui-layout-center" style="width:100%;" id="iframerightiframerightiframerightttt" name="iframerightiframerightiframerightttt"
             scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
 </div>
-@*<button id="lbCallBack" OnClick="lbCallBack_Click();" style="position: relative;top:-475px;left: 540px;">后退</button>*@
+@*<button id="lbCallBack" OnClick="lbCallBack_Click();" style="position: relative;top:-475px;left: 540px;">sauhoàn</button>*@
 <script type="text/javascript">
     var reportServerHOST = '@(ViewBag.ReportServerHOST)';
     var orgId = '@(ViewBag.OrgId)';
@@ -92,7 +92,7 @@
         var h = $(window).height() - 55
         $('#layout iframe').css('height', h);
 
-        //治疗项目选择浮层绑定
+        //Liên kết lớp nổi chọn mục điều trị
         $('#blh').newtouchBatchFloatingSelector({
             width: 500,
             height: 200,
@@ -145,7 +145,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";

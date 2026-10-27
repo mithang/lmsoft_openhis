@@ -5,7 +5,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 物资单位操作
+    /// Thao tác đơn vị vật tư
     /// </summary>
     public class WzUnitApp : AppBase, IWzUnitApp
     {

@@ -67,7 +67,7 @@
         gridList();
     })
 
-    //获取上次日结算时间
+    //Lấy thời gian quyết toán ngày lần trước
     function getLastDaySettTime() {
         $.najax({
             url: "/DaySettleManage/DaySettle/GetLastDaySettTime",
@@ -80,7 +80,7 @@
         });
     }
 
-    //日结算明细
+    //Chi tiết quyết toán ngày
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -110,12 +110,12 @@
         });
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         return { mzzybz: "1" };
     };
 
-    //日结算确认
+    //Xác nhận quyết toán ngày
     function newtouch_event_f6() {
         $.modalConfirm("xác nhận Có hay không tiến hành Hủy quyết toán？", function (flag) {
             if (!flag) {
@@ -129,7 +129,7 @@
                     success: function (data) {
                         $.modalAlert("Thao tác thành công", 'success');
                         $.modalClose();
-                        $("#gridList").jqGrid('clearGridData');  //清空表格
+                        $("#gridList").jqGrid('clearGridData');  //Xóa bảng
                         $("#gridList").jqGrid('setGridParam').trigger("reloadGrid");
                     },
                     errorCallback: function (err) {
@@ -141,15 +141,15 @@
         });
     }
 
-    //退费确认
+    //Xác nhận hoàn phí
     function newtouch_event_f7() {
-        //获取选中行Id
+        //Lấy dòng đã chọnId
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
             $.modalAlert("Vui lòng chọn trước cần Hủy quyết toán của thông tin", 'warning');
             return;
         }
-        //弹出确认窗口
+        //Bật cửa sổ xác nhận
         $.modalConfirm("xác nhận Có hay không tiến hành quyết toán？", function (flag) {
             if (!flag) {
                 return;
@@ -163,7 +163,7 @@
                     success: function (data) {
                         $.modalAlert("Thao tác thành công", 'success');
                         $.modalClose();
-                        $("#gridList").jqGrid('clearGridData');  //清空表格
+                        $("#gridList").jqGrid('clearGridData');  //Xóa bảng
                         $("#gridList").jqGrid('setGridParam').trigger("reloadGrid");
                     },
                     errorCallback: function (err) {

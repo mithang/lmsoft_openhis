@@ -5,12 +5,12 @@ using Newtouch.HIS.Domain.ValueObjects;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 药房
+    /// Nhà thuốc
     /// </summary>
     public interface IPharmacyDmnService
     {
         /// <summary>
-        /// 查询药房窗口信息
+        /// Tra cứu thông tin cửa sổ nhà thuốc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="yfckCode"></param>
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<PharmacyDepartmentOpenMedicineRepoVO> OpenMedicineIndex(string organizeId, string keyword = null);
 
         /// <summary>
-        /// 查看药房部门药品信息(大类)
+        /// Xem thông tin thuốc của khoa dược(Nhóm lớn)
         /// </summary>
         /// <param name="dlCode"></param>
         /// <param name="yfbmCode"></param>
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         PharmacyDepartmentOpenMedicineRepoVO SelectDepartmentMedicine(string dlCode, string yfbmCode,string organizeId);
 
         /// <summary>
-        /// 查看药房部门药品信息(大类)
+        /// Xem thông tin thuốc của khoa dược(Nhóm lớn)
         /// </summary>
         /// <param name="dlCode"></param>
         /// <param name="organizeId"></param>

@@ -44,7 +44,7 @@
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Tải lại chiều rộng jqGrid khi thay đổi kích thước cửa sổ trình duyệt
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
@@ -102,7 +102,7 @@
     }
     function reload()
     {
-        $('#gridList').jqGrid("clearGridData");//先清空明细
+        $('#gridList').jqGrid("clearGridData");//Xóa chi tiết trước
         $('#gridList').jqGrid('setGridParam', {
             postData: getSearchPostData(),
             url: "/QualityControlManage/Apply/GetBlApplyList",

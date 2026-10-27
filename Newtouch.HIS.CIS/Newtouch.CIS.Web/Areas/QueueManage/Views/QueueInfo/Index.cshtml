@@ -44,7 +44,7 @@
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                @*<td class="formTitle">科室</td>*@
+                @*<td class="formTitle">Khoa</td>*@
                 <td class="formValue">
                     <input type="text" id="ks" class="form-control" />
                     <input type="text" id="ksCode" class="form-control" style="display:none;"/>
@@ -72,10 +72,10 @@
                 <span style="color:red;">Số đang gọi:</span> <span id="sp_calling_no" style="font-weight:bold;color:red;text-decoration:underline;">1</span>
             </td>
             <td>
-                <span id="sp_calling_xm">张三</span>
+                <span id="sp_calling_xm">Nguyễn Văn A</span>
             </td>
             <td>
-                <span id="sp_calling_dept">消化Khoa nộiNgoại trú</span>
+                <span id="sp_calling_dept">hủyhóaKhoa nộiNgoại trú</span>
             </td>
             <td>
                 <span id="sp_calling_doc">熊甜甜 </span>
@@ -89,10 +89,10 @@
                 <span>Tiếp tục chờ gọi:</span><span id="sp_nextcall_no">2</span>
             </td>
             <td>
-                <span id="sp_nextcall_xm">李四</span>
+                <span id="sp_nextcall_xm">李bốn</span>
             </td>
             <td>
-                <span id="sp_nextcall_dept">消化Khoa nộiNgoại trú</span>
+                <span id="sp_nextcall_dept">hủyhóaKhoa nộiNgoại trú</span>
             </td>
             <td>
                 <span id="sp_nextcall_doc">熊甜甜 </span>
@@ -117,9 +117,9 @@
 <div style="width:58%;float:right;">
     <div style="padding:5px 20px;height:20px;float:right;">
         <div id="called_horizon" class="btn-group" style="z-index:1;">
-            @*<a class="btn btn-default active" id="btn_call" data-value="@((int)EmunQueueCalledStu.call)" onclick="gridListcalledChange('@((int)EmunQueueCalledStu.call)')">已叫队列</a>
-        <a class="btn btn-default" id="btn_pass" data-value="@((int)EmunQueueCalledStu.pass)" onclick="gridListcalledChange('@((int)EmunQueueCalledStu.pass)')">过号队列</a>
-        <a class="btn btn-default" id="btn_reply" data-value="@((int)EmunQueueCalledStu.reply)" onclick="gridListcalledChange('@((int)EmunQueueCalledStu.reply)')">到诊队列</a>*@
+            @*<a class="btn btn-default active" id="btn_call" data-value="@((int)EmunQueueCalledStu.call)" onclick="gridListcalledChange('@((int)EmunQueueCalledStu.call)')">đãgọiđộicột</a>
+        <a class="btn btn-default" id="btn_pass" data-value="@((int)EmunQueueCalledStu.pass)" onclick="gridListcalledChange('@((int)EmunQueueCalledStu.pass)')">quasốđộicột</a>
+        <a class="btn btn-default" id="btn_reply" data-value="@((int)EmunQueueCalledStu.reply)" onclick="gridListcalledChange('@((int)EmunQueueCalledStu.reply)')">đếnkhámđộicột</a>*@
             <a class="btn btn-default active" id="btn_call" data-value="@((int)EmunQueueCalledStu.call)" >Hàng đợi đã gọi</a>
             <a class="btn btn-default " id="btn_pass" data-value="@((int)EmunQueueCalledStu.pass)" >Hàng đợi quá số</a>
             <a class="btn btn-default" id="btn_reply" data-value="@((int)EmunQueueCalledStu.reply)" >Hàng đợi đã đến khám</a>
@@ -179,10 +179,10 @@
             sortname: 'czksmc,Period,queno asc',
             viewrecords: true,
             caption: "Hàng đợi chưa phân loại",
-            autoScroll: false,//当autoScroll和shrinkToFit均为false时，会出现行滚动条
-            shrinkToFit: false,//是否列宽度自适应。true=适应 false=不适应
+            autoScroll: false,//khiautoScrollvàshrinkToFitđềulàfalsekhi，sẽ xuất hiệndòngthanh cuộn
+            shrinkToFit: false,//CóKhôngcộtrộngđộtựthích ứng。true=thích ứng false=khôngthích ứng
         });
-        $gridList.jqGrid('setFrozenColumns');//设置冻结列生效
+        $gridList.jqGrid('setFrozenColumns');//Cài đặtđôngkếtcộtsinhhiệu
         $("#time_horizon a.btn-default").click(function () {
             $("#time_horizon a.btn-default").removeClass("active");
             $(this).addClass("active");
@@ -212,7 +212,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -260,10 +260,10 @@
                         if ($("#time_horizon a.active").attr('data-value') != 1) {
                             return '';
                         }
-                        else if (row.ispassed == "1" && $("#called_horizon a.active").attr('data-value') == '@((int)EmunQueueCalledStu.pass)') {//已过号
+                        else if (row.ispassed == "1" && $("#called_horizon a.active").attr('data-value') == '@((int)EmunQueueCalledStu.pass)') {//đãquasố
                             return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.call).ToString()) + ')" value="LạiGọi số" />';
                         }
-                        else if (row.ispassed == "1" && $("#called_horizon a.active").attr('data-value') != '@((int)EmunQueueCalledStu.pass)') {//已过号,重新Gọi số过 显示在Gọi số队列
+                        else if (row.ispassed == "1" && $("#called_horizon a.active").attr('data-value') != '@((int)EmunQueueCalledStu.pass)') {//đãquasố,lạiGọi sốqua Hiển thịởGọi sốđộicột
                             return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.call).ToString()) + ')" value="Gọi số" /> <input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.pass).ToString()) + ')" value="Quá số" />';
                         }
                         else if (cellvalue == '@((int)EmunQueueCalledStu.reply)') {
@@ -271,7 +271,7 @@
                         }
                         else
                             return '';
-                            //return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.call).ToString()) + ')" value="Gọi số" /> <input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.pass).ToString()) + ')" value="过号" />';
+                            //return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.call).ToString()) + ')" value="Gọi số" /> <input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ywlsh + ',' + @Html.Raw(((int)EmunQueueCalledStu.pass).ToString()) + ')" value="quasố" />';
                     },
                 },
                 { label: 'Số thứ tự', name: 'queno', width: 30, align: 'center', frozen: true },
@@ -305,10 +305,10 @@
                     }
                 },
                 { label: 'Số lần gọi', name: 'calledtimes', width: 80, align: 'center' },
-                //{ label: '年龄', name: 'nlshow', width: 50, align: 'left', },
-                //{ label: '卡号', name: 'kh', width: 50, align: 'left', },
+                //{ label: 'Tuổi', name: 'nlshow', width: 50, align: 'left', },
+                //{ label: 'Số thẻ', name: 'kh', width: 50, align: 'left', },
                 //{ label: 'Tính chất bệnh nhân', name: 'brxz', width: 50, align: 'left', },
-                //{ label: '病人来源', name: 'brly', width: 50, align: 'left', },
+                //{ label: 'bệnh ngườiđếnnguồn', name: 'brly', width: 50, align: 'left', },
                 //{ label: 'Số lần gọi', name: 'calledtimes', width: 50, align: 'left' },
                 {
                     label: 'Có quá số không', name: 'ispassed', width: 50, align: 'center', formatter: function (cellvalue, op, row) {
@@ -321,13 +321,13 @@
                     }
                 },
                 //{
-                //    label: "允许登录", name: "Locked", width: 100, align: "center",
+                //    label: "Cho phép đăng nhập", name: "Locked", width: 100, align: "center",
                 //    formatter: function (cellvalue, options, rowObject) {
                 //        if (cellvalue === true) {
-                //            return '<span class=\"label label-default\">停用</span>';
+                //            return '<span class=\"label label-default\">Vô hiệu</span>';
                 //        }
                 //        else {
-                //            return '<span class=\"label label-success\">正常</span>';
+                //            return '<span class=\"label label-success\">Bình thường</span>';
                 //        }
                 //    }
                 //},
@@ -335,11 +335,11 @@
             pager: "#calledgridPager",
             sortname: 'czksmc,Period,queno asc',
             viewrecords: true,
-            //caption: "分诊队列",
-            autoScroll: false,//当autoScroll和shrinkToFit均为false时，会出现行滚动条
-            shrinkToFit: false,//是否列宽度自适应。true=适应 false=不适应
+            //caption: "phútkhámđộicột",
+            autoScroll: false,//khiautoScrollvàshrinkToFitđềulàfalsekhi，sẽ xuất hiệndòngthanh cuộn
+            shrinkToFit: false,//CóKhôngcộtrộngđộtựthích ứng。true=thích ứng false=khôngthích ứng
         });
-        $gridListcalled.jqGrid('setFrozenColumns');//设置冻结列生效
+        $gridListcalled.jqGrid('setFrozenColumns');//Cài đặtđôngkếtcộtsinhhiệu
         //Hàng đợi đã gọi
         $("#btn_call").click(function () {
             $("#btn_call").addClass("active");

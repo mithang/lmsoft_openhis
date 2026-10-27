@@ -41,14 +41,14 @@
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
-        //查询列表
+        //Tra cứudanh sách
         gridList();
     });
-    //门诊挂号结算查询
+    //Ngoại trúđăng ký khámquyết toánTra cứu
     function gridList() {
         var $gridJsList = $("#gridList");
         $gridJsList.dataGrid({
@@ -70,12 +70,12 @@
             ],
             pager: "#gridPager",
             sortname: " zlkssj asc",
-            rownumbers: true,  //是否显示Số thứ tự
+            rownumbers: true,  //CóKhôngHiển thịSố thứ tự
             viewrecords: true
         });
 
         $("#btn_search").click(function () {
-            $('#gridList').jqGrid("clearGridData");//先清空明细
+            $('#gridList').jqGrid("clearGridData");//Xóa trắng chi tiết trước
             $gridJsList.jqGrid('setGridParam', {
                 postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val() },
                 url: "/DoctorManage/OutpatientQuery/GetConsultRecordGridJson",

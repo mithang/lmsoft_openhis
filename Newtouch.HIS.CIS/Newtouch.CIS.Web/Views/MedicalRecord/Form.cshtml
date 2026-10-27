@@ -12,7 +12,7 @@
             <tr>
                 <th class="formTitle"><span class="required">*</span>Loại mẫu:</th>
                 <td class="formValue">
-                    @*@Html.DropDownList("mblx", EnumCfMbLx.department.ToDescSelectList(), "==请选择==", new { @class = "form-control required" })*@
+                    @*@Html.DropDownList("mblx", EnumCfMbLx.department.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })*@
                     <select id="mblx" class="form-control required">
                         <option value="">==Vui lòng chọn==</option>
                     </select>
@@ -29,7 +29,7 @@
 </form>
 
 <script>
-    //valid的扩展样式
+    //validcủakiểu mở rộng
     var valOptions = {
         errorPlacement: function (error, element) {
             element.parents('.formValue').addClass('has-error');

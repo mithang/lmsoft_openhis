@@ -45,14 +45,14 @@
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
-        //查询列表
+        //Tra cứudanh sách
         gridList();
     });
-    //门诊挂号结算查询
+    //Ngoại trúđăng ký khámquyết toánTra cứu
     function gridList() {
         var $gridJsList = $("#gridList");
         $gridJsList.dataGrid({
@@ -77,10 +77,10 @@
                 { label: 'Ngày sinh', name: 'csny', align: 'left', width: 60, formatter: function (val) { return $.getTime({ date: val }); } },
                 { label: 'Số CMND/CCCD', name: 'zjh', align: 'left', width: 120 },
                 { label: 'Tính chất bệnh nhân', name: 'brxzmc', align: 'center', width: 70 },
-                //{ label: '医疗证号', name: 'ylzh', align: 'center', width: 50 },
+                //{ label: 'Số chứng nhận y tế', name: 'ylzh', align: 'center', width: 50 },
                 { label: 'Nghề nghiệp', name: 'zy', align: 'left', width: 50 },
                 { label: 'Dân tộc', name: 'mz', align: 'left', width: 50 },
-                //{ label: '血型', name: 'xx', align: 'center', width: 50 },
+                //{ label: 'Nhóm máu', name: 'xx', align: 'center', width: 50 },
                 { label: 'Khám lần đầuNgày', name: 'czrq', align: 'left', width: 80 },
                 { label: 'Gia đìnhĐiện thoại', name: 'dh', align: 'left', width: 50 },
                 { label: 'Địa chỉ gia đình', name: 'xian_dz', align: 'left', width: 50 },
@@ -94,12 +94,12 @@
             ],
             pager: "#gridPager",
             sortname: " zlkssj asc",
-            rownumbers: true,  //是否显示Số thứ tự
+            rownumbers: true,  //CóKhôngHiển thịSố thứ tự
             viewrecords: true
         });
 
         $("#btn_search").click(function () {
-            $('#gridList').jqGrid("clearGridData");//先清空明细
+            $('#gridList').jqGrid("clearGridData");//Xóa trắng chi tiết trước
             $gridJsList.jqGrid('setGridParam', {
                 postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val(), keyword: $("#keyword").val() },
                 url: "/DoctorManage/OutpatientQuery/GetConsultDetailGridJson",

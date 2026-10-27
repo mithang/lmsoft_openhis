@@ -1,17 +1,17 @@
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// 盘点时间
+    /// Kiểm kêThời gian
     /// </summary>
     public class VInventoryDateDropDownEntity
     {
         /// <summary>
-        /// 盘点ID
+        /// Kiểm kêID
         /// </summary>
         public long pdId { get; set; }
 
         /// <summary>
-        /// 盘点时间
+        /// Kiểm kêThời gian
         /// </summary>
         public string pdsj { get; set; }
     }

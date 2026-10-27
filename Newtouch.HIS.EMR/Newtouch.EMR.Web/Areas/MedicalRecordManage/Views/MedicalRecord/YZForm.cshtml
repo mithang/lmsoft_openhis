@@ -50,13 +50,13 @@
     $("#kssj").change(function () {
         $("#gridPatientList").jqGrid('setGridParam', {
             postData: getSearchPostData(),
-        }).trigger('reloadGrid'); //重新加载当前表格
+        }).trigger('reloadGrid'); //Tải lại bảng hiện tại
     });
 
     $("#jssj").change(function () {
         $("#gridPatientList").jqGrid('setGridParam', {
             postData: getSearchPostData(),
-        }).trigger('reloadGrid'); //重新加载当前表格
+        }).trigger('reloadGrid'); //Tải lại bảng hiện tại
     });
 
     $(function () {
@@ -84,8 +84,8 @@
                 },
                 {
                     label: 'Trạng thái', name: 'yzzt', align: 'center', width: 30, formatter: function (val, options, rowObject) {
-                        if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.DC).ToString())) {//DC状态
-                            //有执行时间, 取已执行状态, 有审核时间, 取已审核状态
+                        if (rowObject["yzzt"] ==@Html.Raw(((int) EnumYzzt.DC).ToString())) {//DCT rạng thái
+                            //Có thời gian thực hiện, lấy trạng thái đã thực hiện, Có thời gian kiểm duyệt, lấy trạng thái đã kiểm duyệt
                             if (rowObject["zxsj"] && rowObject["zxsj"] !== typeof (undefined) && rowObject["zxsj"] !== "") {
                                 return "Thực hiện";
                             } else {

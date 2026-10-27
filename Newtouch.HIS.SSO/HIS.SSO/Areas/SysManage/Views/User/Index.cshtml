@@ -1,0 +1,220 @@
+﻿@model HIS.SSO.Models.UserModel
+@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<div class="topPanel">
+    @Html.Partial("_OrganizeIdDDLToolbarSearchView")
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_roles()"><i class="fa fa-pencil-square-o"></i>vai trò người dùng</a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="họ tên/tài khoản/mã nhân viên" style="width: 180px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="navb-bg">
+    <div class="dv-table-container">
+        <table id="usertable"></table>
+    </div>
+</div>
+<script>
+    $(function () {
+        initControl(); 
+        tableInit();
+    })
+
+    function initControl() {
+        $("#btn_search").on("click",function(){
+            tableRefresh();
+        });
+        //sự kiện nhấn Enter
+        $('#txt_keyword').keydownEnterEvent(function () {
+            $('#btn_search').trigger('click');
+        })
+    }
+
+    var $table = $('#usertable');
+    function tableInit()
+    {
+        $table.bootstrapTable({
+            url: "/SysManage/User/GetPagintionGridJson", //địa chỉ URL máy chủ trả về dữ liệu
+            method: 'POST',                      //phương thức yêu cầu dữ liệu
+            contentType: "application/x-www-form-urlencoded",
+            height: $(window).height() - 96,
+            queryParams: queryParams,
+            classes: "table table-bordered table-striped table-hover",
+            theadClasses: "table-light",//đặt kiểu tiêu đề bảng
+            idField: 'Id',
+            showColumns: false,
+            columns: [
+                {
+                    field: 'Id',
+                    visible: false
+                },  
+                {
+                    field: 'zt',
+                    title: 'trạng thái',
+                    halign: 'center',
+                    //sortable: true,
+                    halign: 'center',
+                    align: 'center',  
+                    width: '2',
+                    widthUnit: '%',
+                    formatter: function (cellvalue) {
+                        return cellvalue == "1" ? "<i class=\"fa fa-toggle-on icon-theme-success\"></i>" : "<i class=\"fa fa-toggle-off icon-theme-default\"></i>";
+                    }
+                }, {
+                    field: 'Account',
+                    title: 'tài khoản',
+                    halign: 'center',
+                    //sortable: true,
+                    halign: 'center',
+                    align: 'center',   
+                    width: '5',
+                    widthUnit: '%',
+                }, {
+                    field: 'gh',
+                    title: 'mã nhân viên',
+                    halign: 'center',
+                    halign: 'center',
+                    align: 'center',  
+                    width: '5',
+                    widthUnit: '%',
+                },
+                {
+                    field: 'Name',
+                    title: 'họ tên',
+                    halign: 'center',
+                    align: 'center',  
+                    width: '10',
+                    widthUnit: '%',
+                    sortable: true,
+                },
+                {
+                    field: 'OrganizeName',
+                    title: 'tên tổ chức',
+                    halign: 'center',
+                    width: '10',
+                    widthUnit: '%',
+                },{
+                    field: 'DepartmentName',
+                    title: 'tên khoa',
+                    halign: 'center',
+                    sortable: true,
+                    width: '10',
+                    widthUnit: '%',
+                },{
+                    field: 'Locked',
+                    title: 'trạng thái tài khoản',
+                    halign: 'center',
+                    //sortable: true,
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '10',
+                    widthUnit: '%',
+                    formatter: function (cellvalue, row, index) {
+                        if (cellvalue === true) {
+                            return '<span class=\"label label-default\">ngừng sử dụng</span>';
+                        }
+                        else {
+                            return '<span class=\"label label-success\">bình thường</span>';
+                        }
+                    }
+                },
+                {
+                    field: 'OrganizeId',
+                    visible: false
+                }
+            ], 
+            uniqueId: 'Id',
+            pagination: true,                   //có hiển thị phân trang hay không（*）
+            pageNumber: 1,                      //tải ban đầu trang đầu tiên，mặc định trang đầu tiên,và ghi lại
+            pageSize: 30,                       //số dòng bản ghi mỗi trang（*）
+            pageList: [20, 50, 100],            //số dòng mỗi trang có thể chọn（*）
+            paginationHAlign: "left",
+            paginationDetailHAlign: "right",
+            sortable: true,                     //có bật sắp xếp hay không
+            sortOrder: "desc",                   //phương thức sắp xếp
+            sidePagination: 'server',           //phương thức phân trang：clientphân trang phía máy khách，serverphân trang phía máy chủ（*）
+            //onSort: function (name, order) {
+            //    /*********Bước 3，làm mới trường sắp xếp và phương thức sắp xếp，hoàn thành************/
+            //    $table.bootstrapTable('refreshOptions', {
+            //        sortName: name,
+            //        sortOrder: order
+            //    });
+            //},
+            onLoadSuccess: function (data) {
+          
+            },
+            onDblClickRow: function (row, $element, field) {
+                
+            },
+            onClickRow: function (row, $element, field) {
+                var selrow = $table.bootstrapTable("getSelections");
+                if (selrow != null && selrow.length > 0 && selrow[0] != null && selrow[0].Id != row.Id) {
+                    bstableSelectedToggle($table, "Id", [selrow[0].Id], false);
+                }
+                bstableSelected($table, "Id", [row.Id], $element);
+            },
+            formatLoadingMessage: function () {
+                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
+            },
+            formatNoMatches: function () {
+                return "chưa có dữ liệu";
+            }
+
+        });
+        $table.bootstrapTable('hideLoading');
+    }
+    function queryParams(params) {
+        // tham số tùy chỉnh
+        var customParams = {
+            orgId: $("#OrganizeId option:selected").val(),
+            keyword: $("#txt_keyword").val()
+        };
+        // hợp nhất tham số tùy chỉnh và tham số mặc định của plugin
+        return Object.assign(params, customParams);
+    }
+    function tableRefresh() {
+        $table.bootstrapTable('refresh', { queryParams: queryParams, pageNumber: 1 });
+    }
+
+    function btn_roles() {
+        var seleRowid = $table.bootstrapTable("getSelections");
+        if (!seleRowid) {
+            $.modalAlert("vui lòng chọn một thông tin", 'warning');
+            return;
+        }
+        var thisOrgId = seleRowid[0].OrganizeId;
+        if (!!!thisOrgId) {
+            $.modalAlert("vui lòng liên kết nhân viên cho người dùng trước", 'warning');
+            return;
+        }
+        var keyValue = seleRowid[0].Id;
+        $.modalOpen({
+            id: "Form",
+            title: "vai trò người dùng",
+            url: "/SysManage/User/UserRoles?keyValue=" + keyValue + '&orgId=' + thisOrgId,
+            width: "650px",
+            height: "600px",
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function () {
+
+                });
+            }
+        });
+    }
+
+</script>

@@ -95,12 +95,12 @@
     });
 
     function initControl() {
-        //首拼
+        //Mã đầu chữ
         $('#zdmc').keyup(function () {
             $('#py').val($(this).toShouPin());
         });
 
-        //诊断类型
+        //Loại chẩn đoán
         $("#zdlx").bindSelect({
             url: "/ItemsData/GetSelectJson",
             param: { code: "DiagnosisType" }

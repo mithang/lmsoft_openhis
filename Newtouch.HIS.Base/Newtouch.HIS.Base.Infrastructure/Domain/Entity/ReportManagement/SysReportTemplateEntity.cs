@@ -12,52 +12,52 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysReportTemplateEntity : EntityBase
     {
         /// <summary>
-        /// 角色主键
+        /// Khóa chính vai trò
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public int TemplateID { get; set; }
 
         /// <summary>
-        /// 组织机构Id（科室所对应的OrganizeId）
+        /// Tổ chứcId（tương ứng với khoaOrganizeId）
         /// </summary>
         public string HospitalCode { get; set; }
         /// <summary>
-        /// 系统代码
+        /// Mã hệ thống
         /// </summary>
         public string SystemCode { get; set; }
         /// <summary>
-        /// 报表对应Code
+        /// Báo cáo tương ứngCode
         /// </summary>
         public string ReportCode { get; set; }
         /// <summary>
-        /// 报表名称
+        /// Tên báo cáo
         /// </summary>
         public string ReportNameDes { get; set; }
         /// <summary>
-        /// xml报表内容
+        /// xmlNội dung báo cáo
         /// </summary>
         public string Content { get; set; }
         /// <summary>
-        /// 是否启用 1启用 0停用
+        /// Có bật không 1Kích hoạt 0Vô hiệu hóa
         /// </summary>
         public int ReportStatus { get; set; }
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Người sửa đổi cuối cùng
         /// </summary>
         public string LastModifierCode { get; set; }
 

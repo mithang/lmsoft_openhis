@@ -18,7 +18,7 @@ using Newtouch.Herp.Infrastructure.Log;
 namespace Newtouch.Herp.DomainServices.Product
 {
     /// <summary>
-    /// 物资操作
+    /// Thao tác vật tư
     /// </summary>
     public class WzProductDmnService : DmnServiceBase, IWzProductDmnService
     {
@@ -73,7 +73,7 @@ AND (product.zt=@zt OR ''=@zt )
         }
 
         /// <summary>
-        /// 根据ID删除物资信息
+        /// Theo ID Xóa thông tin vật tư
         /// </summary>
         /// <param name="id"></param>
         public void DeleteProduct(string id)
@@ -82,7 +82,7 @@ AND (product.zt=@zt OR ''=@zt )
             {
                 if (DeleteProductToSfxm(id) <= 0)
                 {
-                    throw new Exception("删除对应的收费项目时失败");
+                    throw new Exception("Xóa hạng mục thu phí tương ứng thất bại");
                 }
                 db.Delete<RelProductWarehouseEntity>(p => p.productId == id);
                 db.Delete<RelProductUnitEntity>(p => p.productId == id);
@@ -92,7 +92,7 @@ AND (product.zt=@zt OR ''=@zt )
         }
 
         /// <summary>
-        /// 根据物资单位关联关系ID获取物资和单位信息
+        /// Theo quan hệ liên kết đơn vị vật tư ID Lấy thông tin vật tư và đơn vị
         /// </summary>
         /// <param name="relId"></param>
         /// <param name="organizeId"></param>
@@ -127,7 +127,7 @@ FROM (
         }
 
         /// <summary>
-        /// 获取本部门物资类别
+        /// Lấy loại vật tư của khoa phòng mình
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -154,7 +154,7 @@ AND relpw.warehouseId=@warehouseId
         }
 
         /// <summary>
-        /// 修改物资价格
+        /// Sửa giá vật tư
         /// </summary>
         /// <param name="id"></param>
         /// <param name="lsj"></param>
@@ -181,7 +181,7 @@ SELECT @@ROWCOUNT;
         }
 
         /// <summary>
-        /// 获取物资信息
+        /// Lấy thông tin vật tư
         /// </summary>
         /// <param name="id"></param>
         /// <param name="organizeId"></param>
@@ -205,10 +205,10 @@ AND wz.Id=@Id
             return FirstOrDefault<VProductInfoEntity>(sql, param);
         }
 
-        #region 首页统计
+        #region Thống kê trang chủ
 
         /// <summary>
-        /// 获取待处理事件总数
+        /// Lấy tổng số sự kiện chờ xử lý
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -218,28 +218,28 @@ AND wz.Id=@Id
             try
             {
                 var sql = new StringBuilder("DECLARE @tjshCount BIGINT, @wbrkCount BIGINT, @nbthCount BIGINT, @ckdshCount BIGINT, @expriedWzCount BIGINT;");
-                sql.AppendLine("--调价审核 ");
+                sql.AppendLine("--Duyệt điều chỉnh giá ");
                 sql.AppendLine("SELECT @tjshCount=COUNT(wztjId) FROM dbo.wz_priceAdjustment(NOLOCK) WHERE shzt='" + (int)EnumTjShzt.Waiting + "' AND warehouseId=@warehouseId AND OrganizeId=@OrganizeId AND zt='" + (int)Enumzt.Enable + "' ");
-                sql.AppendLine("--外部入库待审核  ");
+                sql.AppendLine("--Nhập kho ngoài chờ duyệt  ");
                 sql.AppendLine("SELECT @wbrkCount=COUNT(Id) FROM (  ");
                 sql.AppendLine("SELECT DISTINCT dj.Id FROM dbo.kf_crkdj(NOLOCK) dj ");
                 sql.AppendLine("INNER JOIN dbo.kf_crkmx(NOLOCK) mx ON mx.crkId=dj.Id ");
                 sql.AppendLine("WHERE dj.Rkbm=@warehouseId AND dj.OrganizeId=@OrganizeId AND dj.zt='" + (int)Enumzt.Enable + "' AND dj.auditState='" + (int)EnumAuditState.Waiting + "' AND dj.djlx=" + (int)EnumOutOrInStorageBillType.Wbrk);
                 sql.AppendLine(") a ");
-                sql.AppendLine("--内部退货待审核 ");
+                sql.AppendLine("--Trả hàng nội bộ chờ duyệt ");
                 sql.AppendLine("SELECT @nbthCount=COUNT(Id) FROM ( ");
                 sql.AppendLine("SELECT DISTINCT dj.Id FROM dbo.kf_crkdj(NOLOCK) dj ");
                 sql.AppendLine("INNER JOIN dbo.kf_crkmx(NOLOCK) mx ON mx.crkId=dj.Id ");
                 sql.AppendLine("WHERE dj.Rkbm=@warehouseId AND dj.OrganizeId=@OrganizeId AND dj.zt='" + (int)Enumzt.Enable + "' AND dj.auditState='" + (int)EnumAuditState.Waiting + "' AND dj.djlx=" + (int)EnumOutOrInStorageBillType.Nbth);
                 sql.AppendLine(") a ");
-                sql.AppendLine("--出库待审核 ");
+                sql.AppendLine("--Xuất kho chờ duyệt ");
                 sql.AppendLine("SELECT @ckdshCount=COUNT(Id) FROM ( ");
                 sql.AppendLine("SELECT DISTINCT dj.Id ");
                 sql.AppendLine("FROM dbo.kf_crkdj(NOLOCK) dj ");
                 sql.AppendLine("INNER JOIN dbo.kf_crkmx(NOLOCK) mx ON mx.crkId=dj.Id ");
                 sql.AppendLine("WHERE dj.Ckbm=@warehouseId AND dj.OrganizeId=@OrganizeId AND dj.zt='" + (int)Enumzt.Enable + "' AND dj.auditState='" + (int)EnumAuditState.Waiting + "' and dj.djlx=" + (int)EnumOutOrInStorageBillType.Wbck);
                 sql.AppendLine(") a ");
-                sql.AppendLine("--过期药品数量 ");
+                sql.AppendLine("--Số lượng thuốc quá hạn ");
                 sql.AppendLine("SELECT @expriedWzCount=COUNT(a.Id) FROM ( ");
                 sql.AppendLine("	SELECT DISTINCT a.Id,a.ph,a.pc FROM dbo.kf_kcxx(NOLOCK) a ");
                 sql.AppendLine("    INNER JOIN dbo.rel_productWarehouse(NOLOCK) rpw ON rpw.productId=a.productId AND rpw.warehouseId=a.warehouseId AND rpw.OrganizeId=a.OrganizeId AND rpw.zt='1' ");
@@ -266,7 +266,7 @@ AND wz.Id=@Id
         }
 
         /// <summary>
-        /// 获取待处理事件总数
+        /// Lấy tổng số sự kiện chờ xử lý
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -280,20 +280,20 @@ AND wz.Id=@Id
                 int.TryParse(td, out ago);
                 var sql = new StringBuilder();
                 sql.AppendLine("DECLARE @tjwzCount BIGINT, @rkdshCount BIGINT, @expriedWzCount BIGINT; ");
-                sql.AppendLine("--调价物资 ");
+                sql.AppendLine("--Vật tư điều chỉnh giá ");
                 sql.AppendLine("SELECT @tjwzCount=COUNT(wztjId) FROM ( ");
                 sql.AppendLine("SELECT DISTINCT tj.wztjId ");
                 sql.AppendLine("FROM dbo.wz_priceAdjustment(NOLOCK) tj ");
                 sql.AppendLine("INNER JOIN dbo.rel_productWarehouse(NOLOCK) rpw ON rpw.productId=tj.productId AND rpw.warehouseId=tj.warehouseId AND rpw.zt='" + (int)Enumzt.Enable + "' ");
                 sql.AppendLine("WHERE tj.zxbz='" + (int)EnumTjZxbz.Already + "' and tj.warehouseId=@warehouseId AND tj.OrganizeId=@OrganizeId AND tj.zt='" + (int)Enumzt.Enable + "' AND tj.zxsj>=DATEADD(DAY, " + ago + ", GETDATE()) ");
                 sql.AppendLine(") a ");
-                sql.AppendLine("--入库审核 ");
+                sql.AppendLine("--Duyệt nhập kho ");
                 sql.AppendLine("SELECT @rkdshCount=COUNT(Id) FROM ( ");
                 sql.AppendLine("SELECT DISTINCT dj.Id FROM dbo.kf_crkdj(NOLOCK) dj ");
                 sql.AppendLine("INNER JOIN dbo.kf_crkmx(NOLOCK) mx ON mx.crkId=dj.Id ");
                 sql.AppendLine("WHERE dj.Rkbm=@warehouseId AND dj.OrganizeId=@OrganizeId AND dj.zt='" + (int)Enumzt.Enable + "' AND dj.auditState='" + (int)EnumAuditState.Waiting + "' ");
                 sql.AppendLine(") a ");
-                sql.AppendLine("--过期物资数量 ");
+                sql.AppendLine("--Số lượng vật tư quá hạn ");
                 sql.AppendLine("SELECT @expriedWzCount=COUNT(a.Id) FROM ( ");
                 sql.AppendLine("	SELECT DISTINCT a.Id FROM dbo.kf_kcxx(NOLOCK) a WHERE a.kcsl > 0 AND a.yxq < GETDATE() AND a.warehouseId=@warehouseId AND a.OrganizeId=@OrganizeId AND a.zt='" + (int)Enumzt.Enable + "' ");
                 sql.AppendLine(") a ");
@@ -320,7 +320,7 @@ AND wz.Id=@Id
         #endregion
 
         /// <summary>
-        /// 获取物资代码
+        /// Lấy mã vật tư
         /// </summary>
         /// <returns></returns>
         public string GetProductCode()
@@ -338,7 +338,7 @@ AND wz.Id=@Id
         }
 
         /// <summary>
-        /// 检查物资代码是否已存在
+        /// Kiểm tra mã vật tư đã tồn tại chưa
         /// </summary>
         /// <returns></returns>
         public string CheckProductCode(string productCode, string keyValue)
@@ -353,7 +353,7 @@ AND wz.Id=@Id
         }
 
         /// <summary>
-        /// 插入物资数据并同步到收费项目中
+        /// Chèn dữ liệu vật tư và đồng bộ vào hạng mục thu phí
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
@@ -415,17 +415,17 @@ INSERT INTO [NewtouchHIS_Base].[dbo].[xt_sfxm]
             };
             using (var db = new EFDbTransaction(Db).BeginTrans())
             {
-                if (wzProductRepo.Insert(entity) <= 0)//给物资表插入物资数据
+                if (wzProductRepo.Insert(entity) <= 0)//Chèn dữ liệu vật tư vào bảng vật tư
                 {
-					throw new Exception("新增失败");
+					throw new Exception("Thêm mới thất bại");
 				}
-                if (SynProductToWarehouse(entity) < 0)//将物资关联上默认同步的库房
+                if (SynProductToWarehouse(entity) < 0)//Liên kết vật tư với kho đồng bộ mặc định
                 {
-                    throw new Exception("将物资同步到库房时失败");
+                    throw new Exception("Đồng bộ vật tư vào kho thất bại");
                 }
-				//if (ExecuteSqlCommand(sql, param) <= 0)//将物资数据同步到收费项目
+				//if (ExecuteSqlCommand(sql, param) <= 0)//Đồng bộ dữ liệu vật tư vào hạng mục thu phí
 				//{
-				//	throw new Exception("新增失败");
+				//	throw new Exception("Thêm mới thất bại");
 				//}
 				db.Commit();
             }
@@ -445,7 +445,7 @@ INSERT INTO [NewtouchHIS_Base].[dbo].[xt_sfxm]
 		}
 
 		/// <summary>
-		/// 更新物资数据并同步到收费项目中
+		/// Cập nhật dữ liệu vật tư và đồng bộ vào hạng mục thu phí
 		/// </summary>
 		/// <param name="entity"></param>
 		/// <returns></returns>
@@ -485,14 +485,14 @@ WHERE sfxmCode=@oldProductCode
             };
             using (var db = new EFDbTransaction(Db).BeginTrans())
             {
-                //if (ExecuteSqlCommand(sql, param) <= 0)//将物资数据同步到收费项目
+                //if (ExecuteSqlCommand(sql, param) <= 0)//Đồng bộ dữ liệu vật tư vào hạng mục thu phí
                 //{
-                //    throw new Exception("将物资同步到收费项目时失败");
+                //    throw new Exception("Đồng bộ vật tư vào hạng mục thu phí thất bại");
                 //}
                 ExecuteSqlCommand(sql, param);
-                if (wzProductRepo.Update(entity) <= 0)//更新物资表物资数据
+                if (wzProductRepo.Update(entity) <= 0)//Cập nhật dữ liệu vật tư của bảng vật tư
                 {
-                    throw new Exception("修改失败");
+                    throw new Exception("Sửa đổi thất bại");
                 }
                 db.Commit();
             }
@@ -500,7 +500,7 @@ WHERE sfxmCode=@oldProductCode
         }
 
         /// <summary>
-        /// 删除收费项目中的物资
+        /// Xóa vật tư trong hạng mục thu phí
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -515,7 +515,7 @@ DELETE FROM  [NewtouchHIS_Base].[dbo].[xt_sfxm] WHERE sfxmcode=(SELECT productCo
         }
 
         /// <summary>
-        /// 同步物资到默认库房
+        /// Đồng bộ vật tư đến kho mặc định
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
@@ -545,11 +545,11 @@ DELETE FROM  [NewtouchHIS_Base].[dbo].[xt_sfxm] WHERE sfxmcode=(SELECT productCo
         }
 
         /// <summary>
-        /// 获取产品明细
+        /// Lấy chi tiết sản phẩm
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="organizeId"></param>
-        /// <param name="topCount">默认 top 500</param>
+        /// <param name="topCount">Mặc định top 500</param>
         /// <returns></returns>
         public List<VProductInfoDo> SelectProductDetail(string keyword, string organizeId, int topCount = 500)
         {
@@ -572,7 +572,7 @@ AND (wz.name LIKE '%'+@keyword+'%' OR wz.py LIKE '%'+@keyword+'%')
         }
 
         /// <summary>
-        /// 查询物资所有单位
+        /// Truy vấn tất cả đơn vị của vật tư
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="organizeId"></param>

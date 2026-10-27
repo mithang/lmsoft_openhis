@@ -139,8 +139,8 @@
 						<td class="formValue formDdlSelectorTd">
 							<select id="oproom" name="oproom" class="form-control required">
 								<option value=""> ==Vui lòng chọn== </option>
-								@*<option value="2">手术室2</option>
-									<option value="3">手术室3</option>*@
+								@*<option value="2">Phòng phẫu thuật 2</option>
+									<option value="3">Phòng phẫu thuật 3</option>*@
 							</select>
 						</td>
 						<td class="formTitle">Ca mổ:</td>
@@ -338,22 +338,22 @@
 	}
 
 
-	//手术名称 新增icon
+	//Tên phẫu thuật Thêm mớiicon
 	$('#tablessmc .plusToggleCircle').click(function () {
 		var number = $('#tablessmc .ssmcText').length + 1;
-		//var $newTr = $('<tr><th class="formTitle">副7</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
+		//var $newTr = $('<tr><th class="formTitle">Phụ7</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
 		var $newTr = $('<tr><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td class="formValue"><input type="text" readonly="readonly" id="ssmc' + number + '" name="ssmc' + number + '" class="form-control activeValue focusInput ssmcText" /><input id="ssdm' + number + '" type="hidden" /></td></tr>');
 		$newTr.appendTo($(this).closest('table'));
-		//手术名称浮层
+		//Lớp nổi tên phẫu thuật
 		//bindssmcFloatingSelector(number);
 	});
 
-	//删除icon
+	//Xóa icon
 	$('#formarrangement').on('click', '.minusToggleCircle', function () {
 		$(this).closest('tr').remove();
 	});
 
-	//主手术浮层
+	//Lớp nổi phẫu thuật chính
 	//bindssmcFloatingSelector(0);
 	
 
@@ -366,7 +366,7 @@
 			data: { keyValue: "" },
 			dataType: "json",
 			success: function (data) {
-				//手术申请信息
+				//Thông tin đơn đăng ký phẫu thuật
 				arrangeInfo = data;
 				var xb = data.xb == 1 ? "Nam" : "Nữ";
 				xb += data.nl == null ? "" : "，" + data.nl;
@@ -383,9 +383,9 @@
 
 				applyno = data.Applyno;
 
-				//手术名称
+				//Tên phẫu thuật
 				var number = data.ss.length;
-				if (number > 0) {//主手术
+				if (number > 0) {//Phẫu thuật chính
 					$("#ssmc").val(data.ss[0].ssmc);
 					$("#ssdm").val(data.ss[0].ssdm);
 				}
@@ -393,7 +393,7 @@
 					var n = i + 1;
 					//if ($("#ssdm" + n).val() == "") {
 					if ($("#ssdm" + n).length <= 0) {
-						//添加icon 并赋值
+						//Thêmicon và gán giá trị
 						$('#tablessmc .plusToggleCircle').click();
 						$("#ssmc" + n).val(data.ss[i].ssmc);
 						$("#ssdm" + n).val(data.ss[i].ssdm);
@@ -413,7 +413,7 @@
 			dataType: "json",
 			success: function (data) {
 				$("#formarrangement").formSerialize(data);
-				//手术排班信息
+				//Thông tin xếp lịch phẫu thuật
 				//$("#ssmc").val(data.ssmcn);
 				if (data.sssj != null) {
 					$("#sssj2").val(data.sssj.replace("T", " "));
@@ -434,7 +434,7 @@
 				//var ssxshs = $("#ssxshs option:selected").text();
 				//$("#ssxshs").val(ssxshs);
 				//$("#ssxhhs option[value='ys07']").attr("selected", "selected");
-				//按钮显示隐藏
+				//Hiển thị/ẩn nút
 				if (data.sqzt == '@((int)EnumSSzt.dpb)') {
 					$("#cancel").hide();
                     $("#submit").show();
@@ -462,7 +462,7 @@
 		});
 	}
 
-	//保存排班
+	//Lưu xếp lịch
 	function submitArrange() {
 
 		if (!$('#formarrangement').formValid()) {
@@ -501,7 +501,7 @@
 		if (arrangeObj.sssj == "") {
 			$.modalAlert("Vui lòng nhập thời gian phẫu thuật", 'warning');
 		} else {
-		//不可填
+		//Không được nhập
 		$("#sssj2").attr("disabled", "disabled");
 		$("#mzfs").attr("disabled", "disabled");
 		$("#ssbw").attr("readonly", true);
@@ -530,7 +530,7 @@
 
 	}
 
-	//取消排班
+	//Hủy xếp lịch
 	function cancelArrange() {
 		window.$.modalConfirm("Bạn có chắc muốn hủy??", function (flag) {
 			if (!flag) {

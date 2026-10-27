@@ -8,7 +8,7 @@ namespace NewtouchHIS.Lib.Base.Extension
     public static class EnumExtensions
     {
         /// <summary>
-        /// 获取特性 (DisplayAttribute) 的名称；如果未使用该特性，则返回枚举的名称。
+        /// Lấy đặc tính (DisplayAttribute) tên; nếu không sử dụng đặc tính này, trả về tên của enum.
         /// </summary>
         /// <param name="enumValue"></param>
         /// <returns></returns>
@@ -22,7 +22,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 获取特性 (DisplayAttribute) 的说明；如果未使用该特性，则返回枚举的名称。
+        /// Lấy đặc tính (DisplayAttribute) mô tả; nếu không sử dụng đặc tính này, trả về tên của enum.
         /// </summary>
         /// <param name="enumValue"></param>
         /// <returns></returns>
@@ -36,7 +36,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 获取特性 (DescriptionAttribute) 的说明；如果未使用该特性，则返回枚举的名称。
+        /// Lấy đặc tính (DescriptionAttribute) mô tả; nếu không sử dụng đặc tính này, trả về tên của enum.
         /// </summary>
         /// <param name="enumValue"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 直接获取特性（更轻量、更容易使用，不用封装“获取每一个自定义特性”的扩展方法）
+        /// Lấy trực tiếp đặc tính (nhẹ hơn, dễ sử dụng hơn, không cần đóng gói“lấy từng đặc tính tùy chỉnh”phương thức mở rộng)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="enumValue"></param>
@@ -64,7 +64,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 根据枚举类型获取枚举项信息
+        /// Lấy thông tin mục enum theo loại enum
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
@@ -81,7 +81,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// （呈现枚举下拉用）获取 SelectList Text：Name Value：Id
+        /// (Dùng để hiển thị enum dưới dạng dropdown) Lấy SelectList Text: Name Value:Id
         /// </summary>
         /// <param name="enumeration"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         //}
 
         ///// <summary>
-        ///// （呈现枚举下拉用）获取 SelectList Text：Desc Value：Id
+        ///// (Dùng để hiển thị enum dưới dạng dropdown) Lấy SelectList Text: Desc Value:Id
         ///// </summary>
         ///// <param name="enumeration"></param>
         ///// <returns></returns>
@@ -101,10 +101,10 @@ namespace NewtouchHIS.Lib.Base.Extension
         //}
 
         ///// <summary>
-        ///// （呈现枚举下拉用）获取 SelectList Text：Desc Value：Id
+        ///// (Dùng để hiển thị enum dưới dạng dropdown) Lấy SelectList Text: Desc Value:Id
         ///// </summary>
         ///// <param name="enumeration"></param>
-        ///// <param name="selectedValue">选中项</param>
+        ///// <param name="selectedValue">Mục đã chọn</param>
         ///// <returns></returns>
         //public static SelectList ToDescSelectList(this System.Enum enumeration, object selectedValue)
         //{
@@ -112,7 +112,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         //}
 
         ///// <summary>
-        ///// （呈现枚举下拉用）提供部分选项  Text：Desc Value：Id
+        ///// (Dùng để hiển thị enum dưới dạng dropdown) Cung cấp một phần tùy chọn Text: Desc Value:Id
         ///// </summary>
         ///// <param name="enumeration"></param>
         ///// <param name="someValues"></param>
@@ -129,11 +129,11 @@ namespace NewtouchHIS.Lib.Base.Extension
         //}
 
         ///// <summary>
-        ///// （呈现枚举下拉用）提供部分选项  Text：Desc Value：Id
+        ///// (Dùng để hiển thị enum dưới dạng dropdown) Cung cấp một phần tùy chọn Text: Desc Value:Id
         ///// </summary>
         ///// <param name="enumeration"></param>
         ///// <param name="someValues"></param>
-        ///// <param name="selectedValue">选中项</param>
+        ///// <param name="selectedValue">Mục đã chọn</param>
         ///// <returns></returns>
         //public static SelectList ToSomeDescSelectList(this System.Enum enumeration, string someValues, object selectedValue)
         //{

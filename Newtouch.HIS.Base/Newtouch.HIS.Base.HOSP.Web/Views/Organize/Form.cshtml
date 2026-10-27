@@ -131,11 +131,11 @@
         }
     });
     function initControl() {
-        //上级组织机构下拉框
+        //Hộp thả xuống tổ chức cấp trên
         $("#ParentId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
-        //机构分类下拉    //这里不区分组织机构
+        //Thả xuống phân loại cơ sở    //Ở đây không phân biệt tổ chức
         $("#CategoryCode").bindSelect({
             url: "/ItemsData/GetSelectJson",
             param: { code: "OrganizeType" }
@@ -149,7 +149,7 @@
             url: "/Organize/SubmitForm?keyValue=" + keyValue,
             param: $("#form1").formSerialize(),
             success: function () {
-                top.top.$.clientsRefresh(); //刷新缓存
+                top.top.$.clientsRefresh(); //Làm mới bộ nhớ đệm
                 $.currentWindow().$("#gridList").resetSelection();
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
             }

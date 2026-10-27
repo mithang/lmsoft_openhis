@@ -9,17 +9,17 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysWardBedRepo : IRepositoryBase<SysWardBedEntity>
     {
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         void SubmitForm(SysWardBedEntity entity, int? cwId);
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         void DeleteForm(int cwId,string orgId);
 
         /// <summary>
-        /// 根据床位占用情况
+        /// Theo tình hình sử dụng giường
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

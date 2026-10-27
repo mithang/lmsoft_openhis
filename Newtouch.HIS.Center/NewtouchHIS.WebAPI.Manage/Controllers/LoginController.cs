@@ -17,7 +17,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
             _userVDmnService = userVDmnService;
         }
         /// <summary>
-        /// 用户登录
+        /// Người dùng đăng nhập
         /// </summary>
         /// <param name="login"></param>
         /// <returns></returns>
@@ -27,13 +27,13 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
         {
             if (login == null || login.Data == null || (string.IsNullOrWhiteSpace(login.Data!.Username) && (string.IsNullOrWhiteSpace(login.Data!.Password))))
             {
-                return new BusResult<JWTToken> { code = ResponseResultCode.FAIL, msg = "Đăng nhập thất bại，Vui lòng nhập tên người dùng và mật khẩu" };
+                return new BusResult<JWTToken> { code = ResponseResultCode.FAIL, msg = "Đăng nhập thất bại,Vui lòng nhập tên người dùng và mật khẩu" };
             }
             login.Data.Password = MD5Encrypt.Encrypt(login.Data.Password);
             var logResult = await _userVDmnService.UserLogin(login.Data);
             if (logResult == null || logResult.Data == null)
             {
-                return new BusResult<JWTToken> { code = ResponseResultCode.FAIL, msg = logResult!.msg ?? "Đăng nhập thất bại，Không tìm thấy thông tin người dùng" };
+                return new BusResult<JWTToken> { code = ResponseResultCode.FAIL, msg = logResult!.msg ?? "Đăng nhập thất bại,Không tìm thấy thông tin người dùng" };
             }
             return null;
             //return await _jwtService.GetTokenAsync(new JWTTokenRequest

@@ -14,7 +14,7 @@
     function selectGridAll()
     {
         var jqGrid = $("#chooseCfGrid");
-        // 拿到所有行id
+        // Lấy tất cả các dòngid
         var jqGridIDs = jqGrid.getDataIDs();
         for (var i = 0; i < jqGridIDs.length; i++) {
             jqGrid.setSelection(jqGridIDs[i], true);
@@ -55,7 +55,7 @@
     function submitForm(callback)
     {
         debugger;
-        //获取选中行Id
+        //Lấy dòng đã chọnId
         var selRowIds = $("#chooseCfGrid").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds.length == 0) {
             $.modalAlert("Vui lòng tích chọn một hoặc nhiều đơn thuốc", 'warning');
@@ -63,7 +63,7 @@
         }
 
         //cflist
-        var cflist = [];//查询处方详情
+        var cflist = [];//Truy vấn chi tiết đơn thuốc
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#chooseCfGrid").jqGrid('getRowData', selRowIds[i]);
             if (!rowData) {

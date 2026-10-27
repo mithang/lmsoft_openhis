@@ -7,7 +7,7 @@ using Newtouch.Infrastructure.EF.Attributes;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品调价损益
+    /// Lãi lỗ điều chỉnh giá thuốc hệ thống
     /// </summary>
     [Table("xt_yp_tjsy")]
     [SugarTable("xt_yp_tjsy")]
@@ -21,117 +21,117 @@ namespace Newtouch.HIS.Domain.Entity
         public string TjsyId { get; set; }
 
         /// <summary>
-        /// 组织ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 药房部门
+        /// Bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 药品code
+        /// Thuốccode
         /// </summary>
         public string ypCode{ get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string Ph { get; set; }
 
         /// <summary>
-        /// 调价时间
+        /// Thời gian điều chỉnh giá
         /// </summary>
         public DateTime Tjsj { get; set; }
 
         /// <summary>
-        /// 调价文件
+        /// Tệp điều chỉnh giá
         /// </summary>
         public string Tjwj { get; set; }
 
         /// <summary>
-        /// 当时库存数量
+        /// Số lượng tồn kho lúc đó
         /// </summary>
         public int Dssl { get; set; }
 
         /// <summary>
-        /// 原批发价
+        /// Giá bán buôn gốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Ypfj { get; set; }
 
         /// <summary>
-        /// 原零售价
+        /// Giá bán lẻ gốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Ylsj { get; set; }
 
         /// <summary>
-        /// 原药库批发价
+        /// Giá bán buôn kho thuốc gốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Yykpfj { get; set; }
 
         /// <summary>
-        /// 原药库零售价
+        /// Giá bán lẻ kho thuốc gốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Yyklsj { get; set; }
 
         /// <summary>
-        /// 现批发价
+        /// Giá bán buôn hiện tại
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Xpfj { get; set; }
 
         /// <summary>
-        /// 现零售价
+        /// Giá bán lẻ hiện tại
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Xlsj { get; set; }
 
         /// <summary>
-        /// 现药库批发价
+        /// Giá bán buôn kho thuốc hiện tại
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Xykpfj { get; set; }
 
         /// <summary>
-        /// 现药库零售价
+        /// Giá bán lẻ kho thuốc hiện tại
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Xyklsj { get; set; }
 
         /// <summary>
-        /// 转换因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int Zhyz { get; set; }
 
         /// <summary>
-        /// 批发价调价利润
+        /// Lợi nhuận điều chỉnh giá bán buôn
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Pfjtjlr { get; set; }
 
         /// <summary>
-        /// 零售价调价利润
+        /// Lợi nhuận điều chỉnh giá bán lẻ
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Lsjtjlr { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 操作人
+        /// Người thao tác
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 操作时间
+        /// Thời gian thao tác
         /// </summary>
         public DateTime CreateTime { get; set; }
 

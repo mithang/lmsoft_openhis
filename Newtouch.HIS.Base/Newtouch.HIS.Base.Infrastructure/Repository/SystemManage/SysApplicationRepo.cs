@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取列表（包括无效的）
+        /// Lấy danh sách（Bao gồm cả vô hiệu）
         /// </summary>
         /// <returns></returns>
         public IList<SysApplicationEntity> GetList()
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         /// <returns></returns>
         public IList<SysApplicationEntity> GetValidList()
@@ -37,14 +37,14 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 提交新建、更新 实体
+        /// Gửi tạo mới、Cập nhật Thực thể
         /// </summary>
         /// <returns></returns>
         public void SubmitForm(SysApplicationEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                SysApplicationEntity oldEntity = null;   //变更前Entity
+                SysApplicationEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 返回一个实体
+        /// Trả về một thực thể
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>

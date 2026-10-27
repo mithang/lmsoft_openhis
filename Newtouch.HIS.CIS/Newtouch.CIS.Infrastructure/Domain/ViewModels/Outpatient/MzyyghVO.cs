@@ -3,109 +3,109 @@ using System;
 namespace Newtouch.Domain.ViewModels.Outpatient
 {
     /// <summary>
-    /// 预约挂号信息
+    /// đặt hẹnđăng ký khámthông tin
     /// </summary>
     public class MzyyghVO
     {
         /// <summary>
-        /// 预约挂号ID mz_yygh表主键
+        /// đặt hẹnđăng ký khámID mz_yyghbảngKhóa chính
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织结构ID
+        /// tổ chứckếtcấu trúcID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 科室代码
+        /// KhoaMã
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 门诊类型  1：普通门诊    2：急症     3：专家门诊
+        /// Ngoại trúLoại  1：thông thườngNgoại trú    2：Cấp cứu     3：chuyên giaNgoại trú
         /// </summary>
         public string mzlx { get; set; }
 
         /// <summary>
-        /// 预约日期
+        /// đặt hẹnNgày
         /// </summary>
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// 时段
+        /// khiđoạn
         /// </summary>
         public string regTime { get; set; }
 
         /// <summary>
-        /// 专家工号
+        /// chuyên giaMã nhân viên
         /// </summary>
         public string gh { get; set; }
 
         /// <summary>
-        /// 专家名称
+        /// chuyên giaTên
         /// </summary>
         public string zjmc { get; set; }
 
         /// <summary>
-        /// 预约号
+        /// đặt hẹnsố
         /// </summary>
         public int bespeakNo { get; set; }
 
         /// <summary>
-        /// 提交时间
+        /// GửiThời gian
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 提交人
+        /// Gửi người
         /// </summary>
         public string CreatorCode { get; set; }
     }
 
     /// <summary>
-    /// 门诊预约挂号明细
+    /// Ngoại trúđặt hẹnđăng ký khámchi tiết
     /// </summary>
     public class MzyyghDetailVo
     {
         /// <summary>
-        /// 最大支持预约数
+        /// nhấtlớnHỗ trợđặt hẹnsố
         /// </summary>
         public int bespeakMaxCount { get; set; }
 
         /// <summary>
-        /// 已预约数
+        /// đãđặt hẹnsố
         /// </summary>
         public int bespeakedCount { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string departmentCode { get; set; }
 
         /// <summary>
-        /// 专家工号
+        /// chuyên giaMã nhân viên
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// 预约日期
+        /// đặt hẹnNgày
         /// </summary>
         public DateTime regDate { get; set; }
     }
 
     /// <summary>
-    /// 挂号预约排班
+    /// đăng ký khámđặt hẹnXếp lịch
     /// </summary>
     public class BespeakRegisterScheduling
     {
         /// <summary>
-        /// 日历日期
+        /// ngàylịchNgày
         /// </summary>
         public DateTime CalendarDate { get; set; }
 

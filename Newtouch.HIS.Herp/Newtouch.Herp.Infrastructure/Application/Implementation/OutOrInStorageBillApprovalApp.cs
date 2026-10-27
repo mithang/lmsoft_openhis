@@ -1,44 +1,71 @@
+using Newtouch.Herp.Application.Implementation.BillApprovalProcess;
 using Newtouch.Herp.Application.Interface;
 using Newtouch.Herp.Domain.DTO.InputDto;
+using Newtouch.Herp.Domain.DTO.OutputDto;
+using Newtouch.Herp.Domain.IDomainServices;
 using Newtouch.Herp.Domain.IRepository;
+using Newtouch.Herp.Infrastructure.Enum;
 
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 出入库单审核 (Core port)
+    /// Duyệt phiếu nhập/xuất kho (Core port, parity audit 2026-10-27).
+    /// The original dispatched on bill type to Wbrk/Wbck/DirectDelivery/
+    /// DeliveryOfReturn processes; the earlier port returned an explicit stub
+    /// because those processes were not ported yet. They are ported now
+    /// (BillApprovalProcess/*, ProcessorFun base), so this dispatches exactly
+    /// like the original. Dependencies are constructor-injected (the original
+    /// relied on binary field injection inside the process classes).
     /// </summary>
     public class OutOrInStorageBillApprovalApp : AppBase, IOutOrInStorageBillApprovalApp
     {
         private readonly IKfCrkdjRepo _kfCrkdjRepo;
+        private readonly IKfCrkmxRepo _kfCrkmxRepo;
+        private readonly IStorageManageDmnService _storageManageDmnService;
 
-        // Original relied on binary field injection and constructed the
-        // BillApprovalProcess classes (Wbrk/Wbck/DirectDelivery/DeliveryOfReturn)
-        // with `new`; those processes depend on IStorageManageDmnService
-        // (StorageManage area, not ported in this copy), so approval cannot be
-        // executed faithfully here yet. The bill is still validated from the
-        // ported repo; the stock-moving step is an explicit stub.
-        public OutOrInStorageBillApprovalApp(IKfCrkdjRepo kfCrkdjRepo)
+        public OutOrInStorageBillApprovalApp(IKfCrkdjRepo kfCrkdjRepo,
+        IKfCrkmxRepo kfCrkmxRepo, IStorageManageDmnService storageManageDmnService)
         {
             _kfCrkdjRepo = kfCrkdjRepo;
+            _kfCrkmxRepo = kfCrkmxRepo;
+            _storageManageDmnService = storageManageDmnService;
         }
 
         /// <summary>
-        /// 审核
+        /// Duyệt
         /// </summary>
         /// <param name="billApprovalDTO"></param>
         /// <returns></returns>
         public string Approval(BillApprovalDTO billApprovalDTO)
         {
             if (billApprovalDTO == null) return "ID phiếu không được để trống";
+            IProcess process;
             billApprovalDTO.OrganizeId = OrganizeId;
-            var dj = _kfCrkdjRepo.FindEntity(p => p.Id == billApprovalDTO.djId
-                && p.OrganizeId == billApprovalDTO.OrganizeId);
-            if (dj == null) return "Không tìm thấy phiếu đã chỉ định";
-            // STUB (explicit): Wbrk/Wbck/DirectDelivery/DeliveryOfReturn approval
-            // processes move stock via IStorageManageDmnService, which belongs
-            // to the StorageManage area and is not ported in this copy. No stock
-            // or audit-state change is performed.
-            return "Chức năng duyệt phiếu chưa khả dụng: quy trình duyệt (Wbrk/Wbck/DirectDelivery/DeliveryOfReturn) phụ thuộc module Quản lý kho (StorageManage) chưa được chuyển đổi.";
+            var result = new ActResult();
+            switch (billApprovalDTO.djlx)
+            {
+            case (int)EnumOutOrInStorageBillType.Wbrk:
+                process = new WbrkProcess(billApprovalDTO, _kfCrkdjRepo, _kfCrkmxRepo, _storageManageDmnService);
+                result = process.Process();
+                break;
+            case (int)EnumOutOrInStorageBillType.Wbck:
+                process = new WbckProcess(billApprovalDTO, _kfCrkdjRepo, _kfCrkmxRepo, _storageManageDmnService);
+                result = process.Process();
+                break;
+            case (int)EnumOutOrInStorageBillType.Zjck:
+                process = new DirectDeliveryProcess(billApprovalDTO, _kfCrkdjRepo, _kfCrkmxRepo, _storageManageDmnService);
+                result = process.Process();
+                break;
+            case (int)EnumOutOrInStorageBillType.Nbth:
+                process = new DeliveryOfReturnProcess(billApprovalDTO, _kfCrkdjRepo, _kfCrkmxRepo, _storageManageDmnService);
+                result = process.Process();
+                break;
+            default:
+                result.IsSucceed = false;
+                result.ResultMsg = "Không tìm thấy quy trình duyệt phù hợp";
+                break;
+            }
+            return result.ResultMsg;
         }
     }
 }

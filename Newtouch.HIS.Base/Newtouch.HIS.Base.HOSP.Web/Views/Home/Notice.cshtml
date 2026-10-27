@@ -73,10 +73,10 @@
         var clientName = "";
 
         var eUsers = $("#users");
-        var hubUrl = 'http://localhost:55144/signalr'; //服务端ip
+        var hubUrl = 'http://localhost:55144/signalr'; //Phía máy chủip
 
         $(function () {
-            //绑定输入框，这里只能 是ID
+            //Gắn hộp nhập，Ở đây chỉ có thể CóID
             $("#btnSend").keydown(function (event) {
                 event = document.all ? window.event : event;
                 if ((event.keyCode || event.which) == 13) {
@@ -116,7 +116,7 @@
             });
         });
 
-        //初始化服务端和客户端的连接
+        //Khởi tạo kết nối máy chủ và máy khách
         function initTalk() {
             document.getElementById('nick').innerHTML = clientName;
             $.connection.hub.url = hubUrl;
@@ -164,7 +164,7 @@
 
             });
         }
-        //登录方法，登录成功以后调用 initTalk()进行$.connection服务端的连接
+        //Phương thức đăng nhập，Gọi sau khi đăng nhập thành công initTalk()Tiến hành$.connectionKết nối phía máy chủ
         function GoHome() {
             clientName = $("#nickname").val();
             if (clientName.length == 0 || clientName == "Vui lòng nhập biệt danh") {
@@ -178,7 +178,7 @@
 
         function randomString() {
 
-            var $chars = 'ycz123';    /****默认去掉了容易混淆的字符oOLl,9gq,Vv,Uu,I1****/
+            var $chars = 'ycz123';    /****Mặc định đã loại bỏ ký tự dễ nhầm lẫnoOLl,9gq,Vv,Uu,I1****/
             var maxPos = $chars.length;
             var pwd = '';
             for (i = 0; i < 3; i++) {

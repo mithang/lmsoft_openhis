@@ -3,102 +3,102 @@ using System;
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 提交损益信息
+    /// Gửi thông tin chênh lệch
     /// </summary>
     public class VPriceAdjustmentProfitLossEntity
     {
         /// <summary>
-        /// 调价损益ID
+        /// Chênh lệch điều chỉnh giá ID
         /// </summary>
         public string TjsyId { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 类别名称
+        /// Tên loại
         /// </summary>
         public string lbmc { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 供应商
+        /// Nhà cung cấp
         /// </summary>
         public string supplierName { get; set; }
 
         /// <summary>
-        /// 库房
+        /// Kho
         /// </summary>
         public string warehouseId { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô hàng
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 调价时间
+        /// Thời gian điều chỉnh giá
         /// </summary>
         public DateTime tjsj { get; set; }
 
         /// <summary>
-        /// 调价文件
+        /// Tệp điều chỉnh giá
         /// </summary>
         public string tjwj { get; set; }
 
         /// <summary>
-        /// 当时数量
+        /// Số lượng lúc đó
         /// </summary>
         public int dssl { get; set; }
 
         /// <summary>
-        /// 单位名称
+        /// Tên đơn vị
         /// </summary>
         public string dwmc { get; set; }
 
         /// <summary>
-        /// 原零售价
+        /// Giá bán lẻ gốc
         /// </summary>
         public decimal ylsj { get; set; }
 
         /// <summary>
-        /// 先零售价
+        /// Giá bán lẻ trước đó
         /// </summary>
         public decimal xlsj { get; set; }
 
         /// <summary>
-        /// 转化因子 与ylsj、xlsj、dssl对应
+        /// Hệ số chuyển đổi với ylsj、xlsj、dssl tương ứng
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 零售价调价利润
+        /// Lợi nhuận điều chỉnh giá bán lẻ
         /// </summary>
         public decimal lsjtjlr { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
     }

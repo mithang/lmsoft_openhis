@@ -24,7 +24,7 @@
 					<label>khác địa phương</label>
 					<input type="button" id="btn_tj" class="btn btn-primary btn-md" style="margin-right:10px;width:40px;" value="Thống kê" />
 					<input type="button" id="btn_sq" class="btn btn-primary btn-md" style="margin-right:10px;width:40px;" value="Đăng ký" />
-					@*<input type="button" id="btn_gb" class="btn btn-primary btn-md" style="margin-right:10px;width:80px;" value="申请撤销" />*@
+					@*<input type="button" id="btn_gb" class="btn btn-primary btn-md" style="margin-right:10px;width:80px;" value="Đề nghị hủy bỏ" />*@
 				</td>
 				<td class="formValue"></td>
 			</tr>
@@ -46,7 +46,7 @@
 
 
 
-	@* 底部表格 *@
+	@* đáybộbảngđịnh dạng *@
 	<div style="background-color: #fff;">
 		<table id="gridJSList1"></table>
 	</div>
@@ -65,7 +65,7 @@
 
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Nạp lại khi thay đổi kích thước cửa sổ trình duyệtjqGridChiều rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
@@ -139,9 +139,9 @@
             }
         });
 
-        //查询事件
+        //Sự kiện tra cứu
         $("#btn_tj").click(function () {
-			$('#gridJSList').jqGrid("clearGridData");//先清空明细
+			$('#gridJSList').jqGrid("clearGridData");//xóa chi tiết trước
             $gridJsList.jqGrid('setGridParam', {
 				postData: { ksrq: $("#ksrq").val(), jsrq: $("#jsrq").val(), sfyd: $('input:radio[name="sfyd"]:checked').val() },
                 url: '/MedicalInsuranceLiquidation/LiquidationApplication/GetQssq',

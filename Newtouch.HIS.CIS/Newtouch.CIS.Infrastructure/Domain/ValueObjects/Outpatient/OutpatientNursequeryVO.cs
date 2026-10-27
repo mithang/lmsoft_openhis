@@ -9,54 +9,54 @@ namespace Newtouch.Domain.ValueObjects
     public class OutpatientNursequeryVO
     {
         /// <summary>
-        /// 处方明细id
+        /// Đơn thuốcchi tiếtid
         /// </summary>
         public string cfmxId { get; set; }
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         public string mzh { get; set; }
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
         /// <summary>
-        /// 患者名称
+        /// Bệnh nhânTên
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 患者性别 1:男 2：女
+        /// Bệnh nhânGiới tính 1:Nam 2：Nữ
         /// </summary>
         public string sex { get; set; }
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypcode { get; set; }
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
         /// <summary>
-        /// 组号
+        /// Số nhóm
         /// </summary>
         public string zh { get; set; }
 
         /// <summary>
-        /// 开立时间
+        /// mởlậpThời gian
         /// </summary>
         public DateTime? kssj { get; set; }
 
         /// <summary>
-        /// 处方明细内容
+        /// Đơn thuốcchi tiếtnội dung
         /// </summary>
         public string cfmxnr { get; set; }
 
         /// <summary>
-        /// 用法代码
+        /// Cách dùngMã
         /// </summary>
         public string yfcode { get; set; }
         /// <summary>
-        /// 用法名称
+        /// Tên cách dùng
         /// </summary>
         public string ypyfmc { get; set; }
         public string lrjg { get; set; }

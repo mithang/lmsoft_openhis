@@ -22,7 +22,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 计算可用库存 当前方法无日志
+        /// Tính toáncó thểdùngTồn kho hiện tạiPhương phápkhôngngàychí
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="pc"></param>
@@ -57,9 +57,9 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 变更库存数量
+        /// đổihơnTồn khoSố lượng
         /// </summary>
-        /// <param name="sl">最小单位数量 +：加库存  -：减库存</param>
+        /// <param name="sl">Đơn vị nhỏ nhấtSố lượng +：thêmTồn kho  -：giảmTồn kho</param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="ypCode"></param>

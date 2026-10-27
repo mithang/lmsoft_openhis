@@ -7,30 +7,30 @@ namespace NewtouchHIS.Base.Domain.IDomainService
     public interface IAppManageDmnService : IScopedDependency
     {
         /// <summary>
-        /// 获取注册应用列表
+        /// Lấy danh sách ứng dụng đã đăng ký
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<List<AuthAppVO>> GetRegAppList();
         /// <summary>
-        /// 获取应用注册信息
+        /// Lấy thông tin đăng ký ứng dụng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<AuthAppVO> GetAppInfo(AppFriendAuthKeyRequest request);
         /// <summary>
-        /// 根据应用授权信息生成key
+        /// Tạo theo thông tin ủy quyền ứng dụngkey
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<string> AppKeyGen(AppFriendAuthKeyRequest request);
         /// <summary>
-        /// 应用好友授权信息
+        /// Thông tin ủy quyền bạn bè của ứng dụng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<AppFriendAuthKey> GetAppFriend(AppFriendAuthKeyRequest request);
-        #region 实体操作
+        #region Thao tác thực thể
         Task<SysAuthAppEntity> AddAuthApp(AuthAppVO authApp);
         Task<bool> DelAuthApp(AuthAppVO authapp);
         #endregion

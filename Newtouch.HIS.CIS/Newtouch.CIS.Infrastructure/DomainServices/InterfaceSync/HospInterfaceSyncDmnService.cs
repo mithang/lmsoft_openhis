@@ -16,16 +16,16 @@ namespace Newtouch.DomainServices
     public class HospInterfaceSyncDmnService : DmnServiceBase, IHospInterfaceSyncDmnService
     {
         /// <summary>
-        /// 替换接口api 后台接口 SiteBaseAPIHelper
+        /// thayđổigiao diệnapi máy chủgiao diện SiteBaseAPIHelper
         /// </summary>
         /// <param name="databaseFactory"></param>
         public HospInterfaceSyncDmnService() : base()
         {
         }
 
-        #region 后台接口 SiteBaseAPIHelper
+        #region máy chủgiao diện SiteBaseAPIHelper
         /// <summary>
-        /// 更新床位是否占用
+        /// Cập nhậtgiường ký tựlàKhôngchiếmdùng
         /// </summary>
         /// <param name="cwcode"></param>
         /// <param name="bq"></param>
@@ -62,7 +62,7 @@ select @@ROWCOUNT as [rowcount] ";
                 else
                 {
                     resp.code = ResponseResultCode.FAIL;
-                    resp.msg = "床位更新失败";
+                    resp.msg = "giường ký tựCập nhậtthất bại";
                 }
             }
             catch (Exception ex)

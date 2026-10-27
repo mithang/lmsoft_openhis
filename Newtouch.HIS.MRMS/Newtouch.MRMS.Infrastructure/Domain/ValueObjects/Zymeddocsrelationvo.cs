@@ -42,22 +42,22 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
         /// <returns></returns>
         public string blId { get; set; }
         /// <summary>
-        /// 病历类型Id
+        /// Loại bệnh ánId
         /// </summary>
         /// <returns></returns>
         public string mbId { get; set; }
         /// <summary>
-        /// 病历名称
+        /// Tên bệnh án
         /// </summary>
         /// <returns></returns>
         public string blmc { get; set; }
         /// <summary>
-        /// 病历标题
+        /// Tiêu đề bệnh án
         /// </summary>
         /// <returns></returns>
         public string blbt { get; set; }
         /// <summary>
-        /// 是否已签名 0 未签 1 已签
+        /// Đã ký chưa 0 Chưa ký 1 Đã ký
         /// </summary>
         /// <returns></returns>
         public int? blzt { get; set; }
@@ -77,12 +77,12 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
         /// <returns></returns>
         public DateTime? blrq { get; set; }
         /// <summary>
-        /// 父节点
+        /// Nút cha
         /// </summary>
         /// <returns></returns>
         public string ParentId { get; set; }
         /// <summary>
-        /// 是否父节点 0 否 1 是
+        /// Có phải nút cha không 0 Không 1 Có
         /// </summary>
         /// <returns></returns>
         public int? IsParent { get; set; }

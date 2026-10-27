@@ -3,7 +3,7 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 物资单位
+    /// Đơn vị vật tư
     /// </summary>
     public interface IWzUnitApp
     {

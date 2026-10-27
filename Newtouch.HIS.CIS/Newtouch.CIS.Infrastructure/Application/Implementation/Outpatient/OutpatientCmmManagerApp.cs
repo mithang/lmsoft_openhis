@@ -33,7 +33,7 @@ using NewtouchHIS.Lib.Base.Extension;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// 门诊中医馆管理
+    /// Ngoại trútrongyquánQuản lý
     /// </summary>
     public class OutpatientCmmManagerApp : AppBase, IOutpatientCmmManagerApp
     {
@@ -47,7 +47,7 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_01
 
         /// <summary>
-        /// 患者信息上传
+        /// Thông tin bệnh nhânTải lên
         /// </summary>
         /// <param name="jzxx"></param>
         /// <param name="organizeId"></param>
@@ -64,10 +64,10 @@ namespace Newtouch.Application.Implementation
             {
                 if (CheckIsUpload(jzxx.mzh, organizeId)) return result;
                 var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", organizeId);
-                if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("请配置中医馆行政机构信息，编码为cmm_configuration");
+                if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration");
                 var objConfig = confInfo.ToObject<ConfigurationInfo>();
-                if (objConfig == null) throw new Exception("中医馆行政机构信息配置有误，请注意结构！");
-                if (string.IsNullOrWhiteSpace(objConfig.areaCode) || string.IsNullOrWhiteSpace(objConfig.jgdm)) throw new Exception("中医馆行政机构信息配置机构代码和区域代码不能为空！");
+                if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai，Vui lòng chú ý cấu trúc！");
+                if (string.IsNullOrWhiteSpace(objConfig.areaCode) || string.IsNullOrWhiteSpace(objConfig.jgdm)) throw new Exception("trongyquándòngchínhCơ sởthông tincấu hìnhCơ sởMãvàkhulĩnh vựcMãkhông thểlàtrống！");
                 var brxx = _baseDataDmnService.SelectXtBrjbxx(jzxx.blh, jzxx.mzh, organizeId);
 
                 var patientInfo = new Patient
@@ -126,7 +126,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 判断该患者是否已上传
+        /// kiểm traBệnh nhânlàKhôngĐã tải lên
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -138,7 +138,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 落地请求数据
+        /// rơiđịayêu cầuDữ liệu
         /// </summary>
         /// <param name="request"></param>
         /// <param name="organizeId"></param>
@@ -202,7 +202,7 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_02
 
         /// <summary>
-        /// 同步药品
+        /// Đồng bộ thuốcphẩm
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
@@ -210,9 +210,9 @@ namespace Newtouch.Application.Implementation
         public string PushMedicineInfo(string organizeId, string userCode)
         {
             var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", organizeId);
-            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("请配置中医馆行政机构信息，编码为cmm_configuration");
+            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration");
             var objConfig = confInfo.ToObject<ConfigurationInfo>();
-            if (objConfig == null) throw new Exception("中医馆行政机构信息配置有误，请注意结构！");
+            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai，Vui lòng chú ý cấu trúc！");
 
             var record = _comCmmHis02RecordDmnService.SelectNoSyncMedicines(30, organizeId);
             if (record == null || record.Count <= 0) return "";
@@ -234,11 +234,11 @@ namespace Newtouch.Application.Implementation
             parent.Wait(cts.Token);
             if (!cts.IsCancellationRequested) return "";
             LogCore.Fatal("PushMedicineInfo IsCancellationRequested", message: record.ToJson());
-            return "推送中草药失败";
+            return "đẩyThảo dược Trung Hoathất bại";
         }
 
         /// <summary>
-        /// 同步药品，并保存同步记录表
+        /// Đồng bộ thuốcphẩm，vàLưuĐồng bộghi chépbảng
         /// </summary>
         /// <param name="yp"></param>
         /// <param name="organizeId"></param>
@@ -286,18 +286,18 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_07
 
         /// <summary>
-        /// 提取电子病历
+        /// nhắclấyđiện tửHồ sơ
         /// </summary>
-        /// <param name="mzh">门诊号</param>
+        /// <param name="mzh">Số khám ngoại trú</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         public Record ExtractIntegrateEmr(string mzh, string organizeId)
         {
             if (string.IsNullOrWhiteSpace(mzh)) return null;
             var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", organizeId);
-            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("请配置中医馆行政机构信息，编码为cmm_configuration");
+            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration");
             var objConfig = confInfo.ToObject<ConfigurationInfo>();
-            if (objConfig == null) throw new Exception("中医馆行政机构信息配置有误，请注意结构！");
+            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai，Vui lòng chú ý cấu trúc！");
             var request = new Receive
             {
                 serialNo = mzh,
@@ -312,19 +312,19 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_08
 
         /// <summary>
-        /// 提取处方
+        /// nhắclấyĐơn thuốc
         /// </summary>
-        /// <param name="mzh">门诊号</param>
+        /// <param name="mzh">Số khám ngoại trú</param>
         /// <param name="organizeId"></param>
-        /// <param name="mzzybz">门诊住院标志 0-药库  1-门诊  2-住院  3-通用(取门诊单位) </param>
+        /// <param name="mzzybz">Dấu hiệu ngoại trú/nội trú 0-Kho thuốc  1-Ngoại trú  2-Nhập viện  3-Chung(lấyĐơn vị ngoại trú) </param>
         /// <returns></returns>
         public List<DrugDataEx> ExtractIntegrateRp(string mzh, string organizeId, string mzzybz)
         {
             if (string.IsNullOrWhiteSpace(mzh)) return null;
             var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", organizeId);
-            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("请配置中医馆行政机构信息，编码为cmm_configuration");
+            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration");
             var objConfig = confInfo.ToObject<ConfigurationInfo>();
-            if (objConfig == null) throw new Exception("中医馆行政机构信息配置有误，请注意结构！");
+            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai，Vui lòng chú ý cấu trúc！");
             var request = new Receive
             {
                 serialNo = mzh,
@@ -336,7 +336,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 规范处方信息
+        /// quy范Đơn thuốcthông tin
         /// </summary>
         /// <returns></returns>
         private List<DrugDataEx> FormatRpDetail(Prescription s, string organizeId, string mzzybz)
@@ -385,13 +385,13 @@ namespace Newtouch.Application.Implementation
                                 var item = yp.FirstOrDefault().ToJson().ToObject<DrugDataEx>();
                                 if (item == null)
                                 {
-                                    errorMsg = "药品信息转化失败";
+                                    errorMsg = "Thuốcthông tinchuyểnhóathất bại";
                                     return false;
                                 }
 
                                 if (!"g".Equals((item.dw ?? "").Trim()))
                                 {
-                                    errorMsg = string.Format("【{0}】缺少单位g", item.sfxmmc);
+                                    errorMsg = string.Format("【{0}】Thiếu đơn vịg", item.sfxmmc);
                                     cts.Cancel();
                                     return false;
                                 }
@@ -407,7 +407,7 @@ namespace Newtouch.Application.Implementation
 
                                 return true;
                             }
-                            errorMsg = "匹对本地药品信息失败";
+                            errorMsg = "khớpđốibảnđịaThuốcthông tinthất bại";
                             cts.Cancel();
                             return false;
 
@@ -436,18 +436,18 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_09
 
         /// <summary>
-        /// 提取诊断信息
+        /// nhắclấyChẩn đoánthông tin
         /// </summary>
-        /// <param name="mzh">门诊号</param>
+        /// <param name="mzh">Số khám ngoại trú</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         public DiagInfo ExtractIntegrateDiagnosis(string mzh, string organizeId)
         {
             if (string.IsNullOrWhiteSpace(mzh)) return null;
             var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", organizeId);
-            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("请配置中医馆行政机构信息，编码为cmm_configuration");
+            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration");
             var objConfig = confInfo.ToObject<ConfigurationInfo>();
-            if (objConfig == null) throw new Exception("中医馆行政机构信息配置有误，请注意结构！");
+            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai，Vui lòng chú ý cấu trúc！");
             var request = new Receive
             {
                 serialNo = mzh,
@@ -460,7 +460,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 附加本地诊断代码
+        /// kèmthêmbảnđịaChẩn đoánMã
         /// </summary>
         /// <param name="diagInfo"></param>
         /// <param name="organizeId"></param>
@@ -495,7 +495,7 @@ namespace Newtouch.Application.Implementation
         #region Integrated Module
 
         /// <summary>
-        /// 电子病历集成模块
+        /// điện tửHồ sơtậpthànhmẫukhối
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="jzys"></param>
@@ -506,7 +506,7 @@ namespace Newtouch.Application.Implementation
         {
             response = "";
             var entity = _cmmHis01Repo.SelectDataByMzh(mzh, organizeId);
-            if (entity == null || string.IsNullOrWhiteSpace(entity.Id)) return "尚未推送患者信息至中医馆，请先选择患者";
+            if (entity == null || string.IsNullOrWhiteSpace(entity.Id)) return "Chưa đẩy thông tin bệnh nhân tới y quán Trung y，Vui lòng chọn bệnh nhân trước";
             var emrUrlRequest = new EMRRequestEntity
             {
                 resource = "EMR_WRITE",
@@ -518,7 +518,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 辩证论治
+        /// biệnchứngluậnđiều trị
         /// </summary>
         /// <param name="aeRequest"></param>
         /// <param name="response"></param>
@@ -526,20 +526,20 @@ namespace Newtouch.Application.Implementation
         public string GetIntegrateAeUrl(GetAeRequestDto aeRequest, out string response)
         {
             response = "";
-            if (aeRequest == null || string.IsNullOrWhiteSpace(aeRequest.mzh)) return "门诊号不能为空";
-            if (string.IsNullOrWhiteSpace(aeRequest.organizeId)) return "组织机构不能为空";
-            if (string.IsNullOrWhiteSpace(aeRequest.jzys)) return "就诊医生工号不能为空";
+            if (aeRequest == null || string.IsNullOrWhiteSpace(aeRequest.mzh)) return "Số khám ngoại trú không được để trống";
+            if (string.IsNullOrWhiteSpace(aeRequest.organizeId)) return "Tổ chứckhông thểđể trống";
+            if (string.IsNullOrWhiteSpace(aeRequest.jzys)) return "Khám bệnhBác sĩMã nhân viênkhông thểđể trống";
             var entity = _cmmHis01Repo.SelectDataByMzh(aeRequest.mzh, aeRequest.organizeId);
-            if (entity == null || string.IsNullOrWhiteSpace(entity.Id)) return "尚未推送患者信息至中医馆，请先选择患者";
+            if (entity == null || string.IsNullOrWhiteSpace(entity.Id)) return "Chưa đẩy thông tin bệnh nhân tới y quán Trung y，Vui lòng chọn bệnh nhân trước";
 
             var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", aeRequest.organizeId);
-            if (string.IsNullOrWhiteSpace(confInfo)) return "请配置中医馆行政机构信息，编码为cmm_configuration";
+            if (string.IsNullOrWhiteSpace(confInfo)) return "vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration";
             var objConfig = confInfo.ToObject<ConfigurationInfo>();
-            if (objConfig == null) return "中医馆行政机构信息配置有误，请注意结构！";
+            if (objConfig == null) return "Thông tin cơ quan hành chính y quán Trung y cấu hình sai，Vui lòng chú ý cấu trúc！";
             var staff = _sysStaffRepo.GetValidStaffByGh(aeRequest.jzys, aeRequest.organizeId);
 
             var returnHisUrl = Newtouch.CIS.Compat.AppConfig.Get("returnHisUrl");
-            if (string.IsNullOrWhiteSpace(returnHisUrl)) return "请配置返回数据给 HIS 的代理页面地址——key：returnHisUrl";
+            if (string.IsNullOrWhiteSpace(returnHisUrl)) return "vui lòngcấu hìnhQuay lạiDữ liệucho HIS củathaylýtrangmặtĐịa chỉ——key：returnHisUrl";
             var aeUrlRequest = new AERequestEntity
             {
                 resource = "AE_EDIT",
@@ -557,7 +557,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 知识库
+        /// biếtbiếtkho
         /// </summary>
         /// <returns></returns>
         public string GetIntegrateKUrl(out string response)
@@ -571,7 +571,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 集成治未病
+        /// tậpthànhđiều trịchưabệnh
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="mzh"></param>
@@ -583,12 +583,12 @@ namespace Newtouch.Application.Implementation
         public string GetIntegrateHEALUrl(string blh, string mzh, string zjlx, string zjh, string organizeId, out string response)
         {
             response = "";
-            if (string.IsNullOrWhiteSpace(mzh)) return "信息有误，门诊号不能为空";
+            if (string.IsNullOrWhiteSpace(mzh)) return "thông tincósai，Số khám ngoại trú không được để trống";
             var entity = _cmmHis01Repo.SelectDataByMzh(mzh, organizeId);
             if (entity == null || string.IsNullOrWhiteSpace(entity.cardTypeCode) ||
                 string.IsNullOrWhiteSpace(entity.cardNo))
             {
-                return "信息不全，推送患者时缺少证件类型和证件号";
+                return "thông tinkhôngtoàn，đẩyBệnh nhânkhithiếuchứngmụcLoạivàSố giấy tờ";
             }
 
             int tzjlx = Convert.ToInt32(entity.cardTypeCode);
@@ -603,7 +603,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 组装远程医疗参数
+        /// lắp rápxatrìnhy tếtham số
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="mzh"></param>
@@ -613,15 +613,15 @@ namespace Newtouch.Application.Implementation
         public IntegrateRcDto GetIntegrateRCRequsetParam(string blh, string mzh, string jzys, string organizeId)
         {
             var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", organizeId);
-            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("请配置中医馆行政机构信息，编码为cmm_configuration");
+            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration");
             var objConfig = confInfo.ToObject<ConfigurationInfo>();
-            if (objConfig == null) throw new Exception("中医馆行政机构信息配置有误，请注意结构！");
-            if (string.IsNullOrWhiteSpace(objConfig.areaCode) || string.IsNullOrWhiteSpace(objConfig.jgdm)) throw new Exception("中医馆行政机构信息配置机构代码和区域代码不能为空！");
+            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai，Vui lòng chú ý cấu trúc！");
+            if (string.IsNullOrWhiteSpace(objConfig.areaCode) || string.IsNullOrWhiteSpace(objConfig.jgdm)) throw new Exception("trongyquándòngchínhCơ sởthông tincấu hìnhCơ sởMãvàkhulĩnh vựcMãkhông thểlàtrống！");
 
-            if (string.IsNullOrWhiteSpace(blh)) throw new Exception("请选择患者");
-            if (string.IsNullOrWhiteSpace(mzh)) throw new Exception("数据异常，门诊号丢失");
+            if (string.IsNullOrWhiteSpace(blh)) throw new Exception("Vui lòng chọnBệnh nhân");
+            if (string.IsNullOrWhiteSpace(mzh)) throw new Exception("Dữ liệu bất thường，Số khám ngoại trúđánhmất");
             var brxx = _baseDataDmnService.SelectXtBrjbxx(blh, mzh, organizeId);
-            if (brxx == null || brxx.Count <= 0) throw new Exception(string.Format("根据病历号【{0}】获取病人基本信息失败", blh));
+            if (brxx == null || brxx.Count <= 0) throw new Exception(string.Format("theoSố bệnh án【{0}】Lấybệnh nhânThông tin cơ bảnthất bại", blh));
             var patientBaseInfo = brxx.FirstOrDefault();
             var staff = _sysStaffRepo.GetValidStaffByGh(jzys, organizeId);
 

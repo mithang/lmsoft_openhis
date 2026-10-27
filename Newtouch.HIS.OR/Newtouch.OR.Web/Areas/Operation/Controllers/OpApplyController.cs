@@ -43,7 +43,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
         }
 
         /// <summary>
-        /// 手术申请列表
+        /// Danh sách đơn đăng ký phẫu thuật
         /// </summary>
         /// <returns></returns>
         public IActionResult ApplyCard()
@@ -51,7 +51,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
             return View();
         }
         /// <summary>
-        /// 手术申请明细
+        /// Chi tiết đơn đăng ký phẫu thuật
         /// </summary>
         /// <returns></returns>
         public IActionResult ApplyOPDetail()
@@ -106,23 +106,23 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
         [HttpPost]
         public IActionResult GetPatGridList(PagingData<QueryBaseDTO> paging)
         {
-            #region 测试数据
+            #region Dữ liệu kiểm tra
             //object[] pat = new[]
             //{ new{
             //     ID = 1,
-            //    hzxm = "张三",
+            //    hzxm = "Nguyễn Văn A",
             //    zyh = "001",
-            //    ryzd = "阑尾炎",
+            //    ryzd = "Viêm ruột thừa",
             //    rysj="2019-10-1",
-            //    sqzt="未申请"
+            //    sqzt="Chưa đăng ký"
             //    },
             //   new{
             //     ID = 2,
-            //    hzxm = "张四",
+            //    hzxm = "Nguyễn Văn B",
             //    zyh = "002",
-            //    ryzd = "肝硬化",
+            //    ryzd = "Xơ gan",
             //    rysj="2019-10-5",
-            //    sqzt="已审核"
+            //    sqzt="Đã duyệt"
             //    }
             //};
             #endregion
@@ -167,21 +167,21 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
         [HttpPost]
         public IActionResult GetGridListOP(PagingData<QueryBaseDTO> reqdata)
         {
-            #region 测试数据
+            #region Dữ liệu kiểm tra
             //object[] oplist = new[]
             //{ new{
             //     ID = 1,
-            //    ssmc = "阑尾切除术1",
+            //    ssmc = "Cắt ruột thừa1",
             //    sssj = "2019-10-1 10:00",
-            //    zdys = "医生1",
-            //    sszt="已审核"
+            //    zdys = "Bác sĩ 1",
+            //    sszt="Đã duyệt"
             //    },
             //   new{
             //    ID = 2,
-            //    ssmc = "阑尾切除术2",
+            //    ssmc = "Cắt ruột thừa2",
             //    sssj = "2019-10-1 15:30",
-            //    zdys = "医生1",
-            //    sszt="待审核"
+            //    zdys = "Bác sĩ 1",
+            //    sszt="Chờ duyệt"
             //    }
             //};
             #endregion
@@ -203,9 +203,9 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
         }
 
         /// <summary>
-        /// 获取申请详情实体
+        /// Lấy thực thể chi tiết đơn đăng ký
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult GetFormJson(string keyValue)
         {
@@ -227,30 +227,30 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
             {
                 entity.OrganizeId = OrganizeId;
             }
-            //提交申请信息
+            //Gửi thông tin đơn đăng ký
             string applyno = _applyDmnService.SubmitApplyForm(entity, keyValue);
             return Success("Gửi đơn thành công", new { applyno });
         }
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult SubmitForm1(OpApplyDTO entity, string keyValue, string datas)
         {
             if (entity != null)
             {
-                //提交申请信息
+                //Gửi thông tin đơn đăng ký
                 string applyno = _applyDmnService.SubmitApplyForm(entity, keyValue, datas);
 
-                //清空手术辅助
+                //Xóa phẫu thuật phụ trợ
                 if (keyValue != "")
                 {
                     DeleteApplyExtend(keyValue);
                 }
 
-                ////添加手术辅助
+                ////Thêm phẫu thuật phụ trợ
                 for (var i = 0; i < entity.ss.Count; i++)
                 {
                     var ssObj = new ORApplyInfoExpandEntity();
@@ -271,9 +271,9 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
 
         }
         /// <summary>
-        /// 撤销申请
+        /// Hủy đơn đăng ký
         /// </summary>
-        /// <param name="keyValue">手术申请编号</param>
+        /// <param name="keyValue">Số đơn đăng ký phẫu thuật</param>
         /// <returns></returns>
         public IActionResult DeleteApply(string keyValue, string ssmcn)
         {
@@ -289,7 +289,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
         }
 
         /// <summary>
-        /// 删除手术辅助
+        /// Xóa phẫu thuật phụ trợ
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

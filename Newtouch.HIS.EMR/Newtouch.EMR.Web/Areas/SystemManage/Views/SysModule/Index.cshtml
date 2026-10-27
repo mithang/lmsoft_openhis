@@ -107,12 +107,12 @@
         });
     }
 
-    //回车触发查询事件
+    //Nhấn Enter để tìm kiếm
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
 
-    //新增
+    //Thêm mới
     function btn_add() {
         $.modalOpen({
             id: "Form",
@@ -129,7 +129,7 @@
         });
     }
 
-    //修改
+    //Sửa
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
@@ -156,7 +156,7 @@
         });
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {

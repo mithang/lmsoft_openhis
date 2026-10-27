@@ -12,7 +12,7 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// 外部入库审核
+    /// Duyệt nhập kho từ ngoài
     /// </summary>
     internal class InStorageBillApprovalProcess : ProcessorFun<OutOrInStorageBillApprovalDTO>
     {
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
                     if (_crkdj.Update(Request.dj) <= 0)
                     {
                         actResult.IsSucceed = false;
-                        actResult.ResultMsg = "修改单据状态失败";
+                        actResult.ResultMsg = "Sửa trạng thái chứng từ thất bại";
                     }
                     break;
                 case (int)EnumDjShzt.Rejected:
@@ -65,18 +65,18 @@ namespace Newtouch.HIS.Application.Implementation.Process
                     if (_crkdj.Update(Request.dj) <= 0)
                     {
                         actResult.IsSucceed = false;
-                        actResult.ResultMsg = "修改单据状态失败";
+                        actResult.ResultMsg = "Sửa trạng thái chứng từ thất bại";
                     }
                     break;
                 default:
                     actResult.IsSucceed = false;
-                    actResult.ResultMsg = "未找到匹配的操作";
+                    actResult.ResultMsg = "Không tìm thấy thao tác phù hợp";
                     break;
             }
         }
 
         /// <summary>
-        /// 组装库存信息
+        /// Lắp ráp thông tin tồn kho
         /// </summary>
         /// <returns></returns>
         private List<SysMedicineStockInfoEntity> AssembleKcxx()
@@ -96,13 +96,13 @@ namespace Newtouch.HIS.Application.Implementation.Process
                     yxq = p.Yxq,
                     kcsl = p.Sl * p.Rkzhyz,
                     djsl = 0,
-                    ypkw = _sysPharmacyDepartmentMedicineRepo.GetYpkw(p.Ypdm, Request.dj.Rkbm, OrganizeId),  //部门药品信息
+                    ypkw = _sysPharmacyDepartmentMedicineRepo.GetYpkw(p.Ypdm, Request.dj.Rkbm, OrganizeId),  //Thông tin thuốc bộ phận
                     kzbz = 0,
                     tybz = 0,
                     crkmxId = p.crkmxId,
-                    jj = p.jj, //外部入库单只用药库单位，jj保存的就是药库单位进价
+                    jj = p.jj, //Đơn nhập kho từ ngoài chỉ dùng đơn vị kho thuốc，jjLưu chính là giá nhập đơn vị kho thuốc
                     zhyz = p.Rkzhyz,
-                    cd = p.cd, //产地目录
+                    cd = p.cd, //Danh mục nơi sản xuất
                 };
                 item.Create();
                 result.Add(item);

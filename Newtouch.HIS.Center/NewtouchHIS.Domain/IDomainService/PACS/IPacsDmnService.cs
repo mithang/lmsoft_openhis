@@ -7,7 +7,7 @@ namespace NewtouchHIS.Domain.IDomainService.PACS
     public interface IPacsDmnService : IScopedDependency
     {
         /// <summary>
-        /// 收费项目
+        /// Hạng mục thu phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>

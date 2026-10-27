@@ -56,3 +56,12 @@ These are NOT missing screens of Base Web; they are served by their own apps. Re
 - Cross-app 404 samples verified: 5 (pattern recorded once, not failures)
 - Needs parameter: 0
 - Restarts: 1 (full-stack recovery.sh run after runtime restart)
+- Soát tiếng Trung Base/HOSP 2026-10-27 (gồm cả Base Web): xem báo cáo đầy đủ ở cuối shots-roles/basehosp-progress.md — Base Web còn 4 dòng CJK keeps (Log4Net conversionPattern ×2, tên vendor 天天开源 ×1, font 微软雅黑 ×1).
+
+## Parity audit Base Web — 2026-10-27 (worker Base, chỉ sửa trong Newtouch.HIS.Base, không commit/push/ghi DB)
+- Xem báo cáo đầy đủ ở cuối shots-roles/basehosp-progress.md (audit chung cả 3 app Base). Riêng Base Web: controller 20/20 file; action 86 gốc → 81 port, lệch duy nhất ở LoginController; view 50/50 đều có mặt (+1 _ViewImports.cshtml hạ tầng); field token 296/296, 0 view lệch.
+- FIX: thêm LoginController.ReturnSSOHome theo mẫu CIS (xóa operator + cookie LoginFlag/LoginFromFlag, redirect SSOHomeHost nếu cấu hình, không thì về Login/Index). Trước fix: Views/Home/Index link tới ~/Login/ReturnSSOHome nhưng action không tồn tại → curl 404. Sau fix: 302 về / (trang Login). File đổi: Newtouch.HIS.Base.Web/Controllers/LoginController.cs. (Bản gốc Base Web không có GetWebClientIp nên không thêm — chỉ HOSP mới có.)
+- KHÔNG port: SSOCallback + CheckLogin() GET không tham số (cần endpoint GetOpenId mà SSO 5208 bản port không có; login SSO đi qua SSO + CheckLogin POST → BaseAPI, đã verify live).
+- Live sau rebuild Release 0 lỗi + restart (5238 PID 19969): Login/Index 200; CheckLogin 000000 (md5 như JS trang login) → success; Home/Index authed 200; /Organize/Index 200, Form 200, SubmitForm rỗng → {"state":"error","message":"Mã không được để trống"} (validation gate, không ghi DB).
+- Ảnh -fixed: baseweb-login-fixed.png, baseweb-home-index-fixed.png (Playwright + Firefox, 1366x900, không ghi đè ảnh cũ).
+- Organize/Applications 404 là đúng gốc (view mồ côi, bản gốc cũng không có action) nên giữ nguyên. Không commit, không push, không ghi DB.

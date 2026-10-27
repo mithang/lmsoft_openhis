@@ -15,7 +15,7 @@ using static NewtouchHIS.Base.Domain.EnumExtend.BusEnum;
 namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
 {
     /// <summary>
-    /// 订单中心                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
+    /// Trung tâm đơn hàng                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                            
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -30,7 +30,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
         }
 
         /// <summary>
-        /// 订单信息查询
+        /// Truy vấn thông tin đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
         {
             if (request.Data == null || (string.IsNullOrWhiteSpace(request.Data.OrderNo) && string.IsNullOrWhiteSpace(request.Data.CardNo) && string.IsNullOrWhiteSpace(request.Data.VisitNo)))
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(OrderNo、CardNo、VisitNo)Ít nhất một mục không được để trống" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(OrderNo,CardNo,VisitNo)Ít nhất một mục không được để trống" };
             }
             var apiReq = InitController.BuildBookRequest(request, null, null).Adapt<BookingRequest>();
             apiReq.paradata = request.Data;
@@ -48,7 +48,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 门诊订单明细查询
+        /// Truy vấn chi tiết đơn hàng ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
         }
 
         /// <summary>
-        /// 账单支付step1：生成支付订单
+        /// Thanh toán hóa đơnstep1:Tạo đơn hàng thanh toán
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -77,7 +77,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
         {
             if (request.Data == null || request.Data.OrderType == null || string.IsNullOrWhiteSpace(request.Data.kh))
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(kh、OrderType) không được để trống" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(kh,OrderType) không được để trống" };
             }
             else if (request.Data.OrderType == (int)EnumBusType.mz && string.IsNullOrWhiteSpace(request.Data.mzh))
             {
@@ -97,7 +97,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
                 return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(Tổ chức) không được để trống" };
             }
 
-            //生成订单
+            //Tạo đơn hàng
             var apiReq = InitController.BuildBookRequest(request, null, null).Adapt<BookingRequest>();
             var visitNo = request.Data.OrderType == (int)EnumBusType.mz ? request.Data.mzh : request.Data.zyh;
             apiReq.paradata = new OrderApplyRequest
@@ -106,7 +106,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
                 VisitNo = visitNo ?? "",
                 OrderType = request.Data.OrderType,
             };
-            //Bệnh nhân收件地址信息（非必要）
+            //Bệnh nhânThông tin địa chỉ nhận(Không bắt buộc)
             if (request.Data.addressInfo != null)
             {
                 var address = request.Data.addressInfo.Adapt<SysPatientAddressEntity>();
@@ -129,7 +129,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
         }
 
         /// <summary>
-        /// 账单支付step2：Đăng ký锁定订单
+        /// Thanh toán hóa đơnstep2:Đăng kýKhóa đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -139,7 +139,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
         {
             if (request.Data == null || string.IsNullOrWhiteSpace(request.Data.OrderNo) || request.Data.OrderAmt <= 0 || string.IsNullOrWhiteSpace(request.Data.kh))
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(OrderNo、kh) không được để trống" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(OrderNo,kh) không được để trống" };
             }
 
             var apiReq = InitController.BuildBookRequest(request, null, null).Adapt<BookingRequest>();
@@ -148,7 +148,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 账单支付step3：订单结算
+        /// Thanh toán hóa đơnstep3:Quyết toán đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

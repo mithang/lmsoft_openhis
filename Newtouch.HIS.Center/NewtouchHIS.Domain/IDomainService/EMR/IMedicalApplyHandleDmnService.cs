@@ -12,7 +12,7 @@ namespace NewtouchHIS.Domain.IDomainService.EMR
     public interface IMedicalApplyHandleDmnService : IScopedDependency
     {
         /// <summary>
-        /// Đăng ký审批
+        /// Đăng kýPhê duyệt
         /// </summary>
         /// <param name="vo"></param>
         /// <returns></returns>

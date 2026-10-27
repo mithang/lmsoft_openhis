@@ -29,7 +29,7 @@ namespace NewtouchHIS.Base.DomainService
             return app.Adapt<List<AuthAppVO>>();
         }
         /// <summary>
-        /// 根据应用好友授权信息生成key
+        /// Tạo theo thông tin ủy quyền bạn bè của ứng dụngkey
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -39,8 +39,8 @@ namespace NewtouchHIS.Base.DomainService
             return AuthSecurityServices.AppAuthKeyGen(keyModel.ToJson());
         }
         /// <summary>
-        /// 应用好友授权信息 AppId Xin cấp quyền 
-        /// 查找 Friend 应用的好友关系中是否包含AppId
+        /// Thông tin ủy quyền bạn bè của ứng dụng AppId Xin cấp quyền 
+        /// Tìm Friend quan hệ bạn bè của ứng dụng có chứa hay khôngAppId
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace NewtouchHIS.Base.DomainService
                 var findFriendAuth = await GetFirstOrDefaultWithAttr<SysAuthAppFriendEntity>(p => p.FriendId == friendApp.AuthId && p.AppAuthId == app.AuthId && p.zt == "1");
                 if (findFriendAuth == null)
                 {
-                    throw new FailedException($"Ứng dụng đích chưa cấp quyền cho {request.FriendAppId}mở quyền，Vui lòng liên hệ quản trị viên");
+                    throw new FailedException($"Ứng dụng đích chưa cấp quyền cho {request.FriendAppId}mở quyền,Vui lòng liên hệ quản trị viên");
                 }
                 authKey.FriendAppId = friendApp.AppId;
                 authKey.FriendId = friendApp.AuthId;
@@ -77,9 +77,9 @@ namespace NewtouchHIS.Base.DomainService
 
         #endregion
 
-        #region 增删改
+        #region Thêm/xóa/sửa
         /// <summary>
-        /// 添加授权应用
+        /// Thêm ứng dụng được ủy quyền
         /// </summary>
         /// <param name="authApp"></param>
         /// <returns></returns>
@@ -92,11 +92,11 @@ namespace NewtouchHIS.Base.DomainService
             var existsApp = await GetByWhere(p => (p.AuthId == authApp.AuthId || p.AppName == authApp.AppName) && p.zt == "1");
             if (existsApp != null && existsApp!.Count > 0)
             {
-                throw new FailedException(existsApp.FirstOrDefault()!.AppId == authApp.AppId ? "应用Id已被注册，请更换Id" : "应用名称已被注册，请更换");
+                throw new FailedException(existsApp.FirstOrDefault()!.AppId == authApp.AppId ? "Ứng dụngIdđã được đăng ký,Vui lòng đổiId" : "Tên ứng dụng đã được đăng ký,Vui lòng đổi");
             }
             if (authApp.AuthType > 0 && string.IsNullOrWhiteSpace(Enum.GetName(typeof(AuthTypeEnum), authApp.AuthType)))
             {
-                throw new FailedException("Đăng ký hệ thống thất bại，Vui lòng liên hệ quản trị viên");
+                throw new FailedException("Đăng ký hệ thống thất bại,Vui lòng liên hệ quản trị viên");
             }
             SysAuthAppEntity sysAuthApp = new SysAuthAppEntity();
             sysAuthApp.AppId = authApp.AppId;
@@ -110,7 +110,7 @@ namespace NewtouchHIS.Base.DomainService
             var result = await Add(sysAuthApp);
             if (result == 0)
             {
-                throw new FailedException("Đăng ký hệ thống thất bại，Vui lòng liên hệ quản trị viên");
+                throw new FailedException("Đăng ký hệ thống thất bại,Vui lòng liên hệ quản trị viên");
             }
             var newApp = await GetByWhere(p => p.AuthId == sysAuthApp.AuthId);
             //var newAppVo = _mapper.Map<AuthAppVO>(newApp.FirstOrDefault());

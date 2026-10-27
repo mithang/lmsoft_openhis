@@ -3,37 +3,37 @@
     public class SysDutyStaffVO
     {
         /// <summary>
-        /// 职员Họ tên
+        /// Nhân viênHọ tên
         /// </summary>
         public string StaffName { get; set; }
 
         /// <summary>
-        /// 职员拼音
+        /// Phiên âm nhân viên
         /// </summary>
         public string StaffPY { get; set; }
 
         /// <summary>
-        /// 职员工号
+        /// Mã nhân viên
         /// </summary>
         public string StaffGh { get; set; }
 
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 科室拼音
+        /// Phiên âm khoa
         /// </summary>
         public string kspy { get; set; }
 
         /// <summary>
-        /// 人员岗位代码
+        /// Mã vị trí nhân viên
         /// </summary>
         public string DutyCode { get; set; }
     }

@@ -41,13 +41,13 @@
             <table class="form" style="width:95%">
                 <tbody>
                     <tr>
-                        <th class="formTitle" style="width:50px" id="thksrq">Từ ngày nhập viện：</th>
+                        <th class="formTitle" style="width:50px" id="thksrq">Từ ngày nhập viện:</th>
                         <td class="formValue">
                             <input id="txt_kssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.AddMonths(-2).ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" id="thjsrq">Đến ngày nhập viện：</th>
+                        <th class="formTitle" id="thjsrq">Đến ngày nhập viện:</th>
                         <td class="formValue">
                             <input id="txt_jssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                         </td>
@@ -74,15 +74,15 @@
             <div class="panel panel-default">
                 <table class="form">
                     <tr>
-                        <th class="formTitle" style="width:50px">Họ tên：</th>
+                        <th class="formTitle" style="width:50px">Họ tên:</th>
                         <td class="formValue">
                             <label id="xm"></label>
                         </td>
-                        <th class="formTitle" style="width:50px">Giới tính：</th>
+                        <th class="formTitle" style="width:50px">Giới tính:</th>
                         <td class="formValue">
                             <label id="xb"></label>
                         </td>
-                        <th class="formTitle" style="width:50px">Ngày sinh：</th>
+                        <th class="formTitle" style="width:50px">Ngày sinh:</th>
                         <td class="formValue">
                             <label id="csrq"></label>
                         </td>
@@ -92,19 +92,19 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" style="width:50px">Khoa：</th>
+                        <th class="formTitle" style="width:50px">Khoa:</th>
                         <td class="formValue">
                             <label id="ks"></label>
                         </td>
-                        <th class="formTitle" style="width:50px">Số giường：</th>
+                        <th class="formTitle" style="width:50px">Số giường:</th>
                         <td class="formValue">
                             <label id="ch"></label>
                         </td>
-                        <th class="formTitle" style="width:50px">Ngày nhập viện：</th>
+                        <th class="formTitle" style="width:50px">Ngày nhập viện:</th>
                         <td class="formValue">
                             <label id="ryrq"></label>
                         </td>
-                        <th class="formTitle" style="width:50px">Ngày xuất viện：</th>
+                        <th class="formTitle" style="width:50px">Ngày xuất viện:</th>
                         <td class="formValue">
                             <label id="cyrq"></label>
                             <input type="hidden" id="jzys"/>
@@ -204,11 +204,11 @@
                 <table class="form" style="width:95%">
                     <tbody>
                         <tr>
-                            <th class="formTitle" style="width:50px" id="thksrq">Thời gian bắt đầu：</th>
+                            <th class="formTitle" style="width:50px" id="thksrq">Thời gian bắt đầu:</th>
                             <td class="formValue">
                                 <input id="txt_Jykssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                             </td>
-                            <th class="formTitle" id="thjsrq">Thời gian kết thúc：</th>
+                            <th class="formTitle" id="thjsrq">Thời gian kết thúc:</th>
                             <td class="formValue">
                                 <input id="txt_Jyjssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                             </td>
@@ -225,11 +225,11 @@
                 <table class="form" style="width:95%">
                     <tbody>
                         <tr>
-                            <th class="formTitle" style="width:50px" id="thksrq">Thời gian bắt đầu：</th>
+                            <th class="formTitle" style="width:50px" id="thksrq">Thời gian bắt đầu:</th>
                             <td class="formValue">
                                 <input id="txt_Jckssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                             </td>
-                            <th class="formTitle" id="thjsrq">Thời gian kết thúc：</th>
+                            <th class="formTitle" id="thjsrq">Thời gian kết thúc:</th>
                             <td class="formValue">
                                 <input id="txt_Jcjssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                             </td>
@@ -253,9 +253,9 @@
 <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
 <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jqgrid/grid.locale-cn.js")"></script>
 <script>
-    var last = "";//上一个组号
+    var last = "";//Số nhóm của dòng trước
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Tính lại chiều rộng/chiều cao khi thay đổi kích thước cửa sổ trình duyệt
             $(".dv-body").height($(window).height());
             $(".dv-body").width($(window).width());
         });
@@ -478,12 +478,12 @@
                 var ids = $("#gridYzList").jqGrid('getDataIDs');
                 for (i = 0; i < ids.length; i++) {
                     var rowData = $("#gridYzList").jqGrid('getRowData', ids[i]);
-                    //组号生成特殊符号
+                    //Số nhóm tạo ký hiệu đặc biệt
                     var returnval = "";
                     if (rowData.Zh != typeof (undefined) && rowData.Zh !== "" && rowData.Zh !== null) {
                         if (last == rowData.Zh) {
                             returnval = "中间";
-                            if (i == (ids.length - 1)) {//最后一个
+                            if (i == (ids.length - 1)) {//Dòng cuối cùng
                                 returnval = "结束";
                                 last = "";
                             }
@@ -493,7 +493,7 @@
                             }
                             returnval = "开始";
                         }
-                        $("#gridYzList").setCell(ids[i], "Zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell 设置单元格样式 值 或属性
+                        $("#gridYzList").setCell(ids[i], "Zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell đặt kiểu ô, giá trị hoặc thuộc tính
                     } else if (last !== rowData.Zh && last !== "") {
                         setlastrowzuhao(ids[i]);
                     }
@@ -536,10 +536,10 @@
             ],
         });
     }
-    //设置上一行组号
+    //Đặt số nhóm của dòng trước
     function setlastrowzuhao(rowid) {
         var lastrow = parseInt(rowid) - 1;
-        $("#gridYzList").setCell(lastrow, "Zh", '<img src="../../../../Content/img/结束.png" />');//setCell 设置单元格样式 值 或属性
+        $("#gridYzList").setCell(lastrow, "Zh", '<img src="../../../../Content/img/结束.png" />');//setCell đặt kiểu ô, giá trị hoặc thuộc tính
     }
 
     function loadRightData(jzh) {

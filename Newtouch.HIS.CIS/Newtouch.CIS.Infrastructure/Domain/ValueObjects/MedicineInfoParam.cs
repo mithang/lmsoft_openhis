@@ -7,42 +7,42 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects
 {
     /// <summary>
-    /// 药品查询条件
+    /// ThuốcĐiều kiện tìm kiếm
     /// </summary>
     public class MedicineInfoParam
     {
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 药品类别
+        /// ThuốcLoại
         /// </summary>
         public string yplb { get; set; }
 
         /// <summary>
-        /// 药品熟悉
+        /// Thuốc熟悉
         /// </summary>
         public string ypsx { get; set; }
 
         /// <summary>
-        /// 药品剂型
+        /// Dạng bào chế thuốc
         /// </summary>
         public string ypjx { get; set; }
 
         /// <summary>
-        /// 使用状态 控制、正常
+        /// Sử dụngTrạng thái điều khiển、Bình thường
         /// </summary>
         public string syzt { get; set; }
 
         /// <summary>
-        /// 药品状态 停用、启用
+        /// ThuốcTrạng thái Vô hiệu、Kích hoạt
         /// </summary>
         public string ypzt { get; set; }
 
         /// <summary>
-        /// 输入码
+        /// nhậpmã
         /// </summary>
         public string srm { get; set; }
     }

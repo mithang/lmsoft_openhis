@@ -11,14 +11,14 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
 {
     /// <summary>
-    /// 门诊报表管理
+    /// Quản lý báo cáo ngoại trú
     /// </summary>
     [Area("ReportManage")]
     public class OutpatientController : ControllerBase
     {
         private readonly IfyDmnService _ifyDmnService;
         /// <summary>
-        /// 发药统计
+        /// Thống kê phát thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult DrugDeliveryStatistics()
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// 获取发药信息
+        /// Lấy thông tin phát thuốc
         /// </summary>
         /// <param name="startTime"></param>
         /// <param name="endTime"></param>
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
             return Content(result.ToJson());
         }
 
-        #region Thuốc、耗材使用情况
+        #region Thuốc、Tình hình sử dụng vật tư
         public IActionResult GetMaterialList(Pagination pagination,string ks,string ry, string slly, DateTime kssj, DateTime jssj, string keyword)
         {
             var result = _ifyDmnService.GetMaterialList(pagination, this.OrganizeId,ks, ry, slly, kssj, jssj,keyword);

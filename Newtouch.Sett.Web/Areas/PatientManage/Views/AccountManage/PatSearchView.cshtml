@@ -36,7 +36,7 @@
             </tr>
         </table>
     </div>
-    <!--患者信息 包括卡号 住院号  姓名 -->
+    <!--Thông tin bệnh nhân Bao gồm số thẻ Số nhập viện  Họ tên -->
     <div id="formPatSer" class="gridPanel" style="margin-top:1%; margin-left:1%">
         <table id="patGridList"></table>
         <div id="gridPager"></div>
@@ -46,7 +46,7 @@
 
     var brzybzType = $.request("brzybzType");
 
-    //上一个window对象
+    //cái trước đówindowđối tượng
     var prevWindow;
 
     var from = $.request("from");
@@ -63,10 +63,10 @@
         obj.zyh = $.request("zyh");
         obj.xm = decodeURI(decodeURI($.request("xm")));
         var searInfo = new PatSearchInfo();
-        //加载数据
+        //Nạp dữ liệu
         searInfo.init(obj);
 
-        //查询
+        //Tra cứu
         $("#btn_search").click(function () {
             $("#patGridList").jqGrid('setGridParam', {
                 postData: { zyh: $("#txt_zyh").val(), xm: $("#txt_xm").val(), r: Math.random() },
@@ -74,13 +74,13 @@
         });
     });
 
-    //回车
+    //nhấn Enter
     $('#txt_zyh,#txt_xm').keydownEnterEvent(function() {
         $("#btn_search").trigger('click');
     });
 
     var PatSearchInfo = (function () {
-        //加载列表
+        //Tải danh sách
         var loadGrid = function (data) {
             var $gridList = $("#patGridList");
             var reqUrl = "/PatientManage/AccountManage/PatSearchInfo?brzybzType=" + brzybzType + "&t=" + Math.random();
@@ -120,7 +120,7 @@
 
         }
 
-        //加载事件
+        //Tải sự kiện
         myPatSearchInfo.prototype.init = function (data) {
             if (data.zyh === "null") {
                 $("#txt_zyh").val("");
@@ -141,12 +141,12 @@
         return myPatSearchInfo;
     }());
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn một dòng
     function btn_edit() {
         PatSearchConfirm();
     }
 
-    //确定 主页面调用
+    //xác nhận Gọi từ trang chính
     function PatSearchConfirm() {
         PatDbGrid();
     }
@@ -169,11 +169,11 @@
         }
         prevWindow.getPatInfoAjax(obj);
 
-        //关闭窗口
+        //đóng cửa sổ
         ReceiptCancle();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }

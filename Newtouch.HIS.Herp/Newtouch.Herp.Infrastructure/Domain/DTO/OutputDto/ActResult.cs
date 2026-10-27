@@ -3,12 +3,12 @@ using System.ComponentModel;
 namespace Newtouch.Herp.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 执行结果
+    /// Kết quả thực thi
     /// </summary>
     public class ActResult
     {
         /// <summary>
-        /// 执行结果
+        /// Kết quả thực thi
         /// </summary>
         public ActResult()
         {
@@ -18,65 +18,65 @@ namespace Newtouch.Herp.Domain.DTO.OutputDto
         }
 
         /// <summary>
-        /// 是否成功 true:全部成功/部分成功  false:全部失败/验证失败
+        /// Có thành công không true:Tất cả thành công/Thành công một phần  false:Tất cả thất bại/Xác thực thất bại
         /// </summary>
         public bool IsSucceed { get; set; }
 
         /// <summary>
-        /// 状态码 参照枚举ResultCode
+        /// Mã trạng thái Tham chiếu enum ResultCode
         /// </summary>
         public int ResultCode { get; set; }
 
         /// <summary>
-        /// 错误描述
+        /// Mô tả lỗi
         /// </summary>
         public string ResultMsg { get; set; }
 
         /// <summary>
-        /// 返回信息
+        /// Thông tin trả về
         /// </summary>
         public dynamic Data { get; set; }
     }
 
     /// <summary>
-    /// 返回状态枚举
+    /// Enum trạng thái trả về
     /// </summary>
     public enum ResultCode
     {
         /// <summary>
-        /// 执行成功
+        /// Thực thi thành công
         /// </summary>
-        [Description("执行成功")]
+        [Description("Thực thi thành công")]
         None = 0,
 
         /// <summary>
-        /// 执行成功
+        /// Thực thi thành công
         /// </summary>
-        [Description("部分成功")]
+        [Description("Thành công một phần")]
         PartSuccess = 1,
 
         /// <summary>
-        /// 执行成功
+        /// Thực thi thành công
         /// </summary>
-        [Description("部分成功")]
+        [Description("Thành công một phần")]
         AllFailure = 2,
 
         /// <summary>
-        /// 验证失败
+        /// Xác thực thất bại
         /// </summary>
-        [Description("验证失败")]
+        [Description("Xác thực thất bại")]
         ValidationFailure = 3,
 
         /// <summary>
-        /// 内部处理异常
+        /// Lỗi xử lý nội bộ
         /// </summary>
-        [Description("内部处理异常")]
+        [Description("Lỗi xử lý nội bộ")]
         InternalProcessingAbnormality = 4,
 
         /// <summary>
-        /// 其他错误
+        /// Lỗi khác
         /// </summary>
-        [Description("其他错误")]
+        [Description("Lỗi khác")]
         Other = 5,
     }
 }

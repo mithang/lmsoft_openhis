@@ -1,17 +1,17 @@
 ﻿namespace NewtouchHIS.Lib.Base.Model
 {
     /// <summary>
-    /// 用户身份（根据项目需要 扩展用户身份的字段）
+    /// Danh tính người dùng (mở rộng trường danh tính người dùng theo nhu cầu dự án)
     /// </summary>
     public class UserIdentity : Identity
     {
         /// <summary>
-        /// 组织机构Id（医院）
+        /// Id tổ chức (bệnh viện)
         /// </summary>
         public string? OrganizeId { get; set; }
 
         /// <summary>
-        /// 顶级组织机构
+        /// Tổ chức cấp cao nhất
         /// </summary>
         public string? TopOrganizeId { get; set; }
 

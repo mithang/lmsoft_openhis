@@ -1231,7 +1231,7 @@
             var d = e.data.Turl;
             mburl = d.replace(/\\/g, "\\");
             //FileOpen();
-            FileOpenV5(); //5.0编辑器
+            FileOpenV5(); //5.0 Trình soạn thảo
         }
         if (e.data.ysdata != null && e.data.ysdata != undefined) {
             if (e.data.mxlist != null && e.data.mxlist.length > 0) {
@@ -1264,7 +1264,7 @@
             //InsertInputField(e.data.ysdata.ysmc, e.data.ysdata.BindingPath, e.data.ysdata.DataSource);
         }
     })
-    //数值绑定
+    //Liên kết số
     function InsertNumericInputField(data) {
         var ctl = document.getElementById("myWriterControl");
         var options = {
@@ -1286,7 +1286,7 @@
             ctl.FocusAdjacent("afterEnd", field);
         }
     }
-    //日期时间绑定
+    //Liên kết ngày giờ
     function InsertDateTimeInputField(data) {
         var ctl = document.getElementById("myWriterControl");
         var options = {
@@ -1308,7 +1308,7 @@
             ctl.FocusAdjacent("afterEnd", field);
         }
     }
-    //日期绑定
+    //Liên kết ngày
     function InsertDateTimeInputFieldDate(data) {
         var ctl = document.getElementById("myWriterControl");
         var options = {
@@ -1330,7 +1330,7 @@
             ctl.FocusAdjacent("afterEnd", field);
         }
     }
-    //时间绑定
+    //Liên kết thời gian
     function InsertDateTimeInputFieldTime(data) {
         var ctl = document.getElementById("myWriterControl");
         var options = {
@@ -1352,7 +1352,7 @@
             ctl.FocusAdjacent("afterEnd", field);
         }
     }
-    //下拉列表绑定
+    //Liên kết danh sách thả xuống
     function InsertDropDowmListInputField(data, mxlist) {
         debugger;
         var ctl = document.getElementById("myWriterControl");
@@ -1384,10 +1384,10 @@
         options["ListItems"] = $.parseJSON(tiemlist);
         var field = ctl.DCExecuteCommand("InsertInputField", true, options);
         if (field != null) {
-            ctl.FocusAdjacent("afterEnd", field); //这里的第一个参数可以是beforeBegin,afterBegin,beforeEnd,afterEnd
+            ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể làbeforeBegin,afterBegin,beforeEnd,afterEnd
         }
     }
-    //下拉列表绑定
+    //Liên kết danh sách thả xuống
     function InsertDropDowmListInputFieldCd(data, mxlist) {
         debugger;
         var ctl = document.getElementById("myWriterControl");
@@ -1419,7 +1419,7 @@
         options["ListItems"] = $.parseJSON(tiemlist);
         var field = ctl.DCExecuteCommand("InsertInputField", true, options);
         if (field != null) {
-            ctl.FocusAdjacent("afterEnd", field); //这里的第一个参数可以是beforeBegin,afterBegin,beforeEnd,afterEnd
+            ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể làbeforeBegin,afterBegin,beforeEnd,afterEnd
         }
     }
     function InsertInputField(data) {
@@ -1447,17 +1447,17 @@
         debugger;
         var ctl = document.getElementById("myWriterControl");
         var options = {
-            bindingpath: data.BindingPath, //数据源路径
+            bindingpath: data.BindingPath, //Đường dẫn nguồn dữ liệu
         }
-        ctl.SetTableCellAttribute(null, options) //第一个参数为指定的元素, 若为null则表示光标所在位置的单元格
+        ctl.SetTableCellAttribute(null, options) //Tham số đầu tiên là phần tử chỉ định, Nếu lànullthì biểu thị ô tại vị trí con trỏ
     }
     function SetTableRowField(data)
     {
         var ctl = document.getElementById("myWriterControl");
         var options = {
-            datasource: "peopledatasource",//data.DataSource, //数据源
+            datasource: "peopledatasource",//data.DataSource, //Nguồn dữ liệu
         }
-        ctl.SetTableRowAttribute(null, options) //第一个参数为指定的元素, 若为null则表示光标所在位置的表格行
+        ctl.SetTableRowAttribute(null, options) //Tham số đầu tiên là phần tử chỉ định, Nếu lànullthì biểu thị dòng bảng tại vị trí con trỏ
     }
     function dcInsertPageInfo() {
         //var ctl = document.getElementById("myWriterControl");
@@ -1472,8 +1472,8 @@
         //    Height: "65",
         //    Width: "400",
         //    ValueType: "PageIndex",
-        //    FormatString: "第[%PageIndex%]页 共[%NumOfPages%]页",
-        //    Caption: "页码"
+        //    FormatString: "Thứ[%PageIndex%] trang, tổng cộng[%NumOfPages%] Trang",
+        //    Caption: "Số trang"
         //};
         //ctl.DCExecuteCommand('InsertPageInfoElement', false, options)
         var ctl = document.getElementById('myWriterControl');
@@ -1499,7 +1499,7 @@
     }
 
     $(function () {
-        //var ctl = document.getElementById("myWriterControl");//获取当前编辑器对象
+        //var ctl = document.getElementById("myWriterControl");//Lấy đối tượng trình soạn thảo hiện tại
         //ctl.DCExecuteCommand('FileNew', false, false);
 
         //MySetContextMenu();
@@ -1513,7 +1513,7 @@
         "name": "A3",
         "widthmm": 297,
         "heightmm": 420,
-        "Landscape": "false" //纵向
+        "Landscape": "false" //Dọc
     }, {
         "name": "A4",
         "widthmm": 210,
@@ -1553,7 +1553,7 @@
     }
     function MySetContextMenu() {
         var ctl = document.getElementById("myWriterControl");
-        //编辑器右键菜单
+        //Menu chuột phải của trình soạn thảo
         var jsonMenu = [
             {
                 cmdName: 'copy',
@@ -1569,7 +1569,7 @@
                 label: 'Dán',
                 cmdName: 'paste',
                 exec: function () {
-                    ctl.DCExecuteCommand('Paste', true, null) //粘贴内部复制或者剪切的
+                    ctl.DCExecuteCommand('Paste', true, null) //Dán nội dung đã sao chép hoặc cắt bên trong
                 },
             },
             '-',
@@ -1710,7 +1710,7 @@
         ctl.ClearDocumentBody();
         ctl.preserveScrollPosition = true;
         var fileName = mburl;
-        //在服务器端响应控件的EventReadFileContenClearDocumentBodyt事件, 即可使用AJAX模式加载文档.
+        //Phản hồi control ở phía máy chủEventReadFileContenClearDocumentBodytsự kiện, là có thể sử dụngAJAXTải tài liệu theo chế độ.
         ctl.LoadDocumentFromFile(fileName, null);
     }
     function TemplateSave() {
@@ -1721,8 +1721,8 @@
         var ctl = document.getElementById("myWriterControl");
 
         //ctl.DCExecuteCommand('FileSave', true, mburl);
-        //alert("保存成功");
-        FileSavev5(); //5.0编辑器
+        //alert("Lưu thành công");
+        FileSavev5(); //5.0 Trình soạn thảo
 
     }
     function init() {
@@ -1733,7 +1733,7 @@
         //        BindingDCWriterClientControl(ctl);
         //        ctl.EventAfterPrintPreview = function (PrintPreviewDoc) {
         //            var styleDom = document.createElement("style");
-        //             解决宋体打印问题
+        //             Giải quyết vấn đề in ấn font SimSun
         //            var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
         //            styleDom.innerHTML = cssStr;
         //            var page = PrintPreviewDoc.querySelector("div[pageindex]");
@@ -1746,16 +1746,16 @@
         //}
         //Build();
         //var ctl = document.getElementById("myWriterControl");
-        //// 绑定控件
+        //// Liên kết control
         //BindingDCWriterClientControl(ctl);
         //var data = "";
-        // 创建编辑器框架
+        // Tạo khung trình soạn thảo
         //ctl.BuildFrame(function () {
         //    debugger;
         //    $.ajax({
         //        type: "POST",
         //        url: "/MedRecordTemplate/GetTemplateXml",
-        //        data: { templateType: "0", templateName: "长期医嘱" },
+        //        data: { templateType: "0", templateName: "Y lệnh dài hạn" },
         //        dataType: "json",
         //        async: false,
         //        success: function (respdata) {
@@ -1769,20 +1769,20 @@
         //});
 
     }
-    // 插入表格操作
+    // Thao tác chèn bảng
     var insertTable = function (btn, opt) {
         if (!btn) { return; }
         this.btn = btn;
         opt = opt || {};
-        this.box = null; //弹框
+        this.box = null; //Hộp thoại
         this.inBox = null;
         this.pickUnLight = null;
         this.pickLight = null;
         this.status = null;
-        this.minSize = opt.min || [5, 5]; //最小列数和行数
-        this.maxSize = opt.max || [15, 15]; //最大列数和行数
-        this.insert = opt.insert; //回调
-        this.nowSize = []; //当前选择尺寸
+        this.minSize = opt.min || [5, 5]; //Số cột và dòng tối thiểu
+        this.maxSize = opt.max || [15, 15]; //Số cột và dòng tối đa
+        this.insert = opt.insert; //Gọi lại
+        this.nowSize = []; //Kích thước đang chọn
         this.isInit = { create: false, bind: false };
         this.bind();
     }
@@ -1811,13 +1811,13 @@
         },
         bind: function () {
             var T = this,
-                pos, //弹框显示位置
+                pos, //Vị trí hiển thị hộp thoại
                 m,
-                bPos, //弹框可选区域位置
-                mPos; //鼠标位置
+                bPos, //Vị trí vùng chọn hộp thoại
+                mPos; //Vị trí chuột
             this.btn.click(function () {
-                if (!T.isInit.create) { T.init(); } //初始化弹框
-                if (!T.isInit.bind) { B(); } //初始化事件
+                if (!T.isInit.create) { T.init(); } //Khởi tạo hộp thoại
+                if (!T.isInit.bind) { B(); } //Khởi tạo sự kiện
                 m = $(this);
                 if (T.box.is(":hidden")) {
                     pos = {
@@ -1847,8 +1847,8 @@
                         y: e.clientY
                     }
                     if (mPos.x < bPos.left || mPos.y < bPos.top) { return; }
-                    T.nowSize[0] = Math.ceil((mPos.x - bPos.left) / 18); //列数
-                    T.nowSize[1] = Math.ceil((mPos.y - bPos.top) / 18); //行数
+                    T.nowSize[0] = Math.ceil((mPos.x - bPos.left) / 18); //Số cột
+                    T.nowSize[1] = Math.ceil((mPos.y - bPos.top) / 18); //Số dòng
                     if (T.nowSize[0] >= T.minSize[0] && T.nowSize[0] < T.maxSize[0]) {
                         T.setBg(T.nowSize[0] + 1, 0);
                     } else if (T.nowSize[0] < T.minSize[0]) {
@@ -1869,7 +1869,7 @@
                     })
                     T.status.text(T.nowSize[0] + 'Cột x ' + T.nowSize[1] + 'Dòng');
                 })
-                //单击确认插入表格
+                //Nhấn xác nhận để chèn bảng
                 T.box.click(function () {
                     if (T.nowSize[0] > 0 && T.nowSize[0] <= T.maxSize[0] && T.nowSize[1] > 0 && T.nowSize[1] <= T.maxSize[1]) {
                         var rows = T.nowSize[1],
@@ -1879,7 +1879,7 @@
                 })
             }
         },
-        //调整背景区域
+        //Điều chỉnh vùng nền
         setBg: function (size, t) {
             if (t == 0) {
                 this.inBox.width(size + 'em');
@@ -1889,11 +1889,11 @@
                 this.pickUnLight.height(size + 'em');
             }
         },
-        //隐藏弹框
+        //Ẩn hộp thoại
         hide: function () {
             var T = this;
             this.box.fadeOut(100, function () {
-                //重置
+                //Đặt lại
                 T.setBg(T.minSize[0], 0);
                 T.setBg(T.minSize[1], 1);
                 T.pickLight.css({
@@ -1907,8 +1907,8 @@
         min: [4, 4],
         max: [20, 20],
         insert: function (rows, cols) {
-            //这里只返回所选行数rows和列数cols,插入后的效果和样式需自定义,以下只是做简单的示例
-            //alert('插入了一个'+rows+'行'+cols+'列的表格');
+            //Ở đây chỉ trả về số dòng đã chọnrowsvà số cộtcols,hiệu quả và kiểu dáng sau khi chèn cần tùy chỉnh,dưới đây chỉ là ví dụ đơn giản
+            //alert('Đã chèn một'+rows+'Dòng'+cols+'cột trong bảng');
 
             var ttt = rows + "," + cols;
             document.getElementById('myWriterControl').DCExecuteCommand('inserttable', true, ttt);
@@ -1927,12 +1927,12 @@
             //this.btn.after(html);
         }
     });
-    // 关闭按钮
+    // Nút đóng
     $("#closeimg").click(function () {
         $("#tszfa").hide();
         $("#mask").hide();
     })
-    //插入批注
+    //Chèn chú thích
     function insertNewComment() {
         $("#mask").show();
         var $NewComment = $("#NewComment_box");
@@ -1958,7 +1958,7 @@
         }
         document.getElementById("myWriterControl").NewComment(opts);
     }
-    // 插入按钮
+    // Chèn nút
     function MyInsertButtonInputField() {
         var ctl = document.getElementById("myWriterControl");
         var options = {
@@ -1989,15 +1989,15 @@
         if (img.is(":visible") == false) {
             img.parent().after(img);
         }
-        //模拟dblclick事件
+        //Mô phỏngdblclicksự kiện
         img.trigger("dblclick");
     })
-    //设置自定义下拉列表
+    //Đặt danh sách thả xuống tùy chỉnh
     function CustomDropdownList() {
         var ctl = document.getElementById('myWriterControl');
         if (ctl.EventDropdownEditor == null) {
-            // 绑定控件的EventDropdownEditor事件.
-            // 提供自定义的下拉列表内容.
+            // Liên kết của controlEventDropdownEditorsự kiện.
+            // Cung cấp nội dung danh sách thả xuống tùy chỉnh.
             ctl.EventDropdownEditor = function (args) {
                 args.container.style.overflowY = 'auto';
                 var sel = document.createElement("input");
@@ -2022,7 +2022,7 @@
                         }
                     }
                 }
-                //if (args.element.id == "123")// 在这里可以判断输入域元素编号
+                //if (args.element.id == "123")// Tại đây có thể phán đoán mã số phần tử vùng nhập
                 //{
                 for (var iCount = 0; iCount < 20; iCount++) {
                     var btn = document.createElement("input");
@@ -2032,11 +2032,11 @@
                     btn.style.width = "200px";
                     btn.onclick = function () {
                         args.setValue(
-                            this.value, // 输入域文本值
-                            this.value + "_value");// 输入域数值
-                        args.close();// 关闭下拉列表
+                            this.value, // Giá trị văn bản trường nhập
+                            this.value + "_value");// Giá trị số trường nhập
+                        args.close();// Đóng danh sách thả xuống
                     };
-                    // args.container是承载内容的一个DIV元素.
+                    // args.container là một phần tử DIV chứa nội dung.
                     args.container.appendChild(btn);
                     //args.container.appendChild(document.createElement("br"));
                 }//for
@@ -2049,7 +2049,7 @@
             ctl.EventDropdownEditor = null;
         }
     }
-    // 页面设置
+    // Cài đặt trang
     function ChangeDocumentSettings() {
         $(".newBox").show();
         $("#mask").show();
@@ -2063,14 +2063,14 @@
         var Leftdirection = $(".LeftbroadwiseNumber").val();
         var Rightdirection = $(".RightdirectionNumber").val();
         var opts = {
-            "PaperKind": "Custom",//自定义
-            "PaperWidth": direction,//宽度
-            "PaperHeight": broadWise,//高度
-            "TopMargin": Topdirection,//上边距
-            "BottomMargin": Bottomdirection,//下边距
-            "LeftMargin": Leftdirection,//左边距
-            "RightMargin": Rightdirection,//右边距
-            "Landscape": "false"//横向, 纵向
+            "PaperKind": "Custom",//Tùy chỉnh
+            "PaperWidth": direction,//Chiều rộng
+            "PaperHeight": broadWise,//Chiều cao
+            "TopMargin": Topdirection,//Lề trên
+            "BottomMargin": Bottomdirection,//Lề dưới
+            "LeftMargin": Leftdirection,//Lề trái
+            "RightMargin": Rightdirection,//Lề phải
+            "Landscape": "false"//Ngang, Dọc
         };
         var ctl = document.getElementById("myWriterControl");
         ctl.ChangeDocumentSettings(opts);
@@ -2084,7 +2084,7 @@
     $(".radioBtn").click(function () {
         $(this).find(".selected").show();
         $(this).siblings(".radioBtn").find(".selected").hide();
-        var flag = $(".select-right").is(":hidden");//true 横向 | false 纵向
+        var flag = $(".select-right").is(":hidden");//true Ngang | false Dọc
         var broadWise = $(".broadwiseNumber").val();
         var direction = $(".directionNumber").val();
         if (broadWise > direction) {
@@ -2105,7 +2105,7 @@
     $(".broadwiseNumber").val(selectList[0].heightmm);
     $(".directionNumber").val(selectList[0].widthmm);
     $(".select-button").change(function () {
-        var flag = $(".select-right").is(":hidden");//true 横向 | false 纵向
+        var flag = $(".select-right").is(":hidden");//true Ngang | false Dọc
         var index = $(this).find("option:selected").index();
         if (flag) {
             $(".broadwiseNumber").val(selectList[index].widthmm)
@@ -2156,23 +2156,23 @@
     }
 
   
-    //******************都昌5.0编辑器版**************//
-    //编辑器渲染完成事件
+    //******************Duchang 5.0 Editor**************//
+    //Sự kiện trình soạn thảo render xong
     function WriterControl_OnLoad(rootElement) {
 
-        //右键菜单
+        //Menu chuột phải
         rootElement.EventShowContextMenu = function (eventSender, args) {
             var typename = args.ElementType;
             var ele = rootElement.CurrentElement()
             var eleement = rootElement.GetElementProperties(ele)
-            // console.log(eleement,"元素属性")
+            // console.log(eleement,"Thuộc tính phần tử")
             if (eleement.TypeName == "XTextParagraphFlagElement") {
                 var previouselement = rootElement.GetElementProperties(eleement.PreviousElement);
                 if (previouselement.TypeName != "XTextParagraphFlagElement") {
                     console.log(previouselement.TypeName, "Loại phần tử")
                 }
             }
-            // console.log(typename,"元素属性11")
+            // console.log(typename,"Thuộc tính phần tử11")
             if (typename != null && typename != "") {
                 typename = typename.toLowerCase();
                 var options = [
@@ -2227,7 +2227,7 @@
                    {
                        label: 'Thuộc tính phần tử',
                        exec: () => {
-                           // console.log(previouselement,"前一个元素")
+                           // console.log(previouselement,"Phần tử trước")
                            if (eleement.TypeName == "XTextParagraphFlagElement") {
                                ElementDialog(previouselement, previouselement.TypeName)
                                return;
@@ -2619,13 +2619,13 @@
     function ContextMenu(options, menuObj, rootElement) {
         if (options != null && Array.isArray(options)) {
             if (menuObj) {
-                //获取到包裹元素
+                //Lấy được phần tử bao bọc
                 var pageContainer = rootElement.querySelector('[dctype=page-container]');
-                //判断是否为打印预览
+                //Phán đoán có phải xem trước khi in hay không
                 if (rootElement.IsPrintPreview()) {
                     pageContainer = rootElement.querySelector('[dctype=page-printpreview]');
                 }
-                //判断是否存在dcContextMenu的元素
+                //Phán đoán có tồn tại phần tử dcContextMenu hay không
                 var hasContextMenu = pageContainer.querySelector('#dcContextMenu');
                 if (!hasContextMenu) {
                     var meunDiv = document.createElement('div');
@@ -2633,9 +2633,9 @@
                     pageContainer.appendChild(meunDiv);
                     meunDiv.innerHTML = `<div class="dcMenu-line"></div>`;
                     hasContextMenu = meunDiv;
-                    //判断是否有css
+                    //Phán đoán có hay khôngcss
                     var dcHead = document.head;
-                    //判断是否存在对应的css
+                    //Phán đoán có tồn tại tương ứng hay khôngcss
                     var hasContextMenuCss = dcHead.querySelector('#ContextMenuCss');
                     if (!hasContextMenuCss) {
                         var newCssString = `
@@ -2731,14 +2731,14 @@
                         dcHead.appendChild(ContextMenuCss);
                         ContextMenuCss.innerHTML = newCssString;
 
-                        //页面滚动
+                        //Cuộn trang
                         pageContainer.addEventListener('scroll', function () {
                             var hasContextMenu = rootElement.querySelector('#dcContextMenu');
                             if (hasContextMenu) {
                                 hasContextMenu.remove();
                             }
                         })
-                        //丢失焦点
+                        //Mất focus
                         window.addEventListener('blur', function () {
                             var hasContextMenu = rootElement.querySelector('#dcContextMenu');
                             if (hasContextMenu) {
@@ -2748,7 +2748,7 @@
                     }
 
                 } else {
-                    //存在时, 清空所有item和sep的元素
+                    //Khi tồn tại, Xóa tất cảitemvàsepphần tử
                     var allItem = hasContextMenu.querySelectorAll('.dcMenu-item, .dcMenu-sep');
                     for (var i = 0; i < allItem.length; i++) {
                         allItem[i].remove();
@@ -2756,11 +2756,11 @@
                 }
                 var containerHeight = 0;
                 if (Array.isArray(options) && options.length > 0) {
-                    //根据options显示元素
+                    //TheooptionsHiển thị phần tử
                     for (var option = 0; option < options.length; option++) {
                         if (typeof options[option] == 'object') {
                             var thisItem = insertItem(options[option], hasContextMenu, true);
-                            //判断是否存在subMenu, 如果需要更多可以使用递归调用
+                            //Phán đoán có tồn tại hay khôngsubMenu, Nếu cần nhiều hơn có thể sử dụng gọi đệ quy
                             if (options[option].subMenu && Array.isArray(options[option].subMenu)) {
                                 var secondaryMenu = document.createElement('div');
                                 secondaryMenu.setAttribute('class', 'secondaryMenu');
@@ -2772,11 +2772,11 @@
                                 var rightItem = document.createElement('div');
                                 rightItem.setAttribute('class', 'dcMenu-rightarrow');
                                 thisItem.appendChild(rightItem);
-                                //添加事件
+                                //Thêm sự kiện
                                 thisItem.addEventListener('mouseenter', function (e) {
                                     //console.log(e)
                                     //console.log($(e.target))
-                                    //找到下一个子元素
+                                    //Tìm phần tử con tiếp theo
                                     var targetEle = e.target.nextElementSibling;
                                     targetEle.style.top = e.target.offsetTop + 'px';
                                     targetEle.style.left = e.target.offsetLeft + e.target.offsetWidth + 'px';
@@ -2805,7 +2805,7 @@
                         }
                     }
                     var pageElement = menuObj.PageElement;
-                    //计算展示的高度
+                    //Tính chiều cao hiển thị
                     var minHeight = pageContainer.scrollTop;
                     var maxHeight = minHeight + pageContainer.clientHeight;
                     containerHeight = containerHeight ? containerHeight + 6 : 0
@@ -2813,26 +2813,26 @@
                     hasContextMenu.style.left = pageElement.offsetLeft + menuObj.X + 'px';
                     var cursorTop = pageElement.offsetTop + menuObj.Y;
                     var menuLastHeight = cursorTop + containerHeight;
-                    //计算最下方的距离是否够显示全
+                    //Tính khoảng cách phía dưới cùng có đủ để hiển thị đầy đủ hay không
                     if (menuLastHeight > maxHeight) {
-                        //显示不全
+                        //Hiển thị không đầy đủ
                         var topHasSpacing = -minHeight;
-                        //判断上边是否存在足够的距离
+                        //Phán đoán phía trên có đủ khoảng cách hay không
                         if (topHasSpacing > containerHeight) {
-                            //距离足够
+                            //Khoảng cách đủ
                             hasContextMenu.style.top = cursorTop - containerHeight + 'px'
                         } else {
-                            //距离不够
+                            //Khoảng cách không đủ
                             if ((maxHeight - cursorTop) > (cursorTop - minHeight)) {
-                                //下方的距离大于上方
+                                //Khoảng cách phía dưới lớn hơn phía trên
                                 hasContextMenu.style.top = cursorTop + 'px';
                             } else {
-                                //上方的距离大于下方
+                                //Khoảng cách phía trên lớn hơn phía dưới
                                 hasContextMenu.style.top = cursorTop - containerHeight + 'px'
                             }
                         }
                     } else {
-                        //显示全
+                        //Hiển thị đầy đủ
                         hasContextMenu.style.top = cursorTop + 'px';
                     }
                     hasContextMenu.style.display = 'block';
@@ -2840,7 +2840,7 @@
             }
         }
 
-        //插入内部的item项
+        //Chèn mục bên trongitemmục
         function insertItem(options, hasContextMenu, needHeight) {
             if (typeof options == 'object') {
                 var itemEle = document.createElement('div');
@@ -2933,7 +2933,7 @@
 
         }
     }
-    //加载病历模板
+    //Tải mẫu bệnh án
     function FileOpenV5()
     {
         var ctl = document.getElementById("myWriterControl");
@@ -2960,7 +2960,7 @@
 
       
     }
-    //保存病历模板
+    //Lưu mẫu bệnh án
     function FileSavev5()
     {
     debugger

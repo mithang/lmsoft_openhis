@@ -19,7 +19,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 默认DB上下文
+        /// Mặc địnhDBtrêndướivăn
         /// </summary>
         public static EFDBBaseFuncHelper Instance
         {
@@ -30,7 +30,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 指定DB上下文 (dbType is accepted for source compatibility; the port
+        /// chỉđịnhDBtrêndướivăn (dbType is accepted for source compatibility; the port
         /// always uses the CIS database)
         /// </summary>
         /// <param name="dbType"></param>
@@ -41,13 +41,13 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取 字段/业务 唯一值
+        /// Lấy chữđoạn/nghiệp vụ duy nhấtmộtGiá trị
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgId"></param>
         /// <param name="initFormat"></param>
         /// <param name="dateFlag"></param>
-        /// <returns>string类型</returns>
+        /// <returns>stringLoại</returns>
         public string GetNewFieldUniqueValue(string fieldName, string orgId, string initFormat = "", bool dateFlag = false)
         {
             var tpl = GetNewFieldUniqueObjectValue(fieldName, orgId, initFormat, dateFlag);
@@ -63,10 +63,10 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取单据号
+        /// Lấyphiếusố phiếu
         /// </summary>
         /// <param name="djmc"></param>
-        /// <param name="orgId">当前医院对应的组织机构Id</param>
+        /// <param name="orgId">hiện tạiyviệntương ứngcủaTổ chứcId</param>
         /// <param name="yfbmCode"></param>
         /// <returns></returns>
         public string GetNewMedicineReceiptNo(string djmc, string yfbmCode, string orgId)
@@ -86,13 +86,13 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取 字段/业务 唯一值
+        /// Lấy chữđoạn/nghiệp vụ duy nhấtmộtGiá trị
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgId"></param>
         /// <param name="initFormat"></param>
         /// <param name="dateFlag"></param>
-        /// <returns>string类型</returns>
+        /// <returns>stringLoại</returns>
         public int GetNewFieldUniqueIntValue(string fieldName, string orgId, string initFormat = "", bool dateFlag = false)
         {
             var tpl = GetNewFieldUniqueObjectValue(fieldName, orgId, initFormat, dateFlag);
@@ -108,7 +108,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取处方号
+        /// LấySố đơn thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -122,7 +122,7 @@ namespace Newtouch.Infrastructure
         #region private methods
 
         /// <summary>
-        /// 获取 字段/业务 唯一值 返回Tuple
+        /// Lấy chữđoạn/nghiệp vụ duy nhấtmộtGiá trị Quay lạiTuple
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgId"></param>
@@ -152,7 +152,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 上下文 类型
+    /// trêndướivăn Loại
     /// </summary>
     public enum EnumDBFactoryType
     {

@@ -1,13 +1,13 @@
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 进销存统计
+    /// Thống kê nhập-xuất-tồn
     /// </summary>
     public class VPsiStatisticsByDateEntity
     {
         private string _statisticsDate = "";
         /// <summary>
-        /// 统计时间
+        /// Thời gian thống kê
         /// </summary>
         public string statisticsDate
         {
@@ -16,13 +16,13 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public long sl { get; set; }
 
         private string _itemName = "";
         /// <summary>
-        /// 项目名称
+        /// Tên hạng mục
         /// </summary>
         public string itemName
         {
@@ -32,13 +32,13 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
     }
 
     /// <summary>
-    /// 首页统计highcharts专用
+    /// Thống kê trang chủ highcharts Chuyên dùng
     /// </summary>
     public class ClassificationStatisticsEntity
     {
         private string _name = "";
         /// <summary>
-        /// 项目名称
+        /// Tên hạng mục
         /// </summary>
         public string name
         {
@@ -47,7 +47,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public long y { get; set; }
     }

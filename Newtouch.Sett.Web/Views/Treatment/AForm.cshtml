@@ -1,0 +1,359 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<form id="form1">
+    <div class="panel panel-default">
+        <div class="panel-bodys" style="width: 95%;padding-left:15px;">
+            <table class="form">
+                <tr>
+                    <th class="formTitle"><span class="required">*</span>Tổ chức：</th>
+                    <td class="formValue formDdlSelectorTd">
+                        <select id="OrganizeId" name="OrganizeId" class="form-control required">
+                            <option value="">==Vui lòng chọn==</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle"><span class="required">*</span>Tên tổ hợp khám chữa bệnh：</th>
+                    <td class="formValue">
+                        <input id="zhmc" name="zhmc" type="text" class="form-control required" placeholder="Vui lòng nhậpTên tổ hợp khám chữa bệnh" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle"><span class="required">*</span>Mã tổ hợp khám chữa bệnh：</th>
+                    <td class="formValue">
+                        <input id="zhcode" name="zhcode" type="text" class="form-control" placeholder="Vui lòng nhậpMã tổ hợp khám chữa bệnh" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Hạng mục chi tiếtSắp xếp：</th>
+                    <td class="formValue">
+                        <input id="ord" name="ord" type="text" class="form-control" placeholder="Vui lòng nhậpHạng mục chi tiếtSắp xếp" />
+                    </td>
+                </tr>
+                <tr hidden>
+                    <th class="formTitle">Khám chữa bệnhHạng mục chi tiết：</th>
+                    <td class="formValue">
+                        <input id="zlxm" name="zlxm" type="text" class="form-control" placeholder="Vui lòng nhậpKhám chữa bệnhHạng mục chi tiết" />
+                    </td>
+                </tr>
+                <tr>
+                    <th class="formTitle">Khám chữa bệnhHạng mục chi tiếtTên：</th>
+                    <td class="formValue">
+                        <input id="zlxmmc" name="zlxmmc" type="text" class="form-control" placeholder="Vui lòng nhậpKhám chữa bệnhHạng mục chi tiếtTên" style="width:78%;float:left" />
+                        <input type="button" id="tjmx" value="ThêmChi tiết" onclick="tianjiamx()" class="btn btn-default" style="width:60px;height:20px;float:left" />
+                    </td>
+                </tr>
+                <tr hidden>
+                    <th class="formTitle">Khám chữa bệnhHạng mục chi tiếtĐơn giá：</th>
+                    <td class="formValue">
+                        <input id="price" name="price" type="text" class="form-control" placeholder="Vui lòng nhậpKhám chữa bệnhHạng mục chi tiếtĐơn giá" />
+                    </td>
+                </tr>
+                <tr hidden>
+                    <th class="formTitle">Khám chữa bệnhHạng mục chi tiếtPhiên âm：</th>
+                    <td class="formValue">
+                        <input id="zlxmpy" name="zlxmpy" type="text" class="form-control" placeholder="Vui lòng nhậpKhám chữa bệnhHạng mục chi tiếtPhiên âm" />
+                    </td>
+                </tr>
+                <tr hidden>
+                    <th class="formTitle">Số tiền kết hợp：</th>
+                    <td class="formValue">
+                        <input id="zhje" name="zhje" type="text" class="form-control" placeholder="Vui lòng nhậpSố tiền kết hợp" />
+                    </td>
+                </tr>
+            </table>
+            <div id="divMXTable">
+                <table id="MXTable"></table>
+            </div>
+            <p>
+                <input type="button" id="addmx" value="Lưu" onclick="addMX()" class="btn btn-default" style="float:right;width:40px;height:20px;margin-top:5px;" />
+                <input type="button" id="addmx" value="Xóa" onclick="deleteMX()" class="btn btn-default" style="float:right;margin-right:20px;width:40px;height:20px;margin-top:5px;" />
+            </p>
+        </div>
+    </div>
+</form>
+
+<script>
+    var keyValue = $.request("keyValue");
+    $(function () {
+        initControl(); debugger;
+        if (!!keyValue) {
+            $('#zhmc').attr("readonly", "readonly");
+            $('#zhcode').attr("readonly", "readonly");
+            $.ajax({
+                url: "/Treatment/Codecx",  //của yêu cầuurlĐịa chỉ
+                dataType: "json",   //Định dạng trả về làjson
+                async: false,
+                data: { zhcode: keyValue },  //Giá trị tham số
+                type: "POST",   //Phương thức yêu cầu
+                traditional: true,
+                success: function (data) {
+                    $("#form1").formSerialize(data[0]);
+                    for (var i = 0; i < data.length; i++) {
+                        $("#MXTable").addRowData(i, data[i], "last");
+                    }
+                    //Xử lý khi yêu cầu thành công
+                },
+                error: function () {
+                    //Xử lý khi yêu cầu lỗi
+                }
+            });
+            $("#OrganizeId").prop("disabled", true);
+        }
+    })
+    function initControl() {
+        //Dropdown tổ chức
+        $("#OrganizeId").bindSelect({
+            url: "/Organize/GetChildTreeSelectJson",
+            selectedValue: $.request('orgId'),
+        });
+    }
+
+    $("#zlxmmc").click(function () {
+        $("#zlxmmc").val('');
+    });
+
+    var sfxmmc = "";//Tên hạng mục thu phí
+    var sfxmdm = "";//Hạng mục thu phíMã
+    var price = ""; //Giá cả
+
+    var zlxmpy = "";//Phiên âm
+    var sfdl = ""; //Nhóm thu phí lớn
+    var sfdlcode = ""; //Nhóm thu phí lớnMã
+
+    $('#zlxmmc').newtouchFloatingSelector({
+        width: 600,
+        height: 220,
+        caption: "Hạng mục thu phí",
+        clickautotrigger: true,
+        url: '/SystemManage/BaseData/SelectSfxmYp',
+        ajaxparameters: function () {
+            return "keyword=" + $.trim($('#zlxmmc').val()) + "&mzzybz=1&dllb=2&sfdllx=OutpatientReg";
+        },
+        itemdbclickhandler: function ($thistr) {
+            $('#zlxmmc').attr('data-ghlx', $thistr.attr('data-sfxmCode'))
+                .attr('data-sfxmmc', $thistr.attr('data-sfxmmc'))
+                .val($thistr.attr('data-sfxmmc'));
+            $('#price').attr('data-ghlx', $thistr.attr('data-sfxmCode'))
+                .attr('data-sfxmmc', $thistr.attr('data-sfxmmc'))
+                .val($thistr.attr('data-dj'));
+            $('#zlxmpy').attr('data-ghlx', $thistr.attr('data-sfxmCode'))
+                .attr('data-sfxmmc', $thistr.attr('data-sfxmmc'))
+                .val($thistr.attr('data-py'));
+
+            sfxmmc = $thistr.attr('data-sfxmmc');
+            sfxmdm = $thistr.attr('data-sfxmCode');
+            price = $thistr.attr('data-dj');
+            zlxmpy = $thistr.attr('data-py');
+
+            sfdl = $thistr.attr('data-sfdlmc');
+            sfdlcode = $thistr.attr('data-sfdlCode');
+        },
+        colModel: [{ label: 'Mã số', name: 'sfxmCode', widthratio: 15 },
+        { label: 'Tên', name: 'sfxmmc', widthratio: 25 },
+        { label: 'Phiên âm', name: 'py', widthratio: 15 },
+        { label: 'Đơn vị', name: 'dw', widthratio: 8 },
+        { label: 'Đơn giá', name: 'dj', widthratio: 10 },
+        { label: 'Nhóm thu phí lớn', name: 'sfdlmc', widthratio: 15 },
+        { label: 'Nhóm thu phí lớncode', name: 'sfdlCode', widthratio: 15,hidden:true },
+        ]
+    });
+
+
+
+
+    function tianjiamx() {
+        debugger;
+        var zlxmmcnull = $("#zlxmmc").val();
+        if (!zlxmmcnull) {
+            $.modalAlert("TênKhông được trống", 'warning');
+        }
+        else {
+            if (!keyValue)
+            {
+                var btcode = $("#zhcode").val();
+                var btzhmc = $("#zhmc").val();
+                if (!btcode || !btzhmc) {
+                    $.modalAlert("Tên và Mã số là mục bắt buộc!", 'warning');
+                    return;
+                }
+                //Kiểm tra mã số trong hộp văn bản và mã số trong bảng chi tiết có nhất quán hay không
+                var jjzhcode = $("#MXTable").getCol("zhcode", false);
+
+                var jjzhcodelie = $("#zhcode").val();
+                var inzhcode = $.inArray(jjzhcode, chkzhcode)
+
+                var zhmc = $("#zhmc").val();
+                var zhcode = $("#zhcode").val();
+                var ord = $("#ord").val();
+                var datamx = [{ "zhmc": zhmc, "zhcode": zhcode, "ord": ord, "zlxm": sfxmdm, "zlxmmc": sfxmmc, "price": price, "zlxmpy": zlxmpy, "sfdl": sfdl, "sfdlcode": sfdlcode }];
+                var rowid = 0;
+                var zhcodetj = $("#zhcode").val();
+                //Lấy dữ liệu của một cột
+                var chkzhcode = $("#MXTable").getCol("zhcode", false);
+                var inzhcode = $.inArray(zhcodetj, chkzhcode);
+                var chkzlxmmc = $("#MXTable").getCol("zlxmmc", false);
+                var inzlxmmc = $.inArray(sfxmmc, chkzlxmmc);
+
+                if (inzhcode = -1 && inzlxmmc == -1) {
+                    $.ajax({
+                        url: "/Treatment/Tjchaxun",  //của yêu cầuurlĐịa chỉ
+                        dataType: "json",   //Định dạng trả về làjson
+                        async: false,
+                        data: { zhcodetj: zhcodetj, sfxmmc: sfxmmc, orgId: $.request('orgId') },  //Giá trị tham số
+                        type: "POST",   //Phương thức yêu cầu
+                        traditional: true,
+                        success: function (data) {
+
+                            if (data = "0") {
+                                $("#MXTable").addRowData(rowid, datamx, "last");
+                            }
+                            else {
+                                $.modalAlert("Tổ hợp hạng mục khám chữa bệnh đã tồn tại,Vui lòng sửa tên tổ hợp khám chữa bệnh/Mã số",'success')
+                            }
+                        },
+                        error: function () {
+                            //Xử lý khi yêu cầu lỗi
+                        }
+                    });
+                }
+                else {
+                    $.modalAlert("Danh sách đã có hạng mục này", 'success');
+                }
+            }
+            else {
+
+                $('#zhmc').attr("readonly", "readonly");
+                $('#zhcode').attr("readonly", "readonly");
+
+                var zhmc = $("#zhmc").val();
+                var zhcode = $("#zhcode").val();
+                var ord = $("#ord").val();
+                //var zlxm = $("#zlxm").val();
+                var datamx = [{ "zhmc": zhmc, "zhcode": zhcode, "ord": ord, "zlxm": sfxmdm, "zlxmmc": sfxmmc, "price": price, "zlxmpy": zlxmpy, "sfdl": sfdl, "sfdlcode": sfdlcode }];
+                var rowid = 0;
+
+                var zhcodetj = $("#zhcode").val();
+
+                //Lấy dữ liệu của một cột
+                var chkzhcode = $("#MXTable").getCol("zhcode", false);
+                var inzhcode = $.inArray(zhcodetj, chkzhcode);
+                var chkzlxmmc = $("#MXTable").getCol("zlxmmc", false);
+                var inzlxmmc = $.inArray(sfxmmc, chkzlxmmc);
+
+                if (inzhcode = -1 && inzlxmmc == -1) {
+                    $.ajax({
+                        url: "/Treatment/Tjchaxun",  //của yêu cầuurlĐịa chỉ
+                        dataType: "json",   //Định dạng trả về làjson
+                        async: true,
+                        data: { zhcodetj: zhcodetj, sfxmmc: sfxmmc,orgId: $.request('orgId')  },  //Giá trị tham số
+                        type: "POST",   //Phương thức yêu cầu
+                        traditional: true,
+                        success: function (data2) {
+
+                            if (data2 = "0") {
+                                $("#MXTable").addRowData(rowid, datamx, "last");
+                            }
+                            else {
+                                $.modalAlert("Tổ hợp hạng mục khám chữa bệnh đã tồn tại,Vui lòng sửa tên tổ hợp khám chữa bệnh/Mã số", 'success')
+                            }
+
+                            // $("#MXTable").addRowData(rowid, data, "last");
+                            //Xử lý khi yêu cầu thành công
+                        },
+                        error: function () {
+                            //Xử lý khi yêu cầu lỗi
+                        }
+                    });
+                }
+                else {
+
+                    $.modalAlert("Danh sách đã có hạng mục này", 'success')
+                }
+            }
+        }
+
+        $("#zlxmmc").val('');
+
+    }
+
+    function deleteMX() {
+        var keyValue = $.request("keyValue");
+        if (!keyValue) {
+            var rowKey = $("#MXTable").jqGrid('getGridParam', "selrow");
+            var rowid = $("#MXTable").getGridParam("selrow");
+            $("#MXTable").delRowData(rowid);
+        }
+        else {
+            var keyValue = $("#MXTable").jqGridRowValue().zlxmmc;
+            var zhcodemc = $("#zhcode").val();
+            console.info("这是Lấy的ID" + keyValue);
+            if (!!!keyValue) {
+                $.modalAlert("Vui lòng chọn một thông tin", 'warning');
+                return;
+            }
+            $.deleteForm({
+                url: "/Treatment/deletemc",
+                param: { keyValue: keyValue, zhcodemc: zhcodemc, orgId: $.request('orgId') },
+                success: function () {
+                    var rowid = $("#MXTable").getGridParam("selrow");
+                    $("#MXTable").delRowData(rowid);
+                    $.currentWindow().$("#MXTable").trigger("reloadGrid");
+                }
+            })
+        }
+
+    }
+
+    function addMX() {
+
+        var rowData = $('#MXTable').jqGrid('getRowData');
+
+        //var needRefundData = $("#gridList").jqGrid('getRowData_AllLine', true);
+        //Xử lý bug thiếu một dòng
+        var allOrgId = $('#MXTable').jqGrid('getDataIDs'); //Ở đây lấy khóa chính id của tất cả các dòng là đầy đủ
+        rowData.push($('#MXTable').jqGrid('getRowData', allOrgId[allOrgId.length - 1]));
+
+        var dataset = JSON.stringify(rowData);
+
+        var lastdata = $("#MXTable").jqGrid('getRowData_AllLine');
+        $.najax({
+            url: "/Treatment/rowdata",
+            dataType: "json",
+            data: { dataset: dataset, orgId: $.request('orgId') },
+            traditional: true,
+            type: "POST",
+            success: function (data) {
+                $.modalAlert("Lưu thành công", 'success');
+                $.currentWindow().$("#gridList").resetSelection();
+                $.currentWindow().$("#gridList").trigger("reloadGrid");
+                $.modalClose();
+
+            }
+        });
+    }
+
+    $("#MXTable").dataGrid({
+        colModel: [
+            //{ label: "Khóa chính", name: "Id", hidden: true, key: true },
+            { label: 'Mã số', name: 'zhcode', width: 80, align: 'left', hidden: true },
+            { label: 'Tên hạng mục', name: 'zlxmmc', width: 110, align: 'left' },
+            { label: 'Sắp xếp', name: 'ord', width: 40, align: 'left' },
+            { label: 'Hạng mục chi tiết', name: 'zlxm', width: 84, align: 'left' },
+            { label: 'Hạng mụcĐơn giá', name: 'price', width: 90, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 } },
+            { label: 'Hạng mụcPhiên âm', name: 'zlxmpy', width: 100, align: 'left' },
+            { label: 'Nhóm合Tên', name: 'zhmc', width: 80, align: 'left', hidden: true },
+            //{ label: 'Số tiền kết hợp', name: 'zhje', width: 100, align: 'left' },
+            { label: 'Nhóm thu phí lớn', name: 'sfdl', width: 100, align: 'left', hidden: true },
+            { label: 'Nhóm thu phí lớncode', name: 'sfdlcode', width: 100, align: 'left', hidden: true },
+        ],
+        width: "510",
+        height: "150",
+        pager: "#gridPager",
+        rowNum: '10',
+        unwritten: false,
+    });
+
+</script>

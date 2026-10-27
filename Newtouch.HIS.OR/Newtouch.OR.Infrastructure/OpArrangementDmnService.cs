@@ -23,7 +23,7 @@ namespace Newtouch.OR.ManageSystem.DomainServices
         //public IList<ArrangeListVO> GetArrangeList(Pagination pagination, QueryArrangeDto dto) 
         public IList<ArrangeListVO> GetArrangeList(QueryArrangeDto dto)
         {
-            #region 注释SQL
+            #region Chú thíchSQL
             //            string sql = @"SELECT [OrganizeId]
             //      ,[Id]
             //      ,[ApplyId]

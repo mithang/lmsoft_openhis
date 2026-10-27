@@ -75,14 +75,14 @@
         gridmxList();
     });
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //初始化科室
+    //Khởi tạo khoa
     $("#ksmc").newtouchBatchFloatingSelector({
         height: 200,
         width: 360,
@@ -106,7 +106,7 @@
         }
     });
 
-    //处方
+    //Đơn thuốc
     function gridList() {
         $gridList.dataGrid({
             url: "/OutPatientPharmacy/QueryDrugArrangementRp",
@@ -132,10 +132,10 @@
             gridComplete: function () {
                 $gridmxList.jqGrid("clearGridData");
                 var ids = new Array();
-                //getDataIDs()返回当前grid里所有数据的id
+                //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                 ids = $gridList.getDataIDs();
                 if (ids == null || ids.length <= 0) return;
-                //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
+                //Chọn hoặc bỏ chọn dòng chỉ định。Nếuonselectrowchoturethì sẽ kích hoạt sự kiệnonSelectRow，onselectrowMặc định làture
                 $gridList.setSelection(ids[0], true);
                 var data = $gridList.jqGrid('getRowData', ids[0]);
                 if (data == null) return;
@@ -153,7 +153,7 @@
         });
     }
 
-    //组装请求参数
+    //Lắp ráp tham số yêu cầu
     function AssembleParam() {
         return {
             xm: $("#xm").val(),
@@ -166,7 +166,7 @@
         };
     }
 
-    //处方明细
+    //Chi tiết đơn thuốc
     function gridmxList() {
         $gridmxList.dataGrid({
             url: "",
@@ -193,7 +193,7 @@
         });
     }
 
-    //取消排药
+    //Hủy xếp thuốc
     function newtouch_event_f6() {
         $.modalConfirm("Bạn có chắc muốn hủy xếp thuốc không?？", function (flag) {
             if (!flag) return;
@@ -226,7 +226,7 @@
         });
     }
 
-    //取消排药
+    //Hủy xếp thuốc
     function newtouch_event_f7() {
         var id = $gridList.jqGrid("getGridParam", "selrow");
         if (!id) {

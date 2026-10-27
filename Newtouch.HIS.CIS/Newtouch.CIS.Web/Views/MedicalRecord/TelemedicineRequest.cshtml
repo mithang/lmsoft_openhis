@@ -113,7 +113,7 @@
         sessionStorage.removeItem("currentobj");
         $(".form").formSerialize(currentobj);
         $("input[name='checkbox0']").click(function () {
-            //设置当前选中checkbox的状态为checked
+            //Cài đặthiện tạiĐã chọncheckboxcủaTrạng tháilàchecked
             $("input[name='checkbox0']").removeAttr("checked");
             $(this).prop('checked', true);
             if ($(this).val() == "动态心电") {
@@ -179,7 +179,7 @@
         }
     }
 
-    // 渲染附件信息到页面上
+    // 渲染kèmmụcthông tinđếntrangmặttrên
     function renderFiles() {
         var htmlstring = '';
         for (var i = 0; i < files.length; i++) {

@@ -4,7 +4,7 @@
 
     ViewBag.Title = "DeptMedicineApplyReturn";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //是否开启标签打印
+    //Có bật in nhãn không
     var Inpatient_IsLablePrint = SysConfigReader.Bool("Inpatient_IsLablePrint");
 
 }
@@ -86,17 +86,17 @@
 
 <script type="text/javascript">
     var IsLablePrint = '@Inpatient_IsLablePrint';
-    var ThisbrCode = "";//初始化病人Code
+    var ThisbrCode = "";//Khởi tạo bệnh nhânCode
     $(".toolbar").css("width", 500);
     var $gridBRXXDrugsList = $("#dispenseMedicinGridList");
     $(function () {
-        //绑定申请单树
+        //Gắn cây đơn xin
         bqGridList();
-        //绑定病人发药详细信息
+        //Gắn chi tiết phát thuốc của bệnh nhân
         dispenseMedicinGridList(null);
         $("#autoRefresh").click(function() {
             if ($("#autoRefresh").is(":checked")) {
-                //启动
+                //Khởi động
                 startRefresh();
             }
         });
@@ -112,7 +112,7 @@
         });
     });
 
-    // 开启定时任务，时间间隔为3000 ms。
+    // Bật tác vụ định kỳ，Khoảng thời gian là3000 ms。
     function startRefresh() {
         var sp =@ViewBag.refreshInterval;
         if (sp > 0) {
@@ -122,16 +122,16 @@
         }
     }
 
-    //停止刷新
+    //Dừng làm mới
     function stopRefresh(t) {
         clearInterval(t);
     }
 
-    //绑定申请单树
+    //Gắn cây đơn xin
     function bqGridList(t) {
 
         if (!$("#autoRefresh").is(":checked")) {
-            //停止
+            //Dừng
             stopRefresh(t);
         }
         $("#BqTreeList").treeview({
@@ -155,7 +155,7 @@
         });
     }
 
-    //备药申请单详细信息
+    //Thông tin chi tiết đơn xin chuẩn bị thuốc
     function dispenseMedicinGridList(Sqd) {
         $gridBRXXDrugsList.dataGrid({
             url: '/HospitalizationPharmacy/GetDeptApplyReturnList',
@@ -187,7 +187,7 @@
 
     }
 
-    //确认 库存退还
+    //Xác nhận Trả lại tồn kho
     function newtouch_event_f3() {
         $.modalConfirm("Bạn có chắc muốn gửi tất cả thuốc trong danh sách đăng ký không?？", function (flag) {
             if (flag) {
@@ -216,7 +216,7 @@
                 return false;
         }, false);
     }
-    //申请单退回
+    //Trả lại đơn xin
     function newtouch_event_f6() {
         var rowIds = $gridBRXXDrugsList.getDataIDs();
         if (rowIds == null || rowIds.length === 0) {

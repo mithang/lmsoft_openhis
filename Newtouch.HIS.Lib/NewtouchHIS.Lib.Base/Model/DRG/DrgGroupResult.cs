@@ -3,28 +3,28 @@
     public class DrgGroupResult
     {
         /// <summary>
-        /// 带入输入对象MedicalRecord的Index字段，建议使用病案号或住院号，保持唯一性
+        /// Đưa vào trường Index của đối tượng đầu vào MedicalRecord, nên sử dụng số bệnh án hoặc số nằm viện, giữ tính duy nhất
         /// </summary>
         public String Index;
 
         /// <summary>
-        /// 分组结果，“分组成功”代表分组成功，其他定义见DrgGroupStatus类
+        /// Kết quả nhóm,“Nhóm thành công”đại diện cho nhóm thành công, các định nghĩa khác xem lớp DrgGroupStatus
         /// </summary>
         public String status;
         /// <summary>
-        /// 分组过程，列表格式，包括ICD编码转换信息、名称信息，以及DRG分组每一步操作的记录，是什么结果，应用了哪些规则
+        /// Quá trình nhóm, định dạng danh sách, bao gồm thông tin chuyển đổi mã ICD, thông tin tên, và bản ghi từng bước thao tác nhóm DRG, kết quả là gì, đã áp dụng những quy tắc nào
         /// </summary>
         public List<String> messages;
         /// <summary>
-        /// 主要诊断大类，分组成功或分入歧义组是有值
+        /// Nhóm chẩn đoán chính lớn, có giá trị khi nhóm thành công hoặc nhóm vào nhóm mơ hồ
         /// </summary>
         public String mdc;
         /// <summary>
-        /// 核心DRG组代码，校验通过后有值，分入歧义组时为QY，没有分到组时为00
+        /// Mã nhóm DRG cốt lõi, có giá trị sau khi kiểm tra đạt, khi nhóm vào nhóm mơ hồ là QY, khi không nhóm vào nhóm nào là00
         /// </summary>
         public String adrg;
         /// <summary>
-        /// DRG组代码，校验通过后有值，分入歧义组时为*QY，没有分到组时为00
+        /// DRGMã nhóm, có giá trị sau khi kiểm tra đạt, khi nhóm vào nhóm mơ hồ là*QY, khi không nhóm vào nhóm nào là00
         /// </summary>
         public String drg;
         public DrgMedicalRecord record;
@@ -32,34 +32,34 @@
 
 
     /// <summary>
-    /// 完整的drg分组结果
+    /// Kết quả nhóm drg đầy đủ
     /// </summary>
     public class DrgMedicalRecordResult : DrgMedicalRecord
     {
         /// <summary>
-        /// 分组过程，列表格式，包括ICD编码转换信息、名称信息，以及DRG分组每一步操作的记录，是什么结果，应用了哪些规则
+        /// Quá trình nhóm, định dạng danh sách, bao gồm thông tin chuyển đổi mã ICD, thông tin tên, và bản ghi từng bước thao tác nhóm DRG, kết quả là gì, đã áp dụng những quy tắc nào
         /// </summary>
         public List<String> messages { get; set; }
         /// <summary>
-        /// 分组结果，“分组成功”代表分组成功，其他定义见DrgGroupStatus类
+        /// Kết quả nhóm,“Nhóm thành công”đại diện cho nhóm thành công, các định nghĩa khác xem lớp DrgGroupStatus
         /// </summary>
         public String status { get; set; }
         /// <summary>
-        /// 主要诊断大类，分组成功或分入歧义组是有值
+        /// Nhóm chẩn đoán chính lớn, có giá trị khi nhóm thành công hoặc nhóm vào nhóm mơ hồ
         /// </summary>
         public String mdc { get; set; }
         /// <summary>
-        /// 核心DRG组代码，校验通过后有值，分入歧义组时为QY，没有分到组时为00
+        /// Mã nhóm DRG cốt lõi, có giá trị sau khi kiểm tra đạt, khi nhóm vào nhóm mơ hồ là QY, khi không nhóm vào nhóm nào là00
         /// </summary>
         public String adrg { get; set; }
         /// <summary>
-        /// DRG组代码，校验通过后有值，分入歧义组时为*QY，没有分到组时为00
+        /// DRGMã nhóm, có giá trị sau khi kiểm tra đạt, khi nhóm vào nhóm mơ hồ là*QY, khi không nhóm vào nhóm nào là00
         /// </summary>
         public String drg { get; set; }
 
     }
     /// <summary>
-    /// 文件上传drg分组结果
+    /// Kết quả nhóm drg tải lên tệp
     /// </summary>
     public class DrgGroupFileResult : DrgMedicalRecordResult
     {

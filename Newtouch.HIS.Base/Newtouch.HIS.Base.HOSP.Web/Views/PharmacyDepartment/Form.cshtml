@@ -68,13 +68,13 @@
                         <td class="formValue formDdlSelectorTd">
                             <select id="mzzybz" name="mzzybz" class="form-control required">
                                 <option value="">==Vui lòng chọn==</option>
-                                <!-- 药库 -->
+                                <!-- Kho thuốc -->
                                 <option value="0">Không phát thuốc</option>
-                                <!-- 门诊药房 -->
+                                <!-- Nhà thuốc ngoại trú -->
                                 <option value="1">Thuốc ngoại trú</option>
-                                <!-- 住院药房 -->
+                                <!-- Nhà thuốc nội trú -->
                                 <option value="2">Thuốc nội trú</option>
-                                <!-- 住院药房 -->
+                                <!-- Nhà thuốc nội trú -->
                                 <option value="3">Dùng chung ngoại trú/nội trú</option>
                             </select>
                         </td>
@@ -123,12 +123,12 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
             selectedValue: $.request('orgId'),
         });
-        //首拼
+        //Mã đầu chữ
         $('#yfbmmc').keyup(function () {
             $('#py').val($(this).toShouPin());
         })

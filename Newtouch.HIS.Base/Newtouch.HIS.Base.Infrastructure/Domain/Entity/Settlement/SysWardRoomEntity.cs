@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 病房
+    /// Phòng bệnh
     /// </summary>
     [SugarTable("xt_bf")]
     public class SysWardRoomEntity : EntityBase
@@ -23,27 +23,27 @@ namespace Newtouch.HIS.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 编码
+        /// Mã
         /// </summary>
         public string bfCode { get; set; }
 
         /// <summary>
-        /// 房间号
+        /// Số phòng
         /// </summary>
         public string bfNo { get; set; }
 
         /// <summary>
-        /// 病区
+        /// Khu bệnh
         /// </summary>
         public string bqCode { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string bz { get; set; }
 

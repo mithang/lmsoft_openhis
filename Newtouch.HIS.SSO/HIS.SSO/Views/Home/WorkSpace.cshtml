@@ -1,0 +1,708 @@
+﻿@using NewtouchHIS.Lib.Base.Utilities;
+@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .ul-ConvenientMenu {
+        width: 100%;
+        height: 90px;
+        list-style: none;
+        padding: 0;
+        overflow-y: auto;
+    }
+
+        .ul-ConvenientMenu li {
+            margin: 10px;
+            display: inline;
+            float: left;
+            height: 20px;
+            width: 180px;
+            border: 0px solid #ccc;
+            border-radius: 5px 5px 0 0;
+            /*-webkit-box-shadow: #666 3px 4px 8px;
+                                                                                    -moz-box-shadow: #666 3px 4px 8px;
+                                                                                    box-shadow: #666 3px 4px 8px;*/
+        }
+
+    .app-blocktheme-blue {
+        width: 100%;
+        height: 140px;
+        border: solid 1px #abcdef;
+        background-color: #ADD8E6;
+        padding: 3rem 15% 1rem 15%;
+    }
+
+    .app-item {
+        display: block;
+        line-height: 100px;
+        width: 20%;
+        margin-left: 2rem;
+        cursor: pointer;
+        font-size: 20px;
+    }
+
+    .bootstrap-table {
+        height: 95%; /* hoặc là phần trăm，ví dụ height: 100%; */
+        overflow-y: auto;
+        overflow-x: hidden;
+    }
+
+    .fixed-table-body {
+        height: 100%;
+    }
+
+    .bootstrap-table .fixed-table-container.fixed-height:not(.has-footer) {
+        border-bottom: none;
+    }
+</style>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/highcharts/highcharts.js")"></script>
+
+<div class="panel panel-default">
+    <div id="myCarousel" class="carousel slide">
+        <!-- băng chuyền（Carousel）chỉ số -->
+        <ol class="carousel-indicators" style="margin-bottom:-1rem;">
+            <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
+            <li data-target="#myCarousel" data-slide-to="1"></li>
+@*            <li data-target="#myCarousel" data-slide-to="2"></li>*@
+        </ol>
+        <!-- băng chuyền（Carousel）dự án -->
+        <div class="carousel-inner">
+            <div class="item active">
+                <div class="app-blocktheme-blue">
+                    <span class="col-xs-4 label label-success app-item" onclick="appdomain('SETT')">hệ thống thanh toán</span>
+                    <span class="col-xs-4 label label-primary app-item" onclick="appdomain('CIS')">hệ thống hợp tác y tế - điều dưỡng</span>
+                    <span class="col-xs-4 label label-warning app-item" onclick="appdomain('PDS')">hệ thống nhà thuốc - kho thuốc</span>
+                </div>
+                @*			<div class="carousel-caption">
+
+                </div>*@
+            </div>
+            <div class="item">
+                <div class="app-blocktheme-blue">
+                    <span class="col-xs-4 label label-success app-item app-item" onclick="appdomain('EMR')">hệ thống bệnh án điện tử</span>
+                    <span class="col-xs-4 label label-warning app-item" onclick="appdomain('MRQC')">hệ thống kiểm soát chất lượng bệnh án</span>
+                    <span class="col-xs-5 label label-info app-item" onclick="appdomain('OR')">hệ thống phẫu thuật</span>
+                </div>
+            </div>
+@*            <div class="item">
+                <div class="app-blocktheme-blue">
+                    <span class="col-xs-4 label label-info app-item app-item" onclick="appdomain('MR')">hệ thống quản lý bệnh án</span>
+                    <span class="col-xs-4 label label-default app-item app-item" onclick="appdomain('BASE')">hệ thống dữ liệu cơ bản phía sau</span>
+                    <span class="col-xs-5 label label-info app-item" onclick="appdomain('HERP')">hệ thống vật tư tiêu hao</span>
+                    
+                </div>
+            </div>*@
+        </div>
+        <!-- băng chuyền（Carousel）điều hướng -->
+        <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
+            <span class="fa fa-chevron-left" style="margin-top:45%;" aria-hidden="true"></span>
+            <span class="sr-only">Previous</span>
+        </a>
+        <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
+            <span class="fa fa-chevron-right" style="margin-top:45%;" aria-hidden="true"></span>
+            <span class="sr-only">Next</span>
+        </a>
+    </div>
+    <hr />
+    <div class="panel-heading navb-bg" style="font-size:16px">
+        <i class="fa fa-star icon-theme-highlight"></i> <strong class="icon-theme-info">truy cập nhanh</strong>
+        <div class="topPanel pull-right col-sm-2">
+            <div class="search">
+                <div class="input-group">
+                    <input id="txt_keyword" type="text" class="form-control" placeholder="tên chức năng">
+                    <span class="input-group-btn">
+                        <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    <ul class="ul-ConvenientMenu">
+    </ul>
+    <hr />
+    <div class="panel-heading navb-bg" style="font-size:16px">
+        <i class="fa fa-line-chart icon-theme-warning"></i> <strong class="icon-theme-info">bàn làm việc · phân tích thống kê</strong>
+    </div>
+
+
+    <div id="dv_table">
+        <form class="form-inline" role="form" style="padding:0.5rem;">
+            <div class="form-group" id="dv_tjrq">
+                <label class="control-label text-title" for="tjrq">ngày thống kê</label>
+                <input id="tjrq" type="text" class="forme-default input-wdatepicker" onclick="WdatePicker({dateFmt: 'yyyy-MM-dd'})"
+                       onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked:function(){ refreshTab();} })" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+            </div>
+            <div class="form-group pull-right">
+                <label class="control-label text-title" for="sel_Duty"><i class="fa fa-vcard-o icon-theme-warning"></i> Vị  trí</label>
+                <select id="sel_Duty" class="forme-default">
+                </select>
+            </div>
+        </form>
+        <div class="col-sm-6" style="height:95%;z-index:1;background-color:#ffffff;">
+            <table id="table"></table>
+        </div>
+        <div id="leavechart" class="col-sm-6" style="height:95%;"></div>
+    </div>
+
+</div>
+
+<script type="text/javascript">
+    var currentmenu = [];
+    $(function () {
+        init();
+        GetLeaveChart([]);
+        $('.tabSaveMune').on('click', function () {
+
+            //$('.page-tabs-content').find('a.menuTab.active i').trigger("click");
+        });
+        $('.ul-ConvenientMenu').on("click", "li", function () {
+            currentmenu = { "MenuName": $(this).find(".dv-data").attr('data-MenuName'), "AppId": $(this).find(".dv-data").attr('data-appId'), "MenuUrl": $(this).find(".dv-data").attr('data-MenuUrl') };
+        });
+        $('.ul-ConvenientMenu').on("dblclick", "li", function () {
+            //top.top.$.Newtouchtab.tryCloseTab({ name: "", url: "/OutpatientManage/OutpatCharge/Index2018" });
+            top.top.$.Newtouchtab.addTabWithOutMenu({ name: currentmenu.MenuName, enName: "", url: currentmenu.MenuUrl, AppId: currentmenu.AppId });
+        });
+        $("#btn_search").on('click', function () {
+            tableRefresh();
+        });
+        $.ajax({
+            url: "/Home/GetUserDutyList",
+            data: {},
+            type: "post",
+            async: false,
+            dataType: "json",
+            success: function (data) {
+                $.each(data, function () {
+                    var option = "<option value='" + this.id + "'>" + this.text + "</option>";
+                    $("#sel_Duty").append(option);
+                });
+            }
+        });
+        DutyTabInit();
+        tabtol();
+    });
+    var columns = [];
+    var tabtypeName = "";
+    $('#sel_Duty').change(function () {
+        refreshTab();
+    })
+    function refreshTab() {
+        DutyTabInit();
+        $('#table').bootstrapTable('destroy');
+        tabtol();
+    }
+    function DutyTabInit() {
+        var $thisval = $("#sel_Duty").val();
+        switch ($thisval) {
+            case "tollman": //nhân viên thu phí
+                $("#dv_tjrq").show();
+                tabtypeName = "nhân viên thu phí";
+                columns = [
+                    {
+                        field: 'Id',
+                        visible: false
+                    },
+                    {
+                        field: 'brxz',
+                        title: 'loại bệnh nhân',
+                        halign: 'center',
+                        align: 'center',
+                        width: '20',
+                        widthUnit: '%',
+                    },
+                    {
+                        field: 'ghrc',
+                        title: 'số lượng đăng ký khám',
+                        halign: 'center',
+                        align: 'center',
+                        width: '20',
+                        widthUnit: '%',
+                    },
+                    {
+                        field: 'thrc',
+                        title: 'số lượng hủy đăng ký khám',
+                        halign: 'center',
+                        align: 'center',
+                        width: '20',
+                        widthUnit: '%',
+                    },
+                    {
+                        field: 'jsje',
+                        title: 'số tiền thanh toán',
+                        halign: 'center',
+                        align: 'center',
+                        width: '20',
+                        widthUnit: '%',
+                    },
+                    {
+                        field: 'tfje',
+                        title: 'số tiền hoàn trả',
+                        halign: 'center',
+                        align: 'center',
+                        width: '20',
+                        widthUnit: '%',
+                    },
+                ];
+                break;
+            case "Doctor":
+                $("#dv_tjrq").show();
+                tabtypeName = "bác sĩ";
+                columns = [
+                    {
+                        field: 'Id',
+                        visible: false
+                    }, {
+                        field: 'brxz',
+                        title: 'loại bệnh nhân',
+                        halign: 'center',
+                        align: 'center',
+                        width: '20',
+                        widthUnit: '%',
+                    },
+                    {
+                        field: 'jzrc',
+                        title: 'số lượng người khám',
+                        halign: 'center',
+                        align: 'center',
+                        width: '20',
+                        widthUnit: '%',
+                    },
+                    {
+                        field: 'kfje',
+                        title: 'số tiền kê đơn',
+                        halign: 'center',
+                        align: 'center',
+                        width: '20',
+                        widthUnit: '%',
+                    },
+                    {
+                        field: 'jsje',
+                        title: 'số tiền thanh toán',
+                        halign: 'center',
+                        align: 'center',
+                        width: '20',
+                        widthUnit: '%',
+                    }
+                ];
+                break;
+            case "Nurse":
+                $("#dv_tjrq").hide();
+                tabtypeName = "y tá";
+                columns = [
+                    {
+                        field: 'Id',
+                        visible: false
+                    }, {
+                        field: 'brxz',
+                        title: 'loại bệnh nhân',
+                        halign: 'center',
+                        align: 'center',
+                        width: '20',
+                        widthUnit: '%',
+                    },
+                    {
+                        field: 'yrqrc',
+                        title: 'vào khu hôm nay',
+                        halign: 'center',
+                        align: 'center',
+                        width: '10',
+                        widthUnit: '%',
+                    },
+                    {
+                        field: 'wrqrc',
+                        title: 'chờ vào khu hôm nay',
+                        halign: 'center',
+                        align: 'center',
+                        width: '10',
+                        widthUnit: '%',
+                    },
+                    {
+                        field: 'jrcqrc',
+                        title: 'ra khỏi khu hôm nay',
+                        halign: 'center',
+                        align: 'center',
+                        width: '10',
+                        widthUnit: '%',
+                    },
+                    {
+                        field: 'jrwcqrc',
+                        title: 'lượt người đang nằm viện',
+                        halign: 'center',
+                        align: 'center',
+                        width: '10',
+                        widthUnit: '%',
+                    },
+                    {
+                        field: 'zcw',
+                        title: 'tổng số giường',
+                        halign: 'center',
+                        align: 'center',
+                        width: '10',
+                        widthUnit: '%',
+                    },
+                    {
+                        field: 'sycw',
+                        title: 'số giường trống còn lại',
+                        halign: 'center',
+                        align: 'center',
+                        width: '10',
+                        widthUnit: '%',
+                    },
+
+
+                ];
+                break;
+        }
+    }
+    function tabtol() {
+        //$("#tabtype").val(tabtypeName);
+        var $table = $('#table');
+        $table.bootstrapTable({
+            url: "/Home/GetDutyTotalList", //địa chỉ URL máy chủ trả về dữ liệu
+            method: 'POST',                      //phương thức yêu cầu dữ liệu
+            contentType: "application/x-www-form-urlencoded",
+            height: '100%',
+            queryParams: {
+                dutycode: $("#sel_Duty").val(),
+                tjrq: $("#tjrq").val()
+            },
+            classes: "table table-bordered table-striped table-hover",
+            theadClasses: "table-light",//đặt kiểu tiêu đề bảng
+            idField: 'Id',
+            showColumns: false,
+            columns: columns,
+            uniqueId: 'Id',
+            rowStyle: function (row, index) {
+                if (row.brxz == "Tổng cộng") {
+                    return {
+                        css: {
+                            "background-color": "#d5f4e6",
+                            "font-wight": "bold"
+                        }
+                    }
+                }
+                return {};
+            },
+            onLoadSuccess: function (data) {
+                GetLeaveChart(data);
+            },
+            formatLoadingMessage: function () {
+                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
+            },
+            formatNoMatches: function () {
+                return "chưa có dữ liệu";
+            }
+        });
+    }
+
+    function init() {
+        $.najax({
+            url: "/Home/GetShortcutMenuList",
+            dataType: "json",
+            data: { keyword: $("#txt_keyword").val() },
+            type: "POST",
+            success: function (respdata) {
+                var j = 12;
+                if (respdata.length > 0 && respdata.length < 12) {
+                    j = 12 - respdata.length;
+                }
+                else if (respdata.length > 12) {
+                    j = -1;
+                }
+                for (var i = 0; i < j; i++) {
+                    respdata.push({ Id: null });
+                }
+                createli(respdata);
+            }
+        })
+        $("#dv_table").height($(window).height() - 430);
+    }
+    function createli(respdata) {
+        $.jsonWhere(respdata, function (v) {
+            var labelcss = !v.AppId ? 'text-success' : '';
+            if (!!v && v.Id != null) {
+                var li = '  <li>'
+                    + ' <div class="dv-data" data-appId=' + v.AppId + ' data-MenuUrl=' + v.MenuUrl + ' data-MenuName=' + v.MenuName + ' title="tên chức năng:' + v.MenuName + '">'
+                    + ' </div>'
+                    + ' <span class="' + labelcss + '" title="" style="cursor:pointer;font-size:16px"><i class="fa fa-hand-o-right icon-theme-info"></i> ' + v.MenuName + '</span>'
+                    + ' </li >';
+                $('.ul-ConvenientMenu').append(li);
+            }
+            else {
+                var li = '  <li>'
+                    + ' <div class="dv-data" style="border:2px dotted #eb9316;border-radius:4px;text-align:center;"'
+                    + ' </div>'
+                    + ' <span title="" style="cursor:pointer;color:#ffffff;"><i class="fa fa-star-o"></i></span>'
+                    + ' </li >';
+                $('.ul-ConvenientMenu').append(li);
+            }
+        })
+    }
+
+    function tableRefresh() {
+        $(".ul-ConvenientMenu").children("li").remove();
+        init();
+    }
+
+    function appdomain(sysApp) {
+        $.ajax({
+            url: "/Login/GetUALoginAddres",
+            data: { appId: sysApp },
+            type: "post",
+            dataType: "json",
+            success: function (data) {
+                if (data.state == "success") {
+                    var url = data.data + "&returnUrl=" + encodeURIComponent("/Home/Index");
+                    window.open(url);
+                }
+            },
+            error: function (request, error, ex) {
+                $.modalAlert("dịch vụ không thể truy cập：[" + ex + "]", 'error');
+            }
+        });
+    }
+
+    /**********************************thống kê dữ liệu**********************************/
+    function GetSalaryChart(data) {
+        //var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
+        var OutpatientList = [];
+        var InpatientList = [];
+        //biểu đồ đường lấy số người khám
+        if (data) {
+            OutpatientList = data.OutpatientList;
+            InpatientList = data.InpatientList
+        } else {
+            for (var i = 0; i < 12; i++) {
+                OutpatientList.push([0]);
+                InpatientList.push([0]);
+            }
+        }
+        $('#personcntchart').highcharts({
+            chart: {
+                zoomType: 'none'
+            },
+            title: {
+                text: 'số lượng người khám/số người đang nằm viện'
+            },
+            xAxis: {
+                categories: [
+                    'Tháng 1',
+                    'Tháng 2',
+                    'Tháng 3',
+                    'Tháng 4',
+                    'Tháng 5',
+                    'Tháng 6',
+                    'Tháng 7',
+                    'Tháng 8',
+                    'Tháng 9',
+                    'Tháng 10',
+                    'Tháng 11',
+                    'Tháng 12'
+                ]
+            },
+            yAxis: {
+                title: {
+                    text: 'đơn vị (người)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}người</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: "ngoại trú",
+                color: '#999EFF',
+                data: [
+                    2, 0, 10, 29, 50, 12, 79, 80, 98, 100, 23
+                    //OutpatientList[0].num, OutpatientList[1].num, OutpatientList[2].num, OutpatientList[3].num, OutpatientList[4].num, OutpatientList[5].num, OutpatientList[6].num, OutpatientList[7].num, OutpatientList[8].num, OutpatientList[9].num, OutpatientList[10].num, OutpatientList[11].num
+                ]
+            }, {
+                name: "nằm viện",
+                color: '#FFBC75',
+                data: [
+                    102, 99, 110, 129, 150, 112, 179, 180, 198, 100, 123
+                    //InpatientList[0].num, InpatientList[1].num, InpatientList[2].num, InpatientList[3].num, InpatientList[4].num, InpatientList[5].num, InpatientList[6].num, InpatientList[7].num, InpatientList[8].num, InpatientList[9].num, InpatientList[10].num, InpatientList[11].num
+                ]
+            }]
+        });
+    }
+
+    function GetLeaveChart(data) {
+        //var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
+        //biểu đồ tròn lấy số người khám
+        var array = [];
+        var title = "thống kê loại khám";
+        var $thisval = $("#sel_Duty").val();
+        if ($thisval == "tollman") {
+            title = "thống kê loại khám";
+            $.each(data, function (e) {
+                if (this.brxz != "Tổng cộng") {
+                    array.push([this.brxz, this.ghrc]);
+                }
+            });
+        }
+        else if ($thisval == "Doctor") {
+            $.each(data, function (e) {
+                if (this.brxz != "Tổng cộng") {
+                    array.push([this.brxz, this.jzrc]);
+                }
+            });
+        }
+        else if ($thisval == "Nurse") {
+            $.each(data, function (e) {
+                if (this.brxz != "Tổng cộng") {
+                    array.push([this.brxz, this.jrwcqrc]);
+                }
+            });
+        }
+        if (array.length == 0) {
+            array.push(["lượt người", 0]);
+        }
+
+        $('#leavechart').highcharts({
+            chart: {
+                type: 'pie'
+            },
+            colors: ['#999EFF', '#FFBC75', '#80ced6', '#EE4B2B', '#AFE1AF', '#FFDB58', '#CCCCFF', '#40B5AD', '#F2D2BD'],
+            title: {
+                text: title
+            },
+            tooltip: {
+                headerFormat: '',
+                pointFormat: '{point.name}: <b>{point.y}người</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.y}người',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                type: 'pie',
+                //data: [
+                //    ['tự chi trả', 100],
+                //    ['công nhân viên thành thị', 109],
+                //    ['dân cư', 27]
+                //]
+                data: array
+            }]
+        });
+
+    }
+
+    function LoadMonthChart() {
+        $.ajax({
+            url: "/Home/GetWeekNum?r=" + Math.random(),
+            dataType: "json",
+            async: false,
+            success: function (data) {
+                if (data != null && data.data != null
+                    && data.data.OutpatientList != null
+                    && data.data.InpatientList != null) {
+                    GetMonthNumChart(data.data);
+                }
+            }
+        });
+    }
+
+    function GetMonthNumChart(data) {
+        var rtnobj = {};
+        rtnobj.str = [];
+        rtnobj.dataoutpatient = [];
+        rtnobj.datainpatient = [];
+        $.ajax({
+            url: "/Home/GetLastWeek?r=" + Math.random(),
+            dataType: "json",
+            async: false,
+            success: function (lastdata) {
+                if (lastdata != null) {
+                    for (var i = 0; i < lastdata.length; i++) {
+                        rtnobj.str.push(lastdata[i].wbegin.substring(5, 10) + "đến" + (lastdata[i].wend).substring(5, 10));
+                        var isOutpatientPush = false;
+                        $.each(data.OutpatientList, function (ii, v) {
+                            if (v.wbegin == lastdata[i].wbegin && v.wend == lastdata[i].wend) {
+                                rtnobj.dataoutpatient.push(v.num);
+                                isOutpatientPush = true;
+                            }
+                        });
+                        if (!isOutpatientPush) {
+                            rtnobj.dataoutpatient.push(0);
+                        }
+                    }
+                    $.each(data.InpatientList, function (i, v) {
+                        if (v.wbegin == lastdata[i].wbegin && v.wend == lastdata[i].wend) {
+                            rtnobj.datainpatient.push(v.num);
+                        }
+                    });
+                    loadmonthcharts(rtnobj);
+                }
+            }
+        });
+    }
+
+    function loadmonthcharts(rtnobj) {
+        $('#monthcntchart').highcharts({
+            chart: {
+                zoomType: 'none'
+            },
+            title: {
+                text: 'số lượng người khám/số người đang nằm viện'
+            },
+            subtitle: {
+                text: "Thống kê số người 10 tuần gần nhất năm " + new Date().getFullYear(),
+            },
+            xAxis: {
+                categories: rtnobj.str,
+                labels: {
+                    rotation: 10, //góc nghiêng
+                }
+            },
+            yAxis: {
+                title: {
+                    text: 'đơn vị (người)'
+                }
+            },
+            tooltip: {
+                headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
+                pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
+                    '<td style="padding:0"><b>{point.y}người</b></td></tr>',
+                footerFormat: '</table>',
+                shared: true,
+                useHTML: true
+            },
+            plotOptions: {
+                column: {
+                    pointPadding: 0.2,
+                    borderWidth: 0
+                }
+            },
+            series: [{
+                name: "ngoại trú",
+                color: '#999EFF',
+                data: rtnobj.dataoutpatient
+            }, {
+                name: "nằm viện",
+                color: '#FFBC75',
+                data: rtnobj.datainpatient
+            }
+            ]
+        });
+    }
+</script>

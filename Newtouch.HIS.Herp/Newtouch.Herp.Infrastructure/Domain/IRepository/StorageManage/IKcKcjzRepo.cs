@@ -5,12 +5,12 @@ using Newtouch.Herp.Domain.ValueObjects;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 库存结转
+    /// Kết chuyển tồn kho
     /// </summary>
     public interface IKcKcjzRepo : IRepositoryBase<KcKcjzEntity>
     {
         /// <summary>
-        /// 获取历史结转时间
+        /// Lấy thời gian kết chuyển lịch sử
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -18,7 +18,7 @@ namespace Newtouch.Herp.Domain.IRepository
         List<SelectVo> GetlsjzDateTime(string warehouseId, string organizeId);
 
         /// <summary>
-        /// 获取最近一次结转信息
+        /// Lấy thông tin kết chuyển gần nhất
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>

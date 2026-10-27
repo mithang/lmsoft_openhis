@@ -66,7 +66,7 @@
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
@@ -74,7 +74,7 @@
         gridListData();
     });
 
-    //费用类型关联申请单
+    //Chi phíLoạiliên kếtPhiếu
     $("#fylx").change(function(){
         sqdlxinit();
     })
@@ -145,7 +145,7 @@
                     var len = 0;
                     var rowData = $("#gridList").jqGrid('getRowData', rowIndex);
                     var ids = $("#gridList").jqGrid('getRowData_AllLine');
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     if (rowData.sqdh != "") {
                         for (var i = 0; i < ids.length; i++) {
                             if (ids[i].sqdh === rowData.sqdh && ids[i].sqdh !== "") {
@@ -170,15 +170,15 @@
                 if (list.length > 0) {
 
                     for (j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Cùng nhómĐã chọn
                         {
                             j = j + 1;
                             $("#gridList").jqGrid("setSelection", list[j - 1], true);
 
                         }
-                        else { //同组取消选中
+                        else { //Cùng nhómHủyĐã chọn
                             //j = j + 1;
-                            $("#gridList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                            $("#gridList").jqGrid("setSelection", list[j], false);      //Hủykhôngkích hoạtonselectrow
                         }
 
                     }
@@ -200,7 +200,7 @@
     }
     function btn_search()
     {
-        $('#gridList').jqGrid("clearGridData");//先清空明细
+        $('#gridList').jqGrid("clearGridData");//Xóa trắng chi tiết trước
         $("#gridList").jqGrid('setGridParam', {
             postData: getSearchPostData(),
             url: '@Url.Action("GetJyjcExecRecordJson")'
@@ -219,12 +219,12 @@
         };
     };
 
-    //上传报告图片文件
+    //Tải lênbáo cáohìnhảnhvănmục
     $("#btn_result").click(function(){
        
         debugger
         var selectedRowData = $("#gridList").jqGrid("getGridParam", "selarrrow").map(function(rowId) {
-            return $("#gridList").jqGrid("getRowData", rowId); // 获取选中行的数据
+            return $("#gridList").jqGrid("getRowData", rowId); // LấyĐã chọndòngcủaDữ liệu
         });
         if (selectedRowData.length == 0) {
             $.modalAlert("Vui lòng chọn phiếu cần tải lên", 'warning');

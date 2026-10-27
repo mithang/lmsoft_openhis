@@ -11,11 +11,11 @@ namespace Newtouch.EMR.Domain.ValueObjects
     public class HisPatinfoVO
     {
         /// <summary>
-        /// 分页
+        /// Phân trang
         /// </summary>
         public Pagination pagination { get; set; }
         /// <summary>
-        /// 同步his患者信息列表
+        /// Đồng bộhisDanh sách thông tin bệnh nhân
         /// </summary>
         public List<HisPatinfoDto> List { get; set; }
     }

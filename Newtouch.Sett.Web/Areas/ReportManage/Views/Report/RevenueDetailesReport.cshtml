@@ -94,11 +94,11 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //GRS非管理查看下级机构所有治疗师数据
+        //GRSNgười không phải quản lý xem dữ liệu tất cả trị liệu sư của cơ quan cấp dưới
         if (isHospAdministrator == "false" && $("#OrganizeId").val() != orgId) {
             $("#Therapist").removeAttr("disabled").css("background-color", "white");
         }
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";
@@ -145,14 +145,14 @@
 
 <script type="text/javascript">
     function funcOrganizeIdChange() {
-        //治疗师
+        //Kỹ thuật viên trị liệu
         $("#Therapist").bindSelect({
             url: "/Report/GetRehabDoctorList?orgId=" + $("#OrganizeId").val(),
             id: "StaffGh",
             text: "StaffName"
         });
 
-        //机构非管理人员只能查看自己的治疗师数据
+        //Nhân viên không phải quản lý của cơ quan chỉ được xem dữ liệu trị liệu sư của mình
         if (isHospAdministrator == "false" && $("#OrganizeId").val() == orgId) {
             $("#Therapist").val(curUsergh).trigger("change").attr("disabled", "disabled").css("background-color", "rgb(241, 244, 246)");
         }

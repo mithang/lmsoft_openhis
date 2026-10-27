@@ -6,11 +6,11 @@ namespace Newtouch.Infrastructure
     public class CacheKey
     {
         /// <summary>
-        /// 系统业务处理 错误提示 的 code msg 映射 {0}TopOrganizeId
+        /// Xử lý nghiệp vụ hệ thống Thông báo lỗi của code msg Ánh xạ {0}TopOrganizeId
         /// </summary>
         public static string SysFailedCodeMessageMapListListSetKey = "set:SysFailedCodeMessageMapListList_{0}";
         /// <summary>
-        /// 消息通知用户链接字典 {0} 机构代码 {1} 当前系统AppId {2} 用户
+        /// Từ điển liên kết người dùng thông báo tin nhắn {0} Mã tổ chức {1} Hệ thống hiện tạiAppId {2} Người dùng
         /// </summary>
         public static string NoticeConnectionKey = "MsgNotice:{0}:{1}_{2}";
     }

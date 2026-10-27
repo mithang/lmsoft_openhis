@@ -1,16 +1,16 @@
 ﻿namespace NewtouchHIS.WebAPI.Manage.Models.Organize
 {
     /// <summary>
-    /// 科室信息
+    /// Thông tin khoa
     /// </summary>
     public class DepartmentVO
     {
         /// <summary>
-        /// 科室Mã
+        /// KhoaMã
         /// </summary>
         public string? ks { get; set; }
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string? ksmc { get; set; }
     }

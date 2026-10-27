@@ -8,7 +8,7 @@ using SqlSugar;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 损益原因
+    /// Nguyên nhân chênh lệch
     /// </summary>
     public class KcSyyyRepo : RepositoryBase<KcSyyyEntity>, IKcSyyyRepo
     {

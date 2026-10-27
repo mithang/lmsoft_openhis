@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///系统模块
+    ///Mô-đun hệ thống
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
-    [SugarTable("Sys_Module", "系统模块")]
+    [SugarTable("Sys_Module", "Mô-đun hệ thống")]
     public partial class SysModuleEntity : IEntity
     {
         /// <summary>
-        /// Desc:模块Khóa chính
+        /// Desc:Mô-đunKhóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -25,7 +25,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
-        /// Desc:父级
+        /// Desc:Cấp cha
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -33,7 +33,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string ParentId { get; set; }
 
         /// <summary>
-        /// Desc:名称
+        /// Desc:Tên
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -58,7 +58,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? Code { get; set; }
 
         /// <summary>
-        /// Desc:图标
+        /// Desc:Biểu tượng
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -66,7 +66,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? Icon { get; set; }
 
         /// <summary>
-        /// Desc:连接
+        /// Desc:nối
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -74,7 +74,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? UrlAddress { get; set; }
 
         /// <summary>
-        /// Desc:目标
+        /// Desc:Mục tiêu
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -82,14 +82,14 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? Target { get; set; }
 
         /// <summary>
-        /// Desc:排序码
+        /// Desc:Mã sắp xếp
         /// Default:
         /// Nullable:True
         /// </summary>           
         public int? px { get; set; }
 
         /// <summary>
-        /// Desc:描述
+        /// Desc:Mô tả
         /// Default:
         /// Nullable:True
         /// </summary>           

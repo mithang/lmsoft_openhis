@@ -6,100 +6,100 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 采购_订单明细
+    /// Mua sắm_Chi tiết đơn hàng
     /// </summary>
     [SugarTable("cg_orderDetail")]
     public class CgOrderDetailEntity : IEntity<CgOrderDetailEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public long Id { get; set; }
 
         /// <summary>
-        /// 采购单Id
+        /// Đơn mua sắm Id
         /// </summary>
         public long orderId { get; set; }
 
         /// <summary>
-        /// 供应商ID
+        /// Nhà cung cấp ID
         /// </summary>
         public string supplierId { get; set; }
 
         /// <summary>
-        /// 子订单号
+        /// Số đơn hàng con
         /// </summary>
         public string subOrderNo { get; set; }
 
         /// <summary>
-        /// 采购计划明细ID，cg_purchaseOrderDetail表主键
+        /// Chi tiết kế hoạch mua sắm ID，cg_purchaseOrderDetail Khóa chính của bảng
         /// </summary>
         public long pdId { get; set; }
 
         /// <summary>
-        /// 物资Id
+        /// Vật tư Id
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 数量，sl*zhyz=最小单位数量
+        /// Số lượng，sl*zhyz=Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 转化英子，与单位对应
+        /// Hệ số chuyển đổi，tương ứng với đơn vị
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 进价，与单位对应
+        /// Giá nhập，tương ứng với đơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 单位名称
+        /// Tên đơn vị
         /// </summary>
         public string dwmc { get; set; }
 
         /// <summary>
-        /// 单位ID
+        /// Đơn vị ID
         /// </summary>
         public string unitId { get; set; }
 
         /// <summary>
-        /// 采购订单处理流程 -1：拒处理； 0：待处理； 1：备货； 2：配送； 3：签收； 4：完成； 5：拒签 
+        /// Quy trình xử lý đơn mua sắm -1：Từ chối xử lý； 0：Chờ xử lý； 1：Chuẩn bị hàng； 2：Phân phối； 3：Ký nhận； 4：Hoàn thành； 5：Từ chối ký nhận 
         /// </summary>
         public int orderProcess { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 状态 0:作废；1.有效
+        /// Trạng thái 0:Hủy bỏ；1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa đổi cuối
         /// </summary>
         public string LastModifierCode { get; set; }
     }

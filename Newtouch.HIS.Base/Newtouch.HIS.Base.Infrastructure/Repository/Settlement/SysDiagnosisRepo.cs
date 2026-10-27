@@ -79,7 +79,7 @@ and (zdCode like @searchKeyword or zdmc like @searchKeyword or py like @searchKe
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                SysDiagnosisEntity oldEntity = null;   //变更前Entity
+                SysDiagnosisEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

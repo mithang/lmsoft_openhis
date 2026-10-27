@@ -3,15 +3,15 @@
     public class MeettingTokenRequest
     {
         /// <summary>
-        /// 音视频房间号，不同Cuộc họp的房间号需唯一，长度不超过 50 位，建议使用自增长Khóa chính或 UUID
+        /// Số phòng âm thanh/hình ảnh,Khác nhauCuộc họpsố phòng cần duy nhất,Độ dài không vượt quá 50 ký tự,Khuyên dùng khóa chính tự tăngKhóa chínhhoặc UUID
         /// </summary>
         public string roomid { get; set; }
         /// <summary>
-        /// 为进入该房间的用户Họ tên，用以区分不同用户
+        /// Là tên người dùng vào phòng nàyHọ tên,để phân biệt người dùng khác nhau
         /// </summary>
         public string username { get; set; }
         /// <summary>
-        /// 为音视频使用设备，建议取值为 Mobile（移动端），Browser（电脑浏览器）
+        /// Là thiết bị dùng cho âm thanh/hình ảnh,Khuyên lấy giá trị Mobile(Thiết bị di động),Browser(Trình duyệt máy tính)
         /// </summary>
         public string device { get; set; }
     }
@@ -19,7 +19,7 @@
     public class MeettingTokenResponse
     {
         /// <summary>
-        /// 为音视频账号以 Secret 为密钥进行 AES 对称加密后的结果，调用音视频服务需要用到，请解密后使用
+        /// Là kết quả mã hóa đối xứng AES của tài khoản âm thanh/hình ảnh dùng Secret làm khóa, khi gọi dịch vụ âm thanh/hình ảnh cần dùng tới, vui lòng giải mã rồi dùng
         /// </summary>
         public string rtcuserid { get; set; }
         /// <summary>
@@ -29,7 +29,7 @@
         public string? username { get; set; }
 
         /// <summary>
-        /// 若 status 为 Success 则请求成功，若 status 为 Failure 则请求失败，errorCode 里显示失败原因。
+        /// Nếu status là Success thì yêu cầu thành công,Nếu status là Failure thì yêu cầu thất bại,errorCode hiển thị nguyên nhân thất bại.
         /// </summary>
         public string status { get; set; }
         public string errorCode { get; set; }
@@ -38,7 +38,7 @@
     public class MeettingResponse
     {
         /// <summary>
-        /// 为音视频账号以 Secret 为密钥进行 AES 对称加密后的结果，调用音视频服务需要用到，请解密后使用
+        /// Là kết quả mã hóa đối xứng AES của tài khoản âm thanh/hình ảnh dùng Secret làm khóa, khi gọi dịch vụ âm thanh/hình ảnh cần dùng tới, vui lòng giải mã rồi dùng
         /// </summary>
         public string rtcuserid { get; set; }
         /// <summary>

@@ -32,7 +32,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
 		}
 
 		/// <summary>
-		/// 根据ID获取诊断信息
+		/// TheoIDLấy thông tin chẩn đoán
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="organizeId"></param>
@@ -78,7 +78,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
 		}
 
 		/// <summary>
-		/// 根据ID获取门诊诊断信息
+		/// TheoIDLấy thông tin chẩn đoán ngoại trú
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="organizeId"></param>
@@ -124,7 +124,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
 
 
 		/// <summary>
-		/// 根据ID获取手术信息
+		/// TheoIDLấy thông tin phẫu thuật
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="organizeId"></param>

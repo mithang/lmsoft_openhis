@@ -28,11 +28,11 @@ namespace Newtouch.HIS.DomainServices
     public class SysUserExDmnService : DmnServiceBase, ISysUserExDmnService
     {
         /// <summary>
-        /// 登录次数过多，账号自动锁定 的 时间段（单位：分）
+        /// Số lần đăng nhập quá nhiều，Tài khoản tự động khóa của Khoảng thời gian（Đơn vị：phần）
         /// </summary>
         private static int _loginFailedTimesLimit_Minutes = 60;
         /// <summary>
-        /// 登录次数过多，账号自动锁定 的 最大次数
+        /// Số lần đăng nhập quá nhiều，Tài khoản tự động khóa của Số lần tối đa
         /// </summary>
         private static int _loginFailedTimesLimit_Count = 3;
 
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取用户可操作的药房（药库）列表
+        /// Lấy nhà thuốc người dùng có thể thao tác（Kho thuốc）Danh sách
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="userId"></param>
@@ -70,7 +70,7 @@ and A.zt = '1' and B.zt = '1' and C.zt = '1'";
         }
 
         /// <summary>
-        /// 验证用户名密码
+        /// Kiểm tra tên người dùng mật khẩu
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
@@ -83,8 +83,8 @@ and A.zt = '1' and B.zt = '1' and C.zt = '1'";
             {
                 if (userEntity.Locked.HasValue && userEntity.Locked.Value)
                 {
-                    //不提供 自动解锁 功能
-                    throw new FailedException(string.Format("密码连续输错超过{0}次,账号已被锁定", _loginFailedTimesLimit_Count));
+                    //Không cung cấp Tự động mở khóa Chức năng
+                    throw new FailedException(string.Format("Mật khẩu nhập sai liên tiếp vượt quá{0}lần,Tài khoản đã bị khóa", _loginFailedTimesLimit_Count));
                 }
                 string dbPassword = Md5.md5(DESEncrypt.Encrypt(password.ToLower(), userEntity.UserSecretkey).ToLower(), 32).ToLower();
                 if (dbPassword == userEntity.UserPassword)
@@ -95,36 +95,36 @@ and A.zt = '1' and B.zt = '1' and C.zt = '1'";
                 {
                     if (username == "admin")
                     {
-                        throw new FailedException("密码不正确，请重新输入");
+                        throw new FailedException("Mật khẩu không đúng，Vui lòng nhập lại");
                     }
 
-                    //取M分钟内的 最新的N-1条记录（此次也是登录失败）
+                    //lấyMtrong vài phút mới nhấtN-1bản ghi（Lần này cũng đăng nhập thất bại）
                     var loginLogList = this.FindList<bool?>(string.Format(@"select top {0} Result from sys_log where [Type] = 'Login' and Account = @account and TopOrganizeId = @topOrgId and CreateTime > @startTime order by CreateTime desc", _loginFailedTimesLimit_Count - 1)
 , new[] { new SugarParameter("@account", username), new SugarParameter("@startTime", DateTime.Now.AddMinutes(-_loginFailedTimesLimit_Minutes))
 , new SugarParameter("@topOrgId", Constants.TopOrganizeId)});
-                    if (loginLogList.Count == _loginFailedTimesLimit_Count - 1 && !loginLogList.Any(p => p.HasValue && p.Value))  //如果是N-1条，且没有登录成功的记录
+                    if (loginLogList.Count == _loginFailedTimesLimit_Count - 1 && !loginLogList.Any(p => p.HasValue && p.Value))  //Nếu làN-1dòng，và không có bản ghi đăng nhập thành công
                     {
-                        //到了最大错误次数了，锁定之
-                        //更新状态至‘锁定’
-                        //更新BASE.SYS_USERLOGON
+                        //Đã tới Số lần lỗi tối đa，khóa nó
+                        //Cập nhật trạng thái tới‘Khóa’
+                        //Cập nhậtBASE.SYS_USERLOGON
                         this.ExecuteSqlCommand("update [NewtouchHIS_Base]..Sys_UserLogOn set Locked = 1 where UserId = @userId and zt = '1'", new SugarParameter("@userId", userEntity.Id));
                         userEntity.Locked = true;
-                        throw new FailedException(string.Format("密码连续输错{0}次,账号被锁定", _loginFailedTimesLimit_Count));
+                        throw new FailedException(string.Format("Mật khẩu nhập sai liên tiếp{0}lần,Tài khoản bị khóa", _loginFailedTimesLimit_Count));
                     }
                     else
                     {
-                        throw new FailedException("密码不正确，请重新输入");
+                        throw new FailedException("Mật khẩu không đúng，Vui lòng nhập lại");
                     }
                 }
             }
             else
             {
-                throw new FailedException("账户不存在，请重新输入");
+                throw new FailedException("Tài khoản không tồn tại，Vui lòng nhập lại");
             }
         }
 
         /// <summary>
-        /// 根据UserId获取关联的系统人员列表
+        /// TheoUserIdLấy danh sách nhân sự hệ thống liên kết
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -142,13 +142,13 @@ where a.UserId = @userId";
         }
 
         /// <summary>
-        /// 更新用户角色
+        /// Cập nhật vai trò người dùng
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="roleList"></param>
         public void UpdateUserRole(string keyValue, string[] roleList)
         {
-            //角色list
+            //Vai tròlist
             var roleLists = new List<SysUserRoleEntity>();
             foreach (var item in roleList.Where(p => !string.IsNullOrWhiteSpace(p)).Distinct())
             {
@@ -181,7 +181,7 @@ where a.UserId = @userId";
         }
 
         /// <summary>
-        /// 根据OrganizeId获取 系统人员VO（且有对应的SysUser）
+        /// TheoOrganizeIdLấy Nhân sự hệ thốngVO（và có tương ứngSysUser）
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -206,7 +206,7 @@ and a.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 获取组织机构的人员列表
+        /// Lấy danh sách nhân sự của tổ chức
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -248,7 +248,7 @@ where OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 根据父级OrgId（递归树）获取 所有 指定 职位 的 StaffId
+        /// Theo cấp chaOrgId（Cây đệ quy）Lấy Tất cả Chỉ định Chức vụ của StaffId
         /// </summary>
         /// <param name="parentOrgId"></param>
         /// <param name="dutyCode"></param>
@@ -260,9 +260,9 @@ where OrganizeId = @orgId";
 WITH cteTree
         AS (SELECT *
               FROM [NewtouchHIS_Base]..V_S_Sys_Organize
-              WHERE Id = @parentOrgId --第一个查询作为递归的基点(锚点)
+              WHERE Id = @parentOrgId --Truy vấn đầu tiên làm điểm cơ sở đệ quy(Điểm neo)
             UNION ALL
-            SELECT [NewtouchHIS_Base]..V_S_Sys_Organize.*     --第二个查询作为递归成员， 下属成员的结果为空时，此递归结束。
+            SELECT [NewtouchHIS_Base]..V_S_Sys_Organize.*     --Truy vấn thứ hai làm thành viên đệ quy， Khi kết quả thành viên cấp dưới trống，Đệ quy này kết thúc。
               FROM
                    cteTree INNER JOIN [NewtouchHIS_Base]..V_S_Sys_Organize ON cteTree.Id= [NewtouchHIS_Base]..V_S_Sys_Organize.ParentId) 
 
@@ -278,7 +278,7 @@ and cc.Code = @dutyCode";
         }
 
         /// <summary>
-        /// 根据员工Id获取所有岗位
+        /// Theo nhân viênIdLấy tất cả vị trí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="StaffId"></param>
@@ -295,7 +295,7 @@ and cc.Code = @dutyCode";
         }
 
         /// <summary>
-        /// 重置密码
+        /// Đặt lại mật khẩu
         /// </summary>
         /// <param name="userPassword"></param>
         /// <param name="keyValue"></param>
@@ -304,7 +304,7 @@ and cc.Code = @dutyCode";
             var secretkey = Md5.md5(Comm.CreateNo(), 16).ToLower();
             var password = Md5.md5(DESEncrypt.Encrypt(Md5.md5(userPassword, 32).ToLower(), secretkey).ToLower(), 32).ToLower();
 
-            //这里不直接操作表 就没法弄了，不能通过视图
+            //Ở đây không trực tiếp thao tác bảng thì không làm được nữa，Không thể qua khung nhìn
             this.ExecuteSqlCommand("update [NewtouchHIS_Base]..sys_userlogon set UserSecretkey = @secretkey, UserPassword = @password where UserId = @userId and zt = '1'", new[] {
                 new SugarParameter("@userId", userId)
                 ,new SugarParameter("@secretkey", secretkey)
@@ -313,7 +313,7 @@ and cc.Code = @dutyCode";
         }
 
         /// <summary>
-        /// 根据UserId获取系统用户可操作的药房部门Code List
+        /// TheoUserIdLấy bộ phận nhà thuốc mà người dùng hệ thống có thể thao tácCode List
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="orgId"></param>
@@ -325,7 +325,7 @@ and cc.Code = @dutyCode";
         }
 
         /// <summary>
-        /// 根据UserId获取系统用户可操作的药房部门List
+        /// TheoUserIdLấy bộ phận nhà thuốc mà người dùng hệ thống có thể thao tácList
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="orgId"></param>
@@ -338,7 +338,7 @@ and cc.Code = @dutyCode";
 
 
         /// <summary>
-        /// 获取过期预警和库存预警总条数
+        /// Lấy tổng Số cảnh báo hết hạn và cảnh báo tồn kho
         /// </summary>
         /// <param name="yfbmcode"></param>
         /// <param name="orgid"></param>

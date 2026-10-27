@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 组套列表
+        /// Bộ mẫudanh sách
         /// </summary>
         /// <returns></returns>
         public List<GroupPackageEntity> GetList(int type, string orgId)

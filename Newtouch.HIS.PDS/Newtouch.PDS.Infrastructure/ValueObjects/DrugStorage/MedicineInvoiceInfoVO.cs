@@ -3,27 +3,27 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 药品发票信息
+    /// Thông tin hóa đơn thuốc
     /// </summary>
     public class MedicineInvoiceInfoVO
     {
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 开票日期
+        /// Ngày lập hóa đơn
         /// </summary>
         public string kprq { get; set; }
 
         /// <summary>
-        /// 供应商
+        /// Nhà cung cấp
         /// </summary>
         public string gysCode { get; set; }
 
         /// <summary>
-        /// 供应商名称
+        /// Tên nhà cung cấp
         /// </summary>
         public string gysmc { get; set; }
     }

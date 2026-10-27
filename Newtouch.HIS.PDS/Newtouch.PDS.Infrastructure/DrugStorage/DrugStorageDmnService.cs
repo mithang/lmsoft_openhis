@@ -24,7 +24,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.DomainServices
 {
 	/// <summary>
-	/// 库存管理
+	/// Quản lý tồn kho
 	/// </summary>
 	public partial class DrugStorageDmnService : DmnServiceBase, IDrugStorageDmnService
 	{
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.DomainServices
 
 		
 		/// <summary>
-		/// 查询当前部门药品(入库)
+		/// Truy vấn thuốc của bộ phận hiện tại(Nhập kho)
 		/// </summary>
 		/// <param name="keyword">ypmc、py、spm、ypCode</param>
 		/// <returns></returns>
@@ -90,7 +90,7 @@ and bmyp.zt = '1'
 		}
 
 		/// <summary>
-		/// 药品发票信息
+		/// Thông tin hóa đơn thuốc
 		/// </summary>
 		/// <param name="fph">fph</param>
 		/// <returns></returns>
@@ -120,7 +120,7 @@ AND c.shzt = @shzt
 		}
 
 		/// <summary>
-		/// 查询当前部门药品(出库)
+		/// Truy vấn thuốc của bộ phận hiện tại(Xuất kho)
 		/// </summary>
 		/// <param name="keyword">ypmc、py、spm、ypCode</param>
 		/// <param name="fph"></param>
@@ -175,8 +175,8 @@ AND bmyp.zt = '1'
 AND LTRIM(rtrim(crkmx.fph)) = RTRIM(LTRIM(@txtfph))
 AND (kc.kcsl - kc.djsl)>0
 AND kc.djsl >= 0
-AND kc.tybz = 0  --0：未停用 1：停用
-AND fs.crkbz = '0' --0：入库 1：出库
+AND kc.tybz = 0  --0：Chưa ngừng dùng 1：Ngừng dùng
+AND fs.crkbz = '0' --0：Nhập kho 1：Xuất kho
 AND crkdj.ckbm = @txtgyscode
 order by kc.ypdm , kc.yxq
                         
@@ -191,7 +191,7 @@ order by kc.ypdm , kc.yxq
 		}
 
 		/// <summary>
-		/// 入库
+		/// Nhập kho
 		/// </summary>
 		/// <param name="ioReceiptEntity"></param>
 		/// <param name="ioReceiptDetailList"></param>
@@ -200,17 +200,17 @@ order by kc.ypdm , kc.yxq
 		{
 			using (var db = new EFDbTransaction().BeginTrans())
 			{
-				db.Insert(ioReceiptEntity); //新增xt_yp_crkdj
+				db.Insert(ioReceiptEntity); //Thêm mớixt_yp_crkdj
 				foreach (var item in ioReceiptDetailList)
 				{
-					db.Insert(item); //新增xt_yp_crkmx
+					db.Insert(item); //Thêm mớixt_yp_crkmx
 				}
 				db.Commit();
 			}
 		}
 
 		/// <summary>
-		/// 出库
+		/// Xuất kho
 		/// </summary>
 		/// <param name="ioReceiptEntity"></param>
 		/// <param name="ioReceiptDetailList"></param>
@@ -219,11 +219,11 @@ order by kc.ypdm , kc.yxq
 		{
 			using (var db = new EFDbTransaction().BeginTrans())
 			{
-				//新增xt_yp_crkdj
+				//Thêm mớixt_yp_crkdj
 				db.Insert(ioReceiptEntity);
 				foreach (var item in ioReceiptDetailList)
 				{
-					//冻结库存
+					//Đóng băng tồn kho
 					var kcEntity = db.FindEntity<SysMedicineStockInfoEntity>(item.kcId);
 					if (kcEntity.kcsl - kcEntity.djsl < item.Sl * item.Ckzhyz)
 					{
@@ -270,7 +270,7 @@ order by kc.ypdm , kc.yxq
 					};
 					ioReceiptDetailEntity.Create();
 
-					//新增xt_yp_crkmx
+					//Thêm mớixt_yp_crkmx
 					db.Insert(ioReceiptDetailEntity);
 				}
 
@@ -278,10 +278,10 @@ order by kc.ypdm , kc.yxq
 			}
 		}
 
-		#region 药品调价
+		#region Điều chỉnh giá thuốc
 
 		/// <summary>
-		/// 调价申请 查询
+		/// Đơn xin điều chỉnh giá Truy vấn
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="inputCode"></param>
@@ -327,7 +327,7 @@ where yp.OrganizeId=@OrganizeId
 		}
 
 		/// <summary>
-		/// 调价审核查询
+		/// Truy vấn duyệt điều chỉnh giá
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="inputCode"></param>
@@ -380,7 +380,7 @@ where yp.OrganizeId=@OrganizeId
 		}
 
 		/// <summary>
-		/// 药品调价执行
+		/// Thực hiện điều chỉnh giá thuốc
 		/// </summary>
 		/// <param name="ypCodeList"></param>
 		public string ExecteAdjustPrice(ArrayList ypCodeList)
@@ -391,9 +391,9 @@ where yp.OrganizeId=@OrganizeId
 				var entity = _sysMedicinePriceAdjustmentRepo.GetMedicinePriceAdjustmentNotExecteEntity(item.ToString());
 				if (entity == null)
 				{
-					return "变更价格执行失败";
+					return "Thực hiện thay đổi giá thất bại";
 				}
-				//1.update xt_yp表
+				//1.update xt_ypbảng
 				var medicineEntity = _sysMedicineRepo.GetMedicineByCode(OperatorProvider.GetCurrent().OrganizeId, item.ToString());
 				const string strSql = @" 
 update NewtouchHIS_Base.dbo.V_S_xt_yp 
@@ -414,19 +414,19 @@ where ypCode=@ypCode and OrganizeId=@OrganizeId ";
 				{
 					using (var db = new EFDbTransaction().BeginTrans())
 					{
-						//1.update xt_yptj表
+						//1.update xt_yptjbảng
 						entity.zxbz = ((int)EnumPriceAdjustZXStatus.Executed).ToString();
 						entity.zxsj = executeTime;
 						entity.Modify();
 						db.Update(entity);
 
-						//取值，判断异常
+						//Lấy giá trị，Đánh giá ngoại lệ
 						var list = GetNeedColumnValue(item.ToString());
 						if (list == null)
 						{
 							throw new FailedCodeException("INSERTED_INTO_THE_TJSY_TABLE_FAILED_NO_MATCHING_DRUG_INFORMATION_OR_STOCK_INFORMATION");
 						}
-						//2.insert 到xt_yp_tjsy表
+						//2.insert tớixt_yp_tjsybảng
 						foreach (var syitem in list)
 						{
 							var priceAdjustmentProfitLossEntity = new SysMedicinePriceAdjustmentProfitLossEntity
@@ -460,7 +460,7 @@ where ypCode=@ypCode and OrganizeId=@OrganizeId ";
 				}
 				catch (Exception ex)
 				{
-					AppLogger.Instance.Error("药品调价执行异常", ex, "ExecteAdjustPrice error");
+					AppLogger.Instance.Error("Ngoại lệ thực hiện điều chỉnh giá thuốc", ex, "ExecteAdjustPrice error");
 					const string strSql2 = @"
 update NewtouchHIS_Base.dbo.V_S_xt_yp set pfj=@pfj,lsj=@lsj where ypCode=@ypCode and OrganizeId=@OrganizeId ";
 					SugarParameter[] param2 =
@@ -471,9 +471,9 @@ update NewtouchHIS_Base.dbo.V_S_xt_yp set pfj=@pfj,lsj=@lsj where ypCode=@ypCode
 						new SugarParameter("@OrganizeId", OperatorProvider.GetCurrent().OrganizeId)
 					};
 					ExecuteSqlCommand(strSql2, param2);
-					return "变更价格执行失败";
+					return "Thực hiện thay đổi giá thất bại";
 				}
-				//保存变更日志老记录
+				//Lưu bản ghi nhật ký thay đổi cũ
 				var oldMedicineEntity = medicineEntity.Clone();
 				var newMedicineEntity = _sysMedicineRepo.GetMedicineByCode(OperatorProvider.GetCurrent().OrganizeId, item.ToString());
 
@@ -482,11 +482,11 @@ update NewtouchHIS_Base.dbo.V_S_xt_yp set pfj=@pfj,lsj=@lsj where ypCode=@ypCode
 					AppLogger.WriteEntityChangeRecordLog(oldMedicineEntity, newMedicineEntity, "xt_yp", oldMedicineEntity.ypId.ToString());
 				}
 			}
-			return "操作成功";
+			return "Thao tác thành công";
 		}
 
 		/// <summary>
-		/// 根据ypCode得到调价损益的字段
+		/// TheoypCodeLấy trường lãi lỗ điều chỉnh giá
 		/// </summary>
 		/// <param name="ypCode"></param>
 		/// <returns></returns>
@@ -520,7 +520,7 @@ update NewtouchHIS_Base.dbo.V_S_xt_yp set pfj=@pfj,lsj=@lsj where ypCode=@ypCode
 		}
 
 		/// <summary>
-		/// 调价历史查询
+		/// Truy vấn lịch sử điều chỉnh giá
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="inputCode"></param>
@@ -579,15 +579,15 @@ update NewtouchHIS_Base.dbo.V_S_xt_yp set pfj=@pfj,lsj=@lsj where ypCode=@ypCode
 
 		#endregion
 
-		#region 申领出库
+		#region Xuất kho theo đơn lĩnh
 
 		/// <summary>
-		/// 获取申领单信息(显示未发放和已发放部分状态的信息)
+		/// Lấy thông tin đơn lĩnh(Hiển thị thông tin trạng thái phần chưa phát và đã phát)
 		/// </summary>
 		/// <param name="pagination"></param>
-		/// <param name="sldh">申领单号</param>
-		/// <param name="slbm">申领部门</param>
-		/// <param name="ffzt">发药状态</param>
+		/// <param name="sldh">Số đơn lĩnh</param>
+		/// <param name="slbm">Bộ phận lĩnh</param>
+		/// <param name="ffzt">Trạng thái phát thuốc</param>
 		/// <param name="txtStartDate"></param>
 		/// <param name="txtEndDate"></param>
 		/// <returns></returns>
@@ -637,7 +637,7 @@ AND a.Slbm LIKE @slbm
 		}
 
 		/// <summary>
-		/// 获取申领单明细
+		/// Lấy chi tiết đơn lĩnh
 		/// </summary>
 		/// <param name="sldId"></param>
 		/// <returns></returns>
@@ -676,7 +676,7 @@ GROUP BY d.Slbm ,M.sldmxId ,m.sldId ,d.sldh ,M.ypcode ,J.ypmc, ypsx.ypgg ,J.py ,
 		}
 
 		/// <summary>
-		/// 终止申领出库状态
+		/// Chấm dứt trạng thái xuất kho theo đơn lĩnh
 		/// </summary>
 		/// <param name="id"></param>
 		/// <returns></returns>
@@ -691,10 +691,10 @@ GROUP BY d.Slbm ,M.sldmxId ,m.sldId ,d.sldh ,M.ypcode ,J.ypmc, ypsx.ypgg ,J.py ,
 
 		#endregion
 
-		#region 进销存统计
+		#region Thống kê nhập xuất tồn
 
 		/// <summary>
-		/// 进销存统计
+		/// Thống kê nhập xuất tồn
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="searchParam"></param>
@@ -896,13 +896,13 @@ GROUP BY d.Slbm ,M.sldmxId ,m.sldId ,d.sldh ,M.ypcode ,J.ypmc, ypsx.ypgg ,J.py ,
 
 		#endregion
 
-		#region 获取本部门药品和库存信息
+		#region Lấy thông tin thuốc và tồn kho của bộ phận này
 
 		/// <summary>
-		/// 获取品，不分批次批号，含有效期
+		/// Lấy mặt hàng，Không phân biệt lô/số lô，Gồm hạn dùng
 		/// </summary>
-		/// <param name="srm">关键字</param>
-		/// <param name="yfbmCode">当前部门</param>
+		/// <param name="srm">Từ khóa</param>
+		/// <param name="yfbmCode">Bộ phận hiện tại</param>
 		/// <param name="organizeId"></param>
 		/// <param name="topCount"></param>
 		/// <returns></returns>
@@ -939,10 +939,10 @@ ORDER BY yp.ypmc
 		}
 
 		/// <summary>
-		/// 获取在有效期内的药品，不分批次批号，不含有效期
+		/// Lấy thuốc còn hạn dùng，Không phân biệt lô/số lô，Không gồm hạn dùng
 		/// </summary>
-		/// <param name="srm">关键字</param>
-		/// <param name="yfbmCode">当前部门</param>
+		/// <param name="srm">Từ khóa</param>
+		/// <param name="yfbmCode">Bộ phận hiện tại</param>
 		/// <param name="organizeId"></param>
 		/// <param name="topCount"></param>
 		/// <returns></returns>
@@ -980,10 +980,10 @@ ORDER BY yp.ypmc
 		}
 
 		/// <summary>
-		/// 获取在有效期内的药品，不分批次批号，不含有效期
+		/// Lấy thuốc còn hạn dùng，Không phân biệt lô/số lô，Không gồm hạn dùng
 		/// </summary>
-		/// <param name="ypdm">药品代码</param>
-		/// <param name="yfbmCode">当前部门</param>
+		/// <param name="ypdm">Mã thuốc</param>
+		/// <param name="yfbmCode">Bộ phận hiện tại</param>
 		/// <param name="organizeId"></param>
 		/// <param name="topCount"></param>
 		/// <returns></returns>

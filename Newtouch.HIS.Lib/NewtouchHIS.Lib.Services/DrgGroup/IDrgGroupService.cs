@@ -6,19 +6,19 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
     public interface IDrgGroupService
     {
         /// <summary>
-        /// 查询患者入组情况
+        /// Truy vấn tình hình bệnh nhân vào nhóm
         /// </summary>
         /// <param name="record"></param>
         /// <returns></returns>
         Task<BusResult<DrgGroupResult>> GroupMedRecordAsync(DrgAreaMedicalRecord record);
         /// <summary>
-        /// 批量查询患者入组情况
+        /// Truy vấn hàng loạt tình hình bệnh nhân vào nhóm
         /// </summary>
         /// <param name="record"></param>
         /// <returns></returns>
         Task<BusResult<List<DrgGroupResult>>> GroupMedRecordAsync(DrgAreaMedicalRecordS record);
         /// <summary>
-        /// 上传文件分析入组情况
+        /// Tải lên tệp phân tích tình hình vào nhóm
         /// </summary>
         /// <param name="record"></param>
         /// <returns></returns>

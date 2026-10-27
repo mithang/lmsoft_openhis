@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.WebAPI.Manage.Models.EMR
 {
     /// <summary>
-    /// 病人列表类型 在院、出院、门诊
+    /// Loại danh sách bệnh nhân Đang nằm viện,Xuất viện,Ngoại trú
     /// </summary>
     public class MedicalPatientRequest
     {
@@ -11,7 +11,7 @@
         public string srz { get; set; }
     }
     /// <summary>
-    /// 病历文书tree 和诊断列表
+    /// Văn bản bệnh ántree và danh sách chẩn đoán
     /// </summary>
     public class MedicalHomeRequest
     { 

@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据yfbmcode获取药房部门实体
+        /// TheoyfbmcodeLấy thực thể bộ phận nhà thuốc
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

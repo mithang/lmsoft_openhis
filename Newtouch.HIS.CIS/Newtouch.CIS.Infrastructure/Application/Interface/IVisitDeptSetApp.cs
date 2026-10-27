@@ -4,12 +4,12 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.Application.Interface
 {
     /// <summary>
-    /// 门诊出诊设置
+    /// Ngoại trúrakhámCài đặt
     /// </summary>
     public interface IVisitDeptSetApp
     {
         /// <summary>
-        /// 提交表单
+        /// Gửibảngphiếu
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="userCode"></param>

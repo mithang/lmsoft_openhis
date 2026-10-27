@@ -7,47 +7,47 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// 库存信息 结转用
+    /// Tồn khothông tin kết chuyểndùng
     /// </summary>
     public class VKcxxEntity
     {
         /// <summary>
-        /// 物资ID
+        /// vật tưID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn hiệu lực
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 库存数量 最小单位
+        /// Tồn khoSố lượng Đơn vị nhỏ nhất
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// 部门零售价 转化因子对应单位
+        /// Khoa phòngGiá bán lẻ chuyểnhóavìcontương ứngĐơn vị
         /// </summary>
         public decimal bmlsj { get; set; }
 
         /// <summary>
-        /// 进价 转化因子对应单位
+        /// vàogiá chuyểnhóavìcontương ứngĐơn vị
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// chuyểnhóavìcon
         /// </summary>
         public int zhyz { get; set; }
     }

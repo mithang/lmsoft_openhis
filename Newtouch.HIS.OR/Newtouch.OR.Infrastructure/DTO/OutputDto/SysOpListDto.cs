@@ -7,24 +7,24 @@ using System.Threading.Tasks;
 namespace Newtouch.OR.ManageSystem.Domain.DTO.OutputDto
 {
 	/// <summary>
-	/// 系统手术字典
+	/// Hệ thốngTừ điển phẫu thuật
 	/// </summary>
 	public class SysOpListDto
 	{
 		/// <summary>
-		/// 手术代码
+		/// Mã phẫu thuật
 		/// </summary>
 		public string ssdm { get; set; }
 		/// <summary>
-		/// 手术名称
+		/// Tên phẫu thuật
 		/// </summary>
 		public string ssmc { get; set; }
 		/// <summary>
-		/// 手术助记码
+		/// Phẫu thuậtMã gợi nhớ
 		/// </summary>
 		public string zjm { get; set; }
 		/// <summary>
-		/// 手术级别
+		/// Cấp phẫu thuật
 		/// </summary>
 		public string ssjb { get; set; }
 	}

@@ -5,51 +5,51 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
     public class OrderEnum
     {
         /// <summary>
-        /// 订单状态0:待支付 1:支付中  2:已支付 3：已退款 4:已作废
+        /// Trạng thái đơn hàng0:Chờ thanh toán 1:Đang thanh toán  2:Đã thanh toán 3:Đã hoàn tiền 4:Đã hủy
         /// </summary>
         public enum EnumOrderStatus
         {
             /// <summary>
-            /// 待支付
+            /// Chờ thanh toán
             /// </summary>
-            [Description("待支付")]
+            [Description("Chờ thanh toán")]
             dzf = 0,
             /// <summary>
-            /// 支付中
+            /// Đang thanh toán
             /// </summary>
-            [Description("支付中")]
+            [Description("Đang thanh toán")]
             zfz = 1,
             /// <summary>
-            /// 已支付
+            /// Đã thanh toán
             /// </summary>
-            [Description("已支付")]
+            [Description("Đã thanh toán")]
             yzf = 2,
             /// <summary>
-            /// 已退款
+            /// Đã hoàn tiền
             /// </summary>
-            [Description("已退款")]
+            [Description("Đã hoàn tiền")]
             ytk = 3,
             /// <summary>
-            /// 已作废
+            /// Đã hủy
             /// </summary>
-            [Description("已作废")]
+            [Description("Đã hủy")]
             zf = 4,
         }
 
         /// <summary>
-        /// 订单业务类型
+        /// Loại nghiệp vụ đơn hàng
         /// </summary>
         public enum EnumOrderType
         {
             /// <summary>
-            /// 门诊
+            /// Ngoại trú
             /// </summary>
-            [Description("门诊")]
+            [Description("Ngoại trú")]
             mz = 1,
             /// <summary>
-            /// 住院
+            /// Nội trú
             /// </summary>
-            [Description("住院")]
+            [Description("Nội trú")]
             zy = 2
         }
     }

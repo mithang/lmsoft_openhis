@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取当前组织下的所有组织
+        /// Lấy tất cả tổ chức thuộc tổ chức hiện tại
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeEntity> GetListByTopOrg(string topOrganizeId)
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取当前组织下的所有组织
+        /// Lấy tất cả tổ chức thuộc tổ chức hiện tại
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeEntity> GetValidListByTopOrg(string topOrganizeId)
@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取组织下的所有有效组织（parent）
+        /// Lấy tất cả tổ chức hiệu lực thuộc tổ chức（parent）
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeVO> GetValidListByParentOrg(string parentOrgId)
@@ -52,9 +52,9 @@ namespace Newtouch.HIS.Repository
     WITH cteTree
         AS (SELECT *
               FROM Sys_Organize
-              WHERE Id = @parentOrgId  and zt = '1'  --第一个查询作为递归的基点(锚点)
+              WHERE Id = @parentOrgId  and zt = '1'  --Truy vấn đầu tiên làm điểm cơ sở đệ quy(Điểm neo)
             UNION ALL
-            SELECT Sys_Organize.*     --第二个查询作为递归成员， 下属成员的结果为空时，此递归结束。
+            SELECT Sys_Organize.*     --Truy vấn thứ hai làm thành viên đệ quy， Khi kết quả thành viên cấp dưới rỗng，Đệ quy này kết thúc。
               FROM
                    cteTree INNER JOIN Sys_Organize ON cteTree.Id= Sys_Organize.ParentId and Sys_Organize.zt = '1') 
         SELECT  *
@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取组织下的所有组织（parent）（包括无效的）
+        /// Lấy tất cả tổ chức thuộc tổ chức（parent）（Bao gồm cả vô hiệu）
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeVO> GetListByParentOrg(string parentOrgId)
@@ -76,9 +76,9 @@ namespace Newtouch.HIS.Repository
     WITH cteTree
         AS (SELECT *
               FROM Sys_Organize
-              WHERE Id = @parentOrgId  --第一个查询作为递归的基点(锚点)
+              WHERE Id = @parentOrgId  --Truy vấn đầu tiên làm điểm cơ sở đệ quy(Điểm neo)
             UNION ALL
-            SELECT Sys_Organize.*     --第二个查询作为递归成员， 下属成员的结果为空时，此递归结束。
+            SELECT Sys_Organize.*     --Truy vấn thứ hai làm thành viên đệ quy， Khi kết quả thành viên cấp dưới rỗng，Đệ quy này kết thúc。
               FROM
                    cteTree INNER JOIN Sys_Organize ON cteTree.Id= Sys_Organize.ParentId) 
         SELECT  *
@@ -91,7 +91,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取顶级组织机构列表
+        /// Lấy danh sách tổ chức cấp cao nhất
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -107,7 +107,7 @@ where ParentId is null and
         }
 
         /// <summary>
-        /// 获取顶级组织机构列表 包括无效的
+        /// Lấy danh sách tổ chức cấp cao nhất Bao gồm cả vô hiệu
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeEntity> GetTopOrgList()
@@ -117,7 +117,7 @@ where ParentId is null and
         }
 
         /// <summary>
-        /// 获取顶级组织机构列表
+        /// Lấy danh sách tổ chức cấp cao nhất
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeEntity> GetValidTopOrgList()
@@ -127,7 +127,7 @@ where ParentId is null and
         }
 
         /// <summary>
-        /// 提交新建、更新 实体
+        /// Gửi tạo mới、Cập nhật Thực thể
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -141,16 +141,16 @@ where ParentId is null and
                 }
                 var isCodeRepeated = string.IsNullOrWhiteSpace(entity.ParentId)
                     ? this.IQueryable().Any(p => p.ParentId == null
-                        && p.Code == entity.Code && p.Id != keyValue)   //顶级机构中不能有重复code
+                        && p.Code == entity.Code && p.Id != keyValue)   //Trong tổ chức cấp cao nhất không được trùngcode
                     : this.IQueryable().Any(p => p.TopOrganizeId == entity.TopOrganizeId
-                        && p.Code == entity.Code && p.Id != keyValue)   //某一顶级机构下 的所有 不能有重复
+                        && p.Code == entity.Code && p.Id != keyValue)   //Thuộc một tổ chức cấp cao nhất nào đó tất cả của Không được trùng
                     ;
                 if (isCodeRepeated)
                 {
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                SysOrganizeEntity oldEntity = null;   //变更前Entity
+                SysOrganizeEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 
@@ -168,13 +168,13 @@ where ParentId is null and
                 if (string.IsNullOrWhiteSpace(entity.ParentId) && string.IsNullOrWhiteSpace(entity.TopOrganizeId))
                 {
                     entity.ParentId = null;
-                    entity.TopOrganizeId = entity.Id;   //此为顶级机构
+                    entity.TopOrganizeId = entity.Id;   //Đây là tổ chức cấp cao nhất
                 }
                 var isCodeRepeated = string.IsNullOrWhiteSpace(entity.ParentId)
                     ? this.IQueryable().Any(p => p.ParentId == null
-                        && p.Code == entity.Code)   //顶级机构中不能有重复code
+                        && p.Code == entity.Code)   //Trong tổ chức cấp cao nhất không được trùngcode
                     : this.IQueryable().Any(p => p.TopOrganizeId == entity.TopOrganizeId
-                        && p.Code == entity.Code)   //某一顶级机构下 的所有 不能有重复
+                        && p.Code == entity.Code)   //Thuộc một tổ chức cấp cao nhất nào đó tất cả của Không được trùng
                     ;
                 if (isCodeRepeated)
                 {
@@ -186,7 +186,7 @@ where ParentId is null and
         }
 
         /// <summary>
-        /// 根据OrgId获取Code
+        /// TheoOrgIdLấyCode
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

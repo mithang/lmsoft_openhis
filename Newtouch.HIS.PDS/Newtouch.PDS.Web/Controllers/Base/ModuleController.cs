@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Web.Controllers
         private readonly ISysModuleDmnService _sysModuleDmnService;
 
 
-        //下拉（选择菜单 编辑 上级）
+        //Thả xuống（Chọn thực đơn Chỉnh sửa Cấp trên）
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetTreeSelectJson()
@@ -76,7 +76,7 @@ namespace Newtouch.HIS.Web.Controllers
         {
             moduleEntity.zt = moduleEntity.zt == "true" ? "1" : "0";
             _sysModuleDmnService.SubmitForm(moduleEntity, keyValue, Constants.TopOrganizeId);
-            return Success("操作成功。");
+            return Success("Thao tác thành công。");
         }
 
         [HttpPost]
@@ -86,10 +86,10 @@ namespace Newtouch.HIS.Web.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             _moduleApp.DeleteForm(keyValue);
-            return Success("删除成功。");
+            return Success("Xóa thành công。");
         }
 
-        #region 授权机构
+        #region Cơ sở ủy quyền
 
         /// <summary>
         /// 
@@ -101,7 +101,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 授权给指定组织机构
+        /// Ủy quyền cho tổ chức chỉ định
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="orgList"></param>
@@ -115,11 +115,11 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 _sysModuleDmnService.UpdateAuthOrganizeList(keyValue, orgList, 1);
             }
-            return Success("操作成功。");
+            return Success("Thao tác thành công。");
         }
 
         /// <summary>
-        /// 授权给所有组织机构
+        /// Ủy quyền cho tất cả tổ chức
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -132,11 +132,11 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 _sysModuleDmnService.AuthAllOrganize(keyValue, 1);
             }
-            return Success("操作成功。");
+            return Success("Thao tác thành công。");
         }
 
         /// <summary>
-        /// 撤销全部授权（组织机构）
+        /// Thu hồi tất cả ủy quyền（Tổ chức）
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -149,7 +149,7 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 _sysModuleDmnService.AuthCancelAllOrganize(keyValue, 1);
             }
-            return Success("操作成功。");
+            return Success("Thao tác thành công。");
         }
 
         #endregion

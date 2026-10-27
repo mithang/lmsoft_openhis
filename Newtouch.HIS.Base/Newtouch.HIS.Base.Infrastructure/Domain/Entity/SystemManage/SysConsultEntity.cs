@@ -10,7 +10,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity.SystemManage
 {
     /// <summary>
-    /// 系统诊室
+    /// Phòng khám hệ thống
     /// </summary>
     [SugarTable("xt_zs")]
     public class SysConsultEntity : EntityBase
@@ -18,31 +18,31 @@ namespace Newtouch.HIS.Domain.Entity.SystemManage
         [SugarColumn(IsPrimaryKey = true)]
         public int zsId { get; set; }
         /// <summary>
-        /// 诊室代码
+        /// Mã phòng khám
         /// </summary>
         public string zsCode { get; set; }
         /// <summary>
-        /// 诊室名称
+        /// Tên phòng khám
         /// </summary>
         public string zsmc { get; set; }
         /// <summary>
-        /// 科室编码
+        /// Mã khoa
         /// </summary>
         public string ksCode { get; set; }
         /// <summary>
-        /// 医生工号
+        /// Mã nhân viên bác sĩ
         /// </summary>
         public string ys { get; set; }
         /// <summary>
-        /// 组织机构Id
+        /// Tổ chứcId
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
         /// <summary>
-        /// 序号
+        /// Số thứ tự
         /// </summary>
         public int xh { get; set; }
         public string CreatorCode { get; set; }

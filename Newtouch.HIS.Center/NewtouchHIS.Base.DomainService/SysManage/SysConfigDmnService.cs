@@ -16,17 +16,17 @@ using NewtouchHIS.Lib.DataBaseSvr;
 namespace NewtouchHIS.Base.DomainService.SysManage
 {
     /// <summary>
-    /// 系统基础配置(仅查询)
+    /// Cấu hình cơ sở hệ thống(Chỉ truy vấn)
     /// </summary>
     public class SysConfigDmnService : BaseDmnService<SysOrganizeEntity>, ISysConfigDmnService
     {
         private readonly ISysRoleDmnService _roleDmn;
         /// <summary>
-        /// 多应用通用功能需配置主库
+        /// Chức năng dùng chung đa ứng dụng cần cấu hình cơ sở dữ liệu chính
         /// </summary>
         private string _mainDB = ConfigInitHelper.DbConfig.MainDB ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "DbConfig.MainDB");
         /// <summary>
-        /// 应用需配置主库
+        /// Ứng dụng cần cấu hình cơ sở dữ liệu chính
         /// </summary>
         public SysConfigDmnService(ISysRoleDmnService roleDmn)
         {
@@ -34,7 +34,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             base.Context = SqlSugarDbContext.Db.GetConnection(_mainDB);
         }
         /// <summary>
-        /// 菜单列表（限管理员查看）
+        /// Danh sách menu(Chỉ quản trị viên được xem)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="appId"></param>
@@ -59,7 +59,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             {
                 query = query.Where(p => p.zt == "1").ToList();
             }
-            //排除系统菜单
+            //Loại trừ menu hệ thống
             if (systemMenuLimit == true)
             {
                 var sysMenu = query.Where(p => p.Name == "系统管理").FirstOrDefault();
@@ -75,11 +75,11 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             return query.OrderBy(t => t.px).ToList().Adapt<List<SysModuleVO>>();
         }
         /// <summary>
-        /// 获取对当前角色开放的菜单列表（加载开放的菜单树）
-        /// 业务系统区分
+        /// Lấy danh sách menu mở cho vai trò hiện tại(Tải cây menu mở)
+        /// Phân biệt hệ thống nghiệp vụ
         /// </summary>
-        /// <param name="orgId">医疗Tổ chức</param>
-        /// <param name="appId">业务系统应用Id</param>
+        /// <param name="orgId">Y tếTổ chức</param>
+        /// <param name="appId">Ứng dụng hệ thống nghiệp vụId</param>
         /// <param name="roleIdList"></param>
         /// <param name="isRoot"></param>
         /// <param name="isAdministrator"></param>
@@ -119,9 +119,9 @@ namespace NewtouchHIS.Base.DomainService.SysManage
                     return null;
                 }
 
-                //向organize开放的
+                //Tớiorganizemở
                 var orgAuthedModuleId = query.Select(p => p.Id).ToList();
-                //向Role开放的                
+                //TớiRolemở                
                 List<SysModuleEntity> list = new List<SysModuleEntity>();
                 var idList = (await GetByWhere<SysRoleAuthorizeEntity>(db, t => t.zt == "1" && roleIdList.Contains(t.RoleId)))?.Select(p => p.ItemId);
                 if (idList != null && idList.Any())
@@ -152,7 +152,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             bool showDescToMenuTitle = AppSettings.GetAppConfigBoolValueExt("IS_ShowDescToMenuTitle");
             if (!showDescToMenuTitle)
             {
-                //在菜单中不显示Description
+                //Không hiển thị trong menuDescription
                 var list = query.ToList();
                 list.ForEach(p => p.Description = null);
                 return list.OrderBy(t => t.px).ToList();
@@ -160,9 +160,9 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             return query.OrderBy(t => t.px).ToList();
         }
         /// <summary>
-        /// 获取对当前角色开放的菜单列表（加载开放的菜单树）
+        /// Lấy danh sách menu mở cho vai trò hiện tại(Tải cây menu mở)
         /// </summary>
-        /// <param name="orgId">医疗Tổ chức</param>
+        /// <param name="orgId">Y tếTổ chức</param>
         /// <param name="roleIdList"></param>
         /// <param name="isRoot"></param>
         /// <param name="isAdministrator"></param>
@@ -197,9 +197,9 @@ namespace NewtouchHIS.Base.DomainService.SysManage
                     return null;
                 }
 
-                //向organize开放的
+                //Tớiorganizemở
                 var orgAuthedModuleId = query.Select(p => p.Id).ToList();
-                //向Role开放的                
+                //TớiRolemở                
                 List<SysModuleEntity> list = new List<SysModuleEntity>();
                 var idList = (await GetByWhere<SysRoleAuthorizeEntity>(t => t.zt == "1" && roleIdList.Contains(t.RoleId)))?.Select(p => p.ItemId);
                 if (idList != null && idList.Any())
@@ -231,7 +231,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             //bool showDescToMenuTitle = AppSettings.GetAppConfigBoolValueExt("IS_ShowDescToMenuTitle");
             //if (!showDescToMenuTitle)
             //{
-            //    //在菜单中不显示Description
+            //    //Không hiển thị trong menuDescription
             //    var list = query.ToList();
             //    list.ForEach(p => p.Description = null);
             //    return list.OrderBy(t => t.px).ToList();
@@ -240,7 +240,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
         }
 
         /// <summary>
-        /// 字典表
+        /// Bảng từ điển
         /// </summary>
         /// <returns></returns>
         public async Task<List<SysItemExtendVO>> GetItemDetailsList(string orgId)

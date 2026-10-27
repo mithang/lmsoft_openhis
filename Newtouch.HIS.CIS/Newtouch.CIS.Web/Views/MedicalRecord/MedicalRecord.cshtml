@@ -7,46 +7,46 @@
     var pacsHost = SiteUrl.GetUrl("OuterPacsServiceHost", "");
     var isPrintRehabPres = (ViewBag.ISPrintRehabPres as bool?) ?? false;
     var isPrintRehabTreatment = (ViewBag.ISPrintRehabTreatment as bool?) ?? false;
-    //合理用药接口
-    var isOpenRationalUse = (ViewBag.isOpenRationalUse); //是否开启合理用药审核接口
+    //hợplýdùngthuốcgiao diện
+    var isOpenRationalUse = (ViewBag.isOpenRationalUse); //CóKhôngbậthợplýdùngthuốcPhê duyệtgiao diện
 
-    //开关：是否开放检验检查
+    //Công tắc：Có mở khôngXét nghiệmKiểm tra
     var IsOpenJyJcSwitch = ViewBag.IsOpenJyJcSwitch as bool?;
-    //开关：门诊是否开放康复处方
+    //Công tắc：Ngoại trúCó mở khôngPhục hồi chức năngĐơn thuốc
     var isOpenKfcf = (ViewBag.ISOpenKfcf as bool?);
-    //开关：门诊是否开放常规项目处方
+    //Công tắc：Ngoại trúCó mở khôngHạng mục thông thườngĐơn thuốc
     var isOpenCgxmcf = (ViewBag.ISOpenCgxmcf as bool?);
-    //开关：门诊是否开放医用耗材处方
+    //Công tắc：Ngoại trúCó mở khôngydùngVật tư tiêu haoĐơn thuốc
     var iSOpenWzhc = (ViewBag.ISOpenWzhc as bool?);
-    //开关：是否开启事前提醒
+    //Công tắc：CóKhôngbậtnhắc trước
     var iSReminderBeforehand = SysConfigReader.Bool("IS_ReminderBeforehand", false).Value;
 
-    //获取打印处方配置
-    var mzcfdPrinturl = SysConfigReader.OrgReportLink("mzcfdPrint");  //处方单
-    var mzzcycfPrint = SysConfigReader.OrgReportLink("mzzcycfPrint");  //中草药处方单
-    var mzjyjcPrinturl = SysConfigReader.OrgReportLink("jcjyPrint");//检验检查单
-    var mzjcPrinturl = SysConfigReader.OrgReportLink("jcPrint");//检查检查单
-    var mzwhdPrinturl = SysConfigReader.OrgReportLink("whdPrint");//雾化单
-    var mzzszPrinturl = SysConfigReader.OrgReportLink("mzzszPrint");//注射单 zszPrint
-    var mzjzdPrinturl = SysConfigReader.OrgReportLink("jzdPrint");//就诊单
-    var mzcgcfPrinturl = SysConfigReader.OrgReportLink("mzcgcfPrint");//门诊常规项目处方单
-    var optionItem = SysConfigReader.String("Outpatient_patient_reg_optionItem"); //非必填项
+    //LấyInĐơn thuốccấu hình
+    var mzcfdPrinturl = SysConfigReader.OrgReportLink("mzcfdPrint");  //Đơn thuốc
+    var mzzcycfPrint = SysConfigReader.OrgReportLink("mzzcycfPrint");  //trongthảo dượcĐơn thuốc
+    var mzjyjcPrinturl = SysConfigReader.OrgReportLink("jcjyPrint");//Xét nghiệmKiểm traphiếu
+    var mzjcPrinturl = SysConfigReader.OrgReportLink("jcPrint");//Kiểm traKiểm traphiếu
+    var mzwhdPrinturl = SysConfigReader.OrgReportLink("whdPrint");//khí dungphiếu
+    var mzzszPrinturl = SysConfigReader.OrgReportLink("mzzszPrint");//Lưu ýxạphiếu zszPrint
+    var mzjzdPrinturl = SysConfigReader.OrgReportLink("jzdPrint");//Khám bệnhphiếu
+    var mzcgcfPrinturl = SysConfigReader.OrgReportLink("mzcgcfPrint");//Ngoại trúHạng mục thông thườngĐơn thuốc
+    var optionItem = SysConfigReader.String("Outpatient_patient_reg_optionItem"); //khôngbắt buộc mục
     var exelink_pacs = ViewBag.exelink_pacs;
 
-    //远程医疗
+    //xatrìnhy tế
     var OrganizeCodeSd = ViewBag.OrganizeCodeSd;
     var RemoteTreatRPTURL = ViewBag.RemoteTreatRPTURL;
 
 
-    //秦皇岛智能审核事前提醒配置
+    //Tần Hoàng Đảotrícó thểPhê duyệtnhắc trướccấu hình
     var medicalInsurance = SysConfigReader.String("medicalInsurance");
-    //是否开启lis pacs报告订阅
+    //CóKhôngbậtlis pacsbáo cáoĐăng ký
     var IsreportOpen = SysConfigReader.String("IsreportOpen");
-    var sfxmztbs = SysConfigReader.String("sfxmztbs");//组套项目是否合并显示
-    var SkipPatientList = SysConfigReader.String("SkipPatientList");//保存、结束就诊是否返回病人列表
-    var openblbookprint = SysConfigReader.String("blbookprint");//是否启用病历本打印
-    var ControlsyyfCode = SysConfigReader.String("sydyfpz");//输液用法配置
-                                                            //住院证打印
+    var sfxmztbs = SysConfigReader.String("sfxmztbs");//Bộ mẫuMụcCóKhônghợpvàHiển thị
+    var SkipPatientList = SysConfigReader.String("SkipPatientList");//Lưu、Kết thúcKhám bệnhCóKhôngQuay lạibệnh ngườidanh sách
+    var openblbookprint = SysConfigReader.String("blbookprint");//CóKhôngKích hoạtHồ sơbảnIn
+    var ControlsyyfCode = SysConfigReader.String("sydyfpz");//truyền dịchCách dùngcấu hình
+                                                            //Nhập việnchứngIn
     var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
     var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
     var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
@@ -115,7 +115,7 @@
         <div class="widget-body">
             <div style="height:20px; background-color:#ddd;">
                 <span class="glyphicon glyphicon-refresh" onclick="reloadTreeView()" title="Nhấn để làm mới" style="color: #00a0ea; margin-left: 10px;"></span>
-                @*<i class="fa fa-file-text-o" aria-hidden="true" style="margin-left: 10px;font-size: larger;color: #ccae42;line-height: 21px;" onclick="showReport()"></i>报告*@
+                @*<i class="fa fa-file-text-o" aria-hidden="true" style="margin-left: 10px;font-size: larger;color: #ccae42;line-height: 21px;" onclick="showReport()"></i>báo cáo*@
                 <select id="queryDate" class="formClearIgnore" onchange="reloadTreeView()" style="width: 85px; height: 18px;margin-left: 4px; border-radius:4px;">
                     <option value=0>Tất cảLịch sử</option>
                     <option value=1>Một tháng gần đây</option>
@@ -243,7 +243,7 @@
                             </td>
                             <td class="formValue">
                                 <input id="rpt_Zyz" type="button" class="btn btn-primary" value="Phiếu thông báo nhập viện" onclick="printFp()">
-                                @*<span class="btn btn-primary" title="点击进行刷新" onclick="GetfillData()">
+                                @*<span class="btn btn-primary" title="điểmnhấpvàodòngLàm mới" onclick="GetfillData()">
                                         <i class="glyphicon glyphicon-refresh" style="color:white; "></i>
                                     </span>*@
                             </td>
@@ -266,18 +266,18 @@
 
                 <div class="dv-right" style="width:92%;margin-left:27%">
                     <span id="toolbar_ctgl">
-                        @*<a class="btn  " id="biaoqian">词<br /><br />条</a>*@
+                        @*<a class="btn  " id="biaoqian">từ<br /><br />dòng</a>*@
 
                         <a class="btn  " onclick="ct_btn_add()" style="width:25px;height:30px;" title="Thêm">
                             <i class="fa fa-plus"></i>
                         </a>
                         <a class="btn  " onclick="ct_btn_delete()" style="width:25px;height:30px;" title="Xóa">
-                            @*<span class="glyphicon glyphicon-minus" title="删除"></span>*@
+                            @*<span class="glyphicon glyphicon-minus" title="Xóa"></span>*@
                             <i class="fa fa-minus"></i>
                         </a>
                         <a class="btn  " onclick="ct_btn_edit()" style="width:25px;height:30px;" title="Sửa">
                             <i class="fa fa-pencil-square-o"></i>
-                            @*<img src="~/Content/img/icon/copy.png" title="编辑" />*@
+                            @*<img src="~/Content/img/icon/copy.png" title="Sửa" />*@
                         </a>
                     </span>
                     <hr style="margin-top:-13px;">
@@ -302,7 +302,7 @@
             </div>
             <div style="padding: 2px;padding-right:20px;">
                 <form id="form1">
-                    @*form1不可以删掉，使用辅助词典赋值时利用该id来定位被赋值的素*@
+                    @*form1khôngcó thểlấyxóarớt，Sử dụnghỗ trợtừ điểnGán giá trịkhilợidùngidđếnđịnh ký tựbịGán giá trịcủatố*@
                     <table id="table1" class="form supercompact" style="margin-left: 1.3%;">
                         <tr>
                             <th class="formTitle">Chiều cao:</th>
@@ -360,7 +360,7 @@
                                     </div>
                                 </div>
                             </td>
-                            @*<th class="formTitle">血压：</th>
+                            @*<th class="formTitle">Huyết áp：</th>
                                 <td class="formValue">
                                     <div class="row">
                                         <div class="col-md-8">
@@ -376,9 +376,9 @@
                             <th class="formTitle">Đường huyết:</th>
                             <td class="formValue">
                                 @*<div>
-                                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="餐后" />餐后</label>
-                                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" value="空腹" />空腹</label>
-                                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" value="随机" />随机</label>
+                                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" checked value="Sau ăn" />Sau ăn</label>
+                                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" value="Lúc đói" />Lúc đói</label>
+                                        <label><input type="radio" name="optionsRadios" class="optionsRadios formClearIgnore" value="Ngẫu nhiên" />Ngẫu nhiên</label>
                                     </div>*@
                                 <select id="xuetangclfs" class="vitalsignschange">
                                     <option value="">=Vui lòng chọn=</option>
@@ -488,7 +488,7 @@
                                 <div id="floatListDiv" style="position:absolute; top:34px; right:-18px;z-index:10000;">
                                     <div data-href="ynbg">
                                         <span>
-                                            @*<span style="position:relative;  float:left;"><i id="bggetjg" class="fa fa-plus-circle plusToggleCircle" onclick="getlisreport()" title="检验异常值引入" aria-hidden="true" style="color: #6ff3ad; font-size: large;"></i></span>*@
+                                            @*<span style="position:relative;  float:left;"><i id="bggetjg" class="fa fa-plus-circle plusToggleCircle" onclick="getlisreport()" title="Xét nghiệmNgoại lệGiá trịdẫnvào" aria-hidden="true" style="color: #6ff3ad; font-size: large;"></i></span>*@
                                             <i id="bggetjg" class="fa fa-file-text-o" onclick="getlisreport()" title="Nhập báo cáo xét nghiệm/kiểm tra" aria-hidden="true" style="margin-left: 10px; color: #ef7a13; font-size: 16px;"></i>
                                         </span>
                                     </div>
@@ -598,12 +598,12 @@
                                                 @if (isPrintRehabPres)
                                                 {
                                                     <th style="width:16%;">Đơn thuốcCuối cùngInThời gian</th>
-                                                    @*<th style="width:@(16 + (!isPrintRehabTreatment ? 15 : 0))%;">处方最后打印时间</th>*@
+                                                    @*<th style="width:@(16 + (!isPrintRehabTreatment ? 15 : 0))%;">Đơn thuốccuối cùngInThời gian</th>*@
                                                 }
                                                 @if (isPrintRehabTreatment)
                                                 {
                                                     <th style="width:16%;">Thời gian in phiếu điều trị cuối cùng</th>
-                                                    @*<th style="width:@(16 + (!isPrintRehabPres ? 15 : 0))%;">治疗单最后打印时间</th>*@
+                                                    @*<th style="width:@(16 + (!isPrintRehabPres ? 15 : 0))%;">Điều trịphiếucuối cùngInThời gian</th>*@
                                                 }
                                                 <th style="width:8%;">Số tiền</th>
                                                 <th></th>
@@ -738,16 +738,16 @@
                             </tr>
                         }
                         @*<tr>
-            <th class="formTitle">电子处方：</th>
+            <th class="formTitle">điện tửĐơn thuốc：</th>
             <td class="formValue" colspan="4">
                 <div style="border: 1px solid #ddd; border-radius:4px;height:auto;" data-href="linkdzcf" class="activeValue">
                     <table class="form" style="width: 97%; margin: 5px 0px 5px 20px;">
                         <tr>
-                            <th style="width:16%;">处方号</th>
-                            <th style="width:11%;">开立日期</th>
-                            <th style="width:8%;">同步状态</th>
-                            <th style="width:8%;">收费状态</th>
-                            <th style="width:30%;">处方最后打印时间</th>
+                            <th style="width:16%;">Số đơn thuốc</th>
+                            <th style="width:11%;">mởlậpNgày</th>
+                            <th style="width:8%;">Trạng thái đồng bộ</th>
+                            <th style="width:8%;">Thu phíTrạng thái</th>
+                            <th style="width:30%;">Đơn thuốccuối cùngInThời gian</th>
                             <th></th>
                         </tr>
                         <tbody id="tableDzcfMx"></tbody>
@@ -759,18 +759,18 @@
                 </form>
             </div>
             @*<div class="toolbar" style="float:right;width:65%;margin:10px 30px 12px;text-align:right;">
-                <a class="btn btn-primary" style="margin-left:4px;" onclick="SaveAsMRTemplate()">另存为模板</a>
+                <a class="btn btn-primary" style="margin-left:4px;" onclick="SaveAsMRTemplate()">Lưu thành mẫu</a>
                 </div>*@
             @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel()
        {
-           //F3Text = "另存为模板",
+           //F3Text = "Lưu thành mẫu",
            ShowKeyList = new int[] { 4, 6, 7, 8, 9 },
-           //F2Text="打印接诊单",
+           //F2Text="Innhậnkhámphiếu",
            F6Text = "Khám bệnhLưu",
            F7Text = "Kết thúcKhám bệnh",
            F8Text = "InBệnh án",
            F9Text = "Hủy bỏBệnh án",
-           //F10Text = "打印所有处方"
+           //F10Text = "Intất cảĐơn thuốc"
        })
         </div>
         <div id="dispDiv" class="panel panel-default" style="height: auto; display:none;margin-top:50px;padding: 0 20px 0 0; border: 0;">
@@ -1012,7 +1012,7 @@
 <div class="cfdetailpreview">
     <ul class="list-group"></ul>
 </div>
-<!-- 用药审核弹窗 Modal -->
+<!-- dùngthuốcPhê duyệtbậtcửa sổ Modal -->
 <div class="modal fade" id="drugInfoModal" tabindex="-1" role="dialog" aria-labelledby="drugInfoModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
         <div class="modal-content">
@@ -1024,7 +1024,7 @@
             </div>
             <div class="modal-body" style=" max-height: 60vh; overflow-y: auto;">
                 <div id="hlyyauditStatus"></div>
-                <!-- 用于显示处方信息的动态表格容器 -->
+                <!-- dùngtạiHiển thịĐơn thuốcthông tincủađộngtrạng tháibảngôdungdụng cụ -->
                 <div id="drugGridContainer"></div>
             </div>
             <div class="modal-footer">
@@ -1036,27 +1036,27 @@
 
 
 
-<!-- LIS报告调阅打印AX -->
+<!-- LISbáo cáogọiđọcInAX -->
 <div class="alert alert-warning" style="margin:20px;padding:15px;border:1px solid #faebcc;background:#fcf8e3;color:#8a6d3b;">
 <strong>Thông báo:</strong> Tích hợp LIS ActiveX (điều khiển COM NewtouchActiveX, chỉ chạy trên Internet Explorer + Windows) không thể chạy trên Linux.
 Chức năng này cần giải pháp thay thế (SDK của nhà cung cấp / tiện ích trình duyệt / native messaging host) và đã được ghi nhận để triển khai riêng.
 Các chức năng khác của trang vẫn hoạt động bình thường.
 </div>
 
-@********************左边树***********************@
+@********************tráibêncây***********************@
 <script type="text/javascript">
     var mrflag = 0;
     var ybnhlx = "";
     var lx = "0";
-    var optionItem = "@optionItem".toLowerCase() === 'true';//可选项
+    var optionItem = "@optionItem".toLowerCase() === 'true';//có thểTùy chọn
     var clickjzid = "";
     @*var orgId ='@(ViewBag.OrgId)';
        var reportServerHOST = '@(ViewBag.ReportServerHOST)';*@
 
     var pageType = $.request("pageType");
-    var Id = $.request("Id");//Chẩn đoán từ xa申请信息Id
+    var Id = $.request("Id");//Chẩn đoán từ xaĐăng kýthông tinId
     if (pageType == "yczl") {//Chẩn đoán từ xa
-        $('#myTab [href="#linkbl"]').trigger('click'); //初始化显示哪个tab
+        $('#myTab [href="#linkbl"]').trigger('click'); //Khởi tạoHiển thịnàotab
     }
     window.init_MedicalRecord = function() {
         $('#zcfsj').text("");
@@ -1068,9 +1068,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         }
         if(mrflag == 0){
             clickjzid = jzObject.jzId;
-            reloadTreeView();   //加载树
+            reloadTreeView();   //tảicây
             if(jzObject.jzId){
-                //默认加载双击进来的就诊内容
+                //Mặc địnhtảinhấp đúpvàođếncủaKhám bệnhnội dung
                 if($('span[data-id="' + jzObject.jzId + '"]').length == 1){
                     setTimeout("$('span[data-id=\"" + jzObject.jzId + "\"]').trigger('click');", 10);
                 }
@@ -1079,7 +1079,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 }
             }
             mrflag = 1;
-            //获取最后收取诊查费时间
+            //Lấycuối cùngthulấykhámtraphíThời gian
             $.ajax({
                 type: "POST",
                 url: "/MedicalRecord/GetLastzcf",
@@ -1132,15 +1132,15 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         //    width: 300,
         //    height: 200,
         //    clickautotrigger: true,
-        //    caption: "选择诊断",
+        //    caption: "Chọn chẩn đoán",
         //    ajaxparameters: null,
         //    itemdbclickhandler: function ($thistr) {
         //        $($('#tablezyzd .zdText')[0]).val($thistr.attr('data-zdmc'));
         //        $($('#tablezyzd .zdText')[0]).attr("data-zdCode",$thistr.attr('data-zdCode'));
         //        $($('#tablezyzd .zdText')[0]).attr("data-icd10",$thistr.attr('data-icd10'));
         //    },
-        //    colModel: [{ label: '编码', name: 'zdCode', widthratio: 25 },
-        //    { label: '诊断名称', name: 'zdmc', widthratio: 50 },
+        //    colModel: [{ label: 'Mã', name: 'zdCode', widthratio: 25 },
+        //    { label: 'Tên chẩn đoán', name: 'zdmc', widthratio: 50 },
         //    { label: 'icd10', name: 'icd10', widthratio: 25}]
         //};
         //var options = $.extend(defaults, options);
@@ -1151,21 +1151,21 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         //    width: 300,
         //    height: 200,
         //    clickautotrigger: true,
-        //    caption: "选择诊断",
+        //    caption: "Chọn chẩn đoán",
         //    ajaxparameters: null,
         //    itemdbclickhandler: function ($thistr) {
         //        $($('#tablexyzd .zdText')[0]).val($thistr.attr('data-zdmc'));
         //        $($('#tablexyzd .zdText')[0]).attr("data-zdCode",$thistr.attr('data-zdCode'));
         //        $($('#tablexyzd .zdText')[0]).attr("data-icd10",$thistr.attr('data-icd10'));
         //    },
-        //    colModel: [{ label: '编码', name: 'zdCode', widthratio: 25 },
-        //    { label: '诊断名称', name: 'zdmc', widthratio: 50 },
+        //    colModel: [{ label: 'Mã', name: 'zdCode', widthratio: 25 },
+        //    { label: 'Tên chẩn đoán', name: 'zdmc', widthratio: 50 },
         //    { label: 'icd10', name: 'icd10', widthratio: 25 }]
         //};
         //var options2 = $.extend(defaults2, options2);
         //$('#xycyzdoption').newtouchFloatingSelector(options2);
     };
-    //中药常用诊断
+    //Thuốc Đông ythường dùngChẩn đoán
     function zycyzdLoad(num) {
         //var number = num;
         //if (num != 0) {
@@ -1192,8 +1192,8 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 return "keyword=" + $thisinput.val() + "&type=" + 2+ "&lx=" + lx;
             },
             colModel: [
-                //    { label: '编码', name: 'zdCode', widthratio: 25 },
-                //{ label: '诊断名称', name: 'zdmc', widthratio: 50 },
+                //    { label: 'Mã', name: 'zdCode', widthratio: 25 },
+                //{ label: 'Tên chẩn đoán', name: 'zdmc', widthratio: 50 },
                 { label: 'Mã', name: 'cyzdbm', widthratio: 25 },
                 { label: 'Chẩn đoánTên', name: 'cyzdmc', widthratio: 25 },
                 { label: 'py', name: 'py', widthratio: 50, hidden: true },
@@ -1215,7 +1215,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             $('#zyzdxz' + num + '').val(lx);
         });
     }
-    //西药常用诊断
+    //Thuốc Tâythường dùngChẩn đoán
     function xycyzdLoad(num) {
         //var number = num;
         //if (num != 0) {
@@ -1279,24 +1279,24 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             $('#zycyzdoption' + num + '').click();
         }
     }
-    ////判断诊断手输
+    ////kiểm traChẩn đoántaytruyền
     //$('#tablexyzd .zdText').blur(function(){
     //    var zdname = $(this).val();
     //    var zdcode = $(this).attr('data-zdCode');
     //    if (!zdcode && !!zdname) {
-    //        $.modalAlert("该诊断【"+zdname+"】不可用", "warning");
+    //        $.modalAlert("Chẩn đoán【"+zdname+"】khôngcó thểdùng", "warning");
     //    }
     //});
 
-    ////判断诊断手输
+    ////kiểm traChẩn đoántaytruyền
     //$('#tablezyzd .zdText').blur(function(){
     //    var zdname = $(this).val();
     //    var zdcode = $(this).attr('data-zdCode');
     //    if (!zdcode && !!zdname) {
-    //        $.modalAlert("该诊断【"+zdname+"】不可用", "warning");
+    //        $.modalAlert("Chẩn đoán【"+zdname+"】khôngcó thểdùng", "warning");
     //    }
     //});
-    //加载树
+    //tảicây
     function reloadTreeView(){
         EnabledControls();
         var blh = window.currPatientInfo.blh;
@@ -1316,12 +1316,12 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 if(window.currPatientInfo.jzzt=='@((int)EnumJzzt.Treated)')
                     newtouch_globalevent_f4();
                 //clickjzid = item.id;
-                /******树的内容********/
+                /******câycủanội dung********/
                 if(item.Ex2 == "medicalRecord"){
-                    //选择的 Lịch sử病历（包括就诊中）
+                    //chọncủa Lịch sửHồ sơ（góigồmĐang khám bệnh）
                     if(item.Ex3=='@Html.Raw(((int)@Enumlsblly.api).ToString())'){
-                        //待完善###################（云健康需求）
-                        //拉取接口的Lịch sử病历明细
+                        //chờhoàn thiện###################（mâysức khỏecầncầu）
+                        //kéolấygiao diệncủaLịch sửHồ sơchi tiết
                         //$('#dispDiv').show();
                         $('.historyleft').hide();
                         $('.historydetail').hide();
@@ -1341,7 +1341,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     }
                     else if(item.Ex3=='@Html.Raw(((int)@Enumlsblly.self).ToString())'){
                         debugger
-                        //查询自己系统的Lịch sử病历
+                        //Tra cứutựtựHệ thốngcủaLịch sửHồ sơ
                         $.najax({
                             type: "POST",
                             //url: "/MedicalRecord/SelectNodeContentV2",
@@ -1351,27 +1351,27 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             loadingtext :'Đang tải dữ liệu bệnh án, vui lòng đợi trong giây lát…',
                             success: function (ajaxresp) {
                                 if(item.Ex1 == '@Html.Raw(((int)@EnumJzzt.Treating).ToString())'){
-                                    //点击“就诊中”的节点
+                                    //điểmnhấp“Đang khám bệnh”củatiếtđiểm
                                     //if(!!!window.currPatientInfo.jzId){
                                     if(window.currPatientInfo.jzId != item.id){
-                                        //只有一种可能，挂了两个科室，否则必须先结束前一个
-                                        //表示进来的是新的就诊
-                                        //新就诊，不允许展现“就诊中”的内容；“已结束”的可以展现。
+                                        //chỉcómộtloạicó thểcó thể，treođãhaicáiKhoa，KhôngthìphảicầntrướcKết thúctrướcmột
+                                        //biểu thịvàođếncủaCómớicủaKhám bệnh
+                                        //mớiKhám bệnh，khôngcho phéptriểnhiện“Đang khám bệnh”củanội dung；“Đã kết thúc”củacó thểlấytriểnhiện。
                                         $.modalAlert("Không được xem nội dung lần khám trước", 'warning');
                                         return;
                                     }
-                                    //查询就诊中的病历 先清空
+                                    //Tra cứuĐang khám bệnhcủaHồ sơ Xóa trắng trước
                                     newtouch_globalevent_f4();
                                 }
                                 var reqSource = sessionStorage.getItem('reqSourcePage');
-                                //判断是否是从已就诊列表双击进来，并且树中选中的是已结束的记录，若是，仅显示病历详情，除“打印”按钮外都禁用
+                                //kiểm traCóKhôngCótừĐã khám bệnhdanh sáchnhấp đúpvàođến，vàvàcâytrongĐã chọncủaCóĐã kết thúccủaghi chép，nếuCó，chỉHiển thịHồ sơChi tiết，trừ“In”NútngoàiđềuVô hiệu hóa
                                 if(reqSource == "fromTreatedPage" && (item.Ex1=='@Html.Raw(((int)@EnumJzzt.Treated).ToString())')){
                                     DisabledControls();
                                 }
                                 else{
                                     EnabledControls();
                                 }
-                                //填充所有文本、处方、Đơn thuốc lịch sử、grid列表
+                                //điềntất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
                                 fillData(item, ajaxresp, reqSource);
                                 jzyyxx();
                             }
@@ -1380,19 +1380,19 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     }
                 }
                 else if(item.Ex2 == "dictionary"){
-                    var needfullTd = $('#form1 th:contains(' + item.parent.text + ')').next().children('.focusInput'); //被填充的td
+                    var needfullTd = $('#form1 th:contains(' + item.parent.text + ')').next().children('.focusInput'); //bịđiềncủatd
                     var inputText = needfullTd.val();
                     if(inputText!=""){
-                        inputText = inputText + ';' + $('span[data-id=' + item.id + ']').html();   //选中的词典的内容
+                        inputText = inputText + ';' + $('span[data-id=' + item.id + ']').html();   //Đã chọncủatừ điểncủanội dung
                     }
                     else{
-                        inputText = $('span[data-id=' + item.id + ']').html();   //选中的词典的内容
+                        inputText = $('span[data-id=' + item.id + ']').html();   //Đã chọncủatừ điểncủanội dung
                     }
                     needfullTd.val(inputText);
                     $('.activeValue').trigger('keyup');
                 }
                 else if(item.Ex2 == "mrtemplate"){
-                    //弹窗病历内容Trích dẫn版本(新增病历模板中处方组套Trích dẫn)
+                    //bậtcửa sổHồ sơnội dungTrích dẫnbảnbản(Thêm mớiHồ sơmẫutrongĐơn thuốcBộ mẫuTrích dẫn)
                     $.modalOpen({
                         id: "HistoryMedicalRecordForm",
                         title: "Bệnh ánThông tin",
@@ -1400,31 +1400,31 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         width: "930px",
                         height: "850px",
                         btn: ['Sao chép', 'Đóng'],
-                        showleftlalbel: !!!item.id,  //新增时显示 '确认并关闭按钮'
+                        showleftlalbel: !!!item.id,  //Thêm mớikhiHiển thị 'xác nhận vàĐóngNút'
                         callBack: function (iframeId, isClose) {
-                            //$("#detailTreeNode").treeview('revealNode', [/*刷新节点的ID*/]);
+                            //$("#detailTreeNode").treeview('revealNode', [/*Làm mớitiếtđiểmcủaID*/]);
                             top.frames[iframeId].submitForm(function (treeSeleData,historydataArray,ajaxresp){
                                 if (!treeSeleData || treeSeleData.length == 0){
 
                                 }else{
-                                    CopyHistory(treeSeleData,historydataArray,ajaxresp); //复制病历Trích dẫn
+                                    CopyHistory(treeSeleData,historydataArray,ajaxresp); //sao chépHồ sơTrích dẫn
                                 }
                             })
                         }
                     });
 
-                    //直接替换病历内容版本(主诉 病历 诊断)
+                    //trực tiếpthayđổiHồ sơnội dungbảnbản(chínhbảo Hồ sơ Chẩn đoán)
                     //$.najax({
                     //    url: "/TemplateManage/MRecordTemplate/SelectTemplateDetailByMbId",
                     //    dataType: "json",
                     //    data: { mbId: item.id },
                     //    type: "POST",
-                    //    loadingtext :'模板数据加载中，请稍后…',
+                    //    loadingtext :'mẫuĐang tải dữ liệu，Vui lòng đợi trong giây lát…',
                     //    success: function (ajaxresp) {
-                    //        $.modalConfirm("将替换病历详情的内容，是否继续？", function (flag) {
-                    //            $('#form1 .minusToggleCircle').trigger('click');  //先还原
+                    //        $.modalConfirm("sẽthayđổiHồ sơChi tiếtcủanội dung，CóKhôngkếtiếp？", function (flag) {
+                    //            $('#form1 .minusToggleCircle').trigger('click');  //trướckhôi phục
                     //            if (flag) {
-                    //                填充所有文本、处方、Đơn thuốc lịch sử、grid列表
+                    //                điềntất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
                     //                fillData(item, ajaxresp);
                     //            }
                     //            else {
@@ -1439,19 +1439,19 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
     }
 
-    //禁用Button
+    //Vô hiệu hóaButton
     function DisabledControls() {
         $('.btn.btn-primary:not(#btn_search,#btn_bottombutton_f9,#btn_bottombutton_f10)').addClass('newtouch_Readonly').attr('disabled', 'disabled');
     }
 
-    //启用Button
+    //Kích hoạtButton
     function EnabledControls() {
         if ($('.btn.btn-primary').hasClass('newtouch_Readonly') && $('.btn.btn-primary').is('[disabled]')) {
             $(".btn.btn-primary").removeClass('newtouch_Readonly');
             $(".btn.btn-primary:not(#btn_search,#btn_bottombutton_f9,#btn_bottombutton_f10)").removeAttr('disabled', 'disabled');
         }
     }
-    //刷新病历
+    //Làm mớiHồ sơ
     function GetfillData() {
         if (clickjzid) {
             if ($('span[data-id="' + clickjzid + '"]').length == 1) {
@@ -1462,7 +1462,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             }
         }
     }
-    //填充页面数据
+    //điềntrangmặtDữ liệu
     function fillData(item, ajaxresp, reqSource) {
         if (
             (item.Ex1 &&(item.Ex1 == '@Html.Raw(((int)@EnumJzzt.Treating).ToString())'|| (reqSource == "fromTreatedPage" && item.Ex1 == '@Html.Raw(((int)@EnumJzzt.Treated).ToString())'))
@@ -1471,15 +1471,15 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         )
             @*if (
             (item.Ex1 &&
-                (item.Ex1 == '@Html.Raw(((int)@EnumJzzt.Treating).ToString())' && pageType != "yczl"  //就诊中排除远程诊疗
+                (item.Ex1 == '@Html.Raw(((int)@EnumJzzt.Treating).ToString())' && pageType != "yczl"  //Đang khám bệnhxếptrừxatrìnhkhámtrị
                     || (reqSource == "fromTreatedPage" && item.Ex1 == '@Html.Raw(((int)@EnumJzzt.Treated).ToString())'))
             )
             || item.Ex2 == 'mrtemplate'
-            || (window.currPatientInfo.jzzt == ((int)@EnumJzzt.NotYetTreate).toString() && pageType=="yczl") //远程诊疗待就诊
+            || (window.currPatientInfo.jzzt == ((int)@EnumJzzt.NotYetTreate).toString() && pageType=="yczl") //xatrìnhkhámtrịChờ khám bệnh
         )*@
         {
-            //就诊中（或者是从已就诊列表双击进来，并且选中的是已结束的记录）    直接呈现到当前文本里
-            //或选的是病历模板
+            //Đang khám bệnh（hoặcCótừĐã khám bệnhdanh sáchnhấp đúpvàođến，vàvàĐã chọncủaCóĐã kết thúccủaghi chép）    trực tiếphiển thịhiệnđếnhiện tạivăn bảntrong
+            //hoặcchọncủaCóHồ sơmẫu
             $('#form1').formSerialize(ajaxresp);
             if (ajaxresp.cfzbz == "1") {
                 $("input[name='cfzbzRadios'][value='0']").prop('checked', false);
@@ -1491,11 +1491,11 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             }
             
             if (item.Ex2 != 'mrtemplate'  ) {
-                //不是来自病历模板
+                //khôngCóđếntựHồ sơmẫu
 
-                //1.隐藏下方的节点内容
+                //1.Ẩnphía dướicủatiếtđiểmnội dung
                 $('#hideDispDiv').trigger('click');
-                //2.填充文本
+                //2.điềnvăn bản
                 $('#mzh').text(ajaxresp.mzh);
                 $('#jzks').text(ajaxresp.ghksmc);
                 ajaxresp.zlkssj = ajaxresp.zlkssj == undefined ? '' : $.getTime({date: ajaxresp.zlkssj});
@@ -1509,16 +1509,16 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 $('#sbbh').text(ajaxresp.sbbh);
                 $('#zs').text(ajaxresp.zs);
             }
-            //3.填充诊断
+            //3.điềnChẩn đoán
             if (ajaxresp.xyzdList && ajaxresp.xyzdList.length && ajaxresp.xyzdList.length > 0) {
-                for (var i = 1; i < ajaxresp.xyzdList.length; i++) {    //从1开始 有个主
-                    //先append
+                for (var i = 1; i < ajaxresp.xyzdList.length; i++) {    //từ1Bắt đầu cócáichính
+                    //trướcappend
                     var number = $('#tablexyzd .zdText').length + 1;
                     var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td class="formValue"><input type="text" id="ywxs' + number + '" name="ywxs' + number + '" class="form-control activeValue focusInput ywxsText" style="width:100%;" placeholder="Vui lòng chọn vị trí răng" /></td><td class="formValue"><input type="text" id="icd10' + number + '" name="icd10' + number + '" class="form-control activeValue focusInput gjybxsText" style="width:100%;" placeholder="Mã BHYT quốc gia" /></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td> <span onclick="DiagsList(' + number + ',1)" style="background-image:url(' + "'" + '../../Content/img/Hồ sơ chẩn đoán.png' + "'" + ');width:20px;height:20px;display:block;background-size:20px;background-repeat:no-repeat;padding-bottom:2px;" title="Hồ sơ chẩn đoán"></span></td ><td ><span  onclick="AddDiags(' + number + ',1)" class="glyphicon glyphicon-share" style="color: rgb(255, 140, 60);font-size:15px;padding-left: 4px;padding-right: 2px;" title="ThêmThường dùngChẩn đoán"></span></td><th class="formTitle">Thường dùngChẩn đoán</th><td class="formValue"><input type="text"  id="xycyzdoption' + number + '" name="xycyzdoption' + number + '" class="form-control activeValue focusInput xycyzdoptionText" /></td><th class="formTitle">Ghi chú</th><td class="formValue"><input type="text" id="bz' + number + '" name="bz' + number + '" class="form-control activeValue focusInput xyzdbzText" style="width:70%;" /></td><td class="formValue"><input id="rpt_ywtxs" type="button" class="btn btn-primary" value="Sơ đồ vị trí răng" onclick="ywtxs(' + number + ')"></td><td class="formValue"><input type="text" id="ywstr' + number + '" name="ywstr' + number + '"  hidden="hidden"  class="form-control activeValue focusInput xyywtstrText  hidden" /></td><td class="formValue"><input type="text" id="ywlx' + number + '" name="ywlx' + number + '"  hidden="hidden" class="form-control activeValue focusInput xyywtlxText  hidden" /></td></tr>');
                     $newTr.appendTo($('#tablexyzd'));
                     bindXycyzdFloatingSelector(number);
                 }
-                //再赋值
+                //lạiGán giá trị
                 for (var i = 0; i < ajaxresp.xyzdList.length; i++) {
                     $($('#tablexyzd .zdText')[i]).val(ajaxresp.xyzdList[i].zdmc);
                     $($('#tablexyzd .zdText')[i]).attr("data-zdCode", ajaxresp.xyzdList[i].zdCode);
@@ -1532,22 +1532,22 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 }
             }
             else {
-                //清空主诊断
+                //Xóa trắngchínhChẩn đoán
                 $('#tablexyzd .zdText').val('');
                 $('#tablexyzd .zdText').attr("data-zdCode", '');
                 $('#tablexyzd .zdText').attr("data-icd10", '');
                 $('#tablexyzd .chkValue').prop('checked', false);
             }
             if (ajaxresp.zyzdList && ajaxresp.zyzdList.length && ajaxresp.zyzdList.length > 0) {
-                for (var i = 1; i < ajaxresp.zyzdList.length; i++) {    //从1开始 有个主
-                    //先append
+                for (var i = 1; i < ajaxresp.zyzdList.length; i++) {    //từ1Bắt đầu cócáichính
+                    //trướcappend
                     var number = $('#tablezyzd .zdText').length + 1;
                     var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">Triệu chứng</th><td class="formValue"><input type="text" id="zh' + number + '" class="form-control activeValue focusInput nc_zhText"   placeholder="NhậpMãTênPinyinTra cứu" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td> <span onclick="DiagsList(' + number + ',1)" style="background-image:url(' + "'" + '../../Content/img/Hồ sơ chẩn đoán.png' + "'" + ');width:20px;height:20px;display:block;background-size:20px;background-repeat:no-repeat;padding-bottom:2px;" title="Hồ sơ chẩn đoán"></span></td ><td ><span  onclick="AddDiags(' + number + ',1)" class="glyphicon glyphicon-share" style="color: rgb(255, 140, 60);font-size:15px;padding-left: 4px;padding-right: 2px;" title="ThêmThường dùngChẩn đoán"></span></td><th class="formTitle">Thường dùngChẩn đoán</th><td class="formValue"><input type="text"  id="zycyzdoption' + number + '" name="zycyzdoption' + number + '" class="form-control activeValue focusInput zycyzdoptionText" /></td><th class="formTitle">Ghi chú</th><td class="formValue"><input type="text" id="bz' + number + '" name="bz' + number + '" class="form-control activeValue focusInput zyzdbzText" style="width:70%;" /></td></tr>');
                     $newTr.appendTo($('#tablezyzd'));
                     bindZyyczdFloatingSelector(number);
                     bindZyzhFloatingSelector($newTr.find("#zh" + number));
                 }
-                //再赋值
+                //lạiGán giá trị
                 for (var i = 0; i < ajaxresp.zyzdList.length; i++) {
                     $($('#tablezyzd .zdText')[i]).val(ajaxresp.zyzdList[i].zdmc);
                     $($('#tablezyzd .zdText')[i]).attr("data-zdCode", ajaxresp.zyzdList[i].zdCode);
@@ -1558,7 +1558,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     $($('#tablezyzd .zyzdbzText')[i]).val(ajaxresp.zyzdList[i].zdbz);
                 }
             } else {
-                //清空主诊断
+                //Xóa trắngchínhChẩn đoán
                 $('#tablezyzd .zdText').val('');
                 $('#tablezyzd .zdText').attr("data-zdCode", '');
                 $('#tablezyzd .zdText').attr("data-icd10", '');
@@ -1569,7 +1569,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
             if (item.Ex2 != 'mrtemplate')
             {
-                //4.自动填充填充处方 //选择了一份病历
+                //4.tựđộngđiềnđiềnĐơn thuốc //chọnđãmộtphầnHồ sơ
                 if (ajaxresp.cfBoList) {
                     $.each(ajaxresp.cfBoList, function () {
                         if (this.presDetailList) {
@@ -1982,7 +1982,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         }
             //else if(pageType!="yczl"){
         else {
-            //弹框
+            //bậtkhung
             //var test = {par1: "par1", par2: "par2"}
             //if (pageType != "yczl") {
             $.modalOpen({
@@ -1993,35 +1993,35 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 width: "930px",
                 height: "850px",
                 btn: ['Sao chép', 'Đóng'],
-                showleftlalbel: !!!item.id,  //新增时显示 '确认并关闭按钮'
+                showleftlalbel: !!!item.id,  //Thêm mớikhiHiển thị 'xác nhận vàĐóngNút'
                 callBack: function (iframeId, isClose) {
-                    $("#detailTreeNode").treeview('revealNode', [/*刷新节点的ID*/]);
+                    $("#detailTreeNode").treeview('revealNode', [/*Làm mớitiếtđiểmcủaID*/]);
                     top.frames[iframeId].submitForm(function (treeSeleData,historydataArray,ajaxresp){
                         if (!treeSeleData || treeSeleData.length == 0){
 
                         }else{
-                            CopyHistory(treeSeleData,historydataArray,ajaxresp); //复制Lịch sử病历Trích dẫn
+                            CopyHistory(treeSeleData,historydataArray,ajaxresp); //sao chépLịch sửHồ sơTrích dẫn
                         }
                     })
                     //var treeSeleData = top.frames[iframeId].submitForm();
                     //if (!treeSeleData || treeSeleData.length == 0) {
 
                     //} else {
-                    //    CopyHistory(treeSeleData); //复制Lịch sử病历Trích dẫn
+                    //    CopyHistory(treeSeleData); //sao chépLịch sửHồ sơTrích dẫn
                     //}
 
                 }
             });
             return;
-            // 初始版 Lịch sử病历中电已结束Lịch sử病历显示当前病历下方供复制- 现改为上方弹窗
-            //结束的就诊记录       则显示在Lịch sử病历中，可进行复制
-            //1.显示下方的节点内容
+            // ban đầubản Lịch sửHồ sơtrongđiệnĐã kết thúcLịch sửHồ sơHiển thịhiện tạiHồ sơphía dướicung cấpsao chép- hiệnsửalàtrênphươngbậtcửa sổ
+            //Kết thúccủaKhám bệnhghi chép       thìHiển thịởLịch sửHồ sơtrong，có thểvàodòngsao chép
+            //1.Hiển thịphía dướicủatiếtđiểmnội dung
             $('#form1').formSerialize(ajaxresp);
             $('#dispDiv').show();
             $('#lsblfrombilling').hide()
             $('.historyleft').show();
             $('.historydetail').show();
-            //2.先呈现Lịch sử树结构
+            //2.trướchiển thịhiệnLịch sửcâykếtcấu trúc
             $("#detailTreeNode").treeview({
                 height: 400,
                 slimscroll: false,
@@ -2031,7 +2031,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
                 }
             });
-            //3.填充文本
+            //3.điềnvăn bản
             $('#nc_zs').val(ajaxresp.zs);
             $("#nc_fbsj").val($.getDate({date: ajaxresp.fbsj, ute: true}));
             $('#nc_xbs').val(ajaxresp.xbs);
@@ -2043,17 +2043,17 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             $('#nc_clfa').val(ajaxresp.clfa);
             $('#nc_fzjc').val(ajaxresp.fzjc);
             $("input[name='cfzbzRadios'][value='" + ajaxresp.cfzbz + "']").attr("checked", true);
-            //4.填充诊断
+            //4.điềnChẩn đoán
             if (ajaxresp.xyzdList) {
                 for (var i = 0; i < ajaxresp.xyzdList.length; i++) {
                     if (ajaxresp.xyzdList.length > 1 && i < ajaxresp.xyzdList.length - 1) {
-                        //先append
+                        //trướcappend
                         var number = $('#nc_tablexyzd .nc_zdText').length + 1;
                         var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput nc_zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td></tr>');
                         $newTr.appendTo($('#nc_tablexyzd'));
                     }
 
-                    //再赋值
+                    //lạiGán giá trị
                     for (var j = 0; j < $('#nc_tablexyzd .nc_zdText').length; j++) {
                         if (i == j) {
                             $($('#nc_tablexyzd .nc_zdText')[j]).val(ajaxresp.xyzdList[i].zdmc);
@@ -2071,12 +2071,12 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             if (ajaxresp.zyzdList) {
                 for (var i = 0; i < ajaxresp.zyzdList.length; i++) {
                     if (ajaxresp.zyzdList.length > 1 && i < ajaxresp.zyzdList.length - 1) {
-                        //先append
+                        //trướcappend
                         var number = $('#nc_tablezyzd .nc_zdText').length + 1;
                         var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput nc_zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">Triệu chứng</th><td class="formValue"><input type="text" class="form-control activeValue focusInput nc_zhText" /><i class="fa fa-times" aria-hidden="true" hidden></i></td></tr>');
                         $newTr.appendTo($('#nc_tablezyzd'));
                     }
-                    //再赋值
+                    //lạiGán giá trị
                     for (var j = 0; j < $('#nc_tablezyzd .nc_zdText').length; j++) {
                         if (i == j) {
                             $($('#nc_tablezyzd .nc_zdText')[j]).val(ajaxresp.zyzdList[i].zdmc);
@@ -2089,9 +2089,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     }
                 }
             }
-            //5.填充处方
+            //5.điềnĐơn thuốc
             if (item.Ex2 == 'medicalRecord' || item.Ex2 == 'mrtemplate') {
-                //清空
+                //Xóa trắng
                 //window.historydataArray.kfcf = new Array();
                 //window.historydataArray.cgxmcf = new Array();
                 //window.historydataArray.xycf = new Array();
@@ -2101,9 +2101,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 //window.historydataArray.dzcf = new Array();
                 $.each(ajaxresp.cfBoList, function () {
                     if (this.presDetailList) {
-                        //这是一个处方
+                        //nàyCómộtĐơn thuốc
                         var cflx = this.presEntity.cflx == @Html.Raw(((int)EnumCflx.RehabPres).ToString()) ? "kfcf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.RegularItemPres).ToString()) ? "cgxmcf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.WMPres).ToString()) ? "xycf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.TCMPres).ToString()) ? "zycf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.InspectionPres).ToString()) ? "jycf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.ExaminationPres).ToString()) ? "jccf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.Dzcf).ToString()) ? "dzcf" : "0";
-                        var newCfh = GetNewPresNo();    //这里有新处方号，后面就可以直接用了
+                        var newCfh = GetNewPresNo();    //đâycóĐơn thuốc mớisố，saumặtthìcó thểlấytrực tiếpdùngđã
                         //var newCfh = this.cfh;
                         //cfmxList
                         if (cflx == "kfcf") {
@@ -2358,7 +2358,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         }
       }
 
-      //下面的Lịch sử病历内容
+      //phía dướicủaLịch sửHồ sơnội dung
       $('#hideDispDiv').click(function () {
           $('#dispDiv').hide();
       });
@@ -2367,15 +2367,15 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
           $.modalConfirm("Sẽ thay thế nội dung chi tiết bệnh án, có tiếp tục không?", function (flag) {
               if (flag) {
                   var treeSeleData = $("#detailTreeNode").getCheckedNodeObjArray();
-                  var needTriggleActive = false;  //是否需要处方处方更新
+                  var needTriggleActive = false;  //CóKhôngcầnĐơn thuốcĐơn thuốcCập nhật
                   $.each(treeSeleData, function () {
                       var inputName = this.Code.substr(3);
                       if (inputName == "zs" || inputName == "xbs" || inputName == "jws" || inputName == "yjs" || inputName == "gms" || inputName == "hy" || inputName == "ct" || inputName == "fbsj" || inputName == "clfa" || inputName == "fzjc") {
-                          $('#' + inputName).val($('#' + this.Code).val());   //除诊断和处方外
+                          $('#' + inputName).val($('#' + this.Code).val());   //trừChẩn đoánvàĐơn thuốcngoài
                       }
-                      //西医诊断
+                      //Chẩn đoán Tây y
                       if (inputName == "xyzd") {
-                          $('#tablexyzd .minusToggleCircle').trigger('click');  //先还原
+                          $('#tablexyzd .minusToggleCircle').trigger('click');  //trướckhôi phục
                           if ($('#nc_tablexyzd .nc_zdText').length > 0) {
                               var xyzdArray = new Array();
                               for (var i = 0; i < $('#nc_tablexyzd .nc_zdText').length; i++) {
@@ -2388,9 +2388,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                   zdObj.ywstr = $($('#nc_tablexyzd .nc_ywxsText')[i]).attr('data-ywstr');
                                   zdObj.ywlx = $($('#nc_tablexyzd .nc_ywxsText')[i]).attr('data-ywlx');
                                   zdObj.ysbz = $($('#nc_tablexyzd .nc_zdText')[i]).siblings('.chkValue').is(':checked')
-                                  if (zdObj.zdmc && zdObj.zdmc) {    //为的是排除空诊断
+                                  if (zdObj.zdmc && zdObj.zdmc) {    //làcủaCóxếptrừtrốngChẩn đoán
                                       if (i == 0) {
-                                          zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //默认第一个诊断为主诊断  1：主诊断 2副诊断
+                                          zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
                                       } else {
                                           zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Deputy).ToString());
                                       }
@@ -2399,12 +2399,12 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                               }
                               for (var i = 0; i < xyzdArray.length; i++) {
                                   if (xyzdArray.length > 1 && i < xyzdArray.length - 1) {
-                                      //先append
+                                      //trướcappend
                                       var number = $('#tablexyzd .zdText').length + 1;
                                       var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td>><td class="formValue"><input type="text" id="ywxs' + number + '" name="ywxs' + number + '" class="form-control activeValue focusInput ywxsText" style="width:100%;" placeholder="Vui lòng chọn vị trí răng" /></td><td class="formValue"><input type="text" id="icd10' + number + '" name="icd10' + number + '" class="form-control activeValue focusInput gjybxsText" style="width:100%;" placeholder="Mã BHYT quốc gia" /></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td> <span onclick="DiagsList(' + number + ',1)" style="background-image:url(' + "'" + '../../Content/img/Hồ sơ chẩn đoán.png' + "'" + ');width:20px;height:20px;display:block;background-size:20px;background-repeat:no-repeat;padding-bottom:2px;" title="Hồ sơ chẩn đoán"></span></td ><td ><span  onclick="AddDiags(' + number + ',1)" class="glyphicon glyphicon-share" style="color: rgb(255, 140, 60);font-size:15px;padding-left: 4px;padding-right: 2px;" title="ThêmThường dùngChẩn đoán"></span></td><th class="formTitle">Ghi chú</th><td class="formValue"><input type="text" id="bz' + number + '" name="bz' + number + '" class="form-control activeValue focusInput xyzdbzText" style="width:70%;" /></td></tr>');
                                       $newTr.appendTo($('#tablexyzd'));
                                   }
-                                  //再赋值
+                                  //lạiGán giá trị
                                   for (var j = 0; j < $('#tablexyzd .zdText').length; j++) {
                                       if (i == j) {
                                           $($('#tablexyzd .zdText')[j]).val(xyzdArray[i].zdmc);
@@ -2421,16 +2421,16 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                   }
                               }
                           } else {
-                              //清空主诊断
+                              //Xóa trắngchínhChẩn đoán
                               $('#tablexyzd .zdText').val('');
                               $('#tablexyzd .zdText').attr("data-zdCode", '');
                               $('#tablexyzd .zdText').attr("data-icd10", '');
                               $('#tablexyzd .chkValue').prop('checked', false);
                           }
                       }
-                      //中医诊断
+                      //Chẩn đoán YHCT
                       if (inputName == "zyzd") {
-                          $('#tablezyzd .minusToggleCircle').trigger('click');  //先还原
+                          $('#tablezyzd .minusToggleCircle').trigger('click');  //trướckhôi phục
                           if ($('#nc_tablezyzd .nc_zdText').length) {
                               var zyzdArray = new Array();
                               for (var i = 0; i < $('#nc_tablezyzd .nc_zdText').length; i++) {
@@ -2441,9 +2441,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                   zdObj.ysbz = $($('#nc_tablezyzd .nc_zdText')[i]).siblings('.chkValue').is(':checked');
                                   zdObj.zhmc = $($('#nc_tablezyzd .nc_zhText')[i]).val();
                                   zdObj.zhCode = $($('#nc_tablezyzd .nc_zhText')[i]).attr('data-zhCode');
-                                  if (zdObj.zdmc && zdObj.zdmc) {    //为的是排除空诊断
+                                  if (zdObj.zdmc && zdObj.zdmc) {    //làcủaCóxếptrừtrốngChẩn đoán
                                       if (i == 0) {
-                                          zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //默认第一个诊断为主诊断  1：主诊断 2副诊断
+                                          zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
                                       } else {
                                           zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Deputy).ToString());
                                       }
@@ -2453,12 +2453,12 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                               }
                               for (var i = 0; i < zyzdArray.length; i++) {
                                   if (zyzdArray.length > 1 && i < zyzdArray.length - 1) {
-                                      //先append
+                                      //trướcappend
                                       var number = $('#tablezyzd .zdText').length + 1;
                                       var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td> <span onclick="DiagsList(' + number + ',1)" style="background-image:url(' + "'" + '../../Content/img/Hồ sơ chẩn đoán.png' + "'" + ');width:20px;height:20px;display:block;background-size:20px;background-repeat:no-repeat;padding-bottom:2px;" title="Hồ sơ chẩn đoán"></span></td ><td ><span  onclick="AddDiags(' + number + ',1)" class="glyphicon glyphicon-share" style="color: rgb(255, 140, 60);font-size:15px;padding-left: 4px;padding-right: 2px;" title="ThêmThường dùngChẩn đoán"></span></td><th class="formTitle">Ghi chú</th><td class="formValue"><input type="text" id="bz' + number + '" name="bz' + number + '" class="form-control activeValue focusInput zyzdbzText" style="width:70%;" /></td></tr>');
                                       $newTr.appendTo($('#tablezyzd'));
                                   }
-                                  //再赋值
+                                  //lạiGán giá trị
                                   for (var j = 0; j < $('#tablezyzd .zdText').length; j++) {
                                       if (i == j) {
                                           $($('#tablezyzd .zdText')[j]).val(zyzdArray[i].zdmc);
@@ -2471,7 +2471,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                   }
                               }
                           } else {
-                              //清空主诊断
+                              //Xóa trắngchínhChẩn đoán
                               $('#tablezyzd .zdText').val('');
                               $('#tablezyzd .zdText').attr("data-zdCode", '');
                               $('#tablezyzd .zdText').attr("data-icd10", '');
@@ -2480,7 +2480,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                               $('#tablezyzd .zhText').attr("data-zhCode", '');
                           }
                       }
-                      //康复
+                      //Phục hồi chức năng
                       if (inputName == "kfcf"
                           && window.historydataArray.kfcf && window.historydataArray.kfcf.length) {
                           needTriggleActive = true;
@@ -2488,13 +2488,13 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                               window.alldataArray.kfcf = new Array();
                           }
                           window.alldataArray.kfcf = $.jsonWhere(window.alldataArray.kfcf, function (v) {
-                              return !!v.cfId;    //保留原已持久化的处方
+                              return !!v.cfId;    //giữ nguyênđãlưu bềncủaĐơn thuốc
                           });
                           $.each(window.historydataArray.kfcf, function () {
                               window.alldataArray.kfcf.push(this);
                           });
                       }
-                      //常规项目
+                      //Hạng mục thông thường
                       if (inputName == "cgxmcf"
                           && window.historydataArray.cgxmcf && window.historydataArray.cgxmcf.length) {
                           needTriggleActive = true;
@@ -2502,13 +2502,13 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                               window.alldataArray.cgxmcf = new Array();
                           }
                           window.alldataArray.cgxmcf = $.jsonWhere(window.alldataArray.cgxmcf, function (v) {
-                              return !!v.cfId;    //保留原已持久化的处方
+                              return !!v.cfId;    //giữ nguyênđãlưu bềncủaĐơn thuốc
                           });
                           $.each(window.historydataArray.cgxmcf, function () {
                               window.alldataArray.cgxmcf.push(this);
                           });
                       }
-                      //西药
+                      //Thuốc Tây
                       if (inputName == "xycf"
                           && window.historydataArray.xycf && window.historydataArray.xycf.length) {
                           needTriggleActive = true;
@@ -2516,13 +2516,13 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                               window.alldataArray.xycf = new Array();
                           }
                           window.alldataArray.xycf = $.jsonWhere(window.alldataArray.xycf, function (v) {
-                              return !!v.cfId;    //保留原已持久化的处方
+                              return !!v.cfId;    //giữ nguyênđãlưu bềncủaĐơn thuốc
                           });
                           $.each(window.historydataArray.xycf, function () {
                               window.alldataArray.xycf.push(this);
                           });
                       }
-                      //中药
+                      //Thuốc Đông y
                       if (inputName == "zycf"
                           && window.historydataArray.zycf && window.historydataArray.zycf.length) {
                           needTriggleActive = true;
@@ -2530,13 +2530,13 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                               window.alldataArray.zycf = new Array();
                           }
                           window.alldataArray.zycf = $.jsonWhere(window.alldataArray.zycf, function (v) {
-                              return !!v.cfId;    //保留原已持久化的处方
+                              return !!v.cfId;    //giữ nguyênđãlưu bềncủaĐơn thuốc
                           });
                           $.each(window.historydataArray.zycf, function () {
                               window.alldataArray.zycf.push(this);
                           });
                       }
-                      //检验
+                      //Xét nghiệm
                       if (inputName == "jycf"
                           && window.historydataArray.jycf && window.historydataArray.jycf.length) {
                           needTriggleActive = true;
@@ -2544,13 +2544,13 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                               window.alldataArray.jycf = new Array();
                           }
                           window.alldataArray.jycf = $.jsonWhere(window.alldataArray.jycf, function (v) {
-                              return !!v.cfId;    //保留原已持久化的处方
+                              return !!v.cfId;    //giữ nguyênđãlưu bềncủaĐơn thuốc
                           });
                           $.each(window.historydataArray.jycf, function () {
                               window.alldataArray.jycf.push(this);
                           });
                       }
-                      //检查
+                      //Kiểm tra
                       if (inputName == "jccf"
                           && window.historydataArray.jccf && window.historydataArray.jccf.length) {
                           needTriggleActive = true;
@@ -2558,7 +2558,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                               window.alldataArray.jccf = new Array();
                           }
                           window.alldataArray.jccf = $.jsonWhere(window.alldataArray.jccf, function (v) {
-                              return !!v.cfId;    //保留原已持久化的处方
+                              return !!v.cfId;    //giữ nguyênđãlưu bềncủaĐơn thuốc
                           });
                           $.each(window.historydataArray.jccf, function () {
                               window.alldataArray.jccf.push(this);
@@ -2566,7 +2566,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                       }
                   });
                   if (needTriggleActive) {
-                      //处方数据发生了变更
+                      //Dữ liệu đơn thuốc đã thay đổi
                       triggleActive();
                   }
               } else {
@@ -2575,7 +2575,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
           });
       });
 
-      //复制Lịch sử病历Trích dẫn-弹框方式
+      //sao chépLịch sửHồ sơTrích dẫn-bậtkhungphươngkiểu
       function CopyHistory(treeSeleDatas,historydataArray,ajaxresp) {
             $.modalConfirm("Sẽ thay thế nội dung chi tiết bệnh án, có tiếp tục không?", function (flag) {
                 if (flag) {
@@ -2585,24 +2585,24 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         treeSeleData=treeSeleDatas;
                     }
                     
-                    var needTriggleActive = false;  //是否需要处方处方更新
+                    var needTriggleActive = false;  //CóKhôngcầnĐơn thuốcĐơn thuốcCập nhật
                     $.each(treeSeleData, function () {
                         var inputName = this.Code.substr(3);
                         if (inputName == "zs" || inputName == "xbs" || inputName == "jws" || inputName == "yjs" || inputName == "gms" || inputName == "hy" || inputName == "ct" || inputName == "fbsj" || inputName == "clfa" || inputName == "fzjc") {
-                            $('#' + inputName).val(ajaxresp[inputName]);   //除诊断和处方外
+                            $('#' + inputName).val(ajaxresp[inputName]);   //trừChẩn đoánvàĐơn thuốcngoài
                         }
-                        //西医诊断
+                        //Chẩn đoán Tây y
                         if (inputName == "xyzd") {
-                            $('#tablexyzd .minusToggleCircle').trigger('click');  //先还原
+                            $('#tablexyzd .minusToggleCircle').trigger('click');  //trướckhôi phục
                             if (ajaxresp.xyzdList.length > 0) {
                                 for (var i = 0; i < ajaxresp.xyzdList.length; i++) {
                                     if (ajaxresp.xyzdList.length > 1 && i < ajaxresp.xyzdList.length - 1) {
-                                        //先append
+                                        //trướcappend
                                         var number = $('#tablexyzd .zdText').length + 1;
                                         var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td>><td class="formValue"><input type="text" id="ywxs' + number + '" name="ywxs' + number + '" class="form-control activeValue focusInput ywxsText" style="width:100%;" placeholder="Vui lòng chọn vị trí răng" /></td><td class="formValue"><input type="text" id="icd10' + number + '" name="icd10' + number + '" class="form-control activeValue focusInput gjybxsText" style="width:100%;" placeholder="Mã BHYT quốc gia" /></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td> <span onclick="DiagsList(' + number + ',1)" style="background-image:url(' + "'" + '../../Content/img/Hồ sơ chẩn đoán.png' + "'" + ');width:20px;height:20px;display:block;background-size:20px;background-repeat:no-repeat;padding-bottom:2px;" title="Hồ sơ chẩn đoán"></span></td ><td ><span  onclick="AddDiags(' + number + ',1)" class="glyphicon glyphicon-share" style="color: rgb(255, 140, 60);font-size:15px;padding-left: 4px;padding-right: 2px;" title="ThêmThường dùngChẩn đoán"></span></td><th class="formTitle">Ghi chú</th><td class="formValue"><input type="text" id="bz' + number + '" name="bz' + number + '" class="form-control activeValue focusInput xyzdbzText" style="width:70%;" /></td></tr>');
                                         $newTr.appendTo($('#tablexyzd'));
                                     }
-                                    //再赋值
+                                    //lạiGán giá trị
                                     for (var j = 0; j < $('#tablexyzd .zdText').length; j++) {
                                         if (i == j) {
                                             $($('#tablexyzd .zdText')[j]).val(ajaxresp.xyzdList[i].zdmc);
@@ -2618,25 +2618,25 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                     }
                                 }
                             } else {
-                                //清空主诊断
+                                //Xóa trắngchínhChẩn đoán
                                 $('#tablexyzd .zdText').val('');
                                 $('#tablexyzd .zdText').attr("data-zdCode", '');
                                 $('#tablexyzd .zdText').attr("data-icd10", '');
                                 $('#tablexyzd .chkValue').prop('checked', false);
                             }
                         }
-                        //中医诊断
+                        //Chẩn đoán YHCT
                         if (inputName == "zyzd") {
-                            $('#tablezyzd .minusToggleCircle').trigger('click');  //先还原
+                            $('#tablezyzd .minusToggleCircle').trigger('click');  //trướckhôi phục
                             if (ajaxresp.zyzdList.length>0) {
                                 for (var i = 0; i < ajaxresp.zyzdList.length; i++) {
                                     if (ajaxresp.zyzdList.length > 1 && i < ajaxresp.zyzdList.length - 1) {
-                                        //先append
+                                        //trướcappend
                                         var number = $('#tablezyzd .zdText').length + 1;
                                         var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td> <span onclick="DiagsList(' + number + ',1)" style="background-image:url(' + "'" + '../../Content/img/Hồ sơ chẩn đoán.png' + "'" + ');width:20px;height:20px;display:block;background-size:20px;background-repeat:no-repeat;padding-bottom:2px;" title="Hồ sơ chẩn đoán"></span></td ><td ><span  onclick="AddDiags(' + number + ',1)" class="glyphicon glyphicon-share" style="color: rgb(255, 140, 60);font-size:15px;padding-left: 4px;padding-right: 2px;" title="ThêmThường dùngChẩn đoán"></span></td><th class="formTitle">Ghi chú</th><td class="formValue"><input type="text" id="bz' + number + '" name="bz' + number + '" class="form-control activeValue focusInput zyzdbzText" style="width:70%;" /></td></tr>');
                                         $newTr.appendTo($('#tablezyzd'));
                                     }
-                                    //再赋值
+                                    //lạiGán giá trị
                                     for (var j = 0; j < $('#tablezyzd .zdText').length; j++) {
                                         if (i == j) {
                                             $($('#tablezyzd .zdText')[j]).val(ajaxresp.zyzdList[i].zdmc);
@@ -2650,7 +2650,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                     }
                                 }
                             } else {
-                                //清空主诊断
+                                //Xóa trắngchínhChẩn đoán
                                 $('#tablezyzd .zdText').val('');
                                 $('#tablezyzd .zdText').attr("data-zdCode", '');
                                 $('#tablezyzd .zdText').attr("data-icd10", '');
@@ -2659,7 +2659,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                 $('#tablezyzd .zhText').attr("data-zhCode", '');
                             }
                         }
-                        //康复
+                        //Phục hồi chức năng
                         if (inputName == "kfcf"
                             && historydataArray.kfcf && historydataArray.kfcf.length) {
                             needTriggleActive = true;
@@ -2667,13 +2667,13 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                 window.alldataArray.kfcf = new Array();
                             }
                             window.alldataArray.kfcf = $.jsonWhere(window.alldataArray.kfcf, function (v) {
-                                return !!v.cfId;    //保留原已持久化的处方
+                                return !!v.cfId;    //giữ nguyênđãlưu bềncủaĐơn thuốc
                             });
                             $.each(historydataArray.kfcf, function () {
                                 window.alldataArray.kfcf.push(this);
                             });
                         }
-                        //常规项目
+                        //Hạng mục thông thường
                         if (inputName == "cgxmcf"
                             && historydataArray.cgxmcf && historydataArray.cgxmcf.length) {
                             needTriggleActive = true;
@@ -2681,14 +2681,14 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                 window.alldataArray.cgxmcf = new Array();
                             }
                             window.alldataArray.cgxmcf = $.jsonWhere(window.alldataArray.cgxmcf, function (v) {
-                                return !!v.cfId;    //保留原已持久化的处方
+                                return !!v.cfId;    //giữ nguyênđãlưu bềncủaĐơn thuốc
                             });
                             $.each(historydataArray.cgxmcf, function () {
                                 window.alldataArray.cgxmcf.push(this);
                             });
                         }
 
-                        //西药
+                        //Thuốc Tây
                         if (inputName == "xycf"
                             && historydataArray.xycf && historydataArray.xycf.length) {
                             needTriggleActive = true;
@@ -2696,13 +2696,13 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                 window.alldataArray.xycf = new Array();
                             }
                             window.alldataArray.xycf = $.jsonWhere(window.alldataArray.xycf, function (v) {
-                                return !!v.cfId;    //保留原已持久化的处方
+                                return !!v.cfId;    //giữ nguyênđãlưu bềncủaĐơn thuốc
                             });
                             $.each(historydataArray.xycf, function () {
                                 window.alldataArray.xycf.push(this);
                             });
                         }
-                        //中药
+                        //Thuốc Đông y
                         if (inputName == "zycf"
                             && historydataArray.zycf && historydataArray.zycf.length) {
                             needTriggleActive = true;
@@ -2710,13 +2710,13 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                 window.alldataArray.zycf = new Array();
                             }
                             window.alldataArray.zycf = $.jsonWhere(window.alldataArray.zycf, function (v) {
-                                return !!v.cfId;    //保留原已持久化的处方
+                                return !!v.cfId;    //giữ nguyênđãlưu bềncủaĐơn thuốc
                             });
                             $.each(historydataArray.zycf, function () {
                                 window.alldataArray.zycf.push(this);
                             });
                         }
-                        //检验
+                        //Xét nghiệm
                         if (inputName == "jycf"
                             && historydataArray.jycf && historydataArray.jycf.length) {
                             needTriggleActive = true;
@@ -2724,13 +2724,13 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                 window.alldataArray.jycf = new Array();
                             }
                             window.alldataArray.jycf = $.jsonWhere(window.alldataArray.jycf, function (v) {
-                                return !!v.cfId;    //保留原已持久化的处方
+                                return !!v.cfId;    //giữ nguyênđãlưu bềncủaĐơn thuốc
                             });
                             $.each(historydataArray.jycf, function () {
                                 window.alldataArray.jycf.push(this);
                             });
                         }
-                        //检查
+                        //Kiểm tra
                         if (inputName == "jccf"
                             && historydataArray.jccf && historydataArray.jccf.length) {
                             needTriggleActive = true;
@@ -2738,7 +2738,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                 window.alldataArray.jccf = new Array();
                             }
                             window.alldataArray.jccf = $.jsonWhere(window.alldataArray.jccf, function (v) {
-                                return !!v.cfId;    //保留原已持久化的处方
+                                return !!v.cfId;    //giữ nguyênđãlưu bềncủaĐơn thuốc
                             });
                             $.each(historydataArray.jccf, function () {
                                 window.alldataArray.jccf.push(this);
@@ -2746,7 +2746,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         }
                     });
                     if (needTriggleActive) {
-                        //处方数据发生了变更
+                        //Dữ liệu đơn thuốc đã thay đổi
                         triggleActive();
                     }
                 } else {
@@ -2755,7 +2755,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             });
         }
 
-        //显示检查报告    //待完善
+        //Hiển thịBáo cáo kiểm tra    //chờhoàn thiện
         function showReport() {
             if ($('#divTree').is(":hidden")) {
                 $('#divTree').show();
@@ -2768,7 +2768,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         bgmc: 'CTBáo cáo', fbsj: '2017-12-29'
                     },
                     {
-                        bgmc: '心脏超声', fbsj: '2017-12-29'
+                        bgmc: 'tim脏vượttiếng', fbsj: '2017-12-29'
                     },
                     {
                         bgmc: 'HOT', fbsj: '2017-12-29'
@@ -2779,7 +2779,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             }
         }
 
-        //显示检查报告    //待完善
+        //Hiển thịBáo cáo kiểm tra    //chờhoàn thiện
         function gridReport(mydata) {
             var $gridReport = $("#gridReport");
             $gridReport.newtouchLocalDataGrid({
@@ -2805,9 +2805,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
 </script>
 
-@********************业务逻辑***********************@
+@********************nghiệp vụlogictập***********************@
 <script>
-    //作废病历
+    //Hủy bỏHồ sơ
     function newtouch_event_f9() {
         var jzObject = window.currPatientInfo;
         if (!!!jzObject || JSON.stringify(jzObject) == '{}') {
@@ -2828,7 +2828,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         type: "POST",
                         success: function(data) {
                             $.modalAlert("Hủy bỏthành công", 'warning');
-                            //清空 所有文本、处方、Đơn thuốc lịch sử、grid列表
+                            //Xóa trắng tất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
                             newtouch_globalevent_f4();
                         }
                     });
@@ -2837,12 +2837,12 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             });
     }
 
-    //就诊暂存
+    //Khám bệnhtạmtồn tại
     function newtouch_event_f6() {
         SaveData(false);
     }
 
-    //结束就诊
+    //Kết thúcKhám bệnh
     function newtouch_event_f7() {
         SaveData(true);
         //yczlEndOpetration();//Chẩn đoán từ xa
@@ -2865,20 +2865,20 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         }
     }
 
-    //保存
+    //Lưu
     function SaveData(jzFinish, fromCfSaveCallback) {
         var jzObject = window.currPatientInfo;
         if (!!!jzObject || JSON.stringify(jzObject) === '{}') {
             $.modalAlert("Thông tin bệnh nhân bất thường, bệnh nhân hiện tại đã kết thúc khám bệnh.", 'warning');
             return;
 		} else {
-			var mjzbz = $.enum.getValueByDesc("EnumOutPatientType", jzObject.mjzbz);//根据汉字获取数字
+			var mjzbz = $.enum.getValueByDesc("EnumOutPatientType", jzObject.mjzbz);//TheoHánchữLấysốchữ
             //jzObject.mjzbz = $.enum.getValueByDesc("EnumOutPatientType", jzObject.mjzbz);
 			if (mjzbz != null && mjzbz!="") {
 				jzObject.mjzbz = mjzbz;
 			}
-			var mjzbzs = $.enum.getDescByValue("EnumOutPatientType", jzObject.mjzbz);//根据数字获取汉字
-			if (mjzbzs != null && mjzbzs != "") {//不等于空 不用赋值
+			var mjzbzs = $.enum.getDescByValue("EnumOutPatientType", jzObject.mjzbz);//TheosốchữLấyHánchữ
+			if (mjzbzs != null && mjzbzs != "") {//khôngđợitạitrống khôngdùngGán giá trị
 				//jzObject.mjzbz = mjzbz;
 			} else {
 				jzObject.mjzbz = 1;
@@ -2894,15 +2894,15 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             jzObject.shuzhangya = $('#shuzhangya').val();
             jzObject.xuetang = $('#xuetang').val();
             jzObject.hy = $('#hy').val();
-            jzObject.xuetangclfs = $('#xuetangclfs').val(); //zhaoyuele 添加血糖测量方式
-            jzObject.huxi = $('#huxi').val(); //add by hss 添加呼吸
-            jzObject.cfzbz = $('input[name="cfzbzRadios"]:checked').val(); //add by hss 添加初复诊
+            jzObject.xuetangclfs = $('#xuetangclfs').val(); //zhaoyuele Thêmđường huyếtphương thức đo
+            jzObject.huxi = $('#huxi').val(); //add by hss ThêmHô hấp
+            jzObject.cfzbz = $('input[name="cfzbzRadios"]:checked').val(); //add by hss Thêmban đầulạikhám
             if (!!$("#zlkssj").text()) {
-                //新就诊后台才会用这个字段  //进入病历页的时间
+                //mớiKhám bệnhmáy chủmớisẽdùngnàychữđoạn  //vàovàoHồ sơtrangcủaThời gian
                 jzObject.zlkssj = $("#zlkssj").text();
             }
         }
-        //病历信息
+        //Hồ sơthông tin
         var blObject = {
             zs: $('#zs').val(),
             fbsj: $('#fbsj').val(),
@@ -2916,7 +2916,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             fzjc: $('#fzjc').val()
         }
 
-        //西医诊断
+        //Chẩn đoán Tây y
         var xyzdArray = new Array();
         for (var i = 0; i < $('#tablexyzd .zdText').length; i++) {
             var zdObj = new Object();
@@ -2933,7 +2933,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             }
             if (!!zdObj.zdCode && !!zdObj.zdmc) {
                 if (i === 0) {
-                    zdObj.zdlx = @Html.Raw(((int) EnumZdlx.Main).ToString()); //默认第一个诊断为主诊断  1：主诊断 2副诊断
+                    zdObj.zdlx = @Html.Raw(((int) EnumZdlx.Main).ToString()); //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
                 } else {
                     zdObj.zdlx = @Html.Raw(((int) EnumZdlx.Deputy).ToString());
                 }
@@ -2947,7 +2947,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             return;
         }
 
-        //中医诊断
+        //Chẩn đoán YHCT
         var zyzdArray = new Array();
         for (var i = 0; i < $('#tablezyzd .zdText').length; i++) {
             var zdObj = new Object();
@@ -2963,7 +2963,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             }
             if (!!zdObj.zdCode && !!zdObj.zdmc) {
                 if (i === 0) {
-                    zdObj.zdlx = @Html.Raw(((int) EnumZdlx.Main).ToString()); //默认第一个诊断为主诊断  1：主诊断 2副诊断
+                    zdObj.zdlx = @Html.Raw(((int) EnumZdlx.Main).ToString()); //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
                 } else {
                     zdObj.zdlx = @Html.Raw(((int) EnumZdlx.Deputy).ToString());
                 }
@@ -2981,7 +2981,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             return;
 		}
 
-        //处方信息
+        //Đơn thuốcthông tin
         var cfDtoArray = new Array();
         if (window.alldataArray && Object.keys(window.alldataArray)) {
             $.each(Object.keys(window.alldataArray),
@@ -2990,7 +2990,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     if (itemsKey == "cfzdlist") {
                         return true;
                     }
-                    //增加排序
+                    //tăng thêmThứ tự
                     var lastcfh = "";
                     for (var i = 0; i < window.alldataArray[itemsKey].length; i++) {
                         var dataArray = window.alldataArray[itemsKey]
@@ -3009,15 +3009,15 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 });
 		}
 
-        //校验并去无效行
+        //Kiểm travàđiVô hiệudòng
         var ret = arrangeCfDtoArray(cfDtoArray);
         if (!ret.rs) {
             $.modalAlert(ret.msg, "warning");
             return;
 		}
-		//console.log("所有处方信息：", cfDtoArray);
+		//console.log("tất cảĐơn thuốcthông tin：", cfDtoArray);
 		//return false;
-        //保存
+        //Lưu
         if (window.currPatientInfo.brxzCode !== "" && '@ViewBag.ControlbrxzCode'.indexOf(window.currPatientInfo.brxzCode) > -1) {
             $.najax({
                 url: "/MainBusiness/ValidateMedicalInsurance",
@@ -3057,7 +3057,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 for (var j = 0; j < cfmxCount; j++) {
                     if (cfDtoArray[i].cfHtml[j].cfId != "") { continue; }
                     if (cflx == "cgxmcf" || cflx == "kfcf") {
-                        /*数量/单价/金额都不为空*/
+                        /*Số lượng/Đơn giá/Số tiềnđềukhônglàtrống*/
                         if (cfDtoArray[i].cfHtml[j].xmCode == null || cfDtoArray[i].cfHtml[j].xmCode == "" || cfDtoArray[i].cfHtml[j].sl == "" || cfDtoArray[i].cfHtml[j].je == "") {
                             rs = false;
                             msg = (cflx == "cgxmcf" ? "Thường quyMụcĐơn thuốc" : "Phục hồi chức năngĐơn thuốc") + "Dòng thứ " + (j + 1) + " dòng Số lượng/Đơn giá/Số tiềntrong có một hoặc nhiều giá trị trống，vui lòng kiểm tra！";
@@ -3077,7 +3077,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         }
                     }
 
-                    /*药品或项目为空、数量/单价/金额不全为空，则视同空行并删除该行*/
+                    /*ThuốchoặcMụclàtrống、Số lượng/Đơn giá/Số tiềnkhôngtoànlàtrống，thìxemcùngtrốngdòngvàXóadòng*/
                     //cfDtoArray[i].cfHtml.splice(j, 1);
                     //j--;
                     //cfmxCount--;
@@ -3091,7 +3091,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         return { rs: rs, msg: msg };
     }
     function SaveMedicalRecord(jzObject, xyzdArray, zyzdArray, blObject, cfDtoArray, jzFinish, fromCfSaveCallback) {
-        //cfDtoArray = '[{"cflx":"cgxmcf","cfHtml":[{"cfzhdysj":null,"sendtohisResult":"1","sfbz":false,"klrq":"2019-05-29T11:22:00.87","cfId":"e86194b8-98f5-4417-81e4-f9b18a846556","cfh":"R20190529N000095","xmmc":"一般诊疗费","xmCode":"3905","dj":9,"dw":"次","bw":"","dwjls":1,"jjcl":2,"mczll":1,"pcmc":"","pcCode":"","sl":1,"zl":1,"je":9,"ybwym":"Pnd9Wl1559100105204","xzsybz":"","cfmxId":"d200c4c3-8d22-4543-ac5c-a203b90961a2","ts":null,"px":1}]},{"cflx":"xycf","cfHtml":[{"cfzhdysj":"2019-05-29T11:20:24.15","sendtohisResult":"1","sfbz":false,"klrq":"2019-05-29T11:09:14.807","cfId":"59536a08-3643-4867-ad79-1957e23cf84c","cfh":"R20190529N000094","zh":"","ypmc":"云南白药膏","ypCode":"00000078","ypgg":"6.5cm×10cm","dj":4.21,"mcjl":1,"mcjldw":"片","mcjldwwwwwww":"片","redundant_jldw":"片","yfmc":"口服","yfCode":"1","pcmc":"ST","pcCode":"00","sl":1,"dw":"片","je":4.21,"zxks":"00000001","ybwym":"u3SZ1F1559099349093","xzsybz":"","cfmxId":"b439c1ba-fd96-4ad4-8978-94085b75d9c9","ts":null,"jxCode":"6","px":1},{"cfzhdysj":"2019-05-29T11:20:24.15","sendtohisResult":"1","sfbz":false,"klrq":"2019-05-29T11:09:14.807","cfId":"59536a08-3643-4867-ad79-1957e23cf84c","cfh":"R20190529N000094","zh":"","ypmc":"(新)可吸收性外科缝线","ypCode":"00000012","ypgg":"6-0","dj":8.75,"mcjl":1,"mcjldw":"包","mcjldwwwwwww":"包","redundant_jldw":"包","yfmc":"吸入用药","yfCode":"5","pcmc":"ST","pcCode":"00","sl":1,"dw":"包","je":8.75,"zxks":"00000001","ybwym":"jH6iCq1559099417059","xzsybz":"","cfmxId":"85251e8d-fe4a-4a89-ab64-f91d2cd24d3b","ts":null,"jxCode":"42","px":2}]},{ "cflx": "zycf", "cfHtml": [{ "cfId": "", "ybwym": "xKNJQb1559100182816", "xzsybz": "", "cfmxId": "", "zxks": "00000001", "cfh": "R20190529N000096", "ypCode": "00000077", "ypmc": "云南白药胶囊", "ypgg": "16粒/盒", "dj": "17.6500", "mcjl": "", "mcjldw": "粒", "ts": "", "sl": "1", "dw": "盒", "je": "17.65", "Remark": "", "tieshu": "1", "cfyf": "", "djbz": false, "sfbz": false, "px": 1 }] },{ "cflx": "jycf", "cfHtml": [{ "xmmc": "Rh血型鉴定", "xmCode": "926", "dj": "6.40", "dw": "次", "zxks": "08", "zxksmc": "检验室", "ztId": "059b16ad-360b-4fc0-a360-7d623e999936", "ztmc": "血型定型测定", "cfh": "R20190529N000098", "px": 1 }, { "xmmc": "ABO血型鉴定", "xmCode": "7", "dj": "1.50", "dw": "项", "zxks": "08", "zxksmc": "检验室", "ztId": "059b16ad-360b-4fc0-a360-7d623e999936", "ztmc": "血型定型测定", "cfh": "R20190529N000098", "px": 2 }] }, { "cflx": "jccf", "cfHtml": [{ "xmmc": "肝、胆、胰腺 超声", "xmCode": "00000017", "sqlx": "US", "bw": "腹部", "bwff": "", "sl": "1", "dj": "63.75", "dw": "次", "zxks": "14", "ztId": "4fe927a7-8081-4404-aa79-4a93bc0fd258", "ztmc": "B超（具体部位）", "zxksmc": "B超室", "sfyb": "", "lcyx": "", "sqbz": "", "cfh": "R20190529N000099", "px": 1 }, { "xmmc": "甲状腺彩色多普勒超声检查", "xmCode": "00000033", "sqlx": "", "bw": "腹部", "bwff": "", "sl": "1", "dj": "63.75", "dw": "次", "zxks": "14", "ztId": "4fe927a7-8081-4404-aa79-4a93bc0fd258", "ztmc": "B超（具体部位）", "zxksmc": "B超室", "sfyb": "", "lcyx": "", "sqbz": "", "cfh": "R20190529N000099", "px": 2 }] }]';
+        //cfDtoArray = '[{"cflx":"cgxmcf","cfHtml":[{"cfzhdysj":null,"sendtohisResult":"1","sfbz":false,"klrq":"2019-05-29T11:22:00.87","cfId":"e86194b8-98f5-4417-81e4-f9b18a846556","cfh":"R20190529N000095","xmmc":"Bình thườngkhámtrịphí","xmCode":"3905","dj":9,"dw":" lần","bw":"","dwjls":1,"jjcl":2,"mczll":1,"pcmc":"","pcCode":"","sl":1,"zl":1,"je":9,"ybwym":"Pnd9Wl1559100105204","xzsybz":"","cfmxId":"d200c4c3-8d22-4543-ac5c-a203b90961a2","ts":null,"px":1}]},{"cflx":"xycf","cfHtml":[{"cfzhdysj":"2019-05-29T11:20:24.15","sendtohisResult":"1","sfbz":false,"klrq":"2019-05-29T11:09:14.807","cfId":"59536a08-3643-4867-ad79-1957e23cf84c","cfh":"R20190529N000094","zh":"","ypmc":"mâynamtrắngthuốc膏","ypCode":"00000078","ypgg":"6.5cm×10cm","dj":4.21,"mcjl":1,"mcjldw":"ảnh","mcjldwwwwwww":"ảnh","redundant_jldw":"ảnh","yfmc":"uống","yfCode":"1","pcmc":"ST","pcCode":"00","sl":1,"dw":"ảnh","je":4.21,"zxks":"00000001","ybwym":"u3SZ1F1559099349093","xzsybz":"","cfmxId":"b439c1ba-fd96-4ad4-8978-94085b75d9c9","ts":null,"jxCode":"6","px":1},{"cfzhdysj":"2019-05-29T11:20:24.15","sendtohisResult":"1","sfbz":false,"klrq":"2019-05-29T11:09:14.807","cfId":"59536a08-3643-4867-ad79-1957e23cf84c","cfh":"R20190529N000094","zh":"","ypmc":"(mới)có thểhítthutínhngoàikhoa缝đường","ypCode":"00000012","ypgg":"6-0","dj":8.75,"mcjl":1,"mcjldw":"gói","mcjldwwwwwww":"gói","redundant_jldw":"gói","yfmc":"hítvàodùngthuốc","yfCode":"5","pcmc":"ST","pcCode":"00","sl":1,"dw":"gói","je":8.75,"zxks":"00000001","ybwym":"jH6iCq1559099417059","xzsybz":"","cfmxId":"85251e8d-fe4a-4a89-ab64-f91d2cd24d3b","ts":null,"jxCode":"42","px":2}]},{ "cflx": "zycf", "cfHtml": [{ "cfId": "", "ybwym": "xKNJQb1559100182816", "xzsybz": "", "cfmxId": "", "zxks": "00000001", "cfh": "R20190529N000096", "ypCode": "00000077", "ypmc": "mâynamtrắngthuốc胶囊", "ypgg": "16hạt/hộp", "dj": "17.6500", "mcjl": "", "mcjldw": "hạt", "ts": "", "sl": "1", "dw": "hộp", "je": "17.65", "Remark": "", "tieshu": "1", "cfyf": "", "djbz": false, "sfbz": false, "px": 1 }] },{ "cflx": "jycf", "cfHtml": [{ "xmmc": "RhNhóm máugiámđịnh", "xmCode": "926", "dj": "6.40", "dw": " lần", "zxks": "08", "zxksmc": "Xét nghiệmphòng", "ztId": "059b16ad-360b-4fc0-a360-7d623e999936", "ztmc": "Nhóm máuđịnhloạiđođịnh", "cfh": "R20190529N000098", "px": 1 }, { "xmmc": "ABONhóm máugiámđịnh", "xmCode": "7", "dj": "1.50", "dw": " mục", "zxks": "08", "zxksmc": "Xét nghiệmphòng", "ztId": "059b16ad-360b-4fc0-a360-7d623e999936", "ztmc": "Nhóm máuđịnhloạiđođịnh", "cfh": "R20190529N000098", "px": 2 }] }, { "cflx": "jccf", "cfHtml": [{ "xmmc": "肝、胆、胰腺 vượttiếng", "xmCode": "00000017", "sqlx": "US", "bw": "bụngbộ", "bwff": "", "sl": "1", "dj": "63.75", "dw": " lần", "zxks": "14", "ztId": "4fe927a7-8081-4404-aa79-4a93bc0fd258", "ztmc": "Bvượt（cụ thểthểVị trí）", "zxksmc": "Bvượtphòng", "sfyb": "", "lcyx": "", "sqbz": "", "cfh": "R20190529N000099", "px": 1 }, { "xmmc": "甲状腺彩màunhiều普勒vượttiếngKiểm tra", "xmCode": "00000033", "sqlx": "", "bw": "bụngbộ", "bwff": "", "sl": "1", "dj": "63.75", "dw": " lần", "zxks": "14", "ztId": "4fe927a7-8081-4404-aa79-4a93bc0fd258", "ztmc": "Bvượt（cụ thểthểVị trí）", "zxksmc": "Bvượtphòng", "sfyb": "", "lcyx": "", "sqbz": "", "cfh": "R20190529N000099", "px": 2 }] }]';
         var jzObject2 = jzObject; jzObject2.action = "";
         $.najax({
             url: "/MedicalRecord/SaveMedicalRecord",
@@ -3105,8 +3105,8 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 var trHead = {GRSBM:patInfoObj.sbbh,CBRXZQH:patInfoObj.cbdbm,JZWYBH:patInfoObj.ybjsh,JYSJ:jysj};
                 var SqtxHead = JSON.stringify(trHead);
                 if (@(iSReminderBeforehand.ToString().ToLower()) == true ) {
-                    jz_sqtx(SqtxHead,patInfoObj);//就诊事前提醒
-                    zd_sqtx(SqtxHead,patInfoObj);//调用诊断事前提醒,不在下方保存处方时调用
+                    jz_sqtx(SqtxHead,patInfoObj);//Khám bệnhnhắc trước
+                    zd_sqtx(SqtxHead,patInfoObj);//gọiChẩn đoánnhắc trước,khôngởphía dướiLưuĐơn thuốckhigọi
                 }
                 if ('@(isOpenRationalUse)' === 'ON'){
                        var jzId  = data.data;
@@ -3120,14 +3120,14 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         $.modalAlert(data.message, 'warning');
                     }
                     if("@SkipPatientList"=="true"){
-                        newtouch_globalevent_f4();  //清空 所有文本、处方、Đơn thuốc lịch sử、grid列表
-                        $('#myTab a:first').trigger('click');   //跳到列表页
-                        window.$("#btn_search").trigger('click'); //刷新患者列表
+                        newtouch_globalevent_f4();  //Xóa trắng tất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
+                        $('#myTab a:first').trigger('click');   //nhảyđếndanh sáchtrang
+                        window.$("#btn_search").trigger('click'); //Làm mớiDanh sách bệnh nhân
                     }
                     else{
                         mrflag = 0;
-                        if(jzFinish){//结束就诊
-                            sessionStorage.removeItem('reqSourcePage');  //先清空
+                        if(jzFinish){//Kết thúcKhám bệnh
+                            sessionStorage.removeItem('reqSourcePage');  //Xóa trắng trước
                             sessionStorage.setItem("reqSourcePage", "fromTreatedPage");
                             window.currPatientInfo.jzzt = '@((int)EnumJzzt.Treated)';
                             reloadTreeView();
@@ -3150,9 +3150,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         $.modalAlert(data.message, 'warning');
                     }
                     if (@(iSReminderBeforehand.ToString().ToLower()) == true ) {
-                        cf_sqtx(SqtxHead,patInfoObj,cfDtoArray,1,true);//调用处方的事前提醒
+                        cf_sqtx(SqtxHead,patInfoObj,cfDtoArray,1,true);//gọiĐơn thuốccủanhắc trước
                     }
-                    //事前提醒
+                    //nhắc trước
                     switch("@medicalInsurance")
                     {
                         case "qinhuangdao":
@@ -3162,7 +3162,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                 yzsqtx();
                             break;
                     }
-                    //秦皇岛智能审核
+                    //Tần Hoàng Đảotrícó thểPhê duyệt
                     @*if("@medicalInsurance"=="qinhuangdao" && cfDtoArray.length>0 && patInfoObj.brxzCode=="1")
                     {
                         qhd_sqtx(xyzdArray, zyzdArray,cfDtoArray);
@@ -3182,7 +3182,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     function  yzsqtx()
     {
         $.ajax({
-            url: "http://127.0.0.1:33333/api/YiBao/DetailAuditFront_3101",//事前审核
+            url: "http://127.0.0.1:33333/api/YiBao/DetailAuditFront_3101",//việctrướcPhê duyệt
             dataType: "json",
             data: { zyh: $('#mzh').text(), operatorId: '@curOpr.UserCode', operatorName: '@curOpr.UserName',orgId: '@(curOpr.OrganizeId)',txlx:"mz" },
             type: "POST",
@@ -3195,20 +3195,20 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             $.modalAlert("Thông tin vi phạm duyệt trước:" + bfDataReturn.output.result[0].vola_cont, 'error');
                         }
                         else {
-                           // $.modalAlert("医保保存成功，但审核失败：【" + bfDataReturn.err_msg + "】请联系HIS工程师", 'error');
+                           // $.modalAlert("Bảo hiểm y tếLưu thành công，nhưngPhê duyệtthất bại：【" + bfDataReturn.err_msg + "】vui lòngliênhệHISKỹ sư", 'error');
                         }
                     } else {
 
                     }
                 }
                 else {
-                    //$.modalAlert("医保保存成功，但审核审核失败：【" + bfDataReturn.err_msg + "】请联系HIS工程师", 'error');
+                    //$.modalAlert("Bảo hiểm y tếLưu thành công，nhưngPhê duyệtPhê duyệtthất bại：【" + bfDataReturn.err_msg + "】vui lòngliênhệHISKỹ sư", 'error');
                 }
             }
         })
     }
 
-    //秦皇岛处方事前提醒
+    //Tần Hoàng ĐảoĐơn thuốcnhắc trước
     function qhd_sqtx(xyzdArray, zyzdArray,cfDtoArray)
     {
             $.najax({
@@ -3222,7 +3222,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     if(data)
                     {
                         $.ajax({
-                            url: "http://127.0.0.1:33333/api/QHDSmartCheck/IntelligentCheck",//智能审核
+                            url: "http://127.0.0.1:33333/api/QHDSmartCheck/IntelligentCheck",//trícó thểPhê duyệt
                             dataType: "json",
                             data: {jydm:data.jydm,xmldata:data.xmldata},
                             type: "POST",
@@ -3288,11 +3288,11 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         return obj;
     }
 
-    //就诊事前提醒
+    //Khám bệnhnhắc trước
     function jz_sqtx(sqtxHead,patInfoObj)
     {
         try {
-            //如果患者为未就诊，且为医保患者,且配置为走事前提醒
+            //VDnếuBệnh nhânlàchưaKhám bệnh，vàlàBảo hiểm y tếBệnh nhân,vàcấu hìnhlàđinhắc trước
             if (!patInfoObj.jzId && patInfoObj.brxzCode != "0" && '@ViewBag.ControlbrxzCode'.indexOf(patInfoObj.brxzCode) > -1 && @(iSReminderBeforehand.ToString().ToLower()) == true && $("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.NotYetTreate)') {
                 $.najax({
                     url: "/MedicalRecord/GetPatJzJson",
@@ -3312,7 +3312,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         }
 
     }
-    //处方事前提醒，cfDtoArray为需提醒数据；dqczlx：单条提醒时，1保存2删除；isbctx:是否调用保存的事前提醒
+    //Đơn thuốcnhắc trước，cfDtoArraylàcầnnhắcnhắcDữ liệu；dqczlx：phiếudòngnhắcnhắckhi，1Lưu2Xóa；isbctx:CóKhônggọiLưucủanhắc trước
     function cf_sqtx(sqtxHead,patInfoObj,cfDtoArray,dqczlx,isbctx)
     {
         try {
@@ -3352,14 +3352,14 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         }
 
     }
-    //点击删除按钮时，调用事前提醒
+    //điểmnhấpXóaNútkhi，gọinhắc trước
     function delSqtx(cflxmc,selRowId)
     {
         if (window.currPatientInfo.brxzCode!="" && '@ViewBag.ControlbrxzCode'.indexOf(window.currPatientInfo.brxzCode) > -1 && @(iSReminderBeforehand.ToString().ToLower()) == true){
             $("#grid"+cflxmc+"").jqGrid('saveRow', selRowId);
             var selRowData = $("#grid"+cflxmc+"").jqGrid("getRowData",selRowId);
-            delete selRowData.action;   //去掉action
-            delete selRowData.jqRowId;   //去掉jqRowId
+            delete selRowData.action;   //Bỏaction
+            delete selRowData.jqRowId;   //BỏjqRowId
             if (!!selRowData.cfmxId) {
                 var delCfSqtxObjList = new Array();
                 var delCfSqtxObj=new Array();
@@ -3376,11 +3376,11 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             }
         }
     }
-    //诊断的事前提醒
+    //Chẩn đoáncủanhắc trước
     function zd_sqtx(sqtxHead,patInfoObj)
     {
         try {
-            //如果患者为未就诊，且为医保患者,且配置为走事前提醒
+            //VDnếuBệnh nhânlàchưaKhám bệnh，vàlàBảo hiểm y tếBệnh nhân,vàcấu hìnhlàđinhắc trước
             if (patInfoObj.brxzCode!="" && '@ViewBag.ControlbrxzCode'.indexOf(patInfoObj.brxzCode) > -1 && @(iSReminderBeforehand.ToString().ToLower()) == true) {
                 var jysj = $.getTime();
                 var ZD={ZS:$('#zs').val(),ZZMS:"",LCBX:"",YWGMS:"",JWS:$('#jws').val(),SG:"",TZ:$('#tizhong').val(),TW:$('#tiwen').val(),XL:$('#maibo').val(),HXPL:"",XX:"",SSY:$('#shousuoya').val(),SZY:$('#shuzhangya').val(),XTZ1:"",XTZ2:$('#xuetang').val(),SFHY:"",YQ:"",PR:""};
@@ -3411,7 +3411,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 });
                 //var Head = JSON.stringify(trHead);
                 var strJzInfo = JSON.stringify(ZD);
-                var strList = JSON.stringify(zdList); //如果有诊断，则调用诊断事前提醒
+                var strList = JSON.stringify(zdList); //VDnếucóChẩn đoán，thìgọiChẩn đoánnhắc trước
                 if (zdList.length>0) {
                     $.shiqian.MzlrZDInfo(sqtxHead,strJzInfo,strList);
                 }
@@ -3422,7 +3422,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         }
 
     }
-    //作废处方时，根据CFID进行事前提醒
+    //Hủy đơn thuốckhi，TheoCFIDvàodòngnhắc trước
     function zfcf_sqtx(delcfid)
     {
         try {
@@ -3461,7 +3461,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
     }
 
-    //另存为模板
+    //Lưu thành mẫu
     function SaveAsMRTemplate(){
         $.modalOpen({
             id: "Form",
@@ -3474,7 +3474,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 if (mbObj && mbObj.mbmc && mbObj.mblx) {
                     $.modalClose("Form");
                 }
-                //病历信息
+                //Hồ sơthông tin
                 var blmbObject = {
                     mbmc: mbObj.mbmc,
                     mblx: mbObj.mblx,
@@ -3486,16 +3486,16 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     hy: $('#hy').val(),
                     ct: $('#ct').val()
                 }
-                //西医诊断
+                //Chẩn đoán Tây y
                 var xyzdArray = new Array();
                 for (var i = 0; i < $('#tablexyzd .zdText').length; i++) {
                     var zdObj = new Object();
                     zdObj.zdmc = $($('#tablexyzd .zdText')[i]).val();
                     zdObj.zdCode = $($('#tablexyzd .zdText')[i]).attr('data-zdCode');
                     zdObj.ysbz = $($('#tablexyzd .zdText')[i]).closest('input[type=checkbox]').is(':checked');
-                    if (zdObj.zdmc && zdObj.zdmc) {    //为的是排除空诊断
+                    if (zdObj.zdmc && zdObj.zdmc) {    //làcủaCóxếptrừtrốngChẩn đoán
                         if (i == 1) {
-                            zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //默认第一个诊断为主诊断  1：主诊断 2副诊断
+                            zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
                         } else {
                             zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Deputy).ToString());
                         }
@@ -3504,16 +3504,16 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     }
                 }
 
-                //中医诊断
+                //Chẩn đoán YHCT
                 var zyzdArray = new Array();
                 for (var i = 0; i < $('#tablezyzd .zdText').length; i++) {
                     var zdObj = new Object();
                     zdObj.zdmc = $($('#tablezyzd .zdText')[i]).val();
                     zdObj.zdCode = $($('#tablezyzd .zdText')[i]).attr('data-zdCode');
                     zdObj.ysbz = $($('#tablezyzd .zdText')[i]).closest('input[type=checkbox]').is(':checked');
-                    if (zdObj.zdmc && zdObj.zdmc) {    //为的是排除空诊断
+                    if (zdObj.zdmc && zdObj.zdmc) {    //làcủaCóxếptrừtrốngChẩn đoán
                         if (i == 1) {
-                            zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //默认第一个诊断为主诊断  1：主诊断 2副诊断
+                            zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
                         }
                         else {
                             zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Deputy).ToString());
@@ -3530,7 +3530,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     type: "POST",
                     success: function (data) {
                         $.modalAlert("LưuMẫuthành công", 'success');
-                        //刷新树
+                        //Làm mớicây
                         reloadTreeView();
                     }
                 });
@@ -3538,7 +3538,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         });
     }
 
-    //清空 所有文本、处方、Đơn thuốc lịch sử、grid列表
+    //Xóa trắng tất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
     function newtouch_event_f4(){
         window.alldataArray=[];
         window.historydataArray=[];
@@ -3589,9 +3589,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     }
 </script>
 
-@**********************样式*************************@
+@**********************kiểu*************************@
 <script>
-    //valid的扩展样式
+    //validcủakiểu mở rộng
     var valOptions = {
         errorPlacement: function (error, element) {
             element.parents('.formValue').addClass('has-error');
@@ -3602,31 +3602,31 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         $('.vitalsignschange').trigger("change");
     });
 
-    //生命体征变化时，查体前缀电话
+    //dấu hiệu sinh tồnđổihóakhi，trathểtrướchậu tốĐiện thoại
     $('.vitalsignschange').change(function () {
         //$('#ct').val("");
-        var xuetangclfs = "";//血糖测量方式
+        var xuetangclfs = "";//đường huyếtphương thức đo
         if ($("#xuetangclfs").val() == "") {
         } else {
             xuetangclfs = $("#xuetangclfs option:selected").text() + ",";
         }
         var cfzbz = $('[name="cfzbzRadios"]:checked').val();
-        var cthtml = "";//医生可能会手写一些查体，需保留下来
+        var cthtml = "";//Bác sĩcó thểcó thểsẽtayviếtmột些trathể，cầnbảogiữdướiđến
         if ($('#ct').val().split('Khám lần đầu;').length>1) {
             cthtml = $('#ct').val().split('Khám lần đầu;')[1];
         }
         if ($('#ct').val().split('Tái khám;').length>1) {
 	        cthtml = $('#ct').val().split('Tái khám;')[1];
         }
-		//if (cthtml == "") {//生命体征未写入查体时 获取查体内容 保留  2022年6月30日??生命体征内容重复
+		//if (cthtml == "") {//dấu hiệu sinh tồnchưaviếtvàotrathểkhi Lấytrathểnội dung bảogiữ  2022năm6Tháng30ngày??dấu hiệu sinh tồnnội dungtrùng lặp
 		//	cthtml = $('#ct').val();
 		//}
-        //查体
+        //trathể
 	    var ctPrefix = "Chiều cao：" + $('#shengao').val() + "cm；" + "Cân nặng：" + $('#tizhong').val() + "kg；" + "Nhiệt độ：" + $('#tiwen').val() + "℃；" + "Mạch：" + $('#maibo').val() + "lần/phút；" + "Huyết áp tâm thu：" + $('#shousuoya').val() + "mmHg；" + "Huyết áp tâm trương：" + $('#shuzhangya').val() + "mmHg；" + "Đường huyết：" + xuetangclfs + $('#xuetang').val() + "mmol/L；Hô hấp：" + $('#huxi').val() + "lần/phút；" + (cfzbz == "1" ? "Tái khám":"Khám lần đầu")+"；"+cthtml;
 	    $('#ct').val(ctPrefix);
     })
 
-    //西医诊断浮层
+    //Chẩn đoán Tây ylớp nổi
     function bindXyzdFloatingSelector($ele){
         $ele.zdFloatingSelector({
             zdlx:"WM",
@@ -3635,7 +3635,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 $thisinput.val($thistr.attr('data-zdmc'))
                     .attr('data-zdCode', $thistr.attr('data-zdCode')).attr('data-icd10', $thistr.attr('data-icd10')).attr('data-py', $thistr.attr('data-py'));
                 $thisinput.parent().next().next().find("input").val($thistr.attr('data-icd10'));
-                //显示 隐藏 删除icon
+                //Hiển thị Ẩn Xóaicon
                 if (!!$.trim($thisinput.val())) {
                     $thisinput.siblings('.fa.fa-times').show();
                 }
@@ -3646,7 +3646,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         });
     }
     //bindXyzdFloatingSelector($("#tablexyzd .zdText"));
-    //中医诊断浮层
+    //Chẩn đoán YHCTlớp nổi
     function bindZyzdFloatingSelector($ele){
         $ele.zdFloatingSelector({
             zdlx:"TCM",
@@ -3654,7 +3654,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             itemdbclickhandler: function ($thistr, $thisinput) {
                 $thisinput.val($thistr.attr('data-zdmc'))
                     .attr('data-zdCode', $thistr.attr('data-zdCode')).attr('data-icd10', $thistr.attr('data-icd10')).attr('data-py', $thistr.attr('data-py'));
-                //显示 隐藏 删除icon
+                //Hiển thị Ẩn Xóaicon
                 if (!!$.trim($thisinput.val())) {
                     $thisinput.siblings('.fa.fa-times').show();
                 }
@@ -3665,13 +3665,13 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         });
     }
     //bindXyzdFloatingSelector($("#tablezyzd .zdText"));
-    //症侯浮层
+    //hội chứnglớp nổi
     function bindZyzhFloatingSelector($ele){
         $ele.zyzhFloatingSelector({
             itemdbclickhandler: function ($thistr, $thisinput) {
                 $thisinput.val($thistr.attr('data-zhmc'))
                     .attr('data-zhCode', $thistr.attr('data-zhCode'));
-                //显示 隐藏 删除icon
+                //Hiển thị Ẩn Xóaicon
                 if (!!$.trim($thisinput.val())) {
                     $thisinput.siblings('.fa.fa-times').show();
                 }
@@ -3681,48 +3681,48 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             }
         });
     }
-    //症侯浮层
+    //hội chứnglớp nổi
     bindZyzhFloatingSelector($("#tablezyzd .zhText"));
 
-    //西医常用诊断
+    //tâyythường dùngChẩn đoán
     function bindXycyzdFloatingSelector(num) {
         xycyzdLoad(num);
 
     }
 
-    //中医常用诊断
+    //trongythường dùngChẩn đoán
     function bindZyyczdFloatingSelector(num) {
         zycyzdLoad(num);
     }
 
-    //西医诊断 新增icon
+    //Chẩn đoán Tây y Thêm mớiicon
     $('#tablexyzd .plusToggleCircle').click(function () {
         var number = $('#tablexyzd .zdText').length + 1;
-        //var $newTr = $('<tr><th class="formTitle">副7</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
+        //var $newTr = $('<tr><th class="formTitle">phụ7</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
         var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td class="formValue"><input type="text" id="ywxs' + number + '" name="ywxs' + number + '" class="form-control activeValue focusInput ywxsText" style="width:100%;" placeholder="Vui lòng chọn vị trí răng" /></td><td class="formValue"><input type="text" id="icd10' + number + '" name="icd10' + number + '" class="form-control activeValue focusInput gjybxsText" style="width:100%;" placeholder="Mã BHYT quốc gia" /></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td> <span onclick="DiagsList(' + number + ',1)" style="background-image:url(' + "'" + '../../Content/img/Hồ sơ chẩn đoán.png' + "'" + ');width:20px;height:20px;display:block;background-size:20px;background-repeat:no-repeat;padding-bottom:2px;" title="Hồ sơ chẩn đoán"></span></td ><td ><span  onclick="AddDiags(' + number + ',1)" class="glyphicon glyphicon-share" style="color: rgb(255, 140, 60);font-size:15px;padding-left: 4px;padding-right: 2px;" title="ThêmThường dùngChẩn đoán"></span></td><th class="formTitle">Thường dùngChẩn đoán</th><td class="formValue"><input type="text"  id="xycyzdoption' + number + '" name="xycyzdoption' + number + '" class="form-control activeValue focusInput xycyzdoptionText" /></td><th class="formTitle">Ghi chú</th><td class="formValue"><input type="text" id="bz' + number + '" name="bz' + number + '" class="form-control activeValue focusInput xyzdbzText" style="width:70%;" /></td><td class="formValue"><input id="rpt_ywtxs" type="button" class="btn btn-primary" value="Sơ đồ vị trí răng" onclick="ywtxs(' + number + ')"></td><td class="formValue"><input type="text" id="ywstr' + number + '" name="ywstr' + number + '"  hidden="hidden"  class="form-control activeValue focusInput xyywtstrText  hidden" /></td><td class="formValue"><input type="text" id="ywlx' + number + '" name="ywlx' + number + '"  hidden="hidden" class="form-control activeValue focusInput xyywtlxText  hidden" /></td></tr > ');
         $newTr.appendTo($(this).closest('table'));
-        //西医诊断浮层
+        //Chẩn đoán Tây ylớp nổi
         bindXyzdFloatingSelector($newTr.find(".zdText"));
-        //常用诊断浮层
+        //thường dùngChẩn đoánlớp nổi
         bindXycyzdFloatingSelector(number);
 
     });
 
-    //中医诊断 新增icon
+    //Chẩn đoán YHCT Thêm mớiicon
     $('#tablezyzd .plusToggleCircle').click(function () {
         var number = $('#tablezyzd .zdText').length + 1;
-        //var $newTr = $('<tr><th class="formTitle">副8</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">症候</th><td class="formValue"><input type="text" id="zh' + number + '" class="form-control activeValue focusInput zhText" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
+        //var $newTr = $('<tr><th class="formTitle">phụ8</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">hội chứng</th><td class="formValue"><input type="text" id="zh' + number + '" class="form-control activeValue focusInput zhText" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
         var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">Triệu chứng</th><td class="formValue"><input type="text" id="zh' + number + '" class="form-control activeValue focusInput zhText" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td> <span onclick="DiagsList(' + number + ',2)" style="background-image:url(' + "'" + '../../Content/img/Hồ sơ chẩn đoán.png' + "'" + ');width:20px;height:20px;display:block;background-size:20px;background-repeat:no-repeat;padding-bottom:2px;" title="Hồ sơ chẩn đoán"></span></td ><td ><span  onclick="AddDiags(' + number + ',2)" class="glyphicon glyphicon-share" style="color: rgb(255, 140, 60);font-size:15px;padding-left: 4px;padding-right: 2px;" title="ThêmThường dùngChẩn đoán"></span></td><th class="formTitle">Thường dùngChẩn đoán</th><td class="formValue"><input type="text"  id="zycyzdoption' + number + '" name="zycyzdoption' + number + '" class="form-control activeValue focusInput zycyzdoptionText" /></td><th class="formTitle">Ghi chú</th><td class="formValue"><input type="text" id="bz' + number + '" name="bz' + number +'" class="form-control activeValue focusInput zyzdbzText" style="width:70%;" /></td></tr>');
          $newTr.appendTo($(this).closest('table'));
-        //中医诊断浮层
+        //Chẩn đoán YHCTlớp nổi
         bindZyzdFloatingSelector($newTr.find(".zdText"));
-        //症侯浮层
+        //hội chứnglớp nổi
         bindZyzhFloatingSelector($newTr.find(".zhText"));
-        //常用诊断浮层
+        //thường dùngChẩn đoánlớp nổi
         bindZyyczdFloatingSelector(number);
     });
 
-    //隐藏 显示 删除icon
+    //Ẩn Hiển thị Xóaicon
     $('#form1').on('keyup click change blur', '.activeValue', function(){
         if (!!$.trim($(this).val())) {
             $(this).siblings('.fa.fa-times').show();
@@ -3732,36 +3732,36 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         }
     });
 
-    //清空icon事件
+    //Xóa trắngiconsự kiện
     $('#form1').on('click', '.fa.fa-times', function(){
         $(this).siblings('input.form-control').val('').attr('data-zdCode',"");
         $(this).siblings('textarea.form-control').val('');
         $(this).hide();
     });
 
-    //删除icon
+    //Xóaicon
     $('#form1').on('click', '.minusToggleCircle', function(){
         $(this).closest('tr').remove();
     })
 
-    //文本聚焦事件，高亮和展开树节点
+    //văn bản聚tiêu điểmsự kiện，caosángvàtriểnmởcâytiếtđiểm
     var lasthtml;
     $('.focusInput').focus(function(){
         var focusThHtml = $(this).parent().prev().html().replace(/<[^>]*>|<\/[^>]*>/gm,"").replace(new RegExp(/(:)/g),'').replace('*','')
 
         if(lasthtml){
-            $('div [title=' + lasthtml + ']').parent().css('background-color','');   //去高亮
+            $('div [title=' + lasthtml + ']').parent().css('background-color','');   //đicaosáng
         }
         if(focusThHtml && $('div [title='+focusThHtml+']').length==1){
-            $('div [title=' + focusThHtml + ']').parent().css('background-color','#ffff00');  //高亮
+            $('div [title=' + focusThHtml + ']').parent().css('background-color','#ffff00');  //caosáng
             lasthtml = focusThHtml;
         }
         else{
             shrinkFun();
         }
-        //先收缩
+        //trướcthuthu nhỏ
         $('div [title=' + focusThHtml + ']').parent('li.bbit-tree-node').parent('ul').find('img.bbit-tree-elbow-minus, img.bbit-tree-elbow-end-minus').trigger('click');
-        //再展开
+        //lạitriểnmở
         $('div [title=' + focusThHtml + ']').find('img.bbit-tree-elbow-plus, img.bbit-tree-elbow-end-plus').trigger('click');
     });
 
@@ -3769,24 +3769,24 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         shrinkFun();
     });
 
-    //收缩函数
+    //thuthu nhỏhàmsố
     function shrinkFun(){
         var parentnode = $('div [title=Hỗ trợTừ điển]').siblings('ul');
         if(parentnode && parentnode.find('img.bbit-tree-elbow-minus, img.bbit-tree-elbow-end-minus')){
             var childnode =parentnode.find('img.bbit-tree-elbow-minus, img.bbit-tree-elbow-end-minus')
             $.each(childnode, function(){
-                $(this).trigger('click');    //先收缩
+                $(this).trigger('click');    //trướcthuthu nhỏ
             });
             var childnode2 = parentnode.children('li');
             $.each(childnode2,function(){
-                $(this).css('background-color','');   //去高亮
+                $(this).css('background-color','');   //đicaosáng
             });
         }
     }
 
-    var alldataArray = new Array();    //全局变量，用来存放所有处方数据
-    var historydataArray = new Array();  //全局变量，用来存放Đơn thuốc lịch sử数据
-    //接收'处方'数据 呈现之   typeFlag  区分下面树
+    var alldataArray = new Array();    //biến toàn cục，dùngđếntồn tạiđặttất cảĐơn thuốcDữ liệu
+    var historydataArray = new Array();  //biến toàn cục，dùngđếntồn tạiđặtĐơn thuốc lịch sửDữ liệu
+    //nhậnthu'Đơn thuốc'Dữ liệu hiển thị   typeFlag  khuphútphía dướicây
     function triggleActive(typeFlag) {
         var newdataArray = new Array();
         var $newtableKfmx;
@@ -3797,7 +3797,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         var $newtableJymx;
 		var $newtableJcmx;
 		var $newtableDzCfMx
-        if(typeFlag == "historynodeContent"){   //结束就诊的病历内容
+        if(typeFlag == "historynodeContent"){   //Kết thúcKhám bệnhcủaHồ sơnội dung
             newdataArray = window.historydataArray;
             $newtableKfmx = $('#tableNC_KfMx');
             $newtableCgxmmx = $('#tableNC_CgxmMx');
@@ -3820,23 +3820,23 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 			$newtableDzCfMx = $('#tableDzcfMx');
         }
         if (newdataArray && Object.keys(newdataArray)) {
-            //alldataArray :[kfcf:[{cfh：‘处方1’，xmmc：‘’},{cfh：‘处方2’，xmmc：‘’}，{cfh：‘处方1’，xmmc：‘’}]]
-            //1.遍历所有数据
+            //alldataArray :[kfcf:[{cfh：‘Đơn thuốc1’，xmmc：‘’},{cfh：‘Đơn thuốc2’，xmmc：‘’}，{cfh：‘Đơn thuốc1’，xmmc：‘’}]]
+            //1.duyệttất cảDữ liệu
             $.each(Object.keys(newdataArray), function () {    //Object.keys(newdataArray):["kfcf"]
                 var itemsKey = String(this);      //String(Object.keys(newdataArray):["kfcf"]) : kfcf
-                //2.根据每个索引找到其对应的Value（value是一个数组，数组里是多个对象）
-                var itemsMxArr = newdataArray[String(this)];    //itemsMxArr 取出key为kfcf的所有明细
-                // 3.1.1找到key是否为康复处方
+                //2.Theomỗicáitìmdẫntìmđếncủa nótương ứngcủaValue（valueCómộtsốnhóm，sốnhómtrongCónhiềucáiđối tượng）
+                var itemsMxArr = newdataArray[String(this)];    //itemsMxArr lấyrakeylàkfcfcủatất cảchi tiết
+                // 3.1.1tìmđếnkeyCóKhônglàPhục hồi chức năngĐơn thuốc
                 if (itemsKey == "kfcf") {
-                    $newtableKfmx.html('');   //先清空html
+                    $newtableKfmx.html('');   //Xóa trắng trướchtml
                     var typeClassificationArr = new Array();
                     for (var i = 0; i < itemsMxArr.length; i++) {
                         var cfh = itemsMxArr[i].cfh;
-                        //3.3 判断分类数组是否存在该处方号
+                        //3.3 kiểm traPhân loạisốnhómCóKhôngtồn tạiởSố đơn thuốc
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 若存在，则push该处方号下面的处方明细
+                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
@@ -3864,7 +3864,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             }
                             let toJe = "";
                             if (JeArrays.length > 0) toJe = JeArrays.reduce((prev, items) => { return prev += parseFloat(items.je) }, 0).toFixed(2);
-                            //3.3.2 若不存在，则push
+                            //3.3.2 nếukhôngtồn tạiở，thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                 ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -3877,7 +3877,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //遍历处方，呈现之
+                    //duyệtĐơn thuốc，hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
@@ -3921,18 +3921,18 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         thisHtml +=  '<td>' + lasttdContent + '</td></tr>'
                         $newtableKfmx.append(thisHtml);
                     }
-                    //对整个类型的处方操作    暂无
+                    //đốichỉnhcáiLoạicủaĐơn thuốcThao tác    chưa có
                 }
                 if (itemsKey == "cgxmcf") {
-                    $newtableCgxmmx.html('');   //先清空html
+                    $newtableCgxmmx.html('');   //Xóa trắng trướchtml
                     var typeClassificationArr = new Array();
                     for (var i = 0; i < itemsMxArr.length; i++) {
                         var cfh = itemsMxArr[i].cfh;
-                        //3.3 判断分类数组是否存在该处方号
+                        //3.3 kiểm traPhân loạisốnhómCóKhôngtồn tạiởSố đơn thuốc
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 若存在，则push该处方号下面的处方明细
+                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
@@ -3955,7 +3955,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
                             let toJe = "";
                             if (JeArrays.length > 0) toJe = JeArrays.reduce((prev, items) => { return prev += parseFloat(items.je) }, 0).toFixed(2);
-                            //3.3.2 若不存在，则push
+                            //3.3.2 nếukhôngtồn tạiở，thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                 ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -3968,7 +3968,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //遍历处方，呈现之
+                    //duyệtĐơn thuốc，hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
@@ -4007,18 +4007,18 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         thisHtml +=  '<td>' + lasttdContent + '</td></tr>'
                         $newtableCgxmmx.append(thisHtml);
                     }
-                    //对整个类型的处方操作    暂无
+                    //đốichỉnhcáiLoạicủaĐơn thuốcThao tác    chưa có
                 }
                 if (itemsKey == "wzhccf") {
-                    $newtableYyhcmx.html('');   //先清空html
+                    $newtableYyhcmx.html('');   //Xóa trắng trướchtml
                     var typeClassificationArr = new Array();
                     for (var i = 0; i < itemsMxArr.length; i++) {
                         var cfh = itemsMxArr[i].cfh;
-                        //3.3 判断分类数组是否存在该处方号
+                        //3.3 kiểm traPhân loạisốnhómCóKhôngtồn tạiởSố đơn thuốc
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 若存在，则push该处方号下面的处方明细
+                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
@@ -4041,7 +4041,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
                             let toJe = "";
                             if (JeArrays.length > 0) toJe = JeArrays.reduce((prev, items) => { return prev += parseFloat(items.je) }, 0).toFixed(2);
-                            //3.3.2 若不存在，则push
+                            //3.3.2 nếukhôngtồn tạiở，thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                 ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -4054,7 +4054,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //遍历处方，呈现之
+                    //duyệtĐơn thuốc，hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
@@ -4088,16 +4088,16 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         thisHtml +=  '<td>' + lasttdContent + '</td></tr>'
                         $newtableYyhcmx.append(thisHtml);
                     }
-                    //对整个类型的处方操作    暂无
+                    //đốichỉnhcáiLoạicủaĐơn thuốcThao tác    chưa có
                 }
-                // 3.1.2找到key是否为西药处方
+                // 3.1.2tìmđếnkeyCóKhônglàThuốc TâyĐơn thuốc
                 if (itemsKey == "xycf") {
-                    $newtableXymx.html('');   //先清空html
+                    $newtableXymx.html('');   //Xóa trắng trướchtml
                     var typeClassificationArr = new Array();
                     for (var i = 0; i < itemsMxArr.length; i++) {
-                        var Iscontainwh = false;//雾化单
-                        var Iscontainzs = false;//注射单
-                        var Iscontainsy=false;//输液单
+                        var Iscontainwh = false;//khí dungphiếu
+                        var Iscontainzs = false;//Lưu ýxạphiếu
+                        var Iscontainsy=false;//truyền dịchphiếu
                         var cfh = itemsMxArr[i].cfh;
                         if (itemsMxArr[i].yfCode) {
                             if ('@ViewBag.ControlwhyfCode' != "" && '@ViewBag.ControlwhyfCode'.indexOf(","+itemsMxArr[i].yfCode+",") > -1) {
@@ -4111,7 +4111,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             }
                         }
 
-                        //3.3 判断分类数组是否存在该处方号
+                        //3.3 kiểm traPhân loạisốnhómCóKhôngtồn tạiởSố đơn thuốc
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             if (v && v.cfh == cfh && !v.Iscontainwh && Iscontainwh) {
                                 v.Iscontainwh = Iscontainwh;
@@ -4124,7 +4124,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             }
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 若存在，则push该处方号下面的处方明细
+                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
@@ -4147,7 +4147,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
                             let toJe = "";
                             if (JeArrays.length > 0) toJe = JeArrays.reduce((prev, items) => { return prev += parseFloat(items.je) }, 0).toFixed(2);
-                            //3.3.2 若不存在，则push
+                            //3.3.2 nếukhôngtồn tạiở，thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                   ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -4164,7 +4164,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //遍历处方，呈现之
+                    //duyệtĐơn thuốc，hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         var isysh = isyshycx(typeClassificationArr[i].cfh);
@@ -4213,11 +4213,11 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         thisHtml +=  '<td>' + lasttdContent + '</td></tr>'
                         $newtableXymx.append(thisHtml);
                     }
-                    //对整个类型的处方操作    暂无
+                    //đốichỉnhcáiLoạicủaĐơn thuốcThao tác    chưa có
                 }
-                // 3.1.3找到key是否为中药处方
+                // 3.1.3tìmđếnkeyCóKhônglàThuốc Đông yĐơn thuốc
                 if (itemsKey == "zycf") {
-                    $newtableZymx.html('');   //先清空html
+                    $newtableZymx.html('');   //Xóa trắng trướchtml
                     var typeClassificationArr = new Array();
                     for (var i = 0; i < itemsMxArr.length; i++) {
 
@@ -4233,7 +4233,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                 Iscontainzs = true;
                             }
                         }
-                        //3.3 判断分类数组是否存在该处方号
+                        //3.3 kiểm traPhân loạisốnhómCóKhôngtồn tạiởSố đơn thuốc
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             if (v && v.cfh == cfh && !v.Iscontainwh && Iscontainwh) {
                                 v.Iscontainwh = Iscontainwh;
@@ -4243,7 +4243,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             }
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 若存在，则push该处方号下面的处方明细
+                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
@@ -4265,7 +4265,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             }
                             let toJe = "";
                             if (JeArrays.length > 0) toJe = JeArrays.reduce((prev, items) => { return prev += parseFloat(roundingBy4she6ru5chengshuang(items.je, 2)) }, 0).toFixed(2);
-                            //3.3.2 若不存在，则push
+                            //3.3.2 nếukhôngtồn tạiở，thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                    ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -4281,7 +4281,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //遍历处方，呈现之
+                    //duyệtĐơn thuốc，hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         var isysh = isyshycx(typeClassificationArr[i].cfh);
@@ -4322,19 +4322,19 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         thisHtml +=  '<td>' + lasttdContent + '</td></tr>'
                         $newtableZymx.append(thisHtml);
                     }
-                    //对整个类型的处方操作    暂无
+                    //đốichỉnhcáiLoạicủaĐơn thuốcThao tác    chưa có
                 }
-                // 3.1.4找到key是否为检验申请单
+                // 3.1.4tìmđếnkeyCóKhônglàXét nghiệmPhiếu
                 if (itemsKey == "jycf") {
-                    $newtableJymx.html('');   //先清空html
+                    $newtableJymx.html('');   //Xóa trắng trướchtml
                     var typeClassificationArr = new Array();
                     for (var i = 0; i < itemsMxArr.length; i++) {
                         var cfh = itemsMxArr[i].cfh;
-                        //3.3 判断分类数组是否存在该处方号
+                        //3.3 kiểm traPhân loạisốnhómCóKhôngtồn tạiởSố đơn thuốc
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 若存在，则push该处方号下面的处方明细
+                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
@@ -4357,7 +4357,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
                             let toJe = "";
                             if (JeArrays.length > 0) toJe = JeArrays.reduce((prev, items) => { return prev += items.je }, 0).toFixed(2);
-                            //3.3.2 若不存在，则push
+                            //3.3.2 nếukhôngtồn tạiở，thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                          ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -4368,7 +4368,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //遍历处方，呈现之
+                    //duyệtĐơn thuốc，hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="PhiếuChi tiết" >Req</a>';
@@ -4383,7 +4383,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                     lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy đơn thuốc" ><i class="fa fa-trash-o"></i></a>';
                                 }
                             }
-                            //lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="打印检验处方" ><i class="fa fa-print"></i></a>';
+                            //lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="InXét nghiệmĐơn thuốc" ><i class="fa fa-print"></i></a>';
 
                             lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="In phiếu xét nghiệm" ><i class="fa fa-print"></i></a>';
 
@@ -4400,19 +4400,19 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         thisHtml +=  '<td>' + lasttdContent + '</td></tr>'
                         $newtableJymx.append(thisHtml);
                     }
-                    //对整个类型的处方操作    暂无
+                    //đốichỉnhcáiLoạicủaĐơn thuốcThao tác    chưa có
                 }
-                // 3.1.5找到key是否为检查申请单
+                // 3.1.5tìmđếnkeyCóKhônglàKiểm traPhiếu
                 if (itemsKey == "jccf") {
-                    $newtableJcmx.html('');   //先清空html
+                    $newtableJcmx.html('');   //Xóa trắng trướchtml
                     var typeClassificationArr = new Array();
                     for (var i = 0; i < itemsMxArr.length; i++) {
                         var cfh = itemsMxArr[i].cfh;
-                        //3.3 判断分类数组是否存在该处方号
+                        //3.3 kiểm traPhân loạisốnhómCóKhôngtồn tạiởSố đơn thuốc
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 若存在，则push该处方号下面的处方明细
+                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
@@ -4435,7 +4435,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
                             let toJe = "";
                             if (JeArrays.length > 0) toJe = JeArrays.reduce((prev, items) => { return prev += items.je }, 0).toFixed(2);
-                            //3.3.2 若不存在，则push
+                            //3.3.2 nếukhôngtồn tạiở，thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                 ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -4446,7 +4446,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //遍历处方，呈现之
+                    //duyệtĐơn thuốc，hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="PhiếuChi tiết" >Req</a>';
@@ -4461,7 +4461,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                     lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy đơn thuốc" ><i class="fa fa-trash-o"></i></a>';
                                 }
                             }
-                            //lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="打印检查处方" ><i class="fa fa-print"></i></a>';
+                            //lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="InKiểm traĐơn thuốc" ><i class="fa fa-print"></i></a>';
                             lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="In phiếu kiểm tra" ><i class="fa fa-print"></i></a>';
 
                         }
@@ -4477,13 +4477,13 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         thisHtml +=  '<td>' + lasttdContent + '</td></tr>'
                         $newtableJcmx.append(thisHtml);
                     }
-                    //对整个类型的处方操作    暂无
+                    //đốichỉnhcáiLoạicủaĐơn thuốcThao tác    chưa có
 				}
-				// 3.1.2找到key是否为电子处方
+				// 3.1.2tìmđếnkeyCóKhônglàđiện tửĐơn thuốc
                 @*if (itemsKey == "dzcf") {
-					$newtableDzCfMx.html('');   //先清空html
+					$newtableDzCfMx.html('');   //Xóa trắng trướchtml
 					var typeClassificationArr = new Array();
-					//console.log("电子处方数据：", itemsMxArr);
+					//console.log("điện tửĐơn thuốcDữ liệu：", itemsMxArr);
                     for (var i = 0; i < itemsMxArr.length; i++) {
                         var Iscontainwh = false;
                         var Iscontainzs = false;
@@ -4497,7 +4497,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             }
                         }
 
-                        //3.3 判断分类数组是否存在该处方号
+                        //3.3 kiểm traPhân loạisốnhómCóKhôngtồn tạiởSố đơn thuốc
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             if (v && v.cfh == cfh && !v.Iscontainwh && Iscontainwh) {
                                 v.Iscontainwh = Iscontainwh;
@@ -4507,12 +4507,12 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             }
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 若存在，则push该处方号下面的处方明细
+                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
                         else {
-                            //3.3.2 若不存在，则push
+                            //3.3.2 nếukhôngtồn tạiở，thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                   ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -4526,49 +4526,49 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //遍历处方，呈现之
+                    //duyệtĐơn thuốc，hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
-                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="处方明细" >Rp</a>';
+                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcchi tiết" >Rp</a>';
                         if(typeFlag != "historynodeContent" && !(window.currPatientInfo && window.currPatientInfo.jzzt == '@((int)EnumJzzt.Treated)')){
                             //if(typeClassificationArr[i].sfbz == false){
-                            //    lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconEditSingleCf" title="修改处方"><i class="fa fa-pencil-square-o"></i></a>';
+                            //    lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconEditSingleCf" title="SửaĐơn thuốc"><i class="fa fa-pencil-square-o"></i></a>';
                             //}
                         }
                         if (!!typeClassificationArr[i].cfId) {
                             if(typeFlag != "historynodeContent" && !(window.currPatientInfo && window.currPatientInfo.jzzt == '@((int)EnumJzzt.Treated)')){
                                 if(typeClassificationArr[i].sfbz == false){
                                     if(!(typeClassificationArr[i].sendtohisResult == 1)){
-                                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSendSingleCf" title="发送处方" ><i class="fa fa-paper-plane-o"></i></a>';
+                                        lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSendSingleCf" title="gửiĐơn thuốc" ><i class="fa fa-paper-plane-o"></i></a>';
                                     }
-                                    lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="作废处方" ><i class="fa fa-trash-o"></i></a>';
+                                    lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy đơn thuốc" ><i class="fa fa-trash-o"></i></a>';
                                 } else if (typeClassificationArr[i].sfbz && typeClassificationArr[i].tbz) {
-                                    lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="作废处方" ><i class="fa fa-trash-o"></i></a>';
+                                    lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy đơn thuốc" ><i class="fa fa-trash-o"></i></a>';
                                 }
 							}
-							lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconChkInfoSingleCf" title="电子处方审核结果" ><i class="fa fa-paper-plane-o"></i></a>';
-							lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSetlInfoSingleCf" title="电子处方取药结果" ><i class="fa fa-paper-plane-o"></i></a>';
-                            lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="打印电子处方" ><i class="fa fa-print"></i></a>';
+							lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconChkInfoSingleCf" title="điện tửĐơn thuốcPhê duyệtkếtnếu" ><i class="fa fa-paper-plane-o"></i></a>';
+							lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconSetlInfoSingleCf" title="điện tửĐơn thuốclấythuốckếtnếu" ><i class="fa fa-paper-plane-o"></i></a>';
+                            lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="Inđiện tửĐơn thuốc" ><i class="fa fa-print"></i></a>';
 
                         }
                         var thisHtml = '<tr style="line-height:30px;" data-cfId="' + typeClassificationArr[i].cfId + '" data-cflx="dzcf" data-cfh="' + typeClassificationArr[i].cfh + '">';
                         thisHtml += '<td>' + typeClassificationArr[i].cfh + '</td>';
                         if(typeFlag != "historynodeContent"){
                             thisHtml += '<td>' + $.getDate({date: typeClassificationArr[i].klrq, ute:true}) + '</td>';
-                            thisHtml += '<td>' + (typeClassificationArr[i].sendtohisResult == '1' ? '已同步' : '未同步') + '</td>';
-                            thisHtml += '<td>' + (typeClassificationArr[i].sfbz == false ? '未收费' : (typeClassificationArr[i].tbz ? '已退费':'已收费')) + '</td>';
+                            thisHtml += '<td>' + (typeClassificationArr[i].sendtohisResult == '1' ? 'đãĐồng bộ' : 'chưaĐồng bộ') + '</td>';
+                            thisHtml += '<td>' + (typeClassificationArr[i].sfbz == false ? 'Chưa thu phí' : (typeClassificationArr[i].tbz ? 'Đã hoàn phí':'Đã thu phí')) + '</td>';
                             thisHtml += '<td>' + $.getTime({date:typeClassificationArr[i].cfzhdysj,ute:true}) + '</td>';
                         }
                         thisHtml +=  '<td>' + lasttdContent + '</td></tr>'
 						$newtableDzCfMx.append(thisHtml);
                     }
-                    //对整个类型的处方操作    暂无
+                    //đốichỉnhcáiLoạicủaĐơn thuốcThao tác    chưa có
                 }*@
             })
         }
     }
 
-    //向HISGửi单个处方
+    //tớiHISGửiphiếucáiĐơn thuốc
     $(document).on('click', '.iconSendSingleCf', function(e){
         var type = $(this).closest('tr').attr('data-cflx');
 		var cfId = $(this).closest('tr').attr('data-cfId');
@@ -4587,7 +4587,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             success: function (data) {
                 if(data.state && data.state == 'success' && !(data.data === false)){
                     $.modalAlert("Gửithành công", 'success');
-                    //更新页面上的同步状态 已同步
+                    //Cập nhậttrangmặttrêncủaTrạng thái đồng bộ đãĐồng bộ
                     updateSendtohisResult(type, cfh);
                 }
                 else{
@@ -4610,7 +4610,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     }
 
 	var url = '@dzcfUrl';
-	//电子处方上传
+	//điện tửĐơn thuốcTải lên
 	function dzcfsc(type,cfh) {
 		var upload = '';
 		var errorCode = '';
@@ -4629,14 +4629,14 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 				} else {
 					errorCode = ret.errorCode;
 					$.modalAlert("Gửithất bại" + errorCode, 'error');
-					//return "保存失败,失败原因是:" + errorCode + "。";
+					//return "Lưu thất bại,thất bạinguyên nhânCó:" + errorCode + "。";
 				}
 			}
 		});
 
 	}
 
-	//电子处方撤销并删除
+	//điện tửĐơn thuốcThu hồivàXóa
 	function dzcfcx(type,cfh, cfid) {
 
 		$.modalOpen({
@@ -4666,7 +4666,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 							} else {
 								errorCode = ret.errorCode;
 								$.modalAlert("Hủy bỏthất bại" + errorCode, 'error');
-								//return "保存失败,失败原因是:" + errorCode + "。";
+								//return "Lưu thất bại,thất bạinguyên nhânCó:" + errorCode + "。";
 							}
 						}
 					});
@@ -4676,7 +4676,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
 	}
 
-	//电子处方审核结果
+	//điện tửĐơn thuốcPhê duyệtkếtnếu
 	$(document).on('click', '.iconChkInfoSingleCf', function (e) {
 		var type = $(this).closest('tr').attr('data-cflx');
 		var cfId = $(this).closest('tr').attr('data-cfId');
@@ -4690,7 +4690,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 		}
 
 	});
-	//电子处方取药结果
+	//điện tửĐơn thuốclấythuốckếtnếu
 	$(document).on('click', '.iconSetlInfoSingleCf', function (e) {
 		var type = $(this).closest('tr').attr('data-cflx');
 		var cfId = $(this).closest('tr').attr('data-cfId');
@@ -4705,7 +4705,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
 	});
 
-	//电子处方审核结果
+	//điện tửĐơn thuốcPhê duyệtkếtnếu
 	function dzcfshjg(type,cfh,cfid) {
 		$.ajax({
 			url: url+"prescription/rest/prescription/query/rxChkInfoQuery?cfh="+cfh,
@@ -4721,12 +4721,12 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 				} else {
 					errorCode = ret.errorCode;
 					$.modalAlert("Tra cứuDuyệtKết quảthất bại" + errorCode, 'error');
-					//return "保存失败,失败原因是:" + errorCode + "。";
+					//return "Lưu thất bại,thất bạinguyên nhânCó:" + errorCode + "。";
 				}
 			}
 		});
 	}
-	//电子处方取药结果
+	//điện tửĐơn thuốclấythuốckếtnếu
 	function dzcfqyjg(type,cfh,cfid) {
 		$.ajax({
 			url: url+"prescription/rest/prescription/query/rxSetlInfoQuery?cfh=" + cfh,
@@ -4742,7 +4742,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 				} else {
 					errorCode = ret.errorCode;
 					$.modalAlert("Tra cứuLấy thuốcKết quảthất bại" + errorCode, 'error');
-					//return "保存失败,失败原因是:" + errorCode + "。";
+					//return "Lưu thất bại,thất bạinguyên nhânCó:" + errorCode + "。";
 				}
 			}
 		});
@@ -4761,12 +4761,12 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 $.each(data, function () {
                     var grid = "grid" + cflx;
                     $('#myTab [href="#link' + cflx + '"]').trigger('click');
-                    //视为新处方
+                    //xemlàĐơn thuốc mới
                     this.cfId = null;
                     this.cfh = cfh;
                     var thisCfh = this.cfh;
                     this.action = getActionStr;
-                    //检查重复
+                    //Kiểm tratrùng lặp
                     var isRepeatedAdd = false;
                     if (grid == "gridkfcf") {
                         var addxmCode = this.xmCode;
@@ -4836,13 +4836,13 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                 }
                             }
                         });
-                        //中药贴数、用法、代煎带入
+                        //Thuốc Đông ydánsố、Cách dùng、sắc hộmangvào
                         if ($("#gridzycf").jqGrid('getRowData_AllLine').length == 0
                             && this.tieshu) {
                             //$('#tieshu').val(this.tieshu);
                         }
-                        //中药的金额
-                        var tieshu = $.undefinedwith0($('#tieshu').val());    //贴数
+                        //Thuốc Đông ycủaSố tiền
+                        var tieshu = $.undefinedwith0($('#tieshu').val());    //dánsố
                         if (tieshu) {
                             this.sl = roundingBy4she6ru5chengshuang((parseFloat(tieshu) * parseFloat($.undefinedwith0(this.mcjl))), 0);
                             this.je = roundingBy4she6ru5chengshuang(parseFloat(this.dj) * parseFloat(this.sl), 2);
@@ -4864,7 +4864,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         });
     }
 
-    //作废单个处方
+    //Hủy bỏphiếucáiĐơn thuốc
     $(document).on('click', '.iconCancelSingleCf', function(e){
         var type = $(this).closest('tr').attr('data-cflx');
         var cfId = $(this).closest('tr').attr('data-cfId');
@@ -4899,7 +4899,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 								if (type == "wzhccf") {
 									WZDJSZuoFei(cfh);
 								}
-                                //从window.alldataArray移除掉
+                                //từwindow.alldataArrayloại bỏrớt
                                 removeCfFromWindowAlldataArray(type, cfId);
                             } else {
                                 $.modalConfirm(ajaxResp.message, function (f) {
@@ -4954,9 +4954,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                         });
                                     }
 
-                                    //复制处方
+                                    //sao chépĐơn thuốc
                                     copyPre(type, cfmxIdStr);
-                                    //从window.alldataArray移除掉
+                                    //từwindow.alldataArrayloại bỏrớt
                                     removeCfFromWindowAlldataArray(type, cfId);
                                 });
                             }
@@ -4983,7 +4983,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 			dataType: "json",
 			async: true,
 			success: function (ajaxresp) {
-				//console.log("扣减物资库存情况", ajaxresp);
+				//console.log("Khấu trừvật tưTồn khotình hình", ajaxresp);
 			}
 		});
 
@@ -5002,9 +5002,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     var filteredData = data.data.filter(function(item) {
                         return item.Cfstate === "1" || item.Cfstate === "2";
                     });
-                    // 如果有符合条件的素，调用 HlyyDrugInfo
+                    // VDnếucókýhợpdòngmụccủatố，gọi HlyyDrugInfo
                     if (filteredData.length > 0) {
-                        HlyyDrugInfo(filteredData);  // 传递筛选后的数据
+                        HlyyDrugInfo(filteredData);  // truyềnLọcsaucủaDữ liệu
                         $('#drugInfoModal').modal('show');
                     }
                 }
@@ -5027,9 +5027,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         var filteredData = data.data.filter(function(item) {
                             return item.Cfstate === "1" || item.Cfstate === "2";
                         });
-                        // 如果有符合条件的素，调用 HlyyDrugInfo
+                        // VDnếucókýhợpdòngmụccủatố，gọi HlyyDrugInfo
                         if (filteredData.length > 0) {
-                            HlyyDrugInfo(filteredData);  // 传递筛选后的数据
+                            HlyyDrugInfo(filteredData);  // truyềnLọcsaucủaDữ liệu
                             $('#drugInfoModal').modal('show');
                         }
                     }
@@ -5042,7 +5042,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     }
 
 
-    //打印单个处方
+    //InphiếucáiĐơn thuốc
     $(document).on('click', '.iconPrintSingleCf', function(e){
         var type = $(this).closest('tr').attr('data-cflx');
         var cfId = $(this).closest('tr').attr('data-cfId');
@@ -5117,7 +5117,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         });
     });
 
-    //打印治疗单
+    //InĐiều trịphiếu
     $(document).on('click', '.iconPrintSingleKfzld', function(e){
         var type = $(this).closest('tr').attr('data-cflx');
         var cfId = $(this).closest('tr').attr('data-cfId');
@@ -5138,7 +5138,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         });
     });
 
-    //触发修改处方
+    //kích hoạtSửaĐơn thuốc
     $(document).on('click', '.iconEditSingleCf', function(e){
         
         var type = $(this).closest('tr').attr('data-cflx');
@@ -5147,16 +5147,16 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             if(type=="zycf" && '@ViewBag.ISOpenZycfnew' == 'True' && '@ViewBag.ISOpenZycf'== 'False')
                 type="zycfnew";
             sessionStorage.setItem("triggereditcfh", cfh);
-            //type kfcf cgxmcf zycf 等
+            //type kfcf cgxmcf zycf đợi
             $('#myTab [href="#link' + type + '"]').trigger('click');
         }
         else if(!!type){
-            //type kfcf cgxmcf zycf 等
+            //type kfcf cgxmcf zycf đợi
             $('#myTab [href="#link' + type + '"]').trigger('click');
         }
     });
 
-    //查看处方明细
+    //XemĐơn thuốcchi tiết
     $(document).on('mouseenter', '.iconPreviewSingleCf', function (e) {
         var type = $(this).closest('tr').attr('data-cflx');
         var cfh = $(this).closest('tr').attr('data-cfh');
@@ -5218,7 +5218,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     //}
                 });
             }
-            //Đơn thuốc lịch sử浮层
+            //Đơn thuốc lịch sửlớp nổi
             $.each($.jsonWhere(window.historydataArray.kfcf, function(v){
                 return v && v.cfh == cfh;
             }), function(){
@@ -5298,7 +5298,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             //$.each($.jsonWhere(window.alldataArray.xycf, function(v){
             //    return v && v.cfh == cfh;
             //}), function(){
-            //    $('.cfdetailpreview ul').append('<li class="list-group-item" style="border:0;padding:4px 10px;">' + this.ypmc + '&nbsp;&nbsp;'+ this.ypgg+ '&nbsp;&nbsp;' + this.sl + this.dw + '&nbsp;&nbsp;(剂量)' + this.mcjl + this.mcjldw + '&nbsp;&nbsp;' + this.pcmc + '&nbsp;&nbsp;' + this.yfmc + '</li>');
+            //    $('.cfdetailpreview ul').append('<li class="list-group-item" style="border:0;padding:4px 10px;">' + this.ypmc + '&nbsp;&nbsp;'+ this.ypgg+ '&nbsp;&nbsp;' + this.sl + this.dw + '&nbsp;&nbsp;(Liều lượng)' + this.mcjl + this.mcjldw + '&nbsp;&nbsp;' + this.pcmc + '&nbsp;&nbsp;' + this.yfmc + '</li>');
             //});
             //
             var xmcfdatas = [];
@@ -5346,7 +5346,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         // $('.cfdetailpreview ul').append('<li class="list-group-item" style="border:0;padding:4px 10px;">' + this.ztmc + '&nbsp;' + '*' + '&nbsp;' + this.sl + '</li>');
                     }
                     //else {
-                    //    $('.cfdetailpreview ul').append('<li class="list-group-item" style="border:0;padding:4px 10px;">' + this.ypmc + '&nbsp;&nbsp;' + this.ypgg + '&nbsp;&nbsp;' + this.sl + this.dw + '&nbsp;&nbsp;(剂量)' + this.mcjl + this.mcjldw + '&nbsp;&nbsp;' + this.pcmc + '&nbsp;&nbsp;' + this.yfmc + '</li>');
+                    //    $('.cfdetailpreview ul').append('<li class="list-group-item" style="border:0;padding:4px 10px;">' + this.ypmc + '&nbsp;&nbsp;' + this.ypgg + '&nbsp;&nbsp;' + this.sl + this.dw + '&nbsp;&nbsp;(Liều lượng)' + this.mcjl + this.mcjldw + '&nbsp;&nbsp;' + this.pcmc + '&nbsp;&nbsp;' + this.yfmc + '</li>');
                     //}
 
                 });
@@ -5536,7 +5536,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 					// $('.cfdetailpreview ul').append('<li class="list-group-item" style="border:0;padding:4px 10px;">' + this.ztmc + '&nbsp;' + '*' + '&nbsp;' + this.sl + '</li>');
 				}
 				//else {
-				//    $('.cfdetailpreview ul').append('<li class="list-group-item" style="border:0;padding:4px 10px;">' + this.ypmc + '&nbsp;&nbsp;' + this.ypgg + '&nbsp;&nbsp;' + this.sl + this.dw + '&nbsp;&nbsp;(剂量)' + this.mcjl + this.mcjldw + '&nbsp;&nbsp;' + this.pcmc + '&nbsp;&nbsp;' + this.yfmc + '</li>');
+				//    $('.cfdetailpreview ul').append('<li class="list-group-item" style="border:0;padding:4px 10px;">' + this.ypmc + '&nbsp;&nbsp;' + this.ypgg + '&nbsp;&nbsp;' + this.sl + this.dw + '&nbsp;&nbsp;(Liều lượng)' + this.mcjl + this.mcjldw + '&nbsp;&nbsp;' + this.pcmc + '&nbsp;&nbsp;' + this.yfmc + '</li>');
 				//}
 
 			});
@@ -5564,7 +5564,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 </script>
 <script>
 
-    //打印接诊单
+    //Innhậnkhámphiếu
     function newtouch_event_f2() {
         var mzh = window.currPatientInfo.mzh;
         var cfId = "";
@@ -5576,14 +5576,14 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     function newtouch_event_f3() {
             if ($("#gridkfcf:visible").length == 1) {
                 if ($("#gridkfcf").jqGrid('getDataIDs').length > 0) {
-                    //先保存
+                    //Lưu trước
                     SaveRehabPres('1');
                 } else {
                     var gridkfcfData = $("#gridkfcf").jqGrid('getRowData_AllLine', null, true);
-                    //保存数据
+                    //Lưu dữ liệu
                     window.alldataArray.kfcf = $.jsonWhere(window.alldataArray.kfcf, function (icfmx) {
                         if (!!!icfmx.cfId) {
-                            return false;   //编辑列表里有
+                            return false;   //Sửatrong danh sách có
                         }
                         for (var iIndex = 0; iIndex < gridkfcfData.length; iIndex++) {
                             if (gridkfcfData[iIndex].cfh == icfmx.cfh) {
@@ -5596,14 +5596,14 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             }
             else if ($("#gridcgxmcf:visible").length == 1) {
                 if ($("#gridcgxmcf").jqGrid('getDataIDs').length > 0) {
-                    //先保存
+                    //Lưu trước
                     SaveRegularItemPres('1');
                 } else {
                     var gridcgxmcfData = $("#gridcgxmcf").jqGrid('getRowData_AllLine', null, true);
-                    //保存数据
+                    //Lưu dữ liệu
                     window.alldataArray.cgxmcf = $.jsonWhere(window.alldataArray.cgxmcf, function (icfmx) {
                         if (!!!icfmx.cfId) {
-                            return false;   //编辑列表里有
+                            return false;   //Sửatrong danh sách có
                         }
                         for (var iIndex = 0; iIndex < gridcgxmcfData.length; iIndex++) {
                             if (gridcgxmcfData[iIndex].cfh == icfmx.cfh) {
@@ -5616,14 +5616,14 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             }
             else if ($("#gridxycf:visible").length == 1) {
                 if ($("#gridxycf").jqGrid('getDataIDs').length > 0) {
-                    //先保存
+                    //Lưu trước
                     SaveWMPres('1');
                 } else {
                     var gridxycfData = $("#gridxycf").jqGrid('getRowData_AllLine', null, true);
-                    //保存数据
+                    //Lưu dữ liệu
                     window.alldataArray.xycf = $.jsonWhere(window.alldataArray.xycf, function (icfmx) {
                         if (!!!icfmx.cfId) {
-                            return false;   //编辑列表里有
+                            return false;   //Sửatrong danh sách có
                         }
                         for (var iIndex = 0; iIndex < gridxycfData.length; iIndex++) {
                             if (gridxycfData[iIndex].cfh == icfmx.cfh) {
@@ -5636,14 +5636,14 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             }
             else if ($("#gridzycf:visible").length == 1) {
                 if ($("#gridzycf").jqGrid('getDataIDs').length > 0) {
-                    //先保存
+                    //Lưu trước
                     SaveTCMPres('1');
                 } else {
                     var gridzycfData = $("#gridzycf").jqGrid('getRowData_AllLine', null, true);
-                    //保存数据
+                    //Lưu dữ liệu
                     window.alldataArray.zycf = $.jsonWhere(window.alldataArray.zycf, function (icfmx) {
                         if (!!!icfmx.cfId) {
-                            return false;   //编辑列表里有
+                            return false;   //Sửatrong danh sách có
                         }
                         for (var iIndex = 0; iIndex < gridzycfData.length; iIndex++) {
                             if (gridzycfData[iIndex].cfh == icfmx.cfh) {
@@ -5656,24 +5656,24 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             }
             else if ($("#alreadyJYAppliedList:visible").length == 1) {
                 if ($("#alreadyJYAppliedList").jqGrid('getDataIDs').length > 0) {
-                    //先保存
+                    //Lưu trước
                     SaveJY('1');
                 }
             }
             else if ($("#alreadyJYAppliedGroupList:visible").length == 1) {
                 if ($("#alreadyJYAppliedGroupList").jqGrid('getDataIDs').length > 0) {
-                    //先保存
+                    //Lưu trước
                     SaveInspectionbyZt('1');
                 }
             }
             else if ($("#alreadyJCAppliedList:visible").length == 1) {
                 if ($("#alreadyJCAppliedList").jqGrid('getDataIDs').length > 0) {
-                    //先保存
+                    //Lưu trước
                     SaveJC('1');
                 }
             }
     }
-    //打印病历
+    //InHồ sơ
     function newtouch_event_f8() {
         var mzh = $('#mzh').text();
         if("@openblbookprint"=="true"){
@@ -5696,7 +5696,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
     }
 
-    //打印处方 所有处方
+    //InĐơn thuốc tất cảĐơn thuốc
     function newtouch_event_f10() {
 
         if ($('.iconPrintSingleKfzld').length > 0) {
@@ -5713,9 +5713,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 //var cfId = $(this).closest('tr').attr('data-cfId');
                 //var cfh = $(this).closest('tr').attr('data-cfh');
                 //var type = $(this).closest('tr').attr('data-cflx');
-                //var title = type == "zycf" ? "打印中草药" : (type == "cgxmcf" ? "打印常规处方" : $(this).attr('title'));
+                //var title = type == "zycf" ? "Introngthảo dược" : (type == "cgxmcf" ? "InThường quyĐơn thuốc" : $(this).attr('title'));
 
-                //if(title=="打印检验处方" || title=="打印检查处方")
+                //if(title=="InXét nghiệmĐơn thuốc" || title=="InKiểm traĐơn thuốc")
                 //{
                 //    return;
                 //}
@@ -5725,8 +5725,8 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     //    data: { jsonstr: JSON.stringify(printarrary) },
                     //    success: function (resp) {
                     //        if (!!resp) {
-                    //            //var title1 = "打印处方";
-                    //            //var tmplData1 = '{\"PatientInfo\":{\"blh\":\"00018\",\"xm\":\"ceshi4\",\"xb\":\"女\",\"nl\":\"24岁\",\"ghksmc\":\"消化内科\",\"brxzmc\":\"自费\",\"jzysmc\":\"管理员\",\"xyzdmc\":\"待查\",\"zyzdmc\":null,\"zs\":\"\",\"jws\":null,\"ContactNum\":null,\"kh\":\"18\",\"ADDRESS\":\"123\",\"hf\":\"不详\",\"mzh\":\"2105124340004\"},\"cfd_xmInfo\":[{\"cfh\":\"R20210514N000062\",\"CreateTime\":\"2021-05-14T14:36:47.58\",\"sl\":\"1\",\"xmmc\":\"测试西药\",\"dj\":1.0000,\"ypgg\":\"10ml*10支/盒\",\"mcjl\":\"1.00\",\"mcjldw\":\"ml\",\"yfmc\":\"口服\",\"yzpcmcsm\":\"立即\",\"je\":1.00,\"mzcldw\":\"支\",\"ds\":\"\"}],\"orgInfo\":{\"Name\":\"重庆重医附二院宽仁康复医院\"}}';
+                    //            //var title1 = "InĐơn thuốc";
+                    //            //var tmplData1 = '{\"PatientInfo\":{\"blh\":\"00018\",\"xm\":\"ceshi4\",\"xb\":\"Nữ\",\"nl\":\"24 tuổi\",\"ghksmc\":\"hủyhóatrongkhoa\",\"brxzmc\":\"tự chi trả\",\"jzysmc\":\"Quản lýviên\",\"xyzdmc\":\"chờtra\",\"zyzdmc\":null,\"zs\":\"\",\"jws\":null,\"ContactNum\":null,\"kh\":\"18\",\"ADDRESS\":\"123\",\"hf\":\"không详\",\"mzh\":\"2105124340004\"},\"cfd_xmInfo\":[{\"cfh\":\"R20210514N000062\",\"CreateTime\":\"2021-05-14T14:36:47.58\",\"sl\":\"1\",\"xmmc\":\"đothửThuốc Tây\",\"dj\":1.0000,\"ypgg\":\"10ml*10chi/hộp\",\"mcjl\":\"1.00\",\"mcjldw\":\"ml\",\"yfmc\":\"uống\",\"yzpcmcsm\":\"lậptức\",\"je\":1.00,\"mzcldw\":\"chi\",\"ds\":\"\"}],\"orgInfo\":{\"Name\":\"trọngkhánhtrọngykèmhaiviệnrộng仁Phục hồi chức năngyviện\"}}';
                     //            //var tmplData2 = JSON.stringify(tmplData1).replace(/\#/g, "%23");
                     //            //var url2='http://localhost:11111/api/CISReport/post/?tmplName=' + title + "&tmplData=" + tmplData2;
                     //            ////console.log(url2);
@@ -5763,7 +5763,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     }
 </script>
 <script type="text/javascript">
-    //从alldataArray移除一处方
+    //từalldataArrayloại bỏmộtĐơn thuốc
     function removeCfFromWindowAlldataArray(fromcflx, cfId, cfh) {
         if (fromcflx == 'kfcf') {
             window.alldataArray.kfcf = $.jsonWhere(window.alldataArray.kfcf, function (v) {
@@ -5804,11 +5804,11 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 				return !((cfId && v.cfId == cfId) || (cfh && v.cfh == cfh));
 			});
 		}
-        //处方数据发生了变更
+        //Dữ liệu đơn thuốc đã thay đổi
         triggleActive();
     }
 
-    //更新处方的同步状态（toHIS）
+    //hơnĐơn thuốc mớicủaTrạng thái đồng bộ（toHIS）
     function updateSendtohisResult(fromcflx, cfh) {
         if (fromcflx == 'kfcf') {
             $.each(window.alldataArray.kfcf, function () {
@@ -5852,11 +5852,11 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 }
             });
         }
-        //处方数据发生了变更
+        //Dữ liệu đơn thuốc đã thay đổi
         triggleActive();
     }
 
-    //更新处方最后打印时间
+    //hơnĐơn thuốc mớicuối cùngInThời gian
     function updateCfLastdysj(fromcflx, cfh) {
         if (fromcflx == 'kfcf') {
             $.each(window.alldataArray.kfcf, function () {
@@ -5893,21 +5893,21 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 				}
 			});
 		}
-        //处方数据发生了变更
+        //Dữ liệu đơn thuốc đã thay đổi
         triggleActive();
     }
 
-    //更新康复治疗单最后打印时间
+    //Cập nhậtPhục hồi chức năngĐiều trịphiếucuối cùngInThời gian
     function updateKfzldLastdysj(cfh) {
         $.each(window.alldataArray.kfcf, function () {
             if (this.cfh == cfh) {
                 this.zldzhdysj = $.getTime();
             }
         });
-        //处方数据发生了变更
+        //Dữ liệu đơn thuốc đã thay đổi
         triggleActive();
     }
-    @********************** 远程医疗 *************************@
+    @********************** xatrìnhy tế *************************@
     $('#btn_sjsc').click(function () {
         var hzmzh=$('#mzh').text();
         var dtxdmc = "";
@@ -5951,8 +5951,8 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 type: "POST",
                  url: "/MedicalRecord/chakanmingxidiaoyong",
                  data: { kh: window.currPatientInfo.kh },
-                dataType: "xml",  //参数类型为xml
-                contentType: "application/x-www-form-urlencoded",//使用的xml格式的
+                dataType: "xml",  //tham sốLoạilàxml
+                contentType: "application/x-www-form-urlencoded",//Sử dụngcủaxmlđịnh dạngcủa
                  error: function (error) {
                      var resp = JSON.parse(JSON.parse(error.responseText).data);
                      if (resp !== undefined && resp.length > 0) {
@@ -6012,10 +6012,10 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 btnclass: ['', 'btn btn-danger'],
             });
         }else{
-            //金风易通 PACS 2024-4-28 chl 直接根据患者信息查询报告
+            //金风易通 PACS 2024-4-28 chl trực tiếpTheoThông tin bệnh nhânTra cứubáo cáo
             $.ajax({
                 type: "POST",
-                dataType: "json", //返回json格式的数据
+                dataType: "json", //Quay lạijsondữ liệu dạng
                 url: "/MedicalRecord/CountLISztmz",
                 data: { "jzId": currPatientInfo.jzId },
                 async: false,
@@ -6048,7 +6048,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             //金风易通 LIS 2024-4-28 chl
             $.ajax({
                 type: "POST",
-                dataType: "json", //返回json格式的数据
+                dataType: "json", //Quay lạijsondữ liệu dạng
                 url: "/MedicalRecord/CountLISztmz",
                 data: { "jzId": currPatientInfo.jzId },
                 async: false,
@@ -6064,20 +6064,20 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 }
             });
         }
-        //2024-4-29 chl 金风易通接口更换 注释原接口逻辑 begin
+        //2024-4-29 chl 金风易通giao diệnhơnđổi Lưu ýgiải thíchgốcgiao diệnlogictập begin
         @*if ("@IsreportOpen" == "true") {
             $.modalOpen({
                 id: "medicaljyForm",
-                title: "申请单列表",
+                title: "Phiếudanh sách",
                 url: "/MedicalRecord/LisSqdhQueryForm?mzzyh=" + $('#mzh').text()+"&type="+"mz",
                 width: "900px",
                 height: "600px",
-                btn:['', '关闭'],
+                btn:['', 'Đóng'],
                 btnclass: ['', 'btn btn-danger'],
             });
         }
         else{
-            //调阅打印LIS报告
+            //gọiđọcInLISbáo cáo
             if(!!$('#mzh').text()){
                 //1905080350039
                 //$('#gaofengCISAX')[0].jianyandiaoyue("1905090350005");
@@ -6090,7 +6090,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 });
             }
         }*@
-        //2024-4-29 chl 金风易通接口更换 注释原接口逻辑 end
+        //2024-4-29 chl 金风易通giao diệnhơnđổi Lưu ýgiải thíchgốcgiao diệnlogictập end
     });
 
     $('#btn_hyfq').click(function () {
@@ -6098,7 +6098,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         window.open(str, "_blank");
     });
 
-    @********************** 远程医疗会诊 *************************@
+    @********************** xatrìnhy tếsẽkhám *************************@
     $('#btn_ychzrpt').click(function () {
 
         var hzmzh = $('#mzh').text();
@@ -6144,7 +6144,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
         }*@
     }
-    //打印疾病证明
+    //Inbệnhbệnhchứngsáng
     function printzdzm() {
         url =  '@Html.Raw(reportUrl)'+"?tempCode=26&orgId="+'@curOpr.OrganizeId'+ "&systemCode=" + '@Html.Raw(ReportSystemCode)';
         var uri;
@@ -6155,12 +6155,12 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
         }
     }
-    //病历词条
+    //Hồ sơtừdòng
 
     $("#floatLisReportDiv div").on("click", function (e) {
         e.preventDefault();
         if ($(this).hasClass('activepart')) {
-            //再点击 隐藏
+            //lạiđiểmnhấp Ẩn
             $("#floatLisReportDiv div").removeClass("activepart");
             $('#floadLisReportTree').hide();
             $('#toolbar_ctgl').hide();
@@ -6207,18 +6207,18 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     //document.getElementById('myWriterControl').DCExecuteCommand('Spechars', true, item.value);
                     //insertAtCursor("xbs", item.text);
 					var idArray = ["zs","xbs", "jws","yjs","gms","ct","clfa","fzjc"];
-                    var id = getFocusId(idArray);//获取光标位置div
+                    var id = getFocusId(idArray);//LấyCon trỏVị trídiv
                     //if (id != "") {
-                    //    if (clickObj!=null && clickObj.id==id) {//同输入框种存在选中对象
-                    //        //insertText(clickObj, item.text);//将文本内容插入光标位置
+                    //    if (clickObj!=null && clickObj.id==id) {//cùngnhậpkhungloạitồn tạiởĐã chọnđối tượng
+                    //        //insertText(clickObj, item.text);//sẽvăn bảnnội dungChèn con trỏVị trí
                     //        insertText(document.getElementById(id), item.text, selectionStart, selectionEnd);
                     //    } else {
-                    //        insertText(document.getElementById(id), item.text,"","");//将文本内容插入光标位置
+                    //        insertText(document.getElementById(id), item.text,"","");//sẽvăn bảnnội dungChèn con trỏVị trí
                     //    }
                     //    //moveEnd(document.getElementById(id));
                     //}
 
-                    insertText(document.getElementById(id), item.value);//将文本内容插入光标位置
+                    insertText(document.getElementById(id), item.value);//sẽvăn bảnnội dungChèn con trỏVị trí
                 }
             }
         });
@@ -6228,7 +6228,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     function initblct() {
         getBqTreeList(1);
 
-        $('#toolbar_ctgl').hide();//初始化隐藏增删改按钮
+        $('#toolbar_ctgl').hide();//Khởi tạoẨntăngxóasửaNút
         //$(".dv-right").toggle();
         $(".quanxian").click(function () {
             $(".quanxian").removeClass("selected");
@@ -6328,7 +6328,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     }
 
 
-    //删除
+    //Xóa
     function ct_btn_delete() {
         var delCTID = $("#ctglDiv").find(".bbit-tree-selected").find(".bbit-tree-node-text").attr("data-id");
         if (delCTID === undefined)
@@ -6372,13 +6372,13 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 		});
     }
 
-    //光标处插入内容
+    //Con trỏchỗChènnội dung
     function insertAtCursor(id, text) {
         const contentEditableDiv = document.getElementById(id);
-        //获取被选中的内容，起点和终点在同一位置为光标，不同位置为选区
+        //LấybịĐã chọncủanội dung，từđiểmvàcuốiđiểmởcùng mộtVị trílàCon trỏ，khôngcùngVị trílàchọnkhu
         const selection = window.getSelection();
         //const selection = HTMLInputElement.setSelectionRange();
-        //被选中的focus的素
+        //bịĐã chọncủafocuscủatố
         const anchorNode = selection.anchorNode;
         //const anchorNode = selection.anchorNode.childNodes;
         if (!anchorNode) return;
@@ -6390,7 +6390,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
         if (anchorNode == contentEditableDiv || parentNode == contentEditableDiv || childNode[1] == contentEditableDiv || childNode[2] == contentEditableDiv) {
             range.insertNode(textNode);
-            range.collapse(true);//true:光标 false：选区
+            range.collapse(true);//true:Con trỏ false：chọnkhu
         }
         var flag = false;
         if (anchorNode == contentEditableDiv || parentNode == contentEditableDiv) {
@@ -6416,7 +6416,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         s.addRange(r);
     }
 
-    ////光标处插入内容
+    ////Con trỏchỗChènnội dung
     //function insertText(obj, str, selectionStart, selectionEnd) {
     //    if (document.selection) {
     //        var sel = document.selection.createRange();
@@ -6440,7 +6440,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     //    }
     //}
 
-    //光标处插入内容
+    //Con trỏchỗChènnội dung
     function insertText(obj, str) {
         if (document.selection) {
             var sel = document.selection.createRange();
@@ -6462,12 +6462,12 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         }
     }
 
-    //获取鼠标选中位置div的id
+    //Lấy鼠dấuĐã chọnVị trídivcủaid
     function getFocusId(idArray) {
         var id = "";
         var flag = false;
         const selection = window.getSelection();
-        //被选中的focus的素
+        //bịĐã chọncủafocuscủatố
         const anchorNode = selection.anchorNode;
         const childNode = selection.anchorNode.childNodes;
         const parentNode = selection.anchorNode.parentNode;
@@ -6509,7 +6509,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     }
 
 
-    //常用诊断
+    //thường dùngChẩn đoán
     function AddDiags(number, types) {
         var zdtable = (types == 1) ? "tablexyzd" : "tablezyzd";
         //console.info($('#' + zdtable + ' #zd' + number).val());
@@ -6630,13 +6630,13 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         $("#ywstr" + zdrow).val(ywdata.ywtstr);
                         $("#ywlx" + zdrow).val(ywdata.ywlx);
                         //if (ywdata.ywlx == "yw") {
-                        //    ywxsnr += "恒牙，";
+                        //    ywxsnr += "恒răng，";
                         //} else if (ywdata.ywlx == "ry") {
-                        //    ywxsnr += "乳牙，";
+                        //    ywxsnr += "răng sữa，";
                         //} else if (ywdata.ywlx == "hhy") {
                         //    ywxsnr += "Răng hỗn hợp";
                         //} else if (ywdata.ywlx == "dsy") {
-                        //    ywxsnr += "多生牙，";
+                        //    ywxsnr += "nhiềusinhrăng，";
                         //}
 
                         if (ywdata.ywtstr != "") {
@@ -6689,17 +6689,17 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                     }
                                     //else if (id.substr(2, 1) == "2") {
                                     //    if (ywnum != id.substr(2, 1)) {
-                                    //        ywxsnr += "右上";
+                                    //        ywxsnr += "phảitrên";
                                     //        ywnum = id.substr(2, 1);
                                     //    }
                                     //} else if (id.substr(2, 1) == "3") {
                                     //    if (ywnum != id.substr(2, 1)) {
-                                    //        ywxsnr += "右下";
+                                    //        ywxsnr += "phảidưới";
                                     //        ywnum = id.substr(2, 1);
                                     //    }
                                     //} else if (id.substr(2, 1) == "4") {
                                     //    if (ywnum != id.substr(2, 1)) {
-                                    //        ywxsnr += "左下";
+                                    //        ywxsnr += "tráidưới";
                                     //        ywnum = id.substr(2, 1);
                                     //    }
                                     //}
@@ -6784,7 +6784,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                     ywxsnr += "Dưới phải" + yw4.substr(0, yw4.length - 1) + "Răng số ";
                                 }
                                 //if (ds1 != "" || ds2 != "") {
-                                //    ywxsnr += " 多生牙";
+                                //    ywxsnr += " nhiềusinhrăng";
                                 //}
                                 if (ds1 != "") {
                                     ywxsnr += " Răng thừa hàm trên ";
@@ -6815,15 +6815,15 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 					var nextrow = djzlist[0];
 					syncPresChargeStatus(nextrow.blh, true);
 
-					sessionStorage.removeItem('reqSourcePage');  //先清空
+					sessionStorage.removeItem('reqSourcePage');  //Xóa trắng trước
 
 					sessionStorage.setItem("reqSourcePage", "fromNotYetTreatePage");
-					//查询就诊中的病历 先清空
+					//Tra cứuĐang khám bệnhcủaHồ sơ Xóa trắng trước
 					newtouch_globalevent_f4();
 					window.currPatientInfo = null;
-					window.mrflag = 0;    //认为是第一次加载病历页，这样每次诊断，都会根据病人的jzId查出Lịch sử病历
+					window.mrflag = 0;    //nhậnlàCóthứmột lầntảiHồ sơtrang，nàydạngmỗi lầnChẩn đoán，đềusẽTheobệnh ngườicủajzIdtraraLịch sửHồ sơ
 					window.currPatientInfo = nextrow;
-					//显示患者信息
+					//Hiển thịThông tin bệnh nhân
 					showPatientBasicInfo();
 					//Gọi số
 					$.najax({
@@ -6833,11 +6833,11 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 						dataType: "json",
 						async: false,
 						success: function (refdata) {
-							//console.log("测试返回", refdata);
+							//console.log("đothửQuay lại", refdata);
 							//if (refdata.falg == null || refdata.falg == undefined) {
 							//	startTreat(rowid);
 							//} else {
-							//	$.modalAlert("该病人已经被Gọi số过", 'success');
+							//	$.modalAlert("bệnh ngườiđãquabịGọi sốqua", 'success');
 							//}
 						}
 					});
@@ -6845,9 +6845,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 					$('#zlkssj').text($.getTime());
 					$('#jzks').text(nextrow.ksmc);
 					$('#sbbh').text(nextrow.sbbh);
-					//跳转到病历页
+					//chuyển đếnđếnHồ sơtrang
 					window.init_MedicalRecord();
-					//$('#myTab [href="#linkbl"').trigger('click'); //初始化显示哪个tab
+					//$('#myTab [href="#linkbl"').trigger('click'); //Khởi tạoHiển thịnàotab
 				} else {
 					$.modalAlert("Hiện tại bệnh nhân chờ khám đã đăng ký của bạn đã hết!", 'warning');
 				}
@@ -6866,11 +6866,11 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             dataType: "json",
             success: function (ajaxresp) {
                 window.currPatientInfo = null;
-                window.mrflag = 0;    //认为是第一次加载病历页，这样每次诊断，都会根据病人的jzId查出Lịch sử病历
+                window.mrflag = 0;    //nhậnlàCóthứmột lầntảiHồ sơtrang，nàydạngmỗi lầnChẩn đoán，đềusẽTheobệnh ngườicủajzIdtraraLịch sửHồ sơ
                 window.currPatientInfo = ajaxresp;
-                //显示患者信息
+                //Hiển thịThông tin bệnh nhân
                 showPatientBasicInfo();
-                //跳转到病历页
+                //chuyển đếnđếnHồ sơtrang
                 window.init_MedicalRecord();
             },
         });
@@ -6878,7 +6878,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
 </script>
 
-@**********************公共方法*************************@
+@**********************công cộngPhương pháp*************************@
 <script>
     $('#xuetangclfs').itemDetailsBindSelect({ itemtype: "xuetangclfs" });
 
@@ -6969,11 +6969,11 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         });
     }
     function HlyyDrugInfo(Data) {
-        // 清空已有的内容
+        // Xóa trắngđãcócủanội dung
         $("#hlyyauditStatus").empty();
-        $("#drugGridContainer").empty();  // 清空药品表格容器
+        $("#drugGridContainer").empty();  // Xóa trắngThuốcbảngôdungdụng cụ
 
-        // 按处方号 (cfh) 和 审核状态 (Cfstate) 分组数据
+        // theoSố đơn thuốc (cfh) và Phê duyệtTrạng thái (Cfstate) phútnhómDữ liệu
         var groupedData = {};
 
         Data.forEach(function(item) {
@@ -6984,18 +6984,18 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         
             if (!groupedData[prescriptionId]) {
                 groupedData[prescriptionId] = {
-                    auditStatus: auditStatus,  // 存储审核状态
-                    prescriptions: []  // 存储当前处方号下的药品信息
+                    auditStatus: auditStatus,  // tồn tạitrữPhê duyệtTrạng thái
+                    prescriptions: []  // tồn tạitrữhiện tạiSố đơn thuốcdưới của thuốcthông tin
                 };
             }
 
-            // 如果 InfoList 有数据，添加药品信息
+            // VDnếu InfoList cóDữ liệu，ThêmThuốcthông tin
             if (item.Message.Infos.InfoList && item.Message.Infos.InfoList.length > 0) {
                 groupedData[prescriptionId].prescriptions.push(...item.Message.Infos.InfoList);
             }
         });
         
-        // 定义药品详情的列模型
+        // địnhnghĩaThuốcChi tiếtcủacộtmẫuloại
         var drugColModel = [
             { label: 'Số nhóm', name: 'GroupNo', align: 'center', width: 100 },
             {
@@ -7004,12 +7004,12 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 align: 'center',
                 width: 150,
                 formatter: function(cellValue, options, rowObject) {
-                    // 确保点击时正确传入 DrugId
+                    // xácbảođiểmnhấpkhiđangxáctruyềnvào DrugId
                     if ('@(isOpenRationalUse)' === 'ON') {
-                        // 生成一个超链接，点击时传入DrugId
+                        // tạomộtvượtchuỗinhận，điểmnhấpkhitruyềnvàoDrugId
                         return '<a href="javascript:void(0);" onclick="getYpsms(\'' + rowObject.DrugId + '\')">' + cellValue + '</a>';
                     }
-                    return cellValue; // 如果没有开启 rational use，直接显示药品名称
+                    return cellValue; // VDnếuKhông cóbật rational use，trực tiếpHiển thịTên thuốc
                 }
             },
             { label: 'Đường dùng thuốc', name: 'AdminRoute', align: 'center', width: 100 },
@@ -7023,7 +7023,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         for (var prescriptionId in groupedData) {
             var item = groupedData[prescriptionId];
 
-            // 定义审核状态的颜色和文字
+            // địnhnghĩaPhê duyệtTrạng tháicủamàu sắcvàvăn bản
             const cfStateMap = {
                 "1": "Đang duyệt",
                 "0": "Đã duyệt",
@@ -7031,16 +7031,16 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             };
             const auditStatus = cfStateMap[item.auditStatus] || "Không rõTrạng thái";
             let statusColor;
-            let fontSize = "10px";  // 默认字体大小
+            let fontSize = "10px";  // Mặc địnhchữthểlớnnhỏ
 
             switch (item.auditStatus) {
-                case "1": // 审核中
+                case "1": // Phê duyệttrong
                     statusColor = "orange";
                     break;
-                case "0": // 已审核
+                case "0": // Đã duyệt
                     statusColor = "green";
                     break;
-                case "2": // 不通过
+                case "2": // khôngthông qua
                     statusColor = "red";
                     break;
                 default:
@@ -7048,16 +7048,16 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     break;
             }
 
-            // 添加处方号和审核状态到模态框
+            // ThêmSố đơn thuốcvàPhê duyệtTrạng tháiđếnmẫutrạng tháikhung
             $("#hlyyauditStatus").append("<div style='margin-top: 10px;'>Số đơn thuốc: " + prescriptionId + " DuyệtTrạng thái: <span style='color: " + statusColor + "; font-size: " + fontSize + ";'>" + auditStatus + "</span></div>");
 
-            // 为每个处方号生成一个单独的表格
+            // làmỗicáiSố đơn thuốctạomộtphiếuđộccủabảngô
             if (item.prescriptions.length > 0) {
-                // 创建分组标题
+                // tạophútnhómdấuđề
                 var tableContainer = $('<div class="table-container"></div>');
                 tableContainer.append("<h5>Số đơn thuốc: " + prescriptionId + " DuyệtThông tin</h5>");
 
-                // 创建并填充药品详情表格
+                // tạovàđiềnThuốcChi tiếtbảngô
                 var table = $('<table class="table table-bordered table-striped"></table>');
                 table.append('<thead><tr>' + drugColModel.map(function(col) {
                     return '<th>' + col.label + '</th>';
@@ -7079,7 +7079,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 table.append(tbody);
                 tableContainer.append(table);
 
-                // 将该处方号的表格插入到容器中
+                // sẽSố đơn thuốccủabảngôChènđếndungdụng cụtrong
                 $("#drugGridContainer").append(tableContainer);
             }
         }
@@ -7089,7 +7089,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
 
     function getYpsms(drugId) {
-        // 在这里Thực hiện点击事件的逻辑
+        // ởđâyThực hiệnđiểmnhấpsự kiệncủalogictập
         $.najax({
             url: "/MedicalRecord/GetypSms",
             data: {drugId: drugId},

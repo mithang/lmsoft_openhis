@@ -30,13 +30,13 @@
             $("#ksmc").val(top.window.clients.doctorInHosBookkeep[0].ksmc);
             $("#ksmc").attr("data-label", top.window.clients.doctorInHosBookkeep[0].ks);
         }
-        //医生浮层
+        //Lớp nổi bác sĩ
         $("#doctormc").newtouchBatchFloatingSelector({
             height: 200,
             width: 300,
             clickautotrigger: true,
             filter: function (keyword) {
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();//
                 $.each(top.window.clients.doctorInHosBookkeep, function (idx, val) {
                     if ($.trim(keyword).length == 0 ||
@@ -66,7 +66,7 @@
             },
         });
 
-        //患者来源
+        //Nguồn bệnh nhân
         $("#brly").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -77,7 +77,7 @@
             }
         });
 
-        //紧急联系人关系
+        //Quan hệ người liên hệ khẩn cấp
         $("#lxrgx").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -88,7 +88,7 @@
             }
         });
 
-        //治疗项目选择浮层绑定
+        //Liên kết lớp nổi chọn mục điều trị
         $('#blh').newtouchBatchFloatingSelector({
             width: 500,
             height: 200,
@@ -151,7 +151,7 @@
         });
     }
 
-    //患者查询弹出
+    //bật tra cứu bệnh nhân
     function GetPatSerarchView(blh) {
         $.modalOpen({
             id: "patSearch",
@@ -160,22 +160,22 @@
             width: "700px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
+                top.frames[iframeId].PatDbGrid(); //trong sự kiện cửa sổ bật lên
             }
         });
     }
 
-    //患者查询调用
+    //bệnhngườitratra cứuđiềudùng
     function GetQueryFphAjax(obj) {
-        //判断是否重复登记
+        //xétđoạnlàkhôngnặnglạiđăngghi
         AllowRegh(obj.blh);
-        //清空
+        //Xóa trống
         ClearAll();
-        //获取病人基本信息
+        //đượclấybệnhngườiquỹnàythông tintin
         CallbackPatientQuery(obj.blh);
     }
 
-    //根据病历号搜索返回基本信息
+    //Tìm theo số bệnh án để trả về thông tin cơ bản
     function CallbackPatientQuery(blh) {
         $.ajax({
             url: "/PatientManage/HospiterRes/GetOutpatientBasicInfo",
@@ -347,7 +347,7 @@
         }
     }
 
-    ///判断今天是否重复登记
+    ///xác định hôm nay có đăng ký trùng không
     function AllowRegh(p) {
         $.ajax({
             url: "@Url.Action("AllowRegh")",

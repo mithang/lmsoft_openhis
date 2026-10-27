@@ -59,7 +59,7 @@
         gridRpDetail();
     });
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
@@ -98,10 +98,10 @@
             gridComplete: function () {
                 $gridRpDetail.jqGrid("clearGridData");
                 var ids = new Array();
-                //getDataIDs()返回当前grid里所有数据的id
+                //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                 ids = $gridRpInfo.getDataIDs();
                 if (ids == null || ids.length <= 0) return;
-                //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
+                //Chọn hoặc bỏ chọn dòng chỉ định。Nếuonselectrowchoturethì sẽ kích hoạt sự kiệnonSelectRow，onselectrowMặc định làture
                 $gridRpInfo.setSelection(ids[0], true);
                 var pdata = $gridRpInfo.jqGrid('getRowData', ids[0]);
                 tempMzh = pdata.mzh;
@@ -166,42 +166,42 @@
         }
     }
 
-     //补打打印雾化卡
+     //In bổ sung thẻ khí dung
     function newtouch_event_f8() {
     var id = $("#gridRpInfo").jqGrid("getGridParam", "selrow");
     if (id) {
         var cfhs = '';
         var cfmx = $("#gridRpDetail").getCol('yfmc',true);
-        //取全部处方号
+        //Lấy tất cả số đơn thuốc
         for (var i = 0; i < cfmx.length; i++) {
             if (cfmx[i].value == "雾化") {
                 cfhs.push($("#gridRpInfo").jqGrid('getRowData', id).cfh);
             }
         }
         if (cfhs.length > 0) {
-            var newcfhs = $.unique(cfhs);//去重
-            var cfh = newcfhs.join(",");//数组串连
+            var newcfhs = $.unique(cfhs);//Khử trùng lặp
+            var cfh = newcfhs.join(",");//Nối chuỗi mảng
             var uri = '@reportUrl' + "?tempCode=1311&systemCode=PDS" + "&orgId=" + '@ViewBag.OrganizeId' + "&cfh=" + cfh + "&mzh=" + tempMzh + "&UserCode=" + opeator.UserCode;
             window.open(uri);
         } else $.modalAlert("Không có đơn thuốc khí dung，không thể in thẻ khí dung！", 'warning');
     } else $.modalAlert("Vui lòng chọn thông tin bệnh nhân！", 'warning');
 }
-     //补打打印输液卡
+     //In bổ sung thẻ truyền dịch
     function newtouch_event_f9() {
         var id = $("#gridRpInfo").jqGrid("getGridParam", "selrow");
         if (id) {
             var cfhs = [];
             var cfmx = $("#gridRpDetail").getCol('yfmc',true);
-            //取全部处方号
+            //Lấy tất cả số đơn thuốc
             for (var i = 0; i < cfmx.length; i++) {
                 if (cfmx[i].value == "静脉滴注") {
                     cfhs.push($("#gridRpInfo").jqGrid('getRowData', id).cfh);
                 }
             }
             if (cfhs.length > 0) {
-                var newcfhs = $.unique(cfhs);//去重
-                var cfh = newcfhs.join(",");//数组串连
-                //查询含输液的组号
+                var newcfhs = $.unique(cfhs);//Khử trùng lặp
+                var cfh = newcfhs.join(",");//Nối chuỗi mảng
+                //Truy vấn số nhóm chứa truyền dịch
                 $.najax({
                     type: "POST",
                     url: "/OutPatientPharmacy/GetRecipeGroupNum",
@@ -222,15 +222,15 @@
              var cfh = $("#gridRpInfo").jqGrid('getRowData', id).cfh;
              var cfmx = $("#gridRpDetail").getCol('yfmc', true);
              var lscfmx = [];
-             //取全部处方号
+             //Lấy tất cả số đơn thuốc
              for (var i = 0; i < cfmx.length; i++) {
                  if (cfmx[i].value == "口服" || cfmx[i].value == "外用") {
                      lscfmx.push(cfh);
                  }
              }
              if (lscfmx.length > 0) {
-                 var newcfh = $.unique(lscfmx);//去重
-                 var cfhStr = newcfh.join();//数组串连
+                 var newcfh = $.unique(lscfmx);//Khử trùng lặp
+                 var cfhStr = newcfh.join();//Nối chuỗi mảng
                  var uri = '@reportUrl' + "?tempCode=1306&systemCode=PDS" + "&orgId=" + '@ViewBag.OrganizeId' + "&cfh=" + cfhStr;
                  window.open(uri);
              } else $.modalAlert("Không có đơn thuốc uống、đơn thuốc dùng ngoài，không thể in nhãn hướng dẫn sử dụng！", 'warning');

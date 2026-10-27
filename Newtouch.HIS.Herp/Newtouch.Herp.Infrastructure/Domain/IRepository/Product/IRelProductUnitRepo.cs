@@ -3,7 +3,7 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 库存单位关联
+    /// Liên kết đơn vị tồn kho
     /// </summary>
     public interface IRelProductUnitRepo : IRepositoryBase<RelProductUnitEntity>
     {

@@ -31,7 +31,7 @@ where a.mbId='"+mbbh+"' and a.zyh='"+zyh+"' and a.OrganizeId='"+orgId+"' order b
 
 
 
-        //护理记录数据提交
+        //Gửi dữ liệu bản ghi điều dưỡng
         public void BtnSubmit(OperatorModel user, IList<HljldataVO> data,string blId,string zyh)
         {
             if (data == null)
@@ -123,7 +123,7 @@ and c.dutyCode = d.DutyCode and d.StaffGh = @user ";
 
 
 
-        //护理记录页面加载
+        //Tải trang bản ghi điều dưỡng
         public IList<HljldataVO> HljlLoadData(Pagination pagination, string zyh, string blId,string orgId,string kssj,string jssj)
         {
             string sql = "";

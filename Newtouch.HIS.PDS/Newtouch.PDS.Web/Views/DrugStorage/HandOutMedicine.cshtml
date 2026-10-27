@@ -155,8 +155,8 @@
     var pc;
     var globalpc;
     var bzdw;//Đơn vị đóng gói
-    var newxmList = [];   //新项目List
-    var editingNewid = null;    //正在修改的行
+    var newxmList = [];   //Hạng mục mớiList
+    var editingNewid = null;    //Dòng đang sửa
 
     $(function () {
         $(window).resize(function () {
@@ -165,7 +165,7 @@
         init();
     });
 
-    //初始化
+    //Khởi tạo
     function init() {
         GetDjh();
         bottomButtonsReset();
@@ -173,7 +173,7 @@
         $("#fyfs").change(function () {
             ValidateForm();
         });
-        //初始化输入码
+        //Khởi tạo mã nhập
         $("#srm").newtouchBatchFloatingSelector({
             height: 300,
             width: 1100,
@@ -227,7 +227,7 @@
                             $("#fysl").val("");
                             $("#pc").val("");
 
-                            //初始化药品批次
+                            //Khởi tạo lô thuốc
                             $("#pc").newtouchBatchFloatingSelector({
                             height: 300,
                             width: 550,
@@ -242,7 +242,7 @@
                             },
                             caption: "Lô",
                             colModel: [                                
-                                //{ label: '药品名称', name: 'ypmc', width: 100, align: 'left' },
+                                //{ label: 'Tên thuốc', name: 'ypmc', width: 100, align: 'left' },
                                 { label: 'Lô', name: 'pc', width: 150, align: 'center' },
                                 { label: 'Số lô', name: 'ph', width: 150, align: 'center' },                                
                                 { label: 'Tồn kho', name: 'kykc', width: 100, align: 'right' },
@@ -278,7 +278,7 @@
             }
         });
 
-        //初始化退药部门
+        //Khởi tạo bộ phận trả thuốc
         $("#lybm").newtouchBatchFloatingSelector({
             height: 200,
             width: 250,
@@ -354,7 +354,7 @@
             }
         });
 
-        $("#fysl").blur(function () {//计算批发总价和零售总价
+        $("#fysl").blur(function () {//Tính tổng giá bán buôn và tổng giá bán lẻ
             var fysl = Number($("#fysl").val());
             var pfje = Number($("#pfj").val()).toFixed(2);
             var lsje = Number($("#lsj").val()).toFixed(2);
@@ -363,12 +363,12 @@
         });
     }
 
-    //生成单据号
+    //Tạo số chứng từ
     function GetDjh() {
         $.ajax({
             type: "Get",
             url: "/DrugStorage/InitDjh",
-            data: { djmc: 'Đơn phát thuốc nội bộ', r: Math.random() },
+            data: { djmc: '内部发药单' /* djmc là key của proc sp_yp_Getypdjh, KHÔNG dịch */, r: Math.random() },
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {
@@ -381,7 +381,7 @@
         });
     }
 
-    //请求 编辑 行
+    //Yêu cầu Chỉnh sửa dòng
     function gridEditRow(rowid) {
         if (rowid) {
             var rowData = $("#gridList").jqGrid('getRowData', rowid);
@@ -390,37 +390,37 @@
                     return v && v.newid === rowData.newid;
                 });
                 if (!rowDataArr || rowDataArr.length === 0) {
-                    return; //为什么没找到
+                    return; //Tại sao không tìm thấy
                 }
-                if (true) { //&&可编辑
+                if (true) { //&&Có thể chỉnh sửa
                     $("#form1").formSerialize(rowData);
                     $("#bzdw").html(rowData.bzdw);
                     $('#btn_bottombutton_f6').attr('disabled', 'disabled');
                     $('#btn_bottombutton_f9').show();
                     $('#btn_bottombutton_f2').attr('disabled', 'disabled');
-                    editingNewid = rowData.newid;    //正在修改的行
+                    editingNewid = rowData.newid;    //Dòng đang sửa
                 }
             }
         }
     }
 
-    //添加
+    //Thêm
     function newtouch_event_f2() {
         if (editingNewid) {
-            return; //正在处于修改状态，是不能点击添加按钮的   要disable处理
+            return; //Đang ở trạng thái sửa đổi，thì không thể nhấp nút thêm   cầndisableXử lý
         }
         if (!(checkEditingRowData() && CheckExistPC())) {    //Dữ liệu đã đầy đủ chưa，Kiểm tra mục bắt buộc
             return;
         }
         var data = getEditRowData();
         data.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
-        editingNewid = null;    //?进入修改状态，然后点击添加？
-        newxmList.unshift(data);   //作为新项添加 //”数组最前端“
-        fillDataToGrid();//重新将xm数组呈现至grid
-        clearMedicineInfo();//清空药品信息
+        editingNewid = null;    //?Vào trạng thái sửa đổi，Sau đó nhấp thêm？
+        newxmList.unshift(data);   //Thêm như mục mới //”Đầu trước nhất của mảng“
+        fillDataToGrid();//lạixmmảng hiển thị tớigrid
+        clearMedicineInfo();//Xóa thông tin thuốc
     }
 
-    //检查之前是否已存在添加药品
+    //Kiểm tra trước đó đã tồn tại thuốc thêm chưa
     function CheckExistPC() {
         var ypdm = $("#ypdm").val();
         var pc = $("#pc").val();
@@ -434,7 +434,7 @@
         return true;
     }
 
-    //获取编辑域的对象数据
+    //Lấy dữ liệu đối tượng của vùng chỉnh sửa
     function getEditRowData() {
         var newData = $("#form1").formSerialize();
         newData["yplb"] = yplb;
@@ -443,22 +443,22 @@
         return newData;
     }
 
-    //填充JQGrid数据（出库药品） 先检查入库部门是否有权限使用该药品
+    //ĐiềnJQGridDữ liệu（Thuốc xuất kho） Kiểm tra trước bộ phận nhập kho có quyền dùng thuốc này không
     function fillDataToGrid() {
         $("#gridList").resetSelection();
         $('#gridList').jqGrid("clearGridData");
         $("#gridList").newtouchLocalDataGrid(null, newxmList);
     }
 
-    //修改
+    //Sửa
     function newtouch_event_f3() {
         if (editingNewid) {
-            var data = getEditRowData();//提交修改
+            var data = getEditRowData();//Gửi sửa đổi
             if (!(checkEditingRowData())) {    //Dữ liệu đã đầy đủ chưa，Kiểm tra mục bắt buộc
                 return;
             }
-            //检查重复项
-            //先在xm数组中找到之
+            //Kiểm tra mục trùng lặp
+            //trước tiên trongxmtìm trong mảng
             if (editingNewid) {
                 var matchedIndex = -1;
                 for (var ii = 0; ii < newxmList.length; ii++) {
@@ -468,25 +468,25 @@
                     }
                 }
                 if (matchedIndex == -1) {
-                    return; //应该是异常
+                    return; //Phải là ngoại lệ
                 }
-                newxmList.remove(matchedIndex);   //移除该项
-                newxmList.unshift(data);   //作为新项添加    //”数组最前端“
+                newxmList.remove(matchedIndex);   //Loại bỏ mục đó
+                newxmList.unshift(data);   //Thêm như mục mới    //”Đầu trước nhất của mảng“
             }
-            fillDataToGrid(); //重新将xm数组呈现至grid
-            clearMedicineInfo(); //清空药品信息
-            bottomButtonsReset();//重置按钮
+            fillDataToGrid(); //lạixmmảng hiển thị tớigrid
+            clearMedicineInfo(); //Xóa thông tin thuốc
+            bottomButtonsReset();//Đặt lại nút
         } else {
-            //获取grid当前选中的那一行
+            //LấygridDòng đang được chọn
             var seleId = $('#gridList').jqGrid('getGridParam', 'selrow');
             if (seleId) {
-                //请求修改该行
+                //Yêu cầu sửa dòng đó
                 gridEditRow(seleId);
             }
         }
     }
 
-    //删除
+    //Xóa
     function newtouch_event_f6() {
         var rowid = $("#gridList").jqGrid("getGridParam", "selrow");
         if (rowid) {
@@ -504,19 +504,19 @@
                 }
 
                 if (matchedIndex === -1) {
-                    return; //应该是异常
+                    return; //Phải là ngoại lệ
                 }
-                newxmList.remove(matchedIndex);   //移除该项
+                newxmList.remove(matchedIndex);   //Loại bỏ mục đó
 
-                //重新将xm数组呈现至grid
+                //lạixmmảng hiển thị tớigrid
                 fillDataToGrid();
                 bottomButtonsReset();
-                //对其他都不产生影响
+                //Không ảnh hưởng tới các cái khác
             }
         }
     }
 
-    //发药
+    //Phát thuốc
     function newtouch_event_f8() {
         if (newxmList.length === 0) {
             $.modalAlert("Thông tin thuốc không được để trống！", 'warning');
@@ -528,7 +528,7 @@
         par["lybm"] = $("#lybm").val();
         par["fydh"] = $("#fydh").val();
         par["fyfs"] = $("#fyfs").val();
-        par["type"] = 3;//直接发药
+        par["type"] = 3;//Phát thuốc trực tiếp
 
         if (newxmList && par["lybm"] && par["fydh"] && par["fyfs"]) {
             $.najax({
@@ -548,15 +548,15 @@
         }
     }
 
-    //新发药单
+    //Đơn phát thuốc mới
     function newtouch_event_f7() {
-        //解禁退药信息
+        //Bỏ cấm thông tin trả thuốc
         var list = new Array();
         list.push({ id: 'lybm' });
         list.push({ id: 'fyrq' });
         list.push({ id: 'fyfs' });
         readonly(list, 2);
-        //禁用药品信息
+        //Vô hiệu hóa thông tin thuốc
         var list2 = new Array();
         list2.push({ id: 'srm' });
         list2.push({ id: 'pc' });
@@ -572,12 +572,12 @@
             container: "#form2",
             inner: false
         });
-        newxmList = [];   //新项目List
-        editingNewid = null;    //正在修改的行
+        newxmList = [];   //Hạng mục mớiList
+        editingNewid = null;    //Dòng đang sửa
         bottomButtonsReset();
     }
 
-    //按钮重置
+    //Đặt lại nút
     function bottomButtonsReset() {
         $('#btn_bottombutton_f2').removeAttr('disabled');
         $('#btn_bottombutton_f3').attr('disabled', 'disabled');
@@ -585,7 +585,7 @@
         $('#btn_bottombutton_f9').hide();
     }
 
-    //清空药品信息
+    //Xóa thông tin thuốc
     function clearMedicineInfo() {
         newtouch_globalevent_f4(null, {
             container: "#form3",
@@ -601,7 +601,7 @@
         editingNewid = null;
     }
 
-    //检查正在编辑的数据（待提交）的完整性
+    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）tính đầy đủ của
     function checkEditingRowData() {
         var validator = $('#form1').validate();
         validator.settings = {
@@ -652,7 +652,7 @@
         }
     }
 
-    //禁用软件
+    //Vô hiệu hóa phần mềm
     function readonly(list, type) {
         if (list && list.length > 0) {
             for (var i = 0; i < list.length; i++) {
@@ -666,7 +666,7 @@
         }
     }
 
-    //验证form
+    //Kiểm traform
     function ValidateForm() {
         var lybm = $("#lybm").val();
         var fyrq = $("#fyrq").val();
@@ -675,13 +675,13 @@
         if (!lybm || !fyrq || !fydh || fyfs === "==Vui lòng chọn==") {
             return false;
         }
-        //禁用领药信息
+        //Vô hiệu hóa thông tin nhận thuốc
         var list = new Array();
         list.push({ id: 'lybm' });
         list.push({ id: 'fyrq' });
         list.push({ id: 'fyfs' });
         readonly(list, 1);
-        //解锁药品信息
+        //Mở khóa thông tin thuốc
         var list2 = new Array();
         list2.push({ id: 'srm' });
         //list2.push({ id: 'pc' });

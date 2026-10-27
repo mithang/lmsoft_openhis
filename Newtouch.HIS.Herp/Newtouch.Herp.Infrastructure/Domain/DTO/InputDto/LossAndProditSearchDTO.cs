@@ -3,32 +3,32 @@ using System;
 namespace Newtouch.Herp.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 损益查询条件
+    /// Điều kiện truy vấn chênh lệch
     /// </summary>
     public class LossAndProditSearchDTO
     {
         /// <summary>
-        /// 开始时间
+        /// Thời gian bắt đầu
         /// </summary>
         public DateTime startTime { get; set; }
 
         /// <summary>
-        /// 结束时间
+        /// Thời gian kết thúc
         /// </summary>
         public DateTime endTime { get; set; }
 
         /// <summary>
-        /// 损益原因
+        /// Nguyên nhân chênh lệch
         /// </summary>
         public string syyy { get; set; }
 
         /// <summary>
-        /// 关键字
+        /// Từ khóa
         /// </summary>
         public string inputCode { get; set; }
 
         /// <summary>
-        /// 损益标志  0：损  1：益  -1：全部
+        /// Cờ chênh lệch  0：Lỗ  1：Lãi  -1：Tất cả
         /// </summary>
         public string sybz { get; set; }
     }

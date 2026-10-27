@@ -3,12 +3,12 @@ using System;
 namespace Newtouch.Infrastructure.Common
 {
     /// <summary>
-    /// 单据扩展
+    /// Mở rộng chứng từ
     /// </summary>
     public static class OrderExt
     {
         /// <summary>
-        /// 生成简单的单号  时间点+三位随机数
+        /// Tạo số đơn giản  Thời điểm+Số ngẫu nhiên 3 chữ số
         /// </summary>
         /// <returns></returns>
         public static string GennerateSimpleOrderNo()

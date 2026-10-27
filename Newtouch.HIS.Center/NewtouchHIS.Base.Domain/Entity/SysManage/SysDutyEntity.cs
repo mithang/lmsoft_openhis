@@ -5,10 +5,10 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity.SysManage
 {
     ///<summary>
-    /// 系统岗位
+    /// Vị trí hệ thống
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
-    [SugarTable("Sys_Duty", "系统岗位")]
+    [SugarTable("Sys_Duty", "Vị trí hệ thống")]
     public partial class SysDutyEntity : ISysEntity
     {
         /// <summary>

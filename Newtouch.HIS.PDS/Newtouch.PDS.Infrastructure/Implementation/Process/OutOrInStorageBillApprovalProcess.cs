@@ -15,7 +15,7 @@ using Newtouch.HIS.Domain.IDomainServices;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 出入库单据审核
+    /// Duyệt chứng từ xuất nhập kho
     /// </summary>
     public class OutOrInStorageBillApprovalProcess : ProcessorFun<OutOrInStorageBillApprovalDTO>
     {
@@ -30,24 +30,24 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Kiểm tra
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
         {
             if (Request == null)
             {
-                throw new FailedException("审核信息不能为空！");
+                throw new FailedException("Thông tin duyệt không được để trống！");
             }
             if (string.IsNullOrWhiteSpace(Request.crkId))
             {
-                throw new FailedException("出入库单据ID不能为空！");
+                throw new FailedException("Chứng từ xuất nhập kho ID Không được để trống！");
             }
             if (string.IsNullOrWhiteSpace(Request.shzt))
             {
-                throw new FailedException("审核状态不能为空！");
+                throw new FailedException("Trạng thái duyệt không được để trống！");
             }
-            var djmc = "";//单据名称
+            var djmc = "";//Tên chứng từ
             switch (Request.djlx)
             {
                 case (int)EnumDanJuLX.keshifayao:
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Application.Implementation
                     djmc = EnumDanJuLX.zhijiefayao.GetDescription();
                     break;
                 default:
-                    throw new FailedException("未匹配到有效单据类型！");
+                    throw new FailedException("Không khớp loại chứng từ hiệu lực！");
             }
             Request.dj = _crkdj.FindEntity(p => p.crkId == Request.crkId
             && p.OrganizeId == OrganizeId
@@ -78,36 +78,36 @@ namespace Newtouch.HIS.Application.Implementation
             && (p.Ckbm == Constants.CurrentYfbm.yfbmCode || p.Rkbm == Constants.CurrentYfbm.yfbmCode));
             if (Request.dj == null)
             {
-                throw new FailedException(string.Format("根据单据传入的单据ID和单据类型未找到满足要求的单据信息，单据ID【{0}】,单据类型【{1}】！", Request.crkId, djmc));
+                throw new FailedException(string.Format("Theo chứng từ truyền vào ID và loại chứng từ không tìm thấy thông tin chứng từ đáp ứng yêu cầu，Chứng từ ID【{0}】,Loại chứng từ【{1}】！", Request.crkId, djmc));
             }
             if (Request.shzt == ((int)EnumDjShzt.Cancelled).ToString())
             {
-                if (((int)EnumDjShzt.WaitingApprove).ToString() == Request.dj.shzt) throw new FailedException("单据尚未审核，不允许作废！"); //作废操作，应该存在单据审核记录
-                if (((int)EnumDjShzt.Cancelled).ToString() == Request.dj.shzt) throw new FailedException("单据已作废，不能重复作废！");
-                if (((int)EnumDjShzt.Rejected).ToString() == Request.dj.shzt) throw new FailedException("单据已审核不通过，不能作废！");
+                if (((int)EnumDjShzt.WaitingApprove).ToString() == Request.dj.shzt) throw new FailedException("Chứng từ chưa duyệt，Không cho phép hủy bỏ！"); //Thao tác hủy bỏ，Phải tồn tại bản ghi duyệt chứng từ
+                if (((int)EnumDjShzt.Cancelled).ToString() == Request.dj.shzt) throw new FailedException("Chứng từ đã hủy bỏ，Không thể hủy bỏ trùng lặp！");
+                if (((int)EnumDjShzt.Rejected).ToString() == Request.dj.shzt) throw new FailedException("Chứng từ đã duyệt không đạt，Không thể hủy bỏ！");
             }
             else if (Request.shzt == ((int)EnumDjShzt.Rejected).ToString())
             {
-                if (((int)EnumDjShzt.WaitingApprove).ToString() != Request.dj.shzt) throw new FailedException("只能操作待处理状态单据！");
+                if (((int)EnumDjShzt.WaitingApprove).ToString() != Request.dj.shzt) throw new FailedException("Chỉ có thể thao tác chứng từ trạng thái chờ xử lý！");
             }
             else
             {
-                if (((int)EnumDjShzt.WaitingApprove).ToString() != Request.dj.shzt) throw new FailedException("单据已审核，不能重复审核！");//非作废操作，应该不存在单据审核记录
+                if (((int)EnumDjShzt.WaitingApprove).ToString() != Request.dj.shzt) throw new FailedException("Chứng từ đã duyệt，Không thể duyệt trùng lặp！");//Thao tác không hủy bỏ，Phải không tồn tại bản ghi duyệt chứng từ
             }
             Request.djmx = _crkdjmx.IQueryable(p => p.crkId == Request.crkId && p.zt == "1").ToList();
             if (Request.djmx == null || Request.djmx.Count <= 0)
             {
-                throw new FailedException(string.Format("根据单据传入的单据ID和单据类型未找到满足要求的单据明细，单据ID【{0}】,单据类型【{1}】！", Request.crkId, djmc));
+                throw new FailedException(string.Format("Theo chứng từ truyền vào ID và loại chứng từ không tìm thấy chi tiết chứng từ đáp ứng yêu cầu，Chứng từ ID【{0}】,Loại chứng từ【{1}】！", Request.crkId, djmc));
             }
             //if (_mx.Any(p => p.Sl <= 0))
             //{
-            //    throw new FailedException("存在数量为零的明细记录，操作失败");
+            //    throw new FailedException("Tồn tại bản ghi chi tiết có Số lượng bằng 0，Thao tác thất bại");
             //}
             return new ActResult();
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Application.Implementation
                     if (!sysMedicineReceiptDmnService.ApprovalStorageIoReceipt(Request.crkId, Request.djlx, Request.shzt))
                     {
                         actResult.IsSucceed = false;
-                        actResult.ResultMsg = "审核失败！";
+                        actResult.ResultMsg = "Duyệt thất bại！";
                     }
                     break;
                 case (int)EnumDanJuLX.yaopinruku:

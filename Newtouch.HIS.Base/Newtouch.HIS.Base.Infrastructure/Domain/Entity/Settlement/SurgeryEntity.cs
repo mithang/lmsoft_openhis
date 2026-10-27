@@ -20,44 +20,44 @@ namespace Newtouch.HIS.Domain.Entity.Settlement
 		public int id { get; set; }
 
 		/// <summary>
-		/// 手术码
+		/// Mã phẫu thuật
 		/// </summary>
 		public string ssm { get; set; }
 
 		/// <summary>
-		/// 手术名称
+		/// Tên phẫu thuật
 		/// </summary>
 		public string ssmc { get; set; }
 
 		/// <summary>
-		/// 手术级别
+		/// Cấp phẫu thuật
 		/// </summary>
 		public int ssjb { get; set; }
 
 		/// <summary>
-		/// 手术类型
+		/// Loại phẫu thuật
 		/// </summary>
 		public string sslx { get; set; }
 
 		/// <summary>
-		/// 手术类型名称
+		/// Tên loại phẫu thuật
 		/// </summary>
 		public string sslxmc { get; set; }
 
 		/// <summary>
-		/// 拼音码
+		/// Mã Pinyin
 		/// </summary>
 		public string pym { get; set; }
 
 		public bool zt { get; set; }
 
 		/// <summary>
-		/// 医保手术码
+		/// Mã phẫu thuật BHYT
 		/// </summary>
 		public string ssm_yb { get; set; }
 
 		/// <summary>
-		/// 医保手术名称
+		/// Tên phẫu thuật BHYT
 		/// </summary>
 		public string ssmc_yb { get; set; }
 	}

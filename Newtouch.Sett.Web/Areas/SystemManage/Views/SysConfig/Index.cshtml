@@ -45,7 +45,7 @@
         </table>
     </div>
     @*<div style="float:right;padding-right:100px;">
-        <a title="查看所有配置项" onclick="btn_ShowAllConfig()" style="cursor:pointer;color:blue;text-decoration:underline;">查看所有配置项</a>
+        <a title="Xem tất cả mục cấu hình" onclick="btn_ShowAllConfig()" style="cursor:pointer;color:blue;text-decoration:underline;">Xem tất cả mục cấu hình</a>
     </div>*@
 </div>
 <div class="gridPanel">
@@ -124,7 +124,7 @@
         });
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
@@ -137,7 +137,7 @@
         {
             if ($("#gridList").jqGridRowValue().Value == "")
             {
-                // == ""? 不好
+                // == ""? khôngtốt
                 $.modalAlert("này Mẫu cấu hình không có thể xóa", 'warning');
                 return;
             }

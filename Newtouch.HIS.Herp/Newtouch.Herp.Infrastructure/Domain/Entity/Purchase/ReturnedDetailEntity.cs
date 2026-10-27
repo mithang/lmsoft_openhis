@@ -16,7 +16,7 @@ namespace Newtouch.Herp.Domain.Entity.Purchase
         [SugarColumn(IsPrimaryKey = true)]
         public string thmxId { get; set; }
         /// <summary>
-        /// 采购编号
+        /// Mã mua sắm
         /// </summary>
         public string thId { get; set; }
         public string OrganizeId { get; set; }

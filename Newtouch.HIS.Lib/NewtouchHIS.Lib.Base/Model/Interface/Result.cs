@@ -6,17 +6,17 @@ namespace NewtouchHIS.Lib.Base.Model
     public class BusResult<T>
     {
         /// <summary>
-        /// 业务返回码
+        /// Mã trả về nghiệp vụ
         /// </summary>
         public ResponseResultCode code { get; set; }
 
         /// <summary>
-        /// 业务返回码描述
+        /// Mô tả mã trả về nghiệp vụ
         /// </summary>
         public string? msg { get; set; }
 
         /// <summary>
-        /// 返回数据
+        /// Trả về dữ liệu
         /// </summary>
         [JsonProperty("data")]
         public T? Data { get; set; }
@@ -43,27 +43,27 @@ namespace NewtouchHIS.Lib.Base.Model
     }
 
     /// <summary>
-    /// 数据返回模型基类
+    /// Lớp cơ sở mô hình trả về dữ liệu
     /// </summary>
     public class Result
     {
         /// <summary>
-        /// 返回状态码
+        /// Mã trạng thái trả về
         /// </summary>
         public virtual HttpStatusCode HttpStatus { get; set; } = HttpStatusCode.OK;
 
         /// <summary>
-        /// 获取 消息内容
+        /// Lấy nội dung tin nhắn
         /// </summary>
         public virtual string? Message { get; set; } = "OK";
 
         /// <summary>
-        /// 返回数据
+        /// Trả về dữ liệu
         /// </summary>
         public virtual object? BusData { get; set; }
 
         /// <summary>
-        /// 执行时长
+        /// Thời gian thực thi
         /// </summary>
         public virtual long TimeOut { get; set; }
 
@@ -105,7 +105,7 @@ namespace NewtouchHIS.Lib.Base.Model
         public int HttpStatus { get; set; }
         public string Message { get; set; }
         /// <summary>
-        /// 执行时长
+        /// Thời gian thực thi
         /// </summary>
         public virtual long TimeOut { get; set; }
         public BusResult<T> BusData { get; set; }

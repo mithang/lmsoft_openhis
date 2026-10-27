@@ -32,10 +32,10 @@ namespace Newtouch.EMR.DomainServices
         }
        
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(bl_hljl_ssEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -64,7 +64,7 @@ namespace Newtouch.EMR.DomainServices
             }
         }
         /// <summary>
-        /// 护理分页查询
+        /// Truy vấn phân trang điều dưỡng
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>

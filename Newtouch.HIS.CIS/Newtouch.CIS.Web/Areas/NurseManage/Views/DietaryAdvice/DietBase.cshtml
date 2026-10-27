@@ -143,10 +143,10 @@
 </div>
 <script>
     var localdata = [];
-    var deldata = [];//删除对象
+    var deldata = [];//Xóađối tượng
     var $gridMxList = $("#gridMxInfo");
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
@@ -163,7 +163,7 @@
         Initial();
     });
 
-    //初始化
+    //Khởi tạo
     function Initial() {
         getLbSelectTree();
         gridList();
@@ -171,7 +171,7 @@
         TabGridHide();;
     }
 
-    //隐藏搜索框并显示箭头
+    //Ẩntìm kiếmkhungvàHiển thịmũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -183,7 +183,7 @@
         }
     }
 
-    //类别
+    //Loại
     function getLbSelectTree() {
         $("#lb").newtouchBindSelect({
             datasource: function () {
@@ -205,7 +205,7 @@
         });
     }
 
-    //主表信息
+    //chínhbảngthông tin
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -289,16 +289,16 @@
         });
     }
 
-    //明细信息
+    //chi tiếtthông tin
     function gridMxInfo() {
         $gridMxList.dataGrid({
             datatype: 'local',
             data: localdata,
             height: $(window).height() - document.getElementById('gridList').offsetTop - 180,
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            shrinkToFit: true,   //true:theo tỷ lệVDkhởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
             autowidth: true,
-            rownumbers: true,  //是否显示Số thứ tự
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            rownumbers: true,  //CóKhôngHiển thịSố thứ tự
+            editurl: "clientArray",  //dòngSửakhông gửi lên máy chủGửiDữ liệu
             unwritten: false,
             colModel: [
                 { label: 'Id', name: 'Id', align: 'center', hidden: true },
@@ -327,7 +327,7 @@
                     }, editrules: { required: true }
                 },
                 //{
-                //    label: '是否换算', name: 'sfhs', width: 120, editwidth: '90%', align: 'center', edittype: "select", editable: true, editrules: { required: true }, editoptions: {
+                //    label: 'CóKhôngđổitính', name: 'sfhs', width: 120, editwidth: '90%', align: 'center', edittype: "select", editable: true, editrules: { required: true }, editoptions: {
                 //        dataEvents: [
                 //            {
                 //                type: 'change',
@@ -348,16 +348,16 @@
                 { label: 'Thao tác', name: 'action', width: 90, align: 'center' },
                 { label: 'baseId', name: 'baseId', hidden: true },
             ],
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
+            editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
             pager: "gridMxPager",
             gridComplete: function () {
                 EnableInlineEditBox();
-                //隐藏grid底部滚动条
+                //Ẩngridthanh cuộn dưới cùng
                 $gridMxList.closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
             }
         });
-        //自定义按钮
+        //Nút tùy chỉnh
         $gridMxList.navGrid('#gridMxPager',
             { edit: false, add: false, del: false, search: false, refresh: false, view: false, position: "left", cloneToTop: false })
             .navButtonAdd('#gridMxPager',
@@ -382,27 +382,27 @@
             })
     }
 
-    //启用行内编辑
+    //Bật sửa trong dòng
     function EnableInlineEditBox() {
         var ids = $gridMxList.getDataIDs();
         if (ids.length > 0) {
             $.each(ids, function () {
                 var rowid = String(this);
-                //打开编辑模式
+                //MởSửachế độ
                 $gridMxList.jqGrid('editRow', rowid, false, initInlineFunc);
             });
         }
     }
 
-     //初始化 浮层
+     //Khởi tạo lớp nổi
     function initInlineFunc(rowid) {
-        //部分列只读
+        //Một số cột chỉ đọc
         $("#" + rowid + "_price").css('background-color','#f6f7fb').attr('readonly','true');
         $("#" + rowid + "_dw").css('background-color','#f6f7fb').attr('readonly','true');
         $("#" + rowid + "_sl").parent().next().children('select').html('');
         $("#" + rowid + "_sl").parent().next().children('select').append('<option value="1">Có</option><option value="0">Không</option>');
 
-        //药品浮层  //中药西药 会重复么 ‘"#" + rowid + "_xmmc"’
+        //Lớp nổi thuốc  //Thuốc Đông yThuốc Tây sẽtrùng lặpsao ‘"#" + rowid + "_xmmc"’
         $("#" + rowid + "_sfxmmc").sfxmFloatingSelector({
             djDecimalPlaces: 4,
             searchType: 'yp.kc,sfxm',
@@ -504,7 +504,7 @@
 
     function saveData() {
 
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $gridMxList.jqGrid('getDataIDs');
         if (rowIds < 1) {
             $.modalAlert("Hiện tại không có nội dung suất ăn đã lưu", 'warning');
@@ -514,8 +514,8 @@
             var saveResult = $gridMxList.saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
             if (!saveResult) {
-                EnableInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                return;   //保存失败，则return
+                EnableInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
+                return;   //Lưu thất bại，thìreturn
             }
         }
 
@@ -541,12 +541,12 @@
             }
         });
     }
-    //删除明细
+    //Xóa chi tiết
     function deleteRowData(selRowId) {
         if (!!selRowId) {
             var Id = $gridMxList.jqGrid('getRowData', selRowId).Id;
             $gridMxList.jqGrid("delRowData", selRowId);
-            if (Id.indexOf("0.") == '-1') {//记录下来，从数据库删除
+            if (Id.indexOf("0.") == '-1') {//ghi lại，từCơ sở dữ liệuXóa
                 deldata.push(Id);
             }
         }

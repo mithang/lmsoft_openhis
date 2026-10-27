@@ -15,240 +15,240 @@ namespace Newtouch.OR.ManageSystem.Domain.ValueObjects
         /// <returns></returns>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 登记编号
+        /// Số đăng ký
         /// </summary>
         /// <returns></returns>
         public string Id { get; set; }
         /// <summary>
-        /// 安排编号
+        /// Số xếp lịch
         /// </summary>
         /// <returns></returns>
         public string arrangeId { get; set; }
         /// <summary>
-        /// 申请编号
+        /// Số đơn đăng ký
         /// </summary>
         /// <returns></returns>
         public string applyId { get; set; }
         /// <summary>
-        /// 申请代码
+        /// Mã đơn đăng ký
         /// </summary>
         public string applyno { get; set; }
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         /// <returns></returns>
         public string xm { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         /// <returns></returns>
         public string xb { get; set; }
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         /// <returns></returns>
         public string nl { get; set; }
         /// <summary>
-        /// 手术登记号
+        /// Số đăng ký phẫu thuật
         /// </summary>
         /// <returns></returns>
         public string ssxh { get; set; }
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// 病区
+        /// Khoa
         /// </summary>
         /// <returns></returns>
         public string bq { get; set; }
         /// <summary>
-        /// 床号
+        /// Số giường
         /// </summary>
         /// <returns></returns>
         public string ch { get; set; }
         /// <summary>
-        /// 诊断
+        /// Chẩn đoán
         /// </summary>
         /// <returns></returns>
         public string zd { get; set; }
         /// <summary>
-        /// 入院诊断
+        /// Chẩn đoán lúc nhập viện
         /// </summary>
         /// <returns></returns>
         public string ryzd { get; set; }
         /// <summary>
-        /// 入院诊断名称
+        /// Tên chẩn đoán lúc nhập viện
         /// </summary>
         /// <returns></returns>
         public string ryzdmc { get; set; }
         /// <summary>
-        /// 术后诊断
+        /// Chẩn đoán sau phẫu thuật
         /// </summary>
         /// <returns></returns>
         public string sszd { get; set; }
         /// <summary>
-        /// 术后诊断名称
+        /// Tên chẩn đoán sau phẫu thuật
         /// </summary>
         /// <returns></returns>
         public string sszdmc { get; set; }
         /// <summary>
-        /// 病情
+        /// Tình trạng bệnh
         /// </summary>
         /// <returns></returns>
         public string shbq { get; set; }
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         /// <returns></returns>
         public string memo { get; set; }
         /// <summary>
-        /// 手术级别
+        /// Cấp phẫu thuật
         /// </summary>
         /// <returns></returns>
         public string ssjb { get; set; }
         /// <summary>
-        /// 手术名称
+        /// Tên phẫu thuật
         /// </summary>
         /// <returns></returns>
         public string ssmc { get; set; }
         /// <summary>
-        /// 手术代码
+        /// Mã phẫu thuật
         /// </summary>
         public string ssdm { get; set; }
         /// <summary>
-        /// 手术申请时间
+        /// Thời gian đăng ký phẫu thuật
         /// </summary>
         /// <returns></returns>
         public DateTime? sssqsj { get; set; }
         /// <summary>
-        /// 手术安排时间
+        /// Thời gian xếp lịch phẫu thuật
         /// </summary>
         /// <returns></returns>
         public DateTime? ssapsj { get; set; }
         /// <summary>
-        /// 手术开始时间
+        /// Thời gian bắt đầu phẫu thuật
         /// </summary>
         /// <returns></returns>
         public DateTime? sskssj { get; set; }
         /// <summary>
-        /// 手术结束时间
+        /// Thời gian kết thúc phẫu thuật
         /// </summary>
         /// <returns></returns>
         public DateTime? ssjssj { get; set; }
         /// <summary>
-        /// 手术室
+        /// Phòng phẫu thuật
         /// </summary>
         /// <returns></returns>
         public string oproom { get; set; }
         /// <summary>
-        /// 台次
+        /// Lượt mổ
         /// </summary>
         /// <returns></returns>
         public string oporder { get; set; }
         /// <summary>
-        /// 麻醉方式
+        /// Phương pháp gây mê
         /// </summary>
         /// <returns></returns>
         public string AnesCode { get; set; }
         /// <summary>
-        /// 手术部位
+        /// Vị trí phẫu thuật
         /// </summary>
         /// <returns></returns>
         public string ssbw { get; set; }
         /// <summary>
-        /// 切口等级
+        /// Cấp vết mổ
         /// </summary>
         /// <returns></returns>
         public string qkdj { get; set; }
         /// <summary>
-        /// 是否隔离 0 否 1 是
+        /// Có cách ly không 0 Không 1 Có
         /// </summary>
         /// <returns></returns>
         public string isgl { get; set; }
         /// <summary>
-        /// 是否有菌 0 否 1 是
+        /// Có nhiễm khuẩn không 0 Không 1 Có
         /// </summary>
         /// <returns></returns>
         public string isjun { get; set; }
         /// <summary>
-        /// 输血量
+        /// Lượng truyền máu
         /// </summary>
         /// <returns></returns>
         public decimal? shuxl { get; set; }
         /// <summary>
-        /// 失血量
+        /// Lượng mất máu
         /// </summary>
         /// <returns></returns>
         public decimal? shixl { get; set; }
         /// <summary>
-        /// 总入量
+        /// Tổng lượng vào
         /// </summary>
         /// <returns></returns>
         public decimal? zrxl { get; set; }
         /// <summary>
-        /// 总出量
+        /// Tổng lượng ra
         /// </summary>
         /// <returns></returns>
         public decimal? zcxl { get; set; }
         /// <summary>
-        /// 主刀医生
+        /// Bác sĩ mổ chính
         /// </summary>
         /// <returns></returns>
         public string ysgh { get; set; }
         /// <summary>
-        /// 助理医生1
+        /// Bác sĩ phụ mổ1
         /// </summary>
         /// <returns></returns>
         public string zlys1 { get; set; }
         /// <summary>
-        /// 助理医生2
+        /// Bác sĩ phụ mổ2
         /// </summary>
         /// <returns></returns>
         public string zlys2 { get; set; }
         /// <summary>
-        /// 巡回护士
+        /// Y tá lưu động
         /// </summary>
         /// <returns></returns>
         public string xhhs { get; set; }
         /// <summary>
-        /// 洗手护士
+        /// Y tá rửa tay
         /// </summary>
         /// <returns></returns>
         public string xshs { get; set; }
         /// <summary>
-        /// 麻醉医师
+        /// Bác sĩ gây mê
         /// </summary>
         /// <returns></returns>
         public string mzys { get; set; }
 		/// <summary>
-		/// 医生姓名
+		/// Tên bác sĩ
 		/// </summary>
 		public string ysxm { get; set; }
 		/// <summary>
-		/// 助理医生1名字
+		/// Bác sĩ phụ mổ1Tên
 		/// </summary>
 		public string zlys1name { get; set; }
 		/// <summary>
-		/// 助理医生2名字
+		/// Bác sĩ phụ mổ2Tên
 		/// </summary>
 		public string zlys2name { get; set; }
 		/// <summary>
-		/// 巡回护士名字
+		/// Tên y tá lưu động
 		/// </summary>
 		public string xhhsname { get; set; }
 		/// <summary>
-		/// 洗手护士名字
+		/// Tên y tá rửa tay
 		/// </summary>
 		public string xshsname { get; set; }
 		/// <summary>
-		/// 麻醉医师名字
+		/// Tên bác sĩ gây mê
 		/// </summary>
 		public string mzysname { get; set; }
 
 		/// <summary>
-		/// 手术
+		/// Phẫu thuật
 		/// </summary>
 		public List<ORApplyInfoExpandEntity> ss { get; set; }
 	}

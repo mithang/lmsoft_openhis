@@ -10,32 +10,32 @@ namespace Newtouch.EMR.Domain.ValueObjects
     public class BlTemplateVo
     {
         /// <summary>
-        /// 文书、模板Id
+        /// Văn bản、MẫuId
         /// </summary>
         public string templateId { get; set; }
         /// <summary>
-        /// 文书、模板名称
+        /// Văn bản、Tên mẫu
         /// </summary>
         public string templateName { get; set; }
         /// <summary>
-        /// 文书内容
+        /// Nội dung văn bản
         /// </summary>
         public string xmldata { get; set; }
         /// <summary>
-        /// 病历文书路径
+        /// Đường dẫn văn bản bệnh án
         /// </summary>
         public string bllj { get; set; }
         /// <summary>
-        /// 病历文书占用锁定标志
+        /// Dấu hiệu khóa chiếm dụng văn bản bệnh án
         /// </summary>
         public bool lockStatus { get; set; }
 
-        //门诊病历基本信息
+        //Thông tin cơ bản bệnh án ngoại trú
         public TreatEntityVO mzjbxx { get; set; }
-        //病人病历基本信息
+        //Thông tin cơ bản bệnh án của bệnh nhân
         public blzybrjbxxVO zybrxx { get; set;}
         /// <summary>
-        /// 病历文书病案首页基本信息
+        /// Thông tin cơ bản trang đầu bệnh án của văn bản bệnh án
         /// </summary>
         public BabasyVO basyVo { get; set; }
     }

@@ -12,45 +12,45 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysReportEntity : EntityBase
     {
         /// <summary>
-        /// 角色主键
+        /// Khóa chính vai trò
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public int ReportID { get; set; }
 
         /// <summary>
-        /// 组织机构Id（科室所对应的OrganizeId）
+        /// Tổ chứcId（tương ứng với khoaOrganizeId）
         /// </summary>
         public string HospitalCode { get; set; }
         /// <summary>
-        /// 系统代码
+        /// Mã hệ thống
         /// </summary>
         public string SystemCode { get; set; }
         /// <summary>
-        /// 系统名称
+        /// Tên hệ thống
         /// </summary>
         public string SystemName { get; set; }
         /// <summary>
-        /// 报表对应Code
+        /// Báo cáo tương ứngCode
         /// </summary>
         public string ReportCode { get; set; }
         /// <summary>
-        /// 报表名称
+        /// Tên báo cáo
         /// </summary>
         public string ReportName { get; set; }
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string PinYin { get; set; }
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         public string ReportDes { get; set; }
         /// <summary>
-        /// 1 功能报表 2查询报表
+        /// 1 Báo cáo chức năng 2Báo cáo truy vấn
         /// </summary>
         public int? ReportType { get; set; }
         /// <summary>
-        /// 排序
+        /// Thứ tự
         /// </summary>
         public int? px { get; set; }
         /// <summary>
@@ -58,30 +58,30 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public int? StatusTemplateID { get; set; }
         /// <summary>
-        /// 父级id
+        /// Cấp chaid
         /// </summary>
         public int? ParentId { get; set; }
         /// <summary>
-        /// 是否是系统 1是 0不是
+        /// Có phải hệ thống không 1Có 0Không phải
         /// </summary>
         public int? DirectoryFlag { get; set; }
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Người sửa đổi cuối cùng
         /// </summary>
         public string LastModifierCode { get; set; }
 

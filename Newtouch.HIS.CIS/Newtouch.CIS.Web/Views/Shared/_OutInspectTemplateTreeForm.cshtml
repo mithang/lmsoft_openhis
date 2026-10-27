@@ -9,7 +9,7 @@
         if (!jyjcmbLx || jyjcmbLx == 0){
             return;
         }
-        $("#divInspectTempTree").html(''); //先清空掉
+        $("#divInspectTempTree").html(''); //Xóa trắng trướcrớt
         $("#divInspectTempTree").treeview({
             height: $(window).height() - 100,
             slimscroll: false,
@@ -30,7 +30,7 @@
                         url: "/TemplateManage/InspectionTemplate/GetGPackageDetailByZtId",
                         postData: { ztId: item.id, mbId: item.parentnodes }
                     }).trigger("reloadGrid");
-                    $grid.jqGrid("setCaption", item.text);   //重置caption属性值
+                    $grid.jqGrid("setCaption", item.text);   //Đặt lạicaptionThuộc tínhGiá trị
                 }
             }
         });

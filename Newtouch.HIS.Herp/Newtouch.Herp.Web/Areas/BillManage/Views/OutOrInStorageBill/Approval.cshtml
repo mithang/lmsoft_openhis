@@ -143,12 +143,12 @@
 <script>
     var $gridDjMainRecords = $("#gridDJMainRecords");
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Tải lại chiều rộng jqGrid khi thay đổi kích thước cửa sổ trình duyệt
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
         Init();
-        //搜索框隐藏显示控制
+        //Điều khiển ẩn/hiện hộp tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -165,7 +165,7 @@
         }
     });
 
-    //初始化
+    //Khởi tạo
     function Init() {
         initShzt();
         var djlx = getQueryString("djlx");
@@ -177,7 +177,7 @@
         gridDJMainRecords();
     }
 
-    //初始化审核状态
+    //Khởi tạo trạng thái duyệt
     function initShzt() {
         $("#ddlSHZT").bindSelect({
             url: "/BillManage/OutOrInStorageBill/QueryCommonAuditState"
@@ -185,7 +185,7 @@
         $('#ddlSHZT').val('@((int)EnumAuditState.Waiting)').trigger("change");
     }
 
-    //隐藏搜索框并显示箭头
+    //Ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -195,7 +195,7 @@
         }
     }
 
-    //单据主记录
+    //Bản ghi chính của chứng từ
     function gridDJMainRecords() {
         $gridDjMainRecords.dataGrid({
             postData: getSearchPostData(),
@@ -268,7 +268,7 @@
         });
     }
 
-    //组装查询条件
+    //Ghép điều kiện truy vấn
     function getSearchPostData() {
         var shzt = $("#ddlSHZT").val();
         var kssj = $("#txtStartDate").val();
@@ -280,9 +280,9 @@
         return { kssj: kssj, jssj: jssj, pdh: pdh, fph: fph, djlx: djlx, shzt: shzt, deliveryNo: deliveryNo };
     };
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow(rowid) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空Chi tiết 再重新加载所有选中行Chi tiết
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp chuột，Xóa trướcChi tiết sau đó tải lại tất cả các dòng đã chọnChi tiết
         $.najax({
             type: "POST",
             url: "/OutOrInStorageBill/SelectReceipDetailInfo",
@@ -297,7 +297,7 @@
         });
     }
 
-    //单据明细
+    //Chi tiết chứng từ
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 240,
         unwritten: false,
@@ -315,7 +315,7 @@
             { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
             { label: 'Số lô', name: 'ph', width: 120, align: 'center' },
             { label: 'Lô', name: 'pc', width: 120, align: 'center' },
-            //{ label: '发票号', name: 'fph', width: 90, align: 'left' },
+            //{ label: 'số hóa đơn', name: 'fph', width: 90, align: 'left' },
             {
                 label: 'Số hóa đơn', name: 'fph', width: 90, align: 'center',
                 formatter: function (cellvalue, options) { return cellvalue === "" || cellvalue === null ? "<input type=\"text\" name=\"fph\" rowid=" + options.rowId + " role=\"textbox\" onblur=\"UpdateFph(this)\">" : cellvalue; }
@@ -324,7 +324,7 @@
         ]
     });
 
-    //补发票号
+    //Bổ sung số hóa đơn
     function UpdateFph(obj) {
         var fph = $(obj).val();
         var crkmxId = $("#gridDJMXInfo").getRowData($(obj).attr("rowid")).crkmxId;
@@ -350,22 +350,22 @@
         }
     }
 
-    //审核
+    //Duyệt
     function newtouch_event_f6() {
         submitReceiptApproval('1');
     }
 
-    //未通过
+    //Không đạt
     function newtouch_event_f7() {
         submitReceiptApproval('2');
     }
 
-    //作废
+    //Hủy bỏ
     function newtouch_event_f8() {
         submitReceiptApproval('3');
     }
 
-    //打回申请
+    //Trả lại đơn
     function newtouch_event_f9() {
         var selRowData = $("#gridDJMainRecords").jqGridRowValue();
         if (!selRowData || !selRowData.crkId || !selRowData.djlx) {
@@ -396,7 +396,7 @@
         });
     }
 
-    //更新单据审核状态，提交至服务器
+    //Cập nhật trạng thái duyệt chứng từ，Gửi lên máy chủ
     function submitReceiptApproval(dstnShzt) {
         var selRowData = $("#gridDJMainRecords").jqGridRowValue();
         if (!selRowData || !selRowData.crkId || !selRowData.djlx) {
@@ -424,11 +424,11 @@
         });
     }
 
-    //获取url中的参数
+    //Lấy tham số trong url
     function getQueryString(name) {
-        // 匹配目标参数
+        // khớp tham số đích
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
+        var result = window.location.search.substr(1).match(reg); // Đối vớiquerystringkhớp tham số đích
         if (result != null) {
             return decodeURIComponent(result[2]);
         } else {

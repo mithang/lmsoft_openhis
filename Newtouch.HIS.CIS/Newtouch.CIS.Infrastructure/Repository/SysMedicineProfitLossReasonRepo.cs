@@ -21,7 +21,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 根据损益类型查询损益原因
+        /// Theolãi lỗLoạiTra cứunguyên nhân lãi lỗ
         /// </summary>
         /// <returns></returns>
         public List<SysMedicineProfitLossReasonEntity> GetLossProfitReasonListByType(string sylx)
@@ -40,7 +40,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 获取分页实体列表
+        /// Lấyphúttrangthựcthểdanh sách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>

@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicineFormulationRepo : IRepositoryBase<SysMedicineFormulationEntity>
     {
         /// <summary>
-        /// 根据关键字查询药品剂型
+        /// Tra cứu dạng bào chế thuốc theo từ khóa
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

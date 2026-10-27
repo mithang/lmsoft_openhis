@@ -6,66 +6,66 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 住院药品医嘱操作记录
+    /// Bản ghi thao tác y lệnh thuốc nội trú
     /// </summary>
     [Table("zy_returnDrugApplyBillDetail")]
     [SugarTable("zy_returnDrugApplyBillDetail")]
     public class ZyReturnDrugApplyBillDetailEntity : IEntity<ZyReturnDrugApplyBillDetailEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// Khóa chínhID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// 退药申请单Id  zy_returnDrugApplyBill.Id
+        /// Đơn xin trả thuốcId  zy_returnDrugApplyBill.Id
         /// </summary>
         public string rabId { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 退药数量（部门单位）
+        /// Số lượng trả thuốc（Đơn vị bộ phận）
         /// </summary>
         public int tysl { get; set; }
 
         /// <summary>
-        /// 转换因子（tysl*zhyz=最小单位数量）  默认住院拆零数
+        /// Hệ số chuyển đổi（tysl*zhyz=Số lượng đơn vị nhỏ nhất）  Số chia lẻ nội trú mặc định
         /// </summary>
         public int? zhyz { get; set; }
 
         /// <summary>
-        /// 组号
+        /// Số nhóm
         /// </summary>
         public string zh { get; set; }
 
         /// <summary>
-        /// 状态：0-无效 ；1-有效
+        /// Trạng thái：0-Không hiệu lực ；1-Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改用户
+        /// Người sửa đổi
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Người sửa đổi cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 

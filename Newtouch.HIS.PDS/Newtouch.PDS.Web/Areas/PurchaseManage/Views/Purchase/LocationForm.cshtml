@@ -64,7 +64,7 @@
     var keyValue = $.request("keyValue");
     initForm();
 
-    //初始化表单
+    //Khởi tạo biểu mẫu
     function initForm() {
         if (keyValue != null && keyValue != "") {
             $.najax({
@@ -88,7 +88,7 @@
         }
     }
 
-    //保存
+    //Lưu
     function SubmitForm() {
         if (!DataValidate()) {
             return;
@@ -106,7 +106,7 @@
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#psdbm").val() === "") {
             $.modalAlert("Mã điểm phân phối là bắt buộc", 'warning');

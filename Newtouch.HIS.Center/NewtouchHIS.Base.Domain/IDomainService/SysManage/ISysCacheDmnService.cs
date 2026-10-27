@@ -4,12 +4,12 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.Base.Domain.IDomainService
 {
     /// <summary>
-    /// 系统缓存
+    /// Cache hệ thống
     /// </summary>
     public interface ISysCacheDmnService : ISingletonDependency
     {
         /// <summary>
-        /// 用户身份信息缓存
+        /// Cache thông tin danh tính người dùng
         /// </summary>
         /// <param name="accessToken"></param>
         /// <returns></returns>

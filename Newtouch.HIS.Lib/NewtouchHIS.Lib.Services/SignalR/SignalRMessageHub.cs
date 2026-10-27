@@ -8,15 +8,15 @@ namespace NewtouchHIS.Lib.Services.SignalR
     [EnableCors("Cors")]
     public class HisNoticeHub : Hub
     {
-        #region 客户端调用
+        #region Lời gọi từ máy khách
         public void SendNotice(string name, string message)
         {
             Clients.All.SendAsync(name, message);
         }
 
         /// <summary>
-        /// 记录当前用户的连接ID，方便后面给客户端用户推送站内信通知消息。
-        /// OnConnectedAsync当与集线器建立新连接时调用。 
+        /// Ghi lại ID kết nối của người dùng hiện tại, để tiện sau này đẩy thông báo tin nhắn nội bộ cho người dùng máy khách.
+        /// OnConnectedAsyncĐược gọi khi thiết lập kết nối mới với hub. 
         /// </summary>
         /// <returns></returns>
         public override async Task OnConnectedAsync()
@@ -24,8 +24,8 @@ namespace NewtouchHIS.Lib.Services.SignalR
             var user = Context.UserIdentifier;
             //var userId = _currentUserService.GetUserId();
             //await _userService.SaveWebSocketIdAsync(userId, Context.ConnectionId);
-            //Console.WriteLine($"新的连接:{Context.ConnectionId},userId={userId}");
-            ////处理当前用户的未读消息
+            //Console.WriteLine($"Kết nối mới:{Context.ConnectionId},userId={userId}");
+            ////Xử lý tin nhắn chưa đọc của người dùng hiện tại
             //var unreadMessage = await _messageService.GetMyMessageUnReadNumberAsync(userId);
             //var message = new
             //{
@@ -43,11 +43,11 @@ namespace NewtouchHIS.Lib.Services.SignalR
         //    _LoginManagerService = adminUserService;
         //}
         /// <summary>
-        /// 建立SignalR的客户端id与token的关系
+        /// Thiết lập quan hệ giữa id máy khách SignalR và token
         /// </summary>
         public static Dictionary<string, AuthIdentity> UserIdAndCid = new Dictionary<string, AuthIdentity>();
         /// <summary>
-        /// 建立连接初始化方法
+        /// Phương thức khởi tạo thiết lập kết nối
         /// </summary>
         /// <param name="token"></param>
         /// <returns></returns>
@@ -69,23 +69,23 @@ namespace NewtouchHIS.Lib.Services.SignalR
 
 
         /// <summary>
-        /// 主要作用是，当用户的WebSocket断开连接后，清空他的连接ID。
-        /// OnDisconnectedAsync当与集线器的连接终止时调用。
+        /// Tác dụng chính là, khi WebSocket của người dùng ngắt kết nối, xóa ID kết nối của anh ta.
+        /// OnDisconnectedAsyncĐược gọi khi kết nối với hub bị chấm dứt.
         /// </summary>
         /// <param name="exception"></param>
         /// <returns></returns>
         public override async Task OnDisconnectedAsync(Exception? exception)
         {
             //var userId = _currentUserService.GetUserId();
-            //Console.WriteLine($"断开连接:{Context.ConnectionId},userId={userId}");
+            //Console.WriteLine($"Ngắt kết nối:{Context.ConnectionId},userId={userId}");
             //await _userService.SaveWebSocketIdAsync(userId, string.Empty);
             if (UserIdAndCid.Keys.Contains(Context.ConnectionId))
             {
                 //UserData userData = UserIdAndCid[Context.ConnectionId];
                 //if (userData != null)
                 //{
-                //    userData.Timer.Stop();  //停止定时器
-                //    userData.Timer.Dispose();  //释放定时器
+                //    userData.Timer.Stop();  //Dừng bộ hẹn giờ
+                //    userData.Timer.Dispose();  //Giải phóng bộ hẹn giờ
 
                 //}
                 UserIdAndCid.Remove(Context.ConnectionId);

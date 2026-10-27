@@ -4,29 +4,29 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 申领单明细
+    /// Chi tiết phiếu lĩnh
     /// </summary>
     public interface IKfApplyOrderDetailRepo : IRepositoryBase<KfApplyOrderDetailEntity>
     {
 
         /// <summary>
-        /// 修改已发数量
+        /// Sửa số lượng đã phát
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="sl">部门单位数量，与表kf_applyOrderDetail.zhyz*sl=最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị khoa phòng，với bảng kf_applyOrderDetail.zhyz*sl=Số lượng đơn vị nhỏ nhất</param>
         /// <returns></returns>
         int UpdateYfsl(long id, int sl);
 
         /// <summary>
-        /// 修改已发数量，并返回变更记录
+        /// Sửa số lượng đã phát，và trả về bản ghi thay đổi
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="sl">部门单位数量，与表kf_applyOrderDetail.zhyz*sl=最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị khoa phòng，với bảng kf_applyOrderDetail.zhyz*sl=Số lượng đơn vị nhỏ nhất</param>
         /// <returns></returns>
         KfApplyOrderDetailEntity UpdateYfslAndSelectChangeRecord(long id, int sl);
 
         /// <summary>
-        /// 获取申领单明细信息
+        /// Lấy thông tin chi tiết phiếu lĩnh
         /// </summary>
         /// <param name="sldh"></param>
         /// <param name="organizeId"></param>

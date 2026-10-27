@@ -14,7 +14,7 @@ using NewtouchHIS.Lib.Framework.Filter;
 namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
 {
     /// <summary>
-    /// 库房管理
+    /// Quản lý kho
     /// </summary>
     [Area("WarehouseManage")]
     public class WarehouseController : ControllerBase
@@ -48,7 +48,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -62,7 +62,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
         /// <summary>
-        /// 获取库房信息
+        /// Lấy thông tin kho
         /// </summary>
         /// <returns></returns>
         public IActionResult GetWarehouseGridJson(string keyWord)
@@ -86,7 +86,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
         /// <summary>
-        /// 获取库房信息
+        /// Lấy thông tin kho
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
@@ -97,7 +97,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
         /// <summary>
-        /// 获取科室
+        /// Lấy khoa
         /// </summary>
         /// <returns></returns>
         [HandlerAjaxOnly]
@@ -126,7 +126,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
         /// <summary>
-        /// 获取人员
+        /// Lấy nhân viên
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
@@ -156,7 +156,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
         /// <summary>
-        /// 获取上级
+        /// Lấy cấp trên
         /// </summary>
         /// <returns></returns>
         public IActionResult GetPatientTreeSelectJson()
@@ -177,7 +177,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
         /// <summary>
-        /// 库房维护 表单提交
+        /// Bảo trì kho Gửi biểu mẫu
         /// </summary>
         /// <param name="wzEntity"></param>
         /// <param name="staffghs"></param>
@@ -194,10 +194,10 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
             return Success("Thao tác thành công", null);
         }
 
-        #region 同步物资
+        #region Đồng bộ vật tư
 
         /// <summary>
-        /// 同步物资
+        /// Đồng bộ vật tư
         /// </summary>
         /// <returns></returns>
         public IActionResult SynceProduct()
@@ -206,10 +206,10 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
         /// <summary>
-        /// 获取同步库房物资信息
+        /// Lấy thông tin vật tư kho đồng bộ
         /// </summary>
         /// <param name="pagination"></param>
-        /// <param name="wId">库房ID</param>
+        /// <param name="wId">ID kho</param>
         /// <param name="keyWord"></param>
         /// <param name="wzlb"></param>
         /// <returns></returns>
@@ -226,11 +226,11 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
         /// <summary>
-        /// 控制物资
+        /// Kiểm soát vật tư
         /// </summary>
         /// <param name="relId"></param>
-        /// <param name="wId">库房ID</param>
-        /// <param name="op">操作 1：取消控制  0：控制 </param>
+        /// <param name="wId">khoID</param>
+        /// <param name="op">Thao tác 1：Hủy kiểm soát  0：Kiểm soát </param>
         /// <returns></returns>
         public IActionResult ControlWz(string relId, string wId, string op = "")
         {
@@ -241,11 +241,11 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
         /// <summary>
-        /// 更新库房物资关联关系
+        /// Cập nhật quan hệ liên kết vật tư kho
         /// </summary>
         /// <param name="productIds"></param>
-        /// <param name="opereateType">0:添加  1：删除</param>
-        /// <param name="keyWord">目标库房</param>
+        /// <param name="opereateType">0:Thêm  1：Xóa</param>
+        /// <param name="keyWord">Kho đích</param>
         /// <returns></returns>
         public IActionResult FreshWhAndwzRelList(string[] productIds, int opereateType, string keyWord)
         {
@@ -257,7 +257,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
 
         #endregion
 
-        #region 维护本部门物资单位
+        #region Bảo trì đơn vị vật tư của bộ phận
 
         public IActionResult ProductUnit(string relId)
         {
@@ -265,7 +265,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
         /// <summary>
-        /// 获取库房指定物资单信息
+        /// Lấy thông tin phiếu vật tư chỉ định của kho
         /// </summary>
         /// <param name="relId"></param>
         /// <returns></returns>
@@ -275,7 +275,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
         /// <summary>
-        /// 获取该物资所有单位
+        /// Lấy tất cả đơn vị của vật tư này
         /// </summary>
         /// <param name="relId"></param>
         /// <returns></returns>
@@ -285,7 +285,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
         /// <summary>
-        /// 修改库房物资单位
+        /// Sửa đơn vị vật tư kho
         /// </summary>
         /// <param name="relId"></param>
         /// <param name="unitId"></param>
@@ -301,7 +301,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         #endregion
 
         /// <summary>
-        /// 获取部门物资类别
+        /// Lấy loại vật tư của bộ phận
         /// </summary>
         /// <returns></returns>
         public IActionResult GetBmWzLb()
@@ -311,10 +311,10 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
 
-        #region 本部门物资查询
+        #region Truy vấn vật tư của bộ phận
 
         /// <summary>
-        /// 部门物资视图
+        /// Chế độ xem vật tư bộ phận
         /// </summary>
         /// <returns></returns>
         public IActionResult WarehouseProductQuery()
@@ -324,7 +324,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         }
 
         /// <summary>
-        /// 获取库房物资
+        /// Lấy vật tư kho
         /// </summary>
         /// <returns></returns>
         public IActionResult GetWarehouseProducts(Pagination pagination, string keyWord, string lb, string kzbz, string wzzt)

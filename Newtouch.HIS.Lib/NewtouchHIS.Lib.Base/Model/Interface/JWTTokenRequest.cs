@@ -8,7 +8,7 @@ namespace NewtouchHIS.Lib.Base.Model
         public AuthIdentity? authIdentity { get; set; }
     }
     /// <summary>
-    /// 授权类型
+    /// Loại ủy quyền
     /// </summary>
     public enum AuthType
     {
@@ -21,11 +21,11 @@ namespace NewtouchHIS.Lib.Base.Model
     public class AuthIdentity : UserIdentity
     {
         /// <summary>
-        /// 访问的应用信息
+        /// Thông tin ứng dụng truy cập
         /// </summary>
         public string? AppAuthKey { get; set; }
         /// <summary>
-        /// AppId by 颁发授权token应用
+        /// AppId by Ứng dụng cấp token ủy quyền
         /// </summary>
         public string? KeyLicense { get; set; }
     }
@@ -37,35 +37,35 @@ namespace NewtouchHIS.Lib.Base.Model
     }
 
     /// <summary>
-    /// 鉴权身份认证
+    /// Xác thực danh tính
     /// </summary>
     public class SSOAuthIdentity : SSOAuthAppItem
     {
         /// <summary>
-        /// 签发者
+        /// Đơn vị phát hành
         /// </summary>
         public string Issuer { get; set; }
 
         /// <summary>
-        /// 接收者
+        /// Đơn vị nhận
         /// </summary>
         public string Audience { get; set; }
     }
     /// <summary>
-    /// 授权应用信息
+    /// Thông tin ứng dụng ủy quyền
     /// </summary>
     public class SSOAuthAppItem
     {
         /// <summary>
-        /// 系统域名
+        /// Tên miền hệ thống
         /// </summary>
         public string? Domain { get; set; }
         /// <summary>
-        /// 系统Id
+        /// hệ thốngId
         /// </summary>
         public string AppId { get; set; }
         /// <summary>
-        /// 系统密钥
+        /// Khóa bí mật hệ thống
         /// </summary>
         public string AppSecret { get; set; }
     }

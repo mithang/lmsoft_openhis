@@ -1,42 +1,42 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 药品查询条件
+    /// Điều kiện truy vấn thuốc
     /// </summary>
     public class MedicineInfoParam
     {
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 药品类别
+        /// Loại thuốc
         /// </summary>
         public string yplb { get; set; }
 
         /// <summary>
-        /// 药品熟悉
+        /// Thuốc quen thuộc
         /// </summary>
         public string ypsx { get; set; }
 
         /// <summary>
-        /// 药品剂型
+        /// Dạng bào chế thuốc
         /// </summary>
         public string ypjx { get; set; }
 
         /// <summary>
-        /// 使用状态 控制、正常
+        /// Trạng thái sử dụng Kiểm soát、Bình thường
         /// </summary>
         public string syzt { get; set; }
 
         /// <summary>
-        /// 药品状态 停用、启用
+        /// Trạng thái thuốc Ngừng dùng、Bật
         /// </summary>
         public string ypzt { get; set; }
 
         /// <summary>
-        /// 输入码
+        /// Mã nhập
         /// </summary>
         public string srm { get; set; }
     }

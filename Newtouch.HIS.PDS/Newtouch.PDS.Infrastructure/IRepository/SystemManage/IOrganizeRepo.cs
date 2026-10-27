@@ -9,13 +9,13 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IOrganizeRepo : IRepositoryBase<OrganizeEntity>
     {
         /// <summary>
-        /// 获取组织下的所有组织
+        /// Lấy tất cả tổ chức thuộc tổ chức
         /// </summary>
         /// <returns></returns>
         List<OrganizeEntity> GetListByTopOrg(string topOrganizeId);
 
         /// <summary>
-        /// 获取组织下的所有有效组织
+        /// Lấy tất cả tổ chức hiệu lực thuộc tổ chức
         /// </summary>
         /// <returns></returns>
         List<OrganizeEntity> GetValidListByTopOrg(string topOrganizeId);

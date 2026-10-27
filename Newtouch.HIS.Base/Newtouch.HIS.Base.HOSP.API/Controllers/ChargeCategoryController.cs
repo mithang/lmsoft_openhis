@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
-    /// <summary>系统收费大类 (scaffold gốc — giữ nguyên hành vi value1/value2).</summary>
+    /// <summary>Danh mục thu phí hệ thống lớn (scaffold gốc — giữ nguyên hành vi value1/value2).</summary>
     [Route("api/ChargeCategory")]
     [ApiController]
     public class ChargeCategoryController : ControllerBase

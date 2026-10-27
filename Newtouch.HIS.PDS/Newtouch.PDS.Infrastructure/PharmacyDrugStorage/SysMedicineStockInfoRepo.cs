@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 外部出库变更库存冻结数量
+        /// Xuất kho ra ngoài thay đổi số lượng đóng băng tồn kho
         /// </summary>
         /// <param name="kcId"></param>
         /// <param name="djsl"></param>
@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Repository
             var entity = this.FindEntity(kcId);
             if (entity.kcsl - entity.djsl < djsl)
             {
-                throw new FailedException("可用数量少于冻结数量");
+                throw new FailedException("Số lượng khả dụng ít hơn Số lượng đóng băng");
             }
             entity.djsl = entity.djsl + djsl;
             entity.Modify();
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改库存状态
+        /// Sửa trạng thái tồn kho
         /// </summary>
         /// <param name="ypdm"></param>
         /// <param name="ph"></param>
@@ -85,7 +85,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 计算可用库存 当前方法无日志
+        /// Tính tồn kho khả dụng Phương thức hiện tại không có nhật ký
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
@@ -114,7 +114,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 计算可用库存 当前方法无日志
+        /// Tính tồn kho khả dụng Phương thức hiện tại không có nhật ký
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="pc"></param>
@@ -149,9 +149,9 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 减少冻结库存
+        /// Giảm tồn kho đóng băng
         /// </summary>
-        /// <param name="sl">最小单位数量 要减去的库存数</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất Số tồn kho cần trừ</param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="ypCode"></param>
@@ -179,9 +179,9 @@ WHERE pc=@pc AND ph=@ph AND ypdm=@ypCode AND OrganizeId=@OrganizeId AND yfbmCode
         }
 
         /// <summary>
-        /// 减少冻结库存
+        /// Giảm tồn kho đóng băng
         /// </summary>
-        /// <param name="sl">最小单位数量 要减去的库存数</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất Số tồn kho cần trừ</param>
         /// <param name="kcId"></param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
@@ -203,9 +203,9 @@ WHERE kcId=@kcId AND OrganizeId=@OrganizeId AND zt='1' AND tybz='0'
         }
 
         /// <summary>
-        /// 减少djsl和kcsl
+        /// Giảmdjslvàkcsl
         /// </summary>
-        /// <param name="sl">最小单位数量 要减去的库存数</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất Số tồn kho cần trừ</param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="ypCode"></param>
@@ -233,9 +233,9 @@ WHERE pc=@pc AND ph=@ph AND ypdm=@ypCode AND OrganizeId=@OrganizeId AND yfbmCode
         }
 
         /// <summary>
-        /// 变更库存数量
+        /// Thay đổi Số lượng tồn kho
         /// </summary>
-        /// <param name="sl">最小单位数量 +：加库存  -：减库存</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất +：Tăng tồn kho  -：Giảm tồn kho</param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="ypCode"></param>

@@ -7,92 +7,92 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Outpatient
 {
     /// <summary>
-    /// 皮试项目信息
+    /// dathửMụcthông tin
     /// </summary>
     public class PsItemVO
     {
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 处方明细id
+        /// Đơn thuốcchi tiếtid
         /// </summary>
         public string cfmxId { get; set; }
 
         /// <summary>
-        /// 项目Code
+        /// MụcCode
         /// </summary>
         public string xmCode { get; set; }
 
         /// <summary>
-        /// 项目名称
+        /// Tên mục
         /// </summary>
         public string xmmc { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal dj { get; set; }
 
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal je { get; set; }
 
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 执行人
+        /// Thực hiện người
         /// </summary>
         public string CreatorName { get; set; }
 
         /// <summary>
-        /// 过敏信息Id
+        /// quamẫnthông tinId
         /// </summary>
         public string gmxxId { get; set; }
 
         /// <summary>
-        /// 执行时间
+        /// Thời gian thực hiện
         /// </summary>
         public DateTime? CreateTime { get; set; }
 
         /// <summary>
-        /// 执行结果
+        /// Thực hiệnkếtnếu
         /// </summary>
         public string Result { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string Remark { get; set; }
 
         /// <summary>
-        /// 剂量
+        /// Liều lượng
         /// </summary>
         public decimal? ypjl { get; set; }
 
         /// <summary>
-        /// 药品规格
+        /// Quy cách thuốc
         /// </summary>
         public string ypgg { get; set; }
 
         /// <summary>
-        /// 医嘱内容
+        /// Nội dung y lệnh
         /// </summary>
         public string yznr { get; set; }
 
         /// <summary>
-        /// 医嘱Id
+        /// Y lệnhId
         /// </summary>
         public string yzId { get; set; }
     }

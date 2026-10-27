@@ -14,39 +14,39 @@ using NewtouchHIS.Lib.Base.Exceptions;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 药品调价 xt_yptj
+    /// Điều chỉnh giá thuốc xt_yptj
     /// </summary>
     public class SysMedicinePriceAdjustmentRepo : RepositoryBase<SysMedicinePriceAdjustmentEntity>, ISysMedicinePriceAdjustmentRepo
     {
         /// <summary>
-        /// 构造函数初始化
+        /// Khởi tạo hàm tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         
         /// <summary>
-        /// 获取一个调价的entity 未审核 未执行
+        /// Lấy một điều chỉnh giáentity Chưa duyệt Chưa thực hiện
         /// </summary>
         /// <param name="ypCode"></param>
         /// <returns></returns>
         public SysMedicinePriceAdjustmentEntity GetMedicinePriceAdjustmentNotApproveEntity(string ypCode)
         {
             var organizeId = OperatorProvider.GetCurrent().OrganizeId;
-            return IQueryable().FirstOrDefault(a => a.ypCode == ypCode && a.zxbz == "0" && (a.shzt == "0" || a.shzt == "1") && a.zxsj > DateTime.Now && a.OrganizeId == organizeId);   //未审核 未执行
+            return IQueryable().FirstOrDefault(a => a.ypCode == ypCode && a.zxbz == "0" && (a.shzt == "0" || a.shzt == "1") && a.zxsj > DateTime.Now && a.OrganizeId == organizeId);   //Chưa duyệt Chưa thực hiện
         }
 
         /// <summary>
-        /// 获取一个调价的entity 已审核 未执行
+        /// Lấy một điều chỉnh giáentity Đã duyệt Chưa thực hiện
         /// </summary>
         /// <param name="ypCode"></param>
         /// <returns></returns>
         public SysMedicinePriceAdjustmentEntity GetMedicinePriceAdjustmentNotExecteEntity(string ypCode)
         {
             var organizeId = OperatorProvider.GetCurrent().OrganizeId;
-            return IQueryable().FirstOrDefault(a => a.ypCode == ypCode && a.zxbz == "0" && a.shzt == "1" && a.OrganizeId == organizeId);   //已审核 未执行
+            return IQueryable().FirstOrDefault(a => a.ypCode == ypCode && a.zxbz == "0" && a.shzt == "1" && a.OrganizeId == organizeId);   //Đã duyệt Chưa thực hiện
         }
 
         /// <summary>
-        /// 添加药品调价记录(申请)
+        /// Thêm bản ghi điều chỉnh giá thuốc(Xin)
         /// </summary>
         /// <param name="entity"></param>
         public void AddPriceAdjustmentRecord(SysMedicinePriceAdjustmentEntity entity)
@@ -55,43 +55,43 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 检查是否有未处理的数据
+        /// Kiểm tra có dữ liệu chưa xử lý không
         /// </summary>
         /// <param name="ypCodeList"></param>
         public string CheckStatus(ArrayList ypCodeList)
         {
             if (ypCodeList == null || ypCodeList.Count == 0)
             {
-                return "请求数据为空,请联系管理员";
+                return "Dữ liệu yêu cầu trống,Vui lòng liên hệ quản trị viên";
             }
             foreach (var item in ypCodeList)
             {
                 var entity = IQueryable().OrderByDescending(o=>o.CreateTime).FirstOrDefault(a => a.ypCode == item.ToString() && a.zxsj > DateTime.Now);
                 if (entity == null)
                 {
-                    return string.Format(@"查无药品代码为{0}的药品！", item);
+                    return string.Format(@"Không tra được mã thuốc là{0}của thuốc！", item);
                 }
-                if (entity.shzt.Equals("0") || entity.shzt.Equals("2") || entity.shzt.Equals("3"))  //未审核 拒绝 撤销
+                if (entity.shzt.Equals("0") || entity.shzt.Equals("2") || entity.shzt.Equals("3"))  //Chưa duyệt Từ chối Thu hồi
                 {
-                    return entity.ypCode + " 状态处于未审核或拒绝或撤销的状态，不可执行";
+                    return entity.ypCode + " Trạng thái chưa duyệt hoặc từ chối hoặc thu hồi，Không thể thực hiện";
                 }
-                if ("1".Equals(entity.zxbz))   //执行
+                if ("1".Equals(entity.zxbz))   //Thực hiện
                 {
-                    return entity.ypCode + " 已执行过的数据，不可重复执行";
+                    return entity.ypCode + " Dữ liệu đã thực hiện，Không thể thực hiện trùng lặp";
                 }
                 if (entity.zxsj <= DateTime.Now)
                 {
-                    return entity.ypCode + " 已过执行日期";
+                    return entity.ypCode + " Đã quá ngày thực hiện";
                 }
             }
             return string.Empty;
         }
 
         ///  <summary>
-        ///  药品调价审核
+        ///  Duyệt điều chỉnh giá thuốc
         ///  </summary>
-        ///  --shzt:0:未审核 1:已审核 2:已拒绝 3.已撤销
-        ///  --zxbz:0:未执行 1:已执行
+        ///  --shzt:0:Chưa duyệt 1:Đã duyệt 2:Đã từ chối 3.Đã thu hồi
+        ///  --zxbz:0:Chưa thực hiện 1:Đã thực hiện
         /// <param name="ypCodeList"></param>
         /// <param name="operationType"></param>
         public string MedicinePriceAdjustment(ArrayList ypCodeList, int operationType)
@@ -111,15 +111,15 @@ namespace Newtouch.HIS.Repository
                     entity.zxbz = ((int)EnumPriceAdjustZXStatus.Not).ToString();
                     switch (operationType)
                     {
-                        case (int)EnumPriceAdjustOperationType.Approval:   //审核
+                        case (int)EnumPriceAdjustOperationType.Approval:   //Duyệt
                             entity.shzt = operationType.ToString();
                             entity.shczy = OperatorProvider.GetCurrent().UserCode;
                             break;
-                        case (int)EnumPriceAdjustOperationType.Refuse:   //拒绝
+                        case (int)EnumPriceAdjustOperationType.Refuse:   //Từ chối
                             entity.shzt = operationType.ToString();
                             entity.shczy = OperatorProvider.GetCurrent().UserCode;
                             break;
-                        case (int)EnumPriceAdjustOperationType.Withdraw:  //撤销
+                        case (int)EnumPriceAdjustOperationType.Withdraw:  //Thu hồi
                             entity.shzt = operationType.ToString();
                             entity.pfj = entity.ypfj;
                             entity.lsj = entity.ylsj;
@@ -130,7 +130,7 @@ namespace Newtouch.HIS.Repository
                 }
                 db.Commit();
             }
-            return expireApply.Count > 0 ? string.Format("药品代码为{0}的药品操作失败，已过最晚执行时间。", string.Join(",", expireApply)) : "操作成功";
+            return expireApply.Count > 0 ? string.Format("Mã thuốc là{0}thao tác thuốc thất bại，Đã quá thời gian thực hiện muộn nhất。", string.Join(",", expireApply)) : "Thao tác thành công";
         }
     }
 }

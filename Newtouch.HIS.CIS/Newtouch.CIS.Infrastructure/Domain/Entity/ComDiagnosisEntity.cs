@@ -20,15 +20,15 @@ namespace Newtouch.Domain.Entity
         [Key]
         public string Id { get; set; }
         /// <summary>
-        /// 机构代码
+        /// Cơ sởMã
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 常用诊断名称
+        /// thường dùngTên chẩn đoán
         /// </summary>
         public string cyzdmc { get; set; }
         /// <summary>
-        /// 常用诊断编码
+        /// thường dùngMã chẩn đoán
         /// </summary>
         public string cyzdbm { get; set; }
         /// <summary>
@@ -36,43 +36,43 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string icd10 { get; set; }
         /// <summary>
-        /// 常用诊断类型(1 西医 2 中医)
+        /// thường dùngLoại chẩn đoán(1 tâyy 2 trongy)
         /// </summary>
         public string cyzdtype { get; set; }
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ksCode { get; set; }
         /// <summary>
-        /// 医生工号
+        /// Bác sĩMã nhân viên
         /// </summary>
         public string ys { get; set; }
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime? CreateTime { get; set; }
         /// <summary>
-        /// 更新人
+        /// Cập nhật người
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        ///更新时间
+        ///Thời gian cập nhật
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
         /// <summary>
-        /// 状态(0 无效 1 有效)
+        /// Trạng thái(0 Vô hiệu 1 Hiệu lực)
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 权限控制 1个人 2科室
+        /// Quyềnđiều khiển 1Cá nhân 2Khoa
         /// </summary>
         public string qxkz { get; set; }
     }

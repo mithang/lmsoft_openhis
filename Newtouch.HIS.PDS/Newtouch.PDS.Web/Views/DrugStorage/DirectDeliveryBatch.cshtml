@@ -50,7 +50,7 @@
 <span style="color: red;line-height: 30px;">Lưu ý：Số lượng xuất kho hiển thị chỉ để tham khảo，Số lượng xuất kho thực tế căn cứ vào số lượng tồn kho khi nhấn nút xuất kho。</span>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
@@ -59,7 +59,7 @@
         gridList(); //Thông tin thuốc
     });
 
-    //初始化
+    //Khởi tạo
     function init() {
         NewDjh();
         GetTargetDept();
@@ -70,12 +70,12 @@
         });
     }
 
-    //生成单据号
+    //Tạo số chứng từ
     function NewDjh() {
         $.ajax({
             type: "Get",
             url: "/DrugStorage/InitDjh",
-            data: { djmc: 'Đơn phát thuốc nội bộ', r: Math.random() },
+            data: { djmc: '内部发药单' /* djmc là key của proc sp_yp_Getypdjh, KHÔNG dịch */, r: Math.random() },
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {
@@ -88,7 +88,7 @@
         });
     }
 
-    //获取目标药房
+    //Lấy nhà thuốc đích
     function GetTargetDept() {
         $("#lybm").newtouchBatchFloatingSelector({
             height: 200,
@@ -115,7 +115,7 @@
         });
     }
 
-    //药品信息
+    //Thông tin thuốc
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -144,7 +144,7 @@
             viewrecords: true
         });
 
-        //查询
+        //Truy vấn
         $("#btn_search").click(function () {
             if ($("#lybm").val() === "") {
                 $.modalMsg("Vui lòng chọn nhà thuốc đích", "error", 1500);
@@ -158,7 +158,7 @@
         });
     }
 
-    //出库
+    //Xuất kho
     function newtouch_event_f8() {
         var ypCodes = "";
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');

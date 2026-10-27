@@ -34,15 +34,15 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
         public string zyh { get; set; }
         public string BlId { get; set; }
         /// <summary>
-        /// 病历类型 EnumBllx
+        /// Loại bệnh án EnumBllx
         /// </summary>
         public string bllx { get; set; }
         /// <summary>
-        /// 是否允许添加文件标志
+        /// Cờ cho phép thêm tệp
         /// </summary>
         public int? addPermit { get; set; }
         /// <summary>
-        /// 文件读取编辑权限控制标志 EnummbqxFp
+        /// Cờ kiểm soát quyền đọc/chỉnh sửa tệp EnummbqxFp
         /// </summary>
         public int? ctrlLevel { get; set; }
         public string doctype { get; set; }

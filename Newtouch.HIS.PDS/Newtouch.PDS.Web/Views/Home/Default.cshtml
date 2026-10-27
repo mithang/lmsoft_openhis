@@ -177,7 +177,7 @@
         });
     });
 
-    //获取待办
+    //Lấy việc cần làm
     function GetNeedDealDiv() {
         $.ajax({
             type: "Get",
@@ -192,7 +192,7 @@
         });
     }
 
-    //获取按月
+    //Lấy theo tháng
     function GetFyCountVoByYfbm() {
         $.ajax({
             type: "Get",
@@ -206,7 +206,7 @@
         });
     }
 
-    //highCharts 数据展示
+    //highCharts Hiển thị dữ liệu
     function GetSalaryChart(monthlySummary) {
         var lineChartData = {
             labels: ["Thg 1", "Thg 2", "Thg 3", "Thg 4", "Thg 5", "Thg 6", "Thg 7", "Thg 8", "Thg 8", "Thg 10", "Thg 11", "Thg 12"],
@@ -262,7 +262,7 @@
         });
     }
 
-    //获取按月
+    //Lấy theo tháng
     function GetFyCountBydl() {
         $.ajax({
             type: "Get",
@@ -276,7 +276,7 @@
         });
     }
 
-    //饼图 数据展示
+    //Biểu đồ tròn Hiển thị dữ liệu
     function GetLeaveChart(pData) {
         Highcharts.chart('container', {
             chart: {
@@ -310,7 +310,7 @@
         $(".highcharts-credits").hide();
     }
 
-    //获取待处理总数
+    //Lấy tổng Số chờ xử lý
     function GetPendingCount() {
         $.ajax({
             type: "Get",

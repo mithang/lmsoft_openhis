@@ -18,7 +18,7 @@
             initControl();
         });
     })
-    //回车事件
+    //sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -54,7 +54,7 @@
             }
         }
         else {
-            treeSeleData = $("#userStaffTree").getCheckedValues();  //Values对应的是UserId
+            treeSeleData = $("#userStaffTree").getCheckedValues();  //Valuestương ứng làUserId
             if (single == 'true' && treeSeleData.length != 1) {
                 $.modalAlert('Nhiều nhất đã chọn một', 'warning');
                 return;

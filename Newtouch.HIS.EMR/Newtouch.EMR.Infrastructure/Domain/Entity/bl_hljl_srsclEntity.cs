@@ -12,22 +12,22 @@ namespace Newtouch.EMR.Domain.Entity
         public string sj { get; set; }
         public string zyh { get; set; }
         /// <summary>
-        ///  0һ 1Σ 2
+        /// Loại điều dưỡng: 0 Thông thường, 1 Nguy kịch, 2 Phẫu thuật
         /// </summary>
         public string bllx { get; set; }
         /// <summary>
-        ///  0 1
+        /// Loại lượng đưa vào/thải ra: 0 Đưa vào, 1 Thải ra
         /// </summary>
         public string srsclx { get; set; }
         public string mc { get; set; }
         public string ml { get; set; }
         public string dw { get; set; }
         /// <summary>
-        /// ;
+        /// Đường dùng
         /// </summary>
         public string tj { get; set; }
         /// <summary>
-        /// ɫ״
+        /// Màu sắc và hình dạng
         /// </summary>
         public string ysxz { get; set; }
         public System.DateTime CreateTime { get; set; }

@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace Newtouch.EMR.Web.Controllers
 {
     /// <summary>
-    /// Home/Index加载时 默认加载的 缓存数据.
+    /// Home/IndexDữ liệu đệm tải mặc định khi tải.
     /// GetAsyncClientsDataJson mirrors the Framework version: record-element trees
     /// from IBlysRepo, item details from the base controller, and enums scanned from
     /// the EMR Infrastructure assembly (the old GetEnumList("Newtouch.EMR.Infrastructure")).
@@ -43,7 +43,7 @@ namespace Newtouch.EMR.Web.Controllers
         }
 
         /// <summary>
-        /// 获取同步的部分
+        /// Lấy phần đồng bộ
         /// </summary>
         [HttpGet]
         [HandlerAjaxOnly]
@@ -56,7 +56,7 @@ namespace Newtouch.EMR.Web.Controllers
         }
 
         /// <summary>
-        /// 获取异步的部分
+        /// Lấy phần không đồng bộ
         /// </summary>
         [HttpGet]
         [HandlerAjaxOnly]

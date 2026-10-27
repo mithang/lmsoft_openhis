@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 出入库方式
+    /// Phương thức xuất nhập kho
     /// </summary>
     public interface IXtypcrkfsRepo : IRepositoryBase<XtypcrkfsEntity>
     {

@@ -29,7 +29,7 @@
     @*<div class="toolbar" style="float:right;padding-right:10px;">
             <div class="btn-group">
                 <a id="PSLR" class="btn btn-primary" style="float:right;padding-right:10px;" onclick="PSLR()">
-                    <i class="fa fa-pencil-square-o"></i>皮试录入
+                    <i class="fa fa-pencil-square-o"></i>dathửnhập
                 </a>
             </div>
         </div>*@
@@ -76,9 +76,9 @@
         var patzyh = "";
         var patzyhItem = "";
 
-        //当前选中父节点
+        //hiện tạiĐã chọnNút cha
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //CóKhôngphiếucáicontiếtđiểm
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
@@ -90,7 +90,7 @@
             single = 1;
         }
 
-        //选中节点
+        //Đã chọntiếtđiểm
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patzyh += patlist[i].value + ",";
@@ -140,7 +140,7 @@
             postData: { patList: patzyh },
             url: "/NurseManage/OrderAudit/GetGridJson",
             height: $(window).height() - 140,
-            rowNum: 100, //每页显示记录数
+            rowNum: 100, //mỗitrangHiển thịghi chépsố
             colModel: [
                 { label: 'Y lệnhID', name: 'yzid', align: 'center', width: 30, hidden: true, key: true },
                 { label: 'zyh', name: 'zyh', align: 'center', hidden: true },
@@ -204,7 +204,7 @@
                     label: 'Thao tác', name: '', align: 'center', width: 70, formatter: function (val, row, option) {
                         return "<a class='btn btn-default' onclick='PSLR(\"" + option.yzid + "\")'>Test daBổ sung</a>"
                         //if (option.ispscs == "1" && !option.psjg) {
-                        //    return "<a class='btn btn-default' onclick='PSLR(\"" + option.yzid + "\")'>Test da补录</a>"
+                        //    return "<a class='btn btn-default' onclick='PSLR(\"" + option.yzid + "\")'>Test dabổ sungghi</a>"
                         //}
                         //else
                         //    return "";
@@ -220,7 +220,7 @@
                     var len = 0;
                     var rowData = $("#gridYzshList").jqGrid('getRowData', rowIndex);
                     var ids = $("#gridYzshList").jqGrid('getRowData_AllLine');
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     if (rowData.yzlx == "Xét nghiệm" || rowData.yzlx == "Kiểm tra") {
                         for (var i = 0; i < ids.length; i++) {
                             if (ids[i].zh1 == rowData.zh1 && ids[i].zh1 != "") {
@@ -265,15 +265,15 @@
                 if (list.length > 0) {
 
                     for (j = j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Cùng nhómĐã chọn
                         {
                             j = j + 1;
                             $("#gridYzshList").jqGrid("setSelection", list[j - 1], true);
 
                         }
-                        else { //同组取消选中
+                        else { //Cùng nhómHủyĐã chọn
                             //j = j + 1;
-                            $("#gridYzshList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow                       
+                            $("#gridYzshList").jqGrid("setSelection", list[j], false);      //Hủykhôngkích hoạtonselectrow                       
                         }
 
                     }
@@ -292,12 +292,12 @@
             }
         });
     }
-    //刷新医嘱
+    //làm mớiY lệnh mới
     function RefreshyzshOrder() {
         $('#gridYzshList').jqGrid("clearGridData");
         getOrderAuditList(null, null);
     }
-    //审核当前
+    //Phê duyệthiện tại
     function AuditChecked() {
         var strYZID = [];
         var selRowIds = jQuery("#gridYzshList").jqGrid("getGridParam", "selarrrow");
@@ -310,7 +310,7 @@
             var rowData = $("#gridYzshList").jqGrid('getRowData', selRowIds[i]);
             strYZID.push({ yzid: rowData.yzid, yzxz: rowData.yzxz, yzlxmc: rowData.yzlx, zyh: rowData.zyh, zh1: rowData.zh1, zh: rowData.zh, ispscs: rowData.ispscs, yzh: rowData.yzh, yfztbs: rowData.yfztbs });
 
-            //2021-9-18 取消Test da结果判断
+            //2021-9-18 HủyTest dakếtnếukiểm tra
             //if (rowData.ispscs == "1" && rowData.psjg == "0") {
             //    strYZID.push({ yzid: rowData.yzid, yzxz: rowData.yzxz, yzlxmc: rowData.yzlx, zyh: rowData.zyh, zh1: rowData.zh1, zh: rowData.zh, ispscs: rowData.ispscs, yzh: rowData.yzh });
             //}
@@ -362,7 +362,7 @@
             }
         });
     }
-    //审核临时  长期  全部
+    //Phê duyệtTạm thời  Dài hạn  Tất cả
     function AuditOrders(yzxz) {
         var selPatTrees = $("#PatTreeList").getCheckedNodeObjArray();
 
@@ -389,7 +389,7 @@
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridYzshList").jqGrid('getRowData', selRowIds[i]);
             strYZID.push({ yzid: rowData.yzid, yzxz: rowData.yzxz, yzlxmc: rowData.yzlx, zyh: rowData.zyh, zh1: rowData.zh1, ispscs: rowData.ispscs, yzh: rowData.yzh });
-            //2021-9-18 取消Test da结果判断
+            //2021-9-18 HủyTest dakếtnếukiểm tra
             //if (rowData.ispscs == "1" && rowData.psjg == "0") {
             //    strYZID.push({ yzid: rowData.yzid, yzxz: rowData.yzxz, yzlxmc: rowData.yzlx, zyh: rowData.zyh, zh1: rowData.zh1, zh: rowData.zh, ispscs: rowData.ispscs, yzh: rowData.yzh });
             //}
@@ -468,7 +468,7 @@
             return;
         }
         //if (rowData.ispscs == "1" && (rowData.psjg == "0" || rowData.psjg == "1")) {
-        //    $.modalAlert("当前结果无法修改，请转至Test da结果录入页。", 'warning');
+        //    $.modalAlert("hiện tạikếtnếukhôngphương phápSửa，vui lòngchuyểnđếnTest dakếtnếunhậptrang。", 'warning');
         //    return;
         //}
         zyh = rowData.zyh;
@@ -517,9 +517,9 @@
             url: "/NurseManage/OrderAudit/AuditTips?ajaxresp=" + ajaxresp,
             width: "700px",
             height: "500px",
-            //showleftlalbel: !!!smtzId,  //新增时显示 '确认并关闭按钮'
+            //showleftlalbel: !!!smtzId,  //Thêm mớikhiHiển thị 'xác nhận vàĐóngNút'
             leftlalbelchecked: true,
-            //leftlabeltext: "连续录入",
+            //leftlabeltext: "nốitiếpnhập",
             leftlalbelcheckedasClose: false,
             callBack: function (iframeId, isClose) {
                 $("#gridYzshList").trigger("reloadGrid");

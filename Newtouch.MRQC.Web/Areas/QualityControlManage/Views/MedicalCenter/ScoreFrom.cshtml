@@ -81,7 +81,7 @@
             ],
             //multiselect: true,
             gridComplete: function (e) {
-                //启用行内编辑框
+                //Bật khung sửa nội dòng
                 EnableInlineEditBox();
                 btnPinfen();
             },
@@ -106,9 +106,9 @@
             }
         });
     }
-      //启用行内编辑框
+      //Bật khung sửa nội dòng
     function EnableInlineEditBox() {
-        //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        //Khi Grid tải xong thì bật sửa nội dòng: 1. Lấy tất cả Id dòng trước 2. Duyệt và gọi phương thức editRow
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {    
@@ -121,7 +121,7 @@
     {
         debugger;
         var res = true;
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấy tất cả Id dòng, duyệt để khung sửa ở trạng thái đã lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) {
@@ -149,7 +149,7 @@
     {
         debugger;
         var res = true;
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấy tất cả Id dòng, duyệt để khung sửa ở trạng thái đã lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) {
@@ -159,7 +159,7 @@
         //if (!res) {
         //    return;
         //}
-        //获取所有选中行数据
+        //Lấy dữ liệu các dòng đã chọn
         var data = $("#gridList").jqGrid('getRowData_AllLine', false);
         $.najax({
             url: "/QualityControlManage/MedicalCenter/SaveScoreDate",

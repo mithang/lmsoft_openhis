@@ -47,15 +47,15 @@
                                 </div>
                                 <div style="float:right;padding-top:3px;">
                                     <span class="glyphicon glyphicon-bell" style="color: #0bfe09;padding-right:5px;" title="hiện tại Đang nằm viện" id="iconzybz"></span>
-                                    @*<a onclick="getHistory()" style="padding-right:5px;"><span class="glyphicon glyphicon-th-list" style="color: rgb(255, 140, 60);" title="历次入院"></span></a>*@
-                                    @*<a onclick="GetPatSerarchView()"><span class="glyphicon glyphicon-transfer" title="切换患者"></span>切换患者</a>*@
+                                    @*<a onclick="getHistory()" style="padding-right:5px;"><span class="glyphicon glyphicon-th-list" style="color: rgb(255, 140, 60);" title="Các lần nhập viện trước"></span></a>*@
+                                    @*<a onclick="GetPatSerarchView()"><span class="glyphicon glyphicon-transfer" title="Chuyển bệnh nhân"></span>Chuyển bệnh nhân</a>*@
                                     <a onclick="GetPatSerarchView()" class="btn btn-default">Bệnh nhân chuyển đổi</a>
                                 </div>
                             </td>
                         </tr>
                         <tr>
                             <td class="formValue">
-                                <span id="xm" style="float:left;font-size:18px;font-weight:bold;padding-left:10px; ">臧三</span>
+                                <span id="xm" style="float:left;font-size:18px;font-weight:bold;padding-left:10px; ">Tang Tam</span>
                             </td>
                         </tr>
                         <tr>
@@ -77,16 +77,16 @@
                             <td class="formValue">thẻ&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;số：<span id="kh">AF00000008</span></td>
                         </tr>
                         @*<tr>
-                    <td class="formValue">总 费 用： <span id="zfy">1999.98</span></td>
+                    <td class="formValue">Tổng phí dùng： <span id="zfy">1999.98</span></td>
                 </tr>*@
                         <tr>
                             <td class="formValue">Số dư tài khoản：<span id="zhye">1000</span></td>
                         </tr>
                         @*<tr>
-                    <td class="formValue">已结费用：<span id="yjfy">0</span></td>
+                    <td class="formValue">Chi phí đã quyết toán：<span id="yjfy">0</span></td>
                 </tr>
                 <tr>
-                    <td class="formValue">待缴费用：<span id="djfy" style="color:red;">-999.98</span></td>
+                    <td class="formValue">Phí chờ thanh toán：<span id="djfy" style="color:red;">-999.98</span></td>
                 </tr>*@
                         <tr>
                             <td class="formValue">Khoa：<span id="ksmc">Trẻ em Phục hồi chức năng</span></td>
@@ -119,13 +119,13 @@
                             <td class="formValue">Tiền sử dị ứng：<span id="gms">Penicillin</span></td>
                         </tr>
                         <tr>
-                            <td class="formValue">Bác sĩ nội trú:<span id="zyysmc">路静</span></td>
+                            <td class="formValue">Bác sĩ nội trú:<span id="zyysmc">Lộ Tĩnh</span></td>
                         </tr>
                         <tr>
-                            <td class="formValue">Bác sĩ điều trị：<span id="zzysmc">路静</span></td>
+                            <td class="formValue">Bác sĩ điều trị：<span id="zzysmc">Lộ Tĩnh</span></td>
                         </tr>
                         <tr>
-                            <td class="formValue">Bác sĩ chủ nhiệm：<span id="zrysmc">路静</span></td>
+                            <td class="formValue">Bác sĩ chủ nhiệm：<span id="zrysmc">Lộ Tĩnh</span></td>
                         </tr>
                     </table>
                 </div>
@@ -200,7 +200,7 @@
     function getHistory() {
         alert("Các lần nhập viện trước")
     }
-    //tab初始化
+    //tabkhởi tạo
     function tabInit() {
         $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
             switch ($(this).attr('href')) {
@@ -252,7 +252,7 @@
     }
 
 
-    //人员查询
+    //tra cứu nhân viên
     function GetPatSerarchView(blh) {
         $.modalOpen({
             id: "patSearch",
@@ -261,7 +261,7 @@
             width: "800px",
             height: "600px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
+                top.frames[iframeId].PatDbGrid(); //trong sự kiện cửa sổ bật lên
             }
         });
     }
@@ -308,11 +308,11 @@
                 }
             });
 
-            //刷新医保交易查询
+            //quẹtmớiy tếbảo hiểmnộpdễtratra cứu
             $("#gridListpresett").jqGrid('setGridParam', {
                 postData: { zyh: obj.zyh }
             }).trigger('reloadGrid');
-            //刷新结算信息
+            //Làm mới thông tin quyết toán
             $("#gridListsett").jqGrid('setGridParam', {
                 postData: { zyh: obj.zyh }
             }).trigger('reloadGrid');

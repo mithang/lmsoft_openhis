@@ -47,7 +47,7 @@ namespace Newtouch.Sett.Web.Areas.JGManage.Controllers
 
         
 
-        //JG上传
+        //JGtải lên
         public IActionResult JGUpload(List<JGUploadDto> list,string tradiNumber)
         {
             var data = _JGTradUploadDmnService.JGUpload(this.OrganizeId, list, tradiNumber);

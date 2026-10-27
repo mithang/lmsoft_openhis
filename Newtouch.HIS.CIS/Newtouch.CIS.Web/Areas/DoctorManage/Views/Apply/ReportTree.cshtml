@@ -1,5 +1,5 @@
 @{
-    //是否开启lis pacs报告订阅
+    //CóKhôngbậtlis pacsbáo cáoĐăng ký
     var IsreportOpen = SysConfigReader.String("IsreportOpen");
     var pacsHost = SiteUrl.GetUrl("OuterPacsServiceHost", "");
     var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
@@ -22,12 +22,12 @@
             </tr>
             @*<tr>
                     <td class="formValue">
-                        <input class="btn btn-info md" id="btn_bc" style="width: 100px;" value="B超报告" />
+                        <input class="btn btn-info md" id="btn_bc" style="width: 100px;" value="Báo cáo siêu âm B" />
                     </td>
                 </tr>
                 <tr>
                     <td class="formValue">
-                        <input class="btn btn-info md" id="btn_xd" style="width: 100px;" value="心电报告" />
+                        <input class="btn btn-info md" id="btn_xd" style="width: 100px;" value="Báo cáo điện tim" />
                     </td>
                 </tr>*@
         </table>
@@ -45,7 +45,7 @@
     $("#floatLisReportDiv div").on("click", function (e) {
         e.preventDefault();
         if ($(this).hasClass('activepart')) {
-            //再点击 隐藏
+            //lạiđiểmnhấp Ẩn
             $("#floatLisReportDiv div").removeClass("activepart");
             $('#floadLisReportTree').hide();
         }
@@ -59,7 +59,7 @@
         debugger
         var zyh = "";
         if ($("#zyh").val())
-            zyh = $("#zyh").val();//护士站患者中心住院号获取
+            zyh = $("#zyh").val();//Điều dưỡngtrạmBệnh nhântrongtimSố nhập việnLấy
         else
             zyh=currentobj.zyh;
         if ("@IsreportOpen" == "true") {
@@ -76,7 +76,7 @@
             //金风易通 PACS 2024-4-28 chl
             $.ajax({
                 type: "POST",
-                dataType: "json", //返回json格式的数据
+                dataType: "json", //Quay lạijsondữ liệu dạng
                 url: "/DoctorsAdvice/CountLISztzy",
                 data: { "zyh": currentobj.zyh },
                 async: false,
@@ -98,7 +98,7 @@
         debugger
         var zyh = "";
         if ($("#zyh").val())
-            zyh = $("#zyh").val();//护士站患者中心住院号获取
+            zyh = $("#zyh").val();//Điều dưỡngtrạmBệnh nhântrongtimSố nhập việnLấy
         else
             zyh=currentobj.zyh;
 
@@ -115,7 +115,7 @@
         } else {
             $.ajax({
                 type: "POST",
-                dataType: "json", //返回json格式的数据
+                dataType: "json", //Quay lạijsondữ liệu dạng
                 url: "/DoctorsAdvice/CountLISztzy",
                 data: { "zyh": currentobj.zyh },
                 async: false,

@@ -4,19 +4,19 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 {
     /// <summary>
-    /// 推送患者信息请求体
+    /// đẩyThông tin bệnh nhânyêu cầuthể
     /// </summary>
     [XmlRoot("Request")]
     public class PushPatientRequestEntity : RequestBase
     {
         /// <summary>
-        /// 患者信息体
+        /// Thông tin bệnh nhânthể
         /// </summary>
         public Patient Patient { get; set; }
     }
 
     /// <summary>
-    /// 患者信息体
+    /// Thông tin bệnh nhânthể
     /// </summary>
     public class Patient
     {
@@ -24,8 +24,8 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
         private string _id = "";
 
         /// <summary>
-        ///患者编号（一个患者对应一个编号，且与身份证号码一一对应）
-        /// 必填
+        ///Bệnh nhânSố hiệu（mộtBệnh nhântương ứngmộtSố hiệu，vàvàCMND/CCCDsốmãmộtmộttương ứng）
+        /// bắt buộc
         /// </summary>
         public string id
         {
@@ -35,8 +35,8 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _name = "";
         /// <summary>
-        /// 患者姓名
-        /// 必填
+        /// Tên bệnh nhân
+        /// bắt buộc
         /// </summary>
         public string name
         {
@@ -46,8 +46,8 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _genderCode = "";
         /// <summary>
-        /// 患者性别编码
-        /// 必填
+        /// Bệnh nhânGiới tínhMã
+        /// bắt buộc
         /// </summary>
         public string genderCode
         {
@@ -57,8 +57,8 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _gender = "";
         /// <summary>
-        /// 患者性别
-        /// 必填
+        /// Bệnh nhânGiới tính
+        /// bắt buộc
         /// </summary>
         public string gender
         {
@@ -68,8 +68,8 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _birthday = "";
         /// <summary>
-        /// 出生日期 YYYYMMDD
-        /// 必填
+        /// Ngày sinh YYYYMMDD
+        /// bắt buộc
         /// </summary>
         public string birthday
         {
@@ -79,8 +79,8 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _cardTypeCode = "";
         /// <summary>
-        /// 证件类型编码
-        /// 必填
+        /// chứngmụcMã loại
+        /// bắt buộc
         /// </summary>
         public string cardTypeCode
         {
@@ -90,8 +90,8 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _cardType = "";
         /// <summary>
-        /// 证件类型（一般指居民身份证号）
-        /// 必填
+        /// chứngmụcLoại（Bình thườngchỉcư dânCMND/CCCDsố）
+        /// bắt buộc
         /// </summary>
         public string cardType
         {
@@ -101,8 +101,8 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _cardNo = "";
         /// <summary>
-        /// 证件号码
-        /// 必填
+        /// Số giấy tờ
+        /// bắt buộc
         /// </summary>
         public string cardNo
         {
@@ -112,7 +112,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _occupationCode = "";
         /// <summary>
-        /// 职业编码
+        /// chức业Mã
         /// </summary>
         public string occupationCode
         {
@@ -122,7 +122,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _occupation = "";
         /// <summary>
-        /// 职业
+        /// chức业
         /// </summary>
         public string occupation
         {
@@ -132,7 +132,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _marriedCode = "";
         /// <summary>
-        /// 婚姻状况编码
+        /// Tình trạng hôn nhânMã
         /// </summary>
         public string marriedCode
         {
@@ -142,7 +142,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _married = "";
         /// <summary>
-        /// 婚姻状况
+        /// Tình trạng hôn nhân
         /// </summary>
         public string married
         {
@@ -152,7 +152,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _countryCode = "";
         /// <summary>
-        /// 国籍编码
+        /// quốc tịchMã
         /// </summary>
         public string countryCode
         {
@@ -162,7 +162,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _country = "";
         /// <summary>
-        /// 国籍
+        /// quốc tịch
         /// </summary>
         public string country
         {
@@ -172,7 +172,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _nationalityCode = "";
         /// <summary>
-        /// 民族编码
+        /// dântộcMã
         /// </summary>
         public string nationalityCode
         {
@@ -182,7 +182,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _nationality = "";
         /// <summary>
-        /// 民族
+        /// dântộc
         /// </summary>
         public string nationality
         {
@@ -192,8 +192,8 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _provinceCode = "";
         /// <summary>
-        /// 家庭住址省份编码
-        /// 必填
+        /// nhàTỉnh địa chỉ nhàMã
+        /// bắt buộc
         /// </summary>
         public string provinceCode
         {
@@ -203,8 +203,8 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _cityCode = "";
         /// <summary>
-        /// 家庭住址市级编码
-        /// 必填
+        /// nhàThành phố địa chỉ nhàcấpMã
+        /// bắt buộc
         /// </summary>
         public string cityCode
         {
@@ -214,8 +214,8 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _areaCode = "";
         /// <summary>
-        /// 家庭住址区县编码（保持与云平台的行政区划编码一致）
-        /// 必填
+        /// nhàĐịa chỉ nhàkhuhuyệnMã（bảogiữvàmâybìnhbàncủaPhân vùng hành chínhMãnhất quán）
+        /// bắt buộc
         /// </summary>
         public string areaCode
         {
@@ -225,7 +225,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _province = "";
         /// <summary>
-        /// 家庭住址省份
+        /// nhàTỉnh địa chỉ nhà
         /// </summary>
         public string province
         {
@@ -235,7 +235,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _city = "";
         /// <summary>
-        /// 家庭住址市级
+        /// nhàThành phố địa chỉ nhàcấp
         /// </summary>
         public string city
         {
@@ -245,7 +245,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _area = "";
         /// <summary>
-        /// 家庭住址区县
+        /// nhàĐịa chỉ nhàkhuhuyện
         /// </summary>
         public string area
         {
@@ -255,7 +255,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _streetInfo = "";
         /// <summary>
-        /// 街道信息
+        /// phốđườngthông tin
         /// </summary>
         public string streetInfo
         {
@@ -265,7 +265,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _postcode = "";
         /// <summary>
-        /// 邮编
+        /// bưubiên
         /// </summary>
         public string postcode
         {
@@ -275,7 +275,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _ctName = "";
         /// <summary>
-        /// 联系人名称
+        /// Người liên hệTên
         /// </summary>
         public string ctName
         {
@@ -285,7 +285,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _ctRoleId = "";
         /// <summary>
-        /// 与联系人关系
+        /// vàNgười liên hệquan hệ
         /// </summary>
         public string ctRoleId
         {
@@ -295,7 +295,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _ctAddr = "";
         /// <summary>
-        /// 联系人地址
+        /// Người liên hệĐịa chỉ
         /// </summary>
         public string ctAddr
         {
@@ -305,7 +305,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _ctTelephone = "";
         /// <summary>
-        /// 联系人电话
+        /// Người liên hệĐiện thoại
         /// </summary>
         public string ctTelephone
         {
@@ -315,7 +315,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _patiTypeCode = "";
         /// <summary>
-        /// 患者类型编码
+        /// Bệnh nhânMã loại
         /// </summary>
         public string patiTypeCode
         {
@@ -325,7 +325,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _patiType = "";
         /// <summary>
-        /// 患者类型
+        /// Bệnh nhânLoại
         /// </summary>
         public string patiType
         {
@@ -335,7 +335,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _telephone = "";
         /// <summary>
-        /// 患者电话
+        /// Bệnh nhânĐiện thoại
         /// </summary>
         public string telephone
         {
@@ -345,8 +345,8 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _outpatientNo = "";
         /// <summary>
-        /// 门诊号, 即就诊流水号
-        /// 必填
+        /// Số khám ngoại trú, tứcKhám bệnhdòngchảysố
+        /// bắt buộc
         /// </summary>
         public string outpatientNo
         {
@@ -356,8 +356,8 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _orgCode = "";
         /// <summary>
-        /// 机构编码
-        /// 必填
+        /// Cơ sởMã
+        /// bắt buộc
         /// </summary>
         public string orgCode
         {
@@ -367,27 +367,27 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
     }
 
     /// <summary>
-    /// 行政机构配置
+    /// dòngchínhCơ sởcấu hình
     /// </summary>
     public class ConfigurationInfo
     {
         /// <summary>
-        /// 乡镇
+        /// 乡trấn
         /// </summary>
         public string xz { get; set; }
 
         /// <summary>
-        /// 行政编码
+        /// dòngchínhMã
         /// </summary>
         public string xzbm { get; set; }
 
         /// <summary>
-        /// 机构代码
+        /// Cơ sởMã
         /// </summary>
         public string jgdm { get; set; }
 
         /// <summary>
-        /// 家庭住址区县编码（保持与云平台的行政区划编码一致）
+        /// nhàĐịa chỉ nhàkhuhuyệnMã（bảogiữvàmâybìnhbàncủaPhân vùng hành chínhMãnhất quán）
         /// </summary>
         public string areaCode { get; set; }
     }

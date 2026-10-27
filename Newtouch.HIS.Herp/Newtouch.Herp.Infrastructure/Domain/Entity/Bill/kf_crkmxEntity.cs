@@ -6,131 +6,131 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 出入库单据明细
+    /// Chi tiết chứng từ nhập/xuất kho
     /// </summary>
     [SugarTable("kf_crkmx")]
     public class KfCrkmxEntity : IEntity<KfCrkmxEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public long Id { get; set; }
 
         /// <summary>
-        /// 出入库单据ID
+        /// Chứng từ nhập/xuất kho ID
         /// </summary>
         public long crkId { get; set; }
 
         /// <summary>
-        /// 申领单明细ID
+        /// Chi tiết phiếu lĩnh ID
         /// </summary>
         public long? applyDetailId { get; set; }
 
         /// <summary>
-        /// 采购单Id
+        /// Đơn mua sắm Id
         /// </summary>
         public long? purchaseId { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 数量，sl*zhyz=最小单位数量
+        /// Số lượng，sl*zhyz=Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 单位ID
+        /// Đơn vị ID
         /// </summary>
         public string unitId { get; set; }
 
         /// <summary>
-        /// 单位名称
+        /// Tên đơn vị
         /// </summary>
         public string unitName { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô hàng
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn sử dụng
         /// </summary>
         public DateTime yxq { get; set; }
 
         /// <summary>
-        /// 进价，与sl同单位
+        /// Giá nhập，với sl cùng đơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 零售价，与sl同单位
+        /// Giá bán lẻ，với sl cùng đơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 入库部门库存，操作前统计，最小单位
+        /// Tồn kho khoa nhập kho，Thống kê trước thao tác，Đơn vị nhỏ nhất
         /// </summary>
         public int rkbmkc { get; set; }
 
         /// <summary>
-        /// 出库部门库存，操作前统计，最小单位
+        /// Tồn kho khoa xuất kho，Thống kê trước thao tác，Đơn vị nhỏ nhất
         /// </summary>
         public int ckbmkc { get; set; }
 
         /// <summary>
-        /// 生产日期
+        /// Ngày sản xuất
         /// </summary>
         public DateTime? scrq { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa đổi cuối
         /// </summary>
         public string LastModifierCode { get; set; }
     }

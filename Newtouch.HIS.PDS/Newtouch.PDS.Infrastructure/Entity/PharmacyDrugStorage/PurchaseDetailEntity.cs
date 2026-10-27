@@ -17,61 +17,61 @@ namespace Newtouch.HIS.Domain.Entity.PharmacyDrugStorage
         [SugarColumn(IsPrimaryKey = true)]
         public string cgmxId { get; set; }
         /// <summary>
-        /// 采购编号
+        /// Số mua hàng
         /// </summary>
         public string cgId { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 药品编号
+        /// Số hiệu thuốc
         /// </summary>
         public string ypCode { get; set; }
         public string ypName { get; set; }
         /// <summary>
-        /// 顺序号
+        /// Số thứ tự
         /// </summary>
         public int sxh { get; set; }
         /// <summary>
-        /// 采购模式
+        /// Phương thức mua hàng
         /// </summary>
         public string cglx { get; set; }
         /// <summary>
-        /// 商品类型
+        /// Loại hàng hóa
         /// </summary>
         public string splx { get; set; }
         /// <summary>
-        /// 统编代码
+        /// Mã thống nhất
         /// </summary>
         public string zxspbm { get; set; }
         /// <summary>
-        /// 采购计量单位
+        /// Đơn vị đo lường mua hàng
         /// </summary>
         public string cgjldw { get; set; }
         /// <summary>
-        /// 规格包装
+        /// Quy cách đóng gói
         /// </summary>
         public string ggbz { get; set; }
         /// <summary>
-        /// 采购数量
+        /// Số lượng mua hàng
         /// </summary>
         public decimal cgsl { get; set; }
         /// <summary>
-        /// 采购单价
+        /// Đơn giá mua hàng
         /// </summary>
         public decimal cgdj { get; set; }
         /// <summary>
-        /// 药企编码/供应商
+        /// Mã doanh nghiệp dược/Nhà cung cấp
         /// </summary>
         public string yqbm { get; set; }
         /// <summary>
-        /// 多次配送标识（0不允许  1允许）
+        /// Cờ giao hàng nhiều lần（0Không cho phép  1Cho phép）
         /// </summary>
         public string dcpsbs { get; set; }
         /// <summary>
-        /// 备注说明
+        /// Giải thích ghi chú
         /// </summary>
         public string bzsm { get; set; }
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string dw { get; set; }
 

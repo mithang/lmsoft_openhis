@@ -20,7 +20,7 @@ namespace Newtouch.Repository
             _cache = cache;
         }
         /// <summary>
-        /// 获取列表
+        /// Lấydanh sách
         /// </summary>
         /// <returns></returns>
         public List<SysBodyPartsEntity> GetListByOrg(string orgId)
@@ -29,7 +29,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -39,7 +39,7 @@ namespace Newtouch.Repository
             {
                 if (this.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId && p.bwCode == entity.bwCode && p.Id != keyValue))
                 {
-                    throw new FailedException("编号不可重复");
+                    throw new FailedException("Số hiệu không được trùng lặp");
                 }
 
                 entity.Modify(keyValue);
@@ -49,17 +49,17 @@ namespace Newtouch.Repository
             {
                 if (this.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId && p.bwCode == entity.bwCode))
                 {
-                    throw new FailedException("编号不可重复");
+                    throw new FailedException("Số hiệu không được trùng lặp");
                 }
                 entity.Create(true);
                 this.Insert(entity);
             }
-            //刷新缓存
+            //Làm mớichậmtồn tại
             _cache.Remove(string.Format(CacheKey.ValidSysBodyPartsSetKey_, entity.OrganizeId));
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="orgId"></param>

@@ -161,7 +161,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
         #endregion
 
-        #region （常规Bệnh viện）HISTruy vấnquyết toán nhập viện
+        #region （thông thườngBệnh viện）HISTruy vấnquyết toán nhập viện
 
         /// <summary>
         /// 

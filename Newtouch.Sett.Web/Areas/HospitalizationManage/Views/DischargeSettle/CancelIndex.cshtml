@@ -448,7 +448,7 @@
                 }
                 $.modalAlert(data.message, 'success');
                 funcDoPageClear();
-                //BHYT Quảng Tây特có
+                //BHYT Quảng Tâyđặccó
                // refundPrintInvoiceReq(zyh, jsnm);
             }
         });
@@ -460,7 +460,7 @@
             data: { zyh: zyh, expectedjsnm: jsnm, cancelReason: $.trim($('#txtCancelReason').val()), cancelyblsh: cancelyblsh }, //Mãquyết toán kỳ vọng Ngăn thay đổi trong quá trình
             type: "POST",
             success: function (data) {
-                //BHYT Quảng Tây特có
+                //BHYT Quảng Tâyđặccó
                 //refundPrintInvoiceReq(zyh, jsnm);
             }
         });
@@ -518,7 +518,7 @@
 
     //Hoàn trước BHYT
     function ybBackSettle(ybBackSettleReq) {
-        //Hoàn trảquyết toán 预hoàn
+        //Hoàn trảquyết toán trướchoàn
         var ybjyBackSettReturn;// = $.guianyibao.ZyFeejsht(ybBackSettleReq);
         $.ajax({
             type: "POST",
@@ -654,7 +654,7 @@
                     return;
                 }
                 var ybklx = $('#readCardCardType').val();
-                cardInfo1 = yibaoCardInfo.output.baseinfo; //BHYT基nàythông tin
+                cardInfo1 = yibaoCardInfo.output.baseinfo; //BHYTquỹnàythông tin
                 cardInfo2 = yibaoCardInfo.output.insuinfo[0];//Thông tin tham gia bảo hiểm
                 if (ybklx !== "02") {
                     cardInfo3 = yibaoCardInfo.output.cardecinfo;//Thông tin thẻ

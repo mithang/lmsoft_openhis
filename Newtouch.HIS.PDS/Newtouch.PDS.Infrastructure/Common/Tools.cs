@@ -3,12 +3,12 @@ using System;
 namespace Newtouch.Infrastructure.Common
 {
     /// <summary>
-    /// 工具类
+    /// Lớp công cụ
     /// </summary>
     public static class Tools
     {
         /// <summary>
-        /// 过滤SQL语句,防止注入
+        /// LọcSQLCâu lệnh,Ngăn chặn tiêm nhiễm
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>
@@ -18,72 +18,72 @@ namespace Newtouch.Infrastructure.Common
             if (s.IndexOf("exec")>-1)
             {
                 s = s.Replace("exec", "");
-                throw new Exception("参数中不能出现[ exec ],请规范您的输入");
+                throw new Exception("Trong tham số không được xuất hiện[ exec ],Vui lòng nhập đúng quy định");
             }
             if (s.IndexOf("delete") > -1)
             {
                 s = s.Replace("delete", "");
-                throw new Exception("参数中不能出现[ delete ],请规范您的输入");
+                throw new Exception("Trong tham số không được xuất hiện[ delete ],Vui lòng nhập đúng quy định");
             }
             if (s.IndexOf("select") > -1)
             {
                 s = s.Replace("select", "");
-                throw new Exception("参数中不能出现[ select ],请规范您的输入");
+                throw new Exception("Trong tham số không được xuất hiện[ select ],Vui lòng nhập đúng quy định");
             }
             if (s.IndexOf("update") > -1)
             {
                 s = s.Replace("update", "");
-                throw new Exception("参数中不能出现[ update ],请规范您的输入");
+                throw new Exception("Trong tham số không được xuất hiện[ update ],Vui lòng nhập đúng quy định");
             }
             if (s.IndexOf("master") > -1)
             {
                 s = s.Replace("master", "");
-                throw new Exception("参数中不能出现[ master ],请规范您的输入");
+                throw new Exception("Trong tham số không được xuất hiện[ master ],Vui lòng nhập đúng quy định");
             }
             if (s.IndexOf("truncate") > -1)
             {
                 s = s.Replace("truncate", "");
-                throw new Exception("参数中不能出现[ truncate ],请规范您的输入");
+                throw new Exception("Trong tham số không được xuất hiện[ truncate ],Vui lòng nhập đúng quy định");
             }
             if (s.IndexOf("declare") > -1)
             {
                 s = s.Replace("declare", "");
-                throw new Exception("参数中不能出现[ declare ],请规范您的输入");
+                throw new Exception("Trong tham số không được xuất hiện[ declare ],Vui lòng nhập đúng quy định");
             }
             if (s.IndexOf("create") > -1)
             {
                 s = s.Replace("create", "");
-                throw new Exception("参数中不能出现[ create ],请规范您的输入");
+                throw new Exception("Trong tham số không được xuất hiện[ create ],Vui lòng nhập đúng quy định");
             }
             if (s.IndexOf("xp_") > -1)
             {
                 s = s.Replace("xp_", "");
-                throw new Exception("参数中不能出现[ xp_ ],请规范您的输入");
+                throw new Exception("Trong tham số không được xuất hiện[ xp_ ],Vui lòng nhập đúng quy định");
             }
             if (s.IndexOf("-") > -1)
             {
                 s = s.Replace("-", "");
-                throw new Exception("参数中不能出现[ - ],请规范您的输入");
+                throw new Exception("Trong tham số không được xuất hiện[ - ],Vui lòng nhập đúng quy định");
             }
             if (s.IndexOf("#") > -1)
             {
                 s = s.Replace("#", "");
-                throw new Exception("参数中不能出现[ # ],请规范您的输入");
+                throw new Exception("Trong tham số không được xuất hiện[ # ],Vui lòng nhập đúng quy định");
             }
             if (s.IndexOf("or") > -1)
             {
                 s = s.Replace("or", "");
-                throw new Exception("参数中不能出现[ or ],请规范您的输入");
+                throw new Exception("Trong tham số không được xuất hiện[ or ],Vui lòng nhập đúng quy định");
             }
             if (s.IndexOf("and") > -1)
             {
                 s = s.Replace("and", "");
-                throw new Exception("参数中不能出现[ and ],请规范您的输入");
+                throw new Exception("Trong tham số không được xuất hiện[ and ],Vui lòng nhập đúng quy định");
             }
             if (s.IndexOf("'") > -1)
             {
                 s = s.Replace("'", "");
-                throw new Exception("参数中不能出现[ ' ],请规范您的输入");
+                throw new Exception("Trong tham số không được xuất hiện[ ' ],Vui lòng nhập đúng quy định");
             }
             return s;
         }

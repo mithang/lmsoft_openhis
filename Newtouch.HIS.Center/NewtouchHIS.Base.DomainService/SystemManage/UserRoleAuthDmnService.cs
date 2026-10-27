@@ -13,8 +13,8 @@ namespace NewtouchHIS.Base.DomainService
     public class UserRoleAuthDmnService : BaseDmnService<SysRoleAuthorizeEntity>, IUserRoleAuthDmnService
     {
         /// <summary>
-        /// 应用需配置主库
-        /// 增删改建议引用
+        /// Ứng dụng cần cấu hình cơ sở dữ liệu chính
+        /// Thêm/xóa/sửa khuyên tham chiếu
         /// </summary>
         private string _mainDB = ConfigInitHelper.DbConfig.MainDB ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "DbConfig.MainDB");
         public UserRoleAuthDmnService()
@@ -22,7 +22,7 @@ namespace NewtouchHIS.Base.DomainService
             base.Context = SqlSugarDbContext.Db.GetConnection(_mainDB);
         }
         /// <summary>
-        /// 获取角色授权列表
+        /// Lấy danh sách ủy quyền vai trò
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace NewtouchHIS.Base.DomainService
             return data;
         }
         /// <summary>
-        /// 获取角色 关联 用户（org）
+        /// Lấy vai trò Liên kết Người dùng(org)
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace NewtouchHIS.Base.DomainService
             return data;
         }
         /// <summary>
-        /// 保存 角色 用户列表
+        /// Lưu Vai trò Danh sách người dùng
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="userIds"></param>
@@ -53,7 +53,7 @@ namespace NewtouchHIS.Base.DomainService
             var roleEntity = await GetByWhere<SysRoleEntity>(p => p.Id == roleId);
             if (roleEntity == null)
             {
-                throw new FailedException("Gửi sai，Truy vấn vai trò bị lỗi");
+                throw new FailedException("Gửi sai,Truy vấn vai trò bị lỗi");
             }
             if (userList != null)
             {
@@ -61,7 +61,7 @@ namespace NewtouchHIS.Base.DomainService
                 {
                     if (user.Second != roleEntity[0].OrganizeId)
                     {
-                        throw new FailedException("Gửi sai，Người dùng và vai trò không tương ứng với tổ chức");
+                        throw new FailedException("Gửi sai,Người dùng và vai trò không tương ứng với tổ chức");
                     }
                 }
             }
@@ -70,11 +70,11 @@ namespace NewtouchHIS.Base.DomainService
             {
                 foreach (var item in SysUserRole)
                 {
-                    //先 del
+                    //Trước tiên del
                     await Delete<SysUserRoleEntity>(item);
                 }
             }
-            //再添加
+            //rồi thêm
             if (userList != null)
             {
                 foreach (var user in userList)
@@ -115,7 +115,7 @@ namespace NewtouchHIS.Base.DomainService
                 {
                     throw new FailedException("Hủy liên kết vai trò gốc thất bại");
                 }
-                //新增角色关系
+                //Thêm quan hệ vai trò mới
                 var newRoles = dbTran.GetConnectionScope(_mainDB).Insertable<SysUserRoleEntity>(userRoleEntities).ExecuteCommand();
                 if (newRoles <= 0)
                 {
@@ -127,7 +127,7 @@ namespace NewtouchHIS.Base.DomainService
             catch (Exception ex)
             {
                 await dbTran.RollbackTranAsync();
-                throw new FailedException($"Liên kết quan hệ vai trò thất bại：{ex.Message}");
+                throw new FailedException($"Liên kết quan hệ vai trò thất bại:{ex.Message}");
 
             }
 

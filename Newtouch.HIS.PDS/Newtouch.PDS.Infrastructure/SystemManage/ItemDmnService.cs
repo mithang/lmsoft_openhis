@@ -9,7 +9,7 @@ using FrameworkBase.MultiOrg.Infrastructure;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 字典、字典项 DmnService
+    /// Từ điển、Mục từ điển DmnService
     /// </summary>
     public class ItemDmnService : DmnServiceBase, IItemDmnService
     {
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取有效字典项 列表 指定组织机构
+        /// Lấy mục từ điển hiệu lực Danh sách Chỉ định tổ chức
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ select Id from [NewtouchHIS_Base]..V_S_Sys_Items where Code = @code
         }
 
         /// <summary>
-        /// 获取所有字典分类
+        /// Lấy tất cả phân loại từ điển
         /// </summary>
         /// <param name="topOrgId"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ select Id from [NewtouchHIS_Base]..V_S_Sys_Items where Code = @code
         }
 
         /// <summary>
-        /// 获取所有字典项
+        /// Lấy tất cả mục từ điển
         /// </summary>
         /// <param name="topOrgId"></param>
         /// <returns></returns>

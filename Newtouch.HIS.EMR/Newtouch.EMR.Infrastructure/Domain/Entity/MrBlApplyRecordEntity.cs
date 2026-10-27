@@ -8,7 +8,7 @@ using SqlSugar;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 病历申请记录
+    /// Bản ghi yêu cầu bệnh án
     /// </summary>
     [SugarTable("Mr_BlApplyRecord")]
     public class MrBlApplyRecordEntity 
@@ -31,49 +31,49 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string ks { get; set; }
         /// <summary>
-        /// 病历模板
+        /// Mẫu bệnh án
         /// </summary>
         /// <returns></returns>
         public string bllx { get; set; }
         /// <summary>
-        /// 病历名称
+        /// Tên bệnh án
         /// </summary>
         /// <returns></returns>
         public string blmc { get; set; }
         /// <summary>
-        /// 申请时间
+        /// Thời gian yêu cầu
         /// </summary>
         /// <returns></returns>
         public DateTime? sqsj { get; set; }
         /// <summary>
-        /// 完成时间
+        /// Thời gian hoàn thành
         /// </summary>
         /// <returns></returns>
         public DateTime? wcsj { get; set; }
         /// <summary>
-        /// 质控完成时间
+        /// Thời gian hoàn thành kiểm soát chất lượng
         /// </summary>
         /// <returns></returns>
         public DateTime? zkwcsj { get; set; }
 
         /// <summary>
-        /// 审批状态 0:待审批 1：审批通过  2：退回
+        /// Trạng thái phê duyệt 0:Chờ phê duyệt 1：Phê duyệt thông qua  2：Trả lại
         /// </summary>
         public int applyStatus { get; set; }
         /// <summary>
-        /// 申请成功返回号
+        /// Số trả về khi yêu cầu thành công
         /// </summary>
         public string applyReturnNo { get; set; }
         /// <summary>
-        /// 审批部门、科室
+        /// Bộ phận phê duyệt、Khoa
         /// </summary>
         public string ApproveDept { get; set; }
         /// <summary>
-        /// 审批人
+        /// Người phê duyệt
         /// </summary>
         public string ApprovePerson { get; set; }
         /// <summary>
-        /// 审批日期
+        /// Ngày phê duyệt
         /// </summary>
         public DateTime? ApproveDate { get; set; }
         /// <summary>

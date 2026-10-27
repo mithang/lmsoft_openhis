@@ -16,7 +16,7 @@ using Newtouch.Domain.ViewModels.Outpatient;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// 预约挂号
+    /// đặt hẹnđăng ký khám
     /// </summary>
     public class BespeakRegisterApp : AppBase, IBespeakRegisterApp
     {
@@ -44,7 +44,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 修改预约管理
+        /// Sửađặt hẹnQuản lý
         /// </summary>
         /// <param name="entities"></param>
         /// <returns></returns>
@@ -57,13 +57,13 @@ namespace Newtouch.Application.Implementation
                 p.Modify();
                 if (_sysBespeakRegisterRepo.Update(p) > 0) ++successCount;
             });
-            return successCount == entities.Count ? "" : "部分修改失败，请重新修改";
+            return successCount == entities.Count ? "" : "một phầnSửa thất bại，vui lònglạisửa";
         }
 
-        #region 获取默认配置预约时间
+        #region LấyMặc địnhcấu hìnhđặt hẹnthời gian
 
         /// <summary>
-        /// 获取默认的预约挂号时间
+        /// LấyMặc địnhcủađặt hẹnđăng ký khámThời gian
         /// </summary>
         /// <param name="sourceDate"></param>
         /// <returns></returns>
@@ -99,7 +99,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 获取系统配置预约时间段和可预约总数
+        /// LấyHệ thốngcấu hìnhđặt hẹnThời gianđoạnvàcó thểđặt hẹntổngsố
         /// </summary>
         /// <returns></returns>
         public List<SysBespeakRegisterTimeVO> GetConfigureRegTime()
@@ -125,9 +125,9 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 获取未来n天的日期
+        /// LấychưađếnnngàycủaNgày
         /// </summary>
-        /// <param name="n">n天</param>
+        /// <param name="n">nngày</param>
         /// <param name="source"></param>
         /// <param name="defaultRegTime"></param>
         /// <returns></returns>
@@ -161,10 +161,10 @@ namespace Newtouch.Application.Implementation
 
         #endregion
 
-        #region 追加行
+        #region đuổithêmdòng
 
         /// <summary>
-        /// 组装追加行HTML
+        /// lắp rápđuổithêmdòngHTML
         /// </summary>
         /// <param name="regDatas"></param>
         /// <param name="regTimes"></param>
@@ -196,7 +196,7 @@ namespace Newtouch.Application.Implementation
         #endregion
 
         /// <summary>
-        /// 提交预约挂号编辑
+        /// Gửiđặt hẹnđăng ký khámSửa
         /// </summary>
         /// <param name="regData"></param>
         /// <returns></returns>
@@ -209,13 +209,13 @@ namespace Newtouch.Application.Implementation
             {
                 if (string.IsNullOrWhiteSpace(p.regTime))
                 {
-                    return "请填写预约时段";
+                    return "vui lòngđiềnviếtđặt hẹnkhiđoạn";
                 }
-                if (p.regTime.IndexOf('-') <= 0) return "预约时段格式不对，请用‘-’分隔开始和结束时间。如：08:50-12:00";
+                if (p.regTime.IndexOf('-') <= 0) return "đặt hẹnkhiđoạnđịnh dạngkhôngđối，vui lòngdùng‘-’phútcáchBắt đầuvàThời gian kết thúc。nếu：08:50-12:00";
                 var arrTime = p.regTime.Split('-');
-                if (arrTime.Length != 2) return "预约时段格式不对，请用‘-’分隔开始和结束时间。如：08:50-12:00";
-                if (arrTime[0].IndexOf(':') <= 0) return "预约时段格式不对，请用‘-’分隔开始和结束时间。如：08:50-12:00";
-                if (arrTime[1].IndexOf(':') <= 0) return "预约时段格式不对，请用‘-’分隔开始和结束时间。如：08:50-12:00";
+                if (arrTime.Length != 2) return "đặt hẹnkhiđoạnđịnh dạngkhôngđối，vui lòngdùng‘-’phầncáchbắt đầuvàThời gian kết thúc。nếu：08:50-12:00";
+                if (arrTime[0].IndexOf(':') <= 0) return "đặt hẹnkhiđoạnđịnh dạngkhôngđối，vui lòngdùng‘-’phútcáchBắt đầuvàThời gian kết thúc。nếu：08:50-12:00";
+                if (arrTime[1].IndexOf(':') <= 0) return "đặt hẹnkhiđoạnđịnh dạngkhôngđối，vui lòngdùng‘-’phútcáchBắt đầuvàThời gian kết thúc。nếu：08:50-12:00";
                 p.regBeginTime = Convert.ToDateTime(p.regDate.ToString("yyyy-MM-dd") + " " + arrTime[0]);
                 p.regEndTime = Convert.ToDateTime(p.regDate.ToString("yyyy-MM-dd") + " " + arrTime[1]);
 
@@ -248,7 +248,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 删除指定预约挂号数据
+        /// Xóachỉđịnhđặt hẹnđăng ký khámDữ liệu
         /// </summary>
         /// <param name="targetData"></param>
         private void DeleteData(List<SysBespeakRegisterEntity> targetData)
@@ -262,7 +262,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 删除过期预约挂号
+        /// Xóaquakỳđặt hẹnđăng ký khám
         /// </summary>
         public void DeleteExpireRegData()
         {
@@ -277,7 +277,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 获取科室预约挂号信息
+        /// LấyKhoađặt hẹnđăng ký khámthông tin
         /// </summary>
         /// <param name="deptCode"></param>
         /// <returns></returns>
@@ -328,7 +328,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 组装tr内容 
+        /// lắp ráptrnội dung 
         /// </summary>
         /// <param name="regDate"></param>
         /// <param name="gh"></param>
@@ -351,7 +351,7 @@ namespace Newtouch.Application.Implementation
             {
                 var p = regTimes[i];
                 var item = regs.FirstOrDefault(n => n.regTime == p.regTime);
-                if (item != null && !string.IsNullOrWhiteSpace(item.Id))   //存在
+                if (item != null && !string.IsNullOrWhiteSpace(item.Id))   //tồn tạiở
                 {
                     var tmpTdId = Guid.NewGuid().ToString();
                     result.AppendLine("<td><div class=\"ckbox ckbox-ext\" style=\"margin-top: 3px;\"> ");
@@ -359,7 +359,7 @@ namespace Newtouch.Application.Implementation
                     result.AppendLine("<label for=\"chk_" + tmpTdId + "\"></label>");
                     result.AppendLine("</div><input id=\"txt_" + tmpTdId + "\" name=\"bespeakMaxCount\" value=\"" + item.bespeakMaxCount + "\" /></td>");
                 }
-                else   //不存在
+                else   //khôngtồn tạiở
                 {
                     var tmpTdId = Guid.NewGuid().ToString();
                     result.AppendLine("<td><div class=\"ckbox ckbox-ext\" style=\"margin-top: 3px;\"> ");
@@ -372,7 +372,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 组装tr内容 
+        /// lắp ráptrnội dung 
         /// </summary>
         /// <param name="regDate"></param>
         /// <param name="regTimes"></param>
@@ -401,7 +401,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 获取科室默认预约挂号
+        /// LấyKhoaMặc địnhđặt hẹnđăng ký khám
         /// </summary>
         /// <param name="deptCode"></param>
         /// <returns></returns>
@@ -425,7 +425,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 根据科室和工号组装预约挂号信息
+        /// TheoKhoavàMã nhân viênlắp rápđặt hẹnđăng ký khámthông tin
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="gh"></param>
@@ -451,7 +451,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 获取可预约总人数和已预约数
+        /// Lấycó thểđặt hẹntổng ngườisốvàđãđặt hẹnsố
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
@@ -468,7 +468,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 保存预约挂号
+        /// Lưuđặt hẹnđăng ký khám
         /// </summary>
         /// <param name="yyId"></param>
         /// <param name="brId"></param>
@@ -480,12 +480,12 @@ namespace Newtouch.Application.Implementation
         {
             _mzyyghRepo.DeleteById(yyId);
             var regData = _sysBespeakRegisterRepo.FindEntity(p => p.Id == brId);
-            if (regData == null || string.IsNullOrWhiteSpace(regData.Id)) return "获取挂号排班信息失败";
-            if (regData.bespeakMaxCount <= 0) return "该科室或专家不支持预约挂号";
-            var yyygh = _mzyyghRepo.IQueryable(p => p.brId == brId && p.zt == "1");//已预约挂号
+            if (regData == null || string.IsNullOrWhiteSpace(regData.Id)) return "Lấyđăng ký khámXếp lịchthông tinthất bại";
+            if (regData.bespeakMaxCount <= 0) return "Khoahoặcchuyên giakhôngHỗ trợđặt hẹnđăng ký khám";
+            var yyygh = _mzyyghRepo.IQueryable(p => p.brId == brId && p.zt == "1");//đãđặt hẹnđăng ký khám
             if (yyygh != null && yyygh.Count() >= regData.bespeakMaxCount)
             {
-                return "该科室或专家预约挂号已满额";
+                return "Khoahoặcchuyên giađặt hẹnđăng ký khámđãđầymức";
             }
 
             var entity = new MzyyghEntity
@@ -498,11 +498,11 @@ namespace Newtouch.Application.Implementation
                 bespeakNo = yyygh == null || !yyygh.Any() ? 1 : yyygh.Count() + 1
             };
             entity.Create(true);
-            return _mzyyghRepo.Insert(entity) > 0 ? "" : "保存预约挂号信息失败";
+            return _mzyyghRepo.Insert(entity) > 0 ? "" : "Lưuđặt hẹnđăng ký khámthông tinthất bại";
         }
 
         /// <summary>
-        /// 生成预约排班日历
+        /// tạođặt hẹnXếp lịchngàylịch
         /// </summary>
         /// <param name="year"></param>
         /// <param name="month"></param>
@@ -511,8 +511,8 @@ namespace Newtouch.Application.Implementation
         /// <returns></returns>
         public string BuildCalendar(int year, int month, string deptCode, string ysgh)
         {
-            if (month <= 0) throw new Exception("传入月份不合法,请传入自然数");
-            var mzlx = string.IsNullOrWhiteSpace(ysgh) ? "1" : "3";//门诊住院标志 1：普通门诊  2：急诊   3：专家门诊
+            if (month <= 0) throw new Exception("truyềnvàoThángphầnkhônghợpphương pháp,vui lòngtruyềnvàotựnhiênsố");
+            var mzlx = string.IsNullOrWhiteSpace(ysgh) ? "1" : "3";//Dấu hiệu ngoại trú/nội trú 1：thông thườngNgoại trú  2：gấpkhám   3：chuyên giaNgoại trú
             var beginTime = Convert.ToDateTime(year + "-" + month + "-01");
             var endTime = beginTime.AddMonths(1).AddDays(-1);
             var calendarDate = GetCalendarDate(mzlx, deptCode, ysgh, beginTime, endTime);
@@ -520,7 +520,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 获取日历所需数据 当前月
+        /// LấyngàylịchsởcầnDữ liệu hiện tạiTháng
         /// </summary>
         /// <param name="mzlx"></param>
         /// <param name="deptCode"></param>
@@ -548,7 +548,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 组装日历html
+        /// lắp rápngàylịchhtml
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -597,7 +597,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 组装日历的td
+        /// lắp rápngàylịchcủatd
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
@@ -610,7 +610,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 组装月初空白日历
+        /// lắp rápThángban đầutrốngtrắngngàylịch
         /// </summary>
         /// <param name="mixDate"></param>
         /// <returns></returns>
@@ -645,7 +645,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 组装月末空白日历
+        /// lắp rápTháng末trốngtrắngngàylịch
         /// </summary>
         /// <param name="maxDate"></param>
         /// <returns></returns>

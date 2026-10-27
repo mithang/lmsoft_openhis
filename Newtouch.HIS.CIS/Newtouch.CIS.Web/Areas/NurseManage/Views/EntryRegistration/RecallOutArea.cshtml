@@ -85,13 +85,13 @@
 
         DefaultCheck();
     });
-    //默认选中根节点.
+    //Mặc địnhĐã chọngốctiếtđiểm.
     function DefaultCheck() {
-        var firstid = $("div[id^='wardTree_']:first").attr("id").replace("wardTree_", "");//根节点病区代码
+        var firstid = $("div[id^='wardTree_']:first").attr("id").replace("wardTree_", "");//gốctiếtđiểmKhu bệnhMã
         var addstyleid = 'wardTree_' + firstid;
         var item = new Object();
         item.id = firstid;
-        $("#" + addstyleid + "").addClass('bbit-tree-selected');//增加选中样式
+        $("#" + addstyleid + "").addClass('bbit-tree-selected');//tăng thêmĐã chọnkiểu
         wardTree_onnodeclick(item);
     }
     var bqdm = null;
@@ -105,7 +105,7 @@
         GetPatientList(bqdm);
         refleshPatientList();
     }
-    //刷新事件
+    //Làm mớisự kiện
     function refleshPatientList() {
         $("#btn_search").trigger('click');
     }
@@ -121,9 +121,9 @@
         }
         $("#gridPatList").jqGrid('setGridParam', {
             postData: { keyword: $('#txt_name').val(), ksrq: $('#txt_ksrq').val(), jsrq: $('#txt_jsrq').val(), bqdm: bqdm },
-        }).trigger('reloadGrid'); //重新加载当前表格
+        }).trigger('reloadGrid'); //lạitảihiện tạibảngô
     });
-    // 查询条件
+    // Điều kiện tìm kiếm
     function getSearchPostData() {
         var keyword = $('#txt_name').val();
         var ksrq = $('#txt_ksrq').val();
@@ -137,14 +137,14 @@
         Querydata["bqdm"] = bqdm;
         //alert(bqdm);
         $gridList.dataGrid({
-                //获取出区待结算病人信息
+                //Lấyra khỏi khuchờquyết toánThông tin bệnh nhân
             url: "/EntryRegistration/GetOutAreaPatlist",
             postData: Querydata,
             dataType: "json",
             height: $(window).height() - 155,
            // width: $(".Newtouch_iframe", parent.document).width() - $(".dv-left").width() - 25,
-            autowidth: true,//根据父容器宽度自适应调整
-            shrinkToFit: false,//滚动条
+            autowidth: true,//Theochadungdụng cụrộngđộtựthích ứnggọichỉnh
+            shrinkToFit: false,//thanh cuộn
             //unwritten: false,
             //multiselect: true,
             colModel: [
@@ -158,7 +158,7 @@
                },
                { label: 'Tuổi', name: 'nl', align: 'center', width: 40 },
                 { label: 'Số giường', name: 'cwmc', align: 'center', width: 80 },
-               //{ label: '入院日期', name: 'ryrq', align: 'center', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
+               //{ label: 'Ngày nhập viện', name: 'ryrq', align: 'center', width: 100, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
                { label: 'Chi phíLoại', name: 'brxzmc', align: 'center', width: 80 },
                { label: 'Chẩn đoán nhập viện', name: 'zzdmc', align: 'center', width: 120 },
 
@@ -176,7 +176,7 @@
         });
     }
 
-    //召回
+    //triệuvề
     function recall(zyh) {
         if (zyh == null || zyh == "") {
             $.modalAlert("Vui lòng chọnmộtBệnh nhân", 'warning');

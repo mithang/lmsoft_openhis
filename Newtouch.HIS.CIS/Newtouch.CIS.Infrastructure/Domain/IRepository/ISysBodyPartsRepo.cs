@@ -7,20 +7,20 @@ namespace Newtouch.Domain.IRepository
     public interface ISysBodyPartsRepo : IRepositoryBase<SysBodyPartsEntity>
     {
         /// <summary>
-        /// 获取列表
+        /// Lấydanh sách
         /// </summary>
         /// <returns></returns>
         List<SysBodyPartsEntity> GetListByOrg(string orgId);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
         void SubmitForm(SysBodyPartsEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         void DeleteForm(string keyValue);

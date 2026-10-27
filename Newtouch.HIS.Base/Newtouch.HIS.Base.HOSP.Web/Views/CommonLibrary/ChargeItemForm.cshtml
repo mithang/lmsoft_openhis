@@ -8,10 +8,10 @@
     <div style="padding-top: 20px; margin-right: 30px; ">
         <table class="form">
             <tr>
-                @* <td class="formTitle"><span class="required">*</span>组织机构：</td>
+                @* <td class="formTitle"><span class="required">*</span>Tổ chức：</td>
                  <td class="formValue formDdlSelectorTd"> *@
                 @*     <select id="OrganizeId" name="OrganizeId" class="form-control required"> *@
-                @*         <option value="">==请选择==</option> *@
+                @*         <option value="">==Vui lòng chọn==</option> *@
                 @*     </select> *@
                 @* </td> *@
                 <td class="formTitle"><span class="required">*</span>Tên:</td>
@@ -107,7 +107,7 @@
                 <td class="formTitle"><span class="required">*</span>Cờ BHYT:</td>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <!-- 医保标志：即便有医保代码对照，也需要打上医保标志才会跟医保交互 -->
+                        <!-- Cờ BHYT：Dù đã có đối chiếu mã BHYT，cũng cần gắn cờ BHYT thì mới tương tác với BHYT -->
                         <select id="ybbz" name="ybbz" class="form-control required">
                             <option value="">==Vui lòng chọn==</option>
                             <option value="1">Có</option>
@@ -121,12 +121,12 @@
                 </td>
                 <td class="formTitle">Mã BHYT tỉnh:</td>
                 <td class="formValue">
-                    <!-- 从医保诊疗项目智能带出来的，医保分诊疗项目和材料 -->
+                    <!-- Được tự động lấy từ hạng mục khám chữa bệnh BHYT，BHYT chia hạng mục khám chữa bệnh và vật tư -->
                     <input id="ybdm" name="ybdm" type="text" class="form-control" placeholder="" />
                 </td>
             </tr>
             <tr>
-                @*<td class="formTitle">新农合医保代码：</td>
+                @*<td class="formTitle">Mã BHYT nông thôn mới：</td>
         <td class="formValue">
             <input id="xnhybdm" name="xnhybdm" type="text" class="form-control" placeholder="" />
         </td>*@
@@ -166,7 +166,7 @@
                 <td class="formTitle">Cờ đặc biệt:</td>
                 <td class="formValue" style="padding-top: 1px;">
                     <div class="ckbox">
-                        <!-- 特殊项目：1：xt_sfxmtsbz里配置的特殊病人群才可以使用该项目 -->
+                        <!-- Hạng mục đặc biệt：1：xt_sfxmtsbzchỉ nhóm bệnh nhân đặc biệt đã cấu hình trong đó mới được dùng hạng mục này -->
                         <input id="tsbz" name="tsbz" type="checkbox"><label for="tsbz">Có</label>
                     </div>
                 </td>
@@ -186,7 +186,7 @@
                 </td>
                 <td class="formTitle">Mã giá:</td>
                 <td class="formValue">
-                    <!-- 从医保诊疗项目智能带出来的，医保分诊疗项目和材料 -->
+                    <!-- Được tự động lấy từ hạng mục khám chữa bệnh BHYT，BHYT chia hạng mục khám chữa bệnh và vật tư -->
                     <input id="wjdm" name="wjdm" type="text" class="form-control" placeholder="" />
                 </td>
                 <td class="formTitle">Thời lượng (phút):</td>
@@ -252,38 +252,38 @@
 
     function initControl() {
         debugger
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         @*$("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });*@
-        //组织对应的科室下拉框加载
+        //Tải hộp thả xuống khoa tương ứng với tổ chức
             
-            //获取收费大类
+            //Lấy danh mục thu phí lớn
             $("#sfdlCode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=*",
             });
-            //获取病案收费大类
+            //Lấy danh mục thu phí hồ sơ bệnh án lớn
             $("#badlCode").bindSelect({
                 url: "/SysMedicalRecordChargeCategory/GetListSelectJson?organizeId=*",
                 id: "dlCode",
                 text: "dlmc",
             });
-            //获取农保收费大类
+            //Lấy danh mục thu phí bảo hiểm nông nghiệp lớn
             $("#nbdlCode").bindSelect({
                 url: "/SysAgriInsuranceChargeCategory/GetListSelectJson?organizeId=*",
                 id: "dlCode",
                 text: "dlmc",
             });
-            //默认执行科室
+            //Khoa thực hiện mặc định
             $("#zxks").bindSelect({
                 url: "/Department/GetTreeSelectJson?organizeId=*",
             });
         $('#zfxz').select2();
-        //首拼
+        //Mã đầu chữ
         $('#sfxmmc').keyup(function () {
             $('#py').val($(this).toShouPin());
         });
-        //药品申请类型
+        //Loại đề nghị thuốc
         $("#sqlx").bindSelect({
             url: "/ItemsData/GetSelectJson",
             param: { code: "ExamTypeID" }
@@ -368,7 +368,7 @@
 					debugger
 					var curRowData = jQuery(curData).jqGrid('getRowData', rowIds[k]);
 					//if ($thistr.attr('data-gjybdm') != "" && $thistr.attr('data-gjybdm') != null && curRowData.gjybdm == $thistr.attr('data-gjybdm')) {
-					//	$.modalAlert("系统已存在国家医保代码为" + $thistr.attr("data-gjybdm") + "的药品，" + $thistr.attr("data-xmmc"), 'warning');
+					//	$.modalAlert("Hệ thống đã tồn tại mã BHYT quốc gia là" + $thistr.attr("data-gjybdm") + " của thuốc，" + $thistr.attr("data-xmmc"), 'warning');
 					//};
 				}
                 if (($('#sfxmmc').val() != "" || $('#ypmc').val() != null) && $('#ybdm').val() != $thistr.attr('data-gjybdm')) {

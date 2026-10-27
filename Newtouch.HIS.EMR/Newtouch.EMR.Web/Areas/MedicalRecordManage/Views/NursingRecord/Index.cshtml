@@ -174,20 +174,20 @@
 </div>
 <script>
         $(function () {
-            $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+            $(window).resize(function () {//Tính lại chiều rộng và chiều cao khi cửa sổ trình duyệt thay đổi kích thước
                 $(".dv-body").height($(window).height());
                 $(".dv-body").width($(window).width());
             });
             var rightWidth = $(".Newtouch_iframe", parent.document).width() - $(".dv-left").width() - 30;
             $(".dv-right").width(rightWidth);
-            var currentobj = JSON.parse(sessionStorage.getItem('currentpatobj'));//护士患者一览
+            var currentobj = JSON.parse(sessionStorage.getItem('currentpatobj'));//Danh sách bệnh nhân của y tá
             if (currentobj) {
                 $('#zyh').val(currentobj.zyh);
                 sessionStorage.removeItem("currentpatobj");
             }
             initControl();
             gridList();
-            $("#gridList").jqGrid('setFrozenColumns');//设置冻结列
+            $("#gridList").jqGrid('setFrozenColumns');//Thiết lập cột cố định
             getPatTreeList();
             $('#zyzt').change(function () {
                 getPatTreeList();
@@ -306,7 +306,7 @@
                 {
                     label: "Ngày", name: "rq", width: 110, align: 'left',
                     formatter: function (cellvalue, options, rowobject) {
-                        //日期 时间点 相关状态
+                        //Trạng thái liên quan đến thời điểm ngày giờ
                         var val = $.getDate({ date: cellvalue });
                         val += " " + rowobject.sj;
                         if (rowobject.brzt) {
@@ -371,7 +371,7 @@
 
             }
         });
-        //二级菜单
+        //Menu cấp hai
         $gridList.jqGrid('setGroupHeaders', {
             useColSpanStyle: true,
             groupHeaders: [
@@ -396,7 +396,7 @@
             page: 1,
         }).trigger('reloadGrid');
     }
-    //查询条件
+    //Điều kiện truy vấn
     function getSearchPostData() {
         var kssj = $("#kssj").val();
         var jssj = $("#jssj").val();
@@ -416,7 +416,7 @@
     $("#btn_edit").click(function () {
         var seleId = $('#gridList').jqGrid('getGridParam', 'selrow');
         if (seleId) {
-            //请求修改该行
+            //Yêu cầu sửa dòng này
             gridEditRow(seleId);
         }
         else {
@@ -428,7 +428,7 @@
     $("#btn_delete").click(function () {
         var seleId = $('#gridList').jqGrid('getGridParam', 'selrow');
         if (seleId) {
-            //请求作废该行
+            //Yêu cầu hủy dòng này
             gridDeleteRow(seleId);
         }
         else {
@@ -480,7 +480,7 @@
                 url: "/MedicalRecordManage/NursingRecord/WZForm?smtzId=" + smtzId + "&zyh=" + $("#zyh").val() + "&xm=" + $("#xm").text(),
                 width: "900px",
                 height: "750px",
-                showleftlalbel: !!!smtzId,  //新增时显示 '确认并关闭按钮'
+                showleftlalbel: !!!smtzId,  //Hiển thị khi thêm mới 'Nút xác nhận và đóng'
                 leftlalbelchecked: true,
                 leftlabeltext: "Nhập liên tục",
                 leftlalbelcheckedasClose: false,
@@ -500,7 +500,7 @@
                 url: "/MedicalRecordManage/NursingRecord/SSForm?smtzId=" + smtzId + "&zyh=" + $("#zyh").val() + "&xm=" + $("#xm").text(),
                 width: "900px",
                 height: "750px",
-                showleftlalbel: !!!smtzId,  //新增时显示 '确认并关闭按钮'
+                showleftlalbel: !!!smtzId,  //Hiển thị khi thêm mới 'Nút xác nhận và đóng'
                 leftlalbelchecked: true,
                 leftlabeltext: "Nhập liên tục",
                 leftlalbelcheckedasClose: false,
@@ -520,7 +520,7 @@
                 url: "/MedicalRecordManage/NursingRecord/Form?smtzId=" + smtzId + "&zyh=" + $("#zyh").val() + "&xm=" + $("#xm").text(),
                 width: "800px",
                 height: "700px",
-                showleftlalbel: !!!smtzId,  //新增时显示 '确认并关闭按钮'
+                showleftlalbel: !!!smtzId,  //Hiển thị khi thêm mới 'Nút xác nhận và đóng'
                 leftlalbelchecked: true,
                 leftlabeltext: "Nhập liên tục",
                 leftlalbelcheckedasClose: false,

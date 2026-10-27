@@ -117,7 +117,7 @@
 						//sortname: "px asc",
                         async: false,
                         success: function (data) {
-                            $("#form1").formSerialize(data.ztEntity);   //文本赋值
+                            $("#form1").formSerialize(data.ztEntity);   //văn bảnGán giá trị
                             if (data.ztEntity != null) {
                                 data.ztEntity.zt == '1' ? $('#zt').prop('checked', true) : $('#zt').prop('checked', false);
                             }
@@ -126,7 +126,7 @@
                             $.each(itemlocaldata, function () {
                                 this.action = getActionStr()
                             });
-                            //再次打开该页面
+                            //Mở lại trang này
                             $("#xmDetailListGridList").jqGrid('setGridParam', {
                                 datatype: 'local',
                                 data: itemlocaldata
@@ -144,19 +144,19 @@
         }
 
     });
-    //jGrid声明
+    //jGridTuyên bố
     function initChargeItemGrid() {
         $('#xmDetailListGridList').jqGrid({
             datatype: 'local',
             data: itemlocaldata,
             height: 280,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //dòngSửakhông gửi lên máy chủGửiDữ liệu
             unwritten: false,
             rowNum: 1000,
             rowList: [1000],
             pager: "#GridListPager",
             caption: "Mục thu phíTổng số tiền:0.00",
-			//caption: "收费项目",
+			//caption: "Mục thu phí",
 			//sortname: "px asc",
             colModel: [
 				{ label: 'Id', name: 'Id', hidden: true },
@@ -178,7 +178,7 @@
                             }
                         ]
                     } },
-                @*{ label: '数量', name: 'sl', width: 100, align: 'center', editable: true, hidden: type ==@((int)EnumjyjczutaoLx.jy)? true : false },*@
+                @*{ label: 'Số lượng', name: 'sl', width: 100, align: 'center', editable: true, hidden: type ==@((int)EnumjyjczutaoLx.jy)? true : false },*@
                 { label: 'Thao tác', name: 'action', width: 50, align: 'center'}
             ],
             gridComplete: function () {
@@ -186,7 +186,7 @@
             }
         });
 
-        //自定义按钮
+        //Nút tùy chỉnh
         $('#xmDetailListGridList').navGrid('#GridListPager',
             { edit: false, add: false, del: false, search: false, refresh: false, view: false, position: "left", cloneToTop: false })
             .navButtonAdd('#GridListPager',
@@ -202,7 +202,7 @@
 		jQuery("#xmDetailListGridList").jqGrid('sortableRows');
     }
 
-      //新医嘱 按钮
+      //Y lệnh mới Nút
     function newsfxmData() {
         var dataRow = {
             Id: Math.random().toString() + new Date().getMilliseconds(),
@@ -216,7 +216,7 @@
         var ids = $("#xmDetailListGridList").getDataIDs();
         $.each(ids, function () {
             var rowid = String(this);
-            //打开编辑模式
+            //MởSửachế độ
             $("#xmDetailListGridList").jqGrid('editRow', rowid, false, initInlineFunc);
         })
     }
@@ -225,7 +225,7 @@
         $("#" + rowid + "_dj").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_dw").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_sfdlmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
-        //项目浮层
+        //Mụclớp nổi
         $("#" + rowid + "_sfxmmc").sfxmFloatingSelector({
             djDecimalPlaces: 4,
             searchType: 'sfxm',
@@ -263,7 +263,7 @@
         return "<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;' onclick='deleteItemRowData($(this).parent().parent().attr(\"id\"));return false;'></i>";
     }
     
-    //删除明细
+    //Xóa chi tiết
     function deleteItemRowData(selRowId, recalc) {
         if (!!selRowId) {
             var Id = $("#xmDetailListGridList").jqGrid('getRowData', selRowId).Id;
@@ -271,23 +271,23 @@
         }
     }
 
-    //valid的扩展样式
+    //validcủakiểu mở rộng
     var valOptions = {
         errorPlacement: function (error, element) {
             element.parents('.formValue').addClass('has-error');
         }
     }
 
-    //保存
+    //Lưu
     function newtouch_event_f8()
     {
-        //必填信息验证  （主诉、发病时间）
+        //bắt buộcthông tinkiểm tra  （chínhbảo、phátbệnhThời gian）
         if (!$('#form1').formValid()) {
             $.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
             return;
         }
 
-        //套餐
+        //gói
         var ztobj = {
             ztId: $('#ztId').val(),
             ztmc:$('#ztmc').val(),
@@ -302,19 +302,19 @@
             var saveResult = $("#xmDetailListGridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
             if (!saveResult) {
-                EnableInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                return;   //保存失败，则return
+                EnableInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
+                return;   //Lưu thất bại，thìreturn
             }
         }
 
-        //项目
+        //Mục
 		var ztxmlist = $("#xmDetailListGridList").jqGrid('getRowData_AllLine', null, true);
-		//获取排序Số thứ tự
+		//LấyThứ tựSố thứ tự
 		for (var i = 0; i < ztxmlist.length; i++) {
 			ztxmlist[i].px = i+1;
 		}
-        $.each(ztxmlist, function () {    //去掉action
-            delete this.action;   //去掉action
+        $.each(ztxmlist, function () {    //Bỏaction
+            delete this.action;   //Bỏaction
         })
         $.najax({
             url: "/TemplateManage/GroupPackage/SaveData",
@@ -323,10 +323,10 @@
             type: "POST",
             success: function (data) {
                 $.modalAlert("Lưu thành công", 'warning');
-                //清空
+                //Xóa trắng
                 newtouch_globalevent_f4();
                 $("#xmDetailListGridList").clearGridData();
-                //刷新
+                //Làm mới
                 $("#gridList").jqGrid('setGridParam', {
                     page: 1,
                 }).trigger('reloadGrid');
@@ -334,7 +334,7 @@
         });
     }
 
-    //新增组套
+    //Thêm mớiBộ mẫu
     function newtouch_event_f3()
     {
         newtouch_globalevent_f4();
@@ -346,7 +346,7 @@
     }
 
 
-    //删除
+    //Xóa
     function newtouch_event_f6()
     {
         var ztId = $('#ztId').val();
@@ -364,7 +364,7 @@
         }
     }
     
-    //计算申请单金额
+    //Tính toánPhiếuSố tiền
     function CalculateInsPresJYJCAmount($grid) {
         var totalAmount = 0;
         var allData = $grid.jqGrid('getRowData_AllLine', null, true);
@@ -374,7 +374,7 @@
             totalAmount += dj * sl;
         }
         $("#xmDetailListGridList").jqGrid("setCaption", "Mục thu phíTổng số tiền:" + "<label style='color:red;'>￥"
-            + totalAmount.toFixed(2) + "</label>");   //重置caption属性值
+            + totalAmount.toFixed(2) + "</label>");   //Đặt lạicaptionThuộc tínhGiá trị
     }
 
 </script>

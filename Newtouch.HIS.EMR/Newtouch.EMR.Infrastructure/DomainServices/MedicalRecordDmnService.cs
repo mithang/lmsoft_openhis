@@ -52,14 +52,14 @@ namespace Newtouch.EMR.DomainServices
             _BllxRepo = bllxRepo;
         }
 
-        #region 病历操作
+        #region Thao tác bệnh án
 
 
         /// <summary>
-        ///锁定/解锁病历编辑
+        ///Khóa/Mở khóa chỉnh sửa bệnh án
         /// </summary>
         /// <param name="blId"></param>
-        /// <param name="blgxId">病历关系Id</param>
+        /// <param name="blgxId">Quan hệ bệnh ánId</param>
         /// <param name="OrgId"></param>
         /// <param name="user"></param>
         public void LockRecord(string blid, string bllx, string OrganizeId, string UserCode, int isLock)
@@ -90,7 +90,7 @@ namespace Newtouch.EMR.DomainServices
             var medicalRecordVO = new medicalRecordVO();
             switch (bllx.Substring(0, 1))
             {
-                //入院病历
+                //Bệnh án nhập viện
                 case "1":
                     var rybl = _bl_ryblRepo.bl_ryblGetByID(blid);
                     medicalRecordVO.blxtml = rybl.blxtml;
@@ -98,7 +98,7 @@ namespace Newtouch.EMR.DomainServices
                     medicalRecordVO.IsLock = rybl.IsLock;
                     medicalRecordVO.LastModifierCode = rybl.LastModifierCode;
                     break;
-                //病程记录
+                //Ghi chép diễn biến bệnh
                 case "2":
                     var bcjl = _bl_bcjlRepo.bl_bcjlGetByID(blid);
                     medicalRecordVO.blxtml = bcjl.blxtml;
@@ -106,7 +106,7 @@ namespace Newtouch.EMR.DomainServices
                     medicalRecordVO.IsLock = bcjl.IsLock;
                     medicalRecordVO.LastModifierCode = bcjl.LastModifierCode;
                     break;
-                //医疗文书
+                //Văn bản y tế
                 case "3":
                     var ylws = _bl_zqwsRepo.bl_zqwsGetByID(blid);
                     medicalRecordVO.blxtml = ylws.blxtml;
@@ -114,7 +114,7 @@ namespace Newtouch.EMR.DomainServices
                     medicalRecordVO.IsLock = ylws.IsLock;
                     medicalRecordVO.LastModifierCode = ylws.LastModifierCode;
                     break;
-                //护理记录
+                //Ghi chép điều dưỡng
                 case "4":
                     var hljl = _bl_hljlRepo.bl_hljlGetByID(blid);
                     medicalRecordVO.blxtml = hljl.blxtml;
@@ -122,7 +122,7 @@ namespace Newtouch.EMR.DomainServices
                     medicalRecordVO.IsLock = hljl.IsLock;
                     medicalRecordVO.LastModifierCode = hljl.LastModifierCode;
                     break;
-                //病案首页
+                //Trang đầu bệnh án
                 case "5":
                     var basy = _BlbasyRepo.bl_basyGetByID(blid);
                     medicalRecordVO.blxtml = basy.blxtml;
@@ -130,7 +130,7 @@ namespace Newtouch.EMR.DomainServices
                     medicalRecordVO.IsLock = basy.IsLock;
                     medicalRecordVO.LastModifierCode = basy.LastModifierCode;
                     break;
-                //康复评估
+                //Đánh giá phục hồi chức năng
                 case "6":
                     var kfpg = _bl_patrecordsRepo.GetpatrecordsByID(blid);
                     medicalRecordVO.blxtml = kfpg.blxtml;
@@ -144,7 +144,7 @@ namespace Newtouch.EMR.DomainServices
         }
 
         /// <summary>
-        /// 病历保存
+        /// Lưu bệnh án
         /// </summary>
         /// <param name="medicalRecord"></param>
         /// <param name="Entity"></param>
@@ -153,7 +153,7 @@ namespace Newtouch.EMR.DomainServices
 
             switch (medicalRecord.bllx.Substring(0, 1))
             {
-                /// 入院病历保存
+                /// Lưu bệnh án nhập viện
                 case "1":
                     var bl_rybl = new bl_ryblEntity();
                     bl_rybl.Id = medicalRecord.ID;
@@ -169,7 +169,7 @@ namespace Newtouch.EMR.DomainServices
                     bl_rybl.zt = "1";
                     if (Entity == null)
                     {
-                        /// 入院病历编辑保存
+                        /// Lưu chỉnh sửa bệnh án nhập viện
                         _bl_ryblRepo.SubmitForm(bl_rybl, medicalRecord.ID);
                     }
                     else
@@ -179,7 +179,7 @@ namespace Newtouch.EMR.DomainServices
                     }
 
                     break;
-                /// 病程记录保存
+                /// Lưu bản ghi diễn biến bệnh
                 case "2":
                     var bl_bcjl = new bl_bcjlEntity();
                     bl_bcjl.Id = medicalRecord.ID;
@@ -196,7 +196,7 @@ namespace Newtouch.EMR.DomainServices
 
                     if (Entity == null)
                     {
-                        /// 病程记录编辑保存
+                        /// Lưu chỉnh sửa bản ghi diễn biến bệnh
                         _bl_bcjlRepo.SubmitForm(bl_bcjl, medicalRecord.ID);
                     }
                     else
@@ -205,7 +205,7 @@ namespace Newtouch.EMR.DomainServices
                         bl_bcjlSave(bl_bcjl, Entity);
                     }
                     break;
-                /// 知情文书保存
+                /// Lưu văn bản thông báo
                 case "3":
                     var bl_zqws = new bl_zqwsEntity();
                     bl_zqws.Id = medicalRecord.ID;
@@ -221,7 +221,7 @@ namespace Newtouch.EMR.DomainServices
                     bl_zqws.zt = "1";
                     if (Entity == null)
                     {
-                        /// 知情文书编辑保存
+                        /// Lưu chỉnh sửa văn bản thông báo
                         _bl_zqwsRepo.SubmitForm(bl_zqws, medicalRecord.ID);
                     }
                     else
@@ -231,7 +231,7 @@ namespace Newtouch.EMR.DomainServices
                     }
 
                     break;
-                /// 护理记录保存
+                /// Lưu bản ghi điều dưỡng
                 case "4":
                     var bl_hljl = new bl_hljlEntity();
                     bl_hljl.Id = medicalRecord.ID;
@@ -246,7 +246,7 @@ namespace Newtouch.EMR.DomainServices
                     bl_hljl.zt = "1";
                     if (Entity == null)
                     {
-                        /// 护理记录编辑保存
+                        /// Lưu chỉnh sửa bản ghi điều dưỡng
                         _bl_hljlRepo.SubmitForm(bl_hljl, medicalRecord.ID);
                     }
                     else
@@ -256,7 +256,7 @@ namespace Newtouch.EMR.DomainServices
                     }
 
                     break;
-                /// 病案首页保存
+                /// Lưu trang đầu bệnh án
                 case "5":
                     var bl_basy = new BlbasyEntity();
                     bl_basy.Id = medicalRecord.ID;
@@ -270,7 +270,7 @@ namespace Newtouch.EMR.DomainServices
                     bl_basy.zt = "1";
                     if (Entity == null)
                     {
-                        /// 病案首页编辑保存
+                        /// Lưu chỉnh sửa trang đầu bệnh án
                         _BlbasyRepo.SubmitForm(bl_basy, medicalRecord.ID);
                     }
                     else
@@ -280,7 +280,7 @@ namespace Newtouch.EMR.DomainServices
                     }
 
                     break;
-                case "6": //康复
+                case "6": //Phục hồi chức năng
                     bl_patrecordsEntity bl_kf = new bl_patrecordsEntity();
                     bl_kf.Id = medicalRecord.ID;
                     bl_kf.CreatorCode = medicalRecord.CreatorCode;
@@ -295,7 +295,7 @@ namespace Newtouch.EMR.DomainServices
                     bl_kf.bllx = medicalRecord.bllx;
                     if (Entity == null)
                     {
-                        /// 护理记录编辑保存
+                        /// Lưu chỉnh sửa bản ghi điều dưỡng
                         _bl_patrecordsRepo.SubmitForm(bl_kf, medicalRecord.ID);
                     }
                     else
@@ -376,7 +376,7 @@ namespace Newtouch.EMR.DomainServices
             }
         }
         /// <summary>
-        /// 病历统一存储
+        /// Lưu trữ thống nhất bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="bllx"></param>
@@ -403,7 +403,7 @@ namespace Newtouch.EMR.DomainServices
             medicalRecord.bllx = bllx;
             medicalRecord.dzbl_id = "R" + EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("YB_Inp_PatRegInfo.dzbl_id", orgId, "{0:D10}", false);
 
-            //插入病人病历关系表
+            //Chèn vào bảng quan hệ bệnh án của bệnh nhân
             if (!string.IsNullOrWhiteSpace(zyh))
             {
                 var zyEty = new ZymeddocsrelationEntity();
@@ -478,7 +478,7 @@ namespace Newtouch.EMR.DomainServices
 
         }
         /// <summary>
-        /// 获取统一存储病历
+        /// Lấy bệnh án lưu trữ thống nhất
         /// </summary>
         /// <param name="blid"></param>
         /// <param name="bllx"></param>
@@ -688,11 +688,11 @@ where  yzlx='7' and a.zyh=@zymzh  and a.OrganizeId=@orgId and a.zt=1";
         public List<LisReportSqdhValueMxVo> GetLisSqdhMxData(string zyh, string lissqdh, string organizeId)
         {
             var sql = ""; var par = new List<SugarParameter>();
-            sql = @"select xmzwmc as xmmc,/*项目名称*/
-	   jyjg,/*检验结果*/
-	   gdbj,/*高低标记*/
-	   ckz as ckzfw,/*参考值范围*/
-	   xmdw as dw/*单位*/
+            sql = @"select xmzwmc as xmmc,/*Tên hạng mục*/
+	   jyjg,/*Kết quả xét nghiệm*/
+	   gdbj,/*Đánh dấu cao/thấp*/
+	   ckz as ckzfw,/*Khoảng giá trị tham chiếu*/
+	   xmdw as dw/*Đơn vị*/
   from Newtouch_Interface..Lis_Report_ZY
  where zyh = @zyh
    and OrganizeId = @organizeId
@@ -732,7 +732,7 @@ select CONVERT(varchar(10),'临') yzlb,yz.yzlx,yz.yzzt, yz.kssj kssj ,ry.Name ys
             return this.QueryWithPage<AdviceListGridVO>(sqlstr.ToString(), pagination, par.ToArray(), false).ToList();
         }
 
-        //获取住院病人基本信息元素
+        //Lấy phần tử thông tin cơ bản của bệnh nhân nội trú
         public blzybrjbxxVO GetBlZybrjbxx(string OrgId, string zyh, string user, bool newbz = false)
         {
             try
@@ -757,7 +757,7 @@ select CONVERT(varchar(10),'临') yzlb,yz.yzlx,yz.yzzt, yz.kssj kssj ,ry.Name ys
             }
         }
 
-        public int updateLock(string OrgId, string blid, string user)//修改锁定状态
+        public int updateLock(string OrgId, string blid, string user)//Sửa trạng thái khóa
         {
             SugarParameter[] para = new SugarParameter[] {
                             new SugarParameter("@blid", blid),

@@ -43,7 +43,7 @@
 </form>
 
 <script>
-    //上一个window对象
+    //Cái trướcwindowĐối tượng
     var prevWindow = $.currentWindow();
 
     $(function () {
@@ -89,7 +89,7 @@
         });
     }
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn một dòng
     function btn_edit() {
         SearchConfirm();
     }
@@ -99,15 +99,15 @@
         obj.pc = $("#GridList").jqGridRowValue().pc;
         obj.fph = $("#GridList").jqGridRowValue().Fph;
         prevWindow.GetQueryAjax(obj);
-        //关闭窗口
+        //Đóng cửa sổ
         ReceiptCancle();
     }
-    //确定 主页面调用
+    //Xác định Gọi từ trang chính
     function SearchConfirm() {
         BillDbGrid();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }

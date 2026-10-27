@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 内部发药查询返回对象
+    /// Đối tượng trả về truy vấn phát thuốc nội bộ
     /// </summary>
     public class HandOutMedicineListVO
     {

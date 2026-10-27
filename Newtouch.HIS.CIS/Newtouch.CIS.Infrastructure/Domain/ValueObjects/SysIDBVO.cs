@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects
 {
     /// <summary>
-    /// 中间库同步到本地
+    /// tronggiữakhoĐồng bộđếnbảnđịa
     /// </summary>
     public class SysIDBVO
     {
@@ -18,62 +18,62 @@ namespace Newtouch.Domain.ValueObjects
 
 
         /// <summary>
-        /// 冗余挂号信息  枚举 1 普通门诊 2 急诊 3专家
+        /// Dư thừađăng ký khámthông tin  Liệt kê 1 thông thườngNgoại trú 2 gấpkhám 3chuyên gia
         /// </summary>
         public int mjzbz { get; set; }
 
         /// <summary>
-        /// 对应billing接口中的病历号
+        /// tương ứngbillinggiao diệntrongcủaSố bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 关联billing系统的挂号表
+        /// liên kếtbillingHệ thốngcủađăng ký khámbảng
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Dư thừaThông tin bệnh nhânchữđoạn
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Dư thừaThông tin bệnh nhânchữđoạn
         /// </summary>
         public string xb { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Dư thừaThông tin bệnh nhânchữđoạn
         /// </summary>
         public DateTime? csny { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Dư thừaThông tin bệnh nhânchữđoạn
         /// </summary>
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段 枚举
+        /// Dư thừaThông tin bệnh nhânchữđoạn Liệt kê
         /// </summary>
         public int? zjlx { get; set; }
 
         /// <summary>
-        /// 冗余患者信息字段
+        /// Dư thừaThông tin bệnh nhânchữđoạn
         /// </summary>
         public string zjh { get; set; }
 
         /// <summary>
-        /// 冗余挂号表字段 科室名称
+        /// Dư thừađăng ký khámbảngchữđoạn Tên khoa
         /// </summary>
         public string ghksmc { get; set; }
 
         /// <summary>
-        /// 冗余挂号表字段 医生名称
+        /// Dư thừađăng ký khámbảngchữđoạn Bác sĩTên
         /// </summary>
         public string ghys { get; set; }
 
         /// <summary>
-        /// 冗余挂号表字段
+        /// Dư thừađăng ký khámbảngchữđoạn
         /// </summary>
         public DateTime ghsj { get; set; }
 

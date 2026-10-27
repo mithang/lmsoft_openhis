@@ -6,7 +6,7 @@ using Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09;
 namespace Newtouch.CIS.Proxy.Dapper.CMMPlatform
 {
     /// <summary>
-    /// 提取 诊断信息
+    /// nhắclấy Chẩn đoánthông tin
     /// </summary>
     public class TcmHis09 : ProxyDapperBase<ReceiveRequestEntity, PullDiagInfoRequestEntity, DiagInfo>
     {

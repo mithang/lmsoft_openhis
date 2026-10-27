@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///系统科室
+    ///Khoa hệ thống
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Sys_FailedCodeMessageMapp", "SysFailedCodeMessageMapp")]
@@ -19,12 +19,12 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 顶级Tổ chức（当前登录人员有Org时Org，否则TopOrg）
+        /// Cấp cao nhấtTổ chức(Người đăng nhập hiện tại cóOrgkhiOrg,nếu khôngTopOrg)
         /// </summary>
         public string TopOrganizeId { get; set; }
 

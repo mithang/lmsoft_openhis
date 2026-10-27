@@ -11,27 +11,27 @@ namespace NewtouchHIS.Domain.Enum
     {
         public enum ApplyTypeEnum
         {
-            [Description("新建病历")]
+            [Description("Lập bệnh án mới")]
             xjbl = 0,
-            [Description("修改病历")]
+            [Description("Sửa bệnh án")]
             xgbl = 1
         }
         public enum ApplyStatusEnum
         {
             /// <summary>
-            /// 未批准
+            /// Chưa phê duyệt
             /// </summary>
-            [Description("未批准")]
+            [Description("Chưa phê duyệt")]
             wpz = 0,
             /// <summary>
-            /// 已审批
+            /// Đã phê duyệt
             /// </summary>
-            [Description("已审批")]
+            [Description("Đã phê duyệt")]
             ysp = 1,
             /// <summary>
-            /// 退回
+            /// Trả lại
             /// </summary>
-            [Description("退回")]
+            [Description("Trả lại")]
             th = 2
         }
     }

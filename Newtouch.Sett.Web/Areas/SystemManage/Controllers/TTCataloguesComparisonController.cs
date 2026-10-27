@@ -18,7 +18,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 {
 
     /// <summary>
-    /// 三方目录对照
+    /// baphươngmụcghiđốitheo
     /// </summary>
     [Area("SystemManage")]
 
@@ -29,7 +29,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         private readonly ITTCataloguesComparisonMainRepo _ttCataloguesComparisonMainRepo;
 
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
         /// <param name="ttCataloguesComparisonDmnService"></param>
         public TTCataloguesComparisonController(ITTCataloguesComparisonDmnService ttCataloguesComparisonDmnService, ITTCataloguesComparisonDetailRepo ttCataloguesComparisonDetailRepo, ITTCataloguesComparisonMainRepo ttCataloguesComparisonMainRepo)
@@ -75,7 +75,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -86,7 +86,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -100,7 +100,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -119,7 +119,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         #region Main
 
         /// <summary>
-        /// 下拉 by Code 获取字典项
+        /// Hộp chọn by Code đượclấychữđiểnhạng
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>
@@ -166,7 +166,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -177,7 +177,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -191,7 +191,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

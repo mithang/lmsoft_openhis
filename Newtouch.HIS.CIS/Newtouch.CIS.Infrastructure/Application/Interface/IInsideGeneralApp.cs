@@ -4,12 +4,12 @@ using Newtouch.CIS.APIRequest.Dto;
 namespace Newtouch.Application.Interface
 {
     /// <summary>
-    /// 内部接口调用业务
+    /// trongbộgiao diệngọinghiệp vụ
     /// </summary>
     public interface IInsideGeneralApp
     {
         /// <summary>
-        /// 公共入口
+        /// công cộngvàomiệng
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>

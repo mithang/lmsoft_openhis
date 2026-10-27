@@ -14,7 +14,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string ChargeUtity { get; set; }
         public int ChargeNum { get; set; }
         public string ChargeItem { get; set; }
-        public string djbd { get; set; }//床位等级绑定标志
+        public string djbd { get; set; }//Cấp giường bệnhgắnCờ
     }
     public class Dispensing
     {
@@ -70,7 +70,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
     }
 
     /// <summary>
-    /// 出去诊断
+    /// rađiChẩn đoán
     /// </summary>
     public class PatOutAreaVO
     {
@@ -88,7 +88,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string fzzd3dm { get; set; }
         public string zdyzd { get; set; }
         /// <summary>
-        /// 出院情况 EnumCYQK
+        /// Xuất việntình hình EnumCYQK
         /// </summary>
         public string cyqk { get; set; }
         public string cyqk1 { get; set; }
@@ -108,57 +108,57 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
     }
 
     /// <summary>
-    /// 入区诊断
+    /// vàokhuChẩn đoán
     /// </summary>
     public class PatInAreaVO
     {
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 入区诊断1名称
+        /// vàokhuChẩn đoán1Tên
         /// </summary>
         public string ryzdmc1 { get; set; }
 
         /// <summary>
-        /// 入区诊断1代码
+        /// vàokhuChẩn đoán1Mã
         /// </summary>
         public string ryzddm1 { get; set; }
 
         /// <summary>
-        /// 入区诊断1ICD10
+        /// vàokhuChẩn đoán1ICD10
         /// </summary>
         public string ryzdICD101 { get; set; }
 
         /// <summary>
-        /// 入区诊断2名称
+        /// vàokhuChẩn đoán2Tên
         /// </summary>
         public string ryzdmc2 { get; set; }
 
         /// <summary>
-        /// 入区诊断2代码
+        /// vàokhuChẩn đoán2Mã
         /// </summary>
         public string ryzddm2 { get; set; }
 
         /// <summary>
-        /// 入区诊断2ICD10
+        /// vàokhuChẩn đoán2ICD10
         /// </summary>
         public string ryzdICD102 { get; set; }
 
         /// <summary>
-        /// 入区诊断3名称
+        /// vàokhuChẩn đoán3Tên
         /// </summary>
         public string ryzdmc3 { get; set; }
 
         /// <summary>
-        /// 入区诊断3代码
+        /// vàokhuChẩn đoán3Mã
         /// </summary>
         public string ryzddm3 { get; set; }
 
         /// <summary>
-        /// 入区诊断3ICD10
+        /// vàokhuChẩn đoán3ICD10
         /// </summary>
         public string ryzdICD103 { get; set; }
     }

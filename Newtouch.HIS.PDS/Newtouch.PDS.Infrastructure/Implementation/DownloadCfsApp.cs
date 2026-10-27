@@ -12,7 +12,7 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 处方下载
+    /// Tải xuống đơn thuốc
     /// </summary>
     public class DownloadCfsApp : ProcessorFun<List<OutPatientpyCfListDTO>>
     {
@@ -24,17 +24,17 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Kiểm tra
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
         {
-            if (Request == null || Request.Count <= 0) throw new FailedException("处方列表为空");
+            if (Request == null || Request.Count <= 0) throw new FailedException("Danh sách đơn thuốc trống");
             return new ActResult();
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -49,12 +49,12 @@ namespace Newtouch.HIS.Application.Implementation
             else
             {
                 actResult.IsSucceed = false;
-                actResult.ResultMsg = "保存处方信息失败";
+                actResult.ResultMsg = "Lưu thông tin đơn thuốc thất bại";
             }
         }
 
         /// <summary>
-        /// 组装处方信息
+        /// Lắp ráp thông tin đơn thuốc
         /// </summary>
         private void AssembleMzCfEntityEntities()
         {
@@ -91,7 +91,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 判断是否存在该处方
+        /// Kiểm tra có tồn tại đơn thuốc này không
         /// </summary>
         /// <param name="outPatientpyCfListDto"></param>
         /// <returns></returns>

@@ -3,42 +3,42 @@ using System.ComponentModel;
 namespace Newtouch.Herp.Infrastructure.Enum
 {
     /// <summary>
-    /// 库房等级
+    /// Cấp kho
     /// </summary>
     public enum EnumWarehouseLevel
     {
         /// <summary>
-        /// 一级
+        /// Cấp 1
         /// </summary>
         [Description("Cấp 1")]
         OneLevel = 1,
 
         /// <summary>
-        /// 二级
+        /// Cấp 2
         /// </summary>
         [Description("Cấp 2")]
         TwoLevel = 2,
 
         /// <summary>
-        /// 三级
+        /// Cấp 3
         /// </summary>
         [Description("Cấp 3")]
         ThreeLevel = 3,
 
         /// <summary>
-        /// 四级
+        /// Cấp 4
         /// </summary>
         [Description("Cấp 4")]
         FourLevel = 4,
 
         /// <summary>
-        /// 五级
+        /// Cấp 5
         /// </summary>
         [Description("Cấp 5")]
         FiveLevel = 5,
 
         /// <summary>
-        /// 六级
+        /// Cấp 6
         /// </summary>
         [Description("Cấp 6")]
         SixLevel = 6,
@@ -46,18 +46,18 @@ namespace Newtouch.Herp.Infrastructure.Enum
     }
 
     /// <summary>
-    /// 有效/无效
+    /// Hiệu lực/Không hiệu lực
     /// </summary>
     public enum Enumzt
     {
         /// <summary>
-        /// 无效
+        /// Không hiệu lực
         /// </summary>
         [Description("Không hiệu lực")]
         Disable = 0,
 
         /// <summary>
-        /// 有效
+        /// Hiệu lực
         /// </summary>
         [Description("Hiệu lực")]
         Enable = 1
@@ -65,116 +65,116 @@ namespace Newtouch.Herp.Infrastructure.Enum
     }
 
     /// <summary>
-    /// 审核状态
+    /// Trạng thái duyệt
     /// </summary>
     public enum EnumAuditState
     {
 
         /// <summary>
-        /// 待处理
+        /// Chờ xử lý
         /// </summary>
         [Description("Chờ xử lý")]
         Waiting = 0,
 
         /// <summary>
-        /// 审核通过
+        /// Đã duyệt
         /// </summary>
         [Description("Đã duyệt")]
         Adopt = 1,
 
         /// <summary>
-        /// 审核不通过
+        /// Không duyệt
         /// </summary>
         [Description("Không duyệt")]
         Refuse = 2,
 
         /// <summary>
-        /// 已作废
+        /// Đã hủy bỏ
         /// </summary>
         [Description("Đã hủy")]
         Cancelled = 3,
 
         /// <summary>
-        /// 暂存
+        /// Lưu tạm
         /// </summary>
         [Description("Lưu tạm")]
         Temporary = 4,
     }
 
     /// <summary>
-    /// 单据类型
+    /// Loại chứng từ
     /// </summary>
     public enum EnumOutOrInStorageBillType
     {
         /// <summary>
-        /// 外部入库
+        /// Nhập kho ngoài
         /// </summary>
         [Description("外部入库")]
         Wbrk = 1,
 
         /// <summary>
-        /// 外部出库
+        /// Xuất kho ngoài
         /// </summary>
         [Description("外部出库")]
         Wbck = 2,
 
         /// <summary>
-        /// 直接出库
+        /// Xuất kho trực tiếp
         /// </summary>
         [Description("直接出库")]
         Zjck = 3,
 
         /// <summary>
-        /// 申领出库
+        /// Xuất kho theo phiếu lĩnh
         /// </summary>
         [Description("申领出库")]
         Slck = 4,
 
         /// <summary>
-        /// 内部退货
+        /// Trả hàng nội bộ
         /// </summary>
         [Description("内部退货")]
         Nbth = 5,
 
         /// <summary>
-        /// 报损报溢
+        /// Báo hỏng/báo thừa
         /// </summary>
         [Description("报损报溢")]
         Bsby = 6,
 
         /// <summary>
-        /// 配送至科室
+        /// Phân phối đến khoa phòng
         /// </summary>
-        [Description("出库至科室")] //单据号ckZKS111111111111
+        [Description("出库至科室")] //Số chứng từ ckZKS111111111111
         chukuzhikeshi = 7,
 
         /// <summary>
-        /// 科室申领
+        /// Khoa phòng lĩnh
         /// </summary>
         [Description("科室申领")]
         kssl = 8,
 
         /// <summary>
-        /// 科室申领出库
+        /// Xuất kho theo phiếu lĩnh khoa phòng
         /// </summary>
         [Description("科室申领出库")]
         ksSlck = 9,
 
         /// <summary>
-        /// 采购计划
+        /// Kế hoạch mua sắm
         /// </summary>
         [Description("采购计划")]
         purchasingPlan = 10,
 
         /// <summary>
-        /// 采购订单
+        /// Đơn hàng mua sắm
         /// </summary>
         [Description("采购订单")]
         purchasingOrder = 11,
     }
 
     /// <summary>
-    /// 库存显示
+    /// Hiển thị tồn kho
     /// </summary>
     public enum EnumKCXS
     {
@@ -184,126 +184,126 @@ namespace Newtouch.Herp.Infrastructure.Enum
         [Description("Tất cả")]
         None = -1,
         /// <summary>
-        /// 显示零库存
+        /// Hiển thị tồn kho bằng 0
         /// </summary>
         [Description("Hiện tồn kho bằng 0")]
         Xslkc = 0,
         /// <summary>
-        /// 不显示理论数量为零
+        /// Không hiển thị số lượng lý thuyết bằng 0
         /// </summary>
         [Description("Không hiện số lượng lý thuyết bằng 0")]
         Bxsllslwl = 1,
         /// <summary>
-        /// 不显示实际数量为零
+        /// Không hiển thị số lượng thực tế bằng 0
         /// </summary>
         [Description("Không hiện số lượng thực tế bằng 0")]
         Bxssjslwl = 2,
         /// <summary>
-        /// 不显示实际数量为零
+        /// Không hiển thị số lượng thực tế bằng 0
         /// </summary>
         [Description("Không hiện khi cả hai bằng 0")]
         Bxslzdwl = 4
     }
 
     /// <summary>
-    /// 库存锁
+    /// Khóa tồn kho
     /// </summary>
     public enum EnumKcLock
     {
         /// <summary>
-        /// 无锁
+        /// Không khóa
         /// </summary>
         [Description("Không khóa")]
         none = 0,
 
         /// <summary>
-        /// 开始盘点
+        /// Bắt đầu kiểm kê
         /// </summary>
         [Description("Bắt đầu kiểm kê")]
         InventoryStart = 1,
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúc kiểm kê
         /// </summary>
         [Description("Kết thúc kiểm kê")]
         InventoryEnd = 2,
 
         /// <summary>
-        /// 损益
+        /// Chênh lệch
         /// </summary>
         [Description("Lãi lỗ")]
         ProfitAndLoss = 3,
 
         /// <summary>
-        /// 出入库单据审核
+        /// Duyệt chứng từ nhập/xuất kho
         /// </summary>
         [Description("Duyệt phiếu nhập/xuất kho")]
         OutgoingOrWarehousing = 4
     }
 
     /// <summary>
-    /// 损益标志
+    /// Cờ chênh lệch
     /// </summary>
     public enum EnumSybz
     {
         /// <summary>
-        /// 报损
+        /// Báo hỏng
         /// </summary>
         [Description("Báo hỏng")]
         Loss = 0,
 
         /// <summary>
-        /// 报溢
+        /// Báo thừa
         /// </summary>
         [Description("Báo thừa")]
         Profit = 1,
     }
 
-    #region 调价
+    #region Điều chỉnh giá
 
     /// <summary>
-    /// 调价审核标志 0:未审核 1:已审核 2:已拒绝 3.已撤销
+    /// Cờ duyệt điều chỉnh giá 0:Chưa duyệt 1:Đã duyệt 2:Đã từ chối 3.Đã hủy
     /// </summary>
     public enum EnumTjShzt
     {
         /// <summary>
-        /// 未审核
+        /// Chưa duyệt
         /// </summary>
         [Description("Chưa duyệt")]
         Waiting = 0,
 
         /// <summary>
-        /// 已审核
+        /// Đã duyệt
         /// </summary>
         [Description("Đã duyệt")]
         Audited = 1,
 
         /// <summary>
-        /// 已拒绝
+        /// Đã từ chối
         /// </summary>
         [Description("Đã từ chối")]
         Refuse = 2,
 
         /// <summary>
-        /// 已撤销
+        /// Đã hủy
         /// </summary>
         [Description("Đã thu hồi")]
         Revoke = 3
     }
 
     /// <summary>
-    /// 调价执行标志
+    /// Cờ thực thi điều chỉnh giá
     /// </summary>
     public enum EnumTjZxbz
     {
         /// <summary>
-        /// 未执行
+        /// Chưa thực thi
         /// </summary>
         [Description("Chưa thực hiện")]
         Not = 0,
 
         /// <summary>
-        /// 已执行
+        /// Đã thực thi
         /// </summary>
         [Description("Đã thực hiện")]
         Already = 1
@@ -311,214 +311,214 @@ namespace Newtouch.Herp.Infrastructure.Enum
     #endregion
 
     /// <summary>
-    /// 生产商/经销商/其他  公司类型
+    /// Nhà sản xuất/Nhà phân phối/Khác  Loại công ty
     /// </summary>
     public enum EnumSupplierType
     {
         /// <summary>
-        /// 其他
+        /// Khác
         /// </summary>
         [Description("Khác")]
         Other = 0,
 
         /// <summary>
-        /// 生产商
+        /// Nhà sản xuất
         /// </summary>
         [Description("Nhà sản xuất")]
         Producer = 1,
 
         /// <summary>
-        /// 经销商
+        /// Nhà phân phối
         /// </summary>
         [Description("Nhà phân phối")]
         Distributor = 2,
     }
 
     /// <summary>
-    /// 处理过程   1:待处理；2:审核通过；3:审核不通过；4:配送；5:部分完成；6:完成；7:拒收
+    /// Quá trình xử lý   1:Chờ xử lý；2:Đã duyệt；3:Không duyệt；4:Phân phối；5:Hoàn thành một phần；6:Hoàn thành；7:Từ chối nhận
     /// </summary>
     public enum EnumApplyProcess
     {
         /// <summary>
-        /// 等待处理
+        /// Chờ xử lý
         /// </summary>
         [Description("Chờ xử lý")]
         Waiting = 1,
 
         /// <summary>
-        /// 审核通过
+        /// Đã duyệt
         /// </summary>
         [Description("Đã duyệt")]
         AuditApproved = 2,
 
         /// <summary>
-        /// 审核不通过
+        /// Không duyệt
         /// </summary>
         [Description("Không duyệt")]
         AuditFailed = 3,
 
         /// <summary>
-        /// 配送中
+        /// Đang phân phối
         /// </summary>
         [Description("Đang giao")]
         Distributing = 4,
 
         /// <summary>
-        /// 部分完成
+        /// Hoàn thành một phần
         /// </summary>
         [Description("Hoàn thành một phần")]
         PartialCompletion = 5,
 
         /// <summary>
-        /// 全部完成
+        /// Hoàn thành tất cả
         /// </summary>
         [Description("Hoàn thành tất cả")]
         Completion = 6,
 
         /// <summary>
-        /// 配送拒收
+        /// Từ chối nhận phân phối
         /// </summary>
         [Description("Từ chối nhận hàng")]
         Rejection = 7,
     }
 
     /// <summary>
-    /// 单据类型 1-科室申领；2-库房申领
+    /// Loại chứng từ 1-Khoa phòng lĩnh；2-Kho lĩnh
     /// </summary>
     public enum EnumApplyType
     {
         /// <summary>
-        /// 待处理
+        /// Chờ xử lý
         /// </summary>
         [Description("Khoa phòng lĩnh")]
         DepartmentApply = 1,
 
         /// <summary>
-        /// 审核通过
+        /// Đã duyệt
         /// </summary>
         [Description("Kho lĩnh")]
         WarehouseApply = 2,
     }
 
     /// <summary>
-    /// 采购订单处理流程 -1：拒处理； 0：待处理； 1：备货； 2：配送； 3：签收； 4：完成； 5：拒签 
+    /// Quy trình xử lý đơn mua sắm -1：Từ chối xử lý； 0：Chờ xử lý； 1：Chuẩn bị hàng； 2：Phân phối； 3：Ký nhận； 4：Hoàn thành； 5：Từ chối ký nhận 
     /// </summary>
     public enum EnumOrderProcess
     {
         /// <summary>
-        /// 拒处理
+        /// Từ chối xử lý
         /// </summary>
         [Description("Từ chối xử lý")]
         Refusal =-1,
 
         /// <summary>
-        /// 待处理
+        /// Chờ xử lý
         /// </summary>
         [Description("Chờ xử lý")]
         Waiting = 0,
 
         /// <summary>
-        /// 备货
+        /// Chuẩn bị hàng
         /// </summary>
         [Description("Chuẩn bị hàng")]
         PreparingGoods = 1,
 
         /// <summary>
-        /// 配送
+        /// Phân phối
         /// </summary>
         [Description("Giao hàng")]
         Delivering = 2,
 
         /// <summary>
-        /// 签收
+        /// Ký nhận
         /// </summary>
         [Description("Đã ký nhận")]
         SignFor = 3,
 
         /// <summary>
-        /// 完成
+        /// Hoàn thành
         /// </summary>
         [Description("Hoàn thành")]
         Complete = 4,
 
         /// <summary>
-        /// 拒签
+        /// Từ chối ký nhận
         /// </summary>
         [Description("Từ chối ký")]
         RefusalSign = 5
     }
 
     /// <summary>
-    /// 订单类型 0：暂存单；1：正式单
+    /// Loại đơn hàng 0：Phiếu lưu tạm；1：Phiếu chính thức
     /// </summary>
     public enum EnumOrderTypeHrp
     {
 
         /// <summary>
-        /// 暂存单
+        /// Phiếu lưu tạm
         /// </summary>
         [Description("Phiếu lưu tạm")]
         TempOrder = 0,
 
         /// <summary>
-        /// 正式单
+        /// Phiếu chính thức
         /// </summary>
         [Description("Phiếu chính thức")]
         OfficialOrder = 1,
 
         /// <summary>
-        /// 作废单
+        /// Phiếu hủy bỏ
         /// </summary>
         [Description("Phiếu hủy")]
         BadOrder = 2,
     }
 
 	/// <summary>
-	/// 自负性质 v2 
-	/// 重庆再用
+	/// Tính chất tự trả v2 
+	/// Tái sử dụng ở Trùng Khánh
 	/// </summary>
 	public enum EnumZFXZv2
 	{
 		/// <summary>
-		/// 自费
+		/// Tự trả
 		/// </summary>
 		[Description("Tự trả")]
 		ZF = 1,
 		/// <summary>
-		/// 甲类
+		/// Loại A
 		/// </summary>
 		[Description("Loại A")]
 		J = 4,
 		/// <summary>
-		/// 乙类
+		/// Loại B
 		/// </summary>
 		[Description("Loại B")]
 		Y = 5,
 		/// <summary>
-		/// 丙类
+		/// Loại C
 		/// </summary>
 		[Description("Loại C")]
 		B = 6,
 	}
 
 
-    #region 采购
+    #region Mua sắm
 
-    //4.1.1 操作类型
+    //4.1.1 Loại thao tác
     public enum EnumCZLX
     {
         [Description("Thêm mới")] XZ=1,
         [Description("Hủy")] ZF=3,
     }
 
-    //4.1.2 采购单类型
+    //4.1.2 Loại đơn mua sắm
     public enum EnumCGDLX
     {
         [Description("Phiếu mua sắm tự túc của bệnh viện")] YYZXCGD= 1,
         [Description("Phiếu mua sắm kho thuốc ủy thác")] TGYKCGD= 2,
     }
 
-    //4.1.3 采购类型
+    //4.1.3 Loại mua sắm
     public enum EnumCGLX
     {
         [Description("Mua sắm đấu thầu")]
@@ -531,14 +531,14 @@ namespace Newtouch.Herp.Infrastructure.Enum
         QT = 9,
     }
 
-    //4.1.4 配送要求
+    //4.1.4 Yêu cầu phân phối
     public enum EnumPSYQ
     {
         [Description("Giao theo phiếu")] ADPS= 1,
         [Description("Giao theo nhu cầu")] AXPS= 2,
     }
 
-    //4.1.5 退货类型
+    //4.1.5 Loại trả hàng
 
     public enum EnumTHLX
     {
@@ -547,7 +547,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
 
     }
 
-    //4.1.6 配送验收类型
+    //4.1.6 Loại nghiệm thu phân phối
     public enum EnumPSYSLX
     {
         [Description("Nghiệm thu trước")] YYS= 1,
@@ -555,7 +555,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
 
     }
 
-    //4.1.7 单据填写方
+    //4.1.7 Bên lập chứng từ
     public enum EnumDJTXF
     {
         [Description("Bên mua điền")]
@@ -564,7 +564,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
         XSFDT = 2,
     }
 
-    //4.1.8 配送单状态
+    //4.1.8 Trạng thái phiếu phân phối
     public enum EnumPSDZT
     {
         [Description("Chờ xác nhận")] DQR= 0,
@@ -572,7 +572,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
         [Description("Đã xác nhận, chưa nghiệm thu")] YQR= 10,
 
     }
-    //4.1.9 采购明细状态
+    //4.1.9 Trạng thái chi tiết mua sắm
     public enum EnumCGMXZT
     {
         [Description("Chờ gửi")] DTJ= 0,
@@ -585,7 +585,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
         [Description("Doanh nghiệp đã giao xong")] QYYPSWC= 23,
     }
 
-    //4.1.10 企业库存
+    //4.1.10 Tồn kho doanh nghiệp
     public enum EnumQYKC
     {
         [Description("Đầy đủ")] CZ= 1,
@@ -595,7 +595,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
         [Description("Không công bố")] BYPL= 5,
     }
 
-    //4.1.11 发票状态
+    //4.1.11 Trạng thái hóa đơn
     public enum EnumFPZT
     {
         [Description("Chờ xác nhận")] DQR= 0,
@@ -606,7 +606,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
         [Description("Đã thanh toán")] FPYZF= 30,
     }
 
-    //4.1.12 配送明细状态
+    //4.1.12 Trạng thái chi tiết phân phối
     public enum EnumPSMXZT
     {
         [Description("Chờ xác nhận")] DQR= 0,
@@ -616,7 +616,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
         [Description("Nghiệm thu nhập kho xong")] YSRKWC= 30,
     }
 
-    //4.1.13 退货明细状态
+    //4.1.13 Trạng thái chi tiết trả hàng
     public enum EnumTHMXZT
     {
         [Description("Chờ xác nhận")] DQR= 0,
@@ -626,7 +626,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
         [Description("Doanh nghiệp đã xác nhận không xử lý")] QYYQRBYCL= 21,
     }
 
-    //4.1.14 证件类型
+    //4.1.14 Loại giấy tờ
     public enum EnumZJLX
     {
         [Description("Giấy chứng nhận mã tổ chức")] ZZJGDMZ= 1,
@@ -635,7 +635,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
         [Description("Giấy phép sản xuất")] SCXKZ= 4,
     }
 
-    //4.1.15 配送明细条码类型
+    //4.1.15 Loại mã vạch chi tiết phân phối
     public enum EnumPSMXTMLX
     {
         [Description("Mã vạch GS1")] GSI= 1,
@@ -643,14 +643,14 @@ namespace Newtouch.Herp.Infrastructure.Enum
         [Description("Khác")] QT= 99,
     }
 
-    //4.1.16 发票验收结果
+    //4.1.16 Kết quả nghiệm thu hóa đơn
     public enum EnumFPYSJG
     {
         [Description("Nghiệm thu đạt")] YSTG= 1,
         [Description("Nghiệm thu không đạt")] YSBTG= 0,
     }
 
-    //4.1.17 采购单状态
+    //4.1.17 Trạng thái đơn mua sắm
     public enum EnumCGDZT
     {
         [Description("Chờ gửi")] DTJ= 0,
@@ -658,7 +658,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
         [Description("Đã gửi")] YTJ= 20,
     }
 
-    //4.1.18 退货单状态
+    //4.1.18 Trạng thái phiếu trả hàng
     public enum EnumTHDZT
     {
         [Description("Chờ xác nhận")] DQR= 0,
@@ -667,7 +667,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
 
     }
 
-    //4.1.19 采购方式
+    //4.1.19 Phương thức mua sắm
 
     public enum EnumCGFS
     {
@@ -677,7 +677,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
         AXTCG = 2,
     }
 
-    //4.1.20 是否含伴随服务
+    //4.1.20 Có kèm dịch vụ đi kèm không
     public enum EnumSFHBSFW
     {
         [Description("Không")] F= 0,

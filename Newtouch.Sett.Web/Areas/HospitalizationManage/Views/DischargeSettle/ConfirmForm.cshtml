@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "ConfirmForm";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //quyết toán nhập việncó thể用tạm ứng
+    //quyết toán nhập việncó thểdùngtạm ứng
     var withYjj = SysConfigReader.Bool("InpatientSettWithAdvanceAccount");
     //
     var relatedFPH = SysConfigReader.Bool("Inpatient_SettPage_RelatedFPH");
@@ -227,7 +227,7 @@
     var withYjj = '@(withYjj)';
     //Tổng số tiềnquyết toán
     var zje = ovpraseFloat($.request("zje"));
-    //thanh toánphải收 Số phải thu khiquyết toán（zje = Được báo + Số phải thu khiquyết toán + v.v.）
+    //thanh toánphảithu Số phải thu khiquyết toán（zje = Được báo + Số phải thu khiquyết toán + v.v.）
     var orglxjzfys = ovpraseFloat($.request("xjzfys"));
     //Khi có chiết khấu thì không bằng original
     var xjzfys = orglxjzfys;    //Khi có chiết khấu thì sẽ không bằng
@@ -237,7 +237,7 @@
     var isYbjy = $.request("isYbjy");
     var brxz = $.request("brxz");
     var brxzmc = $.request("brxzmc");
-    var strdyjylsh = "";//Số流水 tài khoảnkhấu trừ，BHYT Trùng Khánh，làcập nhậtkhấu trừlưu表củajsnm
+    var strdyjylsh = "";//SốDòng chảy tài khoảnkhấu trừ，BHYT Trùng Khánh，làcập nhậtkhấu trừlưuBảngcủajsnm
     var xnhjyFeeReturn;
     var isXnhjy = $.request("isXnhjy");
     var cqPatInfo = JSON.parse(sessionStorage.getItem('cqPatInfo'));
@@ -759,10 +759,10 @@
         }
     });
 
-    //Tính theo thanh toánphải收、Phương thức thanh toán Tính tổng thực thu、Tiền thừa
+    //Tính theo thanh toánphảithu、Phương thức thanh toán Tính tổng thực thu、Tiền thừa
     function hjsskZhaolingCal() {
         if (!$('#zffs1').val() && $('#zfje1').val() != 0) {
-            //Chưa chọnPhương thức thanh toán，đối vớiphảiSố tiềncần置là0.00
+            //Chưa chọnPhương thức thanh toán，đối vớiphảiSố tiềncầnđặtlà0.00
             $('#zfje1').val('0.00');
         }
         var zfje1 = $('#zfje1').val();
@@ -770,7 +770,7 @@
             zfje1 = '0.00';
         }
         if (!$('#zffs2').val() && $('#zfje2').val() != 0) {
-            //Chưa chọnPhương thức thanh toán，đối vớiphảiSố tiềncần置là0.00
+            //Chưa chọnPhương thức thanh toán，đối vớiphảiSố tiềncầnđặtlà0.00
             $('#zfje2').val('0.00');
         }
         var zfje2 = $('#zfje2').val();
@@ -838,7 +838,7 @@
         }
         return !(payingOrFailed === true); //Đang thanh toán Trả vềtrue，Ngược lại trả vềfalse
     }
-    //发起thanh toán
+    //Gửithanh toán
     function ToPay(out_trade_no, subject, total_amount) {
         var title = 'Thanh toán bằng mã thanh toán-' + (subject.length <= 15 ? subject : subject.substring(0, 12) + "...");
         var url = "/PayManage/MicroPay/MicroPay";
@@ -859,13 +859,13 @@
             }
         });
     }
-    //Thanh toán thành công-继续Gửiquyết toán
+    //Thanh toán thành công-tiếp tụcGửiquyết toán
     var outTradeNo;
     function PaySuccessHandle(data) {
         payingOrFailed = false;
 
         outTradeNo = data.outTradeNo;
-        //Thanh toán di động方式纠正
+        //Thanh toán di độngSửa phương thức
         if (data.payType == 1 && $('#zffs1').val() == '11') {
             $('#zffs1').val("10").trigger('change');
         }

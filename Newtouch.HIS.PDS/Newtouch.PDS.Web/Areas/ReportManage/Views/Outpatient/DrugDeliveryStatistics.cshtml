@@ -43,7 +43,7 @@
 <script>
     $(function () {
         $('#if_data').css('height', $(window).height() - 85);
-        //查询
+        //Truy vấn
         $("#btn_search").click(function () {
             @*var url =
                 "../../Report/PrintReport?type=DrugDeliveryStatistics&param=Organizeid=@ViewBag.OrganizeId|yfbmCode=@Constants.CurrentYfbm.yfbmCode" +
@@ -65,7 +65,7 @@
     });
 
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode ===13) {
             $("#btn_search").trigger("click");

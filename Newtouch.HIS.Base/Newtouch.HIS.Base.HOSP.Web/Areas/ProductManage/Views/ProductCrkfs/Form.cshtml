@@ -56,7 +56,7 @@
         }
     });
 
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         if (!DataValidate()) {
             return;
@@ -72,7 +72,7 @@
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#crkfsmc").val() === "") {
             $.modalAlert("Tên phương thức nhập/xuất là bắt buộc", 'warning');

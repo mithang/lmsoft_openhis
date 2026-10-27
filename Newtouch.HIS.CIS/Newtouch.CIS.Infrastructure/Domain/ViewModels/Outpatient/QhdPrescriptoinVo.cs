@@ -27,31 +27,31 @@ namespace Newtouch.Domain.ViewModels.Outpatient
     public class OUTROW
     {
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string AKC220 { get; set; }
         /// <summary>
-        /// 药品/项目编码
+        /// Thuốc/Mã hạng mục
         /// </summary>
         public string AKE001 { get; set; }
         /// <summary>
-        /// 医保药品/项目名称
+        /// Bảo hiểm y tếThuốc/Tên mục
         /// </summary>
         public string AKE002 { get; set; }
         /// <summary>
-        /// 违反规则名称
+        /// 违phảnquythìTên
         /// </summary>
         public string BZE868 { get; set; }
         /// <summary>
-        /// 违规说明
+        /// vi phạmMô tả
         /// </summary>
         public string AAE013 { get; set; }
         /// <summary>
-        /// 违规级别
+        /// vi phạmcấploại
         /// </summary>
         public string BAZ969 { get; set; }
         /// <summary>
-        /// 限制级别
+        /// hạnchếcấploại
         /// </summary>
         public string BAZ970 { get; set; }
     }

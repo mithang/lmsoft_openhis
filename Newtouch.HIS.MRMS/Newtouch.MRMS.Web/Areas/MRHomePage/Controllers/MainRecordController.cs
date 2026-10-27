@@ -205,22 +205,22 @@ namespace Newtouch.MRMS.Web.Areas.MRHomePage.Controllers
             var data = "";
             if (dto!=null && dto.Count>0)
             {
-                //结算Thông tin bệnh nhân
+                //Thông tin bệnh nhân đã thanh toán
                 var jsbrxx = _MainRecordDmnService.SettlementQuery(zyh, this.OrganizeId);
-                //是否同步动态参数信息
+                //Có đồng bộ thông tin tham số động không
                 var dtcsxx = _MainRecordDmnService.DiagnosticSave(Code, this.OrganizeId);
 
-                //判断是否结算病 người
+                //Kiểm tra bệnh nhân đã thanh toán chưa
                 if (jsbrxx.Count > 0)
                 {
-                    //参数Sửa giờ间为空 giờ取创建 giờ间
+                    //Tham số: thời gian sửa trống thì lấy thời gian tạo
                     var uptime = dtcsxx[0].LastModifyTime.ToString() == null || dtcsxx[0].LastModifyTime.ToString() == "" ? dtcsxx[0].CreateTime : dtcsxx[0].LastModifyTime;
-                    //判断结算 giờ间大于参数的Sửa或创建 giờ间
+                    //Kiểm tra thời gian thanh toán có lớn hơn thời gian sửa hoặc tạo của tham số không
                     if ((jsbrxx[0].CreateTime > uptime) && (dtcsxx[0].Value == "OFF" || dtcsxx[0].Value == "off"))
                     {
                         data = "Bệnh nhân đã quyết toán không thể thêm thông tin chẩn đoán";
                     }
-                    //判断结算 giờ间小于参数的Sửa或创建 giờ间
+                    //Kiểm tra thời gian thanh toán có nhỏ hơn thời gian sửa hoặc tạo của tham số không
                     else if ((jsbrxx[0].CreateTime < uptime) && (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on"))
                     {
                         //Lưu chẩn đoán
@@ -270,22 +270,22 @@ namespace Newtouch.MRMS.Web.Areas.MRHomePage.Controllers
             if(zddto!=null&&zddto.Count>0)
             {
                 //_MainRecordDmnService.ZdListSubmit(zddto, OrganizeId);
-                //结算Thông tin bệnh nhân
+                //Thông tin bệnh nhân đã thanh toán
                 var jsbrxx = _MainRecordDmnService.SettlementQuery(zyh, this.OrganizeId);
-                //是否同步动态参数信息
+                //Có đồng bộ thông tin tham số động không
                 var dtcsxx = _MainRecordDmnService.DiagnosticSave(Code, this.OrganizeId);
 
-                //判断是否结算病 người
+                //Kiểm tra bệnh nhân đã thanh toán chưa
                 if (jsbrxx.Count > 0)
                 {
-                    //参数Sửa giờ间为空 giờ取创建 giờ间
+                    //Tham số: thời gian sửa trống thì lấy thời gian tạo
                     var uptime = dtcsxx[0].LastModifyTime.ToString() == null || dtcsxx[0].LastModifyTime.ToString() == "" ? dtcsxx[0].CreateTime : dtcsxx[0].LastModifyTime;
-                    //判断结算 giờ间大于参数的Sửa或创建 giờ间
+                    //Kiểm tra thời gian thanh toán có lớn hơn thời gian sửa hoặc tạo của tham số không
                     if ((jsbrxx[0].CreateTime > uptime) && (dtcsxx[0].Value == "OFF" || dtcsxx[0].Value == "off"))
                     {
                         //data = "Bệnh nhân đã quyết toán không thể thêm thông tin chẩn đoán";
                     }
-                    //判断结算 giờ间小于参数的Sửa或创建 giờ间
+                    //Kiểm tra thời gian thanh toán có nhỏ hơn thời gian sửa hoặc tạo của tham số không
                     else if ((jsbrxx[0].CreateTime < uptime) && (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on"))
                     {
                         //Lưu chẩn đoán
@@ -332,7 +332,7 @@ namespace Newtouch.MRMS.Web.Areas.MRHomePage.Controllers
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.topOrgId = Constants.TopOrganizeId;
             ViewBag.ReportServerHOST = AppSettings.GetConfig("ReportServer.HOST");
-            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //是否是医院管理员
+            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //Có phải là quản trị viên bệnh viện không
             ViewBag.CurUserCode = this.UserIdentity.UserCode;
             ViewBag.curUsergh = UserIdentity.rygh;
         }

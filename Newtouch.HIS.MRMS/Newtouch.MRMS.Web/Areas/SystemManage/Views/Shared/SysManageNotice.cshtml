@@ -1,0 +1,53 @@
+@*
+    Thông báo chuyển hướng cho các trang SystemManage gốc.
+    Bản gốc: 14 view Sys* này do các controller nhị phân FrameworkBase.MultiOrg.Web
+    phục vụ (không có mã nguồn trong cây MRMS), nên không thể port 1:1.
+    Bản port KHÔNG dựng lại các controller đó: các action dưới đây chỉ trả thông báo
+    tiếng Việt rõ ràng thay vì 404, và không bao giờ hiển thị dữ liệu giả.
+    Trang nào có trang tương đương trên cổng SSO sẽ có liên kết tới đó;
+    trang nào không có trang tương đương sẽ ghi rõ là chưa có.
+*@
+@{
+    ViewBag.Title = ViewBag.PageName ?? "Quản trị hệ thống";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><i class="fa fa-refresh"></i>Làm mới</a>
+        </div>
+    </div>
+</div>
+<div style="padding: 30px;">
+    <h3>@(ViewBag.PageName ?? "Quản trị hệ thống")</h3>
+    <p>
+        Trang này thuộc nhóm chức năng quản trị hệ thống của bản gốc. Trong bản gốc,
+        các trang này do các controller dùng chung của Framework (chỉ có file nhị phân,
+        không có mã nguồn trong cây MRMS) phục vụ, kèm các action JSON riêng
+        (GetGridJson, SubmitForm, DeleteForm...). Vì vậy bản port .NET 6 chưa dựng lại
+        đầy đủ chức năng của trang này.
+    </p>
+    @if (ViewBag.SsoLink != null)
+    {
+        <p>
+            Chức năng tương đương được phục vụ bởi cổng SSO. Vui lòng sử dụng liên kết dưới đây:
+        </p>
+        <p>
+            <a class="btn btn-primary" href="@ViewBag.SsoLink" target="_blank">
+                <i class="fa fa-external-link"></i>@(ViewBag.SsoLabel ?? "Mở cổng SSO")
+            </a>
+        </p>
+    }
+    else
+    {
+        <p>
+            Chức năng này hiện chưa có trang tương đương trong bản port (kể cả trên cổng SSO),
+            nên trang chỉ hiển thị thông báo này thay vì báo lỗi 404.
+            Việc dựng lại đầy đủ chức năng cần quyết định riêng, vì nó liên quan tới các bảng
+            quản trị hệ thống và cả các thao tác ghi (thêm/sửa/xóa, đổi mật khẩu).
+        </p>
+    }
+    <p style="color: #888;">
+        Lưu ý: trang này chỉ là thông báo, không hiển thị dữ liệu giả và không ghi dữ liệu.
+    </p>
+</div>

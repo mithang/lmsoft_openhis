@@ -57,7 +57,7 @@
         };
     });
 
-    //用法 浮层
+    //Cách dùng lớp nổi
     $("#selyf").yfFloatingSelector({
         itemdbclickhandler: function ($this) {
             $("#selyf").val($this.attr('data-yfmc'));
@@ -65,9 +65,9 @@
         }
     });
 
-    //收费项目 浮层
+    //Mục thu phí lớp nổi
     $('#selitem').sfxmFloatingSelector({
-        leftshift: 100, //整体左偏移
+        leftshift: 100, //chỉnhthểtráilệchchuyển
         width: 650,
         ajaxparameters: function ($thisinput) {
             return "keyword=" + $.trim($thisinput.val());

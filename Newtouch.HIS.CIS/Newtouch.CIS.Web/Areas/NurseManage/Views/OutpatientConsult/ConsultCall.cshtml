@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Phân loại khámGọi số";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //分诊Gọi số自动刷新时间
+    //phútkhámGọi sốtựđộngLàm mớiThời gian
     var ConsultCallRefreshTime = SysConfigReader.String("ConsultCallRefreshTime");
     var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
@@ -96,10 +96,10 @@
             <tbody id="tbody" style="width:100%;overflow-y: auto; height: 500px;overflow: hidden;overflow-x: hidden;overflow-y: hidden"></tbody>
         </table>
     </div>
-    @*<p>示例弹出层：<a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">请点这里</a></p>*@
+    @*<p>hiển thịVDbậtralớp：<a href="javascript:void(0)" onclick="document.getElementById('light').style.display='block';document.getElementById('fade').style.display='block'">vui lòngđiểmđây</a></p>*@
     <div id="light" class="white_content">
         <label id="texttx" style="font-size:50px;color:black;"></label>
-        @*这是一个层窗口示例程序. <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">点这里关闭本窗口</a>*@
+        @*nàyCómộtlớpcửa sổmiệnghiển thịVDtrìnhthứ tự. <a href="javascript:void(0)" onclick="document.getElementById('light').style.display='none';document.getElementById('fade').style.display='none'">điểmđâyĐóngbảncửa sổmiệng</a>*@
     </div>
     <div id="fade" class="black_overlay"></div>
 
@@ -108,7 +108,7 @@
     </div>
 </div>
 <script>
-    var ksCode = $.request("ksCode") ? $.request("ksCode"):"@(opr.DepartmentCode)";//接收科室编号
+    var ksCode = $.request("ksCode") ? $.request("ksCode"):"@(opr.DepartmentCode)";//nhậnthuSố hiệu khoa
     debugger;
         $(function () {
         //initControl();
@@ -132,10 +132,10 @@
             }
         }
         setInterval(scrollTable, 2000);
-    //定时器显示Phòng khámGọi số信息
+    //địnhkhidụng cụHiển thịPhòng khámGọi sốthông tin
     var intervalId = window.setInterval("getConsultCall()", 3000);
 
-    //定时器实时显示当前时间
+    //địnhkhidụng cụthựckhiHiển thịhiện tạiThời gian
     var count = 0;
         function getDateTime() {
             var date = new Date();
@@ -145,7 +145,7 @@
     var a = window.setInterval("getDateTime()", 1000);
 
 
-    //回车事件
+    //Sự kiện Enter
         $('#txt_keyword').keydownEnterEvent(function () {
             $('#btn_search').trigger('click');
         })
@@ -184,8 +184,8 @@
                             }
                         },
                         { label: 'Số thứ tự', name: 'jzxh', width: 30, align: 'center' },
-                        //{ label: '挂号时间', name: 'ghrq', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                        //{ label: '科室', name: 'ksmc', width: 80, },
+                        //{ label: 'đăng ký khámThời gian', name: 'ghrq', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
+                        //{ label: 'Khoa', name: 'ksmc', width: 80, },
                         { label: 'KhoaMã', name: 'ksCode', hidden: true, },
                         { label: 'Bác sĩ', name: 'ysmc', width: 50, hidden: true, },
                         { label: 'Phòng khám', name: 'zsmc', width: 80, },
@@ -195,12 +195,12 @@
                     sortname: 'ghrq asc',
                     viewrecords: true,
                     caption: "ThườngPhòng khám",
-                    autoScroll: false,//当autoScroll和shrinkToFit均为false时，会出现行滚动条
-                    shrinkToFit: false,//是否列宽度自适应。true=适应 false=不适应
+                    autoScroll: false,//khiautoScrollvàshrinkToFitđềulàfalsekhi，sẽ xuất hiệndòngthanh cuộn
+                    shrinkToFit: false,//CóKhôngcộtrộngđộtựthích ứng。true=thích ứng false=khôngthích ứng
                     gridComplete: function () {
                     }
                 });
-                $gridList.jqGrid('setFrozenColumns');//设置冻结列生效
+                $gridList.jqGrid('setFrozenColumns');//Cài đặtđôngkếtcộtsinhhiệu
 
                 $("#btn_search").click(function () {
                     var queryJson = getPostData();
@@ -220,7 +220,7 @@
                 return str
     }
             if (str.length == 2) {
-                return str.substring(0, 1) + '*' //截取name 字符串截取第一个字符，
+                return str.substring(0, 1) + '*' //截lấyname chữkýchuỗi截lấyđầu tiênchữký，
     }
 
     let starStr = ''
@@ -247,7 +247,7 @@
     return queryJson;
 }
 
-//分诊Gọi số
+//phútkhámGọi số
         function getConsultCall() {
             //console.log(new Date().format('yyyy-MM-dd'));
             if (ksCode) {
@@ -266,12 +266,12 @@
                         }
                     }
                     if (ajaxresp.length > 0) {
-                        //显示
+                        //Hiển thị
                         $("#tbody").html("");
                         var th = "<tr>";
                         th += "<td style='color:#619daf;'>KhoaTên</td>";
                         th += "<td style='color:#619daf;'>Họ tên</td>";
-                        //th += "<td>就诊Số thứ tự</td>";
+                        //th += "<td>Khám bệnhSố thứ tự</td>";
                         th += "<td style='color:#619daf;'>Khám bệnhPhòng khám</td>";
                         th += "</tr>";
                         $("#tbody").append(th);
@@ -286,7 +286,7 @@
                             $("#tbody").append(html);
 
                             if (ajaxresp[i].calledstu == "4") {
-                                //console.log("状态4", ajaxresp[i]);
+                                //console.log("Trạng thái4", ajaxresp[i]);
                                 $.najax({
                                     type: "POST",
                                     url: "/NurseManage/OutpatientConsult/UpdateCalledstu",
@@ -294,7 +294,7 @@
                                     dataType: "json",
                                     async: false,
                                     success: function (refdata) {
-                                        //console.log("已修改数据", refdata);
+                                        //console.log("đãSửaDữ liệu", refdata);
                                         var changeNum = ['không', 'một', 'hai', 'ba', 'bốn', 'năm', 'sáu', 'bảy', 'tám', 'chín'];
                                         var num = parseInt(refdata.zsfh);
                                         var strArr = num.toString().split("");
@@ -333,7 +333,7 @@
         window.speechSynthesis.speak(utterThis);
     }
 
-    //文字左右滚动特效
+    //văn bảntráiphảicuộnđộngđặchiệu
     var tag = 0;
         function moveWord() {
             var resource = document.getElementById("word");

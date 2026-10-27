@@ -12,7 +12,7 @@ using Newtouch.HIS.Application.Interface;
 namespace Newtouch.HIS.Application
 {
     /// <summary>
-    /// 角色权限App
+    /// Quyền vai tròApp
     /// </summary>
     public sealed class RoleAuthorizeApp : AppBase, IRoleAuthorizeApp
     {
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Application
         private readonly ISysModuleRepo _sysModuleRepo;
 
         /// <summary>
-        /// 访问权限验证
+        /// Kiểm tra quyền truy cập
         /// </summary>
         /// <param name="roleIdList"></param>
         /// <param name="action"></param>
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Application
         {
             if (action.StartsWith("/Home", System.StringComparison.OrdinalIgnoreCase))
             {
-                return true;    //Home/Index特殊
+                return true;    //Home/IndexĐặc biệt
             }
 
             if (roleIdList == null || roleIdList.Count == 0)
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Application
             {
                 if (!string.IsNullOrEmpty(item.UrlAddress))
                 {
-                    //如果加了HandlerAuthorizeAttribute，就要求有对应的Meum/MenuButton 且有设置Url
+                    //Nếu đã thêmHandlerAuthorizeAttribute，thì yêu cầu có tương ứngMeum/MenuButton và có cài đặtUrl
                     string[] url = item.UrlAddress.Split('?');
                     if (url[0].Equals(action, System.StringComparison.OrdinalIgnoreCase))
                     {
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 访问权限验证（要求必须通过菜单点击方式 打卡页面）
+        /// Kiểm tra quyền truy cập（Yêu cầu phải qua cách nhấp thực đơn Trang chấm công）
         /// </summary>
         /// <param name="roleIdList"></param>
         /// <param name="moduleId"></param>
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Application
         {
             if (action.StartsWith("/Home", System.StringComparison.OrdinalIgnoreCase))
             {
-                return true;    //Home/Index特殊
+                return true;    //Home/IndexĐặc biệt
             }
 
             if (roleIdList == null || roleIdList.Count == 0)
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Application
             {
                 if (!string.IsNullOrEmpty(item.UrlAddress))
                 {
-                    //如果加了HandlerAuthorizeAttribute，就要求有对应的Meum/MenuButton 且有设置Url
+                    //Nếu đã thêmHandlerAuthorizeAttribute，thì yêu cầu có tương ứngMeum/MenuButton và có cài đặtUrl
                     string[] url = item.UrlAddress.Split('?');
                     if (url[0].Equals(action, System.StringComparison.OrdinalIgnoreCase))
                     {
@@ -106,7 +106,7 @@ namespace Newtouch.HIS.Application
         #region
 
         /// <summary>
-        /// 获取授权列表
+        /// Lấy danh sách ủy quyền
         /// </summary>
         /// <param name="roleIdList"></param>
         /// <param name="orgId"></param>

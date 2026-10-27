@@ -12,7 +12,7 @@ using NewtouchHIS.Lib.Base.Model.PACS;
 namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
 {
     /// <summary>
-    /// Pacs 接口服务
+    /// Pacs Dịch vụ giao diện
     /// </summary>
     [Route("api/pacs")]
     [ApiController]
@@ -31,7 +31,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
 
 
         /// <summary>
-        /// 获取科室字典
+        /// Lấy từ điển khoa
         /// </summary>
         /// <returns>List</returns>
         [HttpPost]
@@ -51,7 +51,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
         }
 
         /// <summary>
-        /// 获取医生字典
+        /// Lấy từ điển bác sĩ
         /// </summary>
         /// <returns>List</returns>
         [HttpPost]
@@ -71,7 +71,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
         }
 
         /// <summary>
-        /// 获取收费项目字典
+        /// Lấy từ điển hạng mục thu phí
         /// </summary>
         /// <returns>List</returns>
         [HttpPost]
@@ -93,7 +93,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
 
 
         /// <summary>
-        /// 获取pacs报告结果（金风易通版）
+        /// LấypacsKết quả báo cáo(Bản Jinfeng Yitong)
         /// </summary>
         /// <param name="post"></param>
         /// <returns></returns>
@@ -107,7 +107,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
             }
             if (request.Data == null || request.Data?.mzzybz == null || (string.IsNullOrWhiteSpace(request.Data.sqdh) && string.IsNullOrWhiteSpace(request.Data.ywlsh)))
             {
-                return new BusResult<List<PACSgetPatientReportVO>> { code = ResponseResultCode.FAIL, msg = "mzzybz  không được để trống、sqdh và ywlsh không được để trống đồng thời" };
+                return new BusResult<List<PACSgetPatientReportVO>> { code = ResponseResultCode.FAIL, msg = "mzzybz  không được để trống,sqdh và ywlsh không được để trống đồng thời" };
             }
 
             List<PACSgetPatientReportDTO> list = new List<PACSgetPatientReportDTO>();
@@ -122,9 +122,9 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.PACS.Controllers
             //    list.Add(entity);
             //}
 
-            //调用接口 (配置)
+            //Gọi giao diện (Cấu hình)
 
-            //返回参数
+            //Tham số trả về
             ApiResult<List<PACSgetPatientReportVO>> result = new ApiResult<List<PACSgetPatientReportVO>>();
             List<PACSgetPatientReportVO> data = new List<PACSgetPatientReportVO>();
 

@@ -25,7 +25,7 @@ using Newtouch.PDS.Requset.Stock;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 库存应用
+    /// Ứng dụng tồn kho
     /// </summary>
     public class DrugStorageApp : AppBase, IDrugStorageApp
     {
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly ISysMedicineStockCarryDownDmnService _sysMedicineStockCarryDownDmnService;
 
         /// <summary>
-        /// 查询当前部门药品(入库)
+        /// Truy vấn thuốc của bộ phận hiện tại(Nhập kho)
         /// </summary>
         /// <param name="keyword">ypmc、py、spm、ypCode</param>
         /// <param name="yfbmCode"></param>
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 查询当前部门药品(出库)
+        /// Truy vấn thuốc của bộ phận hiện tại(Xuất kho)
         /// </summary>
         /// <param name="keyword">ypmc、py、spm、ypCode</param>
         /// <param name="fph"></param>
@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 药品发票信息
+        /// Thông tin hóa đơn thuốc
         /// </summary>
         /// <param name="fph">fph</param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 入库
+        /// Nhập kho
         /// </summary>
         /// <param name="ioReceiptEntity"></param>
         /// <param name="ioReceiptDetailList"></param>
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 出库
+        /// Xuất kho
         /// </summary>
         /// <param name="ioReceiptEntity"></param>
         /// <param name="ioReceiptDetailList"></param>
@@ -88,9 +88,9 @@ namespace Newtouch.HIS.Application.Implementation
             _drugStorageDmnService.SaveOutStorageInfo(ioReceiptEntity, ioReceiptDetailList);
         }
 
-        #region 药品调价
+        #region Điều chỉnh giá thuốc
         /// <summary>
-        /// 调价申请 查询
+        /// Đơn xin điều chỉnh giá Truy vấn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inputCode"></param>
@@ -101,7 +101,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 调价审核查询
+        /// Truy vấn duyệt điều chỉnh giá
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inputCode"></param>
@@ -113,17 +113,17 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 药品调价执行
+        /// Thực hiện điều chỉnh giá thuốc
         /// </summary>
         /// <param name="ypCodeList"></param>
         public string ExecteAdjustPrice(ArrayList ypCodeList)
         {
-            var result = _sysMedicinePriceAdjustmentRepo.CheckStatus(ypCodeList);//检查是否有未处理的数据
+            var result = _sysMedicinePriceAdjustmentRepo.CheckStatus(ypCodeList);//Kiểm tra có dữ liệu chưa xử lý không
             return string.IsNullOrEmpty(result) ? _drugStorageDmnService.ExecteAdjustPrice(ypCodeList) : result;
         }
 
         /// <summary>
-        /// 调价历史查询
+        /// Truy vấn lịch sử điều chỉnh giá
         /// </summary>
         /// <param name="inputCode"></param>
         /// <param name="startTime"></param>
@@ -135,16 +135,16 @@ namespace Newtouch.HIS.Application.Implementation
         }
         #endregion
 
-        #region 结转
+        #region Kết chuyển
 
         /// <summary>
-        /// 结转
+        /// Kết chuyển
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
         public void CarryOverMedicine(string yfbmCode, string organizeId)
         {
-            //var needCarryOverMedicineList = _pharmacyDrugStorageDmnService.SelectNeedCarryOverMedicineList();//先查询需要结转的药品信息
+            //var needCarryOverMedicineList = _pharmacyDrugStorageDmnService.SelectNeedCarryOverMedicineList();//Truy vấn trước thông tin thuốc cần kết chuyển
             //if (needCarryOverMedicineList.Count > 0)
             //{
             //    var result = _sysMedicineStockCarryDownDmnService.CarryOverMedicine(needCarryOverMedicineList, yfbmCode, organizeId, DateTime.Now, UserIdentity.UserCode);
@@ -160,7 +160,7 @@ namespace Newtouch.HIS.Application.Implementation
         #endregion
 
         /// <summary>
-        /// 库存查询
+        /// Truy vấn tồn kho
         /// </summary>
         /// <param name="yplist"></param>
         /// <param name="organizeId"></param>
@@ -206,13 +206,13 @@ public string PrepareMedicineReturn (BythDjInfoDTO yplist, string organizeId, st
         }
 
         /// <summary>
-        /// 提交报损报溢
+        /// Gửi báo hỏng báo thừa
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
         public string SubmitReportLossAndProfit(SysMedicineProfitLossEntity[] syxx)
         {
-            if (syxx == null || syxx.Length <= 0) return "损益明细不能为空";
+            if (syxx == null || syxx.Length <= 0) return "Chi tiết lãi lỗ không được để trống";
             var errorMsg = "";
             var cts = new CancellationTokenSource();
             try

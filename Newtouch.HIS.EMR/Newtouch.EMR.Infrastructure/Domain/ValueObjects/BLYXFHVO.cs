@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.EMR.Domain.ValueObjects
 {
 	/// <summary>
-	/// 医学符号
+	/// Ký hiệu y học
 	/// </summary>
 	public class BLYXFHVO
 	{

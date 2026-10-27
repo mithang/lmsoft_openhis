@@ -38,7 +38,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         #region bệnh nhân Thu phíThuật toán
 
         /// <summary>
-        /// 获取病人收费Thuật toángrid值
+        /// đượclấybệnhngườithuphíThuật toángridGiá trị
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -81,7 +81,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把选中行对象带到新页面
+        /// Khi sửa thông tin，mangchọntrongthực hiệnđốitượngmangđếnmớitrangmặt
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -95,9 +95,9 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
 
         /// <summary>
-        /// 病人性质下拉框 
-        /// 病人收费Thuật toán病人性质下拉框已不再使用，
-        /// 该方法在收费减免处也使用到，如果减免修改了病人性质展现方式，不再使用该方法，请记得清除
+        /// bệnhngườitínhchấtdướikéokhung 
+        /// bệnhngườithuphíThuật toánbệnhngườitínhchấtdướikéokhungđãkhônglạikhiếndùng，
+        /// nàyphươngphương pháptạithuphígiảmmiễnnơicũngkhiếndùngđến，nhưkết quảgiảmmiễnsửasửarồibệnhngườitínhchấtmở rộnghiệnphươngkiểu，khônglạikhiếndùngnàyphươngphương pháp，vui lòngghiđượcxóatrừ
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -109,7 +109,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 大类下拉框
+        /// Hộp chọn loại lớn
         /// </summary>
         /// <returns></returns>
         public IActionResult GetdlSelect()
@@ -128,7 +128,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 根据大类获取项目code
+        /// căndữ liệulớnloạiđượclấyhạngmụccode
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="dlCode"></param>

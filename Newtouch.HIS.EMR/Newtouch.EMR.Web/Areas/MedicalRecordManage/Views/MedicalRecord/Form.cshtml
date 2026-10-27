@@ -127,8 +127,8 @@
     var mzzyh = $.request("mzzyh");
     var type = $.request("type");
 	var jyzt;
-	var jlxx = null;//记录tab选中的
-	$('#myTab a:first').trigger('click'); //初始化显示哪个tab
+	var jlxx = null;//Bản ghitabđã chọn
+	$('#myTab a:first').trigger('click'); //Khởi tạo hiển thị tab nàotab
     $(function () {
 		jyGridList();
 		jlxx = $('#myTab a:first').attr('href');
@@ -143,7 +143,7 @@
         var ztmc = $('#jc_ztmc').val();
         $("#jcGridList").jqGrid('setGridParam', {
             postData: { mzzyh: mzzyh, type: type, ztmc: ztmc, kssj: kssj, jssj: jssj },
-        }).trigger('reloadGrid'); //重新加载当前表格
+        }).trigger('reloadGrid'); //Tải lại bảng hiện tại
     });
 
     $('#btn_jysearch').click(function () {
@@ -152,7 +152,7 @@
         var ztmc = $('#jy_ztmc').val();
         $("#jyGridList").jqGrid('setGridParam', {
             postData: { mzzyh: mzzyh, type: type, ztmc: ztmc, kssj: kssj, jssj: jssj },
-        }).trigger('reloadGrid'); //重新加载当前表格
+        }).trigger('reloadGrid'); //Tải lại bảng hiện tại
     });
 
     function jyGridList() {
@@ -225,7 +225,7 @@
         else {
             //$.modalOpen({
             //    id: "medicaljgForm",
-            //    title: "检查报告",
+            //    title: "Báo cáo kiểm tra",
             //    url: "http://116.63.189.68:8088/WebSearch.aspx?ReqNO='" + sqdh + "'",
             //    width: "1000px",
             //    height: "1000px",
@@ -243,7 +243,7 @@
             return;
         } else {
             $.ajax({
-                url: "http://127.0.0.1:22228/api/CQSmartCheck/GetLisReport",//lis报告
+                url: "http://127.0.0.1:22228/api/CQSmartCheck/GetLisReport",//lisBáo cáo
                 dataType: "json",
                 data: { type: type, brxx_id: lissqdh },
                 type: "POST",
@@ -253,7 +253,7 @@
         }
     }
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấn đúp chọn một dòng
 	function btn_edit() {
 
 		if (jlxx == "#jy") {
@@ -325,7 +325,7 @@
                 //    //width: $(window).width() - 10,
                 //    height: 175,
                 //    colModel: [
-                //        { label: '检查结果', name: 'jcjg', align: 'left', width: '840px' },
+                //        { label: 'Kết quả kiểm tra', name: 'jcjg', align: 'left', width: '840px' },
                 //    ],
                 //    sortname: 'sqsj desc',
                 //    viewrecords: true,
@@ -433,7 +433,7 @@
         //rowIds = $('#jyMxGridList').jqGrid('getGridParam', 'selarrrow');
         rowIds = getids();
         if (rowIds.length < 1) {
-			//alert("请至少选择一行检验结果导出!");
+			//alert("Vui lòng chọn ít nhất một dòng kết quả xét nghiệm để xuất!");
 			$.modalAlert("Vui lòng chọn ít nhất một dòng kết quả xét nghiệm để xuất!", 'warning');
         }
         else {
@@ -450,7 +450,7 @@
         //rowIds = $('#jyMxGridList').jqGrid('getGridParam', 'selarrrow');
         rowIds = getids();
         if (rowIds.length < 1) {
-			//alert("请至少选择一行检验结果导出!");
+			//alert("Vui lòng chọn ít nhất một dòng kết quả xét nghiệm để xuất!");
 			$.modalAlert("Vui lòng chọn ít nhất một dòng kết quả xét nghiệm để xuất!", 'warning');
         }
         else {

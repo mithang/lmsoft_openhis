@@ -318,7 +318,7 @@ namespace Newtouch.EMR.Infrastructure
         }
     }
 
-    /// <summary>同步住院病人信息 (verbatim DTO from the original file).</summary>
+    /// <summary>Đồng bộ thông tin bệnh nhân nội trú (verbatim DTO from the original file).</summary>
     public class InpatientPatientInfoDTO
     {
         public string orgId { get; set; }

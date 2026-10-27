@@ -19,7 +19,7 @@ namespace Newtouch.Repository.Inpatient
 
         public IList<DrugwithdrawalTreeVO> Griddata(string patInfo, string keyword, string kssj, string jssj, string orgId)
         {
-            //药品名称不为空时
+            //Tên thuốckhônglàtrốngkhi
             if (!string.IsNullOrWhiteSpace(keyword))
             {
                 var sql = string.Format(@"select a.tydh,a.Id,a.hzxm,b.yzxz,b.ypmc,a.tysl,a.ypdw,CONVERT(varchar(16), b.CreateTime, 20) as zxrq,CONVERT(varchar(16), a.CreateTime, 20) as CreateTime,a.zt,cw.cwmc,s.name ysxm,a.zyh

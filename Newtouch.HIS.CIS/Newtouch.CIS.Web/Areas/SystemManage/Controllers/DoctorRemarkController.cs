@@ -29,7 +29,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取列表
+        /// Lấydanh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// Khi sửa thông tin，thông tinmangđếnmớitrangmặt
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -57,7 +57,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -70,7 +70,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -81,7 +81,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 系统嘱托 浮层
+        /// Hệ thốngDặn dò lớp nổi
         /// </summary>
         /// <returns></returns>
 
@@ -97,7 +97,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 
 
 
-        #region Bác sĩ站--》Văn bảnNhập--》Chỉ định文本框Nút
+        #region Bác sĩtrạm--》Văn bảnNhập--》Chỉ địnhvăn bảnkhungNút
         //public IActionResult surgery_record()
         //{
             

@@ -11,7 +11,7 @@
 
     function init() {
         var date = new Date();
-        //年份
+        //Năm
         $("#Year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -24,7 +24,7 @@
             },
             selectedValue: 1900 + date.getYear(),
         });
-        //月份
+        //Tháng
         $("#Month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -53,27 +53,27 @@
             ],
             viewrecords: true,
             onSelectRow_page: function (rowid, status) {
-                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: 相当于true/fase(判断是否有值)
+                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: tương đươngtrue/fase(Xét có giá trị không)
                     $gridList.saveRow(lastRowId, function (result) {
-                        // return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
-                    }); //先保存处于编辑状态的那一行    //function checksave
+                        // return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //không hợp lệ v.v. cần sửa
+                    }); //Lưu trước dòng đang ở trạng thái soạn thảo    //function checksave
                 }
                 lastRowId = rowid;
                 $gridList.jqGrid('editRow', rowid, true, null, function (result) {
-                    return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
+                    return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //không hợp lệ v.v. cần sửa
                 }, null, null, function () {
                 });
             },
             gridComplete: function () {
-                //启用行内编辑框
+                //bật khung sửa trong dòng
                 EnableInlineEditBox();
             }
         });
     }
 
-    //启用行内编辑框
+    //bật khung sửa trong dòng
     function EnableInlineEditBox() {
-        //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        //GridNạp xong thì bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt và gọieditRowphương thức
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
 
@@ -93,7 +93,7 @@
         var dic = [];
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
-            //遍历使编辑框处于保存状态
+            //Duyệt để hộp chỉnh sửa ở trạng thái lưu
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
             var rowData = $("#gridList").jqGrid('getRowData', rowIds[i]);
             if (!rowData) {

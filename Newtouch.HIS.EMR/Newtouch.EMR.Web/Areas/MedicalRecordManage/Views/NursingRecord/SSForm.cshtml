@@ -460,7 +460,7 @@
     //bindItemFloator("dbcsbz", "DefecationFreqMemo");
     bindItemFloator("xyfs", "OxygenUptakeMed");
     function bindItemFloator(inputId, itemType) {
-        //绑定字典
+        //Liên kết từ điển
         $("#" + inputId).newtouchFloatingSelector({
             height: 200,
             width: 330,
@@ -473,7 +473,7 @@
                 { label: 'Tên', name: 'Name', widthratio: 60 },
             ],
             itemdbclickhandler: function ($thistr, $thisinput) {
-                //保存时验证val和data-Name一致
+                //Kiểm tra khi lưuvalvàdata-NameNhất quán
                 $thisinput.attr('data-Code', $thistr.attr('data-Code'));
                 $thisinput.attr('data-Name', $thistr.attr('data-Name'));
                 $thisinput.val($thistr.attr('data-Name'));
@@ -527,7 +527,7 @@
             close: false,
             success: function () {
                 newtouch_globalevent_f4();
-                //保存成功回调
+                //Gọi lại sau khi lưu thành công
                 callback();
                 if (true) {
                     //setTimeout("$('#zyh').trigger('click');", 2500);

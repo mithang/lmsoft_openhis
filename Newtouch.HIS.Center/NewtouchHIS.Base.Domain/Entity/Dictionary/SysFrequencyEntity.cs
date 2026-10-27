@@ -4,7 +4,7 @@ using SqlSugar;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     /// <summary>
-    /// 频次
+    /// Tần suất
     /// </summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("xt_ypyf", "SysFrequencyEntity")]
@@ -14,23 +14,23 @@ namespace NewtouchHIS.Base.Domain.Entity
         [SugarColumn(IsPrimaryKey = true)]
         public string yzpcId { get; set; }
         /// <summary>
-        /// 频次Mã
+        /// Tần suấtMã
         /// </summary>
         public string yzpcCode { get; set; }
         /// <summary>
-        /// 医嘱执行频次
+        /// Tần suất thực hiện y lệnh
         /// </summary>
         public string yzpcmc { get; set; }
         /// <summary>
-        /// 执行次数
+        /// Số lần thực hiện
         /// </summary>
         public int? zxcs { get; set; }
         /// <summary>
-        /// 执行周期
+        /// Chu kỳ thực hiện
         /// </summary>
         public int? zxzq { get; set; }
         /// <summary>
-        /// 执行周期单位
+        /// Đơn vị chu kỳ thực hiện
         /// </summary>
         public string? zxzqdw { get; set; }
         /// <summary>
@@ -38,11 +38,11 @@ namespace NewtouchHIS.Base.Domain.Entity
         /// </summary>
         public string? zbz { get; set; }
         /// <summary>
-        /// 执行时间点
+        /// Thời điểm thực hiện
         /// </summary>
         public string? zxsj { get; set; }
         /// <summary>
-        /// 说明
+        /// Giải thích
         /// </summary>
         public string? yzpcmcsm { get; set; }
         public int? px { get; set; }

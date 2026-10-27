@@ -8,10 +8,10 @@
         <div style="padding-top: 20px; margin-right: 30px;">
             <table id="tb_xm" class="form">
                 @*<tr>
-                    <th class="formTitle">权限科室：</th>
+                    <th class="formTitle">Khoa có quyền：</th>
                     <td class="formValue">
                         <select id="dllDepartment" name="dllDepartment" class="form-control">
-                            <option>==请选择==</option>
+                            <option>==Vui lòng chọn==</option>
                         </select>
                     </td>
                 </tr>*@
@@ -81,7 +81,7 @@
 
     }
 
-    //jGrid声明
+    //Khai báo jGrid
     function initChargeItemGrid(data) {
         $('#xmDetailListGridList').newtouchLocalDataGrid({
             height: 200,
@@ -100,7 +100,7 @@
         }, data);
     }
 
-    //收费项目选择浮层
+    //Lớp nổi chọn khoản thu phí
     $('#txtSFXMSel').sfxmFloatingSelector({
         djDecimalPlaces: 4,
         searchType: 'sfxm',
@@ -121,7 +121,7 @@
                 });
 
             if (returnFlag) {
-                return; //不能重复添加
+                return; //Không được thêm trùng lặp
             }
             btn_addOpItem($thistr);
         }
@@ -139,7 +139,7 @@
         }
         var postData = $("#form1").formSerialize();
 
-        //支付方式 json串
+        //Phương thức thanh toán jsonchuỗi
         var xmArr = new Array();
 
         var oprowIds = $("#xmDetailListGridList").getDataIDs();
@@ -163,7 +163,7 @@
         }
         postData['xmListStr'] = JSON.stringify(xmArr);
 
-        postData['sfmbbh'] = keyValue;  //主键，决定是新增还是修改
+        postData['sfmbbh'] = keyValue;  //Khóa chính，Quyết định là thêm mới hay sửa
         postData['ks'] = $('#dllDepartment').val();
 
         $.submitForm({
@@ -190,7 +190,7 @@
         }
     });
 
-    /*************************************手术记账**************************************************/
+    /*************************************Ghi sổ phẫu thuật**************************************************/
     function btn_addOpItem($thistr) {
         var valsl = $('#sl').val();
 

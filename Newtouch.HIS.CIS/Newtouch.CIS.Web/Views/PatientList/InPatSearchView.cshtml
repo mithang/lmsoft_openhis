@@ -38,7 +38,7 @@
             </tr>
         </table>
     </div>
-    <!--患者信息 包括住院号  姓名 -->
+    <!--Thông tin bệnh nhân góigồmSố nhập viện  Họ tên -->
     <div class="gridPanel" style="margin-top:1%; margin-left:1%">
         <table id="gridList"></table>
         <div id="gridPager"></div>
@@ -99,7 +99,7 @@
             viewrecords: true
         });
 
-        //查询
+        //Tra cứu
         $("#btn_search").click(function () {
             $("#gridList").jqGrid('setGridParam', {
                 postData: { zyh: $("#zyh").val(), ch: $("#ch").val(), xm: $("#xm").val(), bq: $("#bq").val(), r: Math.random() },
@@ -108,7 +108,7 @@
         });
     });
 
-    //回车
+    //vềxe
     $('#zyh,#xm').keydownEnterEvent(function () {
         $("#btn_search").trigger('click');
     })

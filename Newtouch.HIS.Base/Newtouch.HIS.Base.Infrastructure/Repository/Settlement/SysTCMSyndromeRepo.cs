@@ -74,7 +74,7 @@ and (zhCode like @searchKeyword or zhmc like @searchKeyword or py like @searchKe
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                SysTCMSyndromeEntity oldEntity = null;   //变更前Entity
+                SysTCMSyndromeEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

@@ -107,7 +107,7 @@
 		init();
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }
@@ -115,8 +115,8 @@
     function getUrl() {
         var reportServerHOST = '@(ViewBag.ReportServerHOST)';
 		reportServerHOST += "ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2f医保数据落地明细";
-		//ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2f医院垫支明细&rs:Command=Render
-        //获取自定义样式
+		//ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2fChi tiết bệnh viện ứng trước&rs:Command=Render
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (reportServerHOST.indexOf('&rc:Stylesheet') == -1) {
                 reportServerHOST += "&rc:Stylesheet=MyStyleSheet";
@@ -128,7 +128,7 @@
 
 <script type="text/javascript">
 	function init() {
-		//治疗师绑定下拉框
+		//Hộp chọn liên kết trị liệu sư
 		$("#depa").bindSelect({
 			id: "Code",
 			text: "Name",
@@ -139,7 +139,7 @@
 		$('#depa').change(function () {
 			submit();
 		});
-		//大类名称绑定下拉框
+		//Hộp chọn liên kết tên loại lớn
 		$("#dlmc").bindSelect({
 			id: "dlcode",
 			text: "dlmc",

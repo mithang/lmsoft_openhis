@@ -11,7 +11,7 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 库存维护 (port of the Framework StorageApp; Create(true) stamps audit
+    /// Bảo trì tồn kho (port of the Framework StorageApp; Create(true) stamps audit
     /// fields, long identity Ids are left for the database as in the original).
     /// </summary>
     public class StorageApp : AppBase, IStorageApp
@@ -24,7 +24,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 提交外部入库
+        /// Gửi nhập kho ngoài
         /// </summary>
         public string InStorageSubmit(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {
@@ -89,7 +89,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 提交外部出库
+        /// Gửi xuất kho ngoài
         /// </summary>
         public string OutStorageSubmit(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {
@@ -148,7 +148,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 提交直接出库
+        /// Gửi xuất kho trực tiếp
         /// </summary>
         public string DirectDeliverySubmit(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {
@@ -202,7 +202,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 提交内部发货退回
+        /// Gửi trả hàng phát nội bộ
         /// </summary>
         public string DeliveryOfReturnSubmit(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {

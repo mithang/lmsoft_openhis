@@ -3,159 +3,159 @@ using System;
 namespace Newtouch.Domain.ViewModels.Outpatient
 {
     /// <summary>
-    /// 输液信息
+    /// truyền dịchthông tin
     /// </summary>
     public class MzsyypxxVO
     {
         /// <summary>
-        /// 主键ID
+        /// Khóa chínhID
         /// </summary>
         public long Id { get; set; }
         public string syzxId { get; set; }
         public string cfId { get; set; }
 
         /// <summary>
-        /// 患者姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 患者就诊卡号
+        /// Bệnh nhânKhám bệnhSố thẻ
         /// </summary>
         public string kh { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Hóa đơnsố
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 处方明细ID
+        /// Đơn thuốcchi tiếtID
         /// </summary>
         public int cfmxId { get; set; }
 
         /// <summary>
-        /// 计算明细内码
+        /// Tính toánchi tiếttrongmã
         /// </summary>
         public int jsmxnm { get; set; }
 
         /// <summary>
-        /// 床号/座号
+        /// Số giường/ghếsố
         /// </summary>
         public string seatNum { get; set; }
 
         /// <summary>
-        /// 收费时间  结算时间
+        /// Thu phíThời gian  quyết toánThời gian
         /// </summary>
         public DateTime sfsj { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 药品规格
+        /// Quy cách thuốc
         /// </summary>
         public string ypgg { get; set; }
 
         /// <summary>
-        /// 用量+用量单位
+        /// dùnglượng+dùnglượngĐơn vị
         /// </summary>
         public string ylStr { get; set; }
 
         /// <summary>
-        /// 数量+数量单位
+        /// Số lượng+Số lượngĐơn vị
         /// </summary>
         public string slStr { get; set; }
 
         /// <summary>
-        /// 剂量+剂量单位
+        /// Liều lượng+Đơn vị liều
         /// </summary>
         public string jlStr { get; set; }
         public string yfcode { get; set; }
         public string yfmc { get; set; }
         /// <summary>
-        /// 组号
+        /// Số nhóm
         /// </summary>
         public string groupNo { get; set; }
 
         /// <summary>
-        /// 配药师工号
+        /// phốiDược sĩMã nhân viên
         /// </summary>
         public string dispenser { get; set; }
 
         /// <summary>
-        /// 配药师名称
+        /// phốiDược sĩTên
         /// </summary>
         public string dispenserName { get; set; }
 
         /// <summary>
-        /// 执行者工号
+        /// Thực hiệnngườiMã nhân viên
         /// </summary>
         public string executor { get; set; }
 
         /// <summary>
-        /// 执行者名称
+        /// Thực hiệnngườiTên
         /// </summary>
         public string executorName { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 输液开始时间
+        /// truyền dịchThời gian bắt đầu
         /// </summary>
         public DateTime? sykssj { get; set; }
 
         /// <summary>
-        /// 输液结束时间
+        /// truyền dịchThời gian kết thúc
         /// </summary>
         public DateTime? syjssj { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// tạongười
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者
+        /// Sửangười
         /// </summary>
         public string LastModifierCode { get; set; }
         public int zcs { get; set; }
         public int yzxcs { get; set; }
         /// <summary>
-        /// 皮试结果
+        /// dathửkếtnếu
         /// </summary>
         public string psjg { get; set; }
         /// <summary>
-        /// 皮试标志 0:否 1：是
+        /// dathửCờ 0:Không 1：là
         /// </summary>
         public string ispsbz { get; set; }
         /// <summary>
-        /// 留观标志
+        /// giữxemCờ
         /// </summary>
 
         public string islgbz { get; set; }

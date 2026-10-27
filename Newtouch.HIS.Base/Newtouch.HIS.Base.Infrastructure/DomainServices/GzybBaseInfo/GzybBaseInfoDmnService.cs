@@ -22,7 +22,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取贵州服务项目目录,最大流水号
+        /// Lấy danh mục hạng mục dịch vụ Quý Châu,Số thứ tự lớn nhất
         /// </summary>
         /// <returns></returns>
         public int GetItemCodeMaxLsh()
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.DomainServices
             return this.FirstOrDefault<int>(strSql);
         }
 
-        #region 重庆目录相关
+        #region Liên quan danh mục Trùng Khánh
 
         public string Header(string tbname)
         {

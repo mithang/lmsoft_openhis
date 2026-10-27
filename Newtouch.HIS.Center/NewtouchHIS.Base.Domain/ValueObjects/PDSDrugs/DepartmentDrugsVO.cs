@@ -4,11 +4,11 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.ValueObjects
 {
     /// <summary>
-    /// 科室发药查询
+    /// Truy vấn phát thuốc của khoa
     /// </summary>
     public class DepartmentDrugsVO
     { /// <summary>
-      /// 来自表 XT_YP_CRKDJK的Khóa chính
+      /// Từ bảng XT_YP_CRKDJKcủaKhóa chính
       /// </summary>
         public System.String crkId { get; set; }
 
@@ -82,7 +82,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public System.Int32 Sl { get; set; }
 
         /// <summary>
-        /// 默认值1
+        /// Giá trị mặc định1
         /// </summary>
         public System.Int32 Rkzhyz { get; set; }
 
@@ -92,7 +92,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public System.Int32 Rkbmkc { get; set; }
 
         /// <summary>
-        /// 默认值1
+        /// Giá trị mặc định1
         /// </summary>
         public System.Int32 Ckzhyz { get; set; }
 
@@ -201,7 +201,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public System.String Ckczy { get; set; }
 
         /// <summary>
-        /// 来自 xt_ypcrkfs表的方式代码
+        /// Từ xt_ypcrkfsmã phương thức của bảng
         /// </summary>
         public System.String Crkfsdm { get; set; }
 
@@ -221,7 +221,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public System.String Shczy { get; set; }
 
         /// <summary>
-        /// 0:未审核 1:已审核 
+        /// 0:Chưa duyệt 1:Đã duyệt 
         /// </summary>
         public System.String shzt { get; set; }
         /// <summary>

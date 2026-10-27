@@ -75,12 +75,12 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
 
-        //首拼
+        //Mã đầu chữ
         $('#dlmc').keyup(function () {
             $('#py').val($(this).toShouPin());
         })

@@ -58,6 +58,22 @@
     </Content>
   </ItemGroup>
 
+  <!-- DRG engine (drg_group.Base, binary) loads its tables from DATA\SS_VALID.dat
+       etc. relative to the app base directory at runtime. The version tables live
+       in source as DATA\<version>\DATA\*.dat but were never copied to the output,
+       so every DrgGroup* call failed with DirectoryNotFoundException until the
+       files were placed by hand. Copy the DEFAULT version's tables (appsettings
+       DrgGroupVersion = chs_drg_11) flat into output DATA\ so a rebuild
+       reproduces the working layout. NOTE: the engine reads a single DATA\
+       root, so only one version can occupy it at a time; wuhan_2022 stays
+       in source and is NOT live-verified (switching version = swapping this
+       root set at deploy time, not a code change). -->
+  <ItemGroup>
+    <Content Include="DATA\chs_drg_11\DATA\*.dat" Link="DATA\%(Filename)%(Extension)">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
   <ItemGroup>
     <Folder Include="Areas\CIS\Data\" />
     <Folder Include="Areas\CIS\Models\" />

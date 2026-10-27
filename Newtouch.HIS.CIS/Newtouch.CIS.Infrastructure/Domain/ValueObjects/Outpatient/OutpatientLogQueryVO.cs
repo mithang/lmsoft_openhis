@@ -20,17 +20,17 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         public string xuetang { get; set; }
         public decimal? tiwen { get; set; }
         /// <summary>
-        /// 职业
+        /// chức业
         /// </summary>
         public string zy { get; set; }
         /// <summary>
-        /// 地址
+        /// Địa chỉ
         /// </summary>
         public string dz { get; set; }
         public string fbsj { get; set; }
         public string jzsj { get; set; }
         /// <summary>
-        /// 现病史
+        /// hiệnbệnhsử
         /// </summary>
         public string xbs { get; set; }
 

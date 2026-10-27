@@ -9,12 +9,12 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IRehabChargeItemComparisonRepo : IRepositoryBase<RehabChargeItemComparisonEntity>
     {
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         void SubmitForm(RehabChargeItemComparisonEntity entity, string sfxmdzId);
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         void DeleteForm(string sfxmdzId,string OrganizeId);

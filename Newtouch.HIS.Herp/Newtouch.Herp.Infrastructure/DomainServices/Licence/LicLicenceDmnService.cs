@@ -7,7 +7,7 @@ using Newtouch.Herp.Domain.IDomainServices;
 namespace Newtouch.Herp.DomainServices.Licence
 {
     /// <summary>
-    /// 证照维护 (ported from Framework EF6 raw SQL to SqlSugar; SQL unchanged)
+    /// Bảo trì chứng chỉ (ported from Framework EF6 raw SQL to SqlSugar; SQL unchanged)
     /// </summary>
     public class LicLicenceDmnService : DmnServiceBase, ILicLicenceDmnService
     {
@@ -16,7 +16,7 @@ namespace Newtouch.Herp.DomainServices.Licence
         }
 
         /// <summary>
-        /// 获取证照类型
+        /// Lấy loại chứng chỉ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
@@ -37,7 +37,7 @@ WHERE lit.Id=@keyWord OR ''=@keyWord
         }
 
         /// <summary>
-        /// 获取证照列表
+        /// Lấy danh sách chứng chỉ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>

@@ -24,7 +24,7 @@ namespace Newtouch.EMR.Domain.IRepository
         void SubmitForm(bl_ElementDomainEntity entity, string keyValue);
         void DeleteForm(string keyValue, string orgId, string user);
 
-        #region 病历结构竖表数据转换横表
+        #region Chuyển đổi dữ liệu bảng dọc cấu trúc bệnh án sang bảng ngang
         void BljghDataDealwith(BljghReq req);
 
         #endregion

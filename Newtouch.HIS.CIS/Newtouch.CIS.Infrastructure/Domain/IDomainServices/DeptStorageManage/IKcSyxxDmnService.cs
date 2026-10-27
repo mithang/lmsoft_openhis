@@ -7,12 +7,12 @@ using Newtouch.Domain.ValueObjects.Storage;
 namespace Newtouch.Domain.IDomainServices.DeptStorageManage
 {
     /// <summary>
-    /// 损益
+    /// lãi lỗ
     /// </summary>
     public interface IKcSyxxDmnService
     {
         /// <summary>
-        /// 获取损益明细
+        /// Lấylãi lỗchi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>

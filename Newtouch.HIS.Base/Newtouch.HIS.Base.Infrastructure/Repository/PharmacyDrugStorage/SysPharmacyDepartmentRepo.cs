@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取有效的药房和药库
+        /// Lấy nhà thuốc và kho dược hiệu lực
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="yjbmjb"></param>
@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("Mã khoa không được trùng lặp!");
                 }
 
-                SysPharmacyDepartmentEntity oldEntity = null;   //变更前Entity
+                SysPharmacyDepartmentEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 
@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取UserId当前已关联的要yfbmCode （不包括子机构）
+        /// LấyUserIdcái đã liên kết hiện tại cầnyfbmCode （Không bao gồm tổ chức con）
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -134,7 +134,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取组织机构下的药房/药库 （不包括子机构）
+        /// Lấy nhà thuốc thuộc tổ chức/Kho thuốc （Không bao gồm tổ chức con）
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

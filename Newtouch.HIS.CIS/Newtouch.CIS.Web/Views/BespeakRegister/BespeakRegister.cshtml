@@ -181,7 +181,7 @@
 <script>
     var $gridList = $("#yyGridList");
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
@@ -200,9 +200,9 @@
         });
     });
 
-    //初始化
+    //Khởi tạo
     function init() {
-        //挂号科室
+        //đăng ký khámKhoa
         $('#sel_dept').bindSelect({
             url: "/SystemManage/SysBaseData/SelectDepartmentList",
             id: "Code",
@@ -210,7 +210,7 @@
         });
         $("#sel_dept").change(function () {
             BuildCalendar();
-            //专家
+            //chuyên gia
             $("#sel_ys").bindSelect({
                 url: "/SystemManage/BespeakRegisterManage/GetDoctorsByDept?deptCode=" + $("#sel_dept").val(),
                 id: "gh",
@@ -228,7 +228,7 @@
         });
     }
 
-    //拼接日历html
+    //ghépnhậnngàylịchhtml
     function BuildCalendar() {
         $("#zyys").html("");
         $("#td_regTime").html("");
@@ -243,7 +243,7 @@
     }
 
     window.init_bespeakRegister = function () {
-        //门诊预约信息
+        //Ngoại trúđặt hẹnthông tin
         $gridList.dataGrid({
             height: $(window).height() - 165,
             url: "/SystemManage/BespeakRegisterManage/GetArrangedRegistersGridJson",
@@ -267,7 +267,7 @@
         BuildCalendar();
     };
 
-    //切换日期
+    //cắtđổiNgày
     function changeDay(tdObj) {
         var sp = $(tdObj).children(".sp-regInfo");
         if (sp != null && sp.length > 0) {
@@ -276,7 +276,7 @@
         }
     }
 
-    //获取指定日期预约Xếp lịch信息
+    //LấychỉđịnhNgàyđặt hẹnXếp lịchthông tin
     function GetRegTimes(ksCode, regDate, gh) {
         if (ksCode == null || regDate == null) return;
         $.najax({
@@ -289,7 +289,7 @@
         });
     }
 
-    //组装预约日期和时间
+    //lắp rápđặt hẹnNgàyvàThời gian
     function BuildRegTime(data, regDate) {
         $("#td_regTime").html("");
         if (data != null && data.length > 0) {
@@ -299,7 +299,7 @@
         }
     }
 
-    //选择Khung giờ
+    //chọnKhung giờ
     function chooseRegTime(obj) {
         var regTime = $(obj).val();
         if (regTime == undefined || regTime === "") return;
@@ -307,7 +307,7 @@
         if (regKs == undefined || regKs === "") return;
         var regDate = $(obj).attr("attr-regDate");
         if (regDate == undefined || regDate === "") return;
-        //获取可预约总人数和已预约数
+        //Lấycó thểđặt hẹntổng ngườisốvàđãđặt hẹnsố
         $.najax({
             url: "/SystemManage/BespeakRegisterManage/GetBespeakMaxCount",
             data: { deptCode: regKs, regDate: regDate, regTime: regTime, gh: $("#sel_ys").val() },
@@ -323,7 +323,7 @@
         });
     }
 
-    //保存预约
+    //Lưuđặt hẹn
     function SaveYy() {
         var chs = $(".td-choose");
         if (chs == null || chs.length === 0) {
@@ -357,7 +357,7 @@
         });
     }
 
-    //刷新jqgrid数据
+    //Làm mớijqgridDữ liệu
     function RefreshJqgridData() {
         $gridList.jqGrid('setGridParam', {
             url: "/SystemManage/BespeakRegisterManage/GetArrangedRegistersGridJson",
@@ -365,7 +365,7 @@
         }).trigger('reloadGrid');
     }
 
-    //取消预约
+    //Hủyđặt hẹn
     function CancelYy() {
         var id = $gridList.jqGrid('getGridParam', 'selrow');
         if (id == null || id === "") {
@@ -394,7 +394,7 @@
             });
     }
 
-    //刷新已预约数
+    //Làm mớiđãđặt hẹnsố
     function Refreshyyys() {
         var chooseChk = $("input[name=rd_regTime]:checked");
         if (chooseChk != null && chooseChk.length > 0) {

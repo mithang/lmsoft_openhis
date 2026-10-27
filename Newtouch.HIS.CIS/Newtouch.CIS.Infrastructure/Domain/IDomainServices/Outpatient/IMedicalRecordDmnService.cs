@@ -13,7 +13,7 @@ namespace Newtouch.Domain.IDomainServices
     public interface IMedicalRecordDmnService
     {
         /// <summary>
-        /// 历史病历树
+        /// lịch sửHồ sơcây
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="orgId"></param>
@@ -21,7 +21,7 @@ namespace Newtouch.Domain.IDomainServices
         List<MedicalRecordTreeVO> GetHistoryMedicalRecordTree(string blh, int queryDate, string orgId);
 
         /// <summary>
-        /// 详情树节点内容 （根据jzId查询病历和处方内容）
+        /// Chi tiếtcâytiếtđiểmnội dung （TheojzIdTra cứuHồ sơvàĐơn thuốcnội dung）
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="orgId"></param>
@@ -29,7 +29,7 @@ namespace Newtouch.Domain.IDomainServices
         NodeContentDto SelectNodeContent(string jzId);
 
         /// <summary>
-        /// 详情树节点内容 （根据MbId查询病历和处方内容）
+        /// Chi tiếtcâytiếtđiểmnội dung （TheoMbIdTra cứuHồ sơvàĐơn thuốcnội dung）
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="orgId"></param>
@@ -37,7 +37,7 @@ namespace Newtouch.Domain.IDomainServices
         NodeContentDto SelectNodeContentByBlmb(string mbId,string orgId);
         
         /// <summary>
-        /// 保存就诊记录、诊断、病历、处方、处方明细
+        /// LưuKhám bệnhghi chép、Chẩn đoán、Hồ sơ、Đơn thuốc、Đơn thuốcchi tiết
         /// </summary>
         /// <param name="jzObject"></param>
         /// <param name="xydList"></param>
@@ -57,28 +57,28 @@ namespace Newtouch.Domain.IDomainServices
             out List<string> addedYpCfList, out List<string> updatedYpCfList);
 
         /// <summary>
-        /// 作废病历 包括病历诊断 处方 处方明细
+        /// Hủy bỏHồ sơ góigồmHồ sơChẩn đoán Đơn thuốc Đơn thuốcchi tiết
         /// </summary>
         void ObsoleteMedicalRecord(string jzId, string orgId);
 
         /// <summary>
-        /// 作废his单次就诊的所有处方
+        /// Hủy bỏhisMột lầnKhám bệnhcủatất cảĐơn thuốc
         /// </summary>
         void ObsoleteAllPresToHIS(string jzId, string orgId);
 
         /// <summary>
-        /// 发送单次就诊的所有处方（但不推已收费的）、或指定处方
+        /// gửiMột lầnKhám bệnhcủatất cảĐơn thuốc（nhưngkhôngđẩyĐã thu phícủa）、hoặcchỉđịnhĐơn thuốc
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
-        /// <param name="opr">操作员</param>
-        /// <param name="cfId">指定时发送单一处方，否则发送单次就诊的所有处方（但不推已收费的）</param>
+        /// <param name="opr">Thao tácviên</param>
+        /// <param name="cfId">chỉđịnhkhigửiphiếumộtĐơn thuốc，KhôngthìgửiMột lầnKhám bệnhcủatất cảĐơn thuốc（nhưngkhôngđẩyĐã thu phícủa）</param>
         bool sendPresToHis(string mzh, string orgId, string opr, string cfId = null);
 
         bool sendPresToPDS(string orgId, string operatorCode, string mzh, string cfId = null, List<string> addedYpCfList = null, List<string> updatedYpCfList = null);
 
         /// <summary>
-        /// 更新pds已有处方
+        /// Cập nhậtpdsđãcóĐơn thuốc
         /// </summary>
         /// <param name="jzObject"></param>
         /// <param name="cfh"></param>
@@ -95,7 +95,7 @@ namespace Newtouch.Domain.IDomainServices
             IList<SysMedicineUsageVEntity> ypyfList);
 
         /// <summary>
-        /// 发送新处方至药房药库
+        /// gửiĐơn thuốc mớiđếnNhà thuốcKho thuốc
         /// </summary>
         /// <param name="jzObject"></param>
         /// <param name="cfh"></param>
@@ -112,7 +112,7 @@ namespace Newtouch.Domain.IDomainServices
             IList<SysMedicineUsageVEntity> ypyfList);
 
         /// <summary>
-        /// 作废处方（并推送给HIS）
+        /// Hủy đơn thuốc（vàđẩychoHIS）
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -123,7 +123,7 @@ namespace Newtouch.Domain.IDomainServices
         void delDzcf(string orgId, string mzh, string cfId
             , out int apicflx, out string apicfh, out bool isAlertinherit);
         /// <summary>
-        /// 作废HIS单张
+        /// Hủy bỏHISphiếutờ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -132,7 +132,7 @@ namespace Newtouch.Domain.IDomainServices
             , int apicflx, string apicfh);
 
         /// <summary>
-        /// 作废PDS单张
+        /// Hủy bỏPDSphiếutờ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -141,13 +141,13 @@ namespace Newtouch.Domain.IDomainServices
             , int apicflx, string apicfh);
 
         /// <summary>
-        /// 作废处方时获取
+        /// Hủy đơn thuốckhiLấy
         /// </summary>
         /// <param name="cfId"></param>
         /// <returns></returns>
         List<PrescriptionHtmlVO> GetzfcfJson(string cfId);
         /// <summary>
-        /// 获取项目或药品信息
+        /// LấyMụchoặcThuốcthông tin
         /// </summary>
         /// <param name="code"></param>
         /// <param name="cxlx"></param>
@@ -162,7 +162,7 @@ namespace Newtouch.Domain.IDomainServices
         DataTable DTXD_UploadData(YCYL_DtxdscDTO dto);
         DataTable DTXD_SqdUploadData(YCYL_DtxdSqdDTO dto);
         /// <summary>
-        /// 获取动态心电名称
+        /// Lấyđộngtrạng tháitimđiệnTên
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -171,13 +171,13 @@ namespace Newtouch.Domain.IDomainServices
         DataTable chakanmingxidiaoyong(string kh);
 
         /// <summary>
-        /// 远程医疗心电申请
+        /// xatrìnhy tếtimđiệnĐăng ký
         /// </summary>
         /// <param name="PlaceerOrderNo"></param>
         DataTable xindianshenqing(string patid, string orderno);
 
         /// <summary>
-        /// 远程检验申请
+        /// xatrìnhXét nghiệmĐăng ký
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="jzlsh"></param>
@@ -185,7 +185,7 @@ namespace Newtouch.Domain.IDomainServices
         DataTable jianyanshenqing(string patid, string jzlsh, string OrgId);
 
         /// <summary>
-        /// 远程医疗影像申请
+        /// xatrìnhy tếHình ảnhĐăng ký
         /// </summary>
         /// <param name="hispatientid"></param>
         /// <param name="name"></param>
@@ -195,7 +195,7 @@ namespace Newtouch.Domain.IDomainServices
         DataTable yingxiangshenqing(string patid, string AccessionNumber);
 
         /// <summary>
-        /// 远程医疗心电调阅
+        /// xatrìnhy tếtimđiệngọiđọc
         /// </summary>
         /// <param name="PlaceerOrderNo"></param>
         DataTable xindiandiaoyue(string kh, string orderno);
@@ -205,20 +205,20 @@ namespace Newtouch.Domain.IDomainServices
         List<PrescriptionEntity> GetcfByJzId(string orgId, string jzId);
 
         /// <summary>
-        /// 获取最后诊查费
+        /// Lấycuối cùngkhámtraphí
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         lastzcfDto GetLastzcf(string blh, string orgId);
         /// <summary>
-        /// 获取组织机构信息
+        /// LấyTổ chứcthông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         OrganizationData GetOrgInfo(string orgId);
         /// <summary>
-        /// 处方事前提醒
+        /// Đơn thuốcnhắc trước
         /// </summary>
         /// <param name="xyzdList"></param>
         /// <param name="zyzdList"></param>
@@ -236,7 +236,7 @@ namespace Newtouch.Domain.IDomainServices
         List<PrescriptionDetailVO> Getsfmbxm(string orgId, string sfmb, string sfmbmc);
 
         /// <summary>
-        /// 代煎项目内容
+        /// sắc hộMụcnội dung
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

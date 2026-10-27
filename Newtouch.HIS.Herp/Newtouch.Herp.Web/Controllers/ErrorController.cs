@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.Herp.Web.Controllers
 {
     /// <summary>
-    /// 系统错误 友好体验
+    /// Lỗi hệ thống trải nghiệm thân thiện
     /// </summary>
     public class ErrorController : Controller
     {

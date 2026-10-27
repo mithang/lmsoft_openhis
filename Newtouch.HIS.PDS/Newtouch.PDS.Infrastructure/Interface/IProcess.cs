@@ -3,7 +3,7 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 处理接口
+    /// Xử lý giao diện
     /// </summary>
     public interface IProcess
     {

@@ -74,11 +74,11 @@
         gridmx();
     });
 
-    //自适应
+    //Tự thích ứng
     function initLayout() {
         $("#dv_right").width(fymx);
     }
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");

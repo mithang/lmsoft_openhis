@@ -9,8 +9,12 @@ namespace Newtouch.Herp.Web.Areas.SystemManage.Controllers
     /// 404ing.
     /// </summary>
     [Area("SystemManage")]
+    // NOTE: literal Redirect, NOT RedirectToAction: the app registers the
+    // non-area default route before the areas route, so RedirectToAction
+    // drops the area value and generates /SystemManage/SysX (this controller
+    // itself) -> infinite 302 loop. The literal path is unambiguous.
     public class SysStaffController : ControllerBase
     {
-        public IActionResult Selector() => RedirectToAction("SysStaff", "SystemManage");
+        public IActionResult Selector() => Redirect("/SystemManage/SystemManage/SysStaff");
     }
 }

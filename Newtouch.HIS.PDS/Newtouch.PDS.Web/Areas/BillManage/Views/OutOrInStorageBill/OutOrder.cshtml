@@ -92,7 +92,7 @@
         InitGys();
     });
 
-    //按backspace键清楚所有
+    //theobackspacephím để xóa tất cả
     function InitBackspaceKey(id) {
         $("#" + id).keydown(function (e) {
             var e = window.event ? window.event : e;
@@ -103,7 +103,7 @@
         });
     }
 
-    //按backspace键清楚所有
+    //theobackspacephím để xóa tất cả
     function InitBackspaceKeyForGys() {
         $("#gysmc").keydown(function (e) {
             var e = window.event ? window.event : e;
@@ -115,7 +115,7 @@
         });
     }
 
-    //发票处再按tab键
+    //Tại chỗ hóa đơn nhấn tiếptabphím
     function InitTabKey(id, rowid) {
         $("#" + id).keydown(function (e) {
             var e = window.event ? window.event : e;
@@ -126,7 +126,7 @@
         });
     }
 
-    //初始化
+    //Khởi tạo
     function init() {
         $("#fph").val("");
         $("#gysCode").val("");
@@ -137,7 +137,7 @@
         $("#gridList").jqGrid("addRowData", undefined, { operate: GetOperatehtml() }, "last");
     }
 
-    //初始化供应商
+    //Khởi tạo nhà cung cấp
     function InitGys() {
         $("#gysmc").newtouchBatchFloatingSelector({
             clickautotrigger: true,
@@ -162,7 +162,7 @@
         });
     }
 
-    //添加发药明细
+    //Thêm chi tiết phát thuốc
     function addItem(obj) {
         var ids = $("#gridList").getDataIDs();
         var lastRowoid = ids[ids.length - 1];
@@ -172,7 +172,7 @@
         $("#gridList").jqGrid("addRowData", undefined, dataRow, "after", lastRowoid);
     }
 
-    //删除发药明细
+    //Xóa chi tiết phát thuốc
     function deleteItem(obj) {
         var selRowId = $(obj).parent().parent().attr("id");
         if (!!selRowId) {
@@ -180,12 +180,12 @@
         }
     }
 
-    //获取操作按钮html
+    //Lấy nút thao táchtml
     function GetOperatehtml() {
         return "<i class='fa fa-plus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='addItem(this);'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='deleteItem(this);'></i>";
     }
 
-    //初始化出库明细
+    //Khởi tạo chi tiết xuất kho
     function InitJqGrid() {
 		$gridList.dataGrid({
 			postData: { crkId: crkId },
@@ -193,7 +193,7 @@
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
             rownumbers: true,  //Có hiển thị số thứ tự không
             multiselect: true,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
 				{
@@ -236,7 +236,7 @@
 
 
             ],
-            editinputwidthborder: false,    //Có cần viền không 默认为true
+            editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
             editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
@@ -246,7 +246,7 @@
         });
     }
 
-    //启用行内编辑
+    //Bật chỉnh sửa trong dòng
 	function EnableInlineEditBox(rowid) {
 		for (var i = 0; i < rowid.length; i++) {
 			$("#gridList").jqGrid('editRow', rowid[i], false, initInlineFunc);//Mở chế độ sửa
@@ -255,9 +255,9 @@
      
     }
 
-    //初始化 浮层
+    //Khởi tạo Lớp nổi
     function initInlineFunc(rowid) {
-        //部分列只读
+        //Một số cột chỉ đọc
         $("#" + rowid + "_ypmc").attr('autocomplete', 'off');
         $("#" + rowid + "_pc").attr('autocomplete', 'off');
         $("#" + rowid + "_dlmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
@@ -273,11 +273,11 @@
         $("#" + rowid + "_pfjze").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_jj").css('background-color', '#f6f7fb').attr('readonly', 'true');
         InitSrm(rowid + "_ypmc", rowid);//Lớp nổi thuốc
-		InitTabKey(rowid + "_thyy", rowid);//开票日期输入处tab跳转
+		InitTabKey(rowid + "_thyy", rowid);//Chỗ nhập ngày lập hóa đơntabChuyển
 		hzjs(rowid + "_sl", rowid);
 		tt(rowid);
     }
-    //初始化输入码
+    //Khởi tạo mã nhập
     function InitSrm(id, rowid) {
         $("#" + id).newtouchBatchFloatingSelector({
             clickautotrigger: true,
@@ -308,7 +308,7 @@
                 { label: 'Đơn giá lẻ', name: 'lsjdjdw', width: 120, align: 'center' },//Giá lẻ theo đơn vị khoa
                 { label: 'Số đăng ký', name: 'pzwh', width: 150, align: 'center' },
 				{ label: 'Nhà sản xuất', name: 'ycmc', width: 200, align: 'center' },
-                { label: 'pfj', name: 'pfj', hidden: true },//部门单位批发价
+                { label: 'pfj', name: 'pfj', hidden: true },//Giá bán buôn đơn vị bộ phận
                 { label: 'lsj', name: 'lsj', hidden: true },//Giá lẻ theo đơn vị khoa
                 { label: 'ykpfj', name: 'ykpfj', hidden: true },
                 { label: 'yklsj', name: 'yklsj', hidden: true },
@@ -345,14 +345,14 @@
         });
     }
 
-    //单位切换
+    //Chuyển đổi đơn vị
     function ChangeDw(rowid) {
         $("#sel_dw_" + rowid).change(function () {
             if (CheckKc(rowid)) CalculationLsze(rowid);
             PfjZe(rowid);
         });
     }
-    //计算批发价总额
+    //Tính tổng giá bán buôn
     function PfjZe(rowid) {
         var sl = Number($("#" + rowid + "_sl").val());
         var ykpfj = parseFloat($("#" + rowid + "_ykpfj").val());
@@ -363,7 +363,7 @@
         $("#" + rowid + "_pfjze").val((pfj * sl).toFixed(2));
 
     }
-    //初始化输入库存检查事件
+    //Khởi tạo sự kiện kiểm tra tồn kho khi nhập
     function InitKcCheck(rowid) {
         $("#" + rowid + "_sl").blur(function () {
             if (CheckKc(rowid)) CalculationLsze(rowid);
@@ -371,7 +371,7 @@
         });
     }
 
-    //库存检查事件
+    //Sự kiện kiểm tra tồn kho
     function CheckKc(rowid) {
         var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
         var sl = Number($("#" + rowid + "_sl").val());
@@ -384,7 +384,7 @@
         return true;
     }
 
-    //计算零售总额
+    //Tính tổng giá bán lẻ
     function CalculationLsze(rowid) {
         var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
         var sl = Number($("#" + rowid + "_sl").val());
@@ -448,7 +448,7 @@
 		}
 	}
 
-    //初始化药品批次
+    //Khởi tạo lô thuốc
     function InitPc(id, rowid) {
         $("#" + id).newtouchBatchFloatingSelector({
             height: 300,
@@ -489,7 +489,7 @@
         });
     }
 
-    //初始化单位
+    //Khởi tạo đơn vị
     function initDw($thistr, rowid) {
         $("#sel_dw_" + rowid).empty();
         $("#sel_dw_" + rowid).append('<option value="bzdw" data-zhyz="' + $thistr.attr('data-bzs') + '" selected>' + $thistr.attr('data-bzdw') + '</option>');
@@ -501,13 +501,13 @@
         }
     }
 
-    //新发药单
+    //Đơn phát thuốc mới
     function newtouch_event_f7() {
         $("#gridList").clearGridData();
         init();
     }
 
-    //提交
+    //Gửi
 	function newtouch_event_f8() {
 		$("#cb_gridList").click();
         var list = [];
@@ -573,7 +573,7 @@
         });
     }
 
-    //组装提交数据
+    //Lắp ráp dữ liệu gửi
 	function AssembleData(rowData, rowid) {
 			var zxdwjj = Number(rowData.zxdwjj);
 			var ykpfj = Number(rowData.ykpfj);
@@ -632,7 +632,7 @@
 		};
 	}
 
-    //数值验证
+    //Kiểm tra giá trị số
     function Validately(rowData, rowid) {
         if ($("#gysCode").val() === "" || $("#gysmc").val() === "") {
             $.modalMsg("Nhà cung cấp là bắt buộc", "error", 1000);
@@ -657,7 +657,7 @@
         return true;
     }
 
-    ////生成单据号
+    ////Tạo số chứng từ
     //function GetDjh() {
     //    $.ajax({
     //        url: "/DrugStorage/InitDjh",
@@ -676,7 +676,7 @@
     //    });
     //}
 
-	//生成单据号
+	//Tạo số chứng từ
 	function GetDjh() {
 		$.ajax({
 			url: "/StorageManage/DrugStockSearch/GetCrkDjh",
@@ -698,7 +698,7 @@
 	}
 
 
-    //发票号
+    //Số hóa đơn
     $("#fph").newtouchBatchFloatingSelector({
         clickautotrigger: true,
         height: 300,

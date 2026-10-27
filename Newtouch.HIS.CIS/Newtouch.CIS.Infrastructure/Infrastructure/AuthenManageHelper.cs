@@ -19,11 +19,11 @@ namespace Newtouch.Infrastructure
         public static string SiteConmonAPIHost => AppConfig.SiteConmonAPIHost;
         public static string appId => AppConfig.AppId;
         public static string accessAppId => AppConfig.Token_ApiManage;
-        //用户登陆缓存token
+        //Người dùngđănglụcchậmtồn tạitoken
         public static string userCacheToken = "";
 
         /// <summary>
-        /// 获取中心接口api token
+        /// Lấytrongtimgiao diệnapi token
         /// </summary>
         /// <returns></returns>
         public static string GetToken()
@@ -60,8 +60,8 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Post 请求
-        /// 鉴权失败自动刷新
+        /// Post yêu cầu
+        /// Xác thựcthất bạitựđộngLàm mới
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="data"></param>
@@ -76,32 +76,32 @@ namespace Newtouch.Infrastructure
                 token = GetUserToken(user);
                 if (string.IsNullOrWhiteSpace(token))
                 {
-                    throw new FailedException("[鉴权]未获取到 Api 身份令牌，请联系管理员");
+                    throw new FailedException("[Xác thực]chưaLấyđến Api thânphầnmã thông báo，vui lòngliênhệQuản lýviên");
                 }
                 string response = HttpMethods.HttpPostWithToken(uri, data, token);
                 ApiManageResponse<T> apiResp = JsonConvert.DeserializeObject<ApiManageResponse<T>>(response);
                 if (apiResp.HttpStatus == (int)HttpStatusCode.Unauthorized)
                 {
-                    //鉴权失败 刷新token
+                    //Xác thựcthất bại Làm mớitoken
                     token = GetUserTokenRefesh(user, token);
-                    //重新请求接口
+                    //lạiyêu cầugiao diện
                     response = HttpMethods.HttpPostWithToken(uri, data, token);
                     apiResp = JsonConvert.DeserializeObject<ApiManageResponse<T>>(response);
                 }
                 if (apiResp.HttpStatus != (int)HttpStatusCode.OK)
                 {
-                    throw new FailedException($"[Http]请求异常：{apiResp.HttpStatus}=>{apiResp.Message}");
+                    throw new FailedException($"[Http]yêu cầuNgoại lệ：{apiResp.HttpStatus}=>{apiResp.Message}");
                 }
                 return apiResp.BusData;
             }
             catch (Exception ex)
             {
-                throw new FailedException($"请求异常：{ex.Message}");
+                throw new FailedException($"yêu cầuNgoại lệ：{ex.Message}");
             }
         }
 
         /// <summary>
-        /// token 过期 强制刷新
+        /// token quakỳ mạnhchếLàm mới
         /// </summary>
         /// <param name="user"></param>
         /// <param name="token"></param>
@@ -130,7 +130,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 用户登陆后获取api通用 token
+        /// Người dùngđănglụcsauLấyapiChung token
         /// </summary>
         /// <param name="user"></param>
         /// <returns></returns>
@@ -171,7 +171,7 @@ namespace Newtouch.Infrastructure
         {
             if (string.IsNullOrWhiteSpace(accessAppId))
             {
-                throw new FailedException("[鉴权]未读取到接口AppId配置（Token_ApiManage）信息");
+                throw new FailedException("[Xác thực]chưađọclấyđếngiao diệnAppIdcấu hình（Token_ApiManage）thông tin");
             }
             if (string.IsNullOrWhiteSpace(userCacheToken))
             {
@@ -182,7 +182,7 @@ namespace Newtouch.Infrastructure
 
         #region API
         /// <summary>
-        /// 批量处理已读状态
+        /// lôlượngchỗlýđãđọcTrạng thái
         /// </summary>
         public static string NoticeReadSendApi => $"{SiteConmonAPIHost}api/NoticeJob/NoticeListRead";
         #endregion

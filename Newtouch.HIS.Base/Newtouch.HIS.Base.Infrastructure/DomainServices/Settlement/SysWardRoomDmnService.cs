@@ -16,7 +16,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取房间列表（分页）
+        /// Lấy danh sách phòng（Phân trang）
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="organizeId"></param>
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.DomainServices
         /// <returns></returns>
         public IList<SysWardRoomVO> GetPagintionList(Pagination pagination, string organizeId, string keyword)
         {
-            //关联项若无效也显示以做提示
+            //Mục liên kết dù không hiệu lực cũng hiển thị để nhắc
             string sql = @"select a.[bfId],a.[OrganizeId],a.[bfCode],a.[bfNo],a.[bqCode],a.[ksCode],a.[bz],a.[zt],
                             a.[CreatorCode],a.[CreateTime],a.[LastModifyTime],a.[LastModifierCode],a.[px],b.bqmc,c.Name ksmc 
                             from xt_bf a 
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取房间列表
+        /// Lấy danh sách phòng
         /// </summary>
         /// <param name="bfId"></param>
         /// <param name="organizeId"></param>
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.DomainServices
         /// <returns></returns>
         public IList<SysWardRoomVO> GetWardRoomList(int? bfId, string organizeId, string keyword)
         {
-            //关联项若无效也显示以做提示
+            //Mục liên kết dù không hiệu lực cũng hiển thị để nhắc
             string sql = @"select a.[bfId],a.[OrganizeId],a.[bfCode],a.[bfNo],a.[bqCode],a.[ksCode],a.[bz],a.[zt],
                             a.[CreatorCode],a.[CreateTime],a.[LastModifyTime],a.[LastModifierCode],a.[px],b.bqmc,c.Name ksmc 
                             from xt_bf a 
@@ -78,14 +78,14 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 根据病区查找病房
+        /// Tìm phòng bệnh theo khu bệnh
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="bqCode"></param>
         /// <returns></returns>
         public IList<SysWardRoomVO> GetWardRoomListValid(string organizeId, string bqCode)
         {
-            //关联项若无效也显示以做提示
+            //Mục liên kết dù không hiệu lực cũng hiển thị để nhắc
             string sql = @"select a.[bfId],a.[OrganizeId],a.[bfCode],a.[bfNo],a.[bqCode],a.[ksCode],a.[bz],a.[zt],
                             a.[CreatorCode],a.[CreateTime],a.[LastModifyTime],a.[LastModifierCode],a.[px]
                             from xt_bf a 

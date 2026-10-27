@@ -53,14 +53,14 @@ namespace NewtouchHIS.DomainService.PatientCenter
             }
 
 
-            //电话一致,Họ tên不一致
+            //Điện thoại trùng khớp,Họ tênkhông trùng khớp
             var dbentity = await baseDal.GetByWhereWithAttr<SysPatientAddressEntity>(p => p.patid == entity.patid && p.dh == entity.dh && p.xm != entity.xm && p.OrganizeId == entity.OrganizeId && p.zt == "1");
             if (dbentity.Count > 0)
             {
                 throw new FailedException("Thông tin địa chỉ bệnh nhân bất thường, xác nhận số điện thoại có trùng lặp hay không!");
             }
 
-            //电话,Họ tên一致,更新
+            //Điện thoại,Họ tênNhất quán,Cập nhật
             var upentity = await baseDal.GetFirstOrDefaultWithAttr<SysPatientAddressEntity>(p => p.patid == entity.patid && p.dh == entity.dh && p.xm == entity.xm && p.OrganizeId == entity.OrganizeId && p.zt == "1");
             if (upentity != null)
             {
@@ -73,7 +73,7 @@ namespace NewtouchHIS.DomainService.PatientCenter
                 return entity;
             }
             else
-            {  //新增
+            {  //Thêm mới
                 entity.NewEntity(entity.OrganizeId, user);
                 entity.Id = Guid.NewGuid().ToString();
                 await baseDal.InsertAsync(entity);

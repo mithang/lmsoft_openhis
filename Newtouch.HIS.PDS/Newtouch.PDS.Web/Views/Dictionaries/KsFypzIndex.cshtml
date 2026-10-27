@@ -54,12 +54,12 @@
 
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
         $(window).resize(function () {
             $("#gridList").setGridHeight($(window).height() - 120);
             initLayout("MyTabGrid");
         });
-        //加载明细
+        //Tải chi tiết
         $("#gridList").dataGrid({
             postData: {},
             url: "/Dictionaries/GetKsFypzGridJson",
@@ -79,13 +79,13 @@
             sortname: 'CreateTime desc',
             viewrecords: true,
         });
-        //搜索按钮
+        //Nút tìm kiếm
         $("#btn_search").click(function () {
             $("#gridList").jqGrid('setGridParam', {
                 postData: { keyword: $("#txt_keyword").val() }, page: 1
             }).trigger('reloadGrid');
         });
-        //回车事件
+        //Sự kiện Enter
         $('#txt_keyword').keydownEnterEvent(function () {
             $('#btn_search').trigger('click');
         })

@@ -35,7 +35,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
         #region Samples
         #region Biểu đồ đường
         /// <summary>
-        /// 折线图
+        /// Biểu đồ đường
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample1()
@@ -46,7 +46,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Biểu đồ đường cong
         /// <summary>
-        /// 曲线图
+        /// Biểu đồ đường cong
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample2()
@@ -57,7 +57,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Biểu đồ diện tích
         /// <summary>
-        /// 面积图
+        /// Biểu đồ diện tích
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample3()
@@ -68,7 +68,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Biểu đồ thanh
         /// <summary>
-        /// 条形图
+        /// Biểu đồ thanh
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample4()
@@ -79,7 +79,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Biểu đồ cột
         /// <summary>
-        /// 柱状图
+        /// Biểu đồ cột
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample5()
@@ -90,7 +90,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Biểu đồ tròn
         /// <summary>
-        /// 饼图
+        /// Biểu đồ tròn
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample6()
@@ -101,7 +101,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Biểu đồ phân tán
         /// <summary>
-        /// 散点图
+        /// Biểu đồ phân tán
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample7()
@@ -112,7 +112,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Biểu đồ bong bóng
         /// <summary>
-        /// 气泡图
+        /// Biểu đồ bong bóng
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample8()
@@ -123,7 +123,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Đồng hồ mô phỏng
         /// <summary>
-        /// 模拟时钟
+        /// Đồng hồ mô phỏng
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample9()
@@ -134,7 +134,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Bảng đồng hồ1
         /// <summary>
-        /// 仪表盘1
+        /// Bảng đồng hồ1
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample10()
@@ -145,7 +145,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Biểu đồ radar
         /// <summary>
-        /// 雷达图
+        /// Biểu đồ radar
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample11()
@@ -156,7 +156,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Biểu đồ mạng nhện
         /// <summary>
-        /// 蛛网图
+        /// Biểu đồ mạng nhện
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample12()
@@ -167,7 +167,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Biểu đồ hoa hồng
         /// <summary>
-        /// 玫瑰图
+        /// Biểu đồ hoa hồng
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample13()
@@ -178,7 +178,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Biểu đồ phễu
         /// <summary>
-        /// 漏斗图
+        /// Biểu đồ phễu
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample14()
@@ -189,7 +189,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Biểu đồ nến
         /// <summary>
-        /// 蜡烛图
+        /// Biểu đồ nến
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample15()
@@ -200,7 +200,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Lưu đồ
         /// <summary>
-        /// 流程图
+        /// Lưu đồ
         /// </summary>
         /// <returns></returns>
         public IActionResult Sample16()

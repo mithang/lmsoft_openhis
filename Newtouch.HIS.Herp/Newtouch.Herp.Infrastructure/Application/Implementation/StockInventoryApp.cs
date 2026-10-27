@@ -14,7 +14,7 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 库存盘点 (port of the Framework StockInventoryApp; the original
+    /// Kiểm kê tồn kho (port of the Framework StockInventoryApp; the original
     /// FailedException type does not exist in the Core copy, so plain
     /// Exception carries the same user-visible messages).
     /// </summary>
@@ -33,7 +33,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 开始盘点
+        /// Bắt đầu kiểm kê
         /// </summary>
         public VInventoryDateDropDownEntity StartInventory(string warehouseId, string organizeId)
         {
@@ -56,7 +56,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 盘点保存
+        /// Lưu kiểm kê
         /// </summary>
         public void SaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList, long pdId, string noPc = "0")
         {
@@ -88,11 +88,11 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 取消盘点
+        /// Hủy kiểm kê
         /// </summary>
         public void CancelInventory(long pdId)
         {
-            //判断是否有未完成的盘点
+            //Kiểm tra có kiểm kê chưa hoàn thành không
             var count = _kcPdxxRepo.SelectUnfinishedInventoryByPdId(pdId, OrganizeId);
             if (count != 1)
             {
@@ -102,7 +102,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúc kiểm kê
         /// </summary>
         public void EndInventory(long pdId)
         {
@@ -115,7 +115,7 @@ namespace Newtouch.Herp.Application.Implementation
             {
                 throw new Exception("Đợt kiểm kê này đã kết thúc");
             }
-            //生成盘点信息
+            //Tạo thông tin kiểm kê
             var resultMessage = _stockInventoryDmnService.EndInventory(pdId, OrganizeId, OperatorProvider.GetCurrent().UserCode);
             if (!string.IsNullOrEmpty(resultMessage) && !resultMessage.Contains("thành công"))
             {
@@ -124,7 +124,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 提交损益
+        /// Gửi chênh lệch
         /// </summary>
         public string LossAndProfitSubmit(List<LossAndProditSubmitDTO> plist, string warehouseId)
         {

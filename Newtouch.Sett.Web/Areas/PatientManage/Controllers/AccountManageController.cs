@@ -46,7 +46,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 账户管理界面
+        /// Giao diện quản lý tài khoản
         /// </summary> 
         /// <returns></returns>  
         public IActionResult PatAccountInfo()
@@ -55,11 +55,11 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 账户管理界面
+        /// Giao diện quản lý tài khoản
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="kh">卡号</param>
-        /// <param name="xm">姓名</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="kh">Số thẻ</param>
+        /// <param name="xm">Họ tên</param>
         /// <returns></returns>
         [HttpPost]
         public IActionResult PatAccountInfo(string zyh, string kh, string xm)
@@ -69,12 +69,12 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 分页数据加载
+        /// phântrangsốdữ liệuthêmtải
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
         /// <param name="xm"></param>
-        /// <param name="brzybz">病人在院标志：null/Empty排除作废取消入院；其他对应zybz枚举，多个用逗号分割</param>
+        /// <param name="brzybz">bệnhngườitạiviệntiêuchí：null/Emptyxếptrừlàmhủylấyhủyvàoviện；của nóanh tađốiphảizybzEnum，nhiềucáidùngtrêusốphâncắt</param>
         /// <returns></returns>
         [HttpGet]
 
@@ -91,7 +91,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 人员查询列表 仅病历号
+        /// ngườiviêntratra cứucộtbảng chỉbệnhlịchsố
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="blh"></param>
@@ -112,9 +112,9 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 获取病人账户信息
+        /// Lấy thông tin tài khoản bệnh nhân
         /// </summary>
-        /// <param name="zh">账户</param>
+        /// <param name="zh">Tài khoản</param>
         /// <returns></returns>
         public IActionResult GetBasicZhInfoJson(int zh)
         {
@@ -122,7 +122,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             return Success("", list);
         }
         /// <summary>
-        /// 新增预交金账户
+        /// Thêm tài khoản tiền tạm ứng mới
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>
@@ -170,7 +170,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 
         #region Số chứng từ
         /// <summary>
-        /// 添加凭证号窗口
+        /// thêmthêmchứngchứngsốcửa sổmiệng
         /// </summary>
         /// <returns></returns>
         public IActionResult ChooseReceipt()
@@ -179,7 +179,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 获取收据凭证号
+        /// Lấy số chứng từ biên lai
         /// </summary>
         /// <returns></returns>
         public IActionResult GetReceipt()
@@ -189,9 +189,9 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 验证凭证号
+        /// kiểmchứngchứngchứngsố
         /// </summary>
-        /// <param name="pzh">凭证号</param>
+        /// <param name="pzh">Số chứng từ</param>
         /// <returns></returns>
         [HttpPost]
         public IActionResult CheckReceipt(string pzh)
@@ -205,9 +205,9 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 
         #region tạm ứng nạp tiền
         /// <summary>
-        /// 充值
+        /// Nạp tiền
         /// </summary>
-        /// <param name="depDto">充值数据集合</param>
+        /// <param name="depDto">Tập dữ liệu nạp tiền</param>
         /// <returns></returns>
         public IActionResult PayDepositPost(DeposDto depDto)
         {
@@ -223,19 +223,19 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 
 
         /// <summary>
-        /// 充值
+        /// Nạp tiền
         /// </summary>
-        /// <param name="depDto">充值数据集合</param>
-        /// <returns>返回新账户信息</returns>
+        /// <param name="depDto">Tập dữ liệu nạp tiền</param>
+        /// <returns>trảquaymớitài khoảnhộthông tintin</returns>
         public IActionResult PayDepositPostAcnt(DeposDto depDto)
         {
             var ety = _accountApp.PayDepositPostAcnt(depDto);
             return Success("", ety);
         }
         /// <summary>
-        /// 退款
+        /// Hoàn tiền
         /// </summary>
-        /// <param name="depDto">退款数据集合</param>
+        /// <param name="depDto">Tập dữ liệu hoàn tiền</param>
         /// <returns></returns>
         public IActionResult ExitDepositPost(DeposDto depDto)
         {
@@ -244,7 +244,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 余额全退
+        /// Hoàn toàn bộ số dư
         /// </summary>
         /// <param name="depDto"></param>
         /// <returns></returns>
@@ -254,7 +254,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 获取账户余额
+        /// đượclấytài khoảnhộcòn lạimức
         /// </summary>
         /// <param name="patid">patid</param>
         /// <returns></returns>

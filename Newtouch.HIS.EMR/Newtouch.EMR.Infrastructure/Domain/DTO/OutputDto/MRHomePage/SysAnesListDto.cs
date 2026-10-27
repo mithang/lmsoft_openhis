@@ -10,15 +10,15 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRHomePage
     {
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 麻醉编码
+        /// Mã gây mê
         /// </summary>
         public string AnesCode { get; set; }
         /// <summary>
-        /// 麻醉方式
+        /// Phương pháp gây mê
         /// </summary>
         public string AnesName { get; set; }
         /// <summary>
-        /// 助记码
+        /// Mã ghi nhớ
         /// </summary>
         public string Aneszjm { get; set; }
     }

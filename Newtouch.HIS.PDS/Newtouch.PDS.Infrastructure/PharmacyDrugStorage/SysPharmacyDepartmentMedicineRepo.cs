@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取药品库位
+        /// Lấy vị trí kho thuốc
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 入库部门是否有权限使用该药
+        /// Bộ phận nhập kho có quyền dùng thuốc này không
         /// </summary>
         /// <param name="yp"></param>
         /// <param name="rkbm"></param>
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据药编码和药房部门编码获取本部门药品信息
+        /// Lấy thông tin thuốc bộ phận này theo mã thuốc và mã bộ phận nhà thuốc
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>
@@ -72,7 +72,7 @@ AND yfbmCode=@yfbmCode
         }
 
         /// <summary>
-        /// 修改状态
+        /// Sửa trạng thái
         /// </summary>
         /// <param name="bmypId"></param>
         /// <param name="zt"></param>
@@ -97,7 +97,7 @@ WHERE bmypId=@bmypId
         }
 
         /// <summary>
-        /// 修改状态
+        /// Sửa trạng thái
         /// </summary>
         /// <param name="bmypId"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ WHERE bmypId=@bmypId
         }
 
         /// <summary>
-        /// 根据药品代码修改本部门药品信息
+        /// Sửa thông tin thuốc bộ phận này theo mã thuốc
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="zt"></param>
@@ -140,7 +140,7 @@ AND OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 修改状态
+        /// Sửa trạng thái
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>

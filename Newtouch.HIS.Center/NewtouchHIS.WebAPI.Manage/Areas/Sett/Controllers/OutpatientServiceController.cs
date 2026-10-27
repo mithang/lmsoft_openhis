@@ -13,7 +13,7 @@ using static NewtouchHIS.Base.Domain.EnumExtend.BusEnum;
 namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
 {
     /// <summary>
-    /// 门诊Bệnh nhân服务
+    /// Ngoại trúBệnh nhânDịch vụ
     /// </summary>
     [Route("api/Outpatient")]
     [ApiController]
@@ -26,7 +26,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
 
         }
         /// <summary>
-        /// 当日有效挂号列表
+        /// Danh sách đăng ký khám hiệu lực trong ngày
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// Bệnh nhân挂号列表
+        /// Bệnh nhânDanh sách đăng ký khám
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         }
 
         /// <summary>
-        /// 门诊待支付账单bySố ngoại trú
+        /// Hóa đơn ngoại trú chờ thanh toánbySố ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -73,7 +73,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         {
             if (request.Data == null || (string.IsNullOrWhiteSpace(request.Data.kh) || string.IsNullOrWhiteSpace(request.Data.mzh)))
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(kh、mzh) không được để trống" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(kh,mzh) không được để trống" };
             }
             var apiReq = InitController.BuildBookRequest(request, "Y028", null).Adapt<BookingRequest>();
             apiReq.paradata = request.Data;
@@ -81,7 +81,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 门诊账单项目明细
+        /// Chi tiết hạng mục hóa đơn ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         {
             if (request.Data == null || (string.IsNullOrWhiteSpace(request.Data.mzh) || request.Data.PresIds == null))
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(PresIds、mzh) không được để trống" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(PresIds,mzh) không được để trống" };
             }
             request.Data.PresId = string.Join(",", request.Data.PresIds);
             var apiReq = InitController.BuildBookRequest(request, "Y029", null).Adapt<BookingRequest>();
@@ -100,18 +100,18 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 账单支付step1：生成支付订单
+        /// Thanh toán hóa đơnstep1:Tạo đơn hàng thanh toán
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         [Route("BillOrderCreate")]
         [HttpPost]
-        [Obsolete("方法已过期，请使用PayOrder")]
+        [Obsolete("Phương thức đã hết hạn,Vui lòng dùngPayOrder")]
         public async Task<ResponseBase> OutpBillOrderCreateAsync(RequestBus<OutpBillRequest> request)
         {
             if (request.Data == null || string.IsNullOrWhiteSpace(request.Data.mzh) || string.IsNullOrWhiteSpace(request.Data.kh))
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(kh、mzh) không được để trống" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(kh,mzh) không được để trống" };
             }
 
             var apiReq = InitController.BuildBookRequest(request, null, null).Adapt<BookingRequest>();
@@ -121,18 +121,18 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         }
 
         /// <summary>
-        /// 账单支付step2：Đăng ký锁定订单
+        /// Thanh toán hóa đơnstep2:Đăng kýKhóa đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         [Route("BillOrderLockApply")]
         [HttpPost]
-        [Obsolete("方法已过期，请使用PayOrder")]
+        [Obsolete("Phương thức đã hết hạn,Vui lòng dùngPayOrder")]
         public async Task<ResponseBase> BillOrderLockApplyAsync(RequestBus<OutpBillRequest> request)
         {
             if (request.Data == null || string.IsNullOrWhiteSpace(request.Data.OrderNo) || request.Data.OrderAmt <= 0 || string.IsNullOrWhiteSpace(request.Data.kh))
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(OrderNo、kh) không được để trống" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(OrderNo,kh) không được để trống" };
             }
 
             var apiReq = InitController.BuildBookRequest(request, null, null).Adapt<BookingRequest>();
@@ -141,13 +141,13 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 账单支付step3：订单结算
+        /// Thanh toán hóa đơnstep3:Quyết toán đơn hàng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         [Route("BillOrderPay")]
         [HttpPost]
-        [Obsolete("方法已过期，请使用PayOrder")]
+        [Obsolete("Phương thức đã hết hạn,Vui lòng dùngPayOrder")]
         public async Task<ResponseBase> BillOrderPayAsync(RequestBus<OrderPayRequest> request)
         {
             var apiReq = InitController.BuildBookRequest(request, null, null).Adapt<BookingRequest>();
@@ -156,7 +156,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 账单支付steptest：推送测试
+        /// Thanh toán hóa đơnsteptest:Đẩy kiểm thử
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -170,7 +170,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
 
-        #region 挂号
+        #region Đăng ký khám
         /// <summary>
         /// Đặt lịch đăng ký khám
         /// </summary>
@@ -190,7 +190,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 普通门诊挂号
+        /// Đăng ký khám ngoại trú thông thường
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

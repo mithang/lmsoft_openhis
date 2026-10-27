@@ -22,7 +22,7 @@
     var newzyh = $.request('newzyh');
     var medicalInsurance = '@medicalInsurance';
     var zffs;
-    //医保卡
+    //y tếbảo hiểmthẻ
     function skOnClick(patid) {
         debugger;
         zffs = "sk"
@@ -40,7 +40,7 @@
 
         });
     };
-    //刷脸
+    //Quét khuôn mặt
     function slOnClick(patid) {
         debugger;
         zffs = "sl"
@@ -58,7 +58,7 @@
 
         });
     };
-    //电子凭证
+    //Chứng từ điện tử
     function smOnClick(patid) {
         debugger;
         zffs = "sm";
@@ -81,7 +81,7 @@
         });
         //$.modalOpen({
         //    id: "sbkhInput",
-        //    title: "卡号输入",
+        //    title: "Nhập số thẻ",
         //    url: "/OutpatientManage/OutpatientReg/OutPatientSbkhInput?t=" + Math.random() + "&medicalInsurance=" + medicalInsurance,
         //    width: "300px",
         //    height: "150px",
@@ -92,7 +92,7 @@
 
         //openform();
     };
-    //医保磁卡
+    //thẻ từ BHYT
     function ckOnClick(patid) {
         debugger;
         zffs = "ck";
@@ -108,7 +108,7 @@
         });
         //openform();
     };
-    //身份证读卡
+    //Đọc thẻ CMND/CCCD
     function sfzOnClick(patid) {
         debugger;
         zffs = "sfz";
@@ -150,7 +150,7 @@
             case "shanghai":
                 openform(khxx.sbkh);
                 break;
-            case "tongyong"://通用使用国家医保
+            case "tongyong"://dùng chung BHYT quốc gia
                 var khxx = { "sbkh": "", "sfzh": "", "ecToken": "" };
                 GetReadCardInfo(khxx);
                 break;

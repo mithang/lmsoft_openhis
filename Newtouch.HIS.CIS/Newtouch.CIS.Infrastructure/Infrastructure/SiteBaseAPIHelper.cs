@@ -3,12 +3,12 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Base API请求帮助类
+    /// Base APIyêu cầugiúpgiúploại
     /// </summary>
     public class SiteBaseAPIHelper : SiteAPIRequestHelperBase<SiteBaseAPIHelper>
     {
         /// <summary>
-        /// 域Addr配置 的 Key
+        /// lĩnh vựcAddrcấu hình của Key
         /// </summary>
         private readonly static string _domainConfigKey = "SiteBaseAPIHost";
 

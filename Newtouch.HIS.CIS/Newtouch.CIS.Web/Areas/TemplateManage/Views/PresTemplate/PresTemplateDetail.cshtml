@@ -86,7 +86,7 @@
                     var data = $("#gridList").getRowData(rowid);
                     if (brxzCode!=""&&'@ViewBag.ControlbrxzCode'.indexOf(brxzCode) > -1 && data.sfyb == "否") {
                         $.modalAlert("Bệnh nhân này là bệnh nhân BHYT, không thể chọn mục tự chi trả [" + (data.xmmc == "" ? data.ypmc : data.xmmc) + "】", "warning");
-                        $("#gridList").jqGrid('setSelection', rowid, false); //设置jqGrid选中
+                        $("#gridList").jqGrid('setSelection', rowid, false); //Cài đặtjqGridĐã chọn
                         return false;
                     }
                 }

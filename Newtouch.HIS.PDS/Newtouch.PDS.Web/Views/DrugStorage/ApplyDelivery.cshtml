@@ -75,7 +75,7 @@
         medicineGridList([]);
     });
 
-    //自适应
+    //Tự thích ứng
     function initLayout() {
         $("#dv_right").width(fymx);
     }
@@ -185,7 +185,7 @@
         });
     }
 
-    //终止
+    //Kết thúc
     function btn_Abandon(id, zt) {
         if (zt === @((int)EnumSLDDeliveryStatus.None) || zt === @((int)EnumSLDDeliveryStatus.Part)) {
             $.najax({
@@ -218,7 +218,7 @@
             autoScroll: true,
             caption: "Thông tin thuốc",
             height: $(window).height() - 220,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
                 {
                     label: 'Số lượng phát hiện tại', name: 'fysl', width: 55, align: 'center', editable: true, editwidth:"88%",
@@ -245,15 +245,15 @@
                 { label: 'Đơn lĩnhID', name: 'sldId', hidden: true }
             ],
             onSelectRow: function (rowid, status) {
-                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: 相当于true/fase(判断是否有值)
+                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: Tương đương vớitrue/fase(Kiểm tra có giá trị không)
                     $MedicineGridList.saveRow(lastRowId, function (result) {
-                        // return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
-                    }); //先保存处于编辑状态的那一行    //function checksave
+                        // return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực v.v. cần sửa
+                    }); //Lưu trước dòng đang ở trạng thái chỉnh sửa    //function checksave
                 }
                 //$("#" + rowid + "_fysl").attr("width", 50);
                 lastRowId = rowid;
                 $MedicineGridList.jqGrid('editRow', rowid, true, null, function (result) {
-                    //return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
+                    //return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực v.v. cần sửa
                 }, null, null, function () {
                 });
             },
@@ -263,7 +263,7 @@
         });
     }
 
-    //发药
+    //Phát thuốc
     function newtouch_event_f8() {
         $MedicineGridList.saveRow(lastRowId, null, null, null, function (callbackRowId) {
         }, null, null);
@@ -284,14 +284,14 @@
                     $.modalAlert("【" + obj.ypmc + "】Số lượng phát không được lớn hơn" + maxfysl / parseInt(obj.zhyz) + "！", 'warning');
                     flag = false;
                     $MedicineGridList.jqGrid('editRow', obj.jqRowId, true, null, function (result) {
-                        //return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
+                        //return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực v.v. cần sửa
                     }, null, null, function () { });
                     return false;
                 } else if (parseInt(obj.kcsl) < fysl) {
                     $.modalAlert("【" + obj.ypmc + "】Không đủ tồn kho！", 'warning');
                     flag = false;
                     $MedicineGridList.jqGrid('editRow', obj.jqRowId, true, null, function (result) {
-                        //return false;   //验证输入内容是否合法，取消保存返回false    //无效 等等修复
+                        //return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực v.v. cần sửa
                     }, null, null, function () { });
                     return false;
                 }
@@ -310,7 +310,7 @@
         });
         if (!flag) return false;
         par["xtYpLsNbfymxk"] = dic;
-        par["type"] =@((int)EnumDanJuLX.shenlingfayao);//申领单发药
+        par["type"] =@((int)EnumDanJuLX.shenlingfayao);//Phát thuốc đơn lĩnh
         par["fyfs"] = @((int)EnumFyfs.Zcck);//Xuất kho bình thường
         $.najax({
             type: "POST",

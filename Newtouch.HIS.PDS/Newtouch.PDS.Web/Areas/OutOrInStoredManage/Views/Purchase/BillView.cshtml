@@ -29,7 +29,7 @@
                     <span style="margin-left:1%;float:left">—</span>
                     <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; margin-top:10px;float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
-                @*<th class="formTitle">入库状态：</th>
+                @*<th class="formTitle">Trạng thái nhập kho：</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="fpzt" name="fpzt" class="form-control required">
                         <option value="9" selected="selected">Tất cả</option>
@@ -53,7 +53,7 @@
 </form>
 
 <script>
-    //上一个window对象
+    //Cái trướcwindowĐối tượng
     var prevWindow;
     if ('@(from)' !== '') {
         prevWindow = top.top.frames['@(from)'];
@@ -67,10 +67,10 @@
         var obj = new Object;
         //obj.ddbh = $.request("ddbh");
         var searInfo = new gridList();
-        //加载数据
+        //Tải dữ liệu
         //searInfo.init(obj);
 
-        //查询
+        //Truy vấn
         $("#btn_search").click(function () {
             $("#GridList").jqGrid('setGridParam', {
                 postData: {
@@ -95,7 +95,7 @@
                 { label: 'Mã công ty dược', name: 'yqbm', width: 100, align: 'left' },
                 { label: 'Tổng số tiền hóa đơn bao gồm thuế', name: 'fphszje', width: 100, align: 'left' },
                 //{
-                //    label: '发票状态', name: 'fpzt', width: 100, align: 'left', formatter: function (cellvalue) {
+                //    label: 'Trạng thái hóa đơn', name: 'fpzt', width: 100, align: 'left', formatter: function (cellvalue) {
                 //        if (cellvalue == 0) return 'Chưa nhập kho';
                 //        else if (cellvalue == 1) return 'Đã nhập kho';
                 //        else return '';
@@ -122,7 +122,7 @@
 
 
 
-        //加载事件
+        //Sự kiện tải
         //myPatSearchInfo.prototype.init = function (data) {
         //    if (data.blh === "null") {
         //        $("#txt_blh").val("");
@@ -134,7 +134,7 @@
         //return myPatSearchInfo;
     //}());
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn một dòng
     function btn_edit() {
         SearchConfirm();
     }
@@ -149,15 +149,15 @@
         obj.fphszje = $gridList.jqGridRowValue().fphszje;
         obj.fpzt = $gridList.jqGridRowValue().fpzt;
         prevWindow.GetQueryAjax(obj);
-        //关闭窗口
+        //Đóng cửa sổ
         ReceiptCancle();
     }
-    //确定 主页面调用
+    //Xác định Gọi từ trang chính
     function SearchConfirm() {
         BillDbGrid();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }

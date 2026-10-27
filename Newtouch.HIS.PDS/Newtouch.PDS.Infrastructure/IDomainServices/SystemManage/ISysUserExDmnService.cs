@@ -6,12 +6,12 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 用户相关DmnService
+    /// Liên quan người dùngDmnService
     /// </summary>
     public interface ISysUserExDmnService
     {
         /// <summary>
-        /// 获取用户可操作的药房（药库）列表
+        /// Lấy nhà thuốc người dùng có thể thao tác（Kho thuốc）Danh sách
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="userId"></param>
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<SysPharmacyDepartmentVEntity> GetUserPharmacyDepartmentList(string orgId, string userId);
 
         /// <summary>
-        /// 验证用户名密码
+        /// Kiểm tra tên người dùng mật khẩu
         /// </summary>
         /// <param name="username"></param>
         /// <param name="password"></param>
@@ -27,28 +27,28 @@ namespace Newtouch.HIS.Domain.IDomainServices
         SysUserVEntity CheckLogin(string username, string password);
 
         /// <summary>
-        /// 根据UserId获取关联的系统人员列表
+        /// TheoUserIdLấy danh sách nhân sự hệ thống liên kết
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         IList<SysStaffVEntity> GetStaffListByUserId(string userId);
 
         /// <summary>
-        /// 更新用户角色
+        /// Cập nhật vai trò người dùng
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="roleList"></param>
         void UpdateUserRole(string keyValue, string[] roleList);
 
         /// <summary>
-        /// 根据OrganizeId获取 系统人员VO（且有对应的SysUser）
+        /// TheoOrganizeIdLấy Nhân sự hệ thốngVO（và có tương ứngSysUser）
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         IList<SysUserStaffVO> GetSatffVOListByOrg(string orgId);
 
         /// <summary>
-        /// 获取组织机构的人员列表
+        /// Lấy danh sách nhân sự của tổ chức
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -62,14 +62,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<string> GetYfbmCodeListByUserId(string userId);
 
         /// <summary>
-        /// 获取用户的语言类型
+        /// Lấy loại ngôn ngữ người dùng
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         string GetLanguageTypeByUserId(string userId);
 
         /// <summary>
-        /// 根据父级OrgId（递归树）获取 所有 指定 职位 的 StaffId
+        /// Theo cấp chaOrgId（Cây đệ quy）Lấy Tất cả Chỉ định Chức vụ của StaffId
         /// </summary>
         /// <param name="parentOrgId"></param>
         /// <param name="dutyCode"></param>
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<string> GetStaffIdListByParentOrg(string parentOrgId, string dutyCode);
 
         /// <summary>
-        /// 根据员工Id获取所有岗位
+        /// Theo nhân viênIdLấy tất cả vị trí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="StaffId"></param>
@@ -85,14 +85,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<string> GetDutyListByStaffId(string orgId, string StaffId);
 
         /// <summary>
-        /// 重置密码
+        /// Đặt lại mật khẩu
         /// </summary>
         /// <param name="userPassword"></param>
         /// <param name="keyValue"></param>
         void RevisePassword(string userPassword, string userId);
 
         /// <summary>
-        /// 根据UserId获取系统用户可操作的药房部门Code List
+        /// TheoUserIdLấy bộ phận nhà thuốc mà người dùng hệ thống có thể thao tácCode List
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="orgId"></param>
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<string> GetYfbmCodeListByUserId(string userId, string orgId);
 
         /// <summary>
-        /// 根据UserId获取系统用户可操作的药房部门 List
+        /// TheoUserIdLấy bộ phận nhà thuốc mà người dùng hệ thống có thể thao tác List
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="orgId"></param>

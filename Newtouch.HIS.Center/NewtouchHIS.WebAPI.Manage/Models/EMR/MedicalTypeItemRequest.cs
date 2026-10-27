@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.WebAPI.Manage.Models.EMR
 {
     /// <summary>
-    /// emr接口:病历类型及病历模板入参数
+    /// emrGiao diện:Tham số đầu vào loại bệnh án và mẫu bệnh án
     /// </summary>
     public class MedicalTypeItemRequest
     {

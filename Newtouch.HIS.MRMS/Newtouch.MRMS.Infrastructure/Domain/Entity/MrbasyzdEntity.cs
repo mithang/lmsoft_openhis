@@ -19,9 +19,9 @@ using Newtouch.MR.ManageSystem.Infrastructure;
 namespace Newtouch.MR.ManageSystem.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-20 11:05
-    /// 描 述：病案首页诊断表
+    /// Tạo: chl
+    /// Ngày: 2019-11-20 11:05
+    /// Mô tả: Bảng chẩn đoán trang đầu bệnh án
     /// </summary>
     [SugarTable("mr_basy_zd")]
     public class MrbasyzdEntity : EntityBase

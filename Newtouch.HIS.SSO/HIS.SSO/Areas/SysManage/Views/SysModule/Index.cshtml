@@ -1,0 +1,293 @@
+﻿@model HIS.SSO.Models.UserModel
+@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="fa fa-refresh"></span></a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>tạo mới</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>sửa đổi</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>xóa</a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <span class="input-group-addon">
+                            <input id="ck_valid" type="checkbox" class="form-check" title="chỉ xem menu có hiệu lực" checked />
+                        </span>
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="tên" style="width: 180px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+
+                    </div>
+                </td>
+            </tr>
+        </table>
+
+    </div>
+
+    <div class="toolbar pull-right">
+        @if (Model.SyncAuthed ?? false)
+        {
+            <div class="btn-group">
+                <a class="btn btn-success" onclick="syncAppMenu()"><i class=" fa fa-terminal" aria-hidden="true"></i> nhập menu</a>
+            </div>
+        }
+
+    </div>
+</div>
+<div class="navb-bg">
+    <div class="dv-table-container">
+        <table id="table"></table>
+    </div>
+
+</div>
+
+
+<script>
+    $(function () {
+        mounted();
+
+        $("#btn_search").on('click', function () {
+            tableRefresh();
+        });
+    });
+    var $table = $('#table');
+    function mounted() {
+        $table.bootstrapTable({
+            url: "/SysManage/SysModule/GetTreeGridJson", //địa chỉ URL máy chủ trả về dữ liệu
+            method: 'POST',                      //phương thức yêu cầu dữ liệu
+            contentType: "application/x-www-form-urlencoded",
+            height: $(window).height() - 96,
+            queryParams: queryParams,
+            classes: "table table-bordered table-striped table-hover",
+            theadClasses: "table-light",//đặt kiểu tiêu đề bảng
+            idField: 'Id',
+            showColumns: false,
+            columns: [
+                // {
+                //     field: 'ck',
+                //     checkbox: true
+                // },
+                {
+                    field: 'Id',
+                    visible: false
+                }, {
+                    field: 'Icon',
+                    title: 'biểu tượng',
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '5',
+                    widthUnit: '%',
+                    formatter: function (value, row, index) {
+                        if (value) {
+                            return '<i class=\"' + value + '\"></i>';
+                        }
+                        else {
+                            return "";
+                        }
+                    }
+
+                }, {
+                    field: 'Name',
+                    title: 'tên',
+                    halign: 'center',
+                    width: '20',
+                    widthUnit: '%',
+                },
+                {
+                    field: 'zt',
+                    title: 'trạng thái',
+                    halign: 'center',
+                    //sortable: true,
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '5',
+                    widthUnit: '%',
+                    formatter: function (cellvalue) {
+                        return cellvalue == "1" ? "<i class=\"fa fa-toggle-on icon-theme-success\"></i>" : "<i class=\"fa fa-toggle-off icon-theme-default\"></i>";
+                    }
+                },
+                {
+                    field: 'AppId',
+                    title: 'ứng dụngId',
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '10',
+                    widthUnit: '%',
+                },
+                {
+                    field: 'UrlAddress',
+                    title: 'đường dẫn',
+                    halign: 'center',
+                    width: '35',
+                    widthUnit: '%',
+                },
+                {
+                    field: 'ParentId',
+                    visible: false
+                },
+                {
+                    field: 'OrganizeId',
+                    visible: false
+                }
+            ],
+            treeShowField: 'Name',
+            parentIdField: 'ParentId',
+            uniqueId: 'Id',
+            onLoadSuccess: function (data) {
+                $table.treegrid({
+                    initialState: "expanded",//mở rộng
+                    treeColumn: 1,//chỉ rõ cột dữ liệu thứ mấy chuyển thành dạng cây
+                    //expanderExpandedClass: "glyphicon glyphicon-triangle-bottom",
+                    //expanderCollapsedClass: "glyphicon glyphicon-triangle-right",
+                    onChange: function () {
+                        $table.bootstrapTable("resetView");
+                    }
+                });
+            },
+            onDblClickRow: function (row, $element, field) {
+                btn_edit(row);
+            },
+            onClickRow: function (row, $element, field) {
+                var selrow = $(table).bootstrapTable("getSelections");
+                if (selrow != null && selrow.length > 0 && selrow[0] != null && selrow[0].Id != row.Id) {
+                    bstableSelectedToggle($table, "Id", [selrow[0].Id], false);
+                }
+                bstableSelected($table, "Id", [row.Id], $element);
+            },
+            formatLoadingMessage: function () {
+                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
+            },
+            formatNoMatches: function () {
+                return "chưa có dữ liệu";
+            }
+
+        });
+        $table.bootstrapTable('hideLoading');
+
+    }
+    //tham số yêu cầu
+    function queryParams(params) {
+        var data = {
+            //mỗi trang có bao nhiêu dòng dữ liệu
+            limit: params.limit,
+            //yêu cầu trang thứ mấy
+            offset: params.offset,
+            order: params.order,
+            sort: params.sort,
+            search: params.search,
+            queryParams: {
+                keyword: $("#txt_keyword").val(),
+                validLimit: $("#ck_valid").is(':checked')
+            }
+        };
+        return data;
+    }
+
+    //hàm tương ứng thực hiện phán đoán；
+    function checkFormatter(value, row, index) {
+        if (row.type)//type là giá trị trạng thái có được chọn hay không
+            return {
+                disabled: false,//đặt có thể dùng hay không
+                checked: true//đặt đã chọn
+            };
+        return value;
+    }
+
+
+    function tableRefresh() {
+        $table.bootstrapTable('refresh', { queryParams: queryParams });
+    }
+
+    //thêm mới
+    function btn_add() {
+        $.modalOpen({
+            id: "Form",
+            title: "thêm menu",
+            url: "/SysManage/SysModule/Form",
+            width: "700px",
+            height: "440px",
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function () {
+                    tableRefresh();
+                });
+            }
+        });
+    }
+    //sửa đổi
+    function btn_edit(row) {
+        if (!!!row) {
+            var selrows = $table.bootstrapTable("getSelections");
+            row = selrows != null && selrows[0] != null ? selrows[0] : null;
+        }
+        if (!!!row) {
+            $.modalAlert("vui lòng chọn một thông tin", 'warning');
+            return;
+        }
+        if (!!!row.OrganizeId && '@(!string.IsNullOrEmpty(Model.OrganizeId) && Model.OrganizeId != Model.TopOrganizeId)' === 'True') {
+            $.modalAlert("không có quyền sửa đổi", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "sửa menu",
+            url: "/SysManage/SysModule/Form?keyValue=" + row.Id,
+            width: "700px",
+            height: "440px",
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function () {
+                    tableRefresh();
+                });
+            }
+        });
+    }
+    //xóa
+    function btn_delete() {
+        var selrows = $table.bootstrapTable("getSelections");
+        var row = selrows != null && selrows[0] != null ? selrows[0] : null;
+        if (!!!row) {
+            $.modalAlert("vui lòng chọn một thông tin", 'warning');
+            return;
+        }
+        if (!!!row.OrganizeId && '@(!string.IsNullOrEmpty(ViewBag.OrganizeId) && ViewBag.OrganizeId != ViewBag.TopOrganizeId)' === 'True') {
+            $.modalAlert("không có quyền sửa đổi", 'warning');
+            return;
+        }
+        $.deleteForm({
+            url: "/SysManage/SysModule/DeleteForm",
+            param: { keyValue: row.Id },
+            success: function () {
+                tableRefresh();
+            }
+        });
+    }
+
+    function syncAppMenu() {
+        $.modalOpen({
+            id: "SyncMenuForm",
+            title: "nhập menu hệ thống nghiệp vụ",
+            url: "/SysManage/SysModule/SyncForm",
+            width: "70%",
+            height: "80%",
+            btn: null,
+            callBack: function (iframeId) {
+                $.currentWindow(iframeId).AcceptClick(function () {
+                    tableRefresh();
+                });
+            }
+        });
+    }
+</script>

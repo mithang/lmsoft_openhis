@@ -83,7 +83,7 @@
     $('#btn_search').click(function () {
 
         if (($("#qybm").val() == '' || $("#qybm").val() == null) && ($("#qymc").val() == '' || $("#qymc").val() == null)) {
-            //弹出确认窗口
+            //Hiện cửa sổ xác nhận
             $.modalConfirm("Có xác nhận lấy toàn bộ thông tin doanh nghiệp không?", function (flag) {
                 if (flag) {
                     gridList();

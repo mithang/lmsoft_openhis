@@ -1,22 +1,22 @@
 ﻿namespace NewtouchHIS.Base.Domain.ValueObjects
 {
     /// <summary>
-    /// 系统菜单
+    /// Menu hệ thống
     /// </summary>
     public class SysModuleVO
     {
         public string? Id { get; set; }
         /// <summary>
-        /// Tổ chứcId（可选，null时为所有Tổ chức公用）
+        /// Tổ chứcId(Tùy chọn,nullthì là dùng chung cho mọiTổ chứctổ chức)
         /// </summary>
         public string? OrganizeId { get; set; }
         /// <summary>
-        /// 父级
+        /// Cấp cha
         /// </summary>
         /// <returns></returns>
         public string? ParentId { get; set; }
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         /// <returns></returns>
         public string? Name { get; set; }
@@ -31,31 +31,31 @@
         /// <returns></returns>
         public string? Code { get; set; }
         /// <summary>
-        /// 应用Id，如CIS、Sett
+        /// Ứng dụngId,NhưCIS,Sett
         /// </summary>
         public string? AppId { get; set; }
         /// <summary>
-        /// 图标
+        /// Biểu tượng
         /// </summary>
         /// <returns></returns>
         public string? Icon { get; set; }
         /// <summary>
-        /// 连接
+        /// nối
         /// </summary>
         /// <returns></returns>
         public string? UrlAddress { get; set; }
         /// <summary>
-        /// 目标
+        /// Mục tiêu
         /// </summary>
         /// <returns></returns>
         public string? Target { get; set; }
         /// <summary>
-        /// 排序码
+        /// Mã sắp xếp
         /// </summary>
         /// <returns></returns>
         public int? px { get; set; }
         /// <summary>
-        /// 描述
+        /// Mô tả
         /// </summary>
         /// <returns></returns>
         public string? Description { get; set; }
@@ -73,11 +73,11 @@
     public class SysModuleExtendVO : SysModuleVO
     {
         /// <summary>
-        /// 是否已同步
+        /// Đã đồng bộ hay chưa
         /// </summary>
         public bool? IsSync { get; set; }
         /// <summary>
-        /// 自定义排序
+        /// Sắp xếp tùy chỉnh
         /// </summary>
         public string? CustomOrder { get; set; }
 

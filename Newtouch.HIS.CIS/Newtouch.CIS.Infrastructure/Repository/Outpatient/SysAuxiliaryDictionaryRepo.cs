@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取当前组织下的所有有效词典
+        /// Lấyhiện tạitổ chứcdướicủatất cảHiệu lựctừ điển
         /// </summary>
         /// <returns></returns>
         public IList<SysAuxiliaryDictionaryEntity> GetValidListByOrg(string orgId, bool withCache = false)
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取词典列表
+        /// Lấytừ điểndanh sách
         /// </summary>
         /// <returns></returns>
         public List<SysAuxiliaryDictionaryEntity> GetListByOrg(string orgId)
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -65,10 +65,10 @@ namespace Newtouch.HIS.Repository
             {
                 if (this.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId && p.Code == entity.Code && p.Id != keyValue))
                 {
-                    throw new FailedException("编号不可重复");
+                    throw new FailedException("Số hiệu không được trùng lặp");
                 }
 
-                SysAuxiliaryDictionaryEntity oldEntity = null;   //变更前Entity
+                SysAuxiliaryDictionaryEntity oldEntity = null;   //đổihơntrướcEntity
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Repository
             {
                 if (this.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId && p.Code == entity.Code))
                 {
-                    throw new FailedException("编号不可重复");
+                    throw new FailedException("Số hiệu không được trùng lặp");
                 }
                 entity.Create(true);
                 this.Insert(entity);
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(string keyValue)

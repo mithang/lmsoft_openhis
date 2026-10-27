@@ -4,7 +4,7 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Application.Interface
 {
     /// <summary>
-    /// 物资操作
+    /// Thao tác vật tư
     /// </summary>
     public interface IWarehouseApp
     {
@@ -18,12 +18,12 @@ namespace Newtouch.Herp.Application.Interface
         void SubmitForm(KfWarehouseEntity wzEntity, string[] staffghs, string[] departmentIds, string keyWord);
 
         /// <summary>
-        /// 同步库房物资
+        /// Đồng bộ vật tư kho
         /// </summary>
         /// <param name="productIds"></param>
         /// <param name="opereateType"></param>
         /// <param name="organizeId"></param>
-        /// <param name="warehouseId">目标库房</param>
+        /// <param name="warehouseId">Kho đích</param>
         /// <returns></returns>
         bool FreshWhAndwzRelList(List<string> productIds, int opereateType, string organizeId, string warehouseId);
     }

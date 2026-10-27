@@ -16,13 +16,13 @@ using Microsoft.Data.SqlClient;
 namespace NewtouchHIS.DomainService.MRQC
 {
     /// <summary>
-    /// 病历质控
+    /// Kiểm soát chất lượng bệnh án
     /// </summary>
     public class MRQCScoreDmnService : BaseServices<MRQCScoreVO>, IMRQCScoreDmnService
     {
 
         /// <summary>
-        /// 病历质控达标情况
+        /// Tình hình đạt chuẩn kiểm soát chất lượng bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="db"></param>

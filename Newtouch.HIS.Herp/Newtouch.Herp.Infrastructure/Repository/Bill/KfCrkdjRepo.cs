@@ -5,14 +5,14 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 出入库单据
+    /// Chứng từ nhập/xuất kho
     /// </summary>
     public class KfCrkdjRepo : RepositoryBase<KfCrkdjEntity>, IKfCrkdjRepo
     {
         
         
         /// <summary>
-        /// 打回申请 从待处理变成暂存，只针对外部入库
+        /// Trả lại đơn xin Từ chờ xử lý chuyển thành lưu tạm，Chỉ áp dụng cho nhập kho ngoài
         /// </summary>
         /// <param name="crkId"></param>
         /// <returns></returns>

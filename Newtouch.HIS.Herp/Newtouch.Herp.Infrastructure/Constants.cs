@@ -6,7 +6,7 @@ using NewtouchHIS.Lib.Framework.Operator;
 namespace Newtouch.Herp.Infrastructure
 {
     /// <summary>
-    /// 系统常量 (Core port: Redis-backed KF context replaced by an in-memory
+    /// Hằng số hệ thống (Core port: Redis-backed KF context replaced by an in-memory
     /// per-user store — this app runs as a single instance in this deployment,
     /// and nothing outside this process reads the KF key. AppId/TopOrganizeId
     /// are set once from appsettings by Program.cs via Init, replacing
@@ -42,7 +42,7 @@ namespace Newtouch.Herp.Infrastructure
             {
                 if (string.IsNullOrWhiteSpace(_topOrganizeId))
                 {
-                    throw new Exception("Top_OrganizeId未配置");
+                    throw new Exception("Top_OrganizeId Chưa cấu hình");
                 }
                 return _topOrganizeId;
             }

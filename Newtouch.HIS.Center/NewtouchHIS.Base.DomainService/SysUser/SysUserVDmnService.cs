@@ -13,7 +13,7 @@ using SqlSugar;
 namespace NewtouchHIS.Base.DomainService
 {
     /// <summary>
-    /// 系统用户管理（query）
+    /// Quản lý người dùng hệ thống(query)
     /// </summary>
     public class SysUserVDmnService : BaseDmnService<SysUserVEntity>, ISysUserVDmnService
     {
@@ -21,7 +21,7 @@ namespace NewtouchHIS.Base.DomainService
         private readonly ISysDepartmentDmnService _sysDepartmentDmn;
         private readonly ISysRoleDmnService _roleDmn;
         /// <summary>
-        /// 应用需配置主库
+        /// Ứng dụng cần cấu hình cơ sở dữ liệu chính
         /// </summary>
         private string _mainDB = ConfigInitHelper.DbConfig.MainDB ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "DbConfig.MainDB");
 
@@ -64,7 +64,7 @@ namespace NewtouchHIS.Base.DomainService
 
             if (user.Locked.HasValue && user.Locked.Value)
             {
-                //不提供 自动解锁 功能
+                //Không cung cấp Tự động mở khóa Chức năng
                 return new BusResult<SysUserVEntity> { code = ResponseResultCode.FAIL, msg = string.Format("Nhập sai mật khẩu liên tiếp quá {0} lần, tài khoản đã bị khóa", sysConfig.LoginFailedTimesLimit_Count) };
             }
             string dbPassword = MD5Encrypt.Md5(DESEncrypt.Encrypt(login.Password.ToLower(), user.UserSecretkey).ToLower(), 32).ToLower();
@@ -94,7 +94,7 @@ namespace NewtouchHIS.Base.DomainService
                 }
             }
 
-            //登录成功，构造系统身份信息
+            //Đăng nhập thành công,Xây dựng thông tin danh tính hệ thống
             var logEntity = new SysUserLoginLog
             {
                 Id = Guid.NewGuid().ToString(),
@@ -109,11 +109,11 @@ namespace NewtouchHIS.Base.DomainService
             return await BuildLoginStatusOpr(user, logEntity, staffOrganizeId);
         }
         /// <summary>
-        /// 构造登录身份（前面身份已经验证通过了）
+        /// Xây dựng danh tính đăng nhập(Danh tính phía trước đã kiểm chứng đạt)
         /// </summary>
         /// <param name="userEntity"></param>
         /// <param name="logEntity"></param>
-        /// <param name="staffOrganizeId">指定了OrganizeId</param>
+        /// <param name="staffOrganizeId">Đã chỉ địnhOrganizeId</param>
         public async Task<OperatorModel?> BuildLoginStatusOpr(SysUserVEntity userEntity, SysUserLoginLog logEntity, string staffOrganizeId = null)
         {
             SysStaffVEntity? staff = null;
@@ -124,7 +124,7 @@ namespace NewtouchHIS.Base.DomainService
                 IList<SysStaffVEntity>? staffList = null;
                 if (userEntity.Account != "root" && userEntity.Account != "admin")
                 {
-                    //root admin 不可以关联医院Id，建立了关联也无视
+                    //root admin không thể liên kết bệnh việnId,dù đã lập liên kết cũng bỏ qua
                     staffList = await _sysStaffDmn.GetStaffListByUserId(userEntity.Id);
                     if (!string.IsNullOrWhiteSpace(staffOrganizeId))
                     {
@@ -132,7 +132,7 @@ namespace NewtouchHIS.Base.DomainService
                     }
                     if (staffList.Count > 1)
                     {
-                        //主页需要做Org选择
+                        //Trang chủ cần làmOrgChọn
                         writedNeedChooseOrgFlag = true;
                     }
                     else if (staffList.Count == 0)
@@ -176,7 +176,7 @@ namespace NewtouchHIS.Base.DomainService
                 logEntity.NickName = staff == null ? null : staff.Name;
                 logEntity.Result = true;
                 logEntity.Description = "系统登录成功";
-                //关联多Tổ chức时 不准确
+                //Liên kết nhiềuTổ chứckhi không chính xác
                 logEntity.OrganizeId = staff == null ? null : staff?.OrganizeId;
             }
             return operatorModel;
@@ -185,8 +185,8 @@ namespace NewtouchHIS.Base.DomainService
 
         #region private
         /// <summary>
-        /// root登录（特例），验证密码
-        /// 通过返回true，否则返回false
+        /// rootĐăng nhập(Trường hợp đặc biệt),Kiểm chứng mật khẩu
+        /// Đạt thì trả vềtrue,nếu không thì trả vềfalse
         /// </summary>
         /// <param name="password"></param>
         /// <returns></returns>

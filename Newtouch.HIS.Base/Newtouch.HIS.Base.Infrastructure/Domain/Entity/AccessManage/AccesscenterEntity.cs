@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2022-06-28 21:50
-    /// 描 述：接口注入
+    /// Tạo lập：chl
+    /// Ngày ：2022-06-28 21:50
+    /// Mô tả：Tiêm giao diện
     /// </summary>
     [SugarTable("xt_accesscenter")]
     public class AccesscenterEntity : EntityBase

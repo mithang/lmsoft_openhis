@@ -6,7 +6,7 @@ using SqlSugar;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 物资类别 (Base DB: wz_type).
+    /// Loại vật tư (Base DB: wz_type).
     /// </summary>
     public class WzTypeRepo : RepositoryBase<WzTypeEntity>, IWzTypeRepo
     {

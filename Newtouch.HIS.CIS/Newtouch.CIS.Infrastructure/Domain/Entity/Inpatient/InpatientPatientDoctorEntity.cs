@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 15:37
-    /// 描 述：住院病人医生信息表
+    /// Tác giả: 冬林
+    /// Ngày：2018-06-28 15:37
+    /// Mô tả：Nhập việnbệnh nhânBác sĩthông tinbảng
     /// </summary>
     [SugarTable("zy_PatDocInfo")]
     public class InpatientPatientDoctorEntity
@@ -40,7 +40,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string ysmc { get; set; }
         /// <summary>
-        /// 0住院1主治2主任
+        /// 0Nhập viện1chínhđiều trị2chínhnhiệm
         /// </summary>
         /// <returns></returns>
         public int Type { get; set; }
@@ -70,7 +70,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0无效1有效
+        /// 0Vô hiệu1Hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }

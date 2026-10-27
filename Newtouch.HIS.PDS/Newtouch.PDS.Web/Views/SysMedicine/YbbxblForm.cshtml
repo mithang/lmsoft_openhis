@@ -19,7 +19,7 @@
     var xmmc = decodeURIComponent($.request("xmmc"));
     $(function () {
         $('#gridList').newtouchLocalDataGrid({
-            //caption: '计费明细',
+            //caption: 'Chi tiết tính phí',
             height: $(window).height() - 80,
             unwritten: false,
             editurl: "clientArray",
@@ -97,7 +97,7 @@
             //multiselect: true,
             gridComplete: function () {
 
-                //启用行内编辑框
+                //Bật hộp chỉnh sửa trong dòng
                 EnableInlineEditBox();
             },
             onSelectRow: function (rowid) {
@@ -112,7 +112,7 @@
     function submitForm() {
         debugger;
         var res = true;
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) {
@@ -123,7 +123,7 @@
         {
             return;
         }
-        //获取所有选中行数据
+        //Lấy tất cả dữ liệu dòng đã chọn
         var data = $("#gridList").jqGrid('getRowData_AllLine', false);
         $.najax({
             url: "/SysChargeItem/SaveYbblValue",
@@ -157,9 +157,9 @@
             }
         });
     }
-    //启用行内编辑框
+    //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        //GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {

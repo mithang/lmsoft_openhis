@@ -24,7 +24,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
             _sysOrgVDmn = sysOrgVDmn;
         }
         /// <summary>
-        /// 未处理的即时Tin nhắn
+        /// Tức thời chưa xử lýTin nhắn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -58,8 +58,8 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
             return new BusResult<List<MsgNoticeQueueVO>> { code = ResponseResultCode.SUCCESS, Data = msg.Count == 0 ? null : msg };
         }
         /// <summary>
-        /// 未读Tin nhắn
-        /// 当天时间间隔超过1h
+        /// Chưa đọcTin nhắn
+        /// Khoảng thời gian trong ngày vượt quá1h
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -94,7 +94,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
             return new BusResult<List<MsgNoticeQueueVO>> { code = ResponseResultCode.SUCCESS, Data = msg };
         }
         /// <summary>
-        /// Tin nhắn处理成功
+        /// Tin nhắnXử lý thành công
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -104,14 +104,14 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || string.IsNullOrWhiteSpace(request.Data.QueueId))
             {
-                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức、Tin nhắnId không được để trống" };
+                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức,Tin nhắnId không được để trống" };
             }
-            //更新Tin nhắn处理状态
+            //Cập nhậtTin nhắnTrạng thái xử lý
             var msgModify = await _msgQueueDmn.NoticeStuModify(request.Data.QueueId, request.AppId, NoticeStuEnum.UnSend);
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, Data = msgModify };
         }
         /// <summary>
-        /// Tin nhắn处理失败
+        /// Tin nhắnXử lý thất bại
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -121,14 +121,14 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || string.IsNullOrWhiteSpace(request.Data.QueueId))
             {
-                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức、Tin nhắnId không được để trống" };
+                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức,Tin nhắnId không được để trống" };
             }
-            //更新Tin nhắn处理状态
+            //Cập nhậtTin nhắnTrạng thái xử lý
             var msgModify = await _msgQueueDmn.NoticeStuModify(request.Data.QueueId, request.AppId, NoticeStuEnum.Wait, false);
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, Data = msgModify };
         }
         /// <summary>
-        /// Tin nhắn发送成功
+        /// Tin nhắnGửi thành công
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -138,14 +138,14 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || string.IsNullOrWhiteSpace(request.Data.QueueId))
             {
-                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức、Tin nhắnId không được để trống" };
+                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức,Tin nhắnId không được để trống" };
             }
-            //更新Tin nhắn处理状态
+            //Cập nhậtTin nhắnTrạng thái xử lý
             var msgModify = await _msgQueueDmn.NoticeStuModify(request.Data.QueueId, request.AppId, NoticeStuEnum.Send);
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, Data = msgModify };
         }
         /// <summary>
-        /// Tin nhắn发送失败
+        /// Tin nhắnGửi thất bại
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -155,9 +155,9 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || string.IsNullOrWhiteSpace(request.Data.QueueId))
             {
-                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức、Tin nhắnId không được để trống" };
+                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức,Tin nhắnId không được để trống" };
             }
-            //更新Tin nhắn处理状态
+            //Cập nhậtTin nhắnTrạng thái xử lý
             var msgModify = await _msgQueueDmn.NoticeStuModify(request.Data.QueueId, request.AppId, NoticeStuEnum.UnSend, false);
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, Data = msgModify };
         }
@@ -172,14 +172,14 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || string.IsNullOrWhiteSpace(request.Data.QueueId))
             {
-                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức、Tin nhắnId không được để trống" };
+                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức,Tin nhắnId không được để trống" };
             }
-            //更新Tin nhắn处理状态
+            //Cập nhậtTin nhắnTrạng thái xử lý
             var msgModify = await _msgQueueDmn.NoticeStuModify(request.Data.QueueId, request.AppId, NoticeStuEnum.Read);
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, Data = msgModify };
         }
         /// <summary>
-        /// Tin nhắn đã đọc（批量）
+        /// Tin nhắn đã đọc(Hàng loạt)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -189,9 +189,9 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.HisJob.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || request.Data?.QueueIds?.Length == 0)
             {
-                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức、Tin nhắnId không được để trống" };
+                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức,Tin nhắnId không được để trống" };
             }
-            //更新Tin nhắn处理状态
+            //Cập nhậtTin nhắnTrạng thái xử lý
             var msgModify = await _msgQueueDmn.NoticeStuModify(request.Data.QueueIds, request.AppId, NoticeStuEnum.Read);
             return new BusResult<bool> { code = ResponseResultCode.SUCCESS, Data = msgModify };
         }

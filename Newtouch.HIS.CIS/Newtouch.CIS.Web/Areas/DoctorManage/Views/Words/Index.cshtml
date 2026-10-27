@@ -35,11 +35,11 @@
     </div>
 </div>
 <script>
-    var deldata = [];//删除对象
+    var deldata = [];//Xóađối tượng
     var wzyzflag = 0;
     var wordlocaldata = new Array();
     function init_WordPrescription() {
-        //仅尚未保存到数据库的医嘱需要初始化在grid中
+        //chỉ chưaLưuđếnCơ sở dữ liệucủaY lệnhcần khởi tạo tronggridtrong
         wordlocaldata = new Array();
         if (window.alldataArray.wzyz) {
             wordlocaldata = $.jsonWhere($.deepClone.clone(window.alldataArray.wzyz), function (icf) {
@@ -54,18 +54,18 @@
             });
         }
         else {
-            window.alldataArray.wzyz = new Array(); //方便后面使用$.each()
+            window.alldataArray.wzyz = new Array(); //Để tiện dùng về sau$.each()
         }
 
-        if (wzyzflag == 0) {   //该页面初始化
+        if (wzyzflag == 0) {   //Trang này khởi tạo
             gridword();
 
             wzyzflag = 1;
         }
 
         else {
-            $("#gridword").clearGridData(); //先清
-            //再次打开该页面
+            $("#gridword").clearGridData(); //xóa trắng trước
+            //Mở lại trang này
             $("#gridword").jqGrid('setGridParam', {
                 datatype: 'local',
                 data: wordlocaldata
@@ -74,17 +74,17 @@
     }
 
 
-    //药品列表
+    //Thuốcdanh sách
     function gridword() {
         var $gridword = $("#gridword");
         $gridword.jqGrid({
             datatype: 'local',
             data: wordlocaldata,
             height: $(window).height() - 180,
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            shrinkToFit: true,   //true:theo tỷ lệVDkhởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
             autowidth: true,
-            rownumbers: true,  //是否显示Số thứ tự
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            rownumbers: true,  //CóKhôngHiển thịSố thứ tự
+            editurl: "clientArray",  //dòngSửakhông gửi lên máy chủGửiDữ liệu
             unwritten: false,
             colModel: [
                 { label: 'Id', name: 'Id', align: 'center', hidden: true },
@@ -115,17 +115,17 @@
                 { name: 'zyh', hidden: true },
                 { name: 'ysgh', hidden: true }, { name: 'Px', hidden: true },
             ],
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
+            editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
             pager: "gridwordPager",
             gridComplete: function () {
                 EnableWordInlineEditBox();
-                //隐藏grid底部滚动条
+                //Ẩngridthanh cuộn dưới cùng
                 $gridword.closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
             }
         });
 
-        //二级菜单
+        //Menu cấp 2
         $gridword.jqGrid('setGroupHeaders', {
             useColSpanStyle: true,
             groupHeaders: [
@@ -140,7 +140,7 @@
             function () {
                 $(this).css("padding", 0);
             });
-        //自定义按钮
+        //Nút tùy chỉnh
         $gridword.navGrid('#gridwordPager',
                 {
                     edit: false,
@@ -166,16 +166,16 @@
         $("#gridwordPager_right").append("<div class=\"ckbox\" style=\"margin-top:2px;\"><input id=\"chkycy\" name=\"chkycy\" type=\"checkbox\" ><label for=\"chkycy\">Dự kiến xuất viện</label></div>");
     }
 
-    //启用行内编辑
+    //Bật sửa trong dòng
     function EnableWordInlineEditBox() {
         var ids = $("#gridword").getDataIDs();
         $.each(ids, function () {
             var rowid = String(this);
-            //打开编辑模式
+            //MởSửachế độ
             $("#gridword").jqGrid('editRow', rowid, false, initWordInlineFunc);
             $("#" + rowid + "_kssj").css("text-align", "left");
 
-            //医嘱类别 长、临
+            //Loại y lệnh 长、临
             if ($("#" + rowid + "_yzlb").val() == undefined || $("#" + rowid + "_yzlb").val() === "") {
                 var yzlb = $("#chkwordyz").is(":checked") ? "临" : "长";
                 $("#" + rowid + "_yzlb").val(yzlb);
@@ -185,17 +185,17 @@
 
     }
 
-    //初始化 浮层
+    //Khởi tạo lớp nổi
     function initWordInlineFunc(rowid) {
-        //部分列只读
+        //Một số cột chỉ đọc
         $("#" + rowid + "_pcmc").attr('readonly', 'true');
         var currlineId = $("#gridword").getRowData(rowid).Id;
         $("#" + rowid + "_xmmc").attr('autocomplete', 'off');
-        if (currlineId.indexOf("0.") == '-1') {//修改的数据，不允许修改收费项目
+        if (currlineId.indexOf("0.") == '-1') {//SửacủaDữ liệu，khôngcho phépSửaMục thu phí
            // $("#" + rowid + "_xmmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
         }
 
-        //医嘱类别 浮动
+        //Loại y lệnh nổi
         $("#" + rowid + "_yzlb").yzlbFloatingSelector({
             isinputchangetriggered: false,
             showtext: 'Name',
@@ -208,13 +208,13 @@
 
         $("#" + rowid + "_yzlb").change(function () {
             if ($("#" + rowid + "_yzlb").val() === "临") {
-                $("#" + rowid + "_ts").css('background-color', '#f6f7fb').attr('readonly', 'true'); //临时医嘱 禁用天数
+                $("#" + rowid + "_ts").css('background-color', '#f6f7fb').attr('readonly', 'true'); //Y lệnh tạm thời Vô hiệu hóaSố ngày
             } else {
-                $("#" + rowid + "_ts").css('background-color', '#fff').removeAttr('readonly'); //长期医嘱 启用天数
+                $("#" + rowid + "_ts").css('background-color', '#fff').removeAttr('readonly'); //Y lệnh dài hạn Kích hoạtSố ngày
             }
         });
 
-        //频次浮层
+        //Lớp nổi tần suất
         $("#" + rowid + "_pcmc").pcFloatingSelector({
             showtext: 'yzpcmc',
             attrcols: ['yzpcmc', 'yzpcCode', 'zxcs', 'zxzq', 'zxzqdw'],
@@ -229,7 +229,7 @@
                     $("#" + rowid + "_yzlb").val("临");
                 }
                 var pcCode = $("#" + rowid + "_pcCode").val();
-                //临时医嘱天数禁用
+                //Y lệnh tạm thờiSố ngàyVô hiệu hóa
                 if ('@ViewBag.pcStr' !== '' && pcCode !== '' && (!isNaN(pcCode)) &&
                     (('@ViewBag.pcStr').indexOf(pcCode) > -1)) {
                     $("#" + rowid + "_ts").css('background-color', '#f6f7fb').attr('readonly', 'true');
@@ -239,7 +239,7 @@
             }
         });
 
-        //嘱托浮层
+        //Lớp nổi dặn dò
         $("#" + rowid + "_ztnr").ztFloatingSelector({
             height: 100,
             itemdbclickhandler: function ($this) {
@@ -248,7 +248,7 @@
         });
 
 
-        //指示浮层
+        //chỉhiển thịlớp nổi
         //$("#" + rowid + "_xmmc").zsFloatingSelector({
         //    height: 300,
         //    itemdbclickhandler: function ($this) {
@@ -257,7 +257,7 @@
         //});
     }
 
-    //新医嘱 按钮
+    //Y lệnh mới Nút
     function newWordPresData() {
         if (patobjValidate()) {
             var dataRow = {
@@ -265,8 +265,8 @@
                 xmdm: "999999999999999999",
                 action: getWordActionStr(),
                 kssj: $.getTime(),
-                yzlx: @((int)EnumYzlx.Wz),//文字录入
-                yzzt: 0,//默认未审
+                yzlx: @((int)EnumYzlx.Wz),//văn bảnnhập
+                yzzt: 0,//Mặc địnhchưa duyệt
                 zyh: currentobj.zyh,
                 yzlb: $("#chkwordyz").is(":checked") ? "临" : "长",
                 xmmc: $("#chkycy").is(":checked") ? "Dự kiến xuất viện" : ""
@@ -276,12 +276,12 @@
         }
     }
 
-    //删除明细
+    //Xóa chi tiết
     function deleteIRowData(selRowId, recalc) {
         if (!!selRowId) {
            var Id= $("#gridword").jqGrid('getRowData', selRowId).Id;
             $("#gridword").jqGrid("delRowData", selRowId);
-            if (Id.indexOf("0.")==='-1') {//记录下来，从数据库删除
+            if (Id.indexOf("0.")==='-1') {//ghi lại，từCơ sở dữ liệuXóa
                 deldata.push(Id);
             }
         }
@@ -291,17 +291,17 @@
         return "<i class='fa fa-plus-square-o' style='font-size: large; color: #09a3ea;' onclick='newWordPresData()'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;' onclick='deleteIRowData($(this).parent().parent().attr(\"id\"));return false;'></i>";
     }
 
-    //保存按钮动作 
+    //LưuNútthao tác 
     function SaveWordMedicine(savetodb) {
         patobjValidate();
-            //获取所有行Id，遍历使编辑框处于保存状态
+            //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
             var rowIds = $("#gridword").jqGrid('getDataIDs');
             for (var i = 0; i < rowIds.length; i++) {
                 var saveResult = $("#gridword").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
                 if (!saveResult) {
-                    EnableWordInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                    return;   //保存失败，则return
+                    EnableWordInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
+                    return;   //Lưu thất bại，thìreturn
                 }
             }
         var gridwordData = $("#gridword").jqGrid('getRowData_AllLine', null, true);
@@ -313,7 +313,7 @@
             var flag = false;
         var gridSimpleData = [];
         var px = 0;
-            $.each(gridwordData, function () {    //去掉action
+            $.each(gridwordData, function () {    //Bỏaction
                 for (var i = 0; i < $(this).length; i++) {
                     delete $(this)[i].action;
                     $(this)[i].ysgh = '@ViewBag.ysgh';
@@ -345,10 +345,10 @@
             return;
         }
 
-        //保存数据
+        //Lưu dữ liệu
         window.alldataArray.wzyz = $.jsonWhere(window.alldataArray.wzyz, function (iyzmx) {
             if (!!!iyzmx.Id) {
-                return false;   //编辑列表里有
+                return false;   //Sửatrong danh sách có
             }
             for (var iIndex = 0; iIndex < gridwordData.length; iIndex++) {
                 if (gridwordData[iIndex].Id === iyzmx.Id) {
@@ -359,7 +359,7 @@
         });
 
         $.each(gridwordData, function () {
-            this.yztag = $("#chkycy").is(":checked") ? "YCY" : "";//预出院赋值
+            this.yztag = $("#chkycy").is(":checked") ? "YCY" : "";//Dự kiến xuất việnGán giá trị
             window.alldataArray.wzyz.unshift(this);
         });
 
@@ -370,10 +370,10 @@
             window.alldataArray.wzyz = [];
         }
     }
-    //验证
+    //kiểm tra
     function ValidateWord() {
         patobjValidate();
-        //是否有数据
+        //CóKhôngcóDữ liệu
         var data = $("#gridword").jqGrid('getRowData_AllLine', null, true);
         if (data.length===0) {
             $.modalAlert("Thiếu dữ liệu y lệnh", 'warning');
@@ -382,12 +382,12 @@
         return true;
     }
 
-    //修改操作时初始化
+    //SửaThao táckhiKhởi tạo
     function EditWInit(zyh, yzId, yzlb) {
         $.najax({
             url: "/DoctorManage/Medicine/GetYZDetail",
             dataType: "json",
-            data: { zyh: zyh, yzId: yzId, yzlx: yzlb },//yzlx:长临记号
+            data: { zyh: zyh, yzId: yzId, yzlx: yzlb },//yzlx:dài hạn/tạm thờighisố
             type: "POST",
             success: function (data) {
                 currentobj = data.patientInfo;
@@ -404,7 +404,7 @@
         });
     }
 
-     //另存为模板
+     //Lưu thành mẫu
     function SaveWordTemplate() {
         $.modalOpen({
             id: "Form",
@@ -428,14 +428,14 @@
                     mbObj.ysgh = '@ViewBag.ysgh';
                 }
 
-                //获取所有行Id，遍历使编辑框处于保存状态
+                //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
                 var rowIds = $("#gridword").jqGrid('getDataIDs');
                 for (var i = 0; i < rowIds.length; i++) {
                     var saveResult = $("#gridword").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
                     if (!saveResult) {
-                        EnableWordInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                        return;   //保存失败，则return
+                        EnableWordInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
+                        return;   //Lưu thất bại，thìreturn
                     }
                 }
                 var gridWordData = $("#gridword").jqGrid('getRowData_AllLine', null, true);
@@ -443,7 +443,7 @@
                     $.modalAlert("Thiếu dữ liệu y lệnh", 'warning');
                     return false;
                 }
-                $.each(gridWordData, function () {    //去掉action
+                $.each(gridWordData, function () {    //Bỏaction
                     for (var i = 0; i < $(this).length; i++) {
                         delete $(this)[i].action;
                     }

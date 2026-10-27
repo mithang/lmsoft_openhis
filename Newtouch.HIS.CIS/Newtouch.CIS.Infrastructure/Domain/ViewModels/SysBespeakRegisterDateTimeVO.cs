@@ -4,63 +4,63 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// 预约日期
+    /// đặt hẹnNgày
     /// </summary>
     public class SysBespeakRegisterDateTimeVO
     {
         /// <summary>
-        /// 临时主键
+        /// Tạm thờiKhóa chính
         /// </summary>
         public string tmpId { get; set; }
 
         /// <summary>
-        /// 预约日期
+        /// đặt hẹnNgày
         /// </summary>
         public string regDate { get; set; }
 
         /// <summary>
-        /// 星期
+        /// 星kỳ
         /// </summary>
         public string week { get; set; }
 
         /// <summary>
-        /// 预约时间段
+        /// đặt hẹnThời gianđoạn
         /// </summary>
         public List<SysBespeakRegisterTimeVO> regTimes { get; set; }
     }
 
     /// <summary>
-    /// 预约时间
+    /// đặt hẹnThời gian
     /// </summary>
     public class SysBespeakRegisterTimeVO
     {
         /// <summary>
-        /// 临时主键
+        /// Tạm thờiKhóa chính
         /// </summary>
         public string tmpId { get; set; }
 
         /// <summary>
-        /// xt_bespeakRegister表ID
+        /// xt_bespeakRegisterbảngID
         /// </summary>
         public string tabId { get; set; }
 
         /// <summary>
-        /// 预约时间
+        /// đặt hẹnThời gian
         /// </summary>
         public DateTime regBeginTime { get; set; }
 
         /// <summary>
-        /// 预约时间
+        /// đặt hẹnThời gian
         /// </summary>
         public DateTime regEndTime { get; set; }
 
         /// <summary>
-        /// 预约时间  regBeginTime和regEndTime结合
+        /// đặt hẹnThời gian  regBeginTimevàregEndTimekếthợp
         /// </summary>
         public string regTime { get; set; }
 
         /// <summary>
-        /// 最大预约人数
+        /// nhấtlớnđặt hẹn ngườisố
         /// </summary>
         public int bespeakMaxCount { get; set; }
     }

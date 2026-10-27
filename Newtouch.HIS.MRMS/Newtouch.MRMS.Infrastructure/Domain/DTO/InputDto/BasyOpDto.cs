@@ -42,67 +42,67 @@ namespace Newtouch.MR.ManageSystem.Domain.DTO.InputDto
         public int SSOrder { get; set; }
 
         /// <summary>
-        /// 手术及操作编码
+        /// Mã phẫu thuật và thủ thuật
         /// </summary>
         /// <returns></returns>
         public string SSJCZBM { get; set; }
 
         /// <summary>
-        /// 手术及操作日期
+        /// Ngày phẫu thuật và thủ thuật
         /// </summary>
         /// <returns></returns>
         public DateTime SSJCZRQ { get; set; }
 
         /// <summary>
-        /// 手术级别
+        /// Cấp độ phẫu thuật
         /// </summary>
         /// <returns></returns>
         public string SSJB { get; set; }
 
         /// <summary>
-        /// 手术及操作名称
+        /// Tên phẫu thuật và thủ thuật
         /// </summary>
         /// <returns></returns>
         public string SSJCZMC { get; set; }
 
         /// <summary>
-        /// 术者
+        /// Phẫu thuật viên
         /// </summary>
         /// <returns></returns>
         public string SZ { get; set; }
 
         /// <summary>
-        /// I助
+        /// Trợ thủ I
         /// </summary>
         /// <returns></returns>
         public string YZ { get; set; }
 
         /// <summary>
-        /// II助
+        /// Trợ thủ II
         /// </summary>
         /// <returns></returns>
         public string EZ { get; set; }
 
         /// <summary>
-        /// 切口等级
+        /// Mức độ vết mổ
         /// </summary>
         /// <returns></returns>
         public string QKDJ { get; set; }
 
         /// <summary>
-        /// 切口愈合类别
+        /// Loại liền vết mổ
         /// </summary>
         /// <returns></returns>
         public string QKYHLB { get; set; }
 
         /// <summary>
-        /// 麻醉方式
+        /// Phương pháp gây mê
         /// </summary>
         /// <returns></returns>
         public string MZFS { get; set; }
 
         /// <summary>
-        /// 麻醉医师
+        /// Bác sĩ gây mê
         /// </summary>
         /// <returns></returns>
         public string MZYS { get; set; }
@@ -114,23 +114,23 @@ namespace Newtouch.MR.ManageSystem.Domain.DTO.InputDto
         public string zt { get; set; }
         public string QKYHDJ { get; set; }
         /// <summary>
-        /// 主刀医生姓名
+        /// Tên bác sĩ mổ chính
         /// </summary>
         public string SZMC { get; set; }
         /// <summary>
-        /// I助姓名
+        /// Tên trợ thủ I
         /// </summary>
         public string YZMC { get; set; }
         /// <summary>
-        /// II助姓名
+        /// Tên trợ thủ II
         /// </summary>
         public string EZMC { get; set; }
         /// <summary>
-        /// 麻醉医生姓名
+        /// Tên bác sĩ gây mê
         /// </summary>
         public string MZYSMC { get; set; }
         /// <summary>
-        /// 麻醉方式描述
+        /// Mô tả phương pháp gây mê
         /// </summary>
         public string MZFSMS { get; set; }
 

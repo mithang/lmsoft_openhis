@@ -1,26 +1,26 @@
 $.yibao = {
     $yibaoAX: $('#yibaoAX')[0],
-    //读取卡信息
+    //đọclấythẻthông tin
     GetCardInfo: function () {
         return eval('(' + this.$yibaoAX.GetCardInfo() + ')');
     },
     /// <summary>
-    /// 门诊挂号
+    /// Ngoại trúđăng ký khám
     /// </summary>
-    /// <param name="DAC001">社保编号</param>
-    /// <param name="AKE556">费用性质</param>
-    /// <param name="AKE186">就诊类型</param>
-    /// <param name="AKE162">就诊原因</param>
-    /// <param name="DAE147">验证码（可为空）</param>
-    /// <param name="AKE276">挂号/入院操作员编码</param>
-    /// <param name="AKE277">挂号/入院操作员</param>
-    /// <param name="AKE189">就诊序号/住院号</param>
-    /// <param name="CUSTNAME">购药人姓名(自费人员必填)</param>
+    /// <param name="DAC001">xãbảoSố hiệu</param>
+    /// <param name="AKE556">Chi phíTính chất</param>
+    /// <param name="AKE186">Khám bệnhLoại</param>
+    /// <param name="AKE162">Khám bệnhnguyên nhân</param>
+    /// <param name="DAE147">Mã xác minh（có thểlàtrống）</param>
+    /// <param name="AKE276">đăng ký khám/Nhập việnThao tácviênMã</param>
+    /// <param name="AKE277">đăng ký khám/Nhập việnThao tácviên</param>
+    /// <param name="AKE189">Khám bệnhthứ tựsố/Số nhập viện</param>
+    /// <param name="CUSTNAME">购thuốc ngườiHọ tên(tự chi trả ngườiviênbắt buộc)</param>
     RegClinic: function (DAC001, AKE556, AKE186, AKE162, DAE147, AKE276, AKE277, AKE189, CUSTNAME) {
         return eval('(' + this.$yibaoAX.RegClinic(DAC001, AKE556, AKE186, AKE162, DAE147, AKE276, AKE277, AKE189, CUSTNAME) + ')');
     },
     /// <summary>
-    /// 挂号取消
+    /// đăng ký khámHủy
     /// </summary>
     /// <param name="DKE005"></param>
     /// <param name="DAC001"></param>
@@ -29,7 +29,7 @@ $.yibao = {
         return eval('(' + this.$yibaoAX.DenyReg(DKE005, DAC001, AKE556) + ')');
     },
     /// <summary>
-    /// 明细记账
+    /// chi tiếtghisổ
     /// </summary>
     /// <param name="DKE005"></param>
     /// <param name="Detail"></param>
@@ -37,14 +37,14 @@ $.yibao = {
         return eval('(' + this.$yibaoAX.PreAccount(DKE005, Detail) + ')');
     },
     /// <summary>
-    /// 清除记账
+    /// xóaghisổ
     /// </summary>
     /// <param name="DKE005"></param>
     ClearDetail: function (DKE005) {
         return eval('(' + this.$yibaoAX.ClearDetail(DKE005) + ')');
     },
     /// <summary>
-    /// 门诊预结算
+    /// Ngoại trúdựquyết toán
     /// </summary>
     /// <param name="DKE005"></param>
     /// <param name="DAC001"></param>
@@ -66,33 +66,33 @@ $.yibao = {
             AKE194, AKA120, AKA121, AKE279, AKE278, BKC038, BKC039) + ')');
     },
     /// <summary>
-    /// 门诊结算确认
+    /// Ngoại trúquyết toánxác nhận
     /// </summary>
-    /// <param name="DKE005">结算号</param>
+    /// <param name="DKE005">quyết toánsố</param>
     SettleClinic: function (DKE005) {
         return eval('(' + this.$yibaoAX.SettleClinic(DKE005) + ')');
     },
     /// <summary>
-    /// 退费结算确认
+    /// Hoàn phíquyết toánxác nhận
     /// </summary>
-    /// <param name="DKE005">结算号</param>
-    /// <param name="DAC001">社保编号</param>
-    /// <param name="AKE279">结算经办人编码</param>
-    /// <param name="AKE278">结算经办人</param>
+    /// <param name="DKE005">quyết toánsố</param>
+    /// <param name="DAC001">xãbảoSố hiệu</param>
+    /// <param name="AKE279">quyết toánqualàm ngườiMã</param>
+    /// <param name="AKE278">quyết toánqualàm người</param>
     DenySettle: function (DKE005, DAC001, AKE279, AKE278) {
         return eval('(' + this.$yibaoAX.DenySettle(DKE005, DAC001, AKE279, AKE278) + ')');
     },
     /// <summary>
-    /// 查询未结算信息
+    /// Tra cứuchưaquyết toánthông tin
     /// </summary>
-    /// <param name="DAC001">社保编号</param>
+    /// <param name="DAC001">xãbảoSố hiệu</param>
     QUnSettleFee: function (DAC001) {
         return eval('(' + this.$yibaoAX.QUnSettleFee(DAC001) + ')');
     },
     /// <summary>
-    /// 查询已结算信息
+    /// Tra cứuđãquyết toánthông tin
     /// </summary>
-    /// <param name="DAC001">社保编号</param>
+    /// <param name="DAC001">xãbảoSố hiệu</param>
     QSettleFee: function (DAC001) {
         return eval('(' + this.$yibaoAX.QSettleFee(DAC001) + ')');
     }
@@ -100,19 +100,19 @@ $.yibao = {
 
 $.shiqian = {
     $shiqianAX: $('#yibaoAX')[0],
-    //门诊接诊历史信息
+    //Ngoại trúnhậnkhámlịch sửthông tin
     MzjzInfo: function (Head, JzInfo) {
         this.$shiqianAX.MzjzInfo(Head, JzInfo);
     },
-    //门诊录入诊断
+    //Ngoại trúnhậpChẩn đoán
     MzlrZDInfo: function (Head, ZD, ZDList) {
         this.$shiqianAX.MzlrZDInfo(Head, ZD, ZDList);
     },
-    //门诊处方录入
+    //Đơn thuốc ngoại trúnhập
     MzcfxxlrInfo: function (Head, CFInfo, YP, XM) {
         this.$shiqianAX.MzcfxxlrInfo(Head, CFInfo, YP, XM);
     },
-    //门诊处方保存
+    //Đơn thuốc ngoại trúLưu
     MzcfxxSaveInfo: function (Head, CFInfo, YP, XM) {
         this.$shiqianAX.MzcfxxSaveInfo(Head, CFInfo, YP, XM);
     }

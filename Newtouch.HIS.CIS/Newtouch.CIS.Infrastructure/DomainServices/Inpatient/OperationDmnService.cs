@@ -26,14 +26,14 @@ namespace Newtouch.DomainServices.Inpatient
         { }
 
         /// <summary>
-        /// 手术安排列表查询
+        /// Sắp xếp phẫu thuậtdanh sáchTra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
         /// <returns></returns>
         public List<ArrangeQueryGridVO> ArrangeQueryGridView(Pagination pagination, ArrangeQueryRequestVO req)
         {
-            if (req == null) throw new FailedException("缺少查询条件");
+            if (req == null) throw new FailedException("thiếuĐiều kiện tìm kiếm");
             var sqlstr = new StringBuilder(@"
          SELECT    '临' yzlb ,
                     yz.Id ,
@@ -90,7 +90,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// 手术安排内容获取
+        /// Sắp xếp phẫu thuậtnội dungLấy
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -98,7 +98,7 @@ namespace Newtouch.DomainServices.Inpatient
         public ArrangementVO ArrangementForID(Pagination pagination, ArrangementRequestVO req)
         {
             if (req == null)
-                throw new FailedException("无法获取医嘱信息");
+                throw new FailedException("khôngphương phápLấyY lệnhthông tin");
             const string sqlstr = @" SELECT a.zyh,a.hzxm,a.yznr,b.id,CONVERT(VARCHAR(20), b.aprq,120) aprq,ssAddr,urgent,surgeonId,surgeonName,
 assistant ,assistantName ,anesthesiaType ,remark
 FROM zy_lsyz a WITH(NOLOCK) 
@@ -110,7 +110,7 @@ WHERE a.Id = @Id AND a.OrganizeId=@orgId ";
         }
 
         /// <summary>
-        /// 获取手术医嘱病人
+        /// LấyPhẫu thuậtY lệnhbệnh nhân
         /// </summary>
         /// <param name="psOrgId"></param>
         /// <returns></returns>
@@ -128,7 +128,7 @@ AND zyxx.zybz in ('1','2','3')
         }
 
         /// <summary>
-        /// 提交补录费用
+        /// Gửibổ sungghiChi phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -142,7 +142,7 @@ AND zyxx.zybz in ('1','2','3')
                 using (var db = new EFDbTransaction().BeginTrans())
                 {
                     InpatientFeeDetailEntity tmp = null;
-                    foreach (InpatientFeeDetailEntity item in FeeDetails)//添加或更新的数据
+                    foreach (InpatientFeeDetailEntity item in FeeDetails)//ThêmhoặcCập nhậtcủaDữ liệu
                     {
                         if (string.IsNullOrWhiteSpace(item.Id))
                         {
@@ -154,34 +154,34 @@ AND zyxx.zybz in ('1','2','3')
                             tmp = Exists.FirstOrDefault(p => p.Id == item.Id);
                             if (tmp != null)
                             {
-                                if (tmp.xmdm != item.xmdm || tmp.sl != item.sl)//数据有修改,则更新(项目或数量变动)
+                                if (tmp.xmdm != item.xmdm || tmp.sl != item.sl)//Dữ liệucóSửa,thìCập nhật(MụchoặcSố lượngđổiđộng)
                                 {
                                     item.LastModifyTime = DateTime.Now;
                                     item.LastModifierCode = item.czyh;
                                     db.Update<InpatientFeeDetailEntity>(item);
                                 }
-                                Exists.Remove(tmp);//提取要删除的数据
+                                Exists.Remove(tmp);//nhắclấycầnXóacủaDữ liệu
                             }
                         }
                     }
-                    foreach (InpatientFeeDetailEntity item in Exists)//删除的数据
+                    foreach (InpatientFeeDetailEntity item in Exists)//XóacủaDữ liệu
                     {
                         item.zt = "0";
                         item.LastModifyTime = DateTime.Now;
                         item.LastModifierCode = item.czyh;
-                        db.Update<InpatientFeeDetailEntity>(item);//逻辑删除
+                        db.Update<InpatientFeeDetailEntity>(item);//logictậpXóa
                     }
                     db.Commit();
                 }
             }
             catch (Exception e)
             {
-                throw new FailedException("收费项目保存失败，" + e.Message);
+                throw new FailedException("Mục thu phíLưu thất bại，" + e.Message);
             }
         }
 
         /// <summary>
-        /// 通过住院号,医嘱性质获取费用信息
+        /// thông quaSố nhập viện,Y lệnhTính chấtLấyChi phíthông tin
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="zyh"></param>

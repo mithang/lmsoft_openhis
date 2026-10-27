@@ -176,20 +176,20 @@
         });
     });
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //自适应
+    //Tự thích ứng
     function initLayout() {
         $("#dv_cfs").height(cfsheight);
         $("#dv_cfmx").height($(window).height() - $("#dv_rightTop").get(0).offsetHeight - 57);
     }
 
-    //获取处方信息
+    //Lấy thông tin đơn thuốc
     function gridPatients() {
         $gridPatients.jqGrid("clearGridData");
         $gridPatients.dataGrid({
@@ -216,10 +216,10 @@
             gridComplete: function () {
                 $gridCfmx.jqGrid("clearGridData");
                 var ids = new Array();
-                //getDataIDs()返回当前grid里所有数据的id
+                //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                 ids = $gridPatients.getDataIDs();
                 if (ids == null || ids.length <= 0) return;
-                //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
+                //Chọn hoặc bỏ chọn dòng chỉ định。Nếuonselectrowchoturethì sẽ kích hoạt sự kiệnonSelectRow，onselectrowMặc định làture
                 $gridPatients.setSelection(ids[0], true);
                 doingSomethingAfterSelectRow(ids[0]);
             }
@@ -230,7 +230,7 @@
         });
     }
     var shzt = "";
-    //选中行后
+    //Sau khi chọn dòng
     function doingSomethingAfterSelectRow(rowid) {
         var data = $gridPatients.jqGrid('getRowData', rowid);
         shzt = data.zt;
@@ -299,7 +299,7 @@
         }).trigger('reloadGrid');
     }
 
-    //获取处方明细
+    //Lấy chi tiết đơn thuốc
     function gridCfmx() {
         $gridCfmx.jqGrid("clearGridData");
         $gridCfmx.dataGrid({
@@ -338,7 +338,7 @@
     }
     function newtouch_event_f6() {
         var pats = new Array();
-        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true);//param2:默认所有行；param3：trueQuay lạiobject
+        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true);//param2:Mặc định tất cả các dòng；param3：trueQuay lạiobject
         $(gridPatients).each(function () {
             pats.push({
                 "cfh": this.cfh,
@@ -380,10 +380,10 @@
             }
         });
     }
-    //电子处方 上传 签名
+    //Đơn điện tử Tải lên Chữ ký
     function newtouch_event_f8() {
         var pats = new Array();
-        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true);//param2:默认所有行；param3：trueQuay lạiobject
+        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true);//param2:Mặc định tất cả các dòng；param3：trueQuay lạiobject
         $(gridPatients).each(function () {
             pats.push({
                 "cfh": this.cfh,
@@ -394,10 +394,10 @@
             $.modalAlert("Không tìm thấy thông tin đơn thuốc điện tử hợp lệ！", 'warning');
             return;
         }
-        // 创建一个新的Date对象
+        // Tạo một mớiDateĐối tượng
         var date = new Date();
 
-        // 获取年份、月份（注意月份从0开始计数）、日期、小时、分钟和秒钟
+        // Lấy năm、Tháng（Chú ý tháng bắt đầu từ0bắt đầu đếm）、Ngày、giờ、Phút và giây
         var year = date.getFullYear(); // 2021
         var month = (date.getMonth() + 1).toString().padStart(2, '0'); // 09
         var day = date.getDate().toString().padStart(2, '0'); // 30
@@ -405,14 +405,14 @@
         var minutes = date.getMinutes().toString().padStart(2, '0'); // 47
         var seconds = date.getSeconds().toString().padStart(2, '0'); // 36
 
-        // 将结果组合成指定格式的字符串
+        // Kết hợp kết quả thành chuỗi định dạng chỉ định
         var currentTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         if (shzt == "已撤回" || shzt == "有效") {
             $.modalAlert("Đơn thuốc này đã được phê duyệt hoặc đã thu hồi！không thể phê duyệt！", 'warning');
             return;
         }
 
-        //就诊登记
+        //Đăng ký khám
         CQjzdj();
         var d001data = { "hisId": $('#lab_mzh').text(), "cfh": $("#lab_cfh").text(), "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "orgId": '@(opr.OrganizeId)' };
         $.loading(true, 'Tải lên kiểm tra trước…');
@@ -603,7 +603,7 @@
 
         return info;
     }
-    //清理处方信息
+    //Dọn thông tin đơn thuốc
     function cleanCfInfo() {
         $("#lab_name").html("");
         $("#lab_xb").html("");

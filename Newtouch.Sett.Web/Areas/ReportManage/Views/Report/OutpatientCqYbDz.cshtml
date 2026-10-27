@@ -1,7 +1,7 @@
 @{
 	ViewBag.Title = "";
 	Layout = "~/Views/Shared/_Form.cshtml";
-	//报表链接--医保对账（重庆）
+	//Liên kết báo cáo--y tếbảo hiểmđốitài khoản（Trùng Khánh）
 	var reportUrl = SysConfigReader.OrgReportLink("OutpatientYbDz");
 }
 
@@ -71,7 +71,7 @@
 	function getUrl() {
 		var srcUrl = '@Html.Raw(reportUrl)';
 
-		//获取自定义样式
+		//Lấy kiểu tùy chỉnh
 		if (true) {
 			if (srcUrl.indexOf('&rc:Stylesheet') == -1) {
 				srcUrl += "&rc:Stylesheet=MyStyleSheet";

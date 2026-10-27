@@ -1,4 +1,4 @@
-using NewtouchHIS.AuthenticationCenter.Services;
+ï»¿using NewtouchHIS.AuthenticationCenter.Services;
 using NewtouchHIS.Lib.Base.Model;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Utilities;
@@ -14,7 +14,7 @@ ConfigInitHelper.SysConfig = builder.Configuration.GetSection("BusinessConfig").
 ConfigInitHelper.DbConfig = builder.Configuration.GetSection("BusinessDB").Get<BusinessDB>();
 builder.Services.AddSingleton(new RedisHelper(builder.Configuration.GetSection("RedisConfig")));
 
-//ÅäÖÃÒÀÀµ×¢Èë·ÃÎÊÊı¾İ¿â
+//Cáº¥u hÃ¬nh dependency injection truy cáº­p cÆ¡ sá»Ÿ dá»¯ liá»‡u
 builder.Services.AddDependencyService();
 
 builder.Services.AddControllers(options =>
@@ -25,11 +25,11 @@ builder.Services.AddControllers(options =>
 }).AddNewtonsoftJson(
         options =>
         {
-            //ºöÂÔÑ­»·ÒıÓÃ
+            //Bá» qua tham chiáº¿u vÃ²ng
             options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             options.SerializerSettings.Formatting = Formatting.Indented;
-            options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss.fff";//È«¾Ö´¦Àí ·µ»ØÊ±¼ä¸ñÊ½
-            //²»Ê¹ÓÃÍÕ·åÑùÊ½µÄkey
+            options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss.fff";//Xá»­ lÃ½ toÃ n cá»¥c Äá»‹nh dáº¡ng thá»i gian tráº£ vá»
+            //KhÃ´ng dÃ¹ng kiá»ƒu camelCasekey
             options.SerializerSettings.ContractResolver = new DefaultContractResolver();
         }
 );
@@ -47,10 +47,10 @@ app.UseSwagger();
 app.UseSwaggerUI();
 
 
-#region ¼øÈ¨ÊÚÈ¨
-app.UseAuthentication();        //Ìí¼Ójwt¼øÈ¨ 
-//´úÂë´ÓÉÏµ½ÏÂÖ´ĞĞ£¬ÖĞ¼ä¿ÉÒÔ¼ÓÅĞ¶Ï£¬ È¨ÏŞÉèÖÃÎÊÌâ
-app.UseAuthorization();   //ÊÚÈ¨
+#region á»¦y quyá»n xÃ¡c thá»±c
+app.UseAuthentication();        //ThÃªmjwtXÃ¡c thá»±c 
+//Code thá»±c thi tá»« trÃªn xuá»‘ng dÆ°á»›i,á»Ÿ giá»¯a cÃ³ thá»ƒ thÃªm Ä‘iá»u kiá»‡n xÃ©t, Váº¥n Ä‘á» cÃ i Ä‘áº·t quyá»n
+app.UseAuthorization();   //á»¦y quyá»n
 #endregion
 
 app.MapControllers();

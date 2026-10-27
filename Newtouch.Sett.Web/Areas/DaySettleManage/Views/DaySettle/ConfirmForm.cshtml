@@ -1,11 +1,11 @@
 @{
     ViewBag.Title = "ConfirmForm";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //住院结算可以用预交金
+    //nhập việnviệnkếttínhcó thểbằngdùngtrướcnộptiền
     var withYjj = SysConfigReader.Bool("InpatientSettWithAdvanceAccount");
     //
     var relatedFPH = SysConfigReader.Bool("Inpatient_SettPage_RelatedFPH");
-    //有与CPOE互通接口
+    //Có vớiCPOElẫn nhauthôngnhậnmiệng
     var interfaceWithCPOE = SysConfigReader.Bool("HOSP_INTERFACE_WITH_CPOE", false).Value;
 }
 
@@ -104,18 +104,18 @@
     var ryrq = $.request("ryrq");
     var cyrq = $.request("cyrq");
     if (!!cyrq) {
-        cyrq = $.getDate({ date: cyrq });   //格式化
+        cyrq = $.getDate({ date: cyrq });   //Định dạng
     }
     var interfaceWithCPOE = '@(interfaceWithCPOE)';
-    //预交金余额
+    //Số dư tạm ứng
     var yjjye = 0;
     var withYjj = '@(withYjj)';
-    //结算总金额
+    //kếttínhtổngtiềnmức
     var zje = parseFloat($.request("zje"));
-    //支付应收 结算时应收（zje = 可报 + 结算时应收 + 等等）
+    //thanh toán phải thu Khoản phải thu khi quyết toán（zje = Được BHYT chi trả + Khoản phải thu khi quyết toán + v.v.）
     var orglxjzfys = parseFloat($.request("xjzfys"));
-    //有折扣时不等 original
-    var xjzfys = orglxjzfys;    //有折扣时会不等
+    //Khi có chiết khấu thì không bằng original
+    var xjzfys = orglxjzfys;    //khi có chiết khấu sẽ không bằng nhau
 
     $(function () {
         if (!!zyh) {
@@ -131,7 +131,7 @@
             }
         }
         else {
-            //否则默认赋值当天
+            //Ngược lại mặc định gán ngày hôm nay
             $('#cyrq').val($.getDate());
         }
 
@@ -161,13 +161,13 @@
             $('#yjjye').html(parseFloat(yjjye).toFixed(2));
         }
 
-        //现金支付方式1
+        //Phương thức thanh toán tiền mặt1
         $("#zffs1").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 $.each(top.clients.SysForCashPayList, function (key, value) {
                     if (!yjjye && value.xjzffs == '3') {
-                        return; //当前账户无预交金余额，则不显示该支付方式
+                        return; //tài khoản hiện tại không có số dư tạm ứng，thì không hiển thị phương thức thanh toán này
                     }
                     var sele = false;
                     if (!!yjjye && yjjye >= xjzfys) {
@@ -189,13 +189,13 @@
             }
         });
 
-        //现金支付方式2
+        //Phương thức thanh toán tiền mặt2
         $("#zffs2").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
                 $.each(top.clients.SysForCashPayList, function (key, value) {
                     if (value.xjzffs == '3') {
-                        return; //不显示该支付方式
+                        return; //không hiển thị phương thức thanh toán này
                     }
                     $('#zffs2').append('<option value="' + value.xjzffs + '">' + value.xjzffsmc + '</option>');
                 });
@@ -205,7 +205,7 @@
 
         $("#ckyjjzfyeqt").click(function () {
             if ($('#ckyjjzfyeqt').is(':checked')) {
-                //预交金支付方式，‘余额全退’
+                //phương thức thanh toán tạm ứng，‘Hoàn toàn bộ số dư’
                 if (!!yjjye && yjjye >= xjzfys) {
                     //
                     $("#zffs1").val('3').trigger('change');
@@ -222,7 +222,7 @@
     });
 
     function AcceptClick(callBack) {
-        //填写的收费日期 等
+        //điềnviếtcủathuphíngàykỳ v.v.
         var obj = getPostData();
         if (obj) {
             $.najax({
@@ -307,7 +307,7 @@
 
     //common start
 
-    //页面进来，加载发票号
+    //vào trang，Nạp số hóa đơn
     function initFPH() {
         if (!($("#txtfph").length == 1)) {
             return;
@@ -322,7 +322,7 @@
         });
     }
 
-    //弹出发票号的窗口
+    //Bật cửa sổ số hóa đơn
     function ShowInvoicePanel() {
         $.modalOpen({
             id: "InvoiceNoPanel",
@@ -331,7 +331,7 @@
             width: "300px",
             height: "200px",
             callBack: function (iframeId) {
-                top.frames[iframeId].checkFPH();//窗口点确定的回调函数
+                top.frames[iframeId].checkFPH();//hàm gọi lại khi nhấn xác nhận trên cửa sổ
             }
         });
     }
@@ -350,10 +350,10 @@
         }
     });
 
-    //计算 根据 支付应收、支付方式 计算合计实收款、找零
+    //tính theo thanh toán phải thu、Phương thức thanh toán Tính tổng thực thu、Tiền thừa
     function hjsskZhaolingCal() {
         if (!$('#zffs1').val() && $('#zfje1').val() != 0) {
-            //未选择支付方式，对应金额要置为0.00
+            //chưa chọn phương thức thanh toán，Số tiền tương ứng phải đặt thành0.00
             $('#zfje1').val('0.00');
         }
         var zfje1 = $('#zfje1').val();
@@ -361,14 +361,14 @@
             zfje1 = '0.00';
         }
         if (!$('#zffs2').val() && $('#zfje2').val() != 0) {
-            //未选择支付方式，对应金额要置为0.00
+            //chưa chọn phương thức thanh toán，Số tiền tương ứng phải đặt thành0.00
             $('#zfje2').val('0.00');
         }
         var zfje2 = $('#zfje2').val();
         if (!zfje2) {
             zfje2 = '0.00';
         }
-        var hjssk = parseFloat(zfje1) + parseFloat(zfje2);  //多种支付方式合计实收
+        var hjssk = parseFloat(zfje1) + parseFloat(zfje2);  //tổng thực thu của nhiều phương thức thanh toán
         $('#hjssk').html(hjssk.toFixed(2));
         $('#zhaoling').html(parseFloat(hjssk - xjzfys).toFixed(2));
     }

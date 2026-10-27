@@ -100,7 +100,7 @@
     });
     $("#MainType").change(function () {
         if ($("table#gridList").length > 0) {
-            //清空选中行
+            //Xóa các dòng đã chọn
             $("#gridList").resetSelection();
         }
         $("#btn_search").trigger('click');
@@ -155,7 +155,7 @@
         });
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {

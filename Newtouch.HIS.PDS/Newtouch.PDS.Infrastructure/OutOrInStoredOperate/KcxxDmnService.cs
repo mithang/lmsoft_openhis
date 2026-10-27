@@ -8,13 +8,13 @@ using SqlSugar;
 namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
 {
     /// <summary>
-    /// 库存操作
+    /// Thao tác tồn kho
     /// </summary>
     public class KcxxDmnService : DmnServiceBase, IKcxxDmnService
     {
         
         /// <summary>
-        /// 冻结库存  扣库存  内部发药退回使用
+        /// Đóng băng tồn kho  Trừ tồn kho  Sử dụng trả lại phát thuốc nội bộ
         /// </summary>
         /// <param name="ypdm"></param>
         /// <param name="organizeid"></param>
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
         }
 
         /// <summary>
-        /// 冻结库存  扣库存  直接出库使用
+        /// Đóng băng tồn kho  Trừ tồn kho  Sử dụng xuất kho trực tiếp
         /// </summary>
         /// <param name="ypdm"></param>
         /// <param name="organizeid"></param>
@@ -74,14 +74,14 @@ namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
         }
 
         /// <summary>
-        /// 扣库存
+        /// Trừ tồn kho
         /// </summary>
-        /// <param name="ypdm">药品代码</param>
-        /// <param name="sl">最小单位数量</param>
-        /// <param name="pc">批次</param>
-        /// <param name="ph">批号</param>
-        /// <param name="yfbmCode">需扣库存的药房部门</param>
-        /// <param name="organizeid">组织机构</param>
+        /// <param name="ypdm">Mã thuốc</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
+        /// <param name="pc">Lô</param>
+        /// <param name="ph">Số lô</param>
+        /// <param name="yfbmCode">Bộ phận nhà thuốc cần trừ tồn kho</param>
+        /// <param name="organizeid">Tổ chức</param>
         /// <returns></returns>
         public string SubtractStock(string ypdm, int sl, string pc, string ph, string yfbmCode, string organizeid)
         {

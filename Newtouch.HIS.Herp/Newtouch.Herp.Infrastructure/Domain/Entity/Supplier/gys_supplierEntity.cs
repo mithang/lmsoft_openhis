@@ -6,99 +6,99 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 库房
+    /// Kho
     /// </summary>
     [SugarTable("gys_supplier")]
     public class GysSupplierEntity : IEntity<GysSupplierEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chức Id（Bệnh viện có nghiệp vụ cụ thể）
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 0：其他     1：生产商      2：经销商
+        /// 0：Khác     1：Nhà sản xuất      2：Nhà phân phối
         /// </summary>
         public int? supplierType { get; set; }
 
         /// <summary>
-        /// 库房名称
+        /// Tên kho
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 地址
+        /// Địa chỉ
         /// </summary>
         public string address { get; set; }
 
         /// <summary>
-        /// 邮编
+        /// Mã bưu điện
         /// </summary>
         public string zipCode { get; set; }
 
         /// <summary>
-        /// 电话
+        /// Điện thoại
         /// </summary>
         public string tel { get; set; }
 
         /// <summary>
-        /// 传真
+        /// Fax
         /// </summary>
         public string fax { get; set; }
 
         /// <summary>
-        /// 开户行
+        /// Ngân hàng mở tài khoản
         /// </summary>
         public string khh { get; set; }
 
         /// <summary>
-        /// 开户行账号
+        /// Số tài khoản ngân hàng
         /// </summary>
         public string khhzh { get; set; }
 
         /// <summary>
-        /// 税号
+        /// Mã số thuế
         /// </summary>
         public string sh { get; set; }
 
         /// <summary>
-        /// 结算周期
+        /// Chu kỳ thanh toán
         /// </summary>
         public string jszq { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa đổi cuối
         /// </summary>
         public string LastModifierCode { get; set; }
     }

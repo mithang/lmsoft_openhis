@@ -13,12 +13,12 @@
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 父级Id
+        /// Cấp chaId
         /// </summary>
         public string ParentId { get; set; }
 
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         public string Name { get; set; }
 
@@ -28,26 +28,26 @@
         public string Code { get; set; }
 
         /// <summary>
-        /// 医技标志（是否是医技部门，如放射科）
+        /// Cờ y kỹ thuật(Có phải khoa y kỹ thuật hay không,như khoa X-quang)
         /// </summary>
         public bool yjbz { get; set; }
 
         /// <summary>
-        /// 门诊住院标志
+        /// Cờ ngoại trú/nội trú
         /// </summary>
         public byte mzzybz { get; set; }
 
         /// <summary>
-        /// 首拼
+        /// Chữ cái đầu phiên âm
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 有效标志
+        /// Cờ hiệu lực
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 诊疗科室
+        /// Khoa khám chữa bệnh
         /// </summary>
         public string zlks { get; set; }
     }
@@ -58,17 +58,17 @@
         public string? ks { get; set; }
         public string? ksmc { get; set; }
         /// <summary>
-        /// 医技标志（是否是医技部门，如放射科）
+        /// Cờ y kỹ thuật(Có phải khoa y kỹ thuật hay không,như khoa X-quang)
         /// </summary>
         public bool? yjbz { get; set; }
 
         /// <summary>
-        /// 门诊住院标志
+        /// Cờ ngoại trú/nội trú
         /// </summary>
         public byte? mzzybz { get; set; }
 
         /// <summary>
-        /// 有效标志
+        /// Cờ hiệu lực
         /// </summary>
         public string? zt { get; set; }
 

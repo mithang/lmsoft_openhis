@@ -5,7 +5,7 @@ using Newtouch.Domain.Entity;
 namespace Newtouch.Domain.DTO.InputDto.Inpatient
 {
     /// <summary>
-    /// 保存医嘱时，view传到后台的对象
+    /// LưuY lệnhkhi，viewtruyềnđếnmáy chủcủađối tượng
     /// </summary>
     public class DoctorServiceRequestDto
     {
@@ -31,12 +31,12 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
 
         public string xmmc { get; set; }
 
-        public string dwwwwwww { get; set; }//单位
-        public int zbbzzzzzzz { get; set; }//自备标志
-        public int? iszzffffff { get; set; }//转自费标志
-        public int? ispscsfffff { get; set; }//皮试测试标志
-        public int? isjffffff { get; set; }//是否计费
-        public string yztag { get; set; }//精麻医嘱
+        public string dwwwwwww { get; set; }//Đơn vị
+        public int zbbzzzzzzz { get; set; }//tựchuẩn bịCờ
+        public int? iszzffffff { get; set; }//Chuyển sang tự chi trảCờ
+        public int? ispscsfffff { get; set; }//dathửđothửCờ
+        public int? isjffffff { get; set; }//làKhôngtínhphí
+        public string yztag { get; set; }//thuốc gây nghiện hướng thầnY lệnh
 
         public decimal? ypjl { get; set; }
 
@@ -67,39 +67,39 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         public int? ts { get; set; }
 
         public string kssj { get; set; }
-        public string zxsj { get; set; }//24小时执行的时间
+        public string zxsj { get; set; }//24giờThực hiệncủaThời gian
         /// <summary>
-        /// 剂量转换系数
+        /// Hệ số chuyển đổi liều
         /// </summary>
         public decimal? jlzhxs { get; set; }
         /// <summary>
-        /// 住院转换系数
+        /// Nhập việnchuyểnđổihệsố
         /// </summary>
         public decimal? zyzhxs { get; set; }
         public string bw { get; set; }
         public string zxksdm { get; set; }
         public string zydw { get; set; }
 
-        //膳食医嘱
-        public string nlmd { get; set; }//能量密度
-        public string nlmddm { get; set; }//能量密度
+        //ăn uốngY lệnh
+        public string nlmd { get; set; }//mật độ năng lượng
+        public string nlmddm { get; set; }//mật độ năng lượng
         public string ssyzcfId { get; set; }
 
-        public string yslb { get; set; }//膳食类别
-        public string yslbdm { get; set; }//膳食类别val
+        public string yslb { get; set; }//ăn uốngLoại
+        public string yslbdm { get; set; }//ăn uốngLoạival
 
-        public string yszs { get; set; }//膳食指示
-        public string yszsval { get; set; }//膳食Ids
+        public string yszs { get; set; }//ăn uốngchỉhiển thị
+        public string yszsval { get; set; }//ăn uốngIds
 
-        public string ssxhdm { get; set; }//膳食型号
-        public string ssxhval { get; set; }//膳食型号
-        public string ssxh { get; set; }//膳食型号
-        public string ztmbId { get; set; }//组套所在模板id
-        public string ztId { get; set; }//组套id
-        public string ztmc { get; set; }//组套名称
+        public string ssxhdm { get; set; }//ăn uốngloạisố
+        public string ssxhval { get; set; }//ăn uốngloạisố
+        public string ssxh { get; set; }//ăn uốngloạisố
+        public string ztmbId { get; set; }//Bộ mẫusởởmẫuid
+        public string ztId { get; set; }//Bộ mẫuid
+        public string ztmc { get; set; }//Tên bộ mẫu
 
         /// <summary>
-        /// 抗生素原因
+        /// Kháng sinhnguyên nhân
         /// </summary>
         public string kssReason { get; set; }
 
@@ -110,64 +110,64 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         public string sqdh { get; set; }
 
         /// <summary>
-        /// 医嘱类别  临-临时医嘱；长-长期医嘱
+        /// Loại y lệnh  临-Y lệnh tạm thời；长-Y lệnh dài hạn
         /// </summary>
         public string yzlb { get; set; }
 
         /// <summary>
-        /// 医嘱号，同一医嘱号内包含多个yzId
+        /// Y lệnhsố，cùng mộtY lệnhsốtronggóichứanhiềucáiyzId
         /// </summary>
         public string yzh { get; set; }
 
         /// <summary>
-        /// 滴速  滴/分钟
+        /// tốc độ truyền  giọt/Phút
         /// </summary>
         public int? ds { get; set; }
         /// <summary>
-        /// 临床印象
+        /// 临giườngẤn tượng
         /// </summary>
         public string lcyx { get; set; }
         /// <summary>
-        /// 申请备注
+        /// Đăng kýGhi chú
         /// </summary>
         public string sqbz { get; set; }
 
         /// <summary>
-        /// 代煎标志
+        /// sắc hộCờ
         /// </summary>
         public int? djbzzzzzzz { get; set; }
         /// <summary>
-        /// 出院带药标志
+        /// Xuất việnmang thuốcCờ
         /// </summary>
         public int? cydybzzzzzzz { get; set; }
         /// <summary>
-        /// 医嘱诊断icd10
+        /// Y lệnhChẩn đoánicd10
         /// </summary>
         public string yzzdid { get; set; }
         /// <summary>
-        /// 医嘱诊断名称
+        /// Y lệnhTên chẩn đoán
         /// </summary>
         public string yzzdmc { get; set; }
         /// <summary>
-        /// 医嘱诊断时间
+        /// Y lệnhChẩn đoánThời gian
         /// </summary>
         public string yzzdsj { get; set; }
         /// <summary>
-        /// 是否项目组套
+        /// làKhôngMụcBộ mẫu
         /// </summary>
         public string sfxmzt { get; set; }
         /// <summary>
-        /// 组套数量
+        /// Bộ mẫuSố lượng
         /// </summary>
         public int? ztsl { get; set; }
         /// <summary>
-        /// 药品用法对应组套
+        /// Cách dùng thuốctương ứngBộ mẫu
         /// </summary>
         public string yfztbm { get; set; }
         public string yfztbs { get; set; }
         public string dcztbs { get; set; }
         /// <summary>
-        /// 药品来源 1:科室库存 2药房
+        /// Thuốcđếnnguồn 1:KhoaTồn kho 2Nhà thuốc
         /// </summary>
         public int? yply { get; set; }
         public int? Px { get; set; }
@@ -227,7 +227,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         public string cyzd { get; set; }
     }
     /// <summary>
-    /// 住院医嘱管理，药品预备数据时
+    /// Nhập việnY lệnhQuản lý，Thuốcdựchuẩn bịDữ liệukhi
     /// </summary>
     public class MedicineInfoDto
     {
@@ -239,7 +239,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
     }
 
     /// <summary>
-    /// 住院患者一览 已出区病人的浮层筛选条件
+    /// Bệnh nhân nội trúmộtxem đãra khỏi khubệnh nhâncủalớp nổiĐiều kiện lọc
     /// </summary>
     public class patientInfoDto
     {
@@ -283,12 +283,12 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
     }
 
     /// <summary>
-    /// 判断医嘱是否重复
+    /// kiểm traY lệnhlàKhôngtrùng lặp
     /// </summary>
     public class DSrepeatRequestDto
     {
         public string Id { get; set; }
-        //0 临时医嘱 1 长期医嘱
+        //0 Y lệnh tạm thời 1 Y lệnh dài hạn
         public int clbz { get; set; }
         public DateTime kssj { get; set; }
         public string xmdm { get; set; }

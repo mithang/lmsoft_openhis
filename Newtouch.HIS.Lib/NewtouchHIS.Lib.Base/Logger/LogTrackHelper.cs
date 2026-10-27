@@ -18,7 +18,7 @@ namespace NewtouchHIS.Lib.Base.Logger
         private readonly ILogger _logger;
         #region private init
         /// <summary>
-        /// 启用日志跟踪
+        /// Bật theo dõi nhật ký
         /// </summary>
         private bool EnableLoggingMonitorAttr { get { return ConfigInitHelper.SysConfig!.EnableLoggingMonitorAttr ?? false; } }
 

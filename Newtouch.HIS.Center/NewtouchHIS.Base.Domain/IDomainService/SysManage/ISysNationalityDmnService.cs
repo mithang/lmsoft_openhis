@@ -8,7 +8,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
     public interface ISysNationalityDmnService : IScopedDependency
     {
         /// <summary>
-        /// 获取有效国籍
+        /// Lấy quốc tịch hiệu lực
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

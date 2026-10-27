@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         
         
         
-        //grid json 数据源
+        //grid json Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetGridJson(Pagination pagination, string keyword, string organizeId,string zxyfl, string zt,string ypflCode,string ypgg ,string ycmc,string dlCode)
@@ -107,28 +107,28 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         
         
         // /**
-        //  * 同步全部药品
+        //  * Đồng bộ tất cả thuốc
         //  */
         // [HttpGet]
         // [HandlerAjaxOnly]
         // public IActionResult SyncAllDrug(string organizeId)
         // {
-        //     //默认获取当前登录用户的机构
+        //     //Mặc định lấy tổ chức của người dùng đang đăng nhập
         //     var userIdentityOrganizeId = UserIdentity.OrganizeId;
         //     var validListByOrg = _sysMedicineBaseRepo.GetValidListByOrg("*");
         //     
         //     foreach (var item in validListByOrg)
         //     {
-        //         //查看是否同步过
+        //         //Xem đã đồng bộ chưa
         //         var sysMedicineEntity = _SysMedicineRepository.FindEntity(p => p.ypCode == item.ypCode && p.OrganizeId == userIdentityOrganizeId && p.ypmc == item.ypmc);
         //         if (sysMedicineEntity != null)
         //         {
-        //             //同步过则跳过
+        //             //Đã đồng bộ thì bỏ qua
         //             continue;
         //         }
         //         _iCommonLibraryDmnService.SyncCommonDrug(item,userIdentityOrganizeId);
         //     }
-        //     return Success("同步成功!");
+        //     return Success("Đồng bộ thành công!");
         // }
         
         
@@ -137,17 +137,17 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         [HandlerAjaxOnly]
         public IActionResult Sync(List<int> idList,string organizeId,string Type)
         {
-            //默认获取当前登录用户的机构
+            //Mặc định lấy tổ chức của người dùng đang đăng nhập
             // var userIdentityOrganizeId = UserIdentity.OrganizeId;
-                //药品
+                //Thuốc
                 foreach (var id in idList)
                 {
                     if ("yp".Equals(Type))
                     {   
-                        //获取药品信息
+                        //Lấy thông tin thuốc
                         var s = _sysMedicineBaseRepo.FindEntity(p=>p.ypId == id);
                         var s1 = _sysMedicinePropertyBaseRepo.FindEntity(p => p.ypId == id);
-                        //查看是否同步过
+                        //Xem đã đồng bộ chưa
                         var sysMedicineEntity = _SysMedicineRepository.FindEntity(p => p.ycmc == s.ycmc && p.OrganizeId == organizeId && p.ypmc == s.ypmc);
                         var sysMedicineEntityProperty = _sysMedicinePropertyRepo.FindEntity(p =>p.OrganizeId == organizeId && p.gjybdm == s1.gjybdm);
                         if (sysMedicineEntity == null && sysMedicineEntityProperty == null)
@@ -167,7 +167,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                             _iCommonLibraryDmnService.SyncCommonSfdl(s,organizeId);
                             try
                             {
-                                //同步该项目下的收费大类类型
+                                //Đồng bộ loại danh mục thu phí lớn thuộc hạng mục đó
                                 var sysChargeCategoryTypeRelationEntity = _sysChargeCategoryTypeRelationRepo.FindEntity(p =>
                                     p.dlCode == s.dlCode && p.OrganizeId == "*");
                                 sysChargeCategoryTypeRelationEntity.OrganizeId = organizeId;
@@ -182,14 +182,14 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                         {
                             return Error("["+s.dlmc+"]Đã đồng bộ rồi!Vui lòng không tích chọn");
                         }
-                        //收费大类
+                        //Nhóm thu phí lớn
                         
                     }else if ("hc".Equals(Type))
                     {
-                        //暂用公用药品材料费
-                        //获取材料信息
+                        //Tạm dùng phí vật tư thuốc dùng chung
+                        //Lấy thông tin vật tư
                         var s = _sysMedicineBaseRepo.FindEntity(p=>p.ypId == id);
-                        //查看是否同步过
+                        //Xem đã đồng bộ chưa
                         var sysMedicineEntity = _SysMedicineRepository.FindEntity(p => p.ycmc == s.ycmc && p.OrganizeId == organizeId && p.ypmc == s.ypmc);
                         if (sysMedicineEntity == null)
                         {
@@ -204,7 +204,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                     {
                         //sfxm 
                         var s = _sysChargeItemBaseRepo.FindEntity(p => p.sfxmId == id);
-                        //查看是否同步过
+                        //Xem đã đồng bộ chưa
                         var sysChargeItem = _sysChargeItemRepo.FindEntity(p => p.sfxmmc == s.sfxmmc && p.OrganizeId == organizeId && p.sfdlCode == s.sfdlCode);
                         if (sysChargeItem == null)
                         {
@@ -219,7 +219,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                     {
                         //yzpc
                         var s = _sysMedicalOrderFrequencyApp.FindEntity(p => p.yzpcId == id);
-                        //查看是否同步过
+                        //Xem đã đồng bộ chưa
                         var sysChargeItem = _sysMedicalOrderFrequencyApp.FindEntity(p => p.yzpcCode == s.yzpcCode && p.OrganizeId == organizeId && p.yzpcmc == s.yzpcmc);
                         if (sysChargeItem == null)
                         {
@@ -237,7 +237,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Success("Đồng bộ thành công!");
         }
         /**
-         * 同步医保药品目录
+         * Đồng bộ danh mục thuốc BHYT
          */
         [HttpGet]
         [HandlerAjaxOnly]
@@ -296,7 +296,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         
         
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// Khi sửa thông tin，Mang thông tin sang trang mới
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

@@ -9,14 +9,14 @@ using SqlSugar;
 namespace NewtouchHIS.Base.DomainService
 {
     /// <summary>
-    /// 系统用户
-    /// （base库）
+    /// Người dùng hệ thống
+    /// (baseCơ sở dữ liệu)
     /// </summary>
     public class SysUserDmnService : BaseDmnService<SysUserEntity>, ISysUserDmnService
     {
-        #region 用户查询相关
+        #region Liên quan truy vấn người dùng
         /// <summary>
-        /// 用户分页查询
+        /// Truy vấn phân trang người dùng
         /// </summary>
         /// <param name="request"></param>
         /// <param name="orgId"></param>
@@ -28,13 +28,13 @@ namespace NewtouchHIS.Base.DomainService
             var orgList = await GetByWhereWithAttr<SysOrganizeEntity>(p => p.zt == "1" && p.TopOrganizeId == sysConfig.Top_OrganizeId);
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                //显示所有用户
+                //Hiển thị mọi người dùng
                 orgName = orgList.FirstOrDefault(p => p.Id == sysConfig.Top_OrganizeId)?.Name;
                 whereExp.And((a, b, c, d) => a.TopOrganizeId == sysConfig.Top_OrganizeId && a.Account != "admin");
             }
             else
             {
-                //仅显示该Tổ chức的用户
+                //Chỉ hiển thị củaTổ chứcngười dùng
                 orgName = orgList.FirstOrDefault(p => p.Id == orgId)?.Name;
                 whereExp.And((a, b, c, d) => c.OrganizeId == orgId && !string.IsNullOrWhiteSpace(c.Id));
 
@@ -174,7 +174,7 @@ namespace NewtouchHIS.Base.DomainService
         #endregion
 
         /// <summary>
-        /// 根据OrganizeId获取 系统人员VO（且有对应的SysUser）
+        /// TheoOrganizeIdLấy Nhân viên hệ thốngVO(và có tương ứngSysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -199,7 +199,7 @@ namespace NewtouchHIS.Base.DomainService
             return staffList;
         }
         /// <summary>
-        /// 获取人员信息 根据Tổ chức和关键字
+        /// Lấy thông tin nhân viên TheoTổ chứcvà từ khóa
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

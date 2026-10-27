@@ -32,7 +32,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.DomainServices.OutPatientPharmacy
 {
     /// <summary>
-    /// 药品处理
+    /// Xử lý thuốc
     /// </summary>
     public class pyDmnService : DmnServiceBase, IPyDmnService
     {
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.DomainServices.OutPatientPharmacy
 
         
         /// <summary>
-        /// 排药
+        /// Xếp thuốc
         /// </summary>
         /// <param name="apiResp"></param>
         /// <param name="cfnm"></param>
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.DomainServices.OutPatientPharmacy
             }
             using (var db = new EFDbTransaction().BeginTrans())
             {
-                //4. 配药
+                //4. Chuẩn bị thuốc
                 var pyparlist = apiResp.ToJson().ToList<PyparListVo>();
                 foreach (var t in pyparlist)
                 {
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.DomainServices.OutPatientPharmacy
         }
 
         /// <summary>
-        /// 取消排药
+        /// Hủy xếp thuốc
         /// </summary>
         /// <param name="mzCfmxEntity"></param>
         /// <returns></returns>
@@ -119,7 +119,7 @@ namespace Newtouch.HIS.DomainServices.OutPatientPharmacy
         }
 
         /// <summary>
-        /// 获取待处理事件总数
+        /// Lấy tổng số sự kiện chờ xử lý
         /// </summary>
         /// <returns></returns>
         public NeedDealCountVO GetNeedDealCount()
@@ -134,18 +134,18 @@ DECLARE @ckdshCount BIGINT;
 DECLARE @rkdshCount BIGINT;
 ");
                 sql.AppendLine("SELECT @mzdfCount =COUNT(1) FROM dbo.mz_cf(NOLOCK) WHERE fybz='" + (int)EnumFybz.Yp +
-                               "' AND lyyf=@yfbmCode AND OrganizeId=@OrganizeId --门诊待发 ");
+                               "' AND lyyf=@yfbmCode AND OrganizeId=@OrganizeId --Chờ phát ngoại trú ");
                 sql.AppendLine("SELECT @zydfCount=COUNT(1) FROM dbo.zy_ypyzxx(NOLOCK) WHERE fybz='" +
-                               (int)EnumFybz.Yp + "' AND fyyf=@yfbmCode AND OrganizeId=@OrganizeId --住院待发 ");
+                               (int)EnumFybz.Yp + "' AND fyyf=@yfbmCode AND OrganizeId=@OrganizeId --Chờ phát nội trú ");
                 sql.AppendLine("SELECT @sldshCount=COUNT(1) FROM dbo.xt_yp_sld(NOLOCK) WHERE ffzt='" +
                                (int)EnumSLDDeliveryStatus.None +
-                               "' AND Ckbm=@yfbmCode AND OrganizeId=@OrganizeId --申领待审核 ");
+                               "' AND Ckbm=@yfbmCode AND OrganizeId=@OrganizeId --Lĩnh chờ duyệt ");
                 sql.AppendLine("SELECT @ckdshCount=COUNT(1) FROM dbo.xt_yp_crkdj(NOLOCK) WHERE shzt='" +
                                (int)EnumDjShzt.WaitingApprove +
-                               "' AND Ckbm=@yfbmCode AND OrganizeId=@OrganizeId --出库待审核 ");
+                               "' AND Ckbm=@yfbmCode AND OrganizeId=@OrganizeId --Xuất kho chờ duyệt ");
                 sql.AppendLine("SELECT @rkdshCount=COUNT(1) FROM dbo.xt_yp_crkdj(NOLOCK) WHERE shzt='" +
                                (int)EnumDjShzt.WaitingApprove +
-                               "' AND Rkbm=@yfbmCode AND OrganizeId=@OrganizeId --入库待审核 ");
+                               "' AND Rkbm=@yfbmCode AND OrganizeId=@OrganizeId --Nhập kho chờ duyệt ");
                 sql.AppendLine(
                     "SELECT @mzdfCount mzdfCount, @zydfCount zydfCount, @sldshCount sldshCount, @ckdshCount ckdshCount, @rkdshCount rkdshCount ;");
                 var param = new SugarParameter[]
@@ -162,7 +162,7 @@ DECLARE @rkdshCount BIGINT;
         }
 
         /// <summary>
-        /// 获取待处理事件总数
+        /// Lấy tổng số sự kiện chờ xử lý
         /// </summary>
         /// <returns></returns>
         public NeedDealCountVO GetNeedDealCountByYk()
@@ -171,11 +171,11 @@ DECLARE @rkdshCount BIGINT;
             {
                 var sql = new StringBuilder(
                     "DECLARE @tjshCount BIGINT, @rkdshCount BIGINT, @ckdshCount BIGINT, @sldshCount BIGINT, @expiryDrugCount BIGINT,@todayDrugCount BIGINT;");
-                sql.AppendLine("--调价审核 ");
+                sql.AppendLine("--Duyệt điều chỉnh giá ");
                 sql.AppendLine("SELECT @tjshCount=COUNT(yptjId) FROM dbo.xt_yptj(NOLOCK) WHERE shzt='" +
                                (int)EnumSLDDeliveryStatus.None +
                                "' AND yfbmCode=@yfbmCode AND OrganizeId=@OrganizeId ");
-                sql.AppendLine("--入库待审核 ");
+                sql.AppendLine("--Nhập kho chờ duyệt ");
                 sql.AppendLine("SELECT @rkdshCount=COUNT(crkId) FROM ( ");
                 sql.AppendLine("SELECT DISTINCT dj.crkId FROM dbo.xt_yp_crkdj(NOLOCK) dj ");
                 sql.AppendLine("INNER JOIN dbo.xt_yp_crkmx(NOLOCK) mx ON mx.crkId=dj.crkId  ");
@@ -186,7 +186,7 @@ DECLARE @rkdshCount BIGINT;
                 sql.AppendLine("WHERE dj.Rkbm=@yfbmCode AND dj.OrganizeId=@OrganizeId AND dj.zt='1' AND dj.shzt='" +
                                (int)EnumDjShzt.WaitingApprove + "' AND dj.Czsj BETWEEN CONVERT(varchar(7), getdate() , 120) + '-1' AND DATEADD(HOUR,1, GETDATE()) ");
                 sql.AppendLine(") a ");
-                sql.AppendLine("--出库待审核 ");
+                sql.AppendLine("--Xuất kho chờ duyệt ");
                 sql.AppendLine("SELECT @ckdshCount=COUNT(crkId) FROM ( ");
                 sql.AppendLine("SELECT DISTINCT dj.crkId  ");
                 sql.AppendLine("FROM dbo.xt_yp_crkdj(NOLOCK) dj ");
@@ -199,14 +199,14 @@ DECLARE @rkdshCount BIGINT;
                                (int)EnumDjShzt.WaitingApprove +
                                "' and dj.djlx in (2) AND dj.Czsj BETWEEN CONVERT(varchar(7), getdate() , 120) + '-1' AND DATEADD(HOUR,1, GETDATE()) ");
                 sql.AppendLine(") a  ");
-                sql.AppendLine("--未出库申领单 ");
+                sql.AppendLine("--Đơn lĩnh chưa xuất kho ");
                 sql.AppendLine("SELECT @sldshCount=COUNT(sldId) FROM dbo.xt_yp_sld(NOLOCK) WHERE ffzt='" +
                                (int)EnumSLDDeliveryStatus.None +
                                "' AND Ckbm=@yfbmCode AND OrganizeId=@OrganizeId AND CreateTime >=DATEADD(DAY, -31, GETDATE()) ");
-                sql.AppendLine("--过期药品数量 ");
+                sql.AppendLine("--Số lượng thuốc hết hạn ");
                 sql.AppendLine(
                     "SELECT @expiryDrugCount=COUNT(a.kcId) FROM NewtouchHIS_PDS.dbo.xt_yp_kcxx(NOLOCK) a WHERE a.kcsl > 0 AND a.yxq < GETDATE() AND a.yfbmCode=@yfbmCode AND a.OrganizeId=@OrganizeId ");
-                sql.AppendLine("--1个月过期药品数量 ");
+                sql.AppendLine("--1Số lượng thuốc hết hạn tháng ");
                 sql.AppendLine(
                     "SELECT @todayDrugCount=COUNT(a.kcId) FROM NewtouchHIS_PDS.dbo.xt_yp_kcxx(NOLOCK) a WHERE a.kcsl > 0 and a.zt='1' AND DATEDIFF(MONTH, GETDATE(),a.yxq) <='1'  AND a.yfbmCode=@yfbmCode AND a.OrganizeId=@OrganizeId ");
                 sql.AppendLine(
@@ -231,7 +231,7 @@ DECLARE @rkdshCount BIGINT;
         }
 
         /// <summary>
-        /// 获取待处理事件总数
+        /// Lấy tổng số sự kiện chờ xử lý
         /// </summary>
         /// <returns></returns>
         public NeedDealCountVO GetNeedDealCountByYf()
@@ -245,7 +245,7 @@ DECLARE @rkdshCount BIGINT;
                 var sql = new StringBuilder();
                 sql.AppendLine(
                     "DECLARE @tjshCount BIGINT, @tjypCount BIGINT, @rkdshCount BIGINT, @ckdshCount BIGINT, @sldshCount BIGINT, @mzdpCount BIGINT, @mzdfCount BIGINT,@zydpCount BIGINT,@zydfCount BIGINT, @zydtCount BIGINT,@expiryDrugCount BIGINT,@todayDrugCount BIGINT;");
-                sql.AppendLine("--调价审核 ");
+                sql.AppendLine("--Duyệt điều chỉnh giá ");
                 sql.AppendLine("SELECT @tjshCount=COUNT(tj.yptjId)  ");
                 sql.AppendLine("FROM dbo.xt_yptj(NOLOCK) tj ");
                 sql.AppendLine(
@@ -253,7 +253,7 @@ DECLARE @rkdshCount BIGINT;
                     (int)BenBuMenZT.Normal + "'  ");
                 sql.AppendLine("WHERE tj.shzt='" + (int)EnumPriceAdjustOperationType.None + "'   ");
                 sql.AppendLine("AND tj.OrganizeId=@OrganizeId ");
-                sql.AppendLine("--调价药品 ");
+                sql.AppendLine("--Thuốc điều chỉnh giá ");
                 sql.AppendLine("SELECT @tjypCount=COUNT(yptjId) FROM ( ");
                 sql.AppendLine("SELECT DISTINCT tj.yptjId ");
                 sql.AppendLine("FROM dbo.xt_yptj(NOLOCK) tj  ");
@@ -265,7 +265,7 @@ DECLARE @rkdshCount BIGINT;
                 sql.AppendLine("AND tj.OrganizeId=@OrganizeId  ");
                 sql.AppendLine("AND tj.zxsj>=DATEADD(DAY, " + ago + ", GETDATE()) ");
                 sql.AppendLine(") a ");
-                sql.AppendLine("--入库审核 ");
+                sql.AppendLine("--Duyệt nhập kho ");
                 sql.AppendLine("SELECT @rkdshCount=COUNT(crkId) FROM ( ");
                 sql.AppendLine("	SELECT DISTINCT dj.crkId FROM dbo.xt_yp_crkdj(NOLOCK) dj ");
                 sql.AppendLine("	INNER JOIN dbo.xt_yp_crkmx(NOLOCK) mx ON mx.crkId=dj.crkId ");
@@ -278,10 +278,10 @@ DECLARE @rkdshCount BIGINT;
                 sql.AppendLine(") a ");
                 sql.AppendLine(
                     "SELECT @mzdpCount=COUNT(0) FROM (SELECT DISTINCT CardNo FROM dbo.mz_cf(NOLOCK) WHERE fybz='" +
-                    (int)EnumFybz.Wp + "' AND OrganizeId=@OrganizeId AND lyyf=@yfbmCode) T --门诊待排药 ");
+                    (int)EnumFybz.Wp + "' AND OrganizeId=@OrganizeId AND lyyf=@yfbmCode) T --Chờ xếp thuốc ngoại trú ");
                 //sql.AppendLine(
                 //    "SELECT @mzdfCount=COUNT(0) FROM (SELECT DISTINCT CardNo FROM dbo.mz_cf(NOLOCK) WHERE fybz='" +
-                //    (int)EnumFybz.Yp + "' AND OrganizeId=@OrganizeId AND lyyf=@yfbmCode) T --门诊待发药 ");
+                //    (int)EnumFybz.Yp + "' AND OrganizeId=@OrganizeId AND lyyf=@yfbmCode) T --Thuốc ngoại trú chờ phát ");
                 sql.AppendLine(string.Format(@"
 SELECT @mzdfCount=COUNT(0) 
 FROM (
@@ -290,17 +290,17 @@ FROM (
 	INNER JOIN dbo.mz_cfmx(NOLOCK) cfmx ON cfmx.cfh=cf.cfh AND cfmx.OrganizeId=cf.OrganizeId AND cfmx.zt='1' 
 	INNER JOIN dbo.mz_cfmxph(NOLOCK) mxph ON mxph.fyyf=cf.lyyf AND mxph.cfh=cf.cfh AND mxph.yp=cfmx.ypCode AND mxph.zt='1' AND mxph.gjzt='0' AND mxph.OrganizeId=cf.OrganizeId
 	WHERE fybz='{0}' AND cf.OrganizeId=@OrganizeId AND cf.lyyf=@yfbmCode AND cf.zt='1' AND jsnm>0
-) T --门诊待发药 ", (int)EnumFybz.Yp));
+) T --Thuốc ngoại trú chờ phát ", (int)EnumFybz.Yp));
                 sql.AppendLine("SELECT @zydpCount=COUNT(Id) FROM dbo.zy_ypyzxx(NOLOCK) WHERE fybz='" +
-                               (int)EnumFybz.Wp + "' AND OrganizeId=@OrganizeId AND fyyf=@yfbmCode --住院待排药 ");
+                               (int)EnumFybz.Wp + "' AND OrganizeId=@OrganizeId AND fyyf=@yfbmCode --Chờ xếp thuốc nội trú ");
                 sql.AppendLine("SELECT @zydfCount=COUNT(Id) FROM dbo.zy_ypyzxx(NOLOCK) WHERE fybz='" +
-                               (int)EnumFybz.Yp + "' AND OrganizeId=@OrganizeId AND fyyf=@yfbmCode --住院待发要 ");
+                               (int)EnumFybz.Yp + "' AND OrganizeId=@OrganizeId AND fyyf=@yfbmCode --Chờ phát nội trú cần ");
                 sql.AppendLine("SELECT @zydtCount=COUNT(Id) from dbo.zy_ypyzxx where fybz = '" + (int)EnumFybz.Yf +
-                               "' and sqtybz = '1' AND OrganizeId=@OrganizeId AND fyyf=@yfbmCode --住院待退药 ");
-                sql.AppendLine("--过期药品数量 ");
+                               "' and sqtybz = '1' AND OrganizeId=@OrganizeId AND fyyf=@yfbmCode --Trả thuốc nội trú chờ ");
+                sql.AppendLine("--Số lượng thuốc hết hạn ");
                 sql.AppendLine(
                     "SELECT @expiryDrugCount=COUNT(a.kcId) FROM NewtouchHIS_PDS.dbo.xt_yp_kcxx(NOLOCK) a WHERE a.kcsl > 0 AND a.yxq < GETDATE() AND a.yfbmCode=@yfbmCode AND a.OrganizeId=@OrganizeId ");
-                sql.AppendLine("--1个月过期药品数量 ");
+                sql.AppendLine("--1Số lượng thuốc hết hạn tháng ");
                 sql.AppendLine(
                     "SELECT @todayDrugCount=COUNT(a.kcId) FROM NewtouchHIS_PDS.dbo.xt_yp_kcxx(NOLOCK) a WHERE a.kcsl > 0 and a.zt='1' AND DATEDIFF(MONTH, GETDATE(),a.yxq) <='1'  AND a.yfbmCode=@yfbmCode AND a.OrganizeId=@OrganizeId ");
                 sql.AppendLine(
@@ -327,7 +327,7 @@ FROM (
         }
 
         /// <summary>
-        /// 获取门诊月处方发药次 处方次/月
+        /// Lấy lần phát thuốc đơn tháng ngoại trú Lần đơn thuốc/tháng
         /// </summary>
         /// <returns></returns>
         public List<FyCountVoByYfbm> GetMzFyCountVoByYfbm()
@@ -363,7 +363,7 @@ FROM (
         }
 
         /// <summary>
-        /// 获取住院月医嘱发药次 医嘱次/月
+        /// Lấy lần phát thuốc y lệnh tháng nội trú Lần y lệnh/tháng
         /// </summary>
         /// <returns></returns>
         public List<FyCountVoByYfbm> GetZyFyCountVoByYfbm()
@@ -398,7 +398,7 @@ FROM (
         }
 
         /// <summary> 
-        /// 获取医嘱次|处方药品次
+        /// Lấy lần y lệnh|Lần thuốc trong đơn
         /// </summary>
         /// <returns></returns>
         public List<FyCountBydlVO> GetFyCountBydl()
@@ -476,7 +476,7 @@ END
         }
 
         /// <summary>
-        /// 插入门诊处方信息
+        /// Chèn thông tin đơn ngoại trú
         /// </summary>
         /// <param name="mzCfEntities"></param>
         /// <param name="mzCfmxEntities"></param>
@@ -494,7 +494,7 @@ END
         }
 
         /// <summary>
-        /// 物理删除处方主表和明细表   慎用
+        /// Xóa vật lý bảng chính và bảng chi tiết đơn thuốc   Thận trọng khi dùng
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -516,19 +516,19 @@ DELETE FROM dbo.mz_cfmx WHERE cfh=@cfh AND OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 查询处方信息
+        /// Truy vấn thông tin đơn thuốc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="xm"></param>
         /// <param name="cardNo"></param>
         /// <param name="invoiceNo"></param>
-        /// <param name="ksmc">科室名称</param>
-        /// <param name="kssj">排药时间</param>
-        /// <param name="jssj">排药时间</param>
+        /// <param name="ksmc">Tên khoa</param>
+        /// <param name="kssj">Thời gian xếp thuốc</param>
+        /// <param name="jssj">Thời gian xếp thuốc</param>
         /// <param name="organizeId"></param>
         /// <param name="yfbmCode"></param>
-        /// <param name="jszt">结算状态 0-未结算 1-已结算</param>
-        /// <param name="settExpired">结算已过期 1-是 0-否</param>
+        /// <param name="jszt">Trạng thái thanh toán 0-Chưa thanh toán 1-Đã thanh toán</param>
+        /// <param name="settExpired">Thanh toán đã hết hạn 1-Có 0-Không</param>
         /// <returns></returns>
         public IList<CfxxVO> SelectRpList(Pagination pagination, string xm, string cardNo, string invoiceNo, string ksmc
             , DateTime kssj, DateTime jssj, string organizeId, string yfbmCode, int jszt, string settExpired)
@@ -546,13 +546,13 @@ AND mxph.CreateTime BETWEEN @kssj AND @jssj ");
             switch (jszt)
             {
                 case 1:
-                    //已结算
+                    //Đã thanh toán
                     sql.AppendLine(@"
 AND cf.jsnm>0 
 AND cf.sfsj<=GETDATE() ");
                     break;
                 case 0:
-                    //未结算
+                    //Chưa thanh toán
                     sql.AppendLine(@"AND cf.jsnm<=0 ");
                     settExpiredTime = _sysConfigRepo.GetValueByCode("settExpiredTime", organizeId);
                     int.TryParse(settExpiredTime, out tmpHour);
@@ -612,17 +612,17 @@ AND cf.sfsj<=GETDATE() ");
         }
 
         /// <summary>
-        /// 查询处方信息
+        /// Truy vấn thông tin đơn thuốc
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="cardNo"></param>
         /// <param name="invoiceNo"></param>
-        /// <param name="ksmc">科室名称</param>
-        /// <param name="kssj">排药时间</param>
-        /// <param name="jssj">排药时间</param>
+        /// <param name="ksmc">Tên khoa</param>
+        /// <param name="kssj">Thời gian xếp thuốc</param>
+        /// <param name="jssj">Thời gian xếp thuốc</param>
         /// <param name="organizeId"></param>
         /// <param name="yfbmCode"></param>
-        /// <param name="jszt">结算状态 0-未结算 1-已结算</param>
+        /// <param name="jszt">Trạng thái thanh toán 0-Chưa thanh toán 1-Đã thanh toán</param>
         /// <returns></returns>
         public List<CfxxVO> SelectRpList(string xm, string cardNo, string invoiceNo, string ksmc, DateTime kssj,
             DateTime jssj, string organizeId, string yfbmCode, int jszt)
@@ -638,13 +638,13 @@ AND mxph.CreateTime BETWEEN @kssj AND @jssj ");
             switch (jszt)
             {
                 case 1:
-                    //已结算
+                    //Đã thanh toán
                     sql.AppendLine(@"
 AND cf.jsnm>0 
 AND cf.sfsj<=GETDATE() ");
                     break;
                 case 0:
-                    //未结算
+                    //Chưa thanh toán
                     sql.AppendLine(@"
 AND cf.jsnm<=0 ");
                     break;
@@ -685,7 +685,7 @@ AND cf.jsnm<=0 ");
         }
 
         /// <summary>
-        /// 查询处方明细
+        /// Truy vấn chi tiết đơn thuốc
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="cfh"></param>
@@ -716,7 +716,7 @@ AND cf.CardNo=@CardNo
         }
 
         /// <summary>
-        /// 查询处方排药明细
+        /// Truy vấn chi tiết xếp thuốc của đơn
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="cfh"></param>
@@ -751,7 +751,7 @@ SELECT CONVERT(INT,a.zxdwsl/a.zhyz) sl,a.ypmc, a.gg, a.dw, a.ycmc, a.jl, a.jldw,
         }
 
         /// <summary>
-        /// 取消排药
+        /// Hủy xếp thuốc
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="cfh"></param>
@@ -766,20 +766,20 @@ SELECT CONVERT(INT,a.zxdwsl/a.zhyz) sl,a.ypmc, a.gg, a.dw, a.ycmc, a.jl, a.jldw,
                 var cflist = _mzCfRepo.IQueryable(p =>
                     p.cfh == cfh && p.zt == "1" && p.OrganizeId == organizeId && p.lyyf == yfbmCode);
                 if (!string.IsNullOrWhiteSpace(cardNo)) cflist = cflist.Where(p => p.CardNo == cardNo);
-                if (!cflist.Any()) return "未找到要取消的处方信息";
+                if (!cflist.Any()) return "Không tìm thấy thông tin đơn thuốc cần hủy";
                 var cfxx = cflist.FirstOrDefault();
-                if (cfxx.fybz != ((int)EnumFybz.Yp).ToString()) return "取消排班只针对已排处方";
+                if (cfxx.fybz != ((int)EnumFybz.Yp).ToString()) return "Hủy lịch trực chỉ áp dụng đơn đã xếp thuốc";
                 var cfmxph = _mzCfmxphRepo.IQueryable(p =>
                     p.cfh == cfh && p.fyyf == yfbmCode && p.gjzt == "0" && p.OrganizeId == organizeId && p.zt == "1");
-                if (!cfmxph.Any()) return "该处方未找到排药记录";
+                if (!cfmxph.Any()) return "Đơn thuốc này không tìm thấy bản ghi xếp thuốc";
                 cfmxph.ToList().ForEach(p =>
                 {
                     var kcxx = _kcxx.IQueryable(k => k.ypdm == p.yp && k.OrganizeId == p.OrganizeId &&
                                                      k.zt == ((int)EnumKCZT.Enabled).ToString() &&
                                                      k.yfbmCode == yfbmCode && k.ph == p.ph && k.pc == p.pc);
-                    if (!kcxx.Any()) throw new FailedException("未找到库存信息");
+                    if (!kcxx.Any()) throw new FailedException("Không tìm thấy thông tin tồn kho");
                     var sykc = (int)p.sl;
-                    if (kcxx.Select(t => t.djsl).Sum() < p.sl) throw new FailedException("冻结库存数与取消排药数不等");
+                    if (kcxx.Select(t => t.djsl).Sum() < p.sl) throw new FailedException("Số tồn kho đóng băng và Số hủy xếp thuốc không bằng nhau");
                     kcxx.ToList().ForEach(k =>
                     {
                         if (sykc <= 0) return;
@@ -812,7 +812,7 @@ SELECT CONVERT(INT,a.zxdwsl/a.zhyz) sl,a.ypmc, a.gg, a.dw, a.ycmc, a.jl, a.jldw,
         }
 
         /// <summary>
-        /// 门诊排药
+        /// Xếp thuốc ngoại trú
         /// </summary>
         /// <param name="patientInfo"></param>
         /// <param name="yfbmCode"></param>
@@ -864,7 +864,7 @@ SELECT CONVERT(INT,a.zxdwsl/a.zhyz) sl,a.ypmc, a.gg, a.dw, a.ycmc, a.jl, a.jldw,
         }
 
         /// <summary>
-        /// 取消门诊预定
+        /// Hủy đặt trước ngoại trú
         /// </summary>
         /// <param name="successList"></param>
         /// <param name="organizeId"></param>
@@ -880,7 +880,7 @@ SELECT CONVERT(INT,a.zxdwsl/a.zhyz) sl,a.ypmc, a.gg, a.dw, a.ycmc, a.jl, a.jldw,
         }
 
         /// <summary>
-        /// 获取已排未发未结算的排药信息
+        /// Lấy thông tin xếp thuốc đã xếp chưa phát chưa thanh toán
         /// </summary>
         /// <param name="expirationDate"></param>
         /// <param name="yfbmCode"></param>
@@ -911,9 +911,9 @@ AND mxph.CreateTime<@expirationDate
         }
 
         /// <summary>
-        /// 获取要取消的处方
+        /// Lấy đơn thuốc cần hủy
         /// </summary>
-        /// <param name="cfh">目标处方号</param>
+        /// <param name="cfh">Số đơn thuốc đích</param>
         /// <param name="processesMaxNum"></param>
         /// <param name="expirationDate"></param>
         /// <param name="yfbmCode"></param>
@@ -947,7 +947,7 @@ ORDER BY cf.cfh ASC
         }
 
         /// <summary>
-        /// 取消排药
+        /// Hủy xếp thuốc
         /// </summary>
         /// <param name="mxphs"></param>
         /// <param name="yfbmCode"></param>
@@ -975,7 +975,7 @@ WHERE cfh=@cfh and OrganizeId=@OrganizeId and zt='1'
                             new SugarParameter("@fybz", ((int)EnumFybz.Wp).ToString()),
                             new SugarParameter("@OrganizeId", organizeId)
                         };
-                        if (db.ExecuteSqlCommand(sql, param) <= 0) return "修改处方发药标志失败";
+                        if (db.ExecuteSqlCommand(sql, param) <= 0) return "Sửa cờ phát thuốc đơn thuốc thất bại";
                     }
 
                     db.Commit();
@@ -989,7 +989,7 @@ WHERE cfh=@cfh and OrganizeId=@OrganizeId and zt='1'
         }
 
         /// <summary>
-        /// 取消排药 取消冻结，药品归架
+        /// Hủy xếp thuốc Hủy đóng băng，Xếp kệ thuốc
         /// </summary>
         /// <param name="mxphs"></param>
         /// <param name="userCode"></param>
@@ -997,27 +997,27 @@ WHERE cfh=@cfh and OrganizeId=@OrganizeId and zt='1'
         /// <returns></returns>
         public string OutPatientSubtractForzenKcAndGj(List<OutpatientPrescriptionDetailBatchNumberEntity> mxphs, string userCode, Newtouch.Infrastructure.EFDbTransaction db = null)
         {
-            if (mxphs == null || mxphs.Count == 0) return "未找到需要解冻的药品";
+            if (mxphs == null || mxphs.Count == 0) return "Không tìm thấy thuốc cần giải đông";
 
             foreach (var mxph in mxphs)
             {
                 var kcxxs = _kcxx.SelectData(mxph.yp, mxph.ph, mxph.pc, mxph.fyyf, mxph.OrganizeId);
-                if (kcxxs == null || kcxxs.Count == 0) return string.Format("药品【{0}】未找到库存信息", mxph.yp);
-                if (kcxxs.Sum(p => p.djsl) < mxph.sl) return string.Format("药品【{0}】已冻结数小于本次解冻数", mxph.yp);
+                if (kcxxs == null || kcxxs.Count == 0) return string.Format("Thuốc【{0}】Không tìm thấy thông tin tồn kho", mxph.yp);
+                if (kcxxs.Sum(p => p.djsl) < mxph.sl) return string.Format("Thuốc【{0}】Số đã đóng băng nhỏ hơn Số giải đông lần này", mxph.yp);
                 var sykc = (int)mxph.sl;
                 foreach (var kcxx in kcxxs)
                 {
                     if (sykc == 0) break;
                     if (kcxx.djsl >= sykc)
                     {
-                        //库存足
+                        //Tồn kho đủ
                         var part1Result = SubtractForzenKc(kcxx.ypdm, sykc, kcxx.kcId, userCode, kcxx.OrganizeId);
                         if (!string.IsNullOrWhiteSpace(part1Result)) return part1Result;
                         sykc = 0;
                     }
                     else
                     {
-                        //库存不足
+                        //Tồn kho không đủ
                         var part1Result = SubtractForzenKc(kcxx.ypdm, kcxx.djsl, kcxx.kcId, userCode, kcxx.OrganizeId);
                         if (!string.IsNullOrWhiteSpace(part1Result)) return part1Result;
                         sykc -= kcxx.djsl;
@@ -1032,7 +1032,7 @@ WHERE cfh=@cfh and OrganizeId=@OrganizeId and zt='1'
         }
 
         /// <summary>
-        /// 解冻库存
+        /// Giải đông tồn kho
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="sl"></param>
@@ -1047,7 +1047,7 @@ WHERE cfh=@cfh and OrganizeId=@OrganizeId and zt='1'
             {
                 if (_kcxx.SubtractForzenKc(sl, kcId, organizeId, userCode) <= 0)
                 {
-                    return string.Format("解冻药品代码为【{0}】的药品失败", ypCode);
+                    return string.Format("Mã thuốc giải đông là【{0}】thuốc thất bại", ypCode);
                 }
             }
             else
@@ -1063,14 +1063,14 @@ WHERE kcId=@kcId AND OrganizeId=@OrganizeId AND zt='1' AND tybz='0'
                     new SugarParameter("@userCode", userCode),
                     new SugarParameter("@OrganizeId", organizeId),
                 };
-                if (db.ExecuteSqlCommand(sql, param) <= 0) return string.Format("解冻药品代码为【{0}】的药品失败", ypCode);
+                if (db.ExecuteSqlCommand(sql, param) <= 0) return string.Format("Mã thuốc giải đông là【{0}】thuốc thất bại", ypCode);
             }
 
             return "";
         }
 
         /// <summary>
-        /// 修改发药标志
+        /// Sửa cờ phát thuốc
         /// </summary>
         /// <param name="mxph"></param>
         /// <param name="userCode"></param>
@@ -1094,7 +1094,7 @@ WHERE cfh=@cfh AND yp=@ypCode AND fyyf=@yfbmCode AND OrganizeId=@OrganizeId AND 
                     new SugarParameter("@ph",mxph.ph ),
                     new SugarParameter("@OrganizeId", mxph.OrganizeId)
                 };
-                if (db.ExecuteSqlCommand(sql2, param2) <= 0) return string.Format("药品代码为【{0}】的药品归架失败", mxph.yp);
+                if (db.ExecuteSqlCommand(sql2, param2) <= 0) return string.Format("Mã thuốc là【{0}】thuốc xếp kệ thất bại", mxph.yp);
             }
             else
             {
@@ -1103,14 +1103,14 @@ WHERE cfh=@cfh AND yp=@ypCode AND fyyf=@yfbmCode AND OrganizeId=@OrganizeId AND 
                 mxph.gjzt = "1";
                 mxph.LastModifierCode = userCode;
                 mxph.LastModifyTime = DateTime.Now;
-                if (_mzCfmxphRepo.GJDrug(mxph.yp, mxph.pc, mxph.ph, mxph.cfh, mxph.fyyf, mxph.OrganizeId, userCode) <= 0) return string.Format("药品代码为【{0}】的药品归架失败", mxph.yp);
+                if (_mzCfmxphRepo.GJDrug(mxph.yp, mxph.pc, mxph.ph, mxph.cfh, mxph.fyyf, mxph.OrganizeId, userCode) <= 0) return string.Format("Mã thuốc là【{0}】thuốc xếp kệ thất bại", mxph.yp);
             }
 
             return "";
         }
 
         /// <summary>
-        /// 门诊取消排药
+        /// Hủy xếp thuốc ngoại trú
         /// </summary>
         /// <param name="rpInfo"></param>
         /// <param name="userCode"></param>

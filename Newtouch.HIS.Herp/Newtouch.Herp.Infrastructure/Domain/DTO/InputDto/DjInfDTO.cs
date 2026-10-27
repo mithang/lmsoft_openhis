@@ -4,22 +4,22 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 单据内容
+    /// Nội dung chứng từ
     /// </summary>
     public class DjInfDTO
     {
         /// <summary>
-        /// 单据主表信息
+        /// Thông tin bảng chính chứng từ
         /// </summary>
         public KfCrkdjEntity crkdj { get; set; }
 
         /// <summary>
-        /// 单据明细信息
+        /// Thông tin chi tiết chứng từ
         /// </summary>
         public List<KfCrkmxEntity> crkdjmx { get; set; }
 
         /// <summary>
-        /// 申领明细
+        /// Chi tiết phiếu lĩnh
         /// </summary>
         public List<VApplyBillDetailEntity> applyBillDetail { get; set; }
     }

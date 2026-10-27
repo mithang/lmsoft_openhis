@@ -54,7 +54,7 @@
                     </td>
                     <th class="formTitle">Họ tên：</th>
                     <td class="formValue">
-                        <label id="xm">大白</label>
+                        <label id="xm">Đại Bạch</label>
                     </td>
                     <th class="formTitle">Giới tính：</th>
                     <td class="formValue">
@@ -126,14 +126,14 @@
 
 <script>
     $(function () {
-        //radio选中事件
+        //radiochọntrongviệchạng
         $("input[name='optionsRadios']").off().on("change", function () {
             $('#gridList').jqGrid("clearGridData");
             var mydata;
-            if ($(this).val() == "2") {     //已确认
+            if ($(this).val() == "2") {     //Đã xác nhận
                 $("#searchDiv").show();
                 mydata = getConfirmedData();
-            } else {    //未确认
+            } else {    //Chưa xác nhận
                 $("#searchDiv").hide();
                 mydata = getNotYetConfirm();
             }
@@ -145,29 +145,29 @@
         $("#gridFeeDetail").newtouchLocalDataGrid(null, []);
     });
 
-    //未确认
+    //Chưa xác nhận
     function getNotYetConfirm() {
         var mydata = [
                {
-                   blh: 'R000001', xm: '李小璐', fb: 'Tự chi trả', type: 'Ngoại trú', qrzt:'false'
+                   blh: 'R000001', xm: 'Lý Tiểu Lộ', fb: 'Tự chi trả', type: 'Ngoại trú', qrzt:'false'
                },
         ];
         return mydata;
     }
-    //已确认
+    //Đã xác nhận
     function getConfirmedData() {
         var mydata = [
                {
-                   blh: 'R000022', xm: '大白', fb: 'Tự chi trả', type: 'Ngoại trú', qrzt: 'true'
+                   blh: 'R000022', xm: 'Đại Bạch', fb: 'Tự chi trả', type: 'Ngoại trú', qrzt: 'true'
                },
                {
-                   blh: 'R000023', xm: '小二', fb: 'Tự chi trả', type: 'Ngoại trú', qrzt: 'true'
+                   blh: 'R000023', xm: 'Tiểu Nhị', fb: 'Tự chi trả', type: 'Ngoại trú', qrzt: 'true'
                },
         ];
         return mydata;
     }
 
-    //患者信息
+    //Thông tin bệnh nhân
     function gridList(mydata) {
         var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
@@ -197,7 +197,7 @@
         }, mydata);
     }
 
-    //双击
+    //nhấn đúp
     function gridDbclickRow(rowid) {
         var mydata = [
            {
@@ -235,7 +235,7 @@
         }
     });
 
-    //弹出金额确认窗口
+    //bật cửa sổ xác nhận số tiền
     function newtouch_event_f8(yj, ysk, ssk, zk, zl) {
         var url = "/HospitalizationManage/Settlement/SettSuccessDialog?yingshoukuan=" + ysk
             + "&ssk=" + ssk
@@ -248,7 +248,7 @@
             width: "320px",
             height: "260px",
             callBack: function (iframeId) {
-                $.modalClose("FormShowBillSuccessDialog");   //关闭结算金额的窗体
+                $.modalClose("FormShowBillSuccessDialog");   //đóng biểu mẫu số tiền quyết toán
             }
         });
     }

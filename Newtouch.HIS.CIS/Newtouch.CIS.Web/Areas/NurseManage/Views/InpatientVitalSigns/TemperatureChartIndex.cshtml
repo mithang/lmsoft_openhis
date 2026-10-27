@@ -105,7 +105,7 @@
     //$(".dv-left").width(240);
     $(".dv-left-tree").height($(window).height() - 70);
     var zyh = "";
-    var zyzt = "zy";// 在院状态：全部""；在院"zy"；出院"cy"。
+    var zyzt = "zy";// ởviệnTrạng thái:Tất cả""；ởviện"zy"；Xuất viện"cy"。
     $(function () {
         var zyhtimes = $.request("zyh");
         var yshsbz = $.request("yshsbz");
@@ -114,7 +114,7 @@
                 //$('#btn_print').hide();
             }
         }
-        var currentobj = JSON.parse(sessionStorage.getItem('currentpatobj'));//护士患者一览
+        var currentobj = JSON.parse(sessionStorage.getItem('currentpatobj'));//Điều dưỡngBệnh nhânmộtxem
         initControl();
         getPatTreeList();
         draw([], 0);
@@ -188,14 +188,14 @@
             }
         });
     }
-    //查询住院病人
+    //Tra cứuNhập việnbệnh người
     function getPatTreeList() {
         $("#PatTreeList").treeview({
             height: $(window).height() - 175,
             slimscroll: false,
-            showcheck: false,//是否显示复选框
+            showcheck: false,//CóKhôngHiển thịhộp kiểm
             url: "/NurseManage/InpatientVitalSigns/GetPatWardTree?zyzt=" + zyzt + "&keyword=",
-            onnodeclick: function (item) {//单选查询
+            onnodeclick: function (item) {//phiếuchọnTra cứu
                 if (item.Ex1 == "c") {
                     zyh = item.value;
                     $('#zyh').val(item.value);

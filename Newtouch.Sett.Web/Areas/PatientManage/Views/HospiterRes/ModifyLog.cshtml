@@ -17,7 +17,7 @@
                 <td class="formValue">
                     <input type="text" class="form-control form-an" id="xm" placeholder="Họ tên/Phiên âm/Số hồ sơ bệnh án/Số giấy tờ" />
                 </td>
-                @*<th class="formTitle">卡号：</th>
+                @*<th class="formTitle">Số thẻ：</th>
         <td class="formValue" width="120">
             <input type="text" class="form-control form-an" id="kh" />
         </td>*@
@@ -105,7 +105,7 @@
         }).trigger('reloadGrid');
 
     });
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var xm = $("#xm").val();
         return { xm: xm };

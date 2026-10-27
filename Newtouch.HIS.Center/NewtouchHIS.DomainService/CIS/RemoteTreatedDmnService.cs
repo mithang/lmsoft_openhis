@@ -19,7 +19,7 @@ namespace NewtouchHIS.DomainService.CIS
             _sysStaffDmn = sysStaff;
             _sysDepartmentDmn = sysDepartment;
         }
-        #region IDU 操作
+        #region IDU Thao tác
         public async Task<string> AddTreatedApply(TreatedApplyVO applyVO, string user)
         {
             applyVO.sqzt = (int)EmunRemoteTreatedStu.dqr;
@@ -56,7 +56,7 @@ namespace NewtouchHIS.DomainService.CIS
             return entity.Id;
         }
         /// <summary>
-        /// 修改Đăng ký单状态、Cuộc họp号（仅就诊中&待确认时）
+        /// Sửa đổiĐăng kýTrạng thái phiếu,Cuộc họpSố(Chỉ khi đang khám&khi chờ xác nhận)
         /// </summary>
         /// <param name="applyEntity"></param>
         /// <returns></returns>
@@ -84,13 +84,13 @@ namespace NewtouchHIS.DomainService.CIS
                     }
                     break;
                 case (int)EmunRemoteTreatedStu.jzz:
-                    //更新Cuộc họp号
+                    //Cập nhậtCuộc họpSố
                     if (applyEntity.sqzt == (int)EmunRemoteTreatedStu.jzz)
                     {
                         entity.mzh = applyEntity.mzh;
                         entity.mettingId = string.IsNullOrWhiteSpace(applyEntity.mettingId) ? entity.mettingId : applyEntity.mettingId;
                     }
-                    //就诊结束
+                    //Kết thúc khám
                     else if (applyEntity.sqzt == (int)EmunRemoteTreatedStu.yjs)
                     {
                         entity.sqzt = applyEntity.sqzt;

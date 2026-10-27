@@ -1,12 +1,12 @@
 namespace Newtouch.Herp.Application.Interface
 {
     /// <summary>
-    /// 调价
+    /// Điều chỉnh giá
     /// </summary>
     public interface IAdjustPriceApp
     {
         /// <summary>
-        /// 执行调价损益
+        /// Thực thi chênh lệch điều chỉnh giá
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>

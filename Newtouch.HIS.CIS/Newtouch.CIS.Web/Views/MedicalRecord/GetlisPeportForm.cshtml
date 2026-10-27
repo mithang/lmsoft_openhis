@@ -48,7 +48,7 @@
 		}
 		$("#gridList").jqGrid('setGridParam', {
 			postData: { mzzyh: mzzyh, type: type, ztmc: ztmc, ycbz: ycbz, sqdht: sqdht },
-		}).trigger('reloadGrid'); //重新加载当前表格
+		}).trigger('reloadGrid'); //lạitảihiện tạibảngô
 	});
 
 	function gridList() {
@@ -82,22 +82,22 @@
 			viewrecords: true,
 			unwritten: false,
 			loadComplete: function () {
-				var rowNum = $("#gridList").jqGrid('getGridParam', 'records'); //获取数据总条
+				var rowNum = $("#gridList").jqGrid('getGridParam', 'records'); //LấyDữ liệutổngdòng
 				if (rowNum==0) {
 					if ($("#norecords").html() == null) {
 						$("#gridList").parent().append("<div id='norecords' style='margin:10px;color:red;font-size:16px;'>Không có mục giá trị bất thường!</div>");
 					}
-					$("#norecords").show();//显示提示信息
+					$("#norecords").show();//Hiển thịNhắc nhởthông tin
 				} else {
 					$("#norecords").remove();
-					$("#norecords").hide();//隐藏提示信息
+					$("#norecords").hide();//ẨnNhắc nhởthông tin
 				}
 			}
 		});
 	}
 
 	function addlistpubs() {
-        var selRowIds = $("#gridList").jqGrid("getGridParam", "selarrrow");//选中的id
+        var selRowIds = $("#gridList").jqGrid("getGridParam", "selarrrow");//Đã chọncủaid
 
         var rowids = $("#gridList").jqGrid("getDataIDs");
         var rowData = new Array();
@@ -118,13 +118,13 @@
                 outstr += "Bộ mẫu[" + rowData[i].ztmc + "]";
             }
             
-			if (rowData[i].sqdlx=="4") {//为检验报告
+			if (rowData[i].sqdlx=="4") {//làBáo cáo xét nghiệm
 				if (rowData[i].gdbj != '') {
                     outstr += "Trong đó mục [" + rowData[i].xmzwmc + "], kết quả là:" + rowData[i].jyjg + " " + rowData[i].gdbj + " Giá trị tham chiếu,phạm vi giá trị tham chiếu là" + rowData[i].ckz + ";";
 				} else {
                     outstr += "Trong đó mục [" + rowData[i].xmzwmc + "], kết quả là:" + rowData[i].jyjg + ",phạm vi giá trị tham chiếu là" + rowData[i].ckz + ";";
 				}
-            } else if (rowData[i].sqdlx == "5") {//为检查报告
+            } else if (rowData[i].sqdlx == "5") {//làBáo cáo kiểm tra
                 outstr += "Trong đó mục [" + rowData[i].xmzwmc + "], kết quả là:" + rowData[i].jyjg + ";";
 			}
 			

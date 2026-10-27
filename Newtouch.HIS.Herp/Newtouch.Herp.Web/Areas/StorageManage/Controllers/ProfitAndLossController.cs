@@ -14,7 +14,7 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 {
     /// <summary>
-    /// 报损报溢 (báo hỏng/báo thừa).
+    /// Báo hỏng/báo thừa.
     /// QueryProfitAndLoss grid data comes from a normal JSON action, so it is
     /// ported fully; only its SSRS print button (tempCode 1265) is stubbed
     /// in the view. Index() is inherited from the controller base (as in the
@@ -37,7 +37,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
             _stockInventoryApp = stockInventoryApp;
         }
 
-        #region 损益原因维护
+        #region Bảo trì nguyên nhân hao hụt/thặng dư
 
         public IActionResult Syyy()
         {
@@ -93,7 +93,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 
         #endregion
 
-        #region 损益查询
+        #region Truy vấn hao hụt/thặng dư
 
         public IActionResult QueryProfitAndLoss()
         {

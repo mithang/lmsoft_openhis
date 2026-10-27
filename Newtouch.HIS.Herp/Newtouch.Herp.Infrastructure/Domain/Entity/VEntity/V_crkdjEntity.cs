@@ -3,92 +3,92 @@ using System;
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 出入库单据主信息
+    /// Thông tin chính chứng từ nhập/xuất kho
     /// </summary>
     public class VCrkdjEntity
     {
         /// <summary>
-        /// 审核状态
+        /// Trạng thái duyệt
         /// </summary>
         public string shzt { get; set; }
 
         /// <summary>
-        /// 票单号
+        /// Số phiếu
         /// </summary>
         public string Pdh { get; set; }
 
         /// <summary>
-        /// 出库部门名称
+        /// Tên khoa xuất kho
         /// </summary>
         public string ckbmmc { get; set; }
 
         /// <summary>
-        /// 出库部门ID
+        /// Khoa xuất kho ID
         /// </summary>
         public string ckbmId { get; set; }
 
         /// <summary>
-        /// 入库部门名称
+        /// Tên khoa nhập kho
         /// </summary>
         public string rkbmmc { get; set; }
 
         /// <summary>
-        /// 入库部门ID
+        /// Khoa nhập kho ID
         /// </summary>
         public string rkbmId { get; set; }
 
         /// <summary>
-        /// 出入库方式ID
+        /// Phương thức nhập/xuất kho ID
         /// </summary>
         public string crkfsId { get; set; }
 
         /// <summary>
-        /// 出入库方式名称
+        /// Tên phương thức nhập/xuất kho
         /// </summary>
         public string crkfsmc { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime czsj { get; set; }
 
         /// <summary>
-        /// 出库时间
+        /// Thời gian xuất kho
         /// </summary>
         public string cksj { get; set; }
 
         /// <summary>
-        /// 入库时间
+        /// Thời gian nhập kho
         /// </summary>
         public string rksj { get; set; }
 
         /// <summary>
-        /// 零售总金额
+        /// Tổng số tiền bán lẻ
         /// </summary>
         public decimal ljze { get; set; }
 
         /// <summary>
-        /// 进价总金额
+        /// Tổng số tiền giá nhập
         /// </summary>
         public decimal jjze { get; set; }
 
         /// <summary>
-        /// 进销总金额差价
+        /// Chênh lệch tổng số tiền nhập-bán
         /// </summary>
         public decimal jxcj { get; set; }
 
         /// <summary>
-        /// 出入库单据ID
+        /// Chứng từ nhập/xuất kho ID
         /// </summary>
         public long crkId { get; set; }
 
         /// <summary>
-        /// 单据类型ID
+        /// Loại chứng từ ID
         /// </summary>
         public int djlx { get; set; }
 
         /// <summary>
-        /// 配送单号
+        /// Số phiếu phân phối
         /// </summary>
         public string deliveryNo { get; set; }
 

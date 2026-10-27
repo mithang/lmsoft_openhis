@@ -1,7 +1,7 @@
 // Base web port: Vietnamese chrome for framework-ui dialogs.
 //
 // The shared static host's framework-ui.js ships $.modalAlert/$.modalConfirm with
-// hardcoded Chinese dialog titles ("系统提示") and buttons ("确认"/"取消"), and that
+// hardcoded Chinese dialog titles ("Thông báo hệ thống") and buttons ("Xác nhận"/"Hủy"), and that
 // file lives outside this app (it must not be edited here). This override, loaded
 // AFTER framework-ui.js in _Index/_Form, replaces both functions with same-signature
 // Vietnamese versions. Standalone MRQC pages do not load layer.js (the SSO portal

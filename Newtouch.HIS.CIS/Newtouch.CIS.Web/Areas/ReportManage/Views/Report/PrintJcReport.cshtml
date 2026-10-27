@@ -26,7 +26,7 @@
     function submit() {
         var url = getUrl();
 
-        //直接打开
+        //trực tiếpMở
         location.href = url;
         return;
 
@@ -50,7 +50,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấykiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheetBlankPage";

@@ -9,36 +9,36 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicinePriceAdjustmentRepo : IRepositoryBase<SysMedicinePriceAdjustmentEntity>
     {
         /// <summary>
-        /// 获取一个调价的entity 未审核 未执行
+        /// Lấy một điều chỉnh giáentity Chưa duyệt Chưa thực hiện
         /// </summary>
         /// <param name="ypCode"></param>
         /// <returns></returns>
         SysMedicinePriceAdjustmentEntity GetMedicinePriceAdjustmentNotApproveEntity(string ypCode);
 
         /// <summary>
-        /// 获取一个调价的entity 已审核 未执行
+        /// Lấy một điều chỉnh giáentity Đã duyệt Chưa thực hiện
         /// </summary>
         /// <param name="ypCode"></param>
         /// <returns></returns>
         SysMedicinePriceAdjustmentEntity GetMedicinePriceAdjustmentNotExecteEntity(string ypCode);
 
         /// <summary>
-        /// 添加药品调价记录(申请)
+        /// Thêm bản ghi điều chỉnh giá thuốc(Xin)
         /// </summary>
         /// <param name="entity"></param>
         void AddPriceAdjustmentRecord(SysMedicinePriceAdjustmentEntity entity);
 
         /// <summary>
-        /// 检查是否有未处理的数据
+        /// Kiểm tra có dữ liệu chưa xử lý không
         /// </summary>
         /// <param name="ypCodeList"></param>
         string CheckStatus(ArrayList ypCodeList);
 
         ///  <summary>
-        ///  药品调价
+        ///  Điều chỉnh giá thuốc
         ///  </summary>
-        ///  --shzt:0:未审核 1:已审核 2:已拒绝 3.已撤销
-        /// 	--zxbz:0:未执行 1:已执行
+        ///  --shzt:0:Chưa duyệt 1:Đã duyệt 2:Đã từ chối 3.Đã thu hồi
+        /// 	--zxbz:0:Chưa thực hiện 1:Đã thực hiện
         /// <param name="ypCodeList"></param>
         /// <param name="operationType"></param>
         string MedicinePriceAdjustment(ArrayList ypCodeList, int operationType);

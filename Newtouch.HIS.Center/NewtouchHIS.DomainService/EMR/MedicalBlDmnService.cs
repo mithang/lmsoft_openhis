@@ -16,7 +16,7 @@ using static NewtouchHIS.Domain.Enum.HisEnum;
 namespace NewtouchHIS.DomainService.EMR
 {
     /// <summary>
-    /// 质控病历结构模板接口查询
+    /// Truy vấn giao diện mẫu cấu trúc bệnh án kiểm soát chất lượng
     /// </summary>
     public class MedicalBlDmnService : BaseServices<MedicalBllxItemVo>, IMedicalBlDmnService
     {
@@ -40,7 +40,7 @@ namespace NewtouchHIS.DomainService.EMR
         }
 
         /// <summary>
-        /// 病历模板
+        /// Mẫu bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="db"></param>
@@ -84,7 +84,7 @@ from [bl_bllx] with(nolock) where zt=1 and OrganizeId=@orgId
             return bllxmbList;
         }
         /// <summary>
-        /// 住院病人列表
+        /// Danh sách bệnh nhân nội trú
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="db"></param>
@@ -127,7 +127,7 @@ from [bl_bllx] with(nolock) where zt=1 and OrganizeId=@orgId
             return patlist;
         }
         /// <summary>
-        /// 出入院诊断列表
+        /// Danh sách chẩn đoán vào/ra viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -150,7 +150,7 @@ from [bl_bllx] with(nolock) where zt=1 and OrganizeId=@orgId
             return DiagList;
         }
         /// <summary>
-        /// 病历文书tree
+        /// Văn bản bệnh ántree
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -176,42 +176,42 @@ from [bl_bllx] with(nolock) where zt=1 and OrganizeId=@orgId
 	where a.organizeid=@orgId 
 	and a.zyh=@zyh 
 	and a.zt='1'  
-	if(exists(select 1 from #bltab2 where '1'=left(bllx,1)))--入院病历
+	if(exists(select 1 from #bltab2 where '1'=left(bllx,1)))--Bệnh án nhập viện
 	begin
 	insert into #bltab1
 	select t1.Id,Blmc,ParentId,Bllx,t1.Zyh,BlId,MbId,Doccode,Docname,t1.Blrq,blxtml+blxtmc_yj+'.xml' Mblj,Blzt,IsRoot from #bltab2 t1
 	left join bl_rybl t2 with(nolock) on t1.BlId=t2.Id and t1.OrganizeId=t2.OrganizeId 
 	where t2.zt='1' and  '1'=left(bllx,1)
 	end
-	if(exists(select 1 from #bltab2 where '2'=left(bllx,1))) --病程记录
+	if(exists(select 1 from #bltab2 where '2'=left(bllx,1))) --Ghi chép diễn biến bệnh
 	begin
 	insert into #bltab1
 	select t1.Id,Blmc,ParentId,Bllx,t1.Zyh,BlId,MbId,Doccode,Docname,t1.Blrq,blxtml+blxtmc_yj+'.xml' Mblj,Blzt,IsRoot from #bltab2 t1
 	left join bl_bcjl t2 with(nolock) on t1.BlId=t2.Id and t1.OrganizeId=t2.OrganizeId 
 	where t2.zt='1' and  '2'=left(bllx,1)
 	end
-	if(exists(select 1 from #bltab2 where '3'=left(bllx,1)))--医疗文书
+	if(exists(select 1 from #bltab2 where '3'=left(bllx,1)))--Văn bản y tế
 	begin
 	insert into #bltab1
 	select t1.Id,Blmc,ParentId,Bllx,t1.Zyh,BlId,MbId,Doccode,Docname,t1.Blrq,blxtml+blxtmc_yj+'.xml' Mblj,Blzt,IsRoot from #bltab2 t1
 	left join bl_zqws t2 with(nolock) on t1.BlId=t2.Id and t1.OrganizeId=t2.OrganizeId 
 	where t2.zt='1' and  '3'=left(bllx,1)
 	end
-	if(exists(select 1 from #bltab2 where '4'=left(bllx,1)))--护理记录
+	if(exists(select 1 from #bltab2 where '4'=left(bllx,1)))--Ghi chép điều dưỡng
 	begin
 	insert into #bltab1
 	select t1.Id,Blmc,ParentId,Bllx,t1.Zyh,BlId,MbId,Doccode,Docname,t1.Blrq,blxtml+blxtmc_yj+'.xml' Mblj,Blzt,IsRoot from #bltab2 t1
 	left join bl_hljl t2 with(nolock) on t1.BlId=t2.Id and t1.OrganizeId=t2.OrganizeId 
 	where t2.zt='1' and  '4'=left(bllx,1)
 	end
-	if(exists(select 1 from #bltab2 where '5'=left(bllx,1))) --病案首页
+	if(exists(select 1 from #bltab2 where '5'=left(bllx,1))) --Trang đầu bệnh án
 	begin
 	insert into #bltab1
 	select t1.Id,Blmc,ParentId,Bllx,t1.Zyh,BlId,MbId,Doccode,Docname,t1.Blrq,blxtml+blxtmc_yj+'.xml' Mblj,Blzt,IsRoot from #bltab2 t1
 	left join bl_basy t2 with(nolock) on  t1.BlId=t2.Id and t1.OrganizeId=t2.OrganizeId 
 	where t2.zt='1' and  '5'=left(bllx,1)
 	end
-	if(exists(select 1 from #bltab2 where '6'=left(bllx,1))) --康复评估
+	if(exists(select 1 from #bltab2 where '6'=left(bllx,1))) --Đánh giá phục hồi chức năng
 	begin
 	insert into #bltab1
 	select t1.Id,Blmc,ParentId,t1.Bllx,t1.Zyh,BlId,MbId,Doccode,Docname,t1.Blrq,blxtml+blxtmc_yj+'.xml' Mblj,Blzt,IsRoot from #bltab2 t1

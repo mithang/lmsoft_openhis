@@ -3,7 +3,7 @@
     ViewBag.Title = "Nhập việnBệnh nhânDanh sách";
     Layout = "~/Views/Shared/_Index.cshtml";
     var pacsHost = SiteUrl.GetUrl("OuterPacsServiceHost", "");
-    //长期医嘱打印单是否显示签名
+    //Y lệnh dài hạnInphiếuCóKhôngHiển thịchữ ký
     var isShowSign = SysConfigReader.String("IS_ShowSigner");
     var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
@@ -133,7 +133,7 @@
                     localStorage.setItem("lastabq", $(this).val());
                 }
             });
-            if (!flag) {//下拉框找不到该选项就不选
+            if (!flag) {//hộp thả xuốngtìmkhôngđếnTùy chọnthìkhôngchọn
                 $(this).val("");
             }
         }
@@ -152,11 +152,11 @@
         var selectval = "";
         if (lastbqval == typeof (undefined) || lastbqval == "" || lastbqval == null || lastbqval == 'null') {
             if ('@ViewBag.bqval' !== "") {
-                //赋值
+                //Gán giá trị
                 selectval = '@ViewBag.bqval';
             }
         } else {
-            //赋值
+            //Gán giá trị
             selectval = lastbqval;
         }
         if (selectval !== "") {
@@ -171,22 +171,22 @@
     }
 
     function newtouch_event_f4() {
-        //开始时间，结束时间还原
+        //Thời gian bắt đầu，Thời gian kết thúckhôi phục
         $('#txt_ksrq').val($.getDate());
         $('#txt_jsrq').val($.getDate());
         $('#ycq_keyword').val('');
-        clearSelectpatient();//清理当前选中对象
-        zbqPatientList = [];//清理病区中病人
+        clearSelectpatient();//xóalýhiện tạiĐã chọnđối tượng
+        zbqPatientList = [];//xóalýKhu bệnhtrongbệnh người
         init();
         $('#linkzbq').addClass("active");
         $('#linkycq').removeClass("active");
         $(".nav-tabs li[id='linkzbq']").trigger("click");
     }
-    //**************在病区**************
+    //**************Đang ở khu bệnh**************
 
     $(function () {
         init();
-        //搜索统计选项卡切换
+        //tìm kiếmThống kêTùy chọnthẻcắtđổi
         $(".nav-tabs li").click(function () {
             clearSelectpatient();
             if ($(this)[0].id === "linkzbq") {
@@ -223,7 +223,7 @@
         initycq();
     }
 
-    //**************已出区**************
+    //**************đãra khỏi khu**************
 
     function initycq() {
         div_ycqList();
@@ -286,7 +286,7 @@
             pager: "#div_ycqgridPager",
             sortname: 'cqrq desc',
             gridComplete: function () {
-                //隐藏grid底部滚动条
+                //Ẩngridthanh cuộn dưới cùng
                 $("#div_ycqList").closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
             },
             onSelectRow: function (rowid) {
@@ -296,7 +296,7 @@
         });
     }
 
-    //获取已出区病人信息
+    //Lấyđãra khỏi khuThông tin bệnh nhân
     function ajaxrequestycq() {
 		if (validateSearch()) {
             $('#div_ycqList').jqGrid('setGridParam', {
@@ -337,7 +337,7 @@
         return true;
     }
 
-    //打印长期医嘱
+    //InY lệnh dài hạn
     function printcq() {
         var keyValue = $("#div_ycqList").jqGridRowValue().zyh;
         if (!!!keyValue) {
@@ -352,7 +352,7 @@
         //window.open("/ReportManage/Report/PrintCqyzReport?zyh=" + keyValue+ "&isShowSign=" + isSign,"height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
     }
 
-    //打印临时医嘱
+    //InY lệnh tạm thời
     function printls() {
         var keyValue = $("#div_ycqList").jqGridRowValue().zyh;
         if (!!!keyValue) {
@@ -366,7 +366,7 @@
         top.top.$.Newtouchtab.addTabWithOutMenu({ name: keyValue + "-Y lệnh tạm thời", enName: "", url: "/SystemManage/YzPreView/YzPreView?zyh=" + keyValue + "&orgId=" + '@curOpr.OrganizeId' + "&isSign=" + isSign + "&yzlx=" + "Y lệnh tạm thời", AppId: "EMR" });
         //window.open("/ReportManage/Report/PrintLsyzReport?zyh=" + keyValue+ "&isShowSign=" + isSign, "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
     }
-    //右键菜单事件
+    //phảiphímmenuphiếusự kiện
     function InitTZ() {
         var menuNo = new BootstrapMenu('.ul-zbq li', {
             fetchElementData: function ($rowElem) {
@@ -449,16 +449,16 @@
                     onClick: function (row) {
                         //金风易通 LIS 2024-4-28 chl
                         window.open("@pacsHost/doctor-api/api/viewer?type=1&pid=" + currentobj.blh + "&areaCode=" + "@curOpr.OrganizeId", "_blank");
-                        //测试链接
+                        //đothửchuỗinhận
                         //window.open("@pacsHost/doctor-api/api/viewer?type=1&pid=JF566&areaCode=6d5752a7-234a-403e-aa1c-df8b45d3469f", "_blank");
 
                         //$.modalOpen({
                         //    id: "medicaljyForm",
-                        //    title: "LIS检验申请单列表",
+                        //    title: "LISXét nghiệmPhiếudanh sách",
                         //    url: "/MedicalRecord/LisSqdhQueryForm?mzzyh=" + currentobj.zyh + "&type=" + "zy",
                         //    width: "900px",
                         //    height: "600px",
-                        //    btn: ['', '关闭'],
+                        //    btn: ['', 'Đóng'],
                         //    btnclass: ['', 'btn btn-danger'],
                         //});
                     }
@@ -468,16 +468,16 @@
                     onClick: function (row) {
                         //金风易通 PACS 2024-4-28 chl
                         window.open("@pacsHost/doctor-api/api/viewer?type=2&pid=" + currentobj.blh + "&areaCode=" + "@curOpr.OrganizeId", "_blank");
-                        //测试链接
+                        //đothửchuỗinhận
                         //window.open("@pacsHost/doctor-api/api/viewer?type=2&pid=1034097&areaCode=6d5752a7-234a-403e-aa1c-df8b45d3469f", "_blank");
 
                         //$.modalOpen({
                         //    id: "medicaljcForm",
-                        //    title: "PASC检查申请单列表",
+                        //    title: "PASCKiểm traPhiếudanh sách",
                         //    url: "/MedicalRecord/PacsSqdhQueryForm?mzzyh=" + currentobj.zyh + "&type=" + "zy",
                         //    width: "800px",
                         //    height: "500px",
-                        //    btn: ['', '关闭'],
+                        //    btn: ['', 'Đóng'],
                         //    btnclass: ['', 'btn btn-danger'],
                         //});
                     }

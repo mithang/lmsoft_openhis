@@ -17,27 +17,27 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public string cyrq { get; set; }
         public int? zybz { get; set; }
         /// <summary>
-        /// 账户性质
+        /// Tài khoảnTính chất
         /// </summary>
         public int? zhxz { get; set; }
         /// <summary>
-        /// 预交金余额
+        /// tạm ứngkimdưmức
         /// </summary>
         public string zhye { get; set; }
         /// <summary>
-        /// 发生的总费用
+        /// phátsinhcủatổngChi phí
         /// </summary>
         public decimal? zje { get; set; }
         /// <summary>
-        /// 已结费用
+        /// đãkếtChi phí
         /// </summary>
         public decimal? yjfy { get; set; }
         /// <summary>
-        /// 预交金报警额
+        /// tạm ứngkimbáocảnh báomức
         /// </summary>
         public decimal? bje { get; set; }
         /// <summary>
-        /// 医保现金支付
+        /// Bảo hiểm y tếhiệnkimchitrả
         /// </summary>
         public decimal? ybxjzf { get; set; }
         public List<InpatientBedUseInfoVO> patTransList { get; set; }

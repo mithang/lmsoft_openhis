@@ -52,7 +52,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
             return Content(data.ToJson());
         }
 
-        //获取二级和三级Nhóm thu phí
+        //Lấy nhóm thu phí cấp 2 và cấp 3
         public IActionResult GetFeeSel(string orgId)
         {
             var result = _MrFeeRelDmnService.GetFeeSel(OrganizeId);

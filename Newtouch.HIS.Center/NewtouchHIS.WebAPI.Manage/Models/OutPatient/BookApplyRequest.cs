@@ -1,16 +1,16 @@
 ﻿namespace NewtouchHIS.WebAPI.Manage.Models.OutPatient
 {
     /// <summary>
-    /// 预约Đăng ký请求参数
+    /// Đặt hẹnĐăng kýTham số yêu cầu
     /// </summary>
     public class BookApplyRequest
     {
         /// <summary>
-        /// 挂号性质 自费医保等 brxz 等同
+        /// Tính chất đăng ký khám Tự chi trả, BHYT v.v. brxz Tương đương
         /// </summary>
         public string ghxz { get; set; }
         /// <summary>
-        /// mz_ghpb_schedule 预约既定日程Id
+        /// mz_ghpb_schedule Lịch trình đã định của đặt hẹnId
         /// </summary>
         public string ScheduId { get; set; }
         /// <summary>
@@ -19,12 +19,12 @@
         public string kh { get; set; }
     }
     /// <summary>
-    /// 取消预约请求参数
+    /// Tham số yêu cầu hủy đặt hẹn
     /// </summary>
     public class BookCancelRequest
     {
         /// <summary>
-        /// 预约号
+        /// Số đặt hẹn
         /// </summary>
         public string BookId { get; set; }
         /// <summary>
@@ -32,11 +32,11 @@
         /// </summary>
         public string kh { get; set; }
         /// <summary>
-        /// 预约取消原因
+        /// Nguyên nhân hủy đặt hẹn
         /// </summary>
         public string? CancelReason { get; set; }
         /// <summary>
-        /// 联系方式
+        /// Phương thức liên hệ
         /// </summary>
         public string? lxdh { get; set; }
     }

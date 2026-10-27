@@ -9,26 +9,26 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface ISysApplicationDmnService
     {
         /// <summary>
-        /// 获取应用已授权的组织机构列表
+        /// Lấy danh sách tổ chức đã được ủy quyền cho ứng dụng
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
         IList<SysOrganizeEntity> GetAuthedOrgListByAppId(string appId);
 
         /// <summary>
-        /// 将应用授权给指定机构
+        /// Ủy quyền ứng dụng cho tổ chức được chỉ định
         /// </summary>
         /// <param name="appId"></param>
         void UpdateAuthOrganizeList(string appId, string orgList, string curUserCode);
 
         /// <summary>
-        /// 将应用授权给所有机构
+        /// Ủy quyền ứng dụng cho tất cả tổ chức
         /// </summary>
         /// <param name="appId"></param>
         void AuthAllOrganize(string appId, string curUserCode);
 
         /// <summary>
-        /// 撤销全部授权（组织机构）
+        /// Hủy tất cả ủy quyền（Tổ chức）
         /// </summary>
         /// <param name="appId"></param>
         void AuthCancelAllOrganize(string appId);

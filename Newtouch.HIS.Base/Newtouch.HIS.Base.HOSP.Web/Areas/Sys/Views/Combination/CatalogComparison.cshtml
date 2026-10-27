@@ -39,28 +39,28 @@
 	@*<div class="panel panel-default">
 		<div class="toolbar" style="margin-left:2%">
 			<div class="btn-group">
-				<label>医保药品名称：</label>
+				<label>Tên thuốc BHYT：</label>
 			</div>
 			<div class="btn-group">
-				<input id="txt_gjybdm" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="医保药品名称">
+				<input id="txt_gjybdm" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Tên thuốc BHYT">
 			</div>
 			<div class="btn-group">
-				<label>批准文号：</label>
+				<label>Số đăng ký：</label>
 			</div>
 			<div class="btn-group">
-				<input id="txt_pzwh" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="医保批准文号">
+				<input id="txt_pzwh" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Số phê duyệt BHYT">
 			</div>
 			<div class="btn-group">
-				<label>生产企业：</label>
+				<label>Doanh nghiệp sản xuất：</label>
 			</div>
 			<div class="btn-group">
-				<input id="txt_scqy" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="医保生产企业">
+				<input id="txt_scqy" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Doanh nghiệp sản xuất BHYT">
 			</div>
 			<div class="btn-group">
-				<input type="button" id="btn_searchyb" class="btn btn-primary" value="查询" />
+				<input type="button" id="btn_searchyb" class="btn btn-primary" value="Tìm kiếm" />
 			</div>
 			<div class="btn-group">
-				<input type="button" id="btn_save" class="btn btn-primary" value="对码" />
+				<input type="button" id="btn_save" class="btn btn-primary" value="Đối mã" />
 			</div>
 		</div>
 	</div>
@@ -73,7 +73,7 @@
 	$(function () {
 		gridList();
 		//$("#btn_searchyb").click(function () {
-		//	$('#gridJSMXList').jqGrid("clearGridData");//先清空明细
+		//	$('#gridJSMXList').jqGrid("clearGridData");//Xóa chi tiết trước
 		//	btn_selectmx();
 		//});
 
@@ -176,7 +176,7 @@
             }
         });
     }
-	//结算明细 jGrid声明
+	//Chi tiết quyết toán jGridKhai báo
 	$('#gridJSMXList').newtouchLocalDataGrid({
 		height: $(window).height() - 520,
 		caption: "Thông tin thuốc BHYT",
@@ -244,7 +244,7 @@
 
 		$("#txt_pzwh").val("");
 		$("#txt_scqy").val("");
-		//每次单击，先清空上一条明细 和合计
+		//Mỗi lần nhấp，Xóa chi tiết dòng trước và tổng cộng
 		$('#gridJSMXList').jqGrid("clearGridData");
 		$.najax({
 			type: "POST",
@@ -258,7 +258,7 @@
 	}
 
 
-	//保存对码
+	//Lưu đối mã
 	function btn_save() {
 
 		var ypid = $("#gridList").jqGrid('getGridParam', 'selrow');

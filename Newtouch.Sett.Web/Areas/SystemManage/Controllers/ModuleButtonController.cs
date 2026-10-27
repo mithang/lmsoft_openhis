@@ -78,7 +78,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Phân quyền给指定组织机构
+        /// Phân quyềnchochỉđịnhnhómtổ chứcmáycơ quan
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="orgList"></param>
@@ -96,7 +96,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Phân quyền给所有组织机构
+        /// Phân quyềnchonơicónhómtổ chứcmáycơ quan
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -113,7 +113,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 撤销全部Phân quyền（组织机构）
+        /// Hủy tất cảPhân quyền（Tổ chức）
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

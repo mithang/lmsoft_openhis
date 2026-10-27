@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysDepartmentWardRelationRepo : IRepositoryBase<SysDepartmentWardRelationEntity>
     {
         /// <summary>
-        /// 查找科室病区绑定信息
+        /// Tìm thông tin gắn kết khoa - khu bệnh
         /// </summary>
         /// <param name="deptId"></param>
         /// <returns></returns>

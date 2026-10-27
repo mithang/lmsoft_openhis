@@ -24,9 +24,9 @@ namespace Newtouch.Application.Implementation
 
         private readonly IPrepareMedicineDmnService _preparemMedicineDmnService;
 
-        #region 报损报溢
+        #region Báo hỏng báo thừa
         /// <summary>
-        /// 根据损益类型获取损益原因
+        /// Theolãi lỗLoạiLấynguyên nhân lãi lỗ
         /// </summary>
         /// <param name="sylx"></param>
         /// <returns></returns>
@@ -36,9 +36,9 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 查询损益药品list
+        /// Tra cứulãi lỗThuốclist
         /// </summary>
-        /// <param name="inputCode">关键字</param>
+        /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
         public List<ReportLossAndProfitMedicineInfoVO> SelectLossAndProfitMedicineList(string inputCode)
         {
@@ -47,13 +47,13 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 提交报损报溢
+        /// GửiBáo hỏngbáo thừa
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
         public string SubmitReportLossAndProfit(SysMedicineProfitLossEntity[] syxx)
         {
-            if (syxx == null || syxx.Length <= 0) return "损益明细不能为空";
+            if (syxx == null || syxx.Length <= 0) return "lãi lỗchi tiếtkhông thểđể trống";
             var errorMsg = "";
             var cts = new CancellationTokenSource();
             try
@@ -96,9 +96,9 @@ namespace Newtouch.Application.Implementation
 
         #endregion
 
-        #region 报损报溢查询
+        #region Báo hỏng báo thừaTra cứu
         /// <summary>
-        /// 报损报溢查询
+        /// Báo hỏngbáo thừaTra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -113,13 +113,13 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 批发价总金额、零售价总金额查询
+        /// Giá bán buônTổng số tiền、Giá bán lẻTổng số tiềnTra cứu
         /// </summary>
-        /// <param name="startTime">开始时间</param>
-        /// <param name="endTime">结束时间</param>
-        /// <param name="syyy">损益原因</param>
-        /// <param name="inputCode">关键字</param>
-        /// <param name="syqk">损益情况</param>
+        /// <param name="startTime">Thời gian bắt đầu</param>
+        /// <param name="endTime">Thời gian kết thúc</param>
+        /// <param name="syyy">nguyên nhân lãi lỗ</param>
+        /// <param name="inputCode">Từ khóa</param>
+        /// <param name="syqk">lãi lỗtình hình</param>
         /// <returns></returns>
         public LossAndProditInfoJeVo ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk)
         {
@@ -127,7 +127,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 报损报溢 保存
+        /// Báo hỏngbáo thừa Lưu
         /// </summary>
         /// <param name="profitLossEntityList"></param>
         //public void SaveReportLossAndProfit(List<SysMedicineProfitLossEntity> profitLossEntityList)
@@ -136,13 +136,13 @@ namespace Newtouch.Application.Implementation
         //    {
         //        int kcsl = 0;
         //        decimal jj = 0;
-        //        //1.查出kcsl和jj
+        //        //1.trarakcslvàjj
         //        _medicineDmnService.SelectKcslAndJj(item.Ypdm, item.Ph, item.pc, item.Yxq, out kcsl, out jj);
-        //        if (item.Sysl <= 0)  //报损
+        //        if (item.Sysl <= 0)  //Báo hỏng
         //        {
         //            if (kcsl + item.Sysl >= 0)
         //            {
-        //                //保存（update库存 insert损益表）
+        //                //Lưu（updateTồn kho insertlãi lỗbảng）
         //                _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
         //            }
         //            else
@@ -150,9 +150,9 @@ namespace Newtouch.Application.Implementation
         //                throw new FailedCodeException("INSUFFICIENT_STOCK_NOT_ENOUGH_TO_REPORT_LOSS");
         //            }
         //        }
-        //        else  //报溢
+        //        else  //báo thừa
         //        {
-        //            //保存（update库存 insert损益表）
+        //            //Lưu（updateTồn kho insertlãi lỗbảng）
         //            _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
         //        }
         //    }

@@ -10,7 +10,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 {
     /// <summary>
-    /// 直接出库
+    /// Xuất kho trực tiếp
     /// </summary>
     [Area("OutOrInStoredManage")]
     public class DeliveryDirectController : ControllerBase
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             return result.IsSucceed ? Success() : Error(result.ResultMsg);
         }
         /// <summary>
-        /// get入库发票
+        /// getHóa đơn nhập kho
         /// </summary>
         /// <param name="djlx"></param>
         /// <param name="fph"></param>
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 药库入库发票明细
+        /// Chi tiết hóa đơn nhập kho thuốc
         /// </summary>
         /// <param name="djlx"></param>
         /// <param name="fph"></param>

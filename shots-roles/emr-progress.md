@@ -105,3 +105,45 @@
   template names — data-file/DB content, not view failures (per brief: File/DataSourceDescriptor.xml).
 - MRHomePage/Index and Report/Index view-not-found errors are faithful to the original (no views).
 - Restarts: NONE. EMR stayed up; recovery.sh NOT run.
+
+## Chinese sweep 2026-10-27 (text-only worker, no build/start/commit/DB write)
+
+- Scope: whole Newtouch.HIS.EMR (Web + API + Infrastructure), 422 source files (.cshtml/.cs/.js, no .resx).
+- Before: 6,825 CJK lines / 11,316 runs (Web 4,634 / API 1 / Infrastructure 2,190). After: 3,098 CJK lines /
+  6,094 runs (Web 3,086 / API 0 / Infrastructure 12) — remainder is keeps only (see below).
+- Changed: 240 files, 3,780 lines (git insertions = deletions per file; every file's line count unchanged;
+  BOM preserved). Split: ~276 display/metadata lines + ~3,505 comment lines (classifier: CJK before any
+  comment marker, or pure-comment line). Includes 56 mojibake comment recoveries in 3 entity files
+  (bl_hljl_ybEntity 44, bl_bllxEntity 8, bl_hljl_srsclEntity 4; meanings from dich-tieng-viet branch) and
+  2 comment rewrites that quoted old Chinese strings (emr-vi.js, grid.locale-vi.js).
+- Keeps (not edited, by group): vendor/minified JS (dc_main, jquery/bootstrap/summernote-zh-CN/citys/easyui/
+  ribbon, both Content/ and wwwroot/ copies); File/DataSourceDescriptor.xml (844 CJK lines, data file) and
+  city.json; fonts (SimSun/Microsoft YaHei/Heiti/Kaiti + font-picker labels); DCSoft keys/values
+  (ExcludeKeywords, nodeName '数字文本', template <ID>/<Name>/<FileName>, GridLinePreviewText/LicenseText,
+  demo FileOpen paths, openN() demo menu items, icon .ico filenames, demo template .xml paths);
+  logic/SQL/DB values (SQL TypeName doctor roles, CONVERT 长/临, yzlb == "长", [停] marker, SSBFZMC
+  submitted values, gj == "中国", sd/flag/bllxmc action & document-type comparisons, DocRelSubmit stored
+  document-type name, BLMC timestamp+name, ~/file/住院病历 paths, Replace 常 pattern); stored grade codes
+  (EnumMR 甲/乙/丙 + MrqcAdd basyLevel writes — literal not re-quoted here per brief); hidden form values
+  (zyh/mzh placeholders, 医生签名 button); demo person names (张三/李四/上官海燕); vendor footer
+  (Hubei Tian Tian Shu Lian / tntlinking license lines); testbl.cshtml L59 giant commented docContent line.
+- Known prior-pass mixed artifacts left as-is (logic operands, need a caller-trace decision, not a text
+  edit): sd == "保存文档" || sd == "Lưu tài liệu" (MedRecordTemplateController L259,
+  MedicalRecordController L213/L496), Blys/Index flag == "Sửa" || flag == "修改" (#tijiao label).
+- DB-sourced Chinese observed (code evidence only, no DB read/write, app not started): doctor-role values
+  in Newtouch_CIS..zy_PatDocInfo.TypeName; stored grade codes (basyLevel); stored document-type names;
+  submitted complication values; runtime labels from queries (departments/drugs/diagnoses) not verified
+  live. No code was changed to mask DB values (user decision required).
+- Encoding: all 422 files UTF-8 (305 plain, 117 BOM), 0 GBK/unknown — no file blocked for encoding.
+- Mirrors: Content/ vs wwwroot/ JS copies verified identical after translation (domtool, floatingselector,
+  page.common).
+
+## Parity audit EMR (2026-10-27, worker ba88e1c0) — KHÔNG commit, KHÔNG ghi DB
+- Đối chiếu V2.2 (git show V2.2) vs bản port. Kết quả đếm thật, xem báo cáo đầy đủ của worker.
+- ĐÃ BỔ SUNG (3 file Web, build Debug 0 error, EMR Web restart PID cũ 3396 -> mới 14101; API PID 3446 không động):
+  1. Controllers/LoginController.cs: port UALogin + UALoginPre (mẫu OR; preheat giữ appId CIS như gốc; QuickLoginSuccess không có tương đương Core nên fallback về trang Login; GetUALoginAddres vốn đã thừa kế từ LoginBaseController). Live trước: /Login/UALogin 404; sau: 302 về / (không còn 404).
+  2. Areas/MedicalRecordManage/Controllers/MedicalRecordController.cs L213/L496/L609/L1746: thêm `|| sd == "Tải lên bảo hiểm y tế"` — nút upload trong view port post đúng giá trị này nhưng phép so sánh cũ chỉ có "上传医保" nên nhánh upload không bao giờ chạy (lỗi dịch một phía đã chứng minh bằng value của nút submit trong MedicalRecordEdit/EdiForAdd). Không đổi các phép so sánh pdf/html (không có nút HTML tương ứng; thuộc DCSoft toolbar).
+  3. Areas/MRHomePage/Views/Report/BasyReport.cshtml: khi ReportServer.HOST trống thì hiện thông báo SSRS tiếng Việt thay vì redirect URL tương đối hỏng rồi 404; khi có cấu hình thì giữ nguyên redirect gốc.
+- Ảnh -fixed (Playwright + Firefox local, viewport 1366x900, không full_page; ảnh cũ không ghi đè): emr-home-index-fixed.png, emr-report-basyreport-fixed.png (đã tự xem: thông báo SSRS tiếng Việt, không redirect), emr-blys-index-fixed.png. Login kiểm chứng live: POST CheckLogin 000000 + md5("000000") -> "Đăng nhập thành công"; Blys SubmitForm thiếu trường -> cổng validation từ chối, không ghi DB.
+- Kết luận (a)-(d): (a) sd "Lưu tài liệu" đã khớp runtime (value nút submit trong view) nên giữ cả hai phía; flag #tijiao runtime = "Sửa" (YSList.cshtml:52 khi chọn node cây) nên phép so sánh kép đúng, không sửa — chỉ có nhánh upload là lỗi thật và đã fix. (b) Mô tả YB tiếng Việt an toàn: consumer duy nhất dùng Description để dựng thông báo lỗi thiếu trường, payload dùng tên thuộc tính/mã jydm, không khớp nhãn tiếng Trung. (c) File/DataSourceDescriptor.xml vẫn là file dữ liệu (86 file dưới File/), toCS()/XMLCreate tái tạo từ DB đúng như gốc, không port thành code. (d) BasyReport gốc cũng redirect JS sang SSRS ReportViewer.aspx và ReportServer.HOST trống ở cả hai bản — đã giữ stub thông báo rõ ràng, không bịa trang báo cáo.
+- Lưu ý: git status lúc audit có nhiều file EMR đã sửa sẵn (đợt dịch giai đoạn 2 đang chạy song song) — diff 152 dòng của MedicalRecordController chủ yếu là dịch comment của đợt đó, phần của worker chỉ là 4 dòng if nêu trên.

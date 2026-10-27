@@ -8,14 +8,14 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// 公共请求
+    /// Yêu cầu chung
     /// </summary>
     public class ComController : ControllerBase
     {
         private readonly IItemDmnService _itemDmnService;
 
         /// <summary>
-        /// 获取下拉框内容
+        /// Lấy nội dung hộp thả xuống
         /// </summary>
         /// <param name="code"></param>
         /// <returns></returns>

@@ -83,7 +83,7 @@
         initFybm();
     });
 
-    //按backspace键清楚所有
+    //theobackspacephím để xóa tất cả
     function InitBackspaceKey(id) {
         $("#" + id).keydown(function (e) {
             var e = window.event ? window.event : e;
@@ -94,12 +94,12 @@
         });
     }
 
-    //自适应
+    //Tự thích ứng
     function initLayout() {
         $("#dv_right").width(fymx);
     }
 
-    //初始化发药部门
+    //Khởi tạo bộ phận phát thuốc
     function initFybm() {
         $("#fybmmc").newtouchBatchFloatingSelector({
             clickautotrigger: true,
@@ -227,7 +227,7 @@
         });
     }
 
-    //终止
+    //Kết thúc
     function btn_Abandon(id, zt) {
         if (zt === @((int)EnumSLDDeliveryStatus.None) || zt === @((int)EnumSLDDeliveryStatus.Part)) {
             $.najax({
@@ -252,11 +252,11 @@
             autoScroll: true,
             caption: "Thông tin thuốc",
             height: $(window).height() - 220,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
                 {
                     label: 'Số lượng phát hiện tại', name: 'fysl', width: 55, align: 'center'
-                },//包装单位数量
+                },//Số lượng đơn vị đóng gói
                 { label: 'Đơn vị', name: 'bzdw', width: 40, align: 'center' },
                 { label: 'Số lượng đã phát', name: 'yfslStr', width: 55, align: 'right' },
                 { label: 'Số lượng lĩnh', name: 'Sl', width: 55, align: 'right' },
@@ -290,7 +290,7 @@
         });
     }
 
-    //入库
+    //Nhập kho
     function newtouch_event_f8() {
         var kcInfoJsonSave = $MedicineGridList.jqGrid('getRowData_AllLine');
         if (kcInfoJsonSave === [] || kcInfoJsonSave.length === 0) {

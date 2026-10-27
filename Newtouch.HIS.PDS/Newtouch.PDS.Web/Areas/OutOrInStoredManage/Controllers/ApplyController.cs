@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 {
     /// <summary>
-    /// 内部发药申请
+    /// Đơn xin phát thuốc nội bộ
     /// </summary>
     [Area("OutOrInStoredManage")]
     public class ApplyController : ControllerBase

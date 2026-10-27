@@ -116,7 +116,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";
@@ -138,7 +138,7 @@
 </script>
 <script type="text/javascript">
     function init() {
-        //治疗师绑定下拉框
+        //Hộp chọn liên kết trị liệu sư
         $("#depa").bindSelect({
             id: "Code",
             text: "Name",
@@ -150,13 +150,13 @@
             submit();
         });
 
-        //费用性质
+        //Tính chất chi phí
         $("#brxzmc").newtouchBatchFloatingSelector({
             height: 250,
             width: 400,
             clickautotrigger: true,
             filter: function (keyword) {
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                     resultObjArr.push(val);
@@ -182,7 +182,7 @@
 
     }
 
-    //操作人
+    //Người thao tác
     $("#btnsyy").click(function () {
         $.modalOpen({
             id: "FormUsers",
@@ -198,7 +198,7 @@
         });
     });
 
-    //用户人员树回调方法
+    //phương thức gọi lại cây nhân viên người dùng
     function userStaffTreeCallback(data) {
         $("#txtsyy").val(data[0].Code);
     }

@@ -3,7 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
-    /// <summary>药品 (scaffold gốc — giữ nguyên hành vi value1/value2).</summary>
+    /// <summary>Thuốc (scaffold gốc — giữ nguyên hành vi value1/value2).</summary>
     [Route("api/Medicine")]
     [ApiController]
     public class MedicineController : ControllerBase

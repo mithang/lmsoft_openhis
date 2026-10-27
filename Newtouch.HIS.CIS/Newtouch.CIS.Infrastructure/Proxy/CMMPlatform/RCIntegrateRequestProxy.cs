@@ -7,12 +7,12 @@ using Newtouch.Infrastructure;
 namespace Newtouch.CIS.Proxy.CMMPlatform
 {
     /// <summary>
-    /// 集成远程诊疗系统
+    /// tậpthànhxatrìnhkhámtrịHệ thống
     /// </summary>
     internal class RCIntegrateRequestProxy : GuiAnTelemedicinePlatformProxy<RCIntegrateRequestEntity, string>
     {
         /// <summary>
-        /// 执行
+        /// Thực hiện
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>

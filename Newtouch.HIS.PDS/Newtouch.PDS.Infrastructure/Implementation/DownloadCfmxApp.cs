@@ -17,7 +17,7 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 落地处方明细
+    /// Lưu chi tiết đơn thuốc
     /// </summary>
     public class DownloadCfmxApp : ProcessorFun<string>
     {
@@ -36,17 +36,17 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Kiểm tra
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
         {
-            if (string.IsNullOrWhiteSpace(Request) || Request.ToLower().Equals("undefined")) throw new FailedException("处方号不能为空");
+            if (string.IsNullOrWhiteSpace(Request) || Request.ToLower().Equals("undefined")) throw new FailedException("Số đơn thuốc không được để trống");
             return new ActResult();
         }
 
         /// <summary>
-        /// 预处理
+        /// Tiền xử lý
         /// </summary>
         protected override void BeforeAction(ActResult actResult)
         {
@@ -60,7 +60,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 从结算系统获取处方明细
+        /// Lấy chi tiết đơn thuốc từ hệ thống thanh toán
         /// </summary>
         /// <returns></returns>
         private List<OutPatientpyCfmxDTO> QueryCfmx()
@@ -73,18 +73,18 @@ namespace Newtouch.HIS.Application.Implementation
             var apiResp = SiteSettAPIHelper.Request<object,DefaultResponse>("api/OutpatientPharmacy/WaitingDispenseMedicineDetailQuery", reqObj);
             if (apiResp.code != ResponseResultCode.SUCCESS && apiResp.data == null)
             {
-                throw new FailedException("从结算系统获取处方明细失败");
+                throw new FailedException("Lấy chi tiết đơn thuốc từ hệ thống thanh toán thất bại");
             }
             var cfmxs = apiResp.data.ToString().ToObject<List<OutPatientpyCfmxDTO>>();
             if (cfmxs != null && cfmxs.Count > 0)
             {
                 return cfmxs;
             }
-            throw new FailedException("从结算系统获取处方明细失败");
+            throw new FailedException("Lấy chi tiết đơn thuốc từ hệ thống thanh toán thất bại");
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -94,12 +94,12 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 if (_mzCfmxRepo.Insert(_mzCfmxEntities) > 0) return;
                 actResult.IsSucceed = false;
-                actResult.ResultMsg = "保存处方明细失败";
+                actResult.ResultMsg = "Lưu chi tiết đơn thuốc thất bại";
             }
         }
 
         /// <summary>
-        /// 组装处方明细
+        /// Lắp ráp chi tiết đơn thuốc
         /// </summary>
         private void AssembleMzCfmxEntityEntities()
         {
@@ -107,16 +107,16 @@ namespace Newtouch.HIS.Application.Implementation
             _mzCfmxEntities = new List<MzCfmxEntity>();
             _cfmx.ForEach(p =>
             {
-                //该处方明细是否存在
+                //Chi tiết đơn thuốc này có tồn tại không
                 if (IsExist(p))
                 {
                     _mzCfmxRepo.DeleteCfmx(Request);
                 }
-                //同步处方明细的时候，判断数量大于0的落地
+                //Khi đồng bộ chi tiết đơn thuốc，Kiểm tra Số lượng lớn hơn0lưu trữ của
                 if (p.sl > 0)
                 {
                     var zhyz = _sysMedicineReceiptDmnService.GetZhyz(OperatorProvider.GetCurrent(true).OrganizeId, Constants.CurrentYfbm.yfbmCode, p.yp);
-                    if (zhyz == 0) throw new FailedException("药库药品【{0}】转换因子为0", p.ypmc);
+                    if (zhyz == 0) throw new FailedException("Thuốc kho thuốc【{0}】Hệ số chuyển đổi là0", p.ypmc);
                     _mzCfmxEntities.Add(new MzCfmxEntity
                     {
                         bz = p.yszt,
@@ -143,7 +143,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 判断是否存在该处方明细
+        /// Kiểm tra có tồn tại chi tiết đơn thuốc này không
         /// </summary>
         /// <param name="outPatientpyCfmxDto"></param>
         /// <returns></returns>
@@ -153,7 +153,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 后处理
+        /// Hậu xử lý
         /// </summary>
         protected override void AfterAction(ActResult actResult)
         {

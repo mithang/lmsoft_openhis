@@ -8,21 +8,21 @@ using Newtouch.Herp.Domain.IDomainServices;
 namespace Newtouch.Herp.DomainServices
 {
     /// <summary>
-    /// 采购计划
+    /// Kế hoạch mua sắm
     /// </summary>
     public class CgPurchaseOrderDmnService : DmnServiceBase, ICgPurchaseOrderDmnService
     {
         
 
         /// <summary>
-        /// 获取采购计划主表信息
+        /// Lấy thông tin bảng chính kế hoạch mua sắm
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="cgdh"></param>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
         /// <param name="auditState"></param>
-        /// <param name="userCode">操作员账号</param>
+        /// <param name="userCode">Tài khoản nhân viên thao tác</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         public IList<VCgPurchaseOrderEntity> SelectPurchaseOrder(Pagination pagination, string cgdh, DateTime kssj, DateTime jssj, int auditState,
@@ -59,7 +59,7 @@ AND (cpo.auditState=@shzt OR -1=@shzt)
         }
 
         /// <summary>
-        /// 查询已审核通过的采购计划单
+        /// Truy vấn phiếu kế hoạch mua sắm đã duyệt
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="cgdh"></param>
@@ -97,7 +97,7 @@ AND (cpo.rkbmCode=@rkbmCode OR ''=ISNULL(@rkbmCode,''))
         }
 
         /// <summary>
-        /// 获取采购计划主表信息
+        /// Lấy thông tin bảng chính kế hoạch mua sắm
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="cgdh"></param>
@@ -134,7 +134,7 @@ AND (cpo.auditState=@shzt OR -1=@shzt)
         }
 
         /// <summary>
-        /// 获取采购计划明细信息
+        /// Lấy thông tin chi tiết kế hoạch mua sắm
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>
@@ -163,7 +163,7 @@ AND cpo.zt='1'
         }
 
         /// <summary>
-        /// 查询已审核通过的采购计划单
+        /// Truy vấn phiếu kế hoạch mua sắm đã duyệt
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="cgdh"></param>
@@ -202,7 +202,7 @@ AND cpod.sl>ISNULL(cpod.sjsl,0)
         }
 
         /// <summary>
-        /// 获取等待采购的采购计划明细
+        /// Lấy chi tiết kế hoạch mua sắm đang chờ mua
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>

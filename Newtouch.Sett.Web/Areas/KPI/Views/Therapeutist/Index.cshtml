@@ -36,7 +36,7 @@
             scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
 </div>
 <script type="text/javascript">
-    //全局变量
+    //Biến toàn cục
     var orgId = '@(ViewBag.OrgId)';
     //ReportingService Host
     var reportServerHOST = '@(ViewBag.ReportServerHOST)';
@@ -44,17 +44,17 @@
 
 </script>
 <script type="text/javascript">
-    //年月下拉初始化
+    //Khởi tạo hộp chọn năm tháng
     (function initYearMonthSelect() {
         var date = new Date;
-        //默认选择上个月
+        //Mặc định chọn tháng trước
         var defaultSelYear = 1900 + date.getYear();
         var defaultSelMonth = date.getMonth();
         if (defaultSelMonth == 0) {
             defaultSelYear--;
             defaultSelMonth = 12;
         }
-        //年份
+        //Năm
         $("#year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -67,7 +67,7 @@
             },
             selectedValue: defaultSelYear,
         });
-        //月份
+        //Tháng
         $("#month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -95,12 +95,12 @@
             cache: false,
             success: function (ajaxresp) {
                 if (ajaxresp.flag === false) {
-                    showType = "2"  //未生成过
+                    showType = "2"  //Chưa từng tạo
                 }
                 else {
-                    showType = "1"  //当月已生成过固定报表
+                    showType = "1"  //Trong tháng đã từng tạo báo cáo cố định
                 }
-                searchReport(); //查询报表
+                searchReport(); //Tra cứu báo cáo
             }
         });
     };
@@ -122,7 +122,7 @@
     });
 </script>
 <script type="text/javascript">
-    //查询报表
+    //Tra cứu báo cáo
     function searchReport() {
         var url = reportServerHOST + "ReportServer/Pages/ReportViewer.aspx?%2FHIS.Report.1%2FKPI.%e6%b2%bb%e7%96%97%e5%b8%88%e6%9c%88%e6%8a%a5%e8%a1%a8.%e5%b7%b2%e5%9b%ba%e5%ae%9a&rs:Command=Render";
         url += "&rc:Stylesheet=MyStyleSheet";
@@ -141,11 +141,11 @@
     }
 </script>
 <script type="text/javascript">
-    //生成报表
+    //Tạo báo cáo
     $("#btn_gene").click(function () {
         ReqDoGenerate();
     });
-    //重新生成报表
+    //Tạo lại báo cáo
     $("#btn_regene").click(function () {
         $.modalConfirm("Tạo lại báo cáo, xác nhận tiếp tục?", function (flag) {
             if (flag) { 
@@ -163,7 +163,7 @@
             loadingtext: "báo cáo Tạo trong，Vui lòng chờ...",
             success: function (ajaxResp) {
                 $.modalMsg('báo cáo Tạo Thành công', 'success');
-                setTimeout("$('#btn_search').trigger('click');", 1000); //重新查询报表
+                setTimeout("$('#btn_search').trigger('click');", 1000); //Tra cứu lại báo cáo
             }
         });
     }

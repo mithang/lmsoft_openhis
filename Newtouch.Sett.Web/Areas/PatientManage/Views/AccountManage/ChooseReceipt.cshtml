@@ -27,7 +27,7 @@
             $("#txtpzh").val(sjh);
         } else
         {
-            //获取收据凭证号
+            //Lấy số chứng từ biên lai
             GetReceiptByEmpCode(); 
         }
     })
@@ -47,7 +47,7 @@
         });
     }
 
-    //确定
+    //xác nhận
     function ReceiptConfirm()
     { 
         var pzh = $("#txtpzh").val(); 
@@ -57,12 +57,12 @@
         }
     }
 
-    //前台验证凭证号规则
+    //trướcđàikiểmchứngchứngchứngsốquy địnhthì
     function checkPZH(pzh)
     { 
         var szm = pzh.substring(0, 1);
         var reg = new RegExp("^[0-9]*$");
-        //如果发票号第一个字符不是数字，则为首字母
+        //nhưkết quảphátphiếusốthứmộtcáichữphùkhônglàsốchữ，thìlàđầuchữmẹ
         if (!reg.test(szm))
         {
             szm = pzh.substring(0, 1);
@@ -86,7 +86,7 @@
         return true;
     }
 
-    //后台验证凭证号
+    //sauđàikiểmchứngchứngchứngsố
     function checkExitPZH(pzh)
     { 
         $.najax({
@@ -107,7 +107,7 @@
         });
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() 
     {
         $.modalClose();

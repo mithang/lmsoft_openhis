@@ -81,7 +81,7 @@
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
@@ -170,7 +170,7 @@
                     var len = 0;
                     var rowData = $("#gridList").jqGrid('getRowData', rowIndex);
                     var ids = $("#gridList").jqGrid('getRowData_AllLine');
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     if (rowData.sqdh != "") {
                         for (var i = 0; i < ids.length; i++) {
                             if (ids[i].sqdh === rowData.sqdh && ids[i].sqdh !== "") {
@@ -195,15 +195,15 @@
                 if (list.length > 0) {
 
                     for (j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Cùng nhómĐã chọn
                         {
                             j = j + 1;
                             $("#gridList").jqGrid("setSelection", list[j - 1], true);
 
                         }
-                        else { //同组取消选中
+                        else { //Cùng nhómHủyĐã chọn
                             //j = j + 1;
-                            $("#gridList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                            $("#gridList").jqGrid("setSelection", list[j], false);      //Hủykhôngkích hoạtonselectrow
                         }
 
                     }
@@ -220,10 +220,10 @@
             btn_search();
         });
     }
-    //查询
+    //Tra cứu
     function btn_search()
     {
-        $('#gridList').jqGrid("clearGridData");//先清空明细
+        $('#gridList').jqGrid("clearGridData");//Xóa trắng chi tiết trước
         $("#gridList").jqGrid('setGridParam', {
             postData: getSearchPostData(),
             url: '@Url.Action("GetJyjcExecGridJson")'
@@ -233,7 +233,7 @@
         sqdlxinit();
     })
 
-    //grid 参数
+    //grid tham số
     function getSearchPostData() {
         var keyword = $("#txt_keyword").val();
         var kssj = $("#txtkssj").val();
@@ -246,7 +246,7 @@
             keyword: keyword, kssj: kssj, jssj: jssj, hzlx: hzlx, fylx: fylx, sqdlx: sqdlx,zxzt:zxzt
         };
     };
-    //Thực hiện状态变更
+    //Thực hiệnTrạng tháiđổihơn
     $("input[name='optionsRadios']").click(function () {
         var yzxz = $('input[name="optionsRadios"]:checked').val();
         if (yzxz == 0) {
@@ -308,7 +308,7 @@
             }
         });
     });
-    //取消Thực hiện
+    //HủyThực hiện
     $("#btn_CancalExec").click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds.length == 0) {

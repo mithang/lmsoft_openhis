@@ -1,0 +1,344 @@
+﻿@using NewtouchHIS.Lib.Base.Extension;
+@using static NewtouchHIS.Lib.Base.BaseEnum;
+
+@{
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<style>
+    .list-group {
+        margin-bottom: 0;
+    }
+
+    .list-group-item {
+        background-color: #E6E6FA;
+    }
+
+</style>
+<script src="~/js/noticetemplate.js"></script>
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group" id="noticeStuGroup">
+            <a class="btn btn-default active">tất cả tin nhắn</a>
+            <a class="btn btn-default" data-value="@((int)NoticeStuEnum.UnSend)"><i class="fa fa-circle icon-theme-warning"></i> chưa gửi</a>
+            <a class="btn btn-default" data-value="@((int)NoticeStuEnum.Send)"><i class="fa fa-circle icon-theme-info"></i> đã gửi</a>
+            <a class="btn btn-default" data-value="@((int)NoticeStuEnum.Read)"><i class="fa fa-circle icon-theme-success"></i> đã đọc</a>
+            <a class="btn btn-default" data-value="@((int)NoticeStuEnum.Wait)"><i class="fa fa-circle icon-theme-danger"></i> đang chờ xử lý</a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="từ khóa" style="width: 180px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <div class="search pull-right" style="padding-right:20px;">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <select class="form-control selctcontrol-green" id="msgtype">
+                            <option value="1">hộp thư đến</option>
+                            <option value="2">hộp thư đi</option>
+                            @if (ViewBag.IsHospAdministrator)
+                            {
+                                <option value="999">quản lý tin nhắn</option>
+                            }
+                        </select>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="navb-bg">
+    <div class="dv-table-container">
+        <div class="btn-toolbar"></div>
+        <table id="table"></table>
+    </div>
+
+</div>
+
+
+<script>
+    $(function () {
+        mounted();
+
+        $("#btn_search").on('click', function () {
+            tableRefresh();
+        });
+        $("#noticeStuGroup a.btn-default").click(function () {
+            $("#noticeStuGroup a.btn-default").removeClass("active");
+            $(this).addClass("active");
+            $('#btn_search').trigger("click");
+        });
+
+    });
+    //tham số yêu cầu
+    function queryParams(params) {
+        var data = {
+            //mỗi trang có bao nhiêu dòng dữ liệu
+            limit: params.limit,
+            //yêu cầu trang thứ mấy
+            offset: params.offset,
+            order: params.order,
+            sort: params.sort,
+            search: params.search,
+            queryParams: {
+                keyword: $("#txt_keyword").val(),
+                msgtype: $("#msgtype option:selected").val(),
+                NoticeStu: $("#noticeStuGroup a.active").attr('data-value')
+            }
+        };
+        return data;
+    }
+    var $table = $('#table');
+    function mounted() {
+        $table.bootstrapTable({
+            url: "/SysManage/Notice/GetNoticeList", //địa chỉ URL máy chủ trả về dữ liệu
+            method: 'POST',                      //phương thức yêu cầu dữ liệu
+            contentType: "application/x-www-form-urlencoded",
+            height: $(window).height() - 96,
+            queryParams: queryParams,
+            classes: "table table-bordered table-striped table-hover",
+            theadClasses: "table-light",//đặt kiểu tiêu đề bảng
+            idField: 'Id',
+            showColumns: false,
+            columns: [
+                // {
+                //     field: 'ck',
+                //     checkbox: true
+                // },
+                {
+                    field: 'Id',
+                    visible: false
+                }, {
+                    field: 'NoticeId',
+                    visible: false
+                },
+
+
+                {
+                    field: 'AppId',
+                    title: 'nội dung tin nhắn',
+                    halign: 'center',
+                    align: 'left',   //căn lề nội dung theo chiều ngang
+                    width: '25',
+                    widthUnit: '%',
+                    formatter: function (cellvalue, row) {
+                        if (cellvalue == "MRQC") {
+                            return noticeMrqc(row.ContentData);
+                        }
+                        return cellvalue;
+                    }
+                },
+
+                {
+                    field: 'NoticeStu',
+                    title: 'trạng thái tin nhắn',
+                    halign: 'center',
+                    //sortable: true,
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '5',
+                    widthUnit: '%',
+                    formatter: function (cellvalue) {
+                        if (cellvalue == @((int)NoticeStuEnum.Read)) {
+                            return '<span><i class="fa fa-circle icon-theme-success"></i> ' + '@((NoticeStuEnum.Read).GetDescription())' + '</span>';
+                        }
+                        else if (cellvalue == @((int)NoticeStuEnum.Send)) {
+                            return '<span><i class="fa fa-circle icon-theme-info"></i> ' + '@(NoticeStuEnum.Send.GetDescription())' + '</span>';
+                        }
+                        else if (cellvalue == @((int)NoticeStuEnum.UnSend)) {
+                            return '<span><i class="fa fa-circle icon-theme-warning"></i> ' + '@(NoticeStuEnum.UnSend.GetDescription())' + '</span>';
+                        }
+                        else if (cellvalue == @((int)NoticeStuEnum.Wait)) {
+                            return '<span><i class="fa fa-circle icon-theme-danger"></i> ' + '@(NoticeStuEnum.Wait.GetDescription())' + '</span>';
+                        }
+                        else {
+                            return 'ngoại lệ';
+                        }
+                    }
+                },
+                {
+                    field: 'NoticeStu',
+                    title: 'NoticeStu',
+                    visible: false
+                }, {
+                    field: 'GroupName',
+                    title: 'nhóm tin nhắn',
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '10',
+                    widthUnit: '%',
+                },
+                {
+                    field: 'GroupYwlx',
+                    title: 'loại nghiệp vụ',
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '5',
+                    widthUnit: '%',
+                    formatter: function (cellvalue) {
+                        if (cellvalue == @((int)GroupYwlxEnum.Zy)) {
+                            return '@((GroupYwlxEnum.Zy).GetDescription())';
+                        }
+                        else if (cellvalue == @((int)GroupYwlxEnum.Mz)) {
+                            return '@(GroupYwlxEnum.Mz.GetDescription())';
+                        }
+                        else {
+                            return '';
+
+                        }
+                    }
+                },
+                {
+                    field: 'SendFromName',
+                    title: 'người gửi',
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '10',
+                    widthUnit: '%',
+                },
+                {
+                    field: 'RecipientName',
+                    title: 'người nhận',
+                    halign: 'center',
+                    width: '10',
+                    widthUnit: '%',
+                },
+                // {
+                //     field: 'Content',
+                //     title: 'mẫu tin nhắn',
+                //     halign: 'center',
+                //     width: '10',
+                //     widthUnit: '%',
+                // },
+                {
+                    field: 'ContentData',
+                    title: 'nội dung tin nhắn',
+                    halign: 'center',
+                    width: '20',
+                    widthUnit: '%',
+                    visible: false
+                },
+                {
+                    field: 'AppName',
+                    title: 'nguồn',
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '5',
+                    widthUnit: '%',
+                    //sortable: true,
+                },
+                {
+                    field: 'CreateTime',
+                    title: 'thời gian gửi',
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '8',
+                    widthUnit: '%',
+                    formatter: function (cellvalue) {
+                        return $.getTime({ date: cellvalue });
+                    }
+                },
+                {
+                    field: 'LastModifyTime',
+                    title: 'cập nhật gần nhất',
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '8',
+                    widthUnit: '%',
+                    formatter: function (cellvalue) {
+                        if (!!cellvalue) {
+                            return $.getTime({ date: cellvalue });
+                        }
+                        return "";
+
+                    }
+                },
+                {
+                    field: 'OrganizeId',
+                    visible: false
+                }
+            ],
+            //treeShowField: 'Name',
+            //parentIdField: 'ParentId',
+            uniqueId: 'Id',
+            //******thiết lập phân trang****
+            //toolbar: '.btn-toolbar',            //nút công cụ dùng vùng chứa nào #toolbar
+            //toolbarAlign: 'left',
+            pagination: true,                   //có hiển thị phân trang hay không（*）
+            pageNumber: 1,                      //tải ban đầu trang đầu tiên，mặc định trang đầu tiên,và ghi lại
+            pageSize: 30,                       //số dòng bản ghi mỗi trang（*）
+            pageList: [5, 50, 100],            //số dòng mỗi trang có thể chọn（*）
+            paginationHAlign: "left",
+            paginationDetailHAlign: "right",
+            sortable: true,                     //có bật sắp xếp hay không
+            sortOrder: "desc",                   //phương thức sắp xếp
+            sidePagination: 'server',           //phương thức phân trang：clientphân trang phía máy khách，serverphân trang phía máy chủ（*）
+            //******thiết lập phân trang****
+            onLoadSuccess: function (data) {
+
+            },
+            onDblClickRow: function (row, $element, field) {
+                btn_edit(row);
+            },
+            onClickRow: function (row, $element, field) {
+                var selrow = $(table).bootstrapTable("getSelections");
+                if (selrow != null && selrow.length > 0 && selrow[0] != null && selrow[0].Id != row.Id) {
+                    bstableSelectedToggle($table, "Id", [selrow[0].Id], false);
+                }
+                bstableSelected($table, "Id", [row.Id], $element);
+                noticeReadProc(row.Id);
+            },
+            formatLoadingMessage: function () {
+                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
+            },
+            formatNoMatches: function () {
+                return "chưa có dữ liệu";
+            }
+
+        });
+        $table.bootstrapTable('hideLoading');
+
+    }
+
+
+    //hàm tương ứng thực hiện phán đoán；
+    function checkFormatter(value, row, index) {
+        if (row.type)//type là giá trị trạng thái có được chọn hay không
+            return {
+                disabled: false,//đặt có thể dùng hay không
+                checked: true//đặt đã chọn
+            };
+        return value;
+    }
+
+
+    function tableRefresh() {
+        $table.bootstrapTable('refresh', { queryParams: queryParams });
+    }
+
+    function noticeReadProc(id) {
+        var selrow = $(table).bootstrapTable("getRowByUniqueId", id);
+        if (!!id && !!selrow && selrow.NoticeStu == '@((int)NoticeStuEnum.Send)') {
+            $.najax({
+                url: "/SysManage/Notice/NoticeStuRead",
+                data: { keyValue: id },
+                dataType: "json",
+                type: "POST",
+                success: function (data) {
+                }
+            });
+        }
+    }
+
+</script>

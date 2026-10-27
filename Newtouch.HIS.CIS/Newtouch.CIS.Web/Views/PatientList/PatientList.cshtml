@@ -49,7 +49,7 @@
                 </td>
                 @*<td class="formValue" style="width: 70px;">
                         <input id="syncPdsbc" type="text" class="form-control" value="2021-6-18" />
-                        <input id="btn_syncPdsbc" type="button" class="panelposition btn btn-default btn-md"  value="补充推送到药房" onclick="synctoPDS()" />
+                        <input id="btn_syncPdsbc" type="button" class="panelposition btn btn-default btn-md"  value="Bổ sungđẩyđếnNhà thuốc" onclick="synctoPDS()" />
                     </td>*@
             </tr>
         </table>
@@ -71,12 +71,12 @@
         $("#btn_search").trigger('click');
     }
 
-    //刷新列表
+    //Làm mới danh sách
     function refleshPatientList() {
         $("#btn_search").trigger('click');
     }
 
-    //回车
+    //vềxe
     $('#txt_keyword').keydownEnterEvent(function() {
         $("#btn_search").trigger('click');
     });
@@ -85,7 +85,7 @@
         $("#btn_search").trigger('click');
     });
 
-    //初始化就诊类型（登录用户是专家,就诊类型默认绑定专家门诊）
+    //Khởi tạoKhám bệnhLoại（Đăng nhậpNgười dùngCóchuyên gia,Khám bệnhLoạiMặc địnhgắnchuyên giaNgoại trú）
     function initMjzbz() {
         $.ajax({
             type: "POST",
@@ -102,7 +102,7 @@
         });
     }
 
-    //患者信息列表
+    //Thông tin bệnh nhândanh sách
     function gridPatientList() {
         var $gridPatientList = $("#gridPatientList");
         $gridPatientList.dataGrid({
@@ -145,7 +145,7 @@
 
                         if (djz == "1") {
 							return "<input class='btn btn-default btn-md btn_add' type='button' value='Gọi số' onclick='jiaohao(" + rows.mzh + ",$(this).parent().parent().attr(\"id\"))'/>"+"<input class='btn btn-default btn-md btn_del' type='button' value='Quá số' onclick='guohao(" + rows.mzh + ")'/>";
-                            //return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + rows.mzh + ',' + $(this).parent().parent().attr("\'id\'") + ')" value="Gọi số" /> <input type="button" class="btn btn-default"  onclick="guohao(' + rows.mzh + ')" value="过号" />';
+                            //return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + rows.mzh + ',' + $(this).parent().parent().attr("\'id\'") + ')" value="Gọi số" /> <input type="button" class="btn btn-default"  onclick="guohao(' + rows.mzh + ')" value="quasố" />';
                         } else {
                             return '';
                         }
@@ -178,7 +178,7 @@
             onSelectRow: function (rowid) {
                 var rowdata = $gridPatientList.getRowData(rowid);
                 if (rowdata && rowdata.jzzt == '@((int)EnumJzzt.Treated)') {
-                    //就诊结束的场景
+                    //Khám bệnhKết thúccủaCảnh
                     $('#btn_startTreat').attr('disabled', 'disabled');
                     $('#btn_resumeTreat').removeAttr('disabled', 'disabled');
                 }
@@ -191,13 +191,13 @@
                 startTreat(rowid);
             },
             gridComplete: function () {
-                if ($("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.Treating)') {   //就诊中
+                if ($("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.Treating)') {   //Đang khám bệnh
                     var ids = $("#gridPatientList").getDataIDs();
                     for (i = 0; i < ids.length; i++) {
                         $('#gridPatientList tr[id="' + ids[i] + '"]').addClass('success1');
                     }
                 }
-                if ($("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.Treated)') {   //已就诊
+                if ($("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.Treated)') {   //Đã khám bệnh
                     var ids = $("#gridPatientList").getDataIDs();
                     for (i = 0; i < ids.length; i++) {
                         $('#gridPatientList tr[id="' + ids[i] + '"]').addClass('info');
@@ -213,7 +213,7 @@
         });
 
         $("#btn_search").click(function () {
-            //清空患者信息
+            //Xóa trắngThông tin bệnh nhân
             window.currPatientInfo = null;
             removePatientBasicInfo();
             $gridPatientList.jqGrid('setGridParam', {
@@ -223,7 +223,7 @@
         });
     }
 
-    //关键字
+    //Từ khóa
     function getSearchPostData() {
         var keyword = $("#txt_keyword").val();
         var jzzt = $("input[name='optionsRadios']:checked").val();
@@ -239,7 +239,7 @@
   //          dataType: "json",
   //          async: false,
   //          success: function (data) {
-  //              $.modalAlert("Gọi số完成！", 'success');
+  //              $.modalAlert("Gọi sốHoàn thành！", 'success');
   //              startTreat(rowid);
   //          }
 		//});
@@ -275,13 +275,13 @@
     function GetSearchUrl() {
 		var url = "";
 		
-        if ($("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.NotYetTreate)') {   //待就诊
+        if ($("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.NotYetTreate)') {   //Chờ khám bệnh
             url = "/PatientList/SelectNotYetTreateList";
 			djz = "1";
 			if ('@djzhqsj' == "1") {
 			url = "/PatientList/GetdjzList";
 		}
-        } else if ($("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.Treating)' || $("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.Treated)') {   //就诊中、已就诊
+        } else if ($("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.Treating)' || $("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.Treated)') {   //Đang khám bệnh、Đã khám bệnh
             url = "/PatientList/SelectTreatingOrTreatedList";
             djz = "0";
 		}
@@ -289,10 +289,10 @@
         return url;
     }
 
-    //全局变量 本次就诊的患者信息
+    //biến toàn cục bản lầnKhám bệnhcủaThông tin bệnh nhân
     var currPatientInfo = Object();
 
-    //开始/继续诊断
+    //Bắt đầu/kếtiếpChẩn đoán
     function startTreat(selrowId) {
         if (!selrowId) {
             selrowId = $("#gridPatientList").jqGrid("getGridParam", "selrow");
@@ -306,13 +306,13 @@
 
         syncPresChargeStatus(selRowData.blh, true);
 
-        sessionStorage.removeItem('reqSourcePage');  //先清空
+        sessionStorage.removeItem('reqSourcePage');  //Xóa trắng trước
         if (selRowData.jzzt === '@((int)EnumJzzt.NotYetTreate)') {
-            //待就诊
-            //单独录入生命体征开关（护士录入）
+            //Chờ khám bệnh
+            //phiếuđộcnhậpdấu hiệu sinh tồnCông tắc（Điều dưỡngnhập）
             if (window.IsVitalSignsSwitch=== 'ON') {
                 if (window.IsNurse === "True") {
-                    //当前登录人是护士
+                    //hiện tạiĐăng nhập ngườiCóĐiều dưỡng
                     $.modalOpen({
                         id: "Form",
                         title: "Dấu hiệu sinh tồn",
@@ -323,12 +323,12 @@
                             top.frames[iframeId].submitForm();
                         }
                     });
-                    return; //不再继续走
+                    return; //khônglạikếtiếpđi
                 }
-                //判断能不能开始就诊（待就诊的）
+                //kiểm tracó thểkhôngcó thểBắt đầuKhám bệnh（Chờ khám bệnhcủa）
             }
-            //2.check能不能开始新的就诊
-            //查询该患者 同一个科室 门急诊 专家 等 最后一次就诊  就诊状态
+            //2.checkcó thểkhôngcó thểBắt đầumớicủaKhám bệnh
+            //Tra cứuBệnh nhân cùng mộtcáiKhoa cửagấpkhám chuyên gia đợi cuối cùngmột lầnKhám bệnh  Khám bệnhTrạng thái
             var historyLastTreat = null;
             $.ajax({
                 type: "POST",
@@ -347,7 +347,7 @@
             }
             //3.
             if (window.IsVitalSignsSwitch === 'ON') {
-                //新就诊加载生命体征
+                //mớiKhám bệnhtảidấu hiệu sinh tồn
                 $.najax({
                     type: "POST",
                     url: "/PatientList/GetVitalSignsByMzh",
@@ -363,7 +363,7 @@
                                 $("input[name='cfzbzRadios'][value='1']").prop('checked', false);
                                 $("input[name='cfzbzRadios'][value='0']").prop('checked', true);
                             }
-                            //window.$('#tizhong').val(ajaxresp.tizhong); //初始化载入已录入好的生命体征
+                            //window.$('#tizhong').val(ajaxresp.tizhong); //Khởi tạo载vàođãnhậptốtcủadấu hiệu sinh tồn
                             //window.$('#tiwen').val(ajaxresp.tiwen);
                             //window.$('#maibo').val(ajaxresp.maibo);
                             ////window.$('#xueya').val(ajaxresp.xueya);
@@ -381,23 +381,23 @@
 
         }
         else if (selRowData.jzzt === '@((int)EnumJzzt.Treating)') {
-            //就诊中
+            //Đang khám bệnh
             sessionStorage.setItem("reqSourcePage", "fromTreatingPage");
         }
         else {
-            //已就诊
+            //Đã khám bệnh
             sessionStorage.setItem("reqSourcePage", "fromTreatedPage");
         }
 
         $.loading(true);
-        window.mrflag = 0;    //认为是第一次加载病历页，这样每次诊断，都会根据病人的jzId查出Lịch sử病历
+        window.mrflag = 0;    //nhậnlàCóthứmột lầntảiHồ sơtrang，nàydạngmỗi lầnChẩn đoán，đềusẽTheobệnh ngườicủajzIdtraraLịch sửHồ sơ
         selRowData.mjzbz = $('#mjzbz option:selected').val();
         window.currPatientInfo = selRowData;
-        $('#tip_yfly').unbind('change'); //去除默认药房change事件
-        //清空 所有文本、处方、Đơn thuốc lịch sử、grid列表
-        newtouch_globalevent_f4();  //在病例页
+        $('#tip_yfly').unbind('change'); //đitrừMặc địnhNhà thuốcchangesự kiện
+        //Xóa trắng tất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
+        newtouch_globalevent_f4();  //ởbệnhVDtrang
 
-        //显示患者信息
+        //Hiển thịThông tin bệnh nhân
         showPatientBasicInfo();
         if (window.currPatientInfo.cfzbz == "1") {
             window.$("input[name='cfzbzRadios'][value='0']").prop('checked', false);
@@ -410,8 +410,8 @@
         window.$('#zlkssj').text($.getTime());
         window.$('#jzks').text('@opr.DepartmentName');
         window.$('#sbbh').text(window.currPatientInfo.sbbh);
-        //跳转到病历页
-        $('#myTab [href="#linkbl"').trigger('click'); //初始化显示哪个tab
+        //chuyển đếnđếnHồ sơtrang
+        $('#myTab [href="#linkbl"').trigger('click'); //Khởi tạoHiển thịnàotab
 
         $.loading(false);
 
@@ -430,7 +430,7 @@
         }
     }
 
-    //恢复就诊
+    //khôi phụclạiKhám bệnh
     function resumeTreat() {
         var selrowId = $("#gridPatientList").jqGrid("getGridParam", "selrow");
         if (!selrowId) {
@@ -444,8 +444,8 @@
 
         syncPresChargeStatus(selRowData.blh, false);
 
-        //2.check能不能恢复就诊
-        //查询该患者 同一个科室 门急诊 专家 等 最后一次就诊  就诊状态
+        //2.checkcó thểkhôngcó thểkhôi phụclạiKhám bệnh
+        //Tra cứuBệnh nhân cùng mộtcáiKhoa cửagấpkhám chuyên gia đợi cuối cùngmột lầnKhám bệnh  Khám bệnhTrạng thái
         var historyLastTreat = null;
         $.ajax({
             type: "POST",
@@ -476,8 +476,8 @@
         });
     }
 
-    //根据病历号同步患者的处方收费状态
-    //sync：是否同步
+    //TheoSố bệnh ánĐồng bộBệnh nhâncủaĐơn thuốcThu phíTrạng thái
+    //sync：CóKhôngĐồng bộ
     function syncPresChargeStatus(blh, sync) {
         $.ajax({
             url: '/PatientList/SyncPresChargeStatus',

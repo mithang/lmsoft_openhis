@@ -125,14 +125,14 @@
         });
     });
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode == 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //左侧，申请单区
+    //Bên trái，Khu đơn xin
     function gridList() {
         $gridList.dataGrid({
             caption: "Thông tin lĩnh",
@@ -220,7 +220,7 @@
         });
     }
 
-    //组装查询条件
+    //Lắp ráp điều kiện truy vấn
     function getSearchPostData() {
         var ffzt = $("#ffzt").val() === "" ? -1 : $("#ffzt").val();
         var djh = $("#djh").val();
@@ -229,7 +229,7 @@
         return { ffzt: ffzt, djh: djh, startTime: startTime, endTime: endTime };
     };
 
-    //组装查询条件
+    //Lắp ráp điều kiện truy vấn
     function getSelectRowPostData() {
         var allCheckedTr = $(":checkbox:checked").parents("tr");
         var ids = "";
@@ -245,13 +245,13 @@
         return { sldIds: ids };
     };
 
-    //右侧，明细区域
+    //Bên phải，Khu vực chi tiết
     function medicineGridList() {
         $MedicineGridList.dataGrid({
             caption: "Chi tiết lĩnh thuốc",
             url: "",
             height: $(window).height() - 230,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
                 { label: 'Số lượng phát hiện tại', name: 'xfsl', width: 60, align: 'center', editable: true, editwidth:"90%"},
                 { label: 'Đơn vị', name: 'zxdw', width: 50, align: 'left' },
@@ -275,7 +275,7 @@
                 { label: 'ypdm', name: 'ypdm', hidden: true },
                 { label: 'zxdwpfj', name: 'zxdwpfj', hidden: true },
                 { label: 'zxdwlsj', name: 'zxdwlsj', hidden: true },
-                { label: 'sysl', name: 'sysl', hidden: true },//剩余待发数量 初次加载与xfsl相同
+                { label: 'sysl', name: 'sysl', hidden: true },//Số lượng chờ phát còn lại Tải lần đầu vớixfslGiống nhau
                 { label: 'kykc', name: 'kykc', hidden: true }
             ],
             onSelectRow: function (rowid, status) {
@@ -291,9 +291,9 @@
         });
     }
 
-    //行编辑验证
+    //Kiểm tra chỉnh sửa dòng
     function RowDataValidate(){
-        $MedicineGridList.saveRow(lastRowId, function (result) { }); //先保存处于编辑状态的那一行
+        $MedicineGridList.saveRow(lastRowId, function (result) { }); //Lưu trước dòng đang ở trạng thái chỉnh sửa
         var lastdata = $MedicineGridList.getRowData(lastRowId);
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if (!reg.test(lastdata.xfsl)) {
@@ -315,7 +315,7 @@
         return true;
     }
 
-    //终止
+    //Kết thúc
     function btn_Abandon(id) {
         $.modalConfirm("Bạn có chắc muốn chấm dứt không?，Sau khi chấm dứt sẽ không thể tiếp tục phát thuốc！",
             function (flag) {
@@ -340,7 +340,7 @@
 
     }
 
-    //发药
+    //Phát thuốc
     function newtouch_event_f8() {
         $MedicineGridList.saveRow(lastRowId, null, null, null, function (callbackRowId) {}, null, null);
         var fymx = $MedicineGridList.jqGrid('getRowData_AllLine');

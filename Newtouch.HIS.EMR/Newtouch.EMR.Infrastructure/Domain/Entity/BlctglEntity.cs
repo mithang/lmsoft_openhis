@@ -4,9 +4,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 创 建：hyj
-    /// 日 期：2018-09-07 15:46
-    /// 描 述：词条管理
+    /// Người tạo：hyj
+    /// Ngày：2018-09-07 15:46
+    /// Mô tả：Quản lý từ mục
     /// </summary>
     [SugarTable("bl_ctgl")]
     public class BlctglEntity 
@@ -23,12 +23,12 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 0 通用 1个人 2科室
+        /// 0 Chung 1 Cá nhân 2 Khoa
         /// </summary>
         /// <returns></returns>
         public int? qx { get; set; }
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         /// <returns></returns>
         public string mc { get; set; }
@@ -39,7 +39,7 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string ksbm { get; set; }
         /// <summary>
-        /// 词条内容
+        /// Nội dung từ
         /// </summary>
         /// <returns></returns>
         public string ctnr { get; set; }

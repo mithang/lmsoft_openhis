@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.ValueObjects
 {
     /// <summary>
-    /// 药品视图 V_C_xt_yp
+    /// View thuốc V_C_xt_yp
     /// </summary>
     public class SysMedicineVVO
     {

@@ -1,16 +1,16 @@
 ﻿namespace NewtouchHIS.Lib.Base.Model
 {
     /// <summary>
-    /// 访问配置
+    /// Cấu hình truy cập
     /// </summary>
     public class AccessConfig
     {
         /// <summary>
-        /// 页面domain（嵌套其他域页面，并执行js 要设置成同一域）
+        /// Domain trang (nhúng trang của miền khác, và khi thực thi js cần đặt thành cùng một miền)
         /// </summary>
         public string? Document_Domain { get; set; }
         /// <summary>
-        /// 访问地址域名限制 （类似百度http会自动重定向到https）
+        /// Giới hạn tên miền địa chỉ truy cập (tương tự như http của Baidu sẽ tự động chuyển hướng đến https)
         /// </summary>
         public string? AccessDomain { get; set; }
     }

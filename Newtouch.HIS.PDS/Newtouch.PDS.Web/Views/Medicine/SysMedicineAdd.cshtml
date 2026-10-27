@@ -27,7 +27,7 @@
     });
 
     function initControl() {
-        //报销政策
+        //Chính sách hoàn trả
         $("#").newtouchFloatingSelector({
             height: 200,
             width: 300,
@@ -35,7 +35,7 @@
                 if (!keyword) {
                     return null;
                 }
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.newtouchclients.sysPatientNatureList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -58,7 +58,7 @@
                 return;
             }
         });
-        //地域
+        //Vùng
         $("#").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -88,15 +88,15 @@
                 success: function () {
                     $.loading(false);
                     if ($.currentWindow().$("#txtkh").length == 1) {
-                        //门诊挂号免卡登记
+                        //Đăng ký khám ngoại trú miễn thẻ
                         $.currentWindow().LoadPatientInfo(data.kh);
                     }
                     else {
-                        //住院病人基本信息登记 免卡
+                        //Đăng ký thông tin cơ bản bệnh nhân nội trú Miễn thẻ
                         var kh = $.currentWindow().$("#kh").val();
                         getSysBasicInfoByCardNo(kh);
                     }
-                    $.currentWindow().DisableSysBasicInfo(true); //true:标志是从免卡登记或根据卡号查询返回明细, false:页面加载时，可以输kh
+                    $.currentWindow().DisableSysBasicInfo(true); //true:Cờ là từ đăng ký miễn thẻ hoặc trả về chi tiết theo truy vấn số thẻ, false:Khi trang tải，Có thể nhậpkh
                 }
             })
         }
@@ -117,10 +117,10 @@
                 $.currentWindow().$("#kh").val(data.kh);
                 $.currentWindow().$("#zjh").val(data.zjh);
                 if (data.xb == 0) {
-                    $.currentWindow().$("input[name=xb]:eq(1)").attr("checked", 'checked');//女
+                    $.currentWindow().$("input[name=xb]:eq(1)").attr("checked", 'checked');//Nữ
                     $.currentWindow().$("input[name=xb]:eq(1)").parent().addClass('active');
                 } else {
-                    $.currentWindow().$("input[name=xb]:eq(0)").attr("checked", 'checked');//男
+                    $.currentWindow().$("input[name=xb]:eq(0)").attr("checked", 'checked');//Nam
                     $.currentWindow().$("input[name=xb]:eq(0)").parent().addClass('active');
                 }
                 $.currentWindow().$("#nl").val(data.nl);
@@ -209,19 +209,19 @@
         if (!validator.form()) {
             return false;
         }
-        //病历号
+        //Số hồ sơ bệnh án
         var blh = $("#").val();
         if (!blh) {
             $.modalAlert("Số hồ sơ bệnh án trống！", 'warning');
             return false;
         }
-        //拼音
+        //Phiên âm
         var py = $("#").val();
         if (!py) {
             $.modalAlert("Phiên âm trống！", 'warning');
             return false;
         }
-        //性别
+        //Giới tính
         var xb = false;
         $('input[name="xb"]').each(function () {
             var $this = $(this);
@@ -321,7 +321,7 @@
                 <td class="formValue">
                     <input id="txtPY" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
                 </td>
-                @*<td>有效</td>
+                @*<td>Hiệu lực</td>
                     <td class="formValue">
                         <input type="text" id="xian_shi" class="form-control" style="width:90px;float:left" />
                     </td>*@

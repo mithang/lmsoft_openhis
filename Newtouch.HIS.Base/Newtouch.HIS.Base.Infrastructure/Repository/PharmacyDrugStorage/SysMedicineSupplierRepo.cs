@@ -44,7 +44,7 @@ and (isnull(@keyword,'')=''or gysmc like @searchkeyword or gysCode like @searchk
                     throw new FailedException("Số hiệu không được trùng lặp!");
                 }
 
-                SysMedicineSupplierEntity oldEntity = null;   //变更前Entity
+                SysMedicineSupplierEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

@@ -65,12 +65,12 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
             return Content(entity.ToJson());
         }
 
-        //获取Nhóm thu phí cấp 1
+        //LấyNhóm thu phí cấp 1
         public IActionResult GetFeeOne(string orgId) {
             var result = _MrFeeDmnService.GetFeeOne(OrganizeId);
             return Content(result.ToJson());
         }
-        //获取Nhóm thu phí cấp 2
+        //LấyNhóm thu phí cấp 2
         public IActionResult GetFeeTwo(string orgId, string parentCode) {
             var result = _MrFeeDmnService.GetFeeTwo(OrganizeId, parentCode);
             return Content(result.ToJson());
@@ -83,7 +83,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
 			//    entity.OrganizeId = OrganizeId;
 			//}
 
-			//Theo主键获取Sửa前的数据
+			//Lấy dữ liệu trước khi sửa theo khóa chính
 			var oldEntity=_MrFeeDmnService.GetFormJson(keyValue, entity.Lev);
 
 			_MrFeeRepo.SubmitForm(entity, keyValue,OrganizeId,oldEntity);

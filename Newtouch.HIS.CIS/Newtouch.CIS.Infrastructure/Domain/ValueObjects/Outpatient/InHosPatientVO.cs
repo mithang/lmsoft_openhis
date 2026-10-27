@@ -7,57 +7,57 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Outpatient
 {
     /// <summary>
-    /// 住院患者信息
+    /// Nhập việnThông tin bệnh nhân
     /// </summary>
     public class InHosPatientVO
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织结构id
+        /// tổ chứckếtcấu trúcid
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string sex { get; set; }
 
         /// <summary>
-        /// 出生年月
+        /// rasinhnămTháng
         /// </summary>
         public DateTime birth { get; set; }
 
         /// <summary>
-        /// 床号
+        /// Số giường
         /// </summary>
         public string BedCode { get; set; }
 
         /// <summary>
-        /// 入院日期
+        /// Ngày nhập viện
         /// </summary>
         public DateTime ryrq { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
 

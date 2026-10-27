@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.ValueObjects.SysManage
 {
     /// <summary>
-    /// 系统字典
+    /// Từ điển hệ thống
     /// </summary>
     public class SysItemExtendVO
     {

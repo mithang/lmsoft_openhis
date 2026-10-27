@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取字典分类（包括无效的）
+        /// Lấy phân loại từ điển（Bao gồm cả vô hiệu）
         /// </summary>
         /// <returns></returns>
         public IList<SysItemsEntity> GetList()
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取有效字典分类
+        /// Lấy phân loại từ điển hiệu lực
         /// </summary>
         /// <returns></returns>
         public IList<SysItemsEntity> GetValidList()
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 提交新建、更新 实体
+        /// Gửi tạo mới、Cập nhật Thực thể
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                SysItemsEntity oldEntity = null;   //变更前Entity
+                SysItemsEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 

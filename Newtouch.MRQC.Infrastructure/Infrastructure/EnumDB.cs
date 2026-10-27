@@ -3,208 +3,208 @@
 namespace Newtouch.MRQC.Infrastructure
 {
     /// <summary>
-    /// 登录标志
+    /// Cờ đăng nhập
     /// </summary>
     public enum EnumLoginFlag
     {
         /// <summary>
         /// 
         /// </summary>
-        [Description("单点登录")]
+        [Description("Đăng nhập một lần (SSO)")]
         SSO = 1,
         /// <summary>
         /// 
         /// </summary>
-        [Description("系统登录")]
+        [Description("Đăng nhập hệ thống")]
         App = 2
     }
     public enum EnumSex
     {
-        [Description("男")]
+        [Description("Nam")]
         M = 1,
-        [Description("女")]
+        [Description("Nữ")]
         F = 2
     }
     public enum EnumDiagType
     {
-        [Description("入院诊断")]
+        [Description("Chẩn đoán khi nhập viện")]
         ryzd = 1,
-        [Description("出院诊断")]
+        [Description("Chẩn đoán khi xuất viện")]
         cyzd = 2
     }
     public enum EnumRecordStu
     {
-        [Description("未提交")]
+        [Description("Chưa nộp")]
         wtj = 0,
-        [Description("已提交")]
+        [Description("Đã nộp")]
         ytj = 1,
-        [Description("退回")]
+        [Description("Trả lại")]
         th = 2,
-        [Description("已签收")]
+        [Description("Đã ký nhận")]
         yqs = 3,
-        [Description("病案归档")]
+        [Description("Lưu trữ bệnh án")]
         bagd = 4
     }
     /// <summary>
-    /// 医嘱状态
+    /// Trạng thái y lệnh
     /// </summary>
     public enum EnumYzzt
     {
         /// <summary>
-        /// 待审 
+        /// Chờ duyệt 
         /// </summary>
-        [Description("待审")]
+        [Description("Chờ duyệt")]
         Ds = 0,
         /// <summary>
-        /// 审核
+        /// Duyệt
         /// </summary>
-        [Description("审核")]
+        [Description("Duyệt")]
         Sh = 1,
         /// <summary>
-        /// 执行
+        /// Thực hiện
         /// </summary>
-        [Description("执行")]
+        [Description("Thực hiện")]
         Zx = 2,
         /// <summary>
-        /// 撤DC
+        /// Thu hồi DC
         /// </summary>
         [Description("DC")]
         DC = 3,
         /// <summary>
-        /// 停止或作废
+        /// Dừng hoặc hủy
         /// </summary>
-        [Description("停止")]
+        [Description("Dừng")]
         TZ = 4
     }
     public enum EnumYzlx
     {
         ///// <summary>
-        ///// 通用
+        ///// Chung
         ///// </summary>
-        //[Description("通用")]
+        //[Description("Chung")]
         //Ty = 1,
         /// <summary>
-        /// 药品
+        /// Thuốc
         /// </summary>
-        [Description("药品")]
+        [Description("Thuốc")]
         Yp = 2,
         /// <summary>
-        /// 文字
+        /// Văn bản
         /// </summary>
-        [Description("文字")]
+        [Description("Văn bản")]
         Wz = 3,
         /// <summary>
-        /// 出院带药
+        /// Thuốc mang về khi xuất viện
         /// </summary>
-        [Description("出院带药")]
+        [Description("Thuốc mang về khi xuất viện")]
         Cydy = 4,
         /// <summary>
-        /// 项目
+        /// Hạng mục
         /// </summary>
-        [Description("项目")]
+        [Description("Hạng mục")]
         sfxm = 5,
         /// <summary>
-        /// 项目
+        /// Hạng mục
         /// </summary>
-        [Description("检验")]
+        [Description("Xét nghiệm")]
         jy = 6,
         /// <summary>
-        /// 项目
+        /// Hạng mục
         /// </summary>
-        [Description("检查")]
+        [Description("Kiểm tra")]
         jc = 7,
         /// <summary>
-        /// 项目
+        /// Hạng mục
         /// </summary>
-        [Description("膳食医嘱")]
+        [Description("Y lệnh ăn uống")]
         ssyz = 8,
         /// <summary>
-        /// 手术
+        /// Phẫu thuật
         /// </summary>
-        [Description("手术")]
+        [Description("Phẫu thuật")]
         oper = 9,
         /// <summary>
-        /// 中草药
+        /// Thuốc đông y
         /// </summary>
-        [Description("中草药")]
+        [Description("Thuốc đông y")]
         zcy = 10,
         /// <summary>
-        /// 康复
+        /// Phục hồi chức năng
         /// </summary>
-        [Description("康复")]
+        [Description("Phục hồi chức năng")]
         rehab = 11
 
     }
-    [Description("收信人类型")]
+    [Description("Loại người nhận")]
     public enum RecipientTypeEnum
     {
-        [Description("用户")]
+        [Description("Người dùng")]
         user = 1,
-        [Description("用户组")]
+        [Description("Nhóm người dùng")]
         usergroup = 2,
     }
     /// <summary>
-    /// 消息组业务类型
+    /// Loại nghiệp vụ nhóm thông báo
     /// </summary>
-    [Description("消息组业务类型")]
+    [Description("Loại nghiệp vụ nhóm thông báo")]
     public enum GroupYwlxEnum
     {
-        [Description("通用")]
+        [Description("Chung")]
         None = 0,
-        [Description("门诊")]
+        [Description("Ngoại trú")]
         Mz = 1,
-        [Description("住院")]
+        [Description("Nội trú")]
         Zy = 2,
     }
     /// <summary>
-    /// 队列执行类型
+    /// Loại thực thi hàng đợi
     /// </summary>
-    [Description("队列执行类型")]
+    [Description("Loại thực thi hàng đợi")]
     public enum MsgQueueExecTypeEnum
     {
-        [Description("即时任务")]
+        [Description("Nhiệm vụ tức thì")]
         Immediately = 1,
-        [Description("延时任务")]
+        [Description("Nhiệm vụ trì hoãn")]
         Waitime = 2,
-        [Description("定时任务")]
+        [Description("Nhiệm vụ định kỳ")]
         Fixedtime = 3,
     }
     /// <summary>
-    /// 消息适用范围限制
+    /// Giới hạn phạm vi áp dụng thông báo
     /// </summary>
-    [Description("消息组适用范围")]
+    [Description("Phạm vi áp dụng nhóm thông báo")]
     public enum MsgNoticeRangeEnum
     {
-        [Description("无限制")]
+        [Description("Không giới hạn")]
         None = 0,
-        [Description("全院")]
+        [Description("Toàn viện")]
         Org = 1,
-        [Description("指定用户")]
+        [Description("Người dùng chỉ định")]
         User = 2,
-        [Description("消息组内")]
+        [Description("Trong nhóm thông báo")]
         Group = 10,
-        [Description("科室范围")]
+        [Description("Phạm vi khoa")]
         Dept = 20,
-        [Description("科室内部")]
+        [Description("Trong khoa")]
         DeptGroup = 21,
-        [Description("病区范围")]
+        [Description("Phạm vi khu bệnh")]
         Area = 30,
-        [Description("病区内部")]
+        [Description("Trong khu bệnh")]
         AreaGroup = 31,
     }
     /// <summary>
-    /// 消息状态
+    /// Trạng thái thông báo
     /// </summary>
-    [Description("消息状态")]
+    [Description("Trạng thái thông báo")]
     public enum NoticeStuEnum
     {
-        [Description("未发送")]
+        [Description("Chưa gửi")]
         UnSend = 0,
-        [Description("已发送")]
+        [Description("Đã gửi")]
         Send = 1,
-        [Description("已读")]
+        [Description("Đã đọc")]
         Read = 2,
-        [Description("待处理")]
+        [Description("Chờ xử lý")]
         Wait = 9
     }
     public enum ApplyTypeEnum
@@ -215,22 +215,22 @@ namespace Newtouch.MRQC.Infrastructure
         xgbl = 1
     }
     /// <summary>
-    /// 病历申请审批状态
+    /// Trạng thái phê duyệt đơn xin bệnh án
     /// </summary>
     public enum ApplyStatusEnum
     {
         /// <summary>
-        /// 未批准
+        /// Chưa phê duyệt
         /// </summary>
         [Description("Chưa phê duyệt")]
         wpz = 0,
         /// <summary>
-        /// 已审批
+        /// Đã phê duyệt
         /// </summary>
         [Description("Đã phê duyệt")]
         ysp = 1,
         /// <summary>
-        /// 退回
+        /// Trả lại
         /// </summary>
         [Description("Trả lại")]
         th = 2

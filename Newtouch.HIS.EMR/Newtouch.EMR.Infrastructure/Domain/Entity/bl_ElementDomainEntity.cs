@@ -8,7 +8,7 @@ using SqlSugar;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 结构化主表
+    /// Bảng chính có cấu trúc
     /// </summary>
     [SugarTable("bl_ElementDomain")]
     public class bl_ElementDomainEntity 
@@ -17,7 +17,7 @@ namespace Newtouch.EMR.Domain.Entity
         public int Id { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 病历类型标识
+        /// Mã định danh loại bệnh án
         /// </summary>
         public string Bllx { get; set; }
         public string Table_EngLish_Name { get; set; }

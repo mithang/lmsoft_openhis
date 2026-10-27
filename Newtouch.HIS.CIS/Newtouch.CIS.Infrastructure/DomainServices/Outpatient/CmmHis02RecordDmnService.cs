@@ -9,7 +9,7 @@ using Newtouch.Domain.IDomainServices;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// 推送中药信息
+    /// đẩyThuốc Đông ythông tin
     /// </summary>
     public class CmmHis02RecordDmnService : DmnServiceBase, ICmmHis02RecordDmnService
     {
@@ -18,7 +18,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 获取未同步的药品
+        /// LấychưaĐồng bộ của thuốc
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="dlType"></param>
@@ -48,9 +48,9 @@ AND yp.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 获取未同步的药品
+        /// LấychưaĐồng bộ của thuốc
         /// </summary>
-        /// <param name="topSize">单次请求总条数</param>
+        /// <param name="topSize">Một lầnyêu cầutổngdòngsố</param>
         /// <param name="organizeId"></param>
         /// <param name="dlType"></param>
         /// <returns></returns>
@@ -78,7 +78,7 @@ AND yp.OrganizeId=@OrganizeId ", topSize);
         }
 
         /// <summary>
-        /// 获取同步失败的药品
+        /// LấyĐồng bộthất bại của thuốc
         /// </summary>
         /// <param name="organizeId"></param>
         /// <returns></returns>

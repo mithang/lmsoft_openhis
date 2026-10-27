@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 1：有效 0：无效
+        /// 1：Hiệu lực 0：Không hiệu lực
         /// </summary>
         public string zt { get; set; }
 

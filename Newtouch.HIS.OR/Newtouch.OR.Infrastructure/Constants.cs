@@ -4,13 +4,13 @@ using NewtouchHIS.Lib.Base;
 namespace Newtouch.OR.ManageSystem.Infrastructure
 {
     /// <summary>
-    /// 系统常量
+    /// Hằng số hệ thống
     /// </summary>
     public class Constants
     {
 
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Tổ chứcId（Cấp cao nhất，Cấu hình hệ thống）
         /// </summary>
         public static string TopOrganizeId
         {
@@ -21,7 +21,7 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
         }
 
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Tổ chứcId（Cấp cao nhất，Cấu hình hệ thống）
         /// </summary>
         public static string AppId
         {

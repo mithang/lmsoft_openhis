@@ -3,20 +3,20 @@ $(function () {
 })
 $.clientsInit = function () {
     var extToClients = function (data) {
-        //遍历data的属性 扩展到window.clients
+        //duyệtdatacủaThuộc tính mở rộngtriểnđếnwindow.clients
         if (!!!window.clients) {
             window.clients = {};
         }
         for (dataitemName in data) {
             var itemdata = data[dataitemName];
             if (typeof (itemdata) == typeof ('abc')) {
-                //字符串则要使用eval方法
+                //chữkýchuỗithìcầnSử dụngevalPhương pháp
                 itemdata = eval(itemdata);
             }
             window.clients[dataitemName] = itemdata;
         }
     }
-    //发ajax请求
+    //phátajaxyêu cầu
     var funcClientsAjax = function (url, async) {
         $.ajax({
             url: url,
@@ -30,8 +30,8 @@ $.clientsInit = function () {
         });
     };
 
-    //同步请求  //如菜单内容必须用同步方式
+    //Đồng bộyêu cầu  //VDmenuphiếunội dungphảicầndùngĐồng bộphươngkiểu
     funcClientsAjax("/ClientsData/GetClientsDataJson", false);
-    //异步请求
+    //异bướcyêu cầu
     //funcClientsAjax("/NewtouchClientsData/GetClientsDataJson", true);
 }

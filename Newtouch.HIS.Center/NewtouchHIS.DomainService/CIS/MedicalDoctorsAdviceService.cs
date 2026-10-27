@@ -12,7 +12,7 @@ namespace NewtouchHIS.DomainService.CIS
     public class MedicalDoctorsAdviceService: BaseServices<MedicalBllxItemVo>, IMedicalDoctorsAdviceDmnService
     {
         /// <summary>
-        /// 住院医嘱
+        /// Y lệnh nội trú
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -94,7 +94,7 @@ select * from #yzdata  where '1'='1' ";
         }
 
         /// <summary>
-        /// 门诊住院检验检查Đăng ký单
+        /// Xét nghiệm/kiểm tra ngoại trú, nội trúĐăng kýPhiếu
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

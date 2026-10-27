@@ -79,12 +79,12 @@
         });
     }
 
-    //回车触发查询事件
+    //vềxekích hoạtTra cứusự kiện
     $("#txt_keyword").keydownEnterEvent(function() {
         $("#btn_search").trigger("click");
     });
 
-    //新增
+    //Thêm mới
     function btn_add() {
         $.modalOpen({
             id: "Form",
@@ -95,7 +95,7 @@
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function() {
                     cleanSearchInput();
-                    $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                    $('#gridList').jqGrid("clearGridData"); //xóachi tiếtcủagrid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                 });
@@ -103,7 +103,7 @@
         });
     }
 
-    //修改
+    //Sửa
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
@@ -112,7 +112,7 @@
         }
         @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
         if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
-            $.modalAlert("无权限修改", 'warning');
+            $.modalAlert("Không có quyền sửa", 'warning');
             return;
         }*@
         $.modalOpen({
@@ -124,7 +124,7 @@
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function() {
                     cleanSearchInput();
-                    $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                    $('#gridList').jqGrid("clearGridData"); //xóachi tiếtcủagrid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                 });
@@ -132,7 +132,7 @@
         });
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
@@ -141,7 +141,7 @@
         }
         @*var thisOrgId = $("#gridList").jqGridRowValue().OrganizeId;
         if (!!!thisOrgId && '@(!string.IsNullOrEmpty(OperatorProvider.GetCurrent().OrganizeId) && OperatorProvider.GetCurrent().OrganizeId != OperatorProvider.GetCurrent().TopOrganizeId)' === 'True') {
-            $.modalAlert("无权限修改", 'warning');
+            $.modalAlert("Không có quyền sửa", 'warning');
             return;
         }*@
         $.deleteForm({
@@ -149,7 +149,7 @@
             param: { keyValue: keyValue },
             success: function () {
                 cleanSearchInput();
-                $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                $('#gridList').jqGrid("clearGridData"); //xóachi tiếtcủagrid
                 $("#gridList").resetSelection();
                 $("#gridList").trigger("reloadGrid");
             }

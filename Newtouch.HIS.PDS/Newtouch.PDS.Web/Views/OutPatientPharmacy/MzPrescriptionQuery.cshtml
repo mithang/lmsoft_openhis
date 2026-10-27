@@ -50,11 +50,11 @@
                             <select id="cflx" class="form-control">
                                 <option value="1">Đơn thuốc Tây y</option>
                                 <option value="2">Đơn thuốc Đông y</option>
-                                @*<option value="jycf">检验处方单</option>
-                                <option value="jccf">检查处方单</option>
-                                <option value="zscf">注射处方单</option>
-                                <option value="kfcf">康复处方单</option>
-                                <option value="cgcf">常规处方单</option>*@
+                                @*<option value="jycf">Đơn xét nghiệm</option>
+                                <option value="jccf">Đơn kiểm tra</option>
+                                <option value="zscf">Đơn tiêm</option>
+                                <option value="kfcf">Đơn phục hồi</option>
+                                <option value="cgcf">Đơn thường quy</option>*@
                             </select>
                         </td>
                     </tr>
@@ -85,7 +85,7 @@
         gridInit();
     });
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
@@ -122,7 +122,7 @@
                 { label: 'Đơn thuốc đặc biệt', name: 'cftagName', width: 80, align: 'left' },
                 {
                     label: 'Cờ phát thuốc', name: 'fybz', width: 50, align: 'center', formatter: function (val, options, rowData) {
-                        // 判断发药标志
+                        // Kiểm tra cờ phát thuốc
                         var statusText = val == "2" ? "Đã phát thuốc" : (val == "3" ? "Đã trả thuốc" : "Chưa phát thuốc");
                         return statusText;
                     }
@@ -133,7 +133,7 @@
                     width: 100,
                     align: 'center',
                     formatter: function (cellValue, options, rowData) {
-                        // 判断是否为已退药状态
+                        // Kiểm tra có phải trạng thái đã trả thuốc không
                         if (rowData.fybz == "3") {
                             return "<input type='button' class='btn btn-primary btn-md reprint-btn' onclick='reprintReturnDrug(" + JSON.stringify(rowData) + ")' value='In bổ sung đơn trả thuốc' />";
                         } else {
@@ -142,7 +142,7 @@
                     }
                 }
             ],
-            //caption: "处方笺列表",
+            //caption: "Danh sách đơn thuốc",
             pager: "#gridPager",
             rowNum: 10,
             sortname: 'kssj',
@@ -231,7 +231,7 @@
             viewrecords: true,
         });
     }
-    //初始化科室
+    //Khởi tạo khoa
     $("#ksmc").newtouchBatchFloatingSelector({
         height: 200,
         width: 360,

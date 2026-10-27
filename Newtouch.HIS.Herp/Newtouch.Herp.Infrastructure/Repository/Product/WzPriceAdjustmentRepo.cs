@@ -7,7 +7,7 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 物资调价 (Herp DB: wz_priceAdjustment).
+    /// Điều chỉnh giá vật tư (Herp DB: wz_priceAdjustment).
     /// </summary>
     public class WzPriceAdjustmentRepo : RepositoryBase<WzPriceAdjustmentEntity>, IWzPriceAdjustmentRepo
     {

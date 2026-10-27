@@ -18,10 +18,10 @@
     }
 </style>
 <script>
-    var Editing_ysList = []; //编辑域中的人员
+    var Editing_ysList = []; //Nhân viên trong vùng soạn thảo
     $(function () {
         gridList();
-        //绑定 人员 树
+        //gắn Nhân viên cây
         $('#zls').click(function () {
             var initIdSelected = "";
             $.each(Editing_ysList, function () {
@@ -92,7 +92,7 @@
         $gridList.closest(".ui-jqgrid-bdiv").css({ 'overflow-x': 'hidden' });
     }
 
-    //人员树 选择 回调
+    //Cây nhân viên Chọn gọi lại
     function staffTreeCallback(treeSeleData) {
         Editing_ysList = [];
         var zlsNames = "";

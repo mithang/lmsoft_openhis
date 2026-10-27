@@ -7,9 +7,9 @@ using Newtouch.EMR.Repository;
 namespace Newtouch.EMR.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：hyj
-    /// 日 期：2018-09-07 15:46
-    /// 描 述：词条管理
+    /// Người tạo：hyj
+    /// Ngày：2018-09-07 15:46
+    /// Mô tả：Quản lý từ mục
     /// </summary>
     public interface IBlctglRepo : IRepositoryBase<BlctglEntity>
     {
@@ -17,16 +17,16 @@ namespace Newtouch.EMR.Domain.IRepository
         List<BlctglEntity> GetTreeList(string orgId, int qx, string UserCode, string parentId);
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void SubmitForm(BlctglEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void DeleteForm(string keyValue);
 
         BlctglEntity GetCitiaoByID(string orgId, string ID);

@@ -7,17 +7,17 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 结算系统 API请求帮助类
+    /// Hệ thống thanh toán APILớp trợ giúp yêu cầu
     /// </summary>
     public class SiteSettAPIHelper
     {
         /// <summary>
-        /// 结算API
+        /// Thanh toánAPI
         /// </summary>
         private static readonly string _SiteSettAPIHost;
 
         /// <summary>
-        /// 静态构造函数
+        /// Hàm tạo tĩnh
         /// </summary>
         static SiteSettAPIHelper()
         {
@@ -31,7 +31,7 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// GetToken
         /// </summary>
-        /// <param name="force">是否强刷新Token</param>
+        /// <param name="force">Có làm mới mạnh khôngToken</param>
         /// <returns></returns>
         public static string GetToken(bool force = false)
         {
@@ -71,7 +71,7 @@ namespace Newtouch.Infrastructure
         /// <typeparam name="TV"></typeparam>
         /// <param name="url"></param>
         /// <param name="req"></param>
-        /// <param name="tokenExpireReTryTimes">因Token过期重试次数</param>
+        /// <param name="tokenExpireReTryTimes">doTokenSố lần thử lại khi hết hạn</param>
         /// <returns></returns>
         public static T Request<TV, T>(string url, TV req, int tokenExpireReTryTimes = 1)
             where T : new()
@@ -83,7 +83,7 @@ namespace Newtouch.Infrastructure
         #region private methods
 
         /// <summary>
-        /// 结算API Host
+        /// Thanh toánAPI Host
         /// </summary>
         private static string SiteSettApiHost
         {
@@ -94,7 +94,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 域 http://sample.com/
+        /// Miền http://sample.com/
         /// </summary>
         private static string SiteSettApiDomain
         {
@@ -109,9 +109,9 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 结算系统API Url
+        /// Hệ thống thanh toánAPI Url
         /// </summary>
-        /// <param name="url">url 如'~/Home/Index'</param>
+        /// <param name="url">url như'~/Home/Index'</param>
         /// <returns></returns>
         private static string GetSettApiUrl(string url)
         {

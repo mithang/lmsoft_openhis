@@ -66,7 +66,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0无效1有效
+        /// 0Vô hiệu1Hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }

@@ -1,12 +1,12 @@
 ﻿namespace Newtouch.Herp.Infrastructure
 {
     /// <summary>
-    /// 缓存Key
+    /// Bộ nhớ đệm Key
     /// </summary>
     public class CacheKey
     {
         /// <summary>
-        /// 当前登录的用户的药房部门信息  {0}UserId
+        /// Thông tin khoa dược của người dùng đang đăng nhập  {0}UserId
         /// </summary>
         public static string CurrentKfInfoEntityKey = "string:CurrentKfInfo_{0}";
     }

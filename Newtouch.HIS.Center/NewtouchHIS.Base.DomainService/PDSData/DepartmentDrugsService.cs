@@ -14,7 +14,7 @@ namespace NewtouchHIS.Base.DomainService.PDSData
     public class DepartmentDrugsService : BaseDmnService<DrugsDocumentEntity>, IDepartmentDrugsService
     {
         /// <summary>
-        /// 获取收费项目
+        /// Lấy hạng mục thu phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -22,7 +22,7 @@ namespace NewtouchHIS.Base.DomainService.PDSData
         public async Task<List<DepartmentDrugsVO>> GetDepartmentDrugs(QueryParamsBase query)
         {
             
-            //创建表达式
+            //Tạo biểu thức
             var whereExp = Expressionable.Create<DrugsDocumentMXEntity,DrugsDocumentEntity , SysMedicineVPDSEntity>()
                 .And((a, b,c) => a.crkId == b.crkId  && a.zt == "1" && b.zt == "1" && b.OrganizeId == query.orgId && a.Ypdm == c.ypCode);
             if (!string.IsNullOrWhiteSpace(query.keyword))
@@ -105,14 +105,14 @@ namespace NewtouchHIS.Base.DomainService.PDSData
                    Shczy = b.Shczy,
                    shzt = b.shzt,
                    crkmxId = a.crkmxId,
-                   zstbzt = a.isyfy == "1"?"诊所已同步":"诊所未同步"
+                   zstbzt = a.isyfy == "1"?"Phòng khám đã đồng bộ":"Phòng khám chưa đồng bộ"
                }, true, whereExp.ToExpression());
             return list.Adapt<List<DepartmentDrugsVO>>();
         }
         public async Task<PageResponseRow<List<DepartmentDrugsVO>>> GetDepartmentDrugsPage(OLPagination<QueryParamsBase> query)
         {
             //PageResponseRow<List<DepartmentDrugsVO>> list = null;
-            //创建表达式
+            //Tạo biểu thức
             var whereExp = Expressionable.Create<DrugsDocumentMXEntity,DrugsDocumentEntity, SysMedicineVPDSEntity>()
                 .And((a, b,c) => a.crkId == b.crkId && a.zt == "1" && b.zt == "1" && b.OrganizeId == query.queryParams.orgId && a.Ypdm == c.ypCode);
             if (!string.IsNullOrWhiteSpace(query.queryParams.keyword))
@@ -196,19 +196,19 @@ namespace NewtouchHIS.Base.DomainService.PDSData
                    Shczy = b.Shczy,
                    shzt = b.shzt,
                    crkmxId = a.crkmxId,
-                   zstbzt = a.isyfy == "1" ? "诊所已同步" : "诊所未同步"
+                   zstbzt = a.isyfy == "1" ? "Phòng khám đã đồng bộ" : "Phòng khám chưa đồng bộ"
                }, true, whereExp.ToExpression());
             return pageData.Adapt<PageResponseRow<List<DepartmentDrugsVO>>>();
         }
         /// <summary>
-        /// 修改发药状态
+        /// Sửa trạng thái phát thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         public async Task<bool> UpdateMedicationStatus(QueryParamsBase query)
         {
-            //创建表达式
+            //Tạo biểu thức
             //var whereExp = Expressionable.Create<DrugsDocumentMXEntity>();
             //if (!string.IsNullOrWhiteSpace(query.crkmxId))
             //{

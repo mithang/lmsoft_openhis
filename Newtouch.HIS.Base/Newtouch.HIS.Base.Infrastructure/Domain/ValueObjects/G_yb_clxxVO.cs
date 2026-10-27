@@ -7,64 +7,64 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
 	/// <summary>
-	/// 医保材料目录表
+	/// Bảng danh mục vật tư BHYT
 	/// </summary>
 	public class G_yb_clxxVO
 	{
 		/// <summary>
-		/// 耗材代码
+		/// Mã vật tư tiêu hao
 		/// </summary>
 		public string hcdm { get; set; }
 		/// <summary>
-		/// 一级分类
+		/// Phân loại cấp 1
 		/// </summary>
 		public string yjfl { get; set; }
 		/// <summary>
-		/// 二级分类
+		/// Phân loại cấp 2
 		/// </summary>
 		public string ejfl { get; set; }
 		/// <summary>
-		/// 三级分类
+		/// Phân loại cấp 3
 		/// </summary>
 		public string sjfl { get; set; }
 		/// <summary>
-		/// 医保通用名
+		/// Tên chung BHYT
 		/// </summary>
 		public string ybtym { get; set; }
 		/// <summary>
-		/// 材质
+		/// Chất liệu
 		/// </summary>
 		public string cz { get; set; }
 		/// <summary>
-		/// 特征
+		/// Đặc điểm
 		/// </summary>
 		public string tz { get; set; }
 		/// <summary>
-		/// 注册备案号
+		/// Số đăng ký lưu hành
 		/// </summary>
 		public string zcbah { get; set; }
 		/// <summary>
-		/// 单件产品名称
+		/// Tên sản phẩm đơn chiếc
 		/// </summary>
 		public string djcpmc { get; set; }
 		/// <summary>
-		/// 耗材企业
+		/// Doanh nghiệp vật tư
 		/// </summary>
 		public string hcqy { get; set; }
 		/// <summary>
-		/// 规格型号数
+		/// Số quy cách mẫu
 		/// </summary>
 		public double ggxhs { get; set; }
 		/// <summary>
-		/// 注册备案人
+		/// Người đăng ký
 		/// </summary>
 		public string zcbar { get; set; }
 		/// <summary>
-		/// 拼音码
+		/// Mã Pinyin
 		/// </summary>
 		public string pym { get; set; }
 		/// <summary>
-		/// 医保性质
+		/// Tính chất BHYT
 		/// </summary>
 		public string ybxz { get; set; }
 

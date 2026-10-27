@@ -6,76 +6,76 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品本部门药品信息
+    /// Thông tin thuốc bộ phận này thuốc hệ thống
     /// </summary>
     [Table("xt_yp_bmypxx")]
     [SugarTable("xt_yp_bmypxx")]
     public class SysPharmacyDepartmentMedicineEntity : IEntity<SysPharmacyDepartmentMedicineEntity>
     {
         /// <summary>
-        /// 部门药品Id
+        /// Thuốc bộ phậnId
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public string bmypId { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 药房部门
+        /// Bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string Ypdm { get; set; }
 
         /// <summary>
-        /// 药品库位
+        /// Vị trí kho thuốc
         /// </summary>
         public string Ypkw { get; set; }
 
         /// <summary>
-        /// 账册序号
+        /// Số thứ tự sổ sách
         /// </summary>
         public string Zcxh { get; set; }
 
         /// <summary>
-        /// 排序方式1
+        /// Cách sắp xếp1
         /// </summary>
         public string Pxfs1 { get; set; }
 
         /// <summary>
-        /// 排序方式2
+        /// Cách sắp xếp2
         /// </summary>
         public string Pxfs2 { get; set; }
 
         /// <summary>
-        /// 库存上限
+        /// Giới hạn trên tồn kho
         /// </summary>
         public int? Kcsx { get; set; }
 
         /// <summary>
-        /// 库存下限
+        /// Giới hạn dưới tồn kho
         /// </summary>
         public int? Kcxx { get; set; }
 
         /// <summary>
-        /// 进货点 低于进货点则自动生成内部申领单
+        /// Điểm nhập hàng Thấp hơn điểm nhập hàng thì tự động tạo đơn lĩnh nội bộ
         /// </summary>
         public int? Jhd { get; set; }
 
         /// <summary>
-        /// 计划量 对应进货点，指定内部申领的数量
+        /// Lượng kế hoạch Điểm nhập hàng tương ứng，Số lượng lĩnh nội bộ chỉ định
         /// </summary>
         public int? Jhl { get; set; }
 
         /// <summary>
-        /// 药品属性 来自 表 xt_yptssx
+        /// Thuộc tính thuốc Từ bảng xt_yptssx
         /// </summary>
         public string Ypsxdm { get; set; }
 
@@ -90,32 +90,32 @@ namespace Newtouch.HIS.Domain.Entity
         public int? Sysx { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 状态  1：正常 0：控制
+        /// Trạng thái  1：Bình thường 0：Kiểm soát
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建试驾
+        /// Tạo lái thử
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改人
+        /// Người sửa đổi
         /// </summary>
         public string LastModifierCode { get; set; }
 

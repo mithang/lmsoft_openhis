@@ -142,11 +142,11 @@
 <script>
     var $gridDjMainRecords = $("#gridDJMainRecords");
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Tải lại chiều rộng jqGrid khi thay đổi kích thước cửa sổ trình duyệt
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
-        //搜索框隐藏显示控制
+        //Điều khiển ẩn/hiện hộp tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -206,7 +206,7 @@
         });
     });
 
-    //隐藏搜索框并显示箭头
+    //Ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -216,7 +216,7 @@
         }
     }
 
-    //初始化审核状态
+    //Khởi tạo trạng thái duyệt
     function initShzt() {
         $("#ddlSHZT").bindSelect({
             url: "/BillManage/OutOrInStorageBill/QueryCommonAuditState"
@@ -224,7 +224,7 @@
         $('#ddlSHZT').val('@((int)EnumAuditState.Waiting)').trigger("change");
     }
 
-    //单据主记录
+    //Bản ghi chính của chứng từ
     function gridDJMainRecords() {
         $gridDjMainRecords.dataGrid({
             postData: getSearchPostData(),
@@ -301,7 +301,7 @@
         });
     }
 
-    //组装查询条件
+    //Ghép điều kiện truy vấn
     function getSearchPostData() {
         var shzt = $("#ddlSHZT").val();
         var kssj = $("#txtStartDate").val();
@@ -313,9 +313,9 @@
         return { kssj: kssj, jssj: jssj, pdh: pdh, fph: fph, djlx: djlx, shzt: shzt, deliveryNo: deliveryNo };
     };
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空Chi tiết 再重新加载所有选中行Chi tiết
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp chuột，Xóa trướcChi tiết sau đó tải lại tất cả các dòng đã chọnChi tiết
         $.najax({
             type: "POST",
             url: "/OutOrInStorageBill/SelectReceipDetailInfo",
@@ -330,7 +330,7 @@
         });
     }
 
-    //单据明细
+    //Chi tiết chứng từ
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 200,
         unwritten: false,

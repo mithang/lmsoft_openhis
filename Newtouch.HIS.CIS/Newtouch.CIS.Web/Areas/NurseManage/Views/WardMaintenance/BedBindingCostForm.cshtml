@@ -97,7 +97,7 @@
         ]
     });
 
-    //删除费用
+    //XóaChi phí
     function DeleteCost(selRowId) {
         var rowData = $("#gridCostList").jqGrid('getRowData', selRowId);
         if (rowData.djbd == "1") {
@@ -109,7 +109,7 @@
         }
     }
 
-    //添加
+    //Thêm
     function newtouch_event_f2() {
         if ($("#txt_ChargeName").val() === "") {
             $.modalAlert("Chi phíTênBắt buộc", 'warning');

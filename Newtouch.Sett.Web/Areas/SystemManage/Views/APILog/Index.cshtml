@@ -98,8 +98,8 @@
     </table>
 </form>
 <script>
-    //默认
-    //var Editing_ysList = []; //编辑域中的人员
+    //mặc định
+    //var Editing_ysList = []; //Nhân viên trong vùng soạn thảo
 
     $(function () {
         gridList();
@@ -107,7 +107,7 @@
 
     });
 
-    //治疗师
+    //Kỹ thuật viên trị liệu
     $("#smryName").bindSelect({
         url: "/Report/GetRehabDoctorList",
         id: "StaffGh",
@@ -174,7 +174,7 @@
         });
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var blh = $("#blh").val();
         var xm = $("#xm").val();
@@ -187,7 +187,7 @@
         return { blh: blh, xm: xm, kssj: kssj, jssj: jssj, brlx: brlx, wtjlbz: wtjlbz, isDeleted: isDeleted, rygh: rygh };
 
     }
-    //作废
+    //Hủy bỏ
     function newtouch_event_f8() {
         var data = $("#gridList").jqGrid('getRowData_AllLine', undefined, false);
         if (data == "[]") {
@@ -211,7 +211,7 @@
             async: false,
             success: function (data) {
                 $.loading(false);
-                //刷新未确认列表
+                //Làm mới danh sách chưa xác nhận
                 $('#btn_search').trigger('click');
                 $.modalMsg("Thao tác thành công", 'success');
             },

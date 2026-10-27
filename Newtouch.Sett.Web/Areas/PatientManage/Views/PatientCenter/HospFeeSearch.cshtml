@@ -18,7 +18,7 @@
     }
 
     AdaptiveResolution();
-    // 在窗口大小改变时监听resize事件并更新div的高度
+    // tạicửa sổmiệnglớnnhỏsửađổithời giangiám sátngheresizeviệchạngvàhơnmớidivcủacaođộ
     $(window).on('resize', function () {
         AdaptiveResolution();
         FeeGrid(_zyh)
@@ -131,11 +131,11 @@
             },
             url: "/PatientManage/PatientCenter/GetFeeMainGridList?t=" + Math.random(),
         }).trigger('reloadGrid');
-        $('#gridFeeIDetail').jqGrid("clearGridData");//每次单击，先清空上一条明细 和合计
+        $('#gridFeeIDetail').jqGrid("clearGridData");//mỗi lần nhấn，xóa chi tiết dòng trước trước Và tổng cộng
     }
 
     function cellClickHandler(sfrq, dlCode) {
-        $('#gridFeeIDetail').jqGrid("clearGridData");//每次单击，先清空上一条明细 和合计
+        $('#gridFeeIDetail').jqGrid("clearGridData");//mỗi lần nhấn，xóa chi tiết dòng trước trước Và tổng cộng
         $.najax({
             type: "POST",
             url: "/PatientManage/PatientCenter/GetFeeDetail",
@@ -147,7 +147,7 @@
         });
     }
 
-    //结算大类明细 jGrid声明
+    //kếttínhlớnloạirõchi tiết jGridkhai báo
     $('#gridFeeIDetail').newtouchLocalDataGrid({
         height: gridFeeIDetailHight,
         caption: "Chi phí tra cứu chi tiết",
@@ -181,10 +181,10 @@
         }
     });
 
-    //总金额
+    //Tổng số tiền
     function getFeeZje() {
         var zje = 0;
-        var ids = gridFeeList.getDataIDs();//返回数据表的ID数组["66","39"..]
+        var ids = gridFeeList.getDataIDs();//của bảng dữ liệu trả vềIDmảng["66","39"..]
         for (var i = 0; i < ids.length; i++) {
             var rowData = gridFeeList.getRowData(ids[i]);
             if (!!rowData.HJ) {

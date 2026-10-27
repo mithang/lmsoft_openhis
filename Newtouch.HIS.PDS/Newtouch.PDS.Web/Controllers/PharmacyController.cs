@@ -17,7 +17,7 @@ using NewtouchHIS.Lib.Base.Exceptions;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// 药房Controller
+    /// Nhà thuốcController
     /// </summary>
     public class PharmacyController : ControllerBase
     {
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// 内部申领
+        /// Lĩnh nội bộ
         /// </summary>
         /// <returns></returns>
         public IActionResult RequisitionForm()
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 初始化单据号
+        /// Khởi tạo số chứng từ
         /// </summary>
         /// <returns></returns>
         public IActionResult RequisitionGetNewDjh()
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 内部申领 发药部门 Sele
+        /// Lĩnh nội bộ Bộ phận phát thuốc Sele
         /// </summary>
         /// <returns></returns>
         public IActionResult RequisitionFybmSele(string keyword)
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 内部申领 输入码 Sele
+        /// Lĩnh nội bộ Mã nhập Sele
         /// </summary>
         /// <returns></returns>
         public IActionResult RequisitionSrmSele(string keyword, string fybm)
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 内部申领 提交表单
+        /// Lĩnh nội bộ Gửi biểu mẫu
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(sldh))
             {
-                throw new FailedException("缺少申领单号");
+                throw new FailedException("Thiếu số đơn lĩnh");
             }
             if (string.IsNullOrWhiteSpace(fybmCode))
             {
@@ -87,7 +87,7 @@ namespace Newtouch.HIS.Web.Controllers
             }
             if (slmxList == null || slmxList.Count == 0)
             {
-                throw new FailedException("未提交明细数据（非正确格式）");
+                throw new FailedException("Chưa gửi dữ liệu chi tiết（Định dạng không đúng）");
             }
             _requisitionDmnService.SubmitRequisition(sldh, fybmCode, Constants.CurrentYfbm.yfbmCode, slmxList, OperatorProvider.GetCurrent().OrganizeId);
 
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// 申领单查询（药房部门发出去的）
+        /// Truy vấn đơn lĩnh（Bộ phận nhà thuốc gửi đi）
         /// </summary>
         /// <returns></returns>
         public IActionResult RequisitionSearchIndex()
@@ -105,7 +105,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 申领出库 申领单 数据源
+        /// Xuất kho theo đơn lĩnh Đơn lĩnh Nguồn dữ liệu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startDate"></param>
@@ -145,22 +145,22 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 申领出库 申领单 明细数据 数据源
+        /// Xuất kho theo đơn lĩnh Đơn lĩnh Dữ liệu chi tiết Nguồn dữ liệu
         /// </summary>
         /// <param name="sldId"></param>
         /// <returns></returns>
         public IActionResult RequisitionDetailList(string sldId)
         {
             var list = _requisitionDmnService.RequisitionDetailListBySlId(sldId, OperatorProvider.GetCurrent().OrganizeId);
-            return list == null ? Error("获取申领单明细失败") : Success(null, list);
+            return list == null ? Error("Lấy chi tiết đơn lĩnh thất bại") : Success(null, list);
         }
 
 
         /// <summary>
-        /// 请求获取当前部门 的 ypCode药品 的 库存量
+        /// Yêu cầu lấy bộ phận hiện tại của ypCodeThuốc của Lượng tồn kho
         /// </summary>
-        /// <param name="ypCode">药品代码</param>
-        /// <param name="fybm">发药部门</param>
+        /// <param name="ypCode">Mã thuốc</param>
+        /// <param name="fybm">Bộ phận phát thuốc</param>
         /// <returns></returns>
         public IActionResult GetYpKcslAndYpdw(string ypCode, string fybm)
         {

@@ -13,7 +13,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 库存结转
+    /// Tồn khokết chuyển
     /// </summary>
     public class KcKcjzRepo : RepositoryBase<KcKcjzEntity>, IKcKcjzRepo
     {
@@ -22,7 +22,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 获取历史结转时间
+        /// Lấylịch sửkết chuyểnThời gian
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -49,7 +49,7 @@ namespace Newtouch.Herp.Repository
             {
                 result.Add(new SelectVo
                 {
-                    text = "请选择历史结转",
+                    text = "Vui lòng chọn历史kết chuyển",
                     value = ""
                 });
             }
@@ -57,7 +57,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 获取最近一次结转信息
+        /// Lấynhấtgầnmột lầnkết chuyểnthông tin
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>

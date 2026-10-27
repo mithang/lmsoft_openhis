@@ -10,7 +10,7 @@ using NewtouchHIS.Lib.Framework.Filter;
 namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
 {
     /// <summary>
-    /// 出入库方式
+    /// Phương thức nhập/xuất kho
     /// </summary>
     [Area("ProductManage")]
     public class ProductCrkfsController : ControllerBase

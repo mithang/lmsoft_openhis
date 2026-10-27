@@ -34,10 +34,10 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
         public string sUser = ConfigurationHelper.GetAppConfigValue("PurchaseUser");
         public string sPwd = ConfigurationHelper.GetAppConfigValue("PurchasePwd");
         public string sVersion = "1.0.0.0";
-        #region 接口公共方法
+        #region Phương thức chung giao diện
 
         /// <summary>
-        /// SHA1加密计算
+        /// SHA1Tính toán mã hóa
         /// </summary>
         /// <param name="content"></param>
         /// <returns></returns>
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             }
         }
 
-        //读取xml指定节点的值
+        //ĐọcxmlGiá trị nút chỉ định
         public string ReadXmlNodes(string xml, string node)
         {
             string text = string.Empty;
@@ -82,7 +82,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             }
             catch (Exception ex)
             {
-                AppLogger.Info("读取xml指定节点的值异常: " + ex);
+                AppLogger.Info("ĐọcxmlGiá trị nút chỉ định bất thường: " + ex);
             }
             return text;
         }
@@ -102,16 +102,16 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             }
             catch (Exception ex)
             {
-                AppLogger.Info("读取xml指定节点的值异常: " + ex);
+                AppLogger.Info("ĐọcxmlGiá trị nút chỉ định bất thường: " + ex);
                 throw new Exception(ex.ToString());
             }
             return text;
         }
 
-        //查询错误提示
+        //Truy vấn nhắc lỗi
         public void GetErrorOut(string responseXML)
         {
-            //错误提示
+            //Thông báo lỗi
             var ztcljg = ReadXmlContent(responseXML, "XMLDATA/HEAD/ZTCLJG");
             if (ztcljg != "00000")
             {
@@ -151,13 +151,13 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     var sXxlx = jydm;
                     var sSign = getMessageDigest(responsexml);
 
-                    //调用阳光采购平台WebService接口
+                    //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
-                    AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                    AppLogger.Info("调用采购交易请求url: " + responsexml);
+                    AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
+                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
                     YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                     var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
-                    AppLogger.Info("调用采购交易出参: " + responseXML);
+                    AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
                     
                     //var jsonout = responseXML.XmlDeSerialize<OutputYY009>();
                     //var purchaseLogEntity = new PurchaseLogEntity
@@ -184,9 +184,9 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
         }
         #endregion
 
-        #region 阳光采购平台接口
+        #region Giao diện nền tảng mua hàng Sunshine
         /// <summary>
-        /// 订单填报 YY009
+        /// Khai báo đơn hàng YY009
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cgId"></param>
@@ -223,17 +223,17 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                 responsexml = responsexml.Replace("<?xmlversion=\"1.0\"?>", "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 
                 // var param = cgId;
-                //var logstr = PurchaseInterface(responsexml, orgId,param,"YY009", "订单填报");//接口
+                //var logstr = PurchaseInterface(responsexml, orgId,param,"YY009", "Khai báo đơn hàng");//Giao diện
 
                 var sXxlx = "YY009";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
-                AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                AppLogger.Info("调用采购交易请求url: " + responsexml);
+                AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
+                AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
                 YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                 var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
-                AppLogger.Info("调用采购交易出参: " + responseXML);
+                AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
 
                 var param = cgId;
                 using (var db = new EFDbTransaction().BeginTrans())
@@ -253,7 +253,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 var ztcljg = ReadXmlContent(responseXML, "XMLDATA/HEAD/ZTCLJG");
                 if (ztcljg != "00000")
                 {
@@ -262,13 +262,13 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                 }
 
 
-                //更新订单编号
+                //Cập nhật Số đơn hàng
                 //var ddbh = entity.MAIN.DDBH;
                 //var ddbh = entity.MAIN.DDBH;
                 //_purchaseRepo.PurchaseDdbhUpdate(cgId, ddbh, orgId);
 
                 var ddbh = ReadXmlNodes(responseXML, "DDBH");
-                AppLogger.Info("调用采购交易返回DDBH： " + ddbh);
+                AppLogger.Info("Trả về gọi giao dịch mua hàngDDBH： " + ddbh);
                 return ddbh;
             }
             catch (Exception e)
@@ -278,7 +278,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
         }
 
         /// <summary>
-        /// 订单填报确认 YY010
+        /// Xác nhận khai báo đơn hàng YY010
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cgId"></param>
@@ -306,17 +306,17 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                 string responsexml = xmlData.XmlSerialize().Replace("\r\n", "").Replace(" ", "");
                 responsexml = responsexml.Replace("<?xmlversion=\"1.0\"?>", "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
 
-                //var logstr = PurchaseInterface(responsexml, orgId, param, "YY010", "订单填报确认");//接口
+                //var logstr = PurchaseInterface(responsexml, orgId, param, "YY010", "Xác nhận khai báo đơn hàng");//Giao diện
 
                 var sXxlx = "YY010";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
-                AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                AppLogger.Info("调用采购交易请求url: " + responsexml);
+                AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
+                AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
                 YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                 var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
-                AppLogger.Info("调用采购交易出参: " + responseXML);
+                AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
 
                 var param = cgId;
                 using (var db = new EFDbTransaction().BeginTrans())
@@ -336,7 +336,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     db.Commit();
                 }
 
-                //错误提示
+                //Thông báo lỗi
                 var ztcljg = ReadXmlContent(responseXML, "XMLDATA/HEAD/ZTCLJG");
                 if (ztcljg != "00000")
                 {
@@ -379,13 +379,13 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
                 var sXxlx = "YY011";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
-                AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                AppLogger.Info("调用采购交易请求url: " + responsexml);
+                AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
+                AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
                 YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                 var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
-                AppLogger.Info("调用采购交易出参: " + responseXML);
+                AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
                 using (var db = new EFDbTransaction().BeginTrans())
                 {
                     var purchaseLogEntity = new PurchaseLogEntity
@@ -402,7 +402,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     db.Insert(purchaseLogEntity);
                     db.Commit();
                 }
-                //错误提示
+                //Thông báo lỗi
                 var ztcljg = ReadXmlContent(responseXML, "XMLDATA/HEAD/ZTCLJG");
                 if (ztcljg != "00000")
                 {
@@ -420,7 +420,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
         }
 
         /// <summary>
-        /// 退货单填报确认 YY012
+        /// Xác nhận khai báo đơn trả hàng YY012
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="cgId"></param>
@@ -455,13 +455,13 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     //var responseXML = "<XMLDATA><HEAD><JSSJ>20130831/102341/</JSSJ><ZTCLJG>00000</ZTCLJG><CWXX/><BZXX/></HEAD></XMLDATA>";
                     var sXxlx = "YY012";
                     var sSign = getMessageDigest(responsexml);
-                    //调用阳光采购平台WebService接口
+                    //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
-                    AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                    AppLogger.Info("调用采购交易请求url: " + responsexml);
+                    AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
+                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
                     YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                     var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
-                    AppLogger.Info("调用采购交易出参: " + responseXML);
+                    AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
                     var purchaseLogEntity = new PurchaseLogEntity
                     {
                         OrganizeId = orgId,
@@ -475,7 +475,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     purchaseLogEntity.Create(true);
                     db.Insert(purchaseLogEntity);
                     db.Commit();
-                    //错误提示
+                    //Thông báo lỗi
                     var ztcljg = ReadXmlContent(responseXML, "XMLDATA/HEAD/ZTCLJG");
                     if (ztcljg != "00000")
                     {
@@ -493,7 +493,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
         }
 
         /// <summary>
-        /// 发票查询并获取
+        /// Truy vấn và lấy hóa đơn
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="yqbm"></param>
@@ -523,13 +523,13 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                 {
                     var sXxlx = "YY004";
                     var sSign = getMessageDigest(responsexml);
-                    //调用阳光采购平台WebService接口
+                    //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
-                    AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                    AppLogger.Info("调用采购交易请求url: " + responsexml);
+                    AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
+                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
                     YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                     var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
-                    AppLogger.Info("调用采购交易出参: " + responseXML);
+                    AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
 
                     //XElement xmlElement = XElement.Parse(responseXML);
                     //string jsonString = JsonConvert.SerializeXNode(xmlElement);
@@ -537,7 +537,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     //var jsonout = responseXML.XmlDeSerialize<OutputYY004>();
 
 
-                    //测试
+                    //Kiểm thử
                     //var responseXML = "<?xml version=\"1.0\" encoding=\"UTF - 8\"?><XMLDATA><HEAD><JSSJ>20230814/160916/</JSSJ><ZTCLJG>00000</ZTCLJG><CWXX></CWXX><BZXX>备注信息</BZXX></HEAD><MAIN><JLS>5</JLS><SFWJ>1</SFWJ></MAIN><DETAIL><STRUCT><FPH>03100220010508178424</FPH><FPRQ>20230628</FPRQ><FPHSZJE>61.1</FPHSZJE><YQBM>SYSDZD01</YQBM><YYBM>77370296000</YYBM><PSDBM>77370296000</PSDBM><DLSGBZ>0</DLSGBZ><FPBZ/><SFWPSFP>1</SFWPSFP><WPSFPSM/><FPMXBH>20230628010082660484</FPMXBH><SPLX>1</SPLX><SFCH>0</SFCH><ZXSPBM>X01211740010012</ZXSPBM><SCPH>2301072</SCPH><SCRQ>20230129</SCRQ><SPSL>5</SPSL><GLMXBH>20230627000098852552</GLMXBH><XSDDH>506202306280335</XSDDH><SXH>4</SXH><YXRQ>20251231</YXRQ><WSDJ>10.814</WSDJ><HSDJ>12.22</HSDJ><SL>.13</SL><SE>7.03</SE><HSJE>61.1</HSJE><PFJ>10.8142</PFJ><LSJ>61.1</LSJ><PZWH>国药准字H32024827</PZWH></STRUCT><STRUCT><FPH>03100220010508178425</FPH><FPRQ>20230628</FPRQ><FPHSZJE>99.5</FPHSZJE><YQBM>SYSDZD01</YQBM><YYBM>77370296000</YYBM><PSDBM>77370296000</PSDBM><DLSGBZ>0</DLSGBZ><FPBZ/><SFWPSFP>1</SFWPSFP><WPSFPSM/><FPMXBH>20230628010082660485</FPMXBH><SPLX>1</SPLX><SFCH>0</SFCH><ZXSPBM>XN0000030094082</ZXSPBM><SCPH>KRU0315</SCPH><SCRQ>20220301</SCRQ><SPSL>10</SPSL><GLMXBH>20230627000098852560</GLMXBH><XSDDH>506202306280335</XSDDH><SXH>12</SXH><YXRQ>20240229</YXRQ><WSDJ>8.805</WSDJ><HSDJ>9.95</HSDJ><SL>.13</SL><SE>11.45</SE><HSJE>99.5</HSJE><PFJ>8.8053</PFJ><LSJ>9.95</LSJ><PZWH>国药准字J20150061</PZWH></STRUCT><STRUCT><FPH>03100220010508184713</FPH><FPRQ>20230710</FPRQ><FPHSZJE>-61.1</FPHSZJE><YQBM>SYSDZD01</YQBM><YYBM>77370296000</YYBM><PSDBM>77370296000</PSDBM><DLSGBZ>0</DLSGBZ><FPBZ/><SFWPSFP>1</SFWPSFP><WPSFPSM/><FPMXBH>20230711010083218323</FPMXBH><SPLX>1</SPLX><SFCH>1</SFCH><ZXSPBM>X01211740010012</ZXSPBM><SCPH>2301072</SCPH><SCRQ>20230129</SCRQ><SPSL>-5</SPSL><GLMXBH>20230711010002158605</GLMXBH><XSDDH>506202306290002</XSDDH><SXH/><YXRQ>20251231</YXRQ><WSDJ>10.814</WSDJ><HSDJ>12.22</HSDJ><SL>.13</SL><SE>-7.03</SE><HSJE>-61.1</HSJE><PFJ>10.8142</PFJ><LSJ>61.1</LSJ><PZWH>国药准字H32024827</PZWH></STRUCT><STRUCT><FPH>03100220010508184712</FPH><FPRQ>20230710</FPRQ><FPHSZJE>-99.5</FPHSZJE><YQBM>SYSDZD01</YQBM><YYBM>77370296000</YYBM><PSDBM>77370296000</PSDBM><DLSGBZ>0</DLSGBZ><FPBZ/><SFWPSFP>1</SFWPSFP><WPSFPSM/><FPMXBH>20230711010083218406</FPMXBH><SPLX>1</SPLX><SFCH>1</SFCH><ZXSPBM>XN0000030094082</ZXSPBM><SCPH>KRU0315</SCPH><SCRQ>20220301</SCRQ><SPSL>-10</SPSL><GLMXBH>20230711010002158604</GLMXBH><XSDDH>506202306290002</XSDDH><SXH/><YXRQ>20240229</YXRQ><WSDJ>8.805</WSDJ><HSDJ>9.95</HSDJ><SL>.13</SL><SE>-11.45</SE><HSJE>-99.5</HSJE><PFJ>8.8053</PFJ><LSJ>9.95</LSJ><PZWH>国药准字J20150061</PZWH></STRUCT><STRUCT><FPH>03100220010508778395</FPH><FPRQ>20230808</FPRQ><FPHSZJE>-521</FPHSZJE><YQBM>SYSDZD01</YQBM><YYBM>77370296000</YYBM><PSDBM>77370296000</PSDBM><DLSGBZ>0</DLSGBZ><FPBZ/><SFWPSFP>1</SFWPSFP><WPSFPSM/><FPMXBH>20230808010084421506</FPMXBH><SPLX>1</SPLX><SFCH>1</SFCH><ZXSPBM>XJ01XDT045A001010104642</ZXSPBM><SCPH>30230202</SCPH><SCRQ>20230209</SCRQ><SPSL>-50</SPSL><GLMXBH>20230808010002209423</GLMXBH><XSDDH>506202306283009</XSDDH><SXH/><YXRQ>20260131</YXRQ><WSDJ>9.2212</WSDJ><HSDJ>10.42</HSDJ><SL>.13</SL><SE>-59.94</SE><HSJE>-521</HSJE><PFJ>9.2212</PFJ><LSJ>10.42</LSJ><PZWH>国药准字H33020324</PZWH></STRUCT></DETAIL></XMLDATA>";
                     //var jsonoutTest = responseXMLTest.XmlDeSerialize<OutputYY004>();
 
@@ -596,7 +596,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     purchaseLogEntity.Create(true);
                     db.Insert(purchaseLogEntity);
                     db.Commit();
-                    //错误提示
+                    //Thông báo lỗi
                     var ztcljg = ReadXmlContent(responseXML, "XMLDATA/HEAD/ZTCLJG");
                     if (ztcljg != "00000")
                     {
@@ -608,7 +608,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             }
             catch (Exception e)
             {
-                AppLogger.Info("调用采购交易失败: " + e.Message);
+                AppLogger.Info("Gọi giao dịch mua hàng thất bại: " + e.Message);
                 return null;
             }
         }
@@ -634,13 +634,13 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     //var responseXML = "<XMLDATA><HEAD><JSSJ>20130831/102341/</JSSJ><ZTCLJG>00000</ZTCLJG><CWXX/><BZXX/></HEAD></XMLDATA>";
                     var sXxlx = "YY019";
                     var sSign = getMessageDigest(responsexml);
-                    //调用阳光采购平台WebService接口
+                    //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
-                    AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                    AppLogger.Info("调用采购交易请求url: " + responsexml);
+                    AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
+                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
                     YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                     var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
-                    AppLogger.Info("调用采购交易出参: " + responseXML);
+                    AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
                     var purchaseLogEntity = new PurchaseLogEntity
                     {
                         OrganizeId = orgId,
@@ -654,7 +654,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     purchaseLogEntity.Create(true);
                     db.Insert(purchaseLogEntity);
                     db.Commit();
-                    //错误提示
+                    //Thông báo lỗi
                     var ztcljg = ReadXmlContent(responseXML, "XMLDATA/HEAD/ZTCLJG");
                     if (ztcljg != "00000")
                     {
@@ -672,7 +672,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
 
         /// <summary>
-        /// 获取配送单明细数据
+        /// Lấy dữ liệu chi tiết đơn giao hàng
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="yqbm"></param>
@@ -702,13 +702,13 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                 {
                     var sXxlx = "YY003";
                     var sSign = getMessageDigest(responsexml);
-                    //调用阳光采购平台WebService接口
+                    //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
-                    AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                    AppLogger.Info("调用采购交易请求url: " + responsexml);
+                    AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
+                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
                     YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                     var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
-                    AppLogger.Info("调用采购交易出参: " + responseXML);
+                    AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
                     
                     List<OutputStructYY003> tmpList = new List<OutputStructYY003>();
                     XmlDocument xmlDoc = new XmlDocument();
@@ -760,7 +760,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     purchaseLogEntity.Create(true);
                     db.Insert(purchaseLogEntity);
                     db.Commit();
-                    //错误提示
+                    //Thông báo lỗi
                     var ztcljg = ReadXmlContent(responseXML, "XMLDATA/HEAD/ZTCLJG");
                     if (ztcljg != "00000")
                     {
@@ -772,13 +772,13 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             }
             catch (Exception e)
             {
-                AppLogger.Info("调用采购交易失败: " + e.Message);
+                AppLogger.Info("Gọi giao dịch mua hàng thất bại: " + e.Message);
                 return null;
             }
         }
 
         /// <summary>
-        /// 配送明细验收
+        /// Nghiệm thu chi tiết giao hàng
         /// </summary>
         /// <param name="main"></param>
         /// <param name="orgId"></param>
@@ -804,13 +804,13 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     //var responseXML = "<XMLDATA><HEAD><JSSJ>20130831/102341/</JSSJ><ZTCLJG>00000</ZTCLJG><CWXX/><BZXX/></HEAD></XMLDATA>";
                     var sXxlx = "YY018";
                     var sSign = getMessageDigest(responsexml);
-                    //调用阳光采购平台WebService接口
+                    //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
                     AppLogger.Info("============= " + sXxlx + " ============= ");
-                    AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                    AppLogger.Info("调用采购交易请求url: " + responsexml);
+                    AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
+                    AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
                     YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                     var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
-                    AppLogger.Info("调用采购交易出参: " + responseXML);
+                    AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
                     var purchaseLogEntity = new PurchaseLogEntity
                     {
                         OrganizeId = orgId,
@@ -824,7 +824,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     purchaseLogEntity.Create(true);
                     db.Insert(purchaseLogEntity);
                     db.Commit();
-                    //错误提示
+                    //Thông báo lỗi
                     var ztcljg = ReadXmlContent(responseXML, "XMLDATA/HEAD/ZTCLJG");
                     if (ztcljg != "00000")
                     {
@@ -861,13 +861,13 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
                 var sXxlx = "YY001";
                 var sSign = getMessageDigest(responsexml);
-                //调用阳光采购平台WebService接口
+                //Gọi nền tảng mua hàng SunshineWebServiceGiao diện
                 AppLogger.Info("============= " + sXxlx + " ============= ");
-                AppLogger.Info("调用采购交易规定入参: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
-                AppLogger.Info("调用采购交易请求url: " + responsexml);
+                AppLogger.Info("Gọi giao dịch mua hàng với tham số quy định: " + sUser + "," + sPwd + "," + sJgbm + "," + sVersion + "," + sXxlx + "," + sSign);
+                AppLogger.Info("Gọi yêu cầu giao dịch mua hàngurl: " + responsexml);
                 YsxtMainServiceClient ysxtMainServiceClient = new YsxtMainServiceClient();
                 var responseXML = ysxtMainServiceClient.sendRecv(sUser, sPwd, sJgbm, sVersion, sXxlx, sSign, responsexml);
-                AppLogger.Info("调用采购交易出参: " + responseXML);
+                AppLogger.Info("Gọi kết quả giao dịch mua hàng: " + responseXML);
 
                 var param = Id;
                 using (var db = new EFDbTransaction().BeginTrans())
@@ -886,7 +886,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     db.Insert(purchaseLogEntity);
                     db.Commit();
                 }
-                //错误提示
+                //Thông báo lỗi
                 var ztcljg = ReadXmlContent(responseXML, "XMLDATA/HEAD/ZTCLJG");
                 if (ztcljg != "00000")
                 {
@@ -898,7 +898,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             }
             catch (Exception e)
             {
-                AppLogger.Info("调用采购交易失败: " + e.Message);
+                AppLogger.Info("Gọi giao dịch mua hàng thất bại: " + e.Message);
                 return e.Message;
             }
         }

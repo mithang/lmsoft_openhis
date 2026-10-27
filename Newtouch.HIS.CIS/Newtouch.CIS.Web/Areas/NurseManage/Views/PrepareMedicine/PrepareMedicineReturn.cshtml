@@ -55,11 +55,11 @@
                     <td class="formValue">
                         @*@Html.DropDownList("ksbyzt", EnumKSBYZT.sq.ToDescSelectList(), new { @class = "form-control form-an" })*@
                         <select id="ksbyzt" name="ksbyzt" class="form-control">
-                            @*<option value="0">全部</option>
-                            <option value="1">保存</option>
-                            <option value="3">提交</option>
-                            <option value="5">撤回</option>
-                            <option value="7">作废</option>*@
+                            @*<option value="0">Tất cả</option>
+                            <option value="1">Lưu</option>
+                            <option value="3">Gửi</option>
+                            <option value="5">rútvề</option>
+                            <option value="7">Hủy bỏ</option>*@
 
                             <option value="0">Tất cả</option>
                             <option value="1">Lưu</option>
@@ -124,7 +124,7 @@
     $(function () {
         initControl();
         gridList();
-        //搜索框隐藏显示控制
+        //tìm kiếmkhungẨnHiển thịđiều khiển
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -136,7 +136,7 @@
         TabGridHide();
     })
 
-    //隐藏搜索框并显示箭头
+    //Ẩntìm kiếmkhungvàHiển thịmũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -155,10 +155,10 @@
             colModel: [
                 {
                     label: 'Trạng thái', name: 'thzt', width: 60, align: 'left', formatter: function (cellvalue) {
-                        //if (cellvalue == 1) return '保存';
-                        //else if (cellvalue == 3) return '提交';
-                        //else if (cellvalue == 5) return '撤回';
-                        //else if (cellvalue == 7) return '作废';
+                        //if (cellvalue == 1) return 'Lưu';
+                        //else if (cellvalue == 3) return 'Gửi';
+                        //else if (cellvalue == 5) return 'rútvề';
+                        //else if (cellvalue == 7) return 'Hủy bỏ';
                         if (cellvalue == 1) return 'Chưa đề nghị';
                         else if (cellvalue == 2) return 'Đã đề nghị';
                         else if (cellvalue == 3) return 'Đã xác nhận';
@@ -212,19 +212,19 @@
     }
 
     function rptdjmx(byid) {
-        window.open(reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2fKhoaChuẩn bị thuốcTrả lại单&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&byId=" + byid + "&orgId=" + orgId, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
+        window.open(reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2fKhoaChuẩn bị thuốcTrả lạiphiếu&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&byId=" + byid + "&orgId=" + orgId, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
     }
 
     //http://localhost:17105/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E7%A7%91%E5%AE%A4%E5%A4%87%E8%8D%AF%E7%94%B3%E8%AF%B7%E5%8D%95&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&byId=ad4d9559-9e0a-4093-9000-9ee2cb6a26e0&orgId=
     //http://59.80.30.184:16015/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E7%A7%91%E5%AE%A4%E5%A4%87%E8%8D%AF%E9%80%80%E5%9B%9E%E5%8D%95&rs:Command=Render
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
 
-    //单击事件
+    //phiếunhấpsự kiện
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp，Xóa trắng chi tiết trước lạilạitảitất cảĐã chọndòngchi tiết
         $.najax({
             type: "Get",
             url: "/PrepareMedicine/QueryPrepareMedicine",
@@ -238,7 +238,7 @@
             }
         });
     }
-    //单据明细
+    //phiếucứchi tiết
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 200,
         unwritten: false,
@@ -251,7 +251,7 @@
             { label: 'Đơn vị', name: 'dw', width: 90, align: 'right' },
             { label: 'Quy cách', name: 'gg', width: 120, align: 'right' },
             { label: 'Hạn hiệu lực', name: 'yxq', width: 100, align: 'right' },
-            //{ label: '有效期', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            //{ label: 'Hạn hiệu lực', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
             { label: 'Nhà sản xuất', name: 'sccj', width: 160, align: 'left' }
         ]
     });
@@ -260,7 +260,7 @@
 
     }
 
-    //新建
+    //Tạo mới
     $('#btn_add').click(function () {
         $.modalOpen({
             id: "OutAreaForm",
@@ -275,7 +275,7 @@
         });
     });
 
-    //修改
+    //Sửa
     $('#btn_edit').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
@@ -304,7 +304,7 @@
         });
     });
 
-    //提交
+    //Gửi
     $('#btn_submit').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
@@ -316,8 +316,8 @@
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
-        //if (rowData.thzt != "保存") {
-        //    $.modalAlert("选中的单据不是保存状态，不能提交", 'warning');
+        //if (rowData.thzt != "Lưu") {
+        //    $.modalAlert("Đã chọncủaphiếucứkhôngCóLưuTrạng thái，khôngcó thểGửi", 'warning');
         //    return;
         //}
         //var postData = rowData;
@@ -354,7 +354,7 @@
         });
     });
 
-    //撤回
+    //rútvề
     $('#btn_back').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
@@ -386,7 +386,7 @@
         });
     });
 
-    //作废
+    //Hủy bỏ
     $('#btn_delete').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {

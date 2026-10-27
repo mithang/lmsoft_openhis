@@ -115,14 +115,14 @@
 
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
-        initialddlJXList();//初始化药品剂型
-        initialddlYPLBList();//初始化药品类别
-        initialddlZQList();//加载账期
-        gridDrugsInfoData();//加载药品明细
+        initialddlJXList();//Khởi tạo dạng bào chế thuốc
+        initialddlYPLBList();//Khởi tạo loại thuốc
+        initialddlZQList();//Tải kỳ sổ sách
+        gridDrugsInfoData();//Tải chi tiết thuốc
     });
 
     function initialddlZQList() {
@@ -138,7 +138,7 @@
         });
     }
 
-    //药品剂型
+    //Dạng bào chế thuốc
     function initialddlJXList() {
         $("#ddlJX").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineFormulationList",
@@ -147,7 +147,7 @@
         });
     }
 
-    //药品类别
+    //Loại thuốc
     function initialddlYPLBList() {
         $("#ddlYPLB").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineCategoryList2",
@@ -156,7 +156,7 @@
         });
     }
 
-    //单据主记录
+    //Bản ghi chính của chứng từ
     function gridDrugsInfoData() {
         var $gridDrugsInfoData = $("#gridDrugsInfo");
         $gridDrugsInfoData.dataGrid({
@@ -191,24 +191,24 @@
             sortname: 'ypdm desc',
             viewrecords: true,
             loadComplete: function (data) {
-                StatisticsZE();//统计总额
+                StatisticsZE();//Thống kê tổng số
             }
         });
 
-        //统计
+        //Thống kê
         $("#btn_TJ").click(function () {
             if ($("#ddlKSZQ").val() >= $("#ddlJSZQ").val()) {
                 $.modalAlert("Kỳ kết thúc phải lớn hơn kỳ bắt đầu", 'warning');
                 return;
             }
-            //清空Grid
+            //XóaGrid
             $('#gridDrugsInfo').jqGrid("clearGridData");
             $gridDrugsInfoData.jqGrid('setGridParam', {
                 postData: getSearchPostData(), url: '/PharmacyDrugStorage/PSIStatisticsInfoList'
             }).trigger('reloadGrid');
         });
     }
-    //查询条件
+    //Điều kiện truy vấn
     function getSearchPostData() {
         var kszq = $("#ddlKSZQ").find("option:selected").text();
         var jszq = $("#ddlJSZQ").find("option:selected").text();
@@ -222,7 +222,7 @@
         return { kszq: kszq, jszq: jszq, ksjzsj: ksjzsj, jsjzsj: jsjzsj, inputCode: inputCode, drugType: drugType, dosage: dosage, drugState: drugState, rate: rate }
     };
 
-    //统计总额
+    //Thống kê tổng số
     function StatisticsZE() {
         var statisticsRkjjze = 0;  //Tổng giá nhập kho
         var statisticsCkjjze = 0;  //Tổng giá xuất kho

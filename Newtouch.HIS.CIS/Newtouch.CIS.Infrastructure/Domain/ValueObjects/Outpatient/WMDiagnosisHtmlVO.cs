@@ -15,7 +15,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public int zdlx{ get; set; }
         /// <summary>
-        /// 疑似标志
+        /// Nghi ngờCờ
         /// </summary>
         public bool ysbz { get; set; }
         /// <summary>
@@ -23,19 +23,19 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string icd10 { get; set; }
         /// <summary>
-        /// 西医诊断备注
+        /// Chẩn đoán Tây yGhi chú
         /// </summary>
         public string zdbz { get; set; }
         /// <summary>
-        /// 牙位图类型
+        /// răng ký tựhìnhLoại
         /// </summary>
         public string ywlx { get; set; }
         /// <summary>
-        /// 牙位图位置
+        /// răng ký tựhìnhVị trí
         /// </summary>
         public string ywstr { get; set; }
         /// <summary>
-        /// 牙位图显示
+        /// răng ký tựhìnhHiển thị
         /// </summary>
         public string ywxs { get; set; }
     }

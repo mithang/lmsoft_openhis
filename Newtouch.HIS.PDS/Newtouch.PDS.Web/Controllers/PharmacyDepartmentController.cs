@@ -90,20 +90,20 @@ namespace Newtouch.HIS.Web.Controllers
             entity.ynwbz = entity.ynwbz == "true" ? "1" : "0";
             if (string.IsNullOrWhiteSpace(entity.OrganizeId))
             {
-                throw new FailedException("请选择组织机构");
+                throw new FailedException("Vui lòng chọn tổ chức");
             }
             else if (!_SysOrganizeDmnService.IsMedicalOrganize(entity.OrganizeId))
             {
-                throw new FailedException("请选择医疗机构（医院或诊所）");
+                throw new FailedException("Vui lòng chọn cơ sở y tế（Bệnh viện hoặc phòng khám）");
             }
             _SysPharmacyDepartmentBaseDmnService.submitForm(entity, keyValue);
             return Success("Thao tác thành công");
         }
 
-        //#region xt_yfbm_yp维护
+        //#region xt_yfbm_ypBảo trì
 
         ///// <summary>
-        ///// 主页面 
+        ///// Trang chính 
         ///// </summary>
         ///// <returns></returns>
         //public IActionResult OpenMedicineIndex()
@@ -113,7 +113,7 @@ namespace Newtouch.HIS.Web.Controllers
         //}
 
         ///// <summary>
-        ///// 更新添加页面
+        ///// Cập nhật trang thêm
         ///// </summary>
         ///// <returns></returns>
         //public IActionResult OpenMadicineForm()
@@ -153,14 +153,14 @@ namespace Newtouch.HIS.Web.Controllers
         //    entity.zt = entity.zt == "true" ? "1" : "0";
         //    if (string.IsNullOrWhiteSpace(entity.OrganizeId))
         //    {
-        //        throw new FailedException("请选择组织机构");
+        //        throw new FailedException("Vui lòng chọn tổ chức");
         //    }
         //    else if (!_SysOrganizeDmnService.IsMedicalOrganize(entity.OrganizeId))
         //    {
-        //        throw new FailedException("请选择医疗机构（医院或诊所）");
+        //        throw new FailedException("Vui lòng chọn cơ sở y tế（Bệnh viện hoặc phòng khám）");
         //    }
         //    _SysPharmacyDepartmentOpenMedicineRepo.submitForm(entity, keyValue);
-        //    return Success("操作成功");
+        //    return Success("Thao tác thành công");
         //}
 
         //#endregion

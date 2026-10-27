@@ -21,7 +21,7 @@ namespace Newtouch.OR.ManageSystem.DomainServices
         {
         }
         /// <summary>
-        /// 收费模板页面index list
+        /// Trang mẫu thu phíindex list
         /// </summary>
         /// <returns></returns>
         public IList<SysChargeTemplateGridVO> Search(Pagination pagination, string keyword,string ks, string organizeId)
@@ -172,7 +172,7 @@ union all select newid(),'" + entity.OrganizeId+"','"+ entity.sfmbbh+"','"+ item
         /// </summary>
         /// <param name="cnt"></param>
         /// <param name="orgId"></param>
-        /// <param name="dl">1药品 2项目 3非治疗项目	多个 逗号分割</param>
+        /// <param name="dl">1Thuốc 2Khoản 3Khoản không điều trị	Nhiều Phân tách bằng dấu phẩy</param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         public IList<SysChargeItemTemplateVO> GetDicChargeItems(int cnt ,string orgId,string dl,string keyword)
@@ -192,7 +192,7 @@ union all select newid(),'" + entity.OrganizeId+"','"+ entity.sfmbbh+"','"+ item
         }
 
         /// <summary>
-        /// 获取收费模板的项目列表
+        /// Lấy danh sách khoản của mẫu thu phí
         /// </summary>
         /// <param name="sfmbbh"></param>
         /// <returns></returns>
@@ -229,7 +229,7 @@ left join NewtouchHIS_Base.[dbo].V_S_xt_sfxm b on a.sfxm = b.sfxmCode and b.Orga
 
         public SysChargeTemplateInfoVM GetSysChargeTemplateInfo(string keyValue,string orgId)
         {
-            //收费项目列表
+            //Danh sách khoản thu phí
             string sql = @"select sfmbbh,OrganizeId,sfmb,sfmbmc,ks,px,zt 
 from [NewtouchHIS_Sett].[dbo].xt_sfmb with(nolock)
 where sfmbbh=@Id

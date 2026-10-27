@@ -19,7 +19,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取应用已授权的组织机构列表
+        /// Lấy danh sách tổ chức đã được ủy quyền cho ứng dụng
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.DomainServices
         {
             var sql = @"if exists (select 1 from Sys_OrganizeApplication where ApplicationId = @appId and OrganizeId = '*' and zt = '1')
 begin
-    --所有顶级组织机构
+    --Tất cả tổ chức cấp cao nhất
 	select * from Sys_Organize where zt = '1'
 end
 else
@@ -42,7 +42,7 @@ else
         }
 
         /// <summary>
-        /// 将应用授权给指定机构
+        /// Ủy quyền ứng dụng cho tổ chức được chỉ định
         /// </summary>
         /// <param name="appId"></param>
         public void UpdateAuthOrganizeList(string appId, string orgList, string curUserCode)
@@ -67,7 +67,7 @@ from Sys_Organize where Id in (
         }
 
         /// <summary>
-        /// 将应用授权给所有机构
+        /// Ủy quyền ứng dụng cho tất cả tổ chức
         /// </summary>
         /// <param name="appId"></param>
         public void AuthAllOrganize(string appId, string curUserCode)
@@ -86,7 +86,7 @@ end";
         }
 
         /// <summary>
-        /// 撤销全部授权（组织机构）
+        /// Hủy tất cả ủy quyền（Tổ chức）
         /// </summary>
         /// <param name="appId"></param>
         public void AuthCancelAllOrganize(string appId)

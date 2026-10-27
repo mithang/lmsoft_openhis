@@ -7,92 +7,92 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.PDS.Requset.ResourcesOperate
 {
     /// <summary>
-    /// 住院退药
+    /// Trả thuốc nội trú
     /// </summary>
     public class HospitalizatiionReturnDispensingMedicineRequestDTO : RequestBase
     {
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 退药药品明细
+        /// Chi tiết thuốc trả
         /// </summary>
         public List<ReturnDispensingDrug> ReturnDrugDetail { get; set; }
 
         /// <summary>
-        /// 接口调用流水号
+        /// Số thứ tự gọi giao diện
         /// </summary>
         public string ClientNo { get; set; }
     }
 
     /// <summary>
-    /// 药品退药
+    /// Trả thuốc
     /// </summary>
     public class ReturnDispensingDrug
     {
 
         /// <summary>
-        /// 医嘱ID
+        /// Y lệnhID
         /// </summary>
         [Required]
         public string yzId { get; set; }
 
         /// <summary>
-        /// 药品code
+        /// Thuốccode
         /// </summary>
         [Required]
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 退药数量 部门单位
+        /// Số lượng trả thuốc Đơn vị bộ phận
         /// </summary>
         [Required]
         public int tysl { get; set; }
 
         /// <summary>
-        /// 住院号
+        /// Số nội trú
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 转换因子（tysl*zhyz=最小单位数量）  默认住院拆零数
+        /// Hệ số chuyển đổi（tysl*zhyz=Số lượng đơn vị nhỏ nhất）  Số chia lẻ nội trú mặc định
         /// </summary>
         public int? zhyz { get; set; }
 
         /// <summary>
-        /// 退药申请人代码
+        /// Mã người xin trả thuốc
         /// </summary>
         [Required]
         public string tysqr { get; set; }
 
         /// <summary>
-        /// 组号
+        /// Số nhóm
         /// </summary>
         public string zh { get; set; }
 
         /// <summary>
-        /// 执行日期
+        /// Ngày thực hiện
         /// </summary>
         public DateTime? zxrq { get; set; }
 
         /// <summary>
-        /// 病区代码
+        /// Mã khu bệnh
         /// </summary>
         public string bqCode { get; set; }
 
         /// <summary>
-        /// 发药药房
+        /// Nhà thuốc phát thuốc
         /// </summary>
         public string fyyf { get; set; }
 
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         public string ksCode { get; set; }
         /// <summary>
-        /// 领药序号
+        /// Số thứ tự nhận thuốc
         /// </summary>
         public long lyxh { get; set; }
     }

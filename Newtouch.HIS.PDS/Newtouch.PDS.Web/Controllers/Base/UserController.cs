@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// 用户选择器
+        /// Bộ chọn người dùng
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取系统用户树 三级（机构+科室+用户（人员））
+        /// Lấy cây người dùng hệ thống Cấp 3（Cơ sở+Khoa+Người dùng（Nhân sự））
         /// </summary>
         /// <returns></returns>
         [HandlerAjaxOnly]
@@ -42,23 +42,23 @@ namespace Newtouch.HIS.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(organizeId))
             {
-                organizeId = base.GetAuthOrganizeId();  //默认 权限OrganizeId
+                organizeId = base.GetAuthOrganizeId();  //Mặc định QuyềnOrganizeId
             }
-            //带缓存的系统用户树
+            //Cây người dùng hệ thống có đệm
             var treeList = _cache.Get<List<TreeViewModel>>(string.Format(CacheKey.OrganizeUserTreeSetKey, organizeId), () => {
                 var organizedata = _sysOrganizeDmnService.GetValidListByParentOrg(organizeId);
                 var iitreeList = new List<TreeViewModel>();
                 foreach (var orgItem in organizedata)
                 {
-                    //机构科室集合
+                    //Tập hợp khoa của cơ sở
                     var orgDetpData = _sysDepartmentRepo.GetList(orgItem.Id);
-                    //机构人员集合（有对应登录账户）
+                    //Tập hợp nhân sự của cơ sở（Có tài khoản đăng nhập tương ứng）
                     var orgUserStaffData = _sysUserDmnService.GetSatffVOListByOrg(orgItem.Id);
-                    #region 机构下所有科室
+                    #region Tất cả khoa thuộc cơ sở
                     foreach (var deptItem in orgDetpData)
                     {
                         var deptUserStaffData = orgUserStaffData.Where(p => p.DepartmentCode == deptItem.Code).ToList();
-                        #region 机构下所有用户
+                        #region Tất cả người dùng thuộc cơ sở
                         foreach (var userStaffVO in deptUserStaffData)
                         {
                             TreeViewModel staffTree = new TreeViewModel();
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Web.Controllers
                             staffTree.parentId = deptItem.Id;
                             staffTree.hasChildren = false;
                             staffTree.showcheck = true;
-                            staffTree.checkstate = 0;   //外面赋值，方便缓存
+                            staffTree.checkstate = 0;   //Gán từ bên ngoài，Thuận tiện lưu đệm
                             iitreeList.Add(staffTree);
                         }
                         #endregion
@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Web.Controllers
                         deptTree.text = deptItem.Name;
                         deptTree.value = deptItem.Code;
                         deptTree.parentId = deptItem.ParentId == null ? orgItem.Id : deptItem.ParentId;
-                        deptTree.isexpand = isExpand;  //默认不展开，人太多
+                        deptTree.isexpand = isExpand;  //Mặc định không mở rộng，Quá nhiều người
                         deptTree.complete = true;
                         deptTree.showcheck = false;
                         deptTree.hasChildren = deptUserStaffData.Count > 0 || orgDetpData.Any(p => p.ParentId == deptItem.Id);
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Web.Controllers
                     tree.id = orgItem.Id;
                     tree.text = orgItem.Name;
                     tree.value = orgItem.Code;
-                    tree.parentId = orgItem.Id == organizeId ? null : orgItem.ParentId; //特殊
+                    tree.parentId = orgItem.Id == organizeId ? null : orgItem.ParentId; //Đặc biệt
                     tree.isexpand = true;
                     tree.complete = true;
                     tree.showcheck = false;
@@ -99,8 +99,8 @@ namespace Newtouch.HIS.Web.Controllers
                 return iitreeList;
             }, cacheTime);
 
-            IList<string> checkedUserIdList = null; //已checked的用户
-            if (from == "rolerelatioinuser" && !string.IsNullOrWhiteSpace(keyValue))   //角色已关联用户
+            IList<string> checkedUserIdList = null; //đãcheckedngười dùng của
+            if (from == "rolerelatioinuser" && !string.IsNullOrWhiteSpace(keyValue))   //Người dùng vai trò đã liên kết
             {
                 checkedUserIdList = _userRoleAuthDmnService.GetCurUserIdListByRoleId(keyValue);
             }
@@ -112,22 +112,22 @@ namespace Newtouch.HIS.Web.Controllers
                     if (treeItem.showcheck && checkedUserIdList.Contains(treeItem.value))
                     {
                         treeItem.checkstate = 1;
-                        //同时让上级展开
+                        //Đồng thời mở rộng cấp trên
                         var thisParentNode = treeList.Where(p => p.id == treeItem.parentId).FirstOrDefault();
                         if (thisParentNode != null)
                         {
-                            thisParentNode.isexpand = true;  //下级有选中的，这里一定展开之
+                            thisParentNode.isexpand = true;  //Cấp dưới có được chọn，Ở đây nhất định mở rộng nó
                         }
                     }
                 }
             }
-            if (!isShowEmpty)   //不显示多余的
+            if (!isShowEmpty)   //Không hiển thị thừa
             {
-                var count = 1;  //移除的行数
+                var count = 1;  //Số dòng đã loại bỏ
                 while (count > 0)
                 {
                     count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-                    //重新调整下树 移除 没有下级（下级刚被移了） 又 不显示showcheck的
+                    //Điều chỉnh lại cây Loại bỏ Không có cấp dưới（Cấp dưới vừa bị chuyển） lại Không hiển thịshowcheckcủa
                     treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
                 }
             }
@@ -135,7 +135,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 个人信息
+        /// Thông tin cá nhân
         /// </summary>
         /// <returns></returns>
         public IActionResult PersonalInfo()
@@ -144,7 +144,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 提交 重置个人密码
+        /// Gửi Đặt lại mật khẩu cá nhân
         /// </summary>
         /// <param name="newpwd"></param>
         /// <returns></returns>
@@ -153,7 +153,7 @@ namespace Newtouch.HIS.Web.Controllers
         public IActionResult SubmitPersonalPassword(string newpwd)
         {
             _sysUserDmnService.RevisePassword(newpwd, this.UserIdentity.UserId);
-            return Success("重置密码成功。");
+            return Success("Đặt lại mật khẩu thành công。");
         }
 
     }

@@ -40,27 +40,27 @@
 
             function MyExecuteCommand(lst) {
                 if (lst.getAttribute("val") == "InsertAgeField") {
-                    // 插入年龄域
+                    // Chèn trường tuổi
                     MyInsertNameInputField();
                 }
                 else if (lst.getAttribute("val") == "InsertSexField") {
-                    // 插入性别域
+                    // Chèn trường giới tính
                     MyInsertSexInputField();
                 }
                 else if (lst.getAttribute("val") == "InsertDateTime") {
-                    // 插入日期域
+                    // Chèn trường ngày
                     MyInsertDateInputField();
                 }
                 else if (lst.getAttribute("val") == "InsertInputCheckbox") {
-                    // 插入复选框
+                    // Chèn hộp kiểm
                     MyInsertCheckBoxInputField();
                 }
                 else if (lst.getAttribute("val") == "InsertInputRadio") {
-                    // 插入单选框
+                    // Chèn hộp chọn đơn
                     MyInsertRadioInputField();
                 }
                 else if (lst.getAttribute("val") == "InsertInputButton") {
-                    // 插入按钮
+                    // Chèn nút
                     MyInsertButtonInputField();
                 }
 
@@ -74,7 +74,7 @@
 
             }
 
-            // 插入年龄输入域
+            // Chèn trường nhập tuổi
             function MyInsertNameInputField() {
       
 
@@ -82,7 +82,7 @@
                     "ContentReadonly": false,
                     "ToolTip": "Vui lòng nhập tuổi",
                     "BackgroundText": "Tuổi",
-                    //"labelText":"年龄:",
+                    //"labelText":"Tuổi:",
                     "Text": "30",
                     "InnerValue": "30",
                     "ValidateStyle": "Required:True;ValueType:Numeric;CheckMaxValue:True;MaxValue:150;CheckMinValue:True;MinValue:0",
@@ -96,7 +96,7 @@
                 document.getElementById('myWriterControl').DCExecuteCommand('Spechars', true, "Tuổi:");
                 document.getElementById('myWriterControl').DCExecuteCommand("InsertInputField", true, options);
             }
-            // 插入性别输入域
+            // Chèn trường nhập giới tính
             function MyInsertSexInputField() {
                 var ctl = document.getElementById("myWriterControl");
                 var options = {
@@ -118,11 +118,11 @@
                 };
                 var field = ctl.DCExecuteCommand("InsertInputField", true, options);
                 if (field != null) {
-                    ctl.FocusAdjacent("afterEnd", field); //这里的第一个参数可以是beforeBegin,afterBegin,beforeEnd,afterEnd
+                    ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể làbeforeBegin,afterBegin,beforeEnd,afterEnd
                 }
             }
 
-            // 插入日期输入域
+            // Chèn trường nhập ngày
             function MyInsertDateInputField() {
                 var ctl = document.getElementById("myWriterControl");
                 var options = {
@@ -139,7 +139,7 @@
                 ctl.DCExecuteCommand("InsertInputField", true, options);
             }
 
-            // 插入按钮
+            // Chèn nút
             function MyInsertButtonInputField() {
                 var ctl = document.getElementById("myWriterControl");
                 var options = {
@@ -156,7 +156,7 @@
                 ctl.DCExecuteCommand("InsertInputField", true, options);
             }
 
-            // 插入复选框
+            // Chèn hộp kiểm
             function MyInsertCheckBoxInputField() {
                 var ctl = document.getElementById("myWriterControl");
                 var options = {
@@ -181,7 +181,7 @@
             }
 
 
-            // 插入单选框
+            // Chèn hộp chọn đơn
             function MyInsertRadioInputField() {
                 var ctl = document.getElementById("myWriterControl");
                 var options = {

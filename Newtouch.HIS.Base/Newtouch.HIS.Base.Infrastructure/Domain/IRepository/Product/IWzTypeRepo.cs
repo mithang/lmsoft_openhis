@@ -4,7 +4,7 @@ using Newtouch.HIS.Repository;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 物资类别
+    /// Loại vật tư
     /// </summary>
     public interface IWzTypeRepo : IRepositoryBase<WzTypeEntity>
     {

@@ -3,44 +3,44 @@
     public class MedicalRecord
     {
         /// <summary>
-        /// 病案首页号
-        /// 唯一标识、不重复
+        /// Số trang đầu bệnh án
+        /// Định danh duy nhất, không trùng lặp
         /// </summary>
         public String Index { get; set; }
         /// <summary>
-        /// 性别代码
+        /// Mã giới tính
         /// </summary>
         public String gender { get; set; }
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public int age { get; set; }
         /// <summary>
-        /// 新生儿年龄
+        /// Tuổi trẻ sơ sinh
         /// </summary>
         public int ageDay { get; set; }
         /// <summary>
-        /// 新生儿体重
+        /// Cân nặng trẻ sơ sinh
         /// </summary>
         public int weight { get; set; }
         /// <summary>
-        /// 出院科室
+        /// Khoa xuất viện
         /// </summary>
         public String dept { get; set; }
         /// <summary>
-        /// 住院天数
+        /// Số ngày nằm viện
         /// </summary>
         public int inHospitalTime { get; set; }
         /// <summary>
-        /// 离院方式
+        /// Cách thức rời viện
         /// </summary>
         public String leavingType { get; set; }
         /// <summary>
-        /// 诊断列表
+        /// Danh sách chẩn đoán
         /// </summary>
         public String[] zdList { get; set; }
         /// <summary>
-        /// 手术及操作列表
+        /// Danh sách phẫu thuật và thủ thuật
         /// </summary>
         public String[] ssList { get; set; }
         public String remark { get; set; }

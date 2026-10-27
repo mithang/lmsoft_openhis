@@ -3,132 +3,132 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 单据查询明细
+    /// Chi tiết truy vấn chứng từ
     /// </summary>
     public class ReceiptQueryDetailVO
     {
         /// <summary>
-        /// 出入库单据明细
+        /// Chi tiết chứng từ xuất nhập kho
         /// </summary>
         public string crkmxId { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn dùng
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        ///发票号
+        ///Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 药品大类代码
+        /// Mã loại lớn thuốc
         /// </summary>
         public string ypdlCode { get; set; }
 
         /// <summary>
-        /// 药品类别名称
+        /// Tên loại thuốc
         /// </summary>
         public string yplbmc { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Phiên âm
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        ///生产厂家
+        ///Nhà sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 数量 申请数量
+        /// Số lượng Số lượng xin
         /// </summary>
         public int? sl { get; set; }
 
         /// <summary>
-        /// 数量 带单位
+        /// Số lượng kèm đơn vị
         /// </summary>
         public string slanddw { get; set; }
 
         /// <summary>
-        /// 批发总额
+        /// Tổng giá bán buôn
         /// </summary>
         public decimal? pjze { get; set; }
 
         /// <summary>
-        ///零售总额
+        ///Tổng giá bán lẻ
         /// </summary>
         public decimal? ljze { get; set; }
 
         /// <summary>
-        /// 进价总额
+        /// Tổng giá nhập
         /// </summary>
         public decimal? zje { get; set; }
 
         /// <summary>
-        ///扣率
+        ///Tỷ lệ khấu trừ
         /// </summary>
         public decimal? kl { get; set; }
 
         /// <summary>
-        ///进销差价
+        ///Chênh lệch giá nhập bán
         /// </summary>
         public decimal? jxcj { get; set; }
 
         ///// <summary>
-        ///// 账册号
+        ///// Số sổ sách
         ///// </summary>
         //public string zch { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 进价
+        /// Giá nhập
         /// </summary>
         public decimal? jj { get; set; }
 
         /// <summary>
-        /// 进价单位单价
+        /// Đơn giá đơn vị giá nhập
         /// </summary>
         public string jjdwdj { get; set; }
 
         /// <summary>
-        /// 退货原因
+        /// Lý do trả hàng
         /// </summary>
         public string thyy { get; set; }
 
         /// <summary>
-        /// 追溯码
+        /// Mã truy xuất
         /// </summary>
         public string zsm { get; set; }
 
         /// <summary>
-        /// 是否拆零
+        /// Có chia lẻ không
         /// </summary>
         public string sfcl { get; set; }
     }

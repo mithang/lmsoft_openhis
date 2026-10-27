@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据组织机构获取药品信息列表
+        /// Lấy danh sách thông tin thuốc theo tổ chức
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ and (ypCode like @searchKeyword or ypmc like @searchKeyword or py like @searchKe
         }
 
         /// <summary>
-        /// 获取医保字典库药品List
+        /// Lấy thuốc từ kho từ điển BHYTList
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -74,12 +74,12 @@ where 1=1 and cod.zt=1 and cod.OrganizeId=@orgId";
             }
             catch
             {
-                //没有这张表
+                //Không có bảng này
                 return null;
             }
         }
         /// <summary>
-        /// 查询医保姓名表信息
+        /// Tra cứu thông tin bảng tên BHYT
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="keyword"></param>
@@ -105,7 +105,7 @@ where 1=1 and cod.zt=1 and cod.OrganizeId=@orgId";
             }
             else
             {
-                sql += " and lx='项目'";
+                sql += " and lx='Hạng mục'";
             }
             return this.FindList<GzybNameCodeVO>(sql, new SqlParameter[] {
                     
@@ -114,7 +114,7 @@ where 1=1 and cod.zt=1 and cod.OrganizeId=@orgId";
                 });
         }
         /// <summary>
-        /// 获取医保字典库药品List
+        /// Lấy thuốc từ kho từ điển BHYTList
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -140,7 +140,7 @@ WHERE   (name LIKE @searchKeyword or code like @searchKeyword or pcode like @sea
                 }
                 catch
                 {
-                    //没有这张表
+                    //Không có bảng này
                     return null;
                 }
             }

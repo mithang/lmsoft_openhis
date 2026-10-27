@@ -1,94 +1,94 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 库存量查询明细
+    /// Chi tiết truy vấn lượng tồn kho
     /// </summary>
     public class MedicineStockQueryDetailVO
     {
         /// <summary>
-        /// 部门名称
+        /// Tên bộ phận
         /// </summary>
         public string deptName { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn dùng
         /// </summary>
         public string yxq { get; set; }
 
         /// <summary>
-        /// 药品库位
+        /// Vị trí kho thuốc
         /// </summary>
         public string ypkw { get; set; }
 
         /// <summary>
-        /// 控制标志
+        /// Cờ kiểm soát
         /// </summary>
         public string kzbz { get; set; }
 
         /// <summary>
-        /// 冻结数量
+        /// Số lượng đóng băng
         /// </summary>
         public int djsl { get; set; }
 
         /// <summary>
-        /// 冻结数量
+        /// Số lượng đóng băng
         /// </summary>
         //public int kcsl { get; set; }
         public string djslstr { get; set; }
 
         /// <summary>
-        /// 库存数量
+        /// Số lượng tồn kho
         /// </summary>
         //public int kcsl { get; set; }
         public string kcslstr { get; set; }
 
         /// <summary>
-        /// 药库批发价
+        /// Giá bán buôn kho thuốc
         /// </summary>
         public decimal ykpfj { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// Giá bán lẻ kho thuốc
         /// </summary>
         public decimal yklsj { get; set; }
 
         /// <summary>
-        /// 部门批发价
+        /// Giá bán buôn bộ phận
         /// </summary>
         public decimal? pfj { get; set; }
 
         /// <summary>
-        /// 部门零售价
+        /// Giá bán lẻ bộ phận
         /// </summary>
         public decimal? lsj { get; set; }
 
         /// <summary>
-        /// 批价总额
+        /// Tổng giá bán buôn
         /// </summary>
         public decimal pjze { get; set; }
 
         /// <summary>
-        /// 零售价总额
+        /// Tổng giá bán lẻ
         /// </summary>
         public decimal ljze { get; set; }
 
         /// <summary>
-        /// 进价
+        /// Giá nhập
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số quy đổi
         /// </summary>
         public int? zhyz { get; set; }
     }

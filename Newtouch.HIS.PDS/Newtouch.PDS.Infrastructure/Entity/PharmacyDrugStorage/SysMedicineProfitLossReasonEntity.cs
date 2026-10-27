@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品损益原因
+    /// Lý do lãi lỗ thuốc hệ thống
     /// </summary>
     [Table("xt_ypsyyy")]
     [SugarTable("xt_ypsyyy")]
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string syyy { get; set; }
 
         /// <summary>
-        /// 0 报损，1 报溢
+        /// 0 Báo hỏng，1 Báo thừa
         /// </summary>
         public string sybz { get; set; }
 

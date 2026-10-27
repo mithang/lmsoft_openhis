@@ -6,15 +6,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 15:37
-    /// 描 述：长期医嘱
+    /// Tác giả: 冬林
+    /// Ngày：2018-06-28 15:37
+    /// Mô tả：Y lệnh dài hạn
     /// </summary>
     [SugarTable("zy_bqksbymx")]
     public class PreparationdrugsMXEntity
     {
         /// <summary>
-        /// 主键ID
+        /// Khóa chínhID
         /// </summary>
         [Key]
         public string Id { get; set; }
@@ -29,27 +29,27 @@ namespace Newtouch.Domain.Entity
         public string lsj { get; set; }
         public string zje { get; set; }
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
 
         /// <summary>
-        /// 修改用户
+        /// Sửa người dùng
         /// </summary>
         public string CreatorCode { get; set; }
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa
         /// </summary>
         public DateTime CreateTime { get; set; }
 
 
         /// <summary>
-        /// 最后修改用户
+        /// Sửa cuốiNgười dùng
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
         public string gg { get; set; }

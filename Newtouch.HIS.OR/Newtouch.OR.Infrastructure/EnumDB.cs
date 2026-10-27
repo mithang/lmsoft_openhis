@@ -5,85 +5,85 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
     public enum EnumZYBZ
     {
         /// <summary>
-        /// 入院登记
+        /// Đăng ký nhập viện
         /// </summary>
         Xry = 0,
         /// <summary>
-        /// 病区中
+        /// Đang ở khoa
         /// </summary>
         Bqz = 1,
         /// <summary>
-        /// 病区出院（出病区）（待结账）
+        /// Xuất khoa（Rời khoa）（Chờ thanh toán）
         /// </summary>
         Djz = 2,
         /// <summary>
-        /// 已出院（出院结算）
+        /// Đã xuất viện（Thanh toán xuất viện）
         /// </summary>
         Ycy = 3,
         /// <summary>
-        /// 转区
+        /// Chuyển khoa
         /// </summary>
         Zq = 7,
 
         /// <summary>
-        /// 作废记录/取消入院
+        /// Hồ sơ hủy bỏ/Hủy nhập viện
         /// </summary>
         Wry = 9,
     }
 
     /// <summary>
-    /// 申请状态
+    /// Trạng thái đơn đăng ký
     /// </summary>
     public enum EnumSqzt
     {
         [Description("Chờ duyệt")]
         /// <summary>
-        /// 已申请待审核(排班)
+        /// Đã đăng ký, chờ duyệt(Xếp lịch)
         /// </summary>
         dsh = 1,
         [Description("Đã duyệt")]
         /// <summary>
-        /// 已审核(排班)待手术
+        /// Đã duyệt(Xếp lịch)Chờ phẫu thuật
         /// </summary>
         ypb = 2,
         [Description("Đã hủy đơn")]
         /// <summary>
-        /// 已取消申请
+        /// Đã hủy đơn đăng ký
         /// </summary>
         yqx = 3,
 
     }
 
     /// <summary>
-    /// 手术状态
+    /// Phẫu thuậtTrạng thái
     /// </summary>
     public enum EnumSSzt
     {
         [Description("Chờ xếp lịch")]
         /// <summary>
-        /// 已审核(排班)
+        /// Đã duyệt(Xếp lịch)
         /// </summary>
         dpb = 1,
         [Description("Đã xếp lịch")]
         /// <summary>
-        /// 已审核(排班)待手术
+        /// Đã duyệt(Xếp lịch)Chờ phẫu thuật
         /// </summary>
         ypb = 2,
         [Description("Đã hủy bỏ")]
         /// <summary>
-        /// 已取消申请
+        /// Đã hủy đơn đăng ký
         /// </summary>
         yzf = 3,
         [Description("Đã đăng ký")]
         /// <summary>
-        /// 已取消登记
+        /// Đã hủy đăng ký
         /// </summary>
         yzx = 4
 
     }
 
     /// <summary>
-    /// 手术登记状态
+    /// Đăng ký phẫu thuậtTrạng thái
     /// </summary>
     public enum EnumSSdjzt
     {
@@ -95,7 +95,7 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
         yzf = 3
     }
     /// <summary>
-    /// 手术级别
+    /// Cấp phẫu thuật
     /// </summary>
     public enum EnumSSjb
     {
@@ -110,7 +110,7 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
     }
 
     /// <summary>
-    /// 是否隔离
+    /// Có cách ly không
     /// </summary>
     public enum EnumIsgl
     {
@@ -121,7 +121,7 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
     }
 
     /// <summary>
-    /// 是否有菌
+    /// Có nhiễm khuẩn không
     /// </summary>
     public enum EnumIsjun
     {

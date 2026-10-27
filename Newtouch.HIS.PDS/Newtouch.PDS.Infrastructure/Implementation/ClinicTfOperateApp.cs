@@ -13,7 +13,7 @@ using Newtouch.PDS.Requset.ClinicTfOperate;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 医嘱执行
+    /// Thực hiện y lệnh
     /// </summary>
     public class ClinicTfOperateApp : ProcessorFun<ClinicTfOperateRequest>
     {
@@ -27,29 +27,29 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Kiểm tra
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
         {
-            if (Request == null) throw new FailedException("请求报文不能为空");
-            if (Request.cfhs == null || Request.cfhs.Count <= 0) throw new FailedException("处方列表不能为空");
+            if (Request == null) throw new FailedException("Bản tin yêu cầu không được để trống");
+            if (Request.cfhs == null || Request.cfhs.Count <= 0) throw new FailedException("Danh sách đơn thuốc không được để trống");
             Request.cfhs.ForEach(ValidataYzDetail);
             return new ActResult();
         }
 
         /// <summary>
-        /// 检验医嘱明细
+        /// Chi tiết y lệnh xét nghiệm
         /// </summary>
         /// <param name="detail"></param>
         private static void ValidataYzDetail(CfDetial CfDetial)
         {
-            if (string.IsNullOrWhiteSpace(CfDetial.cfh)) throw new FailedException("请传入有效的处方号");
-            if (string.IsNullOrWhiteSpace(CfDetial.OrganizeId)) throw new FailedException("请传入有效的组织机构代码");
+            if (string.IsNullOrWhiteSpace(CfDetial.cfh)) throw new FailedException("Vui lòng truyền số đơn thuốc hiệu lực");
+            if (string.IsNullOrWhiteSpace(CfDetial.OrganizeId)) throw new FailedException("Vui lòng truyền mã tổ chức hiệu lực");
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -59,11 +59,11 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 foreach (var item in _cfEntities)
                 {
-                    //退费之前，先判断是否已经排药
+                    //Trước khi trả phí，Kiểm tra trước đã xếp thuốc chưa
                     if (IsPrescribeYp(item.cfh, item.OrganizeId))
                     {
                         List<MzCfmxEntity> Cfmx = mzCfmxRepo.GetCfmxByCfh(item.cfh);
-                        //已排药的情况，先退还冻结
+                        //Trường hợp đã xếp thuốc，Trả lại đóng băng trước
                         Cfmx.ForEach(p =>
                         {
                             try
@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 处方作废
+        /// Hủy đơn thuốc
         /// </summary>
         /// <param name="actResult"></param>
         protected override void AfterAction(ActResult actResult)
@@ -102,7 +102,7 @@ namespace Newtouch.HIS.Application.Implementation
                 {
                     actResult.IsSucceed = false;
                     LogCore.Error("ClinicTfOperateApp UpdateCfByTf Error", ex, addInfo: Tags);
-                    actResult.ResultMsg = string.Format("{0} ; 处方号为[{1}]发生内部异常,请尽快联系接口管理员", actResult.ResultMsg, p.cfh);
+                    actResult.ResultMsg = string.Format("{0} ; Số đơn thuốc là[{1}]Xảy ra ngoại lệ nội bộ,Vui lòng liên hệ quản trị viên giao diện càng sớm càng tốt", actResult.ResultMsg, p.cfh);
                     actResult.ResultCode = (int)ResultCode.AllFailure;
                 }
             });
@@ -110,7 +110,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装退费处方数据
+        /// Lắp ráp dữ liệu đơn trả phí
         /// </summary>
         /// <returns></returns>
         private void AssembleTfCfEntity()
@@ -128,10 +128,10 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 判断该处方是否已排药
+        /// Kiểm tra đơn thuốc này đã xếp thuốc chưa
         /// </summary>
         /// <param name="cfh"></param>
-        /// <returns>true:已排药;false:未排药</returns>
+        /// <returns>true:Đã xếp thuốc;false:Chưa xếp thuốc</returns>
         private bool IsPrescribeYp(string cfh, string OrganizeId)
         {
             var entity = _mzCfRepo.FindEntity(p => p.cfh == cfh &&

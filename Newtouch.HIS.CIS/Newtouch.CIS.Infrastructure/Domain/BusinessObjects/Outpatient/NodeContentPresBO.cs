@@ -8,27 +8,27 @@ namespace Newtouch.Domain.BusinessObjects
     public class NodeContentPresBO
     {
         /// <summary>
-        /// 处方主表
+        /// Đơn thuốcchínhbảng
         /// </summary>
         public PrescriptionEntity presEntity { get; set; }
 
         /// <summary>
-        /// 处方明细
+        /// Đơn thuốcchi tiết
         /// </summary>
         public List<PrescriptionDetailQueryVO> presDetailList { get; set; }
 
         /// <summary>
-        /// 处方打印时间
+        /// Đơn thuốcInThời gian
         /// </summary>
         public DateTime? cfzhdysj { get; set; }
 
         /// <summary>
-        /// 治疗单打印时间（仅康复）
+        /// Điều trịphiếuInThời gian（chỉPhục hồi chức năng）
         /// </summary>
         public DateTime? zldzhdysj { get; set; }
 
         /// <summary>
-        /// 同步至HIS 的 result
+        /// Đồng bộđếnHIS của result
         /// </summary>
         public string sendtohisResult { get; set; }
     }

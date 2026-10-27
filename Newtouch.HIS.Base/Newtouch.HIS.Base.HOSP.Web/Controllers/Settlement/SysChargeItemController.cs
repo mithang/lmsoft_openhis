@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return View();
         }
         /// <summary>
-        /// 获取列表
+        /// Lấy danh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
         
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -99,7 +99,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="SysPatiChargeAddEntity"></param>
         /// <param name="keyValue"></param>
@@ -161,7 +161,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         
         
         /// <summary>
-        /// 收费项目同步医保
+        /// Đồng bộ BHYT hạng mục thu phí
         /// </summary>
         /// <param name="ypCode"></param>
         /// <returns></returns>
@@ -197,7 +197,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             }
         }
         /// <summary>
-        /// 获取医保报销比例集合
+        /// Lấy tập hợp tỷ lệ hoàn trả BHYT
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -207,7 +207,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// 保存医保报销比例设置
+        /// Lưu cài đặt tỷ lệ hoàn trả BHYT
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="xmbm"></param>

@@ -7,7 +7,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string mbId { get; set; }
         /// <summary>
-        /// 1 检验 2 检查
+        /// 1 Xét nghiệm 2 Kiểm tra
         /// </summary>
         public int Type { get; set; }
 

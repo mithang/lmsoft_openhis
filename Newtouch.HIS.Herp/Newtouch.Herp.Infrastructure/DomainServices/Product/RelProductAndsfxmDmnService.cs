@@ -8,7 +8,7 @@ using Newtouch.Herp.Domain.ValueObjects;
 namespace Newtouch.Herp.DomainServices
 {
     /// <summary>
-    /// 物资收费项目对照. NOTE: this file was not in the brief's file list
+    /// Đối chiếu hạng mục thu phí vật tư. NOTE: this file was not in the brief's file list
     /// (which listed RelProductAndsfxmApp/Repo but not this DmnService);
     /// it is ported here because ProductSfxmController's grid depends on it
     /// and no other area owns rel_productAndsfxm.

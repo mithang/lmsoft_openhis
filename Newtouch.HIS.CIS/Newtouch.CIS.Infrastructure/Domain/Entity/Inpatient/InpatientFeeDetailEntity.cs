@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 15:37
-    /// 描 述：住院费用明细库
+    /// Tác giả: 冬林
+    /// Ngày：2018-06-28 15:37
+    /// Mô tả：Nhập việnChi phíchi tiếtkho
     /// </summary>
     [SugarTable("zy_fymxk")]
     public class InpatientFeeDetailEntity
@@ -145,12 +145,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string jzks { get; set; }
         /// <summary>
-        /// 1固定0不固定
+        /// 1cố địnhđịnh0khôngcố địnhđịnh
         /// </summary>
         /// <returns></returns>
         public int? gdzxbz { get; set; }
         /// <summary>
-        /// -1收费项目 0药品
+        /// -1Mục thu phí 0Thuốc
         /// </summary>
         /// <returns></returns>
         public int? yzlb { get; set; }

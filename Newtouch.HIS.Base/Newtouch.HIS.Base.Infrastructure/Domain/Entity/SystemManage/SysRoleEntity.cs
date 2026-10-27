@@ -12,53 +12,53 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysRoleEntity : EntityBase
     {
         /// <summary>
-        /// 角色主键
+        /// Khóa chính vai trò
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（科室所对应的OrganizeId）
+        /// Tổ chứcId（tương ứng với khoaOrganizeId）
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 编号
+        /// Số hiệu
         /// </summary>
         public string Code { get; set; }
 
         /// <summary>
-        /// 描述
+        /// Mô tả
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// Mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Người sửa đổi cuối cùng
         /// </summary>
         public string LastModifierCode { get; set; }
 

@@ -13,7 +13,7 @@ namespace NewtouchHIS.AuthenticationCenter.Services
 {
 
     /// <summary>
-    /// 对称可逆加密
+    /// Mã hóa đối xứng có thể đảo ngược
     /// </summary>
     public class HSJWTService : IJWTService
     {
@@ -24,7 +24,7 @@ namespace NewtouchHIS.AuthenticationCenter.Services
             _jWTOptions = jwtOptions.CurrentValue;
         }
         /// <summary>
-        /// 仅应用信息token （配置认证）
+        /// Chỉ thông tin ứng dụngtoken (Cấu hình xác thực)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -79,10 +79,10 @@ namespace NewtouchHIS.AuthenticationCenter.Services
                     RequireExpirationTime = true,
                     IssuerSigningKey = new SymmetricSecurityKey(secretBytes),
                     ClockSkew = TimeSpan.Zero,
-                    ValidateIssuer = true,//是否验证Issuer
-                    ValidateAudience = true,//是否验证Audience
-                    ValidateLifetime = _jWTOptions.ValidateLifetime ?? true,//是否验证失效时间
-                    ValidateIssuerSigningKey = true,//是否验证SecurityKey
+                    ValidateIssuer = true,//Có kiểm chứng hay khôngIssuer
+                    ValidateAudience = true,//Có kiểm chứng hay khôngAudience
+                    ValidateLifetime = _jWTOptions.ValidateLifetime ?? true,//Có kiểm chứng thời gian hết hiệu lực hay không
+                    ValidateIssuerSigningKey = true,//Có kiểm chứng hay khôngSecurityKey
                     ValidAudience = authApp.AppId,
                     ValidIssuer = _jWTOptions.Issuer
                 };
@@ -144,7 +144,7 @@ namespace NewtouchHIS.AuthenticationCenter.Services
 
 
         /// <summary>
-        /// 身份验证 权限验证
+        /// Xác thực danh tính Kiểm chứng quyền
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -173,7 +173,7 @@ namespace NewtouchHIS.AuthenticationCenter.Services
                     }
                     break;
                 case AuthType.WebApi:
-                    //限制访问
+                    //Hạn chế truy cập
                     break;
                 default:
                     throw new FailedException($"{_MsgPrefix} không hỗ trợ phương thức cấp quyền này");

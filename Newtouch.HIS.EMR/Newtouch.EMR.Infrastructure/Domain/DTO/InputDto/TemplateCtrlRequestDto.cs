@@ -9,23 +9,23 @@ namespace Newtouch.EMR.Domain.DTO
     public class TemplateCtrlRequestDto
     {
         /// <summary>
-        /// 模板权限关系
+        /// Quan hệ quyền mẫu
         /// </summary>
         public string gxId { get; set; }
         /// <summary>
-        /// 岗位Id
+        /// Id vị trí
         /// </summary>
         public string dutyCode { get; set; }
         /// <summary>
-        /// 岗位名称
+        /// Tên vị trí
         /// </summary>
         public string dutyName { get; set; }
         /// <summary>
-        /// 权限控制编码（EnummbqxFp）
+        /// Mã kiểm soát quyền（EnummbqxFp）
         /// </summary>
         public int ctrlLevel { get; set; }
         /// <summary>
-        /// 是否启用
+        /// Có bật hay không
         /// </summary>
         public string zt { get; set; }
 

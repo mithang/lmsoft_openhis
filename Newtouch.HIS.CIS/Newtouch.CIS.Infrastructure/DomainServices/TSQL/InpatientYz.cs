@@ -2,12 +2,12 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.DomainServices.TSQL
 {
     /// <summary>
-    /// 住院医嘱
+    /// Nhập việnY lệnh
     /// </summary>
     public class InpatientYz
     {
         /// <summary>
-        /// 医嘱执行 包括文字医嘱
+        /// Y lệnhThực hiện góigồmvăn bảnY lệnh
         /// </summary>
         public const string zyOrderExecutionWithWzYz = @"
 BEGIN TRAN
@@ -19,12 +19,12 @@ BEGIN TRY
 	SELECT * FROM dbo.f_split(@yzxhlist,',')
 	IF @@error <> 0 
 	BEGIN      
-		SELECT 'F|获取医嘱序号传值失败'  
+		SELECT 'F|LấyY lệnhthứ tựsốtruyềngiá trịthất bại'  
 		ROLLBACK TRAN
 		RETURN    
 	END 
 
-	----创建医嘱表，保存医嘱信息
+	----tạoY lệnhbảng，LưuY lệnhthông tin
 	DECLARE @OrderTab TABLE
 	(
 		Id VARCHAR(50),
@@ -50,7 +50,7 @@ BEGIN TRY
 		yzxz INT,
         isjf INT
 	)
-	---根据医嘱id将医嘱信息插入表中
+	---theoY lệnhidsẽY lệnhthông tinChènbảngtrong
 	INSERT INTO @OrderTab
 	( 
 		Id ,
@@ -85,12 +85,12 @@ BEGIN TRY
 	WHERE Id IN (SELECT yzxh FROM @yzxhTab) --AND yzlx IN (2,4)
 	IF @@error <> 0 
 	BEGIN      
-		SELECT 'F|获取医嘱信息失败'  
+		SELECT 'F|LấyY lệnhthông tinthất bại'  
 		ROLLBACK TRAN
 		RETURN    
 	END 
 
-	-----插入费用明细库
+	-----ChènChi phíchi tiếtkho
 	INSERT INTO dbo.zy_fymxk
 	( 
 		Id ,OrganizeId ,zyh ,yzxh ,	zxrq ,qqrq ,xmdm ,xmmc ,gg ,dw ,sl ,dj , zje ,yzxz ,ybdm ,jzks ,gdzxbz ,yzlb ,
@@ -110,12 +110,12 @@ BEGIN TRY
 	WHERE a.yzlx NOT IN (2,3,4,10,11)
 	IF @@error <> 0 
 	BEGIN      
-		SELECT 'F|插入费用明细库失败'   
+		SELECT 'F|ChènChi phíchi tiếtkhothất bại'   
 		ROLLBACK TRAN
 		RETURN    
 	END 
 
-	-----药品医嘱插入发药请求库
+	-----ThuốcY lệnhChènphát thuốcyêu cầukho
 	INSERT INTO dbo.zy_fyqqk
 	( 
 		Id ,OrganizeId ,lyxh ,zyh ,hzxm ,yzxh ,fzxh ,yfdm ,WardCode ,DeptCode ,ysgh ,zxrq ,qqrq ,ypdm ,ypmc ,
@@ -129,12 +129,12 @@ BEGIN TRY
 	WHERE  a.yzlx IN (2,4,10) and a.isjf<>'0'
 	IF @@error <> 0 
 	BEGIN      
-		SELECT 'F|插入发药请求库失败'    
+		SELECT 'F|Chènphát thuốcyêu cầukhothất bại'    
 		ROLLBACK TRAN
 		RETURN    
 	END 
 
-	-----项目医嘱插入通用膳食请求库
+	-----MụcY lệnhChènChungăn uốngyêu cầukho
 	INSERT INTO dbo.zy_tyssqqk( 
 				Id , OrganizeId ,lyxh , zyh ,hzxm,yzxh,fzxh ,yfdm ,   WardCode ,DeptCode ,  ysgh ,zxrq ,qqrq ,     xmdm , xmmc ,  sl , dw ,  dj ,                  zxcs, zyxz ,  zbbz,  mcsl,  yzlx,CreateTime,CreatorCode ,zt)
 	SELECT NEWID(),a.OrganizeId,@lyxh,a.zyh,d.xm,a.Id,a.zh,a.zxksdm,a.WardCode,a.DeptCode,a.ysgh,@zxrq,GETDATE(),a.xmdm,a.xmmc,a.sl,b.dw ,ISNULL(b.dj,0) AS ypdj,a.zxcs,a.yzxz,a.zbbz,a.ypjl,a.yzlx,GETDATE(), @czyh,       '1' 
@@ -144,27 +144,27 @@ BEGIN TRY
 	WHERE  a.yzlx NOT IN (2,4,10)
 	IF @@error <> 0 
 	BEGIN      
-		SELECT 'F|插入通用膳食请求库失败'   
+		SELECT 'F|ChènChungăn uốngyêu cầukhothất bại'   
 		ROLLBACK TRAN
 		RETURN    
 	END 
 
-	-----更新医嘱状态
+	-----hơnY lệnh mớiTrạng thái
 	UPDATE dbo.zy_cqyz SET yzzt=2, zxsj=@zxrq,zxr=@czyh,LastModifierCode=@czyh,LastModifyTime=GETDATE() WHERE Id IN (SELECT yzxh FROM @yzxhTab)
 	IF @@error <> 0 
 	BEGIN      
-		SELECT 'F|更新医嘱信息失败'  
+		SELECT 'F|Cập nhật thông tin y lệnh thất bại'  
 		ROLLBACK TRAN
 		RETURN    
 	END 
 	UPDATE dbo.zy_lsyz SET yzzt=2, zxsj=@zxrq,zxr=@czyh,LastModifierCode=@czyh,LastModifyTime=GETDATE() WHERE Id IN (SELECT yzxh FROM @yzxhTab)
 	IF @@error <> 0 
 	BEGIN      
-		SELECT 'F|更新医嘱信息失败'  
+		SELECT 'F|Cập nhật thông tin y lệnh thất bại'  
 		ROLLBACK TRAN
 		RETURN    
 	END 
-	SELECT 'T|执行成功'
+	SELECT 'T|Thực hiệnthành công'
 	COMMIT TRAN
 END TRY
 BEGIN CATCH

@@ -17,7 +17,7 @@ namespace Newtouch.Repository
         {
         }
         /// <summary>
-        /// 获取列表
+        /// Lấydanh sách
         /// </summary>
         /// <returns></returns>
         public List<SysDoctorRemarkVO> GetListByOrg(string orgId)
@@ -34,7 +34,7 @@ where zt.OrganizeId=@orgId
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -44,7 +44,7 @@ where zt.OrganizeId=@orgId
             {
                 if (this.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId && p.ztCode == entity.ztCode && p.Id != keyValue))
                 {
-                    throw new FailedException("编号不可重复");
+                    throw new FailedException("Số hiệu không được trùng lặp");
                 }
 
                 entity.Modify(keyValue);
@@ -54,7 +54,7 @@ where zt.OrganizeId=@orgId
             {
                 if (this.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId && p.ztCode == entity.ztCode))
                 {
-                    throw new FailedException("编号不可重复");
+                    throw new FailedException("Số hiệu không được trùng lặp");
                 }
                 entity.Create(true);
                 this.Insert(entity);
@@ -62,7 +62,7 @@ where zt.OrganizeId=@orgId
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="orgId"></param>
@@ -72,7 +72,7 @@ where zt.OrganizeId=@orgId
             this.Delete(entity);
         }
 
-        #region 医生站--》文字录入--》指示文本框按钮
+        #region Bác sĩtrạm--》văn bảnnhập--》chỉhiển thịvăn bảnkhungNút
 
 //        public List<SyssurgeryTextVO> surgery_record(string OrganizeId) {
 

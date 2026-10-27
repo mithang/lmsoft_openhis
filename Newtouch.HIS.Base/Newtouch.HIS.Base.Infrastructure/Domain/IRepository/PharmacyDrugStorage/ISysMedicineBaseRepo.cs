@@ -11,20 +11,20 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicineBaseRepo : IRepositoryBase<SysMedicineBaseEntity>
     {
         /// <summary>
-        /// 根据组织机构获取药品信息列表
+        /// Lấy danh sách thông tin thuốc theo tổ chức
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>
         IList<SysMedicineBaseEntity> GetValidListByOrg(string OrganizeId, string keyword = null);
 
         /// <summary>
-        /// 获取医保字典库药品List
+        /// Lấy thuốc từ kho từ điển BHYTList
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<GzybybItemCodeVO> GetYbMedicineList(string OrganizeId, string keyword = null);
         /// <summary>
-        /// 查询医保姓名表信息
+        /// Tra cứu thông tin bảng tên BHYT
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="keyword"></param>
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<GzxnhybItemCodeVO> GetYbXNHMedicineList(string keyword = null);
 
         /// <summary>
-        /// 查询基础表最后一个id
+        /// Tra cứu dòng cuối cùng của bảng cơ sởid
         /// </summary>
         /// <returns></returns>
         int GetBaseLastYpId();

@@ -1,7 +1,7 @@
 @using NewtouchHIS.Lib.Framework.Operator;
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
-    //医保所属地，区分系统将执行何处医保逻辑
+    //Nơi quản lý BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
     var opr = OperatorProvider.GetCurrent();
 }
@@ -48,7 +48,7 @@
                 </td>
                 <td class="formValue">
                     <input type="button" style="display:none" id="btn_ImpactIs" class="btn btn-primary" value="【2061】Đảo ngược" />
-                    @*<input type="button"  id="btn_mzcz" class="btn btn-primary" value="【2061】入院登记冲正" />*@
+                    @*<input type="button"  id="btn_mzcz" class="btn btn-primary" value="【2061】Đảo chính đăng ký nhập viện" />*@
                 </td>
             </tr>
         </table>
@@ -121,7 +121,7 @@
             $('#btn_search').trigger('click');
         })
 
-        //撤销单边结算，前提:HIS医保记录表已存取医保结算返回数据
+        //hủyhủyphiếubênkếttính，trướcnêu:HISy tếbảo hiểmghighibảngđãlưulấyy tếbảo hiểmkếttínhtrảquaysốdữ liệu
         $("#btn_settRefund").click(function () {
             var seleRow = $("#gridList").jqGridRowValue();
             var zymzh = seleRow.zymzh;
@@ -179,7 +179,7 @@
 
                     case "离休医保单边":
                         if (medicalInsurance == "chongqing") {
-                            var payoptype = { 'jylsh': seleRow.setl_id, 'jbr': '@(opr.rygh)', 'zymzh': seleRow.zymzh, 'czlx': '0', 'xzlb': '1' };//险种类别默认，1、医疗保险；2、工伤保险；3、生育保险；
+                            var payoptype = { 'jylsh': seleRow.setl_id, 'jbr': '@(opr.rygh)', 'zymzh': seleRow.zymzh, 'czlx': '0', 'xzlb': '1' };//loại bảo hiểm mặc định，1、bảo hiểm y tế；2、bảo hiểm tai nạn lao động；3、bảo hiểm sinh sản；
                             lxybcz(payoptype);
                         }
                         break;
@@ -219,7 +219,7 @@
                         break;
                     case "离休医保单边":
                         if (medicalInsurance == "chongqing") {
-                            var payoptype = { 'jylsh': seleRow.setl_id, 'jbr': '@(opr.rygh)', 'zymzh': seleRow.zymzh, 'czlx': '0', 'xzlb': '1' };//险种类别默认，1、医疗保险；2、工伤保险；3、生育保险；
+                            var payoptype = { 'jylsh': seleRow.setl_id, 'jbr': '@(opr.rygh)', 'zymzh': seleRow.zymzh, 'czlx': '0', 'xzlb': '1' };//loại bảo hiểm mặc định，1、bảo hiểm y tế；2、bảo hiểm tai nạn lao động；3、bảo hiểm sinh sản；
                             lxybcz(payoptype);
                         }
                         break;
@@ -258,7 +258,7 @@
                             return;
                         }
                         var ybjyCqFeeReturn = {
-                            jylsh: "111111111",//值不可修改，后台会判断，如果为111111111，则不再写入医保结算落地表--重庆
+                            jylsh: "111111111",//giá trị không thể sửa，máy chủ sẽ xác định，nếu là111111111，thì không ghi vào bảng ghi nhận quyết toán BHYT nữa--Trùng Khánh
                             cqtczf: 0,
                             zhzf: 0,
                             gwybz: 0,
@@ -273,17 +273,17 @@
                         var mztfProDto = { ZFY: seleRow.medfee_sumamt, XJZF: seleRow.xjzf };
                         YbHISRefundSettlement(zymzh,seleRow.jsnm,tjsxmDictObj,
                             ovpraseFloat(seleRow.medfee_sumamt).toFixed(4),
-                            cqybjyDenySettleReturn.jylsh,//退费后结算ID
+                            cqybjyDenySettleReturn.jylsh,//hoànphísaukếttínhID
                             ybjyCqFeeReturn.jylsh,
                             ybjyCqFeeReturn,
-                            cqybjyDenySettleReturn,//退费后交易返回对象
+                            cqybjyDenySettleReturn,//hoànphísaunộpdễtrảquayđốitượng
                             mztfProDto,
                             function (hisSuccessAjaxResp) {
                                 if (hisSuccessAjaxResp && hisSuccessAjaxResp.message !== '退费成功') {
                                     $.modalAlert(hisSuccessAjaxResp.message, 'error');
                                 } else {
                                     $.modalAlert("HIS đảo ngược quyết toán thành công", 'success');
-                                    //更新退标志
+                                    //hơnmớihoàntiêuchí
                                     if (tjscfh.length > 0) {
                                         UpdateChargeTbz(tjscfh);
                                     }
@@ -297,7 +297,7 @@
             $('#btn_search').trigger('click');
         });
 
-        //离休冲正
+        //rờinghỉđảo chínhchính
         function lxybcz(payoptype)
         {
             var cqybjyDenySettleReturn;
@@ -323,7 +323,7 @@
             }
         }
 
-        //医保交易 HIS退费确认
+        //Giao dịch BHYT HISXác nhận hoàn phí
         function YbHISRefundSettlement(zymzh, jsnm,tjsxmDict, tmxZje, hcybjsh, newwjybjsh, newybfeeRelated, hcybfeeRelated, guianMztfProDto, funcSuccCallback) {
             $.najax({
                 type: "POST",
@@ -354,7 +354,7 @@
             return parseFloat(val);
         }
 
-        //更新CIS退标志
+        //Cập nhậtCIShoàntiêuchí
         function UpdateChargeTbz(tcfh) {
             $.ajax({
                 type: "POST",
@@ -364,7 +364,7 @@
           });
          }
 
-        //2405出院撤销
+        //2405Hủy xuất viện
         $("#btn_cyblRefund").click(function () {
             var seleRow = $("#gridList").jqGridRowValue();
             var zymzh = seleRow.zymzh;
@@ -395,7 +395,7 @@
         });
 
         $("#btn_mzcz").click(function () {
-            //2601入参
+            //2601Tham số vào
             var ImpactIs = { hisId: "00930", 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'omsgid': "H50010302473202110201538280082", 'oinfno': "2401", 'psn_no': "14216130", "insuplc_admdvs": "511600" };
             $.ajax({
                 type: "POST",
@@ -420,8 +420,8 @@
         });
 
 
-        /*2601冲正可冲正 2207门诊结算 2208门诊结算撤销
-          2304住院结算 2305住院结算撤销 2401入院办理*/
+        /*2601Đảo chính có thể đảo chính 2207Quyết toán ngoại trú 2208Hủy quyết toán ngoại trú
+          2304Quyết toán nhập viện 2305Hủy quyết toán nhập viện 2401Làm thủ tục nhập viện*/
         $("#btn_ImpactIs").click(function () {
             var seleRow = $("#gridList").jqGridRowValue();
             var omsgid = seleRow.medins_setl_id;
@@ -431,9 +431,9 @@
                 return;
             }
             var mzImpactIs;
-            //2405入参
+            //2405Tham số vào
             var cycxpayoptype = { hisId: seleRow.zymzh, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id': seleRow.mdtrt_id, 'psn_no': seleRow.psn_no, "insuplc_admdvs": seleRow.cbdbm };
-            //2601入参
+            //2601Tham số vào
             var ImpactIs = { hisId: seleRow.zymzh, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'omsgid': seleRow.medins_setl_id, 'oinfno': seleRow.infno, 'psn_no': seleRow.psn_no, "insuplc_admdvs": seleRow.cbdbm };
             $.ajax({
                 type: "POST",

@@ -4,7 +4,7 @@ using Newtouch.Herp.Domain.IRepository;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 库存单位关联 (Herp DB: rel_productUnit).
+    /// Liên kết đơn vị tồn kho (Herp DB: rel_productUnit).
     /// </summary>
     public class RelProductUnitRepo : RepositoryBase<RelProductUnitEntity>, IRelProductUnitRepo
     {

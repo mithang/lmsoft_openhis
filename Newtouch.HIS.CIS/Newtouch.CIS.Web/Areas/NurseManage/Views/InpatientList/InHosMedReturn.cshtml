@@ -1,7 +1,7 @@
 @using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "Điều dưỡngTrạmBệnh nhânTrung tâm-Y lệnhTrả thuốc";
-    var tysqPrinturl = SysConfigReader.OrgReportLink("tysqdPrint");//门诊常规项目处方单
+    var tysqPrinturl = SysConfigReader.OrgReportLink("tysqdPrint");//Ngoại trúHạng mục thông thườngĐơn thuốc
 }
 <div id="linkyzty" role="tabpanel" class="tab-pane" style="width:99%;margin-right: 5px; border:solid 1px #ddd; margin-top: 3px;">
     <div class="panel panel-default">
@@ -30,7 +30,7 @@
                     <td></td>
                     <td></td>
                     @*<td class="formTitle">
-                         <input type="button" id="btn_confirm" class="btn btn-md btn-primary" value="退药确认" />
+                         <input type="button" id="btn_confirm" class="btn btn-md btn-primary" value="trảthuốcxác nhận" />
                         </td>*@
                 </tr>
             </table>
@@ -70,7 +70,7 @@
              tyzyh = zyh;
          //$('#gridYztyList').jqGrid("clearGridData");
          getYztyTreeList();
-         $("#PatTreeList_" + tyzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//选中
+         $("#PatTreeList_" + tyzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//Đã chọn
          if (fistyztyload) {
              gridYztyList(tyzyh);
              fistyztyload = false;
@@ -136,7 +136,7 @@
                  },
                  { label: 'ThuốcĐơn vị', name: 'ypdw', align: 'center', width: 60 },
                  { label: 'ThuốcĐơn giá', name: 'ypdj', align: 'center', width: 60 },
-                 //{ label: '医生', name: 'ysxm', align: 'center', width: 50 },
+                 //{ label: 'Bác sĩ', name: 'ysxm', align: 'center', width: 50 },
                  {
                      label: 'Số thứ tự nhóm', name: 'fzxh', align: 'center', width: 70, formatter: function (val) {
                          if (val != null)
@@ -162,7 +162,7 @@
                      var rowData = $("#gridYztyList").jqGrid('getRowData', rowIndex);
                      var ids = $("#gridYztyList").jqGrid('getRowData_AllLine');
 
-                     liststu = s; //同步状态
+                     liststu = s; //Trạng thái đồng bộ
                      for (var i = 0; i < ids.length; i++) {
                          if (ids[i].fzxh == rowData.fzxh && ids[i].fzxh != "" && ids[i].zxrq == rowData.zxrq) {
                              if (s == true) {
@@ -185,7 +185,7 @@
                  if (list.length > 0) {
 
                      for (j = j; j < list.length; j++) {
-                         if (liststu) //同组选中
+                         if (liststu) //Cùng nhómĐã chọn
                          {
                              j = j + 1;
                              $("#gridYztyList").jqGrid("setSelection", list[j - 1], true);
@@ -193,9 +193,9 @@
                              //});
                              $("#gridYztyList").editRow(list[j], null, null, null, function (callbackRowId) { });
                          }
-                         else { //同组取消选中
+                         else { //Cùng nhómHủyĐã chọn
                              //j = j + 1;
-                             $("#gridYztyList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                             $("#gridYztyList").jqGrid("setSelection", list[j], false);      //Hủykhôngkích hoạtonselectrow
                              //$("#gridYztyList").saveRow(rowIndex, null, null, null, function (callbackRowId) { }, null, null);
                              var selectrowid = list[j];
                              $("#gridYztyList").saveRow(selectrowid, null, null, null, function (callbackRowId) { }, null, null);
@@ -219,7 +219,7 @@
 
          });
      }
-     //启用行内编辑框
+     //Bật sửa trong dòngkhung
      function EnableInlineEditBox(rowId) {
          if (rowId) {
              $("#gridYztyList").jqGrid('editRow', rowId, true, null, null, null, null, function (callbackRowId) {
@@ -238,31 +238,31 @@
          $.modalConfirm("Xác nhận đề nghị trả thuốc đã chọn hiện tại?", function (flag) {
              if (flag) {
 
-                 //获取所有行Id，遍历使编辑框处于保存状态
+                 //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
                  var rowIds = $("#gridYztyList").jqGrid('getDataIDs');
                  for (var i = 0; i < rowIds.length; i++) {
                      $("#gridYztyList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
                  }
                  var selRowIds = $("#gridYztyList").jqGrid('getGridParam', 'selarrrow');
-                 //判断退数量
+                 //kiểm tratrảSố lượng
                  for (var i = 0; i < selRowIds.length; i++) {
                      var rowData = $("#gridYztyList").jqGrid('getRowData', selRowIds[i]);
                      if (!rowData) {
                          break;
                      }
                      if (rowData.tsl.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                         //启用行内编辑框
+                         //Bật sửa trong dòngkhung
                          EnableInlineEditBox(selRowIds[i]);
                          $.modalAlert("Mục(" + rowData.ypmc + ") số lượng trả để trống, vui lòng xác nhận.", 'warning');
                          return;
                      }
                      if (rowData.tsl <= 0 || isNaN(rowData.tsl) || rowData.tsl == "") {
-                         //启用行内编辑框
+                         //Bật sửa trong dòngkhung
                          EnableInlineEditBox(selRowIds[i]);
                          return;
                      }
                      if (parseInt(rowData.tsl) > parseInt(rowData.ktsl)) {
-                         //启用行内编辑框
+                         //Bật sửa trong dòngkhung
                          EnableInlineEditBox(selRowIds[i]);
                          $.modalAlert("Số lượng trả lớn hơn số lượng có thể trả, vui lòng xác nhận<br/>" + rowData.ypmc, 'warning');
                          return;
@@ -303,7 +303,7 @@
                              }, 1000);
                              var ids = $("#gridYztyList").jqGrid("getGridParam", "selarrrow");
                              var zyh = $("#gridYztyList").jqGrid('getRowData', ids[0]).zyh;
-                             //先注释老报表打印 新报表还未做
+                             //trướcLưu ýgiải thíchgiàBáo cáoIn mớiBáo cáocònchưalàm
                              @*var rpturl = '@Html.Raw(tysqPrinturl)';
                              if (rpturl) {
                                  window.open(rpturl + "&zyh=" + zyh + "&tyxh=" + ajaxresp.data, "_blank", "height = 500, width = 1195, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");
@@ -319,11 +319,11 @@
 
      }
 
-     //回车事件
+     //Sự kiện Enter
      $('#txt_name').keydownEnterEvent(function () {
          $('#btnty_search').trigger('click');
      })
-     //刷新列表
+     //Làm mới danh sách
      function refleshMedList() {
          $("#btnty_search").trigger('click');
      }

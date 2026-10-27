@@ -3,106 +3,106 @@ using System;
 namespace Newtouch.HIS.Domain.VO
 {
     /// <summary>
-    /// 处方明细
+    /// Chi tiết đơn thuốc
     /// </summary>
     public class CfmxVO
     {
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         public string cfnm { get; set; }
         public string ypCode { get; set; }
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 数量（部门单位）
+        /// Số lượng（Đơn vị bộ phận）
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 数量+单位
+        /// Số lượng+Đơn vị
         /// </summary>
         public string slStr { get; set; }
 
         /// <summary>
-        /// 部门单位
+        /// Đơn vị bộ phận
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 单价（部门单位）
+        /// Đơn giá（Đơn vị bộ phận）
         /// </summary>
         public decimal dj { get; set; }
 
         /// <summary>
-        /// 生产厂家
+        /// Nhà sản xuất
         /// </summary>
         public string ycmc { get; set; }
 
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal je { get; set; }
 
         /// <summary>
-        /// 剂量
+        /// Liều lượng
         /// </summary>
         public decimal jl { get; set; }
 
         /// <summary>
-        /// 剂量单位
+        /// Đơn vị liều lượng
         /// </summary>
         public string jldw { get; set; }
 
         /// <summary>
-        /// 用法
+        /// Cách dùng
         /// </summary>
         public string yfmc { get; set; }
 
         /// <summary>
-        /// 医生嘱托
+        /// Dặn dò của bác sĩ
         /// </summary>
         public string yszt { get; set; }
 
         /// <summary>
-        /// 医生名称
+        /// Tên bác sĩ
         /// </summary>
         public string ysmc { get; set; }
 
         /// <summary>
-        /// 收费时间
+        /// Thời gian thu phí
         /// </summary>
         public DateTime sfsj { get; set; }
 
         /// <summary>
-        /// 药品分组
+        /// Nhóm thuốc
         /// </summary>
         public string czh { get; set; }
         /// <summary>
-        /// 国家医保代码
+        /// Mã BHYT quốc gia
         /// </summary>
         public string gjybdm { get; set; }
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
     }

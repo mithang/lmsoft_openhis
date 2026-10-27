@@ -3,7 +3,7 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 损益原因
+    /// Nguyên nhân chênh lệch
     /// </summary>
     public interface IKcSyyyRepo : IRepositoryBase<KcSyyyEntity>
     {

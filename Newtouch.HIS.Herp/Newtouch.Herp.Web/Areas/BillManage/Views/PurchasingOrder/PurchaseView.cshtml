@@ -40,7 +40,7 @@
         </table>
     </div>
 </div>
-<!--患者信息 包括病历号  姓名 -->
+<!--Thông tin bệnh nhân bao gồm số bệnh án  họ tên -->
 <form id="formPatSer" style="margin:2px;margin-top:10px;">
     <div class="gridPanel">
         <table id="GridList" rel="formPatSer"></table>
@@ -49,7 +49,7 @@
 </form>
 
 <script>
-    //上一个window对象
+    //Đối tượng window trước đó
     var prevWindow;
     if ('@(from)' !== '') {
         prevWindow = top.top.frames['@(from)'];
@@ -60,7 +60,7 @@
 
     $(function () {
         var searInfo = new gridList();
-        //查询
+        //Truy vấn
         $("#btn_search").click(function () {
             $("#GridList").jqGrid('setGridParam', {
                 postData: {
@@ -109,7 +109,7 @@
         });
     }
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn dòng
     function btn_edit() {
         SearchConfirm();
     }
@@ -122,23 +122,23 @@
         obj.fph = $gridList.jqGridRowValue().fp;
         if (obj.fph != "") {
             prevWindow.GetQueryAjax(obj);
-            //关闭窗口
+            //Đóng cửa sổ
             ReceiptCancle();
         } else {
             $.modalMsg("Số hóa đơn trống,Vui lòng bổ sung số hóa đơn!", "success", 1000);
         }
     }
-    //确定 主页面调用
+    //Xác nhận Trang chính gọi
     function SearchConfirm() {
         PurchaseDbGrid();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }
 
-    //补发票号
+    //Bổ sung số hóa đơn
     function UpdateFph(obj) {
         var fph = $(obj).val();
         var subOrderNo = $("#GridList").getRowData($(obj).attr("rowid")).subOrderNo;

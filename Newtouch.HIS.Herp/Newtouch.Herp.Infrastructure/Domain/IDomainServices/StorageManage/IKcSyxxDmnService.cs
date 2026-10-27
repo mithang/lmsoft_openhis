@@ -6,12 +6,12 @@ using Newtouch.Herp.Domain.Entity.VEntity;
 namespace Newtouch.Herp.Domain.IDomainServices
 {
     /// <summary>
-    /// 损益
+    /// Chênh lệch
     /// </summary>
     public interface IKcSyxxDmnService
     {
         /// <summary>
-        /// 获取损益明细
+        /// Lấy chi tiết chênh lệch
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>

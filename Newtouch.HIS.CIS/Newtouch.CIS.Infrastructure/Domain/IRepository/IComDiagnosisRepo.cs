@@ -12,7 +12,7 @@ namespace Newtouch.Domain.IRepository
     public interface IComDiagnosisRepo : IRepositoryBase<ComDiagnosisEntity>
     {
         /// <summary>
-        /// 获取常用诊断信息
+        /// Lấythường dùngChẩn đoánthông tin
         /// </summary>
         /// <param name="ys"></param>
         /// <param name="orgId"></param>
@@ -20,19 +20,19 @@ namespace Newtouch.Domain.IRepository
         /// <returns></returns>
         IList<ComDiagnosisVO> GetComDiagnosis(string ys,string ks,string orgId,string type,string keyword,string lx);
         /// <summary>
-        /// 保存常用诊断
+        /// Lưuthường dùngChẩn đoán
         /// </summary>
         /// <param name="entity"></param>
         void SubmitDiag(ComDiagnosisEntity entity);
         /// <summary>
-        /// 获取诊断拼音
+        /// LấyChẩn đoánPinyin
         /// </summary>
         /// <param name="zdmc"></param>
         /// <param name="zdbm"></param>
         /// <returns></returns>
         List<ComDiagnosisVO> Getzdpy(string zdmc, string zdbm);
         /// <summary>
-        /// 获取诊断记录信息
+        /// LấyHồ sơ chẩn đoánthông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="type"></param>
@@ -41,7 +41,7 @@ namespace Newtouch.Domain.IRepository
         List<ComDiagnosisVO> GetDiagsLists(string orgId,string type, string mzh);
         void DelDiagnosticTemplate(string Id);
         /// <summary>
-        /// 获取常用诊断信息-管理界面
+        /// Lấythường dùngChẩn đoánthông tin-Quản lýgiớimặt
         /// </summary>
         /// <param name="ys"></param>
         /// <param name="orgId"></param>

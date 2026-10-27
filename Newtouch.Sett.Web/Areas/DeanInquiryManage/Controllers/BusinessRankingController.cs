@@ -36,7 +36,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊医生工作量
+        /// ngoại trúkhámy tếsinhcônglàmlượng
         /// </summary>
         public IActionResult GetMzysgzl(string kssj, string jssj)
         {
@@ -45,7 +45,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊科室收入
+        /// ngoại trúkhámkhoaphòngthuvào
         /// </summary>
         public IActionResult GetMzkssr(string kssj, string jssj)
         {
@@ -54,7 +54,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 住院业务科室收入
+        /// nhập việnviệnnghiệpvụkhoaphòngthuvào
         /// </summary>
         public IActionResult GetZyywks(string kssj, string jssj)
         {
@@ -63,7 +63,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 医生业务收入
+        /// y tếsinhnghiệpvụthuvào
         /// </summary>
         public IActionResult GetYsyw(string kssj, string jssj, string bqCode)
         {

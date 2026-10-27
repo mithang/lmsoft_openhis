@@ -5,11 +5,11 @@
     var isZFtoYB = SysConfigReader.Bool("Inpatient_Open_ZF_to_YB", false).Value;
     var isYBtoZF = SysConfigReader.Bool("Inpatient_Open_YB_to_ZF", false).Value;
 
-    //是否和医保交易
+    //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
-    //是否和新农合交易
+    //Có giao dịch với nông thôn mới hay không
     var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-    //医保所属地，区分系统将执行何处医保逻辑
+    //Nơi quản lý BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
     var opr = OperatorProvider.GetCurrent();
     var openManualinputCard = SysConfigReader.Bool("Inpatient_Open_ManualinputCard", false).Value;
@@ -127,7 +127,7 @@
             }).trigger('reloadGrid');
         });
     }
-    //回车事件
+    //sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -140,23 +140,23 @@
 </script>
 <script type="text/javascript">
     var orgId = '@(ViewBag.OrgId)';
-        var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
-        var openXnhSett = '@openXnhSett' === 'True';//开关配置：新农合患者是否使用新农合交易流程
+        var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+        var openXnhSett = '@openXnhSett' === 'True';//cấu hình công tắc：Bệnh nhân nông thôn mới có dùng quy trình giao dịch nông thôn mới không
     var medicalInsurance = '@medicalInsurance';
         var zyh = '';
         var kh = "";
         var ybkCardType = "@((int)EnumCardType.YBJYK)";
     var jzh = '';
     var cqPatInfo = {};
-        //结算清单上传
+        //Tải lên bảng quyết toán
     $('#btn_jsqd').click(function () {
             uploadData("1")
     });
-    //结算清单全部上传
+    //kếttínhxóaphiếutất cảbộtrênchuyển
     $('#btn_jsqdall').click(function () {
         upqddata()
     });
-    //结算清单提交
+    //kếttínhxóaphiếunêunộp
     $('#btn_jsqdsubmit').click(function () {
         var seleRow = check1();
         if (!!!seleRow) {
@@ -179,7 +179,7 @@
         upqddataupdate(zyh, "1")
 
     });
-    //结算清单提交撤销
+    //kếttínhxóaphiếunêunộphủyhủy
     $('#btn_jsqdSubmitRevoke').click(function () {
         var seleRow = check1();
         if (!!!seleRow) {
@@ -202,11 +202,11 @@
         upqddataupdate(zyh, "0")
 
     });
-    //结算清单全部提交
+    //kếttínhxóaphiếutất cảbộnêunộp
     $('#btn_jsqdsubmitall').click(function () {
         upqddataupdate("", "1")
     });
-    //结算清单信息查询
+    //kếttínhxóaphiếuthông tintintratra cứu
     $('#btn_jsqdquery').click(function () {
         var seleRow = check1();
         if (!!!seleRow) {
@@ -245,7 +245,7 @@
         url += "&zyh=" + zyh + "&orgId=" +  '@(opr.OrganizeId)';
         window.open(url);*@
     });
-    //结算清单数量查询
+    //kếttínhxóaphiếusốlượngtratra cứu
     $('#btn_querynum').click(function () {
         var kssj = $("#cykssj").val();
         var jssj = $("#cyjssj").val();
@@ -443,7 +443,7 @@
     function getUrl() {
         var srcUrl = '@Html.Raw(reportUrl)';
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:Stylesheet') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";

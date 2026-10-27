@@ -11,26 +11,26 @@ namespace NewtouchHIS.Lib.Common.EnumExternal
     {
         public enum EnumRecipelType
         {
-            [Description("西药处方")]
+            [Description("Đơn thuốc tây")]
             recipelType_0 = 0,
-            [Description("中药处方")]
+            [Description("Đơn thuốc đông y")]
             recipelType_1 = 1,
         }
 
         /// <summary>
-        /// 频次用量
+        /// Liều lượng tần suất
         /// </summary>
         public enum EnumChineseMedicineRecipelFrequency
         {
-            [Description("一日一剂")]
+            [Description("Một ngày một thang")]
             chineseMedicineRecipelFrequency_0 = 0,
-            [Description("一日两剂")]
+            [Description("Một ngày hai thang")]
             chineseMedicineRecipelFrequency_1 = 1,
-            [Description("一日三剂")]
+            [Description("Một ngày ba thang")]
             chineseMedicineRecipelFrequency_2 = 2,
         }
         /// <summary>
-        /// 剂量单位
+        /// Đơn vị liều lượng
         /// </summary>
         public enum EnumMedicalDosisUnit
         {
@@ -48,27 +48,27 @@ namespace NewtouchHIS.Lib.Common.EnumExternal
             medicalDosisUnit_5 = -1,
             [Description("ug")]
             medicalDosisUnit_6 = 590,
-            [Description("片")]
+            [Description("Viên")]
             medicalDosisUnit_7 = 527
         }
     }
     /// <summary>
-    /// 制剂单位 
-    /// 对应 HIS:[xt_ypdw]
+    /// Đơn vị bào chế 
+    /// tương ứng HIS:[xt_ypdw]
     /// </summary>
     public enum EnumMedicalPreparationUnit
     {
-        [Description("片")]
+        [Description("Viên")]
         medicalPreparationUnit_0 = 527,
-        [Description("粒")]
+        [Description("Hạt")]
         medicalPreparationUnit_1 = 530,
-        [Description("袋")]
+        [Description("Túi")]
         medicalPreparationUnit_2 = 540,
         [Description("g")]
         medicalPreparationUnit_3 = 593,
-        [Description("个")]
+        [Description("Cái")]
         medicalPreparationUnit_4 = 535,
-        [Description("支")]
+        [Description("Ống")]
         medicalPreparationUnit_5 = 512,
         [Description("ml")]
         medicalPreparationUnit_6 = 608,
@@ -76,101 +76,101 @@ namespace NewtouchHIS.Lib.Common.EnumExternal
         medicalPreparationUnit_7 = 605,
         [Description("mg")]
         medicalPreparationUnit_8 = 594,
-        [Description("瓶")]
+        [Description("Lọ")]
         medicalPreparationUnit_9 = 526,
-        [Description("本")]
-        medicalPreparationUnit_10 = 513, //张
+        [Description("Quyển")]
+        medicalPreparationUnit_10 = 513, //Tờ
         [Description("ug")]
         medicalPreparationUnit_11 = 590,
-        [Description("丸")]
+        [Description("Hoàn")]
         medicalPreparationUnit_12 = 516
     }
     /// <summary>
-    /// 包装单位
+    /// Đơn vị đóng gói
     /// </summary>
     public enum EnumMedicalPackUnit
     {
-        [Description("包")]
+        [Description("Gói")]
         medicalPackUnit_0 = 542,
-        [Description("袋")]
+        [Description("Túi")]
         medicalPackUnit_1 = 540,
-        [Description("盒")]
+        [Description("Hộp")]
         medicalPackUnit_2 = 532,
-        [Description("箱")]
-        medicalPackUnit_3 = -1, //HIS 未定义
-        [Description("板")]
-        medicalPackUnit_5 = -2, //HIS 未定义
-        [Description("罐")]
-        medicalPackUnit_6 = -3, //HIS 未定义
-        [Description("支")]
+        [Description("Thùng")]
+        medicalPackUnit_3 = -1, //HIS chưa được định nghĩa
+        [Description("Vỉ")]
+        medicalPackUnit_5 = -2, //HIS chưa được định nghĩa
+        [Description("Bình")]
+        medicalPackUnit_6 = -3, //HIS chưa được định nghĩa
+        [Description("Ống")]
         medicalPackUnit_7= 512,
-        [Description("个")]
+        [Description("Cái")]
         medicalPackUnit_8= 535,
-        [Description("瓶")]
+        [Description("Lọ")]
         medicalPackUnit_9= 526,
         [Description("g")]
         medicalPackUnit_10= 593,
-        [Description("本")]
+        [Description("Quyển")]
         medicalPackUnit_11= 513
     }
     /// <summary>
-    /// 西药用法
+    /// Cách dùng thuốc tây
     /// </summary>
     public enum EnumWesternMedicineUse
     {
-        [Description("口服")]
+        [Description("Uống")]
         westernMedicineUse_0 = 1,
-        [Description("静脉注射")]
+        [Description("Tiêm tĩnh mạch")]
         westernMedicineUse_1 = 404,
-        [Description("饭前")]
-        westernMedicineUse_2 = -2, //HIS 未定义
-        [Description("饭后")]
-        westernMedicineUse_3 = -3, //HIS 未定义
-        [Description("皮下注射")]
+        [Description("Trước bữa ăn")]
+        westernMedicineUse_2 = -2, //HIS chưa được định nghĩa
+        [Description("Sau bữa ăn")]
+        westernMedicineUse_3 = -3, //HIS chưa được định nghĩa
+        [Description("Tiêm dưới da")]
         westernMedicineUse_4 = 401,
-        [Description("含化")]
-        westernMedicineUse_5 = 3, //his 舌下用药
-        [Description("外敷")]
+        [Description("Ngậm tan")]
+        westernMedicineUse_5 = 3, //his Thuốc đặt dưới lưỡi
+        [Description("Đắp ngoài")]
         westernMedicineUse_6 = 8,
-        [Description("静脉滴注")]
+        [Description("Truyền tĩnh mạch")]
         westernMedicineUse_7 = 405
     }
     /// <summary>
-    /// 中药用法
+    /// Cách dùng thuốc đông y
     /// </summary>
     public enum EnumChineseMedicineRecipelUse
     {
-        [Description("煎服")]
+        [Description("Sắc uống")]
         chineseMedicineRecipelUse_0 = 1,
-        [Description("熬服")]
-        chineseMedicineRecipelUse_1 = -1, //HIS 未定义
-        [Description("水冲服")]
-        chineseMedicineRecipelUse_2 = -2,  //HIS 未定义
-        [Description("泡服")]
-        chineseMedicineRecipelUse_3 = 4,//his 烊化
-        [Description("冲服")]
+        [Description("Uống thuốc nấu")]
+        chineseMedicineRecipelUse_1 = -1, //HIS chưa được định nghĩa
+        [Description("Uống pha nước")]
+        chineseMedicineRecipelUse_2 = -2,  //HIS chưa được định nghĩa
+        [Description("Hãm uống")]
+        chineseMedicineRecipelUse_3 = 4,//his Hòa tan
+        [Description("Uống pha")]
         chineseMedicineRecipelUse_4 = 700,
-        [Description("穴位注射")]
+        [Description("Tiêm huyệt vị")]
         chineseMedicineRecipelUse_5 = 620,
-        [Description("水煎服")]
+        [Description("Sắc uống")]
         chineseMedicineRecipelUse_6 = 11
     }    
     
     public enum EnumChineseMedicineRecipelTakeFrequency
     {
-        [Description("每日四次")]
+        [Description("Mỗi ngày bốn lần")]
         chineseMedicineRecipelTakeFrequency_4 = 0,
-        [Description("熬服")]
+        [Description("Uống thuốc nấu")]
         chineseMedicineRecipelUse_1 = 1,
-        [Description("水冲服")]
+        [Description("Uống pha nước")]
         chineseMedicineRecipelUse_2 = 2,
-        [Description("泡服")]
+        [Description("Hãm uống")]
         chineseMedicineRecipelUse_3 = 3,
-        [Description("冲服")]
+        [Description("Uống pha")]
         chineseMedicineRecipelUse_4 = 5,
-        [Description("穴位注射")]
+        [Description("Tiêm huyệt vị")]
         chineseMedicineRecipelUse_5 = 6,
-        [Description("水煎服")]
+        [Description("Sắc uống")]
         chineseMedicineRecipelUse_6 = 7
     }
 

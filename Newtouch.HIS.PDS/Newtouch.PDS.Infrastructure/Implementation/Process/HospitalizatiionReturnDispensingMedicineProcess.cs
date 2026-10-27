@@ -17,7 +17,7 @@ using Newtouch.PDS.Requset.ResourcesOperate;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// 住院退药申请流程
+    /// Quy trình xin trả thuốc nội trú
     /// </summary>
     public class HospitalizatiionReturnDispensingMedicineProcess : ProcessorFun<HospitalizatiionReturnDispensingMedicineRequestDTO>
     {
@@ -33,21 +33,21 @@ namespace Newtouch.HIS.Application.Implementation.Process
 
         protected override ActResult Validata()
         {
-            if (Request == null) throw new FailedException("请求报文不能为空");
-            if (Request.ReturnDrugDetail == null || Request.ReturnDrugDetail.Count == 0) throw new FailedException("退药明细（ReturnDrugDetail）不能为空");
-            if (string.IsNullOrWhiteSpace(Request.OrganizeId)) throw new FailedException("组织机构ID（OrganizeId）不能为空");
+            if (Request == null) throw new FailedException("Bản tin yêu cầu không được để trống");
+            if (Request.ReturnDrugDetail == null || Request.ReturnDrugDetail.Count == 0) throw new FailedException("Chi tiết trả thuốc（ReturnDrugDetail）Không được để trống");
+            if (string.IsNullOrWhiteSpace(Request.OrganizeId)) throw new FailedException("Tổ chứcID（OrganizeId）Không được để trống");
             try
             {
                 Parallel.ForEach(Request.ReturnDrugDetail, p =>
                 {
-                    if (string.IsNullOrWhiteSpace(p.yzId)) throw new Exception("医嘱ID（zxId）不能为空");
-                    if (string.IsNullOrWhiteSpace(p.ypCode)) throw new Exception("药品代码（ypCode）不能为空");
-                    if (p.tysl < 0) throw new Exception("退药数量（tysl）不能小于零");
-                    if (string.IsNullOrWhiteSpace(p.tysqr)) throw new Exception("退药申请人（tysqr）不能为空");
+                    if (string.IsNullOrWhiteSpace(p.yzId)) throw new Exception("Y lệnhID（zxId）Không được để trống");
+                    if (string.IsNullOrWhiteSpace(p.ypCode)) throw new Exception("Mã thuốc（ypCode）Không được để trống");
+                    if (p.tysl < 0) throw new Exception("Số lượng trả thuốc（tysl）Không thể nhỏ hơn 0");
+                    if (string.IsNullOrWhiteSpace(p.tysqr)) throw new Exception("Người xin trả thuốc（tysqr）Không được để trống");
                     var ypxx = new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(Request.OrganizeId, p.ypCode);
-                    if (ypxx == null) throw new Exception("未找到药品代码为【" + p.ypCode + "】的药品。");
+                    if (ypxx == null) throw new Exception("Không tìm thấy mã thuốc là【" + p.ypCode + "】của thuốc。");
                     if ((p.zhyz ?? 0) > 0) return;
-                    if (ypxx.zycls == null) throw new Exception("药品代码为【" + p.ypCode + "】的药品住院拆零数为空。");
+                    if (ypxx.zycls == null) throw new Exception("Mã thuốc là【" + p.ypCode + "】Số chia lẻ nội trú của thuốc trống。");
                     p.zhyz = (int)ypxx.zycls;
                 });
             }

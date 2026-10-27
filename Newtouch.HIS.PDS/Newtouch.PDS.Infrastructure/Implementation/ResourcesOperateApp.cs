@@ -30,7 +30,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 取消预定
+    /// Hủy đặt trước
     /// </summary>
     public class ResourcesOperateApp : AppBase, IResourcesOperateApp
     {
@@ -40,10 +40,10 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly IPyDmnService _pyDmnService;
 
-        #region 门诊
+        #region Ngoại trú
 
         /// <summary>
-        /// 门诊预定
+        /// Đặt trước ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊预定修改
+        /// Sửa đặt trước ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Application.Implementation
             if (request == null || request.Items == null || request.Items.Count == 0)
             {
                 result.IsSucceed = false;
-                result.ResultMsg = "请传入要修改的处方信息";
+                result.ResultMsg = "Vui lòng truyền thông tin đơn thuốc cần sửa";
                 return result;
             }
             request.Items.Select(p => p.Cfh).Distinct().ToList().ForEach(q =>
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Application.Implementation
                 if (rpInfo.Exists(r => !((int)EnumFybz.Yp).ToString().Equals(r.fybz)))
                 {
                     result.IsSucceed = false;
-                    result.ResultMsg += string.Format("处方【{0}】修改失败，被修改处方只能是已排药处方；", q);
+                    result.ResultMsg += string.Format("Đơn thuốc【{0}】Sửa thất bại，Đơn thuốc bị sửa chỉ có thể là đơn đã xếp thuốc；", q);
                     return;
                 }
                 string cancelResult;
@@ -115,7 +115,7 @@ namespace Newtouch.HIS.Application.Implementation
                 if (!string.IsNullOrWhiteSpace(cancelResult))
                 {
                     result.IsSucceed = false;
-                    result.ResultMsg += string.Format("处方【{0}】取消原处方失败。{1}；", q, cancelResult);
+                    result.ResultMsg += string.Format("Đơn thuốc【{0}】Hủy đơn thuốc gốc thất bại。{1}；", q, cancelResult);
                     return;
                 }
 
@@ -126,7 +126,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 新增处方 （修改是发现没有该处方）
+        /// Thêm đơn thuốc （Khi sửa phát hiện không có đơn thuốc này）
         /// </summary>
         /// <param name="request"></param>
         /// <param name="cfh"></param>
@@ -155,24 +155,24 @@ namespace Newtouch.HIS.Application.Implementation
 
                 result.Data = newBookResult.Data;
                 result.IsSucceed = false;
-                result.ResultMsg += string.Format("处方【{0}】生成新处方失败,{1};", cfh, result.ResultMsg);
+                result.ResultMsg += string.Format("Đơn thuốc【{0}】Tạo đơn thuốc mới thất bại,{1};", cfh, result.ResultMsg);
             }
             catch (FailedException ex)
             {
-                var errorMsg = string.Format("处方【{0}】生成新处方失败; ", cfh) + ex.Msg;
+                var errorMsg = string.Format("Đơn thuốc【{0}】Tạo đơn thuốc mới thất bại; ", cfh) + ex.Msg;
                 result.IsSucceed = false;
                 result.ResultMsg = errorMsg;
             }
             catch (Exception ex)
             {
-                var errorMsg = string.Format("处方【{0}】生成新处方失败,{1}; ", cfh, result.ResultMsg) + ex.Message + (ex.InnerException == null ? "" : ex.InnerException.Message);
+                var errorMsg = string.Format("Đơn thuốc【{0}】Tạo đơn thuốc mới thất bại,{1}; ", cfh, result.ResultMsg) + ex.Message + (ex.InnerException == null ? "" : ex.InnerException.Message);
                 result.IsSucceed = false;
                 result.ResultMsg = errorMsg;
             }
         }
 
         /// <summary>
-        /// (未发药前)部分退药
+        /// (Trước khi phát thuốc)Trả thuốc một phần
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -183,14 +183,14 @@ namespace Newtouch.HIS.Application.Implementation
                 int rpInfo = _mzCfRepo.DeleteCf(item.cfh.ToString(), request.OrganizeId.ToString());
                 if (rpInfo <= 0)
                 {
-                    throw new FailedException("", "处方状态修改失败");
+                    throw new FailedException("", "Sửa trạng thái đơn thuốc thất bại");
                 }
             }
             return "";
         }
 
         /// <summary>
-        /// 门诊取消预定
+        /// Hủy đặt trước ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -198,7 +198,7 @@ namespace Newtouch.HIS.Application.Implementation
         {
             if (request == null || !request.Items.Any())
             {
-                throw new FailedException("", "请传入要取消的明细");
+                throw new FailedException("", "Vui lòng truyền chi tiết cần hủy");
             }
             var result = new StringBuilder();
             Parallel.ForEach(request.Items, p =>
@@ -218,7 +218,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊取消预定 适用于非结算处方
+        /// Hủy đặt trước ngoại trú Áp dụng cho đơn thuốc không thanh toán
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -227,12 +227,12 @@ namespace Newtouch.HIS.Application.Implementation
             var cfxx = _mzCfRepo.SelectRpList(request.cfh, request.OrganizeId);
             if (cfxx == null || cfxx.Count == 0)
             {
-                throw new FailedException("", "未找到指定处方");
+                throw new FailedException("", "Không tìm thấy đơn thuốc chỉ định");
             }
 
             if (cfxx.Exists(p => p.jsnm > 0))
             {
-                throw new FailedException("", "处方已结算，不能取消预定");
+                throw new FailedException("", "Đơn thuốc đã thanh toán，Không thể hủy đặt trước");
             }
 
             var mxphList = _mzCfphRepo.GetList(request.cfh, cfxx[0].lyyf, request.OrganizeId, "0");
@@ -292,13 +292,13 @@ namespace Newtouch.HIS.Application.Implementation
             }
             else
             {
-                throw new FailedException("", "取消预订只针对已排处方");
+                throw new FailedException("", "Hủy đặt trước chỉ áp dụng đơn đã xếp thuốc");
             }
             return "";
         }
 
         /// <summary>
-        /// 门诊取消结算冻结库存返还
+        /// Hủy thanh toán ngoại trú trả lại tồn kho đóng băng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -307,7 +307,7 @@ namespace Newtouch.HIS.Application.Implementation
             var cfxx = _mzCfRepo.SelectTfRpList(request.cfh, request.OrganizeId);
             if (cfxx == null || cfxx.Count == 0)
             {
-                throw new FailedException("", "未找到指定处方");
+                throw new FailedException("", "Không tìm thấy đơn thuốc chỉ định");
             }
             var mxphList = _mzCfphRepo.GetList(request.cfh, cfxx[0].lyyf, request.OrganizeId, "0");
             var fybz = cfxx[0].fybz;
@@ -323,7 +323,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 修改处方状态
+        /// Sửa trạng thái đơn thuốc
         /// </summary>
         /// <param name="rpList"></param>
         /// <param name="request"></param>
@@ -350,7 +350,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 修改处方状态
+        /// Sửa trạng thái đơn thuốc
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -374,7 +374,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊确定资源（commit）
+        /// Xác định tài nguyên ngoại trú（commit）
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -382,28 +382,28 @@ namespace Newtouch.HIS.Application.Implementation
         {
             if (request == null)
             {
-                throw new FailedException("", "请求报文不能为空");
+                throw new FailedException("", "Bản tin yêu cầu không được để trống");
             }
 
             if (request.Jsnm <= 0)
             {
-                throw new FailedException("", "结算内码必填");
+                throw new FailedException("", "Mã nội bộ thanh toán bắt buộc nhập");
             }
 
             if (request.Sfsj <= Convert.ToDateTime("1971-01-01"))
             {
-                throw new FailedException("", "收费时间不合法");
+                throw new FailedException("", "Thời gian thu phí không hợp lệ");
             }
 
             var rpInfo = _mzCfRepo.SelectRpList(request.Cfh, request.OrganizeId);
             if (rpInfo == null || rpInfo.Count == 0)
             {
-                throw new FailedException("", "未找到指定处方信息");
+                throw new FailedException("", "Không tìm thấy thông tin đơn thuốc chỉ định");
             }
 
             if (rpInfo[0].fybz == ((int)EnumFybz.Wp).ToString())
             {
-                //重新排药
+                //Xếp thuốc lại
 
                 throw new NotImplementedException();
             }
@@ -413,7 +413,7 @@ namespace Newtouch.HIS.Application.Implementation
             rpInfo[0].sfsj = request.Sfsj;
             rpInfo[0].LastModiFierCode = request.CreatorCode;
             rpInfo[0].LastModifyTime = DateTime.Now;
-            if (_mzCfRepo.Update(rpInfo[0]) <= 0) throw new FailedException("", "门诊发药资源确认失败");
+            if (_mzCfRepo.Update(rpInfo[0]) <= 0) throw new FailedException("", "Xác nhận tài nguyên phát thuốc ngoại trú thất bại");
             var rq = new MqGeneralTaskRequestDto
             {
                 Timestamp = DateTime.Now,
@@ -433,7 +433,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 门诊退药
+        /// Trả thuốc ngoại trú
         /// </summary>
         /// <param name="tyInfo"></param>
         /// <param name="returnDrugBillNoList"></param>
@@ -443,7 +443,7 @@ namespace Newtouch.HIS.Application.Implementation
             returnDrugBillNoList = new List<string>();
             if (tyInfo == null || tyInfo.tyDrugDetail == null || tyInfo.tyDrugDetail.Count == 0)
             {
-                return "退药明细不能为空";
+                return "Chi tiết trả thuốc không được để trống";
             }
             var errorMsg = new StringBuilder();
             foreach (var s in tyInfo.tyDrugDetail.Select(p => p.cfh).Distinct())
@@ -480,10 +480,10 @@ namespace Newtouch.HIS.Application.Implementation
         }
         #endregion
 
-        #region 住院
+        #region Nội trú
 
         /// <summary>
-        /// 住院保存医嘱  落地医嘱信息、排药、冻结库存
+        /// Lưu y lệnh nội trú  Lưu thông tin y lệnh、Xếp thuốc、Đóng băng tồn kho
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -495,7 +495,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 住院退药，插入退药申请单
+        /// Trả thuốc nội trú，Chèn đơn xin trả thuốc
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -510,13 +510,13 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 住院退药
+        /// Trả thuốc nội trú
         /// </summary>
         /// <param name="tyDetail"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <param name="returnDrugBillNo">退药单号</param>
+        /// <param name="returnDrugBillNo">Số đơn trả thuốc</param>
         /// <returns></returns>
         public string HospitalizatiionReturnMedicine(List<tyParam> tyDetail, string yfbmCode, string organizeId, string userCode, out string returnDrugBillNo)
         {
@@ -544,13 +544,13 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 住院退药
+        /// Trả thuốc nội trú
         /// </summary>
         /// <param name="tyDetail"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <param name="returnDrugBillNo">退药单号</param>
+        /// <param name="returnDrugBillNo">Số đơn trả thuốc</param>
         /// <returns></returns>
         public string HospitalizatiionReturnMedicineV2(List<tyParam> tyDetail, string yfbmCode, string organizeId, string userCode, out string returnDrugBillNo)
         {
@@ -558,16 +558,16 @@ namespace Newtouch.HIS.Application.Implementation
             var locker = new object();
             Parallel.ForEach(tyDetail, p =>
             {
-                // 检查 sl 和 zhyz，如果条件不满足，直接返回
+                // Kiểm tra sl và zhyz，Nếu điều kiện không đáp ứng，Trả về trực tiếp
                 if (p.sl <= 0 || p.zhyz <= 0) return;
 
-                // 检查 p.zsm 是否为空，如果为空则赋默认值
+                // Kiểm tra p.zsm Có trống không，Nếu trống thì gán giá trị mặc định
                 if (string.IsNullOrEmpty(p.zsm))
                 {
-                    p.zsm = "";  // 你可以根据需求替换为具体的值
+                    p.zsm = "";  // Bạn có thể thay bằng giá trị cụ thể theo nhu cầu
                 }
 
-                // 使用锁来保护对共享资源 effectiveLs 的访问
+                // Sử dụng khóa để bảo vệ tài nguyên chia sẻ effectiveLs truy cập của
                 lock (locker)
                 {
                     effectiveLs.Add(p);
@@ -576,7 +576,7 @@ namespace Newtouch.HIS.Application.Implementation
 
             if (effectiveLs[0].zytyapplyno == null || effectiveLs[0].zytyapplyno == "")
             {
-                throw new Exception("退药申请单号不能为空！");
+                throw new Exception("Số đơn xin trả thuốc không được để trống！");
             }
 
             var tyInfo = new tyInfo
@@ -597,10 +597,10 @@ namespace Newtouch.HIS.Application.Implementation
         #endregion
 
 
-        #region 取消排药
+        #region Hủy xếp thuốc
 
         /// <summary>
-        /// 门诊取消排药
+        /// Hủy xếp thuốc ngoại trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -608,7 +608,7 @@ namespace Newtouch.HIS.Application.Implementation
         {
             OutpatientCancelArrangementValidate(request);
 
-            //取消满足默认要求的处方——已保存，未支付且已过最晚支付时间
+            //Hủy đơn thuốc đáp ứng yêu cầu mặc định——Đã lưu，Chưa thanh toán và đã quá thời gian thanh toán muộn nhất
             var settExpiredTime = _sysConfigRepo.GetValueByCode("settExpiredTime", request.OrganizeId);
             int tmpHour;
             int.TryParse(settExpiredTime, out tmpHour);
@@ -617,10 +617,10 @@ namespace Newtouch.HIS.Application.Implementation
             var rps = _pyDmnService.SelectCancelRps(request.cfh, request.processesMaxNum, expirationDate, request.fyyf, request.OrganizeId);
             if (rps == null || rps.Count == 0)
             {
-                return string.IsNullOrWhiteSpace(request.cfh) ? "未找到需要取消排药要求的处方" : string.Format("处方【{0}】不符合取消排药要求，该处方可能已取消！", request.cfh);
+                return string.IsNullOrWhiteSpace(request.cfh) ? "Không tìm thấy đơn thuốc cần hủy yêu cầu xếp thuốc" : string.Format("Đơn thuốc【{0}】Không phù hợp yêu cầu hủy xếp thuốc，Đơn thuốc này có thể đã hủy！", request.cfh);
             }
             var emsg = new StringBuilder();
-            var successCfh = new StringBuilder("本次操作成功取消冻结处方号为：");
+            var successCfh = new StringBuilder("Lần thao tác này thành công hủy đóng băng số đơn thuốc là：");
             rps.ForEach(p =>
             {
                 var errorMsg = _pyDmnService.OutPatientCancelArrangement(p, request.CreatorCode);
@@ -632,13 +632,13 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 报文效验
+        /// Kiểm tra bản tin
         /// </summary>
         /// <param name="request"></param>
         private void OutpatientCancelArrangementValidate(OutpatientCancelArrangementRequestDTO request)
         {
-            if (string.IsNullOrWhiteSpace(request.OrganizeId)) throw new FailedException("", "组织机构不能为空");
-            if (string.IsNullOrWhiteSpace(request.fyyf)) throw new FailedException("", "发药药房不能为空");
+            if (string.IsNullOrWhiteSpace(request.OrganizeId)) throw new FailedException("", "Tổ chức không được để trống");
+            if (string.IsNullOrWhiteSpace(request.fyyf)) throw new FailedException("", "Nhà thuốc phát thuốc không được để trống");
         }
         #endregion
 

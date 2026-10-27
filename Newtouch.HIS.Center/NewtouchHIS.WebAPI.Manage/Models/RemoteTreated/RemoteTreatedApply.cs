@@ -2,13 +2,13 @@
 namespace NewtouchHIS.WebAPI.Manage.Models
 {
     /// <summary>
-    /// Đăng ký远程诊疗
+    /// Đăng kýKhám chữa bệnh từ xa
     /// </summary>
     public class TreatedApplyInfoRequest
     {
         /// <summary>
-        /// Đăng ký流水号 
-        /// 由第三方生成 唯一号
+        /// Đăng kýSố giao dịch 
+        /// Do bên thứ ba tạo Số duy nhất
         /// </summary>
         public string? sqlsh { get; set; }
         /// <summary>
@@ -27,8 +27,8 @@ namespace NewtouchHIS.WebAPI.Manage.Models
         public string? ApplyId { get; set; }
         public string? sqr { get; set; }
         /// <summary>
-        /// Đăng ký流水号 
-        /// 由第三方生成 唯一号
+        /// Đăng kýSố giao dịch 
+        /// Do bên thứ ba tạo Số duy nhất
         /// </summary>
         public string? sqlsh { get; set; }
         /// <summary>
@@ -36,11 +36,11 @@ namespace NewtouchHIS.WebAPI.Manage.Models
         /// </summary>
         public string? ApplyOrg { get; set; }
         /// <summary>
-        /// Tổ chức名称
+        /// Tổ chứcTên
         /// </summary>
         public string? ApplyOrgName { get; set; }
         /// <summary>
-        /// Đăng ký人工号
+        /// Đăng kýMã số nhân viên
         /// </summary>
         public string? sqrgh { get; set; }
 

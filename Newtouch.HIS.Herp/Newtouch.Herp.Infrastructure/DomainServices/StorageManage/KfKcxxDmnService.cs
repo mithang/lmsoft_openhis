@@ -13,7 +13,7 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.Herp.DomainServices.StorageManage
 {
     /// <summary>
-    /// 库存维护
+    /// Bảo trì tồn kho
     /// </summary>
     public class KfKcxxDmnService : DmnServiceBase, IKfKcxxDmnService
     {
@@ -27,16 +27,16 @@ namespace Newtouch.Herp.DomainServices.StorageManage
         }
 
         /// <summary>
-        /// 修改库存数量(加库存)，不修改冻结数量  返回影响行
+        /// Sửa số lượng tồn kho(Cộng tồn kho)，Không sửa số lượng đóng băng  Trả về số dòng bị ảnh hưởng
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="warehouseId"></param>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <returns>返回影响行</returns>
+        /// <returns>Trả về số dòng bị ảnh hưởng</returns>
         public int UpdateKcsl(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode)
         {
             if (sl >= 0) return AddKcsl(productId, pc, ph, warehouseId, sl, organizeId, userCode);
@@ -46,7 +46,7 @@ namespace Newtouch.Herp.DomainServices.StorageManage
         }
 
         /// <summary>
-        /// 修改库存数量，不修改冻结数量  该方法为批量修改相同批次批号的物资，慎用
+        /// Sửa số lượng tồn kho，Không sửa số lượng đóng băng  Phương pháp này sửa hàng loạt vật tư cùng lô hàng và số lô，Dùng thận trọng
         /// </summary>
         /// <param name="updateKcslDto"></param>
         /// <returns></returns>
@@ -69,16 +69,16 @@ namespace Newtouch.Herp.DomainServices.StorageManage
         }
 
         /// <summary>
-        /// 追加库存，不修改冻结数量 返回影响行
+        /// Cộng thêm tồn kho，Không sửa số lượng đóng băng Trả về số dòng bị ảnh hưởng
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="warehouseId"></param>
-        /// <param name="sl">最小单位数量  必须为正数</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất  Phải là số dương</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <returns>返回影响行</returns>
+        /// <returns>Trả về số dòng bị ảnh hưởng</returns>
         public int AddKcsl(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode)
         {
             if (sl <= 0) throw new System.Exception("Số lượng phải là số dương");
@@ -113,7 +113,7 @@ SELECT @@ROWCOUNT ;
         }
 
         /// <summary>
-        /// 修改库存数量，不修改冻结数量
+        /// Sửa số lượng tồn kho，Không sửa số lượng đóng băng
         /// </summary>
         /// <param name="updateKcslDto"></param>
         /// <returns></returns>
@@ -133,7 +133,7 @@ SELECT @@ROWCOUNT ;
         }
 
         /// <summary>
-        /// 修改库存数量，不修改冻结数量
+        /// Sửa số lượng tồn kho，Không sửa số lượng đóng băng
         /// </summary>
         /// <param name="updateKcslDto"></param>
         /// <param name="db"></param>
@@ -150,7 +150,7 @@ SELECT @@ROWCOUNT ;
         }
 
         /// <summary>
-        /// 修改库存数量，不修改冻结数量
+        /// Sửa số lượng tồn kho，Không sửa số lượng đóng băng
         /// </summary>
         /// <param name="updateKcslDto"></param>
         /// <param name="db"></param>
@@ -178,13 +178,13 @@ SELECT @@ROWCOUNT ;
         }
 
         /// <summary>
-        /// 减库存数量、冻结数量（出库可用）
+        /// Số lượng giảm tồn kho、Số lượng đóng băng（Xuất kho khả dụng）
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="warehouseId"></param>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
         /// <returns></returns>
@@ -204,13 +204,13 @@ SELECT @@ROWCOUNT ;
         }
 
         /// <summary>
-        /// 解冻
+        /// Rã đóng băng
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="warehouseId"></param>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
         /// <returns></returns>
@@ -230,9 +230,9 @@ SELECT @@ROWCOUNT ;
         }
 
         /// <summary>
-        /// 冻结库存
+        /// Tồn kho đóng băng
         /// </summary>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="productId"></param>
@@ -256,9 +256,9 @@ SELECT @@ROWCOUNT ;
         }
 
         /// <summary>
-        /// 外部入库 扣库存(作废)
+        /// Nhập kho ngoài Trừ tồn kho(Hủy bỏ)
         /// </summary>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="productId"></param>
@@ -283,9 +283,9 @@ SELECT @@ROWCOUNT ;
         }
 
         /// <summary>
-        /// 撤销入库（直接出库作废） 若要使用该方法请套上事务，方法内不做回滚
+        /// Hủy nhập kho（Hủy xuất kho trực tiếp） Nếu muốn dùng phương pháp này hãy bọc trong transaction，Trong phương pháp không rollback
         /// </summary>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="productId"></param>
@@ -296,11 +296,11 @@ SELECT @@ROWCOUNT ;
         /// <returns></returns>
         public string RevokeInstorage(int sl, string pc, string ph, string productId, string organizeId, string rkbm, string ckbm, string userCode)
         {
-            //入库部门扣库存
+            //Khoa nhập kho trừ tồn kho
             var substractResult = JustSubtractKcsl(new UpdateKcslDTO { organizeId = organizeId, pc = pc, ph = ph, productId = productId, sl = sl, userCode = userCode, warehouseId = rkbm });
             if (!string.IsNullOrWhiteSpace(substractResult)) return substractResult;
 
-            //出库部门还库存
+            //Khoa xuất kho trả lại tồn kho
             if (UpdateKcsl(productId, pc, ph, ckbm, sl, organizeId, userCode) <= 0)
             {
                 return "Trả lại tồn kho thất bại";
@@ -309,7 +309,7 @@ SELECT @@ROWCOUNT ;
         }
 
         /// <summary>
-        /// 获取库存信息 结转用
+        /// Lấy thông tin tồn kho Dùng để kết chuyển
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -335,9 +335,9 @@ AND kcxx.zt=@zt
         }
 
         //        /// <summary>
-        //        /// 撤销入库（直接出库作废）
+        //        /// Hủy nhập kho（Hủy xuất kho trực tiếp）
         //        /// </summary>
-        //        /// <param name="sl">最小单位数量</param>
+        //        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         //        /// <param name="pc"></param>
         //        /// <param name="ph"></param>
         //        /// <param name="productId"></param>
@@ -349,8 +349,8 @@ AND kcxx.zt=@zt
         //        public string RevokeInstorage(int sl, string pc, string ph, string productId, string organizeId, string rkbm, string ckbm, string userCode)
         //        {
         //            const string sql = @"
-        //DECLARE @rkkcsl INT;--入库库存
-        //DECLARE @rkdjsl INT;--入库冻结库存
+        //DECLARE @rkkcsl INT;--Tồn kho nhập kho
+        //DECLARE @rkdjsl INT;--Tồn kho đóng băng nhập kho
         //DECLARE @res INT;
         //SELECT @rkkcsl=kcsl, @rkdjsl=djsl FROM dbo.kf_kcxx WHERE productId=@proId AND pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND zt=@zt AND warehouseId=@rkbm
         //IF @sl <= (@rkkcsl-@rkdjsl)
@@ -371,17 +371,17 @@ AND kcxx.zt=@zt
         //		END
         //		ELSE
         //		BEGIN
-        //			SELECT '出库部门入库存失败';
+        //			SELECT 'Khoa xuất kho nhập tồn kho thất bại';
         //		END
         //	END 
         //	ELSE
         //	BEGIN
-        //		SELECT '入库部门出库存失败';
+        //		SELECT 'Khoa nhập kho xuất tồn kho thất bại';
         //	END
         //END
         //ELSE 
         //BEGIN
-        //	SELECT '库存不足';
+        //	SELECT 'Tồn kho không đủ';
         //END 
         //";
         //            var param = new SugarParameter[]
@@ -427,7 +427,7 @@ BEGIN TRY
 	SELECT Id, kcsl INTO #allkcxx FROM dbo.kf_kcxx 
 	WHERE productId=@proId AND warehouseId=@warehouseId AND OrganizeId=@OrganizeId AND pc=@pc AND ph=@ph AND zt='1' 
 
-	DECLARE @kcsl INT; --当前可用库存
+	DECLARE @kcsl INT; --Tồn kho khả dụng hiện tại
 	DECLARE @kcId VARCHAR(50);
 	DECLARE @sykc INT;
 	SET @sykc=@sl;
@@ -473,7 +473,7 @@ END CATCH
         private const string just_frozen_kcsl = @"
 BEGIN TRANSACTION
 BEGIN TRY
-	DECLARE @dqkykc INT; --当前可用库存
+	DECLARE @dqkykc INT; --Tồn kho khả dụng hiện tại
 	SELECT @dqkykc=SUM(kcsl-djsl) FROM dbo.kf_kcxx WHERE productId=@proId AND pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND zt='1' AND warehouseId=@warehouseId
 	IF @sl > @dqkykc
 	BEGIN
@@ -528,8 +528,8 @@ END CATCH
         private const string subtract_freeze_and_kcsl = @"
 BEGIN TRANSACTION
 BEGIN TRY
-	DECLARE @kcsl INT; --当前库存
-	DECLARE @djsl INT; --当前冻结库存
+	DECLARE @kcsl INT; --Tồn kho hiện tại
+	DECLARE @djsl INT; --Tồn kho đóng băng hiện tại
 	SELECT @kcsl=ISNULL(SUM(kcsl),0), @djsl=ISNULL(SUM(djsl),0)
 	FROM dbo.kf_kcxx 
 	WHERE productId=@proId AND pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND zt='1' AND warehouseId=@warehouseId AND djsl>0 AND kcsl>0
@@ -569,7 +569,7 @@ BEGIN TRY
 		END 
 		ELSE 
 		BEGIN
-			--取冻结数和库存数中最小的一个赋值给@tmpsl
+			--Lấy giá trị nhỏ hơn trong số đóng băng và số tồn kho gán cho@tmpsl
 			IF @curdjsl<=@curkcsl
 			BEGIN 
 				SET @tmpsl=@curdjsl;
@@ -622,9 +622,9 @@ BEGIN TRY
 	SELECT Id, djsl INTO #allkcxx FROM dbo.kf_kcxx 
 	WHERE productId=@proId AND warehouseId=@warehouseId AND OrganizeId=@OrganizeId AND pc=@pc AND ph=@ph AND zt='1' AND djsl>0
 		
-	DECLARE @djsl INT; --当前冻结数量
-	DECLARE @kcId VARCHAR(50); --当前库存ID
-	DECLARE @sysl INT; --剩余数量
+	DECLARE @djsl INT; --Số lượng đóng băng hiện tại
+	DECLARE @kcId VARCHAR(50); --Tồn kho hiện tại ID
+	DECLARE @sysl INT; --Số lượng còn lại
 	SET @sysl=@sl; 
 	WHILE(EXISTS(SELECT 1 FROM #allkcxx) AND @sysl>0)
 	BEGIN
@@ -667,7 +667,7 @@ BEGIN TRY
 	WHERE pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND warehouseId=@warehouseId AND productId=@proId AND zt=@zt
 	IF @totalDjsl>0  
 	BEGIN
-		-- 有冻结说明正在被使用，作废可能导致后期扣库存库存不足
+		-- Có đóng băng nghĩa là đang được sử dụng，Hủy bỏ có thể khiến trừ tồn kho sau này không đủ
 		SELECT 'Lô này đang có tồn kho đóng băng, không thể hủy';
 		ROLLBACK TRANSACTION;
 		RETURN;
@@ -686,9 +686,9 @@ BEGIN TRY
 	SELECT Id, kcsl INTO #allkcxx FROM dbo.kf_kcxx 
 	WHERE productId=@proId AND warehouseId=@warehouseId AND OrganizeId=@OrganizeId AND pc=@pc AND ph=@ph AND zt=@zt
 
-	DECLARE @kcsl INT; --当前可用库存
-	DECLARE @kcId VARCHAR(50); --当前库存ID
-	DECLARE @sykc INT; --剩余库存
+	DECLARE @kcsl INT; --Tồn kho khả dụng hiện tại
+	DECLARE @kcId VARCHAR(50); --Tồn kho hiện tại ID
+	DECLARE @sykc INT; --Tồn kho còn lại
 	SET @sykc=@sl;
 
 	WHILE(EXISTS(SELECT 1 FROM #allkcxx) AND @sykc>0)

@@ -7,100 +7,100 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Domain.Entity.DeptStorageManage
 {
     /// <summary>
-    /// 库存表
+    /// Tồn khobảng
     /// </summary>
     [SugarTable("kf_kcxx")]
     public class KfKcxxEntity
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId（cócụ thểthểnghiệp vụcủayviện）
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 库房ID
+        /// KhoID
         /// </summary>
         public string warehouseId { get; set; }
 
         /// <summary>
-        ///  物资ID
+        ///  vật tưID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn hiệu lực
         /// </summary>
         public DateTime yxq { get; set; }
 
         /// <summary>
-        /// 库存数量 最小单位数量
+        /// Tồn khoSố lượng Đơn vị nhỏ nhấtSố lượng
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// 冻结数量 最小单位数量
+        /// đôngkếtSố lượng Đơn vị nhỏ nhấtSố lượng
         /// </summary>
         public int djsl { get; set; }
 
         /// <summary>
-        /// 出入库明细ID
+        /// raNhập khochi tiếtID
         /// </summary>
         public long crkmxId { get; set; }
 
         /// <summary>
-        /// 进价 转化因子对应单位
+        /// vàogiá chuyểnhóavìcontương ứngĐơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 转化因子，转化成当前库房单位
+        /// chuyểnhóavìcon，chuyểnhóathànhhiện tạiKhoĐơn vị
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 库存锁 0/null：未上锁      >0：已锁
+        /// Tồn khokhóa 0/null：chưatrênkhóa      >0：đãkhóa
         /// </summary>
         public int? locked { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Sửa cuối người
         /// </summary>
         public string LastModifierCode { get; set; }
     }

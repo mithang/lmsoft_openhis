@@ -118,12 +118,12 @@
                     $("#sq_ryzdmc").html(rowData.zdmc);
                     $("#sq_bqmc").html(rowData.WardName);
                     $("#sq_bedcode").html(rowData.BedCode);
-                    //加载申请手术列表
+                    //Tải danh sách phẫu thuật đã đăng ký
                     $("#gridListOP").resetSelection();
                     $("#gridListOP").jqGrid('setGridParam', {
-                        postData: { 'zyh': rowData.zyh }, //发送数据
+                        postData: { 'zyh': rowData.zyh }, //Gửi dữ liệu
                         page: 1
-                    }).trigger("reloadGrid"); //重新载入
+                    }).trigger("reloadGrid"); //Tải lại
                 }
             },
             loadComplete: function () {
@@ -179,7 +179,7 @@
         $('#myTab a:first').trigger('click'); 
     }
 
-    //申请手术按钮
+    //Nút đăng ký phẫu thuật
     function showOpApply() {
         //debugger
         $.ajax({

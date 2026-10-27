@@ -6,86 +6,86 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 住院退药明细
+    /// Chi tiết trả thuốc nội trú
     /// </summary>
     [Table("zy_tymx")]
     [SugarTable("zy_tymx")]
     public class ZyTymxEntity : IEntity<ZyTymxEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// Khóa chínhID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public long Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id
+        /// Tổ chứcId
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 退药单号
+        /// Số đơn trả thuốc
         /// </summary>
         public string returnDrugBillNo { get; set; }
 
         /// <summary>
-        /// 药品编号
+        /// Số hiệu thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 医嘱执行ID
+        /// Thực hiện y lệnhID
         /// </summary>
         public string zxId { get; set; }
 
         /// <summary>
-        /// 医嘱ID
+        /// Y lệnhID
         /// </summary>
         public string yzId { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 最小单位数量
+        /// Số lượng đơn vị nhỏ nhất
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string Remark { get; set; }
 
         /// <summary>
-        /// 状态  0-无效  1-有效
+        /// Trạng thái  0-Không hiệu lực  1-Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改用户
+        /// Người sửa đổi
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Người sửa đổi cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 

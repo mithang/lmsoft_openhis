@@ -25,35 +25,35 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
         public string id2 { get; set; }
         public string id3 { get; set; }
         /// <summary>
-        /// 一级大类编号
+        /// Mã nhóm lớn cấp 1
         /// </summary>
         public string code1 { get; set; }
         /// <summary>
-        /// 一级大类名称
+        /// Tên nhóm lớn cấp 1
         /// </summary>
         public string name1 { get; set; }
         /// <summary>
-        /// 二级大类编号
+        /// Mã nhóm lớn cấp 2
         /// </summary>
         public string code2 { get; set; }
         /// <summary>
-        /// 二级大类名称
+        /// Tên nhóm lớn cấp 2
         /// </summary>
         public string name2 { get; set; }
         /// <summary>
-        /// 三级大类编号
+        /// Mã nhóm lớn cấp 3
         /// </summary>
         public string code3 { get; set; }
         /// <summary>
-        /// 三级大类名称
+        /// Tên nhóm lớn cấp 3
         /// </summary>
         public string name3 { get; set; }
         /// <summary>
-        /// 大类名称
+        /// Tên nhóm lớn
         /// </summary>
         public string name { get; set; }
         /// <summary>
-        /// 大类拼音
+        /// Pinyin nhóm lớn
         /// </summary>
         public string py { get; set; }
 

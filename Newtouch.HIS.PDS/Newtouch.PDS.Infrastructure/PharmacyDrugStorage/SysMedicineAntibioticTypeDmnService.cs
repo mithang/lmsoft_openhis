@@ -18,7 +18,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
     public class SysMedicineAntibioticTypeDmnService : DmnServiceBase, ISysMedicineAntibioticTypeDmnService
     {
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
 
         /// <summary>
-        /// 根据组织机构,级别,获取抗生素信息列表
+        /// Theo tổ chức,Cấp,Lấy danh sách thông tin kháng sinh
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
         }
 
         /// <summary>
-        /// 提交抗生素类别信息
+        /// Gửi thông tin loại kháng sinh
         /// </summary>
         /// <param name="entity"></param>
         public void SubmitForm(SysMedicineAntibioticTypeVO entity)

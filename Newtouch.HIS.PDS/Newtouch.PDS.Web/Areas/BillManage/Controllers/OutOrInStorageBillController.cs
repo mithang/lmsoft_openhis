@@ -11,7 +11,7 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
 {
     /// <summary>
-    /// 出入库单据管理
+    /// Quản lý chứng từ xuất nhập kho
     /// </summary>
     [Area("BillManage")]
     public class OutOrInStorageBillController : ControllerBase
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         #region Duyệt
 
         /// <summary>
-        /// 单据审核 视图
+        /// Duyệt chứng từ Khung nhìn
         /// </summary>
         /// <returns></returns>
         public IActionResult Approval()
@@ -75,7 +75,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         #region Tra cứu
 
         /// <summary>
-        /// 单据查询 视图
+        /// Truy vấn chứng từ Khung nhìn
         /// </summary>
         /// <returns></returns>
         public IActionResult Query()
@@ -85,7 +85,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 出入库单据明细查询
+        /// Truy vấn chi tiết chứng từ xuất nhập kho
         /// </summary>
         /// <param name="crkId"></param>
         /// <returns></returns>

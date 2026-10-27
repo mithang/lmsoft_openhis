@@ -8,12 +8,12 @@ using Newtouch.Tools;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 方法运行监控
+    /// Giám sát chạy phương thức
     /// </summary>
     public class PerformanceMonitoring
     {
         /// <summary>
-        /// 代码运行时间
+        /// Thời gian chạy mã
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="missingHandler"></param>
@@ -24,22 +24,22 @@ namespace Newtouch.Infrastructure
         public static dynamic Running<T>(Func<T> missingHandler, string title, string message, Dictionary<string, string> tags = null)
         {
             var stopwatch = new Stopwatch();
-            //  开始监视代码运行时间
+            //  Bắt đầu giám sát thời gian chạy mã
             stopwatch.Start();
 
-            //代码主体
+            //Thân mã
             dynamic value = missingHandler.Invoke();
 
-            //  停止监视
+            //  Dừng giám sát
             stopwatch.Stop();
             ;
-            //记录日志
-            LogCore.Info(string.Format("Title:{0};\n message:{1} 方法耗时-{2}", title, message, stopwatch.Elapsed.TotalMilliseconds), message, tags);
+            //Ghi nhật ký
+            LogCore.Info(string.Format("Title:{0};\n message:{1} Thời gian tốn của phương thức-{2}", title, message, stopwatch.Elapsed.TotalMilliseconds), message, tags);
             return value;
         }
 
         /// <summary>
-        /// 服务监控
+        /// Giám sát dịch vụ
         /// </summary>
         /// <typeparam name="TRequest"></typeparam>
         /// <typeparam name="TResponse"></typeparam>
@@ -58,7 +58,7 @@ namespace Newtouch.Infrastructure
                 var response = action.Invoke(request);
                 stopwatch.Stop();
                 LogCore.Info(requestTitle, string.Format("{0}_ResponseXML;\n Message:{1}", requestTitle, response));
-                LogCore.Info(string.Format("Title:{0};方法耗时-{1}", requestTitle, stopwatch.Elapsed.TotalMilliseconds), requestTitle, tags);
+                LogCore.Info(string.Format("Title:{0};Thời gian tốn của phương thức-{1}", requestTitle, stopwatch.Elapsed.TotalMilliseconds), requestTitle, tags);
                 return response;
             }
             catch (Exception ex)
@@ -69,7 +69,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 服务监控
+        /// Giám sát dịch vụ
         /// </summary>
         /// <typeparam name="TRequest"></typeparam>
         /// <param name="action"></param>
@@ -89,7 +89,7 @@ namespace Newtouch.Infrastructure
                 stopwatch.Start();
                 action.Invoke(request);
                 stopwatch.Stop();
-                LogCore.Info(string.Format("Title:{0};方法耗时-{1}", requestTitle, stopwatch.Elapsed.TotalMilliseconds), requestTitle, tags);
+                LogCore.Info(string.Format("Title:{0};Thời gian tốn của phương thức-{1}", requestTitle, stopwatch.Elapsed.TotalMilliseconds), requestTitle, tags);
             }
             catch (Exception ex)
             {

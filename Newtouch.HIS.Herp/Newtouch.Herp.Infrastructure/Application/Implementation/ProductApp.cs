@@ -14,7 +14,7 @@ using Newtouch.Herp.Infrastructure.Log;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 物资维护. ISupplierApp belongs to the SupplierManage area and has no
+    /// Bảo trì vật tư. ISupplierApp belongs to the SupplierManage area and has no
     /// implementation in this copy yet: it is injected as an OPTIONAL
     /// constructor dependency (default null) so ProductController stays alive
     /// for grids/forms; only the quick-create-producer path (typed supplier
@@ -161,7 +161,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 上传图片 (IFormFile). Files are saved ONLY under this copy's
+        /// Tải lên hình ảnh (IFormFile). Files are saved ONLY under this copy's
         /// wwwroot/Upload/productImg (served as /Upload/productImg/...),
         /// never under the source tree.
         /// </summary>

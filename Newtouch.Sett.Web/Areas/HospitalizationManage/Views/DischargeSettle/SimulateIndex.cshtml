@@ -143,7 +143,7 @@
 
         $('#myTab li:eq(1) a').tab('hidden');
         $('#myTab li:eq(1) a').click(function() {
-            $('#myTab li:eq(1) a').tab('show'); //会Kích hoạtgrid2Nạp kiểu hiển thị
+            $('#myTab li:eq(1) a').tab('show'); //sẽKích hoạtgrid2Nạp kiểu hiển thị
         });
         $('#myTab li:eq(0) a').click(function () {
             setTimeout("$('#myTab li:eq(0) a').tab('show');", 200); //Hiển thị
@@ -780,7 +780,7 @@
     }
     //Tổng số tiềnTổng cộng
     function loadJfmxByZyh2(data) {
-        $('#gridList2').jqGrid("clearGridData");   //sớmF4过
+        $('#gridList2').jqGrid("clearGridData");   //sớmF4qua
         $("#gridList2").newtouchLocalDataGrid(null, data);
         //Tổng số tiền
         var zje = 0;

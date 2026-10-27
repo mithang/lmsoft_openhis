@@ -4,7 +4,7 @@ using SqlSugar;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 科室
+    /// Khoa phòng
     /// </summary>
     [SugarTable("V_S_Sys_Department")]
     public class SysDepartmentVEntity
@@ -15,42 +15,42 @@ namespace Newtouch.Herp.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 父级Id
+        /// Cấp cha Id
         /// </summary>
         public string ParentId { get; set; }
 
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 编码
+        /// Mã
         /// </summary>
         public string Code { get; set; }
 
         /// <summary>
-        /// 医技标志（是否是医技部门，如放射科）
+        /// Cờ kỹ thuật y tế（Có phải khoa kỹ thuật y tế không，như khoa X-quang）
         /// </summary>
         public bool yjbz { get; set; }
 
         /// <summary>
-        /// 门诊住院标志
+        /// Cờ ngoại trú/nội trú
         /// </summary>
         public byte mzzybz { get; set; }
 
         /// <summary>
-        /// 首拼
+        /// Chữ cái đầu pinyin
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 有效标志
+        /// Cờ hiệu lực
         /// </summary>
         public string zt { get; set; }
 

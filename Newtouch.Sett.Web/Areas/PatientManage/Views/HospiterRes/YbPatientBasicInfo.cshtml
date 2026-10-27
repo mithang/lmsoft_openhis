@@ -4,14 +4,14 @@
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 @{
-    //是否和新农合交易
+    //Có giao dịch với nông thôn mới hay không
     var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-    //是否和医保交易
+    //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
-    //医保患者必须一次结掉
+    //Bệnh nhân BHYT phải quyết toán một lần
     bool? ybSettOnce = (openYbSett ?? false) && (SysConfigReader.Bool("Outpatient_ChargeFee_yb_SettOnce") ?? false);
     var opr = OperatorProvider.GetCurrent();
-    //医保所属地
+    //Nơi quản lý BHYT
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
 }
 <style type="text/css">
@@ -142,7 +142,7 @@
                         <td class="formValueYb">
                             <label id="xb"></label>
                         </td>
-                        @*<th class="formTitleTh">民族：</th>
+                        @*<th class="formTitleTh">Dân tộc：</th>
                             <td class="formValueYb">
                                 <label id="mz"></label>
                             </td>*@
@@ -176,7 +176,7 @@
             </div>
         </div>
     </div>
-    @* 医疗结构信息查询 tap *@
+    @* y tếđiều trịkếtcơ quanthông tintintratra cứu tap *@
     <div class="tab-pane fade" id="yljgxxcx">
         <div class="panel panel-default" style="margin-bottom: 4px;">
             <div class="panel-heading navb-bg">
@@ -265,10 +265,10 @@
 
 
 <script type="text/javascript">
-    var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
-    var ybSettOnce = '@ybSettOnce' === 'True'; //开关配置：医保患者是否一次结
-    var medicalInsurance = '@medicalInsurance';//医保所属地配置:区分医院所属医保区域
-    var cqPatInfo = {};                       //患者读卡信息
+    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+    var ybSettOnce = '@ybSettOnce' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có quyết toán một lần không
+    var medicalInsurance = '@medicalInsurance';//cấu hình địa phương BHYT:phân biệt khu vực BHYT của bệnh viện
+    var cqPatInfo = {};                       //thông tin đọc thẻ bệnh nhân
 
     $('#jzId').newtouchBatchFloatingSelector({
         width: 700,
@@ -336,7 +336,7 @@
         });
     }
 
-    //-----------------------------就诊信息查询页面 start-----------------------------//
+    //-----------------------------Trang tra cứu thông tin khám start-----------------------------//
     function GetYbInfo()
     {
         var type = $('#sel_rptype').val();
@@ -1009,41 +1009,41 @@
                     { label: 'Thời gian xử lý', name: 'optTime', width: 100, align: 'center' }
 
 
-                    //{ label: '记账流水号', name: 'bkkpSn', width: 90, align: 'center' },
-                    //{ label: '定点医药机构编号', name: 'fixmedinsCode', width: 90, align: 'center' },
-                    //{ label: '医疗目录编码', name: 'medListCodg', width: 150, align: 'center' },
-                    //{ label: '医药机构目录编码', name: 'medinsListCodg', width: 450, align: 'center' },
-                    //{ label: '医疗收费项目类别', name: 'medChrgitmType', width: 18, align: 'center' },
-                    //{ label: '商品名', name: 'prodname', width: 600, align: 'center' },
-                    //{ label: '开单科室编码', name: 'bilgDeptCodg', width: 90, align: 'center' },
-                    //{ label: '开单医生编码', name: 'bilgDrCode', width: 90, align: 'center' },
-                    //{ label: '受单科室编码', name: 'acordDeptCodg', width: 90, align: 'center' },
-                    //{ label: '受单科室名称', name: 'acordDeptName', width: 300, align: 'center' },
-                    //{ label: '受单医生编码', name: 'acordDrCode', width: 90, align: 'center' },
-                    //{ label: '受单医生姓名', name: 'acordDrName', width: 150, align: 'center' },
-                    //{ label: '中药使用方式', name: 'tcmdrugUsedWay', width: 18, align: 'center' },
-                    //{ label: '外检标志', name: 'etipFlag', width: 9, align: 'center' },
-                    //{ label: '外检医院编码', name: 'etipHospCode', width: 90, align: 'center' },
-                    //{ label: '出院带药标志', name: 'dscgTkdrugFlag', width: 9, align: 'center' },
-                    //{ label: '单次剂量描述', name: 'sinDosDscr', width: 600, align: 'center' },
-                    //{ label: '使用频次描述', name: 'usedFrquDscr', width: 600, align: 'center' },
-                    //{ label: '周期天数', name: 'prdDays', width: 12, align: 'center' },
-                    //{ label: '用药途径描述', name: 'medcWayDscr', width: 600, align: 'center' },
-                    //{ label: '备注', name: 'memo', width: 1500, align: 'center' },
-                    //{ label: '先行自付金额', name: 'preselfpayAmt', width: 48, align: 'center' },
-                    //{ label: '符合政策范围金额', name: 'inscpAmt', width: 48, align: 'center' },
-                    //{ label: '有效标志', name: 'valiFlag', width: 9, align: 'center' },
-                    //{ label: '唯一记录号', name: 'rid', width: 90, align: 'center' },
-                    //{ label: '更新时间', name: 'updtTime', width: 180, align: 'center' },
-                    //{ label: '创建人', name: 'crterId', width: 60, align: 'center' },
-                    //{ label: '创建人姓名', name: 'crterName', width: 150, align: 'center' },
-                    //{ label: '创建时间', name: 'crteTime', width: 180, align: 'center' },
-                    //{ label: '创建机构', name: 'crteOptinsNo', width: 60, align: 'center' },
-                    //{ label: '经办人ID', name: 'opterId', width: 60, align: 'center' },
-                    //{ label: '经办机构', name: 'optinsNo', width: 60, align: 'center' },
-                    //{ label: '统筹区编码', name: 'poolareaNo', width: 30, align: 'center' },
-                    //{ label: '审核通过标识', name: 'chkPassFlag', width: 9, align: 'center' },
-                    //{ label: '处方号', name: 'rxno', width: 90, align: 'center' }
+                    //{ label: 'ghitài khoảnchảynướcsố', name: 'bkkpSn', width: 90, align: 'center' },
+                    //{ label: 'Mã số cơ sở y dược chỉ định', name: 'fixmedinsCode', width: 90, align: 'center' },
+                    //{ label: 'Mã mục lục y tế', name: 'medListCodg', width: 150, align: 'center' },
+                    //{ label: 'Mã mục lục cơ sở y dược', name: 'medinsListCodg', width: 450, align: 'center' },
+                    //{ label: 'Loại khoản thu phí y tế', name: 'medChrgitmType', width: 18, align: 'center' },
+                    //{ label: 'Tên thương mại', name: 'prodname', width: 600, align: 'center' },
+                    //{ label: 'mởphiếukhoaphòngmãmã', name: 'bilgDeptCodg', width: 90, align: 'center' },
+                    //{ label: 'mởphiếuy tếsinhmãmã', name: 'bilgDrCode', width: 90, align: 'center' },
+                    //{ label: 'Mã khoa nhận đơn', name: 'acordDeptCodg', width: 90, align: 'center' },
+                    //{ label: 'Tên khoa nhận đơn', name: 'acordDeptName', width: 300, align: 'center' },
+                    //{ label: 'Mã bác sĩ nhận đơn', name: 'acordDrCode', width: 90, align: 'center' },
+                    //{ label: 'Tên bác sĩ nhận đơn', name: 'acordDrName', width: 150, align: 'center' },
+                    //{ label: 'Cách dùng thuốc Đông y', name: 'tcmdrugUsedWay', width: 18, align: 'center' },
+                    //{ label: 'Dấu hiệu xét nghiệm ngoài', name: 'etipFlag', width: 9, align: 'center' },
+                    //{ label: 'Mã bệnh viện xét nghiệm ngoài', name: 'etipHospCode', width: 90, align: 'center' },
+                    //{ label: 'Dấu hiệu mang thuốc khi xuất viện', name: 'dscgTkdrugFlag', width: 9, align: 'center' },
+                    //{ label: 'Mô tả liều dùng mỗi lần', name: 'sinDosDscr', width: 600, align: 'center' },
+                    //{ label: 'Mô tả tần suất sử dụng', name: 'usedFrquDscr', width: 600, align: 'center' },
+                    //{ label: 'tuầnkỳtrờisố', name: 'prdDays', width: 12, align: 'center' },
+                    //{ label: 'Mô tả đường dùng thuốc', name: 'medcWayDscr', width: 600, align: 'center' },
+                    //{ label: 'Ghi chú', name: 'memo', width: 1500, align: 'center' },
+                    //{ label: 'Số tiền tự trả trước', name: 'preselfpayAmt', width: 48, align: 'center' },
+                    //{ label: 'Số tiền phù hợp phạm vi chính sách', name: 'inscpAmt', width: 48, align: 'center' },
+                    //{ label: 'Cờ hiệu lực', name: 'valiFlag', width: 9, align: 'center' },
+                    //{ label: 'Số bản ghi duy nhất', name: 'rid', width: 90, align: 'center' },
+                    //{ label: 'Thời gian cập nhật', name: 'updtTime', width: 180, align: 'center' },
+                    //{ label: 'Người tạo', name: 'crterId', width: 60, align: 'center' },
+                    //{ label: 'Họ tên người tạo', name: 'crterName', width: 150, align: 'center' },
+                    //{ label: 'Thời gian tạo mới', name: 'crteTime', width: 180, align: 'center' },
+                    //{ label: 'Cơ sở tạo', name: 'crteOptinsNo', width: 60, align: 'center' },
+                    //{ label: 'Người xử lýID', name: 'opterId', width: 60, align: 'center' },
+                    //{ label: 'Cơ sở xử lý', name: 'optinsNo', width: 60, align: 'center' },
+                    //{ label: 'Mã khu vực quỹ chung', name: 'poolareaNo', width: 30, align: 'center' },
+                    //{ label: 'Dấu hiệu phê duyệt thông qua', name: 'chkPassFlag', width: 9, align: 'center' },
+                    //{ label: 'Số đơn thuốc', name: 'rxno', width: 90, align: 'center' }
                 ];
                 break;
             case "4208":
@@ -1066,61 +1066,61 @@
                     { label: 'Tổng chi phí y tế', name: 'medfeeSumamt', width: 60, align: 'center' },
                     { label: 'Hoàn thành dấu hiệu', name: 'cpltFlag', width: 60, align: 'center' },
 
-                    //{ label: '定点医药机构编号', name: 'fixmedinsCode', width: 90, align: 'center' },
-                    //{ label: '人员证件类型', name: 'psnCertType', width: 18, align: 'center' },
-                    //{ label: '民族', name: 'naty', width: 9, align: 'center' },
-                    //{ label: '出生日期', name: 'brdy', width: 180, align: 'center' },
-                    //{ label: '年龄', name: 'age', width: 12, align: 'center' },
-                    //{ label: '联系人姓名', name: 'conerName', width: 150, align: 'center' },
-                    //{ label: '联系电话', name: 'tel', width: 150, align: 'center' },
-                    //{ label: '联系地址', name: 'addr', width: 1500, align: 'center' },
-                    //{ label: '主诊医师代码', name: 'chfpdrCode', width: 90, align: 'center' },
-                    //{ label: '入院科室编码', name: 'admDeptCodg', width: 90, align: 'center' },
-                    //{ label: '入院科室名称', name: 'admDeptName', width: 300, align: 'center' },
-                    //{ label: '入院床位', name: 'admBed', width: 90, align: 'center' },
-                    //{ label: '病区床位', name: 'wardareaBed', width: 150, align: 'center' },
-                    //{ label: '转科室标志', name: 'trafDeptFlag', width: 18, align: 'center' },
-                    //{ label: '出院主诊断代码', name: 'dscgMaindiagCode', width: 60, align: 'center' },
-                    //{ label: '出院科室编码', name: 'dscgDeptCodg', width: 90, align: 'center' },
-                    //{ label: '出院科室名称', name: 'dscgDeptName', width: 300, align: 'center' },
-                    //{ label: '出院床位', name: 'dscgBed', width: 90, align: 'center' },
-                    //{ label: '离院方式', name: 'dscgWay', width: 9, align: 'center' },
-                    //{ label: '病种编号', name: 'diseNo', width: 90, align: 'center' },
-                    //{ label: '病种名称', name: 'diseName', width: 1500, align: 'center' },
-                    //{ label: '手术操作代码', name: 'oprnOprtCode', width: 90, align: 'center' },
-                    //{ label: '手术操作名称', name: 'oprnOprtName', width: 1500, align: 'center' },
-                    //{ label: '在院状态', name: 'inhospStas', width: 9, align: 'center' },
-                    //{ label: '死亡日期', name: 'dieDate', width: 180, align: 'center' },
-                    //{ label: '住院天数', name: 'iptDays', width: 48, align: 'center' },
-                    //{ label: '计划生育服务证号', name: 'fpscNo', width: 150, align: 'center' },
-                    //{ label: '生育类别', name: 'matnType', width: 18, align: 'center' },
-                    //{ label: '计划生育手术类别', name: 'birctrlType', width: 18, align: 'center' },
-                    //{ label: '晚育标志', name: 'latechbFlag', width: 9, align: 'center' },
-                    //{ label: '孕周数', name: 'gesoVal', width: 6, align: 'center' },
-                    //{ label: '胎次', name: 'fetts', width: 9, align: 'center' },
-                    //{ label: '胎儿数', name: 'fetusCnt', width: 9, align: 'center' },
-                    //{ label: '早产标志', name: 'pretFlag', width: 9, align: 'center' },
-                    //{ label: '妊娠时间', name: 'preyTime', width: 180, align: 'center' },
-                    //{ label: '计划生育手术或生育日期', name: 'birctrlMatnDate', width: 180, align: 'center' },
-                    //{ label: '伴有并发症标志', name: 'copFlag', width: 9, align: 'center' },
-                    //{ label: '有效标志', name: 'valiFlag', width: 9, align: 'center' },
-                    //{ label: '备注', name: 'memo', width: 1500, align: 'center' },
-                    //{ label: '经办人ID', name: 'opterId', width: 60, align: 'center' },
-                    //{ label: '经办人姓名', name: 'opterName', width: 150, align: 'center' },
-                    //{ label: '经办时间', name: 'optTime', width: 180, align: 'center' },
-                    //{ label: '唯一记录号', name: 'rid', width: 90, align: 'center' },
-                    //{ label: '更新时间', name: 'updtTime', width: 180, align: 'center' },
-                    //{ label: '创建人ID', name: 'crterId', width: 60, align: 'center' },
-                    //{ label: '创建人姓名', name: 'crterName', width: 150, align: 'center' },
-                    //{ label: '创建时间', name: 'crteTime', width: 180, align: 'center' },
-                    //{ label: '创建机构', name: 'crteOptinsNo', width: 60, align: 'center' },
-                    //{ label: '经办机构', name: 'optinsNo', width: 60, align: 'center' },
-                    //{ label: '统筹区编码', name: 'poolareaNo', width: 30, align: 'center' },
-                    //{ label: '住院主诊断名称', name: 'dscgMaindiagName', width: 900, align: 'center' },
-                    //{ label: '电子票据代码', name: 'elecBillCode', width: 150, align: 'center' },
-                    //{ label: '电子票据号码', name: 'elecBillnoCode', width: 150, align: 'center' },
-                    //{ label: '电子票据校验码', name: 'elecBillChkcode', width: 18, align: 'center' },
-                    //{ label: '扩展字段', name: 'expContent', width: 12000, align: 'center' }
+                    //{ label: 'Mã số cơ sở y dược chỉ định', name: 'fixmedinsCode', width: 90, align: 'center' },
+                    //{ label: 'Loại giấy tờ nhân viên', name: 'psnCertType', width: 18, align: 'center' },
+                    //{ label: 'Dân tộc', name: 'naty', width: 9, align: 'center' },
+                    //{ label: 'Ngày sinh', name: 'brdy', width: 180, align: 'center' },
+                    //{ label: 'Tuổi', name: 'age', width: 12, align: 'center' },
+                    //{ label: 'liênhệngườihọtên', name: 'conerName', width: 150, align: 'center' },
+                    //{ label: 'Điện thoại liên hệ', name: 'tel', width: 150, align: 'center' },
+                    //{ label: 'Địa chỉ liên hệ', name: 'addr', width: 1500, align: 'center' },
+                    //{ label: 'Mã bác sĩ điều trị chính', name: 'chfpdrCode', width: 90, align: 'center' },
+                    //{ label: 'vàoviệnkhoaphòngmãmã', name: 'admDeptCodg', width: 90, align: 'center' },
+                    //{ label: 'vàoviệnkhoaphòngtêngọi', name: 'admDeptName', width: 300, align: 'center' },
+                    //{ label: 'vàoviệngiườngvị', name: 'admBed', width: 90, align: 'center' },
+                    //{ label: 'bệnhquậngiườngvị', name: 'wardareaBed', width: 150, align: 'center' },
+                    //{ label: 'chuyểnkhoaphòngtiêuchí', name: 'trafDeptFlag', width: 18, align: 'center' },
+                    //{ label: 'Mã chẩn đoán chính xuất viện', name: 'dscgMaindiagCode', width: 60, align: 'center' },
+                    //{ label: 'raviệnkhoaphòngmãmã', name: 'dscgDeptCodg', width: 90, align: 'center' },
+                    //{ label: 'raviệnkhoaphòngtêngọi', name: 'dscgDeptName', width: 300, align: 'center' },
+                    //{ label: 'Giường xuất viện', name: 'dscgBed', width: 90, align: 'center' },
+                    //{ label: 'Cách rời viện', name: 'dscgWay', width: 9, align: 'center' },
+                    //{ label: 'Số loại bệnh', name: 'diseNo', width: 90, align: 'center' },
+                    //{ label: 'Tên loại bệnh', name: 'diseName', width: 1500, align: 'center' },
+                    //{ label: 'tayphẫu thuậtthao táclàmthaymã', name: 'oprnOprtCode', width: 90, align: 'center' },
+                    //{ label: 'tayphẫu thuậtthao táclàmtêngọi', name: 'oprnOprtName', width: 1500, align: 'center' },
+                    //{ label: 'Trạng thái đang nằm viện', name: 'inhospStas', width: 9, align: 'center' },
+                    //{ label: 'chếtmấtngàykỳ', name: 'dieDate', width: 180, align: 'center' },
+                    //{ label: 'Số ngày nằm viện', name: 'iptDays', width: 48, align: 'center' },
+                    //{ label: 'Số chứng nhận dịch vụ kế hoạch hóa gia đình', name: 'fpscNo', width: 150, align: 'center' },
+                    //{ label: 'sinhnuôiloạikhác', name: 'matnType', width: 18, align: 'center' },
+                    //{ label: 'Loại phẫu thuật kế hoạch hóa gia đình', name: 'birctrlType', width: 18, align: 'center' },
+                    //{ label: 'Dấu hiệu sinh muộn', name: 'latechbFlag', width: 9, align: 'center' },
+                    //{ label: 'Số tuần thai', name: 'gesoVal', width: 6, align: 'center' },
+                    //{ label: 'Số lần mang thai', name: 'fetts', width: 9, align: 'center' },
+                    //{ label: 'Số thai nhi', name: 'fetusCnt', width: 9, align: 'center' },
+                    //{ label: 'Dấu hiệu sinh non', name: 'pretFlag', width: 9, align: 'center' },
+                    //{ label: 'Thời gian mang thai', name: 'preyTime', width: 180, align: 'center' },
+                    //{ label: 'Ngày phẫu thuật kế hoạch hóa gia đình hoặc sinh con', name: 'birctrlMatnDate', width: 180, align: 'center' },
+                    //{ label: 'Dấu hiệu có biến chứng kèm theo', name: 'copFlag', width: 9, align: 'center' },
+                    //{ label: 'Cờ hiệu lực', name: 'valiFlag', width: 9, align: 'center' },
+                    //{ label: 'Ghi chú', name: 'memo', width: 1500, align: 'center' },
+                    //{ label: 'Người xử lýID', name: 'opterId', width: 60, align: 'center' },
+                    //{ label: 'Tên người xử lý', name: 'opterName', width: 150, align: 'center' },
+                    //{ label: 'Thời gian xử lý', name: 'optTime', width: 180, align: 'center' },
+                    //{ label: 'Số bản ghi duy nhất', name: 'rid', width: 90, align: 'center' },
+                    //{ label: 'Thời gian cập nhật', name: 'updtTime', width: 180, align: 'center' },
+                    //{ label: 'Người tạoID', name: 'crterId', width: 60, align: 'center' },
+                    //{ label: 'Họ tên người tạo', name: 'crterName', width: 150, align: 'center' },
+                    //{ label: 'Thời gian tạo mới', name: 'crteTime', width: 180, align: 'center' },
+                    //{ label: 'Cơ sở tạo', name: 'crteOptinsNo', width: 60, align: 'center' },
+                    //{ label: 'Cơ sở xử lý', name: 'optinsNo', width: 60, align: 'center' },
+                    //{ label: 'Mã khu vực quỹ chung', name: 'poolareaNo', width: 30, align: 'center' },
+                    //{ label: 'Tên chẩn đoán chính nội trú', name: 'dscgMaindiagName', width: 900, align: 'center' },
+                    //{ label: 'Mã hóa đơn điện tử', name: 'elecBillCode', width: 150, align: 'center' },
+                    //{ label: 'Số hóa đơn điện tử', name: 'elecBillnoCode', width: 150, align: 'center' },
+                    //{ label: 'Mã kiểm tra hóa đơn điện tử', name: 'elecBillChkcode', width: 18, align: 'center' },
+                    //{ label: 'Trường mở rộng', name: 'expContent', width: 12000, align: 'center' }
                 ];
                 break;
             case "4209":
@@ -1140,20 +1140,20 @@
                     { label: 'Thời gian xử lý', name: 'optTime', width: 180, align: 'center' }
 
                    
-                    //{ label: '定点医药机构编号', name: 'fixmedinsCode', width: 90, align: 'center' },
-                    //{ label: '主诊断标志', name: 'maindiagFlag', width: 9, align: 'center' },
-                    //{ label: '诊断排序号', name: 'diagSrtNo', width: 6, align: 'center' },
-                    //{ label: '诊断医师代码', name: 'diagDrCode', width: 90, align: 'center' },
-                    //{ label: '有效标志', name: 'valiFlag', width: 9, align: 'center' },
-                    //{ label: '经办人ID', name: 'opterId', width: 60, align: 'center' },
-                    //{ label: '唯一记录号', name: 'rid', width: 90, align: 'center' },
-                    //{ label: '更新时间', name: 'updtTime', width: 180, align: 'center' },
-                    //{ label: '创建人ID', name: 'crterId', width: 60, align: 'center' },
-                    //{ label: '创建人姓名', name: 'crterName', width: 150, align: 'center' },
-                    //{ label: '创建时间', name: 'crteTime', width: 180, align: 'center' },
-                    //{ label: '创建机构', name: 'crteOptinsNo', width: 60, align: 'center' },
-                    //{ label: '经办机构', name: 'optinsNo', width: 60, align: 'center' },
-                    //{ label: '统筹区编码', name: 'poolareaNo', width: 30, align: 'center' }
+                    //{ label: 'Mã số cơ sở y dược chỉ định', name: 'fixmedinsCode', width: 90, align: 'center' },
+                    //{ label: 'Dấu hiệu chẩn đoán chính', name: 'maindiagFlag', width: 9, align: 'center' },
+                    //{ label: 'Số thứ tự chẩn đoán', name: 'diagSrtNo', width: 6, align: 'center' },
+                    //{ label: 'Mã bác sĩ chẩn đoán', name: 'diagDrCode', width: 90, align: 'center' },
+                    //{ label: 'Cờ hiệu lực', name: 'valiFlag', width: 9, align: 'center' },
+                    //{ label: 'Người xử lýID', name: 'opterId', width: 60, align: 'center' },
+                    //{ label: 'Số bản ghi duy nhất', name: 'rid', width: 90, align: 'center' },
+                    //{ label: 'Thời gian cập nhật', name: 'updtTime', width: 180, align: 'center' },
+                    //{ label: 'Người tạoID', name: 'crterId', width: 60, align: 'center' },
+                    //{ label: 'Họ tên người tạo', name: 'crterName', width: 150, align: 'center' },
+                    //{ label: 'Thời gian tạo mới', name: 'crteTime', width: 180, align: 'center' },
+                    //{ label: 'Cơ sở tạo', name: 'crteOptinsNo', width: 60, align: 'center' },
+                    //{ label: 'Cơ sở xử lý', name: 'optinsNo', width: 60, align: 'center' },
+                    //{ label: 'Mã khu vực quỹ chung', name: 'poolareaNo', width: 30, align: 'center' }
                 ];
                 break;
         }
@@ -1300,10 +1300,10 @@
         showJZXXQuery();
     });
 
-    //-----------------------------就诊信息查询页面 end-----------------------------//
+    //-----------------------------Trang tra cứu thông tin khám end-----------------------------//
 
 
-    //-----------------------------医疗机构信息查询页面 start---------------------------//
+    //-----------------------------Trang tra cứu thông tin cơ sở y tế start---------------------------//
     function GetYbJGInfo() {
         $.loading(true);
         var type = $('#sel_jgcxtype').val();
@@ -1956,13 +1956,13 @@
         $.loading(false);
     }
 
-    //页面加载时执行
+    //trangmặtthêmtảithời gianthực hiệnthực hiện
     showTH();
-    //判断医疗机构信息展示什么搜索条件
+    //xétđoạny tếđiều trịmáycơ quanthông tintinmở rộnghiển thịgìgìtìmtìmdònghạng
     function showTH() {
         var type = $('#sel_jgcxtype').val();
         if (type === '1201') {
-            $('.1201-show').show(); // 显示医药机构信息
+            $('.1201-show').show(); // hiển thịhiển thịy tếthuốcmáycơ quanthông tintin
             $('.time-show').hide();
             $('.35-show').hide();
             $('.3607-show').hide();
@@ -1974,7 +1974,7 @@
             $("#page_num").val(1);
             $("#page_size").val(100);
         } else if (type.startsWith("35")) {
-            $('.1201-show').hide(); // 隐藏医药机构信息
+            $('.1201-show').hide(); // ẩngiấuy tếthuốcmáycơ quanthông tintin
             $('.time-show').show();
             $('.35-show').show();
             $('.3607-show').hide();
@@ -1992,5 +1992,5 @@
         showTH();
     });
 
-    //-----------------------------医疗机构信息查询页面 end---------------------------//
+    //-----------------------------Trang tra cứu thông tin cơ sở y tế end---------------------------//
 </script>

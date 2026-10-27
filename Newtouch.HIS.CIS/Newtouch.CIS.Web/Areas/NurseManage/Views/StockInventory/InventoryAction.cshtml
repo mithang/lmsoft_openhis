@@ -145,14 +145,14 @@
     var ObjArr_Load = new Array();
     var ObjArr_LoadNoPc = new Array();
     $(function () {
-        $("#btn_backIndex").click(function () {//返回
+        $("#btn_backIndex").click(function () {//Quay lại
             window.location.href = "Index";
         });
         Initial();
         newtouch_event_f2();
     });
 
-    //初始化盘点
+    //Khởi tạoKiểm kê
     function Initial() {
         $(".toolbar").css("width", 250);
         $("#ddllb").bindSelect({
@@ -163,7 +163,7 @@
         GetPdsj();
         gridKCInfo();
         gridKCInfoNoPc();
-        $("#btn_search").click(function () {//绑定查询查询
+        $("#btn_search").click(function () {//gắnTra cứuTra cứu
             if ($("#i-noPc").hasClass("fa-toggle-off")) {
                 $gridKCInfoNoPc.jqGrid('setGridParam',
                     {
@@ -181,7 +181,7 @@
         $("#dv-gridKCInfo").hide();
     }
 
-    //开始盘点
+    //Bắt đầuKiểm kê
     function newtouch_event_f2() {
         $.UpdateProgressbar.clean();
         $.najax({
@@ -199,9 +199,9 @@
         });
     }
 
-    //获取盘点时间
+    //LấyKiểm kêThời gian
     function GetPdsj() {
-        $("#ddlRQ").empty();//先清空，再填充
+        $("#ddlRQ").empty();//Xóa trắng trước，lạiđiền
         $("#ddlRQ").bindSelect({
             url: "/NurseManage/StockInventory/GetPdsj",
             id: "pdId",
@@ -209,7 +209,7 @@
         });
     }
 
-    //是否按批次
+    //CóKhôngtheoLô
     function accordingBatch(obj) {
         if ($(obj).hasClass("fa-toggle-off")) {
             $(obj).removeClass("fa-toggle-off");
@@ -225,11 +225,11 @@
         $("#btn_search").trigger("click");
     }
 
-    //库存信息
+    //Tồn khothông tin
     function gridKCInfo() {
         $gridKCInfo.dataGrid({
             height: $(window).height() - 280,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //dòngSửakhông gửi lên máy chủGửiDữ liệu
             colModel: [
                 { label: 'Vật tưTên', name: 'wzmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
@@ -277,11 +277,11 @@
         });
     }
 
-    //库存信息
+    //Tồn khothông tin
     function gridKCInfoNoPc() {
         $gridKCInfoNoPc.dataGrid({
             height: $(window).height() - 280,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //dòngSửakhông gửi lên máy chủGửiDữ liệu
             colModel: [
                 { label: 'Vật tưTên', name: 'wzmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
@@ -325,7 +325,7 @@
         });
     }
 
-    //查询条件
+    //Điều kiện tìm kiếm
     function getSearchPostData() {
         var pdId = $("#ddlRQ option:selected").val();
         var pdsj = $("#ddlRQ option:selected").text();
@@ -342,9 +342,9 @@
         return { pdsj: pdsj, pdId: pdId, keyWord: keyWord, wzzt: wzzt, lb: lb, kcxs: kcxs };
     };
 
-    //加载第一次查询数据
+    //tảithứmột lầnTra cứuDữ liệu
     function afterCompleteFunction() {
-        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//GridtảiHoàn thànhbậtdòngtrongSửa   1.trướcLấytất cả các dòngId  2.duyệtgọieditRowPhương pháp
         ObjArr_Load = [];
         for (var i = 0; i < rowIds.length; i++) {
             ObjArr_Load.push($gridKCInfo.jqGrid('getRowData', rowIds[i]));
@@ -353,9 +353,9 @@
         }
     }
 
-    //加载第一次查询数据
+    //tảithứmột lầnTra cứuDữ liệu
     function afterCompleteFunctionNoPc() {
-        var rowIds = $gridKCInfoNoPc.jqGrid('getDataIDs');//Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = $gridKCInfoNoPc.jqGrid('getDataIDs');//GridtảiHoàn thànhbậtdòngtrongSửa   1.trướcLấytất cả các dòngId  2.duyệtgọieditRowPhương pháp
         ObjArr_LoadNoPc = [];
         for (var i = 0; i < rowIds.length; i++) {
             ObjArr_LoadNoPc.push($gridKCInfoNoPc.jqGrid('getRowData', rowIds[i]));
@@ -364,20 +364,20 @@
         }
     }
 
-    //保存
+    //Lưu
     function newtouch_event_f8() {
         var $targetJqg;
         var noPc = "0";
         if ($("#i-noPc").hasClass("fa-toggle-off")) {
-            $targetJqg = $gridKCInfoNoPc;//获取所有行Id，遍历使编辑框处于保存状态
+            $targetJqg = $gridKCInfoNoPc;//Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
             noPc = "1";
         } else {
-            $targetJqg = $gridKCInfo;//获取所有行Id，遍历使编辑框处于保存状态
+            $targetJqg = $gridKCInfo;//Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
             noPc = "0";
         }
-        var rowIds = $targetJqg.jqGrid('getDataIDs');//获取所有行Id，遍历使编辑框处于保存状态
+        var rowIds = $targetJqg.jqGrid('getDataIDs');//Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
 
-        //判断退数量
+        //kiểm tratrảSố lượng
         for (var i = 0; i < rowIds.length; i++) {
             $targetJqg.saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
             var rowData = $targetJqg.jqGrid('getRowData', rowIds[i]);
@@ -389,17 +389,17 @@
                 (isNaN(rowData.deptSjsl) && isNaN(rowData.minSjsl)) ||
                 (rowData.deptSjsl === "" && rowData.minSjsl === "")) {
                 $.modalAlert("Mục (" + rowData.ypmc + ") số lượng thực tế phải là số tự nhiên, vui lòng xác nhận.", "warning");
-                EnableInlineEditBox($targetJqg);//启用行内编辑框
+                EnableInlineEditBox($targetJqg);//Bật sửa trong dòngkhung
                 return false;
             }
         }
         var kcInfoJsonSave = $targetJqg.jqGrid('getRowData_AllLine');
         var objArrSave = new Array();
-        $.each(kcInfoJsonSave, function () {//保存时将Grid的数据行放在新的数组中
+        $.each(kcInfoJsonSave, function () {//LưukhisẽGridcủaDữ liệudòngđặtởmớicủasốnhómtrong
             objArrSave.push(this);
         });
 
-        //与页面加载的数组进行比对，将修改过的数据行放在resultObjArr中，传给后台
+        //vàtrangmặttảicủasốnhómvàodòngsođối，sẽSửaquacủaDữ liệudòngđặtởresultObjArrtrong，truyềnchomáy chủ
         var resultObjArr = new Array();
         if ($("#i-noPc").hasClass("fa-toggle-off")) {
             for (var i = 0; i < objArrSave.length; i++) {
@@ -438,21 +438,21 @@
         });
     }
 
-    //启用行内编辑框
+    //Bật sửa trong dòngkhung
     function EnableInlineEditBox($obj) {
-        var rowIds = $obj.jqGrid('getDataIDs');//Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = $obj.jqGrid('getDataIDs');//GridtảiHoàn thànhbậtdòngtrongSửa   1.trướcLấytất cả các dòngId  2.duyệtgọieditRowPhương pháp
         for (var i = 0; i < rowIds.length; i++) {
             $obj.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
             });
         }
     }
 
-    //将库存换算成最小单位数  拆零
+    //sẽTồn khođổitínhthànhĐơn vị nhỏ nhấtsố  tháokhông
     function CalculationMinUnitNum(deptNum, minNum, zhyz) {
         return parseInt(deptNum) * parseInt(zhyz) + parseInt(minNum);
     }
 
-    //取消盘点
+    //HủyKiểm kê
     function newtouch_event_f7() {
         $.najax({
             type: "POST",
@@ -467,7 +467,7 @@
         });
     }
 
-    //结束盘点
+    //Kết thúcKiểm kê
     function newtouch_event_f3() {
         if ($("#autoCarryDown").is(":checked")) {
             $.modalConfirm("Xác nhậnTự độngTạoKết chuyển?",
@@ -490,7 +490,7 @@
             data: { pdId: $("#ddlRQ option:selected").val(), autoCarryDown: $("#autoCarryDown").is(":checked") ? "1" : "0" },
             success: function (ajaxresp) {
                 $.modalMsg("Kiểm kêHoàn thành", 'success');
-                GetPdsj();//刷新盘点时间及药品信息
+                GetPdsj();//Làm mớiKiểm kêThời gianvàThuốcthông tin
                 $.UpdateProgressbar.update(4);
                 $("#btn_search").trigger("click");
             },
@@ -502,7 +502,7 @@
 
     
 
-    //进度调更新
+    //vàođộgọiCập nhật
     $.UpdateProgressbar = {
         startPd: function () {
             if (!$("#dv_startPd").hasClass("completeLi")) {
@@ -558,7 +558,7 @@
                     break;
             }
         },
-        clean: function () {//初始化进度条 归零
+        clean: function () {//Khởi tạovàođộdòng vềkhông
             $("li").removeClass("completeLi");
             $("i").removeClass("completePoint");
         }

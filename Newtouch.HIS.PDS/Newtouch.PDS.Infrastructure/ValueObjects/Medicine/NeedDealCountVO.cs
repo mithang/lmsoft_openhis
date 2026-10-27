@@ -1,67 +1,67 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 待处理事件汇总
+    /// Tổng hợp sự kiện chờ xử lý
     /// </summary>
     public class NeedDealCountVO
     {
         /// <summary>
-        /// 调价待审核
+        /// Điều chỉnh giá chờ duyệt
         /// </summary>
         public long? tjshCount { get; set; }
 
         /// <summary>
-        /// 调价药品
+        /// Thuốc điều chỉnh giá
         /// </summary>
         public long? tjypCount { get; set; }
 
         /// <summary>
-        /// 门诊待排
+        /// Chờ xếp ngoại trú
         /// </summary>
         public long? mzdpCount { get; set; }
 
         /// <summary>
-        /// 门诊待发药
+        /// Thuốc ngoại trú chờ phát
         /// </summary>
         public long? mzdfCount { get; set; }
 
         /// <summary>
-        /// 住院待排
+        /// Chờ xếp nội trú
         /// </summary>
         public long? zydpCount { get; set; }
 
         /// <summary>
-        /// 住院待发药
+        /// Chờ phát thuốc nội trú
         /// </summary>
         public long? zydfCount { get; set; }
 
         /// <summary>
-        /// 住院待退药
+        /// Trả thuốc nội trú chờ
         /// </summary>
         public long? zydtCount { get; set; }
 
         /// <summary>
-        /// 申领待审核
+        /// Lĩnh chờ duyệt
         /// </summary>
         public long? sldshCount { get; set; }
 
         /// <summary>
-        /// 出库待审核
+        /// Xuất kho chờ duyệt
         /// </summary>
         public long? ckdshCount { get; set; }
 
         /// <summary>
-        /// 入库待审核
+        /// Nhập kho chờ duyệt
         /// </summary>
         public long? rkdshCount { get; set; }
 
         /// <summary>
-        /// 过期药品数量
+        /// Số lượng thuốc hết hạn
         /// </summary>
         public long? expiryDrugCount { get; set; }
 
         /// <summary>
-        /// 当日过期药品数量
+        /// Số lượng thuốc hết hạn trong ngày
         /// </summary>
         public long? todayDrugCount { get; set; }
 

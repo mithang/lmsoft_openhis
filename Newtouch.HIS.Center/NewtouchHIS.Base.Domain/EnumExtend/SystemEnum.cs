@@ -8,84 +8,84 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.EnumExtend
 {
     /// <summary>
-    /// 日志记录类型
+    /// Loại ghi nhật ký
     /// </summary>
     public enum DbLogType
     {
         /// <summary>
-        /// 其他
+        /// Khác
         /// </summary>
-        [Description("其他")]
+        [Description("Khác")]
         Other = 0,
         /// <summary>
-        /// 登录
+        /// Đăng nhập
         /// </summary>
-        [Description("登录")]
+        [Description("Đăng nhập")]
         Login = 1,
         /// <summary>
-        /// 退出
+        /// Thoát
         /// </summary>
-        [Description("退出")]
+        [Description("Thoát")]
         Exit = 2,
         /// <summary>
-        /// 访问
+        /// Truy cập
         /// </summary>
-        [Description("访问")]
+        [Description("Truy cập")]
         Visit = 3,
         /// <summary>
-        /// 新增
+        /// Thêm mới
         /// </summary>
-        [Description("新增")]
+        [Description("Thêm mới")]
         Create = 4,
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
-        [Description("删除")]
+        [Description("Xóa")]
         Delete = 5,
         /// <summary>
-        /// 修改
+        /// Sửa đổi
         /// </summary>
-        [Description("修改")]
+        [Description("Sửa đổi")]
         Update = 6,
         /// <summary>
-        /// 提交
+        /// Nộp
         /// </summary>
-        [Description("提交")]
+        [Description("Nộp")]
         Submit = 7,
         /// <summary>
-        /// 异常
+        /// Ngoại lệ
         /// </summary>
-        [Description("异常")]
+        [Description("Ngoại lệ")]
         Exception = 8,
     }
 
     /// <summary>
-    /// 菜单目标类型
+    /// Loại đích của menu
     /// </summary>
     public enum EnumModuleTargetType
     {
         /// <summary>
-        /// 无页面
+        /// Không có trang
         /// </summary>
         expand,
         /// <summary>
-        /// 框架页
+        /// Trang khung
         /// </summary>
         iframe,
         /// <summary>
-        /// 弹出页
+        /// Trang bật lên
         /// </summary>
         open,
         /// <summary>
-        /// 新窗口
+        /// Cửa sổ mới
         /// </summary>
         blank,
         /// <summary>
-        /// 子页面（不显示在菜单中）
+        /// Trang con(Không hiển thị trong menu)
         /// </summary>
         subpage,
         /// <summary>
-        /// 当前窗口
+        /// Cửa sổ hiện tại
         /// </summary>
         toplocation,
     }

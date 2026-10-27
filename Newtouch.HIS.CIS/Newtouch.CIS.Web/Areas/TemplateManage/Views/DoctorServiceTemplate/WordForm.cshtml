@@ -45,8 +45,8 @@
 
 <script>
     var mbId = $.request("mbId");
-    var localdata = [];//带药对象
-    var deldata = [];//删除对象
+    var localdata = [];//mang thuốcđối tượng
+    var deldata = [];//Xóađối tượng
     $(function () {
         gridword();
 
@@ -77,17 +77,17 @@
         }
     });
 
-    //列表
+    //danh sách
     function gridword() {
         var $gridword = $("#gridword");
         $gridword.jqGrid({
             datatype: 'local',
             data: localdata,
             height: $(window).height() - 200,
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            shrinkToFit: true,   //true:theo tỷ lệVDkhởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
             autowidth: true,
-            rownumbers: true,  //是否显示Số thứ tự
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            rownumbers: true,  //CóKhôngHiển thịSố thứ tự
+            editurl: "clientArray",  //dòngSửakhông gửi lên máy chủGửiDữ liệu
             unwritten: false,
             colModel: [
                 {label: 'Id', name: 'Id', width: 120, editwidth: '81%', align: 'center', hidden: true},
@@ -102,8 +102,8 @@
                 { label: 'Thao tác', name: 'action', width: 30, align: 'center' },
                 { name: 'yzlx', hidden: true }
             ],
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
+            editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
             pager: "gridwordPager",
             loadComplete: function () {
                 if (localdata && localdata.length == 0) {
@@ -112,12 +112,12 @@
             },
             gridComplete: function () {
                 EnableWordInlineEditBox();
-                //隐藏grid底部滚动条
+                //Ẩngridthanh cuộn dưới cùng
                 $gridword.closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
             }
         });
 
-        //二级菜单
+        //Menu cấp 2
         $gridword.jqGrid('setGroupHeaders', {
             useColSpanStyle: true,
             groupHeaders: [
@@ -128,7 +128,7 @@
                 }]
         });
 
-        //自定义按钮
+        //Nút tùy chỉnh
         $gridword.navGrid('#gridwordPager',
             { edit: false, add: false, del: false, search: false, refresh: false, view: false, position: "left", cloneToTop: false })
             .navButtonAdd('#gridwordPager',
@@ -143,21 +143,21 @@
             })
     }
 
-    //启用行内编辑
+    //Bật sửa trong dòng
     function EnableWordInlineEditBox() {
         var ids = $("#gridword").getDataIDs();
         $.each(ids, function () {
             var rowid = String(this);
-            //打开编辑模式
+            //MởSửachế độ
             $("#gridword").jqGrid('editRow', rowid, false, initWordInlineFunc);
         });
     }
 
-    //初始化 浮层
+    //Khởi tạo lớp nổi
     function initWordInlineFunc(rowid) {
-        //部分列只读
+        //Một số cột chỉ đọc
         $("#" + rowid + "_pcmc").attr('readonly', 'true');
-        //频次浮层
+        //Lớp nổi tần suất
         $("#" + rowid + "_pcmc").pcFloatingSelector({
             showtext: 'yzpcmc',
             attrcols: ['yzpcmc', 'yzpcCode', 'zxcs', 'zxzq', 'zxzqdw'],
@@ -170,7 +170,7 @@
             },
         });
 
-        //嘱托浮层
+        //Lớp nổi dặn dò
         $("#" + rowid + "_ztnr").ztFloatingSelector({
             height: 100,
             itemdbclickhandler: function ($this) {
@@ -179,23 +179,23 @@
         });
     }
 
-    //新增 按钮
+    //Thêm mới Nút
     function newWordPresData() {
         var dataRow = {
             Id: Math.random().toString() + new Date().getMilliseconds(),
             xmdm: "999999999999999999",
-            yzlx: @Html.Raw(((int)EnumYzlx.Wz).ToString()),//文字录入
+            yzlx: @Html.Raw(((int)EnumYzlx.Wz).ToString()),//văn bảnnhập
             action: getWordActionStr()
         };
         $("#gridword").jqGrid("addRowData", undefined, dataRow, "first");
     }
 
-    //删除明细
+    //Xóa chi tiết
     function deleteIRowData(selRowId, recalc) {
         if (!!selRowId) {
            var Id= $("#gridword").jqGrid('getRowData', selRowId).Id;
             $("#gridword").jqGrid("delRowData", selRowId);
-            if (Id.indexOf("0.")=='-1') {//记录下来，从数据库删除
+            if (Id.indexOf("0.")=='-1') {//ghi lại，từCơ sở dữ liệuXóa
                 deldata.push(Id);
             }
         }
@@ -205,25 +205,25 @@
         return "<input class='btn btn-default btn-md btn_del' type='button' value='Delete' onclick='deleteIRowData($(this).parent().parent().attr(\"id\"))'/>";
     }
 
-      //保存
+      //Lưu
     function Save() {
-        if (ValidateWord()) {//验证数据
-            //获取所有行Id，遍历使编辑框处于保存状态
+        if (ValidateWord()) {//kiểm traDữ liệu
+            //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
             var rowIds = $("#gridword").jqGrid('getDataIDs');
 
             for (var i = 0; i < rowIds.length; i++) {
                 var saveResult = $("#gridword").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
                 if (!saveResult) {
-                    EnableWordInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                    return;   //保存失败，则return
+                    EnableWordInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
+                    return;   //Lưu thất bại，thìreturn
                 }
             }
             var gridwordData = $("#gridword").jqGrid('getRowData_AllLine', null, true);
             if (gridwordData.length < 1) {
                 $.modalAlert("Hiện tạiKhông cóLưunội dung gói", 'warning');
             }
-            $.each(gridwordData, function () {    //去掉action
+            $.each(gridwordData, function () {    //Bỏaction
                 for (var i = 0; i < $(this).length; i++) {
                     delete $(this)[i].action;
                 }
@@ -233,9 +233,9 @@
         }
     }
 
-    //提交到后台
+    //Gửiđếnmáy chủ
     function submitService(gridwordData) {
-        //套餐表
+        //bảng gói
         var mbObj = {
             Id: mbId,
             tcfw: $('#mblx').val(),//$.currentWindow().$('#current').attr('data-type'),
@@ -261,9 +261,9 @@
         });
     }
 
-    //验证
+    //kiểm tra
     function ValidateWord() {
-        //是否有数据
+        //CóKhôngcóDữ liệu
         var data = $("#gridword").jqGrid('getRowData_AllLine', null, true);
         if (data.length==0) {
             $.modalAlert("Thiếu dữ liệu gói", 'warning');

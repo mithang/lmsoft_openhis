@@ -29,67 +29,67 @@ namespace Newtouch.EMR.Domain.DTO.InputDto
 		public int SSOrder { get; set; }
 
 		/// <summary>
-		/// 手术及操作编码
+		/// Mã phẫu thuật và thủ thuật
 		/// </summary>
 		/// <returns></returns>
 		public string SSJCZBM { get; set; }
 
 		/// <summary>
-		/// 手术及操作日期
+		/// Ngày phẫu thuật và thao tác
 		/// </summary>
 		/// <returns></returns>
 		public DateTime SSJCZRQ { get; set; }
 
 		/// <summary>
-		/// 手术级别
+		/// Cấp độ phẫu thuật
 		/// </summary>
 		/// <returns></returns>
 		public string SSJB { get; set; }
 
 		/// <summary>
-		/// 手术及操作名称
+		/// Tên phẫu thuật và thủ thuật
 		/// </summary>
 		/// <returns></returns>
 		public string SSJCZMC { get; set; }
 
 		/// <summary>
-		/// 术者
+		/// Người thực hiện phẫu thuật
 		/// </summary>
 		/// <returns></returns>
 		public string SZ { get; set; }
 
 		/// <summary>
-		/// I助
+		/// Phụ mổ I
 		/// </summary>
 		/// <returns></returns>
 		public string YZ { get; set; }
 
 		/// <summary>
-		/// II助
+		/// Phụ mổ II
 		/// </summary>
 		/// <returns></returns>
 		public string EZ { get; set; }
 
 		/// <summary>
-		/// 切口等级
+		/// Cấp độ vết mổ
 		/// </summary>
 		/// <returns></returns>
 		public string QKDJ { get; set; }
 
 		/// <summary>
-		/// 切口愈合类别
+		/// Loại lành vết mổ
 		/// </summary>
 		/// <returns></returns>
 		public string QKYHLB { get; set; }
 
 		/// <summary>
-		/// 麻醉方式
+		/// Phương pháp gây mê
 		/// </summary>
 		/// <returns></returns>
 		public string MZFS { get; set; }
 
 		/// <summary>
-		/// 麻醉医师
+		/// Bác sĩ gây mê
 		/// </summary>
 		/// <returns></returns>
 		public string MZYS { get; set; }
@@ -101,79 +101,79 @@ namespace Newtouch.EMR.Domain.DTO.InputDto
 		public string zt { get; set; }
 		public string QKYHDJ { get; set; }
 		/// <summary>
-		/// 主刀医生姓名
+		/// Tên bác sĩ phẫu thuật chính
 		/// </summary>
 		public string SZMC { get; set; }
 		/// <summary>
-		/// I助姓名
+		/// Tên phụ mổ I
 		/// </summary>
 		public string YZMC { get; set; }
 		/// <summary>
-		/// II助姓名
+		/// Tên phụ mổ II
 		/// </summary>
 		public string EZMC { get; set; }
 		/// <summary>
-		/// 麻醉医生姓名
+		/// Tên bác sĩ gây mê
 		/// </summary>
 		public string MZYSMC { get; set; }
 		/// <summary>
-		/// 麻醉方式描述
+		/// Mô tả phương pháp gây mê
 		/// </summary>
 		public string MZFSMS { get; set; }
 
 		/// <summary>
-		/// 是否急诊手术 0：否，1：是
+		/// Có phải phẫu thuật cấp cứu không 0：Không，1：Có
 		/// </summary>
 		public int? SSLX { get; set; }
 
 		/// <summary>
-		/// 手术开始日期
+		/// Ngày bắt đầu phẫu thuật
 		/// </summary>
 		public DateTime? SSKSSJ { get; set; }
 
 		/// <summary>
-		/// 手术结束日期
+		/// Ngày kết thúc phẫu thuật
 		/// </summary>
 		public DateTime? SSJSSJ { get; set; }
 
 		/// <summary>
-		/// 术前准备天数
+		/// Số ngày chuẩn bị trước mổ
 		/// </summary>
 		public decimal? SQZBSJT { get; set; }
 
 		/// <summary>
-		/// 术前预防性抗菌药物给药时间
+		/// Thời gian dùng thuốc kháng khuẩn dự phòng trước phẫu thuật
 		/// </summary>
 		public DateTime? SQYFKJGYS { get; set; }
 
 		/// <summary>
-		/// 麻醉开始时间
+		/// Thời gian bắt đầu gây mê
 		/// </summary>
 		public DateTime? MZKSSJNYR { get; set; }
 
 
 		/// <summary>
-		/// ASA麻醉分级
+		/// Cấp độ gây mê ASA
 		/// </summary>
 		public string MZFJ_ASA { get; set; }
 
 		/// <summary>
-		/// 切口部位
+		/// Vị trí vết mổ
 		/// </summary>
 		public string QKBW { get; set; }
 
 		/// <summary>
-		/// 手术切口感染
+		/// Nhiễm trùng vết mổ
 		/// </summary>
 		public string SSQKGR { get; set; }
 
 		/// <summary>
-		/// 手术并发症
+		/// Biến chứng phẫu thuật
 		/// </summary>
 		public string SSBFZ { get; set; }
 
 		/// <summary>
-		/// 手术并发症名称
+		/// Tên biến chứng phẫu thuật
 		/// </summary>
 		public string SSBFZMC { get; set; }
 

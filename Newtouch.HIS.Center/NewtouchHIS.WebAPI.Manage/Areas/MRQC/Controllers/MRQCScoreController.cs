@@ -23,7 +23,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.MRQC.Controllers
 
 
         /// <summary>
-        /// 获取病历质控达标情况
+        /// Lấy tình hình đạt chuẩn kiểm soát chất lượng bệnh án
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -37,7 +37,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.MRQC.Controllers
             }
             if (request == null || request.Data == null || (string.IsNullOrWhiteSpace(request.Data.zyh) && string.IsNullOrWhiteSpace(request.Data.bllxId) && string.IsNullOrWhiteSpace(request.Data.orgId)))
             {
-                return new BusResult<List<MRQCScoreVO>> { code = ResponseResultCode.FAIL, msg = "Vui lòng nhập điều kiện truy vấn（Số nhập viện/Loại bệnh án/Mã tổ chức）" };
+                return new BusResult<List<MRQCScoreVO>> { code = ResponseResultCode.FAIL, msg = "Vui lòng nhập điều kiện truy vấn(Số nhập viện/Loại bệnh án/Mã tổ chức)" };
             }
             if (string.IsNullOrWhiteSpace(request.Data.orgId))
             {

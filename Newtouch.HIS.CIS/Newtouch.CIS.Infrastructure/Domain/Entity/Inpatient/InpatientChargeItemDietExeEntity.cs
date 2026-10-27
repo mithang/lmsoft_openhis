@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 15:37
-    /// 描 述：住院通用膳食请求库
+    /// Tác giả: 冬林
+    /// Ngày：2018-06-28 15:37
+    /// Mô tả：Nhập việnChungăn uốngyêu cầukho
     /// </summary>
     [SugarTable("zy_tyssqqk")]
     public class InpatientChargeItemDietExeEntity
@@ -120,7 +120,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public decimal zxcs { get; set; }
         /// <summary>
-        /// 0临时1长期
+        /// 0Tạm thời1Dài hạn
         /// </summary>
         /// <returns></returns>
         public int zyxz { get; set; }
@@ -165,7 +165,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0无效1有效
+        /// 0Vô hiệu1Hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }

@@ -7,7 +7,7 @@ using Newtouch.Herp.Domain.IRepository;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 物资收费项目对照
+    /// Đối chiếu hạng mục thu phí vật tư
     /// </summary>
     public class RelProductAndsfxmApp : AppBase, IRelProductAndsfxmApp
     {

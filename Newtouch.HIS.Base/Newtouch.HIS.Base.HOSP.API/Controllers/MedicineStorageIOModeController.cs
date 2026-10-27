@@ -8,7 +8,7 @@ using Newtouch.HIS.Domain.IRepository;
 
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
-    /// <summary>药品出入库方式</summary>
+    /// <summary>Phương thức nhập/xuất thuốc</summary>
     [Route("api/MedicineStorageIOMode")]
     [ApiController]
     public class MedicineStorageIOModeController : ApiControllerBase

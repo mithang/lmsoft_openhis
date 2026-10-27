@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品剂型对应
+    /// Tương ứng dạng bào chế thuốc hệ thống
     /// </summary>
     [SugarTable("xt_yp_jxyfdy")]
   public  class SysMedicineDosageEntity : EntityBase

@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         private readonly ISysPharmacyDepartmentMedicineRepo _sysPharmacy;
 
         /// <summary>
-        /// 申请调拨 
+        /// Xin điều chuyển 
         /// GET: OutOrInStoredManage/Transfer/Apply
         /// </summary>
         /// <returns></returns>
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         }
 
         /// <summary>
-        /// 获取药房列表
+        /// Lấy danh sách nhà thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         /// <returns></returns>
         public IActionResult SubmitApply(DjInfoDTO djInfoDTO)
         {
-            #region 出入库单据
+            #region Chứng từ xuất nhập kho
 
             var dj = new SysMedicineStorageIOReceiptEntity
             {
@@ -128,18 +128,18 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             }
             if (djmx.IsEmpty())
             {
-                return Error("请录入调拨药品明细");
+                return Error("Vui lòng nhập chi tiết thuốc điều chuyển");
             }
             if (_djRepo.Insert(dj) <= 0)
             {
-                return Error("保存申请调拨单失败");
+                return Error("Lưu đơn xin điều chuyển thất bại");
             }
 
             _djmxRepo.Insert(djmx);
 
             #endregion
 
-            #region 申领单
+            #region Đơn lĩnh
 
             djInfoDTO.djlx = (int)EnumSldlx.shenqingdiaobodan;
             djInfoDTO.rkbm = Constants.CurrentYfbm.yfbmCode;
@@ -155,7 +155,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         }
 
         /// <summary>
-        /// 调拨入库
+        /// Nhập kho điều chuyển
         /// GET: OutOrInStoredManage/Transfer/Warehousing
         /// </summary>
         /// <returns></returns>
@@ -165,12 +165,12 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         }
 
         /// <summary>
-        /// 获取申领主表信息
+        /// Lấy thông tin bảng chính đơn lĩnh
         /// </summary>
         /// <param name="pagination"></param>
-        /// <param name="sldh">申领单号</param>
-        /// <param name="fybm">出库部门</param>
-        /// <param name="ffzt">发药状态</param>
+        /// <param name="sldh">Số đơn lĩnh</param>
+        /// <param name="fybm">Bộ phận xuất kho</param>
+        /// <param name="ffzt">Trạng thái phát thuốc</param>
         /// <param name="txtStartDate"></param>
         /// <param name="txtEndDate"></param>
         /// <returns></returns>
@@ -182,7 +182,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         }
 
         /// <summary>
-        /// 获取申领单药品信息
+        /// Lấy thông tin thuốc đơn lĩnh
         /// </summary>
         /// <param name="sldId"></param>
         /// <returns></returns>
@@ -197,7 +197,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         }
 
         /// <summary>
-        /// 调拨入库
+        /// Nhập kho điều chuyển
         /// </summary>
         /// <param name="xtYpLsNbfymxk"></param>
         /// <param name="fyfs"></param>
@@ -210,7 +210,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         }
 
         /// <summary>
-        /// 获取要申领的药品列表
+        /// Lấy danh sách thuốc cần lĩnh
         /// </summary>
         /// <param name="rkbm"></param>
         /// <param name="keyWord"></param>

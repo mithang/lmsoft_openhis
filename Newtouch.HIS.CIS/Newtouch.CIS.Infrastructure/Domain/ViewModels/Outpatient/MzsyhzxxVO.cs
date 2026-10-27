@@ -1,18 +1,18 @@
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// 门诊输液患者信息
+    /// Ngoại trútruyền dịchThông tin bệnh nhân
     /// </summary>
     public class MzsyhzxxVO
     {
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
         public string mzh { get; set; }

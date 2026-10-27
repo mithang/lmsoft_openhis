@@ -8,51 +8,51 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Domain.Enum
 {
     /// <summary>
-    /// HIS内部枚举
+    /// HISEnum nội bộ
     /// </summary>
     public class HisEnum
     {
         /// <summary>
-        /// 病人类型标志
+        /// Cờ loại bệnh nhân
         /// </summary>
         public enum PatTypeEnum
         {
-            [Description("在院")]
+            [Description("Đang nằm viện")]
             zy = 1,
-            [Description("出院")]
+            [Description("Xuất viện")]
             cy = 2,
-            [Description("门诊")]
+            [Description("Ngoại trú")]
             mz = 3,
 
         }
         /// <summary>
-        /// 在院标志
+        /// Cờ đang nằm viện
         /// </summary>
         public enum EnumZYBZ
         {
             /// <summary>
-            /// 入院登记
+            /// Đăng ký nhập viện
             /// </summary>
             Xry = 0,
             /// <summary>
-            /// 病区中
+            /// Đang ở khu bệnh
             /// </summary>
             Bqz = 1,
             /// <summary>
-            /// 病区出院（出病区）（待结账）
+            /// Xuất khỏi khu bệnh(Ra khỏi khu bệnh)(Chờ quyết toán)
             /// </summary>
             Djz = 2,
             /// <summary>
-            /// 已出院（出院结算）
+            /// Đã xuất viện(Quyết toán xuất viện)
             /// </summary>
             Ycy = 3,
             /// <summary>
-            /// 转区
+            /// Chuyển khu
             /// </summary>
             Zq = 7,
 
             /// <summary>
-            /// 作废记录/取消入院
+            /// Hồ sơ hủy/Hủy nhập viện
             /// </summary>
             Wry = 9,
         }
@@ -60,61 +60,61 @@ namespace NewtouchHIS.Domain.Enum
         public enum EnumYzzt
         {
             /// <summary>
-            /// 待审 
+            /// Chờ duyệt 
             /// </summary>
-            [Description("待审")]
+            [Description("Chờ duyệt")]
             Ds = 0,
             /// <summary>
-            /// 审核
+            /// Duyệt
             /// </summary>
-            [Description("审核")]
+            [Description("Duyệt")]
             Sh = 1,
             /// <summary>
-            /// 执行
+            /// Thực hiện
             /// </summary>
-            [Description("执行")]
+            [Description("Thực hiện")]
             Zx = 2,
             /// <summary>
-            /// 撤DC
+            /// RútDC
             /// </summary>
             [Description("DC")]
             DC = 3,
             /// <summary>
-            /// 停止或作废
+            /// Dừng hoặc hủy
             /// </summary>
-            [Description("停止")]
+            [Description("Dừng")]
             TZ = 4
         }
 
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public enum EnumBrxz
         {
             /// <summary>
-            /// 自费
+            /// Tự chi trả
             /// </summary>
-            [Description("自费")]
+            [Description("Tự chi trả")]
             zf = 0,
             /// <summary>
-            /// 职工医保
+            /// BHYT công nhân viên chức
             /// </summary>
-            [Description("职工医保")]
+            [Description("BHYT công nhân viên chức")]
             zg = 1,
             /// <summary>
-            /// 居民医保
+            /// BHYT cư dân
             /// </summary>
-            [Description("居民医保")]
+            [Description("BHYT cư dân")]
             jm = 2,
             /// <summary>
-            /// 离休
+            /// Nghỉ hưu theo chế độ
             /// </summary>
-            [Description("离休")]
+            [Description("Nghỉ hưu theo chế độ")]
             lx = 3,
             /// <summary>
-            /// 普通医保
+            /// BHYT thông thường
             /// </summary>
-            [Description("普通医保")]
+            [Description("BHYT thông thường")]
             pt = 11,
         }
 

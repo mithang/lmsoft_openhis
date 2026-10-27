@@ -6,54 +6,54 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity.DeptStorageManage
 {
     /// <summary>
-    /// 库存损益原因
+    /// Tồn khonguyên nhân lãi lỗ
     /// </summary>
     [SugarTable("dept_syyy")]
     public class DeptKcSyyyEntity
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 损溢原因
+        /// hỏngthừanguyên nhân
         /// </summary>
         public string syyy { get; set; }
 
         /// <summary>
-        /// 0 报损，1 报溢
+        /// 0 Báo hỏng，1 báo thừa
         /// </summary>
         public string sybz { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Thứ tự
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Sửa cuối người
         /// </summary>
         public string LastModifierCode { get; set; }
     }

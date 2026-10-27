@@ -15,16 +15,16 @@ namespace Newtouch.Domain.IDomainServices
 {
     public interface IPrepareMedicineDmnService
     {
-        #region 报损报益
+        #region Báo hỏngbáolợi
         /// <summary>
-        /// 查询损益药品list
+        /// Tra cứulãi lỗThuốclist
         /// </summary>
-        /// <param name="inputCode">关键字</param>
+        /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
         List<ReportLossAndProfitMedicineInfoVO> SelectLossAndProfitMedicineList(string inputCode);
 
         /// <summary>
-        /// 查询药品的kcsl和jj
+        /// Tra cứuThuốccủakcslvàjj
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="ph"></param>
@@ -35,7 +35,7 @@ namespace Newtouch.Domain.IDomainServices
         //void SelectKcslAndJj(string ypCode, string ph, string pc, DateTime? yxq, out int kcsl, out decimal jj);
 
         ///// <summary>
-        ///// 表更库存数量
+        ///// bảnghơnTồn khoSố lượng
         ///// </summary>
         ///// <param name="ypCode"></param>
         ///// <param name="ph"></param>
@@ -46,14 +46,14 @@ namespace Newtouch.Domain.IDomainServices
 
 
         /// <summary>
-        /// 提交报损报益
+        /// GửiBáo hỏngbáolợi
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
         string SubmitReportLossAndProfit(SysMedicineProfitLossEntity syxx);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="kcsl"></param>
@@ -61,7 +61,7 @@ namespace Newtouch.Domain.IDomainServices
         //void SaveReportLossAndProfit(SysMedicineProfitLossEntity entity, int kcsl, decimal jj);
 
         /// <summary>
-        /// 报损报溢查询
+        /// Báo hỏngbáo thừaTra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -73,25 +73,25 @@ namespace Newtouch.Domain.IDomainServices
         //IList<LossAndProditInfoVO> SelectLossAndProditInfoList(Pagination pagination, string startTime, string endTime, string inputCode, string syyy, int syqk);
 
         /// <summary>
-        /// 批发价总金额、零售价总金额查询
+        /// Giá bán buônTổng số tiền、Giá bán lẻTổng số tiềnTra cứu
         /// </summary>
-        /// <param name="startTime">开始时间</param>
-        /// <param name="endTime">结束时间</param>
-        /// <param name="syyy">损益原因</param>
-        /// <param name="inputCode">关键字</param>
-        /// <param name="syqk">损益情况</param>
+        /// <param name="startTime">Thời gian bắt đầu</param>
+        /// <param name="endTime">Thời gian kết thúc</param>
+        /// <param name="syyy">nguyên nhân lãi lỗ</param>
+        /// <param name="inputCode">Từ khóa</param>
+        /// <param name="syqk">lãi lỗtình hình</param>
         /// <returns></returns>
         //LossAndProditInfoJeVo ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk);
 
         /// <summary>
-        /// 报损报溢 保存
+        /// Báo hỏngbáo thừa Lưu
         /// </summary>
         /// <param name="profitLossEntityList"></param>
         //string SaveReportLossAndProfit(List<YpSyxxVo> profitLossEntityList);
 
 
         /// <summary>
-        /// 报损报溢查询
+        /// Báo hỏngbáo thừaTra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -106,7 +106,7 @@ namespace Newtouch.Domain.IDomainServices
         
         #endregion
 
-        #region 科室备药退回
+        #region Khoachuẩn bị thuốcTrả lại
         string PrepareMedicineReturnSubmit(OperatorModel user, string orgId, BythDjInfoDTO Djnr);
         List<DrugStockInfoVEntity> GetDrugAndStock(string yfcode, string keyWord, string organizeid);
         List<DrugStockInfoVEntity> GetApplyDrugAndStock(string ypcodestr,string yfbmstr, string organizeid);
@@ -121,7 +121,7 @@ namespace Newtouch.Domain.IDomainServices
         string PrepareMedicineReturndelete(string ById, string OrganizeId, OperatorModel user);
         #endregion
 
-        #region 药品使用查询
+        #region Thuốcsử dụngTra cứu
         IList<MedicineInfoVO> GetMedicineInfoListV2(Pagination pagination, MedicineInfoParam param, string orgId);
         #endregion
     }

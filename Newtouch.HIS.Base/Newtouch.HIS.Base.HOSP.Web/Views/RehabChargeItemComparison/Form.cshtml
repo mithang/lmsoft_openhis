@@ -60,7 +60,7 @@
     var sfxmdzId = $.request("sfxmdzId");
     var OrganizeId = $.request("OrganizeId");
     $(function () {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         initControl();
 
         if (!!sfxmdzId) {
@@ -77,18 +77,18 @@
         }
     })
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
         $("#OrganizeId").change(function () {
-            //清空
+            //Xóa sạch
             newtouch_globalevent_f4();
         })
 
     }
 
-    //康复项目下拉
+    //Thả xuống hạng mục phục hồi chức năng
     $('#kfsfxmName').newtouchFloatingSelector({
         width: 400,
         height: 220,
@@ -114,7 +114,7 @@
     });
 
 
-    //His项目下拉
+    //HisThả xuống hạng mục
     $('#xtsfxmName').newtouchFloatingSelector({
         width: 500,
         height: 220,

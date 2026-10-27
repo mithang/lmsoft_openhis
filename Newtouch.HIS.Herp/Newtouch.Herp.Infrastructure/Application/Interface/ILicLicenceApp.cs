@@ -4,12 +4,12 @@ using Microsoft.AspNetCore.Http;
 namespace Newtouch.Herp.Application.Interface
 {
     /// <summary>
-    /// 证照管理
+    /// Quản lý chứng chỉ
     /// </summary>
     public interface ILicLicenceApp
     {
         /// <summary>
-        /// 上传文件
+        /// Tải lên tệp
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>

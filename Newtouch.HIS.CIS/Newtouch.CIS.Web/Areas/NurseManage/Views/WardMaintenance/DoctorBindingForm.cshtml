@@ -22,7 +22,7 @@
                 </td>
             </tr>
             @*<tr>
-                    <th class="formTitle">备注：</th>
+                    <th class="formTitle">Ghi chú：</th>
                     <td class="formValue">
                         <textarea id="Description" name="Description" class="form-control" style="height: 60px;"></textarea>
                     </td>
@@ -65,7 +65,7 @@
         $("#txt_doctor").attr("data-StaffGh","");
     }
 
-    //添加
+    //Thêm
     function newtouch_event_f2() {
         var dataobj={
             Id: newGuid(),
@@ -128,7 +128,7 @@
         ]
     });
 
-    //删除医生
+    //XóaBác sĩ
     function DeleteDoctors(selRowId) {
         if (!!selRowId) {
             $("#gridDoctorList").jqGrid("delRowData", selRowId);

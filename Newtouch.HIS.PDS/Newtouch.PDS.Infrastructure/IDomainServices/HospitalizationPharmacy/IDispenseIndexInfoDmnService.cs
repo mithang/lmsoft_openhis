@@ -8,13 +8,13 @@ using Newtouch.HIS.Domain.ValueObjects.HospitalizationPharmacy;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 发药
+    /// Phát thuốc
     /// </summary>
     public interface IDispenseIndexInfoDmnService
     {
-        #region 发药
+        #region Phát thuốc
         /// <summary>
-        /// 配药完成，修改医嘱执行状态
+        /// Chuẩn bị thuốc hoàn thành，Sửa trạng thái thực hiện y lệnh
         /// </summary>
         /// <param name="tdrq"></param>
         /// <param name="zxId"></param>
@@ -29,35 +29,35 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
         #endregion
 
-        #region 配药
+        #region Chuẩn bị thuốc
         string GetBQPYXXList(DispenseBQInfoVO model);
 
-        //执行配药操作
+        //Thực hiện thao tác chuẩn bị thuốc
         string GetBQTYXXList(DispenseBQInfoVO model);
         #endregion
 
-        #region 退药
+        #region Trả thuốc
 
         /// <summary>
-        /// 获取退药明细表，关联医嘱表ID
+        /// Lấy bảng chi tiết trả thuốc，Bảng y lệnh liên kếtID
         /// </summary>
         /// <returns></returns>
         List<ModelZyTyYszyzIdInfoVO> YpTyyszyzidList();
         /// <summary>
-        ///  获取退药明细以及医嘱批号表 可退药信息
+        ///  Lấy bảng chi tiết trả thuốc và bảng số lô y lệnh Thông tin thuốc có thể trả
         /// </summary>
         /// <returns></returns>
         List<ModelBQBRYZZXTYInfoVO> YpTymxxxList(List<ModelZyTyYszyzIdInfoVO> list);
 
         /// <summary>
-        /// 病区退药操作
+        /// Thao tác trả thuốc khu bệnh
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>
         string ZYBQTYOperate(List<ModelBQBRYZZXTYInfoVO> list, string zyyf,string OrganizeId);
 
         /// <summary>
-        /// 获取住院退药的病人
+        /// Lấy bệnh nhân trả thuốc nội trú
         /// </summary>
         /// <param name="zybrbq"></param>
         /// <param name="organizeId"></param>
@@ -65,32 +65,32 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<YPFYPatientInfoVO> GetTyPatient(string zybrbq, string organizeId);
         #endregion
 
-        #region 住院发药
+        #region Phát thuốc nội trú
         /// <summary>
-        /// 获取发药明细
+        /// Lấy chi tiết phát thuốc
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         List<YPFYPatientInfoVO> SelectDispenseDrugDetail(HospitalizationDispenseDrugParam req);
 
         /// <summary>
-        /// 删除医嘱信息
+        /// Xóa thông tin y lệnh
         /// </summary>
-        /// <param name="yzId">医嘱ID</param>
-        /// <param name="zxId">医嘱执行ID</param>
+        /// <param name="yzId">Y lệnhID</param>
+        /// <param name="zxId">Thực hiện y lệnhID</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
         /// <returns></returns>
         string DeleteYzxx(string yzId, string zxId, string organizeId, string userCode);
 
         /// <summary>
-        /// 获取需要发药的病区（去重）
+        /// Lấy khu bệnh cần phát thuốc（Khử trùng lặp）
         /// </summary>
         /// <returns></returns>
         IList<ZYFYBQModelVO> GetFyBq(string orgId);
 
         /// <summary>
-        /// 获取退药病人和病区
+        /// Lấy bệnh nhân trả thuốc và khu bệnh
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
@@ -98,13 +98,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<YPFYPatientInfoVO> GetDispensePatientInfo(string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 获取需要发药的病人
+        /// Lấy bệnh nhân cần phát thuốc
         /// </summary>
         /// <returns></returns>
         IList<YPFYPatientInfoVO> GetFyPatient(string zybrbq);
 
         /// <summary>
-        /// 发药退回操作
+        /// Thao tác trả lại phát thuốc
         /// </summary>
         /// <param name="list"></param>
         /// <param name="fybz"></param>
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string ZYBQFYReturn(List<DispenseBQRYXXIndexVO> list, string fybz);
 
         /// <summary>
-        /// 住院发药按钮操作
+        /// Thao tác nút phát thuốc nội trú
         /// </summary>
         /// <param name="list"></param>
         /// <param name="zyyf"></param>
@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string ZYBQFYOperate(List<DispenseBQRYXXIndexVO> list, string zyyf);
 
         /// <summary>
-        /// 住院发、退药查询
+        /// Phát nội trú、Truy vấn trả thuốc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -128,7 +128,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<HospitalizationDispenseDetail> GetZyDrugQueryList(Pagination pagination, QueryZYFYInfoReqVO req);
 
         /// <summary>
-        /// 住院发药查询
+        /// Truy vấn phát thuốc nội trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -136,14 +136,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<HospitalizationDispenseDetail> GetZyfyQueryList(Pagination pagination, QueryZYFYInfoReqVO req);
 
         /// <summary>
-        /// 住院退药查询
+        /// Truy vấn trả thuốc nội trú
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
         /// <returns></returns>
         IList<HospitalizationDispenseDetail> GetZytyQueryList(Pagination pagination, QueryZYFYInfoReqVO req);
         /// <summary>
-        /// 根据医嘱操作日志
+        /// Theo nhật ký thao tác y lệnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -151,7 +151,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<HospitalizationDispenseDetail> GetYzCzjlList(Pagination pagination, QueryZYFYInfoReqVO req);
 
         /// <summary>
-        /// 插入退药申请单
+        /// Chèn đơn xin trả thuốc
         /// </summary>
         /// <param name="applyBillDetail"></param>
         /// <param name="applyBill"></param>
@@ -160,7 +160,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
            List<ZyReturnDrugApplyBillEntity> applyBill);
 
         /// <summary>
-        /// 获取退药病人和病区
+        /// Lấy bệnh nhân trả thuốc và khu bệnh
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
@@ -168,14 +168,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<YPFYPatientInfoVO> GetReturnDispensePatientInfo(string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 获取退药明细
+        /// Lấy chi tiết trả thuốc
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         List<HospitalizationReturnDispenseDetail> SelectReturnDrugDetail(HospitalizationReturnDrugParam req);
 
         /// <summary>
-        /// 获取退药明细
+        /// Lấy chi tiết trả thuốc
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -197,10 +197,10 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
         #endregion
 
-        #region 科室备药
+        #region Chuẩn bị thuốc cho khoa
 
         /// <summary>
-        /// 获取科室申请单待发药/备药库存退回
+        /// Lấy đơn xin của khoa chờ phát thuốc/Trả lại tồn kho chuẩn bị thuốc
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
@@ -208,7 +208,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<KSBYSQDInfoVO> GetDeptApplySendInfo(string yfbmCode, string organizeId,string bylx);
 
         /// <summary>
-        /// 申请单列表
+        /// Danh sách đơn xin
         /// </summary>
         /// <param name="SqdArr"></param>
         /// <param name="OrgId"></param>
@@ -217,7 +217,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<DeptMedicineApplySendVo> SelectDeptApplySendList(string SqdArr, string OrgId, string Yfbm);
 
         /// <summary>
-        /// 发药
+        /// Phát thuốc
         /// </summary>
         /// <param name="SqdArr"></param>
         /// <param name="userCode"></param>
@@ -227,7 +227,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string ApplyNoSendDrugs(string SqdArr, string userCode, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// 科室备药库存退回列表
+        /// Danh sách trả lại tồn kho chuẩn bị thuốc cho khoa
         /// </summary>
         /// <param name="SqdArr"></param>
         /// <param name="OrgId"></param>
@@ -236,7 +236,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<DeptMedicineApplySendVo> SelectDeptApplyReturnList(string SqdArr, string OrgId, string Yfbm);
 
         /// <summary>
-        /// 库存退还
+        /// Trả lại tồn kho
         /// </summary>
         /// <param name="SqdArr"></param>
         /// <param name="userCode"></param>
@@ -247,7 +247,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #endregion
 
 
-        #region  住院医嘱处方
+        #region  Đơn y lệnh nội trú
         IList<ZycfcxList> GetZycfList(Pagination pagination, ZycfcxVo req);
         IList<ZycfcxDetailList> GetZycfDetailList(Pagination pagination, ZycfcxVo req);
         #endregion

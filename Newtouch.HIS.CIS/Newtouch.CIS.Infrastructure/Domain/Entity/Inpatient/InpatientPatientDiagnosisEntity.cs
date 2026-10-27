@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 15:37
-    /// 描 述：住院病人诊断信息
+    /// Tác giả: 冬林
+    /// Ngày：2018-06-28 15:37
+    /// Mô tả：Nhập việnbệnh nhânChẩn đoánthông tin
     /// </summary>
     [SugarTable("zy_PatDxInfo")]
     public class InpatientPatientDiagnosisEntity
@@ -30,16 +30,16 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// WM 西医  TCM 中医
+        /// WM tâyy  TCM trongy
         /// </summary>
         public string zddl { get; set; }
         /// <summary>
-        /// 1入院诊断2出院诊断
+        /// 1Chẩn đoán nhập viện2Xuất việnChẩn đoán
         /// </summary>
         /// <returns></returns>
         public string zdlb { get; set; }
         /// <summary>
-        /// 0主要诊断1第一辅助诊断2第二辅助诊断3第三辅助诊断9自定义诊断
+        /// 0chínhcầnChẩn đoán1thứmộthỗ trợChẩn đoán2thứhaihỗ trợChẩn đoán3thứbahỗ trợChẩn đoán9tựđịnhnghĩaChẩn đoán
         /// </summary>
         /// <returns></returns>
         public string zdlx { get; set; }
@@ -79,16 +79,16 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0无效1有效
+        /// 0Vô hiệu1Hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// 出院情况
+        /// Xuất việntình hình
         /// </summary>
         public int? cyqk { get; set; }
         /// <summary>
-        /// 排序
+        /// Thứ tự
         /// </summary>
         public int? px { get; set; }
     }

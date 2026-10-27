@@ -27,14 +27,14 @@
                 <td class="formValue">
                     <input type="text" class="form-control" id="txttjksmc" />
                 </td>
-                @*<th class="formTitle">操作员：</th>
+                @*<th class="formTitle">Người thao tác：</th>
                     <td class="formValue">
                         <div class="row">
                             <div class="col-md-9">
                                 <input type="text" class="form-control" id="txtsyy" value="" />
                             </div>
                             <div class="col-md-3" style="text-align:right;">
-                                <input type="button" class="btn btn-default btn-md" style="width:45px" id="btnsyy" value="查询" />
+                                <input type="button" class="btn btn-default btn-md" style="width:45px" id="btnsyy" value="Tra cứu" />
                             </div>
                         </div>
                     </td>*@
@@ -117,7 +117,7 @@
 
 <script type="text/javascript">
     function init() {
-        //操作人
+        //Người thao tác
         $("#btnsyy").click(function () {
             $.modalOpen({
                 id: "FormUsers",
@@ -132,7 +132,7 @@
                 }
             });
         });
-        //用户人员树回调方法
+        //phương thức gọi lại cây nhân viên người dùng
         function userStaffTreeCallback(data) {
             $("#txtsyy").val(data[0].Code);
         }
@@ -149,14 +149,14 @@
 
         }
     });
-    //科室
+    //Khoa
     $("#txttjksmc").newtouchBatchFloatingSelector({
         height: 200,
         width: 300,
         clickautotrigger: true,
         //url: '/OutpatientManage/OutpatientReg/GetCurrentDayRegListJson',
         filter: function (keyword) {
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(kszdlist, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)

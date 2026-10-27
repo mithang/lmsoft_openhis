@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class SysItemsDetailVO : SysItemsDetailEntity
     {
         /// <summary>
-        /// 是否允许编辑
+        /// Có cho phép sửa không
         /// </summary>
         public bool AllowEdit { get; set; }
 

@@ -1,7 +1,7 @@
 @{
     ViewBag.Title = "MonthReportIndex";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //报表链接
+    //Liên kết báo cáo
     var reportUrl = SysConfigReader.OrgReportLink("InpatientPatFeeDetail");
 }
 
@@ -33,7 +33,7 @@
 
 <script type="text/javascript">
 
-    //治疗项目选择浮层绑定
+    //Liên kết lớp nổi chọn mục điều trị
     $('#zyh').newtouchBatchFloatingSelector({
         width: 500,
         height: 200,
@@ -104,7 +104,7 @@
 
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }
@@ -112,7 +112,7 @@
     function getUrl() {
         var srcUrl = '@Html.Raw(reportUrl)';
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:Stylesheet') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";

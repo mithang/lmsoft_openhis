@@ -85,7 +85,7 @@
     });
 
     function init() {
-        //治疗师选择
+        //Chọn trị liệu sư
         $('#zls').click(function () {
             var initIdSelected = $('#zlsId').val();
             $.modalOpen({
@@ -103,9 +103,9 @@
             });
         });
 
-        //年月下拉初始化
+        //Khởi tạo hộp chọn năm tháng
         var date = new Date;
-        //年份
+        //Năm
         $("#year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -118,7 +118,7 @@
             },
             selectedValue: 1900 + date.getYear(),
         });
-        //月份
+        //Tháng
         $("#month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -134,7 +134,7 @@
 
     }
 
-    //人员树 选择 回调
+    //Cây nhân viên Chọn gọi lại
     function staffTreeCallback(treeSeleData) {
 
         $('#zls').val(treeSeleData[0].text);
@@ -146,7 +146,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
         
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";

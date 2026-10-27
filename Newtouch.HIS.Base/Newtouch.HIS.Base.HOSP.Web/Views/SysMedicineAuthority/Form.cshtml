@@ -31,7 +31,7 @@
                 <td class="formTitle"><span class="required">*</span>Loại:</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="rel_lxcode" name="rel_lxcode" class="form-control required">
-                        @*<option value="">==请选择==</option>*@
+                        @*<option value="">==Vui lòng chọn==</option>*@
                         <option value="1">Thuốc đặc biệt</option>
                         <option value="2">Nhóm thu phí lớn</option>
                         <option value="3">Kháng sinh</option>
@@ -48,7 +48,7 @@
                 <td class="formTitle"><span class="required">*</span>Nhóm thu phí lớn:</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="sfdlCode" name="sfdlCode" class="form-control required">
-                        @*<option value="">==请选择==</option>*@
+                        @*<option value="">==Vui lòng chọn==</option>*@
                     </select>
                 </td>
             </tr>
@@ -89,7 +89,7 @@
                 success: function (data) {
                     $("#form1").formSerialize(data);
                     optionValue = data.rel_value;
-                    getSelectByLx();//根据类型切换下拉选择框
+                    getSelectByLx();//Chuyển hộp chọn thả xuống theo loại
                 }
             });
         }
@@ -102,28 +102,28 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
         
 
-        //组织对应的科室下拉框加载
+        //Tải hộp thả xuống khoa tương ứng với tổ chức
         $("#OrganizeId").bind("change", function () {
             var organizeId = $(this).val();
 
-            //收费大类绑定
+            //Gắn danh mục thu phí lớn
             $("#sfdlCode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + organizeId,
             });
 
         });
         
-        getSelectByLx();//根据类型切换下拉选择框
+        getSelectByLx();//Chuyển hộp chọn thả xuống theo loại
 
-        //类型下拉框改变
-        $("#rel_lxcode").bind("change", function () {  //1属性 2Nhóm thu phí lớn
-            getSelectByLx();//根据类型切换下拉选择框
+        //Thay đổi hộp thả xuống loại
+        $("#rel_lxcode").bind("change", function () {  //1Thuộc tính 2Nhóm thu phí lớn
+            getSelectByLx();//Chuyển hộp chọn thả xuống theo loại
         });
         
     }
@@ -173,7 +173,7 @@
 
     function getSelectByLx() {
         var lx = $("#rel_lxcode").val();
-        if (lx == 1) {//获取药品属性
+        if (lx == 1) {//Lấy thuộc tính thuốc
             $("#div_ypsx").show();
             $("#div_sfdl").hide();
             $("#div_kss").hide();
@@ -181,7 +181,7 @@
                 $("#ypsxCode").find("option[value =" + optionValue + "]").attr("selected", true);
             }
         }
-        else if (lx == 2) {//获取收费大类
+        else if (lx == 2) {//Lấy danh mục thu phí lớn
             $("#div_ypsx").hide();
             $("#div_sfdl").show();
             $("#div_kss").hide();

@@ -9,7 +9,7 @@ using Newtouch.HIS.Domain.IDomainServices;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 药房药库
+    /// Nhà thuốc kho thuốc
     /// </summary>
     public class SysPharmacyDepartmentDmnService : DmnServiceBase, ISysPharmacyDepartmentDmnService
     {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 根据药品代码获取已授权的药房药库
+        /// Lấy nhà thuốc kho thuốc đã ủy quyền theo mã thuốc
         /// </summary>
         /// <param name="ypId"></param>
         /// <param name="organizeId"></param>

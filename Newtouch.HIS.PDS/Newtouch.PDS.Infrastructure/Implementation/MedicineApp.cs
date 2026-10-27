@@ -24,9 +24,9 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IMedicineDmnService _medicineDmnService;
         private readonly IPyDmnService _pyDmnService;
 
-        #region 报损报溢
+        #region Báo hỏng báo thừa
         /// <summary>
-        /// 根据损益类型获取损益原因
+        /// Lấy lý do lãi lỗ theo loại lãi lỗ
         /// </summary>
         /// <param name="sylx"></param>
         /// <returns></returns>
@@ -36,9 +36,9 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 查询损益药品list
+        /// Truy vấn thuốc lãi lỗlist
         /// </summary>
-        /// <param name="inputCode">关键字</param>
+        /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
         public List<ReportLossAndProfitMedicineInfoVO> SelectLossAndProfitMedicineList(string inputCode)
         {
@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 报损报溢 保存
+        /// Báo hỏng báo thừa Lưu
         /// </summary>
         /// <param name="profitLossEntityList"></param>
         public void SaveReportLossAndProfit(List<SysMedicineProfitLossEntity> profitLossEntityList)
@@ -55,13 +55,13 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 int kcsl = 0;
                 decimal jj = 0;
-                //1.查出kcsl和jj
+                //1.Tìm rakcslvàjj
                 _medicineDmnService.SelectKcslAndJj(item.Ypdm, item.Ph, item.pc, item.Yxq, out kcsl, out jj);
-                if (item.Sysl <= 0)  //报损
+                if (item.Sysl <= 0)  //Báo hỏng
                 {
                     if (kcsl + item.Sysl >= 0)
                     {
-                        //保存（update库存 insert损益表）
+                        //Lưu（updateTồn kho insertBảng lãi lỗ）
                         _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
                     }
                     else
@@ -69,9 +69,9 @@ namespace Newtouch.HIS.Application.Implementation
                         throw new FailedCodeException("INSUFFICIENT_STOCK_NOT_ENOUGH_TO_REPORT_LOSS");
                     }
                 }
-                else  //报溢
+                else  //Báo thừa
                 {
-                    //保存（update库存 insert损益表）
+                    //Lưu（updateTồn kho insertBảng lãi lỗ）
                     _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
                 }
             }
@@ -80,9 +80,9 @@ namespace Newtouch.HIS.Application.Implementation
 
         #endregion
 
-        #region 报损报溢查询
+        #region Truy vấn báo hỏng báo thừa
         /// <summary>
-        /// 报损报溢查询
+        /// Truy vấn báo hỏng báo thừa
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -97,13 +97,13 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 批发价总金额、零售价总金额查询
+        /// Tổng số tiền giá bán buôn、Truy vấn tổng số tiền giá bán lẻ
         /// </summary>
-        /// <param name="startTime">开始时间</param>
-        /// <param name="endTime">结束时间</param>
-        /// <param name="syyy">损益原因</param>
-        /// <param name="inputCode">关键字</param>
-        /// <param name="syqk">损益情况</param>
+        /// <param name="startTime">Thời gian bắt đầu</param>
+        /// <param name="endTime">Thời gian kết thúc</param>
+        /// <param name="syyy">Lý do lãi lỗ</param>
+        /// <param name="inputCode">Từ khóa</param>
+        /// <param name="syqk">Tình hình lãi lỗ</param>
         /// <returns></returns>
         public LossAndProditInfoJeVo ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk)
         {
@@ -111,10 +111,10 @@ namespace Newtouch.HIS.Application.Implementation
         }
         #endregion
 
-        #region 首页统计
+        #region Thống kê trang chủ
 
         /// <summary>
-        /// 获取住院月处方发药次
+        /// Lấy lần phát thuốc đơn tháng nội trú
         /// </summary>
         /// <returns></returns>
         public MonthlySummaryDO GetFyCountVoByYfbm(List<FyCountVoByYfbm> val)
@@ -178,7 +178,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 获取今年医嘱次|处方药品次
+        /// Lấy lần y lệnh năm nay|Lần thuốc trong đơn
         /// </summary>
         /// <returns></returns>
         public List<FyClassificationStatistics> GetFyCountBydl()
@@ -196,7 +196,7 @@ namespace Newtouch.HIS.Application.Implementation
 
 
         /// <summary>
-        /// 盘点明细查询
+        /// Truy vấn chi tiết kiểm kê
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>

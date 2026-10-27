@@ -3,57 +3,57 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
 {
     /// <summary>
-    /// 门诊发药查询界面查询条件
+    /// Điều kiện truy vấn giao diện truy vấn phát thuốc ngoại trú
     /// </summary>
     public class searchFyInfoReqVO
     {
         /// <summary>
-        /// 开始时间
+        /// Thời gian bắt đầu
         /// </summary>
         public DateTime? begindate { get; set; }
 
         /// <summary>
-        /// 结束时间
+        /// Thời gian kết thúc
         /// </summary>
         public DateTime? enddate { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string kh { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 关键字
+        /// Từ khóa
         /// </summary>
         public string keyWord { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 类型
+        /// Loại
         /// </summary>
         public string type { get; set; }
 
         /// <summary>
-        /// 药房部门代码
+        /// Mã bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
     }

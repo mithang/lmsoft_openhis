@@ -9,36 +9,36 @@ namespace NewtouchHIS.Base.Domain.IDomainService
 {
     public interface IMsgQueueDmnService : IScopedDependency
     {
-        #region 消息组管理
+        #region Quản lý nhóm thông báo
         /// <summary>
-        /// 添加Nhóm tin nhắn
+        /// ThêmNhóm tin nhắn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<string> AddNoticeGroup(MsgNoticeGroupBasicVO request);
         /// <summary>
-        /// 更新Nhóm tin nhắn配置
+        /// Cập nhậtNhóm tin nhắnCấu hình
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<bool> ModifyNoticeGroup(MsgNoticeGroupBasicVO request);
         /// <summary>
-        /// Nhóm tin nhắn配置查询
+        /// Nhóm tin nhắnTruy vấn cấu hình
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<List<MsgNoticeGroupVO>> NoticeGroupQuery(MsgNoticeGroupBasicVO request);
         #endregion
 
-        #region 消息队列
+        #region Hàng đợi thông báo
         /// <summary>
-        /// 添加Tin nhắn
+        /// ThêmTin nhắn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<List<string>> AddNotice(MsgNoticeQueueBasicVO request);
         /// <summary>
-        /// 更新Tin nhắn状态
+        /// Cập nhậtTin nhắnTrạng thái
         /// </summary>
         /// <param name="queueId"></param>
         /// <param name="user"></param>
@@ -46,7 +46,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         /// <returns></returns>
         Task<bool> NoticeStuModify(string queueId, string user, NoticeStuEnum noticeStu, bool procSuccess = true);
         /// <summary>
-        /// 批量更新Tin nhắn状态
+        /// Cập nhật hàng loạtTin nhắnTrạng thái
         /// </summary>
         /// <param name="queueIds"></param>
         /// <param name="user"></param>
@@ -55,7 +55,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         /// <returns></returns>
         Task<bool> NoticeStuModify(string[] queueIds, string user, NoticeStuEnum noticeStu, bool procSuccess = true);
         /// <summary>
-        /// 更新Tin nhắn基本信息
+        /// Cập nhậtTin nhắnThông tin cơ bản
         /// </summary>
         /// <param name="ety"></param>
         /// <returns></returns>
@@ -64,20 +64,20 @@ namespace NewtouchHIS.Base.Domain.IDomainService
 
         #region Query
         /// <summary>
-        /// 获取Tin nhắn详情
+        /// LấyTin nhắnChi tiết
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<List<MsgNoticeQueueVO>> NoticeInfoQuery(MsgNoticeQueueBasicVO request);
         /// <summary>
-        /// 质控Tin nhắn列表
+        /// Kiểm soát chất lượngTin nhắnDanh sách
         /// </summary>
         /// <param name="request"></param>
         /// <param name="AppId"></param>
         /// <returns></returns>
         Task<List<MsgNoticeQueueModelVO<MrqcMsgNoticeModel>>> MrqcNoticeQuery(MsgNoticeQueueQueryVO request);
         /// <summary>
-        /// 获取Tin nhắn通知列表
+        /// LấyTin nhắnDanh sách thông báo
         /// </summary>
         /// <param name="request"></param>
         /// <param name="AppId"></param>
@@ -86,7 +86,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         Task<List<MsgNoticeQueueQueryRspoVO>> NoticeQuery(MsgNoticeQueueQueryVO request, string AppId, DBEnum db = DBEnum.BaseDb);
 
         /// <summary>
-        /// 消息队列查询
+        /// Truy vấn hàng đợi thông báo
         /// </summary>
         /// <param name="request"></param>
         /// <param name="AppId"></param>

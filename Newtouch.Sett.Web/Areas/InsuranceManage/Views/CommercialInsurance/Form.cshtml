@@ -19,13 +19,13 @@
                 success: function (data) {
                     if (data) {
                         initIdSelected = data.kbxmmc;
-                        strdlList = false;//选中大类已拼接字符串，后续不用再拼接
+                        strdlList = false;//chọntronglớnloạiđãghépnhậnchữphùchuỗi，sautiếp tụckhôngdùnglạighépnhận
                         $("#form1").formSerialize(data);
                     }
                 }
             });
         }
-        //绑定 收费项目 树
+        //gắn Khoản thu phí cây
         $('#sfxmList').focus(function () {
             if (initIdSelected == "" && strdlList) {
                 $.each(Editing_ysList, function () {
@@ -83,7 +83,7 @@
             zlsNames = zlsNames.substring(0, zlsNames.length - 1);
         }
         $('#sfxmList').val(zlsNames);
-        top.top.window.frames['SFXMSelect'].$.modalClose();   //关闭之
+        top.top.window.frames['SFXMSelect'].$.modalClose();   //đóng nó
     }
 </script>
 <form id="form1">

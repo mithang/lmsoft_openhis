@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取科室列表
+        /// Lấy danh sách khoa
         /// </summary>
         /// <returns></returns>
         public List<SysDepartmentEntity> GetListByTopOrg(string topOrganizeId)
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取科室列表
+        /// Lấy danh sách khoa
         /// </summary>
         /// <returns></returns>
         public List<SysDepartmentEntity> GetListByOrg(string organizeId)
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取当前组织下的所有有效科室
+        /// Lấy tất cả khoa hiệu lực thuộc tổ chức hiện tại
         /// </summary>
         /// <returns></returns>
         public IList<SysDepartmentEntity> GetValidListByOrg(string organizeId)
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取组织 的 有效科室
+        /// Lấy tổ chức của Khoa hiệu lực
         /// </summary>
         /// <returns></returns>
         public IList<SysDepartmentEntity> GetValidListByTopOrg(string topOrganizeId)
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据Code获取名称
+        /// TheoCodeLấy tên
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("Số hiệu không được trùng lặp");
                 }
 
-                /*停用科室的判断*/
+                /*Xét ngừng khoa*/
                 var zt = SysDepartmentEntity.zt;
                 if (zt == "0")
                 {
@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Repository
                     }
                 }
 
-                SysDepartmentEntity oldEntity = null;   //变更前Entity
+                SysDepartmentEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 
@@ -126,7 +126,7 @@ namespace Newtouch.HIS.Repository
             }
         }
         /// <summary>
-        /// 废弃，状态修改改到了医保程序
+        /// Bỏ đi，Sửa trạng thái đã chuyển sang chương trình BHYT
         /// </summary>
         /// <param name="uploadYB"></param>
         /// <param name="id"></param>
@@ -144,7 +144,7 @@ namespace Newtouch.HIS.Repository
 
 
         /// <summary>
-        /// 根据查询条件获取有效科室列表
+        /// Lấy danh sách khoa hiệu lực theo điều kiện tra cứu
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

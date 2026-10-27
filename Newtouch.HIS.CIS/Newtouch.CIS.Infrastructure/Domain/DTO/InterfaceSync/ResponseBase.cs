@@ -11,20 +11,20 @@ namespace Newtouch.Domain.DTO.InterfaceSync
     {
         public ResponseResultCode code { get; set; }
         //
-        // 摘要:
-        //     网关返回码描述
+        // háicần:
+        //     网关Quay lạimãMô tả
         public string msg { get; set; }
         //
-        // 摘要:
-        //     业务返回码
+        // háicần:
+        //     nghiệp vụQuay lạimã
         public string sub_code { get; set; }
         //
-        // 摘要:
-        //     业务返回码描述
+        // háicần:
+        //     nghiệp vụQuay lạimãMô tả
         public string sub_msg { get; set; }
         //
-        // 摘要:
-        //     响应数据（ResponseResultCode.SUCCESS时的返回数据）
+        // háicần:
+        //     hưởngứngDữ liệu（ResponseResultCode.SUCCESSkhicủaQuay lạiDữ liệu）
         public object data { get; set; }
         public int rowcount { get; set; }
     }

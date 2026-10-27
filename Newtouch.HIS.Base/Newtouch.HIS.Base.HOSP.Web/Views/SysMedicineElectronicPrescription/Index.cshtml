@@ -109,7 +109,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#genname').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -122,7 +122,7 @@
     $('#zt').change(function () {
         $('#btn_search').trigger('click');
     })
-    //同步
+    //Đồng bộ
     $('#btn_sync').click(function () {
         $.ajax({
             url: "http://127.0.0.1:33333/api/YiBao/ElectronicPrescription_D008",

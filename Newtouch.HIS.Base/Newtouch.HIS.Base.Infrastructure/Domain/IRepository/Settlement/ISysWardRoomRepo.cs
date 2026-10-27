@@ -21,14 +21,14 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<SysWardRoomEntity> GetPagintionList(Pagination pagination, string organizeId, string keyword);
 
         /// <summary>
-        /// 更新病区信息
+        /// Cập nhật thông tin khu bệnh
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
         void submitForm(SysWardRoomEntity entity, int? keyValue);
 
         ///// <summary>
-        ///// 获取所有病区列表
+        ///// Lấy danh sách tất cả khu bệnh
         ///// </summary>
         //List<SysWardEntity> SelectWardList(string orgId);
     }

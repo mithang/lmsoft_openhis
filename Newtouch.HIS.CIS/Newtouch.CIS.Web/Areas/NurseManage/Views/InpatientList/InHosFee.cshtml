@@ -56,7 +56,7 @@
              zyfyyrqzyh = zyh;
          getFyyrqTreeList();
          
-         $("#PatTreeList_" + zyfyyrqzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//选中
+         $("#PatTreeList_" + zyfyyrqzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//Đã chọn
          $("#yrqzyh").val(zyfyyrqzyh);
          submit();
         
@@ -83,7 +83,7 @@
 
          if ($('#yrqzyh').val().length == 0) {
              $('#yrqzyh').val("000001")
-             //$.modalAlert("缺少住院号", "error");
+             //$.modalAlert("thiếuSố nhập viện", "error");
              //return;
          }
          if ($('#ksrq').val().length == 0 || $('#jsrq').val().length == 0) {
@@ -116,7 +116,7 @@
      $("#iframerightiframerightiframerightttt").load(function () {
          $.loading(false);
      });
-     //刷新列表
+     //Làm mới danh sách
      function refReport() {
          $("#btn_search").trigger('click');
      }

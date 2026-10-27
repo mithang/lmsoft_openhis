@@ -7,7 +7,7 @@ using System;
 namespace Newtouch.OR.ManageSystem.Web.Controllers
 {
     /// <summary>
-    /// 首页. The original portal frame views depended on Framework-only helpers
+    /// Trang chủ. The original portal frame views depended on Framework-only helpers
     /// and are replaced by a minimal landing view (the portal frame is served
     /// by SSO in production, as in the MRQC pilot).
     /// </summary>
@@ -26,7 +26,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// 同步系统参数配置. NOTE: in this port SysConfigRepo reads AND writes
+        /// Đồng bộ cấu hình tham số hệ thống. NOTE: in this port SysConfigRepo reads AND writes
         /// NewtouchHIS_Base..Sys_GlobalConfig (the Framework repo's separate
         /// target database is not available here). The demo Base table is
         /// empty (0 rows), so this is currently a no-op returning 0.

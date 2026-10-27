@@ -26,7 +26,7 @@ namespace Newtouch.Sett.Web.Areas.FeeConfirmManage.Controllers
     {
         // GET: FeeConfirmManage/FeeConfirm
         /// <summary>
-        /// 收费确认
+        /// thuphíxác nhậnnhận
         /// </summary>
         /// <returns></returns>
         public IActionResult Index()
@@ -35,7 +35,7 @@ namespace Newtouch.Sett.Web.Areas.FeeConfirmManage.Controllers
         }
 
         /// <summary>
-        /// 处方退费
+        /// nơiphươnghoànphí
         /// </summary>
         /// <returns></returns>
         public IActionResult Refund()
@@ -44,7 +44,7 @@ namespace Newtouch.Sett.Web.Areas.FeeConfirmManage.Controllers
         }
 
         /// <summary>
-        /// 处方列表页面
+        /// nơiphươngcộtbảngtrangmặt
         /// </summary>
         /// <returns></returns>
         public IActionResult PrescriptionForm()

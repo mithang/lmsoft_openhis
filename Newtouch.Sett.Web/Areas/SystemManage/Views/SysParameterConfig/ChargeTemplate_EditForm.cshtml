@@ -172,7 +172,7 @@
         $("#dllDepartment").html('<option>==Vui lòng chọn==</option>').bindSelect({
             url: "/SystemManage/SysDepartment/GetTreeSelectJson",
         });
-        //配置手术 则默认手术项目
+        //phốiđặttayphẫu thuật thìmặc địnhnhậntayphẫu thuậthạngmục
         if (opDept != null && opDept != "") {
             $("#dllDepartment").val(opDept).trigger('change');
 
@@ -213,13 +213,13 @@
         //    }
         //});
 
-        //加载收费大类树
+        //Tải cây loại thu phí lớn
         $("#sfdl").bindSelect({
             url: "/NonTreatmentItem/GetTreeSelectChargeCategoryJson"
         });
 
 
-        //加载药品用法
+        //thêmtảithuốcphẩmdùngphương pháp
         $("#yf").bindSelect({
             url: "/SystemManage/SysParameterConfig/GetUsages",
             id: "yfCode",
@@ -228,7 +228,7 @@
 
     }
 
-    //jGrid声明
+    //jGridkhai báo
     function initChargeItemGrid(data) {
         $('#xmDetailListGridList').newtouchLocalDataGrid({
             height: 100,
@@ -241,7 +241,7 @@
                 { label: 'Đơn vị', name: 'dw', width: 40, align: 'left' },
                 { label: 'Lượng trị liệu mỗi lần', name: 'zll', width: 70, align: 'left' },
                 { label: 'Số lượng', name: 'sl', width: 40, align: 'left' },
-                //{ label: '执行次数', name: 'zxcs', width: 60, align: 'left' },
+                //{ label: 'Số lần thực hiện', name: 'zxcs', width: 60, align: 'left' },
                 { label: 'Loại phục hồi chức năng', name: 'kflbmc', width: 80, align: 'left' },
                 { label: 'kflb', name: 'kflb', hidden: true, align: 'left' },
                 { label: 'Thời lượng đơn vị', name: 'duration', width: 70, align: 'left' },
@@ -253,7 +253,7 @@
         }, data);
     }
 
-    //收费项目选择浮层
+    //Lớp chọn hạng mục thu phí
     $('#txtSFXMSel').sfxmFloatingSelector({
         djDecimalPlaces: 4,
         searchType: 'sfxm',
@@ -271,13 +271,13 @@
                 }
             });
             if (returnFlag) {
-                return; //不能重复添加
+                return; //Không được thêm trùng lặp
             }
             btn_addItem($thistr);
         },
     });
 
-    //添加项目
+    //Thêm hạng mục
     function btn_addItem($thistr) {
         var valsl = $('#sl').val();
         var valduration = $('#duration').val();
@@ -350,7 +350,7 @@
         }
         var postData = $("#form1").formSerialize();
 
-        //支付方式 json串
+        //Phương thức thanh toán jsonchuỗi
         var xmArr = new Array();
         var rowIds = $("#xmDetailListGridList").getDataIDs();
         $.each(rowIds, function (idx, val) {
@@ -378,12 +378,12 @@
         }
         postData['xmListStr'] = JSON.stringify(xmArr);
         debugger
-        postData['sfmbbh'] = keyValue;  //主键，决定是新增还是修改
+        postData['sfmbbh'] = keyValue;  //Khóa chính，quyết địnhđịnhlàmớithêmcònlàsửasửa
         postData['ks'] = $('#dllDepartment').val();
         postData['mzzybz'] = $('#mzzybz').val();
         postData['py'] = $('#py').val();
         
-        var yfop = $("#yf option:selected");//获取选中的项
+        var yfop = $("#yf option:selected");//lấy khoản đã chọn
         postData['yfdm'] = yfop.val();
         postData['yfmc'] = yfop.text();
         if ($('#yf').val() =="==请选择==") {
@@ -417,7 +417,7 @@
         }
     });
 
-    //根据名称获取名称首拼
+    //căndữ liệutêngọiđượclấytêngọiđầughép
     $('#sfmbmc').keyup(function () {
         $('#py').val($(this).toShouPin());
     })

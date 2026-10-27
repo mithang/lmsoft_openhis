@@ -15,12 +15,12 @@ namespace NewtouchHIS.Lib.Services.Authentication
 {
 
     /// <summary>
-    /// 对称可逆加密
+    /// Mã hóa thuận nghịch đối xứng
     /// </summary>
     public class HSJWTService : IJWTService
     {
         private readonly JWTOptions _jWTOptions;
-        private string _MsgPrefix = "[鉴权消息]：";
+        private string _MsgPrefix = "[Tin nhắn xác thực]:";
         public HSJWTService(IOptionsMonitor<JWTOptions> jwtOptions)
         {
             _jWTOptions = jwtOptions.CurrentValue;
@@ -80,29 +80,29 @@ namespace NewtouchHIS.Lib.Services.Authentication
         {
             if (request == null || request.authIdentity == null)
             {
-                throw new FailedException($"{_MsgPrefix}请补充身份信息");
+                throw new FailedException($"{_MsgPrefix}Vui lòng bổ sung thông tin danh tính");
             }
             var isAuth = ConfigInitHelper.SysConfig.AuthAppIds!.FirstOrDefault(p => p == (request.authIdentity.AppId));
             if (isAuth == null)
             {
-                throw new FailedException($"{_MsgPrefix}AppId未授权");
+                throw new FailedException($"{_MsgPrefix}AppId chưa được ủy quyền");
             }
             switch (request.authType)
             {
                 case AuthType.Web:
                     if (string.IsNullOrWhiteSpace(request.authIdentity.Account))
                     {
-                        throw new FailedException($"{_MsgPrefix}账户信息不可为空");
+                        throw new FailedException($"{_MsgPrefix}Thông tin tài khoản không được để trống");
                     }
                     if (string.IsNullOrWhiteSpace(request.authIdentity.TopOrganizeId) || string.IsNullOrWhiteSpace(request.authIdentity.OrganizeId))
                     {
-                        throw new FailedException($"{_MsgPrefix}组织机构信息不可为空");
+                        throw new FailedException($"{_MsgPrefix}Thông tin tổ chức không được để trống");
                     }
                     break;
                 case AuthType.WebApi:
                     break;
                 default:
-                    throw new FailedException($"{_MsgPrefix}不支持该授权方式");
+                    throw new FailedException($"{_MsgPrefix}Không hỗ trợ phương thức ủy quyền này");
                     //break;
             }
         }

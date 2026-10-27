@@ -31,7 +31,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         // GET: TemplateManage/GroupPackage
 
         /// <summary>
-        /// 组套 浮层
+        /// Bộ mẫu lớp nổi
         /// </summary>
         /// <param name="type"></param>
         /// <param name="keyword"></param>
@@ -47,7 +47,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 组套列表（查询）
+        /// Bộ mẫudanh sách（Tra cứu）
         /// </summary>
         /// <param name="zutaoType"></param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 组套详情（查询）
+        /// Bộ mẫuChi tiết（Tra cứu）
         /// </summary>
         /// <param name="ztId"></param>
         /// <returns></returns>
@@ -78,14 +78,14 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="ztobj"></param>
         /// <param name="ztxmlist"></param>
         /// <returns></returns>
         public IActionResult SaveData(GroupPackageEntity ztobj, List<GroupPackageItemEntity> ztxmlist)
         {
-            //模板表
+            //bảng mẫu
             ztobj.OrganizeId = this.OrganizeId;
 
             _groupPackageDmnService.SaveData(ztobj, ztxmlist);
@@ -93,7 +93,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="ztId"></param>
         /// <returns></returns>

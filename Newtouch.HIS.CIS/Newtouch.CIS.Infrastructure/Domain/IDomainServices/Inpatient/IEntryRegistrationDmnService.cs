@@ -14,69 +14,69 @@ namespace Newtouch.Domain.IDomainServices
     public interface IEntryRegistrationDmnService
     {
         /// <summary>
-        /// 获取床位信息
+        /// Lấygiường ký tựthông tin
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         List<BedInfoViewResponseVO> GetCwInfoViewList(BedInfoViewRequestVO req);
         /// <summary>
-        /// 患者入区
+        /// Bệnh nhânvàokhu
         /// </summary>
         /// <param name="inareaReq"></param>
         /// <returns></returns>
         string SavePatInArea(patInAreaRequestDto inareaReq);
         /// <summary>
-        /// 患者转区患者入区信息修改
+        /// Bệnh nhânchuyển khuBệnh nhânvàokhuthông tinSửa
         /// </summary>
         /// <param name="patChangeAreaRequestDto"></param>
         string SaveChangeAreaPatInfo(patChangeAreaRequestDto patChangeAreaRequestDto);
         string UpdatePatInfo(string zyh,string wzjb,string orgId);
         /// <summary>
-        /// 保存入区时患者信息
+        /// LưuvàokhukhiThông tin bệnh nhân
         /// </summary>
         /// <param name="patInfoRes"></param>
         void SavePatInfo(InPatientDetailQueryDto patInfoRes);
         /// <summary>
-        /// 入区时收取当天床位绑定费用
+        /// vàokhukhithulấykhingàygiường ký tựgắnChi phí
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         string AddPatBedItemFee(patBedFeeRequestDto req);
         /// <summary>
-        /// 获取转区患者
+        /// Lấychuyển khuBệnh nhân
         /// </summary>
         /// <param name="bqdm"></param>
         /// <returns></returns>
         List<NewPatInfoVO> GetPatChangeArea(string bqdm);
         /// <summary>
-        /// 获取需插入到床位使用记录表的数据
+        /// LấycầnChènđếngiường ký tựSử dụngghi chépbảngcủaDữ liệu
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
         patBedSyjlInfoVO GetPatBedSyInfo(string zyh);
         /// <summary>
-        /// 保存床位使用记录
+        /// Lưugiường ký tựSử dụngghi chép
         /// </summary>
         /// <param name="patBedSyInfo"></param>
         void SavePatBedSYInfo(patBedSyjlInfoVO patBedSyInfo);
         /// <summary>
-        /// 查询
+        /// Tra cứu
         /// </summary>
-        /// <param name="pagination">分页</param>
-        /// <param name="keyword">关键字</param>
-        /// <param name="ksrq">开始日期</param>
-        /// <param name="jsrq">结束日期</param>
-        /// <param name="bqdm">病区代码</param>
+        /// <param name="pagination">phúttrang</param>
+        /// <param name="keyword">Từ khóa</param>
+        /// <param name="ksrq">Ngày bắt đầu</param>
+        /// <param name="jsrq">Ngày kết thúc</param>
+        /// <param name="bqdm">Khu bệnhMã</param>
         /// <returns></returns>
         IList<OutAreapatientInfo> GetOutAreaPatlist(Pagination pagination, string keyword, DateTime? ksrq, DateTime? jsrq, string bqdm, string orgId);
         /// <summary>
-        /// 出区召回
+        /// ra khỏi khutriệuvề
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="bqdm">病区代码</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="bqdm">Khu bệnhMã</param>
         string SaveRecallOutArea(string zyh, string bqdm);
         /// <summary>
-        /// 判断患者能否取消入区
+        /// kiểm traBệnh nhâncó thểKhôngHủyvàokhu
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -89,12 +89,12 @@ namespace Newtouch.Domain.IDomainServices
         string SaveChangeArea(patRequestDto req, string bqdm);
        
         /// <summary>
-        /// 转床
+        /// chuyểngiường
         /// </summary>
         /// <param name="reqDto"></param>
         string ChangeBed(patBedRequestDto reqDto);
         /// <summary>
-        /// 在病区病人信息
+        /// ởKhu bệnhThông tin bệnh nhân
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -105,7 +105,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<InAreapatientInfo> GetINAreaPatlist(Pagination pagination, string keyword, string bqdm,string orgId);
 
         /// <summary>
-        /// 新入区、转区 床位是否被占用
+        /// mớivàokhu、chuyển khu giường ký tựlàKhôngbịchiếmdùng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="OrganizeId"></param>

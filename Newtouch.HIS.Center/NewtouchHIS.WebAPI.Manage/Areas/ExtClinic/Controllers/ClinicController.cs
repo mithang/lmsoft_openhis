@@ -16,7 +16,7 @@ using static NewtouchHIS.Lib.Common.HisEnum;
 namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
 {
     /// <summary>
-    /// 云诊所
+    /// Phòng khám điện toán đám mây
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -36,7 +36,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         }
         #region Token
         /// <summary>
-        /// 获取诊所 Token
+        /// Lấy phòng khám Token
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -49,9 +49,9 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         }
         #endregion
 
-        #region 患者信息
+        #region Thông tin bệnh nhân
         /// <summary>
-        /// 获取云诊所Bệnh nhân病历
+        /// Lấy phòng khám điện toán đám mâyBệnh nhânBệnh án
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -61,19 +61,19 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || string.IsNullOrWhiteSpace(request.Data.ApplyId))
             {
-                return new BusResult<PatMedicalRecordResponse> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId、HISĐăng kýId không được để trống" };
+                return new BusResult<PatMedicalRecordResponse> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId,HISĐăng kýId không được để trống" };
             }
             var clinicMr = await ClinicHttpGet<List<ClinicPatMedicalRecordDTO>>($"{ClinicApiHelper.GetPatMedicalRecord}{request.Data.ApplyId}");
             if (clinicMr == null || clinicMr.code != ((int)ClinicResponseCode.success).ToString())
             {
-                return new BusResult<PatMedicalRecordResponse> { code = ResponseResultCode.FAIL, msg = $"Lấy bệnh án từ bên thứ ba thất bại：{clinicMr?.msg}" };
+                return new BusResult<PatMedicalRecordResponse> { code = ResponseResultCode.FAIL, msg = $"Lấy bệnh án từ bên thứ ba thất bại:{clinicMr?.msg}" };
             }
             var resp = clinicMr.data.Where(p => !string.IsNullOrWhiteSpace(p.patientTell)).FirstOrDefault();
             return new BusResult<PatMedicalRecordResponse> { code = ResponseResultCode.SUCCESS, Data = resp.Adapt<PatMedicalRecordResponse>() };
         }
 
         /// <summary>
-        /// 推送HISBệnh nhân病历
+        /// ĐẩyHISBệnh nhânBệnh án
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -83,7 +83,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || string.IsNullOrWhiteSpace(request.Data.ApplyId))
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId、HISĐăng kýId không được để trống" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId,HISĐăng kýId không được để trống" };
             }
             var applyInfo = await _remoteTreatedDmn.TreatedApplyExtendInfo(request.Data.ApplyId, request.OrganizeId);
             if (applyInfo == null || applyInfo.sqzt == (int)EmunRemoteTreatedStu.yth || applyInfo.sqzt == (int)EmunRemoteTreatedStu.ycx)
@@ -96,12 +96,12 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
             var sendMr = await ClinicHttpPost<object, ClinicPatMedicalRecordDTO>($"{ClinicApiHelper.SendHisPatMedicalRecord}", clinicRequest);
             if (sendMr == null || sendMr.code != ((int)ClinicResponseCode.success).ToString())
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = $"Bên thứ ba trả về thất bại：{sendMr?.msg}" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = $"Bên thứ ba trả về thất bại:{sendMr?.msg}" };
             }
             return new BusResult<string> { code = ResponseResultCode.SUCCESS, Data = sendMr.data.ToJson() };
         }
         /// <summary>
-        /// 推送HISBệnh nhân本次就诊处方
+        /// ĐẩyHISBệnh nhânĐơn thuốc lần khám này
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -111,7 +111,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || string.IsNullOrWhiteSpace(request.Data.ApplyId))
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId、HISĐăng kýId không được để trống" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId,HISĐăng kýId không được để trống" };
             }
             var applyInfo = await _remoteTreatedDmn.TreatedApplyExtendInfo(request.Data.ApplyId, request.OrganizeId);
             if (applyInfo == null || applyInfo.sqzt == (int)EmunRemoteTreatedStu.yth || applyInfo.sqzt == (int)EmunRemoteTreatedStu.ycx)
@@ -125,7 +125,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
                 return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Không tìm thấy đơn thuốc có thể đẩy" };
             }
             var hisypdw = await _sysMedicine.DrugUnitDic();
-            //主处方
+            //Đơn thuốc chính
             List<ClinicPatRecipelData> cfList = new List<ClinicPatRecipelData>();
             foreach (var p in drugPres)
             {
@@ -213,16 +213,16 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
             var sendMr = await ClinicHttpPost<object, ClinicPatRecipelDataSync>($"{ClinicApiHelper.SendHisRecipelData}", clinicRequest);
             if (sendMr == null || sendMr.code != ((int)ClinicResponseCode.success).ToString())
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = $"Bên thứ ba trả về thất bại：{sendMr?.msg}" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = $"Bên thứ ba trả về thất bại:{sendMr?.msg}" };
             }
             return new BusResult<string> { code = ResponseResultCode.SUCCESS, Data = sendMr.data.ToJson() };
         }
 
         #endregion
 
-        #region 通知类
+        #region Loại thông báo
         /// <summary>
-        /// Đăng ký khám chữa bệnh结果通知
+        /// Đăng ký khám chữa bệnhThông báo kết quả
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -232,7 +232,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || string.IsNullOrWhiteSpace(request.Data.ApplyId))
             {
-                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId、HISĐăng kýId không được để trống" };
+                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId,HISĐăng kýId không được để trống" };
             }
             var applyInfo = await _remoteTreatedDmn.TreatedApplyInfo(request.Data.ApplyId, request.OrganizeId);
             if (applyInfo == null || applyInfo.sqzt == (int)EmunRemoteTreatedStu.ycx)
@@ -273,7 +273,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         {
             var header = ClinicApiHelper.HeaderItems(null);
             var resp = await _httpClient.GetAsync<ClinicResponseBase<TResponse>>(url, header);
-            //鉴权失败重新获取token
+            //Xác thực thất bại thì lấy lạitoken
             if (resp != null && resp.code == ((int)ClinicResponseCode.tokenfailed).ToString())
             {
                 var tokenResp = await _httpClient.GetAsync<ClinicResponseBase<ClinicTokenDTO>>(ClinicApiHelper.GetTokenRoute);
@@ -293,7 +293,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         {
             var header = ClinicApiHelper.HeaderItems(null);
             var resp = await _httpClient.PostAsync<ClinicResponseBase<TResponse>>(url, request!.ToJson(), header);
-            //鉴权失败重新获取token
+            //Xác thực thất bại thì lấy lạitoken
             if (resp != null && resp.code == ((int)ClinicResponseCode.tokenfailed).ToString())
             {
                 var tokenResp = await _httpClient.GetAsync<ClinicResponseBase<ClinicTokenDTO>>(ClinicApiHelper.GetTokenRoute);

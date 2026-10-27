@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 床位
+    /// Giường bệnh
     /// </summary>
     [SugarTable("xt_cw")]
     public class SysWardBedEntity : EntityBase
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string bqCode { get; set; }
 
         /// <summary>
-        /// 0 非加床 1 加床
+        /// 0 Không thêm giường 1 Thêm giường
         /// </summary>
         public string jcbz { get; set; }
 
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string cwf { get; set; }
 
         /// <summary>
-        /// 医保四期项目库规定的床位费用from xt_sfxm
+        /// Chi phí giường theo kho hạng mục BHYT giai đoạn 4from xt_sfxm
         /// </summary>
         public string djyyjsf { get; set; }
 
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string bszlf { get; set; }
 
         /// <summary>
-        /// 医保四期项目库规定的床位费用from xt_sfxm
+        /// Chi phí giường theo kho hạng mục BHYT giai đoạn 4from xt_sfxm
         /// </summary>
         public string yymjkqjhf { get; set; }
 
@@ -93,17 +93,17 @@ namespace Newtouch.HIS.Domain.Entity
         public int? px { get; set; }
 
         /// <summary>
-        /// 病房
+        /// Phòng bệnh
         /// </summary>
         public string bfCode { get; set; }
 
         /// <summary>
-        /// 床位类型 对应枚举EnumWardBedType
+        /// Loại giường bệnh Enum tương ứngEnumWardBedType
         /// </summary>
         public string cwlx { get; set; }
 
         /// <summary>
-        /// 是否占用
+        /// Có bị chiếm không
         /// </summary>
         public bool? sfzy { get; set; }
 

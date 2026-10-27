@@ -3,82 +3,82 @@ using System;
 namespace Newtouch.Herp.Domain.ValueObjects
 {
     /// <summary>
-    /// 物资收费项目对照
+    /// Đối chiếu hạng mục thu phí vật tư
     /// </summary>
     public class RelProductAndsfxmVo
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chức Id（Bệnh viện có nghiệp vụ cụ thể）
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 物资ID(必填)
+        /// Vật tư ID(Bắt buộc)
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string productName { get; set; }
 
         /// <summary>
-        /// 物资类别ID
+        /// Loại vật tư ID
         /// </summary>
         public string productTypeId { get; set; }
 
         /// <summary>
-        /// 物资类别名称
+        /// Tên loại vật tư
         /// </summary>
         public string productTypeName { get; set; }
 
         /// <summary>
-        /// 收费大类代码
+        /// Mã nhóm thu phí lớn
         /// </summary>
         public string sfdlCode { get; set; }
 
         /// <summary>
-        /// 收费大类名称
+        /// Tên nhóm thu phí lớn
         /// </summary>
         public string sfdlmc { get; set; }
 
         /// <summary>
-        /// 收费项目代码
+        /// Mã hạng mục thu phí
         /// </summary>
         public string sfxmCode { get; set; }
 
         /// <summary>
-        /// 收费项目名称
+        /// Tên hạng mục thu phí
         /// </summary>
         public string sfxmmc { get; set; }
 
         /// <summary>
-        /// 状态  0:作废；1.有效
+        /// Trạng thái  0:Hủy bỏ；1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa đổi cuối
         /// </summary>
         public string LastModifierCode { get; set; }
     }

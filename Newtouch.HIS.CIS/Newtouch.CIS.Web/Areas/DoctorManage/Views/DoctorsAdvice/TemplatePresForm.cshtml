@@ -106,10 +106,10 @@
                     var kcsl = $gridList.jqGrid('getRowData', rowid).kcsl;
                     var kzbz = $gridList.jqGrid('getRowData', rowid).kzbz;
                     if ((kcsl != "" && kzbz != "Vô hiệu hóa" && (tclx == yp || tclx == zyyz || tclx == cydy)) || (tclx != yp && tclx != cydy && tclx != zyyz)) {
-                        $gridList.jqGrid('setSelection', rowid); //设置jqGrid选中
+                        $gridList.jqGrid('setSelection', rowid); //Cài đặtjqGridĐã chọn
                     }
                 });
-                $('#cb_gridList').prop('checked', true);//全选按钮
+                $('#cb_gridList').prop('checked', true);//Chọn tất cảNút
             },
             onSelectRow: function (rowid, status) {
                 if (status && (tclx == yp || tclx == zyyz)) {
@@ -117,12 +117,12 @@
                     var kzbz = $gridList.jqGrid('getRowData', rowid).kzbz;
                     if (kcsl == "") {
                         $.modalAlert("Thuốc này không có tồn kho, không thể chọn", "warning");
-                        $gridList.jqGrid('setSelection', rowid, false); //设置jqGrid选中
+                        $gridList.jqGrid('setSelection', rowid, false); //Cài đặtjqGridĐã chọn
                         return;
                     }
                     if (kzbz == "Vô hiệu hóa") {
                         $.modalAlert("Thuốc này ở trạng thái vô hiệu hóa, không thể chọn", "warning");
-                        $gridList.jqGrid('setSelection', rowid, false); //设置jqGrid选中
+                        $gridList.jqGrid('setSelection', rowid, false); //Cài đặtjqGridĐã chọn
                         return;
                     }
                 }
@@ -138,7 +138,7 @@
         CalculateInsPresJYAmount();
     }
 
-    //计算申请单金额
+    //Tính toánPhiếuSố tiền
     function CalculateInsPresJYAmount() {
         var totalAmount = 0.00;
         var allData = $("#gridList").jqGrid('getRowData_AllLine', true, true);
@@ -146,7 +146,7 @@
             totalAmount += parseFloat(this.dj) * parseFloat(this.sl);
         });
         $("#gridList").jqGrid("setCaption", "Tổng cộng:" + "<label style='color:red;'>￥"
-            + totalAmount.toFixed(2) + "</label>");   //重置caption属性值
+            + totalAmount.toFixed(2) + "</label>");   //Đặt lạicaptionThuộc tínhGiá trị
     }
 
     function submitForm() {

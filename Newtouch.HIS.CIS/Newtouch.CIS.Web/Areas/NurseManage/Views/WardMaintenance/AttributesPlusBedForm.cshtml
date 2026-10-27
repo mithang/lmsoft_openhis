@@ -45,7 +45,7 @@
 <script lang="javascript">
     var attrs = [];
 
-    //选择属性
+    //chọnThuộc tính
     function ChangeAttr() {
         if ($("#sel_attr").val() !== "") {
             $("#txt_attrName").val($("#sel_attr").find("option:selected").text());
@@ -73,7 +73,7 @@
         ]
     });
 
-    //添加
+    //Thêm
     function newtouch_event_f2() {
         if ($("#txt_attrName").val()==="") {
             $.modalAlert("Thuộc tínhTênBắt buộc", 'warning');
@@ -85,11 +85,11 @@
             attrDescribe: $("#txt_describe").val()
         };
         attrs.push(attr);
-        $("#gridAttrList").jqGrid("clearGridData");//先清空数据
+        $("#gridAttrList").jqGrid("clearGridData");//Xóa trắng trướcDữ liệu
         $("#gridAttrList").newtouchLocalDataGrid(null, attrs);
     }
 
-    //删除属性
+    //XóaThuộc tính
     function DeleteAttr(options) {
         if (attrs.length > 0) {
             var tmpattrs = [];
@@ -100,7 +100,7 @@
             });
             attrs = tmpattrs;
         }
-        $('#gridAttrList').jqGrid("clearGridData");//先清空数据
+        $('#gridAttrList').jqGrid("clearGridData");//Xóa trắng trướcDữ liệu
         $("#gridAttrList").newtouchLocalDataGrid(null, attrs);
     }
 

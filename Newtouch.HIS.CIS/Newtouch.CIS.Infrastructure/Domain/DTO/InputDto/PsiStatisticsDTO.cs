@@ -1,42 +1,42 @@
 namespace Newtouch.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 进销存统计查询条件
+    /// vàobántồn tạiThống kêĐiều kiện tìm kiếm
     /// </summary>
     public class PsiStatisticsDTO
     {
         /// <summary>
-        /// 开始结转时间
+        /// Bắt đầukết chuyểnThời gian
         /// </summary>
         public string ksjzsj { get; set; }
 
         /// <summary>
-        /// 结束结转时间
+        /// Kết thúckết chuyểnThời gian
         /// </summary>
         public string jsjzsj { get; set; }
 
         /// <summary>
-        /// 物资状态
+        /// vật tưTrạng thái
         /// </summary>
         public string wzzt { get; set; }
 
         /// <summary>
-        /// 输入码/药品代码
+        /// nhậpmã/Mã thuốc
         /// </summary>
         public string srm { get; set; }
 
         /// <summary>
-        /// 大类
+        /// Nhóm lớn
         /// </summary>
         public string dl { get; set; }
 
         /// <summary>
-        /// 零差率
+        /// khôngsaitỷ lệ
         /// </summary>
         public string rate { get; set; }
 
         /// <summary>
-        /// 显示无进销存药品
+        /// Hiển thịkhôngvàobántồn tạiThuốc
         /// </summary>
         public string noPSI { get; set; }
     }

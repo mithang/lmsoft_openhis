@@ -17,7 +17,7 @@ namespace Newtouch.Herp.Domain.ValueObjects.Purchase
 
         public string thmxId { get; set; }
         /// <summary>
-        /// 采购编号
+        /// Mã mua sắm
         /// </summary>
         public string thId { get; set; }
         public string OrganizeId { get; set; }

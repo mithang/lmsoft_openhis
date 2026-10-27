@@ -1,37 +1,37 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 排药参数列表
+    /// Danh sách tham Số xếp thuốc
     /// </summary>
     public class PyparListVo
     {
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 处方明细ID
+        /// Chi tiết đơn thuốcID
         /// </summary>
         public string cfmxId { get; set; }
 
         /// <summary>
-        /// 药品
+        /// Thuốc
         /// </summary>
         public string yp { get; set; }
 
         /// <summary>
-        /// 数量
+        /// Số lượng
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 提档日期
+        /// Ngày lấy hồ sơ
         /// </summary>
         public string tybz { get; set; }
 
         /// <summary>
-        /// 拆零数
+        /// Số chia lẻ
         /// </summary>
         public int cls { get; set; }
     }

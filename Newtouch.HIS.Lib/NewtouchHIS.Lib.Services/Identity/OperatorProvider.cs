@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Lib.Services.Identity
 {
     /// <summary>
-    /// 登录用户 身份信息 操作类
+    /// Lớp thao tác thông tin danh tính người dùng đăng nhập
     /// </summary>
     public class OperatorProvider
     {
         /// <summary>
-        /// 应用Id（在config配置 AppId）
+        /// Id ứng dụng (cấu hình AppId trong config)
         /// </summary>
         public static string _appId { get; private set; }
 
@@ -24,12 +24,12 @@ namespace NewtouchHIS.Lib.Services.Identity
         private static string _loginUserKeyPart1 = "newtouch_loginuserkey_2016";
 
         /// <summary>
-        /// 关联key，key能换群Model
+        /// Liên kết key, key có thể đổi nhómModel
         /// </summary>
         private static string _loginUserKey = _loginUserKeyPart1;
 
         /// <summary>
-        /// 组装本地Cookie的
+        /// Lắp ráp Cookie cục bộ
         /// </summary>
         public static string LocalhostCookieKey
         {
@@ -40,22 +40,22 @@ namespace NewtouchHIS.Lib.Services.Identity
         }
 
         /// <summary>
-        /// 登录状态 的 维持 时间
+        /// Thời gian duy trì trạng thái đăng nhập
         /// </summary>
         private static int _LoginStatusKeepMinute = 30;
 
         /// <summary>
-        /// 启用‘禁用多处登录’的限制
+        /// Bật‘Vô hiệu hóa đăng nhập nhiều nơi’của giới hạn
         /// </summary>
         private static bool _enableMultipleLoginLimit = false;
 
         /// <summary>
-        /// 启用‘禁用多处登录’的限制 - 数量
+        /// Bật‘Vô hiệu hóa đăng nhập nhiều nơi’của giới hạn - số lượng
         /// </summary>
         private static int _multipleLoginLimit_Count = 1;
 
         /// <summary>
-        /// 静态构造函数
+        /// Hàm khởi tạo tĩnh
         /// </summary>
         static OperatorProvider()
         {
@@ -77,7 +77,7 @@ namespace NewtouchHIS.Lib.Services.Identity
         }
 
         /// <summary>
-        /// 获取当前登录身份
+        /// Lấy danh tính đăng nhập hiện tại
         /// </summary>
         /// <returns></returns>
         public static OperatorModel GetCurrent(bool withInnerCatch = false)
@@ -87,10 +87,10 @@ namespace NewtouchHIS.Lib.Services.Identity
         }
 
         /// <summary>
-        /// 获取当前登录身份（异常类型：SIDELINED-已经被挤掉了）
+        /// Lấy danh tính đăng nhập hiện tại (loại ngoại lệ: SIDELINED - đã bị loại ra)
         /// </summary>
-        /// <param name="exception">异常类型：SIDELINED-已经被挤掉了</param>
-        /// <param name="withInnerCatch">是否不向外抛异常</param>
+        /// <param name="exception">Loại ngoại lệ: SIDELINED - đã bị loại ra</param>
+        /// <param name="withInnerCatch">Có không ném ngoại lệ ra ngoài không</param>
         /// <returns></returns>
         public static OperatorModel GetCurrent(ref string exception, bool withInnerCatch = false)
         {
@@ -113,9 +113,9 @@ namespace NewtouchHIS.Lib.Services.Identity
         }
 
         /// <summary>
-        /// 获取当前登录身份
+        /// Lấy danh tính đăng nhập hiện tại
         /// </summary>
-        /// <param name="exception">异常类型：SIDELINED-已经被挤掉了</param>
+        /// <param name="exception">Loại ngoại lệ: SIDELINED - đã bị loại ra</param>
         /// <returns></returns>
         private static OperatorModel GetCurrent(ref string exception)
         {
@@ -132,7 +132,7 @@ namespace NewtouchHIS.Lib.Services.Identity
             }
             else
             {
-                //非BS
+                //Không phải BS
                 throw new NotImplementedException();
             }
 
@@ -141,7 +141,7 @@ namespace NewtouchHIS.Lib.Services.Identity
                 return null;
             }
 
-            //去取加密后的结果
+            //Lấy kết quả sau khi mã hóa
             string encryptedResult = null;
             if (!string.IsNullOrWhiteSpace(token))
             {
@@ -157,40 +157,40 @@ namespace NewtouchHIS.Lib.Services.Identity
 
             if (_enableMultipleLoginLimit)
             {
-                //禁用了多处登录
+                //Đã vô hiệu hóa đăng nhập nhiều nơi
                 if (encryptedResult == "SIDELINED")
                 {
-                    //已经被挤掉了
+                    //Đã bị loại ra
                     exception = "SIDELINED";
                     if (HttpContext.Current != null)
                     {
                         HttpContext.Current.Items["OPERATOR_GETCURRENT_EXCEPTION"] = exception;
                     }
-                    RedisHelper.Remove(token);  //令牌已无效
+                    RedisHelper.Remove(token);  //Mã thông báo đã không còn hiệu lực
                     return null;
                 }
             }
 
-            //如果取到了，反序列化成对象
+            //Nếu lấy được, giải tuần tự hóa thành đối tượng
             operatorModel = encryptedResult.ToObject<OperatorModel>();
 
             if (operatorModel != null &&
                 (!string.IsNullOrWhiteSpace(operatorModel.UserId) || !string.IsNullOrWhiteSpace(operatorModel.UserCode))
                 )
             {
-                //更新过期时间
+                //Cập nhật thời gian hết hạn
                 RedisHelper.KeyExpire(token, new TimeSpan(0, _LoginStatusKeepMinute, 0));
 
                 return operatorModel;
             }
             else
             {
-                return null;    //视为无效 身份
+                return null;    //được coi là danh tính không hợp lệ
             }
         }
 
         /// <summary>
-        /// 获取当前登录身份
+        /// Lấy danh tính đăng nhập hiện tại
         /// </summary>
         /// <param name="context"></param>
         /// <returns></returns>
@@ -204,7 +204,7 @@ namespace NewtouchHIS.Lib.Services.Identity
             }
             else
             {
-                //非BS
+                //Không phải BS
                 throw new NotImplementedException();
             }
 
@@ -213,7 +213,7 @@ namespace NewtouchHIS.Lib.Services.Identity
                 return null;
             }
 
-            //去取加密后的结果
+            //Lấy kết quả sau khi mã hóa
             string encryptedResult = null;
             if (!string.IsNullOrWhiteSpace(token))
             {
@@ -225,12 +225,12 @@ namespace NewtouchHIS.Lib.Services.Identity
                 return null;
             }
 
-            //如果取到了，反序列化成对象
+            //Nếu lấy được, giải tuần tự hóa thành đối tượng
             var operatorModel = encryptedResult.ToObject<OperatorModel>();
 
             if (operatorModel == null || string.IsNullOrWhiteSpace(operatorModel.UserId) &&
-                string.IsNullOrWhiteSpace(operatorModel.UserCode)) return null; //视为无效 身份
-            //更新过期时间
+                string.IsNullOrWhiteSpace(operatorModel.UserCode)) return null; //được coi là danh tính không hợp lệ
+            //Cập nhật thời gian hết hạn
             RedisHelper.KeyExpire(token, new TimeSpan(0, _LoginStatusKeepMinute, 0));
 
             return operatorModel;
@@ -238,7 +238,7 @@ namespace NewtouchHIS.Lib.Services.Identity
         }
 
         /// <summary>
-        /// 重写登录状态
+        /// Ghi đè trạng thái đăng nhập
         /// </summary>
         /// <param name="operatorModel"></param>
         public static void AddCurrent(OperatorModel operatorModel)
@@ -247,10 +247,10 @@ namespace NewtouchHIS.Lib.Services.Identity
                 (string.IsNullOrWhiteSpace(operatorModel.UserId) && string.IsNullOrWhiteSpace(operatorModel.UserCode))
                 )
             {
-                return;     //视为无效 身份
+                return;     //được coi là danh tính không hợp lệ
             }
 
-            //token直接对应UserInfo Model
+            //tokenTương ứng trực tiếpUserInfo Model
             var token = Guid.NewGuid().ToString();
 
             if (string.IsNullOrWhiteSpace(operatorModel.token))
@@ -260,45 +260,45 @@ namespace NewtouchHIS.Lib.Services.Identity
 
             if (_enableMultipleLoginLimit)
             {
-                //禁用了多处登录
+                //Đã vô hiệu hóa đăng nhập nhiều nơi
 
-                //应用+UserId+登录账号 唯一 系统该用户，已登录的TokenList
+                //ứng dụng+UserId+Tài khoản đăng nhập duy nhất của người dùng này trong hệ thống, đã đăng nhậpTokenList
                 var keyUserTokenList = string.Format("list:Token_WithUser_{0}_{1}_{2}"
                     , _appId, operatorModel.UserId, operatorModel.UserCode);
                 var existTokenList = RedisHelper.Get<List<string>>(keyUserTokenList)
                     ?? new List<string>();
-                var limitCount = _multipleLoginLimit_Count;  //同一用户 最大同时有效在线客户端数
-                if (existTokenList != null && existTokenList.Count >= limitCount) //可以做到控制同时登录状态的数量
+                var limitCount = _multipleLoginLimit_Count;  //Số lượng máy khách trực tuyến có hiệu lực đồng thời tối đa của cùng một người dùng
+                if (existTokenList != null && existTokenList.Count >= limitCount) //Có thể kiểm soát số lượng trạng thái đăng nhập đồng thời
                 {
-                    var availablyOnlineCount = 0;    //同一用户 已经统计到的有效在线的登录客户端
-                    existTokenList.Reverse();   //先反转下，使后登录的在前面
-                    //挤掉多余的
+                    var availablyOnlineCount = 0;    //Máy khách đăng nhập trực tuyến có hiệu lực đã thống kê được của cùng một người dùng
+                    existTokenList.Reverse();   //Đảo ngược trước, để mục đăng nhập sau lên phía trước
+                    //Loại bỏ phần thừa
                     for (var i = 0; i < existTokenList.Count; i++)
                     {
                         var itemToken = existTokenList[i];
                         var itemEncryptedResult = RedisHelper.StringGet(itemToken);
                         if (string.IsNullOrWhiteSpace(itemEncryptedResult))
                         {
-                            existTokenList.RemoveAt(i); //已经执行过 退出操作 或 已过期了
-                            i--;    //下次进for还得是i
+                            existTokenList.RemoveAt(i); //Đã thực hiện thao tác thoát hoặc đã hết hạn
+                            i--;    //Lần vào vòng for tiếp theo vẫn phải lài
                             continue;
                         }
 
                         if (itemToken != "SIDELINED")
                         {
                             //availablyOnlineCount++;
-                            if ((availablyOnlineCount + 1) < limitCount)    //+1是因为最后一个名额当前token
+                            if ((availablyOnlineCount + 1) < limitCount)    //+1là vì suất cuối cùng hiện tạitoken
                             {
-                                //这是一有效在线客户端
+                                //Đây là một máy khách trực tuyến có hiệu lực
                                 availablyOnlineCount++;
-                                continue;   //尚未达到同时在线客户端数 的限制
+                                continue;   //Chưa đạt đến giới hạn số lượng máy khách trực tuyến đồng thời
                             }
                             else
                             {
-                                //已达到最大有效数
-                                //做挤掉处理
+                                //Đã đạt số lượng có hiệu lực tối đa
+                                //Thực hiện xử lý loại bỏ
 
-                                //更新为已经被挤掉了
+                                //Cập nhật thành đã bị loại ra
                                 RedisHelper.StringSet(itemToken, "SIDELINED", new TimeSpan(0, 60, 0));
                                 continue;
                             }
@@ -306,13 +306,13 @@ namespace NewtouchHIS.Lib.Services.Identity
                     }
                     if (existTokenList.Count > limitCount + 20)
                     {
-                        //被挤掉之后 没有GetCurrent、退出操作。 导致existTokenList不能RemoveAt
-                        //existTokenList.RemoveRange(5, limitCount + 20 - 5);  //清掉前面的（最新登录的被reverse到前面了）
-                        existTokenList.RemoveRange(limitCount, 20 - 1);  //清掉前面的（最新登录的被reverse到前面了）
+                        //Sau khi bị loại ra, không có GetCurrent, thao tác thoát. Dẫn đến existTokenList không thểRemoveAt
+                        //existTokenList.RemoveRange(5, limitCount + 20 - 5);  //Xóa các mục phía trước (mục đăng nhập mới nhất đã bị reverse lên phía trước)
+                        existTokenList.RemoveRange(limitCount, 20 - 1);  //Xóa các mục phía trước (mục đăng nhập mới nhất đã bị reverse lên phía trước)
                     }
                 }
 
-                existTokenList.Reverse();   //再反转下，使后登录的 回到list后面
+                existTokenList.Reverse();   //Đảo ngược lại, để mục đăng nhập sau trở về phía sau list
                 existTokenList.Add(token);
                 RedisHelper.Set<List<string>>(keyUserTokenList, existTokenList);
 
@@ -322,7 +322,7 @@ namespace NewtouchHIS.Lib.Services.Identity
                 }
                 else
                 {
-                    //非BS
+                    //Không phải BS
                     throw new NotImplementedException();
                 }
 
@@ -330,7 +330,7 @@ namespace NewtouchHIS.Lib.Services.Identity
             }
             else
             {
-                //可以多处登录
+                //Có thể đăng nhập nhiều nơi
 
                 if (HttpContext.Current != null)
                 {
@@ -338,7 +338,7 @@ namespace NewtouchHIS.Lib.Services.Identity
                 }
                 else
                 {
-                    //非BS
+                    //Không phải BS
                     throw new NotImplementedException();
                 }
 
@@ -347,7 +347,7 @@ namespace NewtouchHIS.Lib.Services.Identity
         }
 
         /// <summary>
-        /// 移除 登录状态
+        /// Xóa trạng thái đăng nhập
         /// </summary>
         public static void RemoveCurrent()
         {
@@ -358,7 +358,7 @@ namespace NewtouchHIS.Lib.Services.Identity
             }
             else
             {
-                //非BS
+                //Không phải BS
                 throw new NotImplementedException();
             }
 
@@ -369,7 +369,7 @@ namespace NewtouchHIS.Lib.Services.Identity
         }
 
         /// <summary>
-        /// 获取当前身份令牌的Key
+        /// Lấy ... của mã thông báo danh tính hiện tạiKey
         /// </summary>
         /// <returns></returns>
         public static string GetCurrentToken()
@@ -378,7 +378,7 @@ namespace NewtouchHIS.Lib.Services.Identity
         }
 
         /// <summary>
-        /// 补充登录cookie 适用于跨子系统页面跳转
+        /// Bổ sung cookie đăng nhập, áp dụng cho chuyển trang qua các hệ thống con
         /// </summary>
         public static void WriteLoginUserCookie()
         {

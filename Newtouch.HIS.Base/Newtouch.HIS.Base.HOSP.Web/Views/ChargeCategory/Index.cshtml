@@ -120,7 +120,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -162,9 +162,9 @@
     }
     function toggleZt(dlId, newZt) {
 
-        // 发送请求到后端更新数据
+        // Gửi yêu cầu tới backend để cập nhật dữ liệu
         $.ajax({
-            url: '/ChargeCategory/UpdateZt',  // 后端处理修改的URL
+            url: '/ChargeCategory/UpdateZt',  // của xử lý sửa đổi ở backendURL
             type: 'POST',
             data: {
                 dlId: dlId,
@@ -172,7 +172,7 @@
                 organizeId: $("#OrganizeId").val()
             },
             success: function () {
-                // 切换显示的开关状态
+                // Chuyển trạng thái công tắc hiển thị
                 $('#btn_search').trigger('click');
 
             },

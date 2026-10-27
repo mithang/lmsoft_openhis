@@ -255,21 +255,21 @@
 
 
     function checkNotNulls() {
-        //姓名
+        //Họ tên
         var xm = $("#xm").val();
         if (!xm) {
             $.modalAlert("Vui lòng điền họ tên！", 'warning');
             return false;
         }
 
-        //病人性质
+        //Tính chất bệnh nhân
         var brxzmc = $("#brxzmc").val();
         if (!brxzmc) {
             $.modalAlert("Vui lòng chọn tính chất bệnh nhân！", 'warning');
             return false;
         }
 
-        //卡号
+        //Số thẻ
         var khs = $("#kh").val();
         if (!khs) {
             $.modalAlert("Vui lòng nhập số thẻ！", 'warning');
@@ -284,7 +284,7 @@
         clickautotrigger: true,
         filter: function (keyword) {
             
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) ||
@@ -304,7 +304,7 @@
         ],
         itemdbclickhandler: function ($thistr) {
             if ($thistr.attr('data-brxz') === "8") {
-                //判断是否需要读卡
+                //xétđoạnlàkhôngcầncầnđọcthẻ
                 if ($("#xnhylzh").val() === "" || $("#xnhgrbm").val() === "") {
                     $.modalAlert("hợp tác nông thôn mới bệnh nhân Vui lòng đọc thẻ trước！", 'error');
                     return;
@@ -316,7 +316,7 @@
         }
     });
 
-    ////医保业务
+    ////nghiệp vụ BHYT
     function ReadCardCall(readCardObj) {
         $.loading(false);
         
@@ -330,7 +330,7 @@
             $("#xzlx").val(readCardObj.cardInfo2.insutype);
             $("#grbh").val(readCardObj.cardInfo1.psn_no);
             $("#cbdbm").val(readCardObj.cardInfo2.insuplc_admdvs);
-            var ybPatInfo2 = readCardObj.yibaoCardInfo.output.insuinfo[0];//参保信息
+            var ybPatInfo2 = readCardObj.yibaoCardInfo.output.insuinfo[0];//thông tin tham gia bảo hiểm
             if (!!ybPatInfo2.insuplc_admdvs && ybPatInfo2.insuplc_admdvs.substring(0, 2) == "50") {
                 $('#dybh').val("0");
             } else {

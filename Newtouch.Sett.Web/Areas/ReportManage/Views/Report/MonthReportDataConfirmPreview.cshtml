@@ -47,14 +47,14 @@
     var year = $.request("year");
     var month = $.request("month");
     var calcZje = $.request("calcZje");
-    var isregenerate = $.request("isregenerate"); //重新生成 标志
+    var isregenerate = $.request("isregenerate"); //Tạo lại dấu hiệu
 
     $('#lblYearMonth').html(year + '-' + $.zeroPrefixInteger(month, 2));
     $('#lblCalcZje').html(parseFloat(calcZje).toFixed(2));
     $('#lblResultZje').html(parseFloat(calcZje).toFixed(2));
 
     $('#balance').keyup(function () {
-        //重新计算合计
+        //nặngmớitínhtínhhợptính
         var tzje = $('#balance').val();
         if (tzje) {
             if (isNaN(parseFloat(tzje))) {

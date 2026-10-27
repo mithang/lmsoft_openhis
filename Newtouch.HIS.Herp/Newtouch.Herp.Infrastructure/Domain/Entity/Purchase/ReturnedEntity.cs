@@ -11,7 +11,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Herp.Domain.Entity.Purchase
 {
     /// <summary>
-    /// 退货
+    /// Trả hàng
     /// </summary>
     [SugarTable("xt_wz_th")]
     public class ReturnedEntity : IEntity<ReturnedEntity>
@@ -19,7 +19,7 @@ namespace Newtouch.Herp.Domain.Entity.Purchase
         [SugarColumn(IsPrimaryKey = true)]
         public string thId { get; set; }
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
         public string CZLX { get; set; }

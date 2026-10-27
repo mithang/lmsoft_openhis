@@ -4,9 +4,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2018-09-11 10:46
-    /// 描 述：患者病历文书关系表-门诊
+    /// Người tạo：chl
+    /// Ngày：2018-09-11 10:46
+    /// Mô tả：Bảng quan hệ văn bản bệnh án của bệnh nhân-Ngoại trú
     /// </summary>
     [SugarTable("mz_meddocs_relation")]
     public class MzmeddocsrelationEntity 
@@ -23,12 +23,12 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 患者标识
+        /// Dấu hiệu bệnh nhân
         /// </summary>
         /// <returns></returns>
         public string patid { get; set; }
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         /// <returns></returns>
         public string mzh { get; set; }
@@ -38,27 +38,27 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string blId { get; set; }
         /// <summary>
-        /// 病历类型Id
+        /// Loại bệnh ánId
         /// </summary>
         /// <returns></returns>
         public string mbId { get; set; }
         /// <summary>
-        /// 病历名称
+        /// Tên bệnh án
         /// </summary>
         /// <returns></returns>
         public string blmc { get; set; }
         /// <summary>
-        /// 病历标题
+        /// Tiêu đề bệnh án
         /// </summary>
         /// <returns></returns>
         public string blbt { get; set; }
         /// <summary>
-        /// 是否已签名 0 未签 1 已签
+        /// Đã ký hay chưa 0 Chưa ký 1 Đã ký
         /// </summary>
         /// <returns></returns>
         public int? blzt { get; set; }
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         /// <returns></returns>
         public string ks { get; set; }
@@ -83,12 +83,12 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public DateTime? blrq { get; set; }
         /// <summary>
-        /// 父节点
+        /// Nút cha
         /// </summary>
         /// <returns></returns>
         public string ParentId { get; set; }
         /// <summary>
-        /// 是否父节点 0 否 1 是
+        /// Có phải nút cha hay không 0 Không 1 Có
         /// </summary>
         /// <returns></returns>
         public int? IsParent { get; set; }
@@ -124,11 +124,11 @@ namespace Newtouch.EMR.Domain.Entity
         public string zt { get; set; }
         public string bllx { get; set; }
         /// <summary>
-        /// 医保上传标志 0 未上传 1 已上传
+        /// Dấu hiệu tải lên bảo hiểm y tế 0 Chưa tải lên 1 Đã tải lên
         /// </summary>
         public string YbUploadFlag { get; set; }
         /// <summary>
-        /// 文书格式类型-xml/html
+        /// Loại định dạng văn bản-xml/html
         /// </summary>
         [SugarColumn(IsIgnore = true)]
         public string doctype { get; set; }

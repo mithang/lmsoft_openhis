@@ -3,58 +3,58 @@ using System;
 namespace Newtouch.HIS.Domain.DTO.DrugStorage
 {
     /// <summary>
-    /// 批量直接出库执行参数
+    /// Tham Số thực hiện xuất kho trực tiếp hàng loạt
     /// </summary>
     public class DirectDeliveryBatchDTO
     {
         /// <summary>
-        /// 组织结构
+        /// Cơ cấu tổ chức
         /// </summary>
         public string Organizeid { get; set; }
 
         /// <summary>
-        /// 单据号
+        /// Số chứng từ
         /// </summary>
         public string djh { get; set; }
 
         /// <summary>
-        /// 出入库单据ID
+        /// Chứng từ xuất nhập khoID
         /// </summary>
         public string crkId { get; set; }
 
         /// <summary>
-        /// 单据类型
+        /// Loại chứng từ
         /// </summary>
         public int djlx { get; set; }
 
         /// <summary>
-        /// 入库部门代码
+        /// Mã bộ phận nhập kho
         /// </summary>
         public string rkbm { get; set; }
 
         /// <summary>
-        /// 当前药房部门/出库药房部门
+        /// Bộ phận nhà thuốc hiện tại/Bộ phận nhà thuốc xuất kho
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 操作者
+        /// Người thao tác
         /// </summary>
         public string userCode { get; set; }
 
         /// <summary>
-        /// 出入库方式代码
+        /// Mã phương thức xuất nhập kho
         /// </summary>
         public string crkfs { get; set; }
 
         /// <summary>
-        /// 审核状态
+        /// Trạng thái duyệt
         /// </summary>
         public string shzt { get; set; }
 
         private string _ypCodes = "";
         /// <summary>
-        /// 药品代码集合 用','分隔，字符长度不得超过1000
+        /// Tập hợp mã thuốc dùng','Phân tách，Độ dài ký tự không được vượt quá1000
         /// </summary>
         public string ypCodes
         {
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Domain.DTO.DrugStorage
             {
                 if (value.Length > 1000)
                 {
-                    throw new Exception("请控制药品种数，拼接后的药品代码长度不得超过1000");
+                    throw new Exception("Vui lòng khống chế số loại thuốc，Độ dài mã thuốc sau khi nối không được vượt quá1000");
                 }
                 _ypCodes = value;
             }

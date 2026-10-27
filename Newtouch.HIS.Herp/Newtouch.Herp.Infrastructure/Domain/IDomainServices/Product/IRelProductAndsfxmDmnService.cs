@@ -6,13 +6,13 @@ using Newtouch.Herp.Domain.ValueObjects;
 namespace Newtouch.Herp.Domain.IDomainServices
 {
     /// <summary>
-    /// 物资收费项目关联
+    /// Liên kết hạng mục thu phí vật tư
     /// </summary>
     public interface IRelProductAndsfxmDmnService
     {
 
         /// <summary>
-        /// 查询物资收费项目对照管理
+        /// Truy vấn quản lý đối chiếu hạng mục thu phí vật tư
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sfdlCode"></param>
@@ -23,7 +23,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         IList<RelProductAndsfxmVo> SelectProductAndsfxm(Pagination pagination, string sfdlCode, string productTypeId, string organizeId, string zt);
 
         /// <summary>
-        /// 查询物资收费项目对照管理
+        /// Truy vấn quản lý đối chiếu hạng mục thu phí vật tư
         /// </summary>
         /// <param name="relId"></param>
         /// <param name="organizeId"></param>

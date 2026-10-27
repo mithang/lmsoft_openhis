@@ -7,40 +7,40 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Outpatient
 {
     /// <summary>
-    /// 诊室信息（小屏）
+    /// Thông tin phòng khám（nhỏmàn hình）
     /// </summary>
     public class OutpatientConsultInfoVO
     {
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
         /// <summary>
-        /// 诊室名称
+        /// Tên phòng khám
         /// </summary>
         public string zsmc { get; set; }
         /// <summary>
-        /// 医生姓名
+        /// Bác sĩHọ tên
         /// </summary>
         public string ysxm { get; set; }
         /// <summary>
-        /// 医生介绍
+        /// Bác sĩGiới thiệu
         /// </summary>
         public string ysjs { get; set; }
         /// <summary>
-        /// 就诊中
+        /// Khám bệnhtrong
         /// </summary>
         public string jzz { get; set; }
         /// <summary>
-        /// 就诊中序号
+        /// Khám bệnhtrongthứ tựsố
         /// </summary>
         public Int16? jzzxh { get; set; }
         /// <summary>
-        /// 待就诊
+        /// chờKhám bệnh
         /// </summary>
         public string djz { get; set; }
         /// <summary>
-        /// 待就诊序号
+        /// chờKhám bệnhthứ tựsố
         /// </summary>
         public Int16? djzxh { get; set; }
     }

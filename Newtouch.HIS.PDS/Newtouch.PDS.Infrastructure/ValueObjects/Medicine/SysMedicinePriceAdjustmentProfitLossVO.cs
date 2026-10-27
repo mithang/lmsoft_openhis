@@ -27,32 +27,32 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string Ypdm { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string Ph { get; set; }
 
         /// <summary>
-        /// 调价时间
+        /// Thời gian điều chỉnh giá
         /// </summary>
         public DateTime Tjsj { get; set; }
 
         /// <summary>
-        /// 调价文件
+        /// Tệp điều chỉnh giá
         /// </summary>
         public string Tjwj { get; set; }
 
         /// <summary>
-        /// 当时数量
+        /// Số lượng lúc đó
         /// </summary>
         public int Dssl { get; set; }
 
         /// <summary>
-        /// 原批发价
+        /// Giá bán buôn gốc
         /// </summary>
         public decimal Ypfj { get; set; }
 
         /// <summary>
-        /// 原零售价
+        /// Giá bán lẻ gốc
         /// </summary>
         public decimal Ylsj { get; set; }
 
@@ -67,12 +67,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public decimal Yyklsj { get; set; }
 
         /// <summary>
-        /// 现批发价
+        /// Giá bán buôn hiện tại
         /// </summary>
         public decimal Xpfj { get; set; }
 
         /// <summary>
-        /// 现零售价
+        /// Giá bán lẻ hiện tại
         /// </summary>
         public decimal Xlsj { get; set; }
 
@@ -92,22 +92,22 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public int Zhyz { get; set; }
 
         /// <summary>
-        /// 操作员
+        /// Nhân viên thao tác
         /// </summary>
         public string Czy { get; set; }
 
         /// <summary>
-        /// 批价利润
+        /// Lợi nhuận giá bán buôn
         /// </summary>
         public decimal Pfjtjlr { get; set; }
 
         /// <summary>
-        /// 零价利润
+        /// Lợi nhuận giá lẻ
         /// </summary>
         public decimal Lsjtjlr { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
@@ -132,7 +132,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string LastModifierCode { get; set; }
         
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
@@ -142,7 +142,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 包装单位
+        /// Đơn vị đóng gói
         /// </summary>
         public string bzdw { get; set; }
 
@@ -171,7 +171,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string djdw { get; set; }
         /// <summary>
-        /// 单位 把门诊和住院都考虑进来
+        /// Đơn vị Xem xét cả ngoại trú và nội trú
         /// </summary>
 
         public string dw { get; set; }
@@ -196,11 +196,11 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string py { get; set; }
         /// <summary>
-        /// 药品规格
+        /// Quy cách thuốc
         /// </summary>
         public string ypgg { get; set; }
         /// <summary>
-        /// 厂家
+        /// Nhà máy
         /// </summary>
         public string ycmc { get; set; }
 

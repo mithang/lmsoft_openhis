@@ -20,7 +20,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 {
     /// <summary>
-    /// 出诊管理
+    /// rakhámQuản lý
     /// </summary>
     [Area("SystemManage")]
     public class VisitDeptSetController : OrgControllerBase
@@ -39,7 +39,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取Bác sĩ khám信息
+        /// LấyBác sĩ khámthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -62,7 +62,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取出诊明细
+        /// Lấyrakhámchi tiết
         /// </summary>
         /// <param name="ysgh"></param>
         /// <returns></returns>
@@ -73,7 +73,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 删除项目
+        /// XóaMục
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -83,7 +83,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 根据ID获取Khoa khám信息
+        /// TheoIDLấyKhoa khámthông tin
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="keyValue"></param>
@@ -95,7 +95,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 表单提交
+        /// bảngphiếuGửi
         /// </summary>
         /// <param name="vo"></param>
         /// <returns></returns>

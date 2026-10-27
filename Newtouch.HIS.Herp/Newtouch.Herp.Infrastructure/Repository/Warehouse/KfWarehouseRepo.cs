@@ -7,7 +7,7 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 库房操作
+    /// Thao tác kho
     /// </summary>
     public class KfWarehouseRepo : RepositoryBase<KfWarehouseEntity>, IKfWarehouseRepo
     {
@@ -16,7 +16,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 获取目标兄弟或子库房
+        /// Lấy kho anh em hoặc kho con đích
         /// </summary>
         /// <param name="kfId"></param>
         /// <param name="keyWord"></param>
@@ -35,7 +35,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 获取部门(父节点和兄弟节点)
+        /// Lấy khoa phòng(Nút cha và nút anh em)
         /// </summary>
         /// <param name="kfId"></param>
         /// <param name="keyWord"></param>

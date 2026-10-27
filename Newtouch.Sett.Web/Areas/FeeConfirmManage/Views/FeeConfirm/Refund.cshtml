@@ -47,7 +47,7 @@
                 </td>
                 <th class="formTitle">Họ tên：</th>
                 <td class="formValue">
-                    <label id="xm">大白</label>
+                    <label id="xm">Đại Bạch</label>
                 </td>
                 <th class="formTitle">Giới tính：</th>
                 <td class="formValue">
@@ -108,7 +108,7 @@
         gridList(mydata);
     })
 
-    //病人查询
+    //tra cứu bệnh nhân
     function GetPatSerarchView(blh) {
         if (!!!blh) {
             blh = '';
@@ -121,18 +121,18 @@
             height: "600px",
             callBack: function (iframeId) {
                 top.frames[iframeId].PatDbGrid();
-            }//窗口点确定的回调函数
+            }//hàm gọi lại khi nhấn xác nhận trên cửa sổ
         });
     }
 
-    //选择的病人 callback
+    //Bệnh nhân đã chọn callback
     function getPatInfoAjax(selePatInfo) {
         $('#blh').val(selePatInfo.blh)
         $('#blh').attr('data-patId', selePatInfo.patId);
         $('#xm').val(selePatInfo.xm);
     }
 
-    //处方查询
+    //nơiphươngtratra cứu
     function SerarchPresList() {
         if ($("#blh").val() == "") {
             $.modalAlert("Vui lòng trước điền Số hồ sơ bệnh án", 'warning');
@@ -146,11 +146,11 @@
             height: "600px",
             callBack: function (iframeId) {
                 top.frames[iframeId].DbClickGrid();
-            }//窗口点确定的回调函数
+            }//hàm gọi lại khi nhấn xác nhận trên cửa sổ
         });
     }
 
-    //处方明细
+    //chi tiết đơn thuốc
     function gridList(mydata) {
         var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
@@ -200,7 +200,7 @@
                 $("#" + $.jgrid.jqID(rowid) + "_tsl").focus();
             },
             gridComplete: function () {
-                //启用行内编辑框
+                //bật khung sửa trong dòng
                 EnableInlineEditBox();
             }
         },mydata);
@@ -215,7 +215,7 @@
         })
     }
 
-    //启用行内编辑框
+    //bật khung sửa trong dòng
     function EnableInlineEditBox() {
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
@@ -225,7 +225,7 @@
         }
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var keyword = $("#keyword").val();
         var blh = $("#blh").val();

@@ -18,16 +18,16 @@ using Newtouch.MR.ManageSystem.Infrastructure;
 namespace Newtouch.MR.ManageSystem.Repository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-20 11:05
-    /// 描 述：病案首页诊断表
+    /// Tạo: chl
+    /// Ngày: 2019-11-20 11:05
+    /// Mô tả: Bảng chẩn đoán trang đầu bệnh án
     /// </summary>
     public class MrbasyzdRepo : RepositoryBase<MrbasyzdEntity>, IMrbasyzdRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public MrbasyzdRepo()
             
         {
@@ -35,10 +35,10 @@ namespace Newtouch.MR.ManageSystem.Repository
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu(Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(MrbasyzdEntity entity, string keyValue)
         {
             if(entity!=null)
@@ -66,9 +66,9 @@ namespace Newtouch.MR.ManageSystem.Repository
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public int DeleteForm(string keyValue)
         {
             return Delete(p => p.Id == keyValue);

@@ -97,21 +97,21 @@
 </div>
 <script type="text/javascript">
     var ThisbqCode = "";//Khởi tạo khu bệnhCode
-    var ThisbrCode = "";//初始化病人Code
+    var ThisbrCode = "";//Khởi tạo bệnh nhânCode
     var globalData = [];
     $(".toolbar").css("width", 250);
     var $dispenseMedicinGridListByBatch = $("#dispenseMedicinGridListByBatch");
     var $dispenseMedicinGridListNoBatch = $("#dispenseMedicinGridListNoBatch");
     var tyzyh = [];
     $(function () {
-        //绑定病区
+        //Gắn khu bệnh
         bqGridList();
-        //绑定病人发药详细信息
+        //Gắn chi tiết phát thuốc của bệnh nhân
         dispenseMedicinGridList(null);
-        //查询
+        //Truy vấn
         $("#btn_search").click(function () {
             if ($("#dispenseByBatch").is(":checked")) {
-                //按批次
+                //Theo lô
                 $dispenseMedicinGridListByBatch.jqGrid("clearGridData");
                 $dispenseMedicinGridListByBatch.jqGrid('setGridParam', {
                     postData: {
@@ -123,7 +123,7 @@
                     }
                 }).trigger('reloadGrid');
             } else {
-                //不按批次
+                //Không theo lô
                 $dispenseMedicinGridListNoBatch.jqGrid("clearGridData");
                 $dispenseMedicinGridListNoBatch.jqGrid('setGridParam', {
                     postData: {
@@ -139,12 +139,12 @@
 
         $("#dispenseByBatch").click(function() {
             if ($("#dispenseByBatch").is(":checked")) {
-                //按批次
+                //Theo lô
                 $("#dv_bybtach").show();
                 $("#dv_nobtach").hide();
 
             } else {
-                //不按批次
+                //Không theo lô
                 $("#dv_bybtach").hide();
                 $("#dv_nobtach").show();
             }
@@ -162,7 +162,7 @@
             }
         });
 
-        // 药品追溯码扫码
+        // Quét mã truy xuất thuốc
         $dispenseMedicinGridListByBatch.on('keydown', '.scan-input', function (event) {
             if (event.key === 'Enter') {
                 event.preventDefault();
@@ -170,7 +170,7 @@
                 const inputField = $(this);
                 const row = inputField.closest('tr');
 
-                // 是否拆零
+                // Có chia lẻ không
                 const sfcl = parseInt(row.find('.sfcl').val(), 10);
                 var maxEntries = 1;
                 if (sfcl === 1) {
@@ -199,7 +199,7 @@
                 const inputField = $(this);
                 const row = inputField.closest('tr');
 
-                // 是否拆零
+                // Có chia lẻ không
                 const sfcl = parseInt(row.find('.sfcl').val(), 10);
                 var maxEntries = 1;
                 if (sfcl === 1) {
@@ -228,14 +228,14 @@
         return uniqueArr.join(',')+','
     }
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             //$("#btn_search").trigger("click");
         }
     });
 
-    //绑定病区和病人
+    //Gắn khu bệnh và bệnh nhân
     function bqGridList() {
         $("#BqTreeList").treeview({
             height: $(window).height() - 35,
@@ -254,9 +254,9 @@
         var patlistFath = "";
         var patzyh = "";
 
-        //当前选中父节点
+        //Nút cha đang được chọn
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //Có phải nút con đơn lẻ không
 
         if (item != null && item.Ex1 === "p") {
             patlistFath = item.ChildNodes;
@@ -267,7 +267,7 @@
             len = 1;
             single = 1;
         }
-        //选中节点
+        //Nút được chọn
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patzyh += patlist[i].value + ",";
@@ -298,12 +298,12 @@
             }
         }
 
-        ThisbrCode = patzyh;//存储点击的病人code
-        //重新加载病人发药详细信息
+        ThisbrCode = patzyh;//Lưu bệnh nhân đã nhấpcode
+        //Tải lại chi tiết phát thuốc của bệnh nhân
         $("#btn_search").click();
     }
 
-    //级联选中所有子节点
+    //Chọn xếp tầng tất cả nút con
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -312,7 +312,7 @@
             }
         }
     }
-    //级联取消所有子节点
+    //Bỏ chọn xếp tầng tất cả nút con
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -328,7 +328,7 @@
         dispenseMedicinGridListNoBatch();//Không theo lô
     }
 
-    //用户发药详细信息 按执行批次
+    //Chi tiết phát thuốc của người dùng Theo lô thực hiện
     function dispenseMedicinGridListByBatch() {
         $dispenseMedicinGridListByBatch.dataGrid({
             url: '/HospitalizationPharmacy/GetReturnDrugDetail',
@@ -442,9 +442,9 @@
         });
     }
 
-    //启用行内编辑框
+    //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox(jgr) {
-        var rowIds = jgr.jqGrid('getDataIDs'); //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = jgr.jqGrid('getDataIDs'); //GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
             jgr.jqGrid('editRow',
                 rowIds[i],
@@ -458,17 +458,17 @@
         }
     }
 
-    // 退药
+    // Trả thuốc
     function newtouch_event_f6() {
         var jqr = null;
         if ($("#dispenseByBatch").is(":checked")) {
-            //按批次
+            //Theo lô
             jqr = $dispenseMedicinGridListByBatch;
         } else {
-            //不按批次
+            //Không theo lô
             jqr = $dispenseMedicinGridListNoBatch;
         }
-        var ids = jqr.jqGrid('getDataIDs'); //获取所有行Id，遍历使编辑框处于保存状态
+        var ids = jqr.jqGrid('getDataIDs'); //Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
         if (ids == null || ids.length === 0) {
             $.modalMsg('Vui lòng tra cứu chi tiết trả thuốc', 'warning', 2000);
             return false;
@@ -496,12 +496,12 @@
             }
             if (parseInt(rowData.sl) > 0) {
                 const rowid = ids[i]
-                //追溯码
+                //Mã truy xuất
                 var zsm = $("#sel_zsm_" + rowid).val()
-                //是否拆零
+                //Có chia lẻ không
                 var sfclValue = Number($("#sel_sfcl_" + rowid).val());
 
-                // 验证追溯码数量。 是否拆零选是，只需要扫一个，否的话需要扫对应入库数量的码
+                // Kiểm tra số lượng mã truy xuất。 Có chia lẻ thì chọn Có，Chỉ cần quét một cái，Nếu không thì cần quét mã tương ứng với số lượng nhập kho
                 const zsmLength = $("#sel_zsm_" + rowid).val().split(',').filter(entry => entry.trim() !== '').length
                 var maxZsmLength = 1
                 if (sfclValue === 1) {
@@ -554,7 +554,7 @@
                             printRpSummary(res.data);
                         }
                         $.modalMsg('Trả thuốc thành công', 'success', 2000);
-                        bqGridList(); //绑定病区
+                        bqGridList(); //Gắn khu bệnh
                         jqr.trigger("reloadGrid");
                     } else {
                         $.modalAlert(res.message, 'error');
@@ -565,9 +565,9 @@
         }, false);
     }
 
-    //打印明细
+    //In chi tiết
     function printRpDetail(rdNo) {
-        var systemCode = "PDS";//报表所属系统编码
+        var systemCode = "PDS";//Mã hệ thống của báo cáo
         for (var i = 0; i < tyzyh.length; i++) {
             var uri = '@reportUrl' + "?tempCode=64" + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=" + '@ViewBag.OrganizeId' + "&systemCode=" + systemCode + "&yfbmCode=" + '@ViewBag.yfbmCode' + "&yzIds=" + "&zxIds=" + "&czIds=" + "&zyh=" + tyzyh[0].zyh + "&operateType=2" + "&rdNo=" + rdNo;
             window.open(uri);
@@ -575,7 +575,7 @@
     }
 
     function printRpSummary(rdNo) {
-        var systemCode = "PDS";//报表所属系统编码
+        var systemCode = "PDS";//Mã hệ thống của báo cáo
         var uri = '@reportUrl' + "?tempCode=66" + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&systemCode=" + systemCode + "&yfbmCode=" + '@ViewBag.yfbmCode' + "&yzIds= &zxIds=&operateType=2&kssj=&jssj=" + "&rdNo=" + rdNo + "&czIds=";
         window.open(uri);
     }

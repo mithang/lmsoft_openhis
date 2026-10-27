@@ -20,7 +20,7 @@
 </form>
 
 <script>
-    //上一个window对象
+    //cái trước đówindowđối tượng
     var prevWindow;
     if ('@(from)' != '') {
         prevWindow = top.top.frames['@(from)'];
@@ -31,7 +31,7 @@
     }
 
     $.ajax({
-        url: "/BusinessManage/OutPatient/GetInvoice",  //获取
+        url: "/BusinessManage/OutPatient/GetInvoice",  //Lấy
         dataType: "json",
         async: false,
         success: function (data) {
@@ -40,7 +40,7 @@
         }
     });
 
-    //确认验证发票号
+    //xác nhậnnhậnkiểmchứngphátphiếusố
     function checkFPH() {
         $.loading(true, 'hóa đơn Kiểm tra trong...');
         $.ajax({

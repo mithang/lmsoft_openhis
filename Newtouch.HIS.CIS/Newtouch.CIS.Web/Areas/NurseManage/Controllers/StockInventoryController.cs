@@ -20,7 +20,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
-    /// 库存盘点
+    /// Tồn khoKiểm kê
     /// </summary>
     [Area("NurseManage")]
     public class StockInventoryController : OrgControllerBase
@@ -37,7 +37,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 开始盘点
+        /// Bắt đầuKiểm kê
         /// </summary>
         /// <returns></returns>
         public IActionResult InventoryAction()
@@ -46,7 +46,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 开始盘点
+        /// Bắt đầuKiểm kê
         /// </summary>
         /// <returns></returns>
         public IActionResult InventoryQuery()
@@ -56,7 +56,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取盘点时间
+        /// LấyKiểm kêThời gian
         /// </summary>
         /// <returns></returns>
         public IActionResult GetPdsj()
@@ -66,7 +66,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 开始盘点
+        /// Bắt đầuKiểm kê
         /// </summary>
         /// <returns></returns>
         public IActionResult StartInventory()
@@ -75,7 +75,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 查询盘点信息
+        /// Tra cứuKiểm kêthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inventorySearchDTO"></param>
@@ -93,7 +93,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 查询盘点信息 不分批次
+        /// Tra cứuKiểm kêthông tin khôngphútLô
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inventorySearchDTO"></param>
@@ -111,11 +111,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 保存盘点
+        /// LưuKiểm kê
         /// </summary>
         /// <param name="resultObjArr"></param>
         /// <param name="pdId"></param>
-        /// <param name="noPc">0：按批次盘点  1：不按批次盘点</param>
+        /// <param name="noPc">0：theoLôKiểm kê  1：khôngtheoLôKiểm kê</param>
         /// <returns></returns>
         public IActionResult SaveInventory(string resultObjArr, long pdId, string noPc)
         {
@@ -124,7 +124,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 取消盘点
+        /// HủyKiểm kê
         /// </summary>
         /// <returns></returns>
         public IActionResult CancelInventory(long pdId)
@@ -134,10 +134,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúcKiểm kê
         /// </summary>
-        /// <param name="pdId">盘点单ID</param>
-        /// <param name="autoCarryDown">null/0：不自动结转  1：自动结转</param>
+        /// <param name="pdId">Kiểm kêphiếuID</param>
+        /// <param name="autoCarryDown">null/0：khôngtựđộngkết chuyển  1：tựđộngkết chuyển</param>
         /// <returns></returns>
         public IActionResult EndInventory(long pdId, string autoCarryDown)
         {

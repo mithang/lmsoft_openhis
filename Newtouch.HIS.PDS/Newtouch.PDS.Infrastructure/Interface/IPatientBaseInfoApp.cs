@@ -3,12 +3,12 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 患者基本信息管理
+    /// Quản lý thông tin cơ bản bệnh nhân
     /// </summary>
     public interface IPatientBaseInfoApp
     {
         /// <summary>
-        /// 补充患者基本信息
+        /// Bổ sung thông tin cơ bản bệnh nhân
         /// </summary>
         /// <param name="patientBaseInfo"></param>
         /// <returns></returns>

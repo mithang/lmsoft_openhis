@@ -2,7 +2,7 @@
     ViewBag.Title = "Kiểm traPhiếu";
     Layout = "~/Views/Shared/_Form.cshtml";
     var pacsopenURL = Newtouch.CIS.Compat.AppConfig.Get("pacsOpenUrl");
-    var YjzxRportSwith = SysConfigReader.String("openYjzxSwitch");//医技管理功能开关 --报告上传方式
+    var YjzxRportSwith = SysConfigReader.String("openYjzxSwitch");//kỹ thuật y họcQuản lýcôngcó thểCông tắc --báo cáoTải lênphươngkiểu
 }
 
 <form id="formPatSer" style="margin:2px;margin-top:10px;">
@@ -49,7 +49,7 @@
         var ztmc = $('#txt_ztmc').val();
         $("#gridList").jqGrid('setGridParam', {
             postData: { mzzyh: mzzyh, type: type, ztmc: ztmc, kssj: kssj, jssj: jssj },
-        }).trigger('reloadGrid'); //重新加载当前表格
+        }).trigger('reloadGrid'); //lạitảihiện tạibảngô
     });
     function gridList() {
         var kssj = $('#kssj').val();
@@ -64,7 +64,7 @@
             height: $(window).height() - 125,
             colModel: [
                 { label: 'Họ tên', name: 'xm', align: 'left', hidden: true },
-               //{ label: '性别', name: 'xb', align: 'left', hidden: true },
+               //{ label: 'Giới tính', name: 'xb', align: 'left', hidden: true },
                { label: 'Số phiếu', name: 'lissqdh', align: 'left' },
                 { label: 'Tên bộ mẫu', name: 'ztmc', align: 'left' },
                { label: 'Đề nghịThời gian', name: 'sqsj', align: 'left' },
@@ -76,7 +76,7 @@
                         return "<a href=\#\" onclick='recall(\"" + rowobject.lissqdh + "\",\"" + rowobject.syncStatus + "\")'' title='XemBáo cáo' style='text-decoration: none;color: #dd4b39;cursor: pointer;'>XemBáo cáo</a>";
                     }
                 }
-               //{ label: '总金额', name: 'zje' ,align: 'left'}
+               //{ label: 'Tổng số tiền', name: 'zje' ,align: 'left'}
             ],
             pager: "#gridPager",
             sortname: 'sqsj desc',
@@ -103,7 +103,7 @@
                 window.open('@pacsopenURL' + "DepExamViewer/#/?hisreqid=" + sqdh + "", "height=800, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
                 //$.modalOpen({
                 //    id: "medicaljgForm",
-                //    title: "检查报告",
+                //    title: "Báo cáo kiểm tra",
                 //    url: "https://202.127.1.101:9901/DepExamViewer/?patid='" + sqdh+"'" ,
                 //    width: "1000px",
                 //    height: "1000px",
@@ -114,7 +114,7 @@
         }
         
     }
-    //jqGrid 双击选中某行
+    //jqGrid nhấp đúpĐã chọnnào đódòng
     function btn_editbak() {
         var $gridList = $("#gridList");
         if ($gridList.jqGridRowValue().syncStatus != "己出报告") {

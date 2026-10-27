@@ -6,9 +6,9 @@ namespace NewtouchHIS.Lib.Base
     public class CommonTools
     {
         /// <summary>
-        /// 获取一个随机验证码 图片 的 字节流（并将验证码记入Session）
+        /// Lấy luồng byte của hình ảnh mã xác minh ngẫu nhiên (và ghi mã xác minh vào Session)
         /// </summary>
-        /// <param name="chkCode">out验证码</param>
+        /// <param name="chkCode">outMã xác minh</param>
         /// <returns></returns>
         public byte[] GetVerifyCode(out string chkCode)
         {
@@ -16,23 +16,23 @@ namespace NewtouchHIS.Lib.Base
             int codeH = 30;
             int fontSize = 16;
             chkCode = string.Empty;
-            //颜色列表，用于验证码、噪线、噪点 
+            //Danh sách màu, dùng cho mã xác minh, đường nhiễu, điểm nhiễu 
             Color[] color = { Color.Black, Color.Red, Color.Blue, Color.Green, Color.Orange, Color.Brown, Color.Brown, Color.DarkBlue };
-            //字体列表，用于验证码 
+            //Danh sách phông chữ, dùng cho mã xác minh 
             string[] font = { "Times New Roman" };
-            //验证码的字符集，去掉了一些容易混淆的字符 
+            //Bộ ký tự của mã xác minh, đã loại bỏ một số ký tự dễ gây nhầm lẫn 
             char[] character = { '1', '2', '3', '4', '5', '6', '7', '8', '9', 'a', 'b', 'd', 'e', 'f', 'h', 'k', 'm', 'n', 'r', 'x', 'y', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'J', 'K', 'L', 'M', 'N', 'P', 'R', 'S', 'T', 'W', 'X', 'Y' };
             Random rnd = new Random();
-            //生成验证码字符串 
+            //Tạo chuỗi mã xác minh 
             for (int i = 0; i < 4; i++)
             {
                 chkCode += character[rnd.Next(character.Length)];
             }
-            //创建画布
+            //Tạo khung vẽ
             Bitmap bmp = new Bitmap(codeW, codeH);
             Graphics g = Graphics.FromImage(bmp);
             g.Clear(Color.White);
-            //画噪线 
+            //Vẽ đường nhiễu 
             for (int i = 0; i < 3; i++)
             {
                 int x1 = rnd.Next(codeW);
@@ -42,7 +42,7 @@ namespace NewtouchHIS.Lib.Base
                 Color clr = color[rnd.Next(color.Length)];
                 g.DrawLine(new Pen(clr), x1, y1, x2, y2);
             }
-            //画验证码字符串 
+            //Vẽ chuỗi mã xác minh 
             for (int i = 0; i < chkCode.Length; i++)
             {
                 string fnt = font[rnd.Next(font.Length)];
@@ -50,7 +50,7 @@ namespace NewtouchHIS.Lib.Base
                 Color clr = color[rnd.Next(color.Length)];
                 g.DrawString(chkCode[i].ToString(), ft, new SolidBrush(clr), (float)i * 18, (float)0);
             }
-            //将验证码图片写入内存流，并将其以 "image/Png" 格式输出 
+            //Ghi hình ảnh mã xác minh vào luồng bộ nhớ, và xuất nó dưới dạng "image/Png" định dạng đầu ra 
             MemoryStream ms = new MemoryStream();
             try
             {

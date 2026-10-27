@@ -48,9 +48,9 @@
     </div>
 </form>
 <script>
-    //初始化输入码
+    //Khởi tạo mã nhập
     function InitSrm() {
-        //药品代码
+        //Mã thuốc
         $("#keyword").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             height: 200,
@@ -91,7 +91,7 @@
             }
         });
 
-        $("#bqmc").bindSelect({ //病区信息集合
+        $("#bqmc").bindSelect({ //Tập hợp thông tin khu bệnh
             url: "/HospitalizationPharmacy/GetBQSelectJson",
             id: "bqCode",
             text: "bqmc"
@@ -102,7 +102,7 @@
         InitSrm();
 
         $('#if_data').css('height', $(window).height() - 85);
-        //查询
+        //Truy vấn
         $("#btn_search").click(function () {
 
             if ($("#keyword").val() == "") {

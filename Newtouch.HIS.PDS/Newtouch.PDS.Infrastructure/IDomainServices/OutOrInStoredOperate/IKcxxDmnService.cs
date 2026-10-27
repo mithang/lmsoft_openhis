@@ -1,12 +1,12 @@
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 库存操作
+    /// Thao tác tồn kho
     /// </summary>
     public interface IKcxxDmnService
     {
         /// <summary>
-        /// 冻结库存  扣库存使用  内部发药退回
+        /// Đóng băng tồn kho  Sử dụng trừ tồn kho  Trả lại phát thuốc nội bộ
         /// </summary>
         /// <param name="ypdm"></param>
         /// <param name="organizeid"></param>
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string FrozenStockReduceByReturninward(string ypdm, string organizeid, string pc, string ph, int sl, string yfbmCode, string rkbm);
 
         /// <summary>
-        /// 冻结库存  扣库存 直接出库使用
+        /// Đóng băng tồn kho  Trừ tồn kho Sử dụng xuất kho trực tiếp
         /// </summary>
         /// <param name="ypdm"></param>
         /// <param name="organizeid"></param>
@@ -37,14 +37,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
            string yfbmCode);
 
         /// <summary>
-        /// 扣库存
+        /// Trừ tồn kho
         /// </summary>
-        /// <param name="ypdm">药品代码</param>
-        /// <param name="sl">最小单位数量</param>
-        /// <param name="pc">批次</param>
-        /// <param name="ph">批号</param>
-        /// <param name="yfbmCode">需扣库存的药房部门</param>
-        /// <param name="organizeid">组织机构</param>
+        /// <param name="ypdm">Mã thuốc</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
+        /// <param name="pc">Lô</param>
+        /// <param name="ph">Số lô</param>
+        /// <param name="yfbmCode">Bộ phận nhà thuốc cần trừ tồn kho</param>
+        /// <param name="organizeid">Tổ chức</param>
         /// <returns></returns>
         string SubtractStock(string ypdm, int sl, string pc, string ph, string yfbmCode, string organizeid);
     }

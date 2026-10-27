@@ -3,9 +3,9 @@ using Newtouch.EMR.Domain.Entity;
 namespace Newtouch.EMR.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2020-03-13 11:29
-    /// 描 述：病案首页辅助记录
+    /// Người tạo：chl
+    /// Ngày：2020-03-13 11:29
+    /// Mô tả：Bản ghi phụ trợ trang đầu bệnh án
     /// </summary>
     public interface IMrbasyrelcodeRepo : IRepositoryBase<MrbasyrelcodeEntity>
     {

@@ -90,7 +90,7 @@ namespace Newtouch.HIS.DomainServices.PurchaseWebService
     {
         public string sendRecv(string sUser, string sPwd, string sJgbm, string sVersion, string sXxlx, string sSign, string responsexml)
         {
-            throw new NewtouchHIS.Lib.Base.Exceptions.FailedException("WCF_PROCUREMENT_NOT_PORTED", "阳光采购平台 WebService 客户端尚未移植到 .NET Core（YsxtMainService.sendRecv），请使用 .NET Framework 原系统调用该接口。");
+            throw new NewtouchHIS.Lib.Base.Exceptions.FailedException("WCF_PROCUREMENT_NOT_PORTED", "Nền tảng mua hàng Sunshine WebService Máy khách chưa được chuyển tới .NET Core（YsxtMainService.sendRecv），Vui lòng sử dụng .NET Framework Hệ thống gốc gọi giao diện này。");
         }
     }
 }

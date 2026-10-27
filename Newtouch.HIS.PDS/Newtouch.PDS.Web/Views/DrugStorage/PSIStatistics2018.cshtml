@@ -93,14 +93,14 @@
 
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
-        initialddljzsjList();//加载结转时间
-        initialddlJXList();//初始化药品剂型
-        initialddlYPLBList();//初始化药品类别
-        gridDrugsInfoData();//加载药品明细
+        initialddljzsjList();//Tải thời gian kết chuyển
+        initialddlJXList();//Khởi tạo dạng bào chế thuốc
+        initialddlYPLBList();//Khởi tạo loại thuốc
+        gridDrugsInfoData();//Tải chi tiết thuốc
     });
 
     function initialddljzsjList() {
@@ -116,7 +116,7 @@
         });
     }
 
-    //药品剂型
+    //Dạng bào chế thuốc
     function initialddlJXList() {
         $("#ddlJX").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineFormulationList",
@@ -125,7 +125,7 @@
         });
     }
 
-    //药品类别
+    //Loại thuốc
     function initialddlYPLBList() {
         $("#ddlYPLB").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineCategoryList2",
@@ -136,7 +136,7 @@
 
     
     var gridop = null;
-    //单据主记录
+    //Bản ghi chính của chứng từ
     function gridDrugsInfoData() {
         var $gridDrugsInfoData = $("#gridDrugsInfo");
         var gridOptins = {
@@ -211,18 +211,18 @@
             sortname: 'Ypdm desc',
             viewrecords: true,
             loadComplete: function (data) {
-                StatisticsZE();//统计总额
+                StatisticsZE();//Thống kê tổng số
             }
         };
         $gridDrugsInfoData.dataGrid(gridOptins);
         
-        //统计
+        //Thống kê
         $("#btn_TJ").click(function () {
             if ($("#ddlKSSJ").val() >= $("#ddlJSSJ").val() && $("#ddlJSSJ").val() !== "") {
                 $.modalAlert("Thời gian kết thúc kết chuyển phải lớn hơn kỳ sổ sách bắt đầu", 'warning');
                 return;
             }
-            //清空Grid
+            //XóaGrid
             $('#gridDrugsInfo').jqGrid("clearGridData");
             $gridDrugsInfoData.jqGrid('setGridParam', {
                 postData: getSearchPostData(),
@@ -232,7 +232,7 @@
         gridop = gridOptins;
     }
 
-    //查询条件
+    //Điều kiện truy vấn
     function getSearchPostData() {
         return {
             ksjzsj: $("#ddlKSSJ").val(),
@@ -246,7 +246,7 @@
         };
     };
 
-    //统计总额
+    //Thống kê tổng số
     function StatisticsZE() {
         var statisticsRkpfze = 0;  //Tổng giá nhập kho
         var statisticsCkpfze = 0;  //Tổng giá xuất kho
@@ -296,14 +296,14 @@
             width: "600px",
             height: "350px",
             callBack: function (iframeId) {
-                //结果
+                //Kết quả
                 var restArr = top.frames[iframeId].GetChoosedCols();
                 if (!!!restArr || !!!restArr.length || restArr.length == 0) {
                     $.modalAlert("Vui lòng chọn cột xuất", 'error');
                     return false;
                 }
                 var isContainFilter = top.frames[iframeId].GetIsContainFilter();
-                //关闭选择窗口
+                //Đóng cửa sổ chọn
                 $.modalClose("ExcelExportChooseColumns");
                 //
                 exportCols = $.jsonWhere(exportCols, function (v) {
@@ -315,7 +315,7 @@
                     }
                     return matched;
                 });
-                //导出
+                //Xuất
                 Export(isContainFilter);
             }
         });
@@ -350,7 +350,7 @@
         url += "&isContainFilter=" + isContainFilter;
         url += "&jxtext=" + $("#ddlJX option:selected").text();
         url += "&lbtext=" + $("#ddlYPLB option:selected").text();
-        url += "&colStanWidth=" + "70";  //列宽度标准列
+        url += "&colStanWidth=" + "70";  //Cột tiêu chuẩn chiều rộng cột
         var cols = JSON.stringify(exportCols);
         top.$.cookie('ExportExcelCols', cols, { path: "/" });
         //url += "&cols=" + cols;

@@ -2,15 +2,15 @@
 @{
     ViewBag.Title = "prescriptionquery";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //获取打印处方配置
-    var mzcfdPrinturl = SysConfigReader.OrgReportLink("mzcfdPrint");  //处方单
-    var mzzcycfPrint = SysConfigReader.OrgReportLink("mzzcycfPrint");  //中草药处方单
-    var mzjyjcPrinturl = SysConfigReader.OrgReportLink("jcjyPrint");//检验检查单
-    var mzjcPrinturl = SysConfigReader.OrgReportLink("jcPrint");//检查检查单
-    var mzwhdPrinturl = SysConfigReader.OrgReportLink("whdPrint");//雾化单
-    var mzzszPrinturl = SysConfigReader.OrgReportLink("mzzszPrint");//注射单 zszPrint
-    var mzjzdPrinturl = SysConfigReader.OrgReportLink("jzdPrint");//就诊单
-    var mzcgcfPrinturl = SysConfigReader.OrgReportLink("mzcgcfPrint");//门诊常规项目处方单
+    //LấyInĐơn thuốccấu hình
+    var mzcfdPrinturl = SysConfigReader.OrgReportLink("mzcfdPrint");  //Đơn thuốc
+    var mzzcycfPrint = SysConfigReader.OrgReportLink("mzzcycfPrint");  //trongthảo dượcĐơn thuốc
+    var mzjyjcPrinturl = SysConfigReader.OrgReportLink("jcjyPrint");//Xét nghiệmKiểm traphiếu
+    var mzjcPrinturl = SysConfigReader.OrgReportLink("jcPrint");//Kiểm traKiểm traphiếu
+    var mzwhdPrinturl = SysConfigReader.OrgReportLink("whdPrint");//khí dungphiếu
+    var mzzszPrinturl = SysConfigReader.OrgReportLink("mzzszPrint");//Lưu ýxạphiếu zszPrint
+    var mzjzdPrinturl = SysConfigReader.OrgReportLink("jzdPrint");//Khám bệnhphiếu
+    var mzcgcfPrinturl = SysConfigReader.OrgReportLink("mzcgcfPrint");//Ngoại trúHạng mục thông thườngĐơn thuốc
     var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
     var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
     var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
@@ -114,7 +114,7 @@
                         <option value="jycf">Xét nghiệmĐơn thuốc</option>
                         <option value="jccf">Kiểm traĐơn thuốc</option>
                         <option value="zscf">TiêmĐơn thuốc</option>
-                        @*<option value="sycf">输液处方单</option>*@
+                        @*<option value="sycf">truyền dịchĐơn thuốc</option>*@
                         <option value="kfcf">Phục hồi chức năngĐơn thuốc</option>
                         <option value="cgcf">Thường quyĐơn thuốc</option>
                     </select>
@@ -155,14 +155,14 @@
     $(".dv-left-tree").height($(window).height() - 70);
     var jzid = "";
     $(function() {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt, tính lại rộng cao
             $(".dv-body").height($(window).height());
             $(".dv-body").width($(window).width());
         });
 
         getPatTreeList();
         gridList("");
-        //搜索病人信息
+        //tìm kiếmThông tin bệnh nhân
         $('#keyword').keyup(function () {
             getPatTreeList();
         });
@@ -262,7 +262,7 @@
                         checkTrigger = false;
                         return;
                     }
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     for (var i = 0; i < ids.length; i++) {
                         if ("xycf" == $('#cfdlb').val()) {
 		                    if (ids[i].cfh == rowData.cfh && ids[i].cfh != "") {
@@ -302,14 +302,14 @@
                 if (list.length > 0) {
 
                     for (j = j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Cùng nhómĐã chọn
                         {
                             j = j + 1;
                             $("#gridList").jqGrid("setSelection", list[j - 1], true);
                         }
-                        else { //同组取消选中
+                        else { //Cùng nhómHủyĐã chọn
                             //j = j + 1;
-                            $("#gridList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                            $("#gridList").jqGrid("setSelection", list[j], false);      //Hủykhôngkích hoạtonselectrow
                         }
                     }
                 }
@@ -323,7 +323,7 @@
     }
 
     function ExecutionChecked() {
-        //选中的id
+        //Đã chọncủaid
         var cfdlb = $('#cfdlb').val();
         var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");
         if (selRowIds == null || selRowIds.length == 0) {

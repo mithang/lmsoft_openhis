@@ -293,8 +293,8 @@
 </div>
 <script type="text/javascript">
     var currentobj = [];
-    var currentpage;//当前页
-    var totalpage;//共..页
+    var currentpage;//Trang hiện tại
+    var totalpage;//Tổng cộng..Trang
 
     $(function () {
         initinpatientList();
@@ -317,7 +317,7 @@
             selectval = $('#sel_inpatientArea ').val();
 
         } else {
-            //赋值
+            //Gán giá trị
             selectval = lastbqval;
         }
         if (selectval !== "") {
@@ -345,7 +345,7 @@
                     localStorage.setItem("lastabq", $(this).val());
                 }
             });
-            if (!flag) {//下拉框找不到该选项就不选
+            if (!flag) {//Nếu hộp thả xuống không tìm thấy tùy chọn đó thì không chọn
                 $(this).val("");
             }
         }
@@ -370,13 +370,13 @@
 
     $('.fa-id-card-o,.fa-list').click(function () {
         clearSelectpatient();
-        //点击列表模式
+        //Nhấn chế độ danh sách
         if ($(this).attr("Class") == "fa fa-list") {
             $('.ul-zbq,.fa-list').hide();
             $('#gbox_div_zbqList,.fa-id-card-o').show();
             $('#div_zbqList').jqGrid("clearGridData");
             $('#div_zbqList').newtouchLocalDataGrid(null, zbqPatientList);
-        } else if ($(this).attr("Class") == "fa fa-id-card-o") {//点击card模式
+        } else if ($(this).attr("Class") == "fa fa-id-card-o") {//Nhấn chế độ card
             $('.ul-zbq,.fa-list').show();
             $('#gbox_div_zbqList,.fa-id-card-o').hide();
         }
@@ -388,7 +388,7 @@
     $('#btn_mysearch').click(function () {
         ajaxrequestmy();
     });
-    //清除选中病人
+    //Xóa bệnh nhân đã chọn
     function clearSelectpatient() {
         currentPatient = {};
         //$('#currentxm').html("");
@@ -396,16 +396,16 @@
         //$('#currentage').html("");
         //$('#currentbrxzmc').html("");
     }
-    //选中当前病人
+    //Chọn bệnh nhân hiện tại
     function onSelectpatient(obj) {
-        currentPatient.xm = obj.xm;//病人姓名
-        currentPatient.sex = obj.sex;//性别
-        currentPatient.age = obj.age;//年龄
-        currentPatient.zyh = obj.zyh;//住院号
-        currentPatient.brxzmc = obj.brxzmc;//病人性质
+        currentPatient.xm = obj.xm;//Tên bệnh nhân
+        currentPatient.sex = obj.sex;//Giới tính
+        currentPatient.age = obj.age;//Tuổi
+        currentPatient.zyh = obj.zyh;//Số nhập viện
+        currentPatient.brxzmc = obj.brxzmc;//Tính chất bệnh nhân
     }
     /****Xử lý dữ liệu*****/
-    //请求在病区病人信息
+    //Yêu cầu thông tin bệnh nhân trong khu bệnh
     function ajaxrequestzbq() {
         if (validateSearch()) {
             $.najax({
@@ -414,13 +414,13 @@
                 data: { page: $('.ui-pg-input').val(), bqCode: $('#sel_inpatientArea').val(), ys: $('#sel_inpatienttype').val(), bedCode: $('#txt_cwmc').val() },
                 type: "POST",
                 success: function (respdata) {
-                    currentpage = respdata.page;//当前页
-                    totalpage = respdata.total;//共..页
+                    currentpage = respdata.page;//Trang hiện tại
+                    totalpage = respdata.total;//Tổng cộng..Trang
                     $('.ui-pg-input').val(respdata.page);
                     $('#sp_1_gridPager').text(respdata.total);
                     $('.records').text(respdata.records);
                     $(".ul-zbq").children("li").remove();
-                    zbqPatientList = respdata.rows;//创建病人li
+                    zbqPatientList = respdata.rows;//Tạo bệnh nhânli
                     $('#div_zbqList').jqGrid("clearGridData");
                     $('#div_zbqList').newtouchLocalDataGrid(null, zbqPatientList);
                     createli(respdata.rows);
@@ -429,7 +429,7 @@
     }
     }
 
-    //创建病人li
+    //Tạo bệnh nhânli
     function createli(respdata) {
         $.jsonWhere(respdata, function (v) {
             var li = '  <li>'
@@ -456,13 +456,13 @@
         });
     }
     /****Thẻ tab****/
-    //当前选中病人对象
+    //Đối tượng bệnh nhân đang được chọn
 
     var currentPatient = {};
     var zbqPatientList;
     $(function () {
         init();
-        //搜索统计选项卡切换
+        //Chuyển đổi tab thống kê tìm kiếm
         $(".nav-tabs li").click(function () {
             clearSelectpatient();
             if ($(this)[0].id === "linkzbq") {
@@ -558,10 +558,10 @@
 
     function initzbq() {
         $(".ul-zbq").children("li").remove();
-        //初始化jqgrid
+        //Khởi tạojqgrid
         div_zbqList();
-        $('#gbox_div_zbqList').hide();//默认隐藏jqgrid
-        //请求在病区病人信息
+        $('#gbox_div_zbqList').hide();//Ẩn mặc địnhjqgrid
+        //Yêu cầu thông tin bệnh nhân trong khu bệnh
         //ajaxrequestzbq();
     }
 
@@ -680,7 +680,7 @@
         pager: "#div_ycqgridPager",
         sortname: 'cqrq desc',
         gridComplete: function () {
-            //隐藏grid底部滚动条
+            //ẨngridThanh cuộn dưới cùng
             $("#div_ycqList").closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
         },
         onSelectRow: function (rowid) {
@@ -690,7 +690,7 @@
     });
     }
 
-    //获取已出区病人信息
+    //Lấy thông tin bệnh nhân đã ra khỏi khu
     function ajaxrequestycq() {
 
         if (validateSearch()) {
@@ -802,7 +802,7 @@
         pager: "#div_mygridPager",
         sortname: 'cqrq desc',
         gridComplete: function () {
-            //隐藏grid底部滚动条
+            //ẨngridThanh cuộn dưới cùng
             $("#div_myList").closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
         },
         onSelectRow: function (rowid) {

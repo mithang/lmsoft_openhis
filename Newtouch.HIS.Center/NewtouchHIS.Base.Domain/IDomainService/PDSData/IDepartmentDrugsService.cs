@@ -8,7 +8,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService.PDSData
     public interface IDepartmentDrugsService : IScopedDependency
     {
         /// <summary>
-        /// 获取科室发药数据
+        /// Lấy dữ liệu phát thuốc của khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>

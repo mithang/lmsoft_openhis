@@ -3,12 +3,12 @@ using Newtouch.Herp.Domain.Entity.Product;
 namespace Newtouch.Herp.Application.Interface
 {
     /// <summary>
-    /// 物资收费项目对照
+    /// Đối chiếu hạng mục thu phí vật tư
     /// </summary>
     public interface IRelProductAndsfxmApp
     {
         /// <summary>
-        /// 提交物资收费项目对照
+        /// Gửi đối chiếu hạng mục thu phí vật tư
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>

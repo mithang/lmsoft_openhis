@@ -3,26 +3,26 @@
     public class JWTOptions
     {
         /// <summary>
-        /// 签发者
+        /// Đơn vị phát hành
         /// </summary>
         public string Issuer { get; set; }
 
         /// <summary>
-        /// 接收者
+        /// Đơn vị nhận
         /// </summary>
         public string Audience { get; set; }
 
         /// <summary>
-        /// 密钥
+        /// Khóa bí mật
         /// </summary>
         public string Key { get; set; }
 
         /// <summary>
-        /// 过期时间
+        /// Thời gian hết hạn
         /// </summary>
         public int ExpireHours { get; set; }
         /// <summary>
-        /// 验证过期
+        /// Kiểm tra hết hạn
         /// </summary>
         public bool? ValidateLifetime { get; set; }
         public List<SSOAuthAppItem> SSOAuthApp { get; set; }

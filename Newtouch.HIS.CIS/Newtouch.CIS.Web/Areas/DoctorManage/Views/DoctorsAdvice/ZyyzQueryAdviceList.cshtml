@@ -3,31 +3,31 @@
     ViewBag.Title = "AdviceList";
     Layout = null;
     var pacsHost = SiteUrl.GetUrl("OuterPacsServiceHost", "");
-    //长期医嘱打印单是否显示签名
+    //Y lệnh dài hạnInphiếuCóKhôngHiển thịchữ ký
     var isShowSign = SysConfigReader.String("IS_ShowSigner");
-    //是否开启lis pacs报告订阅
+    //CóKhôngbậtlis pacsbáo cáoĐăng ký
     var IsreportOpen = SysConfigReader.String("IsreportOpen");
-    //获取打印处方配置
-    var zycfdPrinturl = SysConfigReader.OrgReportLink("zycfdPrint");  //处方单
+    //LấyInĐơn thuốccấu hình
+    var zycfdPrinturl = SysConfigReader.OrgReportLink("zycfdPrint");  //Đơn thuốc
     var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
     var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
     var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 }
 <style>
-    /*已执行*/
+    /*Đã thực hiện*/
     .orginal {
         color: blue;
     }
-    /*已审核*/
+    /*Đã duyệt*/
     .ysh {
         background-color: white;
         color: black;
     }
-    /*已停止*/
+    /*đãDừng*/
     .grey {
         color: grey;
     }
-    /*已作废*/
+    /*Đã hủy bỏ*/
     .red {
         color: red;
     }
@@ -124,9 +124,9 @@
 <script src="~/Content/js/bootstrap-contextmenu.min.js"></script>
 <script>
     var newlist = new Array();
-    var last = "";//上一个组号
+    var last = "";//một cái trướcSố nhóm
     var isshowSign = '@isShowSign';
-    //当前选中医嘱对象
+    //hiện tạiĐã chọnY lệnhđối tượng
     var currentyzobj = {};
     $(function () {
         gridPatientList();
@@ -202,7 +202,7 @@
             });
         }
     }
-    //删除并解绑医嘱
+    //XóavàHủy liên kếtY lệnh
     function DeleteBind(Id,yzlb) {
         let res = confirm('Có hủy bỏ/dừng y lệnh này không?');
         if (res == true) {
@@ -239,12 +239,12 @@
             var menuName = $(e.target).text();
             var tt = $('#gridPatientList').jqGrid('getRowData', $('#gridPatientList').data('contextmenu-rowId'));
             if (menuName == "Y lệnh phụ") {
-                //if(tt.yzzt!="停止")
+                //if(tt.yzzt!="Dừng")
                 //{
-                //    $.modalAlert("非停止状态的医嘱不可新建", "warning");
+                //    $.modalAlert("khôngDừngTrạng tháicủaY lệnhkhôngcó thểTạo mới", "warning");
                 //    return;
                 //}
-                @* $.modalConfirm("确认?", function (flag) {
+                @* $.modalConfirm("xác nhận?", function (flag) {
                     if (flag) {
                         $.najax({
                             url: "@Url.Action("RegistTzyz")",
@@ -253,7 +253,7 @@
                             type: "POST",
                             success: function () {
                                 $.loading(false);
-                                $.modalMsg("新建成功", 'success');
+                                $.modalMsg("Tạo mớithành công", 'success');
                                 btn_search();
                             }
                         });
@@ -291,7 +291,7 @@
             //sortname: 'yzlx,kssj desc,zh,Px',
             sortname: 'yzh desc,px,kssj desc,zh',
             rownumbers: true,
-            rowNum: 100, //每页显示记录数
+            rowNum: 100, //mỗitrangHiển thịghi chépsố
             colModel: [
                 { label: 'Y lệnhID', name: 'Id', align: 'center', width: 50, hidden: true },
                 {label: 'Loại y lệnh', name: 'yzlb', align: 'center', width: 50},
@@ -348,8 +348,8 @@
                  { label: 'Cuối cùngThực hiệnThời gian', name: 'zxsj', align: 'center', width: 110, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }  },
                  {
                     label: 'Trạng thái', name: 'yzzt', align: 'center', width: 40, formatter: function (val, options, rowObject) {
-                        if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.DC).ToString())) {//DC状态
-                            //有Thực hiện时间，取已Thực hiện状态，有审核时间，取已审核状态
+                        if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.DC).ToString())) {//DCTrạng thái
+                            //cóThực hiệnThời gian，lấyĐã thực hiệnTrạng thái，cóPhê duyệtThời gian，lấyĐã duyệtTrạng thái
                             if (rowObject["zxsj"] !== typeof (undefined) && rowObject["zxsj"] !== "") {
                               return "Thực hiện";
                             } else {
@@ -390,12 +390,12 @@
                                 } else if (rowData.yzzt == "Hủy bỏ") {
                                     $('#gridPatientList tr[id="' + ids[i] + '"]').addClass('red');
                                 }
-                        //组号生成特殊符号
+                        //Số nhómtạoký tự đặc biệt
                         var returnval = "";
                         if (rowData.zh != typeof (undefined) && rowData.zh !== "" && rowData.zh !== null) {
                             if (last == rowData.zh) {
                                 returnval = "Ở giữa";
-                                if (i == (ids.length-1)) {//最后一个
+                                if (i == (ids.length-1)) {//cuối cùng
                                     returnval = "Kết thúc";
                                     last = "";
                                 }
@@ -405,7 +405,7 @@
                                 }
                                 returnval = "Bắt đầu";
                             }
-                            $("#gridPatientList").setCell(ids[i], "zh", '<img src="../../../../Content/img/'+ returnval+'.png" />');//setCell 设置单格样式 值 或属性
+                            $("#gridPatientList").setCell(ids[i], "zh", '<img src="../../../../Content/img/'+ returnval+'.png" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
                         } else if (last !== rowData.zh && last!=="") {
                             setlastrowzuhao(ids[i]);
                         }
@@ -418,22 +418,22 @@
                 }
          });
     }
-    //设置上一行组号
+    //Cài đặtcái trướcdòngSố nhóm
     function setlastrowzuhao(rowid) {
         var lastrow = parseInt(rowid) - 1;
-        $("#gridPatientList").setCell(lastrow, "zh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell 设置单格样式 值 或属性
+        $("#gridPatientList").setCell(lastrow, "zh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
     }
     function onSelectyzobj(obj) {
-        currentyzobj.Id = obj.Id;//医嘱id
-        currentyzobj.yznr = obj.yznr;//医嘱内容
-        currentyzobj.yztag = obj.yztag;//精麻医嘱
+        currentyzobj.Id = obj.Id;//Y lệnhid
+        currentyzobj.yznr = obj.yznr;//Nội dung y lệnh
+        currentyzobj.yztag = obj.yztag;//thuốc gây nghiện hướng thầnY lệnh
     }
     function getSearchPostData() {
         $('#kssj').val($.getDate({ date: currentobj.ryrq }));
         var wsh = false;
         var dryz = false;
         var yzlb = "Dài hạn/Tạm thời";
-        if ($('#btn_wsh').hasClass("active")) {//未审核
+        if ($('#btn_wsh').hasClass("active")) {//chưaPhê duyệt
             wsh = true;
         } else
             if ($('#btn_dryz').hasClass("active")) {
@@ -470,11 +470,11 @@
         btn_search();
     });
 
-    //续打
+    //In tiếp
     //function newtouch_event_f8() {
     //    $.modalOpen({
     //        id: "ContinuePrint",
-    //        title: "续打",
+    //        title: "In tiếp",
     //        url: "/DoctorManage/DoctorsAdvice/ContinuePrint",
     //        width: "550px",
     //        height: "300px",
@@ -485,12 +485,12 @@
     //    });
     //}
 
-    //刷新
+    //Làm mới
     function newtouch_event_f4() {
         btn_search();
     }
 
-    ///判断当前病人是否存在未审核的长期医嘱
+    ///kiểm trahiện tạibệnh ngườiCóKhôngtồn tạiởchưaPhê duyệtcủaY lệnh dài hạn
     function boolwsh(zyh, callback) {
         $.najax({
             url: "@Url.Action("boolwsh")",
@@ -506,7 +506,7 @@
         });
     }
 
-    //打印长期医嘱
+    //InY lệnh dài hạn
     function newtouch_event_f2() {
         var zyh = currentobj.zyh;
 
@@ -526,7 +526,7 @@
             //window.open("/ReportManage/Report/PrintCqyzReport?zyh=" + zyh + "&isShowSign=" + isSign, "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
         }
     }
-    //打印临时医嘱
+    //InY lệnh tạm thời
     function newtouch_event_f3() {
         var zyh = currentobj.zyh;
         var isSign = "0";
@@ -566,7 +566,7 @@
             }
         });
     }
-    //打印精麻医嘱
+    //Inthuốc gây nghiện hướng thầnY lệnh
     function newtouch_event_f8()
     {
         var yzobj=(JSON.stringify(currentyzobj) != "{}");

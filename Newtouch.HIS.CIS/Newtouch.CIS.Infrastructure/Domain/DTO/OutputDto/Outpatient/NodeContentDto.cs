@@ -7,7 +7,7 @@ namespace Newtouch.Domain.DTO.OutputDto
 {
     public class NodeContentDto
     {
-        #region 患者就诊信息
+        #region Bệnh nhânKhám bệnhthông tin
 
         public string jzysmc { get; set; }
         public string jzys { get; set; }
@@ -22,7 +22,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string mzh { get; set; }
         /// <summary>
-        /// 挂号医生
+        /// đăng ký khámBác sĩ
         /// </summary>
         public string ghys { get; set; }
         /// <summary>
@@ -57,7 +57,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public decimal? xueya { get; set; }
 
         /// <summary>
-        /// 血糖测量方式
+        /// đường huyếtphương thức đo
         /// </summary>
         public string xuetangclfs { get; set; }
 
@@ -76,38 +76,38 @@ namespace Newtouch.Domain.DTO.OutputDto
         public decimal? huxi { get; set; }
         public string cfzbz { get; set; }
         /// <summary>
-        /// 社保编号
+        /// xãbảoSố hiệu
         /// </summary>
         public string sbbh { get; set; }
         public lastzcfDto lastzcfDto { get; set; }
         #endregion
 
-        #region 病历内容
+        #region Hồ sơnội dung
         /// <summary>
-        /// 主诉
+        /// chínhbảo
         /// </summary>
         public string zs { get; set; }
 
         /// <summary>
-        /// 发病时间
+        /// phátbệnhThời gian
         /// </summary>
         public DateTime? fbsj { get; set; }
 
         /// <summary>
-        /// 现病史
+        /// hiệnbệnhsử
         /// </summary>
         public string xbs { get; set; }
 
         /// <summary>
-        /// 既往史
+        /// Tiền sử
         /// </summary>
         public string jws { get; set; }
         /// <summary>
-        /// 月经史
+        /// Thángtiền sử bệnh
         /// </summary>
         public string yjs { get; set; }
         /// <summary>
-        /// 过敏史
+        /// quaTiền sử dị ứng
         /// </summary>
         public string gms { get; set; }
         /// <summary>
@@ -119,7 +119,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string hymc { get; set; }
         /// <summary>
-        /// 查体
+        /// trathể
         /// </summary>
         public string ct { get; set; }
 
@@ -128,7 +128,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string fzjc { get; set; }
         #endregion
 
-        #region 病历诊断
+        #region Hồ sơChẩn đoán
         /// <summary>
         /// 
         /// </summary>
@@ -139,7 +139,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public List<TCMDiagnosisHtmlVO> zyzdList { get; set; }
         #endregion
 
-        #region 处方内容
+        #region Đơn thuốcnội dung
         /// <summary>
         /// 
         /// </summary>
@@ -152,11 +152,11 @@ namespace Newtouch.Domain.DTO.OutputDto
 
     public class lastzcfDto {
         /// <summary>
-        /// 最后一次收取诊查费时间
+        /// cuối cùngmột lầnthulấykhámtraphíThời gian
         /// </summary>
         public string zcfsj { get; set; }
         /// <summary>
-        /// 最后一次收取诊查费收费项目详情
+        /// cuối cùngmột lầnthulấykhámtraphíMục thu phíChi tiết
         /// </summary>
         public string zcfsfxm { get; set; }
     }

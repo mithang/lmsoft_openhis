@@ -20,11 +20,11 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
-        //组织对应的科室下拉框加载
+        //Tải hộp thả xuống khoa tương ứng với tổ chức
         $("#OrganizeId").bind("change", function () {
             var organizeId = $(this).val();
             $("#ParentId").bindSelect({

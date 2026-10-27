@@ -13,7 +13,7 @@ using NewtouchHIS.Lib.Base.Extension;
 namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 {
     /// <summary>
-    /// 出入库单操作 (Core port)
+    /// Thao tác phiếu nhập/xuất kho (Core port)
     /// </summary>
     [Area("BillManage")]
     public class OutOrInStorageBillController : ControllerBase
@@ -44,10 +44,10 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
             return field?.GetCustomAttribute<DescriptionAttribute>()?.Description ?? value.ToString();
         }
 
-        #region 单据审核
+        #region Duyệt chứng từ
 
         /// <summary>
-        /// 单据审核
+        /// Duyệt chứng từ
         /// </summary>
         /// <returns></returns>
         public IActionResult Approval()
@@ -56,7 +56,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 出入库单据 审核
+        /// Phiếu nhập/xuất kho Duyệt
         /// </summary>
         public IActionResult SubmitReceiptApproval(BillApprovalDTO billApprovalDTO)
         {
@@ -65,7 +65,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 修改发票号
+        /// Sửa số hóa đơn
         /// </summary>
         public IActionResult UpdateFph(long crkmxId, string fph)
         {
@@ -73,7 +73,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 打回申请 从待处理变成暂存，只针对外部入库
+        /// Trả lại đơn Từ chờ xử lý chuyển thành bản nháp，Chỉ áp dụng cho nhập kho ngoài
         /// </summary>
         public IActionResult BackToTemporary(long crkId)
         {
@@ -83,10 +83,10 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 
         #endregion
 
-        #region 单据查询
+        #region Truy vấn chứng từ
 
         /// <summary>
-        /// 单据查询
+        /// Truy vấn chứng từ
         /// </summary>
         /// <returns></returns>
         public IActionResult Query()
@@ -96,7 +96,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 单据查询 主信息
+        /// Truy vấn chứng từ Thông tin chính
         /// </summary>
         public IActionResult SelectReceiptMainInfo(Pagination pagination, CrkdjSearchParamDTO param, string from = "query")
         {
@@ -147,7 +147,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 单据查询明细
+        /// Chi tiết truy vấn chứng từ
         /// </summary>
         public IActionResult SelectReceipDetailInfo(string crkId)
         {
@@ -155,7 +155,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取常用的审核状态
+        /// Lấy trạng thái duyệt thường dùng
         /// </summary>
         /// <returns></returns>
         public IActionResult QueryCommonAuditState()
@@ -171,7 +171,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 根据配送单号和供应商ID获取出入库单据明细
+        /// Theo số phiếu giao hàng và nhà cung cấpIDLấy chi tiết phiếu nhập/xuất kho
         /// </summary>
         public IActionResult QueryCrkmxByDeliveryNo(string deliveryNo, string gysId, string djh)
         {
@@ -181,10 +181,10 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 
         #endregion
 
-        #region 我的暂存
+        #region Bản nháp của tôi
 
         /// <summary>
-        /// 我的暂存 视图
+        /// Bản nháp của tôi Chế độ xem
         /// </summary>
         /// <returns></returns>
         public IActionResult MyTemporaryCrkdj()
@@ -193,7 +193,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 删除暂存单
+        /// Xóa phiếu nháp
         /// </summary>
         public IActionResult DeleteTemporaryCrkdj(BillApprovalDTO billApprovalDTO)
         {
@@ -202,7 +202,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 根据配送单号获取暂存的单据明细
+        /// Lấy chi tiết phiếu nháp theo số phiếu giao hàng
         /// </summary>
         [HttpGet]
         public IActionResult QueryTemporaryCrkmx(string deliveryNo, string djh)

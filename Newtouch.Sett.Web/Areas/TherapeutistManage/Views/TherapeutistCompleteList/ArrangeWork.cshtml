@@ -14,7 +14,7 @@
     }
 </style>
 <script>
-    var Editing_ysList = []; //编辑域中的人员
+    var Editing_ysList = []; //Nhân viên trong vùng soạn thảo
     $(function () {
         init();
         gridList();
@@ -42,7 +42,7 @@
 
     function init() {
         var date = new Date;
-        //年份
+        //Năm
         $("#Year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -55,7 +55,7 @@
             },
             selectedValue: 1900 + date.getYear(),
         });
-        //月份
+        //Tháng
         $("#Month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -118,7 +118,7 @@
         return postData;
     }
 
-    //人员树 选择 回调
+    //Cây nhân viên Chọn gọi lại
     function staffTreeCallback(treeSeleData) {
         Editing_ysList = [];
         var zlsNames = "";
@@ -145,7 +145,7 @@
         });
     }
 
-    //编辑
+    //sửa
     function btn_edit() {
         var seleRowid = jQuery("#HisgridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
@@ -165,7 +165,7 @@
         });
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
         var seleRowid = jQuery("#HisgridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
@@ -182,7 +182,7 @@
         });
     }
 
-    //详情
+    //chi tiết
     function btn_details() {
         var seleRowid = jQuery("#HisgridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {

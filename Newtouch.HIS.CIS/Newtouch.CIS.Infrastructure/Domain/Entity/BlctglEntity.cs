@@ -22,12 +22,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 0 通用 1个人 2科室
+        /// 0 Chung 1Cá nhân 2Khoa
         /// </summary>
         /// <returns></returns>
         public int? qx { get; set; }
         /// <summary>
-        /// 名称
+        /// Tên
         /// </summary>
         /// <returns></returns>
         public string mc { get; set; }
@@ -38,7 +38,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string ksbm { get; set; }
         /// <summary>
-        /// 词条内容
+        /// từdòngnội dung
         /// </summary>
         /// <returns></returns>
         public string ctnr { get; set; }

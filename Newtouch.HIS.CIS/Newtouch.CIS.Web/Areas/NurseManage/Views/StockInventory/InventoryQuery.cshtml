@@ -83,14 +83,14 @@
     var $gridKCInfo = $("#gridKCInfo");
     var $gridKCInfoNoPc = $("#gridKCInfoNoPc");
     $(function () {
-        $("#btn_backIndex").click(function () {//返回
+        $("#btn_backIndex").click(function () {//Quay lại
             window.location.href = "Index";
         });
         Initial();
         //$("#btn_search").trigger("click");
     });
 
-    //初始化盘点
+    //Khởi tạoKiểm kê
     function Initial() {
         GetPdsj();
         $("#ddllb").bindSelect({
@@ -126,9 +126,9 @@
         });
     }
 
-    //获取盘点时间
+    //LấyKiểm kêThời gian
     function GetPdsj() {
-        $("#ddlRQ").empty();//先清空，再填充
+        $("#ddlRQ").empty();//Xóa trắng trước，lạiđiền
         $("#ddlRQ").bindSelect({
             url: "/NurseManage/StockInventory/GetPdsj",
             id: "pdId",
@@ -136,7 +136,7 @@
         });
     }
 
-    //是否按批次
+    //CóKhôngtheoLô
     function accordingBatch(obj) {
         if ($(obj).hasClass("fa-toggle-off")) {
             $(obj).removeClass("fa-toggle-off");
@@ -152,11 +152,11 @@
         $("#btn_search").trigger("click");
     }
 
-    //库存信息
+    //Tồn khothông tin
     function gridKCInfo() {
         $gridKCInfo.dataGrid({
             height: $(window).height() - 225,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //dòngSửakhông gửi lên máy chủGửiDữ liệu
             colModel: [
                 { label: 'Vật tưTên', name: 'wzmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 80, align: 'left' },
@@ -183,7 +183,7 @@
         });
     }
 
-    //库存信息
+    //Tồn khothông tin
     function gridKCInfoNoPc() {
         $gridKCInfoNoPc.dataGrid({
             height: $(window).height() - 225,
@@ -219,7 +219,7 @@
             viewrecords: true
         });
 
-        $("#btn_search").click(function () {//绑定查询查询
+        $("#btn_search").click(function () {//gắnTra cứuTra cứu
             if ($("#i-noPc").hasClass("fa-toggle-off")) {
                 $gridKCInfoNoPc.jqGrid('setGridParam',
                     {
@@ -235,7 +235,7 @@
         });
     }
 
-    //查询条件
+    //Điều kiện tìm kiếm
     function getSearchPostData() {
         var pdId = $("#ddlRQ option:selected").val();
         var pdsj = $("#ddlRQ option:selected").text();

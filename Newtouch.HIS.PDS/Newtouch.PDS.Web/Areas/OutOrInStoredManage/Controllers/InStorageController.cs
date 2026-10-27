@@ -6,13 +6,13 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 {
     /// <summary>
-    /// 外部入库
+    /// Nhập kho từ ngoài
     /// </summary>
     [Area("OutOrInStoredManage")]
     public class InStorageController : ControllerBase
     {
         /// <summary>
-        /// 提交外部入库
+        /// Gửi nhập kho từ ngoài
         /// </summary>
         /// <param name="djInfoDto"></param>
         /// <returns></returns>

@@ -105,13 +105,13 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //GRS非管理查看下级机构所有治疗师数据
+        //GRSNgười không phải quản lý xem dữ liệu tất cả trị liệu sư của cơ quan cấp dưới
         if (isHospAdministrator == "false" && orgId != thisorgId) {
             isHospAdministrator = "true";
             curUserCode = " ";
             $("#zls").removeAttr("disabled").css("background-color", "white");
         }
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";
@@ -154,7 +154,7 @@
     }
 
     $('#xmtype').change(function () {
-        if ($(this).val() == "fzlxm") {//非治疗项目不区分门诊住院
+        if ($(this).val() == "fzlxm") {//Hạng mục không phải điều trị không phân biệt ngoại trú/nội trú
             $("#type").val("").trigger("change").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
         } else if ($(this).val() == "zlxm") {
             $('#type').val("").trigger("change").removeAttr('disabled').css("background-color", "");
@@ -171,7 +171,7 @@
 <script type="text/javascript">
     function funcOrganizeIdChange() {
         orgId = $("#OrganizeId").val();
-        //治疗师绑定下拉框
+        //Hộp chọn liên kết trị liệu sư
         $("#zls").bindSelect({
             id: "StaffGh",
             text: "StaffName",
@@ -179,7 +179,7 @@
         });
 
 
-        //机构非管理人员只能查看自己的治疗师数据
+        //Nhân viên không phải quản lý của cơ quan chỉ được xem dữ liệu trị liệu sư của mình
         if (isHospAdministrator == "false" && orgId == thisorgId) {
             $("#zls").val(curUsergh).trigger("change").attr("disabled", "disabled").css("background-color", "rgb(241, 244, 246)");
         }

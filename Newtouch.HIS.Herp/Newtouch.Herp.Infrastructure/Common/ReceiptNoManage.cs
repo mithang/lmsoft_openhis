@@ -4,7 +4,7 @@ using System.Text;
 namespace Newtouch.Herp.Infrastructure.Common
 {
     /// <summary>
-    /// 单据号管理
+    /// Quản lý số chứng từ
     /// </summary>
     public static class ReceiptNoManage
     {
@@ -19,7 +19,7 @@ namespace Newtouch.Herp.Infrastructure.Common
         }
 
         /// <summary>
-        /// 生成随机数 时间点（年月日时分秒）+三位随机数
+        /// Tạo số ngẫu nhiên Thời điểm（Năm tháng ngày giờ phút giây）+Số ngẫu nhiên 3 chữ số
         /// </summary>
         /// <returns></returns>
         public static string GetNewOrderNoV1()
@@ -28,7 +28,7 @@ namespace Newtouch.Herp.Infrastructure.Common
         }
 
         /// <summary>
-        /// 获取物资入库单据号
+        /// Lấy số chứng từ nhập kho vật tư
         /// </summary>
         /// <param name="djmc"></param>
         /// <param name="userId"></param>
@@ -39,10 +39,10 @@ namespace Newtouch.Herp.Infrastructure.Common
         }
 
         /// <summary>
-        /// 在指定的字符串列表CnStr中检索符合拼音索引字符串
+        /// Trong danh sách chuỗi đã chỉ định CnStr tìm chuỗi chỉ mục pinyin phù hợp
         /// </summary>
-        /// <param name="cnStr">汉字字符串</param>
-        /// <returns>相对应的汉语拼音首字母串</returns>
+        /// <param name="cnStr">Chuỗi chữ Hán</param>
+        /// <returns>Chuỗi chữ cái đầu pinyin Hán ngữ tương ứng</returns>
         private static string GetSpellCode(string cnStr)
         {
             var strTemp = "";
@@ -55,14 +55,14 @@ namespace Newtouch.Herp.Infrastructure.Common
         }
 
         /// <summary>
-        /// 得到一个汉字的拼音第一个字母，如果是一个英文字母则直接返回大写字母
+        /// Lấy chữ cái pinyin đầu tiên của một chữ Hán，Nếu là chữ cái tiếng Anh thì trả về trực tiếp chữ hoa
         /// </summary>
-        /// <param name="cnChar">单个汉字</param>
-        /// <returns>单个大写字母</returns>
+        /// <param name="cnChar">Một chữ Hán đơn lẻ</param>
+        /// <returns>Một chữ hoa đơn lẻ</returns>
         private static string GetCharSpellCode(string cnChar)
         {
             var zw = GbEncoding.GetBytes(cnChar);
-            //如果是字母，则直接返回首字母
+            //Nếu là chữ cái，thì trả về trực tiếp chữ cái đầu
             if (zw.Length == 1)
             {
                 return cnChar.ToUpper();

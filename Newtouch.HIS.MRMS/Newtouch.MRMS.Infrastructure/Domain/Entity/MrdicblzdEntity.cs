@@ -19,9 +19,9 @@ using Newtouch.MR.ManageSystem.Infrastructure;
 namespace Newtouch.MR.ManageSystem.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-20 13:45
-    /// 描 述：病理诊断
+    /// Tạo: chl
+    /// Ngày: 2019-11-20 13:45
+    /// Mô tả: Chẩn đoán giải phẫu bệnh
     /// </summary>
     [SugarTable("mr_dic_blzd")]
     public class MrdicblzdEntity : EntityBase
@@ -45,38 +45,38 @@ namespace Newtouch.MR.ManageSystem.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         /// <returns></returns>
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// 状态     1:有效  0：无效
+        /// Trạng thái     1:Hiệu lực  0: Vô hiệu
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         /// <returns></returns>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         /// <returns></returns>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa
         /// </summary>
         /// <returns></returns>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者
+        /// Người sửa
         /// </summary>
         /// <returns></returns>
         public string LastModifierCode { get; set; }

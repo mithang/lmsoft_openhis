@@ -24,7 +24,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
         }
 
         /// <summary>
-        /// emr病历申请列表
+        /// Danh sách đơn xin bệnh án EMR
         /// </summary>
         public IActionResult GetBlApplyList(Pagination pagination, string applyStutas, DateTime ksrq, DateTime jsrq)
         {
@@ -39,7 +39,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
         }
 
         /// <summary>
-        /// 申请审批 (central API first, then local status update — same as original)
+        /// Phê duyệt đơn xin (central API first, then local status update — same as original)
         /// </summary>
         public IActionResult ApprovalApply(string shbhlist)
         {

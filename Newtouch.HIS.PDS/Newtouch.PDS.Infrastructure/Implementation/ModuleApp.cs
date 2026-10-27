@@ -13,14 +13,14 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Application
 {
     /// <summary>
-    /// 菜单App
+    /// Thực đơnApp
     /// </summary>
     public class ModuleApp : AppBase, IModuleApp
     {
         private readonly ISysModuleRepo _moduleRepository;
 
         /// <summary>
-        /// 获取有效菜单列表
+        /// Lấy danh sách thực đơn hiệu lực
         /// </summary>
         /// <returns></returns>
         public List<SysModuleEntity> GetValidList()
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -39,14 +39,14 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// 删除菜单
+        /// Xóa thực đơn
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(string keyValue)
         {
             if (_moduleRepository.IQueryable().Count(t => t.ParentId.Equals(keyValue)) > 0)
             {
-                throw new Exception("删除失败！操作的对象包含了下级数据。");
+                throw new Exception("Xóa thất bại！Đối tượng thao tác chứa dữ liệu cấp dưới。");
             }
             else
             {

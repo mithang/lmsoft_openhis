@@ -126,25 +126,25 @@
         }
     });
 
-    //backspance事件绑定
+    //backspancesự kiệngắn
     $("#ryzdmc1").keyup(function (event) {
         if (event.keyCode === 8) {
             $("#ryzdmc1").val("").attr("attr-zddm", "").attr("attr-ICD10", "");
         }
     });
-    //backspance事件绑定
+    //backspancesự kiệngắn
     $("#ryzdmc2").keyup(function (event) {
         if (event.keyCode === 8) {
             $("#ryzdmc2").val("").attr("attr-zddm", "").attr("attr-ICD10", "");
         }
     });
-    //backspance事件绑定
+    //backspancesự kiệngắn
     $("#ryzdmc3").keyup(function (event) {
         if (event.keyCode === 8) {
             $("#ryzdmc3").val("").attr("attr-zddm", "").attr("attr-ICD10", "");
         }
     });
-    //保存入院诊断
+    //LưuChẩn đoán nhập viện
     function SavaInArea() {
         if ($("#ryzdmc1").val() === "" || $("#ryzdmc1").attr("attr-zddm") === "") {
             $.modalAlert('Chẩn đoán nhập viện1không được để trống!', 'warning');

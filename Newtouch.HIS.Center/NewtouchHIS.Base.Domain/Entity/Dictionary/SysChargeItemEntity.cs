@@ -5,12 +5,12 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity.Dictionary
 {
     ///<summary>
-    ///包括挂号（挂号费00、诊疗费01、磁卡费02、工本费03 等）、收费项目、检验项目、
-    /// 注意：当注销收费项目时，需要校验其实效性（例：是否正被用在床位费设置上）
-    ///费用分类见“系统病人收费算法”
+    ///Bao gồm đăng ký khám(Phí đăng ký khám00,Phí khám chữa bệnh01,Phí thẻ từ02,Phí làm thẻ03 v.v.),Hạng mục thu phí,Hạng mục xét nghiệm,
+    /// Chú ý:Khi hủy hạng mục thu phí,cần kiểm tra tính hiệu lực của nó(Ví dụ:có đang được dùng trong cài đặt phí giường bệnh hay không)
+    ///Phân loại chi phí xem"Thuật toán thu phí bệnh nhân của hệ thống"
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
-    [SugarTable("xt_sfxm", "收费项目")]
+    [SugarTable("xt_sfxm", "Hạng mục thu phí")]
     public partial class SysChargeItemEntity : IEntity
     {
 
@@ -109,7 +109,7 @@ namespace NewtouchHIS.Base.Domain.Entity.Dictionary
         public string? flCode { get; set; }
 
         /// <summary>
-        /// Desc:确定自负现金比例，无关这部分的性质（分类自负、自理）	   见字段zfxz	   	   注意：当自负比例为负数时，表示定额自负	   (例：某材料12300，可报10000,那么自负比例＝-2300)
+        /// Desc:Xác định tỷ lệ tiền mặt tự trả,không liên quan tới tính chất của phần này(Tự trả theo phân loại,Tự lo)	   Xem trườngzfxz	   	   Chú ý:Khi tỷ lệ tự trả là số âm,thể hiện tự trả định mức	   (Ví dụ:Một vật tư nào đó12300,Được thanh toán10000,thì tỷ lệ tự trả=-2300)
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -118,7 +118,7 @@ namespace NewtouchHIS.Base.Domain.Entity.Dictionary
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// Desc:确定自负部分（费用×自负比例）的性质	   0  可报 1 自理 2 分类自负 3 绝对自理（处理离休专家、特需挂号费）	   	   （费用×（1－自负比例） 为可记帐部分）
+        /// Desc:Xác định phần tự trả(Chi phí×Tỷ lệ tự trả)tính chất	   0  Được thanh toán 1 Tự lo 2 Tự trả theo phân loại 3 Hoàn toàn tự lo(xử lý chuyên gia nghỉ hưu theo chế độ,Phí đăng ký khám theo yêu cầu đặc biệt)	   	   (Chi phí×(1-Tỷ lệ tự trả) là phần được ghi sổ)
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -127,7 +127,7 @@ namespace NewtouchHIS.Base.Domain.Entity.Dictionary
         public string zfxz { get; set; }
 
         /// <summary>
-        /// Desc:0：通用，1：门诊，2：住院
+        /// Desc:0:Chung,1:Ngoại trú,2:Nội trú
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -136,7 +136,7 @@ namespace NewtouchHIS.Base.Domain.Entity.Dictionary
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// Desc:0 无需实施，（住院直接入帐） 	   1 需要实施，（住院实施后方可入帐）	   from xt_yjxmdz
+        /// Desc:0 Không cần thực hiện,(Nội trú ghi sổ trực tiếp) 	   1 Cần thực hiện,(Nội trú sau khi thực hiện mới được ghi sổ)	   from xt_yjxmdz
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -145,7 +145,7 @@ namespace NewtouchHIS.Base.Domain.Entity.Dictionary
         public string ssbz { get; set; }
 
         /// <summary>
-        /// Desc:0 普通项目 1 特殊项目 refer xt_sfxmtsbz	   特殊项目说明是特定的病人性质才可使用的。 
+        /// Desc:0 Hạng mục thông thường 1 Hạng mục đặc biệt refer xt_sfxmtsbz	   Giải thích hạng mục đặc biệt: chỉ tính chất bệnh nhân đặc thù mới được dùng. 
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -154,7 +154,7 @@ namespace NewtouchHIS.Base.Domain.Entity.Dictionary
         public string tsbz { get; set; }
 
         /// <summary>
-        /// Desc:0 非收费项目（例：挂号费..） 1 收费项目
+        /// Desc:0 Hạng mục không thu phí(Ví dụ:Phí đăng ký khám..) 1 Hạng mục thu phí
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -195,7 +195,7 @@ namespace NewtouchHIS.Base.Domain.Entity.Dictionary
 
 
         /// <summary>
-        /// Desc:单位计数量
+        /// Desc:Số lượng tính theo đơn vị
         /// Default:
         /// Nullable:True
         /// </summary>           

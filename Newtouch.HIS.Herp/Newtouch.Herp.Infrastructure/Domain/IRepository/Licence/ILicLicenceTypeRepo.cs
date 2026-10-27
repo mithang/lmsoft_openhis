@@ -3,7 +3,7 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 证照类型维护
+    /// Bảo trì loại chứng chỉ
     /// </summary>
     public interface ILicLicenceTypeRepo : IRepositoryBase<LicLicenceTypeEntity>
     {

@@ -113,7 +113,7 @@
     $(function () {
         initControl();
         gridList();
-        //搜索框隐藏显示控制
+        //Điều khiển ẩn/hiện hộp tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -125,7 +125,7 @@
         TabGridHide();
     })
 
-    //隐藏搜索框并显示箭头
+    //Ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -163,10 +163,10 @@
                 { label: 'Ngày giao hàng muộn nhất', name: 'zwdhrq', width: 120, align: 'left' },
                 {
                     label: 'Trạng thái đơn hàng', name: 'ddzt', width: 120, align: 'left', formatter: function (cellvalue) {
-                        //if (cellvalue == 1) return '保存';
-                        //else if (cellvalue == 3) return '提交';
-                        //else if (cellvalue == 5) return '撤回';
-                        //else if (cellvalue == 7) return '作废';
+                        //if (cellvalue == 1) return 'Lưu';
+                        //else if (cellvalue == 3) return 'Gửi';
+                        //else if (cellvalue == 5) return 'Thu hồi';
+                        //else if (cellvalue == 7) return 'Hủy bỏ';
 
                         if (cellvalue == 1) return 'Đã lưu';
                         else if (cellvalue == 2) return 'Đã gửi báo cáo';
@@ -176,9 +176,9 @@
                 },
                 { label: 'Số bản ghi chi tiết', name: 'jls', width: 120, align: 'left' },
                 //{
-                //    label: "操作", name: "", align: "center", width: 150,
+                //    label: "Thao tác", name: "", align: "center", width: 150,
                 //    formatter: function (cellvalue, options, rowobject) {
-                //        return '<input type="button" id="btn_rpt" onclick="rptdjmx(\'' + rowobject.Id + '\')" class="btn btn-info" style="width:100px;display:inline-block;"  value="Phiếu in据明细"/>'
+                //        return '<input type="button" id="btn_rpt" onclick="rptdjmx(\'' + rowobject.Id + '\')" class="btn btn-info" style="width:100px;display:inline-block;"  value="Phiếu inchi tiết chứng từ"/>'
                 //    }
                 //},
                 { label: 'yfbm', name: 'yfbm', hidden: true },
@@ -207,14 +207,14 @@
         window.open(reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f科室备药退回单&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&byId=" + byid + "&orgId=" + orgId, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $.najax({
             type: "Get",
             url: "/OutOrInStoredManage/Purchase/QueryPurchaseDetailbyId",
@@ -228,7 +228,7 @@
             }
         });
     }
-    //单据明细
+    //Chi tiết chứng từ
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 200,
         unwritten: false,
@@ -247,7 +247,7 @@
             { label: 'Đơn vị đo mua', name: 'cgjldwmc', width: 100, align: 'right' },
             { label: 'Phân phối nhiều lần', name: 'dcpsbsmc', width: 60, align: 'right' },
             { label: 'Ghi chú giải thích', name: 'bzsm', width: 60, align: 'right' },
-            //{ label: '有效期', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            //{ label: 'Hạn dùng', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
         ]
     });
 
@@ -255,7 +255,7 @@
 
     }
 
-    //新建
+    //Tạo mới
     $('#btn_add').click(function () {
         $.modalOpen({
             id: "Form",
@@ -275,7 +275,7 @@
         });
     });
 
-    //修改
+    //Sửa
     $('#btn_edit').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
 
@@ -309,7 +309,7 @@
         });
     });
 
-    //提交
+    //Gửi
     $('#btn_submit').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
@@ -321,8 +321,8 @@
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
-        //if (rowData.thzt != "保存") {
-        //    $.modalAlert("选中的单据不是保存状态，不能提交", 'warning');
+        //if (rowData.thzt != "Lưu") {
+        //    $.modalAlert("Chứng từ đã chọn không ở trạng thái đã lưu，Không thể gửi", 'warning');
         //    return;
         //}
         //var postData = rowData;
@@ -390,7 +390,7 @@
         });
     });
 
-    //作废
+    //Hủy bỏ
     $('#btn_delete').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {

@@ -9,88 +9,88 @@ namespace Newtouch.Domain.ValueObjects
     public class OrderExecutionVO
      {
         /// <summary>
-        /// 医嘱id
+        /// Y lệnhid
         /// </summary>
         public string yzid { get; set; }
         /// <summary>
-        /// 领药序号
+        /// lĩnhthuốcthứ tựsố
         /// </summary>
         public int lyxh { get; set; }
         /// <summary>
-        /// 医嘱性质
+        /// Y lệnhTính chất
         /// </summary>
         public int? yzxz { get; set; }
         /// <summary>
-        /// 医嘱性质说明
+        /// Y lệnhTính chấtMô tả
         /// </summary>
         public string yzxzsm { get; set; }
         /// <summary>
-        /// 开始时间
+        /// Thời gian bắt đầu
         /// </summary>
         public DateTime? kssj { get; set; }
         /// <summary>
-        /// 项目类型
+        /// MụcLoại
         /// </summary>
         public string xmmc { get; set; }
         /// <summary>
-        /// 药品剂量
+        /// ThuốcLiều lượng
         /// </summary>
         public Decimal? ypjl { get; set; }
         /// <summary>
-        /// /医嘱类型
+        /// /Kiểu y lệnh
         /// </summary>
         public int yzlx { get; set; }
         /// <summary>
-        /// 医嘱内容
+        /// Nội dung y lệnh
         /// </summary>
         public string yzmc { get; set; }
         public string yzjl { get; set; }
         public string yfmc { get; set; }
         public string yzpcmc { get; set; }
         /// <summary>
-        /// 停止/作废时间
+        /// Dừng/Hủy bỏThời gian
         /// </summary>
         public DateTime? tzsj { get; set; }
         /// <summary>
-        /// 执行时间
+        /// Thời gian thực hiện
         /// </summary>
         public DateTime? zxsj { get; set; }
         /// <summary>
-        /// 停止/作废医生工号
+        /// Dừng/Hủy bỏBác sĩMã nhân viên
         /// </summary>
         public string tzysgh { get; set; }
         /// <summary>
-        /// 停止/作废操作员
+        /// Dừng/Hủy bỏThao tácviên
         /// </summary>
         public string tzr { get; set; }
 
         public string Creator { get; set; }
         /// <summary>
-        /// 患者姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string hzxm { get; set; }
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 审核人
+        /// Phê duyệt người
         /// </summary>
         public string shr { get; set; }
         /// <summary>
-        /// 收费项目单价
+        /// Mục thu phíĐơn giá
         /// </summary>
         public decimal? dj { get; set; }
         /// <summary>
-        /// 组号
+        /// Số nhóm
         /// </summary>
          public int? zh { get; set; }
         /// <summary>
-        /// 执行人
+        /// Thực hiện người
         /// </summary>
         public string zxr { get; set; }
         /// <summary>
-        /// 是否计费
+        /// làKhôngtínhphí
         /// </summary>
         public int? isjf { get; set; }
         public string yztag { get; set; }
@@ -98,7 +98,7 @@ namespace Newtouch.Domain.ValueObjects
         public string zh1 { get; set; }
         public string yfztbs { get; set; }
         /// <summary>
-        /// 药品开立库存来源 1：医生站科室备药库存 2：药房库存
+        /// ThuốcmởlậpTồn khođếnnguồn 1：Bác sĩtrạmKhoachuẩn bị thuốcTồn kho 2：Nhà thuốcTồn kho
         /// </summary>
         public int? yply { get; set; }
         public decimal? je { get; set; }
@@ -114,57 +114,57 @@ namespace Newtouch.Domain.ValueObjects
     {
         
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 医嘱id
+        /// Y lệnhid
         /// </summary>
         public string yzid { get; set; }
         /// <summary>
-        /// 医嘱性质
+        /// Y lệnhTính chất
         /// </summary>
         public int yzxz { get; set; }
         /// <summary>
-        /// 医嘱类型，药品Or项目
+        /// Kiểu y lệnh，ThuốcOrMục
         /// </summary>
         public int yzlx { get; set; }
         /// <summary>
-        /// 领药序号
+        /// lĩnhthuốcthứ tựsố
         /// </summary>
         public int lyxh { get; set; }
         /// <summary>
-        /// 收费项目单价
+        /// Mục thu phíĐơn giá
         /// </summary>
         public Decimal dj { get; set; }
         /// <summary>
-        /// 药品/项目名称
+        /// Thuốc/Tên mục
         /// </summary>
         public string ypmc { get; set; }
         /// <summary>
-        /// Table执行时间
+        /// TableThời gian thực hiện
         /// </summary>
          public DateTime? zxsj { get; set; }
         /// <summary>
-        /// 执行人
+        /// Thực hiện người
         /// </summary>
         public string zxr { get; set; }
         /// <summary>
-        /// 组号
+        /// Số nhóm
         /// </summary>
         public int ? zh { get; set; }
         /// <summary>
-        /// 是否计费 1:是 0:否
+        /// làKhôngtínhphí 1:là 0:Không
         /// </summary>
         public string isjf { get; set; }
         public string zh1 { get; set; }
         public string yfztbs { get; set; }
         /// <summary>
-        /// 药品来源 1：医生站科室备药库存  2：药房库存
+        /// Thuốcđếnnguồn 1：Bác sĩtrạmKhoachuẩn bị thuốcTồn kho  2：Nhà thuốcTồn kho
         /// </summary>
         public string yply { get; set; }
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string deptCode { get; set; }
         public string xmdm { get; set; }

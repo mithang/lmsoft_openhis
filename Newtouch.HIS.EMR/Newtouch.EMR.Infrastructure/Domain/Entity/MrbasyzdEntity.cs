@@ -4,9 +4,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2020-03-13 11:29
-    /// 描 述：病案首页-诊断记录
+    /// Người tạo：chl
+    /// Ngày：2020-03-13 11:29
+    /// Mô tả：Trang đầu bệnh án-Bản ghi chẩn đoán
     /// </summary>
     [SugarTable("mr_basy_zd")]
     public class MrbasyzdEntity 
@@ -34,7 +34,7 @@ namespace Newtouch.EMR.Domain.Entity
         /// </summary>
         public string ZDLB { get; set; }
         /// <summary>
-        /// ZDLX 1主要诊断 2其他诊断 3 中医主病 4 中医主证
+        /// ZDLX 1 Chẩn đoán chính 2 Chẩn đoán khác 3 Bệnh chính Đông y 4 Chứng chính Đông y
         /// </summary>
         /// <returns></returns>
         public string ZDLX { get; set; }

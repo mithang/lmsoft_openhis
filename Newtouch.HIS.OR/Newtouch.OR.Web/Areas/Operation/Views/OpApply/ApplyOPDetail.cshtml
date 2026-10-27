@@ -109,11 +109,11 @@
                         <th class="formTitle"><span class="required">*</span>Bác sĩ mổ chính:</th>
                         <td class="formValue formDdlSelectorTd " colspan="2">
                             @*<select id="ysgh" name="ysgh" class="form-control " style="width:95%;float:left;">
-                                    <option value="">===请选择=== </option>
-                                    <option value="1">医生A </option>
-                                    <option value="2">医生B</option>
-                                    <option value="3">医生C</option>
-                                    <option value="4">医生D</option>
+                                    <option value="">===Vui lòng chọn=== </option>
+                                    <option value="1">Bác sĩ A </option>
+                                    <option value="2">Bác sĩ B</option>
+                                    <option value="3">Bác sĩ C</option>
+                                    <option value="4">Bác sĩ D</option>
                                 </select>*@
                             <input id="code1" type="hidden" />
                             <input id="ysgh" attr-code="" attr-zjm="" name="ysgh" type="text" class="form-control required" autocomplete="off" />
@@ -139,7 +139,7 @@
                             <div style="padding-top:50px;padding-right:50px;" id="dv_apply_btn">
                                 <a class='btn btn-default' style='width:100px;background:#00CD66;color:#eee;height:20px;font-size:13px;padding-top:5px;float:right;' onclick="submitApply();">Gửi đơn</a>
                             </div>
-                            @*<input type="button" id="btn_search" class="btn btn-primary" onclick="" value="提交申请" style="float:right;padding:5px 10px 5px 10px"/>*@
+                            @*<input type="button" id="btn_search" class="btn btn-primary" onclick="" value="Gửi đơn đăng ký" style="float:right;padding:5px 10px 5px 10px"/>*@
                         </td>
                     </tr>
                     <tr>
@@ -147,7 +147,7 @@
                             <div style="padding-top:10px;padding-right:50px;display:none;" id="dv_cancel_btn">
                                 <a class='btn btn-default' style='width:100px;background:#ff6a00;color:#eee;height:20px;font-size:13px;padding-top:5px;float:right;' onclick="submitCancel();">Hủy đơn</a>
                             </div>
-                            @*<input type="button" id="btn_search" class="btn btn-primary" onclick="" value="提交申请" style="float:right;padding:5px 10px 5px 10px"/>*@
+                            @*<input type="button" id="btn_search" class="btn btn-primary" onclick="" value="Gửi đơn đăng ký" style="float:right;padding:5px 10px 5px 10px"/>*@
                         </td>
                     </tr>
                     <tr></tr>
@@ -181,7 +181,7 @@
             text: "AnesName",
             minimumResultsForSearch: 0
         });
-        //手术名称
+        //Tên phẫu thuật
   //      $("#ssmcn").ssmcFloatingSelector({
   //          organizeId:'',
   //          width: 400,
@@ -217,25 +217,25 @@
         });
     });
 
-	//手术名称 新增icon
+	//Tên phẫu thuật Thêm mớiicon
 	$('#tablessmc .plusToggleCircle').click(function () {
 		var number = $('#tablessmc .ssmcText').length + 1;
-		//var $newTr = $('<tr><th class="formTitle">副7</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">疑似</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
+		//var $newTr = $('<tr><th class="formTitle">Phụ7</th><td class="formValue"><input type="checkbox" id="chk' + number + '" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd' + number + '" class="form-control activeValue focusInput zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td></tr>');
 		var $newTr = $('<tr><td><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td class="formValue"><input type="text"  id="ssmc' + number + '" name="ssmc' + number + '" class="form-control activeValue focusInput ssmcText" /><input id="ssdm' + number + '" type="hidden" /></td></tr>');
 		$newTr.appendTo($(this).closest('table'));
-		//手术名称浮层
+		//Lớp nổi tên phẫu thuật
 		bindssmcFloatingSelector(number);
 	});
 
-	//删除icon
+	//Xóa icon
 	$('#formapply').on('click', '.minusToggleCircle', function () {
 		$(this).closest('tr').remove();
 	});
 
-	//主手术浮层
+	//Lớp nổi phẫu thuật chính
 	bindssmcFloatingSelector(0);
 
-	//手术名称浮层
+	//Lớp nổi tên phẫu thuật
 	function bindssmcFloatingSelector(num) {
 		var number = num;
 		if (num != 0) {
@@ -286,15 +286,15 @@
 
     function submitApply() {
 
-        //console.info("姓名：" + $("#sq_xm").text());
-        //console.info("住院号：" + $("#sq_zyh").val());
+        //console.info("Họ tên：" + $("#sq_xm").text());
+        //console.info("Số nhập viện：" + $("#sq_zyh").val());
         var xingbie = $("#sq_basic").text();
         var arr = xingbie.split(",");
-        //console.info("性别：" + arr[0]);
-        //console.info("年龄：" + arr[1]);
-        //console.info("病区：" + $("#sq_bqmc").text());
-        //console.info("床号：" + $("#sq_bedcode").text());
-        //console.info("入院诊断：" + $("#sq_ryzdmc").text());
+        //console.info("Giới tính：" + arr[0]);
+        //console.info("Tuổi：" + arr[1]);
+        //console.info("Khoa：" + $("#sq_bqmc").text());
+        //console.info("Số giường：" + $("#sq_bedcode").text());
+        //console.info("Chẩn đoán lúc nhập viện：" + $("#sq_ryzdmc").text());
 
         var datajbxx = "{\"xm\":\"" + $("#sq_xm").text() + "\",\"zyhs\":\"" + $("#sq_zyh").text() + "\",\"xb\":\"" + arr[0] + "\",\"nl\":\"" + arr[1] + "\",\"bq\":\"" + $("#sq_bqmc").text() + "\",\"ch\":\"" + $("#sq_bedcode").text() + "\",\"ryzd\":\"" + $("#sq_ryzdmc").text() +"\"}";
 
@@ -308,7 +308,7 @@
 
 		var curDate = new Date();
 		//if (d <= curDate) {
-		//	window.$.modalAlert("手术申请时间不得早于当天", 'warning');
+		//	window.$.modalAlert("Thời gian đăng ký phẫu thuật không được sớm hơn hôm nay", 'warning');
 		//	return false;
 		//}
 
@@ -321,7 +321,7 @@
 		postData.ysxm = $("#ysgh").val();
         postData.mzys = $("#code2").val();
 
-		//手术名称列表
+		//Danh sách tên phẫu thuật
 		var ssList = [];
 		ssList.push({ ssmc: $("#ssmc").val(), ssdm: $("#ssdm").val() });
 		var i = 2;
@@ -348,7 +348,7 @@
         });
     }
 
-    //撤销手术申请详情
+    //Hủy chi tiết đơn đăng ký phẫu thuật
     function submitCancel() {
         var keyValue = $("#Applyno").val();
         $.deleteForm({

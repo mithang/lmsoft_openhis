@@ -6,7 +6,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Application.Implementation.SystemManage
 {
     /// <summary>
-    /// 按钮App
+    /// NútApp
     /// </summary>
     public class ModuleButtonApp : IModuleButtonApp
     {
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
         }
 
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
         }
 
         /// <summary>
-        /// 删除实体
+        /// Xóa thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(string keyValue)

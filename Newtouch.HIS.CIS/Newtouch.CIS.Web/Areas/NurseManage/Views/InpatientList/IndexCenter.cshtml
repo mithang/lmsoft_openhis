@@ -52,7 +52,7 @@
     <div class="dv-left-tree" id="PatTreeList"></div>
 </div>
 <div class="dv-right" style="height:95%;">
-    @*导航栏*@
+    @*Thanh điều hướng*@
     <ul class="nav nav-tabs  navb-bg" id="myTab" style="position:fixed;top:0px;z-index:100009;width:85%;">
         <li role="presentation"><a href="#linkyzcx" role="tab" data-toggle="tab">Y lệnhTra cứu</a></li>
         <li role="presentation"><a href="#linkyzsh" role="tab" data-toggle="tab">Y lệnhDuyệt</a></li>
@@ -84,19 +84,19 @@
     </ul>
     <div style="margin-top:40px;">
         <div class="tab-content">
-            @Html.Partial("MedicalorderQuery")@*医嘱查询*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/OrderAudit.cshtml")@*医嘱审核*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/OrderExecution.cshtml")@*医嘱执行*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosMedReturn.cshtml")@*医嘱退药*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosBookkeep.cshtml")@*住院记账*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosFeeRefund.cshtml")@*住院退费*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosFee.cshtml")@*费用一日清*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosPrint.cshtml")@*执行单打印*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosBlWriting.cshtml")@*病历文书*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosRegistration.cshtml")@*入区登记*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosRecallOutArea.cshtml")@*患者出区*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosQueryIndex.cshtml")@*体温单录入*@
-            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosNursingInput.cshtml")@*多体温单录入*@
+            @Html.Partial("MedicalorderQuery")@*Y lệnhTra cứu*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/OrderAudit.cshtml")@*Y lệnhPhê duyệt*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/OrderExecution.cshtml")@*Y lệnhThực hiện*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosMedReturn.cshtml")@*Y lệnhtrảthuốc*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosBookkeep.cshtml")@*Ghi nợ nội trú*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosFeeRefund.cshtml")@*Hoàn phí nội trú*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosFee.cshtml")@*Chi phímộtngàyxóa*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosPrint.cshtml")@*Thực hiệnphiếuIn*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosBlWriting.cshtml")@*Hồ sơvănsách*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosRegistration.cshtml")@*vàokhuĐăng ký*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosRecallOutArea.cshtml")@*Bệnh nhânra khỏi khu*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosQueryIndex.cshtml")@*Phiếu nhiệt độnhập*@
+            @Html.Partial("~/Areas/NurseManage/Views/InpatientList/InHosNursingInput.cshtml")@*nhiềuPhiếu nhiệt độnhập*@
         </div>
     </div>
 </div>
@@ -105,9 +105,9 @@
     window.alldataArray = [];
     var currentPage = "yzcx";
     var transferbool = false;
-    $('#myTab a:first').trigger('click'); //初始化显示哪个tab
-    var currentZyh = "";//住院号
-    var currentbq = "";//病区
+    $('#myTab a:first').trigger('click'); //Khởi tạoHiển thịnàotab
+    var currentZyh = "";//Số nhập viện
+    var currentbq = "";//Khu bệnh
     var currentobj = JSON.parse(sessionStorage.getItem('currentobj'));
     var fistblload = true;
     var fistload = true;
@@ -229,7 +229,7 @@
        
         getPatTreeList();
         //btn_search();
-        //搜索病人信息
+        //tìm kiếmThông tin bệnh nhân
         //$('#keyword').keyup(function () {
         //    PageTree();
         //});
@@ -287,10 +287,10 @@
         }
     }
    
-  @** 防抖
-  * @param {Function} fn 要执行的函数
-  * @param {Number} time 延迟时间(毫秒)
-  * @param {Boolean} immediate 是否立即执行一次*@
+  @** phòng抖
+  * @param {Function} fn cầnThực hiệncủahàmsố
+  * @param {Number} time Trì hoãnThời gian(毫giây)
+  * @param {Boolean} immediate CóKhônglậptứcThực hiệnmột lần*@
 
     function debounce(fn, time, immediate) {
         let timer = null;

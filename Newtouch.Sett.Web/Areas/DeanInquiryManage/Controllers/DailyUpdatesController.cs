@@ -36,7 +36,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 全院收入
+        /// tất cảviệnthuvào
         /// </summary>
         public IActionResult GetQysr()
         {
@@ -44,7 +44,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// 院长查询-今日动态-banner 
+        /// Tra cứu của viện trưởng-nayngàyđộngtrạng thái-banner 
         /// </summary>
         /// <returns></returns>
         public IActionResult GetJRDTBanner()
@@ -53,7 +53,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
             return Content(dto.ToJson());
         }
         /// <summary>
-        /// 今日门诊动态
+        /// Tình hình ngoại trú hôm nay
         /// </summary>
         public IActionResult GetJrdt()
         {
@@ -62,7 +62,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊处方
+        /// Đơn thuốc ngoại trú
         /// </summary>
         public IActionResult GetMzcf()
         {
@@ -71,7 +71,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
          
         /// <summary>
-        /// 门诊费用
+        /// ngoại trúkhámphídùng
         /// </summary>
         public IActionResult GetMzfy()
         {
@@ -80,7 +80,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 住院占床率
+        /// Tỷ lệ lấp đầy giường nội trú
         /// </summary>
         public IActionResult GetZyzcl()
         {
@@ -89,7 +89,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊挂号统计
+        /// Thống kê đăng ký khám ngoại trú
         /// </summary>
         public IActionResult GetMzghtj()
         {
@@ -98,7 +98,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 住院患者统计
+        /// Thống kê bệnh nhân nội trú
         /// </summary>
         public IActionResult GetZyhztj()
         {

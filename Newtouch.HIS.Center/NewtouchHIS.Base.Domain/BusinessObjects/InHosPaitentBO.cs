@@ -16,12 +16,12 @@ namespace NewtouchHIS.Base.Domain.BusinessObjects
         public string AppId { get; set; }
         public DateTime Timestamp { get; set; }
         /// <summary>
-        /// 令牌类型
+        /// Loại token
         /// </summary>
         public string TokenType { get; set; }
 
         /// <summary>
-        /// 访问令牌
+        /// Token truy cập
         /// </summary>
         public string Token { get; set; }
     }

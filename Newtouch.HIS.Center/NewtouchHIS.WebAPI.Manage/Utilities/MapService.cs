@@ -5,13 +5,13 @@ using NewtouchHIS.WebAPI.Manage.Areas.ExtClinic;
 namespace NewtouchHIS.WebAPI.Manage.Utilities
 {
     /// <summary>
-    /// 实体类映射配置
+    /// Cấu hình ánh xạ lớp thực thể
     /// </summary>
     public class MapService : IRegister
     {
         /****************************
-         * NewConfig 会覆盖已存在的类型映射配置
-         * ForType 配置增强
+         * NewConfig Sẽ ghi đè cấu hình ánh xạ kiểu đã tồn tại
+         * ForType Tăng cường cấu hình
          * 
          * 
          * 

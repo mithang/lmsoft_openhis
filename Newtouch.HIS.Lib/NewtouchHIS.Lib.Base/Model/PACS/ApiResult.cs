@@ -34,15 +34,15 @@ namespace NewtouchHIS.Lib.Base.Model.PACS
     public enum ApiResponseResultCode
     {
         /// <summary>
-        /// 默认值
+        /// Giá trị mặc định
         /// </summary>
         Default = -1,
         /// <summary>
-        /// 成功
+        /// thành công
         /// </summary>
         SUCCESS = 0,
         /// <summary>
-        /// 失败
+        /// thất bại
         /// </summary>
         FAIL = 1,
 

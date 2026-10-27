@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 机构开放权限配置（菜单、按钮）
+    /// Cấu hình quyền mở của tổ chức（Menu、Nút）
     /// </summary>
     [SugarTable("Sys_OrganizeAuthorize")]
     public class SysOrganizeAuthorizeEntity : EntityBase
@@ -23,27 +23,27 @@ namespace Newtouch.HIS.Domain.Entity
         public string TopOrganizeId { get; set; }
 
         /// <summary>
-        /// 项目主键
+        /// Khóa chính hạng mục
         /// </summary>
         public string ItemId { get; set; }
 
         /// <summary>
-        /// 项目类型1-模块2-按钮3-列表
+        /// Loại hạng mục1-Mô-đun2-Nút3-Danh sách
         /// </summary>
         public int ItemType { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// Mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 

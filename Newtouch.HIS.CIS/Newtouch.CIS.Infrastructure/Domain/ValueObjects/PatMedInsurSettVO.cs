@@ -20,105 +20,105 @@ namespace Newtouch.Domain.ValueObjects
         public decimal? age { get; set; }
         public string insutype { get; set; }
         /// <summary>
-        /// 人员类别
+        ///  ngườiviênLoại
         /// </summary>
         public string psn_type { get; set; }
         /// <summary>
-        /// 公务员标志
+        /// côngvụviênCờ
         /// </summary>
         public string cvlserv_flag { get; set; }
         public DateTime? setl_time { get; set; }
         /// <summary>
-        /// 就诊凭证类型
+        /// Khám bệnhChứng từLoại
         /// </summary>
         public string mdtrt_cert_type { get; set; }
         /// <summary>
-        /// 医疗类别
+        /// y tếLoại
         /// </summary>
         public string med_type { get; set; }
         /// <summary>
-        /// 医疗费总额
+        /// y tếphítổngmức
         /// </summary>
         public decimal? medfee_sumamt { get; set; }
         /// <summary>
-        /// 全自费金额
+        /// toàntự chi trảSố tiền
         /// </summary>
         public decimal? fulamt_ownpay_amt { get; set; }
         /// <summary>
-        /// 超限价自费费用
+        /// vượthạngiátự chi trảChi phí
         /// </summary>
         public decimal? overlmt_selfpay { get; set; }
         /// <summary>
-        /// 先行自付金额
+        /// trướcdòngtựtrảSố tiền
         /// </summary>
         public decimal? preselfpay_amt { get; set; }
         /// <summary>
-        /// 符合政策范围金额
+        /// kýhợpchính sáchphạm viSố tiền
         /// </summary>
         public decimal? inscp_scp_amt { get; set; }
         /// <summary>
-        ///  实际支付起付线
+        ///  thực tếchitrảtừtrảđường
         /// </summary>
         public decimal? act_pay_dedc { get; set; }
         /// <summary>
-        /// 基本医疗保险统筹基金支出
+        /// cơ sởbảny tếbảonguy hiểmthốngchuẩn bịcơ sởkimchira
         /// </summary>
         public decimal? hifp_pay { get; set; }
         /// <summary>
-        /// 基本医疗保险统筹基金 支付比例
+        /// cơ sởbảny tếbảonguy hiểmthốngchuẩn bịcơ sởkim chitrảsoVD
         /// </summary>
         public decimal? pool_prop_selfpay { get; set; }
         /// <summary>
-        /// 公务员医疗补助资金支 出
+        /// côngvụviêny tếbổ sunggiúptàikimchi ra
         /// </summary>
         public decimal? cvlserv_pay { get; set; }
         /// <summary>
-        /// 企业补充医疗保险基金 支出
+        /// 企业Bổ sungy tếbảonguy hiểmcơ sởkim chira
         /// </summary>
         public decimal? hifes_pay { get; set; }
         /// <summary>
-        /// 居民大病保险资金支出
+        /// cư dânlớnbệnhbảonguy hiểmtàikimchira
         /// </summary>
         public decimal? hifmi_pay { get; set; }
         /// <summary>
-        /// 职工大额医疗费用补助 基金支出
+        /// chứccônglớnmứcy tếChi phíbổ sunggiúp cơ sởkimchira
         /// </summary>
         public decimal? hifob_pay { get; set; }
         /// <summary>
-        /// 医疗救助基金支出
+        /// y tếcứugiúpcơ sởkimchira
         /// </summary>
         public decimal? maf_pay { get; set; }
         /// <summary>
-        /// 医院负担金额
+        /// yviệngánh nặngSố tiền
         /// </summary>
         public decimal? hosp_part_amt { get; set; }
         public decimal? oth_pay { get; set; }
         /// <summary>
-        /// 基金支付总额
+        /// cơ sởkimchitrảtổngmức
         /// </summary>
         public decimal? fund_pay_sumamt { get; set; }
         /// <summary>
-        /// 个人负担总金额
+        /// Cá nhângánh nặngTổng số tiền
         /// </summary>
         public decimal? psn_part_amt { get; set; }
         /// <summary>
-        /// 个人账户支出
+        /// Cá nhânTài khoảnchira
         /// </summary>
         public decimal? acct_pay { get; set; }
         /// <summary>
-        /// 个人现金支出
+        /// Cá nhânhiệnkimchira
         /// </summary>
         public decimal? psn_cash_pay { get; set; }
         /// <summary>
-        /// 余额
+        /// dưmức
         /// </summary>
         public decimal? balc { get; set; }
         /// <summary>
-        /// 个人账户共济支付金额
+        /// Cá nhânTài khoảnchung济chitrảSố tiền
         /// </summary>
         public decimal? acct_mulaid_pay { get; set; }
         /// <summary>
-        /// 医药机构结算 ID
+        /// ythuốcCơ sởquyết toán ID
         /// </summary>
         public string medins_setl_id { get; set; }
         public string clr_optins { get; set; }

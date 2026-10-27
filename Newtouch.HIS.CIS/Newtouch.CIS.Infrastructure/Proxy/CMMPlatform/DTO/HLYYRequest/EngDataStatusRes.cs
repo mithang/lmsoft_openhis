@@ -8,10 +8,10 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
     
     public class ResponseInfo
     {
-        public string Rest { get; set; } // 处方状态信息
-        public string Message { get; set; } // 消息
-        public string Suggest { get; set; } // 建议
-        public string Username { get; set; } // 用户名
-        public int DispenseFlag { get; set; } // 配药标志
+        public string Rest { get; set; } // Đơn thuốcTrạng tháithông tin
+        public string Message { get; set; } // hủytin
+        public string Suggest { get; set; } // xâynghị
+        public string Username { get; set; } // Người dùngtên
+        public int DispenseFlag { get; set; } // phốithuốcCờ
     }
 }

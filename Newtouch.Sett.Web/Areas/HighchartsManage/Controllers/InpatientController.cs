@@ -34,7 +34,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region trang khởi tạo
         /// <summary>
-        /// 住院就诊人次人数分析
+        /// nhập việnviệnthìkhámngườilầnngườisốphânphân tích
         /// </summary>
         /// <returns></returns>
         public IActionResult NumberofInpatientVisits()
@@ -42,7 +42,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
             return View();
         }
         /// <summary>
-        /// 住院收入分析
+        /// nhập việnviệnthuvàophânphân tích
         /// </summary>
         /// <returns></returns>
         public IActionResult NumberofInpatientSalary()
@@ -57,16 +57,16 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
         #endregion
 
         /// <summary>
-        ///获取住院就诊人数
+        ///đượclấynhập việnviệnthìkhámngườisố
         /// </summary>
         /// <returns></returns>
         public IActionResult GetInpatientVisitNum()
         {
-            //获取住院新增人数
+            //đượclấynhập việnviệnmớithêmngườisố
             List<OutpatientVisitNumVO> outpatientlist = _highchartsDmnService.GetInpatientVisitNum(OrganizeId);
-            //获取出院人数
+            //đượclấyraviệnngườisố
             List<InpatientVisitNumVO> inpatientList = _highchartsDmnService.GetInpatientDischargeNum(OrganizeId);
-            //放在一个对象，返回到页面
+            //đặttạimộtcáiđốitượng，trảquayđếntrangmặt
             var data = new VisitNumBO
             {
                 OutpatientList = outpatientlist,
@@ -76,7 +76,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
         }
 
         /// <summary>
-        /// 获取住院收入统计
+        /// đượclấynhập việnviệnthuvàothốngtính
         /// </summary>
         /// <returns></returns>
         public IActionResult GetInpatientSalaryNum()
@@ -87,7 +87,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
 
         #region Nhập viện Chi phí báo cáo
         /// <summary>
-        /// 获取就诊费用
+        /// Lấy chi phí khám
         /// </summary>
         public IActionResult GetVisitNum(string year, string datatype, string orgId)
         {

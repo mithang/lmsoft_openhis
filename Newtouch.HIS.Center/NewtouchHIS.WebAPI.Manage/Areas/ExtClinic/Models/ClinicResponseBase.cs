@@ -3,8 +3,8 @@
     public class ClinicResponseBase<T>
     {
         /// <summary>
-        /// 100请求成功 
-        /// 20011 授权失败
+        /// 100Yêu cầu thành công 
+        /// 20011 Ủy quyền thất bại
         /// </summary>
         public string code { get; set; }
         public string msg { get; set; }

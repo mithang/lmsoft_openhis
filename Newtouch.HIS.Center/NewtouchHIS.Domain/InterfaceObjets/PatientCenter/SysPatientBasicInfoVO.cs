@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace NewtouchHIS.Domain.InterfaceObjets
 {
-    #region Entity 转 VO 结构一致
+    #region Entity Chuyển VO Cấu trúc nhất quán
     public class SysPatientBasicInfoEVO : IEntity
     {
         /// <summary>
@@ -22,7 +22,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
 
 
         /// <summary>
-        /// Desc:本院磁Số thẻ（包括医保离休病人），或者医保Số thẻ
+        /// Desc:Thẻ từ của việnSố thẻ(bao gồm bệnh nhân BHYT nghỉ hưu theo chế độ),hoặc BHYTSố thẻ
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -263,7 +263,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public int? dybh { get; set; }
 
         /// <summary>
-        /// Desc:单位名称
+        /// Desc:Tên đơn vị
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -271,7 +271,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? dwmc { get; set; }
 
         /// <summary>
-        /// Desc:单位地址
+        /// Desc:Địa chỉ đơn vị
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -295,7 +295,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? gj { get; set; }
 
         /// <summary>
-        /// Desc:0 未婚 1 已婚
+        /// Desc:0 Chưa kết hôn 1 Đã kết hôn
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -303,7 +303,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public byte? hf { get; set; }
 
         /// <summary>
-        /// Desc:民族
+        /// Desc:Dân tộc
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -311,7 +311,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? mz { get; set; }
 
         /// <summary>
-        /// Desc:职业
+        /// Desc:Nghề nghiệp
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -367,7 +367,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? brly { get; set; }
 
         /// <summary>
-        /// Desc:过敏史
+        /// Desc:Tiền sử dị ứng
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -426,34 +426,34 @@ namespace NewtouchHIS.Domain.InterfaceObjets
 
     #endregion
     /// <summary>
-    /// Bệnh nhân基本信息视图
+    /// Bệnh nhânView thông tin cơ bản
     /// </summary>
     public class SysPatientBasicVO : SysPatInfoVO
     {
 
         /// <summary>
-        /// 婚姻
+        /// Hôn nhân
         /// </summary>
         public string hy { get; set; }
     }
     /// <summary>
-    /// Bệnh nhân基本信息精简视图
+    /// Bệnh nhânView rút gọn thông tin cơ bản
     /// </summary>
     public class SysPatInfoVO
     {
         public int? patid { get; set; }
         /// <summary>
-        /// Tổ chứcId（有具体业务的医院）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string? OrganizeId { get; set; }
 
         /// <summary>
-        /// 病人最近的性质xt_brxz.brxz
+        /// Tính chất gần nhất của bệnh nhânxt_brxz.brxz
         /// </summary>
         public string? brxz { get; set; }
 
         /// <summary>
-        /// 本院磁Số thẻ（包括医保离休病人），或者医保Số thẻ
+        /// Thẻ từ của việnSố thẻ(bao gồm bệnh nhân BHYT nghỉ hưu theo chế độ),hoặc BHYTSố thẻ
         /// </summary>
         public string? blh { get; set; }
 
@@ -484,12 +484,12 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? dh { get; set; }
         public string? kh { get; set; }
         /// <summary>
-        /// 卡类型
+        /// Loại thẻ
         /// </summary>
         public string klx { get; set; }
     }
     /// <summary>
-    /// Bệnh nhân查询索引
+    /// Bệnh nhânChỉ mục truy vấn
     /// </summary>
     public class SysPatIndexVO
     {
@@ -499,7 +499,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? xm { get; set; }
         public string? kh { get; set; }
         /// <summary>
-        /// 卡类型
+        /// Loại thẻ
         /// </summary>
         public string klx { get; set; }
         public string? zjh { get; set; }

@@ -3,96 +3,96 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 单据查询主记录
+    /// Bản ghi chính truy vấn chứng từ
     /// </summary>
     public class ReceiptQueryVO
     {
         /// <summary>
-        /// 单据类型
+        /// Loại chứng từ
         /// </summary>
         public int djlx { get; set; }
 
         /// <summary>
-        /// 单据类型名称
+        /// Tên loại chứng từ
         /// </summary>
         public string djlxmc { get; set; }
 
         /// <summary>
-        /// 出库部门名称
+        /// Tên bộ phận xuất kho
         /// </summary>
         public string ckbmmc { get; set; }
 
         /// <summary>
-        /// 入库部门名称
+        /// Tên bộ phận nhập kho
         /// </summary>
         public string rkbmmc { get; set; }
 
         /// <summary>
-        /// 供应商名称
+        /// Tên nhà cung cấp
         /// </summary>
         public string gysmc { get; set; }
 
         /// <summary>
-        /// 出入库单据主表ID
+        /// Bảng chính chứng từ xuất nhập khoID
         /// </summary>
         public string crkId { get; set; }
 
         /// <summary>
-        /// 单据号
+        /// Số chứng từ
         /// </summary>
         public string pdh { get; set; }
 
         /// <summary>
-        /// 操作时间
+        /// Thời gian thao tác
         /// </summary>
         public DateTime? czsj { get; set; }
 
         /// <summary>
-        /// 出入库方式名称
+        /// Tên phương thức xuất nhập kho
         /// </summary>
         public string crkfsmc { get; set; }
         public string crkfscode { get; set; }
         /// <summary>
-        /// 批发总额
+        /// Tổng giá bán buôn
         /// </summary>
         public decimal? pjze { get; set; }
 
         /// <summary>
-        /// 零售总额
+        /// Tổng giá bán lẻ
         /// </summary>
         public decimal? ljze { get; set; }
 
         /// <summary>
-        /// 进价总额
+        /// Tổng giá nhập
         /// </summary>
         public decimal? zje { get; set; }
 
         /// <summary>
-        /// 进销差价
+        /// Chênh lệch giá nhập bán
         /// </summary>
         public decimal? jxcj { get; set; }
 
         /// <summary>
-        /// 审核状态
+        /// Trạng thái duyệt
         /// </summary>
         public string shzt { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 入库时间
+        /// Thời gian nhập kho
         /// </summary>
         public DateTime? Rksj { get; set; }
 
         /// <summary>
-        /// 出库时间
+        /// Thời gian xuất kho
         /// </summary>
         public DateTime? Cksj { get; set; }
         /// <summary>
-        /// 进价总金额
+        /// Tổng số tiền giá nhập
         /// </summary>
         public decimal? jjzje { get; set; }
     }

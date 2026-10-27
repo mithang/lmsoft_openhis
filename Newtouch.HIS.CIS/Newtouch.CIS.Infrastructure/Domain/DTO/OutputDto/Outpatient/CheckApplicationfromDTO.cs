@@ -13,132 +13,132 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
     }
     public class RequestHost
     {
-        //机构编码  Y
+        //Cơ sởMã  Y
         public string MedNo { get; set; }
-        //机构名称  Y
+        //Tên cơ sở  Y
         public string MedName { get; set; }
 
     }
     public class Patient
     {
-        //居民姓名 Y
+        //cư dânHọ tên Y
         public string Name { get; set; }
-        //性别  男/女 Y
+        //Giới tính  Nam/Nữ Y
         public string Gender { get; set; }
-        //出生日期 Y 
+        //Ngày sinh Y 
         public DateTime? Birthday { get; set; }
-        //身份证号 Y
+        //CMND/CCCDsố Y
         public string IdentityID { get; set; }
-        // 病区号
+        // Khu bệnhsố
         public string WardNo { get; set; }
-        //床位号
+        //giường ký tựsố
         public string BedNo { get; set; }
-        //病人卡号  Y
+        //bệnh nhânSố thẻ  Y
         public string CardID { get; set; }
 
         public Request Request;
     }
     public class Request
     {
-        //申请单号  Y
+        //Số phiếu  Y
         public string Reqno { get; set; }
-        //申请日期  Y
+        //Ngày đăng ký  Y
         public DateTime? Indate { get; set; }
-        //申请医生工号
+        //Bác sĩ đăng kýMã nhân viên
         public string DoctorID { get; set; }
-        // 申请医生姓名
+        // Bác sĩ đăng kýHọ tên
         public string DoctorName { get; set; }
-        // 申请医生身份证
+        // Bác sĩ đăng kýCMND/CCCD
         public string DoctorIdCard { get; set; }
-        // 就诊记录编码  Y 门诊、住院、体检号
+        // Khám bệnhghi chépMã  Y Ngoại trú、Nhập viện、thểkiểm trasố
         public string RecordID { get; set; }
-        //来源   Y 门诊 MagQ700001   住院 MagQ700002  体检 MagQ700003
+        //đếnnguồn   Y Ngoại trú MagQ700001   Nhập viện MagQ700002  thểkiểm tra MagQ700003
         public string Source { get; set; }
-        //影像报告类型
+        //Hình ảnhbáo cáoLoại
         public string Pic { get; set; }
-        //报告明细类型  Y
+        //báo cáochi tiếtLoại  Y
         public string PicDetail { get; set; }
-        //申请单名字
+        //PhiếuTên
         public string ApplyName { get; set; }
-        //部位:方法
+        //Vị trí:Phương pháp
         public string BodyPart { get; set; }
-        //序号
+        //thứ tựsố
         public int? WhichNo { get; set; }
-        // 有效标志位  N/Y，N 表示取消
+        // Cờ hiệu lực ký tự  N/Y，N biểu thịHủy
         public string IsVaild { get; set; }
-        //是否已经收费
+        //làKhôngđãquaThu phí
         public string IsCharge { get; set; }
-        //收费日期
+        //Thu phíNgày
         public DateTime? ChargeDate { get; set; }
-        //业务单据号
+        //nghiệp vụphiếusố phiếu
         public string InvoiceID { get; set; }
-        //取消日期
+        //HủyNgày
         public DateTime? CancelDate { get; set; }
-        //备注
+        //Ghi chú
         public string Comment { get; set; }
-        //申请科室编码 Y
+        //Khoa đăng kýMã Y
         public string ApplyDepartmentCode { get; set; }
-        //申请科室名字 Y
+        //Khoa đăng kýTên Y
         public string ApplyDepartmentName { get; set; }
-        //临床诊断名字
+        //临giườngChẩn đoánTên
         public string DiagnoseName { get; set; }
 
         public List<Order> Order;
     }
     public class Order
     {
-        //申请单明细号  Y
+        //Phiếuchi tiếtsố  Y
         public string Seqno { get; set; }
-        //申请单号  Y
+        //Số phiếu  Y
         public string Reqno { get; set; }
-        //项目编码  Y
+        //Mã hạng mục  Y
         public string ItemID { get; set; }
-        //项目名称  Y
+        //Tên mục  Y
         public string ItemName { get; set; }
-        //部位 1,部位 2
+        //Vị trí 1,Vị trí 2
         public string BodyPart { get; set; }
-        //数量
+        //Số lượng
         public string Qty { get; set; }
-        //单价
+        //Đơn giá
         public string Price { get; set; }
-        //序号
+        //thứ tựsố
         public string SN { get; set; }
     }
 
     public class CheckfromDTO
     {
-        // 就诊记录编码  Y 门诊、住院、体检号
+        // Khám bệnhghi chépMã  Y Ngoại trú、Nhập viện、thểkiểm trasố
         public string RecordID { get; set; }
-        //申请单名字
+        //PhiếuTên
         public string ApplyName { get; set; }
-        //申请单号  Y
+        //Số phiếu  Y
         public string Reqno { get; set; }
-        //申请日期  Y
+        //Ngày đăng ký  Y
         public DateTime? Indate { get; set; }
-        //申请医生工号
+        //Bác sĩ đăng kýMã nhân viên
         public string DoctorID { get; set; }
-        // 申请医生姓名
+        // Bác sĩ đăng kýHọ tên
         public string DoctorName { get; set; }
-        //申请科室编码 Y
+        //Khoa đăng kýMã Y
         public string ApplyDepartmentCode { get; set; }
-        //申请科室名字 Y
+        //Khoa đăng kýTên Y
         public string ApplyDepartmentName { get; set; }
-        // 病区号
+        // Khu bệnhsố
         public string WardNo { get; set; }
-        //床位号
+        //giường ký tựsố
         public string BedNo { get; set; }
-        //病人卡号  Y
+        //bệnh nhânSố thẻ  Y
         public string CardID { get; set; }
-        //申请单明细号  Y
+        //Phiếuchi tiếtsố  Y
         public string Seqno { get; set; }
 
-        //项目编码  Y
+        //Mã hạng mục  Y
         public string ItemID { get; set; }
-        //项目名称  Y
+        //Tên mục  Y
         public string ItemName { get; set; }
-        //数量
+        //Số lượng
         public string Qty { get; set; }
-        //单价
+        //Đơn giá
         public string Price { get; set; }
 
 		public string PicDetail { get; set; }

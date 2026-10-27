@@ -59,22 +59,22 @@
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
-        GetlsjzSel();//获取Lịch sử结转时间
-        gridDrugsList();//物资信息
+        GetlsjzSel();//LấyLịch sửkết chuyểnThời gian
+        gridDrugsList();//vật tưthông tin
     });
 
-    //回车事件绑定
+    //Sự kiện Entergắn
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //获取Lịch sử结转时间
+    //LấyLịch sửkết chuyểnThời gian
     function GetlsjzSel() {
         $("#lsjz").html("");
         $("#lsjz").bindSelect({
@@ -84,9 +84,9 @@
         });
     }
 
-    //Thực hiện结转当前
+    //Thực hiệnkết chuyểnhiện tại
     function newtouch_event_f8() {
-        //获取最后一次结转时间
+        //Lấycuối cùngmột lầnkết chuyểnThời gian
         $.najax({
             type: "Get",
             url: "/NurseManage/StockCarryOver/QueryLastCarryTime?r=" + Math.random(),
@@ -105,7 +105,7 @@
                                         success: function (ajaxresp) {
                                             if (ajaxresp.state === "success") {
                                                 $.modalMsg("Kết chuyểnthành công", 'success', 1500);
-                                                GetlsjzSel();//刷新结转时间
+                                                GetlsjzSel();//Làm mớikết chuyểnThời gian
                                                 $("#btn_search").trigger("click");
                                             }
                                             else {
@@ -129,7 +129,7 @@
         });
     }
 
-    //物资信息
+    //vật tưthông tin
     function gridDrugsList() {
         var captionCon = "Tổng cộng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Tổng tiền bán lẻ trang hiện tại: </span>";
         var $gridDrugsList = $("#gridDrugsList");
@@ -167,16 +167,16 @@
             sortname: 'wzmc',
             viewrecords: true,
             loadComplete: function (data) {
-                ComputePjzeAndLsze();//计算标题栏中的批价总额和零售总额
+                ComputePjzeAndLsze();//Tính toándấuđềcộttrongcủalôgiátổngmứcvàtổng bán lẻ
             }
         });
-        //查询
+        //Tra cứu
         $("#btn_search").click(function () {
             $gridDrugsList.jqGrid('setGridParam', {
                 postData: getSearchPostData()
             }).trigger('reloadGrid');
         });
-        //打印
+        //In
         $("#btn_print").click(function () {
             window.open('@reportUrl' + "?tempCode=1332" + "&systemCode=" + '@reportSystemCode' + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=@ViewBag.OrganizeId&warehouseId=@Constants.DeptCode" +
                "&jzsj=" + ($("#lsjz option:selected").val()) +
@@ -184,14 +184,14 @@
         });
     }
 
-    //查询条件
+    //Điều kiện tìm kiếm
     function getSearchPostData() {
         var jzsj = $("#lsjz").find("option:selected").text();
         var keyWork = $("#txtSRM").val();
         return { jzsj: jzsj, keyWork: keyWork };
     };
 
-    //计算标题栏中的批价总额和零售总额
+    //Tính toándấuđềcộttrongcủalôgiátổngmứcvàtổng bán lẻ
     function ComputePjzeAndLsze() {
         var titleLsze = 0;
         var count = $("#gridDrugsList").getGridParam('records');

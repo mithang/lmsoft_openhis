@@ -5,13 +5,13 @@ using Newtouch.CIS.Repository;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// 出诊设置
+    /// rakhámCài đặt
     /// </summary>
     public interface IVisitDeptSetRepo : IRepositoryBase<VisitDeptSetEntity>
     {
 
         /// <summary>
-        /// 获取出诊信息
+        /// Lấyrakhámthông tin
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="organizeId"></param>
@@ -19,7 +19,7 @@ namespace Newtouch.Domain.IRepository
         IList<VisitDeptSetEntity> SelectData(string ysgh, string organizeId);
 
         /// <summary>
-        /// 根据ID物理删除记录
+        /// TheoIDvậtlýXóaghi chép
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

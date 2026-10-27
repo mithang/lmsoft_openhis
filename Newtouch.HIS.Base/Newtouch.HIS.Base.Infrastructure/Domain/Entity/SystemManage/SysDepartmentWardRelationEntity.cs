@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 科室病区关联关系
+    /// Quan hệ liên kết khoa - khu bệnh
     /// </summary>
     [SugarTable("Sys_DepartmentWardRelation")]
     public class SysDepartmentWardRelationEntity : EntityBase

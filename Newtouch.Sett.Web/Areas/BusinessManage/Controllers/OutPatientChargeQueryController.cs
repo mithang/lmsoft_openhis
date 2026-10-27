@@ -29,7 +29,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
         }
 
         /// <summary>
-        /// 挂号收费查询
+        /// treosốthuphítratra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult OutPatientChargeQuery()
@@ -37,7 +37,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
             return View();
         }
         /// <summary>
-        /// 挂号收费条件查询
+        /// treosốthuphídònghạngtratra cứu
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="fph"></param>
@@ -52,7 +52,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
             return Content(chargeQueryList.ToJson());
         }
         /// <summary>
-        /// 挂号收费查询明细
+        /// treosốthuphítratra cứurõchi tiết
         /// </summary>
         /// <param name="jsnm"></param>
         /// <returns></returns>

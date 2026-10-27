@@ -78,173 +78,173 @@ namespace Newtouch.Domain.DTO.InputDto
     public class RequestOrderExecMsgDto
     {
         /// <summary>
-        /// 是否成功 true:全部成功/部分成功  false:全部失败/验证失败
+        /// làKhôngthành công true:Tất cảthành công/bộphútthành công  false:Tất cảthất bại/kiểm trathất bại
         /// </summary>
         public bool IsSucceed { get; set; }
 
         /// <summary>
-        /// 状态码 参照枚举ResultCode
+        /// Trạng tháimã tham sốchiếuLiệt kêResultCode
         /// </summary>
         public int ResultCode { get; set; }
 
         /// <summary>
-        /// 错误描述
+        /// LỗiMô tả
         /// </summary>
         public string ResultMsg { get; set; }
 
         /// <summary>
-        /// 返回信息
+        /// Quay lạithông tin
         /// </summary>
         public dynamic Data { get; set; }
     }
 
     /// <summary>
-    /// 医嘱明细   Data返回内容,以集合呈现
+    /// Y lệnhchi tiết   DataQuay lạinội dung,lấytậphợphiển thịhiện
     /// </summary>
     //public class YzDetail
     //{
     //    /// <summary>
-    //    /// 医嘱ID
+    //    /// Y lệnhID
     //    /// </summary>
     //    public string yzId { get; set; }
 
     //    /// <summary>
-    //    /// 领药序号
+    //    /// lĩnhthuốcthứ tựsố
     //    /// </summary>
     //    public long lyxh { get; set; }
 
     //    /// <summary>
-    //    /// 患者姓名
+    //    /// Tên bệnh nhân
     //    /// </summary>
     //    public string patientName { get; set; }
 
     //    /// <summary>
-    //    /// 住院号
+    //    /// Số nhập viện
     //    /// </summary>
     //    public string zyh { get; set; }
 
     //    /// <summary>
-    //    /// 药品代码
+    //    /// Mã thuốc
     //    /// </summary>
     //    public string ypCode { get; set; }
 
     //    /// <summary>
-    //    /// 大类
+    //    /// Nhóm lớn
     //    /// </summary>
     //    public string dl { get; set; }
 
     //    /// <summary>
-    //    /// 数量
+    //    /// Số lượng
     //    /// </summary>
     //    public decimal sl { get; set; }
 
     //    /// <summary>
-    //    /// 口服、静滴...
+    //    /// uống、tĩnhgiọt...
     //    /// </summary>
     //    public string zlff { get; set; }
 
     //    /// <summary>
-    //    /// 执行时间：04,06,08...
+    //    /// Thời gian thực hiện：04,06,08...
     //    /// </summary>
     //    public string sjap { get; set; }
 
     //    /// <summary>
-    //    /// 与执行数量对应
+    //    /// vàThực hiệnSố lượngtương ứng
     //    /// </summary>
     //    public string pcmc { get; set; }
 
     //    /// <summary>
-    //    /// 用量
+    //    /// dùnglượng
     //    /// </summary>
     //    public decimal yl { get; set; }
 
     //    /// <summary>
-    //    /// 用量单位
+    //    /// dùnglượngĐơn vị
     //    /// </summary>
     //    public string yldw { get; set; }
 
     //    /// <summary>
-    //    /// 医生工号
+    //    /// Bác sĩMã nhân viên
     //    /// </summary>
     //    public string ysgh { get; set; }
 
     //    /// <summary>
-    //    /// 开始日期
+    //    /// Ngày bắt đầu
     //    /// </summary>
     //    public DateTime ksrq { get; set; }
 
     //    /// <summary>
-    //    /// 结束日期
+    //    /// Ngày kết thúc
     //    /// </summary>
     //    public DateTime jsrq { get; set; }
 
     //    /// <summary>
-    //    /// 发药药房
+    //    /// phát thuốcNhà thuốc
     //    /// </summary>
     //    public string fyyf { get; set; }
 
     //    /// <summary>
-    //    /// 1：临时；2：长期
+    //    /// 1：Tạm thời；2：Dài hạn
     //    /// </summary>
     //    public string yzxz { get; set; }
 
     //    /// <summary>
-    //    /// 嘱托
+    //    /// Dặn dò
     //    /// </summary>
     //    public string yzbz { get; set; }
 
     //    /// <summary>
-    //    /// 频次
+    //    /// Tần suất
     //    /// </summary>
     //    public int zxsl { get; set; }
 
     //    /// <summary>
-    //    /// 单价
+    //    /// Đơn giá
     //    /// </summary>
     //    public decimal dj { get; set; }
 
     //    /// <summary>
-    //    /// 金额
+    //    /// Số tiền
     //    /// </summary>
     //    public decimal je { get; set; }
 
     //    /// <summary>
-    //    /// 自负比例
+    //    /// Tỷ lệ tự trả
     //    /// </summary>
     //    public decimal? zfbl { get; set; }
 
     //    /// <summary>
-    //    /// 自负性质
+    //    /// Tính chất tự trả
     //    /// </summary>
     //    public char zfxz { get; set; }
 
     //    /// <summary>
-    //    /// 科室名称
+    //    /// Tên khoa
     //    /// </summary>
     //    public string ksmc { get; set; }
 
     //    /// <summary>
-    //    /// 病区名称
+    //    /// Khu bệnhTên
     //    /// </summary>
     //    public string bqmc { get; set; }
 
     //    /// <summary>
-    //    /// 床位
+    //    /// giường ký tự
     //    /// </summary>
     //    public string cw { get; set; }
 
     //    /// <summary>
-    //    /// 发药标志  0：未发；1：已排；2：已发；3：已退
+    //    /// Cờ phát thuốc  0：chưaphát；1：đãxếp；2：đãphát；3：đãtrả
     //    /// </summary>
     //    public char fybz { get; set; }
 
     //    /// <summary>
-    //    /// 医嘱执行申请人
+    //    /// Y lệnhThực hiệnĐăng ký người
     //    /// </summary>
     //    public string yzzxsqr { get; set; }
 
     //    /// <summary>
-    //    /// 执行日期
+    //    /// Thực hiệnNgày
     //    /// </summary>
     //    public DateTime zxrq { get; set; }
     //}

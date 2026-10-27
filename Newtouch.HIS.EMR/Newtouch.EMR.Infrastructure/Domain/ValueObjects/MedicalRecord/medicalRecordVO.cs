@@ -424,7 +424,7 @@ namespace Newtouch.EMR.Domain.BusinessObjects
 
     }
     /// <summary>
-    /// 病历-住院基本信息
+    /// Bệnh án-Thông tin cơ bản nội trú
     /// </summary>
     public class blzybrjbxxVO {
 
@@ -479,7 +479,7 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         public string user { get; set; }
         public string curTime { get; set; }
 
-        //病历元素字段以中文首拼取名
+        //Trường phần tử bệnh án đặt tên theo chữ cái đầu phiên âm tiếng Trung
         public string bq { get; set; }
         public DateTime? csny { get; set; }
         public string ch { get; set; }

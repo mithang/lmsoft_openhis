@@ -18,7 +18,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 {
 
     /// <summary>
-    /// 收费大类
+    /// Nhóm thu phí lớn
     /// </summary>
     [Area("SystemManage")]
 
@@ -37,7 +37,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
 
         /// <summary>
-        /// 获取收费大类列表
+        /// đượclấythuphílớnloạicộtbảng
         /// </summary>
         /// <param name="dllbs"></param>
         /// <returns></returns>
@@ -57,19 +57,19 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             return Content(treeList.TreeSelectJson(null));
         }
         /// <summary>
-        /// 获取收费大类浮层list
+        /// đượclấythuphílớnloạinổilớplist
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
         public IActionResult GetsfdlJson(string keyword)
         {
-            var iszytfyp = _sysConfigRepo.GetBoolValueByCode("YXZ_SETT_1010", OrganizeId);//动态参数：住院退费是否退药品费用
+            var iszytfyp = _sysConfigRepo.GetBoolValueByCode("YXZ_SETT_1010", OrganizeId);//độngtrạng tháithamsố：nhập việnviệnhoànphílàkhônghoànthuốcphẩmphídùng
             var sysDls = new List<SysChargeCategoryVEntity>();
             if (iszytfyp.Value == false)
-            {//显示药品
+            {//hiển thịhiển thịthuốcphẩm
                 sysDls = _sysChargeCategoryRepo.GetLazyList(this.OrganizeId).ToList();
             }
-            else {//不显示药品
+            else {//khônghiển thịhiển thịthuốcphẩm
                 sysDls = _sysChargeCategoryRepo.GetLazyList(this.OrganizeId).Where(p => p.dlCode != "01" && p.dlCode != "02" && p.dlCode != "03").ToList();
             } 
             //sysDls = sysDls.Where(p=>p.py.Contains(keyword)||p.dlmc.Contains(keyword)).ToList();

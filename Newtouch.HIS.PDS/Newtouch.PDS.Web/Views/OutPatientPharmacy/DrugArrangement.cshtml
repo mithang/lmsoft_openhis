@@ -100,7 +100,7 @@
     }
 
 
-    //加载排药员
+    //Tải nhân viên xếp thuốc
     function loadpyy() {
         $.najax({
             url: "/OutPatientPharmacy/initPYY?r=" + Math.random(),
@@ -116,7 +116,7 @@
         });
     }
 
-    //加载处方信息
+    //Tải thông tin đơn thuốc
     function loadpyhj() {
         $.najax({
             url: "/OutPatientPharmacy/loadpyhj?r=" + Math.random(),
@@ -131,7 +131,7 @@
         });
     }
 
-    //加载配置
+    //Tải cấu hình
     function Loadconfig() {
         $.najax({
             url: "/OutPatientPharmacy/Loadconfig?r=" + Math.random(),
@@ -196,7 +196,7 @@
                 { label: 'Liều dùng', name: 'jl', width: 100, align: 'left' },
                 { label: 'Đơn vị liều', name: 'jldw', width: 100, align: 'left' },
                 { label: 'Cách dùng', name: 'yfmc', width: 100, align: 'left' },
-                //{ label: '频次', name: 'pcmc', width: 100, align: 'left' },
+                //{ label: 'Tần suất', name: 'pcmc', width: 100, align: 'left' },
                 { label: 'Liều lượng', name: 'yl', width: 100, align: 'left' },
                 { label: 'Đơn vị liều dùng', name: 'yldw', width: 100, align: 'left' },
                 { label: 'Lời dặn bác sĩ', name: 'yszt', width: 100, align: 'left' },
@@ -208,7 +208,7 @@
         grid.populate();
     }
 
-    //排药
+    //Xếp thuốc
     function newtouch_globalevent_f7() {
         var id = $("#gridCF").jqGrid("getGridParam", "selrow");
         if (id) {
@@ -248,13 +248,13 @@
         //    cache: false,
         //    success: function (res) {
         //        if (res.state === "success") {
-        //            $.modalMsg('修改成功！', 'success', 1000);
+        //            $.modalMsg('Sửa thành công！', 'success', 1000);
         //        }
         //    }
         //});
     }
 
-    //自动排药定时器 1表示开始 2表示结束
+    //Bộ định thời tự động xếp thuốc 1Biểu thị bắt đầu 2Biểu thị kết thúc
     function pyInterval(type) {
         if (type === 1) {
             timer1 = self.setInterval("gridCF()", 50);

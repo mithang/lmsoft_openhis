@@ -30,11 +30,11 @@ namespace Newtouch.DomainServices
 
         }
 
-        #region 报损报溢
+        #region Báo hỏng báo thừa
         /// <summary>
-        /// 查询损益药品list
+        /// Tra cứulãi lỗThuốclist
         /// </summary>
-        /// <param name="inputCode">关键字</param>
+        /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
         public List<ReportLossAndProfitMedicineInfoVO> SelectLossAndProfitMedicineList(string inputCode)
         {
@@ -89,7 +89,7 @@ order by a.ypcode,a.kcsl,a.yxq
         }
 
         /// <summary>
-        /// 查询药品的kcsl和jj
+        /// Tra cứuThuốccủakcslvàjj
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="ph"></param>
@@ -112,7 +112,7 @@ order by a.ypcode,a.kcsl,a.yxq
         //}
 
         /// <summary>
-        /// 提交报损报益
+        /// GửiBáo hỏngbáolợi
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
@@ -125,10 +125,10 @@ order by a.ypcode,a.kcsl,a.yxq
                     var kcxxRepo = new PrepareMedicineStockInfoRepo();
                     var kcxx = kcxxRepo.SelectData(syxx.Ypdm, syxx.Ph, syxx.pc, syxx.yfbmCode, syxx.OrganizeId);
                     var curKcsl = kcxx.Sum(p => p.kcsl);
-                    if (syxx.Sysl < 0)//报损  盘库存是否充足
+                    if (syxx.Sysl < 0)//Báo hỏng  đĩaTồn kholàKhôngnạpđủ
                     {
                         if (kcxx.Sum(p => p.kcsl) + syxx.Sysl < 0)
-                            return string.Format("代码为{0}、批号{1}、批次{2}的药品库存不足", syxx.Ypdm, syxx.Ph, syxx.pc);
+                            return string.Format("mãlà{0}、Số lô{1}、Lô{2} của thuốcTồn kho không đủ", syxx.Ypdm, syxx.Ph, syxx.pc);
                     }
 
                     kcxxRepo.UpdateKcslWithTrans(syxx.Sysl, syxx.pc, syxx.Ph, syxx.Ypdm, syxx.yfbmCode, syxx.OrganizeId,
@@ -148,7 +148,7 @@ order by a.ypcode,a.kcsl,a.yxq
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="kcsl"></param>
@@ -159,13 +159,13 @@ order by a.ypcode,a.kcsl,a.yxq
         //    var organizeId = OperatorProvider.GetCurrent().OrganizeId;
         //    using (var db = new EFDbTransaction().BeginTrans())
         //    {
-        //        //insert 损益表
+        //        //insert lãi lỗbảng
         //        var sykc = kcsl + entity.Sysl;
-        //        entity.Sykc = sykc; //损益库存
-        //        entity.Jj = jj;  //进价
+        //        entity.Sykc = sykc; //lãi lỗTồn kho
+        //        entity.Jj = jj;  //vàogiá
         //        db.Insert(entity);
 
-        //        //update 库存
+        //        //update Tồn kho
         //        var kcxxEntity = db.IQueryable<SysMedicineStockInfoEntity>().FirstOrDefault(a => a.zt == "1" && a.tybz == 0 && a.yfbmCode == yfbmCode && a.OrganizeId == organizeId && a.ypdm == entity.Ypdm && a.pc == (entity.pc ?? ""));
         //        kcxxEntity.kcsl = kcsl + entity.Sysl;
         //        kcxxEntity.ph = kcxxEntity.ph.Trim();
@@ -176,7 +176,7 @@ order by a.ypcode,a.kcsl,a.yxq
         //}
 
         /// <summary>
-        /// 报损报溢 保存
+        /// Báo hỏngbáo thừa Lưu
         /// </summary>
         /// <param name="profitLossEntityList"></param>
         //public string SaveReportLossAndProfit(List<YpSyxxVo> profitLossEntityList)
@@ -193,7 +193,7 @@ order by a.ypcode,a.kcsl,a.yxq
         //}
 
         /// <summary>
-        /// 报损报溢查询
+        /// Báo hỏngbáo thừaTra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -265,13 +265,13 @@ order by a.ypcode,a.kcsl,a.yxq
             }
 
         /// <summary>
-        /// 批发价总金额、零售价总金额查询
+        /// Giá bán buônTổng số tiền、Giá bán lẻTổng số tiềnTra cứu
         /// </summary>
-        /// <param name="startTime">开始时间</param>
-        /// <param name="endTime">结束时间</param>
-        /// <param name="syyy">损益原因</param>
-        /// <param name="inputCode">关键字</param>
-        /// <param name="syqk">损益情况</param>
+        /// <param name="startTime">Thời gian bắt đầu</param>
+        /// <param name="endTime">Thời gian kết thúc</param>
+        /// <param name="syyy">nguyên nhân lãi lỗ</param>
+        /// <param name="inputCode">Từ khóa</param>
+        /// <param name="syqk">lãi lỗtình hình</param>
         /// <returns></returns>
         public LossAndProditInfoJeVo ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk)
         {
@@ -336,7 +336,7 @@ FROM (
 
         #endregion
 
-        #region 科室备药退回
+        #region Khoachuẩn bị thuốcTrả lại
         public string PrepareMedicineReturnSubmit(OperatorModel user, string orgId, BythDjInfoDTO Djnr)
         {
             try
@@ -356,11 +356,11 @@ FROM (
                     ExecuteSqlCommand(sql2, para2);
                 }
 
-                var shzt = "1";//保存
+                var shzt = "1";//Lưu
                 DateTime? tjsj = null;
                 if (Djnr.issavesubmit == "1")
                 {
-                    shzt = "2";//提交
+                    shzt = "2";//Gửi
                     tjsj = DateTime.Now.Date;
                 }
                 var request = new
@@ -424,14 +424,14 @@ FROM (
                     var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/PrepareMedicineReturn", request, autoAppendToken: false);
                     if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.msg == "")
                     {
-                        return "保存并提交成功！";
+                        return "LưuvàGửithành công！";
                     }
                     else
                     {
-                        return "调用药房接口失败，请联系开发人员！";
+                        return "gọiNhà thuốcgiao diệnthất bại，vui lòngliênhệmởphát ngườiviên！";
                     }
                 }
-                return "科室备药退回保存成功！";
+                return "Khoachuẩn bị thuốcTrả lạiLưu thành công！";
             }
             catch (Exception ex)
             {
@@ -554,7 +554,7 @@ and a.CreateTime BETWEEN @kssj  AND  @jssj+' 23:59:59' "
         }
 
         /// <summary>
-        /// 提交备药申请单
+        /// Gửichuẩn bị thuốcPhiếu
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orgId"></param>
@@ -589,7 +589,7 @@ and a.CreateTime BETWEEN @kssj  AND  @jssj+' 23:59:59' "
 
                     db.Commit();
                 }
-                return "成功";
+                return "thành công";
             }
             catch (Exception ex)
             {
@@ -636,7 +636,7 @@ select a.* from zy_ksbythmx a
         }
 
         /// <summary>
-        /// 获取药品库存数量
+        /// LấyThuốcTồn khoSố lượng
         /// </summary>
         /// <param name="ypbm"></param>
         /// <param name="pc"></param>
@@ -666,7 +666,7 @@ where ypdm=@ypbm and ph=@ph and pc=@pc and OrganizeId=@orgId  and yfbmCode=@yfbm
         }
 
         /// <summary>
-        /// 科室备药退回 撤回
+        /// Khoachuẩn bị thuốcTrả lại rútvề
         /// </summary>
         /// <param name="Djh"></param>
         /// <param name="orgId"></param>
@@ -692,11 +692,11 @@ where ypdm=@ypbm and ph=@ph and pc=@pc and OrganizeId=@orgId  and yfbmCode=@yfbm
                             new SqlParameter("@orgId", orgId)
                 };
                     ExecuteSqlCommand(sql, para);
-                    return "成功";
+                    return "thành công";
                 }
                 else
                 {
-                    return "调用药房接口失败，请联系开发人员！";
+                    return "gọiNhà thuốcgiao diệnthất bại，vui lòngliênhệmởphát ngườiviên！";
                 }
             }
             catch (Exception ex)
@@ -705,7 +705,7 @@ where ypdm=@ypbm and ph=@ph and pc=@pc and OrganizeId=@orgId  and yfbmCode=@yfbm
             }
         }
         /// <summary>
-        /// 作废
+        /// Hủy bỏ
         /// </summary>
         /// <param name="ById"></param>
         /// <param name="orgId"></param>
@@ -721,7 +721,7 @@ where ypdm=@ypbm and ph=@ph and pc=@pc and OrganizeId=@orgId  and yfbmCode=@yfbm
                             new SqlParameter("@ById", ById),
                             new SqlParameter("@orgId", orgId) };
                 ExecuteSqlCommand(sql, para);
-                return "成功";
+                return "thành công";
             }
             catch (Exception ex)
             {
@@ -730,7 +730,7 @@ where ypdm=@ypbm and ph=@ph and pc=@pc and OrganizeId=@orgId  and yfbmCode=@yfbm
         }
         #endregion
 
-        #region 药品使用查询
+        #region Thuốcsử dụngTra cứu
         public IList<MedicineInfoVO> GetMedicineInfoListV2(Pagination pagination, MedicineInfoParam param, string orgId)
         {
             if (string.IsNullOrWhiteSpace(pagination.sidx))

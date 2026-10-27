@@ -25,22 +25,22 @@ using Exception = System.Exception;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 门诊发药
+    /// Phát thuốc ngoại trú
     /// </summary>
     public class OutPatientDispensingApp : AppBase, IOutPatientDispensingApp
     {
         private readonly IfyDmnService _fydeDmnService;
 
         /// <summary>
-        /// 执行发药
+        /// Thực hiện phát thuốc
         /// </summary>
         /// <param name="deliveryInfo"></param>
-        /// <param name="cfhList">发药处方号</param>
+        /// <param name="cfhList">Số đơn phát thuốc</param>
         /// <returns></returns>
         public string ExecAllDeliveryDrugV2(OutpatienDrugDeliveryInfo deliveryInfo, out List<string> cfhList)
         {
             cfhList = new List<string>();
-            if (deliveryInfo == null || deliveryInfo.PatientInfo == null || deliveryInfo.PatientInfo.Count == 0) return "发药患者信息不能为空。";
+            if (deliveryInfo == null || deliveryInfo.PatientInfo == null || deliveryInfo.PatientInfo.Count == 0) return "Thông tin bệnh nhân phát thuốc không được để trống。";
 
             var errorMsg = new StringBuilder();
             try
@@ -63,14 +63,14 @@ namespace Newtouch.HIS.Application.Implementation
                         var apiResp = SiteSettAPIHelper.Request<object, DefaultResponse>("api/OutpatientPharmacy/DeliveryRpDetailQuery", request);
                         if (apiResp == null || apiResp.data == null)
                         {
-                            errorMsg.Append(string.Format("处方【{0}】门诊结算接口异常，请联系管理员；", p.cfh));
+                            errorMsg.Append(string.Format("Đơn thuốc【{0}】Giao diện thanh toán ngoại trú bất thường，Vui lòng liên hệ quản trị viên；", p.cfh));
                             break;
                         }
 
                         var rpd = apiResp.data.ToJson().ToObject<List<fyCfYpInfo>>();
                         if (rpd == null || rpd.Count == 0)
                         {
-                            errorMsg.Append(string.Format(@"处方【{0}】非已结算状态，无法发药；", p.cfh));
+                            errorMsg.Append(string.Format(@"Đơn thuốc【{0}】Trạng thái chưa thanh toán，Không thể phát thuốc；", p.cfh));
                             break;
                         }
 
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Application.Implementation
                 foreach (var item in successLs)
                 {
                     var apiResp = SiteSettAPIHelper.Request<object, DefaultResponse>("api/OutpatientPharmacy/UpdatefyztByFY", item);
-                    LogCore.Info("UpdatefyztByFY", string.Format("门诊发药同步发药状态; \n request:{0} \n response:{1} ; ", item.ToJson(), apiResp.ToJson()));
+                    LogCore.Info("UpdatefyztByFY", string.Format("Đồng bộ trạng thái phát thuốc ngoại trú; \n request:{0} \n response:{1} ; ", item.ToJson(), apiResp.ToJson()));
                 }
 
                 if (tmpCfhList.Count > 0) cfhList = tmpCfhList;
@@ -109,20 +109,20 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 执行发药
+        /// Thực hiện phát thuốc
         /// </summary>
         /// <param name="patients"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="userCode"></param>
         /// <param name="organizeId"></param>
-        /// <param name="cfhList">发药处方号</param>
+        /// <param name="cfhList">Số đơn phát thuốc</param>
         /// <returns></returns>
         public string ExecAllDeliveryDrug(patientInfoVO[] patients, string yfbmCode, string userCode, string organizeId, out List<string> cfhList)
         {
             cfhList = new List<string>();
             if (patients == null || patients.Length <= 0)
             {
-                return "请选择需要排药的患者！";
+                return "Vui lòng chọn bệnh nhân cần xếp thuốc！";
             }
 
             var errorMsg = "";
@@ -167,7 +167,7 @@ namespace Newtouch.HIS.Application.Implementation
                                 var apiResp = SiteSettAPIHelper.Request<object,DefaultResponse>("api/OutpatientPharmacy/DeliveryRpDetailQuery", request);
                                 if (apiResp == null || apiResp.data == null)
                                 {
-                                    errorMsg = "门诊结算接口异常，请联系管理员";
+                                    errorMsg = "Giao diện thanh toán ngoại trú bất thường，Vui lòng liên hệ quản trị viên";
                                     cts.Cancel();
                                     return false;
                                 }
@@ -175,7 +175,7 @@ namespace Newtouch.HIS.Application.Implementation
                                 var rpd = apiResp.data.ToJson().ToObject<List<fyCfYpInfo>>();
                                 if (rpd == null || rpd.Count == 0)
                                 {
-                                    errorMsg = string.Format(@"处方【{0}】非已结算状态，无法发药", cfxx.cfh);
+                                    errorMsg = string.Format(@"Đơn thuốc【{0}】Trạng thái chưa thanh toán，Không thể phát thuốc", cfxx.cfh);
                                     cts.Cancel();
                                     return false;
                                 }
@@ -216,7 +216,7 @@ namespace Newtouch.HIS.Application.Implementation
                 foreach (var item in successLs)
                 {
                     var apiResp = SiteSettAPIHelper.Request<object,DefaultResponse>("api/OutpatientPharmacy/UpdatefyztByFY", item);
-                    LogCore.Info("UpdatefyztByFY", string.Format("门诊发药同步发药状态; \n request:{0} \n response:{1} ; ", item.ToJson(), apiResp.ToJson()));
+                    LogCore.Info("UpdatefyztByFY", string.Format("Đồng bộ trạng thái phát thuốc ngoại trú; \n request:{0} \n response:{1} ; ", item.ToJson(), apiResp.ToJson()));
                 }
 
                 if (tmpCfhList.Count > 0) cfhList = tmpCfhList;

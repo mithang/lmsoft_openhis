@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Repository
     {
         
         /// <summary>
-        /// 获取系统病区集合
+        /// Lấy tập hợp khu bệnh hệ thống
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

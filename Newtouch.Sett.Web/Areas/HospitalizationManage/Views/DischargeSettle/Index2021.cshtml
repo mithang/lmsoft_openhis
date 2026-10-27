@@ -21,7 +21,7 @@
 
     //thu phí thành côngSaulàkhôngTrực tiếpInBiên lai
     var autoPrintFP = SysConfigReader.Bool("Inpatient_Sett_AutoPrint");
-    //thu phíChứng từIn方式
+    //thu phíChứng từInPhương thức
     var invoicePrintMethod = SysConfigReader.String("Inpatient_Sett_Invoice_PrintMethod");
     //Báo cáo biên lailiên kết
     var invoiceReportUrl = SysConfigReader.OrgReportLink("NewInpatientSett");
@@ -231,7 +231,7 @@
 
     //Tổng số tiềnTổng cộng
     function loadJfmxByZyh(data) {
-        //$('#gridList').jqGrid("clearGridData");   //sớmF4过
+        //$('#gridList').jqGrid("clearGridData");   //sớmF4qua
         $("#gridList").newtouchLocalDataGrid(null, data);
         //Tổng số tiền
         var zje = 0.00;
@@ -432,7 +432,7 @@
             callBack: function (iframeId) {
                 top.frames[iframeId].AcceptClick(function (feeRelated, outTradeNo) {
                     
-                    //HISXác nhận结
+                    //HISXác nhậnkết
                     $.najax({
                         url: "/HospitalizationManage/DischargeSettle/SaveSettle",
                         dataType: "json",
@@ -991,7 +991,7 @@
             ybReturnData.astr_jylsh = ybjyPreSettReturn.jylsh;
             ybReturnData.astr_jyyzm = ybjyPreSettReturn.jyyzm;
             //hisXác nhậnquyết toán（bao gồmBHYTXác nhậnquyết toán）
-            //组装Yêu cầu参数
+            //GhépYêu cầuTham số
             ybReturnData.prm_akc190 = ybRealSettleReq.prm_akc190,
                 ybReturnData.prm_yab003 = ybRealSettleReq.prm_yab003,
                 ybReturnData.prm_aka130 = ybRealSettleReq.prm_aka130,
@@ -1056,7 +1056,7 @@
             prm_yab003: ybPreSettleReq.prm_yab003,
             prm_aka130: ybPreSettleReq.prm_aka130,
             prm_ykb065: ybPreSettleReq.prm_ykb065,
-            prm_hisfyze: ybPreSettleReq.prm_hisfyze //用BHYTmột phầncủaTổng số phí（不bao gồm不vàGiao dịch BHYTcủatoàn bộTự phímột phần）
+            prm_hisfyze: ybPreSettleReq.prm_hisfyze //dùngBHYTmột phầncủaTổng số phí（khôngbao gồmkhôngvàGiao dịch BHYTcủatoàn bộTự phímột phần）
         };
         $.ajax({
             type: "POST",
@@ -1082,7 +1082,7 @@
         }
     }
 
-    //贵州Làm thủ tục xuất viện BHYTThao tác-Mã nhập viện
+    //Quý ChâuLàm thủ tục xuất viện BHYTThao tác-Mã nhập viện
     function gzyb_Cybl(funcSuccCallback) {
         if (!patModel.cyrq) {
             $.loading(false);
@@ -1105,7 +1105,7 @@
                     gzyb_Cybl.prm_akc195 = "9"; //Lý do xuất viện (1、Khỏi bệnh；2、Đỡ hơn；3、Tử vong；4Chuyển viện;5quyết toán giữa kỳ bệnh tâm thần(Chỉquyết toán giữa kỳ khoán ngày bệnh tâm thần sử dụng);9 Khác)
                     gzyb_Cybl.prm_akc194 = patModel.cyrq.replace('T', ' '); //Ngày xuất viện
                     gzyb_Cybl.prm_akc196 = patModel.cyzdicd10; //Chẩn đoán xuất viện
-                    gzyb_Cybl.prm_ykc015 = patModel.ksmc; //Khoa xuất viện(Khoalàtrong文,Không thể làm mã)
+                    gzyb_Cybl.prm_ykc015 = patModel.ksmc; //Khoa xuất viện(Khoalàtrongvăn,Không thể làm mã)
                     gzyb_Cybl.prm_ykc016 = patModel.cw; //Giường xuất viện
                     gzyb_Cybl.prm_ykc017 = '@(opr.UserName)'; //Tên người xử lý
                     //gzyb_Cybl.prm_ykc018 = curTime; //Thời gian xử lý xuất viện
@@ -1215,7 +1215,7 @@
                     return;
                 }
                 var ybklx = $('#readCardCardType').val();
-                cardInfo1 = yibaoCardInfo.output.baseinfo; //BHYT基nàythông tin
+                cardInfo1 = yibaoCardInfo.output.baseinfo; //BHYTquỹnàythông tin
                 if (yibaoCardInfo.output.insuinfo.length > 1) {
                     for (var i = 0; i < yibaoCardInfo.output.insuinfo.length; i++) {
                         if (yibaoCardInfo.output.insuinfo[i].paus_insu_date)

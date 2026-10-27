@@ -18,27 +18,27 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取就诊人数（门诊和住院）
+        /// Lấy số lượng người khám（Ngoại trú và nội trú）
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         public VisitNumBO GetVisitNum(bool isAdministrator, string orgId = null, string topOrgId = null)
         {
 
-            /*************************************门诊部门，暂不考虑全退*****************************************************/
+            /*************************************Khoa ngoại trú，Tạm chưa xét trả toàn bộ*****************************************************/
             List<OutpatientVisitNumVO> outpatientlist = null;
             StringBuilder sqlStr = new StringBuilder();
             sqlStr.Append(@"
 
---当前年份
+--Năm hiện tại
 DECLARE @currYear varchar(30)=(Convert(varchar, year(getdate()),10))
---当前年月
+--Tháng hiện tại
 DECLARE @currYearMoth varchar(30)
 SET @currYearMoth=@currYear+'01';
 --select @currYearMoth
 
 ");
-            //如果是admin登录，则统计该组织机构下所有医院的就诊人数
+            //Nếu làadminĐăng nhập，thì thống kê số người khám của tất cả bệnh viện thuộc tổ chức đó
             if (isAdministrator)
             {
                 sqlStr.Append(@"
@@ -69,7 +69,7 @@ LEFT JOIN
 			112) AS groupDate , patid
 	from NewtouchHIS_Sett..mz_xm
             ");
-            //admin登录,关联该组织机构下的所有医院
+            //adminĐăng nhập,Liên kết tất cả bệnh viện thuộc tổ chức đó
             if (isAdministrator)
             {
                 sqlStr.Append(@"
@@ -77,7 +77,7 @@ LEFT JOIN
     where zt = '1'
                     ");
             }
-            //反之，则只关联该医院
+            //Ngược lại，thì chỉ liên kết bệnh viện đó
             else
             {
                 sqlStr.Append(@" where zt = '1' and OrganizeId=@orgId");
@@ -108,20 +108,20 @@ ON a.groupDate=col
             }
 
 
-            /**********************************************住院部门,已去掉全退的人*****************************************************/
+            /**********************************************Khoa nội trú,Người đã loại bỏ trả toàn bộ*****************************************************/
 
             List<InpatientVisitNumVO> inpatientList = null;
             StringBuilder sqlStr2 = new StringBuilder();
             sqlStr2.Append(@"
 
---当前年份
+--Năm hiện tại
 DECLARE @currYear varchar(30)=(Convert(varchar, year(getdate()),10))
---当前年月
+--Tháng hiện tại
 DECLARE @currYearMoth varchar(30)
 SET @currYearMoth=@currYear+'01';
 --select @currYearMoth
 ");
-            //如果是admin登录，则统计该组织机构下所有医院的就诊人数
+            //Nếu làadminĐăng nhập，thì thống kê số người khám của tất cả bệnh viện thuộc tổ chức đó
             if (isAdministrator)
             {
                 sqlStr2.Append(@"
@@ -151,7 +151,7 @@ LEFT JOIN
 	select case when isnull(cxzyjfbbh, 0) = 0 then jfbbh else cxzyjfbbh end jfbbh, tdrq, zyh, sl
 	from NewtouchHIS_Sett..zy_xmjfb
             ");
-            //admin登录,关联该组织机构下的所有医院
+            //adminĐăng nhập,Liên kết tất cả bệnh viện thuộc tổ chức đó
             if (isAdministrator)
             {
                 sqlStr2.Append(@"
@@ -159,7 +159,7 @@ LEFT JOIN
 	where zt = '1'
                 ");
             }
-            //反之，则只关联该医院
+            //Ngược lại，thì chỉ liên kết bệnh viện đó
             else {
                 sqlStr2.Append(@" where zt = '1' and OrganizeId=@orgId");
             }
@@ -171,7 +171,7 @@ LEFT JOIN
 	) bbb
 	left join NewtouchHIS_Sett..zy_brjbxx ccc
             ");
-            //admin登录,关联该组织机构下的所有医院
+            //adminĐăng nhập,Liên kết tất cả bệnh viện thuộc tổ chức đó
             if (isAdministrator)
             {
                 sqlStr2.Append(@"
@@ -179,7 +179,7 @@ LEFT JOIN
 	inner join cteTree on cteTree.id=ccc.OrganizeId
                 ");
             }
-            //反之，则只关联该医院
+            //Ngược lại，thì chỉ liên kết bệnh viện đó
             else
             {
                 sqlStr2.Append(@" on bbb.zyh = ccc.zyh and OrganizeId=@orgId");
@@ -207,7 +207,7 @@ ON a.groupDate=col
                 inpatientList = this.FindList<InpatientVisitNumVO>(sqlStr2.ToString(), param).ToList();
             }
 
-            //放在一个对象，返回到页面
+            //Đặt trong một đối tượng，Trở về trang
             var visitNumBO = new VisitNumBO
             {
                 OutpatientList = outpatientlist,

@@ -17,7 +17,7 @@
         border: 1px solid #ddd;
     }
 </style>
-@*导航栏*@
+@*Thanh điều hướng*@
 <ul class="nav nav-tabs navb-bg" id="myTab" style="position:fixed;top:0;z-index:100009;width:99%">
     <li role="presentation"><a href="#linkyzcx" role="tab" data-toggle="tab">Y lệnhTra cứu</a></li>
 </ul>
@@ -32,12 +32,12 @@
 <script>
     window.alldataArray = [];
     var transferbool = false;
-    $('#myTab a:first').trigger('click'); //初始化显示哪个tab
+    $('#myTab a:first').trigger('click'); //Khởi tạoHiển thịnàotab
 
     var currentobj = JSON.parse(sessionStorage.getItem('currentobj'));
     if (currentobj) {
         //sessionStorage.removeItem("currentobj");
-        $('#myTab a:first').trigger('click'); //初始化显示哪个tab
+        $('#myTab a:first').trigger('click'); //Khởi tạoHiển thịnàotab
         showPatientBasicInfo();
     }
 
@@ -60,9 +60,9 @@
         });
     }
 
-    //验证当前操作是否存在病人
+    //kiểm trahiện tạiThao tácCóKhôngtồn tạiởbệnh người
     function patobjValidate() {
-        //当前是否选中病人
+        //hiện tạiCóKhôngĐã chọnbệnh người
         if (currentobj == undefined || currentobj.zyh == "" || isNaN(currentobj.zyh)) {
             $.modalAlert("Thiếu bệnh nhân", 'warning');
             return false;
@@ -132,10 +132,10 @@
     }
 
     //function confirm(TargetHref) {
-    //    $.modalConfirm("当前页面还有医嘱数据未保存，是否仍需跳转?", function (flag) {
+    //    $.modalConfirm("hiện tạitrangmặtcòncóY lệnhDữ liệuchưaLưu，CóKhông仍cầnchuyển đến?", function (flag) {
     //        if (flag) {
     //            transferbool = true;
-    //            $('#myTab a[href="' + TargetHref + '"]').trigger('click'); //初始化显示哪个tab
+    //            $('#myTab a[href="' + TargetHref + '"]').trigger('click'); //Khởi tạoHiển thịnàotab
     //        }
     //        return false;
     //    });
@@ -143,10 +143,10 @@
     $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             $('#floatPreTemplateTree').hide();
             var targetHref = $(e.target).attr('href');
-            if (targetHref.indexOf('linkjy') == -1 && targetHref.indexOf('linkjc') == -1) {     //检验检查页
+            if (targetHref.indexOf('linkjy') == -1 && targetHref.indexOf('linkjc') == -1) {     //Xét nghiệmKiểm tratrang
                 $('#floatInspectTemplateTree').hide();
             } else {
-                $('#floatInspectTemplateTree').show();   //显示检验检查模板树
+                $('#floatInspectTemplateTree').show();   //Hiển thịXét nghiệmKiểm tramẫucây
             }
             transferPage($(this).attr('href'));
             transferbool = false;
@@ -234,7 +234,7 @@
         { color: '#2d61d9', zhcolor: ['#17194c', '#002c8b', '#2d61db', '#6a8ee4', '#97b8e5'] }
     ];
 
-    //获取处方呈现颜色
+    //LấyĐơn thuốchiển thịhiệnmàu sắc
     function getZhColor(zh) {
         var matched = $.jsonWhere(cfColorArr, function (v) {
             if (v.zh === zh) {
@@ -260,10 +260,10 @@
             cfColorArr.push({ zh: zh, color: thisColor });
             return thisColor;
         }
-        return '#ddd';  //颜色用完了 默认一个颜色
+        return '#ddd';  //màu sắcdùngxongđã Mặc địnhmột màu
     }
 
-    //计算频次数量
+    //Tính toánTần suấtSố lượng
     function getpcsl(zxcs, zxzq, zxzqdw)
     {
         if (isNaN(zxzqdw) || zxzqdw=="") {
@@ -288,7 +288,7 @@
         return rtnsl;
     }
 
-    //计算药品数量
+    //Tính toánThuốcSố lượng
     function getypsl(jlzhxs, zyzhxs, ypjl, dwlb, zxcs, zxzq, zxzqdw, ts, qzfs)
     {
         var zysl = 0;
@@ -296,8 +296,8 @@
             $.modalAlert("Đơn vịLoạikhông được để trống", 'error');
             return;
         }
-        var qzint = ypjl * ts;//默认住院单位 ，不需转换
-        if (dwlb == 1) {//剂量单位 转换成剂量单位
+        var qzint = ypjl * ts;//Mặc địnhĐơn vị nhập viện ，khôngcầnchuyểnđổi
+        if (dwlb == 1) {//Đơn vị liều chuyểnđổithànhĐơn vị liều
             qzint = (ypjl * ts / jlzhxs / zyzhxs);
         }
         if (qzfs == "day") {
@@ -322,7 +322,7 @@
         });
     }
 
-    //另存为模板
+    //Lưu thành mẫu
     function saveAsTemplate(mbObj,mxList){
         $.modalOpen({
             id: "Form",
@@ -353,7 +353,7 @@
         });
     }
 
-    //清空 所有文本、处方、Đơn thuốc lịch sử、grid列表
+    //Xóa trắng tất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
     function newtouch_event_f4() {
         window.alldataArray = [];
     }

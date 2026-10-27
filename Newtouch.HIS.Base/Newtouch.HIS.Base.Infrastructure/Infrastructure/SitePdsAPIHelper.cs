@@ -8,17 +8,17 @@ using System.Text;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 药房药库
+    /// Kho dược
     /// </summary>
     public class SitePdsApiHelper
     {
         /// <summary>
-        /// 结算API
+        /// Quyết toánAPI
         /// </summary>
         private static readonly string _sitePdsAPIHost;
 
         /// <summary>
-        /// 静态构造函数
+        /// Hàm khởi tạo tĩnh
         /// </summary>
         static SitePdsApiHelper()
         {
@@ -32,7 +32,7 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// GetToken
         /// </summary>
-        /// <param name="force">是否强刷新Token</param>
+        /// <param name="force">Có làm mới mạnh khôngToken</param>
         /// <returns></returns>
         public static string GetToken(bool force = false)
         {
@@ -62,7 +62,7 @@ namespace Newtouch.Infrastructure
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <param name="req"></param>
-        /// <param name="tokenExpireReTryTimes">因Token过期重试次数</param>
+        /// <param name="tokenExpireReTryTimes">DoTokenSố lần thử lại khi hết hạn</param>
         /// <returns></returns>
         private static readonly HttpClient _http = new HttpClient();
         private static readonly ConcurrentDictionary<string, TokenCacheEntry> _tokenCache =
@@ -89,7 +89,7 @@ namespace Newtouch.Infrastructure
         #region private methods
 
         /// <summary>
-        /// 结算API Host
+        /// Quyết toánAPI Host
         /// </summary>
         private static string SitePdsApiHost
         {
@@ -100,7 +100,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 域 http://sample.com/
+        /// Miền http://sample.com/
         /// </summary>
         private static string SitePdsApiDomain
         {
@@ -115,9 +115,9 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 结算系统API Url
+        /// Hệ thống quyết toánAPI Url
         /// </summary>
-        /// <param name="url">url 如'~/Home/Index'</param>
+        /// <param name="url">url VD'~/Home/Index'</param>
         /// <returns></returns>
         private static string GetPdsApiUrl(string url)
         {

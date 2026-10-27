@@ -3,9 +3,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 创 建：hyj
-    /// 日 期：2018-10-30 11:24
-    /// 描 述：元素
+    /// Người tạo：hyj
+    /// Ngày：2018-10-30 11:24
+    /// Mô tả：Phần tử
     /// </summary>
     [SugarTable("bl_ys")]
     public class BlysEntity 
@@ -51,21 +51,21 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string ysmc { get; set; }
         /// <summary>
-        /// 元素编码 唯一标识
+        /// Mã phần tử là dấu hiệu duy nhất
         /// </summary>
         public string yscode { get; set; }
         /// <summary>
-        /// 背景文字
+        /// Văn bản nền
         /// </summary>
         /// <returns></returns>
         public string BackgroundText { get; set; }
         /// <summary>
-        /// 数据源
+        /// Nguồn dữ liệu
         /// </summary>
         /// <returns></returns>
         public string DataSource { get; set; }
         /// <summary>
-        /// 路径
+        /// Đường dẫn
         /// </summary>
         /// <returns></returns>
         public string BindingPath { get; set; }
@@ -75,12 +75,12 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string AutoUpdate { get; set; }
         /// <summary>
-        /// 是否只读
+        /// Có chỉ đọc hay không
         /// </summary>
         /// <returns></returns>
         public string Readonly { get; set; }
         /// <summary>
-        /// 数据类型
+        /// Loại dữ liệu
         /// </summary>
         /// <returns></returns>
         public string TypeName { get; set; }
@@ -90,7 +90,7 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string Description { get; set; }
         /// <summary>
-        /// 是否是下来
+        /// Có phải là danh sách thả xuống hay không
         /// </summary>
         /// <returns></returns>
         public int? ListSource { get; set; }

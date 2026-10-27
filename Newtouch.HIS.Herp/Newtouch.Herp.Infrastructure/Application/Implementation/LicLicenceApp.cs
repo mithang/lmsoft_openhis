@@ -8,7 +8,7 @@ using Newtouch.Herp.Infrastructure;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 证照管理 (ported from Framework HttpPostedFileBase/MapPath to ASP.NET Core
+    /// Quản lý chứng chỉ (ported from Framework HttpPostedFileBase/MapPath to ASP.NET Core
     /// IFormFile; uploads are saved ONLY under this app's own
     /// &lt;ContentRoot&gt;/Upload/licence directory, never under the source tree)
     /// </summary>
@@ -22,10 +22,10 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 上传图片
+        /// Tải lên hình ảnh
         /// </summary>
         /// <param name="file"></param>
-        /// <returns>图片上传路径</returns>
+        /// <returns>Đường dẫn tải lên hình ảnh</returns>
         public string UploadFile(IFormFile file)
         {
             try
@@ -58,7 +58,7 @@ namespace Newtouch.Herp.Application.Implementation
         #region private function
 
         /// <summary>
-        /// 图片效验
+        /// Kiểm tra hình ảnh
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -71,7 +71,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 类型验证
+        /// Xác thực loại
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace Newtouch.Herp.Application.Implementation
         }
 
         /// <summary>
-        /// 大小验证
+        /// Xác thực kích thước
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>

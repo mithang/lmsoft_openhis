@@ -46,7 +46,7 @@
     $(".dv-body").height($(window).height());
     $(".dv-body").width($(window).width());
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt, tính lại rộng cao
             $(".dv-body").height($(window).height());
         });
 
@@ -75,7 +75,7 @@
             postData: { keyword: keyword, kssj: kssj, jssj: jssj },
             url: "/OutpatientNurse/observationfrom",
             height: $(window).height() - 130,
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            shrinkToFit: true,   //true:theo tỷ lệVDkhởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
             autowidth: true,
             colModel: [
                 { label: 'lgjlid', name: 'lgjlid', align: 'center', hidden: true, key: true },

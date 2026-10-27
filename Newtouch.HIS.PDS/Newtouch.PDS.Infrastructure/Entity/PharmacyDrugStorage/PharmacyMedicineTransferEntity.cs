@@ -6,41 +6,41 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity.PharmacyDrugStorage
 {
     /// <summary>
-    /// 药房药品调拨
+    /// Điều chuyển thuốc nhà thuốc
     /// </summary>
     [Table("yf_ypdbsq")]
     [SugarTable("yf_ypdbsq")]
     public class PharmacyMedicineTransferEntity : IEntity<PharmacyMedicineTransferEntity>
     {
         /// <summary>
-        /// 申领单ID
+        /// Đơn lĩnhID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public long dbId { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 申领单号
+        /// Số đơn lĩnh
         /// </summary>
         public string Dbdh { get; set; }
 
         /// <summary>
-        /// 申请药房
+        /// Nhà thuốc xin
         /// </summary>
         public string SqyfCode { get; set; }
 
         /// <summary>
-        /// 出库药房
+        /// Nhà thuốc xuất kho
         /// </summary>
         public string CkyfCode { get; set; }
 
         /// <summary>
-        /// 发放状态 0:未发 1:已发部分 2:已全发 3:已终止
+        /// Trạng thái phát 0:Chưa phát 1:Đã phát một phần 2:Đã phát hết 3:Đã chấm dứt
         /// </summary>
         public int ffzt { get; set; }
 

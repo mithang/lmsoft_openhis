@@ -5,7 +5,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
     public class ErrorController : Controller
     {
         /// <summary>
-        /// 异常发送 错误页面
+        /// Gửi ngoại lệ Trang lỗi
         /// </summary>
         /// <returns></returns>
         public IActionResult HttpError()
@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// 404提醒页面
+        /// 404Trang nhắc nhở
         /// </summary>
         /// <returns></returns>
         public IActionResult NotFound()
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// 403提醒页面
+        /// 403Trang nhắc nhở
         /// </summary>
         /// <returns></returns>
         public IActionResult Forbidden()

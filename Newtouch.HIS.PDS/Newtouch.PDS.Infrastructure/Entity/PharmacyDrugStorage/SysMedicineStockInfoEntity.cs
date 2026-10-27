@@ -7,7 +7,7 @@ using Newtouch.Infrastructure.EF.Attributes;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品库存信息 xt_yp_kcxx
+    /// Thông tin tồn kho thuốc hệ thống xt_yp_kcxx
     /// </summary>
     [Table("xt_yp_kcxx")]
     [SugarTable("xt_yp_kcxx")]
@@ -56,38 +56,38 @@ namespace Newtouch.HIS.Domain.Entity
         public string ypkw { get; set; }
 
         /// <summary>
-        /// 0：不控制1：控制
+        /// 0：Không kiểm soát1：Kiểm soát
         /// </summary>
         public short kzbz { get; set; }
 
         /// <summary>
-        /// 已配药未发（领）药的数量
+        /// Đã chuẩn bị thuốc chưa phát（nhận）Số lượng thuốc
         /// </summary>
         public int djsl { get; set; }
 
         /// <summary>
-        /// 0：启用1：停用
+        /// 0：Bật1：Ngừng dùng
         /// </summary>
         public short tybz { get; set; }
 
         /// <summary>
-        /// 来自 表 XT_YP_CRKMXK 
+        /// Từ bảng XT_YP_CRKMXK 
         /// </summary>
         public string crkmxId { get; set; }
 
         /// <summary>
-        /// 进价  药库单位
+        /// Giá nhập  Đơn vị kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal? jj { get; set; }
 
         /// <summary>
-        /// 对应药房药房的拆零数
+        /// Số chia lẻ của nhà thuốc tương ứng
         /// </summary>
         public int? zhyz { get; set; }
 
         /// <summary>
-        /// 产地目录
+        /// Danh mục nơi sản xuất
         /// </summary>
         public int? cd { get; set; }
 
@@ -99,7 +99,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string pc { get; set; }
 
         /// <summary>
-        /// 是否已锁  0：未锁 ；    1/null：已锁
+        /// Đã khóa chưa  0：Chưa khóa ；    1/null：Đã khóa
         /// </summary>
         public string locked { get; set; }
 

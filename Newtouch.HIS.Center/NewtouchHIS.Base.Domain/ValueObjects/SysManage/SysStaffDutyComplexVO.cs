@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Base.Domain.ValueObjects
 {
     /// <summary>
-    /// Tổ chức视图
+    /// Tổ chứcView
     /// </summary>
     public class SysStaffDutyComplexVO
     {

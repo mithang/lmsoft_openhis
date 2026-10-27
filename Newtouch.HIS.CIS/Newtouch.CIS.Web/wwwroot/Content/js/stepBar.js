@@ -1,21 +1,21 @@
 /**
- * author：xyzsyx@163.com 在使用中遇到问题或发现bug更或者有技术交流爱好的朋友请发邮件到我的email，大家一起学习，一起进步！
+ * author：xyzsyx@163.com ởSử dụngtrong遇đếnhỏiđềhoặcpháthiệnbughơnhoặccókỹ thuật交dòngyêutốtcủa朋友vui lòngphátbưumụcđếntôicủaemail，lớnnhàmộttừhọc习，mộttừvàobước！
  *
  *
- * 初始化调用方法  在js的onload事件或jq的$(document).ready()里面调用stepBar.init(id, option)即可。
- * 第一个参数为stepBar容器的id，必填，允许传入的值包括如下：
- *     jQuery对象
- *     javascript对象
- *     DOM元素（可转化为ID的字符串，如 “stepBar” || “#stepBar”） 纠错：误把jQuery对象的“#”写成“.”也同样能识别出来，但是必须保证次参数能转化成元素ID
- * 第二个参数为一个对象直接量，选填，包含如下的零个或多个
- *     step                string number   目标进度  默认为1（第一步），选填
- *     change              boolean    设置插件是否可被操作，选填  默认false
- *     animation           boolean    设置插件是否采用动画形式（前提stepBar.change为true），选填  默认false
- *     speed               number     动画速度（前提，change和animation为true） 选填   默认1000ms
- *     stepEasingForward   string     从当前步数往前过渡动画（前提，change和animation为true） 选填  默认 "easeOutExpo"  更多参数请参照 jquery.easing.js
- *     stepEasingBackward  string     从当前步数往后过渡动画（前提，change和animation为true） 选填  默认 "easeOutElastic"  更多参数请参照 jquery.easing.js
+ * Khởi tạogọiPhương pháp  ởjscủaonloadsự kiệnhoặcjqcủa$(document).ready()trongmặtgọistepBar.init(id, option)tứccó thể。
+ * đầu tiêntham sốlàstepBardungdụng cụcủaid，bắt buộc，cho phéptruyềnvàocủaGiá trịgóigồmVDdưới：
+ *     jQueryđối tượng
+ *     javascriptđối tượng
+ *     DOM元tố（có thểchuyểnhóalàIDcủachữkýchuỗi，VD “stepBar” || “#stepBar”） 纠sai：saijQueryđối tượngcủa“#”viếtthành“.”cũngcùngdạngcó thểbiếtloạirađến，nhưngCóphảicầnbảochứng lầntham sốcó thểchuyểnhóathành元tốID
+ * thứhaicáitham sốlàmộtđối tượngtrực tiếplượng，tùy chọn，góichứaVDdướicủakhôngcáihoặcnhiềucái
+ *     step                string number   Mục tiêuvàođộ  Mặc địnhlà1（thứmộtbước），tùy chọn
+ *     change              boolean    Cài đặtchènmụcCóKhôngcó thểbịThao tác，tùy chọn  Mặc địnhfalse
+ *     animation           boolean    Cài đặtchènmụcCóKhôngháidùngđộngvẽhìnhkiểu（điều kiện tiên quyếtstepBar.changelàtrue），tùy chọn  Mặc địnhfalse
+ *     speed               number     độngvẽnhanhđộ（điều kiện tiên quyết，changevàanimationlàtrue） tùy chọn   Mặc định1000ms
+ *     stepEasingForward   string     từhiện tạibướcsốtớitrướcquavượtđộngvẽ（điều kiện tiên quyết，changevàanimationlàtrue） tùy chọn  Mặc định "easeOutExpo"  Thêmtham sốvui lòngtham sốchiếu jquery.easing.js
+ *     stepEasingBackward  string     từhiện tạibướcsốtớisauquavượtđộngvẽ（điều kiện tiên quyết，changevàanimationlàtrue） tùy chọn  Mặc định "easeOutElastic"  Thêmtham sốvui lòngtham sốchiếu jquery.easing.js
  *
- *     PS：不合法的参数将强行使用默认值
+ *     PS：khônghợpphương phápcủatham sốsẽmạnhdòngSử dụngMặc địnhGiá trị
  */
 
 var stepBar = {
@@ -34,7 +34,7 @@ var stepBar = {
     speed : 1000,
     stepEasingForward : "easeOutCubic",
     stepEasingBackward: "easeOutElastic",
-    checkStepFunc: null,    //验证step是否可以点击
+    checkStepFunc: null,    //kiểm trastepCóKhôngcó thểlấyđiểmnhấp
     itemClickFunc: null,
     
     init : function(id, option){

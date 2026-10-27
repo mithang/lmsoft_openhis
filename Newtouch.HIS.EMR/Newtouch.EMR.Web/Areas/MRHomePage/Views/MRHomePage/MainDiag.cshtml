@@ -120,14 +120,14 @@
 				var $grid = $("#gridzdList");
 				var gridids = $grid.jqGrid('getDataIDs');
 				var maxRowId = 0;
-				//在行号序列中获取最大的编号
+				//Lấy số lớn nhất trong dãy số dòng
                 if (gridids.length > 0) {
                     maxRowId = Math.max.apply(Math, $grid.jqGrid('getDataIDs'));
                 } else {
                     zddata.ZDOrder = 1;
                 }
 
-				var rowid = $("#zd_rowid").val(); //是否属于修改诊断
+				var rowid = $("#zd_rowid").val(); //Có thuộc sửa chẩn đoán không
 				if (rowid != null && rowid != undefined && rowid != "" && parseInt(rowid) > 0) {
 					var rowdata = $grid.jqGrid("getRowData", rowid);
 					if (zddata.JBDM == rowdata.JBDM) {
@@ -139,7 +139,7 @@
 				}
 
 				//debugger
-				//新增
+				//Thêm mới
 				var result = checkZddm(zddata);
 				if (result) {
 					$grid.jqGrid("addRowData", maxRowId + 1, zddata, 'last');
@@ -167,7 +167,7 @@
 				$.modalAlert("Hủy hiệu lực thành công", 'success');
 				//jQuery("#gridzdList").jqGrid("setCell", rowid, "zt", "0");
 				//debugger
-				//jQuery("#gridzdList").jqGrid("setCell", rowid, "ztsm", "作废");
+				//jQuery("#gridzdList").jqGrid("setCell", rowid, "ztsm", "Hủy hiệu lực");
 			}
 			else {
 				$.modalAlert("Vui lòng chọn chẩn đoán", 'warning');
@@ -225,7 +225,7 @@
 			colModel: [
 				{ label: "Id", name: "Id", hidden: true },
 				//{
-				//    label: "操作", name: "编辑", width: 60, align: 'center', formatter: function (row, option, data) {
+				//    label: "Thao tác", name: "Chỉnh sửa", width: 60, align: 'center', formatter: function (row, option, data) {
 				//        debugger
 				//        return '<input type="button" onclick="btn_edit(' + option.rowid + ')" />';
 				//    }
@@ -349,7 +349,7 @@
 	//function btn_edit(val) {
 	//    alert(val);
 	//}
-	//提示结算病人不能添加诊断
+	//Nhắc nhở bệnh nhân đã thanh toán không thể thêm chẩn đoán
 	function SettlementQuery() {
 		$.ajax({
 			//url: "/MRHomePage/MRHomePage/SettlementQuery",

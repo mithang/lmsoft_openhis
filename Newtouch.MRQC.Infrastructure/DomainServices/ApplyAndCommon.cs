@@ -83,7 +83,7 @@ where apply.zt='1' and apply.OrganizeId=@OrgId and ApplyDate>=@ksrq and ApplyDat
                 .ToList();
             if (ids.Count == 0)
             {
-                throw new FailedException("审批失败,未找到待审批申请!");
+                throw new FailedException("Phê duyệt thất bại, không tìm thấy đơn chờ phê duyệt!");
             }
             var inParams = ids.Select((id, i) => new SugarParameter("@id" + i, id)).ToArray();
             var inList = string.Join(",", ids.Select((id, i) => "@id" + i));
@@ -100,7 +100,7 @@ where apply.zt='1' and apply.OrganizeId=@OrgId and ApplyDate>=@ksrq and ApplyDat
             int cnt = MrqcDb.GetConnection().Ado.ExecuteCommand(sql, pars.ToArray());
             if (cnt == 0)
             {
-                throw new FailedException("审批失败,未找到待审批申请!");
+                throw new FailedException("Phê duyệt thất bại, không tìm thấy đơn chờ phê duyệt!");
             }
         }
     }

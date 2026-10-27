@@ -26,11 +26,11 @@
                     <th class="formTitle">Trạm：</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="site1" name="site" class="form-control">
-                            <option value="1">秦皇岛养老院</option>
-                            <option value="2">嘉兴康复</option>
-                            <option value="3">上海百诺</option>
-                            <option value="4">常熟美迪柯医院</option>
-                            <option value="5">广州松鹤养老院</option>
+                            <option value="1">Viện dưỡng lão Tần Hoàng Đảo</option>
+                            <option value="2">Phục hồi chức năng Gia Hưng</option>
+                            <option value="3">Bách Nặc Thượng Hải</option>
+                            <option value="4">Bệnh viện Mỹ Địch Kha Thường Thục</option>
+                            <option value="5">Viện dưỡng lão Tùng Hạc Quảng Châu</option>
                         </select>
                     </td>
                     <td colspan="2"></td>
@@ -52,11 +52,11 @@
                     <th class="formTitle">Trạm：</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="site2" name="site" class="form-control">
-                            <option value="1">秦皇岛养老院</option>
-                            <option value="2">嘉兴康复</option>
-                            <option value="3">上海百诺</option>
-                            <option value="4">常熟美迪柯医院</option>
-                            <option value="5">广州松鹤养老院</option>
+                            <option value="1">Viện dưỡng lão Tần Hoàng Đảo</option>
+                            <option value="2">Phục hồi chức năng Gia Hưng</option>
+                            <option value="3">Bách Nặc Thượng Hải</option>
+                            <option value="4">Bệnh viện Mỹ Địch Kha Thường Thục</option>
+                            <option value="5">Viện dưỡng lão Tùng Hạc Quảng Châu</option>
                         </select>
                     </td>
                     <td colspan="4"></td>
@@ -129,9 +129,9 @@
             }
         },
         legend: {
-            /* 图例显示顺序反转
-             * 这是因为堆叠的顺序默认是反转的，可以设置
-             * yAxis.reversedStacks = false 来达到类似的效果
+            /* Thứ tự hiển thị chú giải bị đảo ngược
+             * Vì thứ tự xếp chồng mặc định là đảo ngược，có thể đặt
+             * yAxis.reversedStacks = false để đạt hiệu quả tương tự
              */
             reversed: true
         },
@@ -162,7 +162,7 @@
             text: 'Thống kê số tiền thu phí năm nay'
         },
         //subtitle: {
-        //    text: '数据来源: newtouch.com'
+        //    text: 'Nguồn dữ liệu: newtouch.com'
         //},
         xAxis: {
             categories: [
@@ -177,7 +177,7 @@
             }
         },
         tooltip: {
-            // head + 每个 point + footer 拼接成完整的 table
+            // head + mỗi point + footer Ghép thành đầy đủ table
             headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
             pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
             '<td style="padding:0"><b>{point.y:.1f} mm</b></td></tr>',
@@ -206,7 +206,7 @@
             text: 'Thống kê số tiền thu phí năm nay của các trạm'
         },
         //subtitle: {
-        //    text: '非规律性时间内的变化'
+        //    text: 'khôngquy địnhluậttínhthời giangiữatrongcủađổihóa'
         //},
         credits: {
             enabled: false
@@ -235,7 +235,7 @@
             }
         },
         series: [{
-            name: '秦皇岛养老院',
+            name: 'Viện dưỡng lão Tần Hoàng Đảo',
             // Define the data points. All series have a dummy year
             // of 2018/71 in order to be compared on the same x axis. Note
             // that in JavaScript, months start at 0 for January, 1 for February etc.
@@ -267,7 +267,7 @@
                 [Date.UTC(2018, 9, 12), 87]
             ]
         }, {
-            name: '嘉兴康复',
+            name: 'Phục hồi chức năng Gia Hưng',
             data: [
                 [Date.UTC(2018, 1, 18), 120],
                 [Date.UTC(2018, 1, 26), 90.2],
@@ -290,7 +290,7 @@
                 [Date.UTC(2018, 9, 7), 12]
             ]
         }, {
-            name: '上海百诺',
+            name: 'Bách Nặc Thượng Hải',
             data: [
                 [Date.UTC(2018, 1, 9), 90],
                 [Date.UTC(2018, 1, 14), 50.15],
@@ -311,7 +311,7 @@
                 [Date.UTC(2018, 9, 21), 70]
             ]
         }, {
-                name: '常熟美迪柯医院',
+                name: 'Bệnh viện Mỹ Địch Kha Thường Thục',
             data: [
                 [Date.UTC(2018, 1, 9), 110],
                 [Date.UTC(2018, 1, 14), 120.15],
@@ -332,7 +332,7 @@
                 [Date.UTC(2018, 9, 21), 70]
             ]
         }, {
-                name: '广州松鹤养老院',
+                name: 'Viện dưỡng lão Tùng Hạc Quảng Châu',
             data: [
                 [Date.UTC(2018, 1, 9), 110],
                 [Date.UTC(2018, 1, 14), 100.15],

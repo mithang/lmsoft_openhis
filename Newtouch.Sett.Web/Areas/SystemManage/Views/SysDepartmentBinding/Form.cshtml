@@ -39,13 +39,13 @@
     })
 
     function initControl() {
-        ///医生
+        ///Bác sĩ
         $("#doctor").newtouchFloatingSelector({
             height: 150,
             width: 250,
             clickautotrigger: true,
             filter: function (keyword) {
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
 
                 $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
@@ -78,13 +78,13 @@
             }
         });
 
-        ///科室
+        ///Khoa
         $("#ksmc").newtouchBatchFloatingSelector({
             height: 150,
             width: 250,
             clickautotrigger: true,
             filter: function (keyword) {
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysDepartList, function (idx, val) {
                     if ((val.py && val.py.indexOf(keyword.toLowerCase()) >= 0)

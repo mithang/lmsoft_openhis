@@ -65,7 +65,7 @@
                 if (status == true) {
                     debugger;
                     var rowData = $("#gridList").jqGrid('getRowData', rowid);
-                    if (rowData.isLeaf == false || rowData.isLeaf == "false") {//禁用条件
+                    if (rowData.isLeaf == false || rowData.isLeaf == "false") {//Điều kiện vô hiệu hóa
                     } else {
                         var param = { 'mbmc': rowData.mbmc, 'Turl': rowData.Turl };
                         window.parent.postMessage(param, '*');
@@ -74,7 +74,7 @@
             },
             onRightClickRow: function (rowid, irow, icol, e) {
                 var rowData = $("#gridList").jqGrid('getRowData', rowid);
-                if (rowData.isLeaf == false || rowData.isLeaf == "false") {//禁用条件
+                if (rowData.isLeaf == false || rowData.isLeaf == "false") {//Điều kiện vô hiệu hóa
                 } else {
                     initrightMenu(rowData);
                 }
@@ -83,14 +83,14 @@
 
         });
     }
-    //右键菜单
+    //Menu chuột phải
     function initrightMenu(rowData) {
        var p = '.gridPanel tr[id=' + rowData.Id + ']';
         var menu = new BootstrapMenu(p, {
-            //fetchElementData获取元数据
+            //fetchElementDataLấy siêu dữ liệu
             fetchElementData: function ($rowElem) {
                 var data = rowData;
-                return data;    //return的目的是给下面的onClick传递参数
+                return data;    //mục đích của return là truyền tham số cho onClick bên dưới
             },
             actions: [{
                 name: '<span class="glyphicon glyphicon-remove" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xóa mẫu',

@@ -2,9 +2,9 @@
 @using Newtouch.Infrastructure;
 @{
     Layout = null;
-    //是否页面加载时就必须选择Org
+    //Có phải khi trang tải thì phải chọn khôngOrg
     var mediOrgList = ViewBag.MediOrgList as System.Collections.IList;
-    //是否页面加载时就必须选择Org
+    //Có phải khi trang tải thì phải chọn khôngOrg
     var needChooseOrg = (ViewBag.NeedChooseOrg as bool?) ?? false;
 
 }
@@ -76,7 +76,7 @@
 								<ul class="dropdown-menu pull-right">
 									<li><a href="javascript:void(0);" onclick="SetUserPharmacy()"><i class="fa fa-exchange"></i>Chuyển nhà thuốc</a></li>
 									<li><a class="menuItem" data-id="userInfo" href="/SystemManage/SysUser/PersonalInfo"><i class="fa fa-user"></i>Thông tin cá nhân</a></li>
-									@*<li><a href="javascript:void(0);"><i class="fa fa-inbox"></i>我的信箱</a></li>*@
+									@*<li><a href="javascript:void(0);"><i class="fa fa-inbox"></i>Hộp thư của tôi</a></li>*@
 									<li><a href="javascript:void(0);" onclick="layer.msg('Đã xóa bộ nhớ đệm trình duyệt thành công');"><i class="fa fa-trash-o"></i>Xóa bộ nhớ đệm</a></li>
 									<li>
 										<a href="javascript:void(0);"><i class="fa fa-paint-brush"></i>Cài đặt giao diện</a>
@@ -211,7 +211,7 @@
                 clearTimeout(times);
             }
         });
-		//图标闪烁
+		//Biểu tượng nhấp nháy
 		function blink(selector) {
 			$(selector).fadeOut('slow', function () {
 				$(this).fadeIn('slow', function () {
@@ -245,7 +245,7 @@
 							blink('#txtb');
                         }
                         var rows = da.rows || [];
-                        //1:库存预警 2:过期预警
+                        //1:Cảnh báo tồn kho 2:Cảnh báo hết hạn
 						for (var i = 0; i < rows.length; i++) {
 							if (rows[i].typeas == "1") {
 								kcyjypcode += rows[i].ypCode + ",";
@@ -295,9 +295,9 @@
             }
 			sessionStorage.setItem('kcyjyp', kcyjypcode);
 			top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Tra cứu lượng tồn kho（Nhắc tin nhắn）", enName: "", url: "/OutOrInStoredManage/Purchase/PurchasePlan" });
-			//top.top.$.Newtouchtab.addTabWithOutMenu({ name: "库存量查询（消息提醒）", enName: "", url: "/StorageManage/DrugStockSearch/StockQuery"});
+			//top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Truy vấn lượng tồn kho（Nhắc nhở tin nhắn）", enName: "", url: "/StorageManage/DrugStockSearch/StockQuery"});
 		}
-        //已过期
+        //Đã hết hạn
 		function gqyj() {
 			$("#badge3").text("");
 			var badge2 = Number($("#badge2").text());
@@ -313,7 +313,7 @@
 			sessionStorage.setItem('gqyjyp', gqyjypcode);
 			top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Tra cứu thuốc hết hạn（Nhắc tin nhắn）", enName: "", url: "/StorageManage/DrugStockSearch/ExpiredDrugsView"});
         }
-        //当日到期
+        //Hết hạn trong ngày
 		function drgqyj()
 		{
 		    var badge2 = Number($("#badge2").text());
@@ -474,7 +474,7 @@
                 window.alert('Please use a modern browser to properly view this template!');
             }
         }
-        //切换用户药房
+        //Chuyển nhà thuốc người dùng
         function SetUserPharmacy() {
             $.modalOpen({
                 id: "Form",

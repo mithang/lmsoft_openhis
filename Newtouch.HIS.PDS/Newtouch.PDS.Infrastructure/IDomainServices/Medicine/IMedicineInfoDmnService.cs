@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface IMedicineInfoDmnService
     {
         /// <summary>
-        /// 本部门药品信息 查询
+        /// Thông tin thuốc của bộ phận này Truy vấn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<MedicineInfoVO> GetMedicineInfoList(Pagination pagination, MedicineInfoParam param, string orgId);
 
         /// <summary>
-        /// 本部门药品信息 查询
+        /// Thông tin thuốc của bộ phận này Truy vấn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<MedicineInfoVO> GetMedicineInfoListV2(Pagination pagination, MedicineInfoParam param, string orgId);
 
         /// <summary>
-        /// 同步本部门药品信息
+        /// Đồng bộ thông tin thuốc bộ phận này
         /// </summary>
         /// <param name="yp"></param>
         /// <param name="operateType"></param>
@@ -37,17 +37,17 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string FreshList(string[] yp, int operateType, string orgId, string yfbmCode);
 
         /// <summary>
-        /// 控制
+        /// Kiểm soát
         /// </summary>
         /// <param name="ypCode"></param>
-        /// <param name="type">1 控制 2 正常</param>
+        /// <param name="type">1 Kiểm soát 2 Bình thường</param>
         /// <param name="orgId"></param>
         /// <param name="yfbmCode"></param>
         /// <returns></returns>
         int ControlMedicine(string ypCode, string type, string orgId, string yfbmCode);
 
         /// <summary>
-        /// 内部发药查询
+        /// Truy vấn phát thuốc nội bộ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="vo"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<HandOutMedicineQueryVO> GetHandOutMedicineInfoList(Pagination pagination, QueryMedicineInfoReqVO vo);
 
         /// <summary>
-        /// 本部门同步药品候选信息 查询
+        /// Thông tin ứng viên thuốc đồng bộ bộ phận này Truy vấn
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<MedicineInfoVO> GetTbMedicineInfoList(Pagination pagination, MedicineInfoParam param, string orgId);
 
         /// <summary>
-        /// 获取本部门过期药品信息
+        /// Lấy thông tin thuốc hết hạn bộ phận này
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<MedicineInfoVO> GetExpiredDrugsData(Pagination pagination, MedicineInfoParam param, string orgId);
 
         /// <summary>
-        /// 获取药房人员列表
+        /// Lấy danh sách nhân viên nhà thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

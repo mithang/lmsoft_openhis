@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 检验检查报告上传
+    /// Xét nghiệmBáo cáo kiểm traTải lên
     /// </summary>
     [SugarTable("xt_JyjcFileUpload")]
     public class XtjyjcFileUploadEntity
@@ -19,27 +19,27 @@ namespace Newtouch.Domain.Entity
         public string Id { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 文件路径
+        /// vănmụcĐường dẫn
         /// </summary>
         public string FileUrl { get; set; }
         /// <summary>
-        /// 申请单号
+        /// Số phiếu
         /// </summary>
         public string Sqdh { get; set; }
         /// <summary>
-        /// 文件名称
+        /// vănmụcTên
         /// </summary>
         public string FileName { get; set; }
         /// <summary>
-        /// 文件后缀
+        /// vănmụcsauhậu tố
         /// </summary>
         public string FileType { get; set; }
         /// <summary>
-        /// 文件类型
+        /// vănmụcLoại
         /// </summary>
         public string ContentType { get; set; }
         /// <summary>
-        /// 文件大小
+        /// vănmụclớnnhỏ
         /// </summary>
         public int FileSize { get; set; }
         public DateTime CreateTime { get; set; }

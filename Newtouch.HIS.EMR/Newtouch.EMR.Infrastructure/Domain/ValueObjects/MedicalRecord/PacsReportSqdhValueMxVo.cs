@@ -8,6 +8,6 @@ namespace Newtouch.EMR.Domain.ValueObjects.MedicalRecord
 {
     public class PacsReportSqdhValueMxVo
     {
-        public string jcjg {get;set;} //检查结果
+        public string jcjg {get;set;} //Kết quả kiểm tra
     }
 }

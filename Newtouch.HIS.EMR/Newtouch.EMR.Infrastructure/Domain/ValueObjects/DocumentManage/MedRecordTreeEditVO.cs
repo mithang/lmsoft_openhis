@@ -17,7 +17,7 @@ namespace Newtouch.EMR.Domain.ValueObjects
         public DateTime? birth { get; set; }
         public string brxzmc { get; set; }
         /// <summary>
-        /// 患者简述
+        /// Tóm tắt bệnh nhân
         /// </summary>
         public string brjs { get; set; }
         public string mzh { get; set; }

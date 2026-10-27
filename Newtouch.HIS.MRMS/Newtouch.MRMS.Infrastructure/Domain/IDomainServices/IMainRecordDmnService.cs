@@ -28,7 +28,7 @@ namespace Newtouch.MR.ManageSystem.Domain.IDomainServices
         BasyVO GetMainRecord(string orgId,string mainId);
         BasyVO GetMainRecordbybrjbxx(string orgId, string zyh);
         /// <summary>
-        /// 住院费用
+        /// Chi phí nằm viện
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -38,19 +38,19 @@ namespace Newtouch.MR.ManageSystem.Domain.IDomainServices
         IList<PatZDListVO> GetDiagLsit(string orgId, string bah, string zyh);
         IList<BasyOpDto> GetOPLsit(string orgId, string bah, string zyh);
         /// <summary>
-        /// 保存诊断列表
+        /// Lưu danh sách chẩn đoán
         /// </summary>
         /// <param name="list"></param>
         void ZdListSubmit(List<BasyZdDto> list, string orgId);
         /// <summary>
-        /// 保存手术列表
+        /// Lưu danh sách phẫu thuật
         /// </summary>
         /// <param name="list"></param>
         /// <param name="orgId"></param>
         void OpListSubmit(List<BasyOpDto> list, string orgId);
         void PatBasicSubmit(BasyVO vo, BasyRelVO reldto, string orgId, string user);
         /// <summary>
-        /// 病案列表
+        /// Danh sách bệnh án
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -63,22 +63,22 @@ namespace Newtouch.MR.ManageSystem.Domain.IDomainServices
         /// <returns></returns>
         IList<BasyVO> PatMainList(Pagination pagination, string orgId, string cyksrq, string cyjsrq, string bazt, string bq, string keyword, string sfzh,string cykb);
         /// <summary>
-        ///  获取患者出院诊断
+        ///  Lấy chẩn đoán xuất viện của bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
-        /// <param name="zdlb">诊断类别 1入院诊断2出院诊断</param>
+        /// <param name="zdlb">Loại chẩn đoán 1Chẩn đoán nhập viện2Chẩn đoán xuất viện</param>
         /// <returns></returns>
         IList<PatZDListVO> GetPatHisZDInfo(string bah, string zyh, string orgId, int? zdlb);
         /// <summary>
-        /// 获取患者手术列表
+        /// Lấy danh sách phẫu thuật của bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<BasyOpDto> GetPatHisOperInfo(string bah, string zyh, string orgId);
         
-        #region 结算病人不能保存诊断
+        #region Bệnh nhân đã thanh toán không thể lưu chẩn đoán
         IList<PatZDListVO> SettlementQuery(string zyh,string orgId);
         List<ButtonEnableVO> DiagnosticSave(string Code, string orgId);
         #endregion

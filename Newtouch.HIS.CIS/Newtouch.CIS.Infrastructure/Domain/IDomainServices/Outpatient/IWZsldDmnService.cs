@@ -14,14 +14,14 @@ namespace Newtouch.Domain.IDomainServices
     {
 
         /// <summary>
-        /// 下拉列表物资信息
+        /// Danh sách thả xuốngvật tưthông tin
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
         List<VSelProductInfoVO> DepartmentStockListQuery(DepartmentStockListQueryParamDTO param);
 
         /// <summary>
-        /// 获取物资批号批次信息  top 20
+        /// Lấyvật tưSố lôLôthông tin  top 20
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="warehouseId"></param>
@@ -34,7 +34,7 @@ namespace Newtouch.Domain.IDomainServices
         List<RelWarehouseVO> GetList(string organizeId, string keyword);
         List<RelWarehouseVO> GetDeptList(string organizeId, string keyword);
 
-        #region  科室物资管理
+        #region  Khoavật tưQuản lý
         List<WzTypeVo> GetWzTreeSelectJson();
 
         IList<VProductStorageEntity> GetProductStorage(Pagination pagination, string ks, string organizeId, string keyWord, string lbId, string xslkc);

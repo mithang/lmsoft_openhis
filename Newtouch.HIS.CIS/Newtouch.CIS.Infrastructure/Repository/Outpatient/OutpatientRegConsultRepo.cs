@@ -19,7 +19,7 @@ namespace Newtouch.Repository.Outpatient
         }
 
         /// <summary>
-        /// 挂号诊室保存
+        /// đăng ký khámPhòng khámLưu
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
@@ -27,7 +27,7 @@ namespace Newtouch.Repository.Outpatient
         {
             var ghzs = this.IQueryable().Where(p => p.ghnm == entity.ghnm && p.zt == "1" && p.OrganizeId == entity.OrganizeId).FirstOrDefault();
 
-            //修改
+            //Sửa
             if(ghzs!=null)
             //if (!string.IsNullOrEmpty(ghzs.ghnm.ToString()))
             {
@@ -38,13 +38,13 @@ namespace Newtouch.Repository.Outpatient
                 dbEntity.Modify(ghzs.Id);
                 return Update(dbEntity);
             }
-            //保存
+            //Lưu
             entity.Create();
             return Insert(entity);
         }
 
         /// <summary>
-        /// 更新叫号状态
+        /// Cập nhậtgọisốTrạng thái
         /// </summary>
         /// <param name="id"></param>
         /// <param name="calledstu"></param>

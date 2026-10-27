@@ -9,16 +9,16 @@ namespace Newtouch.Domain.DTO.InputDto
     public class InpMedReturnRequestDto
     {
         /// <summary>
-        /// 医嘱号
+        /// Y lệnhsố
         /// </summary>
         public string yzId { get; set; }
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
        
         /// <summary>
-        /// 分组序号
+        /// phútnhómthứ tựsố
         /// </summary>
         public int? zh { get; set; }
       
@@ -29,11 +29,11 @@ namespace Newtouch.Domain.DTO.InputDto
 
         public int? zhyz { get; set; }
         /// <summary>
-        /// 退药申请人
+        /// trảthuốcĐăng ký người
         /// </summary>
         public string tysqr { get; set; }
         /// <summary>
-        /// 执行日期
+        /// Thực hiệnNgày
         /// </summary>
         public DateTime zxrq { get; set; }
         public string ksCode { get; set; }

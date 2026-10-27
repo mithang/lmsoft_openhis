@@ -57,24 +57,24 @@
                 <td class="formValue" style="width:140px">
                     <select id="trad" name="trad" class="form-control">
                         <option value="">==Vui lòng chọn==</option>
-                        @*<option value="4101A" selected="selected">【4101A】医疗保障基金结算清单信息上传</option>
-                        <option value="4401">【4401】病案首页上传</option>
-                        <option value="4402">【4402】住院医嘱上传</option>
-                        <option value="4501">【4501】临床检查上传</option>
-                        <option value="4502">【4502】临床检验上传</option>
-                        <option value="4505">【4505】病理检查报告上传</option>
-                        <option value="4701">【4701】电子病历上传</option>*@
+                        @*<option value="4101A" selected="selected">【4101A】Tải lên thông tin danh sách quyết toán quỹ bảo đảm y tế</option>
+                        <option value="4401">【4401】Tải lên trang đầu bệnh án</option>
+                        <option value="4402">【4402】Tải lên y lệnh nhập viện</option>
+                        <option value="4501">【4501】Tải lên kiểm tra lâm sàng</option>
+                        <option value="4502">【4502】Tải lên xét nghiệm lâm sàng</option>
+                        <option value="4505">【4505】Tải lên báo cáo kiểm tra bệnh lý</option>
+                        <option value="4701">【4701】Tải lên bệnh án điện tử</option>*@
                         <option value="3501">【3501】Tải lên kiểm kê hàng hóa</option>
                         <option value="3502">【3502】Tải lên thay đổi tồn kho hàng hóa</option>
                         <option value="3503">【3503】Tải lên mua hàng hóa</option>
                         <option value="3504">【3504】Tải lên trả lại hàng mua</option>
                         <option value="3505">【3505】Tải lên bán hàng hóa</option>
                         <option value="3506">【3506】Tải lên trả lại hàng bán</option>
-                        @*<option value="3101">【3101】事前审核</option>
-                        <option value="3102">【3102】事中审核</option>*@
+                        @*<option value="3101">【3101】Xét duyệt trước</option>
+                        <option value="3102">【3102】Xét duyệt trong quá trình</option>*@
                     </select>
                 </td>
-                @*<th class="formTitle">住院号：</th>
+                @*<th class="formTitle">Số nhập viện：</th>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" autocomplete="off" class="form-control" />
                 </td>*@
@@ -158,7 +158,7 @@
             height: $(window).height() - 128,
             colModel: [
                 { label: 'patId', name: 'patId', width: 100, align: 'left', hidden: true },
-                //{ label: '选择', name: 'patId', width: 160, align: 'left' },
+                //{ label: 'Chọn', name: 'patId', width: 160, align: 'left' },
                 { label: 'tải lên trường hợp', name: 'scqk', width: 160, align: 'left' },
                 { label: 'tải lên Ngày', name: 'scrq', width: 160, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }},
                 { label: 'Lỗi thông tin', name: 'errorMsg', width: 160, align: 'left' },
@@ -229,7 +229,7 @@
             //},
         });
     }
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var kssj = $("#kssj").val();
         var jssj = $("#jssj").val()+" 23:59:59";
@@ -239,7 +239,7 @@
         return { kssj: kssj, jssj: jssj, scqk: scqk, zyh: zyh, tradiNumber: tradiNumber };
 
     }
-    //查询条件 3501-3506
+    //Điều kiện tra cứu 3501-3506
     function getSearchPostDataYp() {
         var kssj = $("#kssj").val();
         var jssj = $("#jssj").val() + " 23:59:59";
@@ -248,7 +248,7 @@
         return { kssj: kssj, jssj: jssj, scqk: scqk, tradiNumber: tradiNumber };
 
     }
-    //查询条件 3101 3102
+    //Điều kiện tra cứu 3101 3102
     function getSearchPostDatasqsz() {
         var kssj = $("#kssj").val();
         var jssj = $("#jssj").val() + " 23:59:59";
@@ -258,7 +258,7 @@
         return { kssj: kssj, jssj: jssj, scqk: scqk, zyh: zyh, tradiNumber: tradiNumber };
 
     }
-    //上传
+    //tải lên
     $('#btn_upload').click(function () {
         var seleRow = check();
         if ($("#scqk").val() === '0' ) {
@@ -268,27 +268,27 @@
         if (!!!seleRow ) {
             return;
         }
-        // 获取上传需要的数据
+        // Lấy dữ liệu cần tải lên
         var orgId = '@(opr.OrganizeId)';
         var operatorId = '@(opr.rygh)';
         var operatorName = '@(opr.UserName)';
         var crkId = seleRow.length > 1 ? "" : seleRow[0].mlbm_id;
         if (seleRow.length > 1) {
-            // 弹出确认框，确认上传
+            // Bật hộp xác nhận，Xác nhận tải lên
             $.modalConfirm("Chọn dữ liệu không phải một dòng sẽ tải lên toàn bộ!！", function(flag) {
                 if (flag){
                     uploadData(orgId, operatorId, operatorName, crkId);
                 }
             });
         } else {
-            // 选择一条数据，直接上传
+            // Chọn một dòng dữ liệu，Tải lên trực tiếp
             uploadData(orgId, operatorId, operatorName, crkId);
         }
         function uploadData(orgId, operatorId, operatorName, crkId) {
             var tradiNumber = $("#trad").val();
             var data;
             var upUrl;
-            // 根据tradiNumber来选择不同的接口
+            // theotradiNumberđể chọn giao diện khác nhau
             switch (tradiNumber) {
                 case '3501':
                     upUrl = "http://127.0.0.1:33333/api/YiBao/InventoryUpload_3501";
@@ -344,7 +344,7 @@
                     break;
             }
 
-            // 发起上传请求
+            // Gửi yêu cầu tải lên
             $.najax({
                 url: upUrl,
                 dataType: "json",
@@ -362,7 +362,7 @@
     });
 
     function check() {
-        //获取所选行
+        //Lấy dòng đã chọn
         var seleRow = $("#gridListYp").jqGridRowValue();
         var setl_id = seleRow.setl_id;
         if (seleRow.length==0) {
@@ -373,17 +373,17 @@
 
         //var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         //if (selRowIds.length == 0) {
-        //    $.modalAlert("请先选中需上传的信息", 'warning');
+        //    $.modalAlert("Vui lòng chọn trước thông tin cần tải lên", 'warning');
         //    return;
         //}
 
-        ////获取所有行Id，遍历使编辑框处于保存状态
+        ////Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái lưu
         //var rowIds = $("#gridList").jqGrid('getDataIDs');
         //return selRowIds;
     }
 
 	function SelGetrow(rowid) {
-		//获取所选行
+		//Lấy dòng đã chọn
 		var rowData = $("#gridList").jqGrid('getRowData', rowid);
 		console.log("dòng đã chọn", rowData)
 		//var setl_id = rowData.setl_id;
@@ -407,7 +407,7 @@
 
 	}
 
-    //住院号选择浮层绑定
+    //Liên kết lớp nổi chọn số nhập viện
     $('#zyh').newtouchBatchFloatingSelector({
         width: 500,
         height: 200,

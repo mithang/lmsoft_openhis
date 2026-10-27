@@ -9,13 +9,13 @@ namespace Newtouch.MRQC.Domain.ValueObjects
     public class MedicalBlCenterVo
     {
         ///// <summary>
-        ///// 诊断列表
+        ///// Danh sách chẩn đoán
         ///// </summary>
         //public List<MedicalHomeDiagVo> DiagList { get; set; }
         //public List<MedRecordTree> MedRecordTree { get; set; }
     }
     /// <summary>
-    /// 病历文书tree
+    /// Cây văn bản bệnh án
     /// </summary>
     public class MedRecordTree
     {
@@ -34,7 +34,7 @@ namespace Newtouch.MRQC.Domain.ValueObjects
         public string IsRoot { get; set; }
     }
     /// <summary>
-    /// 诊断list
+    /// Danh sách chẩn đoán
     /// </summary>
     public class MedicalHomeDiagVo
     {

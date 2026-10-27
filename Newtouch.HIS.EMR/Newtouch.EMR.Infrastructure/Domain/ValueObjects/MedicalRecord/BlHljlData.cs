@@ -11,87 +11,87 @@ namespace Newtouch.EMR.Domain.ValueObjects.MedicalRecord
         public string Id { get; set; }
         public string blId { get; set; }
         /// <summary>
-        /// 记录日期
+        /// Ngày ghi chép
         /// </summary>
         public string jlrq { get; set; }
         /// <summary>
-        /// 体温
+        /// Nhiệt độ
         /// </summary>
         public string tw { get; set; }
         /// <summary>
-        /// 脉搏
+        /// Mạch
         /// </summary>
         public string mb { get; set; }
         /// <summary>
-        /// 呼吸
+        /// Hô hấp
         /// </summary>
         public string hx { get; set; }
         /// <summary>
-        /// 血压
+        /// Huyết áp
         /// </summary>
         public string xy { get; set; }
         /// <summary>
-        /// 氧饱和度 
+        /// Độ bão hòa oxy 
         /// </summary>
         public string ybhd { get; set; }
         /// <summary>
-        /// 持续心电监测
+        /// Theo dõi điện tim liên tục
         /// </summary>
         public string cxxdjc { get; set; }
         /// <summary>
-        /// 吸氧        L/分
+        /// Thở oxy        L/phút
         /// </summary>
         public string xroyx { get; set; }
         /// <summary>
-        /// 基护级别
+        /// Cấp độ điều dưỡng cơ bản
         /// </summary>
         public string hljb { get; set; }
         /// <summary>
-        /// 协助进食
+        /// Hỗ trợ ăn uống
         /// </summary>
         public string xzjs { get; set; }
         /// <summary>
-        /// 拍背及有效咳痰
+        /// Vỗ lưng và ho khạc hiệu quả
         /// </summary>
         public string pbjyxkt { get; set; }
         /// <summary>
-        /// 压疮预防
+        /// Phòng ngừa loét do tì đè
         /// </summary>
         public string ycyf { get; set; }
         /// <summary>
-        /// 跌倒预防
+        /// Phòng ngừa ngã
         /// </summary>
         public string ddyf { get; set; }
         /// <summary>
-        /// 其他基护
+        /// Điều dưỡng cơ bản khác
         /// </summary>
         public string qtjh { get; set; }
         /// <summary>
-        /// 专科护理
+        /// Điều dưỡng chuyên khoa
         /// </summary>
         public string zkhl { get; set; }
         /// <summary>
-        /// 导管类别/措施
+        /// Loại ống thông/Biện pháp
         /// </summary>
         public string dglb { get; set; }
         /// <summary>
-        /// 护理指导
+        /// Hướng dẫn điều dưỡng
         /// </summary>
         public string hlzd { get; set; }
         /// <summary>
-        /// 尿量     ml
+        /// Lượng nước tiểu     ml
         /// </summary>
         public string nl { get; set; }
         /// <summary>
-        /// 胃液   ml
+        /// Dịch dạ dày   ml
         /// </summary>
         public string wy { get; set; }
         /// <summary>
-        /// 病情观察/护理措施效果
+        /// Theo dõi tình trạng/Hiệu quả biện pháp chăm sóc
         /// </summary>
         public string bqhlcontent { get; set; }
         /// <summary>
-        /// 签名
+        /// Chữ ký
         /// </summary>
         public string hsqm { get; set; }
         /// <summary>

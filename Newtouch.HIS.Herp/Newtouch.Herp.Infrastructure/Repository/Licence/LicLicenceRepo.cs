@@ -4,7 +4,7 @@ using Newtouch.Herp.Domain.IRepository;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 证照维护 (ported from Framework EF6 to SqlSugar; behaviour unchanged)
+    /// Bảo trì chứng chỉ (ported from Framework EF6 to SqlSugar; behaviour unchanged)
     /// </summary>
     public class LicLicenceRepo : RepositoryBase<LicLicenceEntity>, ILicLicenceRepo
     {

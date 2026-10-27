@@ -3,63 +3,63 @@ using System;
 namespace Newtouch.HIS.Domain.VO
 {
     /// <summary>
-    /// 处方信息
+    /// Thông tin đơn thuốc
     /// </summary>
     public class CfxxVO
     {
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string CardNo { get; set; }
         public string mzh { get; set; }
 
         /// <summary>
-        /// 患者姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 处方内码
+        /// Mã nội bộ đơn thuốc
         /// </summary>
         public long? cfnm { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string Fph { get; set; }
         
         /// <summary>
-        /// 医生名称
+        /// Tên bác sĩ
         /// </summary>
         public string ysmc { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 0：未排；1：已排；2：已发；3：已退
+        /// 0：Chưa xếp；1：Đã xếp；2：Đã phát；3：Đã trả
         /// </summary>
         public string fybz { get; set; }
 
         /// <summary>
-        /// 收费时间
+        /// Thời gian thu phí
         /// </summary>
         public DateTime? sfsj { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime? fysj { get; set; }
     }

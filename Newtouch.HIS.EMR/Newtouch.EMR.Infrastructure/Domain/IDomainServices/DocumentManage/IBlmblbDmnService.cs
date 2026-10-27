@@ -16,7 +16,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
     public interface IBlmblbDmnService
     {
         /// <summary>
-        /// 获取模板列表
+        /// Lấy danh sách mẫu
         /// </summary>
         /// <param name="mbqx"></param>
         /// <param name="ksdm"></param>
@@ -25,7 +25,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <returns></returns>
         IList<BlmbListVO> MedRecordTmpList(int mbqx, string bllx, string ksbm, OperatorModel user, string OrgId, string keyword = null);
         /// <summary>
-        /// 病历文件转模板
+        /// Chuyển tệp bệnh án thành mẫu
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="blId"></param>
@@ -34,12 +34,12 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <returns></returns>
         BlConvertToTemplateVO BlConvertToTemplate(string OrgId, string blId, string bllx, int? mbqx);
         /// <summary>
-        /// 病历文件转模板文件操作
+        /// Thao tác chuyển tệp bệnh án thành mẫu
         /// </summary>
         /// <param name="ety"></param>
         void BlConvertToTemplateProcess(BlmblbEntity ety);
         /// <summary>
-        /// 文件迁移
+        /// Di chuyển tệp
         /// </summary>
         /// <param name="srcPath"></param>
         /// <param name="aimPath"></param>
@@ -47,7 +47,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <returns></returns>
         bool CopyDir(string srcPath, string aimPath, string newName,int type);
         /// <summary>
-        /// 模板岗位权限控制维护
+        /// Bảo trì kiểm soát quyền vị trí mẫu
         /// </summary>
         /// <param name="list"></param>
         /// <param name="user"></param>
@@ -55,7 +55,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         IList<TemplateQxkzVO> Getqxkz(string staffId, string mbId,string bllx);
 
         /// <summary>
-        /// 获取病历模板列表（含病历大类）
+        /// Lấy danh sách mẫu bệnh án（bao gồm loại lớn bệnh án）
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="OrganizeId"></param>
@@ -64,7 +64,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         IList<BlmbListVO> GetBlmbList(Pagination pagination, string OrganizeId, string keyword);
         IList<BlmbListVO> MedRecordTmpListTree( string OrgId,string keyValue,string mbqx);
         /// <summary>
-        /// 患者已有模板的病历
+        /// Bệnh án của bệnh nhân đã có mẫu
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="zyh"></param>

@@ -90,7 +90,7 @@
     $(".dv-right").width(rightWidth);
     $(".dv-left-tree").height($(window).height() - 70);
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt, tính lại rộng cao
             $(".dv-body").height($(window).height());
             $(".dv-body").width($(window).width());
         });
@@ -124,9 +124,9 @@
 
         var patzyh = "";
 
-        //当前选中父节点
+        //hiện tạiĐã chọnNút cha
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //CóKhôngphiếucáicontiếtđiểm
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
@@ -138,7 +138,7 @@
             single = 1;
         }
 
-        //选中节点
+        //Đã chọntiếtđiểm
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patzyh += patlist[i].value + ",";
@@ -185,7 +185,7 @@
         $('#gridList').newtouchLocalDataGrid(null, orderList);
     }
 
-    //级联选中所有子节点
+    //liên cấpĐã chọntất cảcontiếtđiểm
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -194,7 +194,7 @@
             }
         }
     }
-    //级联取消所有子节点
+    //liên cấpHủytất cảcontiếtđiểm
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -205,7 +205,7 @@
     }
 
     function gridList(patzyh) {
-        var last = "";//上一个组号
+        var last = "";//một cái trướcSố nhóm
         var $gridList = $("#gridList");
         $gridList.dataGrid({
             postData: { zyh: patzyh,kssj: $('#txt_ksrq').val(), jssj: $('#txt_jsrq').val(), zyxz: $('#clyz').val()-1 },
@@ -235,12 +235,12 @@
                 var ids = $gridList.jqGrid('getDataIDs');
                 for (i = 0; i < ids.length; i++) {
                     var rowData = $gridList.jqGrid('getRowData', ids[i]);
-                    //组号生成特殊符号
+                    //Số nhómtạoký tự đặc biệt
                     var returnval = "";
                     if (rowData.fzxh != typeof (undefined) && rowData.fzxh !== "" && rowData.fzxh !== null) {
                         if (last == rowData.fzxh) {
                             returnval = "Ở giữa";
-                            if (i == (ids.length - 1)) {//最后一个
+                            if (i == (ids.length - 1)) {//cuối cùng
                                 returnval = "Kết thúc";
                                 last = "";
                             }
@@ -250,7 +250,7 @@
                             }
                             returnval = "Bắt đầu";
                         }
-                        $("#gridList").setCell(ids[i], "fzxh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell 设置单格样式 值 或属性
+                        $("#gridList").setCell(ids[i], "fzxh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
                     } else if (last !== rowData.fzxh && last !== "") {
                         setlastrowzuhao(ids[i]);
                     }
@@ -260,12 +260,12 @@
         });
     }
 
-    //设置上一行组号
+    //Cài đặtcái trướcdòngSố nhóm
     function setlastrowzuhao(rowid) {
         var lastrow = parseInt(rowid) - 1;
-        $("#gridList").setCell(lastrow, "fzxh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell 设置单格样式 值 或属性
+        $("#gridList").setCell(lastrow, "fzxh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
     }
-    //刷新医嘱
+    //làm mớiY lệnh mới
     function RefreshOrder() {
         getBqTreeList();
         $('#gridList').jqGrid("clearGridData");

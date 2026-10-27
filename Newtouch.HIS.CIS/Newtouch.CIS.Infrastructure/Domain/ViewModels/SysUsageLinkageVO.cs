@@ -3,67 +3,67 @@ using System;
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// 用法联动绑定
+    /// Cách dùngliênđộnggắn
     /// </summary>
     public class SysUsageLinkageVO
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 用法编码
+        /// Mã cách dùng
         /// </summary>
         public string yfCode { get; set; }
 
         /// <summary>
-        /// 用法名称
+        /// Tên cách dùng
         /// </summary>
         public string yfmc { get; set; }
 
         /// <summary>
-        /// 项目编码
+        /// Mã hạng mục
         /// </summary>
         public string sfxmCode { get; set; }
 
         /// <summary>
-        /// 项目名称
+        /// Tên mục
         /// </summary>
         public string sfxmmc { get; set; }
 
         /// <summary>
-        /// 项目大类编码
+        /// MụcMã nhóm lớn
         /// </summary>
         public string dlCode { get; set; }
 
         /// <summary>
-        /// 项目大类名称
+        /// MụcTên nhóm lớn
         /// </summary>
         public string dlmc { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// tạongười
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者
+        /// Sửangười
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 状态     1:有效  0：无效
+        /// Trạng thái     1:Hiệu lực  0：Vô hiệu
         /// </summary>
         public string zt { get; set; }
     }

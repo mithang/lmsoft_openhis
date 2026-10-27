@@ -4,35 +4,35 @@ namespace Newtouch.Domain.ValueObjects
     public class OutpatientNurseTreeVO
     {
         /// <summary>
-        /// 就诊ID
+        /// Khám bệnhID
         /// </summary>
         public string jzId { get; set; }
 
         /// <summary>
-        /// 患者姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 患者性别
+        /// Bệnh nhânGiới tính
         /// </summary>
         public string sex { get; set; }
 
         /// <summary>
-        /// 患者年龄
+        /// Bệnh nhânTuổi
         /// </summary>
         public string nlshow { get; set; }
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 挂号科室名称
+        /// đăng ký khámTên khoa
         /// </summary>
         public string ghksmc { get; set; }
     }

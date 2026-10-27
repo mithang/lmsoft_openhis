@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.Sys.Controllers
         }
 
         /// <summary>
-        /// 授权给指定组织机构
+        /// Ủy quyền cho tổ chức được chỉ định
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="orgList"></param>
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.Sys.Controllers
         }
 
         /// <summary>
-        /// 授权给所有组织机构
+        /// Ủy quyền cho tất cả tổ chức
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.Sys.Controllers
         }
 
         /// <summary>
-        /// 撤销全部授权（组织机构）
+        /// Hủy tất cả ủy quyền（Tổ chức）
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

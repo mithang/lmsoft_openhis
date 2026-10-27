@@ -1,20 +1,20 @@
 ﻿namespace NewtouchHIS.Lib.Base
 {
-    //用于定义这三种生命周期的标识接口
+    //Giao diện đánh dấu dùng để định nghĩa ba loại vòng đời này
 
     public interface IDependency
     {
     }
 
     /// <summary>
-    /// 瞬时（每次都重新实例）
+    /// Nhất thời (mỗi lần đều tạo thể hiện mới)
     /// </summary>
     public interface ITransientDependency : IDependency
     {
     }
 
     /// <summary>
-    /// 单例（全局唯一）
+    /// Đơn lệ (duy nhất toàn cục)
     /// </summary>
     public interface ISingletonDependency : IDependency
     {
@@ -22,7 +22,7 @@
     }
 
     /// <summary>
-    /// 一个请求内唯一（线程内唯一）
+    /// Duy nhất trong một yêu cầu (duy nhất trong luồng)
     /// </summary>
     public interface IScopedDependency : IDependency
     {

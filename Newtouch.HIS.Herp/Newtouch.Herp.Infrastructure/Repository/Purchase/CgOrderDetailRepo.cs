@@ -4,7 +4,7 @@ using Newtouch.Herp.Domain.IRepository;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 采购单明细
+    /// Chi tiết đơn mua sắm
     /// </summary>
     public class CgOrderDetailRepo : RepositoryBase<CgOrderDetailEntity>, ICgOrderDetailRepo
     {

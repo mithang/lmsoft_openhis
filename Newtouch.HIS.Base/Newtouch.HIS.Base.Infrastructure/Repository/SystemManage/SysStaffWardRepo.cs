@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         {
         }
         /// <summary>
-        /// 查找员工病区绑定信息
+        /// Tìm thông tin gắn kết nhân viên - khu bệnh
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Repository.SystemManage
             return this.FindList<SysStaffWardEntity>(sql, new[] { new SqlParameter("@staffId", staffId) });
         }
         ///// <summary>
-        ///// 修改和添加病区信息
+        ///// Sửa và thêm thông tin khu bệnh
         ///// </summary>
         ///// <param name="entity"></param>
         ///// <param name="keyValue"></param>
@@ -49,10 +49,10 @@ namespace Newtouch.HIS.Repository.SystemManage
         //        && p.Id != keyValue && p.bfCode == entity.bfCode
         //        ))
         //        {
-        //            throw new FailedException("房间编码不能重复！");
+        //            throw new FailedException("Mã phòng không được trùng lặp！");
         //        }
 
-        //        SysWardRoomEntity oldEntity = null;   //变更前Entity
+        //        SysWardRoomEntity oldEntity = null;   //Trước khi thay đổiEntity
         //        oldEntity = this.FindEntity(keyValue.Value);
         //        this.DetacheEntity(oldEntity);
 
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         //        if (this.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId &&
         //        p.bfCode == entity.bfCode))
         //        {
-        //            throw new FailedException("房间编码不能重复！");
+        //            throw new FailedException("Mã phòng không được trùng lặp！");
         //        }
         //        entity.Create();
         //        this.Insert(entity);

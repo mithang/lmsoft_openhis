@@ -25,7 +25,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.EMR
         public string IsRoot { get; set; }
     }
     /// <summary>
-    /// 病历模板
+    /// Mẫu bệnh án
     /// </summary>
     public class MedicalBlMbItemVo
     {
@@ -45,7 +45,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.EMR
         public string Bllx { get; set; }
     }
     /// <summary>
-    /// 病历和模板tree结构数据
+    /// Bệnh án và mẫutreeDữ liệu cấu trúc
     /// </summary>
     public class MedicalBllxMbTreeVo
     {

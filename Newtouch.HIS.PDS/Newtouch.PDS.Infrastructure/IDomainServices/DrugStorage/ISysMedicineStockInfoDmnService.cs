@@ -4,15 +4,15 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices.DrugStorage
 {
     /// <summary>
-    /// 库存操作
+    /// Thao tác tồn kho
     /// </summary>
     public interface ISysMedicineStockInfoDmnService
     {
 
         /// <summary>
-        /// 外部入库 扣库存(作废)
+        /// Nhập kho từ ngoài Trừ tồn kho(Hủy bỏ)
         /// </summary>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="ypdm"></param>
@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.DrugStorage
         string WbrkKkc(int sl, string pc, string ph, string ypdm, string organizeId, string yfbmCode, string userCode);
 
         /// <summary>
-        /// 冻结库存，并返回被冻结的批次信息
+        /// Đóng băng tồn kho，và trả về thông tin lô bị đóng băng
         /// </summary>
         /// <param name="kcsl"></param>
         /// <param name="ypdm"></param>

@@ -26,7 +26,7 @@ using NewtouchHIS.Lib.Framework.Attributes;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// 登录
+    /// Đăng nhập
     /// </summary>
     [HandlerLogin]
     public class LoginController : LoginBaseController
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Web.Controllers
         [HttpGet]
         public override IActionResult Index()
         {
-            //写入客户端Id
+            //Ghi vào máy kháchId
             Response.Cookies.Append(Constants.AppId + "_ClientId", Guid.NewGuid().ToString("N").ToLower());
 
             ViewBag.IsCheckChkCode = ConfigurationHelper.GetAppConfigBoolValue("Is_CheckChkCode");
@@ -97,17 +97,17 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="opr"></param>
         public override void OprBeforeSave(OperatorModel opr)
         {
-            //更新用户药房部分
+            //Cập nhật phần nhà thuốc người dùng
             if (ConfigurationHelper.GetAppConfigBoolValue("Is_UserYfbmRelated") == true && opr.OrganizeId != null)
             {
-                //当前要操作的药房部门
+                //Bộ phận nhà thuốc hiện cần thao tác
                 if (!string.IsNullOrWhiteSpace(opr.UserId) && !string.IsNullOrWhiteSpace(opr.OrganizeId))
                 {
                     opr.yfbmCodeList = _sysUserDmnService.GetYfbmCodeListByUserId(opr.UserId, opr.OrganizeId)?.ToList();
                 }
                 if (opr.yfbmCodeList != null && opr.yfbmCodeList.Count > 0)
                 {
-                    //当前要操作的药房部门    //在OrgId关联了多个yfbm怎么办
+                    //Bộ phận nhà thuốc hiện cần thao tác    //tạiOrgIdĐã liên kết nhiềuyfbmLàm thế nào
                     var curYfbmCode = opr.yfbmCodeList.FirstOrDefault();
                     var curYfbmObj = _sysPharmacyDepartmentRepo.GetUserYfbmByCode(curYfbmCode, opr.OrganizeId);
                     if (curYfbmObj != null)
@@ -123,7 +123,7 @@ namespace Newtouch.HIS.Web.Controllers
                 }
                 else
                 {
-                    Constants.SetCurrentYfbm(opr.UserId, null);  //移除
+                    Constants.SetCurrentYfbm(opr.UserId, null);  //Loại bỏ
                 }
             }
 
@@ -144,10 +144,10 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
 
-        #region 统一授权登录
+        #region Đăng nhập ủy quyền thống nhất
 
         /// <summary>
-        /// 统一授权登录
+        /// Đăng nhập ủy quyền thống nhất
         /// </summary>
         /// <param name="access_token"></param>
         /// <param name="returnUrl"></param>
@@ -156,7 +156,7 @@ namespace Newtouch.HIS.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(access_token))
             {
-                return RedirectToAction("Index", "Login");  //缺少令牌
+                return RedirectToAction("Index", "Login");  //Thiếu mã thông báo
             }
             var eOpr = OperatorProvider.GetCurrent();
             if (eOpr != null && eOpr.token == access_token)
@@ -173,9 +173,9 @@ namespace Newtouch.HIS.Web.Controllers
             var aaa = ConfigurationHelper.GetAppConfigValue("UAUserInfoGetAPI");
             if (string.IsNullOrWhiteSpace(aaa))
             {
-                return RedirectToAction("Index", "Login");  //未配置身份换取的API地址
+                return RedirectToAction("Index", "Login");  //Chưa cấu hình đổi danh tínhAPIĐịa chỉ
             }
-            //向API请求换取身份
+            //tớiAPIYêu cầu đổi danh tính
             var sw = new Stopwatch();
             sw.Start();
             var reqObj = new
@@ -185,11 +185,11 @@ namespace Newtouch.HIS.Web.Controllers
                 access_token = access_token
             };
             var apiResp = Tools.Net.HttpClientHelper.HttpPostStringAndRead<APIRequestHelper.DefaultResponse>(ConfigurationHelper.GetAppConfigValue("UAUserInfoGetAPI"), Tools.Json.ToJson(reqObj), contentType: Newtouch.Core.Common.Utils.HttpClientHelper.EnumContentType.json);
-            AppLogger.Info(string.Format("{0}统一登录授权，身份获取API请求耗时{1}ms", Constants.AppId, sw.ElapsedMilliseconds));
+            AppLogger.Info(string.Format("{0}Ủy quyền đăng nhập thống nhất，Lấy danh tínhAPIThời gian tốn yêu cầu{1}ms", Constants.AppId, sw.ElapsedMilliseconds));
             sw.Reset();
             if (apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                return RedirectToAction("Index", "Login");  //身份换取失败
+                return RedirectToAction("Index", "Login");  //Đổi danh tính thất bại
             }
             sw.Start();
             string account = "", organizeId = "";
@@ -208,7 +208,7 @@ namespace Newtouch.HIS.Web.Controllers
 
             Action acBeforeRedirect = () =>
             {
-                AppLogger.Info(string.Format("{0}统一登录授权，QuickLoginSuccess耗时{1}ms", Constants.AppId, sw.ElapsedMilliseconds));
+                AppLogger.Info(string.Format("{0}Ủy quyền đăng nhập thống nhất，QuickLoginSuccessThời gian tốn{1}ms", Constants.AppId, sw.ElapsedMilliseconds));
                 sw.Stop();
             };
 
@@ -216,7 +216,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 统一授权获取跳转地址
+        /// Lấy địa chỉ chuyển hướng ủy quyền thống nhất
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
@@ -244,7 +244,7 @@ namespace Newtouch.HIS.Web.Controllers
                 }
                 else
                 {
-                    addr = null;    //视为null
+                    addr = null;    //Được coi lànull
                 }
             }
             return Content(new AjaxResult { state = ResultType.success.ToString(), data = addr }.ToJson());
@@ -255,7 +255,7 @@ namespace Newtouch.HIS.Web.Controllers
 
         private void WriteOutLoginLog()
         {
-            try { AppLogger.Info(string.Format("{0}退出登录", Constants.AppId)); } catch { }
+            try { AppLogger.Info(string.Format("{0}Thoát đăng nhập", Constants.AppId)); } catch { }
         }
 
         // SSO token-login fallback (FrameworkBase LoginController.QuickLoginSuccess is binary-only):

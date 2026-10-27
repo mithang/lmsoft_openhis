@@ -20,10 +20,10 @@
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
-                @*<th class="formTitle">科室：</th>
+                @*<th class="formTitle">Khoa：</th>
                 <td class="formValue">
                     <select id="depa" class="form-control">
-                        <option value="">全部</option>
+                        <option value="">Tất cả</option>
                     </select>
                 </td>*@
                 <th class="formTitle">nhà thuốc/kho thuốc：</th>
@@ -102,7 +102,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";
@@ -124,7 +124,7 @@
 </script>
 <script type="text/javascript">
     function init() {
-        //治疗师绑定下拉框
+        //Hộp chọn liên kết trị liệu sư
         $("#depa").bindSelect({
             id: "Code",
             text: "Name",

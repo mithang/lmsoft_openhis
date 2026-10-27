@@ -11,13 +11,13 @@ using Newtouch.HIS.Domain.Entity.V;
 namespace Newtouch.HIS.Repository.PharmacyDrugStorage
 {
     /// <summary>
-    /// 库存结转
+    /// Kết chuyển tồn kho
     /// </summary>
     public class SysMedicineStockCarryDownRepo : RepositoryBase<SysMedicineStockCarryDownEntity>, ISysMedicineStockCarryDownRepo
     {
         
         /// <summary>
-        /// 获取历史结转时间
+        /// Lấy thời gian kết chuyển lịch sử
         /// </summary>
         /// <returns></returns>
         public List<KeyValueVEntity> GetlsjzDateTime(string yfbmCode, string organizeId)
@@ -41,7 +41,7 @@ FROM (
         }
 
         /// <summary>
-        /// 获取最近一次结转信息
+        /// Lấy thông tin kết chuyển gần nhất
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>

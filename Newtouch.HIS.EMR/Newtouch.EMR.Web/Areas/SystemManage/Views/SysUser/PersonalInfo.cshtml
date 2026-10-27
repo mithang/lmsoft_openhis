@@ -72,12 +72,12 @@
             return false;
         }
         if (newpwd != renewpwd) {
-            $.modalAlert("Hai lần nhập mật khẩu không khớp", "error");//密码复杂度不够
+            $.modalAlert("Hai lần nhập mật khẩu không khớp", "error");//Mật khẩu chưa đủ phức tạp
             return false;
         }
         var ret = /^(?![0-9]+$)(?![a-zA-Z]+$)\S{6,16}$/;
         if (newpwd && !ret.test(newpwd)) {
-            $.modalAlert("Mật khẩu chưa đủ phức tạp<br/>6-16ký tự, Phải chứa chữ cái và số", "error");//密码复杂度不够
+            $.modalAlert("Mật khẩu chưa đủ phức tạp<br/>6-16ký tự, Phải chứa chữ cái và số", "error");//Mật khẩu chưa đủ phức tạp
             return false;
         }
         $.ajax({

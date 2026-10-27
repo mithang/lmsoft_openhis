@@ -40,7 +40,7 @@
 
     function SetCurrentPageCflx(page) {
         pageFlag = page;
-        //模拟点击tab   $($(this).attr('name') + "Tree").treeview({
+        //mô phỏngđiểmnhấptab   $($(this).attr('name') + "Tree").treeview({
         $("#beveltabs a:first").trigger('click');
     }
     var presTempClieckHandling = false;
@@ -81,7 +81,7 @@
                             if (data && data.mbmxList && data.mbmxList.length) {
                                 presTemplateFill(data);
                             }
-                            //重置 Đơn thuốc lịch sử、处方模板
+                            //Đặt lại Đơn thuốc lịch sử、Đơn thuốcmẫu
                             cfLeftFloatHide();
                             $.modalClose("FormShowPresTemplateDetail");
                         });
@@ -103,7 +103,7 @@
             return;
         }
         var getActionStr, grid;
-        var newCfh = '';    //康复、西药作为一个新处方添加
+        var newCfh = '';    //Phục hồi chức năng、Thuốc TâylàmlàmộtĐơn thuốc mớiThêm
         var isNewCf = true;
         if (pageFlag == '@Html.Raw(((int)EnumCflx.RehabPres).ToString())') {
             getActionStr = getRehbActionStr();
@@ -157,7 +157,7 @@
             else {
                 newCfh = GetNewPresNo();
             }
-            //贴数、处方用法、是否代煎
+            //dánsố、Đơn thuốcCách dùng、CóKhôngsắc hộ
             if (data.tieshu) {
                 $("#tieshu").val(data.tieshu);
                 if (data.djbz) {
@@ -182,7 +182,7 @@
             else {
                 newCfh = GetNewPresNo();
             }
-            //贴数、处方用法、是否代煎
+            //dánsố、Đơn thuốcCách dùng、CóKhôngsắc hộ
             if (data.tieshu) {
                 $("#tieshu").val(data.tieshu);
                 if (data.djbz) {
@@ -203,7 +203,7 @@
             data.mbmxList[i].cfh = newCfh;
             data.mbmxList[i].action = getActionStr;
             if (pageFlag == '@Html.Raw(((int)EnumCflx.TCMPres).ToString())') {
-                var tieshu = $.undefinedwith0($('#tieshu').val());    //贴数
+                var tieshu = $.undefinedwith0($('#tieshu').val());    //dánsố
                 if (tieshu) {
                     data.mbmxList[i].sl = roundingBy4she6ru5chengshuang((parseFloat(tieshu) * parseFloat($.undefinedwith0(data.mbmxList[i].mcjl))), 0);
                     data.mbmxList[i].je = roundingBy4she6ru5chengshuang(parseFloat(data.mbmxList[i].dj) * parseFloat(data.mbmxList[i].sl), 2);
@@ -235,7 +235,7 @@
                         $("#" + grid).jqGrid("addRowData", undefined, data.mbmxList[i], "last");
                     }
                 } else {
-                    //非新处方时判断重复
+                    //khôngĐơn thuốc mớikhikiểm tratrùng lặp
                 var isRepeatedAdd = false;
                 var addypCode = data.mbmxList[i].ypCode;
                 var existRowIds = $("#" + grid).getDataIDs();

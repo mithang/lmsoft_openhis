@@ -42,7 +42,7 @@ namespace Newtouch.Application.Implementation.Inpatient
         }
 
         /// <summary>
-        /// 修改药品医嘱时，根据医嘱Id获取详情并且展示到医嘱录入界面
+        /// SửaThuốcY lệnhkhi，TheoY lệnhIdLấyChi tiếtvàvàtriểnhiển thịđếnY lệnhnhậpgiớimặt
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="yzId"></param>
@@ -53,12 +53,12 @@ namespace Newtouch.Application.Implementation.Inpatient
         {
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                throw new FailedException("住院号不存在");
+                throw new FailedException("Số nhập việnkhôngtồn tạiở");
             }
             var patientInfo = _inpatientPatientDmnService.GetInfoByZyh(zyh, orgId);
             if (patientInfo == null)
             {
-                throw new FailedException("病人不存在");
+                throw new FailedException("bệnh nhânkhôngtồn tạiở");
             }
             var response = new DoctorServiceparentRequestDto
             {
@@ -80,7 +80,7 @@ namespace Newtouch.Application.Implementation.Inpatient
                     p.Id == yzId && p.zt == "1" && p.yzzt == (int) EnumYzzt.Ds && p.OrganizeId == orgId);
                 if (entity == null)
                 {
-                    throw new FailedException("不存在该条医嘱，请核实");
+                    throw new FailedException("khôngtồn tạiởdòngY lệnh，vui lònghạt nhânthực");
                 }
 
                 if (!string.IsNullOrWhiteSpace(entity.zh.ToString()))
@@ -123,8 +123,8 @@ namespace Newtouch.Application.Implementation.Inpatient
                             _iDoctorserviceDmnService.Getzxksmc(item.zxksdm, orgId, ref zxksmc);
                         }
 
-                        //获取单位计量数
-                        //根据停止时间计算天数
+                        //LấySố lượng đơn vị tính
+                        //TheoThời gian dừngTính toánSố ngày
                         if (item.tzsj != DateTime.MinValue &&
                             item.tzsj != DateTime.MaxValue &&
                             item.tzsj != null &&
@@ -187,7 +187,7 @@ namespace Newtouch.Application.Implementation.Inpatient
                             dj=dj
                         };
 
-                        //膳食医嘱逻辑添加
+                        //ăn uốngY lệnhlogictậpThêm
                         string yslb;
                         string yslbdm;
                         string yszs;
@@ -211,7 +211,7 @@ namespace Newtouch.Application.Implementation.Inpatient
                     _inpatientSTATOrderRepo.FindEntity(p => p.Id == yzId && p.zt == "1" && p.yzzt == (int) EnumYzzt.Ds);
                 if (entity == null)
                 {
-                    throw new FailedException("不存在该条医嘱，请核实");
+                    throw new FailedException("khôngtồn tạiởdòngY lệnh，vui lònghạt nhânthực");
                 }
 
                 if (!string.IsNullOrWhiteSpace(entity.zh.ToString()))
@@ -296,7 +296,7 @@ namespace Newtouch.Application.Implementation.Inpatient
                         yztag = item.yztag,
                         dj=dj
                     };
-                    //膳食医嘱逻辑添加
+                    //ăn uốngY lệnhlogictậpThêm
                     string yslb;
                     string yslbdm;
                     string yszs;

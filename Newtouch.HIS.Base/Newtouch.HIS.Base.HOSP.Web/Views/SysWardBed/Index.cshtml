@@ -39,7 +39,7 @@
         gridList();
     });
 
-    //组织机构
+    //Tổ chức
     function initControl() {
 
     }
@@ -58,10 +58,10 @@
             { label: "Khu bệnh", name: "bqmc", width: 100, align: "left" },
             { label: "Phòng bệnh", name: "bfNo", width: 100, align: "left" },
             { label: "Loại giường bệnh", name: "cwlx", width: 80, align: "left", formatter: function (cellvalue) { if(cellvalue == 1) return "Nam"; if (cellvalue ==2) return "Nữ";if(cellvalue ==3) return "Hỗn hợp";} },
-            //{ label: "床位费", name: "cwf", width: 100, align: "left" },
-            //{ label: "等级医院加收费", name: "djyyjsf", width: 100, align: "left" },
-            //{ label: "病室治疗费", name: "bszlf", width: 100, align: "left" },
-            //{ label: "医用灭菌空气净化费", name: "yymjkqjhf", width: 100, align: "left" },
+            //{ label: "Phí giường bệnh", name: "cwf", width: 100, align: "left" },
+            //{ label: "Phụ thu bệnh viện theo hạng", name: "djyyjsf", width: 100, align: "left" },
+            //{ label: "Phí điều trị phòng bệnh", name: "bszlf", width: 100, align: "left" },
+            //{ label: "Phí lọc không khí tiệt khuẩn y tế", name: "yymjkqjhf", width: 100, align: "left" },
             { label: "Hiệu lực", name: "zt", width: 80, align: "left", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
             { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
             { label: 'Thời gian tạo', name: 'CreateTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
@@ -79,19 +79,19 @@
         })
         $("#btn_search").trigger('click');
     }
-    //查询条件
+    //Điều kiện tìm kiếm
     function getSearchPostData() {
         var keyword = $("#txt_keyword").val();
         var OrganizeId = $("#OrganizeId").val();
         return { keyword: keyword, organizeId: OrganizeId };
     };
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
 
-    //新增
+    //Thêm mới
     function btn_add() {
         $.modalOpen({
             id: "FormFIEdit",
@@ -104,7 +104,7 @@
             }
         });
     }
-    //修改
+    //Sửa
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {

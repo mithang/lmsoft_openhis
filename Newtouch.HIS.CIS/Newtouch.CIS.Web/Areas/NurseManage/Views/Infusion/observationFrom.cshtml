@@ -75,11 +75,11 @@
     </form>
 <script>
     var syxxids = $.request("keyValue");
-    var PatDxObjdel = null;//记录作废数据
+    var PatDxObjdel = null;//ghi chépHủy bỏDữ liệu
     $(function() {
         getlgjl();
     });
-    //辅助诊断 新增icon
+    //hỗ trợChẩn đoán Thêm mớiicon
     $('#tabledjlg .plusToggleCircle').click(function () {
 
         var number = $('#tabledjlg .msinput').length;// + 1;
@@ -88,7 +88,7 @@
         $newTr.appendTo($(this).closest('table'));
     });
 
-    //删除icon
+    //Xóaicon
     $('#form1').on('click', '.minusToggleCircle', function () {
         var id = this.id;
         PatDxObjdel = {

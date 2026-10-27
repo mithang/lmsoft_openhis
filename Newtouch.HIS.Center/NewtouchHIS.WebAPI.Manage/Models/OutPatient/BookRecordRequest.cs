@@ -3,12 +3,12 @@
     public class BookRecordRequest
     {
         /// <summary>
-        /// 预约号
+        /// Số đặt hẹn
         /// </summary>
         public string? BookId { get; set; }
 
         /// <summary>
-        /// 预约就诊日期（优先级高于ksrq|jsrq）
+        /// Ngày khám theo hẹn(Ưu tiên cao hơnksrq|jsrq)
         /// </summary>
         public string? OutDate { get; set; }
         /// <summary>
@@ -20,31 +20,31 @@
         /// </summary>
         public string? xm { get; set; }
         /// <summary>
-        /// 身份证号
+        /// Số CMND
         /// </summary>
         public string? zjh { get; set; }
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         public string? ksmc { get; set; }
         /// <summary>
-        /// 科室Mã
+        /// KhoaMã
         /// </summary>
         public string? ks { get; set; }
         /// <summary>
-        /// 医生工号
+        /// Mã nhân viên bác sĩ
         /// </summary>
         public string? ysgh { get; set; }
         /// <summary>
-        /// 开始日期
+        /// Ngày bắt đầu
         /// </summary>
         public string? ksrq { get; set; }
         /// <summary>
-        /// 结束日期
+        /// Ngày kết thúc
         /// </summary>
         public string? jsrq { get; set; }
         /// <summary>
-        /// 预约状态
+        /// Trạng thái đặt hẹn
         /// </summary>
         public int? yyzt { get; set; }
     }

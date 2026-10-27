@@ -37,16 +37,16 @@ namespace Newtouch.HIS.Base.Web.Controllers
         {
             var data = new
             {
-                //字典 包括无效的
+                //Từ điển Bao gồm cả vô hiệu
                 dataItems = this.GetDataItemList(),
-                //获取所顶级组织机构 包括无效的
+                //Lấy tổ chức cấp cao nhất Bao gồm cả vô hiệu
                 topOrganize = _sysOrganizeRepository.GetTopOrgList(),
             };
             return Content(data.ToJson());
         }
 
         /// <summary>
-        /// 字典 包括无效的
+        /// Từ điển Bao gồm cả vô hiệu
         /// </summary>
         /// <returns></returns>
         private object GetDataItemList()

@@ -15,7 +15,7 @@ using NewtouchHIS.Lib.Framework.Filter;
 namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
 {
     /// <summary>
-    /// 物资管理
+    /// Quản lý vật tư
     /// </summary>
     [Area("ProductManage")]
     public class ProductController : ControllerBase

@@ -93,12 +93,12 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
             selectedValue: $.request('orgId'),
         });
-        //首拼
+        //Mã đầu chữ
         $('#bqmc').keyup(function () {
             $('#py').val($(this).toShouPin());
         })

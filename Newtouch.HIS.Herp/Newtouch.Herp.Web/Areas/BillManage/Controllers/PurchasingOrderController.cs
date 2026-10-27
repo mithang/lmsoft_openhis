@@ -11,7 +11,7 @@ using NewtouchHIS.Lib.Base.Extension;
 namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 {
     /// <summary>
-    /// 采购单 (Core port)
+    /// Đơn mua sắm (Core port)
     /// </summary>
     [Area("BillManage")]
     public class PurchasingOrderController : ControllerBase
@@ -26,10 +26,10 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
             _cgOrderDmnService = cgOrderDmnService;
         }
 
-        #region 生成采购单
+        #region Tạo đơn mua sắm
 
         /// <summary>
-        /// 生成采购单 视图
+        /// Tạo đơn mua sắm Chế độ xem
         /// </summary>
         /// <returns></returns>
         public IActionResult GeneratingPurchaseOrder()
@@ -38,9 +38,9 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 提交生成采购单
+        /// Gửi tạo đơn mua sắm
         /// </summary>
-        /// <param name="cgmx">采购明细</param>
+        /// <param name="cgmx">Chi tiết mua sắm</param>
         /// <returns></returns>
         public IActionResult SubmitGeneratingPurchaseOrder(List<VCgPurchaseOrderDetailEntity> cgmx, string remark)
         {
@@ -50,10 +50,10 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 
         #endregion
 
-        #region 查询采购单
+        #region Truy vấn đơn mua sắm
 
         /// <summary>
-        /// 查询采购单 视图
+        /// Truy vấn đơn mua sắm Chế độ xem
         /// </summary>
         /// <returns></returns>
         public IActionResult PurchaseOrderQuery()
@@ -62,7 +62,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 查询采购单信息
+        /// Truy vấn thông tin đơn mua sắm
         /// </summary>
         /// <returns></returns>
         public IActionResult PurchasingOrderInfoQuery(Pagination pagination, string orderNo, int orderType, int orderProcess, DateTime kssj, DateTime jssj)
@@ -79,7 +79,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取采购带明细 （细化到采购计划单）
+        /// Lấy đơn mua sắm kèm chi tiết （Chi tiết đến phiếu kế hoạch mua sắm）
         /// </summary>
         public IActionResult CgOrderDetailGroupByCgdhQuery(string orderNo)
         {
@@ -88,7 +88,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取采购带明细 （不区分采购计划单）
+        /// Lấy đơn mua sắm kèm chi tiết （Không phân biệt phiếu kế hoạch mua sắm）
         /// </summary>
         public IActionResult CgOrderDetailNoCgdhQuery(string orderNo)
         {
@@ -97,7 +97,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 查询待审核的暂存采购单信息
+        /// Truy vấn thông tin đơn mua sắm nháp chờ duyệt
         /// </summary>
         public IActionResult TempPurchasingOrderInfoQuery(Pagination pagination, string orderNo, DateTime kssj, DateTime jssj)
         {
@@ -114,10 +114,10 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 
         #endregion
 
-        #region 审核采购单
+        #region Duyệt đơn mua sắm
 
         /// <summary>
-        /// 审核采购单 视图
+        /// Duyệt đơn mua sắm Chế độ xem
         /// </summary>
         /// <returns></returns>
         public IActionResult AuditPurchaseOrder()
@@ -126,7 +126,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 审核采购单
+        /// Duyệt đơn mua sắm
         /// </summary>
         public IActionResult SubmitAuditPurchasingOrder(string orderNo, int orderType, string remarks)
         {
@@ -136,7 +136,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 
         #endregion
 
-        #region 外部入库引用采购单
+        #region Nhập kho ngoài tham chiếu đơn mua sắm
         public IActionResult PurchaseView()
         {
             return View();
@@ -147,7 +147,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 外部入库-采购单引用from视图
+        /// Nhập kho ngoài-Tham chiếu đơn mua sắmfromChế độ xem
         /// </summary>
         public IActionResult SelectCgOrderView(DateTime kssj, DateTime jssj, string fph, string orderNo, string organizeId)
         {
@@ -161,7 +161,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 采购单明细导入入库列表
+        /// Chi tiết đơn mua sắm nhập vào danh sách nhập kho
         /// </summary>
         public IActionResult SelectCgOrderDetailImport(string subOrderNo, string organizeId)
         {
@@ -170,7 +170,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 补填采购单发票号
+        /// Bổ sung số hóa đơn đơn mua sắm
         /// </summary>
         public IActionResult UpdateFph(string subOrderNo, string fph)
         {

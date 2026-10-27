@@ -1,7 +1,7 @@
 @{
     ViewBag.Title = "DrugSubtotal";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //报表链接
+    //Liên kết báo cáo
     //var reportUrl = SysConfigReader.OrgReportLink();
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
@@ -55,7 +55,7 @@
    
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }
@@ -67,9 +67,9 @@
         var head = kssj.substring(5, 7) + " tháng ";
         var yfcode = "@Newtouch.Infrastructure.Constants.CurrentYfbm.yfbmCode";
         var dlcode = "";
-		if (yfcode.indexOf('mzyf002')!=-1) {//西药房
+		if (yfcode.indexOf('mzyf002')!=-1) {//Nhà thuốc Tây
             dlcode ="00000001,02"
-		} else if (yfcode.indexOf('cyyf001') != -1){//中药房
+		} else if (yfcode.indexOf('cyyf001') != -1){//Nhà thuốc Trung dược
 			dlcode = "03"
 		} else {
             dlcode = "00000001,02,03"

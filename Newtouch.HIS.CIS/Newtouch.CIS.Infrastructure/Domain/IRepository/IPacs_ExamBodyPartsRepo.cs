@@ -11,19 +11,19 @@ namespace Newtouch.Domain.IRepository
     public interface IPacs_ExamBodyPartsRepo : IRepositoryBase<Pacs_ExamBodyPartsEntity>
     {
         /// <summary>
-        /// 获取列表
+        /// Lấydanh sách
         /// </summary>
         /// <returns></returns>
         List<Pacs_ExamBodyPartsEntity> GetListByOrg(string orgId);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
         void SubmitForm(Pacs_ExamBodyPartsEntity entity, string keyValue);
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         void DeleteForm(string keyValue);

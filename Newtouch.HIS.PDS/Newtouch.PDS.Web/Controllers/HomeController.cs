@@ -24,7 +24,7 @@ using Newtouch.HIS.Domain.ValueObjects;
 namespace Newtouch.HIS.Web.Controllers
 {
     /// <summary>
-    /// 首页
+    /// Trang chủ
     /// </summary>
     [HandlerLogin]
     public class HomeController : NewtouchHIS.Framework.Web.Controllers.HomeController
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 用户切换药房
+        /// Người dùng chuyển nhà thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult SetUserPharmacyForm()
@@ -79,17 +79,17 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="opr"></param>
         public void SwithOrgSuccessOprBeforeSave(OperatorModel opr)
         {
-            //更新用户药房部分
+            //Cập nhật phần nhà thuốc người dùng
             if (ConfigurationHelper.GetAppConfigBoolValue("Is_UserYfbmRelated") == true && opr.OrganizeId != null)
             {
-                //当前要操作的药房部门
+                //Bộ phận nhà thuốc hiện cần thao tác
                 if (!string.IsNullOrWhiteSpace(opr.UserId) && !string.IsNullOrWhiteSpace(opr.OrganizeId))
                 {
                     opr.yfbmCodeList = _sysUserDmnService.GetYfbmCodeListByUserId(opr.UserId, opr.OrganizeId)?.ToList();
                 }
                 if (opr.yfbmCodeList != null && opr.yfbmCodeList.Count > 0)
                 {
-                    //当前要操作的药房部门    //在OrgId关联了多个yfbm怎么办
+                    //Bộ phận nhà thuốc hiện cần thao tác    //tạiOrgIdĐã liên kết nhiềuyfbmLàm thế nào
                     var curYfbmCode = opr.yfbmCodeList.FirstOrDefault();
                     var curYfbmObj = _sysPharmacyDepartmentRepo.GetUserYfbmByCode(curYfbmCode, opr.OrganizeId);
                     if (curYfbmObj != null)
@@ -105,11 +105,11 @@ namespace Newtouch.HIS.Web.Controllers
                 }
                 else
                 {
-                    Constants.SetCurrentYfbm(opr.UserId, null);  //移除
+                    Constants.SetCurrentYfbm(opr.UserId, null);  //Loại bỏ
                 }
             }
 
-            //切换药房部门
+            //Chuyển bộ phận nhà thuốc
             Response.Cookies.Append(Constants.AppId + "_" + "CookieKey_IsHospAdministrator", opr.IsHospAdministrator.ToString().ToLower());
         }
 
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取待处理html
+        /// Lấy chờ xử lýhtml
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -141,7 +141,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取带处理总数
+        /// Lấy tổng số chờ xử lý
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -151,7 +151,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取门诊月处方发药次
+        /// Lấy lần phát thuốc đơn tháng ngoại trú
         /// </summary>
         /// <returns></returns>
         public IActionResult GetFyCountVoByYfbm()
@@ -163,7 +163,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取门诊月处方发药次
+        /// Lấy lần phát thuốc đơn tháng ngoại trú
         /// </summary>
         /// <returns></returns>
         public IActionResult GetFyCountBydl()
@@ -173,11 +173,11 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 切换登陆用户药房
+        /// Chuyển nhà thuốc người dùng đăng nhập
         /// </summary>
-        /// <param name="kfId">库房ID</param>
-        /// <param name="kfName">库房名称</param>
-        /// <param name="kfLeve">库房等级</param>
+        /// <param name="kfId">KhoID</param>
+        /// <param name="kfName">Tên kho</param>
+        /// <param name="kfLeve">Cấp kho</param>
         /// <returns></returns>
         public IActionResult SetUserPharmacy(string yfbmCode, string mzzybz, string yfbmjb, string yfbmmc)
         {
@@ -187,15 +187,15 @@ namespace Newtouch.HIS.Web.Controllers
             opr.mzzybz = mzzybz;
             opr.yfbmmc = yfbmmc;
             Constants.SetCurrentYfbm(OperatorProvider.GetCurrent().UserId, opr);
-            return Success("切换成功");
+            return Success("Chuyển thành công");
         }
 
 		#region Nhắc tin nhắn
         public IActionResult getmesquery()
 		{
             string yfbm= Constants.CurrentYfbm.yfbmCode;
-            string kcyjz = SysConfigReader.String("GET_YFKCYG");//库存预警值
-            int gqyjz = -SysConfigReader.Int("GET_YFGQYG");//过期预警值
+            string kcyjz = SysConfigReader.String("GET_YFKCYG");//Giá trị cảnh báo tồn kho
+            int gqyjz = -SysConfigReader.Int("GET_YFGQYG");//Giá trị cảnh báo hết hạn
             var retdata = _sysUserDmnService.MSGQuery(yfbm,this.OrganizeId, gqyjz, kcyjz);
             int gqyjcount=0,kcyjcount=0,kcdryjcount=0;
 			if (retdata!=null)
@@ -215,15 +215,15 @@ namespace Newtouch.HIS.Web.Controllers
         #endregion
         
         /**
-         * 同步系统配置参数
+         * Đồng bộ tham Số cấu hình hệ thống
          */
         public IActionResult SyncSysConfigParams(string orgId)
         {
-            //基础数据
+            //Dữ liệu cơ bản
             var sysConfigBaseEntities = _sysConfigRepo.GetList("", "*").ToList();
-            //组织机构自带数据
+            //Dữ liệu tự mang của tổ chức
             var sysConfigEntities = _sysConfigRepo.GetList("", orgId).ToList();
-            //根据code 去重
+            //Theocode Khử trùng lặp
             var sysConfigCodes = new HashSet<string>(sysConfigEntities.Select(entity => entity.Code));
             var filteredEntities = sysConfigBaseEntities
                 .Where(baseEntity => !sysConfigCodes.Contains(baseEntity.Code))

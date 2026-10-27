@@ -25,7 +25,7 @@
             oncheckboxclick: function (a, ck) {
                 window.treeaid = a.id;
                 if (single == 'true' && ck == 1 && !a.hasChildren) {
-                    //让其他的都不选中, 但不包括其父级的
+                    //Để các mục khác đều không được chọn, Nhưng không bao gồm cấp cha của nó
                     $.each($('img.bbit-tree-node-cb'), function () {
                         if ($(this).attr('id').indexOf(window.treeaid) == -1
                             && $(this).attr('src').indexOf('checkbox_1') != -1) {
@@ -47,7 +47,7 @@
             }
         }
         else {
-            treeSeleData = $("#userStaffTree").getCheckedValues();  //Values对应的是UserId
+            treeSeleData = $("#userStaffTree").getCheckedValues();  //Valuestương ứng làUserId
             if (single == 'true' && treeSeleData.length != 1) {
                 $.modalAlert('Chọn tối đa một dòng', 'warning');
                 return;

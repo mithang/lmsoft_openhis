@@ -7,17 +7,17 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Base API请求帮助类
+    /// Base APILớp trợ giúp yêu cầu
     /// </summary>
     public class SiteBaseApiHelper
     {
         /// <summary>
-        /// Base系统API
+        /// BaseHệ thốngAPI
         /// </summary>
         private static readonly string _SiteBaseAPIHost;
 
         /// <summary>
-        /// 静态构造函数
+        /// Hàm tạo tĩnh
         /// </summary>
         static SiteBaseApiHelper()
         {
@@ -31,7 +31,7 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="force">是否强刷新Token</param>
+        /// <param name="force">Có làm mới mạnh khôngToken</param>
         /// <returns></returns>
         public static string GetToken(bool force = false)
         {
@@ -67,7 +67,7 @@ namespace Newtouch.Infrastructure
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <param name="req"></param>
-        /// <param name="tokenExpireReTryTimes">因Token过期重试次数</param>
+        /// <param name="tokenExpireReTryTimes">doTokenSố lần thử lại khi hết hạn</param>
         /// <returns></returns>
         public static T Request<TV, T>(string url, TV req, int tokenExpireReTryTimes = 1)
             where T : new()
@@ -80,7 +80,7 @@ namespace Newtouch.Infrastructure
 
         /// <summary>
         /// BaseAPIHost
-        /// config配置_SiteBaseAPIHost
+        /// configCấu hình_SiteBaseAPIHost
         /// </summary>
         private static string SiteBaseApiHost
         {

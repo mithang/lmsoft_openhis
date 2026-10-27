@@ -32,21 +32,21 @@ namespace Newtouch.MR.ManageSystem.DomainServices
 {
     public class MainRecordDmnService: DmnServiceBase, IMainRecordDmnService
     {
-#pragma warning disable CS0649 // 从未对字段“MainRecordDmnService._MrbasyzdRepo”赋值，字段将一直保持其默认值 null
+#pragma warning disable CS0649 // Chưa từng gán giá trị cho trường "MainRecordDmnService._MrbasyzdRepo", trường sẽ luôn giữ giá trị mặc định của nó null
         private readonly IMrbasyzdRepo _MrbasyzdRepo;
-#pragma warning restore CS0649 // 从未对字段“MainRecordDmnService._MrbasyzdRepo”赋值，字段将一直保持其默认值 null
-#pragma warning disable CS0649 // 从未对字段“MainRecordDmnService._MrbasyssRepo”赋值，字段将一直保持其默认值 null
+#pragma warning restore CS0649 // Chưa từng gán giá trị cho trường "MainRecordDmnService._MrbasyzdRepo", trường sẽ luôn giữ giá trị mặc định của nó null
+#pragma warning disable CS0649 // Chưa từng gán giá trị cho trường "MainRecordDmnService._MrbasyssRepo", trường sẽ luôn giữ giá trị mặc định của nó null
         private readonly IMrbasyssRepo _MrbasyssRepo;
-#pragma warning restore CS0649 // 从未对字段“MainRecordDmnService._MrbasyssRepo”赋值，字段将一直保持其默认值 null
-#pragma warning disable CS0649 // 从未对字段“MainRecordDmnService._MrbasyRepo”赋值，字段将一直保持其默认值 null
+#pragma warning restore CS0649 // Chưa từng gán giá trị cho trường "MainRecordDmnService._MrbasyssRepo", trường sẽ luôn giữ giá trị mặc định của nó null
+#pragma warning disable CS0649 // Chưa từng gán giá trị cho trường "MainRecordDmnService._MrbasyRepo", trường sẽ luôn giữ giá trị mặc định của nó null
         private readonly IMrbasyRepo _MrbasyRepo;
-#pragma warning restore CS0649 // 从未对字段“MainRecordDmnService._MrbasyRepo”赋值，字段将一直保持其默认值 null
-#pragma warning disable CS0169 // 从不使用字段“MainRecordDmnService._EMRDmnService”
+#pragma warning restore CS0649 // Chưa từng gán giá trị cho trường "MainRecordDmnService._MrbasyRepo", trường sẽ luôn giữ giá trị mặc định của nó null
+#pragma warning disable CS0169 // Không bao giờ sử dụng trường "MainRecordDmnService._EMRDmnService"
         private readonly IEMRDmnService _EMRDmnService;
-#pragma warning restore CS0169 // 从不使用字段“MainRecordDmnService._EMRDmnService”
-#pragma warning disable CS0649 // 从未对字段“MainRecordDmnService._MrbasyrelcodeRepo”赋值，字段将一直保持其默认值 null
+#pragma warning restore CS0169 // Không bao giờ sử dụng trường "MainRecordDmnService._EMRDmnService"
+#pragma warning disable CS0649 // Chưa từng gán giá trị cho trường "MainRecordDmnService._MrbasyrelcodeRepo", trường sẽ luôn giữ giá trị mặc định của nó null
         private readonly IMrbasyrelcodeRepo _MrbasyrelcodeRepo;
-#pragma warning restore CS0649 // 从未对字段“MainRecordDmnService._MrbasyrelcodeRepo”赋值，字段将一直保持其默认值 null
+#pragma warning restore CS0649 // Chưa từng gán giá trị cho trường "MainRecordDmnService._MrbasyrelcodeRepo", trường sẽ luôn giữ giá trị mặc định của nó null
         private readonly ICommonDmnService _CommonDmnService;
 
         public MainRecordDmnService(IMrbasyzdRepo mrbasyzdRepo, IMrbasyssRepo mrbasyssRepo,
@@ -142,7 +142,7 @@ left join [dbo].[mr_basy_rel_code] b with(nolock) on a.organizeid=b.organizeid a
             return ety;
         }
         /// <summary>
-        /// 数据来源-EMR
+        /// Nguồn dữ liệu-EMR
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -183,7 +183,7 @@ where organizeid=@orgId and zyh=@zyh and zt='1' ";
             //}
             //else
             //{
-            //    throw new FailedException("未找到患者病历信息，请联系管理员。");
+            //    throw new FailedException("Không tìm thấy thông tin bệnh án của bệnh nhân, vui lòng liên hệ quản trị viên.");
             //}
 
             if (string.IsNullOrWhiteSpace(vo.BAH))
@@ -193,7 +193,7 @@ where organizeid=@orgId and zyh=@zyh and zt='1' ";
             return vo;
         }
 
-        #region 数据来源综合
+        #region Tổng hợp nguồn dữ liệu
         public BasyVO GetMainRecordbybrjbxxS(string orgId, string zyh)
         {
             var mrbasy = _MrbasyRepo.FindEntity(p => p.ZYH == zyh && p.OrganizeId == orgId && p.zt == "1");
@@ -271,7 +271,7 @@ and jszt=1 and zt='1'
 
         public BasyVO GetMainRecordZyFeeDetail(BasyVO vo,string orgId,string zyh)
         {
-            //同步病案系统费用
+            //Đồng bộBệnh ánHệ thốngChi phí
            // string sql = @"exec usp_sync_basy_feefromSettbyzyh @orgId=@orgId,@zyh=@zyh ";
             string sql = @"select FeetypeCode,FeetypeName,CONVERT(DECIMAL(13,2),isnull(sum(Amount),0))Amount
 from V_HIS_InpPatFee
@@ -294,10 +294,10 @@ select a.Code from [Newtouch_MRMS].[dbo].[mr_dic_bafeetype] a where a.zt='1' and
             
 
 
-            Type t = vo.GetType();//获得该类的Type
+            Type t = vo.GetType();//Lấy Type của lớp này
             foreach (PropertyInfo pi in t.GetProperties())
             {
-                var name = pi.Name;//获得属性的名字,后面就可以根据名字判断来进行些自己想要的操作
+                var name = pi.Name;//Lấy tên thuộc tính, sau đó có thể phán đoán theo tên để thực hiện thao tác mình muốn
                 var val = list.Find(p => p.FeetypeCode == name);
                 if(val!=null)
                 {
@@ -324,10 +324,10 @@ where OrganizeId=@orgId and zyh=@zyh ";
                 new SugarParameter("@zyh",zyh)
             });
 
-            Type t = vo.GetType();//获得该类的Type
+            Type t = vo.GetType();//Lấy Type của lớp này
             foreach (PropertyInfo pi in t.GetProperties())
             {
-                var name = pi.Name;//获得属性的名字,后面就可以根据名字判断来进行些自己想要的操作
+                var name = pi.Name;//Lấy tên thuộc tính, sau đó có thể phán đoán theo tên để thực hiện thao tác mình muốn
                 var val = list.Find(p => p.FeetypeCode == name);
                 if(val!=null)
                 {
@@ -343,7 +343,7 @@ where OrganizeId=@orgId and zyh=@zyh ";
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
-        /// <param name="zdlb">诊断类别 1入院诊断2出院诊断</param>
+        /// <param name="zdlb">Loại chẩn đoán 1Chẩn đoán nhập viện2Chẩn đoán xuất viện</param>
         /// <returns></returns>
         public IList<PatZDListVO> GetPatHisZDInfoS(string bah, string zyh, string orgId, int? zdlb)
         {
@@ -441,7 +441,7 @@ order by SSOrder ";
         }
 
         /// <summary>
-        /// 诊断列表保存
+        /// Lưu danh sách chẩn đoán
         /// </summary>
         /// <param name="list"></param>
         /// <param name="orgId"></param>
@@ -523,7 +523,7 @@ order by SSOrder ";
         }
 
         /// <summary>
-        /// 手术列表保存
+        /// Lưu danh sách phẫu thuật
         /// </summary>
         /// <param name="list"></param>
         /// <param name="orgId"></param>
@@ -672,7 +672,7 @@ order by SSOrder ";
         }
 
         /// <summary>
-        /// 生成病案号
+        /// TạoSố bệnh án
         /// </summary>
         /// <returns></returns>
         public string GetBAH(string orgId)
@@ -688,7 +688,7 @@ order by SSOrder ";
 
 
         /// <summary>
-        /// 保存患者基本信息
+        /// Lưu thông tin cơ bản của bệnh nhân
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -710,7 +710,7 @@ order by SSOrder ";
 
                     if (ety != null && ety.BAH == vo.BAH)
                     {
-                        //更新
+                        //Cập nhật
                         //ety = _MrbasyRepo.FindEntity(p => p.BAH == vo.BAH && p.zt == "1" && p.OrganizeId == orgId);
                         if(ety!=null)
                         {
@@ -770,7 +770,7 @@ order by SSOrder ";
                             relety.Create(true);
                             _MrbasyrelcodeRepo.Insert(relety);
                             
-                            //重写EMR
+                            //Ghi đèEMR
                             try
                             {
                                 string sql = @"update Newtouch_EMR.dbo.mr_basy set BABAH='" + vo.BAH + "',LastModifyTime=getdate(),LastModifierCode='MRMS' where organizeid=@orgId and zyh=@zyh and zt='1'";
@@ -1116,7 +1116,7 @@ where organizeid=@orgId and zyh=@zyh ";
                 FileStream fs = new FileStream(FullFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
                 StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
                 string lm = "";
-                //列名
+                //Tên cột
                 foreach (DataColumn item in dt.Columns)
                 {
                     lm += item.ColumnName+",";
@@ -1162,7 +1162,7 @@ where organizeid=@orgId and zyh=@zyh ";
                 FileStream fs = new FileStream(FullFileName, FileMode.OpenOrCreate, FileAccess.ReadWrite, FileShare.ReadWrite);
                 StreamWriter sw = new StreamWriter(fs, Encoding.UTF8);
                 string lm = "";
-                //列名
+                //Tên cột
                 foreach (DataColumn item in dt.Columns)
                 {
                     lm += item.ColumnName + ",";
@@ -1194,7 +1194,7 @@ where organizeid=@orgId and zyh=@zyh ";
             string returnstr = Encoding.UTF8.GetString(utf8Bytes);
             return returnstr;
         }
-        #region 结算病人不能保存诊断
+        #region Bệnh nhân đã thanh toán không thể lưu chẩn đoán
         public IList<PatZDListVO> SettlementQuery(string zyh, string orgId)
         {
             try

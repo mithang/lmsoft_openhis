@@ -11,7 +11,7 @@ using NewtouchHIS.Lib.Base.Extension;
 namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 {
     /// <summary>
-    /// 申领单管理 (Core port)
+    /// Quản lý phiếu lĩnh (Core port)
     /// </summary>
     [Area("BillManage")]
     public class ApplyBillController : ControllerBase
@@ -24,7 +24,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 申领单查询
+        /// Truy vấn phiếu lĩnh
         /// </summary>
         /// <returns></returns>
         public IActionResult Query()
@@ -34,7 +34,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 申领单主信息查询
+        /// Truy vấn thông tin chính phiếu lĩnh
         /// </summary>
         public IActionResult ApplyBillInfoQuery(Pagination pagination, DateTime kssj, DateTime jssj, string pdh, int applyType, int applyProcess)
         {
@@ -50,7 +50,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 申领单主信息查询
+        /// Truy vấn thông tin chính phiếu lĩnh
         /// </summary>
         public IActionResult ApplyBillInfoQueryV2(Pagination pagination, DateTime kssj, DateTime jssj, string pdh, int applyType, int applyProcess, string slbm, string applyProcesses)
         {
@@ -77,7 +77,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 申领单明细信息查询
+        /// Truy vấn chi tiết phiếu lĩnh
         /// </summary>
         [HttpGet]
         public IActionResult ApplyBillDetailBySldhQuery(string sldId)
@@ -87,7 +87,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 申领单明细信息查询
+        /// Truy vấn chi tiết phiếu lĩnh
         /// </summary>
         [HttpGet]
         public IActionResult ApplyBillDetailQuery(string sldIds)

@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取出入库方式
+        /// Lấy phương thức xuất nhập kho
         /// </summary>
         /// <returns></returns>
         public object GetStorageIOMode()

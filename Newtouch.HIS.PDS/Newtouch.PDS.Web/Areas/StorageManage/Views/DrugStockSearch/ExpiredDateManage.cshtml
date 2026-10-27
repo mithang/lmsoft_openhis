@@ -83,7 +83,7 @@
     });
 
 
-    //初始化浮层
+    //Khởi tạo lớp nổi
     function InitFloat() {
 
     }
@@ -95,7 +95,7 @@
             height: $(window).height() - 200,
             postData: {
                 keyword: $("#keyword").val(), show0kc : $("#chk_NoShow0KC").is(":checked") ? "0" : "1"},
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
 
                 //{ label: 'Id', name: 'Id', hidden: true },
@@ -128,7 +128,7 @@
         });
     }
 
-    //查询
+    //Truy vấn
     $('#btn_search').click(function () {
         $("#gridList").jqGrid('setGridParam', {
             url: '/StorageManage/DrugStockSearch/GetStockExpiredSearchByPage',
@@ -175,7 +175,7 @@
         var ids = $("#gridList").getDataIDs();
         $.each(ids, function () {
             var rowid = String(this);
-            //打开编辑模式
+            //Mở chế độ chỉnh sửa
             $("#gridList").jqGrid('editRow', rowid, false, initInlineFunc);
         })
     }

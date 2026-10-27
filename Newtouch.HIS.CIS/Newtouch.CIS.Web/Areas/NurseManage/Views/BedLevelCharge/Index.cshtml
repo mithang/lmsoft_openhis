@@ -96,7 +96,7 @@
             }
         });
 
-        //查询
+        //Tra cứu
         $("#btn_search").click(function () {
             $("#gridList").jqGrid('setGridParam', {
                 postData: getSearchData(),
@@ -109,7 +109,7 @@
         return { LevelCode: LevelCode};
     }
 
-    //新增
+    //Thêm mới
     function btn_add() {
         window.$.modalOpen({
             id: "Form",
@@ -119,14 +119,14 @@
             height: "350px",
             callBack: function (iframeId) {
                 top.frames[iframeId].submitForm(function (data) {
-                    $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                    $('#gridList').jqGrid("clearGridData"); //xóachi tiếtcủagrid
                     $("#btn_search").trigger("click");
                 });
             }
         });
     }
 
-    //修改
+    //Sửa
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
@@ -142,7 +142,7 @@
         });
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
         window.$.modalConfirm("Xác nhận muốn xóa?", function (flag) {
             if (!flag) {
@@ -160,7 +160,7 @@
             param: { keyValue: keyValue },
             success: function () {
                 $.modalMsg("Xóa thành công","success");
-                $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                $('#gridList').jqGrid("clearGridData"); //xóachi tiếtcủagrid
                 $("#btn_search").trigger("click");
             }
         });

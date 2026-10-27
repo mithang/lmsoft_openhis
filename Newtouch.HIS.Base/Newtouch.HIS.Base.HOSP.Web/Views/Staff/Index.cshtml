@@ -68,7 +68,7 @@
             postData: { keyword: $("#txt_keyword").val(), OrganizeId: $("#OrganizeId").val() },
             colModel: [
                 { label: 'Khóa chính', name: 'Id', hidden: true },
-                //{ label: '组织机构Id', name: 'OrganizeId', hidden: true },
+                //{ label: 'Tổ chứcId', name: 'OrganizeId', hidden: true },
                 { label: 'Mã nhân viên', name: 'gh', width: 80, align: 'left' },
                 { label: 'Họ tên', name: 'Name', width: 60, align: 'left' },
                 {
@@ -187,7 +187,7 @@
 	}
 
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -307,14 +307,14 @@
 			width: "600px",
 			height: "350px",
 			callBack: function (iframeId) {
-				//结果
+				//Kết quả
 				var restArr = top.frames[iframeId].GetChoosedCols();
 				if (!!!restArr || !!!restArr.length || restArr.length == 0) {
 					$.modalAlert("Vui lòng chọn cột xuất", 'error');
 					return false;
 				}
 				var isContainFilter = top.frames[iframeId].GetIsContainFilter();
-				//关闭选择窗口
+				//Đóng cửa sổ chọn
 				$.modalClose("ExcelExportChooseColumns");
 				//
 				exportCols = $.jsonWhere(exportCols, function (v) {
@@ -326,7 +326,7 @@
 					}
 					return matched;
 				});
-				//导出
+				//Xuất ra
 				Export(isContainFilter);
 			}
 		});
@@ -335,7 +335,7 @@
 		var url = "/Staff/OutpatientExport?r=" + Math.random() ;
 		url += "&keyword=" + $('#txt_keyword').val();
 		url += "&isContainFilter=" + isContainFilter;
-		url += "&colStanWidth=" + "70";  //列宽度标准列
+		url += "&colStanWidth=" + "70";  //Cột chuẩn chiều rộng cột
 		var cols = JSON.stringify(exportCols);
 		top.$.cookie('ExportExcelCols', cols, { path: "/" });
 		window.open(url);

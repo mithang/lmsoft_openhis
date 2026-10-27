@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Web.Controllers
         private readonly ISysUserExDmnService _sysUserDmnService;
         private readonly IUserRoleAuthDmnService _userRoleAuthDmnService;
 
-        //角色列表 gridjson
+        //Danh sách vai trò gridjson
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetGridJson(Pagination pagination, string keyword)
@@ -52,11 +52,11 @@ namespace Newtouch.HIS.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysRoleEntity roleEntity, string permissionIds, string keyValue)
         {
-            roleEntity.OrganizeId = "*";    //该版本角色跟TopOrganizeId，不到具体的医院
+            roleEntity.OrganizeId = "*";    //Vai trò phiên bản này theoTopOrganizeId，không tới được bệnh viện cụ thể
             roleEntity.TopOrganizeId = Constants.TopOrganizeId;
             roleEntity.zt = roleEntity.zt == "true" ? "1" : "0";
             _roleApp.SubmitForm(roleEntity, permissionIds.Split(','), keyValue);
-            return Success("操作成功。");
+            return Success("Thao tác thành công。");
         }
 
         [HttpPost]
@@ -66,20 +66,20 @@ namespace Newtouch.HIS.Web.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             _roleApp.DeleteForm(keyValue);
-            return Success("删除成功。");
+            return Success("Xóa thành công。");
         }
 
         /// <summary>
-        /// 保存Sys_UserRole
+        /// LưuSys_UserRole
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         public IActionResult submitRoleUser(string roleId, string userIds)
         {
-            var organizeId = base.GetAuthOrganizeId();  //默认 权限OrganizeId
+            var organizeId = base.GetAuthOrganizeId();  //Mặc định QuyềnOrganizeId
 
             _userRoleAuthDmnService.submitRoleUser(roleId, userIds, organizeId);
-            return Success("操作成功");
+            return Success("Thao tác thành công");
         }
 
     }

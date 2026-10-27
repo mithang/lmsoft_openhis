@@ -3,7 +3,7 @@ namespace Newtouch.Infrastructure.TSql
     public class StockInventory
     {
         /// <summary>
-        /// 生成盘点信息
+        /// tạoKiểm kêthông tin
         /// </summary>
         public const string generate_inventory_info = @"
 BEGIN TRANSACTION;
@@ -35,7 +35,7 @@ BEGIN TRY
 	SET @pdId= @@IDENTITY  
 	IF(@pdId<=0)
 	BEGIN
-		SELECT '生成盘点主信息失败'  AS Jgxx;
+		SELECT 'tạoKiểm kê主thông tinthất bại'  AS Jgxx;
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END
@@ -142,14 +142,14 @@ BEGIN TRY
 	SELECT '' AS Jgxx;
 END TRY
 BEGIN CATCH
-	SELECT '生成盘点信息失败！' AS Jgxx;
+	SELECT 'tạoKiểm kêthông tinthất bại！' AS Jgxx;
 	PRINT ERROR_MESSAGE();
 	ROLLBACK TRANSACTION;
 END CATCH
 ";
 
         /// <summary>
-        /// 保存盘点明细
+        /// LưuKiểm kêchi tiết
         /// </summary>
         public const string save_inventory_info = @"
 BEGIN TRANSACTION
@@ -159,7 +159,7 @@ BEGIN
 END
 
 DECLARE @pdmxId BIGINT;
-DECLARE @sjsl INT;--盘点明细表实际数量
+DECLARE @sjsl INT;--Kiểm kêchi tiếtbảngthực tếSố lượng
 
 SELECT xm.productId, wz.name wzmc, xm.Id pdmxId, xm.pc,xm.ph,xm.sjsl
 INTO #tmpData
@@ -172,13 +172,13 @@ AND pd.OrganizeId=@OrganizeId
 AND pd.warehouseId=@warehouseId
 AND xm.zt='1'
 
-IF @sl>0 --实际库存有多，则直接添加到最近入库的一个批次上
+IF @sl>0 --thực tếTồn khocónhiều，thìtrực tiếpThêmđếngần nhấtNhập khocủamộtLôtrên
 BEGIN
 	SELECT TOP 1 @pdmxId=pdmxId,@sjsl=sjsl FROM #tmpData ORDER BY pc DESC
 	UPDATE dbo.dept_pdxxmx SET sjsl=sjsl+@sl WHERE Id=@pdmxId AND zt='1'
 	IF @@ROWCOUNT<=0
 	BEGIN
-		SELECT '保存盘点明细失败'
+		SELECT 'Lưu chi tiết kiểm kê thất bại'
 		ROLLBACK TRANSACTION
 		RETURN;
 	END 
@@ -187,17 +187,17 @@ BEGIN
 	RETURN;
 END 
 
---实际库存比理论少，则优先从最近入库的批次减，不够则按批次倒序逐个扣
-DECLARE @sysl INT;--剩余数量，每次抵消后的数量
+--thực tếTồn khosolýluậnít，thìưutrướctừgần nhấtNhập khocủaLôgiảm，khôngđủthìtheoLô倒thứ tự逐cáikhấu
+DECLARE @sysl INT;--Số lượng còn lại，mỗi lần抵hủysaucủaSố lượng
 SET @sysl=@sl;
 WHILE EXISTS(SELECT 1 FROM #tmpData WHERE sjsl>0)
 BEGIN
-	IF @sysl>=0 --所有剩余数量都分配完，则退出循环，结束保存
+	IF @sysl>=0 --tất cảSố lượng còn lạiđềuphầnphốixong，thìThoátLặp lại，Kết thúcLưu
 	BEGIN
 		BREAK;
 	END 
 	
-	--还有剩余库存未分配，继续寻找符合要求的批次实现扣库存
+	--còncóTồn kho còn lạichưaphầnphối，kếtiếp寻tìmkýhợpcầncầucủaLôthựchiệnkhấuTồn kho
 	SELECT TOP 1 @pdmxId=pdmxId,@sjsl=sjsl FROM #tmpData WHERE sjsl>0 ORDER BY pc DESC
 	SET @sysl=@sysl+@sjsl;
 	IF (@sysl<=0)
@@ -205,7 +205,7 @@ BEGIN
 		UPDATE dbo.dept_pdxxmx SET sjsl=0 WHERE Id=@pdmxId AND zt='1'
 		IF @@ROWCOUNT<=0
 		BEGIN
-			SELECT '保存盘点明细失败'
+			SELECT 'Lưu chi tiết kiểm kê thất bại'
 			ROLLBACK TRANSACTION
 			RETURN;
 		END 
@@ -215,7 +215,7 @@ BEGIN
 		UPDATE dbo.dept_pdxxmx SET sjsl=@sysl WHERE Id=@pdmxId AND zt='1'
 		IF @@ROWCOUNT<=0
 		BEGIN
-			SELECT '保存盘点明细失败'
+			SELECT 'Lưu chi tiết kiểm kê thất bại'
 			ROLLBACK TRANSACTION
 			RETURN;
 		END
@@ -226,7 +226,7 @@ BEGIN
 END 
 IF @sysl<>0
 BEGIN
-	SELECT '系统的库存数不足以抵消输入的实际数，请检查盘点过程中是否发生出库或报损等操作！';
+	SELECT 'Hệ thốngcủaTồn khosốkhôngđủlấy抵hủynhậpcủathực tếsố，vui lòngKiểm traKiểm kêquatrìnhtronglàKhôngphátsinhXuất khohoặcBáo hỏngđợithao tác！';
 END
 ELSE
 BEGIN
@@ -237,7 +237,7 @@ RETURN
 ";
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúcKiểm kê
         /// </summary>
         public const string end_Inventory = @"
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects where id=object_id(N'tempdb..#pdInfo') and type='U')
@@ -266,14 +266,14 @@ BEGIN
 	DECLARE @CrkmxId BIGINT;
 	DECLARE @warehouseId VARCHAR(50); 
 	DECLARE @productId VARCHAR(50);
-	DECLARE @productName VARCHAR(100);--物资名称
+	DECLARE @productName VARCHAR(100);--vật tưtên
 	DECLARE @Ph VARCHAR(30);
 	DECLARE @pc VARCHAR(30);
 	DECLARE @Yxq DATETIME;
 	DECLARE @Sysl INT;
-	DECLARE @djh VARCHAR(50);--输出参数
-	DECLARE @Sykc INT;--剩余库存
-	DECLARE @Lsj MONEY;--零售价
+	DECLARE @djh VARCHAR(50);--truyềnratham số
+	DECLARE @Sykc INT;--Tồn kho còn lại
+	DECLARE @Lsj MONEY;--Giá bán lẻ
 	DECLARE @Zhyz INT;
 	DECLARE @Jj MONEY;
 	DECLARE @unitId VARCHAR(50);
@@ -289,17 +289,17 @@ BEGIN
 		If Isnull(@Kcsl,0) + @Sysl < 0
 		BEGIN
 			ROLLBACK TRANSACTION
-			SELECT @productName + '库存不足！' 
+			SELECT @productName + 'Tồn kho không đủ！' 
 			RETURN;
 		END		
 			
-		--生成报损报溢单号
+		--tạoBáo hỏng báo thừaphiếusố
 		SET @djh='BSBYD'+REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(23), GETDATE(),25), '-',''),':',''),' ',''),'.','');
 		UPDATE Dept_kcxx Set kcsl = kcsl + @Sysl, LastModifierCode=@CreatorCode, LastModifyTime=GETDATE() Where ks=@warehouseId AND productId=@productId And Isnull(ph,'') = @Ph AND Isnull(pc,'') = @pc And Isnull(yxq,'1899-01-01') = Isnull(@Yxq,'1899-01-01') AND OrganizeId=@OrganizeId
 		IF @@ERROR <>0
 		BEGIN
 			ROLLBACK TRANSACTION
-			SELECT '修改库存失败！';
+			SELECT 'sửaTồn khothất bại！';
 			RETURN;
 		END
 
@@ -335,7 +335,7 @@ BEGIN
 			IF @@ERROR <>0
 			BEGIN
 				ROLLBACK TRANSACTION
-				SELECT '写损益信息库失败！'
+				SELECT 'Ghi thông tin lãi lỗ vào kho thất bại！'
 				RETURN;
 			END
 		END
@@ -370,7 +370,7 @@ BEGIN
 			IF @@ERROR <>0
 			BEGIN
 				ROLLBACK TRANSACTION
-				SELECT '写损益信息库失败！' ;
+				SELECT 'Ghi thông tin lãi lỗ vào kho thất bại！' ;
 				RETURN;
 			END
 		END
@@ -384,7 +384,7 @@ WHERE Id = @pdId
 IF @@ERROR <>0
 BEGIN
 	ROLLBACK TRANSACTION
-	SELECT '修改盘点信息库失败！' ;
+	SELECT 'sửaKiểm kêthông tinkhothất bại！' ;
 	RETURN;
 END
 	

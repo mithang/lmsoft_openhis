@@ -36,7 +36,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             this._IExceReportPrintDmnService = iExceReportPrintDmnService;
         }
         /// <summary>
-        /// 获取病区人员Thực hiện树
+        /// LấyKhu bệnh ngườiviênThực hiệncây
         /// </summary>
         /// <returns></returns>
         public IActionResult GetPatWardTree(string zyzt, string keyword)
@@ -56,7 +56,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     string gender = itempat.sex == "1" ? "Nam" : "Nữ";
                     TreeViewModel treepat = new TreeViewModel();
                     treepat.id = itempat.zyh;
-                    //床号 + 姓名(住院天数)+住院号 + 年龄 +性别+Tính chất bệnh nhân
+                    //Số giường + Họ tên(Nhập việnSố ngày)+Số nhập viện + Tuổi +Giới tính+Tính chất bệnh nhân
                     treepat.text = itempat.BedNo + "-" + itempat.hzxm + "(" + itempat.inHosDays + "ngày)" + "-" + itempat.zyh + "-" + itempat.nl + "tuổi-" + gender + "-" + itempat.brxzmc;
                     treepat.value = itempat.zyh;
                     treepat.parentId = item.bqCode;
@@ -118,9 +118,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         public override IActionResult Index()
         {
-            //注射用法控制
+            //Lưu ýxạCách dùngđiều khiển
             ViewBag.ControlzsyfCode = _sysConfigRepo.GetValueByCode("zsyfpz", OrganizeId);
-            //雾化用法控制
+            //khí dungCách dùngđiều khiển
             ViewBag.ControlwhyfCode = _sysConfigRepo.GetValueByCode("whyfpz", OrganizeId);
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
@@ -128,9 +128,9 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         public  IActionResult QueryPrintIndex() {
-            //注射用法控制
+            //Lưu ýxạCách dùngđiều khiển
             ViewBag.ControlzsyfCode = _sysConfigRepo.GetValueByCode("zsyfpz", OrganizeId);
-            //雾化用法控制
+            //khí dungCách dùngđiều khiển
             ViewBag.ControlwhyfCode = _sysConfigRepo.GetValueByCode("whyfpz", OrganizeId);
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");

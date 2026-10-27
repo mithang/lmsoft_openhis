@@ -3,31 +3,31 @@
     public class SignalRMessageVO
     {
         /// <summary>
-        /// 发起人
+        /// Người khởi xướng
         /// </summary>
         public string? send_user { get; set; }
         /// <summary>
-        /// 接受人
+        /// Người nhận
         /// </summary>
 
         public string get_user { get; set; }
         /// <summary>
-        /// 标题
+        /// Tiêu đề
         /// </summary>
 
         public string title { get; set; }
         /// <summary>
-        /// 内容
+        /// Nội dung
         /// </summary>
 
         public string content { get; set; }
         /// <summary>
-        /// 发送时间
+        /// Thời gian gửi
         /// </summary>
 
         public DateTime? send_date { get; set; }
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
 
         public DateTime? created_date { get; set; }

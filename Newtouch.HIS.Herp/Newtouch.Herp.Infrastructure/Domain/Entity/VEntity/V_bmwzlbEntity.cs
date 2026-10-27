@@ -1,17 +1,17 @@
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 本部门物资类别
+    /// Loại vật tư của khoa phòng mình
     /// </summary>
     public class VBmwzlbEntity
     {
         /// <summary>
-        /// 类别ID
+        /// Loại ID
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 类别名称
+        /// Tên loại
         /// </summary>
         public string lbmc { get; set; }
     }

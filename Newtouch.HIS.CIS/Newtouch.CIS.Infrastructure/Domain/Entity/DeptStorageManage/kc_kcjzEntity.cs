@@ -7,101 +7,101 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Domain.Entity.DeptStorageManage
 {
     /// <summary>
-    /// 库存_库存结转
+    /// Tồn kho_Tồn khokết chuyển
     /// </summary>
     [SugarTable("dept_kcjz")]
     public class KcKcjzEntity
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId（cócụ thểthểnghiệp vụcủayviện）
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 库房代码
+        /// KhoMã
         /// </summary>
         public string warehouseId { get; set; }
 
         /// <summary>
-        /// 物资ID(必填)
+        /// vật tưID(bắt buộc)
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效时间
+        /// Hiệu lựcThời gian
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 库存数量，最小单位数量
+        /// Tồn khoSố lượng，Đơn vị nhỏ nhấtSố lượng
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// 部门零售价，转化因子对应单位
+        /// Khoa phòngGiá bán lẻ，chuyểnhóavìcontương ứngĐơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal bmlsj { get; set; }
 
         /// <summary>
-        /// 进价，转化因子对应单位
+        /// vàogiá，chuyểnhóavìcontương ứngĐơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 转化因子(必填)
+        /// chuyểnhóavìcon(bắt buộc)
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 结转时间
+        /// kết chuyểnThời gian
         /// </summary>
         public DateTime jzsj { get; set; }
 
         /// <summary>
-        /// 状态  0:作废；1.有效
+        /// Trạng thái  0:Hủy bỏ；1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Thứ tự
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Sửa cuối người
         /// </summary>
         public string LastModifierCode { get; set; }
     }

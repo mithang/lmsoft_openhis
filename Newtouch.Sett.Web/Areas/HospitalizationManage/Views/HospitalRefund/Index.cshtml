@@ -111,7 +111,7 @@
             }
         });
         $("#gridListDetail").children().children().click(function () {
-            $(this).clone(true).appendTo($("#gridListDetail").children());//Sao chép nút đang nhấp hiện tại，vàsẽnó追加tới《ul》Trong phần tử，khiThêm参数lúcSao chépnócủasự kiện
+            $(this).clone(true).appendTo($("#gridListDetail").children());//Sao chép nút đang nhấp hiện tại，vàsẽnóđuổithêmtới《ul》Trong phần tử，khiThêmTham sốlúcSao chépnócủasự kiện
 
         });
         function GetPatInfo() {
@@ -362,7 +362,7 @@
         }
 
 
-        //Nạp mụcthu phí，Bác sĩdưới拉框củagiá trị
+        //Nạp mụcthu phí，Bác sĩdướihộp chọncủagiá trị
         function initControl() {
             ///Mụcthu phí
             $("#sfxm").sfxmFloatingSelector({
@@ -381,7 +381,7 @@
                 width: 250,
                 clickautotrigger: true,
                 filter: function (keyword) {
-                    //Duyệt nguồn dữ liệu，用keyword来Lọc出Kết quả
+                    //Duyệt nguồn dữ liệu，dùngkeywordđếnLọcraKết quả
                     var resultObjArr = new Array();
                     $.each(top.window.clients.sysDepartList, function (idx, val) {
                         if ((val.py && val.py.indexOf(keyword.toLowerCase()) >= 0)

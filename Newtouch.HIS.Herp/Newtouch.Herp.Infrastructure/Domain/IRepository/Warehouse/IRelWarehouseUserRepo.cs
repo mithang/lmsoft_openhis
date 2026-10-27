@@ -4,7 +4,7 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 库房管理员操作
+    /// Thao tác quản trị viên kho
     /// </summary>
     public interface IRelWarehouseUserRepo : IRepositoryBase<RelWarehouseUserEntity>
     {

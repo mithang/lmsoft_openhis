@@ -33,7 +33,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
         }
 
         /// <summary>
-        /// 质控项目:病历模板类型树 (via center API)
+        /// Hạng mục kiểm soát chất lượng: cây loại mẫu bệnh án (via center API)
         /// </summary>
         public IActionResult GetQcBllxMbTree(string keyword)
         {
@@ -61,7 +61,7 @@ namespace Newtouch.MRQC.Web.Areas.QualityControlManage.Controllers
         }
 
         /// <summary>
-        /// 质控项目维护
+        /// Bảo trì hạng mục kiểm soát chất lượng
         /// </summary>
         public IActionResult GetZkxmList(string keyword)
         {

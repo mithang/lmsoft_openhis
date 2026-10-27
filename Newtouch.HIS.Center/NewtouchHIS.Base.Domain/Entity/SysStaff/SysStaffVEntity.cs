@@ -6,12 +6,12 @@ using NewtouchHIS.Lib.Base.EnumExtend;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     /// <summary>
-    /// 系统人员
+    /// Nhân viên hệ thống
     /// </summary>
     [Table("V_S_Sys_Staff")]
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("V_S_Sys_Staff")]
-    [Description("系统人员")]
+    [Description("Nhân viên hệ thống")]
     public class SysStaffVEntity
     {
         /// <summary>
@@ -25,7 +25,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 工号
+        /// Mã nhân viên
         /// </summary>
         public string gh { get; set; }
 
@@ -35,32 +35,32 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Name { get; set; }
 
         /// <summary>
-        /// 首拼
+        /// Chữ cái đầu phiên âm
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 科室Code
+        /// KhoaCode
         /// </summary>
         public string DepartmentCode { get; set; }
 
         /// <summary>
-        /// 有效标志
+        /// Cờ hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 默认关联康复类别
+        /// Loại phục hồi chức năng liên kết mặc định
         /// </summary>
         public string kflb { get; set; }
 
         /// <summary>
-        /// 模板权限
+        /// Quyền mẫu
         /// </summary>
         public string mbqx { get; set; }
 
         /// <summary>
-        /// 职称
+        /// Chức danh
         /// </summary>
         public string zc { get; set; }
     }

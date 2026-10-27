@@ -14,39 +14,39 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysUserLogOnEntity : IEntity<SysUserLogOnEntity>
     {
         /// <summary>
-        /// 用户登录主键
+        /// Khóa chính đăng nhập người dùng
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// 用户主键
+        /// Khóa chính người dùng
         /// </summary>
         public string UserId { get; set; }
 
         /// <summary>
-        /// 用户密码
+        /// Mật khẩu người dùng
         /// </summary>
         public string UserPassword { get; set; }
 
         /// <summary>
-        /// 用户秘钥
+        /// Khóa bí mật người dùng
         /// </summary>
         public string UserSecretkey { get; set; }
 
         /// <summary>
-        /// 上一次访问时间
+        /// Thời gian truy cập lần trước
         /// </summary>
         public DateTime? PreviousVisitTime { get; set; }
 
         /// <summary>
-        /// 最后访问时间
+        /// Thời gian truy cập cuối
         /// </summary>
         public DateTime? LastVisitTime { get; set; }
 
         /// <summary>
-        /// 登录次数
+        /// Số lần đăng nhập
         /// </summary>
         public int? LogOnCount { get; set; }
 

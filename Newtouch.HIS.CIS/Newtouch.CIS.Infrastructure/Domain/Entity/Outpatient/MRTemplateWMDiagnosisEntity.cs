@@ -28,17 +28,17 @@ namespace Newtouch.Domain.Entity
         public string mbId { get; set; }
 
         /// <summary>
-        /// 枚举 1 主诊断 2 辅诊断
+        /// Liệt kê 1 chínhChẩn đoán 2 phụChẩn đoán
         /// </summary>
         public int zdlx { get; set; }
 
         /// <summary>
-        /// 关联base库 系统诊断表
+        /// liên kếtbasekho Chẩn đoán hệ thốngbảng
         /// </summary>
         public string zdCode { get; set; }
 
         /// <summary>
-        /// 冗余字段
+        /// Dư thừachữđoạn
         /// </summary>
         public string zdmc { get; set; }
 
@@ -68,7 +68,7 @@ namespace Newtouch.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// 疑似标志
+        /// Nghi ngờCờ
         /// </summary>
         public bool ysbz { get; set; }
 

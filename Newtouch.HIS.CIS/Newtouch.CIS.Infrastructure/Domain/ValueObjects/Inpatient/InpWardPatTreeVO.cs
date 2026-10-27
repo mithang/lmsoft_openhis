@@ -12,11 +12,11 @@ namespace Newtouch.Domain.ValueObjects
         public string bqCode { get; set; }
         public string bqmc { get; set; }
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 患者姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string hzxm { get; set; }
 
@@ -25,7 +25,7 @@ namespace Newtouch.Domain.ValueObjects
         public string nl { get; set; }
 
         /// <summary>
-        /// 床位号
+        /// giường ký tựsố
         /// </summary>
         public string BedNo { get; set; }
         public string rqrq { get; set; }

@@ -9,7 +9,7 @@ using NewtouchHIS.Base.Domain.ValueObjects;
 namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
 {
     /// <summary>
-    /// 系统应用注册授权
+    /// Ủy quyền đăng ký ứng dụng hệ thống
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -21,7 +21,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             _appManageDmn = appManageDmn;
         }
         /// <summary>
-        /// 查询应用注册信息
+        /// Truy vấn thông tin đăng ký ứng dụng
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -33,7 +33,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             return new BusResult<AuthAppVO> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// 添加授权应用
+        /// Thêm ứng dụng được ủy quyền
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -45,7 +45,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             return new BusResult<SysAuthAppEntity> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// 删除授权应用
+        /// Xóa ứng dụng được ủy quyền
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

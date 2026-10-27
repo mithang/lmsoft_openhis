@@ -31,7 +31,7 @@
     var yxq = $.request("yxq");
     $("#yxq").val(yxq);
 
-    //保存
+    //Lưu
     function SubmitForm() {
         if (!DataValidate()) {
             return;
@@ -42,7 +42,7 @@
         return postData;
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#yxq").val() === "") {
             $.modalAlert("Hạn dùng là bắt buộc", 'warning');

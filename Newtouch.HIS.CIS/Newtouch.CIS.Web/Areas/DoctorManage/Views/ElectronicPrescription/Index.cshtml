@@ -82,7 +82,7 @@
         @*<div id="TabGrid">
             <ul class="nav nav-tabs navb-bg" role="tablist" id="myTab">
                 <li role="presentation" class="active">
-                    <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">单据明细</a>
+                    <a href="#dv_djmx" id="linkSearch" role="tab" data-toggle="tab">phiếucứchi tiết</a>
                 </li>
                 <li style="float:right">
                     <span class="hiding glyphicon glyphicon-chevron-right btn-lg"></span>
@@ -198,7 +198,7 @@
     }
     
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -208,7 +208,7 @@
 
     }
 
-    //撤销
+    //Thu hồi
     $('#btn_back').click(function () {
         var rowData = $("#gridList").jqGridRowValue();
         if (rowData == null) {
@@ -245,7 +245,7 @@
         });
     });
 
-    //处方查询
+    //Đơn thuốcTra cứu
     $('#btn_search_cf').click(function () {
 
         var rowData = $("#gridList").jqGridRowValue();
@@ -264,7 +264,7 @@
         });
     });
 
-    //审核查询
+    //Phê duyệtTra cứu
     $('#btn_search_exam').click(function () {
         var rowData = $("#gridList").jqGridRowValue();
         if (rowData.length=="0") {
@@ -286,7 +286,7 @@
         });
     });
 
-    //取药查询
+    //lấythuốcTra cứu
     $('#btn_search_medicine').click(function () {
         var rowData = $("#gridList").jqGridRowValue();
         if (rowData.length=="0") {

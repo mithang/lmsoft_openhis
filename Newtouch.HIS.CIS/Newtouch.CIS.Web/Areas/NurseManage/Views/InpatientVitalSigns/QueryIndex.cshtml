@@ -119,17 +119,17 @@
                             <th class="formTitle"></th>
                             <td class="formTitle"><input type="button" id="btn_search" style="width:100%;" class="btn btn-primary" value=" Tra cứu " /></td>
                             @*<td class="formValue" hidden="hidden">
-            <input type="button" id="btn_zyh" class="btn btn-default" value="住院号" />
+            <input type="button" id="btn_zyh" class="btn btn-default" value="Số nhập viện" />
         </td>*@
-                            @*<td class="formTitle"><span class="required">*</span>病区：</td>
+                            @*<td class="formTitle"><span class="required">*</span>Khu bệnh：</td>
         <td class="formValue">
             <select id="WardCode" class="form-control">
                 <option>
-                    全部
+                    Tất cả
                 </option>
             </select>
         </td>*@
-                            @*<td class="formTitle" hidden="hidden">显示已作废</td>
+                            @*<td class="formTitle" hidden="hidden">Hiển thịĐã hủy bỏ</td>
         <td class="formValue"></td>*@
                         </tr>
                         <tr>
@@ -160,21 +160,21 @@
 </div>
 <script>
         $(function () {
-            $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+            $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt, tính lại rộng cao
                 $(".dv-body").height($(window).height());
                 $(".dv-body").width($(window).width());
             });
             var rightWidth = $(".Newtouch_iframe", parent.document).width() - $(".dv-left").width() - 90;
             $(".dv-right").width(rightWidth);
             $(".dv-left").width(260);
-            var currentobj = JSON.parse(sessionStorage.getItem('currentpatobj'));//护士患者一览
+            var currentobj = JSON.parse(sessionStorage.getItem('currentpatobj'));//Điều dưỡngBệnh nhânmộtxem
             if (currentobj) {
                 $('#zyh').val(currentobj.zyh);
                 sessionStorage.removeItem("currentpatobj");
             }
             initControl();
             gridList();
-            $("#gridList").jqGrid('setFrozenColumns');//设置冻结列
+            $("#gridList").jqGrid('setFrozenColumns');//Cài đặtđôngkếtcột
             getPatTreeList();
             $('#zyzt').change(function () {
                 getPatTreeList();
@@ -271,7 +271,7 @@
                 {
                     label: "Ngày", name: "rq", width: 100, align: 'left',
                     formatter: function (cellvalue, options, rowobject) {
-                        //日期 时间点 相关状态
+                        //Ngày Thời gianđiểm liên quanTrạng thái
                         var val = $.getDate({ date: cellvalue });
                         val += " " + rowobject.sj + ":00";
                         if (rowobject.brzt) {
@@ -296,7 +296,7 @@
                 {
                     label: "Huyết áp", name: "xysz", width: 50, align: 'left',
                     formatter: function (cellvalue, options, rowobject) {
-                        //上值 下值
+                        //trênGiá trị dướiGiá trị
                         var val = cellvalue;
                         if (rowobject.xyxz) {
                             val += " - " + rowobject.xyxz;
@@ -350,7 +350,7 @@
             }
         });
 
-        //二级菜单
+        //Menu cấp 2
         $gridList.jqGrid('setGroupHeaders', {
             useColSpanStyle: true,
             groupHeaders: [
@@ -376,7 +376,7 @@
             page: 1,
         }).trigger('reloadGrid');
     }
-    //查询条件
+    //Điều kiện tìm kiếm
     function getSearchPostData() {
         var kssj = $("#kssj").val();
         var jssj = $("#jssj").val();
@@ -396,7 +396,7 @@
     $("#btn_edit").click(function () {
         var seleId = $('#gridList').jqGrid('getGridParam', 'selrow');
         if (seleId) {
-            //请求修改该行
+            //yêu cầuSửadòng
             gridEditRow(seleId);
         }
         else {
@@ -408,7 +408,7 @@
     $("#btn_delete").click(function () {
         var seleId = $('#gridList').jqGrid('getGridParam', 'selrow');
         if (seleId) {
-            //请求作废该行
+            //yêu cầuHủy bỏdòng
             gridDeleteRow(seleId);
         }
         else {
@@ -467,7 +467,7 @@
             url: "/NurseManage/InpatientVitalSigns/Form?smtzId=" + smtzId + "&zyh=" + $("#zyh").val(),
             width: "830px",
             height: "750px",
-            showleftlalbel: !!!smtzId,  //新增时显示 '确认并关闭按钮'
+            showleftlalbel: !!!smtzId,  //Thêm mớikhiHiển thị 'xác nhận vàĐóngNút'
             leftlalbelchecked: true,
             leftlabeltext: "Nhập liên tục",
             leftlalbelcheckedasClose: false,

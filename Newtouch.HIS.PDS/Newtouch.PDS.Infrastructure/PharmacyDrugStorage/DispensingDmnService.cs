@@ -28,7 +28,7 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 发药
+    /// Phát thuốc
     /// </summary>
     public class DispensingDmnService : DmnServiceBase, IDispensingDmnService
     {
@@ -41,10 +41,10 @@ namespace Newtouch.HIS.DomainServices
         {
         }
 
-        #region 门诊
+        #region Ngoại trú
 
         /// <summary>
-        /// 门诊处方预定（冻结库存）
+        /// Đặt trước đơn ngoại trú（Đóng băng tồn kho）
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊处方预定（冻结库存） V2
+        /// Đặt trước đơn ngoại trú（Đóng băng tồn kho） V2
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -82,10 +82,10 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 取消预定--支持多批次
+        /// Hủy đặt trước--Hỗ trợ nhiều lô
         /// </summary>
         /// <param name="ypCode"></param>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="yfbmCode"></param>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -108,10 +108,10 @@ namespace Newtouch.HIS.DomainServices
 
 
         /// <summary>
-        /// 取消预定
+        /// Hủy đặt trước
         /// </summary>
         /// <param name="ypCode"></param>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="yfbmCode"></param>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -132,7 +132,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 取消预定
+        /// Hủy đặt trước
         /// </summary>
         /// <param name="mxphlist"></param>
         /// <param name="organizeId"></param>
@@ -142,7 +142,7 @@ namespace Newtouch.HIS.DomainServices
         {
             if (mxphlist == null || mxphlist.Count == 0)
             {
-                return "请传入要取消的排班明细";
+                return "Vui lòng truyền chi tiết lịch trực cần hủy";
             }
 
             using (var db = new EFDbTransaction().BeginTrans())
@@ -164,7 +164,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// HIS门诊取消结算冻结返还
+        /// HISHủy thanh toán ngoại trú trả lại đóng băng
         /// </summary>
         /// <param name="mxphlist"></param>
         /// <param name="organizeId"></param>
@@ -174,7 +174,7 @@ namespace Newtouch.HIS.DomainServices
         {
             if (mxphlist == null || mxphlist.Count == 0)
             {
-                return "请传入要取消的排班明细";
+                return "Vui lòng truyền chi tiết lịch trực cần hủy";
             }
             using (var db = new EFDbTransaction().BeginTrans())
             {
@@ -194,10 +194,10 @@ namespace Newtouch.HIS.DomainServices
             }
         }
         /// <summary>
-        /// HIS门诊取消结算冻结返还
+        /// HISHủy thanh toán ngoại trú trả lại đóng băng
         /// </summary>
         /// <param name="ypCode"></param>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="yfbmCode"></param>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -233,20 +233,20 @@ namespace Newtouch.HIS.DomainServices
             {
                 var mzCf = _mzCfRepo.FindEntity(p =>
                     p.cfh == cfh && p.OrganizeId == organizeId && p.lyyf == yfbmCode && p.zt == "1");
-                if (mzCf == null) throw new FailedException("获取处方信息失败");
-                if (mzCf.fybz != ((int)EnumFybz.Yp).ToString()) throw new FailedException("只能操作发药状态为已排的处方");
+                if (mzCf == null) throw new FailedException("Lấy thông tin đơn thuốc thất bại");
+                if (mzCf.fybz != ((int)EnumFybz.Yp).ToString()) throw new FailedException("Chỉ có thể thao tác đơn thuốc trạng thái phát là đã xếp");
 
                 var mzphs = _mzphRepo.IQueryable(p =>
                     p.yp == ypCode && p.fyyf == yfbmCode && p.cfh == cfh && p.OrganizeId == organizeId &&
                     p.gjzt == "0" && p.zt == "1");
-                if (mzphs == null || !mzphs.Any()) throw new FailedException("未找到指定已预订的药品");
+                if (mzphs == null || !mzphs.Any()) throw new FailedException("Không tìm thấy thuốc đã đặt trước chỉ định");
                 mzphs.ToList().ForEach(mzph =>
                 {
                     var kcxx = _kcxx.IQueryable(p =>
                         p.ypdm == mzph.yp && p.OrganizeId == organizeId && p.zt == ((int)EnumKCZT.Enabled).ToString() &&
                         p.pc == mzph.pc && p.ph == mzph.ph && p.yfbmCode == yfbmCode && p.yxq == mzph.yxq);
-                    if (!kcxx.Any()) throw new FailedException("在库存中为找到指定批号批次药品");
-                    if (kcxx.Select(p => p.djsl).Sum() < mzph.sl) throw new FailedException("已冻结数量不足");
+                    if (!kcxx.Any()) throw new FailedException("Trong tồn kho không tìm thấy thuốc lô/số lô chỉ định");
+                    if (kcxx.Select(p => p.djsl).Sum() < mzph.sl) throw new FailedException("Số lượng đã đóng băng không đủ");
                     mzCf.fybz = ((int)EnumFybz.Yf).ToString();
                     mzCf.LastModiFierCode = creatorCode;
                     mzCf.LastModifyTime = DateTime.Now;
@@ -277,10 +277,10 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊发药扣库存
+        /// Trừ tồn kho phát thuốc ngoại trú
         /// </summary>
         /// <param name="ypCode"></param>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="yfbmCode"></param>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -299,7 +299,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊发药扣库存
+        /// Trừ tồn kho phát thuốc ngoại trú
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
@@ -321,7 +321,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 门诊退药还库存
+        /// Trả thuốc ngoại trú trả tồn kho
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="zxdwsl"></param>
@@ -331,7 +331,7 @@ namespace Newtouch.HIS.DomainServices
         /// <param name="userCode"></param>
         /// <param name="ph"></param>
         /// <param name="pc"></param>
-        /// <param name="returnDrugBillNo">退药单号</param>
+        /// <param name="returnDrugBillNo">Số đơn trả thuốc</param>
         /// <returns></returns>
         public string OutpatientReturnDrugAddStock(string ypCode, string ph,
             string pc, int zxdwsl,
@@ -346,7 +346,7 @@ namespace Newtouch.HIS.DomainServices
                 new SugarParameter("@ph", ph),
                 new SugarParameter("@pc", pc),
                 new SugarParameter("@cfh", cfh),
-                new SugarParameter("@tysl", zxdwsl),//最小单位数量
+                new SugarParameter("@tysl", zxdwsl),//Số lượng đơn vị nhỏ nhất
                 new SugarParameter("@userCode", userCode),
                 new SugarParameter("@returnDrugBillNo", returnDrugBillNo)
             };
@@ -355,10 +355,10 @@ namespace Newtouch.HIS.DomainServices
 
         #endregion
 
-        #region 住院
+        #region Nội trú
 
         /// <summary>
-        /// 住院Book冻结库存 并保存zy_ypyzzxph
+        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -368,13 +368,13 @@ namespace Newtouch.HIS.DomainServices
             {
                 using (var db = new Newtouch.Infrastructure.EFDbTransaction().BeginTrans())
                 {
-                    if (bookItemDo.Sl <= 0) return string.Format("药品【{0}】数量不能小于零", bookItemDo.YpCode);
+                    if (bookItemDo.Sl <= 0) return string.Format("Thuốc【{0}】Số lượng không thể nhỏ hơn 0", bookItemDo.YpCode);
                     var kcxxRepo = new SysMedicineStockInfoRepo(new DefaultDatabaseFactory());
                     var kcxx = kcxxRepo.SelectData(bookItemDo.YpCode, bookItemDo.Yfbm, bookItemDo.OrganizeId);
-                    if (kcxx == null || kcxx.Count == 0) return string.Format("药品【{0}】未找到可用库存", bookItemDo.YpCode);
+                    if (kcxx == null || kcxx.Count == 0) return string.Format("Thuốc【{0}】Không tìm thấy tồn kho khả dụng", bookItemDo.YpCode);
                     var yxkcxx = kcxx.FindAll(p => p.kcsl - p.djsl > 0);
-                    if (yxkcxx.Count == 0) return string.Format("药品【{0}】库存不足", bookItemDo.YpCode);
-                    if (yxkcxx.Sum(p => p.kcsl - p.djsl) < bookItemDo.Sl) return string.Format("药品【{0}】库存不足", bookItemDo.YpCode);
+                    if (yxkcxx.Count == 0) return string.Format("Thuốc【{0}】Tồn kho không đủ", bookItemDo.YpCode);
+                    if (yxkcxx.Sum(p => p.kcsl - p.djsl) < bookItemDo.Sl) return string.Format("Thuốc【{0}】Tồn kho không đủ", bookItemDo.YpCode);
                     var sykc = bookItemDo.Sl;
                     foreach (var itemKc in yxkcxx.OrderBy(p => p.yxq))
                     {
@@ -397,14 +397,14 @@ namespace Newtouch.HIS.DomainServices
                         };
                         if (kykc >= sykc)
                         {
-                            //当前批次库存 足够
+                            //Tồn kho lô hiện tại Đủ
                             tagDjsl = sykc;
                             zyphEntity.sl = sykc;
                             sykc = 0;
                         }
                         else
                         {
-                            //当前批次库存 不足
+                            //Tồn kho lô hiện tại Không đủ
                             tagDjsl = kykc;
                             itemKc.djsl = itemKc.djsl + kykc;
                             zyphEntity.sl = kykc;
@@ -413,7 +413,7 @@ namespace Newtouch.HIS.DomainServices
 
                         db.Insert(zyphEntity);
 
-                        #region 修改库存冻结数量
+                        #region Sửa số lượng đóng băng tồn kho
 
                         const string sqlKcxx = @"
 UPDATE dbo.xt_yp_kcxx SET djsl=djsl+@djsl, LastModifyTime=GETDATE(), LastModifierCode=@userCode 
@@ -429,7 +429,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
                         };
                         db.ExecuteSqlCommandNoLog(sqlKcxx, paramKcxx);
 
-                        #endregion 修改库存冻结数量
+                        #endregion Sửa số lượng đóng băng tồn kho
                     }
                     db.Commit();
                     return "";
@@ -453,14 +453,14 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// 住院Book冻结库存 并保存zy_ypyzzxph
+        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="yzId"></param>
-        /// <param name="zxId">执行ID</param>
-        /// <param name="organizeId">组织机构ID</param>
-        /// <param name="yfbmCode">药房部门编码</param>
-        /// <param name="creatorCode">创建人</param>
-        /// <param name="patientName">医嘱所属患者</param>
+        /// <param name="zxId">Thực hiệnID</param>
+        /// <param name="organizeId">Tổ chứcID</param>
+        /// <param name="yfbmCode">Mã bộ phận nhà thuốc</param>
+        /// <param name="creatorCode">Người tạo</param>
+        /// <param name="patientName">Bệnh nhân thuộc y lệnh</param>
         /// <returns></returns>
         public string HospitalizationBook(string yzId, string zxId, string organizeId, string yfbmCode, string creatorCode, string patientName)
         {
@@ -477,7 +477,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// 取消冻结，并物理删除医嘱信息 慎用
+        /// Hủy đóng băng，và xóa vật lý thông tin y lệnh Thận trọng khi dùng
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="zxId"></param>
@@ -493,7 +493,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// 住院Book冻结库存 并保存zy_ypyzzxph
+        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="zxId"></param>
         /// <param name="yzDetails"></param>
@@ -503,7 +503,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         {
             try
             {
-                if (yzDetails == null || yzDetails.Count == 0) return "医嘱明细不能为空";
+                if (yzDetails == null || yzDetails.Count == 0) return "Chi tiết y lệnh không được để trống";
                 using (var db = new Newtouch.Infrastructure.EFDbTransaction().BeginTrans())
                 {
                     foreach (var yzxx in yzDetails)
@@ -519,13 +519,13 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
                             zh = yzxx.zh
                         };
 
-                        if (bookItemDo.Sl <= 0) throw new Exception(string.Format("药品【{0}】数量不能小于零", yzxx.ypmc));
+                        if (bookItemDo.Sl <= 0) throw new Exception(string.Format("Thuốc【{0}】Số lượng không thể nhỏ hơn 0", yzxx.ypmc));
                         var kcxxRepo = new SysMedicineStockInfoRepo(new DefaultDatabaseFactory());
                         var kcxx = kcxxRepo.SelectData(bookItemDo.YpCode, bookItemDo.Yfbm, bookItemDo.OrganizeId);
-                        if (kcxx == null || kcxx.Count == 0) throw new Exception(string.Format("药品【{0}】未找到可用库存", yzxx.ypmc));
+                        if (kcxx == null || kcxx.Count == 0) throw new Exception(string.Format("Thuốc【{0}】Không tìm thấy tồn kho khả dụng", yzxx.ypmc));
                         var yxkcxx = kcxx.FindAll(p => p.kcsl - p.djsl > 0);
-                        if (yxkcxx.Count == 0) throw new Exception(string.Format("药品【{0}】库存不足", yzxx.ypmc));
-                        if (yxkcxx.Sum(p => p.kcsl - p.djsl) < bookItemDo.Sl) throw new Exception(string.Format("药品【{0}】库存不足", yzxx.ypmc));
+                        if (yxkcxx.Count == 0) throw new Exception(string.Format("Thuốc【{0}】Tồn kho không đủ", yzxx.ypmc));
+                        if (yxkcxx.Sum(p => p.kcsl - p.djsl) < bookItemDo.Sl) throw new Exception(string.Format("Thuốc【{0}】Tồn kho không đủ", yzxx.ypmc));
                         var sykc = bookItemDo.Sl;
                         foreach (var itemKc in yxkcxx.OrderBy(p => p.yxq))
                         {
@@ -550,14 +550,14 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
                             };
                             if (kykc >= sykc)
                             {
-                                //当前批次库存 足够
+                                //Tồn kho lô hiện tại Đủ
                                 tagDjsl = sykc;
                                 zyphEntity.sl = sykc;
                                 sykc = 0;
                             }
                             else
                             {
-                                //当前批次库存 不足
+                                //Tồn kho lô hiện tại Không đủ
                                 tagDjsl = kykc;
                                 itemKc.djsl = itemKc.djsl + kykc;
                                 zyphEntity.sl = kykc;
@@ -566,7 +566,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
 
                             db.Insert(zyphEntity);
 
-                            #region 修改库存冻结数量
+                            #region Sửa số lượng đóng băng tồn kho
 
                             const string sqlKcxx = @"
 UPDATE dbo.xt_yp_kcxx SET djsl=djsl+@djsl, LastModifyTime=GETDATE(), LastModifierCode=@userCode 
@@ -582,7 +582,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
                             };
                             db.ExecuteSqlCommandNoLog(sqlKcxx, paramKcxx);
 
-                            #endregion 修改库存冻结数量
+                            #endregion Sửa số lượng đóng băng tồn kho
                         }
                     }
                     db.Commit();
@@ -596,7 +596,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// 取消住院book
+        /// Hủy nội trúbook
         /// </summary>
         /// <param name="zxId"></param>
         /// <param name="bookItemDo"></param>
@@ -609,7 +609,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
             if (kcxx == null || kcxx.Count == 0) return "";
             var yxkcxx = kcxx.FindAll(p => p.djsl > 0);
             if (yxkcxx.Count == 0) return "";
-            if (yxkcxx.Sum(p => p.djsl) < bookItemDo.Sl) return string.Format("药品【{0}】库存冻结数量不足", bookItemDo.YpCode);
+            if (yxkcxx.Sum(p => p.djsl) < bookItemDo.Sl) return string.Format("Thuốc【{0}】Số lượng đóng băng tồn kho không đủ", bookItemDo.YpCode);
             var zyphRepo = new ZyYpyzzxphRepo(new DefaultDatabaseFactory());
             var zyphList = zyphRepo.SelectZyphList(zxId, bookItemDo.zxId, bookItemDo.YpCode, bookItemDo.OrganizeId);
             if (zyphList == null || zyphList.Count == 0) return "";
@@ -648,7 +648,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// 取消排药
+        /// Hủy xếp thuốc
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -665,7 +665,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
             var zyphList = zyphRepo.SelectZyphList(param.yzId, param.zxId, param.ypCode, param.pc, param.ph, param.OrganizeId);
             if (zyphList == null || zyphList.Count == 0) return "";
 
-            if (yxkcxx.Sum(p => p.djsl) < zyphList.Sum(p => p.sl)) return string.Format("药品【{0}】库存冻结数量不足", param.ypCode);
+            if (yxkcxx.Sum(p => p.djsl) < zyphList.Sum(p => p.sl)) return string.Format("Thuốc【{0}】Số lượng đóng băng tồn kho không đủ", param.ypCode);
 
             foreach (var zyph in zyphList)
             {
@@ -697,7 +697,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
 
 
         /// <summary>
-        /// 排药
+        /// Xếp thuốc
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
@@ -712,25 +712,25 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// 修改排药状态和归架标志
+        /// Sửa trạng thái xếp thuốc và cờ xếp kệ
         /// </summary>
         /// <param name="zyphRepo"></param>
         /// <param name="param"></param>
         /// <returns></returns>
         private string UpdateArrangementZtAndGjzt(ZyYpyzzxphRepo zyphRepo, CancelArrangement param)
         {
-            //直接取消排药
+            //Trực tiếp hủy xếp thuốc
             var zyph = zyphRepo.FindEntity(p =>
                 p.zxId == param.zxId && p.yzId == param.yzId && p.OrganizeId == param.OrganizeId && p.ph == param.ph && p.pc == param.pc &&
                 p.zt == "1" && p.gjzt == "0" && p.fyyf == param.yfbmCode);
             if (zyph == null) return "";
             zyph.zt = "0";
             zyph.gjzt = "1";
-            return zyphRepo.Update(zyph) > 0 ? "" : "修改排药归架标志位失败";
+            return zyphRepo.Update(zyph) > 0 ? "" : "Sửa cờ xếp kệ xếp thuốc thất bại";
         }
 
         /// <summary>
-        /// 住院发药 支持多条医嘱多个排药明细，但医嘱和排药明细必须对应
+        /// Phát thuốc nội trú Hỗ trợ nhiều y lệnh nhiều chi tiết xếp thuốc，Nhưng y lệnh và chi tiết xếp thuốc phải tương ứng
         /// </summary>
         /// <param name="zyphLs"></param>
         /// <param name="yzLs"></param>
@@ -739,7 +739,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         /// <returns></returns>
         public string HospitalizationDispensing(List<ZyYpyzzxphEntity> zyphLs, List<ZyYpyzxxEntity> yzLs, string userCode,out string fyid,string organizeId)
         {
-            fyid = Guid.NewGuid().ToString();//发药ID
+            fyid = Guid.NewGuid().ToString();//Phát thuốcID
             using (var db = new EFDbTransaction().BeginTrans())
             {
                 foreach (var zyph in zyphLs)
@@ -748,7 +748,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
 
                     var drug = new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(zyph.OrganizeId, zyph.ypCode);
                     var ypmc = drug != null && !string.IsNullOrWhiteSpace(drug.ypmc) ? drug.ypmc : zyph.ypCode;
-                    #region 获取库存信息
+                    #region Lấy thông tin tồn kho
                     const string sql1 = @"
 SELECT * FROM xt_yp_kcxx
 WHERE ypdm = @ypCode AND yfbmCode = @yfbmCode AND tybz = '0' AND kcsl>0 AND djsl>=0 
@@ -763,15 +763,15 @@ AND pc=@pc AND ph=@ph AND zt='1' AND OrganizeId = @OrganizeId
                         new SugarParameter("@ph",zyph.ph)
                     };
                     var kcxxLs = db.FindList<SysMedicineStockInfoEntity>(sql1, param1);
-                    if (kcxxLs == null || kcxxLs.Count == 0) return string.Format("批次【{1}】的药品【{0}】未找到有效库存", ypmc, zyph.pc);
-                    if (kcxxLs.Sum(p => p.kcsl) < zyph.sl) return string.Format("批次【{1}】的药品【{0}】库存数量不足，无法发药", ypmc, zyph.pc);
+                    if (kcxxLs == null || kcxxLs.Count == 0) return string.Format("Lô【{1}】của thuốc【{0}】Không tìm thấy tồn kho hiệu lực", ypmc, zyph.pc);
+                    if (kcxxLs.Sum(p => p.kcsl) < zyph.sl) return string.Format("Lô【{1}】của thuốc【{0}】Số lượng tồn kho không đủ，Không thể phát thuốc", ypmc, zyph.pc);
                     #endregion
-                    #region 扣库存
+                    #region Trừ tồn kho
 
                     var sysl = (int)zyph.sl;
                     if (kcxxLs.Sum(p => p.djsl) < zyph.sl)
                     {
-                        //冻结数不足
+                        //Số đóng băng không đủ
                         foreach (var kcxx in kcxxLs.TakeWhile(kcxx => sysl > 0))
                         {
                             int subtractKc;
@@ -804,7 +804,7 @@ WHERE pc=@pc AND ph=@ph AND ypdm=@ypCode AND OrganizeId=@OrganizeId AND yfbmCode
                     }
                     else
                     {
-                        //冻结数足够
+                        //Số đóng băng đủ
                         foreach (var kcxx in kcxxLs.TakeWhile(kcxx => sysl > 0))
                         {
                             int subtractKc;
@@ -841,7 +841,7 @@ WHERE pc=@pc AND ph=@ph AND ypdm=@ypCode AND OrganizeId=@OrganizeId AND yfbmCode
                 int isdjnr = 0;
                 foreach (var yzxx in yzLs)
                 {
-                    #region 修改发药状态 已排 => 已发
+                    #region Sửa trạng thái phát thuốc Đã xếp => Đã phát
 
                     yzxx.fybz = "2";
                     yzxx.LastModifierCode = userCode;
@@ -890,7 +890,7 @@ WHERE pc=@pc AND ph=@ph AND ypdm=@ypCode AND OrganizeId=@OrganizeId AND yfbmCode
                         }
                     }
                     #endregion
-                    #region 新增操作记录
+                    #region Thêm bản ghi thao tác
 
                     var zyczjlEntity = new ZyYpyzczjlEntity
                     {
@@ -923,7 +923,7 @@ WHERE pc=@pc AND ph=@ph AND ypdm=@ypCode AND OrganizeId=@OrganizeId AND yfbmCode
             }
         }
         #endregion
-        #region 病人费用实时计算
+        #region Tính toán thời gian thực phí bệnh nhân
         public void Updatezy_brxxexpand(string OrganizeId, string zyh)
         {
             try
@@ -941,23 +941,23 @@ WHERE pc=@pc AND ph=@ph AND ypdm=@ypCode AND OrganizeId=@OrganizeId AND yfbmCode
 
         }
         #endregion
-        #region 生成项目费用
+        #region Tạo phí hạng mục
         /// <summary>
-        /// 同步最新CPOE项目费用
+        /// Đồng bộ mới nhấtCPOEPhí hạng mục
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
         public void SyncPatFee(string orgId, string zyh, int zxtype)
         {
-            //是否启用费用同步最新机制
+            //Có bật cơ chế đồng bộ phí mới nhất không
             using (var db = new EFDbTransaction().BeginTrans())
             {
                 string sql = "";
-                if (zxtype == 0) //同步项目费用
+                if (zxtype == 0) //Đồng bộ phí hạng mục
                 {
                     sql = @" exec [NewtouchHIS_Sett]..[skd_syncxmjfbcope] @orgId=@orgId,@lqrq=@lqrq,@zyh=@zyh ";
                 }
-                else //同步药品费用
+                else //Đồng bộ phí thuốc
                 {
                     sql = @" exec [NewtouchHIS_Sett]..[skd_syncypjfbcope] @orgId=@orgId,@lqrq=@lqrq,@zyh=@zyh";
                 }
@@ -1067,7 +1067,7 @@ select [Id]
                   var ksbyxx=this.FirstOrDefault<XtksbyEntity>(sql, new[] { new SugarParameter("@orgId", organizeId), new SugarParameter("@Djh", Djh.Trim()) });
                     if (ksbyxx.shzt!="1")
                     {
-                        return "撤回失败！单据必须是已提交状态才能撤回！";
+                        return "Thu hồi thất bại！Chứng từ phải ở trạng thái đã gửi mới có thể thu hồi！";
                     }
                     string sqlByxx = @"
 delete from  xt_bqksby where id=@Id and organizeId=@orgId";
@@ -1186,7 +1186,7 @@ SELECT [Id]
                     var ksbyxx = this.FirstOrDefault<XtksbythEntity>(sql, new[] { new SugarParameter("@orgId", organizeId), new SugarParameter("@Djh", Djh.Trim()) });
                     if (ksbyxx.thzt != "2")
                     {
-                        return "撤回失败！单据必须是已提交状态才能撤回！";
+                        return "Thu hồi thất bại！Chứng từ phải ở trạng thái đã gửi mới có thể thu hồi！";
                     }
                     string sqlByxx = @"
 delete from  xt_ksbyth where id=@Id and organizeId=@orgId";

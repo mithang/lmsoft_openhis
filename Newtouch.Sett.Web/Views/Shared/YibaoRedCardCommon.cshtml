@@ -3,18 +3,18 @@
 @{
     /**/
 
-    //是否和医保交易
+    //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
     var opr = OperatorProvider.GetCurrent();
-    //医保所属地，区分系统将执行何处医保逻辑
+    //Nơi quản lý BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
-    //就诊凭证类型是否从医保端获取
+    //Loại chứng từ khám có lấy từ phía BHYT không
     var YB_Jzpzl = SysConfigReader.String("YB_Jzpzl");
 }
 @if (openYbSett == true)
 {
 <div id="readCard" style="color:orangered;display:none;width:200px">
-    @*<input type="button" id="btkhsr" value="Số giấy tờ输入" class="form-control" style="border-color:#00a0e9; margin-left: 0px;margin-top: 2px; height: 22px;width:44px;padding-left:0px; float: left;vertical-align:central;" onclick="GetPatSbkh()" />*@
+    @*<input type="button" id="btkhsr" value="Số giấy tờnhập" class="form-control" style="border-color:#00a0e9; margin-left: 0px;margin-top: 2px; height: 22px;width:44px;padding-left:0px; float: left;vertical-align:central;" onclick="GetPatSbkh()" />*@
     <i class="fa fa-id-card" style="font-size: 27px; float: left;vertical-align:central;" title="Đọc thẻ"></i>
     <select id="readCardCardType" class="form-control" style="margin-left: 0px;margin-top: 2px; height: 22px;width:70px;float: left;vertical-align:central;">
         @if (openYbSett == true)
@@ -24,8 +24,8 @@
             <option value="6">Quét khuôn mặt</option>
         }
         <option value="4">CMND/CCCD</option>
-        @*<option value="1">Tự chi trả磁thẻ</option>
-            <option value="0">测试磁thẻ</option>*@
+        @*<option value="1">Tự chi trảtừthẻ</option>
+            <option value="0">Thẻ từ thử nghiệm</option>*@
     </select>
     <input id="ckzddzsm" type="checkbox"  /><label for="zddzsm">(Thiết bị đầu cuối)Quét mã</label>
 </div>
@@ -35,15 +35,15 @@
 <script>
     var ybkCardType = "@((int)EnumCardType.YBJYK)";
     var medicalInsurance = '@medicalInsurance';
-    var cqPatInfo = {};//患者读卡信息，confirmform使用
-    var errmsg = "";//读卡错误提示
+    var cqPatInfo = {};//thông tin đọc thẻ bệnh nhân，confirmformSử dụng
+    var errmsg = "";//đọcthẻsaisainêuhiển thị
     var brxzobj = { brxz: "1", brxzmc: "BHYT thường" };
     $('#readCard i').click(function () {
          $.loading(true, 'Đang đọc thẻ，Vui lòng chờ…');
          setTimeout("readCard();", 50);
      });
     $("#readCard").show();
-     //读卡
+     //Đọc thẻ
     function readCard(khxx) {
          switch (medicalInsurance) {
              case "shanghai":
@@ -54,7 +54,7 @@
                      GetSHReadCardIno(khxx);
                  }
                  break;
-             case "tongyong"://通用使用国家医保
+             case "tongyong"://dùng chung BHYT quốc gia
                  var khxx = { "sbkh": "", "sfzh": "", "name": "", "ecToken": "" };
                  if ($('#readCardCardType').val() == "4") {
                      $.loading(false);
@@ -77,22 +77,22 @@
          var jzpzlx = $('#readCardCardType').val();
          var url ="http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_S000";
          var payoptype = { "cardtype": "1","orgId":'@(opr.OrganizeId)', "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "内科" };
-         if (jzpzlx=="0") {//磁条卡
+         if (jzpzlx=="0") {//thẻ từ
              payoptype.cardtype = "0";
              payoptype.carddata = khxx.sbkh;
              url = "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SM01";
          }
-         if (jzpzlx == "2") {//保障卡
+         if (jzpzlx == "2") {//thẻ bảo đảm
              payoptype.cardtype = "1";
          }
-         if (jzpzlx == "3") {//电子凭证
+         if (jzpzlx == "3") {//Chứng từ điện tử
              payoptype.cardtype = "3";
              payoptype.carddata = khxx.sbkh;
              payoptype.ecQrCode = khxx.sbkh;
              payoptype.ecQrChannel = "1";
              url = "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SE01";
          }
-         if (jzpzlx == "4") {//身份证 目前为止只能用国家医保
+         if (jzpzlx == "4") {//CMND/CCCD mụctrướclàdừngchỉcó thểdùngquốc gianhày tếbảo hiểm
              payoptype.sfzh = khxx.sbkh;
              GetReadCardInfo(payoptype);
              return;
@@ -121,7 +121,7 @@
          });
          if (yibaoCardInfo) {
              if (yibaoCardInfo.xxfhm === "P001") {
-                 sm01Info = yibaoCardInfo.sm01;//账户信息(s000 、se01 、sm01)
+                 sm01Info = yibaoCardInfo.sm01;//thông tin tài khoản(s000 、se01 、sm01)
                  cqPatInfo.xm = sm01Info.xm;
                  cqPatInfo.sfzh = sm01Info.sfzh;
                  cqPatInfo.xzqh = sm01Info.xzqh;
@@ -139,8 +139,8 @@
                      cqPatInfo.carddata = "";
                  }
                  cqPatInfo.kh = sm01Info.kh;
-                 var bkbz = sm01Info.accountattr.substr(11, 1);//帮困 G、A
-                 var gbbz = sm01Info.accountattr.substr(1, 1);//干保 1
+                 var bkbz = sm01Info.accountattr.substr(11, 1);//trợ giúp khó khăn G、A
+                 var gbbz = sm01Info.accountattr.substr(1, 1);//bảo hiểm cán bộ 1
                  var resultObjArr = new Array();
                  if (bkbz == "G" || bkbz == "A" || gbbz == "1") {
                      cqPatInfo.ybVer = "shanghaiV5";
@@ -197,7 +197,7 @@
 
     }
 
-     //读卡 获取人员信息
+     //Đọc thẻ đượclấyngườiviênthông tintin
     function GetReadCardInfo(sbkobj) {
         debugger;
          var cardInfo1;
@@ -209,19 +209,19 @@
          var payoptype = { "mdtrt_cert_type": "02", "mdtrt_cert_no": sbkobj.sfzh, "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "口腔科" };
          var url = "http://127.0.0.1:33333/api/YiBao/CardecInfo_1161";
 
-        if (jzpzlx === "6") {//刷脸
+        if (jzpzlx === "6") {//Quét khuôn mặt
             url = "http://127.0.0.1:33333/api/YiBao/CardecInfo_1164";
         }
-        else if (jzpzlx === "4") {//身份证
+        else if (jzpzlx === "4") {//CMND/CCCD
             payoptype.mdtrt_cert_type = "02";
             payoptype.mdtrt_cert_no = sbkobj.sfzh;
             payoptype.psn_name = sbkobj.name;
             url = "http://127.0.0.1:33333/api/YiBao/CardecInfo_1163";
         }
-        else if (jzpzlx === "3") {//电子凭证
+        else if (jzpzlx === "3") {//Chứng từ điện tử
             //payoptype.mdtrt_cert_type = "01";
             //payoptype.mdtrt_cert_no = sbkobj.ecToken;
-            //payoptype.psn_cert_type = "01";//身份证
+            //payoptype.psn_cert_type = "01";//CMND/CCCD
             //payoptype.certno = sbkobj.sfzh;
             //payoptype.psn_name = sbkobj.xm;
             if ($('#ckzddzsm').is(':checked'))
@@ -234,7 +234,7 @@
             payoptype.mdtrt_cert_no = sbkobj.carddata;
         }
 
-         if (jzpzlx === "1") {//院内卡
+         if (jzpzlx === "1") {//việntrongthẻ
              $.loading(false);
              $.modalAlert("Giao diện đọc thẻ nội viện chưa mở", 'error');
          }
@@ -261,22 +261,22 @@
                      if ('@YB_Jzpzl' === 'ON') {
                          var cardecinfo = yibaoCardInfo.output.cardecinfo;
                          switch (cardecinfo.mdtrt_cert_type) {
-                             case "01"://电子凭证
+                             case "01"://Chứng từ điện tử
                                  jzpzlx = '3';
                                  payoptype.mdtrt_cert_type = "01";
                                  payoptype.mdtrt_cert_type = cardecinfo.mdtrt_cert_type;
                                  break;
-                             case "02"://身份证
+                             case "02"://CMND/CCCD
                                  jzpzlx = '4';
                                  break;
-                             case "03"://社保卡
+                             case "03"://thẻ BHXH
                                  jzpzlx = '2';
                                  sbkobj.sbkh = cardecinfo.mdtrt_cert_no;
                                  payoptype.mdtrt_cert_type = cardecinfo.mdtrt_cert_type;
                                  break;
                          }
                      }
-                     cardInfo1 = yibaoCardInfo.output.baseinfo; //医保基本信息
+                     cardInfo1 = yibaoCardInfo.output.baseinfo; //thông tin cơ bản BHYT
                      if (yibaoCardInfo.output.insuinfo.length > 1)
                      {
                          for (var i = 0; i < yibaoCardInfo.output.insuinfo.length;i++) {
@@ -288,13 +288,13 @@
                              }
                          }
                      } else
-                         cardInfo2 = yibaoCardInfo.output.insuinfo[0];//参保信息
+                         cardInfo2 = yibaoCardInfo.output.insuinfo[0];//thông tin tham gia bảo hiểm
                      if (jzpzlx !== "3") {
-                         cardInfo3 = yibaoCardInfo.output.cardecinfo;//卡信息
+                         cardInfo3 = yibaoCardInfo.output.cardecinfo;//Thông tin thẻ
                          cqPatInfo.sbkh = sbkobj.sbkh;
                      }
                      if (jzpzlx == "3") {
-                         cardInfo3 = yibaoCardInfo.output.cardecinfo;//卡信息
+                         cardInfo3 = yibaoCardInfo.output.cardecinfo;//Thông tin thẻ
                          cqPatInfo.ecToken = cardInfo3.ecToken;
                      }
                      getbrxz(cardInfo2.insutype);
@@ -332,12 +332,12 @@
          }
     }
 
-    //监控读卡类型
+    //giám sátđiều khiểnđọcthẻloạiloại
     $("#readCardCardType").change(function () {
         klxchoose();
     })
 
-    //展示相应的弹窗
+    //mở rộnghiển thịlẫn nhauphảicủabậtcửa sổ
     function klxchoose() {
         var jzpzlx = $('#readCardCardType').val();
         switch (jzpzlx) {
@@ -349,7 +349,7 @@
         }
     }
 
-        //手输社保卡号
+        //Nhập tay số thẻ BHXH
         function GetPatSbkh() {
             $.modalOpen({
                 id: "sbkhInput",
@@ -362,7 +362,7 @@
                 }
             });
         }
-        //手输社保卡号
+        //Nhập tay số thẻ BHXH
         function GetPatSfzh() {
             $.modalOpen({
                 id: "sfzhInput",

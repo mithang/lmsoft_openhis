@@ -34,7 +34,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
 
         /// <summary>
-        /// 加载时，获取左边树节点
+        /// khi tải，đượclấytráibêncâytiếtđiểm
         /// </summary>
         /// <returns></returns>
         [HttpGet]

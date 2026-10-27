@@ -7,89 +7,89 @@ using Newtouch.Infrastructure.EF.Attributes;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品库存结转
+    /// Kết chuyển tồn kho thuốc hệ thống
     /// </summary>
     [Table("xt_yp_kcjzk")]
     [SugarTable("xt_yp_kcjzk")]
     public class SysMedicineStockCarryDownEntity : IEntity<SysMedicineStockCarryDownEntity>
     {
         /// <summary>
-        /// 组件
+        /// Thành phần
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public long Id { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 药房部门代码
+        /// Mã bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string Ypdm { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string Ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 默认值Getdate()
+        /// Giá trị mặc địnhGetdate()
         /// </summary>
         public DateTime? Yxq { get; set; }
 
         /// <summary>
-        /// 库存数量
+        /// Số lượng tồn kho
         /// </summary>
         public int Kcsl { get; set; }
 
         /// <summary>
-        /// 药库批发价
+        /// Giá bán buôn kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Ykpfj { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// Giá bán lẻ kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Yklsj { get; set; }
 
         /// <summary>
-        /// 药库进价
+        /// Giá nhập kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Jj { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số quy đổi
         /// </summary>
         public int Zhyz { get; set; }
 
         /// <summary>
-        /// 结转时间
+        /// Thời gian kết chuyển
         /// </summary>
         public DateTime Jzsj { get; set; }
 
         /// <summary>
-        /// 状态 0：无效  1：有效
+        /// Trạng thái 0：Không hiệu lực  1：Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 

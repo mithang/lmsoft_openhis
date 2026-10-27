@@ -13,11 +13,11 @@ namespace Newtouch.OR.ManageSystem.Domain.IDomainServices
     public interface ICommonDmnService
     {
         /// <summary>
-        /// 获取病区信息
+        /// Lấy thông tin khoa
         /// </summary>
         IList<SysBqListVO> GetBqlist(string bqcode, string orgId,string staffgh);
         /// <summary>
-        /// 手术字典列表
+        /// Danh sách từ điển phẫu thuật
         /// </summary>
         /// <param name="ssdm"></param>
         /// <param name="orgId"></param>
@@ -26,7 +26,7 @@ namespace Newtouch.OR.ManageSystem.Domain.IDomainServices
         IList<OperationDicVO> GetOperations(string ssdm, string orgId);
         IList<OperationDicVO> GetOperations(string[] ssdm, string orgId);
         /// <summary>
-        /// 院内职工
+        /// Nhân viên trong viện
         /// </summary>
         /// <param name="rygh"></param>
         /// <param name="orgId"></param>
@@ -34,28 +34,28 @@ namespace Newtouch.OR.ManageSystem.Domain.IDomainServices
         IList<StaffListVO> GetStafflist(string rygh, string orgId);
         //IList<ORStaffEntity> GetStafflist2(string Code, string orgId);
         /// <summary>
-        /// 麻醉列表
+        /// Danh sách gây mê
         /// </summary>
         /// <param name="AnesCode"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<ORAnesthesiaEntity> GetAneslistlist(string AnesCode, string orgId);
         /// <summary>
-        /// 手术室
+        /// Phòng phẫu thuật
         /// </summary>
         /// <param name="Code"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<ORRoomEntity> GetRoomlist(string Code, string orgId);
         /// <summary>
-        /// 切口等级
+        /// Cấp vết mổ
         /// </summary>
         /// <param name="Code"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<ORNotchGradeEntity> GetNotchGradelist(string Code, string orgId);
         /// <summary>
-        /// 系统错误代码
+        /// Mã lỗi hệ thống
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="appId"></param>
@@ -63,7 +63,7 @@ namespace Newtouch.OR.ManageSystem.Domain.IDomainServices
         IList<SysFailedCodeMessageMappVO> FailMessage(string orgId, string appId);
 
         /// <summary>
-        /// 岗位人员列表 (local replacement for the Framework binary
+        /// Danh sách nhân viên theo vị trí (local replacement for the Framework binary
         /// ISysUserDmnService.GetStaffByDutyCode, same Base views as MRQC)
         /// </summary>
         IList<SysDutyStaffVO> GetStaffByDutyCode(string orgId, string dutyCode);

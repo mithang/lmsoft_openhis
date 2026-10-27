@@ -3,7 +3,7 @@
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <script>
-    var Editing_ysList = []; //编辑域中的人员
+    var Editing_ysList = []; //Nhân viên trong vùng soạn thảo
     $(function () {
         $('#zls').click(function () {
             var initIdSelected = "";
@@ -84,7 +84,7 @@
         return postData;
     }
 
-    //人员树 选择 回调
+    //Cây nhân viên Chọn gọi lại
     function staffTreeCallback(treeSeleData) {
         Editing_ysList = [];
         var zlsNames = "";
@@ -101,7 +101,7 @@
 
     function init() {
         var date = new Date();
-        //年份
+        //Năm
         $("#Year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -114,7 +114,7 @@
             },
             selectedValue: 1900 + date.getYear(),
         });
-        //月份
+        //Tháng
         $("#Month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -179,10 +179,10 @@
                             <option value="-1">===Vui lòng chọn===</option>
                         </select>
                     </td>
-                    @*<th class="formTitle">科室：</th>
+                    @*<th class="formTitle">Khoa：</th>
                         <td class="formValue">
                             <select id="ks" class="form-control">
-                                <option value="-1">===请选择===</option>
+                                <option value="-1">===Vui lòng chọn===</option>
                             </select>
                         </td>*@
                     <th class="formTitle">Kỹ thuật viên trị liệu：</th>

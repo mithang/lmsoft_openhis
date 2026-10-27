@@ -15,7 +15,7 @@ using NewtouchHIS.Lib.Base.Extension;
 namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 {
     /// <summary>
-    /// 采购计划 (Core port)
+    /// Kế hoạch mua sắm (Core port)
     /// </summary>
     [Area("BillManage")]
     public class PurchasingPlanController : ControllerBase
@@ -32,7 +32,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 
         // Same reflection helper as OutOrInStorageBillController: the copy has
         // no GetDescription() extension. The value returned here for
-        // purchasingPlan is the PROTECTED Chinese description ("采购计划"),
+        // purchasingPlan is the PROTECTED enum description (kept in the original language),
         // which is a receipt-number key, not display text — never translated.
         private static string Desc(System.Enum value)
         {
@@ -40,10 +40,10 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
             return field?.GetCustomAttribute<DescriptionAttribute>()?.Description ?? value.ToString();
         }
 
-        #region 采购计划填写
+        #region Nhập kế hoạch mua sắm
 
         /// <summary>
-        /// 填写采购计划视图
+        /// Chế độ xem nhập kế hoạch mua sắm
         /// </summary>
         /// <returns></returns>
         public IActionResult FillPurchasingPlan()
@@ -52,7 +52,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取新的采购计划单号
+        /// Lấy số phiếu kế hoạch mua sắm mới
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -63,7 +63,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 提交采购计划
+        /// Gửi kế hoạch mua sắm
         /// </summary>
         public IActionResult SubmitFillPurchasingPlan(CgPurchaseOrderEntity pp, List<CgPurchaseOrderDetailEntity> ppmx)
         {
@@ -76,7 +76,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 检查是否是暂存单
+        /// Kiểm tra có phải phiếu nháp không
         /// </summary>
         public IActionResult CheckIsTemporaryBill(string cgdh)
         {
@@ -87,10 +87,10 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
 
         #endregion
 
-        #region 审核采购计划
+        #region Duyệt kế hoạch mua sắm
 
         /// <summary>
-        /// 采购计划审核
+        /// Duyệt kế hoạch mua sắm
         /// </summary>
         /// <returns></returns>
         public IActionResult AuditPurchasingPlan()
@@ -99,7 +99,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 审核采购计划
+        /// Duyệt kế hoạch mua sắm
         /// </summary>
         public IActionResult SubmitAuditPurchasingPlan(string cgdh, int auditState, string remarks)
         {
@@ -108,10 +108,10 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
         #endregion
 
-        #region 我的采购
+        #region Mua sắm của tôi
 
         /// <summary>
-        /// 采购计划查询
+        /// Truy vấn kế hoạch mua sắm
         /// </summary>
         /// <returns></returns>
         public IActionResult PurchasingPlanQuery()
@@ -120,7 +120,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取我的采购计划
+        /// Lấy kế hoạch mua sắm của tôi
         /// </summary>
         public IActionResult GetPurchasingPlanInfo(Pagination pagination, string cgdh, DateTime kssj, DateTime jssj, int auditState)
         {
@@ -137,7 +137,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取审核通过的采购计划
+        /// Lấy kế hoạch mua sắm đã duyệt
         /// </summary>
         public IActionResult GetAdoptPurchasingPlanInfo(Pagination pagination, string cgdh, string deptCode, DateTime kssj, DateTime jssj)
         {
@@ -153,7 +153,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取待审核采购计划
+        /// Lấy kế hoạch mua sắm chờ duyệt
         /// </summary>
         public IActionResult GetAuditPurchasingPlanInfo(Pagination pagination, string cgdh, DateTime kssj, DateTime jssj, int auditState)
         {
@@ -170,7 +170,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取我的采购计划明细
+        /// Lấy chi tiết kế hoạch mua sắm của tôi
         /// </summary>
         public IActionResult GetPurchasingPlanDetail(string cgdh)
         {
@@ -187,7 +187,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取待采购的采购计划明细
+        /// Lấy chi tiết kế hoạch mua sắm chờ mua
         /// </summary>
         public IActionResult GetWaitingPurchasePlanDetail(string cgdh)
         {
@@ -204,7 +204,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 获取审核通过的采购计划
+        /// Lấy kế hoạch mua sắm đã duyệt
         /// </summary>
         public IActionResult GetAdoptWaitingPurchasePlanInfo(Pagination pagination, string cgdh, string deptCode, DateTime kssj, DateTime jssj)
         {
@@ -220,7 +220,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 作废采购计划
+        /// Hủy kế hoạch mua sắm
         /// </summary>
         public IActionResult CancelPurchasingPlan(string cgdh)
         {
@@ -231,7 +231,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// 将暂存采购计划提交审核
+        /// Gửi kế hoạch mua sắm nháp đi duyệt
         /// </summary>
         public IActionResult SubmitPurchasingPlan(string cgdh)
         {
@@ -240,7 +240,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
         #endregion
 
-        #region 库存预警生成采购计划单
+        #region Cảnh báo tồn kho tạo phiếu kế hoạch mua sắm
         public IActionResult PurchasingPlan()
         {
             return View();

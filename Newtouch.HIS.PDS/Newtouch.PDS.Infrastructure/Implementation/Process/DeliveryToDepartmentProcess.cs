@@ -12,7 +12,7 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// 科室发药
+    /// Phát thuốc cho khoa
     /// </summary>
     public class DeliveryToDepartmentProcess : ProcessorFun<DjInfoDTO>
     {
@@ -25,24 +25,24 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 验证
+        /// Kiểm tra
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
         {
             if (Request == null)
             {
-                throw new FailedException("单据信息不能为空");
+                throw new FailedException("Thông tin chứng từ không được để trống");
             }
             if (Request.mx == null || Request.mx.Count <= 0)
             {
-                throw new FailedException("单据明细不能为空");
+                throw new FailedException("Chi tiết chứng từ không được để trống");
             }
             return new ActResult();
         }
 
         /// <summary>
-        /// 预处理
+        /// Tiền xử lý
         /// </summary>
         protected override void BeforeAction(ActResult actResult)
         {
@@ -98,7 +98,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)

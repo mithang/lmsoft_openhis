@@ -5,17 +5,17 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 贵州医保基础信息
+    /// Thông tin cơ sở BHYT Quý Châu
     /// </summary>
     public interface IGzybBaseInfoDmnService
     {
         /// <summary>
-        /// 获取贵州服务项目目录,最大流水号
+        /// Lấy danh mục hạng mục dịch vụ Quý Châu,Số thứ tự lớn nhất
         /// </summary>
         /// <returns></returns>
         int GetItemCodeMaxLsh();
 
-        #region 目录相关
+        #region Liên quan danh mục
         string Header(string tbname);
 
         IList<G_yb_mluCommon_Info> Get_G_yb_mluCommon_Info(Pagination pagination, string mlbh, string key);

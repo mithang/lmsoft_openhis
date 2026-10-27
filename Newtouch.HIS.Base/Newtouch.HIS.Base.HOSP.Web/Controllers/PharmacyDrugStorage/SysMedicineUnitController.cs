@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// 获取药品单位列表
+        /// Lấy danh sách đơn vị thuốc
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

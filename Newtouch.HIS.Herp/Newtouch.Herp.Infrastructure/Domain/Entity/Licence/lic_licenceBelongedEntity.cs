@@ -6,44 +6,44 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 证照_证照所属
+    /// Chứng chỉ_Đơn vị trực thuộc của chứng chỉ
     /// </summary>
     [SugarTable("lic_licenceBelonged")]
     public class LicLicenceBelongedEntity : IEntity<LicLicenceBelongedEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// 所属名称 物资、供应商
+        /// Tên đơn vị trực thuộc Vật tư、Nhà cung cấp
         /// </summary>
         public string belonged { get; set; }
 
         /// <summary>
-        /// 状态  0:作废；1.有效
+        /// Trạng thái  0:Hủy bỏ；1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa đổi cuối
         /// </summary>
         public string LastModifierCode { get; set; }
     }

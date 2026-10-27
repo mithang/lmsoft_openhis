@@ -6,7 +6,7 @@ namespace Newtouch.Application.Interface.Inpatient
    public interface IDoctorserviceApp
     {
         /// <summary>
-        /// 修改药品医嘱时，根据医嘱Id获取详情并且展示到医嘱录入界面
+        /// SửaThuốcY lệnhkhi，TheoY lệnhIdLấyChi tiếtvàvàtriểnhiển thịđếnY lệnhnhậpgiớimặt
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="yzlx"></param>

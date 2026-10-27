@@ -13,39 +13,39 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysRoleAuthorizeEntity : IEntity<SysRoleAuthorizeEntity>
     {
         /// <summary>
-        /// 角色授权主键
+        /// Khóa chính ủy quyền vai trò
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// 对象主键
+        /// Khóa chính đối tượng
         /// </summary>
         public string RoleId { get; set; }
 
         /// <summary>
-        /// 项目主键
+        /// Khóa chính hạng mục
         /// </summary>
         public string ItemId { get; set; }
 
         /// <summary>
-        /// 项目类型1-模块2-按钮3-列表
+        /// Loại hạng mục1-Mô-đun2-Nút3-Danh sách
         /// </summary>
         public int ItemType { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// Mã sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// Người dùng tạo
         /// </summary>
         public string CreatorCode { get; set; }
 

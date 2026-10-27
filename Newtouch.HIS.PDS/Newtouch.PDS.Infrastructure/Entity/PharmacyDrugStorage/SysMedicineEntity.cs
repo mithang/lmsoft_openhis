@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品
+    /// Thuốc hệ thống
     /// </summary>
     [Table("xt_yp")]
     [SugarTable("xt_yp")]
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 通用名
+        /// Tên chung
         /// </summary>
         public string ypmc { get; set; }
 
@@ -41,12 +41,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string TopOrganizeId { get; set; }
 
         /// <summary>
-        /// 前最例如：(甲) (乙10%)……
+        /// Trước nhất ví dụ：(giáp) (ất10%)……
         /// </summary>
         public string ypqz { get; set; }
 
         /// <summary>
-        /// 后最例如：……
+        /// Sau nhất ví dụ：……
         /// </summary>
         public string yphz { get; set; }
 
@@ -91,27 +91,27 @@ namespace Newtouch.HIS.Domain.Entity
         public string bzdw { get; set; }
 
         /// <summary>
-        /// 准备废止
+        /// Chuẩn bị bãi bỏ
         /// </summary>
         public decimal? mzcls { get; set; }
 
         /// <summary>
-        /// 准备废止，以“拆零单位”代替
+        /// Chuẩn bị bãi bỏ，bằng“Đơn vị chia lẻ”Thay thế
         /// </summary>
         public string mzcldw { get; set; }
 
         /// <summary>
-        /// 准备废止
+        /// Chuẩn bị bãi bỏ
         /// </summary>
         public decimal? zycls { get; set; }
 
         /// <summary>
-        /// 准备废止
+        /// Chuẩn bị bãi bỏ
         /// </summary>
         public string zycldw { get; set; }
 
         /// <summary>
-        /// 最小单位
+        /// Đơn vị nhỏ nhất
         /// </summary>
         public string zxdw { get; set; }
 
@@ -126,17 +126,17 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 批发价
+        /// Giá bán buôn
         /// </summary>
         public decimal? pfj { get; set; }
 
         /// <summary>
-        /// 详见系统项目表“自负比例”说明
+        /// Xem chi tiết trong bảng hạng mục hệ thống“Tỷ lệ tự trả”Giải thích
         /// </summary>
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// 1 自理 2 分类自负   详见系统项目表“自负性质”说明      门诊可用，急诊不可用，或反之，以不同药剂部门有无药来控制
+        /// 1 Tự lo 2 Tự trả theo loại   Xem chi tiết trong bảng hạng mục hệ thống“Tính chất tự trả”Giải thích      Ngoại trú có thể dùng，Cấp cứu không thể dùng，hoặc ngược lại，Kiểm soát theo bộ phận dược khác nhau có thuốc hay không
         /// </summary>
         public string zfxz { get; set; }
 
@@ -151,7 +151,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string jx { get; set; }
 
         /// <summary>
-        /// xt_yc  修改直接保存名称
+        /// xt_yc  Sửa tên lưu trực tiếp
         /// </summary>
         public string ycmc { get; set; }
 
@@ -166,12 +166,12 @@ namespace Newtouch.HIS.Domain.Entity
         public int? medextid { get; set; }
 
         /// <summary>
-        /// 药品在各药房消耗时的“包装级别”或“拆零数信息”
+        /// Khi thuốc tiêu hao tại các nhà thuốc“Cấp đóng gói”hoặc“Thông tin số chia lẻ”
         /// </summary>
         public string ypbzdm { get; set; }
 
         /// <summary>
-        /// 药房代码
+        /// Mã nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
@@ -181,7 +181,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string nbdl { get; set; }
 
         /// <summary>
-        /// ----0：停用  1：启用   ---0：通用，1：门诊，2：住院  （作废）      
+        /// ----0：Ngừng dùng  1：Bật   ---0：Chung，1：Ngoại trú，2：Nội trú  （Hủy bỏ）      
         /// </summary>
         public string mzzybz { get; set; }
 
@@ -206,7 +206,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 1：有效 0：无效
+        /// 1：Hiệu lực 0：Không hiệu lực
         /// </summary>
         public string zt { get; set; }
 

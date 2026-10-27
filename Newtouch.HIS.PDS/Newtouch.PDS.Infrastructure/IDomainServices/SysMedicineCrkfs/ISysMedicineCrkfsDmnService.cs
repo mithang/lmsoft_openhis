@@ -4,14 +4,14 @@ using Newtouch.HIS.Domain.Entity.V;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 出入库方式
+    /// Phương thức xuất nhập kho
     /// </summary>
     public interface ISysMedicineCrkfsDmnService
     {
         /// <summary>
-        /// 获取出入库方式
+        /// Lấy phương thức xuất nhập kho
         /// </summary>
-        /// <param name="crkbz">出入库标志 0：入库  1：出库</param>
+        /// <param name="crkbz">Cờ xuất nhập kho 0：Nhập kho  1：Xuất kho</param>
         /// <returns></returns>
         List<SysMedicineCrkfsVEntity> GetList(string crkbz);
     }

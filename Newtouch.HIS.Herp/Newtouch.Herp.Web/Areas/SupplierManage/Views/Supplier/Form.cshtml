@@ -158,7 +158,7 @@
         }
     });
 
-    //初始化
+    //Khởi tạo
     function initControl() {
         $('#myTab a:first').tab('show');
         $('#name').keyup(function () {
@@ -210,7 +210,7 @@
 
     //load contacts grid data
     function LoadContacts() {
-        $gridList.jqGrid("clearGridData"); //清除明细的grid
+        $gridList.jqGrid("clearGridData"); //Xóa chi tiết củagrid
         $gridList.jqGrid('setGridParam',
             {
                 postData: { keyWord: keyWord }
@@ -276,7 +276,7 @@
         return true;
     }
 
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         if (!DataValidate()) {
             return;
@@ -292,7 +292,7 @@
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#name").val() === "") {
             $.modalAlert("Tên doanh nghiệp là bắt buộc", 'warning');

@@ -3,7 +3,7 @@ using System;
 
 namespace Newtouch.MRQC.Domain.Entity.QcItemManage
 {
-    /// <summary>质控病历申请 (Mr_Apply)</summary>
+    /// <summary>Đơn xin bệnh án kiểm soát chất lượng (Mr_Apply)</summary>
     [SugarTable("Mr_Apply")]
     public class MrApplyEntity
     {
@@ -34,7 +34,7 @@ namespace Newtouch.MRQC.Domain.Entity.QcItemManage
         public DateTime? LastModifyTime { get; set; }
     }
 
-    /// <summary>病历评分 (Mr_Qc_Score)</summary>
+    /// <summary>Chấm điểm bệnh án (Mr_Qc_Score)</summary>
     [SugarTable("Mr_Qc_Score")]
     public class MrQcScoreEntity
     {
@@ -56,7 +56,7 @@ namespace Newtouch.MRQC.Domain.Entity.QcItemManage
         public string OrganizeId { get; set; }
     }
 
-    /// <summary>质控项 (MR_Qc_ItemData)</summary>
+    /// <summary>Hạng mục kiểm soát chất lượng (MR_Qc_ItemData)</summary>
     [SugarTable("MR_Qc_ItemData")]
     public class QcItemDataEntity
     {

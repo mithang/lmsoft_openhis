@@ -66,11 +66,11 @@ namespace Newtouch.EMR.Domain.DTO.InputDto
 
         public string zt { get; set; }
         /// <summary>
-        /// 1主要诊断 2其他诊断 3 中医主病 4 中医主证
+        /// 1 Chẩn đoán chính 2 Chẩn đoán khác 3 Bệnh chính Đông y 4 Chứng chính Đông y
         /// </summary>
         public string ZDLX { get; set; }
         /// <summary>
-        /// WM:西医 TCM中医
+        /// WM: Tây y, TCM: Đông y
         /// </summary>
         public string ZDLB { get; set; }
     }

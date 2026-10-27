@@ -18,37 +18,37 @@ namespace Newtouch.HIS.Domain.Entity
         public int id { get; set; }
 
         /// <summary>
-        /// 代码类别
+        /// Loại mã
         /// </summary>
         public string aaa100 { get; set; }
 
         /// <summary>
-        /// 类别名称
+        /// Tên loại
         /// </summary>
         public string aaa101 { get; set; }
 
         /// <summary>
-        /// 代码值
+        /// Giá trị mã
         /// </summary>
         public string aaa102 { get; set; }
 
         /// <summary>
-        /// 代码名称
+        /// Tên mã
         /// </summary>
         public string aaa103 { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 建档人员
+        /// Nhân viên lập hồ sơ
         /// </summary>
         public string jdry { get; set; }
 
         /// <summary>
-        /// 建档日期
+        /// Ngày lập hồ sơ
         /// </summary>
         public DateTime jdrq { get; set; }
         

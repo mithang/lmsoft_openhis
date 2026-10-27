@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Repository
         /// <returns></returns>
         public IList<SysFailedCodeMessageMappEntity> GetList(string orgId = null)
         {
-            //顶级组织机构 匹配到的 Mapp
+            //Tổ chức cấp cao nhất đã khớp Mapp
             var topOrgMappList = _cache.Get<IList<SysFailedCodeMessageMappEntity>>(string.Format(CacheKey.SysFailedCodeMessageMapListListSetKey, Constants.TopOrganizeId), () =>
             {
                 return this.IQueryable(p => (p.TopOrganizeId == null || p.TopOrganizeId == "*" || p.TopOrganizeId == Constants.TopOrganizeId))
@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Repository
 
             if (!string.IsNullOrWhiteSpace(orgId))
             {
-                //Organize 匹配到的 Mapp
+                //Organize đã khớp Mapp
                 var orgMappList = topOrgMappList.Where(p => p.OrganizeId == null || p.OrganizeId == "*" || p.OrganizeId == orgId).ToList();
 
                 return orgMappList.GroupBy(p => p.code)

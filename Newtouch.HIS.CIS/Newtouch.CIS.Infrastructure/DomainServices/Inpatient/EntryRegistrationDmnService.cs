@@ -29,7 +29,7 @@ namespace Newtouch.DomainServices.Inpatient
         public EntryRegistrationDmnService() : base()
         { }
         /// <summary>
-        /// 获取床位信息(页面显示)
+        /// Lấygiường ký tựthông tin(trangmặtHiển thị)
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -129,7 +129,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// 修改危重级别
+        /// Sửanguytrọngcấploại
         /// </summary>
         /// <param name="patChangeAreaRequestDto"></param>
         /// <returns></returns>
@@ -147,9 +147,9 @@ namespace Newtouch.DomainServices.Inpatient
                 }
             }
             catch (Exception ex) {
-                return "F|操作失败：" + ex.Message;
+                return "F|Thao tác thất bại：" + ex.Message;
             }
-            return "T|操作成功";
+            return "T|Thao tác thành công";
         }
 
         public patBedInfoVO GetBedInfo(string cwCode, string OrganizeId,string bqCode = null)
@@ -174,7 +174,7 @@ namespace Newtouch.DomainServices.Inpatient
             return this.FirstOrDefault<patBedInfoVO>(sqlstr.ToString(), par.ToArray());
         }
         /// <summary>
-        /// 获取患者床位使用信息
+        /// LấyBệnh nhângiường ký tựSử dụngthông tin
         /// </summary>
         /// <param name="patInfoRes"></param>
         /// <returns></returns>
@@ -195,7 +195,7 @@ namespace Newtouch.DomainServices.Inpatient
             return this.FirstOrDefault<patBedSyjlInfoVO>(sqlstr.ToString(), par.ToArray());
         }
         /// <summary>
-        /// 2020-6-2 chl modified 转区 读取床位使用记录
+        /// 2020-6-2 chl modified chuyển khu đọclấygiường ký tựSử dụngghi chép
         /// </summary>
         /// <param name="bqdm"></param>
         /// <returns></returns>
@@ -228,7 +228,7 @@ namespace Newtouch.DomainServices.Inpatient
                 };
                 SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfo);
 
-                #region 作废该患者历史床位使用记录，只保留一条最新记录
+                #region Hủy hồ sơ sử dụng giường cũ của bệnh nhân này，Chỉ giữ lại một bản ghi mới nhất
                 var patBedUsedList = db.IQueryable<InpatientBedUseRecordEntity>().Where(p => p.zyh == patBedSyInfo.zyh && p.OrganizeId == patBedSyInfo.OrganizeId && p.zt == "1").ToList();
                 foreach (var item in patBedUsedList)
                 {
@@ -260,7 +260,7 @@ namespace Newtouch.DomainServices.Inpatient
             }
         }
         /// <summary>
-        /// 入区时计费
+        /// vàokhukhitínhphí
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
@@ -279,13 +279,13 @@ namespace Newtouch.DomainServices.Inpatient
             return outParameter.Value.ToString();
         }
         /// <summary>
-        /// 分页获取实体内容根据条件查询
+        /// phúttrangLấythựcthểnội dungTheodòngmụcTra cứu
         /// </summary>
-        /// <param name="pagination">分页</param>
-        /// <param name="keyword">关键字</param>
-        /// <param name="ksrq">开始日期</param>
-        /// <param name="jsrq">结束日期</param>
-        /// <param name="bqdm">病区代码</param>
+        /// <param name="pagination">phúttrang</param>
+        /// <param name="keyword">Từ khóa</param>
+        /// <param name="ksrq">Ngày bắt đầu</param>
+        /// <param name="jsrq">Ngày kết thúc</param>
+        /// <param name="bqdm">Khu bệnhMã</param>
         /// <returns></returns>
         public IList<OutAreapatientInfo> GetOutAreaPatlist(Pagination pagination, string keyword, DateTime? ksrq, DateTime? jsrq, string bqdm, string orgId)
         {
@@ -333,11 +333,11 @@ FROM    dbo.zy_brxxk zyxx
         }
 
         /// <summary>
-        /// 病人出区召回
+        /// bệnh nhânra khỏi khutriệuvề
         /// </summary>
         /// <param name="pagination"></param>
-        /// <param name="zyh">住院号</param>
-        /// <param name="bqdm">病区代码</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="bqdm">Khu bệnhMã</param>
         /// <returns></returns>
         public string SaveRecallOutArea(string zyh, string bqdm)
         {
@@ -345,7 +345,7 @@ FROM    dbo.zy_brxxk zyxx
             {
                 if (string.IsNullOrWhiteSpace(zyh))
                 {
-                    return "F|住院号不能为空";
+                    return "F|Số nhập việnkhông thểđể trống";
                 }
                 InpatientPatientInfoDTO patInfo = new InpatientPatientInfoDTO()
                 {
@@ -353,14 +353,14 @@ FROM    dbo.zy_brxxk zyxx
                     zybz = Convert.ToInt32(EnumZYBZ.Xry),
                     cyrq=null
                 };
-                //更新患者住院状态
+                //Cập nhậtBệnh nhânNhập việnTrạng thái
                 var apiRespbr = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutRecallInfo", patInfo);
 
-                AppLogger.Info(string.Format("出区召回更新HIS患者住院状态，住院号：{0}，结果：{1}、{2}", zyh, apiRespbr.code, apiRespbr.sub_code));
+                AppLogger.Info(string.Format("ra khỏi khutriệuvềcập nhậtHISBệnh nhânNhập việnTrạng thái，Số nhập viện：{0}，kết quả：{1}、{2}", zyh, apiRespbr.code, apiRespbr.sub_code));
 
                 if (apiRespbr.code != APIRequestHelper.ResponseResultCode.SUCCESS)
                 {
-                    return "F|调用更改在院状态接口失败";
+                    return "F|gọihơnsửaĐang nằm việnTrạng tháigiao diệnthất bại";
                 }
 
                 SqlParameter[] para = new SqlParameter[] {
@@ -370,11 +370,11 @@ FROM    dbo.zy_brxxk zyxx
                 var sql = @" UPDATE zy_brxxk SET zybz=0,WardCode=@bqdm,cqrq=null,LastModifyTime=GETDATE() WHERE zt='1' And zybz=2 And zyh=@zyh ";
 
                 this.ExecuteSqlCommand(sql, para);
-                return "T|召回成功";
+                return "T|triệuvềthành công";
             }
             catch (Exception ex)
             {
-                return "F|召回失败：" + ex.Message;
+                return "F|triệuvềthất bại：" + ex.Message;
             }
 
         }
@@ -408,7 +408,7 @@ FROM    dbo.zy_brxxk zyxx
         
 
         /// <summary>
-        /// 在病区病人信息
+        /// ởKhu bệnhThông tin bệnh nhân
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -472,32 +472,32 @@ FROM    dbo.zy_brxxk zyxx
 
         }
 
-        #region 借用代接口
+        #region mượndùngthaygiao diện
         public string ChangeBed(patBedRequestDto reqDto)
         {
             using (var db = new EFDbTransaction().BeginTrans())
             {
-                //获取患者信息，更新床位信息
+                //LấyThông tin bệnh nhân，Cập nhậtgiường ký tựthông tin
                 InpatientPatientInfoEntity patInfoEntity = db.IQueryable<InpatientPatientInfoEntity>(a => a.zyh == reqDto.zyh && a.zt == "1" && a.OrganizeId == reqDto.OrganizeId).FirstOrDefault();
                 if (patInfoEntity == null)
                 {
-                    return "F|获取患者信息失败";
+                    return "F|LấyThông tin bệnh nhânthất bại";
                 }
                 string dqcw = patInfoEntity.BedCode;
                 string bq = patInfoEntity.WardCode;
-                //申请占用新床位
+                //Đăng kýchiếmdùngmớigiường ký tự
                 var apiRespCwNew = _hospInterfaceSyncDmnService.UpdateOccupyByCode(reqDto.bedCode, bq, true, reqDto.OrganizeId, reqDto.user);
                 if (apiRespCwNew.code == APIRequestHelper.ResponseResultCode.SUCCESS)
                 {
                     var apiRespCwOld = _hospInterfaceSyncDmnService.UpdateOccupyByCode(dqcw, bq, false, reqDto.OrganizeId, reqDto.user);
                     if (apiRespCwOld.code != APIRequestHelper.ResponseResultCode.SUCCESS)
                     {
-                        return "F|取消现有床位占用失败:" + apiRespCwOld.msg;
+                        return "F|Hủyhiệncógiường ký tựchiếmdùngthất bại:" + apiRespCwOld.msg;
                     }
                 }
                 else
                 {
-                    return "F|申请床位占用失败:" + apiRespCwNew.msg;
+                    return "F|Đăng kýgiường ký tựchiếmdùngthất bại:" + apiRespCwNew.msg;
                 }
                 
                 InpatientPatientInfoDTO patInfo = new InpatientPatientInfoDTO()
@@ -511,12 +511,12 @@ FROM    dbo.zy_brxxk zyxx
                 {
                     try
                     {
-                        //获取上一张床的使用记录并更新相关信息
+                        //Lấycái trướctờgiườngcủaSử dụngghi chépvàCập nhậtliên quanthông tin
                         InpatientBedUseRecordEntity bedUseEntity = db.IQueryable<InpatientBedUseRecordEntity>(b => b.zyh == reqDto.zyh && b.BedCode == patInfoEntity.BedCode && b.zt == "1" && b.OrganizeId == patInfoEntity.OrganizeId).FirstOrDefault();
 
-                        //修改患者信息表中bedcode
+                        //SửaThông tin bệnh nhânbảngtrongbedcode
                         patInfoEntity.BedCode = reqDto.bedCode;
-                        //修改历史床位使用记录表中数据
+                        //Sửalịch sửgiường ký tựSử dụngghi chépbảngtrongDữ liệu
                         bedUseEntity.OccEndDate = DateTime.Now;
                         bedUseEntity.TransBedCode = reqDto.bedCode;
 
@@ -525,9 +525,9 @@ FROM    dbo.zy_brxxk zyxx
                         bedUseEntity.Modify();
                         db.Update(bedUseEntity);
 
-                        //插入床位使用记录表
+                        //Chèngiường ký tựSử dụngghi chépbảng
                         patBedInfoVO patcwjl = GetBedInfo(reqDto.bedCode, reqDto.OrganizeId);
-                        #region 作废该患者历史床位使用记录，只保留一条最新记录
+                        #region Hủy hồ sơ sử dụng giường cũ của bệnh nhân này，Chỉ giữ lại một bản ghi mới nhất
                         var patBedUsedList = db.IQueryable<InpatientBedUseRecordEntity>().Where(p => p.zyh == reqDto.zyh && p.OrganizeId == reqDto.OrganizeId && p.zt == "1").ToList();
                         foreach (var item in patBedUsedList)
                         {
@@ -550,7 +550,7 @@ FROM    dbo.zy_brxxk zyxx
                         bedEntity.RoomName = patcwjl.RoomName;
                         bedEntity.DeptCode = bedUseEntity.DeptCode;
                         bedEntity.DeptName = bedUseEntity.DeptName;
-                        bedEntity.Status = Convert.ToInt32(EnumCwjlzt.Zc);//转床
+                        bedEntity.Status = Convert.ToInt32(EnumCwjlzt.Zc);//chuyểngiường
                         bedEntity.OccBeginDate = DateTime.Now;
 
                         bedEntity.Create();
@@ -562,25 +562,25 @@ FROM    dbo.zy_brxxk zyxx
                     {
                         _hospInterfaceSyncDmnService.UpdateOccupyByCode(reqDto.bedCode, bq, false, reqDto.OrganizeId, reqDto.user);
                         _hospInterfaceSyncDmnService.UpdateOccupyByCode(dqcw, bq, true, reqDto.OrganizeId, reqDto.user);                       
-                        return "F|操作失败：" + ex.Message;
+                        return "F|Thao tác thất bại：" + ex.Message;
                     }
-                    return "T|操作成功";
+                    return "T|Thao tác thành công";
 
                 }
                 else
                 {
-                    #region 回滚更新床位状态
+                    #region khôi phụccập nhậtgiường ký tựTrạng thái
                     _hospInterfaceSyncDmnService.UpdateOccupyByCode(reqDto.bedCode, bq, false, reqDto.OrganizeId, reqDto.user);
                     _hospInterfaceSyncDmnService.UpdateOccupyByCode(dqcw, bq, true, reqDto.OrganizeId, reqDto.user);
 
-                    return "F|调用更新床位信息接口失败";
+                    return "F|Gọi giao diện cập nhật thông tin giường thất bại";
                     #endregion
                 }
 
             }
         }
         /// <summary>
-        /// 入区
+        /// vàokhu
         /// </summary>
         /// <param name="inareaReq"></param>
         /// <returns></returns>
@@ -599,17 +599,17 @@ FROM    dbo.zy_brxxk zyxx
                 lastUpdateTime = DateTime.Now.ToString(),
                 zyh = inareaReq.zyh
             };
-            //拉取入区患者详细信息
+            //kéolấyvàokhuBệnh nhânchi tiếtthông tin
             var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<InPatientDetailQueryDto>>("/api/patient/InPatientDetailQuery", reqObj);
-            if (apiResp.data == null) return "F|调用获取患者信息接口失败";
-            //更新床位状态（是否占用）
+            if (apiResp.data == null) return "F|Gọi giao diện lấy thông tin bệnh nhân thất bại";
+            //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
             var apiRespCw = _hospInterfaceSyncDmnService.UpdateOccupyByCode(inareaReq.cwCode, inareaReq.bq, true, inareaReq.OrganizeId, inareaReq.user);
             if (apiRespCw.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                return "F|申请占用床位失败：" + apiRespCw.msg; 
+                return "F|Đăng kýchiếmdùnggiường ký tựthất bại：" + apiRespCw.msg; 
             }
 
-            //更新患者住院状态
+            //Cập nhậtBệnh nhânNhập việnTrạng thái
             var apiRespbr = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfo);
             if (apiRespbr != null && apiRespCw.code == APIRequestHelper.ResponseResultCode.SUCCESS && apiRespbr.code == APIRequestHelper.ResponseResultCode.SUCCESS)
             {
@@ -629,7 +629,7 @@ FROM    dbo.zy_brxxk zyxx
                         var isNew = true;
                         if (patOldInfo != null)
                         {
-                            if (patOldInfo.zybz != Convert.ToInt32(EnumZYBZ.Wry) && !string.IsNullOrEmpty(patOldInfo.cyzddm))//出区召回患者（排除取消入院患者）
+                            if (patOldInfo.zybz != Convert.ToInt32(EnumZYBZ.Wry) && !string.IsNullOrEmpty(patOldInfo.cyzddm))//ra khỏi khutriệuvềBệnh nhân（xếptrừHủyNhập việnBệnh nhân）
                             {
                                 patOldInfo.rqrq = Convert.ToDateTime(inareaReq.rq);
                                 patOldInfo.wzjb = inareaReq.wzjb;
@@ -647,7 +647,7 @@ FROM    dbo.zy_brxxk zyxx
                         }
                         if (isNew)
                         {
-                            #region 插入患者信息表
+                            #region ChènThông tin bệnh nhânbảng
 
                             var patInfoEntity = new InpatientPatientInfoEntity
                             {
@@ -684,7 +684,7 @@ FROM    dbo.zy_brxxk zyxx
                             db.Insert(patInfoEntity);
                             #endregion
                         }
-                        #region 入院诊断插入诊断表
+                        #region Chẩn đoán nhập việnChènChẩn đoánbảng
                         if (isNew && !string.IsNullOrWhiteSpace(patInfoRes.zzdCode))
                         {
                             var diaEntity = new InpatientPatientDiagnosisEntity
@@ -703,7 +703,7 @@ FROM    dbo.zy_brxxk zyxx
 
                         #endregion
 
-                        #region 新增住院医生信息
+                        #region Thêm thông tin bác sĩ nội trú
                         if (isNew && !string.IsNullOrWhiteSpace(inareaReq.ysgh))
                         {
                             var docEntity = new InpatientPatientDoctorEntity
@@ -722,7 +722,7 @@ FROM    dbo.zy_brxxk zyxx
                         }
                         #endregion
 
-                        #region 作废该患者历史床位使用记录，只保留一条最新记录
+                        #region Hủy hồ sơ sử dụng giường cũ của bệnh nhân này，Chỉ giữ lại một bản ghi mới nhất
                         var patBedUsedList = db.IQueryable<InpatientBedUseRecordEntity>().Where(p => p.zyh == patInfoRes.zyh && p.OrganizeId == inareaReq.OrganizeId && p.zt == "1").ToList();
                         foreach (var item in patBedUsedList)
                         {
@@ -732,7 +732,7 @@ FROM    dbo.zy_brxxk zyxx
                         }
                         #endregion
 
-                        #region 插入床位使用记录表
+                        #region Chèngiường ký tựsử dụngghi chépbảng
                         var patBedSyInfo = GetBedInfo(inareaReq.cwCode, inareaReq.OrganizeId,inareaReq.bq);
                         var bedEntity = new InpatientBedUseRecordEntity
                         {
@@ -756,48 +756,48 @@ FROM    dbo.zy_brxxk zyxx
                         #endregion
                         db.Commit();
                     }
-                    return "T|操作成功";
+                    return "T|Thao tác thành công";
                 }
                 catch (Exception ex)
                 {
                     while (ex.InnerException != null)
                     {
-                        ex = ex.InnerException; //取内部异常
+                        ex = ex.InnerException; //lấytrongbộNgoại lệ
                     }
-                    #region 更新失败后回滚接口
+                    #region Giao diện khôi phục sau khi cập nhật thất bại
                     var BackpatInfo = new InpatientPatientInfoDTO
                     {
                         zyh = inareaReq.zyh,
                         zybz = Convert.ToInt32(EnumZYBZ.Xry)
                     };
-                    //更新床位状态（是否占用）
+                    //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                     _hospInterfaceSyncDmnService.UpdateOccupyByCode(inareaReq.cwCode, inareaReq.bq, false, inareaReq.OrganizeId, inareaReq.user);
-                    //更新患者住院状态
+                    //Cập nhậtBệnh nhânNhập việnTrạng thái
                     SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", BackpatInfo);
                     #endregion
-                    return "F|操作失败：" + ex.Message;
+                    return "F|Thao tác thất bại：" + ex.Message;
                 }
             }
 
             {
-                #region 更新失败后回滚接口
+                #region Giao diện khôi phục sau khi cập nhật thất bại
                 var backpatInfo = new InpatientPatientInfoDTO
                 {
                     zyh = inareaReq.zyh,
                     zybz = Convert.ToInt32(EnumZYBZ.Xry)
                 };
-                //更新床位状态（是否占用）
+                //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                 _hospInterfaceSyncDmnService.UpdateOccupyByCode(inareaReq.cwCode, inareaReq.bq, false, inareaReq.OrganizeId, inareaReq.user);
-                //更新患者住院状态
+                //Cập nhậtBệnh nhânNhập việnTrạng thái
                 SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", backpatInfo);
                 #endregion
-                return "F|调用更新床位或在院状态接口失败";
+                return "F|gọicập nhậtgiường hoặcĐang nằm việnTrạng tháigiao diệnthất bại";
             }
 
         }
 
         /// <summary>
-        /// 转区患者信息修改
+        /// chuyển khuThông tin bệnh nhânSửa
         /// </summary>
         /// <param name="patChangeAreaRequestDto"></param>
         public string SaveChangeAreaPatInfo(patChangeAreaRequestDto patChangeAreaRequestDto)
@@ -805,9 +805,9 @@ FROM    dbo.zy_brxxk zyxx
             var oldInfo = _inpatientBedUseRecordRepo.FindEntity(p => p.zyh == patChangeAreaRequestDto.zyh && p.OrganizeId == patChangeAreaRequestDto.OrganizeId && p.zt == "1" && p.BedCode==patChangeAreaRequestDto.lastcwCode);
             if (oldInfo == null)
             {
-                return "F|患者床位使用信息异常";
+                return "F|Bệnh nhângiường ký tựsử dụngthông tinbất thường";
             }
-            //准备更新前brxx
+            //chuẩnchuẩn bịCập nhậttrướcbrxx
             var patInfo = new InpatientPatientInfoDTO
             {
                 zyh = patChangeAreaRequestDto.zyh,
@@ -821,25 +821,25 @@ FROM    dbo.zy_brxxk zyxx
                 cwCode = patChangeAreaRequestDto.cwCode,
                 isOccupy = true
             };
-            //更新床位状态（是否占用）
+            //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
             var apiRespCw = _hospInterfaceSyncDmnService.UpdateOccupyByCode(patChangeAreaRequestDto.cwCode, patChangeAreaRequestDto.WardCode, true, patChangeAreaRequestDto.OrganizeId, patChangeAreaRequestDto.user);
             if (apiRespCw.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                return "F|申请占用床位失败:" + apiRespCw.msg;
+                return "F|Đăng kýchiếmdùnggiường ký tựthất bại:" + apiRespCw.msg;
             }
             var apiRespbr = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfo);
             if (apiRespbr.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                return "F|同步HIS患者信息接口失败";
+                return "F|Đồng bộHISThông tin bệnh nhângiao diệnthất bại";
             }
-            #region 取消前一个病床占位
+            #region Hủytrướcmộtbệnhgiườngchiếm ký tự
             var apiResplastCw = _hospInterfaceSyncDmnService.UpdateOccupyByCode(patChangeAreaRequestDto.lastcwCode, oldInfo.WardCode, false, patChangeAreaRequestDto.OrganizeId, patChangeAreaRequestDto.user);
             #endregion
             if (apiResplastCw.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                //如果失败则取消新床位占用
+                //nếunếuthất bạithìHủymớigiường ký tựchiếmdùng
                 _hospInterfaceSyncDmnService.UpdateOccupyByCode(patChangeAreaRequestDto.cwCode, patChangeAreaRequestDto.WardCode, false, patChangeAreaRequestDto.OrganizeId, patChangeAreaRequestDto.user);
-                return "F|更新当前床位占用状态失败";
+                return "F|cập nhậthiện tạigiường ký tựchiếmdùngTrạng tháithất bại";
             }
             try
             {
@@ -859,9 +859,9 @@ FROM    dbo.zy_brxxk zyxx
                     patInfoEntity.Modify();
                     db.Update(patInfoEntity);
 
-                    //插入床位使用记录表
+                    //Chèngiường ký tựSử dụngghi chépbảng
 
-                    #region 作废该患者历史床位使用记录，只保留一条最新记录
+                    #region Hủy hồ sơ sử dụng giường cũ của bệnh nhân này，Chỉ giữ lại một bản ghi mới nhất
                     var patBedUsedList = db.IQueryable<InpatientBedUseRecordEntity>().Where(p => p.zyh == patChangeAreaRequestDto.zyh && p.OrganizeId == patBedSyInfo.OrganizeId && p.zt == "1").ToList();
                     foreach (var item in patBedUsedList)
                     {
@@ -871,7 +871,7 @@ FROM    dbo.zy_brxxk zyxx
                     }
                     #endregion
 
-                    #region 新增住院医生信息
+                    #region Thêm thông tin bác sĩ nội trú
                     var patDocList = db.IQueryable<InpatientPatientDoctorEntity>().Where(p => p.zyh == patChangeAreaRequestDto.zyh && p.OrganizeId == patBedSyInfo.OrganizeId && p.zt == "1").ToList();
                     foreach (var item in patDocList)
                     {
@@ -895,7 +895,7 @@ FROM    dbo.zy_brxxk zyxx
                     }
                     #endregion
 
-                    #region 插入床位使用记录
+                    #region Chèngiường ký tựsử dụngghi chép
                     InpatientBedUseRecordEntity bedEntity = new InpatientBedUseRecordEntity();
                     bedEntity.Id = Guid.NewGuid().ToString();
                     bedEntity.OrganizeId = patBedSyInfo.OrganizeId;
@@ -925,53 +925,53 @@ FROM    dbo.zy_brxxk zyxx
                     zyh = patChangeAreaRequestDto.zyh,
                     zybz = Convert.ToInt32(EnumZYBZ.Zq)
                 };
-                //更新床位状态（是否占用）
+                //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                 _hospInterfaceSyncDmnService.UpdateOccupyByCode(patChangeAreaRequestDto.cwCode, patChangeAreaRequestDto.WardCode, false, patChangeAreaRequestDto.OrganizeId, patChangeAreaRequestDto.user);
                 SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patBackInfo);
-                return "F|操作失败：" + ex.Message;
+                return "F|Thao tác thất bại：" + ex.Message;
             }
-            return "T|操作成功";
+            return "T|Thao tác thành công";
         }
 
         public string PatCancelInArea(patRequestDto req)
         {
             string cwCode = "";
             string zyh = "";
-            //获取最近一次病床记录
+            //Lấynhấtgầnmột lầnbệnhgiườngghi chép
             InpatientBedUseRecordEntity bedUsedEntity = _inpatientBedUseRecordRepo.FindEntity(a => a.zyh == req.zyh && a.zt == "1" && a.OrganizeId == req.OrganizeId);
 
             try
             {
                 using (var db = new EFDbTransaction().BeginTrans())
                 {
-                    //获取患者信息
+                    //LấyThông tin bệnh nhân
                     InpatientPatientInfoEntity patInfo = db.IQueryable<InpatientPatientInfoEntity>().Where(a => a.zyh == req.zyh && a.zt == "1" && a.OrganizeId == req.OrganizeId).FirstOrDefault();
 
                     if (patInfo == null || bedUsedEntity == null)
                     {
-                        return "F|获取患者信息或床位使用记录失败";
+                        return "F|Lấy thông tin bệnh nhân hoặc hồ sơ sử dụng giường thất bại";
                     }
                     cwCode = patInfo.BedCode;
                     zyh = req.zyh;
-                    #region 更新床位病人状态
+                    #region Cập nhật trạng thái bệnh nhân của giường
 
-                    //更新床位状态（是否占用）
+                    //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                     var apiRespCw = _hospInterfaceSyncDmnService.UpdateOccupyByCode(cwCode, bedUsedEntity.WardCode, false, req.OrganizeId, req.user);
                     if (apiRespCw.code != APIRequestHelper.ResponseResultCode.SUCCESS)
                     {
-                        return "F|撤销当前床位占用状态失败：" + apiRespCw.msg;
+                        return "F|Thu hồihiện tạigiường ký tựchiếmdùngTrạng tháithất bại：" + apiRespCw.msg;
                     }
                     InpatientPatientInfoDTO patInfoReq = new InpatientPatientInfoDTO()
                     {
                         zyh = zyh,
                         zybz = Convert.ToInt32(EnumZYBZ.Xry)
                     };
-                    //更新患者住院状态
+                    //Cập nhậtBệnh nhânNhập việnTrạng thái
                     var apiRespbr = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfoReq);
                     #endregion
                     if (apiRespbr.code != APIRequestHelper.ResponseResultCode.SUCCESS)
                     {
-                        //更新床位状态（是否占用）
+                        //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                         _hospInterfaceSyncDmnService.UpdateOccupyByCode(cwCode, bedUsedEntity.WardCode, true, req.OrganizeId, req.user);
 
                         InpatientPatientInfoDTO patInfoBackReq = new InpatientPatientInfoDTO()
@@ -979,12 +979,12 @@ FROM    dbo.zy_brxxk zyxx
                             zyh = zyh,
                             zybz = Convert.ToInt32(EnumZYBZ.Bqz)
                         };
-                        //更新患者住院状态
+                        //Cập nhậtBệnh nhânNhập việnTrạng thái
                         SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfoBackReq);
-                        return "F|调用接口更新床位或患者状态失败";
+                        return "F|gọigiao diệncập nhậtgiường hoặcBệnh nhânTrạng tháithất bại";
                     }
 
-                    #region 更新病床使用表
+                    #region Cập nhật bảng sử dụng giường bệnh
                     bedUsedEntity.OccEndDate = DateTime.Now;
                     bedUsedEntity.zt = "0";
                     bedUsedEntity.Modify();
@@ -1005,7 +1005,7 @@ FROM    dbo.zy_brxxk zyxx
                     db.Insert(newbedUsedEntity);
                     #endregion
 
-                    #region 作废历史诊断信息
+                    #region Hủy thông tin chẩn đoán cũ
                     var patZDList = db.IQueryable<InpatientPatientDiagnosisEntity>().Where(p => p.zyh == req.zyh && p.OrganizeId == req.OrganizeId && p.zt == "1").ToList();
                     foreach (var item in patZDList)
                     {
@@ -1015,7 +1015,7 @@ FROM    dbo.zy_brxxk zyxx
                     }
                     #endregion
 
-                    #region 更新患者信息表
+                    #region Cập nhật bảng thông tin bệnh nhân
                     if (patInfo != null)
                     {
                         patInfo.ysgh = null;
@@ -1029,7 +1029,7 @@ FROM    dbo.zy_brxxk zyxx
 
                     db.Commit();
                 }
-                return "T|取消入区成功";
+                return "T|Hủyvàokhuthành công";
             }
             catch (Exception ex)
             {
@@ -1038,12 +1038,12 @@ FROM    dbo.zy_brxxk zyxx
                     zyh = zyh,
                     zybz = Convert.ToInt32(EnumZYBZ.Bqz)
                 };
-                //更新床位状态（是否占用）
+                //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                 _hospInterfaceSyncDmnService.UpdateOccupyByCode(cwCode, bedUsedEntity.WardCode, true, req.OrganizeId, req.user);
 
-                //更新患者住院状态
+                //Cập nhậtBệnh nhânNhập việnTrạng thái
                 SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfoBackReq);
-                return "F|取消入区失败：" + ex.Message;
+                return "F|Hủyvàokhuthất bại：" + ex.Message;
             }
 
         }
@@ -1055,17 +1055,17 @@ FROM    dbo.zy_brxxk zyxx
             {
                 using (var db = new EFDbTransaction().BeginTrans())
                 {
-                    //获取患者信息
+                    //LấyThông tin bệnh nhân
                     InpatientPatientInfoEntity patInfo = db.IQueryable<InpatientPatientInfoEntity>().Where(a => a.zyh == req.zyh && a.zt == "1" && a.OrganizeId == req.OrganizeId).FirstOrDefault();
-                    //获取最近一次病床记录
+                    //Lấynhấtgầnmột lầnbệnhgiườngghi chép
                     InpatientBedUseRecordEntity bedUsedEntity = db.IQueryable<InpatientBedUseRecordEntity>().Where(a => a.zyh == req.zyh && a.zt == "1" && a.OrganizeId == req.OrganizeId).FirstOrDefault();
                     if (patInfo == null || bedUsedEntity == null)
                     {
-                        return "F|获取患者信息或床位使用记录失败";
+                        return "F|Lấy thông tin bệnh nhân hoặc hồ sơ sử dụng giường thất bại";
                     }
                     cwCode = patInfo.BedCode;
 
-                    #region 作废历史诊断信息
+                    #region Hủy thông tin chẩn đoán cũ
                     var patZDList = db.IQueryable<InpatientPatientDiagnosisEntity>().Where(p => p.zyh == req.zyh && p.OrganizeId == req.OrganizeId && p.zt == "1" && p.zdlb == "2").ToList();
                     foreach (var item in patZDList)
                     {
@@ -1075,7 +1075,7 @@ FROM    dbo.zy_brxxk zyxx
                     }
                     #endregion
 
-                    #region 作废历史医生信息
+                    #region hủy bỏlịch sửBác sĩthông tin
                     var patYSList = db.IQueryable<InpatientPatientDoctorEntity>().Where(p => p.zyh == req.zyh && p.OrganizeId == req.OrganizeId && p.zt == "1").ToList();
                     foreach (var item in patYSList)
                     {
@@ -1085,7 +1085,7 @@ FROM    dbo.zy_brxxk zyxx
                     }
                     #endregion
 
-                    #region 更新病床使用表
+                    #region Cập nhật bảng sử dụng giường bệnh
                     bedUsedEntity.OccEndDate = DateTime.Now;
                     bedUsedEntity.zt = "0";
                     bedUsedEntity.Modify();
@@ -1114,7 +1114,7 @@ FROM    dbo.zy_brxxk zyxx
                     db.Insert(newbedUsedEntity);
                     #endregion
 
-                    #region 更新患者信息表
+                    #region Cập nhật bảng thông tin bệnh nhân
                     patInfo.ysgh = null;
                     //patInfo.BedCode = null;
                     patInfo.rqrq = null;
@@ -1125,11 +1125,11 @@ FROM    dbo.zy_brxxk zyxx
                     #endregion
                     db.Commit();
                 }
-                return "T|转区成功";
+                return "T|chuyển khuthành công";
             }
             catch (Exception ex)
             {
-                return "F|转区失败：" + ex.Message;
+                return "F|chuyển khuthất bại：" + ex.Message;
             }
 
         }
@@ -1141,11 +1141,11 @@ FROM    dbo.zy_brxxk zyxx
         {
             using (var db = new EFDbTransaction().BeginTrans())
             {
-                //获取患者信息，更新床位信息
+                //LấyThông tin bệnh nhân，Cập nhậtgiường ký tựthông tin
                 InpatientPatientInfoEntity patInfoEntity = db.IQueryable<InpatientPatientInfoEntity>(a => a.zyh == reqDto.zyh && a.zt == "1" && a.OrganizeId == reqDto.OrganizeId).FirstOrDefault();
                 if (patInfoEntity == null)
                 {
-                    return "F|获取患者信息失败";
+                    return "F|LấyThông tin bệnh nhânthất bại";
                 }
                 var cwCode = patInfoEntity.BedCode;
                 var reqcwNewObj = new
@@ -1166,10 +1166,10 @@ FROM    dbo.zy_brxxk zyxx
                     zyh = reqDto.zyh,
                     cw = reqDto.bedCode
                 };
-                //更新床位状态（是否占用）
+                //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                 var apiRespCwNew = SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>(
                 "/api/ward/UpdateBedOccupy", reqcwNewObj);
-                //更新床位状态（是否占用）
+                //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                 var apiRespCwOld = SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>(
                 "/api/ward/UpdateBedOccupy", reqcwOldObj);
                 var apiRespbr = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfo);
@@ -1177,12 +1177,12 @@ FROM    dbo.zy_brxxk zyxx
                 {
                     try
                     {
-                        //获取上一张床的使用记录并更新相关信息
+                        //Lấycái trướctờgiườngcủaSử dụngghi chépvàCập nhậtliên quanthông tin
                         InpatientBedUseRecordEntity bedUseEntity = db.IQueryable<InpatientBedUseRecordEntity>(b => b.zyh == reqDto.zyh && b.BedCode == patInfoEntity.BedCode && b.zt == "1" && b.OrganizeId == patInfoEntity.OrganizeId).FirstOrDefault();
 
-                        //修改患者信息表中bedcode
+                        //SửaThông tin bệnh nhânbảngtrongbedcode
                         patInfoEntity.BedCode = reqDto.bedCode;
-                        //修改历史床位使用记录表中数据
+                        //Sửalịch sửgiường ký tựSử dụngghi chépbảngtrongDữ liệu
                         bedUseEntity.OccEndDate = DateTime.Now;
                         bedUseEntity.TransBedCode = reqDto.bedCode;
 
@@ -1191,9 +1191,9 @@ FROM    dbo.zy_brxxk zyxx
                         bedUseEntity.Modify();
                         db.Update(bedUseEntity);
 
-                        //插入床位使用记录表
+                        //Chèngiường ký tựSử dụngghi chépbảng
                         patBedInfoVO patcwjl = GetBedInfo(reqDto.bedCode, reqDto.OrganizeId);
-                        #region 作废该患者历史床位使用记录，只保留一条最新记录
+                        #region Hủy hồ sơ sử dụng giường cũ của bệnh nhân này，Chỉ giữ lại một bản ghi mới nhất
                         var patBedUsedList = db.IQueryable<InpatientBedUseRecordEntity>().Where(p => p.zyh == reqDto.zyh && p.OrganizeId == reqDto.OrganizeId && p.zt == "1").ToList();
                         foreach (var item in patBedUsedList)
                         {
@@ -1216,7 +1216,7 @@ FROM    dbo.zy_brxxk zyxx
                         bedEntity.RoomName = patcwjl.RoomName;
                         bedEntity.DeptCode = bedUseEntity.DeptCode;
                         bedEntity.DeptName = bedUseEntity.DeptName;
-                        bedEntity.Status = Convert.ToInt32(EnumCwjlzt.Zc);//转床
+                        bedEntity.Status = Convert.ToInt32(EnumCwjlzt.Zc);//chuyểngiường
                         bedEntity.OccBeginDate = DateTime.Now;
 
                         bedEntity.Create();
@@ -1238,20 +1238,20 @@ FROM    dbo.zy_brxxk zyxx
                             cwCode = cwCode,
                             isOccupy = true
                         };
-                        //更新床位状态（是否占用）
+                        //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                         SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>(
                         "/api/ward/UpdateBedOccupy", reqcwNewBackObj);
-                        //更新床位状态（是否占用）
+                        //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                         SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>(
                         "/api/ward/UpdateBedOccupy", reqcwOldBackObj);
-                        return "F|操作失败：" + ex.Message;
+                        return "F|Thao tác thất bại：" + ex.Message;
                     }
-                    return "T|操作成功";
+                    return "T|Thao tác thành công";
 
                 }
                 else
                 {
-                    #region 回滚更新床位状态
+                    #region khôi phụccập nhậtgiường ký tựTrạng thái
                     var reqcwNewBackObj = new
                     {
                         TimeStamp = DateTime.Now.ToString(),
@@ -1264,13 +1264,13 @@ FROM    dbo.zy_brxxk zyxx
                         cwCode = cwCode,
                         isOccupy = true
                     };
-                    //更新床位状态（是否占用）
+                    //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                     SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>(
                     "/api/ward/UpdateBedOccupy", reqcwNewBackObj);
-                    //更新床位状态（是否占用）
+                    //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                     SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>(
                     "/api/ward/UpdateBedOccupy", reqcwOldBackObj);
-                    return "F|调用更新床位信息接口失败";
+                    return "F|Gọi giao diện cập nhật thông tin giường thất bại";
                     #endregion
                 }
 
@@ -1278,7 +1278,7 @@ FROM    dbo.zy_brxxk zyxx
         }
 
         /// <summary>
-        /// 转区患者信息修改
+        /// chuyển khuThông tin bệnh nhânSửa
         /// </summary>
         /// <param name="patChangeAreaRequestDto"></param>
         public string SaveChangeAreaPatInfoV1(patChangeAreaRequestDto patChangeAreaRequestDto)
@@ -1296,34 +1296,34 @@ FROM    dbo.zy_brxxk zyxx
                 cwCode = patChangeAreaRequestDto.cwCode,
                 isOccupy = true
             };
-            //更新床位状态（是否占用）
+            //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
             var apiRespCw = SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/ward/UpdateBedOccupy", reqcwObj);
             var apiRespbr = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfo);
             if (apiRespCw.code != APIRequestHelper.ResponseResultCode.SUCCESS || apiRespbr.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                return "F|调用更新床位信息接口失败";
+                return "F|Gọi giao diện cập nhật thông tin giường thất bại";
             }
-            #region 取消前一个病床占位
+            #region Hủytrướcmộtbệnhgiườngchiếm ký tự
             var lastcwObj = new
             {
                 TimeStamp = DateTime.Now.ToString(),
                 cwCode = patChangeAreaRequestDto.lastcwCode,
                 isOccupy = false
             };
-            //更新床位状态（是否占用）
+            //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
             var apiResplastCw = SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>(
             "/api/ward/UpdateBedOccupy", lastcwObj);
             #endregion
             if (apiResplastCw.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
-                //如果失败则取消新床位占用
+                //nếunếuthất bạithìHủymớigiường ký tựchiếmdùng
                 SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/ward/UpdateBedOccupy", new
                 {
                     TimeStamp = DateTime.Now.ToString(),
                     cwCode = patChangeAreaRequestDto.cwCode,
                     isOccupy = false
                 });
-                return "F|调用接口更新前占用床位状态失败";
+                return "F|gọigiao diệncập nhậttrướcchiếmdùnggiường ký tựTrạng tháithất bại";
             }
             try
             {
@@ -1343,9 +1343,9 @@ FROM    dbo.zy_brxxk zyxx
                     patInfoEntity.Modify();
                     db.Update(patInfoEntity);
 
-                    //插入床位使用记录表
+                    //Chèngiường ký tựSử dụngghi chépbảng
 
-                    #region 作废该患者历史床位使用记录，只保留一条最新记录
+                    #region Hủy hồ sơ sử dụng giường cũ của bệnh nhân này，Chỉ giữ lại một bản ghi mới nhất
                     var patBedUsedList = db.IQueryable<InpatientBedUseRecordEntity>().Where(p => p.zyh == patChangeAreaRequestDto.zyh && p.OrganizeId == patBedSyInfo.OrganizeId && p.zt == "1").ToList();
                     foreach (var item in patBedUsedList)
                     {
@@ -1355,7 +1355,7 @@ FROM    dbo.zy_brxxk zyxx
                     }
                     #endregion
 
-                    #region 新增住院医生信息
+                    #region Thêm thông tin bác sĩ nội trú
                     var patDocList = db.IQueryable<InpatientPatientDoctorEntity>().Where(p => p.zyh == patChangeAreaRequestDto.zyh && p.OrganizeId == patBedSyInfo.OrganizeId && p.zt == "1").ToList();
                     foreach (var item in patDocList)
                     {
@@ -1379,7 +1379,7 @@ FROM    dbo.zy_brxxk zyxx
                     }
                     #endregion
 
-                    #region 插入床位使用记录
+                    #region Chèngiường ký tựsử dụngghi chép
                     InpatientBedUseRecordEntity bedEntity = new InpatientBedUseRecordEntity();
                     bedEntity.Id = Guid.NewGuid().ToString();
                     bedEntity.OrganizeId = patBedSyInfo.OrganizeId;
@@ -1415,12 +1415,12 @@ FROM    dbo.zy_brxxk zyxx
                     zyh = patChangeAreaRequestDto.zyh,
                     zybz = Convert.ToInt32(EnumZYBZ.Zq)
                 };
-                //更新床位状态（是否占用）
+                //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                 SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/ward/UpdateBedOccupy", reqcwBackObj);
                 SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patBackInfo);
-                return "F|操作失败：" + ex.Message;
+                return "F|Thao tác thất bại：" + ex.Message;
             }
-            return "T|操作成功";
+            return "T|Thao tác thành công";
         }
         public string SavePatInAreaV1(patInAreaRequestDto inareaReq)
         {
@@ -1450,12 +1450,12 @@ FROM    dbo.zy_brxxk zyxx
             //    zybz = Convert.ToInt32(EnumZYBZ.Bqz)
             //};
 
-            //拉取入区患者详细信息
+            //kéolấyvàokhuBệnh nhânchi tiếtthông tin
             var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<InPatientDetailQueryDto>>("/api/patient/InPatientDetailQuery", reqObj);
-            if (apiResp.data == null) return "F|调用获取患者信息接口失败";
-            //更新床位状态（是否占用）
+            if (apiResp.data == null) return "F|Gọi giao diện lấy thông tin bệnh nhân thất bại";
+            //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
             var apiRespCw = SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/ward/UpdateBedOccupy", reqcwObj);
-            //更新患者住院状态
+            //Cập nhậtBệnh nhânNhập việnTrạng thái
             var apiRespbr = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfo);
             if (apiRespbr != null && apiRespCw.code == APIRequestHelper.ResponseResultCode.SUCCESS && apiRespbr.code == APIRequestHelper.ResponseResultCode.SUCCESS)
             {
@@ -1474,7 +1474,7 @@ FROM    dbo.zy_brxxk zyxx
                         var isNew = true;
                         if (patOldInfo != null)
                         {
-                            if (patOldInfo.zybz != Convert.ToInt32(EnumZYBZ.Wry) && !string.IsNullOrEmpty(patOldInfo.cyzddm))//出区召回患者（排除取消入院患者）
+                            if (patOldInfo.zybz != Convert.ToInt32(EnumZYBZ.Wry) && !string.IsNullOrEmpty(patOldInfo.cyzddm))//ra khỏi khutriệuvềBệnh nhân（xếptrừHủyNhập việnBệnh nhân）
                             {
                                 patOldInfo.rqrq = Convert.ToDateTime(inareaReq.rq);
                                 patOldInfo.wzjb = inareaReq.wzjb;
@@ -1491,7 +1491,7 @@ FROM    dbo.zy_brxxk zyxx
                         }
                         if (isNew)
                         {
-                            #region 插入患者信息表
+                            #region ChènThông tin bệnh nhânbảng
 
                             var patInfoEntity = new InpatientPatientInfoEntity
                             {
@@ -1535,7 +1535,7 @@ FROM    dbo.zy_brxxk zyxx
                             db.Insert(patInfoEntity);
                             #endregion
                         }
-                        #region 入院诊断插入诊断表
+                        #region Chẩn đoán nhập việnChènChẩn đoánbảng
                         if (isNew && !string.IsNullOrWhiteSpace(patInfoRes.zzdCode))
                         {
                             var diaEntity = new InpatientPatientDiagnosisEntity
@@ -1554,7 +1554,7 @@ FROM    dbo.zy_brxxk zyxx
 
                         #endregion
 
-                        #region 新增住院医生信息
+                        #region Thêm thông tin bác sĩ nội trú
                         if (isNew && !string.IsNullOrWhiteSpace(inareaReq.ysgh))
                         {
                             var docEntity = new InpatientPatientDoctorEntity
@@ -1573,7 +1573,7 @@ FROM    dbo.zy_brxxk zyxx
                         }
                         #endregion
 
-                        #region 作废该患者历史床位使用记录，只保留一条最新记录
+                        #region Hủy hồ sơ sử dụng giường cũ của bệnh nhân này，Chỉ giữ lại một bản ghi mới nhất
                         var patBedUsedList = db.IQueryable<InpatientBedUseRecordEntity>().Where(p => p.zyh == patInfoRes.zyh && p.OrganizeId == inareaReq.OrganizeId && p.zt == "1").ToList();
                         foreach (var item in patBedUsedList)
                         {
@@ -1583,7 +1583,7 @@ FROM    dbo.zy_brxxk zyxx
                         }
                         #endregion
 
-                        #region 插入床位使用记录表
+                        #region Chèngiường ký tựsử dụngghi chépbảng
                         var patBedSyInfo = GetBedInfo(inareaReq.cwCode, inareaReq.OrganizeId);
                         var bedEntity = new InpatientBedUseRecordEntity
                         {
@@ -1607,15 +1607,15 @@ FROM    dbo.zy_brxxk zyxx
                         #endregion
                         db.Commit();
                     }
-                    return "T|操作成功";
+                    return "T|Thao tác thành công";
                 }
                 catch (Exception ex)
                 {
                     while (ex.InnerException != null)
                     {
-                        ex = ex.InnerException; //取内部异常
+                        ex = ex.InnerException; //lấytrongbộNgoại lệ
                     }
-                    #region 更新失败后回滚接口
+                    #region Giao diện khôi phục sau khi cập nhật thất bại
                     var reqcwBackObj = new
                     {
                         TimeStamp = DateTime.Now.ToString(),
@@ -1627,17 +1627,17 @@ FROM    dbo.zy_brxxk zyxx
                         zyh = inareaReq.zyh,
                         zybz = Convert.ToInt32(EnumZYBZ.Xry)
                     };
-                    //更新床位状态（是否占用）
+                    //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                     SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/ward/UpdateBedOccupy", reqcwBackObj);
-                    //更新患者住院状态
+                    //Cập nhậtBệnh nhânNhập việnTrạng thái
                     SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", BackpatInfo);
                     #endregion
-                    return "F|操作失败：" + ex.Message;
+                    return "F|Thao tác thất bại：" + ex.Message;
                 }
             }
 
             {
-                #region 更新失败后回滚接口
+                #region Giao diện khôi phục sau khi cập nhật thất bại
                 var reqcwBackObj = new
                 {
                     TimeStamp = DateTime.Now.ToString(),
@@ -1649,12 +1649,12 @@ FROM    dbo.zy_brxxk zyxx
                     zyh = inareaReq.zyh,
                     zybz = Convert.ToInt32(EnumZYBZ.Xry)
                 };
-                //更新床位状态（是否占用）
+                //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                 SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/ward/UpdateBedOccupy", reqcwBackObj);
-                //更新患者住院状态
+                //Cập nhậtBệnh nhânNhập việnTrạng thái
                 SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", backpatInfo);
                 #endregion
-                return "F|调用更新床位或在院状态接口失败";
+                return "F|gọicập nhậtgiường hoặcĐang nằm việnTrạng tháigiao diệnthất bại";
             }
 
         }
@@ -1666,18 +1666,18 @@ FROM    dbo.zy_brxxk zyxx
             {
                 using (var db = new EFDbTransaction().BeginTrans())
                 {
-                    //获取患者信息
+                    //LấyThông tin bệnh nhân
                     InpatientPatientInfoEntity patInfo = db.IQueryable<InpatientPatientInfoEntity>().Where(a => a.zyh == req.zyh && a.zt == "1" && a.OrganizeId == req.OrganizeId).FirstOrDefault();
-                    //获取最近一次病床记录
+                    //Lấynhấtgầnmột lầnbệnhgiườngghi chép
                     InpatientBedUseRecordEntity bedUsedEntity = db.IQueryable<InpatientBedUseRecordEntity>().Where(a => a.zyh == req.zyh && a.zt == "1" && a.OrganizeId == req.OrganizeId).FirstOrDefault();
 
                     if (patInfo == null || bedUsedEntity == null)
                     {
-                        return "F|获取患者信息或床位使用记录失败";
+                        return "F|Lấy thông tin bệnh nhân hoặc hồ sơ sử dụng giường thất bại";
                     }
                     cwCode = patInfo.BedCode;
                     zyh = req.zyh;
-                    #region 更新床位病人状态
+                    #region Cập nhật trạng thái bệnh nhân của giường
                     var reqcwObj = new
                     {
                         TimeStamp = DateTime.Now.ToString(),
@@ -1689,10 +1689,10 @@ FROM    dbo.zy_brxxk zyxx
                         zyh = zyh,
                         zybz = Convert.ToInt32(EnumZYBZ.Xry)
                     };
-                    //更新床位状态（是否占用）
+                    //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                     var apiRespCw = SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>(
                     "/api/ward/UpdateBedOccupy", reqcwObj);
-                    //更新患者住院状态
+                    //Cập nhậtBệnh nhânNhập việnTrạng thái
                     var apiRespbr = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfoReq);
                     #endregion
 
@@ -1709,15 +1709,15 @@ FROM    dbo.zy_brxxk zyxx
                             zyh = zyh,
                             zybz = Convert.ToInt32(EnumZYBZ.Bqz)
                         };
-                        //更新床位状态（是否占用）
+                        //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                         SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>(
                         "/api/ward/UpdateBedOccupy", reqcwBackObj);
-                        //更新患者住院状态
+                        //Cập nhậtBệnh nhânNhập việnTrạng thái
                         SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfoBackReq);
-                        return "F|调用接口更新床位或患者状态失败";
+                        return "F|gọigiao diệncập nhậtgiường hoặcBệnh nhânTrạng tháithất bại";
                     }
 
-                    #region 更新病床使用表
+                    #region Cập nhật bảng sử dụng giường bệnh
                     bedUsedEntity.OccEndDate = DateTime.Now;
                     bedUsedEntity.zt = "0";
                     bedUsedEntity.Modify();
@@ -1738,7 +1738,7 @@ FROM    dbo.zy_brxxk zyxx
                     db.Insert(newbedUsedEntity);
                     #endregion
 
-                    #region 作废历史诊断信息
+                    #region Hủy thông tin chẩn đoán cũ
                     var patZDList = db.IQueryable<InpatientPatientDiagnosisEntity>().Where(p => p.zyh == req.zyh && p.OrganizeId == req.OrganizeId && p.zt == "1").ToList();
                     foreach (var item in patZDList)
                     {
@@ -1748,7 +1748,7 @@ FROM    dbo.zy_brxxk zyxx
                     }
                     #endregion
 
-                    #region 更新患者信息表
+                    #region Cập nhật bảng thông tin bệnh nhân
                     if (patInfo != null)
                     {
                         patInfo.ysgh = null;
@@ -1762,7 +1762,7 @@ FROM    dbo.zy_brxxk zyxx
 
                     db.Commit();
                 }
-                return "T|取消入区成功";
+                return "T|Hủyvàokhuthành công";
             }
             catch (Exception ex)
             {
@@ -1777,12 +1777,12 @@ FROM    dbo.zy_brxxk zyxx
                     zyh = zyh,
                     zybz = Convert.ToInt32(EnumZYBZ.Bqz)
                 };
-                //更新床位状态（是否占用）
+                //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                 SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>(
                 "/api/ward/UpdateBedOccupy", reqcwBackObj);
-                //更新患者住院状态
+                //Cập nhậtBệnh nhânNhập việnTrạng thái
                 SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfoBackReq);
-                return "F|取消入区失败：" + ex.Message;
+                return "F|Hủyvàokhuthất bại：" + ex.Message;
             }
 
         }
@@ -1794,32 +1794,32 @@ FROM    dbo.zy_brxxk zyxx
             {
                 using (var db = new EFDbTransaction().BeginTrans())
                 {
-                    //获取患者信息
+                    //LấyThông tin bệnh nhân
                     InpatientPatientInfoEntity patInfo = db.IQueryable<InpatientPatientInfoEntity>().Where(a => a.zyh == req.zyh && a.zt == "1" && a.OrganizeId == req.OrganizeId).FirstOrDefault();
-                    //获取最近一次病床记录
+                    //Lấynhấtgầnmột lầnbệnhgiườngghi chép
                     InpatientBedUseRecordEntity bedUsedEntity = db.IQueryable<InpatientBedUseRecordEntity>().Where(a => a.zyh == req.zyh && a.zt == "1" && a.OrganizeId == req.OrganizeId).FirstOrDefault();
                     if (patInfo == null || bedUsedEntity == null)
                     {
-                        return "F|获取患者信息或床位使用记录失败";
+                        return "F|Lấy thông tin bệnh nhân hoặc hồ sơ sử dụng giường thất bại";
                     }
                     cwCode = patInfo.BedCode;
-                    //#region 更新床位病人状态
+                    //#region Cập nhậtgiường ký tựbệnh nhânTrạng thái
                     //var reqcwObj = new
                     //{
                     //    TimeStamp = DateTime.Now.ToString(),
                     //    cwCode = cwCode,
                     //    isOccupy = false
                     //};
-                    ////更新床位状态（是否占用）
+                    ////Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                     //var apiRespCw = SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>(
                     //"/api/ward/UpdateBedOccupy", reqcwObj);
                     //#endregion
                     //if (apiRespCw.code != APIRequestHelper.ResponseResultCode.SUCCESS)
                     //{
-                    //    return "F|调用接口更新床位状态失败";
+                    //    return "F|gọigiao diệnCập nhậtgiường ký tựTrạng tháithất bại";
                     //}
 
-                    #region 作废历史诊断信息
+                    #region Hủy thông tin chẩn đoán cũ
                     var patZDList = db.IQueryable<InpatientPatientDiagnosisEntity>().Where(p => p.zyh == req.zyh && p.OrganizeId == req.OrganizeId && p.zt == "1" && p.zdlb == "2").ToList();
                     foreach (var item in patZDList)
                     {
@@ -1829,7 +1829,7 @@ FROM    dbo.zy_brxxk zyxx
                     }
                     #endregion
 
-                    #region 作废历史医生信息
+                    #region hủy bỏlịch sửBác sĩthông tin
                     var patYSList = db.IQueryable<InpatientPatientDoctorEntity>().Where(p => p.zyh == req.zyh && p.OrganizeId == req.OrganizeId && p.zt == "1").ToList();
                     foreach (var item in patYSList)
                     {
@@ -1839,7 +1839,7 @@ FROM    dbo.zy_brxxk zyxx
                     }
                     #endregion
 
-                    #region 更新病床使用表
+                    #region Cập nhật bảng sử dụng giường bệnh
                     bedUsedEntity.OccEndDate = DateTime.Now;
                     bedUsedEntity.zt = "0";
                     bedUsedEntity.Modify();
@@ -1868,7 +1868,7 @@ FROM    dbo.zy_brxxk zyxx
                     db.Insert(newbedUsedEntity);
                     #endregion
 
-                    #region 更新患者信息表
+                    #region Cập nhật bảng thông tin bệnh nhân
                     patInfo.ysgh = null;
                     //patInfo.BedCode = null;
                     patInfo.rqrq = null;
@@ -1879,7 +1879,7 @@ FROM    dbo.zy_brxxk zyxx
                     #endregion
                     db.Commit();
                 }
-                return "T|转区成功";
+                return "T|chuyển khuthành công";
             }
             catch (Exception ex)
             {
@@ -1889,10 +1889,10 @@ FROM    dbo.zy_brxxk zyxx
                     cwCode = cwCode,
                     isOccupy = true
                 };
-                //更新床位状态（是否占用）
+                //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
                 var apiRespCw = SiteBaseAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>(
                 "/api/ward/UpdateBedOccupy", reqcwBackObj);
-                return "F|转区失败：" + ex.Message;
+                return "F|chuyển khuthất bại：" + ex.Message;
             }
 
         }

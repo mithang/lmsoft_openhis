@@ -7,60 +7,60 @@ namespace Newtouch.Domain.Entity
 {
 
     /// <summary>
-    /// 系统用法联动
+    /// Hệ thốngCách dùngliênđộng
     /// </summary>
     [SugarTable("xt_usageLinkage")]
     public class SysUsageLinkageEntity
     {
         
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织结构
+        /// tổ chứckếtcấu trúc
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 用法编码
+        /// Mã cách dùng
         /// </summary>
         public string yfCode { get; set; }
 
         /// <summary>
-        /// 项目编码
+        /// Mã hạng mục
         /// </summary>
         public string sfxmCode { get; set; }
 
         /// <summary>
-        /// 项目大类编码
+        /// MụcMã nhóm lớn
         /// </summary>
         public string dlCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// tạongười
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者
+        /// Sửangười
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 状态     1:有效  0：无效
+        /// Trạng thái     1:Hiệu lực  0：Vô hiệu
         /// </summary>
         public string zt { get; set; }
     }

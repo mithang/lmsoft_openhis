@@ -105,7 +105,7 @@
         
     });
 
-    //按backspace键清楚所有
+    //theobackspacephím để xóa tất cả
     function InitBackspaceKeyForGys(id) {
         $("#gysmc").keydown(function (e) {
             e = window.event ? window.event : e;
@@ -117,7 +117,7 @@
         });
     }
 
-    //按backspace键清楚所有
+    //theobackspacephím để xóa tất cả
     function InitBackspaceKey(id) {
         $("#" + id).keydown(function (e) {
             var e = window.event ? window.event : e;
@@ -128,7 +128,7 @@
         });
     }
 
-    //初始化
+    //Khởi tạo
     function init() {
         GetDjh();
         InitJqGrid();
@@ -136,7 +136,7 @@
         
     }
 
-    //初始化出库明细
+    //Khởi tạo chi tiết xuất kho
     function InitJqGrid() {
 		$gridList.dataGrid({
 			postData: { crkId: crkId },
@@ -144,7 +144,7 @@
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
             rownumbers: true,  //Có hiển thị số thứ tự không
             multiselect: true,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
 				{
@@ -198,7 +198,7 @@
                 { label: 'ypdm', name: 'ypdm', hidden: true, editable: true },
                 { label: 'pfj', name: 'pfj', hidden: true, editable: true },
                 { label: 'lsj', name: 'lsj', hidden: true, editable: true },
-                { label: 'jj', name: 'jj', hidden: true, editable: true },//Giá nhập  与sl同单位
+                { label: 'jj', name: 'jj', hidden: true, editable: true },//Giá nhập  vàslCùng đơn vị
                 { label: 'zxdwlsj', name: 'zxdwlsj', hidden: true, editable: true },
                 { label: 'ykpfj', name: 'ykpfj', hidden: true, editable: true },
                 { label: 'yklsj', name: 'yklsj', hidden: true, editable: true },
@@ -213,7 +213,7 @@
 				{ label: 'rkdw', name: 'rkdw', hidden: true, editable: true },
 				{ label: 'lsj', name: 'lsj', hidden: true, editable: true },
             ],
-            editinputwidthborder: false,    //Có cần viền không 默认为true
+            editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
             editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
 			gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
@@ -229,7 +229,7 @@
         });
     }
 
-    //启用行内编辑
+    //Bật chỉnh sửa trong dòng
     function EnableInlineEditBox(rowid) {
         if (rowid != null && rowid !== "") {
             if(fisrload){
@@ -246,16 +246,16 @@
         else {
             var ids = $("#gridList").getDataIDs();
             $.each(ids, function () {
-                //打开编辑模式
+                //Mở chế độ chỉnh sửa
                 $("#gridList").jqGrid('editRow', String(this), false, initInlineFunc);
             });
         }
     }
 
-    //初始化 浮层
+    //Khởi tạo Lớp nổi
     function initInlineFunc(rowid) {
         debugger;
-        //部分列只读
+        //Một số cột chỉ đọc
         $("#" + rowid + "_ypmc").attr('autocomplete', 'off');
         $("#" + rowid + "_dlmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_slStr").css('background-color', '#f6f7fb').attr('readonly', 'true');
@@ -274,14 +274,14 @@
             $("#" + rowid + "_fph").val(fph);
         }
         InitSrm(rowid + "_ypmc", rowid);//Lớp nổi thuốc
-        InitTabKey("kprq_" + rowid, rowid);//开票日期输入处tab跳转
-		JJZE_Leave(rowid + "_Zje", rowid);//进价总额改变
+        InitTabKey("kprq_" + rowid, rowid);//Chỗ nhập ngày lập hóa đơntabChuyển
+		JJZE_Leave(rowid + "_Zje", rowid);//Tổng giá nhập thay đổi
 		InitBackspaceKey("yxq_" + rowid);
 		hzjs(rowid + "_Zje", rowid + "_sl", rowid);
 		tt(rowid);
     }
 
-    //添加明细
+    //Thêm chi tiết
 	function addItem(obj) {
         var ids = $("#gridList").getDataIDs();
         var lastRowoid = ids[ids.length - 1];
@@ -290,11 +290,11 @@
         };
         $("#gridList").jqGrid("addRowData", undefined, dataRow, "after", lastRowoid);
 		ComputeRKZE();
-		//$("#gridList").jqGrid('editRow', lastRowoid+1, false, initInlineFunc);//打开编辑模式
+		//$("#gridList").jqGrid('editRow', lastRowoid+1, false, initInlineFunc);//Mở chế độ chỉnh sửa
 		//$("#jqg_gridList_" + lastRowoid+1).trigger("click");
     }
 
-    //删除明细
+    //Xóa chi tiết
 	function deleteItem(obj) {
         var selRowId = $(obj).parent().parent().attr("id");
         if (!!selRowId) {
@@ -306,12 +306,12 @@
         }
     }
 
-    //获取操作按钮html
+    //Lấy nút thao táchtml
     function GetOperatehtml() {
         return "<i class='fa fa-plus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='addItem(this);'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='deleteItem(this);'></i>";
     }
 
-    //组装提交数据
+    //Lắp ráp dữ liệu gửi
     function AssembleData(rowData, rowid) {
         //var zxdwjj = Number(rowData.zxdwjj);
         var ykpfj = Number(rowData.ykpfj);
@@ -378,7 +378,7 @@
 			};
 		}
 
-    //单位切换
+    //Chuyển đổi đơn vị
 	function ChangeDw(rowid) {
         $("#sel_dw_" + rowid).change(function () {
             CalculationLsze(rowid);
@@ -387,7 +387,7 @@
         });
     }
 
-    //初始化输入库存检查事件
+    //Khởi tạo sự kiện kiểm tra tồn kho khi nhập
 	function InitKcCheck(rowid) {
 	    $("#" + rowid + "_sl").blur(function () {
             if (CheckKc(rowid)) {
@@ -397,7 +397,7 @@
             }
         });
     }
-    //计算批发价总额
+    //Tính tổng giá bán buôn
     function PfjZe(rowid) {
         var sl = Number($("#" + rowid + "_sl").val());
         var ykpfj = parseFloat($("#" + rowid + "_ykpfj").val());
@@ -407,7 +407,7 @@
         $("#" + rowid + "_pfjze").val((pfj * sl).toFixed(2));
 
     }
-    //库存检查事件
+    //Sự kiện kiểm tra tồn kho
     function CheckKc(rowid) {
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if (!reg.test($("#" + rowid + "_sl").val())) {
@@ -418,7 +418,7 @@
         return true;
     }
 
-    //计算零售总额
+    //Tính tổng giá bán lẻ
     function CalculationLsze(rowid) {
         var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
         var sl = Number($("#" + rowid + "_sl").val());
@@ -426,7 +426,7 @@
         $("#" + rowid + "_lsze").val((zhyz * sl * zxdwlsj).toFixed(2));
     }
 
-    //进价总额失焦，计算入库单价
+    //Tổng giá nhập mất tiêu điểm，Tính đơn giá nhập kho
 	function JJZE_Leave(id, rowid) {
         $("#" + id).change(function () {
 			if ($("#" + rowid +"_Zje").val() === "") {
@@ -449,7 +449,7 @@
         });
     }
 
-    //计算扣率
+    //Tính tỷ lệ khấu trừ
 	function ComputeKL(rowid) {
         if ($("#" + rowid +"_jj").val() === "") {
             return;
@@ -460,7 +460,7 @@
         var pfj = parseFloat(ykpfj / bzs * zhyz);
 		var jj = parseFloat($("#" + rowid + "_Zje").val());
         var sl = Number($("#" + rowid + "_sl").val());
-        $("#" + rowid + "_kl").val(parseFloat(jj/sl/pfj * 100).toFixed(2));  //五舍六入
+        $("#" + rowid + "_kl").val(parseFloat(jj/sl/pfj * 100).toFixed(2));  //Làm tròn 5 bỏ 6 lên
     }
 
 	function hzjs(id, id2,rowid) {
@@ -471,7 +471,7 @@
 				var sl = $("#" + rowid + "_sl").val();
 				var pfj = $("#" + rowid + "_pfj").val();
 				var lsj = $("#" + rowid + "_lsj").val();
-				$("#" + rowid + "_kl").val(parseFloat(Zje / sl / pfj * 100).toFixed(2));  //五舍六入
+				$("#" + rowid + "_kl").val(parseFloat(Zje / sl / pfj * 100).toFixed(2));  //Làm tròn 5 bỏ 6 lên
 				$("#" + rowid + "_lsze").val((lsj * sl).toFixed(2));
 				$("#" + rowid + "_pfjze").val((pfj * sl).toFixed(2));
 			});
@@ -480,7 +480,7 @@
 				var sl = $("#" + rowid + "_sl").val();
 				var pfj = $("#" + rowid + "_pfj").val();
 				var lsj = $("#" + rowid + "_lsj").val();
-				$("#" + rowid + "_kl").val(parseFloat(Zje / sl / pfj * 100).toFixed(2));  //五舍六入
+				$("#" + rowid + "_kl").val(parseFloat(Zje / sl / pfj * 100).toFixed(2));  //Làm tròn 5 bỏ 6 lên
 				$("#" + rowid + "_lsze").val((lsj * sl).toFixed(2));
 				$("#" + rowid + "_pfjze").val((pfj * sl).toFixed(2));
 			});
@@ -514,7 +514,7 @@
 		}
 	}
 
-    //计算入库总额
+    //Tính tổng nhập kho
     function ComputeRKZE() {
         var rkze = 0;
         var ids = $("#gridList").getDataIDs();
@@ -525,7 +525,7 @@
         $("#txtRKZE").val(rkze.toFixed(2));
     }
 
-    //初始化输入码
+    //Khởi tạo mã nhập
     function InitSrm(id, rowid) {
         $("#" + id).newtouchBatchFloatingSelector({
             clickautotrigger: true,
@@ -554,7 +554,7 @@
                 { label: 'Đơn giá lẻ', name: 'lsjdjdw', width: 120, align: 'center' },//Giá lẻ theo đơn vị khoa
                 { label: 'Số đăng ký', name: 'pzwh', width: 150, align: 'center' },
                 { label: 'Nhà sản xuất', name: 'sccj', width: 200, align: 'left' },
-                { label: 'pfj', name: 'pfj', hidden: true },//部门单位批发价
+                { label: 'pfj', name: 'pfj', hidden: true },//Giá bán buôn đơn vị bộ phận
                 { label: 'lsj', name: 'lsj', hidden: true },//Giá lẻ theo đơn vị khoa
                 { label: 'ykpfj', name: 'ykpfj', hidden: true },
                 { label: 'yklsj', name: 'yklsj', hidden: true },
@@ -589,7 +589,7 @@
             }
         });
     }
-    //发票处再按tab键
+    //Tại chỗ hóa đơn nhấn tiếptabphím
     function InitTabKey(id, rowid) {
         $("#" + id).keydown(function (e) {
             e = window.event ? window.event : e;
@@ -600,7 +600,7 @@
         });
     }
 
-    //初始化单位
+    //Khởi tạo đơn vị
     function initDw($thistr, rowid) {
         $("#sel_dw_" + rowid).empty();
         $("#sel_dw_" + rowid).append('<option value="bzdw" data-zhyz="' + $thistr.attr('data-bzs') + '" selected>' + $thistr.attr('data-bzdw') + '</option>');
@@ -612,7 +612,7 @@
         //}
     }
 
-    //初始化供应商
+    //Khởi tạo nhà cung cấp
     function InitGys() {
         $("#gysmc").newtouchBatchFloatingSelector({
             clickautotrigger: true,
@@ -637,7 +637,7 @@
         });
     }
 
-    ////生成单据号
+    ////Tạo số chứng từ
     //function GetDjh() {
     //    $.ajax({
     //        url: "/DrugStorage/InitDjh",
@@ -657,7 +657,7 @@
     //}
 
 
-	//生成单据号
+	//Tạo số chứng từ
 	function GetDjh() {
 		$.ajax({
 			url: "/StorageManage/DrugStockSearch/GetCrkDjh",
@@ -678,7 +678,7 @@
 		});
 	}
 
-    //入库
+    //Nhập kho
 	function newtouch_event_f8() {
 	    debugger;
 			$("#cb_gridList").click();
@@ -749,7 +749,7 @@
         });
     }
 
-    //新发药单
+    //Đơn phát thuốc mới
     function newtouch_event_f7() {
         $("#gridList").clearGridData();
         init();
@@ -757,9 +757,9 @@
         $("#gysCode").val("");
     }
 
-    //数值验证
+    //Kiểm tra giá trị số
     function Validately(rowData, rowid) {
-        if ($("#gysCode").val() === "" || $("#gysmc").val() === "") {   //去掉左右两端空格
+        if ($("#gysCode").val() === "" || $("#gysmc").val() === "") {   //Loại bỏ khoảng trắng hai đầu
             $.modalMsg("Vui lòng chọn nhà cung cấp", "error", 1000);
             return false;
         }

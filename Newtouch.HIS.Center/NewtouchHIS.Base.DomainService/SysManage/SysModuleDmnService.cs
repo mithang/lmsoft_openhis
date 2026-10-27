@@ -15,14 +15,14 @@ using SqlSugar;
 namespace NewtouchHIS.Base.DomainService.SysManage
 {
     /// <summary>
-    /// 系统菜单
-    /// 各系统通用功能，DBContext选择为主库,建议引用
+    /// Menu hệ thống
+    /// Chức năng dùng chung cho các hệ thống,DBContextChọn làm cơ sở dữ liệu chính,khuyên tham chiếu
     /// </summary>
     public class SysModuleDmnService : BaseDmnService<SysModuleEntity>, ISysModuleDmnService
     {
         private readonly ISysRoleDmnService _roleDmn;
         /// <summary>
-        /// 应用需配置主库
+        /// Ứng dụng cần cấu hình cơ sở dữ liệu chính
         /// </summary>
         private string _mainDB = ConfigInitHelper.DbConfig.MainDB ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "DbConfig.MainDB");
         public SysModuleDmnService(ISysRoleDmnService roleDmn)
@@ -59,12 +59,12 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             {
                 return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Nhân viên thao tác không đủ quyền" };
             }
-            //查找重复菜单
+            //Tìm menu trùng lặp
             var menuNames = vo.Select(p => p.Name);
             var existsMenu = await GetByWhere(p => menuNames.Contains(p.Name) && p.OrganizeId == orgId && p.zt == "1");
             if (existsMenu != null && existsMenu.Count() > 0)
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = $"菜单已存在：{existsMenu.Select(p => p.Name).ToList().ToJson()}" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = $"Menu đã tồn tại:{existsMenu.Select(p => p.Name).ToList().ToJson()}" };
             }
             var parentMenu = vo.Where(p => string.IsNullOrWhiteSpace(p.ParentId)).ToList();
             if (parentMenu != null && parentMenu.Count() > 0)
@@ -82,7 +82,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
                     return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thêm menu cấp cha thất bại" };
                 }
             }
-            //子菜单
+            //Menu con
             var childMenu = vo.Where(p => !string.IsNullOrWhiteSpace(p.ParentId)).ToList();
             if (childMenu != null && childMenu.Count() > 0)
             {
@@ -117,7 +117,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             {
                 return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức và thông tin người dùng không được để trống" };
             }
-            //获取用户权限
+            //Lấy quyền người dùng
             var userEty = await GetByWhereWithAttr<SysUserEntity>(p => p.Account == user && p.TopOrganizeId == sysConfig.Top_OrganizeId && p.zt == "1");
             if (userEty == null || userEty.Count != 1)
             {
@@ -131,12 +131,12 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             }
             if (string.IsNullOrWhiteSpace(vo.Name) || string.IsNullOrWhiteSpace(vo.Target))
             {
-                return new BusResult<string> { code = ResponseResultCode.FAILOfEmpty, msg = "Thông tin menu chưa đầy đủ：Tên và mục tiêu không được để trống" };
+                return new BusResult<string> { code = ResponseResultCode.FAILOfEmpty, msg = "Thông tin menu chưa đầy đủ:Tên và mục tiêu không được để trống" };
             }
             var exists = await GetByWhere(p => p.Name == vo.Name && p.zt == "1");
             if (exists != null && exists.Count > 0)
             {
-                return new BusResult<string> { code = ResponseResultCode.FAILOfExists, msg = "菜单已存在" };
+                return new BusResult<string> { code = ResponseResultCode.FAILOfExists, msg = "Menu đã tồn tại" };
             }
             var newEty = vo.Adapt<SysModuleEntity>();
             newEty.NewEntity(orgId, user);
@@ -146,14 +146,14 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             {
                 return new BusResult<string> { code = ResponseResultCode.SUCCESS, Data = newEty.Id };
             }
-            return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thao tác thất bại，Vui lòng làm mới và thử lại" };
+            return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thao tác thất bại,Vui lòng làm mới và thử lại" };
         }
 
         public async Task<BusResult<string>> UpdateEntity(SysModuleVO vo, string user, string orgId)
         {
             if (vo == null || string.IsNullOrEmpty(vo.Id) || string.IsNullOrEmpty(user))
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thao tác không hợp lệ，Vui lòng kiểm tra thông tin menu và nhân viên thao tác" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thao tác không hợp lệ,Vui lòng kiểm tra thông tin menu và nhân viên thao tác" };
             }
             if (!(await MenuEditAuthcation(user, orgId)))
             {
@@ -164,7 +164,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
                 var exists = await GetByWhere(p => p.Name == vo.Name && p.Id != vo.Id && p.zt == "1");
                 if (exists != null && exists.Count > 0)
                 {
-                    return new BusResult<string> { code = ResponseResultCode.FAILOfExists, msg = "菜单已存在" };
+                    return new BusResult<string> { code = ResponseResultCode.FAILOfExists, msg = "Menu đã tồn tại" };
                 }
             }
 
@@ -187,7 +187,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
         {
             if (string.IsNullOrEmpty(keyValue) || string.IsNullOrEmpty(user) || string.IsNullOrEmpty(orgId))
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thao tác không hợp lệ，Vui lòng kiểm tra thông tin menu và nhân viên thao tác" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thao tác không hợp lệ,Vui lòng kiểm tra thông tin menu và nhân viên thao tác" };
             }
             if (!(await MenuEditAuthcation(user, orgId)))
             {
@@ -230,7 +230,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             {
                 return true;
             }
-            //获取用户权限
+            //Lấy quyền người dùng
             var userEty = await GetByWhereWithAttr<SysUserEntity>(p => p.Account == user && p.TopOrganizeId == sysConfig.Top_OrganizeId && p.zt == "1");
             if (userEty == null || userEty.Count != 1)
             {

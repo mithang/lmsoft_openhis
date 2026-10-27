@@ -8,7 +8,7 @@ namespace Newtouch.OR.API.Controllers
     /// <summary>
     /// STUB CÓ CHỦ ĐÍCH — KHÔNG CẤP TOKEN.
     ///
-    /// Bản gốc (api/Auth/GetToken) có bước 1 "验证出用户身份" chỉ là comment rỗng,
+    /// Bản gốc (api/Auth/GetToken) có bước 1 "Xác minh danh tính người dùng" chỉ là comment rỗng,
     /// sau đó tạo UserIdentity với toàn bộ trường là "?" (UserId/Account/OrganizeId/
     /// TopOrganizeId) và gọi SaveIdentity để cấp token Redis thật. Tức là bất kỳ ai
     /// gọi endpoint này cũng nhận được token hợp lệ mà không cần xác thực gì —

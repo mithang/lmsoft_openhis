@@ -17,7 +17,7 @@ using System.Threading.Tasks;
 namespace Newtouch.OR.ManageSystem.Web.Controllers
 {
     /// <summary>
-    /// Home/Index加载时 默认加载的 缓存数据.
+    /// Home/IndexKhi tải Tải mặc định Dữ liệu cache.
     /// Redis OperationDic cache dropped (see plan): GetClientsDataJson calls
     /// ICommonDmnService.GetOperations directly every time. The Framework
     /// ISysUserDmnService.GetStaffByDutyCode is replaced by the local
@@ -65,7 +65,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// 获取同步的部分
+        /// Lấy phần đồng bộ
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -81,7 +81,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// 获取异步的部分
+        /// Lấy phần không đồng bộ
         /// </summary>
         /// <returns></returns>
         [HttpGet]

@@ -232,7 +232,7 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// 是否默认选中
+        /// Có được chọn mặc định không
         /// </summary>
         public int isCheck { get; set; }
         public string cwmc { get; set; }
@@ -242,7 +242,7 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
         public int? cyts { get; set; }
         public DateTime? CommitTime { get; set; }
         /// <summary>
-        /// 病案号
+        /// Số bệnh án
         /// </summary>
         public string bah { get; set; }
 

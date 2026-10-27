@@ -74,27 +74,27 @@
 <script>
     var editorInstance;
     var mburl = "";//"\\File\\Template\\出院病历\\测试出院病历模板1.xml";
-    //******************left侧病历模板 BEGIN**************//
+    //******************leftMẫu bệnh án bên BEGIN**************//
     $(function () {
         gridList();
         gridListYs();
     })
-    //模板类型查询
+    //Truy vấn loại mẫu
     function mbqxquery() {
         mbmxquery();
     }
-    //回车搜索
+    //Tìm kiếm bằng phím Enter
     function leftkeypress() {
         if (event.keyCode == 13)
             mbmxquery();
     }
-    //模板类型
+    //Loại mẫu
     function mbmxquery() {
         $("#gridList").jqGrid('setGridParam', {
             postData: { keyValue: $("#txt_keyword").val(), mbqx: $("#mbqx").val() },
         }).trigger('reloadGrid');
     }
-    //模板列表
+    //Danh sách mẫu
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -113,7 +113,7 @@
             onSelectRow: function (rowid, status) {
                 if (status == true) {
                     var rowData = $("#gridList").jqGrid('getRowData', rowid);
-                    if (rowData.isLeaf == false || rowData.isLeaf == "false") {//禁用条件
+                    if (rowData.isLeaf == false || rowData.isLeaf == "false") {//Điều kiện vô hiệu hóa
                     } else {
                         var param = { 'mbmc': rowData.mbmc, 'Turl': rowData.Turl, 'Id': rowData.Id };
                         mburl = rowData.Turl.replace(/\\/g, "\\");
@@ -123,21 +123,21 @@
             },
             onRightClickRow: function (rowid, irow, icol, e) {
                 var rowData = $("#gridList").jqGrid('getRowData', rowid);
-                if (rowData.isLeaf == false || rowData.isLeaf == "false") {//禁用条件
+                if (rowData.isLeaf == false || rowData.isLeaf == "false") {//Điều kiện vô hiệu hóa
                 } else {
                     initrightMenu(rowData);
                 }
             }
         });
     }
-    //文书模板右键菜单
+    //Menu chuột phải của mẫu văn bản
     function initrightMenu(rowData) {
         var p = '.gridPanel tr[id=' + rowData.Id + ']';
         var menu = new BootstrapMenu(p, {
-            //fetchElementData获取元数据
+            //fetchElementDataLấy siêu dữ liệu
             fetchElementData: function ($rowElem) {
                 var data = rowData;
-                return data;    //return的目的是给下面的onClick传递参数
+                return data;    //mục đích của return là truyền tham số cho onClick bên dưới
             },
             actions: [{
                 name: '<span class="glyphicon glyphicon-remove" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xóa mẫu',
@@ -161,7 +161,7 @@
             ]
         });
     }
-    //新建模板操作
+    //Thao tác tạo mới mẫu
     function btn_add() {
         $.modalOpen({
             id: "Form",
@@ -175,7 +175,7 @@
             }
         });
     }
-    //保存病历模板
+    //Lưu mẫu bệnh án
     function saveBaseTemplateHtml(params) {
         $.ajax({
             type: "POST",
@@ -195,9 +195,9 @@
         });
     }
 
-    //******************left侧病历模板  END **************//
+    //******************leftMẫu bệnh án bên  END **************//
 
-    //******************right右侧元素list Begin***********//
+    //******************rightPhần tử bên phảilist Begin***********//
     function rightkeypress() {
         if (event.keyCode == 13)
             yssx();
@@ -253,9 +253,9 @@
 
         });
     }
-    //******************right右侧元素list END**********//
+    //******************rightPhần tử bên phảilist END**********//
 
-    // 创建编辑器
+    // Tạo trình soạn thảo
     HMEditorLoader.createEditorAsync({
         container: "#editorContainer",
         style: {
@@ -264,25 +264,25 @@
             border: '1px solid #ddd'
         },
         editorConfig: {
-            // 编辑器配置项
+            // Hạng mục cấu hình trình soạn thảo
         },
-        // 模式设置
-        designMode: true,  // 是否启用设计模式
+        // Cài đặt chế độ
+        designMode: true,  // Có bật chế độ thiết kế không
         allowModifyDatasource: true,
-        reviseMode: false,  // 是否启用修订模式
-        readOnly: false,     // 是否启用只读模式
-        customParams: {     // 自定义参数
+        reviseMode: false,  // Có bật chế độ sửa đổi không
+        readOnly: false,     // Có bật chế độ chỉ đọc không
+        customParams: {     // Tham số tùy chỉnh
 
         }
     })
      .then(function (result) {
-         // 编辑器初始化完成
+         // Khởi tạo trình soạn thảo hoàn tất
          editorInstance = result;
          editorInstance.onToolbarCommandComplete = function (command, type, data) {
              debugger;
-             // 根据命令类型执行不同操作
+             // Thực hiện thao tác khác nhau theo loại lệnh
              if (command === 'save') {
-                 //alert('保存命令执行完成');
+                 //alert('Lệnh lưu đã thực thi xong');
                  let obj = editorInstance.getDocHtml();
                  if (obj && obj.length > 0) {
                      const base64str = htmlToBase64(obj[0]['html']);
@@ -290,32 +290,32 @@
                  }
              }
          };
-         // 设置默认内容
-         //editorInstance.editor.setData(`<p style='height:300px;position:relative;'>开始制作模板内容</p>`);
+         // Đặt nội dung mặc định
+         //editorInstance.editor.setData(`<p style='height:300px;position:relative;'>Bắt đầu soạn nội dung mẫu</p>`);
      })
      .catch(function (error) {
          console.error("Khởi tạo trình soạn thảo thất bại:", error);
      });
 
     function htmlToBase64(htmlString) {
-        // 对于现代浏览器
+        // Đối với trình duyệt hiện đại
         return btoa(unescape(encodeURIComponent(htmlString)));
     }
 
     //var doc = {
-    //    "doc_type": "入院记录",
+    //    "doc_type": "Hồ sơ nhập viện",
     //    "datasource": [
     //      {
     //          "code": "DE08.10.052.001",
-    //          "name": "组织机构代码",
+    //          "name": "Mã tổ chức",
     //      },
     //      {
     //          "code": "DE02.01.040.00",
-    //          "name": "性别",
+    //          "name": "Giới tính",
     //      }
     //    ]
     //};
-    //加载文书模板
+    //Tải mẫu văn bản
     function LoadMedTemplate(param)
     {
         $.ajax({
@@ -354,8 +354,8 @@
             var datasource = {
                 name: param.ysdata.ysmc,
                 code: param.ysdata.yscode,
-                nodeName: 'Văn bản thuần',         // 节点类型
-                autoLable: false            // 是否自动添加数据元标题
+                nodeName: 'Văn bản thuần',         // Loại nút
+                autoLable: false            // Có tự động thêm tiêu đề phần tử dữ liệu hay không
             };
             switch (param.ysdata.yslx) {
                 case '1'://Danh sách thả xuống

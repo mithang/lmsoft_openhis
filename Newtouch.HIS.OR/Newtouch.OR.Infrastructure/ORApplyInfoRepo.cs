@@ -11,26 +11,26 @@ using System.Data;
 namespace Newtouch.OR.ManageSystem.Repository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-10-31 10:04
-    /// 描 述：手术申请记录
+    /// Tạo bởi：chl
+    /// Ngày：2019-10-31 10:04
+    /// Mô tả：Hồ sơ đơn đăng ký phẫu thuật
     /// </summary>
     public class ORApplyInfoRepo : RepositoryBase<ORApplyInfoEntity>, IORApplyInfoRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFFactory ngữ cảnh</param>
         public ORApplyInfoRepo()
         {
             
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public int SubmitForm(ORApplyInfoEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -50,9 +50,9 @@ namespace Newtouch.OR.ManageSystem.Repository
 
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void DeleteForm(string keyValue,string orgId,string ssmcn)
         {
             //return Delete(p => p.Id == keyValue);
@@ -83,8 +83,8 @@ where yzlx=3  and zyh=" + dbEntity.zyh + " and xmmc='" + ssmcn+"' and ysgh='"+db
         }
 
         /// <summary>
-        /// 手术排班后,更新申请状态(2.已排班)
-        /// 取消手术排班后,更新申请状态(1.已申请)
+        /// Xếp lịch phẫu thuậtsau,Cập nhật trạng thái đơn đăng ký(2.Đã xếp lịch)
+        /// HủyXếp lịch phẫu thuậtsau,Cập nhật trạng thái đơn đăng ký(1.Đã đăng ký)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

@@ -84,12 +84,12 @@
     var $gridYpzlData = $("#gridYPZL");
     var $gridkcmxData = $("#gridYPMXInfo");
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
             window.initLayout("MyTabGrid");
         });
         gridYPZLData();
 
-        //Phiếu in按钮事件
+        //Phiếu inSự kiện nút
         $("#btn_print").click(function () {
             var is0kc = $("#chk_NoShow0KC").is(":checked") ? "0" : "-1";
             var kczt = $("#ddlKCZT").val() == '' ? "-1" : $("#ddlKCZT").val();
@@ -104,7 +104,7 @@
         }
     });
 
-    //主记录拉伸
+    //Kéo giãn bản ghi chính
     function mainShowMore() {
         var nodeM = $("#div-main");
         var nodeD = $("#div-detail");
@@ -120,7 +120,7 @@
         }
     }
 
-    //明细记录拉伸
+    //Kéo giãn bản ghi chi tiết
     function detailShowMore() {
         var nodeM = $("#div-main");
         var nodeD = $("#div-detail");
@@ -136,7 +136,7 @@
         }
     }
 
-    //单据主记录
+    //Bản ghi chính của chứng từ
     function gridYPZLData() {
         $gridYpzlData.dataGrid({
             postData: getSearchPostData(),
@@ -186,7 +186,7 @@
                 btn_selectrow();
             },
             loadComplete: function (data) {
-                //计算标题栏中的批价总额和零价总额
+                //Tính tổng giá bán buôn và tổng giá bán lẻ trong thanh tiêu đề
                 ComputePjzeAndLjze();
             }
 
@@ -194,17 +194,17 @@
 
         $("#btn_search").click(function () {
             $("#yeCon").text("Tổng giá bán buôn：__đ;Tổng giá lẻ：__đ");
-            //每次查询先清空Grid
+            //Mỗi lần truy vấn xóa trướcGrid
             $('#gridYPZL').jqGrid("clearGridData");
             $('#gridYPMXInfo').jqGrid("clearGridData");
 
             $gridYpzlData.jqGrid('setGridParam', {
                 postData: getSearchPostData(), url: '/PharmacyDrugStorage/SelectStockTotal'
             }).trigger('reloadGrid');            
-            ComputePjzeAndLjze();//计算标题栏中的批价总额和零价总额
+            ComputePjzeAndLjze();//Tính tổng giá bán buôn và tổng giá bán lẻ trong thanh tiêu đề
         });
     }
-    //查询条件
+    //Điều kiện truy vấn
     function getSearchPostData() {
         var inputCode = $("#txtINPUTCODE").val();
         var kczt = $("#ddlKCZT").val();
@@ -213,7 +213,7 @@
         return { inputCode: inputCode, tybz: kczt, zt: bbmzt, noShow0KC: noShow0Kc };
     };
 
-    //计算标题栏中的批价总额和零价总额
+    //Tính tổng giá bán buôn và tổng giá bán lẻ trong thanh tiêu đề
     function ComputePjzeAndLjze() {
         var titlePjze = 0;
         var titleLjze = 0;
@@ -230,9 +230,9 @@
         }
     }
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow() {
-        //每次单击，先清空明细 再重新加载所有选中行明细
+        //Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $gridkcmxData.jqGrid("clearGridData");
         $gridkcmxData.jqGrid('setGridParam', {
             postData: { ypCode: $("#gridYPZL").jqGridRowValue().ypCode, yfbmCode: $("#gridYPZL").jqGridRowValue().yfbmCode },
@@ -240,7 +240,7 @@
         }).trigger('reloadGrid');            
     }
 
-    //药品明细
+    //Chi tiết thuốc
     $gridkcmxData.dataGrid({
         height: $(window).height() - 400,
         unwritten: false,

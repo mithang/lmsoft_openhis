@@ -29,11 +29,11 @@
             justify-content: space-around;
             font-size: 15px;
         }
-        /*边框*/
+        /*Viền*/
         .bk {
             background-color: #ffffff;
         }
-        /*字体*/
+        /*Phông chữ*/
         .font {
             font-weight: bold;
             text-align: center;
@@ -102,8 +102,8 @@
                     <div class="banner_data" id="hcf">
                     </div>
                     @*<div  class="banner_down">
-                        <p >+2.35%环比</p>
-                        <p >+1.22%同比</p>
+                        <p >+2.35%so với tháng trước</p>
+                        <p >+1.22%so với cùng kỳ</p>
                     </div>*@
                 </div>
 
@@ -112,8 +112,8 @@
                     <div class="banner_data" id="zlf">
                     </div>
                     @*<div  class="banner_down">
-                        <p >+2.35%环比</p>
-                        <p >+1.22%同比</p>
+                        <p >+2.35%so với tháng trước</p>
+                        <p >+1.22%so với cùng kỳ</p>
                     </div>*@
                 </div>
 
@@ -166,7 +166,7 @@
     $(function () {
 
         $('#main_div').height($(window).height() - 60);
-        //默认设置时间类型为月
+        //Mặc định đặt loại thời gian là tháng
         $("#dateType").val("2");
         $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM' })");
         $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
@@ -186,50 +186,50 @@
         
         initEcharts();
     }
-    //改变时间类型
+    //Đổi loại thời gian
     function updateSjType() {
         $('#rSJ').val("");
         let dateType = $("#dateType").val();
-        if (dateType == "1") {//年
+        if (dateType == "1") {//năm
             $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy' })");
             $('#rSJ').val(myDate.getFullYear());
         }
-        if (dateType == "2") {//月
+        if (dateType == "2") {//tháng
             $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
         }
-        if (dateType == "3") {//日
+        if (dateType == "3") {//ngày
             $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM-dd' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
         }
     }
-    //根据年月获取月天数
+    //Lấy số ngày trong tháng theo năm tháng
     function getDaysInMonth(year, month) {
         return new Date(year, month, 0).getDate();
     }
-    //组装请求参数
+    //Ghép tham số yêu cầu
     function getSearchData() {
         let ksrq = '';
         let jsrq = '';
         let dateType = $("#dateType").val();
         let nowDate = $("#rSJ").val();
-        if (dateType == "1") {//年
+        if (dateType == "1") {//năm
             ksrq = nowDate + "-" + "01-01 00:00:00";
             jsrq = nowDate + "-" + "12-31 23:59:59";
         }
-        if (dateType == "2") {//月
+        if (dateType == "2") {//tháng
             let array = nowDate.split("-");
             ksrq = array[0] + "-" + array[1] + "-01 00:00:00";
             let days = getDaysInMonth(array[0], array[1]);
             jsrq = array[0] + "-" + array[1] + "-" + days + " 23:59:59";
         }
-        if (dateType == "3") {//日
+        if (dateType == "3") {//ngày
             ksrq = nowDate + " 00:00:00";
             jsrq = nowDate + " 23:59:59";
         }
         return { ksrq: ksrq, jsrq: jsrq, rtype: dateType };
     }
-    //抬头
+    //Tiêu đề
     function getData() {
         $.ajax({
             type: "Post",
@@ -275,8 +275,8 @@
         var $gridJsList = $("#gridJSListksfyfx");
         $gridJsList.dataGrid({
             height: 150,
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/InpatientCostAnalysis/ZYFYFX_KSFYFXDTO",
             postData: getSearchData(),
             colModel: [
@@ -298,8 +298,8 @@
         var $gridJsList = $("#gridJSListcyhzfyfx");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 100,
-            autowidth: true,//如果shrinkToFit为true且设置了width值，则每列宽度会根据width成比例缩放；
-            shrinkToFit: true, //如果设为true，则Grid的宽度会根据父容器的宽度自动重算。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/InpatientCostAnalysis/GetCYHZFYFData",
             postData: getSearchData(),
             colModel: [
@@ -333,7 +333,7 @@
                 for (var i = 0; i < ajaxresp.length; i++) {
                     arr.push(ajaxresp[i].nf);
                 }
-                //重新组装数据，处理不能映射饼图的问题
+                //nặngmớinhómlắpsốdữ liệu，nơilýkhôngcó thểphản ánhchiếubánhbiểu đồcủahỏivấn đề
                 let stat1 = [];
                 stat1.push(arr)
                 if (ajaxresp.length > 0) {

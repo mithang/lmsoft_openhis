@@ -62,13 +62,13 @@
         });
         DefaultZhCheck();
     }
-    //默认选中根节点.
+    //Mặc địnhĐã chọngốctiếtđiểm.
     function DefaultZhCheck() {
-        var firstid = $("div[id^='PatTreeList_']:first").attr("id").replace("PatTreeList_", "");//根节点病区代码
+        var firstid = $("div[id^='PatTreeList_']:first").attr("id").replace("PatTreeList_", "");//gốctiếtđiểmKhu bệnhMã
         var addstyleid = 'PatTreeList_' + firstid;
         var item = new Object();
         item.id = firstid;
-        $("#" + addstyleid + "").addClass('bbit-tree-selected');//增加选中样式
+        $("#" + addstyleid + "").addClass('bbit-tree-selected');//tăng thêmĐã chọnkiểu
         PatTreeListcqzh_onnodeclick(item);
     }
     var bqdm = null;
@@ -82,7 +82,7 @@
         GetPatientCqzhList(bqdm);
         refleshPatientList();
     }
-    //刷新事件
+    //Làm mớisự kiện
     function refleshPatientList() {
         $("#btncqzh_search").trigger('click');
     }
@@ -98,9 +98,9 @@
         }
         $("#gridPatCqzhList").jqGrid('setGridParam', {
             postData: { keyword: $('#txt_zhname').val(), ksrq: $('#txt_zhksrq').val(), jsrq: $('#txt_zhjsrq').val(), bqdm: bqdm },
-        }).trigger('reloadGrid'); //重新加载当前表格
+        }).trigger('reloadGrid'); //lạitảihiện tạibảngô
     });
-    // 查询条件
+    // Điều kiện tìm kiếm
     function getSearchzhPostData() {
         var keyword = $('#txt_zhname').val();
         var ksrq = $('#txt_zhksrq').val();
@@ -114,14 +114,14 @@
         Querydata["bqdm"] = bqdm;
         //alert(bqdm);
         $gridList.dataGrid({
-            //获取出区待结算病人信息
+            //Lấyra khỏi khuchờquyết toánThông tin bệnh nhân
             url: "/EntryRegistration/GetOutAreaPatlist",
             postData: Querydata,
             dataType: "json",
             height: $(window).height() - 155,
             //width: $(".Newtouch_iframe", parent.document).width() - $(".dv-left").width() - 5,
-            autowidth: true,//根据父容器宽度自适应调整
-            shrinkToFit: false,//滚动条
+            autowidth: true,//Theochadungdụng cụrộngđộtựthích ứnggọichỉnh
+            shrinkToFit: false,//thanh cuộn
             //unwritten: false,
             //multiselect: true,
             colModel: [
@@ -153,7 +153,7 @@
             viewrecords: true,
         });
     }
-    //召回
+    //triệuvề
     function recall(zyh) {
         if (zyh == null || zyh == "") {
             $.modalAlert("Vui lòng chọnmộtBệnh nhân", 'warning');

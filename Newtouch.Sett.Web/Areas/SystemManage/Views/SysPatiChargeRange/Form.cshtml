@@ -75,7 +75,7 @@
         }
     })
 
-    //病人性质浮层
+    //Lớp nổi tính chất bệnh nhân
     $("#brxz").newtouchFloatingSelector({
         height: 200,
         width: 300,
@@ -83,7 +83,7 @@
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -107,7 +107,7 @@
         }
     });
 
-    //收费项目
+    //Khoản thu phí
     $('#sfxm').newtouchFloatingSelector({
         width: 600,
         height: 280,
@@ -133,7 +133,7 @@
         ]
     });
 
-    //药品项目
+    //thuốcphẩmhạngmục
     $('#yp').newtouchFloatingSelector({
         width: 600,
         height: 280,

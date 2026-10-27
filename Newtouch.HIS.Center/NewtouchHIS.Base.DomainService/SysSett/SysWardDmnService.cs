@@ -10,7 +10,7 @@ namespace NewtouchHIS.Base.DomainService
     public class SysWardDmnService : BaseDmnService<SysWardVEntity>, ISysWardDmnService
     {
         /// <summary>
-        /// 获取有效
+        /// Lấy dữ liệu hiệu lực
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -20,7 +20,7 @@ namespace NewtouchHIS.Base.DomainService
             return result;
         }
         /// <summary>
-        /// 获取科室绑定的病区
+        /// Lấy khu bệnh gắn với khoa
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ks"></param>

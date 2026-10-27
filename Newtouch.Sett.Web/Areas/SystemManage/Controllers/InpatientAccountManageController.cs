@@ -45,11 +45,11 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
 
         /// <summary>
-        /// 账户管理界面
+        /// Giao diện quản lý tài khoản
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="kh">卡号</param>
-        /// <param name="xm">姓名</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="kh">Số thẻ</param>
+        /// <param name="xm">Họ tên</param>
         /// <returns></returns>
         public IActionResult PatAccountInfo(string zyh, string zhxz)
         {
@@ -72,9 +72,9 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             return Success("", dto);
         }
         /// <summary>
-        /// 获取病人账户信息
+        /// Lấy thông tin tài khoản bệnh nhân
         /// </summary>
-        /// <param name="zh">账户</param>
+        /// <param name="zh">Tài khoản</param>
         /// <returns></returns>
         public IActionResult GetBasicZhInfoJson(int zh)
         {
@@ -84,7 +84,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
 
         /// <summary>
-        /// 新增预交金账户
+        /// Thêm tài khoản tiền tạm ứng mới
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>
@@ -136,9 +136,9 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
         #region Tài khoản Thao tác
         /// <summary>
-        /// 充值
+        /// Nạp tiền
         /// </summary>
-        /// <param name="depDto">充值数据集合</param>
+        /// <param name="depDto">Tập dữ liệu nạp tiền</param>
         /// <returns></returns>
         public IActionResult PayDepositPost(DeposDto depDto)
         {
@@ -152,9 +152,9 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             return Success("", data);
         }
         /// <summary>
-        /// 退款
+        /// Hoàn tiền
         /// </summary>
-        /// <param name="depDto">退款数据集合</param>
+        /// <param name="depDto">Tập dữ liệu hoàn tiền</param>
         /// <returns></returns>
         public IActionResult ReturnDepositPost(DeposDto depDto)
         {
@@ -162,7 +162,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             return Success("", flag);
         }
         /// <summary>
-        /// 余额全退
+        /// Hoàn toàn bộ số dư
         /// </summary>
         /// <param name="depDto"></param>
         /// <returns></returns>

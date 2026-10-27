@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.ValueObjects.AppManage
 {
     /// <summary>
-    /// 已授权的应用关系
+    /// Quan hệ ứng dụng đã được ủy quyền
     /// </summary>
     public class AppFriendAuthInfoVo : AuthAppVO
     {
@@ -19,7 +19,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects.AppManage
 
     }
     /// <summary>
-    /// 应用模块信息
+    /// Thông tin mô-đun ứng dụng
     /// </summary>
     public class AppModuleVO
     {

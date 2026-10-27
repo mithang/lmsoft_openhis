@@ -207,7 +207,7 @@ namespace Newtouch.OR.ManageSystem.Domain.ValueObjects
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public string nl { get; set; }
     }

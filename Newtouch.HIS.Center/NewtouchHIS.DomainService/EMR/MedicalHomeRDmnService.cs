@@ -12,12 +12,12 @@ using System.Data.Common;
 namespace NewtouchHIS.DomainService.EMR
 {
     /// <summary>
-    /// 病案首页查询服务
+    /// Dịch vụ truy vấn trang đầu bệnh án
     /// </summary>
     public class MedicalHomeRDmnService : BaseServices<MedicalHomeVO>, IMedicalHomeRDmnService
     {
         /// <summary>
-        /// 查询Bệnh nhân病案首页重点信息（with：诊断、手术）
+        /// Truy vấnBệnh nhânThông tin trọng điểm trang đầu bệnh án(with:Chẩn đoán,Phẫu thuật)
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -33,7 +33,7 @@ namespace NewtouchHIS.DomainService.EMR
             });
             if (homeData.Count == 0)
             {
-                throw new FailedException($"未找到该患者病案首页信息【{db.GetDescription()}】");
+                throw new FailedException($"Không tìm thấy thông tin trang đầu bệnh án của bệnh nhân này[{db.GetDescription()}]");
             }
             MedicalHomeVO home = homeData.FirstOrDefault() ?? new MedicalHomeVO();
             var zdData = await baseDal.GetByWhere<MedicalHomeDiagEntity>(db.ToString(), p => p.ZYH == zyh && p.OrganizeId == orgId && p.zt == "1");
@@ -57,7 +57,7 @@ namespace NewtouchHIS.DomainService.EMR
             });
             if (homeData.Count == 0)
             {
-                throw new FailedException($"未找到该患者病案首页信息【{db.GetDescription()}】");
+                throw new FailedException($"Không tìm thấy thông tin trang đầu bệnh án của bệnh nhân này[{db.GetDescription()}]");
             }
             DrgMedicalRecord drgMedical = homeData.FirstOrDefault() ?? new DrgMedicalRecord();
             var zdData = await baseDal.GetByWhere<MedicalHomeDiagEntity>(db.ToString(), p => p.ZYH == zyh && p.OrganizeId == orgId && p.zt == "1");

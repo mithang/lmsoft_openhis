@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统医嘱频次
+    /// Tần suất y lệnh hệ thống
     /// </summary>
     [Table("xt_yzpc")]
     [SugarTable("xt_yzpc")]

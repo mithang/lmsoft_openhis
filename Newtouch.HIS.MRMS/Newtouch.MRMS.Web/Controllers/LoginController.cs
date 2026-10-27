@@ -11,7 +11,7 @@ using NewtouchHIS.Lib.Framework.Attributes;
 namespace Newtouch.MRMS.Web.Controllers
 {
     /// <summary>
-    /// 登录登出 (SSO/UA callback actions from the Framework version are dropped:
+    /// Đăng nhập/Đăng xuất (SSO/UA callback actions from the Framework version are dropped:
     /// they depend on external SSO/UA hosts that do not exist in this deployment.
     /// Core login goes through LoginBaseController.CheckLogin -> BaseAPI.)
     /// </summary>
@@ -29,14 +29,14 @@ namespace Newtouch.MRMS.Web.Controllers
         [HttpGet]
         public override IActionResult Index()
         {
-            //移除SSO登录Nguồn标记
+            //Xóa đánh dấu nguồn đăng nhập SSO
             HttpWebHelper.RemoveCookie(ConfigInitHelper.SysConfig.AppId + "_LoginFromFlag");
 
             return base.Index();
         }
 
         /// <summary>
-        /// 外部 UA 登录回调在该部署中不存在对应主机，明确报错而非静默失败。
+        /// Bên ngoài UA callback đăng nhập không có máy chủ tương ứng trong triển khai này, Báo lỗi rõ ràng thay vì thất bại thầm lặng.
         /// </summary>
         public IActionResult UALogin(string access_token, string returnUrl)
         {

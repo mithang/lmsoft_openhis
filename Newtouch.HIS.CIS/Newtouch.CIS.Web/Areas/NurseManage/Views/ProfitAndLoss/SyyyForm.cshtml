@@ -54,7 +54,7 @@
         }
     });
 
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         if (!DataValidate()) {
             return;
@@ -70,7 +70,7 @@
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#syyy").val() === "") {
             $.modalAlert("Nguyên nhân thừa thiếuBắt buộc", 'warning');

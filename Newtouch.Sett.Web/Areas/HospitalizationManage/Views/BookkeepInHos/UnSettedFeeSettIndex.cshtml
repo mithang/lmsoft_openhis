@@ -128,7 +128,7 @@
     $(function () {
         initgridList1();
 
-        $('#myTab li:eq(1) a').tab('show'); //会Kích hoạtgrid2Nạp kiểu hiển thị
+        $('#myTab li:eq(1) a').tab('show'); //sẽKích hoạtgrid2Nạp kiểu hiển thị
 
         if (!(defaultShow === 'yj')) {
             setTimeout("$('#myTab li:eq(0) a').tab('show');", 200); //Hiển thị phí chưaquyết toán
@@ -292,7 +292,7 @@
 
     //Nạp thông tin cơ bản nhập viện
     function ajaxLoadDataResult() {
-        $('#startTime').html('');   //chỉcóchuyển đổiMã nhập việncủalúc候，mớichuyển đổiNgày bắt đầu
+        $('#startTime').html('');   //chỉcóchuyển đổiMã nhập việncủalúcchờ，mớichuyển đổiNgày bắt đầu
 
         var zyh = $('#zyh').val();
         if (!!zyh) {

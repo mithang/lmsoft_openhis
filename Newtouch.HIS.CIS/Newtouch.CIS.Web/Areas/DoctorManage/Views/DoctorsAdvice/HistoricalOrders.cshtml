@@ -131,7 +131,7 @@
                 { label: 'MụcMã', name: 'xmdm', width: 10, align: 'left', hidden: true },
                 { label: 'Tên mục', name: 'xmmc', width: 10, align: 'left', hidden: true },
                 { label: 'Nội dung y lệnh', name: 'yznr', width: 240, align: 'left'},
-                //{ label: '单价', name: 'dj', width: 60, align: 'left' },
+                //{ label: 'Đơn giá', name: 'dj', width: 60, align: 'left' },
                 { label: 'Liều lượng', name: 'ypjl', width: 40, align: 'center', hidden: true },
                 { label: 'Cách dùng', name: 'yfmcval', width: 60, align: 'center', hidden: true},
                 { label: 'Cách dùngMã', name: 'ypyfdm', width: 10, align: 'left', hidden: true },
@@ -143,14 +143,14 @@
                 { label: 'Đơn vị', name: 'dwwwwwww', width: 40, align: 'center' },
                 { label: 'Vị trí', name: 'bw', width: 60, align: 'center', hidden: (tclx == sfxm||tclx==kfyz) ? null : true },
     //            {
-    //                label: '自备标志', name: 'zbbzzzzzzz', width: 50, align: 'center', hidden: tclx == yp ? null : true, formatter: function (val) {
+    //                label: 'tựchuẩn bịCờ', name: 'zbbzzzzzzz', width: 50, align: 'center', hidden: tclx == yp ? null : true, formatter: function (val) {
     //                    return val == 1 ? "Có" : "Không";
     //                }
     //            },
-    //            { label: '嘱托', name: 'ztnr', width: 90, align: 'left' },
-    //            { label: '医疗类别', name: 'zfxz', hidden: true },
+    //            { label: 'Dặn dò', name: 'ztnr', width: 90, align: 'left' },
+    //            { label: 'y tếLoại', name: 'zfxz', hidden: true },
     //            {
-    //                label: '医疗类别', name: 'zfxzmc',width: 50,hidden:(tclx==kfyz)? null:true, formatter: function (cellvalue, a, b) {
+    //                label: 'y tếLoại', name: 'zfxzmc',width: 50,hidden:(tclx==kfyz)? null:true, formatter: function (cellvalue, a, b) {
     //                    return $.enum.getDescByValue("EnumZiFuXingZhi", b.zfxz);
     //                }
     //            },
@@ -181,11 +181,11 @@
                 //    var rowid = String(this);
                 //    var kcsl = $gridList.jqGrid('getRowData', rowid).kcsl;
                 //    var kzbz = $gridList.jqGrid('getRowData', rowid).kzbz;
-                //    if ((kcsl != "" && kzbz != "禁用" && (tclx == yp || tclx == zyyz || tclx == cydy)) || (tclx != yp && tclx != cydy && tclx != zyyz)) {
-                //        $gridList.jqGrid('setSelection', rowid); //设置jqGrid选中
+                //    if ((kcsl != "" && kzbz != "Vô hiệu hóa" && (tclx == yp || tclx == zyyz || tclx == cydy)) || (tclx != yp && tclx != cydy && tclx != zyyz)) {
+                //        $gridList.jqGrid('setSelection', rowid); //Cài đặtjqGridĐã chọn
                 //    }
                 //});
-                //$('#cb_gridList').prop('checked', true);//全选按钮
+                //$('#cb_gridList').prop('checked', true);//Chọn tất cảNút
             },
             onSelectRow: function (rowid, status) {
                 if (status && (tclx == yp || tclx == zyyz)) {
@@ -193,12 +193,12 @@
                     var kzbz = $gridList.jqGrid('getRowData', rowid).kzbz;
                     if (kcsl == "") {
                         $.modalAlert("Thuốc này không có tồn kho, không thể chọn", "warning");
-                        $gridList.jqGrid('setSelection', rowid, false); //设置jqGrid选中
+                        $gridList.jqGrid('setSelection', rowid, false); //Cài đặtjqGridĐã chọn
                         return;
                     }
                     if (kzbz == "Vô hiệu hóa") {
                         $.modalAlert("Thuốc này ở trạng thái vô hiệu hóa, không thể chọn", "warning");
-                        $gridList.jqGrid('setSelection', rowid, false); //设置jqGrid选中
+                        $gridList.jqGrid('setSelection', rowid, false); //Cài đặtjqGridĐã chọn
                         return;
                     }
                 }
@@ -214,15 +214,15 @@
     //    CalculateInsPresJYAmount();
     //}
 
-    //计算申请单金额
+    //Tính toánPhiếuSố tiền
     //function CalculateInsPresJYAmount() {
     //    var totalAmount = 0.00;
     //    var allData = $("#gridList").jqGrid('getRowData_AllLine', true, true);
     //    $.each(allData, function () {
     //        totalAmount += parseFloat(this.dj) * parseFloat(this.sl);
     //    });
-    //    $("#gridList").jqGrid("setCaption", "合计：" + "<label style='color:red;'>￥"
-    //        + totalAmount.toFixed(2) + "</label>");   //重置caption属性值
+    //    $("#gridList").jqGrid("setCaption", "hợptính：" + "<label style='color:red;'>￥"
+    //        + totalAmount.toFixed(2) + "</label>");   //Đặt lạicaptionThuộc tínhGiá trị
     //}
 
     function submitForm() {

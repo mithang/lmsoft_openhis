@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             var language_type = HttpWebHelper.GetCookie(nLanguageTypeKey);
             if (string.IsNullOrWhiteSpace(language_type))
             {
-                language_type = _sysUserDmnService.GetLanguageTypeByUserId(OperatorProvider.GetCurrent().UserId);   //用户属性
+                language_type = _sysUserDmnService.GetLanguageTypeByUserId(OperatorProvider.GetCurrent().UserId);   //Thuộc tính người dùng
                 // Port fix: Lib HttpWebHelper.WriteCookie throws on a null value
                 // (Uri.EscapeDataString); the demo user has no language type set, so
                 // only write the cookie when a value actually came back.
@@ -62,26 +62,26 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             }
             if (!string.IsNullOrWhiteSpace(opr.OrganizeId))
             {
-                //当前Org名称（关联Staff）
+                //Hiện tạiOrgTên（Liên kếtStaff）
                 ViewBag.OrgName = _sysOrganizeDmnService.GetNameByOrgId(opr.OrganizeId);
             }
             else
             {
 
-                //显示顶级组织机构的名称
+                //Hiển thị tên tổ chức cấp cao nhất
                 ViewBag.OrgName = _sysOrganizeDmnService.GetNameByOrgId(opr.TopOrganizeId);
             }
 
-            if (!opr.IsRoot && !opr.IsAdministrator)    //恒true
+            if (!opr.IsRoot && !opr.IsAdministrator)    //Luôntrue
             {
-                //当前UserId 对应的所有 医疗机构 List
+                //Hiện tạiUserId tất cả tương ứng Cơ sở y tế List
                 var mediOrgList = _sysOrganizeDmnService.GetMedicalOrganizeListByUserId(opr.UserId);
 
                 ViewBag.MediOrgList = mediOrgList;
 
                 if (mediOrgList != null && mediOrgList.Count > 1)
                 {
-                    //是否页面加载时就必须选择Org
+                    //Có phải khi tải trang là bắt buộc phải chọn khôngOrg
                     var needChooseOrg = HttpWebHelper.GetCookie(Constants.AppId + "_" + "CookieKey_ChooseOrg");
                     ViewBag.NeedChooseOrg = !string.IsNullOrWhiteSpace(needChooseOrg);
                 }
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// 切换医疗机构 视图
+        /// Chuyển cơ sở y tế Khung nhìn
         /// </summary>
         /// <returns></returns>
         public IActionResult UserOrgChoose()
@@ -105,7 +105,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// 切换医疗机构
+        /// Chuyển cơ sở y tế
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -128,7 +128,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                 opr.DepartmentName = _sysDepartmentRepo.GetNameByCode(orgStaff.DepartmentCode, orgStaff.OrganizeId);
 
                 var roleList = _userRoleAuthDmnService.GetUserRoleList(opr.UserId, orgStaff.OrganizeId);
-                //170904 Administrator不再可以关联Staff，仅admin
+                //170904 AdministratorKhông thể liên kết nữaStaff，Chỉadmin
                 opr.RoleIdList = roleList.Select(p => p.Id).ToList();
                 opr.IsHospAdministrator = roleList.Any(p => p.Code == "HospAdministrator");
 
@@ -163,7 +163,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
         [HttpGet]
         /// <summary>
-        /// 获取就诊人数（门诊记账、住院记账）
+        /// Lấy số lượng người khám（Ghi nợ ngoại trú、Ghi nợ nội trú）
         /// </summary>
         public IActionResult GetVisitNum()
         {
@@ -196,7 +196,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// 获取业务字段的随机产生值（自增+Format）
+        /// Lấy giá trị sinh ngẫu nhiên của trường nghiệp vụ（Tự tăng+Format）
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgIdIsStar"></param>
@@ -231,7 +231,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             }
             //else if(orgId == topOrgId)
             //{
-            //    value = null;   //???????????????这样合适么
+            //    value = null;   //???????????????Như vậy có hợp lý không
             //}
             else
             {

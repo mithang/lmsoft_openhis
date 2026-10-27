@@ -78,7 +78,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     });
@@ -144,7 +144,7 @@
         });
     }
 
-    //用户人员树回调方法
+    //Người dùng ngườiviêncâyvềgọiPhương pháp
     function userStaffTreeCallback(data) {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {

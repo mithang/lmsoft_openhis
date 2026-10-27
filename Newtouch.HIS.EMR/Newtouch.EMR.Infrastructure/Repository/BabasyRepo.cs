@@ -11,23 +11,23 @@ using SqlSugar;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// 创 建：hyj
-    /// 日 期：2018-09-20 18:23
-    /// 描 述：选项明细表
+    /// Người tạo：hyj
+    /// Ngày：2018-09-20 18:23
+    /// Mô tả：Bảng chi tiết tùy chọn
     /// </summary>
     public class BabasyRepo : RepositoryBase<BabasyEntity>, IBabasyRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFFactory ngữ cảnh EF</param>
 
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(BabasyVO entity, string keyValue)
         {
             var dbEntity = new BabasyEntity();
@@ -45,7 +45,7 @@ namespace Newtouch.EMR.Repository
             {
                 dbEntity = this.FindEntity(keyValue);
                 //properties
-                #region 病案首页更新
+                #region Cập nhật trang đầu bệnh án
                 dbEntity.zid = entity.zid;
                 dbEntity.tmh = entity.tmh;
                 dbEntity.bah = entity.bah;
@@ -406,7 +406,7 @@ namespace Newtouch.EMR.Repository
             }
             else
             {
-                #region 病案首页更新
+                #region Cập nhật trang đầu bệnh án
                 dbEntity.zid = entity.zid;
                 dbEntity.tmh = entity.tmh;
                 dbEntity.bah = entity.bah;
@@ -772,9 +772,9 @@ namespace Newtouch.EMR.Repository
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.zid == keyValue);

@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Repository
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                PatientVitalSignsEntity oldEntity = null;   //变更前Entity
+                PatientVitalSignsEntity oldEntity = null;   //đổihơntrướcEntity
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 

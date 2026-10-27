@@ -1,32 +1,32 @@
 ﻿namespace NewtouchHIS.Lib.Base.Model
 {
     /// <summary>
-    /// Ajax响应内容 Model
+    /// AjaxNội dung phản hồi Model
     /// </summary>
     public class AjaxResult
     {
         /// <summary>
-        /// 操作结果类型
+        /// Loại kết quả thao tác
         /// </summary>
         public object state { get; set; }
 
         /// <summary>
-        /// 获取 消息内容
+        /// Lấy nội dung tin nhắn
         /// </summary>
         public string? message { get; set; }
 
         /// <summary>
-        /// 获取 返回数据
+        /// Lấy dữ liệu trả về
         /// </summary>
         public object? data { get; set; }
 
         /// <summary>
-        /// 错误代码
+        /// mã lỗi
         /// </summary>
         public string? code { get; set; }
 
         /// <summary>
-        /// 异常的堆栈轨迹
+        /// Dấu vết ngăn xếp của ngoại lệ
         /// </summary>
         public string? exStackTrace { get; set; }
 
@@ -37,24 +37,24 @@
     }
 
     /// <summary>
-    /// 表示 ajax 操作结果类型的枚举
+    /// Enum biểu thị loại kết quả thao tác ajax
     /// </summary>
     public enum ResultType
     {
         /// <summary>
-        /// 消息结果类型
+        /// Loại kết quả tin nhắn
         /// </summary>
         info,
         /// <summary>
-        /// 成功结果类型
+        /// Loại kết quả thành công
         /// </summary>
         success,
         /// <summary>
-        /// 警告结果类型
+        /// Loại kết quả cảnh báo
         /// </summary>
         warning,
         /// <summary>
-        /// 异常结果类型
+        /// Loại kết quả ngoại lệ
         /// </summary>
         error
     }

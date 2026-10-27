@@ -10,7 +10,7 @@ using NLog.Contact.DTO;
 namespace Newtouch.Infrastructure.Log
 {
     /// <summary>
-    /// 日志组件
+    /// Thành phần nhật ký
     /// </summary>
     public class LogCore
     {
@@ -60,7 +60,7 @@ namespace Newtouch.Infrastructure.Log
         }
 
         /// <summary>
-        /// 写本地日志
+        /// Ghi nhật ký địa phương
         /// </summary>
         /// <param name="message"></param>
         public static void WriteInfoWeb(string message)

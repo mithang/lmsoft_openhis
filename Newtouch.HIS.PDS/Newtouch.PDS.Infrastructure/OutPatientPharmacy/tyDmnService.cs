@@ -23,7 +23,7 @@ using Newtouch.PDS.Requset.ResourcesOperate;
 namespace Newtouch.HIS.DomainServices.OutPatientPharmacy
 {
     /// <summary>
-    /// 退药
+    /// Trả thuốc
     /// </summary>
     public class tyDmnService : DmnServiceBase, ItyDmnService
     {
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.DomainServices.OutPatientPharmacy
         }
 
         /// <summary>
-        /// 查询可退药品信息
+        /// Truy vấn thông tin thuốc có thể trả
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
@@ -82,7 +82,7 @@ INNER JOIN NewtouchHIS_Base.dbo.V_S_xt_ypsx ypsx ON ypsx.ypId=yp.ypId AND ypsx.O
         }
 
         /// <summary>
-        /// 查询全退可退药品信息
+        /// Truy vấn thông tin thuốc có thể trả hết
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
@@ -131,14 +131,14 @@ INNER JOIN NewtouchHIS_Base.dbo.V_C_xt_yp yp ON yp.ypCode=b.ypCode AND yp.Organi
         }
 
         /// <summary>
-        /// 查询药品可退数量
+        /// Truy vấn số lượng thuốc có thể trả
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
-        /// <returns>最小单位可退数量</returns>
+        /// <returns>Số lượng có thể trả đơn vị nhỏ nhất</returns>
         public int SelectRefundedSl(string ypCode, string pc, string ph, string yfbmCode, string organizeId)
         {
             const string sql = @"
@@ -168,12 +168,12 @@ SELECT CONVERT(INT,ISNULL(SUM(a.sl),0)) zxdwsl FROM (
         }
 
         /// <summary>
-        /// 线程锁
+        /// Khóa luồng
         /// </summary>
         public static object ThreadLocker = new object();
 
         /// <summary>
-        /// 门诊退药
+        /// Trả thuốc ngoại trú
         /// </summary>
         /// <param name="tyInfo"></param>
         /// <param name="returnDrugBillNo"></param>
@@ -235,7 +235,7 @@ SELECT CONVERT(INT,ISNULL(SUM(a.sl),0)) zxdwsl FROM (
         }
 
         /// <summary>
-        /// 门诊退药
+        /// Trả thuốc ngoại trú
         /// </summary>
         /// <param name="tyInfo"></param>
         /// <param name="returnDrugBillNo"></param>
@@ -256,7 +256,7 @@ SELECT CONVERT(INT,ISNULL(SUM(a.sl),0)) zxdwsl FROM (
                         new SugarParameter("@ph", p.ph),
                         new SugarParameter("@pc", p.pc),
                         new SugarParameter("@cfh", tyInfo.cfh),
-                        new SugarParameter("@tysl", p.sl * p.zhyz), //最小单位数量
+                        new SugarParameter("@tysl", p.sl * p.zhyz), //Số lượng đơn vị nhỏ nhất
                         new SugarParameter("@userCode", tyInfo.userCode),
                         new SugarParameter("@returnDrugBillNo", trdbn),
                         new SugarParameter("@zsm",p.zsm),
@@ -276,7 +276,7 @@ SELECT CONVERT(INT,ISNULL(SUM(a.sl),0)) zxdwsl FROM (
         }
 
         /// <summary>
-        /// 根据处方号获取有效的处方
+        /// Lấy đơn thuốc hiệu lực theo số đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -293,7 +293,7 @@ SELECT CONVERT(INT,ISNULL(SUM(a.sl),0)) zxdwsl FROM (
         }
 
         /// <summary>
-        /// 门诊部分退药
+        /// Trả thuốc ngoại trú một phần
         /// </summary>
         /// <param name="item"></param>
         /// <param name="organizeId"></param>
@@ -302,12 +302,12 @@ SELECT CONVERT(INT,ISNULL(SUM(a.sl),0)) zxdwsl FROM (
         {
             using (var db = new EFDbTransaction().BeginTrans())
             {
-                if (item == null) return "退药内容不能为空";
+                if (item == null) return "Nội dung trả thuốc không được để trống";
                 var mxphDmnService = new OutpatientPrescriptionDetailBatchNumberDmnService(new DefaultDatabaseFactory());
                 var mxphList = mxphDmnService.GetList(item.cfh, organizeId, item.ypdm);
                 if (mxphList == null || mxphList.Count == 0) return "";
                 var tysl = (decimal)item.sl * item.zhyz;
-                if (tysl > mxphList.Sum(p => p.sl)) return "退药数了不能大于冻结数";
+                if (tysl > mxphList.Sum(p => p.sl)) return "Số lượng trả thuốc không thể lớn hơn Số đóng băng";
                 var sysl = tysl;
                 while (sysl > 0 && mxphList.Count > 0)
                 {

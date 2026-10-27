@@ -7,22 +7,22 @@ namespace NewtouchHIS.WebAPI.Manage.Models
         [Required(ErrorMessage = "Id ứng dụng (AppId) là bắt buộc")]
         public string AppId { get; set; }
         /// <summary>
-        /// Tổ chứcId（已经定位到了具体医院）
+        /// Tổ chứcId(Đã xác định tới bệnh viện cụ thể)
         /// </summary>
-        [Required(ErrorMessage = "Tổ chứcId（OrganizeId） là bắt buộc")]
+        [Required(ErrorMessage = "Tổ chứcId(OrganizeId) là bắt buộc")]
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 请求编号
+        /// Số hiệu yêu cầu
         /// </summary>
-        [Required(ErrorMessage = "Tên phương thức（methodcode） là bắt buộc")]
+        [Required(ErrorMessage = "Tên phương thức(methodcode) là bắt buộc")]
         public string methodcode { get; set; }
         public string? optype { get; set; }
         /// <summary>
-        /// 当前用户
+        /// Người dùng hiện tại
         /// </summary>
         public string? user { get; set; }
         /// <summary>
-        /// 发送请求的时间，格式"yyyy-MM-dd HH:mm:ss"
+        /// Thời gian gửi yêu cầu,Định dạng"yyyy-MM-dd HH:mm:ss"
         /// </summary>
         [Required(ErrorMessage = "Dấu thời gian là bắt buộc")]
         public DateTime Timestamp { get; set; }
@@ -32,7 +32,7 @@ namespace NewtouchHIS.WebAPI.Manage.Models
     public class BookingRequest: BookingReqBase
     {
         /// <summary>
-        /// 入参
+        /// Tham số đầu vào
         /// </summary>
         public object? paradata { get; set; }
     }

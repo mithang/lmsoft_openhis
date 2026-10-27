@@ -34,7 +34,7 @@ namespace Newtouch.Sett.Web.Areas.InsuranceManage.Controllers
 
 
         /// <summary>
-        /// 获取商保备案列表
+        /// đượclấythươngbảo hiểmchuẩn bịhồ sơcộtbảng
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace Newtouch.Sett.Web.Areas.InsuranceManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="sbbabId"></param>
@@ -64,7 +64,7 @@ namespace Newtouch.Sett.Web.Areas.InsuranceManage.Controllers
         }
 
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="sbbabId"></param>
         /// <returns></returns>
@@ -80,7 +80,7 @@ namespace Newtouch.Sett.Web.Areas.InsuranceManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="sbbabId"></param>
         /// <returns></returns>

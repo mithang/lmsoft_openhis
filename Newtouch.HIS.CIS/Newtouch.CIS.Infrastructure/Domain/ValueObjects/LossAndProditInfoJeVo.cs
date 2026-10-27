@@ -9,17 +9,17 @@ namespace Newtouch.Domain.ValueObjects
     public class LossAndProditInfoJeVo
     {
         /// <summary>
-        /// 零售价总金额
+        /// Giá bán lẻTổng số tiền
         /// </summary>
         public decimal? Ljze { get; set; }
 
         /// <summary>
-        /// 批发价总金额
+        /// Giá bán buônTổng số tiền
         /// </summary>
         public decimal? Pjze { get; set; }
 
         /// <summary>
-        /// 进价总金额
+        /// vàogiáTổng số tiền
         /// </summary>
         public decimal? Jjze { get; set; }
     }

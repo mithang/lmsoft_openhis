@@ -1,4 +1,4 @@
-﻿//字典
+﻿//Từ điển
 $.fn.dicCommonFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector({
         url: '/SystemManage/Common/GetCommonList',
@@ -9,56 +9,56 @@ $.fn.dicCommonFloatingSelector = function (options) {
             return "keyword=" + $thisinput.val() + "&type=" + options.rule;
         },
         colModel: [
-            { label: '编码', name: 'Code', widthratio: 30 },
-            { label: '名称', name: 'Name', widthratio: 70 },
+            { label: 'Mã', name: 'Code', widthratio: 30 },
+            { label: 'Tên', name: 'Name', widthratio: 70 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //保存时验证val和data-Name一致
+            //Kiểm tra khi lưuvalvàdata-NameNhất quán
             $thisinput.attr('data-code', $thistr.attr('data-code'));
             $thisinput.attr('data-name', $thistr.attr('data-name'));
             $thisinput.val($thistr.attr('data-name'));
         }
     });
 }
-//科室
+//Khoa
 $.fn.departmentFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector({
         url: '/SystemManage/Common/GetDepartment',
         width: 300,
         height: 200,
         clickautotrigger: true,
-        caption: "选择科室",
+        caption: "Chọn khoa",
         ajaxparameters: function ($thisinput) {
             return "keyword=" + $thisinput.val();
         },
         colModel: [
-            { label: '科室代码', name: 'Code', widthratio: 40 },
-            { label: '科室名称', name: 'Name', widthratio: 60 },
+            { label: 'Mã khoa', name: 'Code', widthratio: 40 },
+            { label: 'Tên khoa', name: 'Name', widthratio: 60 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //保存时验证val和data-Name一致
+            //Kiểm tra khi lưuvalvàdata-NameNhất quán
             $thisinput.attr('data-code', $thistr.attr('data-code'));
             $thisinput.attr('data-name', $thistr.attr('data-name'));
             $thisinput.val($thistr.attr('data-name'));
         }
     });
 }
-//诊断
+//Chẩn đoán
 $.fn.zxyzdFloatingSelector = function (options) {
     var defaults = {
         url: '/SystemManage/Common/GetDiagnosisList',
         width: 600,
         height: 300,
         clickautotrigger: true,
-        caption: "选择诊断",
-        ajaxparameters: null,   //请指定
+        caption: "Chọn chẩn đoán",
+        ajaxparameters: null,   //Vui lòng chỉ định
         itemdbclickhandler: null,
         colModel: [
-           { label: '代码', name: 'zdCode', hidden: true },
-           { label: '名称', name: 'zdmc', widthratio: 60 },
-           { label: '拼音', name: 'py', widthratio: 20 },
+           { label: 'Mã', name: 'zdCode', hidden: true },
+           { label: 'Tên', name: 'zdmc', widthratio: 60 },
+           { label: 'Phiên âm Pinyin', name: 'py', widthratio: 20 },
            { label: 'icd10', name: 'icd10', widthratio: 20 },
-           { label: 'icd10附加码', name: 'icd10fjm', hidden: true }
+           { label: 'icd10 Mã bổ sung', name: 'icd10fjm', hidden: true }
         ]
     };
     var options = $.extend(defaults, options);
@@ -66,14 +66,14 @@ $.fn.zxyzdFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector(options);
 }
 
-//诊断
+//Chẩn đoán
 $.fn.zdFloatingSelector = function (options) {
     var defaults = {
         url: '/SystemManage/Common/GetDiagnosisList',
         width: 600,
         height: 300,
         clickautotrigger: true,
-        caption: "选择诊断",
+        caption: "Chọn chẩn đoán",
         ajaxparameters: function ($thisinput) {
             if (!!!options.ybnhlx) {
                 return "keyword=" + $thisinput.val() + "&zdlx=" + options.zdlx;
@@ -84,11 +84,11 @@ $.fn.zdFloatingSelector = function (options) {
         },
         itemdbclickhandler: null,
         colModel: [
-            { label: '代码', name: 'zdCode', hidden: true },
-            { label: '名称', name: 'zdmc', widthratio: 60 },
-            { label: '拼音', name: 'py', widthratio: 20 },
+            { label: 'Mã', name: 'zdCode', hidden: true },
+            { label: 'Tên', name: 'zdmc', widthratio: 60 },
+            { label: 'Phiên âm Pinyin', name: 'py', widthratio: 20 },
             { label: 'icd10', name: 'icd10', widthratio: 20 },
-            { label: 'icd10附加码', name: 'icd10fjm', hidden: true }
+            { label: 'icd10 Mã bổ sung', name: 'icd10fjm', hidden: true }
         ]
     };
     var options = $.extend(defaults, options);
@@ -96,23 +96,23 @@ $.fn.zdFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector(options);
 }
 
-//手术
+//Phẫu thuật
 $.fn.opFloatingSelector = function (options) {
     var defaults = {
         url: '/SystemManage/Common/GetOperationList',
         width: 450,
         height: 300,
         clickautotrigger: true,
-        caption: "选择手术",
+        caption: "Chọn phẫu thuật",
         ajaxparameters: function ($thisinput) {
             return "keyword=" + $thisinput.val() + "&type=true";
         },
         itemdbclickhandler: null,
         colModel: [
-            { label: '代码', name: 'ssdm', hidden: true },
-            { label: '名称', name: 'ssmc', widthratio: 60 },
-            { label: '助记码', name: 'zjm', widthratio: 20 },
-            { label: '手术级别', name: 'ssjb', widthratio: 18 },
+            { label: 'Mã', name: 'ssdm', hidden: true },
+            { label: 'Tên', name: 'ssmc', widthratio: 60 },
+            { label: 'Mã ghi nhớ', name: 'zjm', widthratio: 20 },
+            { label: 'Cấp độ phẫu thuật', name: 'ssjb', widthratio: 18 },
         ],
         rowNum: 100,
         rownumbers: true,
@@ -127,7 +127,7 @@ $.fn.opFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector(options);
 }
 
-//岗位人员选择器
+//Bộ chọn nhân viên vị trí
 $.fn.dutyStaffFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector({
         url: '/SystemManage/Common/GetStaffListByDutyCode',
@@ -140,12 +140,12 @@ $.fn.dutyStaffFloatingSelector = function (options) {
         colModel: [
             { label: 'StaffGh', name: 'StaffGh', hidden: true },
             { label: 'ks', name: 'ks', hidden: true },
-            { label: '医生名称', name: 'StaffName', widthratio: 38 },
-            { label: '助记码', name: 'StaffPY', widthratio: 20 },
-            { label: '科室名称', name: 'ksmc', widthratio: 40 },
+            { label: 'Tên bác sĩ', name: 'StaffName', widthratio: 38 },
+            { label: 'Mã ghi nhớ', name: 'StaffPY', widthratio: 20 },
+            { label: 'Tên khoa', name: 'ksmc', widthratio: 40 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //保存时验证val和data-Name一致
+            //Kiểm tra khi lưuvalvàdata-NameNhất quán
             $thisinput.attr('data-StaffGh', $thistr.attr('data-StaffGh'));
             $thisinput.attr('data-ks', $thistr.attr('data-ks'));
             $thisinput.attr('data-ksmc', $thistr.attr('data-ksmc'));
@@ -154,7 +154,7 @@ $.fn.dutyStaffFloatingSelector = function (options) {
     });
 }
 
-//国籍选择器
+//Bộ chọn quốc tịch
 $.fn.NationalityFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector({
         url: '/SystemManage/Common/GetNationality',
@@ -165,18 +165,18 @@ $.fn.NationalityFloatingSelector = function (options) {
             return "keyword=" + $thisinput.val();
         },
         colModel: [
-            { label: '国家代码', name: 'Code', widthratio: 30 },
-            { label: '国家', name: 'Name', widthratio: 70 },
+            { label: 'Mã quốc gia', name: 'Code', widthratio: 30 },
+            { label: 'Quốc gia', name: 'Name', widthratio: 70 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //保存时验证val和data-Name一致
+            //Kiểm tra khi lưuvalvàdata-NameNhất quán
             $thisinput.attr('data-code', $thistr.attr('data-code'));
             $thisinput.attr('data-name', $thistr.attr('data-name'));
             $thisinput.val($thistr.attr('data-name'));
         }
     });
 }
-//民族选择器
+//Bộ chọn dân tộc
 $.fn.NationsFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector({
         url: '/SystemManage/Common/GetNationas',
@@ -187,11 +187,11 @@ $.fn.NationsFloatingSelector = function (options) {
             return "keyword=" + $thisinput.val();
         },
         colModel: [
-            { label: '民族代码', name: 'Code', widthratio: 30 },
-            { label: '民族', name: 'Name', widthratio: 70 },
+            { label: 'Mã dân tộc', name: 'Code', widthratio: 30 },
+            { label: 'Dân tộc', name: 'Name', widthratio: 70 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //保存时验证val和data-Name一致
+            //Kiểm tra khi lưuvalvàdata-NameNhất quán
             $thisinput.attr('data-code', $thistr.attr('data-code'));
             $thisinput.attr('data-name', $thistr.attr('data-name'));
             $thisinput.val($thistr.attr('data-name'));
@@ -199,7 +199,7 @@ $.fn.NationsFloatingSelector = function (options) {
     });
 }
 
-//职业选择器
+//Bộ chọn nghề nghiệp
 $.fn.ZYFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector({
         url: '/SystemManage/Common/ZYgetlist',
@@ -210,18 +210,18 @@ $.fn.ZYFloatingSelector = function (options) {
             return "keyword=" + $thisinput.val();
         },
         colModel: [
-            { label: '编码', name: 'Code', widthratio: 30 },
-            { label: '职业名称', name: 'Name', widthratio: 70 },
+            { label: 'Mã', name: 'Code', widthratio: 30 },
+            { label: 'Tên nghề nghiệp', name: 'Name', widthratio: 70 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //保存时验证val和data-Name一致
+            //Kiểm tra khi lưuvalvàdata-NameNhất quán
             $thisinput.attr('data-code', $thistr.attr('data-code'));
             $thisinput.attr('data-name', $thistr.attr('data-name'));
             $thisinput.val($thistr.attr('data-name'));
         }
     });
 }
-//关系选择器
+//Bộ chọn quan hệ
 $.fn.GXFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector({
         url: '/SystemManage/Common/GXgetlist',
@@ -232,11 +232,11 @@ $.fn.GXFloatingSelector = function (options) {
             return "keyword=" + $thisinput.val();
         },
         colModel: [
-            { label: '编码', name: 'Code', widthratio: 30 },
-            { label: '关系名称', name: 'Name', widthratio: 70 },
+            { label: 'Mã', name: 'Code', widthratio: 30 },
+            { label: 'Tên quan hệ', name: 'Name', widthratio: 70 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //保存时验证val和data-Name一致
+            //Kiểm tra khi lưuvalvàdata-NameNhất quán
             $thisinput.attr('data-code', $thistr.attr('data-code'));
             $thisinput.attr('data-name', $thistr.attr('data-name'));
             $thisinput.val($thistr.attr('data-name'));
@@ -244,7 +244,7 @@ $.fn.GXFloatingSelector = function (options) {
     });
 }
 
-//病历大类子目录
+//Thư mục con loại lớn bệnh án
 $.fn.BllxFloatingSelector = function (options) {
     $(this).newtouchFloatingSelector({
         url: '/SystemManage/Common/GetBllxListGrid',
@@ -258,12 +258,12 @@ $.fn.BllxFloatingSelector = function (options) {
             return "keyword=" + $thisinput.val() + "&bllx=" + options.code;
         },
         colModel: [
-            { label: '病历目录', name: 'Name', widthratio: 50 },
-            { label: '类别编码', name: 'Code', widthratio: 50 },
-            //{ label: "简码", name: "Id", width: 20, align: 'center', },
+            { label: 'Danh mục bệnh án', name: 'Name', widthratio: 50 },
+            { label: 'Mã loại', name: 'Code', widthratio: 50 },
+            //{ label: "Mã rút gọn", name: "Id", width: 20, align: 'center', },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //保存时验证val和data-Name一致
+            //Kiểm tra khi lưuvalvàdata-NameNhất quán
             $thisinput.attr('data-code', $thistr.attr('data-code'));
             $thisinput.attr('data-name', $thistr.attr('data-name'));
             $thisinput.val($thistr.attr('data-name'));
@@ -271,14 +271,14 @@ $.fn.BllxFloatingSelector = function (options) {
     });
 }
 
-//病历元素选择
+//Chọn phần tử bệnh án
 $.fn.ElementFloatingSelector = function (options) {
     var defaults = {
         url: '/MedicalRecordManage/Bljgh/GetYsList',
         width: 550,
         height: 200,
         clickautotrigger: true,
-        caption: "选择诊断",
+        caption: "Chọn chẩn đoán",
         ajaxparameters: function ($thisinput) {
             return "keyword=" + $thisinput.val();
         },
@@ -286,11 +286,11 @@ $.fn.ElementFloatingSelector = function (options) {
         colModel: [
 
              { label: 'ysId', name: 'ysId', widthratio: 70, hidden: true },
-             { label: '元素代码', name: 'ysdm', widthratio: 15 },
-             { label: '元素名称', name: 'ysmc', widthratio: 40 },
-             { label: '元素类型', name: 'yslx', widthratio: 70, hidden: true },
-             { label: '元素类型名称', name: 'yslxmc', widthratio: 20 },
-             { label: '父级元素', name: 'ysdl', widthratio: 25 },
+             { label: 'Mã phần tử', name: 'ysdm', widthratio: 15 },
+             { label: 'Tên phần tử', name: 'ysmc', widthratio: 40 },
+             { label: 'Loại phần tử', name: 'yslx', widthratio: 70, hidden: true },
+             { label: 'Tên loại phần tử', name: 'yslxmc', widthratio: 20 },
+             { label: 'Phần tử cha', name: 'ysdl', widthratio: 25 },
              { label: 'BindingPath', name: 'BindingPath', widthratio: 30, hidden: true }
         ],
     };
@@ -298,68 +298,68 @@ $.fn.ElementFloatingSelector = function (options) {
 
     $(this).newtouchFloatingSelector(options);
 }
-//病历表字段选择
+//Chọn trường bảng bệnh án
 $.fn.TabColumnFloatingSelector = function (options) {
     var defaults = {
         url: '/MedicalRecordManage/Bljgh/GetTableColumnList',
         width: 350,
         height: 200,
         clickautotrigger: true,
-        caption: "选择字段",
+        caption: "Chọn trường",
         ajaxparameters: function ($thisinput) {
             return "TableName=" + options.TableName + "&keyword=" + $thisinput.val();
         },
         itemdbclickhandler: null,
         colModel: [
-             { label: '序号', name: 'column_id', widthratio: 20 },
-             { label: '字段', name: 'columnName', widthratio: 50 },
-             { label: '字段类型', name: 'columnType', widthratio: 20 },
-             { label: '最大长度', name: 'max_length', widthratio: 30, hidden: true },
-             { label: '小数位', name: 'scale', widthratio: 70, hidden: true }
+             { label: 'Số thứ tự', name: 'column_id', widthratio: 20 },
+             { label: 'Trường', name: 'columnName', widthratio: 50 },
+             { label: 'Kiểu trường', name: 'columnType', widthratio: 20 },
+             { label: 'Độ dài tối đa', name: 'max_length', widthratio: 30, hidden: true },
+             { label: 'Số thập phân', name: 'scale', widthratio: 70, hidden: true }
         ],
     };
     var options = $.extend(defaults, options);
 
     $(this).newtouchFloatingSelector(options);
 }
-//病历元素明细选择
+//Chọn chi tiết phần tử bệnh án
 $.fn.ElementMxFloatingSelector = function (options) {
     var defaults = {
         url: '/MedicalRecordManage/Bljgh/GetElementMx',
         width: 350,
         height: 200,
         clickautotrigger: true,
-        caption: "选择元素值",
+        caption: "Chọn giá trị phần tử",
         ajaxparameters: function ($thisinput) {
             return "keyword=" + options.ysId;
         },
         itemdbclickhandler: null,
         colModel: [
              { label: 'ysId', name: 'ysId', widthratio: 20, hidden: true },
-             { label: '代码', name: 'ysmxcode', widthratio: 40 },
-             { label: '值', name: 'ysmxName', widthratio: 60}
+             { label: 'Mã', name: 'ysmxcode', widthratio: 40 },
+             { label: 'Giá trị', name: 'ysmxName', widthratio: 60}
         ],
     };
     var options = $.extend(defaults, options);
 
     $(this).newtouchFloatingSelector(options);
 }
-//病历文书浮层
+//Lớp nổi văn bản bệnh án
 $.fn.BindBlTableFloatingSelector = function (options) {
     var defaults = {
         url: '/MedicalRecordManage/Bljgh/GetBlTable',
         width: 350,
         height: 200,
         clickautotrigger: true,
-        caption: "选择元素值",
+        caption: "Chọn giá trị phần tử",
         ajaxparameters: function ($thisinput) {
             return "keyword=" +$thisinput.val();
         },
         itemdbclickhandler: null,
         colModel: [
              { label: 'bllx', name: 'bllx', widthratio: 30,hidden:true },
-             { label: '病历名称', name: 'bllxmc', widthratio: 50 },
-             { label: '表名', name: 'relTB', widthratio: 50 }
+             { label: 'Tên bệnh án', name: 'bllxmc', widthratio: 50 },
+             { label: 'Tên bảng', name: 'relTB', widthratio: 50 }
         ],
     };
     var options = $.extend(defaults, options);

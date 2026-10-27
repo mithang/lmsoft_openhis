@@ -11,14 +11,14 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.DomainServices
 {
     /// <summary>
-    /// 采购单
+    /// Đơn mua sắm
     /// </summary>
     public class CgOrderDmnService : DmnServiceBase, ICgOrderDmnService
     {
         
 
         /// <summary>
-        /// 查询采购单信息
+        /// Truy vấn thông tin đơn mua sắm
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orderNo"></param>
@@ -82,7 +82,7 @@ AND co.CreateTime BETWEEN @kssj AND @jssj
         }
 
         /// <summary>
-        /// 查询采购单明细
+        /// Truy vấn chi tiết đơn mua sắm
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="organizeId"></param>
@@ -113,7 +113,7 @@ AND co.orderNo=@orderNo
         }
 
         /// <summary>
-        /// 查询采购单明细
+        /// Truy vấn chi tiết đơn mua sắm
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="organizeId"></param>
@@ -145,9 +145,9 @@ FROM (
             };
             return FindList<VCgOrderDetailEntity>(sql, param);
         }
-        #region 外部入库-采购单导入
+        #region Nhập kho ngoài-Nhập đơn mua sắm
         /// <summary>
-        /// 外部入库-采购单引用View
+        /// Nhập kho ngoài-Tham chiếu đơn mua sắm View
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="organizeId"></param>
@@ -181,7 +181,7 @@ AND co.zt='1' AND co.ordertype='1' ")
         }
 
         /// <summary>
-        /// 外部入库-采购单引用
+        /// Nhập kho ngoài-Tham chiếu đơn mua sắm
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="organizeId"></param>
@@ -220,7 +220,7 @@ cod.fph,cod.remark,wz.gg,wz.lsj,cj.name,gys.name,cod.dwmc,wz.supplierId,rpu.unit
         }
 
         /// <summary>
-        /// 外部入库-采购单引用View-明细
+        /// Nhập kho ngoài-Tham chiếu đơn mua sắm View-Chi tiết
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="organizeId"></param>
@@ -250,7 +250,7 @@ AND co.zt='1' AND cod.subOrderNo=@subOrderNo ")
             return FindList<VCgOrderDetailEntity>(sql.ToString(), param);
         }
         /// <summary>
-        /// 采购发票补填
+        /// Bổ sung hóa đơn mua sắm
         /// </summary>
         /// <param name="subOrderNo"></param>
         /// <param name="fph"></param>

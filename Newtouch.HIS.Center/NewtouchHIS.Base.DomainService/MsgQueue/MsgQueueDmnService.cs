@@ -17,7 +17,7 @@ namespace NewtouchHIS.Base.DomainService
 {
     public class MsgQueueDmnService : BaseDmnService<MsgNoticeQueueEntity>, IMsgQueueDmnService
     {
-        #region 消息组管理
+        #region Quản lý nhóm thông báo
         public async Task<string> AddNoticeGroup(MsgNoticeGroupBasicVO request)
         {
             MsgNoticeGroupVO vo = request.Adapt<MsgNoticeGroupVO>();
@@ -35,7 +35,7 @@ namespace NewtouchHIS.Base.DomainService
             && (p.GroupTag == vo.GroupTag || p.GroupName == vo.GroupName));
             if (exists != null)
             {
-                throw new FailedException(exists.GroupTag == vo.GroupTag ? "组标签已注册" : "组名称已注册");
+                throw new FailedException(exists.GroupTag == vo.GroupTag ? "Nhãn nhóm đã được đăng ký" : "Tên nhóm đã được đăng ký");
             }
             string errorMsg = string.Empty;
             if (!ValidRequired(vo, out errorMsg))
@@ -76,7 +76,7 @@ namespace NewtouchHIS.Base.DomainService
                     && (p.GroupTag == request.GroupTag || p.GroupName == request.GroupName) && p.Id != entity.Id);
                 if (exists != null)
                 {
-                    throw new FailedException(exists.GroupTag == request.GroupTag ? "组标签已注册" : "组名称已注册");
+                    throw new FailedException(exists.GroupTag == request.GroupTag ? "Nhãn nhóm đã được đăng ký" : "Tên nhóm đã được đăng ký");
                 }
             }
 
@@ -100,7 +100,7 @@ namespace NewtouchHIS.Base.DomainService
         }
         #endregion
 
-        #region 消息队列
+        #region Hàng đợi thông báo
         public async Task<List<string>> AddNotice(MsgNoticeQueueBasicVO request)
         {
             string errorMsg = string.Empty;
@@ -143,14 +143,14 @@ namespace NewtouchHIS.Base.DomainService
             int limitLenOnce = 100;
             if (request.Recipient?.Length > limitLenOnce)
             {
-                //分次
+                //Chia lần
                 var recips = request.Recipient.Split(',').Distinct().ToList();
                 int maxStr = recips.Max(p => p.Length);
                 int remainder = 0;
-                //每次可发收件人个数
+                //Số người nhận có thể gửi mỗi lần
                 int point = Math.DivRem(limitLenOnce, maxStr, out remainder);
                 point += remainder > 0 ? 1 : 0;
-                //发件次数 要分成几条
+                //Số lần gửi Cần chia thành mấy bản tin
                 remainder = 0;
                 int cnt = Math.DivRem(recips.Count, point, out remainder);
                 cnt += remainder > 0 ? 1 : 0;
@@ -168,7 +168,7 @@ namespace NewtouchHIS.Base.DomainService
                     var iresult = await AddWithAttr(ientity);
                     if (iresult == 0)
                     {
-                        errorMsg += $"位于第{i}次发送信息排队失败，请重试！";
+                        errorMsg += $"Tại lần thứ{i}gửi thông báo xếp hàng thất bại,Vui lòng thử lại!";
                     }
                     resultIds.Add(ientity.Id);
                 }
@@ -199,28 +199,28 @@ namespace NewtouchHIS.Base.DomainService
                         case NoticeStuEnum.Wait:
                             if (notice.NoticeStu != (int)NoticeStuEnum.Wait)
                             {
-                                //throw new FailedException("Trạng thái tin nhắn đã được cập nhật，Cập nhật trạng thái thất bại");
+                                //throw new FailedException("Trạng thái tin nhắn đã được cập nhật,Cập nhật trạng thái thất bại");
                                 isModified = false;
                             }
                             break;
                         case NoticeStuEnum.UnSend:
                             if (notice.NoticeStu == (int)NoticeStuEnum.Read || notice.NoticeStu != (int)NoticeStuEnum.Send)
                             {
-                                //throw new FailedException("Trạng thái tin nhắn đã được cập nhật，Cập nhật trạng thái thất bại");
+                                //throw new FailedException("Trạng thái tin nhắn đã được cập nhật,Cập nhật trạng thái thất bại");
                                 isModified = false;
                             }
                             break;
                         case NoticeStuEnum.Send:
                             if (notice.NoticeStu == (int)NoticeStuEnum.Read)
                             {
-                                //throw new FailedException("Tin nhắn đã đọc，Cập nhật trạng thái thất bại");
+                                //throw new FailedException("Tin nhắn đã đọc,Cập nhật trạng thái thất bại");
                                 isModified = false;
                             }
                             break;
                         case NoticeStuEnum.Read:
                             if (notice.NoticeStu == (int)NoticeStuEnum.Read)
                             {
-                                //throw new FailedException("Tin nhắn đã đọc，Cập nhật trạng thái thất bại");
+                                //throw new FailedException("Tin nhắn đã đọc,Cập nhật trạng thái thất bại");
                                 isModified = false;
                             }
                             break;
@@ -246,8 +246,8 @@ namespace NewtouchHIS.Base.DomainService
         }
 
         /// <summary>
-        /// 更新Tin nhắn处理状态 
-        /// 每次处理失败则 px +1
+        /// Cập nhậtTin nhắnTrạng thái xử lý 
+        /// Mỗi lần xử lý thất bại thì px +1
         /// </summary>
         /// <param name="queueId"></param>
         /// <param name="user"></param>
@@ -264,19 +264,19 @@ namespace NewtouchHIS.Base.DomainService
                     case NoticeStuEnum.Wait:
                         if (notice.NoticeStu != (int)NoticeStuEnum.Wait)
                         {
-                            throw new FailedException("Trạng thái tin nhắn đã được cập nhật，Cập nhật trạng thái thất bại");
+                            throw new FailedException("Trạng thái tin nhắn đã được cập nhật,Cập nhật trạng thái thất bại");
                         }
                         break;
                     case NoticeStuEnum.UnSend:
                         if (notice.NoticeStu == (int)NoticeStuEnum.Read || notice.NoticeStu != (int)NoticeStuEnum.Send)
                         {
-                            throw new FailedException("Trạng thái tin nhắn đã được cập nhật，Cập nhật trạng thái thất bại");
+                            throw new FailedException("Trạng thái tin nhắn đã được cập nhật,Cập nhật trạng thái thất bại");
                         }
                         break;
                     case NoticeStuEnum.Send:
                         if (notice.NoticeStu == (int)NoticeStuEnum.Read)
                         {
-                            throw new FailedException("Tin nhắn đã đọc，Cập nhật trạng thái thất bại");
+                            throw new FailedException("Tin nhắn đã đọc,Cập nhật trạng thái thất bại");
                         }
                         break;
                     case NoticeStuEnum.Read:
@@ -333,7 +333,7 @@ namespace NewtouchHIS.Base.DomainService
         }
         public async Task<List<MsgNoticeQueueModelVO<T>>> NoticeQueueOfModelQuery<T>(MsgNoticeQueueQueryVO request, string AppId) where T : MsgNoticeModel
         {
-            //创建表达式
+            //Tạo biểu thức
             var whereExp = Expressionable.Create<MsgNoticeQueueEntity, MsgNoticeGroupEntity>()
                 .And((a, b) => a.NoticeGroupId == b.Id && a.OrganizeId == b.OrganizeId && a.zt == "1" && b.zt == "1" && a.OrganizeId == request.OrganizeId);
             if (!string.IsNullOrWhiteSpace(AppId))
@@ -387,7 +387,7 @@ namespace NewtouchHIS.Base.DomainService
         {
             var resp = new PageResponseRow<List<MsgNoticeQueueQueryRspoVO>>();
             var request = requestPage.queryParams;
-            //创建表达式
+            //Tạo biểu thức
             var whereExp = Expressionable.Create<MsgNoticeQueueEntity, MsgNoticeGroupEntity, SysAuthAppEntity>()
                 .And((a, b, c) => a.NoticeGroupId == b.Id && a.OrganizeId == b.OrganizeId && a.zt == "1" && b.zt == "1" && a.OrganizeId == request.OrganizeId);
             if (!string.IsNullOrWhiteSpace(AppId))
@@ -498,7 +498,7 @@ namespace NewtouchHIS.Base.DomainService
         }
 
         /// <summary>
-        /// 获取Tin nhắn通知列表
+        /// LấyTin nhắnDanh sách thông báo
         /// </summary>
         /// <param name="request"></param>
         /// <param name="AppId"></param>

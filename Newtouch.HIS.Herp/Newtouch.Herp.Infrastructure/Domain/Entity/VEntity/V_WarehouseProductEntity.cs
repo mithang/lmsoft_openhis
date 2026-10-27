@@ -3,81 +3,81 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
     public class VWarehouseProductEntity
     {
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 控制标志
+        /// Cờ kiểm soát
         /// </summary>
         public string kzbz { get; set; }
 
         /// <summary>
-        /// 物资状态
+        /// Trạng thái vật tư
         /// </summary>
         public string wzzt { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 类别名称
+        /// Tên loại
         /// </summary>
         public string lb { get; set; }
 
         /// <summary>
-        /// 最小起订数  最小单位
+        /// Số lượng đặt tối thiểu  Đơn vị nhỏ nhất
         /// </summary>
         public int? zxqds { get; set; }
 
         /// <summary>
-        /// 零售价  最小单位
+        /// Giá bán lẻ  Đơn vị nhỏ nhất
         /// </summary>
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 最小单位名称
+        /// Tên đơn vị nhỏ nhất
         /// </summary>
         public string zxdwmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 品牌
+        /// Thương hiệu
         /// </summary>
         public string brand { get; set; }
 
         /// <summary>
-        /// 生产厂家
+        /// Hãng sản xuất
         /// </summary>
         public string sccj { get; set; }
 
         /// <summary>
-        /// 是否零库存
+        /// Có phải tồn kho bằng 0 không
         /// </summary>
         public string sflkc { get; set; }
 
         /// <summary>
-        /// 是否复用
+        /// Có tái sử dụng không
         /// </summary>
         public string sffy { get; set; }
 
         /// <summary>
-        /// 是否跟台
+        /// Có theo ca mổ không
         /// </summary>
         public string sfgt { get; set; }
         /// <summary>
-        /// 国家医保代码
+        /// Mã BHYT quốc gia
         /// </summary>
         public string gjybdm { get; set; }
     }

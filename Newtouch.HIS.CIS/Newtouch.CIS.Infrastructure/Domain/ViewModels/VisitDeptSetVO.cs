@@ -3,113 +3,113 @@ using System;
 namespace Newtouch.Domain.ViewModels
 {
     /// <summary>
-    /// 出诊医生信息
+    /// rakhámBác sĩthông tin
     /// </summary>
     public class VisitDeptSetVO
     {
         /// <summary>
-        /// 员工姓名
+        /// viêncôngHọ tên
         /// </summary>
         public string staffName { get; set; }
 
         /// <summary>
-        /// 账号
+        /// Tài khoản
         /// </summary>
         public string account { get; set; }
 
         /// <summary>
-        /// 员工工号
+        /// viêncôngMã nhân viên
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// 所属科室代码
+        /// sởthuộcKhoaMã
         /// </summary>
         public string subordinateDeptCode { get; set; }
 
         /// <summary>
-        /// 所属科室名称
+        /// sởthuộcTên khoa
         /// </summary>
         public string subordinateDeptName { get; set; }
     }
 
     /// <summary>
-    /// 出诊科室明细
+    /// rakhámKhoachi tiết
     /// </summary>
     public class VisitDeptDetail
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织结构
+        /// tổ chứckếtcấu trúc
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 职工名称
+        /// chứccôngTên
         /// </summary>
         public string staffName { get; set; }
 
         /// <summary>
-        /// 账号
+        /// Tài khoản
         /// </summary>
         public string account { get; set; }
 
         /// <summary>
-        /// 医生工号
+        /// Bác sĩMã nhân viên
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// 出诊科室代码(包含所属科室)
+        /// rakhámKhoaMã(góiBao gồm thuộcKhoa)
         /// </summary>
         public string visitksCode { get; set; }
 
         /// <summary>
-        /// 出诊科室名称(包含所属科室)
+        /// rakhámTên khoa(góiBao gồm thuộcKhoa)
         /// </summary>
         public string visitDeptName { get; set; }
 
         /// <summary>
-        /// 出诊类型  1-普通门诊；2-急诊；3-专家门诊
+        /// rakhámLoại  1-thông thườngNgoại trú；2-gấpkhám；3-chuyên giaNgoại trú
         /// </summary>
         public int czlx { get; set; }
 
         /// <summary>
-        /// 所属科室代码
+        /// sởthuộcKhoaMã
         /// </summary>
         public string SubordinateDepartments { get; set; }
 
         /// <summary>
-        /// 所属科室名称
+        /// sởthuộcTên khoa
         /// </summary>
         public string subordinateDeptName { get; set; }
 
         /// <summary>
-        /// 状态     1:有效  0：无效
+        /// Trạng thái     1:Hiệu lực  0：Vô hiệu
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// tạongười
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者
+        /// Sửangười
         /// </summary>
         public string LastModifierCode { get; set; }
     }

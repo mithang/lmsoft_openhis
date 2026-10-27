@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects
 {
     /// <summary>
-    /// 报损报溢药品代码查询
+    /// Báo hỏngbáo thừaMã thuốcTra cứu
     /// </summary>
     public class ReportLossAndProfitMedicineInfoVO
     {
@@ -77,17 +77,17 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public decimal Yklsj { get; set; }
         /// <summary>
-        /// 药品类别
+        /// ThuốcLoại
         /// </summary>
         public string yplb { get; set; }
 
         /// <summary>
-        /// 药品状态
+        /// ThuốcTrạng thái
         /// </summary>
         public string ypzt { get; set; }
 
         /// <summary>
-        /// 进价
+        /// vàogiá
         /// </summary>
         public decimal? jj { get; set; }
     }

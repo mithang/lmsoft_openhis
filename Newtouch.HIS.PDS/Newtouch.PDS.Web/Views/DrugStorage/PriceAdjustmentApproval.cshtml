@@ -169,14 +169,14 @@
         $("#btn_search").trigger('click');
     }
 
-    //查询条件
+    //Điều kiện truy vấn
     function getSearchPostData() {
         var inputCode = $("#txtINPUTCODE").val();
         var shzt = $("#ddlSHZT").val();
         return { inputCode: inputCode, shzt: shzt };
     };
 
-    //已过期 背景色为红色
+    //Đã hết hạn Màu nền là màu đỏ
     function afterCompleteFunction() {
         var ids = $("#gridXSHYPInfoList").getDataIDs();
         for (var i = 0; i < ids.length; i++) {
@@ -187,7 +187,7 @@
         }
     }
 
-    //批准 EnumPriceAdjustOperationType:1:批准,2:Từ chối,3:撤销,4:Thực hiện
+    //Phê duyệt EnumPriceAdjustOperationType:1:Phê duyệt,2:Từ chối,3:Thu hồi,4:Thực hiện
     function newtouch_event_f2() {
         MedicineAdjustPriceApproval(1);
     }
@@ -195,7 +195,7 @@
     function newtouch_event_f3() {
         MedicineAdjustPriceApproval(2);
     }
-    //撤销
+    //Thu hồi
     function newtouch_event_f6() {
         MedicineAdjustPriceApproval(3);
     }
@@ -204,7 +204,7 @@
         MedicineAdjustPriceApproval(4);
     }
 
-    //审核 Từ chối 撤销 执行操作
+    //Duyệt Từ chối Thu hồi Thực hiện thao tác
     function MedicineAdjustPriceApproval(operationType) {
         var rowsData = $("#gridXSHYPInfoList").jqGrid("getRowData_AllLine", true);
         //var rowsDataArray = JSON.parse(rowsData);
@@ -258,7 +258,7 @@
         }, false);        
     }
 
-    //禁用
+    //Vô hiệu hóa
     function DisableControls(flag) {
         if (flag === "0" || flag === "2" || flag === "3") {
             $("#btn_bottombutton_f7").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");

@@ -6,7 +6,7 @@ using SqlSugar;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 库存信息
+    /// Thông tin tồn kho
     /// </summary>
     public class KfKcxxRepo : RepositoryBase<KfKcxxEntity>, IKfKcxxRepo
     {
@@ -15,7 +15,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 查询库存信息
+        /// Truy vấn thông tin tồn kho
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="productId"></param>
@@ -38,7 +38,7 @@ AND kcxx.zt='1'
         }
 
         /// <summary>
-        /// 修改库存状态
+        /// Sửa trạng thái tồn kho
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="ph"></param>

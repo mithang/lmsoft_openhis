@@ -26,27 +26,27 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
 		/// </summary>
 		public string id { set; get; }
 		/// <summary>
-		/// 住院号
+		/// Số nội trú
 		/// </summary>
 		public string zyh { set; get; }
 		/// <summary>
-		/// 诊断类型
+		/// Loại chẩn đoán
 		/// </summary>
 		public int zdType { set; get; }
 		/// <summary>
-		/// 诊断描述
+		/// Mô tả chẩn đoán
 		/// </summary>
 		public string zdms { get; set; }
 		/// <summary>
-		/// 治疗结果
+		/// Điều trịKết quả
 		/// </summary>
 		public string zljg { get; set; }
 		/// <summary>
-		/// 治疗天数
+		/// Số ngày điều trị
 		/// </summary>
 		public string zlts { get; set; }
 		/// <summary>
-		/// 诊断日期
+		/// Ngày chẩn đoán
 		/// </summary>
 		public DateTime? zdrq { get; set; }
 

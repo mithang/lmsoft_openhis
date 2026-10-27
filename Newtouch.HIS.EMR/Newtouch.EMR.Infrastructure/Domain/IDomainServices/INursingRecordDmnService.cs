@@ -16,9 +16,9 @@ namespace Newtouch.EMR.Domain.IDomainServices
         void SubmitForm(bl_hljl_ybEntity entity, string keyValue);
         IList<bl_hljl_ybEntity> GetPaginationList(Pagination pagination, string orgId, DateTime? kssj, DateTime? jssj, string zyh, string wardCode, string isShowDelete);
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         void DeleteForm(string keyValue);
         InpWardPatTreeVO GetPatList(string orgId, string zyh);
         int SubmitSrl(string mc, string ml,string dw, string tj, string orgId,string zyh, string rq ,string sj,string bllx, string user);

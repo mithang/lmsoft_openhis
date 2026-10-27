@@ -20,60 +20,60 @@ namespace Newtouch.HIS.Domain.VO
 
         public string cgmxId { get; set; }
         /// <summary>
-        /// 采购编号
+        /// Số mua hàng
         /// </summary>
         public string cgId { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 药品编号
+        /// Số hiệu thuốc
         /// </summary>
         public string ypCode { get; set; }
         /// <summary>
-        /// 顺序号
+        /// Số thứ tự
         /// </summary>
         public int sxh { get; set; }
         /// <summary>
-        /// 采购模式
+        /// Phương thức mua hàng
         /// </summary>
         public string cglx { get; set; }
         /// <summary>
-        /// 商品类型
+        /// Loại hàng hóa
         /// </summary>
         public string splx { get; set; }
         /// <summary>
-        /// 统编代码
+        /// Mã thống nhất
         /// </summary>
         public string zxspbm { get; set; }
         /// <summary>
-        /// 采购计量单位
+        /// Đơn vị đo lường mua hàng
         /// </summary>
         public string cgjldw { get; set; }
         /// <summary>
-        /// 规格包装
+        /// Quy cách đóng gói
         /// </summary>
         public string ggbz { get; set; }
         /// <summary>
-        /// 采购数量
+        /// Số lượng mua hàng
         /// </summary>
         public decimal cgsl { get; set; }
         /// <summary>
-        /// 采购单价
+        /// Đơn giá mua hàng
         /// </summary>
         public decimal cgdj { get; set; }
         /// <summary>
-        /// 药企编码
+        /// Mã doanh nghiệp dược
         /// </summary>
         public string yqbm { get; set; }
         /// <summary>
-        /// 多次配送标识（0不允许  1允许）
+        /// Cờ giao hàng nhiều lần（0Không cho phép  1Cho phép）
         /// </summary>
         public string dcpsbs { get; set; }
         /// <summary>
-        /// 备注说明
+        /// Giải thích ghi chú
         /// </summary>
         public string bzsm { get; set; }
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string dw { get; set; }
 
@@ -109,48 +109,48 @@ namespace Newtouch.HIS.Domain.VO
     {
         public string cgId { get; set; }
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 订单时间
+        /// Thời gian đơn hàng
         /// </summary>
         public string ddsj { get; set; }
         /// <summary>
-        /// 操作类型
+        /// Loại thao tác
         /// </summary>
         public string czlx { get; set; }
 
         /// <summary>
-        /// 医保编码
+        /// Mã BHYT
         /// </summary>
         public string yybm { get; set; }
         /// <summary>
-        /// 配送点编码
+        /// Mã điểm giao hàng
         /// </summary>
         public string psdbm { get; set; }
         /// <summary>
-        /// 订单类型
+        /// Loại đơn hàng
         /// </summary>
         public string ddlx { get; set; }
         /// <summary>
-        /// 订单编号
+        /// Số đơn hàng
         /// </summary>
         public string ddbh { get; set; }
         /// <summary>
-        /// 医院计划单号
+        /// Số đơn kế hoạch bệnh viện
         /// </summary>
         public string yyjhdh { get; set; }
         /// <summary>
-        /// 最晚到货日期
+        /// Ngày nhận hàng muộn nhất
         /// </summary>
         public string zwdhrq { get; set; }
         /// <summary>
-        /// 记录数
+        /// Số bản ghi
         /// </summary>
         public int jls { get; set; }
         /// <summary>
-        /// 订单状态
+        /// Trạng thái đơn hàng
         /// </summary>
         public int ddzt { get; set; }
         /// <summary>

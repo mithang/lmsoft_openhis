@@ -19,61 +19,61 @@ namespace Newtouch.OR.ManageSystem.Domain.Entity
 		public string OrganizeId { get; set; }
 
 		/// <summary>
-		/// 主键
+		/// Khóa chính
 		/// </summary>
 		/// <returns></returns>
 		[SugarColumn(IsPrimaryKey = true)]
 		public string Id { get; set; }
 
 		/// <summary>
-		/// 申请编码
+		/// Mã đơn đăng ký
 		/// </summary>
 		/// <returns></returns>
 		public string Applyno { get; set; }
 
 		/// <summary>
-		/// 住院号
+		/// Số nhập viện
 		/// </summary>
 		/// <returns></returns>
 		public string zyh { get; set; }
 
 		/// <summary>
-		/// 手术名称
+		/// Tên phẫu thuật
 		/// </summary>
 		public string ssmc { get; set; }
 
 		/// <summary>
-		/// 手术代码
+		/// Mã phẫu thuật
 		/// </summary>
 		public string ssdm { get; set; }
 
 		/// <summary>
-		/// 序号
+		/// Số thứ tự
 		/// </summary>
 		public int px { get; set; }
 
 		/// <summary>
-		/// 状态
+		/// Trạng thái
 		/// </summary>
 		public string zt { get; set; }
 
 		/// <summary>
-		/// 创建时间
+		/// Thời gian tạo
 		/// </summary>
 		public DateTime? CreateTime { get; set; }
 
 		/// <summary>
-		/// 创建人
+		/// Người tạo
 		/// </summary>
 		public string CreatorCode { get; set; }
 
 		/// <summary>
-		/// 修改时间
+		/// Thời gian sửa
 		/// </summary>
 		public DateTime? LastModifyTime { get; set; }
 		
 		/// <summary>
-		/// 修改人
+		/// Người sửa
 		/// </summary>
 		public string LastModifierCode { get; set; }
 	}

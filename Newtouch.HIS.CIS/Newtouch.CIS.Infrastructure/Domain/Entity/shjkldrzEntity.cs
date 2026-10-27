@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 智能审核日志
+    /// trícó thểPhê duyệtngàychí
     /// </summary>
     [SugarTable("shjk_log")]
     public class shjkldrzEntity
@@ -19,36 +19,36 @@ namespace Newtouch.Domain.Entity
         public string Id { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 交易代码
+        /// giao dịchMã
         /// </summary>
         public string jydm { get; set; }
         /// <summary>
-        /// 门诊住院号
+        /// Ngoại trúSố nhập viện
         /// </summary>
         public string mzzyh { get; set; }
         /// <summary>
-        /// 1：门诊 2：住院
+        /// 1：Ngoại trú 2：Nhập viện
         /// </summary>
         public string Type { get; set; }
         /// <summary>
-        /// 接口名称缩写
+        /// giao diệnTênthu nhỏviết
         /// </summary>
         public string jkType { get; set; }
         public string yzh { get; set; }
         /// <summary>
-        /// 返回参数流水号
+        /// Quay lạitham sốdòngchảysố
         /// </summary>
         public string outlsh { get; set; }
         /// <summary>
-        /// 入参配置
+        /// Tham số đầu vàocấu hình
         /// </summary>
         public string param { get; set; }
         /// <summary>
-        /// 入参xml
+        /// Tham số đầu vàoxml
         /// </summary>
         public string XmlRequest { get; set; }
         /// <summary>
-        /// 出参xml
+        /// ratham sốxml
         /// </summary>
         public string XmlResponse { get; set; }
         public string zt { get; set; }

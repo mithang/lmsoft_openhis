@@ -20,7 +20,7 @@
             //var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
             var OutpatientList =[];
             var InpatientList = [];
-            //折线图 获取就诊人数
+            //Biểu đồ đường Lấy số lượng người khám
             $.ajax({
                 url: "/Home/GetVisitNum?r=" + Math.random(),
                 dataType: "json",
@@ -78,7 +78,7 @@
         }
         function GetLeaveChart() {
             //var randomScalingFactor = function () { return Math.round(Math.random() * 100) };
-            //饼状图 获取就诊人数
+            //Biểu đồ tròn Lấy số lượng người khám
             var outpatientCount = 0;
             var inpatientCount = 0;
             $.ajax({
@@ -256,7 +256,7 @@
                 <div style="float: left; width: 34%; margin-right: 1%;">
                     <div style="height: 265px; border: 1px solid #e6e6e6; background-color: #fff;">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><i class="fa fa-rss fa-lg" style="padding-right: 5px;"></i>通知公告</div>
+                            <div class="panel-heading"><i class="fa fa-rss fa-lg" style="padding-right: 5px;"></i>Thông báo</div>
                             <div class="panel-body">
                                 <ul>
                                     <li><a href="#">[Thông báo] Nội quy nhân viên mới, thực hiện ngay từ hôm nay</a><span class="time">2016-12-21</span></li>
@@ -275,17 +275,17 @@
                 <div style="float: right; width: 30%;">
                     <div style="height: 265px; border: 1px solid #e6e6e6; background-color: #fff;">
                         <div class="panel panel-default">
-                            <div class="panel-heading"><i class="fa fa-send fa-lg" style="padding-right: 5px;"></i>企业文化</div>
+                            <div class="panel-heading"><i class="fa fa-send fa-lg" style="padding-right: 5px;"></i>Văn hóa doanh nghiệp</div>
                             <div class="panel-body">
                                 <ul>
-                                    <li><a href="#">创新企业党建思想政治工作</a><span class="time">2016-12-02</span></li>
-                                    <li><a href="#">现代国有企业道德体系初构</a><span class="time">2016-12-18</span></li>
-                                    <li><a href="#">国有企业文化问题根源及文化重塑任务分析</a><span class="time">2016-12-26</span></li>
-                                    <li><a href="#">国有企业文化建设必须突出员工文化</a><span class="time">2016-12-20</span></li>
-                                    <li><a href="#">加强企业公民建设 推进企业和谐发展</a><span class="time">2016-12-08</span></li>
-                                    <li><a href="#">不断提升大庆精神 实现企业持续发展</a><span class="time">2016-12-22</span></li>
-                                    <li><a href="#">科学发展作指导 人水和谐路更宽</a><span class="time">2016-12-15</span></li>
-                                    <li><a href="#">科学发展作指导 人水和谐路更宽</a><span class="time">2016-12-15</span></li>
+                                    <li><a href="#">Đổi mới công tác xây dựng Đảng và tư tưởng chính trị trong doanh nghiệp</a><span class="time">2016-12-02</span></li>
+                                    <li><a href="#">Phác thảo sơ bộ hệ thống đạo đức doanh nghiệp nhà nước hiện đại</a><span class="time">2016-12-18</span></li>
+                                    <li><a href="#">Phân tích nguồn gốc vấn đề văn hóa doanh nghiệp nhà nước và nhiệm vụ tái tạo văn hóa</a><span class="time">2016-12-26</span></li>
+                                    <li><a href="#">Xây dựng văn hóa doanh nghiệp nhà nước phải nhấn mạnh văn hóa nhân viên</a><span class="time">2016-12-20</span></li>
+                                    <li><a href="#">Tăng cường xây dựng công dân doanh nghiệp Thúc đẩy doanh nghiệp phát triển hài hòa</a><span class="time">2016-12-08</span></li>
+                                    <li><a href="#">Không ngừng nâng cao tinh thần Đại Khánh Thực hiện doanh nghiệp phát triển bền vững</a><span class="time">2016-12-22</span></li>
+                                    <li><a href="#">Lấy phát triển khoa học làm định hướng con đường hài hòa giữa con người và nước càng rộng mở</a><span class="time">2016-12-15</span></li>
+                                    <li><a href="#">Lấy phát triển khoa học làm định hướng con đường hài hòa giữa con người và nước càng rộng mở</a><span class="time">2016-12-15</span></li>
                                 </ul>
                             </div>
                         </div>

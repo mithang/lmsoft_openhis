@@ -67,21 +67,21 @@
                 </tr>
             </table>
         </div>
-        @*眼睛Biểu tượng移除*@
+        @*mắtmắtBiểu tượngloại bỏ*@
         <i id="expandIcon" class="fa" style="text-align: center; width: 100%;">MởMụcThu phí</i>
         @*<i id="expandIcon" class="fa fa-eye" aria-hidden="true" style="font-size: large; text-align: center; width: 100%;"></i>*@
         <div class="panel panel-default" id="singleItemDiv">
             <div class="panel-heading navb-bg">
-                @*眼睛Biểu tượng移除*@
+                @*mắtmắtBiểu tượngloại bỏ*@
                 @*<i id="singleItemIcon" class="fa fa-eye-slash" style="font-size:larger;"></i>*@
                 MụcThu phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
                 <i id="singleItemIcon" class="fa">(Đóng)</i>
             </div>
             <form id="form1">
-                <label id="dwjls" hidden="hidden"></label>@*单次计量数，和单次治疗量作比较*@
+                <label id="dwjls" hidden="hidden"></label>@*Một lầntínhlượngsố，vàMột lầnĐiều trịlượnglàmsokhá*@
                 <input id="zfxz" type="text" style="display:none;" class="form-control" />
                 @{
-                    @Html.Partial("originalCharge"); //常规收费。数量
+                    @Html.Partial("originalCharge"); //Thường quyThu phí。Số lượng
                 }
 
             </form>
@@ -108,12 +108,12 @@
 </div>
 <script>
     //
-    var multiTimesSettWithUnSettedSingleItem = false; //开关配置：可多次交易模式 非处方未收费项目是否自动带入
+    var multiTimesSettWithUnSettedSingleItem = false; //Công tắccấu hình：có thểnhiều lầngiao dịchchế độ khôngĐơn thuốcchưaMục thu phíCóKhôngtựđộngmangvào
     //
-    var leftdata = [];//左边数据源
-    var respmzh; //门诊号验证（没有换）
-    var editingNewid = null; //正在修改的行
-    var patInfoPostObj = {}; //Cá nhân信息Object对象 要提交到后台
+    var leftdata = [];//tráibênNguồn dữ liệu
+    var respmzh; //Số khám ngoại trúkiểm tra（Không cóđổi）
+    var editingNewid = null; //đangởSửacủadòng
+    var patInfoPostObj = {}; //Cá nhânthông tinObjectđối tượng cầnGửiđếnmáy chủ
     $(function () {
         $("#gridFeeList").newtouchLocalDataGrid(null, []);
         hideEditBotton();
@@ -128,11 +128,11 @@
         $('#expandIcon:visible').trigger('click');
         //
         initGridPatList();
-        //否则看不到loading效果
+        //Khôngthìxemkhôngđếnloadinghiệunếu
         setTimeout("gridPatList()", 50);
     });
 
-    //页面中素，计算总金额 数量版本
+    //trangmặttrongtố，Tính toánTổng số tiền Số lượngbảnbản
     function reCalcZjeFromsl() {
         var resultZje = "0.00";
         var txtDj = $("#dj").html();
@@ -145,18 +145,18 @@
         $('#zje').html(resultZje);
     }
 
-    ///隐藏编辑按钮
+    ///ẨnSửaNút
     function hideEditBotton() {
         $('#btn_bottombutton_f2,#btn_bottombutton_f3,#btn_bottombutton_f6').hide();
     }
-    //显示编辑按钮
+    //Hiển thịSửaNút
     function showEditBotton() {
         //$('#btn_bottombutton_f3').attr('disabled', 'disabled');
         //$('#btn_bottombutton_f6').attr('disabled', 'disabled');
         $('#btn_bottombutton_f2,#btn_bottombutton_f3,#btn_bottombutton_f6').show();
     }
 
-    //展开项目计费输入面板
+    //triểnmởMụctínhphínhậpmặtbảng
     $('#expandIcon').click(function () {
         $(this).hide();
         $('#singleItemDiv').show();
@@ -165,7 +165,7 @@
         $("#gridFeeList").setGridHeight($(window).height() - $("#dv_baseInfoAndItem").outerHeight(true) - 89);
     });
 
-    //隐藏项目计费输入面板
+    //ẨnMụctínhphínhậpmặtbảng
     $('#singleItemIcon').click(function () {
         $('#singleItemDiv').hide();
         $('#form1').show().hide();
@@ -174,7 +174,7 @@
         $("#gridFeeList").setGridHeight($(window).height() - $("#dv_baseInfoAndItem").outerHeight(true) - 89);
     });
 
-    //gridPatList结构
+    //gridPatListkếtcấu trúc
     function initGridPatList() {
         $("#gridPatList").newtouchLocalDataGrid({
             height: $(window).height() - 125,
@@ -206,7 +206,7 @@
         });
     }
 
-    //刷新患者列表
+    //Làm mớiDanh sách bệnh nhân
     function gridPatList() {
         $.najax({
             type: "GET",
@@ -224,7 +224,7 @@
         });
     }
 
-    //刷新费用列表
+    //Làm mớiChi phídanh sách
     function gridFeeList() {
         $.najax({
             type: "GET",
@@ -313,7 +313,7 @@
             sfxmgridDbclickRow(rowData);
         }
     });
-    //治疗项目 浮层
+    //Hạng mục điều trị lớp nổi
     var searchTypePart1 = "yp";
     var searchTypePart2 = "sfxm";
     searchTypePart1 += '.kc';
@@ -321,7 +321,7 @@
 
     $('#sfxmmc').sfxmFloatingSelector({
         searchType: 'yp,sfxm',
-        leftshift: 100, //整体左偏移
+        leftshift: 100, //chỉnhthểtráilệchchuyển
         ajaxparameters: function ($thisinput) {
             return "dllb=1,2&mzzybz=2&keyword=" + $.trim($thisinput.val());
         },
@@ -349,7 +349,7 @@
         }
     });
 
-    //添加
+    //Thêm
     function newtouch_event_f2() {
         if ($("#zyh").html() == "") {
             $.modalAlert("ThiếuBệnh nhânThông tin cơ bản", 'warning');
@@ -357,21 +357,21 @@
         }
 
         var data = getEditRowData();
-        if (!checkEditingRowData(data)) {    //数据是否完善，检查必填项
+        if (!checkEditingRowData(data)) {    //Dữ liệuCóKhônghoàn thiện，Kiểm trabắt buộc mục
             return;
         }
         reCalcZjeFromsl();
         var addgoon = function () {
 
-            if (!checkEditingRowData(data)) {    //数据是否完善，检查必填项
+            if (!checkEditingRowData(data)) {    //Dữ liệuCóKhônghoàn thiện，Kiểm trabắt buộc mục
                 return;
             }
             data.zje = $('#zje').html();
             data.zxzt = "0";
             data.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
-            gridMxList.unshift(data);   //作为新项添加 //”数组最前端“
+            gridMxList.unshift(data);   //làmlàmới mụcThêm //”sốnhómnhấttrướcđầu“
 
-            //重新将xm数组呈现至grid
+            //lạisẽxmsốnhómhiển thịhiệnđếngrid
             fillDataToGrid();
             Clearjzxm();
         }
@@ -395,7 +395,7 @@
         }
     }
 
-    //修改
+    //Sửa
     function newtouch_event_f3() {
         if ($("#zyh").html() == "") {
             $.modalAlert("ThiếuBệnh nhânThông tin cơ bản", 'warning');
@@ -404,7 +404,7 @@
         if (editingNewid) {
             var data = getEditRowData();
             if (!(checkEditingRowData(data))) {
-                //数据是否完善，检查必填项
+                //Dữ liệuCóKhônghoàn thiện，Kiểm trabắt buộc mục
                 return;
             }
             reCalcZjeFromsl();
@@ -413,13 +413,13 @@
             updategoon = function () {
 
                 data.newid = editingNewid;
-                if (editingNewid.length == 36) {//GUID则保留ID,否则为新数据ID不用赋值
+                if (editingNewid.length == 36) {//GUIDthìbảogiữID,KhôngthìlàmớiDữ liệuIDkhôngdùngGán giá trị
                     data.Id = editingNewid;
                 }
 
-                //检查重复项
+                //Kiểm tratrùng lặp mục
 
-                //先在xm数组中找到之
+                //trướcởxmsốnhómtrongtìmđếncủa
                 if (editingNewid) {
                     var matchedIndex = -1;
                     for (var ii = 0; ii < gridMxList.length; ii++) {
@@ -429,17 +429,17 @@
                         }
                     }
                     if (matchedIndex == -1) {
-                        return; //应该是异常
+                        return; //ứngCóNgoại lệ
                     }
-                    gridMxList.remove(matchedIndex);   //移除该项
-                    gridMxList.unshift(data);   //作为新项添加    //”数组最前端“
+                    gridMxList.remove(matchedIndex);   //loại bỏ mục
+                    gridMxList.unshift(data);   //làmlàmới mụcThêm    //”sốnhómnhấttrướcđầu“
                 }
 
-                //重新将xm数组呈现至grid
+                //lạisẽxmsốnhómhiển thịhiệnđếngrid
                 fillDataToGrid();
                 Clearjzxm();
 
-                editingNewid = null;    //正在修改的行
+                editingNewid = null;    //đangởSửacủadòng
 
             }
             if (data && parseFloat(data.dj) < '0') {
@@ -462,10 +462,10 @@
         }
         else {
             //$('#btn_bottombutton_f2').attr('disabled', 'disabled');
-            //获取grid当前选中的那一行
+            //Lấygridhiện tạiĐã chọncủađómộtdòng
             var seleId = $('#gridFeeList').jqGrid('getGridParam', 'selrow');
             if (seleId) {
-                //请求修改该行
+                //yêu cầuSửadòng
                 gridEditRow(seleId);
             }
             else {
@@ -474,7 +474,7 @@
         }
     }
 
-    //清除
+    //xóa
     function newtouch_event_f4() {
         gridMxList = [];
         $("#gridFeeList").clearGridData();
@@ -483,11 +483,11 @@
         Clearjzxm();
     };
 
-    //删除
+    //Xóa
     function newtouch_event_f6() {
-        //获取grid当前选中的那一行
+        //Lấygridhiện tạiĐã chọncủađómộtdòng
         var rowid = $('#gridFeeList').jqGrid('getGridParam', 'selrow');
-        //请求删除该行
+        //yêu cầuXóadòng
         if (rowid) {
             var rowData = $("#gridFeeList").jqGrid('getRowData', rowid);
             if (rowData.zxzt == "已Thực hiện") {
@@ -499,18 +499,18 @@
                     if (gridMxList.length > 0) {
                         for (var jj = (gridMxList.length - 1) ; jj >= 0 ; jj--) {
                             if (gridMxList[jj].newid == rowData.newid) {
-                                gridMxList.remove(jj);   //移除
+                                gridMxList.remove(jj);   //loại bỏ
                             }
                         }
                     }
                 }
             }
-            //重新将xm数组呈现至grid
+            //lạisẽxmsốnhómhiển thịhiệnđếngrid
             fillDataToGrid();
         }
     }
 
-    //确认
+    //xác nhận
     function newtouch_event_f8() {
 
         if ($("#zyh").html() == "") {
@@ -543,7 +543,7 @@
         });
     }
 
-    //获取明细
+    //Lấychi tiết
     function getEditRowData() {
         var data = {
             xmdm: $('#sfxmCode').val(),
@@ -564,17 +564,17 @@
         return data;
     }
 
-    //双击收费项目
+    //nhấp đúpMục thu phí
     function sfxmgridDbclickRow(rowData) {
         if (!!rowData.newid) {
             if (rowData) {
                 editingNewid = rowData.newid;
-                //序列化至编辑域中
+                //thứ tựcộthóađếnSửalĩnh vựctrong
 
                 $('#sfxmmc').val(rowData.xmmc);
                 $('#sfxmCode').val(rowData.xmdm);
                 $('#gg').val(rowData.gg);
-                $('#yzlx').val(rowData.yzlb == "Thuốc" ? "1" : "2");// yzlx:1 药品,2 收费项目
+                $('#yzlx').val(rowData.yzlb == "Thuốc" ? "1" : "2");// yzlx:1 Thuốc,2 Mục thu phí
                 $('#sfdlCode').val(rowData.dxmdm);
                 $('#dw').html(rowData.dw);
                 '@(ViewBag.sfxm_dj)' === 'ON'
@@ -602,7 +602,7 @@
     //
     var patModel = null;
 
-    //检查正在编辑的数据（待提交）的完整性
+    //Kiểm trađangởSửacủaDữ liệu（chờGửi）củaxongchỉnhtính
     function checkEditingRowData(rowData) {
         if (!rowData.xmdm || !rowData.xmmc || !rowData.yzlb || !rowData.dxmdm) {
             $.modalAlert("Vui lòng chọnMục thu phí", 'warning');
@@ -612,7 +612,7 @@
             $.modalAlert("ThiếuSố lượng", 'warning');
             return;
         }
-        //常规，数量
+        //Thường quy，Số lượng
         if (!((/^(\+|-)?\d+$/).test(rowData.sl)) || rowData.sl < 1) {
             $.modalAlert("Số lượng là số nguyên lớn hơn 0", 'warning');
             return;
@@ -632,38 +632,38 @@
         return false;
     }
 
-    //请求 编辑 行
+    //yêu cầu Sửa dòng
     function gridEditRow(rowid) {
         if (rowid) {
             var rowData = $("#gridFeeList").jqGrid('getRowData', rowid);
             if (rowData) {
                 if (!!rowData.newid) {
-                    //在gridMxList找 start
+                    //ởgridMxListtìm start
                     rowDataArr = $.jsonWhere(gridMxList, function (v) {
                         return v && v.newid == rowData.newid;
                     });
                     if (!rowDataArr || rowDataArr.length == 0) {
-                        return; //为什么没找到
+                        return; //làgìsaokhôngtìmđến
                     }
-                    rowData = rowDataArr[0];  //通过rowData.newid从对象数组中取出该行数据
-                    if (true) { //&&可编辑
-                        editingNewid = rowData.newid;    //正在修改的行
+                    rowData = rowDataArr[0];  //thông quarowData.newidtừđối tượngsốnhómtronglấyradòngDữ liệu
+                    if (true) { //&&có thểSửa
+                        editingNewid = rowData.newid;    //đangởSửacủadòng
                     }
                     else {
                         return;
                     }
-                    //在gridMxList找 end
+                    //ởgridMxListtìm end
                 }
                 else {
                     //$('#btn_bottombutton_f2').removeAttr('disabled');
                     $.modalAlert("Không thể sửa chi tiết này", "warning");
                     return;
                 }
-                //序列化至编辑域中
+                //thứ tựcộthóađếnSửalĩnh vựctrong
                 $('#sfxmmc').val(rowData.xmmc);
                 $('#sfxmCode').val(rowData.xmdm);
                 $('#gg').val(rowData.gg);
-                $('#yzlx').val(rowData.yzlb == "0" ? "1" : "2");// yzlb:-1 收费项目,0 药品;yzlx:1 药品,2 收费项目
+                $('#yzlx').val(rowData.yzlb == "0" ? "1" : "2");// yzlb:-1 Mục thu phí,0 Thuốc;yzlx:1 Thuốc,2 Mục thu phí
                 $('#sfdlCode').val(rowData.dxmdm);
                 $('#dw').html(rowData.dw);
                 '@(ViewBag.sfxm_dj)' === 'ON'
@@ -683,7 +683,7 @@
         }
     }
     var gridMxList = [];
-    //向gridFeeList grid里填充数据
+    //tớigridFeeList gridtrongđiềnDữ liệu
     function fillDataToGrid() {
         $("#gridFeeList").resetSelection();
         $("#gridFeeList").clearGridData();
@@ -704,7 +704,7 @@
         });
     }
 
-    //清空记账项目
+    //Xóa trắngHạng mục ghi nợ
     function Clearjzxm() {
         $('#zfxz').val('');
         $('#sfxmmc').val('');
@@ -721,7 +721,7 @@
         $('#yfbmcode').val('');
     }
 
-    //搜索病人信息
+    //tìm kiếmThông tin bệnh nhân
     $('#keyword').keyup(function () {
         if (leftdata != null && leftdata.length > 0) {
             $("#gridPatList").resetSelection();
@@ -741,7 +741,7 @@
     });
 
 
-    //延迟调用帮助函数
+    //Trì hoãngọigiúpgiúphàmsố
     var timeoutFunc = null;
     var timeoutFuncParam1 = null;
     var timeoutFuncParam2 = null;

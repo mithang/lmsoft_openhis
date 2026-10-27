@@ -1,11 +1,11 @@
-﻿/**** 定义 và  ApiManage规则一致 ******/
+﻿/**** Định nghĩa và  ApiManageNhất quán với quy tắc ******/
 using NewtouchHIS.Domain.InterfaceObjets.CIS;
 using System.ComponentModel.DataAnnotations;
 
 namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
 {
     /// <summary>
-    /// Đăng ký khám chữa bệnh结果通知 Request
+    /// Đăng ký khám chữa bệnhThông báo kết quả Request
     /// </summary>
     public class TreatedApplyResultRequest
     {
@@ -14,27 +14,27 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
         /// </summary>
         public string ApplyId { get; set; }
         /// <summary>
-        /// 第三方Đăng ký khám chữa bệnh流水号
+        /// Bên thứ baĐăng ký khám chữa bệnhSố giao dịch
         /// </summary>
         public string? Sqlsh { get; set; }
         /// <summary>
-        /// Đăng ký khám chữa bệnh状态（HIS） EmunRemoteTreatedStu
+        /// Đăng ký khám chữa bệnhTrạng thái(HIS) EmunRemoteTreatedStu
         /// </summary>
         [Required(ErrorMessage = "Trạng thái đăng ký khám chữa bệnh không được để trống")]
         public int ApplyStu { get; set; }
         /// <summary>
-        /// 医生是否已确认 
-        /// true Đăng ký通过， false Đăng ký驳回
+        /// Bác sĩ đã xác nhận hay chưa 
+        /// true Đăng kýĐạt, false Đăng kýBác bỏ
         /// </summary>
         [Required(ErrorMessage = "Kết quả xác nhận của bác sĩ không được để trống")]
         public bool IsConfirm { get; set; }
         /// <summary>
-        /// Cuộc họp号
+        /// Cuộc họpSố
         /// </summary>
         public string roomid { get; set; }
     }
     /// <summary>
-    /// 获取云诊所Bệnh nhân病历 Request
+    /// Lấy phòng khám điện toán đám mâyBệnh nhânBệnh án Request
     /// </summary>
     public class PatMedicalRecordRequest
     {
@@ -44,12 +44,12 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
         [Required(ErrorMessage = "His Đăng ký khám chữa bệnhId không được để trống")]
         public string ApplyId { get; set; }
         /// <summary>
-        /// 第三方Đăng ký khám chữa bệnh流水号
+        /// Bên thứ baĐăng ký khám chữa bệnhSố giao dịch
         /// </summary>
         public string? Sqlsh { get; set; }
     }
     /// <summary>
-    /// 获取云诊所Bệnh nhân病历 Response
+    /// Lấy phòng khám điện toán đám mâyBệnh nhânBệnh án Response
     /// </summary>
     public class PatMedicalRecordResponse : OutpMedicalRecordVO
     {
@@ -60,7 +60,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
         public string xm { get; set; }
     }
     /// <summary>
-    /// 向第三方发送HIS病历
+    /// Gửi tới bên thứ baHISBệnh án
     /// </summary>
     public class SendPatMedicalRecordRequest: OutpMedicalRecordVO
     {

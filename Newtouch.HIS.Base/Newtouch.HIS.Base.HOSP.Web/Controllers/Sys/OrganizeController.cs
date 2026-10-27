@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             this._sysModuleDmnService = sysModuleDmnService;
         }
 
-        //下拉 数据源
+        //Thả xuống Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetTreeSelectJson()
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Content(treeList.TreeSelectJson(null));
         }
 
-        //下拉 数据源
+        //Thả xuống Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetChildTreeSelectJson(string orgId)
@@ -75,7 +75,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         public IActionResult GetTreeGridJson(string keyword)
         {
             string topOrgId = base.GetAuthOrganizeId();
-            //集团用户可以修改所有的组织机构，每个机构的操作人员只能维护自己机构下的子机构。
+            //Người dùng tập đoàn có thể sửa tất cả tổ chức，Nhân viên thao tác của mỗi tổ chức chỉ được bảo trì tổ chức con thuộc tổ chức mình。
             var data = _sysOrganizeRepository.GetListByParentOrg(topOrgId);
             if (!string.IsNullOrEmpty(keyword))
             {
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             var treeList = new List<TreeGridModel>();
             foreach (var item in data)
             {
-                item.AllowEdit = item.Id != topOrgId; //最高级不可修改，其他可修改
+                item.AllowEdit = item.Id != topOrgId; //Cấp cao nhất không thể sửa，Khác có thể sửa
 
                 TreeGridModel treeModel = new TreeGridModel();
                 bool hasChildren = data.Any(t => t.ParentId == item.Id);

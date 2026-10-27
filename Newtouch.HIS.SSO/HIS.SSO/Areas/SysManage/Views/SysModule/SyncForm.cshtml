@@ -1,0 +1,460 @@
+﻿@{
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+<style>
+
+
+    .bootstrap-table {
+        height: 60%; /* hoặc là phần trăm，ví dụ height: 100%; */
+        overflow-y: auto;
+    }
+
+    .fixed-table-body {
+        height: 100%;
+    }
+
+    .bootstrap-table .fixed-table-container.fixed-height:not(.has-footer) {
+        border-bottom: none;
+    }
+</style>
+<div class="widget-body">
+    <div id="wizard" class="wizard" data-target="#wizard-steps" style="border-left: none; border-top: none; border-right: none;">
+        <ul class="steps">
+            <li data-target="#step-1" class="active"><span class="step">1</span>chọn menu<span class="chevron"></span></li>
+            <li data-target="#step-2"><span class="step">2</span>xác nhận nhập menu<span class="chevron"></span></li>
+        </ul>
+    </div>
+    <div class="step-content" id="wizard-steps" style="border-left: none; border-bottom: none; border-right: none;">
+        <div class="step-pane active" id="step-1" style="margin: 10px; margin-bottom: 0px;">
+            <div class="btn-toolbar">
+                <form class="form-inline" role="form">
+                    <div class="form-group">
+                        <i class="fa fa-filter"></i> mục tiêu nhập vào：
+                    </div>
+                    <div class="form-group">
+                        <div class="ckbox">
+                            <input type="checkbox" class="form-check" name="ck_showSync" id="ck_showSync">
+                            <label for="ck_showSync">
+                                hiển thị menu đã đồng bộ
+                            </label>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <select id="sel_regapp" class="form-control" style="width:10%;">
+                            <option value="">------vui lòng chọn hệ thống nghiệp vụ-----</option>
+                        </select>
+                    </div>
+                    <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+
+                </form>
+            </div>
+            <table id="table"></table>
+        </div>
+        <div class="step-pane" id="step-2" style="margin: 10px; margin-bottom: 0px;">
+            <div class="alert alert-danger">
+                <i class="fa fa-warning alert-dismissible"></i>
+                vui lòng chọn cấp cha của menu cần nhập，hoặc nhập tên menu cấp cha（nếu không tồn tại thì tạo mới），mặc định nhập theo cấp bậc của menu nguồn。
+            </div>
+            <form class="form-horizontal" role="form">
+                <div class="form-group" style="margin:5px 5px;">
+                    <div class="col-sm-4" id="dv_treeParent" style="overflow-y:auto;">
+                        <input type="text" class="form-control" id="input-search" placeholder="tìm từ khóa menu cấp cha" value="">
+                        <div id="treeParent"></div>
+                    </div>
+                    <div class="col-sm-8" id="dv_selectmenu">
+                        <table id="table_selected"></table>
+                        <hr />
+                        <div class="panel panel-success">
+                            <div class="panel-body">
+                                <div class="form-group has-success">
+                                    <label class="col-sm-2 control-label">số menu chờ nhập</label>
+                                    <div class="col-sm-10"><span class="form-control" id="rowscount"></span></div>
+                                </div>
+                                <div class="form-group has-success">
+                                    <label class="col-sm-2 control-label">vui lòng xác nhận menu cấp cha</label>
+                                    <div class="col-sm-10">
+                                        <input type="text" class="form-control table-borderless" id="ParentMenuSelect" data-id="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+    <div class="form-button" id="wizard-actions">
+        <a id="btn_last" disabled class="btn btn-default btn-prev">bước trước</a>
+        <a id="btn_next" class="btn btn-default btn-next" style="margin-right: 10px;">bước tiếp theo</a>
+        <a id="btn_finish" class="btn btn-default" style="display: none;margin-right: 10px;" onclick="submitSyncMenu()">hoàn thành</a>
+    </div>
+</div>
+<script>
+    $(function () {
+        tableInit($('#table'));
+        selectedMenuTableInit($('#table_selected'), []);
+        wizardInit();
+        treeDataInit();
+        pageDataInit();
+    });
+
+    function pageDataInit() {
+        $("#btn_search").on('click', function () {
+            tableRefresh($('#table'));
+        });
+
+        $("#sel_regapp").bindSelect({
+            url: "/SysManage/Common/GetRegAppList",
+            id: "AppId",
+            text: "AppName",
+            param: { withSystemMenu: true }
+        });
+
+        $("#ParentId").bindSelect({
+            url: "/SysManage/SysModule/GetTreeSelectJson",
+        });
+
+        $('#input-search').on('keyup', search);
+        $("#dv_treeParent").height($(window).height() - 150);
+        $("#dv_selectmenu").height($(window).height() - 150);
+    }
+    var search = function (e) {
+        var pattern = $('#input-search').val();
+        var options = {
+            //ignoreCase: $('#chk-ignore-case').is(':checked'),
+            //exactMatch: $('#chk-exact-match').is(':checked'),
+            //revealResults: $('#chk-reveal-results').is(':checked')
+        };
+        $('#treeParent').treeview('search', [pattern, options]);
+    }
+
+    function treeDataInit() {
+        $.najax({
+            url: "/SysManage/SysModule/GetBsTreeSelectJson",
+            data: { withSystemMenu: true },
+            dataType: "json",
+            success: function (data) {
+                $('#treeParent').treeview({
+                    color: "#428bca",
+                    expandIcon: 'fa fa-chevron-right',
+                    collapseIcon: 'fa fa-chevron-down',
+                    nodeIcon: 'fa fa-bookmark',
+                    data: data,
+                    onNodeSelected: function (event, node) {
+                        $("#ParentMenuSelect").val(node.text).data("id", node.href);
+                    },
+                    onNodeUnselected: function (event, node) {
+                        $("#ParentMenuSelect").val("").data("id", "");
+                    }
+                });
+            }
+        });
+    }
+
+    function wizardInit() {
+        $('#wizard').wizard().on('change', function (e, data) {
+            var $finish = $("#btn_finish");
+            var $next = $("#btn_next");
+            if (data.direction == "next") {
+                switch (data.step) {
+                    case 1:
+                        var selrow = $('#table').bootstrapTable("getSelections");
+                        if (!selrow || selrow.length == 0) {
+                            $.modalMsg("vui lòng chọn menu", "warning");
+                            return false;
+                        }
+                        // sử dụngjQuerycủa$.each()và$.map()xử lýjsonArray
+                        var sortedArray = $.map(selrow, function (item) {
+                            return item;
+                        });
+                        sortedArray.sort(function (a, b) {
+                            return a.CustomOrder.localeCompare(b.CustomOrder)
+                        })
+                        $('#table_selected').bootstrapTable('load', sortedArray);
+                        $("#rowscount").html(selrow.length);
+                        $finish.show();
+                        $next.hide();
+                        break;
+                    default:
+                        break;
+                }
+            } else {
+                $finish.hide();
+                $next.show();
+            }
+        });
+    }
+    //bảng menu chờ chọn
+    function tableInit($table) {
+        $table.bootstrapTable({
+            url: "/SysManage/SysModule/GetAppMenuTreeGridJson", //địa chỉ URL máy chủ trả về dữ liệu
+            method: 'POST',                      //phương thức yêu cầu dữ liệu
+            contentType: "application/x-www-form-urlencoded",
+            height: $(window).height() - 150,
+            queryParams: queryParams,
+            classes: "table table-bordered table-striped table-hover",
+            theadClasses: "table-light",//đặt kiểu tiêu đề bảng
+            idField: 'Id',
+            showColumns: false,
+            toolbar: '.btn-toolbar',            //nút công cụ dùng vùng chứa nào #toolbar
+            toolbarAlign: 'left',
+            columns: [
+                {
+                    field: 'ck',
+                    checkbox: true,
+                    formatter: function (cellvalue, row) {
+                        if (row.IsSync) {
+                            return { disabled: true };
+                        }
+                        return { disabled: false };
+                    }
+                },
+                {
+                    field: 'Id',
+                    visible: false
+                },
+                {
+                    field: 'Target',
+                    visible: false
+                }, {
+                    field: 'Icon',
+                    title: 'biểu tượng',
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '5',
+                    widthUnit: '%',
+                    formatter: function (value, row, index) {
+                        if (value) {
+                            return '<i class=\"' + value + '\"></i>';
+                        }
+                        else {
+                            return "";
+                        }
+                    }
+
+                }, {
+                    field: 'Name',
+                    title: 'tên',
+                    halign: 'center',
+                    width: '30',
+                    widthUnit: '%',
+                },
+                {
+                    field: 'zt',
+                    title: 'trạng thái',
+                    halign: 'center',
+                    //sortable: true,
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '5',
+                    widthUnit: '%',
+                    formatter: function (cellvalue) {
+                        return cellvalue == "1" ? "<i class=\"fa fa-toggle-on icon-theme-success\"></i>" : "<i class=\"fa fa-toggle-off icon-theme-default\"></i>";
+                    }
+                },
+                {
+                    field: 'UrlAddress',
+                    title: 'đường dẫn',
+                    halign: 'center',
+                    width: '35',
+                    widthUnit: '%',
+                },
+                {
+                    field: 'Description',
+                    title: 'mô tả',
+                    halign: 'center',
+                    width: '15',
+                    widthUnit: '%',
+                },
+                {
+                    field: 'IsSync',
+                    visible: false
+                }, {
+                    field: 'SyncStu',
+                    title: 'dấu hiệu đồng bộ',
+                    halign: 'center',
+                    align: 'center',
+                    formatter: function (cellvalue, row) {
+                        if (row.IsSync) {
+                            return '<i class="fa fa-check  icon-theme-success" aria-hidden="true" title="đã đồng bộ" /></i>';
+                        }
+                        return '';
+                    }
+                },
+                {
+                    field: 'ParentId',
+                    visible: false
+                },
+                {
+                    field: 'OrganizeId',
+                    visible: false
+                },
+                {
+                    field: 'CustomOrder',
+                    visible: false,
+                    title: 'trường sắp xếp'
+                }
+            ],
+            treeShowField: 'Name',
+            parentIdField: 'ParentId',
+            uniqueId: 'Id',
+            search: true,                       //có hiển thị tìm kiếm bảng hay không
+            sortable: true,                     //có bật sắp xếp hay không
+            sortOrder: "desc",                   //phương thức sắp xếp
+            //sidePagination: 'client',           //phương thức phân trang：clientphân trang phía máy khách，serverphân trang phía máy chủ（*）
+            onLoadSuccess: function (data) {
+                $table.treegrid({
+                    initialState: "expanded",//mở rộng
+                    treeColumn: 1,//chỉ rõ cột dữ liệu thứ mấy chuyển thành dạng cây
+                    onChange: function () {
+                        $table.bootstrapTable("resetView");
+                    }
+                });
+            },
+            onClickRow: function (row, $element, field) {
+                bstableMutiSelected($table, "Id", [row.Id], $element);
+            },
+            formatLoadingMessage: function () {
+                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
+            },
+            formatNoMatches: function () {
+                return "chưa có dữ liệu";
+            }
+
+        });
+        $table.bootstrapTable('hideLoading');
+
+    }
+    //bảng menu đã chọn
+    function selectedMenuTableInit($tableselect, data) {
+        $tableselect.bootstrapTable('destroy').bootstrapTable({
+            data: data,
+            height: '100%',
+            classes: "table table-bordered table-striped table-hover",
+            theadClasses: "table-light",//đặt kiểu tiêu đề bảng
+            idField: 'Id',
+            showColumns: false,
+            columns: [
+                {
+                    field: 'Id',
+                    visible: false
+                }, {
+                    field: 'Target',
+                    visible: false
+                }, {
+                    field: 'Icon',
+                    title: 'biểu tượng',
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '5',
+                    widthUnit: '%',
+                    formatter: function (value, row, index) {
+                        if (value) {
+                            return '<i class=\"' + value + '\"></i>';
+                        }
+                        else {
+                            return "";
+                        }
+                    }
+
+                },
+                {
+                    field: 'Name',
+                    title: 'tên',
+                    halign: 'center',
+                    width: '30',
+                    widthUnit: '%',
+                    sortable: true,
+                },
+                {
+                    field: 'zt',
+                    title: 'trạng thái',
+                    halign: 'center',
+                    //sortable: true,
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '5',
+                    widthUnit: '%',
+                    formatter: function (cellvalue) {
+                        return cellvalue == "1" ? "<i class=\"fa fa-toggle-on icon-theme-success\"></i>" : "<i class=\"fa fa-toggle-off icon-theme-default\"></i>";
+                    }
+                },
+                {
+                    field: 'UrlAddress',
+                    title: 'đường dẫn',
+                    halign: 'center',
+                    width: '35',
+                    widthUnit: '%',
+                },
+                {
+                    field: 'px',
+                    title: 'sắp xếp',
+                    halign: 'center',
+                    align: 'center',   //căn lề nội dung theo chiều ngang
+                    width: '5',
+                    widthUnit: '%',
+                    //sortable: true,
+                },
+                {
+                    field: 'Description',
+                    title: 'mô tả',
+                    halign: 'center',
+                    width: '15',
+                    widthUnit: '%',
+                },
+                {
+                    field: 'ParentId',
+                    visible: false
+                },
+                {
+                    field: 'OrganizeId',
+                    visible: false
+                }
+            ],
+            uniqueId: 'Id',
+            formatLoadingMessage: function () {
+                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
+            },
+            formatNoMatches: function () {
+                return "chưa có dữ liệu";
+            }
+
+        });
+        $tableselect.bootstrapTable('hideLoading');
+    }
+
+    function tableRefresh($table) {
+        $table.bootstrapTable('refresh', { queryParams: queryParams });
+    }
+    //tham số yêu cầu
+    function queryParams(params) {
+        var data = {
+            //mỗi trang có bao nhiêu dòng dữ liệu
+            limit: params.limit,
+            //yêu cầu trang thứ mấy
+            offset: params.offset,
+            order: params.order,
+            sort: params.sort,
+            search: params.search,
+            queryParams: {
+                MenuAppId: $("#sel_regapp option:selected").val(),
+                ShowSync: $("#ck_showSync").is(':checked')
+            }
+        };
+        return data;
+    }
+    function submitSyncMenu() {
+        var menuData = $('#table_selected').bootstrapTable("getData");
+        var parentMenu = $("#ParentMenuSelect").val();
+        var parentMenuId = $("#ParentMenuSelect").data("id")
+        var appId = $("#sel_regapp option:selected").val();
+        var postData = { list: menuData, parentMenu: parentMenu, parentMenuId: parentMenuId, fromAppId: appId };
+        $.submitForm({
+            url: "/SysManage/SysModule/SubmitMenuSync",
+            param: postData,
+            success: function () {
+                $.currentWindow().tableRefresh($("#table_selected"));
+            }
+        });
+    }
+</script>

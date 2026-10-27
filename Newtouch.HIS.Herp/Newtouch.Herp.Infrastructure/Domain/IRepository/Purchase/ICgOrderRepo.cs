@@ -3,13 +3,13 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 采购单
+    /// Đơn mua sắm
     /// </summary>
     public interface ICgOrderRepo : IRepositoryBase<CgOrderEntity>
     {
 
         /// <summary>
-        /// 获取采购单信息
+        /// Lấy thông tin đơn mua sắm
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="organizeId"></param>
@@ -17,7 +17,7 @@ namespace Newtouch.Herp.Domain.IRepository
         CgOrderEntity SelectData(string orderNo, string organizeId);
 
         /// <summary>
-        /// 审核采购单
+        /// Duyệt đơn mua sắm
         /// </summary>
         /// <param name="orderNo"></param>
         /// <param name="orderType"></param>

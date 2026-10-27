@@ -264,7 +264,7 @@
 					</td>
 				</tr>
 				@*<tr>
-			<th class="formTitle">西医诊断：</th>
+			<th class="formTitle">Chẩn đoán Tây y：</th>
 			<td class="formValue" colspan="4">
 				<div style="height: 35px; border-bottom: 1px solid LightGrey; overflow: auto;">
 					<table id="tablexyzd">
@@ -273,7 +273,7 @@
 			</td>
 		</tr>
 		<tr>
-			<th class="formTitle">中医诊断：</th>
+			<th class="formTitle">Chẩn đoán YHCT：</th>
 			<td class="formValue" colspan="4">
 				<div style="height: 35px; overflow: auto;">
 					<table id="tablezyzd">
@@ -342,7 +342,7 @@
 					</td>
 				</tr>
 				@*<tr>
-					<th class="formTitle">入院诊断：</th>
+					<th class="formTitle">Chẩn đoán nhập viện：</th>
 					<td class="formValue" colspan="5">
 						<div style="height: 200px; border-bottom: 1px solid LightGrey; overflow: auto;">
 							<table id="tableryzd">
@@ -351,7 +351,7 @@
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">出院诊断：</th>
+					<th class="formTitle">Xuất việnChẩn đoán：</th>
 					<td class="formValue" colspan="5">
 						<div style="height: 200px; overflow: auto;">
 							<table id="tablecyzd">
@@ -370,7 +370,7 @@
 		$('input:not(#txt_kssj, #txt_jssj, #txtxm, #txtkh,#btn_search)').prop('disabled', true);
 		$('textarea').prop('disabled', true);
 		$("#form1").height($(window).height() - 100);
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
 
         });
@@ -399,27 +399,27 @@
         }).trigger('reloadGrid');
     });
 
-    //回车事件绑定
+    //Sự kiện Entergắn
     $(window).keyup(function (event) {
         if (event.keyCode == 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //初始化
+    //Khởi tạo
 	function Initial() {
 		$('#form2').hide();
         gridList();
     }
 
-    //组装患者信息查询条件
+    //lắp rápThông tin bệnh nhânĐiều kiện tìm kiếm
 	function getGridPatPar() {
 		return { kh: $("#txtkh").val(), xm: $("#txtxm").val(), jzlx: $("#sel_jzlx").val(), kssj: $("#txt_kssj").val(), jssj: $("#txt_jssj").val(), jszt: $("#sel_jszt").val() }
     }
 
-    //主表信息
+    //chínhbảngthông tin
     function gridList() {
-        //患者信息
+        //Thông tin bệnh nhân
         $gridList.dataGrid({
 			url: "/PatientList/SelectPatientVisitList",
             postData: getGridPatPar(),
@@ -458,7 +458,7 @@
 				data: { jzId: jzId },
 				loadingtext: 'Đang tải dữ liệu bệnh án, vui lòng đợi trong giây lát…',
 				success: function (ajaxresp) {
-					//填充所有文本、处方、Đơn thuốc lịch sử、grid列表
+					//điềntất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
 					fillMzData(ajaxresp);
 				}
 			});
@@ -473,18 +473,18 @@
 				data: { zyh: zyh },
 				loadingtext: 'Đang tải dữ liệu bệnh án, vui lòng đợi trong giây lát…',
 				success: function (ajaxresp) {
-					//填充所有文本、处方、Đơn thuốc lịch sử、grid列表
+					//điềntất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
 					fillZyData(ajaxresp);
 				}
 			});
 		}
 	}
 
-	//填充页面数据
+	//điềntrangmặtDữ liệu
 	function fillMzData(ajaxresp){
 
-            //就诊中（或者是从已就诊列表双击进来，并且选中的是已结束的记录）    直接呈现到当前文本里
-            //或选的是病历模板
+            //Đang khám bệnh（hoặcCótừĐã khám bệnhdanh sáchnhấp đúpvàođến，vàvàĐã chọncủaCóĐã kết thúccủaghi chép）    trực tiếphiển thịhiệnđếnhiện tạivăn bảntrong
+            //hoặcchọncủaCóHồ sơmẫu
         	$('#form1').formSerialize(ajaxresp);
         	if (ajaxresp.cfzbz=="1") {
         		$("input[name='cfzbzRadios'][value='0']").prop('checked',false);
@@ -494,7 +494,7 @@
 		        $("input[name='cfzbzRadios'][value='0']").prop('checked',true);
 	        }
 
-		    //2.填充文本
+		    //2.điềnvăn bản
 		    $('#mzh').text(ajaxresp.mzh);
 		    $('#ghksmc').text(ajaxresp.ghksmc);
 		    ajaxresp.zlkssj = ajaxresp.zlkssj == undefined ? '' : $.getTime({ date: ajaxresp.zlkssj });
@@ -503,10 +503,10 @@
 		    $("#fbsj").val(ajaxresp.fbsj);
 			$('#sbbh').text(ajaxresp.sbbh);
 			$('#ghys').text(ajaxresp.ghys);
-			//清空主诊断
+			//Xóa trắngchínhChẩn đoán
 		$('#tablexyzd').val("");
 		$('#tablezyzd').val("");
-            //3.填充诊断
+            //3.điềnChẩn đoán
 		if (ajaxresp.xyzdList && ajaxresp.xyzdList.length && ajaxresp.xyzdList.length > 0) {
 			var $newTr = "";
 				for (var i = 0; i < ajaxresp.xyzdList.length; i++) {
@@ -521,9 +521,9 @@
 			} $('#tablezyzd').val($newTr.substring(1));
             }
 	}
-	//填充页面数据
+	//điềntrangmặtDữ liệu
 	function fillZyData(ajaxresp) {
-		//2.填充文本
+		//2.điềnvăn bản
 		$('#zyh').val(ajaxresp.zyh);
 		$('#ksmc').val(ajaxresp.ksmc);
 		$("#zyys").val(ajaxresp.zyys);
@@ -535,10 +535,10 @@
 		ajaxresp.cyrq = ajaxresp.cyrq == undefined ? '' : $.getTime({ date: ajaxresp.cyrq });
 		$('#cyrq').val(ajaxresp.cyrq);
 		$('#zybz').val(ajaxresp.zybz);
-		//清空主诊断
+		//Xóa trắngchínhChẩn đoán
 		$('#tableryzd').val("");
 		$('#tablecyzd').val("");
-		//3.填充诊断
+		//3.điềnChẩn đoán
 		if (ajaxresp.ryzdList && ajaxresp.ryzdList.length && ajaxresp.ryzdList.length > 0) {
 			var $newTr = "";
 			for (var i = 0; i < ajaxresp.ryzdList.length; i++) {

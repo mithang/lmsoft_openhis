@@ -8,16 +8,16 @@ using SqlSugar;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2018-08-30 11:31
-    /// 描 述：住院患者信息
+    /// Người tạo：chl
+    /// Ngày：2018-08-30 11:31
+    /// Mô tả：Thông tin bệnh nhân nội trú
     /// </summary>
     public class ZybrjbxxRepo : RepositoryBase<ZybrjbxxEntity>, IZybrjbxxRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFFactory ngữ cảnh EF</param>
 
         public ZybrjbxxEntity GetZybrjbxx(string zyh, string OrganizeId)
         {
@@ -25,10 +25,10 @@ namespace Newtouch.EMR.Repository
             return this.FindEntity(p => p.zyh==zyh&&p.OrganizeId== OrganizeId);
         }
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(ZybrjbxxEntity entity, string keyValue)
         {
             ZybrjbxxEntity dbEntity = null;
@@ -93,7 +93,7 @@ namespace Newtouch.EMR.Repository
         }
 
         /// <summary>
-        /// 提交病案
+        /// Nộp hồ sơ bệnh án
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="OrgId"></param>
@@ -116,7 +116,7 @@ namespace Newtouch.EMR.Repository
         }
 
         /// <summary>
-        /// 退回病案
+        /// Trả lại bệnh án
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="OrgId"></param>
@@ -139,9 +139,9 @@ namespace Newtouch.EMR.Repository
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.Id == keyValue);

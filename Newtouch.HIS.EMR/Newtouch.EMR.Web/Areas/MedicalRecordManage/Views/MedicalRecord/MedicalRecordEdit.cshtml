@@ -30,7 +30,7 @@
     <a id="blyl" class="btn btn-primary btfloatRight" style="margin:5px 5px 5px 0px;">Bệnh án xem trước</a>
     @if (!string.IsNullOrWhiteSpace(ViewBag.zyh))
     {
-        <input id="upload" name="saveDocument" type="submit" class="btn btn-primary" style="float:left;margin:5px 10px 5px 5px;display:none;" value="上传医保" />
+        <input id="upload" name="saveDocument" type="submit" class="btn btn-primary" style="float:left;margin:5px 10px 5px 5px;display:none;" value="Tải lên bảo hiểm y tế" />
     }
     <input type="submit" name="saveDocument" id="history" value="history" class="edtBtn" style="display:none;" />
 
@@ -152,7 +152,7 @@
 
     function Upload(jsondata) {
         $.ajax({
-            url: "http://127.0.0.1:33333/api/QHDSmartCheck/MedicalRecordUpload",//智能审核
+            url: "http://127.0.0.1:33333/api/QHDSmartCheck/MedicalRecordUpload",//Kiểm tra thông minh
             dataType: "json",
             data: jsondata,
             type: "POST",
@@ -178,7 +178,7 @@
         return 0;
     }
 
-    //-------------病历编辑器5.0------------------//
+    //-------------Trình soạn thảo bệnh án5.0------------------//
     function WriterControl_OnLoad(rootElement) {
         var ctl = document.getElementById("myWriterControl");
         ctl.LoadDocumentFromBase64String('@ViewBag.WriterControlXmlData', 'xml');

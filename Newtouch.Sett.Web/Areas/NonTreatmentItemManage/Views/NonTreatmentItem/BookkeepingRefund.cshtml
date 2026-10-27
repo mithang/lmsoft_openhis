@@ -61,14 +61,14 @@
 })
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Nạp lại khi thay đổi kích thước cửa sổ trình duyệtjqGridChiều rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
         gridList();
     })
 
-    //病历号回车
+    //Nhấn Enter số bệnh án
     $('#blh').keydownEnterEvent(function () {
         if (!$("#blh").val().trim()) {
             return;
@@ -78,12 +78,12 @@
         $("#btn_search").trigger('click');
     })
 
-    //住院号开关
+    //Công tắc số nhập viện
     var isShowZyh = '@ViewBag.IsShowZyh';
     if (isShowZyh == 'ON') {
         $('#th_zyh').css('display', 'table-cell');
         $('#td_zyh').css('display', 'table-cell');
-        //住院号回车
+        //Nhấn Enter số nhập viện
         $('#zyh').keydownEnterEvent(function () {
             if (!$("#zyh").val().trim()) {
                 return;
@@ -94,7 +94,7 @@
         })
     }
 
-    //病人查询
+    //tra cứu bệnh nhân
     function GetPatSerarchView(blh, xm) {
         if (!!!blh) {
             blh = '';
@@ -110,18 +110,18 @@
             height: "600px",
             callBack: function (iframeId) {
                 top.frames[iframeId].PatDbGrid();
-            }//窗口点确定的回调函数
+            }//hàm gọi lại khi nhấn xác nhận trên cửa sổ
         });
     }
 
-    //选择的病人 callback
+    //Bệnh nhân đã chọn callback
     function getPatInfoAjax(selePatInfo) {
         $('#blh').val(selePatInfo.blh)
         $('#blh').attr('data-patId', selePatInfo.patId);
         $('#kehu').val(selePatInfo.xm);
     }
 
-    //姓名回车
+    //Nhấn Enter họ tên
     $('#kehu').keydownEnterEvent(function () {
         if (!$("#kehu").val().trim()) {
             return;
@@ -129,11 +129,11 @@
         $("#btn_search").trigger('click');
     })
 
-    //默认
-    var Editing_ysList = []; //编辑域中的人员
+    //mặc định
+    var Editing_ysList = []; //Nhân viên trong vùng soạn thảo
     Editing_ysList = [{ id: $('#smry').attr('data-staffId'), gh: $('#smry').attr('data-smryCode'), Name: $('#smry').val(), ks: $('#smks').attr('data-smksCode'), ksmc: $('#smks').val() }];
 
-    //绑定 人员 树
+    //gắn Nhân viên cây
     $('#smry').click(function () {
         var initIdSelected = "";
         $.each(Editing_ysList, function () {
@@ -154,7 +154,7 @@
         });
     });
 
-    //人员树 选择 回调
+    //Cây nhân viên Chọn gọi lại
     function staffTreeCallback(treeSeleData) {
         Editing_ysList = [];
         $.each(treeSeleData, function () {
@@ -172,7 +172,7 @@
         }
     }
 
-    //明细
+    //chi tiết
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -233,7 +233,7 @@
                 $("#" + $.jgrid.jqID(rowid) + "_tsl").focus();
             },
             gridComplete: function () {
-                //启用行内编辑框
+                //bật khung sửa trong dòng
                 EnableInlineEditBox();
             }
         });
@@ -249,9 +249,9 @@
         })
     }
 
-    //启用行内编辑框
+    //bật khung sửa trong dòng
     function EnableInlineEditBox() {
-        //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        //GridNạp xong thì bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt và gọieditRowphương thức
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
 
@@ -260,7 +260,7 @@
         }
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var keyword = $("#keyword").val();
         var smry = "";
@@ -275,15 +275,15 @@
         return { zyh: zyh, blh: blh, kehu: kehu, keyword: keyword, smry: smry, kssj: kssj, jssj: jssj };
     };
 
-    //退费确认
+    //Xác nhận hoàn phí
     function newtouch_event_f6() {
-        //获取选中行Id
+        //Lấy dòng đã chọnId
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds.length == 0) {
             $.modalAlert("Vui lòng chọn trước thông tin cần hoàn phí", 'warning');
             return;
         }
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) {
@@ -291,7 +291,7 @@
             }, null, null);
         }
 
-        //判断退数量
+        //Phán đoán số lượng hoàn
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
             if (!rowData) {
@@ -299,29 +299,29 @@
             }
             if (rowData.tsl.replace(/(^\s*)|(\s*$)/g, "") == "") {
                 $.modalAlert("Khoản mục（" + rowData.sfxmName + "）Số lượng hoàn để trống，Vui lòng xác nhận。", 'warning');
-                //启用行内编辑框
+                //bật khung sửa trong dòng
                 EnableInlineEditBox();
                 return;
             }
             if (rowData.tsl <= 0 || isNaN(rowData.tsl) || rowData.tsl == "") {
-                //启用行内编辑框
+                //bật khung sửa trong dòng
                 EnableInlineEditBox();
                 return;
             }
             if (parseFloat(rowData.tsl) > parseFloat(rowData.sl)) {
                 $.loading(false);
                 $.modalAlert("Khoản mục（" + rowData.sfxmName + "）Số lượng hoàn lớn hơn số lượng ghi sổ，Vui lòng xác nhận。", 'warning');
-                //启用行内编辑框
+                //bật khung sửa trong dòng
                 EnableInlineEditBox();
                 return;
             }
         }
 
-        //true:选中行
+        //true:dòng đã chọn
         var data = $("#gridList").jqGrid('getRowData_AllLine', true, false);
         //setItem/getItem
         localStorage.setItem("needRefundData", data);
-        //弹出退费确认窗体
+        //bật biểu mẫu xác nhận hoàn phí
         $.modalOpen({
             id: "FormShowRefundConfirmDialog",
             title: "Chi tiết hoàn phí xác nhận",
@@ -332,22 +332,22 @@
                 $.loading(true, "Đang yêu cầu dữ liệu...");
                 RefundMethod();
             },
-            //弹窗点“X”事件和'关闭按钮'事件
+            //Điểm cửa sổ bật lên“X”việchạngvà'Nút đóng'sự kiện
             cancelCallBack: function (iframeId) {
-                //启用行内编辑框
+                //bật khung sửa trong dòng
                 EnableInlineEditBox();
             }
         });
     }
 
 
-    //具体保存执行
+    //lưu và thực hiện cụ thể
     function RefundMethod() {
-        //获取所有选中行数据
+        //Lấy dữ liệu tất cả các dòng đã chọn
         var needRefundData = $("#gridList").jqGrid('getRowData_AllLine', true);
         for (var i = 0; i < needRefundData.length; i++) {
             var je = roundingBy4she6ru5chengshuang((parseFloat(needRefundData[i].dj) * parseFloat(needRefundData[i].tsl)), 2);
-            //给Grid里的字段退金额赋值
+            //choGridtrongcủachữđoạnhoàntiềnmứcgángiá trị
             $('#gridList').jqGrid('setCell', needRefundData[i].jqRowId, 'tje', je);
         }
         var lastdata = $("#gridList").jqGrid('getRowData_AllLine', true, false);
@@ -361,7 +361,7 @@
                 top.top.window.frames['FormShowRefundConfirmDialog'].$.modalClose();
                 $.loading(false);
                 $.modalAlert("Lưu thành công", 'success');
-                //清空Grid
+                //Xóa trốngGrid
                 $('#gridList').jqGrid("clearGridData");
                 $("#btn_search").trigger('click');
                 $.loading(false);
@@ -375,7 +375,7 @@
         });
     }
 
-    //清除
+    //Xóa
     function newtouch_event_f4() {
         $('#gridList').jqGrid("clearGridData");
         $('#kssj').val('@DateTime.Now.ToString("yyyy-MM-01")');

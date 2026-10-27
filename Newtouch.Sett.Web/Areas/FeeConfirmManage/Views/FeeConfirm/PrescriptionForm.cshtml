@@ -38,7 +38,7 @@
             </tr>
         </table>
     </div>
-    <!--处方信息 包括卡号 病历号 姓名 -->
+    <!--thông tin đơn thuốc Bao gồm số thẻ Số bệnh án Họ tên -->
     <div id="prediv" class="gridPanel" style="margin-top:1%; margin-left:1%">
         <table id="gridList"></table>
         <div id="gridPager"></div>
@@ -47,7 +47,7 @@
 
 <script>
 
-    //上一个window对象
+    //cái trước đówindowđối tượng
     var prevWindow;
 
     var from = $.request("from");
@@ -64,10 +64,10 @@
         obj.kssj = $.request("kssj");
         obj.jssj = $.request("jssj");
         var searInfo = new preSearchInfo();
-        //加载数据
+        //Nạp dữ liệu
         searInfo.init(obj);
 
-        //查询
+        //Tra cứu
         $("#btn_search").click(function () {
             $("#gridList").jqGrid('setGridParam', {
                 postData: { blh: $("#blh").val(), xm: $("#xm").val(), kssj: $("#kssj").val(), jssj: $("#jssj").val(), r: Math.random() },
@@ -76,7 +76,7 @@
     });
 
     var preSearchInfo = (function () {
-        //加载列表
+        //Tải danh sách
         var loadGrid = function (data) {
             var $gridList = $("#gridList");
             $gridList.newtouchLocalDataGrid({
@@ -103,20 +103,20 @@
 
         var mydata = [
                {
-                   cfh: 'R20170417170000323', je: '90.00', ys: '吴翩', CreateTime: '2017-10-01 11:23:55'
+                   cfh: 'R20170417170000323', je: '90.00', ys: 'Ngô Phiên', CreateTime: '2017-10-01 11:23:55'
                },
                {
-                   cfh: 'R20170417180000324', je: '90.00', ys: '蒋朝凤', CreateTime: '2017-10-10 11:23:55'
+                   cfh: 'R20170417180000324', je: '90.00', ys: 'Tưởng Triều Phượng', CreateTime: '2017-10-10 11:23:55'
                },
                {
-                   cfh: 'R20170503140000325', je: '90.00', ys: '宁萍芳', CreateTime: '2017-10-21 11:23:55'
+                   cfh: 'R20170503140000325', je: '90.00', ys: 'Ninh Bình Phương', CreateTime: '2017-10-21 11:23:55'
                }
         ];
      
         var myPreSearchInfo = function (data) {
 
         }
-        //加载事件
+        //Tải sự kiện
         myPreSearchInfo.prototype.init = function (data) {
             if (!!!data.blh) {
                 $("#blh").val("");
@@ -140,17 +140,17 @@
         return myPreSearchInfo;
     }());
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn một dòng
     function btn_edit() {
         PreSearchConfirm();
     }
 
-    //确定 主页面调用
+    //xác nhận Gọi từ trang chính
     function PreSearchConfirm() {
         DbClickGrid();
     }
 
-    //双击
+    //nhấn đúp
     function DbClickGrid() {
         var $gridList = $("#gridList");
         var patId = $gridList.jqGridRowValue().patId;
@@ -164,11 +164,11 @@
         }
         prevWindow.getPatInfoAjax(obj);
 
-        //关闭窗口
+        //đóng cửa sổ
         ReceiptCancle();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }

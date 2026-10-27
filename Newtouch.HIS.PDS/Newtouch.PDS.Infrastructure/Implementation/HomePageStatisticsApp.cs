@@ -10,7 +10,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 首页统计
+    /// Thống kê trang chủ
     /// </summary>
     public class HomePageStatisticsApp : AppBase, IHomePageStatisticsApp
     {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Application.Implementation
         private string _mzzybz;
 
         /// <summary>
-        /// 获取代办HTML
+        /// Lấy việc cần làmHTML
         /// </summary>
         /// <returns></returns>
         public string AssembleNeedDealHtml()
@@ -49,52 +49,52 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装药库代办HTML
+        /// Lắp ráp việc cần làm kho thuốcHTML
         /// </summary>
         /// <returns></returns>
         private string AssembleYkNeedDelaHtml()
         {
             return @"
-                    <div class='dashboard-statss' menuName='调价审核' menuUrl='/DrugStorage/PriceAdjustmentApproval'>
+                    <div class='dashboard-statss' menuName='Duyệt điều chỉnh giá' menuUrl='/DrugStorage/PriceAdjustmentApproval'>
                         <div class='dashboard-stats-item' style='background-color: #fc8675;'>
                             <h2 class='m-top-none' id='h_tjshCount'></h2>
-                            <h5>调价审核</h5>
+                            <h5>Duyệt điều chỉnh giá</h5>
                             <div class='stat-icon'>
                                 <i class='fa fa-cny fa-3x'></i>
                             </div>
                         </div>
                     </div>
-                    <div class='dashboard-statss' menuName='出库待审批' menuUrl='/PharmacyDrugStorage/ReceiptApproval?djlx=2'>
+                    <div class='dashboard-statss' menuName='Xuất kho chờ phê duyệt' menuUrl='/PharmacyDrugStorage/ReceiptApproval?djlx=2'>
                         <div class='dashboard-stats-item' style='background-color: #65cea7;'>
                             <h2 class='m-top-none' id='h_ckdshCount'></h2>
-                            <h5>出库待审批</h5>
+                            <h5>Xuất kho chờ phê duyệt</h5>
                             <div class='stat-icon'>
                                 <i class='fa fa-truck fa-3x'></i>
                             </div>
                         </div>
                     </div>
-                    <div class='dashboard-statss' menuName='入库待审核' menuUrl='/PharmacyDrugStorage/ReceiptApproval'>
+                    <div class='dashboard-statss' menuName='Nhập kho chờ duyệt' menuUrl='/PharmacyDrugStorage/ReceiptApproval'>
                         <div class='dashboard-stats-item' style='background-color: #65cea7;'>
                             <h2 class='m-top-none' id='h_rkdshCount'></h2>
-                            <h5>入库待审核</h5>
+                            <h5>Nhập kho chờ duyệt</h5>
                             <div class='stat-icon'>
                                 <i class='fa fa-truck fa-3x'></i>
                             </div>
                         </div>
                     </div>
-                    <div class='dashboard-statss' menuName='未出库申领单' menuUrl='/DrugStorage/ApplyDelivery'>
+                    <div class='dashboard-statss' menuName='Đơn lĩnh chưa xuất kho' menuUrl='/DrugStorage/ApplyDelivery'>
                         <div class='dashboard-stats-item' style='background-color: #f3ce85;'>
                             <h2 class='m-top-none' id='h_sldshCount'></h2>
-                            <h5>未出库申领单</h5>
+                            <h5>Đơn lĩnh chưa xuất kho</h5>
                             <div class='stat-icon'>
                                 <i class='fa fa-shopping-cart fa-3x'></i>
                             </div>
                         </div>
                     </div>
-                    <div class='dashboard-statss' style='display: none'  menuName='1个月Thuốc hết hạn' menuUrl='/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1'>
+                    <div class='dashboard-statss' style='display: none'  menuName='1thángThuốc hết hạn' menuUrl='/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1'>
                           < div class='dashboard-stats-item' style='background-color: #fc8675;'>
                             <h2 class='m-top-none' id='h_todayDrugCount'></h2>
-                            <h5>1个月Thuốc hết hạn</h5>
+                            <h5>1thángThuốc hết hạn</h5>
                             <div class='stat-icon'>
                                 <i class='fa fa-exclamation-triangle fa-3x'></i>
                             </div>
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装门诊药房代办HTML
+        /// Lắp ráp việc cần làm nhà thuốc ngoại trúHTML
         /// </summary>
         /// <returns></returns>
         private string AssembleMzyfNeedDelaHtml()
@@ -166,7 +166,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装门诊药房代办HTML
+        /// Lắp ráp việc cần làm nhà thuốc ngoại trúHTML
         /// </summary>
         /// <returns></returns>
         private string AssembleMzyfNeedDelaHtmlV2()
@@ -199,10 +199,10 @@ namespace Newtouch.HIS.Application.Implementation
                             </div>
                         </div>
                     </div>
-                    <div class='dashboard-stats' style='display: none' menuName='1个月Thuốc hết hạn' menuUrl='/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1'>
+                    <div class='dashboard-stats' style='display: none' menuName='1thángThuốc hết hạn' menuUrl='/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1'>
                         <div class='dashboard-stats-item' style='background-color: #fc8675;'>
                             <h2 class='m-top-none' id='h_todayDrugCount'></h2>
-                            <h5>1个月Thuốc hết hạn</h5>
+                            <h5>1thángThuốc hết hạn</h5>
                             <div class='stat-icon'>
                                 <i class='fa fa-exclamation-triangle fa-3x'></i>
                             </div>
@@ -220,7 +220,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装住院药房代办HTML
+        /// Lắp ráp việc cần làm nhà thuốc nội trúHTML
         /// </summary>
         /// <returns></returns>
         private string AssembleZyyfNeedDelaHtml()
@@ -244,28 +244,28 @@ namespace Newtouch.HIS.Application.Implementation
                             </div>
                         </div>
                     </div>
-                    <div class='dashboard-statss' menuName='住院待发药数' menuUrl='/HospitalizationPharmacy/DispenseIndex'>
+                    <div class='dashboard-statss' menuName='Số thuốc nội trú chờ phát' menuUrl='/HospitalizationPharmacy/DispenseIndex'>
                         <div class='dashboard-stats-item' style='background-color: #65cea7;'>
                             <h2 class='m-top-none' id='h_zydfCount'></h2>
-                            <h5>住院待发药数</h5>
+                            <h5>Số thuốc nội trú chờ phát</h5>
                             <div class='stat-icon'>
                                 <i class='fa fa-send-o fa-3x'></i>
                             </div>
                         </div>
                     </div>
-                    <div class='dashboard-statss' menuName='住院待退药数' menuUrl='/HospitalizationPharmacy/RepercussionIndex'>
+                    <div class='dashboard-statss' menuName='Số thuốc nội trú chờ trả' menuUrl='/HospitalizationPharmacy/RepercussionIndex'>
                         <div class='dashboard-stats-item' style='background-color: #f3ce85;'>
                             <h2 class='m-top-none' id='h_zydtCount'></h2>
-                            <h5>住院待退药数</h5>
+                            <h5>Số thuốc nội trú chờ trả</h5>
                             <div class='stat-icon'>
                                 <i class='fa fa-rotate-left fa-3x'></i>
                             </div>
                         </div>
                     </div>
-                    <div class='dashboard-statss' style='display: none' menuName='1个月Thuốc hết hạn' menuUrl='/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1'>
+                    <div class='dashboard-statss' style='display: none' menuName='1thángThuốc hết hạn' menuUrl='/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1'>
                         <div class='dashboard-stats-item' style='background-color: #fc8675;'>
                             <h2 class='m-top-none' id='h_todayDrugCount'></h2>
-                            <h5>1个月Thuốc hết hạn</h5>
+                            <h5>1thángThuốc hết hạn</h5>
                             <div class='stat-icon'>
                                 <i class='fa fa-exclamation-triangle fa-3x'></i>
                             </div>
@@ -283,7 +283,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 获取代办总数
+        /// Lấy tổng số việc cần làm
         /// </summary>
         /// <returns></returns>
         public NeedDealCountVO GetPendingCount()

@@ -16,33 +16,33 @@ using NewtouchHIS.Lib.Framework.Operator;
 namespace Newtouch.MR.ManageSystem.Infrastructure
 {
     /// <summary>
-    /// 在院标志
+    /// Cờ đang nằm viện
     /// </summary>
     public enum EnumZYBZ
     {
         /// <summary>
-        /// 入院登记
+        /// Đăng ký nhập viện
         /// </summary>
         Xry = 0,
         /// <summary>
-        /// 病区中
+        /// Đang ở khu bệnh
         /// </summary>
         Bqz = 1,
         /// <summary>
-        /// 病区出院（出病区）（待结账）
+        /// Xuất khỏi khu bệnh(Rời khu bệnh)(Chờ thanh toán)
         /// </summary>
         Djz = 2,
         /// <summary>
-        /// 已出院（出院结算）
+        /// Đã xuất viện(Thanh toán xuất viện)
         /// </summary>
         Ycy = 3,
         /// <summary>
-        /// 转区
+        /// Chuyển khu
         /// </summary>
         Zq = 7,
 
         /// <summary>
-        /// 作废记录/取消入院
+        /// Hủy bản ghi/Hủy nhập viện
         /// </summary>
         Wry = 9,
     }
@@ -58,7 +58,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         Empty = 9
     }
     /// <summary>
-    /// 病案状态
+    /// Trạng thái bệnh án
     /// </summary>
     public enum Enumbazt
     {
@@ -71,7 +71,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
     }
 
     /// <summary>
-    /// 病历状态 与EMR通用
+    /// Trạng thái bệnh án Dùng chung với EMR
     /// </summary>
     public enum EnumRecordStu
     {
@@ -84,11 +84,11 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         yqs = 3,
         [Description("Chưa gửi")]
         wtj = 4,
-        //[Description("病案归档")]
+        //[Description("Lưu trữ bệnh án")]
         //bagd = 9
     }
     /// <summary>
-    /// 血型
+    /// Nhóm máu
     /// </summary>
     public enum EnumBloodType
     {
@@ -132,7 +132,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
     //    QT = 9
     //}
     /// <summary>
-    /// 关系
+    /// Quan hệ
     /// </summary>
     public enum EnumGx {
         [Description("Bản thân hoặc chủ hộ")]
@@ -155,7 +155,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         qt
     }
     /// <summary>
-    /// 是否有无
+    /// Có hay không
     /// </summary>
     public enum EnumYorN
     {
@@ -165,7 +165,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         Y
     }
     /// <summary>
-    /// 是否有无
+    /// Có hay không
     /// </summary>
     public enum EnumHorN
     {
@@ -175,7 +175,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         Has
     }
     /// <summary>
-    ///入院病情 1	有 2	Lâm sàng chưa xác định 3	Tình trạng chưa rõ 4	无
+    ///Tình trạng lúc nhập viện 1	Có 2	Lâm sàng chưa xác định 3	Tình trạng chưa rõ 4	Không
     /// </summary>
     public enum EnumRybq {
         [Description("Có")]
@@ -189,7 +189,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
     }
 
     /// <summary>
-    /// 出院情况
+    /// Tình trạng xuất viện
     /// 1	Khỏi bệnh 2	Đỡ hơn 3	Chưa khỏi4	Tử vong5	Khác
     /// </summary>
     public enum EnumCyqk
@@ -206,7 +206,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         qt
     }
     /// <summary>
-    /// 诊断类型
+    /// Loại chẩn đoán
     /// </summary>
     public enum EnumZdlx
     {
@@ -218,7 +218,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
 
 
     /// <summary>
-    /// 入院途径
+    /// Đường nhập viện
     /// </summary>
     public enum EnumRYTJ
     {
@@ -249,7 +249,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         Else = 9,
     }
     /// <summary>
-    /// 病历类型
+    /// Loại bệnh án
     /// </summary>
     public enum EnumBllx
     {
@@ -291,7 +291,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         kfpg = 6
     }
     /// <summary>
-    /// 诊断类型
+    /// Loại chẩn đoán
     /// </summary>
     public enum EnumZdlx2
     {
@@ -302,7 +302,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
 
     }
     /// <summary>
-    /// 病案质量
+    /// Chất lượng bệnh án
     /// </summary>
     public enum EnumBazl
     {
@@ -314,7 +314,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         III
     }
     /// <summary>
-    /// 离院方式
+    /// Cách rời viện
     /// </summary>
     public enum EnumLyfs
     {
@@ -335,7 +335,7 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
         other = 9,
     }
     /// <summary>
-    /// 病情分型
+    /// Phân loại tình trạng bệnh
     /// </summary>
     public enum EnumBqfx
     {

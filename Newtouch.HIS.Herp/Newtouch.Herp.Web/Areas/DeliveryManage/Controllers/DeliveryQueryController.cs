@@ -7,7 +7,7 @@ using NewtouchHIS.Lib.Base.Extension;
 namespace Newtouch.Herp.Web.Areas.DeliveryManage.Controllers
 {
     /// <summary>
-    /// 配送单查询 (Core port)
+    /// Truy vấn phiếu giao hàng (Core port)
     /// NOTE (verified from the original source): this controller is JSON-only —
     /// both actions return Content(...ToJson()) and there are no DeliveryManage
     /// views in the source tree (only a web.config). No views are invented.
@@ -39,7 +39,7 @@ namespace Newtouch.Herp.Web.Areas.DeliveryManage.Controllers
         }
 
         /// <summary>
-        /// 入库
+        /// Nhập kho
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -50,7 +50,7 @@ namespace Newtouch.Herp.Web.Areas.DeliveryManage.Controllers
         }
 
         /// <summary>
-        /// 获取已审核配送单
+        /// Lấy phiếu giao hàng đã duyệt
         /// </summary>
         /// <returns></returns>
         [HttpGet]

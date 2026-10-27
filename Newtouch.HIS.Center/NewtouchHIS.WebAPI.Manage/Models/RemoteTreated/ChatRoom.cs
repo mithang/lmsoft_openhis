@@ -12,7 +12,7 @@ namespace NewtouchHIS.WebAPI.Manage.Models
         public int MaxMinuts { get; set; } = 30;
         public string[] Participant { get; set; }
         /// <summary>
-        /// 获取新Cuộc họp号
+        /// Lấy mớiCuộc họpSố
         /// </summary>
         /// <returns></returns>
         public double GetNewRoomId(string orgId)

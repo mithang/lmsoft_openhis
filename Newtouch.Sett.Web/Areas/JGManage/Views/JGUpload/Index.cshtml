@@ -91,7 +91,7 @@
             height: $(window).height() - 128,
             colModel: [
                 { label: 'patId', name: 'patId', width: 100, align: 'left', hidden: true },
-                //{ label: '选择', name: 'patId', width: 160, align: 'left' },
+                //{ label: 'Chọn', name: 'patId', width: 160, align: 'left' },
                 { label: 'tải lên trường hợp', name: 'scqk', width: 160, align: 'left' },
                 { label: 'tải lên Ngày', name: 'scrq', width: 160, align: 'left' },
                 { label: 'Lỗi thông tin', name: 'errorMsg', width: 160, align: 'left' },
@@ -125,7 +125,7 @@
         });
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var kssj = $("#kssj").val();
         var jssj = $("#jssj").val();
@@ -135,7 +135,7 @@
 
     }
 
-    //上传
+    //tải lên
     $('#btn_upload').click(function () {
         var seleRow = check();
         if (!!!seleRow) {
@@ -157,7 +157,7 @@
     });
 
     function check() {
-        //获取所选行
+        //Lấy dòng đã chọn
         var seleRow = $("#gridList").jqGridRowValue();
         var setl_id = seleRow.setl_id;
         if (seleRow.length == 0) {
@@ -168,17 +168,17 @@
 
         //var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         //if (selRowIds.length == 0) {
-        //    $.modalAlert("请先选中需上传的信息", 'warning');
+        //    $.modalAlert("Vui lòng chọn trước thông tin cần tải lên", 'warning');
         //    return;
         //}
 
-        ////获取所有行Id，遍历使编辑框处于保存状态
+        ////Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái lưu
         //var rowIds = $("#gridList").jqGrid('getDataIDs');
         //return selRowIds;
     }
 
 
-    //住院号选择浮层绑定
+    //Liên kết lớp nổi chọn số nhập viện
     $('#zyh').newtouchBatchFloatingSelector({
         width: 500,
         height: 200,

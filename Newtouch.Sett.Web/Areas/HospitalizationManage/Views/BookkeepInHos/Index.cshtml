@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //ghi sổ nhập việnlàkhôngcó thể记Thuốc
+    //ghi sổ nhập việnlàkhôngcó thểghiThuốc
     var isacountingPageMayMedicine =
         SysConfigReader.Bool("HOSP_AccountingPage_May_Medicine", true).Value;
     //Tìm kiếm thuốc，Thuốc có liên kết tồn kho nhà thuốc hay không
@@ -330,7 +330,7 @@
         });
     }
 
-    //Nạp mụcthu phí，Bác sĩdưới拉框củagiá trị
+    //Nạp mụcthu phí，Bác sĩdướihộp chọncủagiá trị
     function initControl() {
         //Mụcthu phí Lớp nổi
         @*var searchType = "sfxm";
@@ -368,7 +368,7 @@
                 $('#zfbl').val($thistr.attr('data-zfbl'));
                 $('#yfdm').val($thistr.attr('data-yfbmCode'));
                 $('#cls').val($thistr.attr('data-cls'));
-                if ($("#yzlx").val() == "1") //nếulàThuốcthìMặc định药房làKhoa thực hiện
+                if ($("#yzlx").val() == "1") //nếulàThuốcthìMặc địnhnhà thuốclàKhoa thực hiện
                 {
                     $("#zxks").val("");
 
@@ -410,7 +410,7 @@
                     $.modalAlert("Thông tin cơ bản bệnh nhânKhông thểlàtrống", 'warning');
                     return;
                 }
-                //Duyệt nguồn dữ liệu，用keyword来Lọc出Kết quả
+                //Duyệt nguồn dữ liệu，dùngkeywordđếnLọcraKết quả
                 var resultObjArr = new Array();
                 if (!!top.window.clients.doctorInHosBookkeep) {
                     $.each(top.window.clients.doctorInHosBookkeep, function (idx, val) {
@@ -448,7 +448,7 @@
             width: 250,
             clickautotrigger: true,
             filter: function (keyword) {
-                //Duyệt nguồn dữ liệu，用keyword来Lọc出Kết quả
+                //Duyệt nguồn dữ liệu，dùngkeywordđếnLọcraKết quả
                 if (!keyword) {
                     keyword = '@ViewBag.staffDeptName';
                 }
@@ -559,7 +559,7 @@
                             //cls: this.cls,
                             //yfdm: this.yfdm,
                         };
-                        xmjf.unshift(newRowData);   //作làmục mớiThêm //”Phía trước nhất của mảng“
+                        xmjf.unshift(newRowData);   //làmlàmục mớiThêm //”Phía trước nhất của mảng“
                     });
                     //Liên kết lạixmTrình bày mảng tớigrid
                     fillDataToGrid();
@@ -601,7 +601,7 @@
 
         newRowData.newid = Math.random().toString() + new Date().getMilliseconds();
 
-        xmjf.unshift(newRowData);   //作làmục mớiThêm //”Phía trước nhất của mảng“
+        xmjf.unshift(newRowData);   //làmlàmục mớiThêm //”Phía trước nhất của mảng“
         fillDataToGrid();
         clearJZInfo();
 
@@ -609,7 +609,7 @@
     }
 
     $('#sl').keydownEnterEvent(function (event) {
-        if ($('#sl').hasClass('form-an-cur')) { //缺陷-Từ cái trướcenterĐã chuyển tới
+        if ($('#sl').hasClass('form-an-cur')) { //khuyết điểm-Từ cái trướcenterĐã chuyển tới
             $('#sl').removeClass('form-an-cur')
             return;
         }
@@ -691,7 +691,7 @@
                     return; //nênlàBất thường
                 }
                 xmjf.remove(matchedIndex);   //Loại bỏ mục này
-                xmjf.unshift(data);   //作làmục mớiThêm    //”Phía trước nhất của mảng“
+                xmjf.unshift(data);   //làmlàmục mớiThêm    //”Phía trước nhất của mảng“
 
                 //Liên kết lạixmTrình bày mảng tớigrid
                 fillDataToGrid();
@@ -719,7 +719,7 @@
             }
         }
         else {
-            //申Vui lòngSửa đổi lấygridDòng đang chọn hiện tại
+            //khaiVui lòngSửa đổi lấygridDòng đang chọn hiện tại
             var seleId = $('#gridList').jqGrid('getGridParam', 'selrow');
             if (seleId) {
                 //Yêu cầu sửa dòng này
@@ -759,7 +759,7 @@
         return data;
     }
 
-    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）của完整性
+    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）củatính đầy đủ
     function checkEditingRowData(rowData) {
         var ryrq = new Date($('#ryrq').html());
         var cyrq = new Date($('#cyrq').html());

@@ -14,19 +14,19 @@ namespace Newtouch.Repository
     public class AdmissionNoticeRepo : RepositoryBase<AdmissionNoticeEntity>, IAdmissionNoticeRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Mặc địnhHàm khởi tạosố
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFtrêndướivănNhà máy</param>
         public AdmissionNoticeRepo()
             : base()
         {
 
         }
         /// <summary>
-        /// 保存（新增、修改）
+        /// Lưu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">thựcthểđối tượng</param>
+        /// <param name="keyValue">Khóa chínhGiá trị</param>
         public void SubmitForm(AdmissionNoticeEntity entity)
         {
             try

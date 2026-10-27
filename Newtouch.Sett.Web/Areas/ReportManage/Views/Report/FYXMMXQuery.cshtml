@@ -104,7 +104,7 @@
             gridList("");
         });
         function qingchu() {
-            // 获取所有选中行id
+            // đượclấynơicóchọntrongthực hiệnid
             var jqGridRowid = $("#gridList").jqGrid("getGridParam", "selarrrow");
             for (var i = 0; i < jqGridRowid.length; i++) {
                 $("#gridList").setSelection(jqGridRowid[i], false);
@@ -178,13 +178,13 @@
                         xzstr += rowIndex + ",";
                     }
                 },
-                //当表格所有数据都加载完成而且其他的处理也都完成时触发此事件，排序，翻页同样也会触发此事件
+                //khibảngđịnh dạngnơicósốdữ liệuđềuthêmtảixongthànhmàvàcủa nóanh tacủanơilýcũngđềuxongthànhthời gianchạmphátnàyviệchạng，Sắp xếp，lậttrangcùngmẫucũngsẽchạmphátnàyviệchạng
                 gridComplete: function () {
                     //if ($("#dlmc").val() != "") {
                     //    var ids = new Array();
-                    //    //getDataIDs()返回当前grid里所有数据的id
+                    //    //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                     //    ids = $("#" + this.id).getDataIDs();
-                    //    //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
+                    //    //Chọn hoặc bỏ chọn dòng chỉ định。nếuonselectrowlàturethì sẽ kích hoạt sự kiệnonSelectRow，onselectrowMặc định làture
                     //    $.each(ids, function () {
                     //        //$("#gridList").setSelection(this, true);
                     //        xzstr += this + ",";
@@ -193,10 +193,10 @@
                     //}
                     if ($("#gl").prop("checked")==true) {
                         var ids = new Array();
-                        //getDataIDs()返回当前grid里所有数据的id
+                        //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                         ids = $("#" + this.id).getDataIDs();
                         xzstr = "";
-                        //选择或反选指定行。如果onselectrow为ture则会触发事件onSelectRow，onselectrow默认为ture
+                        //Chọn hoặc bỏ chọn dòng chỉ định。nếuonselectrowlàturethì sẽ kích hoạt sự kiệnonSelectRow，onselectrowMặc định làture
                         $.each(ids, function () {
                             $("#gridList").setSelection(this, true);
                             xzstr += this + ",";
@@ -213,7 +213,7 @@
 
             });
         }
-	//大类名称绑定下拉框
+	//Hộp chọn liên kết tên loại lớn
 	$("#dlmc").bindSelect({
 		id: "dlcode",
 		text: "dlmc",
@@ -230,7 +230,7 @@
 	//$('#sfxmmc').sfxmFloatingSelector({
 	//	djDecimalPlaces: 4,
 	//	searchType: "sfxm",
-	//	leftshift: 150, //整体左偏移
+	//	leftshift: 150, //lệch trái toàn bộ
 	//	ajaxparameters: function ($thisinput) {
 	//		return "dllb=2&mzzybz=&keyword=" + $.trim($thisinput.val());
 	//	},
@@ -258,7 +258,7 @@
 		$('#layout iframe').css('height', h);
 
 	});
-	 //刷新列表
+	 //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

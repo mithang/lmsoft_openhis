@@ -65,14 +65,14 @@
         $("#dv_gridhzMxList").hide();
     });
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //主表信息
+    //Thông tin bảng chính
     function gridList() {
         $gridList.dataGrid({
             url: "/BillManage/PurchasingOrder/PurchasingOrderInfoQuery",
@@ -151,7 +151,7 @@
         $("#gridPager_right").html("<span>Chi tiết đơn mua sắm | Hiển thị tổng hợp：</span><i id='i-noPc' onclick='accordingBatch(this)' class='fa fa-toggle-off' style='margin-left: 5px;font-size: 1.6rem;color: #ff9813;vertical-align: middle;'></i>");
     }
 
-    //组装搜索条件
+    //Ghép điều kiện tìm kiếm
     function assembleParam() {
         var orderType = $("#orderType").val() === "" ? -1 : $("#orderType").val();
         var orderProcess = $("#orderProcess").val() === "" ? -2 : $("#orderProcess").val();
@@ -164,7 +164,7 @@
         };
     }
 
-    //是否按批次
+    //Có theo lô không
     function accordingBatch(obj) {
         if ($(obj).hasClass("fa-toggle-off")) {
             $(obj).removeClass("fa-toggle-off");
@@ -179,7 +179,7 @@
         }
     }
 
-    //收缩主信息
+    //Thu gọn thông tin chính
     function shrinkGridList(obj) {
         var t = $(".ui-jqgrid-bdiv")[0];
         if ($(t).is(':hidden')) {
@@ -198,7 +198,7 @@
         }
     }
 
-    //明细信息
+    //Thông tin chi tiết
     function gridMxList() {
         $gridMxList.dataGrid({
             height: gridMxListhigh,
@@ -220,7 +220,7 @@
         });
     }
 
-    //明细信息
+    //Thông tin chi tiết
     function gridhzMxList() {
         $gridhzMxList.dataGrid({
             height: gridMxListhigh,

@@ -181,23 +181,23 @@
     var zysf = 0.00;
     var zsf = 0.00;
     var SiteCostEarningVO = {};
-    var ContentType = "";//附件类型
-    var fjmc = "";//附件名称
-    var fjPath = "";//附件名称
+    var ContentType = "";//kèmhạngloạiloại
+    var fjmc = "";//Tên tệp đính kèm
+    var fjPath = "";//Tên tệp đính kèm
     var fileExt = "";
     var files = [];
 
-    //年月下拉初始化
+    //Khởi tạo hộp chọn năm tháng
     (function initYearMonthSelect() {
         var date = new Date;
-        //默认选择上个月
+        //Mặc định chọn tháng trước
         var defaultSelYear = 1900 + date.getYear();
         var defaultSelMonth = date.getMonth();
         if (defaultSelMonth === 0) {
             defaultSelYear--;
             defaultSelMonth = 12;
         }
-        //年份
+        //Năm
         $("#year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -210,7 +210,7 @@
             },
             selectedValue: defaultSelYear,
         });
-        //月份
+        //Tháng
         $("#month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -244,7 +244,7 @@
                     rtndata = JSON.parse(data.message);
                     $('#siteId').val(rtndata.srxx.siteId).trigger("change");
                     //$('#siteId')
-                    //收入信息
+                    //Thông tin thu nhập
                     $('#year').val(rtndata.srxx.year).trigger("change");
                     $('#month').val(rtndata.srxx.month).trigger("change");
                     //if (rtndata.srxx.fjPath !== "") {
@@ -257,13 +257,13 @@
                         files = rtndata.fjxx;
                     }
                     renderFiles();
-                    //收入详情
+                    //thuvàochi tiếttình
                     $.each(rtndata.srxxList, function () {
                         mzsf += this.mzsfje;
                         zysf += this.zysfje;
                     });
                     CRGridList(rtndata.srxxList);
-                    //成本详情
+                    //Chi tiết chi phí
                     cbjson = rtndata.cbxxList;
                     CbGridList(cbjson);
                 },
@@ -271,15 +271,15 @@
                     $.loading(false);
                 }
             });
-            //禁用站点，成本信息，附件
+            //cấmdùngtrạmđiểm，thànhnàythông tintin，Tệp đính kèm
             $('#siteId').attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
             $('#year').attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
             $('#month').attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
         }
         else {
-            CRGridList();//声明收入信息
-            ajaxCR();//请求收入数据
-            loadlastmonthcbxx();//请求上个月的成本信息
+            CRGridList();//tiếngrõthuvàothông tintin
+            ajaxCR();//Yêu cầu dữ liệu thu nhập
+            loadlastmonthcbxx();//vui lòngyêu cầutrêncáithángcủathànhnàythông tintin
         }
         $('#siteId,#year,#month').change(function () {
             if (keyValue == "") {
@@ -319,19 +319,19 @@
                         return false;
                     }
                     files.push(t_files[i]);
-                    //str += '<li>名称：' + t_files[i].name + '大小' + t_files[i].size / 1024 / 2014 + 'M<i class="fa fa-times" aria-hidden="true" hidden="" style="display: inline;"></i></li> ';
+                    //str += '<li>Tên：' + t_files[i].name + 'Kích thước' + t_files[i].size / 1024 / 2014 + 'M<i class="fa fa-times" aria-hidden="true" hidden="" style="display: inline;"></i></li> ';
                 }
             }
             renderFiles();
         });
 
-        //清空icon事件
+        //Xóa trốngiconsự kiện
         $('#form1').on('click', '.fa.fa-times', function () {
             $(this).hide();
         });
     });
 
-    // 渲染附件信息到页面上
+    // tônhuộmkèmhạngthông tintinđếntrangmặttrên
     function renderFiles() {
         var htmlstring = '';
         for (var i = 0; i < files.length; i++) {
@@ -354,14 +354,14 @@
 
 
 
-    //初始化 浮层
+    //khởi tạo lớp nổi
     function initInlineFunc(rowid) {
         $('#' + rowid + "_ce").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $('#' + rowid + "_zsr").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $('#' + rowid + "_mzsfje").formatCurrency();
         $('#' + rowid + "_zysfje").formatCurrency();
     }
-    //清空成本信息
+    //Xóa thông tin chi phí
     function clearcbInfo() {
         $('#cblb').val("").trigger("change");
         $('#kmmc').val("").trigger("change");
@@ -403,7 +403,7 @@
         }, data);
     }
 
-    //收入信息
+    //Thông tin thu nhập
     function CRGridList(data) {
             $('#CRGridList').newtouchLocalDataGrid({
                 height: window.$(window).height() - 230,
@@ -454,7 +454,7 @@
                                         }
                                         var row = $(e.target).closest('tr.jqgrow');
                                         var rowid = row.attr('id');
-                                        CalculateEachLinece(rowid);   //计算差额
+                                        CalculateEachLinece(rowid);   //tínhtínhkhácmức
                                     }
                                 }
                             ]
@@ -468,7 +468,7 @@
                 footerrow: true,
                 rownumbers: false,
                 gridComplete: function () {
-                    //启用行内编辑框
+                    //bật khung sửa trong dòng
                     EnableInlineEditBox();
                     var sum_mzzxje = $("#CRGridList").getCol('mzzxje', false, 'sum');
                     var sum_zyzxje = $("#CRGridList").getCol('zyzxje', false, 'sum');
@@ -477,13 +477,13 @@
                     //var sum_ce = $("#CRGridList").getCol('ce', false, 'sum');
                     zsf = $.addNum(mzsf, zysf);
                     $("#CRGridList").footerData('set', { "dlmc": 'Tổng cộng(đồng)', mzsfje: '<a class="money">' + mzsf + '</a>', mzzxje: sum_mzzxje, zysfje: '<a class="money">' + zysf + '</a>', zyzxje: sum_zyzxje, zsr: zsf });
-                    //$('#sfspan').html('<a class="money">' + mzsf + '</a>' + "（门诊）+" + '<a class="money">' + zysf + '</a>'+ "（住院）=" + '<a class="money">' +zsf+'</a>');
+                    //$('#sfspan').html('<a class="money">' + mzsf + '</a>' + "（Ngoại trú）+" + '<a class="money">' + zysf + '</a>'+ "（Nội trú）=" + '<a class="money">' +zsf+'</a>');
                     $('.money').formatCurrency();
                     $('.moneyunderline').formatCurrency();
 
                 }
             }, data);
-            //二级菜单
+            //haicấpmónphiếu
             $('#CRGridList').jqGrid('setGroupHeaders', {
                 useColSpanStyle: true,
                 groupHeaders: [
@@ -498,9 +498,9 @@
                     }]
             });
     }
-    //请求收入数据
+    //Yêu cầu dữ liệu thu nhập
     function ajaxCR() {
-        //新增已收集时，限制按钮
+        //mớithêmđãthutậpthời gian，giới hạnchếtheonút
         if (keyValue == null || keyValue==="") {
             $.najax({
                 url: "/SiteManage/SiteStatistics/isAlreadyCollect",
@@ -510,7 +510,7 @@
                 loadingtext: "Đang yêu cầu dữ liệu thống kê thu chi, vui lòng chờ...",
                 success: function (resp) {
                     if (resp) {
-                        //禁用按钮
+                        //cấmdùngtheonút
                         $('#btn_zc').attr('disabled', 'disabled');
                         $('#btn_ytj').attr('disabled', 'disabled');
                         $('#btn_tj').attr('disabled', 'disabled');
@@ -597,11 +597,11 @@
                     resp = JSON.parse(resp);
                     if (resp.state == "success") {
                         $.modalMsg("Thao tác thành công", "success");
-                        $.currentWindow().$('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                        $.currentWindow().$('#gridList').jqGrid("clearGridData"); //Xóa chi tiết củagrid
                         $.currentWindow().$("#btn_search").trigger("click");
                         $.modalClose();
                     } else {
-                        //开启编辑模式
+                        //mởbậtmãbiên tậpmẫukiểu
                         EnableInlineEditBox();
                         $.modalAlert(resp.message, "warning");
                     }
@@ -612,7 +612,7 @@
         }
     }
 
-    //提交
+    //Gửi
     function AcceptClick(callback, shzt) {
         var form = $("#form1");
         var options = {
@@ -649,7 +649,7 @@
     }
 
     function validatesave() {
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái lưu
         var rowIds = $("#CRGridList").jqGrid('getDataIDs');
         if (rowIds.length < 1) {
             $.modalAlert("Hiện tại không có nội dung thu nhập đã lưu", 'warning');
@@ -660,12 +660,12 @@
         }
         //
         if (!saveResult) {
-            EnableInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-            return false;   //保存失败，则return
+            EnableInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
+            return false;   //lưu thất bại，thìreturn
         }
     }
 
-    //数据效验
+    //sốdữ liệuhiệu quảkiểm
     function DataValidate() {
         if ($("#siteId").val() === "") {
             $.modalAlert("Vui lòng chọn trạm", 'warning');
@@ -692,7 +692,7 @@
             $.modalAlert("Hiện tại không có nội dung thu nhập đã lưu", 'warning');
             return false;
         }
-        $.each(griddata, function () {    //去掉action
+        $.each(griddata, function () {    //bỏ điaction
             for (var i = 0; i < $(this).length; i++) {
                 $(this)[i].mzsfje = $($(this)[i].mzsfje).toNumber().text();
                 $(this)[i].zysfje = $($(this)[i].zysfje).toNumber().text();
@@ -726,13 +726,13 @@
         return SiteCostEarningVO;//{ srxx: SiteCostEarningVO.srxx, srxxList: SiteCostEarningVO.srxxList, cbxxList: cbjson, keyValue: keyValue };
     }
 
-    var editingNewid = null;    //正在修改的行
-    var editingId = null;    //正在修改的行
+    var editingNewid = null;    //dòng đang sửa
+    var editingId = null;    //dòng đang sửa
 
-    //添加成本
+    //thêmthêmthànhnày
     function btn_bottombutton_add() {
         if (editingNewid || editingId) {
-            return; //正在处于修改状态，是不能点击添加按钮的   要disable处理
+            return; //đang ở trạng thái sửa，không được nhấn nút thêm   cầndisablexử lý
         }
         if (validatecbinfo()) {
             var item = {
@@ -748,11 +748,11 @@
             }
             cbjson.push(item)
             fillDataToGrid();
-            clearcbInfo();//清空成本信息
+            clearcbInfo();//Xóa thông tin chi phí
         }
     }
 
-    //验证成本信息
+    //kiểmchứngthànhnàythông tintin
     function validatecbinfo() {
         var cblb = $('#cblb').val();
         if (!cblb) {
@@ -773,7 +773,7 @@
 
     };
 
-    //请求 编辑 行
+    //yêu cầu sửa dòng
     function gridEditRow(rowid) {
         if (rowid) {
             var rowData = $("#CbGridList").jqGrid('getRowData', rowid);
@@ -782,11 +782,11 @@
                     return v && v.Id == rowData.Id;
                 });
                 if (!rowDataArr || rowDataArr.length == 0) {
-                    return; //为什么没找到
+                    return; //tại sao không tìm thấy
                 }
-                rowData = rowDataArr[0];  //通过rowData.newid从对象数组中取出该行数据
-                editingNewid = rowData.Id;    //正在修改的行
-                //序列化至编辑域中
+                rowData = rowDataArr[0];  //Đã quarowData.newidlấy dữ liệu dòng đó từ mảng đối tượng
+                editingNewid = rowData.Id;    //dòng đang sửa
+                //tuần tự hóa vào vùng sửa
                 $('#cblb').val(rowData.cblb).trigger("change");
                 $('#kmmc').val(rowData.kmcode).trigger("change");
                 $('#je').val(rowData.je);
@@ -799,19 +799,19 @@
         }
     }
 
-    //修改成本
+    //sửasửathànhnày
     function btn_bottombutton_edit() {
         if (editingNewid) {
-            //提交修改
+            //nêunộpsửasửa
             var data = getEditRowData();
             if (!(validatecbinfo())) {
-                //数据是否完善，检查必填项
+                //dữ liệu có đầy đủ không，kiểm tra các mục bắt buộc
                 return;
             }
             data.Id = editingNewid;
-            //检查重复项
+            //Kiểm tra mục trùng lặp
 
-            //先在xm数组中找到之
+            //trước tiên tạixmtìm trong mảng
             var matchedIndex = -1;
             for (var ii = 0; ii < cbjson.length; ii++) {
                 if (cbjson[ii].Id == data.Id) {
@@ -820,32 +820,32 @@
                 }
             }
             if (matchedIndex == -1) {
-                return; //应该是异常
+                return; //có lẽ là bất thường
             }
-            cbjson.remove(matchedIndex);   //移除该项
-            cbjson.unshift(data);   //作为新项添加    //”数组最前端“
+            cbjson.remove(matchedIndex);   //gỡ khoản này
+            cbjson.unshift(data);   //thêm dưới dạng khoản mới    //”đầu mảng“
 
-            //重新将xm数组呈现至grid
+            //đưa lạixmmảng hiển thị vàogrid
             fillDataToGrid();
 
             clearcbInfo();
 
-            editingNewid = null;    //正在修改的行
+            editingNewid = null;    //dòng đang sửa
 
             bottomButtonsReset();
 
         }
         else {
-            //申请修改 获取grid当前选中的那一行
+            //khaivui lòngsửasửa LấygridDòng đang chọn hiện tại
             var seleId = $('#CbGridList').jqGrid('getGridParam', 'selrow');
             if (seleId) {
-                //请求修改该行
+                //Yêu cầu sửa dòng này
                 gridEditRow(seleId);
             }
         }
     };
 
-    //按钮重置
+    //Đặt lại nút
     function bottomButtonsReset() {
         $('#btn_bottombutton_add').removeAttr('disabled');
         $('#btn_bottombutton_edit').attr('disabled', 'disabled');
@@ -865,17 +865,17 @@
         return item;
     }
 
-    //删除成本
+    //xóatrừthànhnày
     function btn_bottombutton_delete() {
-        //获取grid当前选中的那一行
+        //LấygridDòng đang chọn hiện tại
         var rowid = $('#CbGridList').jqGrid('getGridParam', 'selrow');
-        //请求删除该行
+        //Yêu cầu xóa dòng này
         if (rowid) {
             var rowData = $("#CbGridList").jqGrid('getRowData', rowid);
             if (rowData) {
                 if (rowData.Id == editingNewid) {
                     $.modalAlert("Dòng này đang ở trạng thái sửa，Không thể xóa", 'warning');
-                    return; //该行正在处于编辑状态，不能删除
+                    return; //Dòng này đang ở trạng thái sửa，Không thể xóa
                 }
                 var matchedIndex = -1;
 
@@ -886,35 +886,35 @@
                         }
                     }
                 }
-                cbjson.remove(matchedIndex);   //移除
+                cbjson.remove(matchedIndex);   //gỡ
 
-                //重新将xm数组呈现至grid
+                //đưa lạixmmảng hiển thị vàogrid
                 fillDataToGrid();
             }
         }
     };
 
-    //向CbGridList grid里填充数据
+    //hướng tớiCbGridList gridtrongđiềnbổ sungsốdữ liệu
     function fillDataToGrid() {
         $("#CbGridList").resetSelection();
         $("#CbGridList").clearGridData();
         $("#CbGridList").newtouchLocalDataGrid({ posttofirst: false }, cbjson);
     }
 
-    //取消修改
+    //Hủy sửa
     function btn_bottombutton_canceldel() {
         clearcbInfo();
-        editingNewid = null;    //正在修改的行
+        editingNewid = null;    //dòng đang sửa
         bottomButtonsReset();
         $("#CbGridList").resetSelection();
     };
 
-    //启用行内编辑框
+    //bật khung sửa trong dòng
     function EnableInlineEditBox() {
-        //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        //GridNạp xong thì bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt và gọieditRowphương thức
         var rowIds = $("#CRGridList").jqGrid('getDataIDs');
         $.each(rowIds, function () {
-            //打开编辑模式
+            //Mở chế độ chỉnh sửa
             $("#CRGridList").jqGrid('editRow', this, false, initInlineFunc);
         });
     }
@@ -932,7 +932,7 @@
         });
     }
 
-    //查看收费金额详情
+    //Xem chi tiết số tiền thu phí
     function btn_detail(dlcode, type) {
         var year = $('#year').val();
         var siteId = $('#siteId').val();

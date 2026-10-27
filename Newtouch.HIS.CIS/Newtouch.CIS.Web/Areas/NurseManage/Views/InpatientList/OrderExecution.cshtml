@@ -1,7 +1,7 @@
 @using Newtouch.Infrastructure;
 @{
     ViewBag.Title = "Điều dưỡngTrạmBệnh nhânTrung tâm-Y lệnhThực hiện";
-    //欠费医嘱Thực hiện开关
+    //nợ phíY lệnhThực hiệnCông tắc
     var ISOpenqfswith = (ViewBag.isqfswith);
     var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
     var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
@@ -25,11 +25,11 @@
                            onfocus="WdatePicker({ dateFmt: 'HH:mm:ss' })" value="@DateTime.Now.ToString("HH:mm:ss")" />
                 </td>
                 @*<td>
-                    <input type="button" id="btn_search" class="btn btn-primary" value="查询预执行医嘱" />
+                    <input type="button" id="btn_search" class="btn btn-primary" value="Tra cứudựThực hiệnY lệnh" />
                 </td>*@
                 @*<td>
-                    <input type="button" id="btn_BindingFee" class="btn btn-primary" value="附属医嘱" onclick="BindingFee()" />
-                    <input type="button" id="btn_DeleteBind" class="btn btn-primary" value="附属作废" onclick="DeleteBind()" />
+                    <input type="button" id="btn_BindingFee" class="btn btn-primary" value="Y lệnh phụ" onclick="BindingFee()" />
+                    <input type="button" id="btn_DeleteBind" class="btn btn-primary" value="kèmthuộcHủy bỏ" onclick="DeleteBind()" />
                 </td>*@
             </tr>
         </table>
@@ -105,9 +105,9 @@
         var patlistFath = "";
         yjjzhmsg = "";
         var patzyh = "";
-        //当前选中父节点
+        //hiện tạiĐã chọnNút cha
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //CóKhôngphiếucáicontiếtđiểm
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
             len = patlistFath.length;
@@ -117,7 +117,7 @@
             len = 1;
             single = 1;
         }
-        //选中节点
+        //Đã chọntiếtđiểm
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patzyh += patlist[i].value + ",";
@@ -167,12 +167,12 @@
                     //$.each(ajaxresp, function () {
                     //    if(this.zhsy<=this.bje &&this.zhsy>0)
                     //    {
-                    //        $.modalAlert("住院号:" + this.zyh + "预交账户余额已达到限额,请提醒患者充值", 'warning');
+                    //        $.modalAlert("Số nhập viện:" + this.zyh + "tạm ứngTài khoảndưmứcđãđạtđếnhạnmức,vui lòngnhắcnhắcBệnh nhânnạpGiá trị", 'warning');
                     //        WarmList.push(this.zyh);
                     //    }
                     //    else if (this.zhsy<=0)//&& this.zhye>0
                     //    {
-                    //        yjjzhmsg = "住院号:" + this.zyh + "预交账户已欠费,不能产生计费,需先充值预交账户";
+                    //        yjjzhmsg = "Số nhập viện:" + this.zyh + "tạm ứngTài khoảnđãnợ phí,khôngcó thể phát sinh tính phí,cầntrướcnạpGiá trịtạm ứngTài khoản";
                     //        $.modalAlert(yjjzhmsg, 'warning');
                     //        UnExecutionList.push(this.zyh);
                     //    }
@@ -194,7 +194,7 @@
             postData: { patList: patzyh, zxsj: $('#txt_zxrq').val() },
             url: "/NurseManage/OrderExecution/GetGridJson",
             height: $(window).height() - 140,
-            rowNum: 100, //每页显示记录数
+            rowNum: 100, //mỗitrangHiển thịghi chépsố
             colModel: [
                 { label: 'Y lệnhID', name: 'yzid', align: 'center', width: 50, key: true, hidden: true },
                 { label: 'Số nhập viện', name: 'zyh', align: 'center', width: 50, hidden: true },
@@ -271,7 +271,7 @@
                     var len = 0;
                     var rowData = $("#gridYzzxList").jqGrid('getRowData', rowIndex);
                     var ids = $("#gridYzzxList").jqGrid('getRowData_AllLine');
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     if (rowData.zh1 != "") {
                         for (var i = 0; i < ids.length; i++) {
                             if (ids[i].zh1 === rowData.zh1 && ids[i].zh1 !== "") {
@@ -315,15 +315,15 @@
                 if (list.length > 0) {
 
                     for (j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Cùng nhómĐã chọn
                         {
                             j = j + 1;
                             $("#gridYzzxList").jqGrid("setSelection", list[j - 1], true);
 
                         }
-                        else { //同组取消选中
+                        else { //Cùng nhómHủyĐã chọn
                             //j = j + 1;
-                            $("#gridYzzxList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                            $("#gridYzzxList").jqGrid("setSelection", list[j], false);      //Hủykhôngkích hoạtonselectrow
                         }
 
                     }
@@ -342,14 +342,14 @@
             }
         });
     }
-    //刷新医嘱
+    //làm mớiY lệnh mới
     function RefreshzxOrder() {
         //getYzzxTreeList("");
         $('#gridYzzxList').jqGrid("clearGridData");
         getOrderExecutionList(null, null);
     }
 
-    //Thực hiện当前
+    //Thực hiệnhiện tại
     var UnExecutionList = [];
     var WarmList = [];
     function ExecutionChecked() {
@@ -363,9 +363,9 @@
         for (var i = 0; i < selPatTrees.length; i++) {
             if (selPatTrees[i].Ex1 === "c") {
                 patzyh += selPatTrees[i].value + ",";
-                //预交金超出限额无法Thực hiện
+                //tạm ứngkimvượtrahạnmứckhôngphương phápThực hiện
                 //if (UnExecutionList.indexOf(selPatTrees[i].value) != -1) {
-                //    $.modalAlert("预交账户已欠费,不能产生计费,需先充值预交账户", 'warning');
+                //    $.modalAlert("tạm ứngTài khoảnđãnợ phí,khôngcó thể phát sinh tính phí,cầntrướcnạpGiá trịtạm ứngTài khoản", 'warning');
                 //    return;
                 //}
             }
@@ -381,7 +381,7 @@
             return;
         }
         var strYZID = [];
-        var selRowIds = jQuery("#gridYzzxList").jqGrid("getGridParam", "selarrrow");//选中的id
+        var selRowIds = jQuery("#gridYzzxList").jqGrid("getGridParam", "selarrrow");//Đã chọncủaid
         if (selRowIds == null || selRowIds.length === 0) {
             $.modalAlert("Vui lòng chọn y lệnh cần thực hiện", 'warning');
             allbtn();
@@ -452,7 +452,7 @@
         return $.getDate({ date: zxrq }) + " " + yzzxsj; //$.getTime().substring(11, 19);
     }
 
-    //Thực hiện临时  长期  全部
+    //Thực hiệnTạm thời  Dài hạn  Tất cả
     function ExecutionOrders(yzxz) {
         var selPatTrees = $("#PatTreeList").getCheckedNodeObjArray();
         if (selPatTrees == null || selPatTrees.length < 1) {
@@ -464,9 +464,9 @@
         for (var i = 0; i < selPatTrees.length; i++) {
             if (selPatTrees[i].Ex1 === "c") {
                 patzyh += selPatTrees[i].value + ",";
-                //预交金超出限额无法Thực hiện
+                //tạm ứngkimvượtrahạnmứckhôngphương phápThực hiện
                 //if (UnExecutionList.indexOf(selPatTrees[i].value) != -1) {
-                //    $.modalAlert("预交账户已欠费,不能产生计费,需先充值预交账户", 'warning');
+                //    $.modalAlert("tạm ứngTài khoảnđãnợ phí,khôngcó thể phát sinh tính phí,cầntrướcnạpGiá trịtạm ứngTài khoản", 'warning');
                 //    return;
                 //}
             }
@@ -512,7 +512,7 @@
         });
     }
 
-    //绑定费用
+    //gắnChi phí
     function BindingFee() {
         var selPatTrees = $("#PatTreeList").getCheckedNodeObjArray();
         if (selPatTrees == null || selPatTrees.length < 1) {
@@ -555,10 +555,10 @@
             return;
         }
         var strYZID = [];
-        var selRowIds = jQuery("#gridYzzxList").jqGrid("getGridParam", "selarrrow");//选中的id
+        var selRowIds = jQuery("#gridYzzxList").jqGrid("getGridParam", "selarrrow");//Đã chọncủaid
         if (selRowIds == null || selRowIds.length === 0) {
             let res = confirm('Y lệnh phụChưa tick chọnThuốc/Mục Có tiếp tục không?');
-            if (res == true) {//未选择医嘱或者药品新增医嘱
+            if (res == true) {//chưachọnY lệnhhoặcThuốcThêm mớiY lệnh
                 $.modalOpen({
                     id: "BindingFeeForm",
                     title: "Y lệnh phụ",
@@ -634,9 +634,9 @@
         for (var i = 0; i < selPatTrees.length; i++) {
             if (selPatTrees[i].Ex1 === "c") {
                 patzyh += selPatTrees[i].value + ",";
-                //预交金超出限额无法Thực hiện
+                //tạm ứngkimvượtrahạnmứckhôngphương phápThực hiện
                 //if (UnExecutionList.indexOf(selPatTrees[i].value) != -1) {
-                //    $.modalAlert("预交账户已欠费,不能产生计费,需先充值预交账户", 'warning');
+                //    $.modalAlert("tạm ứngTài khoảnđãnợ phí,khôngcó thể phát sinh tính phí,cầntrướcnạpGiá trịtạm ứngTài khoản", 'warning');
                 //    return;
                 //}
             }
@@ -653,7 +653,7 @@
         }).trigger("reloadGrid");
     }
 
-    //删除并解绑医嘱
+    //XóavàHủy liên kếtY lệnh
     function DeleteBind() {
         var selPatTrees = $("#PatTreeList").getCheckedNodeObjArray();
         if (selPatTrees == null || selPatTrees.length < 1) {
@@ -675,7 +675,7 @@
             return;
         }
         var strYZID = [];
-        var selRowIds = jQuery("#gridYzzxList").jqGrid("getGridParam", "selarrrow");//选中的id
+        var selRowIds = jQuery("#gridYzzxList").jqGrid("getGridParam", "selarrrow");//Đã chọncủaid
         if (selRowIds == null || selRowIds.length === 0) {
             $.modalAlert("Vui lòng chọn y lệnh cần hủy bỏ hoặc dừng", 'warning');
             return;

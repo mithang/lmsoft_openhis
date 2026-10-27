@@ -5,12 +5,12 @@ namespace NewtouchHIS.Base.Domain
     public class LoginBO
     {
         /// <summary>
-        /// 用户名
+        /// Tên người dùng
         /// </summary>
         [Required(ErrorMessage ="Tên người dùng không được để trống")]
         public string Username { get; set; }
         /// <summary>
-        /// 密码
+        /// Mật khẩu
         /// </summary>
         [Required(ErrorMessage = "Mật khẩu không được để trống")]
         public string Password { get; set; }

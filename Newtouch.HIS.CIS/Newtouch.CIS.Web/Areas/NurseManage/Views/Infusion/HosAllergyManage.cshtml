@@ -62,24 +62,24 @@
 })
 <script>
     var localdata = [];
-    var deldata = [];//删除对象
+    var deldata = [];//Xóađối tượng
     var $gridMxList = $("#gridListPs");
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
             
         });
         Initial();
     });
 
-    //初始化
+    //Khởi tạo
     function Initial() {
         getLbSelectTree();
         gridList();
         gridMxInfo();
     }
 
-    //类别
+    //Loại
     function getLbSelectTree() {
         $("#lb").newtouchBindSelect({
             datasource: function () {
@@ -101,7 +101,7 @@
         });
     }
 
-    //主表信息
+    //chínhbảngthông tin
     function gridList() {
         var $gridList = $("#gridListPatient");
         $gridList.dataGrid({
@@ -161,7 +161,7 @@
         });
     }
 
-    //明细信息
+    //chi tiếtthông tin
     function gridMxInfo() {
         $gridMxList.dataGrid({
             url: "/NurseManage/",
@@ -273,7 +273,7 @@
 
     function saveData() {
 
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $gridMxList.jqGrid('getDataIDs');
         if (rowIds < 1) {
             $.modalAlert("Hiện tại không có nội dung suất ăn đã lưu", 'warning');
@@ -283,8 +283,8 @@
             var saveResult = $gridMxList.saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
             if (!saveResult) {
-                EnableInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                return;   //保存失败，则return
+                EnableInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
+                return;   //Lưu thất bại，thìreturn
             }
         }
 
@@ -310,18 +310,18 @@
             }
         });
     }
-    //删除明细
+    //Xóa chi tiết
     function deleteRowData(selRowId) {
         if (!!selRowId) {
             var Id = $gridMxList.jqGrid('getRowData', selRowId).Id;
             $gridMxList.jqGrid("delRowData", selRowId);
-            if (Id.indexOf("0.") == '-1') {//记录下来，从数据库删除
+            if (Id.indexOf("0.") == '-1') {//ghi lại，từCơ sở dữ liệuXóa
                 deldata.push(Id);
             }
         }
     }
 
-    //新增
+    //Thêm mới
     function newtouch_event_f7() {
         var key = "";
         $.modalOpen({

@@ -7,47 +7,47 @@ using System.Threading.Tasks;
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 库存信息 结转用
+    /// Thông tin tồn kho Dùng để kết chuyển
     /// </summary>
     public class VKcxxEntity
     {
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô hàng
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn sử dụng
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 库存数量 最小单位
+        /// Số lượng tồn kho Đơn vị nhỏ nhất
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// 部门零售价 转化因子对应单位
+        /// Giá bán lẻ khoa phòng Đơn vị tương ứng với hệ số chuyển đổi
         /// </summary>
         public decimal bmlsj { get; set; }
 
         /// <summary>
-        /// 进价 转化因子对应单位
+        /// Giá nhập Đơn vị tương ứng với hệ số chuyển đổi
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
     }

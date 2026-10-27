@@ -61,17 +61,17 @@ namespace Newtouch.HIS.Application.Implementation
                     }
                     else
                     {
-                        throw new FailedException("密码不正确，请重新输入");
+                        throw new FailedException("Mật khẩu không đúng，Vui lòng nhập lại");
                     }
                 }
                 else
                 {
-                    throw new FailedException("账户被系统锁定,请联系管理员");
+                    throw new FailedException("Tài khoản bị hệ thống khóa,Vui lòng liên hệ quản trị viên");
                 }
             }
             else
             {
-                throw new FailedException("账户不存在，请重新输入");
+                throw new FailedException("Tài khoản không tồn tại，Vui lòng nhập lại");
             }
         }
     }

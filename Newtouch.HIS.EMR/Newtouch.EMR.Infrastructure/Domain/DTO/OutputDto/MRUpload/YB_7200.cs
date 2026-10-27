@@ -8,140 +8,140 @@ using System.Threading.Tasks;
 namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
 {
     /// <summary>
-    /// 首次病程记录
+    /// Bản ghi diễn biến bệnh lần đầu
     /// </summary>
     public class YB_7200
     {
         /// <summary>
-        /// 就诊流水号
+        /// Số thứ tự khám
         /// 1
         /// </summary>
         [Required]
         public string AKC190 { get; set; }
         /// <summary>
-        /// 住院流水号
+        /// Số thứ tự nội trú
         /// 1
         /// </summary>
         [Required]
         public string BKC191 { get; set; }
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         public string AKF001 { get; set; }
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// 1
         /// </summary>
         [Required]
         public string AKF002 { get; set; }
         /// <summary>
-        /// 病区名称
+        /// Tên khu bệnh
         /// 1
         /// </summary>
         public string AKE021 { get; set; }
         /// <summary>
-        /// 病床号
+        /// Số giường bệnh
         /// 1
         /// </summary>
         [Required]
         public string BKB410 { get; set; }
         /// <summary>
-        /// 记录日期时间 格式：yyyymmddhhmiss
+        /// Định dạng ngày giờ ghi chép：yyyymmddhhmiss
         /// 1
         /// </summary>
         [Required]
         public string BKF737 { get; set; }
         /// <summary>
-        /// 主诉
+        /// Triệu chứng chính
         /// 1
         /// </summary>
         [Required]
         public string BKF476 { get; set; }
         /// <summary>
-        /// 病例特点
+        /// Đặc điểm ca bệnh
         /// 1
         /// </summary>
         [Required]
         public string BKF108 { get; set; }
         /// <summary>
-        /// 中医“四诊”观察结果
+        /// Đông y“Tứ chẩn”Kết quả quan sát
         /// </summary>
         public string BKF458 { get; set; }
         /// <summary>
-        /// 诊断依据
+        /// Căn cứ chẩn đoán
         /// </summary>
         public string BKF419 { get; set; }
         /// <summary>
-        /// 初步诊断-西医诊断编码
-        /// 诊断类别代码填写参考卫生部办公厅关于印发《疾病分类与代码（修订版）》的通知（卫办综发〔2011〕166 号）；仅上传主诊断即可
+        /// Chẩn đoán sơ bộ-Mã chẩn đoán Tây y
+        /// Mã loại chẩn đoán điền tham khảo Thông báo của Văn phòng Bộ Y tế về việc ban hành «Phân loại và mã bệnh (bản sửa đổi)» (số 166 năm 2011 của Văn phòng Tổng hợp Bộ Y tế); chỉ cần tải lên chẩn đoán chính
         /// </summary>
         public string BKF748 { get; set; }
         /// <summary>
-        /// 初步诊断-西医诊断名称
+        /// Chẩn đoán sơ bộ-Tên chẩn đoán Tây y
         /// </summary>
         public string BKF126 { get; set; }
         /// <summary>
-        /// 初步诊断-中医病名代码
+        /// Chẩn đoán sơ bộ-Mã bệnh danh Đông y
         /// </summary>
         public string BKF128 { get; set; }
         /// <summary>
-        /// 初步诊断-中医病名
+        /// Chẩn đoán sơ bộ-Bệnh danh Đông y
         /// </summary>
         public string BKF127 { get; set; }
         /// <summary>
-        /// 初步诊断-中医证候代码
+        /// Chẩn đoán sơ bộ-Mã chứng hậu Đông y
         /// </summary>
         public string BKF130 { get; set; }
         /// <summary>
-        /// 初步诊断-中医证候
+        /// Chẩn đoán sơ bộ-Chứng hậu Đông y
         /// </summary>
         public string BKF129 { get; set; }
         /// <summary>
-        /// 鉴别诊断-西医诊断编码
+        /// Chẩn đoán phân biệt-Mã chẩn đoán Tây y
         /// </summary>
         public string BKF856 { get; set; }
         /// <summary>
-        /// 鉴别诊断-西医诊断名称
+        /// Chẩn đoán phân biệt-Tên chẩn đoán Tây y
         /// </summary>
         public string BKF857 { get; set; }
         /// <summary>
-        /// 鉴别诊断-中医病名代码
+        /// Chẩn đoán phân biệt-Mã bệnh danh Đông y
         /// </summary>
         public string BKF855 { get; set; }
         /// <summary>
-        /// 鉴别诊断-中医病名
+        /// Chẩn đoán phân biệt-Bệnh danh Đông y
         /// </summary>
         public string BKF854 { get; set; }
         /// <summary>
-        /// 鉴别诊断-中医证候代码
+        /// Chẩn đoán phân biệt-Mã chứng hậu Đông y
         /// </summary>
         public string BKF204 { get; set; }
         /// <summary>
-        /// 鉴别诊断-中医证候
+        /// Chẩn đoán phân biệt-Chứng hậu Đông y
         /// </summary>
         public string BKF203 { get; set; }
         /// <summary>
-        /// 诊疗计划
+        /// Kế hoạch chẩn đoán và điều trị
         /// </summary>
         public string BKF421 { get; set; }
         /// <summary>
-        /// 治则治法
+        /// Nguyên tắc và phương pháp điều trị
         /// </summary>
         public string BKF440 { get; set; }
         /// <summary>
-        /// 住院医师编号
+        /// Mã bác sĩ nội trú
         /// 1
         /// </summary>
         [Required]
         public string BKF693 { get; set; }
         /// <summary>
-        /// 住院医师姓名
+        /// Tên bác sĩ nội trú
         /// 1
         /// </summary>
         [Required]
         public string BKF692 { get; set; }
         /// <summary>
-        /// 上级医师姓名
+        /// Tên bác sĩ cấp trên
         /// 1
         /// </summary>
         [Required]

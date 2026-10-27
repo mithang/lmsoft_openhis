@@ -56,7 +56,7 @@ namespace NewtouchHIS.DrgGroup.chs_drg_11
             }).ToList());
         }
         /// <summary>
-        /// 文件分组结果
+        /// Kết quả nhóm tệp
         /// </summary>
         /// <param name="file"></param>
         /// <param name="cols"></param>
@@ -76,7 +76,7 @@ namespace NewtouchHIS.DrgGroup.chs_drg_11
                 var col_index = cols.Select(x => Array.IndexOf(cols_for_search, x)).ToArray();
                 if (col_index.Length != cols.Length)
                 {
-                    Console.WriteLine("字段名称与CSV文件不匹配");
+                    Console.WriteLine("Tên trường không khớp với tệp CSV");
                     System.Environment.Exit(-1);
                 }
                 return File.ReadLines(file).Skip(1).Select(x => string.Join(',', col_index.Select(y => replace_csv(x).Split(',')[y])));
@@ -84,7 +84,7 @@ namespace NewtouchHIS.DrgGroup.chs_drg_11
             catch (IOException e)
             {
                 Console.WriteLine(e.Message);
-                Console.WriteLine("文件读取失败");
+                Console.WriteLine("Đọc tệp thất bại");
                 System.Environment.Exit(-1);
             }
             return new String[0];
@@ -98,7 +98,7 @@ namespace NewtouchHIS.DrgGroup.chs_drg_11
                 var col_index = cols.Select(x => Array.IndexOf(cols_for_search, x)).ToArray();
                 if (col_index.Length != cols.Length)
                 {
-                    Console.WriteLine("字段名称与CSV文件不匹配");
+                    Console.WriteLine("Tên trường không khớp với tệp CSV");
                     System.Environment.Exit(-1);
                 }
                 var flines = await File.ReadAllLinesAsync(file);
@@ -108,7 +108,7 @@ namespace NewtouchHIS.DrgGroup.chs_drg_11
             catch (IOException e)
             {
                 Console.WriteLine(e.Message);
-                Console.WriteLine("文件读取失败");
+                Console.WriteLine("Đọc tệp thất bại");
                 System.Environment.Exit(-1);
             }
             return new String[0];

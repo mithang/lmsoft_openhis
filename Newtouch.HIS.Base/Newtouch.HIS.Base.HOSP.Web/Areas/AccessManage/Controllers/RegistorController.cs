@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.AccessManage.Controllers
             return Success("Thao tác thành công");
         }
         /// <summary>
-        /// 获取授权密钥
+        /// Lấy khóa ủy quyền
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

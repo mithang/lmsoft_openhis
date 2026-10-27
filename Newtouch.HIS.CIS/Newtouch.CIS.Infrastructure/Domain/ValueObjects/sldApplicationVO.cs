@@ -14,51 +14,51 @@ namespace Newtouch.Domain.ValueObjects
     {
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 申请科室代码
+        /// Khoa đăng kýMã
         /// </summary>
         public string sqkscode { get; set; }
         /// <summary>
-        /// 申请科室名称
+        /// Khoa đăng kýTên
         /// </summary>
         public string sqksname { get; set; }
         /// <summary>
-        /// 申请病区代码
+        /// Đăng kýKhu bệnhMã
         /// </summary>
         public string sqbqcode { get; set; }
 
         /// <summary>
-        /// 申请病区名称
+        /// Đăng kýKhu bệnhTên
         /// </summary>
         public string sqbqname { get; set; }
 
         /// <summary>
-        /// 申请医生代码
+        /// Bác sĩ đăng kýMã
         /// </summary>
         public string sqyscode { get; set; }
 
         /// <summary>
-        /// 申请医生名称
+        /// Bác sĩ đăng kýTên
         /// </summary>
         public string sqysname { get; set; }
 
         /// <summary>
-        /// 申请单号
+        /// Số phiếu
         /// </summary>
         public string sldh { get; set; }
 
 
         /// <summary>
-        /// 申请单总金额
+        /// Tổng số tiền phiếu
         /// </summary>
         public decimal zje { get; set; }
 
         /// <summary>
-        /// 申请单备注
+        /// PhiếuGhi chú
         /// </summary>
         public string sqbz { get; set; }
 
         /// <summary>
-        /// 申请单状态  
+        /// PhiếuTrạng thái  
         /// </summary>
         public char sldzt { get; set; }
 

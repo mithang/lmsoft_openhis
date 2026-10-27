@@ -7,11 +7,11 @@
     <script src="~/Content/js/echarts.min.js"></script>
 
     <style>
-        /*边框*/
+        /*Viền*/
         .bk {
             background-color: #ffffff;
         }
-        /*字体*/
+        /*Phông chữ*/
         .font {
             font-weight: bold;
             text-align: center;
@@ -111,7 +111,7 @@
         <div style="margin-top:20px;background-color:#ffffff;height:75%">
             @*<div style="text-align:left;" class="font">
                 <span><img src="~/Content/img/report.png" style="width:30px;height:30px;"></span>
-                <span style="margin-top: 20px;">门诊患者分析</span>
+                <span style="margin-top: 20px;">Phân tích bệnh nhân ngoại trú</span>
             </div>*@
             <div class="panel-heading down_border" style="font-size: 15px;">
                 <i class="fa fa-area-chart fa-lg" style="padding-right:5px;"></i>Phân tích bệnh nhân ngoại trú
@@ -133,7 +133,7 @@
     var myDate = new Date();
     $(function () {
         $('#main_div').height($(window).height() - 60);
-        //默认设置时间类型为月
+        //Mặc định đặt loại thời gian là tháng
         $("#dateType").val("2");
         $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM' })");
         $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
@@ -145,28 +145,28 @@
         getData();
         initEcharts();
     }
-    //改变时间类型
+    //Đổi loại thời gian
     function updateSjType() {
         $('#rSJ').val("");
         let dateType = $("#dateType").val();
-        if (dateType == "1") {//年
+        if (dateType == "1") {//năm
             $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy' })");
             $('#rSJ').val(myDate.getFullYear());
         }
-        if (dateType == "2") {//月
+        if (dateType == "2") {//tháng
             $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth())+1));
         }
-        if (dateType == "3") {//日
+        if (dateType == "3") {//ngày
             $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM-dd' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
         }
     }
-    //根据年月获取月天数
+    //Lấy số ngày trong tháng theo năm tháng
     function getDaysInMonth(year, month) {
         return new Date(year, month, 0).getDate();
     }
-    //抬头
+    //Tiêu đề
     function getData()
     {
         $.ajax({
@@ -204,23 +204,23 @@
             }
         });
     }
-    //组装请求参数
+    //Ghép tham số yêu cầu
     function getSearchData() {
         let ksrq = '';
         let jsrq = '';
         let dateType = $("#dateType").val();
         let nowDate = $("#rSJ").val();
-        if (dateType == "1") {//年
+        if (dateType == "1") {//năm
             ksrq = nowDate + "-" + "01-01 00:00:00";
             jsrq = nowDate + "-" + "12-31 23:59:59";
         }
-        if (dateType == "2") {//月
+        if (dateType == "2") {//tháng
             let array = nowDate.split("-");
             ksrq = array[0] + "-" + array[1] + "-01 00:00:00";
             let days = getDaysInMonth(array[0], array[1]);
             jsrq = array[0] + "-" + array[1] + "-" + days + " 23:59:59";
         }
-        if (dateType == "3") {//日
+        if (dateType == "3") {//ngày
             ksrq = nowDate + " 00:00:00";
             jsrq = nowDate + " 23:59:59";
         }
@@ -243,10 +243,10 @@
                         text: 'Phân tích bệnh nhân ngoại trú',
                         left: 'center'
                     },
-                    tooltip: {//tooltip 鼠标移动到图上显示的标签
+                    tooltip: {//tooltip Nhãn hiển thị khi di chuột lên biểu đồ
                         trigger: 'item'
                     },
-                    legend: {//左边数据（图例）
+                    legend: {//Dữ liệu bên trái（Chú giải）
                         orient: 'vertical',
                         bottom: 'bottom'
                     },
@@ -259,7 +259,7 @@
                                 { value: ajaxresp.hzxzb_yb, name: 'BHYT' },
                                 { value: ajaxresp.hzxzb_zf, name: 'Tự chi trả' }
                             ],
-                            emphasis: {// 高亮样式
+                            emphasis: {// caosángmẫukiểu
                                 itemStyle: {
                                     shadowBlur: 10,
                                     shadowOffsetX: 0,
@@ -276,10 +276,10 @@
                         subtext: '',
                         left: 'center'
                     },
-                    tooltip: {//tooltip 鼠标移动到图上显示的标签
+                    tooltip: {//tooltip Nhãn hiển thị khi di chuột lên biểu đồ
                         trigger: 'item'
                     },
-                    legend: {//左边数据（图例）
+                    legend: {//Dữ liệu bên trái（Chú giải）
                         orient: 'vertical',
                         bottom: 'bottom'
                     },

@@ -15,7 +15,7 @@
 
     .container {
         background-color: #ffffff !important;
-        height: 100vh; /*元素的高度与 window 的高度相同*/
+        height: 100vh; /*Chiều cao của phần tử bằng window chiều cao*/
     }
 
     .form-control {
@@ -34,7 +34,7 @@
         border: 1px solid #ddd;
         background-color: #fff;
         padding: 10px;
-        box-shadow: 10px 10px 0px #ddd; /*水平和垂直阴影*/
+        box-shadow: 10px 10px 0px #ddd; /*Bóng ngang và dọc*/
     }
 
     .patcard {
@@ -195,12 +195,12 @@
     function patOpTableRefresh() {
         $('#tabel_patop').bootstrapTable('refresh', { queryParams: queryParams });
     }
-    //请求的参数
+    //Tham số yêu cầu
     function queryParams(params) {
         var data = {
-            //每页多少条数据
+            //Mỗi trang bao nhiêubản ghi
             limit: params.limit,
-            //请求第几页
+            //Yêu cầu trang thứ mấy
             offset: params.offset,
             order: params.order,
             sort: params.sort,
@@ -222,7 +222,7 @@
         var height = $(window).height() - $('.card').height()-20;
         return height;
     }
-    //患者列表 col定义
+    //Danh sách bệnh nhân colđịnh nghĩa
     var patListColumns = [{
         field: 'Id',
         title: 'Id',
@@ -284,31 +284,31 @@
     function PatListTableLoad() {
         $('#table').bootstrapTable('destroy').bootstrapTable({
             url: '/Operation/OpApply/GetPatGridList',
-            method: 'POST',                      //数据请求方式
+            method: 'POST',                      //Phương thức yêu cầu dữ liệu
             contentType: "application/x-www-form-urlencoded",
            // classes: "table table-bordered table-striped table-hover",
             search: false,
-            striped: true, //是否显示行间隔色
-            toolbar: '#toolbar',            //工具按钮用哪个容器 #toolbar
+            striped: true, //Có hiển thị màu xen kẽ hàng không
+            toolbar: '#toolbar',            //Nút công cụ dùng container nào #toolbar
             //toolbarAlign: 'left',
-            //******分页设置****
+            //******Cài đặt phân trang****
             queryParams: queryParams,
-            pagination: true,                   //是否显示分页（*）
-            pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录
-            pageSize: 20,                       //每页的记录行数（*）
-            pageList: [20, 50, 100],            //可供选择的每页的行数（*）
+            pagination: true,                   //Có hiển thị phân trang không（*）
+            pageNumber: 1,                      //Tải trang đầu tiên khi khởi tạo，Mặc định trang đầu tiên,và ghi lại
+            pageSize: 20,                       //Số dòng bản ghi mỗi trang（*）
+            pageList: [20, 50, 100],            //Số dòng mỗi trang có thể chọn（*）
             paginationHAlign: "left",
             paginationDetailHAlign: "right",
-            //sortable: true,                     //是否启用排序
-            //sortOrder: "asc",                   //排序方式
-            sidePagination: 'client',           //分页方式：client客户端分页，server服务端分页（*）
+            //sortable: true,                     //Có bật sắp xếp không
+            //sortOrder: "asc",                   //Cách sắp xếp
+            sidePagination: 'client',           //Cách phân trang：clientPhân trang phía client，serverPhân trang phía server（*）
             showPaginationSwitch: false,
-            //******分页设置****
-            //******表格头部设置****
-            showHeader: true,                   //显示表格头部
-            theadClasses: "tableth",        //这里设置表头样式
-            //******表格头部设置****
-            showRefresh: false,//刷新按钮
+            //******Cài đặt phân trang****
+            //******Cài đặt tiêu đề bảng****
+            showHeader: true,                   //Hiển thị tiêu đề bảng
+            theadClasses: "tableth",        //Đặt kiểu tiêu đề bảng tại đây
+            //******Cài đặt tiêu đề bảng****
+            showRefresh: false,//Nút làm mới
             height: getPatListTableHeight(),
             columns: patListColumns,
             onDblClickRow: function (row, $element, field) {
@@ -321,7 +321,7 @@
 
 
 
-    /***************患者手术列表*************** */
+    /***************Danh sách phẫu thuật của bệnh nhân*************** */
     var patOpColumns = [{
         field: 'Id',
         title: 'Id',
@@ -407,21 +407,21 @@
     function PatOpTableLoad() {
         $('#tabel_patop').bootstrapTable('destroy').bootstrapTable({
             url: '/Operation/OpApply/GetGridListOP',
-            method: 'POST',                      //数据请求方式
+            method: 'POST',                      //Phương thức yêu cầu dữ liệu
             contentType: "application/x-www-form-urlencoded",
             //classes: "table table-bordered table-striped table-hover",
             search: false,
-            striped: true, //是否显示行间隔色
+            striped: true, //Có hiển thị màu xen kẽ hàng không
             queryParams: queryParams,
-            pagination: false,                   //是否显示分页（*）
+            pagination: false,                   //Có hiển thị phân trang không（*）
             uniqueId:"Id",
-            //sortable: true,                     //是否启用排序
-            //sortOrder: "asc",                   //排序方式
-            //******表格头部设置****
-            showHeader: true,                   //显示表格头部
-            theadClasses: "tableth",        //这里设置表头样式
-            //******表格头部设置****
-            showRefresh: false,//刷新按钮
+            //sortable: true,                     //Có bật sắp xếp không
+            //sortOrder: "asc",                   //Cách sắp xếp
+            //******Cài đặt tiêu đề bảng****
+            showHeader: true,                   //Hiển thị tiêu đề bảng
+            theadClasses: "tableth",        //Đặt kiểu tiêu đề bảng tại đây
+            //******Cài đặt tiêu đề bảng****
+            showRefresh: false,//Nút làm mới
             /* height: getTableHeight(),*/
             columns: patOpColumns,
         }).bootstrapTable("hideLoading");
@@ -449,7 +449,7 @@
     });
 
     function processResultsData(resultData) {
-        //返回最终数据data 给dataArray
+        //Trả về dữ liệu cuối cùngdata chodataArray
         var jsonObj = JSON.parse(resultData);
         var dataArray = [];
         for (var i = 0; i < resultData.length; i++) {
@@ -490,7 +490,7 @@
         });
     }
 
-    //申请手术按钮
+    //Nút đăng ký phẫu thuật
     function showOpApply() {
         var zyh = $("#zyh").val();
         if (!zyh) {
@@ -512,7 +512,7 @@
         });
 
     }
-    //查看手术申请详情
+    //Xem chi tiết đơn đăng ký phẫu thuật
     function showDetail(rowid) {
         var rowData=$('#tabel_patop').bootstrapTable("getRowByUniqueId", rowid);
         /*var rowData = $('#table').bootstrapTable('getSelections');*/
@@ -538,7 +538,7 @@
             dataType: "json",
             success: function (data) {
                 $("#formapply").formSerialize(data);
-                //$("#Applyno").html("手术申请编号：" + data.Applyno);
+                //$("#Applyno").html("Số đơn đăng ký phẫu thuật：" + data.Applyno);
                 if (data.sssj != null) {
                     $("#sssj").val(data.sssj.replace("T", " "));
                 }
@@ -552,7 +552,7 @@
         });
     }
 
-    //撤销手术申请详情
+    //Hủy chi tiết đơn đăng ký phẫu thuật
     function applyCancel(rowid) {
         var rowData = $('#tabel_patop').bootstrapTable("getRowByUniqueId", rowid);
         $.deleteForm({
@@ -565,7 +565,7 @@
         });
     }
 
-    //多选取值
+    //Lấy giá trị chọn nhiều
     function getMultiSelectText(id) {
         return $.map($("#" + id).select2('data'), function (value) {
             return value.text

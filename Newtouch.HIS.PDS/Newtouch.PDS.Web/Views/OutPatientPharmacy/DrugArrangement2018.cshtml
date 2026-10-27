@@ -114,13 +114,13 @@
         WaitingDispenseMedicineQuery();
     });
 
-    //自适应
+    //Tự thích ứng
     function initLayout() {
         $("#dv_cfmx").height($(window).height() - $("#dv_cfInfo").height() - 90);
         $("#gridCfmx").setGridHeight($(window).height() - $("#dv_cfInfo").height() - 160);
     }
 
-    //处方信息展开合并
+    //Mở rộng và hợp nhất thông tin đơn thuốc
     function ShowOrClose() {
         $(".glyphicon").click(function () {
             if ($(this).hasClass("glyphicon-menu-up")) {
@@ -136,7 +136,7 @@
         });
     }
 
-    //获取处方信息
+    //Lấy thông tin đơn thuốc
     function gridPatients() {
         $gridPatients.jqGrid("clearGridData");
         $gridPatients.dataGrid({
@@ -166,7 +166,7 @@
         });
     }
 
-    //获取处方明细
+    //Lấy chi tiết đơn thuốc
     function gridCfmx() {
         $gridCfmx.jqGrid("clearGridData");
         $gridCfmx.dataGrid({
@@ -229,7 +229,7 @@
     //Xếp tất cả thuốc
     function newtouch_globalevent_f8() {
         var pats = new Array();
-        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true); //param2:默认所有行；param3：trueQuay lạiobject
+        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true); //param2:Mặc định tất cả các dòng；param3：trueQuay lạiobject
         $(gridPatients).each(function () {
             pats.push({
                 "CardNo": this.CardNo,
@@ -265,7 +265,7 @@
         }
     }
 
-    //单个处方号排药
+    //Xếp thuốc một số đơn thuốc
     function newtouch_globalevent_f7() {
         var id = $("#gridPatients").jqGrid("getGridParam", "selrow");
         if (id) {
@@ -302,7 +302,7 @@
         }
     }
 
-    //异步拉取新结算处方
+    //Kéo không đồng bộ đơn thanh toán mới
     function WaitingDispenseMedicineQuery() {
         $('#btn_RpSync').attr("disabled", true);
         $.najax({
@@ -319,7 +319,7 @@
         });
     }
 
-    //清理处方信息
+    //Dọn thông tin đơn thuốc
     function cleanCfInfo() {
         $("#lab_name").html("");
         $("#lab_cfh").html("");

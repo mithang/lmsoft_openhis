@@ -79,7 +79,7 @@
         </div>
         <div class="panel-body" style="padding: 5px 15px;">
             <div>
-                @*款项Thao tác*@
+                @*Khoản tiềnThao tác*@
                 <table class="form">
                     <tr>
                         <td class="formValue">
@@ -283,7 +283,7 @@
         }
         //Số tiềnquyết toán kỳ vọng Ngăn thay đổi trong quá trình
         postData['shishoukuan'] = $('#tdSsk span').text();
-        //Phương thức thanh toán json串
+        //Phương thức thanh toán jsonchuỗi
         var xjzfArr = new Array();
         var rowIds = $("#tbZhszGridList").getDataIDs();
         $.each(rowIds, function (idx, val) {
@@ -297,7 +297,7 @@
             param: postData,
             successwithtipmsg: false,
             success: function (data) {
-                //Bật một lớp khác Kết quảquyết toán 方法定义tạiIndextrong
+                //Bật một lớp khác Kết quảquyết toán phươngphương phápđịnhnghĩatạiIndextrong
                 $.currentWindow().window.showSettSuccessDialog(data.data.yingshoukuan, data.data.ssk, data.data.srce, data.data.zhaoling);
                 $.currentWindow().window.newtouch_globalevent_f4();
             }

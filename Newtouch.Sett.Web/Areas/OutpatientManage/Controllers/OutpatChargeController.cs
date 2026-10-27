@@ -873,11 +873,11 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                                 "api/Prescription/UpdateChargeStatus", reqObj);
                             if (apiResp != null)
                             {
-                                AppLogger.Info(string.Format("đơn thuốcThu phíTrạng tháiCập nhậtAPI同步đếnCIS，Số đơn thuốc：{0}，结果：{1}、{2}", string.Join(",", cfnmList), apiResp.code, apiResp.sub_code));
+                                AppLogger.Info(string.Format("đơn thuốcThu phíTrạng tháiCập nhậtAPIđồng bộđếnCIS，Số đơn thuốc：{0}，kết quả：{1}、{2}", string.Join(",", cfnmList), apiResp.code, apiResp.sub_code));
                             }
                             else
                             {
-                                AppLogger.Info(string.Format("đơn thuốcThu phíTrạng tháiCập nhậtAPI同步đếnCIS，Số đơn thuốc：{0}，结果：ChưaLấy到响应，同步Thất bại", string.Join(",", cfnmList)));
+                                AppLogger.Info(string.Format("đơn thuốcThu phíTrạng tháiCập nhậtAPIđồng bộđếnCIS，Số đơn thuốc：{0}，kết quả：ChưaLấyđến phản hồi，đồng bộThất bại", string.Join(",", cfnmList)));
                             }
                         }
                     }
@@ -1071,9 +1071,9 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
                             LogCore.Info("OutpatientCommit response", apiResp.ToJson());
                             AppLogger.Info(apiResp != null
-                                ? string.Format("HISThu phí后Thuốc推送đến药房，Số đơn thuốc：{0}，结果：{1}、{2}", reqObj.Cfh, apiResp.code,
+                                ? string.Format("HISThu phísauThuốcđẩyđếnnhà thuốc，Số đơn thuốc：{0}，kết quả：{1}、{2}", reqObj.Cfh, apiResp.code,
                                     apiResp.sub_code)
-                                : string.Format("HISThu phí后Thuốc推送đến药房，Số đơn thuốc：{0}，结果：ChưaLấy到响应，同步Thất bại", reqObj.Cfh));
+                                : string.Format("HISThu phísauThuốcđẩyđếnnhà thuốc，Số đơn thuốc：{0}，kết quả：ChưaLấyđến phản hồi，đồng bộThất bại", reqObj.Cfh));
                         });
                     }
                 }

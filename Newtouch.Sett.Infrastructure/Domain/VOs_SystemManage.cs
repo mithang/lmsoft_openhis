@@ -197,12 +197,12 @@ namespace Newtouch.Sett.Domain
             public int? ParentId { get; set; }
     
             /// <summary>
-            /// 报表 统计 收费大类
+            /// báo cáo Thống kê Nhóm thu phí lớn
             /// </summary>
             public string reportdlcode { get; set; }
     
             /// <summary>
-            /// 大类类别，对应枚举 EnumSfdlDllb 1药品 2治疗项目 3非治疗项目
+            /// lớnloạiloạikhác，đốiphảicáinêu EnumSfdlDllb 1Thuốc 2Khoản mục trị liệu 3Khoản mục không điều trị
             /// </summary>
             public int? dllb { get; set; }
     
@@ -215,62 +215,62 @@ namespace Newtouch.Sett.Domain
     public class FinanceReceiptEntity
         {
             /// <summary>
-            /// 财务收据ID
+            /// tài chínhvụthudữ liệuID
             /// </summary>
             public string cwsjId { get; set; }
     
             /// <summary>
-            /// 人员
+            /// Nhân viên
             /// </summary>
             public string ry { get; set; }
     
             /// <summary>
-            /// 组织机构Id（有具体业务的医院）
+            /// Tổ chứcId（cócụthểnghiệpvụcủay tếviện）
             /// </summary>
             public string OrganizeId { get; set; }
     
             /// <summary>
-            /// 首字母
+            /// đầuchữmẹ
             /// </summary>
             public string szm { get; set; }
     
             /// <summary>
-            /// 起始收据号
+            /// Số biên lai bắt đầu
             /// </summary>
             public long qssjh { get; set; }
     
             /// <summary>
-            /// 当前收据号
+            /// khitrướcthudữ liệusố
             /// </summary>
             public long dqsjh { get; set; }
     
             /// <summary>
-            /// 结束收据号
+            /// kếtbóthudữ liệusố
             /// </summary>
             public long? jssjh { get; set; }
     
             /// <summary>
-            /// 创建用户ID
+            /// tạolậpdùnghộID
             /// </summary>
             public string CreatorCode { get; set; }
     
             /// <summary>
-            /// 创建时间
+            /// Thời gian tạo mới
             /// </summary>
             public DateTime CreateTime { get; set; }
     
             /// <summary>
-            /// 最后修改时间
+            /// nhấtsausửasửathời giangiữa
             /// </summary>
             public DateTime? LastModifyTime { get; set; }
     
             /// <summary>
-            /// 最后修改用户ID
+            /// nhấtsausửasửadùnghộID
             /// </summary>
             public string LastModifierCode { get; set; }
     
             /// <summary>
-            /// 排序
+            /// Sắp xếp
             /// </summary>
             public int? px { get; set; }
     
@@ -292,144 +292,144 @@ namespace Newtouch.Sett.Domain
         {
     
             /// <summary>
-            /// 病人收费附加编号（xt_brsffj）
+            /// bệnhngườithuphíkèmthêmmãsố（xt_brsffj）
             /// </summary>
             public int brsffjbh { get; set; }
     
             /// <summary>
-            /// 病人性质（xt_brxz）
+            /// Tính chất bệnh nhân（xt_brxz）
             /// </summary>
             public string brxzmc { get; set; }
     
             public string brxz { get; set; }
     
             /// <summary>
-            /// 大类（xt_sfdl）
+            /// nhóm lớn（xt_sfdl）
             /// </summary>
             public string dlmc { get; set; }
     
             public string dl { get; set; }
     
             /// <summary>
-            /// 附加显示大类名称（xt_fjsfdl）
+            /// kèmthêmhiển thịhiển thịlớnloạitêngọi（xt_fjsfdl）
             /// </summary>
             public string fjxsdlmc { get; set; }
     
             public string fjxsdl { get; set; }
     
             /// <summary>
-            /// 收费项目（xt_fjsfdl）
+            /// Khoản thu phí（xt_fjsfdl）
             /// </summary>
             public string sfxmmc { get; set; }
     
             public string sfxm { get; set; }
     
             /// <summary>
-            /// 服务费比例（xt_brsffj）
+            /// phục vụvụphísoví dụ（xt_brsffj）
             /// </summary>
             public decimal fwfbl { get; set; }
     
             /// <summary>
-            /// 状态（xt_brsffj）
+            /// Trạng thái（xt_brsffj）
             /// </summary>
             public string zt { get; set; }
             /// <summary>
-            /// 建档人员（xt_brsffj）
+            /// Người lập hồ sơ（xt_brsffj）
             /// </summary>
             public string CreatorCode { get; set; }
             /// <summary>
-            /// 建档日期（xt_brsffj）
+            /// Ngày lập hồ sơ（xt_brsffj）
             /// </summary>
             public DateTime CreateTime { get; set; }
         }
     public class InpatientHosPatAccPayVO
         {
             /// <summary>
-            /// 收支金额 xt_brzhszjl
+            /// Số tiền thu chi xt_brzhszjl
             /// </summary>
             public decimal szje { get; set; }
             /// <summary>
-            /// 账户余额
+            /// Số dư tài khoản
             /// </summary>
             public decimal zhye { get; set; }
             /// <summary>
-            /// 凭证号
+            /// Số chứng từ
             /// </summary>
             public string pzh { get; set; }
             /// <summary>
-            /// 收支人员
+            /// Nhân viên thu chi
             /// </summary>
             public string CreatorUserName { get; set; }
     
             /// <summary>
-            /// 收支日期-即创建日期
+            /// Ngày thu chi-tức là ngày tạo
             /// </summary>
             public DateTime CreateTime { get; set; }
             /// <summary>
-            /// 收支性质
+            /// Tính chất thu chi
             /// </summary>
             public string szxz { get; set; }
     
             /// <summary>
-            /// 支付方式  xt_xjzffs
+            /// Phương thức thanh toán  xt_xjzffs
             /// </summary>
             public string xjzffsmc { get; set; }
     
             /// <summary>
-            /// 支付方式
+            /// Phương thức thanh toán
             /// </summary>
             public string xjzffs { get; set; }
         }
     
         /// <summary>
-        /// 账户收支记录
+        /// Bản ghi thu chi tài khoản
         /// </summary>
         public class InpatientPatAccPayVO
         {
             public string Id { get; set; }
             /// <summary>
-            /// 收支金额 xt_brzhszjl
+            /// Số tiền thu chi xt_brzhszjl
             /// </summary>
             public decimal szje { get; set; }
             /// <summary>
-            /// 账户余额
+            /// Số dư tài khoản
             /// </summary>
             public decimal zhye { get; set; }
             /// <summary>
-            /// 凭证号
+            /// Số chứng từ
             /// </summary>
             public string pzh { get; set; }
             /// <summary>
-            /// 收支人员
+            /// Nhân viên thu chi
             /// </summary>
             public string Creator { get; set; }
     
             /// <summary>
-            /// 收支日期-即创建日期
+            /// Ngày thu chi-tức là ngày tạo
             /// </summary>
             public DateTime CreateTime { get; set; }
             /// <summary>
-            /// 收支性质
+            /// Tính chất thu chi
             /// </summary>
             public int szxz { get; set; }
     
             public string szxzmc { get; set; }
     
             /// <summary>
-            /// 支付方式  xt_xjzffs
+            /// Phương thức thanh toán  xt_xjzffs
             /// </summary>
             public string xjzffsmc { get; set; }
     
             /// <summary>
-            /// 支付方式
+            /// Phương thức thanh toán
             /// </summary>
             public string xjzffs { get; set; }
             /// <summary>
-            /// 备注
+            /// Ghi chú
             /// </summary>
             public string memo { get; set; }
             /// <summary>
-            /// 订单号
+            /// Mã đơn hàng
             /// </summary>
             public string outTradeNo { get; set; }
         }

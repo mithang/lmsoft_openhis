@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 15:37
-    /// 描 述：住院床位使用记录库
+    /// Tác giả: 冬林
+    /// Ngày：2018-06-28 15:37
+    /// Mô tả：Nhập việngiường ký tựSử dụngghi chépkho
     /// </summary>
     [SugarTable("zy_cwsyjlk")]
     public class InpatientBedUseRecordEntity
@@ -105,7 +105,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string TransBedCode { get; set; }
         /// <summary>
-        /// (0当前1转床2转区3出区)
+        /// (0hiện tại1chuyểngiường2chuyển khu3ra khỏi khu)
         /// </summary>
         /// <returns></returns>
         public int? Status { get; set; }

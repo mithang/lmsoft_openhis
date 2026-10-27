@@ -67,7 +67,7 @@
 					<td colspan="3"></td>
 					<td class="formTitle" style="width: 140px;">
 						<input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
-						@*<input type="button" id="btn_print" class="btn btn-md btn-primary" value="打印" />*@
+						@*<input type="button" id="btn_print" class="btn btn-md btn-primary" value="In" />*@
 					</td>
 					<td>
 						<input type="button" id="btn_search" class="btn btn-md btn-primary" style="" onclick="newtouch_event_f3()" value="In" />
@@ -98,7 +98,7 @@
 	var $gridYpzlData = $("#gridYPZL");
 	var $gridkcmxData = $("#gridYPMXInfo");
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
             window.initLayout("MyTabGrid");
         });
         if ($.request("type")) {
@@ -110,7 +110,7 @@
         $("#sel_gqrq").change(function () { search(); });
 
 
-        @*//Phiếu in按钮事件
+        @*//Phiếu inSự kiện nút
         $("#btn_print").click(function () {
             var is0kc = $("#chk_NoShow0KC").is(":checked") ? "0" : "-1";
             var kczt = $("#ddlKCZT").val() === '' ? "-1" : $("#ddlKCZT").val();
@@ -122,14 +122,14 @@
     function search() {
         $("#yeCon").text("Tổng giá lẻ：__đ");
         $("#jjCon").text("Tổng giá nhập：__đ");
-        //每次查询先清空Grid
+        //Mỗi lần truy vấn xóa trướcGrid
         $('#gridYPZL').jqGrid("clearGridData");
 
         $gridYpzlData.jqGrid('setGridParam', {
             url: '/StorageManage/DrugStockSearch/ExpiredDrugsQuery?r=' + Math.random(),
             postData: getSearchPostData()
         }).trigger('reloadGrid');
-        ComputePjzeAndLjze();//计算标题栏中的批价总额和零价总额
+        ComputePjzeAndLjze();//Tính tổng giá bán buôn và tổng giá bán lẻ trong thanh tiêu đề
     }
 
     $(document).keyup(function (event) {
@@ -138,7 +138,7 @@
         }
     });
 
-    //查询条件
+    //Điều kiện truy vấn
     function getSearchPostData() {
         var keyword = $("#txtINPUTCODE").val();
         var gpyf = $("#sel_gqrq").val();
@@ -150,7 +150,7 @@
 		return { keyword: keyword, gpyf: gpyf, gqyjcode: gqyjcode };
     };
 
-    //单据主记录
+    //Bản ghi chính của chứng từ
 	function gridYPZLData() {
         $gridYpzlData.dataGrid({
             height: $(window).height() - document.getElementById('gridYPZL').offsetTop - 75,
@@ -188,12 +188,12 @@
             sortname: 'ypmc',
             viewrecords: true,
             loadComplete: function (data) {
-                ComputePjzeAndLjze();//计算标题栏中的批价总额和零价总额
+                ComputePjzeAndLjze();//Tính tổng giá bán buôn và tổng giá bán lẻ trong thanh tiêu đề
             }
         });
     }
 
-    //计算标题栏中的批价总额和零价总额
+    //Tính tổng giá bán buôn và tổng giá bán lẻ trong thanh tiêu đề
     function ComputePjzeAndLjze() {
         var titleJjze = 0;
         var titleLjze = 0;
@@ -211,40 +211,40 @@
         }
     }
 
-    //药品明细
+    //Chi tiết thuốc
     //$gridkcmxData.dataGrid({
     //    url: "",
     //    postData: "",
     //    height: $(window).height() - document.getElementById('gridYPZL').offsetTop - 90,
     //    colModel: [
-    //        { label: '库存数量', name: 'kcslStr', width: 80, align: 'right' },
-    //        { label: '冻结数量', name: 'djslStr', width: 80, align: 'right' },
+    //        { label: 'Số lượng tồn kho', name: 'kcslStr', width: 80, align: 'right' },
+    //        { label: 'Số lượng đóng băng', name: 'djslStr', width: 80, align: 'right' },
     //        { label: 'Đơn vị giá nhập', name: 'jjdjdw', width: 120, align: 'right' },
     //        {
-    //            label: '进价总额', name: 'jjze', width: 80, align: 'right',
+    //            label: 'Tổng giá nhập', name: 'jjze', width: 80, align: 'right',
     //            formatter: function (cellvalue) {
     //                return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
     //            }
     //        },
-    //        { label: '零售单价', name: 'lsjdjdw', width: 120, align: 'right' },
+    //        { label: 'Đơn giá bán lẻ', name: 'lsjdjdw', width: 120, align: 'right' },
     //        {
-    //            label: '零价总额', name: 'lsze', width: 80, align: 'right',
+    //            label: 'Tổng giá lẻ', name: 'lsze', width: 80, align: 'right',
     //            formatter: function (cellvalue) {
     //                return cellvalue ? parseFloat(cellvalue).toFixed(2) : "0.00";
     //            }
     //        },
-    //        { label: '批号', name: 'ph', width: 120, align: 'center' },
-    //        { label: '批次', name: 'pc', width: 120, align: 'center' },
-    //        { label: '有效期', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+    //        { label: 'Số lô', name: 'ph', width: 120, align: 'center' },
+    //        { label: 'Lô', name: 'pc', width: 120, align: 'center' },
+    //        { label: 'Hạn dùng', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
     //        {
-    //            label: '状态', name: 'kczt', width: 50, align: 'center', formatter: function (val, options) {
+    //            label: 'Trạng thái', name: 'kczt', width: 50, align: 'center', formatter: function (val, options) {
     //                return val === "1" ? "<i rowId=" + options.rowId + " onclick='operateZt(this)' class=\"fa fa-toggle-on\"></i>" : "<i rowId=" + options.rowId + " onclick='operateZt(this)' class=\"fa fa-toggle-off\"></i>";
     //            }
     //        },
-    //        { label: '冻结数量', name: 'djsl', hidden: true },
+    //        { label: 'Số lượng đóng băng', name: 'djsl', hidden: true },
     //        { label: 'ypdm', name: 'ypdm', hidden: true },
-    //        { label: '转化因子', name: 'zhyz', hidden: true},
-    //        { label: '库位', name: 'ypkw', hidden: true }
+    //        { label: 'Hệ số quy đổi', name: 'zhyz', hidden: true},
+    //        { label: 'Vị trí kho', name: 'ypkw', hidden: true }
     //    ],
     //    multiselect: false,
     //    pager: "#gridMxPager",

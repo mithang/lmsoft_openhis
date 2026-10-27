@@ -37,7 +37,7 @@
         }
         return 0;
     }
-    //病案首页
+    //Trang đầu bệnh án
     function GetbasyData(zyh,jydm) {
         var ret = 0;
         if (!!jydm) {
@@ -62,7 +62,7 @@
 
     function Upload(jsondata) {
         $.najax({
-            url: "http://127.0.0.1:33333/api/QHDSmartCheck/MedicalRecordUpload",//智能审核
+            url: "http://127.0.0.1:33333/api/QHDSmartCheck/MedicalRecordUpload",//Kiểm tra thông minh
             dataType: "json",
             data: jsondata,      
             type: "POST",

@@ -29,7 +29,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
         // GET: AuxiliaryDictionary
 
-        //组织机构（医院） 词典 下拉 数据源
+        //Tổ chức（yviện） từ điển dướikéo Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetTreeSelectJson(string treeidFieldName = "Code")
@@ -60,7 +60,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 获取词典列表
+        /// Lấytừ điểndanh sách
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -89,7 +89,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// Khi sửa thông tin，thông tinmangđếnmớitrangmặt
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -102,7 +102,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -119,7 +119,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

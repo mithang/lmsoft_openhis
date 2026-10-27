@@ -107,14 +107,14 @@
 <script>
     $(function () {
         initControl();
-        //查询列表
+        //Tra cứudanh sách
         gridList();
     });
 
 
     var ksCode = "";
     function initControl() {
-        //科室浮层
+        //Khoalớp nổi
         $('#ks').ksFloatingSelector({
             itemdbclickhandler: function ($this) {
                 $('#ks').attr('data-code', $this.attr('data-Code'))
@@ -125,13 +125,13 @@
             },
         });
 
-        //医生浮层
+        //Bác sĩlớp nổi
         $("#txt_doctor").dutyStaffFloatingSelector({
             dutyCode: 'Doctor'
         });
     }
 
-    //列表检索条件
+    //danh sáchTìm kiếmdòngmục
     function getPostData() {
         return postData = {
             xm: $("#xm").val(),
@@ -144,7 +144,7 @@
         }
     }
 
-    //申请列表查询
+    //Đăng kýdanh sáchTra cứu
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -180,12 +180,12 @@
                             return "<a class='btn btn-default' onclick='accept(\"" + row.Id + "\")'>Đồng ý</a>"
                                 + "<a class='btn btn-default' onclick='back(\"" + row.Id + "\")'>Trả lại</a>"
                         }
-                        else if (row.sqzt == 2 ) {//就诊中 
+                        else if (row.sqzt == 2 ) {//Đang khám bệnh 
                             return "<a class='btn btn-default' onclick='detail(\"" + row.Id + "\")'>XemChi tiết</a>"
                                 + "<a class='btn btn-default' onclick='enterMeeting(\"" + row.Id + "\")'>Bắt đầuKhám chữa bệnh</a>"
                                 + "<a class='btn btn-default' onclick='closeMeeting(\"" + row.Id + "\")'>Đóng cuộc họp</a>"
                         }   
-                        else if (row.sqzt == 3) {//已结束
+                        else if (row.sqzt == 3) {//Đã kết thúc
                             return "<a class='btn btn-default' onclick='detail(\"" + row.Id + "\")'>XemChi tiết</a>"
                                 + "<a class='btn btn-default' onclick='closeMeeting(\"" + row.Id + "\")'>Đóng cuộc họp</a>";
                         }
@@ -195,17 +195,17 @@
                     },
                 },
                 { label: 'Số thẻ', name: 'kh', width: 120, align: 'center', hidden: true },
-                { label: '会议号', name: 'mettingId', width: 120, align: 'center', hidden: true },
+                { label: 'Số cuộc họp', name: 'mettingId', width: 120, align: 'center', hidden: true },
                 { label: 'Đề nghịSố thứ tự', name: 'sqlsh', width: 120, align: 'center', hidden: true },
 
             ],
             pager: "#gridPager",
             sortname: " CreateTime asc",
-            rownumbers: true,  //是否显示Số thứ tự
+            rownumbers: true,  //CóKhôngHiển thịSố thứ tự
             viewrecords: true
         });
         $("#btn_search").click(function () {
-            $('#gridList').jqGrid("clearGridData");//先清空明细
+            $('#gridList').jqGrid("clearGridData");//Xóa trắng chi tiết trước
             $gridList.jqGrid('setGridParam', {
                 postData:  getPostData(),
                 url: "/ClinicManage/ClinicApply/GetClinicApplyGridJson",
@@ -213,7 +213,7 @@
         });
     }
 
-    //同意
+    //đồng ý
     function accept(id) {
 
         var rowData = $("#gridList").jqGrid('getRowData', id);
@@ -226,7 +226,7 @@
             success: function (ajaxresp) {
                 $.modalMsg("Thao tác thành công", 'success');
 
-                $('#gridList').jqGrid("clearGridData");//先清空明细
+                $('#gridList').jqGrid("clearGridData");//Xóa trắng chi tiết trước
                 $("#gridList").jqGrid('setGridParam', {
                     postData: getPostData(),
                     url: "/ClinicManage/ClinicApply/GetClinicApplyGridJson",
@@ -241,7 +241,7 @@
                     "device": ajaxresp.data.device,
                 };
 
-                //跳转到视频会议页面
+                //chuyển đếnđếnxemtần suấtsẽnghịtrangmặt
                 var mettingUrl = ajaxresp.mettingUrl;
 
                 window.newWin=window.open(mettingUrl, "_blank", "height = 500, width = 950, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");
@@ -255,7 +255,7 @@
     }
 
 
-    ////退回
+    ////Trả lại
     //function back(id) {
     //    $.najax({
     //        type: "POST",
@@ -264,9 +264,9 @@
     //        dataType: "json",
     //        async: false,
     //        success: function (ajaxresp) {
-    //            $.modalMsg("操作成功", 'success');
+    //            $.modalMsg("Thao tác thành công", 'success');
 
-    //            $('#gridList').jqGrid("clearGridData");//先清空明细
+    //            $('#gridList').jqGrid("clearGridData");//Xóa trắng chi tiết trước
     //            $("#gridList").jqGrid('setGridParam', {
     //                postData: getPostData(),
     //                url: "/ClinicManage/ClinicApply/GetClinicApplyGridJson",
@@ -275,7 +275,7 @@
     //    });
     //}
 
-    //退回
+    //Trả lại
     function back(id) {
         var rowData = $("#gridList").jqGrid('getRowData', id);
         $.najax({
@@ -287,7 +287,7 @@
             success: function (ajaxresp) {
                 $.modalMsg("Thao tác thành công", 'success');
 
-                $('#gridList').jqGrid("clearGridData");//先清空明细
+                $('#gridList').jqGrid("clearGridData");//Xóa trắng chi tiết trước
                 $("#gridList").jqGrid('setGridParam', {
                     postData: getPostData(),
                     url: "/ClinicManage/ClinicApply/GetClinicApplyGridJson",
@@ -297,20 +297,20 @@
     }
 
 
-    //查看详情
+    //XemChi tiết
     function detail(id) {
         
         window.location.href = "/MainBusiness/Index?pageType=yczl&Id="+id;
-        $('#myTab [href="#linkbl"').trigger('click'); //初始化显示哪个tab
+        $('#myTab [href="#linkbl"').trigger('click'); //Khởi tạoHiển thịnàotab
 
-        //跳转到病历页
-        //$('#myTab [href="#linkbl"').trigger('click'); //初始化显示哪个tab
+        //chuyển đếnđếnHồ sơtrang
+        //$('#myTab [href="#linkbl"').trigger('click'); //Khởi tạoHiển thịnàotab
 
-        //跳转到病历页
+        //chuyển đếnđếnHồ sơtrang
         //window.init_MedicalRecord();
     }
 
-    //进入会议
+    //vàovàosẽnghị
     function enterMeeting(id) {
 
         var rowData = $("#gridList").jqGrid('getRowData', id);
@@ -323,7 +323,7 @@
             success: function (ajaxresp) {
                 $.modalMsg("Thao tác thành công", 'success');
 
-                $('#gridList').jqGrid("clearGridData");//先清空明细
+                $('#gridList').jqGrid("clearGridData");//Xóa trắng chi tiết trước
                 $("#gridList").jqGrid('setGridParam', {
                     postData: getPostData(),
                     url: "/ClinicManage/ClinicApply/GetClinicApplyGridJson",
@@ -338,7 +338,7 @@
                     "device": ajaxresp.data.device,
                 };
                 
-                //跳转到视频会议页面
+                //chuyển đếnđếnxemtần suấtsẽnghịtrangmặt
                 var mettingUrl = ajaxresp.mettingUrl;
 
                 window.newWin=window.open(mettingUrl, "_blank", "height = 500, width = 950, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");
@@ -369,7 +369,7 @@
                     "device": ajaxresp.data.device,
                 };
 
-                //关闭会议室
+                //Đóngsẽnghịphòng
                 var mettingUrl = ajaxresp.mettingUrl;
 
                 //window.newWin = window.open(mettingUrl, "_blank", "height = 500, width = 950, top = 100, left = 50, toolbar = no, menubar = no, scrollbars = yes, resizable = yes, location = no, status = no");
@@ -391,14 +391,14 @@
         $("#zcfsj").attr("title", "");
         var jzObject = window.currPatientInfo;
         //if (!!!jzObject || JSON.stringify(jzObject) == '{}') {
-        //    $.modalAlert("患者信息异常，当前病人已结束就诊。", 'warning');
+        //    $.modalAlert("Thông tin bệnh nhânNgoại lệ，hiện tạibệnh ngườiĐã kết thúcKhám bệnh。", 'warning');
         //    return;
         //}
         if (mrflag == 0) {
             clickjzid = jzObject.jzId;
-            reloadTreeView();   //加载树
+            reloadTreeView();   //tảicây
             if (jzObject.jzId) {
-                //默认加载双击进来的就诊内容
+                //Mặc địnhtảinhấp đúpvàođếncủaKhám bệnhnội dung
                 if ($('span[data-id="' + jzObject.jzId + '"]').length == 1) {
                     setTimeout("$('span[data-id=\"" + jzObject.jzId + "\"]').trigger('click');", 10);
                 }
@@ -407,7 +407,7 @@
                 }
             }
             mrflag = 1;
-            //获取最后收取诊查费时间
+            //Lấycuối cùngthulấykhámtraphíThời gian
             $.ajax({
                 type: "POST",
                 url: "/MedicalRecord/GetLastzcf",
@@ -460,15 +460,15 @@
         //    width: 300,
         //    height: 200,
         //    clickautotrigger: true,
-        //    caption: "选择诊断",
+        //    caption: "Chọn chẩn đoán",
         //    ajaxparameters: null,
         //    itemdbclickhandler: function ($thistr) {
         //        $($('#tablezyzd .zdText')[0]).val($thistr.attr('data-zdmc'));
         //        $($('#tablezyzd .zdText')[0]).attr("data-zdCode",$thistr.attr('data-zdCode'));
         //        $($('#tablezyzd .zdText')[0]).attr("data-icd10",$thistr.attr('data-icd10'));
         //    },
-        //    colModel: [{ label: '编码', name: 'zdCode', widthratio: 25 },
-        //    { label: '诊断名称', name: 'zdmc', widthratio: 50 },
+        //    colModel: [{ label: 'Mã', name: 'zdCode', widthratio: 25 },
+        //    { label: 'Tên chẩn đoán', name: 'zdmc', widthratio: 50 },
         //    { label: 'icd10', name: 'icd10', widthratio: 25}]
         //};
         //var options = $.extend(defaults, options);
@@ -480,15 +480,15 @@
         //    width: 300,
         //    height: 200,
         //    clickautotrigger: true,
-        //    caption: "选择诊断",
+        //    caption: "Chọn chẩn đoán",
         //    ajaxparameters: null,
         //    itemdbclickhandler: function ($thistr) {
         //        $($('#tablexyzd .zdText')[0]).val($thistr.attr('data-zdmc'));
         //        $($('#tablexyzd .zdText')[0]).attr("data-zdCode",$thistr.attr('data-zdCode'));
         //        $($('#tablexyzd .zdText')[0]).attr("data-icd10",$thistr.attr('data-icd10'));
         //    },
-        //    colModel: [{ label: '编码', name: 'zdCode', widthratio: 25 },
-        //    { label: '诊断名称', name: 'zdmc', widthratio: 50 },
+        //    colModel: [{ label: 'Mã', name: 'zdCode', widthratio: 25 },
+        //    { label: 'Tên chẩn đoán', name: 'zdmc', widthratio: 50 },
         //    { label: 'icd10', name: 'icd10', widthratio: 25 }]
         //};
         //var options2 = $.extend(defaults2, options2);

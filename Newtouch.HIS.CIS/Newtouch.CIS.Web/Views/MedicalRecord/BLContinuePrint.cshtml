@@ -50,9 +50,9 @@
             $.modalAlert('NhậpSố dòngKhông được nhỏ hơn1', 'warning');
             return;
         }
-        var tempCode = "1255";//医保本
+        var tempCode = "1255";//Sổ bảo hiểm y tế
         if (dyfs == "1") {
-            tempCode = "1253";//自费本
+            tempCode = "1253";//Sổ tự chi trả
         }
         window.open('@Html.Raw(reportUrl)' + "?tempCode=" + tempCode + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&mzh=" + mzh + "&orgId=" + orgId + "&row=" + row, "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
     }

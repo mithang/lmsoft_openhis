@@ -36,7 +36,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 门诊效益明细
+        /// Chi tiết hiệu quả ngoại trú
         /// </summary>
         public IActionResult GetMzxymx(string orgId, string ksrq, string jsrq)
         {
@@ -45,7 +45,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 医生效益
+        /// Hiệu quả bác sĩ
         /// </summary>
         public IActionResult GetYsxy(string orgId, string ksrq, string jsrq, string rtype, string type)
         {
@@ -53,7 +53,7 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// 历史趋势
+        /// Xu hướng lịch sử
         /// </summary>
         public IActionResult GetLsqs(string ksrq, string jsrq, string rtype, string type)
         {
@@ -62,16 +62,16 @@ namespace Newtouch.Sett.Web.Areas.DeanInquiryManage.Controllers
         }
 
         /// <summary>
-        /// 科室效益排名
+        /// Xếp hạng hiệu quả khoa
         /// </summary>
         public IActionResult GetKSXYPM(string ksrq, string jsrq, string rtype, string type)
         {
-            if (type == "1")//诊疗人次
+            if (type == "1")//lượt người chẩn trị
             {
                 var list = _deanInquiryDmnService.GetKSXYPM(this.OrganizeId, ksrq, jsrq);
                 return Content(list.ToJson());
             }
-            else//实际诊疗收入
+            else//Thu nhập chẩn trị thực tế
             {
                 var list = _deanInquiryDmnService.GetKSXYPMBySJSY(this.OrganizeId, ksrq, jsrq);
                 return Content(list.ToJson());

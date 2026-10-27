@@ -130,18 +130,18 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
-        //组织对应的科室下拉框加载
+        //Tải hộp thả xuống khoa tương ứng với tổ chức
         $("#OrganizeId").bind("change", function () {
             var organizeId = $(this).val();
             $("#ParentId").bindSelect({
                 url: "/Department/GetTreeSelectJson?treeidFieldName=Id&organizeId=" + organizeId,
             });
         });
-        //首拼
+        //Mã đầu chữ
         $('#Name').keyup(function () {
             $('#py').val($(this).toShouPin());
         })
@@ -198,7 +198,7 @@
             url: "/Department/SubmitForm?keyValue=" + keyValue,
             param: $("#form1").formSerialize(),
             success: function () {
-                top.top.$.clientsRefresh(); //刷新缓存
+                top.top.$.clientsRefresh(); //Làm mới bộ nhớ đệm
                 $.currentWindow().$("#gridList").resetSelection();
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
             }

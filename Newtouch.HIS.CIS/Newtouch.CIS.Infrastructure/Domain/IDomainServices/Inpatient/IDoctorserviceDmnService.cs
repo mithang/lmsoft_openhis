@@ -16,14 +16,14 @@ namespace Newtouch.Domain.IDomainServices
     public interface IDoctorserviceDmnService
     {
         /// <summary>
-        /// 医嘱转换成数据表的状态
+        /// Y lệnhchuyểnđổithànhDữ liệubảngcủaTrạng thái
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="reqdoctorservices"></param>
         void SubmitdoctorService(string orgId, List<DoctorServiceRequestDto> reqdoctorservices, List<string> deldata);
 
         /// <summary>
-        /// 医嘱转换成数据表的状态 长期、临时不走配置，有医生主观控制
+        /// Y lệnhchuyểnđổithànhDữ liệubảngcủaTrạng thái Dài hạn、Tạm thờikhôngđicấu hình，cóBác sĩchínhxemđiều khiển
         /// </summary>
         /// <param name="orgId"></param>3
         /// <param name="reqdoctorservices"></param>
@@ -32,7 +32,7 @@ namespace Newtouch.Domain.IDomainServices
         void SubmitdoctorServiceV2(string orgId, List<DoctorServiceRequestDto> reqdoctorservices, List<string> deldata, out string yzh);
 
         /// <summary>
-        /// 获取当天有效医嘱
+        /// LấykhingàyHiệu lựcY lệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -41,7 +41,7 @@ namespace Newtouch.Domain.IDomainServices
 
         IList<DSrepeatResponseDto> DoctorserviceValidate(IList<DSrepeatRequestDto> req, string zyh, string orgId);
         /// <summary>
-        /// 频次编码转换成长临标志
+        /// Tần suấtMãchuyểnđổithànhdài hạn/tạm thờiCờ
         /// </summary>
         /// <param name="req"></param>
         /// <param name="orgId"></param>
@@ -51,14 +51,14 @@ namespace Newtouch.Domain.IDomainServices
         void GetypPredata(string pcdm, string yfdm, string ypdm, string dwlb, string orgId, ref string pcmc, ref string yfmc, ref string redundant_jldw, ref string jx, ref decimal? jlzhxs, ref decimal? zyzhxs, ref string qzfs);
 
         /// <summary>
-        /// 获取单位计量数
+        /// LấySố lượng đơn vị tính
         /// </summary>
         /// <param name="sfxmCode"></param>
         /// <param name="orgId"></param>
         /// <param name="dwjls"></param>
          void GetdwjlsBysfxmCode(string sfxmCode, string orgId, ref int? dwjls,ref decimal? dj);
         /// <summary>
-        /// 获取执行科室名称
+        /// LấyKhoa thực hiệnTên
         /// </summary>
         /// <param name="zxksCode"></param>
         /// <param name="orgId"></param>
@@ -66,7 +66,7 @@ namespace Newtouch.Domain.IDomainServices
         void Getzxksmc(string zxksCode, string orgId, ref string zxksmc);
 
         /// <summary>
-        /// 计算每天频次
+        /// Tính toánmỗingàyTần suất
         /// </summary>
         /// <param name="zxdw"></param>
         /// <param name="zydw"></param>
@@ -77,7 +77,7 @@ namespace Newtouch.Domain.IDomainServices
         float Getpcsl(int zxcs, int zxzq, EnumZxzqdw zxzqdw);
 
         /// <summary>
-        /// 计算药品数量
+        /// Tính toánThuốcSố lượng
         /// </summary>
         /// <param name="jlzhxs"></param>
         /// <param name="zyzhxs"></param>
@@ -91,11 +91,11 @@ namespace Newtouch.Domain.IDomainServices
         /// <returns></returns>
         int Getypsl(decimal? jlzhxs, decimal? zyzhxs, float ypjl, EnumYPdwlb dwlb, string orgId, int zxcs, int zxzq, EnumZxzqdw zxzqdw, string qzfs, int ts = 1);
 
-        #region 医嘱查询
+        #region Y lệnhTra cứu
         List<AdviceListGridVO> AdviceGridView(Pagination pagination, AdviceListRequestVO req);
 
         /// <summary>
-        /// 停止长期医嘱或者作废临时医嘱
+        /// DừngY lệnh dài hạnhoặcHủy bỏY lệnh tạm thời
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="yzlb"></param>
@@ -104,20 +104,20 @@ namespace Newtouch.Domain.IDomainServices
         void AdviceStop(string yzId, DateTime? tzsj, string czr, string orgId,string yzlx,string zyh,string iszt);
 
         /// <summary>
-        /// 物理删除
+        /// vậtlýXóa
         /// </summary>
         /// <param name="yzId"></param>
         void AdviceDel(string yzId, string orgId,string yzlx,string zyh,string iszt, string conflinktoOR);
 
 
         /// <summary>
-        /// 撤DC 撤dc同组号的医嘱
+        /// rútDC rútdccùngSố nhómcủaY lệnh
         /// </summary>
         /// <param name="yzId"></param>
         void Advicedc(string yzId, string orgId,string yzlx,string zyh,string isFeeGroup);
 
         /// <summary>
-        /// 出院全停
+        /// Xuất việntoànDừng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="tzsj"></param>
@@ -126,7 +126,7 @@ namespace Newtouch.Domain.IDomainServices
         void AdviceLeaveHospitalStopSubmit(string zyh, DateTime tzsj, string orgId, string czr);
 
         /// <summary>
-        /// 转区全停
+        /// chuyển khutoànDừng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -137,7 +137,7 @@ namespace Newtouch.Domain.IDomainServices
 
         #endregion
         /// <summary>
-        /// 医嘱频次code获取频次entity
+        /// Tần suất y lệnhcodeLấyTần suấtentity
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -146,7 +146,7 @@ namespace Newtouch.Domain.IDomainServices
 
         string GetqhdyzSqtxData(string orgId, List<DoctorServiceRequestDto> reqdoctorservices, InpatientInfo brxx, string rygh,string username,string yzcfh,out string jlId);
         /// <summary>
-        /// 事前审核
+        /// việctrướcPhê duyệt
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="reqdoctorservices"></param>
@@ -160,7 +160,7 @@ namespace Newtouch.Domain.IDomainServices
         List<RehabVO> GetSfxmZxksSelectJson(string zyh);
         List<RehabVO> GetSfxmZxksSelectJson(string zyh,string kspy);
         /// <summary>
-        /// 病案审核
+        /// bệnhánPhê duyệt
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="reqdoctorservices"></param>
@@ -172,7 +172,7 @@ namespace Newtouch.Domain.IDomainServices
         /// <returns></returns>
         string GetBashData(string orgId, string zyh, string rygh, string username, string GetMAC);
         /// <summary>
-        /// dip质量审核
+        /// dipchấtlượngPhê duyệt
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="reqdoctorservices"></param>
@@ -184,7 +184,7 @@ namespace Newtouch.Domain.IDomainServices
         /// <returns></returns>
         string GetDrgData(string orgId, string zyh, string rygh, string username, string GetMAC);
         /// <summary>
-        /// 审核数据删除
+        /// Phê duyệtDữ liệuXóa
         /// </summary>
         /// <returns></returns>
         string DeletePriorReview(string zyh, string yzid, string yzlx,string OrganizeId, string GetMAC);
@@ -194,7 +194,7 @@ namespace Newtouch.Domain.IDomainServices
         List<yfsfxmdyDto> GetSfxmYfList(string orgId,string yfcode= null,string keyword=null);
 
 
-        #region  医技执行
+        #region  Thực hiện kỹ thuật y học
         void jyjcExec(List<jyjcExecReq> jyjclist, string orgId, string zxr);
         void UpdatejyjcExecIsjf(List<string> jyjclist, string orgId, string czr, string status);
         void CancaljyjcExec(List<string> jyjclist, string orgId, string czr);

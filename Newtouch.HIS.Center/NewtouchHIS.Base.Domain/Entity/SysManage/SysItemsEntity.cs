@@ -10,14 +10,14 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.Entity.SysManage
 {
     ///<summary>
-    ///明细字典表
+    ///Bảng từ điển chi tiết
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
-    [SugarTable("Sys_Items", "字典表")]
+    [SugarTable("Sys_Items", "Bảng từ điển")]
     public partial class SysItemsEntity : ISysEntity
     {
         /// <summary>
-        /// Desc:明细Khóa chính
+        /// Desc:Chi tiếtKhóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -25,7 +25,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string Id { get; set; }
 
         /// <summary>
-        /// Desc:父级
+        /// Desc:Cấp cha
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -33,7 +33,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string? ParentId { get; set; }
 
         /// <summary>
-        /// Desc:名称
+        /// Desc:Tên
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -51,7 +51,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string Code { get; set; }
 
         /// <summary>
-        /// Desc:描述
+        /// Desc:Mô tả
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -59,7 +59,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string? Description { get; set; }
 
         /// <summary>
-        /// Desc:排序码
+        /// Desc:Mã sắp xếp
         /// Default:
         /// Nullable:True
         /// </summary>           

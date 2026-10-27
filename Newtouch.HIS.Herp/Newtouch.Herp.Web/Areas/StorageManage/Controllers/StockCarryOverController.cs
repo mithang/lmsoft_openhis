@@ -10,7 +10,7 @@ using Newtouch.Herp.Infrastructure;
 namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
 {
     /// <summary>
-    /// 库存结转 (kết chuyển tồn kho).
+    /// Kết chuyển tồn kho.
     /// Grid data comes from normal JSON actions, so this page is ported fully;
     /// only its SSRS print button (tempCode 1270) is stubbed in the view.
     /// </summary>

@@ -4,7 +4,7 @@ using System.IO;
 namespace Newtouch.Infrastructure.Log
 {
     /// <summary>
-    /// 日志组件
+    /// Thành phần nhật ký
     /// </summary>
     public class AppLogger
     {

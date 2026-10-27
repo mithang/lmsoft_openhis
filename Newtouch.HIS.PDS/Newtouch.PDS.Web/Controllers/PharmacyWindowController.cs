@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 查询药房窗口信息
+        /// Truy vấn thông tin cửa sổ nhà thuốc
         /// </summary>
         /// <param name="pagintion"></param>
         /// <param name="yfckCode"></param>
@@ -60,7 +60,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 修改窗口信息
+        /// Sửa thông tin cửa sổ
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -81,18 +81,18 @@ namespace Newtouch.HIS.Web.Controllers
             entity.zt = entity.zt == "true" ? "1" : "0";
             if (string.IsNullOrWhiteSpace(entity.OrganizeId))
             {
-                throw new FailedException("请选择组织机构");
+                throw new FailedException("Vui lòng chọn tổ chức");
             }
             else if (!_SysOrganizeDmnService.IsMedicalOrganize(entity.OrganizeId))
             {
-                throw new FailedException("请选择医疗机构（医院或诊所）");
+                throw new FailedException("Vui lòng chọn cơ sở y tế（Bệnh viện hoặc phòng khám）");
             }
             _SysPharmacyWindowDmnService.submitForm(entity, keyValue);
-            return Success("操作成功");
+            return Success("Thao tác thành công");
         }
 
         /// <summary>
-        /// 根据organizeId获取药房部门
+        /// TheoorganizeIdLấy bộ phận nhà thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult PharmacyDepartmentList(string organizeId, byte? yjbmjb)

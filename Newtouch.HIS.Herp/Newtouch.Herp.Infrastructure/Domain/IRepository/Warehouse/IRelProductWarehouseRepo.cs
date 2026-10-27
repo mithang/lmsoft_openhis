@@ -4,12 +4,12 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 库房物资
+    /// Vật tư kho
     /// </summary>
     public interface IRelProductWarehouseRepo : IRepositoryBase<RelProductWarehouseEntity>
     {
         /// <summary>
-        /// 批量删除
+        /// Xóa hàng loạt
         /// </summary>
         /// <param name="list"></param>
         /// <returns></returns>

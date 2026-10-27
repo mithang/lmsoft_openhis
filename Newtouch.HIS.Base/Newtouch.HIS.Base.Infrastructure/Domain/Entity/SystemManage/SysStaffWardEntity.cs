@@ -12,7 +12,7 @@ namespace Newtouch.HIS.Domain.Entity
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
         /// <summary>
-        /// 组织机构Id
+        /// Tổ chứcId
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public string StaffId { get; set; }
         /// <summary>
-        /// 病区代码
+        /// Mã khu bệnh
         /// </summary>
         public string bqCode { get; set; }
         /// <summary>

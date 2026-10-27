@@ -10,15 +10,15 @@ using System;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// 治疗相关
+    /// Điều trịliên quan
     /// </summary>
     public class TherapistApp : AppBase, ITherapistApp
     {
         /// <summary>
-        /// 拉取待就诊治疗建议列表
+        /// kéolấychờKhám bệnhĐiều trịxâynghịdanh sách
         /// </summary>
-        /// <param name="brlx">病人类型--1门诊 2住院</param>
-        /// <param name="mzzyh">门诊住院号</param>
+        /// <param name="brlx">bệnh nhânLoại--1Ngoại trú 2Nhập viện</param>
+        /// <param name="mzzyh">Ngoại trúSố nhập viện</param>
         /// <returns></returns>
         public IList<WaitCvTherapistSuggestionDTO> GetWaitCvSuggestionList(string brlx, string mzzyh,int dayNum)
         {
@@ -40,7 +40,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 更新建议的转换状态
+        /// hơnTạo mớinghịcủachuyểnđổiTrạng thái
         /// </summary>
         /// <param name="cvList"></param>
         public void UpdateSuggestionCvStatus(IList<SuggestionCvStatuDTO> cvList)

@@ -42,14 +42,14 @@
         tbypGridList();
     });
 
-    //药品类别
+    //Loại thuốc
     function initialddlYPLBList() {
         $("#yplb").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineCategoryList"
         });
     }
 
-    //药品剂型
+    //Dạng bào chế thuốc
     function initialddlJXList() {
         $("#ypjx").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineFormulationList",
@@ -58,7 +58,7 @@
         });
     }
 
-    //待选药品加载
+    //Tải thuốc chờ chọn
     function tbypGridList() {
         $gridList.dataGrid({
             url: "/Medicine/GettbypGridJson",
@@ -96,7 +96,7 @@
                 if (rowids != null && rowids.length > 0) {
                     if (statue) {//Chọn tất cả
                         Save(rowids, 0);
-                    } else { //全部取消
+                    } else { //Hủy tất cả
                         $.modalConfirm("Bạn có chắc muốn xóa tất cả không?？", function (flag) {
                             if (flag) {
                                 Save(rowids, 1);
@@ -106,7 +106,7 @@
                 }
             },
             onSelectRow: function (rowids, statue) {
-                if (statue) {//选中
+                if (statue) {//Được chọn
                     Save(rowids, 0);
                 } else { //Hủy
                     Save(rowids, 1);
@@ -121,7 +121,7 @@
         });
     }
 
-    //提交 operateType=0:添加  1：删除
+    //Gửi operateType=0:Thêm  1：Xóa
     function Save(items, opereateType) {
         $.najax({
             type: "POST",

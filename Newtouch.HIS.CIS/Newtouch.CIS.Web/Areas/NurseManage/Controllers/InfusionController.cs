@@ -27,7 +27,7 @@ using NewtouchHIS.Lib.Framework.Operator;
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
-    /// 输液管理
+    /// truyền dịchQuản lý
     /// </summary>
     [Area("NurseManage")]
     public class InfusionController : OrgControllerBase
@@ -51,7 +51,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         #region Chế độ xem
         /// <summary>
-        /// 注射Thực hiện
+        /// Lưu ýxạThực hiện
         /// </summary>
         /// <returns></returns>
         public IActionResult Injection()
@@ -60,7 +60,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 注射Lịch sử查询
+        /// Lưu ýxạLịch sửTra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult InfusionHistory()
@@ -69,7 +69,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 输液Thực hiện
+        /// truyền dịchThực hiện
         /// </summary>
         /// <returns></returns>
         public IActionResult InjectionForm()
@@ -78,7 +78,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 留观登记
+        /// giữxemĐăng ký
         /// </summary>
         /// <returns></returns>
         public IActionResult observationFrom()
@@ -86,7 +86,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return View();
         }
         /// <summary>
-        /// 不良反应药品管理
+        /// không良phảnứngThuốcQuản lý
         /// </summary>
         /// <returns></returns>
         public IActionResult DrugReactManage()
@@ -98,7 +98,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         #region LấyDữ liệu
 
         /// <summary>
-        /// 获取门诊患者列表
+        /// LấyNgoại trúDanh sách bệnh nhân
         /// </summary>
         /// <returns></returns>
         public IActionResult PatientListQuery(Pagination pagination, string kh, string mzh,string fph, DateTime kssj, DateTime jssj)
@@ -114,7 +114,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取门诊患者列表 (待做Test da)
+        /// LấyNgoại trúDanh sách bệnh nhân (chờlàmTest da)
         /// </summary>
         /// <returns></returns>
         public IActionResult PatientHistoryListQuery(Pagination pagination, string kh, string mzh,string fph, DateTime kssj, DateTime jssj)
@@ -130,7 +130,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 根据卡号获取未结束输液信息
+        /// TheoSố thẻLấychưaKết thúctruyền dịchthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
@@ -148,7 +148,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 根据卡号获取未结束输液信息
+        /// TheoSố thẻLấychưaKết thúctruyền dịchthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kh"></param>
@@ -166,7 +166,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 同步处方信息
+        /// Đồng bộĐơn thuốcthông tin
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="fph"></param>
@@ -180,7 +180,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取岗位信息
+        /// Lấyvị trí ký tựthông tin
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -195,7 +195,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         #region Thực hiện
 
         /// <summary>
-        /// 分组
+        /// phútnhóm
         /// </summary>
         /// <param name="tags"></param>
         /// <param name="kh"></param>
@@ -208,10 +208,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 开始输液
+        /// Bắt đầutruyền dịch
         /// </summary>
         /// <param name="tags"></param>
-        /// <param name="seatNum">座号/床号</param>
+        /// <param name="seatNum">ghếsố/Số giường</param>
         /// <returns></returns>
         public IActionResult StartInfusion(List<long> tags, string seatNum)
         {
@@ -220,7 +220,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 结束输液
+        /// Kết thúctruyền dịch
         /// </summary>
         /// <param name="tags"></param>
         /// <returns></returns>
@@ -231,10 +231,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 设置座位号
+        /// Cài đặtghế ký tựsố
         /// </summary>
-        /// <param name="tag">目标ID</param>
-        /// <param name="seatNum">座位号</param>
+        /// <param name="tag">Mục tiêuID</param>
+        /// <param name="seatNum">ghế ký tựsố</param>
         /// <returns></returns>
         public IActionResult SetSeatNum(long tag, string seatNum)
         {
@@ -243,7 +243,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 打印瓶贴
+        /// In瓶dán
         /// </summary>
         /// <returns></returns>
         public IActionResult PrintBottleLabel(string tags)
@@ -274,7 +274,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 生成输液查询二维码
+        /// tạotruyền dịchTra cứuMã QR
         /// </summary>
         /// <param name="tags"></param>
         /// <returns></returns>
@@ -321,7 +321,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 输液Thực hiện撤销
+        /// truyền dịchThực hiệnThu hồi
         /// </summary>
         /// <param name="syIds"></param>
         /// <returns></returns>

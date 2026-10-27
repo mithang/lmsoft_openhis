@@ -3,54 +3,54 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.DTO.DrugStorage
 {
     /// <summary>
-    /// 查询药品库存返回报文
+    /// Bản tin trả về truy vấn tồn kho thuốc
     /// </summary>
     public class StockQueryResponseDTO
     {
         /// <summary>
-        /// 药品库存信息
+        /// Thông tin tồn kho thuốc
         /// </summary>
         public List<DrugStockInfo> drugStockInfos { get; set; }
     }
 
     /// <summary>
-    /// 库存药品信息
+    /// Thông tin thuốc tồn kho
     /// </summary>
     public class DrugStockInfo
     {
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 领药药房
+        /// Nhà thuốc nhận thuốc
         /// </summary>
         public string lyyf { get; set; }
 
         /// <summary>
-        /// 领药药房名称
+        /// Tên nhà thuốc nhận thuốc
         /// </summary>
         public string lyyfmc { get; set; }
 
         /// <summary>
-        /// 做小单位库存数量
+        /// Làm Số lượng tồn kho đơn vị nhỏ
         /// </summary>
         public int kscl { get; set; }
 
         /// <summary>
-        /// 做小单位冻结数量
+        /// Làm Số lượng đóng băng đơn vị nhỏ
         /// </summary>
         public int djsl { get; set; }
 
         /// <summary>
-        /// 做小单位可用数量
+        /// Làm Số lượng khả dụng đơn vị nhỏ
         /// </summary>
         public int kysl { get; set; }
     }

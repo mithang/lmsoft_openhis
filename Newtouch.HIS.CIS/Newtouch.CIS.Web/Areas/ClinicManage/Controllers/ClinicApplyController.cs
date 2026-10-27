@@ -31,7 +31,7 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
     [Area("ClinicManage")]
     public class ClinicApplyController : OrgControllerBase
     {
-        public readonly static string OuterMediaMeettingAPIHost = Newtouch.CIS.Compat.AppConfig.Get("OuterMediaMeettingAPIHost");//api中心站点访问appid
+        public readonly static string OuterMediaMeettingAPIHost = Newtouch.CIS.Compat.AppConfig.Get("OuterMediaMeettingAPIHost");//apitrongtimtrạmđiểmTruy cậpappid
 
         private readonly IClinicDmnService _clinicDmnService;
         private readonly IClinicApplyRepo _clinicApplyRepo;
@@ -64,7 +64,7 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
         #endregion
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
@@ -76,22 +76,22 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
 
         public IActionResult Accept(ClinicApplyInfoVO applyInfo)
         {
-            var czks = "00000080";//Chẩn đoán từ xa科室编号
+            var czks = "00000080";//Chẩn đoán từ xaSố hiệu khoa
             #region 1.Đăng ký khám
-            var ghpbObj = _clinicDmnService.getClinicScheduleId(this.OrganizeId, czks); //获取Chẩn đoán từ xa的挂号Xếp lịch
+            var ghpbObj = _clinicDmnService.getClinicScheduleId(this.OrganizeId, czks); //LấyChẩn đoán từ xacủađăng ký khámXếp lịch
             if (ghpbObj == null)
             {
                 throw new FailedException("Không tìm thấy thông tin xếp lịch");
             }
-            var scheduId = ghpbObj.ScheduId;//获取Chẩn đoán từ xaXếp lịchId
-            var regFree = ghpbObj.RegFee;//获取挂号费用
-            var payLsh = "yczl" + EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("zl_zflsh", OrganizeId, "{0:D6}", true); ;//自动获取支付流水号
+            var scheduId = ghpbObj.ScheduId;//LấyChẩn đoán từ xaXếp lịchId
+            var regFree = ghpbObj.RegFee;//Lấyđăng ký khámChi phí
+            var payLsh = "yczl" + EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("zl_zflsh", OrganizeId, "{0:D6}", true); ;//tựđộngLấychitrảdòngchảysố
             var ghDataObj = new
             {
                 kh = applyInfo.kh,
                 ScheduId = scheduId,
-                ghxz = "0",//自费
-                PayWay = "3",//支付宝
+                ghxz = "0",//tự chi trả
+                PayWay = "3",//Alipay
                 PayFee = regFree,//0元
                 PayLsh = payLsh
             };
@@ -109,14 +109,14 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
             }
             #endregion
 
-            //2.调申请会议室接口
+            //2.gọiĐăng kýsẽnghịphònggiao diện
             //string token = AuthenManageHelper.GetToken();
             var hysqDataObj = new
             {
                 usercode = this.UserIdentity.UserCode,
                 username = this.UserIdentity.UserName,
-                applyId = applyInfo.Id,//自费
-                roomReset = "true",//默认false，当会议超时需重新开始会议时 传值： true
+                applyId = applyInfo.Id,//tự chi trả
+                roomReset = "true",//Mặc địnhfalse，khisẽnghịvượtkhicầnlạiBắt đầusẽnghịkhi truyềnGiá trị： true
                 roomid = applyInfo.mettingId,
                 mzh = outstrgh.data.Mzh
             };
@@ -135,7 +135,7 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
             var roompath = outstrMetting.data.roompath;
             var mettingUrl = OuterMediaMeettingAPIHost + roompath;
 
-            //获取诊所Token
+            //Lấyphòng khámToken
             var tokenReqObj = new
             {
                 Data = "",
@@ -149,13 +149,13 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
                 throw new FailedException(outstrToken.msg);
             }
 
-            //3.会议号通知云诊所接口
+            //3.Số cuộc họpthôngbiếtmâyphòng khámgiao diện
             var sqjgDataObj = new
             {
                 ApplyId= applyInfo.Id,
                 Sqlsh = applyInfo.sqlsh,
                 ApplyStu = (int)Emunzlzt.jzz,
-                IsConfirm = "True",  //医生是否同意申请 True同意 false拒绝
+                IsConfirm = "True",  //Bác sĩCóKhôngđồng ýĐăng ký Trueđồng ý falseTừ chối
                 roomid = outstrMetting.data.roomid,
             };
             var sqjgReqObj = new
@@ -179,16 +179,16 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
                 data = outstrMetting.data
             };
             return Content(result.ToJson());
-            //return Success("操作成功。");
+            //return Success("Thao tác thành công");
         }
 
 
         public IActionResult Back(ClinicApplyInfoVO applyInfo)
         {
-            //1.更新退回状态
+            //1.Cập nhậtTrả lạiTrạng thái
             _clinicApplyRepo.Updatesqzt(applyInfo.Id, (int)Emunzlzt.yth, this.OrganizeId);
 
-            //2.获取诊所Token
+            //2.Lấyphòng khámToken
             var tokenReqObj = new
             {
                 Data = "",
@@ -202,13 +202,13 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
                 throw new FailedException(outstrToken.msg);
             }
 
-            //3.会议号通知云诊所接口
+            //3.Số cuộc họpthôngbiếtmâyphòng khámgiao diện
             var sqjgDataObj = new
             {
                 ApplyId = applyInfo.Id,
                 Sqlsh = applyInfo.sqlsh,
                 ApplyStu = (int)Emunzlzt.yth,
-                IsConfirm = "false",  //医生是否同意申请 True同意 false拒绝
+                IsConfirm = "false",  //Bác sĩCóKhôngđồng ýĐăng ký Trueđồng ý falseTừ chối
                 roomid = "",
             };
             var sqjgReqObj = new
@@ -227,16 +227,16 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
         }
 
         public IActionResult EnterMetting(ClinicApplyInfoVO applyInfo) {
-            //获取token
+            //Lấytoken
             //string token = AuthenManageHelper.GetToken();
 
-            //2.调申请会议室接口
+            //2.gọiĐăng kýsẽnghịphònggiao diện
             //string token = AuthenManageHelper.GetToken();
             var hysqDataObj = new
             {
                 usercode = this.UserIdentity.UserCode,
                 username = this.UserIdentity.UserName,
-                applyId = applyInfo.Id,//自费
+                applyId = applyInfo.Id,//tự chi trả
                 roomid = applyInfo.mettingId,
             };
             var hysqReqObj = new
@@ -265,15 +265,15 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
         }
 
         /// <summary>
-        /// 结束就诊
+        /// Kết thúcKhám bệnh
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
         public IActionResult yczlEndOpetration(string Id, TreatmentEntity jzObject, MedicalRecordEntity blObject)
         {
             var applyInfo = _clinicApplyRepo.GetYczl(Id, this.OrganizeId);
-            //1.推送病历
-            //获取云诊所患者病历
+            //1.đẩyHồ sơ
+            //Lấymâyphòng khámBệnh nhânHồ sơ
             //var  blDataObj = new
             //{
             //    ApplyId = Id,
@@ -288,7 +288,7 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
             //};
             //var outstrbl = AuthenManageHelper.HttpPost<PatMedicalRecordVO>(blReqObj.ToJson(), AuthenManageHelper.SiteConmonAPIHost + "api/Clinic/GetClinicPatMedicalRecord", this.UserIdentity);
 
-            //if (!(outstrbl.msg == "" || outstrbl.msg == "请求成功"))
+            //if (!(outstrbl.msg == "" || outstrbl.msg == "yêu cầuthành công"))
             //{
             //    throw new FailedException(outstrbl.msg);
             //}
@@ -322,7 +322,7 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
             //    gms = outstrbl.data == null ? null : outstrbl.data.gms,
             //};
 
-            //推送处方病历
+            //đẩyĐơn thuốcHồ sơ
             SendPatMedicalRecordVO cfblDataObj = new SendPatMedicalRecordVO();
             cfblDataObj.ApplyId = Id;
             cfblDataObj.Sqlsh = applyInfo.sqlsh;
@@ -359,12 +359,12 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
                 };
                 var outstrcfbl = AuthenManageHelper.HttpPost<string>(cfblReqObj.ToJson(), AuthenManageHelper.SiteConmonAPIHost + "api/Clinic/SendHisMedicalRecord", this.UserIdentity);
             
-            //if (!(outstrcfbl.msg == "" || outstrcfbl.msg == "请求成功"))
+            //if (!(outstrcfbl.msg == "" || outstrcfbl.msg == "yêu cầuthành công"))
             //{
             //    throw new FailedException(outstrcfbl.msg);
             //}
 
-            //2.推送处方
+            //2.đẩyĐơn thuốc
             var cfDataObj = new
             {
                 ApplyId = Id,
@@ -380,18 +380,18 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
             };
             var outstrcf = AuthenManageHelper.HttpPost<string>(cfReqObj.ToJson(), AuthenManageHelper.SiteConmonAPIHost + "api/Clinic/SendHisOutpPrescriptionData", this.UserIdentity);
 
-            //if (!(outstrcf.msg == "" || outstrcf.msg == "请求成功"))
+            //if (!(outstrcf.msg == "" || outstrcf.msg == "yêu cầuthành công"))
             //{
             //    throw new FailedException(outstrcf.msg);
             //}
 
-            //3.Gửi结束通知
+            //3.GửiKết thúcthôngbiết
             var sqjgDataObj = new
             {
                 ApplyId = Id,
                 Sqlsh = applyInfo.sqlsh,
                 ApplyStu = (int)Emunzlzt.yjs,
-                IsConfirm = "True",  //医生是否同意申请 True同意 false拒绝
+                IsConfirm = "True",  //Bác sĩCóKhôngđồng ýĐăng ký Trueđồng ý falseTừ chối
                 roomid = "",
             };
             var sqjgReqObj = new
@@ -406,8 +406,8 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
             {
                 throw new FailedException(outstrSqjg.msg);
             }
-            //3.会议室Gửi信息
-            //4.更新申请状态
+            //3.sẽnghịphòngGửithông tin
+            //4.Cập nhậtTrạng thái đăng ký
             _clinicApplyRepo.Updatesqzt(Id, (int)Emunzlzt.yjs, this.OrganizeId);
 
             return Success("Thao tác thành công");

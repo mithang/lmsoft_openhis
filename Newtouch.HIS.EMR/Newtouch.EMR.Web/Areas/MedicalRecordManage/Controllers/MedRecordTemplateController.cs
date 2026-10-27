@@ -80,7 +80,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
         #endregion
 
-        #region 病历模板管理
+        #region Quản lý mẫu bệnh án
         public IActionResult GetGridJson(Pagination pagination, string keyword)
         {
             OperatorModel user = this.UserIdentity;
@@ -94,7 +94,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 读取病历模板
+        /// Đọc mẫu bệnh án
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="blId"></param>
@@ -102,7 +102,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <returns></returns>
         public IActionResult GetFormJson(string keyValue, string blId,string bllx)
         {
-            if (!string.IsNullOrWhiteSpace(blId)) //保存个人模板
+            if (!string.IsNullOrWhiteSpace(blId)) //Lưu mẫu cá nhân
             {
                 var mod = _BlmblbDmnService.BlConvertToTemplate(OrganizeId, blId, bllx, 1);
                 var bllxDic = _CommonDmnService.GetBllxListDetail(OrganizeId, bllx).FirstOrDefault();
@@ -129,11 +129,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             }
         }
         /// <summary>
-        /// 修改/新增模板
+        /// Sửa/Thêm mới mẫu
         /// </summary>
         /// <param name="blmb"></param>
         /// <param name="keyValue"></param>
-        /// <param name="mbly">模板来源</param>
+        /// <param name="mbly">Nguồn mẫu</param>
         /// <returns></returns>
         public IActionResult submitForm(BlmblbEntity blmb,string keyValue,int? mbly)
         {
@@ -164,9 +164,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
             _BlmblbRepo.SubmitForm(blmb, keyValue);
 
-            if (mbly != null && mbly == 0)  //病历转模板标志，文件迁移操作
+            if (mbly != null && mbly == 0)  //Dấu hiệu chuyển bệnh án thành mẫu，Thao tác di chuyển tệp
             {
-                //文件迁移
+                //Di chuyển tệp
                 if (!string.IsNullOrWhiteSpace(blmb.Memo))
                 {
                     blmb.mblj = WebPath.Map(blmb.mblj);
@@ -183,7 +183,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             ety.zt = "0";
             _BlmblbRepo.SubmitForm(ety, keyValue);
             return Success();
-            ////文件迁移
+            ////Di chuyển tệp
             //var delpath = WebPath.Map(EmrConfig.GetAppConfigValue("BlTemplateDelPath"));
             //var cutpath = WebPath.Map(ety.mblj);
             //var flag = _BlmblbDmnService.CopyDir(cutpath, delpath, "",1);
@@ -219,7 +219,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
         #endregion
 
-        #region 权限控制
+        #region Kiểm soát quyền
         public IActionResult GetblmbDuty(string mbId)
         {
             OperatorModel user = this.UserIdentity;
@@ -232,7 +232,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             OperatorModel user = this.UserIdentity;
            // submitForm(mbInfo, mbId, mbly);
 
-            //新增时根据编码获取mbId 
+            //Khi thêm mới lấy theo mãmbId 
             if (string.IsNullOrWhiteSpace(mbId))
             {
                 mbId = _BlmblbRepo.FindEntity(p => p.mbbm == mbbm && p.OrganizeId == OrganizeId && p.zt == "1").Id;
@@ -247,10 +247,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         public IActionResult TemplateEdit()
         {
-            //根据id获取模板
-            //如果找不到加载的xml就默认为空白的xml
+            //TheoidLấy mẫu
+            //Nếu không tìm thấy xml để tải thì mặc định là xml trống
             string currentFileName = WebPath.Map(BlTemplatePath + "newFile.xml");
-            // 加载文件
+            // Tải tệp
             WebWriterControlEngine eng = GetControlEngine();
             if (Request.Method != "GET")
             {
@@ -258,8 +258,8 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 bool loaded = false;
                 if ((sd == "保存文档" || sd == "Lưu tài liệu") && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
-                    // 用户点击了“保存文档”按钮，
-                    // 则试图从WEB请求中加载文档然后保存
+                    // Người dùng đã nhấn“Lưu tài liệu”Nút，
+                    // thì thửWEBtải tài liệu từ yêu cầu rồi lưu
                     loaded = eng.LoadDocumentFromRequestFormData();
                     if (loaded)
                     {
@@ -282,7 +282,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return new WebWriterControlEngine();
         }
 
-        //设置编辑器的引用路径
+        //Thiết lập đường dẫn tham chiếu của trình soạn thảo
         // DCSoft.Writer has no .NET Core build: this service endpoint reports the
         // limitation explicitly instead of 404. A replacement web editor is the
         // remaining EMR item.
@@ -296,16 +296,16 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
 
-        //处理操作结果生成一个带文档内容的编辑器
+        //Xử lý kết quả thao tác để tạo trình soạn thảo có nội dung tài liệu
         public void IsExistDir(string path)
         {
-            if (Directory.Exists(WebPath.Map(path)) == false)//如果不存在就创建file文件夹
+            if (Directory.Exists(WebPath.Map(path)) == false)//Nếu không tồn tại thì tạo thư mục file
             {
                 Directory.CreateDirectory(WebPath.Map(path));
             }
         }
 
-        #region  dc版
+        #region  Phiên bản dc
         // DCSoft.Writer has no .NET Core build: this service endpoint reports the
         // limitation explicitly instead of 404. A replacement web editor is the
         // remaining EMR item.
@@ -323,14 +323,14 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         {
             //DCwriterServer dcControl = new DCwriterServer();
             //dcControl.MedicalTemplate();
-            //WebWriterControlEngine eng = dcControl.DCWControl;//这是上一步创建的引擎 
+            //WebWriterControlEngine eng = dcControl.DCWControl;//Đây là engine được tạo ở bước trước 
             //eng.Options.ClientContextMenuType = WebClientContextMenuType.Custom;
             //ViewBag.WriterControlHtml = eng.GetAllContentHtml();
             //eng.Dispose();
             return View();
         }
 
-        #region  dc5.0实现方式
+        #region  dc5.0 Cách thực hiện
         public IActionResult GetTemplateXml(string templateUrl)
         {
             string[] arr = templateUrl.Split('\\');
@@ -432,7 +432,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     if (!System.IO.File.Exists((xmlfile)))
                     {
                         var d = $"{ml}{tempaleUrl}{filename}";
-                        System.IO.File.WriteAllText($"{ml}{tempaleUrl}{filename}", "<body data-hm-papersize=\"A4_portrait$top:5mm#right:5mm#bottom:5mm#left:5mm\" meta_json=\"\" style=\"\" class=\"\"><table class=\"dashed-border font-normal\" style=\"width: 100%; table-layout: auto;\" data-hm-table=\"true\" hm-table-id=\"ef00d3b996d222f2e8e56ef5e19a40486\" _paperheader=\"true\"><colgroup><col style=\"width: 17.1897%;\"><col style=\"width: 37.9707%;\"><col style=\"width: 19.8396%;\"><col style=\"width: 25%;\"></colgroup><tbody><tr><td style=\"width: 100%; text-align: center;\" colspan=\"4\"><p><br></p></td></tr><tr><td style=\"width: 100%; text-align: center;\" colspan=\"4\">页眉</td></tr><tr><td style=\"width: 17.1897%; border-bottom: 1px solid black;\"><br></td><td style=\"width: 37.9707%; border-bottom: 1px solid black;\"><br></td><td style=\"width: 19.8396%; border-bottom: 1px solid black;\"><br></td><td style=\"width: 25%; border-bottom: 1px solid black;\"><br></td></tr></tbody></table><p><br><span data-cke-bookmark=\"1\" style=\"display: none;\">&nbsp;</span>　　</p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><table class=\"dashed-border font-normal\" style=\"width: 100%; table-layout: auto;\" data-hm-table=\"true\" hm-table-id=\"e5765dc780bff98a90954d12e022e605d\" _paperfooter=\"true\"><colgroup><col style=\"width: 100%;\"></colgroup><tbody><tr><td style=\"width: 100%; text-align: center; border-top-width: 1px; border-top-style: solid;\">第<span contenteditable=\"false\" class=\"page\"> </span>页</td></tr></tbody></table></body>");
+                        System.IO.File.WriteAllText($"{ml}{tempaleUrl}{filename}", "<body data-hm-papersize=\"A4_portrait$top:5mm#right:5mm#bottom:5mm#left:5mm\" meta_json=\"\" style=\"\" class=\"\"><table class=\"dashed-border font-normal\" style=\"width: 100%; table-layout: auto;\" data-hm-table=\"true\" hm-table-id=\"ef00d3b996d222f2e8e56ef5e19a40486\" _paperheader=\"true\"><colgroup><col style=\"width: 17.1897%;\"><col style=\"width: 37.9707%;\"><col style=\"width: 19.8396%;\"><col style=\"width: 25%;\"></colgroup><tbody><tr><td style=\"width: 100%; text-align: center;\" colspan=\"4\"><p><br></p></td></tr><tr><td style=\"width: 100%; text-align: center;\" colspan=\"4\">Tiêu đề trang</td></tr><tr><td style=\"width: 17.1897%; border-bottom: 1px solid black;\"><br></td><td style=\"width: 37.9707%; border-bottom: 1px solid black;\"><br></td><td style=\"width: 19.8396%; border-bottom: 1px solid black;\"><br></td><td style=\"width: 25%; border-bottom: 1px solid black;\"><br></td></tr></tbody></table><p><br><span data-cke-bookmark=\"1\" style=\"display: none;\">&nbsp;</span>　　</p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><table class=\"dashed-border font-normal\" style=\"width: 100%; table-layout: auto;\" data-hm-table=\"true\" hm-table-id=\"e5765dc780bff98a90954d12e022e605d\" _paperfooter=\"true\"><colgroup><col style=\"width: 100%;\"></colgroup><tbody><tr><td style=\"width: 100%; text-align: center; border-top-width: 1px; border-top-style: solid;\">Trang <span contenteditable=\"false\" class=\"page\"> </span></td></tr></tbody></table></body>");
                     }
                     tempaleUrl += arr[item];
                 }

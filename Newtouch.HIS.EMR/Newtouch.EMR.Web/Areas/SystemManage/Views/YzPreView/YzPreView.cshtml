@@ -73,7 +73,7 @@
         //var ctl = document.getElementById("myWriterControl");
         //ctl.style.height = "800px";
         //ctl.Options.workspacebackcolorstring = "#66CCCC"
-        //打开文档
+        //Mở tài liệu
         function FileOpen() {
             debugger;
             if (yzlx.split("|")[0] == "hljld" || yzlx.includes("Y lệnh dài hạn") == true || yzlx.includes("Y lệnh tạm thời") == true)
@@ -116,13 +116,13 @@
             //var ctl = document.getElementById("myWriterControl");
             //ctl.preserveScrollPosition = true;
             //var fileName = hljldmblj;
-            //在服务器端响应控件的EventReadFileContent事件, 即可使用AJAX模式加载文档.
+            //Phản hồi control ở phía máy chủEventReadFileContentsự kiện, là có thể sử dụngAJAXTải tài liệu theo chế độ.
             //ctl.LoadDocumentFromFile(fileName, null);
             //dcdatabinding();
             setTimeout(function () { dcdatabinding(); }, 200)
         }
 
-        //初始加载
+        //Tải ban đầu
         function dcdatabinding() {
             var ctl = document.getElementById("myWriterControl");
             if (ctl != null) {
@@ -170,7 +170,7 @@
             //    //BindingDCWriterClientControl(ctl);
             //    ctl.EventAfterPrintPreview = function (PrintPreviewDoc) {
             //        var styleDom = document.createElement("style");
-            //        // 解决宋体打印问题
+            //        // Giải quyết vấn đề in ấn font SimSun
             //        var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
             //        styleDom.innerHTML = cssStr;
             //        var page = PrintPreviewDoc.querySelector("div[pageindex]");
@@ -181,7 +181,7 @@
             //}
             FileOpen();
         }
-        //-------------病历编辑器5.0------------------//
+        //-------------Trình soạn thảo bệnh án5.0------------------//
         function WriterControl_OnLoad(rootElement) {
             debugger;
             var ctl = document.getElementById("myWriterControl");

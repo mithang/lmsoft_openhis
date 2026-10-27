@@ -4,13 +4,13 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy
 {
     /// <summary>
-    /// 扩展
+    /// mở rộngtriển
     /// </summary>
     public static class Extend
     {
 
         /// <summary>
-        /// html编码转成html实体
+        /// htmlMãchuyểnthànhhtmlthựcthể
         /// </summary>
         /// <param name="source"></param>
         /// <returns></returns>
@@ -20,7 +20,7 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// 提取soapXml报文return内的内容
+        /// nhắclấysoapXmlbáovănreturntrongcủanội dung
         /// </summary>
         /// <param name="envelope"></param>
         /// <returns></returns>
@@ -34,7 +34,7 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// 提取soapXml报文return内的内容
+        /// nhắclấysoapXmlbáovănreturntrongcủanội dung
         /// </summary>
         /// <param name="envelope"></param>
         /// <returns></returns>
@@ -44,7 +44,7 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// 判断返回是否正确，判断依据为是否含有"<return>"
+        /// kiểm traQuay lạilàKhôngđangxác，kiểm tratheocứlàlàKhôngchứacó"<return>"
         /// </summary>
         /// <param name="response"></param>
         /// <returns></returns>

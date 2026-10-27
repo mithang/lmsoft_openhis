@@ -18,7 +18,7 @@
 					<text style="margin-left:2%;color:cornflowerblue">Nhắc nhở: thống kê theo ngày quyết toán!</text>
 					<input type="button" id="btn_search_cx" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="Tra cứu" />
 					<input type="button" id="btn_search_td" class="btn btn-primary btn-md" style="margin-left:10px;width:50px;" value="Hủy quyết toán" />
-					@*<input type="button" id="btn_search_gb" class="btn btn-primary btn-md" style="margin-left:10px;width:60px;" value="关闭" />*@
+					@*<input type="button" id="btn_search_gb" class="btn btn-primary btn-md" style="margin-left:10px;width:60px;" value="Đóng" />*@
 				</td>
 				<td class="formValue"></td>
 			</tr>
@@ -40,12 +40,12 @@
 
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Nạp lại khi thay đổi kích thước cửa sổ trình duyệtjqGridChiều rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
 
-        //结算主记录
+        //Bản ghi chính quyết toán
         gridJSListData();
     });
 
@@ -124,9 +124,9 @@
             }
         });
 
-        //查询事件
+        //Sự kiện tra cứu
         $("#btn_search_cx").click(function () {
-			$('#gridJSList').jqGrid("clearGridData");//先清空明细
+			$('#gridJSList').jqGrid("clearGridData");//xóa chi tiết trước
             $gridJsList.jqGrid('setGridParam', {
                 postData: { ksrq: $("#ksrq").val(), jsrq: $("#jsrq").val() },
                 url: '/MedicalInsuranceLiquidation/LiquidationApplication/GetQsht',

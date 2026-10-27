@@ -5,15 +5,15 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity.Dictionary
 {
     ///<summary>
-    ///收费大类 
-    ///一般按上级主管部门要求分类
-    ///    （挂号费00、诊疗费01、磁卡费02、工本费03 等
-    ///    门诊医保Mã varchar(2)
-    ///    住院医保Mã varchar(2) 
-    ///    重新建立表做医保代码对应
+    ///Nhóm thu phí lớn 
+    ///Thông thường phân loại theo yêu cầu của cơ quan chủ quản cấp trên
+    ///    (Phí đăng ký khám00,Phí khám chữa bệnh01,Phí thẻ từ02,Phí làm thẻ03 v.v.
+    ///    BHYT ngoại trúMã varchar(2)
+    ///    BHYT nội trúMã varchar(2) 
+    ///    Lập lại bảng để đối ứng mã BHYT
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
-    [SugarTable("xt_sfdl", "收费大类")]
+    [SugarTable("xt_sfdl", "Nhóm thu phí lớn")]
     public partial class SysChargeCategoryEntity : IEntity
     {
 
@@ -51,7 +51,7 @@ namespace NewtouchHIS.Base.Domain.Entity.Dictionary
         public int? ParentId { get; set; }
 
         /// <summary>
-        /// Desc:0 通用 1 门诊 2住院
+        /// Desc:0 Chung 1 Ngoại trú 2Nội trú
         /// Default:
         /// Nullable:False
         /// </summary>           

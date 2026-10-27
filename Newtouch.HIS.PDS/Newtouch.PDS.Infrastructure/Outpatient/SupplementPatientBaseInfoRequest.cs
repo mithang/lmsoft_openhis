@@ -5,32 +5,32 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.PDS.Requset
 {
     /// <summary>
-    /// 补充患者基本信息
+    /// Bổ sung thông tin cơ bản bệnh nhân
     /// </summary>
     public class SupplementPatientBaseInfoRequest : RequestBase
     {
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 患者ID
+        /// Bệnh nhânID
         /// </summary>
         public int patid { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId（Bệnh viện có nghiệp vụ cụ thể）
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 病人最近的性质xt_brxz.brxz
+        /// Tính chất gần nhất của bệnh nhânxt_brxz.brxz
         /// </summary>
         public string brxz { get; set; }
 
         /// <summary>
-        /// 本院磁卡号（包括医保离休病人），或者医保卡号
+        /// Số thẻ từ bệnh viện này（Gồm bệnh nhân BHYT nghỉ hưu），hoặc Số thẻ BHYT
         /// </summary>
         public string blh { get; set; }
 
@@ -140,27 +140,27 @@ namespace Newtouch.PDS.Requset
         public int? dybh { get; set; }
 
         /// <summary>
-        /// 单位代码
+        /// Mã đơn vị
         /// </summary>
         public string dwdm { get; set; }
 
         /// <summary>
-        /// 区县代码
+        /// Mã quận huyện
         /// </summary>
         public string qxdm { get; set; }
 
         /// <summary>
-        /// 单位名称
+        /// Tên đơn vị
         /// </summary>
         public string dwmc { get; set; }
 
         /// <summary>
-        /// 离休凭证
+        /// Chứng từ nghỉ hưu
         /// </summary>
         public string pzh { get; set; }
 
         /// <summary>
-        /// 医疗项目
+        /// Hạng mục y tế
         /// </summary>
         public string ylxm { get; set; }
 
@@ -175,17 +175,17 @@ namespace Newtouch.PDS.Requset
         public DateTime? pzzzrq { get; set; }
 
         /// <summary>
-        /// 凭证诊断
+        /// Chẩn đoán chứng từ
         /// </summary>
         public string pzzd { get; set; }
 
         /// <summary>
-        /// --2006-07-9 取消???帐户规则，家床结算，在变量传递时取负数，不修改表      --2006.07.09 不允许自动注销帐户，为了不和家床撤床失败混淆   负帐户只有一个含义，就是撤床失败      单位特约帐号、个人特约帐号 from xtzh   当帐户为负数时，表示此帐户已被系统自动注销(有效期已过、或家床交易成功，但是撤床失败。)
+        /// --2006-07-9 Hủy???Quy tắc tài khoản，Thanh toán giường gia đình，Khi truyền biến lấy Số âm，Không sửa bảng      --2006.07.09 Không cho phép tự động hủy tài khoản，Để không nhầm lẫn với thất bại rút giường gia đình   Tài khoản âm chỉ có một ý nghĩa，chính là thất bại rút giường      Tài khoản đặc ước đơn vị、Tài khoản đặc ước cá nhân from xtzh   Khi tài khoản là Số âm，Biểu thị tài khoản này đã bị hệ thống tự động hủy(Hạn dùng đã qua、hoặc giao dịch giường gia đình thành công，nhưng rút giường thất bại。)
         /// </summary>
         public int? zh { get; set; }
 
         /// <summary>
-        /// 0 无效 1 有效
+        /// 0 Không hiệu lực 1 Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
@@ -200,17 +200,17 @@ namespace Newtouch.PDS.Requset
         public string gj { get; set; }
 
         /// <summary>
-        /// 枚举EnumHF
+        /// EnumEnumHF
         /// </summary>
         public byte? hf { get; set; }
 
         /// <summary>
-        /// 民族
+        /// Dân tộc
         /// </summary>
         public string mz { get; set; }
 
         /// <summary>
-        /// 职业
+        /// Nghề nghiệp
         /// </summary>
         public string zy { get; set; }
 
@@ -225,7 +225,7 @@ namespace Newtouch.PDS.Requset
         public string yddh { get; set; }
 
         /// <summary>
-        /// 0.其他 1.住宅 2.公司
+        /// 0.Khác 1.Nhà ở 2.Công ty
         /// </summary>
         public byte? dzxz { get; set; }
 
@@ -265,7 +265,7 @@ namespace Newtouch.PDS.Requset
         public short? bxgs { get; set; }
 
         /// <summary>
-        /// 医保卡返回的标志位，非医保卡为空字符
+        /// Cờ trả về của thẻ BHYT，Không phải thẻ BHYT là ký tự rỗng
         /// </summary>
         public string zhbz { get; set; }
 
@@ -325,25 +325,25 @@ namespace Newtouch.PDS.Requset
         public string jjllrgx { get; set; }
 
         /// <summary>
-        /// 个人社保编号
+        /// Số bảo hiểm xã hội cá nhân
         /// </summary>
         public string sbbh { get; set; }
 
         /// <summary>
-        /// 参保地编码（181019医保参保地编码）
+        /// Mã nơi tham gia bảo hiểm（181019Mã nơi tham gia BHYT）
         /// </summary>
         public string cbdbm { get; set; }
 
         /// <summary>
-        /// 执行社会保险办法
+        /// Thực hiện biện pháp bảo hiểm xã hội
         /// </summary>
         public string zxsbbf { get; set; }
         /// <summary>
-        /// 新农合个人编码
+        /// Mã cá nhân nông thôn mới
         /// </summary>
         public string xnhgrbm { get; set; }
         /// <summary>
-        /// 新农合医疗证号
+        /// Số chứng nhận y tế nông thôn mới
         /// </summary>
         public string xnhylzh { get; set; }
     }

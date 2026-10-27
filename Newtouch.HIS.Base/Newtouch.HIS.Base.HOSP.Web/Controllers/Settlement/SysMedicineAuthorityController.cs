@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers.Settlement
 
 
         /// <summary>
-        /// 获取列表
+        /// Lấy danh sách
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers.Settlement
 
 
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers.Settlement
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="SysPatiChargeAddEntity"></param>
         /// <param name="keyValue"></param>
@@ -93,7 +93,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers.Settlement
             {
                 throw new FailedException("Vui lòng chọn tổ chức");
             }
-            //if (entity.rel_lxcode == "1") {  //lx: 1药品属性 2收费大类
+            //if (entity.rel_lxcode == "1") {  //lx: 1Thuộc tính thuốc 2Nhóm thu phí lớn
             //    entity.sfdlCode = null;
             //}
             //else if(entity.lx == "2") {

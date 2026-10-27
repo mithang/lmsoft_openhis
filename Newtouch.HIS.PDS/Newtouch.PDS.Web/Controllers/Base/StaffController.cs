@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// 关联用户
+        /// Người dùng liên kết
         /// </summary>
         /// <returns></returns>
         public IActionResult Selector()
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取机构人员树 三级（机构+科室+人员）
+        /// Lấy cây nhân sự cơ sở Cấp 3（Cơ sở+Khoa+Nhân sự）
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -43,24 +43,24 @@ namespace Newtouch.HIS.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(organizeId))
             {
-                organizeId = base.GetAuthOrganizeId();  //Mặc định 权限OrganizeId
+                organizeId = base.GetAuthOrganizeId();  //Mặc định QuyềnOrganizeId
             }
-            //缓存start
+            //Đệmstart
             var treeList = _cache.Get<List<TreeViewModel>>(string.Format(CacheKey.OrganizeStaffTreeSetKey, organizeId), () =>
             {
                 var organizedata = _sysOrganizeDmnService.GetValidListByParentOrg(organizeId);
                 var iitreeList = new List<TreeViewModel>();
                 foreach (var orgItem in organizedata)
                 {
-                    //机构科室集合
+                    //Tập hợp khoa của cơ sở
                     var orgDetpData = _sysDepartmentRepo.GetList(orgItem.Id);
-                    //机构人员集合
+                    //Tập hợp nhân sự của cơ sở
                     var orgStaffData = _sysUserDmnService.GetStaffListByOrg(orgItem.Id);
-                    #region 机构下所有科室
+                    #region Tất cả khoa thuộc cơ sở
                     foreach (var deptItem in orgDetpData)
                     {
                         var deptStaffData = orgStaffData.Where(p => p.DepartmentCode == deptItem.Code).ToList();
-                        #region 机构下所有用户
+                        #region Tất cả người dùng thuộc cơ sở
                         foreach (var staffItem in deptStaffData)
                         {
                             TreeViewModel staffTree = new TreeViewModel();
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Web.Controllers
                             staffTree.parentId = deptItem.Id;
                             staffTree.hasChildren = false;
                             staffTree.showcheck = true;
-                            staffTree.checkstate = 0;   //外面赋值，方便缓存
+                            staffTree.checkstate = 0;   //Gán từ bên ngoài，Thuận tiện lưu đệm
                             iitreeList.Add(staffTree);
                         }
                         #endregion
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Web.Controllers
                         deptTree.text = deptItem.Name;
                         deptTree.value = deptItem.Code;
                         deptTree.parentId = deptItem.ParentId == null ? orgItem.Id : deptItem.ParentId;
-                        deptTree.isexpand = true;  //默认不展开，人太多
+                        deptTree.isexpand = true;  //Mặc định không mở rộng，Quá nhiều người
                         deptTree.complete = true;
                         deptTree.showcheck = false;
                         deptTree.hasChildren = deptStaffData.Count > 0 || orgDetpData.Any(p => p.ParentId == deptItem.Id);
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Web.Controllers
                     tree.id = orgItem.Id;
                     tree.text = orgItem.Name;
                     tree.value = orgItem.Code;
-                    tree.parentId = orgItem.Id == organizeId ? null : orgItem.ParentId; //特殊
+                    tree.parentId = orgItem.Id == organizeId ? null : orgItem.ParentId; //Đặc biệt
                     tree.isexpand = isExpand;
                     tree.complete = true;
                     tree.showcheck = false;
@@ -99,9 +99,9 @@ namespace Newtouch.HIS.Web.Controllers
                 }
                 return iitreeList;
             }, cacheTime);
-            //缓存end
+            //Đệmend
             IList<string> checkedStaffIdList = new List<string>();
-            //if (from == "userrelatioinstaff" && !string.IsNullOrWhiteSpace(keyValue))   //用户已关联人员
+            //if (from == "userrelatioinstaff" && !string.IsNullOrWhiteSpace(keyValue))   //Nhân sự người dùng đã liên kết
             //{
             //    checkedStaffIdList = _sysStaffRepo.GetCurStaffIdListByUserId(keyValue);
             //}
@@ -116,22 +116,22 @@ namespace Newtouch.HIS.Web.Controllers
                     if (treeItem.showcheck && checkedStaffIdList.Contains(treeItem.id))
                     {
                         treeItem.checkstate = 1;
-                        //同时让上级展开
+                        //Đồng thời mở rộng cấp trên
                         var thisParentNode = treeList.Where(p => p.id == treeItem.parentId).FirstOrDefault();
                         if (thisParentNode != null)
                         {
-                            thisParentNode.isexpand = true;  //下级有选中的，这里一定展开之
+                            thisParentNode.isexpand = true;  //Cấp dưới có được chọn，Ở đây nhất định mở rộng nó
                         }
                     }
                 }
             }
-            if (!isShowEmpty)   //不显示多余的
+            if (!isShowEmpty)   //Không hiển thị thừa
             {
-                var count = 1;  //移除的行数
+                var count = 1;  //Số dòng đã loại bỏ
                 while (count > 0)
                 {
                     count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-                    //重新调整下树 移除 没有下级（下级刚被移了） 又 不显示showcheck的
+                    //Điều chỉnh lại cây Loại bỏ Không có cấp dưới（Cấp dưới vừa bị chuyển） lại Không hiển thịshowcheckcủa
                     treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
                 }
             }

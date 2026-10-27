@@ -8,36 +8,36 @@ namespace NewtouchHIS.Lib.Redis
     public class RedisCoreEx : IDisposable
     {
 
-        #region   基础参数
-        //连接字符串
+        #region   Tham số cơ sở
+        //Chuỗi kết nối
         //private readonly string _ConnectStr;
-        //锁
+        //Khóa
         private static readonly object _Locker = new object();
-        //连接的Redis对象
+        //Đối tượng Redis đã kết nối
         internal static IConnectionMultiplexer _ConnMultiplexer;
-        //数据库
+        //cơ sở dữ liệu
         internal static IDatabase _DB;
         #endregion
 
-        #region   公有方法
+        #region   Phương thức công khai
 
         ///// <summary>
-        ///// 构造函数
+        ///// Hàm khởi tạo
         ///// </summary>
-        ///// <param name="connStr">Redis的连接字符串</param>
+        ///// <param name="connStr">Rediscủa chuỗi kết nối</param>
         //public static RedisCoreEx(string connStr)
         //{
         //    if (!string.IsNullOrEmpty(connStr))
         //    {
         //        _ConnectStr = connStr;
-        //        //获取到连接对象
+        //        //Lấy được đối tượng kết nối
         //        GetConnectRedisMultiplexer();
-        //        //添加注册事件
+        //        //Thêm sự kiện đăng ký
         //        //AddRegisterEvent();
         //    }
         //}
         /// <summary>
-        /// 获取到连接的Redis对象
+        /// Lấy được đối tượng Redis đã kết nối
         /// </summary>
         /// <returns></returns>
         protected IConnectionMultiplexer GetConnectRedisMultiplexer(string ConnectStr)
@@ -55,16 +55,16 @@ namespace NewtouchHIS.Lib.Redis
             return _ConnMultiplexer;
         }
         /// <summary>
-        /// 选择数据库
+        /// Chọn cơ sở dữ liệu
         /// </summary>
-        /// <param name="db">数据库编号（默认是编号0的数据库）</param>
+        /// <param name="db">Số hiệu cơ sở dữ liệu (mặc định là cơ sở dữ liệu số 0)</param>
         public static void SelectDB(int db = 0)
         {
             _DB = _ConnMultiplexer.GetDatabase(db);
         }
 
         /// <summary>
-        /// 获取到连接状态
+        /// Lấy được trạng thái kết nối
         /// </summary>
         public static bool ConnetStatus
         {
@@ -82,37 +82,37 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 给键添加前缀
+        /// Thêm tiền tố cho khóa
         /// </summary>
-        /// <param name="prefixName">前缀名称</param>
-        /// <param name="keyName">键名称</param>
-        /// <returns>返回添加前缀后的键</returns>
+        /// <param name="prefixName">Tên tiền tố</param>
+        /// <param name="keyName">Tên khóa</param>
+        /// <returns>Trả về khóa sau khi thêm tiền tố</returns>
         protected static string AddPrefixOfKey(string prefixName, string keyName)
         {
             string str = $"{prefixName}:{keyName}";
             return str;
         }
 
-        //序列化类型
+        //Kiểu tuần tự hóa
         public enum SerializeType
         {
-            Binary,   //二进制
+            Binary,   //Nhị phân
             Json,     //Json
         }
 
 
 
 
-        #region   String 操作
+        #region   String thao tác
 
-        #region   同步方式
+        #region   Phương thức đồng bộ
         /// <summary>
-        /// 添加单个字符串的键值对（key存在则覆盖）
+        /// Thêm một cặp khóa - giá trị chuỗi (nếu key tồn tại thì ghi đè)
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="redisValue">值</param>
-        /// <param name="expiry">时间间隔</param>
-        /// <returns>返回结果（true表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="redisValue">giá trị</param>
+        /// <param name="expiry">khoảng thời gian</param>
+        /// <returns>Kết quả trả về (true nghĩa là thành công)</returns>
         public static bool StringSet(string redisKey, string redisValue, TimeSpan? expiry = null)
         {
             if (ConnetStatus)
@@ -126,11 +126,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 获取键对应值字符串
+        /// Lấy chuỗi giá trị tương ứng với khóa
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="expiry">时间间隔</param>
-        /// <returns>返回结果（true表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="expiry">khoảng thời gian</param>
+        /// <returns>Kết quả trả về (true nghĩa là thành công)</returns>
         public static string StringGet(string redisKey, TimeSpan? expiry = null)
         {
             if (ConnetStatus)
@@ -144,10 +144,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 保存多个多个键值对字符串
+        /// Lưu nhiều cặp khóa - giá trị chuỗi
         /// </summary>
-        /// <param name="keyValuePairs">键值对容器</param>
-        /// <returns>返回结果（true表示成功）</returns>
+        /// <param name="keyValuePairs">Vùng chứa cặp khóa - giá trị</param>
+        /// <returns>Kết quả trả về (true nghĩa là thành công)</returns>
         public static bool StringSet(IEnumerable<KeyValuePair<string, string>> keyValuePairs)
         {
             if (ConnetStatus)
@@ -164,13 +164,13 @@ namespace NewtouchHIS.Lib.Redis
 
 
         /// <summary>
-        /// 存储一个对象（该对象会被序列化保存）
+        /// Lưu trữ một đối tượng (đối tượng này sẽ được tuần tự hóa và lưu)
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="redisValue">值（会被序列化）</param>
-        /// <param name="expiry">时间间隔</param>
-        /// <param name="serializeType">序列化类型（默认序列化为Json）</param>
-        /// <returns>返回结果（true表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="redisValue">Giá trị (sẽ được tuần tự hóa)</param>
+        /// <param name="expiry">khoảng thời gian</param>
+        /// <param name="serializeType">Kiểu tuần tự hóa (mặc định tuần tự hóa thành Json)</param>
+        /// <returns>Kết quả trả về (true nghĩa là thành công)</returns>
         public static bool SetObjString<T>(string redisKey, T redisValue, TimeSpan? expiry = null,
             SerializeType serializeType = SerializeType.Json)
         {
@@ -200,12 +200,12 @@ namespace NewtouchHIS.Lib.Redis
 
 
         /// <summary>
-        /// 获取一个对象（会进行反序列化）
+        /// Lấy một đối tượng (sẽ thực hiện giải tuần tự hóa)
         /// </summary>
-        /// <param name="redisKey">键</param>
+        /// <param name="redisKey">khóa</param>
         /// <param name="expiry"></param>
-        /// <param name="serializeType">序列化类型（默认序列化为Json）</param> 
-        /// <returns>返回结果（true表示成功）</returns>
+        /// <param name="serializeType">Kiểu tuần tự hóa (mặc định tuần tự hóa thành Json)</param> 
+        /// <returns>Kết quả trả về (true nghĩa là thành công)</returns>
         public static T GetObjString<T>(string redisKey, TimeSpan? expiry = null,
             SerializeType serializeType = SerializeType.Json)
         {
@@ -257,15 +257,15 @@ namespace NewtouchHIS.Lib.Redis
         }
         #endregion
 
-        #region 异步方式
+        #region Phương thức bất đồng bộ
 
         /// <summary>
-        /// 保存一个键值对字符串（异步方式）
+        /// Lưu một cặp khóa - giá trị chuỗi (phương thức bất đồng bộ)
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="redisValue">值</param>
-        /// <param name="expiry">时间间隔</param>
-        /// <returns>返回结果（true表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="redisValue">giá trị</param>
+        /// <param name="expiry">khoảng thời gian</param>
+        /// <returns>Kết quả trả về (true nghĩa là thành công)</returns>
         public static async Task<bool> SetStringOfAsync(string redisKey, string redisValue, TimeSpan? expiry = null)
         {
             if (ConnetStatus)
@@ -280,12 +280,12 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 获取单个值
+        /// Lấy một giá trị duy nhất
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="redisValue">值</param>
-        /// <param name="expiry">时间间隔</param>
-        /// <returns>返回结果（true表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="redisValue">giá trị</param>
+        /// <param name="expiry">khoảng thời gian</param>
+        /// <returns>Kết quả trả về (true nghĩa là thành công)</returns>
         public static async Task<string> GetStringOfAsync(string redisKey)
         {
             if (ConnetStatus)
@@ -299,10 +299,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 保存一组字符串值
+        /// Lưu một nhóm giá trị chuỗi
         /// </summary>
-        /// <param name="keyValuePairs">键值对容器</param>
-        /// <returns>返回结果（true表示成功）</returns>
+        /// <param name="keyValuePairs">Vùng chứa cặp khóa - giá trị</param>
+        /// <returns>Kết quả trả về (true nghĩa là thành công)</returns>
         public static async Task<bool> SetStringOfAsync(IEnumerable<KeyValuePair<string, string>> keyValuePairs)
         {
             if (ConnetStatus)
@@ -319,13 +319,13 @@ namespace NewtouchHIS.Lib.Redis
 
 
         /// <summary>
-        /// 存储一个对象（该对象会被序列化保存）
+        /// Lưu trữ một đối tượng (đối tượng này sẽ được tuần tự hóa và lưu)
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="redisValue">值</param>
-        /// <param name="expiry">间隔时间</param>
-        /// <param name="serializeType">序列化类型（默认序列化为Json）</param> 
-        /// <returns>返回结果（true表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="redisValue">giá trị</param>
+        /// <param name="expiry">Khoảng thời gian</param>
+        /// <param name="serializeType">Kiểu tuần tự hóa (mặc định tuần tự hóa thành Json)</param> 
+        /// <returns>Kết quả trả về (true nghĩa là thành công)</returns>
         public static async Task<bool> SetObjStringOfAsync<T>(string redisKey, T redisValue, TimeSpan? expiry = null,
             SerializeType serializeType = SerializeType.Json)
         {
@@ -353,12 +353,12 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 获取一个对象（会进行反序列化）
+        /// Lấy một đối tượng (sẽ thực hiện giải tuần tự hóa)
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="expiry">间隔时间</param>
-        /// <param name="serializeType">序列化类型（默认序列化为Json）</param> 
-        /// <returns>返回结果（true表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="expiry">Khoảng thời gian</param>
+        /// <param name="serializeType">Kiểu tuần tự hóa (mặc định tuần tự hóa thành Json)</param> 
+        /// <returns>Kết quả trả về (true nghĩa là thành công)</returns>
         public static async Task<T> GetObjStringOfAsync<T>(string redisKey, TimeSpan? expiry = null,
             SerializeType serializeType = SerializeType.Json)
         {
@@ -389,15 +389,15 @@ namespace NewtouchHIS.Lib.Redis
         #endregion
 
 
-        #region  Hash 操作
+        #region  Hash thao tác
 
-        #region   同步方式
+        #region   Phương thức đồng bộ
         /// <summary>
-        /// 判断该字段是否存在hash中
+        /// Xác định trường này có tồn tại trong hash không
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashField">字段</param>
-        /// <returns>返回结果（true：表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashField">trường</param>
+        /// <returns>Kết quả trả về (true: nghĩa là thành công)</returns>
         public static bool ExistsHash(string redisKey, string hashField)
         {
             if (ConnetStatus)
@@ -411,11 +411,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 从 hash 中移除指定字段
+        /// Xóa trường chỉ định khỏi hash
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashField">字段</param>
-        /// <returns>返回结果（true：表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashField">trường</param>
+        /// <returns>Kết quả trả về (true: nghĩa là thành công)</returns>
         public static bool DeleteHash(string redisKey, string hashField)
         {
             if (ConnetStatus)
@@ -429,11 +429,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 从 hash 中移除指定字段
+        /// Xóa trường chỉ định khỏi hash
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashFields">字段</param>
-        /// <returns>返回结果（-1：表示失败）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashFields">trường</param>
+        /// <returns>Kết quả trả về (-1: nghĩa là thất bại)</returns>
         public static long DeleteHash(string redisKey, IEnumerable<string> hashFields)
         {
             if (ConnetStatus)
@@ -449,12 +449,12 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在 hash 设定值
+        /// Đặt giá trị trong hash
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashField">字段</param>
-        /// <param name="value">值</param>
-        /// <returns>返回结果（true：表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashField">trường</param>
+        /// <param name="value">giá trị</param>
+        /// <returns>Kết quả trả về (true: nghĩa là thành công)</returns>
         public static bool SetHash(string redisKey, string hashField, string value)
         {
             if (ConnetStatus)
@@ -468,10 +468,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在 hash 中设定值
+        /// Đặt giá trị trong hash
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashFields">字段容器</param>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashFields">Vùng chứa trường</param>
         public static void SetHash(string redisKey, IEnumerable<KeyValuePair<string, string>> hashFields)
         {
             if (ConnetStatus)
@@ -484,11 +484,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在 hash 中获取值
+        /// Lấy giá trị trong hash
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashField">字段</param>
-        /// <returns>返回结果</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashField">trường</param>
+        /// <returns>Kết quả trả về</returns>
         public static string GetHash(string redisKey, string hashField)
         {
             if (ConnetStatus)
@@ -502,11 +502,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在hash获取值
+        /// Lấy giá trị trong hash
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashFields">字段</param>
-        /// <returns>返回结果</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashFields">trường</param>
+        /// <returns>Kết quả trả về</returns>
         public static IEnumerable<string> GetHash(string redisKey, IEnumerable<string> hashFields)
         {
             if (ConnetStatus)
@@ -522,10 +522,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 从 hash 返回所有的字段值
+        /// Trả về tất cả các giá trị trường từ hash
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <returns>返回结果</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <returns>Kết quả trả về</returns>
         public static IEnumerable<string> HashKeys(string redisKey)
         {
             if (ConnetStatus)
@@ -539,10 +539,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 根据键获取hash中的所有值
+        /// Lấy tất cả các giá trị trong hash theo khóa
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <returns>返回hash结果</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <returns>Trả về kết quả hash</returns>
         public static IEnumerable<string> HashValues(string redisKey)
         {
             if (ConnetStatus)
@@ -556,13 +556,13 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在 hash 设定值（序列化）
+        /// Đặt giá trị trong hash (tuần tự hóa)
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashField">字段</param>
-        /// <param name="redisValue">值</param>
-        /// <param name="serializeType">序列化的类型（默认是Json）</param>
-        /// <returns>返回结果（true:表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashField">trường</param>
+        /// <param name="redisValue">giá trị</param>
+        /// <param name="serializeType">Kiểu tuần tự hóa (mặc định là Json)</param>
+        /// <returns>Kết quả trả về (true:nghĩa là thành công)</returns>
         public static bool SetObjHash<T>(string redisKey, string hashField, T redisValue,
             SerializeType serializeType = SerializeType.Json)
         {
@@ -591,11 +591,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在 hash 中获取值（反序列化）
+        /// Lấy giá trị trong hash (giải tuần tự hóa)
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="hashField"></param>
-        /// <param name="serializeType">序列化的类型（默认是Json）</param>
+        /// <param name="serializeType">Kiểu tuần tự hóa (mặc định là Json)</param>
         /// <returns></returns>
         public static T GetObjHash<T>(string redisKey, string hashField,
             SerializeType serializeType = SerializeType.Json)
@@ -623,14 +623,14 @@ namespace NewtouchHIS.Lib.Redis
 
         #endregion
 
-        #region   异步方式
+        #region   Phương thức bất đồng bộ
 
         /// <summary>
-        /// 判断该字段是否存在hash中（异步方式）
+        /// Xác định trường này có tồn tại trong hash không (phương thức bất đồng bộ)
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashField">字段</param>
-        /// <returns>返回结果（true：表示存在）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashField">trường</param>
+        /// <returns>Kết quả trả về (true: nghĩa là tồn tại)</returns>
         public static async Task<bool> ExistsHashOfAsync(string redisKey, string hashField)
         {
             if (ConnetStatus)
@@ -644,11 +644,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 从hash中移除指定字段
+        /// Xóa trường chỉ định khỏi hash
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashField">字段</param>
-        /// <returns>返回结果（true：表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashField">trường</param>
+        /// <returns>Kết quả trả về (true: nghĩa là thành công)</returns>
         public static async Task<bool> DeleteHashOfAsync(string redisKey, string hashField)
         {
             if (ConnetStatus)
@@ -662,11 +662,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 从hash中移除指定字段
+        /// Xóa trường chỉ định khỏi hash
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashFields">字段</param>
-        /// <returns>返回删除结果（-1 表示失败）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashFields">trường</param>
+        /// <returns>Trả về kết quả xóa (-1 nghĩa là thất bại)</returns>
         public static async Task<long> DeleteHashOfAsync(string redisKey, IEnumerable<string> hashFields)
         {
             if (ConnetStatus)
@@ -682,12 +682,12 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在 hash 设定值
+        /// Đặt giá trị trong hash
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashField">字段</param>
-        /// <param name="value">值</param>
-        /// <returns>返回结果（true:表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashField">trường</param>
+        /// <param name="value">giá trị</param>
+        /// <returns>Kết quả trả về (true:nghĩa là thành công)</returns>
         public static async Task<bool> SetHashOfAsync(string redisKey, string hashField, string value)
         {
             if (ConnetStatus)
@@ -701,7 +701,7 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在 hash 中设定值
+        /// Đặt giá trị trong hash
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="hashFields"></param>
@@ -720,11 +720,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在 hash 中获取值
+        /// Lấy giá trị trong hash
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashField">字段</param>
-        /// <returns>返回结果</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashField">trường</param>
+        /// <returns>Kết quả trả về</returns>
         public static async Task<string> GetHashOfAsync(string redisKey, string hashField)
         {
             if (ConnetStatus)
@@ -738,12 +738,12 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在 hash 中获取值
+        /// Lấy giá trị trong hash
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashFields">字段</param>
-        /// <param name="value">值</param>
-        /// <returns>返回结果</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashFields">trường</param>
+        /// <param name="value">giá trị</param>
+        /// <returns>Kết quả trả về</returns>
         public static async Task<IEnumerable<string>> GetHashOfAsync(string redisKey, IEnumerable<string> hashFields,
             string value)
         {
@@ -760,10 +760,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 从 hash 返回所有的字段值
+        /// Trả về tất cả các giá trị trường từ hash
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <returns>返回对应的hash字段值</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <returns>Trả về giá trị trường hash tương ứng</returns>
         public static async Task<IEnumerable<string>> HashKeysOfAsync(string redisKey)
         {
             if (ConnetStatus)
@@ -777,10 +777,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 返回 hash 中的所有值
+        /// Trả về tất cả các giá trị trong hash
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <returns>返回hash中的所有值</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <returns>Trả về tất cả các giá trị trong hash</returns>
         public static async Task<IEnumerable<string>> HashValuesAsync(string redisKey)
         {
             if (ConnetStatus)
@@ -794,13 +794,13 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在 hash 设定值（序列化）
+        /// Đặt giá trị trong hash (tuần tự hóa)
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="hashField">字段</param>
-        /// <param name="value">值</param>
-        /// <param name="serializeType">序列化的类型（默认是Json）</param>
-        /// <returns>返回结果（true:表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="hashField">trường</param>
+        /// <param name="value">giá trị</param>
+        /// <param name="serializeType">Kiểu tuần tự hóa (mặc định là Json)</param>
+        /// <returns>Kết quả trả về (true:nghĩa là thành công)</returns>
         public static async Task<bool> SetObjHashAsync<T>(string redisKey, string hashField, T value,
             SerializeType serializeType = SerializeType.Json)
         {
@@ -827,11 +827,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在 hash 中获取值（反序列化）
+        /// Lấy giá trị trong hash (giải tuần tự hóa)
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="hashField"></param>
-        /// <param name="serializeType">序列化的类型（默认是Json）</param>
+        /// <param name="serializeType">Kiểu tuần tự hóa (mặc định là Json)</param>
         /// <returns></returns>
         public static async Task<T> GetObjHashAsync<T>(string redisKey, string hashField,
             SerializeType serializeType = SerializeType.Json)
@@ -861,14 +861,14 @@ namespace NewtouchHIS.Lib.Redis
         #endregion
 
 
-        #region   List 操作
+        #region   List thao tác
 
-        #region   同步方式
+        #region   Phương thức đồng bộ
 
         /// <summary>
-        /// 移除并返回存储在该键列表的第一个元素
+        /// Xóa và trả về phần tử đầu tiên được lưu trong danh sách của khóa này
         /// </summary>
-        /// <param name="redisKey">键</param>
+        /// <param name="redisKey">khóa</param>
         /// <returns></returns>
         public static string PopFirtKeyOfList(string redisKey)
         {
@@ -883,9 +883,9 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 移除并返回存储在该键列表的最后一个元素
+        /// Xóa và trả về phần tử cuối cùng được lưu trong danh sách của khóa này
         /// </summary>
-        /// <param name="redisKey">键</param>
+        /// <param name="redisKey">khóa</param>
         /// <returns></returns>
         public static string PopLastKeyOfList(string redisKey)
         {
@@ -900,11 +900,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 移除列表指定键上与该值相同的元素
+        /// Xóa phần tử giống với giá trị đó trên khóa chỉ định của danh sách
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="redisValue">值</param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="redisValue">giá trị</param>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static long PopSameKeyOfList(string redisKey, string redisValue)
         {
             if (ConnetStatus)
@@ -918,11 +918,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在列表尾部插入值。如果键不存在，先创建再插入值
+        /// Chèn giá trị vào cuối danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="redisValue">值</param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="redisValue">giá trị</param>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static long PushKeyOfListLast(string redisKey, string redisValue)
         {
             if (ConnetStatus)
@@ -936,11 +936,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在列表头部插入值。如果键不存在，先创建再插入值
+        /// Chèn giá trị vào đầu danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="redisValue">值</param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="redisValue">giá trị</param>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static long PushKeyOfListFirst(string redisKey, string redisValue)
         {
             if (ConnetStatus)
@@ -955,10 +955,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 返回列表上该键的长度，如果不存在，返回 0
+        /// Trả về độ dài của khóa này trên danh sách, nếu không tồn tại, trả về 0
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static long GetKeyLengthOfList(string redisKey)
         {
             if (ConnetStatus)
@@ -972,11 +972,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 返回在该列表上键所对应的元素
+        /// Trả về phần tử tương ứng với khóa trên danh sách này
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="start">起始点</param>
-        /// <param name="stop">停止点</param>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="start">Điểm bắt đầu</param>
+        /// <param name="stop">Điểm dừng</param>
         /// <returns></returns>
         public static IEnumerable<string> ListRange(string redisKey, long start = 0L, long stop = -1L)
         {
@@ -991,11 +991,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 移除并返回存储在该键列表的第一个元素对象
+        /// Xóa và trả về đối tượng phần tử đầu tiên được lưu trong danh sách của khóa này
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="serializeType">序列化类型（默认是Json）</param>
-        /// <returns>返回反序列化后对象</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="serializeType">Kiểu tuần tự hóa (mặc định là Json)</param>
+        /// <returns>Trả về đối tượng sau khi giải tuần tự hóa</returns>
         public static T PopFirstKeyObjOfList<T>(string redisKey, SerializeType serializeType = SerializeType.Json)
         {
             if (ConnetStatus)
@@ -1019,11 +1019,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 移除并返回存储在该键列表的最后一个元素对象
+        /// Xóa và trả về đối tượng phần tử cuối cùng được lưu trong danh sách của khóa này
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="serializeType">序列化类型（默认是Json）</param>
-        /// <returns>返回反序列化后的对象</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="serializeType">Kiểu tuần tự hóa (mặc định là Json)</param>
+        /// <returns>Trả về đối tượng sau khi giải tuần tự hóa</returns>
         public static T PopLastKeyObjOfList<T>(string redisKey, SerializeType serializeType = SerializeType.Json)
         {
             if (ConnetStatus)
@@ -1045,11 +1045,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在列表尾部插入值。如果键不存在，先创建再插入值
+        /// Chèn giá trị vào cuối danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="redisValue"></param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static long PushKeyOfListLast<T>(string redisKey, T redisValue)
         {
             if (ConnetStatus)
@@ -1063,11 +1063,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在列表头部插入值。如果键不存在，先创建再插入值
+        /// Chèn giá trị vào đầu danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="redisValue"></param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static long PushKeyOfListHead<T>(string redisKey, T redisValue)
         {
             if (ConnetStatus)
@@ -1082,10 +1082,10 @@ namespace NewtouchHIS.Lib.Redis
 
         #endregion
 
-        #region    异步方式
+        #region    Phương thức bất đồng bộ
 
         /// <summary>
-        /// 移除并返回存储在该键列表的第一个元素
+        /// Xóa và trả về phần tử đầu tiên được lưu trong danh sách của khóa này
         /// </summary>
         /// <param name="redisKey"></param>
         /// <returns></returns>
@@ -1102,9 +1102,9 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 移除并返回存储在该键列表的最后一个元素
+        /// Xóa và trả về phần tử cuối cùng được lưu trong danh sách của khóa này
         /// </summary>
-        /// <param name="redisKey">键</param>
+        /// <param name="redisKey">khóa</param>
         /// <returns></returns>
         public static async Task<string> PopLastKeyOfListAsync(string redisKey)
         {
@@ -1120,11 +1120,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 移除列表指定键上与该值相同的元素
+        /// Xóa phần tử giống với giá trị đó trên khóa chỉ định của danh sách
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="redisValue">值</param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="redisValue">giá trị</param>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static async Task<long> PopSameKeyOfListAsync(string redisKey, string redisValue)
         {
             if (ConnetStatus)
@@ -1138,11 +1138,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在列表尾部插入值。如果键不存在，先创建再插入值
+        /// Chèn giá trị vào cuối danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="redisValue">值</param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="redisValue">giá trị</param>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static async Task<long> PushKeyOfListLastAsync(string redisKey, string redisValue)
         {
             if (ConnetStatus)
@@ -1156,11 +1156,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在列表头部插入值。如果键不存在，先创建再插入值
+        /// Chèn giá trị vào đầu danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="redisValue">值</param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="redisValue">giá trị</param>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static async Task<long> PushKeyOfListHeadAsync(string redisKey, string redisValue)
         {
             if (ConnetStatus)
@@ -1175,10 +1175,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 返回列表上该键的长度，如果不存在，返回 0
+        /// Trả về độ dài của khóa này trên danh sách, nếu không tồn tại, trả về 0
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static async Task<long> GetKeyLengthOfListAsync(string redisKey)
         {
             if (ConnetStatus)
@@ -1192,9 +1192,9 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 返回在该列表上键所对应的元素
+        /// Trả về phần tử tương ứng với khóa trên danh sách này
         /// </summary>
-        /// <param name="redisKey">键</param>
+        /// <param name="redisKey">khóa</param>
         /// <param name="start"></param>
         /// <param name="stop"></param>
         /// <returns></returns>
@@ -1212,11 +1212,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 移除并返回存储在该键列表的第一个元素对象
+        /// Xóa và trả về đối tượng phần tử đầu tiên được lưu trong danh sách của khóa này
         /// </summary>
         /// <param name="redisKey"></param>
-        /// <param name="serializeType">序列化类型（默认是Json）</param>
-        /// <returns>返回反序列化后的对象</returns>
+        /// <param name="serializeType">Kiểu tuần tự hóa (mặc định là Json)</param>
+        /// <returns>Trả về đối tượng sau khi giải tuần tự hóa</returns>
         public static async Task<T> PopFirstKeyObjOfListAsync<T>(string redisKey, SerializeType serializeType = SerializeType.Json)
         {
             if (ConnetStatus)
@@ -1239,11 +1239,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 移除并返回存储在该键列表的最后一个元素对象
+        /// Xóa và trả về đối tượng phần tử cuối cùng được lưu trong danh sách của khóa này
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="serializeType">序列化类型（默认是Json）</param>
-        /// <returns>返回反序列化后的对象</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="serializeType">Kiểu tuần tự hóa (mặc định là Json)</param>
+        /// <returns>Trả về đối tượng sau khi giải tuần tự hóa</returns>
         public static async Task<T> PopLastKeyObjOfListAsync<T>(string redisKey, SerializeType serializeType = SerializeType.Json)
         {
             if (ConnetStatus)
@@ -1266,11 +1266,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在列表尾部插入值。如果键不存在，先创建再插入值
+        /// Chèn giá trị vào cuối danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="redisValue">值</param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="redisValue">giá trị</param>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static async Task<long> PushKeyOfListLastAsync<T>(string redisKey, T redisValue)
         {
             if (ConnetStatus)
@@ -1285,11 +1285,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在列表头部插入值。如果键不存在，先创建再插入值
+        /// Chèn giá trị vào đầu danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="redisValue">值</param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="redisValue">giá trị</param>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static async Task<long> PushKeyOfListHeadAsync<T>(string redisKey, T redisValue)
         {
             if (ConnetStatus)
@@ -1308,13 +1308,13 @@ namespace NewtouchHIS.Lib.Redis
         #endregion
 
 
-        #region SortedSet 操作
+        #region SortedSet thao tác
 
-        #region   同步方式
+        #region   Phương thức đồng bộ
         /// <summary>
-        /// SortedSet 新增
+        /// SortedSet Thêm mới
         /// </summary>
-        /// <param name="redisKey">键</param>
+        /// <param name="redisKey">khóa</param>
         /// <param name="member"></param>
         /// <param name="score"></param>
         /// <returns></returns>
@@ -1331,7 +1331,7 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在有序集合中返回指定范围的元素，默认情况下从低到高
+        /// Trả về các phần tử trong phạm vi chỉ định trong tập hợp có thứ tự, mặc định từ thấp đến cao
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="start"></param>
@@ -1352,10 +1352,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 返回有序集合的元素个数
+        /// Trả về số lượng phần tử của tập hợp có thứ tự
         /// </summary>
         /// <param name="redisKey"></param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static long SortedSetLength(string redisKey)
         {
             if (ConnetStatus)
@@ -1370,11 +1370,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 返回有序集合的元素个数
+        /// Trả về số lượng phần tử của tập hợp có thứ tự
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="memebr"></param>
-        /// <returns>返回结果（true:表示成功）</returns>
+        /// <returns>Kết quả trả về (true:nghĩa là thành công)</returns>
         public static bool SortedSetLength(string redisKey, string memebr)
         {
             if (ConnetStatus)
@@ -1388,12 +1388,12 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// SortedSet 新增
+        /// SortedSet Thêm mới
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="member"></param>
         /// <param name="score"></param>
-        /// <returns>返回结果（true:表示成功）</returns>
+        /// <returns>Kết quả trả về (true:nghĩa là thành công)</returns>
         public static bool SortedSetAdd<T>(string redisKey, T member, double score)
         {
             if (ConnetStatus)
@@ -1410,12 +1410,12 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 增量的得分排序的集合中的成员存储键值键按增量
+        /// Thành viên trong tập hợp được sắp xếp theo điểm tăng dần lưu trữ khóa - giá trị theo mức tăng
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="member"></param>
         /// <param name="value"></param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static double SortedSetIncrement(string redisKey, string member, double value = 1)
         {
             if (ConnetStatus)
@@ -1431,15 +1431,15 @@ namespace NewtouchHIS.Lib.Redis
 
         #endregion
 
-        #region  异步方式
+        #region  Phương thức bất đồng bộ
 
         /// <summary>
-        /// SortedSet 新增
+        /// SortedSet Thêm mới
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="member"></param>
         /// <param name="score"></param>
-        /// <returns>返回结果（true:表示成功）</returns>
+        /// <returns>Kết quả trả về (true:nghĩa là thành công)</returns>
         public static async Task<bool> SortedSetAddAsync(string redisKey, string member, double score)
         {
             if (ConnetStatus)
@@ -1453,7 +1453,7 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 在有序集合中返回指定范围的元素，默认情况下从低到高。
+        /// Trả về các phần tử trong phạm vi chỉ định trong tập hợp có thứ tự, mặc định từ thấp đến cao.
         /// </summary>
         /// <param name="redisKey"></param>
         /// <returns></returns>
@@ -1470,10 +1470,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 返回有序集合的元素个数
+        /// Trả về số lượng phần tử của tập hợp có thứ tự
         /// </summary>
         /// <param name="redisKey"></param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static async Task<long> SortedSetLengthAsync(string redisKey)
         {
             if (ConnetStatus)
@@ -1487,11 +1487,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 返回有序集合的元素个数
+        /// Trả về số lượng phần tử của tập hợp có thứ tự
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="memebr"></param>
-        /// <returns>返回结果（true:表示成功）</returns>
+        /// <returns>Kết quả trả về (true:nghĩa là thành công)</returns>
         public static async Task<bool> SortedSetRemoveAsync(string redisKey, string memebr)
         {
             if (ConnetStatus)
@@ -1505,7 +1505,7 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// SortedSet 新增
+        /// SortedSet Thêm mới
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="member"></param>
@@ -1525,12 +1525,12 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 增量的得分排序的集合中的成员存储键值键按增量
+        /// Thành viên trong tập hợp được sắp xếp theo điểm tăng dần lưu trữ khóa - giá trị theo mức tăng
         /// </summary>
         /// <param name="redisKey"></param>
         /// <param name="member"></param>
         /// <param name="value"></param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static async Task<double> SortedSetIncrementAsync(string redisKey, string member, double value = 1)
         {
             if (ConnetStatus)
@@ -1546,7 +1546,7 @@ namespace NewtouchHIS.Lib.Redis
         #endregion
 
         /// <summary>
-        /// Redis 排序类型
+        /// Redis Loại sắp xếp
         /// </summary>
         public enum OrderType
         {
@@ -1557,15 +1557,15 @@ namespace NewtouchHIS.Lib.Redis
         #endregion
 
 
-        #region   Key 操作
+        #region   Key thao tác
 
-        #region   同步方式
+        #region   Phương thức đồng bộ
 
         /// <summary>
-        /// 删除指定Key
+        /// Xóa chỉ địnhKey
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <returns>返回结果（true：表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <returns>Kết quả trả về (true: nghĩa là thành công)</returns>
         public static bool DeleteKey(string redisKey)
         {
             if (ConnetStatus)
@@ -1580,10 +1580,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 删除指定Key列表
+        /// Xóa danh sách Key chỉ định
         /// </summary>
-        /// <param name="redisKeys">键容器</param>
-        /// <returns>移除指定键的数量(-1:表示失败)</returns>
+        /// <param name="redisKeys">Vùng chứa khóa</param>
+        /// <returns>Số lượng khóa chỉ định đã xóa(-1:nghĩa là thất bại)</returns>
         public static long DeleteKey(IEnumerable<string> redisKeys)
         {
             if (ConnetStatus)
@@ -1598,10 +1598,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 检查Key是否存在
+        /// Kiểm tra Key có tồn tại không
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <returns>返回结果（true：表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <returns>Kết quả trả về (true: nghĩa là thành công)</returns>
         public static bool ExistsKey(string redisKey)
         {
             if (ConnetStatus)
@@ -1615,11 +1615,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 重命名Key
+        /// Đổi tênKey
         /// </summary>
-        /// <param name="redisKey">原来的键</param>
-        /// <param name="redisNewKey">新的键名</param>
-        /// <returns>返回结果（true：表示成功）</returns>
+        /// <param name="redisKey">Khóa ban đầu</param>
+        /// <param name="redisNewKey">Tên khóa mới</param>
+        /// <returns>Kết quả trả về (true: nghĩa là thành công)</returns>
         public static bool RenameKey(string redisKey, string redisNewKey)
         {
             if (ConnetStatus)
@@ -1633,11 +1633,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 设置 Key 的时间
+        /// Thiết lập thời gian của Key
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="expiry">时间间隔</param>
-        /// <returns>返回结果（true：表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="expiry">khoảng thời gian</param>
+        /// <returns>Kết quả trả về (true: nghĩa là thành công)</returns>
         public static bool SetKeyExpire(string redisKey, TimeSpan? expiry)
         {
             if (ConnetStatus)
@@ -1653,13 +1653,13 @@ namespace NewtouchHIS.Lib.Redis
 
         #endregion
 
-        #region   异步方式
+        #region   Phương thức bất đồng bộ
 
         /// <summary>
-        /// 移除指定 Key
+        /// Xóa chỉ định Key
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <returns>返回结果（true：表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <returns>Kết quả trả về (true: nghĩa là thành công)</returns>
         public static async Task<bool> DeleteKeyAsync(string redisKey)
         {
             if (ConnetStatus)
@@ -1673,10 +1673,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 删除指定 Key 列表
+        /// Xóa danh sách Key chỉ định
         /// </summary>
-        /// <param name="redisKeys">键</param>
-        /// <returns>返回结果（-1 表示失败）</returns>
+        /// <param name="redisKeys">khóa</param>
+        /// <returns>Kết quả trả về (-1 nghĩa là thất bại)</returns>
         public static async Task<long> DeleteKeyAsync(IEnumerable<string> redisKeys)
         {
             if (ConnetStatus)
@@ -1692,10 +1692,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 检查 Key 是否存在
+        /// Kiểm tra Key có tồn tại không
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <returns>返回结果（true：表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <returns>Kết quả trả về (true: nghĩa là thành công)</returns>
         public static async Task<bool> ExistsKeyAsync(string redisKey)
         {
             if (ConnetStatus)
@@ -1710,11 +1710,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 重命名 Key
+        /// Đổi tên Key
         /// </summary>
-        /// <param name="redisKey">旧的键名称</param>
-        /// <param name="redisNewKey">新的键名称</param>
-        /// <returns>返回结果（true：表示成功）</returns>
+        /// <param name="redisKey">Tên khóa cũ</param>
+        /// <param name="redisNewKey">Tên khóa mới</param>
+        /// <returns>Kết quả trả về (true: nghĩa là thành công)</returns>
         public static async Task<bool> RenameKeyAsync(string redisKey, string redisNewKey)
         {
             if (ConnetStatus)
@@ -1728,11 +1728,11 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 设置 Key 的时间
+        /// Thiết lập thời gian của Key
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="expiry">间隔时间</param>
-        /// <returns>返回结果（true：表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="expiry">Khoảng thời gian</param>
+        /// <returns>Kết quả trả về (true: nghĩa là thành công)</returns>
         public static async Task<bool> SetKeyExpireAsync(string redisKey, TimeSpan? expiry)
         {
             if (ConnetStatus)
@@ -1751,11 +1751,11 @@ namespace NewtouchHIS.Lib.Redis
         #endregion
 
 
-        #region 发布订阅
+        #region Xuất bản - Đăng ký nhận
 
-        #region   同步方式
+        #region   Phương thức đồng bộ
         ///// <summary>
-        ///// 订阅
+        ///// Đăng ký nhận
         ///// </summary>
         ///// <param name="channel"></param>
         ///// <param name="handle"></param>
@@ -1766,7 +1766,7 @@ namespace NewtouchHIS.Lib.Redis
         //}
 
         ///// <summary>
-        ///// 发布
+        ///// Xuất bản
         ///// </summary>
         ///// <param name="channel"></param>
         ///// <param name="message"></param>
@@ -1778,7 +1778,7 @@ namespace NewtouchHIS.Lib.Redis
         //}
 
         ///// <summary>
-        ///// 发布（使用序列化）
+        ///// Xuất bản (sử dụng tuần tự hóa)
         ///// </summary>
         ///// <typeparam name="T"></typeparam>
         ///// <param name="channel"></param>
@@ -1792,10 +1792,10 @@ namespace NewtouchHIS.Lib.Redis
 
         #endregion
 
-        #region 异步方式
+        #region Phương thức bất đồng bộ
 
         ///// <summary>
-        ///// 订阅
+        ///// Đăng ký nhận
         ///// </summary>
         ///// <param name="channel"></param>
         ///// <param name="handle"></param>
@@ -1806,7 +1806,7 @@ namespace NewtouchHIS.Lib.Redis
         //}
 
         ///// <summary>
-        ///// 发布
+        ///// Xuất bản
         ///// </summary>
         ///// <param name="channel"></param>
         ///// <param name="message"></param>
@@ -1818,7 +1818,7 @@ namespace NewtouchHIS.Lib.Redis
         //}
 
         ///// <summary>
-        ///// 发布（使用序列化）
+        ///// Xuất bản (sử dụng tuần tự hóa)
         ///// </summary>
         ///// <typeparam name="T"></typeparam>
         ///// <param name="channel"></param>
@@ -1838,14 +1838,14 @@ namespace NewtouchHIS.Lib.Redis
         #endregion
 
 
-        #region   私有方法
+        #region   Phương thức riêng tư
         
 
 
-        #region 注册事件
+        #region Đăng ký sự kiện
 
         /// <summary>
-        /// 添加注册事件
+        /// Thêm sự kiện đăng ký
         /// </summary>
         private static void AddRegisterEvent()
         {
@@ -1859,7 +1859,7 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 重新配置广播时（通常意味着主从同步更改）
+        /// Khi phát sóng cấu hình lại (thường có nghĩa là thay đổi đồng bộ chính - phụ)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1869,7 +1869,7 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 发生内部错误时（主要用于调试）
+        /// Khi xảy ra lỗi nội bộ (chủ yếu dùng để gỡ lỗi)
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1879,7 +1879,7 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 更改集群时
+        /// Khi thay đổi cụm
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1890,7 +1890,7 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 配置更改时
+        /// Khi cấu hình thay đổi
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1900,7 +1900,7 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 发生错误时
+        /// Khi xảy ra lỗi
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1910,7 +1910,7 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 物理连接失败时
+        /// Khi kết nối vật lý thất bại
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1920,7 +1920,7 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 建立物理连接时
+        /// Khi thiết lập kết nối vật lý
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -1929,15 +1929,15 @@ namespace NewtouchHIS.Lib.Redis
             Console.WriteLine($"{nameof(ConnMultiplexer_ConnectionRestored)}: {e.Exception}");
         }
 
-        #endregion 注册事件
+        #endregion Đăng ký sự kiện
 
 
         /// <summary>
-        /// 转换为字符串
+        /// Chuyển đổi thành chuỗi
         /// </summary>
-        /// <typeparam name="T">数据类型</typeparam>
-        /// <param name="list">数据列表</param>
-        /// <returns>返回转为字符串后的数据列表</returns>
+        /// <typeparam name="T">Loại dữ liệu</typeparam>
+        /// <param name="list">Danh sách dữ liệu</param>
+        /// <returns>Trả về danh sách dữ liệu sau khi chuyển thành chuỗi</returns>
         private static IEnumerable<string> ConvertStrings<T>(IEnumerable<T> list) where T : struct
         {
             if (list == null) throw new ArgumentNullException(nameof(list));
@@ -1945,7 +1945,7 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 序列化（二进制）
+        /// Tuần tự hóa (nhị phân)
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -1965,7 +1965,7 @@ namespace NewtouchHIS.Lib.Redis
 
 
         /// <summary>
-        /// 反序列化（二进制）
+        /// Giải tuần tự hóa (nhị phân)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="data"></param>
@@ -1985,11 +1985,11 @@ namespace NewtouchHIS.Lib.Redis
 
 
         /// <summary>
-        /// 序列化对象为Json字符串
+        /// Tuần tự hóa đối tượng thành chuỗi Json
         /// </summary>
-        /// <typeparam name="T">实体类型</typeparam>
-        /// <param name="obj">实体对象</param>
-        /// <returns>返回序列化的字符串</returns>
+        /// <typeparam name="T">Loại thực thể</typeparam>
+        /// <param name="obj">Đối tượng thực thể</param>
+        /// <returns>Trả về chuỗi đã tuần tự hóa</returns>
         private static string SerializeJson<T>(T obj)
         {
             string tmp = null;
@@ -2001,10 +2001,10 @@ namespace NewtouchHIS.Lib.Redis
         }
 
         /// <summary>
-        /// 反序列化Json字符串为对象
+        /// Giải tuần tự hóa chuỗi Json thành đối tượng
         /// </summary>
-        /// <typeparam name="T">实体类型</typeparam>
-        /// <param name="strjson">字符串</param>
+        /// <typeparam name="T">Loại thực thể</typeparam>
+        /// <param name="strjson">chuỗi</param>
         /// <returns></returns>
         private static T DeserializeJson<T>(string strjson)
         {
@@ -2032,53 +2032,53 @@ namespace NewtouchHIS.Lib.Redis
 #region 
 
 /***
-*	Title："数据采集" 项目
-*		主题：Redis帮助类
-*	Description：
-*		功能：
-*		    1、设置连接字符串、选择数据库、获取到连接状态
-*		    2、给键添加前缀
-*		    3、String操作
-*		     【同步（①保存单个键值对）（②根据键获取到对应的值）（③同时保存多个键值对）（④存储一个对象）（⑤获取一个对象）】
+*	Title:"Thu thập dữ liệu" dự án
+*		Chủ đề: Lớp hỗ trợ Redis
+*	Description:
+*		Chức năng:
+*		    1, Thiết lập chuỗi kết nối, chọn cơ sở dữ liệu, lấy trạng thái kết nối
+*		    2, Thêm tiền tố cho khóa
+*		    3, Thao tác String
+*		     [Đồng bộ ((1)Lưu một cặp khóa - giá trị duy nhất)((2)Lấy giá trị tương ứng theo khóa)((3)Đồng thời lưu nhiều cặp khóa - giá trị)((4)Lưu trữ một đối tượng)((5)Lấy một đối tượng)]
 *		     
-*		     【异步（①保存单个键值对）（②根据键获取到对应的值）（③同时保存多个键值对）（④存储一个对象）（⑤获取一个对象）】
-*		    4、Hash操作
-*		     【同步（①判断单个键值对是否存在Hash中）（②从Hash中移除单个键值对）（③从Hash中同时移除单个键对应的多个字段列表）（④在Hash中指定值）
-*		     （⑤在Hash中同时添加单个键指定的多个字段列表）（⑥在Hash中获取单个键、字段对应的值）（⑦在Hash中同时获取单个键对应的指定字段）
-*		     （⑧在Hash中获取单个键对应的所有字段）（⑨在Hash中获取单个键对应的所有值）（⑩在Hash中给单个键的单个字段添加一个对象值）（⑩①在Hash中获取单个键单个字段对应的对象值）】
+*		     [Bất đồng bộ ((1)Lưu một cặp khóa - giá trị duy nhất)((2)Lấy giá trị tương ứng theo khóa)((3)Đồng thời lưu nhiều cặp khóa - giá trị)((4)Lưu trữ một đối tượng)((5)Lấy một đối tượng)]
+*		    4, Thao tác Hash
+*		     [Đồng bộ ((1)Xác định một cặp khóa - giá trị duy nhất có tồn tại trong Hash không)((2)Xóa một cặp khóa - giá trị duy nhất khỏi Hash)((3)Đồng thời xóa danh sách nhiều trường tương ứng với một khóa duy nhất khỏi Hash)((4)Chỉ định giá trị trong Hash)
+*		     ((5)Đồng thời thêm danh sách nhiều trường do một khóa duy nhất chỉ định trong Hash)((6)Lấy giá trị tương ứng với khóa, trường duy nhất trong Hash)((7)Đồng thời lấy trường chỉ định tương ứng với khóa duy nhất trong Hash)
+*		     ((8)Lấy tất cả các trường tương ứng với khóa duy nhất trong Hash)((9)Lấy tất cả các giá trị tương ứng với khóa duy nhất trong Hash)((10)Thêm một giá trị đối tượng cho một trường duy nhất của một khóa duy nhất trong Hash)((11)Lấy giá trị đối tượng tương ứng với một trường duy nhất của một khóa duy nhất trong Hash)]
 *		     
-*		     【异步（①判断单个键值对是否存在Hash中）（②从Hash中移除单个键值对）（③从Hash中同时移除单个键对应的多个字段列表）（④在Hash中指定值）
-*		     （⑤在Hash中同时添加单个键指定的多个字段列表）（⑥在Hash中获取单个键、字段对应的值）（⑦在Hash中同时获取单个键对应的指定字段）
-*		     （⑧在Hash中获取单个键对应的所有字段）（⑨在Hash中获取单个键对应的所有值）（⑩在Hash中给单个键的单个字段添加一个对象值）（⑩①在Hash中获取单个键单个字段对应的对象值）】
-*		    5、List操作
-*		     【同步（①移除并返回列表中该键对应的第一个元素）(②移除并返回列表中该键对应的最后一个元素)（③移除列表中指定键与该值相同的元素）
-*		     （④在列表尾部插入值。如果键不存在，先创建再插入值）（⑤在列表头部插入值。如果键不存在，先创建再插入值）（⑥返回列表上该键的长度，如果不存在，返回 0）
-*		     （⑦返回在该列表上键所对应的起止点元素）（⑧移除并返回存储在该键列表的第一个元素对象）（⑨移除并返回存储在该键列表的最后一个元素对象）
-*		     （⑩在列表尾部插入值。如果键不存在，先创建再插入值）（⑩①在列表头部插入值。如果键不存在，先创建再插入值）】
+*		     [Bất đồng bộ ((1)Xác định một cặp khóa - giá trị duy nhất có tồn tại trong Hash không)((2)Xóa một cặp khóa - giá trị duy nhất khỏi Hash)((3)Đồng thời xóa danh sách nhiều trường tương ứng với một khóa duy nhất khỏi Hash)((4)Chỉ định giá trị trong Hash)
+*		     ((5)Đồng thời thêm danh sách nhiều trường do một khóa duy nhất chỉ định trong Hash)((6)Lấy giá trị tương ứng với khóa, trường duy nhất trong Hash)((7)Đồng thời lấy trường chỉ định tương ứng với khóa duy nhất trong Hash)
+*		     ((8)Lấy tất cả các trường tương ứng với khóa duy nhất trong Hash)((9)Lấy tất cả các giá trị tương ứng với khóa duy nhất trong Hash)((10)Thêm một giá trị đối tượng cho một trường duy nhất của một khóa duy nhất trong Hash)((11)Lấy giá trị đối tượng tương ứng với một trường duy nhất của một khóa duy nhất trong Hash)]
+*		    5, Thao tác List
+*		     [Đồng bộ ((1)Xóa và trả về phần tử đầu tiên tương ứng với khóa này trong danh sách)((2)Xóa và trả về phần tử cuối cùng tương ứng với khóa này trong danh sách)((3)Xóa phần tử giống với giá trị đó trên khóa chỉ định trong danh sách)
+*		     ((4)Chèn giá trị vào cuối danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị)((5)Chèn giá trị vào đầu danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị)((6)Trả về độ dài của khóa này trên danh sách, nếu không tồn tại, trả về 0)
+*		     ((7)Trả về phần tử điểm bắt đầu - điểm kết thúc tương ứng với khóa trên danh sách này)((8)Xóa và trả về đối tượng phần tử đầu tiên được lưu trong danh sách của khóa này)((9)Xóa và trả về đối tượng phần tử cuối cùng được lưu trong danh sách của khóa này
+*		     ((10)Chèn giá trị vào cuối danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị)((11)Chèn giá trị vào đầu danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị)]
 *		     
-*		     【异步（①移除并返回列表中该键对应的第一个元素）(②移除并返回列表中该键对应的最后一个元素)（③移除列表中指定键与该值相同的元素）
-*		     （④在列表尾部插入值。如果键不存在，先创建再插入值）（⑤在列表头部插入值。如果键不存在，先创建再插入值）（⑥返回列表上该键的长度，如果不存在，返回 0）
-*		     （⑦返回在该列表上键所对应的起止点元素）（⑧移除并返回存储在该键列表的第一个元素对象）（⑨移除并返回存储在该键列表的最后一个元素对象）
-*		     （⑩在列表尾部插入值。如果键不存在，先创建再插入值）（⑩①在列表头部插入值。如果键不存在，先创建再插入值）】
-*		    6、SortedSet操作
-*		     【同步（① SortedSet 新增）（②在有序集合中返回指定范围的元素，默认情况下从低到高）（③返回有序集合的元素个数）（④返回有序集合的元素个数）
-*		     （⑤SortedSet 新增）（⑥增量的得分排序的集合中的成员存储键值键按增量）】
+*		     [Bất đồng bộ ((1)Xóa và trả về phần tử đầu tiên tương ứng với khóa này trong danh sách)((2)Xóa và trả về phần tử cuối cùng tương ứng với khóa này trong danh sách)((3)Xóa phần tử giống với giá trị đó trên khóa chỉ định trong danh sách)
+*		     ((4)Chèn giá trị vào cuối danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị)((5)Chèn giá trị vào đầu danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị)((6)Trả về độ dài của khóa này trên danh sách, nếu không tồn tại, trả về 0)
+*		     ((7)Trả về phần tử điểm bắt đầu - điểm kết thúc tương ứng với khóa trên danh sách này)((8)Xóa và trả về đối tượng phần tử đầu tiên được lưu trong danh sách của khóa này)((9)Xóa và trả về đối tượng phần tử cuối cùng được lưu trong danh sách của khóa này
+*		     ((10)Chèn giá trị vào cuối danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị)((11)Chèn giá trị vào đầu danh sách. Nếu khóa không tồn tại, tạo trước rồi chèn giá trị)]
+*		    6, Thao tác SortedSet
+*		     [Đồng bộ ((1) SortedSet Thêm mới)((2)Trả về các phần tử trong phạm vi chỉ định trong tập hợp có thứ tự, mặc định từ thấp đến cao)((3)Trả về số lượng phần tử của tập hợp có thứ tự)((4)Trả về số lượng phần tử của tập hợp có thứ tự)
+*		     ((5)SortedSet Thêm mới)((6)Thành viên trong tập hợp được sắp xếp theo điểm tăng dần lưu trữ khóa - giá trị theo mức tăng)]
 *		     
-*		     【异步（① SortedSet 新增）（②在有序集合中返回指定范围的元素，默认情况下从低到高）（③返回有序集合的元素个数）（④返回有序集合的元素个数）
-*		     （⑤SortedSet 新增）（⑥增量的得分排序的集合中的成员存储键值键按增量）】
-*		    7、Key操作
-*		     【同步（①删除指定Key）（②删除指定Key列表）（③检查Key是否存在）（④重命名Key）（⑤设置Key的时间）】
+*		     [Bất đồng bộ ((1) SortedSet Thêm mới)((2)Trả về các phần tử trong phạm vi chỉ định trong tập hợp có thứ tự, mặc định từ thấp đến cao)((3)Trả về số lượng phần tử của tập hợp có thứ tự)((4)Trả về số lượng phần tử của tập hợp có thứ tự)
+*		     ((5)SortedSet Thêm mới)((6)Thành viên trong tập hợp được sắp xếp theo điểm tăng dần lưu trữ khóa - giá trị theo mức tăng)]
+*		    7, Thao tác Key
+*		     [Đồng bộ ((1)Xóa Key chỉ định)((2)Xóa danh sách Key chỉ định)((3)Kiểm tra Key có tồn tại không)((4)Đổi tên Key)((5)Thiết lập thời gian của Key)]
 *		     
-*		     【异步（①删除指定Key）（②删除指定Key列表）（③检查Key是否存在）（④重命名Key）（⑤设置Key的时间）】
-*		    8、发布订阅
-*		     【同步（①订阅）（②发布）】
+*		     [Bất đồng bộ ((1)Xóa Key chỉ định)((2)Xóa danh sách Key chỉ định)((3)Kiểm tra Key có tồn tại không)((4)Đổi tên Key)((5)Thiết lập thời gian của Key)]
+*		    8, Xuất bản - Đăng ký nhận
+*		     [Đồng bộ ((1)Đăng ký nhận)((2)Xuất bản)]
 *		     
-*		     【异步（①订阅）（②发布）】
+*		     [Bất đồng bộ ((1)Đăng ký nhận)((2)Xuất bản)]
 *		     
-*	Date：2021
-*	Version：0.1版本
-*	Author：Coffee
-*	Modify Recoder：
+*	Date:2021
+*	Version: 0.1 phiên bản
+*	Author:Coffee
+*	Modify Recoder:
 ————————————————
 版权声明：本文为CSDN博主「牛奶咖啡13」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
 原文链接：https://blog.csdn.net/xiaochenXIHUA/article/details/117589909*/

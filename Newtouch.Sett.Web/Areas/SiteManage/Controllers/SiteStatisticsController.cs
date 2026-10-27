@@ -18,7 +18,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
 {
 
     /// <summary>
-    /// 站点统计
+    /// Thống kê trạm
     /// </summary>
     [Area("SiteManage")]
 
@@ -39,10 +39,10 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
 
-        #region 收 chi Thống kê Phê duyệt
+        #region thu chi Thống kê Phê duyệt
 
         /// <summary>
-        /// 获取待审收支统计数据
+        /// đượclấychờxét duyệtthuchithốngtínhsốdữ liệu
         /// </summary>
         /// <returns></returns>
         public IActionResult GetAwaitingTrialSiteStatisticsGridJson()
@@ -51,7 +51,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 审核 统计 视图
+        /// Phê duyệt Thống kê khung nhìn
         /// </summary>
         /// <returns></returns>
         public IActionResult VerifySiteStatistics()
@@ -60,7 +60,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 审核 统计明细 视图
+        /// Phê duyệt thốngtínhrõchi tiết khung nhìn
         /// </summary>
         /// <returns></returns>
         public IActionResult VerifySiteStatisticsDetail()
@@ -71,10 +71,10 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
 
         #endregion
 
-        #region 收 chi Thống kê Nhập
+        #region thu chi Thống kê Nhập
 
         /// <summary>
-        /// 获取主页数据
+        /// đượclấychínhtrangsốdữ liệu
         /// </summary>
         /// <returns></returns>
         public IActionResult GetSiteStatisticsGridJson()
@@ -83,7 +83,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 统计录入 视图
+        /// Thống kê nhập liệu khung nhìn
         /// </summary>
         /// <returns></returns>
         public override IActionResult Form()
@@ -97,7 +97,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 统计录入 视图
+        /// Thống kê nhập liệu khung nhìn
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -107,7 +107,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 机构收支填报
+        /// máycơ quanthuchiđiềnbáo cáo
         /// </summary>
         /// <param name="siteId"></param>
         /// <param name="year"></param>
@@ -254,7 +254,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
             //    configFileExportBaseDir = "D:\\";
             //}
 
-            //1.指定要写到的文件目录及名称
+            //1.chỉđịnhcầnviếtđếncủavănhạngmụcghivàtêngọi
             byte[] buffer = System.IO.File.ReadAllBytes(earn.fjPath);
 
             return File(buffer, earn.ContentType, System.IO.Path.GetFileName(earn.fjPath));
@@ -308,10 +308,10 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
 
         #endregion
 
-        #region 收 chi Thống kê  highCharts
+        #region thu chi Thống kê  highCharts
 
         /// <summary>
-        /// 站点收支统计图标 视图
+        /// Biểu đồ thống kê thu chi trạm khung nhìn
         /// </summary>
         /// <returns></returns>
         public IActionResult SiteStatisticsHighCharts()
@@ -322,7 +322,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         #endregion
 
         /// <summary>
-        /// 审核操作
+        /// xét duyệtkiểm trathao táclàm
         /// </summary>
         /// <param name="id"></param>
         /// <param name="shzt"></param>
@@ -336,7 +336,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 当前登录人的组织机构
+        /// khitrướcđăngghingườicủanhómtổ chứcmáycơ quan
         /// </summary>
         /// <returns></returns>
         public IActionResult getCurrentOrgIds()
@@ -346,7 +346,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 当前登录人的树组织机构
+        /// khitrướcđăngghingườicủacâynhómtổ chứcmáycơ quan
         /// </summary>
         /// <returns></returns>
         public IActionResult getCurrentTreeOrgIds()
@@ -374,7 +374,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 当前组织机构当前时间是否已存在过
+        /// khitrướcnhómtổ chứcmáycơ quankhitrướcthời giangiữalàkhôngđãlưutạiqua
         /// </summary>
         /// <param name="siteId"></param>
         /// <param name="year"></param>
@@ -392,7 +392,7 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         }
 
         /// <summary>
-        /// 获取上个月的成本信息
+        /// đượclấytrêncáithángcủathànhnàythông tintin
         /// </summary>
         /// <param name="site"></param>
         /// <param name="year"></param>

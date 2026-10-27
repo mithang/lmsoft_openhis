@@ -42,7 +42,7 @@ namespace Newtouch.Domain.Entity
         public string UserSecretkey { get; set; }
 
         /// <summary>
-        /// 是否被锁定。true锁定，否则未锁定
+        /// làKhôngbịkhóađịnh。truekhóađịnh，Khôngthìchưakhóađịnh
         /// </summary>
         public bool? Locked { get; set; }
 

@@ -24,7 +24,7 @@
 				<td class="formValue">
 					<select class="form-control" id="jslx" style="width:140px;"></select>
 				</td>
-				@*<th class="formTitle">险种类型：</th>
+				@*<th class="formTitle">Loại bảo hiểm：</th>
 				<td class="formValue">
 					<select class="form-control" id="xzlx" style="width:140px;"></select>
 				</td>*@
@@ -53,13 +53,13 @@
 
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Nạp lại khi thay đổi kích thước cửa sổ trình duyệtjqGridChiều rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
 		getclrtypeList();
 		//getinsutypeList();
-        //结算主记录
+        //Bản ghi chính quyết toán
         gridJSListData();
         gridJSListData1();
     });
@@ -126,7 +126,7 @@
                 { label: 'Loại thanh toán', name: 'bxlx', width: 100, align: 'left' },
                 { label: 'CMND/CCCD', name: 'sfz', width: 120, align: 'left' },
                 { label: 'Nơi tham gia bảo hiểm', name: 'sjh', width: 80, align: 'left' },
-                //{ label: '收据编号', name: 'sjh', width: 80, align: 'left' },
+                //{ label: 'thudữ liệumãsố', name: 'sjh', width: 80, align: 'left' },
                 { label: 'Loại quyết toán', name: 'qslb', width: 80, align: 'left' },
                 { label: 'Loại bảo hiểm', name: 'xz', width: 80, align: 'left' },
             ],
@@ -174,9 +174,9 @@
             }
         });
 
-        //统计按钮点击事件 
+        //thốngtínhtheonútđiểmnhấnviệchạng 
         $("#btn_search_tj").click(function () {
-			$('#gridJSList').jqGrid("clearGridData");//先清空明细
+			$('#gridJSList').jqGrid("clearGridData");//xóa chi tiết trước
             $gridJsList.jqGrid('setGridParam', {
 				postData: { ksrq: $("#ksrq").val(), jsrq: $("#jsrq").val(), jslx: $("#jslx").val(), xzlx: '' },
 				url: '/DaySettleManage/DaySettle/GetQsmx',
@@ -191,7 +191,7 @@
 		var jsrq = $("#jsrq").val() +" 23:59:59";
 		var ts = Date.parse(jsrq) - Date.parse(ksrq)+1;
 		//if (ts >= 11) {
-		//	$.modalAlert("间隔时间大于10天，清算明细对账", 'warning');
+		//	$.modalAlert("giữacáchthời giangiữalớntại10Ngày，xóatínhrõchi tiếtđốitài khoản", 'warning');
 		//	return false;
 		//}
 
@@ -232,7 +232,7 @@
 		    {
 		        if (refinfo.result && refinfo.result.length > 0)
 		        {
-		            $('#gridJSList1').jqGrid("clearGridData");//先清空明细
+		            $('#gridJSList1').jqGrid("clearGridData");//xóa chi tiết trước
 		            $('#gridJSList1').jqGrid('setGridParam', {
 		                postData: { ksrq: $("#ksrq").val(), jsrq: $("#jsrq").val(), jslx: $("#jslx").val(), xzlx: '' },
 		                url: '/DaySettleManage/DaySettle/GetQsmx_1',
@@ -291,9 +291,9 @@
 			},
         });
 
-        //查询事件
+        //Sự kiện tra cứu
         $("#btn_search_tj").click(function () {
-			$('#gridJSList1').jqGrid("clearGridData");//先清空明细
+			$('#gridJSList1').jqGrid("clearGridData");//xóa chi tiết trước
 			$gridJsList1.jqGrid('setGridParam', {
 				postData: { ksrq: $("#ksrq").val(), jsrq: $("#jsrq").val(), jslx: $("#jslx").val(), xzlx: ''},
 				url: '/DaySettleManage/DaySettle/GetQsmx_1',

@@ -11,7 +11,7 @@ namespace Newtouch.OR.ManageSystem.Domain.DTO.InputDto
         public string sfmbbh { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId（bệnh viện có nghiệp vụ cụ thể）
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -26,17 +26,17 @@ namespace Newtouch.OR.ManageSystem.Domain.DTO.InputDto
         public string sfmbmc { get; set; }
 
         /// <summary>
-        /// 0  全部  1 门诊 2 住院
+        /// 0  Tất cả  1 Ngoại trú 2 Nội trú
         /// </summary>
         public byte mzzybz { get; set; }
 
         /// <summary>
-        /// 0 全院模版   1 科室模版   2 个人模版   
+        /// 0 Mẫu toàn viện   1 Mẫu khoa   2 Mẫu cá nhân   
         /// </summary>
         public byte kffw { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ks { get; set; }
 

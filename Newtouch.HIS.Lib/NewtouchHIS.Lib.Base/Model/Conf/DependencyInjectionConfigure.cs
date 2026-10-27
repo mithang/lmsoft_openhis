@@ -3,22 +3,22 @@
     public class DependencyInjectionConfigure
     {
         /// <summary>
-        /// 服务程序集名称
+        /// Tên assembly dịch vụ
         /// </summary>
         public string ServiceAssemblyName { get; set; }
 
         /// <summary>
-        /// 服务结尾名称
+        /// Tên kết thúc dịch vụ
         /// </summary>
         public string ServiceEndsWith { get; set; }
 
         /// <summary>
-        /// 仓储程序集名称
+        /// Tên assembly kho
         /// </summary>
         public string RepositoryAssemblyName { get; set; }
 
         /// <summary>
-        /// 仓库结尾名称
+        /// Tên kết thúc kho
         /// </summary>
         public string RepositoryEndsWith { get; set; }
     }

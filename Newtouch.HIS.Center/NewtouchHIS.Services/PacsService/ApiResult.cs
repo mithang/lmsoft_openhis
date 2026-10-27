@@ -24,15 +24,15 @@
     public enum ApiResponseResultCode
     {
         /// <summary>
-        /// 默认值
+        /// Giá trị mặc định
         /// </summary>
         Default = -1,
         /// <summary>
-        /// 成功
+        /// Thành công
         /// </summary>
         SUCCESS = 0,
         /// <summary>
-        /// 失败
+        /// Thất bại
         /// </summary>
         FAIL = 1,
 

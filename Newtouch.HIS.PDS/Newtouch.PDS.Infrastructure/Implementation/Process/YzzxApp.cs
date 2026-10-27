@@ -18,14 +18,14 @@ using Newtouch.PDS.Requset.Zyypyz;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 医嘱执行
+    /// Thực hiện y lệnh
     /// </summary>
     public class YzzxApp : ProcessorFun<ZyypyzzxRequest>
     {
         private readonly IZyYpyzxxRepo _zyYpyzzxRepo;
         private List<ZyYpyzxxEntity> _yzEntities;
         private readonly List<BookItemDo> _sucessList;
-        private string zxId = Guid.NewGuid().ToString();//医嘱执行ID
+        private string zxId = Guid.NewGuid().ToString();//Thực hiện y lệnhID
 
         public YzzxApp(ZyypyzzxRequest request) : base(request)
         {
@@ -37,29 +37,29 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Kiểm tra
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
         {
-            if (Request == null) throw new FailedException("请求报文不能我空");
-            if (Request.yzList == null || Request.yzList.Count <= 0) throw new FailedException("医嘱列表不能为空");
-            if (string.IsNullOrWhiteSpace(Request.OrganizeId)) throw new FailedException("组织机构ID不能为空");
+            if (Request == null) throw new FailedException("Bản tin yêu cầu không được để trống");
+            if (Request.yzList == null || Request.yzList.Count <= 0) throw new FailedException("Danh sách y lệnh không được để trống");
+            if (string.IsNullOrWhiteSpace(Request.OrganizeId)) throw new FailedException("Tổ chức ID Không được để trống");
             try
             {
                 Parallel.ForEach(Request.yzList, detail =>
                 {
-                    if (string.IsNullOrWhiteSpace(detail.ypCode)) throw new Exception("请传入有效的药品代码");
-                    if (string.IsNullOrWhiteSpace(detail.yzId)) throw new Exception("请传入有效的医嘱ID");
-                    if (string.IsNullOrWhiteSpace(detail.bqCode)) throw new Exception("请传入有效的病区编码");
-                    if (string.IsNullOrWhiteSpace(detail.fyyf)) throw new Exception("请传入有效的发药药房编码");
-                    if (detail.sl <= 0) throw new Exception("请输入有效的医嘱执行数量");
+                    if (string.IsNullOrWhiteSpace(detail.ypCode)) throw new Exception("Vui lòng truyền mã thuốc hiệu lực");
+                    if (string.IsNullOrWhiteSpace(detail.yzId)) throw new Exception("Vui lòng truyền y lệnh hiệu lựcID");
+                    if (string.IsNullOrWhiteSpace(detail.bqCode)) throw new Exception("Vui lòng truyền mã khu bệnh hiệu lực");
+                    if (string.IsNullOrWhiteSpace(detail.fyyf)) throw new Exception("Vui lòng truyền mã nhà thuốc phát thuốc hiệu lực");
+                    if (detail.sl <= 0) throw new Exception("Vui lòng nhập số lượng thực hiện y lệnh hiệu lực");
                     var ypxx = new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(Request.OrganizeId, detail.ypCode);
-                    if (ypxx == null) throw new Exception("未找到药品【" + detail.ypCode + "】。");
+                    if (ypxx == null) throw new Exception("Không tìm thấy thuốc【" + detail.ypCode + "】。");
                     detail.ypmc = ypxx.ypmc;
                     if (detail.zhyz <= 0)
                     {
-                        if (ypxx.zycls == null) throw new Exception("药品【" + ypxx.ypmc + "】住院拆零数为空。");
+                        if (ypxx.zycls == null) throw new Exception("Thuốc【" + ypxx.ypmc + "】Số chia lẻ nội trú trống。");
                         detail.zhyz = (int)ypxx.zycls;
                     }
 
@@ -75,7 +75,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 单线程执行
+        /// Thực hiện đơn luồng
         /// </summary>
         private void SinglethreadAction(ActResult actResult)
         {
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 多线程执行
+        /// Thực hiện đa luồng
         /// </summary>
         private void MultithreadingAction()
         {
@@ -154,7 +154,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 取消冻结
+        /// Hủy đóng băng
         /// </summary>
         private void CancelForzenKc()
         {
@@ -168,19 +168,19 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 排药
+        /// Xếp thuốc
         /// </summary>
         /// <param name="actResult"></param>
         protected override void AfterAction(ActResult actResult)
         {
             AssembleZyYpyzzxEntity();
-            if (_yzEntities == null || _yzEntities.Count <= 0) throw new ProcessException("保存住院药品医嘱执行数据失败");
+            if (_yzEntities == null || _yzEntities.Count <= 0) throw new ProcessException("Lưu dữ liệu thực hiện y lệnh thuốc nội trú thất bại");
             _zyYpyzzxRepo.Insert(_yzEntities);
-            actResult.Data = Request.yzList;//由于事务控制，所以要么全部失败，否则全部成功，Data返回成功队列
+            actResult.Data = Request.yzList;//Do kiểm soát giao dịch，vì vậy hoặc tất cả thất bại，nếu không tất cả thành công，DataTrả về hàng đợi thành công
         }
 
         /// <summary>
-        /// 组装住院药品医嘱执行表数据
+        /// Lắp ráp dữ liệu bảng thực hiện y lệnh thuốc nội trú
         /// </summary>
         /// <returns></returns>
         private void AssembleZyYpyzzxEntity()

@@ -64,14 +64,14 @@
 
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Nạp lại khi thay đổi kích thước cửa sổ trình duyệtjqGridChiều rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
 
 		getclrtypeList();
 		getinsutypeList();
-        //结算主记录
+        //Bản ghi chính quyết toán
         gridJSListData();
     });
 	function getclrtypeList() {
@@ -174,9 +174,9 @@
             }
         });
 
-        //查询事件
+        //Sự kiện tra cứu
         $("#btn_search_tj").click(function () {
-            $('#gridJSMXList').jqGrid("clearGridData");//先清空明细
+            $('#gridJSMXList').jqGrid("clearGridData");//xóa chi tiết trước
             $gridJsList.jqGrid('setGridParam', {
 				postData: { ksrq: $("#txtCreateTimestart").val(), jsrq: $("#txtCreateTimeEnd").val(), qslx: $("#jslx").val(), xz: $("#xzlx").val()},
 				url: '/DaySettleManage/DaySettle/GetQszdd',
@@ -263,34 +263,34 @@
 			xjzfze: rowdata.xjzfje,
 			qsrc: rowdata.jsbs,
 			qsny: qsny,
-			czzgtcjj: rowdata.czzgtcjj,/*城镇职工基本医疗保险统筹基金*/
-			czzgtcjjrc: rowdata.czzgtcjjrc,/*城镇职工基本医疗保险统筹基金人次*/
-			czzgzhjj: rowdata.czzgzhjj,/*城镇职工基本医疗保险个人账户基金*/
-			czzgzhjjrc: rowdata.czzgzhjjrc,/*城镇职工基本医疗保险个人账户基金*/
-			gywbzjj: rowdata.gywbzjj,/*公务员医疗补助基金*/
-			gywbzjjrc: rowdata.gywbzjjrc,/*公务员医疗补助基金*/
-			deylbzjj: rowdata.deylbzjj,/*大额医疗费用补助基金*/
-			deylbzjjrc: rowdata.deylbzjjrc,/*大额医疗费用补助基金*/
-			lxrybzjj: rowdata.lxrybzjj,/*离休人员医疗保障基金*/
-			lxrybzjjrc: rowdata.lxrybzjjrc,/*离休人员医疗保障基金*/
-			cjbzjj: rowdata.cjbzjj,/*一至六级残疾军人医疗补助基金*/
-			cjbzjjrc: rowdata.cjbzjjrc,/*一至六级残疾军人医疗补助基金*/
-			qybzyljj: rowdata.qybzyljj,/*企业补充医疗保险基金*/
-			qybzyljjrc: rowdata.qybzyljjrc,/*企业补充医疗保险基金*/
-			cxjmjbyljj: rowdata.cxjmjbyljj,/*城乡居民基本医疗保险基金*/
-			cxjmjbyljjrc: rowdata.cxjmjbyljjrc,/*城乡居民基本医疗保险基金*/
-			cxjmdbyljj: rowdata.cxjmdbyljj,/*城乡居民大病医疗保险基金*/
-			cxjmdbyljjrc: rowdata.cxjmdbyljjrc,/*城乡居民大病医疗保险基金*/
-			yljzjj: rowdata.yljzjj,/*医疗救助基金*/
-			yljzjjrc: rowdata.yljzjjrc,/*医疗救助基金人次*/
-			yfjj: rowdata.yfjj,/*优抚基金*/
-			yfjjrc: rowdata.yfjjrc,/*优抚基金人次*/
-			syjj: rowdata.syjj,/*生育基金*/
-			syjjrc: rowdata.syjjrc,/*生育基金人次*/
-			qtjj: rowdata.qtjj,/*其他基金*/
-			qtjjrc: rowdata.qtjjrc,/*其他基金人次*/
-			eyjj: rowdata.eyjj,/*二乙基金*/
-			eyjjrc: rowdata.eyjjrc,/*二乙基金人次*/
+			czzgtcjj: rowdata.czzgtcjj,/*Quỹ điều phối BHYT cơ bản cho nhân viên thành thị*/
+			czzgtcjjrc: rowdata.czzgtcjjrc,/*Lượt người quỹ điều phối BHYT cơ bản cho nhân viên thành thị*/
+			czzgzhjj: rowdata.czzgzhjj,/*Quỹ tài khoản cá nhân BHYT cơ bản cho nhân viên thành thị*/
+			czzgzhjjrc: rowdata.czzgzhjjrc,/*Quỹ tài khoản cá nhân BHYT cơ bản cho nhân viên thành thị*/
+			gywbzjj: rowdata.gywbzjj,/*Quỹ trợ cấp y tế cho công chức*/
+			gywbzjjrc: rowdata.gywbzjjrc,/*Quỹ trợ cấp y tế cho công chức*/
+			deylbzjj: rowdata.deylbzjj,/*Quỹ trợ cấp chi phí y tế lớn*/
+			deylbzjjrc: rowdata.deylbzjjrc,/*Quỹ trợ cấp chi phí y tế lớn*/
+			lxrybzjj: rowdata.lxrybzjj,/*Quỹ bảo đảm y tế cho người nghỉ hưu*/
+			lxrybzjjrc: rowdata.lxrybzjjrc,/*Quỹ bảo đảm y tế cho người nghỉ hưu*/
+			cjbzjj: rowdata.cjbzjj,/*Quỹ trợ cấp y tế cho quân nhân khuyết tật cấp 1-6*/
+			cjbzjjrc: rowdata.cjbzjjrc,/*Quỹ trợ cấp y tế cho quân nhân khuyết tật cấp 1-6*/
+			qybzyljj: rowdata.qybzyljj,/*Quỹ BHYT bổ sung doanh nghiệp*/
+			qybzyljjrc: rowdata.qybzyljjrc,/*Quỹ BHYT bổ sung doanh nghiệp*/
+			cxjmjbyljj: rowdata.cxjmjbyljj,/*Quỹ BHYT cơ bản cho cư dân thành thị và nông thôn*/
+			cxjmjbyljjrc: rowdata.cxjmjbyljjrc,/*Quỹ BHYT cơ bản cho cư dân thành thị và nông thôn*/
+			cxjmdbyljj: rowdata.cxjmdbyljj,/*Quỹ BHYT bệnh nặng cho cư dân thành thị và nông thôn*/
+			cxjmdbyljjrc: rowdata.cxjmdbyljjrc,/*Quỹ BHYT bệnh nặng cho cư dân thành thị và nông thôn*/
+			yljzjj: rowdata.yljzjj,/*Quỹ cứu trợ y tế*/
+			yljzjjrc: rowdata.yljzjjrc,/*Lượt người quỹ cứu trợ y tế*/
+			yfjj: rowdata.yfjj,/*Quỹ ưu đãi*/
+			yfjjrc: rowdata.yfjjrc,/*Lượt người quỹ ưu đãi*/
+			syjj: rowdata.syjj,/*Quỹ sinh đẻ*/
+			syjjrc: rowdata.syjjrc,/*Lượt người quỹ sinh đẻ*/
+			qtjj: rowdata.qtjj,/*Quỹ khác*/
+			qtjjrc: rowdata.qtjjrc,/*Lượt người quỹ khác*/
+			eyjj: rowdata.eyjj,/*Quỹ Nhị Ất*/
+			eyjjrc: rowdata.eyjjrc,/*Lượt người quỹ Nhị Ất*/
 			sqzt: 0,
 			create_user: '@(opr.rygh)',
 		};

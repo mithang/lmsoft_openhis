@@ -65,10 +65,10 @@
                     </tr>
                 </tbody>
             </table>
-            @*<label >诊断：</label>
+            @*<label >Chẩn đoán：</label>
             <select id="zd" name="zd" class="form-control " style="width:70px;height:15px;">
-                <option value="0"> 已录入 </option>
-                <option value="1"> 未录入 </option>
+                <option value="0"> đãnhập </option>
+                <option value="1"> chưanhập </option>
             </select>*@
         </div>
         <div class="dv-left-title">Danh sách bệnh nhân</div>
@@ -115,7 +115,7 @@
 
 
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt, tính lại rộng cao
             $(".dv-body").height($(window).height());
         });
         $('#gridList').jqGrid("clearGridData");
@@ -125,7 +125,7 @@
         gridList("", "0");
         gridListYl("", "1");
 
-        //搜索病人信息
+        //tìm kiếmThông tin bệnh nhân
         $('#keyword').keyup(function () {
             getBqTreeList();
         });
@@ -158,9 +158,9 @@
         var patzyh = "";
         var patzyhItem = "";
 
-        //当前选中父节点
+        //hiện tạiĐã chọnNút cha
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //CóKhôngphiếucáicontiếtđiểm
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
@@ -173,7 +173,7 @@
             single = 1;
         }
 
-        //选中节点
+        //Đã chọntiếtđiểm
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patzyh += patlist[i].value + ",";
@@ -234,7 +234,7 @@
         $('#gridList').newtouchLocalDataGrid(null, orderList);
     }
 
-    //级联选中所有子节点
+    //liên cấpĐã chọntất cảcontiếtđiểm
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -244,7 +244,7 @@
         }
     }
 
-    //级联取消所有子节点
+    //liên cấpHủytất cảcontiếtđiểm
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -258,14 +258,14 @@
     var list = new Array();
     var liststu = false;
     var j = 0;
-    //未录入
+    //chưanhập
     function gridList(patzyh,selectkey) {
         var $gridList = $("#gridList");       
         $gridList.dataGrid({
             postData: { patList: patzyh, selectkey: selectkey },
             url: "/NurseManage/OrderAudit/Inputinformation",
             height: $(window).height() - 130,    
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            shrinkToFit: true,   //true:theo tỷ lệVDkhởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
             autowidth: true,
             colModel: [
                 { label: 'Y lệnhID', name: 'yzid', align: 'center', width: 50, hidden: true, key: true },
@@ -276,7 +276,7 @@
                 { label: 'Y lệnhSố nhóm', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } },
                 { label: 'Tính chất y lệnh', name: 'yzxzsm', align: 'center', width: 50 },
                 { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
-                //{ label: '结果值', name: 'lrjg', align: 'center', width: 100, },
+                //{ label: 'kếtnếuGiá trị', name: 'lrjg', align: 'center', width: 100, },
                 {
                     label: 'Nội dung y lệnh', name: 'yznr', align: 'center', width: 230, formatter: function (val) {
                         if (val != null) {
@@ -308,7 +308,7 @@
             //} 
         });
     }
-    //已录入
+    //đãnhập
     function gridListYl(patzyh, selectkey) {
         var $gridList = $("#gridListylr");
         $gridList.dataGrid({
@@ -339,10 +339,10 @@
                         else return "";
                     }
                 },
-                //{ label: '停止/作废时间', name: 'tzsj', align: 'center', width: 100, hidden: true, formatter: function (val) { if (val != null) return $.getTime({ date: val }); else return ""; } },
-                //{ label: '精麻', name: 'yztagName', align: 'center', width: 50, hidden: true },
+                //{ label: 'Dừng/Hủy bỏThời gian', name: 'tzsj', align: 'center', width: 100, hidden: true, formatter: function (val) { if (val != null) return $.getTime({ date: val }); else return ""; } },
+                //{ label: 'thuốc gây nghiện hướng thần', name: 'yztagName', align: 'center', width: 50, hidden: true },
                 //{
-                //    label: '是否计费', name: 'isjf', align: 'center', width: 50, hidden: true, formatter: function (val) {
+                //    label: 'CóKhôngtínhphí', name: 'isjf', align: 'center', width: 50, hidden: true, formatter: function (val) {
                 //        return $.enum.getDescByValue("EnumSF", val);
                 //    }
                 //},
@@ -367,7 +367,7 @@
 
         });
     }
-    //刷新医嘱
+    //làm mớiY lệnh mới
     function RefreshOrder() {
         $('#gridList').jqGrid("clearGridData");
         $('#gridListylr').jqGrid("clearGridData");
@@ -423,7 +423,7 @@
             }
         });
     }
-    //Test da结果录入
+    //Test dakếtnếunhập
     function InputResult() {
         var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");
         if (selRowIds.length==0) {
@@ -493,7 +493,7 @@
             url: "/NurseManage/OrderAudit/Inputresults?rowData="+rowId,
             width: "400px",
             height: "200px",
-            //showleftlalbel: !!!smtzId,  //新增时显示 '确认并关闭按钮'
+            //showleftlalbel: !!!smtzId,  //Thêm mớikhiHiển thị 'xác nhận vàĐóngNút'
             //leftlalbelchecked: true,
             //leftlalbelcheckedasClose: false,
             //callBack: function (iframeId, isClose) {
@@ -504,7 +504,7 @@
     }
 
 
-    //下拉框响应事件
+    //hộp thả xuốnghưởngứngsự kiện
     $('#LUJG').change(function () {
         getBqTreeList();
         var options = $("#LUJG option:selected");

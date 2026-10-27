@@ -22,17 +22,17 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 验证
+        /// Kiểm tra
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
         {
-            if (Request.Rps == null) throw new FailedException("处方列表不能为空");
+            if (Request.Rps == null) throw new FailedException("Danh sách đơn thuốc không được để trống");
             return new ActResult();
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 组装预定报文
+        /// Lắp ráp bản tin đặt trước
         /// </summary>
         /// <returns></returns>
         private OutpatientBookRequestDTO AssembleBookAppRequest(RpInfo rpInfo)

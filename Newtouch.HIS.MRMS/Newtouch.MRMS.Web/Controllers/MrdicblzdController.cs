@@ -17,16 +17,16 @@ using Newtouch.MR.ManageSystem.Domain.IRepository;
 namespace Newtouch.MRMS.Web.Controllers
 {
     /// <summary>
-    /// 创 建：chl
-    ///  ngày 期：2019-11-20 13:45
-    /// 描 述：Chẩn đoán bệnh lý
+    /// Tạo: chl
+    ///  Ngày: 2019-11-20 13:45
+    /// Mô tả: Chẩn đoán bệnh lý
     /// </summary>
     public class MrdicblzdController : OrgControllerBase
     {
         private readonly IMrdicblzdRepo _mrdicblzdRepo;
 
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
         /// <param name="mrdicblzdRepo"></param>
         public MrdicblzdController(IMrdicblzdRepo mrdicblzdRepo)
@@ -35,9 +35,9 @@ namespace Newtouch.MRMS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取实体
+        /// LấyThực thể
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult GetFormJson(string keyValue)
         {
@@ -46,10 +46,10 @@ namespace Newtouch.MRMS.Web.Controllers
         }
 
         /// <summary>
-        /// Lưu表单（Thêm mới、Sửa）
+        /// Lưubiểu mẫu(Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult SubmitForm(MrdicblzdEntity entity, string keyValue)
         {
@@ -58,9 +58,9 @@ namespace Newtouch.MRMS.Web.Controllers
         }
 
         /// <summary>
-        /// Xóa数据
+        /// XóaDữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult DeleteForm(string keyValue)
         {

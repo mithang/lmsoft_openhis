@@ -49,13 +49,13 @@
             postData: { keyword: $("#txt_keyword").val() },
             colModel: [
                 { label: "Khóa chính", name: "Id", hidden: true, key: true },
-                //{ label: "有效", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
+                //{ label: "Hiệu lực", name: "zt", width: 80, align: "center", formatter: function (cellvalue) { return cellvalue == "1" ? "<i class=\"fa fa-toggle-on\"></i>" : "<i class=\"fa fa-toggle-off\"></i>"; } },
                 { label: 'Tên', name: 'RptName', width: 200, align: 'left' },
                 { label: 'Báo cáoDịch vụĐịa chỉ', name: 'RptHost', width: 150, align: 'left' },
                 { label: 'Báo cáoĐịa chỉ', name: 'RptUrl', width: 200, align: 'left' },
                 { label: 'Nguồn dữ liệu', name: 'RptSource', width: 100, align: 'left' },
                 { label: 'Tham số', name: 'Paras', width: 200, align: 'left' },
-                //{ label: '工具栏', name: 'Tools', width: 100, align: 'left' },
+                //{ label: 'côngcụ thểcột', name: 'Tools', width: 100, align: 'left' },
                 { label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
                 { label: 'Thời gian tạo', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                 { label: 'Cuối cùngSửa', name: 'LastModifierCode', width: 100, align: 'left' },
@@ -73,7 +73,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     });

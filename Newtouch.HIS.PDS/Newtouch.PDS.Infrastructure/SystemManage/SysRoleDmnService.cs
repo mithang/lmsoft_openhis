@@ -9,7 +9,7 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 角色 DmnService
+    /// Vai trò DmnService
     /// </summary>
     public class SysRoleDmnService : DmnServiceBase, ISysRoleDmnService
     {
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 删除系统角色
+        /// Xóa vai trò hệ thống
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(string keyValue)
@@ -32,7 +32,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 提交新建、更新 实体
+        /// Gửi mới、Cập nhật Thực thể
         /// </summary>
         /// <param name="roleEntity"></param>
         /// <param name="roleAuthorizeEntitys"></param>

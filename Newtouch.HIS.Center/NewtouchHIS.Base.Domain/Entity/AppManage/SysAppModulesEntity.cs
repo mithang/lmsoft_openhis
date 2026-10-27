@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///应用注册模块表
+    ///Bảng mô-đun đăng ký ứng dụng
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Sys_App_Modules", "SysAppModulesEntity")]
@@ -21,15 +21,15 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Desc:模块类型
-        /// Default: 1 业务级 ModuTypeEnum
+        /// Desc:Loại mô-đun
+        /// Default: 1 Cấp nghiệp vụ ModuTypeEnum
         /// Nullable:False
         /// </summary>           
         [Required(ErrorMessage = "ModuType không được để trống")]
         public int ModuType { get; set; }
 
         /// <summary>
-        /// Desc:模块名称
+        /// Desc:Tên mô-đun
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -38,7 +38,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string ModuName { get; set; }
 
         /// <summary>
-        /// Desc:模块描述
+        /// Desc:Mô tả mô-đun
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -47,7 +47,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string ModuDesc { get; set; }
 
         /// <summary>
-        /// Desc:绑定授权应用id 
+        /// Desc:Ứng dụng ủy quyền đã gắnid 
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -56,7 +56,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string AuthAppId { get; set; }
 
         /// <summary>
-        /// Desc:模块路径
+        /// Desc:Đường dẫn mô-đun
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -64,7 +64,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string ModuPath { get; set; }
 
         /// <summary>
-        /// Desc:模块访问等级 AuthLevEnum
+        /// Desc:Cấp truy cập mô-đun AuthLevEnum
         /// Default:AuthLevEnum.user
         /// Nullable:False
         /// </summary>           
@@ -72,7 +72,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public int ModuLev { get; set; }
 
         /// <summary>
-        /// Desc:授权等级
+        /// Desc:Cấp ủy quyền
         /// Default:AuthLevEnum.user
         /// Nullable:False
         /// </summary>           

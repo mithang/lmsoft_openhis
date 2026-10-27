@@ -1,22 +1,22 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 报损报益总金额查询
+    /// Truy vấn tổng Số tiền báo hỏng báo thừa
     /// </summary>
     public class LossAndProditInfoJeVo
     {
         /// <summary>
-        /// 零售价总金额
+        /// Tổng Số tiền giá bán lẻ
         /// </summary>
         public decimal? Ljze { get; set; }
 
         /// <summary>
-        /// 批发价总金额
+        /// Tổng số tiền giá bán buôn
         /// </summary>
         public decimal? Pjze { get; set; }
 
         /// <summary>
-        /// 进价总金额
+        /// Tổng số tiền giá nhập
         /// </summary>
         public decimal? Jjze { get; set; }
     }

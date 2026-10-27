@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicineUsageRepo : IRepositoryBase<SysMedicineUsageEntity>
     {
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
        void SubmitForm(SysMedicineUsageEntity entity, int? yfId);
 
@@ -24,17 +24,17 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<SysMedicineUsageEntity> GetPagintionList(Pagination pagination, string keyword = null);
 
         /// <summary>
-        /// 获得所有列表
+        /// Lấy tất cả danh sách
         /// </summary>
         List<SysMedicineUsageEntity> GetMedicineUsageList(string keyword = null);
 
         /// <summary>
-        /// 修改form
+        /// Sửaform
         /// </summary>
         SysMedicineUsageEntity GetMedicineUsageEntity(int? yfId);
         
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         void DeleteForm(int yfId);
     }

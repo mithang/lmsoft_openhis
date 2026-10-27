@@ -5,62 +5,62 @@ using System;
 namespace Newtouch.HIS.Domain.DTO
 {
     /// <summary>
-    /// 单据查询条件
+    /// Điều kiện truy vấn chứng từ
     /// </summary>
     public class ReceiptQueryParam
     {
         /// <summary>
-        /// 翻页
+        /// Lật trang
         /// </summary>
         public Pagination pagination { get; set; }
 
         /// <summary>
-        /// 开始日期
+        /// Ngày bắt đầu
         /// </summary>
         public DateTime? qsrj { get; set; }
 
         /// <summary>
-        /// 结束日期
+        /// Ngày kết thúc
         /// </summary>
         public DateTime? jsrj { get; set; }
 
         /// <summary>
-        /// 单据号
+        /// Số chứng từ
         /// </summary>
         public string pdh { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 单据类型
+        /// Loại chứng từ
         /// </summary>
         public int? djlx { get; set; }
 
         /// <summary>
-        /// 审核状态
+        /// Trạng thái duyệt
         /// </summary>
         public string shzt { get; set; }
 
         /// <summary>
-        /// 权限拥有单据类型
+        /// Loại chứng từ sở hữu quyền
         /// </summary>
         public string[] alldjlx { get; set; }
 
         /// <summary>
-        /// 组织结构
+        /// Cơ cấu tổ chức
         /// </summary>
         public string orgId { get; set; }
 
         /// <summary>
-        /// 当前药房部门代码
+        /// Mã bộ phận nhà thuốc hiện tại
         /// </summary>
         public string curYfbmCode { get; set; }
 
         /// <summary>
-        /// 供应商
+        /// Nhà cung cấp
         /// </summary>
         public string gys { get; set; }
     }

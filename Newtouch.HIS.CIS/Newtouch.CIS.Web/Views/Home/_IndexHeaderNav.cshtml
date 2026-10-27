@@ -70,7 +70,7 @@
                 <li class="divider"></li>
                 @*<li>
                         <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">查看全部消息</a>
+                        <a href="#" class="dropdown-item dropdown-footer">XemTất cảhủytin</a>
                     </li>*@
             </ul>
             @*<div class="dropdown-menu pull-right">
@@ -106,7 +106,7 @@
     var yzshzyh = "";
     var yzzxzyh = "";
     var msgtypecodes = "";
-    var hubUrl = '@Html.Raw(MsgUrl)signalr'; //服务端ip
+    var hubUrl = '@Html.Raw(MsgUrl)signalr'; //phụcvụđầuip
 
     $(function () {
         $('#txtb').hide();
@@ -114,7 +114,7 @@
         if (requexx != 1) {
             times = setInterval(MSGQuery, 60000);
 
-            //病历质控提醒<!-- Notifications Dropdown Menu -->
+            //Hồ sơchấtkiểm soátnhắcnhắc<!-- Notifications Dropdown Menu -->
             //times = setInterval(InitNotice, 60000);
         }
         else {
@@ -160,7 +160,7 @@
     }
 
     //<!-- kr.ver -->
-    //Biểu tượng闪烁
+    //Biểu tượngnhấp nháy烁
     function blink(selector) {
         $(selector).fadeOut('slow', function () {
             $(this).fadeIn('slow', function () {

@@ -23,19 +23,19 @@ namespace Newtouch.HIS.Repository
         }
         
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         public void SubmitForm(SysMedicineUsageEntity entity, int? yfId)
         {
             if (yfId!=null && yfId > 0)
             {
-                //Code重复判断
+                //CodeKiểm tra trùng lặp
                 if (this.IQueryable().Any(a => a.yfCode == entity.yfCode && a.yfId != yfId))
                 {
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                SysMedicineUsageEntity oldEntity = null;   //变更前Entity
+                SysMedicineUsageEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(yfId.Value);
                 this.DetacheEntity(oldEntity);
 
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //Code重复判断
+                //CodeKiểm tra trùng lặp
                 if (this.IQueryable().Any(a => a.yfCode == entity.yfCode))
                 {
                     throw new FailedException("Mã không được trùng lặp");
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获得所有列表
+        /// Lấy tất cả danh sách
         /// </summary>
         public List<SysMedicineUsageEntity> GetMedicineUsageList(string keyword = null)
         {
@@ -80,7 +80,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改form
+        /// Sửaform
         /// </summary>
         public SysMedicineUsageEntity GetMedicineUsageEntity(int? yfId)
         {
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         public void DeleteForm(int yfId)
         {

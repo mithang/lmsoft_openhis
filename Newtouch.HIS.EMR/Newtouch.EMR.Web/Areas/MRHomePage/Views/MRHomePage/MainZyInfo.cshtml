@@ -371,7 +371,7 @@
 
 </div>
 <script>
-    //诊断
+    //Chẩn đoán
     $("#BLZD").zdFloatingSelector({
         zdlx: "Chẩn đoán bệnh lý",
         width: 600,
@@ -448,7 +448,7 @@
     /*Đặt giá trị mặc định */
     function myOnload() {
         $(document).ready(function () {
-            //离院方式
+            //Cách rời viện
             $('#select2-LYFS-container').each(function () {
                 var myvalue = 'Y lệnh ra viện';
                 $(this).html(myvalue);
@@ -456,7 +456,7 @@
             $('#select2-LYFS-container').attr('title', 'Y lệnh ra viện');
             $('#LYFS option').filter(function () { return $(this).text() == 'Y lệnh ra viện'; }).attr('selected', true);
 
-            //血型
+            //Nhóm máu
             $('#select2-XX-container').each(function () {
                 var myvalue = 'Chưa kiểm tra';
                 $(this).html(myvalue);
@@ -472,7 +472,7 @@
             $('#select2-RH-container').attr('title', 'Chưa kiểm tra');
             $('#RH option').filter(function () { return $(this).text() == 'Chưa kiểm tra'; }).attr('selected', true); 
 
-            //输血反应
+            //Phản ứng truyền máu
             $('#select2-SXFY-container').each(function () {
                 var myvalue = 'Chưa truyền';
                 $(this).html(myvalue);
@@ -481,17 +481,17 @@
             $('#SXFY option').filter(function () { return $(this).text() == 'Chưa truyền'; }).attr('selected', true);
             
 
-            //病案质量
+            //Chất lượng hồ sơ bệnh án
             $('#select2-BAZL-container').each(function () {
                 var myvalue = '';
                 $(this).html(myvalue);
             });
             $('#select2-BAZL-container').attr('title', '');
 
-            //过敏药物
+            //Thuốc dị ứng
             $('#GMYW').val('Không có');
 
-            //死亡患者尸检
+            //Khám nghiệm tử thi bệnh nhân tử vong
             $('#select2-SWHZSJ-container').each(function () {
                 var myvalue = '-';
                 $(this).html(myvalue);
@@ -500,7 +500,7 @@
             $('#SWHZSJ option').filter(function () { return $(this).text() == '-'; }).attr('selected', true); 
             $('#SWHZSJ option').filter(function () { return $(this).text() == '-'; }).attr('value', '');
 
-            //实施临床路径
+            //Áp dụng đường đi lâm sàng
             $('#select2-SSLCLJ-container').each(function () {
                 var myvalue = 'Không';
                 $(this).html(myvalue);

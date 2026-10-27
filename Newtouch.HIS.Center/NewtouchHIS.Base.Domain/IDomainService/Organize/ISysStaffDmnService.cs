@@ -8,13 +8,13 @@ namespace NewtouchHIS.Base.Domain.Organize
     {
         Task<SysStaffEntity> FindKey(string userId);
         /// <summary>
-        /// 根据UserId获取职工信息
+        /// TheoUserIdLấy thông tin công nhân viên chức
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
         Task<List<SysStaffVEntity>> GetStaffListByUserId(string userId);
         /// <summary>
-        /// 根据工号获取医生科室信息
+        /// Lấy thông tin khoa của bác sĩ theo mã nhân viên
         /// </summary>
         /// <param name="rygh"></param>
         /// <param name="orgId"></param>

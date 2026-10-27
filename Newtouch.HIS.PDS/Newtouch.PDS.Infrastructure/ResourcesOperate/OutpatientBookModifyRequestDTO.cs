@@ -6,24 +6,24 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.PDS.Requset.ResourcesOperate
 {
     /// <summary>
-    /// 修改预定请求报文
+    /// Bản tin yêu cầu sửa đặt trước
     /// </summary>
     public class OutpatientBookModifyRequestDTO : RequestBase
     {
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         [Required]
         public List<ItemDetail> Items { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         [Required]
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 操作员代码
+        /// Mã nhân viên thao tác
         /// </summary>
         public string CreatorCode { get; set; }
     }

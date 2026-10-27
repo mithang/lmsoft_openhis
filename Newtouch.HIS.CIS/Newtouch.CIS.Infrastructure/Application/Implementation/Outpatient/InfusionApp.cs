@@ -16,7 +16,7 @@ using Newtouch.Domain.ViewModels.Outpatient;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// 注射管理
+    /// Lưu ýxạQuản lý
     /// </summary>
     public class InfusionApp : AppBase, IInfusionApp
     {
@@ -26,7 +26,7 @@ namespace Newtouch.Application.Implementation
         private readonly IMzsyypxxDmnService _mzsyypxxDmnService;
 
         /// <summary>
-        /// 同步已结算处方信息
+        /// Đồng bộđãquyết toánĐơn thuốcthông tin
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -35,12 +35,12 @@ namespace Newtouch.Application.Implementation
         /// <returns></returns>
         public string SyncSettRpDetail(DateTime kssj, DateTime jssj, string fph, string kh,string mzh)
         {
-            #region 第一步：根据条件从结算系统查询已结算处方信息 settRpDetail
+            #region thứmộtbước：theođiều kiệntừquyết toánHệ thốngTra cứuĐã quyết toánĐơn thuốcthông tin settRpDetail
             var settRpDetail = OutpatientSettledRpQuery(kssj, jssj, fph, kh, mzh);
             if (settRpDetail == null || settRpDetail.Count <= 0) return "";
             #endregion
 
-            #region 第二步：根据条件拉取本地输液信息，所依据条件与第一步相同 syxx
+            #region thứhaibước：theođiều kiệnkéolấybảnđịatruyền dịchthông tin，sởtheocứđiều kiệnvàthứmộtbướcnhaucùng syxx
             var syxx = _mzsyypxx.IQueryable(p => p.sfsj >= kssj && p.sfsj < jssj && p.OrganizeId == OrganizeId && p.zt == "1");
             if (syxx.Any())
             {
@@ -49,17 +49,17 @@ namespace Newtouch.Application.Implementation
             }
             #endregion
 
-            #region 第三步：取settRpDetail与syxx差异值——取出新增的输液信息  newData
+            #region thứbabước：lấysettRpDetailvàsyxxsai异giá trị——lấyraThêm mớicủatruyền dịchthông tin  newData
             var newData = ScreeningNewInfusionData(settRpDetail, syxx.ToList());
             #endregion
 
-            #region 第四步：保存新增的输液信息
+            #region thứbốnbước：LưuThêm mớicủatruyền dịchthông tin
             return SaveNewInfusionData(newData);
             #endregion
         }
 
         /// <summary>
-        /// 筛选出新的处方结算信息
+        /// LọcramớicủaĐơn thuốcquyết toánthông tin
         /// </summary>
         /// <param name="tagDate"></param>
         /// <param name="srcData"></param>
@@ -77,7 +77,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 已结算处方明细查询
+        /// đãquyết toánĐơn thuốcchi tiếtTra cứu
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -87,15 +87,15 @@ namespace Newtouch.Application.Implementation
         public List<OutpatientSettledRpQueryResponseDTO> OutpatientSettledRpQuery(DateTime kssj, DateTime jssj, string fph, string kh,string mzh)
         {
             var yfCode = _sysConfigRepo.GetValueByCode("syyfCode", this.OrganizeId);
-            if (string.IsNullOrWhiteSpace(yfCode)) throw new Exception("请联系管理员配置输液用法代码动态参数,参数编码：syyfCode");
+            if (string.IsNullOrWhiteSpace(yfCode)) throw new Exception("vui lòngliênhệQuản lýviêncấu hìnhtruyền dịchCách dùngMãđộngtrạng tháitham số,tham sốMã：syyfCode");
             var response = _mzsyypxxDmnService.OutpatientSettledRpQuery(this.OrganizeId,kssj, jssj, fph, kh, yfCode,mzh);
 
 			if (response != null) return response;
-            throw new Exception(response == null ? "获取已结算处方明细失败" : "未查询到数据");
+            throw new Exception(response == null ? "LấyĐã quyết toánChi tiết đơn thuốcthất bại" : "chưaTra cứuđếndữ liệu");
         }
 		
 		/// <summary>
-		/// 患者查询
+		/// Bệnh nhânTra cứu
 		/// </summary>
 		/// <param name="kh"></param>
 		/// <param name="fph"></param>
@@ -115,9 +115,9 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 保存新的输液信息
+        /// Lưumớicủatruyền dịchthông tin
         /// </summary>
-        /// <param name="source">数据源</param>
+        /// <param name="source">Nguồn dữ liệu</param>
         /// <returns></returns>
         public string SaveNewInfusionData(List<OutpatientSettledRpQueryResponseDTO> source)
         {
@@ -127,19 +127,19 @@ namespace Newtouch.Application.Implementation
             {
                 successCount += _mzsyypxxDmnService.InsertNewMzsyypxx(p, OrganizeId, UserIdentity.UserCode);
             });
-            if (successCount == 0) return "新输液信息保存失败";
-            return successCount < source.Count ? "部分输液信息保存失败" : "";
+            if (successCount == 0) return "mớitruyền dịchthông tinLưu thất bại";
+            return successCount < source.Count ? "một phầntruyền dịchthông tinLưu thất bại" : "";
         }
 
         /// <summary>
-        /// 分组
+        /// phútnhóm
         /// </summary>
         /// <param name="tags"></param>
-        /// <param name="groupNo">组号</param>
+        /// <param name="groupNo">Số nhóm</param>
         /// <returns></returns>
         public string Grouping(List<long> tags, string groupNo)
         {
-            if (tags == null || tags.Count <= 0) return "请选择要成组的药品";
+            if (tags == null || tags.Count <= 0) return "Vui lòng chọncầnthànhnhóm của thuốc";
             var successCount = 0;
             tags.ForEach(p =>
             {
@@ -150,20 +150,20 @@ namespace Newtouch.Application.Implementation
                 entity.Modify();
                 successCount += _mzsyypxx.Update(entity);
             });
-            if (successCount == 0) return "未检索到符合要求的药品";
-            return successCount != tags.Count ? "部分成组成功" : "";
+            if (successCount == 0) return "Không tìm thấy thuốc phù hợp yêu cầu";
+            return successCount != tags.Count ? "một phầnthànhnhómthành công" : "";
         }
 
         /// <summary>
-        /// 输液开始
+        /// truyền dịchBắt đầu
         /// </summary>
-        /// <param name="tags">输液明细ID</param>
-        /// <param name="startDateTime">j结束时间</param>
-        /// <param name="seatNum">座号/床号</param>
+        /// <param name="tags">truyền dịchchi tiếtID</param>
+        /// <param name="startDateTime">jThời gian kết thúc</param>
+        /// <param name="seatNum">ghếsố/Số giường</param>
         /// <returns></returns>
         public string StartInfusion(List<long> tags, DateTime startDateTime, string seatNum)
         {
-            if (tags == null || tags.Count <= 0) return "请选择要开始输液的药品";
+            if (tags == null || tags.Count <= 0) return "Vui lòng chọncầnbắt đầutruyền dịch của thuốc";
             var successCount = 0;
             tags.ForEach(p =>
             {
@@ -189,19 +189,19 @@ namespace Newtouch.Application.Implementation
                     successCount += _mzsyzxxxRepo.Update(entity);
                 }
             });
-            if (successCount == 0) return "未检索到符合要求的药品";
-            return successCount != tags.Count ? "部分输液开始成功" : "";
+            if (successCount == 0) return "Không tìm thấy thuốc phù hợp yêu cầu";
+            return successCount != tags.Count ? "một phầntruyền dịchbắt đầuthành công" : "";
         }
 
         /// <summary>
-        /// 输液结束
+        /// truyền dịchKết thúc
         /// </summary>
-        /// <param name="tags">输液明细ID</param>
-        /// <param name="endDateTime">j结束时间</param>
+        /// <param name="tags">truyền dịchchi tiếtID</param>
+        /// <param name="endDateTime">jThời gian kết thúc</param>
         /// <returns></returns>
         public string EndInfusion(List<long> tags, DateTime endDateTime)
         {
-            if (tags == null || tags.Count <= 0) return "请选择要结束输液的药品";
+            if (tags == null || tags.Count <= 0) return "Vui lòng chọn thuốc cần kết thúc truyền dịch";
             var successCount = 0;
             tags.ForEach(p =>
             {
@@ -225,12 +225,12 @@ namespace Newtouch.Application.Implementation
                     successCount += _mzsyzxxxRepo.Update(entity);
                 }
             });
-            if (successCount == 0) return "未检索到符合要求的药品";
-            return successCount != tags.Count ? "部分输液结束成功" : "";
+            if (successCount == 0) return "Không tìm thấy thuốc phù hợp yêu cầu";
+            return successCount != tags.Count ? "một phầntruyền dịchKết thúcthành công" : "";
         }
 
         /// <summary>
-        /// 创建组号
+        /// tạoSố nhóm
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
@@ -252,14 +252,14 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 设置座位号
+        /// Cài đặtghế ký tựsố
         /// </summary>
-        /// <param name="tag">目标ID</param>
-        /// <param name="seatNum">座位号</param>
+        /// <param name="tag">Mục tiêuID</param>
+        /// <param name="seatNum">ghế ký tựsố</param>
         /// <returns></returns>
         public string SetSeatNum(long tag, string seatNum)
         {
-            if (tag == 0) return "请选择要结束输液的药品";
+            if (tag == 0) return "Vui lòng chọn thuốc cần kết thúc truyền dịch";
             var entity = _mzsyzxxxRepo.FindEntity(q => q.syypxxId == tag);
             if (entity == null || string.IsNullOrWhiteSpace(entity.Id))
             {
@@ -270,16 +270,16 @@ namespace Newtouch.Application.Implementation
                     seatNum = seatNum
                 };
                 entity.Create(true);
-                return _mzsyzxxxRepo.Insert(entity) > 0 ? "" : "保存座位号失败";
+                return _mzsyzxxxRepo.Insert(entity) > 0 ? "" : "Lưu số ghế thất bại";
             }
 
             entity.seatNum = seatNum;
             entity.Modify();
-            return _mzsyzxxxRepo.Update(entity) > 0 ? "" : "保存座位号失败";
+            return _mzsyzxxxRepo.Update(entity) > 0 ? "" : "Lưu số ghế thất bại";
         }
 
         /// <summary>
-        /// 查询输液信息
+        /// Tra cứutruyền dịchthông tin
         /// </summary>
         /// <param name="ids"></param>
         /// <param name="organizeId"></param>

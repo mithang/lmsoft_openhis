@@ -11,12 +11,12 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.IDomainService
 {
     /// <summary>
-    /// 系统菜单 （增删改接口）
+    /// Menu hệ thống (Giao diện thêm/xóa/sửa)
     /// </summary>
     public interface IRoleAuthorizeApp : IScopedDependency
     {
         /// <summary>
-        /// 获取角色授权列表
+        /// Lấy danh sách ủy quyền vai trò
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>

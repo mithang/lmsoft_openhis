@@ -46,7 +46,7 @@
             <li><i href="#" name="#department" class="fa fa-quora fa-lg" title="Khoa" data-type=@Html.Raw(((int)EnumCfMbLx.department).ToString())></i></li>
             @*@if (ViewBag.bhbq)
             {
-        <li><i href="#" name="#ward" class="fa fa-bank fa-lg" title="病区" data-type=@Html.Raw(((int)EnumTcfw.Ward).ToString())></i></li>
+        <li><i href="#" name="#ward" class="fa fa-bank fa-lg" title="Khu bệnh" data-type=@Html.Raw(((int)EnumTcfw.Ward).ToString())></i></li>
             }*@
             <li><i href="#" name="#hospital" class="fa fa-hospital-o fa-lg" title="Toàn viện" data-type=@Html.Raw(((int)EnumCfMbLx.hospital).ToString())></i></li>
         </ul>
@@ -71,7 +71,7 @@
         
         //alert($(".dv-home-patInfo").offset().right);
         if ($("#tcbeveltabs li").hasClass('activepart')) {
-            //再点击 隐藏
+            //lạiđiểmnhấp Ẩn
             $("#tcbeveltabs li").removeClass("activepart");
             $(".dv-home-patInfo").animate({ right: '-160px' }, "slow");
         }
@@ -82,7 +82,7 @@
 
         $("#tcbeveltabs li").on("click", function (e) {
             if ($(this).hasClass('activepart')) {
-                //再点击 隐藏
+                //lạiđiểmnhấp Ẩn
                 $("#tcbeveltabs li").removeClass("activepart");
                 $(".dv-home-patInfo").animate({ right: '-160px' }, "slow");
                 //$('#treeContent').hide();
@@ -157,7 +157,7 @@
                                                 debugger;
                                                 for (var i = 0; i < l.length; i++) {
                                                     l[i].Id = Math.random().toString() + new Date().getMilliseconds();
-                                                    l[i].yzzt = 0;//默认未审
+                                                    l[i].yzzt = 0;//Mặc địnhchưa duyệt
                                                     l[i].action = getActionStr;
                                                     l[i].zyh = currentobj.zyh;
                                                     l[i].kssj = $.getTime();

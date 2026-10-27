@@ -15,7 +15,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Herp.Web.Controllers
 {
     /// <summary>
-    /// Home/Index加载时 默认加载的 缓存数据
+    /// Dữ liệu bộ nhớ đệm tải mặc định khi tải Home/Index.
     /// </summary>
     public class ClientsDataController : ClientsDataBaseController
     {
@@ -36,7 +36,7 @@ namespace Newtouch.Herp.Web.Controllers
         }
 
         /// <summary>
-        /// 获取同步的部分
+        /// Lấy phần đồng bộ
         /// </summary>
         [HttpGet]
         [HandlerAjaxOnly]
@@ -49,7 +49,7 @@ namespace Newtouch.Herp.Web.Controllers
         }
 
         /// <summary>
-        /// 获取异步的部分 (enums served by Herp area pages (added with their areas))
+        /// Lấy phần bất đồng bộ (enums served by Herp area pages (added with their areas))
         /// </summary>
         [HttpGet]
         [HandlerAjaxOnly]

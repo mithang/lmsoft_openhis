@@ -40,11 +40,11 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         {
             var data = new
             {
-                //字典 包括无效的
+                //Từ điển Bao gồm cả vô hiệu
                 dataItems = OperatorProvider.GetCurrent().IsRoot==true?this.GetDataItemListRoot(): this.GetDataItemList(),
-                ////获取所有组织 包括无效的
+                ////Lấy tất cả tổ chức Bao gồm cả vô hiệu
                 //organize = _sysOrganizeRepository.GetListByTopOrg(Constants.TopOrganizeId).ToList(),
-                ////获取所有科室 包括无效的
+                ////Lấy tất cả khoa Bao gồm cả vô hiệu
                 //department = _sysDepartRepo.GetListByTopOrg(Constants.TopOrganizeId),
                 authorizeMenu = this.GetMenuList(),
                 //authorizeButton = this.GetMenuButtonList(),
@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// 字典 包括无效的 (非root)
+        /// Từ điển Bao gồm cả vô hiệu (Khôngroot)
         /// </summary>
         /// <returns></returns>
         private object GetDataItemList()
@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
 
         /// <summary>
-        /// 字典 root
+        /// Từ điển root
         /// </summary>
         /// <returns></returns>
         private object GetDataItemListRoot()

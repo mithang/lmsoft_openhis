@@ -5,7 +5,7 @@ using Newtouch.CIS.Repository;
 namespace Newtouch.Domain.IRepository.DeptStorageManage
 {
     /// <summary>
-    /// 损益原因
+    /// nguyên nhân lãi lỗ
     /// </summary>
     public interface IDeptKcSyyyRepo : IRepositoryBase<DeptKcSyyyEntity>
     {

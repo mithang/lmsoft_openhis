@@ -7,7 +7,7 @@ using Newtouch.Infrastructure.EF.Attributes;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品盘点信息明细
+    /// Chi tiết thông tin kiểm kê thuốc hệ thống
     /// </summary>
     [Table("xt_yp_pdxxmx")]
     [SugarTable("xt_yp_pdxxmx")]
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string pdmxId { get; set; }
 
         /// <summary>
-        /// 盘点单ID
+        /// Đơn kiểm kêID
         /// </summary>
         public string pdId { get; set; }
 
@@ -41,41 +41,41 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? Yxq { get; set; }
 
         /// <summary>
-        /// 理论数  最小单位
+        /// Số lý thuyết  Đơn vị nhỏ nhất
         /// </summary>
         public int Llsl { get; set; }
 
         /// <summary>
-        /// 实际数  最小单位
+        /// Số thực tế  Đơn vị nhỏ nhất
         /// </summary>
         public int Sjsl { get; set; }
 
         /// <summary>
-        /// 批发价（部门单位）
+        /// Giá bán buôn（Đơn vị bộ phận）
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Pfj { get; set; }
 
         /// <summary>
-        /// 零售价（部门单位）
+        /// Giá bán lẻ（Đơn vị bộ phận）
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Lsj { get; set; }
 
         /// <summary>
-        /// 药库批发价
+        /// Giá bán buôn kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Ykpfj { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// Giá bán lẻ kho thuốc
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Yklsj { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số quy đổi
         /// </summary>
         public int Zhyz { get; set; }
 
@@ -115,14 +115,14 @@ namespace Newtouch.HIS.Domain.Entity
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 追溯码
+        /// Mã truy xuất
         /// </summary>
         public string zsm { get; set; }
 
         /// <summary>
-        /// 是否拆零
-        /// 1： 是
-        /// 2： 否
+        /// Có chia lẻ không
+        /// 1： Có
+        /// 2： Không
         /// </summary>
         public int? sfcl { get; set; }
 

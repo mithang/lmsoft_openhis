@@ -83,9 +83,9 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Success("Thao tác thành công");
         }
 
-        #region 提供字典查询
+        #region Cung cấp tra cứu từ điển
         /// <summary>
-        /// 病放下拉
+        /// Thả xuống khu bệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

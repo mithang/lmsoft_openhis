@@ -1,18 +1,18 @@
 @using NewtouchHIS.Lib.Framework.Operator;
 @{
     Layout = "~/Views/Shared/_Form.cshtml";
-    //是否和医保交易
+    //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
-    //是否和新农合交易
+    //Có giao dịch với nông thôn mới hay không
     var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-    //医保所属地
+    //Nơi quản lý BHYT
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
-    //HIS厂商编号
+    //HISMã nhà sản xuất
     var his_manufacturerID = SysConfigReader.String("HIS_ManufacturerID");
-    //住院信息报表链接
+    //nhập việnviệnthông tintinbáo cáobảngchuỗinhận
     var zyxxReportUrl = SysConfigReader.OrgReportLink("zyxxbbdy");
     var curOpr = OperatorProvider.GetCurrent();
-    //开启医保允许身份证就诊
+    //mởbậty tếbảo hiểmcho phépcho phépthânphầnchứngthìkhám
     var IsOpenSfzYbJz = SysConfigReader.String("IsOpenSfzYbJz");
     var reportUrl = "";
     var ReportSystemCode = "";
@@ -130,7 +130,7 @@
                     </td>
                     <td class="formValue">
                         <input type="hidden" id="patid" />
-                        @*医保参保类别*@
+                        @*y tếbảo hiểmthambảo hiểmloạikhác*@
                         <input type="hidden" id="cblb" value="" />
                         <input type="hidden" id="rybh" value="" />
                         <input type="hidden" id="xzqh" value="" />
@@ -197,7 +197,7 @@
                     <td class="formValue"> <input type="text" id="zcyy" name="zcyy" class="form-control form-an" /></td>
                     @*<td class="formValue formDdlSelectorTd">
                 <select class="form-control form-an" id="zcyy" name="zcyy">
-                    <option value="">==请选择==</option>
+                    <option value="">==Vui lòng chọn==</option>
                 </select>
             </td>*@
                     <td class="formTitle">Ăn uống：</td>
@@ -438,17 +438,17 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
 
 <script type="text/javascript" src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/PatientManage/HospiterRes/Register.js",false)"></script>
 <script type="text/javascript">
-    var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
-    var medicalInsurance = '@medicalInsurance';//医保所属地配置:区分医院所属医保区域
+    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+    var medicalInsurance = '@medicalInsurance';//cấu hình địa phương BHYT:phân biệt khu vực BHYT của bệnh viện
     var openXnhSett = '@openXnhSett';
-    var ybkCardType = "@((int)EnumCardType.YBJYK)";//医保卡类型
-    var xnkCardType = "@((int)EnumCardType.XNK)";//虚拟卡类型
-    var curUserCode = '@(ViewBag.CurUserCode)';//当前用户Code
-    var curUserName = '@(ViewBag.CurUserName)';//当前用户姓名
+    var ybkCardType = "@((int)EnumCardType.YBJYK)";//Loại thẻ BHYT
+    var xnkCardType = "@((int)EnumCardType.XNK)";//Loại thẻ ảo
+    var curUserCode = '@(ViewBag.CurUserCode)';//khitrướcdùnghộCode
+    var curUserName = '@(ViewBag.CurUserName)';//khitrướcdùnghộhọtên
     var orgId= '@(curOpr.OrganizeId)';
-    var curTime = '@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")';//当前时间
-    var his_manufacturerID = '@his_manufacturerID';//his厂商编号
-    var IsOpenSfzYbJz='@IsOpenSfzYbJz';//身份证使用医保就诊
+    var curTime = '@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")';//Thời gian hiện tại
+    var his_manufacturerID = '@his_manufacturerID';//hisMã nhà sản xuất
+    var IsOpenSfzYbJz='@IsOpenSfzYbJz';//thânphầnchứngkhiếndùngy tếbảo hiểmthìkhám
     var isZYZT = false;
 </script>
 <script src="~/Content/js/jquery.citys.js"></script>
@@ -456,7 +456,7 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
     if (openYbSett) {
         $('#thYbye').show();
     }
-    //医保读卡
+    //đọc thẻ BHYT
     var referDomPoint = getDOMPositionPoint($('#btnsyy')[0]);
     $("#readCard").show();
     var patModel = null;
@@ -475,13 +475,13 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
                 $("#cblb").val(readCardObj.cardInfo2.psn_type);
                 $("#txtybye").html(readCardObj.cardInfo2.balc);
             }
-            $("#txtybye").html(readCardObj.yibaoCardInfo.output.insuinfo[0].zhye); // 卡余额
-            $("#rybh").val(readCardObj.cardInfo1.psn_no);//个人编号
+            $("#txtybye").html(readCardObj.yibaoCardInfo.output.insuinfo[0].zhye); // Số dư thẻ
+            $("#rybh").val(readCardObj.cardInfo1.psn_no);//Số hiệu cá nhân
 
-            $("#xzlx").val(readCardObj.cardInfo2.insutype);//险种类型
-            $("#xzqh").val(readCardObj.cardInfo2.insuplc_admdvs);//参保地医保区划
-            $("#ecToken").val(readCardObj.ybkCardType == "01" ? readCardObj.cardInfo1.ecToken : "");//电子凭证令牌
-            $("#sfzh").val(readCardObj.cardInfo1.certno);//身份证
+            $("#xzlx").val(readCardObj.cardInfo2.insutype);//Loại bảo hiểm
+            $("#xzqh").val(readCardObj.cardInfo2.insuplc_admdvs);//thambảo hiểmđịay tếbảo hiểmquậnhoạch
+            $("#ecToken").val(readCardObj.ybkCardType == "01" ? readCardObj.cardInfo1.ecToken : "");//điệnconchứngchứnglệnhbiển
+            $("#sfzh").val(readCardObj.cardInfo1.certno);//CMND/CCCD
             cqPatInfo.xm = readCardObj.cardInfo1.psn_name;
             cqPatInfo.sfzh = readCardObj.cardInfo1.certno;
             cqPatInfo.xzqh = readCardObj.cardInfo2.insuplc_admdvs;
@@ -518,9 +518,9 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
         newtouch_globalevent_f4();
         $("#readCardCardType").val(cqPatInfo.jzlx);
     }
-    //根据病历号搜索返回基本信息
+    //Tìm theo số bệnh án để trả về thông tin cơ bản
     function GetQueryFphAjax(obj, funcSuccCallback) {
-        //先清空
+        //xóa sạch trước
         ClearAll();
         $("#ryrq").val($.getTime());
         $.najax({
@@ -535,7 +535,7 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
             alertbierror: false,
             errorCallback: function (rep) {
                if (!!obj.kh && rep.code && rep.code == 'OUTPAT_REGIST_ISINVALID') {
-                    //是医保卡读卡，尚未登记过
+                    //lày tếbảo hiểmthẻđọcthẻ，chưa từng đăng ký
                     $.modalConfirm("Thẻ chưa đăng ký，Có tạo đăng ký mới không", function (flag) {
                         if (flag) {
                             //$('#noCardRes').trigger('click');
@@ -544,7 +544,7 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
                     });
                 }
                 else if (!!obj.zjh && rep.code == 'OUTPAT_REGIST_ISINVALID') {
-                    //是身份证读卡，尚未登记过
+                    //làthânphầnchứngđọcthẻ，chưa từng đăng ký
                     $.modalConfirm("Thẻ chưa đăng ký，Có tạo đăng ký mới không", function (flag) {
                         if (flag) {
                             //$('#noCardRes').trigger('click');
@@ -559,7 +559,7 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
         });
     }
 
-    //载入 通过 患者基本信息
+    //tảivào Đã qua Thông tin cơ bản bệnh nhân
     function loadByBasicInfo(patModel) {
         var boolsearchwithkh = $("#searchwithkh").val() === "ON";
         if (!!!patModel.brxz) {
@@ -578,7 +578,7 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
         $("#kh").val(boolsearchwithkh ? patModel.kh : patModel.blh);
         $("#blh").html(boolsearchwithkh ? patModel.blh : patModel.kh);
         $("#phone").html(patModel.phone);
-        //$("#dy").html(patModel.dybh === 1 ? '外地' : (patModel.dybh === 0 ? '本地' : '未知'));
+        //$("#dy").html(patModel.dybh === 1 ? 'Nơi khác' : (patModel.dybh === 0 ? 'Cục bộ' : 'không xác định'));
         $("#hiddenzjlx").val(patModel.zjlx);
         $("#patid").val(patModel.patid);
         $("#lxrgx").find("option[value='" + patModel["lxrgx"] + "']").attr("selected", true).trigger('change');//.val(patModel.lxrgx);
@@ -615,12 +615,12 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
         }
         GetinpatientInfo(patModel.patid);
     }
-    /****************医保*********************/
+    /****************BHYT*********************/
     function yibaoValidateFirstVisit(cardInfo) {
 
 	    if (!!cardInfo) {
-		    //1.判断是否初诊（初诊新建，复诊加载病人信息）
-	        //初诊验证方式：1.身份证号+姓名，2：社保编号
+		    //1.Xét có phải khám lần đầu không（tạo mới khám lần đầu，Tái khám tải thông tin bệnh nhân）
+	        //cách xác thực khám lần đầu：1.Số CMND/CCCD+Họ tên，2：Số BHXH
 	        var paramVo = { kh: cardInfo.kh, jzpzlx: cardInfo.jzlx };
 	        if (cardInfo.output) {
 	            paramVo.sfzh = cardInfo.output.baseinfo.certno;
@@ -636,13 +636,13 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
 			    async: false,
 			    success: function (resp) {
 				    if (!!resp.data) {
-					    if (resp.data.sbbh == cardInfo.kh||resp.data.zjh==cardInfo.qtjz) {//复诊
+					    if (resp.data.sbbh == cardInfo.kh||resp.data.zjh==cardInfo.qtjz) {//Tái khám
 					        GetQueryFphAjax({ blh: null, kh: cardInfo.kh, zjh: paramVo.sfzh, cardType: cardInfo.jzlx },
 							    function () {
 								    if (patModel) {
 								    }
 							    });
-					    } else {//初诊
+					    } else {//Khám lần đầu
 						    $.ajax({
 							    type: "POST",
 							    url: "/PatientManage/HospiterRes/GetkhInfoBybrxz",
@@ -666,12 +666,12 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
 		    });
 	    }
     }
-    /****************上海医保*********************/
+    /****************BHYT Thượng Hải*********************/
     function yibaoValidateFirstVisitshanghaiV5(cardInfo) {
 
 	    if (!!cardInfo) {
-		    //1.判断是否初诊（初诊新建，复诊加载病人信息）
-		    //初诊验证方式：1.身份证号+姓名，2：社保编号
+		    //1.Xét có phải khám lần đầu không（tạo mới khám lần đầu，Tái khám tải thông tin bệnh nhân）
+		    //cách xác thực khám lần đầu：1.Số CMND/CCCD+Họ tên，2：Số BHXH
 		    $.ajax({
 			    type: "POST",
 			    url: "@Url.Action("ValidateYbFirstVisit")",
@@ -680,13 +680,13 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
                 async: false,
 			    success: function (resp) {
 				    if (!!resp.data) {
-					    if (resp.data.sbbh == cardInfo.kh||resp.data.zjh==cardInfo.qtjz) {//复诊
+					    if (resp.data.sbbh == cardInfo.kh||resp.data.zjh==cardInfo.qtjz) {//Tái khám
 					        GetQueryFphAjax({ blh: null, kh: cardInfo.kh, zjh: cardInfo.qtjz, cardType: cardInfo.jzlx },
 							    function () {
 								    if (patModel) {
 								    }
 							    });
-					    } else {//初诊
+					    } else {//Khám lần đầu
 						    $.ajax({
 							    type: "POST",
 							    url: "/PatientManage/HospiterRes/GetkhInfoBybrxz",
@@ -922,7 +922,7 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
         });
         return bzList;
     }
-    //通过insutype 获取brxz
+    //Đã quainsutype Lấybrxz
     function brxzRelInsutype(insutype) {
         var resultObjArr = new Array();
         $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
@@ -958,7 +958,7 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
             return null;
     }
 
-    //住院信息  在院
+    //Thông tin nhập viện  Đang nằm viện
     function GetinpatientInfo(datapatid) {
         $.najax({
             url: "/PatientManage/HospiterRes/GetinpatientInfo",
@@ -972,7 +972,7 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
                 }
                 else {
                     loadPatiInfo(data);
-                    //未落地到控件的部分
+                    //chưarơiđịađếnđiều khiểnhạngcủabộphân
                     patInfoObj.csny = data.csny;
                 }
             }

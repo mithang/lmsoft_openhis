@@ -9,7 +9,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         private static string[] badext = { "exe", "msi", "bat", "com", "sys", "aspx", "asax", "ashx" };
 
         #endregion
-        #region 文件操作
+        #region Thao tác tệp
         public static bool IsExistDirectory(string directoryPath)
         {
             return Directory.Exists(directoryPath);
@@ -44,7 +44,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         {
             string s;
             if (!File.Exists(Path))
-                s = "不存在相应的目录";
+                s = "Không tồn tại thư mục tương ứng";
             else
             {
                 var f2 = new StreamReader(Path, Encoding.Default);
@@ -65,7 +65,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
             if (!Directory.Exists(dir))
                 Directory.CreateDirectory(dir);
         }
-        //删除文件
+        //Xóa tệp
         public static bool DeleteFile(string Path)
         {
             if (File.Exists(Path))
@@ -82,7 +82,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
             if (string.IsNullOrWhiteSpace(ext)) return "";
             if (badext.Contains(ext))
             {
-                msg = "危险文件";
+                msg = "Tệp nguy hiểm";
             }
             return "";
         }
@@ -100,9 +100,9 @@ namespace NewtouchHIS.Lib.Base.Utilities
 
 
         /// <summary>
-        /// 判断目标是文件夹还是目录(目录包括磁盘)
+        /// Xác định mục tiêu là thư mục hay danh mục(Danh mục bao gồm đĩa)
         /// </summary>
-        /// <param name="filepath">文件名</param>
+        /// <param name="filepath">Tên tệp</param>
         /// <returns></returns>
         public static bool IsDir(string filepath)
         {
@@ -130,7 +130,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// 判断文件是否存在
+        /// Xác định tệp có tồn tại không
         /// </summary>
         /// <param name="file"></param>
         /// <returns></returns>
@@ -138,12 +138,12 @@ namespace NewtouchHIS.Lib.Base.Utilities
         {
             if (File.Exists(filepath))
             {
-                //存在 
+                //Tồn tại 
                 return true;
             }
             else
             {
-                //不存在 
+                //Không tồn tại 
                 return false;
             }
         }

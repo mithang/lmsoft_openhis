@@ -47,7 +47,7 @@
 <script>
     var sfxmId = $.request("sfxmId");
     $(function () {
-        //加载收费分类下拉
+        //Tải thả xuống phân loại thu phí
         initBindSelect();
 
         if (!!sfxmId) {
@@ -73,19 +73,19 @@
         }
     })
 
-    //首拼
+    //Mã đầu chữ
     $('#Name').keyup(function () {
         $('#py').val($(this).toShouPin());
     })
 
-    //收费分类下拉
+    //Thả xuống phân loại thu phí
     function initBindSelect() {
         $("#sfflCode").bindSelect({
             url: "/RehabChargeItem/GetsfflBindSelect"
         });
     }
 
-    //提交
+    //Gửi
     function submitForm() {
         if (!$('#form1').formValid()) {
             return false;

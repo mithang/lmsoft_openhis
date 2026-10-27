@@ -14,7 +14,7 @@ using System.Text;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// 提交内部发药
+    /// Gửi phát thuốc nội bộ
     /// </summary>
     public class SubmitApplyOutStockProcess : ProcessorFun<List<ApplyOutStockVEntity>>
     {
@@ -26,20 +26,20 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// 验证
+        /// Kiểm tra
         /// </summary>
         /// <returns></returns>
         protected override ActResult Validata()
         {
             if (Request == null || Request.Count <= 0)
             {
-                throw new FailedException("发药明细不能为空");
+                throw new FailedException("Chi tiết phát thuốc không được để trống");
             }
             return new ActResult();
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)

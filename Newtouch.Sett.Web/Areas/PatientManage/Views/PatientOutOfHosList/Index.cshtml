@@ -13,7 +13,7 @@
     $(function () {
         debugger;
         var Report = ReportViewer.Report;
-        // Report.LoadFromURL("../../../../ReportTemplate/出院患者列表.grf");
+        // Report.LoadFromURL("../../../../ReportTemplate/raviệnbệnhngườicộtbảng.grf");
         GetDate();
     }
         );
@@ -29,12 +29,12 @@
         if (month < 10) {
             month = "0" + month;
         }
-        var firstDay = year + "-" + month + "-" + "01" + " 00:00:00";//上个月的第一天
+        var firstDay = year + "-" + month + "-" + "01" + " 00:00:00";//trêncáithángcủathứmộttrời
 
         $("#ryrq").val(firstDay);
 
         var myDate = new Date(year, month, 0);
-        var lastDay = year + "-" + month + "-" + myDate.getDate() + " 23:59:59";//上个月的最后一天
+        var lastDay = year + "-" + month + "-" + myDate.getDate() + " 23:59:59";//trêncáithángcủanhấtsaumộttrời
         $("#cyrq").val(lastDay);
     }
 </script>

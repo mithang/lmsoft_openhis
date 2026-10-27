@@ -1,32 +1,32 @@
 namespace Newtouch.HIS.Domain.Entity.V
 {
     /// <summary>
-    /// 系统 药品 出入库方式
+    /// Hệ thống Thuốc Phương thức xuất nhập kho
     /// </summary>
     public class SysMedicineCrkfsVEntity
     {
         /// <summary>
-        /// 出入库方式ID
+        /// Phương thức xuất nhập khoID
         /// </summary>
         public int crkfsId { get; set; }
 
         /// <summary>
-        /// 出入库方式代码
+        /// Mã phương thức xuất nhập kho
         /// </summary>
         public string crkfsCode { get; set; }
 
         /// <summary>
-        /// 出入库方式名称
+        /// Tên phương thức xuất nhập kho
         /// </summary>
         public string crkfsmc { get; set; }
 
         /// <summary>
-        /// 出入库标志  0：入库  1：出库
+        /// Cờ xuất nhập kho  0：Nhập kho  1：Xuất kho
         /// </summary>
         public string crkbz { get; set; }
 
         /// <summary>
-        /// 状态  1：有效 0：无效
+        /// Trạng thái  1：Hiệu lực 0：Không hiệu lực
         /// </summary>
         public string zt { get; set; }
     }

@@ -7,6 +7,11 @@
 <div class="ui-layout" id="layout" style="height:100%;width:100%;">
     <iframe class="ui-layout-center" style="width:100%;" id="iframerightiframerightiframerightttt" name="iframerightiframerightiframerightttt"
             scrolling="auto" allowtransparency="true" frameborder="0"></iframe>
+    <div id="ssrs-notice" style="display:none;padding:24px;font-size:15px;line-height:1.8;">
+        Báo cáo trang đầu bệnh án cần máy chủ SSRS (ReportViewer.aspx) — chưa cấu hình ReportServer.HOST
+        trong triển khai này nên không thể hiển thị báo cáo. Đây là giới hạn của bản gốc (cũng phụ thuộc
+        SSRS ngoài), không phải trang báo cáo giả lập.
+    </div>
 </div>
 <script type="text/javascript">
     var reportServerHOST = '@(ViewBag.ReportServerHOST)';
@@ -20,11 +25,19 @@
     });
 
     function submit() {
+        // Khi chưa cấu hình máy chủ SSRS thì hiển thị thông báo rõ ràng thay vì
+        // chuyển hướng tới URL tương đối hỏng rồi 404 (hành vi gốc khi có cấu hình
+        // SSRS vẫn giữ nguyên ở nhánh else bên dưới).
+        if (!reportServerHOST) {
+            document.getElementById('ssrs-notice').style.display = 'block';
+            document.getElementById('iframerightiframerightiframerightttt').style.display = 'none';
+            return;
+        }
         var url = reportServerHOST + 'Pages/ReportViewer.aspx?%2fNewtouch.EMR.Report%2f%E8%A5%BF%E5%8C%BB%E7%97%85%E6%A1%88%E9%A6%96%E9%A1%B5&rs:Command=Render&orgId=' + orgId;
         url += "&zyh=" + zyh;// + "&bah=" + bah;
         location.href = url;
 
-        //setTimeout("$.loading(true, '正在请求报表页面...');", 10);
+        //setTimeout("$.loading(true, 'Đang yêu cầu trang báo cáo...');", 10);
         //$("#iframerightiframerightiframerightttt").attr('src', url);
     }
 
@@ -38,7 +51,7 @@
 
     //});
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

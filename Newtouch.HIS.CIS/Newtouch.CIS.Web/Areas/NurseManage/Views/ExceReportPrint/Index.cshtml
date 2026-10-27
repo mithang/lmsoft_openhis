@@ -10,13 +10,13 @@
     //var lsyzdURL = SysConfigReader.String("rptlink_lsyzPrint");
     //var cqyzdURL = SysConfigReader.String("rptlink_cqyzPrint");
     //var zcyyzdURL = SysConfigReader.String("rptlink_zyzycfPrint");
-    //长期医嘱打印单是否显示签名
+    //Y lệnh dài hạnInphiếuCóKhôngHiển thịchữ ký
     var isShowSign = SysConfigReader.String("IS_ShowSigner");
     var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
     var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
     var curOpr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
 
-    var ypbjyfpz = SysConfigReader.String("ypbjyfpz");//输液标签
+    var ypbjyfpz = SysConfigReader.String("ypbjyfpz");//truyền dịchnhãn
 }
 <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
 <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
@@ -89,11 +89,11 @@
     <div class="dv-right">
         <table class="form" style="background-color:white">
             @*<tr>
-                <td class="formTitle">姓名：</td>
+                <td class="formTitle">Họ tên：</td>
                 <td class="formValue"><label id="hzxm"></label></td>
-                <td class="formTitle">性别：</td>
+                <td class="formTitle">Giới tính：</td>
                 <td class="formValue" style="width:170px"><label id="sex"></label></td>
-                <td class="formTitle">年龄：</td>
+                <td class="formTitle">Tuổi：</td>
                 <td class="formValue"><label id="nl"></label></td>
                 <td class="formTitle"> </td>
                 <td class="formValue"></td>
@@ -121,22 +121,22 @@
                     <select class="form-control" id="zxdlb">
                         <option value="">Vui lòng chọn</option>
                         <option value="zld">Lĩnh thuốcPhiếu</option>
-                        @*<option value="zsz">注射证</option>*@
+                        @*<option value="zsz">Lưu ýxạchứng</option>*@
                         <option value="whd">Đơn khí dung</option>
                         <option value="jyd">Phiếu xét nghiệm</option>
                         <option value="jcd">Phiếu kiểm tra</option>
                         <option value="kfyd_yf">Phiếu thuốc uống</option>
                         <option value="zsd_yf">Đơn tiêm</option>
                         <option value="syd_yf">Phiếu truyền dịch</option>
-                        @*<option value="hld_sfdl">护理单</option>*@
-                        @*<option value="zld_yzlx">治疗单</option>*@
+                        @*<option value="hld_sfdl">điều dưỡngphiếu</option>*@
+                        @*<option value="zld_yzlx">Điều trịphiếu</option>*@
                         <option value="yzd">Phiếu y lệnh</option>
                         <option value="zcy_yzlx">Thuốc YHCTĐơn thuốc</option>
-                        @*<option value="syxsk">输液巡视卡</option>*@
+                        @*<option value="syxsk">truyền dịchtuần traxemthẻ</option>*@
                         <option value="ypbj">Truyền dịchNhãn</option>
                         <option value="whbq">Khí dungNhãn</option>
                         <option value="jyztdy">Ống nghiệmNhãn</option>
-                        @*<option value="wzztd">文字嘱托单</option>*@
+                        @*<option value="wzztd">văn bảnDặn dòphiếu</option>*@
                     </select>
 
                 </td>
@@ -171,23 +171,23 @@
     </div>
 </div>
 <script type="text/javascript">
-    var lysqdURL = '@Html.Raw(reportUrl)' + "?tempCode=33&systemCode=CIS";//领药申请单
-    var whdURL = '@Html.Raw(reportUrl)' + "?tempCode=34&systemCode=CIS";//雾化单
-    ////var jydURL = '@Html.Raw(reportUrl)' + "?tempCode=35&systemCode=CIS";//检验单
-    var jydURL = '@Html.Raw(reportUrl)' + "?tempCode=30&systemCode=CIS";//检验单
-    var jcdURL = '@Html.Raw(reportUrl)' + "?tempCode=36&systemCode=CIS";//检查单
-    var kfydURL = '@Html.Raw(reportUrl)' + "?tempCode=37&systemCode=CIS";//口服单
-    var zsdURL = '@Html.Raw(reportUrl)' + "?tempCode=38&systemCode=CIS";//注射单
-    var sydURL = '@Html.Raw(reportUrl)' + "?tempCode=39&systemCode=CIS";//输液单
-    var hldURL = '@Html.Raw(reportUrl)' + "?tempCode=41&systemCode=CIS";//护理单
-    var zldURL = '@Html.Raw(reportUrl)' + "?tempCode=42&systemCode=CIS";//治疗单
-    var zcyyzdURL = '@Html.Raw(reportUrl)' + "?tempCode=44&systemCode=CIS";//中药处方单
-    var syxskURL = '@Html.Raw(reportUrl)' + "?tempCode=97&systemCode=CIS"; //输液巡视卡
-    var lsyzdURL = '@Html.Raw(reportUrl)' + "?tempCode=28&systemCode=CIS";//临时医嘱
-    var cqyzdURL = '@Html.Raw(reportUrl)' + "?tempCode=27&systemCode=CIS";//长期医嘱
-    var ypbjURL = '@Html.Raw(reportUrl)' + "?tempCode=70&systemCode=CIS";//药品标签（输液标签）
-    var whbqURL = '@Html.Raw(reportUrl)' + "?tempCode=1310&systemCode=CIS";//雾化标签
-    var jyztdyURL = '@Html.Raw(reportUrl)' + "?tempCode=32&systemCode=CIS";//检验组套标签（试管标签）
+    var lysqdURL = '@Html.Raw(reportUrl)' + "?tempCode=33&systemCode=CIS";//lĩnhthuốcPhiếu
+    var whdURL = '@Html.Raw(reportUrl)' + "?tempCode=34&systemCode=CIS";//khí dungphiếu
+    ////var jydURL = '@Html.Raw(reportUrl)' + "?tempCode=35&systemCode=CIS";//Xét nghiệmphiếu
+    var jydURL = '@Html.Raw(reportUrl)' + "?tempCode=30&systemCode=CIS";//Xét nghiệmphiếu
+    var jcdURL = '@Html.Raw(reportUrl)' + "?tempCode=36&systemCode=CIS";//Kiểm traphiếu
+    var kfydURL = '@Html.Raw(reportUrl)' + "?tempCode=37&systemCode=CIS";//uốngphiếu
+    var zsdURL = '@Html.Raw(reportUrl)' + "?tempCode=38&systemCode=CIS";//Lưu ýxạphiếu
+    var sydURL = '@Html.Raw(reportUrl)' + "?tempCode=39&systemCode=CIS";//truyền dịchphiếu
+    var hldURL = '@Html.Raw(reportUrl)' + "?tempCode=41&systemCode=CIS";//điều dưỡngphiếu
+    var zldURL = '@Html.Raw(reportUrl)' + "?tempCode=42&systemCode=CIS";//Điều trịphiếu
+    var zcyyzdURL = '@Html.Raw(reportUrl)' + "?tempCode=44&systemCode=CIS";//Thuốc Đông yĐơn thuốc
+    var syxskURL = '@Html.Raw(reportUrl)' + "?tempCode=97&systemCode=CIS"; //truyền dịchtuần traxemthẻ
+    var lsyzdURL = '@Html.Raw(reportUrl)' + "?tempCode=28&systemCode=CIS";//Y lệnh tạm thời
+    var cqyzdURL = '@Html.Raw(reportUrl)' + "?tempCode=27&systemCode=CIS";//Y lệnh dài hạn
+    var ypbjURL = '@Html.Raw(reportUrl)' + "?tempCode=70&systemCode=CIS";//Thuốcnhãn（truyền dịchnhãn）
+    var whbqURL = '@Html.Raw(reportUrl)' + "?tempCode=1310&systemCode=CIS";//khí dungnhãn
+    var jyztdyURL = '@Html.Raw(reportUrl)' + "?tempCode=32&systemCode=CIS";//Xét nghiệmBộ mẫunhãn（nhãn ống nghiệm）
 
 
     $(".dv-body").height($(window).height());
@@ -199,7 +199,7 @@
     var zyh = "";
 
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt, tính lại rộng cao
             $(".dv-body").height($(window).height());
             $(".dv-body").width($(window).width());
         });
@@ -208,7 +208,7 @@
         getPatTreeList();
         gridList("");
 
-        //搜索病人信息
+        //tìm kiếmThông tin bệnh nhân
         $('#keyword').keyup(function () {
             getPatTreeList();
         });
@@ -249,9 +249,9 @@
 
         patzyh = "";
 
-        //当前选中父节点
+        //hiện tạiĐã chọnNút cha
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //CóKhôngphiếucáicontiếtđiểm
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
@@ -263,7 +263,7 @@
             single = 1;
         }
 
-        //选中节点
+        //Đã chọntiếtđiểm
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patzyh += patlist[i].value + ",";
@@ -312,7 +312,7 @@
         var zxsjend;
         var zxdlb = $('#zxdlb').val();
         var yzxz = $('input[name="optionsRadios"]:checked').val();
-        //根据是否长期判断zxsjend的值
+        //TheoCóKhôngDài hạnkiểm trazxsjendcủaGiá trị
         if (yzxz === "2" || yzxz === "1") {
             zxsjend = $('#txt_zxrq').val() + " 23:59:59";
         } else {
@@ -325,9 +325,9 @@
             }
         }).trigger("reloadGrid");
     }
-    //监听全部/长期/临时的变化
+    //lắng ngheTất cả/Dài hạn/Tạm thờicủađổihóa
     $('input[name="optionsRadios"]').change(function () {
-        // 获取当前被选中的 radio 的值
+        // Lấyhiện tạibịĐã chọncủa radio củaGiá trị
         var selectedValue = $('input[name="optionsRadios"]:checked').val();
 
         if (selectedValue === "2" || selectedValue === "1") {
@@ -342,7 +342,7 @@
         $('#gridList').newtouchLocalDataGrid(null, orderList);
     }
 
-    //级联选中所有子节点
+    //liên cấpĐã chọntất cảcontiếtđiểm
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -351,7 +351,7 @@
             }
         }
     }
-    //级联取消所有子节点
+    //liên cấpHủytất cảcontiếtđiểm
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -410,7 +410,7 @@
                     var rowData = $("#gridList").jqGrid('getRowData', rowIndex);
                     var ids = $("#gridList").jqGrid('getRowData_AllLine');
 
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     for (var i = 0; i < ids.length; i++) {
                     	if ("zld" == $('#zxdlb').val()) {
 		                    if (ids[i].lyxh == rowData.lyxh && ids[i].lyxh != "") {
@@ -451,15 +451,15 @@
                 if (list.length > 0) {
 
                     for (j = j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Cùng nhómĐã chọn
                         {
                             j = j + 1;
                             $("#gridList").jqGrid("setSelection", list[j - 1], true);
 
                         }
-                        else { //同组取消选中
+                        else { //Cùng nhómHủyĐã chọn
                             //j = j + 1;
-                            $("#gridList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                            $("#gridList").jqGrid("setSelection", list[j], false);      //Hủykhôngkích hoạtonselectrow
                         }
 
                     }
@@ -472,15 +472,15 @@
             },
         });
     }
-    //刷新医嘱
+    //làm mớiY lệnh mới
     function RefreshOrder() {
         $('#gridList').jqGrid("clearGridData");
         getOrderExecutionList(null, null);
     }
 
-    //打印
+    //In
     function ExecutionChecked() {
-        //选中的id
+        //Đã chọncủaid
         var zxdlb = $('#zxdlb').val();
         var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");
         if (selRowIds == null || selRowIds.length == 0) {
@@ -497,11 +497,11 @@
             $.modalAlert("In theo ngày, vui lòng chọn cùng một ngày", 'warning');
             return;
         }
-        //输液标签 试管标签 打印参数
+        //truyền dịchnhãn nhãn ống nghiệm Intham số
         var strlyxh = "";
         var yzhstr = "";
         var zhstr = "";
-        if (zxdlb == "ypbj" || zxdlb == "jyztdy" || zxdlb =='whbq') { //输液标签 试管标签
+        if (zxdlb == "ypbj" || zxdlb == "jyztdy" || zxdlb =='whbq') { //truyền dịchnhãn nhãn ống nghiệm
             for (var i = 0; i < selRowIds.length; i++) {
                 var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
                 if (strlyxh.indexOf(rowData.lyxh) < 0) {
@@ -525,7 +525,7 @@
             $.modalAlert("Vui lòng chọn trước loại phiếu thực hiện", 'warning');
             return;
         }
-        else if (zxdlb == "kfyd_yf" || zxdlb == "zsd_yf" || zxdlb == "hld_sfdl" || zxdlb == "zld_yzlx" || zxdlb == "syd_yf" || zxdlb == "zcy_yzlx" || zxdlb == "syxsk" || zxdlb == "ypbj" || zxdlb == "jyztdy" || zxdlb == "whbq") //口服 注射单 护理单 治疗单 输液单 输液标签 试管标签
+        else if (zxdlb == "kfyd_yf" || zxdlb == "zsd_yf" || zxdlb == "hld_sfdl" || zxdlb == "zld_yzlx" || zxdlb == "syd_yf" || zxdlb == "zcy_yzlx" || zxdlb == "syxsk" || zxdlb == "ypbj" || zxdlb == "jyztdy" || zxdlb == "whbq") //uống Lưu ýxạphiếu điều dưỡngphiếu Điều trịphiếu truyền dịchphiếu truyền dịchnhãn nhãn ống nghiệm
         {
             FlPrint(zxdlb, selRowIds, printParam);
             return;
@@ -540,7 +540,7 @@
         var orgId = '@(ViewBag.OrgId)';
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
-                if ($.inArray(rowData.yzh, printed) < 0) {//同一批已打印过，则不再弹出
+                if ($.inArray(rowData.yzh, printed) < 0) {//cùng mộtlôđãInqua，thìkhônglạibậtra
                     if (zxdlb === "jyd" || zxdlb === "jcd") {
                         //var rpturl = zxdlb === "jyd" ? reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E8%B4%B5%E5%AE%89%E4%BD%8F%E9%99%A2%E6%A3%80%E9%AA%8C%E7%94%B3%E8%AF%B7%E5%8D%95&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&yzdh=" + rowData.yzh + "&zyh=" + zyh + "&orgId=" + orgId + "&yzzt=2" : reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E4%BD%8F%E9%99%A2%E6%A3%80%E6%9F%A5%E7%94%B3%E8%AF%B7%E5%8D%95&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&yzdh=" + rowData.yzh + "&zyh=" + zyh + "&orgId=" + orgId;
                         var rpturl = zxdlb == "jyd" ? jydURL + "&yzdh=" + rowData.yzh + "&zyh=" + rowData.zyh + "&orgId=" + orgId + "&yzzt=2" : jcdURL + "&yzdh=" + rowData.yzh + "&zyh=" + rowData.zyh + "&orgId=" + orgId;
@@ -555,9 +555,9 @@
                                 window.open(rpturl, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
                             }
                         });
-                    }  else if (zxdlb === "zsz") {//注射证
+                    }  else if (zxdlb === "zsz") {//Lưu ýxạchứng
                         window.open(reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E8%B4%B5%E5%AE%89%E4%BD%8F%E9%99%A2%E6%B3%A8%E5%B0%84%E5%8D%95&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&yzdh=" + rowData.yzh + "&zyh=" + zyh + "&orgId=" + orgId, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
-                    } else if (zxdlb === "whd") {//雾化单
+                    } else if (zxdlb === "whd") {//khí dungphiếu
                         window.open(whdURL + "&orgId=" + orgId + "&zyh=" + rowData.zyh + "&yzdh=" + rowData.yzh + "&ksrq=" + ksrq + " 00:00:01&jsrq=" + jsrq +" 23:59:59", "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
                         //window.open(reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E8%B4%B5%E5%AE%89%E4%BD%8F%E9%99%A2%E9%9B%BE%E5%8C%96%E5%8D%95&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&yzdh=" + rowData.yzh + "&zyh=" + zyh + "&orgId=" + orgId, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
                     }
@@ -580,13 +580,13 @@
 
     function FlPrint(tag, ids, printParam) {
 
-        //输液标签（药品标签）
+        //truyền dịchnhãn（Thuốcnhãn）
        if (tag == "ypbj") {
             //window.open(ypbjURL + "&orgId=" + '@(ViewBag.OrgId)' + "&zyh=" + zyh + "&yzxz=" + clbz + "&yzhs=" + idspara + "&zxrq=" + zxrq, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
            window.open(ypbjURL + "&orgId=" + '@(ViewBag.OrgId)' + "&zxrqks=" + $('#txt_zxrq').val() + "&zxrqjs=" + $('#txt_zxrqend').val() + ' 23:59:59' + "&yzxz=" + clbz + "&lyxh=" + printParam.strlyxh + "&zyh=" + zyh + "&fybh=" + "@ypbjyfpz" + "&orgId=" + '@(ViewBag.OrgId)' + "&yzh=" + printParam.yzhstr + "&zh=" + printParam.zhstr, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
            return;
         }
-            //试管标签（检验组套标签）
+            //nhãn ống nghiệm（Xét nghiệmBộ mẫunhãn）
         if (tag == "jyztdy") {
             $.ajax({
                 url: '/MedicalRecord/SaveBarCodeByYzh',
@@ -606,7 +606,7 @@
             var jsrq = $('#txt_zxrqend').val().substr(0, 10);
             window.open(whbqURL + "&orgId=" + '@(ViewBag.OrgId)' + "&zyh=" + zyh + "&yzdh=" + printParam.yzhstr + "&ksrq=" + ksrq + " 00:00:01&jsrq=" + jsrq+" 23:59:59", "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
         }
-        //var zyh = patzyh;//多患者
+        //var zyh = patzyh;//nhiềuBệnh nhân
         var idspara = "";
         var zxrq = $("#txt_zxrq").val();
         if (ids != null) {
@@ -628,33 +628,33 @@
             }
             for (var i = 0; i <= zyhs.length-1 ; i++) {
                 //alert(zyhs[i]);
-                if (tag == "kfyd_yf") { //口服单
+                if (tag == "kfyd_yf") { //uốngphiếu
                     window.open(kfydURL + "&orgId=" + '@(ViewBag.OrgId)' + "&zyh=" + zyhs[i] + "&clbz=" + clbz + "&yzhs=" + idspara + "&zxrq=" + zxrq, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
                 }
-                    //注射单
+                    //Lưu ýxạphiếu
                 else if (tag == "zsd_yf") {
                     window.open(zsdURL + "&orgId=" + '@(ViewBag.OrgId)' + "&zyh=" + zyhs[i] + "&clbz=" + clbz + "&yzhs=" + idspara + "&zxrq=" + zxrq, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
                 }
-                    //护理单
+                    //điều dưỡngphiếu
                 else if (tag == "hld_sfdl") {
                     window.open(hldURL + "&orgId=" + '@(ViewBag.OrgId)' + "&zyh=" + zyhs[i] + "&clbz=" + clbz + "&yzhs=" + idspara + "&zxrq=" + zxrq, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
                 }
-                    //治疗单
+                    //Điều trịphiếu
                 else if (tag == "zld_yzlx") {
                     window.open(zldURL + "&orgId=" + '@(ViewBag.OrgId)' + "&zyh=" + zyhs[i] + "&clbz=" + clbz + "&yzhs=" + idspara + "&zxrq=" + zxrq, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
                 }
-                    //输液单
+                    //truyền dịchphiếu
                 else if (tag == "syd_yf") {
                     window.open(sydURL + "&orgId=" + '@(ViewBag.OrgId)' + "&zyh=" + zyhs[i] + "&clbz=" + clbz + "&yzhs=" + idspara + "&zxrq=" + zxrq, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
                 }
-                    //医嘱单-临时
+                    //Y lệnhphiếu-Tạm thời
                 else if (tag == "yzd" && clbz == "1") {
                     top.top.$.Newtouchtab.addTabWithOutMenu({ name: zyhs[i] + "-Y lệnh tạm thời", enName: "", url: "/SystemManage/YzPreView/YzPreView?zyh=" + zyhs[i] + "&orgId=" + '@curOpr.OrganizeId' + "&isSign=" + isSign + "&yzlx=" + "Y lệnh tạm thời", AppId: "EMR" });
                     //window.open(lsyzdURL + "&orgId=" + '@(ViewBag.OrgId)' + "&zyh=" + zyh + "&isSign=" + isSign + "&zxrq=" + zxrq, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
 
                     @*window.open('@(ViewBag.ReportServerHOST)' + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E4%B8%B4%E6%97%B6%E5%8C%BB%E5%98%B1%E6%89%93%E5%8D%B0&rs:Command=Render&orgId=" + orgId + "&rc:Stylesheet=MyStyleSheetBlankPage&orgId=" + orgId + "&zyh=" + zyh + "&isSign=1", "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");*@
                     }
-                    //医嘱单-长期
+                    //Y lệnhphiếu-Dài hạn
                 else if (tag == "yzd" && clbz == "2") {
                     var isSign = "0";
                     if ('@isShowSign' && '@isShowSign' === '1') {

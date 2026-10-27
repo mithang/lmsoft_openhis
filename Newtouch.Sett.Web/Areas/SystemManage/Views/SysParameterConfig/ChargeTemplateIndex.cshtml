@@ -92,7 +92,7 @@
         }).trigger('reloadGrid');
     });
 
-    //回车事件
+    //sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -131,7 +131,7 @@
     function btn_delete() {
 
         var rowKey = $("#gridList").jqGrid('getGridParam', "selrow");
-        var rowData = $("#gridList").jqGrid("getRowData", rowKey);//根据上面的rowKey获得本行的所有数据
+        var rowData = $("#gridList").jqGrid("getRowData", rowKey);//theo ở trênrowKeylấy tất cả dữ liệu của dòng này
 
         var keyValue = $("#gridList").jqGridRowValue().sfmbbh;
         if (!!!keyValue) {

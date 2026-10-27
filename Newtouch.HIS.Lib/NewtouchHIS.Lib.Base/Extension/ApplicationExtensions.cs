@@ -9,7 +9,7 @@ namespace NewtouchHIS.Lib.Base.Extension
     public static class ApplicationExtensions
     {
         /// <summary>
-        /// 抓异常
+        /// Bắt ngoại lệ
         /// </summary>
         /// <param name="app"></param>
         /// <param name="isApi"></param>

@@ -20,7 +20,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string Id { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký时间
+        /// Desc:Đăng kýThời gian
         /// Default:
         /// Nullable:True
         /// </summary>   
@@ -28,14 +28,14 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public DateTime? sqsj { get; set; }
 
         /// <summary>
-        /// Desc:就诊时间
+        /// Desc:Thời gian khám
         /// Default:
         /// Nullable:True
         /// </summary>           
         public DateTime? jzsj { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký科室
+        /// Desc:Đăng kýKhoa
         /// Default:
         /// Nullable:True
         /// </summary>   
@@ -43,7 +43,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string ks { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký医生
+        /// Desc:Đăng kýBác sĩ
         /// Default:
         /// Nullable:True
         /// </summary>   
@@ -51,7 +51,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string ysgh { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký状态
+        /// Desc:Đăng kýTrạng thái
         /// Default:EmunRemoteTreatedStu
         /// Nullable:False
         /// </summary>           
@@ -65,7 +65,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         [Required(ErrorMessage = "Bệnh nhânid không được để trống")]
         public string patid { get; set; }
         /// <summary>
-        /// 就诊Số thẻ
+        /// Khám bệnhSố thẻ
         /// </summary>
         [Required(ErrorMessage = "Số thẻ khám bệnh không được để trống")]
         public string kh { get; set; }
@@ -108,28 +108,28 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public DateTime? birth { get; set; }
 
         /// <summary>
-        /// Desc:病人性质
+        /// Desc:Tính chất bệnh nhân
         /// Default:EnumBrxz
         /// Nullable:True
         /// </summary>           
         public string brxz { get; set; } = ((int)EnumBrxz.zf).ToString();
 
         /// <summary>
-        /// Desc:Cuộc họp号
+        /// Desc:Cuộc họpSố
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string? mettingId { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký人信息
+        /// Desc:Đăng kýthông tin người
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string sqr { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký流水号（由第三方系统生成，不可重复）
+        /// Desc:Đăng kýSố giao dịch(Do hệ thống thứ ba tạo,Không được trùng lặp)
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -143,11 +143,11 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         /// </summary>
         public string ApplyOrg { get; set; }
         /// <summary>
-        /// Tổ chức名称
+        /// Tổ chứcTên
         /// </summary>
         public string ApplyOrgName { get; set; }
         /// <summary>
-        /// Đăng ký人工号
+        /// Đăng kýMã số nhân viên
         /// </summary>
         public string sqrgh { get; set; }
         /// <summary>
@@ -167,15 +167,15 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         /// </summary>
         public string ApplyOrg { get; set; }
         /// <summary>
-        /// Tổ chức名称
+        /// Tổ chứcTên
         /// </summary>
         public string ApplyOrgName { get; set; }
         /// <summary>
-        /// Đăng ký人工号
+        /// Đăng kýMã số nhân viên
         /// </summary>
         public string sqrgh { get; set; }
         /// <summary>
-        /// Desc:Đăng ký时间
+        /// Desc:Đăng kýThời gian
         /// Default:
         /// Nullable:True
         /// </summary>   
@@ -183,14 +183,14 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public DateTime? sqsj { get; set; }
 
         /// <summary>
-        /// Desc:就诊时间
+        /// Desc:Thời gian khám
         /// Default:
         /// Nullable:True
         /// </summary>           
         public DateTime? jzsj { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký科室
+        /// Desc:Đăng kýKhoa
         /// Default:
         /// Nullable:True
         /// </summary>   
@@ -198,7 +198,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string ks { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký医生
+        /// Desc:Đăng kýBác sĩ
         /// Default:
         /// Nullable:True
         /// </summary>   
@@ -213,7 +213,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         [Required(ErrorMessage = "Bệnh nhânid không được để trống")]
         public string patid { get; set; }
         /// <summary>
-        /// 就诊Số thẻ
+        /// Khám bệnhSố thẻ
         /// </summary>
         [Required(ErrorMessage = "Số thẻ khám bệnh không được để trống")]
         public string kh { get; set; }
@@ -227,21 +227,21 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         public string xm { get; set; }
 
         /// <summary>
-        /// Desc:Cuộc họp号
+        /// Desc:Cuộc họpSố
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string? mettingId { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký人信息(可用于Đăng kýCuộc họp室)
+        /// Desc:Đăng kýthông tin người(Có thể dùng choĐăng kýCuộc họpPhòng)
         /// Default:
         /// Nullable:True
         /// </summary>           
         public string? sqr { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký流水号（由第三方系统生成，不可重复）
+        /// Desc:Đăng kýSố giao dịch(Do hệ thống thứ ba tạo,Không được trùng lặp)
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -253,7 +253,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
 
     }
     /// <summary>
-    /// Đăng ký khám chữa bệnh冗余信息
+    /// Đăng ký khám chữa bệnhThông tin dư thừa
     /// </summary>
     public class TreatedApplyExtendVO : TreatedApplyVO
     {

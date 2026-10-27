@@ -87,7 +87,7 @@
 <script type="text/javascript">
     var $gridBRXXDrugsList = $("#resultGridList");
     $(function () {
-        $("#bqmc").bindSelect({ //病区信息集合
+        $("#bqmc").bindSelect({ //Tập hợp thông tin khu bệnh
             url: "/HospitalizationPharmacy/GetBQSelectJson",
             id: "bqCode",
             text: "bqmc"
@@ -95,7 +95,7 @@
         dispenseMedicinGridList();
     });
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
@@ -106,7 +106,7 @@
     var checkArray = [];
     var pageNum = 1;
 
-    //用户发药详细信息
+    //Chi tiết phát thuốc của người dùng
     function dispenseMedicinGridList() {
         $gridBRXXDrugsList.dataGrid({
             multiselect: true,
@@ -122,7 +122,7 @@
                 {
                     label: 'Thao tác', name: 'czlx', width: 145, align: 'center',
                     formatter: function (cellvalue, options, rowData) {
-                        // 判断是否等于 "退药"，如果是，则显示按钮
+                        // Kiểm tra có bằng không "Trả thuốc"，Nếu là，thì hiển thị nút
                         if (cellvalue === "退药") {
                             console.log('aaaa',rowData.zytyapplyno)
                             return "<span style='color:#ff0000;'>Trả thuốc</span> " +
@@ -164,8 +164,8 @@
             viewrecords: true,
             //multiboxonly : false,
             onSelectAll: function (rowIds, status) {
-                //选中全部时触发，rowIds为当页所有的rowId
-                //checkArray数组中把当页的全删除 jqGrid('getDataIDs');
+                //Kích hoạt khi chọn tất cả，rowIdslà tất cả của trang hiện tạirowId
+                //checkArrayXóa tất cả của trang hiện tại trong mảng jqGrid('getDataIDs');
                 for (var i = 0; i < rowIds.length; i++) {
                     for (var j = 0; j < checkArray.length; j++) {
                         if (checkArray[j].pageNum == pageNum && checkArray[j].rowId == rowIds[i]) {
@@ -174,7 +174,7 @@
                         }
                     }
                 }
-                //如果是选择的选中，则把当页所有条目加上
+                //Nếu là chọn đã chọn，thì cộng tất cả mục của trang hiện tại
                 if (status) {
                     for (var i = 0; i < rowIds.length; i++) {
                         var rowData = $gridBRXXDrugsList.jqGrid('getRowData', rowIds[i]);
@@ -183,12 +183,12 @@
                     }
                 }
             },
-            onSelectRow: function (rowId, status) {  //Nhấncheckbox触发 rowId为当前触发的rowid
-                //选中行的行数据
+            onSelectRow: function (rowId, status) {  //NhấncheckboxKích hoạt rowIdlà kích hoạt hiện tạirowid
+                //Dữ liệu dòng của dòng được chọn
                 var rowData = $gridBRXXDrugsList.jqGrid('getRowData', rowId);
                 var checkedItem = { "pageNum": pageNum, "rowId": rowId, "czlx": rowData.czlx, "yzId": rowData.yzId, "Id": rowData.Id, "zxId": rowData.zxId, "zyh": rowData.zyh, "zytyapplyno": rowData.zytyapplyno };
                 if (status) {
-                    //如果选中，则判断数组中如果没有的话加入数组
+                    //Nếu được chọn，thì kiểm tra nếu trong mảng chưa có thì thêm vào mảng
                     for (var i = 0; i < checkArray.length; i++) {
                         if (checkArray[i].pageNum == pageNum && checkArray[i].rowId == rowId) {
                             return false;
@@ -196,7 +196,7 @@
                     }
                     checkArray.push(checkedItem);
                 } else {
-                    //删除数组
+                    //Xóa mảng
                     for (var i = 0; i < checkArray.length; i++) {
                         if (checkArray[i].pageNum == pageNum && checkArray[i].rowId == rowId) {
                             checkArray.splice(i, 1);
@@ -206,11 +206,11 @@
                 }
                 //console.log(checkArray)
             },
-            //每个页面加载时触发
+            //Kích hoạt khi mỗi trang tải
             loadComplete: function (data) {
-                //改变全局变量pageNum页码
+                //Thay đổi biến toàn cụcpageNumSố trang
                 pageNum = data.page;
-                //循环数组，让当页中的rowId变为选中状态
+                //Lặp mảng，Để trong trang hiện tạirowIdtrở thành trạng thái được chọn
                 for (var i = 0; i < checkArray.length; i++) {
                     if (checkArray[i].pageNum == pageNum) {
                         $gridBRXXDrugsList.jqGrid('setSelection', checkArray[i].rowId, true);
@@ -220,11 +220,11 @@
         });
 
         $(".ui-pg-selbox").change(function () {
-            //要触发的事件
+            //Sự kiện cần kích hoạt
             checkArray.splice(0);
         });
 
-        //查询
+        //Truy vấn
         $("#btn_search").click(function () {
             if ($("#Kssj").val() === "") {
                 $.modalMsg("Thời gian bắt đầu không được để trống", "warning", 2000);
@@ -267,7 +267,7 @@
         return newWindow;
     }
 
-    //打印明细
+    //In chi tiết
     function newtouch_event_f7() {
         var yzIds = checkArray.map((item) => {
             var czlx = item.czlx.indexOf("Phát thuốc") != -1 ? "Phát thuốc" : "Trả thuốc";
@@ -288,7 +288,7 @@
         openWindowWithPost("@(ViewBag.ReportServerHOST)/Pages/ReportViewer.aspx?%2fNewtouch.HIS.Bill%2fZYFYCX_Detail&rs:Command=Render", "", keys, values);
     }
 
-    //汇总打印
+    //In tổng hợp
     function newtouch_event_f8() {
         var kssj = $("#Kssj").val();
         var jssj = $("#Jssj").val();
@@ -296,7 +296,7 @@
         if (operateType != 1 && operateType != 2) {
             operateType = "1,2";
         }
-        @*var fy = checkArray.filter((item) => item.czlx.indexOf("发药") > 0);
+        @*var fy = checkArray.filter((item) => item.czlx.indexOf("Phát thuốc") > 0);
         var ty = checkArray.filter((item) => item.czlx.indexOf("Trả thuốc") > 0);
 
         if (ty.length > 0) {
@@ -386,7 +386,7 @@
 
 
     function newtouch_event_f6() {
-        //补打 不支持发药退药混合打印
+        //In bổ sung Không hỗ trợ in hỗn hợp phát thuốc trả thuốc
         var operateType;
         if (checkArray.length == 0) {
             $.modalMsg("Vui lòng chọn bản ghi thao tác", "warning");
@@ -442,7 +442,7 @@
     }
 
     function reprintReturnDrug(rowData) {
-        var systemCode = "PDS";//报表所属系统编码
+        var systemCode = "PDS";//Mã hệ thống của báo cáo
         var uri = '@reportUrl' + "?tempCode=65&systemCode=PDS" + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=" + '@ViewBag.OrganizeId' + "&systemCode=" + systemCode + "&yfbmCode=" + '@ViewBag.yfbmCode' + "&yzIds =&zxIds=&operateType=2&kssj=&jssj=" + "&rdNo=" + rowData.zytyapplyno + "&czIds=";
         window.open(uri);
     }

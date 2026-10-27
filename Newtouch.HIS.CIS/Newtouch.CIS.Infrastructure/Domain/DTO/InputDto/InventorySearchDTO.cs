@@ -7,59 +7,59 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 盘点查询条件
+    /// Kiểm kêĐiều kiện tìm kiếm
     /// </summary>
     public class InventorySearchDTO
     {
         /// <summary>
-        /// 盘点ID
+        /// Kiểm kêID
         /// </summary>
         public long pdId { get; set; }
 
         /// <summary>
-        /// 盘点时间
+        /// Kiểm kêThời gian
         /// </summary>
         public string pdsj { get; set; }
 
         /// <summary>
-        /// 关键字  物资名称/拼音
+        /// Từ khóa  vật tưTên/Pinyin
         /// </summary>
         public string keyWord { get; set; }
 
         /// <summary>
-        /// 物资状态 0：无效  1：有效
+        /// vật tưTrạng thái 0：Vô hiệu  1：Hiệu lực
         /// </summary>
         public string wzzt { get; set; }
 
         /// <summary>
-        /// 列别ID
+        /// cộtloạiID
         /// </summary>
         public string lb { get; set; }
 
         /// <summary>
-        /// 库存显示 -1或空:全部
+        /// Tồn khoHiển thị -1hoặctrống:Tất cả
         /// </summary>
         public int kcxs { get; set; }
 
     }
 
     /// <summary>
-    /// 保存盘点
+    /// LưuKiểm kê
     /// </summary>
     public class SaveInventoryDTO
     {
         /// <summary>
-        /// 盘点明细ID
+        /// Kiểm kêchi tiếtID
         /// </summary>
         public long? pdmxId { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// vật tưID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 实际数量
+        /// thực tếSố lượng
         /// </summary>
         public int sjsl { get; set; }
     }

@@ -75,36 +75,36 @@
     var lastRowId;
     var ObjArr_Load = new Array();
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
             initLayout("MyTabGrid");
         });
         gridKCInfo();//Thông tin tồn kho
-        GetPDSJ();//获取盘点日期
-        initialddlYPLBList();//获取药品类别
-        $("#btn_search").click(function () {//绑定查询查询
+        GetPDSJ();//Lấy ngày kiểm kê
+        initialddlYPLBList();//Lấy loại thuốc
+        $("#btn_search").click(function () {//Gắn truy vấn
             Search();
         });
     });
 
-    //库存信息
+    //Thông tin tồn kho
     function gridKCInfo() {
         $gridKCInfo.dataGrid({
             autowidth: true,
             postData: getSearchPostData(),
             height: $(window).height() - 240,
             url: "",
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             onSelectRow_page: function (rowid) {
-                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: 相当于true/fase(判断是否有值)
+                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: Tương đương vớitrue/fase(Kiểm tra có giá trị không)
 
-                    $gridKCInfo.saveRow(lastRowId, null, null, null, function (callbackRowId) {//先保存处于编辑状态的那一行
-                        GetYfbmYpComplexYpSlandDw(callbackRowId);//变更当前部门单位下的数量
+                    $gridKCInfo.saveRow(lastRowId, null, null, null, function (callbackRowId) {//Lưu trước dòng đang ở trạng thái chỉnh sửa
+                        GetYfbmYpComplexYpSlandDw(callbackRowId);//Thay đổi số lượng thuộc đơn vị bộ phận hiện tại
                     }, null, null);
                 }
                 lastRowId = rowid;
                 $gridKCInfo.jqGrid('editRow', rowid, true, null, null, null, null, function (callbackRowId) {
-                    GetYfbmYpComplexYpSlandDw(callbackRowId);//变更当前部门单位下的数量
-                    lastRowId = undefined;  //回调
+                    GetYfbmYpComplexYpSlandDw(callbackRowId);//Thay đổi số lượng thuộc đơn vị bộ phận hiện tại
+                    lastRowId = undefined;  //Gọi lại
                 });
             },
             colModel: [
@@ -145,7 +145,7 @@
         });
     }
 
-    //查询
+    //Truy vấn
     function Search() {
         var postdata = getSearchPostData();
         if (postdata) {
@@ -155,7 +155,7 @@
         }
     }
 
-    //查询条件
+    //Điều kiện truy vấn
     function getSearchPostData() {
         var pdsj = $("#ddlRQ").val();
         var pdId = $("#ddlRQ option:selected").attr('data-pdId');
@@ -169,9 +169,9 @@
         return { pdsj: pdsj, pdId: pdId, srm: srm, ypzt: ypzt, yplb: yplb, kcxs: kcxs };
     };
 
-    //加载第一次查询数据
+    //Tải dữ liệu truy vấn lần đầu
     function afterCompleteFunction() {
-        var rowIds = $("#gridKCInfo").jqGrid('getDataIDs');//Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = $("#gridKCInfo").jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
             ObjArr_Load.push($("#gridKCInfo").jqGrid('getRowData', rowIds[i]));
             $("#gridKCInfo").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
@@ -180,14 +180,14 @@
         }
     }
 
-    //获取盘点时间
+    //Lấy thời gian kiểm kê
     function GetPDSJ() {
         $.najax({
             type: "POST",
             url: "/PharmacyDrugStorage/GetPDDateDropdownList",
             dataType: "json",
             success: function (ajaxresp) {
-                //先清空，再填充
+                //Xóa trước，Điền tiếp
                 $("#ddlRQ").empty();
                 for (var i = 0; i < ajaxresp.data.length; i++) {
                     $("#ddlRQ").append('<option data-pdId=' + ajaxresp.data[i].pdId + '>' + ajaxresp.data[i].pdsj + '</option>');
@@ -198,14 +198,14 @@
 
     }
 
-    //药品类别
+    //Loại thuốc
     function initialddlYPLBList() {
         $("#ddlYPLB").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineCategoryList"
         });
     }
 
-    //输入最小单位下的数量，变更当前部门单位下的数量
+    //Nhập Số lượng dưới đơn vị nhỏ nhất，Thay đổi số lượng thuộc đơn vị bộ phận hiện tại
     function GetYfbmYpComplexYpSlandDw(callbackRowId) {
         var rowData = $("#gridKCInfo").jqGrid('getRowData', callbackRowId);
         $.najax({
@@ -219,7 +219,7 @@
         });
     }
 
-    //开始盘点
+    //Bắt đầu kiểm kê
     function newtouch_event_f2() {
         $.najax({
             type: "POST",
@@ -234,11 +234,11 @@
         });
     }
 
-    //保存
+    //Lưu
     function newtouch_event_f8() {
-        var rowIds = $("#gridKCInfo").jqGrid('getDataIDs');//获取所有行Id，遍历使编辑框处于保存状态
+        var rowIds = $("#gridKCInfo").jqGrid('getDataIDs');//Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
 
-        //判断退数量
+        //Kiểm tra số lượng trả
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridKCInfo").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
             var rowData = $("#gridKCInfo").jqGrid('getRowData', rowIds[i]);
@@ -256,11 +256,11 @@
         }
         var kcInfoJsonSave = $("#gridKCInfo").jqGrid('getRowData_AllLine');
         var objArrSave = new Array();
-        $.each(kcInfoJsonSave, function () {//保存时将Grid的数据行放在新的数组中
+        $.each(kcInfoJsonSave, function () {//Khi lưu thìGriddòng dữ liệu vào mảng mới
             objArrSave.push(this);
         });
         var resultObjArr = new Array();
-        //与页面加载的数组进行比对，将修改过的数据行放在resultObjArr中，传给后台
+        //so sánh với mảng tải từ trang，đặt dòng dữ liệu đã sửa vàoresultObjArrtrong，gửi cho máy chủ
         for (var i = 0; i < objArrSave.length; i++) {
             if (objArrSave[i].deptSjsl !== ObjArr_Load[i].deptSjsl || objArrSave[i].minSjsl !== ObjArr_Load[i].minSjsl) {
                 //resultObjArr.push({ pdmxId: objArrSave[i].pdmxId, sjsl: CalculationMinUnitNum(objArrSave[i].deptSjsl, objArrSave[i].minSjsl, objArrSave[i].zhyz) });
@@ -283,26 +283,26 @@
         });
     };
 
-    //将库存换算成最小单位数  拆零
+    //Quy đổi tồn kho thành số đơn vị nhỏ nhất  Chia lẻ
     function CalculationMinUnitNum(deptNum, minNum, zhyz) {
         return parseInt(deptNum) * parseInt(zhyz) + parseInt(minNum);
     }
 
-    //将库存换算成最小单位数  不拆零
+    //Quy đổi tồn kho thành số đơn vị nhỏ nhất  Không chia lẻ
     function CalculationMinUnitNumNoOpen(deptNum, zhyz) {
         return parseInt(deptNum) * parseInt(zhyz);
     }
 
-    //启用行内编辑框
+    //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        var rowIds = $("#gridKCInfo").jqGrid('getDataIDs');//Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = $("#gridKCInfo").jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridKCInfo").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
             });
         }
     }
 
-    //结束盘点
+    //Kết thúc kiểm kê
     function newtouch_event_f3() {
         $.najax({
             type: "POST",
@@ -311,12 +311,12 @@
             data: { pdId: $("#ddlRQ option:selected").attr('data-pdId') },
             success: function (ajaxresp) {
                 $.modalAlert("Kiểm kê hoàn tất", 'success');
-                GetPDSJ();//刷新盘点时间及药品信息
+                GetPDSJ();//Làm mới thời gian kiểm kê và thông tin thuốc
             }
         });
     }
 
-    //取消盘点
+    //Hủy kiểm kê
     function newtouch_event_f7() {
         $.najax({
             type: "POST",

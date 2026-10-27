@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品盘点信息
+    /// Thông tin kiểm kê thuốc hệ thống
     /// </summary>
     [Table("xt_yp_pdxx")]
     [SugarTable("xt_yp_pdxx")]

@@ -47,7 +47,7 @@
         }
     });
 
-    //初始化
+    //Khởi tạo
     function initControl() {
         $("#unitId").bindSelect({
             url: "/WarehouseManage/Warehouse/GetUnitByProId?relId=" + relId,
@@ -56,7 +56,7 @@
         });
     }
 
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         if (!DataValidate()) {
             return;
@@ -72,7 +72,7 @@
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#unitId").val() === "") {
             $.modalAlert("Đơn vị là bắt buộc", 'warning');

@@ -1,8 +1,8 @@
 @{
     Layout = null;
-    //是否页面加载时就必须选择Org
+    //Có bắt buộc chọn ngay khi tải trang khôngOrg
     var mediOrgList = ViewBag.MediOrgList as IList<Newtouch.EMR.Web.Models.SysOrganizeV>;
-    //是否页面加载时就必须选择Org
+    //Có bắt buộc chọn ngay khi tải trang khôngOrg
     var needChooseOrg = (ViewBag.NeedChooseOrg as bool?) ?? false;
 }
 <!DOCTYPE html>
@@ -310,12 +310,12 @@
         }
 
         $(function () {
-            //Home/Index加载时强制选择医疗机构
+            //Home/IndexKhi tải bắt buộc chọn cơ sở y tế
             @Html.Raw(needChooseOrg ? "setTimeout('showSwitchOrgPrompt(true);', 1200)" : "")
         });
     </script>
     <script type="text/javascript">
-        //Home/Index页面加载完成之后 再加载iframe
+        //Home/IndexSau khi trang tải xong mới tảiiframe
         $(window).load(function () {
             $('.mainContent .Newtouch_iframe').each(function () {
                 if (!!!$(this).attr('src') && !!$(this).attr('data-id')) {

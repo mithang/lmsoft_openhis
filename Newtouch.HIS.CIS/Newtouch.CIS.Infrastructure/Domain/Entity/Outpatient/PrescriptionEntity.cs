@@ -23,17 +23,17 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 关联就诊表
+        /// liên kếtKhám bệnhbảng
         /// </summary>
         public string jzId { get; set; }
 
         /// <summary>
-        /// billing系统的收费状态
+        /// billingHệ thốngcủaThu phíTrạng thái
         /// </summary>
         public bool sfbz { get; set; }
 
         /// <summary>
-        /// 枚举 1 西药处方 2 中药处方 3 康复处方 4 检验处方 5 检查处方 6 输液处方
+        /// Liệt kê 1 Thuốc TâyĐơn thuốc 2 Thuốc Đông yĐơn thuốc 3 Phục hồi chức năngĐơn thuốc 4 Xét nghiệmĐơn thuốc 5 Kiểm traĐơn thuốc 6 truyền dịchĐơn thuốc
         /// </summary>
         public int cflx { get; set; }
 
@@ -48,12 +48,12 @@ namespace Newtouch.Domain.Entity
         public decimal zje { get; set; }
 
         /// <summary>
-        /// 关联base库的人员工号
+        /// liên kếtbasekhocủa ngườiviênMã nhân viên
         /// </summary>
         public string ys { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ks { get; set; }
 
@@ -98,44 +98,44 @@ namespace Newtouch.Domain.Entity
         public bool? djbz { get; set; }
 
         /// <summary>
-        /// 同步标志，是否已同步至HIS（后判断是否已同步 改成依赖操作记录表）
+        /// Đồng bộCờ，làKhôngđãĐồng bộđếnHIS（saukiểm tralàKhôngđãĐồng bộ sửathànhtheo赖Thao tácghi chépbảng）
         /// </summary>
         public bool? tbbz { get; set; }
 
         /// <summary>
-        /// 临床原因
+        /// 临giườngnguyên nhân
         /// </summary>
         public string lcyx { get; set; }
         /// <summary>
-        /// 申请备注
+        /// Đăng kýGhi chú
         /// </summary>
         public string sqbz { get; set; }
         /// <summary>
-        /// 退标志
+        /// trảCờ
         /// </summary>
         public bool? tbz { get; set; }
 
         /// <summary>
-        /// 申请单号（远程医疗申请需要guid）
+        /// Số phiếu（xatrìnhy tếĐăng kýcầnguid）
         /// </summary>
         public string sqdh { get; set; }
         /// <summary>
-        /// 处方标签 JI 精I JII 精II MZ 麻醉
+        /// Đơn thuốcnhãn JI tinhI JII tinhII MZ têsay
         /// </summary>
         public string cftag { get; set; }
         /// <summary>
-        /// 代煎方式
+        /// sắc hộphươngkiểu
         /// </summary>
         public string djfs { get; set; }
         // <summary>
-        /// 代煎付数
+        /// sắc hộtrảsố
         /// </summary>
         public string djts { get; set; }
         // <summary>
-        /// 嘱托
+        /// Dặn dò
         /// </summary>
         public string cfzt { get; set; }
 
-        public string isdzcf { get; set; }//电子处方 1 是  0 否
+        public string isdzcf { get; set; }//điện tửĐơn thuốc 1 là  0 Không
     }
 }

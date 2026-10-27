@@ -4,7 +4,7 @@
     /**/
     ViewBag.Title = "PurchaseBillDetailQuery";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //报表链接
+    //Liên kết báo cáo
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
 
@@ -50,9 +50,9 @@
     });
 
 
-    //初始化浮层
+    //Khởi tạo lớp nổi
     function InitFloat() {
-        //药企
+        //Doanh nghiệp dược
         $("#yq").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             height: 200,
@@ -105,7 +105,7 @@
         $('#layout iframe').css('height', h);
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

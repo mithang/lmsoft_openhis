@@ -8,7 +8,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
 {
     /// <summary>
-    /// 消息队列
+    /// Hàng đợi thông báo
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -21,7 +21,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             _msgQueueDmn = msgQueueDmn;
         }
         /// <summary>
-        /// 新增Nhóm tin nhắn
+        /// Thêm mớiNhóm tin nhắn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -38,13 +38,13 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             var data = await _msgQueueDmn.AddNoticeGroup(request.Data);
             if (string.IsNullOrWhiteSpace(data))
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thêm thất bại do nguyên nhân không xác định，Vui lòng liên hệ quản trị viên" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thêm thất bại do nguyên nhân không xác định,Vui lòng liên hệ quản trị viên" };
             }
             return new BusResult<string> { code = ResponseResultCode.SUCCESS, msg = "Thêm thành công", Data = data };
 
         }
         /// <summary>
-        /// 查询Nhóm tin nhắn配置
+        /// Truy vấnNhóm tin nhắnCấu hình
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         }
 
         /// <summary>
-        /// 新增通知
+        /// Thêm thông báo mới
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -84,13 +84,13 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             var data = await _msgQueueDmn.AddNotice(request.Data);
             if (data.Count == 0)
             {
-                return new BusResult<List<string>> { code = ResponseResultCode.FAIL, msg = "Thêm thất bại do nguyên nhân không xác định，Vui lòng liên hệ quản trị viên" };
+                return new BusResult<List<string>> { code = ResponseResultCode.FAIL, msg = "Thêm thất bại do nguyên nhân không xác định,Vui lòng liên hệ quản trị viên" };
             }
             return new BusResult<List<string>> { code = ResponseResultCode.SUCCESS, msg = "Thêm thành công", Data = data };
 
         }
         /// <summary>
-        /// 查询Tin nhắn详情
+        /// Truy vấnTin nhắnChi tiết
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
 
         }
         /// <summary>
-        /// 质控Tin nhắn查询
+        /// Kiểm soát chất lượngTin nhắnTruy vấn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

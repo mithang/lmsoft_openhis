@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicineRepo : IRepositoryBase<SysMedicineVEntity>
     {
         /// <summary>
-        /// 获取一个药品对象
+        /// Lấy một đối tượng thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="ypCode"></param>
@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.IRepository
         SysMedicineVEntity GetMedicineByCode(string orgId, string ypCode);
 
         /// <summary>
-        /// 获取一个药品集合
+        /// Lấy một tập hợp thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

@@ -161,7 +161,7 @@
                         <td class="formTitle"><span class="required">*</span>Cờ BHYT:</td>
                         <td class="formValue">
                             @*<div class="ckbox">*@
-                                <!-- 医保标志：即便有医保代码对照，也需要打上医保标志才会跟医保交互 -->
+                                <!-- Cờ BHYT：Dù đã có đối chiếu mã BHYT，cũng cần gắn cờ BHYT thì mới tương tác với BHYT -->
                                 <select id="ybbz" name="ybbz" class="form-control required">
                                     <option value="">==Vui lòng chọn==</option>
                                     <option value="1">Có</option>
@@ -529,7 +529,7 @@
                 }
             });
             if ($.trim($("#kssId").val()).length > 0) {
-                //获取抗生素信息
+                //Lấy thông tin kháng sinh
                 $.najax({
                     url: "/SysMedicine/GetKssById",
                     data: { Id: $("#kssId").val() },
@@ -560,7 +560,7 @@
         initUnitChange();
     });
 
-    //初始化单位换算
+    //Khởi tạo quy đổi đơn vị
     function initUnitChange() {
         $("#zxdw").on("input", function () {
             changeZxdw();
@@ -605,27 +605,27 @@
         });
     }
 
-    //最小单位发生变化
+    //Đơn vị nhỏ nhất thay đổi
     function changeZxdw() {
         $("span[name=zxdw]").html($("#zxdw").val());
     }
 
     function initControl() {
-        $("#OrganizeId").bindSelect({//组织机构下拉框
+        $("#OrganizeId").bindSelect({//Hộp thả xuống tổ chức
             url: "/Organize/GetChildTreeSelectJson",
         });
 
         $("#OrganizeId").change(function () {
-            //获取收费大类
+            //Lấy danh mục thu phí lớn
             $("#dlCode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + $.trim($('#OrganizeId').val()),
             });
-            //招标方式
+            //Hình thức đấu thầu
             $("#zbbz").bindSelect({
                 url: "/ItemsData/GetSelectJson",
                 param: { code: "MedicineTenderMethod" }
             });
-            //药品特殊属性
+            //Thuộc tính đặc biệt của thuốc
             $("#yptssx").bindSelect({
                 url: "/ItemsData/GetSelectJson",
                 param: { code: "XT_YP_TSSX" }
@@ -634,14 +634,14 @@
             $("#mrpc").bindSelect({
                 url: "GetPcSelectJson"
 			});
-			//获取特殊药品标志
+			//Lấy cờ thuốc đặc biệt
 			$("#tsypbz").bindSelect({
 				url: "/ItemsData/GetSelectJson",
 				param: { code: "tsypbz" }
 			});
         });
 
-        //药品名称
+        //Tên thuốc
         //$("#ypmc").ypFloatingSelector({
         //    itemdbclickhandler: function ($thistr) {
         //        //$('#ypmcsh').val($thistr.attr('data-ypmc'));
@@ -660,7 +660,7 @@
         //$('#ypmc').newtouchFloatingSelector({
         //    width: 600,
         //    height: 300,
-        //    caption: "药品名称",
+        //    caption: "Tên thuốc",
         //    url: '/SysMedicine/GetFloatingYPXXJson',
         //    ajaxparameters: function ($thistr) {
         //        return 'organizeId=' + $.trim($('#OrganizeId').val()) + '&keyword=' + $thistr;
@@ -678,13 +678,13 @@
         //        $('#ybbz option[value=' + 1 + ']').attr('selected', 'selected');
         //    },
         //    colModel: [
-        //        { label: '名称', name: 'ypmc', widthratio: 25 },
-        //        { label: '医保代码', name: 'ybdm', widthratio: 20 },
-        //        { label: '规格', name: 'gg', widthratio: 20 },
-        //        { label: '药厂名称', name: 'ycmc', widthratio: 25 },
-        //        { label: '药品性质', name: 'ypxz', widthratio: 25 },
-        //        { label: '拼音', name: 'py', hidden: true },
-        //        { label: '药品性质', name: 'ybxz', widthratio: 25 ,hidden:true}
+        //        { label: 'Tên', name: 'ypmc', widthratio: 25 },
+        //        { label: 'Mã BHYT', name: 'ybdm', widthratio: 20 },
+        //        { label: 'Quy cách', name: 'gg', widthratio: 20 },
+        //        { label: 'Tên nhà sản xuất', name: 'ycmc', widthratio: 25 },
+        //        { label: 'Tính chất thuốc', name: 'ypxz', widthratio: 25 },
+        //        { label: 'Pinyin', name: 'py', hidden: true },
+        //        { label: 'Tính chất thuốc', name: 'ybxz', widthratio: 25 ,hidden:true}
         //    ]
         //});
         $('#xnhybdm').newtouchFloatingSelector({
@@ -706,7 +706,7 @@
                 { label: 'Có phải thuốc cơ bản không', name: 'isBase' }
             ]
         });
-        //剂型信息
+        //Thông tin dạng bào chế
         $('#jxmc').newtouchFloatingSelector({
             width: 300,
             height: 200,
@@ -725,7 +725,7 @@
             ]
         });
 
-        //默认用法
+        //Cách dùng mặc định
         $('#mryfmc').newtouchFloatingSelector({
             width: 300,
             height: 300,
@@ -745,7 +745,7 @@
             ]
         });
 
-        //药品分类
+        //Phân loại thuốc
         $('#ypflMc').newtouchFloatingSelector({
             width: 300,
             height: 300,
@@ -767,7 +767,7 @@
 
 
 
-		//药品名称
+		//Tên thuốc
         $.fn.ypmcFloatingSelector = function (options) {
 			var defaults = {
 				url: '/SysMedicine/GetFloatingYPXXJson',
@@ -840,7 +840,7 @@
 				for (var k = 0; k < rowIds.length; k++) {
 					var curRowData = jQuery(curData).jqGrid('getRowData', rowIds[k]);
 					//if ($thistr.attr('data-gjybdm') != "" && $thistr.attr('data-gjybdm') != null && curRowData.gjybdm == $thistr.attr('data-gjybdm')) {
-					//	$.modalAlert("系统已存在国家医保代码为" + $thistr.attr("data-gjybdm") + "的药品，" + $thistr.attr("data-ypmc"), 'warning');
+					//	$.modalAlert("Hệ thống đã tồn tại mã BHYT quốc gia là" + $thistr.attr("data-gjybdm") + " của thuốc，" + $thistr.attr("data-ypmc"), 'warning');
 					//};
 				};
                 if (($('#ypmc').val() != "" || $('#ypmc').val() != null) && $('#ybdm').val() != $thistr.attr('data-ybdm')) {
@@ -871,11 +871,11 @@
 			}
 		});
 
-    //    //药品名称
+    //    //Tên thuốc
     //    $('#ypmc').newtouchFloatingSelector({
     //        width: 540,
     //        height: 300,
-    //        caption: "药品名称",
+    //        caption: "Tên thuốc",
     //        url: '/SysMedicine/GetFloatingYPXXJson',
     //        ajaxparameters: function () {
     //            return 'organizeId='+ $.trim($('#OrganizeId').val())+'&keyword='+$.trim($('#ypmc').val());
@@ -894,17 +894,17 @@
 				////$('#ypmc').html($thistr.attr('data-ypmc'));
     //        },
     //        colModel: [
-    //            { label: '名称', name: 'ypmc', widthratio: 20 },
-    //            { label: '医保代码', name: 'ybdm', widthratio: 15 },
-    //            { label: '规格', name: 'gg', widthratio: 15 },
-    //            { label: '药厂名称', name: 'ycmc', widthratio: 20 },
-    //            { label: '药品性质', name: 'ypxz', widthratio: 15 },
-				//{ label: '药品性质', name: 'ybxz', widthratio: 25, hidden: true },
-				//{ label: '首拼', name: 'py', widthratio: 15 },
+    //            { label: 'Tên', name: 'ypmc', widthratio: 20 },
+    //            { label: 'Mã BHYT', name: 'ybdm', widthratio: 15 },
+    //            { label: 'Quy cách', name: 'gg', widthratio: 15 },
+    //            { label: 'Tên nhà sản xuất', name: 'ycmc', widthratio: 20 },
+    //            { label: 'Tính chất thuốc', name: 'ypxz', widthratio: 15 },
+				//{ label: 'Tính chất thuốc', name: 'ybxz', widthratio: 25, hidden: true },
+				//{ label: 'Mã đầu chữ', name: 'py', widthratio: 15 },
     //        ]
     //    });
 
-		//新农合医保代码
+		//Mã BHYT nông thôn mới
 		$.fn.xnhFloatingSelector = function (options) {
 			var defaults = {
 				url: '/SysMedicine/GetFloatingYPXNHXXJson',
@@ -938,7 +938,7 @@
   //      $('#xnhybdm').newtouchFloatingSelector({
   //          width: 540,
   //          height: 300,
-  //          caption: "药品名称",
+  //          caption: "Tên thuốc",
   //          url: '/SysMedicine/GetFloatingYPXNHXXJson',
   //          ajaxparameters: function () {
   //              return 'keyword=' + $.trim($('#xnhybdm').val());
@@ -948,14 +948,14 @@
   //              $('#xnhybdm').val($thistr.attr('data-code'));
   //          },
   //          colModel: [
-  //              { label: '名称', name: 'name', widthratio: 25 },
-  //              { label: '农保代码', name: 'code', widthratio: 30 },
-  //              { label: '剂型', name: 'dosageForm', widthratio: 30 },
-  //              { label: '是否基药', name: 'isBase' }
+  //              { label: 'Tên', name: 'name', widthratio: 25 },
+  //              { label: 'Mã bảo hiểm nông nghiệp', name: 'code', widthratio: 30 },
+  //              { label: 'Dạng bào chế', name: 'dosageForm', widthratio: 30 },
+  //              { label: 'Có phải thuốc cơ bản không', name: 'isBase' }
   //          ]
 		//});
 
-		//剂型信息
+		//Thông tin dạng bào chế
 		$.fn.jxFloatingSelector = function (options) {
 			var defaults = {
 				url: '/SysMedicineFormulation/GetListSelectJson',
@@ -984,11 +984,11 @@
 				$('#jxmc').val($thistr.attr('data-jxmc'));
 			}
 		});
-        ////剂型信息
+        ////Thông tin dạng bào chế
         //$('#jxmc').newtouchFloatingSelector({
         //    width: 300,
         //    height: 200,
-        //    caption: "剂型信息",
+        //    caption: "Thông tin dạng bào chế",
         //    url: '/SysMedicineFormulation/GetListSelectJson',
         //    ajaxparameters: function () {
         //        return "keyword=" + $.trim($('#jxmc').val());
@@ -997,13 +997,13 @@
         //        $('#jx').val($thistr.attr('data-jxCode'));
         //        $('#jxmc').val($thistr.attr('data-jxmc'));
         //    },
-        //    colModel: [{ label: '编码', name: 'jxCode', hidden: true },
-        //    { label: '名称', name: 'jxmc', widthratio: 50 },
-        //    { label: '首拼', name: 'py', widthratio: 50 }
+        //    colModel: [{ label: 'Mã', name: 'jxCode', hidden: true },
+        //    { label: 'Tên', name: 'jxmc', widthratio: 50 },
+        //    { label: 'Mã đầu chữ', name: 'py', widthratio: 50 }
         //    ]
         //});
 
-		//药品单位
+		//Đơn vị thuốc
 		$.fn.ypdwFloatingSelector = function (options) {
 			var defaults = {
 				url: '/SysMedicineUnit/GetListSelectJson',
@@ -1059,11 +1059,11 @@
 				$($thisinput.val($thistr.attr('data-ypdwmc'))).trigger("change");
 			}
 		});
-        ////药品单位
+        ////Đơn vị thuốc
         //$("#jldw,#zxdw,#zycldw,#mzcldw,#bzdw").newtouchBatchFloatingSelector({
         //    width: 300,
         //    height: 300,
-        //    caption: "剂型信息",
+        //    caption: "Thông tin dạng bào chế",
         //    url: '/SysMedicineUnit/GetListSelectJson',
         //    ajaxparameters: function ($thisinput) {
         //        return "keyword=" + $.trim($thisinput.val());
@@ -1072,19 +1072,19 @@
         //        $($thisinput.val($thistr.attr('data-ypdwmc'))).trigger("change");
         //    },
         //    colModel: [
-        //        { label: '名称', name: 'ypdwmc', widthratio: 50 }
+        //        { label: 'Tên', name: 'ypdwmc', widthratio: 50 }
         //    ]
         //});
 
         //$('#zfxz').select2();
         $('#jzlx').select2();
 
-        //首拼
+        //Mã đầu chữ
         $('#ypmc').keyup(function () {
             $('#py').val($(this).toShouPin());
         });
 
-        //抗生素单选按钮控制Tab是否禁用
+        //Điều khiển nút radio kháng sinhTabCó vô hiệu hóa không
         $("input:radio[name='isKss']").change(function () {
             var opt = $("input:radio[name='isKss']:checked").val();
             if (opt == "1") {
@@ -1123,7 +1123,7 @@
         InitYfbmByNewDrug();
     }
 
-    //获取所有药房部门
+    //Lấy tất cả khoa dược
     function InitYfbmByNewDrug() {
         $.najax({
             url: "/SysMedicine/GetAllYfbm",
@@ -1145,7 +1145,7 @@
         });
     }
 
-    //刷新授权药房
+    //Làm mới nhà thuốc được ủy quyền
     function RefreshEmpowermentPharmacyDepartment() {
         if (!keyValue) return false;
         var organizeId = $("#OrganizeId").val();
@@ -1222,13 +1222,13 @@
         }
 
         if ($("#ybbz").val() == 1 && ($("#ybdm").val() == "" || $("#ybdm").val() == null)) {
-            //$.modalMsg("请录入医保代码！", "warning", 1500);
+            //$.modalMsg("Vui lòng nhập mã BHYT！", "warning", 1500);
             //return false;
         }
 
-        //取消国家医保代码必填项
+        //Hủy bắt buộc nhập mã BHYT quốc gia
         //if ($("#ybbz").val() == 1 && ($("#gjybdm").val() == "" || $("#gjybdm").val() == null)) {
-        //    $.modalMsg("请录入国家医保代码！", "warning", 1500);
+        //    $.modalMsg("Vui lòng nhập mã BHYT quốc gia！", "warning", 1500);
         //    return false;
         //}
         
@@ -1239,7 +1239,7 @@
         var postData = $("#form1").formSerialize();
         postData.isKss = $('input:radio[name=isKss]:checked').val();
         if (postData.isKss === "1") {
-            kssId = SaveKss(); //抗生素信息保存
+            kssId = SaveKss(); //Lưu thông tin kháng sinh
         }
         postData.mryf = $("#mryfmc").val() == "" ? "" : $("#mryf").val();
         postData["djdw"] = postData["bzdw"]; //2018.04.18
@@ -1255,7 +1255,7 @@
         });
     }
 
-    ////提交授权库房
+    ////Gửi ủy quyền kho
     //function SubmitEmpowermentPharmacyDepartment() {
     //    $.najax({
     //        url: "/SysMedicine/SubmitEmpowermentPharmacyDepartment?keyValue=" + keyValue,
@@ -1265,7 +1265,7 @@
     //    });
     //}
 
-    //组装被选中的药房药库
+    //Ghép kho dược đã chọn
     function AssembleEmpowermentPharmacyDepartment() {
         var chk = $("input:checkbox[name=yfbm]:checked");
         if (chk === null || chk.length === 0) return false;
@@ -1276,7 +1276,7 @@
         return param;
     }
 
-    function SaveKss()//提交抗生素信息
+    function SaveKss()//Gửi thông tin kháng sinh
     {
         var kssData = new Object();
         kssData.Id = $("#kssId").val();
@@ -1317,7 +1317,7 @@
         if (type1 !== "") {
             var result1 = "";
             $("#kssType1 option").each(function () {
-                //遍历所有option
+                //Duyệt tất cảoption
                 var value = $(this).val();   //LấyoptionGiá trị
                 if (value.indexOf(type1) > -1) {
                     result1 = value;
@@ -1329,7 +1329,7 @@
                 setTimeout(function () {
                     var result2 = "";
                     $("#kssType2 option").each(function () {
-                        //遍历所有option
+                        //Duyệt tất cảoption
                         var value = $(this).val(); //LấyoptionGiá trị
                         if (value.indexOf(type2) > -1) {
                             result2 = value;
@@ -1343,7 +1343,7 @@
             }
         }
 	}
-    //说明：这边会自动改零售价，温江不需要。
+    //Mô tả：Ở đây sẽ tự động sửa giá bán lẻ，Ôn Giang không cần。
 	//function getlsj() {
 	//	var pfj = $("#pfj").val();
 	//	//alert(pfj);

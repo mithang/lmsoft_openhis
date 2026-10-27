@@ -12,7 +12,7 @@ namespace NewtouchHIS.Base.Domain.Model
 
     }
     /// <summary>
-    /// 病历质控Tin nhắn模板
+    /// Kiểm soát chất lượng bệnh ánTin nhắnMẫu
     /// </summary>
     public class MrqcMsgNoticeModel: MsgNoticeModel
     {
@@ -21,43 +21,43 @@ namespace NewtouchHIS.Base.Domain.Model
         /// </summary>
         public string? xm { get; set; }
         /// <summary>
-        /// 就诊号
+        /// Số khám
         /// </summary>
         public string? jzh { get; set; }
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string? ks { get; set; }
         /// <summary>
-        /// 床号
+        /// Số giường
         /// </summary>
         public string? ch { get; set; }
         /// <summary>
-        /// 住院医生
+        /// Bác sĩ nội trú
         /// </summary>
         public string? zyys { get; set; }
         /// <summary>
-        /// 质控类型
+        /// Loại kiểm soát chất lượng
         /// </summary>
         public string? zklx { get; set; }
         /// <summary>
-        /// Bệnh nhân病历文档
+        /// Bệnh nhânTài liệu bệnh án
         /// </summary>
         public string? hzwd { get; set; }
         /// <summary>
-        /// 反馈内容
+        /// Nội dung phản hồi
         /// </summary>
         public string? fknr { get; set; }
         /// <summary>
-        /// 严重等级
+        /// Mức độ nghiêm trọng
         /// </summary>
         public string? wtdj { get; set; }
         /// <summary>
-        /// 处理限期
+        /// Thời hạn xử lý
         /// </summary>
         public string? qxclsj { get; set; }
         /// <summary>
-        /// 质控日期
+        /// Ngày kiểm soát chất lượng
         /// </summary>
         public string? zkrq { get; set; }
 

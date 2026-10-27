@@ -12,7 +12,7 @@ using FrameworkBase.MultiOrg.Infrastructure;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 用户角色权限 公用DmnService
+    /// Quyền vai trò người dùng Dùng chungDmnService
     /// </summary>
     public class UserRoleAuthDmnService : DmnServiceBase, IUserRoleAuthDmnService
     {
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取用户已授权的角色列表
+        /// Lấy danh sách vai trò người dùng đã ủy quyền
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ where a.UserId = @userId and a.zt = '1' and c.zt = '1'";
         }
 
         /// <summary>
-        /// 获取UserId 根据RoleId
+        /// LấyUserId TheoRoleId
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
@@ -53,7 +53,7 @@ where a.UserId = @userId and a.zt = '1' and c.zt = '1'";
         }
 
         /// <summary>
-        /// 保存 角色 用户列表
+        /// Lưu Vai trò Danh sách người dùng
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="userIds"></param>
@@ -61,14 +61,14 @@ where a.UserId = @userId and a.zt = '1' and c.zt = '1'";
         {
             using (var db = new EFDbTransaction().BeginTrans())
             {
-                //先 del
+                //trước del
                 var hospUserIdList = this.FindList<string>(@"
 WITH cteTree
     AS (SELECT *
             FROM [NewtouchHIS_Base]..V_S_Sys_Organize
-            WHERE Id = @parentOrgId --第一个查询作为递归的基点(锚点)
+            WHERE Id = @parentOrgId --Truy vấn đầu tiên làm điểm cơ sở đệ quy(Điểm neo)
         UNION ALL
-        SELECT [NewtouchHIS_Base]..V_S_Sys_Organize.*     --第二个查询作为递归成员， 下属成员的结果为空时，此递归结束。
+        SELECT [NewtouchHIS_Base]..V_S_Sys_Organize.*     --Truy vấn thứ hai làm thành viên đệ quy， Khi kết quả thành viên cấp dưới trống，Đệ quy này kết thúc。
             FROM
                 cteTree INNER JOIN [NewtouchHIS_Base]..V_S_Sys_Organize ON cteTree.Id= [NewtouchHIS_Base]..V_S_Sys_Organize.ParentId) 
 
@@ -81,7 +81,7 @@ where b.OrganizeId  in (select Id from cteTree)"
                 //
                 db.Delete<SysUserRoleEntity>(p => p.RoleId == roleId && hospUserIdList.Contains(p.UserId));
 
-                //再添加
+                //Thêm nữa
                 var userIdArr = (userIds ?? "").Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries).Distinct().ToArray();
                 foreach (var userId in userIdArr)
                 {

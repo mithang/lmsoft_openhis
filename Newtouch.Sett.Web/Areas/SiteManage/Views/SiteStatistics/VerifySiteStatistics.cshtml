@@ -59,17 +59,17 @@
     </div>
 </form>
 <script lang="javascript">
-        //年月下拉初始化
+        //Khởi tạo hộp chọn năm tháng
         (function initYearMonthSelect() {
             var date = new Date;
-            //默认选择上个月
+            //Mặc định chọn tháng trước
             var defaultSelYear = 1900 + date.getYear();
             var defaultSelMonth = date.getMonth();
             if (defaultSelMonth == 0) {
                 defaultSelYear--;
                 defaultSelMonth = 12;
             }
-            //年份
+            //Năm
             $("#year").newtouchBindSelect({
                 datasource: function () {
                     var resultObjArr = new Array();
@@ -82,7 +82,7 @@
                 },
                 selectedValue: defaultSelYear,
             });
-            //月份
+            //Tháng
             $("#month").newtouchBindSelect({
                 datasource: function () {
                     var resultObjArr = new Array();
@@ -110,7 +110,7 @@
             allSelectedText: "Chọn tất cả",
             nSelectedText:"Đã chọn",
             onBuiltAsyncOptions: function (res) {
-                // 这里的代码是ajax创建完成options之后执行
+                // Mã ở đây làajaxTạo xongoptionssau đó thực hiện
                 $("#siteId").trigger("change");
                 gridList();
             },
@@ -118,7 +118,7 @@
             $('#siteId,#year,#month,#shzt').change(function () {
                 $("#btn_search").trigger("click");
             });
-            //隐藏未提交选项
+            //ẩngiấuchưanêunộpchọnhạng
             $("#shzt option[value='@Html.Raw(((int)EnumOrgshzt.WTJ).ToString())']").hide();
             $("#shzt").val('@Html.Raw(((int)EnumOrgshzt.DS).ToString())').trigger("change");
         });
@@ -179,7 +179,7 @@
                 }
             });
 
-            //查询
+            //Tra cứu
             $("#btn_search").click(function () {
                 $("#gridList").jqGrid('setGridParam', {
                     postData: getSearchData(),
@@ -195,7 +195,7 @@
             return { siteId: siteId.join(','), year: year, month: month, shzt: shzt, verify: true };
         }
 
-        //修改
+        //Sửa
         function ShowDetail() {
             var keyValue = $("#gridList").jqGridRowValue().Id;
             if (!!!keyValue) {

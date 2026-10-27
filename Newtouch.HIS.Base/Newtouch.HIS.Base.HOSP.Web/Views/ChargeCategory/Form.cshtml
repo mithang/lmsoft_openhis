@@ -137,32 +137,32 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
             selectedValue: $.request('orgId'),
         });
-        //组织对应的科室下拉框加载
+        //Tải hộp thả xuống khoa tương ứng với tổ chức
         $("#OrganizeId").bind("change", function () {
             var organizeId = $(this).val();
-            //获取门诊报表大类
+            //Lấy danh mục báo cáo ngoại trú lớn
             $("#mzprintreportcode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + organizeId,
             });
-            //获取门诊结算大类
+            //Lấy danh mục quyết toán ngoại trú lớn
             $("#mzprintbillcode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + organizeId,
             });
-            //获取通用报表大类
+            //Lấy danh mục báo cáo chung lớn
             $("#reportdlcode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + organizeId,
             });
-            //上级收费大类
+            //Nhóm lớn thu phí cấp trên
             $("#ParentId").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?treeidFieldName=dlId&organizeId=" + organizeId,
             });
         });
-        //首拼
+        //Mã đầu chữ
         $('#dlmc').keyup(function () {
             $('#py').val($(this).toShouPin());
         })

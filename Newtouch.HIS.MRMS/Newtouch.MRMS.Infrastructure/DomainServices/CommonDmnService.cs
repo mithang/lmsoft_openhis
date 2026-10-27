@@ -47,7 +47,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
             });
         }
         /// <summary>
-        /// 手术字典列表
+        /// Danh sách từ điển phẫu thuật
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -95,7 +95,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
         }
 
         /// <summary>
-        /// 麻醉方式列表
+        /// Danh sách phương pháp gây mê
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -116,7 +116,7 @@ where OrganizeId=@orgId ";
             });
         }
         /// <summary>
-        /// 切口等级
+        /// Mức độ vết mổ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -137,7 +137,7 @@ where OrganizeId=@orgId ";
             });
         }
         /// <summary>
-        /// 通用字典
+        /// Từ điển chung
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -202,7 +202,7 @@ where zt='1' ";
             });
         }
         /// <summary>
-        /// 民族
+        /// Dân tộc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyword"></param>
@@ -225,7 +225,7 @@ where zt='1' ";
 
 
         /// <summary>
-        /// 获取病历类型对应表
+        /// Lấy bảng tương ứng loại bệnh án
         /// </summary>
         /// <param name="bllxId"></param>
         /// <param name="OrgId"></param>
@@ -261,7 +261,7 @@ where zt='1' ";
         }
 
         /// <summary>
-        /// 根据DutyCode（职位）查询员工列表
+        /// Truy vấn danh sách nhân viên theo DutyCode (chức vụ)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dutyCode"></param>

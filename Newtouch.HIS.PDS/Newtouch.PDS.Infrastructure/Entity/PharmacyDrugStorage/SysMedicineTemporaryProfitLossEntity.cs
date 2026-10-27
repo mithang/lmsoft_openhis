@@ -7,7 +7,7 @@ using Newtouch.Infrastructure.EF.Attributes;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品临时损益信息
+    /// Thông tin lãi lỗ tạm thời thuốc hệ thống
     /// </summary>
     [Table("xt_yp_ls_syxx")]
     [SugarTable("xt_yp_ls_syxx")]
@@ -61,13 +61,13 @@ namespace Newtouch.HIS.Domain.Entity
         public string Dw { get; set; }
 
         /// <summary>
-        /// 批发价
+        /// Giá bán buôn
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Pfj { get; set; }
 
         /// <summary>
-        /// 零售价
+        /// Giá bán lẻ
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Lsj { get; set; }

@@ -44,14 +44,14 @@
         });
     });
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_searchProduct").trigger("click");
         }
     });
 
-    //初始化
+    //Khởi tạo
     function initControl() {
         $("#productTypeId").bindSelect({
             url: "/ProductManage/ProductType/GetPatientTreeSelectJson"
@@ -59,7 +59,7 @@
         tbwzGridList();
     }
 
-    //获取Vật tư
+    //LấyVật tư
     function tbwzGridList() {
         $gridList.dataGrid({
             url: "/WarehouseManage/Warehouse/GettbwzGridJson",
@@ -134,7 +134,7 @@
         });
     }
 
-    //提交 operateType 0:添加  1：Xóa
+    //Gửi operateType 0:Thêm  1：Xóa
     function Save(items, opereateType, callback) {
         $.najax({
             type: "POST",
@@ -166,7 +166,7 @@
         });
     }
 
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         debugger;
         var newPro = AssembleNewPro();
@@ -179,7 +179,7 @@
         }
     }
 
-    //组装新增Vật tư
+    //Ghép thêmVật tư
     function AssembleNewPro() {
         var result = [];
         $.each($('input:checkbox:checked'), function () {
@@ -191,7 +191,7 @@
         return result;
     }
 
-    //组装剔除Vật tư
+    //Ghép loại bỏVật tư
     function AssembleDeletePro() {
         var result = [];
         $.each($('input:checkbox:not(:checked)'), function () {
@@ -213,7 +213,7 @@
             height: "300px",
             callBack: function (iframeId) {
                 $.currentWindow(iframeId).AcceptClick(function () {
-                    $gridList.jqGrid("clearGridData"); //清除明细的grid
+                    $gridList.jqGrid("clearGridData"); //Xóa chi tiết củagrid
                     $gridList.resetSelection();
                     $gridList.trigger("reloadGrid");
                 });

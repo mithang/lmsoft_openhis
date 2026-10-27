@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.WebAPI.Manage.Models.EMR
 {
     /// <summary>
-    /// 病案首页查询
+    /// Truy vấn trang đầu bệnh án
     /// </summary>
     public class MedicalHomeRecordRequest
     {

@@ -4,27 +4,27 @@ using Newtouch.Herp.Domain.Entity.VEntity;
 namespace Newtouch.Herp.Domain.DTO
 {
     /// <summary>
-    /// 提交采购
+    /// Gửi mua sắm
     /// </summary>
     public class SubmitGeneratingPurchaseDto
     {
         /// <summary>
-        /// 采购单明细
+        /// Chi tiết đơn mua sắm
         /// </summary>
         public List<VCgPurchaseOrderDetailEntity> cgmx { get; set; }
 
         /// <summary>
-        /// 操作员
+        /// Nhân viên thao tác
         /// </summary>
         public string userCode { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chức ID
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
     }

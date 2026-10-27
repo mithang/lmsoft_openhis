@@ -28,7 +28,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
     {
         private readonly IReportDmnService reportDmnService;
         /// <summary>
-        /// 康复处方单
+        /// Phục hồi chức năngĐơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult RehabPresReport()
@@ -38,7 +38,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// 常规项目处方单
+        /// Hạng mục thông thườngĐơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult RegularItemPresReport()
@@ -48,7 +48,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// 康复治疗单
+        /// Phục hồi chức năngĐiều trịphiếu
         /// </summary>
         /// <returns></returns>
         public IActionResult RehabPresTreatmentReport()
@@ -57,7 +57,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// 查询医嘱发药
+        /// Tra cứuY lệnhphát thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult DispensingQuery()
@@ -66,7 +66,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// 西药处方单
+        /// Thuốc TâyĐơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult WMPresReport()
@@ -76,7 +76,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// 中药处方单
+        /// Thuốc Đông yĐơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult TCMPresReport()
@@ -86,7 +86,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// 病历单
+        /// Hồ sơphiếu
         /// </summary>
         /// <returns></returns>
         public IActionResult MRReport()
@@ -95,7 +95,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// 长期医嘱打印
+        /// Y lệnh dài hạnIn
         /// </summary>
         /// <returns></returns>
         public IActionResult PrintCqyzReport()
@@ -104,7 +104,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// 临时医嘱打印
+        /// Y lệnh tạm thờiIn
         /// </summary>
         /// <returns></returns>
         public IActionResult PrintLsyzReport()
@@ -113,7 +113,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// 医嘱Thực hiện后，打印药品单
+        /// Y lệnhThực hiệnsau，InThuốcphiếu
         /// </summary>
         /// <returns></returns>
         public IActionResult PrintYzYpReport()
@@ -123,7 +123,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// 检验申请单
+        /// Xét nghiệmPhiếu
         /// </summary>
         /// <returns></returns>
 
@@ -132,25 +132,25 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             ReportingServiceCom();
             return View();
         }
-        //检查申请单
+        //Kiểm traPhiếu
         public IActionResult PrintJcReport()
         {
             ReportingServiceCom();
             return View();
         }
-        //Toàn viện抗生素药物使用金额排名
+        //Toàn việnKháng sinhthuốcvậtSử dụngSố tiềnxếptên
         public IActionResult PrintKssJePMReport()
         {
             ReportingServiceCom();
             return View();
         }
-        //Toàn viện抗生素药物使用量排名
+        //Toàn việnKháng sinhthuốcvậtSử dụnglượngxếptên
         public IActionResult PrintKssSlPMReport()
         {
             ReportingServiceCom();
             return View();
         }
-        //门诊抗菌药物处方比例
+        //Ngoại trú抗菌thuốcvậtĐơn thuốcsoVD
         public IActionResult PrintKssCfPropReport()
         {
             ReportingServiceCom();
@@ -168,7 +168,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.topOrgId = Constants.TopOrganizeId;
             ViewBag.ReportServerHOST = Newtouch.CIS.Compat.AppConfig.Get("ReportServer.HOST");
-            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //是否是医院管理员
+            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //CóKhôngCóQuản trị viên bệnh viện
             ViewBag.CurUserCode = this.UserIdentity.UserCode;
             ViewBag.curUsergh = UserIdentity.rygh;
         }
@@ -176,7 +176,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         #endregion
 
 
-        #region Báo cáo工具
+        #region Báo cáocôngcụ thể
         public IActionResult ReportConfig()
         {
             return View();

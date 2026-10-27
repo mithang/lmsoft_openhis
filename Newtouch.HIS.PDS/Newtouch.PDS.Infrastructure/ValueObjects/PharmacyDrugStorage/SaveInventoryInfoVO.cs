@@ -1,29 +1,29 @@
 namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
 {
     /// <summary>
-    /// 保存盘点
+    /// Lưu kiểm kê
     /// </summary>
     public class SaveInventoryInfoVO
     {
         /// <summary>
-        /// 盘点明细ID
+        /// Chi tiết kiểm kêID
         /// </summary>
         public string pdmxId { get; set; }
 
         /// <summary>
-        /// 实际数量
+        /// Số lượng thực tế
         /// </summary>
         public int sjsl { get; set; }
 
         /// <summary>
-        /// 追溯码
+        /// Mã truy xuất
         /// </summary>
         public string zsm { get; set; }
 
         /// <summary>
-        /// 是否拆零
-        /// 1： 是
-        /// 2： 否
+        /// Có chia lẻ không
+        /// 1： Có
+        /// 2： Không
         /// </summary>
         public int? sfcl { get; set; }
     }

@@ -16,10 +16,10 @@
      iframezyblinit.onload = function () {
          if (blbqdm) {
              var addstyleid = 'PatTreeList_' + blbqdm;
-             $("#" + addstyleid + "").addClass('bbit-tree-selected');//增加选中样式
-             // 获取iframe素
+             $("#" + addstyleid + "").addClass('bbit-tree-selected');//tăng thêmĐã chọnkiểu
+             // Lấyiframetố
              var iframe = document.getElementById('iframeblyl');
-             // 访问iframe中的window对象
+             // Truy cậpiframetrongcủawindowđối tượng
              var iframeWindow = iframe.contentWindow;
              iframeWindow.$('#sel_inpatientArea').val(blbqdm).trigger("change", false);
              
@@ -63,9 +63,9 @@
              url: "/NurseManage/EntryRegistration/TreeViewdata",
              onnodeclick: function (item) {
                  if (item.value && item.Ex1 == "c") {
-                     // 获取iframe素
+                     // Lấyiframetố
                      var iframe = document.getElementById('iframeblyl');
-                     // 访问iframe中的window对象
+                     // Truy cậpiframetrongcủawindowđối tượng
                      var iframeWindow = iframe.contentWindow;
                      iframeWindow.$('#sel_inpatientArea').val(item.value).trigger("change", false);
                  }

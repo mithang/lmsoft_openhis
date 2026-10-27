@@ -3,31 +3,31 @@ namespace Newtouch.Domain.ValueObjects
     public class SqtxXmYpInfoVO
     {
         /// <summary>
-        /// 医保代码
+        /// Mã BHYT
         /// </summary>
         public string ybdm { get; set; }
         /// <summary>
-        /// 自付比例 事前提醒为一位，故定义为int
+        /// Tỷ lệ tự trả nhắc trướclàmột ký tự，故địnhnghĩalàint
         /// </summary>
         public int zfbl { get; set; }
         /// <summary>
-        /// 剂量
+        /// Liều lượng
         /// </summary>
         public decimal jl { get; set; }
         /// <summary>
-        /// 剂量单位
+        /// Đơn vị liều
         /// </summary>
         public string jldw { get; set; }
         /// <summary>
-        /// 门诊拆零单位
+        /// Đơn vị lẻ ngoại trú
         /// </summary>
         public decimal mzcls { get; set; }
         /// <summary>
-        /// 收费大类code
+        /// Nhóm thu phí lớncode
         /// </summary>
         public string sfdlCode { get; set; }
         /// <summary>
-        /// 单价
+        /// Đơn giá
         /// </summary>
         public decimal dj { get; set; } 
     }

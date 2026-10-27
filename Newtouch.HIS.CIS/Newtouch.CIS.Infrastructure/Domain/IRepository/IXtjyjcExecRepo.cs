@@ -13,7 +13,7 @@ namespace Newtouch.Domain.IRepository
 
         void SubmitForm(XtjyjcExecEntity entity, string keyValue);
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         void DeleteForm(string keyValue);

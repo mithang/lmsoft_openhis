@@ -22,7 +22,7 @@ namespace Newtouch.EMR.API.Controllers
         {
         }
 
-        /// <summary>换取访问令牌 — not available: see class note.</summary>
+        /// <summary>Lấy token truy cập — not available: see class note.</summary>
         [HttpPost]
         [Route("GetToken")]
         public ContentResult GetToken([FromBody] AuthGetTokenRequest request)

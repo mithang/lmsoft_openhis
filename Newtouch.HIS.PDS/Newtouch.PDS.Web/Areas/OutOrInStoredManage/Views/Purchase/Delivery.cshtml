@@ -42,9 +42,9 @@
     });
 
 
-    //初始化浮层
+    //Khởi tạo lớp nổi
     function InitFloat() {
-        //药企
+        //Doanh nghiệp dược
         $("#yq").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             height: 200,
@@ -171,18 +171,18 @@
     }
 
 
-    //启用行内编辑
+    //Bật chỉnh sửa trong dòng
     function EnableInlineEditBox(rowid) {
         $("#gridList").jqGrid('editRow', rowid, false, initInlineFunc);//Mở chế độ sửa
         $("#jqg_gridList_" + rowid).trigger("click");
     }
 
-    //初始化 浮层
+    //Khởi tạo Lớp nổi
     function initInlineFunc(rowid) {
-        $("#" + rowid + "_PSYSLXXXXXXX").parent().next().children('select').append('<option value="1">Nghiệm thu trước</option><option value="2">Nghiệm thu phòng lab</option>');//验收类型
+        $("#" + rowid + "_PSYSLXXXXXXX").parent().next().children('select').append('<option value="1">Nghiệm thu trước</option><option value="2">Nghiệm thu phòng lab</option>');//Loại nghiệm thu
     }
 
-    //获取明细
+    //Lấy chi tiết
     $('#btn_search').click(function () {
         if ($("#yq").val() == "" || $("#yq").val() == null) {
             $.modalAlert("Vui lòng chọn nhà cung cấp", 'warning');
@@ -205,7 +205,7 @@
             ZXSPBM: rowData.ZXSPBM,
             PSL: rowData.PSL,
             SCPH: rowData.SCPH,
-            YSJG: "1",  //0 验收不通过 1 验收通过
+            YSJG: "1",  //0 Nghiệm thu không đạt 1 Nghiệm thu đạt
             YSJGBZ: rowData.YSJGBZ,
         }
 

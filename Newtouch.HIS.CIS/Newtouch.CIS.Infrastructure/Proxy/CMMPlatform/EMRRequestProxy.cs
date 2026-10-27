@@ -7,12 +7,12 @@ using Newtouch.Infrastructure;
 namespace Newtouch.CIS.Proxy.CMMPlatform
 {
     /// <summary>
-    /// 集成电子病历
+    /// tậpthànhđiện tửHồ sơ
     /// </summary>
     internal class EMRRequestProxy : GuiAnTelemedicinePlatformProxy<EMRRequestEntity, string>
     {
         /// <summary>
-        /// 执行
+        /// Thực hiện
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>

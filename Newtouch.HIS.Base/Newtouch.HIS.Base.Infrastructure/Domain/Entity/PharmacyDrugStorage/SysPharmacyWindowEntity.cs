@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Domain.Entity
         /// <summary>
         /// 
         /// </summary>
-        [Obsolete("已作废这种关联关系")]
+        [Obsolete("Đã hủy quan hệ liên kết này")]
         public string yfbmCode { get; set; }
 
         /// <summary>

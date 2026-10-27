@@ -91,7 +91,7 @@ namespace Newtouch.MRQC.Infrastructure
             }
             if (string.IsNullOrWhiteSpace(SiteTokenAPIHost))
             {
-                throw new FailedException("[鉴权]未配置 SiteAuthCenterHost");
+                throw new FailedException("[Xác thực] Chưa cấu hình SiteAuthCenterHost");
             }
             var reqObj = new { AppId = appId, Data = accessAppId };
             var resp = HttpPostRaw(SiteTokenAPIHost + "api/Auth/GetAppToken", reqObj.ToJson(), null).GetAwaiter().GetResult();
@@ -115,7 +115,7 @@ namespace Newtouch.MRQC.Infrastructure
                 token = OperatorProvider.GetCurrentToken();
                 if (string.IsNullOrWhiteSpace(token))
                 {
-                    throw new FailedException("[鉴权]未获取到 Api 身份令牌，请联系管理员");
+                    throw new FailedException("[Xác thực] Không lấy được mã định danh Api, vui lòng liên hệ quản trị viên");
                 }
                 string response = HttpPostRaw(uri, data, token).GetAwaiter().GetResult();
                 ApiManageResponse<T> apiResp = JsonConvert.DeserializeObject<ApiManageResponse<T>>(response);
@@ -129,7 +129,7 @@ namespace Newtouch.MRQC.Infrastructure
                 }
                 if (apiResp.HttpStatus != (int)HttpStatusCode.OK)
                 {
-                    throw new FailedException($"[Http]请求异常：{apiResp.HttpStatus}=>{apiResp.Message}");
+                    throw new FailedException($"[Http] Lỗi yêu cầu:{apiResp.HttpStatus}=>{apiResp.Message}");
                 }
                 return apiResp.BusData;
             }
@@ -139,7 +139,7 @@ namespace Newtouch.MRQC.Infrastructure
             }
             catch (Exception ex)
             {
-                throw new FailedException($"[鉴权]获取到 Api 身份令牌异常：{ex.Message}");
+                throw new FailedException($"[Xác thực] Lỗi khi lấy mã định danh Api:{ex.Message}");
             }
         }
 

@@ -1,123 +1,123 @@
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 下拉列表物资信息
+    /// Thông tin vật tư trong danh sách thả xuống
     /// </summary>
     public class VSelProductInfoEntity
     {
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织结构
+        /// Cơ cấu tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 物资名称
+        /// Tên vật tư
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
-        /// 库存 最小单位
+        /// Tồn kho Đơn vị nhỏ nhất
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// 可用库存 最小单位
+        /// Tồn kho khả dụng Đơn vị nhỏ nhất
         /// </summary>
         public int kykcsl { get; set; }
 
         /// <summary>
-        /// 部门单位数量（带单位）
+        /// Số lượng đơn vị khoa phòng（Kèm đơn vị）
         /// </summary>
         public string slstr { get; set; }
 
         /// <summary>
-        /// 最小单位零售价
+        /// Giá bán lẻ đơn vị nhỏ nhất
         /// </summary>
         public decimal minlsj { get; set; }
 
         /// <summary>
-        /// 部门单位零售价
+        /// Giá bán lẻ đơn vị khoa phòng
         /// </summary>
         public decimal bmlsj { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 部门单位转化因子
+        /// Hệ số chuyển đổi đơn vị khoa phòng
         /// </summary>
         public int bmdwzhyz { get; set; }
 
         /// <summary>
-        /// 拼音
+        /// Pinyin
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 生产商Id
+        /// Nhà sản xuất Id
         /// </summary>
         public string supplierId { get; set; }
 
         /// <summary>
-        /// 生产商名称
+        /// Tên nhà sản xuất
         /// </summary>
         public string supplierName { get; set; }
 
         /// <summary>
-        /// 最小单位ID
+        /// Đơn vị nhỏ nhất ID
         /// </summary>
         public string zxdwId { get; set; }
 
         /// <summary>
-        /// 最小单位名称
+        /// Tên đơn vị nhỏ nhất
         /// </summary>
         public string mindwmc { get; set; }
 
         /// <summary>
-        /// 部门单位ID
+        /// Đơn vị khoa phòng ID
         /// </summary>
         public string bmdwId { get; set; }
 
         /// <summary>
-        /// 部门单位名称
+        /// Tên đơn vị khoa phòng
         /// </summary>
         public string bmdwmc { get; set; }
 
         /// <summary>
-        /// 类别名称
+        /// Tên loại
         /// </summary>
         public string lbmc { get; set; }
 
         /// <summary>
-        /// 类别ID
+        /// Loại ID
         /// </summary>
         public string lbId { get; set; }
         /// <summary>
-        /// 耗材编码
+        /// Mã vật tư tiêu hao
         /// </summary>
         public string productCode { get; set; }
         /// <summary>
-        /// 国家医保代码(耗材27位)
+        /// Mã BHYT quốc gia(Vật tư tiêu hao 27 ký tự)
         /// </summary>
         public string hcgjybdm { get; set; }
         /// <summary>
-        /// 耗材统编代码
+        /// Mã thống nhất vật tư tiêu hao
         /// </summary>
         public string gjybdm { get; set; }
         /// <summary>
-        /// 进价
+        /// Giá nhập
         /// </summary>
         public decimal jj { get; set; }
     }

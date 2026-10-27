@@ -11,7 +11,7 @@ using System.Text;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// 用法联动
+    /// Cách dùngliênđộng
     /// </summary>
     public class SysUsageLinkageDmnService : DmnServiceBase, ISysUsageLinkageDmnService
     {

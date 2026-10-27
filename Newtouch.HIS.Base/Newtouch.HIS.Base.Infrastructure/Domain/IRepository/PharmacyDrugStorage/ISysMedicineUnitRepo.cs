@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysMedicineUnitRepo : IRepositoryBase<SysMedicineUnitEntity>
     {
         /// <summary>
-        /// 根据关键字查询药品单位
+        /// Tra cứu đơn vị thuốc theo từ khóa
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

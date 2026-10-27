@@ -49,13 +49,13 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         {
             //DCwriterServer dcControl = new DCwriterServer();
             //dcControl.Init();
-            //WebWriterControlEngine eng = dcControl.DCWControl;//这是上一步创建的引擎 
+            //WebWriterControlEngine eng = dcControl.DCWControl;//Đây là engine được tạo ở bước trước 
             //ViewBag.WriterControlHtml = eng.GetAllContentHtml();
             //eng.Dispose();
             return View();
         }
 
-        #region 医嘱续打
+        #region In tiếp y lệnh
         public IActionResult GetZyCqYzData(string zyh, string orgId, string isSign)
         {
             var data = _CommonDmnService.GetPrintCqyzData(zyh, orgId, isSign);
@@ -76,7 +76,7 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         }
         #endregion
 
-        #region 护理单打印
+        #region In phiếu điều dưỡng
     
         public IActionResult GetHljldData(string zyh,string hljb)
         {

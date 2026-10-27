@@ -2,12 +2,12 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO
 {
     /// <summary>
-    /// 公共请求报文
+    /// công cộngyêu cầubáovăn
     /// </summary>
     public class RequestBase
     {
         /// <summary>
-        /// 请求体头部
+        /// yêu cầuthểđầubộ
         /// </summary>
         public Header Header { get; set; }
     }

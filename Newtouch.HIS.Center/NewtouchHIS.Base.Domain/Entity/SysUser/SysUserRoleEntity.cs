@@ -5,7 +5,7 @@ using SqlSugar;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///用户表
+    ///Bảng người dùng
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Sys_UserRole", "SysUserRoleEntity")]
@@ -13,7 +13,7 @@ namespace NewtouchHIS.Base.Domain.Entity
     {
 
         /// <summary>
-        /// Desc:用户Khóa chính
+        /// Desc:Người dùngKhóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -30,7 +30,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string UserId { get; set; }
 
         /// <summary>
-        /// Desc:账户
+        /// Desc:Tài khoản
         /// Default:
         /// Nullable:False
         /// </summary>           

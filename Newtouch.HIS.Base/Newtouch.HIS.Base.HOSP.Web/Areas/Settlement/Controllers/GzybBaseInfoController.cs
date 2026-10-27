@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.Settlement.Controllers
             this._IGzybBaseInfoDmnService = _igzybBaseInfoDmnService;
         }
         /// <summary>
-        /// 贵州医保基础数据页面视图
+        /// Khung nhìn trang dữ liệu cơ sở BHYT Quý Châu
         /// </summary>
         /// <returns></returns>
         public IActionResult Index()
@@ -70,9 +70,9 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.Settlement.Controllers
             return Content(success ? "1" : "0");
         }
 
-        #region 医保目录相关
+        #region Liên quan danh mục BHYT
         /// <summary>
-        /// 获取目录下载最新版本号
+        /// Lấy số phiên bản mới nhất tải danh mục
         /// </summary>
         /// <param name="tbname"></param>
         /// <returns></returns>
@@ -130,7 +130,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.Settlement.Controllers
         }
 
         /// <summary>
-        /// 获取下载数据
+        /// Lấy dữ liệu tải xuống
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="tbname"></param>

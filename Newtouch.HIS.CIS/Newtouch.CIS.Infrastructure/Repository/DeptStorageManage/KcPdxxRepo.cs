@@ -10,7 +10,7 @@ using Newtouch.Domain.IRepository.DeptStorageManage;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 盘点
+    /// Kiểm kê
     /// </summary>
     public class KcPdxxRepo : RepositoryBase<KcPdxxEntity>, IKcPdxxRepo
     {
@@ -19,7 +19,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 根据盘点ID获取盘点信息
+        /// TheoKiểm kêIDLấyKiểm kêthông tin
         /// </summary>
         /// <param name="pdId"></param>
         /// <param name="organizeId"></param>
@@ -30,7 +30,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// 判断是否有未完成的盘点 （结束）
+        /// kiểm tralàKhôngcóchưaHoàn thànhcủaKiểm kê （Kết thúc）
         /// </summary>
         /// <returns></returns>
         public int SelectUnfinishedInventoryByPdId(long pdId, string organizeId)

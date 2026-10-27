@@ -24,13 +24,13 @@ namespace NewtouchHIS.Lib.Services.HttpService
                 request.Method = method;
                 request.ContentType = "application/json";
                 request.ContentLength = data.Length;
-                request.Timeout = 10000; // 超时时间，毫秒单位
+                request.Timeout = 10000; // Thời gian chờ, đơn vị mili giây
                 using (var stream = request.GetRequestStream())
                 {
                     stream.Write(byteData, 0, data.Length);
                 }
-                var response = (HttpWebResponse)request.GetResponse(); // 发送请求
-                using (var resStream = response.GetResponseStream()) // 读取数据
+                var response = (HttpWebResponse)request.GetResponse(); // Gửi yêu cầu
+                using (var resStream = response.GetResponseStream()) // Đọc dữ liệu
                 {
                     using (var reader = new StreamReader(resStream, Encoding.UTF8))
                     {
@@ -40,13 +40,13 @@ namespace NewtouchHIS.Lib.Services.HttpService
             }
             catch (Exception ex)
             {
-                _logger.LogError($"使用HttpWebRequest访问webapi方法异常：\r url:{url} \r data:{data} \r 异常信息:{ex.Message}");
+                _logger.LogError($"Sử dụng HttpWebRequest truy cập phương thức webapi ngoại lệ:\r url:{url} \r data:{data} \r Thông tin ngoại lệ:{ex.Message}");
             }
             finally
             {
                 if (request != null)
                 {
-                    request.Abort(); // 释放资源
+                    request.Abort(); // Giải phóng tài nguyên
                 }
             }
             return result;

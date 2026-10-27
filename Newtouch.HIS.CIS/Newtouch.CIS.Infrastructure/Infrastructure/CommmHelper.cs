@@ -8,17 +8,17 @@ using ZXing.Common;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 帮助类
+    /// giúpgiúploại
     /// </summary>
     public class CommmHelper
     {
         /// <summary>
-        /// 收费项目 治疗量 换算成 数量
+        /// Mục thu phí Điều trịlượng đổitínhthành Số lượng
         /// </summary>
-        /// <param name="zll">指的是康复处方页的总量</param>
+        /// <param name="zll">chỉcủalàPhục hồi chức năngĐơn thuốctrangcủaTổng lượng</param>
         /// <param name="dwjls"></param>
-        /// <param name="jjcl">枚举EnumSfxmJjcl</param>
-        /// <param name="throwExWhenZero">当数量结果为0时 是否抛异常，默认抛</param>
+        /// <param name="jjcl">Liệt kêEnumSfxmJjcl</param>
+        /// <param name="throwExWhenZero">khiSố lượngkếtnếulà0khi làKhôngnémNgoại lệ，Mặc địnhném</param>
         /// <returns></returns>
         public static int CalcSfxmSl(int? mczll, int? dwjls, int? jjcl,
             bool throwExWhenZero = true)
@@ -44,10 +44,10 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取本地文件对应的本地路径
+        /// Lấybảnđịavănmụctương ứngcủabảnđịaĐường dẫn
         /// </summary>
-        /// <param name="path">相对路径</param>
-        /// <returns>返回绝对路径</returns>
+        /// <param name="path">nhauđốiĐường dẫn</param>
+        /// <returns>Quay lại绝đốiĐường dẫn</returns>
         public static string GetLocalFilePath(string path)
         {
             var configFileExportBaseDir = AppConfig.Get("LocalFileBaseDir");
@@ -68,11 +68,11 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 生成一维条形码
+        /// tạomột维dònghìnhmã
         /// </summary>
-        /// <param name="text">内容</param>
-        /// <param name="width">宽度</param>
-        /// <param name="height">高度</param>
+        /// <param name="text">nội dung</param>
+        /// <param name="width">rộngđộ</param>
+        /// <param name="height">caođộ</param>
         /// <returns></returns>
         public static string GenerateBarCode(string text, int width, int height)
         {
@@ -80,8 +80,8 @@ namespace Newtouch.Infrastructure
             // System.Drawing is unavailable on this Linux host (no libgdiplus),
             // so the original Bitmap.Save path cannot run here.
             var writer = new BarcodeWriterPixelData();
-            //使用ITF 格式，不能被现在常用的支付宝、微信扫出来
-            //如果想生成可识别的可以使用 CODE_128 格式
+            //Sử dụngITF định dạng，không thểbịhiệnởthường dùngcủaAlipay、WeChat扫rađến
+            //nếunếunghĩtạocó thểbiếtloạicủacó thểlấySử dụng CODE_128 định dạng
             //writer.Format = BarcodeFormat.ITF;
             writer.Format = BarcodeFormat.CODE_128;
             EncodingOptions options = new EncodingOptions()

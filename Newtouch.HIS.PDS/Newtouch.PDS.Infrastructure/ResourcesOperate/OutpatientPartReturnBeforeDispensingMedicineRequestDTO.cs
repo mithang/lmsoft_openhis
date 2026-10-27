@@ -6,58 +6,58 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.PDS.Requset.ResourcesOperate
 {
     /// <summary>
-    /// （未发药前）部分退药请求报文
+    /// （Trước khi phát thuốc）Bản tin yêu cầu trả thuốc một phần
     /// </summary>
     public class OutpatientPartReturnBeforeDispensingMedicineRequestDTO : RequestBase
     {
         /// <summary>
-        /// 取消明细
+        /// Hủy chi tiết
         /// </summary>
         [Required]
         public List<ReturnItemData> Items { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         [Required]
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 操作员代码
+        /// Mã nhân viên thao tác
         /// </summary>
         public string CreatorCode { get; set; }
     }
 
     /// <summary>
-    /// 退药明细内容
+    /// Nội dung chi tiết trả thuốc
     /// </summary>
     public class ReturnItemData
     {
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         [Required]
         public string cfh { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         [Required]
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 药房部门
+        /// Bộ phận nhà thuốc
         /// </summary>
         public string Yfbm { get; set; }
 
         /// <summary>
-        /// 退数量 （部门单位数量）
+        /// Số lượng trả （Số lượng đơn vị bộ phận）
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 转化因子 与sl联用  sl*zhyz=最小单位数量
+        /// Hệ số quy đổi vàslDùng kết hợp  sl*zhyz=Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int zhyz { get; set; }
     }

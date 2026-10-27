@@ -105,7 +105,7 @@
 
     });
 
-    //门诊病人查询
+    //ngoại trúkhámbệnhngườitratra cứu
     function GetPatSerarchView(blh) {
         if (!!!blh) {
             blh = '';
@@ -117,12 +117,12 @@
             width: "700px",
             height: "400px",
             callBack: function (iframeId) {
-                top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
-            }//窗口点确定的回调函数
+                top.frames[iframeId].PatDbGrid(); //trong sự kiện cửa sổ bật lên
+            }//hàm gọi lại khi nhấn xác nhận trên cửa sổ
         });
     }
 
-    //选择的病人
+    //Bệnh nhân đã chọn
     function GetQueryFphAjax(selePatInfo) {
         $('#blh').val(selePatInfo.blh);
         $("#patId").val(selePatInfo.patid);
@@ -131,7 +131,7 @@
         // ajaxLoadDataResult();
     }
 
-    ///报销政策
+    ///chính sách hoàn trả
     $("#bxName").newtouchFloatingSelector({
         height: 200,
         width: 300,
@@ -139,7 +139,7 @@
             if (!keyword) {
                 return null;
             }
-            //遍历数据源，用keyword来筛选出结果
+            //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.commercialInsuranceList, function (idx, val) {
                 if ((val.bxCode && val.bxCode.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() === "") {
@@ -171,7 +171,7 @@
             $('#sycs').val($('#zcs').val());
         }
     });
-    //提交
+    //Gửi
     function submitForm() {
         if (!$('#form1').formValid()) {
             return false;

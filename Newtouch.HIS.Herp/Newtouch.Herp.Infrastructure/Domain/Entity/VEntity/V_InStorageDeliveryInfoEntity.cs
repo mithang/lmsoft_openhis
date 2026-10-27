@@ -3,53 +3,53 @@ using System;
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 入库配送单信息
+    /// Thông tin phiếu phân phối nhập kho
     /// </summary>
     public class VInStorageDeliveryInfoEntity
     {
 
         /// <summary>
-        /// 配送单号
+        /// Số phiếu phân phối
         /// </summary>
         public string deliveryNo { get; set; }
 
         /// <summary>
-        /// 单据号
+        /// Số chứng từ
         /// </summary>
         public string djh { get; set; }
 
         /// <summary>
-        /// 审核状态
+        /// Trạng thái duyệt
         /// </summary>
         public string shzt { get; set; }
 
         /// <summary>
-        /// 供应商ID
+        /// Nhà cung cấp ID
         /// </summary>
         public string gysId { get; set; }
 
         /// <summary>
-        /// 供应商名称
+        /// Tên nhà cung cấp
         /// </summary>
         public string gysmc { get; set; }
 
         /// <summary>
-        /// 出入库方式ID
+        /// Phương thức nhập/xuất kho ID
         /// </summary>
         public string crkfsId { get; set; }
 
         /// <summary>
-        /// 出入库方式名称
+        /// Tên phương thức nhập/xuất kho
         /// </summary>
         public string crkfsmc { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
     }

@@ -6,28 +6,28 @@ using System.Configuration;
 namespace NewtouchHIS.Lib.DataBaseSvr
 {
     /// <summary>
-    /// 数据库上下文信息
+    /// Thông tin ngữ cảnh cơ sở dữ liệu
     /// </summary>
     public class DbContextV2
     {
         /// <summary>
-        /// 数据库类型。
+        /// Loại cơ sở dữ liệu.
         /// </summary>
         public DbType DbType { get; set; }
         /// <summary>
-        /// 连接字符串。
+        /// Chuỗi kết nối.
         /// </summary>
         public string ConnectionString { get; set; }
         /// <summary>
-        /// 数据库类型。
+        /// Loại cơ sở dữ liệu.
         /// </summary>
         public SqlSugarScope Client { get; set; }
         public SqlSugarClient scopeClient { get; set; }
 
         public DbContextV2()
         {
-            //默认采用配置项名
-            //appSettings/DefaultDb 配置项为指定连接字符串的name
+            //Mặc định sử dụng tên mục cấu hình
+            //appSettings/DefaultDb Mục cấu hình là của chuỗi kết nối được chỉ địnhname
             var dbConfigName = ConfigurationManager.AppSettings["Default"];
             Init(dbConfigName);
         }
@@ -88,17 +88,17 @@ namespace NewtouchHIS.Lib.DataBaseSvr
         }
 
         /// <summary>
-        /// 根据链接字符串的providerName决定那种数据库类型
+        /// Xác định loại cơ sở dữ liệu nào dựa trên providerName của chuỗi liên kết
         /// </summary>
         /// <param name="setting"></param>
         /// <returns></returns>
         private DbType GetSugarDbType(ConnectionStringSettings setting)
         {
-            DbType dbType = DbType.SqlServer; //默认值
+            DbType dbType = DbType.SqlServer; //Giá trị mặc định
             var providerName = setting.ProviderName;
             if (providerName != null)
             {
-                //数据库providerName：SqlClient MySqlClient SQLite OracleManaged/OracleClient Npgsql
+                //providerName của cơ sở dữ liệu:SqlClient MySqlClient SQLite OracleManaged/OracleClient Npgsql
                 if (providerName.EndsWith(".SqlClient", StringComparison.OrdinalIgnoreCase))
                 {
                     dbType = DbType.SqlServer;

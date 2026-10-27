@@ -24,74 +24,74 @@ namespace Newtouch.MR.ManageSystem.Domain.Entity
 
 	
 		//
-		// 摘要:
-		//     扩展字段4
+		// Tóm tắt:
+		//     Trường mở rộng4
 		public string Ex4 { get; set; }
 		//
-		// 摘要:
-		//     扩展字段3
+		// Tóm tắt:
+		//     Trường mở rộng3
 		public string Ex3 { get; set; }
 		//
-		// 摘要:
-		//     扩展字段2
+		// Tóm tắt:
+		//     Trường mở rộng2
 		public string Ex2 { get; set; }
 		//
-		// 摘要:
-		//     扩展字段1
+		// Tóm tắt:
+		//     Trường mở rộng1
 		public string Ex1 { get; set; }
 		//
-		// 摘要:
-		//     编码
+		// Tóm tắt:
+		//     Mã
 		public string Code { get; set; }
 		//
-		// 摘要:
+		// Tóm tắt:
 		//     title
 		public string title { get; set; }
 		//
 		public string img { get; set; }
 		//
-		// 摘要:
-		//     扩展字段5
+		// Tóm tắt:
+		//     Trường mở rộng5
 		public string Ex5 { get; set; }
 		//
-		// 摘要:
-		//     是否有下级
+		// Tóm tắt:
+		//     Có cấp dưới không
 		public bool hasChildren { get; set; }
 		//
-		// 摘要:
-		//     是否已加载子节点
+		// Tóm tắt:
+		//     Đã tải nút con chưa
 		public bool complete { get; set; }
 		//
-		// 摘要:
-		//     是否show check
+		// Tóm tắt:
+		//     Có hiển thị check không
 		public bool showcheck { get; set; }
 		//
-		// 摘要:
-		//     选中状态
+		// Tóm tắt:
+		//     Trạng thái đã chọn
 		public int? checkstate { get; set; }
 		//
-		// 摘要:
+		// Tóm tắt:
 		//     value
 		public string value { get; set; }
 		//
-		// 摘要:
-		//     显示文本
+		// Tóm tắt:
+		//     Văn bản hiển thị
 		public string text { get; set; }
 		//
-		// 摘要:
-		//     parentId 对应树形上级的id
+		// Tóm tắt:
+		//     parentId id cấp trên tương ứng của cây
 		public string parentId { get; set; }
 		//
-		// 摘要:
+		// Tóm tắt:
 		//     id
 		public string id { get; set; }
 		//
-		// 摘要:
-		//     是否 展开（if has child）
+		// Tóm tắt:
+		//     Có mở rộng không(if has child)
 		public bool isexpand { get; set; }
 		//
-		// 摘要:
-		//     扩展字段6
+		// Tóm tắt:
+		//     Trường mở rộng6
 		public string Ex6 { get; set; }
 	}
 }

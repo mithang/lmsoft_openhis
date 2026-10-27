@@ -4,7 +4,7 @@
     ViewBag.Title = "Phòng khámThông tin";
     Layout = "~/Views/Shared/_Index.cshtml";
 
-    //Phòng khám信息自动刷新时间
+    //Phòng khámthông tintựđộngLàm mớiThời gian
     var ConsultInfoRefreshTime = SysConfigReader.Bool("ConsultInfoRefreshTime", false).Value;
 }
 
@@ -89,7 +89,7 @@
 
 
 <script>
-    var zsCode = $.request("zsCode");//接收Phòng khám编号
+    var zsCode = $.request("zsCode");//nhậnthuPhòng khámSố hiệu
     GetConsultInfo();
 
 
@@ -112,6 +112,6 @@
             }
         });
     }
-    //定时刷新
+    //địnhkhiLàm mới
     var intervalId = setInterval("GetConsultInfo()", 60 * 1000);
 </script>

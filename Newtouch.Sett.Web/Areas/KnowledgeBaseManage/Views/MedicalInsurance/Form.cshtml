@@ -80,7 +80,7 @@
                 async: false,
                 success: function (data) {
                     $("#form1").formSerialize(data);
-                    //格式化UTC日期
+                    //Định dạngUTCNgày
                     $("#CreateTime").val(new Date(data.CreateTime).format("yyyy-MM-dd hh:mm:ss"));
                     $("#ksrq").val((data.ksrq && data.ksrq.length >= 10 ? data.ksrq.substring(0, 10) : ""));
                     $("#jsrq").val((data.jsrq && data.jsrq.length >= 10 ? data.jsrq.substring(0, 10) : ""));
@@ -89,7 +89,7 @@
         }
     })
 
-    //病人查询
+    //tra cứu bệnh nhân
     function GetPatSerarchView(blh) {
         if (!!!blh) {
             blh = '';
@@ -102,11 +102,11 @@
             url: "/PatientManage/AccountManage/PatOnlyBlhSearchView?from=PatSerarchView&t=" + Math.random() + "&blh=" + blh + "&xm=" + "",
             callBack: function (iframeId) {
                 top.frames[iframeId].PatDbGrid();
-            }//窗口点确定的回调函数
+            }//hàm gọi lại khi nhấn xác nhận trên cửa sổ
         });
     }
 
-    //选择的病人
+    //Bệnh nhân đã chọn
     function getPatInfoAjax(selePatInfo) {
         $('#blh').val(selePatInfo.blh);
         $('#patId').val(selePatInfo.patId);
@@ -114,7 +114,7 @@
         $('#nlshow').val(selePatInfo.nlshow);
     }
 
-    //根据blh获取patId和姓名
+    //theoblhLấypatIdvà họ tên
     function ajaxLoadDataResult() {
         var blh = $("#blh").val();
         $('#blh').val(blh.toUpperCase());
@@ -135,17 +135,17 @@
         });
     }
 
-    //回车
+    //nhấn Enter
     $('#blh').keydownEnterEvent(function () {
         ajaxLoadDataResult();
     })
 
-    //默认 剩余次数=总次数
+    //mặc định còn lạicòn lạilầnsố=Tổng số lần
     $('#zcs').change(function () {
         $('#sycs').val($('#zcs').val());
     })
 
-    //提交
+    //Gửi
     function submitForm() {
         if (!$('#form1').formValid()) {
             return false;

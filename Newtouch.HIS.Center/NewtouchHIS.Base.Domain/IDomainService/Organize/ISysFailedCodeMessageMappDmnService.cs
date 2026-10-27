@@ -7,7 +7,7 @@ namespace NewtouchHIS.Base.Domain.Organize
     public interface ISysFailedCodeMessageMappDmnService : IScopedDependency
     {
         /// <summary>
-        /// 获取有效内容
+        /// Lấy nội dung hiệu lực
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

@@ -2,19 +2,19 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO
 {
     /// <summary>
-    /// 接收信息请求体
+    /// nhậnthuthông tinyêu cầuthể
     /// </summary>
     public class Receive
     {
         /// <summary>
-        /// 机构编码
-        /// 必填
+        /// Cơ sởMã
+        /// bắt buộc
         /// </summary>
         public string orgCode { get; set; }
 
         /// <summary>
-        /// 就诊流水号
-        /// 必填
+        /// Khám bệnhdòngchảysố
+        /// bắt buộc
         /// </summary>
         public string serialNo { get; set; }
     }

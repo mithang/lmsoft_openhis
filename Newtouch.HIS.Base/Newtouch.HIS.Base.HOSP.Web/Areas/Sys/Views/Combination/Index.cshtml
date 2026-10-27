@@ -75,14 +75,14 @@
 		</div>
 		@*<table class="form">
 			<tr>
-				<th class="formTitle">药品代码：</th>
+				<th class="formTitle">Mã thuốc：</th>
 				<td class="formValue" colspan="3">
-					<input id="txt_gjybdm" type="text" style="width:300px;" class="form-control form-an" placeholder="药品代码">
+					<input id="txt_gjybdm" type="text" style="width:300px;" class="form-control form-an" placeholder="Mã thuốc">
 				</td>
 
 				<td class="formValue" colspan="2">
-					<span><input type="button" id="btn_searchyb" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" /></span>
-					<span><input type="button" id="btn_save" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="对码" /></span>
+					<span><input type="button" id="btn_searchyb" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tìm kiếm" /></span>
+					<span><input type="button" id="btn_save" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Đối mã" /></span>
 
 				</td>
 				<th class="formTitle"></th>
@@ -96,8 +96,8 @@
 		<table id="gridJSMXList"></table>
 	</div>
 	@*<div style="background-color: #fff; margin-top:5px;">
-			<input type="button" id="HZQD" class="btn btn-primary" style="width:60px;float:right;margin-right:10px;" value="汇总清单" />
-				<input type="button" id="btn_cyjsd_print" class="btn btn-primary" style="width:60px;float:right;margin-right:10px;" value="医保结算单" />
+			<input type="button" id="HZQD" class="btn btn-primary" style="width:60px;float:right;margin-right:10px;" value="Bảng tổng hợp" />
+				<input type="button" id="btn_cyjsd_print" class="btn btn-primary" style="width:60px;float:right;margin-right:10px;" value="Phiếu quyết toán BHYT" />
 		</div>*@
 </form>
 
@@ -182,7 +182,7 @@
 	}
 
 
-	//结算明细 jGrid声明
+	//Chi tiết quyết toán jGridKhai báo
 	$('#gridJSMXList').newtouchLocalDataGrid({
 		height: $(window).height() - 520,
 		caption: "Thông tin thuốc BHYT",
@@ -250,7 +250,7 @@
 
 		$("#txt_pzwh").val("");
 		$("#txt_scqy").val("");
-		//每次单击，先清空上一条明细 和合计
+		//Mỗi lần nhấp，Xóa chi tiết dòng trước và tổng cộng
 		$('#gridJSMXList').jqGrid("clearGridData");
 		$.najax({
 			type: "POST",
@@ -264,7 +264,7 @@
 	}
 
 
-	//保存对码
+	//Lưu đối mã
 	function btn_save() {
 
 		var ypid = $("#gridList").jqGrid('getGridParam', 'selrow');

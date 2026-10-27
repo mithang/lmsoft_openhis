@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysStaffWardRepo:IRepositoryBase<SysStaffWardEntity>
     {
         /// <summary>
-        /// 查找员工病区绑定信息
+        /// Tìm thông tin gắn kết nhân viên - khu bệnh
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>

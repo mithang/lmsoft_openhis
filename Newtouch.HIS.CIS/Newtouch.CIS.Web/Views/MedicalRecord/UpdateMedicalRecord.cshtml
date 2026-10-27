@@ -130,17 +130,17 @@
 <script>
 	//$('#xuetangclfs').itemDetailsBindSelect({ itemtype: "xuetangclfs" });
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
-        //结算主记录
+        //quyết toánchínhghi chép
         gridJSListData();
     });
     $("#txt_doctor").dutyStaffFloatingSelector({
         dutyCode: 'Doctor'
     });
-    //门诊挂号结算查询
+    //Ngoại trúđăng ký khámquyết toánTra cứu
     function gridJSListData() {
         var $gridJsList = $("#gridJSList");
         $gridJsList.dataGrid({
@@ -152,7 +152,7 @@
 	            { label: 'xuetangclfs', name: 'xuetangclfs', hidden: true, align: 'left' },
 	            { label: 'dqxuetang', name: 'dqxuetang', hidden: true, align: 'left' },
                 { label: 'Khám bệnhNgày', name: 'jzsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-                //{ label: '日期', name: 'createtime', width: 140, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                //{ label: 'Ngày', name: 'createtime', width: 140, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                 { label: 'Số khám ngoại trú', name: 'mzh', width: 100, align: 'left' },
                 { label: 'Họ tên', name: 'xm', align: 'center', width: 80 },
                 {
@@ -198,7 +198,7 @@
         });
 
         $("#btn_search").click(function () {
-            $('#gridJSList').jqGrid("clearGridData");//先清空明细
+            $('#gridJSList').jqGrid("clearGridData");//Xóa trắng chi tiết trước
             $gridJsList.jqGrid('setGridParam', {
                 postData: getSearchPostData(),
                 url: '@Url.Action("OutpatientPatientQuery")'

@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysDepartmentRepo : IRepositoryBase<SysDepartmentVEntity>
     {
         /// <summary>
-        /// 获取机构科室列表
+        /// Lấy danh sách khoa của cơ sở
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<SysDepartmentVEntity> GetList(string orgId, string zt, string keyword);
 
         /// <summary>
-        /// 根据Code获取名称
+        /// TheoCodeLấy tên
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>

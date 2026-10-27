@@ -1,7 +1,7 @@
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// DB上下文工厂 接口 NewtouchHIS_Base
+    /// DBNhà máy ngữ cảnh Giao diện NewtouchHIS_Base
     /// </summary>
     public interface IBaseDatabaseFactory : FrameworkBase.MultiOrg.Infrastructure.IDefaultDatabaseFactory
     {

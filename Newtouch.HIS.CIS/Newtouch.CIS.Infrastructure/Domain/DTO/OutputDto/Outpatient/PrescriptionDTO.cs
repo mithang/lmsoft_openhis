@@ -16,7 +16,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public bool sfbz { get; set; }
 
         /// <summary>
-        /// 枚举 1 西药处方 2 中药处方 3 康复处方 4 检验处方 5 检查处方 6 输液处方
+        /// Liệt kê 1 Thuốc TâyĐơn thuốc 2 Thuốc Đông yĐơn thuốc 3 Phục hồi chức năngĐơn thuốc 4 Xét nghiệmĐơn thuốc 5 Kiểm traĐơn thuốc 6 truyền dịchĐơn thuốc
         /// </summary>
         public int cflx { get; set; }
 
@@ -41,7 +41,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string ks { get; set; }
 
         /// <summary>
-        /// 贴数
+        /// dánsố
         /// </summary>
         public int? tieshu { get; set; }
 
@@ -56,105 +56,105 @@ namespace Newtouch.Domain.DTO.OutputDto
         public bool? djbz { get; set; }
 
         /// <summary>
-        /// 临床原因
+        /// 临giườngnguyên nhân
         /// </summary>
         public string lcyx { get; set; }
         /// <summary>
-        /// 申请备注
+        /// Đăng kýGhi chú
         /// </summary>
         public string sqbz { get; set; }
 
         /// <summary>
-        /// 处方明细
+        /// Đơn thuốcchi tiết
         /// </summary>
         public List<PrescriptionDetailVO> cfmxList { get; set; }
 
         /// <summary>
-        /// 处方标签 JI 精I JII 精II MZ 麻醉
+        /// Đơn thuốcnhãn JI tinhI JII tinhII MZ têsay
         /// </summary>
         public string cftag { get; set; }
         public string jzId { get; set; }
 
 
-        public string isdzcf { get; set; }//电子处方 1 是  0 否
+        public string isdzcf { get; set; }//điện tửĐơn thuốc 1 là  0 Không
         public string gjybdm { get; set; }
 
         /// <summary>
-        /// 代煎方式
+        /// sắc hộphươngkiểu
         /// </summary>
         public string djfs { get; set; }
         // <summary>
-        /// 代煎付数
+        /// sắc hộtrảsố
         /// </summary>
         public string djts { get; set; }
         // <summary>
-        /// 嘱托
+        /// Dặn dò
         /// </summary>
         public string cfzt { get; set; }
 
 		/// <summary>
-		/// 同步标志
+		/// Đồng bộCờ
 		/// </summary>
 		public bool? tbbz { get; set; }
 
 		/// <summary>
-		/// 退标志
+		/// trảCờ
 		/// </summary>
 		public bool? tbz { get; set; }
 
 		/// <summary>
-		/// 申请单号
+		/// Số phiếu
 		/// </summary>
 		public string sqdh { get; set; }
 
 		/// <summary>
-		/// 远程医疗上传状态
+		/// xatrìnhy tếTải lênTrạng thái
 		/// </summary>
 		public string SyncStatus { get; set; }
 
 
 		/// <summary>
-		/// 处方整剂医嘱说明
+		/// Đơn thuốcchỉnhliềuY lệnhMô tả
 		/// </summary>
 		public string rxDrordDscr { get; set; }
 
 		/// <summary>
-		/// 处方有效天数
+		/// Đơn thuốcHiệu lựcSố ngày
 		/// </summary>
 		public int? valiDays { get; set; }
 
 		/// <summary>
-		/// 复用(多次)使用标志
+		/// lạidùng(nhiều lần)Sử dụngCờ
 		/// </summary>
 		public string reptFlag { get; set; }
 
 		/// <summary>
-		/// 最大使用次数
+		/// nhấtlớnSử dụng lầnsố
 		/// </summary>
 		public int? maxReptCnt { get; set; }
 
 		/// <summary>
-		/// 使用最小间隔(天数)
+		/// Sử dụngnhấtnhỏgiữacách(Số ngày)
 		/// </summary>
 		public int? minInrvDays { get; set; }
 
 		/// <summary>
-		/// 续方标志
+		/// tiếpphươngCờ
 		/// </summary>
 		public string rxCotnFlag { get; set; }
 
 		/// <summary>
-		/// 长期处方标志
+		/// Dài hạnĐơn thuốcCờ
 		/// </summary>
 		public string longRxFlag { get; set; }
 
 		/// <summary>
-		/// 处方追溯码
+		/// Đơn thuốctruy xuấtmã
 		/// </summary>
 		public string rxTraceCode { get; set; }
 
 		/// <summary>
-		/// 医保处方编号
+		/// Bảo hiểm y tếĐơn thuốcSố hiệu
 		/// </summary>
 		public string hiRxno { get; set; }
 	}

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.IDomainServices
 {
     /// <summary>
-    /// 预约管理
+    /// đặt hẹnQuản lý
     /// </summary>
     public interface ISysBespeakRegisterDmnService
     {
@@ -26,7 +26,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<SysBespeakRegisterVO> SelectSysBespeakregister(string deptCode, string gh, string OrganizeId, DateTime? regDate, string regTime = "");
 
         /// <summary>
-        /// 根据科室和排班日期获取系统预约排班
+        /// TheoKhoavàXếp lịchNgàyLấyHệ thốngđặt hẹnXếp lịch
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
@@ -35,7 +35,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<SysBespeakRegisterVO> SelectSysBespeakregister(string deptCode, DateTime regDate, string organizeId);
 
         /// <summary>
-        /// 根据科室获取系统预约排班
+        /// TheoKhoaLấyHệ thốngđặt hẹnXếp lịch
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="organizeId"></param>

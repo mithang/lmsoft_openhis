@@ -5,7 +5,7 @@ using static NewtouchHIS.Base.Domain.EnumExtend.DRGEnum;
 namespace NewtouchHIS.Lib.Services.DrgGroup
 {
     /// <summary>
-    /// Drg分组策略
+    /// DrgChiến lược nhóm
     /// </summary>
     public class DrgGroupService : IDrgGroupService
     {
@@ -36,7 +36,7 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             else
             {
                 result.code = ResponseResultCode.FAIL;
-                result.msg = "暂不支持该区域DRG分组分析";
+                result.msg = "Tạm thời chưa hỗ trợ phân tích nhóm DRG cho khu vực này";
             }
             return result;
         }
@@ -58,7 +58,7 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             else
             {
                 result.code = ResponseResultCode.FAIL;
-                result.msg = "暂不支持该区域DRG分组分析";
+                result.msg = "Tạm thời chưa hỗ trợ phân tích nhóm DRG cho khu vực này";
             }
             return result;
         }
@@ -81,7 +81,7 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             else
             {
                 result.code = ResponseResultCode.FAIL;
-                result.msg = "暂不支持该区域DRG分组分析";
+                result.msg = "Tạm thời chưa hỗ trợ phân tích nhóm DRG cho khu vực này";
             }
             return result;
         }

@@ -26,7 +26,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         private readonly Ibl_bllxRepo _bllxRepo;
 
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
         /// <param name="blysRepo"></param>
         public BljghController(Ibl_ElementDomainRepo bljsRepo, Ibl_ElementDomain_DetailRepo bljsmxRepo, Ibl_bllxRepo bllxRepo)
@@ -113,9 +113,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
            
         }
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult DeleteForm(string delBljgmxId)
         {

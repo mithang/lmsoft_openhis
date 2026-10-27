@@ -1,7 +1,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 药品特殊属性
+    /// Thuộc tính đặc biệt thuốc
     /// </summary>
     public class DrugSpecialPropertiesVO
     {

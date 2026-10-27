@@ -94,17 +94,17 @@
 
 <script type="text/javascript">
     var ThisbqCode = "";//Khởi tạo khu bệnhCode
-    var ThisbrCode = "";//初始化病人Code
+    var ThisbrCode = "";//Khởi tạo bệnh nhânCode
     var globalData = [];
     $(".toolbar").css("width", 350);
     $(function () {
-        //绑定病区
+        //Gắn khu bệnh
         bqGridList();
-        //绑定病人发药详细信息
+        //Gắn chi tiết phát thuốc của bệnh nhân
         dispenseMedicinGridList(null, null);
     });
     
-    //绑定病区和病人
+    //Gắn khu bệnh và bệnh nhân
     function bqGridList() {
         $("#BqTreeList").treeview({
             height: $(window).height() - 35,
@@ -123,9 +123,9 @@
         var patlistFath = "";
         var patzyh = "";
 
-        //当前选中父节点
+        //Nút cha đang được chọn
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //Có phải nút con đơn lẻ không
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
@@ -137,7 +137,7 @@
             single = 1;
         }
 
-        //选中节点
+        //Nút được chọn
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 == "c") {
                 patzyh += patlist[i].value + ",";
@@ -169,12 +169,12 @@
             }
         }
 
-        ThisbrCode = patzyh;//存储点击的病人code
-        //重新加载病人发药详细信息
+        ThisbrCode = patzyh;//Lưu bệnh nhân đã nhấpcode
+        //Tải lại chi tiết phát thuốc của bệnh nhân
         $("#btn_search").click();
     }
 
-    //级联选中所有子节点
+    //Chọn xếp tầng tất cả nút con
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -183,7 +183,7 @@
             }
         }
     }
-    //级联取消所有子节点
+    //Bỏ chọn xếp tầng tất cả nút con
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -193,7 +193,7 @@
         }
     }
 
-    //用户发药详细信息
+    //Chi tiết phát thuốc của người dùng
     function dispenseMedicinGridList(BQ, BR) {
         var $gridBRXXDrugsList = $("#dispenseMedicinGridList");
         $gridBRXXDrugsList.dataGrid({
@@ -254,7 +254,7 @@
             caption: "Danh sách đã phát thuốc",
             viewrecords: true
         });
-        //查询
+        //Truy vấn
         $("#btn_search").click(function () {
             $gridBRXXDrugsList.jqGrid('setGridParam', {
                 postData: {
@@ -272,26 +272,26 @@
         });
     }
 
-    //拼装退药多选框
+    //Lắp ráp hộp chọn nhiều trả thuốc
     function addglobadata(status, rowid) {
         var data = $("#dispenseMedicinGridList").getRowData(rowid);
         var i = globalData.length;
-        if (status) {//追加当前行
+        if (status) {//Thêm dòng hiện tại
             globalData.push(data);
         } else {
             if (i > 0) {
                 for (var j = 0; j < globalData.length; j++) {
                     if (globalData[j].yszyzid == rowid) {
-                        globalData.splice(j, 1); //移除当前行
+                        globalData.splice(j, 1); //Loại bỏ dòng hiện tại
                     }
                 }
             }
         }
     }
 
-    // 退药
+    // Trả thuốc
     function newtouch_event_f6() {
-        globalData = []//取消多选，清除原来的值
+        globalData = []//Hủy chọn nhiều，Xóa giá trị gốc
         var ids = $("#dispenseMedicinGridList").jqGrid('getGridParam', 'selarrrow');
         for (var i = 0; i < ids.length; i++) {
             var data = $("#dispenseMedicinGridList").getRowData(ids[i]);
@@ -329,9 +329,9 @@
                     data: par,
                     dataType: "text",
                     success: function (res) {
-                        if (res == "退药成功") {
+                        if (res == "Trả thuốc thành công") {
                             $.modalAlert("Trả thuốc thành công！", 'success');
-                            //重新加载医嘱发药信息
+                            //Tải lại thông tin phát thuốc y lệnh
                             $("#dispenseMedicinGridList").trigger("reloadGrid");
                         } else {
                             $.modalAlert(res, 'error');
@@ -343,7 +343,7 @@
         }, false);
     }
 
-    //打印明细
+    //In chi tiết
     function newtouch_event_f7() {
         var startTime = $("#Kssj").val();
         var endTime = $("#Jssj").val();

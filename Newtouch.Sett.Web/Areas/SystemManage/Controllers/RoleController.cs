@@ -34,7 +34,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         private readonly ISysUserRoleRepo _sysUserRoleRepo;
 
         /// <summary>
-        /// 构造函数
+        /// cơ quantạothưsố
         /// </summary>
         /// <param name="roleApp"></param>
         /// <param name="moduleApp"></param>
@@ -56,7 +56,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             this._sysUserRoleRepo = sysUserRoleRepo;
         }
 
-        //Vai trò列表 gridjson
+        //Vai tròDanh sách gridjson
         [HttpGet]
 
         public IActionResult GetGridJson(Pagination pagination, string keyword, string OrganizeId)
@@ -106,7 +106,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存Vai trò用户关联关系
+        /// LưuVai tròdùnghộliên quanliênliên quanhệ
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -117,7 +117,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Vai trò（树）   （用户主动关联Vai trò）
+        /// Vai trò（cây）   （dùnghộchínhđộngliên quanliênVai trò）
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="organizeId"></param>

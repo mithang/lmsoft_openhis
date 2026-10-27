@@ -169,7 +169,7 @@
             if (opdata.SSJCZBM != null && opdata.SSJCZBM != undefined && opdata.SSJCZBM != "") {
                 var $grid = $("#gridopList");
                 var gridids = $grid.jqGrid('getDataIDs');
-                //在行号序列中获取最大的编号
+                //Lấy số hiệu lớn nhất trong dãy số dòng
                 var maxRowId = 0;
                 if (gridids.length>0) {
                     maxRowId = Math.max.apply(Math, $grid.jqGrid('getDataIDs'));

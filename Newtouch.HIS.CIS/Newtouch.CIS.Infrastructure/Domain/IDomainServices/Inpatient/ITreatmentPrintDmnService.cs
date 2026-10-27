@@ -9,7 +9,7 @@ namespace Newtouch.Domain.IDomainServices
     public interface ITreatmentPrintDmnService
     {
         /// <summary>
-        /// 获取病区发药患者树
+        /// LấyKhu bệnhphát thuốcBệnh nhâncây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>

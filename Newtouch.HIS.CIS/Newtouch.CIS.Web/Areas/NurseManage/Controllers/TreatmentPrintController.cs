@@ -31,7 +31,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             this._iTreatmentPrintDmnService = iTreatmentPrintDmnService;
         }
         /// <summary>
-        /// 获取病区人员Thực hiện树
+        /// LấyKhu bệnh ngườiviênThực hiệncây
         /// </summary>
         /// <returns></returns>
         public IActionResult GetPatWardTree()

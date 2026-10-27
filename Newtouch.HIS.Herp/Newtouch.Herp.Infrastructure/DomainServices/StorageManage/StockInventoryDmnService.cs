@@ -17,7 +17,7 @@ using Newtouch.Herp.Infrastructure;
 namespace Newtouch.Herp.DomainServices.StorageManage
 {
     /// <summary>
-    /// 库存盘点
+    /// Kiểm kê tồn kho
     /// </summary>
     public class StockInventoryDmnService : DmnServiceBase, IStockInventoryDmnService
     {
@@ -31,7 +31,7 @@ namespace Newtouch.Herp.DomainServices.StorageManage
         }
 
         /// <summary>
-        /// 获取盘点时间
+        /// Lấy thời gian kiểm kê
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -58,7 +58,7 @@ ORDER BY a.CreateTime DESC
         }
 
         /// <summary>
-        /// 获取未完成的盘点时间
+        /// Lấy thời gian kiểm kê chưa hoàn thành
         /// </summary>
         /// <returns></returns>
         public List<VInventoryDateDropDownEntity> GetHangUpPdDates(string warehouseId, string organizeId)
@@ -83,7 +83,7 @@ GROUP BY pdxx.Id, pdxx.Kssj, pdxx.Jssj, pdxx.CreateTime
         }
 
         /// <summary>
-        /// 生成盘点信息
+        /// Tạo thông tin kiểm kê
         /// </summary>
         public string GenerateInventoryInfo(string warehouseId, string organizeId)
         {
@@ -97,7 +97,7 @@ GROUP BY pdxx.Id, pdxx.Kssj, pdxx.Jssj, pdxx.CreateTime
         }
 
         /// <summary>
-        /// 获取盘点信息
+        /// Lấy thông tin kiểm kê
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -147,16 +147,16 @@ AND pdxx.Id=@pdId
             }
             switch (param.kcxs)
             {
-                case (int)EnumKCXS.Xslkc://显示零库存
+                case (int)EnumKCXS.Xslkc://Hiển thị tồn kho bằng 0
                     sql.AppendLine("AND (mx.Llsl = 0 OR mx.Sjsl = 0) ");
                     break;
-                case (int)EnumKCXS.Bxsllslwl://不显示理论数量为0
+                case (int)EnumKCXS.Bxsllslwl://Không hiển thị số lượng lý thuyết bằng 0
                     sql.AppendLine("AND mx.Llsl <> 0 ");
                     break;
-                case (int)EnumKCXS.Bxssjslwl://不显示实际数量为0
+                case (int)EnumKCXS.Bxssjslwl://Không hiển thị số lượng thực tế bằng 0
                     sql.AppendLine("AND mx.Sjsl <> 0 ");
                     break;
-                case (int)EnumKCXS.Bxslzdwl://不显示两者都为0
+                case (int)EnumKCXS.Bxslzdwl://Không hiển thị khi cả hai đều bằng 0
                     sql.AppendLine("AND (mx.Llsl <> 0 OR mx.Sjsl <> 0) ");
                     break;
             }
@@ -164,7 +164,7 @@ AND pdxx.Id=@pdId
         }
 
         /// <summary>
-        /// 获取盘点信息
+        /// Lấy thông tin kiểm kê
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -215,16 +215,16 @@ FROM (
             }
             switch (param.kcxs)
             {
-                case (int)EnumKCXS.Xslkc://显示零库存
+                case (int)EnumKCXS.Xslkc://Hiển thị tồn kho bằng 0
                     sql.AppendLine("	AND (mx.Llsl = 0 OR mx.Sjsl = 0) ");
                     break;
-                case (int)EnumKCXS.Bxsllslwl://不显示理论数量为0
+                case (int)EnumKCXS.Bxsllslwl://Không hiển thị số lượng lý thuyết bằng 0
                     sql.AppendLine("	AND mx.Llsl <> 0 ");
                     break;
-                case (int)EnumKCXS.Bxssjslwl://不显示实际数量为0
+                case (int)EnumKCXS.Bxssjslwl://Không hiển thị số lượng thực tế bằng 0
                     sql.AppendLine("	AND mx.Sjsl <> 0 ");
                     break;
-                case (int)EnumKCXS.Bxslzdwl://不显示两者都为0
+                case (int)EnumKCXS.Bxslzdwl://Không hiển thị khi cả hai đều bằng 0
                     sql.AppendLine("	AND (mx.Llsl <> 0 OR mx.Sjsl <> 0) ");
                     break;
             }
@@ -235,8 +235,8 @@ FROM (
         }
 
         /// <summary>
-        /// 取消盘点 
-        /// 删除 盘点信息（xt_yp_pdxx）、盘点信息明细（xt_yp_pdxxmx）
+        /// Hủy kiểm kê 
+        /// Xóa Thông tin kiểm kê（xt_yp_pdxx）、Chi tiết thông tin kiểm kê（xt_yp_pdxxmx）
         /// </summary>
         public void CancelInventory(long pdId)
         {
@@ -271,7 +271,7 @@ END
         }
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúc kiểm kê
         /// </summary>
         /// <returns></returns>
         public string EndInventory(long pdId, string organizeId, string creatorCode)
@@ -286,7 +286,7 @@ END
         }
 
         /// <summary>
-        /// 批量保存损益信息
+        /// Lưu hàng loạt thông tin chênh lệch
         /// </summary>
         /// <param name="syList"></param>
         /// <param name="warehouseId"></param>
@@ -313,7 +313,7 @@ END
         }
 
         /// <summary>
-        /// 保存变更后的盘点明细
+        /// Lưu chi tiết kiểm kê sau thay đổi
         /// </summary>
         /// <param name="saveInventoryDto"></param>
         /// <param name="pdId"></param>
@@ -498,7 +498,7 @@ BEGIN
 END
 
 DECLARE @pdmxId BIGINT;
-DECLARE @sjsl INT;--盘点明细表实际数量
+DECLARE @sjsl INT;--Số lượng thực tế của bảng chi tiết kiểm kê
 
 SELECT xm.productId, wz.name wzmc, xm.Id pdmxId, xm.pc,xm.ph,xm.sjsl
 INTO #tmpData
@@ -511,7 +511,7 @@ AND pd.OrganizeId=@OrganizeId
 AND pd.warehouseId=@warehouseId
 AND xm.zt='1'
 
-IF @sl>0 --实际库存有多，则直接添加到最近入库的一个批次上
+IF @sl>0 --Tồn kho thực tế còn dư，thì cộng trực tiếp vào một lô hàng nhập kho gần nhất
 BEGIN
 	SELECT TOP 1 @pdmxId=pdmxId,@sjsl=sjsl FROM #tmpData ORDER BY pc DESC
 	UPDATE dbo.kc_pdxxmx SET sjsl=sjsl+@sl WHERE Id=@pdmxId AND zt='1'
@@ -526,17 +526,17 @@ BEGIN
 	RETURN;
 END 
 
---实际库存比理论少，则优先从最近入库的批次减，不够则按批次倒序逐个扣
-DECLARE @sysl INT;--剩余数量，每次抵消后的数量
+--Tồn kho thực tế ít hơn lý thuyết，thì ưu tiên trừ từ lô hàng nhập kho gần nhất，không đủ thì trừ từng lô theo thứ tự ngược của lô hàng
+DECLARE @sysl INT;--Số lượng còn lại，Số lượng sau mỗi lần bù trừ
 SET @sysl=@sl;
 WHILE EXISTS(SELECT 1 FROM #tmpData WHERE sjsl>0)
 BEGIN
-	IF @sysl>=0 --所有剩余数量都分配完，则退出循环，结束保存
+	IF @sysl>=0 --Tất cả số lượng còn lại đã phân bổ xong，thì thoát vòng lặp，Kết thúc lưu
 	BEGIN
 		BREAK;
 	END 
 	
-	--还有剩余库存未分配，继续寻找符合要求的批次实现扣库存
+	--Còn tồn kho chưa phân bổ，Tiếp tục tìm lô hàng phù hợp để trừ tồn kho
 	SELECT TOP 1 @pdmxId=pdmxId,@sjsl=sjsl FROM #tmpData WHERE sjsl>0 ORDER BY pc DESC
 	SET @sysl=@sysl+@sjsl;
 	IF (@sysl<=0)
@@ -600,14 +600,14 @@ BEGIN
 	DECLARE @CrkmxId BIGINT;
 	DECLARE @warehouseId VARCHAR(50); 
 	DECLARE @productId VARCHAR(50);
-	DECLARE @productName VARCHAR(100);--物资名称
+	DECLARE @productName VARCHAR(100);--Tên vật tư
 	DECLARE @Ph VARCHAR(30);
 	DECLARE @pc VARCHAR(30);
 	DECLARE @Yxq DATETIME;
 	DECLARE @Sysl INT;
-	DECLARE @djh VARCHAR(50);--输出参数
-	DECLARE @Sykc INT;--剩余库存
-	DECLARE @Lsj MONEY;--零售价
+	DECLARE @djh VARCHAR(50);--Tham số đầu ra
+	DECLARE @Sykc INT;--Tồn kho còn lại
+	DECLARE @Lsj MONEY;--Giá bán lẻ
 	DECLARE @Zhyz INT;
 	DECLARE @Jj MONEY;
 	DECLARE @unitId VARCHAR(50);
@@ -627,7 +627,7 @@ BEGIN
 			RETURN;
 		END		
 			
-		--生成报损报溢单号
+		--Tạo số phiếu báo hỏng/báo thừa
 		SET @djh='BSBYD'+REPLACE(REPLACE(REPLACE(REPLACE(CONVERT(VARCHAR(23), GETDATE(),25), '-',''),':',''),' ',''),'.','');
 		UPDATE kf_kcxx Set kcsl = kcsl + @Sysl, LastModifierCode=@CreatorCode, LastModifyTime=GETDATE() Where warehouseId=@warehouseId AND productId=@productId And Isnull(ph,'') = @Ph AND Isnull(pc,'') = @pc And Isnull(yxq,'1899-01-01') = Isnull(@Yxq,'1899-01-01') AND OrganizeId=@OrganizeId
 		IF @@ERROR <>0

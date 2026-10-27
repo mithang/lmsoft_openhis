@@ -11,19 +11,19 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 门诊处方
+    /// Đơn ngoại trú
     /// </summary>
     public interface IMzCfRepo : IRepositoryBase<MzCfEntity>
     {
         /// <summary>
-        /// 修改发药标致 未发=>已排
+        /// Sửa cờ phát thuốc Chưa phát=>Đã xếp
         /// </summary>
         /// <param name="cfhs"></param>
         /// <returns></returns>
         int UpdateFybzByCfh(List<string> cfhs);
 
         /// <summary>
-        /// 修改发药标致
+        /// Sửa cờ phát thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="fybz"></param>
@@ -32,26 +32,26 @@ namespace Newtouch.HIS.Domain.IRepository
         int UpdateFybzByCfh(string cfh, EnumFybz fybz, string organizeId);
 
         /// <summary>
-        /// 修改发药标致 已排=>未发
+        /// Sửa cờ phát thuốc Đã xếp=>Chưa phát
         /// </summary>
         /// <param name="cfhs"></param>
         /// <returns></returns>
         int UpdateFybzToWFByCfh(List<string> cfhs, string OrganizeId);
 
         /// <summary>
-        /// 获取未排药的处方
+        /// Lấy đơn thuốc chưa xếp thuốc
         /// </summary>
         /// <returns></returns>
         List<MzCfEntity> GetNoArrangedCfList(DateTime? bT = null, DateTime? eT = null);
 
         /// <summary>
-        /// 获取未排药的处方
+        /// Lấy đơn thuốc chưa xếp thuốc
         /// </summary>
         /// <returns></returns>
         IList<MzCfEntity> GetCfsByKeyword(string keyword, int fybz = (int)EnumFybz.Yp, Pagination pagination = null);
 
         /// <summary>
-        /// 根据卡号和姓名获取处方信息
+        /// Lấy thông tin đơn thuốc theo số thẻ và họ tên
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="xm"></param>
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Domain.IRepository
         cfInfoVo GetCfInfo(string cardNo, string xm, int fybz = 0, string organizeId = "");
 
         /// <summary>
-        /// 根据卡号和姓名获取处方信息
+        /// Lấy thông tin đơn thuốc theo số thẻ và họ tên
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="cardNo"></param>
@@ -72,7 +72,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<MzCfEntity> GetRpInfo(string yfbmCode, string cardNo, string xm, EnumFybz fybz = EnumFybz.Yp, string organizeId = "");
 
         /// <summary>
-        /// 根据卡号和姓名获取处方信息
+        /// Lấy thông tin đơn thuốc theo số thẻ và họ tên
         /// </summary>
         /// <param name="cardNo"></param>
         /// <param name="xm"></param>
@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<MzCfEntity> GetCfs(string cardNo, string xm, int fybz = 0, string organizeId = "");
 
         /// <summary>
-        /// 根据卡号和姓名获取处方信息
+        /// Lấy thông tin đơn thuốc theo số thẻ và họ tên
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="cardNo"></param>
@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<MzCfEntity> GetCf(string yfbmCode, string cardNo, string xm, EnumFybz fybz, bool ispay, string organizeId);
 
         /// <summary>
-        /// 通过处方号获取组号
+        /// Lấy số nhóm theo số đơn thuốc
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="cardNo"></param>
@@ -105,14 +105,14 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <returns></returns>
         List<GetMzCfZt> GetZhInOutpatient(string cfh,string type);
         /// <summary>
-        /// 批量插入处方信息 返回受影响行
+        /// Chèn hàng loạt thông tin đơn thuốc Trả về dòng bị ảnh hưởng
         /// </summary>
         /// <param name="mzCfs"></param>
         /// <returns></returns>
         int InsertBatch(List<MzCfEntity> mzCfs);
 
         /// <summary>
-        /// 删除老的处方信息
+        /// Xóa thông tin đơn thuốc cũ
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="cfnm"></param>
@@ -120,15 +120,15 @@ namespace Newtouch.HIS.Domain.IRepository
         int DeleteCf(string cfh, long cfnm);
 
         /// <summary>
-        /// 作废处方，退费用
+        /// Hủy đơn thuốc，Trả phí
         /// </summary>
-        /// <param name="cfh">处方号</param>
+        /// <param name="cfh">Số đơn thuốc</param>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>
         int DeleteCf(string cfh, string OrganizeId);
 
         /// <summary>
-        /// 返回去重后的姓名和收费时间
+        /// Trả về họ tên và thời gian thu phí sau khi khử trùng lặp
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="yfbmCode"></param>
@@ -139,14 +139,14 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<patientInfoVO> GetXmAndCardNo(Pagination pagination, string yfbmCode, string organizeId, string keyword = "", EnumFybz fybz = EnumFybz.Wp);
 
         /// <summary>
-        /// 查询已发或者已退处方 默认显示前500条
+        /// Truy vấn đơn thuốc đã phát hoặc đã trả Mặc định hiển thị trước500dòng
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
         IList<CfxxVO> SelectDispensedRpList(searchFyInfoReqVO param);
 
         /// <summary>
-        /// 根据处方号获取有效的处方
+        /// Lấy đơn thuốc hiệu lực theo số đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -154,7 +154,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<MzCfEntity> SelectRpList(string cfh, string organizeId);
 
         /// <summary>
-        /// 更新性别
+        /// Cập nhật giới tính
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="xb"></param>
@@ -164,9 +164,9 @@ namespace Newtouch.HIS.Domain.IRepository
 
         List<MzCfEntity> SelectTfRpList(string cfh, string organizeId);
 
-        #region  医保电子处方
+        #region  Đơn điện tử BHYT
         /// <summary>
-        /// 返回去重后的姓名和收费时间
+        /// Trả về họ tên và thời gian thu phí sau khi khử trùng lặp
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="yfbmCode"></param>
@@ -176,7 +176,7 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <returns></returns>
         IList<patientInfoVO> GetElectronicPrescription(Pagination pagination, string organizeId, string isysh, string keyword = "");
         /// <summary>
-        /// 根绝处方号和姓名获取处方明细信息
+        /// Lấy thông tin chi tiết đơn thuốc theo số đơn thuốc và họ tên
         /// </summary>
         /// <returns></returns>
         List<DzcfmxVO> QueryElectronicPrescriptionCfmx(string cfh, string xm, string organizeId);

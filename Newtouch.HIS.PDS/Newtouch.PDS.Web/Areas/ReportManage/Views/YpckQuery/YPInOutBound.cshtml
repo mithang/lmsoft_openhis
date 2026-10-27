@@ -4,10 +4,10 @@
     /**/
     ViewBag.Title = "YPInOutBound";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //报表链接
+    //Liên kết báo cáo
     //var reportUrl = SysConfigReader.OrgReportLink();
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
-    var djlxItemStrs = "1,2,3,4,5,6"; //对应枚举EnumDanJuLX
+    var djlxItemStrs = "1,2,3,4,5,6"; //Enum tương ứngEnumDanJuLX
 }
 
 <div class="rows">
@@ -83,7 +83,7 @@
         init();
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

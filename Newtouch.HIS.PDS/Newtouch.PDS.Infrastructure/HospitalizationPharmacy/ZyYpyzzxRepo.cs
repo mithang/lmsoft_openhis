@@ -11,7 +11,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 住院药品医嘱执行
+    /// Thực hiện y lệnh thuốc nội trú
     /// </summary>
     public class ZyYpyzzxRepo : RepositoryBase<ZyYpyzxxEntity>, IZyYpyzxxRepo
     {
@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         public ZyYpyzzxRepo(FrameworkBase.MultiOrg.Infrastructure.IDefaultDatabaseFactory databaseFactory) : base(databaseFactory) { }
         
         /// <summary>
-        /// 获取需要发药的病区（去重）
+        /// Lấy khu bệnh cần phát thuốc（Khử trùng lặp）
         /// </summary>
         /// <returns></returns>
         public List<string> GetFyBq()
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取需要发药的病人和病区（去重）
+        /// Lấy bệnh nhân và khu bệnh cần phát thuốc（Khử trùng lặp）
         /// </summary>
         /// <returns></returns>
         public List<string> GetFyPatients()
@@ -37,9 +37,9 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取医嘱信息 no log
+        /// Lấy thông tin y lệnh no log
         /// </summary>
-        /// <param name="yzId">医嘱ID</param>
+        /// <param name="yzId">Y lệnhID</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         public List<ZyYpyzxxEntity> SelectDataByYzId(string yzId, string organizeId)
@@ -57,7 +57,7 @@ WHERE yzId=@yzId AND OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// 获取医嘱信息 no log
+        /// Lấy thông tin y lệnh no log
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="zxId"></param>
@@ -79,7 +79,7 @@ WHERE zxId=@zxId AND OrganizeId=@OrganizeId AND yzId=@yzId
         }
 
         /// <summary>
-        /// 获取医嘱信息 no log
+        /// Lấy thông tin y lệnh no log
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="zxId"></param>
@@ -103,7 +103,7 @@ WHERE zxId=@zxId AND OrganizeId=@OrganizeId AND yzId=@yzId AND ypCode=@ypCode
         }
 
         /// <summary>
-        /// 修改发药标志位已退药
+        /// Sửa cờ phát thuốc thành đã trả thuốc
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="zxId"></param>
@@ -125,7 +125,7 @@ AND yzId=@yzId
             {
                 new SugarParameter("@yzId", yzId),
                 new SugarParameter("@zxId", zxId),
-                new SugarParameter("@fybz", 3),//已退
+                new SugarParameter("@fybz", 3),//Đã trả
                 new SugarParameter("@userCode", userCode),
                 new SugarParameter("@OrganizeId", organizeId)
             };
@@ -133,7 +133,7 @@ AND yzId=@yzId
         }
 
         /// <summary>
-        /// 根据执行ID，物理删除此次执行的所有明细
+        /// Theo thực hiệnID，Xóa vật lý tất cả chi tiết của lần thực hiện này
         /// </summary>
         /// <param name="zxId"></param>
         /// <returns></returns>

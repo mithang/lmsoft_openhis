@@ -13,7 +13,7 @@ namespace NewtouchHIS.Base.Domain.Entity.Dictionary
     ///
     ///</summary>
     [Tenant(DBEnum.PdsDb)]
-    [SugarTable("V_C_xt_yp", "药品字典视图")]
+    [SugarTable("V_C_xt_yp", "View từ điển thuốc")]
     public partial class SysMedicineVPDSEntity
     {
 

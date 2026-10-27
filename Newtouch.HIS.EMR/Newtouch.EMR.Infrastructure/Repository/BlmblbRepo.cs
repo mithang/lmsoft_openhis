@@ -15,9 +15,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2018-09-05 11:34
-    /// 描 述：病历模板列表
+    /// Người tạo：chl
+    /// Ngày：2018-09-05 11:34
+    /// Mô tả：Danh sách mẫu bệnh án
     /// </summary>
     public class BlmblbRepo : RepositoryBase<BlmblbEntity>, IBlmblbRepo
     {
@@ -48,10 +48,10 @@ namespace Newtouch.EMR.Repository
 
         }
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(BlmblbEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(entity.mbbm))
@@ -61,7 +61,7 @@ namespace Newtouch.EMR.Repository
                 {
                     throw new FailedException("Mã mẫu này đã tồn tại, không được trùng");
                 }
-                //文件迁移需要 名称也不可重复
+                //Di chuyển tệp yêu cầu tên cũng không được trùng lặp
                 checkety = this.FindEntity(p => p.Id != keyValue && p.mbmc == entity.mbmc && p.OrganizeId == entity.OrganizeId && p.zt == "1");
                 if (checkety != null)
                 {
@@ -107,9 +107,9 @@ namespace Newtouch.EMR.Repository
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.Id == keyValue);
@@ -140,7 +140,7 @@ where zt=1 and OrganizeId=@OrgId
 
 
 
-        //护理记录数据提交
+        //Gửi dữ liệu bản ghi điều dưỡng
         public void BtnSubmit(OperatorModel user, IList<HljldataVO> data)
         {
             
@@ -158,7 +158,7 @@ newId(),'"+item.blId+ "','" + item.jlrq + "','" + item.tw+ "','" + item.mb + "',
            
         }
 
-        //护理记录页面加载
+        //Tải trang bản ghi điều dưỡng
         public IList<HljldataVO> HljlLoadData(Pagination pagination, string blId, string zyh,string orgId)
         {
             string sql = @"select * from [Newtouch_EMR].dbo.bl_hljldata a

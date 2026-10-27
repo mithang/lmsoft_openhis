@@ -18,7 +18,7 @@
             <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         @*<div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>删除</a>
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
         </div>*@
     </div>
     <div class="search">
@@ -86,12 +86,12 @@
         });
     }
 
-    //回车触发查询事件
+    //Nhấn Enter kích hoạt sự kiện tra cứu
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
 
-    //新增
+    //Thêm mới
     function btn_add() {
         $.modalOpen({
             id: "FormEdit",
@@ -108,7 +108,7 @@
         });
     }
 
-    //修改
+    //Sửa
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
@@ -139,7 +139,7 @@
         $('#btn_search').trigger('click');
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
         return;
         var keyValue = $("#gridList").jqGridRowValue().Id;
@@ -148,7 +148,7 @@
             return;
         }
         if (!!!$("#gridList").jqGridRowValue().ParentId) {
-            //这是父级
+            //nàylàchacấp
             $.deleteForm({
                 url: "/PatientManage/SysPatientMedicalRecord/DeleteForm",
                 param: { keyValue: keyValue },
@@ -159,7 +159,7 @@
             });
         }
         else {
-            //这是子级
+            //nàylàconcấp
 
         }
     }

@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取公共字典项List 所有机构公用的
+        /// Lấy mục từ điển chungList dùng chung cho tất cả tổ chức
         /// </summary>
         /// <param name="itemId"></param>
         /// <param name="keyword"></param>
@@ -47,9 +47,9 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获取 单一组织机构 字典项List
+        /// Lấy Tổ chức đơn nhất Mục từ điểnList
         /// </summary>
-        /// <param name="orgId">医疗机构Id，不传时差共享的</param>
+        /// <param name="orgId">Cơ sở y tếId，không truyền thì dùng chung theo chênh lệch</param>
         /// <param name="itemId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -70,7 +70,7 @@ order by CreateTime desc";
         }
 
         /// <summary>
-        /// 更新、保存字典项
+        /// Cập nhật、Lưu mục từ điển
         /// </summary>
         /// <param name="itemsDetailEntity"></param>
         /// <param name="keyValue"></param>
@@ -91,7 +91,7 @@ order by CreateTime desc";
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                SysItemsDetailEntity oldEntity = null;   //变更前Entity
+                SysItemsDetailEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(keyValue);
                 this.DetacheEntity(oldEntity);
 
@@ -123,9 +123,9 @@ order by CreateTime desc";
         }
 
         /// <summary>
-        /// 获取 科目分类树状图
+        /// Lấy Sơ đồ cây phân loại môn học
         /// </summary>
-        /// <param name="orgId">医疗机构Id，不传时差共享的</param>
+        /// <param name="orgId">Cơ sở y tếId，không truyền thì dùng chung theo chênh lệch</param>
         /// <returns></returns>
         public List<ProjectZbVO> GetTreeViewdata(string orgId)
         {

@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Y lệnh dài hạnĐơn";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //报表地址
+    //Báo cáoĐịa chỉ
     var reportUrl = SysConfigReader.OrgReportLink("cqyzPrint");
 }
 
@@ -27,7 +27,7 @@
     function submit() {
         var url = getUrl();
 
-        //直接打开
+        //trực tiếpMở
         location.href = url;
         return;
 
@@ -50,7 +50,7 @@
         }
         var srcUrl = uri;
 
-        //获取自定义样式
+        //Lấykiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheetBlankPage";

@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 1：有效 0：无效
+        /// 1：Hiệu lực 0：Vô hiệu
         /// </summary>
         public string zt { get; set; }
 

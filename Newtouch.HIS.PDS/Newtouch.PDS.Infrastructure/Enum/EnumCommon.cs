@@ -11,11 +11,11 @@ using Newtouch.Tools;
 namespace Newtouch.Infrastructure.Enum
 {
     /// <summary>
-    /// 枚举使用
+    /// Sử dụng enum
     /// </summary>
     public class EnumCommon
     {
-        #region 单例
+        #region Đơn thể
         private static readonly EnumCommon _instance = new EnumCommon();
 
         static EnumCommon()
@@ -30,7 +30,7 @@ namespace Newtouch.Infrastructure.Enum
         #endregion
 
         /// <summary>
-        /// 获取发药标志枚举描述
+        /// Lấy mô tả enum cờ phát thuốc
         /// </summary>
         /// <param name="fybz"></param>
         /// <returns></returns>
@@ -61,7 +61,7 @@ namespace Newtouch.Infrastructure.Enum
         }
 
         /// <summary>
-        /// 获取发药标志枚举描述
+        /// Lấy mô tả enum cờ phát thuốc
         /// </summary>
         /// <param name="fybz"></param>
         /// <returns></returns>
@@ -92,7 +92,7 @@ namespace Newtouch.Infrastructure.Enum
         }
 
         /// <summary>
-        /// 获取枚举名称集合
+        /// Lấy tập hợp tên enum
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <returns></returns>
@@ -102,9 +102,9 @@ namespace Newtouch.Infrastructure.Enum
         }
 
         /// <summary>
-        /// 将枚举转换成字典集合
+        /// Chuyển enum thành tập hợp từ điển
         /// </summary>
-        /// <typeparam name="T">枚举类型</typeparam>
+        /// <typeparam name="T">Loại enum</typeparam>
         /// <returns></returns>
         public Dictionary<string, int> GetEnumDic<T>()
         {
@@ -120,7 +120,7 @@ namespace Newtouch.Infrastructure.Enum
         }
 
         /// <summary>
-        /// 将枚举转换成字典
+        /// Chuyển enum thành từ điển
         /// </summary>
         /// <typeparam name="TEnum"></typeparam>
         /// <returns></returns>
@@ -132,7 +132,7 @@ namespace Newtouch.Infrastructure.Enum
         }
 
         /// <summary>
-        /// 将枚举转换成字典
+        /// Chuyển enum thành từ điển
         /// </summary>
         /// <typeparam name="TEnum"></typeparam>
         /// <returns></returns>

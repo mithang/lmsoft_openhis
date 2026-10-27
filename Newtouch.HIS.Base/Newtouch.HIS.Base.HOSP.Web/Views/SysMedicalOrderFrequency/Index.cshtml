@@ -13,7 +13,7 @@
             <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         @*<div class="btn-group">
-            <a id="NF-delete" class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>删除</a>
+            <a id="NF-delete" class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>*@
     </div>
     <div class="search">
@@ -42,7 +42,7 @@
         gridList();
     });
 
-    //组织机构
+    //Tổ chức
     function initControl() {
 
     }
@@ -87,19 +87,19 @@
         $("#btn_search").trigger('click');
     }
 
-    //查询条件
+    //Điều kiện tìm kiếm
     function getSearchPostData() {
         var keyword = $("#txt_keyword").val();
         var OrganizeId = $("#OrganizeId").val();
         return { keyword: keyword, orgId:OrganizeId };
     };
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
 
-    //新增
+    //Thêm mới
     function btn_add() {
         $.modalOpen({
             id: "FormFIEdit",
@@ -112,7 +112,7 @@
             }
         });
     }
-    //修改
+    //Sửa
     function btn_edit() {
         var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
         if (!(seleRowid)) {
@@ -132,11 +132,11 @@
             }
         });
     }
-    ////删除
+    ////Xóa
     //function btn_delete() {
     //    var seleRowid = jQuery("#gridList").jqGrid("getGridParam", "selrow");
     //    if (!(seleRowid)) {
-    //        $.modalAlert("请选中一条信息", 'warning');
+    //        $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
     //        return;
     //    }
     //    var yzpcId = $("#gridList").jqGridRowValue().yzpcId;

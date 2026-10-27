@@ -94,7 +94,7 @@
         InitBackspaceKey("fybmmc");
     });
 
-    //初始化
+    //Khởi tạo
     function init() {
         getSldh();
         initFybm();
@@ -102,7 +102,7 @@
         $("#gridList").jqGrid("addRowData", undefined, { operate: GetOperatehtml() }, "last");
     }
 
-    //生成单据号
+    //Tạo số chứng từ
     function getSldh() {
         $.najax({
             type: "POST",
@@ -119,7 +119,7 @@
         });
     }
 
-    //初始化发药部门
+    //Khởi tạo bộ phận phát thuốc
     function initFybm() {
         $("#fybmmc").newtouchBatchFloatingSelector({
             clickautotrigger: true,
@@ -144,7 +144,7 @@
         });
     }
 
-    //初始化输入码
+    //Khởi tạo mã nhập
     function InitSrm(id, rowid) {
         $("#" + id).newtouchBatchFloatingSelector({
             clickautotrigger: true,
@@ -174,7 +174,7 @@
                 { label: 'Đơn giá lẻ', name: 'lsjdjdw', width: 120, align: 'center' },//Giá lẻ theo đơn vị khoa
                 { label: 'Số đăng ký', name: 'pzwh', width: 150, align: 'center' },
                 { label: 'Nhà sản xuất', name: 'sccj', width: 200, align: 'left' },
-                { label: 'pfj', name: 'pfj', hidden: true },//部门单位批发价
+                { label: 'pfj', name: 'pfj', hidden: true },//Giá bán buôn đơn vị bộ phận
                 { label: 'lsj', name: 'lsj', hidden: true },//Giá lẻ theo đơn vị khoa
                 { label: 'ykpfj', name: 'ykpfj', hidden: true },
                 { label: 'yklsj', name: 'yklsj', hidden: true },
@@ -221,7 +221,7 @@
         });
     }
 
-    //按backspace键清楚所有
+    //theobackspacephím để xóa tất cả
     function InitBackspaceKey(id) {
         $("#" + id).keydown(function (e) {
             e = window.event ? window.event : e;
@@ -233,7 +233,7 @@
         });
     }
 
-    //初始化出库明细
+    //Khởi tạo chi tiết xuất kho
     function InitJqGrid() {
         var $gridList = $("#gridList")
         $gridList.newtouchLocalDataGrid({
@@ -241,7 +241,7 @@
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
             rownumbers: true,  //Có hiển thị số thứ tự không
             multiselect: true,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
                 { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
@@ -260,7 +260,7 @@
                 { label: 'Đơn giá lẻ', name: 'lsjdjdw', width: 90, align: 'center', editable: true, editwidth: "100%" },
                 { label: 'Tổng tiền bán lẻ', name: 'lsze', width: 100, align: 'center', editable: true, editwidth: "100%" },
                 { label: 'Số lượng đóng gói', name: 'bzs', hidden: true, editable: true },
-                { label: 'Tồn kho khả dụng', name: 'kykc', hidden: true, editable: true },//出库部门最小单位库存
+                { label: 'Tồn kho khả dụng', name: 'kykc', hidden: true, editable: true },//Tồn kho đơn vị nhỏ nhất bộ phận xuất kho
                 { label: 'Mã thuốc', name: 'ypdm', hidden: true, editable: true },
                 { label: 'pfj', name: 'pfj', hidden: true, editable: true },
                 { label: 'lsj', name: 'lsj', hidden: true, editable: true },
@@ -271,7 +271,7 @@
                 { label: 'Giá nhập đơn vị nhỏ nhất', name: 'zxdwjj', hidden: true, editable: true },
                 { label: 'Hệ số chuyển đổi xuất kho', name: 'zhyz', hidden: true, editable: true }
             ],
-            editinputwidthborder: false,    //Có cần viền không 默认为true
+            editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
             editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
@@ -281,7 +281,7 @@
         });
     }
 
-    //启用行内编辑
+    //Bật chỉnh sửa trong dòng
     function EnableInlineEditBox(rowid) {
         if (rowid != null && rowid !== "") {
             $("#gridList").jqGrid('editRow', rowid, false, initInlineFunc);//Mở chế độ sửa
@@ -290,15 +290,15 @@
         else {
             var ids = $("#gridList").getDataIDs();
             $.each(ids, function () {
-                //打开编辑模式
+                //Mở chế độ chỉnh sửa
                 $("#gridList").jqGrid('editRow', String(this), false, initInlineFunc);
             });
         }
     }
 
-    //初始化 浮层
+    //Khởi tạo Lớp nổi
     function initInlineFunc(rowid) {
-        //部分列只读
+        //Một số cột chỉ đọc
         $("#" + rowid + "_ypmc").attr('autocomplete', 'off');
         $("#" + rowid + "_dlmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_slStr").css('background-color', '#f6f7fb').attr('readonly', 'true');
@@ -308,10 +308,10 @@
         $("#" + rowid + "_lsjdjdw").css('background-color', '#f6f7fb').attr('readonly', 'true');
         $("#" + rowid + "_lsze").css('background-color', '#f6f7fb').attr('readonly', 'true');
         InitSrm(rowid + "_ypmc", rowid);//Lớp nổi thuốc
-        InitTabKey("sel_dw_"+ rowid, rowid);//开票日期输入处tab跳转
+        InitTabKey("sel_dw_"+ rowid, rowid);//Chỗ nhập ngày lập hóa đơntabChuyển
     }
 
-    //添加明细
+    //Thêm chi tiết
     function addItem(obj) {
         var ids = $("#gridList").getDataIDs();
         var lastRowoid = ids[ids.length - 1];
@@ -321,7 +321,7 @@
         $("#gridList").jqGrid("addRowData", undefined, dataRow, "after", lastRowoid);
     }
 
-    //删除明细
+    //Xóa chi tiết
     function deleteItem(obj) {
         var selRowId = $(obj).parent().parent().attr("id");
         if (!!selRowId) {
@@ -329,12 +329,12 @@
         }
     }
 
-    //获取操作按钮html
+    //Lấy nút thao táchtml
     function GetOperatehtml() {
         return "<i class='fa fa-plus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='addItem(this);'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;vertical-align: middle;' onclick='deleteItem(this);'></i>";
     }
 
-    //提交
+    //Gửi
     function newtouch_event_f8() {
         var list = [];
         var validationFailedArr = [];
@@ -379,7 +379,7 @@
         });
     }
 
-    //组装提交数据
+    //Lắp ráp dữ liệu gửi
     function AssembleData(rowData, rowid) {
         var zxdwjj = parseFloat(rowData.zxdwjj);
         var ykpfj = Number(rowData.ykpfj);
@@ -406,14 +406,14 @@
         };
     }
 
-    //单位切换
+    //Chuyển đổi đơn vị
     function ChangeDw(rowid) {
         $("#sel_dw_" + rowid).change(function () {
             CalculationLsze(rowid);
         });
     }
 
-    //初始化输入库存检查事件
+    //Khởi tạo sự kiện kiểm tra tồn kho khi nhập
     function InitKcCheck(rowid) {
         $("#" + rowid + "_sl").blur(function () {
             if (CheckKc(rowid)) {
@@ -422,7 +422,7 @@
         });
     }
 
-    //库存检查事件
+    //Sự kiện kiểm tra tồn kho
     function CheckKc(rowid) {
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if (!reg.test($("#" + rowid + "_sl").val())) {
@@ -441,7 +441,7 @@
         return true;
     }
 
-    //计算零售总额
+    //Tính tổng giá bán lẻ
     function CalculationLsze(rowid) {
         var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
         var sl = Number($("#" + rowid + "_sl").val());
@@ -451,7 +451,7 @@
 
 
 
-    //发票处再按tab键
+    //Tại chỗ hóa đơn nhấn tiếptabphím
     function InitTabKey(id, rowid) {
         $("#" + id).keydown(function (e) {
             e = window.event ? window.event : e;
@@ -462,7 +462,7 @@
         });
     }
 
-    //初始化单位
+    //Khởi tạo đơn vị
     function initDw($thistr, rowid) {
         $("#sel_dw_" + rowid).empty();
         $("#sel_dw_" + rowid).append('<option value="bzdw" data-zhyz="' + $thistr.attr('data-bzs') + '" selected>' + $thistr.attr('data-bzdw') + '</option>');
@@ -474,7 +474,7 @@
         }
     }
 
-    //新申领单
+    //Đơn lĩnh mới
     function newtouch_event_f7() {
         $("#gridList").clearGridData();
         init();
@@ -482,7 +482,7 @@
         $("#fybmmc").val("");
     }
 
-    //数值验证
+    //Kiểm tra giá trị số
     function Validately(rowData, rowid) {
         if ($("#fybm").val() === "" || $("#fybmmc").val() === "") {
             $.modalMsg("Vui lòng chọn khoa phát thuốc", "error", 1000);

@@ -190,7 +190,7 @@
     });
 
     function GridInit() {
-        $("#djzt").val(1).trigger("change");//默认待登记
+        $("#djzt").val(1).trigger("change");//Mặc định chờ đăng ký
         var $gridList = $("#gridList");
         $gridList.dataGrid({
             postData: { keyword: $("#txt_keyword").val(), bq: $("#bqlist").val(), djzt: $("#djzt").val() },
@@ -202,10 +202,10 @@
                 { label: "ApplyId", name: "ApplyId", key: true, hidden: true },
                 { label: "Họ tên", name: "xm", width: 50, align: 'left' },
                 { label: "Số nhập viện", name: "zyh", width: 50, align: 'left' },
-                //{ label: "病区", name: "bq", width: 80, align: 'left' },
-                //{ label: "床号", name: "ch", width: 60, align: 'left' },
+                //{ label: "Khoa", name: "bq", width: 80, align: 'left' },
+                //{ label: "Số giường", name: "ch", width: 60, align: 'left' },
                 { label: "Ngày phẫu thuật", name: "sssj", width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                //{ label: "登记号", name: "ssxh", width: 110, align: 'left' },
+                //{ label: "Số đăng ký", name: "ssxh", width: 110, align: 'left' },
                 { label: "Tên phẫu thuật", name: "ssmc", width: 100, align: 'left' },
                 {
                     label: "Trạng thái đăng ký", name: "djzt", width: 60, align: 'left', formatter: function (val) {
@@ -222,10 +222,10 @@
                         }
                     },
                 }
-                //{ label: "状态", name: "sqzt", width: 50, align: 'left' },
+                //{ label: "Trạng thái", name: "sqzt", width: 50, align: 'left' },
                 //{
-                //    label: "手术", name: "", width: 80, align: 'center', formatter(val, option, row) {
-                //        return "<a class='btn btn-default' style='width:50px;' onclick='showDetail(" + option.rowId + ")'>申请</a>";
+                //    label: "Phẫu thuật", name: "", width: 80, align: 'center', formatter(val, option, row) {
+                //        return "<a class='btn btn-default' style='width:50px;' onclick='showDetail(" + option.rowId + ")'>Đơn đăng ký</a>";
                 //    }
                 //}
             ],
@@ -325,11 +325,11 @@
                 //$("#dv_apply_btn").show();
                 //$("#dv_cancel_btn").hide();
 
-                //手术名称
-                //清空手术名称
+                //Tên phẫu thuật
+                //XóaTên phẫu thuật
                 $('#tablessmc .minusToggleCircle').click();
                 var number = data.ss.length;
-                if (number > 0) {//主手术
+                if (number > 0) {//Phẫu thuật chính
                     $("#ssmc").val(data.ss[0].ssmc);
                     $("#ssdm").val(data.ss[0].ssdm);
                 } else {
@@ -340,7 +340,7 @@
                     var n = i + 1;
                     //if ($("#ssdm" + n).val() == "") {
                     if ($("#ssdm" + n).length <= 0) {
-                        //添加icon 并赋值
+                        //Thêmicon và gán giá trị
                         $('#tablessmc .plusToggleCircle').click();
                         $("#ssmc" + n).val(data.ss[i].ssmc);
                         $("#ssdm" + n).val(data.ss[i].ssdm);

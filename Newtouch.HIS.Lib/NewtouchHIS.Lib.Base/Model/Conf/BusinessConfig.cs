@@ -6,83 +6,83 @@ namespace NewtouchHIS.Lib.Base.Model
     public class BusinessConfig
     {
         /// <summary>
-        /// 在线时长限制
+        /// Giới hạn thời gian trực tuyến
         /// </summary>
         public int? LoginStatusKeepMinute { get; set; } = null;
         /// <summary>
-        /// 开启多端登录限制
+        /// Bật giới hạn đăng nhập nhiều thiết bị
         /// </summary>
         public bool? EnableMultipleLoginLimit { get; set; } = null;
         /// <summary>
-        /// 同步登录数限制
+        /// Giới hạn số lượng đăng nhập đồng thời
         /// </summary>
         public int? MultipleLoginLimit_Count { get; set; } = null;
         /// <summary>
-        /// 登录次数过多，账号自动锁定 的 时间段（单位：分）
+        /// Khoảng thời gian tài khoản tự động bị khóa khi số lần đăng nhập quá nhiều (đơn vị: phút)
         /// </summary>
         public int? LoginFailedTimesLimit_Minutes { get; set; } = null;
         /// <summary>
-        /// 登录次数过多，账号自动锁定 的 最大次数
+        /// Số lần tối đa tài khoản tự động bị khóa khi số lần đăng nhập quá nhiều
         /// </summary>
         public int? LoginFailedTimesLimit_Count { get; set; } = null;
         /// <summary>
-        /// 顶级机构编码
+        /// Mã tổ chức cấp cao nhất
         /// </summary>
         public string? Top_OrganizeId { get; set; } = null;
         /// <summary>
-        /// 当前应用AppId
+        /// Ứng dụng hiện tạiAppId
         /// </summary>
         public string? AppId { get; set; } = null;
         /// <summary>
-        /// 应用名称
+        /// Tên ứng dụng
         /// </summary>
         public string? AppName { get; set; } = null;
         /// <summary>
-        /// 是否启用验证码 
+        /// Có bật mã xác minh không 
         /// </summary>
         public bool? Is_CheckChkCode { get; set; } = null;
         /// <summary>
-        /// 用户token缓存标识
+        /// Định danh bộ nhớ đệm token người dùng
         /// </summary>
         public string? Cache_UserToken { get; set; } = null;
         /// <summary>
-        /// 开启重点日志监控
+        /// Bật giám sát nhật ký trọng điểm
         /// </summary>
         public bool? EnableLoggingMonitorAttr { get; set; } = false;
         /// <summary>
-        /// 重点日志监控是否带Header，默认false
+        /// Giám sát nhật ký trọng điểm có kèm Header không, mặc địnhfalse
         /// </summary>
         public bool? EnableLoggingMonitorWithHeaderAttr { get; set; } = false;
         /// <summary>
-        /// 各系统API接口
+        /// Giao diện API của các hệ thống
         /// </summary>
         public AppAPIHostConfig? AppAPIHost { get; set; } = null;
         /// <summary>
-        /// 各系统API AppId
+        /// Các hệ thốngAPI AppId
         /// </summary>
         public AppAPIHostConfig? AppAPIHostName { get; set; } = null;
         /// <summary>
-        /// HIS老系统 统一授权Token换取地址
+        /// HISĐịa chỉ đổi Token ủy quyền thống nhất của hệ thống cũ
         /// </summary>
         public string? UALoginAddress { get; set; }
         /// <summary>
-        /// 授权申请Token的AppId
+        /// Của Token xin ủy quyềnAppId
         /// </summary>
         public string[]? AuthAppIds { get; set; } = null;
         /// <summary>
-        /// DRG分组器版本
+        /// DRGPhiên bản bộ nhóm
         /// </summary>
         public string? DrgGroupVersion { get; set; } = null;
         /// <summary>
-        /// 跨域配置
+        /// Cấu hình liên miền
         /// </summary>
         public string? CorsWithOrigins { get; set; } = null;
         /// <summary>
-        /// 文件管理
+        /// Quản lý tệp
         /// </summary>
         public FileManageConfig? FileConfig { get; set; } = null;
         /// <summary>
-        /// 远程会诊第三方服务接口，为空则默认初始值
+        /// Giao diện dịch vụ bên thứ ba hội chẩn từ xa, nếu trống thì mặc định giá trị ban đầu
         /// </summary>
         public RemoteTreatedConfig? RemoteTreated { get; set; } = null;
     }
@@ -90,163 +90,163 @@ namespace NewtouchHIS.Lib.Base.Model
     public class AppAPIHostConfig
     {
         /// <summary>
-        /// Web资源
+        /// Webtài nguyên
         /// </summary>
         public string? SiteStaticHost { get; set; } = null;
         /// <summary>
-        /// 后台管理Web
+        /// Quản lý hậu trườngWeb
         /// </summary>
         [DbTag(DBEnum.BaseDb)]
         public string? SiteBaseWebHost { get; set; } = null;
         /// <summary>
-        /// 后台管理API
+        /// Quản lý hậu trườngAPI
         /// </summary>      
         [DbTag(DBEnum.BaseDb)]
         public string? SiteBaseAPIHost { get; set; } = null;
 
         /// <summary>
-        /// 结算系统Web
+        /// Hệ thống quyết toánWeb
         /// </summary>
         [DbTag(DBEnum.SettDb)]
         public string? SiteSettWebHost { get; set; } = null;
         /// <summary>
-        /// 结算系统API
+        /// Hệ thống quyết toánAPI
         /// </summary>
         [DbTag(DBEnum.SettDb)]
         public string? SiteSettAPIHost { get; set; } = null;
         /// <summary>
-        /// 医护协同Web
+        /// Phối hợp y tế - điều dưỡngWeb
         /// </summary>
         [DbTag(DBEnum.CisDb)]
         public string? SiteCisWebHost { get; set; } = null;
         /// <summary>
-        /// 医护协同API
+        /// Phối hợp y tế - điều dưỡngAPI
         /// </summary>
         [DbTag(DBEnum.CisDb)]
         public string? SiteCisAPIHost { get; set; } = null;
         /// <summary>
-        /// 药房药库Web
+        /// Nhà thuốc - kho thuốcWeb
         /// </summary>
         [DbTag(DBEnum.PdsDb)]
         public string? SiteYfykWebHost { get; set; } = null;
         /// <summary>
-        /// 药房药库API
+        /// Nhà thuốc - kho thuốcAPI
         /// </summary>
         [DbTag(DBEnum.PdsDb)]
         public string? SiteYfykAPIHost { get; set; } = null;
         /// <summary>
-        /// 电子病历Web
+        /// Bệnh án điện tửWeb
         /// </summary>
         [DbTag(DBEnum.EmrDb)]
         public string? SiteEmrWebHost { get; set; } = null;
         /// <summary>
-        /// 电子病历API
+        /// Bệnh án điện tửAPI
         /// </summary>
         [DbTag(DBEnum.EmrDb)]
         public string? SiteEmrAPIHost { get; set; } = null;
         /// <summary>
-        /// 病案系统Web
+        /// Hệ thống bệnh ánWeb
         /// </summary>
         [DbTag(DBEnum.MrmsDb)]
         public string? SiteMrmsWebHost { get; set; } = null;
         /// <summary>
-        /// 病案系统API
+        /// Hệ thống bệnh ánAPI
         /// </summary>
         [DbTag(DBEnum.MrmsDb)]
         public string? SiteMrmsAPIHost { get; set; } = null;
         /// <summary>
-        /// 手术系统Web
+        /// Hệ thống phẫu thuậtWeb
         /// </summary>
         [DbTag(DBEnum.OrDb)]
         public string? SiteOrWebHost { get; set; } = null;
         /// <summary>
-        /// 手术系统API
+        /// Hệ thống phẫu thuậtAPI
         /// </summary>
         [DbTag(DBEnum.OrDb)]
         public string? SiteOrAPIHost { get; set; } = null;
         /// <summary>
-        /// 物资耗材系统Web
+        /// Hệ thống vật tư tiêu haoWeb
         /// </summary>
         public string? SiteHerpWebHost { get; set; } = null;
         /// <summary>
-        /// 物资耗材API
+        /// Vật tư tiêu haoAPI
         /// </summary>
         public string? SiteHerpAPIHost { get; set; } = null;
         /// <summary>
-        /// 质控系统Web
+        /// Hệ thống kiểm soát chất lượngWeb
         /// </summary>
         [DbTag(DBEnum.MrQcDb)]
         public string? SiteMrqcWebHost { get; set; } = null;
         /// <summary>
-        /// 质控系统API
+        /// Hệ thống kiểm soát chất lượngAPI
         /// </summary>
         [DbTag(DBEnum.MrQcDb)]
         public string? SiteMrqcAPIHost { get; set; } = null;
         /// <summary>
-        /// 统一平台
+        /// Nền tảng thống nhất
         /// </summary>
         [DbTag(DBEnum.UnionDb)]
         public string? HisSSOHost { get; set; } = null;
         /// <summary>
-        /// 任务调度系统
+        /// Hệ thống lập lịch nhiệm vụ
         /// </summary>
         public string? ScheduleJobHost { get; set; } = null;
         /// <summary>
-        /// 消息中心
+        /// Trung tâm tin nhắn
         /// </summary>
         [DbTag(DBEnum.BaseDb)]
         public string? SiteNoticeCenterHost { get; set; } = null;
         /// <summary>
-        /// 系统通用基础API（框架依赖）
+        /// API cơ sở chung của hệ thống (phụ thuộc framework)
         /// </summary>
         [DbTag(DBEnum.BaseDb)]
         public string? HisAppBaseAPIHost { get; set; } = null;
         /// <summary>
-        /// 接口中心
+        /// Trung tâm giao diện
         /// </summary>
         public string? SiteApiManageHost { get; set; } = null;
         /// <summary>
-        /// 鉴权中心
+        /// Trung tâm xác thực
         /// </summary>
         public string? SiteAuthCenterHost { get; set; } = null;
         /// <summary>
-        /// 外部音视频接口地址
+        /// Địa chỉ giao diện âm thanh - video bên ngoài
         /// </summary>
         public string? OuterMediaMeettingAPIHost { get; set; } = null;
         /// <summary>
-        /// 云诊所
+        /// Phòng khám đám mây
         /// </summary>
         public string? OuterClinicSystemAPIHost { get; set; } = null;
         /// <summary>
-        /// 第三方PACS 接口
+        /// Giao diện PACS bên thứ ba
         /// </summary>
         public string? OuterPacsServiceHost { get; set; } = null;
         /// <summary>
-        /// 第三方Lis 接口
+        /// Giao diện Lis bên thứ ba
         /// </summary>
         public string? OuterLisServiceHost { get; set; } = null;
 
     }
 }
 /// <summary>
-/// 文件相关配置
+/// Cấu hình liên quan đến tệp
 /// </summary>
 public class FileManageConfig
 {
     /// <summary>
-    /// 本地文件默认路径
+    /// Đường dẫn mặc định của tệp cục bộ
     /// </summary>
     public string? LocalFileBaseDir { get; set; }
     /// <summary>
-    /// 本地文件默认网络访问路径Host
+    /// Đường dẫn truy cập mạng mặc định của tệp cục bộHost
     /// </summary>
     public string? LocalFileBaseNetUrl { get; set; }
     /// <summary>
-    /// Drg上传目录
+    /// DrgThư mục tải lên
     /// </summary>
     public string? DrgDataFileDir { get; set; }
     /// <summary>
-    /// Drg完整目录
+    /// DrgThư mục đầy đủ
     /// </summary>
     public string? DrgDataFileDirPath
     {
@@ -256,7 +256,7 @@ public class FileManageConfig
         }
     }
     /// <summary>
-    /// Drg目录（日期）
+    /// DrgThư mục (ngày)
     /// </summary>
     public string? DrgDataFileDirPathWithDate
     {

@@ -101,8 +101,8 @@
 <link href="~/Content/css/floatingselector.css" rel="stylesheet" />
 <script type="text/javascript">
     var zljyflag = 0;
-    var isLoadingIIII = false;  //是否正在从后台加载数据
-    var brlx = 2; //1门诊 2住院
+    var isLoadingIIII = false;  //Có đang nạp dữ liệu từ máy chủ hay không
+    var brlx = 2; //1Ngoại trú 2Nội trú
     var delRowDataIds = [];
     var kflocaldata = "";
     var xmjf = [];
@@ -143,12 +143,12 @@
         $('#mzzyh').val("");
     }
 
-    //住院病人查询
+    //Truy vấn bệnh nhân nhập viện
     function GetPatSerarchView(mzzyh) {
         if (!!!mzzyh) {
             mzzyh = '';
         }
-        //1门诊  2住院
+        //1Ngoại trú  2Nội trú
         if (brlx=="1") {
             $.modalOpen({
                 id: "patSearch",
@@ -157,7 +157,7 @@
                 width: "700px",
                 height: "600px",
                 callBack: function (iframeId) {
-                    top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
+                    top.frames[iframeId].PatDbGrid(); //trong sự kiện cửa sổ bật lên
                 }
             });
         }
@@ -169,28 +169,28 @@
                 width: "700px",
                 height: "600px",
                 callBack: function (iframeId) {
-                    top.frames[iframeId].PatDbGrid(); //在弹出窗口事件
-                }//窗口点确定的回调函数
+                    top.frames[iframeId].PatDbGrid(); //trong sự kiện cửa sổ bật lên
+                }//hàm gọi lại khi nhấn xác nhận trên cửa sổ
             });
         }
        
     }
-    //门诊病人回调
+    //ngoại trúkhámbệnhngườiquayđiều
     function GetQueryFphAjax(selePatInfo) {
         $('#mzzyh').val(selePatInfo.mzh);
         brxz = selePatInfo.brxz;
         GetPatZLJYAjax(selePatInfo.mzh);
     }
 
-    //住院选择的病人 callback
+    //nhập việnviệnchọnchọncủabệnhngười callback
     function getPatInfoAjax(selePatInfo) {
         $('#mzzyh').val(selePatInfo.zyh);
         brxz = selePatInfo.brxz;
         GetPatZLJYAjax(selePatInfo.zyh)
     }
-    //根据选择的病人加载病人信息及治疗建议列表
+    //căndữ liệuchọnchọncủabệnhngườithêmtảibệnhngườithông tintinvàđiều trịđiều trịlậpnghịcộtbảng
     function GetPatZLJYAjax(mzzyh) {
-        //$.loading(true, "正在请求数据...");
+        //$.loading(true, "Đang yêu cầu dữ liệu...");
         $.ajax({
             type: "POST",
             url: "@Url.Action("GetPatZLJYInfo")",
@@ -200,7 +200,7 @@
         async: true,
         success: function (ajaxresp) {
             if (ajaxresp.state === 'success') {
-                setPatInfoModel(ajaxresp.data.MzZyPatInfoDto); //个人基本信息赋值
+                setPatInfoModel(ajaxresp.data.MzZyPatInfoDto); //gán thông tin cơ bản cá nhân
                 $('#gridzljy').jqGrid("clearGridData");
                 $.each(ajaxresp.data.TherapistAdviceDto, function () {
                     this.action = getRehbActionStr();
@@ -216,7 +216,7 @@
     });
     }
 
-    //初始化病人信息
+    //khởi tạo thông tin bệnh nhân
     function setPatInfoModel(patModel) {
         $('#xm').html(patModel.xm);
         $('#xb').html($.getGender(patModel.xb));
@@ -230,7 +230,7 @@
         $('#ryzd').html(patModel.ryzd);
     }
    
-    //住院患者信息赋值
+    //nhập việnviệnbệnhngườithông tintingángiá trị
     //function ajaxLoadDataResult() {
     //    if (!isLoadingIIII) {
     //        isLoadingIIII = true;
@@ -263,19 +263,19 @@
     //    }
     //};
 
-    //治疗建议列表
+    //điều trịđiều trịlậpnghịcộtbảng
     function gridzljy() {
         var $gridzljy = $("#gridzljy");
         $gridzljy.jqGrid({
             datatype: 'local',
             data: kflocaldata,
             height: $(window).height() - 230,
-            //altRows: true,//隔行换色
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            //altRows: true,//cáchthực hiệnđổimàu
+            shrinkToFit: true,   //true:theosoví dụđầubắt đầuhóacộtrộngđộ false:Sử dụngcolModelchỉđịnhcủarộngđộ
             autowidth: true,
-            rownumbers: true,  //是否显示序号
+            rownumbers: true,  //làkhônghiển thịhiển thịthứ tựsố
             multiselect: true,
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
                 { label: 'jyId', name: 'jyId', width: 120, align: 'center', hidden: true },
@@ -336,11 +336,11 @@
                 { label: '<span class="required"></span>Dặn dò', name: 'bz', width: 400, editwidth: '100%', align: 'center', editable: true },
                 { label: 'Thao tác', name: 'action', width: 100, align: 'center' }
             ],
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
+            editinputwidthborder: false,    //làkhôngcầncầnbênkhung Mặc định làtrue
+            editinputborderradius: false,   //làkhôngcầncầnbênkhungtròngóc mặc địnhtrue（cótròngóc）
             pager: "#gridzljyPager",
             loadComplete: function () {
-                ////自动触发新治疗建议
+                ////tựđộngchạmphátmớiđiều trịđiều trịlậpnghị
                 //if (kflocaldata && kflocaldata.length == 0) {
                 //    newZljyRowData();
                 //}
@@ -352,14 +352,14 @@
 
     }
 
-    //启用行内编辑
+    //Bật chỉnh sửa trong dòng
     function EnableRehabInlineEditBox(){
         var ids = $("#gridzljy").getDataIDs();
         $.each(ids, function () {
-            //打开编辑模式
+            //Mở chế độ chỉnh sửa
             $("#gridzljy").jqGrid('editRow', String(this), false, initRehabInlineFunc);
 
-            //标识治疗建议颜色
+            //tiêubiếtđiều trịđiều trịlậpnghịmàumàu
             @*//var cfColor = getCfColor(@Html.Raw(((int)EnumCflx.RehabPres).ToString()),cfh);
             //$('#gridzljy tr[id="' +  String(this) + '"]').css('border-left-color',cfColor);*@
             //$('#gridzljy tr[id="' +  String(this) + '"]').css('border-left-style','solid');
@@ -368,14 +368,14 @@
         });
 
     }
-    //初始化 浮层
+    //khởi tạo lớp nổi
     function initRehabInlineFunc(rowid) {
-        //部分列只读
+        //bộphâncộtchỉđọc
         //$("#" + rowid + "_pcmc").attr('readonly','true');
 
         //var currlineCfh = $("#gridzljy").getRowData(rowid).cfh;
       
-        ////项目浮层
+        ////hạngmụcnổilớp
         $("#" + rowid + "_itemName").sfxmFloatingSelector({
             djDecimalPlaces: 4,
             searchType: "sfxm ",
@@ -390,7 +390,7 @@
                 $("#" + rowid + "_zxksdm").val($this.attr('data-zxks'))
             },
         });
-        //频次浮层
+        //tần suấtlầnnổilớp
         $("#" + rowid + "_pcmc").pcFloatingSelector({
             showtext: 'yzpcmc',
             attrcols: ['yzpcmc', 'yzpcCode'],
@@ -400,12 +400,12 @@
             }
         });
 
-        //部位浮层
+        //bộvịnổilớp
         $("#" + rowid + "_bw").bwFloatingSelector({
             showtext: 'Name',
             attrcols: ['Name', 'Code'],
             checkItemActivity: function ($li, $thisinput) {
-                var selected = false;//默认没有选中当前值
+                var selected = false;//Mặc định chưa chọn giá trị hiện tại
                 var selectval = $thisinput.val();
                 if (selectval) {
                     selectval = selectval.split(',');
@@ -455,7 +455,7 @@
     }
 
     function checkItemActivity($li, $thisinput) {
-        var selected = false;//默认没有选中当前值
+        var selected = false;//Mặc định chưa chọn giá trị hiện tại
         var selectval = $thisinput.val();
         if (selectval) {
             selectval = selectval.split(',');
@@ -467,22 +467,22 @@
         }
         return selected;
     }
-    //新治疗建议 按钮
+    //mớiđiều trịđiều trịlậpnghị nút
     function newZljyRowData() {
         var dataRow = {
-            jyId: null, //尚未保存到数据库
+            jyId: null, //Chưa lưu vào cơ sở dữ liệu
             action: getRehbActionStr()
         };
         $("#gridzljy").jqGrid("addRowData", undefined, dataRow, "last");
     }
 
     function newZljyAfterRowData(selRowId) {
-        //获取当前添加的处方号
+        //đượclấykhitrướcthêmthêmcủanơiphươngsố
         var selRowData = $("#gridzljy").getRowData(selRowId);
 
-        //新加一行
+        //mớithêmmộtthực hiện
         var dataRow = {
-            jyId: null, //尚未保存到数据库
+            jyId: null, //Chưa lưu vào cơ sở dữ liệu
             action: getRehbActionStr()
         };
         $("#gridzljy").jqGrid("addRowData", undefined, dataRow, "after", selRowId);
@@ -491,7 +491,7 @@
     function getRehbActionStr() {
         return "<i class='fa fa-plus-square-o' style='font-size: large; color: #09a3ea;' onclick='newZljyAfterRowData($(this).parent().parent().attr(\"id\"));return false;'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;' onclick='deleteRehRowData($(this).parent().parent().attr(\"id\"));return false;'></i>";
     }
-    //删除明细
+    //xóatrừrõchi tiết
     function deleteRehRowData(selRowId, recalc) {
         if (!!selRowId) {
             var rowData = $("#gridzljy").jqGrid('getRowData', selRowId);
@@ -502,7 +502,7 @@
         }
     }
 
-    //选择模板
+    //chọn mẫu
     function GetTemplate() {
         xmjf = [];
         $.modalOpen({
@@ -528,16 +528,16 @@
                         bz: "",
                         action: getRehbActionStr()
                     };
-                    xmjf.unshift(newRowData);   //作为新项添加 //”数组最前端“
+                    xmjf.unshift(newRowData);   //thêm dưới dạng khoản mới //”đầu mảng“
                 });
-                //重新将xm数组呈现至grid
+                //đưa lạixmmảng hiển thị vàogrid
                 //$('#gridzljy').jqGrid("clearGridData");
                 $("#gridzljy").newtouchLocalDataGrid(null, xmjf);
             }
         });
     }
 
-    //新增
+    //Thêm mới
     function newtouch_event_f2() {
         if ($('#hidmzzyh').val() == "" || $('#hidmzzyh').val().length == 0) {
             $.modalAlert("Vui lòng trước Chọn bệnh nhân", 'warning');
@@ -552,11 +552,11 @@
         }
         GetTemplate();
     }
-    ////删除
+    ////Xóa
     //function newtouch_event_f6() {
     //    var selRowIds = $("#gridzljy").jqGrid('getGridParam', 'selarrrow');
     //    if (selRowIds.length == 0) {
-    //        $.modalAlert("请先选中需删除的建议", 'warning');
+    //        $.modalAlert("vui lòngtrướcchọntrongcầnxóatrừcủalậpnghị", 'warning');
     //        return;
     //    }
     //    for (var i = 0; i < selRowIds.length; i++) {
@@ -567,14 +567,14 @@
     //        $("#gridzljy").jqGrid("delRowData", selRowId);
     //    }
     //}
-    //保存
+    //Lưu
     function newtouch_event_f8() {
         if ($('#hidmzzyh').val()=="" || $('#hidmzzyh').val().length==0) {
             $.modalAlert("Vui lòng trước Chọn bệnh nhân", 'warning');
             return;
         }
        
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái lưu
         var rowIds = $("#gridzljy").jqGrid('getDataIDs');
         //alert(rowIds.length);
         if (rowIds.length == 0) {
@@ -585,18 +585,18 @@
             var saveResult = $("#gridzljy").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
             if (!saveResult) {
-                EnableRehabInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                return;   //保存失败，则return
+                EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
+                return;   //lưu thất bại，thìreturn
             }
         }
         var gridzljyData = $("#gridzljy").jqGrid('getRowData');
         gridzljyData.push($("#gridzljy").jqGrid('getRowData', rowIds[rowIds.length - 1]));
         if (!gridzljyData || gridzljyData.length == 0) {
-            EnableRehabInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
+            EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
             $.modalAlert("Đề xuất điều trị không được để trống", 'warning');
             return;
         }
-        $.each(gridzljyData, function () {    //去掉action
+        $.each(gridzljyData, function () {    //bỏ điaction
             for (var i = 0; i < $(this).length; i++) {
                 delete $(this)[i].action;
             }
@@ -612,7 +612,7 @@
                 window.$('#current').trigger('click');
             },
             complete: function () {
-                EnableRehabInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
+                EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
             }
         });
     }

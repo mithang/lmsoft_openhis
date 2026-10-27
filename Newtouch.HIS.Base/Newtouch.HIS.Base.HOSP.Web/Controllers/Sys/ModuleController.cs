@@ -25,9 +25,9 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// 下拉（选择菜单 编辑 上级）
+        /// Thả xuống（Chọn menu Sửa Cấp trên）
         /// </summary>
-        /// <param name="justTop">仅顶级</param>
+        /// <param name="justTop">Chỉ cấp cao nhất</param>
         /// <returns></returns>
         [HttpGet]
         [HandlerAjaxOnly]
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                 newList = data.ToList().TreeWhere(t => t.Name.Contains(keyword), parentId: "ParentId");
                 if (newList.Count == 1)
                 {
-                    //如果有子节点，包含之
+                    //Nếu có nút con，Bao gồm nó
                     newList.AddRange(data.Where(p => p.ParentId == newList[0].Id));
                 }
             }
@@ -109,7 +109,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             }
             else
             {
-                //是修改行为
+                //là hành vi sửa đổi
                 if (this.OrganizeId != Constants.TopOrganizeId
                     && this.OrganizeId != moduleEntity.OrganizeId)
                 {

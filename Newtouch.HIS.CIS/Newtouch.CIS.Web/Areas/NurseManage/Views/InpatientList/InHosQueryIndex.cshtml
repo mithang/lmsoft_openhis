@@ -46,17 +46,17 @@
                         <th class="formTitle"></th>
                         <td class="formTitle"><input type="button" id="btntwlr_search" style="width:100%;" class="btn btn-primary" value=" Tra cứu " /></td>
                         @*<td class="formValue" hidden="hidden">
-                                <input type="button" id="btn_zyh" class="btn btn-default" value="住院号" />
+                                <input type="button" id="btn_zyh" class="btn btn-default" value="Số nhập viện" />
                             </td>*@
-                        @*<td class="formTitle"><span class="required">*</span>病区：</td>
+                        @*<td class="formTitle"><span class="required">*</span>Khu bệnh：</td>
                             <td class="formValue">
                                 <select id="WardCode" class="form-control">
                                     <option>
-                                        全部
+                                        Tất cả
                                     </option>
                                 </select>
                             </td>*@
-                        @*<td class="formTitle" hidden="hidden">显示已作废</td>
+                        @*<td class="formTitle" hidden="hidden">Hiển thịĐã hủy bỏ</td>
                             <td class="formValue"></td>*@
                     </tr>
                     <tr>
@@ -111,7 +111,7 @@
         $("#twdzyh").val(twdzyh);
         getTwdlrTreeList(twdzyh);
         if (fisttfload) {
-            $("#gridtwdlrList").jqGrid('setFrozenColumns');//设置冻结列
+            $("#gridtwdlrList").jqGrid('setFrozenColumns');//Cài đặtđôngkếtcột
             fistdjload = false;
             if (twdzyh){
                 $.ajax({
@@ -163,7 +163,7 @@
                 }
             }
         });
-        $("#PatTreeList_" + twdzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//选中
+        $("#PatTreeList_" + twdzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//Đã chọn
     }
     function getlistbyzyh(zyh, rqrq, cqrq) {
         $("#twdzyh").val(zyh);
@@ -178,8 +178,8 @@
             url: "/NurseManage/InpatientVitalSigns/GetGridJson",
             postData: gettwlrSearchPostData(),
             height: $(window).height() - 220,
-            //autowidth: true,//根据父容器宽度自适应调整
-            //shrinkToFit: false,//滚动条
+            //autowidth: true,//Theochadungdụng cụrộngđộtựthích ứnggọichỉnh
+            //shrinkToFit: false,//thanh cuộn
             //autoScroll:true,
             colModel: [
                 { label: "Id", name: "Id", hidden: true, frozen: true },
@@ -196,7 +196,7 @@
                 {
                     label: "Ngày", name: "rq", width: 100, align: 'left',
                     formatter: function (cellvalue, options, rowobject) {
-                        //日期 时间点 相关状态
+                        //Ngày Thời gianđiểm liên quanTrạng thái
                         var val = $.getDate({ date: cellvalue });
                         val += " " + rowobject.sj + ":00";
                         if (rowobject.brzt) {
@@ -221,7 +221,7 @@
                 {
                     label: "Huyết áp", name: "xysz", width: 50, align: 'left',
                     formatter: function (cellvalue, options, rowobject) {
-                        //上值 下值
+                        //trênGiá trị dướiGiá trị
                         var val = cellvalue;
                         if (rowobject.xyxz) {
                             val += " - " + rowobject.xyxz;
@@ -271,23 +271,23 @@
                 gridEditRow(rowid);
             },
             gridComplete: function () {
-                $("#gridtwdlrList").jqGrid('setGridWidth', $(".Newtouch_iframe", parent.document).width() - $(".dv-left-tree").width() - 21); // 根据需要调整宽度参数
+                $("#gridtwdlrList").jqGrid('setGridWidth', $(".Newtouch_iframe", parent.document).width() - $(".dv-left-tree").width() - 21); // Theocầngọichỉnhrộngđộtham số
             }
         });
 
-        //二级菜单
+        //Menu cấp 2
         //$gridtwdlrList.jqGrid('setGroupHeaders', {
         //    useColSpanStyle: true,
         //    groupHeaders: [
         //    {
         //        startColumnName: 'syl',
         //        numberOfColumns: 4,
-        //        titleText: '摄入量'
+        //        titleText: 'lượng nạp vào'
         //    },
         //    {
         //        startColumnName: 'otl',
         //        numberOfColumns: 10,
-        //        titleText: '摄出量'
+        //        titleText: '摄ralượng'
         //    }
         //    ]
         //});
@@ -300,10 +300,10 @@
            // autowidth: true,
             page: 1,
         }).trigger('reloadGrid');
-        //$("#gridtwdlrList").jqGrid('setGridWidth', $(".Newtouch_iframe", parent.document).width() - $(".dv-left-tree").width() - 21); // 根据需要调整宽度参数
-        //$("#gridtwdlrList").jqGrid('setGridWidth', $(window).width()-280); // 根据需要调整宽度参数
+        //$("#gridtwdlrList").jqGrid('setGridWidth', $(".Newtouch_iframe", parent.document).width() - $(".dv-left-tree").width() - 21); // Theocầngọichỉnhrộngđộtham số
+        //$("#gridtwdlrList").jqGrid('setGridWidth', $(window).width()-280); // Theocầngọichỉnhrộngđộtham số
     }
-    //查询条件
+    //Điều kiện tìm kiếm
     function gettwlrSearchPostData() {
         var kssj = $("#twdkssj").val();
         var jssj = $("#twdjssj").val();
@@ -320,7 +320,7 @@
     $("#btn_edit").click(function () {
         var seleId = $('#gridtwdlrList').jqGrid('getGridParam', 'selrow');
         if (seleId) {
-            //请求修改该行
+            //yêu cầuSửadòng
             gridEditRow(seleId);
         }
         else {
@@ -332,7 +332,7 @@
     $("#btn_delete").click(function () {
         var seleId = $('#gridtwdlrList').jqGrid('getGridParam', 'selrow');
         if (seleId) {
-            //请求作废该行
+            //yêu cầuHủy bỏdòng
             gridDeleteRow(seleId);
         }
         else {
@@ -391,7 +391,7 @@
             url: "/NurseManage/InpatientVitalSigns/Form?smtzId=" + smtzId + "&zyh=" + $("#twdzyh").val(),
             width: "830px",
             height: "750px",
-            showleftlalbel: !!!smtzId,  //新增时显示 '确认并关闭按钮'
+            showleftlalbel: !!!smtzId,  //Thêm mớikhiHiển thị 'xác nhận vàĐóngNút'
             leftlalbelchecked: true,
             leftlabeltext: "Nhập liên tục",
             leftlalbelcheckedasClose: false,

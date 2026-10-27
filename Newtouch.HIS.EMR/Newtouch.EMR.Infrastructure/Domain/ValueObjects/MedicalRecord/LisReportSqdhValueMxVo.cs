@@ -8,10 +8,10 @@ namespace Newtouch.EMR.Domain.ValueObjects.MedicalRecord
 {
     public class LisReportSqdhValueMxVo
     {
-        public string xmmc { get; set; } //项目名称
-        public string jyjg { get; set; } //检验结果
-        public string gdbj { get; set; } //高低标记
-        public string ckzfw { get; set; } //参考值范围
-        public string dw { get; set; } //单位
+        public string xmmc { get; set; } //Tên hạng mục
+        public string jyjg { get; set; } //Kết quả xét nghiệm
+        public string gdbj { get; set; } //Đánh dấu cao/thấp
+        public string ckzfw { get; set; } //Khoảng giá trị tham chiếu
+        public string dw { get; set; } //Đơn vị
     }
 }

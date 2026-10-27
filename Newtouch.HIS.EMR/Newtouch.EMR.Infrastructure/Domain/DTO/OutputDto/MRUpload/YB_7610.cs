@@ -7,61 +7,61 @@ using System.Threading.Tasks;
 namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
 {
     /// <summary>
-    /// 住院病案首页诊断信息
+    /// Thông tin chẩn đoán trang đầu bệnh án nội trú
     /// </summary>
     public class YB_7610
     {
         /// <summary>
-        /// 就诊流水号
+        /// Số thứ tự khám
         /// 1
         /// </summary>
         public string AKC190 { get; set; }
         /// <summary>
-        /// 病案流水号
+        /// Số thứ tự bệnh án
         /// 1
         /// </summary>
         public string BKF303 { get; set; }
         /// <summary>
-        /// 住院流水号
+        /// Số thứ tự nội trú
         /// 1
         /// </summary>
         public string BKC191 { get; set; }
         /// <summary>
-        /// 主从诊断标识 1 主要诊断；2 其他诊断
+        /// Dấu hiệu chẩn đoán chính/phụ 1 Chẩn đoán chính；2 Chẩn đoán khác
         /// 1
         /// </summary>
         public string BKF718 { get; set; }
         /// <summary>
-        /// 诊断顺位
+        /// Thứ tự chẩn đoán
         /// 1
         /// </summary>
         public string BKF512 { get; set; }
         /// <summary>
-        /// 西医诊断编码
+        /// Mã chẩn đoán Tây y
         /// </summary>
         public string BKF857 { get; set; }
         /// <summary>
-        /// 西医诊断名称
+        /// Tên chẩn đoán Tây y
         /// </summary>
         public string BKF856 { get; set; }
         /// <summary>
-        /// 中医病名代码
+        /// Mã bệnh danh Đông y
         /// </summary>
         public string BKF460 { get; set; }
         /// <summary>
-        /// 中医病名
+        /// Bệnh danh Đông y
         /// </summary>
         public string BKF459 { get; set; }
         /// <summary>
-        /// 中医证候代码
+        /// Mã chứng hậu Đông y
         /// </summary>
         public string BKF475 { get; set; }
         /// <summary>
-        /// 中医证候
+        /// Chứng hậu Đông y
         /// </summary>
         public string BKF474 { get; set; }
         /// <summary>
-        /// 入院病情代码
+        /// Mã tình trạng bệnh khi nhập viện
         /// </summary>
         public string BKF262 { get; set; }
     }

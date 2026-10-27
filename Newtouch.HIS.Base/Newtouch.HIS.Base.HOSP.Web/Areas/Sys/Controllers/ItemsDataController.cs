@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.Sys.Controllers
             this._itemDmnService = itemDmnService;
         }
 
-        //下拉 by Code
+        //Thả xuống by Code
         /// <summary>
         /// 
         /// </summary>

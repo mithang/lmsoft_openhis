@@ -28,12 +28,12 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// <returns></returns>
         public DateTime rq { get; set; }
         /// <summary>
-        /// 时间点  
+        /// Thời gianđiểm  
         /// </summary>
         /// <returns></returns>
         public int sj { get; set; }
         /// <summary>
-        /// 枚举 请假 拒测 等
+        /// Liệt kê vui lònggiả từ chốiđo đợi
         /// </summary>
         /// <returns></returns>
         public int? brzt { get; set; }
@@ -43,7 +43,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// <returns></returns>
         public decimal? tw { get; set; }
         /// <summary>
-        /// 体温测量说明 口温 腋温 肛温
+        /// Nhiệt độđolượngMô tả miệngnhiệt Nhiệt độ nách Nhiệt độ hậu môn
         /// </summary>
         /// <returns></returns>
         public int? twclfs { get; set; }
@@ -88,17 +88,17 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// <returns></returns>
         public string tz { get; set; }
         /// <summary>
-        /// 身高
+        /// thâncao
         /// </summary>
         /// <returns></returns>
         public string sg { get; set; }
         /// <summary>
-        /// 疼痛评分
+        /// ĐauChấm điểm
         /// </summary>
         /// <returns></returns>
         public string ttpf { get; set; }
         /// <summary>
-        /// 字典不区分Org
+        /// từ điểnkhôngkhuphútOrg
         /// </summary>
         /// <returns></returns>
         public string tzclbz { get; set; }
@@ -123,7 +123,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// <returns></returns>
         public int? dbcs { get; set; }
         /// <summary>
-        /// 字典不区分Org
+        /// từ điểnkhôngkhuphútOrg
         /// </summary>
         /// <returns></returns>
         public string dbcsbz { get; set; }
@@ -138,7 +138,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// <returns></returns>
         public int? xbl { get; set; }
         /// <summary>
-        /// 超液量
+        /// vượtdịchlượng
         /// </summary>
         /// <returns></returns>
         public int? cys { get; set; }
@@ -173,7 +173,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// <returns></returns>
         public int? xyll { get; set; }
         /// <summary>
-        /// 字典不区分Org
+        /// từ điểnkhôngkhuphútOrg
         /// </summary>
         /// <returns></returns>
         public string xyfs { get; set; }
@@ -213,51 +213,51 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// 自定义时间点
+        /// tựđịnhnghĩaThời gianđiểm
         /// </summary>
         public string zdysjd { get; set; }
 
         public string lrflag { get; set; }
 
         /// <summary>
-        /// 护理意识
+        /// điều dưỡngýbiết
         /// </summary>
         public string hlys { get; set; }
         /// <summary>
-        /// 病人饮食
+        /// bệnh nhânuốngăn
         /// </summary>
         public string brfood { get; set; }
         /// <summary>
-        /// 皮肤情况
+        /// datình hình
         /// </summary>
         public string pfqk { get; set; }
         /// <summary>
-        /// 管道护理
+        /// quảnđườngđiều dưỡng
         /// </summary>
         public string gdhl { get; set; }
 
         /// <summary>
-        /// 病情观察及措施
+        /// Tình trạng bệnhquan sátvàbiện phápthi
         /// </summary>
         public string bqgcjcs { get; set; }
         /// <summary>
-        /// 饮食量途径
+        /// uốngănlượngĐường
         /// </summary>
         public string ysltj { get; set; }
         /// <summary>
-        /// 呕吐量颜色
+        /// nônlượngmàu sắc
         /// </summary>
         public string otlys { get; set; }
         /// <summary>
-        /// 尿量颜色
+        /// nước tiểulượngmàu sắc
         /// </summary>
         public string nlys { get; set; }
         /// <summary>
-        /// 护士签名
+        /// Điều dưỡngchữ ký
         /// </summary>
         public string hsqm { get; set; }
         /// <summary>
-        /// 输入液体量
+        /// nhập lượng dịch
         /// </summary>
         public int? srytl { get; set; }
         /// <summary>
@@ -265,43 +265,43 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public decimal? wljw { get; set; }
 
-        #region 预加工
+        #region dựthêmcông
         /// <summary>
-        /// 显示 日期
+        /// Hiển thị Ngày
         /// </summary>
         public string showrq { get; set; }
         /// <summary>
-        /// 日期排号 
+        /// Ngàyxếpsố 
         /// </summary>
         public int num { get; set; }
         public int nowpage { get; set; }
 
         /// <summary>
-        /// 病人状态-小时
+        /// bệnh nhânTrạng thái-giờ
         /// </summary>
         public string brzt_hh { get; set; }
         /// <summary>
-        /// 病人状态-分
+        /// bệnh nhânTrạng thái-phút
         /// </summary>
         public string brzt_mi { get; set; }
         /// <summary>
-        /// 引流量
+        /// dẫndònglượng
         /// </summary>
         public string yll { get; set; }
         /// <summary>
-        /// 总入量
+        /// Tổng lượng vào
         /// </summary>
         public string zrl { get; set; }
         /// <summary>
-        /// 总出量
+        /// Tổng lượng ra
         /// </summary>
         public string zcl { get; set; }
         /// <summary>
-        /// 过敏药物
+        /// quamẫnthuốcvật
         /// </summary>
         public string gmyw { get; set; }
         /// <summary>
-        /// 手术后天数
+        /// Phẫu thuậtsauSố ngày
         /// </summary>
         public string sshts { get; set; }
         #endregion

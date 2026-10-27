@@ -93,27 +93,27 @@
         InitialPd();
     });
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
         }
     });
     
-    //初始化盘点
+    //Khởi tạo kiểm kê
     function InitialPd() {
         gridKCInfoHistory();
-        GetPDSJ();//获取盘点日期
+        GetPDSJ();//Lấy ngày kiểm kê
     }
 
-    //库存信息查询
+    //Truy vấn thông tin tồn kho
     function gridKCInfoHistory() {
         $gridKCInfoHistory.dataGrid({
             caption: "Thông tin kiểm kê lịch sử",
             postData: getSearchPostData(),
             height: $(window).height() - 220,
             url: "",
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
                 { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'ypgg', width: 70, align: 'left' },
@@ -149,7 +149,7 @@
             sortname: 'CreateTime desc',
             viewrecords: true
         });
-        $("#btn_search").click(function () {//绑定查询查询
+        $("#btn_search").click(function () {//Gắn truy vấn
             $gridKCInfoHistory.jqGrid('setGridParam',
                 {
                     postData: getSearchPostData(),
@@ -158,7 +158,7 @@
         });
     }
 
-    //查询条件
+    //Điều kiện truy vấn
     function getSearchPostData() {
         var pdsj = $("#ddlRQ").val();
         var pdId = $("#ddlRQ option:selected").attr('data-pdId');
@@ -174,14 +174,14 @@
         return { pdsj: pdsj, pdId: pdId, srm: srm, ypzt: ypzt, yplb: "", kcxs: kcxs };
     };
 
-    //获取盘点时间
+    //Lấy thời gian kiểm kê
     function GetPDSJ() {
         $.najax({
             type: "GET",
             url: "/PharmacyDrugStorage/GetPDDateDropdownList",
             dataType: "json",
             success: function (ajaxresp) {
-                //先清空，再填充
+                //Xóa trước，Điền tiếp
                 $("#ddlRQ").empty();
                 for (var i = 0; i < ajaxresp.data.length; i++) {
                     $("#ddlRQ").append('<option data-pdId=' + ajaxresp.data[i].pdId + '>' + ajaxresp.data[i].pdsj + '</option>');
@@ -191,7 +191,7 @@
         });
     }
     
-    //大类明细打印
+    //In chi tiết loại lớn
     function newtouch_event_f10() {
         var srm = $("#txtSRM").val();
         var ypzt = $("#ddlYPZT").val();
@@ -202,7 +202,7 @@
         window.open("/Report/PrintReport?type=StockInventoryDl&param=srm=" + srm + "|ypzt=" + ypzt + "|kcxs=" + kcxs + "|pdId=" + pdId + "|yfbm=" + yfbm + "|OrganizeId=" + OrganizeId, "height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
     }
 
-    //剂型明细打印
+    //In chi tiết dạng bào chế
     function newtouch_event_f6() {
         var srm = $("#txtSRM").val();
         var ypzt = $("#ddlYPZT").val();
@@ -213,7 +213,7 @@
         window.open("/Report/PrintReport?type=StockInventoryJx&param=srm=" + srm + "|ypzt=" + ypzt + "|kcxs=" + kcxs + "|pdId=" + pdId + "|yfbm=" + yfbm + "|OrganizeId=" + OrganizeId, "height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
     }
 
-    //盘点明细打印
+    //In chi tiết kiểm kê
     function newtouch_event_f9() {
         var srm = $("#txtSRM").val();
         var ypzt = $("#ddlYPZT").val();

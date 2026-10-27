@@ -14,9 +14,9 @@ namespace Newtouch.EMR.Repository
     public class bl_ElementDomain_DetailRepo : RepositoryBase<bl_ElementDomain_DetailEntity>, Ibl_ElementDomain_DetailRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFFactory ngữ cảnh EF</param>
 
 
         public void SubmitForm(bl_ElementDomain_DetailEntity entity, string keyValue)

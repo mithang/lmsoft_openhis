@@ -3,12 +3,12 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 采购计划
+    /// Kế hoạch mua sắm
     /// </summary>
     public interface ICgPurchaseOrderRepo : IRepositoryBase<CgPurchaseOrderEntity>
     {
         /// <summary>
-        /// 撤销采购计划
+        /// Hủy kế hoạch mua sắm
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>
@@ -17,7 +17,7 @@ namespace Newtouch.Herp.Domain.IRepository
         int CancelPurchasingPlan(string cgdh, string organizeId, string userCode);
 
         /// <summary>
-        /// 查询采购计划
+        /// Truy vấn kế hoạch mua sắm
         /// </summary>
         /// <param name="cgdh"></param>
         /// <param name="organizeId"></param>

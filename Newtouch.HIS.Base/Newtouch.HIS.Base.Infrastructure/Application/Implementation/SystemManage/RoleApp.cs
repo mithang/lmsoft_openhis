@@ -12,7 +12,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Application.Implementation.SystemManage
 {
     /// <summary>
-    /// 角色App
+    /// vai tròApp
     /// </summary>
     public class RoleApp : AppBase, IRoleApp
     {
@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
         }
 
         /// <summary>
-        /// 组织机构 角色列表 带 分页
+        /// Tổ chức Danh sách vai trò kèm Phân trang
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="pagination"></param>
@@ -45,11 +45,11 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
                 expression = expression.And(t => t.Name.Contains(keyword));
                 expression = expression.Or(t => t.Code.Contains(keyword));
             }
-            //||IsAdministrator 修改自己所在角色的权限 是有点不合适
+            //||IsAdministrator Sửa quyền của vai trò mình đang ở là hơi không phù hợp
             if (orgId == Constants.TopOrganizeId && (this.UserIdentity.IsRoot || this.UserIdentity.IsAdministrator))
             {
                 expression = expression.And(t => t.OrganizeId == orgId);
-                expression = expression.Or(t => t.OrganizeId == "*");  //带上系统管理员Administrator
+                expression = expression.Or(t => t.OrganizeId == "*");  //Kèm quản trị viên hệ thốngAdministrator
             }
             else
             {
@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
         }
 
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
         }
 
         /// <summary>
-        /// 删除实体
+        /// Xóa thực thể
         /// </summary>
         /// <param name="keyValue"></param>
         public void DeleteForm(string keyValue)
@@ -78,14 +78,14 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
         }
 
         /// <summary>
-        /// 提交保存
+        /// Gửi lưu
         /// </summary>
         /// <param name="roleEntity"></param>
         /// <param name="permissionIds"></param>
         /// <param name="keyValue"></param>
         public void SubmitForm(SysRoleEntity roleEntity, string[] permissionIds, string keyValue)
         {
-            //主要是为了唯一主键
+            //Chủ yếu để có khóa chính duy nhất
             if (!string.IsNullOrEmpty(keyValue))
             {
                 roleEntity.Modify(keyValue);
@@ -102,7 +102,7 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
                 roleAuthorizeEntity.Create(true);
                 roleAuthorizeEntity.RoleId = roleEntity.Id;
                 roleAuthorizeEntity.ItemId = itemId;
-                roleAuthorizeEntity.zt = "1";   //始终1 Hiệu lực
+                roleAuthorizeEntity.zt = "1";   //Luôn luôn1 Hiệu lực
                 roleAuthorizeEntityList.Add(roleAuthorizeEntity);
             }
             _sysRoleDmnService.SubmitForm(roleEntity, roleAuthorizeEntityList, keyValue);

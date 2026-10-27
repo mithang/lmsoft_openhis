@@ -16,12 +16,12 @@
     </div>
 </div>
 <script>
-    var deldata = [];//删除对象
+    var deldata = [];//Xóađối tượng
     var ssyzflag = 0;
     var Foodlocaldata = new Array();
     function init_FoodPrescription() {
 
-        //仅尚未保存到数据库的医嘱需要初始化在grid中
+        //chỉ chưaLưuđếnCơ sở dữ liệucủaY lệnhcần khởi tạo tronggridtrong
         Foodlocaldata = new Array();
         if (window.alldataArray.ssyz) {
             Foodlocaldata = $.jsonWhere($.deepClone.clone(window.alldataArray.ssyz), function (icf) {
@@ -36,17 +36,17 @@
             });
         }
         else {
-            window.alldataArray.ssyz = new Array(); //方便后面使用$.each()
+            window.alldataArray.ssyz = new Array(); //Để tiện dùng về sau$.each()
         }
 
-        if (ssyzflag == 0) {   //该页面初始化
+        if (ssyzflag == 0) {   //Trang này khởi tạo
             gridssyz();
 
             ssyzflag = 1;
         }
         else {
-            $("#gridssyz").clearGridData(); //先清
-            //再次打开该页面
+            $("#gridssyz").clearGridData(); //xóa trắng trước
+            //Mở lại trang này
             $("#gridssyz").jqGrid('setGridParam', {
                 datatype: 'local',
                 data: Foodlocaldata
@@ -55,22 +55,22 @@
     }
 
 
-    //膳食列表
+    //ăn uốngdanh sách
     function gridssyz() {
         var $gridssyz = $("#gridssyz");
         $gridssyz.jqGrid({
             datatype: 'local',
             data: Foodlocaldata,
             height: $(window).height() - 180,
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            shrinkToFit: true,   //true:theo tỷ lệVDkhởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
             autowidth: true,
-            rownumbers: true,  //是否显示Số thứ tự
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            rownumbers: true,  //CóKhôngHiển thịSố thứ tự
+            editurl: "clientArray",  //dòngSửakhông gửi lên máy chủGửiDữ liệu
             unwritten: false,
             colModel: [
                 { label: 'Id', name: 'Id', align: 'center', hidden: true },
                 { label: 'Dài hạn<br>Tạm thời', name: 'yzlb', width: 35, editwidth: '100%', align: 'center', editable: true},
-                { name: 'DietBigType', hidden: true, editable: true },//大分类
+                { name: 'DietBigType', hidden: true, editable: true },//lớnPhân loại
                 {
                     label: '<span class="required">*</span>Mẫu suất ăn', name: 'ssxh', width: 100, editwidth: '100%', align: 'center', edittype: "select", editable: true, editoptions: {
                         dataEvents: [
@@ -86,7 +86,7 @@
                                     if (dfl != undefined && dfl!="") {
                                         inityszsFloat(rowid, dfl);
                                     }
-                                    generateysinfo(rowid, $(this).val());//生成膳食类别和膳食指示,禁用文本框
+                                    generateysinfo(rowid, $(this).val());//tạoăn uốngLoạivàăn uốngchỉhiển thị,Vô hiệu hóavăn bảnkhung
                                 }
                             }
                         ]
@@ -105,9 +105,9 @@
                                     var rowid = row.attr('id');
                                     $("#" + rowid + "_yslbdm").val($(this).val());
                                     if ($(this).find("option:selected").text() == "膳食自备") {
-                                        $("#" + rowid + "_yszs").val('').attr('disabled', 'true').css('background-color', '#f6f7fb');//禁用饮食指示
+                                        $("#" + rowid + "_yszs").val('').attr('disabled', 'true').css('background-color', '#f6f7fb');//Vô hiệu hóauốngănchỉhiển thị
                                     } else {
-                                        $("#" + rowid + "_yszs").removeAttr('disabled').css('background-color', 'white');//禁用饮食指示
+                                        $("#" + rowid + "_yszs").removeAttr('disabled').css('background-color', 'white');//Vô hiệu hóauốngănchỉhiển thị
                                     }
                                 }
                             }
@@ -199,17 +199,17 @@
                 { name: 'yzlx', hidden: true },
                 { name: 'yzzt', hidden: true }
             ],
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
+            editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
             pager: "gridssyzPager",
             gridComplete: function () {
                 EnableInlineEditBox();
-                //隐藏grid底部滚动条
+                //Ẩngridthanh cuộn dưới cùng
                 $gridssyz.closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
             }
         });
 
-        //二级菜单
+        //Menu cấp 2
         $gridssyz.jqGrid('setGroupHeaders', {
             useColSpanStyle: true,
             groupHeaders: [
@@ -224,7 +224,7 @@
                 $(this).css("padding", 0);
             });
 
-        //自定义按钮
+        //Nút tùy chỉnh
         $gridssyz.navGrid('#gridssyzPager',
                 {
                     edit: false,
@@ -249,7 +249,7 @@
         $("#gridssyzPager_right").append("<div class=\"ckbox\" style=\"margin-top:2px;\"><input id=\"chksslsyz\" name=\"chksslsyz\" type=\"checkbox\" ><label for=\"chksslsyz\">Y lệnh tạm thời</label></div>");
     }
 
-    //生成膳食类别
+    //tạoăn uốngLoại
     function generateysinfo(rowid, $thisval) {
         var currentyslb = $("#" + rowid + "_yslbdm").val();
         if (currentyslb!=="") {
@@ -263,7 +263,7 @@
                 type: "POST",
                 success: function (data) {
                     $("#" + rowid + "_ssxhval").parent().next().children('select').html('');
-                    $("#" + rowid + "_yslbdm").val('');//清空膳食类别
+                    $("#" + rowid + "_yslbdm").val('');//Xóa trắngăn uốngLoại
                     var yslboption = "<option>Vui lòng chọn</option>";
                     if (data != undefined && data.length > 0) {
                         $.each(data, function (idx, val) {
@@ -283,14 +283,14 @@
         var dfl = $("#" + rowid + "_DietBigType").parent().next().children('select').find("option:selected").attr('data-DietBigType');
         var lastdfl = $("#" + rowid + "_DietBigType").val();
         $("#" + rowid + "_DietBigType").val(dfl);
-        if (lastdfl!==""&&lastdfl!==dfl) {//修改大分类，清空膳食指示
+        if (lastdfl!==""&&lastdfl!==dfl) {//SửalớnPhân loại，Xóa trắngăn uốngchỉhiển thị
             $("#" + rowid + "_yszs").val('');
             $("#" + rowid + "_yszsval").val('');
         }
-        if (dfl == "PTSS") {//普通膳食 频次QD，剂量，能量密度禁用
+        if (dfl == "PTSS") {//thông thườngăn uống Tần suấtQD，Liều lượng，mật độ năng lượngVô hiệu hóa
             var ssxh = $("#" + rowid + "_ssxhval").val();
             if (ssxh == "禁食") {
-                $("#" + rowid + "_yszs").attr('disabled', 'true').css('background-color', '#f6f7fb');//禁用膳食指示
+                $("#" + rowid + "_yszs").attr('disabled', 'true').css('background-color', '#f6f7fb');//Vô hiệu hóaăn uốngchỉhiển thị
                 $("#" + rowid + "_yszs").val('');
                 $("#" + rowid + "_yszsval").val('');
             } else {
@@ -303,24 +303,24 @@
             $("#" + rowid + "_zxcs").val('3')
             $("#" + rowid + "_zxzq").val('1')
             $("#" + rowid + "_zxzqdw").val('0');
-            $("#" + rowid + "_ypjl").val('').attr('disabled', 'true').css('background-color', '#f6f7fb');//禁用频次
-            $("#" + rowid + "_pcCode").parent().next().children('select').attr('disabled', 'true').html('').css('background-color', '#f6f7fb');//禁用能量密度
-        } else if (dfl == "CNYY") { //肠内营养 频次默认ST，可用，剂量500ml
+            $("#" + rowid + "_ypjl").val('').attr('disabled', 'true').css('background-color', '#f6f7fb');//Vô hiệu hóaTần suất
+            $("#" + rowid + "_pcCode").parent().next().children('select').attr('disabled', 'true').html('').css('background-color', '#f6f7fb');//Vô hiệu hóamật độ năng lượng
+        } else if (dfl == "CNYY") { //ruộttrongdinh dưỡng Tần suấtMặc địnhST，có thểdùng，Liều lượng500ml
             $("#" + rowid + "_ypjl").val('500').attr('disabled', 'true').css('background-color', '#f6f7fb');
-            $("#" + rowid + "_pcCode").parent().next().children('select').removeAttr('disabled').css('background-color', 'white');//解禁能量密度
-            Generatenlmdoption(rowid);//生成能量密度下拉框
-            $("#" + rowid + "_yszs").removeAttr('disabled').css('background-color', 'white');//解禁膳食指示
-        } else if (dfl == "YYBCJ") { //营养补充剂 频次默认ST，禁用，用法默认口服，禁用，天数禁用
+            $("#" + rowid + "_pcCode").parent().next().children('select').removeAttr('disabled').css('background-color', 'white');//Hủy cấmmật độ năng lượng
+            Generatenlmdoption(rowid);//tạomật độ năng lượnghộp thả xuống
+            $("#" + rowid + "_yszs").removeAttr('disabled').css('background-color', 'white');//Hủy cấmăn uốngchỉhiển thị
+        } else if (dfl == "YYBCJ") { //dinh dưỡngBổ sungliều Tần suấtMặc địnhST，Vô hiệu hóa，Cách dùngMặc địnhuống，Vô hiệu hóa，Số ngàyVô hiệu hóa
             $("#" + rowid + "_pcmc").attr('disabled', 'true').css('background-color', '#f6f7fb');
             $("#" + rowid + "_pcmc").val('ST');
             $("#" + rowid + "_pcCode").val('00');
             $("#" + rowid + "_zxcs").val('1')
             $("#" + rowid + "_zxzq").val('1')
             $("#" + rowid + "_zxzqdw").val('1');
-            $("#" + rowid + "_yfmcval").parent().next().children('select').val('KF');//默认口服
+            $("#" + rowid + "_yfmcval").parent().next().children('select').val('KF');//Mặc địnhuống
             $("#" + rowid + "_ypyfdm").val('KF');
-            $("#" + rowid + "_pcCode").parent().next().children('select').html('').attr('disabled', 'true').css('background-color', '#f6f7fb');//禁用能量密度
-            $("#" + rowid + "_ypjl").removeAttr('disabled').css('background-color', 'white');//解禁剂量
+            $("#" + rowid + "_pcCode").parent().next().children('select').html('').attr('disabled', 'true').css('background-color', '#f6f7fb');//Vô hiệu hóamật độ năng lượng
+            $("#" + rowid + "_ypjl").removeAttr('disabled').css('background-color', 'white');//Hủy cấmLiều lượng
         }
     }
 
@@ -332,7 +332,7 @@
             searchdl: dfl,
             mutiselect: dfl == "PTSS",
             checkItemActivity: function ($li, $thisinput) {
-                var selected = false;//默认没有选中当前值
+                var selected = false;//Mặc địnhKhông cóĐã chọnhiện tạiGiá trị
                 var selectval = $thisinput.val();
                 if (selectval) {
                     selectval = selectval.split(',');
@@ -371,16 +371,16 @@
         });
     }
 
-    //启用行内编辑
+    //Bật sửa trong dòng
     function EnableInlineEditBox() {
         var ids = $("#gridssyz").getDataIDs();
         $.each(ids, function () {
             var rowid = String(this);
-            //打开编辑模式
+            //MởSửachế độ
             $("#gridssyz").jqGrid('editRow', rowid, false, initFoodInlineFunc);
             $("#" + rowid + "_kssj").css("text-align", "left");
             
-            //医嘱类别 长、临
+            //Loại y lệnh 长、临
             if ($("#" + rowid + "_yzlb").val() == undefined || $("#" + rowid + "_yzlb").val() === "") {
                 var yzlb = $("#chksslsyz").is(":checked") ? "临" : "长";
                 $("#" + rowid + "_yzlb").val(yzlb);
@@ -389,7 +389,7 @@
         });
     }
 
-    //初始化 浮层
+    //Khởi tạo lớp nổi
     function initFoodInlineFunc(rowid) {
        var currentssxh=  $("#" + rowid + "_ssxhdm").val();
         $.najax({
@@ -419,7 +419,7 @@
         var currlineId = $("#gridssyz").getRowData(rowid).Id;
         $("#" + rowid + "_pcmc").attr('readonly', 'true');
 
-        //医嘱类别 浮动
+        //Loại y lệnh nổi
         $("#" + rowid + "_yzlb").yzlbFloatingSelector({
             isinputchangetriggered: false,
             showtext: 'Name',
@@ -432,13 +432,13 @@
 
         $("#" + rowid + "_yzlb").change(function () {
             if ($("#" + rowid + "_yzlb").val() === "临") {
-                $("#" + rowid + "_ts").css('background-color', '#f6f7fb').attr('readonly', 'true'); //临时医嘱 禁用天数
+                $("#" + rowid + "_ts").css('background-color', '#f6f7fb').attr('readonly', 'true'); //Y lệnh tạm thời Vô hiệu hóaSố ngày
             } else {
-                $("#" + rowid + "_ts").css('background-color', '#fff').removeAttr('readonly'); //长期医嘱 启用天数
+                $("#" + rowid + "_ts").css('background-color', '#fff').removeAttr('readonly'); //Y lệnh dài hạn Kích hoạtSố ngày
             }
         });
 
-        //频次浮层
+        //Lớp nổi tần suất
         $("#" + rowid + "_pcmc").pcFloatingSelector({
             showtext: 'yzpcmc',
             attrcols: ['yzpcmc', 'yzpcCode', 'zxcs', 'zxzq', 'zxzqdw'],
@@ -450,7 +450,7 @@
                 $("#" + rowid + "_zxzqdw").val($this.attr('data-zxzqdw'));
 
                 var pcCode = $("#" + rowid + "_pcCode").val();
-                //临时医嘱天数禁用
+                //Y lệnh tạm thờiSố ngàyVô hiệu hóa
                 if ('@ViewBag.pcStr' !== '' && pcCode !== '' && (!isNaN(pcCode)) &&
                     (('@ViewBag.pcStr').indexOf(pcCode) > -1)) {
                     $("#" + rowid + "_ts").css('background-color', '#f6f7fb').attr('readonly', 'true');
@@ -460,7 +460,7 @@
             }
         });
 
-        //嘱托浮层
+        //Lớp nổi dặn dò
         $("#" + rowid + "_ztnr").ztFloatingSelector({
             height: 100,
             itemdbclickhandler: function ($this) {
@@ -469,7 +469,7 @@
         });
     }
 
-    //新医嘱 按钮
+    //Y lệnh mới Nút
     function newPresData(currentObj) {
         var dataRow = {
             Id: Math.random().toString() + new Date().getMilliseconds(),
@@ -489,12 +489,12 @@
         }
     }
 
-    //删除明细
+    //Xóa chi tiết
     function deleteRowData(selRowId, recalc) {
         if (!!selRowId) {
            var Id= $("#gridssyz").jqGrid('getRowData', selRowId).Id;
             $("#gridssyz").jqGrid("delRowData",  selRowId);
-            if (Id.indexOf("0.")=='-1') {//记录下来，从数据库删除
+            if (Id.indexOf("0.")=='-1') {//ghi lại，từCơ sở dữ liệuXóa
                 deldata.push(Id);
             }
         }
@@ -504,10 +504,10 @@
         return "<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;' onclick='deleteRowData($(this).parent().parent().attr(\"id\"));return false;'></i>";
     }
 
-    //保存按钮动作
+    //LưuNútthao tác
     function SavessyzMedicine(savetodb) {
         patobjValidate();
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#gridssyz").jqGrid('getDataIDs');
         var validationFailedArr = [];
         for (var i = 0; i < rowIds.length; i++) {
@@ -522,7 +522,7 @@
         }
         if (validationFailedArr != null && validationFailedArr.length > 0) {
             for (var i = 0; i < validationFailedArr.length; i++) {
-                $("#gridssyz").jqGrid('editRow', validationFailedArr[i], false, initFoodInlineFunc);//打开编辑模式
+                $("#gridssyz").jqGrid('editRow', validationFailedArr[i], false, initFoodInlineFunc);//MởSửachế độ
             }
             return;
         }
@@ -533,7 +533,7 @@
                 return;
             }
        var flag = false;
-        $.each(gridssyzData, function () {    //去掉action
+        $.each(gridssyzData, function () {    //Bỏaction
             for (var i = 0; i < $(this).length; i++) {
                 delete $(this)[i].action;
                 $(this)[i].ysgh = '@ViewBag.ysgh';
@@ -567,10 +567,10 @@
         }
 
 
-        //保存数据
+        //Lưu dữ liệu
         window.alldataArray.ssyz = $.jsonWhere(window.alldataArray.ssyz, function (iyzmx) {
             if (!!!iyzmx.Id) {
-                return false;   //编辑列表里有
+                return false;   //Sửatrong danh sách có
             }
             for (var iIndex = 0; iIndex < gridssyzData.length; iIndex++) {
                 if (gridssyzData[iIndex].Id == iyzmx.Id) {
@@ -592,7 +592,7 @@
             window.alldataArray.ssyz = [];
         }
     }
-    //验证
+    //kiểm tra
     function Validatessyz(rowdata) {
         var ssxh = rowdata.ssxhval;
         var yslb = rowdata.yslbdm;
@@ -637,12 +637,12 @@
         return true;
     }
 
-    //修改操作时初始化
+    //SửaThao táckhiKhởi tạo
     function EditSSInit(zyh, yzId, yzlb) {
         $.najax({
             url: "/DoctorManage/Medicine/GetYZDetail",
             dataType: "json",
-            data: { zyh: zyh, yzId: yzId, yzlx: yzlb },//yzlx:长临记号
+            data: { zyh: zyh, yzId: yzId, yzlx: yzlb },//yzlx:dài hạn/tạm thờighisố
             type: "POST",
             success: function (data) {
                 currentobj = data.patientInfo;
@@ -658,7 +658,7 @@
         });
     }
 
-     //另存为模板
+     //Lưu thành mẫu
     function SavessyzTemplate() {
         $.modalOpen({
             id: "Form",
@@ -682,14 +682,14 @@
                     mbObj.ysgh = '@ViewBag.ysgh';
                 }
 
-                //获取所有行Id，遍历使编辑框处于保存状态
+                //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
                 var rowIds = $("#gridssyz").jqGrid('getDataIDs');
                 for (var i = 0; i < rowIds.length; i++) {
                     var saveResult = $("#gridssyz").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
                     if (!saveResult) {
-                        EnableInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                        return;   //保存失败，则return
+                        EnableInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
+                        return;   //Lưu thất bại，thìreturn
                     }
                 }
                 var gridssyzData = $("#gridssyz").jqGrid('getRowData_AllLine', null, true);
@@ -697,7 +697,7 @@
                     $.modalAlert("Thiếu dữ liệu y lệnh", 'warning');
                     return false;
                 }
-                $.each(gridssyzData, function () {    //去掉action
+                $.each(gridssyzData, function () {    //Bỏaction
                     for (var i = 0; i < $(this).length; i++) {
                         delete $(this)[i].action;
                         $(this)[i].xmdm = $(this)[i].ssxhdm;
@@ -719,10 +719,10 @@
         });
     }
 
-    ///生成药品用法下拉框
+    ///tạoCách dùng thuốchộp thả xuống
     function GenerateIndexypyfoption(rowid) {
         var curyfdm = $("#" + rowid + "_ypyfdm").val();
-        var jxyf = top.top.clients.ypyf;//所有用法
+        var jxyf = top.top.clients.ypyf;//tất cảCách dùng
         $("#" + rowid + "_yfmcval").parent().next().children('select').html('');
         if (top.clients.itemDetails) {
             var yfoption = "<option>Vui lòng chọn</option>";

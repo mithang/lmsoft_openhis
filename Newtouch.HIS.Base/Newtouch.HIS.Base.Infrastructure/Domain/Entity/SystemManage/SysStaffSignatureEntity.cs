@@ -10,64 +10,64 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 医生电子签名
+    /// Chữ ký điện tử bác sĩ
     /// </summary>
     [SugarTable("Sys_StaffSignature")]
     public class SysStaffSignatureEntity : EntityBase
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
         /// <summary>
-        /// 组织机构Id（科室所对应的OrganizeId）
+        /// Tổ chứcId（tương ứng với khoaOrganizeId）
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 职工ID
+        /// Nhân viênID
         /// </summary>
         public string StaffId { get; set; }
 
         /// <summary>
-        /// 图片名称
+        /// Tên hình ảnh
         /// </summary>
         public string ImageName { get; set; }
         /// <summary>
-        /// 类型(jpg,pgn)
+        /// Loại(jpg,pgn)
         /// </summary>
         public string ImageTpye { get; set; }
         /// <summary>
-        /// 图片地址
+        /// Địa chỉ hình ảnh
         /// </summary>
         public string ImageUrl { get; set; }
 
         /// <summary>
-        /// base64编码
+        /// base64Mã
         /// </summary>
         public string ImagePrefix { get; set; }
         /// <summary>
-        /// 图片二进制数据
+        /// Dữ liệu nhị phân hình ảnh
         /// </summary>
         public string ImageData { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Người sửa đổi cuối cùng
         /// </summary>
         public string LastModifierCode { get; set; }
 

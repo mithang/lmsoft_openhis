@@ -43,7 +43,7 @@
         gridFYCF();
         gridFYDetail([]);
     });
-    //处方列表
+    //Danh sách đơn thuốc
     function gridFYCF() {
         var $gridCf = $("#gridFYCF");
         $gridCf.dataGrid({
@@ -94,7 +94,7 @@
         });
     }
 
-    //处方明细
+    //Chi tiết đơn thuốc
     function gridFYDetail() {
         var $gridCfInfo = $("#gridFYCFInfo");
         $gridCfInfo.newtouchLocalDataGrid({
@@ -121,7 +121,7 @@
         });
     }
 
-    //发药
+    //Phát thuốc
     function newtouch_event_f7() {
         var id = $("#gridFYCF").jqGrid("getGridParam", "selrow");
         if (id) {
@@ -152,7 +152,7 @@
         }
     }
 
-    //全部发药
+    //Phát thuốc tất cả
     function newtouch_event_f8() {
         var ids = $("#gridFYCF").getDataIDs();
         var cfh = [];

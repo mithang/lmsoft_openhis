@@ -18,9 +18,9 @@ namespace Newtouch.DomainServices.Inpatient
     {
         private readonly ISysConfigRepo _sysConfigRepo;
         /// <summary>
-        /// 默认构造函数
+        /// Mặc địnhHàm khởi tạosố
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFtrêndướivănNhà máy</param>
         public TreatmentPrintDmnService()
             : base()
         {
@@ -28,7 +28,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// 获取病区发药患者树
+        /// LấyKhu bệnhphát thuốcBệnh nhâncây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace Newtouch.DomainServices.Inpatient
                 select zyh from zy_tyssqqk where  OrganizeId=@orgId) aaa 
                 inner join zy_brxxk b on aaa.zyh=b.zyh and b.OrganizeId=@orgId
                 left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.wardCode and c.OrganizeId=@orgId
-                where b.zybz <>'9'--非取消入院
+                where b.zybz <>'9'--khôngHủyNhập viện
                 and isnull(bqcode,'')<>''";
             return this.FindList<InpWardPatTreeVO>(sql, new[] { new SqlParameter("@orgId", orgId) });
         }
@@ -57,7 +57,7 @@ namespace Newtouch.DomainServices.Inpatient
                                                                               AND staff.OrganizeId = @orgId
                 inner join zy_brxxk d on d.zyh=aaa.zyh and d.OrganizeId = @orgId
                 where 1=1 ");
-            if (zyxz != null)//长临标志：0：临时，1：长期
+            if (zyxz != null)//dài hạn/tạm thờiCờ：0：Tạm thời，1：Dài hạn
             {
                 sqlstr.Append("  and zyxz=@zyxz");
                 par.Add(new SqlParameter("@zyxz", zyxz));

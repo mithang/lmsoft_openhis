@@ -57,7 +57,7 @@
                             caption: "quyết toán bảng Kiểm soát chất lượng Tra cứu",
                             colModel: colModel,
                         }, tfReturn.output.data);
-                        // 调用显示详情信息表格的函数
+                        // điềudùnghiển thịhiển thịchi tiếttìnhthông tintinbảngđịnh dạngcủathưsố
                         displayDetailInfo(tfReturn.output.data[0].detailinfo);
                     }
                     else {
@@ -103,7 +103,7 @@
         });
     }
 
-    // 显示详情信息的函数
+    // hiển thịhiển thịchi tiếttìnhthông tintincủathưsố
     function displayDetailInfo(detailData) {
         var $detailGrid = $("#detailGrid");
         var detailColModel = [
@@ -114,7 +114,7 @@
             { label: 'Cờ hoàn trả', name: 'retn_flag', align: 'center', width: 50 }
         ];
 
-        // 创建并填充detailGrid表格
+        // tạolậpvàđiềnbổ sungdetailGridBảng
         $detailGrid.newtouchLocalDataGrid({
             autowidth: true,
             unwritten: false,

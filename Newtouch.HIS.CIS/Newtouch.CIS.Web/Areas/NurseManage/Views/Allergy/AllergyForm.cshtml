@@ -58,7 +58,7 @@
     var xmmc = $.request("xmmc");
     $(function () {
         $("#form1 input[name='checkbox0']").bind('click', function () {
-            //当前的checkbox是否选中
+            //hiện tạicủacheckboxCóKhôngĐã chọn
             if (this.checked) {
                 $("#form1 input[name='checkbox0']").not(this).attr("checked", false);
             } else {
@@ -66,7 +66,7 @@
             }
         });
 
-        //绑定抗生素
+        //gắnKháng sinh
         $("#ypCode").bindSelect({
             url: "@Url.Action("GetKssYpListJson")",
             id: "ypCode",
@@ -94,7 +94,7 @@
         });
     });
 
-    //过敏信息确认
+    //quamẫnthông tinxác nhận
     function AcceptClick(callBack) {
         if (!!!$("#ypCode").val() && !!!$("#txt_remark").val()) {
             $.modalAlert("Vui lòng chọn thuốc dị ứng hoặc điền thông tin dị ứng!", 'warning');

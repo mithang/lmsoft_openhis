@@ -21,13 +21,13 @@ using Newtouch.Tools;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 发药
+    /// Phát thuốc
     /// </summary>
     public class HandOutMedicineDmnService : DmnServiceBase, IHandOutMedicineDmnService
     {
         
         /// <summary>
-        /// 输入码自动提示（一级部门提示，没有转换因子，例如药剂科）
+        /// Tự động gợi ý mã nhập（Nhắc nhở bộ phận cấp 1，Không có hệ số chuyển đổi，Ví dụ khoa dược）
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="srm"></param>
@@ -43,7 +43,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// 获取药品信息  根据批次批号分组
+        /// Lấy thông tin thuốc  Nhóm theo lô/số lô
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
@@ -85,11 +85,11 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 获取退药药品明细
+        /// Lấy chi tiết thuốc trả
         /// </summary>
-        /// <param name="ckbm">出库部门 申请退药的部门</param>
-        /// <param name="rkbm">入库部门 药品即将退回到的部门</param>
-        /// <param name="srm">输入码 关键字</param>
+        /// <param name="ckbm">Bộ phận xuất kho Bộ phận xin trả thuốc</param>
+        /// <param name="rkbm">Bộ phận nhập kho Bộ phận thuốc sắp trả về</param>
+        /// <param name="srm">Mã nhập Từ khóa</param>
         /// <returns></returns>
         public List<HandOutMedicinesrmVO> GetTyypBySrm(string ckbm, string rkbm, string srm)
         {
@@ -103,7 +103,7 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        ///  获取科室药品库存记录
+        ///  Lấy bản ghi tồn kho thuốc của khoa
         /// </summary>
         /// <param name="ypdm"></param>
         /// <returns></returns>
@@ -134,7 +134,7 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 申领出库
+        /// Xuất kho theo đơn lĩnh
         /// </summary>
         /// <param name="xtYpLsNbfymxk"></param>
         /// <param name="fydh"></param>
@@ -143,14 +143,14 @@ ORDER BY s.yxq ASC
         /// <returns></returns>
         public string HandOutMedicineByRequest(Dictionary<string, List<XT_YP_LS_NBFYMXK>> xtYpLsNbfymxk, string fydh, string fyfs, int type)
         {
-            #region 申领出库
+            #region Xuất kho theo đơn lĩnh
             foreach (var key in xtYpLsNbfymxk.Keys)
             {
                 var ckbm = Constants.CurrentYfbm.yfbmCode;
                 var organizeid = OperatorProvider.GetCurrent().OrganizeId;
                 var usercode = OperatorProvider.GetCurrent().UserCode;
 
-                #region 根据药品信息调用YP_XT_GetSLFYInfo 获得批次，批号，有效期
+                #region Gọi theo thông tin thuốcYP_XT_GetSLFYInfo Nhận lô，Số lô，Hạn dùng
                 var dt = new DataTable();
                 dt.Columns.Add("Ypdm");
                 dt.Columns.Add("Sl");
@@ -184,7 +184,7 @@ ORDER BY s.yxq ASC
                 sqlParList2.Add(outpar2);
                 var retun = FindList<XT_YP_LS_NBFYMXK>("EXEC dbo.YP_XT_GetSLFYInfo @YfbmCode, @Organizeid, @OrderDetailsType,@res Out", sqlParList2.ToArray());
                 if (!string.IsNullOrWhiteSpace(outpar2.Value.ToString())) return outpar2.Value.ToString();
-                if (retun == null || retun.Count <= 0) return "无可用药品";
+                if (retun == null || retun.Count <= 0) return "Không có thuốc khả dụng";
                 #endregion
                 var dtt = new DataTable();
                 dtt.Columns.Add("Ypdm");
@@ -244,7 +244,7 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 退药
+        /// Trả thuốc
         /// </summary>
         /// <param name="xtYpLsNbfymxk"></param>
         /// <param name="tybm"></param>
@@ -276,7 +276,7 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 发药(直接出库)
+        /// Phát thuốc(Xuất kho trực tiếp)
         /// </summary>
         /// <param name="xtYpLsNbfymxk"></param>
         /// <param name="lybm"></param>
@@ -311,7 +311,7 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 药房向科室发药
+        /// Nhà thuốc phát thuốc cho khoa
         /// </summary>
         /// <param name="xtYpLsNbfymxk"></param>
         /// <param name="lybm"></param>
@@ -344,10 +344,10 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 获取批量出库药品库存信息
+        /// Lấy thông tin tồn kho thuốc xuất kho hàng loạt
         /// </summary>
-        /// <param name="yfbmCode">当前部门</param>
-        /// <param name="rkbm">入库部门</param>
+        /// <param name="yfbmCode">Bộ phận hiện tại</param>
+        /// <param name="rkbm">Bộ phận nhập kho</param>
         /// <param name="organizeid"></param>
         /// <returns></returns>
         public IList<DrugStockInfoVEntity> GetDirectDeliveryDrugsList(Pagination pagination, string yfbmCode, string rkbm, string organizeid)
@@ -362,10 +362,10 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 获取批量出库药品库存信息
+        /// Lấy thông tin tồn kho thuốc xuất kho hàng loạt
         /// </summary>
-        /// <param name="yfbmCode">当前部门</param>
-        /// <param name="rkbm">入库部门</param>
+        /// <param name="yfbmCode">Bộ phận hiện tại</param>
+        /// <param name="rkbm">Bộ phận nhập kho</param>
         /// <param name="organizeid"></param>
         /// <returns></returns>
         public IList<DrugStockInfoVEntity> GetDirectDeliveryDrugsList(string yfbmCode, string rkbm, string organizeid)
@@ -380,7 +380,7 @@ ORDER BY s.yxq ASC
         }
 
         /// <summary>
-        /// 前天提交批量直接出库
+        /// Hôm trước gửi xuất kho trực tiếp hàng loạt
         /// </summary>
         /// <param name="paraDto"></param>
         /// <returns></returns>

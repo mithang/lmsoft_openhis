@@ -3,161 +3,161 @@
 namespace NewtouchHIS.Lib.Common
 {
     /// <summary>
-    /// HIS 通用枚举 
-    /// 可用于与第三方交互转换
+    /// HIS Enum chung 
+    /// Có thể dùng để chuyển đổi tương tác với bên thứ ba
     /// </summary>
     public static class HisEnum
     {
         /// <summary>
-        /// 访问终端类型
+        /// Loại thiết bị truy cập
         /// </summary>
         public enum MediaTerminalType
         {
-            [Description("电脑浏览器")]
+            [Description("Trình duyệt máy tính")]
             Browser = 0,
-            [Description("手机移动端")]
+            [Description("Thiết bị di động")]
             Mobile = 1,
         }
 
         public enum EnumMarriageStu
         {
-            [Description("未婚")]
+            [Description("Chưa kết hôn")]
             unmarried =1,
-            [Description("已婚")]
+            [Description("Đã kết hôn")]
             married = 2,
-            [Description("不详")]
+            [Description("Không rõ")]
             unknown = 3,
 
         }
         /// <summary>
-        /// 血糖测量方式
+        /// Cách đo đường huyết
         /// </summary>
         public enum EnumXtclfs
         {
-            [Description("空腹血糖")]
+            [Description("Đường huyết lúc đói")]
             xuetang_kf = 1,
-            [Description("餐后2小时")]
+            [Description("Sau bữa ăn 2 giờ")]
             xuetang_ch = 2,
-            [Description("随机")]
+            [Description("Ngẫu nhiên")]
             xuetang_sj,
         }
         /// <summary>
-        /// 病人性质
-        /// 定义同内部：NewtouchHIS.Domain.Enum.EnumBrxz
+        /// Tính chất bệnh nhân
+        /// Định nghĩa giống nội bộ:NewtouchHIS.Domain.Enum.EnumBrxz
         /// </summary>
         public enum EnumBrxz
         {
             /// <summary>
-            /// 自费
+            /// Tự trả
             /// </summary>
-            [Description("自费")]
+            [Description("Tự trả")]
             zf = 0,
             /// <summary>
-            /// 职工医保
+            /// Bảo hiểm y tế cho người lao động
             /// </summary>
-            [Description("职工医保")]
+            [Description("Bảo hiểm y tế cho người lao động")]
             zg = 1,
             /// <summary>
-            /// 居民医保
+            /// Bảo hiểm y tế cho cư dân
             /// </summary>
-            [Description("居民医保")]
+            [Description("Bảo hiểm y tế cho cư dân")]
             jm = 2,
             /// <summary>
-            /// 离休
+            /// Nghỉ hưu
             /// </summary>
-            [Description("离休")]
+            [Description("Nghỉ hưu")]
             lx = 3,
             /// <summary>
-            /// 普通医保
+            /// Bảo hiểm y tế thông thường
             /// </summary>
-            [Description("普通医保")]
+            [Description("Bảo hiểm y tế thông thường")]
             pt = 11,
         }
         /// <summary>
-        /// 远程诊疗状态
+        /// Trạng thái khám từ xa
         /// </summary>
         public enum EmunRemoteTreatedStu
         {
-            [Description("待确认")]
+            [Description("Chờ xác nhận")]
             dqr = 1,
-            [Description("就诊中")]
+            [Description("Đang khám")]
             jzz = 2,
-            [Description("就诊结束")]
+            [Description("Kết thúc khám")]
             yjs = 3,
-            [Description("已驳回")]
+            [Description("Đã bác bỏ")]
             yth = 4,
-            [Description("已撤销")]
+            [Description("Đã thu hồi")]
             ycx = 5,
-            [Description("已发药")]
+            [Description("Đã phát thuốc")]
             yfy = 6,
         }
 
-        #region 药品相关字典
+        #region Từ điển liên quan đến thuốc
         /// <summary>
-        /// 中药用法
+        /// Cách dùng thuốc đông y
         /// </summary>
         public enum EnumTCMUsage
         {
-            [Description("先煎")]
+            [Description("Sắc trước")]
             XJ = 20001,
-            [Description("后下")]
+            [Description("Cho vào sau")]
             HX = 20002,
-            [Description("包煎")]
+            [Description("Sắc trong túi")]
             BJ = 20003,
-            [Description("烊化")]
+            [Description("Hòa tan")]
             YH = 20004,
-            [Description("打碎")]
+            [Description("Đập vụn")]
             DS = 20005,
-            [Description("足浴")]
+            [Description("Ngâm chân")]
             ZY = 20006,
-            [Description("另包")]
+            [Description("Gói riêng")]
             LB = 20007,
-            [Description("水煎服")]
+            [Description("Sắc uống")]
             SJF = 20011,            
-            [Description("外敷")]
+            [Description("Đắp ngoài")]
             WF = 20603,
-            [Description("煎药机煎药")]
+            [Description("Sắc thuốc bằng máy sắc thuốc")]
             JYJ = 20604,
-            [Description("冲服")]
+            [Description("Uống pha")]
             XWZS = 20620,
-            [Description("冲服")]
+            [Description("Uống pha")]
             CF = 20700,
-            [Description("泡服")]
+            [Description("Hãm uống")]
             PF = 20701,
         }
        
         #endregion
 
 
-        #region 住院
+        #region Nằm viện
         /// <summary>
-        /// 在院标志
+        /// Dấu hiệu đang ở viện
         /// </summary>
         public enum EnumZYBZ
         {
             /// <summary>
-            /// 入院登记
+            /// Đăng ký nhập viện
             /// </summary>
             Xry = 0,
             /// <summary>
-            /// 病区中
+            /// Đang ở khu bệnh
             /// </summary>
             Bqz = 1,
             /// <summary>
-            /// 病区出院（出病区）（待结账）
+            /// Xuất khỏi khu bệnh (rời khỏi khu bệnh) (chờ quyết toán)
             /// </summary>
             Djz = 2,
             /// <summary>
-            /// 已出院（出院结算）
+            /// Đã xuất viện (quyết toán xuất viện)
             /// </summary>
             Ycy = 3,
             /// <summary>
-            /// 转区
+            /// Chuyển khu
             /// </summary>
             Zq = 7,
 
             /// <summary>
-            /// 作废记录/取消入院
+            /// Hủy bản ghi/Hủy nhập viện
             /// </summary>
             Wry = 9,
         }
@@ -166,68 +166,68 @@ namespace NewtouchHIS.Lib.Common
 
         #region CIS
         /// <summary>
-        /// 处方类型
+        /// Loại đơn thuốc
         /// </summary>
         public enum EnumCflx
         {
             /// <summary>
-            /// 西药处方
+            /// Đơn thuốc tây
             /// </summary>
-            [Description("西药处方")]
+            [Description("Đơn thuốc tây")]
             WMPres = 1,
             /// <summary>
-            /// 中药处方
+            /// Đơn thuốc đông y
             /// </summary>
-            [Description("中药处方")]
+            [Description("Đơn thuốc đông y")]
             TCMPres = 2,
             /// <summary>
-            /// 康复处方
+            /// Đơn phục hồi chức năng
             /// </summary>
-            [Description("康复处方")]
+            [Description("Đơn phục hồi chức năng")]
             RehabPres = 3,
             /// <summary>
-            /// 检验处方
+            /// Đơn xét nghiệm
             /// </summary>
-            [Description("检验处方")]
+            [Description("Đơn xét nghiệm")]
             InspectionPres = 4,
             /// <summary>
-            /// 检查处方
+            /// Đơn kiểm tra
             /// </summary>
-            [Description("检查处方")]
+            [Description("Đơn kiểm tra")]
             ExaminationPres = 5,
             /// <summary>
-            /// 常规项目处方
+            /// Đơn hạng mục thông thường
             /// </summary>
-            [Description("常规项目处方")]
+            [Description("Đơn hạng mục thông thường")]
             RegularItemPres = 6,
 
-            [Description("电子处方")]
+            [Description("Đơn thuốc điện tử")]
             Dzcf = 7,
 
         }
 
         public enum EnumYpyf
         {
-            [Description("西医")]
+            [Description("Tây y")]
             WM = 1,
-            [Description("中医")]
+            [Description("Đông y")]
             TCM = 2
         }
 
         /// <summary>
-        /// 诊断类型
+        /// Loại chẩn đoán
         /// </summary>
         public enum EnumZdlx
         {
             /// <summary>
-            /// 主诊断
+            /// Chẩn đoán chính
             /// </summary>
-            [Description("主诊断")]
+            [Description("Chẩn đoán chính")]
             Main = 1,
             /// <summary>
-            /// 副诊断
+            /// Chẩn đoán phụ
             /// </summary>
-            [Description("副诊断")]
+            [Description("Chẩn đoán phụ")]
             Deputy = 2
         }
         #endregion

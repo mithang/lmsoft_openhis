@@ -3,28 +3,28 @@
     public class ScheduleRequest
     {
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string? ks { get; set; }
         public string? ysgh { get; set; }
         /// <summary>
-        /// 开始日期(yyyy-MM-dd)
+        /// Ngày bắt đầu(yyyy-MM-dd)
         /// </summary>
         public DateTime? ksrq { get; set; }
         /// <summary>
-        /// 结束日期(yyyy-MM-dd)
+        /// Ngày kết thúc(yyyy-MM-dd)
         /// </summary>
         public DateTime? jsrq { get; set; }
         /// <summary>
-        /// mz_ghpb_schedule 预约既定日程Id
+        /// mz_ghpb_schedule Lịch trình đã định của đặt hẹnId
         /// </summary>
         public string? ScheduId { get; set; }
         /// <summary>
-        /// 是否网络可约 0 不可约
+        /// Mạng có đặt được hay không 0 Không đặt được
         /// </summary>
         public string? IsBook { get; set; }
         /// <summary>
-        /// 门诊类型 普通专家副高等 mjzbz
+        /// Loại ngoại trú Thông thường, chuyên gia, phó cao cấp v.v. mjzbz
         /// </summary>
         public string? RegType { get; set; }
     }

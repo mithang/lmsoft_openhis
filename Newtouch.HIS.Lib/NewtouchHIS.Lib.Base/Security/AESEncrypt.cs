@@ -29,7 +29,7 @@ namespace NewtouchHIS.Lib.Base.Security
                 des.Key = truncated;
             }
 
-            return Encoding.UTF8.GetString(decryptBytes).Replace("\0", ""); // 将字串后尾的'\0'去掉 }
+            return Encoding.UTF8.GetString(decryptBytes).Replace("\0", ""); // Đuôi sau của chuỗi'\0'loại bỏ }
         }
 
 

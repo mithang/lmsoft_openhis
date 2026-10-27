@@ -69,7 +69,7 @@
         gridTYCF();
         gridTYCFDetail();
 
-        // 药品追溯码扫码
+        // Quét mã truy xuất thuốc
         $gridCfDetail.on('keydown', '.scan-input', function (event) {
             if (event.key === 'Enter') {
                 event.preventDefault();
@@ -77,7 +77,7 @@
                 const inputField = $(this);
                 const row = inputField.closest('tr');
 
-                // 是否拆零
+                // Có chia lẻ không
                 const sfcl = parseInt(row.find('.sfcl').val(), 10);
                 var maxEntries = 1;
                 if (sfcl === 1) {
@@ -106,14 +106,14 @@
         return uniqueArr.join(',')+','
     }
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
 //         if (event.keyCode === 13) {
 //             $("#btn_search").trigger("click");
 //         }
     });
 
-    //获取数据
+    //Lấy dữ liệu
     function gridTYCF() {
         $gridCfList.dataGrid({
             height: $(window).height() - 180,
@@ -169,11 +169,11 @@
         $gridCfDetail.dataGrid({
             height: $(window).height() - 230,
             caption: "Chi tiết đơn thuốc",
-            editurl: "clientArray", //行编辑不向服务器提交数据
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
                 { label: 'Tên thuốc', name: 'ypmc', width: 110, align: 'left' },
                 { label: 'Có thể hoàn', name: 'slstr', width: 40, align: 'left' },
-                @*{ label: '数量', name: 'sl', width: 50, align: 'center', editable:@partReturnSwitch,editwidth:'85%' },*@
+                @*{ label: 'Số lượng', name: 'sl', width: 50, align: 'center', editable:@partReturnSwitch,editwidth:'85%' },*@
                 { label: 'Số lượng', name: 'sl', width: 50, align: 'center', classes: 'quantity' },
                 { label: 'Đơn vị', name: 'dw', width: 50, align: "left" },
                 {
@@ -224,9 +224,9 @@
         });
     }
 
-    //启用行内编辑框
+    //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        var rowIds = $gridCfDetail.jqGrid('getDataIDs'); //Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = $gridCfDetail.jqGrid('getDataIDs'); //GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
             $gridCfDetail.jqGrid('editRow',
                 rowIds[i],
@@ -240,16 +240,16 @@
         }
     }
 
-    //退药
+    //Trả thuốc
     function newtouch_event_f7() {
         var id = $gridCfList.jqGrid("getGridParam", "selrow");
         if (!id) {
             $.modalAlert("Vui lòng chọn đơn thuốc cần trả thuốc！", 'warning');
             return false;
         }
-        var rowIds = $gridCfDetail.jqGrid('getDataIDs'); //获取所有行Id，遍历使编辑框处于保存状态
+        var rowIds = $gridCfDetail.jqGrid('getDataIDs'); //Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
         var tymx = [];
-        //判断退数量
+        //Kiểm tra số lượng trả
         for (var i = 0; i < rowIds.length; i++) {
             $gridCfDetail.saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
             var rowData = $gridCfDetail.jqGrid('getRowData', rowIds[i]);
@@ -270,12 +270,12 @@
                 return false;
             }
             const rowid = rowIds[i]
-            //追溯码
+            //Mã truy xuất
             var zsm = $("#sel_zsm_" + rowid).val()
-            //是否拆零
+            //Có chia lẻ không
             var sfclValue = Number($("#sel_sfcl_" + rowid).val());
 
-            // 验证追溯码数量。 是否拆零选是，只需要扫一个，否的话需要扫对应入库数量的码
+            // Kiểm tra số lượng mã truy xuất。 Có chia lẻ thì chọn Có，Chỉ cần quét một cái，Nếu không thì cần quét mã tương ứng với số lượng nhập kho
             const zsmLength = $("#sel_zsm_" + rowid).val().split(',').filter(entry => entry.trim() !== '').length
             var maxZsmLength = 1
             if (sfclValue === 1) {

@@ -157,7 +157,7 @@
 
 <script>
     var currentobj = [];
-    var flag = 0; //初次加载患者树标志
+    var flag = 0; //Cờ tải lần đầu cây bệnh nhân
     var currentPatId = "";
     var curPatinfo = [];
     var zyh = "";
@@ -167,7 +167,7 @@
     var justshow = 0;
 
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {//Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridChiều rộng của
             window.initLayout("div_Patlist");
             window.initLayout("dv_Medlist");
         });
@@ -219,7 +219,7 @@
 
     })
 
-    //患者病历列表树
+    //Cây danh sách bệnh án bệnh nhân
     function gridList(currentobj) {
         var zyh = "";
         if (currentobj != null) {
@@ -282,7 +282,7 @@
                     var rowData = $("#gridList").jqGrid('getRowData', rowid);
                     var patData = $("#gridListPat").jqGrid('getGridParam', 'selrow');
                     if (patData != null && patData != "undefied") {
-                        if (rowData.parent == null || rowData.parent == "") {//禁用条件
+                        if (rowData.parent == null || rowData.parent == "") {//Điều kiện vô hiệu hóa
                             btn_addnew();//btn_add();
                         }
                     }
@@ -298,11 +298,11 @@
                     var patselRowId = $("#gridListPat").jqGrid('getGridParam', 'selrow');
                     var patData = $("#gridListPat").jqGrid('getRowData', patselRowId);
                     if (patData.RecordStu == '@((int)EnumRecordStu.wtj)' || patData.RecordStu == '@((int)EnumRecordStu.th)') {
-                        //2020-3-16 chl 病案首页分离
+                        //2020-3-16 chl Tách trang đầu bệnh án
                         if ('@ViewBag.IsEnableEditor' == "true" && rowData.bllx == '@((int)EnumBllx.basy)') {
                             initBasyrightMenu(rowData);
                         }
-                        //病程记录增加合并打印菜单
+                        //Bản ghi diễn biến bệnh thêm menu in hợp nhất
                         else if ('@ViewBag.IsEnableEditor' == "true" && (rowData.bllx == '2019' || rowData.bllx == '2')) {
                             initBcjlrightMenu(rowData);
                         }
@@ -326,7 +326,7 @@
         });
     }
 
-    //回车触发查询事件
+    //Nhấn Enter để tìm kiếm
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -368,14 +368,14 @@
             postData: { zyh: $('#inpzyh').val() },
         }).trigger('reloadGrid');
     }
-    //右键菜单
+    //Menu chuột phải
     function initrightMenu(rowData) {
         var p = '.gridPanel tr[id=' + rowData.Id + ']';
         var menu = new BootstrapMenu(p, {
-            //fetchElementData获取元数据
+            //fetchElementDataLấy siêu dữ liệu
             fetchElementData: function ($rowElem) {
                 var data = rowData;
-                return data;    //return的目的是给下面的onClick传递参数
+                return data;    //mục đích của return là truyền tham số cho onClick bên dưới
             },
             actions: [{
                 name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
@@ -477,11 +477,11 @@
                 }
                 },
                 //{
-                //    name: '<span class="glyphicon glyphicon-cloud-upload" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 上传医保',
+                //    name: '<span class="glyphicon glyphicon-cloud-upload" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Tải lên bảo hiểm y tế',
                 //    width: 300,
                 //    onClick: function (obj) {
                 //        setTimeout(function () {
-                //            $.modalMsg("正在请求上传, 请稍候...");
+                //            $.modalMsg("Đang yêu cầu tải lên, Vui lòng đợi...");
                 //            if (!!obj.Ybbm && obj.bllx == 5) {
                 //                GetbasyData(obj.zyh, obj.Ybbm);
                 //            }
@@ -495,7 +495,7 @@
                 //                }
                 //            }
                 //            else {
-                //                $.modalAlert("该病历无需上传医保", "warning");
+                //                $.modalAlert("Bệnh án này không cần tải lên bảo hiểm y tế", "warning");
                 //            }
                 //        }, 1000);
                 //    }
@@ -543,14 +543,14 @@
         });
     }
 
-    //右键菜单展示版
+    //Bản hiển thị menu chuột phải
     function initrightMenuJustShow(rowData) {
         var p = '.gridPanel tr[id=' + rowData.Id + ']';
         var menu = new BootstrapMenu(p, {
-            //fetchElementData获取元数据
+            //fetchElementDataLấy siêu dữ liệu
             fetchElementData: function ($rowElem) {
                 var data = rowData;
-                return data;    //return的目的是给下面的onClick传递参数
+                return data;    //mục đích của return là truyền tham số cho onClick bên dưới
             },
             actions: [{
                 name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
@@ -575,25 +575,25 @@
         });
     }
 
-    //2020-3-16 chl 病案首页分离
+    //2020-3-16 chl Tách trang đầu bệnh án
     function initBasyrightMenu(rowData) {
         var p = '.gridPanel tr[id=' + rowData.Id + ']';
         var menu = new BootstrapMenu(p, {
-            //fetchElementData获取元数据
+            //fetchElementDataLấy siêu dữ liệu
             fetchElementData: function ($rowElem) {
                 var data = rowData;
-                return data;    //return的目的是给下面的onClick传递参数
+                return data;    //mục đích của return là truyền tham số cho onClick bên dưới
             },
             actions: [{
                 name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
                 width: 300,
                 onClick: function (obj) {
-                    //报表管理器
+                    //Trình quản lý báo cáo
                     //window.open("/MRHomePage/Report/BasyReport?zyh=" + obj.zyh, "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
                     window.open(reportServerHOST + "/Pages/ReportViewer.aspx?%2fNewtouch.EMR.Report%2f%e8%a5%bf%e5%8c%bb%e7%97%85%e6%a1%88%e9%a6%96%e9%a1%b5part1&rs:Command=Render&orgId=" + orgId + "&zyh=" + obj.zyh);
                     window.open(reportServerHOST + "/Pages/ReportViewer.aspx?%2fNewtouch.EMR.Report%2f%e8%a5%bf%e5%8c%bb%e7%97%85%e6%a1%88%e9%a6%96%e9%a1%b5part2&rs:Command=Render&orgId=" + orgId + "&zyh=" + obj.zyh);
 
-                   // top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病案首页", enName: "", url: "/MRHomePage/MRHomePage/Main?keyValue=" + obj.BlId + "&zyh=" + obj.zyh, AppId: "EMR" });//测试
+                   // top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Trang đầu bệnh án", enName: "", url: "/MRHomePage/MRHomePage/Main?keyValue=" + obj.BlId + "&zyh=" + obj.zyh, AppId: "EMR" });//Kiểm tra
                 }
             },{
                 name: '<span class="glyphicon glyphicon-edit" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Sửa bệnh án',
@@ -672,16 +672,16 @@
                     }
                 },
                 //{
-                //    name: '<span class="glyphicon glyphicon-cloud-upload" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 上传医保',
+                //    name: '<span class="glyphicon glyphicon-cloud-upload" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Tải lên bảo hiểm y tế',
                 //    width: 300,
                 //    onClick: function (obj) {
                 //        setTimeout(function () {
-                //            $.modalMsg("正在请求上传, 请稍候...");
+                //            $.modalMsg("Đang yêu cầu tải lên, Vui lòng đợi...");
                 //            if (!!obj.Ybbm) {
                 //                GetbasyData(obj.zyh, obj.Ybbm);
                 //            }
                 //            else {
-                //                $.modalAlert("该病历无需上传医保或缺少医保代码配置", "warning");
+                //                $.modalAlert("Bệnh án này không cần tải lên bảo hiểm y tế hoặc thiếu cấu hình mã bảo hiểm y tế", "warning");
                 //            }
                 //        }, 1000);
                 //    }
@@ -693,10 +693,10 @@
         debugger
         var p = '.gridPanel tr[id=' + rowData.Id + ']';
         var menu = new BootstrapMenu(p, {
-            //fetchElementData获取元数据
+            //fetchElementDataLấy siêu dữ liệu
             fetchElementData: function ($rowElem) {
                 var data = rowData;
-                return data;    //return的目的是给下面的onClick传递参数
+                return data;    //mục đích của return là truyền tham số cho onClick bên dưới
             },
             actions: [{
                 name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
@@ -712,15 +712,15 @@
         });
     }
 
-    //右键菜单(病程记录, 合并打印)
+    //Menu chuột phải(Ghi chép diễn biến bệnh, In gộp)
     function initBcjlrightMenu(rowData) {
         debugger
         var p = '.gridPanel tr[id=' + rowData.Id + ']';
         var menu = new BootstrapMenu(p, {
-            //fetchElementData获取元数据
+            //fetchElementDataLấy siêu dữ liệu
             fetchElementData: function ($rowElem) {
                 var data = rowData;
-                return data;    //return的目的是给下面的onClick传递参数
+                return data;    //mục đích của return là truyền tham số cho onClick bên dưới
             },
             actions: [{
                 name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
@@ -820,11 +820,11 @@
                 }
                 },
                 //{
-                //    name: '<span class="glyphicon glyphicon-cloud-upload" style="color: rgb(28, 179, 173); font-size: 13px;"></span> 上传医保',
+                //    name: '<span class="glyphicon glyphicon-cloud-upload" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Tải lên bảo hiểm y tế',
                 //    width: 300,
                 //    onClick: function (obj) {
                 //        setTimeout(function () {
-                //            $.modalMsg("正在请求上传, 请稍候...");
+                //            $.modalMsg("Đang yêu cầu tải lên, Vui lòng đợi...");
                 //            if (!!obj.Ybbm && obj.bllx == 5) {
                 //                GetbasyData(obj.zyh, obj.Ybbm);
                 //            }
@@ -838,7 +838,7 @@
                 //                }
                 //            }
                 //            else {
-                //                $.modalAlert("该病历无需上传医保", "warning");
+                //                $.modalAlert("Bệnh án này không cần tải lên bảo hiểm y tế", "warning");
                 //            }
                 //        }, 1000);
                 //    }
@@ -881,7 +881,7 @@
                         var menuname = obj.zyh + "-" + "Xem trước gộp diễn biến bệnh" + "<span class='fa fa-times-circle quit' style='display: none;padding-left:2px;' ></span>"
                         //var menuname = obj.zyh + "-" + obj.Name + "<span class='fa fa-times-circle quit' style='display: none;padding-left:2px;' ></span>"
                         top.top.$.Newtouchtab.addTabWithOutMenu({ name: obj.Name == null ? "Thao tác bệnh án" : menuname, enName: "", url: menuurl, AppId: "EMR" });
-                        //top.top.$.Newtouchtab.addTabWithOutMenu({ name: "病历操作", enName: "", url: "/MedicalRecordManage/MedicalRecord/MedicalRecordEdiForAdd?mbbh=" + mbRowId + "&zyh=" + $("#zyh").val() + "&mzh=" + $("#mzh").val(), AppId: "EMR" });
+                        //top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Thao tác bệnh án", enName: "", url: "/MedicalRecordManage/MedicalRecord/MedicalRecordEdiForAdd?mbbh=" + mbRowId + "&zyh=" + $("#zyh").val() + "&mzh=" + $("#mzh").val(), AppId: "EMR" });
 
                     }
                 }
@@ -892,7 +892,7 @@
 
     function init(type) {
         thistype = type;
-        //在院患者不提交病案
+        //Bệnh nhân đang nằm viện không nộp bệnh án
         if (type == 2 && @EnableLinkToMRMS) {
             $("#dv_btn_commit").show();
             $("#dv_btn_return").show();
@@ -917,7 +917,7 @@
     }
 
 
-    //患者列表
+    //Danh sách bệnh nhân
     function GetPatList(currentobj) {
         var zyh = "";
         if (currentobj != null) {
@@ -1022,7 +1022,7 @@
                 }).trigger('reloadGrid');
 
 
-                //出院患者添加可提交按钮 2019-11-15 chl
+                //Bệnh nhân ra viện được thêm nút nộp 2019-11-15 chl
                 if (rowData.zybz == '@((int)EnumZYBZ.Djz)' || rowData.zybz == '@((int)EnumZYBZ.Ycy)') {
                     if (rowData.RecordStu != '@((int)EnumRecordStu.ytj)' && $("#dv_btn_commit").is(":hidden")) {
                         $("#dv_btn_commit").show();
@@ -1043,7 +1043,7 @@
                 $('#divPatientBasicInfo').html("Thông tin bệnh nhân:"
                     + rowData.xm
                     + '&nbsp;/&nbsp;' + $.getGender(rowData.sex)
-                    //+ '&nbsp;/&nbsp;' + window.currentobj.age + "岁"
+                    //+ '&nbsp;/&nbsp;' + window.currentobj.age + " tuổi"
                     //+ '&nbsp;/&nbsp;' + window.currentobj.brxzmc
                     + '&nbsp;/&nbsp;' + rowData.zyh
                     //+ '&nbsp;/&nbsp;' + rowData.RecordStusm
@@ -1077,7 +1077,7 @@
     /****************************************************************************************
      Thao tác bệnh án
      ****************************************************************************************/
-    //新增病历文书
+    //Thêm mới văn bản bệnh án
     function btn_add() {
         var blRowIds = $("#gridList").jqGrid('getGridParam', 'selrow');
         var MRData = $("#gridList").jqGrid('getRowData', blRowIds);
@@ -1155,7 +1155,7 @@
                     return;
                 }
                 if (!!!blData.BlId) {
-                    // $.modalAlert("不可编辑", 'warning');
+                    // $.modalAlert("Không thể chỉnh sửa", 'warning');
                     return;
                 }
 
@@ -1178,7 +1178,7 @@
                 
                     justshow = "true"
 
-            //2020-3-16 chl将病案首页从文档编辑器中分离
+            //2020-3-16 chlTách trang đầu bệnh án khỏi trình soạn thảo tài liệu
             debugger
                 if ('@ViewBag.IsEnableEditor' == "true" && blData.bllx == '@((int)EnumBllx.basy)') {
                     $.ajax({
@@ -1202,17 +1202,17 @@
                 }
                 else {
                     var menuurl = "/MedicalRecordManage/MedicalRecord/PreView?blid=" + blData.BlId + "&bllx=" + blData.bllx + "&zyh=" + blData.zyh + "&mzh=" + blData.mzh + "&justshow=" + justshow;
-                    if(blData.doctype==".html" ){//('@ViewBag.openEditorSwitch' == "ON"){//新版编辑器开关
+                    if(blData.doctype==".html" ){//('@ViewBag.openEditorSwitch' == "ON"){//Công tắc trình soạn thảo phiên bản mới
                         menuurl = "/MedicalRecordManage/MedicalRecord/MedicalRecordEditV2?blid=" + blData.BlId + "&bllx=" + blData.bllx + "&zyh=" + blData.zyh + "&mzh=" + blData.mzh + "&justshow=" + justshow+"&blxtmc_yj="+blData.Name+"&doctype="+blData.doctype;
                     }
                     var menuname = blData.zyh + "-" + blData.Name + "<span class='fa fa-times-circle quit' style='display: none;padding-left:2px;' ></span>"
                     top.top.$.Newtouchtab.addTabWithOutMenu({ name: blData.Name == null ? "Thao tác bệnh án" : menuname, enName: "", url: menuurl , AppId: "EMR" });
 
-                    //top.top.$.Newtouchtab.addTabWithOutMenu({ name: blData.Name == null ? "病历操作" : blData.zyh + "-" +blData.Name, enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + blData.BlId + "&bllx=" + blData.bllx + "&zyh=" + blData.zyh, AppId: "EMR" });
+                    //top.top.$.Newtouchtab.addTabWithOutMenu({ name: blData.Name == null ? "Thao tác bệnh án" : blData.zyh + "-" +blData.Name, enName: "", url: "/MedicalRecordManage/MedicalRecord/PreView?blid=" + blData.BlId + "&bllx=" + blData.bllx + "&zyh=" + blData.zyh, AppId: "EMR" });
                 }
             //}
             //else {
-            //    $.modalAlert("患者病历已提交病案, 不可编辑.", 'warning');
+            //    $.modalAlert("Bệnh án bệnh nhân đã nộp cho phòng hồ sơ, Không thể chỉnh sửa.", 'warning');
             //}
         }
         else {
@@ -1220,7 +1220,7 @@
         }
     }
 
-    //病历提交到病案系统 2019-11-14 chl
+    //Bệnh án gửi đến hệ thống bệnh án 2019-11-14 chl
     function btn_commit(rowid) {
         var patselRowIds = "";
         if (rowid == undefined && rowid == null) {
@@ -1265,7 +1265,7 @@
         }
     }
 
-    //病历退回
+    //Bệnh án bị trả lại
     function btn_return(rowid) {
         var patselRowIds = "";
         if (rowid == undefined && rowid == null) {
@@ -1310,7 +1310,7 @@
         }
     }
 
-    //病历质控
+    //Kiểm soát chất lượng bệnh án
     function btn_mrqc() {
         var patselRowId = $("#gridListPat").jqGrid('getGridParam', 'selrow');
         var patData = $("#gridListPat").jqGrid('getRowData', patselRowId);
@@ -1322,11 +1322,11 @@
                     return;
                 }
                 if (!!!blData.bllx) {
-                    // $.modalAlert("不可编辑", 'warning');
+                    // $.modalAlert("Không thể chỉnh sửa", 'warning');
                     return;
                 }
             console.log("zyh:" + patData.zyh+" bllx:" + blData.bllx);
-                //病历质控
+                //Kiểm soát chất lượng bệnh án
             $.modalOpen({
                 id: "Form",
                 title: "Kiểm soát chất lượng bệnh án",

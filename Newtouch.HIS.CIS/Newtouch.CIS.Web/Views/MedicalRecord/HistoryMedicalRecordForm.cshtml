@@ -5,7 +5,7 @@
 
     var isPrintRehabPres = (ViewBag.ISPrintRehabPres as bool?) ?? false;
     var isPrintRehabTreatment = (ViewBag.ISPrintRehabTreatment as bool?) ?? false;
-    var sfxmztbs = SysConfigReader.String("sfxmztbs");//组套项目是否合并显示
+    var sfxmztbs = SysConfigReader.String("sfxmztbs");//Bộ mẫuMụcCóKhônghợpvàHiển thị
 }
 <style>
     .cfdetailpreview {
@@ -36,7 +36,7 @@ border: 0;">
                     <div id="detailTreeNode" style="height:980px;border-right:solid 1px #ddd;border-bottom:solid 1px #ddd;"></div>
                 </div>
             </div>
-            @*<button id="btncopy" class="btn btn-primary" style="margin: 10% 0 0 32%;">复制</button>*@
+            @*<button id="btncopy" class="btn btn-primary" style="margin: 10% 0 0 32%;">sao chép</button>*@
         </div>
         <div class="historydetail" id="TreeNodeContent" style="margin-left: 20.5%; width: 79.5%;">
             <table class="form supercompact">
@@ -238,11 +238,11 @@ border: 0;">
         </div>
         @* <table id="lsblfrombilling"> *@
         @*     <tr> *@
-        @*         <th hidden>类型</th> *@
-        @*         <th style="width:20%">文件</th> *@
-        @*         <th style="width:35%">路径</th> *@
-        @*         <th style="width:35%">备注</th> *@
-        @*         <th style="width:10%">查看</th> *@
+        @*         <th hidden>Loại</th> *@
+        @*         <th style="width:20%">vănmục</th> *@
+        @*         <th style="width:35%">Đường dẫn</th> *@
+        @*         <th style="width:35%">Ghi chú</th> *@
+        @*         <th style="width:10%">Xem</th> *@
         @*     </tr> *@
         @* </table> *@
     </div>
@@ -291,7 +291,7 @@ border: 0;">
     }
 
     function bindHistoryData(ajaxresp) {
-        //2.先呈现Lịch sử树结构
+        //2.trướchiển thịhiệnLịch sửcâykếtcấu trúc
         $("#detailTreeNode").treeview({
             height: $(window).height(),
             slimscroll: false,
@@ -304,7 +304,7 @@ border: 0;">
             }
         });
         debugger;
-        //3.填充文本
+        //3.điềnvăn bản
         $('#nc_zs').val(ajaxresp.zs);
         $("#nc_fbsj").val($.getDate({ date: ajaxresp.fbsj,ute:true }));
         $('#nc_xbs').val(ajaxresp.xbs);
@@ -316,18 +316,18 @@ border: 0;">
         $('#nc_clfa').val(ajaxresp.clfa);
         $('#nc_fzjc').val(ajaxresp.fzjc);
         $("input[name='cfzbzRadios'][value='" + ajaxresp.cfzbz + "']").attr("checked", true);
-        //4.填充诊断
+        //4.điềnChẩn đoán
         if (ajaxresp.xyzdList) {
             for (var i = 0; i < ajaxresp.xyzdList.length; i++) {
                 if(ajaxresp.xyzdList.length>1 &&  i< ajaxresp.xyzdList.length-1)
                 {
-                    //先append
+                    //trướcappend
                     var number = $('#nc_tablexyzd .nc_zdText').length + 1;
                     var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk'+ number +'" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd'+ number +'" class="form-control activeValue focusInput nc_zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td></tr>');
                     $newTr.appendTo($('#nc_tablexyzd'));
                 }
 
-                //再赋值
+                //lạiGán giá trị
                 for (var j = 0; j < $('#nc_tablexyzd .nc_zdText').length; j++) {
                     if(i==j){
                         $($('#nc_tablexyzd .nc_zdText')[j]).val(ajaxresp.xyzdList[i].zdmc);
@@ -346,12 +346,12 @@ border: 0;">
             for (var i = 0; i < ajaxresp.zyzdList.length; i++) {
                 if(ajaxresp.zyzdList.length>1 &&  i< ajaxresp.zyzdList.length-1)
                 {
-                    //先append
+                    //trướcappend
                     var number = $('#nc_tablezyzd .nc_zdText').length + 1;
                     var $newTr = $('<tr><th class="formTitle">Phụ</th><td class="formValue"><input type="checkbox" id="chk'+ number +'" class="chkValue" style="float:left;" /><label style="float:left;margin-top:3px;">Nghi ngờ</label><input type="text" id="zd'+ number +'" class="form-control activeValue focusInput nc_zdText" style="width:70%;" /><i class="fa fa-times" aria-hidden="true" hidden></i></td><th class="formTitle">Triệu chứng</th><td class="formValue"><input type="text" class="form-control activeValue focusInput nc_zhText" /><i class="fa fa-times" aria-hidden="true" hidden></i></td></tr>');
                     $newTr.appendTo($('#nc_tablezyzd'));
                 }
-                //再赋值
+                //lạiGán giá trị
                 for (var j = 0; j < $('#nc_tablezyzd .nc_zdText').length; j++) {
                     if(i==j){
                         $($('#nc_tablezyzd .nc_zdText')[j]).val(ajaxresp.zyzdList[i].zdmc);
@@ -364,13 +364,13 @@ border: 0;">
                 }
             }
         }
-        //5.填充处方
+        //5.điềnĐơn thuốc
         if (ex2 == 'medicalRecord' || ex2 =='mrtemplate') {
             $.each(ajaxresp.cfBoList, function () {
                 if (this.presDetailList) {
-                    //这是一个处方
+                    //nàyCómộtĐơn thuốc
                     var cflx = this.presEntity.cflx == @Html.Raw(((int)EnumCflx.RehabPres).ToString()) ? "kfcf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.RegularItemPres).ToString()) ? "cgxmcf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.WMPres).ToString()) ? "xycf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.TCMPres).ToString()) ? "zycf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.InspectionPres).ToString()) ? "jycf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.ExaminationPres).ToString()) ? "jccf" : "0";
-                    var newCfh = GetNewPresNo();    //这里有新处方号，后面就可以直接用了
+                    var newCfh = GetNewPresNo();    //đâycóĐơn thuốc mớisố，saumặtthìcó thểlấytrực tiếpdùngđã
                     //var newCfh = this.cfh;
                     //cfmxList
                     if (cflx == "kfcf") {
@@ -573,7 +573,7 @@ border: 0;">
         }
     }
 
-    //获取新处方号
+    //LấyĐơn thuốc mớisố
     function GetNewPresNo() {
         var newPresNo;
         $.najax({
@@ -595,7 +595,7 @@ border: 0;">
         var $newtableZymx;
         var $newtableJymx;
         var $newtableJcmx;
-        if(typeFlag == "historynodeContent"){   //结束就诊的病历内容
+        if(typeFlag == "historynodeContent"){   //Kết thúcKhám bệnhcủaHồ sơnội dung
             newdataArray = window.historydataArray;
             $newtableKfmx = $('#tableNC_KfMx');
             $newtableCgxmmx = $('#tableNC_CgxmMx');
@@ -605,27 +605,27 @@ border: 0;">
             $newtableJcmx = $('#tableNC_JcMx');
         }
         if (newdataArray && Object.keys(newdataArray)) {
-            //1.遍历所有数据
+            //1.duyệttất cảDữ liệu
             $.each(Object.keys(newdataArray), function () {    //Object.keys(newdataArray):["kfcf"]
                 var itemsKey = String(this);      //String(Object.keys(newdataArray):["kfcf"]) : kfcf
-                //2.根据每个索引找到其对应的Value（value是一个数组，数组里是多个对象）
-                var itemsMxArr = newdataArray[String(this)];    //itemsMxArr 取出key为kfcf的所有明细
-                // 3.1.1找到key是否为康复处方
+                //2.Theomỗicáitìmdẫntìmđếncủa nótương ứngcủaValue（valueCómộtsốnhóm，sốnhómtrongCónhiềucáiđối tượng）
+                var itemsMxArr = newdataArray[String(this)];    //itemsMxArr lấyrakeylàkfcfcủatất cảchi tiết
+                // 3.1.1tìmđếnkeyCóKhônglàPhục hồi chức năngĐơn thuốc
                 if (itemsKey == "kfcf") {
-                    $newtableKfmx.html('');   //先清空html
+                    $newtableKfmx.html('');   //Xóa trắng trướchtml
                     var typeClassificationArr = new Array();
                     for (var i = 0; i < itemsMxArr.length; i++) {
                         var cfh = itemsMxArr[i].cfh;
-                        //3.3 判断分类数组是否存在该处方号
+                        //3.3 kiểm traPhân loạisốnhómCóKhôngtồn tạiởSố đơn thuốc
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 若存在，则push该处方号下面的处方明细
+                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
                         else {
-                            //3.3.2 若不存在，则push
+                            //3.3.2 nếukhôngtồn tạiở，thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                 ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -637,7 +637,7 @@ border: 0;">
                             });
                         }
                     }
-                    //遍历处方，呈现之
+                    //duyệtĐơn thuốc，hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
@@ -680,23 +680,23 @@ border: 0;">
                         thisHtml +=  '<td>' + lasttdContent + '</td></tr>'
                         $newtableKfmx.append(thisHtml);
                     }
-                    //对整个类型的处方操作    暂无
+                    //đốichỉnhcáiLoạicủaĐơn thuốcThao tác    chưa có
                 }
                 if (itemsKey == "cgxmcf") {
-                    $newtableCgxmmx.html('');   //先清空html
+                    $newtableCgxmmx.html('');   //Xóa trắng trướchtml
                     var typeClassificationArr = new Array();
                     for (var i = 0; i < itemsMxArr.length; i++) {
                         var cfh = itemsMxArr[i].cfh;
-                        //3.3 判断分类数组是否存在该处方号
+                        //3.3 kiểm traPhân loạisốnhómCóKhôngtồn tạiởSố đơn thuốc
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 若存在，则push该处方号下面的处方明细
+                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
                         else {
-                            //3.3.2 若不存在，则push
+                            //3.3.2 nếukhôngtồn tạiở，thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                 ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -708,7 +708,7 @@ border: 0;">
                             });
                         }
                     }
-                    //遍历处方，呈现之
+                    //duyệtĐơn thuốc，hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
@@ -741,11 +741,11 @@ border: 0;">
                         thisHtml +=  '<td>' + lasttdContent + '</td></tr>'
                         $newtableCgxmmx.append(thisHtml);
                     }
-                    //对整个类型的处方操作    暂无
+                    //đốichỉnhcáiLoạicủaĐơn thuốcThao tác    chưa có
                 }
-                // 3.1.2找到key是否为西药处方
+                // 3.1.2tìmđếnkeyCóKhônglàThuốc TâyĐơn thuốc
                 if (itemsKey == "xycf") {
-                    $newtableXymx.html('');   //先清空html
+                    $newtableXymx.html('');   //Xóa trắng trướchtml
                     var typeClassificationArr = new Array();
                     for (var i = 0; i < itemsMxArr.length; i++) {
                         var Iscontainwh = false;
@@ -760,7 +760,7 @@ border: 0;">
                             }
                         }
 
-                        //3.3 判断分类数组是否存在该处方号
+                        //3.3 kiểm traPhân loạisốnhómCóKhôngtồn tạiởSố đơn thuốc
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             if (v && v.cfh == cfh && !v.Iscontainwh && Iscontainwh) {
                                 v.Iscontainwh = Iscontainwh;
@@ -771,12 +771,12 @@ border: 0;">
 
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 若存在，则push该处方号下面的处方明细
+                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
                         else {
-                            //3.3.2 若不存在，则push
+                            //3.3.2 nếukhôngtồn tạiở，thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                   ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -790,7 +790,7 @@ border: 0;">
                             });
                         }
                     }
-                    //遍历处方，呈现之
+                    //duyệtĐơn thuốc，hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
@@ -832,11 +832,11 @@ border: 0;">
                         thisHtml +=  '<td>' + lasttdContent + '</td></tr>'
                         $newtableXymx.append(thisHtml);
                     }
-                    //对整个类型的处方操作    暂无
+                    //đốichỉnhcáiLoạicủaĐơn thuốcThao tác    chưa có
                 }
-                // 3.1.3找到key是否为中药处方
+                // 3.1.3tìmđếnkeyCóKhônglàThuốc Đông yĐơn thuốc
                 if (itemsKey == "zycf") {
-                    $newtableZymx.html('');   //先清空html
+                    $newtableZymx.html('');   //Xóa trắng trướchtml
                     var typeClassificationArr = new Array();
                     for (var i = 0; i < itemsMxArr.length; i++) {
 
@@ -852,7 +852,7 @@ border: 0;">
                                 Iscontainzs = true;
                             }
                         }
-                        //3.3 判断分类数组是否存在该处方号
+                        //3.3 kiểm traPhân loạisốnhómCóKhôngtồn tạiởSố đơn thuốc
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             if (v && v.cfh == cfh && !v.Iscontainwh && Iscontainwh) {
                                 v.Iscontainwh = Iscontainwh;
@@ -862,12 +862,12 @@ border: 0;">
                             }
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 若存在，则push该处方号下面的处方明细
+                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
                         else {
-                            //3.3.2 若不存在，则push
+                            //3.3.2 nếukhôngtồn tạiở，thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                    ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -881,7 +881,7 @@ border: 0;">
                             });
                         }
                     }
-                    //遍历处方，呈现之
+                    //duyệtĐơn thuốc，hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
@@ -920,24 +920,24 @@ border: 0;">
                         thisHtml +=  '<td>' + lasttdContent + '</td></tr>'
                         $newtableZymx.append(thisHtml);
                     }
-                    //对整个类型的处方操作    暂无
+                    //đốichỉnhcáiLoạicủaĐơn thuốcThao tác    chưa có
                 }
-                // 3.1.4找到key是否为检验申请单
+                // 3.1.4tìmđếnkeyCóKhônglàXét nghiệmPhiếu
                 if (itemsKey == "jycf") {
-                    $newtableJymx.html('');   //先清空html
+                    $newtableJymx.html('');   //Xóa trắng trướchtml
                     var typeClassificationArr = new Array();
                     for (var i = 0; i < itemsMxArr.length; i++) {
                         var cfh = itemsMxArr[i].cfh;
-                        //3.3 判断分类数组是否存在该处方号
+                        //3.3 kiểm traPhân loạisốnhómCóKhôngtồn tạiởSố đơn thuốc
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 若存在，则push该处方号下面的处方明细
+                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
                         else {
-                            //3.3.2 若不存在，则push
+                            //3.3.2 nếukhôngtồn tạiở，thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                          ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -947,7 +947,7 @@ border: 0;">
                             });
                         }
                     }
-                    //遍历处方，呈现之
+                    //duyệtĐơn thuốc，hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="PhiếuChi tiết" >Req</a>';
@@ -962,7 +962,7 @@ border: 0;">
                                     lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy đơn thuốc" ><i class="fa fa-trash-o"></i></a>';
                                 }
                             }
-                            //lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="打印检验处方" ><i class="fa fa-print"></i></a>';
+                            //lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="InXét nghiệmĐơn thuốc" ><i class="fa fa-print"></i></a>';
 
                             lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="In phiếu xét nghiệm" ><i class="fa fa-print"></i></a>';
 
@@ -977,24 +977,24 @@ border: 0;">
                         thisHtml +=  '<td>' + lasttdContent + '</td></tr>'
                         $newtableJymx.append(thisHtml);
                     }
-                    //对整个类型的处方操作    暂无
+                    //đốichỉnhcáiLoạicủaĐơn thuốcThao tác    chưa có
                 }
-                // 3.1.5找到key是否为检查申请单
+                // 3.1.5tìmđếnkeyCóKhônglàKiểm traPhiếu
                 if (itemsKey == "jccf") {
-                    $newtableJcmx.html('');   //先清空html
+                    $newtableJcmx.html('');   //Xóa trắng trướchtml
                     var typeClassificationArr = new Array();
                     for (var i = 0; i < itemsMxArr.length; i++) {
                         var cfh = itemsMxArr[i].cfh;
-                        //3.3 判断分类数组是否存在该处方号
+                        //3.3 kiểm traPhân loạisốnhómCóKhôngtồn tạiởSố đơn thuốc
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 若存在，则push该处方号下面的处方明细
+                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
                         else {
-                            //3.3.2 若不存在，则push
+                            //3.3.2 nếukhôngtồn tạiở，thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                      ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -1004,7 +1004,7 @@ border: 0;">
                             });
                         }
                     }
-                    //遍历处方，呈现之
+                    //duyệtĐơn thuốc，hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="PhiếuChi tiết" >Req</a>';
@@ -1019,7 +1019,7 @@ border: 0;">
                                     lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconCancelSingleCf" title="Hủy đơn thuốc" ><i class="fa fa-trash-o"></i></a>';
                                 }
                             }
-                            //lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="打印检查处方" ><i class="fa fa-print"></i></a>';
+                            //lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="InKiểm traĐơn thuốc" ><i class="fa fa-print"></i></a>';
                             lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPrintSingleCf" title="In phiếu kiểm tra" ><i class="fa fa-print"></i></a>';
 
                         }
@@ -1033,14 +1033,14 @@ border: 0;">
                         thisHtml +=  '<td>' + lasttdContent + '</td></tr>'
                         $newtableJcmx.append(thisHtml);
                     }
-                    //对整个类型的处方操作    暂无
+                    //đốichỉnhcáiLoạicủaĐơn thuốcThao tác    chưa có
                 }
             })
         }
     }
 
 
-    //复制
+    //sao chép
     function submitForm(callback) {
         debugger
         var treeSeleData = $("#detailTreeNode").getCheckedNodeObjArray();
@@ -1053,7 +1053,7 @@ border: 0;">
     }
 </script>
 <script>
-    //查看处方明细
+    //XemĐơn thuốcchi tiết
     $(document).on('mouseenter', '.iconPreviewSingleCf', function (e) {
         debugger;
         var type = $(this).closest('tr').attr('data-cflx');

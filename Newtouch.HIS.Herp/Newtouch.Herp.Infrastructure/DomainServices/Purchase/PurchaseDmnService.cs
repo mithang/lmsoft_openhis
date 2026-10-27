@@ -130,7 +130,7 @@ left join gys_supplier gys on cgmx.qybm=gys.py and cgmx.OrganizeId=gys.OrganizeI
             }
         }
 
-        #region 采购退货
+        #region Trả hàng mua sắm
 
         public List<ReturnedEntity> QueryPurchaseReturnbyId(string thId, string orgId)
         {
@@ -180,7 +180,7 @@ left join gys_supplier gys on thmx.qybm=gys.py and thmx.OrganizeId=gys.OrganizeI
 
         #endregion
 
-        #region 外部入库 导入采购单
+        #region Nhập kho ngoài Nhập đơn mua sắm
         public List<PurchaseStoreVO> QueryPurchaseStorebyId(string cgId, string orgId, string warehouseId)
         {
             var strSql = new StringBuilder(@"

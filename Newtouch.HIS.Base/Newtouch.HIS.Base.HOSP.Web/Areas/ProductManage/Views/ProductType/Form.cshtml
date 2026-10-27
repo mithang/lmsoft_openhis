@@ -68,14 +68,14 @@
         }
     });
 
-    //初始化
+    //Khởi tạo
     function initControl() {
         $("#parentId").bindSelect({
             url: "/ProductManage/ProductType/GetPatientTreeSelectJson"
         });
     };
 
-    //提交
+    //Gửi
     function AcceptClick(callback) {
         if (!DataValidate()) {
             return;
@@ -91,7 +91,7 @@
         });
     }
 
-    //数据效验
+    //Kiểm tra dữ liệu
     function DataValidate() {
         if ($("#name").val() === "") {
             $.modalAlert("Tên loại là bắt buộc", 'warning');

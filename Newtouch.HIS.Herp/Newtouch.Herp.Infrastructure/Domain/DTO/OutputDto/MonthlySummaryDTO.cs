@@ -1,72 +1,72 @@
 namespace Newtouch.Herp.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 按月汇总
+    /// Tổng hợp theo tháng
     /// </summary>
     public class MonthlySummaryDTO
     {
         /// <summary>
-        /// 项目名称
+        /// Tên hạng mục
         /// </summary>
         public string ItemName { get; set; }
 
         /// <summary>
-        /// 一月
+        /// Tháng 1
         /// </summary>
         public long January { get; set; }
 
         /// <summary>
-        /// 二月
+        /// Tháng 2
         /// </summary>
         public long February { get; set; }
 
         /// <summary>
-        /// 三月
+        /// Tháng 3
         /// </summary>
         public long March { get; set; }
 
         /// <summary>
-        /// 四月
+        /// Tháng 4
         /// </summary>
         public long April { get; set; }
 
         /// <summary>
-        /// 五月
+        /// Tháng 5
         /// </summary>
         public long May { get; set; }
 
         /// <summary>
-        /// 六月
+        /// Tháng 6
         /// </summary>
         public long June { get; set; }
 
         /// <summary>
-        /// 七月
+        /// Tháng 7
         /// </summary>
         public long July { get; set; }
 
         /// <summary>
-        /// 八月
+        /// Tháng 8
         /// </summary>
         public long August { get; set; }
 
         /// <summary>
-        /// 九月
+        /// Tháng 9
         /// </summary>
         public long September { get; set; }
 
         /// <summary>
-        /// 十月
+        /// Tháng 10
         /// </summary>
         public long October { get; set; }
 
         /// <summary>
-        /// 十一月
+        /// Tháng 11
         /// </summary>
         public long November { get; set; }
 
         /// <summary>
-        /// 十二月
+        /// Tháng 12
         /// </summary>
         public long December { get; set; }
     }

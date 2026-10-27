@@ -5,7 +5,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
-    /// 系统错误 友好体验
+    /// Hệ thốngLỗi 友tốtthểnghiệm
     /// </summary>
     public class ErrorController : Controller
     {

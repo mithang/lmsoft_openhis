@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("Mã cửa sổ không được trùng lặp!");
                 }
 
-                SysPharmacyWindowEntity oldEntity = null;   //变更前Entity
+                SysPharmacyWindowEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

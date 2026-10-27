@@ -56,7 +56,7 @@
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
             initLayout("gridPanel");
         });
@@ -78,14 +78,14 @@
             postData: { zxdlb: $("#zxdlb").val(), xmbm: xmbm, xmmc: $("#xmmc").val(), ck_kc: ck_kc},
             url: "/MedicalRecord/GetBaseMedicinetList",
             height: $(window).height() - 130,
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            shrinkToFit: true,   //true:theo tỷ lệVDkhởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
             autowidth: true,
             colModel: [
                 { label: "MụcMã", name: "ypCode", width: 70, align: 'left' },
                 { label: 'Tên mục', name: 'ypmc', width: 180, align: 'left' },
                 { label: 'Chi phíLoại', name: 'yplb', width: 50, align: 'left' },
                 { label: 'Tồn khoSố lượng', name: 'klsl', width: 70, align: 'left' },
-                //{ label: '药品属性', name: 'ypxzmc', width: 50, align: 'left' },
+                //{ label: 'Thuộc tính thuốc', name: 'ypxzmc', width: 50, align: 'left' },
                 { label: 'Quy cách', name: 'ypgg', width: 100, align: 'left' },
                 { label: 'Giá bán lẻ', name: 'lsj', width: 50, align: 'left' },
                 { label: 'Giá bán sỉ', name: 'pfj', width: 50, align: 'left' },

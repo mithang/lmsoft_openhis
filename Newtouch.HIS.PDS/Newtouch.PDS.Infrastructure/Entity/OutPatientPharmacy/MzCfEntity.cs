@@ -6,14 +6,14 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊处方
+    /// Đơn ngoại trú
     /// </summary>
     [Table("mz_cf")]
     [SugarTable("mz_cf")]
     public class MzCfEntity : IEntity<MzCfEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// Khóa chínhID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
@@ -21,116 +21,116 @@ namespace Newtouch.HIS.Domain.Entity
         public long Id { get; set; }
 
         /// <summary>
-        /// 处方内码
+        /// Mã nội bộ đơn thuốc
         /// </summary>
         public long cfnm { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 结算内码
+        /// Mã nội bộ thanh toán
         /// </summary>
         public long jsnm { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string CardNo { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string xb { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string Fph { get; set; }
 
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public int? nl { get; set; }
 
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// 医生
+        /// Bác sĩ
         /// </summary>
         public string ysmc { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 领药药房
+        /// Nhà thuốc nhận thuốc
         /// </summary>
         public string lyyf { get; set; }
 
         /// <summary>
-        /// 收费时间
+        /// Thời gian thu phí
         /// </summary>
         public DateTime? sfsj { get; set; }
 
         /// <summary>
-        /// 0：未排；1：已排；2：已发；3：已退
+        /// 0：Chưa xếp；1：Đã xếp；2：Đã phát；3：Đã trả
         /// </summary>
         public string fybz { get; set; }
 
         /// <summary>
-        /// 组织机构Id
+        /// Tổ chứcId
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 处方金额
+        /// Số tiền đơn thuốc
         /// </summary>
         public decimal je { get; set; }
 
         /// <summary>
-        /// 0：无效 1：有效
+        /// 0：Không hiệu lực 1：Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建人员
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建日期
+        /// Ngày tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改人员
+        /// Người sửa đổi
         /// </summary>
         public string LastModiFierCode { get; set; }
 
         /// <summary>
-        /// 修改日期
+        /// Ngày sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
         /// <summary>
-        /// 门诊号
+        /// Số ngoại trú
         /// </summary>
         public string mzh = "";
 }
 
     /// <summary>
-    /// 门诊处方组号
+    /// Số nhóm đơn ngoại trú
     /// </summary>
     public class GetMzCfZt
     {

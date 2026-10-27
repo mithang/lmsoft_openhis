@@ -9,7 +9,7 @@ using Newtouch.PDS.Requset;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 获取待排药的处方
+    /// Lấy đơn thuốc chờ xếp thuốc
     /// </summary>
     public class QueryCfsApp : ProcessorFun<string>
     {
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 主处理
+        /// Xử lý chính
         /// </summary>
         /// <returns></returns>
         protected override void Action(ActResult actResult)
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Application.Implementation
             else
             {
                 actResult.IsSucceed = false;
-                actResult.ResultMsg = "未能获取到未排班的处方，请同步处方！";
+                actResult.ResultMsg = "Không lấy được đơn thuốc chưa xếp lịch，Vui lòng đồng bộ đơn thuốc！";
             }
         }
     }

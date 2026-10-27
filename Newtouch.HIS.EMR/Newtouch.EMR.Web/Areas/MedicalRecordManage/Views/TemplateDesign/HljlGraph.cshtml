@@ -113,7 +113,7 @@
             $(".dv-body").width($(window).width());
         });
         window.hljlView = true;
-        document.onkeydown = hotkey; //当onkeydown 事件发生时调用hotkey函数
+        document.onkeydown = hotkey; //Khionkeydown khi sự kiện xảy ra thì gọihotkeyhàm
         HljlCtrlQx(blId,mbbh);
         pageInit();        
         $("#dv_tj").hide();
@@ -244,7 +244,7 @@
 
     (function ($) {
         $.jgrid && $.jgrid.extend({
-            // 表格编辑完, 数据保存完后, 编辑状态还在, 调用该方法清除该状态.
+            // Bảng đã chỉnh sửa xong, Sau khi dữ liệu đã lưu xong, trạng thái chỉnh sửa vẫn còn, gọi phương thức này để xóa trạng thái đó.
             acceptChangedCells: function () {
                 this.each(function () {
                     var $t = this;
@@ -338,7 +338,7 @@
 
         $("#gridList").jqGrid("saveCell", lastiRow, lastiCol);
 
-        //初始化一个数组arrayData容器, 用来存放rowData
+        //Khởi tạo một mảngarrayDatavùng chứa, dùng để chứarowData
         var arrayData = new Array();
         if (!!rowid) {
             var row = $("#gridList").getRowData(rowid);
@@ -390,7 +390,7 @@
         $("#Infodiv").show();
         $("#a_edit").hide();
 
-        //第一次点击编辑时添加一行
+        //Khi nhấn chỉnh sửa lần đầu thì thêm một dòng
         function once() {
             if (flag) {
                 addRowData();
@@ -420,7 +420,7 @@
                         //}
                         //else {
                         //    $("#a_tipshow").show();
-                        //    $("#a_tipshow").html("【工号:"+json.LastModifierCode + "】正在编辑中...");
+                        //    $("#a_tipshow").html("【Mã nhân viên:"+json.LastModifierCode + "】Đang chỉnh sửa...");
                         //}
                         
                     }
@@ -480,7 +480,7 @@
             }
         }
     } 
-    //编辑结束预览模式
+    //Chế độ xem trước khi kết thúc chỉnh sửa
     function editover() {
         window.hljlView = true;
         jQuery("#gridList").setGridParam().hideCol("caozuo").trigger("reloadGrid");

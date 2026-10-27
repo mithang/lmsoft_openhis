@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly ISysPharmacyDepartmentMedicineRepo _sysPharmacyDepartmentMedicineRepo;
 
         /// <summary>
-        /// 根据药房代码获取药库List（药房可向目标药库申领）
+        /// Lấy kho thuốc theo mã nhà thuốcList（Nhà thuốc có thể lĩnh từ kho thuốc đích）
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="yfbmCode"></param>
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 根据药库代码获取药房List（药库可向目标药房发药）
+        /// Lấy nhà thuốc theo mã kho thuốcList（Kho thuốc có thể phát thuốc cho nhà thuốc đích）
         /// </summary>
         /// <param name="ykbmCode"></param>
         /// <returns></returns>
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 根据药房代码获取科室List（药房可向目标科室发药）
+        /// Lấy khoa theo mã nhà thuốcList（Nhà thuốc có thể phát thuốc cho khoa đích）
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <returns></returns>
@@ -55,13 +55,13 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 药品授权药房部门
+        /// Bộ phận nhà thuốc được ủy quyền thuốc
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         public string EmpowermentPharmacyDepartment(EmpowermentPharmacyDepartmentRequestDto req)
         {
-            if (req == null || string.IsNullOrWhiteSpace(req.bmypId)) return "请传入有效的本部门医药品信息；";
+            if (req == null || string.IsNullOrWhiteSpace(req.bmypId)) return "Vui lòng truyền thông tin dược phẩm bộ phận này hiệu lực；";
             var oldData = _sysPharmacyDepartmentMedicineRepo.SelectData(req.Ypdm, req.OrganizeId, req.yfbmCode);
             if (oldData != null && oldData.Count > 0)
             {
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Application.Implementation
                 if (item != null)
                 {
                     var t = _sysPharmacyDepartmentMedicineRepo.UpdateZt(item.bmypId, "1", req.CreatorCode, req.CreateTime);
-                    return t > 0 ? "" : string.Format("修改授权部门药品为【{0}】的药品【{1}】失败；", req.yfbmCode, req.Ypdm);
+                    return t > 0 ? "" : string.Format("Sửa thuốc bộ phận ủy quyền thành【{0}】của thuốc【{1}】Thất bại；", req.yfbmCode, req.Ypdm);
                 }
             }
             var bmypxx = new SysPharmacyDepartmentMedicineEntity
@@ -98,18 +98,18 @@ namespace Newtouch.HIS.Application.Implementation
                 LastModifyTime = req.LastModifyTime
             };
             var rt = _sysPharmacyDepartmentMedicineRepo.Insert(bmypxx);
-            return rt > 0 ? "" : string.Format("新增授权部门药品为【{0}】的药品【{1}】失败；", req.yfbmCode, req.Ypdm);
+            return rt > 0 ? "" : string.Format("Thêm thuốc bộ phận ủy quyền thành【{0}】của thuốc【{1}】Thất bại；", req.yfbmCode, req.Ypdm);
         }
 
         /// <summary>
-        /// 药品授权药房部门 与EmpowermentPharmacyDepartment不同，该方法会先取消该药品所有药房的授权，在重新赋予权限
+        /// Bộ phận nhà thuốc được ủy quyền thuốc vàEmpowermentPharmacyDepartmentKhác nhau，Phương thức này sẽ hủy trước ủy quyền tất cả nhà thuốc của thuốc này，trong việc cấp lại quyền
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>
         public string EmpowermentPharmacyDepartmentAndRemoveOld(EmpowermentPharmacyDepartmentAndRemoveOldRequestDto req)
         {
             var result = new StringBuilder();
-            if (req == null || req.epds == null || req.epds.Count == 0) return "请传入有效的本部门医药品信息；";
+            if (req == null || req.epds == null || req.epds.Count == 0) return "Vui lòng truyền thông tin dược phẩm bộ phận này hiệu lực；";
             req.epds.Select(p => p.Ypdm).Distinct().ToList().ForEach(o =>
             {
                 _sysPharmacyDepartmentMedicineRepo.DeleteItem(o, req.epds[0].OrganizeId);

@@ -334,19 +334,19 @@
 
          function FileNew() {
             var myWriter = document.getElementById("myWriter");
-            if (myWriter != null) {//新建
+            if (myWriter != null) {//Tạo mới
                 myWriter.ExecuteCommand("FileNew", true, null);
             }
     }
     function FileOpen() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//打开
+        if (myWriter != null) {//Mở
             myWriter.ExecuteCommand("FileOpen", true, null);
         }
     }
     function FileSave() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//保存
+        if (myWriter != null) {//Lưu
 
             myWriter.ExecuteCommand("FileSave", true, null)
             //myWriter.ExecuteCommand("FileSave", true, null);
@@ -356,111 +356,111 @@
     }
     function Copy() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//复制
+        if (myWriter != null) {//Sao chép
             myWriter.ExecuteCommand("Copy", true, null);
         }
     }
     function Paste() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//粘贴
+        if (myWriter != null) {//Dán
             myWriter.ExecuteCommand("Paste", true, null);
         }
     }
     function Cut() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//剪切
+        if (myWriter != null) {//Cắt
             myWriter.ExecuteCommand("Cut", true, null);
         }
     }
     function FormatBrush() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//格式刷
+        if (myWriter != null) {//Cọ định dạng
             myWriter.ExecuteCommand("FormatBrush", true, null);
         }
     }
 
     function Delete() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//删除
+        if (myWriter != null) {//Xóa
             myWriter.ExecuteCommand("Delete", false, null);
         }
     }
     function Redo() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//撤销
+        if (myWriter != null) {//Hoàn tác
             myWriter.ExecuteCommand("Redo", false, null);
         }
     }
     function Undo() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//恢复
+        if (myWriter != null) {//Khôi phục
             myWriter.ExecuteCommand("Undo", false, null);
         }
     }
     function Font() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//字体
+        if (myWriter != null) {//Phông chữ
             myWriter.ExecuteCommand("Font", true, null);
         }
     }
     function Bold() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//加粗
+        if (myWriter != null) {//Đậm
             myWriter.ExecuteCommand("Bold", true, null);
         }
     }
     function Italic() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//倾斜
+        if (myWriter != null) {//Nghiêng
             myWriter.ExecuteCommand("Italic", true, null);
         }
     }
     function Underline() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//下划线
+        if (myWriter != null) {//Gạch chân
             myWriter.ExecuteCommand("Underline", true, null);
         }
     }
     function UnderlineStyle() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//下划线样式
+        if (myWriter != null) {//Kiểu gạch chân
             myWriter.ExecuteCommand("UnderlineStyle", true, null);
         }
     }
     function Color() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//颜色
+        if (myWriter != null) {//Màu sắc
             myWriter.ExecuteCommand("Color", true, null);
         }
     }
     function SimplifiedToTraditional() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//简体转繁体
+        if (myWriter != null) {//Giản thể sang Phồn thể
             myWriter.ExecuteCommand("SimplifiedToTraditional", true, null);
         }
     }
     function TraditionalToSimplified() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//繁体转简体
+        if (myWriter != null) {//Phồn thể sang Giản thể
             myWriter.ExecuteCommand("TraditionalToSimplified", true, null);
         }
     }
     function SectionBorderBackgroundFormat() {
 
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//边框和底纹
+        if (myWriter != null) {//Viền và nền
             myWriter.ExecuteCommand("SectionBorderBackgroundFormat", true, null);
         }
     }
     function Paragraph() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//段落
+        if (myWriter != null) {//Đoạn
             myWriter.ExecuteCommand("ParagraphFormat", true, null);
         }
     }
     function TitleLevel() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//标题层次
+        if (myWriter != null) {//Cấp tiêu đề
             myWriter.ExecuteCommand("TitleLevel", true, null);
         }
     }
@@ -468,112 +468,112 @@
 
     function InsertInputField() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//插入文本输入域
+        if (myWriter != null) {//Chèn trường nhập văn bản
             myWriter.ExecuteCommand("InsertInputField", true, null);
         }
     }
     function InsertRadioBox() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//插入单选框
+        if (myWriter != null) {//Chèn hộp chọn đơn
             myWriter.ExecuteCommand("InsertRadioBox", true, null);
         }
     }
     function InsertCheckBox() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//插入复选框
+        if (myWriter != null) {//Chèn hộp kiểm
             myWriter.ExecuteCommand("InsertCheckBox", true, null);
         }
     }
     function InsertCheckBoxes() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//插入单选复选分组
+        if (myWriter != null) {//Chèn nhóm chọn đơn/kiểm
             myWriter.ExecuteCommand("InsertCheckBoxes", true, null);
         }
     }
     function InsertInsertImage() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//插入图片
+        if (myWriter != null) {//Chèn ảnh
             myWriter.ExecuteCommand("InsertImage", true, null);
         }
     }
     function InsertDateTimeString() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//插入日期
+        if (myWriter != null) {//Chèn ngày
             myWriter.ExecuteCommand("InsertDateTimeString", true, null);
         }
     }
     function InsertDateTimeField() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//插入日期输入域
+        if (myWriter != null) {//Chèn trường nhập ngày
             myWriter.ExecuteCommand("InsertDateTimeField", true, null);
         }
     }
     function InsertBarcode() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//插入二维码
+        if (myWriter != null) {//Chèn mã QR
             myWriter.ExecuteCommand("InsertBarcode", true, null);
         }
     }
     function InsertTDBarcode() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//插入条形码
+        if (myWriter != null) {//Chèn mã vạch
             myWriter.ExecuteCommand("InsertTDBarcode", true, null);
         }
     }
     function InsertMedicalExpression() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//插入医学表达式
+        if (myWriter != null) {//Chèn biểu thức y học
             myWriter.ExecuteCommand("InsertMedicalExpression", true, null);
         }
     }
     function Table_InsertTable() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//插入表格
+        if (myWriter != null) {//Chèn bảng
             myWriter.ExecuteCommand("Table_InsertTable", true, null);
         }
     }
     function TableProperties() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//表格属性
+        if (myWriter != null) {//Thuộc tính bảng
             myWriter.ExecuteCommand("TableProperties", true, null);
         }
     }
     function TableRowProperties() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//表格行属性
+        if (myWriter != null) {//Thuộc tính hàng bảng
             myWriter.ExecuteCommand("TableRowProperties", true, null);
         }
     }
     function InsertComment() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//插入批注
+        if (myWriter != null) {//Chèn chú thích
             myWriter.ExecuteCommand("InsertComment", true, null);
         }
     }
     function FormViewMode() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//表单视图
+        if (myWriter != null) {//Chế độ xem biểu mẫu
             myWriter.ExecuteCommand("FormViewMode", true, null);
         }
     }
 
     function ReadViewMode() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//阅读视图
+        if (myWriter != null) {//Chế độ xem đọc
             myWriter.ExecuteCommand("ReadViewMode", true, null);
         }
     }
 
     function ClearAllUserTrace() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//清除全部痕迹
+        if (myWriter != null) {//Xóa toàn bộ dấu vết
             myWriter.ExecuteCommand("ClearAllUserTrace", true, null);
         }
     }
 
     function RuleVisible() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//是否显示标尺
+        if (myWriter != null) {//Có hiển thị thước không
             myWriter.ExecuteCommand("RuleVisible", true, null);
         }
     }
@@ -581,21 +581,21 @@
 
     function SearchReplace() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//查找和替换
+        if (myWriter != null) {//Tìm và thay thế
             myWriter.ExecuteCommand("SearchReplace", true, null);
         }
     }
 
     function WordCount() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//字数统计
+        if (myWriter != null) {//Đếm số từ
             myWriter.ExecuteCommand("WordCount", true, null);
         }
     }
 
     function FontName() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//字体名称
+        if (myWriter != null) {//Tên phông chữ
             myWriter.ExecuteCommand("FontName", true, null);
         }
     }
@@ -603,21 +603,21 @@
 
     function AboutControl() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//关于
+        if (myWriter != null) {//Giới thiệu
             myWriter.ExecuteCommand("AboutControl", true, null);
         }
     }
 
     function AdministratorViewMode() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//管理员权限
+        if (myWriter != null) {//Quyền quản trị viên
             myWriter.ExecuteCommand("AdministratorViewMode", true, null);
         }
     }
 
     function ZoomIn() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//放大
+        if (myWriter != null) {//Phóng to
             myWriter.ExecuteCommand("ZoomIn", true, null);
         }
     }
@@ -625,7 +625,7 @@
 
     function ZoomOut() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//缩小
+        if (myWriter != null) {//Thu nhỏ
             myWriter.ExecuteCommand("ZoomOut", true, null);
         }
     }
@@ -633,7 +633,7 @@
 
     function WriterCommandList() {
         var myWriter = document.getElementById("myWriter");
-        if (myWriter != null) {//命令清单
+        if (myWriter != null) {//Danh sách lệnh
             myWriter.ExecuteCommand("WriterCommandList", true, null);
         }
     }
@@ -641,19 +641,19 @@
 
 
 
-    function PrintPreview() {//打印预览
+    function PrintPreview() {//Xem trước khi in
         var myWriter = document.getElementById("myWriter");
         if (myWriter != null) {
             myWriter.ExecuteCommand("FilePrintPreview", true, null);
         }
     }
-    function UserLogin() {//用户登录
+    function UserLogin() {//Đăng nhập người dùng
         var myWriter = document.getElementById("myWriter");
         if (myWriter != null) {
             myWriter.UserLoginByParameter("ID:12345", "Họ tên:张三", 2);
         }
     }
-    function About() {//关于
+    function About() {//Giới thiệu
         var myWriter = document.getElementById("myWriter");
         if (myWriter != null) {
             myWriter.ExecuteCommand("AboutControl", true, null);
@@ -673,10 +673,10 @@
 
     //var myWriter = document.getElementById("myWriter");
     // if (myWriter != null) {
-    //     // 加载知识库
+    //     // Tải kho tri thức
     //     myWriter.ExecuteCommand("LoadKBLibrary", false, "C:/Users/DC/Desktop/DCSoftDemoCenter/08代码/NewDEMO/DCSoft.ActivexDemo/WEBCilentDEMO/DemoFile/kblibrary.xml");
     //     myWriter.ExecuteCommand("RuleVisible",false,null);
-    //     //加载文档SimplifiedToTraditional
+    //     //Tải tài liệuSimplifiedToTraditional
     //     myWriter.LoadDocumentFromFile("C:/Users/DC/Desktop/DCSoftDemoCenter/08代码/NewDEMO/DCSoft.ActivexDemo/WEBCilentDEMO/DemoFile/demo.xml", "xml");
     // }
 

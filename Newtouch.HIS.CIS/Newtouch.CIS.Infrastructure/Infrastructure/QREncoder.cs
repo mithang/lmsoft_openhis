@@ -6,7 +6,7 @@ using QRCoder;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 二维码编码器 (ported from Framework CIS QREncoder).
+    /// Mã QRMãdụng cụ (ported from Framework CIS QREncoder).
     /// Returns PNG bytes instead of a System.Drawing.Bitmap: GDI+ is
     /// unavailable on this Linux host (no libgdiplus). The only caller
     /// (InfusionController) base64-encodes the PNG, so behavior is preserved.
@@ -16,15 +16,15 @@ namespace Newtouch.Infrastructure
     public static class QrEncoder
     {
         /// <summary>
-        /// 生成二维码
+        /// tạoMã QR
         /// </summary>
-        /// <param name="msg">信息</param>
-        /// <param name="version">版本 1 ~ 40</param>
-        /// <param name="pixel">像素点大小</param>
-        /// <param name="iconPath">图标路径 (ignored when iconSize is 0)</param>
-        /// <param name="iconSize">图标尺寸</param>
-        /// <param name="iconBorder">图标边框厚度</param>
-        /// <param name="whiteEdge">二维码白边 (quiet zone)</param>
+        /// <param name="msg">thông tin</param>
+        /// <param name="version">bảnbản 1 ~ 40</param>
+        /// <param name="pixel">tốtốđiểmlớnnhỏ</param>
+        /// <param name="iconPath">Biểu tượngĐường dẫn (ignored when iconSize is 0)</param>
+        /// <param name="iconSize">Biểu tượng尺寸</param>
+        /// <param name="iconBorder">Biểu tượngbênkhung厚độ</param>
+        /// <param name="whiteEdge">Mã QRtrắngbên (quiet zone)</param>
         /// <returns>PNG bytes (grayscale)</returns>
         public static byte[] Code(string msg, int version, int pixel, string iconPath, int iconSize, int iconBorder, bool whiteEdge)
         {

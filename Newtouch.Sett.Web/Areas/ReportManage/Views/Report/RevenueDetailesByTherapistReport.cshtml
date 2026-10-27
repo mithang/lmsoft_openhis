@@ -45,7 +45,7 @@
     var isHospAdministrator = '@(ViewBag.IsHospAdministrator)';
     var curUserCode = '@(ViewBag.CurUserCode)';
     var uri = '/ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2f%e6%9c%8d%e5%8a%a1%e4%bb%a3%e7%a0%81%e7%9b%88%e5%88%a9%ef%bc%88%e6%b2%bb%e7%96%97%e5%b8%88%e5%88%86%e7%bb%84%ef%bc%89&rs:Command=Render';
-    //var uri = '/ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2f%e6%9c%8d%e5%8a%a1%e4%bb%a3%e7%a0%81%e7%9b%88%e5%88%a9%ef%bc%88%e6%b2%bb%e7%96%97%e5%b8%88%e5%88%86%e7%bb%84%ef%bc%89&rs:Command=Render';   //预发布
+    //var uri = '/ReportServer/Pages/ReportViewer.aspx?%2fHIS.Report.1%2f%e6%9c%8d%e5%8a%a1%e4%bb%a3%e7%a0%81%e7%9b%88%e5%88%a9%ef%bc%88%e6%b2%bb%e7%96%97%e5%b8%88%e5%88%86%e7%bb%84%ef%bc%89&rs:Command=Render';   //Phát hành trước
 
     function submit() {
 
@@ -92,7 +92,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";
@@ -139,7 +139,7 @@
 
 <script type="text/javascript">
     function funcOrganizeIdChange() {
-        //治疗师
+        //Kỹ thuật viên trị liệu
         $("#Therapist").bindSelect({
             url: "/Report/GetRehabDoctorList?orgId=" + $('#OrganizeId').val(),
             id: "StaffGh",

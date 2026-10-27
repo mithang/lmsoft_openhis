@@ -30,17 +30,17 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 0 通用 1 门诊 2住院
+        /// 0 Chung 1 Ngoại trú 2Nội trú
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 门诊打印报表 费用所属（比饮食费归‘其他’）
+        /// In báo cáo ngoại trú Phí thuộc về（Tỷ lệ quy về phí ăn uống‘Khác’）
         /// </summary>
         public string mzprintreportcode { get; set; }
 
         /// <summary>
-        /// 门诊结算 费用所属（比饮食费归‘其他’）
+        /// Thanh toán ngoại trú Phí thuộc về（Tỷ lệ quy về phí ăn uống‘Khác’）
         /// </summary>
         public string mzprintbillcode { get; set; }
 
@@ -85,12 +85,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public int? ParentId { get; set; }
 
         /// <summary>
-        /// 通用报表大类
+        /// Loại lớn báo cáo chung
         /// </summary>
         public string reportdlcode { get; set; }
 
         /// <summary>
-        /// 大类类别，对应枚举 EnumSfdlDllb 1药品 2治疗项目 3非治疗项目
+        /// Loại lớn，Enum tương ứng EnumSfdlDllb 1Thuốc 2Hạng mục điều trị 3Hạng mục không điều trị
         /// </summary>
         public int? dllb { get; set; }
 

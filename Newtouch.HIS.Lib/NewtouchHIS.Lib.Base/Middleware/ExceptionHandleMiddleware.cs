@@ -9,7 +9,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.Lib.Base.Middleware
 {
     /// <summary>
-    /// 异常处理中间件
+    /// Middleware xử lý ngoại lệ
     /// </summary>
     public class ExceptionHandleMiddleware
     {
@@ -46,7 +46,7 @@ namespace NewtouchHIS.Lib.Base.Middleware
             _logger.LogError(logError);
             if (environment.IsDevelopment())
             {
-                //错误信息
+                //Thông tin lỗi
                 switch (e)
                 {
                     case FailedException ex:
@@ -67,7 +67,7 @@ namespace NewtouchHIS.Lib.Base.Middleware
             }
             else
             {
-                //错误信息
+                //Thông tin lỗi
                 switch (e)
                 {
                     case FailedException ex:
@@ -78,7 +78,7 @@ namespace NewtouchHIS.Lib.Base.Middleware
                         }
                         break;
                     default:
-                        error = new AjaxResult { state = ResultType.error.ToString(), message = "抱歉，系统处理异常！请查看系统日志。" }.ToJson();
+                        error = new AjaxResult { state = ResultType.error.ToString(), message = "Xin lỗi, hệ thống xử lý ngoại lệ! Vui lòng xem nhật ký hệ thống." }.ToJson();
                         _logger.LogError(new AjaxResult { state = ResultType.error.ToString(), message = e.Message, exStackTrace = e.StackTrace, InnerException = e.InnerException }.ToJson());
                         break;
                 }

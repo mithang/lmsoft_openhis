@@ -1,6 +1,6 @@
 @using Newtouch.Infrastructure
 @{
-	ViewBag.Title = "Drug_Inquiry";//Nhập việnPhátThuốc查询
+	ViewBag.Title = "Drug_Inquiry";//Nhập việnPhátThuốcTra cứu
 	Layout = "~/Views/Shared/_Index.cshtml";
 
 }
@@ -62,16 +62,16 @@
 	<div id="gridPager"></div>
 </div>
 <script type="text/javascript">
-	var last = "";//上一个组号
+	var last = "";//một cái trướcSố nhóm
 	var $gridBRXXDrugsList = $("#resultGridList");
 	$(function () {
-		$("#bqcode").bindSelect({ //病区信息集合
+		$("#bqcode").bindSelect({ //Thông tin khu bệnhtậphợp
 			url: "/SystemManage/BaseData/GetAuthedWardSelectJson",
 		});
 		dispenseMedicinGridList();
 	});
 
-	//回车事件绑定
+	//Sự kiện Entergắn
 	$(document).keyup(function (event) {
 		if (event.keyCode === 13) {
 			$("#btn_search").trigger("click");
@@ -82,7 +82,7 @@
 	var checkArray = [];
 	var pageNum = 1;
 
-	//用户发药详细信息
+	//Người dùngphát thuốcchi tiếtthông tin
 	function dispenseMedicinGridList() {
 		$gridBRXXDrugsList.dataGrid({
 			multiselect: false,
@@ -133,14 +133,14 @@
 				for (i = 0; i < ids.length; i++) {
 					debugger
 					var rowData = $("#resultGridList").jqGrid('getRowData', ids[i]);
-					//组号生成特殊符号
+					//Số nhómtạoký tự đặc biệt
 					if (rowData.zh == "") {
 						continue;
 					}
 					if (rowData.zh != typeof (undefined) && rowData.zh !== "" && rowData.zh !== null) {
 						if (last == rowData.zh) {
 							returnval = "Ở giữa";
-							if (i == (ids.length - 1)) {//最后一个
+							if (i == (ids.length - 1)) {//cuối cùng
 								returnval = "Kết thúc";
 								last = "";
 							}
@@ -156,7 +156,7 @@
 							//}
 							returnval = "Bắt đầu";
 						}
-						$("#resultGridList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell 设置单格样式 值 或属性
+						$("#resultGridList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
 
 					}
 					last = rowData.zh;
@@ -166,15 +166,15 @@
 
 		function setlastrowzuhao(rowid) {
 			var lastrow = parseInt(rowid) - 1;
-			$("#resultGridList").setCell(lastrow, "zh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell 设置单格样式 值 或属性
+			$("#resultGridList").setCell(lastrow, "zh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
 		}
 
 		$(".ui-pg-selbox").change(function () {
-			//要触发的事件
+			//cầnkích hoạtcủasự kiện
 			checkArray.splice(0);
 		});
 
-		//查询
+		//Tra cứu
 		$("#btn_search").click(function () {
 			if ($("#Kssj").val() === "") {
 				$.modalMsg("Thời gian bắt đầukhông được để trống", "warning", 2000);

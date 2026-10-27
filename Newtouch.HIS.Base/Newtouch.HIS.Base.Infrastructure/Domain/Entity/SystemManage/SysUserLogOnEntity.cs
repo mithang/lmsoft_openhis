@@ -12,38 +12,38 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysUserLogOnEntity : EntityBase
     {
         /// <summary>
-        /// 用户登录主键
+        /// Khóa chính đăng nhập người dùng
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// 用户主键
+        /// Khóa chính người dùng
         /// </summary>
         public string UserId { get; set; }
 
         /// <summary>
-        /// 用户密码
+        /// Mật khẩu người dùng
         /// </summary>
         public string UserPassword { get; set; }
 
         /// <summary>
-        /// 用户秘钥
+        /// Khóa bí mật người dùng
         /// </summary>
         public string UserSecretkey { get; set; }
 
         /// <summary>
-        /// 上一次访问时间
+        /// Thời gian truy cập lần trước
         /// </summary>
         public DateTime? PreviousVisitTime { get; set; }
 
         /// <summary>
-        /// 最后访问时间
+        /// Thời gian truy cập cuối cùng
         /// </summary>
         public DateTime? LastVisitTime { get; set; }
 
         /// <summary>
-        /// 登录次数
+        /// Số lần đăng nhập
         /// </summary>
         public int? LogOnCount { get; set; }
 
@@ -73,12 +73,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// 是否被锁定。true锁定，否则未锁定
+        /// Có bị khóa không。trueKhóa，Ngược lại chưa khóa
         /// </summary>
         public bool? Locked { get; set; }
 
 		/// <summary>
-		/// 明文登录密码
+		/// Mật khẩu đăng nhập dạng rõ
 		/// </summary>
 		public string UserPwdPlaintext { get; set; }
 

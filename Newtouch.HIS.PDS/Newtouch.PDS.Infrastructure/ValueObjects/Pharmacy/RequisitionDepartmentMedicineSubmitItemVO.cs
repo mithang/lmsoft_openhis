@@ -1,22 +1,22 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 申领单 提交申请
+    /// Đơn lĩnh Gửi đơn xin
     /// </summary>
     public class RequisitionDepartmentMedicineSubmitItemVO
     {
         /// <summary>
-        /// 药品Code
+        /// ThuốcCode
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 申领数量
+        /// Số lượng lĩnh
         /// </summary>
         public int slsl { get; set; }
 
         /// <summary>
-        /// 本部门转换因子（申领部门）
+        /// Hệ số chuyển đổi bộ phận này（Bộ phận lĩnh）
         /// </summary>
         public int bbmzhyz { get; set; }
     }

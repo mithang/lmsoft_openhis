@@ -9,85 +9,85 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public string Id { get; set; } = Guid.NewGuid().ToString();
 
         /// <summary>
-        /// Tin nhắnId 本次唯一
-        /// 便于收件人太多分次发送
+        /// Tin nhắnId Duy nhất trong lần này
+        /// Để tiện gửi nhiều lần khi có quá nhiều người nhận
         /// </summary>
         [Required(ErrorMessage = "Tin nhắnId  không được để trống")]
         public string NoticeId { get; set; }
         /// <summary>
-        /// 发信人
+        /// Người gửi
         /// </summary>
         [Required(ErrorMessage = "Người gửi không được để trống")]
         public string SendFrom { get; set; }
         /// <summary>
-        /// Nhóm tin nhắn编号
+        /// Nhóm tin nhắnSố hiệu
         /// </summary>
         [Required(ErrorMessage = "Mã số nhóm tin nhắn không được để trống")]
         public string NoticeGroupId { get; set; }
         /// <summary>
-        /// 相关业务类型 GroupYwlxEnum
+        /// Loại nghiệp vụ liên quan GroupYwlxEnum
         /// </summary>
         [Required(ErrorMessage = "Loại nghiệp vụ liên quan không được để trống")]
         public int GroupYwlx { get; set; }
         /// <summary>
-        /// 决定了通知对象范围  MsgNoticeRangeEnum
+        /// Quyết định phạm vi đối tượng nhận thông báo  MsgNoticeRangeEnum
         /// </summary>
         [Required(ErrorMessage = "Giới hạn phạm vi áp dụng tin nhắn không được để trống")]
         public int NoticeRange { get; set; }
         /// <summary>
-        /// 显示主题 
-        /// 如 您有新的质控Tin nhắn，请即时查看
+        /// Chủ đề hiển thị 
+        /// Như Bạn có thông báo kiểm soát chất lượng mớiTin nhắn,vui lòng xem ngay
         /// </summary>
         [Required(ErrorMessage = "Chủ đề tin nhắn không được để trống")]
         public string? Title { get; set; }
         /// <summary>
-        /// 详细内容
-        /// 展开显示
+        /// Nội dung chi tiết
+        /// Mở rộng hiển thị
         /// </summary>
         public string? Content { get; set; }
         /// <summary>
-        /// 内容关联数据 Json格式 可转化对象
+        /// Dữ liệu liên kết nội dung JsonĐịnh dạng Đối tượng có thể chuyển đổi
         /// </summary>
         public string? ContentData { get; set; }
         /// <summary>
-        /// 默认跳转路径 
-        /// 不为空时要求 AppId  không được để trống
+        /// Đường dẫn chuyển mặc định 
+        /// Khi không rỗng yêu cầu AppId  không được để trống
         /// </summary>
         public string? OpenPath { get; set; }
         /// <summary>
-        /// 路径参数
-        /// 格式： zyh={0}，id={1}
+        /// Tham số đường dẫn
+        /// Định dạng: zyh={0},id={1}
         /// </summary>
         public string? OpenPathPara { get; set; }
         /// <summary>
-        /// 收信人 默认人员工号，当收件人类型为用户组时，字段为空
-        /// 多人则 , 分割，长度大于1000 时，分次发送
+        /// Người nhận Mã nhân viên mặc định,Khi loại người nhận là nhóm người dùng,trường rỗng
+        /// Nhiều người thì , Phân tách,Độ dài lớn hơn1000 khi,gửi nhiều lần
         /// </summary>
         [Required(ErrorMessage = "Người nhận không được để trống")]
         public string Recipient { get; set; }
         /// <summary>
-        /// 收件人类型 用户 / 用户组
+        /// Loại người nhận Người dùng / Nhóm người dùng
         /// </summary>
         [Required(ErrorMessage = "Giới hạn phạm vi áp dụng tin nhắn không được để trống")]
         public int RecipientType { get; set; }
         /// <summary>
-        /// 队列执行类型 默认立即执行
+        /// Kiểu thực thi hàng đợi Mặc định thực thi ngay
         /// MsgQueueExecType
         /// </summary>
         [Required(ErrorMessage = "Loại thực thi hàng đợi không được để trống")]
         public int QueueExecType { get; set; } = (int)MsgQueueExecTypeEnum.Immediately;
         /// <summary>
-        /// 执行表达式
+        /// Biểu thức thực thi
         /// </summary>
         public string? ExecCron { get; set; }
         /// <summary>
-        /// Tin nhắn状态 
+        /// Tin nhắnTrạng thái 
         /// NoticeStuEnum
         /// </summary>
         public int NoticeStu { get; set; } = (int)NoticeStuEnum.UnSend;
         public int? px { get; set; }
         /// <summary>
-        /// 应用Id
+        /// Ứng dụngId
         /// </summary>
         public string? AppId { get; set; }
 
@@ -97,76 +97,76 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
     {
         public string? OrganizeId { get; set; }
         /// <summary>
-        /// Tin nhắnId 本次唯一
-        /// 便于收件人太多分次发送
+        /// Tin nhắnId Duy nhất trong lần này
+        /// Để tiện gửi nhiều lần khi có quá nhiều người nhận
         /// </summary>
         public string? NoticeId { get; set; }
         /// <summary>
-        /// 发信人
+        /// Người gửi
         /// </summary>
         public string? SendFrom { get; set; }
         /// <summary>
-        /// Nhóm tin nhắn编号
+        /// Nhóm tin nhắnSố hiệu
         /// </summary>
         public string? NoticeGroupId { get; set; }
         /// <summary>
-        /// 相关业务类型 GroupYwlxEnum
+        /// Loại nghiệp vụ liên quan GroupYwlxEnum
         /// </summary>
         public int? GroupYwlx { get; set; }
         /// <summary>
-        /// 决定了通知对象范围  MsgNoticeRangeEnum
+        /// Quyết định phạm vi đối tượng nhận thông báo  MsgNoticeRangeEnum
         /// </summary>
         public int? NoticeRange { get; set; }
         /// <summary>
-        /// 显示主题 
-        /// 如 您有新的质控Tin nhắn，请即时查看
+        /// Chủ đề hiển thị 
+        /// Như Bạn có thông báo kiểm soát chất lượng mớiTin nhắn,vui lòng xem ngay
         /// </summary>
         public string? Title { get; set; }
         /// <summary>
-        /// 详细内容
-        /// 展开显示
+        /// Nội dung chi tiết
+        /// Mở rộng hiển thị
         /// </summary>
         public string? Content { get; set; }
         /// <summary>
-        /// 内容关联数据 Json格式 可转化对象
+        /// Dữ liệu liên kết nội dung JsonĐịnh dạng Đối tượng có thể chuyển đổi
         /// </summary>
         public string? ContentData { get; set; }
         /// <summary>
-        /// 默认跳转路径 
-        /// 不为空时要求 AppId  không được để trống
+        /// Đường dẫn chuyển mặc định 
+        /// Khi không rỗng yêu cầu AppId  không được để trống
         /// </summary>
         public string? OpenPath { get; set; }
         /// <summary>
-        /// 路径参数
-        /// 格式： zyh={0}，id={1}
+        /// Tham số đường dẫn
+        /// Định dạng: zyh={0},id={1}
         /// </summary>
         public string? OpenPathPara { get; set; }
         /// <summary>
-        /// 收信人 默认人员工号，当收件人类型为用户组时，字段为空
-        /// 多人则 , 分割，长度大于1000 时，分次发送
+        /// Người nhận Mã nhân viên mặc định,Khi loại người nhận là nhóm người dùng,trường rỗng
+        /// Nhiều người thì , Phân tách,Độ dài lớn hơn1000 khi,gửi nhiều lần
         /// </summary>
         public string? Recipient { get; set; }
         /// <summary>
-        /// 收件人类型 用户 / 用户组
+        /// Loại người nhận Người dùng / Nhóm người dùng
         /// </summary>
         public int? RecipientType { get; set; }
         /// <summary>
-        /// 队列执行类型 默认立即执行
+        /// Kiểu thực thi hàng đợi Mặc định thực thi ngay
         /// MsgQueueExecType
         /// </summary>
         public int? QueueExecType { get; set; }
         /// <summary>
-        /// 执行表达式
+        /// Biểu thức thực thi
         /// </summary>
         public string? ExecCron { get; set; }
         /// <summary>
-        /// Tin nhắn状态 
+        /// Tin nhắnTrạng thái 
         /// NoticeStuEnum
         /// </summary>
         public int? NoticeStu { get; set; }
         public int? px { get; set; }
         /// <summary>
-        /// 应用Id
+        /// Ứng dụngId
         /// </summary>
         public string? AppId { get; set; }
         public DateTime? CreateTime { get; set; }
@@ -178,7 +178,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         public string? zt { get; set; } = "1";
     }
     /// <summary>
-    /// Tin nhắn通知查询
+    /// Tin nhắnTruy vấn thông báo
     /// </summary>
     public class MsgNoticeQueueQueryVO
     {
@@ -206,16 +206,16 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
 
         public T? NoticeData { get; set; }
         /// <summary>
-        /// Tin nhắn提醒展示
+        /// Tin nhắnHiển thị nhắc nhở
         /// </summary>
         public string? NoticeShow { get; set; }
         /// <summary>
-        /// 关键关系人编号 
-        /// 门诊：Số ngoại trú；住院：Số nhập viện
+        /// Số hiệu người liên quan trọng yếu 
+        /// Ngoại trú:Số ngoại trú;Nội trú:Số nhập viện
         /// </summary>
         public string? NoticePrimaryPartyCode { get; set; }
         /// <summary>
-        /// 关键关系人
+        /// Người liên quan trọng yếu
         /// </summary>
         public string? NoticePrimaryParty { get; set; }
     }

@@ -4,7 +4,7 @@ namespace Newtouch.Domain.ValueObjects
 {
     public class PrescriptionHtmlVO
     {
-        #region 处方主表
+        #region Đơn thuốcchínhbảng
         /// <summary>
         /// 
         /// </summary>
@@ -16,7 +16,7 @@ namespace Newtouch.Domain.ValueObjects
         public bool? sfbz { get; set; }
 
         /// <summary>
-        /// 枚举 1 西药处方 2 中药处方 3 康复处方 4 检验处方 5 检查处方 6 输液处方
+        /// Liệt kê 1 Thuốc TâyĐơn thuốc 2 Thuốc Đông yĐơn thuốc 3 Phục hồi chức năngĐơn thuốc 4 Xét nghiệmĐơn thuốc 5 Kiểm traĐơn thuốc 6 truyền dịchĐơn thuốc
         /// </summary>
         public int cflx { get; set; }
 
@@ -36,7 +36,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ys { get; set; }
 
         /// <summary>
-        /// 贴数
+        /// dánsố
         /// </summary>
         public int? tieshu { get; set; }
 
@@ -50,27 +50,27 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public bool? djbz { get; set; }
         /// <summary>
-        /// 处方标签 JI 精I JII 精II MZ 麻醉
+        /// Đơn thuốcnhãn JI tinhI JII tinhII MZ têsay
         /// </summary>
         public string cftag { get; set; }
         /// <summary>
-        /// 代煎方式
+        /// sắc hộphươngkiểu
         /// </summary>
         public string djfs { get; set; }
         // <summary>
-        /// 代煎付数
+        /// sắc hộtrảsố
         /// </summary>
         public string djts { get; set; }
         // <summary>
-        /// 嘱托
+        /// Dặn dò
         /// </summary>
         public string cfzt { get; set; }
-        public string isdzcf { get; set; }//电子处方 1 是  0 否
+        public string isdzcf { get; set; }//điện tửĐơn thuốc 1 là  0 Không
         #endregion
 
 
 
-        #region 处方明细
+        #region Chi tiết đơn thuốc
 
         /// <summary>
         /// 
@@ -93,7 +93,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 每次治疗量  针对康复项目
+        /// Liều mỗi lần điều trị  kimđốiPhục hồi chức năngMục
         /// </summary>
         public int? mczll { get; set; }
 
@@ -108,7 +108,7 @@ namespace Newtouch.Domain.ValueObjects
         public string mcjldw { get; set; }
 
         /// <summary>
-        /// 用法
+        /// Cách dùng
         /// </summary>
         public string yfCode { get; set; }
 
@@ -118,7 +118,7 @@ namespace Newtouch.Domain.ValueObjects
         public string pcCode { get; set; }
 
         /// <summary>
-        /// 药品中的数量=总量   康复中的总量（不是数量）=总量
+        /// ThuốctrongcủaSố lượng=Tổng lượng   Phục hồi chức năngtrongcủaTổng lượng（khônglàSố lượng）=Tổng lượng
         /// </summary>
         public int? zl { get; set; }
         
@@ -128,7 +128,7 @@ namespace Newtouch.Domain.ValueObjects
         public int sl { get; set; }
 
         /// <summary>
-        /// 非康复处方 暂时使用
+        /// khôngPhục hồi chức năngĐơn thuốc tạmkhiSử dụng
         /// </summary>
         public string dw { get; set; }
 
@@ -143,12 +143,12 @@ namespace Newtouch.Domain.ValueObjects
         public decimal je { get; set; }
 
         /// <summary>
-        /// 组号（药品的组号）
+        /// Số nhóm（ThuốccủaSố nhóm）
         /// </summary>
         public string zh { get; set; }
 
         /// <summary>
-        /// 部位
+        /// Vị trí
         /// </summary>
         public string bw { get; set; }
 
@@ -168,7 +168,7 @@ namespace Newtouch.Domain.ValueObjects
         public string Remark { get; set; }
 
         /// <summary>
-        /// 执行科室（药品的药房部门、检验检查的执行科室）（康复处方的执行科室）
+        /// Khoa thực hiện（ThuốccủaKhoa dược、Xét nghiệmKiểm tracủaKhoa thực hiện）（Phục hồi chức năngĐơn thuốccủaKhoa thực hiện）
         /// </summary>
         public string zxks { get; set; }
 
@@ -177,15 +177,15 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public DateTime? zxsj { get; set; }
         /// <summary>
-        /// 医保唯一码
+        /// Bảo hiểm y tếduy nhấtmộtmã
         /// </summary>
         public string ybwym { get; set; }
         /// <summary>
-        /// 限制使用标志
+        /// hạnchếSử dụngCờ
         /// </summary>
         public string xzsybz { get; set; }
         /// <summary>
-        /// 天数
+        /// Số ngày
         /// </summary>
         public decimal? ts { get; set; }
         public string ztmbId { get; set; }
@@ -193,25 +193,25 @@ namespace Newtouch.Domain.ValueObjects
         public string ztmc { get; set; }
 
         /// <summary>
-        /// 抗生素原因
+        /// Kháng sinhnguyên nhân
         /// </summary>
         public string kssReason { get; set; }
         /// <summary>
-        /// 部位方法
+        /// Vị tríPhương pháp
         /// </summary>
         public string bwff { get; set; }
 
         public string sqlx { get; set; }
         /// <summary>
-        /// 排序 add by huangshanshan 2019.5.17 
+        /// Thứ tự add by huangshanshan 2019.5.17 
         /// </summary>
         public int? px { get; set; }
         /// <summary>
-        /// 滴速 add by huangshanshan 2019.6.3
+        /// tốc độ truyền add by huangshanshan 2019.6.3
         /// </summary>
         public int? ds { get; set; }
         /// <summary>
-        /// 转自费标志
+        /// Chuyển sang tự chi trảCờ
         /// </summary>
         public int? zzfbz { get; set; }
 
@@ -222,12 +222,12 @@ namespace Newtouch.Domain.ValueObjects
 
         public string sfzt { get; set; }
         /// <summary>
-        /// 中药处方说明
+        /// Thuốc Đông yĐơn thuốcMô tả
         /// </summary>
         public string zysm { get; set; }
 
         #endregion
-        #region 处方明细2
+        #region Chi tiết đơn thuốc2
         /// <summary>
         /// 
         /// </summary>
@@ -256,7 +256,7 @@ namespace Newtouch.Domain.ValueObjects
         public int? sl2 { get; set; }
 
         /// <summary>
-        /// 非康复处方 暂时使用
+        /// khôngPhục hồi chức năngĐơn thuốc tạmkhiSử dụng
         /// </summary>
         public string dw2 { get; set; }
 
@@ -275,31 +275,31 @@ namespace Newtouch.Domain.ValueObjects
         public string Remark2 { get; set; }
 
         /// <summary>
-        /// 执行科室（药品的药房部门、检验检查的执行科室）（康复处方的执行科室）
+        /// Khoa thực hiện（ThuốccủaKhoa dược、Xét nghiệmKiểm tracủaKhoa thực hiện）（Phục hồi chức năngĐơn thuốccủaKhoa thực hiện）
         /// </summary>
         public string zxks2 { get; set; }
 
         /// <summary>
-        /// 转自费标志
+        /// Chuyển sang tự chi trảCờ
         /// </summary>
         public int? zzfbz2 { get; set; }
         /// <summary>
-        /// 中药处方说明
+        /// Thuốc Đông yĐơn thuốcMô tả
         /// </summary>
         public string zysm2 { get; set; }
 
         #endregion
 
         /// <summary>
-        /// 临床原因
+        /// 临giườngnguyên nhân
         /// </summary>
         public string lcyx { get; set; }
         /// <summary>
-        /// 申请备注
+        /// Đăng kýGhi chú
         /// </summary>
         public string sqbz { get; set; }
         /// <summary>
-        /// 药品规格
+        /// Quy cách thuốc
         /// </summary>
         public string ypgg { get; set; }
 
@@ -309,7 +309,7 @@ namespace Newtouch.Domain.ValueObjects
         public int? ztsl { get; set; }
 
 		/// <summary>
-		/// 处方有效天数
+		/// Đơn thuốcHiệu lựcSố ngày
 		/// </summary>
 		public int? yxts { get; set; }
         public string gjybdm { get; set; }

@@ -5,7 +5,7 @@ using System.Text;
 namespace Newtouch.Core.Common.Security
 {
     /// <summary>
-    /// Rijndael加密 解密 实例类
+    /// RijndaelLớp thể hiện mã hóa giải mã
     /// </summary>
     public class RijndaelEnhanced
     {
@@ -761,15 +761,15 @@ namespace Newtouch.Core.Common.Security
     }
 
     /// <summary>
-    /// 静态扩展
+    /// Mở rộng tĩnh
     /// </summary>
     public static class RijndaelEnhancedExt
     {
         /// <summary>
-        /// 解密
+        /// giải mã
         /// </summary>
-        /// <param name="cipherText">密文</param>
-        /// <param name="rigndae">对象实例</param>
+        /// <param name="cipherText">Văn bản mật</param>
+        /// <param name="rigndae">Thể hiện đối tượng</param>
         /// <returns></returns>
         public static string Decrypt(this string cipherText, RijndaelEnhanced rigndae)
         {
@@ -788,10 +788,10 @@ namespace Newtouch.Core.Common.Security
         }
 
         /// <summary>
-        /// 加密
+        /// mã hóa
         /// </summary>
-        /// <param name="plainText">明文</param>
-        /// <param name="rigndae">对象实例</param>
+        /// <param name="plainText">Văn bản rõ</param>
+        /// <param name="rigndae">Thể hiện đối tượng</param>
         /// <returns></returns>
         public static string Encrypt(this string plainText, RijndaelEnhanced rigndae)
         {

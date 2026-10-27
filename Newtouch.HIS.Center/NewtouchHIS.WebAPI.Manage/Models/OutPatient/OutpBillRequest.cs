@@ -3,11 +3,11 @@
     public class OutpPresInfoRequest: OutpRegistQueryRequest
     {
         /// <summary>
-        /// 处方Id
+        /// Đơn thuốcId
         /// </summary>
         public string? PresId { get; set; }
         /// <summary>
-        /// 处方Id 集合
+        /// Đơn thuốcId Tập hợp
         /// </summary>
         public string[] PresIds { get; set; }
     }
@@ -15,7 +15,7 @@
     public class OutpPresInfoHisApiRequest
     {
         /// <summary>
-        /// 处方Id
+        /// Đơn thuốcId
         /// </summary>
         public string PresId { get; set; }
         /// <summary>
@@ -27,7 +27,7 @@
     public class OutpBillRequest
     {
         /// <summary>
-        /// 处方Id
+        /// Đơn thuốcId
         /// </summary>
         public string kh { get; set; }
         /// <summary>
@@ -36,7 +36,7 @@
         public string? mzh { get; set; }
         public string? OrderNo { get; set; }
         /// <summary>
-        /// 订单金额
+        /// Số tiền đơn hàng
         /// </summary>
         public decimal? OrderAmt { get; set; }
     }

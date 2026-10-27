@@ -36,7 +36,7 @@ namespace Newtouch.OR.ManageSystem.DomainServices
             _ORApplyInfoExpandRepo = orApplyInfoExpandRepo;
         }
         /// <summary>
-        /// 获取病人列表
+        /// Lấy danh sách bệnh nhân
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="OrgId"></param>
@@ -93,13 +93,13 @@ namespace Newtouch.OR.ManageSystem.DomainServices
                 }
             }
 
-            //在院
+            //Đang nằm viện
             if (type == Convert.ToInt32(EnumZYBZ.Bqz))
             {
                 sql += " and zybz in(" + Convert.ToInt32(EnumZYBZ.Bqz) + "," + Convert.ToInt32(EnumZYBZ.Zq) + ")";
 
             }
-            //出院（已结账、待结账）
+            //Xuất viện（Đã thanh toán、Chờ thanh toán）
             else if (type == Convert.ToInt32(EnumZYBZ.Ycy) || type == Convert.ToInt32(EnumZYBZ.Djz))
             {
                 sql += " and zybz in(" + Convert.ToInt32(EnumZYBZ.Ycy) + "," + Convert.ToInt32(EnumZYBZ.Djz) + ") ";
@@ -188,7 +188,7 @@ on a.applyno=b.applyno and b.px=1
             return applyInfo;
         }
         /// <summary>
-        /// 提交申请信息
+        /// Gửi thông tin đơn đăng ký
         /// </summary>
         /// <param name="dto"></param>
         /// <param name="keyValue"></param>
@@ -217,7 +217,7 @@ on a.applyno=b.applyno and b.px=1
             {
                 if (!string.IsNullOrWhiteSpace(keyValue))
                 {
-                    //信息变更
+                    //Thay đổi thông tin
                     ety = _ORApplyInfoRepo.FindEntity(p => p.Applyno == keyValue && p.zt == "1" && p.OrganizeId == dto.OrganizeId);
                     if (ety != null && ety.sqzt == ((int)EnumSqzt.dsh).ToString())
                     {
@@ -233,7 +233,7 @@ on a.applyno=b.applyno and b.px=1
                         EntityHelper.Modify(ety, ety.Id);
                         db.Updateable(ety).ExecuteCommand();
 
-                        //删除辅助手术
+                        //Xóa phẫu thuật phụ trợ
                         _ORApplyInfoExpandRepo.Delete(p => p.Applyno == ety.Applyno && p.OrganizeId == ety.OrganizeId && p.zt == "1");
                     }
                     else
@@ -247,7 +247,7 @@ on a.applyno=b.applyno and b.px=1
                     db.Insertable(ety).ExecuteCommand();
                 }
                 dto.Applyno = ety.Applyno;
-                #region 辅助手术
+                #region Phẫu thuật phụ trợ
                 var opList = ORApplyInfoExpandCreate(dto);
                 if (opList != null && opList.Count > 0)
                 {
@@ -312,7 +312,7 @@ on a.applyno=b.applyno and b.px=1
                         {
                             var newapplyinfo = NewApplyInfo(dto, pat);
 
-                            #region 插入到CIS医嘱表中
+                            #region Chèn vàoCISbảng y lệnh
                             //JObject json = JObject.Parse(datas);
                             //Temporary_ordersEntity toe = new Temporary_ordersEntity();
                             //toe.OrganizeId = dto.organizeid;
@@ -324,21 +324,21 @@ on a.applyno=b.applyno and b.px=1
                             //toe.zxzq = 1;
                             //toe.zxzqdw = 1;
                             //toe.zdm = "";
-                            //toe.xmdm = dto.ssdm;//手术编码
+                            //toe.xmdm = dto.ssdm;//Mã phẫu thuật
                             //toe.xmmc = dto.ssmcn;
-                            //toe.yzzt = 0;//不明确
+                            //toe.yzzt = 0;//Không rõ
                             //toe.dw = "";
                             //toe.zbbz = 0;
-                            //toe.sl = 0;//数量
+                            //toe.sl = 0;//Số lượng
                             //toe.dwlb = 0;
-                            //toe.yzlx = 3;//医嘱类型
+                            //toe.yzlx = 3;//Loại y lệnh
                             //toe.sssj = dto.sssj;
                             //var cjsj = DateTime.Parse(DateTime.Now.ToString());
                             //toe.kssj = cjsj;
-                            //toe.zxr = dto.ysgh;//执行人等于医生工号
+                            //toe.zxr = dto.ysgh;//Người thực hiện bằng mã nhân viên bác sĩ
                             //string time = cjsj.ToString("yyyy-MM-dd");
-                            //toe.yznr = dto.ssmcn + "  " + cjsj + "  " + time + "  ST";//医嘱内容=手术名称+手术时间+医生姓名+ST
-                            //toe.zxksdm = "";//执行科室
+                            //toe.yznr = dto.ssmcn + "  " + cjsj + "  " + time + "  ST";//Nội dung y lệnh=Tên phẫu thuật+Thời gian phẫu thuật+Tên bác sĩ+ST
+                            //toe.zxksdm = "";//Khoa thực hiện
                             //toe.CreateTime = cjsj;
                             //toe.CreatorCode = pat.CreatorCode;
                             //toe.zt = pat.zt;
@@ -382,7 +382,7 @@ on a.applyno=b.applyno and b.px=1
             dto.Applyno = EFDBBaseFuncHelper.GetOPApplyNo(pat.OrganizeId);
             var ety = dto.MapperTo<OpApplySubmitDTO, ORApplyInfoEntity>();
             ety.sqzt = ((int)EnumSqzt.dsh).ToString();
-            #region 患者信息
+            #region Thông tin bệnh nhân
             ety.zyh = pat.zyh;
             ety.xm = pat.xm;
             ety.xb = pat.sex;
@@ -405,7 +405,7 @@ on a.applyno=b.applyno and b.px=1
             var exList = new List<ORApplyInfoExpandEntity>();
             if (dto.ssdm.Length > 0)
             {
-                //添加辅助手术
+                //Thêm phẫu thuật phụ trợ
                 for (int i = 0; i < dto.ssdm.Length; i++)
                 {
                     if (!string.IsNullOrWhiteSpace(dto.ssdm[i]))

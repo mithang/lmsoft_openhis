@@ -221,22 +221,22 @@
     function initControl() {
         $("#Gender").bindSelect();
         $('#mbqx').bindSelect();
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
-        //组织对应的科室下拉框加载
+        //Tải hộp thả xuống khoa tương ứng với tổ chức
         $("#OrganizeId").bind("change", function () {
             var organizeId = $(this).val();
             $("#DepartmentCode").bindSelect({
                 url: "/Department/GetTreeSelectJson?organizeId=" + organizeId,
             });
-            //加载职称
+            //Tải chức danh
             $("#zc").bindSelect({
                 url: "/ItemsData/GetSelectJson",
                 param: { code: "DoctorTitle", OrganizeId: organizeId }
             });
-            //加载康复类别
+            //Tải loại phục hồi chức năng
             $("#kflb").bindSelect({
                 url: "/ItemsData/GetSelectJson",
                 param: { code: "RehabTreatmentMethod", OrganizeId: organizeId }
@@ -244,7 +244,7 @@
         });
 
         
-        //首拼
+        //Mã đầu chữ
         $('#Name').keyup(function () {
             $('#py').val($(this).toShouPin());
         });
@@ -257,12 +257,12 @@
             var zjh = $("#zjh").val()
             //var checkzjh = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
             //if (!checkzjh.test(zjh)) {
-            //    $.modalAlert("请输入正确的身份证号码", 'warning');
+            //    $.modalAlert("Vui lòng nhập đúng số chứng minh nhân dân", 'warning');
             //    return false;
             //}
             //var num = 0;
             //if (MsEmail=='') {
-            //    $.modalAlert("BI邮箱为必填项", 'warning');
+            //    $.modalAlert("BIEmail là mục bắt buộc", 'warning');
             //    return false;
             //}
             //$.ajax({
@@ -277,7 +277,7 @@
             //});
 
             //if (num!=1) {
-            //    $.modalAlert("BI邮箱格式不准确", 'warning');
+            //    $.modalAlert("BIĐịnh dạng email không chính xác", 'warning');
             //    return false;
             //}
           
@@ -322,7 +322,7 @@
 
     imgReaderI.onload = function (evt) {
         
-        //将数据结果赋值给image的src
+        //Gán kết quả dữ liệu choimagecủasrc
         $("#dzqmImage").attr('src', evt.target.result);
     }
     $("#dzqmUpload").change(function () {
@@ -347,7 +347,7 @@
 
         var formData = new FormData();
         formData.append("file", $("#dzqmUpload")[0].files[0]);
-        var Picture = $('#form1 [name="dzqmUpload"]').prop('files');//照片
+        var Picture = $('#form1 [name="dzqmUpload"]').prop('files');//Ảnh
 
         $.submitForm({
             url: "/Staff/SubmitForm?keyValue=" + keyValue,
@@ -374,7 +374,7 @@
     $('#zjh').bind("blur",
         function (e) {
             if ((e.keyCode === 13 || e.type === "blur") && $('#zjlx').val() === "1") {
-                //获取输入的身份证号
+                //Lấy số chứng minh nhân dân đã nhập
                 var sfzh = $(this).val();
                 var len = $(this).val().length;
                 //if (len == 18 || len == 15) {//checkCard()
@@ -383,7 +383,7 @@
                     csrq = sfzh.substr(6, 8);
                     if ((len === 15 && csrq) || len === 18) {
                         csrq = csrq.replace(/(.{4})(.{2})/, "$1-$2-");
-                        //获取性别
+                        //Lấy giới tính
                         var xb;
                         if (parseInt(sfzh.charAt(16) / 2) * 2 != sfzh.charAt(16))
                             xb = "true";

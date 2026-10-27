@@ -3,19 +3,19 @@
 namespace NewtouchHIS.Base.Domain
 {
     /// <summary>
-    /// 生成授权key
+    /// Tạo ủy quyềnkey
     /// </summary>
     public class AppFriendAuthKey
     {
         /// <summary>
-        /// Desc:授权ID
+        /// Desc:Ủy quyềnID
         /// Default:
         /// Nullable:False
         /// </summary>           
         public string? AuthId { get; set; }
 
         /// <summary>
-        /// Desc:应用通用Id
+        /// Desc:Dùng chung cho ứng dụngId
         /// Default:
         /// Nullable:False
         /// </summary>           

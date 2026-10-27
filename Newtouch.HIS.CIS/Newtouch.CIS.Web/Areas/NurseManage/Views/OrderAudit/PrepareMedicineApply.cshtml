@@ -115,7 +115,7 @@
     $(function () {
         initControl();
         gridList();
-        //搜索框隐藏显示控制
+        //tìm kiếmkhungẨnHiển thịđiều khiển
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -126,7 +126,7 @@
         });
         TabGridHide();
     })
-    //隐藏搜索框并显示箭头
+    //Ẩntìm kiếmkhungvàHiển thịmũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -193,13 +193,13 @@
     function rptdjmx(byid) {
         window.open(reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2fKhoaChuẩn bị thuốcPhiếu&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&byId=" + byid +"&orgId=" + orgId, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
     }
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
-    //单击事件
+    //phiếunhấpsự kiện
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp，Xóa trắng chi tiết trước lạilạitảitất cảĐã chọndòngchi tiết
         $.najax({
             type: "Get",
             url: "/OrderAudit/QueryPrepareMedicine",
@@ -213,7 +213,7 @@
             }
         });
     }
-    //单据明细
+    //phiếucứchi tiết
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 200,
         unwritten: false,
@@ -226,7 +226,7 @@
             { label: 'Đơn vị', name: 'dw', width: 90, align: 'right' },
             { label: 'Quy cách', name: 'gg', width: 120, align: 'right' },
             { label: 'Hạn hiệu lực', name: 'yxq', width: 100, align: 'right' },
-            //{ label: '有效期', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+            //{ label: 'Hạn hiệu lực', name: 'yxq', width: 70, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
             { label: 'Nhà sản xuất', name: 'sccj', width: 160, align: 'left' }
         ]
     });
@@ -234,7 +234,7 @@
 
     }
 
-    //新建
+    //Tạo mới
     $('#btn_add').click(function () {
         $.modalOpen({
             id: "OutAreaForm",
@@ -249,7 +249,7 @@
         });
     });
 
-    //修改
+    //Sửa
     $('#btn_edit').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
@@ -278,7 +278,7 @@
         });
     });
 
-    //提交
+    //Gửi
     $('#btn_submit').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
@@ -310,7 +310,7 @@
         });
     });
 
-    //撤回
+    //rútvề
     $('#btn_back').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
@@ -342,7 +342,7 @@
         });
     });
 
-    //作废
+    //Hủy bỏ
     $('#btn_delete').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {

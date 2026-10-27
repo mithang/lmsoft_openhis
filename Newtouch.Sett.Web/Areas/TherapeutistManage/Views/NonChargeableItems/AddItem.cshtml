@@ -34,11 +34,11 @@
         });
     })
     function InitControl() {
-        dlList();//大类
-        flList();//分类
-        ybdmList(); //医保代码
-        nbList();//农保大类
-        baList();//病案大类
+        dlList();//nhóm lớn
+        flList();//Phân loại
+        ybdmList(); //Mã BHYT
+        nbList();//nhóm lớn bảo hiểm nông nghiệp
+        baList();//Nhóm lớn bệnh án
     }
     function dlList() {
         $("#dlmc").newtouchFloatingSelector({
@@ -48,7 +48,7 @@
                 if (!keyword) {
                     return null;
                 }
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.newtouchclients.sysMajorClassList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -81,7 +81,7 @@
                 if (!keyword) {
                     return null;
                 }
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.newtouchclients.sysChargeClassifyList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -114,7 +114,7 @@
                 if (!keyword) {
                     return null;
                 }
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.newtouchclients.sysnbsfdlList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -147,7 +147,7 @@
                 if (!keyword) {
                     return null;
                 }
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.newtouchclients.sysbasfdlList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -180,7 +180,7 @@
                 if (!keyword) {
                     return null;
                 }
-                //遍历数据源，用keyword来筛选出结果
+                //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.newtouchclients.syszlxmList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -270,7 +270,7 @@
         if (!validator.form()) {
             return false;
         }
-        //状态
+        //Trạng thái
         var zt = false;
         $('input[name="zt"]').each(function () {
             var $this = $(this);

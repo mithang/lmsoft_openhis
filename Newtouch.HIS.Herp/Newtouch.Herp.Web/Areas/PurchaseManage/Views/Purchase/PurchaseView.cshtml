@@ -35,7 +35,7 @@
         </table>
     </div>
 </div>
-<!--患者信息 包括病历号  姓名 -->
+<!--Thông tin bệnh nhân bao gồm số bệnh án  họ tên -->
 <form id="formPatSer" style="margin:2px;margin-top:10px;">
     <div class="gridPanel">
         <table id="GridList" rel="formPatSer"></table>
@@ -44,7 +44,7 @@
 </form>
 
 <script>
-    //上一个window对象
+    //Đối tượng window trước đó
     var prevWindow;
     if ('@(from)' !== '') {
         prevWindow = top.top.frames['@(from)'];
@@ -58,7 +58,7 @@
         var obj = new Object;
         //obj.ddbh = $.request("ddbh");
         var searInfo = new gridList();
-        //加载数据
+        //Tải dữ liệu
         //searInfo.init(obj);
 
 
@@ -131,7 +131,7 @@
         });
     }
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn dòng
     function btn_edit() {
         SearchConfirm();
     }
@@ -155,7 +155,7 @@
         //Đóng cửa sổ
         ReceiptCancle();
     }
-    //确定 主页面调用
+    //Xác nhận Trang chính gọi
     function SearchConfirm() {
         PurchaseDbGrid();
     }

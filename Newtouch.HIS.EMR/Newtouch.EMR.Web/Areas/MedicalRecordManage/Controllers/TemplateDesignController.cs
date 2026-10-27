@@ -43,7 +43,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
         //    return View();
         //}
         /// <summary>
-        /// 临床护理记录
+        /// Bản ghi điều dưỡng lâm sàng
         /// </summary>
         /// <returns></returns>
         public IActionResult HljlGraph()
@@ -108,7 +108,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
             return Success(blId);
         }
 
-        //页面加载数据
+        //Dữ liệu tải trang
         public IActionResult HljlLoadData(Pagination pagination,string zyh,string blId,string kssj,string jssj,string mbbh) {
 
             IList<HljldataVO> list = new List<HljldataVO>();
@@ -153,7 +153,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
             medicalRecord.OrganizeId = OrganizeId;
             medicalRecord.bllx = bllx;
             medicalRecord.dzbl_id = "R" + FieldValueHelper.GetNewFieldUniqueValue("YB_Inp_PatRegInfo.dzbl_id", OrganizeId, "{0:D10}", false);
-            //插入病人病历关系表
+            //Chèn vào bảng quan hệ bệnh án của bệnh nhân
             var Entity = new ZymeddocsrelationEntity();
             Entity.Id = Guid.NewGuid().ToString();
             Entity.zyh = zyh;

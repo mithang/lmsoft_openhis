@@ -65,13 +65,13 @@
         })
         $("#btn_search").trigger('click');
     }
-    //查询条件
+    //Điều kiện tìm kiếm
     function getSearchPostData() {
         var keyword = $("#txt_keyword").val();
         return { keyword: keyword };
     };
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -88,7 +88,7 @@
             }
         });
     }
-    //修改
+    //Sửa
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().sfflId;
         if (!!!keyValue) {

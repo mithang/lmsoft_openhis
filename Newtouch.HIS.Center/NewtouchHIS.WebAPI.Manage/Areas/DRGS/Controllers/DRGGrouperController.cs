@@ -7,7 +7,7 @@ using NewtouchHIS.Lib.Services.DrgGroup;
 namespace NewtouchHIS.WebAPI.Manage.Areas.DRGS.Controllers
 {
     /// <summary>
-    /// DRG分组器接口
+    /// DRGGiao diện bộ phân nhóm
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -19,9 +19,9 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.DRGS.Controllers
             _drgGroupService = drgGroupService;
         }
         /// <summary>
-        /// 通过病案信息查询DRG分组情况
-        /// 输入参数为String，格式如"22058878,2,88,32460,,13040503,94,1,K80.302|K80.305|K83.109|K72.905|Z90.408|E14.900x001,51.8803|51.8701|54.5100x005|45.1301"
-        /// 将MedicalRecord类的11个属性用逗号拼接，其中：zdList、ssList的类型是String[]，多个元素用|分隔；remark字段可选
+        /// Truy vấn qua thông tin bệnh ánDRGTình hình phân nhóm
+        /// Tham số đầu vào làString,Định dạng như"22058878,2,88,32460,,13040503,94,1,K80.302|K80.305|K83.109|K72.905|Z90.408|E14.900x001,51.8803|51.8701|54.5100x005|45.1301"
+        /// GhépMedicalRecordcủa lớp11thuộc tính bằng dấu phẩy, trong đó,:zdList,ssListkiểu làString[],nhiều phần tử phân tách bằng|;remarktrường tùy chọn
         /// </summary>
         /// <returns>GroupResult</returns>
         [HttpPost]
@@ -40,7 +40,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.DRGS.Controllers
 
         }
         /// <summary>
-        /// 批量查询DRG分组情况
+        /// Truy vấn hàng loạtDRGTình hình phân nhóm
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.DRGS.Controllers
         {
             if (request == null || request.Data == null || (request.Data.medicalArr.Length == 0 && request.Data.medicalList.Count == 0))
             {
-                return new BusResult<List<DrgGroupResult>> { code = ResponseResultCode.FAIL, msg = "Thông tin bệnh án quan trọng không được để trống，medicalArr và medicalListÍt nhất một mục không được để trống" };
+                return new BusResult<List<DrgGroupResult>> { code = ResponseResultCode.FAIL, msg = "Thông tin bệnh án quan trọng không được để trống,medicalArr và medicalListÍt nhất một mục không được để trống" };
             }
             if (string.IsNullOrWhiteSpace(request.Data.version))
             {
@@ -60,7 +60,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.DRGS.Controllers
 
         }
         /// <summary>
-        /// 根据病例文件批量查询分组情况
+        /// Truy vấn hàng loạt tình hình phân nhóm theo tệp bệnh án
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

@@ -6,7 +6,7 @@
 @{
     
     var opr = OperatorProvider.GetCurrent();
-    //医保所属地
+    //Nơi quản lý BHYT
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
 }
 
@@ -50,8 +50,8 @@
                         </td>
 
                         @*<td class="formTitle" colspan="2">
-                                <input type="button" id="XiaZai" class="btn btn-primary btn-md" value="目录文件下载" style="width:85px" />
-                                <input type="button" id="XZDownloadIndex" class="btn btn-primary btn-md" value="目录文件导入(数据)" style="width:95px" />
+                                <input type="button" id="XiaZai" class="btn btn-primary btn-md" value="Tải xuống tệp danh mục" style="width:85px" />
+                                <input type="button" id="XZDownloadIndex" class="btn btn-primary btn-md" value="Nhập tệp danh mục(dữ liệu)" style="width:95px" />
                             </td>*@
                         <td class="formTitle">
                             <input type="button" id="XiaZai" class="btn btn-primary btn-md" value="Tải xuống tệp mục lục" style="width:85px" />
@@ -172,7 +172,7 @@
                         <td class="formValue">
                             <input id="zddate" type="text" class="form-control input-wdatepicker" style="width:120px; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         </td>
-                        @*<td class="formTitle" style="padding-right:5px;">有效标志:</td>
+                        @*<td class="formTitle" style="padding-right:5px;">Cờ hiệu lực:</td>
                             <td class="formValue">
                                 <input type="text" id="zdvaliFlag" class="form-control" value="" />
                             </td>*@
@@ -223,7 +223,7 @@
         var operatorId = '@(opr.rygh)';
         var operatorName = '@(opr.UserName)';
         //var operatorId ="kfadmin" ;
-        //var operatorName = '管理员';
+        //var operatorName = 'quản trị viên';
 
         $(function () {
             $("#pagenum").val(1);
@@ -386,7 +386,7 @@
 
             })
         }
-        //目录查询类
+        //mụcghitratra cứuloại
         $('#btmlcx').change(function () {
             $('#gridList2').remove();
             $("#gbox_gridList2").remove();
@@ -421,7 +421,7 @@
         function gridList2() {
             var $gridList2 = $("#gridList2");
             var btnMlbh = $("#btmlcx").val();
-            //var mydata = [{ "insu_admdvs": "130500", "hilist_pric_uplmt_amt": "11000.0", "poolarea_no": "130500", "opt_time": "2021-07-01 09:38:52", "hilist_code": "C0202020010100504254-32H04", "opter_id": "1602836620770002506", "crter_name": null, "rid": "131100202103171600573443159129", "crte_optins_no": null, "begndate": "2000-01-01 00:00:00", "tabname": "YIYONGCAILIAO", "enddate": "2021-06-30 00:00:00", "hilist_lmtpric_type": "904", "crte_time": "2021-03-17 16:00:57", "opter_name": "邢台市", "optins_no": "S13050010088", "vali_flag": "1", "crter_id": null, "overlmt_dspo_way": "1", "updt_time": "2021-07-01 09:39:18" }, { "insu_admdvs": "130500", "hilist_pric_uplmt_amt": 648.0, "poolarea_no": "130500", "opt_time": "2021-07-01 09:39:45", "hilist_code": "C0202020010100504254-32H04", "opter_id": "1602836620770002506", "crter_name": "邢台市", "rid": "130000202107010940073400348301", "crte_optins_no": "S13050010088", "begndate": "2021-07-01 00:00:00", "tabname": "YIYONGCAILIAO", "enddate": null, "hilist_lmtpric_type": "904", "crte_time": "2021-07-01 09:40:07", "opter_name": "邢台市", "optins_no": "S13050010088", "vali_flag": "1", "crter_id": "1602836620770002506", "overlmt_dspo_way": "1", "updt_time": "2021-07-01 09:40:07" }];
+            //var mydata = [{ "insu_admdvs": "130500", "hilist_pric_uplmt_amt": "11000.0", "poolarea_no": "130500", "opt_time": "2021-07-01 09:38:52", "hilist_code": "C0202020010100504254-32H04", "opter_id": "1602836620770002506", "crter_name": null, "rid": "131100202103171600573443159129", "crte_optins_no": null, "begndate": "2000-01-01 00:00:00", "tabname": "YIYONGCAILIAO", "enddate": "2021-06-30 00:00:00", "hilist_lmtpric_type": "904", "crte_time": "2021-03-17 16:00:57", "opter_name": "Thành phố Hình Đài", "optins_no": "S13050010088", "vali_flag": "1", "crter_id": null, "overlmt_dspo_way": "1", "updt_time": "2021-07-01 09:39:18" }, { "insu_admdvs": "130500", "hilist_pric_uplmt_amt": 648.0, "poolarea_no": "130500", "opt_time": "2021-07-01 09:39:45", "hilist_code": "C0202020010100504254-32H04", "opter_id": "1602836620770002506", "crter_name": "Thành phố Hình Đài", "rid": "130000202107010940073400348301", "crte_optins_no": "S13050010088", "begndate": "2021-07-01 00:00:00", "tabname": "YIYONGCAILIAO", "enddate": null, "hilist_lmtpric_type": "904", "crte_time": "2021-07-01 09:40:07", "opter_name": "Thành phố Hình Đài", "optins_no": "S13050010088", "vali_flag": "1", "crter_id": "1602836620770002506", "overlmt_dspo_way": "1", "updt_time": "2021-07-01 09:40:07" }];
 
             $gridList2.newtouchLocalDataGrid({
                 height: $(window).height() - 160,
@@ -455,7 +455,7 @@
             $("#filename").val("");
             $("#jybh").val("");
         }
-        //目录编号对应列数
+        //mụcghimãsốđốiphảicộtsố
         function columnNum(key) {
             var column = {
                 '1301': '92', '1302': '29', '1303': '78', '1305': '16', '1306': '71',
@@ -463,7 +463,7 @@
             };
             return column[key];
         }
-        //目录查询返回值
+        //mụcghitratra cứutrảquaygiá trị
         function DirectoryQuery() {
             var ResultData;
             var drug_prodname = $("#drugName").val();
@@ -496,7 +496,7 @@
             return ResultData;
         }
 
-        //字典表查询
+        //chữđiểnbảngtratra cứu
         $("#btn_zdcx").click(function () {
             var type = $('#zdtype').val();
             if (!type) {
@@ -505,7 +505,7 @@
             }
             var parentValue = $('#zdparentValue').val();
             //if (!parentValue) {
-            //    $.modalAlert("父字典键值不能为空！", 'warning');
+            //    $.modalAlert("chachữđiểnphímgiá trịkhôngcó thểlàrỗng！", 'warning');
             //    return false;
             //}
             var admdvs = $('#zdadmdvs').val();
@@ -528,7 +528,7 @@
 
         function gridList3() {
             var $gridList3 = $("#gridList3");
-            //var mydata = [{ "insu_admdvs": "130500", "hilist_pric_uplmt_amt": "11000.0", "poolarea_no": "130500", "opt_time": "2021-07-01 09:38:52", "hilist_code": "C0202020010100504254-32H04", "opter_id": "1602836620770002506", "crter_name": null, "rid": "131100202103171600573443159129", "crte_optins_no": null, "begndate": "2000-01-01 00:00:00", "tabname": "YIYONGCAILIAO", "enddate": "2021-06-30 00:00:00", "hilist_lmtpric_type": "904", "crte_time": "2021-03-17 16:00:57", "opter_name": "邢台市", "optins_no": "S13050010088", "vali_flag": "1", "crter_id": null, "overlmt_dspo_way": "1", "updt_time": "2021-07-01 09:39:18" }, { "insu_admdvs": "130500", "hilist_pric_uplmt_amt": 648.0, "poolarea_no": "130500", "opt_time": "2021-07-01 09:39:45", "hilist_code": "C0202020010100504254-32H04", "opter_id": "1602836620770002506", "crter_name": "邢台市", "rid": "130000202107010940073400348301", "crte_optins_no": "S13050010088", "begndate": "2021-07-01 00:00:00", "tabname": "YIYONGCAILIAO", "enddate": null, "hilist_lmtpric_type": "904", "crte_time": "2021-07-01 09:40:07", "opter_name": "邢台市", "optins_no": "S13050010088", "vali_flag": "1", "crter_id": "1602836620770002506", "overlmt_dspo_way": "1", "updt_time": "2021-07-01 09:40:07" }];
+            //var mydata = [{ "insu_admdvs": "130500", "hilist_pric_uplmt_amt": "11000.0", "poolarea_no": "130500", "opt_time": "2021-07-01 09:38:52", "hilist_code": "C0202020010100504254-32H04", "opter_id": "1602836620770002506", "crter_name": null, "rid": "131100202103171600573443159129", "crte_optins_no": null, "begndate": "2000-01-01 00:00:00", "tabname": "YIYONGCAILIAO", "enddate": "2021-06-30 00:00:00", "hilist_lmtpric_type": "904", "crte_time": "2021-03-17 16:00:57", "opter_name": "Thành phố Hình Đài", "optins_no": "S13050010088", "vali_flag": "1", "crter_id": null, "overlmt_dspo_way": "1", "updt_time": "2021-07-01 09:39:18" }, { "insu_admdvs": "130500", "hilist_pric_uplmt_amt": 648.0, "poolarea_no": "130500", "opt_time": "2021-07-01 09:39:45", "hilist_code": "C0202020010100504254-32H04", "opter_id": "1602836620770002506", "crter_name": "Thành phố Hình Đài", "rid": "130000202107010940073400348301", "crte_optins_no": "S13050010088", "begndate": "2021-07-01 00:00:00", "tabname": "YIYONGCAILIAO", "enddate": null, "hilist_lmtpric_type": "904", "crte_time": "2021-07-01 09:40:07", "opter_name": "Thành phố Hình Đài", "optins_no": "S13050010088", "vali_flag": "1", "crter_id": "1602836620770002506", "overlmt_dspo_way": "1", "updt_time": "2021-07-01 09:40:07" }];
 
             $gridList3.newtouchLocalDataGrid({
                 height: $(window).height() - 160,
@@ -542,7 +542,7 @@
         }
 
 
-        //字典表查询返回值
+        //chữđiểnbảngtratra cứutrảquaygiá trị
         function DictionaryTable() {
             var type = $('#zdtype').val();
             var parentValue = $('#zdparentValue').val();
@@ -585,7 +585,7 @@
         })
 
 
-        //医执人员信息查询
+        //Tra cứu thông tin nhân viên hành nghề y
         $("#btn_yzry").click(function () {
             $('#gridList4').remove();
             $("#gbox_gridList4").remove();

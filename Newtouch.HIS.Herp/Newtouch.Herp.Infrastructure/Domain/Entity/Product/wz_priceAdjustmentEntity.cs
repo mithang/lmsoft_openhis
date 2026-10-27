@@ -6,126 +6,126 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 物资_调价
+    /// Vật tư_Điều chỉnh giá
     /// </summary>
     [SugarTable("wz_priceAdjustment")]
     public class WzPriceAdjustmentEntity : IEntity<WzPriceAdjustmentEntity>
     {
         /// <summary>
-        /// 主键 物资调价Id
+        /// Khóa chính Điều chỉnh giá vật tư Id
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public string wztjId { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chức Id（Bệnh viện có nghiệp vụ cụ thể）
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 库房ID    (提交调价库房)
+        /// Kho ID    (Gửi kho điều chỉnh giá)
         /// </summary>
         public string warehouseId { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 零售价 与转化因子对应，一般为部门单位价格
+        /// Giá bán lẻ tương ứng với hệ số chuyển đổi，thường là giá đơn vị khoa phòng
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 原零售价 与转化因子对应，一般为部门单位价格
+        /// Giá bán lẻ gốc tương ứng với hệ số chuyển đổi，thường là giá đơn vị khoa phòng
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal ylsj { get; set; }
 
         /// <summary>
-        /// 单位 与zhyz对应，一般为部门单位
+        /// Đơn vị với zhyz tương ứng，thường là đơn vị khoa phòng
         /// </summary>
         public string dwmc { get; set; }
 
         /// <summary>
-        /// 审核状态   0:未审核 1:已审核 2:已拒绝 3.已撤销
+        /// Trạng thái duyệt   0:Chưa duyệt 1:Đã duyệt 2:Đã từ chối 3.Đã hủy
         /// </summary>
         public string shzt { get; set; }
 
         /// <summary>
-        /// 修改类型
+        /// Loại sửa đổi
         /// </summary>
         public string xglx { get; set; }
 
         /// <summary>
-        /// 调整时间
+        /// Thời gian điều chỉnh
         /// </summary>
         public DateTime tzsj { get; set; }
 
         /// <summary>
-        /// 调整文件
+        /// Tệp điều chỉnh
         /// </summary>
         public string tzwj { get; set; }
 
         /// <summary>
-        /// 执行时间
+        /// Thời gian thực thi
         /// </summary>
         public DateTime zxsj { get; set; }
 
         /// <summary>
-        /// 调整操作人
+        /// Người thao tác điều chỉnh
         /// </summary>
         public string tzczy { get; set; }
 
         /// <summary>
-        /// 审操作人
+        /// Người thao tác duyệt
         /// </summary>
         public string shczy { get; set; }
 
         /// <summary>
-        /// 执行操作人
+        /// Người thao tác thực thi
         /// </summary>
         public string zxczy { get; set; }
 
         /// <summary>
-        /// 执行标志   0:未执行 1:已执行
+        /// Cờ thực thi   0:Chưa thực thi 1:Đã thực thi
         /// </summary>
         public string zxbz { get; set; }
 
         /// <summary>
-        /// 状态  0:作废；1.有效
+        /// Trạng thái  0:Hủy bỏ；1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa đổi cuối
         /// </summary>
         public string LastModifierCode { get; set; }
     }

@@ -32,7 +32,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
 
         /// <summary>
-        /// 视图
+        /// khung nhìn
         /// </summary>
         /// <returns></returns>
         public IActionResult SysPatiChargeWaiver()
@@ -40,7 +40,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             return View();
         }
         /// <summary>
-        /// 获取有效列表
+        /// Lấy danh sách hiệu lực
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -50,7 +50,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 新增或修改Form
+        /// Thêm mới hoặc sửaForm
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -60,7 +60,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             return Content(entity.ToJson());
         }
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -70,7 +70,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             return Success("Thao tác thành công。");
         }
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="SysPatiChargeAddEntity"></param>
         /// <param name="keyValue"></param>

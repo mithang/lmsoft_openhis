@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
         public string fybz { get; set; }
         public string ks { get; set; }
         public string ksmc { get; set; }
-        //补打退药单使用
+        //Sử dụng in bổ sung đơn trả thuốc
         public string tydh { get; set; }
     }
     public class MzcfcxDetailList : MzcfcxList

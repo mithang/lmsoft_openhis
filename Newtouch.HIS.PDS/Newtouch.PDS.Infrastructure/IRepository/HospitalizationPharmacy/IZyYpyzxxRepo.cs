@@ -6,52 +6,52 @@ using Newtouch.Infrastructure.EF;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 住院药品医嘱执行
+    /// Thực hiện y lệnh thuốc nội trú
     /// </summary>
     public interface IZyYpyzxxRepo : IRepositoryBase<ZyYpyzxxEntity>
     {
 
         /// <summary>
-        /// 获取需要发药的病区
+        /// Lấy khu bệnh cần phát thuốc
         /// </summary>
         /// <returns></returns>
         List<string> GetFyBq();
 
         /// <summary>
-        /// 获取需要发药的病人
+        /// Lấy bệnh nhân cần phát thuốc
         /// </summary>
         /// <returns></returns>
         List<string> GetFyPatients();
 
         /// <summary>
-        /// 获取医嘱信息 no log
+        /// Lấy thông tin y lệnh no log
         /// </summary>
-        /// <param name="yzId">医嘱ID</param>
+        /// <param name="yzId">Y lệnhID</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         List<ZyYpyzxxEntity> SelectDataByYzId(string yzId, string organizeId);
 
         /// <summary>
-        /// 获取医嘱信息 no log
+        /// Lấy thông tin y lệnh no log
         /// </summary>
-        /// <param name="yzId">医嘱ID</param>
-        /// <param name="zxId">医嘱执行ID</param>
+        /// <param name="yzId">Y lệnhID</param>
+        /// <param name="zxId">Thực hiện y lệnhID</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         List<ZyYpyzxxEntity> SelectDataByYzId(string yzId, string zxId, string organizeId);
 
         /// <summary>
-        /// 获取医嘱信息 no log
+        /// Lấy thông tin y lệnh no log
         /// </summary>
-        /// <param name="yzId">医嘱ID</param>
-        /// <param name="zxId">医嘱执行ID</param>
+        /// <param name="yzId">Y lệnhID</param>
+        /// <param name="zxId">Thực hiện y lệnhID</param>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         List<ZyYpyzxxEntity> SelectDataByYzId(string yzId, string zxId, string ypCode, string organizeId);
 
         /// <summary>
-        /// 修改发药标志位已退药
+        /// Sửa cờ phát thuốc thành đã trả thuốc
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="zxId"></param>
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Domain.IRepository
         int UpdateFybzTy(string yzId, string zxId, string userCode, string organizeId, Newtouch.Infrastructure.EFDbTransaction db);
 
         /// <summary>
-        /// 根据执行ID，物理删除此次执行的所有明细
+        /// Theo thực hiệnID，Xóa vật lý tất cả chi tiết của lần thực hiện này
         /// </summary>
         /// <param name="zxId"></param>
         /// <returns></returns>

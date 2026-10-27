@@ -9,7 +9,7 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
     public class InitController
     {
         /// <summary>
-        /// 组装his内部API基础Request
+        /// Lắp ráphisNội bộAPICơ sởRequest
         /// </summary>
         /// <param name="request"></param>
         /// <param name="methodcode"></param>
@@ -28,20 +28,20 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
             };
         }
         /// <summary>
-        /// 新旧ResponseBase类转化
+        /// Mới/cũResponseBaseChuyển đổi lớp
         /// </summary>
         /// <param name="resp"></param>
         /// <returns></returns>
         public static ResponseBase BuildResponseBase(ResponseBaseOld resp)
         {
-            if (resp == null) { return new ResponseBase { code = ResponseResultCode.ERROR, msg = "请求的资源无响应" }; };
+            if (resp == null) { return new ResponseBase { code = ResponseResultCode.ERROR, msg = "Tài nguyên được yêu cầu không phản hồi" }; };
             return new ResponseBase { code = resp.code, msg = $"{resp.msg??""}{resp.sub_code}{resp.sub_msg}", data = resp.data };
         }
         public static ResponseBase BuildResponseBase(ResponseBaseOld resp, Pagination pagination)
         {
             if (resp == null)
             {
-                return new ResponseBase { code = ResponseResultCode.ERROR, msg = "请求的资源无响应" };
+                return new ResponseBase { code = ResponseResultCode.ERROR, msg = "Tài nguyên được yêu cầu không phản hồi" };
             }
             if (resp.code == ResponseResultCode.SUCCESS && !string.IsNullOrWhiteSpace(resp.sub_msg))
             {

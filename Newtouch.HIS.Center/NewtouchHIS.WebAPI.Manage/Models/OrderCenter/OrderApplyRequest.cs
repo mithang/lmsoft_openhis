@@ -3,24 +3,24 @@
     public class OrderApplyRequest
     {
         /// <summary>
-        /// 订单类型 EnumOrderType 1 门诊，2 住院
+        /// Loại đơn hàng EnumOrderType 1 Ngoại trú,2 Nội trú
         /// </summary>
         public int? OrderType { get; set; }
 
         /// <summary>
-        /// 就诊Số thẻ
+        /// Khám bệnhSố thẻ
         /// </summary>
         public string CardNo { get; set; }
         /// <summary>
-        /// 本次就诊标识  门诊：mzh；住院：zyh
+        /// Mã định danh lần khám này  Ngoại trú:mzh;Nội trú:zyh
         /// </summary>
         public string VisitNo { get; set; }
         /// <summary>
-        /// 患者信息
+        /// Thông tin bệnh nhân
         /// </summary>
         public int patId { get; set; }
         /// <summary>
-        /// 地址Id
+        /// Địa chỉId
         /// </summary>
         public string dzId { get; set; }
     }
@@ -29,31 +29,31 @@
     public class OrderInfoBaseVO
     {
         /// <summary>
-        /// 订单号
+        /// Số đơn hàng
         /// </summary>
         public string OrderNo { get; set; }
         /// <summary>
-        /// 订单类型 EnumOrderType
+        /// Loại đơn hàng EnumOrderType
         /// </summary>
         public int? OrderType { get; set; }
         /// <summary>
-        /// 就诊Số thẻ
+        /// Khám bệnhSố thẻ
         /// </summary>
         public string? CardNo { get; set; }
         /// <summary>
-        /// 本次就诊标识  门诊：mzh；住院：zyh
+        /// Mã định danh lần khám này  Ngoại trú:mzh;Nội trú:zyh
         /// </summary>
         public string? VisitNo { get; set; }
         /// <summary>
-        /// 订单状态 EnumOrderStatus
+        /// Trạng thái đơn hàng EnumOrderStatus
         /// </summary>
         public int? OrderStu { get; set; }
         /// <summary>
-        /// 订单金额
+        /// Số tiền đơn hàng
         /// </summary>
         public decimal? OrderAmt { get; set; }
         /// <summary>
-        /// 锁定超时时间
+        /// Thời gian khóa quá hạn
         /// </summary>
         public DateTime? LockExpTime { get; set; }
     }

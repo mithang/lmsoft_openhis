@@ -1,14 +1,14 @@
 namespace Newtouch.Herp.Domain.IDomainServices
 {
     /// <summary>
-    /// 供应商操作
+    /// Thao tác nhà cung cấp
     /// </summary>
     public interface IGysSupplierDmnService
     {
         /// <summary>
         /// delete supplier
         /// </summary>
-        /// <param name="id">库房Id</param>
+        /// <param name="id">Kho Id</param>
         void DeleteSupplier(string id);
     }
 }

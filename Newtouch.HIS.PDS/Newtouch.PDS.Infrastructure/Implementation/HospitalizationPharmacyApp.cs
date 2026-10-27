@@ -28,7 +28,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Application.Implementation
 {
     /// <summary>
-    /// 住院库存造作
+    /// Thao tác tồn kho nội trú
     /// </summary>
     public class HospitalizationPharmacyApp : AppBase, IHospitalizationPharmacyApp
     {
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IDispensingDmnService _dispensingDmnService;
 
         /// <summary>
-        /// 住院发药
+        /// Phát thuốc nội trú
         /// </summary>
         /// <param name="drugsParam"></param>
         /// <param name="userCode"></param>
@@ -49,19 +49,19 @@ namespace Newtouch.HIS.Application.Implementation
             fyid = "0";
             if (drugsParam == null || drugsParam.Count == 0)
             {
-                return "发药信息不能为空";
+                return "Thông tin phát thuốc không được để trống";
             }
             if (string.IsNullOrWhiteSpace(userCode))
             {
-                return "当前用户的身份信息失效，请重新登录";
+                return "Thông tin danh tính người dùng hiện tại hết hiệu lực，Vui lòng đăng nhập lại";
             }
             if (string.IsNullOrWhiteSpace(yfbmCode))
             {
-                return "当前用户的药房部门失效，请重新登录";
+                return "Bộ phận nhà thuốc người dùng hiện tại hết hiệu lực，Vui lòng đăng nhập lại";
             }
             if (string.IsNullOrWhiteSpace(organizeId))
             {
-                return "当前用户的所属机构失效，请重新登录";
+                return "Cơ sở trực thuộc người dùng hiện tại hết hiệu lực，Vui lòng đăng nhập lại";
             }
 
             List<ZyYpyzxxEntity> yzxxLs = new List<ZyYpyzxxEntity>();
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Application.Implementation
             //    else
             //    {
             //        var drug = new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(item.organizeId, item.ypCode);
-            //        throw new Exception(string.Format("药品【{0}】未找到有效的排药信息", drug != null && !string.IsNullOrWhiteSpace(drug.ypmc) ? drug.ypmc : item.ypCode));
+            //        throw new Exception(string.Format("Thuốc【{0}】Không tìm thấy thông tin xếp thuốc hiệu lực", drug != null && !string.IsNullOrWhiteSpace(drug.ypmc) ? drug.ypmc : item.ypCode));
             //    }
             //    var yzxx = new ZyYpyzzxRepo(new DefaultDatabaseFactory()).SelectDataByYzId(item.yzId, item.zxId, item.ypCode, item.organizeId);
             //    if (yzxx != null && yzxx.Count > 0)
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Application.Implementation
             //    else
             //    {
             //        var drug = new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(item.organizeId, item.ypCode);
-            //        throw new Exception(string.Format("药品【{0}】未找到要发药的医嘱", drug != null && !string.IsNullOrWhiteSpace(drug.ypmc) ? drug.ypmc : item.ypCode));
+            //        throw new Exception(string.Format("Thuốc【{0}】Không tìm thấy y lệnh cần phát thuốc", drug != null && !string.IsNullOrWhiteSpace(drug.ypmc) ? drug.ypmc : item.ypCode));
             //    }
             //});
             #endregion
@@ -113,7 +113,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 参数验证和数据组装
+        /// Kiểm tra tham số và lắp ráp dữ liệu
         /// </summary>
         /// <param name="drugsParam"></param>
         /// <param name="yzxxLs"></param>
@@ -155,7 +155,7 @@ namespace Newtouch.HIS.Application.Implementation
                                 var drug =
                                     new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(
                                         item.organizeId, item.ypCode);
-                                errorMsg = string.Format("药品【{0}】未找到有效的排药信息",
+                                errorMsg = string.Format("Thuốc【{0}】Không tìm thấy thông tin xếp thuốc hiệu lực",
                                     drug != null && !string.IsNullOrWhiteSpace(drug.ypmc) ? drug.ypmc : item.ypCode);
                                 cts.Cancel();
                                 return false;
@@ -185,7 +185,7 @@ namespace Newtouch.HIS.Application.Implementation
                                         apiResp.data == null)
                                     {
                                         cts.Cancel();
-                                        throw new FailedException(string.IsNullOrWhiteSpace(apiResp.sub_msg) ? "从医护协同工作站获取患者信息失败！" : apiResp.sub_msg);
+                                        throw new FailedException(string.IsNullOrWhiteSpace(apiResp.sub_msg) ? "Lấy thông tin bệnh nhân từ trạm phối hợp y tế thất bại！" : apiResp.sub_msg);
 
                                     }
 
@@ -194,11 +194,11 @@ namespace Newtouch.HIS.Application.Implementation
                                     {
                                         if (a.zybz == 1) return;
                                         cts.Cancel();
-                                        throw new FailedException("10001", string.Format("【{0}】非在区状态，不能发药，如有必要可取消排药！", p.patientName));
+                                        throw new FailedException("10001", string.Format("【{0}】Trạng thái không ở khu，Không thể phát thuốc，Nếu cần có thể hủy xếp thuốc！", p.patientName));
                                     }
 
                                     cts.Cancel();
-                                    throw new FailedException("患者信息解析失败！");
+                                    throw new FailedException("Phân tích thông tin bệnh nhân thất bại！");
                                 });
                             }
                             else
@@ -206,7 +206,7 @@ namespace Newtouch.HIS.Application.Implementation
                                 var drug =
                                     new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(
                                         item.organizeId, item.ypCode);
-                                errorMsg = string.Format("药品【{0}】未找到要发药的医嘱",
+                                errorMsg = string.Format("Thuốc【{0}】Không tìm thấy y lệnh cần phát thuốc",
                                     drug != null && !string.IsNullOrWhiteSpace(drug.ypmc) ? drug.ypmc : item.ypCode);
                                 cts.Cancel();
                             }
@@ -235,7 +235,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// 参数验证和数据组装(新)(周滋明)
+        /// Kiểm tra tham số và lắp ráp dữ liệu(mới)(周滋明)
         /// </summary>
         /// <param name="drugsParam"></param>
         /// <param name="yzxxLs"></param>
@@ -273,7 +273,7 @@ namespace Newtouch.HIS.Application.Implementation
                         var drug =
                             new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(
                                 item.organizeId, item.ypCode);
-                        errorMsg = string.Format("药品【{0}】未找到有效的排药信息",
+                        errorMsg = string.Format("Thuốc【{0}】Không tìm thấy thông tin xếp thuốc hiệu lực",
                             (drug != null && !string.IsNullOrWhiteSpace(drug.ypmc) ? drug.ypmc : item.ypCode));
                         throw new Exception(errorMsg);
                     }
@@ -299,7 +299,7 @@ namespace Newtouch.HIS.Application.Implementation
                                 continue;
                             }
 
-                            // 验证患者住院状态
+                            // Kiểm tra trạng thái nội trú bệnh nhân
                             InpatientBaseInfoRequest reqObj = new InpatientBaseInfoRequest()
                             {
                                 zyh = px.zyh,
@@ -313,22 +313,22 @@ namespace Newtouch.HIS.Application.Implementation
                             if (apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS ||
                                 apiResp.data == null)
                             {
-                                errorMsg = string.IsNullOrWhiteSpace(apiResp.sub_msg) ? ("从CIS获取患者信息【" + px.patientName + "】失败！") : apiResp.sub_msg;
+                                errorMsg = string.IsNullOrWhiteSpace(apiResp.sub_msg) ? ("từCISLấy thông tin bệnh nhân【" + px.patientName + "】Thất bại！") : apiResp.sub_msg;
                                 throw new Exception(errorMsg);
                             }
                             InpatientBaseInfoDo pif = apiResp.data.ToString().ToObject<InpatientBaseInfoDo>();
                             if (pif == null)
                             {
-                                errorMsg = "解析CIS返回的患者信息【" + px.patientName + "】失败！";
+                                errorMsg = "Phân tíchCISThông tin bệnh nhân trả về【" + px.patientName + "】Thất bại！";
                                 throw new Exception(errorMsg);
                             }
                             if (pif.zybz != 1)
                             {
-                                errorMsg = string.Format("【{0}】非在区状态，不能发药，如有必要可取消排药！", px.patientName);
+                                errorMsg = string.Format("【{0}】Trạng thái không ở khu，Không thể phát thuốc，Nếu cần có thể hủy xếp thuốc！", px.patientName);
                                 throw new Exception(errorMsg);
                             }
 
-                            // 添加住院患者信息到缓存区
+                            // Thêm thông tin bệnh nhân nội trú vào vùng đệm
                             patients.Add(new InpatientBaseInfoDo()
                             {
                                 xm = px.patientName,
@@ -342,7 +342,7 @@ namespace Newtouch.HIS.Application.Implementation
                         var drug =
                             new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(
                                 item.organizeId, item.ypCode);
-                        errorMsg = string.Format("药品【{0}】未找到要发药的医嘱",
+                        errorMsg = string.Format("Thuốc【{0}】Không tìm thấy y lệnh cần phát thuốc",
                             (drug != null && !string.IsNullOrWhiteSpace(drug.ypmc) ? drug.ypmc : item.ypCode));
                         throw new Exception(errorMsg);
                     }

@@ -66,7 +66,7 @@
             colModel: [
                  { label: "Khóa chính", name: "sfxmId", hidden: true, key: true },
                  //{
-                 //    label: '同步', name: 'isSynch', width: 40, align: 'left',
+                 //    label: 'Đồng bộ', name: 'isSynch', width: 40, align: 'left',
                  //    formatter: function (cellvalue, options, rowObject) {
                  //        if (cellvalue === '0') {
                  //            var $row = JSON.stringify(rowObject).replace(/\"/g, "'");
@@ -134,13 +134,13 @@
         });
     }
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
 
     function initControl() {
-        //获取收费大类
+        //Lấy danh mục thu phí lớn
         $("#sfdl").bindSelect({
             url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + $("#OrganizeId").val(),
         });
@@ -211,9 +211,9 @@
     
     function toggleZt(sfxmId, newZt) {
         
-        // 发送请求到后端更新数据
+        // Gửi yêu cầu tới backend để cập nhật dữ liệu
         $.ajax({
-            url: '/SysChargeItem/UpdateZt',  // 后端处理修改的URL
+            url: '/SysChargeItem/UpdateZt',  // của xử lý sửa đổi ở backendURL
             type: 'POST',
             data: {
                 sfxmId: sfxmId,
@@ -221,7 +221,7 @@
                 organizeId: $("#OrganizeId").val()
             },
             success: function () {
-                    // 切换显示的开关状态
+                    // Chuyển trạng thái công tắc hiển thị
                 $('#btn_search').trigger('click');
               
             },
@@ -229,7 +229,7 @@
     }
     
     
-    //收费项目同步医保
+    //Đồng bộ BHYT hạng mục thu phí
     function YibaoUpload(row) {
         $.najax({
             url: "/SysChargeItem/YibaoUploadApi",

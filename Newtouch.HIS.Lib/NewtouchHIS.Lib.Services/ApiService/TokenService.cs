@@ -19,14 +19,14 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Lib.Services.ApiService
 {
     /// <summary>
-    /// 接口访问 Token统一处理
+    /// Xử lý thống nhất Token truy cập giao diện
     /// </summary>
     public class TokenService
     {
         #region private
         private readonly IHttpClientHelper _httpClient;
         /// <summary>
-        /// 获取鉴权中心Api地址
+        /// Lấy địa chỉ Api trung tâm xác thực
         /// </summary>
         private readonly static string _authCenterHost = ConfigInitHelper.SysConfig?.AppAPIHost?.SiteAuthCenterHost;
         private readonly static string _appTokenCacheKey = "HisToken:App_";
@@ -37,10 +37,10 @@ namespace NewtouchHIS.Lib.Services.ApiService
             _httpClient = httpClient;
         }
         /// <summary>
-        /// App获取授权Token
+        /// AppLấy ủy quyềnToken
         /// </summary>
-        /// <param name="appId">本应用Id</param>
-        /// <param name="accessAppId">申请访问应用Id</param>
+        /// <param name="appId">Ứng dụng nàyId</param>
+        /// <param name="accessAppId">Ứng dụng xin truy cậpId</param>
         /// <returns></returns>
         public async Task<string> GetAppToken(string appId, string accessAppId)
         {
@@ -68,14 +68,14 @@ namespace NewtouchHIS.Lib.Services.ApiService
             return tokenResult?.ToJson() ?? "";
         }
         /// <summary>
-        /// 用户获取Token
+        /// Người dùng lấyToken
         /// </summary>
         /// <returns></returns>
         public async Task<BusResult<string>> GetUserToken(OperatorModel user, string accessAppId)
         {
             if (user == null || string.IsNullOrWhiteSpace(user.OrganizeId) || string.IsNullOrWhiteSpace(user.UserCode))
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "用户信息不可为空" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Thông tin người dùng không được để trống" };
             }
             var key = GetUserCacheKey(user.OrganizeId, user.UserCode, accessAppId);
 
@@ -118,20 +118,20 @@ namespace NewtouchHIS.Lib.Services.ApiService
         //    }
 
         //    var result = await _httpClient.PostAsync<Result>(uri, data, token);
-        //    //授权到期自动续期
+        //    //Tự động gia hạn khi ủy quyền hết hạn
         //    if (result != null && result.HttpStatus == HttpStatusCode.Unauthorized)
         //    {
-        //        //鉴权失败 刷新token
+        //        //Xác thực thất bại, làm mớitoken
         //        token = GetUserTokenRefesh(user, token);
         //    }
         //    if (result == null || result.HttpStatus != HttpStatusCode.OK || result.BusData == null)
         //    {
-        //        throw new FailedException($"接口返回异常：\r\nRequest:{uri}\r\nResponse:{result?.ToJson()}");
+        //        throw new FailedException($"Giao diện trả về ngoại lệ:\r\nRequest:{uri}\r\nResponse:{result?.ToJson()}");
         //    }
         //    var busRet = JsonConvert.DeserializeObject<BusResult<T>>(result.BusData?.ToJson());
         //    if (busRet == null)
         //    {
-        //        throw new FailedException($"业务对象映射异常：\r\nRequest:{uri}\r\nResponse:{result.BusData?.ToJson()}");
+        //        throw new FailedException($"Ánh xạ đối tượng nghiệp vụ ngoại lệ:\r\nRequest:{uri}\r\nResponse:{result.BusData?.ToJson()}");
         //    }
         //    return busRet;
         //}
@@ -145,12 +145,12 @@ namespace NewtouchHIS.Lib.Services.ApiService
             var result = await _httpClient.PostAsync<Result>(uri, data, token);
             if (result == null || result.HttpStatus != HttpStatusCode.OK || result.BusData == null)
             {
-                throw new FailedException($"接口返回异常：\r\nRequest:{uri}\r\nResponse:{result?.ToJson()}");
+                throw new FailedException($"Giao diện trả về ngoại lệ:\r\nRequest:{uri}\r\nResponse:{result?.ToJson()}");
             }
             var busRet = JsonConvert.DeserializeObject<BusResult<T>>(result.BusData?.ToJson());
             if (busRet == null)
             {
-                throw new FailedException($"业务对象映射异常：\r\nRequest:{uri}\r\nResponse:{result.BusData?.ToJson()}");
+                throw new FailedException($"Ánh xạ đối tượng nghiệp vụ ngoại lệ:\r\nRequest:{uri}\r\nResponse:{result.BusData?.ToJson()}");
             }
             return busRet;
         }
@@ -163,7 +163,7 @@ namespace NewtouchHIS.Lib.Services.ApiService
         /// </summary>
         private readonly static string _getUserToken = $"{_authCenterHost}api/Auth/GetUserToken";
         /// <summary>
-        /// 用户Token刷新
+        /// Làm mới Token người dùng
         /// </summary>
         private readonly static string _userTokenRefresh = $"{_authCenterHost}api/Auth/UserTokenRefresh";
         #endregion

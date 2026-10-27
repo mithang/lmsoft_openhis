@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.EMR.Domain.ValueObjects
 {
     /// <summary>
-    /// 病历文档转化为模板
+    /// Chuyển tài liệu bệnh án thành mẫu
     /// </summary>
     public class BlConvertToTemplateVO
     {
@@ -18,7 +18,7 @@ namespace Newtouch.EMR.Domain.ValueObjects
         public string bllx { get; set; }
 
         /// <summary>
-        /// 病历文件路径
+        /// Đường dẫn tệp bệnh án
         /// </summary>
         public string blxtml { get; set; }
         public int Isempty { get; set; }

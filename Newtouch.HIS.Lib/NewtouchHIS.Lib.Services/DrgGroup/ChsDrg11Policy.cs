@@ -6,7 +6,7 @@ using NewtouchHIS.Lib.Base.Model.DRG;
 namespace NewtouchHIS.Lib.Services.DrgGroup
 {
     /// <summary>
-    /// CHS-DRG 1.1标准版 
+    /// CHS-DRG 1.1Bản tiêu chuẩn 
     /// </summary>
     public interface IChsDrg11Policy : IDrgGroupBasePolicy
     {
@@ -27,9 +27,9 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             var isValid = base.Validata(record);
             if (!isValid)
             {
-                result.msg = "参数校验失败";
+                result.msg = "Kiểm tra tham số thất bại";
                 result.code = ResponseResultCode.FAIL;
-                return result;//验证失败则直接返回
+                return result;//Nếu kiểm tra thất bại thì trả về trực tiếp
             }
             await Task.Run(() =>
             {
@@ -65,7 +65,7 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
                 else
                 {
                     result.code = ResponseResultCode.FAIL;
-                    result.msg = "DRG分组器未返回数据，请联系管理员";
+                    result.msg = "Bộ nhóm DRG không trả về dữ liệu, vui lòng liên hệ quản trị viên";
                 }
             });
 
@@ -78,20 +78,20 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             var isValid = base.Validata(ref record);
             if (!isValid)
             {
-                result.msg = "参数校验失败";
+                result.msg = "Kiểm tra tham số thất bại";
                 result.code = ResponseResultCode.FAIL;
                 return result;
             }
             if (string.IsNullOrWhiteSpace(record.FilePath))
             {
-                result.msg = $"文件路径查找失败";
+                result.msg = $"Tìm đường dẫn tệp thất bại";
                 result.code = ResponseResultCode.FAIL;
                 return result;
             }
             var recordResult = GroupHelper.GroupFileRecord(record.FilePath, record.FileCols);
             if (string.IsNullOrWhiteSpace(recordResult))
             {
-                result.msg = "分组结果获取失败";
+                result.msg = "Lấy kết quả nhóm thất bại";
                 result.code = ResponseResultCode.FAIL;
                 return result;
             }
@@ -137,7 +137,7 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             //var recordResult = GroupHelper.GroupRecord(str);
             if (record == null || (record.medicalArr!.Length == 0 && record.medicalList!.Count == 0))
             {
-                throw new FailedException("关键信息不可为空");
+                throw new FailedException("Thông tin quan trọng không được để trống");
             }
             if (record.medicalList!.Count > 0)
             {
@@ -163,7 +163,7 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             else
             {
                 result.code = ResponseResultCode.FAIL;
-                result.msg = "DRG分组器未返回数据，请联系管理员";
+                result.msg = "Bộ nhóm DRG không trả về dữ liệu, vui lòng liên hệ quản trị viên";
             }
             return result;
         }

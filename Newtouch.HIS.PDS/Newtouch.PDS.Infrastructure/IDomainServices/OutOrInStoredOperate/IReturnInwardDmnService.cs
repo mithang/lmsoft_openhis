@@ -4,13 +4,13 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 内部发药退回
+    /// Trả lại phát thuốc nội bộ
     /// </summary>
     public interface IReturnInwardDmnService
     {
 
         /// <summary>
-        /// 提交内部发药退回
+        /// Gửi trả lại phát thuốc nội bộ
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mx"></param>

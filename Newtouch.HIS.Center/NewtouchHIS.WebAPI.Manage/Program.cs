@@ -1,4 +1,4 @@
-using Newtonsoft.Json;
+ï»¿using Newtonsoft.Json;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Model;
 using Newtonsoft.Json.Serialization;
@@ -23,9 +23,9 @@ ConfigInitHelper.SysConfig = config.GetSection("BusinessConfig").Get<BusinessCon
 builder.Services.AddSingleton(new RedisHelper(config.GetSection("RedisConfig")));
 builder.Services.AddSingleton(new AppSettings(builder.Configuration));
 
-//ÅäÖÃÒÀÀµ×¢Èë·ÃÎÊÊı¾İ¿â
+//Cáº¥u hÃ¬nh dependency injection truy cáº­p cÆ¡ sá»Ÿ dá»¯ liá»‡u
 builder.Services.AddDependencyService();
-//Ìí¼ÓIApiUserSessionÊµÏÖÀà
+//ThÃªmIApiUserSessionLá»›p triá»ƒn khai
 builder.Services.AddSingleton<IIdentityCache, IdentityCachePrincipal>();
 builder.Services.AddSingleton<IHttpClientHelper, HttpClientHelper>();
 builder.Services.AddSingleton<IHttpWebRequestHelper, HttpWebRequestHelper>();
@@ -38,28 +38,28 @@ builder.Services.AddControllers(options =>
 }).AddNewtonsoftJson(
         options =>
         {
-            //ºöÂÔÑ­»·ÒıÓÃ
+            //Bá» qua tham chiáº¿u vÃ²ng
             options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             options.SerializerSettings.Formatting = Formatting.Indented;
-            options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss.fff";//È«¾Ö´¦Àí ·µ»ØÊ±¼ä¸ñÊ½
-            //options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;//È«¾Ö´¦Àí ½ÓÊÕÊ±¼ä²¢×ö±¾µØ»¯´¦Àí
+            options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss.fff";//Xá»­ lÃ½ toÃ n cá»¥c Äá»‹nh dáº¡ng thá»i gian tráº£ vá»
+            //options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;//Xá»­ lÃ½ toÃ n cá»¥c Nháº­n thá»i gian vÃ  xá»­ lÃ½ báº£n Ä‘á»‹a hÃ³a
             //var dateConverter = new Newtonsoft.Json.Converters.IsoDateTimeConverter
             //{
             //    DateTimeFormat = "yyyy-MM-dd HH:mm:ss"
             //}
 
             //options.SerializerSettings.Converters.Add(dateConverter);
-            //²»Ê¹ÓÃÍÕ·åÑùÊ½µÄkey
+            //KhÃ´ng dÃ¹ng kiá»ƒu camelCasekey
             options.SerializerSettings.ContractResolver = new DefaultContractResolver();
 
-            //options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();//Ê××ÖÄ¸Ğ¡Ğ´ÍÕ·åÊ½ÃüÃû
-            //options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore; ¿ÕÖµ´¦Àí
+            //options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();//Äáº·t tÃªn camelCase viáº¿t thÆ°á»ng chá»¯ cÃ¡i Ä‘áº§u
+            //options.SerializerSettings.NullValueHandling = NullValueHandling.Ignore; Xá»­ lÃ½ giÃ¡ trá»‹ rá»—ng
         }
 );
-//ËùÓĞ¿ØÖÆÆ÷Æô¶¯Éí·İÑéÖ¤
+//Má»i controller Ä‘á»u báº­t xÃ¡c thá»±c danh tÃ­nh
 builder.Services.AddMvc(options =>
 {
-    options.Filters.Add(new AuthorizeFilter());//ËùÓĞMVC·şÎñÄ¬ÈÏÌí¼ÓÊÚÈ¨±êÇ©
+    options.Filters.Add(new AuthorizeFilter());//Má»iMVCdá»‹ch vá»¥ máº·c Ä‘á»‹nh thÃªm nhÃ£n á»§y quyá»n
 });
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwagger();
@@ -72,7 +72,7 @@ builder.Services.AddTransient<IDrgGroupService, DrgGroupService>();
 builder.Services.AddTransient<IChsDrg11Policy, ChsDrg11Policy>();
 builder.Services.AddTransient<IDrgWuhan2022Policy, DrgWuhan2022Policy>();
 
-//ÅäÖÃ¿çÓò·şÎñ
+//Cáº¥u hÃ¬nh dá»‹ch vá»¥ cross-domain
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("Cors", p =>
@@ -83,12 +83,12 @@ builder.Services.AddCors(options =>
 
     });
 });
-//Ìí¼ÓSignalR×¢ÈëÅäÖÃ
+//ThÃªmSignalRCáº¥u hÃ¬nh injection
 //builder.Services.AddOhSignalR();
 builder.Services.AddSignalR(o =>
 {
-    o.EnableDetailedErrors = true;//ÏêÏ¸Òì³£ĞÅÏ¢
-    o.HandshakeTimeout = TimeSpan.FromSeconds(30);//ÎÕÊÖ³¬Ê±Ê±¼ä
+    o.EnableDetailedErrors = true;//ThÃ´ng tin ngoáº¡i lá»‡ chi tiáº¿t
+    o.HandshakeTimeout = TimeSpan.FromSeconds(30);//Thá»i gian quÃ¡ háº¡n báº¯t tay
 });
 var app = builder.Build();
 
@@ -99,9 +99,9 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 #region jwt
-app.UseAuthentication();        //Ìí¼Ójwt¼øÈ¨ 
-//´úÂë´ÓÉÏµ½ÏÂÖ´ĞĞ£¬ÖĞ¼ä¿ÉÒÔ¼ÓÅĞ¶Ï£¬ È¨ÏŞÉèÖÃÎÊÌâ
-app.UseAuthorization();   //ÊÚÈ¨
+app.UseAuthentication();        //ThÃªmjwtXÃ¡c thá»±c 
+//Code thá»±c thi tá»« trÃªn xuá»‘ng dÆ°á»›i,á»Ÿ giá»¯a cÃ³ thá»ƒ thÃªm Ä‘iá»u kiá»‡n xÃ©t, Váº¥n Ä‘á» cÃ i Ä‘áº·t quyá»n
+app.UseAuthorization();   //á»¦y quyá»n
 #endregion
 app.UseNewtouchExceptionHandler();
 app.MapControllers();

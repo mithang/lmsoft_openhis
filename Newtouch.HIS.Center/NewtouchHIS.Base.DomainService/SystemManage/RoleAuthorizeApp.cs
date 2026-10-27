@@ -22,7 +22,7 @@ namespace NewtouchHIS.Base.DomainService
            
         }
         /// <summary>
-        /// 获取角色授权列表
+        /// Lấy danh sách ủy quyền vai trò
         /// </summary>
         /// <param name="roleId"></param>
         /// <returns></returns>

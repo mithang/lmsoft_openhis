@@ -17,9 +17,9 @@
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an" style="width:140px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@(DateTime.Now.ToString("yyyy-MM-dd 23:59:59"))" />
                 </td>
-                @*<th class="formTitle">收款人：</th>
+                @*<th class="formTitle">Người thu tiền：</th>
                 <td class="formValue" style="width:200px">
-                    <input id="skr" name="rad" type="radio" checked="checked" />本人&nbsp;&nbsp;&nbsp;<input name="rad" id="qb" type="radio" />全部
+                    <input id="skr" name="rad" type="radio" checked="checked" />Bản thân&nbsp;&nbsp;&nbsp;<input name="rad" id="qb" type="radio" />Tất cả
                 </td>*@
                 <td class="formValue" style="padding-left:20px;">
                     <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
@@ -102,7 +102,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";

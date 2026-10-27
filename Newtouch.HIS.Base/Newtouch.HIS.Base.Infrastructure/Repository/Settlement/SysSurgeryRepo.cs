@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Repository.Settlement
 					throw new FailedException("Mã không được trùng lặp");
 				}
 
-				SurgeryEntity oldEntity = null;   //变更前Entity
+				SurgeryEntity oldEntity = null;   //Trước khi thay đổiEntity
 				oldEntity = this.FindEntity(keyValue.Value);
 				this.DetacheEntity(oldEntity);
 

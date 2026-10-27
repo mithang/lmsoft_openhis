@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品单据
+    /// Chứng từ thuốc hệ thống
     /// </summary>
     [Table("xt_yp_dj")]
     [SugarTable("xt_yp_dj")]
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int djh { get; set; }
 
         /// <summary>
-        /// 0:允许 1:不允许 -1:未选择
+        /// 0:Cho phép 1:Không cho phép -1:Chưa chọn
         /// </summary>
         public int xgdjh { get; set; }
 

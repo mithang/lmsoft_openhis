@@ -9,61 +9,61 @@ namespace Newtouch.Domain.ValueObjects
     public class OrderAuditVO
     {
         /// <summary>
-        /// 医嘱id
+        /// Y lệnhid
         /// </summary>
         public string yzid { get; set; }
         /// <summary>
-        /// 医嘱性质
+        /// Y lệnhTính chất
         /// </summary>
         public int? yzxz { get; set; }
         /// <summary>
-        /// 医嘱性质说明
+        /// Y lệnhTính chấtMô tả
         /// </summary>
         public string yzxzsm { get; set; }
         /// <summary>
-        /// 开始时间
+        /// Thời gian bắt đầu
         /// </summary>
         public DateTime? kssj { get; set; }
         /// <summary>
-        /// 项目类型
+        /// MụcLoại
         /// </summary>
         public string xmmc { get; set; }
         /// <summary>
-        /// 药品剂量
+        /// ThuốcLiều lượng
         /// </summary>
         public Decimal? ypjl { get; set; }
         /// <summary>
-        /// 医嘱内容
+        /// Nội dung y lệnh
         /// </summary>
         public string yzmc { get; set; }
         public string yzjl { get; set; }
         public string yfmc { get; set; }
         public string yzpcmc { get; set; }
         /// <summary>
-        /// 停止/作废时间
+        /// Dừng/Hủy bỏThời gian
         /// </summary>
         public DateTime? tzsj { get; set; }
         /// <summary>
-        /// 停止/作废医生工号
+        /// Dừng/Hủy bỏBác sĩMã nhân viên
         /// </summary>
         public string tzysgh { get; set; }
         /// <summary>
-        /// 停止/作废操作员
+        /// Dừng/Hủy bỏThao tácviên
         /// </summary>
         public string tzr { get; set; }
 
         public string Creator { get; set; }
         /// <summary>
-        /// 医嘱组号
+        /// Y lệnhSố nhóm
         /// </summary>
         public int? zh { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 0 待审 1已审核 2已执行 3DC 4停止
+        /// 0 chờduyệt 1Đã duyệt 2đãThực hiện 3DC 4Dừng
         /// </summary>
         public int yzzt { get; set; }
         /// <summary>
-        /// 医嘱类型
+        /// Kiểu y lệnh
         /// </summary>
         public int? yzlx { get; set; }
         public string zyh { get; set; }
@@ -80,7 +80,7 @@ namespace Newtouch.Domain.ValueObjects
         public string iszt { get; set; }
         public string yfztbs { get; set; }
         /// <summary>
-        /// 药品开立库存来源 1:科室备药库存 2：药房库存
+        /// ThuốcmởlậpTồn khođếnnguồn 1:Khoachuẩn bị thuốcTồn kho 2：Nhà thuốcTồn kho
         /// </summary>
         public int? yply { get; set; }
         public decimal? dj { get; set; }

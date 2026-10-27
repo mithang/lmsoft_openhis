@@ -359,7 +359,7 @@
     });
 
     $('#bz').keydownEnterEvent(function (event) {
-        if ($('#bz').hasClass('form-an-cur')) { //缺陷-Từ cái trướcenterĐã chuyển tới
+        if ($('#bz').hasClass('form-an-cur')) { //khuyết điểm-Từ cái trướcenterĐã chuyển tới
             $('#bz').removeClass('form-an-cur')
             return;
         }
@@ -400,11 +400,11 @@
         }
     });
 
-    //Theo thời gian tạo đảo ngược叙 排Cột， Mới tạo nhất Ở phía trước nhất
+    //Theo thời gian tạo đảo ngượckể xếpCột， Mới tạo nhất Ở phía trước nhất
     var oldxmList = [];   //Mục lịch sử đã gửiList
     var newxmList = [];   //Mục mớiList
 
-    //hướnggridMX gridtrong填充Dữ liệu
+    //hướnggridMX gridtrongđiềnDữ liệu
     function fillDataToGrid() {
         $("#gridMX").resetSelection();
         $("#gridMX").clearGridData();
@@ -416,7 +416,7 @@
 
     fillDataToGrid();
 
-    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）của完整性
+    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）củatính đầy đủ
     function checkEditingRowData(rowData) {
         if (!rowData.sfxmCode || !rowData.sfxmmc || !rowData.yzlx || !rowData.sfdlCode || !rowData.sfdlmc) {
             $.modalAlert("Vui lòng chọn mụcthu phí", 'warning');
@@ -465,7 +465,7 @@
 
     //Nút sự kiện start
 
-    //键入Mã nhập viện Tìm kiếm
+    //NhậpMã nhập viện Tìm kiếm
     $('#btn_search').click(function () {
         var zyh = $('#zyh').val();
         newtouch_globalevent_f4();
@@ -686,7 +686,7 @@
                     //nênlàthuộc vềoldxmList start
                     //Yêu cầu chỉnh sửa dòng đã gửi
                     if (rowData.zxzt == "Đã hoàn thành" || rowData.zxzt == "Đã dừng" || rowData.zxzt == "Đang thực hiện") {
-                        //oldxmListtrongcủa多LầnSửa đổi rowData.zxzt undifined cũngkhông问题
+                        //oldxmListtrongcủanhiềuLầnSửa đổi rowData.zxzt undifined cũngkhônghỏivấn đề
                         $.modalAlert("Đã thực hiện/Đã hoàn thành/Bản ghi đã dừng không thể sửa đổi", 'warning');
                         return;
                     }
@@ -751,7 +751,7 @@
     //Nút thêm
     function newtouch_event_f2() {
         if (editingNewid || editingJzjhmxId) {
-            return; //Đang ở trạng thái sửa đổi，làKhông thể点击Nút thêmcủa   cầndisableXử lý
+            return; //Đang ở trạng thái sửa đổi，làKhông thểNhấnNút thêmcủa   cầndisableXử lý
         }
 
         if (from == "mz") {
@@ -781,7 +781,7 @@
 
             data.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
 
-            newxmList.unshift(data);   //作làmục mớiThêm //”Phía trước nhất của mảng“
+            newxmList.unshift(data);   //làmlàmục mớiThêm //”Phía trước nhất của mảng“
 
             //Liên kết lạixmTrình bày mảng tớigrid
             fillDataToGrid();
@@ -863,14 +863,14 @@
                         return; //nênlàBất thường
                     }
                     newxmList.remove(matchedIndex);   //Loại bỏ mục này
-                    newxmList.unshift(data);   //作làmục mớiThêm    //”Phía trước nhất của mảng“
+                    newxmList.unshift(data);   //làmlàmục mớiThêm    //”Phía trước nhất của mảng“
                 }
                 else {  //editingJzjhmxId
                     var matchedIndex = -1;
                     for (var ii = 0; ii < oldxmList.length; ii++) {
                         if (oldxmList[ii].jzjhmxId == data.jzjhmxId) {
                             matchedIndex = ii;
-                            data.LastEexcutionTime = oldxmList[ii].LastEexcutionTime;//Thời gian thực hiện cuối cùng不cần丢，虽然Không cần传tớidịch vụ器端
+                            data.LastEexcutionTime = oldxmList[ii].LastEexcutionTime;//Thời gian thực hiện cuối cùngkhôngcầnmất，dùnhưngKhông cầnTruyềntớidịch vụdụng cụđầu
                             break;
                         }
                     }
@@ -878,7 +878,7 @@
                         return; //nênlàBất thường
                     }
                     oldxmList.remove(matchedIndex);   //Loại bỏ mục này
-                    oldxmList.unshift(data);   //作làmục mớiThêm    //”Phía trước nhất của mảng“
+                    oldxmList.unshift(data);   //làmlàmục mớiThêm    //”Phía trước nhất của mảng“
                 }
 
                 //Liên kết lạixmTrình bày mảng tớigrid
@@ -1000,7 +1000,7 @@
                 //Liên kết lạixmTrình bày mảng tớigrid
                 fillDataToGrid();
 
-                //đối vớiKhácđều不phát sinh影响
+                //đối vớiKhácđềukhôngphát sinhẢnh hưởng
             }
         }
     }
@@ -1055,7 +1055,7 @@
                     if (newRowData.sfxmCode && newRowData.sfdlCode && newRowData.dj && newRowData.dw && newRowData.sl) {
                         newRowData.dj = parseFloat(newRowData.dj);
                         newRowData.sl = parseInt(newRowData.sl);
-                        newxmList.unshift(newRowData);   //作làmục mớiThêm //”Phía trước nhất của mảng“
+                        newxmList.unshift(newRowData);   //làmlàmục mớiThêm //”Phía trước nhất của mảng“
                     }
                 });
 
@@ -1068,7 +1068,7 @@
         });
     }
 
-    //F8Gửi至dịch vụ器
+    //F8Gửiđếndịch vụdụng cụ
     function newtouch_event_f8() {
         if (from == 'mz') {
             mzsubmit();
@@ -1119,11 +1119,11 @@
             resultxmList.push(this);
         });
 
-        //oldxmListtrongChỉnh sửa过của pushtớiresultxmListtrong Đồng thời Gửitớidịch vụ器
+        //oldxmListtrongChỉnh sửaquacủa pushtớiresultxmListtrong Đồng thời Gửitớidịch vụdụng cụ
         $.each(oldxmList, function () {
             if (this.czlx !== undefined && this.czlx !== null) {
-                //zxzt undifined nhất định là Lịch sử gửi ， và nàyLầnSửa đổi过
-                resultxmList.unshift(this);   //作làmục mớiThêm    //”Phía trước nhất của mảng“
+                //zxzt undifined nhất định là Lịch sử gửi ， và nàyLầnSửa đổiqua
+                resultxmList.unshift(this);   //làmlàmục mớiThêm    //”Phía trước nhất của mảng“
             }
         });
         paramData.xmList = resultxmList;
@@ -1158,11 +1158,11 @@
             resultxmList.push(this);
         });
 
-        //oldxmListtrongChỉnh sửa过của pushtớiresultxmListtrong Đồng thời Gửitớidịch vụ器
+        //oldxmListtrongChỉnh sửaquacủa pushtớiresultxmListtrong Đồng thời Gửitớidịch vụdụng cụ
         $.each(oldxmList, function () {
             if (this.czlx !== undefined && this.czlx !== null) {
-                //zxzt undifined nhất định là Lịch sử gửi ， và nàyLầnSửa đổi过
-                resultxmList.unshift(this);   //作làmục mớiThêm    //”Phía trước nhất của mảng“
+                //zxzt undifined nhất định là Lịch sử gửi ， và nàyLầnSửa đổiqua
+                resultxmList.unshift(this);   //làmlàmục mớiThêm    //”Phía trước nhất của mảng“
             }
         });
         paramData.xmList = resultxmList;

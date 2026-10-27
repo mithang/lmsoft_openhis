@@ -104,7 +104,7 @@
 </div>
 <script type="text/javascript">
     var ThisbqCode = "";//Khởi tạo khu bệnhCode
-    var ThisbrCode = "";//初始化病人Code
+    var ThisbrCode = "";//Khởi tạo bệnh nhânCode
     var Thisbqbian = "";
     var checkArray = [];
     var pageNum = 1;
@@ -114,9 +114,9 @@
     var zyh = [];
 
     $(function () {
-        //绑定病区
+        //Gắn khu bệnh
         bqGridList();
-        //绑定病人发药详细信息
+        //Gắn chi tiết phát thuốc của bệnh nhân
         dispenseMedicinGridList(null);
 
     });
@@ -176,7 +176,7 @@
         });
     }
 
-    //用户发药详细信息
+    //Chi tiết phát thuốc của người dùng
     function dispenseMedicinGridList() {
         $dispenseMedicinGridList.dataGrid({
             multiselect: true,
@@ -222,8 +222,8 @@
             viewrecords: true,
             //multiboxonly : false,
             onSelectAll: function (rowIds, status) {
-                //选中全部时触发，rowIds为当页所有的rowId
-                //checkArray数组中把当页的全删除 jqGrid('getDataIDs');
+                //Kích hoạt khi chọn tất cả，rowIdslà tất cả của trang hiện tạirowId
+                //checkArrayXóa tất cả của trang hiện tại trong mảng jqGrid('getDataIDs');
                 for (var i = 0; i < rowIds.length; i++) {
                     for (var j = 0; j < checkArray.length; j++) {
                         if (checkArray[j].pageNum == pageNum && checkArray[j].rowId == rowIds[i]) {
@@ -232,7 +232,7 @@
                         }
                     }
                 }
-                //如果是选择的选中，则把当页所有条目加上
+                //Nếu là chọn đã chọn，thì cộng tất cả mục của trang hiện tại
                 if (status) {
                     for (var i = 0; i < rowIds.length; i++) {
                         var rowData = $dispenseMedicinGridList.jqGrid('getRowData', rowIds[i]);
@@ -241,12 +241,12 @@
                     }
                 }
             },
-            onSelectRow: function (rowId, status) {  //Nhấncheckbox触发 rowId为当前触发的rowid
-                //选中行的行数据
+            onSelectRow: function (rowId, status) {  //NhấncheckboxKích hoạt rowIdlà kích hoạt hiện tạirowid
+                //Dữ liệu dòng của dòng được chọn
                 var rowData = $dispenseMedicinGridList.jqGrid('getRowData', rowId);
                 var checkedItem = { "pageNum": pageNum, "rowId": rowId, "czlx": rowData.czlx, "yzId": rowData.yzId, "Id": rowData.Id, "zxId": rowData.zxId, "zyh": rowData.zyh, "zytyapplyno": rowData.zytyapplyno };
                 if (status) {
-                    //如果选中，则判断数组中如果没有的话加入数组
+                    //Nếu được chọn，thì kiểm tra nếu trong mảng chưa có thì thêm vào mảng
                     for (var i = 0; i < checkArray.length; i++) {
                         if (checkArray[i].pageNum == pageNum && checkArray[i].rowId == rowId) {
                             return false;
@@ -254,7 +254,7 @@
                     }
                     checkArray.push(checkedItem);
                 } else {
-                    //删除数组
+                    //Xóa mảng
                     for (var i = 0; i < checkArray.length; i++) {
                         if (checkArray[i].pageNum == pageNum && checkArray[i].rowId == rowId) {
                             checkArray.splice(i, 1);
@@ -264,11 +264,11 @@
                 }
                 //console.log(checkArray)
             },
-            //每个页面加载时触发
+            //Kích hoạt khi mỗi trang tải
             loadComplete: function (data) {
-                //改变全局变量pageNum页码
+                //Thay đổi biến toàn cụcpageNumSố trang
                 pageNum = data.page;
-                //循环数组，让当页中的rowId变为选中状态
+                //Lặp mảng，Để trong trang hiện tạirowIdtrở thành trạng thái được chọn
                 for (var i = 0; i < checkArray.length; i++) {
                     if (checkArray[i].pageNum == pageNum) {
                         $dispenseMedicinGridList.jqGrid('setSelection', checkArray[i].rowId, true);
@@ -278,11 +278,11 @@
         });
 
         $(".ui-pg-selbox").change(function () {
-            //要触发的事件
+            //Sự kiện cần kích hoạt
             checkArray.splice(0);
         });
 
-        //查询
+        //Truy vấn
         $("#btn_search").click(function () {
             if ($("#Kssj").val() === "") {
                 $.modalMsg("Thời gian bắt đầu không được để trống", "warning", 2000);
@@ -344,9 +344,9 @@
         var patzyh = "";
         var patnots = "";
 
-        //当前选中父节点
+        //Nút cha đang được chọn
         var len = 0;
-        var single = 0; //是否单个子节点
+        var single = 0; //Có phải nút con đơn lẻ không
 
         if (item != null && item.Ex1 == "p") {
             patlistFath = item.ChildNodes;
@@ -357,7 +357,7 @@
             len = 1;
             single = 1;
         }
-        //选中节点
+        //Nút được chọn
         for (var i = 0; i < patlist.length; i++) {
             if (patlist[i].Ex1 === "c") {
                 patzyh += patlist[i].value + ",";
@@ -404,7 +404,7 @@
         operateTimeList(ThisbrCode, Thisbqbian);
     }
 
-    //级联选中所有子节点
+    //Chọn xếp tầng tất cả nút con
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -413,7 +413,7 @@
             }
         }
     }
-    //级联取消所有子节点
+    //Bỏ chọn xếp tầng tất cả nút con
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -423,7 +423,7 @@
         }
     }
 
-    // 打印
+    // In
     function newtouch_event_f6() {
         printRptSumary();
     }
@@ -452,8 +452,8 @@
             $.modalMsg("Vui lòng chọn bản ghi thao tác", "warning");
             return false;
         }
-        //var fy = checkArray.filter((item) => item.czlx.indexOf("发药") > 0);
-        //var ty = checkArray.filter((item) => item.czlx.indexOf("退药") > 0);
+        //var fy = checkArray.filter((item) => item.czlx.indexOf("Phát thuốc") > 0);
+        //var ty = checkArray.filter((item) => item.czlx.indexOf("Trả thuốc") > 0);
         //if (fy.length > 0 && ty.length > 0) {
         //    $.modalMsg("Loại thao tác, vui lòng chọn trả thuốc hoặc phát thuốc", "warning");
         //    return false;
@@ -479,7 +479,7 @@
         var czIds = checkArray.map((item) => {
             return item.Id
         }).join(",");
-        var systemCode = "PDS";//报表所属系统编码
+        var systemCode = "PDS";//Mã hệ thống của báo cáo
         var uri = '@reportUrl' + "?tempCode=1302" + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=" + '@ViewBag.OrganizeId'
         +"&systemCode=" + systemCode + "&yfbmCode=" + '@ViewBag.yfbmCode' + "&zyh=" + zyh + "&operateType=" + operateType + "&yzIds=" + "&zxIds=" + "&rdNo=" + "&czIds=" + czIds;
         window.open(uri);
@@ -513,7 +513,7 @@
             });
             gyssStr = gyssStr.substring(0, gyssStr.length - 1);
         }
-        var systemCode = "PDS";//报表所属系统编码
+        var systemCode = "PDS";//Mã hệ thống của báo cáo
         var uri = '@reportUrl' + "?tempCode=1301" + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=" + '@ViewBag.OrganizeId'
         +"&systemCode=" + systemCode + "&yfbmCode=" + '@ViewBag.yfbmCode' + "&zyh=" + ThisbrCode + "&operateType=1&kssj=" + kssj + "&jssj=" + jssj + "&operatetime=" + gyssStr;
         window.open(uri);

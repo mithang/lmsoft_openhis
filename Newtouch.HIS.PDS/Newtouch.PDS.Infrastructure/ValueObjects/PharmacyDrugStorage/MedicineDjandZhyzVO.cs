@@ -5,11 +5,11 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class MedicineDjandZhyzVO
     {
         /// <summary>
-        /// 药品单价
+        /// Đơn giá thuốc
         /// </summary>
         public decimal Dj { get; set; }
         /// <summary>
-        /// 转换因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public decimal Zhyz { get; set; }
     }

@@ -90,7 +90,7 @@ select * from dbo.Sys_Report a where parentid=@reportID and zt=1 order by px";
             return this.FindList<ReortListVO>(sql, pars.ToArray());
         }
         /// <summary>
-        /// 获取 报表明细内容
+        /// Lấy Nội dung chi tiết báo cáo
         /// </summary>
         /// <returns></returns>
         public ReortMXListVO GetReportMXTree(string ReportId)
@@ -104,7 +104,7 @@ select * from dbo.Sys_Report a where parentid=@reportID and zt=1 order by px";
             return this.FirstOrDefault<ReortMXListVO>(sql, pars.ToArray());
         }
         /// <summary>
-        /// 获取 设计查询
+        /// Lấy Tra cứu thiết kế
         /// </summary>
         /// <returns></returns>
         public ReortMXListVO GetReportMXData(string ReportId)
@@ -120,7 +120,7 @@ left join Sys_Report b on a.ReportCode=b.ReportCode
             return this.FirstOrDefault<ReortMXListVO>(sql, pars.ToArray());
         }
         /// <summary>
-        /// 新增明细报表
+        /// Thêm báo cáo chi tiết
         /// </summary>
         /// <param name="ReortMXListVO"></param>
         /// <returns></returns>
@@ -262,7 +262,7 @@ and ReportStatus=1 and zt=1
             return "";
         }
         /// <summary>
-        /// 明细报表删除
+        /// Xóa báo cáo chi tiết
         /// </summary>
         /// <param name="ReportId"></param>
         /// <returns></returns>
@@ -289,7 +289,7 @@ and ReportStatus=1 and zt=1
             return "";
         }
         /// <summary>
-        /// 主报表删除
+        /// Xóa báo cáo chính
         /// </summary>
         /// <param name="ReportId"></param>
         /// <returns></returns>

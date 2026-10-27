@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 报损报溢查询
+    /// Truy vấn báo hỏng báo thừa
     /// </summary>
     public class InventoryQureyinfoVO
     {
@@ -92,23 +92,23 @@ namespace Newtouch.HIS.Domain.ValueObjects
         /// </summary>
         public string Name { get; set; }
         /// <summary>
-        /// 零售价总额
+        /// Tổng giá bán lẻ
         /// </summary>
         public decimal? ljze { get; set; }
         /// <summary>
-        /// 批发价总额
+        /// Tổng giá bán buôn
         /// </summary>
         public decimal? pjze { get; set; }
         /// <summary>
-        /// 进价
+        /// Giá nhập
         /// </summary>
         public decimal? jj { get; set; }
         /// <summary>
-        /// 进价总额
+        /// Tổng giá nhập
         /// </summary>
         public decimal? jjze { get; set; }
         /// <summary>
-        /// 转化因子
+        /// Hệ số quy đổi
         /// </summary>
         public int? Zhyz { get; set; }
     }

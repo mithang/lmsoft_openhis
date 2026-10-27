@@ -4,12 +4,12 @@ using Newtouch.Domain.Entity;
 namespace Newtouch.Application.Interface
 {
     /// <summary>
-    /// 用法联动
+    /// Cách dùngliênđộng
     /// </summary>
     public interface IUsageLinkageApp
     {
         /// <summary>
-        /// 提交
+        /// Gửi
         /// </summary>
         /// <param name="sysUsageLinkageEntity"></param>
         /// <returns></returns>

@@ -3,22 +3,22 @@ using System;
 namespace Newtouch.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 患者入院诊断
+    /// Bệnh nhânChẩn đoán nhập viện
     /// </summary>
     public class PatientRyDiagnosisDto
     {
         /// <summary>
-        /// 入院多诊断ID
+        /// Nhập việnnhiềuChẩn đoánID
         /// </summary>
         public string rydzdId { get; set; }
         
         /// <summary>
-        /// 住院号
+        /// Số nhập viện
         /// </summary>
         public string zyh { get; set; }
 
         /// <summary>
-        /// 诊断代码
+        /// Chẩn đoánMã
         /// </summary>
         public string zdCode { get; set; }
 
@@ -28,47 +28,47 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string icd10 { get; set; }
 
         /// <summary>
-        /// 诊断名称
+        /// Tên chẩn đoán
         /// </summary>
         public string zdmc { get; set; }
 
         /// <summary>
-        /// 诊断排序   1：诊断1 2：诊断2  3：诊断3
+        /// Chẩn đoánThứ tự   1：Chẩn đoán1 2：Chẩn đoán2  3：Chẩn đoán3
         /// </summary>
         public string zdpx { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId（cócụ thểthểnghiệp vụcủayviện）
         /// </summary>
         public string OrganizeId { get; set; }
         
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建日期
+        /// tạoNgày
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改日期
+        /// SửaNgày
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改人
+        /// Sửa người
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Thứ tự
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 状态 0:无效  1：有效
+        /// Trạng thái 0:Vô hiệu  1：Hiệu lực
         /// </summary>
         public string zt { get; set; }
     }

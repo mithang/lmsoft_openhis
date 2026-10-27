@@ -97,11 +97,11 @@
             datatype: 'local',
             data: paras,
             height: 100,
-            //altRows: true,//隔行换色
-            shrinkToFit: true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
+            //altRows: true,//Đổi màu xen kẽ dòng
+            shrinkToFit: true,   //true:theo tỷ lệVDkhởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
             autowidth: true,
-            rownumbers: true,  //是否显示Số thứ tự
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            rownumbers: true,  //CóKhôngHiển thịSố thứ tự
+            editurl: "clientArray",  //dòngSửakhông gửi lên máy chủGửiDữ liệu
             unwritten: false,
             colModel: [
                 {
@@ -115,8 +115,8 @@
 
             ],
             caption:"Tham số",
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
+            editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
             loadComplete: function () {
                 if (paras && paras.length == 0) {
                     newRptData();
@@ -142,7 +142,7 @@
     function getActionStr() {
         return "<input class='btn btn-default btn-md btn_add' type='button' value='Add' onclick='newRptData($(this).parent().parent().attr(\"id\"))'/><input class='btn btn-default btn-md btn_del' type='button' value='Delete' onclick='deleteRptData($(this).parent().parent().attr(\"id\"))'/>";
     }
-    //删除明细
+    //Xóa chi tiết
     function deleteRptData(selRowId) {
         if (!!selRowId) {
             $("#gridListform").jqGrid("delRowData", selRowId);

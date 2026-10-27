@@ -140,12 +140,12 @@
 
 <script>
     var currentobj = [];
-    var flag = 0; //初次加载患者树标志
+    var flag = 0; //Cờ tải lần đầu cây bệnh nhân
     var zyh = "";
     var thistype = 1;
 
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新加载jqGrid的宽
+        $(window).resize(function () {//Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGridChiều rộng của
             window.initLayout("div_Patlist");
             window.initLayout("dv_Medlist");
         });
@@ -160,7 +160,7 @@
         gridList();
     })
 
-    //患者病历列表树
+    //Cây danh sách bệnh án bệnh nhân
     function gridList() {
         //debugger
         var $gridList = $("#gridList");
@@ -209,7 +209,7 @@
                     var rowData = $("#gridList").jqGrid('getRowData', rowid);
                     var patData = $("#gridListPat").jqGrid('getGridParam', 'selrow');
                     if (patData != null && patData != "undefied") {
-                        if (rowData.parent == null || rowData.parent == "") {//禁用条件
+                        if (rowData.parent == null || rowData.parent == "") {//Điều kiện vô hiệu hóa
                             btn_addnew();//btn_add();
                         }
                     }
@@ -224,7 +224,7 @@
                     var patselRowId = $("#gridListPat").jqGrid('getGridParam', 'selrow');
                     var patData = $("#gridListPat").jqGrid('getRowData', patselRowId);
                     if (patData.RecordStu == '@((int)EnumRecordStu.wtj)' || patData.RecordStu == '@((int)EnumRecordStu.th)') {
-                        //2020-3-16 chl 病案首页分离
+                        //2020-3-16 chl Tách trang đầu bệnh án
                         if ('@ViewBag.IsEnableEditor' == "true" && rowData.bllx == '@((int)EnumBllx.basy)') {
                             initBasyrightMenu(rowData);
                         }
@@ -248,7 +248,7 @@
         });
     }
 
-    //回车触发查询事件
+    //Nhấn Enter để tìm kiếm
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -287,14 +287,14 @@
             postData: { mzh: $('#mzh').val() },
         }).trigger('reloadGrid');
     }
-    //右键菜单
+    //Menu chuột phải
     function initrightMenu(rowData) {
         var p = '.gridPanel tr[id=' + rowData.Id + ']';
         var menu = new BootstrapMenu(p, {
-            //fetchElementData获取元数据
+            //fetchElementDataLấy siêu dữ liệu
             fetchElementData: function ($rowElem) {
                 var data = rowData;
-                return data;    //return的目的是给下面的onClick传递参数
+                return data;    //mục đích của return là truyền tham số cho onClick bên dưới
             },
             actions: [{
                 name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
@@ -381,14 +381,14 @@
         });
     }
 
-    //右键菜单展示版
+    //Bản hiển thị menu chuột phải
     function initrightMenuJustShow(rowData) {
         var p = '.gridPanel tr[id=' + rowData.Id + ']';
         var menu = new BootstrapMenu(p, {
-            //fetchElementData获取元数据
+            //fetchElementDataLấy siêu dữ liệu
             fetchElementData: function ($rowElem) {
                 var data = rowData;
-                return data;    //return的目的是给下面的onClick传递参数
+                return data;    //mục đích của return là truyền tham số cho onClick bên dưới
             },
             actions: [{
                 name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Xem bệnh án',
@@ -404,7 +404,7 @@
     
 
     function init(type) {
-        //在院患者不提交病案
+        //Bệnh nhân đang nằm viện không nộp bệnh án
         //if (type == 2) {
         //    $("#dv_btn_commit").show();
         //    $("#dv_bl_tool").show();
@@ -426,7 +426,7 @@
     }
 
 
-    //患者列表
+    //Danh sách bệnh nhân
     function GetPatList() {
         var $gridListPat = $("#gridListPat");
         $gridListPat.dataGrid({
@@ -440,7 +440,7 @@
                     label: 'Giới tính', name: 'xb', width: 30, align: 'center'
                 },
                 { label: 'Tuổi', name: 'nlshow', width: 50, align: 'center' },
-                //{ label: '出生年月', name: 'csny', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+                //{ label: 'Ngày tháng năm sinh', name: 'csny', width: 100, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
                 { label: 'Ngày đăng ký khám', name: 'ghsj', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }},
                 { label: 'Khoa', name: 'ghksmc', width: 100, align: 'left' },
                 { label: 'Bác sĩ', name: 'ghys', width: 60, align: 'left' },
@@ -478,7 +478,7 @@
                 $('#divPatientBasicInfo').html("Thông tin bệnh nhân:"
                     + rowData.xm
                     + '&nbsp;/&nbsp;' + $.getGender(rowData.xb)
-                    //+ '&nbsp;/&nbsp;' + window.currentobj.age + "岁"
+                    //+ '&nbsp;/&nbsp;' + window.currentobj.age + " tuổi"
                     //+ '&nbsp;/&nbsp;' + window.currentobj.brxzmc
                     + '&nbsp;/&nbsp;' + rowData.mzh
                     //+ '&nbsp;/&nbsp;' + rowData.RecordStusm
@@ -540,7 +540,7 @@
                     return;
                 }
                 if (!!!blData.BlId) {
-                    // $.modalAlert("不可编辑", 'warning');
+                    // $.modalAlert("Không thể chỉnh sửa", 'warning');
                     return;
                 }
 

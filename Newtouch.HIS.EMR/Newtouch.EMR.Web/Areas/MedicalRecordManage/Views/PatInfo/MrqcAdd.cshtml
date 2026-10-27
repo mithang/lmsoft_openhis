@@ -57,7 +57,7 @@
         function completeMethod() {
             debugger;
             var sum_TotalSocre = $(this).getCol('TotalScore', false, 'sum');
-            //$(this).footerData('set', { "ScoreMc": "合计", "TotalSocre": sum_TotalSocre }, false);
+            //$(this).footerData('set', { "ScoreMc": "Tổng cộng", "TotalSocre": sum_TotalSocre }, false);
             var basyTotalScore = 100 - sum_TotalSocre;
             $("#basyTotalScore").val(basyTotalScore);
             switch (!!basyTotalScore) {
@@ -80,7 +80,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })

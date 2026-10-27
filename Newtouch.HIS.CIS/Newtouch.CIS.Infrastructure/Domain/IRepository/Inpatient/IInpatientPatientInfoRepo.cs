@@ -7,26 +7,26 @@ using Newtouch.Domain.ValueObjects.Outpatient;
 namespace Newtouch.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：张冬林
-    /// 日 期：2018-06-28 13:27
-    /// 描 述：住院病人信息
+    /// Tác giả: 冬林
+    /// Ngày：2018-06-28 13:27
+    /// Mô tả：Nhập việnThông tin bệnh nhân
     /// </summary>
     public interface IInpatientPatientInfoRepo : IRepositoryBase<InpatientPatientInfoEntity>
     {
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưubảngphiếu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">thựcthểđối tượng</param>
+        /// <param name="keyValue">Khóa chínhGiá trị</param>
         void SubmitForm(InpatientPatientInfoEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// XóaDữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Khóa chínhGiá trị</param>
         void DeleteForm(string keyValue);
         /// <summary>
-        /// 更新住院病人在院标志
+        /// Cập nhậtNhập việnbệnh nhânởviệnCờ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -34,7 +34,7 @@ namespace Newtouch.Domain.IRepository
         void UpdateInpatientStatus(string orgId, string zyh, string zybz, string ryzd, string ryzdmc, string brxz, string brxzmc, string lxr, string lxrgx, string lxrdh);
 
         /// <summary>
-        /// 通过住院号获取住院病人信息
+        /// thông quaSố nhập việnLấyNhập việnThông tin bệnh nhân
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="zyh"></param>
@@ -42,11 +42,11 @@ namespace Newtouch.Domain.IRepository
         InpatientPatientInfoEntity GetByZyh(string OrganizeId, string zyh);
 
         /// <summary>
-        /// 获取病人基本信息
+        /// Lấybệnh nhânThông tin cơ bản
         /// </summary>
-        /// <param name="zyh">住院号</param>
-        /// <param name="xm">姓名</param>
-        /// <param name="organizeId">组织机构ID</param>
+        /// <param name="zyh">Số nhập viện</param>
+        /// <param name="xm">Họ tên</param>
+        /// <param name="organizeId">Tổ chứcID</param>
         /// <returns></returns>
         InpatientPatientInfoEntity SelectData(string zyh, string xm, string organizeId);
 

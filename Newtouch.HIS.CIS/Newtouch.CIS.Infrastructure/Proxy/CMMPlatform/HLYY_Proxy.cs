@@ -20,7 +20,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform
         }
 
         /// <summary>
-        /// 处方审核状态查询
+        /// Đơn thuốcPhê duyệtTrạng tháiTra cứu
         /// </summary>
         public string GetEngDataStatus(string presNo)
         {
@@ -28,7 +28,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform
         }
 
         /// <summary>
-        /// 处方审核状态查询
+        /// Đơn thuốcPhê duyệtTrạng tháiTra cứu
         /// </summary>
         public EngineRes engine(EngineReq engineReq)
         {
@@ -36,7 +36,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform
         }
 
         /// <summary>
-        /// 说明书
+        /// Mô tảsách
         /// </summary>
         public string GetHisSmsJson(string ypmcId)
         {

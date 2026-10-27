@@ -3,78 +3,78 @@ using System;
 namespace Newtouch.HIS.Domain.VO
 {
     /// <summary>
-    /// 处方明细
+    /// Chi tiết đơn thuốc
     /// </summary>
     public class DzcfmxVO
     {
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 数量（部门单位）
+        /// Số lượng（Đơn vị bộ phận）
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 数量+单位
+        /// Số lượng+Đơn vị
         /// </summary>
         public string slStr { get; set; }
 
         /// <summary>
-        /// 部门单位
+        /// Đơn vị bộ phận
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 单价（部门单位）
+        /// Đơn giá（Đơn vị bộ phận）
         /// </summary>
         public decimal dj { get; set; }
 
         /// <summary>
-        /// 生产厂家
+        /// Nhà sản xuất
         /// </summary>
         public string ycmc { get; set; }
 
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal je { get; set; }
 
         /// <summary>
-        /// 剂量
+        /// Liều lượng
         /// </summary>
         public decimal jl { get; set; }
 
         /// <summary>
-        /// 剂量单位
+        /// Đơn vị liều lượng
         /// </summary>
         public string jldw { get; set; }
 
         /// <summary>
-        /// 用法
+        /// Cách dùng
         /// </summary>
         public string yfmc { get; set; }
 
         /// <summary>
-        /// 医生嘱托
+        /// Dặn dò của bác sĩ
         /// </summary>
         public string yszt { get; set; }
 
         /// <summary>
-        /// 医生名称
+        /// Tên bác sĩ
         /// </summary>
         public string ysmc { get; set; }
         public string shr { get; set; }

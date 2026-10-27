@@ -14,9 +14,9 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// 封装要操作的字符
+        /// Đóng gói các ký tự cần thao tác
         /// </summary>
-        /// <param name="sections">节点配置</param>
+        /// <param name="sections">Cấu hình nút</param>
         /// <returns></returns>
         public static string App(params string[] sections)
         {
@@ -36,7 +36,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// 递归获取配置信息数组
+        /// Lấy đệ quy mảng thông tin cấu hình
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="sections"></param>
@@ -44,7 +44,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         public static List<T> App<T>(params string[] sections)
         {
             List<T> list = new List<T>();
-            // 引用 Microsoft.Extensions.Configuration.Binder 包
+            // tham chiếu Microsoft.Extensions.Configuration.Binder Gói
             Configuration.Bind(string.Join(":", sections), list);
             return list;
         }
@@ -69,7 +69,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// 获取配置文件 
+        /// Lấy tệp cấu hình 
         /// </summary>
         /// <param name="key">eg: WeChat:Token</param>
         /// <returns></returns>
@@ -79,7 +79,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// 获取布尔类型配置值 默认false
+        /// Lấy giá trị cấu hình kiểu Boolean mặc địnhfalse
         /// </summary>
         /// <param name="key"></param>
         /// <param name="defaultValue"></param>
@@ -93,10 +93,10 @@ namespace NewtouchHIS.Lib.Base.Utilities
             }
             return val.ObjToBool();
         }
-        #region 读取AppConfig扩展自定义配置
+        #region Đọc cấu hình tùy chỉnh mở rộng AppConfig
         /// <summary>
-        /// 获取配置文件 
-        /// (读取路径：AppConfigExt)
+        /// Lấy tệp cấu hình 
+        /// (Đọc đường dẫn:AppConfigExt)
         /// </summary>
         /// <param name="key">eg: WeChat:Token</param>
         /// <returns></returns>
@@ -106,7 +106,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
             return Configuration[key];
         }
         /// <summary>
-        /// 获取布尔类型配置值 默认false
+        /// Lấy giá trị cấu hình kiểu Boolean mặc địnhfalse
         /// </summary>
         /// <param name="key"></param>
         /// <param name="defaultValue"></param>

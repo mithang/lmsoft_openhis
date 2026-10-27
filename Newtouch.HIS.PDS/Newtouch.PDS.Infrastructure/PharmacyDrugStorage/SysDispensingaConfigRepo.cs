@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Repository
         {
         }
         /// <summary>
-        /// 获取药房药库名称
+        /// Lấy tên nhà thuốc kho thuốc
         /// </summary>
         /// <returns></returns>
         public List<CodeNameVO> GetCodeName(string organizeId,int yjbmjb)
@@ -41,7 +41,7 @@ SELECT Distinct [yfbmCode] as code
             return FindList<CodeNameVO>(sqlStr.ToString(), pars.ToArray());
         }
         /// <summary>
-        /// 获取药房药库名称
+        /// Lấy tên nhà thuốc kho thuốc
         /// </summary>
         /// <returns></returns>
         public List<CodeNameVO> GetYFYKCodeName(string organizeId)
@@ -58,7 +58,7 @@ SELECT Distinct [yfbmCode] as code
             return FindList<CodeNameVO>(sqlStr.ToString(), pars.ToArray());
         }
         /// <summary>
-        /// 获取分页实体列表
+        /// Lấy danh sách thực thể phân trang
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>

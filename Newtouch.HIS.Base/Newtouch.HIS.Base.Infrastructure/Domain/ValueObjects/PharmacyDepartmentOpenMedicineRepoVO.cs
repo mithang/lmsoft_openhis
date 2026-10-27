@@ -3,72 +3,72 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 药房部门药品
+    /// Thuốc của khoa dược
     /// </summary>
     public class PharmacyDepartmentOpenMedicineRepoVO
     {
         /// <summary>
-        /// 主键Id
+        /// Khóa chínhId
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 药房部门编号
+        /// Số hiệu khoa dược
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 组织机构Id
+        /// Tổ chứcId
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 顶级组织机构Id
+        /// Tổ chức cấp cao nhấtId
         /// </summary>
         public string TopOrganizeId { get; set; }
 
         /// <summary>
-        /// 大类编号
+        /// Số hiệu danh mục lớn
         /// </summary>
         public string dlCode { get; set; }
 
         /// <summary>
-        /// 修改用户
+        /// Sửa người dùng
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Người sửa đổi cuối cùng
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Thứ tự
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 药房部门名称
+        /// Tên khoa dược
         /// </summary>
         public string yfbmmc { get; set; }
 
         /// <summary>
-        /// 大类名称
+        /// Tên nhóm lớn
         /// </summary>
         public string dlmc { get; set; }
 

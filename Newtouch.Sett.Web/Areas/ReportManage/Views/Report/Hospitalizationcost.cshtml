@@ -56,7 +56,7 @@
     var OrgId = '@(ViewBag.OrgId)';
     var reportServerHOST = '@(ViewBag.ReportServerHOST)';
 
-    //治疗项目选择浮层绑定
+    //Liên kết lớp nổi chọn mục điều trị
     $('#zyh').newtouchBatchFloatingSelector({
         width: 500,
         height: 200,
@@ -114,7 +114,7 @@
             return;
         }
 
-        //同步费用
+        //Đồng bộ chi phí
         //$.ajax({
         //    url: "/ReportManage/Report/SynInpatientDayFee",
         //    data: { zyh: $('#zyh').val() },
@@ -139,7 +139,7 @@
 
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

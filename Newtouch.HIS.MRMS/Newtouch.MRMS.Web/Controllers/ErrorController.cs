@@ -16,12 +16,12 @@ using Newtouch.MRMS.Web.Models;
 namespace Newtouch.MRMS.Web.Controllers
 {
     /// <summary>
-    /// Lỗi hệ thống 友好体验
+    /// Lỗi hệ thống Trải nghiệm thân thiện
     /// </summary>
     public class ErrorController : Controller
     {
         /// <summary>
-        /// 异常发送 Trang lỗi
+        /// Gửi ngoại lệ Trang lỗi
         /// </summary>
         /// <returns></returns>
         public IActionResult HttpError()

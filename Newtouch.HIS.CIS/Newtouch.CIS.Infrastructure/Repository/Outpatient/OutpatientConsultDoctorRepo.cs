@@ -21,7 +21,7 @@ namespace Newtouch.Repository.Outpatient
         }
 
         /// <summary>
-        /// 保存诊室当日出诊医生
+        /// LưuPhòng khámkhingàyrakhámBác sĩ
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
@@ -32,7 +32,7 @@ namespace Newtouch.Repository.Outpatient
             //var list = this.IQueryable().Where(p => p.zsCode == entity.zsCode && p.zt == "1" && p.OrganizeId == entity.OrganizeId);
             //var zsys = list.FirstOrDefault();
             var zsys = this.GetTodayDoctorByConsult(entity.zsCode,entity.OrganizeId);
-            //修改
+            //Sửa
             if (zsys != null)
             //if (!string.IsNullOrEmpty(ghzs.ghnm.ToString()))
             {
@@ -42,7 +42,7 @@ namespace Newtouch.Repository.Outpatient
                 dbEntity.Modify(zsys.Id);
                 return Update(dbEntity);
             }
-            //保存
+            //Lưu
             entity.Create();
             return Insert(entity);
         }
@@ -60,7 +60,7 @@ where zt=1 and zsCode=@zscode";
 				,new SqlParameter("@zsfh", zsov.zsfh??""),new SqlParameter("@ys", zsov.gh??""),new SqlParameter("@ysmc", zsov.ysxm??"") ,new SqlParameter("@zscode", zsov.zsCode) });
 		}
 		/// <summary>
-		/// 查询当天的分诊医生
+		/// Tra cứukhingàycủaphútkhámBác sĩ
 		/// </summary>
 		/// <param name="zsCode"></param>
 		/// <param name="orgId"></param>

@@ -159,9 +159,9 @@
     var Sysl = 0;
 
     $(function () {
-        gridSYXX();//损益信息
-        initialSYDH();//加载损益单号
-        initialSYYY();//加载损益原因
+        gridSYXX();//lãi lỗthông tin
+        initialSYDH();//tảilãi lỗphiếusố
+        initialSYYY();//tảinguyên nhân lãi lỗ
     });
 
     $('#btnLossAndProfitTypeGourp').on('click', '.btn', function () {
@@ -172,11 +172,11 @@
         initialSYYY();
     });
 
-    //加载损益单号
+    //tảilãi lỗphiếusố
     function initialSYDH() {
         $.najax({
             url: "/PrepareMedicine/initialSYDH?r=" + Math.random(),
-            data: { djmc: 'Báo hỏngBáo thừa单'},
+            data: { djmc: 'Báo hỏngBáo thừaphiếu'},
             dataType: "text",
             async: false,
             success: function (data) {
@@ -185,12 +185,12 @@
         });
     }
 
-    //加载损益原因
+    //tảinguyên nhân lãi lỗ
     function initialSYYY() {
         $("#ddlSYYY").empty();
         var sylx = "";
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-            sylx = "0";//0 报损，1 报溢
+            sylx = "0";//0 Báo hỏng，1 báo thừa
         } else {
             sylx = "1";
         }
@@ -201,7 +201,7 @@
         });
     }
 
-    //责任人
+    //Trách nhiệm người
     $("#txtZRRGH").newtouchBatchFloatingSelector({
         clickautotrigger: true,
         height: 200,
@@ -227,7 +227,7 @@
         }
     });
 
-    //药品代码
+    //Mã thuốc
     $("#txtYPCODE").newtouchBatchFloatingSelector({
         clickautotrigger: true,
         height: 200,
@@ -297,7 +297,7 @@
         }
     });
 
-    //损益信息
+    //lãi lỗthông tin
     function gridSYXX() {
         var $gridSyxx = $("#gridSYXX");
         $gridSyxx.dataGrid({
@@ -339,12 +339,12 @@
                 //if (rowid) {
                 //    var getRowData = $("#gridSYXX").jqGrid('getRowData', rowid);
                 //    if (getRowData) {
-                //        if (getRowData.syqk === "报损") {  //报损
+                //        if (getRowData.syqk === "Báo hỏng") {  //Báo hỏng
                 //            if (!$("#btnLoss").hasClass('active')) {
                 //                $("#btnProfit").removeClass('btn-restore').removeClass('active');
                 //                $("#btnLoss").addClass('btn-restore active');
                 //            }
-                //        } else {   //报溢
+                //        } else {   //báo thừa
                 //            if (!$("#btnProfit").hasClass('active')) {
                 //                $("#btnLoss").removeClass('btn-restore').removeClass('active');
                 //                $("#btnProfit").addClass('btn-restore active');
@@ -376,16 +376,16 @@
         });
     }
 
-    //确定button
+    //Xác nhậnbutton
     function newtouch_event_f3() {
-        //检查明细
+        //Kiểm trachi tiết
         if (!CheckDetailData()) {
             return false;
         }
         var syqkstr = "";
-        var sysl = Sysl;//最后保存到损益表
+        var sysl = Sysl;//cuối cùngLưuđếnlãi lỗbảng
 
-        //判断报损报溢
+        //kiểm traBáo hỏngbáo thừa
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
             syqkstr = "Báo hỏng",
                 sysl = sysl * (-1);
@@ -402,8 +402,8 @@
             ph: $("#txtPH").val(),
             pc: $("#txtPC").val(),
             yxq: $("#txtYXQ").val(),
-            sysl: sysl,//最后保存到损益表
-            sl: Sysl,//页面上显示损益数量
+            sysl: sysl,//cuối cùngLưuđếnlãi lỗbảng
+            sl: Sysl,//trangmặttrênHiển thịlãi lỗSố lượng
             dw: $("#zxdw").text(),
             xykc: $("#txtXYKC").val(),
             pfj: $("#txtPFJ").val(),
@@ -425,11 +425,11 @@
             remark: $("#txtRemark").val()
         }];
 
-        if ($('#editRowId').val()) {            //是修改
-            $('#gridSYXX').jqGrid("delRowData", $('#editRowId').val()); //先remove掉那一行
+        if ($('#editRowId').val()) {            //CóSửa
+            $('#gridSYXX').jqGrid("delRowData", $('#editRowId').val()); //trướcremoverớtđómộtdòng
         }
 
-        //检查重复项
+        //Kiểm tratrùng lặp mục
         var isRepeatedAdd = false;
         $.each($("#gridSYXX").getDataIDs(), function () {
             var rowData = $("#gridSYXX").jqGrid('getRowData', this);
@@ -444,14 +444,14 @@
         }
 
         $("#gridSYXX").newtouchLocalDataGrid(null, data);
-        //计算损益总额
+        //Tính toánlãi lỗtổngmức
         ComputeRKZE();
         $("#btnLoss").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
         $("#btnProfit").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
         ClearYPXX();
     }
 
-    //删除
+    //Xóa
     function newtouch_event_f6() {
         var delRowid = $("#gridSYXX").jqGrid('getGridParam', 'selrow');
         if (!delRowid) {
@@ -461,7 +461,7 @@
         $('#gridSYXX').jqGrid('delRowData', delRowid);
     }
 
-    //保存
+    //Lưu
     function newtouch_event_f8() {
         var syxx = $("#gridSYXX").jqGrid('getRowData_AllLine');
         if (syxx == null || syxx.length <= 0) {
@@ -475,22 +475,22 @@
             dataType: "json",
             success: function (data) {
                 $.modalMsg("Lưu thành công", 'success', 1000);
-                newtouch_event_f7();//新损溢：新单据号 主数据清空 明细清空
-                $('#gridSYXX').jqGrid("clearGridData");//清空Grid
-				$("#txtSYZE").val("");//清空损益总额
-				window.open("/Report/PrintReport?type=Báo hỏngBáo thừaIn表&param=syIds=" + data.message +"|OrganizeId=" + $("#OrganizeId").val(),"height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
+                newtouch_event_f7();//mớihỏngthừa：mớiphiếusố phiếu chínhDữ liệuXóa trắng chi tiếtXóa trắng
+                $('#gridSYXX').jqGrid("clearGridData");//Xóa trắngGrid
+				$("#txtSYZE").val("");//Xóa trắnglãi lỗtổngmức
+				window.open("/Report/PrintReport?type=Báo hỏngBáo thừaInbảng&param=syIds=" + data.message +"|OrganizeId=" + $("#OrganizeId").val(),"height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
             }
         });
     }
 
-    //新损益
+    //mớilãi lỗ
     function newtouch_event_f7() {
-        initialSYDH();//换单号
+        initialSYDH();//đổiphiếusố
         $("#btnLoss").removeAttr("disabled").removeAttr("style");
         $("#btnProfit").removeAttr("disabled").removeAttr("style");
     }
 
-    //损益数量keyup事件
+    //lãi lỗSố lượngkeyupsự kiện
     function SYSL_change(obj) {
         if ($("#txtYPCODE").val() === "") {
             return false;
@@ -503,7 +503,7 @@
         }
         bmsl = bmsl === '' ? 0 : bmsl;
         zxsl = zxsl === '' ? 0 : zxsl;
-        if ($("#div_sy").is(":hidden")) {   //单价单位(当前部门的单位) sl/zhyz
+        if ($("#div_sy").is(":hidden")) {   //Đơn giáĐơn vị(hiện tạiKhoa phòngcủaĐơn vị) sl/zhyz
             Sysl = parseFloat(zxsl);
         } else {
             Sysl = parseFloat(bmsl) * parseFloat($("#txtYPCODE").attr('data-zhyz')) + parseFloat(zxsl);
@@ -515,7 +515,7 @@
         $("#txtLSZE").val((lsj * Sysl).toFixed(4));
     }
 
-    //计算损益总额
+    //Tính toánlãi lỗtổngmức
     function ComputeRKZE() {
         var syze = 0;
         var count = $("#gridSYXX").getGridParam('records');
@@ -525,16 +525,16 @@
                 var getRow_lsze = $("#gridSYXX").getRowData(rowIDS[i]).lsze;
                 syze = parseFloat(syze) + parseFloat(getRow_lsze);
             }
-            //损益金额
+            //lãi lỗSố tiền
             $("#txtSYZE").val(syze.toFixed(4));
         } else {
             $("#txtSYZE").val('');
         }
     }
 
-    //清空药品信息
+    //Xóa trắngThuốcthông tin
     function ClearYPXX() {
-        //清空
+        //Xóa trắng
         newtouch_globalevent_f4();
         $("#ddlSKDW").empty();
         $("#txtSYSL").val("");
@@ -543,7 +543,7 @@
         $("#txtYXQ").val($.getDate());
     }
 
-    //校验明细
+    //Kiểm trachi tiết
     function CheckDetailData() {
         if ($("#txtYPCODE").val() == "") {
             $.modalAlert("ThuốcMãđể trống", 'warning');
@@ -566,7 +566,7 @@
             return false;
         }
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') == 'Loss') {
-            if (Sysl > parseFloat($("#txtXYKC").attr('data-kcsl'))) {   //反之，直接比较数量（最小单位数量）
+            if (Sysl > parseFloat($("#txtXYKC").attr('data-kcsl'))) {   //phảncủa，trực tiếpsokháSố lượng（Đơn vị nhỏ nhấtSố lượng）
                 $.modalAlert("Số lượng báo hỏng phải nhỏ hơn tồn kho hiện có", 'warning');
                 return false;
             }

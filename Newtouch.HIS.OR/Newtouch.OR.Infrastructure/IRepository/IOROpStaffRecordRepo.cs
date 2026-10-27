@@ -4,27 +4,27 @@ using System.Collections.Generic;
 namespace Newtouch.OR.ManageSystem.Domain.IRepository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-06 10:22
-    /// 描 述：手术人员记录
+    /// Tạo bởi：chl
+    /// Ngày：2019-11-06 10:22
+    /// Mô tả：Hồ sơ nhân viên phẫu thuật
     /// </summary>
     public interface IOROpStaffRecordRepo : IRepositoryBase<OROpStaffRecordEntity>
     {
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         int SubmitForm(OROpStaffRecordEntity entity, string keyValue);
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         int DeleteForm(string keyValue);
 
         /// <summary>
-        /// 根据手术登记号获取编号列表
+        /// Lấy danh sách mã theo số đăng ký phẫu thuật
         /// </summary>
         /// <param name="ssxh"></param>
         /// <returns></returns>

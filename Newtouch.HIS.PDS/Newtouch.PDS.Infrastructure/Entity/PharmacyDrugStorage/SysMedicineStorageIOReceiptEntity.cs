@@ -6,121 +6,121 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统药品出入库单据
+    /// Chứng từ xuất nhập kho thuốc hệ thống
     /// </summary>
     [Table("xt_yp_crkdj")]
     [SugarTable("xt_yp_crkdj")]
     public class SysMedicineStorageIOReceiptEntity : IEntity<SysMedicineStorageIOReceiptEntity>
     {
         /// <summary>
-        /// 出入库ID
+        /// Xuất nhập khoID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public string crkId { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 单据类型 
-        /// 1：药品入库  单据号YPRKD111111111111
-        /// 2：外部出库  单据号WBCKD111111111111
-        /// 3：直接出库  单据号NBFYD111111111111
-        /// 4：申领出库  单据号SLCKD111111111111
-        /// 5：内部发药退回    单据号NBFYTHD111111111111
+        /// Loại chứng từ 
+        /// 1：Nhập kho thuốc  Số chứng từYPRKD111111111111
+        /// 2：Xuất kho ra ngoài  Số chứng từWBCKD111111111111
+        /// 3：Xuất kho trực tiếp  Số chứng từNBFYD111111111111
+        /// 4：Xuất kho theo đơn lĩnh  Số chứng từSLCKD111111111111
+        /// 5：Trả lại phát thuốc nội bộ    Số chứng từNBFYTHD111111111111
         /// </summary>
         public int djlx { get; set; }
 
         /// <summary>
-        /// 单据号
+        /// Số chứng từ
         /// </summary>
         public string Pdh { get; set; }
 
         /// <summary>
-        /// 入库部门
+        /// Bộ phận nhập kho
         /// </summary>
         public string Rkbm { get; set; }
 
         /// <summary>
-        /// 出库部门
+        /// Bộ phận xuất kho
         /// </summary>
         public string Ckbm { get; set; }
 
         /// <summary>
-        /// 入库时间
+        /// Thời gian nhập kho
         /// </summary>
         public DateTime? Rksj { get; set; }
 
         /// <summary>
-        /// 出库时间
+        /// Thời gian xuất kho
         /// </summary>
         public DateTime? Cksj { get; set; }
 
         /// <summary>
-        /// 入库操作员
+        /// Nhân viên thao tác nhập kho
         /// </summary>
         public string Rkczy { get; set; }
 
         /// <summary>
-        /// 出库操作员
+        /// Nhân viên thao tác xuất kho
         /// </summary>
         public string Ckczy { get; set; }
 
         /// <summary>
-        /// 来自 NewtouchHIS_Base.dbo.xt_ypcrkfs表的方式代码 
+        /// Từ NewtouchHIS_Base.dbo.xt_ypcrkfsMã phương thức bảng 
         /// </summary>
         public string Crkfsdm { get; set; }
 
         /// <summary>
-        /// 操作时间
+        /// Thời gian thao tác
         /// </summary>
         public DateTime? Czsj { get; set; }
 
         /// <summary>
-        /// 申请时间
+        /// Thời gian xin
         /// </summary>
         public DateTime? Sqsj { get; set; }
 
         /// <summary>
-        /// 审核操作员
+        /// Nhân viên thao tác duyệt
         /// </summary>
         public string Shczy { get; set; }
 
         /// <summary>
-        /// 0:未审核 1:已通过 2：未通过
+        /// 0:Chưa duyệt 1:Đã đạt 2：Không đạt
         /// </summary>
         public string shzt { get; set; }
 
         /// <summary>
-        /// 状态 1-有效  0-无效
+        /// Trạng thái 1-Hiệu lực  0-Không hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改人员
+        /// Người sửa đổi
         /// </summary>
         public string LastModifierCode { get; set; }
 

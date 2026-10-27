@@ -37,7 +37,7 @@ namespace Newtouch.CIS.Web.Controllers
         #region View Chế độ xem
         // GET: OutpatientNurse
         /// <summary>
-        /// Test daThực hiện页面
+        /// Test daThực hiệntrangmặt
         /// </summary>
         /// <returns></returns>
         public IActionResult PerformIndex()
@@ -45,7 +45,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// Test da查询
+        /// Test daTra cứu
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -55,7 +55,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 门诊处方查询
+        /// Đơn thuốc ngoại trúTra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult prescriptionquery()
@@ -65,7 +65,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// 门诊留观查询
+        /// Ngoại trúgiữxemTra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult observationQuery()
@@ -73,7 +73,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// 门诊划价
+        /// Ngoại trúvạchgiá
         /// </summary>
         /// <returns></returns>
         public IActionResult OutpatientPricing()
@@ -83,7 +83,7 @@ namespace Newtouch.CIS.Web.Controllers
         #endregion
         
         #region Test da
-        //Test da页面树控件
+        //Test datrangmặtcâykiểm soátmục
         public IActionResult SkintestTree(string keyword, DateTime? kssj, DateTime? jssj, string type)
         {
             var wardTree = _OutpatientNurseDmnService.OutpatientNurseTreeVO(this.OrganizeId, keyword, kssj, jssj, type);
@@ -195,7 +195,7 @@ namespace Newtouch.CIS.Web.Controllers
 
         #region Ngoại trúBệnh ánIn
         /// <summary>
-        /// 获取处方人员查询树
+        /// LấyĐơn thuốc ngườiviênTra cứucây
         /// </summary>
         /// <returns></returns>
         public IActionResult GetPatcfTree(string keyword)
@@ -299,7 +299,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
         #endregion
 
-        #region Ngoại trú划价
+        #region Ngoại trúvạchgiá
 
 
         #endregion

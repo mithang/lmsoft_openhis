@@ -16,7 +16,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// 盘点
+    /// Kiểm kê
     /// </summary>
     public class StockInventoryApp : AppBase, IStockInventoryApp
     {
@@ -25,7 +25,7 @@ namespace Newtouch.Application.Implementation
         private readonly IKcPdxxmxRepo _kcPdxxmxRepo;
 
         /// <summary>
-        /// 开始盘点
+        /// Bắt đầuKiểm kê
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -45,37 +45,37 @@ namespace Newtouch.Application.Implementation
             var result = _stockInventoryDmnService.GetPdSj(warehouseId, organizeId).FirstOrDefault();
             if (result == null)
             {
-                throw new FailedException("重新获取盘点时间失败");
+                throw new FailedException("lạiLấyKiểm kêThời gianthất bại");
             }
             return result;
         }
 
         /// <summary>
-        /// 盘点保存
+        /// Kiểm kêLưu
         /// </summary>
         /// <param name="inventoryInfoList"></param>
-        /// <param name="pdId">盘点单ID</param>
-        /// <param name="noPc">  0：按批次盘点 1：不按批次盘点</param>
+        /// <param name="pdId">Kiểm kêphiếuID</param>
+        /// <param name="noPc">  0：theoLôKiểm kê 1：khôngtheoLôKiểm kê</param>
         public void SaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList, long pdId, string noPc = "0")
         {
             var pdInfo = _kcPdxxRepo.SelectPdInfByPdId(pdId, OperatorProvider.GetCurrent().OrganizeId);
             if (pdInfo == null)
             {
-                throw new FailedException("未找到指定盘点信息");
+                throw new FailedException("chưatìmđếnchỉđịnhKiểm kêthông tin");
             }
             if (pdInfo.jssj != null || pdInfo.jssj >= Constants.MinDateTime)
             {
-                throw new FailedException("该盘点已结束");
+                throw new FailedException("Kiểm kêđãKết thúc");
             }
             SaveInventoryInfo(inventoryInfoList, pdId, noPc, UserIdentity.DepartmentCode, OrganizeId);
         }
 
         /// <summary>
-        /// 盘点保存
+        /// Kiểm kêLưu
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         /// <param name="pdId"></param>
-        /// <param name="noPc">0：按批次盘点 1：不按批次盘点</param>
+        /// <param name="noPc">0：theoLôKiểm kê 1：khôngtheoLôKiểm kê</param>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
         private void SaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList, long pdId, string noPc, string warehouseId, string organizeId)
@@ -93,22 +93,22 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 取消盘点
+        /// HủyKiểm kê
         /// </summary>
         /// <param name="pdId"></param>
         public void CancelInventory(long pdId)
         {
-            //判断是否有未完成的盘点
+            //kiểm tralàKhôngcóchưaHoàn thànhcủaKiểm kê
             var count = _kcPdxxRepo.SelectUnfinishedInventoryByPdId(pdId, OrganizeId);
             if (count != 1)
             {
-                throw new FailedException("该盘点已结束,不能取消");
+                throw new FailedException("Kiểm kêđãKết thúc,không thểHủy");
             }
             _stockInventoryDmnService.CancelInventory(pdId);
         }
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúcKiểm kê
         /// </summary>
         /// <returns></returns>
         public void EndInventory(long pdId)
@@ -116,13 +116,13 @@ namespace Newtouch.Application.Implementation
             var pdInfo = _kcPdxxRepo.SelectPdInfByPdId(pdId, OrganizeId);
             if (pdInfo == null)
             {
-                throw new FailedException("未找到指定盘点信息");
+                throw new FailedException("chưatìmđếnchỉđịnhKiểm kêthông tin");
             }
             if (pdInfo.jssj != null || pdInfo.jssj >= Constants.MinDateTime)
             {
-                throw new FailedException("该盘点已结束");
+                throw new FailedException("Kiểm kêđãKết thúc");
             }
-            //生成盘点信息
+            //tạoKiểm kêthông tin
             var resultMessage = _stockInventoryDmnService.EndInventory(pdId, OrganizeId, OperatorProvider.GetCurrent().UserCode);
             if (!string.IsNullOrEmpty(resultMessage) && !resultMessage.Contains("成功"))
             {
@@ -131,7 +131,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 提交损益
+        /// Gửilãi lỗ
         /// </summary>
         /// <param name="plist"></param>
         /// <param name="warehouseId"></param>
@@ -139,13 +139,13 @@ namespace Newtouch.Application.Implementation
         public string LossAndProfitSubmit(List<LossAndProditSubmitDTO> plist, string warehouseId)
         {
             var syxxlist = AssembleSyxxEntities(plist, UserIdentity.DepartmentCode);
-            if (syxxlist.Count <= 0) return "缺少损益信息";
+            if (syxxlist.Count <= 0) return "thiếulãi lỗthông tin";
             _stockInventoryDmnService.InsertSyxxBatch(syxxlist, UserIdentity.DepartmentCode, OrganizeId);
             return "";
         }
 
         /// <summary>
-        /// 组装损益信息
+        /// lắp ráplãi lỗthông tin
         /// </summary>
         /// <param name="plist"></param>
         /// <param name="warehouseId"></param>

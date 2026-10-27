@@ -46,54 +46,54 @@ namespace Newtouch.CIS.Web.Controllers
 
         public override IActionResult Index()
         {
-            //登录人是否是护士
+            //Đăng nhập ngườiCóKhôngCóĐiều dưỡng
             ViewBag.IsNurse = _sysUserDmnService.CheckStaffIsBelongDuty(this.UserIdentity.StaffId, "Nurse");
 
-            //开关：护士录入生命体征
+            //Công tắc：Điều dưỡngnhậpdấu hiệu sinh tồn
             ViewBag.IsVitalSignsSwitch = _sysConfigRepo.GetValueByCode("vitalSignsSwitch", this.OrganizeId);
-            //开关：是否开放检验检查
+            //Công tắc：Có mở khôngXét nghiệmKiểm tra
             ViewBag.IsOpenJyJcSwitch = _sysConfigRepo.GetBoolValueByCode("openJyJcSwitch", this.OrganizeId);
-            //开关：门诊是否开放康复处方
+            //Công tắc：Ngoại trúCó mở khôngPhục hồi chức năngĐơn thuốc
             ViewBag.ISOpenKfcf = _sysConfigRepo.GetBoolValueByCode("openKfcf", this.OrganizeId);
-            //开关：门诊是否开放常规项目处方
+            //Công tắc：Ngoại trúCó mở khôngHạng mục thông thườngĐơn thuốc
             ViewBag.ISOpenCgxmcf = _sysConfigRepo.GetBoolValueByCode("openCgxmcf", this.OrganizeId);
-            ViewBag.isOpenRationalUse = _sysConfigRepo.GetValueByCode("OpenRationalUse", OrganizeId);//是否开启合理用药
-            //开关：门诊是否开放中药处方
+            ViewBag.isOpenRationalUse = _sysConfigRepo.GetValueByCode("OpenRationalUse", OrganizeId);//CóKhôngbậthợplýdùngthuốc
+            //Công tắc：Ngoại trúCó mở khôngThuốc Đông yĐơn thuốc
             ViewBag.ISOpenZycf = _sysConfigRepo.GetBoolValueByCode("openZycf", this.OrganizeId);
             ViewBag.ISOpenZycfnew = _sysConfigRepo.GetBoolValueByCode("openZycfnew", this.OrganizeId);
-            //开关：门诊是否开放医用耗材
+            //Công tắc：Ngoại trúCó mở khôngydùngVật tư tiêu hao
             ViewBag.ISOpenWzhc = _sysConfigRepo.GetBoolValueByCode("openWzhccf", this.OrganizeId);
-            //开关：药品是否关联药房库存
+            //Công tắc：ThuốcCóKhôngNhà thuốc liên quanTồn kho
             ViewBag.ISMedicineSearchRelatedKC = _sysConfigRepo.GetBoolValueByCode("IS_MedicineSearchRelatedKC", OrganizeId);
-            //康复处方打印开关
+            //Phục hồi chức năngĐơn thuốcInCông tắc
             ViewBag.ISPrintRehabPres = _sysConfigRepo.GetBoolValueByCode("IS_PrintRehabPres", OrganizeId, true);
-            //治疗单打印开关
+            //Điều trịphiếuInCông tắc
             ViewBag.ISPrintRehabTreatment = _sysConfigRepo.GetBoolValueByCode("IS_PrintRehabTreatment", OrganizeId);
             #region Kháng sinhliên quan
-            ViewBag.IsQyKssKz = _sysConfigRepo.GetBoolValueByCode("openKssQxSwitch", OrganizeId);//是否启用抗生素
-            ViewBag.qxjb = "0";//抗生素权限级别(默认 0 非限制用药)
+            ViewBag.IsQyKssKz = _sysConfigRepo.GetBoolValueByCode("openKssQxSwitch", OrganizeId);//CóKhôngKích hoạtKháng sinh
+            ViewBag.qxjb = "0";//Kháng sinhCấp quyền(Mặc định 0 khôngthuốc hạn chế)
             SysStaffVEntity staff = _sysStaffRepo.GetValidStaffByGh(UserIdentity.rygh, OrganizeId);
             if (staff != null)
             {
                 switch (staff.zc)
                 {
                     case "ys":
-                        ViewBag.qxjb = "0";//医师 对应 非限制用药 0
+                        ViewBag.qxjb = "0";//Bác sĩ tương ứng khôngthuốc hạn chế 0
                         break;
                     case "zzys":
-                        ViewBag.qxjb = "1";//主治医师 对应 限制用药 1
+                        ViewBag.qxjb = "1";//Bác sĩ điều trị tương ứng thuốc hạn chế 1
                         break;
                     case "zrys":
-                        ViewBag.qxjb = "2";//主任医师 对应 特殊用药 2
+                        ViewBag.qxjb = "2";//chínhnhiệmBác sĩ tương ứng đặcđặcdùngthuốc 2
                         break;
                     default:
-                        ViewBag.qxjb = "0";//医师 对应 非限制用药 0
+                        ViewBag.qxjb = "0";//Bác sĩ tương ứng khôngthuốc hạn chế 0
                         break;
                 }
             }
             #endregion Kháng sinhliên quan
 
-            //开关：预约挂号
+            //Công tắc：đặt hẹnđăng ký khám
             ViewBag.ISOpenBespeakRegister = _sysConfigRepo.GetBoolValueByCode("IS_BespeakRegister", OrganizeId);
             var defualtFrequency = _sysConfigRepo.GetValueByCode("RehabItemDefaultFrequency", OrganizeId);
             if (!string.IsNullOrWhiteSpace(defualtFrequency))
@@ -105,20 +105,20 @@ namespace Newtouch.CIS.Web.Controllers
                     ViewBag.RehabItemDefaultFrequencyCode = arr[1];
                 }
             }
-            //医保控制code
+            //Bảo hiểm y tếđiều khiểncode
             ViewBag.ControlbrxzCode = _sysConfigRepo.GetValueByCode("ControlbrxzCode", OrganizeId);
-            //注射用法控制
+            //Lưu ýxạCách dùngđiều khiển
             ViewBag.ControlzsyfCode = _sysConfigRepo.GetValueByCode("zsyfpz", OrganizeId);
-            //雾化用法控制
+            //khí dungCách dùngđiều khiển
             ViewBag.ControlwhyfCode = _sysConfigRepo.GetValueByCode("whyfpz", OrganizeId);
 
 
-            //影像配置
+            //Hình ảnhcấu hình
             ViewBag.PACSCode = _sysConfigRepo.GetValueByCode("PACSCode", OrganizeId);
             ViewBag.yysz_hyfqURL = Newtouch.CIS.Compat.AppConfig.Get("yysz_hyfqURL");
-            //影像调阅程序位置配置
+            //Hình ảnhgọiđọctrìnhthứ tựVị trícấu hình
             ViewBag.exelink_pacs = _sysConfigRepo.GetValueByCode("exelink_pacs", OrganizeId);
-            //远程医疗
+            //xatrìnhy tế
             ViewBag.OrganizeCodeSd = _organizeDmnService.GetCodeByOrgId(OrganizeId);
             //ViewBag.OrganizeCodeSd = Newtouch.CIS.Compat.AppConfig.Get("OrganizeCodeSd");
             ViewBag.RemoteTreatRPTURL = Newtouch.CIS.Compat.AppConfig.Get("RemoteTreatRPTURL");
@@ -132,9 +132,9 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
 
-        #region 秦皇岛三期
+        #region Giai đoạn 3 Tần Hoàng Đảo
         /// <summary>
-        /// 医保患者审核收费项目是否含自费
+        /// Bảo hiểm y tếBệnh nhânPhê duyệtMục thu phíCóKhôngchứatự chi trả
         /// </summary>
         /// <param name="sfxmCode"></param>
         /// <returns></returns>
@@ -169,7 +169,7 @@ namespace Newtouch.CIS.Web.Controllers
         #region Phòng khám YHCT
 
         /// <summary>
-        /// 中医馆部分视图
+        /// trongyquánbộphútxemhình
         /// </summary>
         /// <returns></returns>
         public IActionResult TcmHis()
@@ -178,7 +178,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 推送患者信息
+        /// đẩyThông tin bệnh nhân
         /// </summary>
         /// <param name="jzxx"></param>
         /// <returns></returns>
@@ -189,10 +189,10 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 电子病历集成模块
+        /// điện tửHồ sơtậpthànhmẫukhối
         /// </summary>
-        /// <param name="mzh">门诊号</param>
-        /// <param name="jzys">就诊医生工号</param>
+        /// <param name="mzh">Số khám ngoại trú</param>
+        /// <param name="jzys">Khám bệnhBác sĩMã nhân viên</param>
         /// <returns></returns>
         public IActionResult GetIntegrateEmrUrl(string mzh, string jzys)
         {
@@ -202,7 +202,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 辩证论治模块
+        /// biệnchứngluậnđiều trịmẫukhối
         /// </summary>
         /// <param name="aeRequest"></param>
         /// <returns></returns>
@@ -217,9 +217,9 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 提取电子病历
+        /// nhắclấyđiện tửHồ sơ
         /// </summary>
-        /// <param name="mzh">门诊号</param>
+        /// <param name="mzh">Số khám ngoại trú</param>
         /// <returns></returns>
         public IActionResult ExtractIntegrateEmr(string mzh)
         {
@@ -228,9 +228,9 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 提取诊断信息
+        /// nhắclấyChẩn đoánthông tin
         /// </summary>
-        /// <param name="mzh">门诊号</param>
+        /// <param name="mzh">Số khám ngoại trú</param>
         /// <returns></returns>
         public IActionResult ExtractIntegrateDiagnosis(string mzh)
         {
@@ -239,7 +239,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 中医馆弹框
+        /// trongyquánbậtkhung
         /// </summary>
         /// <returns></returns>
         public IActionResult CmmAlertForm()
@@ -248,7 +248,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 推送草药
+        /// đẩythảo dược
         /// </summary>
         /// <returns></returns>
         public IActionResult PushMedicineInfo()
@@ -258,10 +258,10 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 提取处方
+        /// nhắclấyĐơn thuốc
         /// </summary>
         /// <param name="mzh"></param>
-        /// <param name="mzzybz">门诊住院标志 0-药库  1-门诊  2-住院  3-通用(取门诊单位) </param>
+        /// <param name="mzzybz">Dấu hiệu ngoại trú/nội trú 0-Kho thuốc  1-Ngoại trú  2-Nhập viện  3-Chung(lấyĐơn vị ngoại trú) </param>
         /// <returns></returns>
         public IActionResult ExtractIntegrateRp(string mzh, string mzzybz)
         {
@@ -270,7 +270,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 知识库系统模块
+        /// biếtbiếtkhoHệ thốngmẫukhối
         /// </summary>
         /// <returns></returns>
         public IActionResult GetIntegrateKUrl()
@@ -281,7 +281,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 集成治未病模块
+        /// tậpthànhđiều trịchưabệnhmẫukhối
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="mzh"></param>
@@ -296,7 +296,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取患者基本信息
+        /// LấyBệnh nhânThông tin cơ bản
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="mzh"></param>

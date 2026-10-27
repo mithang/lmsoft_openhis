@@ -6,29 +6,29 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 收费大类 大类类型 关联表
+    /// Nhóm thu phí lớn Loại danh mục lớn Bảng liên kết
     /// </summary>
     [SugarTable("xt_sfdl_lx")]
     public class SysChargeCategoryTypeRelationEntity : EntityBase
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
 
         /// <summary>
-        /// 医疗机构
+        /// Cơ sở y tế
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 类型 关联字典ChargeCateType的字典项
+        /// Loại Liên kết từ điểnChargeCateTypemục từ điển của
         /// </summary>
         public string Type { get; set; }
 
         /// <summary>
-        /// 收费大类编码
+        /// Mã nhóm thu phí lớn
         /// </summary>
         public string dlCode { get; set; }
 

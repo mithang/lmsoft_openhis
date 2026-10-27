@@ -3,12 +3,12 @@ using Newtouch.Herp.Domain.DTO.InputDto;
 namespace Newtouch.Herp.Application.Interface
 {
     /// <summary>
-    /// 出入库单审核
+    /// Duyệt phiếu nhập/xuất kho
     /// </summary>
     public interface IOutOrInStorageBillApprovalApp
     {
         /// <summary>
-        /// 审核
+        /// Duyệt
         /// </summary>
         /// <param name="billApprovalDTO"></param>
         /// <returns>error message</returns>

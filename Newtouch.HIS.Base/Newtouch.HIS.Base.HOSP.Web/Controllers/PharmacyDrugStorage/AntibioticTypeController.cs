@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
     public class AntibioticTypeController : ControllerBase
     {
         /// <summary>
-        /// 创建抗生素类别总览页面视图
+        /// Tạo khung nhìn trang tổng quan loại kháng sinh
         /// </summary>
         ISysMedicineAntibioticTypeRepo _ISysMedicineAntibioticTypeRepo;
         public IActionResult AntibioticTypeQuerry()
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return View();
         }
         /// <summary>
-        /// 创建抗生素类别设置页面视图
+        /// Tạo khung nhìn trang cài đặt loại kháng sinh
         /// </summary>
         /// <returns></returns>
         public IActionResult AntibioticTypeSettingForm()
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// 获取指定类别等级抗生素类别信息
+        /// Lấy thông tin loại kháng sinh theo cấp loại được chỉ định
         /// </summary>
         /// <param name="lbdj"></param>
         /// <param name="parentId"></param>
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 抗生素类别信息上传
+        /// Tải lên thông tin loại kháng sinh
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="keyvalue"></param>
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Success();
         }
         /// <summary>
-        /// 删除抗生素类别
+        /// Xóa loại kháng sinh
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Success();
         }
         /// <summary>
-        /// 通过Id获取实例
+        /// Thông quaIdLấy thực thể
         /// </summary>
         /// <param name="Id"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             {
                 foreach (SysMedicineAntibioticTypeEntity item in data)
                 {
-                    list.Add(new { id = item.Id + "|" + item.qxjb, text = item.typeName });//将权限级别信息带入Id中
+                    list.Add(new { id = item.Id + "|" + item.qxjb, text = item.typeName });//Mang thông tin cấp quyền vàoIdtrong
                 }
             }
             

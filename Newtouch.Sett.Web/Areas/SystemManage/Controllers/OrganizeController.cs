@@ -31,7 +31,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             this._sysModuleDmnService = sysModuleDmnService;
         }
 
-        //下拉 数据源
+        //Hộp chọn Nguồn dữ liệu
         [HttpGet]
 
         public IActionResult GetChildTreeSelectJson(string orgId)

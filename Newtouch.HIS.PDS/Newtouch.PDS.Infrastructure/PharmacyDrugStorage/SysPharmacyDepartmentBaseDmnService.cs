@@ -21,7 +21,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
     public class SysPharmacyDepartmentBaseDmnService : DmnServiceBase, ISysPharmacyDepartmentBaseDmnService
     {
         /// <summary>
-        /// 初始化
+        /// Khởi tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         
@@ -58,7 +58,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
         }
 
         /// <summary>
-        /// 获取有效的药房和药库
+        /// Lấy nhà thuốc và kho thuốc hiệu lực
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="yjbmjb"></param>
@@ -116,7 +116,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
 
                 if (checkList.Count > 0)
                 {
-                    throw new FailedException("部门编号不能重复！");
+                    throw new FailedException("Mã bộ phận không thể trùng lặp！");
                 }
                 try
                 {
@@ -162,7 +162,7 @@ where yfbmId=@yfbmId");
                 var checkList = FindList<SysPharmacyDepartmentVO>(checkSql, parList.ToArray());
                 if (checkList.Count > 0)
                 {
-                    throw new FailedException("部门编号不能重复！");
+                    throw new FailedException("Mã bộ phận không thể trùng lặp！");
                 }
                 try
                 {
@@ -203,7 +203,7 @@ where yfbmId=@yfbmId");
         }
 
         /// <summary>
-        /// 获取UserId当前已关联的要yfbmCode （不包括子机构）
+        /// LấyUserIdđã liên kết hiện tạiyfbmCode （Không gồm tổ chức con）
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -217,7 +217,7 @@ where yfbmId=@yfbmId");
         }
 
         /// <summary>
-        /// 获取组织机构下的药房/药库 （不包括子机构）
+        /// Lấy nhà thuốc thuộc tổ chức/Kho thuốc （Không gồm tổ chức con）
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

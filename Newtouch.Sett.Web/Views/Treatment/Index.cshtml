@@ -1,0 +1,142 @@
+﻿
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+
+
+<div class="topPanel">
+    @Html.Partial("_OrganizeIdDDLToolbarSearchView")
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_add()" id="bedata"><i class="fa fa-plus"></i>Tạo mới</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+        </div>
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keywordcx" type="text" class="form-control" placeholder="Tên/Mã số" style="width: 180px;">
+                        <span class="input-group-btn">
+                            <button id="btn_searchcx" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+
+@*, OrganizeId: $("#OrganizeId").val()*@
+
+<script>
+    $(function () {
+        gridList();
+    })
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/Treatment/loginfy",
+            height: $(window).height() - 128,
+            postData: { keyword: $("#txt_keywordcx").val(),OrganizeId:$("#OrganizeId").val() },
+            colModel: [
+                { label: "Khóa chính", name: "Id", hidden: true, key: true },
+                { label: 'Tên tổ hợp khám chữa bệnh', name: 'zhmc', width: 150, align: 'left' },
+                { label: 'Mã tổ hợp khám chữa bệnh', name: 'zhcode', width: 100, align: 'left' },
+                { label: 'Sắp xếp', name: 'ord', width: 60, align: 'center' },
+                { label: 'Hạng mục chi tiếtTên', name: 'zlxmmc', width: 170, align: 'left' },
+                { label: 'Hạng mục chi tiết', name: 'zlxm', width: 100, align: 'center' },
+                { label: 'Đơn giá', name: 'price', width: 100, align: 'center', formatter: 'number', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 } },
+                { label: 'Hạng mục chi tiếtPhiên âm', name: 'zlxmpy', width: 120, align: 'left' },
+                { label: 'Số tiền kết hợp', name: 'zhje', width: 100, align: 'left', hidden: true },
+                { label: 'Nhóm thu phí lớn', name: 'dlmc', width: 100, align: 'left' },
+                { label: 'ĐiểmNhóm列', name: 'zhmccode', width: 100, align: 'left' },
+            ],
+
+            pager: "#gridPager",
+            viewrecords: true,
+            sortname: 'zhcode',
+            gridview: true,
+            grouping: true,// Có hay khôngĐiểmNhóm,mặc định làfalse
+            groupingView: {
+                groupField: ['zhmccode'], // Nhóm dòng theo cột nào
+                //groupText: ['<b>{0}</b>'],
+                groupColumnShow: [false],
+            },
+            rowNum: '10',
+            unwritten: false,
+        });
+        $("#btn_searchcx").click(function () {
+            $("#gridList").jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keywordcx").val(), OrganizeId: $("#OrganizeId").val() },
+            }).trigger('reloadGrid');
+        });
+    }
+    $('#txt_keywordcx').keydownEnterEvent(function () {
+        $('#btn_searchcx').trigger('click');
+    })
+
+    function btn_add() {
+        $.modalOpen({
+            id: "AForm",
+            title: "Thêm hạng mụcThông tin",
+            url: "/Treatment/AForm?orgId=" + $('#OrganizeId').val(),
+            width: "550px",
+            height: "490px",
+            btn: null
+        });
+    }
+
+    function btn_edit() {
+        var keyValue = $("#gridList").jqGridRowValue().zhcode;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "Sửa thông tin",
+            url: "/Treatment/AForm?keyValue=" + keyValue+"&orgId=" + $('#OrganizeId').val(),
+            width: "550px",
+            height: "590px",
+            btn: null
+        });
+    }
+
+    function btn_delete() {
+
+        var rowKey = $("#gridList").jqGrid('getGridParam', "selrow");
+        var rowData = $("#gridList").jqGrid("getRowData", rowKey);//Theo phần trênrowKeyLấy tất cả dữ liệu của dòng này
+        var zhcode = rowData.zhcode; //Lấy giá trị của cột đã chỉ định (ReservationTime là name của colModel)
+
+
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một thông tin", 'warning');
+            return;
+        }
+        $.deleteForm({
+            url: "/Treatment/deleteid",
+            param: { keyValue: zhcode ,orgId:$('#OrganizeId').val()},
+            success: function () {
+                $("#gridList").jqGrid('setGridParam', {
+                    postData: { keyword: $("#txt_keywordcx").val(), OrganizeId: $("#OrganizeId").val() },
+                }).trigger('reloadGrid');
+            }
+        })
+    }
+</script>
+
+
+

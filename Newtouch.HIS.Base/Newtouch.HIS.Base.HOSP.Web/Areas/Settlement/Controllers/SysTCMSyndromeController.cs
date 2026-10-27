@@ -14,7 +14,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.HIS.Base.HOSP.Web.Areas.Settlement.Controllers
 {
     /// <summary>
-    /// 中医证候
+    /// Chứng hậu Đông y
     /// </summary>
     [Area("Settlement")]
     public class SysTCMSyndromeController : ControllerBase

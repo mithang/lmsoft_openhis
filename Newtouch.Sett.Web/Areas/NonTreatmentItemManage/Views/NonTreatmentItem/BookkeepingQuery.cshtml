@@ -89,7 +89,7 @@
         gridList();
     });
 
-    //病历号回车
+    //Nhấn Enter số bệnh án
     $('#blh').keydownEnterEvent(function () {
         if (!$("#blh").val().trim()) {
             return;
@@ -98,12 +98,12 @@
         $('#blh').val(blh.toUpperCase());
         $("#btn_search").trigger('click');
     })
-    //住院号开关
+    //Công tắc số nhập viện
     var isShowZyh = '@ViewBag.IsShowZyh';
     if (isShowZyh == 'ON') {
         $('#th_zyh').css('display', 'table-cell');
         $('#td_zyh').css('display', 'table-cell');
-        //住院号回车
+        //Nhấn Enter số nhập viện
         $('#zyh').keydownEnterEvent(function () {
             if (!$("#zyh").val().trim()) {
                 return;
@@ -114,7 +114,7 @@
         })
     }
 
-    //病人查询
+    //tra cứu bệnh nhân
     function GetPatSerarchView(blh, xm) {
         if (!!!blh) {
             blh = '';
@@ -130,18 +130,18 @@
             height: "600px",
             callBack: function (iframeId) {
                 top.frames[iframeId].PatDbGrid();
-            }//窗口点确定的回调函数
+            }//hàm gọi lại khi nhấn xác nhận trên cửa sổ
         });
     }
 
-    //选择的病人 callback
+    //Bệnh nhân đã chọn callback
     function getPatInfoAjax(selePatInfo) {
         $('#blh').val(selePatInfo.blh)
         $('#blh').attr('data-patId', selePatInfo.patId);
         $('#kehu').val(selePatInfo.xm);
     }
 
-    //姓名回车
+    //Nhấn Enter họ tên
     $('#kehu').keydownEnterEvent(function () {
         if (!$("#kehu").val().trim()) {
             return;
@@ -150,7 +150,7 @@
     })
 
     function initControl() {
-        //加载收费大类树
+        //Tải cây loại thu phí lớn
         $("#sfdl").bindSelect({
             url: "/NonTreatmentItem/GetTreeSelectChargeCategoryJson"
         });
@@ -159,11 +159,11 @@
         });
     }
 
-    //默认
-    var Editing_ysList = []; //编辑域中的人员
+    //mặc định
+    var Editing_ysList = []; //Nhân viên trong vùng soạn thảo
     Editing_ysList = [{ id: $('#smry').attr('data-staffId'), gh: $('#smry').attr('data-smryCode'), Name: $('#smry').val(), ks: $('#smks').attr('data-smksCode'), ksmc: $('#smks').val() }];
 
-    //绑定 人员 树
+    //gắn Nhân viên cây
     $('#smry').click(function () {
         var initIdSelected = "";
         $.each(Editing_ysList, function () {
@@ -184,7 +184,7 @@
         });
     });
 
-    //人员树 选择 回调
+    //Cây nhân viên Chọn gọi lại
     function staffTreeCallback(treeSeleData) {
         Editing_ysList = [];
         $.each(treeSeleData, function () {
@@ -205,7 +205,7 @@
         }
     }
 
-    //明细
+    //chi tiết
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -272,7 +272,7 @@
         });
     }
 
-    //已退 背景色为红色
+    //Đã hoàn Màu nền là đỏ
     function afterCompleteFunction() {
         var ids = $("#gridList").getDataIDs();
         for (i = 0; i < ids.length; i++) {
@@ -283,7 +283,7 @@
         }
     }
 
-    //查询条件
+    //Điều kiện tra cứu
     function getSearchPostData() {
         var sfdl = $("#sfdl").val();
         var keyword = $("#keyword").val();

@@ -3,12 +3,12 @@ using System.Collections.Generic;
 namespace Newtouch.Domain.DTO.OutputDto
 {
     /// <summary>
-    /// 通过API更新处方的返回结果
+    /// thông quaAPIhơnĐơn thuốc mớicủaQuay lạikếtnếu
     /// </summary>
     public class PresUpdateResultDTO
     {
         /// <summary>
-        /// 已结处方 处方号 List（哪些已结了 还请求更新）
+        /// đãkếtĐơn thuốc Số đơn thuốc List（哪些đãkếtđã cònyêu cầuCập nhật）
         /// </summary>
         public IList<string> settledCfhList { get; set; }
     }

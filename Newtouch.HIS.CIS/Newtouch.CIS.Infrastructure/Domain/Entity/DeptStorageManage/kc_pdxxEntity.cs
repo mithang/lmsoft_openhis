@@ -6,69 +6,69 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity.DeptStorageManage
 {
     /// <summary>
-    /// 库存盘点表
+    /// Tồn khoKiểm kêbảng
     /// </summary>
     [SugarTable("dept_pdxx")]
     public class KcPdxxEntity
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public long Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（有具体业务的医院）
+        /// Tổ chứcId（cócụ thểthểnghiệp vụcủayviện）
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 库房ID
+        /// KhoID
         /// </summary>
         public string warehouseId { get; set; }
 
         /// <summary>
-        ///  开始时间
+        ///  Thời gian bắt đầu
         /// </summary>
         public DateTime kssj { get; set; }
 
         /// <summary>
-        /// 结束时间
+        /// Thời gian kết thúc
         /// </summary>
         public DateTime? jssj { get; set; }
 
         /// <summary>
-        /// 盘点方式
+        /// Kiểm kêphươngkiểu
         /// </summary>
         public short pdfs { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Thứ tự
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Sửa cuối người
         /// </summary>
         public string LastModifierCode { get; set; }
     }

@@ -6,7 +6,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 物资类别
+    /// Loại vật tư
     /// </summary>
     public class WzTypeRepo : RepositoryBase<WzTypeEntity>, IWzTypeRepo
     {

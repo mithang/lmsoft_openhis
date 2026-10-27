@@ -40,7 +40,7 @@
         </table>
     </div>
 </div>
-<!--患者信息 包括病历号  姓名 -->
+<!--Thông tin bệnh nhân Gồm số hồ sơ bệnh án  Họ tên -->
 <form id="formPatSer" style="margin:2px;margin-top:10px;">
     <div class="gridPanel">
         <table id="GridList" rel="formPatSer"></table>
@@ -49,7 +49,7 @@
 </form>
 
 <script>
-    //上一个window对象
+    //Cái trướcwindowĐối tượng
     var prevWindow;
     if ('@(from)' !== '') {
         prevWindow = top.top.frames['@(from)'];
@@ -60,7 +60,7 @@
 
     $(function () {
         gridList();
-        //查询
+        //Truy vấn
         $("#btn_search").click(function () {
             $("#GridList").jqGrid('setGridParam', {
                 postData: {
@@ -77,7 +77,7 @@
         $gridList.dataGrid({
             url: "/OutOrInStoredManage/Purchase/GetPurchaseGridJson",
             height: $(window).height() - 130,
-            postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val(), ddzt: 2, yyjhdh: $("#yyjhdh").val(), gysCode: "", ddbh: $("#ddbh").val(),ddyy:"1" },//ddyy:药库入库引用时参数标识
+            postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val(), ddzt: 2, yyjhdh: $("#yyjhdh").val(), gysCode: "", ddbh: $("#ddbh").val(),ddyy:"1" },//ddyy:Dấu hiệu tham Số khi trích dẫn nhập kho thuốc
             colModel: [
 
                 { label: 'cgId', name: 'cgId', hidden: true },
@@ -127,7 +127,7 @@
         });
     }
 
-    //jqGrid 双击选中某行
+    //jqGrid Nhấp đúp để chọn một dòng
     function btn_edit() {
         SearchConfirm();
     }
@@ -149,23 +149,23 @@
         obj.ddzt = $gridList.jqGridRowValue().ddzt;
         if (obj.ddbh != "") {
             prevWindow.GetQueryAjax(obj);
-            //关闭窗口
+            //Đóng cửa sổ
             ReceiptCancle();
         } else {
             $.modalMsg("Số hóa đơn trống,vui lòng bổ sung số hóa đơn!", "success", 1000);
         }
         
     }
-    //确定 主页面调用
+    //Xác định Gọi từ trang chính
     function SearchConfirm() {
         PurchaseDbGrid();
     }
 
-    //取消
+    //Hủy
     function ReceiptCancle() {
         $.modalClose();
     }
-    //补发票号
+    //Bổ sung số hóa đơn
     function UpdateFph(obj) {
         var fph = $(obj).val();
         var cgId = $("#GridList").getRowData($(obj).attr("rowid")).cgId;

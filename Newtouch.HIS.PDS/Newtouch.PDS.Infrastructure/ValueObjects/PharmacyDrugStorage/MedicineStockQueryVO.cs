@@ -4,78 +4,78 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 库存量查询
+    /// Truy vấn lượng tồn kho
     /// </summary>
     public class MedicineStockQueryVO
     {
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
         /// <summary>
-        /// 药品code
+        /// Thuốccode
         /// </summary>
         public string ypCode { get; set; }
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
         /// <summary>
-        /// 部门名称
+        /// Tên bộ phận
         /// </summary>
         public string deptName { get; set; }
         /// <summary>
-        /// 药房部门Code
+        /// Bộ phận nhà thuốcCode
         /// </summary>
         public string yfbmCode { get; set; }
         /// <summary>
-        /// 账册序号
+        /// Số thứ tự sổ sách
         /// </summary>
         public string zcxh { get; set; }
         /// <summary>
-        /// 药厂名称
+        /// Tên hãng thuốc
         /// </summary>
         public string ycmc { get; set; }
         /// <summary>
-        /// 单位
+        /// Đơn vị
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 药库批发价
+        /// Giá bán buôn kho thuốc
         /// </summary>
         public decimal ykpfj { get; set; }
 
         /// <summary>
-        /// 部门零售价
+        /// Giá bán lẻ bộ phận
         /// </summary>
         public decimal? lsj { get; set; }
 
         /// <summary>
-        /// 部门批发价
+        /// Giá bán buôn bộ phận
         /// </summary>
         public decimal? pfj { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// Giá bán lẻ kho thuốc
         /// </summary>
         public decimal yklsj { get; set; }
 
         /// <summary>
-        /// 库存数量
+        /// Số lượng tồn kho
         /// </summary>
         //public int kcsl { get; set; }
         public string Kcslstr { get; set; }
         /// <summary>
-        /// 批发总额
+        /// Tổng giá bán buôn
         /// </summary>
         public decimal pjze { get; set; }
         /// <summary>
-        /// 零售总额
+        /// Tổng giá bán lẻ
         /// </summary>
         public decimal ljze { get; set; }
         /// <summary>
-        /// 拼音
+        /// Phiên âm
         /// </summary>
         public string py { get; set; }
         /// <summary>

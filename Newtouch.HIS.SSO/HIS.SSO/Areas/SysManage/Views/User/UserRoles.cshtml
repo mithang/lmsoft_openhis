@@ -1,0 +1,55 @@
+﻿@{
+    ViewBag.Title = "Form";
+    Layout = "~/Views/Shared/_Form.cshtml";
+}
+
+<form id="form1">
+    <div role="tabpanel" class="tab-pane fade in col-sm-10" style="padding-top: 20px;padding-bottom: 20px; margin:0 15px 0 5px;height:100%;overflow-y:auto;" id="userRole">
+        <div id="roleList"></div>
+    </div>
+</form>
+<script>
+    var keyValue = $.request("keyValue");
+    var orgId = $.request("orgId");
+    $(function () {
+        $.najax({
+            url: "/SysManage/SysRole/GetRoleList?orgId=" + orgId,
+            data: { orgId: orgId, userId: keyValue },
+            dataType: "json",
+            success: function (data) {
+                $('#roleList').treeview({
+                    color: "#428bca",
+                    // wdtree option name is showcheck (bootstrap-treeview is
+                    // commented out in _Form.cshtml; js/wdtree/tree.js is loaded).
+                    // Per-node showcheck/checkstate come from GetRoleList.
+                    showcheck: true,
+                    nodeIcon: 'fa fa-user',
+                    data: data,
+                    selectedBackColor:"#ffffff",
+                    selectedColor: "#428bca",
+
+                });
+                // No post-processing here: wdtree renders checkstate (1 = the
+                // user's current roles) natively. The old getCheckableNodes /
+                // checkNodes helpers are bootstrap-treeview API; calling them
+                // on wdtree re-initialises the widget with no data and wipes
+                // the rendered tree.
+               
+            }
+        });
+    });
+
+    function AcceptClick(callBack) {
+        var postData = {};
+        postData["organizeId"] = orgId;
+        postData["roleList"] = $("#roleList").getCheckedNodes(); // wdtree native: checked role ids (same values the old item.href carried)
+        $.submitForm({
+            url: "/SysManage/User/UpdateUserRole?keyValue=" + keyValue,
+            param: postData,
+            success: function () {
+                callBack();
+                $.modalClose();
+            }
+        })
+    }
+</script>

@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace Newtouch.PDS.Requset
 {
     /// <summary>
-    /// 单据内容
+    /// Nội dung chứng từ
     /// </summary>
     public class WithdrawalPrepareDTO : RequestBase
     {

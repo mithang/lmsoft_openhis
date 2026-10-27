@@ -7,12 +7,12 @@ using Newtouch.Domain.ValueObjects.Storage;
 namespace Newtouch.Application.Interface
 {
     /// <summary>
-    /// 库存盘点
+    /// Tồn khoKiểm kê
     /// </summary>
     public interface IStockInventoryApp
     {
         /// <summary>
-        /// 开始盘点
+        /// Bắt đầuKiểm kê
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
@@ -20,27 +20,27 @@ namespace Newtouch.Application.Interface
         VInventoryDateDropDownEntity StartInventory(string warehouseId, string organizeId);
 
         /// <summary>
-        /// 盘点保存
+        /// Kiểm kêLưu
         /// </summary>
         /// <param name="inventoryInfoList"></param>
-        /// <param name="pdId">盘点单ID</param>
-        /// <param name="noPc">  0：按批次盘点 1：不按批次盘点</param>
+        /// <param name="pdId">Kiểm kêphiếuID</param>
+        /// <param name="noPc">  0：theoLôKiểm kê 1：khôngtheoLôKiểm kê</param>
         void SaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList, long pdId, string noPc = "0");
 
         /// <summary>
-        /// 取消盘点
+        /// HủyKiểm kê
         /// </summary>
         /// <param name="pdId"></param>
         void CancelInventory(long pdId);
 
         /// <summary>
-        /// 结束盘点
+        /// Kết thúcKiểm kê
         /// </summary>
         /// <returns></returns>
         void EndInventory(long pdId);
 
         /// <summary>
-        /// 提交损益
+        /// Gửilãi lỗ
         /// </summary>
         /// <param name="plist"></param>
         /// <param name="warehouseId"></param>

@@ -99,12 +99,12 @@
         });
     }
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function() {
         $('#btn_search').trigger('click');
     });
 
-    //专家诊室
+    //Phòng khám chuyên gia
     function expertConsult(Code) {
         var ksCode = Code;
         $.modalOpen({
@@ -119,7 +119,7 @@
         });
     }
 
-    //普通诊室
+    //Phòng khám thường
     function normalConsult(Code) {
         var ksCode = Code;
         $.modalOpen({
@@ -135,18 +135,18 @@
     }
 
 
-    ////新增
+    ////Thêm mới
     //function newtouch_event_f7() {
     //    var mainRowId = $gridList.jqGrid("getGridParam", "selrow");
     //    var mRowData = $gridList.jqGrid("getRowData", mainRowId);
     //    if (!mRowData) {
-    //        $.modalAlert("请选择医生", 'warning');
+    //        $.modalAlert("Vui lòng chọn bác sĩ", 'warning');
     //        return false;
     //    }
     //    var ysgh = mRowData.StaffGh;
     //    $.modalOpen({
     //        id: "Form",
-    //        title: "新增出诊科室",
+    //        title: "Thêm khoa khám mới",
     //        url: "/SystemManage/VisitDeptSet/Form?keyValue=&ysgh=" + ysgh,
     //        width: "550px",
     //        height: "350px",
@@ -157,11 +157,11 @@
 
     //}
 
-    ////修改
+    ////Sửa
     //function newtouch_event_f8() {
     //    var detailRowid = $gridmxList.jqGrid("getGridParam", "selrow");
     //    if (!(detailRowid)) {
-    //        $.modalAlert("请选中一条信息", 'warning');
+    //        $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
     //        return false;
     //    }
     //    var dRowData = $gridmxList.jqGrid("getRowData", detailRowid);
@@ -169,13 +169,13 @@
     //    var mainRowId = $gridList.jqGrid("getGridParam", "selrow");
     //    var mRowData = $gridList.jqGrid("getRowData", mainRowId);
     //    if (!mRowData) {
-    //        $.modalAlert("请选择医生", 'warning');
+    //        $.modalAlert("Vui lòng chọn bác sĩ", 'warning');
     //        return false;
     //    }
     //    var ysgh = mRowData.StaffGh;
     //    $.modalOpen({
     //        id: "Form",
-    //        title: "修改出诊科室",
+    //        title: "Sửa khoa khám",
     //        url: "/SystemManage/VisitDeptSet/Form?keyValue=" + keyValue + "&ysgh=" + ysgh,
     //        width: "550px",
     //        height: "350px",
@@ -186,26 +186,26 @@
     //}
 
 
-    ////删除
+    ////Xóa
     //function deleteItem(itemId) {
     //    newtouch_event_f9(itemId);
     //}
 
-    ////删除
+    ////Xóa
     //function newtouch_event_f9(rowid) {
     //    if (!rowid) {
     //        rowid = $gridmxList.jqGrid("getGridParam", "selrow");
     //    }
     //    if (!rowid) {
-    //        $.modalAlert("请选择要删除的出诊科室记录", 'warning');
+    //        $.modalAlert("Vui lòng chọn bản ghi khoa khám cần xóa", 'warning');
     //        return false;
     //    }
     //    var rowData = $gridmxList.jqGrid("getRowData", rowid);
     //    if (!rowData) {
-    //        $.modalAlert("选中的记录无效，请重新选择", 'warning');
+    //        $.modalAlert("Bản ghi đã chọn không hiệu lực，Vui lòng chọn lại", 'warning');
     //        return false;
     //    }
-    //    $.modalConfirm("确定要删除该条出诊科室记录", function (flag) {
+    //    $.modalConfirm("Xác định xóa bản ghi khoa khám đó", function (flag) {
     //        if (flag) {
     //            $.najax({
     //                url: "/SystemManage/VisitDeptSet/DeleteItem",

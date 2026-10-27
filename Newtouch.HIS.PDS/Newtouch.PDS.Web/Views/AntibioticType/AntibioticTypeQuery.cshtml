@@ -90,7 +90,7 @@
         });
     }
 
-    //jGrid声明
+    //jGridKhai báo
     function initChargeItemGrid(data) {
         $('#DetailList').newtouchLocalDataGrid({
             height: $(window).height() - 130,
@@ -122,7 +122,7 @@
         }, data);
     }
 
-    //新增子类别
+    //Thêm loại con
     function newtouch_event_f3() {
         parentId = $("#parentId").val();
         if (parentId == "") {
@@ -133,7 +133,7 @@
     }
 
 
-    //修改
+    //Sửa
     function newtouch_event_f4() {
         gridEditRow("2");
     }
@@ -190,7 +190,7 @@
         });
     }
 
-    //删除
+    //Xóa
     function newtouch_event_f6() {
         DropType("2");
     }

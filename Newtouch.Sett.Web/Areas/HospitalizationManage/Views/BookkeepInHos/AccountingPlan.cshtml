@@ -288,7 +288,7 @@
         return { keyword: keyword, kssj: kssj, jssj: jssj, yzxz: yzxz, zxzt: zxzt, sfzt: sfzt, from: from, zsftx: zsftx, sycstx: sycstx };
     };
 
-    //终止
+    //Chấm dứt
     function newtouch_event_f7() {
         var jzjhmxIdStr = "";
         var allData = $("#gridList").jqGrid('getRowData_AllLine', true, true);
@@ -416,7 +416,7 @@
 
 <script>
     $(document).ready(function () {
-        //加của效果
+        //thêmcủahiệu quả
         $(".add").click(function () {
             var n = $(this).prev().val();
             if (isNaN(parseInt(n))) {
@@ -426,7 +426,7 @@
             }
             $(this).prev().val(num);
         });
-        //减của效果
+        //trừcủahiệu quả
         $(".jian").click(function () {
             var n = $(this).next().val();
             if (isNaN(parseInt(n)) || parseInt(n) < 1) {

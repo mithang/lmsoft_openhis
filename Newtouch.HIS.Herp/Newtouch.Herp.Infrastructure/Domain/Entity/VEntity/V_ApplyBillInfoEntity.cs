@@ -3,62 +3,62 @@ using System;
 namespace Newtouch.Herp.Domain.Entity
 {
     /// <summary>
-    /// 申领主信息
+    /// Thông tin chính phiếu lĩnh
     /// </summary>
     public class VApplyBillInfoEntity
     {
         /// <summary>
-        /// 单据类型 1-科室申领；2-库房申领
+        /// Loại chứng từ 1-Khoa phòng lĩnh；2-Kho lĩnh
         /// </summary>
         public int applyType { get; set; }
 
         /// <summary>
-        /// 处理过程   0:待处理；1:审核通过；2:审核不通过；3:配送；4:部分完成；5:完成；6:拒收
+        /// Quá trình xử lý   0:Chờ xử lý；1:Đã duyệt；2:Không duyệt；3:Phân phối；4:Hoàn thành một phần；5:Hoàn thành；6:Từ chối nhận
         /// </summary>
         public int applyProcess { get; set; }
 
         /// <summary>
-        /// 申领单号
+        /// Số phiếu lĩnh
         /// </summary>
         public string sldh { get; set; }
 
         /// <summary>
-        /// 出库部门名称
+        /// Tên khoa xuất kho
         /// </summary>
         public string ckbmmc { get; set; }
 
         /// <summary>
-        /// 出库部门ID
+        /// Khoa xuất kho ID
         /// </summary>
         public string ckbmId { get; set; }
 
         /// <summary>
-        /// 入库部门名称
+        /// Tên khoa nhập kho
         /// </summary>
         public string rkbmmc { get; set; }
 
         /// <summary>
-        /// 入库部门ID
+        /// Khoa nhập kho ID
         /// </summary>
         public string rkbmId { get; set; }
 
         /// <summary>
-        /// 入库科室名称
+        /// Tên khoa nhập kho
         /// </summary>
         public string rkksmc { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorName { get; set; }
     }

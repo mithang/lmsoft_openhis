@@ -12,12 +12,12 @@ using System.Data;
 namespace NewtouchHIS.Lib.Base.Extension
 {
     /// <summary>
-    /// Json序列化 帮助类
+    /// JsonLớp hỗ trợ tuần tự hóa
     /// </summary>
     public static class Json
     {
         /// <summary>
-        /// string反序列化至 object
+        /// stringGiải tuần tự hóa thành object
         /// </summary>
         /// <param name="json"></param>
         /// <returns></returns>
@@ -27,7 +27,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 序列化
+        /// tuần tự hóa
         /// </summary>
         /// <param name="obj"></param>
         /// <returns></returns>
@@ -37,10 +37,10 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 序列化
+        /// tuần tự hóa
         /// </summary>
         /// <param name="obj"></param>
-        /// <param name="datetimeformats">日期格式</param>
+        /// <param name="datetimeformats">Định dạng ngày</param>
         /// <returns></returns>
         public static string ToJson(this object obj, string? datetimeformats)
         {
@@ -56,10 +56,10 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 序列化
+        /// tuần tự hóa
         /// </summary>
         /// <param name="obj"></param>
-        /// <param name="retainProps">指定序列化字段</param>
+        /// <param name="retainProps">Chỉ định trường tuần tự hóa</param>
         /// <param name="dateFormatString"></param>
         /// <returns></returns>
         public static string ToJson(this object obj, string[] retainProps, string dateFormatString = "yyyy-MM-dd HH:mm:ss")
@@ -74,7 +74,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 反序列化
+        /// Giải tuần tự hóa
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="Json"></param>
@@ -85,7 +85,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 反序列化
+        /// Giải tuần tự hóa
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="json"></param>
@@ -96,7 +96,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 序列化
+        /// tuần tự hóa
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -106,7 +106,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 反序列化
+        /// Giải tuần tự hóa
         /// </summary>
         /// <param name="json"></param>
         /// <returns></returns>
@@ -116,7 +116,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 序列化
+        /// tuần tự hóa
         /// </summary>
         /// <param name="json"></param>
         /// <returns></returns>
@@ -126,7 +126,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 序列化
+        /// tuần tự hóa
         /// </summary>
         /// <param name="json"></param>
         /// <returns></returns>
@@ -136,7 +136,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
-        /// 向json object追加item，并返回序列化后的string
+        /// Thêm item vào json object, và trả về sau khi tuần tự hóastring
         /// </summary>
         /// <param name="obj"></param>
         /// <param name="content"></param>
@@ -159,17 +159,17 @@ namespace NewtouchHIS.Lib.Base.Extension
             }
             catch
             {
-                //非json格式
+                //Không phải định dạng json
                 return obj == null ? "" : obj.ToString();
             }
         }
         /// <summary>
-        /// 将json字符串反序列化为字典类型
+        /// Giải tuần tự hóa chuỗi json thành kiểu từ điển
         /// </summary>
-        /// <typeparam name="TKey">字典key</typeparam>
-        /// <typeparam name="TValue">字典value</typeparam>
-        /// <param name="jsonStr">json字符串</param>
-        /// <returns>字典数据</returns>
+        /// <typeparam name="TKey">từ điểnkey</typeparam>
+        /// <typeparam name="TValue">từ điểnvalue</typeparam>
+        /// <param name="jsonStr">jsonchuỗi</param>
+        /// <returns>Dữ liệu từ điển</returns>
         public static Dictionary<TKey, TValue>? JsonStringToDictionary<TKey, TValue>(string jsonStr)
         {
             if (string.IsNullOrEmpty(jsonStr))

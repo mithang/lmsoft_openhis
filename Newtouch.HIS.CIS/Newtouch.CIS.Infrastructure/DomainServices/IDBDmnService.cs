@@ -17,7 +17,7 @@ using System.Text;
 namespace Newtouch.DomainServices
 {
     /// <summary>
-    /// 中间库相关
+    /// tronggiữakholiên quan
     /// </summary>
     public class IDBDmnService : DmnServiceBase, IIDBDmnService
     {
@@ -26,11 +26,11 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 查询患者挂号信息
+        /// Tra cứuBệnh nhânđăng ký khámthông tin
         /// </summary>
         /// <param name="ksCode"></param>
-        /// <param name="ysgh">//筛选专家号 仅看挂自己号的</param>
-        /// <param name="mjzbz">//1普通门诊 2急诊 3专家门诊</param>
+        /// <param name="ysgh">//Lọcchuyên giasố chỉ xemtreotựtựsốcủa</param>
+        /// <param name="mjzbz">//1thông thườngNgoại trú 2gấpkhám 3chuyên giaNgoại trú</param>
         /// <param name="jiuzhenbz"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -38,18 +38,18 @@ namespace Newtouch.DomainServices
         {
             if (jiuzhenbz < 0)
             {
-                throw new FailedException("就诊标志为空");
+                throw new FailedException("Khám bệnhCờlàtrống");
             }
             if (jiuzhenbz == (int)EnumJzzt.NotYetTreate)
             {
-                jiuzhenbz = 0;  //对应中间库待就诊0
+                jiuzhenbz = 0;  //tương ứngtronggiữakhochờKhám bệnh0
             }
 
             const  string sqlstr = @"
 SELECT  --CAST(NEWID() AS VARCHAR(50)) jzId ,
 	@orgId OrganizeId ,
 	zjk.RegID mzh ,
-	1 mjzbz,--需要修改确认
+	1 mjzbz,--cầnsửaxác nhận
 	xxk.blh ,
 	zjk.PatName xm ,
 		CASE zjk.PatSex
@@ -66,7 +66,7 @@ SELECT  --CAST(NEWID() AS VARCHAR(50)) jzId ,
 	zjk.DoctorName ghys ,
 	CONVERT(DATETIME, zjk.RegDateTime, 0) ghsj ,
 	CONVERT(DATETIME, zjk.InsertDateTime, 0) ghczsj ,
-	--待就诊 中间库jzzt 0，CIS 1   --else 异常
+	--Chờ khám tronggiữakhojzzt 0，CIS 1   --else bất thường
 	case zjk.jzzt when 0 then 1 else -1 end jzzt
 FROM NNHIS_INTERFACE_Basic.dbo.MZ_REGISTER_HIS(NOLOCK) zjk
      LEFT JOIN NNHIS_INTERFACE_Basic.dbo.ZY_BRXXK(NOLOCK) xxk ON zjk.PatID = xxk.patid
@@ -103,8 +103,8 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// 将mzh的未收费处方等信息 同步至中间库   
-        /// （且同步处方成功后要回写处方同步状态）
+        /// sẽmzhcủaChưa thu phíĐơn thuốcđợithông tin Đồng bộđếntronggiữakho   
+        /// （vàĐồng bộĐơn thuốcthành côngsaucầnvềviếtĐơn thuốcTrạng thái đồng bộ）
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -113,11 +113,11 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         {
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("组织机构为空");
+                throw new FailedException("Tổ chứclàtrống");
             }
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("门诊号为空");
+                throw new FailedException("Số khám ngoại trúlàtrống");
             }
             var par = new List<SqlParameter>();
             par.Add(new SqlParameter("@orgId", orgId));
@@ -126,7 +126,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// 作废his单次就诊的所有处方
+        /// Hủy bỏhisMột lầnKhám bệnhcủatất cảĐơn thuốc
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="orgId"></param>
@@ -134,11 +134,11 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         {
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("组织机构为空");
+                throw new FailedException("Tổ chứclàtrống");
             }
             if (string.IsNullOrWhiteSpace(jzId))
             {
-                throw new FailedException("就诊号为空");
+                throw new FailedException("Khám bệnhsốlàtrống");
             }
             var par = new List<SqlParameter>();
             par.Add(new SqlParameter("@orgId", orgId));
@@ -147,7 +147,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// 作废HIS单张处方
+        /// Hủy bỏHISphiếutờĐơn thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -159,11 +159,11 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         {
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("组织机构为空");
+                throw new FailedException("Tổ chứclàtrống");
             }
             if (string.IsNullOrWhiteSpace(cfId)&& string.IsNullOrWhiteSpace(apicfh))
             {
-                throw new FailedException("缺少处方信息");
+                throw new FailedException("thiếuĐơn thuốcthông tin");
             }
             var par = new List<SqlParameter>();
             par.Add(new SqlParameter("@orgId", orgId));
@@ -174,7 +174,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// CIS处方数据
+        /// CISĐơn thuốcDữ liệu
         /// </summary>
         /// <param name="Opt"></param>
         /// <param name="Brwym"></param>
@@ -196,7 +196,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
 
         }
         /// <summary>
-        /// 中间库 同步处方收费状态
+        /// tronggiữakho Đồng bộĐơn thuốcThu phíTrạng thái
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="orgId"></param>
@@ -204,7 +204,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         {
             if (string.IsNullOrWhiteSpace(blh))
             {
-                throw new FailedException("缺少病历号");
+                throw new FailedException("thiếuSố bệnh án");
             }
             var par = new List<SqlParameter>();
             par.Add(new SqlParameter("@orgId", orgId));

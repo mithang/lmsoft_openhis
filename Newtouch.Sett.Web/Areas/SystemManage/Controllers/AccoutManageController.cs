@@ -28,7 +28,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 查询病人基本信息和账户信息
+        /// tratra cứubệnhngườiquỹnàythông tintinvàtài khoảnhộthông tintin
         /// </summary>
         /// <param name="patid"></param>
         /// <returns></returns>

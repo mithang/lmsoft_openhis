@@ -6,11 +6,11 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain
 {
     /// <summary>
-    /// 系统用户
+    /// Người dùng hệ thống
     /// </summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("V_C_Sys_User")]
-    [Description("系统用户视图")]
+    [Description("View người dùng hệ thống")]
     public class SysUserVEntity
     {
         /// <summary>
@@ -20,43 +20,43 @@ namespace NewtouchHIS.Base.Domain
         public string Id { get; set; }
 
         /// <summary>
-        /// 顶级Tổ chức
+        /// Cấp cao nhấtTổ chức
         /// </summary>
         [Required, MaxLength(50)]
         public string TopOrganizeId { get; set; }
 
         /// <summary>
-        /// 账号
+        /// Tài khoản
         /// </summary>
         [Required, MaxLength(20)]
         public string Account { get; set; }
 
         /// <summary>
-        /// 语言类型
+        /// Loại ngôn ngữ
         /// </summary>
         [Required, MaxLength(50)]
         public string? LanguageType { get; set; }
 
         /// <summary>
-        /// 密码
+        /// Mật khẩu
         /// </summary>
         [Required, MaxLength(50)]
         public string UserPassword { get; set; }
 
         /// <summary>
-        /// 密码Key
+        /// Mật khẩuKey
         /// </summary>
         [Required, MaxLength(50)]
         public string UserSecretkey { get; set; }
 
         /// <summary>
-        /// 是否被锁定。true锁定，否则未锁定
+        /// Có bị khóa hay không.trueKhóa,nếu không là chưa khóa
         /// </summary>
         [MaxLength(1)]
         public bool? Locked { get; set; }
 
         /// <summary>
-        /// 有效标志
+        /// Cờ hiệu lực
         /// </summary>
         [Required, MaxLength(1)]
         public string zt { get; set; }

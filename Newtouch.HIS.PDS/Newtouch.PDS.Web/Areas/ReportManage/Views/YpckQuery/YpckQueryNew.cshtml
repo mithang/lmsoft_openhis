@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Bảng thống kê xuất kho thuốc";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //报表链接
+    //Liên kết báo cáo
     var reportUrl = SysConfigReader.OrgReportLink();
     var reportUrlNew = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
@@ -62,26 +62,26 @@
         $('#layout iframe').css('height', h);
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }
 
     function getDateByStr(dateString) {
-        // 将字符串分割为日期和时间部分
+        // Chia chuỗi thành phần ngày và thời gian
         var parts = dateString.split(' ');
         var datePart = parts[0].split('-');
         var timePart = parts[1].split(':');
 
-        // 创建Date对象
+        // TạoDateĐối tượng
         var date = new Date(
-            parseInt(datePart[0]), // 年份
-            parseInt(datePart[1]) - 1, // 月份是从0开始的，所以需要减1
-            parseInt(datePart[2]), // 日
-            parseInt(timePart[0]), // 小时
-            parseInt(timePart[1]), // 分钟
+            parseInt(datePart[0]), // Năm
+            parseInt(datePart[1]) - 1, // Tháng bắt đầu từ0bắt đầu，vì vậy cần trừ1
+            parseInt(datePart[2]), // ngày
+            parseInt(timePart[0]), // giờ
+            parseInt(timePart[1]), // phút
             0, // giây
-            0 // 毫秒
+            0 // mili giây
         );
         return date;
     }

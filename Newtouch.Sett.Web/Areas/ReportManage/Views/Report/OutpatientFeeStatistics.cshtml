@@ -111,7 +111,7 @@
             tempIsHospAdministrator = "true";
             curUserCode = " ";
         }
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";
@@ -154,7 +154,7 @@
     }
 
     $('#xmtype').change(function () {
-        if ($(this).val() == "fzlxm") {//非治疗项目不区分门诊住院
+        if ($(this).val() == "fzlxm") {//Hạng mục không phải điều trị không phân biệt ngoại trú/nội trú
             $("#type").val("").trigger("change").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
         } else if ($(this).val() == "zlxm") {
             $('#type').val("").trigger("change").removeAttr('disabled').css("background-color", "");
@@ -171,7 +171,7 @@
 <script type="text/javascript">
     function funcOrganizeIdChange() {
         orgId = $("#OrganizeId").val();
-        //治疗师绑定下拉框
+        //Hộp chọn liên kết trị liệu sư
         $("#zls").bindSelect({
             id: "StaffGh",
             text: "StaffName",
@@ -193,7 +193,7 @@
         if (isHospAdministrator && false) {
             return true;
         }
-        //GRS非管理 可查看下级机构所有治疗师数据
+        //GRSkhôngquảnlý có thểtraxemdướicấpmáycơ quannơicóđiều trịđiều trịsưsốdữ liệu
         if (false && isHospAdministrator == "false" && orgId != thisorgId) {
             return true;
         }
@@ -201,8 +201,8 @@
             return $(v).attr('value') == curUsergh;
         });
         if (!isHospAdministrator && matchedCurZls.length == 1) {
-            //当前是不是治疗师 但 不是HospAdministrator
-            //仅查看自己的
+            //khitrướclàkhônglàđiều trịđiều trịsư nhưng khônglàHospAdministrator
+            //chỉtraxemtựmìnhcủa
             return false;
         }
         else {

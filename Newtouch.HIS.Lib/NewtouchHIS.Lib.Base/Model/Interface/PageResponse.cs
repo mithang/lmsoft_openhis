@@ -6,7 +6,7 @@
 
     }
     /// <summary>
-    /// 分页响应 Model
+    /// Phản hồi phân trang Model
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class PageResponseRow<T> : PageResponse

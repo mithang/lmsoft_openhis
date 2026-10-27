@@ -7,24 +7,24 @@
         /// </summary>
         public string? kh { get; set; }
         /// <summary>
-        /// Đăng ký单状态 EnumReportStu
+        /// Đăng kýTrạng thái phiếu EnumReportStu
         /// </summary>
         public string? sqdzt { get; set; }
         /// <summary>
-        /// Đăng ký单号
+        /// Đăng kýSố phiếu
         /// </summary>
         public string? sqdh { get; set; }
         /// <summary>
-        /// 项目代码
+        /// Mã hạng mục
         /// </summary>
         public string? xmdm { get; set; }
         /// <summary>
-        /// Loại nghiệp vụ 1 门诊 2 住院
+        /// Loại nghiệp vụ 1 Ngoại trú 2 Nội trú
         /// </summary>
         public string? ywlx { get; set; }
     }
     /// <summary>
-    /// 门诊报告
+    /// Báo cáo ngoại trú
     /// </summary>
     public class LisReportMzRequest:LisReportRequestBase
     {
@@ -34,7 +34,7 @@
         public string? mzh { get; set; }
     }
     /// <summary>
-    /// 住院报告
+    /// Báo cáo nội trú
     /// </summary>
     public class LisReportZyRequest: LisReportRequestBase
     {

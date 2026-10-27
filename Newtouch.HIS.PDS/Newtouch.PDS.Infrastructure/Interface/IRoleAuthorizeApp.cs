@@ -4,19 +4,19 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Application.Interface
 {
     /// <summary>
-    /// 角色权限App
+    /// Quyền vai tròApp
     /// </summary>
     public interface IRoleAuthorizeApp
     {
         ///// <summary>
-        ///// 获取角色授权列表
+        ///// Lấy danh sách ủy quyền vai trò
         ///// </summary>
         ///// <param name="roleId"></param>
         ///// <returns></returns>
         //List<SysRoleAuthorizeEntity> GetValidList(string roleId);
 
         /// <summary>
-        /// 访问权限验证
+        /// Kiểm tra quyền truy cập
         /// </summary>
         /// <param name="roleIdList"></param>
         /// <param name="action"></param>
@@ -24,7 +24,7 @@ namespace Newtouch.HIS.Application.Interface
         bool ActionValidate(IList<string> roleIdList, string action);
 
         /// <summary>
-        /// 权限验证
+        /// Kiểm tra quyền
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="moduleId"></param>

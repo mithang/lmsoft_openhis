@@ -94,12 +94,12 @@
     })
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
         $("#OrganizeId").change(function () {
-            //收费分类下拉
+            //Thả xuống phân loại thu phí
             $("#sfflCode").bindSelect({
                 url: "/RehabChargeItem/GetsfflBindSelect?OrganizeId=" + $('#OrganizeId').val()
             });
@@ -107,12 +107,12 @@
         $('#CollectionMethod').select2();
     }
 
-    //首拼
+    //Mã đầu chữ
     $('#Name').keyup(function () {
         $('#py').val($(this).toShouPin());
     })
 
-    //提交
+    //Gửi
     function submitForm() {
         if (!$('#form1').formValid()) {
             return false;

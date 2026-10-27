@@ -1,42 +1,42 @@
 namespace Newtouch.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 修改库存参数
+    /// SửaTồn khotham số
     /// </summary>
     public class UpdateKcslDTO
     {
         /// <summary>
-        /// 物资ID
+        /// vật tưID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 目标库房
+        /// Mục tiêuKho
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 最小单位数量
+        /// Đơn vị nhỏ nhấtSố lượng
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 组织结构
+        /// tổ chứckếtcấu trúc
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 操作人
+        /// Thao tác người
         /// </summary>
         public string userCode { get; set; }
     }

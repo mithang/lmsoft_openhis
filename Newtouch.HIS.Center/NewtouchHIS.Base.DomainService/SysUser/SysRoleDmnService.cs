@@ -11,13 +11,13 @@ using SqlSugar;
 namespace NewtouchHIS.Base.DomainService
 {
     /// <summary>
-    /// 系统角色及授权
-    /// 各系统通用功能，DBContext选择为主库,建议引用
+    /// Vai trò hệ thống và ủy quyền
+    /// Chức năng dùng chung cho các hệ thống,DBContextChọn làm cơ sở dữ liệu chính,khuyên tham chiếu
     /// </summary>
     public class SysRoleDmnService : BaseDmnService<SysRoleEntity>, ISysRoleDmnService
     {
         /// <summary>
-        /// 应用需配置主库
+        /// Ứng dụng cần cấu hình cơ sở dữ liệu chính
         /// </summary>
         private string _mainDB = ConfigInitHelper.DbConfig.MainDB ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "DbConfig.MainDB");
         public SysRoleDmnService()
@@ -50,7 +50,7 @@ namespace NewtouchHIS.Base.DomainService
             return await GetByWhere<SysRoleEntity>(db, p => roleIds.Contains(p.Id) && p.OrganizeId == orgId && p.zt == "1");
         }
         /// <summary>
-        /// 删除系统角色
+        /// Xóa vai trò hệ thống
         /// </summary>
         /// <param name="keyValue"></param>
         public async Task DeleteForm(string keyValue)
@@ -58,12 +58,12 @@ namespace NewtouchHIS.Base.DomainService
             var result = await GetByWhere<SysRoleEntity>(DBEnum.UnionDb.ToString(), p => p.zt == "1" && p.Id == keyValue);
             if (result == null)
             {
-                throw new FailedException("Xóa thất bại，Truy vấn không có thông tin");
+                throw new FailedException("Xóa thất bại,Truy vấn không có thông tin");
             }
             SysRoleEntity sysRoleEntity = result[0];
             if (sysRoleEntity.Code == "Administrator")
             {
-                throw new FailedException("MãAdministrator được hệ thống giữ lại，không thể xóa");
+                throw new FailedException("MãAdministrator được hệ thống giữ lại,không thể xóa");
             }
             await Delete<SysRoleEntity>(sysRoleEntity);
             var sql = "delete from [Newtouch_Union]..Sys_RoleAuthorize where RoleId=@RoleId";
@@ -73,7 +73,7 @@ namespace NewtouchHIS.Base.DomainService
         }
 
         /// <summary>
-        /// 提交新建、更新 实体
+        /// Nộp mới,Cập nhật Thực thể
         /// </summary>
         /// <param name="roleEntity"></param>
         /// <param name="roleAuthorizeEntitys"></param>
@@ -123,7 +123,7 @@ namespace NewtouchHIS.Base.DomainService
             return await GetByWhere(p => p.OrganizeId == orgId && p.zt == "1");
         }
         /// <summary>
-        /// Tổ chức 角色列表 带 分页
+        /// Tổ chức Danh sách vai trò kèm Phân trang
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="pagination"></param>

@@ -69,17 +69,17 @@
 </div>
 <script lang="javascript">
 
-    //年月下拉初始化
+    //Khởi tạo hộp chọn năm tháng
     (function initYearMonthSelect() {
         var date = new Date;
-        //默认选择上个月
+        //Mặc định chọn tháng trước
         var defaultSelYear = 1900 + date.getYear();
         var defaultSelMonth = date.getMonth();
         if (defaultSelMonth == 0) {
             defaultSelYear--;
             defaultSelMonth = 12;
         }
-        //年份
+        //Năm
         $("#year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -92,7 +92,7 @@
             },
             selectedValue: defaultSelYear,
         });
-        //月份
+        //Tháng
         $("#month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -119,7 +119,7 @@
             nonSelectedText: "Chưa đã chọn",
             allSelectedText: "Chọn tất cả",
             onBuiltAsyncOptions: function (res) {
-                // 这里的代码是ajax创建完成options之后执行
+                // Mã ở đây làajaxTạo xongoptionssau đó thực hiện
                 $("#siteId").trigger("change");
                 gridList();
             },
@@ -203,7 +203,7 @@
             }
         });
 
-        //查询
+        //Tra cứu
         $("#btn_search").click(function () {
             $("#gridList").jqGrid('setGridParam', {
                 postData: getSearchData(),
@@ -219,7 +219,7 @@
         return { siteId: siteId , year: year, month: month, shzt: shzt };
     }
 
-    //新增
+    //Thêm mới
     function btn_add() {
         window.$.modalOpen({
             id: "Form",
@@ -231,7 +231,7 @@
         });
     }
 
-    //修改
+    //Sửa
     function btn_edit() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
@@ -250,7 +250,7 @@
             btn: null
         });
     }
-    //查看详情
+    //traxemchi tiếttình
     function btn_detail(keyValue) {
          if (!!!keyValue) {
             $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
@@ -266,7 +266,7 @@
         });
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
         window.$.modalConfirm("Bạn có chắc muốn xóa?？", function (flag) {
             if (!flag) {
@@ -284,7 +284,7 @@
             param: { keyValue: keyValue },
             success: function () {
                 $.modalMsg("Xóa thành công","success");
-                $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                $('#gridList').jqGrid("clearGridData"); //Xóa chi tiết củagrid
                 $("#btn_search").trigger("click");
             }
         });

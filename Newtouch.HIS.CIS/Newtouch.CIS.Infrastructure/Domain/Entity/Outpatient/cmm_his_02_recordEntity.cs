@@ -6,92 +6,92 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 中医馆_草药推送_记录
+    /// trongyquán_thảo dượcđẩy_ghi chép
     /// </summary>
     [SugarTable("cmm_his_02_record")]
     public class CmmHis02RecordEntity
     {
         /// <summary>
-        /// 主键ID
+        /// Khóa chínhID
         /// </summary>
         [Key]
         public long Id { get; set; }
 
         /// <summary>
-        /// 药品编号
-        /// 必填
+        /// ThuốcSố hiệu
+        /// bắt buộc
         /// </summary>
         public string cmmId { get; set; }
 
         /// <summary>
-        /// 药品名称
-        /// 必填
+        /// Tên thuốc
+        /// bắt buộc
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
-        /// 药品编码
-        /// 必填
+        /// Mã thuốc
+        /// bắt buộc
         /// </summary>
         public string code { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string specification { get; set; }
 
         /// <summary>
-        /// 生产厂商
+        /// Nhà sản xuất
         /// </summary>
         public string manufacturer { get; set; }
 
         /// <summary>
-        /// 是否启用
+        /// làKhôngKích hoạt
         /// </summary>
         public string activeFlg { get; set; }
 
         /// <summary>
-        /// 机构编码
+        /// Cơ sởMã
         /// </summary>
         public string orgCode { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 返回结果状态码  1： 成功； 0：失败
+        /// Quay lạikếtnếuTrạng tháimã  1： thành công； 0：thất bại
         /// </summary>
         public string resultCode { get; set; }
 
         /// <summary>
-        /// 返回结果描述  成功；失败(补充失败原因描述)
+        /// Quay lạikếtnếuMô tả  thành công；thất bại(Bổ sungthất bạinguyên nhânMô tả)
         /// </summary>
         public string resultDesc { get; set; }
 
         /// <summary>
-        /// 状态     1:有效  0：无效
+        /// Trạng thái     1:Hiệu lực  0：Vô hiệu
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// tạongười
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改者
+        /// Sửangười
         /// </summary>
         public string LastModifierCode { get; set; }
     }

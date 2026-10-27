@@ -23,12 +23,12 @@ namespace Newtouch.Domain.ValueObjects
         public int lsblly { get; set; }
 
         /// <summary>
-        /// 挂号科室名称
+        /// đăng ký khámTên khoa
         /// </summary>
         public string ghksmc { get; set; }
 
         /// <summary>
-        /// 最后看诊医生
+        /// cuối cùngxemkhámBác sĩ
         /// </summary>
         public string jzysmc { get; set; }
     }

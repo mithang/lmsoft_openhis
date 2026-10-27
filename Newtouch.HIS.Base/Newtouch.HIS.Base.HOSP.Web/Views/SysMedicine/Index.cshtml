@@ -151,13 +151,13 @@
         });
     }
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     });
 
     function initControl() {
-        //药品分类
+        //Phân loại thuốc
         $('#ypflMc').newtouchFloatingSelector({
             width: 300,
             height: 300,
@@ -231,7 +231,7 @@
         });
     }
 
-    //药品同步医保
+    //Đồng bộ thuốc với BHYT
     function YibaoUpload(row) {
         $.najax({
             url: "/SysMedicine/YibaoUploadApi",

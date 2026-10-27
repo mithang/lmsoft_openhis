@@ -11,7 +11,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
 {
     /// <summary>
-    /// Tổ chức管理
+    /// Tổ chứcQuản lý
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -23,7 +23,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
             _sysOrgVDmn = sysOrgVDmn; 
         }
         /// <summary>
-        /// 获取Tổ chức列表
+        /// LấyTổ chứcDanh sách
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

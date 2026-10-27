@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Web.Controllers
         [HandlerAjaxOnly]
         public async Task<IActionResult> GetClientsDataJson()
         {
-            //年月
+            //Năm tháng
             var yearArr = new List<int>();
             var yearMin = DateTime.Now.Year - 5;
             var yearMax = DateTime.Now.Year + 1;
@@ -76,9 +76,9 @@ namespace Newtouch.HIS.Web.Controllers
             }
             var data = new
             {
-                //字典 包括无效的
+                //Từ điển Gồm cả không hiệu lực
                 dataItems = GetDataItemList(),
-                //获取所有科室 包括无效的
+                //Lấy tất cả khoa Gồm cả không hiệu lực
                 sysDepartList = sysDepartList == null ? null : sysDepartList.ToJson(new[] { "Name", "Code", "yjbz", "py" }),    //Khoa
                 authorizeMenu = await GetMenuList(),
                 //

@@ -11,7 +11,7 @@
         /// </summary>
         public string zyh { get; set; }
         /// <summary>
-        /// 病理类型
+        /// Loại bệnh lý
         /// </summary>
         public string bllxId { get; set; }
 

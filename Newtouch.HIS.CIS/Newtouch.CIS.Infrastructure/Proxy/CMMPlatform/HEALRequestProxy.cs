@@ -7,12 +7,12 @@ using Newtouch.Infrastructure;
 namespace Newtouch.CIS.Proxy.CMMPlatform
 {
     /// <summary>
-    /// 集成治未病系统
+    /// tậpthànhđiều trịchưabệnhHệ thống
     /// </summary>
     internal class HEALRequestProxy : GuiAnTelemedicinePlatformProxy<HEALRequestEntity, string>
     {
         /// <summary>
-        /// 执行
+        /// Thực hiện
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>

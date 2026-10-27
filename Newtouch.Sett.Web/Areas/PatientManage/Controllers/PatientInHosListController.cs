@@ -29,7 +29,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         }
 
         /// <summary>
-        /// 根据条件搜索
+        /// Tìm theo điều kiện
         /// </summary>
         /// <param name="patientListVO"></param>
         /// <returns></returns>

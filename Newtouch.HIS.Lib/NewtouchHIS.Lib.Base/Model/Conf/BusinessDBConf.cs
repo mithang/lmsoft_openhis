@@ -5,24 +5,24 @@ namespace NewtouchHIS.Lib.Base.Model
     public class DBConf
     {
         /// <summary>
-        /// 数据库链接名
+        /// Tên liên kết cơ sở dữ liệu
         /// </summary>
         public string ConnId { get; set; }
         /// <summary>
-        /// 数据库名
+        /// Tên cơ sở dữ liệu
         /// </summary>
         public string DBName { get; set; }
         public BusinessDBType DBType { get; set; }
         /// <summary>
-        /// 数据库链接
+        /// Liên kết cơ sở dữ liệu
         /// </summary>
         public string DBConn { get; set; }
         /// <summary>
-        /// 是否启用DB
+        /// Có bật khôngDB
         /// </summary>
         public bool Enabled { get; set; } = false;
         /// <summary>
-        /// 开启sql输出
+        /// Bật đầu ra sql
         /// </summary>
         public bool EnabledSqlTrace { get; set; } = false;
     }
@@ -30,15 +30,15 @@ namespace NewtouchHIS.Lib.Base.Model
     public class BusinessDB
     {
         /// <summary>
-        /// 默认链接
+        /// Liên kết mặc định
         /// </summary>
         public string? DefaultConn { get; set; }
         /// <summary>
-        /// 主数据库链接名
+        /// Tên liên kết cơ sở dữ liệu chính
         /// </summary>
         public string MainDB { get; set; }
         /// <summary>
-        /// 是否启用多库管理
+        /// Có bật quản lý nhiều cơ sở dữ liệu không
         /// </summary>
         public bool EnabledMutiDB { get; set; } = false;
         public List<DBConf> DBConf { get; set; }

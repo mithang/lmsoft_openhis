@@ -1,20 +1,20 @@
 ﻿namespace NewtouchHIS.WebAPI.Manage.Areas.PDS.Models
 {
     /// <summary>
-    /// 药品查询索引
+    /// Chỉ mục truy vấn thuốc
     /// </summary>
     public class DrugIndexRequest
     {
         /// <summary>
-        /// 药品大类
+        /// Nhóm lớn thuốc
         /// </summary>
         public string? dlcode { get; set; }
         /// <summary>
-        /// 药品Mã
+        /// ThuốcMã
         /// </summary>
         public string? ypcode { get; set; }
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string? ypmc { get; set; }
         /// <summary>
@@ -22,7 +22,7 @@
         /// </summary>
         public string orgId { get; set; }
         /// <summary>
-        /// 药房部门
+        /// Bộ phận nhà thuốc
         /// </summary>
         public string yfbm { get; set; }
 

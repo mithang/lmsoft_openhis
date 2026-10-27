@@ -8,11 +8,11 @@ using System.DirectoryServices.ActiveDirectory;
 namespace NewtouchHIS.Lib.Base.Utilities
 {
     /// <summary>
-    /// Redis 辅助类
+    /// Redis Lớp hỗ trợ
     /// </summary>
     public class RedisHelper : RedisCoreEx
     {
-        //Redis对象
+        //Redisđối tượng
         //private static RedisCoreEx Redis;
         public static IConfigurationSection _config;
         public static ILogger<RedisHelper> Logger { get; set; }
@@ -22,19 +22,19 @@ namespace NewtouchHIS.Lib.Base.Utilities
             if(!string.IsNullOrWhiteSpace(_config["Connection"]))
             {
                 GetConnectRedisMultiplexer(_config["Connection"]);
-                //1-选择数据库
+                //1-Chọn cơ sở dữ liệu
                 SelectDB(Convert.ToInt32(_config["Db"]));
             }            
         }
         #region String
 
         /// <summary>
-        /// 获取键对应值字符串
+        /// Lấy chuỗi giá trị tương ứng với khóa
         /// </summary>
-        /// <param name="redisKey">键</param>
-        /// <param name="expiry">时间间隔</param>
-        /// <param name="withPrefix">默认添加key 前缀</param>
-        /// <returns>返回结果（true表示成功）</returns>
+        /// <param name="redisKey">khóa</param>
+        /// <param name="expiry">khoảng thời gian</param>
+        /// <param name="withPrefix">Mặc định thêm tiền tố key</param>
+        /// <returns>Kết quả trả về (true nghĩa là thành công)</returns>
         public static string GetString(string key, bool withPrefix = true)
         {
             if (withPrefix)
@@ -57,12 +57,12 @@ namespace NewtouchHIS.Lib.Base.Utilities
 
 
         /// <summary>
-        /// 设置缓存
+        /// Thiết lập bộ nhớ đệm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        /// <param name="expiretime">过期时间，单位：秒</param>
-        /// <param name="withPrefix">默认添加key 前缀</param>
+        /// <param name="expiretime">Thời gian hết hạn, đơn vị: giây</param>
+        /// <param name="withPrefix">Mặc định thêm tiền tố key</param>
         /// <returns></returns>
         public static bool SetString(string key, string value, bool withPrefix = true)
         {
@@ -81,12 +81,12 @@ namespace NewtouchHIS.Lib.Base.Utilities
             return await SetStringOfAsync(key, value);
         }
         /// <summary>
-        /// 设置缓存
+        /// Thiết lập bộ nhớ đệm
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
-        /// <param name="expiretime">过期时间，单位：秒</param>
-        /// <param name="withPrefix">默认添加key 前缀</param>
+        /// <param name="expiretime">Thời gian hết hạn, đơn vị: giây</param>
+        /// <param name="withPrefix">Mặc định thêm tiền tố key</param>
         /// <returns></returns>
         public static bool SetString(string key, string value, TimeSpan expiretime, bool withPrefix = true)
         {
@@ -100,13 +100,13 @@ namespace NewtouchHIS.Lib.Base.Utilities
 
 
         /// <summary>
-        /// 设置StringKey
-        /// 低版本Redis
+        /// Thiết lậpStringKey
+        /// Phiên bản thấpRedis
         /// </summary>
         /// <param name="key"></param>
         /// <param name="value"></param>
         /// <param name="expireHour"></param>
-        /// <param name="withPrefix">默认添加key 前缀</param>
+        /// <param name="withPrefix">Mặc định thêm tiền tố key</param>
         /// <returns></returns>
         public static bool SetString(string key, string value, HourOfDay expireHour)
         {
@@ -178,7 +178,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// 整个List重新SET
+        /// Toàn bộ List tạo lạiSET
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
@@ -295,7 +295,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         #endregion
 
         ///// <summary>
-        ///// LIST中的某个Item重新SET
+        ///// LISTMột Item nào đó trong đó tạo lạiSET
         ///// </summary>
         ///// <typeparam name="T"></typeparam>
         ///// <param name="key"></param>
@@ -354,7 +354,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         ///// <param name="key"></param>
         ///// <param name="value"></param>
         ///// <param name="flags"></param>
-        ///// <returns>true： Successfully locked,false：Failed to lock</returns>
+        ///// <returns>true: Successfully locked,false:Failed to lock</returns>
         //public bool HashExists(string key, string value, CommandFlags flags)
         //{
         //    try
@@ -579,12 +579,12 @@ namespace NewtouchHIS.Lib.Base.Utilities
         //    }
         //}
         /// <summary>
-        /// 设置 Key 的时间
-        /// 单位:分钟 
+        /// Thiết lập thời gian của Key
+        /// đơn vị:phút 
         /// </summary>
         /// <param name="key"></param>
         /// <param name="expiretime"></param>
-        /// <param name="withPrefix">默认添加key 前缀</param>
+        /// <param name="withPrefix">Mặc định thêm tiền tố key</param>
         public static void KeyExpire(string key, int expiretime, bool withPrefix = true)
         {
             if (withPrefix)
@@ -595,8 +595,8 @@ namespace NewtouchHIS.Lib.Base.Utilities
             SetKeyExpire(key, span);
         }
         /// <summary>
-        /// 设置 Key 的时间
-        /// 单位:分钟
+        /// Thiết lập thời gian của Key
+        /// đơn vị:phút
         /// </summary>
         /// <param name="key"></param>
         /// <param name="expiretime"></param>
@@ -615,52 +615,52 @@ namespace NewtouchHIS.Lib.Base.Utilities
 
 
     /// <summary>
-    /// 缓存时间，单位秒
+    /// Thời gian bộ nhớ đệm, đơn vị giây
     /// </summary>
     public class RedisCacheTime
     {
         /// <summary>
-        /// 一小时
+        /// Một giờ
         /// </summary>
         public const int Hour = 3600;
 
         /// <summary>
-        /// 一天
+        /// Một ngày
         /// </summary>
         public const int Day = 86400;
 
         /// <summary>
-        /// 一周
+        /// Một tuần
         /// </summary>
         public const int Week = 604800;
 
         /// <summary>
-        /// 一个月（30天）
+        /// Một tháng (30 ngày)
         /// </summary>
         public const int Month = 2592000;
 
         /// <summary>
-        /// 1分钟
+        /// 1phút
         /// </summary>
         public const int Minute1 = 60;
 
         /// <summary>
-        /// 5分钟
+        /// 5phút
         /// </summary>
         public const int Minute5 = 300;
 
         /// <summary>
-        /// 10 分钟
+        /// 10 phút
         /// </summary>
         public const int Minute10 = 600;
 
         /// <summary>
-        /// 30分钟
+        /// 30phút
         /// </summary>
         public const int HalfHour = 1800;
 
         /// <summary>
-        /// 当前小时结束过期
+        /// Hết hạn khi giờ hiện tại kết thúc
         /// </summary>
         /// <returns></returns>
         public static int NowHour
@@ -675,7 +675,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// 当天结束过期
+        /// Hết hạn khi ngày hiện tại kết thúc
         /// </summary>
         /// <returns></returns>
         public static int NowDay
@@ -690,7 +690,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// 当月结束过期
+        /// Hết hạn khi tháng hiện tại kết thúc
         /// </summary>
         /// <returns></returns>
         public static int NowMonth
@@ -698,7 +698,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
             get
             {
                 DateTime now = DateTime.Now;
-                int days = DateTime.DaysInMonth(now.Year, now.Month); // 当月天数
+                int days = DateTime.DaysInMonth(now.Year, now.Month); // Số ngày trong tháng hiện tại
                 int endSecond = days * 24 * 60 * 60;
                 int nowSecond = (now.Day * 24 * 60 * 60) + (now.Minute * 60) + now.Second;
                 return endSecond - nowSecond;
@@ -709,34 +709,34 @@ namespace NewtouchHIS.Lib.Base.Utilities
     public class RedisKey
     {
         /// <summary>
-        /// 默认前缀
+        /// Tiền tố mặc định
         /// </summary>
         public const string OriginKeyPrefix = "OHIS";
         /// <summary>
-        /// 应用系统登录用户
+        /// Người dùng đăng nhập hệ thống ứng dụng
         /// </summary>
         public const string LoginUserPrefix = "AppUser";
         /// <summary>
-        /// 单点登录用户
+        /// Người dùng đăng nhập một lần
         /// </summary>
         public const string SsoLoginUserPrefix = "SSOAuthUser";
         public const string SsoPrefix = "SSOAuth";
         /// <summary>
-        /// 远程诊疗室房间号
+        /// Số phòng phòng khám từ xa
         /// </summary>
         public const string TreatedRoomNo = "TreatedRoomNo";
         /// <summary>
-        /// 远程诊疗房间信息
+        /// Thông tin phòng khám từ xa
         /// </summary>
         public const string TreatedRoom = "TreatedRoom:{0}";
         /// <summary>
-        /// 云诊所Token缓存
+        /// Bộ nhớ đệm Token phòng khám đám mây
         /// </summary>
         public const string TokenOfOhClinic = $"{OriginKeyPrefix}:Clinic:Token";
 
         #region Method
         /// <summary>
-        /// 会诊会议 区分机构
+        /// Hội nghị hội chẩn phân biệt tổ chức
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

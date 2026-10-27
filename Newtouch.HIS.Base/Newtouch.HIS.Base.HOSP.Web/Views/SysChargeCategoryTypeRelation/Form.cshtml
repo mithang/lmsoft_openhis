@@ -79,18 +79,18 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
-        //组织对应的科室下拉框加载
+        //Tải hộp thả xuống khoa tương ứng với tổ chức
         $("#OrganizeId").bind("change", function () {
             var organizeId = $(this).val();
-            //获取收费大类
+            //Lấy danh mục thu phí lớn
             $("#dlCode").bindSelect({
                 url: "/ChargeCategory/GetTreeSelectJson?organizeId=" + organizeId,
             });
-            //类型下拉    //这里不区分组织机构
+            //Thả xuống loại    //Ở đây không phân biệt tổ chức
             $("#Type").bindSelect({
                 url: "/ItemsData/GetSelectJson",
                 param: { code: "ChargeCateType" }

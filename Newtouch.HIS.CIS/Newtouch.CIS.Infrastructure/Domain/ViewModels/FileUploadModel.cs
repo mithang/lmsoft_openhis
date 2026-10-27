@@ -11,7 +11,7 @@ namespace Newtouch.Domain.ViewModels
 {
     public class FileUploadModel
     {
-        [Required(ErrorMessage = "请选择要上传的文件")]
+        [Required(ErrorMessage = "Vui lòng chọncầnTải lêncủavănmục")]
         public IEnumerable<IFormFile> Files { get; set; }
         public string sqdh { get; set; }
         public string Description { get; set; }

@@ -5,12 +5,12 @@ using Newtouch.CIS.Proxy.Dapper.CMMPlatform;
 namespace Newtouch.CIS.Proxy.Dapper
 {
     /// <summary>
-    /// 适配工厂
+    /// thíchphốiNhà máy
     /// </summary>
     public class ProxyDapperFactory
     {
         /// <summary>
-        /// 推送患者信息
+        /// đẩyThông tin bệnh nhân
         /// </summary>
         /// <param name="patient"></param>
         /// <returns></returns>

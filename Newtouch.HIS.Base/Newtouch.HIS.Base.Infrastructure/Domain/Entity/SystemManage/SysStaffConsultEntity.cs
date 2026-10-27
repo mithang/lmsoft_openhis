@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.Entity.SystemManage
 {
     /// <summary>
-    /// 人员诊室配置
+    /// Cấu hình phòng khám nhân viên
     /// </summary>
     [SugarTable("Sys_StaffConsult")]
     public class SysStaffConsultEntity : EntityBase
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.Entity.SystemManage
         [SugarColumn(IsPrimaryKey = true)]
         public int Id { get; set; }
         /// <summary>
-        /// 组织机构Id
+        /// Tổ chứcId
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Domain.Entity.SystemManage
         /// </summary>
         public string StaffId { get; set; }
         /// <summary>
-        /// 诊室代码
+        /// Mã phòng khám
         /// </summary>
         public string zsCode { get; set; }
         /// <summary>

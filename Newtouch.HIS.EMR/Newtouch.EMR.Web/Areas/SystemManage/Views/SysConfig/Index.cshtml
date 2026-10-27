@@ -124,7 +124,7 @@
         });
     }
 
-    //删除
+    //Xóa
     function btn_delete() {
         var keyValue = $("#gridList").jqGridRowValue().Id;
         if (!!!keyValue) {
@@ -137,7 +137,7 @@
         {
             if ($("#gridList").jqGridRowValue().Value == "")
             {
-                // == ""? 不好
+                // == ""? không tốt
                 $.modalAlert("Cấu hình mẫu này không thể xóa", 'warning');
                 return;
             }

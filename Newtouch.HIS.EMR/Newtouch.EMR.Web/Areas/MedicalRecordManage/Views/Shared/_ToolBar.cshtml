@@ -78,7 +78,7 @@
     </div>
 </div>
 <script>
-    //字体
+    //Phông chữ
     var fontname = ['黑体', '楷体', '宋体', '微软雅黑','Arial', 'Arial Black', 'Comic Sans MS', 'Courier New',
         'Helvetica Neue', 'Helvetica', 'Impact', 'Lucida Grande',
         'Tahoma', 'Times New Roman', 'Verdana'];
@@ -96,7 +96,7 @@
     var corlorhtml = "";
     var backcorlorhtml = "";
     $(function () { 
-        //字体
+        //Phông chữ
         if (fontname.length > 0) {
             for (var i = 0; i < fontname.length; i++) {
                 fontnamehtml += '<li><a href="#" data-value="' + fontname[i] + '" class=""><i class="note-icon-check" ></i> <span style="font-family: ' + fontname[i] + '">' + fontname[i] + '</span></a></li>';
@@ -106,7 +106,7 @@
         $("div .dropdown-fontname a").click(function (e) {
             document.getElementById('myWriterControl').DCExecuteCommand('FontName', true, $(this).attr("data-value"));
         })
-        //背景色
+        //Màu nền
         if (corlor.length > 0) {
             for (var c = 0; c < corlor.length; c++) {
                // debugger

@@ -6,7 +6,7 @@ using Newtouch.HIS.Domain.IRepository;
 
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
-    /// <summary>病区相关</summary>
+    /// <summary>Liên quan khu bệnh</summary>
     [Route("api/Ward")]
     [ApiController]
     [DefaultAuthorize]
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
             _sysWardBedRepo = sysWardBedRepo;
         }
 
-        /// <summary>更新床位是否占用</summary>
+        /// <summary>Cập nhật giường có bị chiếm không</summary>
         [HttpPost("UpdateBedOccupy")]
         public ContentResult UpdateBedOccupy([FromBody] UpdateBedOccupyRequest request)
         {

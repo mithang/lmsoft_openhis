@@ -147,12 +147,12 @@
 })
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
         $('#ddlSHZT').val('0');
-        //搜索框隐藏显示控制
+        //Điều khiển ẩn/hiện hộp tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -166,7 +166,7 @@
         BindGys();
     });
 
-    //绑定供应商
+    //Gắn nhà cung cấp
     function BindGys() {
         $.najax({
             type: "Get",
@@ -192,7 +192,7 @@
         });
     }
 
-    //隐藏搜索框并显示箭头
+    //Ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -202,7 +202,7 @@
         }
     }
 
-    //单据主记录
+    //Bản ghi chính của chứng từ
     function gridDJMainRecords() {
         var $gridDjMainRecords = $("#gridDJMainRecords");
         $gridDjMainRecords.dataGrid({
@@ -284,7 +284,7 @@
         });
     }
 
-    //组装查询条件
+    //Lắp ráp điều kiện truy vấn
     function getSearchPostData() {
         var shzt = $("#ddlSHZT").val();
         var qsrj = $("#txtStartDate").val();
@@ -296,9 +296,9 @@
         return { qsrj: qsrj, jsrj: jsrj, pdh: pdh, djlx: djlx, shzt: shzt, gys: gys, fph: fph};
     };
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $.najax({
             type: "Get",
             url: "/BillManage/OutOrInStorageBill/QueryOutOrInStorageBillDetail",
@@ -313,7 +313,7 @@
         });
     }
 
-    //单据明细
+    //Chi tiết chứng từ
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 240,
         unwritten: false,
@@ -344,7 +344,7 @@
         ]
     });
 
-    //计算进价总额
+    //Tính tổng giá nhập
     function ComputeJJze() {
         var t = 0;
         var count = $("#gridDJMainRecords").getGridParam('records');
@@ -357,14 +357,14 @@
         }
     }
 
-    //审核
+    //Duyệt
     function newtouch_event_f3() {
         submitReceiptApproval('@((int)EnumDjShzt.Approved)');
     }
 
-    //批量审核
+    //Duyệt hàng loạt
     function newtouch_event_f6() {
-        var ids = $("#gridDJMainRecords").jqGrid('getDataIDs'); //获取所有行Id，遍历使编辑框处于保存状态
+        var ids = $("#gridDJMainRecords").jqGrid('getDataIDs'); //Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
         if (ids == null || ids.length === 0) {
             $.modalMsg('Vui lòng tra cứu chứng từ cần phê duyệt', 'warning', 2000);
             return false;
@@ -411,17 +411,17 @@
             });
     }
 
-    //未通过
+    //Không đạt
     function newtouch_event_f7() {
         submitReceiptApproval('@((int)EnumDjShzt.Rejected)');
     }
 
-    //作废
+    //Hủy bỏ
     function newtouch_event_f8() {
         submitReceiptApproval('@((int)EnumDjShzt.Cancelled)');
     }
 
-    //更新单据审核状态，提交至服务器
+    //Cập nhật trạng thái duyệt chứng từ，Gửi lên máy chủ
     function submitReceiptApproval(dstnShzt) {
         var selRowData = $("#gridDJMainRecords").jqGridRowValue();
         if (!selRowData || !selRowData.crkId || !selRowData.djlx) {
@@ -452,7 +452,7 @@
     }
 
 
-    //补发票号
+    //Bổ sung số hóa đơn
     function UpdateFph(obj) {
         var fph = $(obj).val();
         var crkmxId = $("#gridDJMXInfo").getRowData($(obj).attr("rowid")).crkmxId;

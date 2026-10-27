@@ -19,9 +19,9 @@ namespace Newtouch.EMR.Repository
     public class bl_ElementDomainRepo : RepositoryBase<bl_ElementDomainEntity>, Ibl_ElementDomainRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFFactory ngữ cảnh EF</param>
 
         public List<bl_ElementDomainEntity> GetElementTree(string orgId)
         {
@@ -132,10 +132,10 @@ namespace Newtouch.EMR.Repository
             }
         }
 
-        #region 病历结构化竖表转横表存储
+        #region Lưu trữ chuyển đổi bảng dọc cấu trúc bệnh án sang bảng ngang
         public void BljghDataDealwith(BljghReq req)
         {
-            //正则匹配结构表
+            //Bảng cấu trúc khớp biểu thức chính quy
             string bljgTable = "";
             var bljgTab = this.IQueryable(p => p.Zt == 1).ToList();
             foreach (var item in bljgTab)
@@ -159,16 +159,16 @@ namespace Newtouch.EMR.Repository
                            });
                 return;
             }
-            //病人信息
+            //Thông tin bệnh nhân
             ZybrjbxxEntity patlist = GetZybrjbxx(req.zyh, req.organizeId);
-            //病历信息
+            //Thông tin bệnh án
             bl_bllxEntity blbentity = GetBllxxx(req.bllx,req.organizeId);
             BlwsInfoVo blwsentity = new BlwsInfoVo ();
             if (blbentity!=null)
             {
                 blwsentity = GetBljlInfo(blbentity.relTB,req.blId,req.organizeId);
             }
-            //明细表结构
+            //Cấu trúc bảng chi tiết
             List<ElementTablStructureVo> jgmxEntity = GetElementTableColumn(bljgTable,req.organizeId);
             List<ElementTablStructureVo> jgDataEntity = GetVerticalTableData(req.blId, req.zyh,req.organizeId);
 
@@ -208,7 +208,7 @@ namespace Newtouch.EMR.Repository
                 catch (Exception e)
                 {
                     string rc = req.zyh + "|" + req.bllx + "|" + req.blId + "|" + req.blmc;
-                    EmrLogger.Info("竖表数据转横表新增发生错误:" + e.Message + ",入参:" + rc + "+SQL语句:" + sqlInsert);
+                    EmrLogger.Info("Chuyển dữ liệu bảng dọc sang bảng ngang khi thêm mới xảy ra lỗi:" + e.Message + ",Tham số đầu vào:" + rc + "+SQL câu lệnh:" + sqlInsert);
                 }
             }
             else
@@ -228,7 +228,7 @@ namespace Newtouch.EMR.Repository
                 }
                 catch (Exception e) {
                     string rc = req.zyh + "|" + req.bllx + "|" + req.blId + "|" + req.blmc;
-                    EmrLogger.Info("竖表数据转横表更新发生错误:" + e.Message + ",入参:" + rc + "+SQL语句:" + updatesql);
+                    EmrLogger.Info("Chuyển dữ liệu bảng dọc sang bảng ngang khi cập nhật xảy ra lỗi:" + e.Message + ",Tham số đầu vào:" + rc + "+SQL câu lệnh:" + updatesql);
                 }
             }
 

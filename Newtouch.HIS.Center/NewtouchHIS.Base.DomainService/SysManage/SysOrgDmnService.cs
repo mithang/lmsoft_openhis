@@ -22,7 +22,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             return (await GetByWhereWithAttr<SysOrganizeEntity>(p => p.TopOrganizeId == topOrgId && p.zt == "1")).Adapt<List<SysOrgVo>>();
         }
         /// <summary>
-        /// Tổ chức（树形）
+        /// Tổ chức(Dạng cây)
         /// </summary>
         /// <param name="parentOrgId"></param>
         /// <returns></returns>

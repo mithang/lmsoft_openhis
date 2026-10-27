@@ -16,7 +16,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// 患者入院诊断
+    /// Bệnh nhânChẩn đoán nhập viện
     /// </summary>
     public class PatientRyDiagnosisApp : AppBase, IPatientRyDiagnosisApp
     {
@@ -24,7 +24,7 @@ namespace Newtouch.Application.Implementation
         private readonly IInpatientPatientInfoRepo _inpatientPatientInfoRepo;
 
         /// <summary>
-        /// 获取入院诊断信息
+        /// LấyChẩn đoán nhập việnthông tin
         /// </summary>
         /// <param name="zhy"></param>
         /// <param name="organizeId"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// 保存入院诊断
+        /// LưuChẩn đoán nhập viện
         /// </summary>
         /// <param name="patInAreaVo"></param>
         /// <param name="organizeId"></param>
@@ -54,24 +54,24 @@ namespace Newtouch.Application.Implementation
         /// <returns></returns>
         public string SavaInPatDiagnosis(PatInAreaVO patInAreaVo, string organizeId, string userCode)
         {
-            if (patInAreaVo == null) return "诊断内容不能为空！";
-            if (string.IsNullOrWhiteSpace(patInAreaVo.zyh)) return "住院号不能为空！";
-            if (string.IsNullOrWhiteSpace(patInAreaVo.ryzddm1) || string.IsNullOrWhiteSpace(patInAreaVo.ryzdmc1)) return "入院诊断1不能为空！";
+            if (patInAreaVo == null) return "Chẩn đoánnội dungkhông thểđể trống！";
+            if (string.IsNullOrWhiteSpace(patInAreaVo.zyh)) return "Số nhập việnkhông thểlàtrống！";
+            if (string.IsNullOrWhiteSpace(patInAreaVo.ryzddm1) || string.IsNullOrWhiteSpace(patInAreaVo.ryzdmc1)) return "Chẩn đoán nhập viện1không thểlàtrống！";
 
-            #region 同步至Sett
+            #region Đồng bộđếnSett
             var syncSettResult = SyncInPatDiagnosisToSett(patInAreaVo, organizeId, userCode);
             if (!string.IsNullOrWhiteSpace(syncSettResult)) return syncSettResult;
             #endregion
 
-            var patOutDiaList = _inpatientPatientDiagnosisRepo.SelectData(patInAreaVo.zyh, organizeId, "1");//获取历史出院诊断
-            var patInfo = _inpatientPatientInfoRepo.GetByZyh(organizeId, patInAreaVo.zyh);//获取患者信息
+            var patOutDiaList = _inpatientPatientDiagnosisRepo.SelectData(patInAreaVo.zyh, organizeId, "1");//Lấylịch sửXuất việnChẩn đoán
+            var patInfo = _inpatientPatientInfoRepo.GetByZyh(organizeId, patInAreaVo.zyh);//LấyThông tin bệnh nhân
             var operateTime = DateTime.Now;
             try
             {
 
                 using (var db = new EFDbTransaction().BeginTrans())
                 {
-                    #region 修改病人信息库
+                    #region sửaThông tin bệnh nhânkho
                     if (patInfo != null)
                     {
                         patInfo.LastModifierCode = userCode;
@@ -82,7 +82,7 @@ namespace Newtouch.Application.Implementation
                     }
                     #endregion
 
-                    #region 修改住院病人诊断信息
+                    #region sửaNhập việnbệnh nhânChẩn đoánthông tin
                     if (patOutDiaList != null && patOutDiaList.Count > 0)
                     {
                         patOutDiaList.ForEach(p =>
@@ -117,12 +117,12 @@ namespace Newtouch.Application.Implementation
             }
             catch (Exception)
             {
-                return "修改入院诊断失败";
+                return "sửaChẩn đoán nhập việnthất bại";
             }
         }
 
         /// <summary>
-        /// 同步入院诊断至结算系统
+        /// Đồng bộChẩn đoán nhập việnđếnquyết toánHệ thống
         /// </summary>
         /// <param name="patInAreaVo"></param>
         /// <param name="organizeId"></param>

@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// <summary>
         /// 
         /// </summary>
-        [Obsolete("已作废这种关联关系")]
+        [Obsolete("Quan hệ liên kết này đã bị hủy bỏ")]
         public string yfbmCode { get; set; }
 
         /// <summary>

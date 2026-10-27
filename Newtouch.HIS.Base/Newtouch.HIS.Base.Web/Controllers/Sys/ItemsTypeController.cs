@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
             this._itemDmnService = itemDmnService;
         }
         
-        //下拉选择 数据源
+        //Chọn thả xuống Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetTreeSelectJson()
@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
             return Content(treeList.TreeSelectJson(null));
         }
 
-        //左导航
+        //Điều hướng trái
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetTreeJson()

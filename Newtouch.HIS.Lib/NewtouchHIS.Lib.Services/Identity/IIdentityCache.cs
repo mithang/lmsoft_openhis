@@ -3,33 +3,33 @@
 namespace NewtouchHIS.Lib.Services
 {
     /// <summary>
-    /// API接口授权获取的用户身份信息-接口
+    /// APIThông tin danh tính người dùng do giao diện lấy qua ủy quyền - giao diện
     /// </summary>
     public interface IIdentityCache
     {
         UserIdentity identity { get; }
 
         /// <summary>
-        /// 把用户信息设置到缓存中去
+        /// Đặt thông tin người dùng vào bộ nhớ đệm
         /// </summary>
-        /// <param name="info">用户登陆信息</param>
-        /// <param name="channel">默认为空</param>
+        /// <param name="info">Thông tin đăng nhập người dùng</param>
+        /// <param name="channel">Mặc định trống</param>
         void SetIdentityInfo(UserIdentity info, string appId);
     }
 
     /// <summary>
-    /// 提供一个空白实现类，具体使用IIdentityCache的时候，会使用其他实现类
+    /// Cung cấp một lớp triển khai trống, khi sử dụng IIdentityCache cụ thể sẽ dùng lớp triển khai khác
     /// </summary>
     public class NullIdentityCache : IIdentityCache
     {
         /// <summary>
-        /// 单件实例
+        /// Thể hiện đơn lệ
         /// </summary>
         public static NullIdentityCache Instance { get; } = new NullIdentityCache();
 
         public UserIdentity identity => null;
 
-        /// 设置信息（保留为空）
+        /// Thông tin thiết lập (giữ trống)
         /// </summary>
         public void SetIdentityInfo(UserIdentity info, string appId)
         {

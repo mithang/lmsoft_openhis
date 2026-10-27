@@ -75,7 +75,7 @@
         GridSyxxmx();
     });
 
-    //损益信息明细
+    //lãi lỗthông tinchi tiết
     function GridSyxxmx() {
         var $gridSyxxmxList = $("#gridSYXXMXList");
         $gridSyxxmxList.dataGrid({
@@ -89,7 +89,7 @@
                 { label: 'Số chứng từ', name: 'djh', width: 130, align: 'left' },
                 { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
                 { label: 'Thừa thiếuSố lượng', name: 'sysl', width: 80, align: 'left' },
-                //{ label: '单位', name: 'dw', width: 50, align: 'left' },
+                //{ label: 'Đơn vị', name: 'dw', width: 50, align: 'left' },
                 { label: 'Giá nhập', name: 'jj', width: 80, align: 'left' },
                 { label: 'Giá bán sỉ', name: 'pfj', width: 80, align: 'left' },
                 { label: 'Bán buônTổng số tiền', name: 'pjze', width: 80, align: 'left' },
@@ -112,7 +112,7 @@
             sortname: 'CreateTime desc',
             viewrecords: true,
             loadComplete: function (data) {
-                ComputePjzeAndLjze();//计算标题栏中的批价总额和零价总额
+                ComputePjzeAndLjze();//Tính toándấuđềcộttrongcủalôgiátổngmứcvàkhônggiátổngmức
             }
         });
         $("#btn_search").click(function () {
@@ -124,29 +124,29 @@
         });
     }
 
-    //加载损益原因
+    //tảinguyên nhân lãi lỗ
     $("#ddlSYYY").bindSelect({
         url: "/PrepareMedicine/GetLossProfitReasonListByType?r=" + Math.random(),
         id: "syyyId",
         text: "syyy"
     });
 
-    //查询条件
+    //Điều kiện tìm kiếm
     function getSearchPostData() {
         var startTime = $("#txtStartDate").val();
         var endTime = $("#txtEndDate").val();
         var syyy = $("#ddlSYYY").val();
         var inputCode = $("#txtINPUTCODE").val();
-        var syqk = -1; //全部
+        var syqk = -1; //Tất cả
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Profit') {
-            syqk = 1;  //报溢
+            syqk = 1;  //báo thừa
         } else if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-            syqk = 2;  //报损
+            syqk = 2;  //Báo hỏng
         }
         return { startTime: startTime, endTime: endTime, syyy: syyy, inputCode: inputCode, syqk: syqk };
     };
 
-    //计算标题栏中的批价总额和零价总额
+    //Tính toándấuđềcộttrongcủalôgiátổngmứcvàkhônggiátổngmức
     function ComputePjzeAndLjze() {
         var titlePjze = 0;
         var titleLjze = 0;
@@ -163,7 +163,7 @@
         }
     }
 
-    //计算批发价和零售价总额
+    //Tính toánGiá bán buônvàGiá bán lẻtổngmức
     function ComputePjzeAndLjze() {
         $.najax({
             url: "/PrepareMedicine/ComputePjzeAndLjze",
@@ -177,14 +177,14 @@
         });
     }
 
-    //汇总打印
+    //hộitổngIn
     function newtouch_event_f3() {
 		var key = $("#txtINPUTCODE").val();
-		var syqk = -1; //全部
+		var syqk = -1; //Tất cả
 		if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Profit') {
-			syqk = 1;  //报溢
+			syqk = 1;  //báo thừa
 		} else if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-			syqk = 2;  //报损
+			syqk = 2;  //Báo hỏng
         }
         window.open(reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2fBSBY_Query&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&startTime=" + $("#txtStartDate").val() + "&endTime=" + $("#txtEndDate").val() + "&key=" + key + "&yfbm=" + $("#yfbmcode").val() + "&OrganizeId=" + $("#OrganizeId").val() + "&syqk=" + syqk, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
 

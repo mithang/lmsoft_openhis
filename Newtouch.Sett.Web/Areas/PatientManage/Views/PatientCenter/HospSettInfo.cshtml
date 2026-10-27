@@ -88,7 +88,7 @@
 <script>
     $(function () {
         $("#btn_settsubmit").click(function () {
-            //刷新结算信息
+            //Làm mới thông tin quyết toán
             $("#gridListsett").jqGrid('setGridParam', {
                 postData: { zyh: $("#zyh").text(), jsxz: $("#sel_jsxz option:selected").val() }
             }).trigger('reloadGrid');
@@ -111,7 +111,7 @@
                     formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
                 { label: 'Số nhập viện', name: 'zyh', width: 80, align: 'center' },
-                //{ label: '病人性质', name: 'brxz', width: 80, align: 'center' },
+                //{ label: 'Tính chất bệnh nhân', name: 'brxz', width: 80, align: 'center' },
                 { label: 'Tổng chi phí', name: 'zje', width: 100, align: 'center' },
                 { label: 'Thanh toán tiền mặt', name: 'xjzf', width: 100, align: 'center' },
                 {
@@ -129,18 +129,18 @@
                     }
                 },
                 { label: 'Số hóa đơn', name: 'fph', width: 100, align: 'center' },
-                //{ label: '账户支付', name: 'acct_pay', width: 80, align: 'center' },
-                //{ label: '账户余额', name: 'balc', width: 80, align: 'center' }
+                //{ label: 'Thanh toán từ tài khoản', name: 'acct_pay', width: 80, align: 'center' },
+                //{ label: 'Số dư tài khoản', name: 'balc', width: 80, align: 'center' }
             ],
             ondblClickRow: function (rowIndex, s) {
                 getSettInfo();
             },
             //gridComplete: function () {
-            //    var ids = $('#gridListsett').getDataIDs();//返回数据表的ID数组["66","39"..] 
+            //    var ids = $('#gridListsett').getDataIDs();//của bảng dữ liệu trả vềIDmảng["66","39"..] 
             //    var rowData = $("#gridListsett").getRowData(ids[0]);
             //    getSettInfo(rowData.jsnm, rowData.setl_id);
             //},
-            //caption: "结算信息"
+            //caption: "Thông tin quyết toán"
         });
     }
     function getSettInfo(jsnm, settid) {

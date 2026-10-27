@@ -1,7 +1,7 @@
 function KfChange() {
     $.modalOpen({
         id: "Form",
-        title: "¿â·¿ÇĞ»»",
+        title: "Chuyá»ƒn kho",
         url: "/Home/KfChange",
         width: "500px",
         height: "400px",
@@ -13,12 +13,12 @@ function KfChange() {
     });
 }
 
-//»ñÈ¡Á½¸öÈÕÆÚÖ®¼äµÄÌìÊı²î
+//Láº¥y chÃªnh lá»‡ch sá»‘ ngÃ y giá»¯a hai ngÃ y
 function getDaysBetween(date1, date2) {
-    const ONE_DAY = 1000 * 60 * 60 * 24; // Ò»ÌìµÄºÁÃëÊı
-    const date1Time = date1.getTime(); // »ñÈ¡Ê±¼ä´Á
+    const ONE_DAY = 1000 * 60 * 60 * 24; // Sá»‘ mili-giÃ¢y trong má»™t ngÃ y
+    const date1Time = date1.getTime(); // Láº¥y dáº¥u thá»i gian
     const date2Time = date2.getTime();
 
-    const difference = Math.abs(date1Time - date2Time); // »ñÈ¡Ê±¼ä²î
-    return Math.round(difference / ONE_DAY); // Á½¸öÈÕÆÚÖ®¼äµÄÌìÊı
+    const difference = Math.abs(date1Time - date2Time); // Láº¥y chÃªnh lá»‡ch thá»i gian
+    return Math.round(difference / ONE_DAY); // Sá»‘ ngÃ y giá»¯a hai ngÃ y
 }

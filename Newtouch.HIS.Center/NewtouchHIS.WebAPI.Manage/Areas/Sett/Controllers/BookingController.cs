@@ -12,7 +12,7 @@ using NewtouchHIS.WebAPI.Manage.Models.OutPatient;
 namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
 {
     /// <summary>
-    /// 门诊预约
+    /// Đặt hẹn ngoại trú
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -25,7 +25,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         }
 
         /// <summary>
-        /// 科室列表
+        /// Danh sách khoa
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 医生列表
+        /// Danh sách bác sĩ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -53,7 +53,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 排班信息查询
+        /// Truy vấn thông tin lịch trực
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -72,7 +72,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 排班信息分页查询
+        /// Truy vấn phân trang thông tin lịch trực
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -94,13 +94,13 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
                 records = request.Data!.records,
                 sord = request.Data!.sord
             }.ToJson();
-            var apiReq = InitController.BuildBookRequest(request, "Y009", "1").Adapt<BookingRequest>(); //optype 1 分页查询
+            var apiReq = InitController.BuildBookRequest(request, "Y009", "1").Adapt<BookingRequest>(); //optype 1 Truy vấn phân trang
             apiReq.paradata = groupReq;            
             var resp = await _httpClient.PostAsync<ResponseBaseOld>($"{SettHttpUrl}{BookingMethodRoute}", apiReq.ToJson());
             return InitController.BuildResponseBase(resp,request.Data);
         }
         /// <summary>
-        /// 预约列表查询by患者信息
+        /// Truy vấn danh sách đặt hẹnbyThông tin bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -110,7 +110,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         {
             if (request.Data == null || (request.Data.kh == null && request.Data.xm == null && request.Data.zjh == null))
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(kh、xm、zjh) không được để trống tất cả" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(kh,xm,zjh) không được để trống tất cả" };
             }
             var apiReq = InitController.BuildBookRequest(request, "Y021", null).Adapt<BookingRequest>();
             apiReq.paradata = request.Data;
@@ -118,7 +118,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 预约列表查询by患者信息
+        /// Truy vấn danh sách đặt hẹnbyThông tin bệnh nhân
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -136,9 +136,9 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         
-        #region 操作类
+        #region Loại thao tác
         /// <summary>
-        /// 预约
+        /// Đặt hẹn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -148,7 +148,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         {
             if (request.Data == null || request.Data.kh == null || request.Data.ghxz == null || request.Data.ScheduId == null)
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(kh、ghxz、scheduId) không được để trống" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(kh,ghxz,scheduId) không được để trống" };
             }
             var apiReq = InitController.BuildBookRequest(request, "Y022", null).Adapt<BookingRequest>();
             apiReq.paradata = request.Data;
@@ -156,7 +156,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 取消预约
+        /// Hủy đặt hẹn
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -166,7 +166,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         {
             if (request.Data == null || request.Data.kh == null || request.Data.BookId == null)
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(kh、BookId) không được để trống" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(kh,BookId) không được để trống" };
             }
             var apiReq = InitController.BuildBookRequest(request, "Y023", null).Adapt<BookingRequest>();
             apiReq.paradata = request.Data;
@@ -192,7 +192,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 普通门诊挂号
+        /// Đăng ký khám ngoại trú thông thường
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -218,7 +218,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         //    {
         //        AppId = "sett",
         //        zyh = "03223",
-        //        xm = "测试0000",
+        //        xm = "Kiểm thử0000",
         //        OrganizeId = "6d5752a7-234a-403e-aa1c-df8b45d3469f",
         //        Token = "Ohqr8wDq7y98zCzqur0eFCadOyT8qLziPSGnpnQZaUAnkXJFyEf+PST7VX41fDcs5/waRDYfMYghRc+fo9BcGfa2wuRQ2szV9OExMqwUXzvctL2zeOOVPgmUeM/bUHzmE2/962pydzCiCPFPxgWwjyJbr2LwsWNXFWWYHNJqBQseNyYM0QGfT0NWmIC7Ldqppw4RjTfOj9xQt473pnvwy9/TBB0V0Ri61tiwYX9DOyTpXh/XXr3eHgCTjg4EcZQvYTn8nRK2ueWEjxMSSS9/6aYO1aDjLl0ihEjRSEpI/7cJAbMVw5aSIe2N89ic4Tx3mpaQ4GlV5Og30bziCxp0q8eQMitqUjhyASoStnHdtfNnjWuqdcAVQ8p7I7rE8u/rRy26dMzvRtloy1AX97gASuN5TMQ7kfbcPotMy6ZJ2rT1CeMoTph+8cBOL/Imk56YUuBTFrgyD2/oaQouSyzqXkMOSKiAf0dFo4Wk/vhPR/omNGAn4ROWXRZyLJqNmAJ4",
         //        TokenType = "kmC8PQOhtFhIpYgt3nK7B9tLGuxvkRUjT1Lkv0M5WevITFPuJheFdPt4StgV6rsS6Vjc2wOcoUDt8cn+aM0rfiw8wBlCDFkq940kAeUmpubcGgIXFVBoCfcHMHiuDeah2elMoqgXy8RGVP2Smh32Eyja005GJPZjtB+cwiXB/9Q=",

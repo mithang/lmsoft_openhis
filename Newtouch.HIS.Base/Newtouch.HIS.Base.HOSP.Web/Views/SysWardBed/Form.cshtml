@@ -63,7 +63,7 @@
                         </td>
                     </tr>
                     @*<tr>
-            <th class="formTitle">加床标志：</th>
+            <th class="formTitle">Cờ thêm giường：</th>
             <td class="formValue">
                 <div class="ckbox">
                     <input id="jcbz" name="jcbz" type="checkbox" checked="checked"><label for="jcbz"></label>
@@ -77,19 +77,19 @@
             </td>
         </tr>
         <tr>
-            <th class="formTitle"><span class="required">*</span>等级医院加收费：</th>
+            <th class="formTitle"><span class="required">*</span>Phụ thu bệnh viện theo hạng：</th>
             <th class="formValue">
                 <input type="text" class="form-control required" id="djyyjsf" name="djyyjsf"  />
             </th>
         </tr>
         <tr>
-            <th class="formTitle"><span class="required">*</span>病室治疗费：</th>
+            <th class="formTitle"><span class="required">*</span>Phí điều trị phòng bệnh：</th>
             <th class="formValue">
                 <input type="text" class="form-control required" id="bszlf" name="bszlf"  />
             </th>
         </tr>
         <tr>
-            <th class="formTitle"><span class="required">*</span>医用灭菌空气净化费：</th>
+            <th class="formTitle"><span class="required">*</span>Phí lọc không khí tiệt khuẩn y tế：</th>
             <th class="formValue">
                 <input type="text" class="form-control required" id="yymjkqjhf" name="yymjkqjhf" />
             </th>
@@ -137,18 +137,18 @@
     })
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
         $("#OrganizeId").change(function () {
-            //病区下拉
+            //Thả xuống khu bệnh
             $("#bqCode").bindSelect({
                 url: "/SysWardBed/GetWardBindSelect?orgId=" + $('#OrganizeId').val()
             });
         });
         $("#bqCode").change(function () {
-            //病房下拉
+            //Thả xuống phòng bệnh
             $("#bfCode").bindSelect({
                 url: "/SysWardRoom/GetWardRoomValidSelect?orgId=" + $('#OrganizeId').val() + "&bqCode=" + $('#bqCode').val()
             });
@@ -182,7 +182,7 @@
         }
     });
 
-    //提交
+    //Gửi
     function submitForm() {
         if (!$('#form1').formValid()) {
             return false;

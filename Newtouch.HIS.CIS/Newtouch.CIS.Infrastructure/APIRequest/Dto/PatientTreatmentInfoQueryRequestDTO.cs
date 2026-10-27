@@ -3,17 +3,17 @@
 namespace Newtouch.CIS.APIRequest.Dto
 {
     /// <summary>
-    /// 获取病人就诊信息 请求报文
+    /// Lấybệnh nhânKhám bệnhthông tin yêu cầubáovăn
     /// </summary>
     public class PatientTreatmentInfoQueryRequestDTO : RequestBase
     {
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
     }

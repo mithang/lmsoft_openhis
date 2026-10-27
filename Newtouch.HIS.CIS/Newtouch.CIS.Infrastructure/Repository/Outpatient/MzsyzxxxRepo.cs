@@ -9,7 +9,7 @@ using System.Collections.Generic;
 namespace Newtouch.Repository.Outpatient
 {
     /// <summary>
-    /// 输液执行信息
+    /// truyền dịchThực hiệnthông tin
     /// </summary>
     public class MzsyzxxxRepo : RepositoryBase<MzsyzxxxEntity>, IMzsyzxxxRepo
     {
@@ -18,7 +18,7 @@ namespace Newtouch.Repository.Outpatient
         }
 
         /// <summary>
-        /// 提交执行
+        /// GửiThực hiện
         /// </summary>
         /// <param name="syIds"></param>
         /// <param name="zt"></param>
@@ -29,7 +29,7 @@ namespace Newtouch.Repository.Outpatient
         /// <returns></returns>
         public string Exec(List<long> syIds,string seatNum, string zt, string dispenser, string executor, DateTime? sykssj, DateTime? syjssj, string remark, string organizeId)
         {
-            if (syIds == null || syIds.Count <= 0) return "输液信息主键不能为空";
+            if (syIds == null || syIds.Count <= 0) return "Khóa chính thông tin truyền dịch không được để trống";
             var successCount = 0;
             syIds.ForEach(p =>
             {
@@ -60,12 +60,12 @@ namespace Newtouch.Repository.Outpatient
                     successCount += Insert(entity);
                // }
             });
-            return successCount != syIds.Count ? "部分执行失败" : "";
+            return successCount != syIds.Count ? "một phầnThực hiệnthất bại" : "";
         }
 
         public string CanCelExec(List<string> syIds, string OrganizeId)
         {
-            if (syIds == null || syIds.Count <= 0) return "输液信息主键不能为空";
+            if (syIds == null || syIds.Count <= 0) return "Khóa chính thông tin truyền dịch không được để trống";
             var successCount = 0;
             syIds.ForEach(p =>
             {
@@ -77,7 +77,7 @@ namespace Newtouch.Repository.Outpatient
                     successCount += Update(entity);
                 }
             });
-            return successCount != syIds.Count ? "部分取消执行失败" : "";
+            return successCount != syIds.Count ? "một phầnHủyThực hiệnthất bại" : "";
         }
 
     }

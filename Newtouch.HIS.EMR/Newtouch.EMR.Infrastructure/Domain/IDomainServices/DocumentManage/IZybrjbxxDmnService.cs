@@ -19,27 +19,27 @@ namespace Newtouch.EMR.Domain.IDomainServices
         List<PatientycqResponseDto> GetycqPatientList(PatientycqRequestDto req, string OrgId);
         List<PatientmyResponseDto> GetmyPatientList(PatientmyRequestDto req, string OrgId);
         /// <summary>
-        /// 根据关键字获取患者信息
+        /// Lấy thông tin bệnh nhân theo từ khóa
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         List<PatientmyResponseDto> GetPatInfoBykeyword(string keyword, string orgId);
         /// <summary>
-        /// 获取患者病历树
+        /// Lấy cây bệnh án của bệnh nhân
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="zyh"></param>
         /// <returns></returns>
         IList<PatMedRecordTreeVO> GetPatMedRecordTree(string OrgId, string zyh, string rygh);
         /// <summary>
-        /// 获取病历字典
+        /// Lấy từ điển bệnh án
         /// </summary>
         /// <param name="OrgId"></param>
         /// <returns></returns>
         IList<MedRecordTypeVO> GetSysItemDic(string OrgId, string Code,string bllxId);
         /// <summary>
-        /// 患者信息列表(在院/出院)
+        /// Danh sách thông tin bệnh nhân(Đang nằm viện/Ra viện)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -49,7 +49,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <returns></returns>
         IList<PatListVO> GetPatList(Pagination pagination, string keyword, string zyh, string cyts, string blzt, string ysgh, string OrgId, int type, string bq = null, string appId = null);
         /// <summary>
-        /// 医生患者列表
+        /// Danh sách bệnh nhân của bác sĩ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -60,7 +60,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
 
         void UpdtPatMedRecord(string blId, string blgxId, string OrgId, OperatorModel user);
         /// <summary>
-        /// 获取病案首页患者基本信息
+        /// Lấy thông tin cơ bản của bệnh nhân trang đầu bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>

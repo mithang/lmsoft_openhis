@@ -3,32 +3,32 @@ using System;
 namespace Newtouch.Domain.DTO.OutputDto.Outpatient.API
 {
     /// <summary>
-    /// 科室或专家已挂号总数查询返回报文
+    /// Khoahoặcchuyên giađãđăng ký khámtổngsốTra cứuQuay lạibáovăn
     /// </summary>
     public class MzAlreadyBespeakRegisterCountQueryResponseDTO
     {
         /// <summary>
-        /// 科室代码
+        /// KhoaMã
         /// </summary>
         public string ksCode { get; set; }
 
         /// <summary>
-        /// 医生工号
+        /// Bác sĩMã nhân viên
         /// </summary>
         public string ysgh { get; set; }
 
         /// <summary>
-        /// 预约日期
+        /// đặt hẹnNgày
         /// </summary>
         public DateTime regDate { get; set; }
 
         /// <summary>
-        /// 预约时间
+        /// đặt hẹnThời gian
         /// </summary>
         public string regTime { get; set; }
 
         /// <summary>
-        /// 已预约挂号总数
+        /// đãđặt hẹnđăng ký khámtổngsố
         /// </summary>
         public int alreadyBespeakRegisterCount { get; set; }
     }

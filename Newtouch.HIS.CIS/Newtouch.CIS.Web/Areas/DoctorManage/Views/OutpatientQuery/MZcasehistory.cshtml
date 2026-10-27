@@ -30,7 +30,7 @@
 				</td>
 				<td class="formValue" colspan="2">
 					<input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu" />
-					@*<input type="button" id="btn_print" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="打印" />*@
+					@*<input type="button" id="btn_print" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="In" />*@
 				</td>
 			</tr>
 		</table>
@@ -72,16 +72,16 @@
 	var ogid = '@curOpr.OrganizeId';
 	var reportUrl = '@Html.Raw(reportUrl)';
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
 		var h = $(window).height() - 100;
 		$('#layout iframe').css('height', h);
 		//newtabchange("1")
-        //查询列表
+        //Tra cứudanh sách
 		gridList();
 		lsblinfo();
 		lsjzcfmx();
     });
-    //病历就诊记录查询
+    //Hồ sơKhám bệnhghi chépTra cứu
     function gridList() {
         var $gridJsList = $("#gridList");
         $gridJsList.dataGrid({
@@ -104,7 +104,7 @@
             ],
             pager: "#gridPager",
             sortname: " zlkssj asc",
-            rownumbers: true,  //是否显示Số thứ tự
+            rownumbers: true,  //CóKhôngHiển thịSố thứ tự
 			viewrecords: true,
 			ondblClickRow: function (rowid) {
 				doubleclick(rowid);
@@ -112,9 +112,9 @@
         });
 
 		$("#btn_search").click(function () {
-			//点击查询重置各个列表查询
+			//điểmnhấpTra cứuĐặt lạimỗicáidanh sáchTra cứu
 			//blh = "";
-            $('#gridList').jqGrid("clearGridData");//先清空明细
+            $('#gridList').jqGrid("clearGridData");//Xóa trắng chi tiết trước
             $gridJsList.jqGrid('setGridParam', {
                 postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val() },
                 url: "/DoctorManage/OutpatientQuery/GetMedicalRecordGridJson",
@@ -125,7 +125,7 @@
 			$("#iframerightiframerightiframerightttt").attr('src', "");
 
 
-			$('#gridListls').jqGrid("clearGridData");//先清空明细
+			$('#gridListls').jqGrid("clearGridData");//Xóa trắng chi tiết trước
 			$("#gridListls").jqGrid('setGridParam', {
 				postData: { blh: blh },
 				url: "/DoctorManage/OutpatientQuery/MZBLlsinfo",
@@ -133,7 +133,7 @@
 			}).trigger('reloadGrid');
 
 
-			$('#gridListlscfmx').jqGrid("clearGridData");//先清空明细
+			$('#gridListlscfmx').jqGrid("clearGridData");//Xóa trắng chi tiết trước
 			$("#gridListlscfmx").jqGrid('setGridParam', {
 				postData: { jzid: "" },
 				url: "/DoctorManage/OutpatientQuery/MZlsjzCfInfo",
@@ -142,14 +142,14 @@
         });
 	}
 
-	//病历详情查询
+	//Hồ sơChi tiếtTra cứu
 	function blxqinfo() {
 		$("#alinbl").click();
 		var uri = reportUrl + "?tempCode=1253&mzh=" + mzh + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&orgId=" + ogid + "&row=1";
 		$("#iframerightiframerightiframerightttt").attr('src', uri);
 	}
 
-	//切换卡片操作
+	//cắtđổithẻảnhThao tác
 	function newtabchange(tabaction) {
 		switch (tabaction) {
 			case "1":
@@ -166,7 +166,7 @@
 				$("#librlb").hide();
 				$("#linbl").hide();
 				$("#linlsjz").show();
-				//console.log("本次双击病历号：", blh);
+				//console.log("bản lầnnhấp đúpSố bệnh án：", blh);
 				
 				break;
 			default:
@@ -175,26 +175,26 @@
 		}
 	}
 
-	//双击病历就诊记录操作
+	//nhấp đúpHồ sơKhám bệnhghi chépThao tác
 	function doubleclick(rowid) {
 		var selRowData = $("#gridList").getRowData(rowid);
 		if (selRowData==null) {
 			$.modalAlert("Vui lòng chọnmột dòngBệnh nhânThông tin", 'warning');
 			return;
 		}
-		//$.modalMsg("选择患者的门诊号为：" + selRowData.mzh, 'warning');
-		mzh = selRowData.mzh;//病历详情信息使用
-		blh = selRowData.blh;//Lịch sử病历信息使用
-		blxqinfo();//加载病历详情信息
+		//$.modalMsg("chọnBệnh nhâncủaSố khám ngoại trúlà：" + selRowData.mzh, 'warning');
+		mzh = selRowData.mzh;//Hồ sơChi tiếtthông tinSử dụng
+		blh = selRowData.blh;//Lịch sửHồ sơthông tinSử dụng
+		blxqinfo();//tảiHồ sơChi tiếtthông tin
 
-		$('#gridListls').jqGrid("clearGridData");//先清空明细
+		$('#gridListls').jqGrid("clearGridData");//Xóa trắng chi tiết trước
 		$("#gridListls").jqGrid('setGridParam', {
 			postData: { blh: blh },
 			url: "/DoctorManage/OutpatientQuery/MZBLlsinfo",
 			page: 1,
 		}).trigger('reloadGrid');
 
-		$('#gridListlscfmx').jqGrid("clearGridData");//先清空明细
+		$('#gridListlscfmx').jqGrid("clearGridData");//Xóa trắng chi tiết trước
 		$("#gridListlscfmx").jqGrid('setGridParam', {
 			postData: { jzid: "" },
 			url: "/DoctorManage/OutpatientQuery/MZlsjzCfInfo",
@@ -203,7 +203,7 @@
 		
 	}
 
-	//Lịch sử病历就诊查询
+	//Lịch sửHồ sơKhám bệnhTra cứu
 	function lsblinfo() {
 		var $gridlsList = $("#gridListls");
 		$gridlsList.dataGrid({
@@ -227,14 +227,14 @@
 			],
 			pager: "#gridPagerls",
 			sortname: " zlkssj desc",
-			rownumbers: true,  //是否显示Số thứ tự
+			rownumbers: true,  //CóKhôngHiển thịSố thứ tự
 			viewrecords: true,
 			onSelectRow: function (rowid) {
 				var rowdata = $("#gridListls").getRowData(rowid);
 				if (rowdata) {
-					//console.log("选中就诊ID：", rowdata.jzId);
+					//console.log("Đã chọnKhám bệnhID：", rowdata.jzId);
 					var jzid = rowdata.jzId;
-					$('#gridListlscfmx').jqGrid("clearGridData");//先清空明细
+					$('#gridListlscfmx').jqGrid("clearGridData");//Xóa trắng chi tiết trước
 					$("#gridListlscfmx").jqGrid('setGridParam', {
 						postData: { jzid: jzid },
 						url: "/DoctorManage/OutpatientQuery/MZlsjzCfInfo",
@@ -248,8 +248,8 @@
 					$.modalAlert("Vui lòng chọnmột dòngBệnh nhânThông tin", 'warning');
 					return;
 				}
-				mzh = selRowData.mzh;//病历详情信息使用
-				blxqinfo();//加载病历详情信息
+				mzh = selRowData.mzh;//Hồ sơChi tiếtthông tinSử dụng
+				blxqinfo();//tảiHồ sơChi tiếtthông tin
 				
 			},
 		});
@@ -287,13 +287,13 @@
 			],
 			pager: "#gridPagerlscfmx",
 			sortname: " cfh asc",
-			rownumbers: true,  //是否显示Số thứ tự
+			rownumbers: true,  //CóKhôngHiển thịSố thứ tự
 			viewrecords: true,
 			grouping: true,
-			rowNum: 50, //每页显示记录数
+			rowNum: 50, //mỗitrangHiển thịghi chépsố
 			groupingView: {
-				//groupSummary: [true],//合计列是否显示  在需要合计的列加summaryType属性  'sum'
-				groupCollapse: true,//初始化是否折叠分组详细 true折叠 false展开
+				//groupSummary: [true],//hợptínhcộtCóKhôngHiển thị  ởcầnhợptínhcủacộtthêmsummaryTypeThuộc tính  'sum'
+				groupCollapse: true,//Khởi tạoCóKhônggấp lạiphútnhómchi tiết truegấp lại falsetriểnmở
 				groupColumnShow: [true],
 				groupText: ['<b>{0}       Số chi tiết: {1} </b>'],
 				groupField: ['cflx'],

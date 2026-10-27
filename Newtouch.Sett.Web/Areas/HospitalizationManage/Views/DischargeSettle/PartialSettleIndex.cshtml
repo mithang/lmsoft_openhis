@@ -161,7 +161,7 @@
     $(function () {
         initgridList1();
         initgridList2();
-        $('#myTab li:eq(1) a').tab('show'); //会Kích hoạtgrid2Nạp kiểu hiển thị
+        $('#myTab li:eq(1) a').tab('show'); //sẽKích hoạtgrid2Nạp kiểu hiển thị
 
         if (!(defaultShow === 'yj')) {
             setTimeout("$('#myTab li:eq(0) a').tab('show');", 200); //Hiển thị phí chưaquyết toán
@@ -340,7 +340,7 @@
     var jszje = 0.00;
     //Nạp thông tin cơ bản nhập viện
     function ajaxLoadDataResult(obj, funcSuccCallback) {
-        $('#startTime').html('');   //chỉcóchuyển đổiMã nhập việncủalúc候，mớichuyển đổiNgày bắt đầu
+        $('#startTime').html('');   //chỉcóchuyển đổiMã nhập việncủalúcchờ，mớichuyển đổiNgày bắt đầu
             $.najax({
                 type: "POST",
                 data: obj,
@@ -479,7 +479,7 @@
                                 //In hóa đơn
                                 if (ajaxresp.data && ajaxresp.data.jsnm) {
                                     if ('@(autoPrintFP)' == 'True') {
-                                        //报表In
+                                        //báo cáoIn
                                         var uri = '@Html.Raw(invoiceReportUrl)' + "&jsnm=" + ajaxresp.data.jsnm;
                                         window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
 
@@ -529,7 +529,7 @@
         patModel = null;
         jszje = 0.00;
         flagIsFirstInitGrid2 = true;
-        $('#myTab li:eq(1) a').tab('show'); //会Kích hoạtgrid2Nạp kiểu hiển thị
+        $('#myTab li:eq(1) a').tab('show'); //sẽKích hoạtgrid2Nạp kiểu hiển thị
         $('#lblSumje').text('0.00');
         $('#gridList').jqGrid("clearGridData");
         $('#gridList2').jqGrid("clearGridData");
@@ -700,7 +700,7 @@
         }
     }
 
-    //này地Thao tácHủyquyết toán
+    //nàyđịaThao tácHủyquyết toán
     function Docancelhissubmit(jsnm,ybBackReturnData)
     {
         var allLine = $("#gridList2").jqGrid('getRowData_AllLine', null, true);

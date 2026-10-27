@@ -6,19 +6,19 @@ using Newtouch.HIS.Domain.ValueObjects.DrugStorage;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 直接出库
+    /// Xuất kho trực tiếp
     /// </summary>
     public interface IDeliveryDirectDmnService
     {
         /// <summary>
-        /// 提交直接出库申请
+        /// Gửi đơn xin xuất kho trực tiếp
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mx"></param>
         /// <returns></returns>
         string SubmitDeliveryDirect(SysMedicineStorageIOReceiptEntity dj, List<SysMedicineStorageIOReceiptDetailEntity> mx);
         /// <summary>
-        /// 获取入库发票
+        /// Lấy hóa đơn nhập kho
         /// </summary>
         /// <param name="djlx"></param>
         /// <param name="fph"></param>
@@ -27,7 +27,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         List<BillFphVo> GetRkFphData(int djlx, string fph, DateTime kssj, DateTime jssj);
         /// <summary>
-        /// 药库入库发票明细
+        /// Chi tiết hóa đơn nhập kho thuốc
         /// </summary>
         /// <param name="djlx"></param>
         /// <param name="fph"></param>

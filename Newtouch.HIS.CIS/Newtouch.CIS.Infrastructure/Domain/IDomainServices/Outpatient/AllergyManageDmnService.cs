@@ -8,7 +8,7 @@ namespace Newtouch.Domain.IDomainServices
     public interface IAllergyManageDmnService
     {
         /// <summary>
-        /// 门诊病人筛选
+        /// Ngoại trúbệnh nhânLọc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -20,7 +20,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<OutHosPatientVO> GetOutPatientPaginationList(Pagination pagination, string keyword, string ks, string kssj, string jssj, string orgId, string PsItemCode, string Status);
 
         /// <summary>
-        /// 住院病人筛选
+        /// Nhập việnbệnh nhânLọc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -33,39 +33,39 @@ namespace Newtouch.Domain.IDomainServices
 
 
         /// <summary>
-        /// 保存患者过敏信息
+        /// LưuBệnh nhânquamẫnthông tin
         /// </summary>
         /// <param name="entity"></param>
         void SaveAllergyInfo(AllergyEntity entity);
 
         /// <summary>
-        /// 删除执行过敏信息
+        /// XóaThực hiệnquamẫnthông tin
         /// </summary>
         /// <param name="entity"></param>
         int DeleteAllergyInfo(string gmxxId, string orgId, string UserCode, string UserName);
 
         /// <summary>
-        /// 获取门诊患者开的皮试项目
+        /// LấyNgoại trúBệnh nhânmởcủadathửMục
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
-        /// <param name="mzzybz">门诊住院标志 1门诊 2住院</param>
+        /// <param name="mzzybz">Dấu hiệu ngoại trú/nội trú 1Ngoại trú 2Nhập viện</param>
         /// <returns></returns>
         IList<PsItemVO> GetMzPatientPsItemsList(Pagination pagination, string Id, string orgId, string PsItemCode);
 
         /// <summary>
-        /// 获取住院患者开的皮试项目
+        /// LấyBệnh nhân nội trúmởcủadathửMục
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
-        /// <param name="mzzybz">门诊住院标志 1门诊 2住院</param>
+        /// <param name="mzzybz">Dấu hiệu ngoại trú/nội trú 1Ngoại trú 2Nhập viện</param>
         /// <returns></returns>
         IList<PsItemVO> GetZyPatientPsItemsList(Pagination pagination, string zyh, string orgId, string PsItemCode);
 
         /// <summary>
-        /// 获取患者过敏信息
+        /// LấyBệnh nhânquamẫnthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -74,14 +74,14 @@ namespace Newtouch.Domain.IDomainServices
         IList<PatientGmxxDetailVO> GetPatientGmxxList(Pagination pagination, string keyword, string orgId);
 
         /// <summary>
-        /// 获取抗生素药品信息
+        /// LấyKháng sinhThuốcthông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<KssYpVO> GetKssYpListData(string orgId);
 
         /// <summary>
-        /// 获取抗生素类别
+        /// LấyKháng sinhLoại
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="orgId"></param>

@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             this._sysDepartmentWardRelationRepo = sysDepartmentWardRelationRepo;
         }
 
-        //组织机构（医院） 科室 下拉 数据源
+        //Tổ chức（Bệnh viện） Khoa Thả xuống Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetTreeSelectJson(string organizeId, string treeidFieldName = "Code")
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         [HttpGet]
         [HandlerAjaxOnly]
         /// <summary>
-        /// 获取科室列表
+        /// Lấy danh sách khoa
         /// </summary>
         /// <returns></returns>
         public IActionResult GetTreeGridJson(string organizeId, string keyword)
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// 修改信息时，把信息带到新页面
+        /// Khi sửa thông tin，Mang thông tin sang trang mới
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Success("Thao tác thành công.");
         }
 
-        #region 关联病区
+        #region Liên kết khu bệnh
 
         public virtual IActionResult WardInfo()
         {
@@ -148,9 +148,9 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             }
 
             string OrganizeId = deptInfo.OrganizeId;
-            //系统有效病区列表
+            //Danh sách khu bệnh hiệu lực của hệ thống
             var wardList = _sysWardRepo.SelectWardList(OrganizeId);
-            //病区绑定信息
+            //Thông tin gắn kết khu bệnh
             var wards = new List<SysDepartmentWardRelationEntity>();
 
             if (!string.IsNullOrWhiteSpace(departmentId))

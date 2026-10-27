@@ -4,78 +4,78 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
 {
     /// <summary>
-    /// 提取电子病历响应体
+    /// nhắclấyđiện tửHồ sơhưởngứngthể
     /// </summary>
     [XmlRoot("Request")]
     public class PullRecordRequestEntity : RequestBase
     {
         /// <summary>
-        /// 病历信息体
+        /// Hồ sơthông tinthể
         /// </summary>
         public Record Record { get; set; }
     }
 
     /// <summary>
-    /// 病历信息体
+    /// Hồ sơthông tinthể
     /// </summary>
     public class Record
     {
         /// <summary>
-        /// 就诊流水号
-        /// 必填
+        /// Khám bệnhdòngchảysố
+        /// bắt buộc
         /// </summary>
         public string serialNo { get; set; }
 
         /// <summary>
-        /// 机构编码
-        /// 必填
+        /// Cơ sởMã
+        /// bắt buộc
         /// </summary>
         public string orgCode { get; set; }
 
         /// <summary>
-        /// 患者编号
-        /// 必填
+        /// Bệnh nhânSố hiệu
+        /// bắt buộc
         /// </summary>
         public string patiId { get; set; }
 
         /// <summary>
-        /// 患者姓名
-        /// 必填
+        /// Tên bệnh nhân
+        /// bắt buộc
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
-        /// 患者年龄
-        /// 必填
+        /// Bệnh nhânTuổi
+        /// bắt buộc
         /// </summary>
         public string age { get; set; }
 
         /// <summary>
-        /// 患者性别
-        /// 必填
+        /// Bệnh nhânGiới tính
+        /// bắt buộc
         /// </summary>
         public string gender { get; set; }
 
         /// <summary>
-        /// 就诊日期-YYYYMMDD
-        /// 必填
+        /// Khám bệnhNgày-YYYYMMDD
+        /// bắt buộc
         /// </summary>
         public string clinicDate { get; set; }
 
         /// <summary>
-        /// 医生编号（用户名）
-        /// 必填
+        /// Bác sĩSố hiệu（Người dùngtên）
+        /// bắt buộc
         /// </summary>
         public string doctorId { get; set; }
 
         /// <summary>
-        /// 医生名称
-        /// 必填
+        /// Bác sĩTên
+        /// bắt buộc
         /// </summary>
         public string doctorName { get; set; }
 
         /// <summary>
-        /// 主诉
+        /// chínhbảo
         /// </summary>
         public string priDepict { get; set; }
 
@@ -85,62 +85,62 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string localDisHis { get; set; }
 
         /// <summary>
-        /// 过敏史
+        /// quaTiền sử dị ứng
         /// </summary>
         public string allergicHis { get; set; }
 
         /// <summary>
-        /// 既往史
+        /// Tiền sử
         /// </summary>
         public string anamnesis { get; set; }
 
         /// <summary>
-        /// 个人史
+        /// Cá nhânsử
         /// </summary>
         public string individualHis { get; set; }
 
         /// <summary>
-        /// 月经婚育史
+        /// Thángqua婚dụcsử
         /// </summary>
         public string mcObstetrical { get; set; }
 
         /// <summary>
-        /// 家族史
+        /// nhàtộcsử
         /// </summary>
         public string fhx { get; set; }
 
         /// <summary>
-        /// 望诊
+        /// 望khám
         /// </summary>
         public string inspection { get; set; }
 
         /// <summary>
-        /// 闻诊
+        /// 闻khám
         /// </summary>
         public string smelling { get; set; }
 
         /// <summary>
-        /// 切诊
+        /// cắtkhám
         /// </summary>
         public string palpation { get; set; }
 
         /// <summary>
-        /// 辨证要点
+        /// 辨chứngcầnđiểm
         /// </summary>
         public string syndrome { get; set; }
 
         /// <summary>
-        /// 体格检查
+        /// thểôKiểm tra
         /// </summary>
         public string psyCheck { get; set; }
 
         /// <summary>
-        /// 医生建议
+        /// Bác sĩxâynghị
         /// </summary>
         public string suggession { get; set; }
 
         /// <summary>
-        /// 医嘱编号
+        /// Y lệnhSố hiệu
         /// </summary>
         public string recordId { get; set; }
     }

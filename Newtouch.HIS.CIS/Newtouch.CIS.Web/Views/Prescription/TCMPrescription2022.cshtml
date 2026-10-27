@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Thuốc Đông yĐơn thuốc-Phiên bản mới";
     Layout = null;
-    //药品检索，药品是否关联药房库存
+    //ThuốcTìm kiếm，ThuốcCóKhôngNhà thuốc liên quanTồn kho
     var isMedicineSearchRelatedKC = (ViewBag.ISMedicineSearchRelatedKC as bool?) ?? false;
 }
 <style type="text/css">
@@ -107,7 +107,7 @@
             }
         });
 
-        //仅尚未保存到数据库的处方需要初始化在grid中
+        //chỉ chưaLưuđếnCơ sở dữ liệucủaĐơn thuốccần khởi tạo tronggridtrong
         if (window.alldataArray.zycf) {
             zylocaldata = $.jsonWhere($.deepClone.clone(window.alldataArray.zycf), function(icf){
                 return !!!icf.cfId;
@@ -121,13 +121,13 @@
             });
         }
         else{
-            window.alldataArray.zycf = new Array(); //方便后面使用$.each()
+            window.alldataArray.zycf = new Array(); //Để tiện dùng về sau$.each()
         }
 
-        if (zycfflag === 0) {   //该页面初始化
+        if (zycfflag === 0) {   //Trang này khởi tạo
             gridzycfnew();
             zycfflag = 1;
-            //加载药品用法
+            //tảiCách dùng thuốc
             $("#cfyf").bindSelect({
                 url: "/SystemManage/SysBaseData/GetZYMedicineUsageList",
                 id: "yfCode",
@@ -161,8 +161,8 @@
             $('#daijiantieshu').val('0');
         }
         else {
-            $("#gridzycfnew").clearGridData(); //先清
-            //再次打开该页面
+            $("#gridzycfnew").clearGridData(); //xóa trắng trước
+            //Mở lại trang này
             $("#gridzycfnew").jqGrid('setGridParam', {
                 datatype: 'local',
                 data: zylocaldata
@@ -179,12 +179,12 @@
             $('#tieshu').val("1");
         }
 
-        //立刻触发编辑其中一个本次就诊的已提交处方（未提交到库中的肯定会在编辑列表中）
+        //kích hoạt ngaySửacủa nótrongmột bản lầnKhám bệnhcủaĐã gửiĐơn thuốc（chưaGửiđếnkhotrongcủachắc chắn sẽởSửadanh sáchtrong）
         var triggereditcfh = sessionStorage.getItem("triggereditcfh");
         if(!!triggereditcfh){
             sessionStorage.removeItem("triggereditcfh");
             $("#floatLeftMostPartDiv div[data-href='lscf']").trigger('click');
-            //未提交到数据库的处方，这里length 0 也没问题
+            //chưaGửiđếnCơ sở dữ liệucủaĐơn thuốc，đâylength 0 cũng không sao
             $('span.bbit-tree-node-text[data-value="' + triggereditcfh + '"]').trigger('click');
         }
         var isdzcf = '0';
@@ -196,7 +196,7 @@
         $("#isdzcfzy").val(isdzcf);
     }
 
-    //处方列表
+    //Đơn thuốcdanh sách
     function gridzycfnew() {
         var $gridzycfnew = $("#gridzycfnew");
         $gridzycfnew.jqGrid({
@@ -204,12 +204,12 @@
             data: zylocaldata,
             width:$(window).width()-90,
             height: $(window).height() - 230,
-            //altRows: true,//隔行换色
-            shrinkToFit:true,   //true:按比例初始化列宽度 false:使用colModel指定的宽度
-            rownumbers: true,  //是否显示Số thứ tự
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            //altRows: true,//Đổi màu xen kẽ dòng
+            shrinkToFit:true,   //true:theo tỷ lệVDkhởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
+            rownumbers: true,  //CóKhôngHiển thịSố thứ tự
+            editurl: "clientArray",  //dòngSửakhông gửi lên máy chủGửiDữ liệu
             unwritten: false,
-            multiselect: true, // 启用多选框
+            multiselect: true, // Bật chọn nhiềukhung
             colModel: [
                 { label: 'cfId', name: 'cfId', hidden: true },
                 { label: 'ybwym', name: 'ybwym', hidden: true },
@@ -289,7 +289,7 @@
                                         return;
                                     }
                                     $("#" + rowid + "_Remark").focus();
-                                    CalculateTCMEachLineJe(rowid);   //计算明细金额和处方金额
+                                    CalculateTCMEachLineJe(rowid);   //Tính toánSố tiền chi tiết và số tiền đơn thuốc
 
                                 }
                             },
@@ -316,7 +316,7 @@
                                         //var saveResult = $gridzycfnew.saveRow(rowid, null, null, null, function (callbackRowId) { }, null, null);
                                         //if (!saveResult) {
                                         //    return;
-                                        //}   //新增一条明细
+                                        //}   //Thêm mớimột dòngchi tiết
                                         $("#" + rowid + "_zysm").focus();
                                     }
                                 }
@@ -457,7 +457,7 @@
                                     var row = $(e.target).closest('tr.jqgrow');
                                     var rowid = row.attr('id');
                                     $("#" + rowid + "_Remark2").focus();
-                                    CalculateTCMEachLineJe(rowid);   //计算明细金额和处方金额
+                                    CalculateTCMEachLineJe(rowid);   //Tính toánSố tiền chi tiết và số tiền đơn thuốc
                                 }
                             },{
                                 type: 'keydown',
@@ -500,7 +500,7 @@
                                         if (!saveResult) {
                                             return;
                                         }
-                                        addTCMRowData(rowid);   //新增一条明细
+                                        addTCMRowData(rowid);   //Thêm mớimột dòngchi tiết
                                     }
                                 }
                             }
@@ -547,8 +547,8 @@
                 { label: 'zzfbz2', name: 'zzfbz2', editwidth: '', align: 'center', editable: true, hidden: true },
                 { label: 'Thao tác', name: 'action', width: 50, align: 'left' }
             ],
-            editinputwidthborder: false,    //是否需要边框 默认为true
-            editinputborderradius: false,   //是否需要边框圆角 默认true（有圆角）
+            editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
             pager: "#gridzycfnewPager",
             loadComplete: function () {
             },
@@ -556,12 +556,12 @@
                 EnableTCMnewInlineEditBox();
                 //
                 if ($("#gridzycfnew").jqGrid('getRowData_AllLine').length > 0) {
-                    //不可再新增新处方
+                    //khôngcó thểlạiThêm mớiĐơn thuốc mới
                     $('.glyphicon-new-window:visible').parent('div.ui-pg-div').addClass('newZycfDisableBackgroud');
                 }
             }
         });
-        //自定义按钮
+        //Nút tùy chỉnh
         $gridzycfnew.navGrid('#gridzycfnewPager',
                 {
                     edit: false,
@@ -581,11 +581,11 @@
                     position: "last",
                     onClickButton: function() {
                         $.each($("#gridzycfnew").jqGrid('getRowData_AllLine', true, true),
-                            function() { //1.删除行
+                            function() { //1.Xóadòng
                                 var selRowId = $(this.ypmc).attr('rowid');
                                 deleteTCMRowData(selRowId, false);
                             });
-                        CalculateTCMPresAmount(); //2.计算处方的金额
+                        CalculateTCMPresAmount(); //2.Tính toánĐơn thuốccủaSố tiền
                     }
                 }).navSeparatorAdd("#gridzycfnewPager", { sepclass: "ui-separator", sepcontent: '' })
             .navButtonAdd('#gridzycfnewPager',
@@ -619,7 +619,7 @@
 
         $.ajax({
             type: "POST",
-            dataType: "json", //返回json格式的数据
+            dataType: "json", //Quay lạijsondữ liệu dạng
             url: "/Prescription/GetYfData",
             data: { },
             async: false,
@@ -644,7 +644,7 @@
     function EnableTCMnewInlineEditBox(){
         var ids = $("#gridzycfnew").getDataIDs();
         $.each(ids, function () {
-            //打开编辑模式
+            //MởSửachế độ
             $("#gridzycfnew").jqGrid('editRow', this, false, initTCMInlineFunc);
 
             //CalculateTCMEachLineSlANDJe(this, false);
@@ -655,9 +655,9 @@
     function addCellAttr(rowId, val, rawObject, cm, rdata) {
         return "style='border-right:solid 2px #69d6fa;' ";
     }
-    //初始化 浮层
+    //Khởi tạo lớp nổi
 	function initTCMInlineFunc(rowid) {
-        //部分列只读
+        //Một số cột chỉ đọc
         $("#" + rowid + "_dj").css('background-color','#f6f7fb').attr('readonly','true');
         $("#" + rowid + "_ypgg").css('background-color','#f6f7fb').attr('readonly','true');
         $("#" + rowid + "_mcjldw").css('background-color','#f6f7fb').attr('readonly','true');
@@ -677,28 +677,28 @@
         }
 
 
-        //根据贴数和剂量算出来的
+        //TheodánsốvàLiều lượngtínhrađếncủa
 
         //$("#" + rowid + "_sl").css('background-color','#f6f7fb').attr('readonly','true');
         $("#" + rowid + "_ypmc").attr('autocomplete', 'off');
 
         var currlineCfh = $("#gridzycfnew").getRowData(rowid).cfh;
-        //药品浮层  //中药西药 会重复么 ‘"#" + rowid + "_ypmc"’
+        //Lớp nổi thuốc  //Thuốc Đông yThuốc Tây sẽtrùng lặpsao ‘"#" + rowid + "_ypmc"’
         $("#" + rowid + "_ypmc").sfxmFloatingSelector({
             djDecimalPlaces: 4,
-            searchType: '@(isMedicineSearchRelatedKC ? "yp.kc" : "yp")', //药品是否显示库存
+            searchType: '@(isMedicineSearchRelatedKC ? "yp.kc" : "yp")', //ThuốcCóKhôngHiển thịTồn kho
             ajaxparameters: function ($thisinput) {
                 
                  var flag = false;
-                //限制用药的话，flag=true
+                //thuốc hạn chếcủalời，flag=true
                 if (window.currPatientInfo.brxzCode != "" &&'@ViewBag.ControlbrxzCode'.indexOf(window.currPatientInfo.brxzCode) > -1) {
                     flag = true;
                 }
-                var mzzybz=$('#tip_zyyfly option:selected').val().split('|')[1];//药房部门 0：不发药 1：门诊用药 2：住院用药 3：门诊住院通用
+                var mzzybz=$('#tip_zyyfly option:selected').val().split('|')[1];//Khoa dược 0：Không phát thuốc 1：Thuốc ngoại trú 2：Thuốc nội trú 3：Dùng chung ngoại trú/nội trú
                 if(mzzybz=="3")
                     mzzybz="1";
                 if($("#isdzcfzy").val() == "1")
-                    mzzybz="9";//走电子处方目录
+                    mzzybz="9";//điđiện tửĐơn thuốcDanh mục
                 return "onlyybflag=" + flag + "&mzzybz="+mzzybz+"&dllb=1&sfdllx=TCM&keyword=" + $.trim($thisinput.val())+"&ypyfbmCode="+$('#tip_zyyfly option:selected').val().split('|')[0];
 			},
 
@@ -761,7 +761,7 @@
                         callBack: function (iframeId) {
                             var sfkbRadio = top.frames[iframeId].submitForm();
                             if (sfkbRadio!=null&&sfkbRadio!="") {
-                                //更改某一行某一列的值
+                                //hơnsửanào đómộtdòngnào đómộtcộtcủaGiá trị
                                 $("#gridxycf").jqGrid('setCell',rowid,"xzsybz",sfkbRadio);
                                 $.modalClose("XzyyForm");
                             }
@@ -769,7 +769,7 @@
                         }
                     });
                 }
-                //检查重复
+                //Kiểm tratrùng lặp
                 var isRepeatedAdd = false;
                 var addypCode = $this.attr('data-sfxmCode');
                 $.each($("#gridzycfnew").getDataIDs(), function () {
@@ -797,10 +797,10 @@
                 $("#" + rowid + "_mcjl").val($this.attr('data-mrjl'));
 
                 $("#" + rowid + "_ypmc").css('background-color','#f6f7fb').attr('readonly','true');
-                CalculateTCMEachLineSlANDJe(rowid);   //计算明细里的金额和处方金额
+                CalculateTCMEachLineSlANDJe(rowid);   //Tính toántrong chi tiếtSố tiềnvàĐơn thuốcSố tiền
 
                 if(isMedicineSearchRelatedKC === 'True'){
-                    //库存数量
+                    //Tồn khoSố lượng
                     var kcsl = parseInt($this.attr('data-kcsl'));
                     var cls = parseInt($this.attr('data-cls'));
                     var mzkcsl = !!kcsl && !!cls ? (parseInt(kcsl / cls)) : 0;
@@ -813,19 +813,19 @@
         });
         $("#" + rowid + "_ypmc2").sfxmFloatingSelector({
             djDecimalPlaces: 4,
-            searchType: '@(isMedicineSearchRelatedKC ? "yp.kc" : "yp")', //药品是否显示库存
+            searchType: '@(isMedicineSearchRelatedKC ? "yp.kc" : "yp")', //ThuốcCóKhôngHiển thịTồn kho
             ajaxparameters: function ($thisinput) {
                 
                  var flag = false;
-                //限制用药的话，flag=true
+                //thuốc hạn chếcủalời，flag=true
                 if (window.currPatientInfo.brxzCode != "" &&'@ViewBag.ControlbrxzCode'.indexOf(window.currPatientInfo.brxzCode) > -1) {
                     flag = true;
                 }
-                var mzzybz=$('#tip_zyyfly option:selected').val().split('|')[1];//药房部门 0：不发药 1：门诊用药 2：住院用药 3：门诊住院通用
+                var mzzybz=$('#tip_zyyfly option:selected').val().split('|')[1];//Khoa dược 0：Không phát thuốc 1：Thuốc ngoại trú 2：Thuốc nội trú 3：Dùng chung ngoại trú/nội trú
                 if(mzzybz=="3")
                     mzzybz="1";
                 if($("#isdzcfzy").val() == "1")
-                    mzzybz="9";//走电子处方目录
+                    mzzybz="9";//điđiện tửĐơn thuốcDanh mục
                 return "onlyybflag=" + flag + "&mzzybz="+mzzybz+"&dllb=1&sfdllx=TCM&keyword=" + $.trim($thisinput.val())+"&ypyfbmCode="+$('#tip_zyyfly option:selected').val().split('|')[0];
 			},
 
@@ -889,7 +889,7 @@
                         callBack: function (iframeId) {
                             var sfkbRadio = top.frames[iframeId].submitForm();
                             if (sfkbRadio!=null&&sfkbRadio!="") {
-                                //更改某一行某一列的值
+                                //hơnsửanào đómộtdòngnào đómộtcộtcủaGiá trị
                                 $("#gridxycf").jqGrid('setCell',rowid,"xzsybz",sfkbRadio);
                                 $.modalClose("XzyyForm");
                             }
@@ -897,7 +897,7 @@
                         }
                     });
                 }
-                //检查重复
+                //Kiểm tratrùng lặp
                 var isRepeatedAdd = false;
                 var addypCode = $this.attr('data-sfxmCode');
                 $.each($("#gridzycfnew").getDataIDs(), function () {
@@ -929,10 +929,10 @@
                 $("#" + rowid + "_mcjl2").val($this.attr('data-mrjl'));
 
                 $("#" + rowid + "_ypmc2").css('background-color','#f6f7fb').attr('readonly','true');
-                CalculateTCMEachLineSlANDJe(rowid);   //计算明细里的金额和处方金额
+                CalculateTCMEachLineSlANDJe(rowid);   //Tính toántrong chi tiếtSố tiềnvàĐơn thuốcSố tiền
 
                 if(isMedicineSearchRelatedKC === 'True'){
-                    //库存数量
+                    //Tồn khoSố lượng
                     var kcsl = parseInt($this.attr('data-kcsl'));
                     var cls = parseInt($this.attr('data-cls'));
                     var mzkcsl = !!kcsl && !!cls ? (parseInt(kcsl / cls)) : 0;
@@ -943,7 +943,7 @@
 
 
         });
-        //嘱托浮层
+        //Lớp nổi dặn dò
         $("#" + rowid + "_Remark").ztFloatingSelector({
             height:100,
             itemdbclickhandler: function ($this) {
@@ -959,29 +959,29 @@
 
     }
 
-    //计算明细里的数量
+    //Tính toántrong chi tiếtSố lượng
     function CalculateTCMEachLineSlANDJe(rowid, recalc) {
         var currRowZe = 0.00;
 
-        var tieshu = $.undefinedwith0($('#tieshu').val());    //贴数
+        var tieshu = $.undefinedwith0($('#tieshu').val());    //dánsố
         if ($('#' + rowid + '_mcjl').val() == null || $('#' + rowid + '_mcjl').val()=="") {
             $('#' + rowid + '_mcjl').val("1");
         }
         if ($('#' + rowid + '_mcjl2').val() == null || $('#' + rowid + '_mcjl2').val() == "") {
             $('#' + rowid + '_mcjl2').val("1");
         }
-        var mcjl = $('#' + rowid + '_mcjl').val();     //剂量
+        var mcjl = $('#' + rowid + '_mcjl').val();     //Liều lượng
         var mcjl2 = $('#' + rowid + '_mcjl2').val();
         if(tieshu && mcjl){
             $('#' + rowid + '_sl').val(roundingBy4she6ru5chengshuang((parseFloat(tieshu) * parseFloat($.undefinedwith0(mcjl))),0))
 
-            //下面计算明细里的金额
-            var currRowSl = $('#' + rowid + '_sl').val(); //数量
+            //phía dướiTính toántrong chi tiếtSố tiền
+            var currRowSl = $('#' + rowid + '_sl').val(); //Số lượng
             var currRowDj = $('#' + rowid + '_dj').val();
 
-            //前提：中药的单位、剂量单位要维护的一致
+            //điều kiện tiên quyết：Thuốc Đông ycủaĐơn vị、Đơn vị liềucầnBảo trìcủanhất quán
             if (currRowDj && parseFloat(currRowSl) > 0) {
-                //单价 数量 不为空
+                //Đơn giá Số lượng khônglàtrống
                 currRowZe = roundingBy4she6ru5chengshuang(parseFloat(currRowDj) * parseFloat(currRowSl),2);
             }
 
@@ -990,40 +990,40 @@
         if (tieshu && mcjl2) {
             $('#' + rowid + '_sl2').val(roundingBy4she6ru5chengshuang((parseFloat(tieshu) * parseFloat($.undefinedwith0(mcjl2))), 0))
 
-            //下面计算明细里的金额
-            var currRowSl = $('#' + rowid + '_sl2').val(); //数量
+            //phía dướiTính toántrong chi tiếtSố tiền
+            var currRowSl = $('#' + rowid + '_sl2').val(); //Số lượng
             var currRowDj = $('#' + rowid + '_dj2').val();
             var currRowZe2;
-            //前提：中药的单位、剂量单位要维护的一致
+            //điều kiện tiên quyết：Thuốc Đông ycủaĐơn vị、Đơn vị liềucầnBảo trìcủanhất quán
             if (currRowDj && parseFloat(currRowSl) > 0) {
-                //单价 数量 不为空
+                //Đơn giá Số lượng khônglàtrống
                 currRowZe2 = roundingBy4she6ru5chengshuang(parseFloat(currRowDj) * parseFloat(currRowSl), 2);
             }
 
             $('#' + rowid + '_je2').val(currRowZe2);
         }
         if(!(recalc === false)){
-            //下面计算整个处方的金额
+            //phía dướiTính toánchỉnhcáiĐơn thuốccủaSố tiền
             CalculateTCMPresAmount();
         }
     }
 
-    //计算明细里的金额
+    //Tính toántrong chi tiếtSố tiền
     function CalculateTCMEachLineJe(rowid) {
-        //下面计算明细里的金额
-        var currRowSl = $('#' + rowid + '_sl').val(); //数量
+        //phía dướiTính toántrong chi tiếtSố tiền
+        var currRowSl = $('#' + rowid + '_sl').val(); //Số lượng
         var currRowDj = $('#' + rowid + '_dj').val();
-        var currRowSl2 = $('#' + rowid + '_sl2').val(); //数量
+        var currRowSl2 = $('#' + rowid + '_sl2').val(); //Số lượng
         var currRowDj2 = $('#' + rowid + '_dj2').val();
-        //前提：中药的单位、剂量单位要维护的一致
+        //điều kiện tiên quyết：Thuốc Đông ycủaĐơn vị、Đơn vị liềucầnBảo trìcủanhất quán
         if (currRowDj && parseFloat(currRowSl) > 0) {
-            //单价 数量 不为空
+            //Đơn giá Số lượng khônglàtrống
             currRowZe = roundingBy4she6ru5chengshuang(parseFloat(currRowDj) * parseFloat(currRowSl), 2);
         }
         $('#' + rowid + '_je').val(currRowZe);
         var currRow2Ze;
         if (currRowDj2 && parseFloat(currRowSl2) > 0) {
-            //单价 数量 不为空
+            //Đơn giá Số lượng khônglàtrống
             currRow2Ze = roundingBy4she6ru5chengshuang(parseFloat(currRowDj2) * parseFloat(currRowSl2), 2);
         }
         $('#' + rowid + '_je2').val(currRow2Ze);
@@ -1035,15 +1035,15 @@
             $("#cfzt").val($this.attr('data-ztmc'));
         },
     });
-    //计算处方金额
+    //Tính số tiền đơn thuốc
     function CalculateTCMPresAmount() {
         var allData = $("#gridzycfnew").jqGrid('getRowData_AllLine');
         if(!!!allData || !!!allData.length || allData.length == 0){
-            $('#tdTCMTotalAmount').html('');  //先清空
+            $('#tdTCMTotalAmount').html('');  //Xóa trắng trước
             $('#tdTCMTotalAmount').append('<label style="color:red;">￥' + 0.00 + '</label>');
             return;
         }
-        //allData提前验证 列表中只能一个处方
+        //allDatanhắctrướckiểm tra danh sáchtrongchỉcó thểmộtĐơn thuốc
         var justOneCf = true;
         for (var i = 0; i < allData.length; i++) {
             if(allData[i].cfh != allData[0].cfh){
@@ -1072,16 +1072,16 @@
             var djf = parseFloat($('#djbz').attr('data-djfdj')) * parseFloat(daijiantieshu);
             $('#djf').val(djf);
             var djzfy = parseFloat(totalAmount) + parseFloat(djf);
-            totalAmount = roundingBy4she6ru5chengshuang(djzfy, 2)  //加上代煎费的算法：代煎单价*代煎贴数
+            totalAmount = roundingBy4she6ru5chengshuang(djzfy, 2)  //thêmtrênsắc hộphícủatínhphương pháp：sắc hộĐơn giá*sắc hộdánsố
         }
         else{
             totalAmount =totalAmount.toFixed(2);
         }
-        $('#tdTCMTotalAmount').html('');  //先清空
+        $('#tdTCMTotalAmount').html('');  //Xóa trắng trước
         $('#tdTCMTotalAmount').append('<label style="color:red;">￥' + totalAmount + '</label>');
     }
 
-    //是否代煎，关联费用
+    //CóKhôngsắc hộ，liên kếtChi phí
     $('#djbz').change(function(){
         CalculateTCMPresAmount();
     });
@@ -1109,15 +1109,15 @@
             return;
         }
         $.each($("#gridzycfnew").getDataIDs(), function () {
-            CalculateTCMEachLineSlANDJe(String(this));   //此处应该是计算每行的数量和金额（该方法中包含计算处方金额）
+            CalculateTCMEachLineSlANDJe(String(this));   //nàychỗứngCóTính toánmỗidòngcủaSố lượngvàSố tiền（Phương pháptronggóichứaTính số tiền đơn thuốc）
         });
     });
 
-    //新处方 按钮
+    //Đơn thuốc mới Nút
     function newTCMPresData() {
         var cfh= GetNewPresNo();
         var dataRow = {
-            cfId: null, //尚未保存到数据库
+            cfId: null, //cònchưaLưuđếnCơ sở dữ liệu
             cfh: cfh,
             cfh2: cfh,
             ybwym:GetGuid(19,62),
@@ -1134,10 +1134,10 @@
         //)
     }
 
-    //新增明细
+    //Thêm mớichi tiết
     function addTCMRowData(selRowId) {
         var selRowData = $("#gridzycfnew").getRowData(selRowId);
-        //2 新加一行
+        //2 mớithêmmộtdòng
         var dataRow = {
             cfId: selRowData.cfId,
             cfh: selRowData.cfh,
@@ -1155,7 +1155,7 @@
         //)
     }
 
-    //删除明细
+    //Xóa chi tiết
     function deleteTCMRowData(selRowId, recalc) {
         if (!!selRowId) {
             delSqtx("zycf",selRowId);
@@ -1169,14 +1169,14 @@
         }
     }
 
-    //保存
+    //Lưu
     function SaveTCMPres(savetodb, justUpdateAlldataArray) {
         debugger
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#gridzycfnew").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             var saveResult = $("#gridzycfnew").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
-            //库存检验
+            //Tồn khoXét nghiệm
             if(isMedicineSearchRelatedKC === 'True'){
                 var rowData = $("#gridzycfnew").getRowData(rowIds[i]);
                 var thissl = rowData.sl;
@@ -1188,8 +1188,8 @@
                 }
             }
             if (!saveResult) {
-                EnableTCMnewInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                return;   //保存失败，则return
+                EnableTCMnewInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
+                return;   //Lưu thất bại，thìreturn
             }
         }
         var tieshu = $('#tieshu').val();
@@ -1198,9 +1198,9 @@
         if ($('#daijiantieshu').val() == 0 || $('#daijiantieshu').val() == "") {
             djbz = false;
         }
-        var djfs = $('#djfs').val();//代煎方式
-        var djts = $('#daijiantieshu').val();//代煎付数
-        var cfzt = $('#cfzt').val();//嘱托
+        var djfs = $('#djfs').val();//sắc hộphươngkiểu
+        var djts = $('#daijiantieshu').val();//sắc hộtrảsố
+        var cfzt = $('#cfzt').val();//Dặn dò
         if (tieshu == null || tieshu=="") {
             $.modalAlert("Vui lòng điềnSố lần trả", "error");
             return;
@@ -1211,9 +1211,9 @@
         }
         var gridzycfnewData = $("#gridzycfnew").jqGrid('getRowData_AllLine', null, true);
         var zycfnewData = new Array();
-        $.each(gridzycfnewData, function () {    //去掉action
-            delete this.action;   //去掉action
-            delete this.jqRowId;   //去掉jqRowId
+        $.each(gridzycfnewData, function () {    //Bỏaction
+            delete this.action;   //Bỏaction
+            delete this.jqRowId;   //BỏjqRowId
 
             if (savetodb == '1') {
                 if (this.ypmc == undefined || this.ypmc == "") {
@@ -1306,13 +1306,13 @@
             this.isdzcf = $("#isdzcfzy").val();
         });
         if (!saveResult) {
-            EnableTCMnewInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-            return;   //保存失败，则return
+            EnableTCMnewInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
+            return;   //Lưu thất bại，thìreturn
         }
-        //保存数据
+        //Lưu dữ liệu
         window.alldataArray.zycf = $.jsonWhere(window.alldataArray.zycf, function(icfmx){
             if(!!!icfmx.cfId){
-                return false;   //编辑列表里有
+                return false;   //Sửatrong danh sách có
             }
             for(var iIndex = 0; iIndex < gridzycfnewData.length; iIndex++){
                 if(gridzycfnewData[iIndex].cfh == icfmx.cfh){
@@ -1369,7 +1369,7 @@
                     $.modalAlert("Lưu thành công", 'success');
                     var griddata = $("#gridzycfnew").jqGrid('getRowData_AllLine', null, true);
                     $.each($("#gridzycfnew").jqGrid('getRowData_AllLine', null, true),
-                        function () { //1.删除行
+                        function () { //1.Xóadòng
                             var selRowId = $(this.ypmc).attr('rowid');
                             deleteTCMRowData(selRowId, false);
                         });
@@ -1380,9 +1380,9 @@
                 }
             }
             else{
-                //跳回病历页
-                $('#myTab [href="#linkbl"]').trigger('click'); //初始化显示哪个tab
-                //病例页重新加载处方，处方数据发生了变更
+                //nhảy vềHồ sơtrang
+                $('#myTab [href="#linkbl"]').trigger('click'); //Khởi tạoHiển thịnàotab
+                //bệnhVDtranglạitảiĐơn thuốc，Dữ liệu đơn thuốc đã thay đổi
                 triggleActive();
             }
         }
@@ -1395,7 +1395,7 @@
         return "<i class='fa fa-plus-square-o' style='font-size: large; color: #09a3ea;' onclick='addTCMRowData($(this).parent().parent().attr(\"id\"));return false;'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-minus-square-o' style='font-size: large; color: #09a3ea;' onclick='deleteTCMRowData($(this).parent().parent().attr(\"id\"));return false;'></i>";
     }
 
-    //另存为模板
+    //Lưu thành mẫu
     function saveAsTCMTemplate(){
         $.modalOpen({
             id: "Form",
@@ -1409,20 +1409,20 @@
                     return;
                 }
                 $.modalClose("Form");
-                //模板表
+                //bảng mẫu
                 var mbObj = {
                     mblx: mbObj.mblx,
                     cflx: @Html.Raw(((int)EnumCflx.TCMPres).ToString()),
                     mbmc: mbObj.mbmc,
                 }
-                //获取所有行Id，遍历使编辑框处于保存状态
+                //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
                 var rowIds = $("#gridzycfnew").jqGrid('getDataIDs');
                 for (var i = 0; i < rowIds.length; i++) {
                     var saveResult = $("#gridzycfnew").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
                     if (!saveResult) {
-                        EnableTCMnewInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                        return;   //保存失败，则return
+                        EnableTCMnewInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
+                        return;   //Lưu thất bại，thìreturn
                     }
                 }
                 var gridzycfnewData = $("#gridzycfnew").jqGrid('getRowData_AllLine');
@@ -1435,9 +1435,9 @@
                 mbObj.cfyf = $('#cfyf').val();
                 mbObj.djbz = $('#djbz').is(':checked');
 
-                $.each(gridzycfnewData, function () {    //去掉action
-                    delete this.action;   //去掉action
-                    delete this.jqRowId;   //去掉jqRowId
+                $.each(gridzycfnewData, function () {    //Bỏaction
+                    delete this.action;   //Bỏaction
+                    delete this.jqRowId;   //BỏjqRowId
                 });
 
                 $.najax({
@@ -1450,7 +1450,7 @@
                         window.$('#current').trigger('click');
                     },
                     complete:function(){
-                        EnableWMInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
+                        EnableWMInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
                     }
                 });
 

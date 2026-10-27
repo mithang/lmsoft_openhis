@@ -56,7 +56,7 @@
 
     function init_jyPrescription() {
 
-        //仅尚未保存到数据库的医嘱需要初始化在grid中
+        //chỉ chưaLưuđếnCơ sở dữ liệucủaY lệnhcần khởi tạo tronggridtrong
         jylocaldata = new Array();
         if (window.alldataArray.jyyz) {
             jylocaldata = $.jsonWhere($.deepClone.clone(window.alldataArray.jyyz), function (icf) {
@@ -70,18 +70,18 @@
             });
         }
         else {
-            window.alldataArray.jyyz = new Array(); //方便后面使用$.each()
+            window.alldataArray.jyyz = new Array(); //Để tiện dùng về sau$.each()
         }
 
-        if (jyflag == 0) {   //该页面初始化
+        if (jyflag == 0) {   //Trang này khởi tạo
             gridAlreadyJYApplied();
             gridAlreadyJYGroupApplied();
             jyflag = 1;
         }
 
         else {
-            $("#alreadyJYAppliedList").clearGridData(); //先清
-            //再次打开该页面
+            $("#alreadyJYAppliedList").clearGridData(); //xóa trắng trước
+            //Mở lại trang này
             $('#alreadyJYAppliedList').newtouchLocalDataGrid(null, jylocaldata);
             if (jylocaldata.length>0&&jylocaldata[0].sqdh !== undefined) {
                 jysqdh = jclocaldata[0].sqdh;
@@ -90,7 +90,7 @@
     }
 
 
-    //组套列表
+    //Bộ mẫudanh sách
     function gridjy() {
         var $gridjy = $("#gridjy");
         $gridjy.dataGrid({
@@ -121,7 +121,7 @@
             //    gridjycheck(aRowids, status);
             //},
             gridComplete: function () {
-                //隐藏grid底部滚动条
+                //Ẩngridthanh cuộn dưới cùng
                 $gridjy.closest(".ui-jqgrid-bdiv").css({ "overflow-x": "hidden" });
             }
         });
@@ -130,10 +130,10 @@
     function gridjycheck(aRowids, status) {
         $.each(aRowids, function () {
             if (status === true) {
-              //190301 医保患者不能添加自费项目未确认是否使用住院医嘱
-                @*if (window.currPatientInfo.brxzCode != "" &&'@ViewBag.ControlbrxzCode'.indexOf(window.currPatientInfo.brxzCode) > -1 && this.sfyb == "否") {
-                     $.modalAlert("该患者为医保患者，不可选择自费项目【" + this.xmmc + "】", "warning");
-                     $("#gridjy").jqGrid('setSelection', rowid, false); //设置jqGrid选中
+              //190301 Bảo hiểm y tếBệnh nhânkhôngcó thểThêmmục tự chi trảchưaxác nhậnCóKhôngSử dụngNhập việnY lệnh
+                @*if (window.currPatientInfo.brxzCode != "" &&'@ViewBag.ControlbrxzCode'.indexOf(window.currPatientInfo.brxzCode) > -1 && this.sfyb == "Không") {
+                     $.modalAlert("Bệnh nhânlàBảo hiểm y tếBệnh nhân，không thể chọnmục tự chi trả【" + this.xmmc + "】", "warning");
+                     $("#gridjy").jqGrid('setSelection', rowid, false); //Cài đặtjqGridĐã chọn
                     return;
                 }*@
                 addJYRow(this);
@@ -152,7 +152,7 @@
         for (var i = 0; i < rowIds.length; i++) {
             var currRow = $("#alreadyJYAppliedList").getRowData(rowIds[i]);
             if (currRow.xmdm === sourceRowData.xmdm) {
-                return; //已添加过  //不能重复加
+                return; //đãThêmqua  //khôngcó thểtrùng lặpthêm
             }
         }
         //Thực hiệnadd
@@ -180,14 +180,14 @@
         for (var i = 0; i < rowIds.length; i++) {
             var currRow = $("#alreadyJYAppliedList").getRowData(rowIds[i]);
             if (currRow.xmdm === sourceRowData.xmdm) {
-                //Thực hiện移除
+                //Thực hiệnloại bỏ
                 $('#alreadyJYAppliedList').jqGrid("delRowData", rowIds[i]);
                 return;
             }
         }
     }
 
-    //计算申请单金额
+    //Tính toánPhiếuSố tiền
     function CalculateInsPresJYAmount($grid) {
         var totalAmount = 0.00;
         var allData = $grid.jqGrid('getRowData_AllLine', null, true);
@@ -200,7 +200,7 @@
             }
         });
         $grid.jqGrid("setCaption", "Chi tiết phiếu đã kê,Tổng số tiền phiếu:" + "<label style='color:red;'>￥"
-            + totalAmount.toFixed(2) + "</label>");   //重置caption属性值
+            + totalAmount.toFixed(2) + "</label>");   //Đặt lạicaptionThuộc tínhGiá trị
     }
 
     function gridAlreadyJYApplied() {
@@ -272,9 +272,9 @@
         return jysqdh;
     }
 
-    //保存按钮动作
+    //LưuNútthao tác
     function SaveInspection(savetodb) {
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#alreadyJYAppliedList").jqGrid('getDataIDs');
         if (rowIds.length < 1) {
             $.modalAlert("Thiếu dữ liệu y lệnh", "warning");
@@ -283,8 +283,8 @@
         for (var i = 0; i < rowIds.length; i++) {
             var saveResult = $("#alreadyJYAppliedList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
                 if (!saveResult) {
-                    EnableInInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                    return;   //保存失败，则return
+                    EnableInInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
+                    return;   //Lưu thất bại，thìreturn
                 }
 
         }
@@ -293,7 +293,7 @@
             $.modalAlert("Hiện tại không có nội dung đã lưu", 'warning');
         }
         $.each(gridjyData, function () {
-            delete this.jqRowId;   //去掉jqRowId
+            delete this.jqRowId;   //BỏjqRowId
             this.yzlx =@Html.Raw(((int)EnumYzlx.jy).ToString());
             this.zyh = currentobj.zyh;
             this.ysgh = '@ViewBag.ysgh';
@@ -306,10 +306,10 @@
             this.lcyx = $('#txt_jy_lcyx').val();
             this.sqbz = $('#txt_jy_sqbz').val();
         });
-        //保存数据
+        //Lưu dữ liệu
         window.alldataArray.jyyz = $.jsonWhere(window.alldataArray.jyyz, function (iyzmx) {
             if (!!!iyzmx.Id) {
-                return false;   //编辑列表里有
+                return false;   //Sửatrong danh sách có
             }
             for (var iIndex = 0; iIndex < gridjyData.length; iIndex++) {
                 if (gridjyData[iIndex].Id == iyzmx.Id) {
@@ -328,22 +328,22 @@
             submitService(gridjyData);
             window.alldataArray.jyyz = [];
             jysqdh = "";
-            $("#alreadyJYAppliedList").jqGrid("setCaption", "Chi tiết phiếu đã kê,Tổng số tiền phiếu:0.00");   //重置caption属性值
+            $("#alreadyJYAppliedList").jqGrid("setCaption", "Chi tiết phiếu đã kê,Tổng số tiền phiếu:0.00");   //Đặt lạicaptionThuộc tínhGiá trị
         }
 
     }
-    //启用行内编辑
+    //Bật sửa trong dòng
     function EnableInInlineEditBox() {
         var ids = $("#alreadyJYAppliedList").getDataIDs();
         $.each(ids, function () {
             var rowid = String(this);
-            //打开编辑模式
+            //MởSửachế độ
             $("#alreadyJYAppliedList").jqGrid('editRow', rowid, true);
         });
     }
 
     /********************************************************/
-    //显示选择检验组合
+    //Hiển thịchọnXét nghiệmnhómhợp
     function gridAlreadyJYGroupApplied() {
         $('#alreadyJYAppliedGroupList').newtouchLocalDataGrid({
             height: $(window).height() - 410,
@@ -366,7 +366,7 @@
         });
     }
 
-    //按组套保存按钮动作
+    //theoBộ mẫuLưuNútthao tác
     function SaveInspectionbyZt(savetodb) {
         //if (yjjzhmsg)
         //{
@@ -374,7 +374,7 @@
         //    return;
         //}
         var gridjyData;
-        //获取所有行Id，遍历使编辑框处于保存状态
+        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#alreadyJYAppliedGroupList").jqGrid('getDataIDs');
         if (rowIds.length < 1) {
             $.modalAlert("Thiếu dữ liệu y lệnh", "warning");
@@ -406,14 +406,14 @@
                     this.sqbz = $('#txt_jy_sqbz').val();
                     this.zxksdm = this.zxks;
                     this.ztmbId=jymbId;
-                    this.isjffffff='@ViewBag.openYjzxSwitch'=="ON" ? 0:1 //医技科室Thực hiện开关开启状态医嘱Thực hiện不入计费 医技Thực hiện后算入计费
+                    this.isjffffff='@ViewBag.openYjzxSwitch'=="ON" ? 0:1 //kỹ thuật y họcKhoaThực hiệnCông tắcbậtTrạng tháiY lệnhThực hiệnkhôngvàotínhphí kỹ thuật y họcThực hiệnsautínhvàotínhphí
                 });
 
             }
         });
         window.alldataArray.jyyz = $.jsonWhere(window.alldataArray.jyyz, function (iyzmx) {
             if (!!!iyzmx.Id) {
-                return false;   //编辑列表里有
+                return false;   //Sửatrong danh sách có
             }
             for (var iIndex = 0; iIndex < gridjyData.length; iIndex++) {
                 if (gridjyData[iIndex].Id == iyzmx.Id) {
@@ -432,7 +432,7 @@
             submitService(gridjyData);
             window.alldataArray.jyyz = [];
             jysqdh = "";
-            $("#alreadyJYAppliedGroupList").jqGrid("setCaption", "Chi tiết phiếu đã kê,Tổng số tiền phiếu:0.00");   //重置caption属性值
+            $("#alreadyJYAppliedGroupList").jqGrid("setCaption", "Chi tiết phiếu đã kê,Tổng số tiền phiếu:0.00");   //Đặt lạicaptionThuộc tínhGiá trị
         }
 
     }

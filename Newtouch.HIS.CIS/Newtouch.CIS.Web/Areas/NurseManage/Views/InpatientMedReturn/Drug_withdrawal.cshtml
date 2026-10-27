@@ -96,7 +96,7 @@
                                 <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
                             </td>
                             @*<td class="formTitle">
-                            <input type="button" id="btn_confirm" class="btn btn-md btn-primary" value="退药确认" />
+                            <input type="button" id="btn_confirm" class="btn btn-md btn-primary" value="trảthuốcxác nhận" />
                         </td>*@
                         </tr>
                     </table>
@@ -130,7 +130,7 @@
     var zyh = "";
     
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Khi thay đổi kích thước cửa sổ trình duyệt, tính lại rộng cao
             $(".dv-body").height($(window).height());
             $(".dv-body").width($(window).width());
         });
@@ -139,7 +139,7 @@
         getPatTreeList();
         gridList("");
 
-        //搜索病人信息
+        //tìm kiếmThông tin bệnh nhân
         $('#keyword').keyup(function () {
             getPatTreeList();
         });
@@ -180,12 +180,12 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_name').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
 
-    //刷新列表
+    //Làm mới danh sách
     function refleshMedList() {
         $("#btn_search").trigger('click');
     }
@@ -239,7 +239,7 @@
                     var rowData = $("#gridList").jqGrid('getRowData', rowIndex);
                     var ids = $("#gridList").jqGrid('getRowData_AllLine');
 
-                    liststu = s; //同步状态
+                    liststu = s; //Trạng thái đồng bộ
                     for (var i = 0; i < ids.length; i++) {
                         if (ids[i].tydh == rowData.tydh && ids[i].tydh != "") {
                             if (s == true) {
@@ -263,15 +263,15 @@
                 if (list.length > 0) {
 
                     for (j = j; j < list.length; j++) {
-                        if (liststu) //同组选中
+                        if (liststu) //Cùng nhómĐã chọn
                         {
                             j = j + 1;
                             $("#gridList").jqGrid("setSelection", list[j - 1], true);
 
                         }
-                        else { //同组取消选中
+                        else { //Cùng nhómHủyĐã chọn
                            // j = j + 1;
-                            $("#gridList").jqGrid("setSelection", list[j], false);      //取消不触发onselectrow
+                            $("#gridList").jqGrid("setSelection", list[j], false);      //Hủykhôngkích hoạtonselectrow
                         }
 
                     }

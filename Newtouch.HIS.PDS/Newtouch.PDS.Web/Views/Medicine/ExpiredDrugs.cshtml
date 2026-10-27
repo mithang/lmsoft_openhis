@@ -90,7 +90,7 @@
                 { label: 'Tên thuốc', name: 'ypmc', width: 150, align: 'left' },
                 { label: 'Loại thuốc', name: 'yplb', width: 50, align: 'left' },
                 { label: 'Số lượng tồn kho', name: 'kcsl', width: 70, align: 'left' },
-                //{ label: '药品属性', name: 'ypxzmc', width: 50, align: 'left' },
+                //{ label: 'Thuộc tính thuốc', name: 'ypxzmc', width: 50, align: 'left' },
                 { label: 'Quy cách', name: 'ypgg', width: 100, align: 'left' },
                 { label: 'Giá bán lẻ', name: 'lsj', width: 50, align: 'left' },
                 { label: 'Giá bán buôn', name: 'pfj', width: 50, align: 'left' },
@@ -126,7 +126,7 @@
         });
     }
 
-    //控制的药品显示红色
+    //Thuốc bị kiểm soát hiển thị màu đỏ
     function afterCompleteFunction() {
         var ids = $("#gridList").getDataIDs();
         for (i = 0; i < ids.length; i++) {
@@ -137,14 +137,14 @@
         }
     }
 
-    //药品类别
+    //Loại thuốc
     function initialddlYPLBList() {
         $("#yplb").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineCategoryList"
         });
     }
 
-    //药品剂型
+    //Dạng bào chế thuốc
     function initialddlJXList() {
         $("#ypjx").bindSelect({
             url: "/PharmacyDrugStorage/GetMedicineFormulationList",
@@ -153,7 +153,7 @@
         });
     }
 
-    //药品属性
+    //Thuộc tính thuốc
     function iniddlTSSXList() {
         $("#ypsx").bindSelect({
             url: "/Medicine/GetMedicineTSSXList",

@@ -8,12 +8,12 @@ using System.Threading.Tasks;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Herp API请求帮助类
+    /// Herp APIyêu cầugiúpgiúploại
     /// </summary>
     public class SiteHerpAPIHelper : SiteAPIRequestHelperBase<SiteHerpAPIHelper>
     {
         /// <summary>
-        /// 域Addr配置 的 Key
+        /// lĩnh vựcAddrcấu hình của Key
         /// </summary>
         private readonly static string _domainConfigKey = "SiteHerpAPIHost";
 

@@ -3,7 +3,7 @@
     public class SearchPatientRequest
     {
         /// <summary>
-        /// 证件号
+        /// Số giấy tờ
         /// </summary>
         public string? zjh { get; set; }
         /// <summary>
@@ -15,7 +15,7 @@
         /// </summary>
         public string? xm { get; set; }
         /// <summary>
-        /// 出生日期
+        /// Ngày sinh
         /// </summary>
         public DateTime? csrq { get; set; }
         /// <summary>

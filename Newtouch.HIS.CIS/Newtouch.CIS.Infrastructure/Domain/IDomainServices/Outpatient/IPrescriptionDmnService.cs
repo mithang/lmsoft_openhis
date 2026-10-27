@@ -10,13 +10,13 @@ namespace Newtouch.Domain.IDomainServices
     public interface IPrescriptionDmnService
     {
         /// <summary>
-        /// 历史处方树明细
+        /// lịch sửĐơn thuốccâychi tiết
         /// </summary>
         /// <param name="cfId"></param>
         IList<HistoryPresFormSelectVO> GetHistoryPresDetailByCfId(string cfId);
 
         /// <summary>
-        /// 根据cfId或cfmxIdStr查询明细
+        /// TheocfIdhoặccfmxIdStrTra cứuchi tiết
         /// </summary>
         /// <param name="cflx"></param>
         /// <param name="cfId"></param>
@@ -25,7 +25,7 @@ namespace Newtouch.Domain.IDomainServices
         List<PrescriptionDetailQueryVO> GetPresDetailList(int cflx, string cfId, string cfmxIdStr);
 
         /// <summary>
-        /// 医保患者审核收费项目是否含自费
+        /// Bảo hiểm y tếBệnh nhânPhê duyệtMục thu phílàKhôngchứatự chi trả
         /// </summary>
         /// <param name="sfxmCode"></param>
         /// <param name="cflx"></param>
@@ -33,7 +33,7 @@ namespace Newtouch.Domain.IDomainServices
         List<string> ValidateMedicalInsurance(Dictionary<int, string> dic, string orgId);
 
 		/// <summary>
-		/// 开立物资项目冻结库存数量
+		/// mởlậpvật tưMụcđôngkếtTồn khoSố lượng
 		/// </summary>
 		/// <param name="cfh"></param>
 		/// <param name="orgId"></param>
@@ -41,7 +41,7 @@ namespace Newtouch.Domain.IDomainServices
 		int Sumwzdj(string[] cfh,string orgId,string rygh);
 
 		/// <summary>
-		/// 开立物资项目冻结库存数量作废
+		/// mởlậpvật tưMụcđôngkếtTồn khoSố lượngHủy bỏ
 		/// </summary>
 		/// <param name="cfh"></param>
 		/// <param name="orgId"></param>
@@ -49,7 +49,7 @@ namespace Newtouch.Domain.IDomainServices
 		int ZUOFwzdj(string cfh, string orgId, string rygh);
 
         /// <summary>
-        /// 医保电子处方
+        /// Bảo hiểm y tếđiện tửĐơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="orgId"></param>

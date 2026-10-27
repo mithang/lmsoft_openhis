@@ -7,77 +7,77 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Outpatient
 {
     /// <summary>
-    /// 患者过敏信息
+    /// Bệnh nhânquamẫnthông tin
     /// </summary>
     public class PatientGmxxDetailVO
     {
         /// <summary>
-        /// 过敏信息表主键
+        /// quamẫnthông tinbảngKhóa chính
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 出生年月
+        /// rasinhnămTháng
         /// </summary>
         public DateTime csrq { get; set; }
 
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public string sex { get; set; }
 
         /// <summary>
-        /// 病历号
+        /// Số bệnh án
         /// </summary>
         public string blh { get; set; }
 
         /// <summary>
-        /// 门诊号
+        /// Số khám ngoại trú
         /// </summary>
         public string mzh { get; set; }
 
         /// <summary>
-        /// 过敏项目
+        /// quamẫnMục
         /// </summary>
         public string xmCode { get; set; }
 
         /// <summary>
-        /// 过敏项目名称
+        /// quamẫnTên mục
         /// </summary>
         public string xmmc { get; set; }
 
         /// <summary>
-        /// 过敏类型
+        /// quamẫnLoại
         /// </summary>
         public string gmlx { get; set; }
 
         /// <summary>
-        /// 过敏类型名称
+        /// quamẫnTên loại
         /// </summary>
         public string gmlxmc { get; set; }
 
         /// <summary>
-        /// 过敏药品
+        /// quamẫnThuốc
         /// </summary>
         public string gmyp { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string Remark { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorName { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
     }

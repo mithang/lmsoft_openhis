@@ -4,68 +4,68 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Domain.ValueObjects.Storage
 {
     /// <summary>
-    /// 结转明细
+    /// kết chuyểnchi tiết
     /// </summary>
     public class VCarryOverDetailEntity
     {
         /// <summary>
-        /// 物资名称
+        /// vật tưTên
         /// </summary>
         public string wzmc { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// vật tưID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 结转数量（带单位）
+        /// kết chuyểnSố lượng（mangĐơn vị）
         /// </summary>
         public string jzsl { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 供应商名称
+        /// Nhà cung cấpTên
         /// </summary>
         public string supplierName { get; set; }
 
         /// <summary>
-        /// 零售价 对应zhyz单位
+        /// Giá bán lẻ tương ứngzhyzĐơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 零售总额
+        /// tổng bán lẻ
         /// </summary>
         public decimal lsze { get; set; }
 
         /// <summary>
-        /// 部门单位名称
+        /// Khoa phòngTên đơn vị
         /// </summary>
         public string bmdwmc { get; set; }
 
         /// <summary>
-        /// 库存数量 最小单位
+        /// Tồn khoSố lượng Đơn vị nhỏ nhất
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
     }

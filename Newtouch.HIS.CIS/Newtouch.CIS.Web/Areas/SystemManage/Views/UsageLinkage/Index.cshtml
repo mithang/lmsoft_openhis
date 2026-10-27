@@ -79,7 +79,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -92,13 +92,13 @@
             url: "/SystemManage/UsageLinkage/Form",
             width: "700px",
             height: "350px",
-            showleftlalbel: true,//新增时显示'确认并关闭按钮'
+            showleftlalbel: true,//Thêm mớikhiHiển thị'xác nhận vàĐóngNút'
             leftlalbelchecked: false,
             leftlabeltext: "Nhập liên tục",
             leftlalbelcheckedasClose: false,
             callBack: function (iframeId, isClose) {
                 $.currentWindow(iframeId).AcceptClick(function () {
-                    $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                    $('#gridList').jqGrid("clearGridData"); //xóachi tiếtcủagrid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                     if (isClose == undefined || isClose === true) {
@@ -122,13 +122,13 @@
             url: "/SystemManage/UsageLinkage/Form?keyValue=" + keyValue,
             width: "700px",
             height: "350px",
-            showleftlalbel: true,//新增时显示'确认并关闭按钮'
+            showleftlalbel: true,//Thêm mớikhiHiển thị'xác nhận vàĐóngNút'
             leftlalbelchecked: false,
             leftlabeltext: "Nhập liên tục",
             leftlalbelcheckedasClose: false,
             callBack: function (iframeId, isClose) {
                 $.currentWindow(iframeId).AcceptClick(function () {
-                    $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                    $('#gridList').jqGrid("clearGridData"); //xóachi tiếtcủagrid
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");
                     if (isClose == undefined || isClose === true) {

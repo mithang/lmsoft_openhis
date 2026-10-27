@@ -6,23 +6,23 @@ using System.Security.Claims;
 namespace NewtouchHIS.Lib.Services
 {
     /// <summary>
-    /// 基于ClaimsPrincipal实现的用户信息接口。
+    /// Giao diện thông tin người dùng triển khai dựa trên ClaimsPrincipal.
     /// </summary>
     [Serializable]
     public class IdentityCachePrincipal : IIdentityCache
     {
         /// <summary>
-        /// IHttpContextAccessor对象
+        /// IHttpContextAccessorđối tượng
         /// </summary>
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         /// <summary>
-        /// 如果IHttpContextAccessor.HttpContext?.User非空获取HttpContext的ClaimsPrincipal，否则获取线程的CurrentPrincipal
+        /// NếuIHttpContextAccessor.HttpContext?.UserNếu không trống lấy ClaimsPrincipal của HttpContext, ngược lại lấy của luồngCurrentPrincipal
         /// </summary>
         protected ClaimsPrincipal Principal => _httpContextAccessor!.HttpContext!.User ?? (Thread.CurrentPrincipal as ClaimsPrincipal);
 
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
         /// <param name="httpContextAccessor"></param>
         public IdentityCachePrincipal(IHttpContextAccessor httpContextAccessor)

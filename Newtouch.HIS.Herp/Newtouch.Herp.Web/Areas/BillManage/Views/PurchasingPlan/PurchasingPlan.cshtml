@@ -118,7 +118,7 @@
 <script>
     var $gridMxList = $("#gridMxInfo");
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Tải lại chiều rộng jqGrid khi thay đổi kích thước cửa sổ trình duyệt
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
@@ -135,14 +135,14 @@
         Initial();
     });
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode === 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //初始化
+    //Khởi tạo
     function Initial() {
         getLbSelectTree();
         gridList();
@@ -150,7 +150,7 @@
         TabGridHide();
     }
 
-    //隐藏搜索框并显示箭头
+    //Ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -162,7 +162,7 @@
         }
     }
 
-    //类别
+    //Loại
     function getLbSelectTree() {
         $("#lb").bindSelect({
             url: "/ProductManage/ProductType/GetPatientTreeSelectJson"
@@ -174,7 +174,7 @@
         posdata.xslkc = $("#xslkc").is(":checked") ? "0" : "1";
         return posdata;
     }
-    //主表信息
+    //Thông tin bảng chính
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -195,7 +195,7 @@
                      }
                  },
                  //{
-                 //    label: '<span class="required">*</span>采购数量', name: 'cgsl', width: 80, align: 'center',
+                 //    label: '<span class="required">*</span>Số lượng mua sắm', name: 'cgsl', width: 80, align: 'center',
                  //    formatter: function (cellvalue, options) {
                  //        return "<input name=\"cgsl\" id=\"sel_cgsl_" + options.rowId + "\" rowid=" + options.rowId + "  class=\"scan-input editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" />";
                  //    }
@@ -271,23 +271,23 @@
                 }).trigger('reloadGrid');
         });
     }
-    //启用行内编辑
+    //Bật chỉnh sửa trong dòng
     function EnableInlineEditBox(rowid) {
-        $("#gridList").jqGrid('editRow', rowid, false, initInlineFunc);//打开编辑模式
+        $("#gridList").jqGrid('editRow', rowid, false, initInlineFunc);//Mở chế độ chỉnh sửa
     }
-    //初始化 浮层
+    //Khởi tạo lớp nổi
     function initInlineFunc(rowid) {
         InitGys(rowid + "_wzmc", rowid);
         initDw(rowid);
     }
-    //初始化供应商
+    //Khởi tạo nhà cung cấp
     function InitGys($thistr, rowid) {
         $("#sel_gys_" + rowid).bindSelect({ url: "/SupplierManage/Supplier/GetSuppliers", id: "Id", text: "name" });
         $("#sel_gys_" + rowid).change(function () {
             $("#" + rowid + "_gysId").val($(this).val());
         });
     }
-    //初始化单位
+    //Khởi tạo đơn vị
     function initDw(rowid) {
         $.najax({
             url: "/ProductManage/Product/ProductUnitsQuery",
@@ -305,7 +305,7 @@
             }
         });
     }
-    //明细信息
+    //Thông tin chi tiết
     function gridMxInfo() {
         $gridMxList.dataGrid({
             url: "",
@@ -341,7 +341,7 @@
         });
     }
 
-    //设置库存有效与否
+    //Đặt tồn kho có hiệu lực hay không
     function operateZt(obj) {
         var zt = "1";
         var ph = $gridMxList.getRowData($(obj).attr("rowId")).ph;
@@ -362,7 +362,7 @@
             dataType: "json",
             success: function (data) {
                 if (data.state === 'success') {
-                    //$.modalMsg("修改库存状态成功", "success", 1000);
+                    //$.modalMsg("Sửa trạng thái tồn kho thành công", "success", 1000);
                 }
                 else {
                     $.modalMsg(data, "error", 1000);
@@ -371,11 +371,11 @@
         });
     }
 
-    //获取url中的参数
+    //Lấyurltham số trong
     function getQueryString(name) {
-        // 匹配目标参数
+        // khớp tham số đích
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
+        var result = window.location.search.substr(1).match(reg); // Đối vớiquerystringkhớp tham số đích
         if (result != null) {
             return decodeURIComponent(result[2]);
         } else {
@@ -401,7 +401,7 @@
         });
         if (validationFailedArr.length > 0) {
             for (var i = 0; i < validationFailedArr.length; i++) {
-                $gridList.jqGrid('editRow', validationFailedArr[i], false, initInlineFunc);//打开编辑模式
+                $gridList.jqGrid('editRow', validationFailedArr[i], false, initInlineFunc);//Mở chế độ chỉnh sửa
             }
             return;
         }
@@ -428,19 +428,19 @@
                     $.modalAlert(res.message, "error");
                     var rowIds = $gridList.getDataIDs();
                     for (var i = 0; i < rowIds.length; i++) {
-                        $gridList.jqGrid('editRow', rowIds[i], false, initInlineFunc);//打开编辑模式
+                        $gridList.jqGrid('editRow', rowIds[i], false, initInlineFunc);//Mở chế độ chỉnh sửa
                     }
                 }
             }
         });
     }
-    //数值验证
+    //Kiểm tra giá trị số
     function Validately(rowData, rowid) {
         if (rowData.wzmc === "" || rowData.productId === "") {
             $.modalMsg('Vật tư bắt buộc chọn', 'error', 1000);
             return false;
         }
-        var reg = /^[1-9]\d*$/;//大于0的整数
+        var reg = /^[1-9]\d*$/;//Lớn hơn0số nguyên
         if (!reg.test(rowData.cgsl)) {
             $.modalMsg("Số lượng phải là số nguyên lớn hơn 0！", "warning", 1500);
             return false;
@@ -448,7 +448,7 @@
         return true;
     }
 
-    //组装提交数据
+    //Ghép dữ liệu gửi lên
     function AssembleData(rowData, rowid) {
         var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
         return {
@@ -462,7 +462,7 @@
             supplierName: $("#sel_gys_" + rowid).find("option:selected").text()
         };
     }
-    //加载出库至科室出库单号
+    //Tải số phiếu xuất kho tới khoa
     function GetNewBillNo() {
         $.najax({
             url: "/BillManage/PurchasingPlan/GetNewPurchasingPlanBillNo?r=" + Math.random(),

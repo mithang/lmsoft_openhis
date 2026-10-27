@@ -322,7 +322,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
                 {
                     string jfbhs = string.Join(",", wzList.Where(m => m.sfxm.Contains("wz")).Select(p => p.jfbbh));
                     _hospItemBillingRepo.Updatezyaddfee(OrganizeId, jfbhs,ItemFeeVO[0].yfdm,this.UserIdentity.UserCode);
-                    //cập nhậtcisnhập việnBệnh nhân预览phải侧phíThẻ片thông tin
+                    //cập nhậtcisnhập việnBệnh nhânXem trướcphảibênphíThẻphimthông tin
                     _hospdrugbillingRepo.Updatezy_brxxexpand(OrganizeId, zyh);
                 }
                 else
@@ -371,7 +371,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #endregion HIS ghi sổ nhập viện
 
-        #region ghi sổ nhập viện ghi sổ theo kế hoạch，写jzjh，Thông qua thực hiện，Vàozy_xmjfb zy_ypjfbghi dữ liệu tính phí 2018.03Logic một phần kế hoạch ngoại trú cũng ở đây
+        #region ghi sổ nhập viện ghi sổ theo kế hoạch，viếtjzjh，Thông qua thực hiện，Vàozy_xmjfb zy_ypjfbghi dữ liệu tính phí 2018.03Logic một phần kế hoạch ngoại trú cũng ở đây
 
         #region
 
@@ -403,7 +403,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// ghi sổ thực hiện 计划 thực hiện页
+        /// ghi sổ thực hiện Kế hoạch thực hiệntrang
         /// </summary>
         /// <returns></returns>
         public IActionResult AccountingExecution()
@@ -446,7 +446,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// PopLớp Dừng kế hoạchghi sổ Chọn 预（Dừng）Ngày
+        /// PopLớp Dừng kế hoạchghi sổ Chọn trước（Dừng）Ngày
         /// </summary>
         /// <returns></returns>
         public IActionResult StopPlan()
@@ -522,7 +522,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// 终止 Kế hoạchghi sổ
+        /// Chấm dứt Kế hoạchghi sổ
         /// </summary>
         /// <param name="jzjhmxIdStr"></param>
         /// <returns></returns>
@@ -686,7 +686,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #region ghi sổ ngoại trú bản 4，Lượng điều trị mỗi lần
         /// <summary>
-        /// Lưughi sổ ngoại trútrong容
+        /// Lưughi sổ ngoại trútrongdung
         /// </summary>
         /// <param name="bacDto"></param>
         /// <param name="xmList"></param>
@@ -834,7 +834,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #endregion ghi sổ nhập viện vàOptimaĐồng bộ dữ liệu
 
-        #region quyết toán phí quyết toán xuất viện（nó实là配合nhập việnghi sổ theo kế hoạch加trêncủa，nhưng感觉比较通用）
+        #region quyết toán phí quyết toán xuất viện（nóthựclàphốihợpnhập việnghi sổ theo kế hoạchthêmtrêncủa，nhưngcảmcảm thấysokháthôngdùng）
 
         /// <summary>
         /// quyết toán phí chưaquyết toánIndex
@@ -875,7 +875,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             var startTime = _BookkeepInHosDmnService.GetLastValidMidwaySettTime(zyh, this.OrganizeId);
             if (!startTime.HasValue)
             {
-                //取Ngày nhập viện
+                //lấyNgày nhập viện
                 startTime = new DateTime(1970, 01, 01);
             }
             //Để không tra được
@@ -978,7 +978,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             startTime = _BookkeepInHosDmnService.GetLastValidMidwaySettTime(zyh, this.OrganizeId);
             if (!startTime.HasValue)
             {
-                startTime = new DateTime(1970, 01, 01);  //Chưaquyết toán过của话 từNhập việnBắt đầu算所cóMục
+                startTime = new DateTime(1970, 01, 01);  //Chưaquyết toánquacủalời từNhập việnBắt đầutínhnơicóMục
             }
             var jsItemList = _hospItemBillingRepo.GetItemFeeEntityListByTime(zyh, this.OrganizeId, startTime.Value, DateTime.Now);
 
@@ -1080,7 +1080,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// lấyTrả vềtrong容trongcủaflaggiá trị
+        /// lấyTrả vềtrongdungtrongcủaflaggiá trị
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>
@@ -1099,7 +1099,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// từxmltrong提取tableNamecủaDataTable
+        /// từxmltrongTrích xuấttableNamecủaDataTable
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>

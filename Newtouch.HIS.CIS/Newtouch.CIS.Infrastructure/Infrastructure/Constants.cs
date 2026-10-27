@@ -12,7 +12,7 @@ namespace Newtouch.Infrastructure
     public class Constants
     {
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Tổ chứcId（đỉnhcấp，Hệ thốngcấu hình）
         /// </summary>
         public static string TopOrganizeId
         {
@@ -23,7 +23,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Tổ chứcId（đỉnhcấp，Hệ thốngcấu hình）
         /// </summary>
         public static string AppId
         {
@@ -34,7 +34,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取当前的药剂部门（药房或药库）
+        /// Lấyhiện tạicủathuốcliềuKhoa phòng（Nhà thuốchoặcKho thuốc）
         /// </summary>
         public static LoginUserCurrentYfbmModel CurrentYfbm
         {
@@ -46,7 +46,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 获取当前的药剂部门（药房或药库）
+        /// Lấyhiện tạicủathuốcliềuKhoa phòng（Nhà thuốchoặcKho thuốc）
         /// </summary>
         /// <param name="userId"></param>
         public static LoginUserCurrentYfbmModel GetCurrentYfbm(string userId)
@@ -55,12 +55,12 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 时间格式化
+        /// Thời gianđịnh dạnghóa
         /// </summary>
         public const string DateTimeFormat = "yyyy-MM-dd HH:mm:ss";
 
         /// <summary>
-        /// 返回最小时间 1970-01-01 00:00:000
+        /// Quay lạinhấtnhỏThời gian 1970-01-01 00:00:000
         /// </summary>
         public static DateTime MinDateTime
         {

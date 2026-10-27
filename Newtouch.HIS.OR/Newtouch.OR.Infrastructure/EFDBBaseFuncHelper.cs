@@ -16,7 +16,7 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
         public static EFDBBaseFuncHelper Instance => new EFDBBaseFuncHelper();
 
         /// <summary>
-        /// 指定DB上下文 (kept for signature compatibility; the OR connection
+        /// Chỉ địnhDBNgữ cảnh (kept for signature compatibility; the OR connection
         /// is always used — cross-DB variants pass a fully-qualified proc name
         /// through GetNewFieldUniqueValueDB instead).
         /// </summary>
@@ -88,9 +88,9 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
             return Tuple.Create(outNum.Value, outFmt.Value);
         }
 
-        #region 应用
+        #region Ứng dụng
         /// <summary>
-        /// 获取手术申请号
+        /// Lấy số đơn đăng ký phẫu thuật
         /// </summary>
         public static string GetOPApplyNo(string orgId)
         {
@@ -109,7 +109,7 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
     }
 
     /// <summary>
-    /// 上下文 类型 (kept for signature compatibility; only DefaultDB is used)
+    /// Ngữ cảnh Loại (kept for signature compatibility; only DefaultDB is used)
     /// </summary>
     public enum EnumDBFactoryType
     {

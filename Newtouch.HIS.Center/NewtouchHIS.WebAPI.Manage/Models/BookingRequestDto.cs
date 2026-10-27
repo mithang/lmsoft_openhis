@@ -6,11 +6,11 @@ namespace NewtouchHIS.WebAPI.Manage.Models
     {
         public string OrgId { get; set; }
         /// <summary>
-        /// Bệnh nhân唯一标识
+        /// Bệnh nhânMã định danh duy nhất
         /// </summary>
         public string patid { get; set; }
         /// <summary>
-        /// 身份证号
+        /// Số CMND
         /// </summary>
         public string zjh { get; set; }
         /// <summary>
@@ -29,69 +29,69 @@ namespace NewtouchHIS.WebAPI.Manage.Models
 
         public string ksmc { get; set; }
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ks { get; set; }
         /// <summary>
-        /// 预约就诊日期
+        /// Ngày khám theo hẹn
         /// </summary>
         public string outDate { get; set; }
         /// <summary>
-        /// 起始就诊日期
+        /// Ngày khám bắt đầu
         /// </summary>
         public string FromoutDate { get; set; }
         public string ys { get; set; }
         /// <summary>
-        /// 门诊类型 普通专家副高等
+        /// Loại ngoại trú Thông thường, chuyên gia, phó cao cấp v.v.
         /// </summary>
         public string regType { get; set; }
         /// <summary>
-        /// mz_ghpb_config  排班id
+        /// mz_ghpb_config  Lịch trựcid
         /// </summary>
         public string ghpbId { get; set; }
         /// <summary>
-        /// mz_ghpb_schedule 预约既定日程Id
+        /// mz_ghpb_schedule Lịch trình đã định của đặt hẹnId
         /// </summary>
         public string scheduId { get; set; }
         /// <summary>
-        /// 挂号性质 自费医保等 brxz 等同
+        /// Tính chất đăng ký khám Tự chi trả, BHYT v.v. brxz Tương đương
         /// </summary>
         public string ghxz { get; set; }
         /// <summary>
-        /// 预约号
+        /// Số đặt hẹn
         /// </summary>
         public string bookId { get; set; }
         /// <summary>
-        /// 门诊预约状态
+        /// Trạng thái đặt hẹn ngoại trú
         /// </summary>
         public int? yyzt { get; set; }
         /// <summary>
-        /// 已支付费用
+        /// Chi phí đã thanh toán
         /// </summary>
         public string PayFee { get; set; }
         /// <summary>
-        /// 支付流水号
+        /// Số giao dịch thanh toán
         /// </summary>
         public string PayLsh { get; set; }
         /// <summary>
-        /// 联系方式
+        /// Phương thức liên hệ
         /// </summary>
         public string lxdh { get; set; }
         /// <summary>
-        /// 开始日期
+        /// Ngày bắt đầu
         /// </summary>
         public string ksrq { get; set; }
         /// <summary>
-        /// 结束日期
+        /// Ngày kết thúc
         /// </summary>
         public string jsrq { get; set; }
         /// <summary>
-        /// 挂号日期
+        /// Ngày đăng ký khám
         /// </summary>
         public string ghrq { get; set; }
         /// <summary>
-        /// 挂号来源辅助标识 区分同一来源的不同标记Bệnh nhân
-        /// 体检用
+        /// Mã phụ trợ nguồn đăng ký khám Phân biệt dấu hiệu khác nhau của cùng một nguồnBệnh nhân
+        /// Dùng cho khám sức khỏe
         /// </summary>
         public string ghlybz { get; set; }
     }

@@ -19,7 +19,7 @@ using System.Threading.Tasks;
 namespace Newtouch.OR.ManageSystem.Web.Controllers
 {
     /// <summary>
-    /// 登录登出. Core login goes through LoginBaseController.CheckLogin -> BaseAPI.
+    /// Đăng nhập/Đăng xuất. Core login goes through LoginBaseController.CheckLogin -> BaseAPI.
     /// GetUALoginAddres is inherited from LoginBaseController (it resolves the
     /// address from BusinessConfig AppAPIHostName, same result as the original
     /// ConfigurationHelper keys). UALogin is ported up to the identity-exchange
@@ -46,20 +46,20 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         [HttpGet]
         public override IActionResult Index()
         {
-            //移除SSO登录来源标记
+            //XóaSSOĐánh dấu nguồn đăng nhập
             HttpWebHelper.RemoveCookie(ConfigInitHelper.SysConfig.AppId + "_LoginFromFlag");
 
             return base.Index();
         }
 
         /// <summary>
-        /// 统一授权登录
+        /// Đăng nhập ủy quyền thống nhất
         /// </summary>
         public async Task<IActionResult> UALogin(string access_token, string returnUrl)
         {
             if (string.IsNullOrWhiteSpace(access_token))
             {
-                return RedirectToAction("Index", "Login"); //缺少令牌
+                return RedirectToAction("Index", "Login"); //Thiếu token
             }
 
             var eOpr = OperatorProvider.GetCurrent();
@@ -78,10 +78,10 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
             var uaApi = _staticConfig?["UAUserInfoGetAPI"];
             if (string.IsNullOrWhiteSpace(uaApi))
             {
-                return RedirectToAction("Index", "Login"); //未配置身份换取的API地址
+                return RedirectToAction("Index", "Login"); //Chưa cấu hìnhAPIđịa chỉ
             }
 
-            //向API请求换取身份
+            //TớiAPIYêu cầu đổi lấy danh tính
             var sw = new Stopwatch();
             sw.Start();
             var reqObj = new
@@ -101,7 +101,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
                     var jResp = JObject.Parse(body);
                     if (jResp["code"]?.ToString() != "0" && jResp["code"]?.ToString()?.ToUpper() != "SUCCESS")
                     {
-                        return RedirectToAction("Index", "Login"); //身份换取失败
+                        return RedirectToAction("Index", "Login"); //Đổi lấy danh tính thất bại
                     }
                     sw.Stop();
                     // Core has no QuickLoginSuccess equivalent: fall back to normal login.
@@ -110,12 +110,12 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
             }
             catch
             {
-                return RedirectToAction("Index", "Login"); //身份换取失败
+                return RedirectToAction("Index", "Login"); //Đổi lấy danh tính thất bại
             }
         }
 
         /// <summary>
-        /// 统一授权预热（预热打开CIS页面）
+        /// Khởi động trước ủy quyền thống nhất（Mở khởi động trướcCISTrang）
         /// </summary>
         public static void UALoginPre(OperatorModel opr)
         {

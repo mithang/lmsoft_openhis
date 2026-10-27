@@ -20,58 +20,58 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// 医嘱号，同一医嘱号内包含多个yzId
+        /// Số y lệnh，Trong cùng một số y lệnh chứa nhiềuyzId
         /// </summary>
         /// <returns></returns>
         public string yzh { get; set; }
         /// <summary>
-        /// 本地医嘱分组序号
+        /// Số thứ tự nhóm y lệnh địa phương
         /// </summary>
         /// <returns></returns>
         public int? zh { get; set; }
         /// <summary>
-        /// 病区代码
+        /// Mã khu bệnh
         /// </summary>
         /// <returns></returns>
         public string WardCode { get; set; }
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         /// <returns></returns>
         public string DeptCode { get; set; }
         /// <summary>
-        /// 医生代码
+        /// Mã bác sĩ
         /// </summary>
         /// <returns></returns>
         public string ysgh { get; set; }
         /// <summary>
-        /// 频次代码
+        /// Mã tần suất
         /// </summary>
         /// <returns></returns>
         public string pcCode { get; set; }
 
         /// <summary>
-        /// 滴速  滴/分钟
+        /// Tốc độ nhỏ giọt  giọt/phút
         /// </summary>
         public int? ds { get; set; }
 
         /// <summary>
-        /// 执行次数
+        /// Số lần thực hiện
         /// </summary>
         /// <returns></returns>
         public int? zxcs { get; set; }
         /// <summary>
-        /// 执行周期
+        /// Chu kỳ thực hiện
         /// </summary>
         /// <returns></returns>
         public int? zxzq { get; set; }
         /// <summary>
-        /// 执行周期单位 -1:不规则周期，0：天,1：小时,2：分钟.注意：当为-1时，周代码（zdm）为数字（1234567）中的任意几个数字
+        /// Đơn vị chu kỳ thực hiện -1:Chu kỳ không đều，0：ngày,1：giờ,2：phút.Chú ý：Khi là-1khi，Mã tuần（zdm）là số（1234567）vài số bất kỳ trong
         /// </summary>
         /// <returns></returns>
         public int? zxzqdw { get; set; }
         /// <summary>
-        /// 周代码
+        /// Mã tuần
         /// </summary>
         /// <returns></returns>
         public string zdm { get; set; }
@@ -86,37 +86,37 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         /// <returns></returns>
         public string xmmc { get; set; }
         /// <summary>
-        /// 医嘱状态 0待审，1审核，2执行，3取消(DC)，4停止
+        /// Trạng thái y lệnh 0Chờ xét，1Duyệt，2Thực hiện，3Hủy(DC)，4Dừng
         /// </summary>
         /// <returns></returns>
         public int yzzt { get; set; }
         /// <summary>
-        /// 剂量单位
+        /// Đơn vị liều lượng
         /// </summary>
         /// <returns></returns>
         public string dw { get; set; }
         /// <summary>
-        /// 0 通用 1 自备
+        /// 0 Chung 1 Tự chuẩn bị
         /// </summary>
         /// <returns></returns>
         public int zbbz { get; set; }
         /// <summary>
-        /// 药品，项目录入时，存每天数量，出院带药，存总量。文字录入数量为0
+        /// Thuốc，Khi nhập hạng mục，Lưu Số lượng mỗi ngày，Thuốc mang về khi xuất viện，Lưu tổng lượng。Số lượng nhập bằng chữ là0
         /// </summary>
         /// <returns></returns>
         public int sl { get; set; }
         /// <summary>
-        /// 单位类别 0剂量单位，1药库单位，2门诊单位，3住院单位，4进货单位(指示医嘱单位类别为0)
+        /// Loại đơn vị 0Đơn vị liều lượng，1Đơn vị kho thuốc，2Đơn vị ngoại trú，3Đơn vị nội trú，4Đơn vị nhập hàng(Loại đơn vị y lệnh chỉ thị là0)
         /// </summary>
         /// <returns></returns>
         public int dwlb { get; set; }
         /// <summary>
-        /// 本地医嘱类别 0：药品医嘱，1：抗生素医嘱，2：检查医嘱，3：检验医嘱，4：指示医嘱，5：普通医嘱 ， 6 停止医嘱， 7  出院带药， 8 膳食医嘱， 9 手术医嘱   10  中草药  
+        /// Loại y lệnh địa phương 0：Y lệnh thuốc，1：Y lệnh kháng sinh，2：Y lệnh kiểm tra，3：Y lệnh xét nghiệm，4：Y lệnh chỉ thị，5：Y lệnh thường ， 6 Y lệnh dừng， 7  Thuốc mang về khi xuất viện， 8 Y lệnh ăn uống， 9 Y lệnh phẫu thuật   10  Thuốc thảo dược Trung Quốc  
         /// </summary>
         /// <returns></returns>
         public int yzlx { get; set; }
         /// <summary>
-        /// 停止医生代码
+        /// Mã bác sĩ dừng
         /// </summary>
         /// <returns></returns>
         public string zfysgh { get; set; }
@@ -126,17 +126,17 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         /// <returns></returns>
         public DateTime? zfsj { get; set; }
         /// <summary>
-        /// 停止操作员号
+        /// Số nhân viên thao tác dừng
         /// </summary>
         /// <returns></returns>
         public string zfr { get; set; }
         /// <summary>
-        /// 审核日期
+        /// Ngày duyệt
         /// </summary>
         /// <returns></returns>
         public DateTime? shsj { get; set; }
         /// <summary>
-        /// 审核操作员号
+        /// Số nhân viên thao tác duyệt
         /// </summary>
         /// <returns></returns>
         public string shr { get; set; }
@@ -151,47 +151,47 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         /// <returns></returns>
         public string ssr { get; set; }
         /// <summary>
-        /// 开始日期
+        /// Ngày bắt đầu
         /// </summary>
         /// <returns></returns>
         public DateTime kssj { get; set; }
         /// <summary>
-        /// 执行日期(护士)
+        /// Ngày thực hiện(Y tá)
         /// </summary>
         /// <returns></returns>
         public DateTime? zxsj { get; set; }
         /// <summary>
-        /// 给病人执行医嘱的护士
+        /// Y tá thực hiện y lệnh cho bệnh nhân
         /// </summary>
         /// <returns></returns>
         public string zxr { get; set; }
         /// <summary>
-        /// 药品剂量
+        /// Liều lượng thuốc
         /// </summary>
         /// <returns></returns>
         public decimal? ypjl { get; set; }
         /// <summary>
-        /// 药品规格
+        /// Quy cách thuốc
         /// </summary>
         /// <returns></returns>
         public string ypgg { get; set; }
         /// <summary>
-        /// 嘱托内容
+        /// Nội dung dặn dò
         /// </summary>
         /// <returns></returns>
         public string ztnr { get; set; }
         /// <summary>
-        /// 医嘱内容
+        /// Nội dung y lệnh
         /// </summary>
         /// <returns></returns>
         public string yznr { get; set; }
         /// <summary>
-        /// 药品用法
+        /// Cách dùng thuốc
         /// </summary>
         /// <returns></returns>
         public string ypyfdm { get; set; }
         /// <summary>
-        /// 执行科室代码
+        /// Mã khoa thực hiện
         /// </summary>
         /// <returns></returns>
         public string zxksdm { get; set; }
@@ -227,7 +227,7 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         public string zt { get; set; }
 
         /// <summary>
-        /// 患者姓名
+        /// Tên bệnh nhân
         /// </summary>
         public string hzxm { get; set; }
 
@@ -240,19 +240,19 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         public string ztmc { get; set; }
 
         /// <summary>
-        /// 抗生素原因
+        /// Lý do kháng sinh
         /// </summary>
         public string kssReason { get; set; }
         /// <summary>
-        /// 申请类型，传到pacs用
+        /// Loại đơn xin，Truyền tớipacsdùng
         /// </summary>
         public string sqlx { get; set; }
         /// <summary>
-        /// 部位方法
+        /// Phương pháp vị trí
         /// </summary>
         public string bwff { get; set; }
         /// <summary>
-        /// 申请单号，针对检验检查
+        /// Số đơn xin，Nhằm vào xét nghiệm kiểm tra
         /// </summary>
         public string sqdh { get; set; }
 
@@ -260,37 +260,37 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
 
         public string sqbz { get; set; }
         /// <summary>
-        /// 申请单处理状态（0、已申请 1、已接收 2、已完成） 
+        /// Trạng thái xử lý đơn xin（0、Đã xin 1、Đã nhận 2、Đã hoàn thành） 
         /// </summary>
         public int? sqdzt { get; set; }
 
         /// <summary>
-        /// 代煎标志
+        /// Cờ sắc hộ
         /// </summary>
         public int? djbz { get; set; }
         /// <summary>
-        /// 出院带药标志
+        /// Cờ mang thuốc xuất viện
         /// </summary>
         public int? cydybz { get; set; }
 
         /// <summary>
-        /// 转自费标志
+        /// Cờ chuyển tự trả
         /// </summary>
         public int? zzfbz { get; set; }
         /// <summary>
-        /// 申请状态
+        /// Trạng thái xin
         /// </summary>
         public int? syncStatus { get; set; }
         /// <summary>
-        ///  处方标签 JI 精I JII 精II MZ 麻醉
+        ///  Nhãn đơn thuốc JI tinhI JII tinhII MZ Gây mê
         /// </summary>
         public string yztag { get; set; }
         /// <summary>
-        /// 是否计费(0:否 不计入费用明细 1:是)
+        /// Có tính phí không(0:Không Không tính vào chi tiết phí 1:Có)
         /// </summary>
         public int? isjf { get; set; }
         /// <summary>
-        /// 执行中标志  1 正在执行
+        /// Cờ đang thực hiện  1 Đang thực hiện
         /// </summary>
         public string zxing { get; set; }
         public string ispscs { get; set; }

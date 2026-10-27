@@ -71,7 +71,7 @@
 
 
 
-    //新建
+    //Tạo mới
     $('#btn_add').click(function () {
         $.modalOpen({
             id: "Form",
@@ -87,7 +87,7 @@
         });
     });
 
-    //修改
+    //Sửa
     $('#btn_edit').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
 
@@ -118,7 +118,7 @@
         });
     });
 
-    //提交
+    //Gửi
     $('#btn_submit').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {
@@ -146,7 +146,7 @@
         });
     });
 
-    //作废
+    //Hủy bỏ
     $('#btn_delete').click(function () {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
         if (selRowIds == null || selRowIds.length == 0) {

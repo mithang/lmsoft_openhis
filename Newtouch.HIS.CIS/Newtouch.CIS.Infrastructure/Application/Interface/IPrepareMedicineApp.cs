@@ -13,34 +13,34 @@ namespace Newtouch.Application.Interface
     public interface IPrepareMedicineApp
     {
         /// <summary>
-        /// 根据损益类型获取损益原因
+        /// Theolãi lỗLoạiLấynguyên nhân lãi lỗ
         /// </summary>
         /// <param name="sylx"></param>
         /// <returns></returns>
         List<SysMedicineProfitLossReasonEntity> GetLossProfitReasonListByType(string sylx);
 
         /// <summary>
-        /// 查询损益药品list
+        /// Tra cứulãi lỗThuốclist
         /// </summary>
-        /// <param name="inputCode">关键字</param>
+        /// <param name="inputCode">Từ khóa</param>
         /// <returns></returns>
         List<ReportLossAndProfitMedicineInfoVO> SelectLossAndProfitMedicineList(string inputCode);
 
         /// <summary>
-        /// 提交报损报溢
+        /// GửiBáo hỏngbáo thừa
         /// </summary>
         /// <param name="syxx"></param>
         /// <returns></returns>
         string SubmitReportLossAndProfit(SysMedicineProfitLossEntity[] syxx);
 
         /// <summary>
-        /// 报损报溢 保存
+        /// Báo hỏngbáo thừa Lưu
         /// </summary>
         /// <param name="profitLossEntityList"></param>
         //void SaveReportLossAndProfit(List<SysMedicineProfitLossEntity> profitLossEntityList);
 
         /// <summary>
-        /// 报损报溢查询
+        /// Báo hỏngbáo thừaTra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="startTime"></param>
@@ -52,13 +52,13 @@ namespace Newtouch.Application.Interface
         IList<LossAndProditInfoVO> SelectLossAndProditInfoList(Pagination pagination, string startTime, string endTime, string inputCode, string syyy, int syqk);
 
         /// <summary>
-        /// 批发价总金额、零售价总金额查询
+        /// Giá bán buônTổng số tiền、Giá bán lẻTổng số tiềnTra cứu
         /// </summary>
-        /// <param name="startTime">开始时间</param>
-        /// <param name="endTime">结束时间</param>
-        /// <param name="syyy">损益原因</param>
-        /// <param name="inputCode">关键字</param>
-        /// <param name="syqk">损益情况</param>
+        /// <param name="startTime">Thời gian bắt đầu</param>
+        /// <param name="endTime">Thời gian kết thúc</param>
+        /// <param name="syyy">nguyên nhân lãi lỗ</param>
+        /// <param name="inputCode">Từ khóa</param>
+        /// <param name="syqk">lãi lỗtình hình</param>
         /// <returns></returns>
         LossAndProditInfoJeVo ComputePjzeAndLjze(string startTime, string endTime, string syyy, string inputCode, int syqk);
     }

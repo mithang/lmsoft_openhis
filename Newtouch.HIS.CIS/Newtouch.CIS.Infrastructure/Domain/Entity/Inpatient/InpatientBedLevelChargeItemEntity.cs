@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 创 建：黄杉杉
-    /// 日 期：2018-12-12 15:37
-    /// 描 述：住院床位费用对应表
+    /// Tạo：hoàng杉杉
+    /// Ngày：2018-12-12 15:37
+    /// Mô tả：Nhập việnPhí giường bệnhdùngtương ứngbảng
     /// </summary>
     [SugarTable("zy_LevelChargedy")]
     public class InpatientBedLevelChargeItemEntity
@@ -57,7 +57,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0无效1有效
+        /// 0Vô hiệu1Hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }

@@ -3,117 +3,117 @@ using System;
 namespace Newtouch.HIS.Domain.DO
 {
     /// <summary>
-    /// 资源预定
+    /// Đặt trước tài nguyên
     /// </summary>
     public class BookItemDo
     {
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string YpCode { get; set; }
 
         /// <summary>
-        /// 最小单位数量
+        /// Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int Sl { get; set; }
 
         /// <summary>
-        /// 药房部门
+        /// Bộ phận nhà thuốc
         /// </summary>
         public string Yfbm { get; set; }
 
         /// <summary>
-        /// 成组号
+        /// Số nhóm
         /// </summary>
         public string czh { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string Cfh { get; set; }
         /// <summary>
-        /// 处方明细Id
+        /// Chi tiết đơn thuốcId
         /// </summary>
         public string CfmxId { get; set; }
 
         /// <summary>
-        /// 医嘱执行ID
+        /// Thực hiện y lệnhID
         /// </summary>
         public string Yzzxid { get; set; }
 
         /// <summary>
-        /// 医嘱执行ID
+        /// Thực hiện y lệnhID
         /// </summary>
         public string zxId { get; set; }
 
         /// <summary>
-        /// 组织结构ID
+        /// Cơ cấu tổ chứcID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 操作人
+        /// Người thao tác
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 提档日期/(或CreateTime)
+        /// Ngày lấy hồ sơ/(hoặcCreateTime)
         /// </summary>
         public DateTime AdtTdrq { get; set; }
 
         /// <summary>
-        /// 返回
+        /// Trả về
         /// </summary>
         public string Res { get; set; }
 
         /// <summary>
-        /// 组号
+        /// Số nhóm
         /// </summary>
         public int? zh { get; set; }
     }
 
     /// <summary>
-    /// 取消排药
+    /// Hủy xếp thuốc
     /// </summary>
     public class CancelArrangement
     {
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 医嘱ID
+        /// Y lệnhID
         /// </summary>
         public string yzId { get; set; }
 
         /// <summary>
-        /// 医嘱执行ID
+        /// Thực hiện y lệnhID
         /// </summary>
         public string zxId { get; set; }
 
         /// <summary>
-        /// 药房部门代码
+        /// Mã bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 组织机构Id
+        /// Tổ chứcId
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 登录用户
+        /// Người dùng đăng nhập
         /// </summary>
         public string userCode { get; set; }
     }

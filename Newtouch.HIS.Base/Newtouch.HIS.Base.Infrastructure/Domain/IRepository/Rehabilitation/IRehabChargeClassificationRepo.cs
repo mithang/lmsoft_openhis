@@ -10,22 +10,22 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface IRehabChargeClassificationRepo : IRepositoryBase<RehabChargeClassificationEntity>
     {
         /// <summary>
-        /// 获得所有列表
+        /// Lấy tất cả danh sách
         /// </summary>
         List<RehabChargeClassificationEntity> GetRehabChargeClassificationList(string OrganizeId, string keyword = null);
 
         /// <summary>
-        /// 修改form
+        /// Sửaform
         /// </summary>
         RehabChargeClassificationEntity GetRehabChargeClassificationEntity(string sfflId, string OrganizeId);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         void SubmitForm(RehabChargeClassificationEntity entity, string sfflId);
         
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         void DeleteForm(string sfflId, string OrganizeId);
     }

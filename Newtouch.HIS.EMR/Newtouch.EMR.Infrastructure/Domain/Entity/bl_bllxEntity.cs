@@ -10,7 +10,7 @@ namespace Newtouch.EMR.Domain.Entity
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
         /// <summary>
-        /// ͱʶ
+        /// Định danh loại bệnh án
         /// </summary>
         public string bllx { get; set; }
         public string bllxmc { get; set; }       
@@ -21,33 +21,33 @@ namespace Newtouch.EMR.Domain.Entity
         public string zt { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// λ
+        /// Chức vụ liên kết
         /// </summary>
         public string RelDutys { get; set; }
         /// <summary>
-        /// ͼ
+        /// Mã ngắn loại bệnh án
         /// </summary>
         public string bllxcode { get; set; }
         /// <summary>
-        /// 
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
         /// <summary>
-        /// ݱ ΪʱĬ
+        /// Bảng dữ liệu liên kết, mặc định khi trống
         /// </summary>
         public string relTB { get; set; }
         /// <summary>
-        /// Ŀ¼㼶 ʼ㼶1
+        /// Cấp thư mục, cấp ban đầu là 1
         /// </summary>
         public string MenuLev { get; set; }
         /// <summary>
-        /// Ŀ¼㼶 Ĭһʱ ԡָ
+        /// Tên cấp thư mục, mặc định cấp một là thời gian, phân tách bằng ※
         /// </summary>
         public string MenuLevName { get; set; }
         public string ParentId { get; set; }
         public string IsRoot { get; set; }
         /// <summary>
-        /// ģʶ 1  
+        /// Định danh mẫu ngoại trú, 1 là ngoại trú
         /// </summary>
         public string mzbz { get; set; }
     }

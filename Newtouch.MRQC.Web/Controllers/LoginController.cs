@@ -10,7 +10,7 @@ using NewtouchHIS.Lib.Framework.Attributes;
 namespace Newtouch.MRQC.Web.Controllers
 {
     /// <summary>
-    /// 登录登出 (SSO/UA callback actions from the Framework version are dropped:
+    /// Đăng nhập/đăng xuất (SSO/UA callback actions from the Framework version are dropped:
     /// they depend on external SSO/UA hosts that do not exist in this deployment.
     /// Core login goes through LoginBaseController.CheckLogin -> BaseAPI.)
     /// </summary>
@@ -28,7 +28,7 @@ namespace Newtouch.MRQC.Web.Controllers
         [HttpGet]
         public override IActionResult Index()
         {
-            //移除SSO登录来源标记
+            //Xóa dấu nguồn đăng nhập SSO
             HttpWebHelper.RemoveCookie(ConfigInitHelper.SysConfig.AppId + "_LoginFromFlag");
 
             return base.Index();

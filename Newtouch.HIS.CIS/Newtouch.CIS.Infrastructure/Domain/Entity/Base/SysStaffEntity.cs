@@ -6,24 +6,24 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 系统人员
+    /// Hệ thống ngườiviên
     /// </summary>
     [SugarTable("Sys_Staff")]
     public class SysStaffEntity
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public string Id { get; set; }
 
         /// <summary>
-        /// 组织机构Id（科室所对应的OrganizeId）
+        /// Tổ chứcId（Khoasởtương ứngcủaOrganizeId）
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 组织机构Id（顶级，系统配置）
+        /// Tổ chứcId（đỉnhcấp，Hệ thốngcấu hình）
         /// </summary>
         public string TopOrganizeId { get; set; }
 
@@ -36,87 +36,87 @@ namespace Newtouch.HIS.Domain.Entity
 
         public string zjh { get; set; }
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string Name { get; set; }
 
         /// <summary>
-        /// 首拼
+        /// Mã đầu chữ
         /// </summary>
         public string py { get; set; }
 
         /// <summary>
-        /// 部门Code
+        /// Khoa phòngCode
         /// </summary>
         public string DepartmentCode { get; set; }
 
         /// <summary>
-        /// 职称
+        /// Chức danh
         /// </summary>
         public string zc { get; set; }
 
         /// <summary>
-        /// 头像
+        /// Ảnh đại diện
         /// </summary>
         public string HeadIcon { get; set; }
 
         /// <summary>
-        /// 性别
+        /// Giới tính
         /// </summary>
         public bool? Gender { get; set; }
 
         /// <summary>
-        /// 生日
+        /// Ngày sinh
         /// </summary>
         public DateTime? Birthday { get; set; }
 
         /// <summary>
-        /// 手机
+        /// Điện thoại
         /// </summary>
         public string MobilePhone { get; set; }
 
         /// <summary>
-        /// 邮箱
+        /// Email
         /// </summary>
         public string Email { get; set; }
 
         /// <summary>
-        /// 微信
+        /// WeChat
         /// </summary>
         public string WeChat { get; set; }
 
         /// <summary>
-        /// 主管主键
+        /// chínhquảnKhóa chính
         /// </summary>
         public string ManagerCode { get; set; }
 
         /// <summary>
-        /// 排序码
+        /// Thứ tựmã
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 描述
+        /// Mô tả
         /// </summary>
         public string Description { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建用户
+        /// tạoNgười dùng
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改用户
+        /// Sửa cuốiNgười dùng
         /// </summary>
         public string LastModifierCode { get; set; }
 
@@ -126,22 +126,22 @@ namespace Newtouch.HIS.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// 康复类别
+        /// Loại phục hồi chức năng
         /// </summary>
         public string kflb { get; set; }
 
 
         /// <summary>
-        /// 套餐权限（根据枚举）
+        /// góiQuyền（TheoLiệt kê）
         /// </summary>
         public string mbqx { get; set; }
         /// <summary>
-        /// 国家医师代码
+        /// Mã bác sĩ quốc gia
         /// </summary>
         public string gjybdm { get; set; }
 
         /// <summary>
-        /// 微软邮箱
+        /// 微mềmEmail
         /// </summary>
 
         public string MsEmail { get; set; }

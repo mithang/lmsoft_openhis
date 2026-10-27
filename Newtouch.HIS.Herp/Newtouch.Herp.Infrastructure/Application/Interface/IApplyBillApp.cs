@@ -4,12 +4,12 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Application.Interface
 {
     /// <summary>
-    /// 申领单管理
+    /// Quản lý phiếu lĩnh
     /// </summary>
     public interface IApplyBillApp
     {
         /// <summary>
-        /// 提交科室申领单
+        /// Gửi phiếu lĩnh của khoa phòng
         /// </summary>
         /// <param name="sld"></param>
         /// <param name="sldmx"></param>
@@ -18,7 +18,7 @@ namespace Newtouch.Herp.Application.Interface
         string SubmitDepartmentApply(KfApplyOrderEntity sld, List<KfApplyOrderDetailEntity> sldmx, string organizeId);
 
         /// <summary>
-        /// 提交申领发货
+        /// Gửi phát hàng theo phiếu lĩnh
         /// </summary>
         /// <param name="ckmx"></param>
         /// <param name="organizeId"></param>

@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Bảng phân tích giá thuốc";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //报表链接
+    //Liên kết báo cáo
     var reportUrl = SysConfigReader.OrgReportLink();
     var reportUrlNew = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
@@ -44,7 +44,7 @@
 
     $(function () {
 
-        //药品代码
+        //Mã thuốc
         $("#keyword").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             height: 200,
@@ -125,7 +125,7 @@
         $('#layout iframe').css('height', h);
     });
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }
@@ -134,7 +134,7 @@
         debugger
         var reportServerHOST = '@(ViewBag.ReportServerHOST)';
         reportServerHOST += "/Pages/ReportViewer.aspx?%2fNewtouch.HIS.Bill%2fYPDrugComparison";
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (reportServerHOST.indexOf('&rc:Stylesheet') == -1) {
                 reportServerHOST += "&rc:Stylesheet=MyStyleSheet";

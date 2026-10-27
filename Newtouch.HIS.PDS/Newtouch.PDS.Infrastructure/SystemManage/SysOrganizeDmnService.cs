@@ -9,13 +9,13 @@ using FrameworkBase.MultiOrg.Infrastructure;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// 组织机构 DmnService
+    /// Tổ chức DmnService
     /// </summary>
     public class SysOrganizeDmnService : DmnServiceBase, ISysOrganizeDmnService
     {
         
         /// <summary>
-        /// 获取组织机构类型（集团、医院）
+        /// Lấy loại tổ chức（Tập đoàn、Bệnh viện）
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -29,7 +29,7 @@ where a.Id = @orgId and (b.TopOrganizeId = @topOrgId or b.TopOrganizeId = '*')";
         }
 
         /// <summary>
-        /// 是否含有下级机构，有下级机构返回true
+        /// Có chứa tổ chức cấp dưới không，Trả về nếu có tổ chức cấp dướitrue
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ where a.Id = @orgId and (b.TopOrganizeId = @topOrgId or b.TopOrganizeId = '*')";
         }
 
         /// <summary>
-        /// 获取组织下的所有有效组织（parent）
+        /// Lấy tất cả tổ chức hiệu lực thuộc tổ chức（parent）
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeVEntity> GetValidListByParentOrg(string parentOrgId)
@@ -49,9 +49,9 @@ where a.Id = @orgId and (b.TopOrganizeId = @topOrgId or b.TopOrganizeId = '*')";
     WITH cteTree
         AS (SELECT *
               FROM [NewtouchHIS_Base]..V_S_Sys_Organize
-              WHERE Id = @parentOrgId --第一个查询作为递归的基点(锚点)
+              WHERE Id = @parentOrgId --Truy vấn đầu tiên làm điểm cơ sở đệ quy(Điểm neo)
             UNION ALL
-            SELECT [NewtouchHIS_Base]..V_S_Sys_Organize.*     --第二个查询作为递归成员， 下属成员的结果为空时，此递归结束。
+            SELECT [NewtouchHIS_Base]..V_S_Sys_Organize.*     --Truy vấn thứ hai làm thành viên đệ quy， Khi kết quả thành viên cấp dưới trống，Đệ quy này kết thúc。
               FROM
                    cteTree INNER JOIN [NewtouchHIS_Base]..V_S_Sys_Organize ON cteTree.Id= [NewtouchHIS_Base]..V_S_Sys_Organize.ParentId) 
         SELECT  *
@@ -100,7 +100,7 @@ where a.Id = @orgId and (b.TopOrganizeId = @topOrgId or b.TopOrganizeId = '*')";
         }
 
         /// <summary>
-        /// 获取所有的顶级组织机构
+        /// Lấy tất cả tổ chức cấp cao nhất
         /// </summary>
         /// <returns></returns>
         public IList<SysOrganizeVEntity> GetValidTopOrgList()

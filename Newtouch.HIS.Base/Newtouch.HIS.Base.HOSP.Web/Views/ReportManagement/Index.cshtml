@@ -85,7 +85,7 @@
     document.getElementById("btn_blick").style.display = "none";
     //$(".dv-left-tree").height($(window).height() - 70);
     $(function () {
-        $(window).resize(function () {//浏览器窗口调整大小时重新计算宽高
+        $(window).resize(function () {//Khi cửa sổ trình duyệt đổi kích thước thì tính lại chiều rộng và cao
             $(".dv-body").height($(window).height());
             $(".dv-body").width($(window).width());
         });
@@ -127,7 +127,7 @@
 
     }
     //window.addEventListener('message', function (e) {
-    //    console.log('a.html 接收到的消息:', e.data)
+    //    console.log('a.html Tin nhắn đã nhận:', e.data)
     //});
     function gridList() {
         var $gridList = $("#gridList");
@@ -167,8 +167,8 @@
                 if (status == true) {
                     var rowData = $("#gridList").jqGrid('getRowData', rowid);
                     if (rowData != null && rowData != "undefied") {
-                        if (rowData.ismx != null && rowData.ismx != "0") {//禁用条件
-                            //var d = "6,9bb029d0-5da0-4118-9d19-06b829eede46,报表";
+                        if (rowData.ismx != null && rowData.ismx != "0") {//Điều kiện vô hiệu hóa
+                            //var d = "6,9bb029d0-5da0-4118-9d19-06b829eede46,Báo cáo";
                             //window.sessionStorage["report_data"] = d;
                             $.najax({
                                 url: "/ReportManagement/GetReportMXData",
@@ -190,8 +190,8 @@
                             });
                             
                            
-                            ////*表示任何域都可以监听。    }      
-                            ////当我监听到message事件的时候，我就知道有人向我发送数据了，我获得了数据就可以做对应的事情。内部对消息做实现    
+                            ////*thể hiện bất kỳ miền nào cũng có thể lắng nghe。    }      
+                            ////Khi tôi lắng nghe đượcmessagekhi sự kiện，Tôi biết có người gửi dữ liệu cho tôi，Tôi có dữ liệu thì có thể làm việc tương ứng。Nội bộ thực hiện tin nhắn    
                            
                              
                             //var childWindow = $("#mainIframe")[0].contentWindow;
@@ -218,14 +218,14 @@
     //    });
     //    var nodeid = $("#BBTreeList").attr('data-nodeid');
     //    alert(nodeid);
-    //    $(".bbit-tree-node-ct .bbit-tree-node div").append('<a onclick="ReportAdd()" style="color:red;float:right;">' + "新增&nbsp;&nbsp;" + '</a>');
+    //    $(".bbit-tree-node-ct .bbit-tree-node div").append('<a onclick="ReportAdd()" style="color:red;float:right;">' + "Thêm mới&nbsp;&nbsp;" + '</a>');
     //}
     function gridload() {
         $("#gridList").jqGrid('setGridParam', {
             postData: {},
         }).trigger('reloadGrid');
     }
-    //新增报表列
+    //Thêm cột báo cáo
     function ReportAdd(ReportId) {
         $.modalOpen({
             id: "Form",
@@ -239,7 +239,7 @@
         });
         gridload();
     }
-    //主报表新增
+    //Thêm báo cáo chính
     function ReportMainAdd(ReportId) {
         $.modalOpen({
             id: "Form",
@@ -253,7 +253,7 @@
         });
         gridload();
     }
-    //报表删除
+    //Xóa báo cáo
     function ReportDel(ReportId) {
         $.modalConfirm("Bạn có chắc muốn xóa báo cáo hiện tại??", function (flag) {
             if (flag) {
@@ -281,7 +281,7 @@
         });
         
     }
-    //主报表删除
+    //Xóa báo cáo chính
     function ReportDelMain(ReportId) {
         $.modalConfirm("Bạn có chắc muốn xóa báo cáo hiện tại??", function (flag) {
             if (flag) {
@@ -309,7 +309,7 @@
         });
 
     }
-    //报表停止
+    //Dừng báo cáo
     function ReportStop(ReportId) {
         $.najax({
             url: "/ReportManagement/ReportStopOrON",
@@ -329,7 +329,7 @@
         });
 
     }
-    //开启
+    //Bật
     function ReportON(ReportId) {
         $.najax({
             url: "/ReportManagement/ReportStopOrON",

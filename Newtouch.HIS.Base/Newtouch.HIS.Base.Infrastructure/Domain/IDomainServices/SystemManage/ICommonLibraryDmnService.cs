@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         
         void SyncCommonSfxm(SysChargeItemBaseEntity sysChargeItemBaseEntity,string organizeId);
         /// <summary>
-        /// 修改信息时,绑定修改值
+        /// Khi sửa thông tin,Gắn giá trị sửa đổi
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

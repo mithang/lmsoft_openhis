@@ -3,14 +3,14 @@
 @{
     ViewBag.Title = "ReceiptApproval";
     Layout = "~/Views/Shared/_Index.cshtml";
-    var djlxItemStrs = "1,2,3,4,5,6"; //对应枚举EnumDanJuLX
+    var djlxItemStrs = "1,2,3,4,5,6"; //Enum tương ứngEnumDanJuLX
     if (Constants.CurrentYfbm.yfbmjb == "2")  //Nhà thuốc
     {
-        djlxItemStrs = "3,4,6"; //可审核 直接发药、申领发药、科室发药
+        djlxItemStrs = "3,4,6"; //Có thể duyệt Phát thuốc trực tiếp、Phát thuốc theo đơn lĩnh、Phát thuốc cho khoa
     }
     else   //Kho thuốc
     {
-        djlxItemStrs = "1,2,5";  //可审核 Nhập kho thuốc、Xuất kho trực tiếp、Trả lại phát thuốc nội bộ
+        djlxItemStrs = "1,2,5";  //Có thể duyệt Nhập kho thuốc、Xuất kho trực tiếp、Trả lại phát thuốc nội bộ
     }
 }
 <style>
@@ -86,7 +86,7 @@
 })
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
             $("#gridDJMainRecords").setGridHeight(($(window).height() - 300) / 2);
@@ -96,7 +96,7 @@
         gridDJMainRecords();
     });
 
-    //初始化
+    //Khởi tạo
     function Init() {
         $('#ddlSHZT').val('@((int)EnumDjShzt.WaitingApprove)');//.bindSelect();
         var djlx = getQueryString("djlx");
@@ -105,7 +105,7 @@
         }
     }
 
-    //单据主记录
+    //Bản ghi chính của chứng từ
     function gridDJMainRecords() {
         var $gridDjMainRecords = $("#gridDJMainRecords");
         $gridDjMainRecords.dataGrid({
@@ -162,9 +162,9 @@
         return { qsrj: qsrj, jsrj: jsrj, pdh: pdh, fph: fph, djlx: djlx, shzt: shzt };
     };
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        //每次单击，先清空明细 再重新加载所有选中行明细
+        //Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $('#gridDJMXInfo').jqGrid("clearGridData");
         $.najax({
             type: "POST",
@@ -177,13 +177,13 @@
                 //    $('#gridDJMXInfo').newtouchLocalDataGrid(null, ajaxresp.data);
                 //}
                 //else {
-                //    $.modalMsg("获取明细失败", "error", 1000);
+                //    $.modalMsg("Lấy chi tiết thất bại", "error", 1000);
                 //}
             }
         });
     }
 
-    //单据明细
+    //Chi tiết chứng từ
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: ($(window).height() - 300) / 2,
         caption: "Chi tiết chứng từ",
@@ -212,11 +212,11 @@
             { label: 'Pinyin', name: 'py', width: 100, align: 'left', hidden: true },
             { label: 'Số lượng', name: 'slanddw', width: 60, align: 'left', hidden: true }
         ],
-        gridComplete: function () {//jqGrid加载完后执行的方法
+        gridComplete: function () {//jqGridPhương thức thực hiện sau khi tải xong
         },
     });
 
-    //补发票号
+    //Bổ sung số hóa đơn
     function UpdateFph(obj) {
         var fph = $(obj).val();
         var crkmxId = $("#gridDJMXInfo").getRowData($(obj).attr("rowid")).crkmxId;
@@ -243,22 +243,22 @@
 
         }
     }
-    //审核
+    //Duyệt
     function newtouch_event_f6() {
         submitReceiptApproval(@((int)EnumDjShzt.Approved));
     }
 
-    //未通过
+    //Không đạt
     function newtouch_event_f7() {
         submitReceiptApproval(@((int)EnumDjShzt.Rejected));
     }
 
-    //作废
+    //Hủy bỏ
     function newtouch_event_f8() {
         submitReceiptApproval(@((int)EnumDjShzt.Cancelled));
     }
 
-    //更新单据审核状态，提交至服务器
+    //Cập nhật trạng thái duyệt chứng từ，Gửi lên máy chủ
     function submitReceiptApproval(dstnShzt) {
         var selRowData = $("#gridDJMainRecords").jqGridRowValue();
         if (!selRowData || !selRowData.crkId || !selRowData.djlx) {
@@ -288,11 +288,11 @@
         }
     }
 
-    //获取url中的参数
+    //Lấyurltham Số trong
     function getQueryString(name) {
-        // 匹配目标参数
+        // Khớp tham Số đích
         var reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i");
-        var result = window.location.search.substr(1).match(reg); // 对querystring匹配目标参数
+        var result = window.location.search.substr(1).match(reg); // đối vớiquerystringKhớp tham Số đích
         if (result != null) {
             return decodeURIComponent(result[2]);
         } else {

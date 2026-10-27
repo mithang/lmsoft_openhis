@@ -31,7 +31,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
         }
 
         /// <summary>
-        /// 获取病案首页病人基本信息
+        /// Lấy thông tin cơ bản của bệnh nhân ở trang đầu bệnh án
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>

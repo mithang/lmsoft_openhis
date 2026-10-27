@@ -3,7 +3,7 @@
     Layout = null;
 }
 @*<div class="panel-heading">
-    <span style="font-weight:bold;">患者详情</span>
+    <span style="font-weight:bold;">Chi tiết bệnh nhân</span>
 </div>*@
 <div id="dv_detail" role="tabpanel" >
     <div id="dv_oplist" style="padding:2px 2px 2px 10px;">
@@ -33,8 +33,8 @@
                 <tr>
                     <th class="formTitle">Khoa phòng:</th>
                     <td class="formValue"><span id="bqmc">___________</span></td>
-                    @*<th class="formTitle">护理级别：</th>
-                    <td class="formValue">I级</td>*@
+                    @*<th class="formTitle">Cấp chăm sóc：</th>
+                    <td class="formValue">Cấp I</td>*@
                     <th class="formTitle">Số giường:</th>
                     <td class="formValue"><span id="bedcode">___________</span></td>
                 </tr>
@@ -88,8 +88,8 @@ $(function () {
                 { label: "Tên phẫu thuật", name: "ssmcn", width: 150, align: 'left' },
                 { label: "Thời gian phẫu thuật", name: "sssj", width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                 { label: "Bác sĩ mổ chính", name: "ysxm", width: 80, align: 'left' },
-                //{ label: "手术间", name: "ssj", width: 50, align: 'left' },
-                //{ label: "台次", name: "sstc", width: 30, align: 'left' },
+                //{ label: "Phòng phẫu thuật", name: "ssj", width: 50, align: 'left' },
+                //{ label: "Lượt mổ", name: "sstc", width: 30, align: 'left' },
                 { label: "sqzt", name: "sqzt", hidden: true },
                 {
                     label: "Trạng thái phẫu thuật", name: "sqztmc", width: 60, align: 'left', formatter: function (val, option, row) {
@@ -104,7 +104,7 @@ $(function () {
                         
                     }
                 },
-                //{ label: "状态", name: "sqzt", width: 50, align: 'left' },
+                //{ label: "Trạng thái", name: "sqzt", width: 50, align: 'left' },
                 {
                     label: "Chi tiết", name: "", width: 160, align: 'center', formatter(val, option, row) {
                         // debugger
@@ -127,7 +127,7 @@ $(function () {
                 //var gfxScore = $('#gridList').jqGrid('getRowData', 1).AvgScore;
                 //$("#gfxScore").text(gfxScore);
             },
-            //caption: "手术申请列表",
+            //caption: "Danh sách đơn đăng ký phẫu thuật",
             sortname: "sssj desc",
             //rowNum: 10,
             //pager: "#gridPagerOP",
@@ -157,7 +157,7 @@ $(function () {
         });
     }
 
-    //查看手术申请详情
+    //Xem chi tiết đơn đăng ký phẫu thuật
     function showDetailOld(rowid) {
         //debugger
         var dat = $("#gridListOP").jqGrid('getRowData', rowid);
@@ -196,14 +196,14 @@ $(function () {
 				}
 				$("#ysgh").val(data.ysxm);
 				$("#mzys").val(data.mzysName);
-				//手术名称
+				//Tên phẫu thuật
 				//$("#tablessmc").html('<tr><td><i class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td><td class="formValue"><input type="text"  id="ssmc" name="ssmc" class="form-control activeValue focusInput ssmcText" /><input id="ssdm" type="hidden" /></td></tr>');
 				//$("#tablessmc").html('<tbody><tr><td><i id="zdCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"></i></td ><td class="formValue"><input type="text" class="form-control activeValue focusInput ssmcText" id="ssmc" name="ssmc" data-releatednfs="true"><input id="ssdm" type="hidden"></td></tr></tbody>');
 
-				//清空手术名称
+				//XóaTên phẫu thuật
 				$('#tablessmc .minusToggleCircle').click();
-				var number = data.ss.length;//手术数量
-				if (number > 0) {//主手术赋值
+				var number = data.ss.length;//Số lượng phẫu thuật
+				if (number > 0) {//Gán phẫu thuật chính
 					$("#ssmc").val(data.ss[0].ssmc);
 					$("#ssdm").val(data.ss[0].ssdm);
 				} else {
@@ -214,7 +214,7 @@ $(function () {
 					var n = i + 1;
 					//if ($("#ssdm" + n).val() == "") {
 					//if ($("#ssdm" + n).length <= 0) {
-						//添加icon 并赋值
+						//Thêmicon và gán giá trị
 						$('#tablessmc .plusToggleCircle').click();
 						$("#ssmc" + n).val(data.ss[i].ssmc);
 						$("#ssdm" + n).val(data.ss[i].ssdm);
@@ -223,7 +223,7 @@ $(function () {
 			}
         });
     }
-    //撤销手术申请详情
+    //Hủy chi tiết đơn đăng ký phẫu thuật
     function applyCancel(rowid) {
         var rowData = $("#gridListOP").jqGrid('getRowData', rowid);
         $.deleteForm({

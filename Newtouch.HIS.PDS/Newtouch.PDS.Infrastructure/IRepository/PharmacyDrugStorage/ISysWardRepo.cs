@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysWardRepo : IRepositoryBase<SysWardVEntity>
     {
         /// <summary>
-        /// 获取一个病区集合
+        /// Lấy một tập hợp khu bệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

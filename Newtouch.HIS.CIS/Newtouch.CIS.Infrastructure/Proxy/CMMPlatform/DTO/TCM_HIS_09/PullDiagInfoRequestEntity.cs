@@ -5,87 +5,87 @@ using System.Xml.Serialization;
 namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
 {
     /// <summary>
-    /// 提取诊断信息请求体
+    /// nhắclấyChẩn đoánthông tinyêu cầuthể
     /// </summary>
     [XmlRoot("Request")]
     public class PullDiagInfoRequestEntity : RequestBase
     {
 
         /// <summary>
-        /// 诊断信息体
+        /// Chẩn đoánthông tinthể
         /// </summary>
         public DiagInfo DiagInfo { get; set; }
     }
 
     /// <summary>
-    /// 诊断信息体
+    /// Chẩn đoánthông tinthể
     /// </summary>
     public class DiagInfo
     {
         /// <summary>
-        /// 就诊流水号
-        /// 必填
+        /// Khám bệnhdòngchảysố
+        /// bắt buộc
         /// </summary>
         public string serialNo { get; set; }
 
         /// <summary>
-        /// 机构编码
-        /// 必填
+        /// Cơ sởMã
+        /// bắt buộc
         /// </summary>
         public string orgCode { get; set; }
 
         /// <summary>
-        /// 诊断明细集合
+        /// Chẩn đoánchi tiếttậphợp
         /// </summary>
         public List<Diagnosis> diagnosislist { get; set; }
     }
 
     /// <summary>
-    /// 诊断项
+    /// Chẩn đoán mục
     /// </summary>
     public class Diagnosis
     {
         /// <summary>
-        /// 本地诊断代码
+        /// bảnđịaChẩn đoánMã
         /// </summary>
         public string localCode { get; set; }
 
         /// <summary>
-        /// 诊断编码（ICD10）
-        /// 必填
+        /// Mã chẩn đoán（ICD10）
+        /// bắt buộc
         /// </summary>
         public string code { get; set; }
 
         /// <summary>
-        ///诊断类别 0：西医 1：中医
-        /// 必填
+        ///Chẩn đoánLoại 0：tâyy 1：trongy
+        /// bắt buộc
         /// </summary>
         public string cate { get; set; }
 
         /// <summary>
-        ///诊断名称
-        /// 必填
+        ///Tên chẩn đoán
+        /// bắt buộc
         /// </summary>
         public string name { get; set; }
 
         /// <summary>
-        ///中医诊断类型 0：疾病 1：症候； 当诊断分类为中医时必填
-        /// 必填
+        ///Chẩn đoán YHCTLoại 0：bệnhbệnh 1：hội chứng； khiChẩn đoánPhân loạilàtrongykhibắt buộc
+        /// bắt buộc
         /// </summary>
         public string type { get; set; }
 
         /// <summary>
-        ///中医诊断分组 此标识相同的疾病和症候诊断为一组
+        ///Chẩn đoán YHCTphútnhóm nàynhận dạngnhaucùngcủabệnhbệnhvàhội chứngChẩn đoánlàmộtnhóm
         /// </summary>
         public string group { get; set; }
 
         /// <summary>
-        ///中医诊断级别 0：主要诊断 1：次要诊断
+        ///Chẩn đoán YHCTcấploại 0：chínhcầnChẩn đoán 1： lầncầnChẩn đoán
         /// </summary>
         public string level { get; set; }
 
         /// <summary>
-        ///描述
+        ///Mô tả
         /// </summary>
         public string description { get; set; }
     }

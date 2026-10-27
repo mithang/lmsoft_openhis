@@ -8,7 +8,7 @@ namespace NewtouchHIS.AuthenticationCenter.Services
         Task<BusResult<JWTToken>> TokenRefreshAsync(JWTTokenRequest request);
         #region auth
         ///// <summary>
-        ///// 获取授权码
+        ///// Lấy mã ủy quyền
         ///// </summary>
         ///// <param name="userName"></param>
         ///// <param name="password"></param>
@@ -16,7 +16,7 @@ namespace NewtouchHIS.AuthenticationCenter.Services
         ///// <exception cref="NotImplementedException"></exception>
         //Task<BusResult<string>> GetCode(string clientId, string userName, string password);
         ///// <summary>
-        ///// 根据会话Code获取授权码
+        ///// Theo phiênCodeLấy mã ủy quyền
         ///// </summary>
         ///// <param name="clientId"></param>
         ///// <param name="sessionCode"></param>
@@ -24,14 +24,14 @@ namespace NewtouchHIS.AuthenticationCenter.Services
         //Task<BusResult<string>> GetCodeBySessionCode(string clientId, string sessionCode);
 
         ///// <summary>
-        ///// 根据授权码获取Token+RefreshToken
+        ///// Lấy theo mã ủy quyềnToken+RefreshToken
         ///// </summary>
         ///// <param name="authCode"></param>
         ///// <returns>Token+RefreshToken</returns>
         //Task<BusResult<JWTToken>> GetTokenWithRefresh(string authCode);
 
         ///// <summary>
-        ///// 根据RefreshToken刷新Token
+        ///// TheoRefreshTokenlàm mớiToken
         ///// </summary>
         ///// <param name="refreshToken"></param>
         ///// <param name="clientId"></param>

@@ -9,7 +9,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 供应商
+    /// Nhà cung cấp
     /// </summary>
     public class SysMedicineSupplierRepo : RepositoryBase<SysMedicineSupplierVEntity>, ISysMedicineSupplierRepo
     {

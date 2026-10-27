@@ -71,7 +71,7 @@ where a.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// 获取医保病人性质 自负/超限比例
+        /// Lấy tính chất bệnh nhân BHYT Tự chi trả/Tỷ lệ vượt hạn
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="orgId"></param>

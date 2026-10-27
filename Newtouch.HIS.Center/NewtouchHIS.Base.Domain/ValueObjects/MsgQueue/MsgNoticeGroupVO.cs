@@ -4,8 +4,8 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.ValueObjects
 {
     /// <summary>
-    /// Nhóm tin nhắn视图
-    /// 声明 và Entity一致
+    /// Nhóm tin nhắnView
+    /// Khai báo và EntityNhất quán
     /// </summary>
     public class MsgNoticeGroupVO: IEntity
     {
@@ -14,56 +14,56 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         //[Required(ErrorMessage = "Tổ chứcId không được để trống")]
         //public string OrganizeId { get; set; }
         /// <summary>
-        /// 组标签
-        /// 系统Tin nhắn / 院内Tin nhắn /科室内部Tin nhắn  质控Tin nhắn
+        /// Nhãn nhóm
+        /// Hệ thốngTin nhắn / Trong việnTin nhắn /Nội bộ khoaTin nhắn  Kiểm soát chất lượngTin nhắn
         /// </summary>
         [Required(ErrorMessage = "Nhãn nhóm không được để trống")]
         public string GroupTag { get; set; }
         /// <summary>
-        /// 组名称
+        /// Tên nhóm
         /// </summary>
         [Required(ErrorMessage = "Tên nhóm tin nhắn không được để trống")]
         public string GroupName { get; set; }
         /// <summary>
-        /// Nhóm tin nhắn说明
+        /// Nhóm tin nhắnGiải thích
         /// </summary>
         public string? GroupDesc { get; set; }
         /// <summary>
-        /// 相关业务类型 GroupYwlxEnum
+        /// Loại nghiệp vụ liên quan GroupYwlxEnum
         /// </summary>
         [Required(ErrorMessage = "Loại nghiệp vụ liên quan không được để trống")]
         public int GroupYwlx { get; set; }
         /// <summary>
-        /// 决定了通知对象范围  MsgNoticeRangeEnum
+        /// Quyết định phạm vi đối tượng nhận thông báo  MsgNoticeRangeEnum
         /// </summary>
         [Required(ErrorMessage = "Phạm vi đối tượng thông báo không được để trống")]
         public int NoticeRange { get; set; }
         /// <summary>
-        /// 显示主题 
-        /// 如 您有新的质控Tin nhắn，请即时查看
+        /// Chủ đề hiển thị 
+        /// Như Bạn có thông báo kiểm soát chất lượng mớiTin nhắn,vui lòng xem ngay
         /// </summary>
         public string? DefaultTitle { get; set; }
         /// <summary>
-        /// 详细内容
-        /// 展开显示
+        /// Nội dung chi tiết
+        /// Mở rộng hiển thị
         /// </summary>
         public string? DefaultContent { get; set; }
         /// <summary>
-        /// 内容关联数据 Json格式 可转化对象
+        /// Dữ liệu liên kết nội dung JsonĐịnh dạng Đối tượng có thể chuyển đổi
         /// </summary>
         public string? DefaultContentData { get; set; }
         /// <summary>
-        /// 默认跳转路径 
-        /// 不为空时要求 AppId  không được để trống
+        /// Đường dẫn chuyển mặc định 
+        /// Khi không rỗng yêu cầu AppId  không được để trống
         /// </summary>
         public string? DefaultOpenPath { get; set; }
         /// <summary>
-        /// 路径参数
-        /// 格式： zyh={0}，id={1}
+        /// Tham số đường dẫn
+        /// Định dạng: zyh={0},id={1}
         /// </summary>
         public string? DefaultOpenPathPara { get; set; }
         /// <summary>
-        /// 应用Id
+        /// Ứng dụngId
         /// </summary>
         public string? AppId { get; set; }
         //public string CreatorCode { get; set; }
@@ -73,60 +73,60 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
         //public string zt { get; set; } = "1";
     }
     /// <summary>
-    /// Nhóm tin nhắn基础信息 
-    /// 查询/返回用
+    /// Nhóm tin nhắnThông tin cơ bản 
+    /// Truy vấn/Dùng để trả về
     /// </summary>
     public class MsgNoticeGroupBasicVO
     {
         public string? Id { get; set; }
         public string? OrganizeId { get; set; }
         /// <summary>
-        /// 组标签
-        /// 系统Tin nhắn / 院内Tin nhắn /科室内部Tin nhắn  质控Tin nhắn
+        /// Nhãn nhóm
+        /// Hệ thốngTin nhắn / Trong việnTin nhắn /Nội bộ khoaTin nhắn  Kiểm soát chất lượngTin nhắn
         /// </summary>
         public string? GroupTag { get; set; }
         /// <summary>
-        /// 组名称
+        /// Tên nhóm
         /// </summary>
         public string? GroupName { get; set; }
         /// <summary>
-        /// Nhóm tin nhắn说明
+        /// Nhóm tin nhắnGiải thích
         /// </summary>
         public string? GroupDesc { get; set; }
         /// <summary>
-        /// 相关业务类型 GroupYwlxEnum
+        /// Loại nghiệp vụ liên quan GroupYwlxEnum
         /// </summary>
         public int? GroupYwlx { get; set; }
         /// <summary>
-        /// 决定了通知对象范围  MsgNoticeRangeEnum
+        /// Quyết định phạm vi đối tượng nhận thông báo  MsgNoticeRangeEnum
         /// </summary>
         public int? NoticeRange { get; set; }
         /// <summary>
-        /// 显示主题 
-        /// 如 您有新的质控Tin nhắn，请即时查看
+        /// Chủ đề hiển thị 
+        /// Như Bạn có thông báo kiểm soát chất lượng mớiTin nhắn,vui lòng xem ngay
         /// </summary>
         public string? DefaultTitle { get; set; }
         /// <summary>
-        /// 详细内容
-        /// 展开显示
+        /// Nội dung chi tiết
+        /// Mở rộng hiển thị
         /// </summary>
         public string? DefaultContent { get; set; }
         /// <summary>
-        /// 内容关联数据 Json格式 可转化对象
+        /// Dữ liệu liên kết nội dung JsonĐịnh dạng Đối tượng có thể chuyển đổi
         /// </summary>
         public string? DefaultContentData { get; set; }
         /// <summary>
-        /// 默认跳转路径 
-        /// 不为空时要求 AppId  không được để trống
+        /// Đường dẫn chuyển mặc định 
+        /// Khi không rỗng yêu cầu AppId  không được để trống
         /// </summary>
         public string? DefaultOpenPath { get; set; }
         /// <summary>
-        /// 路径参数
-        /// 格式： zyh={0}，id={1}
+        /// Tham số đường dẫn
+        /// Định dạng: zyh={0},id={1}
         /// </summary>
         public string? DefaultOpenPathPara { get; set; }
         /// <summary>
-        /// 应用Id
+        /// Ứng dụngId
         /// </summary>
         public string? AppId { get; set; }
         public string? CreatorCode { get; set; }

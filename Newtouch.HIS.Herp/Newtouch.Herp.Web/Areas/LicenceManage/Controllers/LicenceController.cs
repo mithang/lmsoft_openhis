@@ -14,7 +14,7 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
 {
     /// <summary>
-    /// 证照管理 (ported from Framework MVC5 to ASP.NET Core 6.0)
+    /// Quản lý chứng chỉ (ported from Framework MVC5 to ASP.NET Core 6.0)
     /// </summary>
     [Area("LicenceManage")]
     public class LicenceController : ControllerBase
@@ -38,10 +38,10 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
             _licLicence = licLicence;
         }
 
-        #region 主功能
+        #region Chức năng chính
 
         /// <summary>
-        /// 证照维护
+        /// Bảo trì chứng chỉ
         /// </summary>
         /// <returns></returns>
         public override IActionResult Form()
@@ -53,7 +53,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 获取证照列表
+        /// Lấy danh sách chứng chỉ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
@@ -73,7 +73,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 删除证照
+        /// Xóa chứng chỉ
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -85,7 +85,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 获取证照信息
+        /// Lấy thông tin chứng chỉ
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
@@ -96,7 +96,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 证照维护 表单提交
+        /// Bảo trì chứng chỉ Gửi biểu mẫu
         /// </summary>
         /// <param name="licLicenceEntity"></param>
         /// <param name="keyValue"></param>
@@ -112,7 +112,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 获取文件地址
+        /// Lấy địa chỉ tệp
         /// </summary>
         /// <param name="t"></param>
         /// <returns></returns>
@@ -134,10 +134,10 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
 
         #endregion
 
-        #region 证照类型
+        #region Loại chứng chỉ
 
         /// <summary>
-        /// 证照类型
+        /// Loại chứng chỉ
         /// </summary>
         /// <returns></returns>
         public IActionResult LicenceType()
@@ -146,7 +146,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 证照类型
+        /// Loại chứng chỉ
         /// </summary>
         /// <returns></returns>
         public IActionResult LicenceTypeForm()
@@ -155,7 +155,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 获取证照类型列表
+        /// Lấy danh sách loại chứng chỉ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
@@ -173,7 +173,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 删除证照类型
+        /// Xóa loại chứng chỉ
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -185,7 +185,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 获取证照类型信息
+        /// Lấy thông tin loại chứng chỉ
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
@@ -208,7 +208,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 根据所属ID获取类型明细
+        /// Lấy chi tiết loại theo ID chủ sở hữu.
         /// </summary>
         /// <param name="belonged"></param>
         /// <returns></returns>
@@ -220,10 +220,10 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
 
         #endregion
 
-        #region 证照所属
+        #region Chủ sở hữu chứng chỉ
 
         /// <summary>
-        /// 证照类型
+        /// Loại chứng chỉ
         /// </summary>
         /// <returns></returns>
         public IActionResult LicenceBelonged()
@@ -232,7 +232,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 证照类型
+        /// Loại chứng chỉ
         /// </summary>
         /// <returns></returns>
         public IActionResult LicenceBelongedForm()
@@ -241,7 +241,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 获取证照所属列表
+        /// Lấy danh sách chủ sở hữu chứng chỉ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
@@ -269,7 +269,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 删除证照所属
+        /// Xóa chủ sở hữu chứng chỉ
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -281,7 +281,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 获取证照所属信息
+        /// Lấy thông tin chủ sở hữu chứng chỉ
         /// </summary>
         /// <param name="keyWord"></param>
         /// <returns></returns>
@@ -292,7 +292,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 获取证照所属信息
+        /// Lấy thông tin chủ sở hữu chứng chỉ
         /// </summary>
         /// <returns></returns>
         public IActionResult GetLicenceBelongedForSelect()
@@ -314,7 +314,7 @@ namespace Newtouch.Herp.Web.Areas.LicenceManage.Controllers
         }
 
         /// <summary>
-        /// 获取所属
+        /// Lấy chủ sở hữu
         /// </summary>
         /// <returns></returns>
         public IActionResult Getbelonged()

@@ -8,13 +8,13 @@ using Newtouch.HIS.Domain.ValueObjects;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 药品剂型 V_S_xt_ypjx 
+    /// Dạng bào chế thuốc V_S_xt_ypjx 
     /// </summary>
     public class SysMedicineFormulationRepo : RepositoryBase<SysMedicineFormulationVEntity>, ISysMedicineFormulationRepo
     {
         
         /// <summary>
-        /// 返回药品剂型list
+        /// Trả về dạng bào chế thuốclist
         /// </summary>
         /// <returns></returns>
         public List<MedicineFormulationVO> GetMedicineFormulationList()

@@ -22,11 +22,11 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
     public class feeSelVO
     {
         /// <summary>
-        /// 收费大类编号
+        /// Mã nhóm thu phí lớn
         /// </summary>
         public string code { get; set; }
         /// <summary>
-        /// 收费大类名称
+        /// Tên nhóm thu phí lớn
         /// </summary>
         public string name { get; set; }
     }

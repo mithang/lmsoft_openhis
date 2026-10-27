@@ -227,7 +227,7 @@
         }
     });
 
-    //Liên kết Chọn trị liệu sư 树
+    //Liên kết Chọn trị liệu sư cây
     $('#zlsList').focus(function () {
         var initIdSelected = "";
         $.each(Editing_ysList, function () {
@@ -270,7 +270,7 @@
     });
 
     $('#bz').keyupEnterEvent(function (event) {
-        if ($('#bz').hasClass('form-an-cur')) { //缺陷-Từ cái trướcenterĐã chuyển tới
+        if ($('#bz').hasClass('form-an-cur')) { //khuyết điểm-Từ cái trướcenterĐã chuyển tới
             $('#bz').removeClass('form-an-cur')
             return;
         }
@@ -326,11 +326,11 @@
         ]
     });
 
-    //Theo thời gian tạo đảo ngược叙 排Cột， Mới tạo nhất Ở phía trước nhất
+    //Theo thời gian tạo đảo ngượckể xếpCột， Mới tạo nhất Ở phía trước nhất
     var oldxmList = [];   //Mục lịch sử đã gửiList
     var newxmList = [];   //Mục mớiList
 
-    //hướnggridMX gridtrong填充Dữ liệu
+    //hướnggridMX gridtrongđiềnDữ liệu
     function fillDataToGrid() {
         $("#gridMX").resetSelection();
         $("#gridMX").clearGridData();
@@ -342,10 +342,10 @@
 
     fillDataToGrid();
 
-    //解析Bác sĩMảng，Lấy chuỗi tên bác sĩ
+    //phân tíchBác sĩMảng，Lấy chuỗi tên bác sĩ
     function getYsNamesByList(ysList) {
         if (ysList) {
-            //解析Trị liệu sư[{},{}]Lấy chuỗi
+            //phân tíchTrị liệu sư[{},{}]Lấy chuỗi
             var str = "";
             $.each(ysList, function () {
                 str += this.Name + ',';
@@ -358,7 +358,7 @@
         return "";
     }
 
-    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）của完整性
+    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）củatính đầy đủ
     function checkEditingRowData(rowData) {
         if (!rowData.ysList || rowData.ysList.length == 0) {
             $.modalAlert("Vui lòng chọn trị liệu sư", 'warning');
@@ -393,7 +393,7 @@
 
     //Nút sự kiện start
 
-    //键入Mã nhập viện Tìm kiếm
+    //NhậpMã nhập viện Tìm kiếm
     $('#btn_search').click(function () {
         var zyh = $('#zyh').val();
         newtouch_globalevent_f4();
@@ -569,7 +569,7 @@
     //Nút thêm
     function newtouch_event_f2() {
         if (editingNewid) {
-            return; //Đang ở trạng thái sửa đổi，làKhông thể点击Nút thêmcủa   cầndisableXử lý
+            return; //Đang ở trạng thái sửa đổi，làKhông thểNhấnNút thêmcủa   cầndisableXử lý
         }
 
         var data = getEditRowData();
@@ -581,7 +581,7 @@
 
         data.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
 
-        newxmList.unshift(data);   //作làmục mớiThêm //”Phía trước nhất của mảng“
+        newxmList.unshift(data);   //làmlàmục mớiThêm //”Phía trước nhất của mảng“
 
         //Liên kết lạixmTrình bày mảng tớigrid
         fillDataToGrid();
@@ -632,7 +632,7 @@
                 return; //nênlàBất thường
             }
             newxmList.remove(matchedIndex);   //Loại bỏ mục này
-            newxmList.unshift(data);   //作làmục mớiThêm    //”Phía trước nhất của mảng“
+            newxmList.unshift(data);   //làmlàmục mớiThêm    //”Phía trước nhất của mảng“
 
             //Liên kết lạixmTrình bày mảng tớigrid
             fillDataToGrid();
@@ -721,7 +721,7 @@
                         if (newRowData.sfxmCode && newRowData.sfdlCode && newRowData.dj && newRowData.dw && newRowData.sl) {
                             newRowData.dj = parseFloat(newRowData.dj);
                             newRowData.sl = parseInt(newRowData.sl);
-                            newxmList.unshift(newRowData);   //作làmục mớiThêm //”Phía trước nhất của mảng“
+                            newxmList.unshift(newRowData);   //làmlàmục mớiThêm //”Phía trước nhất của mảng“
                         }
                     });
 
@@ -736,7 +736,7 @@
         }
     }
 
-    //F8Gửi至dịch vụ器
+    //F8Gửiđếndịch vụdụng cụ
     function newtouch_event_f8() {
         var paramData = {};
         paramData.zyh = $('#zyh').val();
@@ -809,7 +809,7 @@
                     //Liên kết lạixmTrình bày mảng tớigrid
                     fillDataToGrid();
 
-                    //đối vớiKhácđều不phát sinh影响
+                    //đối vớiKhácđềukhôngphát sinhẢnh hưởng
                 }
             }
         }
@@ -883,7 +883,7 @@
                             };
 
                             newRowData.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
-                            newxmList.unshift(newRowData);   //作làmục mớiThêm //”Phía trước nhất của mảng“
+                            newxmList.unshift(newRowData);   //làmlàmục mớiThêm //”Phía trước nhất của mảng“
                         });
 
                         fillDataToGrid();

@@ -27,7 +27,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 门诊处方单
+        /// Đơn thuốc ngoại trúphiếu
         /// </summary>
         /// <param name="cfId"></param>
         /// <param name="mzh"></param>
@@ -37,15 +37,15 @@ namespace Newtouch.DomainServices
             OutpatientCFDDto dto = new OutpatientCFDDto();
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("处方主键为空");
+                throw new FailedException("Đơn thuốcKhóa chínhlàtrống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("组织机构为空");
+                throw new FailedException("Tổ chứclàtrống");
             }
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("门诊号为空");
+                throw new FailedException("Số khám ngoại trúlàtrống");
             }
             dto.PatientInfo = GetOutpatientInfo(orgId, mzh);
             var par = new List<SqlParameter>();
@@ -68,19 +68,19 @@ namespace Newtouch.DomainServices
         public string GetJYDjson(string cfId, string mzh,string orgId) {
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("处方主键为空");
+                throw new FailedException("Đơn thuốcKhóa chínhlàtrống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("组织机构为空");
+                throw new FailedException("Tổ chứclàtrống");
             }
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("门诊号为空");
+                throw new FailedException("Số khám ngoại trúlàtrống");
             }
             OutpatientJYDDto dto = new OutpatientJYDDto();
             dto.PatientInfo = GetOutpatientInfo(orgId, mzh);
-            string sql = @" select * from ( select row_number()over(partition by ztmc order by a.createtime) num,(case a.cflx  when 4 then '检验申请单' when 5 then '检查申请单' when 6 then '项目处方单' end)cflxmc,
+            string sql = @" select * from ( select row_number()over(partition by ztmc order by a.createtime) num,(case a.cflx  when 4 then 'Xét nghiệmPhiếu' when 5 then 'Kiểm traPhiếu' when 6 then '项目处方单' end)cflxmc,
 a.cflx,a.cfh,(b.dj*b.sl)zje,a.createtime, ztmc xmmc,b.dj,b.sl,c.name zxks,d.name sqys,e.name sqks
 from xt_cf a with(nolock)
 left join xt_cfmx b with(nolock) on a.cfid=b.cfid and a.organizeid=b.organizeid  
@@ -104,15 +104,15 @@ and exists(select 1 from xt_jz  d with(nolock) where a.jzid=d.jzid and a.organiz
         public string GetJCDjson(string cfId, string mzh,string orgId) {
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("处方主键为空");
+                throw new FailedException("Đơn thuốcKhóa chínhlàtrống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("组织机构为空");
+                throw new FailedException("Tổ chứclàtrống");
             }
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("门诊号为空");
+                throw new FailedException("Số khám ngoại trúlàtrống");
             }
             OutpatientJCDDto dto = new OutpatientJCDDto();
             dto.PatientInfo = GetOutpatientInfo(orgId, mzh);
@@ -150,15 +150,15 @@ and exists(select 1 from xt_jz  d with(nolock) where a.jzid=d.jzid and a.organiz
         {
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("处方主键为空");
+                throw new FailedException("Đơn thuốcKhóa chínhlàtrống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("组织机构为空");
+                throw new FailedException("Tổ chứclàtrống");
             }
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("门诊号为空");
+                throw new FailedException("Số khám ngoại trúlàtrống");
             }
             OutpatientWHDDto dto = new OutpatientWHDDto();
             dto.PatientInfo = GetOutpatientInfo(orgId, mzh);
@@ -256,15 +256,15 @@ DROP TABLE #zhfz";
         {
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("处方主键为空");
+                throw new FailedException("Đơn thuốcKhóa chínhlàtrống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("组织机构为空");
+                throw new FailedException("Tổ chứclàtrống");
             }
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("门诊号为空");
+                throw new FailedException("Số khám ngoại trúlàtrống");
             }
             OutpatientZSDDto dto = new OutpatientZSDDto();
             dto.PatientInfo = GetOutpatientInfo(orgId, mzh);
@@ -371,7 +371,7 @@ DROP TABLE #zhfz";
         }
 
         /// <summary>
-        /// 门诊处方单
+        /// Đơn thuốc ngoại trúphiếu
         /// </summary>
         /// <param name="cfId"></param>
         /// <param name="mzh"></param>
@@ -381,15 +381,15 @@ DROP TABLE #zhfz";
             OutpatientZCYCFDto dto = new OutpatientZCYCFDto();
             if (string.IsNullOrWhiteSpace(cfId))
             {
-                throw new FailedException("处方主键为空");
+                throw new FailedException("Đơn thuốcKhóa chínhlàtrống");
             }
             if (string.IsNullOrWhiteSpace(orgId))
             {
-                throw new FailedException("组织机构为空");
+                throw new FailedException("Tổ chứclàtrống");
             }
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                throw new FailedException("门诊号为空");
+                throw new FailedException("Số khám ngoại trúlàtrống");
             }
             dto.PatientInfo = GetOutpatientInfo(orgId, mzh);
             var par = new List<SqlParameter>();
@@ -451,7 +451,7 @@ declare @list1 table(
             return dto.ToJson();
         }
 
-        #region 报表工具
+        #region Báo cáocôngcụ thể
         public IList<ReportConfigVO> ReportList(Pagination pagination, string orgId,string rptname,string keyword)
         {
             string sql = @"select [Id],[OrganizeId],[AppId],[RptName],[RptHost],[RptUrl],[RptSource]
@@ -520,7 +520,7 @@ where OrganizeId = @orgId and zt = '1'";
                 });
             if (ck > 0)
             {
-                throw new FailedException("报表代码已存在！");
+                throw new FailedException("Báo cáoMãđãtồn tạiở！");
             }
 
             if (!string.IsNullOrWhiteSpace(keyValue))
@@ -575,7 +575,7 @@ where OrganizeId = @orgId and zt = '1'";
             }
             catch (Exception ex)
             {
-                throw new FailedException("保存失败！" + ex.Message);
+                throw new FailedException("Lưu thất bại！" + ex.Message);
             }
             
         }

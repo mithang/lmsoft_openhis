@@ -8,7 +8,7 @@ namespace Newtouch.Domain.ValueObjects
 {
     public class PrescriptionDetailVO
     {
-        #region 处方明细
+        #region Chi tiết đơn thuốc
 
         /// <summary>
         /// 
@@ -31,7 +31,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 每次治疗量  针对康复项目
+        /// Liều mỗi lần điều trị  kimđốiPhục hồi chức năngMục
         /// </summary>
         public int? mczll { get; set; }
 
@@ -46,7 +46,7 @@ namespace Newtouch.Domain.ValueObjects
         public string mcjldw { get; set; }
 
         /// <summary>
-        /// 用法代码
+        /// Cách dùngMã
         /// </summary>
         public string yfCode { get; set; }
 
@@ -56,7 +56,7 @@ namespace Newtouch.Domain.ValueObjects
         public string pcCode { get; set; }
 
         /// <summary>
-        /// 药品中的数量=总量   康复中的总量=总量
+        /// ThuốctrongcủaSố lượng=Tổng lượng   Phục hồi chức năngtrongcủaTổng lượng=Tổng lượng
         /// </summary>
         public int? zl { get; set; }
 
@@ -86,7 +86,7 @@ namespace Newtouch.Domain.ValueObjects
         public string zh { get; set; }
 
         /// <summary>
-        /// 部位
+        /// Vị trí
         /// </summary>
         public string bw { get; set; }
 
@@ -114,11 +114,11 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public DateTime? zxsj { get; set; }
         /// <summary>
-        /// 医保唯一码
+        /// Bảo hiểm y tếduy nhấtmộtmã
         /// </summary>
         public string ybwym { get; set; }
         /// <summary>
-        /// 限制使用标志
+        /// hạnchếSử dụngCờ
         /// </summary>
         public string xzsybz { get; set; }
 
@@ -129,7 +129,7 @@ namespace Newtouch.Domain.ValueObjects
         public string ztCode { get; set; }
 
         /// <summary>
-        /// 抗生素原因
+        /// Kháng sinhnguyên nhân
         /// </summary>
         public string kssReason { get; set; }
         public string bwff { get; set; }
@@ -137,11 +137,11 @@ namespace Newtouch.Domain.ValueObjects
         public string sqlx { get; set; }
         public int? px { get; set; }
         /// <summary>
-        /// 滴速
+        /// tốc độ truyền
         /// </summary>
         public int? ds { get; set; }
         /// <summary>
-        /// 转自费标志
+        /// Chuyển sang tự chi trảCờ
         /// </summary>
         public int? zzfbz { get; set; }
 
@@ -153,14 +153,14 @@ namespace Newtouch.Domain.ValueObjects
         public string zysm { get; set; }
 
         /// <summary>
-        /// 处方附带生成的常规处方
+        /// Đơn thuốckèmmangtạocủaThường quyĐơn thuốc
         /// </summary>
         public string syncfbz { get; set; }
 		#endregion
 
 
 		/// <summary>
-		/// 处方id
+		/// Đơn thuốcid
 		/// </summary>
 		public string cfId { get; set; }
 

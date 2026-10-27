@@ -32,7 +32,7 @@
             var je = roundingBy4she6ru5chengshuang((parseFloat(needRefundData[i].dj) * parseFloat(needRefundData[i].tsl)), 2);
             $('#tr_detail').append('<tr><td class="formValue"> <label >' + needRefundData[i].sfxmName + '</label></td><td class="formValue"> <label >' + needRefundData[i].dj + '</label></td><td class="formValue"> <label >' + needRefundData[i].tsl + '</label></td><td class="formValue"> <label >' + je + '</label></td></tr>');
 
-            //计算金额
+            //Tính số tiền
             zje = roundingBy4she6ru5chengshuang((parseFloat(zje) + parseFloat(je)), 2);
         }
         $('#zje').text(zje);

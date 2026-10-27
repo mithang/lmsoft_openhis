@@ -90,7 +90,7 @@
         </div>*@
 
     <script>
-        //$(window).resize(function () {//Tải lại khi thay đổi kích thước cửa sổ trình duyệtjqGrid的宽
+        //$(window).resize(function () {//Tải lại khi thay đổi kích thước cửa sổ trình duyệtchiều rộng của jqGrid
         //    window.initLayout("div_Patlist");
         //    window.initLayout("dv_Medlist");
         //});
@@ -242,7 +242,7 @@
                 param: { keyValue: keyValue },
                 success: function () {
                     $.modalMsg("Xóa thành công", "success");
-                    $('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                    $('#gridList').jqGrid("clearGridData"); //Xóa grid chi tiết
                     $("#btn_search").trigger("click");
                     $("#gridList").resetSelection();
                     $("#gridList").trigger("reloadGrid");

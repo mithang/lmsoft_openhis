@@ -186,23 +186,23 @@
     };
 
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
-        initialCKFS();//加载出库方式
-        initialCKDH();//加载出库单号
+        initialCKFS();//Tải phương thức xuất kho
+        initialCKDH();//Tải số xuất kho
         gridCKMX([]);
     });
 
-    //出库方式
+    //Phương thức xuất kho
     function initialCKFS() {
         $("#ddlCKFS").bindSelect({
             url: "/MedicineStorageIOMode/MedicineStorageIOModeList?crkbz=1",
         });
     }
 
-    //加载出库单号
+    //Tải số xuất kho
     function initialCKDH() {
         $.najax({
             url: "/DrugStorage/initialCKDH?r=" + Math.random(),
@@ -214,7 +214,7 @@
         });
     }
 
-    //发票号
+    //Số hóa đơn
     $("#txtFPH").newtouchBatchFloatingSelector({
         clickautotrigger: true,
         height: 300,
@@ -244,7 +244,7 @@
 
     });
 
-    //输入码
+    //Mã nhập
     $("#txtSRM").newtouchBatchFloatingSelector({
         clickautotrigger: true,
         height: 350,
@@ -253,7 +253,7 @@
         url: '/DrugStorage/SelectDepartmentMedicineList2',
         ajaxmethod: 'POST',
         inputtextcheck: function () {
-            if ($("#txtFPH").val().replace(/(^\s*)|(\s*$)/g, "") === "") {   //去掉左右两端空格
+            if ($("#txtFPH").val().replace(/(^\s*)|(\s*$)/g, "") === "") {   //Loại bỏ khoảng trắng hai đầu
                 $.modalAlert("Vui lòng chọn số hóa đơn trước", 'warning');
                 return false;
             }
@@ -298,7 +298,7 @@
             $("#txtYPMC").attr('data-ykdw', $thistr.attr('data-ykdw')).attr('data-sccj', $thistr.attr('data-sccj')).val($thistr.attr('data-ypmc'));
             $("#thPFJDW").text("Giá bán buôn(đ/" + $thistr.attr('data-ykdw') + "):");
             $("#thLSJDW").text("Giá bán lẻ(đ/" + $thistr.attr('data-ykdw') + "):");
-            //$("#thJJDW").text("进价(元/" + $thistr.attr('data-ykdw') + "):");
+            //$("#thJJDW").text("Giá nhập(đồng/" + $thistr.attr('data-ykdw') + "):");
             $("#txtGG").val($thistr.attr('data-gg'));
             $("#txtKYKC").attr('data-kcId', $thistr.attr('data-kcId')).attr('data-kykc', $thistr.attr('data-kykc')).val($thistr.attr('data-kykcstr'));
             $("#ddlCKDW").empty();
@@ -327,12 +327,12 @@
 
     });
 
-    //发票号变更，药品明细div清空
+    //Thay đổi số hóa đơn，Chi tiết thuốcdivXóa
     function ChangeFPH() {
         CleanInput();
     }
 
-    //加载明细
+    //Tải chi tiết
     function gridCKMX(mydata) {
         var $gridCkmx = $("#gridCKMX");
         $gridCkmx.newtouchLocalDataGrid({
@@ -380,7 +380,7 @@
         }, mydata);
     }
 
-    //双击
+    //Nhấp đúp
     function gridDbclickRow(rowid) {
         if (rowid) {
             var getRowData = $("#gridCKMX").jqGrid('getRowData', rowid);
@@ -432,17 +432,17 @@
         CleanInput();//Xóa trống chi tiết
     }
 
-    //回车加载grid
+    //Tải bằng Entergrid
     $('#txtCLJG').keydownEnterEvent(function () {
-        if ($('#editRowId').val()) {            //是修改
-            newtouch_event_f3();    //模拟 Sửa nút Nhấn
+        if ($('#editRowId').val()) {            //là sửa đổi
+            newtouch_event_f3();    //Mô phỏng Sửa nút Nhấn
         }
         else {
-            newtouch_event_f2();    //模拟 Nút xác nhận Nhấn
+            newtouch_event_f2();    //Mô phỏng Nút xác nhận Nhấn
         }
     });
 
-    //获取明细
+    //Lấy chi tiết
     function getEditRowData() {
         var sl;
         if ($("#ddlCKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) {
@@ -457,8 +457,8 @@
             ypdm: $("#txtSRM").val(),
             ypmc: $("#txtYPMC").val(),
             gg: $("#txtGG").val(),
-            Sl: sl,   //最后保存到数据库的数量
-            tusl: $("#txtCKSL").val(),   //退出数量
+            Sl: sl,   //Số lượng lưu cuối cùng vào cơ sở dữ liệu
+            tusl: $("#txtCKSL").val(),   //Số lượng thoát
             dw: $("#ddlCKDW").find("option:selected").text(),
             kxdw: $("#kxdw").val(),
             kykc: $("#txtKYKC").val(),
@@ -483,15 +483,15 @@
         }];
     }
 
-    //添加按钮
+    //Thêm nút
     function newtouch_event_f2() {
-        //数据校验
+        //Kiểm tra dữ liệu
         if (!CheckData()) {
             return false;
         }
-        //获取明细
+        //Lấy chi tiết
         var data = getEditRowData();
-        //检查重复项
+        //Kiểm tra mục trùng lặp
         var isRepeatedAdd = false;
         $.each($("#gridCKMX").getDataIDs(), function () {
             var rowData = $("#gridCKMX").jqGrid('getRowData', this);
@@ -505,7 +505,7 @@
             return false;
         }
         $("#gridCKMX").newtouchLocalDataGrid(null, data);
-        ComputeCKZE();//计算出库金额
+        ComputeCKZE();//Tính số tiền xuất kho
         DisableControls();//Vô hiệu hóa
         CleanInput();//Xóa trống chi tiết
     }
@@ -513,15 +513,15 @@
     //Sửa nút
     function newtouch_event_f3() {
         if ($('#editRowId').val()) {
-            //数据校验
+            //Kiểm tra dữ liệu
             if (!CheckData()) {
                 return false;
             }
-            //获取明细
+            //Lấy chi tiết
             var data = getEditRowData();
 
-            $('#gridCKMX').jqGrid("delRowData", $('#editRowId').val()); //先remove掉那一行
-            //检查重复项
+            $('#gridCKMX').jqGrid("delRowData", $('#editRowId').val()); //trướcremovebỏ dòng đó
+            //Kiểm tra mục trùng lặp
             var isRepeatedAdd = false;
             $.each($("#gridCKMX").getDataIDs(), function () {
                 var rowData = $("#gridCKMX").jqGrid('getRowData', this);
@@ -534,22 +534,22 @@
                 return false;
             }
             $("#gridCKMX").newtouchLocalDataGrid(null, data);
-            ComputeCKZE();//计算出库金额
+            ComputeCKZE();//Tính số tiền xuất kho
             DisableControls();//Vô hiệu hóa
             CleanInput();//Xóa trống chi tiết
         }
         else {
-            //获取grid当前选中的那一行
+            //LấygridDòng đang được chọn
             var seleId = $('#gridCKMX').jqGrid('getGridParam', 'selrow');
             if (seleId) {
-                //请求修改该行
+                //Yêu cầu sửa dòng đó
                 gridDbclickRow(seleId);
             }
         }
         CleanInput();
     }
 
-    //删除
+    //Xóa
     function newtouch_event_f6() {
         var delRowid = $("#gridCKMX").jqGrid('getGridParam', 'selrow');
         if (!delRowid) {
@@ -558,12 +558,12 @@
         }
         $('#gridCKMX').jqGrid('delRowData', delRowid);
         ComputeCKZE();//Tính tổng nhập kho
-        //启用
+        //Bật
         //EnabledSysBasicInfo();
         CleanInput();
     }
 
-    //出库
+    //Xuất kho
     function newtouch_event_f8() {
         var crkdj = Object();
         crkdj.pdh = $("#txtCKDH").val();
@@ -583,7 +583,7 @@
             success: function (res) {
                 if (res.state === "success") {
                     $.modalAlert("Xuất kho thành công", 'success');
-                    newtouch_event_f7();//出入库：Số chứng từ mới Xóa trống dữ liệu chính Xóa trống chi tiết
+                    newtouch_event_f7();//Xuất nhập kho：Số chứng từ mới Xóa trống dữ liệu chính Xóa trống chi tiết
                     $('#gridCKMX').jqGrid("clearGridData");//Xóa trốngGrid
                 } else {
                     $.modalAlert(res.message, 'error');
@@ -593,7 +593,7 @@
         });
     }
 
-    //清空input标签
+    //XóainputNhãn
     function CleanInput() {
         $("#txtSRM").val("");
         $("#txtCKSL").val("");
@@ -625,7 +625,7 @@
         $("#txtCLJG").val("");
     }
 
-    //数量失焦,计算批发金额 零售金额
+    //Số lượng mất tiêu điểm,Tính số tiền bán buôn Số tiền bán lẻ
     function CKSL_Leave() {
         if ($("#txtCKSL").val() === "") {
             return false;
@@ -637,9 +637,9 @@
         var Sl;
         var pfj = parseFloat($("#txtPFJ").val());
         var lsj = parseFloat($("#txtLSJ").val());
-        if ($("#ddlCKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) {    //如果选择的可退单位：Đơn vị kho thuốc Số lượng=Nhập số lượng，Tiền bán buôn=Số lượng*Giá bán buôn，Tiền bán lẻ=Số lượng*Giá bán lẻ
+        if ($("#ddlCKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) {    //Nếu đơn vị có thể trả đã chọn：Đơn vị kho thuốc Số lượng=Nhập số lượng，Tiền bán buôn=Số lượng*Giá bán buôn，Tiền bán lẻ=Số lượng*Giá bán lẻ
             Sl = parseFloat($("#txtCKSL").val());
-        } else {   //可退单位：Đơn vị nhỏ nhất，Số lượng=Nhập số lượng/Hệ số chuyển đổi，Tiền bán buôn=Số lượng*Giá bán buôn，Tiền bán lẻ=Số lượng*Giá bán lẻ
+        } else {   //Đơn vị có thể trả：Đơn vị nhỏ nhất，Số lượng=Nhập số lượng/Hệ số chuyển đổi，Tiền bán buôn=Số lượng*Giá bán buôn，Tiền bán lẻ=Số lượng*Giá bán lẻ
             Sl = window.roundingBy4she6ru5chengshuang(parseFloat($("#txtCKSL").val()) / parseFloat($("#txtSRM").attr('data-zhyz')), 4);
         }
 
@@ -647,12 +647,12 @@
         $("#thLSZEDW").text("Tổng tiền bán lẻ(đ/" + $("#ddlCKDW").find("option:selected").text() + "):");
         $("#txtPFZE").val((pfj * Sl).toFixed(4));
         $("#txtLSZE").val((lsj * Sl).toFixed(4));
-        CKJE_Leave();//重算出库单价
+        CKJE_Leave();//Tính lại đơn giá xuất kho
         ComputeKL();//Tính tỷ lệ chiết khấu
         return false;
     }
 
-    //出库金额失焦,计算出库单价
+    //Số tiền xuất kho mất tiêu điểm,Tính đơn giá xuất kho
     function CKJE_Leave() {
         if (isNaN($("#txtCKJE").val())) {
             $.modalAlert("Định dạng số tiền xuất kho sai", 'warning');
@@ -665,10 +665,10 @@
             return false;
         }
         var Sl;
-        if ($("#ddlCKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) {    //如果选择的可退单位：Đơn vị kho thuốc Số lượng=Nhập số lượng
+        if ($("#ddlCKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) {    //Nếu đơn vị có thể trả đã chọn：Đơn vị kho thuốc Số lượng=Nhập số lượng
 
             Sl = parseFloat($("#txtCKSL").val());
-        } else {   //可退单位：Đơn vị nhỏ nhất，Số lượng=Nhập số lượng/Hệ số chuyển đổi
+        } else {   //Đơn vị có thể trả：Đơn vị nhỏ nhất，Số lượng=Nhập số lượng/Hệ số chuyển đổi
             Sl = window.roundingBy4she6ru5chengshuang(parseFloat($("#txtCKSL").val()) / parseFloat($("#txtSRM").attr('data-zhyz')), 4);
         }
 
@@ -679,7 +679,7 @@
         ComputeKL();
     }
 
-    //计算扣率
+    //Tính tỷ lệ khấu trừ
     function ComputeKL() {
         if ($("#txtCKDJ").val() === "") {
             return;
@@ -687,10 +687,10 @@
         var pfj = parseFloat($("#txtPFJ").val());
         var jj = parseFloat($("#txtCKDJ").val());
 
-        $("#txtKL").val(window.roundingBy4she6ru5chengshuang(pfj * 100 / jj, 4));  //五舍六入
+        $("#txtKL").val(window.roundingBy4she6ru5chengshuang(pfj * 100 / jj, 4));  //Làm tròn 5 bỏ 6 lên
     }
 
-    //计算出库总额
+    //Tính tổng Số tiền xuất kho
     function ComputeCKZE() {
         var ckze = 0;
         var count = $("#gridCKMX").getGridParam('records');
@@ -707,7 +707,7 @@
         }
     }
 
-    //数据校验
+    //Kiểm tra dữ liệu
     function CheckData() {
         if ($("#txtSRM").val() === "") {
             $.modalAlert("Mã thuốc trống", 'warning');
@@ -727,12 +727,12 @@
         }
         if ($("#ddlCKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) {   //Đơn vị kho thuốc Sl/zhyz
             var kykcsl = parseFloat($("#txtKYKC").attr('data-kykc')) / parseFloat($("#txtSRM").attr('data-zhyz'));
-            if (parseFloat($("#txtCKSL").val()) > kykcsl) {   //比较数量（Số lượng đơn vị nhỏ nhất）
+            if (parseFloat($("#txtCKSL").val()) > kykcsl) {   //So sánh Số lượng（Số lượng đơn vị nhỏ nhất）
                 $.modalAlert("Số lượng xuất kho lớn hơn tồn kho khả dụng", 'warning');
                 return false;
             }
         } else {
-            if (parseFloat($("#txtCKSL").val()) > parseFloat($("#txtKYKC").attr('data-kykc'))) {   //反之，直接比较数量（Số lượng đơn vị nhỏ nhất）
+            if (parseFloat($("#txtCKSL").val()) > parseFloat($("#txtKYKC").attr('data-kykc'))) {   //Ngược lại，So sánh trực tiếp số lượng（Số lượng đơn vị nhỏ nhất）
                 $.modalAlert("Số lượng xuất kho lớn hơn tồn kho khả dụng", 'warning');
                 return false;
             }
@@ -749,13 +749,13 @@
         }
     }
 
-    //禁用
+    //Vô hiệu hóa
     function DisableControls() {
         $("#txtFPH").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
         $("#ddlCKFS").attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
     }
 
-    //启用
+    //Bật
     function EnabledSysBasicInfo() {
         $("#txtFPH").removeAttr("disabled").removeAttr("style");
         $("#ddlCKFS").removeAttr("disabled").removeAttr("style");

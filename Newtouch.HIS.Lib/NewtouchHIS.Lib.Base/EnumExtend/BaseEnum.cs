@@ -5,40 +5,40 @@ namespace NewtouchHIS.Lib.Base
     public class BaseEnum
     {
         /// <summary>
-        /// 模块类型
+        /// Loại mô-đun
         /// </summary>
         public enum ModuTypeEnum
         {
-            [Description("应用级")]
+            [Description("Cấp ứng dụng")]
             App = 0,
-            [Description("业务模块")]
+            [Description("Mô-đun nghiệp vụ")]
             Bus = 1,
 
         }
         /// <summary>
-        /// 权限等级
+        /// Cấp độ quyền
         /// </summary>
         public enum AuthLevEnum
         {
-            [Description("拒绝访问")]
+            [Description("Từ chối truy cập")]
             deny = 0,
-            [Description("游客")]
+            [Description("Khách")]
             guest = 1001,
-            [Description("受限用户")]
+            [Description("Người dùng bị hạn chế")]
             limituser = 1002,
-            [Description("普通用户")]
+            [Description("Người dùng thông thường")]
             user = 1003,
-            [Description("VIP用户")]
+            [Description("Người dùng VIP")]
             vip = 1004,
-            [Description("信任用户")]
+            [Description("Người dùng đáng tin cậy")]
             trust = 1,
-            [Description("管理用户")]
+            [Description("Người dùng quản trị")]
             admin = 9998,
-            [Description("超级管理")]
+            [Description("Quản trị viên cấp cao")]
             root = 9999,
         }
         /// <summary>
-        /// 授权类型
+        /// Loại ủy quyền
         /// </summary>
         public enum AuthTypeEnum
         {
@@ -49,78 +49,78 @@ namespace NewtouchHIS.Lib.Base
         }
 
         /// <summary>
-        /// 消息状态
+        /// Trạng thái tin nhắn
         /// </summary>
-        [Description("消息状态")]
+        [Description("Trạng thái tin nhắn")]
         public enum NoticeStuEnum
         {
-            [Description("未发送")]
+            [Description("Chưa gửi")]
             UnSend = 0,
-            [Description("已发送")]
+            [Description("Đã gửi")]
             Send = 1,
-            [Description("已读")]
+            [Description("Đã đọc")]
             Read = 2,
-            [Description("待处理")]
+            [Description("Chờ xử lý")]
             Wait = 9
         }
 
         /// <summary>
-        /// 消息适用范围限制
+        /// Giới hạn phạm vi áp dụng tin nhắn
         /// </summary>
-        [Description("消息组适用范围")]
+        [Description("Phạm vi áp dụng của nhóm tin nhắn")]
         public enum MsgNoticeRangeEnum
         {
-            [Description("无限制")]
+            [Description("Không giới hạn")]
             None = 0,
-            [Description("全院")]
+            [Description("Toàn viện")]
             Org = 1,
-            [Description("指定用户")]
+            [Description("Người dùng chỉ định")]
             User = 2,
-            [Description("消息组内")]
+            [Description("Trong nhóm tin nhắn")]
             Group = 10,
-            [Description("科室范围")]
+            [Description("Phạm vi khoa")]
             Dept = 20,
-            [Description("科室内部")]
+            [Description("Nội bộ khoa")]
             DeptGroup = 21,
-            [Description("病区范围")]
+            [Description("Phạm vi khu bệnh")]
             Area = 30,
-            [Description("病区内部")]
+            [Description("Nội bộ khu bệnh")]
             AreaGroup = 31,
         }
         /// <summary>
-        /// 队列执行类型
+        /// Loại thực thi hàng đợi
         /// </summary>
-        [Description("队列执行类型")]
+        [Description("Loại thực thi hàng đợi")]
         public enum MsgQueueExecTypeEnum
         {
-            [Description("即时任务")]
+            [Description("Nhiệm vụ ngay lập tức")]
             Immediately = 1,
-            [Description("延时任务")]
+            [Description("Nhiệm vụ trì hoãn")]
             Waitime = 2,
-            [Description("定时任务")]
+            [Description("Nhiệm vụ định kỳ")]
             Fixedtime = 3,
         }
 
 
-        [Description("收信人类型")]
+        [Description("Loại người nhận")]
         public enum RecipientTypeEnum
         {
-            [Description("用户")]
+            [Description("người dùng")]
             user = 1,
-            [Description("用户组")]
+            [Description("Nhóm người dùng")]
             usergroup = 2,
         }
         /// <summary>
-        /// 消息组业务类型
+        /// Loại nghiệp vụ của nhóm tin nhắn
         /// </summary>
-        [Description("消息组业务类型")]
+        [Description("Loại nghiệp vụ của nhóm tin nhắn")]
         public enum GroupYwlxEnum
         {
-            [Description("通用")]
+            [Description("Chung")]
             None = 0,
-            [Description("门诊")]
+            [Description("Ngoại trú")]
             Mz = 1,
-            [Description("住院")]
+            [Description("Nằm viện")]
             Zy = 2,
         }
 
@@ -128,14 +128,14 @@ namespace NewtouchHIS.Lib.Base
         public enum ExpireType
         {
             /// <summary>
-            /// 绝对过期
-            /// 注：即自创建一段时间后就过期
+            /// Hết hạn tuyệt đối
+            /// Lưu ý: tức là hết hạn sau một khoảng thời gian kể từ khi tạo
             /// </summary>
             Absolute,
 
             /// <summary>
-            /// 相对过期
-            /// 注：即该键未被访问后一段时间后过期，若此键一直被访问则过期时间自动延长
+            /// Hết hạn tương đối
+            /// Lưu ý: tức là hết hạn sau một khoảng thời gian khi khóa này không được truy cập, nếu khóa này luôn được truy cập thì thời gian hết hạn tự động kéo dài
             /// </summary>
             Relative,
         }
@@ -143,12 +143,12 @@ namespace NewtouchHIS.Lib.Base
         public enum CacheType
         {
             /// <summary>
-            /// 使用内存缓存(不支持分布式)
+            /// Sử dụng bộ nhớ đệm trong bộ nhớ(Không hỗ trợ phân tán)
             /// </summary>
             Memory,
 
             /// <summary>
-            /// 使用Redis缓存(支持分布式)
+            /// Sử dụng bộ nhớ đệm Redis(Hỗ trợ phân tán)
             /// </summary>
             Redis
         }

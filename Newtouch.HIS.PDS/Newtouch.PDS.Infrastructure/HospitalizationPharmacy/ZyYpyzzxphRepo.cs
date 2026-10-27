@@ -10,7 +10,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 住院药品医嘱执行批号
+    /// Số lô thực hiện y lệnh thuốc nội trú
     /// </summary>
     public class ZyYpyzzxphRepo : RepositoryBase<ZyYpyzzxphEntity>, IZyYpyzzxphRepo
     {
@@ -18,10 +18,10 @@ namespace Newtouch.HIS.Repository
         public ZyYpyzzxphRepo(FrameworkBase.MultiOrg.Infrastructure.IDefaultDatabaseFactory databaseFactory) : base(databaseFactory) { }
         
         /// <summary>
-        /// 获取住院有效未归架的排药信息  此方法不加日志
+        /// Lấy thông tin xếp thuốc nội trú hiệu lực chưa xếp kệ  Phương thức này không ghi nhật ký
         /// </summary>
-        /// <param name="yzId">医嘱ID</param>
-        /// <param name="zxId">医嘱执行ID</param>
+        /// <param name="yzId">Y lệnhID</param>
+        /// <param name="zxId">Thực hiện y lệnhID</param>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
@@ -42,10 +42,10 @@ WHERE ypCode=@ypCode AND zxId=@zxId AND yzId=@yzId AND OrganizeId=@OrganizeId AN
         }
 
         /// <summary>
-        /// 获取住院有效未归架的排药信息  此方法不加日志
+        /// Lấy thông tin xếp thuốc nội trú hiệu lực chưa xếp kệ  Phương thức này không ghi nhật ký
         /// </summary>
-        /// <param name="yzId">医嘱ID</param>
-        /// <param name="zxId">医嘱执行ID</param>
+        /// <param name="yzId">Y lệnhID</param>
+        /// <param name="zxId">Thực hiện y lệnhID</param>
         /// <param name="ypCode"></param>
         /// <param name="ph"></param>
         /// <param name="organizeId"></param>

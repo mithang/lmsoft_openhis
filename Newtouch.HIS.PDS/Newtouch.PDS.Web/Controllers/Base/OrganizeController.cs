@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Web.Controllers.Base
         private readonly ISysModuleDmnService _sysModuleDmnService;
 
 
-        //下拉 数据源
+        //Thả xuống Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetChildTreeSelectJson(string orgId)

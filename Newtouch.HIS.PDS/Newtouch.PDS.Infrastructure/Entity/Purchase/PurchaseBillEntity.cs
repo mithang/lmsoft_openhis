@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.Entity.Purchase
         public string fph { get; set; }
         public string yqbm { get; set; }
         public decimal fphszje { get; set; }
-        public string fpzt { get; set; } //0.未入库 1.已入库
+        public string fpzt { get; set; } //0.Chưa nhập kho 1.Đã nhập kho
         /// <summary>
         /// 
         /// </summary>

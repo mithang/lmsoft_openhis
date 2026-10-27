@@ -67,24 +67,24 @@
     var localdata = {};
     var $gridPsList = $("#gridListPs");
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
 
         });
         Initial();
     });
 
-    //初始化
+    //Khởi tạo
     function Initial() {
         gridList();
         gridMxInfo();
-        //绑定科室
+        //gắnKhoa
         $("#sel_ks").bindSelect({
             url: "/SystemManage/SysDepartment/GetTreeSelectJson",
         });
     }
 
-    //主表信息
+    //chínhbảngthông tin
     function gridList() {
         var $gridList = $("#gridListPatient");
         $gridList.dataGrid({
@@ -93,7 +93,7 @@
             height: $(window).height() - document.getElementById('gridListPatient').offsetTop - 120,
             colModel: [
                 { label: 'Id', name: 'jzId', key: true, hidden: true },
-                //{ label: '来源', name: 'Name', width: 30, align: 'center' },
+                //{ label: 'đếnnguồn', name: 'Name', width: 30, align: 'center' },
                 { label: 'Số bệnh án', name: 'blh', width: 100, align: 'center' },
                 { label: 'Họ tên', name: 'xm', width: 70, align: 'center' },
                 { label: 'Giới tính', name: 'xb', width: 30, align: 'center' },
@@ -118,7 +118,7 @@
                 }).trigger('reloadGrid');
         });
     }
-    //查询参数
+    //Tra cứutham số
     function getGridListPar() {
         var ksmc = $("#sel_ks").find("option:selected").text();
         var ks = ksmc.indexOf('=') >= 0 ? "" : ksmc;
@@ -129,7 +129,7 @@
         return { keyword: keyword, ks: ks, kssj: kssj, jssj: jssj, zxzt: zxzt }
     }
 
-    //加载患者Test da项目
+    //tảiBệnh nhânTest daMục
     function ajaxmxList() {
         var rowData = $("#gridListPatient").jqGridRowValue();
         var Id = rowData.jzId;
@@ -143,7 +143,7 @@
         }).trigger('reloadGrid');
     }
 
-    //Test da项目
+    //Test daMục
     function gridMxInfo() {
         $gridPsList.dataGrid({
             height: $(window).height() - document.getElementById('gridListPs').offsetTop - 120,
@@ -200,7 +200,7 @@
         });
     }
     
-    //取消Thực hiện
+    //HủyThực hiện
     function newtouch_event_f8() {
         var gmxxId = $gridPsList.jqGridRowValue().gmxxId;
         var blh = $gridPsList.jqGridRowValue().blh;

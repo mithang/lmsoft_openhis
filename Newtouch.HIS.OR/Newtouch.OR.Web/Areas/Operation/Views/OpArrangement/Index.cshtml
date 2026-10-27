@@ -7,7 +7,7 @@
 <style>
     .container {
         background-color: #ffffff !important;
-        height: 100vh; /*元素的高度与 window 的高度相同*/
+        height: 100vh; /*Chiều cao của phần tử bằng window chiều cao*/
         width: 99%;
     }
 
@@ -28,11 +28,11 @@
         border-bottom-right-radius: 5px;
         border-bottom-left-radius: 5px;
     }*/
-    /*解决设置表头列宽无效*/
+    /*Khắc phục việc đặt độ rộng cột tiêu đề không có hiệu lực*/
     /* #table{
             table-layout: fixed;
         }*/
-    /*解决固定表头后,表头与表内容不对齐*/
+    /*Khắc phục sau khi cố định tiêu đề,Tiêu đề bảng và nội dung bảng không thẳng hàng*/
     .table_list_box {
         table-layout: fixed !important;
     }
@@ -212,12 +212,12 @@
         $('#tabel_sspb').bootstrapTable('refresh', { queryParams: queryParams });
     }
 
-    //请求的参数
+    //Tham số yêu cầu
     function queryParams(params) {
         var data = {
-            //每页多少条数据
+            //Mỗi trang bao nhiêubản ghi
             limit: params.limit,
-            //请求第几页
+            //Yêu cầu trang thứ mấy
             offset: params.offset,
             order: params.order,
             sort: params.sort,
@@ -363,32 +363,32 @@
     function TableInit() {
         $('#tabel_sspb').bootstrapTable('destroy').bootstrapTable({
             url: '/Operation/OpArrangement/GetGridList',
-            method: 'POST',                      //数据请求方式
+            method: 'POST',                      //Phương thức yêu cầu dữ liệu
             contentType: "application/x-www-form-urlencoded",
             // classes: "table table-bordered table-striped table-hover",
             search: false,
-            striped: true, //是否显示行间隔色
-            toolbar: '#toolbar',            //工具按钮用哪个容器 #toolbar
+            striped: true, //Có hiển thị màu xen kẽ hàng không
+            toolbar: '#toolbar',            //Nút công cụ dùng container nào #toolbar
             //toolbarAlign: 'left',
             uniqueId: "Id",
-            //******分页设置****
+            //******Cài đặt phân trang****
             queryParams: queryParams,
-            pagination: true,                   //是否显示分页（*）
-            pageNumber: 1,                      //初始化加载第一页，默认第一页,并记录
-            pageSize: 10,                       //每页的记录行数（*）
-            pageList: [20, 50, 100],            //可供选择的每页的行数（*）
+            pagination: true,                   //Có hiển thị phân trang không（*）
+            pageNumber: 1,                      //Tải trang đầu tiên khi khởi tạo，Mặc định trang đầu tiên,và ghi lại
+            pageSize: 10,                       //Số dòng bản ghi mỗi trang（*）
+            pageList: [20, 50, 100],            //Số dòng mỗi trang có thể chọn（*）
             paginationHAlign: "left",
             paginationDetailHAlign: "right",
-            //sortable: true,                     //是否启用排序
-            //sortOrder: "asc",                   //排序方式
-            sidePagination: 'client',           //分页方式：client客户端分页，server服务端分页（*）
+            //sortable: true,                     //Có bật sắp xếp không
+            //sortOrder: "asc",                   //Cách sắp xếp
+            sidePagination: 'client',           //Cách phân trang：clientPhân trang phía client，serverPhân trang phía server（*）
             showPaginationSwitch: false,
-            //******分页设置****
-            //******表格头部设置****
-            showHeader: true,                   //显示表格头部
-            theadClasses: "tableth",        //这里设置表头样式
-            //******表格头部设置****
-            showRefresh: false,//刷新按钮
+            //******Cài đặt phân trang****
+            //******Cài đặt tiêu đề bảng****
+            showHeader: true,                   //Hiển thị tiêu đề bảng
+            theadClasses: "tableth",        //Đặt kiểu tiêu đề bảng tại đây
+            //******Cài đặt tiêu đề bảng****
+            showRefresh: false,//Nút làm mới
             height: getPatListTableHeight(),
             columns: tableCols,
             onDblClickRow: function (row, $element, field) {

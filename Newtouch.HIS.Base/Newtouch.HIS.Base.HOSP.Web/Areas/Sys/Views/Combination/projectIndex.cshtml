@@ -55,16 +55,16 @@
 				<input id="txt_gjybdm" type="text" style="width:200px; height:15px;" class="form-control form-an" placeholder="Tên hạng mục BHYT">
 			</div>
 			@*<div class="btn-group">
-				<label>注册备案号：</label>
+				<label>Số đăng ký lưu hành：</label>
 			</div>
 			<div class="btn-group">
-				<input id="txt_pzwh" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="医保注册备案号">
+				<input id="txt_pzwh" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Số đăng ký BHYT">
 			</div>
 			<div class="btn-group">
-				<label>耗材企业：</label>
+				<label>Doanh nghiệp vật tư：</label>
 			</div>
 			<div class="btn-group">
-				<input id="txt_scqy" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="医保耗材企业">
+				<input id="txt_scqy" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Doanh nghiệp vật tư BHYT">
 			</div>*@
 			<div class="btn-group">
 				<input type="button" id="btn_searchyb" class="btn btn-primary" value="Tìm kiếm"/>
@@ -77,16 +77,16 @@
 		</div>
 		@*<table class="form">
 			<tr>
-				<th class="formTitle">项目代码：</th>
+				<th class="formTitle">Mã hạng mục：</th>
 				<td class="formValue" colspan="3">
-					<input id="txt_gjybdm" type="text" style="width:300px;" class="form-control form-an" placeholder="项目代码">
+					<input id="txt_gjybdm" type="text" style="width:300px;" class="form-control form-an" placeholder="Mã hạng mục">
 				</td>
 
 				<td class="formValue" colspan="2">
-					<input type="button" id="btn_searchyb" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="查询" />
+					<input type="button" id="btn_searchyb" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tìm kiếm" />
 				</td>
 				<td class="formValue" colspan="2">
-					<input type="button" id="btn_save" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="对码" />
+					<input type="button" id="btn_save" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Đối mã" />
 				</td>
 				<th class="formTitle"></th>
 				<td class="formValue"></td>
@@ -126,9 +126,9 @@
 				{ label: "Mã BHYT quốc gia", name: "gjybdm", width: 180, align: 'center', sortable: false, frozen: true},
 				{ label: "Tên BHYT quốc gia", name: "gjybmc", width: 200, align: 'center', sortable: false },
 				{ label: 'Quy cách', name: 'gg', width: 110, align: 'center', sortable: false},
-				//{ label: '批准文号', name: 'pzwh', width: 140, align: 'center', sortable: false },
-				//{ label: '剂型', name: 'jxmc', width: 60, align: 'center', sortable: false },
-				//{ label: '生产厂商', name: 'sccj', width: 180, align: 'center', sortable: false },
+				//{ label: 'Số đăng ký', name: 'pzwh', width: 140, align: 'center', sortable: false },
+				//{ label: 'Dạng bào chế', name: 'jxmc', width: 60, align: 'center', sortable: false },
+				//{ label: 'Nhà sản xuất', name: 'sccj', width: 180, align: 'center', sortable: false },
 				{
 					label: 'Tính chất tự trả', name: 'zfxz', width: 60, align: 'center', sortable: false, formatter: function (cellvalue, a, b) {
 						switch (parseInt(b.zfxz)) {
@@ -174,7 +174,7 @@
 	}
 
 
-	//结算明细 jGrid声明
+	//Chi tiết quyết toán jGridKhai báo
 	$('#gridJSMXList').newtouchLocalDataGrid({
 		height: $(window).height() - 520,
 		caption: "Thông tin hạng mục BHYT",
@@ -209,7 +209,7 @@
 			return false;
 		}
 		//if ($("#txt_gjybdm").val()=="") {
-		//	$.modalMsg("请输入需要查询的项目信息", "warning", 1000);
+		//	$.modalMsg("Vui lòng nhập thông tin hạng mục cần tra cứu", "warning", 1000);
 		//	return false;
 		//}
 		console.log($("#txt_gjybdm").val());
@@ -237,7 +237,7 @@
 		}
 
 		console.log(gjybdm);
-		//每次单击，先清空上一条明细 和合计
+		//Mỗi lần nhấp，Xóa chi tiết dòng trước và tổng cộng
 		$('#gridJSMXList').jqGrid("clearGridData");
 		$.najax({
 			type: "POST",
@@ -251,7 +251,7 @@
 	}
 
 
-	//保存对码
+	//Lưu đối mã
 	function btn_save() {
 
 		var ypids = $("#gridList").jqGrid('getGridParam', 'selrow');

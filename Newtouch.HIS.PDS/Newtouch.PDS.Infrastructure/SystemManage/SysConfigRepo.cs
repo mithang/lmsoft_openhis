@@ -16,14 +16,14 @@ using NewtouchHIS.Lib.Base.Exceptions;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 系统配置
+    /// Cấu hình hệ thống
     /// </summary>
     public class SysConfigRepo : RepositoryBase<SysConfigEntity>, ISysConfigRepo
     {
         private readonly ICache _cache;
 
         /// <summary>
-        /// 构造函数初始化
+        /// Khởi tạo hàm tạo
         /// </summary>
         /// <param name="databaseFactory"></param>
         /// <param name="cache"></param>
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 通过code和组织机构代码获取配置信息
+        /// Đạtcodevà mã tổ chức lấy thông tin cấu hình
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 通过code和组织机构代码获取配置信息
+        /// Đạtcodevà mã tổ chức lấy thông tin cấu hình
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -133,20 +133,20 @@ namespace Newtouch.HIS.Repository
         {
             if (!string.IsNullOrWhiteSpace(keyValue))
             {
-                //Code重复判断
+                //CodeĐánh giá trùng lặp
                 if (IQueryable().Any(p => p.Code == entity.Code && p.Id != keyValue && p.OrganizeId == entity.OrganizeId))
                 {
-                    throw new FailedException("编码不可重复");
+                    throw new FailedException("Mã không thể trùng lặp");
                 }
                 entity.Modify(keyValue);
                 Update(entity);
             }
             else
             {
-                //Code重复判断
+                //CodeĐánh giá trùng lặp
                 if (IQueryable().Any(p => p.Code == entity.Code && p.OrganizeId == entity.OrganizeId))
                 {
-                    throw new FailedException("编码不可重复");
+                    throw new FailedException("Mã không thể trùng lặp");
                 }
                 entity.Create(true);
                 Insert(entity);
@@ -154,7 +154,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 更改配置
+        /// Thay đổi cấu hình
         /// </summary>
         /// <param name="code"></param>
         /// <param name="value"></param>

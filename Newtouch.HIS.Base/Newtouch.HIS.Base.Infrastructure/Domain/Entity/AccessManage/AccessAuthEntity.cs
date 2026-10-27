@@ -16,26 +16,26 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
         public string OrganizeId { get; set; }
         /// <summary>
-        /// 注册编码
+        /// Mã đăng ký
         /// </summary>
         public string RegCode { get; set; }
         /// <summary>
-        /// 注册名称
+        /// Tên đăng ký
         /// </summary>
         public string RegName { get; set; }
         public string py { get; set; }
 
         /// <summary>
-        /// 权限等级 AuthorizedLevEnum
+        /// Cấp quyền AuthorizedLevEnum
         /// </summary>
         public int? AuthorizedLev { get; set; }
         /// <summary>
-        /// 授权期限 AuthorizedPeriod
+        /// Thời hạn ủy quyền AuthorizedPeriod
         /// </summary>
         public int? AuthorizedPeriod { get; set; }
         public string Memo { get; set; }
         /// <summary>
-        /// 密钥
+        /// Khóa bí mật
         /// </summary>
         public string accesskey { get; set; }
         public DateTime CreateTime { get; set; }

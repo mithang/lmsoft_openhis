@@ -21,11 +21,11 @@
         }
     });
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#ParentId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
         });
-        //机构分类下拉
+        //Thả xuống phân loại cơ sở
         $("#CategoryCode").bindSelect({
             url: "/ItemsData/GetSelectJson",
             param: { code: "OrganizeType" }

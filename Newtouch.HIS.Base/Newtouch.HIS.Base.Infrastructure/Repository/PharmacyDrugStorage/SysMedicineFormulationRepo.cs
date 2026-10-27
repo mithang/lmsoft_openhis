@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据查询药品剂型
+        /// Theo tra cứu dạng bào chế thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ and (jxCode like @searchKeyword or jxmc like @searchKeyword or py like @searchKe
                     throw new FailedException("Tên dạng bào chế không được trùng lặp!");
                 }
 
-                SysMedicineFormulationEntity oldEntity = null;   //变更前Entity
+                SysMedicineFormulationEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

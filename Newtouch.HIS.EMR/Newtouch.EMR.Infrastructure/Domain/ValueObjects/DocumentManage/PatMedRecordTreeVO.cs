@@ -24,23 +24,23 @@ namespace Newtouch.EMR.Domain.ValueObjects
         public string mzh { get; set; }
         public string BlId { get; set; }
         /// <summary>
-        /// 病历类型 EnumBllx
+        /// Loại bệnh án EnumBllx
         /// </summary>
         public string bllx { get; set; }
         /// <summary>
-        /// 是否允许添加文件标志
+        /// Dấu hiệu có cho phép thêm tệp hay không
         /// </summary>
         public int? addPermit { get; set; }
         /// <summary>
-        /// 文件读取编辑权限控制标志 EnummbqxFp
+        /// Cờ kiểm soát quyền đọc/sửa tệp EnummbqxFp
         /// </summary>
         public int? ctrlLevel { get; set; }
         /// <summary>
-        /// 上传医保对应的方法代码
+        /// Mã phương thức tương ứng tải lên bảo hiểm y tế
         /// </summary>
         public string Ybbm { get; set; }
         /// <summary>
-        /// 计划状态 EnumPlanStu
+        /// Trạng thái kế hoạch EnumPlanStu
         /// </summary>
         public string PlanStu { get; set; }
         public string mblj { get; set; }

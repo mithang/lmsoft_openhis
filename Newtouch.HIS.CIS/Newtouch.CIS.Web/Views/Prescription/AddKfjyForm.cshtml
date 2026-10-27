@@ -51,7 +51,7 @@
             viewrecords: true,
             //gridComplete: function (data) {
             //    if (data && data.length) {
-            //        $('#cb_gridList').trigger('click'); //全选checked
+            //        $('#cb_gridList').trigger('click'); //Chọn tất cảchecked
             //    }
             //},
             onSelectRow: function (rowid) {
@@ -73,21 +73,21 @@
                 var data = $("#gridList").getRowData(this);
                 if (data.zhbz == "1") {
                     $.modalAlert("【"+data.sfxmmc+"】Đề xuất phục hồi chức năng này đã được trích dẫn!", "warning");
-                    $("#gridList").jqGrid('setSelection', this, false); //设置jqGrid选中
+                    $("#gridList").jqGrid('setSelection', this, false); //Cài đặtjqGridĐã chọn
                     return false;
                 }
             }
         });
     }
-    ////推送未被选择的数据
+    ////đẩychưabịchọncủaDữ liệu
     //function GetNocheck() {
-    //    var allIds = $("#gridList").jqGrid('getDataIDs');//全部id 
-    //    var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");//选中的id  
-    //    var rowList = $("#gridList").jqGrid('getRowData_AllLine', false);//全部行数据
-    //    var NOchekcId = [];//未被选中的jqid
-    //    //获取未选中的 jqid
+    //    var allIds = $("#gridList").jqGrid('getDataIDs');//Tất cảid 
+    //    var selRowIds = jQuery("#gridList").jqGrid("getGridParam", "selarrrow");//Đã chọncủaid  
+    //    var rowList = $("#gridList").jqGrid('getRowData_AllLine', false);//Tất cảdòngDữ liệu
+    //    var NOchekcId = [];//chưabịĐã chọncủajqid
+    //    //LấychưaĐã chọncủa jqid
     //    for (key in allIds) {
-    //        var stra = allIds[key]; //未选中的 jqid
+    //        var stra = allIds[key]; //chưaĐã chọncủa jqid
     //        var count = 0;
     //        for (var j = 0; j < selRowIds.length; j++) {
     //            var strb = selRowIds[j];
@@ -101,7 +101,7 @@
     //    }
 
     //    var NochekedData = [];
-    //    // NocheckedRefeResult 未被选择的zhbz=2
+    //    // NocheckedRefeResult chưabịchọncủazhbz=2
     //    var NocheckedRefeResult = [];
     //    for (var i = 0; i < NOchekcId.length - 1; i++) {
     //        var roleid = NOchekcId[i]
@@ -112,14 +112,14 @@
     //}
 
     function AcceptClick(callBack) {
-        //要推送的未选择的数据
+        //cầnđẩycủachưachọncủaDữ liệu
         //var addRefeResult1 = GetNocheck();
         var rowList = $("#gridList").jqGrid('getRowData_AllLine', true);
         if (!(rowList && rowList.length)) {
             $.modalAlert("Chưa chọn đề xuất phục hồi chức năng", 'warning');
             return;
         }
-        //返回治疗建议Trích dẫn结果
+        //Quay lạiĐiều trịxâynghịTrích dẫnkếtnếu
         var addRefeResult = callBack(rowList);
         if (!(addRefeResult === false)) {
             //

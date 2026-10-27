@@ -9,14 +9,14 @@ using Newtouch.Herp.Domain.IDomainServices;
 namespace Newtouch.Herp.DomainServices
 {
     /// <summary>
-    /// 申领单管理
+    /// Quản lý phiếu lĩnh
     /// </summary>
     public class KfApplyOrderDmnService : DmnServiceBase, IKfApplyOrderDmnService
     {
         
 
         /// <summary>
-        /// 获取申领单主信息
+        /// Lấy thông tin chính của phiếu lĩnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sldh"></param>
@@ -61,7 +61,7 @@ AND ao.sldh LIKE '%'+@sldh+'%'
         }
 
         /// <summary>
-        /// 获取申领单主信息
+        /// Lấy thông tin chính của phiếu lĩnh
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="sldh"></param>
@@ -71,7 +71,7 @@ AND ao.sldh LIKE '%'+@sldh+'%'
         /// <param name="jssj"></param>
         /// <param name="organizeId"></param>
         /// <param name="warehouseId"></param>
-        /// <param name="applyProcesses">可选处理状态集合</param>
+        /// <param name="applyProcesses">Tập hợp trạng thái xử lý có thể chọn</param>
         /// <returns></returns>
         public IList<VApplyBillInfoEntity> SelectApplyBillInfo(Pagination pagination, string sldh, int applyType, int applyProcess, DateTime kssj, DateTime jssj, string organizeId, string warehouseId, List<int> applyProcesses)
         {
@@ -114,7 +114,7 @@ AND ao.ckbm=@warehouseId
         }
 
         /// <summary>
-        /// 获取申领单主明细
+        /// Lấy chi tiết chính của phiếu lĩnh
         /// </summary>
         /// <param name="sldh"></param>
         /// <param name="organizeId"></param>
@@ -146,7 +146,7 @@ AND ao.sldh =@sldh
         }
 
         /// <summary>
-        /// 获取申领单主明细
+        /// Lấy chi tiết chính của phiếu lĩnh
         /// </summary>
         /// <param name="sldhs"></param>
         /// <param name="organizeId"></param>
@@ -155,7 +155,7 @@ AND ao.sldh =@sldh
         {
             const string sql = @"
 
--- 切割字符串
+-- Cắt chuỗi
 DECLARE @t TABLE(col VARCHAR(50));
 DECLARE @s VARCHAR(5000);
 DECLARE @split VARCHAR(1);

@@ -12,7 +12,7 @@ using static NewtouchHIS.Base.Domain.EnumExtend.BusEnum;
 namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
 {
     /// <summary>
-    /// 患者信息管理
+    /// Quản lý thông tin bệnh nhân
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -23,7 +23,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         {
         }
         /// <summary>
-        /// 根据Họ tên/身份证号获取患者信息
+        /// TheoHọ tên/Lấy thông tin bệnh nhân theo họ tên/số CMND
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -38,7 +38,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 自费Bệnh nhân自助建档
+        /// Tự chi trảBệnh nhânTự lập hồ sơ
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -54,7 +54,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         }
 
         /// <summary>
-        /// Bệnh nhân住院信息查询：bySố nhập viện/Số thẻ/Họ tên
+        /// Bệnh nhânTruy vấn thông tin nội trú của bệnh nhân:bySố nhập viện/Số thẻ/Họ tên
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -69,9 +69,9 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
 
-        #region LIS 报告
+        #region LIS Báo cáo
         /// <summary>
-        /// 住院检验报告列表
+        /// Danh sách báo cáo xét nghiệm nội trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -91,7 +91,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 住院检验报告列表
+        /// Danh sách báo cáo xét nghiệm nội trú
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -111,7 +111,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
             return InitController.BuildResponseBase(resp);
         }
         /// <summary>
-        /// 检验报告明细查询
+        /// Truy vấn chi tiết báo cáo xét nghiệm
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -121,7 +121,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         {
             if (request.Data == null || string.IsNullOrWhiteSpace(request.Data!.sqdh) || string.IsNullOrWhiteSpace(request.Data!.ywlx))
             {
-                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(sqdh、ywlx) không được để trống" };
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(sqdh,ywlx) không được để trống" };
             }
             var apiReq = InitController.BuildBookRequest(request, null, null).Adapt<BookingRequest>();
             request.Data!.sqdzt = EnumReportStu.ywc.ToString();

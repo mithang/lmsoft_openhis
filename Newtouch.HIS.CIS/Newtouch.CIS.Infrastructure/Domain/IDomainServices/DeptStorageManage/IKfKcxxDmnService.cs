@@ -5,45 +5,45 @@ using Newtouch.Domain.ValueObjects.Storage;
 namespace Newtouch.Domain.IDomainServices.DeptStorageManage
 {
     /// <summary>
-    /// 库存操作
+    /// Tồn khoThao tác
     /// </summary>
     public interface IKfKcxxDmnService
     {
         /// <summary>
-        /// 修改库存数量
+        /// SửaTồn khoSố lượng
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="warehouseId"></param>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Đơn vị nhỏ nhấtSố lượng</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <returns>返回受影响行</returns>
+        /// <returns>Quay lại受hìnhhưởngdòng</returns>
         int UpdateKcsl(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode);
 
         // /// <summary>
-        // /// 修改库存数量
+        // /// SửaTồn khoSố lượng
         // /// </summary>
         // /// <param name="updateKcslDto"></param>
         // /// <returns></returns>
         // string UpdateKcsl(List<UpdateKcslDTO> updateKcslDto);
 
         /// <summary>
-        /// 追加库存，不修改冻结数量 返回影响行
+        /// đuổithêmTồn kho，khôngSửađôngkếtSố lượng Quay lạihìnhhưởngdòng
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="warehouseId"></param>
-        /// <param name="sl">最小单位数量  必须为正数</param>
+        /// <param name="sl">Đơn vị nhỏ nhấtSố lượng  phảicầnlàđangsố</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <returns>返回影响行</returns>
+        /// <returns>Quay lạihìnhhưởngdòng</returns>
         int AddKcsl(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode);
         
         // // /// <summary>
-        // // /// 修改库存数量，不修改冻结数量
+        // // /// SửaTồn khoSố lượng，khôngSửađôngkếtSố lượng
         // // /// </summary>
         // // /// <param name="updateKcslDto"></param>
         // // /// <returns></returns>
@@ -51,7 +51,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // //
         // //
         // // // /// <summary>
-        // // // /// 修改库存数量，不修改冻结数量
+        // // // /// SửaTồn khoSố lượng，khôngSửađôngkếtSố lượng
         // // // /// </summary>
         // // // /// <param name="updateKcslDto"></param>
         // // // /// <param name="db"></param>
@@ -59,7 +59,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // // // string JustSubtractKcslNoTrans(List<UpdateKcslDTO> updateKcslDto, EFDbTransaction db = null);
         // // //
         // // // /// <summary>
-        // // // /// 修改库存数量，不修改冻结数量
+        // // // /// SửaTồn khoSố lượng，khôngSửađôngkếtSố lượng
         // // // /// </summary>
         // // // /// <param name="updateKcslDto"></param>
         // // // /// <param name="db"></param>
@@ -67,7 +67,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // // // string JustSubtractKcsl(UpdateKcslDTO updateKcslDto, EFDbTransaction db = null);
         //
         // /// <summary>
-        // /// 减库存数量、冻结数量（出库可用）
+        // /// giảmTồn khoSố lượng、đôngkếtSố lượng（Xuất khocó thểdùng）
         // /// </summary>
         // /// <param name="productId"></param>
         // /// <param name="pc"></param>
@@ -80,22 +80,22 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // string SubtractKcslAndDjsl(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode);
         //
         // /// <summary>
-        // /// 解冻
+        // /// Rã đông
         // /// </summary>
         // /// <param name="productId"></param>
         // /// <param name="pc"></param>
         // /// <param name="ph"></param>
         // /// <param name="warehouseId"></param>
-        // /// <param name="sl">最小单位数量</param>
+        // /// <param name="sl">Đơn vị nhỏ nhấtSố lượng</param>
         // /// <param name="organizeId"></param>
         // /// <param name="userCode"></param>
         // /// <returns></returns>
         // string Unfreeze(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode);
         //
         // /// <summary>
-        // /// 冻结库存
+        // /// đôngkếtTồn kho
         // /// </summary>
-        // /// <param name="sl">最小单位数量</param>
+        // /// <param name="sl">Đơn vị nhỏ nhấtSố lượng</param>
         // /// <param name="pc"></param>
         // /// <param name="ph"></param>
         // /// <param name="productId"></param>
@@ -106,9 +106,9 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // string FrozenKc(int sl, string pc, string ph, string productId, string organizeId, string warehouseId, string userCode);
         //
         // /// <summary>
-        // /// 外部入库 扣库存(作废)
+        // /// ngoàibộNhập kho khấuTồn kho(Hủy bỏ)
         // /// </summary>
-        // /// <param name="sl">最小单位数量</param>
+        // /// <param name="sl">Đơn vị nhỏ nhấtSố lượng</param>
         // /// <param name="pc"></param>
         // /// <param name="ph"></param>
         // /// <param name="productId"></param>
@@ -119,9 +119,9 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // string WbrkKkc(int sl, string pc, string ph, string productId, string organizeId, string warehouseId, string userCode);
         //
         // /// <summary>
-        // /// 撤销入库（直接出库作废）
+        // /// Thu hồiNhập kho（trực tiếpXuất khoHủy bỏ）
         // /// </summary>
-        // /// <param name="sl">最小单位数量</param>
+        // /// <param name="sl">Đơn vị nhỏ nhấtSố lượng</param>
         // /// <param name="pc"></param>
         // /// <param name="ph"></param>
         // /// <param name="productId"></param>
@@ -133,7 +133,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // string RevokeInstorage(int sl, string pc, string ph, string productId, string organizeId, string rkbm, string ckbm, string userCode);
 
         /// <summary>
-        /// 获取库存信息 结转用
+        /// LấyTồn khothông tin kết chuyểndùng
         /// </summary>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>

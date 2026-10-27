@@ -2,7 +2,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy
 {
     /// <summary>
-    /// 贵安远程医疗接口代理
+    /// đắtanxatrìnhy tếgiao diệnthaylý
     /// </summary>
     /// <typeparam name="T"></typeparam>
     /// <typeparam name="TV"></typeparam>
@@ -12,7 +12,7 @@ namespace Newtouch.CIS.Proxy
         protected string IntegratedModuleUrl = Newtouch.CIS.Compat.AppConfig.Get("IntegratedModuleUrl");
 
         /// <summary>
-        /// 执行
+        /// Thực hiện
         /// </summary>
         /// <param name="requestDto"></param>
         /// <returns></returns>

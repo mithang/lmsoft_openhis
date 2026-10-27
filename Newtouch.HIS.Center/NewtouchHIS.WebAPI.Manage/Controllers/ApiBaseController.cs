@@ -7,33 +7,33 @@ using NewtouchHIS.Lib.Services.HttpService;
 namespace NewtouchHIS.WebAPI.Manage.Controllers
 {
     /// <summary>
-    /// API基类
+    /// APILớp cơ sở
     /// </summary>
     [ApiController]
     public class ApiBaseController : ControllerBase
     {
         protected readonly IHttpClientHelper _httpClient;
         /// <summary>
-        /// 结算系统Api Host
+        /// Hệ thống quyết toánApi Host
         /// </summary>
         protected readonly string SettHttpUrl = ConfigInitHelper.SysConfig!.AppAPIHost!.SiteSettAPIHost ?? "";
         /// <summary>
-        /// 医护协同Api Host
+        /// Phối hợp y hộApi Host
         /// </summary>
         protected readonly string CisHttpUrl = ConfigInitHelper.SysConfig!.AppAPIHost!.SiteCisAPIHost ?? "";
         /// <summary>
-        /// 患者信息
-        /// （匿名身份验证）
+        /// Thông tin bệnh nhân
+        /// (Xác thực danh tính ẩn danh)
         /// </summary>
         protected readonly string PatientAnonRoute = "api/PatientAnon";
         /// <summary>
-        /// 订单信息
-        /// （匿名身份验证）
+        /// Thông tin đơn hàng
+        /// (Xác thực danh tính ẩn danh)
         /// </summary>
         protected readonly string OrderMethodRoute = "api/OrderCenter";
 
         /// <summary>
-        /// 构造函数
+        /// Hàm tạo
         /// </summary>
         /// <param name="mapper"></param>
         /// <param name="httpClient"></param>

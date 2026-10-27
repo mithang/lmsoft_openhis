@@ -4,161 +4,161 @@ namespace Newtouch.Infrastructure
 {
 
     /// <summary>
-    /// 日志记录类型
+    /// Loại ghi nhật ký
     /// </summary>
     public enum DbLogType
     {
         /// <summary>
-        /// 其他
+        /// Khác
         /// </summary>
         [Description("Khác")]
         Other = 0,
         /// <summary>
-        /// 登录
+        /// Đăng nhập
         /// </summary>
         [Description("Đăng nhập")]
         Login = 1,
         /// <summary>
-        /// 退出
+        /// Đăng xuất
         /// </summary>
         [Description("Đăng xuất")]
         Exit = 2,
         /// <summary>
-        /// 访问
+        /// Truy cập
         /// </summary>
         [Description("Truy cập")]
         Visit = 3,
         /// <summary>
-        /// 新增
+        /// Thêm mới
         /// </summary>
         [Description("Thêm mới")]
         Create = 4,
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         [Description("Xóa")]
         Delete = 5,
         /// <summary>
-        /// 修改
+        /// Sửa
         /// </summary>
         [Description("Sửa")]
         Update = 6,
         /// <summary>
-        /// 提交
+        /// Gửi
         /// </summary>
         [Description("Gửi")]
         Submit = 7,
         /// <summary>
-        /// 异常
+        /// Ngoại lệ
         /// </summary>
         [Description("Ngoại lệ")]
         Exception = 8,
     }
 
     /// <summary>
-    /// 自负性质
+    /// Tính chất tự trả
     /// </summary>
     public enum EnumZiFuXingZhi
     {
         /// <summary>
-        /// 可报
+        /// Được thanh toán
         /// </summary>
         [Description("Được thanh toán")]
         KB = 0,
         /// <summary>
-        /// 自费
+        /// Tự trả
         /// </summary>
         [Description("Tự trả")]
         ZF = 1,
         /// <summary>
-        /// 分类自负
+        /// Tự trả theo loại
         /// </summary>
         [Description("Tự trả theo loại")]
         FLZF = 2,
         /// <summary>
-        /// 绝对自理
+        /// Tự túc hoàn toàn
         /// </summary>
         [Description("Tự túc hoàn toàn")]
         JueDuiZiLi = 3,
         /// <summary>
-        /// 甲类
+        /// Loại A
         /// </summary>
         [Description("Loại A")]
         Jia,
         /// <summary>
-        /// 乙类
+        /// Loại B
         /// </summary>
         [Description("Loại B")]
         Yi,
         /// <summary>
-        /// 丙类
+        /// Loại C
         /// </summary>
         [Description("Loại C")]
         Bing,
     }
     /// <summary>
-    /// 自负性质 v2 
-    /// 重庆再用
+    /// Tính chất tự trả v2 
+    /// Trùng Khánh dùng lại
     /// </summary>
     public enum EnumZFXZv2 {
         /// <summary>
-        /// 自费
+        /// Tự trả
         /// </summary>
         [Description("Tự trả")]
         ZF = 1,
         /// <summary>
-        /// 甲类
+        /// Loại A
         /// </summary>
         [Description("Loại A")]
         J = 4,
         /// <summary>
-        /// 乙类
+        /// Loại B
         /// </summary>
         [Description("Loại B")]
         Y = 5,
         /// <summary>
-        /// 丙类
+        /// Loại C
         /// </summary>
         [Description("Loại C")]
         B = 6,
     }
 
     /// <summary>
-    /// 病区记账取整类型
+    /// Loại làm tròn ghi sổ khu bệnh
     /// </summary>
     public enum EnumBQJZQZ
     {
         /// <summary>
-        /// 每天取整
+        /// Làm tròn theo ngày
         /// </summary>
         [Description("Làm tròn theo ngày")]
         Day = 1,
         /// <summary>
-        /// 每次取整
+        /// Làm tròn theo lần
         /// </summary>
         [Description("Làm tròn theo lần")]
         Times
     }
 
     /// <summary>
-    /// 康复收费项目 计费方式
+    /// Hạng mục thu phí phục hồi chức năng Phương thức tính phí
     /// </summary>
     public enum EnumCollectionMethod
     {
         /// <summary>
-        /// 服务次数
+        /// Số lần dịch vụ
         /// </summary>
         [Description("Số lần dịch vụ")]
         Service = 1,
         /// <summary>
-        /// 时长
+        /// Thời lượng
         /// </summary>
         [Description("Thời lượng")]
         Time
     }
 
     /// <summary>
-    /// 收费大类 大类类别
+    /// Nhóm thu phí lớn Loại nhóm lớn
     /// </summary>
     public enum EnumSfdlDllb
     {
@@ -179,7 +179,7 @@ namespace Newtouch.Infrastructure
         flzxm
     }
     /// <summary>
-    /// 收费父级分类
+    /// Phân loại cha thu phí
     /// </summary>
     public enum EnumSffjdlCode
     {
@@ -209,7 +209,7 @@ namespace Newtouch.Infrastructure
         麻醉费
     }
     /// <summary>
-    /// 登录标志
+    /// Cờ đăng nhập
     /// </summary>
     public enum EnumLoginFlag
     {
@@ -226,75 +226,75 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 收费项目计价策略
+    /// Chiến lược tính giá hạng mục thu phí
     /// </summary>
     public enum EnumSfxmJjcl
     {
         /// <summary>
-        /// 按时长
+        /// Theo thời lượng
         /// </summary>
         [Description("Theo thời lượng")]
         Time = 1,
         /// <summary>
-        /// 按数量
+        /// Theo số lượng
         /// </summary>
         [Description("Theo số lượng")]
         Amount,
         /// <summary>
-        /// 按面积
+        /// Theo diện tích
         /// </summary>
         [Description("Theo diện tích")]
         Acreage,
     }
 
     /// <summary>
-    /// 菜单目标类型
+    /// Loại đích menu
     /// </summary>
     public enum EnumModuleTargetType
     {
         /// <summary>
-        /// 无页面
+        /// Không có trang
         /// </summary>
         expand,
         /// <summary>
-        /// 框架页
+        /// Trang khung
         /// </summary>
         iframe,
         /// <summary>
-        /// 弹出页
+        /// Trang bật lên
         /// </summary>
         open,
         /// <summary>
-        /// 新窗口
+        /// Cửa sổ mới
         /// </summary>
         blank,
         /// <summary>
-        /// 子页面（不显示在菜单中）
+        /// Trang con（Không hiển thị trong menu）
         /// </summary>
         subpage,
         /// <summary>
-        /// 当前窗口
+        /// Cửa sổ hiện tại
         /// </summary>
         toplocation,
     }
 
     /// <summary>
-    /// 床位类型 男女混
+    /// Loại giường bệnh Nam nữ lẫn
     /// </summary>
     public enum EnumWardBedType
     {
         /// <summary>
-        /// 男
+        /// Nam
         /// </summary>
         [Description("Nam")]
         male = 1,
         /// <summary>
-        /// 女
+        /// Nữ
         /// </summary>
         [Description("Nữ")]
         female = 2,
         /// <summary>
-        /// 混
+        /// Hỗn hợp
         /// </summary>
         [Description("Hỗn hợp")]
         Mix = 3
@@ -313,7 +313,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// 出入库标志
+    /// Cờ xuất/nhập kho
     /// </summary>
     public enum EnumCrkbz
     {
@@ -375,7 +375,7 @@ namespace Newtouch.Infrastructure
 		ss = 3,
 	}
     /// <summary>
-    /// 消息用户连接状态
+    /// Trạng thái kết nối người dùng tin nhắn
     /// </summary>
 	public enum EnumNoticeUserConnStu
 	{

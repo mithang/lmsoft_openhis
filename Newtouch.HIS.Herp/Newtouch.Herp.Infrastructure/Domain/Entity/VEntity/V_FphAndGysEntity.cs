@@ -1,22 +1,22 @@
 namespace Newtouch.Herp.Domain.Entity.VEntity
 {
     /// <summary>
-    /// 发票和供应商信息
+    /// Thông tin hóa đơn và nhà cung cấp
     /// </summary>
     public class VFphAndGysEntity
     {
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 供应商ID
+        /// Nhà cung cấp ID
         /// </summary>
         public string gysId { get; set; }
 
         /// <summary>
-        /// 供应商名称
+        /// Tên nhà cung cấp
         /// </summary>
         public string gysmc { get; set; }
     }

@@ -9,233 +9,233 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
     public class EngineReq
     {
         public bool ShouldSerializeMyProperty() => true;
-        public string Type { get; set; } // 处方类型
-        public PatientRecord Patient { get; set; } // 病人信息
-        public Operation Operation { get; set; } // 手术信息
-        public List<Prescription> Prescriptions { get; set; } // 药品处方列表
+        public string Type { get; set; } // Đơn thuốcLoại
+        public PatientRecord Patient { get; set; } // Thông tin bệnh nhân
+        public Operation Operation { get; set; } // Phẫu thuậtthông tin
+        public List<Prescription> Prescriptions { get; set; } // ThuốcĐơn thuốcdanh sách
 
     }
      public class PatientRecord
     {
         [XmlElement("departID")]
-        public string DepartID { get; set; } // 科室编号
+        public string DepartID { get; set; } // Số hiệu khoa
         
         [XmlElement("department")]
-        public string Department { get; set; } // 科室名称
+        public string Department { get; set; } // Tên khoa
         
         [XmlElement("bedNo")]
-        public string BedNo { get; set; } // 住院病人床号
+        public string BedNo { get; set; } // Nhập việnbệnh nhânSố giường
         
         [XmlElement("presType")]
-        public string PresType { get; set; } // 处方类型
+        public string PresType { get; set; } // Đơn thuốcLoại
         
         [XmlElement("presSource")]
-        public string PresSource { get; set; } // 来源
+        public string PresSource { get; set; } // đếnnguồn
         
         [XmlElement("presDateTime")]
-        public string PresDatetime { get; set; } // 处方/医嘱开具时间
+        public string PresDatetime { get; set; } // Đơn thuốc/Y lệnhmởcụ thểThời gian
         
         [XmlElement("payType")]
-        public string PayType { get; set; } // 费别
+        public string PayType { get; set; } // phíloại
         
         [XmlElement("patientNo")]
-        public string PatientNo { get; set; } // 就诊卡号
+        public string PatientNo { get; set; } // Khám bệnhSố thẻ
         
         [XmlElement("presNo")]
-        public string PresNo { get; set; } // 处方/医嘱号
+        public string PresNo { get; set; } // Đơn thuốc/Y lệnhsố
         
         [XmlElement("name")]
-        public string Name { get; set; } // 病人姓名
+        public string Name { get; set; } // bệnh nhânHọ tên
         
         [XmlElement("diagnoseid")]
-        public string DiagnoseID { get; set; } // 诊断id
+        public string DiagnoseID { get; set; } // Chẩn đoánid
         
         [XmlElement("diagnose")]
-        public string Diagnose { get; set; } // 诊断
+        public string Diagnose { get; set; } // Chẩn đoán
         
         [XmlElement("IDCard")]
-        public string IDCard { get; set; } // 身份证号码
+        public string IDCard { get; set; } // CMND/CCCDsốmã
         
         [XmlElement("address")]
-        public string Address { get; set; } // 病人地址
+        public string Address { get; set; } // bệnh nhânĐịa chỉ
         
         [XmlElement("phoneNo")]
-        public string PhoneNo { get; set; } // 联系电话
+        public string PhoneNo { get; set; } // Điện thoại liên hệ
         
         [XmlElement("age")]
-        public string Age { get; set; } // 年龄
+        public string Age { get; set; } // Tuổi
         
         [XmlElement("sex")]
-        public string Sex { get; set; } // 性别
+        public string Sex { get; set; } // Giới tính
         
         [XmlElement("height")]
-        public string Height { get; set; } // 身高
+        public string Height { get; set; } // thâncao
         
         [XmlElement("weight")]
-        public string Weight { get; set; } // 体重
+        public string Weight { get; set; } // thểtrọng
         
         [XmlElement("birthWeight")]
-        public string BirthWeight { get; set; } // 出生时体重
+        public string BirthWeight { get; set; } // rasinhkhithểtrọng
         
         [XmlElement("previousHistory")]
-        public string PreviousHistory { get; set; } // 既往史
+        public string PreviousHistory { get; set; } // Tiền sử
         
         [XmlElement("nowMedicalHistory")]
-        public string NowMedicalHistory { get; set; } // 现病史
+        public string NowMedicalHistory { get; set; } // hiệnbệnhsử
         
         [XmlElement("ccr")]
-        public string Ccr { get; set; } // 内生肌酐清除率
+        public string Ccr { get; set; } // trongsinh肌酐xóatỷ lệ
         
         [XmlElement("anaphylactogen")]
-        public string Anaphylactogen { get; set; } // 过敏史
+        public string Anaphylactogen { get; set; } // quaTiền sử dị ứng
         
         [XmlElement("allergicHistory")]
-        public string AllergicHistory { get; set; } // 过敏源
+        public string AllergicHistory { get; set; } // quamẫnnguồn
         
         [XmlElement("pregnancy")]
-        public string Pregnancy { get; set; } // 是否怀孕
+        public string Pregnancy { get; set; } // làKhôngmang thai
         
         [XmlElement("timeOfPreg")]
-        public string TimeOfPreg { get; set; } // 孕期
+        public string TimeOfPreg { get; set; } // 孕kỳ
         
         [XmlElement("disease")]
-        public string Disease { get; set; } // 是否慢性病
+        public string Disease { get; set; } // làKhôngBệnh mạn tính
         
         [XmlElement("breastFeeding")]
-        public string BreastFeeding { get; set; } // 是否哺乳
+        public string BreastFeeding { get; set; } // làKhông哺乳
         
         [XmlElement("dialysis")]
-        public string Dialysis { get; set; } // 是否透析
+        public string Dialysis { get; set; } // làKhông透析
         
         [XmlElement("proxName")]
-        public string ProxName { get; set; } // 代办人姓名
+        public string ProxName { get; set; } // thaylàm ngườiHọ tên
         
         [XmlElement("proxIDCard")]
-        public string ProxIDCard { get; set; } // 代办人身份证号
+        public string ProxIDCard { get; set; } // thaylàm ngườiCMND/CCCDsố
         
         [XmlElement("docID")]
-        public string DocID { get; set; } // 医生工号
+        public string DocID { get; set; } // Bác sĩMã nhân viên
         
         [XmlElement("docName")]
-        public string DocName { get; set; } // 医生姓名
+        public string DocName { get; set; } // Bác sĩHọ tên
         
         [XmlElement("totalAmount")]
-        public string TotalAmount { get; set; } // 处方金额
+        public string TotalAmount { get; set; } // Đơn thuốcSố tiền
         // Add any additional fields as necessary
     }
 
     public class Operation
     {
         [XmlElement("operationCode")]
-        public string OperationCode { get; set; } // 手术代码
+        public string OperationCode { get; set; } // Mã phẫu thuật
         
         [XmlElement("operationName")]
-        public string OperationName { get; set; } // 手术名称
+        public string OperationName { get; set; } // Tên phẫu thuật
         
         [XmlElement("operationStartTime")]
-        public string OperationStartTime { get; set; } // 手术开始时间
+        public string OperationStartTime { get; set; } // Thời gian bắt đầu phẫu thuật
         
         [XmlElement("operationEndTime")]
-        public string OperationEndTime { get; set; } // 手术结束时间
+        public string OperationEndTime { get; set; } // Thời gian kết thúc phẫu thuật
         
         [XmlElement("incisionType")]
-        public string IncisionType { get; set; } // 切口类型
+        public string IncisionType { get; set; } // cắtmiệngLoại
         
         [XmlElement("incisionStatus")]
-        public string IncisionStatus { get; set; } // 愈合类型
+        public string IncisionStatus { get; set; } // 愈hợpLoại
         
         [XmlElement("inplant")]
-        public string Inplant { get; set; } // 是否有植入物
+        public string Inplant { get; set; } // làKhôngcó植vàovật
     }
 
     [XmlRoot("Prescription")]
     public class Prescription
     {
         [XmlElement("drug")]
-        public string Drug { get; set; } // 药品ID
+        public string Drug { get; set; } // ThuốcID
         
         [XmlElement("drugName")]
-        public string DrugName { get; set; } // 药品名称
+        public string DrugName { get; set; } // Tên thuốc
         
         [XmlElement("regName")]
-        public string RegName { get; set; } // 商品名
+        public string RegName { get; set; } // Tên thương mại
         
         [XmlElement("specification")]
-        public string Specification { get; set; } // 含量规格
+        public string Specification { get; set; } // chứalượngQuy cách
         
         [XmlElement("package")]
-        public string Package { get; set; } // 包装规格
+        public string Package { get; set; } // góilắpQuy cách
         
         [XmlElement("quantity")]
-        public float Quantity { get; set; } // 数量
+        public float Quantity { get; set; } // Số lượng
         
         [XmlElement("packUnit")]
-        public string PackUnit { get; set; } // 包装单位
+        public string PackUnit { get; set; } // Đơn vị đóng gói
         
         [XmlElement("unitPrice")]
-        public string UnitPrice { get; set; } // 单价
+        public string UnitPrice { get; set; } // Đơn giá
         
         [XmlElement("amount")]
-        public string Amount { get; set; } // 总价
+        public string Amount { get; set; } // tổnggiá
         
         [XmlElement("groupNo")]
-        public string GroupNo { get; set; } // 组号
+        public string GroupNo { get; set; } // Số nhóm
         
         [XmlElement("firstUse")]
-        public string FirstUse { get; set; } // 首剂使用
+        public string FirstUse { get; set; } // đầuliềuSử dụng
         
         [XmlElement("prepForm")]
-        public string PrepForm { get; set; } // 剂型
+        public string PrepForm { get; set; } // Dạng bào chế
         
         [XmlElement("adminRoute")]
-        public string AdminRoute { get; set; } // 给药途径
+        public string AdminRoute { get; set; } // chothuốcĐường
         
         [XmlElement("adminArea")]
-        public string AdminArea { get; set; } // 给药部位
+        public string AdminArea { get; set; } // chothuốcVị trí
         
         [XmlElement("adminFrequency")]
-        public string AdminFrequency { get; set; } // 给药频率
+        public string AdminFrequency { get; set; } // chothuốctần suấttỷ lệ
         
         [XmlElement("adminDose")]
-        public string AdminDose { get; set; } // 给药剂量
+        public string AdminDose { get; set; } // chothuốcLiều lượng
         
         [XmlElement("adminMethod")]
-        public string AdminMethod { get; set; } // 给药时机
+        public string AdminMethod { get; set; } // chothuốckhimáy
         
         [XmlElement("type")]
-        public string Type { get; set; } // 类型
+        public string Type { get; set; } // Loại
         
         [XmlElement("adminGoal")]
-        public string AdminGoal { get; set; } // 给药目的
+        public string AdminGoal { get; set; } // chothuốcmắtcủa
         
         [XmlElement("docID")]
-        public string DocID { get; set; } // 医生工号
+        public string DocID { get; set; } // Bác sĩMã nhân viên
         
         [XmlElement("docName")]
-        public string DocName { get; set; } // 医生姓名
+        public string DocName { get; set; } // Bác sĩHọ tên
         
         [XmlElement("docTitle")]
-        public string DocTitle { get; set; } // 医生职称
+        public string DocTitle { get; set; } // Bác sĩChức danh
         
         [XmlElement("departID")]
-        public string DepartID { get; set; } // 科室ID
+        public string DepartID { get; set; } // KhoaID
         
         [XmlElement("department")]
-        public string Department { get; set; } // 科室名称
+        public string Department { get; set; } // Tên khoa
         
         [XmlElement("nurseName")]
-        public string NurseName { get; set; } // 护士名称
+        public string NurseName { get; set; } // Điều dưỡngTên
         
         [XmlElement("startTime")]
-        public string StartTime { get; set; } // 开始时间
+        public string StartTime { get; set; } // Thời gian bắt đầu
         
         [XmlElement("endTime")]
-        public string EndTime { get; set; } // 结束时间
+        public string EndTime { get; set; } // Thời gian kết thúc
         
         [XmlElement("specialPromote")]
-        public string SpecialPromote { get; set; } // 煎煮方法
+        public string SpecialPromote { get; set; } // sắc煮Phương pháp
         
         [XmlElement("continueDays")]
-        public string ContinueDays { get; set; } // 持续时间
+        public string ContinueDays { get; set; } // liên tụcThời gian
     }
 }

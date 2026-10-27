@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string sfflId { get; set; }
 
         /// <summary>
-        /// 医院机构Id
+        /// Tổ chức bệnh việnId
         /// </summary>
         public string OrganizeId { get; set; }
 

@@ -62,12 +62,12 @@
         }
     })
 
-    //首拼
+    //Mã đầu chữ
     $('#yfmc').keyup(function () {
         $('#py').val($(this).toShouPin());
     })
 
-    //提交
+    //Gửi
     function submitForm() {
         if (!$('#form1').formValid()) {
             return false;

@@ -8,7 +8,7 @@ using SqlSugar;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 结构化明细表
+    /// Bảng chi tiết có cấu trúc
     /// </summary>
     [SugarTable("bl_ElementDomain_Detail")]
     public class bl_ElementDomain_DetailEntity 

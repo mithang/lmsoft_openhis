@@ -53,7 +53,7 @@
                 { label: 'ICD10Mã bổ sung', name: 'icd10fjm', width: 100, align: 'left' },
                 { label: 'Chẩn đoán bản BHYT', name: 'zdmc_yb', width: 150, align: 'left' },
                 { label: 'Mã bản BHYT', name: 'zdCode_yb', width: 80, align: 'left' },
-                //{ label: '国家码', name: 'gjybdm', width: 80, align: 'left' },
+                //{ label: 'Mã quốc gia', name: 'gjybdm', width: 80, align: 'left' },
                 { label: 'Mã đầu chữ', name: 'py', width: 80, align: 'left' },
                 { label: 'Mã Wubi', name: 'wb', width: 60, align: 'left', hidden: true },
                 {
@@ -80,7 +80,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })

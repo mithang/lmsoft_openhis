@@ -60,22 +60,22 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
             //object[] oplist = new[]{
             //    new{
             //        group="",
-            //        name="放射室",
+            //        name="Khoa X-quang",
             //        Code="07"
             //    },
             //    new {
             //        group="Khoa bệnh án 1",
-            //        name="妇产科",
+            //        name="Khoa Phụ sản",
             //        Code="00000005"
             //    },
             //    new{
             //        group="Khoa bệnh án 2",
-            //        name="收费室",
+            //        name="Phòng Thu phí",
             //        Code="00000009"
             //    },
             //    new{
             //        group="Khoa bệnh án 3",
-            //        name="药房",
+            //        name="Nhà thuốc",
             //        Code="00000003"
             //    },
 
@@ -92,7 +92,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
             return Content(data.ToJson());
         }
 
-        //获取Khoa bệnh án下拉框内容
+        //Lấy nội dung hộp thả xuống khoa bệnh án
         public IActionResult GetDicDeptList(Pagination pagination, string keyword)
         {
             var oplist = _MrdicdeptRepo.GetDicDeptList(OrganizeId);
@@ -123,7 +123,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
         }
 
         /// <summary>
-        /// 分页获取Danh sách bệnh án
+        /// Lấy danh sách bệnh án phân trang
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -141,7 +141,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
         }
 
         /// <summary>
-        /// Thêm mới/Sửa 病案信息
+        /// Thêm mới/Sửa Thông tin bệnh án
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
@@ -157,7 +157,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
         }  
 
         /// <summary>
-        /// Truy vấn单条病案信息
+        /// Truy vấn thông tin một bệnh án
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -168,7 +168,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
         }
 
         /// <summary>
-        /// Xóa病案信息
+        /// XóaThông tin bệnh án
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

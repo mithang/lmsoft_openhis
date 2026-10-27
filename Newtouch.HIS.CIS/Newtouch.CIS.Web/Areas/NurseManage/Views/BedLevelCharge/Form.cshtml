@@ -39,7 +39,7 @@
             });
         }
 
-        //项目浮层
+        //Mụclớp nổi
         $('#sfxmmc').sfxmFloatingSelector({
             djDecimalPlaces: 4,
             showdwjls: true,
@@ -64,7 +64,7 @@
             url: "/NurseManage/BedLevelCharge/SubmitForm?keyValue=" + keyValue,
             param: data,
             success: function () {
-                $.currentWindow().$('#gridList').jqGrid("clearGridData"); //清除明细的grid
+                $.currentWindow().$('#gridList').jqGrid("clearGridData"); //xóachi tiếtcủagrid
                 $.currentWindow().$("#gridList").resetSelection();
                 $.currentWindow().$("#gridList").trigger("reloadGrid");
                 $.loading(false);
@@ -89,7 +89,7 @@
             zlsNames = zlsNames.substring(0, zlsNames.length - 1);
         }
         $('#sfxmList').val(zlsNames);
-        top.top.window.frames['SFXMSelect'].$.modalClose();   //关闭之
+        top.top.window.frames['SFXMSelect'].$.modalClose();   //Đóngcủa
     }
 </script>
 <form id="form1">

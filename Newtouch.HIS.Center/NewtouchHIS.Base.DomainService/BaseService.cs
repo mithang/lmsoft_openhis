@@ -9,32 +9,32 @@ using System.Reflection;
 
 namespace NewtouchHIS.Base.DomainService
 {
-    [Obsolete("功能即将下线，请更换基类为 BaseDmnService")]
+    [Obsolete("Chức năng sắp ngừng,Vui lòng đổi lớp cơ sở thành BaseDmnService")]
     public class BaseServices<TEntity> where TEntity : class, new()
     {
         public BusinessConfig sysConfig = ConfigInitHelper.SysConfig;
         /// <summary>
-        /// 上下文为实体Attr 归属库
+        /// Ngữ cảnh là thực thểAttr Cơ sở dữ liệu thuộc về
         /// </summary>
         public SugarRepository<TEntity> baseDal => new SugarRepository<TEntity>();
 
 
         #region Identity
         /// <summary>
-        /// 当前Api用户信息
+        /// Hiện tạiApiThông tin người dùng
         /// </summary>
         public IIdentityCache CurrentIdentity { get; set; }
         #endregion
         public BaseServices()
         {
-            CurrentIdentity = NullIdentityCache.Instance;//空实现
+            CurrentIdentity = NullIdentityCache.Instance;//Triển khai rỗng
         }
         public void DbConnection()
         {
 
         }
         /// <summary>
-        /// 非空校验
+        /// Kiểm tra không rỗng
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
@@ -57,12 +57,12 @@ namespace NewtouchHIS.Base.DomainService
                     }
                 }
             }
-            errMsg = string.IsNullOrWhiteSpace(errMsg) ? errMsg : $"请补充必要信息:{errMsg}";
+            errMsg = string.IsNullOrWhiteSpace(errMsg) ? errMsg : $"Vui lòng bổ sung thông tin cần thiết:{errMsg}";
             return valid;
         }
         /// <summary>
-        /// 枚举值校验 
-        /// 若要提示明确 需添加 DescriptionAttribute
+        /// Kiểm tra giá trị enum 
+        /// Nếu muốn nhắc rõ ràng cần thêm DescriptionAttribute
         /// </summary>
         /// <param name="enumList"></param>
         /// <param name="errMsg"></param>
@@ -85,15 +85,15 @@ namespace NewtouchHIS.Base.DomainService
                     }
                 }
             }
-            errMsg = string.IsNullOrWhiteSpace(errMsg) ? errMsg : $"枚举信息取值异常:{errMsg}";
+            errMsg = string.IsNullOrWhiteSpace(errMsg) ? errMsg : $"Lấy giá trị thông tin enum bất thường:{errMsg}";
             return valid;
         }
         /// <summary>
-        /// 验证枚举value有效性 
+        /// Kiểm chứng enumvalueTính hợp lệ 
         /// </summary>
         /// <typeparam name="TEnum"></typeparam>
         /// <param name="value"></param>
-        /// <param name="errmsg">错误提示</param>
+        /// <param name="errmsg">Nhắc lỗi</param>
         /// <returns></returns>
         public bool ValidEnum<TEnum>(int value) where TEnum : Enum
         {
@@ -104,7 +104,7 @@ namespace NewtouchHIS.Base.DomainService
             return true;
         }
         /// <summary>
-        /// 自动组装where 查询（根据 T 的Db 特性查询）
+        /// Tự động lắp rápwhere Truy vấn(Theo T củaDb Truy vấn theo đặc tính)
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="t"></param>
@@ -133,7 +133,7 @@ namespace NewtouchHIS.Base.DomainService
                 }
 
             }
-            return Expression.Lambda<Func<T, bool>>(resultExpression, t); //要用变量 var exp=
+            return Expression.Lambda<Func<T, bool>>(resultExpression, t); //Phải dùng biến var exp=
         }
 
     }

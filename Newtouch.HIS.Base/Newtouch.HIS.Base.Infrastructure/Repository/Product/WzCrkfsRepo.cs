@@ -6,7 +6,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 出入库方式
+    /// Phương thức nhập/xuất kho
     /// </summary>
     public class WzCrkfsRepo : RepositoryBase<WzCrkfsEntity>, IWzCrkfsRepo
     {
@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 根据ID删除出入库方式
+        /// TheoIDXóa phương thức nhập/xuất kho
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

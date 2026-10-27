@@ -130,7 +130,7 @@ ks.Name ";
             return vo;
         }
         /// <summary>
-        /// 门诊详细资料明细
+        /// Ngoại trúchi tiếttàiliệuchi tiết
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
@@ -219,7 +219,7 @@ and jz.blh=@blh ";
 			}, false);
 		}
         /// <summary>
-        /// 门诊病历记录-历史处方明细
+        /// Ngoại trúHồ sơghi chép-lịch sửĐơn thuốcchi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>

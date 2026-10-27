@@ -11,7 +11,7 @@ using Newtonsoft.Json.Serialization;
 namespace NewtouchHIS.Lib.Base.Utilities.Json
 {
     /// <summary>
-    /// 内容解析
+    /// Phân tích nội dung
     /// </summary>
     public class LimitPropsContractResolver : DefaultContractResolver
     {
@@ -19,30 +19,30 @@ namespace NewtouchHIS.Lib.Base.Utilities.Json
         string[] _excludeProps = null;
 
         /// <summary>
-        /// 构造函数
+        /// Hàm khởi tạo
         /// </summary>
-        /// <param name="retainProps">需要保留的字段</param>
+        /// <param name="retainProps">Các trường cần giữ lại</param>
         public LimitPropsContractResolver(string[] retainProps)
         {
-            //指定要序列化属性的清单
+            //Danh sách các thuộc tính được chỉ định để tuần tự hóa
             this._retainProps = retainProps;
         }
 
         /// <summary>
-        /// 构造函数
+        /// Hàm khởi tạo
         /// </summary>
-        /// <param name="retainProps">需要保留的字段</param>
-        /// <param name="excludeProps">要排除的字段</param>
+        /// <param name="retainProps">Các trường cần giữ lại</param>
+        /// <param name="excludeProps">Các trường cần loại trừ</param>
         public LimitPropsContractResolver(string[] retainProps, string[] excludeProps)
         {
-            //指定要序列化属性的清单
+            //Danh sách các thuộc tính được chỉ định để tuần tự hóa
             this._retainProps = retainProps;
 
             this._excludeProps = excludeProps;
         }
 
         /// <summary>
-        /// 重写
+        /// Ghi đè
         /// </summary>
         /// <param name="type"></param>
         /// <param name="memberSerialization"></param>
@@ -53,7 +53,7 @@ namespace NewtouchHIS.Lib.Base.Utilities.Json
             base.CreateProperties(type, memberSerialization);
             return list.Where(p =>
             {
-                return (_retainProps == null || _retainProps.Length == 0 || _retainProps.Contains(p.PropertyName))            //只保留清单有列出的属性
+                return (_retainProps == null || _retainProps.Length == 0 || _retainProps.Contains(p.PropertyName))            //Chỉ giữ lại các thuộc tính được liệt kê trong danh sách
                     && (_excludeProps == null || _excludeProps.Length == 0 || !_excludeProps.Contains(p.PropertyName))
                     ;
             }).ToList();

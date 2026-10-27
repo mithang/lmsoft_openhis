@@ -8,19 +8,19 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
     public interface IDrgGroupBasePolicy
     {
         /// <summary>
-        /// 病例批量分组分析
+        /// Phân tích nhóm hàng loạt ca bệnh
         /// </summary>
         /// <param name="record"></param>
         /// <returns></returns>
         Task<BusResult<List<DrgGroupResult>>> GroupMedRecordAsync(DrgAreaMedicalRecordS record);
         /// <summary>
-        /// 患者病案首页分组分析
+        /// Phân tích nhóm trang đầu bệnh án bệnh nhân
         /// </summary>
         /// <param name="record"></param>
         /// <returns></returns>
         Task<BusResult<DrgGroupResult>> GroupMedRecordAsync(DrgAreaMedicalRecord record);
         /// <summary>
-        /// 文件数据分组分析
+        /// Phân tích nhóm dữ liệu tệp
         /// </summary>
         /// <param name="record"></param>
         /// <returns></returns>
@@ -33,7 +33,7 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
         {
             if (request.zdList.Length == 0)
             {
-                throw new FailedException("诊断信息不可为空");
+                throw new FailedException("Thông tin chẩn đoán không được để trống");
             }
             return true;
         }
@@ -41,9 +41,9 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
         {
             if (request.FileName.Length == 0)
             {
-                throw new FailedException("文件信息不可为空");
+                throw new FailedException("Thông tin tệp không được để trống");
             }
-            //默认上传路径
+            //Đường dẫn tải lên mặc định
             var defaultPath = $"{Directory.GetCurrentDirectory()}{ConfigInitHelper.SysConfig!.FileConfig!.DrgDataFileDirPath ?? ""}";
             if (!(!string.IsNullOrWhiteSpace(request.FilePath) && File.Exists(defaultPath + request.FilePath + request.FileName)))
             {
@@ -52,7 +52,7 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
                 request.FilePath = files.FirstOrDefault(p => !p.Contains("_result.csv"));
                 if (string.IsNullOrWhiteSpace(request.FilePath))
                 {
-                    throw new FailedException("请先上传相关Drg文件");
+                    throw new FailedException("Vui lòng tải lên tệp Drg liên quan trước");
                 }
             }
             else
@@ -83,15 +83,15 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
         }
         public virtual async Task<BusResult<List<DrgGroupResult>>> GroupMedRecordAsync(DrgAreaMedicalRecordS record)
         {
-            return await Task.Run(() => new BusResult<List<DrgGroupResult>>() { code = ResponseResultCode.FAIL, msg = "接口未授权或功能尚未开通" });
+            return await Task.Run(() => new BusResult<List<DrgGroupResult>>() { code = ResponseResultCode.FAIL, msg = "Giao diện chưa được ủy quyền hoặc chức năng chưa được mở" });
         }
         public virtual async Task<BusResult<DrgGroupResult>> GroupMedRecordAsync(DrgAreaMedicalRecord record)
         {
-            return await Task.Run(() => new BusResult<DrgGroupResult>() { code = ResponseResultCode.FAIL, msg = "接口未授权或功能尚未开通" });
+            return await Task.Run(() => new BusResult<DrgGroupResult>() { code = ResponseResultCode.FAIL, msg = "Giao diện chưa được ủy quyền hoặc chức năng chưa được mở" });
         }
         public virtual async Task<BusResult<DrgGroupFileResult>> GroupFileRecordAsync(DrgAreaFileInfo record)
         {
-            return await Task.Run(() => new BusResult<DrgGroupFileResult>() { code = ResponseResultCode.FAIL, msg = "接口未授权或功能尚未开通" });
+            return await Task.Run(() => new BusResult<DrgGroupFileResult>() { code = ResponseResultCode.FAIL, msg = "Giao diện chưa được ủy quyền hoặc chức năng chưa được mở" });
         }
 
     }

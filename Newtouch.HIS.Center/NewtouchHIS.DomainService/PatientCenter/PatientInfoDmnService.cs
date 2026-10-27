@@ -16,24 +16,24 @@ namespace NewtouchHIS.DomainService.PatientCenter
             {
                 throw new FailedException("Thông tin tổ chức không được để trống");
             }
-            //证件号为空时  要求 Họ tên+Số điện thoại  không được để trống
+            //Khi số giấy tờ rỗng  Yêu cầu Họ tên+Số điện thoại  không được để trống
             if (string.IsNullOrWhiteSpace(patIndex.zjh) && (string.IsNullOrWhiteSpace(patIndex.kh) || string.IsNullOrWhiteSpace(patIndex.xm) || string.IsNullOrWhiteSpace(patIndex.dh)))
             {
                 throw new FailedException("Họ tên+Số điện thoại+Số thẻ không được để trống");
             }
-            //传入证件号 要求 Họ tên không được để trống
+            //Truyền vào số giấy tờ Yêu cầu Họ tên không được để trống
             if (!string.IsNullOrWhiteSpace(patIndex.zjh) && string.IsNullOrWhiteSpace(patIndex.xm))
             {
                 throw new FailedException("Vui lòng nhập họ tên");
             }
-            //查找患者信息
+            //Tìm thông tin bệnh nhân
             var where = AssembledWhereEqual<SysPatientBasicInfoEntity, SysPatIndexVO>(patIndex);
             var pats = await baseDal.GetListAsync(where);
             if (pats == null || pats.Count == 0 || pats.FirstOrDefault()?.patid <= 0)
             {
                 throw new FailedException("Không tìm thấy thông tin bệnh nhân liên quan");
             }
-            //查找就诊卡
+            //Tìm thẻ khám
             var pat = pats.FirstOrDefault().Adapt<SysPatInfoVO>();
             var card = await baseDal.GetByWhereWithAttr<SysPatCardEntity>(p => p.patid == pat.patid && p.OrganizeId == pat.OrganizeId && p.zt == "1");
             if (card.Count > 0)

@@ -3,37 +3,37 @@ using System.Collections.Generic;
 namespace Newtouch.Infrastructure.Model
 {
     /// <summary>
-    /// 登录用户，当前药房部门信息
+    /// Người dùng đăng nhập，Thông tin bộ phận nhà thuốc hiện tại
     /// </summary>
     public class LoginUserCurrentYfbmModel
     {
         /// <summary>
-        /// 药房部门Code
+        /// Bộ phận nhà thuốcCode
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 药房部门级别（1级 药库，2级药房）
+        /// Cấp bộ phận nhà thuốc（1cấp Kho thuốc，2Nhà thuốc cấp）
         /// </summary>
         public string yfbmjb { get; set; }
 
         /// <summary>
-        /// 当前登录身份 的 药房部门：0药库；1门诊药房；2住院药房   药库直接通过yjbmjb判断就可以了
+        /// Danh tính đăng nhập hiện tại của Bộ phận nhà thuốc：0Kho thuốc；1Nhà thuốc ngoại trú；2Nhà thuốc nội trú   Kho thuốc trực tiếp thông quayjbmjbKiểm tra là được
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 上级 药库 Code List（药房可向目标药库申领）
+        /// Cấp trên Kho thuốc Code List（Nhà thuốc có thể lĩnh từ kho thuốc đích）
         /// </summary>
         public IList<string> TheUpperYfbmCodeList { get; set; }
 
         /// <summary>
-        /// 下级 药房 Code List（药库可向目标药房发药）
+        /// Cấp dưới Nhà thuốc Code List（Kho thuốc có thể phát thuốc cho nhà thuốc đích）
         /// </summary>
         public IList<string> TheLowerYfbmCodeList { get; set; }
 
         /// <summary>
-        /// 药房部门名称
+        /// Tên bộ phận nhà thuốc
         /// </summary>
         public string yfbmmc { get; set; }
     }

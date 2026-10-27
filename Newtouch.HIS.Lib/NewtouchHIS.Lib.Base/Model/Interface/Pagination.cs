@@ -1,37 +1,37 @@
 ﻿namespace NewtouchHIS.Lib.Base.Model
 {
     /// <summary>
-    /// 分页参数封装类
+    /// Lớp đóng gói tham số phân trang
     /// </summary>
     public class Pagination
     {
         /// <summary>
-        /// 每页行数
+        /// Số dòng mỗi trang
         /// </summary>
         public int? rows { get; set; }
 
         /// <summary>
-        /// 当前页
+        /// Trang hiện tại
         /// </summary>
         public int? page { get; set; }
 
         /// <summary>
-        /// 排序列
+        /// Cột sắp xếp
         /// </summary>
         public string? sidx { get; set; }
 
         /// <summary>
-        /// 排序类型
+        /// Loại sắp xếp
         /// </summary>
         public string? sord { get; set; }
 
         /// <summary>
-        /// 总记录数
+        /// Tổng số bản ghi
         /// </summary>
         public int? records { get; set; }
 
         /// <summary>
-        /// 总页数
+        /// Tổng số trang
         /// </summary>
         public int? total
         {
@@ -58,7 +58,7 @@
         }
 
         /// <summary>
-        /// 初始化（克隆）
+        /// Khởi tạo (nhân bản)
         /// </summary>
         /// <param name="pagination"></param>
         public Pagination(Pagination pagination)
@@ -72,13 +72,13 @@
     }
 
     /// <summary>
-    /// 分页请求
+    /// Yêu cầu phân trang
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class Pagination<T> : Pagination
     {
         /// <summary>
-        /// 分页条件
+        /// Điều kiện phân trang
         /// </summary>
         public T? filter { get; set; }
     }
@@ -86,40 +86,40 @@
     public class PaginationResult<T> : Pagination
     {
         /// <summary>
-        /// 分页数据
+        /// Dữ liệu phân trang
         /// </summary>
         public T? pagedata { get; set; }
     }
 
     /// <summary>
-    /// 分页 offset/limit
+    /// Phân trang offset/limit
     /// </summary>
     /// <typeparam name="T"></typeparam>
     public class OLPagination<T>
     {
         /// <summary>
-        /// 排序方式asc需要你服务器按顺序排序，desc倒序排序
+        /// Phương thức sắp xếp asc cần máy chủ của bạn sắp xếp theo thứ tự, desc sắp xếp ngược
         /// </summary>
         public string? order { get; set; }
         /// <summary>
-        /// 排序字段
+        /// Trường sắp xếp
         /// </summary>
         public string? sort { get; set; }
         /// <summary>
-        /// 起始行，比如你数据库有100条数据，offset等于10表示你服务器需要从第10条数据返回结果
+        /// Dòng bắt đầu, ví dụ cơ sở dữ liệu của bạn có 100 bản ghi, offset bằng 10 nghĩa là máy chủ của bạn cần trả về kết quả từ bản ghi thứ 10
         /// </summary>
         public int offset { get; set; }
         /// <summary>
-        /// 每次读取多少条数据
+        /// Mỗi lần đọc bao nhiêu bản ghi
         /// </summary>
         public int limit { get; set; }
         /// <summary>
-        /// 用户在输入框搜索的关键词
+        /// Từ khóa người dùng tìm kiếm trong ô nhập
         /// </summary>
         public string? search { get; set; }
 
         /// <summary>
-        /// 分页时你可以传入你的自定义参数，例如你想每次往服务器请求时带action="getlist"参数function(params) { return params }
+        /// Khi phân trang bạn có thể truyền tham số tùy chỉnh của mình, ví dụ bạn muốn mỗi lần gửi yêu cầu đến máy chủ kèm theoaction="getlist"tham sốfunction(params) { return params }
         /// </summary>
         public T? queryParams { get; set; }
 

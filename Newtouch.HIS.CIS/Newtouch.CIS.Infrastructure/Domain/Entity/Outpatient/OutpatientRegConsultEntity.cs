@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.Entity.Outpatient
 {
     /// <summary>
-    /// 门诊挂号诊室关系表
+    /// Ngoại trúđăng ký khámPhòng khámquan hệbảng
     /// </summary>
     [SugarTable("mz_ghzs")]
     public class OutpatientRegConsultEntity
@@ -42,7 +42,7 @@ namespace Newtouch.Domain.Entity.Outpatient
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// 叫号状态 （待叫号1，已叫2，过号3 应答4 重新叫号5）
+        /// gọisốTrạng thái （chờgọisố1，đãgọi2，quasố3 ứngđáp4 lạigọisố5）
         /// </summary>
         public int? calledstu { get; set; }
 

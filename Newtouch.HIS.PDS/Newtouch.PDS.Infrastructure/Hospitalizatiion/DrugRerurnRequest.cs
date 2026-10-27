@@ -4,37 +4,37 @@ using System;
 namespace Newtouch.PDS.Requset.Hospitalizatiion
 {
     /// <summary>
-    /// 药品退药
+    /// Trả thuốc
     /// </summary>
     public class DrugRerurnRequest
     {
 
         /// <summary>
-        /// 医嘱ID
+        /// Y lệnhID
         /// </summary>
         [Required]
         public string yzId { get; set; }
 
         /// <summary>
-        /// 药品code
+        /// Thuốccode
         /// </summary>
         [Required]
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 退药申请人
+        /// Người xin trả thuốc
         /// </summary>
         [Required]
         public string tysqr { get; set; }
 
         /// <summary>
-        /// 组号
+        /// Số nhóm
         /// </summary>
         [Required]
         public string zh { get; set; }
 
         /// <summary>
-        /// 执行日期
+        /// Ngày thực hiện
         /// </summary>
         [Required]
         public DateTime? zxrq { get; set; }

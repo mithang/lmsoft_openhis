@@ -5,18 +5,18 @@ using NewtouchHIS.Lib.Base.Model.DRG;
 namespace NewtouchHIS.Lib.Services.DrgGroup
 {
     /// <summary>
-    /// 武汉2022版 
+    /// Bản Vũ Hán 2022 
     /// </summary>
     public interface IDrgWuhan2022Policy : IDrgGroupBasePolicy
     {
         ///// <summary>
-        ///// 单病案分组结果查询
+        ///// Truy vấn kết quả nhóm của một bệnh án
         ///// </summary>
         ///// <param name="record"></param>
         ///// <returns></returns>
         //Task<BusResult<DrgGroupResult>> GroupMedRecord(DrgAreaMedicalRecord record);
         ///// <summary>
-        ///// csv文件分组结果查询
+        ///// csvTruy vấn kết quả nhóm tệp
         ///// </summary>
         ///// <param name="record"></param>
         ///// <returns></returns>
@@ -30,9 +30,9 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             var isValid = base.Validata(record);
             if (!isValid)
             {
-                result.msg = "关键信息不可为空";
+                result.msg = "Thông tin quan trọng không được để trống";
                 result.code = ResponseResultCode.FAIL;
-                return result;//验证失败则直接返回
+                return result;//Nếu kiểm tra thất bại thì trả về trực tiếp
             }
             //string str = "22082078,1,24, 9105, 3470,13050201, 6, 1,\"K63.500,K52.910\",\"00.5500,45.4300x010,45.4300x013\"";
             //var recordResult = GroupHelper.GroupRecord(str);
@@ -68,7 +68,7 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
                 else
                 {
                     result.code = ResponseResultCode.FAIL;
-                    result.msg = "DRG分组器未返回数据，请联系管理员";
+                    result.msg = "Bộ nhóm DRG không trả về dữ liệu, vui lòng liên hệ quản trị viên";
                 }
             });
 
@@ -81,20 +81,20 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             var isValid = base.Validata(ref record);
             if (!isValid)
             {
-                result.msg = "参数校验失败";
+                result.msg = "Kiểm tra tham số thất bại";
                 result.code = ResponseResultCode.FAIL;
                 return result;
             }
             if (string.IsNullOrWhiteSpace(record.FilePath))
             {
-                result.msg = $"文件路径查找失败";
+                result.msg = $"Tìm đường dẫn tệp thất bại";
                 result.code = ResponseResultCode.FAIL;
                 return result;
             }
             var recordResult = GroupHelper.GroupFileRecord(record.FilePath, record.FileCols);
             if (string.IsNullOrWhiteSpace(recordResult))
             {
-                result.msg = "分组结果获取失败";
+                result.msg = "Lấy kết quả nhóm thất bại";
                 result.code = ResponseResultCode.FAIL;
                 return result;
             }

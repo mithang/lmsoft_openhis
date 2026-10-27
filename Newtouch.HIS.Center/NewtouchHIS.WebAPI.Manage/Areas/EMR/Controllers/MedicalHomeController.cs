@@ -12,7 +12,7 @@ using NewtouchHIS.Lib.Base.Model.DRG;
 namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
 {
     /// <summary>
-    /// 病案首页
+    /// Trang đầu bệnh án
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]
@@ -25,8 +25,8 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
         }
 
         /// <summary>
-        /// 病案首页信息查询
-        /// 查询Bệnh nhân病案首页重点信息（with：诊断、手术）
+        /// Truy vấn thông tin trang đầu bệnh án
+        /// Truy vấnBệnh nhânThông tin trọng điểm trang đầu bệnh án(with:Chẩn đoán,Phẫu thuật)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
             }
             if (request == null || request.Data == null || (string.IsNullOrWhiteSpace(request.Data.zyh) && string.IsNullOrWhiteSpace(request.Data.orgId)))
             {
-                return new BusResult<MedicalHomeVO> { code = ResponseResultCode.FAIL, msg = "Vui lòng nhập điều kiện truy vấn（Số nhập viện/Mã tổ chức）" };
+                return new BusResult<MedicalHomeVO> { code = ResponseResultCode.FAIL, msg = "Vui lòng nhập điều kiện truy vấn(Số nhập viện/Mã tổ chức)" };
             }
             if (string.IsNullOrWhiteSpace(request.Data.orgId))
             {
@@ -50,7 +50,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
             return new BusResult<MedicalHomeVO> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// Bệnh nhân病案信息(DRG分组格式）
+        /// Bệnh nhânThông tin bệnh án(DRGĐịnh dạng phân nhóm)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -64,7 +64,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
             }
             if (request == null || request.Data == null || (string.IsNullOrWhiteSpace(request.Data.zyh) && string.IsNullOrWhiteSpace(request.Data.orgId)))
             {
-                return new BusResult<DrgMedicalRecord> { code = ResponseResultCode.FAIL, msg = "Vui lòng nhập điều kiện truy vấn（Số nhập viện/Mã tổ chức）" };
+                return new BusResult<DrgMedicalRecord> { code = ResponseResultCode.FAIL, msg = "Vui lòng nhập điều kiện truy vấn(Số nhập viện/Mã tổ chức)" };
             }
             if (string.IsNullOrWhiteSpace(request.Data.orgId))
             {

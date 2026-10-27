@@ -23,7 +23,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 {
     /// <summary>
-    /// 报损报溢
+    /// Báo hỏngbáo thừa
     /// </summary>
     [Area("NurseManage")]
     public class ProfitAndLossController : OrgControllerBase
@@ -43,7 +43,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         #region Nguyên nhân thừa thiếuBảo trì
 
         /// <summary>
-        /// 损益原因
+        /// nguyên nhân lãi lỗ
         /// </summary>
         /// <returns></returns>
         public IActionResult Syyy()
@@ -52,7 +52,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
         
         /// <summary>
-        /// 损益原因信息查询
+        /// nguyên nhân lãi lỗthông tinTra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyWord"></param>
@@ -70,7 +70,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 损益原因 视图
+        /// nguyên nhân lãi lỗ xemhình
         /// </summary>
         /// <returns></returns>
         public IActionResult SyyyForm()
@@ -79,7 +79,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 删除损益原因
+        /// Xóanguyên nhân lãi lỗ
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -112,7 +112,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取损益原因下拉
+        /// Lấynguyên nhân lãi lỗdướikéo
         /// </summary>
         /// <returns></returns>
         public IActionResult GetLossProfitReasonListByType(string sybz = "")
@@ -125,7 +125,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         #region Thừa thiếuTra cứu
 
         /// <summary>
-        /// 损益查询
+        /// lãi lỗTra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult QueryProfitAndLoss()
@@ -135,7 +135,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 获取损益明细
+        /// Lấylãi lỗchi tiết
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="param"></param>
@@ -144,7 +144,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         {
             var list = new
             {
-                // 当前科室登陆人
+                // hiện tạiKhoađănglục người
                 rows = _kcSyxxDmnService.SelectLossAndProditInfoList(pagination, param, UserIdentity.DepartmentCode, OrganizeId),
                 total = pagination.total,
                 page = pagination.page,
@@ -158,7 +158,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         #region Generate profit or loss
 
         /// <summary>
-        /// 获取报损报溢单据号
+        /// LấyBáo hỏngbáo thừaphiếusố phiếu
         /// </summary>
         /// <returns></returns>
         public IActionResult GenerateDjh()
@@ -168,7 +168,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         /// <summary>
-        /// 获取责任人list
+        /// LấyTrách nhiệm ngườilist
         /// </summary>
         /// <param name="inputCode"></param>
         /// <returns></returns>
@@ -179,13 +179,13 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// 损益提交
+        /// lãi lỗGửi
         /// </summary>
         /// <param name="plist"></param>
         /// <returns></returns>
         public IActionResult LossAndProfitSubmit(List<LossAndProditSubmitDTO> plist)
         {
-            //todo 获取当前科室
+            //todo Lấyhiện tạiKhoa
             var result = _stockInventoryApp.LossAndProfitSubmit(plist, "");
             return string.IsNullOrWhiteSpace(result) ? Success() : Error(result);
         }

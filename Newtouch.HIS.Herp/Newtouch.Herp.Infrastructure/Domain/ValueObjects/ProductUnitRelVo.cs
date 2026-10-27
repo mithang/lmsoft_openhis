@@ -1,7 +1,7 @@
 namespace Newtouch.Herp.Domain.ValueObjects
 {
     /// <summary>
-    /// 物资单位关联关系
+    /// Quan hệ liên kết đơn vị vật tư
     /// </summary>
     public class ProductUnitRelVo
     {
@@ -11,22 +11,22 @@ namespace Newtouch.Herp.Domain.ValueObjects
         public string id { get; set; }
 
         /// <summary>
-        /// 单位ID
+        /// Đơn vị ID
         /// </summary>
         public string unitId { get; set; }
 
         /// <summary>
-        /// 单位名称
+        /// Tên đơn vị
         /// </summary>
         public string unitName { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số chuyển đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 供应商ID
+        /// Nhà cung cấp ID
         /// </summary>
         public string keyWord { get; set; }
     }

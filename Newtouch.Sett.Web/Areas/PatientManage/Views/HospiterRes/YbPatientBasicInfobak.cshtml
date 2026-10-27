@@ -4,14 +4,14 @@
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 @{
-    //是否和新农合交易
+    //Có giao dịch với nông thôn mới hay không
     var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-    //是否和医保交易
+    //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
-    //医保患者必须一次结掉
+    //Bệnh nhân BHYT phải quyết toán một lần
     bool? ybSettOnce = (openYbSett ?? false) && (SysConfigReader.Bool("Outpatient_ChargeFee_yb_SettOnce") ?? false);
     var opr = OperatorProvider.GetCurrent();
-    //医保所属地
+    //Nơi quản lý BHYT
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
 }
 <style type="text/css">
@@ -68,7 +68,7 @@
                                 <option value="07">Thẻ BHXH (điện tử)</option>
                                 @if (openXnhSett == true && medicalInsurance != "chongqing")
                                 {
-                                    <option value="06">农</option>
+                                    <option value="06">Thẻ nông hợp</option>
                                 }
                                 <option value="03">thân</option>
                                 @if (medicalInsurance != "guian" && medicalInsurance != "chongqing")
@@ -126,7 +126,7 @@
                 <td class="formValueYb">
                     <label id="rylb"></label>
                 </td>
-                <td class="formTitleTh">Có hay không Hưởng Công chức chờ遇：</td>
+                <td class="formTitleTh">Có hay không hưởng chế độ công chức：</td>
                 <td class="formValueYb">
                     <label id="sfxsgwydy"></label>
                 </td>
@@ -142,19 +142,19 @@
                 <td class="formValueYb">
                     <label id="xzqhbm"></label>
                 </td>
-                <td class="formTitleTh">封锁状况：</td>
+                <td class="formTitleTh">Tình trạng khóa：</td>
                 <td class="formValueYb">
                     <label id="fszk"></label>
                 </td>
-                <td class="formTitleTh">封锁 lý do：</td>
+                <td class="formTitleTh">Khóa lý do：</td>
                 <td class="formValue">
                     <label id="fsyy"></label>
                 </td>
-                <th class="formTitleTh">Nhân viên变更 Loại：</th>
+                <th class="formTitleTh">Nhân viênThay đổi Loại：</th>
                 <td class="formValueYb">
                     <label id="rybglx"></label>
                 </td>
-                <td class="formTitleTh">Nhân viên Loại变更 Thời gian：</td>
+                <td class="formTitleTh">Nhân viên LoạiThay đổi Thời gian：</td>
                 <td class="formValueYb">
                     <label id="rylxbgDate"></label>
                 </td>
@@ -162,19 +162,19 @@
 
             </tr>
             <tr>
-                <td class="formTitleTh">chờ遇封锁 Giờ bắt đầu：</td>
+                <td class="formTitleTh">Thời gian bắt đầu khóa hưởng chế độ：</td>
                 <td class="formValueYb">
                     <label id="dyfsStarDate"></label>
                 </td>
-                <td class="formTitleTh">chờ遇封锁终 Đến Thời gian：</td>
+                <td class="formTitleTh">Thời gian kết thúc khóa hưởng chế độ：</td>
                 <td class="formValueYb">
                     <label id="dyfsEndDate"></label>
                 </td>
-                <td class="formTitleTh">民政 Nhân viên Loại：</td>
+                <td class="formTitleTh">Dân chính Nhân viên Loại：</td>
                 <td class="formValueYb">
                     <label id="mzrylb"></label>
                 </td>
-                <td class="formTitleTh">dân cư nộp phí档 lần：</td>
+                <td class="formTitleTh">Mức đóng phí của cư dân：</td>
                 <td class="formValueYb">
                     <label id="jmjfdc"></label>
                 </td>
@@ -190,7 +190,7 @@
                 <td class="formValueYb">
                     <label id="lxdh"></label>
                 </td>
-                <td class="formTitleTh">Có hay không健康扶贫 Nhân viên：</td>
+                <td class="formTitleTh">Có hay không là nhân viên giảm nghèo y tế：</td>
                 <td class="formValueYb">
                     <label id="sfjkfpry"></label>
                 </td>
@@ -209,11 +209,11 @@
                 <td class="formValueYb">
                     <label id="zhye"></label>
                 </td>
-                <td class="formTitleAccount">này năm Thanh toán từ quỹ chung累积：</td>
+                <td class="formTitleAccount">Lũy kế thanh toán từ quỹ chung năm nay：</td>
                 <td class="formValueYb">
                     <label id="tczflj"></label>
                 </td>
-                <td class="formTitleAccount">này năm Đặc biệt Ngoại trú khởi trả标准 Thanh toán Lũy kế：</td>
+                <td class="formTitleAccount">này năm Đặc biệt Ngoại trú khởi trảTiêu chuẩn Thanh toán Lũy kế：</td>
                 <td class="formValueYb">
                     <label id="tbmzzflj"></label>
                 </td>
@@ -223,7 +223,7 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitleAccount">này năm恶性肿瘤 Nhập viện khởi trả标准 Thanh toán Lũy kế：</th>
+                <th class="formTitleAccount">Lũy kế thanh toán theo mức khởi trả nhập viện cho u ác tính năm nay：</th>
                 <td class="formValueYb">
                     <label id="exzlzflx"></label>
                 </td>
@@ -242,15 +242,15 @@
 
             </tr>
             <tr>
-                <th class="formTitleAccount">này năm Khám bệnh đặc biệt còn cần补助 của Tự trả Số tiền：</th>
+                <th class="formTitleAccount">này năm Khám bệnh đặc biệt còn cầnTrợ cấp của Tự trả Số tiền：</th>
                 <td class="formValueYb">
                     <label id="tbzfje"></label>
                 </td>
-                <td class="formTitleAccount">này năm Nhập viện còn cần补助 của Tự trả Số tiền：</td>
+                <td class="formTitleAccount">này năm Nhập viện còn cầnTrợ cấp của Tự trả Số tiền：</td>
                 <td class="formValueYb">
                     <label id="zyzfje"></label>
                 </td>
-                <td class="formTitleAccount">này năm发 sinh过恶性肿瘤 dấu hiệu：</td>
+                <td class="formTitleAccount">Dấu hiệu đã phát sinh u ác tính năm nay：</td>
                 <td class="formValueYb">
                     <label id="exzlbz"></label>
                 </td>
@@ -261,7 +261,7 @@
 
             </tr>
             <tr>
-                <th class="formTitleAccount">BHYT dân cư Bệnh hiểm nghèo发 sinh dấu hiệu：</th>
+                <th class="formTitleAccount">Dấu hiệu phát sinh bệnh hiểm nghèo BHYT cư dân：</th>
                 <td class="formValueYb">
                     <label id="dbbz"></label>
                 </td>
@@ -284,15 +284,15 @@
                 <td class="formValueYb">
                     <label id="khxmzflj"></label>
                 </td>
-                <td class="formTitleAccount">Năm民政 Nhập viện Thanh toán Lũy kế：</td>
+                <td class="formTitleAccount">NămDân chính Nhập viện Thanh toán Lũy kế：</td>
                 <td class="formValueYb">
                     <label id="mzzyzfje"></label>
                 </td>
-                <td class="formTitleAccount">Năm民政 Ngoại trú Thanh toán Lũy kế：</td>
+                <td class="formTitleAccount">NămDân chính Ngoại trú Thanh toán Lũy kế：</td>
                 <td class="formValueYb">
                     <label id="mzmzzfje"></label>
                 </td>
-                <td class="formTitleAccount">降消补助 Lũy kế：</td>
+                <td class="formTitleAccount">Lũy kế trợ cấp chương trình Giảm–Tiêu：</td>
                 <td class="formValueYb">
                     <label id="jxbzje"></label>
                 </td>
@@ -307,11 +307,11 @@
                 <td class="formValueYb">
                     <label id="yddjbs"></label>
                 </td>
-                <td class="formTitleAccount">thông tin tài khoản预留 1：</td>
+                <td class="formTitleAccount">thông tin tài khoảnDự trữ 1：</td>
                 <td class="formValueYb">
                     <label id="zhxxyl1"></label>
                 </td>
-                <td class="formTitleAccount">thông tin tài khoản预留 2：</td>
+                <td class="formTitleAccount">thông tin tài khoảnDự trữ 2：</td>
                 <td class="formValueYb">
                     <label id="zhxxyl2"></label>
                 </td>
@@ -337,7 +337,7 @@
 </div>
 <div class="panel panel-default" style="margin-bottom: 4px;">
     <div class="panel-heading navb-bg">
-        Mới老 thẻ Số thẻ thông tin
+        Thông tin số thẻ cũ/mới
     </div>
     <div style="padding-right: 20px;">
         <table class="form">
@@ -368,7 +368,7 @@
                 <th class="formTitle">Loại bệnh đặc biệt Mã：</th>
                 <td class="formValue" >
                     <select id="tbbzbm" name="tbbzbm" class="form-control" style="width:100px">
-                        @*<option value="1">==请选择==</option>*@
+                        @*<option value="1">==Vui lòng chọn==</option>*@
                     </select>
                 </td>
             </tr>
@@ -383,27 +383,27 @@
 </div>
 
 <script type="text/javascript">
-    var openYbSett = '@openYbSett' === 'True'; //开关配置：医保患者是否使用医保交易流程
-    var ybSettOnce = '@ybSettOnce' === 'True'; //开关配置：医保患者是否一次结
-    var medicalInsurance = '@medicalInsurance';//医保所属地配置:区分医院所属医保区域
-    //读卡
+    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+    var ybSettOnce = '@ybSettOnce' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có quyết toán một lần không
+    var medicalInsurance = '@medicalInsurance';//cấu hình địa phương BHYT:phân biệt khu vực BHYT của bệnh viện
+    //Đọc thẻ
     function readCard() {
         var cardInfo;
         var yibaoCardInfo;
         var cqcardInfo;
         var cqyibaoCardInfo;
         if (medicalInsurance === "changshu") {
-            yibaoCardInfo = $.yibao.GetCardInfo($('#readCardCardType').val()); //医保读卡，返回卡身份信息
+            yibaoCardInfo = $.yibao.GetCardInfo($('#readCardCardType').val()); //đọc thẻ BHYT，trả về thông tin danh tính thẻ
             $.loading(false);
             if (yibaoCardInfo && yibaoCardInfo.Code === 0) {
                 cardInfo = yibaoCardInfo.Data;
                 yibaoCardInfo.readCardCardType = $('#readCardCardType').val();
                 localStorage.setItem("patientform", JSON.stringify(yibaoCardInfo));
-                //卡读到了
-                //卡号 卡类型    //社保编号 暂作为系统卡号
+                //thẻ đã đọc được
+                //Số thẻ Loại thẻ    //Số BHXH Tạm thời làm số thẻ hệ thống
                 GetQueryFphAjax({ blh: null, kh: cardInfo.DAC001, zjh: null, cardType: ybkCardType }, function () {
                     if (patModel) {
-                        //患者性质对照赋值 默认用最新的费用性质 还要给patModel.brxz patModel.brxzmc
+                        //Gán giá trị đối chiếu tính chất bệnh nhân Mặc định dùng tính chất chi phí mới nhất còn phải chopatModel.brxz patModel.brxzmc
                         var ybfyxzCompResult = $.CataComparison.getItemByTT('yibao', 'AKE556', cardInfo.AKE556);
                         if (!ybfyxzCompResult.Name) {
                             $.modalAlert("Tính chất chi phí.Ánh xạ danh mục đối chiếu thất bại", 'error');
@@ -422,9 +422,9 @@
                 return;
             }
         }
-        else if (medicalInsurance === "guian") { //贵安医保
+        else if (medicalInsurance === "guian") { //quýany tếbảo hiểm
             if ($('#readCardCardType').val() === "04") {
-                //= $.guianyibao.Identification(); //医保读卡，返回卡身份信息
+                //= $.guianyibao.Identification(); //đọc thẻ BHYT，trả về thông tin danh tính thẻ
                 var payoptype = { "prm_payoptype": "04" };
                 $.ajax({
                     url: "http://127.0.0.1:12345/api/YiBao/Identification",
@@ -438,9 +438,9 @@
                 $.loading(false);
                 if (yibaoCardInfo) {
                     if (yibaoCardInfo.Code === 0) {
-                        cardInfo = yibaoCardInfo.Data; //医保反馈对象
+                        cardInfo = yibaoCardInfo.Data; //đối tượng phản hồi BHYT
                         if (cardInfo.prm_ykc023 === "1") {
-                            $.modalAlert("hiện tại处于 Trạng thái đang nằm viện，không cho phép Ngoại trú Quẹt thẻ", 'error');
+                            $.modalAlert("Hiện đang ở trạng thái nằm viện, không cho phép quẹt thẻ ngoại trú", 'error');
                             return;
                         }
                         yibaoCardInfo.readCardCardType = $('#readCardCardType').val();
@@ -449,12 +449,12 @@
                         GetQueryFphAjax({ blh: null, kh: cardInfo.prm_aac001, zjh: null, cardType: ybkCardType },
                             function () {
                                 if (patModel) {
-                                    //患者性质对照赋值 默认用最新的费用性质 还要给patModel.brxz patModel.brxzmc
+                                    //Gán giá trị đối chiếu tính chất bệnh nhân Mặc định dùng tính chất chi phí mới nhất còn phải chopatModel.brxz patModel.brxzmc
                                     var ybfyxzCompResult = {
                                         Code: '1',
                                         Name: 'BHYT thường'
                                     };
-                                    //$.CataComparison.getItem('yibao', 'xt_brxz', "1"); //固定为医保,只有医保刷卡(1,医保)
+                                    //$.CataComparison.getItem('yibao', 'xt_brxz', "1"); //cố địnhđịnhlày tếbảo hiểm,chỉcóy tếbảo hiểmquẹtthẻ(1,BHYT)
                                     if (!ybfyxzCompResult.Name) {
                                         $.modalAlert("Tính chất chi phí.Ánh xạ danh mục đối chiếu thất bại", 'error');
                                         return;
@@ -475,7 +475,7 @@
                 }
             } else if ($('#readCardCardType').val() === "03") {
                 try {
-                    //= $.guianyibao.ReadIdCard(); //身份证读卡，返回卡身份信息
+                    //= $.guianyibao.ReadIdCard(); //Đọc thẻ CMND/CCCD，trả về thông tin danh tính thẻ
                     $.ajax({
                         url: "http://127.0.0.1:12345/api/YiBao/ReadIdCard",
                         data: {},
@@ -509,7 +509,7 @@
                     $.modalAlert("Quẹt CMND/CCCD thẻ Thất bại Thất bại，Vui lòng thao tác lại" + err, 'error');
                 }
             } else if ($('#readCardCardType').val() === "06") {
-                //新农合
+                //hợp tác nông thôn mới
                 $.loading(false);
                 $.modalOpen({
                     id: "Form",
@@ -537,7 +537,7 @@
         }
         else if (medicalInsurance === "chongqing") {
             if ($('#readCardCardType').val() === "04" || $('#readCardCardType').val() === "07") {
-                //= $.guianyibao.Identification(); //医保读卡，返回卡身份信息
+                //= $.guianyibao.Identification(); //đọc thẻ BHYT，trả về thông tin danh tính thẻ
                 GetReadCardInfo(null,false);
             }
         }
@@ -546,7 +546,7 @@
             return;
         }
     }
-    //读卡 调用01,13接口
+    //Đọc thẻ gọi01,13giao diện
     function GetReadCardInfo(sbkobj, boolVal) {
         if (!sbkobj && boolVal==true) {
             $.modalAlert("Vui lòng nhập thẻ BHXH", 'error');
@@ -581,13 +581,13 @@
         if (cqyibaoCardInfo) {
             $.loading(false);
             if (cqyibaoCardInfo.Code === "1") {
-                cqcardInfo = cqyibaoCardInfo.Data; //医保反馈对象
+                cqcardInfo = cqyibaoCardInfo.Data; //đối tượng phản hồi BHYT
                 if (!cqcardInfo.sbkh) {
                     $.modalAlert("Đọc thẻ thất bại：Không lấy được số thẻ BHXH", 'error');
                     return;
                 }
 
-                var payoptype = { "sbkh": cqcardInfo.sbkh, "xzlb": "1" };//险种类别默认，1、医疗保险；2、工伤保险；3、生育保险；
+                var payoptype = { "sbkh": cqcardInfo.sbkh, "xzlb": "1" };//loại bảo hiểm mặc định，1、bảo hiểm y tế；2、bảo hiểm tai nạn lao động；3、bảo hiểm sinh sản；
                 $.ajax({
                     type: "POST",
                     url: "http://127.0.0.1:22222/api/CQYiBao/PatAccountInfo",
@@ -604,22 +604,22 @@
                             $.modalAlert("Gọi giao diện BHYT01và13，Lấy thông tin nhân viên và tài khoản thất bại！", 'error');
                             return;
                         }
-                        cardInfo = yibaoCardInfo.Data.patInfo; //医保反馈对象
+                        cardInfo = yibaoCardInfo.Data.patInfo; //đối tượng phản hồi BHYT
 
                         if (!!cardInfo.fsyy) {
-                            $.modalAlert("này thẻ đã封锁：" + cardInfo.fsyy, 'error');
+                            $.modalAlert("này thẻ đãKhóa：" + cardInfo.fsyy, 'error');
                             return;
                         }
                         yibaoCardInfo.readCardCardType = $('#readCardCardType').val();
                         yibaoCardInfo.kh = cqcardInfo.sbkh;
                         localStorage.setItem("patientform", JSON.stringify(yibaoCardInfo));
-                        //赋值
+                        //gán giá trị
                         SetValue(cardInfo, yibaoCardInfo.Data.accountInfo);
                         $("#kh").html(cqcardInfo.sbkh);
-                        //$("#txtybye").html(yibaoCardInfo.Data.accountInfo.zhye); /////191108 卡余额，是否读卡时关联返回卡信息，金保卡和社保卡区别？？？
+                        //$("#txtybye").html(yibaoCardInfo.Data.accountInfo.zhye); /////191108 Số dư thẻ，làkhôngđọcthẻthời gianliên quanliêntrảquaythẻthông tintin，tiềnbảo hiểmthẻvàxã hộibảo hiểmthẻquậnkhác？？？
 
                         var param = "07|" + cqcardInfo.sbkh;
-                        var payoptype = { "inStr": param };//险种类别默认，1、医疗保险；2、工伤保险；3、生育保险；
+                        var payoptype = { "inStr": param };//loại bảo hiểm mặc định，1、bảo hiểm y tế；2、bảo hiểm tai nạn lao động；3、bảo hiểm sinh sản；
                         $.ajax({
                             type: "POST",
                             url: "http://127.0.0.1:22222/api/CQYiBao/BusinessCall",
@@ -714,7 +714,7 @@
 
     $("#tbbzbm").change(function () {
         var param = "28|" + $('#kh').html() + "|" + $('#tbbzbm').val();
-        var payoptype = { "inStr": param };//险种类别默认，1、医疗保险；2、工伤保险；3、生育保险；
+        var payoptype = { "inStr": param };//loại bảo hiểm mặc định，1、bảo hiểm y tế；2、bảo hiểm tai nạn lao động；3、bảo hiểm sinh sản；
         $.ajax({
             type: "POST",
             url: "http://127.0.0.1:22222/api/CQYiBao/BusinessCall",
@@ -727,7 +727,7 @@
         });
     })
 
-    //触发读卡
+    //kích hoạt đọc thẻ
     function setTimeoutReadCard() {
         $.loading(true, 'Đang đọc thẻ，Vui lòng chờ…');
         setTimeout("readCard();", 50);
@@ -742,7 +742,7 @@
         $("#sfz").html(patInfo.sfzh);
         $("#mz").html(patInfo.mz);
         $("#dz").html(patInfo.zz);
-        $("#rylb").html(patInfo.rylb == "11" ? "tại职" : (patInfo.rylb == "21" ?"hoàn休":(patInfo.rylb=="41" ? "成 năm người":(patInfo.rylb=="42" ? "Chưa成 năm người":(patInfo.rylb=="43"?"大学 sinh": patInfo.rylb)))));
+        $("#rylb").html(patInfo.rylb == "11" ? "Đang làm việc" : (patInfo.rylb == "21" ?"Nghỉ hưu":(patInfo.rylb=="41" ? "Người thành niên":(patInfo.rylb=="42" ? "Người chưa thành niên":(patInfo.rylb=="43"?"Sinh viên đại học": patInfo.rylb)))));
         $("#sfxsgwydy").html(patInfo.sfxsgwydy == "0" ? "không Hưởng" : (patInfo.sfxsgwydy =="1"? "Hưởng" :"không Hưởng"));
         $("#dwmc").html(patInfo.dwmc);
         $("#xzqhbm").html(patInfo.xzqybm);
@@ -753,8 +753,8 @@
         $("#dyfsStarDate").html(patInfo.dyfskssj);
         $("#dyfsEndDate").html(patInfo.dyfszzsj);
         $("#mzrylb").html(mzrylb(patInfo.mzrylb));
-        $("#jmjfdc").html(patInfo.jfdc=="1"?"một档":(patInfo.jfdc=="2" ? "hai档":patInfo.jfdc));
-        $("#cblb").html(patInfo.cblb=="1"?"người lao động Tham gia bảo hiểm":(patInfo.cblb=="2"?"dân cư Tham gia bảo hiểm":(patInfo.cblb=="3"?"nghỉ hưu干部":patInfo.cblb)));
+        $("#jmjfdc").html(patInfo.jfdc=="1"?"Mức một":(patInfo.jfdc=="2" ? "Mức hai":patInfo.jfdc));
+        $("#cblb").html(patInfo.cblb=="1"?"người lao động Tham gia bảo hiểm":(patInfo.cblb=="2"?"dân cư Tham gia bảo hiểm":(patInfo.cblb=="3"?"Cán bộ nghỉ hưu":patInfo.cblb)));
         $("#lxdh").html(patInfo.lxdh);
         $("#sfjkfpry").html(patInfo.dqsfjkfp=="0"?"Không":"Có");
 
@@ -768,9 +768,9 @@
         $("#zyzt").html(AccountInfo.zyzt=="0"?"Chưa Nhập viện":"tại Nhập viện");
         $("#tbzfje").html('¥' + AccountInfo.tsmzxbzje);
         $("#zyzfje").html('¥' + AccountInfo.zyxbzje);
-        $("#exzlbz").html(AccountInfo.fsexzlbz=="0"?"Chưa发 sinh":"Đã发 sinh");
+        $("#exzlbz").html(AccountInfo.fsexzlbz=="0"?"Chưa phát sinh":"Đã phát sinh");
         $("#dbzflj").html('¥' + AccountInfo.dbzflj);
-        $("#dbbz").html(AccountInfo.zdjbbz=="0"?"Chưa发 sinh":"Đã发 sinh");
+        $("#dbbz").html(AccountInfo.zdjbbz=="0"?"Chưa phát sinh":"Đã phát sinh");
         $("#ywshzflj").html('¥' + AccountInfo.ywshzflj);
         $("#ndyjhzflj").html('¥' + AccountInfo.ndyjhzflj);
         $("#etlbzflj").html('¥' + AccountInfo.etlbzflj);
@@ -786,30 +786,30 @@
 
     function fszk(key) {
         var fszk = {
-            '10': 'chờ遇 Phê duyệt kỳ', '11': '个体 Tham gia bảo hiểm chờ遇 Phê duyệt kỳ', '15': '基 này Chuyển个体 chờ遇 Phê duyệt', '16': '个体 Chuyển基 này chờ遇 Phê duyệt', '20': '欠 phí封锁', '21': '基 này医疗欠 phí', '23': '大额医疗欠 phí', '29': 'Nhập viện医疗欠 phí'
-            , '30': '停保', '40': 'hoàn保', '45': 'Tạm停 Hưởng chế độ', '50': 'IC thẻ挂失', '51': 'IC thẻ Chú thích销', '52': '假 thẻ', '90': 'Khác'
+            '10': 'Kỳ phê duyệt chế độ', '11': 'Kỳ phê duyệt chế độ tham gia bảo hiểm cá thể', '15': 'Phê duyệt chế độ chuyển từ quỹ sang cá thể', '16': 'Phê duyệt chế độ chuyển từ cá thể sang quỹ', '20': 'Khóa do nợ phí', '21': 'Nợ phí y tế quỹ', '23': 'Nợ phí y tế lớn', '29': 'Nợ phí y tế nhập viện'
+            , '30': 'Dừng bảo hiểm', '40': 'Thoái bảo hiểm', '45': 'Tạm dừng hưởng chế độ', '50': 'Báo mất thẻ IC', '51': 'Hủy thẻ IC', '52': 'Thẻ giả', '90': 'Khác'
         };
         return fszk[key];
     }
 
     function rybglx(key) {
         var rybglx = {
-            '11': 'Mới Tham gia bảo hiểm', '12': 'tiếp保', '13': 'quỹ chung phạm vi ngoài Chuyển入', '14': 'quỹ chung trong này区 Chuyển入', '15': 'hoàn休 Chuyển tại职', '16': 'quỹ chung trong跨区 Chuyển入', '19': 'hoàn保恢复', '21': 'hoàn保', '22': '停保', '23': 'Chuyển出 quỹ chung phạm vi ngoài', '24': 'quỹ chung trong này区 Chuyển出', '25': 'tại职 Chuyển hoàn休', '26': 'quỹ chung trong跨区 Chuyển出', '30': 'Sửa Tham gia bảo hiểm Thời gian'
-            , '44': 'Tạm停 Hưởng chế độ', '45': '恢复 Hưởng chế độ', '46': '参加农民工 bảo hiểm y tế', '47': '农民工 Chuyển Không phải农民工', '99': 'Khác'
+            '11': 'Mới Tham gia bảo hiểm', '12': 'Tiếp tục bảo hiểm', '13': 'Chuyển vào từ ngoài phạm vi quỹ điều phối', '14': 'Chuyển vào trong quận thuộc quỹ điều phối', '15': 'Chuyển từ nghỉ hưu sang đang làm việc', '16': 'Chuyển vào khác quận thuộc quỹ điều phối', '19': 'Khôi phục sau thoái bảo hiểm', '21': 'Thoái bảo hiểm', '22': 'Dừng bảo hiểm', '23': 'Chuyển ra ngoài phạm vi quỹ điều phối', '24': 'Chuyển ra trong quận thuộc quỹ điều phối', '25': 'Chuyển từ đang làm việc sang nghỉ hưu', '26': 'Chuyển ra khác quận thuộc quỹ điều phối', '30': 'Sửa thời gian tham gia bảo hiểm'
+            , '44': 'Tạm dừng hưởng chế độ', '45': 'Khôi phục hưởng chế độ', '46': 'Tham gia BHYT cho lao động nông thôn', '47': 'Chuyển từ lao động nông thôn sang không phải lao động nông thôn', '99': 'Khác'
         };
         return rybglx[key];
     }
     function mzrylb(key)
     {
         var mzrylb = {
-            '1': '城乡低保 đối tượng', '2': '城 thành phố ba Không có Nhân viên', '3': '农村 năm保 đối tượng', '4': '城乡孤儿', '5': 'tại乡重点 Ưu đãi đối tượng(không bao gồm1-6级残疾军 người)', '6': '城乡重度(một、hai级)残疾 Nhân viên', '7': '民政部 ngoại trú建档 Khác Nhân viên', '8': 'Gia đình đã济困难大学 sinh', '9': 'tại乡老复原军 người'
-            , '10': 'Ưu đãi sáu mười tuổi bằng trên老兵', '11': 'vì病致贫 Gia đình重病 Bệnh nhân', '12': '建 thẻ Nghèo khó户', '13': '特困 Nhân viên'
+            '1': 'Đối tượng bảo trợ xã hội thành thị-nông thôn', '2': 'Nhân viên không nơi nương tựa ở thành phố', '3': 'Đối tượng bảo trợ 5 điều ở nông thôn', '4': 'Trẻ mồ côi thành thị-nông thôn', '5': 'Đối tượng ưu đãi trọng điểm tại quê (không bao gồm quân nhân khuyết tật cấp 1-6)', '6': 'Nhân viên khuyết tật nặng thành thị-nông thôn', '7': 'Nhân viên khác do dân chính lập hồ sơ ngoại trú', '8': 'Sinh viên đại học có gia đình khó khăn về kinh tế', '9': 'Quân nhân phục viên cũ tại quê'
+            , '10': 'Cựu binh ưu đãi từ 60 tuổi trở lên', '11': 'Bệnh nhân nặng trong gia đình nghèo do bệnh', '12': 'Hộ nghèo đã lập hồ sơ', '13': 'Nhân viên đặc biệt khó khăn'
         };
         return mzrylb[key];
     }
 
     function ydbs(key) {
-        var ydbs = { '0': 'Chưa đăng ký khác địa phương', '1': '区 trong hai级 bằng trên Bệnh viện khám', '2': 'Dài hạn驻 ngoài', '3': '区 ngoài Cấp cứu', '4': '区 trong Chuyển khám', '5': '区 ngoài Chuyển khám' };
+        var ydbs = { '0': 'Chưa đăng ký khác địa phương', '1': 'Khám tại bệnh viện cấp 2 trở lên trong quận', '2': 'Đóng dài hạn ở ngoài', '3': 'Cấp cứu ngoài quận', '4': 'Chuyển khám trong quận', '5': 'Chuyển khám ngoài quận' };
         return ydbs[key];
     }
 </script>

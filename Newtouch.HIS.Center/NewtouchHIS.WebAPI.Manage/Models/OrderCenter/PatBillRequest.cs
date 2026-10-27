@@ -3,7 +3,7 @@
 namespace NewtouchHIS.WebAPI.Manage.Models.OrderCenter
 {
     /// <summary>
-    /// Bệnh nhân账单
+    /// Bệnh nhânHóa đơn
     /// </summary>
     public class PatBillRequest
     {
@@ -16,23 +16,23 @@ namespace NewtouchHIS.WebAPI.Manage.Models.OrderCenter
         /// </summary>
         public string? mzh { get; set; }
         /// <summary>
-        /// 就诊Số thẻ
+        /// Khám bệnhSố thẻ
         /// </summary>
         public string? kh { get; set; }
         /// <summary>
-        /// 证件号
+        /// Số giấy tờ
         /// </summary>
         public string? zjh { get; set; }
         /// <summary>
-        /// 订单号
+        /// Số đơn hàng
         /// </summary>
         public string? OrderNo { get; set; }
         /// <summary>
-        /// 订单金额
+        /// Số tiền đơn hàng
         /// </summary>
         public decimal? OrderAmt { get; set; }
         /// <summary>
-        /// 订单类型 EnumOrderType 1 门诊，2 住院
+        /// Loại đơn hàng EnumOrderType 1 Ngoại trú,2 Nội trú
         /// </summary>
         public int? OrderType { get; set; }
         //public SysPatientAddressEntity AddressInfo { get; set; }

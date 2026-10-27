@@ -38,13 +38,13 @@
 <script>
     $(function () { 
         $("#receipt").click(function () {
-            showReceiptPanel(); //弹出凭证号窗口
+            showReceiptPanel(); //Bật cửa sổ số chứng từ
         }); 
         $("#ddlzffs").newtouchBindSelect({
             id: "xjzffsbh",
             text: "xjzffsmc",
             datasource: function () {
-                //遍历数据源
+                //Duyệt nguồn dữ liệu
                 var resultObjArr = new Array(); 
                 $.each(top.clients.SysForCashPayList, function (idx, val) {
                     if (val.zhxz == 'a') { 
@@ -61,7 +61,7 @@
     })
 
 
-    //弹出获取凭证号的窗口
+    //Bật cửa sổ lấy số chứng từ
     function showReceiptPanel() {
         var cardNo = $("#kh").val(); 
         if (cardNo) {
@@ -73,7 +73,7 @@
                 height: "200px",
                 callBack: function (iframeId) { 
                     top.frames[iframeId].ReceiptConfirm();
-                }//窗口点确定的回调函数
+                }//hàm gọi lại khi nhấn xác nhận trên cửa sổ
             });
         } else { 
             $.modalAlert("Vui lòng nhập số thẻ hoặc Số nhập viện", 'warning'); 

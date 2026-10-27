@@ -193,12 +193,12 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Danh sách thả xuống tổ chức
         //$("#bllx").bindSelect({
         //    url: "/DocumentManage/PatInfo/GetMedRecordType"
         //});
 
-        //组织对应的科室下拉框加载
+        //Tải danh sách thả xuống khoa tương ứng với tổ chức
         $("#ksbm").bindSelect({
             url: "/MedicalRecordManage/MedRecordTemplate/GetSysDept"
         });
@@ -262,7 +262,7 @@
     });
 
 
-    //控制关系加载
+    //Tải quan hệ điều khiển
     function gridList() {
         var $gridList = $("#gridList");
         $gridList.dataGrid({
@@ -343,10 +343,10 @@
                         }
                     }
                 }
-                //{ label: '创建人', name: 'CreatorCode', width: 100, align: 'left' },
-                //{ label: '创建时间', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                //{ label: '最后修改', name: 'LastModifierCode', width: 100, align: 'left' },
-                //{ label: '最后修改时间', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                //{ label: 'Người tạo', name: 'CreatorCode', width: 100, align: 'left' },
+                //{ label: 'Thời gian tạo', name: 'CreateTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                //{ label: 'Sửa đổi lần cuối', name: 'LastModifierCode', width: 100, align: 'left' },
+                //{ label: 'Thời gian sửa đổi lần cuối', name: 'LastModifyTime', width: 130, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
             ],
             viewrecords: true
         });
@@ -354,7 +354,7 @@
 
     function ctrlEnable(val, rowId) {
         //debugger
-        //启用则可选
+        //Bật thì có thể chọn
         if (val == 1) {
             $("#gridList").find("input[name='ck_read_" + rowId + "']").attr("disabled", true);
             $("#gridList").find("input[name='ck_edit_" + rowId + "']").attr("disabled", true);
@@ -366,10 +366,10 @@
             $("#gridList").jqGrid('setCell', rowId, "zt", 1);
         }
     }
-    //setval 目的值
+    //setval Giá trị đích
     function setCheckRead(rowId) {
         var checked = $("#gridList").find("input[name='ck_read_" + rowId + "']").is(':checked');
-        if (checked)//选中当前
+        if (checked)//Chọn hiện tại
         {
             $("#gridList").find("input[name='ck_edit_" + rowId + "']").attr("checked", false);
             $("#gridList").jqGrid('setCell', rowId, "ctrlLevel", '@((int)EnummbqxFp.read)');
@@ -378,7 +378,7 @@
 
     function setCheckEdit(rowId) {
         var checked = $("#gridList").find("input[name='ck_edit_" + rowId + "']").is(':checked');
-        if (checked) //选中当前
+        if (checked) //Chọn hiện tại
         {
             $("#gridList").find("input[name='ck_read_" + rowId + "']").attr("checked", false);
             $("#gridList").jqGrid('setCell', rowId, "ctrlLevel", '@((int)EnummbqxFp.edit)');
@@ -401,7 +401,7 @@
             param: postData,
             success: function (data) {
                 if (data.state == "success") {
-                    AcceptClick(); //保存权限
+                    AcceptClick(); //Lưu quyền
                     $.modalMsg('Lưu thành công', 'success');
                 }
                 else {

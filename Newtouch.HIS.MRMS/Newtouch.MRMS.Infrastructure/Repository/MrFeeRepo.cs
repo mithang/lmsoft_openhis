@@ -26,9 +26,9 @@ namespace Newtouch.MR.ManageSystem.Repository
     public class MrFeeRepo : RepositoryBase<bafeeEntity>, IMrFeeRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public MrFeeRepo()
             
         {
@@ -37,13 +37,13 @@ namespace Newtouch.MR.ManageSystem.Repository
 		
         public int SubmitForm(bafeeVO entity, string keyValue,string OrganizeId,bafeeVO oldEntity)
         {
-			var flag = (oldEntity.Lev == 1 && entity.name1 == oldEntity.name1) || (oldEntity.Lev == 2 && entity.name1 == oldEntity.name1 && entity.name2 == oldEntity.name2);//true执行新增
+			var flag = (oldEntity.Lev == 1 && entity.name1 == oldEntity.name1) || (oldEntity.Lev == 2 && entity.name1 == oldEntity.name1 && entity.name2 == oldEntity.name2);//trueThực hiệnThêm mới
 
 			if ( (!string.IsNullOrEmpty(keyValue)) && (!flag) )
             {
                 //if (this.IQueryable().Any(p => p.ssdm == entity.ssdm && p.Id != keyValue && p.zt == "1"))
                 //{
-                //    throw new FailedException("编号不可重复");
+                //    throw new FailedException("Số hiệu không được trùng lặp");
                 //}
                 //var dbEntity = this.FindEntity(keyValue);
                 var dbEntity = new bafeeEntity();
@@ -71,13 +71,13 @@ namespace Newtouch.MR.ManageSystem.Repository
                 }
                 if (entity.Lev == dbEntity.Lev && entity.ParentCode == dbEntity.ParentCode)
                 {
-                    //大类未修改
+                    //Nhóm lớnChưaSửa
                     dbEntity.px = entity.px;
                     dbEntity.Code = entity.code;
                 }
                 else
                 {
-                    dbEntity.px = getPx(dbEntity.Lev, dbEntity.ParentCode,OrganizeId);//获取最大px+1
+                    dbEntity.px = getPx(dbEntity.Lev, dbEntity.ParentCode,OrganizeId);//Lấy px lớn nhất + 1
 					if (dbEntity.Lev == 1)
 					{
 						//dbEntity.Code = dbEntity.px.ToString();

@@ -31,7 +31,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
         }
       
         /// <summary>
-        /// 查发票号
+        /// traphátphiếusố
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
@@ -51,9 +51,9 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
 
         }
         /// <summary>
-        /// 根据发票的结算内码查询门诊挂号项目
+        /// căndữ liệuphátphiếucủakếttínhtrongmãtratra cứungoại trúkhámtreosốhạngmục
         /// </summary>
-        /// <param name="jsnm">结算内码</param>
+        /// <param name="jsnm">Mã nội bộ quyết toán</param>
         /// <returns></returns>
         public IActionResult GetMZJSByJsnm(int jsnm)
         {
@@ -66,9 +66,9 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
 
         }
         /// <summary>
-        /// 按结算内码查门诊项目
+        /// theokếttínhtrongmãtrangoại trúkhámhạngmục
         /// </summary>
-        /// <param name="jsnm">结算内码</param>
+        /// <param name="jsnm">Mã nội bộ quyết toán</param>
         /// <returns></returns>
         public IActionResult GetGridViewMxByJsnm(int jsnm)
         {
@@ -82,7 +82,7 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
             return _IRefundApp.GetGridViewMx(jsnm);
         }
         /// <summary>
-        /// 退费
+        /// Hoàn phí
         /// </summary>
         public IActionResult btnReturn(string kh,List<GridViewMx> GridViewMx, int jsnm)
         {

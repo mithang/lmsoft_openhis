@@ -72,7 +72,7 @@
         }
     })
 
-    //科室浮层
+    //Lớp nổi khoa
     $('#ks').newtouchBatchFloatingSelector({
         width: 300,
         height: 250,
@@ -87,7 +87,7 @@
         //    $('#ks').attr('data-Code', $thistr.attr('data-Code'))
         //        .val($thistr.attr('data-Name'));
         //    $('#ys').attr('data-gh', '')
-        //        .val(''); //清空医生
+        //        .val(''); //xóarỗngy tếsinh
         //},
         colModel: [
             { label: 'Mã', name: 'Code', widthratio: 40 },
@@ -97,18 +97,18 @@
 
     //$('#ys').focus(function () {
     //    if (!!!$('#ks').attr('data-Code') || !!!$('#ks').val()) {
-    //        $.modalAlert("请先选择科室", 'warning');
+    //        $.modalAlert("Vui lòng chọn khoa trước", 'warning');
     //        return;
     //    }
     //});
     //$('#ys').change(function () {
     //    if (!!!$('#ks').attr('data-Code') || !!!$('#ks').val()) {
-    //        $.modalAlert("请先选择科室", 'warning');
+    //        $.modalAlert("Vui lòng chọn khoa trước", 'warning');
     //        return;
     //    }
     //});
 
-    //医生浮层
+    //Lớp nổi bác sĩ
     $('#ys').newtouchBatchFloatingSelector({
         width: 300,
         height: 200,
@@ -136,7 +136,7 @@
     });
 
 
-    //提交
+    //Gửi
     function submitForm() {
         if (!$('#form1').formValid()) {
             return false;

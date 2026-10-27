@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.Entity.Purchase
 {
     /// <summary>
-    /// 采购配送点
+    /// Điểm giao hàng mua hàng
     /// </summary>
     [Table("xt_yp_psd")]
     [SugarTable("xt_yp_psd")]
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.Entity.Purchase
         public string bzxx { get; set; }
         public int? psdzt { get; set; }
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>

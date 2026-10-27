@@ -18,7 +18,7 @@ using Newtouch.PDS.Requset.ResourcesOperate;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// (未发药前)部分退药
+    /// (Trước khi phát thuốc)Trả thuốc một phần
     /// </summary>
     public class OutpatientPartReturnBeforeDispensingMedicineProcess : ProcessorFun<OutpatientPartReturnBeforeDispensingMedicineRequestDTO>
     {
@@ -30,21 +30,21 @@ namespace Newtouch.HIS.Application.Implementation.Process
 
         protected override ActResult Validata()
         {
-            if (Request == null) throw new FailedException("", "请求报文不能为空");
-            if (Request.Items == null || Request.Items.Count == 0) throw new FailedException("", "退药明细不能为空");
+            if (Request == null) throw new FailedException("", "Bản tin yêu cầu không được để trống");
+            if (Request.Items == null || Request.Items.Count == 0) throw new FailedException("", "Chi tiết trả thuốc không được để trống");
             try
             {
                 Parallel.ForEach(Request.Items.Select(p => p.cfh).Distinct().ToList(), p =>
                 {
                     var rpInfo = new tyDmnService(new DefaultDatabaseFactory(), false).SelectRpList(p, Request.OrganizeId);
-                    if (rpInfo == null || rpInfo.Count == 0) throw new Exception("未找到有效的处方");
-                    if (rpInfo[0].fybz != ((int)EnumFybz.Yp).ToString()) throw new Exception("该退药操作只适用已排未发处方");
+                    if (rpInfo == null || rpInfo.Count == 0) throw new Exception("Không tìm thấy đơn thuốc hiệu lực");
+                    if (rpInfo[0].fybz != ((int)EnumFybz.Yp).ToString()) throw new Exception("Thao tác trả thuốc này chỉ áp dụng cho đơn đã xếp chưa phát");
                 });
             }
             catch (Exception e)
             {
                 LogCore.Error("OutpatientPartReturnBeforeDispensingMedicineProcess Validata error", e,
-                    "(未发药前)部分退药验证异常");
+                    "(Trước khi phát thuốc)Ngoại lệ kiểm tra trả thuốc một phần");
                 throw new FailedException("", e.Message + (e.InnerException != null ? e.InnerException.Message : ""));
             }
             return new ActResult();
@@ -58,8 +58,8 @@ namespace Newtouch.HIS.Application.Implementation.Process
                 {
                     if (p.zhyz != 0) return;
                     var ypxx = new SysMedicineExDmnService(new DefaultDatabaseFactory(), false).GetYpDetails(Request.OrganizeId, p.ypdm);
-                    if (ypxx == null) throw new Exception("未找到代码为【" + p.ypdm + "】的药品。");
-                    if (ypxx.mzcls == null) throw new Exception("药品代码为【" + p.ypdm + "】的药品门诊拆零数为空。");
+                    if (ypxx == null) throw new Exception("Không tìm thấy mã là【" + p.ypdm + "】của thuốc。");
+                    if (ypxx.mzcls == null) throw new Exception("Mã thuốc là【" + p.ypdm + "】Số chia lẻ ngoại trú của thuốc trống。");
                     p.zhyz = (int)ypxx.mzcls;
                     if (p.sl <= 0) Request.Items.Remove(p);
                 });

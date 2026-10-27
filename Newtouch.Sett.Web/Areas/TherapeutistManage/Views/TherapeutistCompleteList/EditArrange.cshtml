@@ -24,7 +24,7 @@
 
     function init() {
         var date = new Date;
-        //年份
+        //Năm
         $("#year").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -37,7 +37,7 @@
             },
             selectedValue: 1900 + date.getYear(),
         });
-        //月份
+        //Tháng
         $("#month").newtouchBindSelect({
             datasource: function () {
                 var resultObjArr = new Array();
@@ -78,7 +78,7 @@
             },
             messages: {
                 ysgh: { required: "Mã nhân viên không được là trống" },
-                //Name: { required: "名字不能为空" },
+                //Name: { required: "tênchữkhôngcó thểlàrỗng" },
                 year: { required: "Năm không được là trống" },
                 month: { required: "Tháng không được là trống" },
                 ts: { required: "số ngày không được là trống" }

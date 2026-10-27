@@ -10,7 +10,7 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.Application.Implementation
 {
     /// <summary>
-    /// 调价. The original AdjustPriceExecuteProcess (ProcessorFun, binary-only)
+    /// Điều chỉnh giá. The original AdjustPriceExecuteProcess (ProcessorFun, binary-only)
     /// is inlined here: validate the adjustment record, then delegate to
     /// WzPriceAdjustmentDmnService.AdjustPriceExecute.
     /// </summary>

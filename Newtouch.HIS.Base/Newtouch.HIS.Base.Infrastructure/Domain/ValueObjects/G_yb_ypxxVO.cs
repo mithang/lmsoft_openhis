@@ -7,129 +7,129 @@ using System.Threading.Tasks;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
 	/// <summary>
-	/// 医保药品目录表
+	/// Bảng danh mục thuốc BHYT
 	/// </summary>
 	public class G_yb_ypxxVO
 	{
 		/// <summary>
-		/// 药品代码
+		/// Mã thuốc
 		/// </summary>
 		public string ypdm { get; set; }
 		/// <summary>
-		/// 数据来源
+		/// Nguồn dữ liệu
 		/// </summary>
 		public string sjly { get; set; }
 		/// <summary>
-		/// 注册名称
+		/// Tên đăng ký
 		/// </summary>
 		public string zcmc { get; set; }
 		/// <summary>
-		/// 商品名称
+		/// Tên thương mại
 		/// </summary>
 		public string spmc { get; set; }
 		/// <summary>
-		/// 注册剂型
+		/// Dạng bào chế đăng ký
 		/// </summary>
 		public string zcjx { get; set; }
 		/// <summary>
-		/// 实际剂型
+		/// Dạng bào chế thực tế
 		/// </summary>
 		public string sjjx { get; set; }
 		/// <summary>
-		/// 注册规格
+		/// Quy cách đăng ký
 		/// </summary>
 		public string zcgg { get; set; }
 		/// <summary>
-		/// 实际规格
+		/// Quy cách thực tế
 		/// </summary>
 		public string sjgg { get; set; }
 		/// <summary>
-		/// 包装材质
+		/// Chất liệu bao bì
 		/// </summary>
 		public string bzcz { get; set; }
 		/// <summary>
-		/// 最小包装数量
+		/// Số lượng đóng gói nhỏ nhất
 		/// </summary>
 		public string zxbzsl { get; set; }
 		/// <summary>
-		/// 最小制剂单位
+		/// Đơn vị bào chế nhỏ nhất
 		/// </summary>
 		public string zxzjdw { get; set; }
 		/// <summary>
-		/// 最小包装单位
+		/// Đơn vị đóng gói nhỏ nhất
 		/// </summary>
 		public string zxbzdw { get; set; }
 		/// <summary>
-		/// 药品企业
+		/// Doanh nghiệp dược
 		/// </summary>
 		public string ypqy { get; set; }
 		/// <summary>
-		/// 上市药品持有人
+		/// Người sở hữu thuốc đã lưu hành
 		/// </summary>
 		public string shypcyr { get; set; }
 		/// <summary>
-		/// 批准文号
+		/// Số đăng ký
 		/// </summary>
 		public string pzwh { get; set; }
 		/// <summary>
-		/// 原批准文号
+		/// Số phê duyệt gốc
 		/// </summary>
 		public string ypzwh { get; set; }
 		/// <summary>
-		/// 药品本位码
+		/// Mã chuẩn của thuốc
 		/// </summary>
 		public string ypbwm { get; set; }
 		/// <summary>
-		/// 分包装企业名称
+		/// Tên doanh nghiệp đóng gói riêng
 		/// </summary>
 		public string fbzqymc { get; set; }
 		/// <summary>
-		/// 生产企业
+		/// Doanh nghiệp sản xuất
 		/// </summary>
 		public string scqy { get; set; }
 		/// <summary>
-		/// 市场状态
+		/// Trạng thái thị trường
 		/// </summary>
 		public string sczt { get; set; }
 		/// <summary>
-		/// 医保药品名称
+		/// Tên thuốc BHYT
 		/// </summary>
 		public string ybypmc { get; set; }
 		/// <summary>
-		/// 2021版甲乙类
+		/// 2021bản loại A/B
 		/// </summary>
 		public string ybjyl { get; set; }
 		/// <summary>
-		/// 医保剂型
+		/// Dạng bào chế BHYT
 		/// </summary>
 		public string ybjx { get; set; }
 		/// <summary>
-		/// 编号
+		/// Số hiệu
 		/// </summary>
 		public string bh { get; set; }
 		/// <summary>
-		/// 备注
+		/// Ghi chú
 		/// </summary>
 		public string bz { get; set; }
 		/// <summary>
-		/// 甲乙类
+		/// Loại A/B
 		/// </summary>
 		public string jyl { get; set; }
 		/// <summary>
-		/// 备注1
+		/// Ghi chú1
 		/// </summary>
 		public string bz1 { get; set; }
 		/// <summary>
-		/// 备注（特殊属性标识）
+		/// Ghi chú（Dấu thuộc tính đặc biệt）
 		/// </summary>
 		public string bztssxbs { get; set; }
 		/// <summary>
-		/// 医保支付标准
+		/// Tiêu chuẩn thanh toán BHYT
 		/// </summary>
 		public string ybzfbz { get; set; }
 
 		/// <summary>
-		/// 拼音码
+		/// Mã Pinyin
 		/// </summary>
 		public string pym { get; set; }
 

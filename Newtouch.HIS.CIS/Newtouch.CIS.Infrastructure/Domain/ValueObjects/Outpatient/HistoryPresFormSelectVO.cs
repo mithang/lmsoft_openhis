@@ -67,7 +67,7 @@ namespace Newtouch.Domain.ValueObjects
 
         public string zxksmc { get; set; }
         /// <summary>
-        /// 是否医保
+        /// làKhôngBảo hiểm y tế
         /// </summary>
         public string sfyb { get; set; }
     }

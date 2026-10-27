@@ -8,32 +8,32 @@ namespace Newtouch.Domain.BusinessObjects
 {
     public class MRTemplateBO
     {
-        #region 模板内容
+        #region mẫunội dung
         /// <summary>
         /// 
         /// </summary>
         public string mbmc { get; set; }
         /// <summary>
-        /// 主诉
+        /// chínhbảo
         /// </summary>
         public string zs { get; set; }
 
         /// <summary>
-        /// 现病史
+        /// hiệnbệnhsử
         /// </summary>
         public string xbs { get; set; }
 
         /// <summary>
-        /// 既往史
+        /// Tiền sử
         /// </summary>
         public string jws { get; set; }
 
         /// <summary>
-        /// 查体
+        /// trathể
         /// </summary>
         public string ct { get; set; }
         /// <summary>
-        /// 处理
+        /// chỗlý
         /// </summary>
         public string clfa { get; set; }
         #endregion
@@ -50,11 +50,11 @@ namespace Newtouch.Domain.BusinessObjects
         
         public List<CfTemplateGroupPackageEntity> mbztList { get; set; }
         /// <summary>
-        /// 月经史
+        /// Thángtiền sử bệnh
         /// </summary>
         public string yjs { get; set; }
         /// <summary>
-        /// 过敏史
+        /// quaTiền sử dị ứng
         /// </summary>
         public string gms { get; set; }
         /// <summary>

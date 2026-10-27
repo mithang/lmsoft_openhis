@@ -3,42 +3,42 @@ using System;
 namespace Newtouch.Herp.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 进销存统计查询条件
+    /// Điều kiện truy vấn thống kê nhập-xuất-tồn
     /// </summary>
     public class PsiStatisticsDTO
     {
         /// <summary>
-        /// 开始结转时间
+        /// Thời gian bắt đầu kết chuyển
         /// </summary>
         public string ksjzsj { get; set; }
 
         /// <summary>
-        /// 结束结转时间
+        /// Thời gian kết thúc kết chuyển
         /// </summary>
         public string jsjzsj { get; set; }
 
         /// <summary>
-        /// 物资状态
+        /// Trạng thái vật tư
         /// </summary>
         public string wzzt { get; set; }
 
         /// <summary>
-        /// 输入码/药品代码
+        /// Mã nhập/Mã thuốc
         /// </summary>
         public string srm { get; set; }
 
         /// <summary>
-        /// 大类
+        /// Nhóm lớn
         /// </summary>
         public string dl { get; set; }
 
         /// <summary>
-        /// 零差率
+        /// Tỷ lệ chênh lệch bằng 0
         /// </summary>
         public string rate { get; set; }
 
         /// <summary>
-        /// 显示无进销存药品
+        /// Hiển thị thuốc không có nhập-xuất-tồn
         /// </summary>
         public string noPSI { get; set; }
     }

@@ -2,7 +2,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Form.cshtml";
 
-    //收据报表链接
+    //thucứBáo cáochuỗinhận
     //var reportUrl = SysConfigReader.OrgReportLink();
     var reportUrl = Newtouch.CIS.Compat.AppConfig.Get("ReportUrl");
     var ReportSystemCode = Newtouch.CIS.Compat.AppConfig.Get("ReportSystemCode");
@@ -43,7 +43,7 @@
 
 <script>
     var bysj = "";
-    var last = "";//上一个组号
+    var last = "";//một cái trướcSố nhóm
 
     $(function () {
         gridList();
@@ -76,7 +76,7 @@
         });
 
         $("#btn_search").click(function () {
-            $('#gridJSMXList').jqGrid("clearGridData");//先清空明细
+            $('#gridJSMXList').jqGrid("clearGridData");//Xóa trắng chi tiết trước
             $gridList.jqGrid('setGridParam', {
                 postData: getpostData(),
                 url: "/NurseManage/WardMaintenance/GetDispensingItems",
@@ -92,7 +92,7 @@
         };
     }
     var lastxm = null;
-    //单击事件
+    //phiếunhấpsự kiện
     function btn_selectrow() {
 
         var bysj = $("#gridList").jqGridRowValue().bysj;
@@ -145,14 +145,14 @@
 
                     debugger
                     var rowData = $("#gridJSMXList").jqGrid('getRowData', ids[i]);
-                    //组号生成特殊符号
+                    //Số nhómtạoký tự đặc biệt
                     if (rowData.zh == "") {
                         continue;
                     }
                     if (rowData.zh != typeof (undefined) && rowData.zh !== "" && rowData.zh !== null) {
                         if (last == rowData.zh) {
                             returnval = "Ở giữa";
-                            if (i == (ids.length - 1)) {//最后一个
+                            if (i == (ids.length - 1)) {//cuối cùng
                                 returnval = "Kết thúc";
                                 last = "";
                             }
@@ -172,10 +172,10 @@
                                 continue;
                             }
                             //else {
-                            //    returnval = "结束";
+                            //    returnval = "Kết thúc";
                             //}
                         }
-                        $("#gridJSMXList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell 设置单格样式 值 或属性
+                        $("#gridJSMXList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
 
                     }
                     last = rowData.zh;
@@ -186,20 +186,20 @@
     }
     function setlastrowzuhaoid(rowid,last) {
         var lastrow = parseInt(rowid);
-        $("#gridJSMXList").setCell(lastrow, "zh", last);//setCell 设置单格样式 值 或属性
+        $("#gridJSMXList").setCell(lastrow, "zh", last);//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
     }
     function MergerStatistics(gridName, CellName) {
-        //得到显示到界面的id集合
+        //đượcđếnHiển thịđếngiớimặtcủaidtậphợp
         var mya = $("#" + gridName + "").getDataIDs();
-        //当前显示多少条
+        //hiện tạiHiển thịnhiềuítdòng
         var length = mya.length;
         for (var i = 0; i < length; i++) {
-            //从上到下获取一条信息
+            //từtrênđếndướiLấymột dòngthông tin
             var before = $("#" + gridName + "").jqGrid('getRowData', mya[i]);
-            //定义合并行数
+            //địnhnghĩahợpvàdòngsố
             var rowSpanTaxCount = 1;
             for (j = i + 1; j <= length; j++) {
-                //和上边的信息对比 如果值一样就合并行数+1 然后设置rowspan 让当前单格隐藏
+                //vàtrênbêncủathông tinđốiso VDnếuGiá trịmộtdạngthìhợpvàdòngsố+1 nhiênsauCài đặtrowspan 让hiện tạiphiếuôẨn
                 var end = $("#" + gridName + "").jqGrid('getRowData', mya[j]);
                 var cellNames = CellName.split(",");
                 for (var n = 0; n < cellNames.length; n++) {
@@ -210,7 +210,7 @@
                         rowSpanTaxCount = 1;
                         break;
                     }
-                    $("#" + cellNames[0] + "" + mya[i] + "").attr("rowspan", rowSpanTaxCount);//最后合并需要合并的行与合并的行数
+                    $("#" + cellNames[0] + "" + mya[i] + "").attr("rowspan", rowSpanTaxCount);//cuối cùnghợpvàcầnhợpvàcủadòngvàhợpvàcủadòngsố
                     $("#" + cellNames[0] + "" + mya[i] + "").attr("position", "relative");
                     $("#" + cellNames[0] + "" + mya[i] + "").attr("top", "50%");
                     $("#" + cellNames[0] + "" + mya[i] + "").attr("transform", "translateY(-50%)");
@@ -222,34 +222,34 @@
         }
 
     }
-    //结算明细 jGrid声明
+    //quyết toánchi tiết jGridTuyên bố
     //$('#gridJSMXList').newtouchLocalDataGrid({
     //    height: $(window).height() - 370,
-    //    caption: "药品医嘱信息",
+    //    caption: "ThuốcY lệnhthông tin",
     //    pager: "#gridPatPager",
     //    sortname: 'zh',
     //    viewrecords: true,
     //    colModel: [
 
-    //        { label: '姓名', name: 'xm', width: 60, align: 'left' },
+    //        { label: 'Họ tên', name: 'xm', width: 60, align: 'left' },
     //        { label: 'Số hiệu giường', name: 'cw', width: 50, align: 'left' },
-    //        { label: '病人ID', name: 'zyh', width: 50, align: 'left' },
-    //        { label: '同组', name: 'zh', align: 'center', width: 30 },
-    //        { label: '医嘱', name: 'yznr', width: 160, align: 'left' },
-    //        { label: '剂量', name: 'jl', width: 50, align: 'left' },
-    //        { label: '频次', name: 'pc', width: 50, align: 'left' },
-    //        { label: '数量', name: 'sl', width: 40, align: 'left' },
-    //        { label: '单位', name: 'dw', width: 40, align: 'left' },
-    //        { label: 'Thực hiện时间', name: 'zxsj', width: 140, align: 'left' },
-    //        { label: '药品名称', name: 'ypmc', width: 160, align: 'left' },
-    //        { label: '规格', name: 'ypgg', width: 80, align: 'left' },
-    //        { label: '厂家', name: 'ycmc', width: 120, align: 'left' },
-    //        { label: '应收', name: 'ys', width: 50, align: 'left' },
-    //        { label: '实收', name: 'ss', width: 50, align: 'left' },
-    //        { label: '开始时间', name: 'kssj', width: 140, align: 'left' },
-    //        { label: '停止时间', name: 'tzsj', width: 140, align: 'left' },
-    //        { label: '给药途径', name: 'jytj', width: 50, align: 'left' },
-    //        { label: '费别', name: 'fb', width: 50, align: 'left' },
+    //        { label: 'bệnh ngườiID', name: 'zyh', width: 50, align: 'left' },
+    //        { label: 'Cùng nhóm', name: 'zh', align: 'center', width: 30 },
+    //        { label: 'Y lệnh', name: 'yznr', width: 160, align: 'left' },
+    //        { label: 'Liều lượng', name: 'jl', width: 50, align: 'left' },
+    //        { label: 'Tần suất', name: 'pc', width: 50, align: 'left' },
+    //        { label: 'Số lượng', name: 'sl', width: 40, align: 'left' },
+    //        { label: 'Đơn vị', name: 'dw', width: 40, align: 'left' },
+    //        { label: 'Thực hiệnThời gian', name: 'zxsj', width: 140, align: 'left' },
+    //        { label: 'Tên thuốc', name: 'ypmc', width: 160, align: 'left' },
+    //        { label: 'Quy cách', name: 'ypgg', width: 80, align: 'left' },
+    //        { label: '厂nhà', name: 'ycmc', width: 120, align: 'left' },
+    //        { label: 'ứngthu', name: 'ys', width: 50, align: 'left' },
+    //        { label: 'thựcthu', name: 'ss', width: 50, align: 'left' },
+    //        { label: 'Thời gian bắt đầu', name: 'kssj', width: 140, align: 'left' },
+    //        { label: 'Thời gian dừng', name: 'tzsj', width: 140, align: 'left' },
+    //        { label: 'chothuốcĐường', name: 'jytj', width: 50, align: 'left' },
+    //        { label: 'phíloại', name: 'fb', width: 50, align: 'left' },
     //    ],
     //    gridComplete: function () {
     //        var returnval = "";
@@ -257,27 +257,27 @@
     //        for (i = 0; i < ids.length; i++) {
     //            debugger
     //            var rowData = $("#gridJSMXList").jqGrid('getRowData', ids[i]);
-    //            //组号生成特殊符号
+    //            //Số nhómtạoký tự đặc biệt
     //            if (rowData.zh == "") {
     //                continue;
     //            }
     //            if (rowData.zh != typeof (undefined) && rowData.zh !== "" && rowData.zh !== null) {
     //                if (last == rowData.zh) {
-    //                    returnval = "中间";
-    //                    if (i == (ids.length - 1)) {//最后一个
-    //                        returnval = "结束";
+    //                    returnval = "tronggiữa";
+    //                    if (i == (ids.length - 1)) {//cuối cùng
+    //                        returnval = "Kết thúc";
     //                        last = "";
     //                    }
     //                    var rowDatas = $("#gridJSMXList").jqGrid('getRowData', ids[i + 1]);
     //                    if (rowData.zh != rowDatas.zh || rowDatas.zh == "") {
-    //                        returnval = "结束";
+    //                        returnval = "Kết thúc";
     //                        last = "";
     //                    }
     //                }
     //                else if (last !== rowData.zh) {
-    //                    returnval = "开始";
+    //                    returnval = "Bắt đầu";
     //                }
-    //                $("#gridJSMXList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell 设置单格样式 值 或属性
+    //                $("#gridJSMXList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
 
     //            }
     //            last = rowData.zh;
@@ -287,12 +287,12 @@
 
     function setlastrowzuhao(rowid) {
         var lastrow = parseInt(rowid) - 1;
-        $("#gridJSMXList").setCell(lastrow, "zh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell 设置单格样式 值 或属性
+        $("#gridJSMXList").setCell(lastrow, "zh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
     }
-    //打印汇总清单
+    //Inhộitổngxóaphiếu
 
     var curUserCode = '@(ViewBag.CurUserCode)';
-    //打印明细
+    //Inchi tiết
     var srcUrl = "";
     $("#HZQD").click(function () {
         var reportServerHOST = '@ViewBag.ReportServerHOST';
@@ -302,7 +302,7 @@
         var uri = '@reportUrl' + "?tempCode=45" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&orgId=" + '@curOpr.OrganizeId' + "&bysj=" + $("#gridList").jqGridRowValue().bysj;
         window.open(uri);
 
-        //var urldy = "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f药品医嘱信息打印&rs:Command=Render&rc:Stylesheet=MyStyleSheet&orgId=" + orgId + "&bysj=" + $("#gridList").jqGridRowValue().bysj;
+        //var urldy = "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2fThuốcY lệnhthông tinIn&rs:Command=Render&rc:Stylesheet=MyStyleSheet&orgId=" + orgId + "&bysj=" + $("#gridList").jqGridRowValue().bysj;
         //if (urldy.StartWith('/')) {
         //    urldy = urldy.substr(1);
         //}
@@ -321,7 +321,7 @@
         window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
     }
 
-    //发票补打
+    //Hóa đơnin bù
     function supplementprintFp(jsnm) {
         tempJSNM = jsnm;
         $.modalOpen({
@@ -331,23 +331,23 @@
             width: "300px",
             height: "200px",
             callBack: function (iframeId) {
-                top.frames[iframeId].checkFPH();//窗口点确定的回调函数
+                top.frames[iframeId].checkFPH();//cửa sổmiệngđiểmXác nhậncủavềgọihàmsố
             }
         });
 
     }
 
     var tempJSNM;
-    //补打，选择了新的发票号
+    //in bù，chọnđãmớicủaHóa đơnsố
     function chooseFPHSuccessCallback(fph) {
-        //更新结算记录的发票号为新发票号
+        //Cập nhậtquyết toánghi chépcủaHóa đơnsốlàmớiHóa đơnsố
         $.najax({
             type: "POST",
             url: "/HospitalizationManage/Settlement/UpdateSettInvoiceNo",
             data: { jsnm: tempJSNM, fph: fph },
             dataType: "json",
             success: function (data) {
-                //打印
+                //In
                 printFp(tempJSNM);
             }
         });

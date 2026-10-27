@@ -6,12 +6,12 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 方法运行监控
+    /// Phương phápvận hànhdònggiám sát
     /// </summary>
     public class PerformanceMonitoring 
     {
         /// <summary>
-        /// 记录耗时
+        /// ghi chéptiêu haokhi
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="missingHandler"></param>
@@ -23,14 +23,14 @@ namespace Newtouch.Infrastructure
         public static void TimeConsuming<T>(Action<T> missingHandler, T request, string title, string message, Dictionary<string, string> tags = null)
         {
             var stopwatch = new Stopwatch();
-            stopwatch.Start();//  开始监视代码运行时间
-            missingHandler.Invoke(request);//代码主体
-            stopwatch.Stop();//  停止监视
-            LogCore.Info(string.Format("Title:{0};\n message:{1} 方法耗时-{2}", title, message, stopwatch.Elapsed.TotalMilliseconds), message, tags);//记录日志
+            stopwatch.Start();//  Bắt đầugiám sátxemMãvận hànhdòngThời gian
+            missingHandler.Invoke(request);//Mãchínhthể
+            stopwatch.Stop();//  Dừnggiám sátxem
+            LogCore.Info(string.Format("Title:{0};\n message:{1} Phương pháptiêu haokhi-{2}", title, message, stopwatch.Elapsed.TotalMilliseconds), message, tags);//ghi chépngàychí
         }
 
         /// <summary>
-        /// 代码运行时间
+        /// Mãvận hànhdòngThời gian
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="missingHandler"></param>
@@ -41,15 +41,15 @@ namespace Newtouch.Infrastructure
         public static T Running<T>(Func<T> missingHandler, string title, string message, Dictionary<string, string> tags = null)
         {
             var stopwatch = new Stopwatch();
-            stopwatch.Start();//  开始监视代码运行时间
-            dynamic value = missingHandler.Invoke();//代码主体
-            stopwatch.Stop();//  停止监视
-            LogCore.Info(string.Format("Title:{0};\n message:{1} 方法耗时-{2}", title, message, stopwatch.Elapsed.TotalMilliseconds), message, tags);//记录日志
+            stopwatch.Start();//  Bắt đầugiám sátxemMãvận hànhdòngThời gian
+            dynamic value = missingHandler.Invoke();//Mãchínhthể
+            stopwatch.Stop();//  Dừnggiám sátxem
+            LogCore.Info(string.Format("Title:{0};\n message:{1} Phương pháptiêu haokhi-{2}", title, message, stopwatch.Elapsed.TotalMilliseconds), message, tags);//ghi chépngàychí
             return value;
         }
 
         /// <summary>
-        /// 服务监控
+        /// phụcGiám sát nghiệp vụ
         /// </summary>
         /// <typeparam name="TRequest"></typeparam>
         /// <typeparam name="TResponse"></typeparam>
@@ -68,7 +68,7 @@ namespace Newtouch.Infrastructure
                 var response = action.Invoke(request);
                 stopwatch.Stop();
                 LogCore.Info(requestTitle, string.Format("{0}_ResponseXML;\n Message:{1}", requestTitle, response));
-                LogCore.Info(string.Format("Title:{0};方法耗时-{1}", requestTitle, stopwatch.Elapsed.TotalMilliseconds), requestTitle, tags);
+                LogCore.Info(string.Format("Title:{0};Thời gian chạy phương thức-{1}", requestTitle, stopwatch.Elapsed.TotalMilliseconds), requestTitle, tags);
                 return response;
             }
             catch (Exception ex)
@@ -79,7 +79,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// 服务监控
+        /// phụcGiám sát nghiệp vụ
         /// </summary>
         /// <typeparam name="TRequest"></typeparam>
         /// <param name="action"></param>
@@ -96,7 +96,7 @@ namespace Newtouch.Infrastructure
                 stopwatch.Start();
                 action.Invoke(request);
                 stopwatch.Stop();
-                LogCore.Info(string.Format("Title:{0};方法耗时-{1}", requestTitle, stopwatch.Elapsed.TotalMilliseconds), requestTitle, tags);
+                LogCore.Info(string.Format("Title:{0};Thời gian chạy phương thức-{1}", requestTitle, stopwatch.Elapsed.TotalMilliseconds), requestTitle, tags);
             }
             catch (Exception ex)
             {

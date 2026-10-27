@@ -36,7 +36,7 @@
     var mbbh = $.request('mbbh');
     var zyh = $.request('zyh');
     var mzh = $.request('mzh');
-    //首次保存返回值
+    //Giá trị trả về khi lưu lần đầu
     var blId="";
     var bllx="";
     var bllj="";
@@ -66,7 +66,7 @@
             });
         });
 
-        // 创建编辑器
+        // Tạo trình soạn thảo
         HMEditorLoader.createEditorAsync({
             container: "#editorContainer",
             id:id,
@@ -76,19 +76,19 @@
                 border: '1px solid #ddd'
             },
             editorConfig: {
-                // 编辑器配置项
+                // Hạng mục cấu hình trình soạn thảo
             },
-            // 模式设置
-            designMode: false,  // 是否启用设计模式
+            // Cài đặt chế độ
+            designMode: false,  // Có bật chế độ thiết kế không
             allowModifyDatasource: true,
-            reviseMode: false,  // 是否启用修订模式
-            readOnly: false,     // 是否启用只读模式
-            customParams: {     // 自定义参数
+            reviseMode: false,  // Có bật chế độ sửa đổi không
+            readOnly: false,     // Có bật chế độ chỉ đọc không
+            customParams: {     // Tham số tùy chỉnh
 
             }
         })
          .then(function (result) {
-             // 编辑器初始化完成
+             // Khởi tạo trình soạn thảo hoàn tất
              editorInstance = result;
              $.ajax({
                  type: "POST",
@@ -110,7 +110,7 @@
                      //for (var key in zybrjbxx) {
                      //    if (zybrjbxx.hasOwnProperty(key)) {
                      //        let array1 = {};
-                     //        array1[key] = `${zybrjbxx[key]}`; // 动态添加属性
+                     //        array1[key] = `${zybrjbxx[key]}`; // Thêm thuộc tính động
                      //        array.push(array1);
                      //    }
                      //}
@@ -136,18 +136,18 @@
                      //    "data": [
                      //      {
                      //          "keyCode": "xm",
-                     //          "keyName": "姓名",
+                     //          "keyName": "Họ tên",
                      //          "keyValue": "李四"
                      //      },
                      //      {
                      //          "keyCode": "mz",
-                     //          "keyName": "民族",
-                     //          "keyValue": { "code": "01", "value": "汉族" }
+                     //          "keyName": "Dân tộc",
+                     //          "keyValue": { "code": "01", "value": "Dân tộc Hán" }
                      //      },
                      //      {
                      //          "keyCode": "hf",
-                     //          "keyName": "婚姻状况",
-                     //          "keyValue": { "code": "", "value": "未婚" }
+                     //          "keyName": "Tình trạng hôn nhân",
+                     //          "keyValue": { "code": "", "value": "Chưa kết hôn" }
                      //      }
                      //    ]
                      //}
@@ -159,15 +159,15 @@
                  }
              });
              //mockDemoContent().then(function (demoContent) {
-             //    //console.log('模板内容:' + demoContent);
+             //    //console.log('Nội dung mẫu:' + demoContent);
              //    editorInstance.setDocContent({
              //        code: 'doc001',
-             //        docTplName: '测试病历名称',
+             //        docTplName: 'Tên bệnh án thử nghiệm',
              //        docContent: demoContent
              //    });
              //})
              editorInstance.onToolbarCommandComplete = function (command, type, data) {
-                 // 根据命令类型执行不同操作
+                 // Thực hiện thao tác khác nhau theo loại lệnh
                  if (command === 'save') {
                      let obj = editorInstance.getDocHtml();
                      if (obj && obj.length > 0) {
@@ -188,15 +188,15 @@
                      }
                  }
              };
-             // 设置默认内容
-             //editorInstance.editor.setData(`<p style='height:300px;position:relative;'>开始制作模板内容</p>`);
+             // Đặt nội dung mặc định
+             //editorInstance.editor.setData(`<p style='height:300px;position:relative;'>Bắt đầu soạn nội dung mẫu</p>`);
          })
          .catch(function (error) {
              console.error("Khởi tạo trình soạn thảo thất bại:", error);
          });
     });
 
-    //保存病历
+    //Lưu bệnh án
     function SavePatientBl(params) {
         $.najax({
             type: "POST",
@@ -211,7 +211,7 @@
                 blxtmc_yj=respdata.blxtmc_yj;
                 $.modalAlert("Lưu bệnh án thành công", 'success');
                 //if (respdata.state == "error")
-                //    $.modalAlert("病历模板保存失败:" + respdata.message,'error');
+                //    $.modalAlert("Lưu mẫu bệnh án thất bại:" + respdata.message,'error');
                 //else{
                 //}
             },
@@ -221,7 +221,7 @@
         });
     }
 
-    //更新病历
+    //Cập nhật bệnh án
     function UpdatePatientBl(params) {
         $.najax({
             type: "POST",
@@ -241,13 +241,13 @@
     function htmlToBase64(htmlString) {
         return btoa(unescape(encodeURIComponent(htmlString)));
     }
-    //医嘱插入文书
+    //Chèn y lệnh vào văn bản
     function insertDataAtCursor(data)
     {
         editorInstance.insertDataAtCursor(data);
     }
 
-    // 获取测试用数据
+    // Lấy dữ liệu thử nghiệm
     function mockDemoContent() {
         return fetch('http://127.0.0.1:3071/hmEditor/demo/file/admission_record.html')
            .then(function (response) { return response.text(); });

@@ -11,12 +11,12 @@ using Newtouch.Domain.DTO.OutputDto;
 namespace Newtouch.Application.Interface
 {
     /// <summary>
-    /// 门诊中医馆管理
+    /// Ngoại trútrongyquánQuản lý
     /// </summary>
     public interface IOutpatientCmmManagerApp
     {
         /// <summary>
-        /// 患者信息上传
+        /// Thông tin bệnh nhânTải lên
         /// </summary>
         /// <param name="jzxx"></param>
         /// <param name="organizeId"></param>
@@ -25,7 +25,7 @@ namespace Newtouch.Application.Interface
         Result TcmHis01(TreatEntityObj jzxx, string organizeId, string userCode);
 
         /// <summary>
-        /// 电子病历集成模块
+        /// điện tửHồ sơtậpthànhmẫukhối
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="jzys"></param>
@@ -35,7 +35,7 @@ namespace Newtouch.Application.Interface
         string GetIntegrateEmrUrl(string mzh, string jzys, string organizeId, out string response);
 
         /// <summary>
-        /// 辩证论治
+        /// biệnchứngluậnđiều trị
         /// </summary>
         /// <param name="aeRequest"></param>
         /// <param name="response"></param>
@@ -43,13 +43,13 @@ namespace Newtouch.Application.Interface
         string GetIntegrateAeUrl(GetAeRequestDto aeRequest, out string response);
 
         /// <summary>
-        /// 知识库
+        /// biếtbiếtkho
         /// </summary>
         /// <returns></returns>
         string GetIntegrateKUrl(out string response);
 
         /// <summary>
-        /// 集成治未病
+        /// tậpthànhđiều trịchưabệnh
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="mzh"></param>
@@ -61,32 +61,32 @@ namespace Newtouch.Application.Interface
         string GetIntegrateHEALUrl(string blh, string mzh, string zjlx, string zjh, string organizeId, out string response);
 
         /// <summary>
-        /// 提取电子病历
+        /// nhắclấyđiện tửHồ sơ
         /// </summary>
-        /// <param name="mzh">门诊号</param>
+        /// <param name="mzh">Số khám ngoại trú</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         Record ExtractIntegrateEmr(string mzh, string organizeId);
 
         /// <summary>
-        /// 提取处方
+        /// nhắclấyĐơn thuốc
         /// </summary>
-        /// <param name="mzh">门诊号</param>
+        /// <param name="mzh">Số khám ngoại trú</param>
         /// <param name="organizeId"></param>
-        /// <param name="mzzybz">门诊住院标志 0-药库  1-门诊  2-住院  3-通用(取门诊单位) </param>
+        /// <param name="mzzybz">Dấu hiệu ngoại trú/nội trú 0-Kho thuốc  1-Ngoại trú  2-Nhập viện  3-Chung(lấyĐơn vị ngoại trú) </param>
         /// <returns></returns>
         List<DrugDataEx> ExtractIntegrateRp(string mzh, string organizeId, string mzzybz);
 
         /// <summary>
-        /// 提取诊断信息
+        /// nhắclấyChẩn đoánthông tin
         /// </summary>
-        /// <param name="mzh">门诊号</param>
+        /// <param name="mzh">Số khám ngoại trú</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         DiagInfo ExtractIntegrateDiagnosis(string mzh, string organizeId);
 
         /// <summary>
-        /// 推送草药
+        /// đẩythảo dược
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
@@ -94,7 +94,7 @@ namespace Newtouch.Application.Interface
         string PushMedicineInfo(string organizeId, string userCode);
 
         /// <summary>
-        /// 组装远程医疗参数
+        /// lắp rápxatrìnhy tếtham số
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="mzh"></param>

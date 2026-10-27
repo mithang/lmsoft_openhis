@@ -4,7 +4,7 @@ using Newtouch.Herp.Domain.IRepository;
 namespace Newtouch.Herp.Repository
 {
     /// <summary>
-    /// 物资维护
+    /// Bảo trì vật tư
     /// </summary>
     public class WzProductRepo : RepositoryBase<WzProductEntity>, IWzProductRepo
     {

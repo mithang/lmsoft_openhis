@@ -81,10 +81,10 @@
 </form>
 <script>
     $(function () {
-        //查询列表
+        //Tra cứudanh sách
         gridList();
     });
-    //预约信息查询
+    //đặt hẹnthông tinTra cứu
     function gridList() {
         var $gridJsList = $("#gridList");
         $gridJsList.dataGrid({
@@ -107,11 +107,11 @@
             ],
             pager: "#gridPager",
             sortname: " yyrq asc",
-            rownumbers: true,  //是否显示Số thứ tự
+            rownumbers: true,  //CóKhôngHiển thịSố thứ tự
             viewrecords: true
         });
         $("#btn_search").click(function () {
-            $('#gridList').jqGrid("clearGridData");//先清空明细
+            $('#gridList').jqGrid("clearGridData");//Xóa trắng chi tiết trước
             $gridJsList.jqGrid('setGridParam', {
                 postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val(), xm: $("#xm").val() },
                 url: "/DoctorManage/OutpatientQuery/GetReservationGridJson",

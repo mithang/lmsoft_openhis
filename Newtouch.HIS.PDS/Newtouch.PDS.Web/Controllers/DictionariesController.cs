@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Web.Controllers
 
         #region Nguyên nhân lãi/lỗ
         /// <summary>
-        /// 损益原因视图
+        /// Khung nhìn lý do lãi lỗ
         /// </summary>
         /// <returns></returns>
         public IActionResult syyy()
@@ -34,10 +34,10 @@ namespace Newtouch.HIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// 获取分页实体列表
+        /// Lấy danh sách thực thể phân trang
         /// </summary>
-        /// <param name="pagination">分页</param>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="pagination">Phân trang</param>
+        /// <param name="keyword">Lọc từ khóa</param>
         /// <returns></returns>
         public IActionResult GetPagintionGridJson(Pagination pagination, string keyword)
         {
@@ -52,9 +52,9 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult GetSyyyFormJson(string keyValue)
         {
@@ -62,10 +62,10 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="warningDTO">实体</param>
-        /// <param name="keyValue">Id值</param>
+        /// <param name="warningDTO">Thực thể</param>
+        /// <param name="keyValue">Idgiá trị</param>
         /// <returns></returns>
         public IActionResult SubmitSyyyForm(SysMedicineProfitLossReasonEntity SyyyDTO, string keyValue)
         {
@@ -74,9 +74,9 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult DeleteSyyyForm(string keyValue)
         {
@@ -85,9 +85,9 @@ namespace Newtouch.HIS.Web.Controllers
         }
         #endregion
 
-        #region 发药配置
+        #region Cấu hình phát thuốc
         /// <summary>
-        /// 发药配置视图
+        /// Khung nhìn cấu hình phát thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult FypzIndex()
@@ -101,10 +101,10 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取分页实体列表
+        /// Lấy danh sách thực thể phân trang
         /// </summary>
-        /// <param name="pagination">分页</param>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="pagination">Phân trang</param>
+        /// <param name="keyword">Lọc từ khóa</param>
         /// <returns></returns>
         public IActionResult GetFypzPagintionGridJson(Pagination pagination, string keyword)
         {
@@ -118,19 +118,19 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult GetFypzFormJson(string keyValue)
         {
             return Content(_ISysDispensingaConfigRepo.FindEntity(keyValue).ToJson());
         }
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="warningDTO">实体</param>
-        /// <param name="keyValue">Id值</param>
+        /// <param name="warningDTO">Thực thể</param>
+        /// <param name="keyValue">Idgiá trị</param>
         /// <returns></returns>
         public IActionResult SubmitFypzForm(SysDispensingaConfigEntity FypzDTO, string keyValue)
         {
@@ -139,9 +139,9 @@ namespace Newtouch.HIS.Web.Controllers
             return Success("Thao tác thành công。");
         }
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult DeleteFypzForm(string keyValue)
         {
@@ -149,7 +149,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Success("Thao tác thành công。");
         }
         /// <summary>
-        /// 获取药库下拉框数据
+        /// Lấy dữ liệu hộp thả xuống kho thuốc
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -161,7 +161,7 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 new TreeSelectModel{
                 id="",
-                text="未选择"}
+                text="Chưa chọn"}
             };
             if (data != null)
             {
@@ -182,7 +182,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取药库药房下拉框数据
+        /// Lấy dữ liệu hộp thả xuống kho thuốc nhà thuốc
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -194,7 +194,7 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 new TreeSelectModel{
                 id="",
-                text="未选择"}
+                text="Chưa chọn"}
             };
             if (data != null)
             {
@@ -215,9 +215,9 @@ namespace Newtouch.HIS.Web.Controllers
         }
         #endregion
 
-        #region 科室发药配置
+        #region Cấu hình phát thuốc cho khoa
         /// <summary>
-        /// 发药配置视图
+        /// Khung nhìn cấu hình phát thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult KsFypzIndex()
@@ -231,10 +231,10 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// 获取科室
+        /// Lấy khoa
         /// </summary>
-        /// <param name="pagination">分页</param>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="pagination">Phân trang</param>
+        /// <param name="keyword">Lọc từ khóa</param>
         /// <returns></returns>
         public IActionResult GetKsFypzGridJson(Pagination pagination, string keyword)
         {
@@ -248,19 +248,19 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult GetKsFypzFormJson(string keyValue)
         {
             return Content(_ISysYpksfypzEntityRepo.FindEntity(keyValue).ToJson());
         }
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="warningDTO">实体</param>
-        /// <param name="keyValue">Id值</param>
+        /// <param name="warningDTO">Thực thể</param>
+        /// <param name="keyValue">Idgiá trị</param>
         /// <returns></returns>
         public IActionResult SubmitKsFypzForm(SysYpksfypzEntity FypzDTO, string keyValue)
         {
@@ -269,9 +269,9 @@ namespace Newtouch.HIS.Web.Controllers
             return Success("Thao tác thành công。");
         }
         /// <summary>
-        /// 删除科室发药配置
+        /// Xóa cấu hình phát thuốc cho khoa
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult DeleteKsFypzForm(string keyValue)
         {
@@ -279,7 +279,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Success("Thao tác thành công。");
         }
         /// <summary>
-        /// 获取科室下拉数据
+        /// Lấy dữ liệu thả xuống khoa
         /// </summary>
         /// <returns></returns>
         [HttpGet]
@@ -291,7 +291,7 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 new TreeSelectModel{
                 id="",
-                text="未选择"}
+                text="Chưa chọn"}
             };
             if (data != null)
             {

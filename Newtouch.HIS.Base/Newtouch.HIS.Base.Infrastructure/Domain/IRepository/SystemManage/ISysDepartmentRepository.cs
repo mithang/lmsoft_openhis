@@ -10,32 +10,32 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysDepartmentRepository : IRepositoryBase<SysDepartmentEntity>
     {
         /// <summary>
-        /// 获取科室列表
+        /// Lấy danh sách khoa
         /// </summary>
         /// <returns></returns>
         List<SysDepartmentEntity> GetListByTopOrg(string topOrganizeId);
 
         /// <summary>
-        /// 获取科室列表
+        /// Lấy danh sách khoa
         /// </summary>
         /// <returns></returns>
         List<SysDepartmentEntity> GetListByOrg(string organizeId);
 
         /// <summary>
-        /// 获取当前组织下的所有有效科室
+        /// Lấy tất cả khoa hiệu lực thuộc tổ chức hiện tại
         /// </summary>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         IList<SysDepartmentEntity> GetValidListByOrg(string organizeId);
 
         /// <summary>
-        /// 获取组织 的 有效科室
+        /// Lấy tổ chức của Khoa hiệu lực
         /// </summary>
         /// <returns></returns>
         IList<SysDepartmentEntity> GetValidListByTopOrg(string topOrganizeId);
 
         /// <summary>
-        /// 根据Code获取名称
+        /// TheoCodeLấy tên
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
@@ -49,13 +49,13 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <param name="keyValue"></param>
         void SubmitForm(SysDepartmentEntity SysDepartmentEntity, string keyValue);
         /// <summary>
-        /// 更新科室医保上传状态
+        /// Cập nhật trạng thái tải lên BHYT của khoa
         /// </summary>
         /// <param name="uploadYB"></param>
         /// <param name="id"></param>
         void UpdateYbUpload(int uploadYB, string id);
         /// <summary>
-        /// 根据查询条件获取有效科室列表
+        /// Lấy danh sách khoa hiệu lực theo điều kiện tra cứu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="keyValue"></param>

@@ -23,27 +23,27 @@ namespace Newtouch.Domain.Entity.Inpatient
         public DateTime? tjsj { get; set; }
         public string thyy { get; set; }
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
 
         /// <summary>
-        /// 修改用户
+        /// Sửa người dùng
         /// </summary>
         public string CreatorCode { get; set; }
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa
         /// </summary>
         public DateTime CreateTime { get; set; }
 
 
         /// <summary>
-        /// 最后修改用户
+        /// Sửa cuốiNgười dùng
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
     }

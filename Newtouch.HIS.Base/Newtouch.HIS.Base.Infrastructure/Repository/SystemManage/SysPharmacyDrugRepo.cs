@@ -7,7 +7,7 @@ using Newtouch.Infrastructure;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 药房部门药品
+    /// Thuốc của khoa dược
     /// </summary>
     public class SysPharmacyDrugRepo : RepositoryBase<SysPharmacyDepartmentOpenMedicineEntity>, ISysPharmacyDrugRepo
     {

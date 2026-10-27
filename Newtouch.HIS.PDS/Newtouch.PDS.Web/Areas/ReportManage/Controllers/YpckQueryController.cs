@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// 获取科室
+        /// Lấy khoa
         /// </summary>
         /// <returns></returns>
         public IActionResult GetSysDepartmentList(string keyword=null)
@@ -95,19 +95,19 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.topOrgId = Constants.TopOrganizeId;
             ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
-            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //是否是医院管理员
+            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //Có phải quản trị viên bệnh viện không
             ViewBag.CurUserCode = this.UserIdentity.UserCode;
             ViewBag.curUsergh = UserIdentity.rygh;
         }
 
 
-        //药品价格分析表
+        //Bảng phân tích giá thuốc
         public IActionResult YPDrugComparisonTable() {
             ReportingServiceCom();
             return View();
         }
 
-        // 药品入库查询
+        // Truy vấn nhập kho thuốc
         public IActionResult YprkQuery()
         {
             ViewBag.OrganizeId = OrganizeId;

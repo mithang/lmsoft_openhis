@@ -5,12 +5,12 @@ using static NewtouchHIS.Lib.Common.HisEnum;
 namespace NewtouchHIS.Services
 {
     /// <summary>
-    /// 诊所接口帮助类
+    /// Lớp hỗ trợ giao diện phòng khám
     /// </summary>
     public class ClinicApiHelper
     {
         /// <summary>
-        /// 云诊所服务地址
+        /// Địa chỉ dịch vụ phòng khám điện toán đám mây
         /// </summary>
         public static string OuterClinicSystemAPIHost
         {
@@ -26,13 +26,13 @@ namespace NewtouchHIS.Services
         }
 
         /// <summary>
-        /// 组装请求头 Header
+        /// Lắp ráp header yêu cầu Header
         /// </summary>
         /// <returns></returns>
         public static Dictionary<string, string> HeaderItems(string? token)
         {
             string cacheTokenKey = RedisKey.TokenOfOhClinic;
-            //传入token 不为空 则重置token 缓存
+            //Truyền vàotoken không rỗng thì đặt lạitoken Cache
             if (!string.IsNullOrWhiteSpace(token))
             {
                 RedisHelper.SetString(cacheTokenKey, token);
@@ -51,23 +51,23 @@ namespace NewtouchHIS.Services
 
         #region ApiRoute
         /// <summary>
-        /// 获取诊所Token方法
+        /// Lấy phòng khámTokenPhương thức
         /// </summary>
         public readonly static string GetTokenRoute = $"{OuterClinicSystemAPIHost}lease-backend-test/auth/getToken";
         /// <summary>
-        /// Đăng ký khám chữa bệnh结果通知
+        /// Đăng ký khám chữa bệnhThông báo kết quả
         /// </summary>
         public readonly static string TreatedApplyResultNotice = $"{OuterClinicSystemAPIHost}lease-backend-test/outpatient/remoteDiagnosisTreatment/modifiedState";
         /// <summary>
-        /// 获取诊所Bệnh nhân病历
+        /// Lấy phòng khámBệnh nhânBệnh án
         /// </summary>
         public readonly static string GetPatMedicalRecord = $"{OuterClinicSystemAPIHost}lease-backend-test/outpatient/medicalRecord/medical/";
         /// <summary>
-        /// 同步HISBệnh nhân病历
+        /// Đồng bộHISBệnh nhânBệnh án
         /// </summary>
         public readonly static string SendHisPatMedicalRecord = $"{OuterClinicSystemAPIHost}lease-backend-test/outpatient/medicalRecord/saveAdd";
         /// <summary>
-        /// 同步HIS处方数据
+        /// Đồng bộHISDữ liệu đơn thuốc
         /// </summary>
         public readonly static string SendHisRecipelData = $"{OuterClinicSystemAPIHost}lease-backend-test/outpatient/medicalRecord/addRecipel";
         #endregion

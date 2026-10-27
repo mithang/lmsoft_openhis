@@ -4,7 +4,7 @@
     /**/
     ViewBag.Title = "PurchaseBillDetailQuery";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //报表链接
+    //Liên kết báo cáo
     var reportUrl = Newtouch.Core.Common.Utils.ConfigurationHelper.GetAppConfigValue("ReportUrl");
 }
 
@@ -69,7 +69,7 @@
         return d.getDate();
     }
 
-    //刷新列表
+    //Làm mới danh sách
     function refReport() {
         $("#btn_search").trigger('click');
     }

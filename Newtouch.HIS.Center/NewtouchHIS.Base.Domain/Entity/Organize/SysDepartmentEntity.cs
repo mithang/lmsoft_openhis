@@ -6,10 +6,10 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///系统科室
+    ///Khoa hệ thống
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
-    [SugarTable("Sys_Department", "系统科室")]
+    [SugarTable("Sys_Department", "Khoa hệ thống")]
     public class SysDepartmentEntity:IEntity
     {
         [SugarColumn(IsPrimaryKey = true)]

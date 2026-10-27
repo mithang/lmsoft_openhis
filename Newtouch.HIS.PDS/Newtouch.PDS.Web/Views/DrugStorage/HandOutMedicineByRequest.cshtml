@@ -16,7 +16,7 @@
 <script>
     var globalData = [];
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
@@ -270,7 +270,7 @@
     //    $("#ChildgridList").dataGrid({
     //        autoScroll: true,
     //        url: "/DrugStorage/RequestMedicineInfo?sldId=" + sldId,
-    //        caption: "药品信息",
+    //        caption: "Thông tin thuốc",
     //        onSelectRow_page: function (rowid, status) {
     //            var data = $("#ChildgridList").getRowData(rowid);
     //            if (status) {
@@ -298,60 +298,60 @@
     //        height: $(window).height() - 410,
     //        colModel: [
     //            {
-    //                label: '发放数量', name: 'ffsl',
+    //                label: 'Số lượng phát', name: 'ffsl',
     //                formatter: function (cellVal) {
     //                    return '<input type="text" data-rowid="' + arguments[1].rowId + '" value="' + (cellVal || 0) + '" class="txt-ffsl form-control" />';
     //                }
     //            },
-    //            { label: "主键", name: "sldmxId", hidden: true, key: true },
+    //            { label: "Khóa chính", name: "sldmxId", hidden: true, key: true },
     //            {
-    //                label: '药品名称', name: 'ypmc', width: 250, align: 'left'
+    //                label: 'Tên thuốc', name: 'ypmc', width: 250, align: 'left'
     //            },
-    //            { label: '发药数量', name: 'Sl', width: 50, align: 'left' },
-    //            { label: '单位', name: 'bzdw', width: 50, align: 'left' },
+    //            { label: 'Số lượng phát thuốc', name: 'Sl', width: 50, align: 'left' },
+    //            { label: 'Đơn vị', name: 'bzdw', width: 50, align: 'left' },
     //            {
-    //                label: '批发价', name: 'Pfj', width: 50, align: 'left',
+    //                label: 'Giá bán buôn', name: 'Pfj', width: 50, align: 'left',
     //                formatter: function (cellvalue) {
     //                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
     //                }
     //            },
     //            {
-    //                label: '零售价', name: 'lsj', width: 50, align: 'left',
+    //                label: 'Giá bán lẻ', name: 'lsj', width: 50, align: 'left',
     //                formatter: function (cellvalue) {
     //                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
     //                }
     //            },
-    //            { label: '生产厂家', name: 'ycmc', width: 250, align: 'left' },
-    //            { label: '批号', name: 'Ph', width: 100, align: 'left' },
-    //            { label: '有效日期', name: 'Yxrq', width: 120, align: 'left' },
-    //             { label: '批号', name: 'pc', hidden: true, width: 50, align: 'left' },
-    //            { label: '药品编码', name: 'ypCode', hidden: true, width: 50, align: 'left' },
+    //            { label: 'Nhà sản xuất', name: 'ycmc', width: 250, align: 'left' },
+    //            { label: 'Số lô', name: 'Ph', width: 100, align: 'left' },
+    //            { label: 'Ngày hiệu lực', name: 'Yxrq', width: 120, align: 'left' },
+    //             { label: 'Số lô', name: 'pc', hidden: true, width: 50, align: 'left' },
+    //            { label: 'Mã thuốc', name: 'ypCode', hidden: true, width: 50, align: 'left' },
     //            {
-    //                label: '零售价', name: 'pfj', hidden: true, width: 50, align: 'left',
-    //                formatter: function (cellvalue) {
-    //                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
-    //                }
-    //            },
-    //            {
-    //                label: '批发价', name: 'lsj', hidden: true, width: 50, align: 'left',
+    //                label: 'Giá bán lẻ', name: 'pfj', hidden: true, width: 50, align: 'left',
     //                formatter: function (cellvalue) {
     //                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
     //                }
     //            },
     //            {
-    //                label: '批发总额', name: 'Pjze', width: 50, align: 'left',
+    //                label: 'Giá bán buôn', name: 'lsj', hidden: true, width: 50, align: 'left',
     //                formatter: function (cellvalue) {
     //                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
     //                }
     //            },
     //            {
-    //                label: '零价总额', name: 'Ljze', width: 50, align: 'left',
+    //                label: 'Tổng giá bán buôn', name: 'Pjze', width: 50, align: 'left',
     //                formatter: function (cellvalue) {
     //                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
     //                }
     //            },
-    //            { label: '申领单号', name: 'sldh', width: 50, align: 'left', hidden: true, },
-    //            { label: '转换因子', name: 'Zhyz', align: 'left', hidden: true, }
+    //            {
+    //                label: 'Tổng giá lẻ', name: 'Ljze', width: 50, align: 'left',
+    //                formatter: function (cellvalue) {
+    //                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
+    //                }
+    //            },
+    //            { label: 'Số đơn lĩnh', name: 'sldh', width: 50, align: 'left', hidden: true, },
+    //            { label: 'Hệ số chuyển đổi', name: 'Zhyz', align: 'left', hidden: true, }
     //        ],
     //        multiselect: true,
     //        pager: "#gridPager2",
@@ -381,7 +381,7 @@
             medicineList.push(obj);
         }
         par["XT_YP_LS_NBFYMXK"] = medicineList;
-        par["type"] = 4;//申领单发药
+        par["type"] = 4;//Phát thuốc đơn lĩnh
         par["fyfs"] = "11";//Xuất kho bình thường
         $.ajax({
             type: "POST",
@@ -396,7 +396,7 @@
             }
         });
     }
-    //删除
+    //Xóa
     function newtouch_event_f7() {
 
     }

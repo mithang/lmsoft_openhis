@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int? px { get; set; }
 
         /// <summary>
-        /// 医嘱频次名称说明（中文名称）
+        /// Giải thích tên tần suất y lệnh（Tên tiếng Trung）
         /// </summary>
         public string yzpcmcsm { get; set; }
 

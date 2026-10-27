@@ -28,20 +28,20 @@
                     <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                 </td>
                 <td colspan="3"></td>
-                @*<th class="formTitle">科室：</th>
+                @*<th class="formTitle">Khoa：</th>
                     <td class="formValue">
                         <select id="depa" class="form-control">
-                            <option value="">全部</option>
+                            <option value="">Tất cả</option>
                         </select>
                     </td>
-                    <th class="formTitle">医保属性：</th>
+                    <th class="formTitle">Thuộc tính BHYT：</th>
                     <td class="formValue">
                         <div class="row">
                             <div class="col-md-9">
                                 @Html.DropDownList("sel_cblb", EnumCblb.zg.ToDescSelectList(), new { @class = "form-control form-an" })
                             </div>
                             <div class="col-md-3" style="text-align:right;">
-                                <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="查询" style="width:55px" />
+                                <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
                             </div>
                         </div>
                     </td>
@@ -118,7 +118,7 @@
         var srcUrl = uri;
         srcUrl = reportServerHOST + srcUrl;
 
-        //获取自定义样式
+        //Lấy kiểu tùy chỉnh
         if (true) {
             if (srcUrl.indexOf('&rc:') == -1) {
                 srcUrl += "&rc:Stylesheet=MyStyleSheet";
@@ -140,7 +140,7 @@
 </script>
 <script type="text/javascript">
     function init() {
-        //治疗师绑定下拉框
+        //Hộp chọn liên kết trị liệu sư
         $("#depa").bindSelect({
             id: "Code",
             text: "Name",

@@ -7,12 +7,12 @@ namespace Newtouch.Domain.BusinessObjects
     public class InspectionTemplateDetailBO
     {
         /// <summary>
-        /// 模板
+        /// mẫu
         /// </summary>
         public InspectionTemplateVO mbEntity { get; set; }
 
         /// <summary>
-        /// 模板组套
+        /// mẫuBộ mẫu
         /// </summary>
         public List<GroupPackageEntity> mbztList { get; set; }
     }

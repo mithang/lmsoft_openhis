@@ -3,10 +3,10 @@
 @{
     ViewBag.Title = "ReceiptQuery";
     Layout = "~/Views/Shared/_Index.cshtml";
-    var djlxItemStrs = "1,2,3,4,5,6"; //对应枚举EnumDanJuLX
+    var djlxItemStrs = "1,2,3,4,5,6"; //Enum tương ứngEnumDanJuLX
     if (Constants.CurrentYfbm.yfbmjb == "2")    //Nhà thuốc
     {
-        djlxItemStrs = "3,4,5,6"; //直接发药、申领发药、Trả lại phát thuốc nội bộ
+        djlxItemStrs = "3,4,5,6"; //Phát thuốc trực tiếp、Phát thuốc theo đơn lĩnh、Trả lại phát thuốc nội bộ
     }
 }
 
@@ -55,14 +55,14 @@
 </form>
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
         gridDJMainRecords();
     });
 
-    //单据主记录
+    //Bản ghi chính của chứng từ
     function gridDJMainRecords() {
         var $gridDjMainRecords = $("#gridDJMainRecords");
         $gridDjMainRecords.dataGrid({
@@ -115,9 +115,9 @@
         return { qsrj: qsrj, jsrj: jsrj, pdh: pdh, djlx: djlx, shzt: shzt };
     };
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        //每次单击，先清空明细 再重新加载所有选中行明细
+        //Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $('#gridDJMXInfo').jqGrid("clearGridData");
         $.najax({
             type: "POST",
@@ -130,7 +130,7 @@
         });
     }
 
-    //单据明细
+    //Chi tiết chứng từ
     $('#gridDJMXInfo').newtouchLocalDataGrid({
         height: $(window).height() - 385,
         caption: "Chi tiết chứng từ",

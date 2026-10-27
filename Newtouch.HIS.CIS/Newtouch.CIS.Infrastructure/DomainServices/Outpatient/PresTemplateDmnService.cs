@@ -27,7 +27,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// 查询模板明细
+        /// Tra cứumẫuchi tiết
         /// </summary>
         /// <param name="mbId"></param>
         /// <param name="orgId"></param>
@@ -38,7 +38,7 @@ namespace Newtouch.DomainServices
             var cfEntity = _presTemplateRepo.FindEntity(mbId);
             if (cfEntity == null&& cflx!= ((int)EnumCflx.InspectionPres).ToString() && cflx!= ((int)EnumCflx.ExaminationPres).ToString())
             {
-                throw new FailedException("数据异常，未查询到该模板内容");
+                throw new FailedException("Dữ liệu bất thường，chưaTra cứuđếnmẫunội dung");
             }
             var sql = "";
             if (cfEntity != null)
@@ -48,7 +48,7 @@ namespace Newtouch.DomainServices
                 bo.cfyf = cfEntity.cfyf;
                 bo.djbz = cfEntity.djbz;
                 bo.mblx = cfEntity.mblx;
-                if (cfEntity.cflx == (int)EnumCflx.RehabPres)   //康复处方
+                if (cfEntity.cflx == (int)EnumCflx.RehabPres)   //Phục hồi chức năngĐơn thuốc
                 {
                     sql = @"
 SELECT mbmx.mxId, mbId, xmCode, xmmc, mczll, pcCode, sl,
@@ -78,7 +78,7 @@ WHERE mbmx.OrganizeId = @orgId
         AND mbmx.mbId = @mbId
                 ";
                 }
-                else if (cfEntity.cflx == (int)EnumCflx.RegularItemPres|| cfEntity.cflx == (int)EnumCflx.Yyhc)   //常规项目处方
+                else if (cfEntity.cflx == (int)EnumCflx.RegularItemPres|| cfEntity.cflx == (int)EnumCflx.Yyhc)   //Hạng mục thông thườngĐơn thuốc
                 {
                     sql = @"
 SELECT mbmx.mxId, mbId, xmCode, xmmc, zl,mbmx.mczll,mbmx.sl,mbmx.pcCode,pc.yzpcmc pcmc,
@@ -97,7 +97,7 @@ WHERE mbmx.OrganizeId = @orgId
         AND mbmx.mbId = @mbId
                 ";
                 }
-                else if (cfEntity.cflx == (int)EnumCflx.WMPres || cfEntity.cflx == (int)EnumCflx.TCMPres) //药品处方
+                else if (cfEntity.cflx == (int)EnumCflx.WMPres || cfEntity.cflx == (int)EnumCflx.TCMPres) //ThuốcĐơn thuốc
                 {
                     sql = @"
 SELECT mbmx.px,mbmx.mxId, mbmx.mbId, mbmx.ypCode, yp.ypmc, mcjl, mcjldw, yp.jldw AS redundant_jldw, mbmx.yfCode, pcCode, sl, mbmx.dw, zh,
@@ -152,7 +152,7 @@ WHERE mbmx.OrganizeId = @orgId
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="mbObj"></param>
         /// <param name="mxList"></param>
@@ -160,21 +160,21 @@ WHERE mbmx.OrganizeId = @orgId
         {
             using (var db = new EFDbTransaction().BeginTrans())
             {
-                if (!string.IsNullOrWhiteSpace(mbObj.mbId))  //修改
+                if (!string.IsNullOrWhiteSpace(mbObj.mbId))  //Sửa
                 {
                     mbObj.zt = "1";
                     mbObj.Modify();
 
                     var dbMbObj = db.IQueryable<PresTemplateEntity>(p => p.mbId == mbObj.mbId).FirstOrDefault();
-                    mbObj.tieshu = dbMbObj.tieshu;  //保留贴数、代煎标志、处方用法
+                    mbObj.tieshu = dbMbObj.tieshu;  //bảogiữdánsố、sắc hộCờ、Đơn thuốcCách dùng
                     mbObj.djbz = dbMbObj.djbz;
                     mbObj.cfyf = dbMbObj.cfyf;
-                    //这里如果是中药处方，数量不更新也没关系，因为引用时不会采用
+                    //đâynếunếulàThuốc Đông yĐơn thuốc，Số lượngkhôngCập nhậtcũngkhôngquan hệ，vìdẫndùngkhisẽ khôngháidùng
                     db.DetacheEntity(dbMbObj);
 
                     db.Update(mbObj);
 
-                    db.Delete<PresTemplateDetailEntity>(a => a.mbId == mbObj.mbId && a.OrganizeId == mbObj.OrganizeId); //先全删，再新增
+                    db.Delete<PresTemplateDetailEntity>(a => a.mbId == mbObj.mbId && a.OrganizeId == mbObj.OrganizeId); //trướctoànxóa，lạiThêm mới
                 }
                 else
                 {
@@ -183,7 +183,7 @@ WHERE mbmx.OrganizeId = @orgId
 
                     db.Insert(mbObj);
                 }
-                //模板明细表
+                //mẫuchi tiếtbảng
                 int sort = 0;
                 foreach (var item in mxList)
                 {
@@ -236,7 +236,7 @@ WHERE mbmx.OrganizeId = @orgId
         {
             if (string.IsNullOrWhiteSpace(mbId))
             {
-                throw new FailedException("缺少模板");
+                throw new FailedException("thiếumẫu");
             }
             using (var db = new EFDbTransaction().BeginTrans())
             {

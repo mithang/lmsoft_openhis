@@ -39,7 +39,7 @@ namespace Newtouch.MRMS.Web.Areas.SystemManage.Controllers
 #pragma warning restore CS0649 // Field 'CommonController._SysDepartmentRepo' is never assigned to, and will always have its default value null
 
         /// <summary>
-        /// 获取系统Danh sách chẩn đoán
+        /// Lấy danh sách chẩn đoán hệ thống
         /// </summary>
         /// <returns></returns>
         public IActionResult GetDiagList()
@@ -128,7 +128,7 @@ namespace Newtouch.MRMS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 岗位 người员Danh sách
+        /// Danh sách nhân viên theo vị trí
         /// </summary>
         /// <param name="dutyCode"></param>
         /// <param name="keyword"></param>

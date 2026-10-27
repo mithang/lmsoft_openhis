@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///Tin nhắn通知基础类
+    ///Tin nhắnLớp cơ sở thông báo
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("dic_msg_queue", "MsgQueueEntity")]
@@ -59,7 +59,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string msgcontent { get; set; }
 
         /// <summary>
-        /// Desc:Tin nhắn内容需要传递参数的格式化处理
+        /// Desc:Tin nhắnXử lý định dạng nội dung cần truyền tham số
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -67,14 +67,14 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string msgformat { get; set; }
 
         /// <summary>
-        /// Desc:通知状态 MsgNoticeEnum 0 未发送 ，1 已发送, 2 已读 
+        /// Desc:Trạng thái thông báo MsgNoticeEnum 0 Chưa gửi ,1 Đã gửi, 2 Đã đọc 
         /// Default:
         /// Nullable:True
         /// </summary>           
         public int? msgstu { get; set; }
 
         /// <summary>
-        /// Desc:门诊：Số ngoại trú  住院：Số nhập viện
+        /// Desc:Ngoại trú:Số ngoại trú  Nội trú:Số nhập viện
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -82,7 +82,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string patno { get; set; }
 
         /// <summary>
-        /// Desc:门诊：处方号等  住院：医嘱号等
+        /// Desc:Ngoại trú:Số đơn thuốc v.v.  Nội trú:Số y lệnh v.v.
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -106,7 +106,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string bq { get; set; }
 
         /// <summary>
-        /// Desc:,分割的操作员号
+        /// Desc:,Mã nhân viên vận hành phân tách bằng dấu phẩy
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -114,7 +114,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string czys { get; set; }
 
         /// <summary>
-        /// Desc:,分割的岗位
+        /// Desc:,Vị trí phân tách bằng dấu phẩy
         /// Default:
         /// Nullable:True
         /// </summary>           

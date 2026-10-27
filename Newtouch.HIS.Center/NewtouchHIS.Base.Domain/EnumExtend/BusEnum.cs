@@ -5,38 +5,38 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
     public class BusEnum
     {
         /// <summary>
-        /// 订单业务类型
+        /// Loại nghiệp vụ đơn hàng
         /// </summary>
         public enum EnumBusType
         {
             /// <summary>
-            /// 门诊
+            /// Ngoại trú
             /// </summary>
-            [Description("门诊")]
+            [Description("Ngoại trú")]
             mz = 1,
             /// <summary>
-            /// 住院
+            /// Nội trú
             /// </summary>
-            [Description("住院")]
+            [Description("Nội trú")]
             zy = 2
         }
 
         public enum EnumReportStu
         {
             /// <summary>
-            /// 已申请
+            /// Đã đăng ký
             /// </summary>
-            [Description("已申请")]
+            [Description("Đã đăng ký")]
             ysq = 0,
             /// <summary>
-            /// 已接收
+            /// Đã tiếp nhận
             /// </summary>
-            [Description("已接收")]
+            [Description("Đã tiếp nhận")]
             yjs = 1,
             /// <summary>
-            /// 已完成（报告已出）
+            /// Đã hoàn thành(Báo cáo đã có)
             /// </summary>
-            [Description("已完成")]
+            [Description("Đã hoàn thành")]
             ywc = 2
         }
     }

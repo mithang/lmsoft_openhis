@@ -3,7 +3,7 @@ using System;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// 公用model 测试
+    /// Dùng chungmodel Kiểm thử
     /// </summary>
     public class ModelInfoVO
     {
@@ -39,132 +39,132 @@ namespace Newtouch.HIS.Domain.ValueObjects
     }
 
     /// <summary>
-    /// 发药病区病人详细信息
+    /// Thông tin chi tiết bệnh nhân khu bệnh phát thuốc
     /// </summary>
     public class DispenseBQRYXXIndexVO
     {
-        public int Id { get; set; }//主键
-        public string zxId { get; set; }//医嘱执行ID
-        public string zyh { get; set; }//住院号
-        public string xm { get; set; }//姓名
-        public string cw { get; set; }//床位
-        public string ypCode { get; set; }//药品code
-        public string ypmc { get; set; }//药品名称
-        public string ycmc { get; set; }//药厂名称
-        public string ypgg { get; set; }//药品规格
-        public decimal sl { get; set; }//数量
-        public string dw { get; set; }//单位
-        public string yldw { get; set; }//用量单位
-        public decimal yl { get; set; }//用量数量 /药量
-        public short cls { get; set; }//拆量数
-        public string zlff { get; set; }//治疗方法
-        public string yzxz { get; set; }//医嘱状态
-        public string ypfz { get; set; }//药品分组
-        public DateTime tdrq { get; set; }//提档日期
-        public string fyrq { get; set; }//发药日期
-        public string rymc { get; set; }//人员名称
-        public string Pcmc { get; set; }// PC 名称
-        public string fybz { get; set; }//发药状态 2 为已发，1为未发
-        public string OrganizeId { get; set; }//组织机构
-        public string yppc { get; set; }//批次
-        public string ypph { get; set; }//批号
+        public int Id { get; set; }//Khóa chính
+        public string zxId { get; set; }//Thực hiện y lệnhID
+        public string zyh { get; set; }//Số nội trú
+        public string xm { get; set; }//Họ tên
+        public string cw { get; set; }//Giường bệnh
+        public string ypCode { get; set; }//Thuốccode
+        public string ypmc { get; set; }//Tên thuốc
+        public string ycmc { get; set; }//Tên hãng thuốc
+        public string ypgg { get; set; }//Quy cách thuốc
+        public decimal sl { get; set; }//Số lượng
+        public string dw { get; set; }//Đơn vị
+        public string yldw { get; set; }//Đơn vị liều dùng
+        public decimal yl { get; set; }//Số lượng liều dùng /Lượng thuốc
+        public short cls { get; set; }//Số lượng chia
+        public string zlff { get; set; }//Phương pháp điều trị
+        public string yzxz { get; set; }//Trạng thái y lệnh
+        public string ypfz { get; set; }//Nhóm thuốc
+        public DateTime tdrq { get; set; }//Ngày lấy hồ sơ
+        public string fyrq { get; set; }//Ngày phát thuốc
+        public string rymc { get; set; }//Tên nhân sự
+        public string Pcmc { get; set; }// PC Tên
+        public string fybz { get; set; }//Trạng thái phát thuốc 2 là đã phát，1là chưa phát
+        public string OrganizeId { get; set; }//Tổ chức
+        public string yppc { get; set; }//Lô
+        public string ypph { get; set; }//Số lô
     }
 
 
     /// <summary>
-    /// 获取计算需要发药的的单价，金额，
+    /// Lấy đơn giá cần tính phát thuốc，Số tiền，
     /// </summary>
     public class ModelBQBRYZZXJEInfoVO
     {
-        public Decimal dj { get; set; } //单价
-        public Decimal je { get; set; } //金额
-        public Decimal zfbl { get; set; } //自负比例
-        public string zfxz { get; set; } //自负性质
+        public Decimal dj { get; set; } //Đơn giá
+        public Decimal je { get; set; } //Số tiền
+        public Decimal zfbl { get; set; } //Tỷ lệ tự trả
+        public string zfxz { get; set; } //Tính chất tự trả
     }
 
     /// <summary>
-    /// 住院退药，医生站医嘱ID
+    /// Trả thuốc nội trú，Y lệnh trạm bác sĩID
     /// </summary>
     public class ModelZyTyYszyzIdInfoVO
     {
-        public int yszyzId { get; set; } //医嘱ID  yszyzid 医生站 医嘱ID
-        public int zxId { get; set; } //医嘱执行ID 
-        public string yzdm { get; set; }// 医嘱代码
+        public int yszyzId { get; set; } //Y lệnhID  yszyzid Trạm bác sĩ Y lệnhID
+        public int zxId { get; set; } //Thực hiện y lệnhID 
+        public string yzdm { get; set; }// Mã y lệnh
     }
 
     /// <summary>
-    /// 存储退药明细表，批次
+    /// Lưu bảng chi tiết trả thuốc，Lô
     /// </summary>
     public class ModelBQBRYZZXTYInfoVO
     {
-        public int Id { get; set; }//主键
-        public string zxId { get; set; } //医嘱执行ID
-        public DateTime? tdrq { get; set; } //退档日期
-        public string ypCode { get; set; } //药品Code
-        public decimal tysl { get; set; }//退药数量
-        public int tymxId { get; set; }//退药明细ID
-        public string tybz { get; set; }// 退药备注
-        public DateTime? tyjlrq { get; set; }//退药记录日期
-        public string tyxh { get; set; }//退药序号 
-        public string tyry { get; set; }//退药人员
-        public DateTime? tyrq { get; set; }//退药日期
-        public string yppc { get; set; }//医嘱执行批号表 批次
-        public string ypph { get; set; }//医嘱执行批号表 批号
-        public decimal sl { get; set; }//数量
-        public string OrganizeId { get; set; }//组织机构
-        public DateTime zxrq { get; set; }//执行日期
-        public string zyh { get; set; }//住院号
+        public int Id { get; set; }//Khóa chính
+        public string zxId { get; set; } //Thực hiện y lệnhID
+        public DateTime? tdrq { get; set; } //Ngày trả hồ sơ
+        public string ypCode { get; set; } //ThuốcCode
+        public decimal tysl { get; set; }//Số lượng trả thuốc
+        public int tymxId { get; set; }//Chi tiết trả thuốcID
+        public string tybz { get; set; }// Ghi chú trả thuốc
+        public DateTime? tyjlrq { get; set; }//Ngày ghi trả thuốc
+        public string tyxh { get; set; }//Số thứ tự trả thuốc 
+        public string tyry { get; set; }//Nhân viên trả thuốc
+        public DateTime? tyrq { get; set; }//Ngày trả thuốc
+        public string yppc { get; set; }//Bảng số lô thực hiện y lệnh Lô
+        public string ypph { get; set; }//Bảng số lô thực hiện y lệnh Số lô
+        public decimal sl { get; set; }//Số lượng
+        public string OrganizeId { get; set; }//Tổ chức
+        public DateTime zxrq { get; set; }//Ngày thực hiện
+        public string zyh { get; set; }//Số nội trú
     }
 
     /// <summary>
-    /// 住院发药
+    /// Phát thuốc nội trú
     /// </summary>
     public class DispensingDrugsParam
     {
         /// <summary>
-        /// 医嘱ID
+        /// Y lệnhID
         /// </summary>
         public string yzId { get; set; }
 
         /// <summary>
-        /// 医嘱执行ID
+        /// Thực hiện y lệnhID
         /// </summary>
         public string zxId { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 药房部门代码
+        /// Mã bộ phận nhà thuốc
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 组织机构ID
+        /// Tổ chứcID
         /// </summary>
         public string organizeId { get; set; }
 
         /// <summary>
-        /// 追溯码
+        /// Mã truy xuất
         /// </summary>
         public string zsm { get; set; }
 
         /// <summary>
-        /// 是否拆零
-        /// 1： 是
-        /// 2： 否
+        /// Có chia lẻ không
+        /// 1： Có
+        /// 2： Không
         /// </summary>
         public int? sfcl { get; set; }
 

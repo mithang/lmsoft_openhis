@@ -19,16 +19,16 @@ using Newtouch.MR.ManageSystem.Infrastructure;
 namespace Newtouch.MR.ManageSystem.Repository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-20 13:45
-    /// 描 述：病案科室与his科室关系表
+    /// Tạo: chl
+    /// Ngày: 2019-11-20 13:45
+    /// Mô tả: Bảng quan hệ khoa bệnh án và khoa HIS
     /// </summary>
     public class MrreldeptRepo : RepositoryBase<MrreldeptEntity>, IMrreldeptRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public MrreldeptRepo()
             
         {
@@ -36,15 +36,15 @@ namespace Newtouch.MR.ManageSystem.Repository
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu(Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public int SubmitForm(MrreldeptEntity entity, string keyValue)
         {
             if (this.IQueryable().Any(p => p.hisdept == entity.hisdept && p.OrganizeId == entity.OrganizeId))
             {
-                //his科室代码存在 更新
+                //Mã khoa HIS đã tồn tại Cập nhật
                 string sql = "update [mr_rel_dept] set baksId=@baksId ,zt='1' ,LastModifyTime=@LastModifyTime ,LastModifierCode=@LastModifierCode where 1 = 1 and hisdept = @hisdept and organizeId=@organizeId";
                 SugarParameter[] para ={
                 new SugarParameter("@baksId",entity.baksId?? ""),
@@ -56,21 +56,21 @@ namespace Newtouch.MR.ManageSystem.Repository
                 return this.ExecuteSqlCommand(sql, para);
             }
             else
-            {//新增
+            {//Thêm mới
                 entity.Create(true);
                 return Insert(entity);
             }
         }
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="entity"></param>
         /// <returns></returns>
         public int Save(MrreldeptEntity entity) {
             if (this.IQueryable().Any(p => p.hisdept == entity.hisdept && p.OrganizeId == entity.OrganizeId))
             {
-                //his科室代码存在 更新
+                //Mã khoa HIS đã tồn tại Cập nhật
                 string sql = "update [mr_rel_dept] set baksId=@baksId ,zt='1' ,LastModifyTime=@LastModifyTime ,LastModifierCode=@LastModifierCode where 1 = 1 and hisdept = @hisdept and organizeId=@organizeId";
                 SugarParameter[] para ={
                 new SugarParameter("@baksId",entity.baksId?? ""),
@@ -82,16 +82,16 @@ namespace Newtouch.MR.ManageSystem.Repository
                 return this.ExecuteSqlCommand(sql, para);
             }
             else
-            {//新增
+            {//Thêm mới
                 entity.Create(true);
                 return Insert(entity);
             }
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public int DeleteForm(string keyValue)
         {
             return Delete(p => p.Id == keyValue);

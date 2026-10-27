@@ -74,7 +74,7 @@
 </form>
 <script>
     $(function () {
-        //查询列表
+        //Tra cứudanh sách
         gridList();
     });
     $("#zdmc").newtouchBatchFloatingSelector({
@@ -97,7 +97,7 @@
             $("#zdmc").val($this.attr('data-zdmc')).attr('data-zdCode', $this.attr('data-zdbh')).attr('data-icd10', $this.attr('data-icd10')).attr('data-py', $this.attr('data-py'));
         }
     });
-    //预约信息查询
+    //đặt hẹnthông tinTra cứu
     function gridList() {
         var $gridJsList = $("#gridList");
         $gridJsList.dataGrid({
@@ -116,11 +116,11 @@
             ],
             pager: "#gridPager",
             sortname: " cyzdbm asc",
-            rownumbers: true,  //是否显示Số thứ tự
+            rownumbers: true,  //CóKhôngHiển thịSố thứ tự
             viewrecords: true
         });
         $("#btn_search").click(function () {
-            $('#gridList').jqGrid("clearGridData");//先清空明细
+            $('#gridList').jqGrid("clearGridData");//Xóa trắng chi tiết trước
             $gridJsList.jqGrid('setGridParam', {
                 postData: { type: "1", keyword: $("#zdmc").val(), lx: $("#selmbqx").val() },
                 url: "/MedicalRecord/GetDiags",

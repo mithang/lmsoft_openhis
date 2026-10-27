@@ -78,10 +78,10 @@
     });
 
 
-    //初始化浮层
+    //Khởi tạo lớp nổi
     function InitFloat() {
 
-        //药企
+        //Doanh nghiệp dược
         $("#yq").newtouchBatchFloatingSelector({
             clickautotrigger: true,
             height: 200,
@@ -181,7 +181,7 @@
         });
     }
 
-    //获取明细
+    //Lấy chi tiết
     $('#btn_search').click(function () {
         if ($("#yq").val() == "" || $("#yq").val() == null) {
             $.modalAlert("Vui lòng chọn công ty dược", 'warning');
@@ -211,7 +211,7 @@
             callBack: function (iframeId) {
                 //Nghiệm thu
                 top.frames[iframeId].SubmitForm();
-                //发票明细落地
+                //Lưu chi tiết hóa đơn
                 $.najax({
                     type: "POST",
                     url: "/OutOrInStoredManage/Purchase/BillDetailInsert",

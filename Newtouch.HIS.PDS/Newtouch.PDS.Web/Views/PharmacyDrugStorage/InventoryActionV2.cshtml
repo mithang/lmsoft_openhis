@@ -159,7 +159,7 @@
                 const inputField = $(this);
                 const row = inputField.closest('tr');
 
-                // 是否拆零
+                // Có chia lẻ không
                 const sfcl = parseInt(row.find('.sfcl').val(), 10);
                 var maxEntries = 1;
                 if (sfcl === 1) {
@@ -188,7 +188,7 @@
                 const inputField = $(this);
                 const row = inputField.closest('tr');
 
-                // 是否拆零
+                // Có chia lẻ không
                 const sfcl = parseInt(row.find('.sfcl').val(), 10);
                 var maxEntries = 1;
                 if (sfcl === 1) {
@@ -218,11 +218,11 @@
         return uniqueArr.join(',')+','
     }
 
-    //初始化盘点
+    //Khởi tạo kiểm kê
     function InitialPd() {
         gridKCInfo();
         gridKCInfoMinUnit();
-        $("#btn_search").click(function () {//绑定查询查询
+        $("#btn_search").click(function () {//Gắn truy vấn
             if ($("#i-changeUnit").hasClass("fa-toggle-off")) {
                 $gridKCInfo.jqGrid('setGridParam',
                     {
@@ -239,7 +239,7 @@
         });
     }
 
-    //开始盘点
+    //Bắt đầu kiểm kê
     function StartInventory() {
         $.najax({
             type: "POST",
@@ -247,20 +247,20 @@
             dataType: "json",
             cache: false,
             success: function (ajaxresp) {
-                GetPDSJ();//获取盘点日期
+                GetPDSJ();//Lấy ngày kiểm kê
                 $.UpdateProgressbar.update(1);
             }
         });
     }
 
-    //获取盘点时间
+    //Lấy thời gian kiểm kê
     function GetPDSJ() {
         $.najax({
             type: "GET",
             url: "/PharmacyDrugStorage/GetPDDateDropdownList",
             dataType: "json",
             success: function (ajaxresp) {
-                //先清空，再填充
+                //Xóa trước，Điền tiếp
                 $("#ddlRQ").empty();
                 for (var i = 0; i < ajaxresp.data.length; i++) {
                     $("#ddlRQ").append('<option data-pdId=' + ajaxresp.data[i].pdId + '>' + ajaxresp.data[i].pdsj + '</option>');
@@ -270,13 +270,13 @@
         });
     }
 
-    //库存信息
+    //Thông tin tồn kho
     function gridKCInfo() {
         $gridKCInfo.dataGrid({
             postData: getSearchPostData(),
             height: $(window).height() - 270,
             url: "",
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
                 { label: 'Mã thuốc', name: 'ypCode', width: 80, align: 'left' },
                 { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
@@ -338,13 +338,13 @@
         });
     }
 
-    //库存信息
+    //Thông tin tồn kho
     function gridKCInfoMinUnit() {
         $gridKCInfoMinUnit.dataGrid({
             postData: getSearchPostData(),
             height: $(window).height() - 270,
             url: "",
-            editurl: "clientArray",  //行编辑不向服务器提交数据
+            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
                 { label: 'Mã thuốc', name: 'ypCode', width: 80, align: 'left' },
                 { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
@@ -407,7 +407,7 @@
         });
     }
 
-    //选择单位
+    //Chọn đơn vị
     function ChooseUnit(obj) {
         if ($(obj).hasClass("fa-toggle-off")) {
             $(obj).removeClass("fa-toggle-off");
@@ -423,7 +423,7 @@
         $("#btn_search").trigger("click");
     }
 
-    //查询条件
+    //Điều kiện truy vấn
     function getSearchPostData() {
         var pdsj = $("#ddlRQ").val();
         var pdId = $("#ddlRQ option:selected").attr('data-pdId');
@@ -439,11 +439,11 @@
         return { pdsj: pdsj, pdId: pdId, srm: srm, ypzt: ypzt, yplb: "", kcxs: kcxs };
     };
 
-    //加载第一次查询数据
+    //Tải dữ liệu truy vấn lần đầu
     function afterCompleteFunction() {
         ObjArr_Load = [];
         $.loading("Đang tải dữ liệu");
-        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
             ObjArr_Load.push($gridKCInfo.jqGrid('getRowData', rowIds[i]));
             $gridKCInfo.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
@@ -453,11 +453,11 @@
         $.loading(false);
     }
 
-    //加载第一次查询数据
+    //Tải dữ liệu truy vấn lần đầu
     function afterCompleteFunctionMinUnit() {
         ObjArr_Load = [];
         $.loading("Đang tải dữ liệu");
-        var rowIds = $gridKCInfoMinUnit.jqGrid('getDataIDs');//Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = $gridKCInfoMinUnit.jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
             ObjArr_Load.push($gridKCInfoMinUnit.jqGrid('getRowData', rowIds[i]));
             $gridKCInfoMinUnit.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
@@ -469,13 +469,13 @@
     function savePdsPage() {
         var $targetJqg;
         if ($("#i-changeUnit").hasClass("fa-toggle-off")) {
-            $targetJqg = $gridKCInfo;//获取所有行Id，遍历使编辑框处于保存状态
+            $targetJqg = $gridKCInfo;//Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
         } else {
-            $targetJqg = $gridKCInfoMinUnit;//获取所有行Id，遍历使编辑框处于保存状态
+            $targetJqg = $gridKCInfoMinUnit;//Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
         }
-        var rowIds = $targetJqg.jqGrid('getDataIDs');//获取所有行Id，遍历使编辑框处于保存状态
+        var rowIds = $targetJqg.jqGrid('getDataIDs');//Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
 
-        //判断退数量
+        //Kiểm tra số lượng trả
         for (var i = 0; i < rowIds.length; i++) {
             $targetJqg.saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
             var rowData = $targetJqg.jqGrid('getRowData', rowIds[i]);
@@ -498,20 +498,20 @@
         }
         var kcInfoJsonSave = $targetJqg.jqGrid('getRowData_AllLine');
         var objArrSave = new Array();
-        $.each(kcInfoJsonSave, function () {//保存时将Grid的数据行放在新的数组中
-            //追溯码
+        $.each(kcInfoJsonSave, function () {//Khi lưu thìGriddòng dữ liệu vào mảng mới
+            //Mã truy xuất
             var zsm = $("#sel_zsm_" + this.jqRowId).val();
-            //是否拆零
+            //Có chia lẻ không
             var sfcl = parseInt($("#sel_sfcl_" + this.jqRowId).val(), 10);
             this.zsm = zsm
             this.sfcl = sfcl
             objArrSave.push(this);
         });
         var resultObjArr = new Array();
-        //与页面加载的数组进行比对，将修改过的数据行放在resultObjArr中，传给后台
+        //so sánh với mảng tải từ trang，đặt dòng dữ liệu đã sửa vàoresultObjArrtrong，gửi cho máy chủ
         for (var i = 0; i < objArrSave.length; i++) {
             if (objArrSave[i].deptSjsl !== ObjArr_Load[i].deptSjsl || objArrSave[i].minSjsl !== ObjArr_Load[i].minSjsl) {
-                // 验证追溯码数量。 是否拆零选是，只需要扫一个，否的话需要扫对应入库数量的码
+                // Kiểm tra số lượng mã truy xuất。 Có chia lẻ thì chọn Có，Chỉ cần quét một cái，Nếu không thì cần quét mã tương ứng với số lượng nhập kho
                 const zsmLength = objArrSave[i].zsm.split(',').filter(entry => entry.trim() !== '').length
                 var maxZsmLength = 1
                 if (objArrSave[i].sfcl === 1) {
@@ -539,7 +539,7 @@
                 success: function (ajaxresp) {
                     //$("#btn_search").trigger("click");
                     $.UpdateProgressbar.update(2);
-                    //$.modalAlert("保存成功", 'success');
+                    //$.modalAlert("Lưu thành công", 'success');
                 },
                 error: function (ajaxresp) {
                     $.modalAlert(ajaxresp.message, Error);
@@ -548,17 +548,17 @@
         }
     };
 
-    //保存
+    //Lưu
     function newtouch_event_f8() {
         var $targetJqg;
         if ($("#i-changeUnit").hasClass("fa-toggle-off")) {
-            $targetJqg = $gridKCInfo;//获取所有行Id，遍历使编辑框处于保存状态
+            $targetJqg = $gridKCInfo;//Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
         } else {
-            $targetJqg = $gridKCInfoMinUnit;//获取所有行Id，遍历使编辑框处于保存状态
+            $targetJqg = $gridKCInfoMinUnit;//Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
         }
-        var rowIds = $targetJqg.jqGrid('getDataIDs');//获取所有行Id，遍历使编辑框处于保存状态
+        var rowIds = $targetJqg.jqGrid('getDataIDs');//Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
 
-        //判断退数量
+        //Kiểm tra số lượng trả
         for (var i = 0; i < rowIds.length; i++) {
             $targetJqg.saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
             var rowData = $targetJqg.jqGrid('getRowData', rowIds[i]);
@@ -581,21 +581,21 @@
         }
         var kcInfoJsonSave = $targetJqg.jqGrid('getRowData_AllLine');
         var objArrSave = new Array();
-        $.each(kcInfoJsonSave, function () {//保存时将Grid的数据行放在新的数组中
-            //追溯码
+        $.each(kcInfoJsonSave, function () {//Khi lưu thìGriddòng dữ liệu vào mảng mới
+            //Mã truy xuất
             var zsm = $("#sel_zsm_" + this.jqRowId).val();
-            //是否拆零
+            //Có chia lẻ không
             var sfcl = parseInt($("#sel_sfcl_" + this.jqRowId).val(), 10);
             this.zsm = zsm
             this.sfcl = sfcl
             objArrSave.push(this);
         });
         var resultObjArr = new Array();
-        //与页面加载的数组进行比对，将修改过的数据行放在resultObjArr中，传给后台
+        //so sánh với mảng tải từ trang，đặt dòng dữ liệu đã sửa vàoresultObjArrtrong，gửi cho máy chủ
         for (var i = 0; i < objArrSave.length; i++) {
             if (objArrSave[i].deptSjsl !== ObjArr_Load[i].deptSjsl || objArrSave[i].minSjsl !== ObjArr_Load[i].minSjsl) {
 
-                // 验证追溯码数量。 是否拆零选是，只需要扫一个，否的话需要扫对应入库数量的码
+                // Kiểm tra số lượng mã truy xuất。 Có chia lẻ thì chọn Có，Chỉ cần quét một cái，Nếu không thì cần quét mã tương ứng với số lượng nhập kho
                 const zsmLength = objArrSave[i].zsm.split(',').filter(entry => entry.trim() !== '').length
                 var maxZsmLength = 1
                 if (objArrSave[i].sfcl === 1) {
@@ -635,37 +635,37 @@
         });
     };
 
-    //将库存换算成最小单位数  拆零
+    //Quy đổi tồn kho thành số đơn vị nhỏ nhất  Chia lẻ
     function CalculationMinUnitNum(deptNum, minNum, zhyz) {
         if (deptNum == null) return parseInt(minNum);
         if (minNum == null) return parseInt(deptNum) * parseInt(zhyz);
         return parseInt(deptNum) * parseInt(zhyz) + parseInt(minNum);
     }
 
-    //将库存换算成最小单位数  不拆零
+    //Quy đổi tồn kho thành số đơn vị nhỏ nhất  Không chia lẻ
     function CalculationMinUnitNumNoOpen(deptNum, zhyz) {
         return parseInt(deptNum) * parseInt(zhyz);
     }
 
-    //启用行内编辑框
+    //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
             $gridKCInfo.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
             });
         }
     }
 
-    //启用行内编辑框
+    //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBoxMinUnit() {
-        var rowIds = $gridKCInfoMinUnit.jqGrid('getDataIDs');//Grid加载完成开启行内编辑   1.先获取所有行Id  2.遍历调用editRow方法
+        var rowIds = $gridKCInfoMinUnit.jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
             $gridKCInfoMinUnit.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
             });
         }
     }
 
-    //结束盘点
+    //Kết thúc kiểm kê
     function newtouch_event_f3() {
         savePdsPage();
 
@@ -681,7 +681,7 @@
         }
     }
 
-    //提交
+    //Gửi
     function InventorySubmit() {
         $.najax({
             type: "POST",
@@ -690,7 +690,7 @@
             data: { pdId: $("#ddlRQ option:selected").attr('data-pdId'), autoCarryDown: $("#autoCarryDown").is(":checked") ? "1" : "0" },
             success: function (ajaxresp) {
                 $.modalAlert("Kiểm kê hoàn tất", 'success');
-                GetPDSJ();//刷新盘点时间及药品信息
+                GetPDSJ();//Làm mới thời gian kiểm kê và thông tin thuốc
                 $.UpdateProgressbar.update(4);
             },
             error: function (ajaxresp) {
@@ -699,7 +699,7 @@
         });
     }
 
-    //取消盘点
+    //Hủy kiểm kê
     function newtouch_event_f7() {
         $.modalConfirm("Bạn có chắc muốn kiểm kê lại không?？",
             function (flag) {
@@ -719,7 +719,7 @@
             });
     }
 
-    //盘点明细打印
+    //In chi tiết kiểm kê
     function newtouch_event_f9() {
         var srm = $("#txtSRM").val();
         var ypzt = $("#ddlYPZT").val();
@@ -728,7 +728,7 @@
         window.open("/Report/PrintReport?type=StockInventoryV2&param=srm=" + srm + "|ypzt=" + ypzt + "|kcxs=" + kcxs + "|pdId=" + pdId + "|yfbm=@ViewBag.bmCode |OrganizeId=@ViewBag.OrganizeId", "height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
     }
 
-    //进度调更新
+    //Cập nhật tiến độ
     $.UpdateProgressbar = {
         startPd: function () {
             $(".progress_bar").find("li").removeClass("completeLi");

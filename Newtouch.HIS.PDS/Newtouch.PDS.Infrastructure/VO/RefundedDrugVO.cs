@@ -3,82 +3,82 @@ using System;
 namespace Newtouch.HIS.Domain.VO
 {
     /// <summary>
-    /// 退药明细
+    /// Chi tiết trả thuốc
     /// </summary>
     public class RefundedDrugVo
     {
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 规格
+        /// Quy cách
         /// </summary>
         public string gg { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 单价（部门单位）
+        /// Đơn giá（Đơn vị bộ phận）
         /// </summary>
         public decimal dj { get; set; }
 
         /// <summary>
-        /// 金额
+        /// Số tiền
         /// </summary>
         public decimal je { get; set; }
 
         /// <summary>
-        /// 药厂名称
+        /// Tên hãng thuốc
         /// </summary>
         public string ycmc { get; set; }
 
         /// <summary>
-        /// 成组号
+        /// Số nhóm
         /// </summary>
         public string czh { get; set; }
 
         /// <summary>
-        /// 数量 （部门单位数量） 默认与ktsl相同
+        /// Số lượng （Số lượng đơn vị bộ phận） Mặc định vớiktslGiống nhau
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 可退数量 （部门单位数量） 默认与sl相同
+        /// Số lượng có thể trả （Số lượng đơn vị bộ phận） Mặc định vớislGiống nhau
         /// </summary>
         public int ktsl { get; set; }
 
         /// <summary>
-        /// 部门单位
+        /// Đơn vị bộ phận
         /// </summary>
         public string dw { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// Hệ số quy đổi
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// 数量+单位
+        /// Số lượng+Đơn vị
         /// </summary>
         public string slstr { get; set; }
 

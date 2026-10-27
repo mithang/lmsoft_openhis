@@ -6,7 +6,7 @@ using NewtouchHIS.Lib.Base.EnumExtend;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     ///<summary>
-    ///职工信息表
+    ///Bảng thông tin công nhân viên chức
     ///</summary>
     [Tenant(DBEnum.BaseDb)]
     [SugarTable("Sys_Staff", "SysStaffEntity")]
@@ -23,7 +23,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Desc:组织Khóa chính
+        /// Desc:Tổ chứcKhóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -75,7 +75,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string DepartmentCode { get; set; }
 
         /// <summary>
-        /// Desc:职称
+        /// Desc:Chức danh
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -84,7 +84,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string zc { get; set; }
 
         /// <summary>
-        /// Desc:头像
+        /// Desc:Ảnh đại diện
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -92,7 +92,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string HeadIcon { get; set; }
 
         /// <summary>
-        /// Desc:性别
+        /// Desc:Giới tính
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -100,7 +100,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public bool? Gender { get; set; }
 
         /// <summary>
-        /// Desc:生日
+        /// Desc:Ngày sinh
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -108,7 +108,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public DateTime? Birthday { get; set; }
 
         /// <summary>
-        /// Desc:手机
+        /// Desc:Điện thoại di động
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -116,7 +116,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string MobilePhone { get; set; }
 
         /// <summary>
-        /// Desc:邮箱
+        /// Desc:Email
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -124,7 +124,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Email { get; set; }
 
         /// <summary>
-        /// Desc:微信
+        /// Desc:WeChat
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -132,7 +132,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string WeChat { get; set; }
 
         /// <summary>
-        /// Desc:主管Khóa chính
+        /// Desc:Quản lýKhóa chính
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -140,14 +140,14 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string ManagerCode { get; set; }
 
         /// <summary>
-        /// Desc:排序码
+        /// Desc:Mã sắp xếp
         /// Default:
         /// Nullable:True
         /// </summary>           
         public int? px { get; set; }
 
         /// <summary>
-        /// Desc:描述
+        /// Desc:Mô tả
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -155,7 +155,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Description { get; set; }
 
         /// <summary>
-        /// Desc:创建时间
+        /// Desc:Thời gian tạo
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -164,7 +164,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// Desc:创建用户
+        /// Desc:Người tạo
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -173,7 +173,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// Desc:最后修改时间
+        /// Desc:Thời gian sửa đổi cuối
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -181,7 +181,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Desc:最后修改用户
+        /// Desc:Người sửa đổi cuối
         /// Default:
         /// Nullable:True
         /// </summary>           

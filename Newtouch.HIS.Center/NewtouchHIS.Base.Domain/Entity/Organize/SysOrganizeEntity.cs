@@ -5,11 +5,11 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity
 {
     [Tenant(DBEnum.BaseDb)]
-    [SugarTable("Sys_Organize", "组织机构表")]
+    [SugarTable("Sys_Organize", "Bảng tổ chức")]
     public partial class SysOrganizeEntity : ISysEntity
     {
         /// <summary>
-        /// Desc:组织Khóa chính
+        /// Desc:Tổ chứcKhóa chính
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -17,7 +17,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Desc:父级
+        /// Desc:Cấp cha
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -34,7 +34,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string TopOrganizeId { get; set; }
 
         /// <summary>
-        /// Desc:名称
+        /// Desc:Tên
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -59,7 +59,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? ShortName { get; set; }
 
         /// <summary>
-        /// Desc:分类
+        /// Desc:Phân loại
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -68,7 +68,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? CategoryCode { get; set; }
 
         /// <summary>
-        /// Desc:负责人
+        /// Desc:Người phụ trách
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -76,7 +76,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? ManagerCode { get; set; }
 
         /// <summary>
-        /// Desc:电话
+        /// Desc:Điện thoại
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -84,7 +84,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? TelePhone { get; set; }
 
         /// <summary>
-        /// Desc:微信
+        /// Desc:WeChat
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -92,7 +92,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? WeChat { get; set; }
 
         /// <summary>
-        /// Desc:传真
+        /// Desc:Fax
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -100,7 +100,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? Fax { get; set; }
 
         /// <summary>
-        /// Desc:邮箱
+        /// Desc:Email
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -116,7 +116,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? AreaId { get; set; }
 
         /// <summary>
-        /// Desc:联系地址
+        /// Desc:Địa chỉ liên hệ
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -124,7 +124,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         public string? Address { get; set; }
 
         /// <summary>
-        /// Desc:描述
+        /// Desc:Mô tả
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -134,7 +134,7 @@ namespace NewtouchHIS.Base.Domain.Entity
        
 
         /// <summary>
-        /// Desc:排序码
+        /// Desc:Mã sắp xếp
         /// Default:
         /// Nullable:True
         /// </summary>           

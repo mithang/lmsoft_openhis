@@ -21,19 +21,19 @@ namespace Newtouch.HIS.Repository
 
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         public void SubmitForm(SysMedicalOrderFrequencyEntity entity, int? yzpcId)
         {
             if (yzpcId != null && yzpcId > 0)
             {
-                //Code重复判断
+                //CodeKiểm tra trùng lặp
                 if (this.IQueryable().Any(a => a.yzpcCode == entity.yzpcCode && a.OrganizeId == entity.OrganizeId && a.yzpcId != yzpcId))
                 {
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                SysMedicalOrderFrequencyEntity oldEntity = null;   //变更前Entity
+                SysMedicalOrderFrequencyEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(yzpcId.Value);
                 this.DetacheEntity(oldEntity);
 
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Repository
             }
             else
             {
-                //Code重复判断
+                //CodeKiểm tra trùng lặp
                 if (this.IQueryable().Any(a => a.yzpcCode == entity.yzpcCode && a.OrganizeId == entity.OrganizeId))
                 {
                     throw new FailedException("Mã không được trùng lặp");
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 获得所有列表
+        /// Lấy tất cả danh sách
         /// </summary>
         public List<SysMedicalOrderFrequencyEntity> GetOrderFrequencyList(string orgId, string keyword = null)
         {
@@ -78,7 +78,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 修改form
+        /// Sửaform
         /// </summary>
         public SysMedicalOrderFrequencyEntity GetOrderFrequencyEntity(int? yzpcId,string orgId)
         {
@@ -87,7 +87,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 删除
+        /// Xóa
         /// </summary>
         public void DeleteForm(string orgId, int yzpcId)
         {

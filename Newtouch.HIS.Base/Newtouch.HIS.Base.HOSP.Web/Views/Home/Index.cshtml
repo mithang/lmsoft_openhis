@@ -2,9 +2,9 @@
 @{ 
     Layout = null;
 
-    //是否页面加载时就必须选择Org
+    //Có phải khi tải trang là bắt buộc phải chọn khôngOrg
     var mediOrgList = ViewBag.MediOrgList as IList<Newtouch.HIS.Domain.Entity.SysOrganizeEntity>;
-    //是否页面加载时就必须选择Org
+    //Có phải khi tải trang là bắt buộc phải chọn khôngOrg
     var needChooseOrg = (ViewBag.NeedChooseOrg as bool?) ?? false;
     var cookieLoginFlag = ViewBag.cookieLoginFlag;
 }
@@ -109,14 +109,14 @@
                                         @OperatorProvider.GetCurrent().UserCode;@OperatorProvider.GetCurrent().UserName
                                     </span>
                                     <span class="status">
-                                        <i class="fa fa-circle"></i>在线
+                                        <i class="fa fa-circle"></i>Trực tuyến
                                     </span>
                                 </div>
                             </div>*@
                             <div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
                                 <ul class="nav nav-pills nav-stacked">
                                     @*<li class="nav-header hidden-sm hidden-xs">
-                常用菜单
+                Menu thường dùng
                 <i class="fa fa-gear" style="color: #868b98; font-size: 12px; margin-top: -6px; position: absolute; right: 23px; top: 50%; cursor: pointer;"></i>
             </li>
             <li class="common">
@@ -128,19 +128,19 @@
             <li class="common">
                 <a href="#">
                     <i class="fa fa-star-o"></i>
-                    <span>合同</span>
+                    <span>Hợp đồng</span>
                 </a>
             </li>
             <li class="common">
                 <a href="maps.html">
                     <i class="fa fa-star-o"></i>
-                    <span>产品</span>
+                    <span>Sản phẩm</span>
                 </a>
             </li>
             <li class="common">
                 <a href="#">
                     <i class="fa fa-star-o"></i>
-                    <span>客户</span>
+                    <span>Khách hàng</span>
                 </a>
             </li>*@
                                 </ul>
@@ -235,7 +235,7 @@
                         </button>
                         <nav class="page-tabs menuTabs">
                             <div class="page-tabs-content" style="margin-left: 0px;">
-                                @*<a href="javascript:;" class="menuTab active" data-id="/Home/Default">首页</a>*@
+                                @*<a href="javascript:;" class="menuTab active" data-id="/Home/Default">Trang chủ</a>*@
                             </div>
                         </nav>
                         <button class="roll-nav roll-right tabRight">
@@ -506,7 +506,7 @@
         }
 
         $(function () {
-            //Home/Index加载时强制选择医疗机构
+            //Home/IndexKhi tải bắt buộc chọn cơ sở y tế
             @Html.Raw(needChooseOrg ? "setTimeout('showSwitchOrgPrompt(true);', 1200)" : "")
         });
     </script>

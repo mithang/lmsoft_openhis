@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
     {
         private readonly IMedicineDmnService _medicineDmnService;
         // GET: ReportManage/Ypfy
-        //药品发药统计
+        //Thống kê phát thuốc
         public IActionResult Index()
         {
             ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// 根据关键字查询药品分类
+        /// Truy vấn phân loại thuốc theo từ khóa
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

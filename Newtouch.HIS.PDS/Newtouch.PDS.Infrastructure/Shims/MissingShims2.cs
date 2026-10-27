@@ -11,7 +11,7 @@ using SqlSugar;
 
 namespace Newtouch.Infrastructure
 {
-    /// <summary>自负性质 v2 (values from Newtouch.HIS.Base Infrastructure/EnumDB.cs).</summary>
+    /// <summary>Tính chất tự trả v2 (values from Newtouch.HIS.Base Infrastructure/EnumDB.cs).</summary>
     public enum EnumZFXZv2
     {
         [System.ComponentModel.Description("Tự trả")] ZF = 1,

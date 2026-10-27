@@ -8,7 +8,7 @@ using Newtouch.HIS.Domain.Entity;
 
 namespace Newtouch.HIS.Base.HOSP.API.Controllers
 {
-    /// <summary>授权认证</summary>
+    /// <summary>Chứng thực ủy quyền</summary>
     [Route("api/Auth")]
     [ApiController]
     public class AuthController : ApiControllerBase
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
         }
 
         /// <summary>
-        /// 以关键信息换取访问令牌（经代理授权验证）。Gốc gọi Authorized() kiểm tra
+        /// Dùng thông tin chính để đổi lấy mã truy cập（Qua xác thực ủy quyền đại lý）。Gốc gọi Authorized() kiểm tra
         /// quyền truy cập rồi mới cấp token — bản port giữ nguyên bước kiểm tra này.
         /// </summary>
         [HttpPost("GetTokenbyProxy")]

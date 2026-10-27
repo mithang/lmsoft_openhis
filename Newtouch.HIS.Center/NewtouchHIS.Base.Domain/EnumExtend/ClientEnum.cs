@@ -9,351 +9,351 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
     public class SettClientEnum : ClientEnum
     {
         /// <summary>
-        /// 日志记录类型 枚举项扩展
-        /// Value请从101开始
+        /// Loại ghi nhật ký Mở rộng mục enum
+        /// ValueVui lòng bắt đầu từ101Bắt đầu
         /// </summary>
         public enum DbLogType_Ex
         {
             /// <summary>
-            /// 出院结算
+            /// Quyết toán xuất viện
             /// </summary>
-            [Description("出院结算")]
+            [Description("Quyết toán xuất viện")]
             DischargeSettlement = 101,
 
         }
 
         /// <summary>
-        /// 在院标志
+        /// Cờ đang nằm viện
         /// </summary>
         public enum EnumZYBZ
         {
             /// <summary>
-            /// 入院登记
+            /// Đăng ký nhập viện
             /// </summary>
-            [Description("新入院")]
+            [Description("Nhập viện mới")]
             Xry = 0,
             /// <summary>
-            /// 病区中
+            /// Đang ở khu bệnh
             /// </summary>
-            [Description("病区中")]
+            [Description("Đang ở khu bệnh")]
             Bqz = 1,
             /// <summary>
-            /// 病区出院（出病区）（待结账）
+            /// Xuất khỏi khu bệnh(Ra khỏi khu bệnh)(Chờ quyết toán)
             /// </summary>
-            [Description("待结账")]
+            [Description("Chờ quyết toán")]
             Djz = 2,
             /// <summary>
-            /// 已出院（出院结算）
+            /// Đã xuất viện(Quyết toán xuất viện)
             /// </summary>
-            [Description("已出院")]
+            [Description("Đã xuất viện")]
             Ycy = 3,
             /// <summary>
-            /// 转区中
+            /// Đang chuyển khu
             /// </summary>
-            [Description("转区中")]
+            [Description("Đang chuyển khu")]
             Zq = 7,
 
             /// <summary>
-            /// 作废记录/取消入院
+            /// Hồ sơ hủy/Hủy nhập viện
             /// </summary>
-            [Description("作废记录")]
+            [Description("Hồ sơ hủy")]
             Wry = 9,
         }
 
         /// <summary>
-        /// 系统账户类别
+        /// Loại tài khoản hệ thống
         /// </summary>
         public enum EnumXTZHXZ
         {
             /// <summary>
-            /// 单位帐户
+            /// Tài khoản đơn vị
             /// </summary>
-            [Description("单位帐户")]
+            [Description("Tài khoản đơn vị")]
             DWZH = 0,
             /// <summary>
-            /// 个人帐户
+            /// Tài khoản cá nhân
             /// </summary>
-            [Description("个人帐户")]
+            [Description("Tài khoản cá nhân")]
             GRZH = 1,
             /// <summary>
-            /// 家床账户
+            /// Tài khoản giường tại nhà
             /// </summary>
-            [Description("家床账户")]
+            [Description("Tài khoản giường tại nhà")]
             JCZH = 2,
             /// <summary>
-            /// 住院预缴款账户
+            /// Tài khoản tạm ứng nội trú
             /// </summary>
-            [Description("住院预缴款账户")]
+            [Description("Tài khoản tạm ứng nội trú")]
             ZYYJKZH = 3,
             /// <summary>
-            /// 帮困账户
+            /// Tài khoản hỗ trợ
             /// </summary>
-            [Description("帮困账户")]
+            [Description("Tài khoản hỗ trợ")]
             BKZH = 4,
             /// <summary>
-            /// 门诊登记账户
+            /// Tài khoản đăng ký ngoại trú
             /// </summary>
-            [Description("门诊登记账户")]
+            [Description("Tài khoản đăng ký ngoại trú")]
             MZDJZH = 5,
             /// <summary>
-            /// 门诊预缴款账户
+            /// Tài khoản tạm ứng ngoại trú
             /// </summary>
-            [Description("门诊预缴款账户")]
+            [Description("Tài khoản tạm ứng ngoại trú")]
             MZYJKZH = 6
         }
 
         /// <summary>
-        /// 医保交易类型  0 不交易 1 普通交易 2 大病交易 3 家床交易 4 工伤交易 5 住院交易 6 农保交易
+        /// Loại giao dịch BHYT  0 Không giao dịch 1 Giao dịch thông thường 2 Giao dịch bệnh hiểm nghèo 3 Giao dịch giường tại nhà 4 Giao dịch tai nạn lao động 5 Giao dịch nội trú 6 Giao dịch bảo hiểm nông nghiệp
         /// xt_brxz.ybjylx
         /// </summary>
         public enum EnumYBJYLX
         {
             /// <summary>
-            /// 不交易
+            /// Không giao dịch
             /// </summary>
-            [Description("不交易")]
+            [Description("Không giao dịch")]
             ybjylx0 = 0,
             /// <summary>
-            /// 普通交易
+            /// Giao dịch thông thường
             /// </summary>
-            [Description("普通交易")]
+            [Description("Giao dịch thông thường")]
             ybjylx1 = 1,
             /// <summary>
-            /// 大病交易
+            /// Giao dịch bệnh hiểm nghèo
             /// </summary>
-            [Description("大病交易")]
+            [Description("Giao dịch bệnh hiểm nghèo")]
             ybjylx2 = 2,
             /// <summary>
-            /// 家床交易
+            /// Giao dịch giường tại nhà
             /// </summary>
-            [Description("家床交易")]
+            [Description("Giao dịch giường tại nhà")]
             ybjylx3 = 3,
             /// <summary>
-            /// 工伤交易
+            /// Giao dịch tai nạn lao động
             /// </summary>
-            [Description("工伤交易")]
+            [Description("Giao dịch tai nạn lao động")]
             ybjylx4 = 4,
             /// <summary>
-            /// 住院交易
+            /// Giao dịch nội trú
             /// </summary>
-            [Description("住院交易")]
+            [Description("Giao dịch nội trú")]
             ybjylx5 = 5,
             /// <summary>
-            /// 农保交易
+            /// Giao dịch bảo hiểm nông nghiệp
             /// </summary>
-            [Description("农保交易")]
+            [Description("Giao dịch bảo hiểm nông nghiệp")]
             ybjylx6 = 6,
         }
 
         /// <summary>
-        /// 自负性质（药品、项目字典的属性）
+        /// Tính chất tự trả(Thuốc,Thuộc tính của từ điển hạng mục)
         /// </summary>
         public enum EnumZiFuXingZhi
         {
             /// <summary>
-            /// 可报
+            /// Được thanh toán
             /// </summary>
-            [Description("可报")]
+            [Description("Được thanh toán")]
             KB = 0,
             /// <summary>
-            /// 自费
+            /// Tự chi trả
             /// </summary>
-            [Description("自费")]
+            [Description("Tự chi trả")]
             ZF = 1,
             /// <summary>
-            /// 分类自负
+            /// Tự trả theo phân loại
             /// </summary>
-            [Description("分类自负")]
+            [Description("Tự trả theo phân loại")]
             FLZF = 2,
             /// <summary>
-            /// 绝对自理
+            /// Hoàn toàn tự lo
             /// </summary>
-            [Description("绝对自理")]
+            [Description("Hoàn toàn tự lo")]
             JueDuiZiLi = 3,
             /// <summary>
-            /// 甲类
+            /// Hạng A
             /// </summary>
-            [Description("甲类")]
+            [Description("Hạng A")]
             Jia,
             /// <summary>
-            /// 乙类
+            /// Hạng B
             /// </summary>
-            [Description("乙类")]
+            [Description("Hạng B")]
             Yi,
             /// <summary>
-            /// 丙类
+            /// Hạng C
             /// </summary>
-            [Description("丙类")]
+            [Description("Hạng C")]
             Bing,
         }
 
         /// <summary>
-        /// 算法 自负性质
-        /// 确定按自负比例计算出来的自负部分的性质
+        /// Thuật toán Tính chất tự trả
+        /// Xác định tính chất của phần tự trả tính theo tỷ lệ tự trả
         /// </summary>
         public enum EnumSuanFaZFXZ
         {
             /// <summary>
-            /// 自负（同医保交易后自负现金）
+            /// Tự trả(Tiền mặt tự trả sau giao dịch BHYT)
             /// </summary>
-            [Description("自负")]
+            [Description("Tự trả")]
             ZF = 0,
             /// <summary>
-            /// 自理
+            /// Tự lo
             /// </summary>
-            [Description("自理")]
+            [Description("Tự lo")]
             ZL = 1,
         }
 
         /// <summary>
-        /// 账户收支性质 
+        /// Tính chất thu chi tài khoản 
         /// xt_brzhszjl.szxz
         /// </summary>
         public enum AccSzxz
         {
-            [Description("门诊账户存取")]
+            [Description("Gửi/rút tài khoản ngoại trú")]
             MZZH = 0,
-            [Description("家床记帐")]
+            [Description("Ghi sổ giường tại nhà")]
             JCZH = 1,
-            [Description("门诊结算")]
+            [Description("Quyết toán ngoại trú")]
             MZJS = 2,
-            [Description("病区记帐")]
+            [Description("Ghi sổ khu bệnh")]
             BQJZ = 3,
-            [Description("住院结算")]
+            [Description("Quyết toán nội trú")]
             ZYJS = 4,
-            [Description("住院账户存取")]
+            [Description("Gửi/rút tài khoản nội trú")]
             ZYZH = 5,
-            [Description("住院补缴款")]
+            [Description("Bù khoản nội trú")]
             ZYBJK = 6,
-            [Description("门诊记账登记")]
+            [Description("Đăng ký ghi sổ ngoại trú")]
             MZJZDJ = 7
         }
 
         /// <summary>
-        /// 卡类型/卡身份标识
+        /// Loại thẻ/Mã định danh thân phận thẻ
         /// </summary>
-        [Description("卡类型")]
+        [Description("Loại thẻ")]
         public enum EnumCardType
         {
             /// <summary>
-            /// 医保磁条卡
+            /// Thẻ từ BHYT
             /// </summary>
-            [Description("医保磁条卡")]
+            [Description("Thẻ từ BHYT")]
             CTK = 0,
             /// <summary>
-            /// 虚拟卡/院内卡（自动生成时虚拟卡/手动输入时院内卡）
+            /// Thẻ ảo/Thẻ trong viện(Thẻ ảo khi tự động tạo/Thẻ trong viện khi nhập tay)
             /// </summary>
-            [Description("虚拟卡")]
+            [Description("Thẻ ảo")]
             XNK = 1,
             /// <summary>
-            /// 社保卡
+            /// Thẻ bảo hiểm xã hội
             /// </summary>
-            [Description("社保卡")]
+            [Description("Thẻ bảo hiểm xã hội")]
             YBJYK = 2,
             /// <summary>
-            /// 医保电子凭证
+            /// Chứng từ điện tử BHYT
             /// </summary>
-            [Description("医保电子凭证")]
+            [Description("Chứng từ điện tử BHYT")]
             ybdzpz = 3,
             /// <summary>
-            /// 身份证医保就诊
+            /// Khám BHYT bằng CMND
             /// </summary>
-            [Description("身份证(医保)")]
+            [Description("CMND(BHYT)")]
             sfz = 4,
             /// <summary>
-            /// 健康码
+            /// Mã sức khỏe
             /// </summary>
-            [Description("健康码")]
+            [Description("Mã sức khỏe")]
             XNHJYK = 5,
         }
 
         /// <summary>
-        /// 门诊类型 mjzbz
+        /// Loại ngoại trú mjzbz
         /// </summary>
         public enum EnumOutPatientType
         {
             /// <summary>
-            /// 普通门诊
+            /// Khám ngoại trú thông thường
             /// </summary>
-            [Description("普通门诊")]
+            [Description("Khám ngoại trú thông thường")]
             generalOutpat = 1,
             /// <summary>
-            /// 急诊
+            /// Cấp cứu
             /// </summary>
-            [Description("急诊")]
+            [Description("Cấp cứu")]
             emerDiagnosis = 2,
             /// <summary>
-            /// 专家门诊
+            /// Khám chuyên gia
             /// </summary>
-            [Description("专家门诊")]
+            [Description("Khám chuyên gia")]
             expertOutpat = 3,
             /// <summary>
-            /// 特病门诊
+            /// Khám bệnh đặc biệt
             /// </summary>
-            [Description("特病门诊")]
+            [Description("Khám bệnh đặc biệt")]
             SpecialOutpat = 4,
             /// <summary>
-            /// 重大疾病门诊
+            /// Khám ngoại trú bệnh hiểm nghèo
             /// </summary>
-            [Description("重大疾病门诊")]
+            [Description("Khám ngoại trú bệnh hiểm nghèo")]
             MajorDiseases = 5,
             /// <summary>
-            /// 慢性病门诊
+            /// Khám bệnh mạn tính
             /// </summary>
-            [Description("慢性病门诊")]
+            [Description("Khám bệnh mạn tính")]
             ChronicDisease = 6,
             /// <summary>
-            /// 居民两病
+            /// Hai bệnh cư dân
             /// </summary>
-            [Description("居民两病")]
+            [Description("Hai bệnh cư dân")]
             jmlb = 7,
             /// <summary>
-            /// 意外伤害门诊
+            /// Khám ngoại trú tai nạn bất ngờ
             /// </summary>
-            [Description("意外伤害门诊")]
+            [Description("Khám ngoại trú tai nạn bất ngờ")]
             ywshmz = 8,
             /// <summary>
-            /// 生育门诊
+            /// Khám ngoại trú sinh sản
             /// </summary>
-            [Description("生育门诊")]
+            [Description("Khám ngoại trú sinh sản")]
             symz = 9,
             /// <summary>
-            /// 耐多药结核门诊
+            /// Khám ngoại trú lao kháng đa thuốc
             /// </summary>
-            [Description("耐多药结核门诊")]
+            [Description("Khám ngoại trú lao kháng đa thuốc")]
             ndyjhmz = 10,
             /// <summary>
-            /// 儿童两病门诊
+            /// Khám ngoại trú hai bệnh trẻ em
             /// </summary>
-            [Description("儿童两病门诊")]
+            [Description("Khám ngoại trú hai bệnh trẻ em")]
             etlbmz = 11
         }
 
         /// <summary>
-        /// 门诊住院标志  0 通用 1 仅门诊 2 仅住院 3 系统（门诊住院都不可用）例如：家床
-        /// 有重复定义
+        /// Cờ ngoại trú/nội trú  0 Chung 1 Chỉ ngoại trú 2 Chỉ nội trú 3 Hệ thống(Cả ngoại trú và nội trú đều không dùng được)Ví dụ:Giường tại nhà
+        /// Có định nghĩa trùng lặp
         /// </summary>
         public enum Enummzzybz
         {
             /// <summary>
-            /// 通用
+            /// Chung
             /// </summary>
-            [Description("通用")]
+            [Description("Chung")]
             ty = 0,
             /// <summary>
-            /// 仅门诊
+            /// Chỉ ngoại trú
             /// </summary>
-            [Description("仅门诊")]
+            [Description("Chỉ ngoại trú")]
             mz = 1,
             /// <summary>
-            /// 仅住院
+            /// Chỉ nội trú
             /// </summary>
-            [Description("仅住院")]
+            [Description("Chỉ nội trú")]
             zy = 2,
             /// <summary>
-            /// 系统
+            /// Hệ thống
             /// </summary>
-            [Description("系统")]
+            [Description("Hệ thống")]
             sys = 3
         }
 
@@ -363,76 +363,76 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         public enum EnumSex
         {
             /// <summary>
-            /// 男
+            /// Nam
             /// </summary>
-            [Description("男")]
+            [Description("Nam")]
             male = 1,
             /// <summary>
-            /// 女
+            /// Nữ
             /// </summary>
-            [Description("女")]
+            [Description("Nữ")]
             female = 2,
             /// <summary>
-            /// 不详
+            /// Không rõ
             /// </summary>
-            [Description("不详")]
+            [Description("Không rõ")]
             other = 3
         }
 
         /// <summary>
-        /// 结算状态
+        /// Trạng thái quyết toán
         /// </summary>
         public enum EnumJieSuanZT
         {
             /// <summary>
-            /// 已结（未退）
+            /// Đã quyết toán(Chưa trả)
             /// </summary>
-            [Description("已结")]
+            [Description("Đã quyết toán")]
             YJ = 1,
             /// <summary>
-            /// 已退
+            /// Đã trả
             /// </summary>
-            [Description("已退")]
+            [Description("Đã trả")]
             YT,
         }
 
         /// <summary>
-        /// 医嘱性质
+        /// Tính chất y lệnh
         /// </summary>
         public enum EnumYiZhuXZ
         {
             /// <summary>
-            /// 药品
+            /// Thuốc
             /// </summary>
             YP = 1,
             /// <summary>
-            /// 项目
+            /// Hạng mục
             /// </summary>
             XM,
         }
 
         /// <summary>
-        /// 财务发票停用标志
+        /// Cờ ngừng dùng hóa đơn tài chính
         /// </summary>
         public enum EnumCWFPTY
         {
             /// <summary>
-            /// 未停用
+            /// Chưa ngừng dùng
             /// </summary>
             WTY = 0,
 
             /// <summary>
-            /// 已停用
+            /// Đã ngừng dùng
             /// </summary>
             YTY = 1,
         }
         /// <summary>
-        /// 挂号性质 
+        /// Tính chất đăng ký khám 
         /// 0-Đăng ký khám thường
-        /// 1-空挂号
-        /// 2-家床挂号
-        /// 3-自费转医保挂号
-        /// 4-门诊记账挂号
+        /// 1-Đăng ký khám rỗng
+        /// 2-Đăng ký khám giường tại nhà
+        /// 3-Đăng ký khám chuyển tự trả sang BHYT
+        /// 4-Đăng ký khám ghi sổ ngoại trú
         /// </summary>
         public enum EnumGhxz
         {
@@ -443,29 +443,29 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             MZJZGH = 4
         }
         /// <summary>
-        /// 结算类型
+        /// Loại quyết toán
         /// </summary>
         public enum EnumJslx
         {
             /// <summary>
-            /// 挂号
+            /// Đăng ký khám
             /// </summary>
-            [Description("挂号收费")]
+            [Description("Thu phí đăng ký khám")]
             GH = 0,
             /// <summary>
             /// 
             /// </summary>
-            [Description("家床记账")]
+            [Description("Ghi sổ giường tại nhà")]
             JCJZ = 1,
             /// <summary>
-            /// 门诊记账
+            /// Ghi sổ ngoại trú
             /// </summary>
-            [Description("门诊记账")]
+            [Description("Ghi sổ ngoại trú")]
             MZJZ = 2,
             /// <summary>
             /// 
             /// </summary>
-            [Description("住院")]
+            [Description("Nội trú")]
             ZY = 3,
             /// <summary>
             /// 
@@ -475,51 +475,51 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         }
 
         ///// <summary>
-        /////医嘱性质 1 临时医嘱   2 长期医嘱   3 出院医嘱
+        /////Tính chất y lệnh 1 Y lệnh tạm thời   2 Y lệnh dài hạn   3 Y lệnh xuất viện
         ///// </summary>
         //public enum EnumYZXZ
         //{
         //    /// <summary>
-        //    /// 临时医嘱
+        //    /// Y lệnh tạm thời
         //    /// </summary>
         //    LSYZ = 1,
         //    /// <summary>
-        //    /// 长期医嘱
+        //    /// Y lệnh dài hạn
         //    /// </summary>
         //    CQYZ = 2,
         //    /// <summary>
-        //    /// 出院医嘱
+        //    /// Y lệnh xuất viện
         //    /// </summary>
         //    CYYZ = 3
         //}
 
 
         /// <summary>
-        ///医嘱状态 1 未撤销   2 已撤销
+        ///Trạng thái y lệnh 1 Chưa thu hồi   2 Đã thu hồi
         /// </summary>
         public enum EnumYZZT
         {
             /// <summary>
-            /// 未撤销
+            /// Chưa thu hồi
             /// </summary>
             WCX = 1,
             /// <summary>
-            /// 已撤销
+            /// Đã thu hồi
             /// </summary>
             YCX = 2
         }
 
         /// <summary>
-        /// 住院记账收费项目类型
+        /// Loại hạng mục thu phí ghi sổ nội trú
         /// </summary>
         public enum EnumxmType
         {
-            XM = 2,//药品
-            YP = 1 //项目
+            XM = 2,//Thuốc
+            YP = 1 //Hạng mục
         }
 
         /// <summary>
-        /// 语言
+        /// Ngôn ngữ
         /// </summary>
         public enum Enumlan
         {
@@ -529,28 +529,28 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             Jpanese = 3,
         }
         /// <summary>
-        /// 打印方式 1:补打  2:重打 3:打印发票
+        /// Cách in 1:In bù  2:In lại 3:In hóa đơn
         /// </summary>
         public enum Enumdyfs
         {
             /// <summary>
-            /// 补打
+            /// In bù
             /// </summary>
             BD = 1,
             /// <summary>
-            /// 重打
+            /// In lại
             /// </summary>
             CD = 2,
             /// <summary>
-            /// 打印发票
+            /// In hóa đơn
             /// </summary>
             Print = 3
         }
 
         /// <summary>
-        /// 挂号类型 特需 特需V
+        /// Loại đăng ký khám Theo yêu cầu đặc biệt Theo yêu cầu đặc biệtV
         /// </summary>
-        [Obsolete("不同医疗机构的编码不一样")]
+        [Obsolete("Mã của các cơ sở y tế khác nhau thì khác nhau")]
         public enum Enumghlx
         {
             TeXu = 7884,
@@ -558,112 +558,112 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         }
 
         /// <summary>
-        /// 生效标志
+        /// Cờ hiệu lực
         /// </summary>
         public enum EnumSXBZ
         {
             /// <summary>
-            /// 即时生效
+            /// Có hiệu lực ngay
             /// </summary>
-            [Description("即时生效")]
+            [Description("Có hiệu lực ngay")]
             Jssx = 0,
             /// <summary>
-            /// 定点生效
+            /// Có hiệu lực tại điểm định sẵn
             /// </summary>
-            [Description("定点生效")]
+            [Description("Có hiệu lực tại điểm định sẵn")]
             Ddsx = 1
 
         }
 
         /// <summary>
-        /// 地域标志
+        /// Cờ khu vực
         /// </summary>
         public enum EnumDY
         {
             /// <summary>
-            /// 本地
+            /// Tại địa phương
             /// </summary>
-            [Description("本地")]
+            [Description("Tại địa phương")]
             bd = 0,
             /// <summary>
-            /// 外地
+            /// Ngoài địa phương
             /// </summary>
-            [Description("外地")]
+            [Description("Ngoài địa phương")]
             wd = 1
 
         }
 
         /// <summary>
-        /// 婚否
+        /// Tình trạng hôn nhân
         /// </summary>
         public enum EnumHF
         {
             /// <summary>
-            /// 未婚
+            /// Chưa kết hôn
             /// </summary>
-            [Description("未婚")]
+            [Description("Chưa kết hôn")]
             wh = 0,
             /// <summary>
-            /// 已婚
+            /// Đã kết hôn
             /// </summary>
-            [Description("已婚")]
+            [Description("Đã kết hôn")]
             yh,
             /// <summary>
-            /// 不详
+            /// Không rõ
             /// </summary>
-            [Description("不详")]
+            [Description("Không rõ")]
             UnKnown = 9,
         }
 
         /// <summary>
-        /// 入院途径
+        /// Đường nhập viện
         /// </summary>
         public enum EnumRYTJ
         {
             /// <summary>
-            /// 门诊
+            /// Ngoại trú
             /// </summary>
-            [Description("普通住院")]
+            [Description("Nội trú thông thường")]
             mz = 21,
             /// <summary>
-            /// 急诊
+            /// Cấp cứu
             /// </summary>
-            [Description("急诊转住院")]
+            [Description("Cấp cứu chuyển nội trú")]
             jz = 24,
             /// <summary>
-            /// 其他医疗机构转入
+            /// Chuyển đến từ cơ sở y tế khác
             /// </summary>
-            [Description("转入住院")]
+            [Description("Chuyển vào nội trú")]
             qtyljg = 9925,
             /// <summary>
-            /// 转外诊治住院
+            /// Chuyển ra ngoài điều trị nội trú
             /// </summary>
-            [Description("转外诊治住院")]
+            [Description("Chuyển ra ngoài điều trị nội trú")]
             zwzzzy = 23,
             /// <summary>
-            /// 重大疾病住院
+            /// Nội trú bệnh hiểm nghèo
             /// </summary>
-            [Description("重大疾病住院")]
+            [Description("Nội trú bệnh hiểm nghèo")]
             dbry = 9902,
             /// <summary>
-            /// 生育住院
+            /// Nội trú sinh sản
             /// </summary>
-            [Description("生育住院")]
+            [Description("Nội trú sinh sản")]
             syzy = 52,
             /// <summary>
-            /// 儿童两病住院
+            /// Nội trú hai bệnh trẻ em
             /// </summary>
-            [Description("儿童两病住院")]
+            [Description("Nội trú hai bệnh trẻ em")]
             etlb = 9904,
             /// <summary>
-            /// 耐多药结核住院
+            /// Nội trú lao kháng đa thuốc
             /// </summary>
-            [Description("耐多药结核住院")]
+            [Description("Nội trú lao kháng đa thuốc")]
             ndyzy = 9907,
             /// <summary>
-            /// 新生儿随母住院
+            /// Trẻ sơ sinh nội trú theo mẹ
             /// </summary>
-            [Description("新生儿随母住院")]
+            [Description("Trẻ sơ sinh nội trú theo mẹ")]
             xsesmzy = 9921,
             /// <summary>
             /// 120
@@ -671,349 +671,349 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             [Description("120")]
             jj120,
             /// <summary>
-            /// 其他
+            /// Khác
             /// </summary>
-            [Description("其他")]
+            [Description("Khác")]
             Else = 9,
         }
 
         /// <summary>
-        /// 证件类型
+        /// Loại giấy tờ
         /// </summary>
         public enum EnumZJLX
         {
             /// <summary>
-            /// 身份证
+            /// CMND
             /// </summary>
-            [Description("身份证")]
+            [Description("CMND")]
             sfz = 1,
             /// <summary>
-            /// 护照
+            /// Hộ chiếu
             /// </summary>
-            [Description("护照")]
+            [Description("Hộ chiếu")]
             hz,
             /// <summary>
-            /// 军官证
+            /// Chứng nhận sĩ quan
             /// </summary>
-            [Description("军官证")]
+            [Description("Chứng nhận sĩ quan")]
             jgz,
             /// <summary>
-            /// 其他
+            /// Khác
             /// </summary>
-            [Description("其他")]
+            [Description("Khác")]
             qt = 9
 
         }
 
         /// <summary>
-        /// 医保特殊待遇
+        /// Chế độ đặc biệt BHYT
         /// </summary>
         public enum EnumYBTSDY
         {
             /// <summary>
-            /// 普通
+            /// Thông thường
             /// </summary>
-            [Description("普通")]
+            [Description("Thông thường")]
             pt = 1,
             /// <summary>
-            /// 离休
+            /// Nghỉ hưu theo chế độ
             /// </summary>
-            [Description("离休")]
+            [Description("Nghỉ hưu theo chế độ")]
             lx,
             /// <summary>
-            /// 伤残
+            /// Thương tật
             /// </summary>
-            [Description("伤残")]
+            [Description("Thương tật")]
             sc
 
         }
 
         /// <summary>
-        /// 适用医保办法 0：城保 1：个体医保 2：小城镇 3：小时工
-        // A:民政医疗帮困
-        // B：老年遗嘱 C:五保老人 D：重残人员
-        // E:中小学生和婴幼儿 F： 其他居民
-        //G：医疗互助帮困对象
+        /// Phương pháp BHYT áp dụng 0:Bảo hiểm thành phố 1:BHYT cá thể 2:Thị trấn nhỏ 3:Lao động theo giờ
+        // A:Hỗ trợ y tế dân chính
+        // B:Di chúc người cao tuổi C:Người cao tuổi diện ngũ bảo D:Người khuyết tật nặng
+        // E:Học sinh tiểu học, trung học và trẻ sơ sinh F: Cư dân khác
+        //G:Đối tượng hỗ trợ tương trợ y tế
         /// </summary>
         public enum EnumSYYBBF
         {
             /// <summary>
-            /// 城保
+            /// Bảo hiểm thành phố
             /// </summary>
-            [Description("城保")]
+            [Description("Bảo hiểm thành phố")]
             cb = 1,
             /// <summary>
-            /// 个体医保
+            /// BHYT cá thể
             /// </summary>
-            [Description("个体医保")]
+            [Description("BHYT cá thể")]
             gtyb,
             /// <summary>
-            /// 小城镇
+            /// Thị trấn nhỏ
             /// </summary>
-            [Description("小城镇")]
+            [Description("Thị trấn nhỏ")]
             xcz,
             /// <summary>
-            /// 其他
+            /// Khác
             /// </summary>
-            [Description("其他")]
+            [Description("Khác")]
             qt = 9
 
         }
 
         /// <summary>
-        /// 挂号排班时间
+        /// Thời gian lịch đăng ký khám
         /// </summary>
         public enum EnumRegSchedule
         {
             /// <summary>
-            /// 无
+            /// Không có
             /// </summary>
-            [Description("无")]
+            [Description("Không có")]
             none = 0,
             /// <summary>
-            /// 全天
+            /// Cả ngày
             /// </summary>
-            [Description("全天")]
+            [Description("Cả ngày")]
             allday = 1,
             /// <summary>
-            /// 上午
+            /// Buổi sáng
             /// </summary>
-            [Description("上午")]
+            [Description("Buổi sáng")]
             AM = 2,
             /// <summary>
-            /// 下午
+            /// Buổi chiều
             /// </summary>
-            [Description("下午")]
+            [Description("Buổi chiều")]
             PM = 3,
 
         }
 
         /// <summary>
-        /// 记账计划执行状态
+        /// Trạng thái thực thi kế hoạch ghi sổ
         /// </summary>
         public enum EnumJzjhZXZT
         {
             /// <summary>
-            /// 未执行
+            /// Chưa thực hiện
             /// </summary>
-            [Description("未执行")]
+            [Description("Chưa thực hiện")]
             None = 0,
             /// <summary>
-            /// 执行中
+            /// Đang thực hiện
             /// </summary>
-            [Description("执行中")]
+            [Description("Đang thực hiện")]
             Part = 1,
             /// <summary>
-            /// 全部
+            /// Tất cả
             /// </summary>
-            [Description("已完成")]
+            [Description("Đã hoàn thành")]
             Finished = 2,
             /// <summary>
-            /// 已停止
+            /// Đã dừng
             /// </summary>
-            [Description("已停止")]
+            [Description("Đã dừng")]
             Stopped = 3,
         }
 
         /// <summary>
-        /// 提醒类型
+        /// Loại nhắc nhở
         /// </summary>
         public enum EnmuReminderType
         {
             /// <summary>
-            /// 金额上限提醒
+            /// Nhắc nhở giới hạn số tiền
             /// </summary>
-            [Description("金额上限提醒")]
-            金额上限提醒 = 1,    //比如：治疗师一个月内收费不得超过十万
+            [Description("Nhắc nhở giới hạn số tiền")]
+            金额上限提醒 = 1,    //Ví dụ: Nhà trị liệu trong một tháng thu phí không được vượt quá một trăm nghìn
         }
 
         /// <summary>
-        /// 同步治疗记录 处理状态
+        /// Đồng bộ hồ sơ điều trị Trạng thái xử lý
         /// </summary>
         public enum EnumTbzljlClztType
         {
             /// <summary>
-            /// 未确认
+            /// Chưa xác nhận
             /// </summary>
-            [Description("未确认")]
+            [Description("Chưa xác nhận")]
             WQR = 1,
             /// <summary>
-            /// 已确认
+            /// Đã xác nhận
             /// </summary>
-            [Description("已确认")]
+            [Description("Đã xác nhận")]
             YQR,
             /// <summary>
-            /// 作废
+            /// Hủy
             /// </summary>
-            [Description("作废")]
+            [Description("Hủy")]
             ZF,
         }
 
         /// <summary>
-        /// 登录标志
+        /// Cờ đăng nhập
         /// </summary>
         public enum EnumLoginFlag
         {
             /// <summary>
             /// 
             /// </summary>
-            [Description("单点登录")]
+            [Description("Đăng nhập một lần (SSO)")]
             SSO = 1,
             /// <summary>
             /// 
             /// </summary>
-            [Description("系统登录")]
+            [Description("Đăng nhập hệ thống")]
             App = 2
         }
 
         /// <summary>
-        /// 收费项目计价策略
+        /// Chiến lược định giá hạng mục thu phí
         /// </summary>
         public enum EnumSfxmJjcl
         {
             /// <summary>
-            /// 按时长
+            /// Theo thời lượng
             /// </summary>
-            [Description("按时长")]
+            [Description("Theo thời lượng")]
             Time = 1,
             /// <summary>
-            /// 按数量
+            /// Theo số lượng
             /// </summary>
-            [Description("按数量")]
+            [Description("Theo số lượng")]
             Amount,
             /// <summary>
-            /// 按面积
+            /// Theo diện tích
             /// </summary>
-            [Description("按面积")]
+            [Description("Theo diện tích")]
             Acreage,
         }
 
         /// <summary>
-        /// 门诊病人就诊状态（就诊标志）
+        /// Trạng thái khám của bệnh nhân ngoại trú(Cờ khám bệnh)
         /// </summary>
         public enum EnumOutpatientJzbz
         {
             /// <summary>
-            /// 待就诊
+            /// Chờ khám
             /// </summary>
-            [Description("待就诊")]
+            [Description("Chờ khám")]
             Djz = 1,
             /// <summary>
-            /// 就诊中
+            /// Đang khám
             /// </summary>
-            [Description("就诊中")]
+            [Description("Đang khám")]
             Jzz,
             /// <summary>
-            /// 结束就诊
+            /// Kết thúc khám
             /// </summary>
-            [Description("结束就诊")]
+            [Description("Kết thúc khám")]
             Jsjz,
         }
 
         /// <summary>
-        /// 枚举类型
+        /// Kiểu enum
         /// </summary>
         public enum EnumPrescriptionType
         {
             /// <summary>
-            /// 药品
+            /// Thuốc
             /// </summary>
-            [Description("药品")]
+            [Description("Thuốc")]
             Medicine = 1,
             /// <summary>
-            /// 治疗项目
+            /// Hạng mục điều trị
             /// </summary>
-            [Description("治疗项目")]
+            [Description("Hạng mục điều trị")]
             Treament,
         }
 
         /// <summary>
-        /// 收支性质
+        /// Tính chất thu chi
         /// </summary>
         public enum EnumSZXZ
         {
-            [Description("充值")]
+            [Description("Nạp tiền")]
             cz = 1,
-            [Description("取款")]
+            [Description("Rút tiền")]
             qk = 2,
-            [Description("门诊结算")]
+            [Description("Quyết toán ngoại trú")]
             mzjs = 3,
-            [Description("门诊结算退回")]
+            [Description("Trả lại quyết toán ngoại trú")]
             mzjsth = 4,
-            [Description("住院结算")]
+            [Description("Quyết toán nội trú")]
             zyjs = 5,
-            [Description("住院结算退回")]
+            [Description("Trả lại quyết toán nội trú")]
             zyjsth = 6,
-            [Description("退余额")]
+            [Description("Trả số dư")]
             tye = 9
         }
 
         /// <summary>
-        /// 危重级别
+        /// Mức độ nguy kịch
         /// </summary>
         public enum EnumWzjb
         {
             /// <summary>
-            /// 一般
+            /// Thông thường
             /// </summary>
-            [Description("一般")]
+            [Description("Thông thường")]
             Normal = 1,
             /// <summary>
-            /// 病重
+            /// Bệnh nặng
             /// </summary>
-            [Description("病重")]
+            [Description("Bệnh nặng")]
             Serious = 2,
             /// <summary>
-            /// 病危
+            /// Nguy kịch
             /// </summary>
-            [Description("病危")]
+            [Description("Nguy kịch")]
             Bedying = 3
         }
 
         public enum EnumOrgshzt
         {
             /// <summary>
-            /// 审核通过
+            /// Duyệt đạt
             /// </summary>
-            [Description("通过")]
+            [Description("Đạt")]
             TG = 1,
             /// <summary>
-            /// 审核未通过
+            /// Duyệt chưa đạt
             /// </summary>
-            [Description("未通过")]
+            [Description("Chưa đạt")]
             WTG = 2,
             /// <summary>
-            /// 待审
+            /// Chờ duyệt
             /// </summary>
-            [Description("待审")]
+            [Description("Chờ duyệt")]
             DS = 3,
             /// <summary>
-            /// 未提交
+            /// Chưa nộp
             /// </summary>
-            [Description("未提交")]
+            [Description("Chưa nộp")]
             WTJ = 4,
             /// <summary>
-            /// 预提交
+            /// Nộp trước
             /// </summary>
-            [Description("预提交")]
+            [Description("Nộp trước")]
             YTJ = 5
         }
 
         public enum EnumPayStatus
         {
-            [Description("支付成功")]
+            [Description("Thanh toán thành công")]
             Success = 1,
-            [Description("支付失败")]
+            [Description("Thanh toán thất bại")]
             Failed = 2
         }
 
         public enum EnumRefundStatus
         {
-            [Description("退款成功")]
+            [Description("Hoàn tiền thành công")]
             Success = 1,
-            [Description("退款失败")]
+            [Description("Hoàn tiền thất bại")]
             Failed = 2,
-            [Description("未知")]
+            [Description("Không rõ")]
             UnKnown = 3
         }
 
@@ -1021,19 +1021,19 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         {
 
             /// <summary>
-            /// 支付宝付款码
+            /// Mã thanh toán Alipay
             /// </summary>
-            [Description("支付宝")]
+            [Description("Alipay")]
             Alipay_Bar_Code = 1,
             /// <summary>
-            /// 微信付款码
+            /// Mã thanh toán WeChat
             /// </summary>
-            [Description("微信")]
+            [Description("WeChat")]
             Wechat_MICROPAY = 2,
         }
 
         /// <summary>
-        /// 枚举-年龄单位
+        /// Enum-Đơn vị tuổi
         /// </summary>
         public enum EnumAgeUnit
         {
@@ -1043,643 +1043,643 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             Hour = 4,
         }
         /// <summary>
-        /// 门诊预约状态
+        /// Trạng thái đặt hẹn ngoại trú
         /// </summary>
         public enum EnumMzyyzt
         {
-            [Description("已约")]
+            [Description("Đã hẹn")]
             book = 1,
-            [Description("已挂号")]
+            [Description("Đã đăng ký khám")]
             reg = 2,
-            [Description("预约已取消")]
+            [Description("Đặt hẹn đã hủy")]
             cancel = 3,
-            [Description("当日挂号")]
+            [Description("Đăng ký khám trong ngày")]
             bookreg = 4,
-            [Description("取消挂号")]
+            [Description("Hủy đăng ký khám")]
             regcancel = 5
         }
         /// <summary>
-        /// 门诊排班类型
+        /// Loại lịch ngoại trú
         /// </summary>
         public enum EnumMzpblx
         {
-            [Description("全部")]
+            [Description("Tất cả")]
             all = 1,
-            [Description("开放预约")]
+            [Description("Mở đặt hẹn")]
             yy = 2,
-            [Description("非预约")]
+            [Description("Không đặt hẹn")]
             fyy = 3
         }
         /// <summary>
-        /// 开放预约
+        /// Mở đặt hẹn
         /// </summary>
         public enum EnumMzpbBook
         {
-            [Description("是")]
+            [Description("Có")]
             Y = 1,
-            [Description("否")]
+            [Description("Không")]
             F = 0,
         }
         /// <summary>
-        /// 处方状态
+        /// Trạng thái đơn thuốc
         /// </summary>
         public enum EnumZfzt
         {
 
-            [Description("正常处方")]
+            [Description("Đơn thuốc bình thường")]
             zc = 0,
-            [Description("退药或者其他作废处方")]
+            [Description("Đơn thuốc trả thuốc hoặc hủy khác")]
             ty = 1
         }
 
         /// <summary>
-        /// 急诊状态
-        /// 原EnumJzzt
+        /// Trạng thái cấp cứu
+        /// GốcEnumJzzt
         /// </summary>
         public enum EnumEJzzt
         {
-            [Description("否")]
+            [Description("Không")]
             zc = 0,
-            [Description("是")]
+            [Description("Có")]
             ty = 1
         }
         /// <summary>
-        /// 门诊挂号来源
+        /// Nguồn đăng ký khám ngoại trú
         /// </summary>
         public enum EnumMzghly
         {
             [Description("His")]
             His = 0,
-            [Description("预约")]
+            [Description("Đặt hẹn")]
             Yy = 1,
-            [Description("银医通")]
+            [Description("Ngân y thông")]
             Yyt = 3,
-            [Description("微信")]
+            [Description("WeChat")]
             WeChat = 4,
-            [Description("支付宝")]
+            [Description("Alipay")]
             Alipay = 5,
-            [Description("体检")]
+            [Description("Khám sức khỏe")]
             Tj = 6,
-            [Description("自助机")]
+            [Description("Máy tự phục vụ")]
             SelfTerminal = 7,
         }
         /// <summary>
-        /// 医保属性
+        /// Thuộc tính BHYT
         /// </summary>
         public enum EnumCblb
         {
-            [Description("全部")]
+            [Description("Tất cả")]
             all = 0,
-            [Description("职工")]
+            [Description("Công nhân viên chức")]
             zg = 1,
-            [Description("居民")]
+            [Description("Cư dân")]
             jm = 2,
-            [Description("离休")]
+            [Description("Nghỉ hưu theo chế độ")]
             lx = 3,
-            [Description("异地职工")]
+            [Description("Công nhân viên chức ngoài địa phương")]
             ydzg = 4,
-            [Description("异地居民")]
+            [Description("Cư dân ngoài địa phương")]
             ydjm = 5,
 
         }
 
         public enum EnumRportType
         {
-            [Description("职工费用申报表(民政救助)")]
+            [Description("Bảng kê khai chi phí công nhân viên chức(Cứu trợ dân chính)")]
             zgmzjz = 1,
-            [Description("居民费用申请表(民政救助)")]
+            [Description("Bảng đăng ký chi phí cư dân(Cứu trợ dân chính)")]
             jmmzjz = 2,
-            [Description("普通报账报表(职工)")]
+            [Description("Báo cáo quyết toán thông thường(Công nhân viên chức)")]
             zgbz = 3,
-            [Description("普通报账报表(居民)")]
+            [Description("Báo cáo quyết toán thông thường(Cư dân)")]
             jmbz = 4,
-            [Description("普通报账报表(离休)")]
+            [Description("Báo cáo quyết toán thông thường(Nghỉ hưu theo chế độ)")]
             lxbz = 5,
-            [Description("普通报账报表(异地职工)")]
+            [Description("Báo cáo quyết toán thông thường(Công nhân viên chức ngoài địa phương)")]
             ydzgbz = 6,
-            [Description("普通报账报表(异地居民)")]
+            [Description("Báo cáo quyết toán thông thường(Cư dân ngoài địa phương)")]
             ydjmbz = 7,
 
         }
         /// <summary>
-        /// 人员类别
+        /// Loại nhân viên
         /// </summary>
         public enum EnumRylb
         {
-            [Description("职工在职")]
+            [Description("Công nhân viên chức đang làm việc")]
             zgzz = 1101,
-            [Description("公务员在职")]
+            [Description("Công chức đang làm việc")]
             gwyzz = 1102,
-            [Description("灵活就业人员在职")]
+            [Description("Người làm việc linh hoạt đang làm việc")]
             lhjyryzz = 1103,
-            [Description("地方其他扩展人员")]
+            [Description("Nhân viên mở rộng khác của địa phương")]
             qtdfkzry = 1160,
-            [Description("职工退休")]
+            [Description("Công nhân viên chức nghỉ hưu")]
             zgtx = 1201,
-            [Description("公务员退休")]
+            [Description("Công chức nghỉ hưu")]
             gwytx = 1202,
-            [Description("灵活就业人员退休")]
+            [Description("Người làm việc linh hoạt nghỉ hưu")]
             lhjyrytx = 1203,
-            [Description("地方其他扩展人员")]
+            [Description("Nhân viên mở rộng khác của địa phương")]
             qtdfkzrytx = 1260,
-            [Description("离休人员")]
+            [Description("Người nghỉ hưu theo chế độ")]
             lxry = 1300,
-            [Description("地方其他扩展人员")]
+            [Description("Nhân viên mở rộng khác của địa phương")]
             lxdfqtkzry = 1360,
-            [Description("新生儿")]
+            [Description("Trẻ sơ sinh")]
             xse = 1401,
-            [Description("学龄前儿童")]
+            [Description("Trẻ trước tuổi đi học")]
             xlqet = 1402,
-            [Description("中小学生")]
+            [Description("Học sinh tiểu học và trung học")]
             zxxs = 1403,
-            [Description("大学生")]
+            [Description("Sinh viên đại học")]
             dxs = 1404,
-            [Description("未成年（未入学）")]
+            [Description("Chưa thành niên(Chưa nhập học)")]
             wcn = 1405,
-            [Description("地方其他扩展身份")]
+            [Description("Thân phận mở rộng khác của địa phương")]
             dfqtgkzf = 1460,
-            [Description("普通居民（成年）")]
+            [Description("Cư dân thông thường(Người trưởng thành)")]
             ptjm = 1501,
-            [Description("地方其他扩展身份")]
+            [Description("Thân phận mở rộng khác của địa phương")]
             jmdfqtgzsf = 1560,
-            [Description("居民（老年）")]
+            [Description("Cư dân(Người cao tuổi)")]
             jmln = 16,
-            [Description("居民（成年）")]
+            [Description("Cư dân(Người trưởng thành)")]
             jmcn = 15,
-            [Description("居民（未成年）")]
+            [Description("Cư dân(Chưa thành niên)")]
             jmwcn = 14,
-            [Description("离休")]
+            [Description("Nghỉ hưu theo chế độ")]
             lx = 13,
-            [Description("退休人员")]
+            [Description("Người nghỉ hưu")]
             txry = 12,
-            [Description("在职")]
+            [Description("Đang làm việc")]
             zz = 11
 
         }
         public enum EnumYbQuery
         {
-            [Description("人员待遇享受")]
+            [Description("Hưởng chế độ nhân viên")]
             rydyxs = 1,
-            [Description("就诊信息查询")]
+            [Description("Truy vấn thông tin khám")]
             jzxxcx = 2,
-            [Description("诊断信息查询")]
+            [Description("Truy vấn thông tin chẩn đoán")]
             zdxxcx = 3,
-            [Description("结算信息查询")]
+            [Description("Truy vấn thông tin quyết toán")]
             jsxxcx = 4,
-            [Description("费用明细查询")]
+            [Description("Truy vấn chi tiết chi phí")]
             fymxcx = 5,
-            [Description("人员慢特病用药记录查询")]
+            [Description("Truy vấn hồ sơ dùng thuốc bệnh mạn tính, đặc biệt của nhân viên")]
             rymtbyyjl = 6,
-            [Description("人员累计信息查询")]
+            [Description("Truy vấn thông tin tích lũy của nhân viên")]
             ryljxxcx = 7,
-            [Description("人员特殊病备案查询")]
+            [Description("Truy vấn hồ sơ bệnh đặc biệt của nhân viên")]
             rytsbbacx = 8,
-            [Description("人员定点信息查询")]
+            [Description("Truy vấn thông tin điểm định sẵn của nhân viên")]
             ryddxxcx = 9,
-            [Description("在院信息查询")]
+            [Description("Truy vấn thông tin đang nằm viện")]
             zyxxcx = 10,
-            [Description("转院信息查询")]
+            [Description("Truy vấn thông tin chuyển viện")]
             zyxx = 11,
 
         }
         /// <summary>
-        /// 待遇检查类型
+        /// Loại kiểm tra chế độ
         /// </summary>
         public enum Enumdyjclx
         {
-            [Description("基金项检查")]
+            [Description("Kiểm tra khoản quỹ")]
             jjxjc = 1,
-            [Description("其他检查")]
+            [Description("Kiểm tra khác")]
             qtjc = 99
         }
         /// <summary>
-        /// 基金支付类型
+        /// Loại chi trả quỹ
         /// </summary>
         public enum Enumjjzflx
         {
-            [Description("城镇职工基本医疗保险统筹基金")]
+            [Description("Quỹ điều phối BHYT cơ bản cho công nhân viên chức thành thị")]
             tcjj = 310100,
-            [Description("城镇职工基本医疗保险个人账户基金")]
+            [Description("Quỹ tài khoản cá nhân BHYT cơ bản cho công nhân viên chức thành thị")]
             grzhjj = 310200,
-            [Description("公务员医疗补助基金")]
+            [Description("Quỹ trợ cấp y tế công chức")]
             gwybzjj = 320100,
-            [Description("大额医疗费用补助基金")]
+            [Description("Quỹ trợ cấp chi phí y tế lớn")]
             debzjj = 330100,
-            [Description("离休人员医疗保障基金")]
+            [Description("Quỹ bảo đảm y tế cho người nghỉ hưu theo chế độ")]
             lxbzjj = 340100,
-            [Description("一至六级残疾军人医疗补助基金")]
+            [Description("Quỹ trợ cấp y tế cho quân nhân khuyết tật cấp một đến sáu")]
             cjjrbzjj = 350100,
-            [Description("企业补充医疗保险基金")]
+            [Description("Quỹ BHYT bổ sung doanh nghiệp")]
             qybxjj = 370100,
-            [Description("医院垫付基金")]
+            [Description("Quỹ bệnh viện ứng trước")]
             yydfjj = 999996,
-            [Description("区级公务员基金")]
+            [Description("Quỹ công chức cấp quận")]
             qgwyjj = 999901,
-            [Description("城乡居民基本医疗保险基金")]
+            [Description("Quỹ BHYT cơ bản cho cư dân thành thị và nông thôn")]
             cxjmbxjj = 390100,
-            [Description("城乡居民大病医疗保险基金")]
+            [Description("Quỹ BHYT bệnh hiểm nghèo cho cư dân thành thị và nông thôn")]
             cxjmdbbxjj = 390200,
-            [Description("生育基金")]
+            [Description("Quỹ sinh sản")]
             syjj = 510100,
-            [Description("职工生育基金")]
+            [Description("Quỹ sinh sản công nhân viên chức")]
             zgsyjj = 310103,
-            [Description("医疗救助基金")]
+            [Description("Quỹ cứu trợ y tế")]
             yljzjj = 610100,
-            [Description("医疗再救助基金")]
+            [Description("Quỹ tái cứu trợ y tế")]
             ylzjzjj = 610102,
-            [Description("健康扶贫基金")]
+            [Description("Quỹ xóa đói giảm nghèo vì sức khỏe")]
             jkpfjj = 610103,
-            [Description("精准脱贫基金")]
+            [Description("Quỹ thoát nghèo chính xác")]
             jztpjj = 610104,
-            [Description("其他基金")]
+            [Description("Quỹ khác")]
             qtjj = 999997
         }
         /// <summary>
-        /// 基金款项待遇享受标志
+        /// Cờ hưởng chế độ khoản quỹ
         /// </summary>
         public enum Enumdyxsbz
         {
-            [Description("否")]
+            [Description("Không")]
             s = 0,
-            [Description("是")]
+            [Description("Có")]
             f = 1
         }
         /// <summary>
-        /// 诊断类别
+        /// Loại chẩn đoán
         /// </summary>
         public enum Enumzdlx
         {
-            [Description("西医诊断")]
+            [Description("Chẩn đoán tây y")]
             xyzd = 1,
-            [Description("中医主病诊断")]
+            [Description("Chẩn đoán bệnh chính y học cổ truyền")]
             zyzzd = 2,
-            [Description("中医主证诊断")]
+            [Description("Chẩn đoán chứng chính y học cổ truyền")]
             zyzzzd = 3
         }
         /// <summary>
-        /// 险种类型
+        /// Loại hình bảo hiểm
         /// </summary>
         public enum Enumxzlx
         {
-            [Description("职工基本医疗保险")]
+            [Description("BHYT cơ bản cho công nhân viên chức")]
             zgjbylbx = 310,
-            [Description("公务员医疗补助")]
+            [Description("Trợ cấp y tế công chức")]
             gwyylbz = 320,
-            [Description("大额医疗费用补助")]
+            [Description("Trợ cấp chi phí y tế lớn")]
             deylfybz = 330,
-            [Description("离休人员医疗保障")]
+            [Description("Bảo đảm y tế cho người nghỉ hưu theo chế độ")]
             lxryylbz = 340,
-            [Description("一至六级残废军人医疗补助")]
+            [Description("Trợ cấp y tế cho quân nhân tàn tật cấp một đến sáu")]
             cfjrylbz = 350,
-            [Description("老红军医疗保障")]
+            [Description("Bảo đảm y tế cho lão Hồng quân")]
             lhjylbz = 360,
-            [Description("企业补充医疗保险")]
+            [Description("BHYT bổ sung doanh nghiệp")]
             qybcylbx = 370,
-            [Description("新型农村合作医疗")]
+            [Description("Hợp tác y tế nông thôn kiểu mới")]
             xxnchzyl = 380,
-            [Description("城乡居民基本医疗保险")]
+            [Description("BHYT cơ bản cho cư dân thành thị và nông thôn")]
             cxjmjbylbx = 390,
-            [Description("城镇居民基本医疗保险")]
+            [Description("BHYT cơ bản cho cư dân thành thị")]
             czjmjbylbx = 391,
-            [Description("城乡居民大病医疗保险")]
+            [Description("BHYT bệnh hiểm nghèo cho cư dân thành thị và nông thôn")]
             cxjmdbbx = 392,
-            [Description("其他特殊人员医疗保障")]
+            [Description("Bảo đảm y tế cho nhân viên đặc biệt khác")]
             qttsryylbz = 399,
-            [Description("长期照护保险")]
+            [Description("Bảo hiểm chăm sóc dài hạn")]
             cqzhbx = 410,
-            [Description("生育保险")]
+            [Description("Bảo hiểm sinh sản")]
             sybx = 510
         }
         /// <summary>
-        /// 医疗类别
+        /// Loại y tế
         /// </summary>
         public enum Enumyllb
         {
-            [Description("普通门诊")]
+            [Description("Khám ngoại trú thông thường")]
             ptmz = 11,
-            [Description("门诊挂号")]
+            [Description("Đăng ký khám ngoại trú")]
             mzgh = 12,
-            [Description("急诊")]
+            [Description("Cấp cứu")]
             jz = 13,
-            [Description("门诊慢特病")]
+            [Description("Bệnh mạn tính, đặc biệt ngoại trú")]
             mzmtb = 14,
-            [Description("意外伤害门诊")]
+            [Description("Khám ngoại trú tai nạn bất ngờ")]
             ywshmz = 19,
-            [Description("普通住院")]
+            [Description("Nội trú thông thường")]
             ptzy = 21,
-            [Description("转外诊治住院")]
+            [Description("Chuyển ra ngoài điều trị nội trú")]
             zwzzzy = 23,
-            [Description("急诊转住院")]
+            [Description("Cấp cứu chuyển nội trú")]
             jzzzy = 24,
-            [Description("生育门诊")]
+            [Description("Khám ngoại trú sinh sản")]
             symz = 51,
-            [Description("生育住院")]
+            [Description("Nội trú sinh sản")]
             syzy = 52,
-            [Description("计划生育手术费")]
+            [Description("Phí phẫu thuật kế hoạch hóa gia đình")]
             jhsyssf = 53,
-            [Description("重大疾病门诊")]
+            [Description("Khám ngoại trú bệnh hiểm nghèo")]
             zdjbmz = 9901,
-            [Description("重大疾病住院")]
+            [Description("Nội trú bệnh hiểm nghèo")]
             zdjbzy = 9902,
-            [Description("儿童两病门诊")]
+            [Description("Khám ngoại trú hai bệnh trẻ em")]
             etlbmz = 9903,
-            [Description("儿童两病住院")]
+            [Description("Nội trú hai bệnh trẻ em")]
             etlbzy = 9904,
-            [Description("耐多药结核门诊")]
+            [Description("Khám ngoại trú lao kháng đa thuốc")]
             ndyjhmz = 9906,
-            [Description("耐多药结核住院")]
+            [Description("Nội trú lao kháng đa thuốc")]
             ndyjhzy = 9907,
-            [Description("转入住院")]
+            [Description("Chuyển vào nội trú")]
             zrzy = 9925,
-            [Description("新生儿随母住院")]
+            [Description("Trẻ sơ sinh nội trú theo mẹ")]
             xsesmzy = 9921
         }
         /// <summary>
-        /// 申报来源
+        /// Nguồn kê khai
         /// </summary>
         public enum Enumsbly
         {
-            [Description("定点医药机构")]
+            [Description("Cơ sở y dược điểm định sẵn")]
             etlbmz = 01,
-            [Description("中心经办系统")]
+            [Description("Hệ thống xử lý của trung tâm")]
             etlbzy = 02,
-            [Description("网上经办系统")]
+            [Description("Hệ thống xử lý trực tuyến")]
             ndyjhmz = 03,
             [Description("APP")]
             ndyjhzy = 04,
-            [Description("一体机")]
+            [Description("Máy tích hợp")]
             zrzy = 05,
-            [Description("其他")]
+            [Description("Khác")]
             xsesmzy = 99
         }
         /// <summary>
-        /// 生育类别
+        /// Loại sinh sản
         /// </summary>
         public enum EnumSylb
         {
             /// <summary>
-            /// 正常产
+            /// Sinh thường
             /// </summary>
-            [Description("正常产")]
+            [Description("Sinh thường")]
             Zcc = 1,
             /// <summary>
-            /// 助娩产
+            /// Sinh có hỗ trợ
             /// </summary>
-            [Description("助娩产")]
+            [Description("Sinh có hỗ trợ")]
             Zmc = 2,
             /// <summary>
-            /// 剖宫产
+            /// Sinh mổ
             /// </summary>
-            [Description("剖宫产")]
+            [Description("Sinh mổ")]
             Pgc = 3,
             /// <summary>
-            /// 难产
+            /// Sinh khó
             /// </summary>
-            [Description("难产")]
+            [Description("Sinh khó")]
             nc = 4,
             /// <summary>
-            /// 流产
+            /// Sảy thai
             /// </summary>
-            [Description("流产")]
+            [Description("Sảy thai")]
             lc = 5,
             /// <summary>
-            /// 引产
+            /// Gây chuyển dạ
             /// </summary>
-            [Description("引产")]
+            [Description("Gây chuyển dạ")]
             yc = 6,
             /// <summary>
-            /// 产前检查
+            /// Kiểm tra trước sinh
             /// </summary>
-            [Description("产前检查")]
+            [Description("Kiểm tra trước sinh")]
             cqjc = 7,
             /// <summary>
-            /// 其他
+            /// Khác
             /// </summary>
-            [Description("其他")]
+            [Description("Khác")]
             qt = 9,
             /// <summary>
-            /// 宫外孕
+            /// Thai ngoài tử cung
             /// </summary>
-            [Description("宫外孕")]
+            [Description("Thai ngoài tử cung")]
             gwc = 10,
             /// <summary>
-            /// 遗传基因检测
+            /// Xét nghiệm gen di truyền
             /// </summary>
-            [Description("遗传基因检测")]
+            [Description("Xét nghiệm gen di truyền")]
             ycjyjc = 11,
             /// <summary>
-            /// 四个月以上流引产
+            /// Sảy thai/gây chuyển dạ trên bốn tháng
             /// </summary>
-            [Description("四个月以上流产")]
+            [Description("Sảy thai trên bốn tháng")]
             sgyyslc = 12,
             /// <summary>
-            /// 四个月以下流产
+            /// Sảy thai dưới bốn tháng
             /// </summary>
-            [Description("四个月以下流产")]
+            [Description("Sảy thai dưới bốn tháng")]
             sgyyxlc = 13
         }
         /// <summary>
-        /// 计划生育手术类别
+        /// Loại phẫu thuật kế hoạch hóa gia đình
         /// </summary>
         public enum EnumSysslb
         {
             /// <summary>
-            /// 放置宫内节育器
+            /// Đặt dụng cụ tử cung
             /// </summary>
-            [Description("放置宫内节育器")]
+            [Description("Đặt dụng cụ tử cung")]
             fzgnjyq = 1,
             /// <summary>
-            /// 取出宫内节育器
+            /// Lấy dụng cụ tử cung
             /// </summary>
-            [Description("取出宫内节育器")]
+            [Description("Lấy dụng cụ tử cung")]
             qcgnjyq = 2,
             /// <summary>
-            /// 流产术
+            /// Thủ thuật nạo phá thai
             /// </summary>
-            [Description("流产术")]
+            [Description("Thủ thuật nạo phá thai")]
             lcs = 3,
             /// <summary>
-            /// 引产术
+            /// Thủ thuật gây chuyển dạ
             /// </summary>
-            [Description("引产术")]
+            [Description("Thủ thuật gây chuyển dạ")]
             ycs = 4,
             /// <summary>
-            /// 绝育手术
+            /// Phẫu thuật triệt sản
             /// </summary>
-            [Description("绝育手术")]
+            [Description("Phẫu thuật triệt sản")]
             jyss = 5,
             /// <summary>
-            /// 绝育复通手术
+            /// Phẫu thuật phục hồi sau triệt sản
             /// </summary>
-            [Description("绝育复通手术")]
+            [Description("Phẫu thuật phục hồi sau triệt sản")]
             jyftss = 6,
             /// <summary>
-            /// 绝育手术（输精管）
+            /// Phẫu thuật triệt sản(Ống dẫn tinh)
             /// </summary>
-            [Description("绝育手术（输精管）")]
+            [Description("Phẫu thuật triệt sản(Ống dẫn tinh)")]
             jysssjg = 7,
             /// <summary>
-            /// 绝育复通手术（输精管）
+            /// Phẫu thuật phục hồi sau triệt sản(Ống dẫn tinh)
             /// </summary>
-            [Description("绝育复通手术（输精管）")]
+            [Description("Phẫu thuật phục hồi sau triệt sản(Ống dẫn tinh)")]
             jyftsssjg = 8,
             /// <summary>
-            /// 其他
+            /// Khác
             /// </summary>
-            [Description("其他")]
+            [Description("Khác")]
             qt = 9,
             /// <summary>
-            /// 皮下埋植术
+            /// Thủ thuật cấy dưới da
             /// </summary>
-            [Description("皮下埋植术")]
+            [Description("Thủ thuật cấy dưới da")]
             pxmzs = 10,
             /// <summary>
-            /// 取消皮下埋植术
+            /// Hủy thủ thuật cấy dưới da
             /// </summary>
-            [Description("取消皮下埋植术")]
+            [Description("Hủy thủ thuật cấy dưới da")]
             qxpxmzs = 11,
             /// <summary>
-            /// 输卵管结扎术
+            /// Thủ thuật thắt ống dẫn trứng
             /// </summary>
-            [Description("输卵管结扎术")]
+            [Description("Thủ thuật thắt ống dẫn trứng")]
             srgjzs = 12
         }
         /// <summary>
-        /// 晚育标志/早产标志
+        /// Cờ sinh muộn/Cờ sinh non
         /// </summary>
         public enum EnumWybz
         {
             /// <summary>
-            /// 否
+            /// Không
             /// </summary>
-            [Description("否")]
+            [Description("Không")]
             f = 0,
             /// <summary>
-            /// 是
+            /// Có
             /// </summary>
-            [Description("是")]
+            [Description("Có")]
             s = 1,
         }
         /// <summary>
-        /// 医生类型
+        /// Loại bác sĩ
         /// </summary>
         public enum EnumYslx
         {
-            [Description("住院医生")] //Resident
+            [Description("Bác sĩ nội trú")] //Resident
             ZyDoc = 1,
-            [Description("主治医生")] //Attending
+            [Description("Bác sĩ điều trị chính")] //Attending
             ZzDoc = 2,
-            [Description("主任医生")] //chief
+            [Description("Bác sĩ chủ nhiệm")] //chief
             ZrDoc = 3
         }
         /// <summary>
-        /// 异地标识
+        /// Dấu hiệu ngoài địa phương
         /// </summary>
         public enum EnumYd
         {
             /// <summary>
-            /// 否
+            /// Không
             /// </summary>
-            [Description("否")]
+            [Description("Không")]
             f = 0,
             /// <summary>
-            /// 是
+            /// Có
             /// </summary>
-            [Description("是")]
+            [Description("Có")]
             s = 1,
         }
         /// <summary>
-        /// 病人性质
+        /// Tính chất bệnh nhân
         /// </summary>
         public enum EnumBrxz
         {
             /// <summary>
-            /// 自费
+            /// Tự chi trả
             /// </summary>
-            [Description("自费")]
+            [Description("Tự chi trả")]
             zf = 0,
             /// <summary>
-            /// 职工医保
+            /// BHYT công nhân viên chức
             /// </summary>
-            [Description("职工医保")]
+            [Description("BHYT công nhân viên chức")]
             zg = 1,
             /// <summary>
-            /// 居民医保
+            /// BHYT cư dân
             /// </summary>
-            [Description("居民医保")]
+            [Description("BHYT cư dân")]
             jm = 2,
             /// <summary>
-            /// 离休
+            /// Nghỉ hưu theo chế độ
             /// </summary>
-            [Description("离休")]
+            [Description("Nghỉ hưu theo chế độ")]
             lx = 3,
             /// <summary>
-            /// 普通医保
+            /// BHYT thông thường
             /// </summary>
-            [Description("普通医保")]
+            [Description("BHYT thông thường")]
             pt = 11,
         }
         /// <summary>
-        /// 订单状态0:待支付 1:支付中  2:已支付 3：已退款 4:已作废
+        /// Trạng thái đơn hàng0:Chờ thanh toán 1:Đang thanh toán  2:Đã thanh toán 3:Đã hoàn tiền 4:Đã hủy
         /// </summary>
         public enum EnumOrderStatus
         {
             /// <summary>
-            /// 待支付
+            /// Chờ thanh toán
             /// </summary>
-            [Description("待支付")]
+            [Description("Chờ thanh toán")]
             dzf = 0,
             /// <summary>
-            /// 支付中
+            /// Đang thanh toán
             /// </summary>
-            [Description("支付中")]
+            [Description("Đang thanh toán")]
             zfz = 1,
             /// <summary>
-            /// 已支付
+            /// Đã thanh toán
             /// </summary>
-            [Description("已支付")]
+            [Description("Đã thanh toán")]
             yzf = 2,
             /// <summary>
-            /// 已退款
+            /// Đã hoàn tiền
             /// </summary>
-            [Description("已退款")]
+            [Description("Đã hoàn tiền")]
             ytk = 3,
             /// <summary>
-            /// 已作废
+            /// Đã hủy
             /// </summary>
-            [Description("已作废")]
+            [Description("Đã hủy")]
             zf = 4,
         }
         /// <summary>
-        /// 交易卡类型
+        /// Loại thẻ giao dịch
         /// </summary>
         public enum EnumJykxzlx
         {
             /// <summary>
-            /// 自费
+            /// Tự chi trả
             /// </summary>
-            [Description("自费")]
+            [Description("Tự chi trả")]
             zf = 0,
             /// <summary>
-            /// 医保
+            /// BHYT
             /// </summary>
-            [Description("医保")]
+            [Description("BHYT")]
             yb = 1
         }
         /// <summary>
-        /// 订单业务类型
+        /// Loại nghiệp vụ đơn hàng
         /// </summary>
         public enum EnumOrderType
         {
             /// <summary>
-            /// 门诊
+            /// Ngoại trú
             /// </summary>
-            [Description("门诊")]
+            [Description("Ngoại trú")]
             mz = 1,
             /// <summary>
-            /// 住院
+            /// Nội trú
             /// </summary>
-            [Description("住院")]
+            [Description("Nội trú")]
             zy = 2
         }
     }
@@ -1687,284 +1687,284 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
     public class CisClientEnum : ClientEnum
     {
         /// <summary>
-        /// 证件类型
+        /// Loại giấy tờ
         /// </summary>
         public enum EnumZjlx
         {
             /// <summary>
-            /// 身份证
+            /// CMND
             /// </summary>
-            [Description("身份证")]
+            [Description("CMND")]
             sfz = 1,
             /// <summary>
-            /// 护照
+            /// Hộ chiếu
             /// </summary>
-            [Description("护照")]
+            [Description("Hộ chiếu")]
             hz,
             /// <summary>
-            /// 军官证
+            /// Chứng nhận sĩ quan
             /// </summary>
-            [Description("军官证")]
+            [Description("Chứng nhận sĩ quan")]
             jgz,
             /// <summary>
-            /// 其他
+            /// Khác
             /// </summary>
-            [Description("其他")]
+            [Description("Khác")]
             other = 9
         }
 
         /// <summary>
-        /// 自负性质（药品、项目字典的属性）
+        /// Tính chất tự trả(Thuốc,Thuộc tính của từ điển hạng mục)
         /// </summary>
         public enum EnumZiFuXingZhi
         {
             /// <summary>
-            /// 可报
+            /// Được thanh toán
             /// </summary>
-            [Description("可报")]
+            [Description("Được thanh toán")]
             KB = 0,
             /// <summary>
-            /// 自费
+            /// Tự chi trả
             /// </summary>
-            [Description("自费")]
+            [Description("Tự chi trả")]
             ZF = 1,
             /// <summary>
-            /// 分类自负
+            /// Tự trả theo phân loại
             /// </summary>
-            [Description("分类自负")]
+            [Description("Tự trả theo phân loại")]
             FLZF = 2,
             /// <summary>
-            /// 绝对自理
+            /// Hoàn toàn tự lo
             /// </summary>
-            [Description("绝对自理")]
+            [Description("Hoàn toàn tự lo")]
             JueDuiZiLi = 3,
             /// <summary>
-            /// 甲类
+            /// Hạng A
             /// </summary>
-            [Description("甲类")]
+            [Description("Hạng A")]
             Jia,
             /// <summary>
-            /// 乙类
+            /// Hạng B
             /// </summary>
-            [Description("乙类")]
+            [Description("Hạng B")]
             Yi,
             /// <summary>
-            /// 丙类
+            /// Hạng C
             /// </summary>
-            [Description("丙类")]
+            [Description("Hạng C")]
             Bing,
         }
 
         /// <summary>
-        /// 药品类别
+        /// Loại thuốc
         /// </summary>
         public enum EnumYpsx
         {
-            [Description("麻精药品（麻醉、精一、精二）")]
+            [Description("Thuốc gây mê, hướng thần(Gây mê,Hướng thần I,Hướng thần II)")]
             Mzyp = 9,
-            [Description("毒性药品")]
+            [Description("Thuốc độc")]
             Dxyp = 4,
-            [Description("血液制品")]
+            [Description("Chế phẩm máu")]
             Xyzp = 5,
-            [Description("激素药品")]
+            [Description("Thuốc hormone")]
             Jsyp = 6,
-            [Description("贵重药品")]
+            [Description("Thuốc quý")]
             Gzyp = 7,
-            [Description("抗肿瘤药物药品")]
+            [Description("Thuốc chống ung thư")]
             Kzlywyp = 8,
         }
         /// <summary>
-        /// 抗生素级别
+        /// Cấp kháng sinh
         /// </summary>
         public enum EnumKss
         {
 
-            [Description("非限制使用药物")]
+            [Description("Thuốc dùng không giới hạn")]
             Fxzsyyw = 0,
-            [Description("限制使用药物")]
+            [Description("Thuốc dùng giới hạn")]
             Xzsyyw = 1,
-            [Description("特殊使用药物")]
+            [Description("Thuốc dùng đặc biệt")]
             Tssyyw = 2,
         }
 
         /// <summary>
-        /// 就诊状态
+        /// Trạng thái khám
         /// </summary>
         public enum EnumJzzt
         {
             /// <summary>
-            /// 未就诊
+            /// Chưa khám
             /// </summary>
-            [Description("未就诊")]
+            [Description("Chưa khám")]
             NotYetTreate = 1,
             /// <summary>
-            /// 就诊中
+            /// Đang khám
             /// </summary>
-            [Description("就诊中")]
+            [Description("Đang khám")]
             Treating = 2,
             /// <summary>
-            /// 就诊结束
+            /// Kết thúc khám
             /// </summary>
-            [Description("就诊结束")]
+            [Description("Kết thúc khám")]
             Treated = 3,
         }
 
 
 
         /// <summary>
-        /// 处方类型
+        /// Loại đơn thuốc
         /// </summary>
         public enum EnumCflx
         {
             /// <summary>
-            /// 西药处方
+            /// Đơn thuốc tây
             /// </summary>
-            [Description("西药处方")]
+            [Description("Đơn thuốc tây")]
             WMPres = 1,
             /// <summary>
-            /// 中药处方
+            /// Đơn thuốc đông y
             /// </summary>
-            [Description("中药处方")]
+            [Description("Đơn thuốc đông y")]
             TCMPres = 2,
             /// <summary>
-            /// 康复处方
+            /// Đơn thuốc phục hồi chức năng
             /// </summary>
-            [Description("康复处方")]
+            [Description("Đơn thuốc phục hồi chức năng")]
             RehabPres = 3,
             /// <summary>
-            /// 检验处方
+            /// Đơn xét nghiệm
             /// </summary>
-            [Description("检验处方")]
+            [Description("Đơn xét nghiệm")]
             InspectionPres = 4,
             /// <summary>
-            /// 检查处方
+            /// Đơn kiểm tra
             /// </summary>
-            [Description("检查处方")]
+            [Description("Đơn kiểm tra")]
             ExaminationPres = 5,
             /// <summary>
-            /// 常规项目处方
+            /// Đơn hạng mục thông thường
             /// </summary>
-            [Description("常规项目处方")]
+            [Description("Đơn hạng mục thông thường")]
             RegularItemPres = 6,
 
-            [Description("电子处方")]
+            [Description("Đơn thuốc điện tử")]
             Dzcf = 7,
 
         }
 
         public enum EnumYpyf
         {
-            [Description("西医")]
+            [Description("Tây y")]
             WM = 1,
-            [Description("中医")]
+            [Description("Y học cổ truyền")]
             TCM = 2
         }
 
         /// <summary>
-        /// 诊断类型
+        /// Loại chẩn đoán
         /// </summary>
         public enum EnumZdlx
         {
             /// <summary>
-            /// 主诊断
+            /// Chẩn đoán chính
             /// </summary>
-            [Description("主诊断")]
+            [Description("Chẩn đoán chính")]
             Main = 1,
             /// <summary>
-            /// 副诊断
+            /// Chẩn đoán phụ
             /// </summary>
-            [Description("副诊断")]
+            [Description("Chẩn đoán phụ")]
             Deputy = 2
         }
 
         /// <summary>
-        /// 处方模板类型
-        /// （病历模板类型也是用此枚举）
+        /// Loại mẫu đơn thuốc
+        /// (Loại mẫu bệnh án cũng dùng enum này)
         /// </summary>
         public enum EnumCfMbLx
         {
             /// <summary>
-            /// 个人
+            /// Cá nhân
             /// </summary>
-            [Description("个人")]
+            [Description("Cá nhân")]
             personal = 1,
             /// <summary>
-            /// 科室
+            /// Khoa
             /// </summary>
-            [Description("科室")]
+            [Description("Khoa")]
             department = 2,
             /// <summary>
-            /// 全院
+            /// Toàn viện
             /// </summary>
-            [Description("全院")]
+            [Description("Toàn viện")]
             hospital = 3,
         }
 
         /// <summary>
-        /// 检验检查组套类型  （检验检查共用一个页面，只是参数（即type）不同）
+        /// Loại gói xét nghiệm/kiểm tra  (Xét nghiệm và kiểm tra dùng chung một trang,chỉ khác tham số(tức làtype)Khác nhau)
         /// </summary>
         public enum EnumjyjczutaoLx
         {
             /// <summary>
-            /// 检验
+            /// Xét nghiệm
             /// </summary>
-            [Description("检验")]
+            [Description("Xét nghiệm")]
             jy = 1,
             /// <summary>
-            /// 检查
+            /// Kiểm tra
             /// </summary>
-            [Description("检查")]
+            [Description("Kiểm tra")]
             jc = 2
         }
 
         /// <summary>
-        /// 检验检查模板类型  （检验检查共用一个页面，只是参数（即type）不同）
+        /// Loại mẫu xét nghiệm/kiểm tra  (Xét nghiệm và kiểm tra dùng chung một trang,chỉ khác tham số(tức làtype)Khác nhau)
         /// </summary>
         public enum EnumjyjcmbLx
         {
             /// <summary>
-            /// 检验
+            /// Xét nghiệm
             /// </summary>
-            [Description("检验")]
+            [Description("Xét nghiệm")]
             jy = 1,
             /// <summary>
-            /// 检查
+            /// Kiểm tra
             /// </summary>
-            [Description("检查")]
+            [Description("Kiểm tra")]
             jc = 2
         }
 
         /// <summary>
-        /// 收费项目计价策略
+        /// Chiến lược định giá hạng mục thu phí
         /// </summary>
         public enum EnumSfxmJjcl
         {
             /// <summary>
-            /// 按时长
+            /// Theo thời lượng
             /// </summary>
-            [Description("按时长")]
+            [Description("Theo thời lượng")]
             Time = 1,
             /// <summary>
-            /// 按数量
+            /// Theo số lượng
             /// </summary>
-            [Description("按数量")]
+            [Description("Theo số lượng")]
             Amount,
             /// <summary>
-            /// 按面积
+            /// Theo diện tích
             /// </summary>
-            [Description("按面积")]
+            [Description("Theo diện tích")]
             Acreage,
         }
 
         /// <summary>
-        /// 历史病历来源
+        /// Nguồn bệnh án lịch sử
         /// </summary>
         public enum Enumlsblly
         {
             /// <summary>
             /// 
             /// </summary>
-            [Description("本系统")]
+            [Description("Hệ thống này")]
             self = 1,
             /// <summary>
             /// 
@@ -1974,517 +1974,517 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         }
 
         /// <summary>
-        /// 登录标志
+        /// Cờ đăng nhập
         /// </summary>
         public enum EnumLoginFlag
         {
             /// <summary>
             /// 
             /// </summary>
-            [Description("单点登录")]
+            [Description("Đăng nhập một lần (SSO)")]
             SSO = 1,
             /// <summary>
             /// 
             /// </summary>
-            [Description("系统登录")]
+            [Description("Đăng nhập hệ thống")]
             App = 2
         }
 
         /// <summary>
-        /// 饮食类别
+        /// Loại ăn uống
         /// </summary>
         public enum Enumyslb
         {
             /// <summary>
             /// 
             /// </summary>
-            [Description("回民普食")]
+            [Description("Suất ăn thường cho người Hồi")]
             hmps = 1,
             /// <summary>
             /// 
             /// </summary>
-            [Description("回民半流")]
+            [Description("Suất ăn nửa lỏng cho người Hồi")]
             hmbl = 2,
             /// <summary>
             /// 
             /// </summary>
-            [Description("回民流质")]
+            [Description("Suất ăn lỏng cho người Hồi")]
             hmlz = 3,
             /// <summary>
             /// 
             /// </summary>
-            [Description("一般普食")]
+            [Description("Suất ăn thường thông thường")]
             ybps = 4,
             /// <summary>
             /// 
             /// </summary>
-            [Description("一般半流")]
+            [Description("Suất ăn nửa lỏng thông thường")]
             ybbl = 5,
             /// <summary>
             /// 
             /// </summary>
-            [Description("一般流质")]
+            [Description("Suất ăn lỏng thông thường")]
             yblz = 6,
             /// <summary>
             /// 
             /// </summary>
-            [Description("膳食自备")]
+            [Description("Tự chuẩn bị suất ăn")]
             sszb = 7,
             /// <summary>
             /// 
             /// </summary>
-            [Description("禁食")]
+            [Description("Nhịn ăn")]
             js = 8,
             /// <summary>
             /// 
             /// </summary>
-            [Description("肠内营养")]
+            [Description("Dinh dưỡng đường ruột")]
             cnyy = 9,
             /// <summary>
             /// 
             /// </summary>
-            [Description("营养补充剂")]
+            [Description("Chất bổ sung dinh dưỡng")]
             yybcj = 10,
         }
 
 
         /// <summary>
-        /// 排队叫号状态
+        /// Trạng thái xếp hàng gọi số
         /// </summary>
         public enum EmunQueueCalledStu
         {
-            [Description("已签到")]
+            [Description("Đã điểm danh")]
             sign = 1,
-            [Description("已叫")]
+            [Description("Đã gọi")]
             call = 2,
-            [Description("过号")]
+            [Description("Quá số")]
             pass = 3,
-            [Description("应答")]
+            [Description("Trả lời")]
             reply = 4,
         }
 
         /// <summary>
-        /// 门诊住院标志  0 通用 1 仅门诊 2 仅住院 3 系统（门诊住院都不可用）例如：家床
+        /// Cờ ngoại trú/nội trú  0 Chung 1 Chỉ ngoại trú 2 Chỉ nội trú 3 Hệ thống(Cả ngoại trú và nội trú đều không dùng được)Ví dụ:Giường tại nhà
         /// </summary>
         public enum Enummzzybz
         {
 
             /// <summary>
-            /// 仅门诊
+            /// Chỉ ngoại trú
             /// </summary>
-            [Description("门诊")]
+            [Description("Ngoại trú")]
             mz = 1,
             /// <summary>
-            /// 仅住院
+            /// Chỉ nội trú
             /// </summary>
-            [Description("住院")]
+            [Description("Nội trú")]
             zy = 2,
             ///// <summary>
-            ///// 通用
+            ///// Chung
             ///// </summary>
-            //[Description("通用")]
+            //[Description("Chung")]
             //ty = 9,
         }
         public enum Enumzxzt
         {
             /// <summary>
-            /// 未执行
+            /// Chưa thực hiện
             /// </summary>
-            [Description("未执行")]
+            [Description("Chưa thực hiện")]
             wzx = 0,
             /// <summary>
-            /// 已执行
+            /// Đã thực hiện
             /// </summary>
-            [Description("已执行")]
+            [Description("Đã thực hiện")]
             yzx = 1,
             /// <summary>
-            /// 取消执行
+            /// Hủy thực hiện
             /// </summary>
-            [Description("取消执行")]
+            [Description("Hủy thực hiện")]
             yqx = 2
 
         }
         /// <summary>
-        /// 分诊叫号状态
+        /// Trạng thái gọi số phân loại
         /// </summary>
         public enum EmunConsultCalledStu
         {
-            [Description("待叫号")]
+            [Description("Chờ gọi số")]
             wait = 1,
-            [Description("已叫")]
+            [Description("Đã gọi")]
             call = 2,
-            [Description("过号")]
+            [Description("Quá số")]
             pass = 3,
-            [Description("应答")]
+            [Description("Trả lời")]
             reply = 4,
-            [Description("重新叫号")]
+            [Description("Gọi số lại")]
             recall = 5,
         }
         /// <summary>
-        /// 远程诊疗状态
+        /// Trạng thái khám chữa bệnh từ xa
         /// </summary>
         public enum Emunzlzt
         {
-            [Description("待确认")]
+            [Description("Chờ xác nhận")]
             dqr = 1,
-            [Description("就诊中")]
+            [Description("Đang khám")]
             jzz = 2,
-            [Description("已结束")]
+            [Description("Đã kết thúc")]
             yjs = 3,
-            [Description("已退回")]
+            [Description("Đã trả lại")]
             yth = 4,
-            [Description("已撤销")]
+            [Description("Đã thu hồi")]
             ycx = 5,
-            [Description("已发药")]
+            [Description("Đã phát thuốc")]
             yfy = 6,
         }
 
-        #region 住院
+        #region Nội trú
         /// <summary>
-        /// 在院标志
+        /// Cờ đang nằm viện
         /// </summary>
         public enum EnumZYBZ
         {
             /// <summary>
-            /// 入院登记
+            /// Đăng ký nhập viện
             /// </summary>
             Xry = 0,
             /// <summary>
-            /// 病区中
+            /// Đang ở khu bệnh
             /// </summary>
             Bqz = 1,
             /// <summary>
-            /// 病区出院（出病区）（待结账）
+            /// Xuất khỏi khu bệnh(Ra khỏi khu bệnh)(Chờ quyết toán)
             /// </summary>
             Djz = 2,
             /// <summary>
-            /// 已出院（出院结算）
+            /// Đã xuất viện(Quyết toán xuất viện)
             /// </summary>
             Ycy = 3,
             /// <summary>
-            /// 转区
+            /// Chuyển khu
             /// </summary>
             Zq = 7,
 
             /// <summary>
-            /// 作废记录/取消入院
+            /// Hồ sơ hủy/Hủy nhập viện
             /// </summary>
             Wry = 9,
         }
 
         /// <summary>
-        /// 医嘱类型
+        /// Loại y lệnh
         /// </summary>
         public enum EnumYzlx
         {
             ///// <summary>
-            ///// 通用
+            ///// Chung
             ///// </summary>
-            //[Description("通用")]
+            //[Description("Chung")]
             //Ty = 1,
             /// <summary>
-            /// 药品
+            /// Thuốc
             /// </summary>
-            [Description("药品")]
+            [Description("Thuốc")]
             Yp = 2,
             /// <summary>
-            /// 文字
+            /// Văn bản
             /// </summary>
-            [Description("文字")]
+            [Description("Văn bản")]
             Wz = 3,
             /// <summary>
-            /// 出院带药
+            /// Mang thuốc khi xuất viện
             /// </summary>
-            [Description("出院带药")]
+            [Description("Mang thuốc khi xuất viện")]
             Cydy = 4,
             /// <summary>
-            /// 项目
+            /// Hạng mục
             /// </summary>
-            [Description("项目")]
+            [Description("Hạng mục")]
             sfxm = 5,
             /// <summary>
-            /// 项目
+            /// Hạng mục
             /// </summary>
-            [Description("检验")]
+            [Description("Xét nghiệm")]
             jy = 6,
             /// <summary>
-            /// 项目
+            /// Hạng mục
             /// </summary>
-            [Description("检查")]
+            [Description("Kiểm tra")]
             jc = 7,
             /// <summary>
-            /// 项目
+            /// Hạng mục
             /// </summary>
-            [Description("膳食医嘱")]
+            [Description("Y lệnh suất ăn")]
             ssyz = 8,
             /// <summary>
-            /// 手术
+            /// Phẫu thuật
             /// </summary>
-            [Description("手术")]
+            [Description("Phẫu thuật")]
             oper = 9,
             /// <summary>
-            /// 中草药
+            /// Thảo dược
             /// </summary>
-            [Description("中草药")]
+            [Description("Thảo dược")]
             zcy = 10,
             /// <summary>
-            /// 康复
+            /// Phục hồi chức năng
             /// </summary>
-            [Description("康复")]
+            [Description("Phục hồi chức năng")]
             rehab = 11
 
         }
         /// <summary>
-        /// 医嘱状态
+        /// Trạng thái y lệnh
         /// </summary>
         public enum EnumYzzt
         {
             /// <summary>
-            /// 待审 
+            /// Chờ duyệt 
             /// </summary>
-            [Description("待审")]
+            [Description("Chờ duyệt")]
             Ds = 0,
             /// <summary>
-            /// 审核
+            /// Duyệt
             /// </summary>
-            [Description("审核")]
+            [Description("Duyệt")]
             Sh = 1,
             /// <summary>
-            /// 执行
+            /// Thực hiện
             /// </summary>
-            [Description("执行")]
+            [Description("Thực hiện")]
             Zx = 2,
             /// <summary>
-            /// 撤DC
+            /// RútDC
             /// </summary>
             [Description("DC")]
             DC = 3,
             /// <summary>
-            /// 停止或作废
+            /// Dừng hoặc hủy
             /// </summary>
-            [Description("停止")]
+            [Description("Dừng")]
             TZ = 4
         }
         /// <summary>
-        /// 药品单位类别
+        /// Loại đơn vị thuốc
         /// </summary>
         public enum EnumYPdwlb
         {
             /// <summary>
-            /// 剂量单位
+            /// Đơn vị liều lượng
             /// </summary>
             Jldw = 1,
             /// <summary>
-            /// 药库单位
+            /// Đơn vị kho thuốc
             /// </summary>
             Ykdw = 2,
             /// <summary>
-            /// 门诊单位
+            /// Đơn vị ngoại trú
             /// </summary>
             Mzdw = 3,
             /// <summary>
-            /// 住院单位
+            /// Đơn vị nội trú
             /// </summary>
             Zydw = 4,
             /// <summary>
-            /// 进货单位
+            /// Đơn vị nhập hàng
             /// </summary>
             Jhdw = 5,
             /// <summary>
-            /// 最小单位
+            /// Đơn vị nhỏ nhất
             /// </summary>
             Zxdw = 6
         }
         /// <summary>
-        /// 套餐范围
+        /// Phạm vi gói
         /// </summary>
         public enum EnumTcfw
         {
-            [Description("个人")]
+            [Description("Cá nhân")]
             Person = 1,
-            [Description("科室")]
+            [Description("Khoa")]
             Dept = 2,
-            [Description("病区")]
+            [Description("Khu bệnh")]
             Ward = 3,
-            [Description("全院")]
+            [Description("Toàn viện")]
             Hosp = 4
         }
         /// <summary>
-        /// 护理病人状态（护理生命体征录入用）
+        /// Trạng thái bệnh nhân điều dưỡng(Dùng để nhập dấu hiệu sinh tồn điều dưỡng)
         /// </summary>
         public enum EnumHlbrzt
         {
-            [Description("入院")]
+            [Description("Nhập viện")]
             Ry = 1,
-            [Description("在院")]
+            [Description("Đang nằm viện")]
             Zy = 2,
-            [Description("出院")]
+            [Description("Xuất viện")]
             Cy = 3,
-            [Description("请假")]
+            [Description("Xin nghỉ")]
             Qj = 4,
-            [Description("转入")]
+            [Description("Chuyển vào")]
             Zr = 5,
-            [Description("转出")]
+            [Description("Chuyển ra")]
             Zc = 6,
-            [Description("拒测")]
+            [Description("Từ chối đo")]
             Jc = 7,
-            [Description("返院")]
+            [Description("Trở lại viện")]
             Fy = 8,
-            [Description("复测")]
+            [Description("Đo lại")]
             Fc = 9,
-            [Description("卧床")]
+            [Description("Nằm giường")]
             Wc = 10,
-            [Description("死亡")]
+            [Description("Tử vong")]
             Sw = 11,
-            [Description("手术")]
+            [Description("Phẫu thuật")]
             ss = 12,
-            [Description("回室")]
+            [Description("Trở về phòng")]
             hs = 13
         }
         /// <summary>
-        /// 执行周期单位
+        /// Đơn vị chu kỳ thực hiện
         /// </summary>
         public enum EnumZxzqdw
         {
             /// <summary>
-            /// 天
+            /// ngày
             /// </summary>
             Day = 1,
             /// <summary>
-            /// 小时
+            /// giờ
             /// </summary>
             Hour = 2,
             /// <summary>
-            /// 分钟
+            /// phút
             /// </summary>
             Minute = 3,
             /// <summary>
-            /// 不规则周期
+            /// Chu kỳ không đều
             /// </summary>
             Unruly = 4
         }
         /// <summary>
-        /// 发药退药标志
+        /// Cờ phát/trả thuốc
         /// </summary>
         public enum EnumMedSTflag
         {
-            [Description("发药")]
+            [Description("Phát thuốc")]
             Receive = 1,
-            [Description("全退")]
+            [Description("Trả toàn bộ")]
             AllReturn = 2,
-            [Description("部分退")]
+            [Description("Trả một phần")]
             PartReturn = 3
         }
         /// <summary>
-        /// 医嘱性质
+        /// Tính chất y lệnh
         /// </summary>
         public enum EnumYzxz
         {
-            [Description("临时")]
+            [Description("Tạm thời")]
             Ls = 1,
-            [Description("长期")]
+            [Description("Dài hạn")]
             Cq = 2
         }
         /// <summary>
-        /// 床位记录状态
+        /// Trạng thái hồ sơ giường bệnh
         /// </summary>
         public enum EnumCwjlzt
         {
-            [Description("当前")]
+            [Description("Hiện tại")]
             Dq = 1,
-            [Description("转床")]
+            [Description("Chuyển giường")]
             Zc = 2,
-            [Description("转区")]
+            [Description("Chuyển khu")]
             Zq = 3,
-            [Description("出区")]
+            [Description("Ra khỏi khu")]
             Cq = 4,
-            [Description("取消入区")]
+            [Description("Hủy vào khu")]
             QxRq = 5
         }
         /// <summary>
-        /// 医生类型
+        /// Loại bác sĩ
         /// </summary>
         public enum EnumYslx
         {
-            [Description("住院医生")] //Resident
+            [Description("Bác sĩ nội trú")] //Resident
             ZyDoc = 1,
-            [Description("主治医生")] //Attending
+            [Description("Bác sĩ điều trị chính")] //Attending
             ZzDoc = 2,
-            [Description("主任医生")] //chief
+            [Description("Bác sĩ chủ nhiệm")] //chief
             ZrDoc = 3
         }
         /// <summary>
-        /// 护理级别
+        /// Cấp điều dưỡng
         /// </summary> 
         public enum EnumHljb
         {
             /// <summary>
-            /// I级
+            /// ICấp
             /// </summary>
-            [Description("I级")]
+            [Description("ICấp")]
             I = 1,
             /// <summary>
-            /// II级
+            /// IICấp
             /// </summary>
-            [Description("II级")]
+            [Description("IICấp")]
             II = 2,
             /// <summary>
-            /// III级
+            /// IIICấp
             /// </summary>
-            [Description("III级")]
+            [Description("IIICấp")]
             III = 3,
             /// <summary>
-            /// 特级
+            /// Đặc cấp
             /// </summary>
-            [Description("特级")]
+            [Description("Đặc cấp")]
             T = 4
         }
         /// <summary>
-        /// 结算状态
+        /// Trạng thái quyết toán
         /// </summary>
         public enum EnumJszt
         {
-            [Description("已结算")]
+            [Description("Đã quyết toán")]
             Yjs = 1,
-            [Description("未结算")]
+            [Description("Chưa quyết toán")]
             Wjs = 2
         }
         /// <summary>
-        /// 固定执行标准
+        /// Tiêu chuẩn thực thi cố định
         /// </summary>
         public enum EnumGdzxbz
         {
             /// <summary>
-            /// 固定
+            /// Cố định
             /// </summary>
             Fixed = 1,
             /// <summary>
-            /// 不固定
+            /// Không cố định
             /// </summary>
             Nonfixed = 0
         }
         /// <summary>
-        /// 危重级别
+        /// Mức độ nguy kịch
         /// </summary>
         public enum EnumWzjb
         {
             /// <summary>
-            /// 一般
+            /// Thông thường
             /// </summary>
-            [Description("一般")]
+            [Description("Thông thường")]
             Normal = 1,
             /// <summary>
-            /// 病重
+            /// Bệnh nặng
             /// </summary>
-            [Description("病重")]
+            [Description("Bệnh nặng")]
             Serious = 2,
             /// <summary>
-            /// 病危
+            /// Nguy kịch
             /// </summary>
-            [Description("病危")]
+            [Description("Nguy kịch")]
             Bedying = 3
         }
-        //EnumDB已包含
+        //EnumDBĐã bao gồm
         //public enum EnumZdlx
         //{
         //    MainDiag=1,
@@ -2492,67 +2492,67 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         //}
 
         /// <summary>
-        /// 体温测量说明
+        /// Giải thích đo thân nhiệt
         /// </summary>
         public enum EnumTwclfs
         {
             /// <summary>
-            /// 口温
+            /// Nhiệt độ miệng
             /// </summary>
-            [Description("口温")]
+            [Description("Nhiệt độ miệng")]
             kw = 1,
             /// <summary>
-            /// 腋温
+            /// Nhiệt độ nách
             /// </summary>
-            [Description("腋温")]
+            [Description("Nhiệt độ nách")]
             yw = 2,
             /// <summary>
-            /// 肛温
+            /// Nhiệt độ hậu môn
             /// </summary>
-            [Description("肛温")]
+            [Description("Nhiệt độ hậu môn")]
             gw = 1,
         }
         /// <summary>
-        /// 膳食类别
+        /// Loại suất ăn
         /// </summary>
         public enum EnumSSLB
         {
             /// <summary>
-            /// 类型
+            /// Loại
             /// </summary>
-            [Description("类型")]
+            [Description("Loại")]
             lx = 1,
             /// <summary>
-            /// 特殊要求
+            /// Yêu cầu đặc biệt
             /// </summary>
-            [Description("特殊要求")]
+            [Description("Yêu cầu đặc biệt")]
             tsyq = 2,
             /// <summary>
-            /// 膳食型号
+            /// Loại suất ăn
             /// </summary>
-            [Description("膳食型号")]
+            [Description("Loại suất ăn")]
             ssxh = 3,
         }
 
         /// <summary>
-        /// 模板使用权限
+        /// Quyền dùng mẫu
         /// </summary>
         public enum Enummbqx
         {
             /// <summary>
-            /// 通用
+            /// Chung
             /// </summary>
-            [Description("通用")]
+            [Description("Chung")]
             pub = 0,
             /// <summary>
-            /// 个人
+            /// Cá nhân
             /// </summary>
-            [Description("个人")]
+            [Description("Cá nhân")]
             prv = 1,
             /// <summary>
-            /// 科室
+            /// Khoa
             /// </summary>
-            [Description("科室")]
+            [Description("Khoa")]
             dept = 2
         }
 
@@ -2562,174 +2562,174 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         public enum EnumBllx
         {
             /// <summary>
-            /// 住院病历
+            /// Bệnh án nội trú
             /// </summary>
-            [Description("住院病历")]
+            [Description("Bệnh án nội trú")]
             zybl = 1,
 
             /// <summary>
-            /// 病程记录
+            /// Ghi chép diễn biến bệnh
             /// </summary>
-            [Description("病程记录")]
+            [Description("Ghi chép diễn biến bệnh")]
             bcjl = 2,
 
             /// <summary>
-            /// 医疗文书
+            /// Văn bản y tế
             /// </summary>
-            [Description("医疗文书")]
+            [Description("Văn bản y tế")]
             ylws = 3,
 
             /// <summary>
-            /// 护理记录
+            /// Ghi chép điều dưỡng
             /// </summary>
-            [Description("护理记录")]
+            [Description("Ghi chép điều dưỡng")]
             hljl = 4,
 
             /// <summary>
-            /// 病案首页
+            /// Trang đầu bệnh án
             /// </summary>
             /// 
-            [Description("病案首页")]
+            [Description("Trang đầu bệnh án")]
             basy = 5,
 
             /// <summary>
-            /// 康复评估
+            /// Đánh giá phục hồi chức năng
             /// </summary>
-            [Description("康复评估")]
+            [Description("Đánh giá phục hồi chức năng")]
             kfpg = 6
         }
 
         //public enum EnumCYQK
         //{
         //    /// <summary>
-        //    /// 治愈
+        //    /// Khỏi bệnh
         //    /// </summary>
-        //    [Description("治愈")]
+        //    [Description("Khỏi bệnh")]
         //    zy = 1,
         //    /// <summary>
-        //    /// 好转
+        //    /// Đỡ hơn
         //    /// </summary>
-        //    [Description("好转")]
+        //    [Description("Đỡ hơn")]
         //    hz = 2,
         //    /// <summary>
-        //    /// 未愈
+        //    /// Chưa khỏi
         //    /// </summary>
-        //    [Description("未愈")]
+        //    [Description("Chưa khỏi")]
         //    wy = 3,
         //    /// <summary>
-        //    /// 死亡
+        //    /// Tử vong
         //    /// </summary>
-        //    [Description("死亡")]
+        //    [Description("Tử vong")]
         //    sw = 4,
         //    /// <summary>
-        //    /// 其他
+        //    /// Khác
         //    /// </summary>
-        //    [Description("其他")]
+        //    [Description("Khác")]
         //    qt = 5,
         //    /// <summary>
-        //    /// 转院
+        //    /// Chuyển viện
         //    /// </summary>
-        //    [Description("转院")]
+        //    [Description("Chuyển viện")]
         //    zhuanyuan = 6
 
         //}
         public enum EnumSF
         {
             /// <summary>
-            /// 否
+            /// Không
             /// </summary>
-            [Description("否")]
+            [Description("Không")]
             f = 0,
             /// <summary>
-            /// 是
+            /// Có
             /// </summary>
-            [Description("是")]
+            [Description("Có")]
             s = 1,
         }
 
-        //皮试测试
+        //Kiểm tra thử phản ứng da
         public enum EnumPSCS
         {
             /// <summary>
-            /// 否
+            /// Không
             /// </summary>
-            [Description("否")]
+            [Description("Không")]
             f = 0,
             /// <summary>
-            /// 是
+            /// Có
             /// </summary>
-            [Description("是")]
+            [Description("Có")]
             s = 1,
         }
         /// <summary>
-        /// 皮试结果
+        /// Kết quả thử phản ứng da
         /// </summary>
         public enum EnumPsResult
         {
-            [Description("阴性")]
+            [Description("Âm tính")]
             negative = 0,
-            [Description("阳性")]
+            [Description("Dương tính")]
             positive = 1,
         }
 
         /// <summary>
-        /// 科室备药状态
+        /// Trạng thái thuốc dự trữ của khoa
         /// </summary>
         public enum EnumKSBYZT
         {
-            [Description("已申请")]
+            [Description("Đã đăng ký")]
             sq = 0,
-            [Description("已提交")]
+            [Description("Đã nộp")]
             sh = 1,
-            [Description("已审核")]
+            [Description("Đã duyệt")]
             tj = 2,
-            [Description("已发药")]
+            [Description("Đã phát thuốc")]
             fy = 3,
-            [Description("已退回")]
+            [Description("Đã trả lại")]
             th = 4,
-            [Description("已作废")]
+            [Description("Đã hủy")]
             zf = 5,
         }
 
         /// <summary>
-        /// 科室备药退回状态
+        /// Trạng thái trả lại thuốc dự trữ của khoa
         /// </summary>
         public enum EnumKSBYTHZT
         {
-            [Description("保存")]
+            [Description("Lưu")]
             sq = 1,
-            [Description("审核")]
+            [Description("Duyệt")]
             sh = 2,
-            [Description("提交")]
+            [Description("Nộp")]
             tj = 3,
-            [Description("发药")]
+            [Description("Phát thuốc")]
             fy = 4,
-            [Description("撤回")]
+            [Description("Rút lại")]
             ch = 5,
-            [Description("退回")]
+            [Description("Trả lại")]
             th = 6,
-            [Description("作废")]
+            [Description("Hủy")]
             zf = 7,
         }
         /// <summary>
-        /// 药品来源
+        /// Nguồn thuốc
         /// </summary>
         public enum EnumYply
         {
-            [Description("科室备药")]
+            [Description("Thuốc dự trữ của khoa")]
             ksby = 1,
-            [Description("药房")]
+            [Description("Nhà thuốc")]
             yf = 2
         }
 
         /// <summary>
-        /// 皮试
+        /// Thử phản ứng da
         /// </summary>
         public enum EnumPs
         {
-            [Description("阴")]
+            [Description("Âm tính")]
             yin = 0,
-            [Description("阳")]
+            [Description("Dương tính")]
             yang = 1,
         }
         #endregion
@@ -2738,200 +2738,200 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
     public class EmrClientEnum : ClientEnum
     {
         /// <summary>
-        /// 模板使用权限
+        /// Quyền dùng mẫu
         /// </summary>
         public enum Enummbqx
         {
             /// <summary>
-            /// 通用
+            /// Chung
             /// </summary>
-            [Description("通用")]
+            [Description("Chung")]
             pub = 0,
             /// <summary>
-            /// 个人
+            /// Cá nhân
             /// </summary>
-            [Description("个人")]
+            [Description("Cá nhân")]
             prv = 1,
             /// <summary>
-            /// 科室
+            /// Khoa
             /// </summary>
-            [Description("科室")]
+            [Description("Khoa")]
             dept = 2
         }
         /// <summary>
-        /// 模板权限分配
+        /// Phân quyền mẫu
         /// </summary>
         public enum EnummbqxFp
         {
             /// <summary>
-            /// 无任何权限
+            /// Không có quyền nào
             /// </summary>
-            [Description("无权限")]
+            [Description("Không có quyền")]
             non = 0,
             /// <summary>
-            /// 只读
+            /// Chỉ đọc
             /// </summary>
-            [Description("只读")]
+            [Description("Chỉ đọc")]
             read = 1,
             /// <summary>
-            /// 读写
+            /// Đọc/ghi
             /// </summary>
-            [Description("读写")]
+            [Description("Đọc/ghi")]
             edit = 2
         }
 
         /// <summary>
-        /// 病历状态
+        /// Trạng thái bệnh án
         /// </summary>
         public enum EnumRecordStu
         {
-            [Description("未提交")]
+            [Description("Chưa nộp")]
             wtj = 0,
-            [Description("已提交")]
+            [Description("Đã nộp")]
             ytj = 1,
-            [Description("退回")]
+            [Description("Trả lại")]
             th = 2,
-            [Description("已签收")]
+            [Description("Đã ký nhận")]
             yqs = 3,
-            //[Description("病案归档")]
+            //[Description("Lưu trữ bệnh án")]
             //bagd = 4
         }
 
         public enum EnumPlanStu
         {
-            [Description("进行中")]
+            [Description("Đang tiến hành")]
             zc = 0,
-            [Description("已停止")]
+            [Description("Đã dừng")]
             tz = 1,
-            [Description("停止取消")]
+            [Description("Dừng/hủy")]
             tzqx = 2,
         }
 
         /// <summary>
-        /// 病历大类及模板 业务标志
+        /// Nhóm lớn bệnh án và mẫu Cờ nghiệp vụ
         /// </summary>
         public enum EnumMzbz
         {
             /// <summary>
-            /// 住院
+            /// Nội trú
             /// </summary>
-            [Description("住院")]
+            [Description("Nội trú")]
             zy = 0,
             /// <summary>
-            /// 门诊
+            /// Ngoại trú
             /// </summary>
-            [Description("门诊")]
+            [Description("Ngoại trú")]
             mz = 1,
             /// <summary>
-            /// 不限
+            /// Không giới hạn
             /// </summary>
-            [Description("不限")]
+            [Description("Không giới hạn")]
             all = 2,
         }
 
         /// <summary>
-        /// 模板加载方式
+        /// Cách tải mẫu
         /// </summary>
         public enum EnummbqxTempLoadWay
         {
             /// <summary>
-            /// 通用
+            /// Chung
             /// </summary>
-            [Description("都昌编辑器")]
+            [Description("Trình soạn thảo DCSoft")]
             DcWriter = 0,
             /// <summary>
-            /// 个人
+            /// Cá nhân
             /// </summary>
-            [Description("独立视图")]
+            [Description("View độc lập")]
             View = 1
         }
 
         /// <summary>
-        /// 使用标志
+        /// Cờ sử dụng
         /// </summary>
         public enum EnumSybz
         {
-            [Description("是")]
+            [Description("Có")]
             Y = 1,
-            [Description("否")]
+            [Description("Không")]
             N = 0
         }
         public enum EnumBlys
         {
-            [Description("目录")]
+            [Description("Mục lục")]
             ml = -1,
-            [Description("文本")]
+            [Description("Văn bản")]
             wb = 0,
-            [Description("下拉")]
+            [Description("Thả xuống")]
             xl = 1,
-            [Description("下拉多选")]
+            [Description("Thả xuống chọn nhiều")]
             xldx = 2,
-            [Description("日期(yyyy-MM-dd)")]
+            [Description("Ngày(yyyy-MM-dd)")]
             rq = 3,
-            [Description("时间(HH:mm)")]
+            [Description("Thời gian(HH:mm)")]
             sj = 4,
-            [Description("日期时间(yyyy-MM-dd HH:mm)")]
+            [Description("Ngày giờ(yyyy-MM-dd HH:mm)")]
             rqsj = 5,
-            [Description("数值")]
+            [Description("Giá trị số")]
             sz = 6
         }
         public enum ApplyStatusEnum
         {
             /// <summary>
-            /// 未批准
+            /// Chưa phê duyệt
             /// </summary>
-            [Description("未批准")]
+            [Description("Chưa phê duyệt")]
             wpz = 0,
             /// <summary>
-            /// 已审批
+            /// Đã phê duyệt
             /// </summary>
-            [Description("已审批")]
+            [Description("Đã phê duyệt")]
             ysp = 1,
             /// <summary>
-            /// 退回
+            /// Trả lại
             /// </summary>
-            [Description("退回")]
+            [Description("Trả lại")]
             th = 2
         }
 
         public enum EnumMRSex
         {
-            [Description("男")]
+            [Description("Nam")]
             M = 1,
-            [Description("女")]
+            [Description("Nữ")]
             F = 2
         }
         /// <summary>
-        /// 病案状态
+        /// Trạng thái bệnh án
         /// </summary>
         public enum Enumbazt
         {
-            [Description("待录入")]
+            [Description("Chờ nhập")]
             dlr = 1,
-            [Description("已录入")]
+            [Description("Đã nhập")]
             lrz = 2,
-            //[Description("已归档")]
+            //[Description("Đã lưu trữ")]
             //gd = 3
         }
 
         ///// <summary>
-        ///// 病历状态  và EMR通用
+        ///// Trạng thái bệnh án  và EMRChung
         ///// </summary>
         //public enum EnumRecordStu
         //{
-        //    [Description("未提交")]
+        //    [Description("Chưa nộp")]
         //    wtj = 0,
-        //    [Description("已提交")]
+        //    [Description("Đã nộp")]
         //    ytj = 1,
-        //    [Description("退回")]
+        //    [Description("Trả lại")]
         //    th = 2,
-        //    [Description("已签收")]
+        //    [Description("Đã ký nhận")]
         //    yqs = 3,
-        //    //[Description("病案归档")]
+        //    //[Description("Lưu trữ bệnh án")]
         //    //bagd = 4
         //}
         /// <summary>
-        /// 血型
+        /// Nhóm máu
         /// </summary>
         public enum EnumBloodType
         {
@@ -2943,20 +2943,20 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             O = 3,
             [Description("AB")]
             AB = 4,
-            [Description("不详")]
+            [Description("Không rõ")]
             BX = 5,
-            [Description("未查")]
+            [Description("Chưa tra")]
             WC = 6
         }
 
         /// <summary>
-        /// 死亡Bệnh nhân尸检
+        /// Tử vongBệnh nhânKhám nghiệm tử thi
         /// </summary>
         public enum EnumSwhzsj
         {
-            [Description("是")]
+            [Description("Có")]
             Y = 1,
-            [Description("否")]
+            [Description("Không")]
             N = 2
         }
 
@@ -2965,180 +2965,180 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         /// </summary>
         public enum EnumBloodTypeRH
         {
-            [Description("阴")]
+            [Description("Âm tính")]
             yin = 1,
-            [Description("阳")]
+            [Description("Dương tính")]
             yang = 2,
-            [Description("不详")]
+            [Description("Không rõ")]
             BX = 3,
-            [Description("未查")]
+            [Description("Chưa tra")]
             WC = 4
         }
 
         /// <summary>
-        /// 关系
+        /// Quan hệ
         /// </summary>
         public enum EnumGx
         {
-            [Description("本人或户主")]
+            [Description("Bản thân hoặc chủ hộ")]
             br = 1,
-            [Description("配偶")]
+            [Description("Vợ/chồng")]
             fq = 2,
-            [Description("子")]
+            [Description("Con")]
             z = 3,
-            [Description("女")]
+            [Description("Nữ")]
             n,
-            [Description("孙子、孙女或外孙子、外孙女")]
+            [Description("Cháu trai,Cháu gái hoặc cháu ngoại trai,Cháu ngoại gái")]
             sun,
-            [Description("父母")]
+            [Description("Cha mẹ")]
             fm,
-            [Description("祖父母或外祖父母")]
+            [Description("Ông bà nội hoặc ông bà ngoại")]
             zfm,
-            [Description("兄、弟、姐、妹")]
+            [Description("Anh,Em trai,Chị,Em gái")]
             xdjm,
-            [Description("其他")]
+            [Description("Khác")]
             qt
         }
         /// <summary>
-        /// 是或否
+        /// Có hoặc không
         /// </summary>
         public enum EnumYorN
         {
-            [Description("否")]
+            [Description("Không")]
             N = 1,
-            [Description("是")]
+            [Description("Có")]
             Y = 2
         }
 
 
         /// <summary>
-        /// 是或否
+        /// Có hoặc không
         /// </summary>
         public enum EnumNewYorN
         {
-            [Description("是")]
+            [Description("Có")]
             Y = 1,
-            [Description("否")]
+            [Description("Không")]
             N = 2
         }
 
         public enum EnumYork
         {
-            [Description("急诊")]
+            [Description("Cấp cứu")]
             y = 1,
-            [Description("门诊")]
+            [Description("Ngoại trú")]
             lcwqd = 2,
-            [Description("其他医疗机构转入")]
+            [Description("Chuyển đến từ cơ sở y tế khác")]
             qkbm = 3,
-            [Description("其他")]
+            [Description("Khác")]
             w = 4
         }
         /// <summary>
-        /// 否或是
+        /// Không hoặc có
         /// </summary>
         public enum EnumNorY
         {
-            [Description("否")]
+            [Description("Không")]
             N = 1,
-            [Description("是")]
+            [Description("Có")]
             Y = 2
         }
         /// <summary>
-        /// 有或无
+        /// Có hoặc không
         /// </summary>
         public enum EnumHorN
         {
-            [Description("无")]
+            [Description("Không có")]
             Non = 1,
-            [Description("有")]
+            [Description("Có")]
             Has = 2
         }
         /// <summary>
-        /// 输血反应
-        /// 1.是  2.否  3.未输
+        /// Phản ứng truyền máu
+        /// 1.Có  2.Không  3.Chưa nhập
         /// </summary>
         public enum EumSYFY
         {
-            [Description("是")]
+            [Description("Có")]
             y = 1,
-            [Description("否")]
+            [Description("Không")]
             n = 2,
-            [Description("未输")]
+            [Description("Chưa nhập")]
             Non = 3
         }
         /// <summary>
-        ///入院病情 1	有 2	临床未确定 3	情况不明 4	无
+        ///Tình trạng bệnh khi nhập viện 1	Có 2	Lâm sàng chưa xác định 3	Tình hình không rõ 4	Không có
         /// </summary>
         public enum EnumRybq
         {
-            [Description("有")]
+            [Description("Có")]
             y = 1,
-            [Description("临床未确定")]
+            [Description("Lâm sàng chưa xác định")]
             lcwqd = 2,
-            [Description("情况不明")]
+            [Description("Tình hình không rõ")]
             qkbm = 3,
-            [Description("无")]
+            [Description("Không có")]
             w = 4
         }
 
         /// <summary>
-        /// 出院情况
-        /// 1	治愈 2	好转 3	未愈4	死亡5	其他
+        /// Tình hình xuất viện
+        /// 1	Khỏi bệnh 2	Đỡ hơn 3	Chưa khỏi4	Tử vong5	Khác
         /// </summary>
         public enum EnumCyqk
         {
-            [Description("治愈")]
+            [Description("Khỏi bệnh")]
             zy = 1,
-            [Description("好转")]
+            [Description("Đỡ hơn")]
             hz = 2,
-            [Description("未愈")]
+            [Description("Chưa khỏi")]
             wy = 3,
-            [Description("死亡")]
+            [Description("Tử vong")]
             sw = 4,
-            [Description("其他")]
+            [Description("Khác")]
             qt = 5
         }
         /// <summary>
-        /// 诊断类型-主从
+        /// Loại chẩn đoán-Chính - phụ
         /// </summary>
         public enum EnumZdlxbs
         {
-            [Description("主要诊断")]
+            [Description("Chẩn đoán chủ yếu")]
             zy = 1,
-            [Description("次要诊断")]
+            [Description("Chẩn đoán thứ yếu")]
             cy = 2
         }
         /// <summary>
-        /// 诊断类型
+        /// Loại chẩn đoán
         /// </summary>
         public enum EnumZdlx2
         {
-            [Description("西医诊断")]
+            [Description("Chẩn đoán tây y")]
             WM = 1,
-            [Description("中医诊断")]
+            [Description("Chẩn đoán y học cổ truyền")]
             TCM = 2
 
         }
 
         /// <summary>
-        /// 入院途径
+        /// Đường nhập viện
         /// </summary>
         public enum EnumMrRYTJ
         {
             /// <summary>
-            /// 门诊
+            /// Ngoại trú
             /// </summary>
-            [Description("门诊")]
+            [Description("Ngoại trú")]
             mz = 1,
             /// <summary>
-            /// 急诊
+            /// Cấp cứu
             /// </summary>
-            [Description("急诊")]
+            [Description("Cấp cứu")]
             jz = 2,
             /// <summary>
-            /// 其他医疗机构转入
+            /// Chuyển đến từ cơ sở y tế khác
             /// </summary>
-            [Description("其他医疗机构转入")]
+            [Description("Chuyển đến từ cơ sở y tế khác")]
             qtyljg = 3,
             /// <summary>
             /// 120
@@ -3146,74 +3146,74 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             //[Description("120")]
             //jj120,
             /// <summary>
-            /// 其他
+            /// Khác
             /// </summary>
-            [Description("其他")]
+            [Description("Khác")]
             Else = 9,
         }
         /// <summary>
-        /// 病案质量
+        /// Chất lượng bệnh án
         /// </summary>
         public enum EnumBazl
         {
-            [Description("甲")]
+            [Description("Hạng A")]
             I = 1,
-            [Description("乙")]
+            [Description("Hạng B")]
             II,
-            [Description("丙")]
+            [Description("Hạng C")]
             III
         }
         /// <summary>
-        /// 离院方式
+        /// Cách rời viện
         /// </summary>
         public enum EnumLyfs
         {
-            [Description("医嘱离院")]
+            [Description("Rời viện theo y lệnh")]
             yzly = 1,
             /// <summary>
-            /// 急诊
+            /// Cấp cứu
             /// </summary>
-            [Description("医嘱转院")]
+            [Description("Y lệnh chuyển viện")]
             yzzy,
-            [Description("医嘱转社区卫生服务机构/乡镇卫生院")]
+            [Description("Y lệnh chuyển tới cơ sở dịch vụ y tế cộng đồng/Trạm y tế xã")]
             yzzsq,
-            [Description("非医嘱离院")]
+            [Description("Rời viện không theo y lệnh")]
             fyz,
-            [Description("死亡")]
+            [Description("Tử vong")]
             sw,
-            [Description("其他")]
+            [Description("Khác")]
             other = 9,
         }
         /// <summary>
-        /// 病情分型
+        /// Phân loại tình trạng bệnh
         /// </summary>
         public enum EnumBqfx
         {
-            [Description("病危")]
+            [Description("Nguy kịch")]
             bw = 1,
-            [Description("病重")]
+            [Description("Bệnh nặng")]
             bz,
-            [Description("疑难")]
+            [Description("Khó")]
             yn,
-            [Description("抢救")]
+            [Description("Cấp cứu")]
             qj,
-            [Description("一般")]
+            [Description("Thông thường")]
             yb
         }
         /// <summary>
-        /// 临床路径变异原因
+        /// Nguyên nhân biến dị đường lâm sàng
         /// </summary>
         public enum EnumBYYY
         {
-            [Description("正变异")]
+            [Description("Biến dị dương")]
             zby = 1,
-            [Description("负变异")]
+            [Description("Biến dị âm")]
             fby,
-            [Description("系统原因")]
+            [Description("Nguyên nhân hệ thống")]
             xtyy
         }
         /// <summary>
-        /// 检查情况
+        /// Tình hình kiểm tra
         /// </summary>
         public enum EnumJBQK
         {
@@ -3221,117 +3221,117 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             CT = 1,
             [Description("PETCT")]
             PETCT = 2,
-            [Description("双源")]
+            [Description("Hai nguồn")]
             SY = 3,
-            [Description("B超")]
+            [Description("BSiêu âm")]
             Bc = 4,
-            [Description("X片")]
+            [Description("Xphim")]
             Xp = 5,
-            [Description("超声心动图")]
+            [Description("Siêu âm tim")]
             CSXDT = 6,
             [Description("MRI")]
             MRI = 7
         }
         /// <summary>
-        /// 检查情况
+        /// Tình hình kiểm tra
         /// </summary>
         public enum EnumJCQK
         {
-            [Description("阳性")]
+            [Description("Dương tính")]
             Yang = 1,
-            [Description("阴性")]
+            [Description("Âm tính")]
             Non = 2,
-            [Description("未做")]
+            [Description("Chưa làm")]
             Yin = 3,
 
 
         }
 
         /// <summary>
-        ///抗菌药物使用情况 
+        ///Tình hình sử dụng thuốc kháng khuẩn 
         /// </summary>
         public enum EnumKJYWSYQK
         {
-            [Description("Ⅰ种")]
+            [Description("Loại Ⅰ")]
             first = 1,
-            [Description("Ⅱ联")]
+            [Description("Liên II")]
             second = 2,
-            [Description("Ⅲ联")]
+            [Description("Liên III")]
             third = 3,
-            [Description("Ⅳ联")]
+            [Description("Liên IV")]
             forth = 4,
-            [Description(">Ⅳ联")]
+            [Description("Liên > IV")]
             more = 5
         }
 
         /// <summary>
-        ///输液反映 0未输 2无 3有
+        ///Phản ứng truyền dịch 0Chưa nhập 2Không có 3Có
         /// </summary>
         public enum EnumSYFY
         {
-            [Description("未输")]
+            [Description("Chưa nhập")]
             first = 0,
-            [Description("无")]
+            [Description("Không có")]
             second = 1,
-            [Description("有")]
+            [Description("Có")]
             third = 2
         }
 
         /// <summary>
-        ///输血反映 0未输 2无 3有
+        ///Phản ứng truyền máu 0Chưa nhập 2Không có 3Có
         /// </summary>
         public enum EnumSXFY
         {
-            [Description("是")]
+            [Description("Có")]
             Y = 1,
-            [Description("否")]
+            [Description("Không")]
             N = 2,
-            [Description("未输")]
+            [Description("Chưa nhập")]
             none = 3
         }
 
         /// <summary>
-        ///住院跌倒伤害程度 0未输 2无 3有
+        ///Mức độ tổn thương do ngã khi nội trú 0Chưa nhập 2Không có 3Có
         /// </summary>
         public enum EnumZYDD_SHCD
         {
-            [Description("一级")]
+            [Description("Cấp một")]
             first = 1,
-            [Description("二级")]
+            [Description("Cấp hai")]
             second = 2,
-            [Description("三级")]
+            [Description("Cấp ba")]
             third = 3,
-            [Description("未造成伤害")]
+            [Description("Chưa gây tổn thương")]
             none = 4
         }
 
         /// <summary>
-        ///跌倒或坠床的原因
+        ///Nguyên nhân ngã hoặc rơi khỏi giường
         /// </summary>
         public enum EnumZYDD_YY
         {
-            [Description("健康原因")]
+            [Description("Nguyên nhân sức khỏe")]
             jkyy = 1,
-            [Description("治疗，药物，麻醉原因")]
+            [Description("Điều trị,Thuốc,Nguyên nhân gây mê")]
             zlywmzyy = 2,
-            [Description("环境因素")]
+            [Description("Yếu tố môi trường")]
             hjys = 3,
-            [Description("其他原因")]
+            [Description("Nguyên nhân khác")]
             qtyy = 4
         }
 
         /// <summary>
-        ///压疮分期
+        ///Phân giai đoạn loét do tì đè
         /// </summary>
         public enum EnumYCFQ
         {
-            [Description("1期")]
+            [Description("Đợt 1")]
             first = 1,
-            [Description("2期")]
+            [Description("Đợt 2")]
             second = 2,
-            [Description("3期")]
+            [Description("Đợt 3")]
             third = 3,
-            [Description("4期")]
+            [Description("Đợt 4")]
             forth = 4
         }
 
@@ -3345,102 +3345,102 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
     public class OrClientEnum : ClientEnum
     {
         /// <summary>
-        /// Đăng ký状态
+        /// Đăng kýTrạng thái
         /// </summary>
         public enum EnumSqzt
         {
-            [Description("待审核")]
+            [Description("Chờ duyệt")]
             /// <summary>
-            /// 已申请待审核(排班)
+            /// Đã đăng ký, chờ duyệt(Lịch trực)
             /// </summary>
             dsh = 1,
-            [Description("已审核")]
+            [Description("Đã duyệt")]
             /// <summary>
-            /// 已审核(排班)待手术
+            /// Đã duyệt(Lịch trực)Chờ phẫu thuật
             /// </summary>
             ypb = 2,
-            [Description("已取消申请")]
+            [Description("Đã hủy đăng ký")]
             /// <summary>
-            /// 已取消申请
+            /// Đã hủy đăng ký
             /// </summary>
             yqx = 3,
 
         }
 
         /// <summary>
-        /// 手术状态
+        /// Trạng thái phẫu thuật
         /// </summary>
         public enum EnumSSzt
         {
-            [Description("待排班")]
+            [Description("Chờ xếp lịch")]
             /// <summary>
-            /// 已审核(排班)
+            /// Đã duyệt(Lịch trực)
             /// </summary>
             dpb = 1,
-            [Description("已排班")]
+            [Description("Đã xếp lịch")]
             /// <summary>
-            /// 已审核(排班)待手术
+            /// Đã duyệt(Lịch trực)Chờ phẫu thuật
             /// </summary>
             ypb = 2,
-            [Description("已作废")]
+            [Description("Đã hủy")]
             /// <summary>
-            /// 已取消申请
+            /// Đã hủy đăng ký
             /// </summary>
             yzf = 3,
-            [Description("已登记")]
+            [Description("Đã đăng ký")]
             /// <summary>
-            /// 已取消登记
+            /// Đã hủy đăng ký
             /// </summary>
             yzx = 4
 
         }
 
         /// <summary>
-        /// 手术登记状态
+        /// Trạng thái đăng ký phẫu thuật
         /// </summary>
         public enum EnumSSdjzt
         {
-            [Description("待登记")]
+            [Description("Chờ đăng ký")]
             ddj = 1,
-            [Description("已登记")]
+            [Description("Đã đăng ký")]
             ydj = 2,
-            [Description("登记作废")]
+            [Description("Đăng ký bị hủy")]
             yzf = 3
         }
         /// <summary>
-        /// 手术级别
+        /// Cấp phẫu thuật
         /// </summary>
         public enum EnumSSjb
         {
-            [Description("I级")]
+            [Description("ICấp")]
             yj = 1,
-            [Description("II级")]
+            [Description("IICấp")]
             ej = 2,
-            [Description("III级")]
+            [Description("IIICấp")]
             sj = 3,
-            [Description("IV级")]
+            [Description("IVCấp")]
             fj = 4
         }
 
         /// <summary>
-        /// 是否隔离
+        /// Có cách ly hay không
         /// </summary>
         public enum EnumIsgl
         {
-            [Description("否")]
+            [Description("Không")]
             no = 0,
-            [Description("是")]
+            [Description("Có")]
             yes = 1
         }
 
         /// <summary>
-        /// 是否有菌
+        /// Có vi khuẩn hay không
         /// </summary>
         public enum EnumIsjun
         {
-            [Description("否")]
+            [Description("Không")]
             no = 0,
-            [Description("是")]
+            [Description("Có")]
             yes = 1
         }
     }
@@ -3449,353 +3449,353 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
     #region PDS
     public class PdsClientEnum : ClientEnum
     {/// <summary>
-     /// 单据类型
+     /// Loại chứng từ
      /// </summary>
         public enum EnumDanJuLX
         {
             /// <summary>
-            /// 药品入库
+            /// Nhập kho thuốc
             /// </summary>
-            [Description("药品入库")]   //单据号YPRKD111111111111
+            [Description("Nhập kho thuốc")]   //Số chứng từYPRKD111111111111
             yaopinruku = 1,
 
             /// <summary>
-            /// 外部出库
+            /// Xuất kho ra ngoài
             /// </summary>
-            [Description("外部出库")]   //单据号WBCKD111111111111
+            [Description("Xuất kho ra ngoài")]   //Số chứng từWBCKD111111111111
             waibucuku = 2,
 
             /// <summary>
-            /// 直接发药
+            /// Phát thuốc trực tiếp
             /// </summary>
-            [Description("直接出库")]   //单据号NBFYD111111111111
+            [Description("Xuất kho trực tiếp")]   //Số chứng từNBFYD111111111111
             zhijiefayao = 3,
 
             /// <summary>
-            /// 申领发药
+            /// Phát thuốc theo lĩnh
             /// </summary>
-            [Description("申领出库")]   //单据号SLCKD111111111111
+            [Description("Xuất kho theo lĩnh")]   //Số chứng từSLCKD111111111111
             shenlingfayao = 4,
 
             /// <summary>
-            /// 内部发药退回
+            /// Trả lại thuốc phát nội bộ
             /// </summary>
-            [Description("内部发药退回")] //单据号NBFYTHD111111111111
+            [Description("Trả lại thuốc phát nội bộ")] //Số chứng từNBFYTHD111111111111
             neibufayaotuihui = 5,
 
             /// <summary>
-            /// 药房向科室发药
+            /// Nhà thuốc phát thuốc cho khoa
             /// </summary>
-            [Description("科室发药")] //单据号KSFYD111111111111
+            [Description("Khoa phát thuốc")] //Số chứng từKSFYD111111111111
             keshifayao = 6,
 
             /// <summary>
-            /// 基药出库
+            /// Xuất kho thuốc thiết yếu
             /// </summary>
-            [Description("基药出库")] // 根据出库方式统计单据信息
+            [Description("Xuất kho thuốc thiết yếu")] // Thống kê thông tin chứng từ theo phương thức xuất kho
             jiyaochuku = 13,
             /// <summary>
-            /// 批量出库
+            /// Xuất kho hàng loạt
             /// </summary>
-            [Description("批量出库")] // 根据出库方式统计单据信息
+            [Description("Xuất kho hàng loạt")] // Thống kê thông tin chứng từ theo phương thức xuất kho
             piliangchuku = 14,
         }
 
         /// <summary>
-        /// 库存状态
+        /// Trạng thái tồn kho
         /// </summary>
         public enum EnumKCZT
         {
             /// <summary>
-            /// 启用
+            /// Bật
             /// </summary>
-            [Description("启用")]
+            [Description("Bật")]
             Enabled = 1,
             /// <summary>
-            /// 停用
+            /// Ngừng dùng
             /// </summary>
-            [Description("停用")]
+            [Description("Ngừng dùng")]
             Disabled = 0
         }
 
         /// <summary>
-        /// 本部门状态
+        /// Trạng thái bộ phận này
         /// </summary>
         public enum BenBuMenZT
         {
             /// <summary>
-            /// 正常
+            /// Bình thường
             /// </summary>
-            [Description("正常")]
+            [Description("Bình thường")]
             Normal = 1,
             /// <summary>
-            /// 控制
+            /// Kiểm soát
             /// </summary>
-            [Description("控制")]
+            [Description("Kiểm soát")]
             Control = 0
         }
 
         /// <summary>
-        /// 药品状态
+        /// Trạng thái thuốc
         /// </summary>
         public enum EnumYPZT
         {
             /// <summary>
-            /// 启用
+            /// Bật
             /// </summary>
-            [Description("启用")]
+            [Description("Bật")]
             Enabled = 1,
             /// <summary>
-            /// 停用
+            /// Ngừng dùng
             /// </summary>
-            [Description("停用")]
+            [Description("Ngừng dùng")]
             Disabled = 0
         }
 
         /// <summary>
-        /// 库存显示
+        /// Hiển thị tồn kho
         /// </summary>
         public enum EnumKCXS
         {
             /// <summary>
             /// None
             /// </summary>
-            [Description("全部")]
+            [Description("Tất cả")]
             None = -1,
             /// <summary>
-            /// 显示零库存
+            /// Hiển thị tồn kho bằng 0
             /// </summary>
-            [Description("显示零库存")]
+            [Description("Hiển thị tồn kho bằng 0")]
             Xslkc = 0,
             /// <summary>
-            /// 不显示理论数量为零
+            /// Không hiển thị số lượng lý thuyết bằng 0
             /// </summary>
-            [Description("不显示理论数量为零")]
+            [Description("Không hiển thị số lượng lý thuyết bằng 0")]
             Bxsllslwl = 1,
             /// <summary>
-            /// 不显示实际数量为零
+            /// Không hiển thị số lượng thực tế bằng 0
             /// </summary>
-            [Description("不显示实际数量为零")]
+            [Description("Không hiển thị số lượng thực tế bằng 0")]
             Bxssjslwl = 2,
             /// <summary>
-            /// 不显示实际数量为零
+            /// Không hiển thị số lượng thực tế bằng 0
             /// </summary>
-            [Description("不显示两者都为零")]
+            [Description("Không hiển thị khi cả hai đều bằng 0")]
             Bxslzdwl = 4
         }
 
         /// <summary>
-        /// 申领单发放状态
+        /// Trạng thái phát phiếu lĩnh
         /// </summary>
         public enum EnumSLDDeliveryStatus
         {
             /// <summary>
-            /// 未发
+            /// Chưa phát
             /// </summary>
-            [Description("未发")]
+            [Description("Chưa phát")]
             None = 0,
 
             /// <summary>
-            /// 已发部分
+            /// Đã phát một phần
             /// </summary>
-            [Description("已发部分")]
+            [Description("Đã phát một phần")]
             Part,
 
             /// <summary>
-            /// 已全发
+            /// Đã phát toàn bộ
             /// </summary>
-            [Description("已全发")]
+            [Description("Đã phát toàn bộ")]
             All,
 
             /// <summary>
-            /// 已终止（某些（甚至全部）明细以后都不会再发了，但这会被视为一张已结束的申领单）
+            /// Đã chấm dứt(Một số(thậm chí toàn bộ)chi tiết về sau đều sẽ không phát nữa,nhưng việc này sẽ được coi là một phiếu lĩnh đã kết thúc)
             /// </summary>
-            [Description("已终止")]
+            [Description("Đã chấm dứt")]
             Abandon
         }
 
         /// <summary>
-        /// 审核结果
+        /// Kết quả duyệt
         /// </summary>
         public enum EnumDjShzt
         {
             /// <summary>
-            /// 未审核
+            /// Chưa duyệt
             /// </summary>
-            [Description("未审核")]
+            [Description("Chưa duyệt")]
             WaitingApprove = 0,
             /// <summary>
-            /// 已通过
+            /// Đã thông qua
             /// </summary>
-            [Description("已通过")]
+            [Description("Đã thông qua")]
             Approved = 1,
             /// <summary>
-            /// 未通过（最终状态）
+            /// Chưa đạt(Trạng thái cuối cùng)
             /// </summary>
-            [Description("未通过")]
+            [Description("Chưa đạt")]
             Rejected = 2,
             /// <summary>
-            /// 已作废（最终状态）（只有审核通过 -> 才可至此状态）
+            /// Đã hủy(Trạng thái cuối cùng)(Chỉ khi duyệt đạt -> mới tới được trạng thái này)
             /// </summary>
-            [Description("已作废")]
+            [Description("Đã hủy")]
             Cancelled = 3,
         }
 
         /// <summary>
-        /// 损益标志
+        /// Cờ lãi lỗ
         /// </summary>
         public enum EnumProfitLossMark
         {
             /// <summary>
-            /// 报损
+            /// Báo hỏng
             /// </summary>
-            [Description("报损")]
+            [Description("Báo hỏng")]
             Loss = 0,
 
             /// <summary>
-            /// 报溢
+            /// Báo thừa
             /// </summary>
-            [Description("报溢")]
+            [Description("Báo thừa")]
             Profit = 1
         }
 
         /// <summary>
-        /// 药品调价操作类型（撤销 批准 拒绝 执行）
+        /// Loại thao tác điều chỉnh giá thuốc(Thu hồi Phê duyệt Từ chối Thực hiện)
         /// </summary>
         public enum EnumPriceAdjustOperationType
         {
             /// <summary>
-            /// 待审核
+            /// Chờ duyệt
             /// </summary>
-            [Description("待审核")]
+            [Description("Chờ duyệt")]
             None = 0,
             /// <summary>
-            /// 批准
+            /// Phê duyệt
             /// </summary>
-            [Description("批准")]
+            [Description("Phê duyệt")]
             Approval = 1,
             /// <summary>
-            /// 拒绝
+            /// Từ chối
             /// </summary>
-            [Description("拒绝")]
+            [Description("Từ chối")]
             Refuse = 2,
             /// <summary>
-            /// 撤销
+            /// Thu hồi
             /// </summary>
-            [Description("撤销")]
+            [Description("Thu hồi")]
             Withdraw = 3,
             /// <summary>
-            /// 执行
+            /// Thực hiện
             /// </summary>
-            [Description("执行")]
+            [Description("Thực hiện")]
             Execute = 4
         }
 
         /// <summary>
-        /// 药品调价执行状态（0：未执行 1：已执行）
+        /// Trạng thái thực thi điều chỉnh giá thuốc(0:Chưa thực hiện 1:Đã thực hiện)
         /// </summary>
         public enum EnumPriceAdjustZXStatus
         {
             /// <summary>
-            /// 未执行
+            /// Chưa thực hiện
             /// </summary>
-            [Description("未执行")]
+            [Description("Chưa thực hiện")]
             Not = 0,
             /// <summary>
-            /// 已执行
+            /// Đã thực hiện
             /// </summary>
-            [Description("已执行")]
+            [Description("Đã thực hiện")]
             Executed = 1
         }
 
         /// <summary>
-        /// 收费大类 大类类别
+        /// Nhóm thu phí lớn Loại nhóm lớn
         /// </summary>
         public enum EnumSfdlDllb
         {
             /// <summary>
             /// 
             /// </summary>
-            [Description("药品")]
+            [Description("Thuốc")]
             Yp = 1,
             /// <summary>
             /// 
             /// </summary>
-            [Description("治疗项目")]
+            [Description("Hạng mục điều trị")]
             Zlxm,
             /// <summary>
             /// 
             /// </summary>
-            [Description("非治疗项目")]
+            [Description("Hạng mục không điều trị")]
             Flzxm
         }
 
         /// <summary>
-        /// 发药备注 0：未发；1：已排；2：已发；3：已退
+        /// Ghi chú phát thuốc 0:Chưa phát;1:Đã xếp;2:Đã phát;3:Đã trả
         /// </summary>
         public enum EnumFybz
         {
             /// <summary>
-            /// 未排
+            /// Chưa xếp
             /// </summary>
-            [Description("未排")]
+            [Description("Chưa xếp")]
             Wp = 0,
 
             /// <summary>
-            /// 已排
+            /// Đã xếp
             /// </summary>
-            [Description("已排")]
+            [Description("Đã xếp")]
             Yp = 1,
 
             /// <summary>
-            /// 已发
+            /// Đã phát
             /// </summary>
-            [Description("已发")]
+            [Description("Đã phát")]
             Yf = 2,
 
             /// <summary>
-            /// 已退
+            /// Đã trả
             /// </summary>
-            [Description("已退")]
+            [Description("Đã trả")]
             Yt = 3
         }
 
         /// <summary>
-        /// 医嘱性质 临时、长期
+        /// Tính chất y lệnh Tạm thời,Dài hạn
         /// </summary>
         public enum Yzxz
         {
             /// <summary>
             /// None
             /// </summary>
-            [Description("全部")]
+            [Description("Tất cả")]
             None = 0,
 
             /// <summary>
-            /// 临时
+            /// Tạm thời
             /// </summary>
-            [Description("临时")]
+            [Description("Tạm thời")]
             Ls = 1,
 
             /// <summary>
-            /// 长期
+            /// Dài hạn
             /// </summary>
-            [Description("长期")]
+            [Description("Dài hạn")]
             Cq = 2,
         }
         public enum Yzlx
         {
-            [Description("药品")]
+            [Description("Thuốc")]
             Yp = 2,
             /// <summary>
-            /// 中草药
+            /// Thảo dược
             /// </summary>
-            [Description("中草药")]
+            [Description("Thảo dược")]
             zcy = 10,
         }
 
         /// <summary>
-        /// 药品操作记录 zy_ypyzczjl.operateType 和 mz_cfypczjl.operateType
+        /// Hồ sơ thao tác thuốc zy_ypyzczjl.operateType và mz_cfypczjl.operateType
         /// </summary>
         public enum EnumOperateType
         {
@@ -3805,91 +3805,91 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             None = 0,
 
             /// <summary>
-            /// 发药
+            /// Phát thuốc
             /// </summary>
-            [Description("发药")]
+            [Description("Phát thuốc")]
             Fy = 1,
 
             /// <summary>
-            /// 退药
+            /// Trả thuốc
             /// </summary>
-            [Description("退药")]
+            [Description("Trả thuốc")]
             Ty = 2
         }
 
         /// <summary>
-        /// 发药方式
+        /// Cách phát thuốc
         /// </summary>
         public enum EnumFyfs
         {
             /// <summary>
-            /// 正常出库
+            /// Xuất kho bình thường
             /// </summary>
-            [Description("正常出库")]
+            [Description("Xuất kho bình thường")]
             Zcck = 11,
 
             /// <summary>
-            /// 退货出库
+            /// Xuất kho trả hàng
             /// </summary>
-            [Description("退货出库")]
+            [Description("Xuất kho trả hàng")]
             Thck = 5,
 
             /// <summary>
-            /// 赠送出库
+            /// Xuất kho tặng
             /// </summary>
-            [Description("赠送出库")]
+            [Description("Xuất kho tặng")]
             Zsck = 12,
 
             /// <summary>
-            /// 救灾出库
+            /// Xuất kho cứu trợ thiên tai
             /// </summary>
-            [Description("救灾出库")]
+            [Description("Xuất kho cứu trợ thiên tai")]
             Jzck = 13,
         }
 
 
         /// <summary>
-        /// 采购模式
+        /// Mô hình mua sắm
         /// </summary>
         public enum EnumCGLX
         {
-            [Description("医保范围招标")]
+            [Description("Đấu thầu trong phạm vi BHYT")]
             ybfwzb = 1,
-            [Description("医保范围未招标")]
+            [Description("Chưa đấu thầu trong phạm vi BHYT")]
             ybfwwzb = 2,
-            [Description("医保范围招标未中标")]
+            [Description("Đấu thầu trong phạm vi BHYT nhưng không trúng thầu")]
             ybfwzbwzb = 3,
-            [Description("医保范围挂网")]
+            [Description("Niêm yết mạng trong phạm vi BHYT")]
             ybfwgw = 4,
-            [Description(" 自费范围挂网")]
+            [Description(" Niêm yết mạng trong phạm vi tự chi trả")]
             zffwgw = 5,
-            [Description("市级量价挂钩集中采购")]
+            [Description("Mua sắm tập trung gắn lượng-giá cấp thành phố")]
             sjljggjzcg = 6,
-            [Description("不允许采购")]
+            [Description("Không cho phép mua sắm")]
             byxcg = 7,
-            [Description("其他")]
+            [Description("Khác")]
             qt = 9,
         }
         /// <summary>
-        /// 商品类型
+        /// Loại hàng hóa
         /// </summary>
         public enum EnumSPLX
         {
-            [Description("药品类")]
+            [Description("Loại thuốc")]
             ypl = 1,
-            [Description("医用耗材器械类")]
+            [Description("Loại vật tư, thiết bị y tế")]
             yyhcqxl = 2,
-            [Description("其他")]
+            [Description("Khác")]
             qt = 9,
         }
         /// <summary>
-        /// 采购计量单位
+        /// Đơn vị đo lường mua sắm
         /// </summary>
         public enum EnumCGJLDW
         {
-            [Description("计价单位")]
+            [Description("Đơn vị tính giá")]
             jjdw = 1,
-            [Description("最小使用单位")]
+            [Description("Đơn vị dùng nhỏ nhất")]
             zxsydw = 2,
         }
 
@@ -3901,685 +3901,685 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
     public class HrpClientEnum : ClientEnum
     {
         /// <summary>
-        /// 库房等级
+        /// Cấp kho
         /// </summary>
         public enum EnumWarehouseLevel
         {
             /// <summary>
-            /// 一级
+            /// Cấp một
             /// </summary>
-            [Description("一级")]
+            [Description("Cấp một")]
             OneLevel = 1,
 
             /// <summary>
-            /// 二级
+            /// Cấp hai
             /// </summary>
-            [Description("二级")]
+            [Description("Cấp hai")]
             TwoLevel = 2,
 
             /// <summary>
-            /// 三级
+            /// Cấp ba
             /// </summary>
-            [Description("三级")]
+            [Description("Cấp ba")]
             ThreeLevel = 3,
 
             /// <summary>
-            /// 四级
+            /// Cấp bốn
             /// </summary>
-            [Description("四级")]
+            [Description("Cấp bốn")]
             FourLevel = 4,
 
             /// <summary>
-            /// 五级
+            /// Cấp năm
             /// </summary>
-            [Description("五级")]
+            [Description("Cấp năm")]
             FiveLevel = 5,
 
             /// <summary>
-            /// 六级
+            /// Cấp sáu
             /// </summary>
-            [Description("六级")]
+            [Description("Cấp sáu")]
             SixLevel = 6,
 
         }
 
         /// <summary>
-        /// 有效/无效
+        /// Hiệu lực/không hợp lệ
         /// </summary>
         public enum Enumzt
         {
             /// <summary>
-            /// 无效
+            /// không hợp lệ
             /// </summary>
-            [Description("无效")]
+            [Description("không hợp lệ")]
             Disable = 0,
 
             /// <summary>
-            /// 有效
+            /// Hiệu lực
             /// </summary>
-            [Description("有效")]
+            [Description("Hiệu lực")]
             Enable = 1
 
         }
 
         /// <summary>
-        /// 审核状态
+        /// Trạng thái duyệt
         /// </summary>
         public enum EnumAuditState
         {
 
             /// <summary>
-            /// 待处理
+            /// Chờ xử lý
             /// </summary>
-            [Description("待处理")]
+            [Description("Chờ xử lý")]
             Waiting = 0,
 
             /// <summary>
-            /// 审核通过
+            /// Duyệt đạt
             /// </summary>
-            [Description("审核通过")]
+            [Description("Duyệt đạt")]
             Adopt = 1,
 
             /// <summary>
-            /// 审核不通过
+            /// Duyệt không đạt
             /// </summary>
-            [Description("审核不通过")]
+            [Description("Duyệt không đạt")]
             Refuse = 2,
 
             /// <summary>
-            /// 已作废
+            /// Đã hủy
             /// </summary>
-            [Description("已作废")]
+            [Description("Đã hủy")]
             Cancelled = 3,
 
             /// <summary>
-            /// 暂存
+            /// Lưu tạm
             /// </summary>
-            [Description("暂存")]
+            [Description("Lưu tạm")]
             Temporary = 4,
         }
 
         /// <summary>
-        /// 单据类型
+        /// Loại chứng từ
         /// </summary>
         public enum EnumOutOrInStorageBillType
         {
             /// <summary>
-            /// 外部入库
+            /// Nhập kho từ ngoài
             /// </summary>
-            [Description("外部入库")]
+            [Description("Nhập kho từ ngoài")]
             Wbrk = 1,
 
             /// <summary>
-            /// 外部出库
+            /// Xuất kho ra ngoài
             /// </summary>
-            [Description("外部出库")]
+            [Description("Xuất kho ra ngoài")]
             Wbck = 2,
 
             /// <summary>
-            /// 直接出库
+            /// Xuất kho trực tiếp
             /// </summary>
-            [Description("直接出库")]
+            [Description("Xuất kho trực tiếp")]
             Zjck = 3,
 
             /// <summary>
-            /// 申领出库
+            /// Xuất kho theo lĩnh
             /// </summary>
-            [Description("申领出库")]
+            [Description("Xuất kho theo lĩnh")]
             Slck = 4,
 
             /// <summary>
-            /// 内部退货
+            /// Trả hàng nội bộ
             /// </summary>
-            [Description("内部退货")]
+            [Description("Trả hàng nội bộ")]
             Nbth = 5,
 
             /// <summary>
-            /// 报损报溢
+            /// Báo hỏng/báo thừa
             /// </summary>
-            [Description("报损报溢")]
+            [Description("Báo hỏng/báo thừa")]
             Bsby = 6,
 
             /// <summary>
-            /// 配送至科室
+            /// Giao tới khoa
             /// </summary>
-            [Description("出库至科室")] //单据号ckZKS111111111111
+            [Description("Xuất kho tới khoa")] //Số chứng từckZKS111111111111
             chukuzhikeshi = 7,
 
             /// <summary>
-            /// 科室申领
+            /// Khoa lĩnh
             /// </summary>
-            [Description("科室申领")]
+            [Description("Khoa lĩnh")]
             kssl = 8,
 
             /// <summary>
-            /// 科室申领出库
+            /// Xuất kho theo lĩnh của khoa
             /// </summary>
-            [Description("科室申领出库")]
+            [Description("Xuất kho theo lĩnh của khoa")]
             ksSlck = 9,
 
             /// <summary>
-            /// 采购计划
+            /// Kế hoạch mua sắm
             /// </summary>
-            [Description("采购计划")]
+            [Description("Kế hoạch mua sắm")]
             purchasingPlan = 10,
 
             /// <summary>
-            /// 采购订单
+            /// Đơn đặt hàng mua sắm
             /// </summary>
-            [Description("采购订单")]
+            [Description("Đơn đặt hàng mua sắm")]
             purchasingOrder = 11,
         }
 
         /// <summary>
-        /// 库存显示
+        /// Hiển thị tồn kho
         /// </summary>
         public enum EnumKCXS
         {
             /// <summary>
             /// None
             /// </summary>
-            [Description("全部")]
+            [Description("Tất cả")]
             None = -1,
             /// <summary>
-            /// 显示零库存
+            /// Hiển thị tồn kho bằng 0
             /// </summary>
-            [Description("显示零库存")]
+            [Description("Hiển thị tồn kho bằng 0")]
             Xslkc = 0,
             /// <summary>
-            /// 不显示理论数量为零
+            /// Không hiển thị số lượng lý thuyết bằng 0
             /// </summary>
-            [Description("不显示理论数量为零")]
+            [Description("Không hiển thị số lượng lý thuyết bằng 0")]
             Bxsllslwl = 1,
             /// <summary>
-            /// 不显示实际数量为零
+            /// Không hiển thị số lượng thực tế bằng 0
             /// </summary>
-            [Description("不显示实际数量为零")]
+            [Description("Không hiển thị số lượng thực tế bằng 0")]
             Bxssjslwl = 2,
             /// <summary>
-            /// 不显示实际数量为零
+            /// Không hiển thị số lượng thực tế bằng 0
             /// </summary>
-            [Description("不显示两者都为零")]
+            [Description("Không hiển thị khi cả hai đều bằng 0")]
             Bxslzdwl = 4
         }
 
         /// <summary>
-        /// 库存锁
+        /// Khóa tồn kho
         /// </summary>
         public enum EnumKcLock
         {
             /// <summary>
-            /// 无锁
+            /// Không khóa
             /// </summary>
-            [Description("无锁")]
+            [Description("Không khóa")]
             none = 0,
 
             /// <summary>
-            /// 开始盘点
+            /// Bắt đầu kiểm kê
             /// </summary>
-            [Description("开始盘点")]
+            [Description("Bắt đầu kiểm kê")]
             InventoryStart = 1,
 
             /// <summary>
-            /// 结束盘点
+            /// Kết thúc kiểm kê
             /// </summary>
-            [Description("结束盘点")]
+            [Description("Kết thúc kiểm kê")]
             InventoryEnd = 2,
 
             /// <summary>
-            /// 损益
+            /// Lãi lỗ
             /// </summary>
-            [Description("损益")]
+            [Description("Lãi lỗ")]
             ProfitAndLoss = 3,
 
             /// <summary>
-            /// 出入库单据审核
+            /// Duyệt chứng từ nhập/xuất kho
             /// </summary>
-            [Description("出入库单据审核")]
+            [Description("Duyệt chứng từ nhập/xuất kho")]
             OutgoingOrWarehousing = 4
         }
 
         /// <summary>
-        /// 损益标志
+        /// Cờ lãi lỗ
         /// </summary>
         public enum EnumSybz
         {
             /// <summary>
-            /// 报损
+            /// Báo hỏng
             /// </summary>
-            [Description("报损")]
+            [Description("Báo hỏng")]
             Loss = 0,
 
             /// <summary>
-            /// 报溢
+            /// Báo thừa
             /// </summary>
-            [Description("报溢")]
+            [Description("Báo thừa")]
             Profit = 1,
         }
 
-        #region 调价
+        #region Điều chỉnh giá
 
         /// <summary>
-        /// 调价审核标志 0:未审核 1:已审核 2:已拒绝 3.已撤销
+        /// Cờ duyệt điều chỉnh giá 0:Chưa duyệt 1:Đã duyệt 2:Đã từ chối 3.Đã thu hồi
         /// </summary>
         public enum EnumTjShzt
         {
             /// <summary>
-            /// 未审核
+            /// Chưa duyệt
             /// </summary>
-            [Description("未审核")]
+            [Description("Chưa duyệt")]
             Waiting = 0,
 
             /// <summary>
-            /// 已审核
+            /// Đã duyệt
             /// </summary>
-            [Description("已审核")]
+            [Description("Đã duyệt")]
             Audited = 1,
 
             /// <summary>
-            /// 已拒绝
+            /// Đã từ chối
             /// </summary>
-            [Description("已拒绝")]
+            [Description("Đã từ chối")]
             Refuse = 2,
 
             /// <summary>
-            /// 已撤销
+            /// Đã thu hồi
             /// </summary>
-            [Description("已撤销")]
+            [Description("Đã thu hồi")]
             Revoke = 3
         }
 
         /// <summary>
-        /// 调价执行标志
+        /// Cờ thực thi điều chỉnh giá
         /// </summary>
         public enum EnumTjZxbz
         {
             /// <summary>
-            /// 未执行
+            /// Chưa thực hiện
             /// </summary>
-            [Description("未执行")]
+            [Description("Chưa thực hiện")]
             Not = 0,
 
             /// <summary>
-            /// 已执行
+            /// Đã thực hiện
             /// </summary>
-            [Description("已执行")]
+            [Description("Đã thực hiện")]
             Already = 1
         }
         #endregion
 
         /// <summary>
-        /// 生产商/经销商/其他  公司类型
+        /// Nhà sản xuất/Nhà phân phối/Khác  Loại công ty
         /// </summary>
         public enum EnumSupplierType
         {
             /// <summary>
-            /// 其他
+            /// Khác
             /// </summary>
-            [Description("其他")]
+            [Description("Khác")]
             Other = 0,
 
             /// <summary>
-            /// 生产商
+            /// Nhà sản xuất
             /// </summary>
-            [Description("生产商")]
+            [Description("Nhà sản xuất")]
             Producer = 1,
 
             /// <summary>
-            /// 经销商
+            /// Nhà phân phối
             /// </summary>
-            [Description("经销商")]
+            [Description("Nhà phân phối")]
             Distributor = 2,
         }
 
         /// <summary>
-        /// 处理过程   1:待处理；2:审核通过；3:审核不通过；4:配送；5:部分完成；6:完成；7:拒收
+        /// Quá trình xử lý   1:Chờ xử lý;2:Duyệt đạt;3:Duyệt không đạt;4:Giao hàng;5:Hoàn thành một phần;6:Hoàn thành;7:Từ chối nhận
         /// </summary>
         public enum EnumApplyProcess
         {
             /// <summary>
-            /// 等待处理
+            /// Chờ xử lý
             /// </summary>
-            [Description("等待处理")]
+            [Description("Chờ xử lý")]
             Waiting = 1,
 
             /// <summary>
-            /// 审核通过
+            /// Duyệt đạt
             /// </summary>
-            [Description("审核通过")]
+            [Description("Duyệt đạt")]
             AuditApproved = 2,
 
             /// <summary>
-            /// 审核不通过
+            /// Duyệt không đạt
             /// </summary>
-            [Description("审核不通过")]
+            [Description("Duyệt không đạt")]
             AuditFailed = 3,
 
             /// <summary>
-            /// 配送中
+            /// Đang giao hàng
             /// </summary>
-            [Description("配送中")]
+            [Description("Đang giao hàng")]
             Distributing = 4,
 
             /// <summary>
-            /// 部分完成
+            /// Hoàn thành một phần
             /// </summary>
-            [Description("部分完成")]
+            [Description("Hoàn thành một phần")]
             PartialCompletion = 5,
 
             /// <summary>
-            /// 全部完成
+            /// Hoàn thành toàn bộ
             /// </summary>
-            [Description("全部完成")]
+            [Description("Hoàn thành toàn bộ")]
             Completion = 6,
 
             /// <summary>
-            /// 配送拒收
+            /// Giao hàng bị từ chối nhận
             /// </summary>
-            [Description("配送拒收")]
+            [Description("Giao hàng bị từ chối nhận")]
             Rejection = 7,
         }
 
         /// <summary>
-        /// 单据类型 1-科室申领；2-库房申领
+        /// Loại chứng từ 1-Khoa lĩnh;2-Kho lĩnh
         /// </summary>
         public enum EnumApplyType
         {
             /// <summary>
-            /// 待处理
+            /// Chờ xử lý
             /// </summary>
-            [Description("科室申领")]
+            [Description("Khoa lĩnh")]
             DepartmentApply = 1,
 
             /// <summary>
-            /// 审核通过
+            /// Duyệt đạt
             /// </summary>
-            [Description("库房申领")]
+            [Description("Kho lĩnh")]
             WarehouseApply = 2,
         }
 
         /// <summary>
-        /// 采购订单处理流程 -1：拒处理； 0：待处理； 1：备货； 2：配送； 3：签收； 4：完成； 5：拒签 
+        /// Quy trình xử lý đơn đặt hàng mua sắm -1:Từ chối xử lý; 0:Chờ xử lý; 1:Chuẩn bị hàng; 2:Giao hàng; 3:Ký nhận; 4:Hoàn thành; 5:Từ chối ký nhận 
         /// </summary>
         public enum EnumOrderProcess
         {
             /// <summary>
-            /// 拒处理
+            /// Từ chối xử lý
             /// </summary>
-            [Description("拒处理")]
+            [Description("Từ chối xử lý")]
             Refusal = -1,
 
             /// <summary>
-            /// 待处理
+            /// Chờ xử lý
             /// </summary>
-            [Description("待处理")]
+            [Description("Chờ xử lý")]
             Waiting = 0,
 
             /// <summary>
-            /// 备货
+            /// Chuẩn bị hàng
             /// </summary>
-            [Description("备货")]
+            [Description("Chuẩn bị hàng")]
             PreparingGoods = 1,
 
             /// <summary>
-            /// 配送
+            /// Giao hàng
             /// </summary>
-            [Description("配送")]
+            [Description("Giao hàng")]
             Delivering = 2,
 
             /// <summary>
-            /// 签收
+            /// Ký nhận
             /// </summary>
-            [Description("签收")]
+            [Description("Ký nhận")]
             SignFor = 3,
 
             /// <summary>
-            /// 完成
+            /// Hoàn thành
             /// </summary>
-            [Description("完成")]
+            [Description("Hoàn thành")]
             Complete = 4,
 
             /// <summary>
-            /// 拒签
+            /// Từ chối ký nhận
             /// </summary>
-            [Description("拒签")]
+            [Description("Từ chối ký nhận")]
             RefusalSign = 5
         }
 
         /// <summary>
-        /// 订单类型 0：暂存单；1：正式单
+        /// Loại đơn hàng 0:Phiếu lưu tạm;1:Phiếu chính thức
         /// </summary>
         public enum EnumOrderTypeHrp
         {
 
             /// <summary>
-            /// 暂存单
+            /// Phiếu lưu tạm
             /// </summary>
-            [Description("暂存单")]
+            [Description("Phiếu lưu tạm")]
             TempOrder = 0,
 
             /// <summary>
-            /// 正式单
+            /// Phiếu chính thức
             /// </summary>
-            [Description("正式单")]
+            [Description("Phiếu chính thức")]
             OfficialOrder = 1,
 
             /// <summary>
-            /// 作废单
+            /// Phiếu hủy
             /// </summary>
-            [Description("作废单")]
+            [Description("Phiếu hủy")]
             BadOrder = 2,
         }
 
         /// <summary>
-        /// 自负性质 v2 
-        /// 重庆再用
+        /// Tính chất tự trả v2 
+        /// Tái sử dụng ở Trùng Khánh
         /// </summary>
         public enum EnumZFXZv2
         {
             /// <summary>
-            /// 自费
+            /// Tự chi trả
             /// </summary>
-            [Description("自费")]
+            [Description("Tự chi trả")]
             ZF = 1,
             /// <summary>
-            /// 甲类
+            /// Hạng A
             /// </summary>
-            [Description("甲类")]
+            [Description("Hạng A")]
             J = 4,
             /// <summary>
-            /// 乙类
+            /// Hạng B
             /// </summary>
-            [Description("乙类")]
+            [Description("Hạng B")]
             Y = 5,
             /// <summary>
-            /// 丙类
+            /// Hạng C
             /// </summary>
-            [Description("丙类")]
+            [Description("Hạng C")]
             B = 6,
         }
 
 
-        #region 采购
+        #region Mua sắm
 
-        //4.1.1 操作类型
+        //4.1.1 Loại thao tác
         public enum EnumCZLX
         {
-            [Description("新增")] XZ = 1,
-            [Description("作废")] ZF = 3,
+            [Description("Thêm mới")] XZ = 1,
+            [Description("Hủy")] ZF = 3,
         }
 
-        //4.1.2 采购单类型
+        //4.1.2 Loại phiếu mua sắm
         public enum EnumCGDLX
         {
-            [Description("医院自行采购单")] YYZXCGD = 1,
-            [Description("托管药库采购单")] TGYKCGD = 2,
+            [Description("Phiếu mua sắm tự thực hiện của bệnh viện")] YYZXCGD = 1,
+            [Description("Phiếu mua sắm kho thuốc ủy thác")] TGYKCGD = 2,
         }
 
-        //4.1.3 采购类型
+        //4.1.3 Loại mua sắm
         public enum EnumCGLX
         {
-            [Description("招标采购")]
+            [Description("Mua sắm đấu thầu")]
             ZBCG = 1,
-            [Description("带量采购")]
+            [Description("Mua sắm theo lượng")]
             DLCG = 2,
-            [Description("挂网采购")]
+            [Description("Mua sắm niêm yết mạng")]
             GWCG = 3,
-            [Description("其他")]
+            [Description("Khác")]
             QT = 9,
         }
 
-        //4.1.4 配送要求
+        //4.1.4 Yêu cầu giao hàng
         public enum EnumPSYQ
         {
-            [Description("按单配送")] ADPS = 1,
-            [Description("按需配送")] AXPS = 2,
+            [Description("Giao hàng theo phiếu")] ADPS = 1,
+            [Description("Giao hàng theo nhu cầu")] AXPS = 2,
         }
 
-        //4.1.5 退货类型
+        //4.1.5 Loại trả hàng
 
         public enum EnumTHLX
         {
-            [Description("正常退货")] ZCTH = 1,
-            [Description("补差价退货")] BCJTH = 2,
+            [Description("Trả hàng bình thường")] ZCTH = 1,
+            [Description("Trả hàng bù chênh lệch giá")] BCJTH = 2,
 
         }
 
-        //4.1.6 配送验收类型
+        //4.1.6 Loại nghiệm thu giao hàng
         public enum EnumPSYSLX
         {
-            [Description("预验收")] YYS = 1,
-            [Description("实验收")] SYS = 2,
+            [Description("Nghiệm thu trước")] YYS = 1,
+            [Description("Nghiệm thu thực tế")] SYS = 2,
 
         }
 
-        //4.1.7 单据填写方
+        //4.1.7 Bên điền phiếu
         public enum EnumDJTXF
         {
-            [Description("采购方填写")]
+            [Description("Bên mua điền")]
             CGFTX = 1,
-            [Description("销售方代填")]
+            [Description("Bên bán điền thay")]
             XSFDT = 2,
         }
 
-        //4.1.8 配送单状态
+        //4.1.8 Trạng thái phiếu giao hàng
         public enum EnumPSDZT
         {
-            [Description("待确认")] DQR = 0,
-            [Description("作废")] ZF = 1,
-            [Description("已确认，未验收")] YQR = 10,
+            [Description("Chờ xác nhận")] DQR = 0,
+            [Description("Hủy")] ZF = 1,
+            [Description("Đã xác nhận,Chưa nghiệm thu")] YQR = 10,
 
         }
-        //4.1.9 采购明细状态
+        //4.1.9 Trạng thái chi tiết mua sắm
         public enum EnumCGMXZT
         {
-            [Description("待提交")] DTJ = 0,
-            [Description("已作废")] YZF = 1,
-            [Description("待审核")] DSH = 10,
-            [Description("审核不通过")] SHBTG = 11,
-            [Description("待企业接受确认")] DQYJSQR = 20,
-            [Description("企业已接收确认配送")] QYYJSQRPS = 21,
-            [Description("企业已接收确认不予配送")] QYYJSQRBYPS = 22,
-            [Description("企业已配送完成")] QYYPSWC = 23,
+            [Description("Chờ nộp")] DTJ = 0,
+            [Description("Đã hủy")] YZF = 1,
+            [Description("Chờ duyệt")] DSH = 10,
+            [Description("Duyệt không đạt")] SHBTG = 11,
+            [Description("Chờ doanh nghiệp tiếp nhận xác nhận")] DQYJSQR = 20,
+            [Description("Doanh nghiệp đã tiếp nhận xác nhận giao hàng")] QYYJSQRPS = 21,
+            [Description("Doanh nghiệp đã tiếp nhận xác nhận không giao hàng")] QYYJSQRBYPS = 22,
+            [Description("Doanh nghiệp đã giao hàng xong")] QYYPSWC = 23,
         }
 
-        //4.1.10 企业库存
+        //4.1.10 Tồn kho doanh nghiệp
         public enum EnumQYKC
         {
-            [Description("充足")] CZ = 1,
-            [Description("有货， 限量")] YHXL = 2,
-            [Description("有货， 少量")] YHSL = 3,
-            [Description("暂无货")] ZWH = 4,
-            [Description("不予披露")] BYPL = 5,
+            [Description("Đầy đủ")] CZ = 1,
+            [Description("Có hàng, Có hàng, giới hạn số lượng")] YHXL = 2,
+            [Description("Có hàng, Có hàng, số lượng ít")] YHSL = 3,
+            [Description("Tạm thời không có hàng")] ZWH = 4,
+            [Description("Không công bố")] BYPL = 5,
         }
 
-        //4.1.11 发票状态
+        //4.1.11 Trạng thái hóa đơn
         public enum EnumFPZT
         {
-            [Description("待确认")] DQR = 0,
-            [Description("已作废")] YZF = 1,
-            [Description("未验收")] WYS = 10,
-            [Description("已验收")] YYS = 20,
-            [Description("已拒收")] YJS = 21,
-            [Description("已支付")] FPYZF = 30,
+            [Description("Chờ xác nhận")] DQR = 0,
+            [Description("Đã hủy")] YZF = 1,
+            [Description("Chưa nghiệm thu")] WYS = 10,
+            [Description("Đã nghiệm thu")] YYS = 20,
+            [Description("Đã từ chối nhận")] YJS = 21,
+            [Description("Đã thanh toán")] FPYZF = 30,
         }
 
-        //4.1.12 配送明细状态
+        //4.1.12 Trạng thái chi tiết giao hàng
         public enum EnumPSMXZT
         {
-            [Description("待确认")] DQR = 0,
-            [Description("已作废")] YZF = 1,
-            [Description("已提交未验收")] YTJWYS = 10,
-            [Description("验收中")] YSZ = 20,
-            [Description("验收入库完成")] YSRKWC = 30,
+            [Description("Chờ xác nhận")] DQR = 0,
+            [Description("Đã hủy")] YZF = 1,
+            [Description("Đã nộp, chưa nghiệm thu")] YTJWYS = 10,
+            [Description("Đang nghiệm thu")] YSZ = 20,
+            [Description("Nghiệm thu nhập kho xong")] YSRKWC = 30,
         }
 
-        //4.1.13 退货明细状态
+        //4.1.13 Trạng thái chi tiết trả hàng
         public enum EnumTHMXZT
         {
-            [Description("待确认")] DQR = 0,
-            [Description("已作废")] YZF = 1,
-            [Description("已确认待企业接受")] YQRDQYJS = 10,
-            [Description("企业已确认退货处理")] QYYQRTHCL = 20,
-            [Description("企业已确认不予处理")] QYYQRBYCL = 21,
+            [Description("Chờ xác nhận")] DQR = 0,
+            [Description("Đã hủy")] YZF = 1,
+            [Description("Đã xác nhận, chờ doanh nghiệp tiếp nhận")] YQRDQYJS = 10,
+            [Description("Doanh nghiệp đã xác nhận xử lý trả hàng")] QYYQRTHCL = 20,
+            [Description("Doanh nghiệp đã xác nhận không xử lý")] QYYQRBYCL = 21,
         }
 
-        //4.1.14 证件类型
+        //4.1.14 Loại giấy tờ
         public enum EnumZJLX
         {
-            [Description("组织机构代码证")] ZZJGDMZ = 1,
-            [Description("营业执照")] YYZZ = 2,
-            [Description("经营许可证")] JYXKZ = 3,
-            [Description("生产许可证")] SCXKZ = 4,
+            [Description("Giấy chứng nhận mã tổ chức")] ZZJGDMZ = 1,
+            [Description("Giấy phép kinh doanh")] YYZZ = 2,
+            [Description("Giấy phép hoạt động")] JYXKZ = 3,
+            [Description("Giấy phép sản xuất")] SCXKZ = 4,
         }
 
-        //4.1.15 配送明细条码类型
+        //4.1.15 Loại mã vạch chi tiết giao hàng
         public enum EnumPSMXTMLX
         {
-            [Description("GS1 条码")] GSI = 1,
-            [Description("HIBC 条码")] HIBC = 2,
-            [Description("其他")] QT = 99,
+            [Description("GS1 Mã vạch")] GSI = 1,
+            [Description("HIBC Mã vạch")] HIBC = 2,
+            [Description("Khác")] QT = 99,
         }
 
-        //4.1.16 发票验收结果
+        //4.1.16 Kết quả nghiệm thu hóa đơn
         public enum EnumFPYSJG
         {
-            [Description("验收通过")] YSTG = 1,
-            [Description("验收不通过")] YSBTG = 0,
+            [Description("Nghiệm thu đạt")] YSTG = 1,
+            [Description("Nghiệm thu không đạt")] YSBTG = 0,
         }
 
-        //4.1.17 采购单状态
+        //4.1.17 Trạng thái phiếu mua sắm
         public enum EnumCGDZT
         {
-            [Description("待提交")] DTJ = 0,
-            [Description("已作废")] YZF = 1,
-            [Description("已提交")] YTJ = 20,
+            [Description("Chờ nộp")] DTJ = 0,
+            [Description("Đã hủy")] YZF = 1,
+            [Description("Đã nộp")] YTJ = 20,
         }
 
-        //4.1.18 退货单状态
+        //4.1.18 Trạng thái phiếu trả hàng
         public enum EnumTHDZT
         {
-            [Description("待确认")] DQR = 0,
-            [Description("已作废")] YZF = 1,
-            [Description("已确认")] YQR = 10,
+            [Description("Chờ xác nhận")] DQR = 0,
+            [Description("Đã hủy")] YZF = 1,
+            [Description("Đã xác nhận")] YQR = 10,
 
         }
 
-        //4.1.19 采购方式
+        //4.1.19 Phương thức mua sắm
 
         public enum EnumCGFS
         {
-            [Description("非系统采购")]
+            [Description("Mua sắm ngoài hệ thống")]
             FXTCG = 1,
-            [Description("按系统采购")]
+            [Description("Mua sắm theo hệ thống")]
             AXTCG = 2,
         }
 
-        //4.1.20 是否含伴随服务
+        //4.1.20 Có kèm dịch vụ đi kèm hay không
         public enum EnumSFHBSFW
         {
-            [Description("否")] F = 0,
-            [Description("是")] S = 1,
+            [Description("Không")] F = 0,
+            [Description("Có")] S = 1,
         }
 
 

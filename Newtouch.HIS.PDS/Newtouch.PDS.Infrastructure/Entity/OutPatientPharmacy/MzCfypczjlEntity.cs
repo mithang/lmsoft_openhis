@@ -6,66 +6,66 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊处方药品操作记录
+    /// Bản ghi thao tác thuốc đơn ngoại trú
     /// </summary>
     [Table("mz_cfypczjl")]
     [SugarTable("mz_cfypczjl")]
     public class MzCfypczjlEntity : IEntity<MzCfypczjlEntity>
     {
         /// <summary>
-        /// 主键ID
+        /// Khóa chínhID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public long Id { get; set; }
 
         /// <summary>
-        /// 门诊处方明细ID mz_cfmx表主键
+        /// Chi tiết đơn ngoại trúID mz_cfmxKhóa chính bảng
         /// </summary>
         public long mzcfmxId { get; set; }
 
         /// <summary>
-        /// 操作类型 1：发药 2：退药
+        /// Loại thao tác 1：Phát thuốc 2：Trả thuốc
         /// </summary>
         public string operateType { get; set; }
 
         /// <summary>
-        /// 药品编号
+        /// Số hiệu thuốc
         /// </summary>
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 操作数量  最小单位
+        /// Số lượng thao tác  Đơn vị nhỏ nhất
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string bz { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 修改时间
+        /// Thời gian sửa đổi
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 修改用户
+        /// Người sửa đổi
         /// </summary>
         public string LastModifierCode { get; set; }
 

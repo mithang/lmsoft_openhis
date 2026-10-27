@@ -4,7 +4,7 @@ using Newtouch.Herp.Domain.ValueObjects;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 供应商联系人
+    /// Người liên hệ nhà cung cấp
     /// </summary>
     public interface IGysContactsRepo : IRepositoryBase<GysContactsEntity>
     {

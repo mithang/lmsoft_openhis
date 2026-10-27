@@ -13,13 +13,13 @@ namespace Newtouch.EMR.Domain.IRepository
 {
     public interface IHljlDataRepo : IRepositoryBase<HljlDataEntity>
     {
-        #region 护理记录
+        #region Ghi chép điều dưỡng
         void BtnSubmit(OperatorModel user, IList<HljldataVO> data,string blId,string zyh);
 
         IList<HljldataVO> HljlLoadData(Pagination pagination, string zyh,string blId,string orgId,string kssj,string jssj);
         #endregion
         /// <summary>
-        /// 模板权限控制
+        /// Kiểm soát quyền mẫu
         /// </summary>
         /// <param name="blId"></param>
         /// <param name="mbbh"></param>

@@ -23,7 +23,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         private readonly IBlysRepo _blysRepo;
       
         /// <summary>
-        /// 默认构造函数
+        /// Hàm khởi tạo mặc định
         /// </summary>
         /// <param name="blysRepo"></param>
         public BlysController(IBlysRepo blysRepo)
@@ -37,7 +37,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult GetGridJson(string keyValue)
         {
@@ -98,9 +98,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 获取实体
+        /// Lấy thực thể
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult GetFormJson(string keyValue)
         {
@@ -109,10 +109,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult SubmitForm(BlysEntity entity, string keyValue)
         {
@@ -147,9 +147,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         /// <returns></returns>
         public IActionResult DeleteForm(string delYSID)
         {
@@ -169,9 +169,9 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             try
             {
 
-                XmlDocument xmlDoc = new XmlDocument();//新建XML文件
+                XmlDocument xmlDoc = new XmlDocument();//Tạo mớiXMLTệp
 
-                //判断文件是否存在
+                //Phán đoán tệp có tồn tại hay không
                 if (System.IO.File.Exists(filePath))
                 {
                     System.IO.File.Delete(filePath);
@@ -180,7 +180,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 XmlNode header = xmlDoc.CreateXmlDeclaration("1.0", "UTF-8", null);
                 XmlElement BigDataSourceDescriptor = xmlDoc.CreateElement("DataSourceDescriptor");
                 XmlElement BigName = xmlDoc.CreateElement("Name");
-                BigName.InnerText = "数据源";
+                BigName.InnerText = "Nguồn dữ liệu";
                 XmlElement bigChildDescriptors = xmlDoc.CreateElement("ChildDescriptors");
                 xmlDoc.AppendChild(header);
                 BigDataSourceDescriptor.AppendChild(BigName);

@@ -7,131 +7,131 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Domain.Entity.DeptStorageManage
 {
     /// <summary>
-    /// 库存损益
+    /// Tồn kholãi lỗ
     /// </summary>
     [SugarTable("dept_syxx")]
     public class KcSyxxEntity
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public long Id { get; set; }
 
         /// <summary>
-        /// 组织机构（医院）
+        /// Tổ chức（yviện）
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 库房代码
+        /// KhoMã
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// vật tưID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string Ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn hiệu lực
         /// </summary>
         public DateTime? Yxq { get; set; }
 
         /// <summary>
-        /// 默认值Getdate()
+        /// Mặc địnhGiá trịGetdate()
         /// </summary>
         public DateTime Bgsj { get; set; }
 
         /// <summary>
-        /// 正数：报溢，负数：报损 最小单位数
+        /// đangsố：báo thừa，âmsố：Báo hỏng Đơn vị nhỏ nhấtsố
         /// </summary>
         public int Sysl { get; set; }
 
         /// <summary>
-        /// 单位ID  与价格配合使用，和zhyz成套
+        /// Đơn vịID  vàgiáôphốihợpSử dụng，vàzhyzthànhbộ
         /// </summary>
         public string UnitId { get; set; }
 
         /// <summary>
-        /// 零售价  转化因子对应进价
+        /// Giá bán lẻ  chuyểnhóavìcontương ứngvàogiá
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Lsj { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// chuyểnhóavìcon
         /// </summary>
         public int Zhyz { get; set; }
 
         /// <summary>
-        /// 损益原因  kc_syyy表主键
+        /// nguyên nhân lãi lỗ  kc_syyybảngKhóa chính
         /// </summary>
         public string Syyy { get; set; }
 
         /// <summary>
-        /// 责任人
+        /// Trách nhiệm người
         /// </summary>
         public string Zrr { get; set; }
 
         /// <summary>
-        /// 单据号
+        /// phiếusố phiếu
         /// </summary>
         public string Djh { get; set; }
 
         /// <summary>
-        /// 剩余库存 现有库存 最小单位 kcsl
+        /// còn lạiTồn kho hiệncóTồn kho Đơn vị nhỏ nhất kcsl
         /// </summary>
         public int Sykc { get; set; }
 
         /// <summary>
-        /// 进价
+        /// vàogiá
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Jj { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string remark { get; set; }
 
         /// <summary>
-        /// 状态
+        /// Trạng thái
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Thứ tự
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Sửa cuối người
         /// </summary>
         public string LastModifierCode { get; set; }
     }

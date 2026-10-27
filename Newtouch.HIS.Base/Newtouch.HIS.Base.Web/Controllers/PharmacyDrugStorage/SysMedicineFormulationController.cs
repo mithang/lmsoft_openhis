@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
             return View();
         }
         /// <summary>
-        /// 用法树
+        /// Cây cách dùng
         /// </summary>
         /// <returns></returns>
         public IActionResult GetDosageTree(string jxCode)
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
    
             }
          
-            #region 所有用法
+            #region Tất cả cách dùng
             var curList = _sysMedicineUsageRepo.IQueryable().Where(p=>p.zt=="1").ToList();
                 foreach (SysMedicineUsageEntity item in curList)
                 {

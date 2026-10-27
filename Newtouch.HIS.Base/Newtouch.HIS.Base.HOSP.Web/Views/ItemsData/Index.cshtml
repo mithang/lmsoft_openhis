@@ -2,7 +2,7 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_LayoutIndex.cshtml";
 }
-<!--select下拉列表-->
+<!--selectDanh sách thả xuống-->
 <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/select2/select2.min.js")"></script>
 <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/select2/select2.min.css")" rel="stylesheet" />
 
@@ -101,11 +101,11 @@
         });
     }
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
-    //下拉切换
+    //Chuyển thả xuống
     $('#OrganizeId').change(function () {
         $('#btn_search').trigger('click');
     })

@@ -3,77 +3,77 @@ using System;
 namespace Newtouch.HIS.Domain.Entity.V
 {
     /// <summary>
-    /// 门诊发药信息
+    /// Thông tin phát thuốc ngoại trú
     /// </summary>
     public class DrugDeliveryEntity
     {
         /// <summary>
-        /// 姓名
+        /// Họ tên
         /// </summary>
         public string xm { get; set; }
 
         /// <summary>
-        /// 年龄
+        /// Tuổi
         /// </summary>
         public int? nl { get; set; }
 
         /// <summary>
-        /// 卡号
+        /// Số thẻ
         /// </summary>
         public string CardNo { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 
         /// <summary>
-        /// 发票号
+        /// Số hóa đơn
         /// </summary>
         public string fph { get; set; }
 
         /// <summary>
-        /// 发药日期
+        /// Ngày phát thuốc
         /// </summary>
         public DateTime fyrq { get; set; }
 
         /// <summary>
-        /// 药品名称
+        /// Tên thuốc
         /// </summary>
         public string ypmc { get; set; }
 
         /// <summary>
-        /// 药厂名称
+        /// Tên hãng thuốc
         /// </summary>
         public string ycmc { get; set; }
 
         /// <summary>
-        /// 数量 带单位
+        /// Số lượng kèm đơn vị
         /// </summary>
         public string sl { get; set; }
 
         /// <summary>
-        /// 进价 单价 部门单位
+        /// Giá nhập Đơn giá Đơn vị bộ phận
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 进价总额
+        /// Tổng giá nhập
         /// </summary>
         public decimal jjze { get; set; }
 
         /// <summary>
-        /// 零售价 单价 部门单位
+        /// Giá bán lẻ Đơn giá Đơn vị bộ phận
         /// </summary>
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// 零售总额
+        /// Tổng giá bán lẻ
         /// </summary>
         public decimal lsze { get; set; }
 
         /// <summary>
-        /// 部门单位
+        /// Đơn vị bộ phận
         /// </summary>
         public string bmdw { get; set; }
     }

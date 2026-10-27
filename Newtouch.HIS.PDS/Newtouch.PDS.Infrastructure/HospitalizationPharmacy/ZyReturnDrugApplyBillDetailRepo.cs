@@ -9,7 +9,7 @@ using Newtouch.HIS.Domain.IRepository;
 namespace Newtouch.HIS.Repository
 {
     /// <summary>
-    /// 住院退药申请单明细
+    /// Chi tiết đơn xin trả thuốc nội trú
     /// </summary>
     public class ZyReturnDrugApplyBillDetailRepo : RepositoryBase<ZyReturnDrugApplyBillDetailEntity>, IZyReturnDrugApplyBillDetailRepo
     {
@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Repository
         public ZyReturnDrugApplyBillDetailRepo(FrameworkBase.MultiOrg.Infrastructure.IDefaultDatabaseFactory databaseFactory) : base(databaseFactory) { }
         
         /// <summary>
-        /// 根据退药申请Id获取退药申请明细
+        /// Theo đơn xin trả thuốcIdLấy chi tiết đơn xin trả thuốc
         /// </summary>
         /// <param name="rabId"></param>
         /// <returns></returns>

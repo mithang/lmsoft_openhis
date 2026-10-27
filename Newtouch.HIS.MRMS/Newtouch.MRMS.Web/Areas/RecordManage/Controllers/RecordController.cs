@@ -75,7 +75,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
         }
 
         /// <summary>
-        /// 获取Bệnh án树
+        /// Lấy cây Bệnh án
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -105,7 +105,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
 
         #endregion
 
-        #region  开源版Sửa器
+        #region  Trình sửa bản mã nguồn mở
         public IActionResult PreViewV2()
         {
             return View();
@@ -126,11 +126,11 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
             currentFileName = AppSettings.GetConfig("DcWriterFileRoter") + bllj + blxtmc_yj.Trim() + ".html";
             currentFileName = currentFileName.Replace("~", "");
             currentFileName = currentFileName.Replace("/", "\\");
-            if(System.IO.File.Exists(currentFileName) == false)//如果不存在就打开默认Mẫu
+            if(System.IO.File.Exists(currentFileName) == false)//Nếu không tồn tại thì mở Mẫu mặc định
             {
                 currentFileName = AppSettings.GetConfig("DcWriterFileRoter") + "\\File\\Template\\" + "newFile.html";
             }
-            // 加载Mẫu
+            // TảiMẫu
             string htmldata = System.IO.File.ReadAllText(currentFileName);
             BlTemplateVo vo = new BlTemplateVo();
             vo.xmldata = htmldata;
@@ -150,10 +150,10 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
         }
 
 
-        #region 数据初始化
+        #region Khởi tạo dữ liệu
         /// <summary>
-        /// TheoSố nội trú获取病 người基本信息
-        /// 实体必须是可序列化的才能在Bệnh án控件里绑定上数据所以使用ZybrjbxxVO
+        /// Lấy thông tin cơ bản của bệnh nhân theo số nội trú
+        /// Thực thể phải có thể tuần tự hóa mới có thểBệnh ánbinding dữ liệu trong control nên sử dụngZybrjbxxVO
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -164,7 +164,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
         #endregion 
 
         /// <summary>
-        /// TheoSố nội trú获取病 người基本信息
+        /// Lấy thông tin cơ bản của bệnh nhân theo số nội trú
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -210,7 +210,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
 
 
 
-        //设置Sửa器的引用路径
+        //Thiết lập đường dẫn tham chiếu của trình sửa
         public IActionResult HandleDCWriterServicePage()
         {
             // DCSoft Writer service page: no .NET Core build of DCSoft.Writer.
@@ -218,7 +218,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
         }
 
 
-        //处理Thao tác结果生成一个带文档内容的Sửa器
+        //Xử lý kết quả thao tác để tạo trình sửa có nội dung tài liệu
 
 
         /// <summary>
@@ -226,7 +226,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
         /// </summary>
         /// <param name="blid"></param>
         /// <param name="bllx"></param>
-        /// <param name="isLock">1请求SửaBệnh án2请求Mở khóaBệnh án</param>
+        /// <param name="isLock">1 yêu cầu sửa Bệnh án, 2 yêu cầu mở khóa Bệnh án</param>
         /// <returns></returns>
         public IActionResult LockRecord(string blid, string bllx, int isToLock)
         {
@@ -249,7 +249,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
                     }
                     else
                     {
-                        throw new FailedException("Mở khóa thất bại，请" + MedicalRecord.LastModifierCode + "Mở khóa");
+                        throw new FailedException("Mở khóa thất bại, vui lòng liên hệ " + MedicalRecord.LastModifierCode + " để mở khóa");
                     }
                 }
                 else
@@ -278,7 +278,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
             ViewBag.OrgId = this.OrganizeId;
             ViewBag.topOrgId = Constants.TopOrganizeId;
             ViewBag.ReportServerHOST = AppSettings.GetConfig("ReportServer.HOST");
-            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //是否是医院管理员
+            ViewBag.IsHospAdministrator = this.UserIdentity.IsHospAdministrator.ToString().ToLower();  //Có phải là quản trị viên bệnh viện không
             ViewBag.CurUserCode = this.UserIdentity.UserCode;
             ViewBag.curUsergh = UserIdentity.rygh;
         }

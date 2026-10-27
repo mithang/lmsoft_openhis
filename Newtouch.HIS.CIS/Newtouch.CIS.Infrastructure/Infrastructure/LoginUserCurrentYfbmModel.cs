@@ -7,37 +7,37 @@ using System.Threading.Tasks;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// 登录用户，当前药房部门信息
+    /// Đăng nhậpNgười dùng，hiện tạiKhoa dượcthông tin
     /// </summary>
     public class LoginUserCurrentYfbmModel
     {
         /// <summary>
-        /// 药房部门Code
+        /// Khoa dượcCode
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 药房部门级别（1级 药库，2级药房）
+        /// Khoa dượccấploại（1cấp Kho thuốc，2cấpNhà thuốc）
         /// </summary>
         public string yfbmjb { get; set; }
 
         /// <summary>
-        /// 当前登录身份 的 药房部门：0药库；1门诊药房；2住院药房   药库直接通过yjbmjb判断就可以了
+        /// hiện tạiĐăng nhậpthânphần của Khoa dược：0Kho thuốc；1Ngoại trúNhà thuốc；2Nhập việnNhà thuốc   Kho thuốctrực tiếpthông quayjbmjbkiểm trathìcó thểlấyđã
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 上级 药库 Code List（药房可向目标药库申领）
+        /// Cấp trên Kho thuốc Code List（Nhà thuốccó thểtớiMục tiêuKho thuốcđăng kýlĩnh）
         /// </summary>
         public IList<string> TheUpperYfbmCodeList { get; set; }
 
         /// <summary>
-        /// 下级 药房 Code List（药库可向目标药房发药）
+        /// dướicấp Nhà thuốc Code List（Kho thuốccó thểtớiMục tiêuNhà thuốcphát thuốc）
         /// </summary>
         public IList<string> TheLowerYfbmCodeList { get; set; }
 
         /// <summary>
-        /// 药房部门名称
+        /// Tên khoa dược
         /// </summary>
         public string yfbmmc { get; set; }
     }

@@ -64,7 +64,7 @@
     </ul>
 </div>
 <script type="text/javascript">
-    var leftdata = [];//Thông tin bệnh nhân đã khởi tạo这不làcó thể吗小垃圾
+    var leftdata = [];//Thông tin bệnh nhân đã khởi tạonàykhônglàcó thểkhôngnhỏrácrác
     var redata = [];//Thông tin bệnh nhân sau khi lọc
     var selectpat = [];//Thông tin bệnh nhân đã chọn
     var from = $.request("from");
@@ -99,7 +99,7 @@
                 {
                     label: "còn lạiSố lần", name: "sycs", width: 55, align: "left", formatter: function (cellvalue, a, b) {
                         if (!(from == "mz") && b.yzxz == "2") {
-                            return "";  //Dài hạn不Hiển thịcòn lạiSố lần
+                            return "";  //Dài hạnkhôngHiển thịcòn lạiSố lần
                         }
                         else {
                             return parseFloat(b.zcs == undefined ? 0 : b.zcs) - parseFloat(b.yzxcs == undefined ? 0 : b.yzxcs);
@@ -128,7 +128,7 @@
             ],
             unwritten: false,
             viewrecords: true,
-            multiselect: true,//复选框
+            multiselect: true,//Hộp kiểm
             onSelectRow: function (rowid, status) {
                 statisticalImplementFrequencyAndZje();
                 if (status) {
@@ -175,7 +175,7 @@
                         if (i != length - 1) {
                             str += jsonobj[i].StaffGh + ":" + jsonobj[i].StaffName + ";";
                         } else {
-                            str += jsonobj[i].StaffGh + ":" + jsonobj[i].StaffName;// 这tronglàoptiontrong面của value:label
+                            str += jsonobj[i].StaffGh + ":" + jsonobj[i].StaffName;// nàytronglàoptiontrongmặtcủa value:label
                         }
                     }
 
@@ -198,7 +198,7 @@
 
     //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        //GridNạp xong thì bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt và gọieditRow方法
+        //GridNạp xong thì bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt và gọieditRowphương thức
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
@@ -236,7 +236,7 @@
             ],
             rowNum: '10',
             viewrecords: true,
-            multiselect: true,//复选框
+            multiselect: true,//Hộp kiểm
             unwritten: false,
             rownumbers: false,
             onSelectRow: function (rowid, status) {
@@ -257,7 +257,7 @@
             }, afterInsertRow: function (rowid, rowdata, rowelem) {
                 $.each(selectpat, function (idx) {
                     if (rowdata.zyh.indexOfIgnoreCase(this.zyh) > -1) {
-                        $("#gridListsearch").jqGrid('setSelection', rowid, false); //设置jqGridĐã chọn
+                        $("#gridListsearch").jqGrid('setSelection', rowid, false); //thiết lậpjqGridĐã chọn
                     }
                 });
             },
@@ -288,7 +288,7 @@
         }).trigger('reloadGrid');
     }
 
-    //统计thực hiện人数
+    //Thống kêthực hiệnSố người
     function statisticalNumber() {
         var t = 0;
         $("#gridListsearch input:checkbox[role=checkbox]:checked").each(function() {
@@ -297,7 +297,7 @@
         $("#sp_hzrs").html(t);
     }
 
-    //统计Số lần thực hiệnvàTổng số tiền
+    //Thống kêSố lần thực hiệnvàTổng số tiền
     function statisticalImplementFrequencyAndZje() {
         var tt = 0;
         var zje = 0.00;
@@ -313,7 +313,7 @@
         $("#sp_zljehj").html(zje);
     }
 
-    //F8Gửi至dịch vụ器
+    //F8Gửiđếndịch vụdụng cụ
     function newtouch_event_f8() {
         var jzjhmxIdStr = "";
         var zxItem = [];

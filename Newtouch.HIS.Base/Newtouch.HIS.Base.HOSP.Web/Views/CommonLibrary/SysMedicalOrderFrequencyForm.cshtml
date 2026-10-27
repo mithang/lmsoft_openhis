@@ -13,10 +13,10 @@
             <div role="tabpanel" class="tab-pane fade in active" style="padding-top: 20px; margin-right: 58px; margin-left:33px;" id="basicInfo">
                 <table class="form">
                     @* <tr> *@
-                    @*     <th class="formTitle"><span class="required">*</span>组织机构：</th> *@
+                    @*     <th class="formTitle"><span class="required">*</span>Tổ chức：</th> *@
                     @*     <td class="formValue formDdlSelectorTd"> *@
                     @*         <select id="OrganizeId" name="OrganizeId" class="form-control required"> *@
-                    @*             <option value="">==请选择==</option> *@
+                    @*             <option value="">==Vui lòng chọn==</option> *@
                     @*         </select> *@
                     @*     </td> *@
                     @* </tr> *@
@@ -102,7 +102,7 @@
     })
 
     $(document).ready(function () {
-        // 设置组织机构不可编辑
+        // Đặt tổ chức không thể sửa
         if (keyValue && orgId) {
             $("#OrganizeId").prop("disabled", true); // Đặt hộp chọn không cho sửa
             $("#OrganizeId").css("background-color", "#e9ecef"); // Làm mờ đi
@@ -110,7 +110,7 @@
     });
 
     function initControl() {
-        //组织机构下拉框
+        //Hộp thả xuống tổ chức
         $("#OrganizeId").bindSelect({
             url: "/Organize/GetChildTreeSelectJson",
             selectedValue: $.request('orgId'),
@@ -133,7 +133,7 @@
         }
     });
 
-    //提交
+    //Gửi
     function submitForm() {
         if (!$('#form1').formValid()) {
             return false;

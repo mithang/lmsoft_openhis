@@ -16,7 +16,7 @@ using Newtouch.Herp.Infrastructure.Enum;
 namespace Newtouch.Herp.DomainServices.Product
 {
     /// <summary>
-    /// 物资调价信息. SqlSugar port of the Framework service: DbParameter ->
+    /// Thông tin điều chỉnh giá vật tư. SqlSugar port of the Framework service: DbParameter ->
     /// SugarParameter. Approval is split into UPDATE + SELECT (the original
     /// single multi-statement batch) so each step is explicit. The
     /// FailedException rollback branches are expressed directly (restore the

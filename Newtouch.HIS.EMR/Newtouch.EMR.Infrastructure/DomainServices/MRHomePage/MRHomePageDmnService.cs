@@ -92,7 +92,7 @@ where a.organizeid=@orgId and a.zt='1'
         public BasyVO GetMainRecord(string orgId, string mainId)
         {
             var mrbasy = _MrbasyRepo.FindEntity(p => p.Id == mainId && p.OrganizeId == orgId && p.zt == "1");
-            //每次修改都会自动同步出区日期与住院天数
+            //Mỗi lần sửa đổi đều tự động đồng bộ ngày ra khỏi khu và số ngày nội trú
             string esql = @"update basy 
                                set basy.CYSJ = brjbxx.cqrq,
                                    basy.CYSJS = SUBSTRING(CONVERT(varchar(100),brjbxx.cqrq,21),11,3),
@@ -212,7 +212,7 @@ where a.organizeid=@orgId  and a.zyh=@zyh";
                                 vo.ZKKB = ks.Name;
                             }
                         }
-                        //多个转科 处理
+                        //Xử lý nhiều lần chuyển khoa
                         else if (item.Status == ((int)EnumCwjlzt.Zq).ToString() && !string.IsNullOrWhiteSpace(vo.ZKKB) && !string.IsNullOrWhiteSpace(item.TransDeptCode))
                         {
                             vo.ZKKB = vo.ZKKB + "→" + item.TransDeptName;
@@ -307,17 +307,17 @@ and jszt=1
                 new SugarParameter("@zyh",zyh)
             });
 
-            Type t = vo.GetType();//获得该类的Type
+            Type t = vo.GetType();//Lấy Type của lớp này
             foreach (PropertyInfo pi in t.GetProperties())
             {
-                var name = pi.Name;//获得属性的名字,后面就可以根据名字判断来进行些自己想要的操作
+                var name = pi.Name;//Lấy tên thuộc tính,sau đó có thể dựa vào tên để phán đoán và thực hiện các thao tác mình muốn
                 var val = list.Find(p => p.FeetypeCode == name);
                 if (val != null)
                 {
                     pi.SetValue(vo, val.Amount, null);
                 }
             }
-            if (vo.ZFY == null)   //未结算则取计费表费用
+            if (vo.ZFY == null)   //Nếu chưa thanh toán thì lấy chi phí từ bảng tính phí
             {
                 vo = GetMainRecordZyFeeDetailOld(vo, orgId, zyh);
             }
@@ -345,10 +345,10 @@ select a.Code from [Newtouch_MRMS].[dbo].[mr_dic_bafeetype] a where a.zt='1' and
                 new SugarParameter("@zyh",zyh)
             });
 
-            Type t = vo.GetType();//获得该类的Type
+            Type t = vo.GetType();//Lấy Type của lớp này
             foreach (PropertyInfo pi in t.GetProperties())
             {
-                var name = pi.Name;//获得属性的名字,后面就可以根据名字判断来进行些自己想要的操作
+                var name = pi.Name;//Lấy tên thuộc tính,sau đó có thể dựa vào tên để phán đoán và thực hiện các thao tác mình muốn
                 var val = list.Find(p => p.FeetypeCode == name);
                 if (val != null)
                 {
@@ -404,7 +404,7 @@ order by SSOrder ";
         }
 
         /// <summary>
-        /// 诊断列表保存
+        /// Lưu danh sách chẩn đoán
         /// </summary>
         /// <param name="list"></param>
         /// <param name="orgId"></param>
@@ -499,7 +499,7 @@ order by SSOrder ";
         }
 
         /// <summary>
-        /// 手术列表保存
+        /// Lưu danh sách phẫu thuật
         /// </summary>
         /// <param name="list"></param>
         /// <param name="orgId"></param>
@@ -636,23 +636,23 @@ order by SSOrder ";
             }
             if (string.IsNullOrWhiteSpace(vo.XB))
             {
-                msg += "性别不可为空；";
+                msg += "Giới tính không được để trống；";
             }
             if (string.IsNullOrWhiteSpace(vo.CSRQ))
             {
-                msg += "出生日期不可为空；";
+                msg += "Ngày sinh không được để trống；";
             }
             if (string.IsNullOrWhiteSpace(vo.ZY))
             {
-                msg += "职业不可为空；";
+                msg += "Nghề nghiệp không được để trống；";
             }
             if (string.IsNullOrWhiteSpace(vo.SFZH))
             {
-                msg += "身份证号不可为空；";
+                msg += "Số chứng minh nhân dân không được để trống；";
             }
             if (string.IsNullOrWhiteSpace(vo.HY))
             {
-                msg += "婚姻状况不可为空；";
+                msg += "Tình trạng hôn nhân không được để trống；";
             }
             if (string.IsNullOrWhiteSpace(vo.MZZD))
             {
@@ -664,11 +664,11 @@ order by SSOrder ";
             }
             if (string.IsNullOrWhiteSpace(vo.RYZD))
             {
-                msg += "入院诊断不可为空；";
+                msg += "Chẩn đoán nhập viện không được để trống；";
             }
             if (string.IsNullOrWhiteSpace(vo.RYZDDM))
             {
-                msg += "入院诊断疾病编码不可为空；";
+                msg += "Mã bệnh chẩn đoán nhập viện không được để trống；";
             }
             if (string.IsNullOrWhiteSpace(vo.LYFS))
             {
@@ -679,7 +679,7 @@ order by SSOrder ";
         }
 
         /// <summary>
-        /// 生成病案号
+        /// Tạo số bệnh án
         /// </summary>
         /// <returns></returns>
         //public string GetBAH(string orgId)
@@ -695,7 +695,7 @@ order by SSOrder ";
         }
 
         /// <summary>
-        /// 保存患者基本信息
+        /// Lưu thông tin cơ bản của bệnh nhân
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -717,7 +717,7 @@ order by SSOrder ";
 
                     if (ety != null && ety.BAH == vo.BAH)
                     {
-                        //更新
+                        //Cập nhật
                         //ety = _MrbasyRepo.FindEntity(p => p.BAH == vo.BAH && p.zt == "1" && p.OrganizeId == orgId);
                         if (ety != null)
                         {
@@ -998,7 +998,7 @@ order by SSOrder ";
             ety.YYCLF = vo.YYCLF;
             ety.YCXYYCLF = vo.YCXYYCLF;
             ety.QTF = vo.QTF;
-            /*2022-10-09新增*/
+            /*2022-10-09 Thêm mới*/
             ety.HXB = vo.HXB;
             ety.XXB = vo.XXB;
             ety.XJ = vo.XJ;
@@ -1008,17 +1008,17 @@ order by SSOrder ";
             ety.LCD = vo.LCD;
             ety.QT = vo.QT;
             ety.SXFY = vo.SXFY;
-            /*随诊*/
+            /*Tái khám*/
             ety.SZ = vo.SZ;
             ety.SZQXZ = vo.SZQXZ;
             ety.SZQXY = vo.SZQXY;
             ety.SZQXN = vo.SZQXN;
-            /*临床路径*/
-            ety.WCLCLJ = vo.WCLCLJ;/*完成临床路径*/
-            ety.TCYY = vo.TCYY;/*临床路径退出原因*/
-            ety.SFBY = vo.SFBY;/*临床路径是否变异*/
-            ety.BYYY = vo.BYYY;/*临床路径变异原因*/
-            /*检查情况*/
+            /*Lộ trình lâm sàng*/
+            ety.WCLCLJ = vo.WCLCLJ;/*Hoàn thành đường đi lâm sàng*/
+            ety.TCYY = vo.TCYY;/*Nguyên nhân rời lộ trình lâm sàng*/
+            ety.SFBY = vo.SFBY;/*Lộ trình lâm sàng có biến đổi hay không*/
+            ety.BYYY = vo.BYYY;/*Nguyên nhân biến đổi lộ trình lâm sàng*/
+            /*Tình hình kiểm tra*/
             ety.CT = vo.CT;
             ety.PETCT = vo.PETCT;
             ety.SYCT = vo.SYCT;
@@ -1031,7 +1031,7 @@ order by SSOrder ";
             ety.SYCXSJ = vo.SYCXSJ;
             ety.LHYY = vo.LHYY;
 
-            /*附页*/
+            /*Trang phụ*/
             ety.YYGRQK = vo.YYGRQK;
             ety.YYGRSSXG = vo.YYGRSSXG;
             ety.YYGRSFQRXG = vo.YYGRSFQRXG;
@@ -1223,7 +1223,7 @@ order by SSOrder ";
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
-        /// <param name="zdlb">诊断类别 1入院诊断2出院诊断</param>
+        /// <param name="zdlb">Loại chẩn đoán 1 Chẩn đoán nhập viện2 Chẩn đoán ra viện</param>
         /// <returns></returns>
         public IList<PatZDListVO> GetPatHisZDInfo(string bah, string zyh, string orgId, int? zdlb)
         {
@@ -1262,7 +1262,7 @@ order by  ssxh
                 new SugarParameter("@bah", bah)});
         }
 
-        #region EMR关系维护
+        #region EMR Bảo trì quan hệ
         public void DocRelSubmit(string blmbId, string zyh, string blId, string blmc, string ysgh, string ysxm, string orgId)
         {
             string bllx = "";
@@ -1337,7 +1337,7 @@ where a.organizeid=@orgId and a.zyh=@zyh";
             }
         }
 
-        #region 结算病人不能保存诊断
+        #region Bệnh nhân đã thanh toán không thể lưu chẩn đoán
         public IList<PatZDListVO> SettlementQuery(string zyh, string orgId)
         {
             try
@@ -1357,7 +1357,7 @@ where a.organizeid=@orgId and a.zyh=@zyh";
         }
 
         /// <summary>
-        /// 把病案的诊断同步到出区诊断表
+        /// Đồng bộ chẩn đoán của bệnh án sang bảng chẩn đoán xuất khoa
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

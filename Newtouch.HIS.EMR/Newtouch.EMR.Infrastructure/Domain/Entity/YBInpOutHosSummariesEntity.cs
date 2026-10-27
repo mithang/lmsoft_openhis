@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2021-03-01 15:24
-    /// 描 述：出院小结
+    /// Người tạo：chl
+    /// Ngày：2021-03-01 15:24
+    /// Mô tả：Tóm tắt ra viện
     /// </summary>
     [SugarTable("YB_Inp_OutHosSummaries")]
     public class YBInpOutHosSummariesEntity 
@@ -16,10 +16,10 @@ namespace Newtouch.EMR.Domain.Entity
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
         /// <summary>
-        /// 就诊流水号
+        /// Số thứ tự khám
         /// </summary>
         /// <returns></returns>
-        [Description("就诊流水号")]
+        [Description("Số thứ tự khám")]
         [Required]
         public string AKC190 { get; set; }
 
@@ -30,161 +30,161 @@ namespace Newtouch.EMR.Domain.Entity
         public string BKF636 { get; set; }
 
         /// <summary>
-        /// 住院流水号
+        /// Số thứ tự nội trú
         /// </summary>
         /// <returns></returns>
-        [Description("住院流水号")]
+        [Description("Số thứ tự nội trú")]
         [Required]
         public string BKC191 { get; set; }
 
         /// <summary>
-        /// 科室代码
+        /// Mã khoa
         /// </summary>
         /// <returns></returns>
         public string AKF001 { get; set; }
 
         /// <summary>
-        /// 科室名称
+        /// Tên khoa
         /// </summary>
         /// <returns></returns>
-        [Description("科室名称")]
+        [Description("Tên khoa")]
         [Required]
         public string AKF002 { get; set; }
 
         /// <summary>
-        /// 病区名称
+        /// Tên khu bệnh
         /// </summary>
         /// <returns></returns>
-        [Description("病区名称")]
+        [Description("Tên khu bệnh")]
         [Required]
         public string AKE021 { get; set; }
 
         /// <summary>
-        /// 病床号
+        /// Số giường bệnh
         /// </summary>
         /// <returns></returns>
-        [Description("病床号")]
+        [Description("Số giường bệnh")]
         [Required]
         public string BKB410 { get; set; }
 
         /// <summary>
-        /// 入院日期时间格式：yyymmddhhmiss
+        /// Định dạng ngày giờ nhập viện：yyymmddhhmiss
         /// </summary>
         /// <returns></returns>
-        [Description("入院日期时间")]
+        [Description("Ngày giờ nhập viện")]
         [Required]
         public string BKC192 { get; set; }
 
         /// <summary>
-        /// 出院日期时间格式：yyymmddhhmiss
+        /// Định dạng ngày giờ ra viện：yyymmddhhmiss
         /// </summary>
         /// <returns></returns>
-        [Description("出院日期时间")]
+        [Description("Ngày giờ ra viện")]
         [Required]
         public string AKC194 { get; set; }
 
         /// <summary>
-        /// 实际住院天数
+        /// Số ngày nằm viện thực tế
         /// </summary>
         /// <returns></returns>
-        [Description("实际住院天数")]
+        [Description("Số ngày nằm viện thực tế")]
         [Required]
         public string BKF668 { get; set; }
 
         /// <summary>
-        /// 入院情况
+        /// Tình trạng nhập viện
         /// </summary>
         /// <returns></returns>
-        [Description("入院情况")]
+        [Description("Tình trạng nhập viện")]
         [Required]
         public string BKF264 { get; set; }
 
         /// <summary>
-        /// 阳性辅助检查结果
+        /// Kết quả kiểm tra bổ sung dương tính
         /// </summary>
         /// <returns></returns>
         public string BKF378 { get; set; }
 
         /// <summary>
-        /// 诊疗过程描述
+        /// Mô tả quá trình chẩn đoán và điều trị
         /// </summary>
         /// <returns></returns>
         public string BKF420 { get; set; }
 
         /// <summary>
-        /// 出院情况
+        /// Tình hình ra viện
         /// </summary>
         /// <returns></returns>
-        [Description("出院情况")]
+        [Description("Tình hình ra viện")]
         [Required]
         public string BKF758 { get; set; }
 
         /// <summary>
-        /// 出院时症状与体征
+        /// Triệu chứng và dấu hiệu khi ra viện
         /// </summary>
         /// <returns></returns>
         public string BKF139 { get; set; }
 
         /// <summary>
-        /// 出院医嘱
+        /// Y lệnh ra viện
         /// </summary>
         /// <returns></returns>
         public string BKF759 { get; set; }
 
         /// <summary>
-        /// 治疗结果代码
+        /// Mã kết quả điều trị
         /// </summary>
         /// <returns></returns>
         public string BKF439 { get; set; }
 
         /// <summary>
-        /// 住院医生编号
+        /// Mã bác sĩ nội trú
         /// </summary>
         /// <returns></returns>
         public string BKF050 { get; set; }
 
         /// <summary>
-        /// 住院医生姓名
+        /// Tên bác sĩ nội trú
         /// </summary>
         /// <returns></returns>
-        [Description("住院医生姓名")]
+        [Description("Tên bác sĩ nội trú")]
         [Required]
         public string BKF692 { get; set; }
 
         /// <summary>
-        /// 上级医生姓名
+        /// Tên bác sĩ cấp trên
         /// </summary>
         /// <returns></returns>
-        [Description("上级医生姓名")]
+        [Description("Tên bác sĩ cấp trên")]
         [Required]
         public string BKF267 { get; set; }
 
         /// <summary>
-        /// 签字日期时间 ( 住院医师)格式：yyyymmddhhmiss
+        /// Ngày giờ ký ( Bác sĩ nội trú) Định dạng：yyyymmddhhmiss
         /// </summary>
         /// <returns></returns>
         public string BKF254 { get; set; }
 
         /// <summary>
-        /// 中医四诊观察结果描述
+        /// Mô tả kết quả quan sát tứ chẩn Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF473 { get; set; }
 
         /// <summary>
-        /// 治则治法
+        /// Nguyên tắc và phương pháp điều trị
         /// </summary>
         /// <returns></returns>
         public string BKF440 { get; set; }
 
         /// <summary>
-        /// 中药煎煮方法
+        /// Phương pháp sắc thuốc Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF451 { get; set; }
 
         /// <summary>
-        /// 中药用药方法
+        /// Cách dùng thuốc Đông y
         /// </summary>
         /// <returns></returns>
         public string BKF457 { get; set; }

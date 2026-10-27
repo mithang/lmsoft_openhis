@@ -15,12 +15,12 @@
      var iframeinit = document.getElementById('iframezyjz');
      iframeinit.onload = function () {
          $('#iframezyjz').contents().find('#zy_btnsyy').hide();
-         // 获取iframe素
+         // Lấyiframetố
          var iframe = document.getElementById('iframezyjz');
-         // 访问iframe中的window对象
+         // Truy cậpiframetrongcủawindowđối tượng
          var iframeWindow = iframe.contentWindow;
          iframeWindow.getPatInfoAjax({ zyh: zyjzzyh });
-         $("#PatTreeList_" + zyjzzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//选中
+         $("#PatTreeList_" + zyjzzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//Đã chọn
      }
      function init_zyjz(zyh)
      {
@@ -46,7 +46,7 @@
          //    $('#iframezyjz').attr("src", dataUrl);
          //    fistload = false;
          //}
-         $("#PatTreeList_" + zyjzzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//选中
+         $("#PatTreeList_" + zyjzzyh).attr('class', 'bbit-tree-node-el bbit-tree-node-leaf bbit-tree-selected');//Đã chọn
      }
      function getZyjzTreeList() {
          $("#PatTreeList").treeview({
@@ -57,9 +57,9 @@
                  if (item.value && item.Ex1 == "c") {
                      debugger;
                      zyjzzyh = item.value;
-                     // 获取iframe素
+                     // Lấyiframetố
                      var iframe = document.getElementById('iframezyjz');
-                     // 访问iframe中的window对象
+                     // Truy cậpiframetrongcủawindowđối tượng
                      var iframeWindow = iframe.contentWindow;
                      iframeWindow.getPatInfoAjax({ zyh: item.value });
                      //$('#iframezyjz').contents().find('#pane1').hide();

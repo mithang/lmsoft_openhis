@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity.PDSData
 {
     [Tenant(DBEnum.PdsDb)]
-    [SugarTable("xt_yp_crkdj", "出入库单据")]
+    [SugarTable("xt_yp_crkdj", "Chứng từ nhập/xuất kho")]
     public partial class DrugsDocumentEntity : ISysEntity
     {
         /// <summary>
@@ -59,7 +59,7 @@ namespace NewtouchHIS.Base.Domain.Entity.PDSData
         public System.String Ckczy { get; set; }
 
         /// <summary>
-        /// 来自 xt_ypcrkfs表的方式代码
+        /// Từ xt_ypcrkfsmã phương thức của bảng
         /// </summary>
         public System.String Crkfsdm { get; set; }
 
@@ -79,7 +79,7 @@ namespace NewtouchHIS.Base.Domain.Entity.PDSData
         public System.String Shczy { get; set; }
 
         /// <summary>
-        /// 0:未审核 1:已审核 
+        /// 0:Chưa duyệt 1:Đã duyệt 
         /// </summary>
         public System.String shzt { get; set; }
 

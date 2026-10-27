@@ -8,30 +8,30 @@ using Newtouch.PDS.Requset.Zyypyz;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// 发药管理
+    /// Quản lý phát thuốc
     /// </summary>
     public interface IDispensingDmnService
     {
 
         /// <summary>
-        /// 门诊处方预定（冻结库存）
+        /// Đặt trước đơn ngoại trú（Đóng băng tồn kho）
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
         string OutPatientBook(BookItemDo bookItemDo);
 
         /// <summary>
-        /// 门诊处方预定（冻结库存） V2
+        /// Đặt trước đơn ngoại trú（Đóng băng tồn kho） V2
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
         string OutPatientBookV2(BookItemDo bookItemDo);
 
         /// <summary>
-        /// 取消预定
+        /// Hủy đặt trước
         /// </summary>
         /// <param name="ypCode"></param>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="yfbmCode"></param>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutPatientBookCancel(string ypCode, int sl, string yfbmCode, string cfh, string organizeId, string creatorCode);
 
         /// <summary>
-        /// 取消预定
+        /// Hủy đặt trước
         /// </summary>
         /// <param name="mxphlist"></param>
         /// <param name="organizeId"></param>
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutPatientBookCancel(List<OutpatientPrescriptionDetailBatchNumberEntity> mxphlist, string organizeId, string creatorCode);
 
         /// <summary>
-        /// HIS取消结算  冻结返还
+        /// HISHủy thanh toán  Trả lại đóng băng
         /// </summary>
         /// <param name="mxphlist"></param>
         /// <param name="organizeId"></param>
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutpatientCommit(string ypCode, string yfbmCode, string cfh, string organizeId, string creatorCode);
 
         /// <summary>
-        /// 门诊扣库存(发药)
+        /// Trừ tồn kho ngoại trú(Phát thuốc)
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
@@ -80,10 +80,10 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutpatientDispensingReduceStock(string ypCode, string yfbmCode, string cfh, string organizeId, string userCode);
 
         /// <summary>
-        /// 门诊发药(扣库存、修改处方发药标志、生成发药记录)
+        /// Phát thuốc ngoại trú(Trừ tồn kho、Sửa cờ phát thuốc đơn thuốc、Tạo bản ghi phát thuốc)
         /// </summary>
         /// <param name="ypCode"></param>
-        /// <param name="sl">最小单位数量</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="yfbmCode"></param>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
@@ -93,7 +93,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutpatientDispensingDrug(string ypCode, long cfmxId, int sl, string yfbmCode, string cfh, string organizeId, string userCode);
 
         /// <summary>
-        /// 门诊退药还库存
+        /// Trả thuốc ngoại trú trả tồn kho
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="zxdwsl"></param>
@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <param name="userCode"></param>
         /// <param name="ph"></param>
         /// <param name="pc"></param>
-        /// <param name="returnDrugBillNo">退药单号</param>
+        /// <param name="returnDrugBillNo">Số đơn trả thuốc</param>
         /// <returns></returns>
         string OutpatientReturnDrugAddStock(string ypCode, string ph,
            string pc, int zxdwsl,
@@ -111,27 +111,27 @@ namespace Newtouch.HIS.Domain.IDomainServices
            string organizeId, string userCode, string returnDrugBillNo);
 
         /// <summary>
-        /// 住院Book冻结库存 并保存zy_ypyzzxph
+        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
         string HospitalizationBook(BookItemDo bookItemDo);
 
         /// <summary>
-        /// 住院Book冻结库存 并保存zy_ypyzzxph
+        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
-        /// <param name="yzId">医嘱ID</param>
-        /// <param name="zxId">执行ID</param>
-        /// <param name="organizeId">组织机构ID</param>
-        /// <param name="yfbmCode">药房部门编码</param>
-        /// <param name="creatorCode">创建人</param>
-        /// <param name="patientName">医嘱所属患者</param>
+        /// <param name="yzId">Y lệnhID</param>
+        /// <param name="zxId">Thực hiệnID</param>
+        /// <param name="organizeId">Tổ chứcID</param>
+        /// <param name="yfbmCode">Mã bộ phận nhà thuốc</param>
+        /// <param name="creatorCode">Người tạo</param>
+        /// <param name="patientName">Bệnh nhân thuộc y lệnh</param>
         /// <returns></returns>
         string HospitalizationBook(string yzId, string zxId, string organizeId, string yfbmCode, string creatorCode,
             string patientName);
 
         /// <summary>
-        /// 取消冻结，并物理删除医嘱信息 慎用
+        /// Hủy đóng băng，và xóa vật lý thông tin y lệnh Thận trọng khi dùng
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="zxId"></param>
@@ -139,16 +139,16 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string CancelForzenAndDeleteYz(string yzId, string zxId);
 
         /// <summary>
-        /// 住院Book冻结库存 并保存zy_ypyzzxph
+        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
-        /// <param name="zxId">执行ID</param>
+        /// <param name="zxId">Thực hiệnID</param>
         /// <param name="yzDetails"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         string HospitalizationBook(string zxId, List<YzDetail> yzDetails, string organizeId);
 
         /// <summary>
-        /// 住院Book冻结库存 并保存zy_ypyzzxph
+        /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="zxId"></param>
         /// <param name="bookItemDo"></param>
@@ -156,21 +156,21 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string HospitalizationCancelBook(string zxId, BookItemDo bookItemDo);
 
         /// <summary>
-        /// 取消排药
+        /// Hủy xếp thuốc
         /// </summary>
         /// <param name="cancelArrangement"></param>
         /// <returns></returns>
         string HospitalizationCancelArrangement(CancelArrangement cancelArrangement);
 
         /// <summary>
-        /// 取消排药 事务
+        /// Hủy xếp thuốc Giao dịch
         /// </summary>
         /// <param name="param"></param>
         /// <returns></returns>
         string HospitalizationCancelArrangementWithTrans(CancelArrangement param);
 
         /// <summary>
-        /// 住院发药
+        /// Phát thuốc nội trú
         /// </summary>
         /// <param name="zyphLs"></param>
         /// <param name="yzLs"></param>
@@ -180,7 +180,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string HospitalizationDispensing(List<ZyYpyzzxphEntity> zyphLs, List<ZyYpyzxxEntity> yzLs, string userCode,out string fyid,string organizeId);
 
         /// <summary>
-        /// 获取药品大类
+        /// Lấy loại lớn thuốc
         /// </summary>
         /// <param name="ypcode"></param>
         /// <param name="organizeId"></param>

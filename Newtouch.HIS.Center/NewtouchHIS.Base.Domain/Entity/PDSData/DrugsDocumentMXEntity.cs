@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Base.Domain.Entity.PDSData
 {
     [Tenant(DBEnum.PdsDb)]
-    [SugarTable("xt_yp_crkmx", "出入库单据明细")]
+    [SugarTable("xt_yp_crkmx", "Chi tiết chứng từ nhập/xuất kho")]
     public partial class DrugsDocumentMXEntity : ISysEntity
     {
         /// <summary>
@@ -15,7 +15,7 @@ namespace NewtouchHIS.Base.Domain.Entity.PDSData
         public System.String crkmxId { get; set; }
 
         /// <summary>
-        /// 来自表 XT_YP_CRKDJK的Khóa chính
+        /// Từ bảng XT_YP_CRKDJKcủaKhóa chính
         /// </summary>
         public System.String crkId { get; set; }
 
@@ -85,7 +85,7 @@ namespace NewtouchHIS.Base.Domain.Entity.PDSData
         public System.Int32 Sl { get; set; }
 
         /// <summary>
-        /// 默认值1
+        /// Giá trị mặc định1
         /// </summary>
         public System.Int32 Rkzhyz { get; set; }
 
@@ -95,7 +95,7 @@ namespace NewtouchHIS.Base.Domain.Entity.PDSData
         public System.Int32 Rkbmkc { get; set; }
 
         /// <summary>
-        /// 默认值1
+        /// Giá trị mặc định1
         /// </summary>
         public System.Int32 Ckzhyz { get; set; }
 
@@ -195,12 +195,12 @@ namespace NewtouchHIS.Base.Domain.Entity.PDSData
         public System.String LastModifierCode { get; set; }
 
         /// <summary>
-        /// 出库单位（单位名称）
+        /// Đơn vị xuất kho(Tên đơn vị)
         /// </summary>
         public System.String ckdw { get; set; }
 
         /// <summary>
-        /// 入库单位（单位名称）
+        /// Đơn vị nhập kho(Tên đơn vị)
         /// </summary>
         public System.String rkdw { get; set; }
 

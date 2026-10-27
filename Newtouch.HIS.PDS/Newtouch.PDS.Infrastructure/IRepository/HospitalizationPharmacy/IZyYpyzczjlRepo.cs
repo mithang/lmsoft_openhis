@@ -3,7 +3,7 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.IRepository
 {
     /// <summary>
-    /// 住院药品医嘱操作记录
+    /// Bản ghi thao tác y lệnh thuốc nội trú
     /// </summary>
     public interface IZyYpyzczjlRepo : IRepositoryBase<ZyYpyzczjlEntity>
     {

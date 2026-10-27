@@ -5,13 +5,13 @@ using Newtouch.Domain.ViewModels;
 namespace Newtouch.Domain.IDomainServices
 {
     /// <summary>
-    /// 医生出诊
+    /// Bác sĩrakhám
     /// </summary>
     public interface IVisitDeptSetDmnService
     {
 
         /// <summary>
-        /// 获取出诊医生信息
+        /// LấyrakhámBác sĩthông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -20,7 +20,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<VisitDeptSetVO> SelectVisitDeptSet(Pagination pagination, string keyword, string organizeId);
 
         /// <summary>
-        /// 获取出诊医生明细
+        /// LấyrakhámBác sĩchi tiết
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="organizeId"></param>
@@ -28,14 +28,14 @@ namespace Newtouch.Domain.IDomainServices
         IList<VisitDeptDetail> SelectVisitDeptSetDetail(string ysgh, string organizeId);
 
         /// <summary>
-        /// 获取出诊医生明细
+        /// LấyrakhámBác sĩchi tiết
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
         VisitDeptDetail SelectVisitDeptSetInfo(string id);
 
         /// <summary>
-        /// 获取出诊医生信息
+        /// LấyrakhámBác sĩthông tin
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="organizeId"></param>

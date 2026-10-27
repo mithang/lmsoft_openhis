@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// 查询药品单位
+        /// Tra cứu đơn vị thuốc
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Repository
                     throw new FailedException("Tên đơn vị không được trùng lặp!");
                 }
 
-                SysMedicineUnitEntity oldEntity = null;   //变更前Entity
+                SysMedicineUnitEntity oldEntity = null;   //Trước khi thay đổiEntity
                 oldEntity = this.FindEntity(keyValue.Value);
                 this.DetacheEntity(oldEntity);
 

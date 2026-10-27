@@ -26,9 +26,9 @@ namespace Newtouch.MR.ManageSystem.Repository
     public class MrFeeRelRepo : RepositoryBase<bafeeRelEntity>, IMrFeeRelRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">Factory ngữ cảnh EF</param>
         public MrFeeRelRepo()
             
         {
@@ -37,10 +37,10 @@ namespace Newtouch.MR.ManageSystem.Repository
 
 
         /// <summary>
-        /// 获取分页实体列表
+        /// Lấy danh sách thực thể phân trang
         /// </summary>
-        /// <param name="pagination">分页</param>
-        /// <param name="keyword">筛选关键字</param>
+        /// <param name="pagination">Phân trang</param>
+        /// <param name="keyword">Từ khóa lọc</param>
         public IList<bafeeRelEntity> GetPagintionList(Pagination pagination, string keyword, string organizeId)
         {
             var sql = new StringBuilder();
@@ -65,7 +65,7 @@ namespace Newtouch.MR.ManageSystem.Repository
         }
 
 		/// <summary>
-		/// 将未分类的项目增加到关系表中
+		/// Thêm các mục chưa phân loại vào bảng quan hệ
 		/// </summary>
 		/// <param name="entity"></param>
 		/// <returns></returns>

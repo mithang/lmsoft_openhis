@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations;
 namespace NewtouchHIS.Domain.Entity.RemoteTreated
 {
     ///<summary>
-    ///系统科室
+    ///Khoa hệ thống
     ///</summary>
     [Tenant(DBEnum.CisDb)]
     [SugarTable("zl_zlsq", "TreatedApplyEntity")]
@@ -21,7 +21,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string Id { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký时间
+        /// Desc:Đăng kýThời gian
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -29,7 +29,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public DateTime? sqsj { get; set; }
 
         /// <summary>
-        /// Desc:就诊时间
+        /// Desc:Thời gian khám
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -37,7 +37,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public DateTime? jzsj { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký科室
+        /// Desc:Đăng kýKhoa
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -45,7 +45,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string ks { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký医生
+        /// Desc:Đăng kýBác sĩ
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -53,7 +53,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string ysgh { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký状态
+        /// Desc:Đăng kýTrạng thái
         /// Default:EmunRemoteTreatedStu
         /// Nullable:False
         /// </summary>           
@@ -68,7 +68,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         [StringLength(50, ErrorMessage = "patid giới hạn độ dài là 50")]
         public string patid { get; set; }
         /// <summary>
-        /// 就诊Số thẻ
+        /// Khám bệnhSố thẻ
         /// </summary>
         [Required(ErrorMessage = "kh không được để trống")]
         public string kh { get; set; }
@@ -117,7 +117,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public DateTime? birth { get; set; }
 
         /// <summary>
-        /// Desc:病人性质
+        /// Desc:Tính chất bệnh nhân
         /// Default:EnumBrxz
         /// Nullable:True
         /// </summary>           
@@ -125,7 +125,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string? brxz { get; set; } 
 
         /// <summary>
-        /// Desc:Cuộc họp号
+        /// Desc:Cuộc họpSố
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -133,7 +133,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string? mettingId { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký人信息
+        /// Desc:Đăng kýthông tin người
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -141,7 +141,7 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         public string sqr { get; set; }
 
         /// <summary>
-        /// Desc:Đăng ký流水号（由第三方系统生成，不可重复）
+        /// Desc:Đăng kýSố giao dịch(Do hệ thống thứ ba tạo,Không được trùng lặp)
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -156,11 +156,11 @@ namespace NewtouchHIS.Domain.Entity.RemoteTreated
         /// </summary>
         public string? ApplyOrg { get; set; }
         /// <summary>
-        /// Tổ chức名称
+        /// Tổ chứcTên
         /// </summary>
         public string? ApplyOrgName { get; set; }
         /// <summary>
-        /// Đăng ký人工号
+        /// Đăng kýMã số nhân viên
         /// </summary>
         public string? sqrgh { get; set; }
         /// <summary>

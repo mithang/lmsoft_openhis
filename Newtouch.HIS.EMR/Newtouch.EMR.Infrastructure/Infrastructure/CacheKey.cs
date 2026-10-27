@@ -1,12 +1,12 @@
 namespace Newtouch.EMR.Infrastructure
 {
     /// <summary>
-    /// 缓存Key
+    /// Bộ nhớ đệmKey
     /// </summary>
     public class CacheKey
     {
         /// <summary>
-        /// 用户登陆第三方授权token {0} 当前系统AppId {1} 机构代码 {2} 用户
+        /// Người dùng đăng nhập ủy quyền bên thứ batoken {0} Hệ thống hiện tạiAppId {1} Mã tổ chức {2} Người dùng
         /// </summary>
         public static string AccessToken = "${0}${1}:accesstoken_{2}";
     }

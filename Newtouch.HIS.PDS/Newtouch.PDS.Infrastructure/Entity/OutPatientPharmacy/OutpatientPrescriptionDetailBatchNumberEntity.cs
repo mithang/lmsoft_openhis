@@ -6,101 +6,101 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// 门诊处方明细批号
+    /// Số lô chi tiết đơn ngoại trú
     /// </summary>
     [Table("mz_cfmxph")]
     [SugarTable("mz_cfmxph")]
     public class OutpatientPrescriptionDetailBatchNumberEntity : IEntity<OutpatientPrescriptionDetailBatchNumberEntity>
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public string cfmxphId { get; set; }
 
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string yp { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 最小单位数量
+        /// Số lượng đơn vị nhỏ nhất
         /// </summary>
         public decimal sl { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn dùng
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 药品成组号
+        /// Số nhóm thuốc
         /// </summary>
         public string czh { get; set; }
 
         /// <summary>
-        /// 门诊处方明细ID，mz_cfmx.Id
+        /// Chi tiết đơn ngoại trúID，mz_cfmx.Id
         /// </summary>
         public long? cfmxId { get; set; }
 
         /// <summary>
-        /// 状态：1-有效 ；0-无效
+        /// Trạng thái：1-Hiệu lực ；0-Không hiệu lực
         /// </summary>
         public string zt { get; set; }
 
         /// <summary>
-        /// 排序
+        /// Sắp xếp
         /// </summary>
         public int? px { get; set; }
 
         /// <summary>
-        /// 创建者
+        /// Người tạo
         /// </summary>
         public string CreatorCode { get; set; }
 
         /// <summary>
-        /// 创建时间
+        /// Thời gian tạo
         /// </summary>
         public DateTime CreateTime { get; set; }
 
         /// <summary>
-        /// 最后修改时间
+        /// Thời gian sửa đổi cuối
         /// </summary>
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// 最后修改人
+        /// Người sửa đổi cuối
         /// </summary>
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 归家状态：1-已归架；0-未归架
+        /// Trạng thái về nhà：1-Đã xếp lên kệ；0-Chưa xếp lên kệ
         /// </summary>
         public string gjzt { get; set; }
 
         /// <summary>
-        /// 发药药房代码
+        /// Mã nhà thuốc phát thuốc
         /// </summary>
         public string fyyf { get; set; }
 
         /// <summary>
-        /// 处方号
+        /// Số đơn thuốc
         /// </summary>
         public string cfh { get; set; }
 

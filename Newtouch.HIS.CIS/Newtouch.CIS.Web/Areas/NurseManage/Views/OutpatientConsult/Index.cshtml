@@ -58,7 +58,7 @@
 	<table id="pretb" style="border-right:2.5px solid rgb(111, 216, 171);">
 		<tbody id="tbody"></tbody>
 		@*<tr>
-				<th> <span id="sp_zsmc">诊室1</span></th>
+				<th> <span id="sp_zsmc">Phòng khám1</span></th>
 				<td>
 					<span id="sp_num">23</span>
 				</td>
@@ -102,14 +102,14 @@
                 { label: 'Id', name: 'ghzsId', hidden: true, },
                 { label: 'Đăng ký khámMã nội bộ', name: 'ghnm', hidden: true, },
                 @*{
-                    label: '操作区', name: 'action', width: 40, align: 'center', formatter: function (cellvalue, op, row) {
+                    label: 'Thao táckhu', name: 'action', width: 40, align: 'center', formatter: function (cellvalue, op, row) {
                         if (row.ghzsId==0) {
                             return '';
                         }
-                        else if (row.calledstu == "2" ) {//已叫号
+                        else if (row.calledstu == "2" ) {//đãgọisố
                             return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ghzsId + ',' + @Html.Raw(((int)EmunConsultCalledStu.pass)) + ')" value="Qua số" />';
                         }
-                        else if (row.calledstu == "3") {//过号
+                        else if (row.calledstu == "3") {//quasố
                             return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ghzsId + ',' + @Html.Raw(((int)EmunConsultCalledStu.recall)) + ')" value="Gọi lại" />';
                         }
 
@@ -130,10 +130,10 @@
             sortname: 'ghrq asc',
             viewrecords: true,
             caption: "Chuyên giaPhòng khám",
-            autoScroll: false,//当autoScroll和shrinkToFit均为false时，会出现行滚动条
-            shrinkToFit: false,//是否列宽度自适应。true=适应 false=不适应
+            autoScroll: false,//khiautoScrollvàshrinkToFitđềulàfalsekhi，sẽ xuất hiệndòngthanh cuộn
+            shrinkToFit: false,//CóKhôngcộtrộngđộtựthích ứng。true=thích ứng false=khôngthích ứng
         });
-        $gridList.jqGrid('setFrozenColumns');//设置冻结列生效
+        $gridList.jqGrid('setFrozenColumns');//Cài đặtđôngkếtcộtsinhhiệu
         $("#time_horizon a.btn-default").click(function () {
             $("#time_horizon a.btn-default").removeClass("active");
             $(this).addClass("active");
@@ -152,7 +152,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search').trigger('click');
     })
@@ -187,10 +187,10 @@
                         if (row.ghzsId==0) {
                             return '';
                         }
-                        @*else if (row.calledstu == "2" ) {//已叫号未应答
+                        @*else if (row.calledstu == "2" ) {//đãgọisốchưaứngđáp
 							return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ghnm + ',' + @Html.Raw(((int)EmunConsultCalledStu.pass)) + ')" value="Qua số" />';
                         }*@
-						else if (row.calledstu == "2") {//已Gọi số可以重叫
+						else if (row.calledstu == "2") {//đãGọi sốcó thểlấytrọnggọi
 							return '<input type="button" class="btn btn-default"  onclick="jiaohao(' + row.ghnm + ',' + @Html.Raw(((int)EmunConsultCalledStu.recall)) + ')" value="Gọi lại" />';
                         }
 
@@ -212,15 +212,15 @@
             sortname: 'ghrq asc',
 			viewrecords: true,
 			unwritten: false,
-			editurl: "clientArray",  //行编辑不向服务器提交数据
+			editurl: "clientArray",  //dòngSửakhông gửi lên máy chủGửiDữ liệu
             caption: "ThườngPhòng khám",
-            autoScroll: false,//当autoScroll和shrinkToFit均为false时，会出现行滚动条
-            shrinkToFit: false,//是否列宽度自适应。true=适应 false=不适应
+            autoScroll: false,//khiautoScrollvàshrinkToFitđềulàfalsekhi，sẽ xuất hiệndòngthanh cuộn
+            shrinkToFit: false,//CóKhôngcộtrộngđộtựthích ứng。true=thích ứng false=khôngthích ứng
             gridComplete: function () {
                 EnableInlineEditBox();
             }
         });
-        $gridListRight.jqGrid('setFrozenColumns');//设置冻结列生效
+        $gridListRight.jqGrid('setFrozenColumns');//Cài đặtđôngkếtcộtsinhhiệu
 
         $("#btn_search").click(function () {
             var queryJson = getPostData();
@@ -249,7 +249,7 @@
         return queryJson;
     }
 
-    //获取各Phòng khám待就诊患者数量
+    //LấymỗiPhòng khámChờ khám bệnhBệnh nhânSố lượng
     function getConsultCount() {
         if (ksCode) {
             $.najax({
@@ -271,21 +271,21 @@
         }
     }
 
-    //Phòng khám行编辑
+    //Phòng khámdòngSửa
     function EnableInlineEditBox() {
         var ids = $("#gridListRight").getDataIDs();
         $.each(ids, function () {
             var rowid = String(this);
-            //打开编辑模式
+            //MởSửachế độ
             $("#gridListRight").jqGrid('editRow', rowid, false, initInlineFunc);
         })
     }
 
-    //Phòng khám行编辑
+    //Phòng khámdòngSửa
 	function initInlineFunc(rowid) {
 		$("#" + rowid + "_zsmc").attr('autocomplete', 'off');
         //$("#" + rowid + "_zsmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
-        //Phòng khám浮层
+        //Phòng khámlớp nổi
         $("#" + rowid + "_zsmc").zsFloatingSelector({
             djDecimalPlaces: 4,
             searchType: 'sfxm',
@@ -308,24 +308,24 @@
 
     }
 
-    //保存
+    //Lưu
     function newtouch_event_f8() {
         var rowIds = $("#gridListRight").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             var saveResult = $("#gridListRight").saveRow(rowIds[i], null, null, null, null, null, function (callbackRowId) { }, function (callbackRowId) { });
 
             if (!saveResult) {
-                EnableInlineEditBox();    //重启启用编辑 否则下次Save时会返回false
-                return;   //保存失败，则return
+                EnableInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
+                return;   //Lưu thất bại，thìreturn
             }
         }
 
 
-        //项目
+        //Mục
         var ghzslist = $("#gridListRight").jqGrid('getRowData_AllLine', null, true);
 
-        $.each(ghzslist, function () {    //去掉action
-            delete this.action;   //去掉action
+        $.each(ghzslist, function () {    //Bỏaction
+            delete this.action;   //Bỏaction
         })
         $.najax({
             url: "/NurseManage/OutpatientConsult/SaveData",
@@ -334,11 +334,11 @@
             type: "POST",
             success: function (data) {
                 $.modalAlert("Lưu thành công", 'warning');
-                //清空
+                //Xóa trắng
 				$("#txt_keyword").val("");
 
                 $("#gridListRight").clearGridData();
-                //刷新
+                //Làm mới
                 $("#gridListRight").jqGrid('setGridParam', {
                     page: 1,
                 }).trigger('reloadGrid');
@@ -385,11 +385,11 @@
 					//	zsfh = zsfh.substring(1);
 					//}
 
-					//var text = ajaxresp[0].xm + "请到" + ajaxresp[0].zslc + "楼" + ajaxresp[0].ksmc + "" + ajaxresp[0].zsmc.replace(/[0-9]/g, '') + zsfhnew+"就诊";
+					//var text = ajaxresp[0].xm + "vui lòngđến" + ajaxresp[0].zslc + "lầu" + ajaxresp[0].ksmc + "" + ajaxresp[0].zsmc.replace(/[0-9]/g, '') + zsfhnew+"Khám bệnh";
 					//for (var k = 1; k <= 3; k++) {
 					//	bobao(text);
 					//}
-					//更新Gọi số状态（2已叫）
+					//Cập nhậtGọi sốTrạng thái（2đãgọi）
 					$.najax({
 					    type: "POST",
 						url: "/NurseManage/OutpatientConsult/UpdateCalledstu",
@@ -401,9 +401,9 @@
 					    }
 					});
 
-					//清空
+					//Xóa trắng
 					$("#txt_keyword").val("");
-					//$("#gridListRight").jqGrid('setSelection', selrowId, false);//取消选中行
+					//$("#gridListRight").jqGrid('setSelection', selrowId, false);//HủyĐã chọndòng
 					$("#gridListRight").clearGridData();
 					getConsultCount();
 					$("#gridListRight").jqGrid('setGridParam', {
@@ -418,7 +418,7 @@
 
 	function jiaohao(ghzsId, calledstu) {
 
-        //更新Gọi số状态
+        //Cập nhậtGọi sốTrạng thái
         $.najax({
             type: "POST",
             url: "/NurseManage/OutpatientConsult/UpdateCalledstu",
@@ -428,15 +428,15 @@
             success: function (ajaxresp) {
 				$.modalAlert("Lưu thành công", 'warning');
 
-				//var text = ajaxresp[0].xm + "请到" + ajaxresp[0].zslc + "楼" + ajaxresp[0].ksmc + "" + ajaxresp[0].zsmc.replace(/[0-9]/g, '') + zsfhnew + "就诊";
+				//var text = ajaxresp[0].xm + "vui lòngđến" + ajaxresp[0].zslc + "lầu" + ajaxresp[0].ksmc + "" + ajaxresp[0].zsmc.replace(/[0-9]/g, '') + zsfhnew + "Khám bệnh";
 				//for (var k = 1; k <= 3; k++) {
 				//	bobao(text);
 				//}
 
-                //清空
+                //Xóa trắng
 				$("#txt_keyword").val("");
                 $("#gridListRight").clearGridData();
-                //刷新
+                //Làm mới
                 $("#gridListRight").jqGrid('setGridParam', {
                     page: 1,
                 }).trigger('reloadGrid');

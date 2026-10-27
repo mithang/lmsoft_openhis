@@ -113,12 +113,12 @@
 <script>
     var $gridDjMainRecords = $("#gridDJMainRecords");
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
         $(window).resize(function () {
             window.initLayout("MyTabGrid");
         });
         $('#ddlSHZT').val('0');
-        //搜索框隐藏显示控制
+        //Điều khiển ẩn/hiện hộp tìm kiếm
         $(".hiding,.rows,#dv_search,.toolbar").click(function () {
             TabGridHide();
         });
@@ -131,14 +131,14 @@
         gridDJMainRecords();
     });
 
-    //回车事件绑定
+    //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
         if (event.keyCode == 13) {
             $("#btn_search").trigger("click");
         }
     });
 
-    //隐藏搜索框并显示箭头
+    //Ẩn hộp tìm kiếm và hiển thị mũi tên
     function TabGridHide() {
         var tabGridwith = $("#TabGrid").width() + 200;
         if ($(".showbotton").is(":hidden")) {
@@ -148,7 +148,7 @@
         }
     }
 
-    //单据主记录
+    //Bản ghi chính của chứng từ
     function gridDJMainRecords() {
         $gridDjMainRecords.dataGrid({
             height: $(window).height() - 155,
@@ -196,7 +196,7 @@
         });
     }
 
-    //组装查询条件
+    //Lắp ráp điều kiện truy vấn
     function getSearchPostData() {
         var ffzt = $("#ffzt").val() === "" ? -1 : $("#ffzt").val();
         var djh = $("#djh").val();
@@ -205,9 +205,9 @@
         return { ffzt: ffzt, djh: djh, startTime: startTime, endTime: endTime };
     };
 
-    //单击事件
+    //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//每次单击，先清空明细 再重新加载所有选中行明细
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $('#gridDJMXInfo').jqGrid('setGridParam', {
             postData: { sldId: $("#gridDJMainRecords").jqGrid('getRowData', rowId).sldId },
             url: "/BillManage/ApplyBill/ApplyDetailSearch"
@@ -215,7 +215,7 @@
         $(".showbotton").click().trigger("click");
     }
 
-    //单据明细
+    //Chi tiết chứng từ
     $('#gridDJMXInfo').dataGrid({
         height: $(window).height() - 200,
         colModel: [

@@ -119,7 +119,7 @@
                         <label>￥</label>
                         <label id="labzl"></label>
                     </td>
-                    @*<th class="formTitle">支付方式：</th>
+                    @*<th class="formTitle">Phương thức thanh toán：</th>
                         <td class="formValue formDdlSelectorTd">
                             <select id="ddlzffs" class="form-control"></select>
                         </td>*@
@@ -134,7 +134,7 @@
 })
 <script>
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Nạp lại khi thay đổi kích thước cửa sổ trình duyệtjqGridChiều rộng
         $(window).resize(function () {
             initLayout("MyTabGrid");
         });
@@ -146,15 +146,15 @@
         gridList([]);
     })
 
-    //住院号开关
+    //Công tắc số nhập viện
     var isShowZyh = '@ViewBag.IsShowZyh';
-    //查询
+    //Tra cứu
     $('#btn_search').click(function () {
         ajaxLoadDataResult();
         //}
     });
 
-    //病历号回车
+    //Nhấn Enter số bệnh án
     $('#blh,#zyh,#xm111').keydownEnterEvent(function () {
         ajaxLoadDataResult();
     })
@@ -166,7 +166,7 @@
         $('#td_formTitle').css('display', 'none');
         
     }
-    //弹层病人查询
+    //Tra cứu bệnh nhân ở lớp bật
     function GetPatSerarchView(blh, xm) {
         if (!!!blh) {
             blh = '';
@@ -182,11 +182,11 @@
             height: "600px",
             callBack: function (iframeId) {
                 top.frames[iframeId].PatDbGrid();
-            }//窗口点确定的回调函数
+            }//hàm gọi lại khi nhấn xác nhận trên cửa sổ
         });
     }
 
-    //选择的病人 callback
+    //Bệnh nhân đã chọn callback
     function getPatInfoAjax(selePatInfo) {
         $('#blh').val(selePatInfo.blh)
         $('#blh').attr('data-patId', selePatInfo.patId);
@@ -194,7 +194,7 @@
     }
 
 
-    //查询病人信息
+    //tratra cứubệnhngườithông tintin
     function ajaxLoadDataResult() {
         if (!$("#blh").val().trim() && !$("#zyh").val().trim() && !$("#xm111").val().trim()) {
             return;
@@ -223,7 +223,7 @@
                     $('#xm').val(data[0].xm);
                 }
                 if (data.length > 1) {
-                    //弹层病人查询
+                    //Tra cứu bệnh nhân ở lớp bật
                     GetPatSerarchView($('#blh').val(), $('#xm111').val());
                 }
             }
@@ -231,12 +231,12 @@
 
     }
 
-    //默认
-    var Editing_ysList = []; //编辑域中的人员
+    //mặc định
+    var Editing_ysList = []; //Nhân viên trong vùng soạn thảo
 
     Editing_ysList = [{ id: $('#smryName').attr('data-staffId'), gh: $('#smryName').attr('data-smry'), Name: $('#smryName').val(), ks: $('#smks').attr('data-smksCode'), ksmc: $('#smks').val() }];
 
-    //绑定 人员 树
+    //gắn Nhân viên cây
     $('#smryName').click(function () {
         var initIdSelected = "";
         $.each(Editing_ysList, function () {
@@ -257,7 +257,7 @@
         });
     });
 
-    //人员树 选择 回调
+    //Cây nhân viên Chọn gọi lại
     function staffTreeCallback(treeSeleData) {
         Editing_ysList = [];
         $.each(treeSeleData, function () {
@@ -279,7 +279,7 @@
 
     }
 
-    //获取非治疗收费项目
+    //đượclấykhôngđiều trịđiều trịthuphíhạngmục
     $('#sfxmName').sfxmFloatingSelector({
         djDecimalPlaces: 4,
         searchType: "sfxm",
@@ -297,7 +297,7 @@
         },
     });
 
-    //记账明细
+    //ghitài khoảnrõchi tiết
     function gridList(mydata) {
         var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
@@ -335,7 +335,7 @@
         }, mydata);
     }
 
-    //双击
+    //nhấn đúp
     function gridDbclickRow(rowid) {
         if (rowid) {
             var getRowData = $("#gridList").jqGrid('getRowData', rowid);
@@ -360,11 +360,11 @@
     }
 
 
-    //回车加载grid
+    //quayxethêmtảigrid
     $('#smryName').keydownEnterEvent(function () {
-        if ($('#editRowId').val()) {            //是修改
+        if ($('#editRowId').val()) {            //là sửa
             newtouch_event_f3();
-            //操作按钮样式
+            //thao táclàmtheonútmẫukiểu
             bottomButtonsReset();
         }
         else {
@@ -372,10 +372,10 @@
         }
     });
 
-    //获取明细
+    //Lấy chi tiết
     function getEditRowData() {
         var count = $("#gridList").getGridParam('records');
-        //检查明细
+        //Kiểm tra chi tiết
         if (!CheckDetailData()) {
             return false;
         }
@@ -400,61 +400,61 @@
         }];
         return data;
     }
-    //添加按钮
+    //nút thêm
     function newtouch_event_f2() {
         if ($('#btn_bottombutton_f2').attr('disabled') == "disabled") {
             return;
         }
-        //检查明细
+        //Kiểm tra chi tiết
         if (!CheckDetailData()) {
             return false;
         }
-        //获取明细
+        //Lấy chi tiết
         var data = getEditRowData();
-        //清空控件
+        //Xóa điều khiển
         ClearInput();
         $("#gridList").newtouchLocalDataGrid(null, data);
-        //刷新应收款
+        //Làm mới khoản phải thu
         RefreshYSK();
     }
 
-    //F9取消修改
+    //F9Hủy sửa
     function newtouch_event_f9() {
         if ($('#btn_bottombutton_f9').attr('disabled') == "disabled") {
             return;
         }
-        //清空控件
+        //Xóa điều khiển
         ClearInput();
         bottomButtonsReset();
     }
 
-    //修改按钮
+    //Nút sửa đổi
     function newtouch_event_f3() {
         if ($('#btn_bottombutton_f3').attr('disabled') == "disabled") {
             return;
         }
         if ($('#editRowId').val()) {
-            //检查明细
+            //Kiểm tra chi tiết
             if (!CheckDetailData()) {
                 return false;
             }
-            //获取明细
+            //Lấy chi tiết
             var data = getEditRowData();
-            $('#gridList').jqGrid("delRowData", $('#editRowId').val()); //先remove掉那一行
-            //清空控件
+            $('#gridList').jqGrid("delRowData", $('#editRowId').val()); //trướcremoverớtkiamộtthực hiện
+            //Xóa điều khiển
             ClearInput();
             $("#gridList").newtouchLocalDataGrid(null, data);
-            //刷新应收款
+            //Làm mới khoản phải thu
             RefreshYSK();
             bottomButtonsReset();
             $('#editRowId').val('');
         }
         else {
             $('#btn_bottombutton_f2').attr('disabled', 'disabled');
-            //获取grid当前选中的那一行
+            //LấygridDòng đang chọn hiện tại
             var seleId = $('#gridList').jqGrid('getGridParam', 'selrow');
             if (seleId) {
-                //请求修改该行
+                //Yêu cầu sửa dòng này
                 gridDbclickRow(seleId);
             }
             else {
@@ -463,7 +463,7 @@
         }
     }
 
-    //删除
+    //Xóa
     function newtouch_event_f6() {
         if ($('#btn_bottombutton_f6').attr('disabled') == "disabled") {
             return;
@@ -475,11 +475,11 @@
             return;
         }
         $('#gridList').jqGrid('delRowData', del_rowid);
-        //刷新应收款
+        //Làm mới khoản phải thu
         RefreshYSK();
     }
 
-    //计算应收款
+    //tínhtínhphảithukhoản
     function RefreshYSK() {
         var ysk = 0;
         var count = $("#gridList").getGridParam('records');
@@ -489,7 +489,7 @@
                 var getRow_je = $("#gridList").getRowData(rowIDS[i]).je;
                 ysk = parseFloat(ysk) + parseFloat(getRow_je);
             }
-            //入库金额
+            //vàokhotiềnmức
             $("#labysk").text(ysk.toFixed(2));
             $("#txtssk").val(ysk.toFixed(2));
             $("#labysk").addClass('moneybg');
@@ -499,9 +499,9 @@
         }
     }
 
-    //刷新找零
+    //quẹtmớitìmkhông
     $("#txtssk").change(function () {
-        //先清空
+        //xóa sạch trước
         $("#labzl").text('');
         if ($("#txtssk").val() == "" || isNaN($("#txtssk").val()) || $("#txtssk").val() <= 0) {
             $.loading(false);
@@ -509,11 +509,11 @@
             return;
         }
         var zl = parseFloat($("#txtssk").val()) - parseFloat($("#labysk").text());
-        $("#labzl").text(zl.toFixed(2)); //保留小数点后两位小数
+        $("#labzl").text(zl.toFixed(2)); //bảo hiểmgiữnhỏsốđiểmsauhaivịnhỏsố
     });
 
 
-    //保存确认
+    //bảo hiểmlưuxác nhậnnhận
     function newtouch_event_f8() {
         var data = $("#gridList").jqGrid('getRowData_AllLine', undefined, false);
         if (data == "[]") {
@@ -542,12 +542,12 @@
             return;
         } else {
             var zl = parseFloat($("#txtssk").val()) - parseFloat($("#labysk").text());
-            //弹出结算窗体
+            //bậtrakếttínhcửa sổthể
             showBillSuccessDialog($("#labysk").text(), $("#txtssk").val(), 0, zl.toFixed(2));
         }
     }
 
-    //弹出金额确认窗口
+    //bật cửa sổ xác nhận số tiền
     function showBillSuccessDialog(ysk, ssk, srce, zl) {
         var url = "/HospitalizationManage/Settlement/SettSuccessDialog?yingshoukuan=" + ysk
             + "&ssk=" + ssk
@@ -561,13 +561,13 @@
             height: "260px",
             callBack: function (iframeId) {
                 $.loading(true, "Đang yêu cầu dữ liệu...");
-                $.modalClose("FormShowBillSuccessDialog");   //关闭结算金额的窗体
+                $.modalClose("FormShowBillSuccessDialog");   //đóng biểu mẫu số tiền quyết toán
                 SaveMethod(ysk, ssk);
             }
         });
     }
 
-    //具体保存执行
+    //lưu và thực hiện cụ thể
     function SaveMethod(ysk, ssk) {
         var data = $("#gridList").jqGrid('getRowData_AllLine', undefined, false);
         $.najax({
@@ -604,7 +604,7 @@
     }
 
 
-    //校验明细
+    //trườngkiểmrõchi tiết
     function CheckDetailData() {
         if ($("#sfxmName").val() == "") {
             $.modalAlert("Vui lòng điền Khoản thu phí", 'warning');
@@ -641,14 +641,14 @@
         return true;
     }
 
-    //清空控件
+    //Xóa điều khiển
     function ClearInput() {
         $('#sfxmName').val('');
         $('#dj').val('');
         $('#sl').val('');
     }
 
-    //f4清除操作
+    //f4Xóa thao tác
     function newtouch_event_f4() {
         $('#gridList').jqGrid("clearGridData");
     }

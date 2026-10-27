@@ -15,7 +15,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.MRQC
         [StringLength(50, ErrorMessage = "OrganizeId giới hạn độ dài là 50")]
         public string? OrganizeId { get; set; }
         /// <summary>
-        /// Đăng ký科室
+        /// Đăng kýKhoa
         /// </summary>
         [Required(ErrorMessage = "ApplyDept không được để trống")]
         public string ApplyDept { get; set; }
@@ -25,7 +25,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.MRQC
         [Required(ErrorMessage = "Zyh không được để trống")]
         public string Zyh { get; set; }
         /// <summary>
-        /// 床位
+        /// Giường bệnh
         /// </summary>
         [Required(ErrorMessage = "Bed không được để trống")]
         public string Bed { get; set; }
@@ -35,51 +35,51 @@ namespace NewtouchHIS.Domain.InterfaceObjets.MRQC
         [Required(ErrorMessage = "PatName không được để trống")]
         public string PatName { get; set; }
         /// <summary>
-        /// Đăng ký医师
+        /// Đăng kýBác sĩ
         /// </summary>
         [Required(ErrorMessage = "ApplyDoctor không được để trống")]
         public string ApplyDoctor { get; set; }
         /// <summary>
-        /// Đăng ký类型 0：新建病历 1：修改病历
+        /// Đăng kýLoại 0:Lập bệnh án mới 1:Sửa bệnh án
         /// </summary>
         [Required(ErrorMessage = "ApplyType không được để trống")]
         public int ApplyType { get; set; }
         /// <summary>
-        /// 病历名称
+        /// Tên bệnh án
         /// </summary>
         [Required(ErrorMessage = "MedicalName không được để trống")]
         public string MedicalName { get; set; }
         /// <summary>
-        /// 质控完成时间
+        /// Thời gian hoàn thành kiểm soát chất lượng
         /// </summary>
         [Required(ErrorMessage = "CompletionDate không được để trống")]
         public DateTime? CompletionDate { get; set; }
         /// <summary>
-        /// Đăng ký时间
+        /// Đăng kýThời gian
         /// </summary>
         [Required(ErrorMessage = "ApplyDate không được để trống")]
         public DateTime? ApplyDate { get; set; }
         /// <summary>
-        /// Đăng ký完成时间
+        /// Đăng kýThời gian hoàn thành
         /// </summary>
         [Required(ErrorMessage = "ApplyCompletionDate không được để trống")]
         public DateTime? ApplyCompletionDate { get; set; }
         /// <summary>
-        /// Đăng ký原因
+        /// Đăng kýNguyên nhân
         /// </summary>
         [Required(ErrorMessage = "ApplyReason không được để trống")]
         public string ApplyReason { get; set; }
 
         /// <summary>
-        /// 入院日期
+        /// Ngày nhập viện
         /// </summary>
         public DateTime? Ryrq { get; set; }
         /// <summary>
-        /// 出院日期
+        /// Ngày xuất viện
         /// </summary>
         public DateTime? Cyrq { get; set; }
         /// <summary>
-        /// 创建人
+        /// Người tạo
         /// </summary>
         public string? CreatorCode { get; set; }
         //public DateTime? LastModifyTime { get; set; }

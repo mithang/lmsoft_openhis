@@ -20,9 +20,9 @@ namespace Newtouch.DomainServices.Inpatient
     {
         private readonly IInpatientDietBaseRepo _inpatientDietBaseRepo;
         /// <summary>
-        /// 默认构造函数
+        /// Mặc địnhHàm khởi tạosố
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFtrêndướivănNhà máy</param>
         public DietaryAdviceDmnService()
             : base()
         {
@@ -53,7 +53,7 @@ namespace Newtouch.DomainServices.Inpatient
                     var patientobj = _inpatientDietBaseRepo.IQueryable().FirstOrDefault(p => p.Id == Id && p.OrganizeId == orgId && p.zt == "1");
                     if (patientobj == null)
                     {
-                        throw new FailedException("膳食不存在");
+                        throw new FailedException("ăn uốngkhôngtồn tạiở");
                     }
 
                     foreach (var item in reqdietaryservices)
@@ -78,7 +78,7 @@ namespace Newtouch.DomainServices.Inpatient
                                 db.Insert(item);
                             }
                         }
-                        //物理删除
+                        //vậtlýXóa
                         if (dto.DelIds != null && dto.DelIds.Count() > 0)
                         {
                             var sql = @"UPDATE  dbo.zy_Dietsfxmdy
@@ -96,7 +96,7 @@ namespace Newtouch.DomainServices.Inpatient
             }
             catch (Exception e)
             {
-                throw new FailedException("收费项目保存失败，" + ((Newtouch.CIS.Compat.FailedException)e).Msg);
+                throw new FailedException("Mục thu phíLưu thất bại，" + ((Newtouch.CIS.Compat.FailedException)e).Msg);
             }
         }
 

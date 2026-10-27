@@ -67,24 +67,24 @@
     var localdata = {};
     var $gridPsList = $("#gridListPs");
     $(function () {
-        //浏览器窗口调整大小时重新加载jqGrid的宽
+        //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridđộ rộng
         $(window).resize(function () {
 
         });
         Initial();
     });
 
-    //初始化
+    //Khởi tạo
     function Initial() {
         gridList();
         gridMxInfo();
-        //绑定科室
+        //gắnKhoa
         $("#sel_ks").bindSelect({
             url: "/SystemManage/SysDepartment/GetTreeSelectJson",
         });
     }
 
-    //主表信息
+    //chínhbảngthông tin
     function gridList() {
         var $gridList = $("#gridListPatient");
         $gridList.dataGrid({
@@ -123,7 +123,7 @@
                 }).trigger('reloadGrid');
         });
     }
-    //查询参数
+    //Tra cứutham số
     function getGridListPar() {
         var ks = $('#sel_ks').val();
         var keyword = $('#keyword').val();
@@ -133,7 +133,7 @@
         return { keyword: keyword, ks: ks, kssj: kssj, jssj: jssj, zxzt: zxzt }
     }
 
-    //加载患者Test da项目
+    //tảiBệnh nhânTest daMục
     function ajaxmxList() {
         var rowData = $("#gridListPatient").jqGridRowValue();
         var zyh = rowData.zyh;
@@ -147,7 +147,7 @@
         }).trigger('reloadGrid');
     }
 
-    //Test da项目
+    //Test daMục
     function gridMxInfo() {
         $gridPsList.dataGrid({
             height: $(window).height() - document.getElementById('gridListPs').offsetTop - 120,
@@ -205,7 +205,7 @@
         });
     }
 
-    //取消Thực hiện
+    //HủyThực hiện
     function newtouch_event_f8() {
         var gmxxId = $gridPsList.jqGridRowValue().gmxxId;
         var blh = $gridPsList.jqGridRowValue().blh;

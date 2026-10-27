@@ -15,13 +15,13 @@ namespace Newtouch.Domain.IDomainServices
     {
         List<MRTemplateListBO> SelectTemplateList(int mblx, string orgId,string deptCode, string userCode);
         /// <summary>
-        /// 查询模板明细
+        /// Tra cứumẫuchi tiết
         /// </summary>
         /// <param name="mbId"></param>
         MRTemplateBO SelectTemplateDetailByMbId(string mbId, string orgId);
 
         /// <summary>
-        /// 保存
+        /// Lưu
         /// </summary>
         /// <param name="blmbObject"></param>
         /// <param name="zdList"></param>
@@ -30,7 +30,7 @@ namespace Newtouch.Domain.IDomainServices
 
 
         /// <summary>
-        /// 删除模板
+        /// Xóamẫu
         /// </summary>
         /// <param name="mbId"></param>
         void DeleteTemplate(string mbId);

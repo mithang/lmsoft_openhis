@@ -10,26 +10,26 @@ using SqlSugar;
 namespace Newtouch.OR.ManageSystem.Repository
 {
     /// <summary>
-    /// 创 建：chl
-    /// 日 期：2019-11-06 10:22
-    /// 描 述：手术排班记录
+    /// Tạo bởi：chl
+    /// Ngày：2019-11-06 10:22
+    /// Mô tả：Hồ sơ xếp lịch phẫu thuật
     /// </summary>
     public class ORArrangementRepo : RepositoryBase<ORArrangementEntity>, IORArrangementRepo
     {
         /// <summary>
-        /// 默认构造函数
+        /// Hàm tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EF上下文工厂</param>
+        /// <param name="databaseFactory">EFFactory ngữ cảnh</param>
         public ORArrangementRepo()
         {
             
         }
 
         /// <summary>
-        /// 保存表单（新增、修改）
+        /// Lưu biểu mẫu（Thêm mới、Sửa）
         /// </summary>
-        /// <param name="entity">实体对象</param>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="entity">Đối tượng thực thể</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public int SubmitForm(ORArrangementEntity entity, string ApplyId,string ArrangeId)
         {
 			if (!string.IsNullOrEmpty(ArrangeId))
@@ -70,7 +70,7 @@ namespace Newtouch.OR.ManageSystem.Repository
 			{
 				if (this.IQueryable().Any(p => p.ApplyId == ApplyId && p.zt == "1"))
 				{
-					throw new FailedException("申请Mã không được trùng lặp");
+					throw new FailedException("Mã đơn đăng ký không được trùng lặp");
 				}
 				else
 				{
@@ -83,9 +83,9 @@ namespace Newtouch.OR.ManageSystem.Repository
 		}
 
         /// <summary>
-        /// 删除数据
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public int DeleteForm(string keyValue)
         {
             var dbEntity = this.FindEntity(keyValue);
@@ -97,7 +97,7 @@ namespace Newtouch.OR.ManageSystem.Repository
 
 
         /// <summary>
-        /// 手术登记页,获取已排班已登记状态的手术排班列表
+        /// Trang đăng ký phẫu thuật,Lấy danh sách xếp lịch phẫu thuật ở trạng thái đã xếp lịch, đã đăng ký
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -132,9 +132,9 @@ namespace Newtouch.OR.ManageSystem.Repository
 
 
         /// <summary>
-        /// 术后登记页,修改排班状态(保存:已登记 取消:已排班)
+        /// Trang đăng ký sau phẫu thuật,Sửa trạng thái xếp lịch(Lưu:Đã đăng ký Hủy:Đã xếp lịch)
         /// </summary>
-        /// <param name="keyValue">主键值</param>
+        /// <param name="keyValue">Giá trị khóa chính</param>
         public int UpdateSqzt(string keyValue,string value)
         {
             var dbEntity = this.FindEntity(keyValue);

@@ -87,7 +87,7 @@
 
         });
 
-        //随机组成4位数
+        //Ghép ngẫu nhiên thành4Số chữ số
         function sjs() {
             var arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
             var str = '';
@@ -102,7 +102,7 @@
             return str;
         }
 
-        //随机组成3位数
+        //Ghép ngẫu nhiên thành3Số chữ số
         function twsjs() {
             var arr = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
             var str = '';
@@ -117,9 +117,9 @@
             return str;
         }
 
-        //总收入
+        //Tổng thu nhập
         var d = { zsr: "78000, 62000, 98000, 23000, 56000" };
-        //年度收入对比
+        //nămđộthuvàođốiso
         Highcharts.chart('ndsrdb', {
             chart: {
                 type: 'column'
@@ -146,7 +146,7 @@
                 }
             },
             tooltip: {
-                // head + 每个 point + footer 拼接成完整的 table
+                // head + mỗi point + footer Ghép thành đầy đủ table
                 headerFormat: '<table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:10">{series.name}: </td>' +
                     '<td style="padding:0"><b>{point.y:.1f} vạn đồng</b></td></tr>',
@@ -164,7 +164,7 @@
                 data: [83.6, 78.8]
             }]
         });
-        //月份收入对比
+        //thángphầnthuvàođốiso
         Highcharts.chart('yfsrdb', {
             chart: {
                 type: 'column'
@@ -178,7 +178,7 @@
             },
             legend: { enabled: false },
             //subtitle: {
-            //    text: '数据来源: newtouch.com'
+            //    text: 'Nguồn dữ liệu: newtouch.com'
             //},
             xAxis: {
                 categories: [
@@ -193,7 +193,7 @@
                 }
             },
             tooltip: {
-                // head + 每个 point + footer 拼接成完整的 table
+                // head + mỗi point + footer Ghép thành đầy đủ table
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
                     '<td style="padding:0"><b>{point.y:.1f} đồng</b></td></tr>',
@@ -255,7 +255,7 @@
                 }
             }]
         });
-        //月份人次对比
+        //thángphầnngườilầnđốiso
         Highcharts.chart('yfrcdb', {
             chart: {
                 type: 'column'
@@ -281,7 +281,7 @@
                 }
             },
             tooltip: {
-                // head + 每个 point + footer 拼接成完整的 table
+                // head + mỗi point + footer Ghép thành đầy đủ table
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
                     '<td style="padding:0"><b>{point.y:.1f} người/lần</b></td></tr>',
@@ -327,11 +327,11 @@
                 floating: true
             }, legend: { enabled: false },
             //subtitle: {
-            //    text: '数据来源: newtouch.com'
+            //    text: 'Nguồn dữ liệu: newtouch.com'
             //},
             xAxis: {
                 categories: [
-                    '秦皇岛', '上海银康', '上海百诺', '北京国门', '广州松鹤'
+                    'Tần Hoàng Đảo', 'Ngân Khang Thượng Hải', 'Bách Nặc Thượng Hải', 'Quốc Môn Bắc Kinh', 'Tùng Hạc Quảng Châu'
                 ],
                 crosshair: true,
                 title: { text: "So sánh thu nhập các cơ sở năm nay (đồng)" }
@@ -344,7 +344,7 @@
                 }
             },
             tooltip: {
-                // head + 每个 point + footer 拼接成完整的 table
+                // head + mỗi point + footer Ghép thành đầy đủ table
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
                     '<td style="padding:0"><b>{point.y:.1f} đồng</b></td></tr>',
@@ -376,7 +376,7 @@
             }, legend: { enabled: false },
             xAxis: {
                 categories: [
-                    '秦皇岛', '上海银康', '上海百诺', '北京国门', '广州松鹤'
+                    'Tần Hoàng Đảo', 'Ngân Khang Thượng Hải', 'Bách Nặc Thượng Hải', 'Quốc Môn Bắc Kinh', 'Tùng Hạc Quảng Châu'
                 ],
                 crosshair: true,
                 title: {
@@ -391,7 +391,7 @@
                 }
             },
             tooltip: {
-                // head + 每个 point + footer 拼接成完整的 table
+                // head + mỗi point + footer Ghép thành đầy đủ table
                 headerFormat: '<span style="font-size:10px">{point.key}</span><table>',
                 pointFormat: '<tr><td style="color:{series.color};padding:0">{series.name}: </td>' +
                     '<td style="padding:0"><b>{point.y:.1f} người/lần</b></td></tr>',

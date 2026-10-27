@@ -75,7 +75,7 @@
             </div>
             <div class="toolbar">
                 @* <div class="btn-group"> *@
-                @*     <a id="NF-AllSync" class="btn btn-primary" onclick="btn_allSync1()"><i class="fa fa-plus"></i>全部同步</a> *@
+                @*     <a id="NF-AllSync" class="btn btn-primary" onclick="btn_allSync1()"><i class="fa fa-plus"></i>Đồng bộ tất cả</a> *@
                 @* </div> *@
                 <div class="btn-group">
                     <a id="NF-Sync1" class="btn btn-primary" onclick="btn_Sync1()"><i class="fa fa-plus"></i>Đồng bộ</a>
@@ -87,7 +87,7 @@
             <div id="gridPager1"></div>
         </div>
     </div>
-    @* 收费大类tab *@
+    @* Nhóm thu phí lớntab *@
     <div class="tab-pane fade" id="sfdltab">
         <div class="topPanel">
             <div class="toolbar">
@@ -114,7 +114,7 @@
             </div>
             <div class="toolbar">
                 @* <div class="btn-group"> *@
-                @*     <a id="NF-AllSync" class="btn btn-primary" onclick="btn_allSync2()"><i class="fa fa-plus"></i>全部同步</a> *@
+                @*     <a id="NF-AllSync" class="btn btn-primary" onclick="btn_allSync2()"><i class="fa fa-plus"></i>Đồng bộ tất cả</a> *@
                 @* </div> *@
                 <div class="btn-group">
                     <a id="NF-Sync2" class="btn btn-primary" onclick="btn_Sync2()"><i class="fa fa-plus"></i>Đồng bộ</a>
@@ -125,7 +125,7 @@
             <table id="gridList2"></table>
         </div>
     </div>
-    @* 耗材tab *@
+    @* Vật tư tiêu haotab *@
     <div class="tab-pane fade" id="hc">
         <div class="topPanel">
             <div class="toolbar">
@@ -176,7 +176,7 @@
         </div>
 
     </div>
-    @* 收费项目tab *@
+    @* Hạng mục thu phítab *@
     <div class="tab-pane fade" id="sfxm">
         <div class="topPanel">
             <div class="toolbar">
@@ -217,7 +217,7 @@
             <div id="gridPager4"></div>
         </div>
     </div>
-    @* 医嘱频次 *@
+    @* Tần suất y lệnh *@
     <div class="tab-pane fade" id="yzpc">
         <div class="topPanel">
             <div class="toolbar">
@@ -269,7 +269,7 @@
         gridList4();
         gridList5();
     });
-    //药品tab
+    //Thuốctab
     function gridList1() {
         var $gridList = $("#gridList1");
         $gridList.dataGrid({
@@ -366,13 +366,13 @@
         });
     }
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword_yp1').keydownEnterEvent(function () {
         $('#btn_search1').trigger('click');
     });
 
     function initControl1() {
-        //药品分类
+        //Phân loại thuốc
         $('#ypflMc').newtouchFloatingSelector({
             width: 300,
             height: 300,
@@ -465,7 +465,7 @@
         });
         
     }
-    //医保目录药品下载
+    //Tải thuốc danh mục BHYT
     function btn_dirSync1() {
         $.modalConfirm("Có chắc muốn đồng bộ thuốc BHYT không??", function (r) {
             if (r) {
@@ -512,7 +512,7 @@
 
     }
     
-    //药品同步医保
+    //Đồng bộ thuốc với BHYT
     function YibaoUpload(row) {
         $.najax({
             url: "/SysMedicine/YibaoUploadApi",
@@ -527,7 +527,7 @@
         });
     }
     
-//收费大类tab
+//Nhóm thu phí lớntab
     function gridList2() {
         var $gridList = $("#gridList2");
         $gridList.dataGrid({
@@ -588,7 +588,7 @@
                 { label: 'Thời gian sửa cuối', name: 'LastModifyTime', width: 100, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
                 { label: 'Thứ tự', name: 'px', width: 85, align: 'left' }
             ],
-            multiselect: true, // 启用多选框
+            multiselect: true, // Bật hộp chọn nhiều
         });
         $("#btn_search2").click(function () {
             $("#gridList2").jqGrid('setGridParam', {
@@ -597,7 +597,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword2').keydownEnterEvent(function () {
         $('#btn_search2').trigger('click');
     })
@@ -656,7 +656,7 @@
         });
 
     }
-    //耗材tab
+    //Vật tư tiêu haotab
     function gridList3() {
         var $gridList = $("#gridList3");
         $gridList.dataGrid({
@@ -753,7 +753,7 @@
         });
     }
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword_hc1').keydownEnterEvent(function () {
         $('#btn_search3').trigger('click');
     });
@@ -865,13 +865,13 @@
         });
     }
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword').keydownEnterEvent(function () {
         $('#btn_search4').trigger('click');
     })
 
     function initControl4() {
-        //获取收费大类
+        //Lấy danh mục thu phí lớn
         $("#sfdl").bindSelect({
             url: "/ChargeCategory/GetTreeSelectJson?organizeId=*" ,
         });
@@ -970,18 +970,18 @@
         $("#btn_search5").trigger('click');
     }
 
-    //查询条件
+    //Điều kiện tìm kiếm
     function getSearchPostData() {
         var keyword = $("#txt_keyword_yzpc").val();
         return { keyword: keyword, orgId:'*' };
     };
 
-    //回车事件
+    //Sự kiện nhấn Enter
     $('#txt_keyword_yzpc').keydownEnterEvent(function () {
         $('#btn_search5').trigger('click');
     })
 
-    //新增
+    //Thêm mới
     function btn_add5() {
         $.modalOpen({
             id: "FormFIEdit",
@@ -994,7 +994,7 @@
             }
         });
     }
-    //修改
+    //Sửa
     function btn_edit5() {
         let selectedIdList = $("#gridList5").jqGrid('getGridParam', 'selarrrow');
         if (!(selectedIdList.length === 1 )) {

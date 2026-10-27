@@ -11,103 +11,103 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// 系统药品损益信息
+    /// Hệ thốngThuốclãi lỗthông tin
     /// </summary>
     [SugarTable("zy_ksby_syxx")]
     public class SysMedicineProfitLossEntity
     {
         /// <summary>
-        /// 主键
+        /// Khóa chính
         /// </summary>
         [Key]
         public string syId { get; set; }
 
         /// <summary>
-        /// 组织机构
+        /// Tổ chức
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 药房代码编号
+        /// Nhà thuốcMãSố hiệu
         /// </summary>
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string Ypdm { get; set; }
 
         /// <summary>
-        /// 备注
+        /// Ghi chú
         /// </summary>
         public string Ph { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn hiệu lực
         /// </summary>
         public DateTime? Yxq { get; set; }
 
         /// <summary>
-        /// 报告时间 默认值Getdate()
+        /// báo cáoThời gian Mặc địnhGiá trịGetdate()
         /// </summary>
         public DateTime Bgsj { get; set; }
 
         /// <summary>
-        /// 正数：报溢，负数：报损  最小单位数量
+        /// đangsố：báo thừa，âmsố：Báo hỏng  Đơn vị nhỏ nhấtSố lượng
         /// </summary>
         public int Sysl { get; set; }
 
         /// <summary>
-        /// 批发价
+        /// Giá bán buôn
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Pfj { get; set; }
 
         /// <summary>
-        /// 零售价
+        /// Giá bán lẻ
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Lsj { get; set; }
 
         /// <summary>
-        /// 药库批发价
+        /// Kho thuốcGiá bán buôn
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Ykpfj { get; set; }
 
         /// <summary>
-        /// 药库零售价
+        /// Kho thuốcGiá bán lẻ
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Yklsj { get; set; }
 
         /// <summary>
-        /// 转化因子
+        /// chuyểnhóavìcon
         /// </summary>
         public int Zhyz { get; set; }
 
         /// <summary>
-        /// 损益原因
+        /// nguyên nhân lãi lỗ
         /// </summary>
         public string Syyy { get; set; }
 
         /// <summary>
-        /// 责任人
+        /// Trách nhiệm người
         /// </summary>
         public string Zrr { get; set; }
 
         /// <summary>
-        /// 单据号
+        /// phiếusố phiếu
         /// </summary>
         public string Djh { get; set; }
 
         /// <summary>
-        /// 剩余库存
+        /// còn lạiTồn kho
         /// </summary>
         public int Sykc { get; set; }
 
         /// <summary>
-        /// 进价
+        /// vàogiá
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Jj { get; set; }
@@ -118,7 +118,7 @@ namespace Newtouch.Domain.Entity
         public string pc { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string zt { get; set; }
 

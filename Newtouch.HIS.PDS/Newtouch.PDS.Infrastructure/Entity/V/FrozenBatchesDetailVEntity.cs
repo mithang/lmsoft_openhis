@@ -3,42 +3,42 @@ using System;
 namespace Newtouch.HIS.Domain.Entity.V
 {
     /// <summary>
-    /// 被冻结批次信息
+    /// Thông tin lô bị đóng băng
     /// </summary>
     public class FrozenBatchesDetailVEntity
     {
         /// <summary>
-        /// 药品代码
+        /// Mã thuốc
         /// </summary>
         public string ypdm { get; set; }
 
         /// <summary>
-        /// 批次
+        /// Lô
         /// </summary>
         public string pc { get; set; }
 
         /// <summary>
-        /// 批号
+        /// Số lô
         /// </summary>
         public string ph { get; set; }
 
         /// <summary>
-        /// 药库单位进价
+        /// Giá nhập đơn vị kho thuốc
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// 被冻结库存
+        /// Tồn kho bị đóng băng
         /// </summary>
         public int djsl { get; set; }
 
         /// <summary>
-        /// 有效期
+        /// Hạn dùng
         /// </summary>
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// 失败信息
+        /// Thông tin thất bại
         /// </summary>
         public string errorMsg { get; set; }
     }

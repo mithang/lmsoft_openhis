@@ -18,7 +18,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 {
 
     /// <summary>
-    /// 系统参数设置
+    /// hệthốngthamsốđặtđặt
     /// </summary>
     [Area("SystemManage")]
 
@@ -44,7 +44,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         #region mẫu thu phí
 
         /// <summary>
-        /// 收费模板 Index
+        /// mẫu thu phí Index
         /// </summary>
         /// <returns></returns>
         public IActionResult ChargeTemplateIndex()
@@ -101,7 +101,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 保存操作
+        /// bảo hiểmlưuthao táclàm
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>

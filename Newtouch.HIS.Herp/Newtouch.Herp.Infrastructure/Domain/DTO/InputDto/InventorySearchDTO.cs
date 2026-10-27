@@ -7,59 +7,59 @@ using System.Threading.Tasks;
 namespace Newtouch.Herp.Domain.DTO.InputDto
 {
     /// <summary>
-    /// 盘点查询条件
+    /// Điều kiện truy vấn kiểm kê
     /// </summary>
     public class InventorySearchDTO
     {
         /// <summary>
-        /// 盘点ID
+        /// Kiểm kê ID
         /// </summary>
         public long pdId { get; set; }
 
         /// <summary>
-        /// 盘点时间
+        /// Thời gian kiểm kê
         /// </summary>
         public string pdsj { get; set; }
 
         /// <summary>
-        /// 关键字  物资名称/拼音
+        /// Từ khóa  Tên vật tư/Pinyin
         /// </summary>
         public string keyWord { get; set; }
 
         /// <summary>
-        /// 物资状态 0：无效  1：有效
+        /// Trạng thái vật tư 0：Không hiệu lực  1：Hiệu lực
         /// </summary>
         public string wzzt { get; set; }
 
         /// <summary>
-        /// 列别ID
+        /// Loại ID
         /// </summary>
         public string lb { get; set; }
 
         /// <summary>
-        /// 库存显示 -1或空:全部
+        /// Hiển thị tồn kho -1 hoặc trống:Tất cả
         /// </summary>
         public int kcxs { get; set; }
 
     }
 
     /// <summary>
-    /// 保存盘点
+    /// Lưu kiểm kê
     /// </summary>
     public class SaveInventoryDTO
     {
         /// <summary>
-        /// 盘点明细ID
+        /// Chi tiết kiểm kê ID
         /// </summary>
         public long? pdmxId { get; set; }
 
         /// <summary>
-        /// 物资ID
+        /// Vật tư ID
         /// </summary>
         public string productId { get; set; }
 
         /// <summary>
-        /// 实际数量
+        /// Số lượng thực tế
         /// </summary>
         public int sjsl { get; set; }
     }

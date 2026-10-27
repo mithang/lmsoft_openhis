@@ -156,15 +156,15 @@
         }).trigger("reloadGrid");
     }
 
-    //查询条件
+    //Điều kiện truy vấn
     function getSearchPostData() {
         var inputCode = $("#txtINPUTCODE").val();
         return { inputCode: inputCode };
     };
 
-    //提交申请
+    //Gửi đơn xin
     function newtouch_event_f6() {
-        //校验数据
+        //Kiểm tra dữ liệu
         if (!CheckData()) {
             return false;
         }
@@ -191,9 +191,9 @@
     }
 
 
-    //校验数据
+    //Kiểm tra dữ liệu
     function CheckData() {
-        //校验格式
+        //Kiểm tra định dạng
         if ($("#txtYPFJ").val() === "") {
             $.modalAlert("Vui lòng chọn thuốc để điều chỉnh giá！", 'warning');
             return false;

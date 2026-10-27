@@ -16,7 +16,7 @@ namespace Newtouch.MRQC.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// 岗位人员列表
+        /// Danh sách nhân sự theo vị trí
         /// </summary>
         public IActionResult GetStaffListByDutyCode(string dutyCode, string keyword)
         {

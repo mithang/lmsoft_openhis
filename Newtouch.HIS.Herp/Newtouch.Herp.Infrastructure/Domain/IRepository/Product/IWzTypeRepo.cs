@@ -3,7 +3,7 @@ using Newtouch.Herp.Domain.Entity;
 namespace Newtouch.Herp.Domain.IRepository
 {
     /// <summary>
-    /// 物资类别
+    /// Loại vật tư
     /// </summary>
     public interface IWzTypeRepo : IRepositoryBase<WzTypeEntity>
     {

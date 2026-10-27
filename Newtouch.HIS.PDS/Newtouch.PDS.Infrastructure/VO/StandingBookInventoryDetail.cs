@@ -3,42 +3,42 @@ using System;
 namespace Newtouch.HIS.Domain.VO
 {
     /// <summary>
-    /// 台账查询返回结果
+    /// Kết quả trả về truy vấn sổ cái
     /// </summary>
     public class StandingBookInventoryDetail
     {
         /// <summary>
-        /// 出入库说明
+        /// Giải thích xuất nhập kho
         /// </summary>
         public string crksm { get;set; }
 
         /// <summary>
-        /// 入库数量+单位
+        /// Số lượng nhập kho+Đơn vị
         /// </summary>
         public string rkslanddw { get; set; }
 
         /// <summary>
-        /// 出库数量+单位
+        /// Số lượng xuất kho+Đơn vị
         /// </summary>
         public string ckslanddw { get; set; }
 
         /// <summary>
-        /// 结转数量+单位
+        /// Số lượng kết chuyển+Đơn vị
         /// </summary>
         public string jzslanddw { get; set; }
 
         /// <summary>
-        /// 票单号
+        /// Số phiếu đơn
         /// </summary>
         public string pzh { get; set; }
 
         /// <summary>
-        /// 科室
+        /// Khoa
         /// </summary>
         public string ks { get; set; }
 
         /// <summary>
-        /// 发生日期
+        /// Ngày phát sinh
         /// </summary>
         public DateTime fsrq { get; set; }
     }
