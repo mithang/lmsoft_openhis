@@ -120,7 +120,7 @@
                 { label: 'Giới tính', name: 'xb', align: 'left', width: 30 },
                 { label: 'Số đơn thuốc', name: 'cfh', align: 'center', width: 100, formatter: function (val) { if (val != null) return val; else return ""; } },
                 { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 100, formatter: function (val) { return $.getTime({ date: val }); } },
-                { label: 'Giá trị kết quả', name: 'lrjg', align: 'center', width: 50, formatter: function (val) { if (val == "阳性") return "<span style='color:red;'>" + val + "</span>"; else return val; } },
+                { label: 'Giá trị kết quả', name: 'lrjg', align: 'center', width: 50, formatter: function (val) { if ((val == "阳性" || val == "Dương tính")) return "<span style='color:red;'>" + val + "</span>"; else return val; } },
                 { label: 'Nội dung đơn thuốc', name: 'cfmxnr', align: 'center', width: 180 },
                 { label: 'Người nhập', name: 'CreatorName', align: 'center', width: 50 },
                 { label: 'NhậpThời gian', name: 'CreateTime', align: 'center', width: 100, formatter: function (val) { return $.getTime({ date: val }); } },

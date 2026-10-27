@@ -1,0 +1,20 @@
+-- DB translation Scope A: NewtouchHIS_Base.xt_ypdw.ypdwmc (applied live; re-runnable; keyless targets match N'old' values)
+USE [NewtouchHIS_Base];
+UPDATE [xt_ypdw] SET [ypdwmc] = 'gam' WHERE [ypdwId] = '493';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'miligam' WHERE [ypdwId] = '494';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'don vi quoc te' WHERE [ypdwId] = '495';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'don vi' WHERE [ypdwId] = '496';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'trieu don vi quoc te' WHERE [ypdwId] = '498';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'trieu don vi' WHERE [ypdwId] = '499';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'lit' WHERE [ypdwId] = '507';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'mililit' WHERE [ypdwId] = '508';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'ong' WHERE [ypdwId] = '512';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'Doi' WHERE [ypdwId] = '522';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'lo' WHERE [ypdwId] = '526';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'Vien' WHERE [ypdwId] = '527';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'vien' WHERE [ypdwId] = '530';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'hop' WHERE [ypdwId] = '532';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'cai' WHERE [ypdwId] = '534';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'Doi voi' WHERE [ypdwId] = '538';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'goi' WHERE [ypdwId] = '540';
+UPDATE [xt_ypdw] SET [ypdwmc] = 'goi' WHERE [ypdwId] = '542';

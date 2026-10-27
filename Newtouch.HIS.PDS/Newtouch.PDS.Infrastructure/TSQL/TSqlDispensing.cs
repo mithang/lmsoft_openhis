@@ -21,7 +21,7 @@ WHERE yp.ypCode=@ypdm AND yp.OrganizeId=@OrganizeId
 --Kiểm tra 1：Thuốc có hiệu lực không
 IF ISNULL(@ypmc, '')=''
 BEGIN
-	SELECT '药品无效';
+	SELECT 'Thuốc không hiệu lực';
 	RETURN;
 END 
 
@@ -30,14 +30,14 @@ SELECT @yfmc=yfbmmc FROM NewtouchHIS_Base.dbo.V_S_xt_yfbm WHERE yfbmCode=@yfbmCo
 --Kiểm tra 2：Nhà thuốc có hiệu lực không
 IF ISNULL(@yfmc, '')=''
 BEGIN
-	SELECT '指定的药房暂未开放';
+	SELECT 'Nhà thuốc được chỉ định tạm thời chưa mở';
 	RETURN;
 END 
 
 --Kiểm tra 3：Bộ phận có sở hữu thuốc này không
 IF NOT EXISTS(SELECT 1 FROM dbo.xt_yp_bmypxx(NOLOCK) WHERE yfbmCode=@yfbmCode AND Ypdm=@ypdm AND OrganizeId=@OrganizeId AND zt='1')
 BEGIN
-	SELECT CONCAT(@yfmc, '未开放', @ypmc) ;
+	SELECT CONCAT(@yfmc, 'chưa mở', @ypmc) ;
 	RETURN;
 END
 
@@ -66,7 +66,7 @@ BEGIN TRY
 	SET @sykc=@zxdwsl;
 	IF @kyck<@zxdwsl
 	BEGIN
-		SELECT CONCAT(@ypmc, '库存不足');
+		SELECT CONCAT(@ypmc, 'Tồn kho không đủ');
 		COMMIT TRANSACTION ;
 		RETURN;
 	END
@@ -139,7 +139,7 @@ WHERE cf.cfh=@cfh AND cfmx.zt='1' AND cfmx.OrganizeId=@OrganizeId AND cf.jsnm=0
 
 IF NOT EXISTS(SELECT 1 FROM #rpDetail)
 BEGIN
-	SET @resultMsg=CONCAT('处方【',@cfh,'】未查到有效明细');
+	SET @resultMsg=CONCAT('Đơn thuốc【',@cfh,'】Không tìm thấy chi tiết hiệu lực');
 END 
 ELSE
 BEGIN
@@ -173,21 +173,21 @@ BEGIN
 		--Kiểm tra 1:Thuốc có hiệu lực không
 		IF ISNULL(@ypId,0)=0
 		BEGIN
-			SET @resultMsg=CONCAT('处方【',@cfh,'】的药品【',@ypmc,'】无效');
+			SET @resultMsg=CONCAT('Đơn thuốc【',@cfh,'】thuốc【',@ypmc,'】không hiệu lực');
 			BREAK;
 		END 
 		
 		--Kiểm tra 2：Nhà thuốc có hiệu lực không
 		IF ISNULL(@yfbmId,0)=0
 		BEGIN
-			SET @resultMsg=CONCAT('药房部门代码为【',@yfbmCode, '】的药房未开放') ;
+			SET @resultMsg=CONCAT('Mã khoa nhà thuốc là【',@yfbmCode, '】chưa mở') ;
 			BREAK;
 		END 
 
 		--Kiểm tra 3：Bộ phận có sở hữu thuốc này không
 		IF ISNULL(@bmypId,'')=''
 		BEGIN
-			SET @resultMsg=CONCAT('药房部门【',@yfbmmc,'】没有药品【',@ypmc, '】的权限') ;
+			SET @resultMsg=CONCAT('Khoa nhà thuốc【',@yfbmmc,'】không có quyền với thuốc【',@ypmc, '】') ;
 			BREAK;
 		END
 
@@ -208,7 +208,7 @@ BEGIN
 
 		IF NOT EXISTS(SELECT 1 FROM #kcData)
 		BEGIN
-			SET @resultMsg= CONCAT('药品【',@ypmc, '】未找到有效库存，该库存药品可能被控制');
+			SET @resultMsg= CONCAT('Thuốc【',@ypmc, '】Không tìm thấy tồn kho hiệu lực，Thuốc trong kho này có thể bị kiểm soát');
 			BREAK;
 		END 
 
@@ -218,7 +218,7 @@ BEGIN
 		SET @sykc=@zxdwsl;
 		IF @kyck<@zxdwsl
 		BEGIN
-			SET @resultMsg= CONCAT('药品【',@ypmc, '】库存不足');
+			SET @resultMsg= CONCAT('Thuốc【',@ypmc, '】Tồn kho không đủ');
 			BREAK;
 		END
 
@@ -391,12 +391,12 @@ SELECT @cfId=Id, @fybz=fybz, @jsnm=jsnm FROM dbo.mz_cf WHERE cfh=@cfh AND zt='1'
 
 IF ISNULL(@cfId, 0)=0
 BEGIN
-	SELECT '未找到指定处方';
+	SELECT 'Không tìm thấy đơn thuốc được chỉ định';
 	RETURN ;
 END
 IF ISNULL(@jsnm, 0)>0
 BEGIN
-	SELECT '处方已结算，不能取消预定';
+	SELECT 'Đơn thuốc đã quyết toán，không thể hủy đặt trước';
 	RETURN ;
 END 
 
@@ -413,7 +413,7 @@ DECLARE @bookCout INT;
 SELECT @bookCout=SUM(sl) FROM #ArrData
 IF @bookCout<@sl
 BEGIN
-	SELECT '取消数量不得大于已排数量';
+	SELECT 'Số lượng hủy không được lớn hơn số lượng đã xếp';
 	RETURN;
 END 
 DECLARE @sysl INT;
@@ -432,7 +432,7 @@ BEGIN TRANSACTION
 		BEGIN
 			DECLARE @ypmc VARCHAR(256);
 			SELECT @ypmc=ypmc FROM NewtouchHIS_Base.dbo.V_C_xt_yp WHERE ypCode=@ypdm AND OrganizeId=@OrganizeId AND zt='1'
-			SET @errorMsg=CONCAT('处方【',@cfh,'】未找到冻结时所用批号为【',@ph,'】的药品【',@ypmc,'】。');
+			SET @errorMsg=CONCAT('Đơn thuốc【',@cfh,'】Không tìm thấy số lô dùng khi đóng băng là【',@ph,'】thuốc【',@ypmc,'】。');
 			BREAK;
 		END 
 		IF @kcsl>@sysl
@@ -484,12 +484,12 @@ SELECT @cfId=Id, @fybz=fybz, @jsnm=jsnm FROM dbo.mz_cf WHERE cfh=@cfh AND zt='1'
 
 IF ISNULL(@cfId, 0)=0
 BEGIN
-	SELECT '未找到指定处方';
+	SELECT 'Không tìm thấy đơn thuốc được chỉ định';
 	RETURN ;
 END
 IF ISNULL(@jsnm, 0)>0
 BEGIN
-	SELECT '处方已结算，不能取消预定';
+	SELECT 'Đơn thuốc đã quyết toán，không thể hủy đặt trước';
 	RETURN ;
 END 
 
@@ -506,7 +506,7 @@ DECLARE @bookCout INT;
 SELECT @bookCout=SUM(sl) FROM #ArrData
 IF @bookCout<@sl
 BEGIN
-	SELECT '取消数量不得大于已排数量';
+	SELECT 'Số lượng hủy không được lớn hơn số lượng đã xếp';
 	RETURN;
 END 
 DECLARE @sysl INT;
@@ -525,7 +525,7 @@ BEGIN TRANSACTION
 		BEGIN
 			DECLARE @ypmc VARCHAR(256);
 			SELECT @ypmc=ypmc FROM NewtouchHIS_Base.dbo.V_C_xt_yp WHERE ypCode=@ypdm AND OrganizeId=@OrganizeId AND zt='1'
-			SET @errorMsg=CONCAT('处方【',@cfh,'】未找到冻结时所用批号为【',@ph,'】的药品【',@ypmc,'】。');
+			SET @errorMsg=CONCAT('Đơn thuốc【',@cfh,'】Không tìm thấy số lô dùng khi đóng băng là【',@ph,'】thuốc【',@ypmc,'】。');
 			BREAK;
 		END 
 		IF @kcsl>@sysl
@@ -678,7 +678,7 @@ BEGIN
 		IF NOT EXISTS(SELECT 1 FROM #kcData)
 		BEGIN
 			SELECT @ypmc=ypmc FROM NewtouchHIS_Base.dbo.V_C_xt_yp WHERE zt='1' AND OrganizeId=@OrganizeId AND ypCode=@ypCode
-			SET @resultMsg=CONCAT('批次【',@pc,'】、批号【',@ph,'】的药品【',@ypmc,'】未找到有效库存信息')
+			SET @resultMsg=CONCAT('Lô【',@pc,'】、Số lô【',@ph,'】thuốc【',@ypmc,'】Không tìm thấy thông tin tồn kho hiệu lực')
 			BREAK;
 		END
 
@@ -690,7 +690,7 @@ BEGIN
 		IF @sumKcsl<@zxsl
 		BEGIN
 			SELECT @ypmc=ypmc FROM NewtouchHIS_Base.dbo.V_C_xt_yp WHERE zt='1' AND OrganizeId=@OrganizeId AND ypCode=@ypCode
-			SET @resultMsg=CONCAT('批次【',@pc,'】、批号【',@ph,'】的药品【',@ypmc,'】的药品库存不足')
+			SET @resultMsg=CONCAT('Lô【',@pc,'】、Số lô【',@ph,'】thuốc【',@ypmc,'】tồn kho không đủ')
 			BREAK;
 		END 
 		IF @sumDjsl<@zxsl
@@ -799,7 +799,7 @@ SELECT * INTO #yzDetail FROM dbo.zy_ypyzxx(NOLOCK) WHERE zxId=@zxId AND yzId=@yz
 
 IF NOT EXISTS(SELECT 1 FROM #yzDetail)
 BEGIN
-	SET @resultMsg=CONCAT('未找到【',@patientName,'】的医嘱信息');
+	SET @resultMsg=CONCAT('Không tìm thấy【',@patientName,'】thông tin y lệnh');
 END 
 ELSE
 BEGIN
@@ -833,21 +833,21 @@ BEGIN
 		--Kiểm tra 1:Thuốc có hiệu lực không
 		IF ISNULL(@ypId,0)=0
 		BEGIN
-			SET @resultMsg=CONCAT('编码为【',@ypCode,'】的药品无效');
+			SET @resultMsg=CONCAT('Mã【',@ypCode,'】thuốc không hiệu lực');
 			BREAK;
 		END 
 		
 		--Kiểm tra 2：Nhà thuốc có hiệu lực không
 		IF ISNULL(@yfbmId,0)=0
 		BEGIN
-			SET @resultMsg=CONCAT('药房部门代码为【',@yfbmCode, '】的药房未开放') ;
+			SET @resultMsg=CONCAT('Mã khoa nhà thuốc là【',@yfbmCode, '】chưa mở') ;
 			BREAK;
 		END 
 
 		--Kiểm tra 3：Bộ phận có sở hữu thuốc này không
 		IF ISNULL(@bmypId,'')=''
 		BEGIN
-			SET @resultMsg=CONCAT('药房部门【',@yfbmmc,'】没有药品【',@ypmc, '】的权限') ;
+			SET @resultMsg=CONCAT('Khoa nhà thuốc【',@yfbmmc,'】không có quyền với thuốc【',@ypmc, '】') ;
 			BREAK;
 		END
 
@@ -870,7 +870,7 @@ BEGIN
 		SET @sykc=@zxdwsl;
 		IF @kyck<@zxdwsl
 		BEGIN
-			SET @resultMsg= CONCAT('药品【',@ypmc, '】库存不足');
+			SET @resultMsg= CONCAT('Thuốc【',@ypmc, '】Tồn kho không đủ');
 			BREAK;
 		END
 
@@ -915,7 +915,7 @@ BEGIN
 			FROM #kcData WHERE kcId=@curkcId ;
 			IF @@ERROR <> 0
 			BEGIN
-				SET @resultMsg= CONCAT('药品【',@ypmc,'】插入排班明细表失败');
+				SET @resultMsg= CONCAT('Thuốc【',@ypmc,'】Chèn chi tiết lịch trực thất bại');
 				BREAK;
 			END
 
@@ -1009,7 +1009,7 @@ SELECT @cfId=Id, @fybz=fybz, @jsnm=jsnm FROM dbo.mz_cf WHERE cfh=@cfh  AND Organ
 
 IF ISNULL(@cfId, 0)=0
 BEGIN
-	SELECT '未找到指定处方';
+	SELECT 'Không tìm thấy đơn thuốc được chỉ định';
 	RETURN ;
 END
 
@@ -1020,13 +1020,13 @@ WHERE yp=@ypdm AND OrganizeId=@OrganizeId AND fyyf=@yfbmCode AND zt='1' AND gjzt
 
 IF NOT EXISTS(SELECT 1 FROM #CancalSettData)
 BEGIN
-	SELECT '未找到排药数或已取消';
+	SELECT 'Không tìm thấy số lượng xếp thuốc hoặc đã hủy';
 	RETURN;
 END 
 
 if(exists(select 1 from [mz_cfypczjl] a with(nolock),#CancalSettData b where a.mzcfmxid=b.cfmxid))
 begin
-	SELECT '处方已发药，不能取消预定';
+	SELECT 'Đơn thuốc đã phát thuốc，không thể hủy đặt trước';
 	RETURN ;
 end
 
@@ -1049,7 +1049,7 @@ BEGIN TRANSACTION
 			BEGIN
 				DECLARE @ypmc VARCHAR(256);
 				SELECT @ypmc=ypmc FROM NewtouchHIS_Base.dbo.V_C_xt_yp WHERE ypCode=@ypdm AND OrganizeId=@OrganizeId AND zt='1'
-				SET @errorMsg+=CONCAT('处方【',@cfh,'】未找到冻结时所用批号为【',@ph,'】的药品【',@ypmc,'】。');
+				SET @errorMsg+=CONCAT('Đơn thuốc【',@cfh,'】Không tìm thấy số lô dùng khi đóng băng là【',@ph,'】thuốc【',@ypmc,'】。');
 				BREAK;
 			END 
 				print @kcsl;

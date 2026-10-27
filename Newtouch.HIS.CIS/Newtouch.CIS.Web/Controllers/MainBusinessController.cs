@@ -126,7 +126,7 @@ namespace Newtouch.CIS.Web.Controllers
 
             #region Tốc độ truyền
             var frds = _sysConfigRepo.GetValueByCode("frequencyRelDroppingSpeed", OrganizeId);
-            frds = string.IsNullOrWhiteSpace(frds) ? "静滴" : frds;
+            frds = string.IsNullOrWhiteSpace(frds) ? "Truyền tĩnh mạch" : frds;
             ViewBag.frequencyRelDroppingSpeed = frds;
             #endregion
             return View();

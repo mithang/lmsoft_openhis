@@ -24,10 +24,10 @@ namespace Newtouch.DomainServices.Outpatient
         {
             var sql = new StringBuilder(@"
 select a.*,
-case when ysshyj is null then shzt1  when ysshyj='' then shzt1 else '未通过' end shzt
+case when ysshyj is null then shzt1  when ysshyj='' then shzt1 else 'Không đạt' end shzt
 from (
 select 
-cf.cfId,cf.cfh,jz.mzh,gh.xm,gh.zjlx,gh.zjh,isnull(rxStasName,'无效') shzt1,isnull(rxUsedStasName,'未使用') qyzt,isnull(rxStasName,'未审核') cfzt
+cf.cfId,cf.cfh,jz.mzh,gh.xm,gh.zjlx,gh.zjh,isnull(rxStasName,'Không hiệu lực') shzt1,isnull(rxUsedStasName,'Chưa sử dụng') qyzt,isnull(rxStasName,'Chưa duyệt') cfzt
 ,jz.ghksmc ghks,dept.name kdks,jz.ghsj,cf.createtime cfklrq,cf.ysshyj
  from dbo.xt_cf cf 
  --left join dbo.xt_cfmx cfmx on cfmx.cfId=cf.cfId and cfmx.organizeId=cf.organizeId and cfmx.zt=cf.zt

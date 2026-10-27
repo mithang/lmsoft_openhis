@@ -294,10 +294,10 @@ SELECT * FROM (
 select yp.ypCode,yp.ypmc,ypsx.ypgg,yp.djdw,yp.pfj,yp.lsj,itemsDetail.Name yptssxmc,
         substring( sfdl.dlmc,0,len(sfdl.dlmc)) yplb,
         yp.jl,yp.jldw,yp.bzs,yp.bzdw,yp.mzcls,yp.mzcldw,yp.zycls,yp.zycldw,yp.zfbl,
-        case yp.zfxz when '1' then '自理' when '2' then '分类自负' end zfxz,
+        case yp.zfxz when '1' then 'Tự trả' when '2' then 'Tự trả theo loại' end zfxz,
         ypjx.jxmc,yp.ycmc,
-        case yp.zt when'1' then '启用' when '0' then '停用' end zt,
-        case ypsx.jzlx when'0'then'每顿取整'when'1'then'每次取整'end jzlx,
+        case yp.zt when'1' then 'Đang dùng' when '0' then 'Đã ngừng dùng' end zt,
+        case ypsx.jzlx when'0'then'Làm tròn mỗi bữa'when'1'then'Làm tròn mỗi lần'end jzlx,
         ypsx.mrbzq
 from NewtouchHIS_Base.dbo.V_S_xt_yp yp
 left join NewtouchHIS_Base.dbo.V_S_xt_ypsx ypsx on ypsx.ypCode=yp.ypCode and ypsx.OrganizeId=@OrganizeId
@@ -339,15 +339,15 @@ where yp.OrganizeId=@OrganizeId
 			var strSql = new StringBuilder(@"
 							select 
                                 yptj.ypfj,yptj.ylsj,yptj.pfj,yptj.lsj,
-                                case yptj.shzt when '0' then '未审核' when '1' then '已审核' when '2' then '已拒绝' when '3' then '已撤销' end shzt,
-                                case yptj.zxbz when '0' then '待执行' when '1' then '已执行' end zxbz,
+                                case yptj.shzt when '0' then 'Chưa duyệt' when '1' then '已审核' when '2' then '已拒绝' when '3' then '已撤销' end shzt,
+                                case yptj.zxbz when '0' then '待执行' when '1' then 'Đã thực hiện' end zxbz,
                                 yptj.ypcode,yp.ypmc,ypsx.ypgg,yp.djdw,itemsdetail.name yptssxmc,
                                 substring( sfdl.dlmc,0,len(sfdl.dlmc)) yplb,
                                 yp.jl,yp.jldw,yp.bzs,yp.bzdw,yp.mzcls,yp.mzcldw,yp.zycls,yp.zycldw,yp.zxdw,yp.zfbl,
-                                case yp.zfxz when '1' then '自理' when '2' then '分类自负' end zfxz,
+                                case yp.zfxz when '1' then 'Tự trả' when '2' then 'Tự trả theo loại' end zfxz,
                                 ypjx.jxmc,yp.ycmc,
-                                case yp.mzzybz when'1' then '启用' when '0' then '停用' end zt,
-                                case ypsx.jzlx when'0'then'每顿取整'when'1'then'每次取整'end jzlx,
+                                case yp.mzzybz when'1' then 'Đang dùng' when '0' then 'Đã ngừng dùng' end zt,
+                                case ypsx.jzlx when'0'then'Làm tròn mỗi bữa'when'1'then'Làm tròn mỗi lần'end jzlx,
                                 ypsx.mrbzq,yptj.tzwj,yptj.zxsj,
 							    case when yptj.zxsj<=getdate() then 'true' else 'false' end Isgq,
                                 yptj.CreateTime
@@ -535,10 +535,10 @@ update NewtouchHIS_Base.dbo.V_S_xt_yp set pfj=@pfj,lsj=@lsj where ypCode=@ypCode
                             select yptj.ypcode,yp.ypmc,ypsx.ypgg,yp.djdw,yptj.pfj,yptj.lsj,yptj.ypfj,yptj.ylsj,itemsdetail.name tssxmc,
 								  substring( sfdl.dlmc,0,len(sfdl.dlmc)) yplb,
 								  yp.jl,yp.jldw,yp.bzs,yp.bzdw,yp.mzcls,yp.mzcldw,yp.zycls,yp.zycldw,yp.zxdw,yp.zfbl,
-								  case yp.zfxz when '1' then '自理' when '2' then '分类自负' end zfxz,
+								  case yp.zfxz when '1' then 'Tự trả' when '2' then 'Tự trả theo loại' end zfxz,
 								  ypjx.jxmc,yp.ycmc,
-								  case yp.mzzybz when'1' then '启用' when '0' then '停用' end mzzybz,
-								  case ypsx.jzlx when'0'then'每顿取整'when'1'then'每次取整'end jzlx,
+								  case yp.mzzybz when'1' then 'Đang dùng' when '0' then 'Đã ngừng dùng' end mzzybz,
+								  case ypsx.jzlx when'0'then'Làm tròn mỗi bữa'when'1'then'Làm tròn mỗi lần'end jzlx,
 								  ypsx.mrbzq,yptj.tzwj,
 								  userStaff.name czy,
                                   yptj.zxsj,yptj.LastModifierCode as zxry,yptj.tzsj

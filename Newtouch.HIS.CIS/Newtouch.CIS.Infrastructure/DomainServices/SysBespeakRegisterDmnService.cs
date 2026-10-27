@@ -34,7 +34,7 @@ namespace Newtouch.DomainServices
         public IList<SysBespeakRegisterVO> SelectSysBespeakregister(Pagination pagination, string keyword, string OrganizeId)
         {
             const string sql = @"
-SELECT br.Id, br.OrganizeId, dept.Name ksmc, (CASE br.mzlx WHEN '1' THEN '普通门诊' WHEN '2' THEN '急症' WHEN '3' THEN '专家门诊' ELSE '' END) mzlx
+SELECT br.Id, br.OrganizeId, dept.Name ksmc, (CASE br.mzlx WHEN '1' THEN 'Khám ngoại trú thông thường' WHEN '2' THEN 'Cấp cứu' WHEN '3' THEN 'Khám chuyên gia' ELSE '' END) mzlx
 ,br.regDate, br.regTime, staff.Name zjmc, br.bespeakMaxCount, br.CreateTime, br.CreatorCode, br.LastModifyTime, br.LastModifierCode, br.zt
 FROM dbo.xt_bespeakRegister(NOLOCK) br
 LEFT JOIN NewtouchHIS_Base.dbo.Sys_Department(NOLOCK) dept ON dept.Code=br.departmentCode AND dept.OrganizeId=br.OrganizeId AND dept.zt='1'
@@ -61,7 +61,7 @@ AND (dept.Name LIKE '%'+@keyword+'%' OR staff.Name LIKE '%'+@keyword+'%')
         public IList<SysBespeakRegisterVO> SelectSysBespeakregister(string deptCode, string gh, string OrganizeId, DateTime? regDate, string regTime = "")
         {
             var sql = new StringBuilder(@"
-SELECT br.Id, br.OrganizeId, dept.Name ksmc, (CASE br.mzlx WHEN '1' THEN '普通门诊' WHEN '2' THEN '急症' WHEN '3' THEN '专家门诊' ELSE '' END) mzlx
+SELECT br.Id, br.OrganizeId, dept.Name ksmc, (CASE br.mzlx WHEN '1' THEN 'Khám ngoại trú thông thường' WHEN '2' THEN 'Cấp cứu' WHEN '3' THEN 'Khám chuyên gia' ELSE '' END) mzlx
 ,br.regDate, br.regTime, staff.Name zjmc, br.bespeakMaxCount, br.CreateTime, br.CreatorCode, br.LastModifyTime, br.LastModifierCode, br.zt
 FROM dbo.xt_bespeakRegister(NOLOCK) br
 LEFT JOIN NewtouchHIS_Base.dbo.Sys_Department(NOLOCK) dept ON dept.Code=br.departmentCode AND dept.OrganizeId=br.OrganizeId AND dept.zt='1'

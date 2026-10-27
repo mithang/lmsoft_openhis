@@ -43,7 +43,7 @@ namespace Newtouch.DomainServices
         {
             var sql = @"
 SELECT yygh.Id, yygh.OrganizeId, br.departmentCode ksCode, dept.Name ksmc, br.regDate, br.regTime, br.ysgh gh, staff.Name zjmc,yygh.bespeakNo
-,(CASE br.mzlx WHEN '1' THEN '普通门诊' WHEN '2' THEN '急症' WHEN '3' THEN '专家门诊' ELSE '' END) mzlx, yygh.CreateTime,yygh.CreatorCode
+,(CASE br.mzlx WHEN '1' THEN 'Khám ngoại trú thông thường' WHEN '2' THEN 'Cấp cứu' WHEN '3' THEN 'Khám chuyên gia' ELSE '' END) mzlx, yygh.CreateTime,yygh.CreatorCode
 FROM dbo.mz_yygh(NOLOCK) yygh
 INNER JOIN dbo.xt_bespeakRegister(NOLOCK) br ON br.Id=yygh.brId AND br.OrganizeId=yygh.OrganizeId AND br.zt='1'
 LEFT JOIN NewtouchHIS_Base.dbo.Sys_Department(NOLOCK) dept ON dept.Code=br.departmentCode AND dept.OrganizeId=br.OrganizeId AND dept.zt='1'

@@ -23,7 +23,7 @@ IF @bmypId IS NOT NULL AND @bmypId<>''
 BEGIN
 	IF @operateType=0
 	BEGIN
-		SET @result= '药品【'+@ypmc+'】已存在';
+		SET @result= 'Thuốc【'+@ypmc+'】đã tồn tại';
 	END
 	ELSE IF @operateType=1
 	BEGIN
@@ -64,12 +64,12 @@ BEGIN
 
 		IF @@ERROR <> 0
 		BEGIN
-			SET @result= '新增本部门药品【'+@ypmc+'】失败'
+			SET @result= 'Thêm thuốc khoa này【'+@ypmc+'】thất bại'
 		END
 	END
 	ELSE IF @operateType=1
 	BEGIN
-		SET @result= '药品【'+@ypmc+'】不存在该药房，无法删除';
+		SET @result= 'Thuốc【'+@ypmc+'】không có nhà thuốc này，không thể xóa';
 	END
 END
     

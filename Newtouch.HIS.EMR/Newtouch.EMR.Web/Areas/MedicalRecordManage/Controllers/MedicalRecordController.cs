@@ -210,7 +210,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             {
                 string sd = this.Request.Form["saveDocument"];
                 bool loaded = false;
-                if ((sd == "保存文档" || sd == "Lưu tài liệu" || sd == "上传医保" || sd == "Tải lên bảo hiểm y tế") && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
+                if ((sd == "Lưu tài liệu" || sd == "Lưu tài liệu" || sd == "Tải lên bảo hiểm y tế" || sd == "Tải lên bảo hiểm y tế") && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
                     try
                     {
@@ -493,7 +493,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
                 string blxtmc_hj = blxtmc_yj;
                 currentFileName = WebPath.Map(bllj);
-                if ((sd == "保存文档" || sd == "Lưu tài liệu" || sd == "上传医保" || sd == "Tải lên bảo hiểm y tế") && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
+                if ((sd == "Lưu tài liệu" || sd == "Lưu tài liệu" || sd == "Tải lên bảo hiểm y tế" || sd == "Tải lên bảo hiểm y tế") && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
 
                     // Người dùng đã nhấn“Lưu tài liệu”Nút，
@@ -603,10 +603,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                             bljshentity.organizeId = this.OrganizeId;
                             _bljsRepo.BljghDataDealwith(bljshentity);
                             #region Tải lên bảo hiểm y tế
-                            //if (sd == "上传医保")
+                            //if (sd == "Tải lên bảo hiểm y tế")
                             //{
                                 string jydm = "";
-                                if (sd == "上传医保" || sd == "Tải lên bảo hiểm y tế")
+                                if (sd == "Tải lên bảo hiểm y tế" || sd == "Tải lên bảo hiểm y tế")
                                 {
                                     isupload = 1;
                                 }
@@ -1743,7 +1743,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         {
             string msg = "";
             int isupload = 0;
-            if (sd == "上传医保" || sd == "Tải lên bảo hiểm y tế")
+            if (sd == "Tải lên bảo hiểm y tế" || sd == "Tải lên bảo hiểm y tế")
             {
                 isupload = 1;
                 if (string.IsNullOrWhiteSpace(UploadURL))
@@ -2418,7 +2418,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
             //Thiết lậpxml Đường dẫn
             string currentFileName = "";//Đường dẫn đọc bản ghi diễn biến bệnh đã hợp nhất
-            string fileUrl = WebPath.Map("~/file/住院病历/Merge/" + zyh);//文件夹路径
+            string fileUrl = WebPath.Map("~/file/Nội trú病历/Merge/" + zyh);//文件夹路径
             if (!Directory.Exists(fileUrl))
             {//Tạo thư mục
                 Directory.CreateDirectory(fileUrl);
@@ -2432,7 +2432,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             result.AppendChild(root);
 
             //Lấy loại bệnh án
-            var bllxList = _CommonDmnService.GetBllxListDetail(OrganizeId).Where(p => p.bllxmc == "病程记录" && p.ParentId != null).Select(p => p.bllx).ToList();
+            var bllxList = _CommonDmnService.GetBllxListDetail(OrganizeId).Where(p => p.bllxmc == "Ho so dien bien benh" && p.ParentId != null).Select(p => p.bllx).ToList();
 
             foreach (var obj in list)
             {
@@ -2446,7 +2446,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     _month = _month.Substring(_month.Length - 2);
                     string _day = "00" + date.Day.ToString();
                     _day = _day.Substring(_day.Length - 2);
-                    var url = WebPath.Map("~/file/住院病历/" + date.Year + "/" + _month + "/" + _day + "/" + obj.zyh + "/" + obj.Name + ".xml");
+                    var url = WebPath.Map("~/file/Nội trú病历/" + date.Year + "/" + _month + "/" + _day + "/" + obj.zyh + "/" + obj.Name + ".xml");
                     urlList.Add(url);
                     XmlDocument doc = new XmlDocument();
                     doc.Load(url);
@@ -2536,7 +2536,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 }
 
                 currentFileName = currentFileName == "" ? saveUrl : currentFileName;
-                //string currentFileName = "D:/Code/emr/Code/Newtouch.EMR/Newtouch.EMR.Web/File/住院病历/Merge/03192/03192病程记录_合并.xml";
+                //string currentFileName = "D:/Code/emr/Code/Newtouch.EMR/Newtouch.EMR.Web/File/Nội trú病历/Merge/03192/03192病程记录_合并.xml";
                 if (System.IO.File.Exists(currentFileName) == false)//Nếu không tồn tại thì mở mẫu mặc định
                 {
                     currentFileName = WebPath.Map(BlTemplatePath + "newFile.xml");

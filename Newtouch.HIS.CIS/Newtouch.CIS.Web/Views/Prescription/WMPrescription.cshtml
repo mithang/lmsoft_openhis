@@ -141,7 +141,7 @@
                 
                 var currYfdm = sessionStorage.getItem('currentxyf');
                 $.each(ret, function () {
-                    if(!currYfdm && this.yfbmmc.indexOf('西')!=-1)
+                    if(!currYfdm && this.yfbmmc.indexOf('Tay y')!=-1)
                         var option = "<option value='" + this.yfbmCode +"|"+ this.mzzybz + "' selected>" + this.yfbmmc + "</option>";
                     else if(currYfdm && currYfdm==this.yfbmCode)
                         var option = "<option value='" + this.yfbmCode +"|"+ this.mzzybz + "' selected>" + this.yfbmmc + "</option>";

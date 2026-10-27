@@ -190,7 +190,7 @@
                         return $.enum.getDescByValue("EnumSF", val);
                     }
                 },
-                { label: 'Kết quả test da', name: 'psjgms', align: 'center', width: 50, formatter: function (val) { if (val == "阳性") return "<span style='color:red;'>" + val + "</span>"; else if (!!val) return val; else return ""; } },
+                { label: 'Kết quả test da', name: 'psjgms', align: 'center', width: 50, formatter: function (val) { if ((val == "阳性" || val == "Dương tính")) return "<span style='color:red;'>" + val + "</span>"; else if (!!val) return val; else return ""; } },
                 { label: 'Người nhập', name: 'Creator', align: 'center', width: 50 },
                 { label: 'Mã tính chất y lệnh', name: 'yzxz', align: 'center', hidden: true },
                 { label: 'Y lệnhSố nhóm', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } },

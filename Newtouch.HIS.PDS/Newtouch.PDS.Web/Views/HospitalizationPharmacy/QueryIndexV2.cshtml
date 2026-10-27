@@ -123,7 +123,7 @@
                     label: 'Thao tác', name: 'czlx', width: 145, align: 'center',
                     formatter: function (cellvalue, options, rowData) {
                         // Kiểm tra có bằng không "Trả thuốc"，Nếu là，thì hiển thị nút
-                        if (cellvalue === "退药") {
+                        if (cellvalue === "Trả thuốc") {
                             console.log('aaaa',rowData.zytyapplyno)
                             return "<span style='color:#ff0000;'>Trả thuốc</span> " +
                                 "<input type='button' class='btn btn-primary btn-md reprint-btn' onclick='reprintReturnDrug(" + JSON.stringify(rowData) + ")' value='In bổ sung đơn trả thuốc' />";

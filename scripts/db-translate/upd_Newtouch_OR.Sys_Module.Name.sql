@@ -1,0 +1,23 @@
+-- DB translation Scope A: Newtouch_OR.Sys_Module.Name (applied live; re-runnable; keyless targets match N'old' values)
+USE [Newtouch_OR];
+UPDATE [Sys_Module] SET [Name] = 'Quan ly he thong' WHERE [Id] = '1';
+UPDATE [Sys_Module] SET [Name] = 'Menu he thong' WHERE [Id] = '2';
+UPDATE [Sys_Module] SET [Name] = 'Phau thuat Dang ky' WHERE [Id] = 'c5ac1d03-9adc-49c8-9fe1-fc326a6dfccd';
+UPDATE [Sys_Module] SET [Name] = 'Nhat ky he thong' WHERE [Id] = '7c23f256-c1e5-4bb6-9c5a-3e31e2e47512';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly phau thuat' WHERE [Id] = '3527b31d-afe8-434a-9eee-aa27b211997f';
+UPDATE [Sys_Module] SET [Name] = 'Phau thuat Dang ky' WHERE [Id] = '361af56c-b3ac-42e9-b14b-1e4a6bcccd88';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly vai tro' WHERE [Id] = 'e0f986ef-e3fe-4322-a51d-f4a327714beb';
+UPDATE [Sys_Module] SET [Name] = 'Phau thuat Lich truc' WHERE [Id] = '92c8d5ac-e27f-4e83-bc65-8bde9ca7fdd9';
+UPDATE [Sys_Module] SET [Name] = 'Nguoi dung he thong' WHERE [Id] = '30d2b894-6d8e-4a49-b880-7329832e36c6';
+UPDATE [Sys_Module] SET [Name] = 'Cau hinh tham so dong he thong' WHERE [Id] = '766e304b-a76f-478f-8b4e-5f247c974c8f';
+UPDATE [Sys_Module] SET [Name] = 'Module test' WHERE [Id] = '5a6bc0e0-7202-41b7-94c1-630522eaaad2';
+UPDATE [Sys_Module] SET [Name] = 'test khung co ban' WHERE [Id] = 'd64cdc79-984c-4bdd-811e-9f3ac76086d8';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly tu dien' WHERE [Id] = '36bc36e1-e462-49a5-91fa-70edc6f4b206';
+UPDATE [Sys_Module] SET [Name] = 'Phau thuat' WHERE [Id] = '52d40772-5e73-4f7b-91f7-9200271235b1';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly tu dien' WHERE [Id] = '3eba0059-942e-4024-8641-31859d517be7';
+UPDATE [Sys_Module] SET [Name] = 'Phau thuat Dang ky Tra cuu' WHERE [Id] = '84c30e9c-62f9-4caa-a2ae-842fd5469426';
+UPDATE [Sys_Module] SET [Name] = 'Gay me Phuong thuc' WHERE [Id] = '3244a6a1-ab0d-4b2c-abc3-7d169c3f9c3f';
+UPDATE [Sys_Module] SET [Name] = 'Phau thuat Nhan su' WHERE [Id] = '7f4c3b29-b3ec-4f44-a414-8aff6ad69609';
+UPDATE [Sys_Module] SET [Name] = 'Bao tri mau thu phi' WHERE [Id] = 'be3b3a7d-6ffa-48a2-99f8-15e0833a3805';
+UPDATE [Sys_Module] SET [Name] = 'Hoan phi phau thuat' WHERE [Id] = '6df73b3e-a041-4bb6-a28b-27dcff43b5da';
+UPDATE [Sys_Module] SET [Name] = 'Ghi so phau thuat' WHERE [Id] = '300da638-6db4-46bc-af38-d62a80b339c0';

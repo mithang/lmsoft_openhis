@@ -359,7 +359,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 request.Patient.PresNo = yzId;
                 request.Patient.Name = data.patientInfo.xm;
                 request.Patient.Diagnose = string.Join("|", data.patientInfo.zdmc);
-                request.Patient.Age = data.patientInfo.age + "岁0月";
+                request.Patient.Age = data.patientInfo.age + " tuổi 0 tháng";
                 request.Patient.Sex = data.patientInfo.sex;
                 request.Patient.DocID = data.patientInfo.ysgh;
                 request.Patient.DocName = data.patientInfo.ysxm;

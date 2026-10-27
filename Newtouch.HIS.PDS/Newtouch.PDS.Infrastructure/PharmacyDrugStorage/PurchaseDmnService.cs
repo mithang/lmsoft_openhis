@@ -41,10 +41,10 @@ select * from xt_yp_cg a
             var strSql = new StringBuilder(@"
 
 select cgmx.*,yp.ypmc,yp.ycmc sccj,gys.gysmc yqmc ,
-case cglx when 1 then '医保范围招标' when 2 then '医保范围未招标' end cglxmc,
-case splx when 1 then '药品类' when 2 then '医用耗材器械类' when 9 then '其他' end splxmc,
-case cgjldw when 1 then '计价单位' when 2 then '最小使用单位'  end cgjldwmc,
-case dcpsbs when 0 then '不允许' when 1 then '允许' end dcpsbsmc
+case cglx when 1 then 'Đấu thầu trong phạm vi BHYT' when 2 then 'Chưa đấu thầu trong phạm vi BHYT' end cglxmc,
+case splx when 1 then 'Loại thuốc' when 2 then 'Loại vật tư y tế' when 9 then 'Khác' end splxmc,
+case cgjldw when 1 then 'Đơn vị tính giá' when 2 then 'Đơn vị sử dụng nhỏ nhất'  end cgjldwmc,
+case dcpsbs when 0 then 'Không cho phép' when 1 then 'Cho phép' end dcpsbsmc
 from xt_yp_cgmx cgmx
 left join [NewtouchHIS_Base].dbo.xt_yp yp on cgmx.ypCode =yp.ypCode and cgmx.OrganizeId=yp.OrganizeId and cgmx.zt=yp.zt
 left join [NewtouchHIS_Base].[dbo].[xt_ypgys] gys on cgmx.yqbm=gys.gysCode and cgmx.OrganizeId=gys.OrganizeId and cgmx.zt=gys.zt
@@ -235,10 +235,10 @@ FROM (
 select * from 
 (
 select fpmx.*,yp.ypmc ,gys.gysmc yqmc ,yp.ypCode
-,case dlsgbz when 0 then '否' when 1 then '是' end dlsgbzmc
-,case sfwpsfp when 0 then '否' when 1 then '是' end sfwpsfpmc
+,case dlsgbz when 0 then 'Không' when 1 then 'Có' end dlsgbzmc
+,case sfwpsfp when 0 then 'Không' when 1 then 'Có' end sfwpsfpmc
 ,case splx when 1 then '药品类' when 1 then '医用耗材类' when 3 then '医疗器械类' when 9 then '其他' end splxmc
-,case sfch when 0 then '否' when 1 then '是' end sfchmc
+,case sfch when 0 then 'Không' when 1 then 'Có' end sfchmc
 from xt_yp_fpmx fpmx
 left join  NewtouchHIS_Base.dbo.V_S_xt_ypsx ypsx on fpmx.zxspbm=ypsx.gjybdm and fpmx.OrganizeId=ypsx.OrganizeId and fpmx.zt=ypsx.zt
 left join [NewtouchHIS_Base].dbo.xt_yp yp on ypsx.ypCode =yp.ypCode and ypsx.OrganizeId=yp.OrganizeId and ypsx.zt=yp.zt

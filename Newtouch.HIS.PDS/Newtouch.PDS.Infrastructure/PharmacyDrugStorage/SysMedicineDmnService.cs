@@ -163,7 +163,7 @@ yp.ypcode code,
 yp.ypmc name,
 yp.ypgg gg,
 yp.gjybdm gjybdm,
-case isnull(mldz.isdz,'未对照') when '1' then '已对照' when '0' then '未对照' else '未对照' end isdz
+case isnull(mldz.isdz,'Chưa đối chiếu') when '1' then 'Đã đối chiếu' when '0' then 'Chưa đối chiếu' else 'Chưa đối chiếu' end isdz
  from V_S_xt_yp yp 
 left join  xt_mldz mldz on yp.ypCode=mldz.code
  and yp.gjybdm=mldz.gjybdm and yp.OrganizeId =mldz.OrganizeId
@@ -186,7 +186,7 @@ yp.ypcode code,
 yp.ypmc name,
 yp.ypgg gg,
 yp.gjybdm gjybdm,
-case isnull(mldz.isdz,'未对照') when '1' then '已对照' when '0' then '未对照' else '未对照' end isdz
+case isnull(mldz.isdz,'Chưa đối chiếu') when '1' then 'Đã đối chiếu' when '0' then 'Chưa đối chiếu' else 'Chưa đối chiếu' end isdz
  from V_S_xt_yp yp 
 left join  xt_mldz mldz on yp.ypCode=mldz.code
  and yp.gjybdm=mldz.gjybdm and yp.OrganizeId =mldz.OrganizeId
@@ -210,7 +210,7 @@ xm.sfxmCode code,
 xm.sfxmmc name,
 xm.gg gg,
 xm.gjybdm gjybdm,
-case isnull(mldz.isdz,'未对照') when '1' then '已对照' when '0' then '未对照' else '未对照' end isdz
+case isnull(mldz.isdz,'Chưa đối chiếu') when '1' then 'Đã đối chiếu' when '0' then 'Chưa đối chiếu' else 'Chưa đối chiếu' end isdz
  from V_S_xt_sfxm xm 
 left join  xt_mldz mldz on xm.sfxmCode=mldz.code
  and xm.gjybdm=mldz.gjybdm and xm.OrganizeId =mldz.OrganizeId
@@ -234,7 +234,7 @@ xm.sfxmCode code,
 xm.sfxmmc name,
 xm.gg gg,
 xm.gjybdm gjybdm,
-case isnull(mldz.isdz,'未对照') when '1' then '已对照' when '0' then '未对照' else '未对照' end isdz
+case isnull(mldz.isdz,'Chưa đối chiếu') when '1' then 'Đã đối chiếu' when '0' then 'Chưa đối chiếu' else 'Chưa đối chiếu' end isdz
  from V_S_xt_sfxm xm 
 left join  xt_mldz mldz on xm.sfxmCode=mldz.code
  and xm.gjybdm=mldz.gjybdm and xm.OrganizeId =mldz.OrganizeId
@@ -1167,7 +1167,7 @@ where ypId=@ypId");
                 //order by yka389 asc";
                 var sql = @"select top 200  cod.ypmc, cod.ypdm ybdm,  cod.gg,  cod.ycmc,cod.ypxz ybxz,case cod.ypxz when '" + ((int)EnumZFXZv2.J).ToString() +
                     "' then 'Loại giáp' when '" + ((int)EnumZFXZv2.Y).ToString() +
-                    @"' then '乙类' else '丙类' end  ypxz, cod.py py, cod.ybdj ybdj, cod.gjybdm gjybdm,cod.ypjx jxmc,cod.pzwh pzwh
+                    @"' then 'Hạng B' else 'Hạng C' end  ypxz, cod.py py, cod.ybdj ybdj, cod.gjybdm gjybdm,cod.ypjx jxmc,cod.pzwh pzwh
 from NewtouchHIS_Base..Cqyb_ybItemCode cod
 where 1=1 and cod.zt=1 and cod.OrganizeId=@orgId";
                 if (!string.IsNullOrWhiteSpace(keyword))
@@ -1239,8 +1239,8 @@ where 1=1 and cod.zt=1 and cod.OrganizeId=@orgId";
                 var sql = @"SELECT  code ,
         name ,
         dosageForm ,
-        CASE WHEN isBase = '0' THEN '否'
-             WHEN isBase = '1' THEN '是'
+        CASE WHEN isBase = '0' THEN 'Không'
+             WHEN isBase = '1' THEN 'Có'
              ELSE ''
         END isBase
 FROM    [NewtouchHIS_Base].[dbo].[Gaxnh_S30]

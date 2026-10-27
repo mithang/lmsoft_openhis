@@ -324,7 +324,7 @@
                 { label: 'Tính chất y lệnh', name: 'yzxzsm', align: 'center', width: 50 },
                 { label: 'Test daMục', name: 'xmmc', align: 'center', width: 150 },
                 { label: 'Y lệnhSố nhóm', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } },
-                { label: 'Giá trị kết quả', name: 'lrjg', align: 'center', width: 50, formatter: function (val) { if (val == "阳性") return "<span style='color:red;'>" + val + "</span>"; else return val; } },
+                { label: 'Giá trị kết quả', name: 'lrjg', align: 'center', width: 50, formatter: function (val) { if ((val == "阳性" || val == "Dương tính")) return "<span style='color:red;'>" + val + "</span>"; else return val; } },
                 { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 100, formatter: function (val) { return $.getTime({ date: val }); } },
                 {
                     label: 'Nội dung y lệnh', name: 'yznr', align: 'center', width: 200, formatter: function (val) {

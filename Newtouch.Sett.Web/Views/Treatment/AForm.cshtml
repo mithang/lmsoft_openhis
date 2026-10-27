@@ -289,7 +289,7 @@
         else {
             var keyValue = $("#MXTable").jqGridRowValue().zlxmmc;
             var zhcodemc = $("#zhcode").val();
-            console.info("这是Lấy的ID" + keyValue);
+            console.info("Đây là ID đã lấy" + keyValue);
             if (!!!keyValue) {
                 $.modalAlert("Vui lòng chọn một thông tin", 'warning');
                 return;
@@ -344,7 +344,7 @@
             { label: 'Hạng mục chi tiết', name: 'zlxm', width: 84, align: 'left' },
             { label: 'Hạng mụcĐơn giá', name: 'price', width: 90, align: 'left', formatter: 'number', formatoptions: { thousandsSeparator: "", decimalPlaces: 2 } },
             { label: 'Hạng mụcPhiên âm', name: 'zlxmpy', width: 100, align: 'left' },
-            { label: 'Nhóm合Tên', name: 'zhmc', width: 80, align: 'left', hidden: true },
+            { label: 'Tên nhóm', name: 'zhmc', width: 80, align: 'left', hidden: true },
             //{ label: 'Số tiền kết hợp', name: 'zhje', width: 100, align: 'left' },
             { label: 'Nhóm thu phí lớn', name: 'sfdl', width: 100, align: 'left', hidden: true },
             { label: 'Nhóm thu phí lớncode', name: 'sfdlcode', width: 100, align: 'left', hidden: true },

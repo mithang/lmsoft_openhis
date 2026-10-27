@@ -362,7 +362,7 @@
         var patInfo = $(this).find("input[name='hid_patInfo']").val();
         var obj = $.parseJSON(patInfo);
         $("#labName").html((obj.name == "null") ? "" : obj.name);
-        $("#labsex").html((obj.xb == "null") ? "" : (obj.xb == "1" ? "男" : (obj.xb == "2" ? "女" : (obj.xb == "3" ? "Không rõ" : ""))));
+        $("#labsex").html((obj.xb == "null") ? "" : (obj.xb == "1" ? "Nam" : (obj.xb == "2" ? "Nữ" : (obj.xb == "3" ? "Không rõ" : ""))));
         $("#labzyh").html((obj.zyh == "null") ? "" : obj.zyh);
 
     })
@@ -396,11 +396,11 @@
                 if (ajaxresp.rows.length > 0) {
                     $.each(ajaxresp.rows, function (n, item) {
                         var hzxb = "";
-                        if (item.xb == "男") {
+                        if (item.xb == "Nam") {
                             //1Nam 2Nữ 3Hỗn hợp
                             hzxb = "fa-mars";
                         }
-                        if (item.xb == "女") {
+                        if (item.xb == "Nữ") {
                             hzxb = "fa-venus";
                         }
 
@@ -584,7 +584,7 @@
                     eleBeDv = null;
                 } else {
 
-                    if (item.xb != "null" && $(this).attr("patXb") != "混" && $(this).attr("patXb") != item.xb) {
+                    if (item.xb != "null" && $(this).attr("patXb") != "Hon hop" && $(this).attr("patXb") != item.xb) {
                         $.modalAlert("Bệnh nhân này không thể nhập vào giường bệnh \"" + $(this).attr("patXb") + "\"", 'warning');
                         return;
                     }

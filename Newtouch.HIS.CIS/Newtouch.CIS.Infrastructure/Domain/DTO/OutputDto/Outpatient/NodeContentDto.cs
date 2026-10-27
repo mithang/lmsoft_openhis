@@ -111,11 +111,11 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string gms { get; set; }
         /// <summary>
-        /// 婚姻
+        /// Hôn nhân
         /// </summary>
         public string hy { get; set; }
         /// <summary>
-        /// 婚姻
+        /// Hôn nhân
         /// </summary>
         public string hymc { get; set; }
         /// <summary>

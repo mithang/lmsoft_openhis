@@ -191,7 +191,7 @@
                 data: { "PatientBasicAndCardInfoVO": data },
                 type: "POST",
                 success: function (req) {
-                    if (req.message == "操作成功") {
+                    if (req.message == "Thao tác thành công") {
                         $("#gridList").jqGrid('setGridParam', {
                             postData: { patId: data.patid },
                         }).trigger('reloadGrid');
@@ -236,7 +236,7 @@
                     data: { "CardId": rowdata.CardId },
                     type: "POST",
                     success: function (req) {
-                        if (req.message == "作废成功") {
+                        if (req.message == "Hủy bỏ thành công") {
                             $("#gridList").jqGrid('setGridParam', {
                                 postData: { patId: rowdata.patId },
                             }).trigger('reloadGrid');

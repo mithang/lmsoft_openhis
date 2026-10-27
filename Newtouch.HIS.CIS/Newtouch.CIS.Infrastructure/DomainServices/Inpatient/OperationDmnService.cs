@@ -51,7 +51,7 @@ namespace Newtouch.DomainServices.Inpatient
                     yz.CreateTime ,
                     yz.shsj ,
                     yz.zxsj ,
-                    CASE WHEN op.id IS NULL THEN '未安排' ELSE '已安排' END ztmc,
+                    CASE WHEN op.id IS NULL THEN 'Chưa sắp xếp' ELSE 'Đã sắp xếp' END ztmc,
 		            op.surgeonName,
 		            item.Name ssAddr,
 		            op.aprq

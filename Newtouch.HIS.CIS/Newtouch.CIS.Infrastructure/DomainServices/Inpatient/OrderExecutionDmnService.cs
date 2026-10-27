@@ -240,7 +240,7 @@ group by a.organizeid, a.userid,a.staffid,a.account,a.gh,a.name ,b.bqcode,c.bqmc
             const string sql = @" 
 Select * 
 FROM( 
-	SELECT hzxm,zyh,id yzid,2 yzxz,'长期' yzxzsm,kssj,xmmc,ypjl,yznr, ISNULL(c.dj,0) dj,a.tzsj tzsj,tzysgh,tzr,b.Name shr,yzlx,a.zxsj zxsj,a.zh zh,a.zxr zxr
+	SELECT hzxm,zyh,id yzid,2 yzxz,'Dài hạn' yzxzsm,kssj,xmmc,ypjl,yznr, ISNULL(c.dj,0) dj,a.tzsj tzsj,tzysgh,tzr,b.Name shr,yzlx,a.zxsj zxsj,a.zh zh,a.zxr zxr
 	from [dbo].[zy_cqyz] a with(nolock) 
 	LEFT JOIN [NewtouchHIS_Base].[dbo].[V_S_xt_sfxm]c  ON c.sfxmmc=a.xmmc AND c.sfxmCode=a.xmdm  AND c.OrganizeId=a.OrganizeId and c.zt='1'
 	left join [NewtouchHIS_Base].[dbo].[V_C_Sys_UserStaff] b with(nolock) on a.CreatorCode=b.Account and a.OrganizeId=b.OrganizeId
@@ -250,7 +250,7 @@ FROM(
 	AND (Convert(DATE,a.zxsj) IS NULL OR Convert(DATE,a.zxsj)<Convert(DATE,@zxsj)) 
 	AND a.zt=1 And a.zyh in(select col from dbo.f_split(@zyh,',') where col>'')
 	union All
-	select hzxm,zyh, id yzid,1 yzxz,'临时' yzxzsm,kssj,xmmc,ypjl,yznr,ISNULL(c.dj,0) dj,a.zfsj tzsj,zfysgh,zfr,b.Name shr,yzlx,a.zxsj zxsj,a.zh zh,a.zxr zxr
+	select hzxm,zyh, id yzid,1 yzxz,'Tạm thời' yzxzsm,kssj,xmmc,ypjl,yznr,ISNULL(c.dj,0) dj,a.zfsj tzsj,zfysgh,zfr,b.Name shr,yzlx,a.zxsj zxsj,a.zh zh,a.zxr zxr
 	from [dbo].[zy_lsyz] a  with(nolock)
 	LEFT JOIN [NewtouchHIS_Base].[dbo].[V_S_xt_sfxm]c with(nolock) ON c.sfxmmc=a.xmmc AND c.sfxmCode=a.xmdm AND c.OrganizeId=a.OrganizeId and c.zt='1'
 	left join [NewtouchHIS_Base].[dbo].[V_C_Sys_UserStaff] b with(nolock) on a.CreatorCode=b.Account and a.OrganizeId=b.OrganizeId	 
@@ -282,7 +282,7 @@ FROM(
             string sql = "";
             if (Yzxz == Convert.ToInt32(EnumYzxz.Cq))
             {
-                sql = @"select id yzid,2 yzxz,'长期' yzxzsm,kssj,xmmc,ypjl,yznr,tzsj,tzysgh,tzr 
+                sql = @"select id yzid,2 yzxz,'Dài hạn' yzxzsm,kssj,xmmc,ypjl,yznr,tzsj,tzysgh,tzr 
                     from [dbo].[zy_cqyz] with(nolock) 
                     where yzzt=1 and zyh in(select col from dbo.f_split(@zyh,',') where col>'')
                     ";
@@ -291,7 +291,7 @@ FROM(
             {
 
                 sql = @"
-                    select id yzid,1 yzxz,'临时' yzxzsm,kssj,xmmc,ypjl,yznr,zfsj tzsj,zfysgh tzysgh,zfr  
+                    select id yzid,1 yzxz,'Tạm thời' yzxzsm,kssj,xmmc,ypjl,yznr,zfsj tzsj,zfysgh tzysgh,zfr  
                     from [dbo].[zy_lsyz] with(nolock) 
                     where yzzt=1 and zyh in(select col from dbo.f_split(@zyh,',') where col>'')";
             }
@@ -844,7 +844,7 @@ FROM(
                 string sql = "";
                 if (zxlx != Convert.ToInt32(EnumYzxz.Ls))
                 {
-                    sql += @"SELECT a.Id yzid,ISNULL(c.dj,0) dj,sl,@cqyzxx yzxz,yzlx yzlx,deptCode,a.xmdm, a.xmmc ypmc, hzxm patientName,a.zyh zyh,a.zxsj zxsj,case (ISNULL(isjf,1)) when '0' then '否' else '是' end isjf
+                    sql += @"SELECT a.Id yzid,ISNULL(c.dj,0) dj,sl,@cqyzxx yzxz,yzlx yzlx,deptCode,a.xmdm, a.xmmc ypmc, hzxm patientName,a.zyh zyh,a.zxsj zxsj,case (ISNULL(isjf,1)) when '0' then 'Không' else 'Có' end isjf
 FROM dbo.zy_cqyz a
 LEFT JOIN [NewtouchHIS_Base].[dbo].[V_S_xt_sfxm]c  ON c.sfxmmc=a.xmmc AND c.sfxmCode=a.xmdm  AND c.OrganizeId=a.OrganizeId and c.zt='1'
 Where a.yzzt in (1,2) AND a.yzlx !=3 " + strkfwhere + @"
@@ -856,7 +856,7 @@ AND  Convert(DATE,kssj)< =Convert(DATE,@zxrq) AND (Convert(DATE,tzsj) IS NULL OR
                 }
                 if (zxlx != Convert.ToInt32(EnumYzxz.Cq))
                 {
-                    sql += @"SELECT a.Id yzid,ISNULL(c.dj,0) dj,sl,@lsyzxx  yzxz,yzlx yzlx,deptCode,a.xmdm,a.xmmc ypmc, hzxm patientName,a.zyh zyh,a.zxsj zxsj,case (ISNULL(isjf,1)) when '0' then '否' else '是' end isjf FROM dbo.zy_lsyz a
+                    sql += @"SELECT a.Id yzid,ISNULL(c.dj,0) dj,sl,@lsyzxx  yzxz,yzlx yzlx,deptCode,a.xmdm,a.xmmc ypmc, hzxm patientName,a.zyh zyh,a.zxsj zxsj,case (ISNULL(isjf,1)) when '0' then 'Không' else 'Có' end isjf FROM dbo.zy_lsyz a
 LEFT JOIN [NewtouchHIS_Base].[dbo].[V_S_xt_sfxm]c  ON c.sfxmmc=a.xmmc AND c.sfxmCode=a.xmdm  AND c.OrganizeId=a.OrganizeId and c.zt='1'
 Where a.yzzt =1 AND a.yzlx !=3  " + strkfwhere + @"
 AND  Convert(DATE,kssj)< =Convert(DATE,@zxrq)  AND (Convert(DATE,zfsj) IS NULL OR Convert(DATE,zfsj)>=Convert(DATE,@zxrq))  AND (Convert(DATE,zxsj) IS NULL OR Convert(DATE,zxsj)<Convert(DATE,@zxrq)) and a.zt=1 and a.zyh in(select col from dbo.f_split(@zyh,',') where col>'')";
@@ -888,7 +888,7 @@ AND  Convert(DATE,kssj)< =Convert(DATE,@zxrq)  AND (Convert(DATE,zfsj) IS NULL O
             if (zxlx != Convert.ToInt32(EnumYzxz.Ls))
             {
                 sql.Append(@"
-SELECT a.Id yzid,ISNULL(c.dj,0) dj,sl,@cqyzxx yzxz,yzlx yzlx,deptCode, a.xmdm,a.xmmc ypmc, hzxm patientName,a.zyh zyh,a.zxsj zxsj,case (ISNULL(isjf,1)) when '0' then '否' else '是' end isjf,Convert(varchar(50),yply) yply
+SELECT a.Id yzid,ISNULL(c.dj,0) dj,sl,@cqyzxx yzxz,yzlx yzlx,deptCode, a.xmdm,a.xmmc ypmc, hzxm patientName,a.zyh zyh,a.zxsj zxsj,case (ISNULL(isjf,1)) when '0' then 'Không' else 'Có' end isjf,Convert(varchar(50),yply) yply
 FROM dbo.zy_cqyz(nolock) a
 LEFT JOIN [NewtouchHIS_Base].[dbo].[V_S_xt_sfxm] c ON c.sfxmmc=a.xmmc AND c.sfxmCode=a.xmdm  AND c.OrganizeId=a.OrganizeId and c.zt='1'
 Where a.yzzt in (1,2)  and a.OrganizeId=@orgId
@@ -905,7 +905,7 @@ UNION ");
             if (zxlx != Convert.ToInt32(EnumYzxz.Cq))
             {
                 sql.Append(@"
-SELECT a.Id yzid,ISNULL(c.dj,0) dj,sl,@lsyzxx  yzxz,yzlx yzlx,deptCode,a.xmdm,a.xmmc ypmc, hzxm patientName,a.zyh zyh,a.zxsj zxsj ,case (ISNULL(isjf,1)) when '0' then '否' else '是' end isjf,Convert(varchar(50),yply) yply
+SELECT a.Id yzid,ISNULL(c.dj,0) dj,sl,@lsyzxx  yzxz,yzlx yzlx,deptCode,a.xmdm,a.xmmc ypmc, hzxm patientName,a.zyh zyh,a.zxsj zxsj ,case (ISNULL(isjf,1)) when '0' then 'Không' else 'Có' end isjf,Convert(varchar(50),yply) yply
 FROM dbo.zy_lsyz(nolock) a
 LEFT JOIN [NewtouchHIS_Base].[dbo].[V_S_xt_sfxm] c ON c.sfxmmc=a.xmmc AND c.sfxmCode=a.xmdm AND c.OrganizeId=a.OrganizeId and c.zt='1'
 Where a.yzzt =1  and a.OrganizeId=@orgId
@@ -1081,7 +1081,7 @@ group by productCode";
         public CheckApplicationfromDTO pushApplicationform(ApiResponseVO orderList, string orgid, string typezt)
         {
             CheckApplicationfromDTO checkApplicationfromDTO = new CheckApplicationfromDTO();
-            string sql = @"select c.xm,(case when c.sex='1'then '男' else '女'end)xb,convert(datetime,c.birth) csny,c.sfzh zjh,c.WardCode WardNo,a.yzh CardID,a.yzh Reqno, b.CreateTime Indate,b.ysgh DoctorID,e.name DoctorName,a.zyh RecordID,b.ztmc ApplyName,c.DeptCode ApplyDepartmentCode,d.Name ApplyDepartmentName ,b.id Seqno,b.xmdm ItemID,     b.xmmc ItemName,convert(varchar(10),b.sl) Qty  from 
+            string sql = @"select c.xm,(case when c.sex='1'then 'Nam' else 'Nữ'end)xb,convert(datetime,c.birth) csny,c.sfzh zjh,c.WardCode WardNo,a.yzh CardID,a.yzh Reqno, b.CreateTime Indate,b.ysgh DoctorID,e.name DoctorName,a.zyh RecordID,b.ztmc ApplyName,c.DeptCode ApplyDepartmentCode,d.Name ApplyDepartmentName ,b.id Seqno,b.xmdm ItemID,     b.xmmc ItemName,convert(varchar(10),b.sl) Qty  from 
 (select zyh,yzh,ztid,ztmc,OrganizeId from zy_lsyz a 
 where a.zyh=@zyh and id=@yzid and OrganizeId=@orgId and a.yzlx='7' and a.zt='1') a
 left join  zy_lsyz b on a.yzh=b.yzh and a.zyh=b.zyh and a.OrganizeId=b.OrganizeId and b.zt='1'
@@ -1151,7 +1151,7 @@ left join [Newtouch_CIS]..jyjc_zt g on g.ztid=b.ztId and b.OrganizeId=g.Organize
                 itemorder.Reqno = item.Reqno;
                 itemorder.ItemID = item.ItemID;
                 itemorder.ItemName = item.ItemName;
-                itemorder.BodyPart = "眼部";
+                itemorder.BodyPart = "Vùng mắt";
                 itemorder.Qty = item.Qty;
                 itemorder.Price = "";
                 itemorder.SN = "";
@@ -1173,10 +1173,10 @@ left join [Newtouch_CIS]..jyjc_zt g on g.ztid=b.ztId and b.OrganizeId=g.Organize
             StringBuilder mzsqlstr = new StringBuilder ();
             StringBuilder zysqlstr = new StringBuilder();
             var parm = new List<SqlParameter> { };
-            mzsqlstr.Append(@" select CONVERT(varchar(50),NEWID()) Id, '门诊' hzlx,jzxx.mzh mzzyh,jzxx.xm hzxm,jzxx.zjh,a.cflx,
-        case a.cflx when '4' then '检验' when '5' then '检查' end cflxstr,a.cfh sqdh,mb.mbmc sqdlx,a.CreateTime kdrq,
+            mzsqlstr.Append(@" select CONVERT(varchar(50),NEWID()) Id, 'Ngoại trú' hzlx,jzxx.mzh mzzyh,jzxx.xm hzxm,jzxx.zjh,a.cflx,
+        case a.cflx when '4' then 'Xét nghiệm' when '5' then 'Kiểm tra' end cflxstr,a.cfh sqdh,mb.mbmc sqdlx,a.CreateTime kdrq,
         a.ys shr,a.ys kdys,d.Name kdysmc,b.ztId,b.ztmc,'' gg,
-		'项' dw, 1 sl,sum(CONVERT(decimal(12,2),b.dj * b.sl)) dj,
+		'khoản' dw, 1 sl,sum(CONVERT(decimal(12,2),b.dj * b.sl)) dj,
 		sum(CONVERT(decimal(12,2),b.dj * b.sl)) je,a.cfh,e.Code kdks,e.Name kdksmc,d.Name jzr,c.Code zxks ,c.Name zxksmc,
         staff.Name zxr,zxzt.zxrq
 from [Newtouch_CIS]..xt_cf a with(nolock)
@@ -1192,9 +1192,9 @@ where a.zt=1 and b.zt=1 and a.organizeid=@orgId
     and a.CreateTime>=@kssj and a.CreateTime<=@jssj ");
            
             zysqlstr.Append(@"SELECT  CONVERT(varchar(50),NEWID()) Id,
-	  '住院' hzlx,a.zyh mzzyh,hzxm,zyxx.sfzh zjh,a.yzlx cflx,case a.yzlx when '6' then '检验' when '7' then '检查' end cflxstr,
+	  'Nội trú' hzlx,a.zyh mzzyh,hzxm,zyxx.sfzh zjh,a.yzlx cflx,case a.yzlx when '6' then 'Xét nghiệm' when '7' then 'Kiểm tra' end cflxstr,
         a.yzh sqdh,mb.mbmc sqdlx, kssj kdrq,a.shr,a.ysgh kdys,kdry.Name kdysmc,a.ztId,a.ztmc,'' gg,
-	   '项' dw,1 sl, SUM(CONVERT(decimal(12,2),c.dj*a.sl)) dj,SUM(CONVERT(decimal(12,2),c.dj*a.sl)) je,yzh cfh
+	   'khoản' dw,1 sl, SUM(CONVERT(decimal(12,2),c.dj*a.sl)) dj,SUM(CONVERT(decimal(12,2),c.dj*a.sl)) je,yzh cfh
          ,jzks.code kdks,jzks.Name kdksmc,staff.Name jzr,zxks.Code zxks,zxks.Name zxksmc,staff1.Name zxr,zxzt.zxrq
 	from [dbo].[zy_lsyz] a  with(nolock)
 	LEFT JOIN zy_brxxk zyxx with(nolock) ON zyxx.zyh=a.zyh and zyxx.OrganizeId=a.OrganizeId and zyxx.zt=1

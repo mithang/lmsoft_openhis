@@ -127,7 +127,7 @@
         $.each(aRowids, function () {
             if (status === true) {
                 var data = $("#gridjc").getRowData(this);
-                if (window.currPatientInfo.brxzCode != "" &&'@ViewBag.ControlbrxzCode'.indexOf(window.currPatientInfo.brxzCode) > -1 && data.sfyb == "否") {
+                if (window.currPatientInfo.brxzCode != "" &&'@ViewBag.ControlbrxzCode'.indexOf(window.currPatientInfo.brxzCode) > -1 && data.sfyb == "Không") {
                     $.modalAlert("Bệnh nhân này là bệnh nhân BHYT, không thể chọn mục tự chi trả [" + data.xmmc + "】", "warning");
                     $("#gridjc").jqGrid('setSelection', rowid, false); //Cài đặtjqGridĐã chọn
                     return false;

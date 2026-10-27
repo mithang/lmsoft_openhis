@@ -129,11 +129,11 @@
             var brlx = rowData.patientType;
             if (!!admsNum) {
                 switch (brlx) {
-                    case "门诊":
+                    case "Ngoại trú":
                         top.top.$.Newtouchtab.triggerMenuItemClick({ m1: 'Ngoại trú Quản lý', m2: 'ngoại trú ghi sổ khám Optima' });
                         sessionStorage.setItem("mzh", admsNum);
                         break;
-                    case "住院":
+                    case "Nội trú":
                         break;
                 }
             }

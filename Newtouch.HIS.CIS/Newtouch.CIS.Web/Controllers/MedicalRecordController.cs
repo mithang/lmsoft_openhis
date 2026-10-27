@@ -2375,7 +2375,7 @@ namespace Newtouch.CIS.Web.Controllers
                     IDCard = "",
                     Address = "",
                     PhoneNo = "",
-                    Age =data.nlshow+"0月" ,
+                    Age =data.nlshow+ " 0 tháng" ,
                     Sex = data.xb,
                     Height = Regex.Match(data.ct == null ? "Chiều cao：170cm" : data.ct, @"Chiều cao：(\d+cm)").Groups[1].Value,
                     Weight = Regex.Match(data.ct == null ? "Cân nặng：60kg" : data.ct, @"Cân nặng：(\d+kg)").Groups[1].Value,

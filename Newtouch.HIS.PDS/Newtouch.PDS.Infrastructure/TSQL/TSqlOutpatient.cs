@@ -80,7 +80,7 @@ BEGIN
 END
 ELSE
 BEGIN 
-	SET	@result= '未查询到符合发药的处方';
+	SET	@result= 'Không tìm thấy đơn thuốc phù hợp để phát thuốc';
 END
 SELECT @result;
 ";
@@ -141,7 +141,7 @@ BEGIN
 			IF @sumOfDjsl<=@sl
 			BEGIN
 				ROLLBACK TRANSACTION;
-				SET	@result= '冻结数量不足';
+				SET	@result= 'Số lượng đóng băng không đủ';
 				RETURN;
 			END 
 			DECLARE @sysl INT;
@@ -193,7 +193,7 @@ BEGIN
 END
 ELSE
 BEGIN 
-	SET	@result= '未查询到符合发药的药品';
+	SET	@result= 'Không tìm thấy thuốc phù hợp để phát thuốc';
 END
 SELECT @result;
 ";
@@ -250,7 +250,7 @@ BEGIN
 			IF @sumOfDjsl<@sl
 			BEGIN
 				ROLLBACK TRANSACTION;
-				SELECT '冻结数量不足';
+				SELECT 'Số lượng đóng băng không đủ';
 				RETURN;
 			END 
 			DECLARE @sysl INT;
@@ -285,7 +285,7 @@ BEGIN
 END
 ELSE
 BEGIN 
-	SELECT '未查询到符合发药的药品';
+	SELECT 'Không tìm thấy thuốc phù hợp để phát thuốc';
 END
 ";
 
@@ -344,7 +344,7 @@ FROM (
 
 IF @ktsl<@tysl
 BEGIN
-	SELECT '退药数超出可退数量';
+	SELECT 'Số lượng trả thuốc vượt quá số lượng có thể trả';
 	RETURN ;
 END 
 
@@ -397,7 +397,7 @@ BEGIN TRY
 	END	
 	ELSE
     BEGIN
-		SELECT '库存中不存在该批次药品'
+		SELECT 'Trong kho không có thuốc của lô này'
 		COMMIT TRANSACTION;
 		RETURN;
 	END 

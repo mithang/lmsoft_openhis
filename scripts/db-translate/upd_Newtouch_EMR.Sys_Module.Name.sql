@@ -1,0 +1,22 @@
+-- DB translation Scope A: Newtouch_EMR.Sys_Module.Name (applied live; re-runnable; keyless targets match N'old' values)
+USE [Newtouch_EMR];
+UPDATE [Sys_Module] SET [Name] = 'Quan ly he thong' WHERE [Id] = '1';
+UPDATE [Sys_Module] SET [Name] = 'Menu he thong' WHERE [Id] = '2';
+UPDATE [Sys_Module] SET [Name] = 'Nhat ky he thong' WHERE [Id] = '7c23f256-c1e5-4bb6-9c5a-3e31e2e47512';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly vai tro' WHERE [Id] = 'e0f986ef-e3fe-4322-a51d-f4a327714beb';
+UPDATE [Sys_Module] SET [Name] = 'Nguoi dung he thong' WHERE [Id] = '30d2b894-6d8e-4a49-b880-7329832e36c6';
+UPDATE [Sys_Module] SET [Name] = 'Cau hinh tham so dong he thong' WHERE [Id] = '766e304b-a76f-478f-8b4e-5f247c974c8f';
+UPDATE [Sys_Module] SET [Name] = 'Tong quan benh nhan' WHERE [Id] = '1e18ea32-5682-44f2-bd4e-a05c48b68968';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly benh an' WHERE [Id] = 'b51f8683-b948-4ded-a1b0-00ae0202715d';
+UPDATE [Sys_Module] SET [Name] = 'Phan loai lon benh an' WHERE [Id] = 'deded96c-89b2-4177-a9b3-e5703d5f303d';
+UPDATE [Sys_Module] SET [Name] = 'In benh an / trang hien thi tu (dung phat trien)' WHERE [Id] = '3e223944-1ccd-413b-9ef6-0be2a7e66a21';
+UPDATE [Sys_Module] SET [Name] = 'Cau hinh Quan ly' WHERE [Id] = 'f0224c99-9c5a-481e-ad66-de9381e3694d';
+UPDATE [Sys_Module] SET [Name] = 'Benh an Quan ly mau' WHERE [Id] = '720b36f4-ac97-415d-90dc-fefc5dd23553';
+UPDATE [Sys_Module] SET [Name] = 'Loai benh an Bao tri' WHERE [Id] = 'b4cbd85f-0e3a-48b2-ba8d-9a65c4660499';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly thanh phan' WHERE [Id] = '4d52048e-09ea-4479-a4e8-989883637d80';
+UPDATE [Sys_Module] SET [Name] = 'Benh an ngoai tru' WHERE [Id] = '72391f10-4553-47e2-af02-ff932de4bd59';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly benh an ngoai tru' WHERE [Id] = '5393dc29-bab6-47ae-97ec-b61b3cb24a35';
+UPDATE [Sys_Module] SET [Name] = 'Bao tri ho so dieu duong' WHERE [Id] = '120d46c4-4e2b-4f99-abc9-4608f628a955';
+UPDATE [Sys_Module] SET [Name] = 'Nhap ho so dieu duong' WHERE [Id] = '5b77ddad-65da-4a91-8004-51221fb9e1ff';
+UPDATE [Sys_Module] SET [Name] = 'In test' WHERE [Id] = '828f0715-ca06-413a-ac51-0082981cf319';
+UPDATE [Sys_Module] SET [Name] = 'test quan ly thanh phan' WHERE [Id] = '2dbb4076-0163-4916-94b3-08a8b9e8288f';

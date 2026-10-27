@@ -84,7 +84,7 @@
             ], onSelectRow: function (rowid, status) {
                 if (status === true) {
                     var data = $("#gridList").getRowData(rowid);
-                    if (brxzCode!=""&&'@ViewBag.ControlbrxzCode'.indexOf(brxzCode) > -1 && data.sfyb == "否") {
+                    if (brxzCode!=""&&'@ViewBag.ControlbrxzCode'.indexOf(brxzCode) > -1 && data.sfyb == "Không") {
                         $.modalAlert("Bệnh nhân này là bệnh nhân BHYT, không thể chọn mục tự chi trả [" + (data.xmmc == "" ? data.ypmc : data.xmmc) + "】", "warning");
                         $("#gridList").jqGrid('setSelection', rowid, false); //Cài đặtjqGridĐã chọn
                         return false;

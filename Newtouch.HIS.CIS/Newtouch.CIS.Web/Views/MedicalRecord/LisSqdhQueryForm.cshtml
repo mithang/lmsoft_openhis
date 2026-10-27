@@ -95,7 +95,7 @@
                 btn: null
             });
         } else {
-            if (syncStatus != "已完成") {
+            if (syncStatus != "Đã hoàn thành") {
                 $.modalAlert("Trạng thái hiện tại không phải đã hoàn thành nên không thể xem báo cáo", 'warning');
                 return;
             } else {
@@ -115,7 +115,7 @@
 
     function btn_editbak() {
         var $gridList = $("#gridList");
-        if ($gridList.jqGridRowValue().syncStatus != "已完成") {
+        if ($gridList.jqGridRowValue().syncStatus != "Đã hoàn thành") {
             $.modalAlert("Trạng thái hiện tại không phải đã hoàn thành nên không thể xem báo cáo", 'warning');
             return;
         } else {

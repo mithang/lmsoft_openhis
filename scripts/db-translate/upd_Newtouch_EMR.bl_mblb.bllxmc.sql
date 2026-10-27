@@ -1,0 +1,21 @@
+-- DB translation Scope A: Newtouch_EMR.bl_mblb.bllxmc (applied live; re-runnable; keyless targets match N'old' values)
+USE [Newtouch_EMR];
+UPDATE [bl_mblb] SET [bllxmc] = 'Tam thoi Y lenh' WHERE [Id] = '317ebcfb-b074-422d-bef3-5bd3d8712a8a';
+UPDATE [bl_mblb] SET [bllxmc] = 'Dieu duong Ho so dien bien benh don' WHERE [Id] = '5d628209-ff58-44f6-80ae-b5f2959ae601';
+UPDATE [bl_mblb] SET [bllxmc] = 'Ho so dien bien benh' WHERE [Id] = '5e3216b5-89d8-4fac-9c24-9778ef7ca6bc';
+UPDATE [bl_mblb] SET [bllxmc] = 'Noi tru Thong bao' WHERE [Id] = '79233eef-ae5f-470d-850f-3fa2ca057568';
+UPDATE [bl_mblb] SET [bllxmc] = 'Trang dau benh an' WHERE [Id] = '7b3f724a-5a2f-44b0-a702-82eca226a2ce';
+UPDATE [bl_mblb] SET [bllxmc] = 'Y lenh don' WHERE [Id] = '7e677b1b-0e93-4f36-9616-0ba97df5b1d6';
+UPDATE [bl_mblb] SET [bllxmc] = 'Dieu duong Ho so dien bien benh don' WHERE [Id] = '8c110a63-60f2-4ef8-aae3-b58e7b2a8394';
+UPDATE [bl_mblb] SET [bllxmc] = 'Vao/ra vien Ghi chep' WHERE [Id] = '8d689833-a21a-4c5c-8ae1-7c41d466c830';
+UPDATE [bl_mblb] SET [bllxmc] = 'Kiem thu Benh an' WHERE [Id] = '9a21406a-17c7-43ce-9aab-cd4d8e2051b5';
+UPDATE [bl_mblb] SET [bllxmc] = 'Vao/ra vien Ghi chep' WHERE [Id] = '9c006236-17bc-4850-8833-ae051ce17332';
+UPDATE [bl_mblb] SET [bllxmc] = 'Ho so dien bien benh' WHERE [Id] = 'ad31cd39-8322-4167-828f-6f65dca95a9a';
+UPDATE [bl_mblb] SET [bllxmc] = 'Dieu duong Ho so dien bien benh don' WHERE [Id] = 'b03946db-29d5-4ec4-8ae3-3d87b643fabb';
+UPDATE [bl_mblb] SET [bllxmc] = 'Y lenh don' WHERE [Id] = 'b484be4b-39ad-4d1b-bdf3-54b2f812f10c';
+UPDATE [bl_mblb] SET [bllxmc] = 'Benh nhan Thong bao' WHERE [Id] = 'b5ce3ae2-f38e-4243-b14c-2180e090835f';
+UPDATE [bl_mblb] SET [bllxmc] = 'Dai han Y lenh' WHERE [Id] = 'b769ffc0-6814-4e2c-8c58-1e920674c77a';
+UPDATE [bl_mblb] SET [bllxmc] = 'Y lenh don' WHERE [Id] = 'bffeba49-aa62-4a77-8761-d7867314125a';
+UPDATE [bl_mblb] SET [bllxmc] = 'Y lenh don' WHERE [Id] = 'ec751e9f-e108-4a21-9ef4-949bb3b5a921';
+UPDATE [bl_mblb] SET [bllxmc] = 'Y lenh don' WHERE [Id] = 'f225ce72-5d7e-41d1-a12f-e8f0399991d0';
+UPDATE [bl_mblb] SET [bllxmc] = 'Y lenh don' WHERE [Id] = 'f8aafeeb-7acc-4b41-9bdc-2e7caf6f6183';

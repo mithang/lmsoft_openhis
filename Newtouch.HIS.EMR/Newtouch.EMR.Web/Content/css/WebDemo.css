@@ -553,7 +553,7 @@ span#savePrompt {
   transition: transform 0.3s;
 }
 
-/*有下拉框的*/
+/*Có hộp thả xuống*/
 .panel.panel-htop .ribbon-group .ribbon-toolbar .clickMenu {
     background: transparent url(../img/arrow.png) no-repeat right center;
 }
@@ -561,7 +561,7 @@ span#savePrompt {
   padding-right: 5px;
 }
 
-/* 页面设置 */
+/* Cài đặt trang */
 .newBox {
   display: none;
   width: 500px;
@@ -736,7 +736,7 @@ span#savePrompt {
 
 .pad-input::-webkit-outer-spin-button {
   -webkit-appearance: none;
-  /* 有无看不出差别 */
+  /* Có hay không cũng không thấy khác biệt */
 }
 
 .boxBottom {

@@ -259,7 +259,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
  LEFT JOIN [Newtouch_CIS].[dbo].[zy_brxxk] f on d.zyh = f.zyh and f.OrganizeId = d.OrganizeId and f.zt = '1'
  LEFT JOIN [NewtouchHIS_Base].[dbo].[xt_yp] c on a.OrganizeId = c.OrganizeId and c.ypCode = a.ypCode and c.zt = '1'
  LEFT JOIN [NewtouchHIS_Base].[dbo].[xt_kssType] h on a.OrganizeId = h.OrganizeId and a.gmlx = h.Id and h.zt = '1' 
-  where a.OrganizeId=@orgId and a.zt = '1' and a.Result = '阳性'";
+  where a.OrganizeId=@orgId and a.zt = '1' and (a.Result = '阳性' OR a.Result = 'Dương tính')";
             var pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@orgId", orgId));
             if (!string.IsNullOrEmpty(keyword))

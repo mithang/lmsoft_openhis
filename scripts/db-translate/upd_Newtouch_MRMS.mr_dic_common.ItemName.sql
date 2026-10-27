@@ -1,0 +1,20 @@
+-- DB translation Scope A: Newtouch_MRMS.mr_dic_common.ItemName (applied live; re-runnable; keyless targets match N'old' values)
+USE [Newtouch_MRMS];
+UPDATE [mr_dic_common] SET [ItemName] = 'Khac' WHERE [ItemName] = N'其他';
+UPDATE [mr_dic_common] SET [ItemName] = 'Khong ro' WHERE [ItemName] = N'不详';
+UPDATE [mr_dic_common] SET [ItemName] = 'Khong ro' WHERE [ItemName] = N'未知';
+UPDATE [mr_dic_common] SET [ItemName] = 'Nu' WHERE [ItemName] = N'女';
+UPDATE [mr_dic_common] SET [ItemName] = 'Khac' WHERE [ItemName] = N'其他';
+UPDATE [mr_dic_common] SET [ItemName] = 'Nam' WHERE [ItemName] = N'男';
+UPDATE [mr_dic_common] SET [ItemName] = 'Cong nhan' WHERE [ItemName] = N'工人';
+UPDATE [mr_dic_common] SET [ItemName] = 'Khac' WHERE [ItemName] = N'其他';
+UPDATE [mr_dic_common] SET [ItemName] = 'Nong dan' WHERE [ItemName] = N'农民';
+UPDATE [mr_dic_common] SET [ItemName] = 'Hoc sinh' WHERE [ItemName] = N'学生';
+UPDATE [mr_dic_common] SET [ItemName] = 'Khong ro' WHERE [ItemName] = N'不详';
+UPDATE [mr_dic_common] SET [ItemName] = 'Khac' WHERE [ItemName] = N'其他';
+UPDATE [mr_dic_common] SET [ItemName] = 'Chua kiem tra' WHERE [ItemName] = N'未查';
+UPDATE [mr_dic_common] SET [ItemName] = 'Duong' WHERE [ItemName] = N'阳';
+UPDATE [mr_dic_common] SET [ItemName] = 'Khong ro Gioi tinh' WHERE [ItemName] = N'未知的性别';
+UPDATE [mr_dic_common] SET [ItemName] = 'Nu' WHERE [ItemName] = N'女';
+UPDATE [mr_dic_common] SET [ItemName] = 'Chua kiem tra' WHERE [ItemName] = N'未查';
+UPDATE [mr_dic_common] SET [ItemName] = 'Am' WHERE [ItemName] = N'阴';

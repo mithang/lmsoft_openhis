@@ -62,7 +62,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             //Loại trừ menu hệ thống
             if (systemMenuLimit == true)
             {
-                var sysMenu = query.Where(p => p.Name == "系统管理").FirstOrDefault();
+                var sysMenu = query.Where(p => p.Name == "Quan ly he thong").FirstOrDefault();
                 if (sysMenu != null)
                 {
                     query = query.Where(p => !(p.Id == sysMenu.Id || p.ParentId == sysMenu.Id)).ToList();
@@ -102,13 +102,13 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             }
             if (isRoot || isAdministrator)
             {
-                var sysMenu = query.Where(p => p.Name == "系统管理"
-                    || p.Name == "系统菜单" || p.Name == "菜单管理"
-                    || p.Name == "FailMsg配置"    //
-                    || p.Name == "快捷菜单" //
-                    || p.Name == "系统日志"
-                    || p.Name == "系统用户"
-                    || p.Name == "角色管理" || p.Name == "系统角色").ToList();
+                var sysMenu = query.Where(p => p.Name == "Quan ly he thong"
+                    || p.Name == "Menu he thong" || p.Name == "Quan ly menu"
+                    || p.Name == "Cau hinh FailMsg"    //
+                    || p.Name == "Menu tac vu" //
+                    || p.Name == "Nhat ky he thong"
+                    || p.Name == "Nguoi dung he thong"
+                    || p.Name == "Quan ly vai tro" || p.Name == "Vai tro he thong").ToList();
                 query = query.Where(p => sysMenu.Select(x => x.Id).ToList().Contains(p.Id)
                     || sysMenu.Select(y => y.ParentId).Where(y => !string.IsNullOrWhiteSpace(y)).ToList().Contains(p.Id)).ToList();
             }
@@ -180,13 +180,13 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             }
             if (isRoot || isAdministrator)
             {
-                var sysMenu = query.Where(p => p.Name == "系统管理"
-                     || p.Name == "系统菜单" || p.Name == "菜单管理"
-                     || p.Name == "FailMsg配置"    //
-                     || p.Name == "快捷菜单" //
-                     || p.Name == "系统日志"
-                     || p.Name == "系统用户"
-                     || p.Name == "角色管理" || p.Name == "系统角色").ToList();
+                var sysMenu = query.Where(p => p.Name == "Quan ly he thong"
+                     || p.Name == "Menu he thong" || p.Name == "Quan ly menu"
+                     || p.Name == "Cau hinh FailMsg"    //
+                     || p.Name == "Menu tac vu" //
+                     || p.Name == "Nhat ky he thong"
+                     || p.Name == "Nguoi dung he thong"
+                     || p.Name == "Quan ly vai tro" || p.Name == "Vai tro he thong").ToList();
                 query = query.Where(p => sysMenu.Select(x => x.Id).ToList().Contains(p.Id)
                     || sysMenu.Select(y => y.ParentId).Where(y => !string.IsNullOrWhiteSpace(y)).ToList().Contains(p.Id)).ToList();
             }

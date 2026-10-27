@@ -25,11 +25,11 @@ namespace NewtouchHIS.DomainService.CIS
 BEGIN
 	DROP TABLE #yzdata;
 END
-select  '长期' Yzlb ,Yzlx , Kssj ,s.Name Ysmc ,
+select  'Dài hạn' Yzlb ,Yzlx , Kssj ,s.Name Ysmc ,
         xmmc as Yzmc, CONCAT(CONVERT(float,ypjl),dw) as Yzjl, ypyf.Yfmc, yzpc.Yzpcmc,
 		yz.Zh , tzsj Tzsj , NULL Tzr ,zxr.Name Zxr , yz.Yzzt ,yz.CreateTime,yz.Shsj,
 		yz.Zxsj,dept.Name DeptName,Yztag,
-        case yztag when 'JI' then '精I' when 'JII' then '精II' when 'MZ' then '麻醉' else yztag end YztagName,
+        case yztag when 'JI' then 'Hướng thần I' when 'JII' then 'Hướng thần II' when 'MZ' then 'Gây mê' else yztag end YztagName,
          Xmdm,Sl,
 		case when yzlx in (2,4,10) then (cast(sl as varchar)+ypxx.zycldw) end Zycldw
 		into #yzdata
@@ -47,11 +47,11 @@ LEFT JOIN [NewtouchHIS_Base].[dbo].[xt_yzpc] yzpc on yz.pcCode = yzpc.yzpcCode a
 where zyh=@zyh and
 yz.OrganizeId =@orgId
 insert into #yzdata
-select  '临时' yzlb  ,yzlx , kssj ,s.Name ysmc ,
+select  'Tạm thời' yzlb  ,yzlx , kssj ,s.Name ysmc ,
         xmmc as yzmc, CONCAT(CONVERT(float,ypjl),dw) as yzjl, ypyf.yfmc, yzpc.yzpcmc,
 		yz.zh , NULL tzsj , NULL tzr ,zxr.Name zxr , yz.yzzt ,yz.CreateTime,yz.shsj,
 		yz.zxsj,dept.Name deptName,yztag,
-        case yztag when 'JI' then '精I' when 'JII' then '精II' when 'MZ' then '麻醉' else yztag end yztagName,
+        case yztag when 'JI' then 'Hướng thần I' when 'JII' then 'Hướng thần II' when 'MZ' then 'Gây mê' else yztag end yztagName,
         xmdm,sl,
 		case when yzlx in (2,4,10) then (cast(sl as varchar)+ypxx.zycldw) end zycldw 
 from zy_lsyz yz
@@ -71,11 +71,11 @@ delete from #yzdata  where yzlx='6' or yzlx='7'
 select * from #yzdata  where '1'='1' ";
             if (yzlx == "cq")
             {
-                sqlstr += " and yzlb='长期' ";
+                sqlstr += " and yzlb='Dài hạn' ";
             }
             else if (yzlx == "ls")
             {
-                sqlstr += " and yzlb='临时' ";
+                sqlstr += " and yzlb='Tạm thời' ";
             }
             else if (yzlx == "dr")
             {
@@ -116,7 +116,7 @@ where  t.OrganizeId=q.OrganizeId and q.lissqdh=y.cfh and q.sqdh=y.sqdh
 for xml path('')),1,1,'') as Sqxm,SyncStatus,max(sqsj) Sqsj 
 from (
 	select distinct a.OrganizeId,a.xm,b.cfh lissqdh,b.sqdh,c.ztId,c.ztmc,a.jzysmc Sqys,
-	 case d.sqdzt  when '0' then '已申请' when '1' then '已接收' when '2' then '已完成' else '待申请' end syncStatus,
+	 case d.sqdzt  when '0' then 'Đã đăng ký' when '1' then 'Đã nhận' when '2' then 'Đã hoàn thành' else 'Chờ đăng ký' end syncStatus,
 	CONVERT(varchar(100), b.CreateTime, 20) sqsj,row_number() over(partition by c.ztmc order by b.CreateTime desc) rn
 	from xt_jz a
 	join xt_cf b on a.jzId=b.jzId and a.OrganizeId=b.OrganizeId
@@ -140,7 +140,7 @@ for xml path('')),1,1,'') as Sqxm,
 Syncstatus,max(sqsj) Sqsj  
 FROM (
 	select a.OrganizeId, hzxm xm,yzh lissqdh,sqdh,ztId,ztmc,staff.Name Sqys,
-	case syncStatus when '0' then '已申请' when '1' then '已接收' when '2' then '已完成' else '待申请' end syncStatus
+	case syncStatus when '0' then 'Đã đăng ký' when '1' then 'Đã nhận' when '2' then 'Đã hoàn thành' else 'Chờ đăng ký' end syncStatus
 	,CONVERT(varchar(100), a.CreateTime, 20) sqsj,row_number() over(partition by a.ztmc order by a.CreateTime desc) rn  
 	from zy_lsyz a with(nolock)
 	left join NewtouchHIS_Base..Sys_Staff staff with(nolock) on staff.gh=a.ysgh and staff.OrganizeId=a.OrganizeId 

@@ -110,7 +110,7 @@ SELECT --TOP 1000
         sx.ypgg ,
         SUM(ISNULL(kc.kcsl, 0)) kcsl ,
         bm.Zcxh ,
-        CASE bm.zt WHEN 1 THEN '正常' WHEN 0 THEN '控制' END syzt ,
+        CASE bm.zt WHEN 1 THEN 'Bình thường' WHEN 0 THEN 'Kiểm soát' END syzt ,
 		dbo.f_getYfYpComplexYpSlandDw(SUM(ISNULL(kc.kcsl, 0)), fm.mzzybz, bm.Ypdm, bm.OrganizeId) klsl ,
         SUM(CONVERT(NUMERIC(11, 2),ISNULL(kc.kcsl, 0)/ yp.bzs)) YkKcsl ,
         yp.bzdw YkDw ,
@@ -128,7 +128,7 @@ SELECT --TOP 1000
         bm.Jhd ,
         bm.Jhl ,
         RTRIM(LTRIM(dl.dlmc)) AS yplb ,
-        CASE yp.zt WHEN '1' THEN '正常' WHEN '0' THEN '停用' END ypzt ,
+        CASE yp.zt WHEN '1' THEN 'Bình thường' WHEN '0' THEN 'Đã ngừng dùng' END ypzt ,
         bm.Sysx
 FROM    dbo.XT_YP_BMYPXX(nolock) bm
         INNER JOIN [NewtouchHIS_Base].dbo.V_S_xt_yp yp ON yp.ypCode = bm.Ypdm and yp.OrganizeId=bm.OrganizeId

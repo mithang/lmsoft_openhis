@@ -51,15 +51,15 @@ and jz.zlkssj between @kssj and @jssj
 jz.mzh,jz.xm,jz.xb,jz.nlshow nl,
 ghksmc ks,
 staff.name ys,
-case gh.mjzbz  when 1 then '普通门诊' when 2 then '急诊' when 3 then '专家门诊' when 4 then '特病门诊' when 5 then '重大疾病门诊' when 6 then '慢性病门诊' when 7 then '居民两病' when 8 then '意外伤害门诊' when 9 then '生育门诊' when 10 then '耐多药结核门诊' when 11 then '儿童两病门诊' end  jzlx,  
-case when jz.fzbz=1 then '否' else '是' end cz,
+case gh.mjzbz  when 1 then 'Khám ngoại trú thông thường' when 2 then 'Cấp cứu' when 3 then 'Khám chuyên gia' when 4 then 'Khám bệnh đặc biệt' when 5 then '重大疾病Ngoại trú' when 6 then '慢性病Ngoại trú' when 7 then '居民两病' when 8 then '意外伤害Ngoại trú' when 9 then '生育Ngoại trú' when 10 then '耐多药结核Ngoại trú' when 11 then '儿童两病Ngoại trú' end  jzlx,  
+case when jz.fzbz=1 then 'Không' else 'Có' end cz,
 jz.zlkssj,isnull(jz.zljssj,isnull(jz.lastmodifytime,jz.createtime)) zljssj,
-case jzzt when '1' then '未就诊' when '2' then '就诊中' when '3' then '就诊结束' end jzzt,
+case jzzt when '1' then 'Chưa khám' when '2' then 'Đang khám' when '3' then 'Đã khám xong' end jzzt,
 gh.zdmc,
 jz.kh jzkh,
 case when jz.fzbz<>0 then Convert(varchar(50),jzrq,23)  else null end fzrq,
 Convert(varchar(50),jz.csny,23) csny,jz.zjh,brxzmc,'' ylzh,
-case hy when '1' then '未婚' when '2' then '已婚' else '不详' end hy,
+case hy when '1' then '未婚' when '2' then '已婚' else 'Khong ro' end hy,
 zy,mzmc mz , '' xx,
 case when jz.fzbz<>0 then null else Convert(varchar(50),jz.ghczsj,23)  end czrq,
 dh,xian_dz,dwmc,dwdh,lxrgx,lxr,lxrdh,'' lxrdw,jjlxr_dz
@@ -161,7 +161,7 @@ order by cflx desc,cfh
         public IList<OutpatientReservationVO> GetReservationGridJson(Pagination pagination, string orgId, string kssj, string jssj, string yscode,string xm)
         {
             string sql = @" 
-select yy.yyrq,case yy.yysj when '1' then '上午' when '2' then '下午' end yysj,
+select yy.yyrq,case yy.yysj when '1' then 'Buổi sáng' when '2' then 'Buổi chiều' end yysj,
 yy.mzh,
 jz.xm,
 jz.xb,

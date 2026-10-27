@@ -36,12 +36,12 @@ namespace Newtouch.HIS.DomainServices
             {
                 //all
                 //170818Đổi thành chỉ có thể thấy Thực đơn hệ thống
-                query = query.Where(p => p.Name == "系统管理" || p.Name == "系统菜单" || p.Name == "菜单管理" || p.Name == "FailMsg配置" || p.Name == "快捷菜单");
+                query = query.Where(p => p.Name == "Quan ly he thong" || p.Name == "Menu he thong" || p.Name == "Quan ly menu" || p.Name == "Cau hinh FailMsg" || p.Name == "Menu tac vu");
             }
             else if (isAdministrator)
             {
                 //170818 Hệ thống nghiệp vụ Đổi thành chỉ có thể thấy Quản lý vai trò
-                query = query.Where(p => p.Name == "系统管理" || p.Name == "角色管理" || p.Name == "系统角色");
+                query = query.Where(p => p.Name == "Quan ly he thong" || p.Name == "Quan ly vai tro" || p.Name == "Vai tro he thong");
             }
             else
             {

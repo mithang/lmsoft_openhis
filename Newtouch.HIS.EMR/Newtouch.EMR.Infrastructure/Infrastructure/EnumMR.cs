@@ -359,11 +359,11 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 	/// </summary>
 	public enum EnumBazl
 	{
-		[Description("甲")]
+		[Description("Hạng A")]
 		I = 1,
-		[Description("乙")]
+		[Description("Hạng B")]
 		II,
-		[Description("丙")]
+		[Description("Hạng C")]
 		III
 	}
 	/// <summary>

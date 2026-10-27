@@ -86,8 +86,8 @@ namespace Newtouch.DomainServices
             sb.Append(@"
 SELECT bl.jzId,jzzt,
 1 AS lsblly,    --lịch sửbệnh nhânđếnnguồn    --Hệ thống này
-    (CASE jzzt WHEN 2 THEN (SELECT convert(varchar(8), ghsj, 112)) + '(就诊中)' 
-	WHEN 3 THEN (SELECT convert(varchar(8), ghsj, 112)) + '(已结束)'
+    (CASE jzzt WHEN 2 THEN (SELECT convert(varchar(8), ghsj, 112)) + '(Đang khám)' 
+	WHEN 3 THEN (SELECT convert(varchar(8), ghsj, 112)) + '(Đã kết thúc)'
 	ELSE (SELECT convert(varchar(8), ghsj, 112)) + ghksmc END)AS blmc
 ,jz.ghksmc
 ,jz.jzysmc
@@ -390,7 +390,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                 huxi = jzEntity.huxi,
                 cfzbz = jzEntity.cfzbz,
                 hy = jzEntity.hy == null ? brhf : jzEntity.hy,
-                hymc = (jzEntity.hy == null ? brhf : jzEntity.hy) == "1" ? "未婚" :((jzEntity.hy == null ? brhf : jzEntity.hy) == "2" ? "已婚" : ((jzEntity.hy == null ? brhf : jzEntity.hy) == "3" ? "不详" : "")),
+                hymc = (jzEntity.hy == null ? brhf : jzEntity.hy) == "1" ? "Chưa kết hôn" :((jzEntity.hy == null ? brhf : jzEntity.hy) == "2" ? "Đã kết hôn" : ((jzEntity.hy == null ? brhf : jzEntity.hy) == "3" ? "Khong ro" : "")),
                 //Hồ sơ
                 zs = blEntity.zs,
                 fbsj = blEntity.fbsj,
@@ -1946,9 +1946,9 @@ CONVERT(VARCHAR(10),CONVERT(FLOAT,a.xuetang)) dqxuetang,
        CASE
            WHEN
           a.cfzbz='1' THEN
-               '复诊'
+               'Tái khám'
            ELSE
-               '初诊'
+               'Khám lần đầu'
        END cfz,a.jzysmc jzys,
 case when FLOOR(DATEDIFF(DY, d.csny, GETDATE()) / 365.25)<15  then d.jjllr else null end jzxm,
 case when FLOOR(DATEDIFF(DY, d.csny, GETDATE()) / 365.25)<15 then d.jjlldh else null end dhhm
@@ -2086,9 +2086,9 @@ CONVERT(VARCHAR(10),CONVERT(FLOAT,a.xuetang)) dqxuetang,
        CASE
            WHEN
           a.cfzbz='1' THEN
-               '复诊'
+               'Tái khám'
            ELSE
-               '初诊'
+               'Khám lần đầu'
        END cfz,a.jzysmc,a.jzys,
 case when FLOOR(DATEDIFF(DY, d.csny, GETDATE()) / 365.25)<15  then d.jjllr else null end jzxm,
 case when FLOOR(DATEDIFF(DY, d.csny, GETDATE()) / 365.25)<15 then d.jjlldh else null end dhhm
@@ -2690,8 +2690,8 @@ WHERE   b.mzh = @mzh
             kc21.CKC502 = patjzInfo.kh;
             kc21.AAC003 = patjzInfo.xm;
             kc21.AAE135 = patjzInfo.zjh;
-            kc21.AAC004 = (patjzInfo.xb == "男" ? "1" : "2");
-            kc21.BAE450 = Convert.ToDecimal(patjzInfo.nlshow.Substring(0, patjzInfo.nlshow.Length - 1));
+            kc21.AAC004 = (patjzInfo.xb == "Nam" ? "1" : "2");
+            kc21.BAE450 = Convert.ToDecimal(new string(patjzInfo.nlshow.TakeWhile(c => char.IsDigit(c) || c == '.').ToArray()));
             kc21.AAE011 = patjzInfo.CreatorCode;
             kc21.AAE036 = DateTime.Now.ToString("yyyyMMddHHmmss");
             request.KC21XML = kc21;
@@ -2835,7 +2835,7 @@ join xt_cf y on t.jzId=y.jzId and t.OrganizeId=y.OrganizeId
 join xt_cfmx u on y.cfId=u.cfId and y.OrganizeId=u.OrganizeId
 where  t.OrganizeId=q.OrganizeId and q.lissqdh=y.cfh and q.sqdh=y.sqdh
 for xml path('')),1,1,'') as ztmc,syncStatus,max(sqsj) sqsj from(select distinct a.OrganizeId,a.xm,b.cfh lissqdh,b.sqdh,c.ztId,c.ztmc,
- case d.sqdzt  when '0' then '已申请' when '1' then '已接收' when '2' then '已完成' else '待申请' end syncStatus,
+ case d.sqdzt  when '0' then 'Đã đăng ký' when '1' then 'Đã nhận' when '2' then 'Đã hoàn thành' else 'Chờ đăng ký' end syncStatus,
 CONVERT(varchar(100), b.CreateTime, 20) sqsj,row_number() over(partition by c.ztmc order by b.CreateTime desc) rn
  from xt_jz a
 join xt_cf b on a.jzId=b.jzId and a.OrganizeId=b.OrganizeId
@@ -2866,7 +2866,7 @@ stuff((select distinct ','+b.ztmc from zy_lsyz b
 where b.yzh=c.lissqdh and b.OrganizeId=c.OrganizeId
 for xml path('')),1,1,'') as ztmc,
 syncstatus,max(sqsj) sqsj ,blh FROM (select distinct a.OrganizeId,hzxm xm,yzh lissqdh,sqdh,ztId,ztmc,
-case syncStatus when '0' then '已申请' when '1' then '已接收' when '2' then '已完成' else '待申请' end syncStatus
+case syncStatus when '0' then 'Đã đăng ký' when '1' then 'Đã nhận' when '2' then 'Đã hoàn thành' else 'Chờ đăng ký' end syncStatus
 ,CONVERT(varchar(100), a.CreateTime, 20) sqsj,b.blh,row_number() over(partition by a.ztmc order by a.CreateTime desc) rn  from zy_lsyz a with(nolock)
 left join  zy_brxxk b on a.zyh=b.zyh and a.organizeId=b.organizeId and a.zt=b.zt where  yzlx='6' and a.zyh=@zymzh  and a.OrganizeId=@orgId and a.zt=1 and yzzt='2'";
                 if (!string.IsNullOrEmpty(ztmc))
@@ -2988,7 +2988,7 @@ join xt_cfmx u on y.cfId=u.cfId and y.OrganizeId=u.OrganizeId
 where  t.OrganizeId=c.OrganizeId and c.lissqdh=y.cfh and c.sqdh=y.sqdh
 for xml path('')),1,1,'')  as ztmc,
 syncstatus,max(sqsj) sqsj  FROM (select distinct a.OrganizeId,a.xm,b.cfh lissqdh,b.sqdh,c.ztId,c.ztmc,
- case d.sqdzt when '2' then '等待报告' when '3' then '己出报告' when '4' then '已取消' else '待申请' end syncStatus
+ case d.sqdzt when '2' then 'Chờ báo cáo' when '3' then 'Đã có báo cáo' when '4' then 'Đã hủy' else 'Chờ đăng ký' end syncStatus
  ,CONVERT(varchar(100), a.CreateTime, 20) sqsj,row_number() over(partition by c.cfid order by a.CreateTime desc) rn 
  from xt_jz a
 join xt_cf b on a.jzId=b.jzId and a.OrganizeId=b.OrganizeId
@@ -3019,7 +3019,7 @@ stuff((select distinct ','+b.ztmc from zy_lsyz b with(nolock)
 where b.yzh=c.lissqdh and b.OrganizeId=c.OrganizeId
 for xml path('')),1,1,'') as ztmc,
 syncstatus,max(sqsj) sqsj FROM (select OrganizeId,hzxm xm,yzh lissqdh,sqdh,ztId,ztmc,
-case syncStatus when '2' then '等待报告' when '3' then '己出报告' when '4' then '已取消' else '待申请' end syncStatus,CONVERT(varchar(100), a.CreateTime, 20) sqsj,row_number() over(partition by a.yzh order by a.CreateTime desc) rn  
+case syncStatus when '2' then 'Chờ báo cáo' when '3' then 'Đã có báo cáo' when '4' then 'Đã hủy' else 'Chờ đăng ký' end syncStatus,CONVERT(varchar(100), a.CreateTime, 20) sqsj,row_number() over(partition by a.yzh order by a.CreateTime desc) rn  
 from zy_lsyz a with(nolock)
 where  yzlx='7' and a.zyh=@zymzh  and a.OrganizeId=@orgId and a.zt=1 and yzzt='2'";
                 if (!string.IsNullOrEmpty(ztmc))

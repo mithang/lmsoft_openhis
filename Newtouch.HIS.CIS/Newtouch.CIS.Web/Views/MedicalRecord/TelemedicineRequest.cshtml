@@ -61,7 +61,7 @@
                 <input id="xd" name="checkbox0" type="checkbox" value="Điện tim" autocomplete="off"><label for="xd">Điện tim</label>
             </div>
             <div class="ckbox">
-                <input id="dtxd" name="checkbox0" type="checkbox" value="ĐộngĐiện tim" class="btn" autocomplete="off"><label for="dtxd">ĐộngĐiện tim</label>
+                <input id="dtxd" name="checkbox0" type="checkbox" value="Điện tâm đồ động" class="btn" autocomplete="off"><label for="dtxd">Điện tâm đồ động</label>
             </div>
             <div class="ckbox" style="display: none;">
                 <input id="yx" name="checkbox0" type="checkbox" value="Hình ảnh" autocomplete="off"><label for="yx">Hình ảnh</label>
@@ -116,7 +116,7 @@
             //Cài đặthiện tạiĐã chọncheckboxcủaTrạng tháilàchecked
             $("input[name='checkbox0']").removeAttr("checked");
             $(this).prop('checked', true);
-            if ($(this).val() == "动态心电") {
+            if ($(this).val() == "Điện tâm đồ động") {
                 if (!$("#7zName").val()) {
                     $.modalAlert("Không tìm thấy đề nghị điện tâm đồ động đã thu phí của bệnh nhân này!", 'warning');
                     $(this).prop('checked', false);

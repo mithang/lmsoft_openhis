@@ -48,7 +48,7 @@ select distinct top 100
     ,CONVERT(DECIMAL(12,4),yp.pfj) Ykpfj
 	,CONVERT(DECIMAL(12,4),kcxx.jj/yp.bzs) jj
     ,sfdl.dlmc yplb
-    ,case yp.mzzybz when '1' then '正常' when '0' then '停用' end ypzt
+    ,case yp.mzzybz when '1' then 'Bình thường' when '0' then 'Đã ngừng dùng' end ypzt
 from xt_yp_kcxx(NOLOCK) kcxx
 INNER join NewtouchHIS_Base.dbo.xt_yp(NOLOCK) yp on kcxx.ypdm=yp.ypCode and yp.organizeId=@OrganizeId AND yp.zt='1'
 INNER join NewtouchHIS_Base.dbo.xt_ypsx(NOLOCK) ypsx on ypsx.ypId=yp.ypId AND ypsx.OrganizeId=yp.OrganizeId AND ypsx.zt='1'
@@ -159,7 +159,7 @@ order by a.ypcode,a.kcsl,a.yxq
         public IList<LossAndProditInfoVO> SelectLossAndProditInfoList(Pagination pagination, string startTime, string endTime, string inputCode, string syyy, int syqk)
         {
             var strSql = new StringBuilder(@"
-         SELECT DISTINCT syxx.syId, FLOOR(syxx.sykc/syxx.Zhyz) sykc, CASE WHEN syxx.sysl > 0 THEN '报溢' ELSE '报损' END AS syqk, yp.ypmc,yp.ypCode, sf.dlmc AS yplb
+         SELECT DISTINCT syxx.syId, FLOOR(syxx.sykc/syxx.Zhyz) sykc, CASE WHEN syxx.sysl > 0 THEN 'Báo thừa' ELSE 'Báo hỏng' END AS syqk, yp.ypmc,yp.ypCode, sf.dlmc AS yplb
 	    , yp.py, syxx.ph, convert(varchar(100), syxx.yxq, 111) AS yxq, syxx.bgsj 
 		,dbo.f_getYfbmYpComplexYpSlandDw(syxx.sysl,syxx.yfbmCode,syxx.ypdm,syxx.OrganizeId) sysl
 		,syxx.Zhyz
@@ -366,7 +366,7 @@ FROM (
         public IList<InventoryQureyinfoVO> GetInventoryQureyInfo(Pagination pagination, string startTime, string endTime, string inputCode, string syyy, int syqk)
         {
             var strSql = new StringBuilder(@"
-      SELECT DISTINCT syxx.pdId, FLOOR(syxx.pdkc/syxx.Zhyz) pdkc, CASE WHEN syxx.pdsl > 0 THEN '盘盈' ELSE '盘亏' END AS pdqk, yp.ypmc,yp.ypCode, sf.dlmc AS yplb
+      SELECT DISTINCT syxx.pdId, FLOOR(syxx.pdkc/syxx.Zhyz) pdkc, CASE WHEN syxx.pdsl > 0 THEN 'Thừa khi kiểm kê' ELSE 'Thiếu khi kiểm kê' END AS pdqk, yp.ypmc,yp.ypCode, sf.dlmc AS yplb
 	    , yp.py, syxx.ph, convert(varchar(100), syxx.yxq, 111) AS yxq, syxx.bgsj 
 		,dbo.f_getYfbmYpComplexYpSlandDw(syxx.pdsl,syxx.yfbmCode,syxx.ypdm,syxx.OrganizeId) pdsl
 		,syxx.Zhyz

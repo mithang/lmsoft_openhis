@@ -47,57 +47,57 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Thuốc
         /// </summary>
-        [Description("药品")]
+        [Description("Thuốc")]
         Yp = 2,
         /// <summary>
         /// văn bản
         /// </summary>
-        [Description("文字")]
+        [Description("Văn bản")]
         Wz = 3,
         /// <summary>
         /// Xuất việnmang thuốc
         /// </summary>
-        [Description("出院带药")]
+        [Description("Thuốc mang về khi ra viện")]
         Cydy = 4,
         /// <summary>
         /// Mục
         /// </summary>
-        [Description("项目")]
+        [Description("Hạng mục")]
         sfxm = 5,
         /// <summary>
         /// Xét nghiệm
         /// </summary>
-        [Description("检验")]
+        [Description("Xét nghiệm")]
         jy = 6,
         /// <summary>
         /// Kiểm tra
         /// </summary>
-        [Description("检查")]
+        [Description("Kiểm tra")]
         jc = 7,
         /// <summary>
         /// ăn uốngY lệnh
         /// </summary>
-        [Description("膳食医嘱")]
+        [Description("Y lệnh dinh dưỡng")]
         ssyz = 8,
         /// <summary>
         /// Phẫu thuật
         /// </summary>
-        [Description("手术")]
+        [Description("Phẫu thuật")]
         oper = 9,
         /// <summary>
         /// trongthảo dược
         /// </summary>
-        [Description("中草药")]
+        [Description("Thuốc Đông y")]
         zcy = 10,
 	    /// <summary>
 	    /// Phục hồi chức năng
 	    /// </summary>
-	    [Description("康复")]
+	    [Description("Phục hồi chức năng")]
 	    rehab = 11,
         /// <summary>
 	    /// vật tưVật tư tiêu hao
 	    /// </summary>
-	    [Description("耗材")]
+	    [Description("Vật tư")]
         yyhc = 12
 
     }
@@ -109,17 +109,17 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// chờduyệt 
         /// </summary>
-        [Description("待审")]
+        [Description("Chờ duyệt")]
         Ds = 0,
         /// <summary>
         /// Phê duyệt
         /// </summary>
-        [Description("审核")]
+        [Description("Duyệt")]
         Sh = 1,
         /// <summary>
         /// Thực hiện
         /// </summary>
-        [Description("执行")]
+        [Description("Thực hiện")]
         Zx = 2,
         /// <summary>
         /// rútDC
@@ -129,7 +129,7 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// DừnghoặcHủy bỏ
         /// </summary>
-        [Description("停止")]
+        [Description("Dừng")]
         TZ = 4 
     }
     /// <summary>
@@ -167,13 +167,13 @@ namespace Newtouch.Infrastructure
     /// </summary>
     public enum EnumTcfw
     {
-        [Description("个人")]
+        [Description("Cá nhân")]
         Person = 1,
-        [Description("科室")]
+        [Description("Khoa")]
         Dept = 2,
-        [Description("病区")]
+        [Description("Khu bệnh")]
         Ward = 3,
-        [Description("全院")]
+        [Description("Toàn viện")]
         Hosp = 4
     }
     /// <summary>
@@ -181,31 +181,31 @@ namespace Newtouch.Infrastructure
     /// </summary>
     public enum EnumHlbrzt
     {
-        [Description("入院")]
+        [Description("Nhập viện")]
         Ry = 1,
-        [Description("在院")]
+        [Description("Đang nằm viện")]
         Zy = 2,
-        [Description("出院")]
+        [Description("Ra viện")]
         Cy = 3,
-        [Description("请假")]
+        [Description("Xin nghỉ")]
         Qj = 4,
-        [Description("转入")]
+        [Description("Chuyển vào")]
         Zr = 5,
-        [Description("转出")]
+        [Description("Chuyển ra")]
         Zc = 6,
-        [Description("拒测")]
+        [Description("Từ chối đo")]
         Jc = 7,
-        [Description("返院")]
+        [Description("Trở lại viện")]
         Fy = 8,
-        [Description("复测")]
+        [Description("Đo lại")]
         Fc = 9,
-		[Description("卧床")]
+		[Description("Nằm giường")]
 		Wc = 10,
-		[Description("死亡")]
+		[Description("Tử vong")]
 		Sw = 11,
-		[Description("手术")]
+		[Description("Phẫu thuật")]
 		ss = 12,
-        [Description("回室")]
+        [Description("Về phòng")]
         hs = 13
     }
     /// <summary>
@@ -235,11 +235,11 @@ namespace Newtouch.Infrastructure
     /// </summary>
     public enum EnumMedSTflag
     {
-        [Description("发药")]
+        [Description("Phát thuốc")]
         Receive = 1,
-        [Description("全退")]
+        [Description("Trả toàn bộ")]
         AllReturn = 2,
-        [Description("部分退")]
+        [Description("Trả một phần")]
         PartReturn = 3
     }
     /// <summary>
@@ -247,9 +247,9 @@ namespace Newtouch.Infrastructure
     /// </summary>
     public enum EnumYzxz
     {
-        [Description("临时")]
+        [Description("Tạm thời")]
         Ls = 1,
-        [Description("长期")]
+        [Description("Dài hạn")]
         Cq = 2
     }
     /// <summary>
@@ -257,15 +257,15 @@ namespace Newtouch.Infrastructure
     /// </summary>
     public enum EnumCwjlzt
     {
-        [Description("当前")]
+        [Description("Hiện tại")]
         Dq = 1,
-        [Description("转床")]
+        [Description("Chuyển giường")]
         Zc = 2,
-        [Description("转区")]
+        [Description("Chuyển khu")]
         Zq = 3,
-        [Description("出区")]
+        [Description("Ra khỏi khu")]
         Cq = 4,
-        [Description("取消入区")]
+        [Description("Hủy vào khu")]
         QxRq = 5
     }
     /// <summary>
@@ -273,11 +273,11 @@ namespace Newtouch.Infrastructure
     /// </summary>
     public enum EnumYslx
     {
-        [Description("住院医生")] //Resident
+        [Description("Bác sĩ nội trú")] //Resident
         ZyDoc = 1,
-        [Description("主治医生")] //Attending
+        [Description("Bác sĩ điều trị chính")] //Attending
         ZzDoc = 2,
-        [Description("主任医生")] //chief
+        [Description("Bác sĩ trưởng khoa")] //chief
         ZrDoc = 3
     }
     /// <summary>
@@ -288,22 +288,22 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Icấp
         /// </summary>
-        [Description("I级")]
+        [Description("Cấp I")]
         I = 1,
         /// <summary>
         /// IIcấp
         /// </summary>
-        [Description("II级")]
+        [Description("Cấp II")]
         II = 2,
         /// <summary>
         /// IIIcấp
         /// </summary>
-        [Description("III级")]
+        [Description("Cấp III")]
         III = 3,
         /// <summary>
         /// đặccấp
         /// </summary>
-        [Description("特级")]
+        [Description("Cấp đặc biệt")]
         T = 4
     }
     /// <summary>
@@ -311,9 +311,9 @@ namespace Newtouch.Infrastructure
     /// </summary>
     public enum EnumJszt
     {
-        [Description("已结算")]
+        [Description("Đã quyết toán")]
         Yjs = 1,
-        [Description("未结算")]
+        [Description("Chưa quyết toán")]
         Wjs = 2
     }
     /// <summary>
@@ -338,17 +338,17 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Bình thường
         /// </summary>
-        [Description("一般")]
+        [Description("Thông thường")]
         Normal =1,
         /// <summary>
         /// bệnhtrọng
         /// </summary>
-        [Description("病重")]
+        [Description("Bệnh nặng")]
         Serious =2,
         /// <summary>
         /// bệnhnguy
         /// </summary>
-        [Description("病危")]
+        [Description("Nguy kịch")]
         Bedying =3
     }
     //EnumDBđãgóichứa
@@ -366,17 +366,17 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// miệngnhiệt
         /// </summary>
-        [Description("口温")]
+        [Description("Nhiệt độ miệng")]
         kw = 1,
         /// <summary>
         /// Nhiệt độ nách
         /// </summary>
-        [Description("腋温")]
+        [Description("Nhiệt độ nách")]
         yw = 2,
         /// <summary>
         /// Nhiệt độ hậu môn
         /// </summary>
-        [Description("肛温")]
+        [Description("Nhiệt độ hậu môn")]
         gw = 1,
     }
     /// <summary>
@@ -387,17 +387,17 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Loại
         /// </summary>
-        [Description("类型")]
+        [Description("Loại")]
         lx = 1,
         /// <summary>
         /// đặcđặccầncầu
         /// </summary>
-        [Description("特殊要求")]
+        [Description("Yêu cầu đặc biệt")]
         tsyq = 2,
         /// <summary>
         /// ăn uốngloạisố
         /// </summary>
-        [Description("膳食型号")]
+        [Description("Mẫu bữa ăn")]
         ssxh = 3,
     }
 
@@ -409,17 +409,17 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Chung
         /// </summary>
-        [Description("通用")]
+        [Description("Dùng chung")]
         pub = 0,
         /// <summary>
         /// Cá nhân
         /// </summary>
-        [Description("个人")]
+        [Description("Cá nhân")]
         prv = 1,
         /// <summary>
         /// Khoa
         /// </summary>
-        [Description("科室")]
+        [Description("Khoa")]
         dept = 2
     }
 
@@ -431,32 +431,32 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Nhập việnHồ sơ
         /// </summary>
-        [Description("住院病历")]
+        [Description("Bệnh án nội trú")]
         zybl = 1,
 
         /// <summary>
         /// bệnhtrìnhghi chép
         /// </summary>
-        [Description("病程记录")]
+        [Description("Ghi chép quá trình bệnh")]
         bcjl = 2,
 
         /// <summary>
         /// y tếvănsách
         /// </summary>
-        [Description("医疗文书")]
+        [Description("Văn bản y tế")]
         ylws = 3,
 
         /// <summary>
         /// điều dưỡngghi chép
         /// </summary>
-        [Description("护理记录")]
+        [Description("Ghi chép điều dưỡng")]
         hljl = 4,
 
         /// <summary>
         /// Trang đầu hồ sơ bệnh án
         /// </summary>
         /// 
-        [Description("病案首页")]
+        [Description("Trang đầu bệnh án")]
         basy = 5
     }
 
@@ -465,32 +465,32 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// khỏi bệnh
         /// </summary>
-        [Description("治愈")]
+        [Description("Khỏi bệnh")]
         zy = 1,
         /// <summary>
         /// tốtchuyển
         /// </summary>
-        [Description("好转")]
+        [Description("Đỡ hơn")]
         hz = 2,
         /// <summary>
-        /// chưa愈
+        /// chưa khỏi
         /// </summary>
-        [Description("未愈")]
+        [Description("Chưa khỏi")]
         wy = 3,
         /// <summary>
         /// Tử vong
         /// </summary>
-        [Description("死亡")]
+        [Description("Tử vong")]
         sw = 4,
         /// <summary>
         /// Khác
         /// </summary>
-        [Description("其他")]
+        [Description("Khác")]
         qt = 5,
         /// <summary>
         /// chuyểnviện
         /// </summary>
-        [Description("转院")]
+        [Description("Chuyển viện")]
         zhuanyuan = 6
 
     }
@@ -499,12 +499,12 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Không
         /// </summary>
-        [Description("否")]
+        [Description("Không")]
         f = 0,
         /// <summary>
         /// là
         /// </summary>
-        [Description("是")]
+        [Description("Có")]
         s = 1,
     }
 
@@ -513,21 +513,21 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Không
         /// </summary>
-        [Description("否")]
+        [Description("Không")]
         f = 0,
         /// <summary>
         /// là
         /// </summary>
-        [Description("是")]
+        [Description("Có")]
         s = 1,
     }
     /// <summary>
     /// dathửkếtnếu
     /// </summary>
     public enum EnumPsResult {
-        [Description("阴性")]
+        [Description("Âm tính")]
         negative = 0,
-        [Description("阳性")]
+        [Description("Dương tính")]
         positive = 1,
     }
 
@@ -536,17 +536,17 @@ namespace Newtouch.Infrastructure
     /// </summary>
     public enum EnumKSBYZT
     {
-        [Description("已申请")]
+        [Description("Đã đăng ký")]
         sq=0,
-        [Description("已提交")]
+        [Description("Đã nộp")]
         sh= 1,
-        [Description("已审核")]
+        [Description("Đã duyệt")]
         tj= 2,
-        [Description("已发药")]
+        [Description("Đã phát thuốc")]
         fy= 3,
-        [Description("已退回")]
+        [Description("Đã trả lại")]
         th= 4,
-        [Description("已作废")]
+        [Description("Đã hủy bỏ")]
         zf= 5,
     }
 
@@ -555,19 +555,19 @@ namespace Newtouch.Infrastructure
     /// </summary>
     public enum EnumKSBYTHZT
     {
-        [Description("保存")]
+        [Description("Lưu")]
         sq = 1,
-        [Description("审核")]
+        [Description("Duyệt")]
         sh = 2,
-        [Description("提交")]
+        [Description("Nộp")]
         tj = 3,
-        [Description("发药")]
+        [Description("Phát thuốc")]
         fy = 4,
-        [Description("撤回")]
+        [Description("Thu hồi")]
         ch = 5,
-        [Description("退回")]
+        [Description("Trả lại")]
         th = 6,
-        [Description("作废")]
+        [Description("Hủy bỏ")]
         zf = 7,
     }
     /// <summary>
@@ -575,9 +575,9 @@ namespace Newtouch.Infrastructure
     /// </summary>
     public enum EnumYply
     {
-        [Description("科室备药")]
+        [Description("Thuốc dự trữ khoa")]
         ksby = 1,
-        [Description("药房")]
+        [Description("Nhà thuốc")]
         yf = 2
     }
 
@@ -589,12 +589,12 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// âm
         /// </summary>
-        [Description("阴")]
+        [Description("Âm")]
         yin = 0,
         /// <summary>
         /// dương
         /// </summary>
-        [Description("阳")]
+        [Description("Dương")]
         yang = 1,
     }
 }

@@ -632,7 +632,7 @@ where a.OrganizeId=b.OrganizeId and a.patid=b.patid and b.OrganizeId=c.OrganizeI
             {
                 if (list.Count > 1)
                 {
-                    accountVo.zhye = "账户异常";
+                    accountVo.zhye = "Tài khoản bất thường";
                 }
                 else
                 {

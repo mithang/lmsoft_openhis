@@ -175,7 +175,7 @@ namespace Newtouch.HIS.Application.Implementation
             }
             //Tạo thông tin kiểm kê
             var resultMessage = _pharmacyDrugStorageDmnService.EndInventoryInfo(pdId);
-            if (!string.IsNullOrEmpty(resultMessage) && !resultMessage.Contains("成功"))
+            if (!string.IsNullOrEmpty(resultMessage) && resultMessage.IndexOf("thành công", StringComparison.OrdinalIgnoreCase) < 0)
             {
                 throw new FailedException(resultMessage);
             }

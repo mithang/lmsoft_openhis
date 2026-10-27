@@ -317,10 +317,10 @@
                     var message = "";
                     if ('@(TZPZ_OutpatientRegister.ToString())' !== '') {
                         var mzh = data.data;
-                        if (data.message === "添加成功") {
+                        if (data.message === "Thêm thành công") {
                             message = "Đăng ký ngoại trú thành công! Nhấn [Xác nhận] để ghi sổ ngoại trú";
                         }
-                        else if (data.message === "修改成功") {
+                        else if (data.message === "Sửa thành công") {
                             message = "Sửa đăng ký ngoại trú thành công! Nhấn [Xác nhận] để ghi sổ ngoại trú";
                         }
                         ClearAll();
@@ -332,7 +332,7 @@
                             }
                         });
                     } else {
-                        if (data.message === "添加成功") {
+                        if (data.message === "Thêm thành công") {
                             message = "ngoại trú đăng ký khám Thành công";
                         }
                         else {

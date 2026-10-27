@@ -1,0 +1,27 @@
+-- DB translation Scope A: Newtouch_CIS.jyjc_zt.ztmc (applied live; re-runnable; keyless targets match N'old' values)
+USE [Newtouch_CIS];
+UPDATE [jyjc_zt] SET [ztmc] = 'Hemoglobin glycated' WHERE [ztId] = '0b6c84bd-5b22-4816-833b-71b489b3e3bc';
+UPDATE [jyjc_zt] SET [ztmc] = 'Khop vai The thang' WHERE [ztId] = '1744f539-ed8c-4273-93a6-3f1df633f230';
+UPDATE [jyjc_zt] SET [ztmc] = 'Tuy Xet nghiem' WHERE [ztId] = '34671cfb-1f65-4ace-96f4-71f8036de220';
+UPDATE [jyjc_zt] SET [ztmc] = 'Dau an ung thu' WHERE [ztId] = '48916de8-2354-45f1-b342-49e62ced2bcc';
+UPDATE [jyjc_zt] SET [ztmc] = 'Tuyen vu' WHERE [ztId] = '4fd082d6-31d6-4704-9d34-6feaf8516e2c';
+UPDATE [jyjc_zt] SET [ztmc] = 'Co Mach mau' WHERE [ztId] = '51892175-e6dd-4592-beea-26d0e2bcf9c7';
+UPDATE [jyjc_zt] SET [ztmc] = 'Co Mach mau' WHERE [ztId] = '52174951-28ef-4926-b1e6-fbb4d7bb4fb4';
+UPDATE [jyjc_zt] SET [ztmc] = 'Cot song co X Chup cat lop vi tinh X-quang (CT)' WHERE [ztId] = '52f642a5-2bc8-419a-a101-6646c2ebb81d';
+UPDATE [jyjc_zt] SET [ztmc] = 'Xet nghiem nuoc tieu thuong quy' WHERE [ztId] = '558b4968-6053-4ec6-9c3b-58088467c433';
+UPDATE [jyjc_zt] SET [ztmc] = 'Cot song that lung X Chup cat lop vi tinh X-quang' WHERE [ztId] = '669ece9b-b81a-4198-9cdd-ad92d3f41560';
+UPDATE [jyjc_zt] SET [ztmc] = 'Bung Sieu am mau' WHERE [ztId] = '6c0a5463-fdde-4194-80eb-5c7000581867';
+UPDATE [jyjc_zt] SET [ztmc] = 'Protein phan ung C' WHERE [ztId] = '6ff1d709-9634-4666-b2b0-36444dbbd6c5';
+UPDATE [jyjc_zt] SET [ztmc] = 'Dai thao duong' WHERE [ztId] = '7ccd1c78-6855-47b9-bdb0-7d4e19af2275';
+UPDATE [jyjc_zt] SET [ztmc] = 'Hemoglobin glycated' WHERE [ztId] = '8791553a-70a7-43ef-8c21-f90820b682ea';
+UPDATE [jyjc_zt] SET [ztmc] = 'Nguc The thang' WHERE [ztId] = '8fc8af33-db37-4a87-be5e-c5635cacc1be';
+UPDATE [jyjc_zt] SET [ztmc] = 'Xuong mui The nghieng' WHERE [ztId] = '9a78f141-1adb-4b1b-9168-34c74fbb9076';
+UPDATE [jyjc_zt] SET [ztmc] = 'Tuyen giap' WHERE [ztId] = 'b9db3fcc-fabb-4e70-a0e8-6c8481734b05';
+UPDATE [jyjc_zt] SET [ztmc] = 'Khung chau The thang' WHERE [ztId] = 'bde3ea6a-fb43-41a9-9041-c00cb808ef15';
+UPDATE [jyjc_zt] SET [ztmc] = 'Hemoglobin glycated' WHERE [ztId] = 'c58ad12b-87b5-4ffa-a279-83fd391eca45';
+UPDATE [jyjc_zt] SET [ztmc] = 'Xet nghiem mau thuong quy' WHERE [ztId] = 'c80545ef-f721-48d6-9927-a20fb7d2b16f';
+UPDATE [jyjc_zt] SET [ztmc] = 'Dien tam do' WHERE [ztId] = 'c85a0e26-4893-484c-98b1-c661311e0665';
+UPDATE [jyjc_zt] SET [ztmc] = 'Cot song nguc X Chup cat lop vi tinh X-quang (CT)' WHERE [ztId] = 'd1a47c7e-9020-4bcc-b3a5-94773cbbf1f0';
+UPDATE [jyjc_zt] SET [ztmc] = 'So X Chup cat lop vi tinh X-quang (CT) Chup khong' WHERE [ztId] = 'dc959534-4a82-4ff6-a4d1-5947a7212f24';
+UPDATE [jyjc_zt] SET [ztmc] = 'Bung X Chup cat lop vi tinh X-quang (CT) Chup' WHERE [ztId] = 'e03d8834-f99e-4df6-a109-992198717b88';
+UPDATE [jyjc_zt] SET [ztmc] = 'Nguc X Chup cat lop vi tinh X-quang (CT) Chup' WHERE [ztId] = 'fb701cd7-b176-42c1-b51a-463c352668e8';

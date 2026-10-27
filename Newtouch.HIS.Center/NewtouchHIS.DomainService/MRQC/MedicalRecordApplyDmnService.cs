@@ -46,7 +46,7 @@ namespace NewtouchHIS.DomainService.MRQC
                     entity.ApplyStatus = (int)ApplyStatusEnum.ysp;
                     entity.Approver = "admin";
                     entity.ApprovalDate = DateTime.Now;
-                    entity.ApproverDept = "质控办";
+                    entity.ApproverDept = "Phòng Kiểm soát chất lượng";
                 }
                 else
                 {

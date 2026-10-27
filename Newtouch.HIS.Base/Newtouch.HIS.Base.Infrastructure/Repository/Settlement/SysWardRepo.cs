@@ -59,19 +59,19 @@ namespace Newtouch.HIS.Repository
             pargh.Add(new SqlParameter("@xz", xz));
             if (xz==1)
             {
-                sql = @"select  Name,gh,(case zc when 'zrys' then '科主任' end)zc
+                sql = @"select  Name,gh,(case zc when 'zrys' then 'Trưởng khoa' end)zc
 from Sys_Staff staff where  OrganizeId=@organizeId and zt='1' and zc='zrys'";
                 
             }
             else if (xz == 2)
             {
-                 sql = @"select Name, gh,(case zc when 'hsz' then '护士长' end)zc
+                 sql = @"select Name, gh,(case zc when 'hsz' then 'Y tá trưởng' end)zc
 from Sys_Staff staff where OrganizeId=@organizeId and zt = '1' and zc = 'hsz'";
                 
             }
             else
             {
-                 sql = @"select  Name,gh,(case zc when 'zlsz' then '康复治疗师长' end)zc
+                 sql = @"select  Name,gh,(case zc when 'zlsz' then 'Trưởng kỹ thuật viên phục hồi chức năng' end)zc
 from Sys_Staff staff where  OrganizeId='9bb029d0-5da0-4118-9d19-06b829eede46' and zt='1' and zc='zlsz'";
                 
             }

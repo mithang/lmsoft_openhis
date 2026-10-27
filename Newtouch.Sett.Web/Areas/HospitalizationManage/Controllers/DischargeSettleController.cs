@@ -570,7 +570,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             if (!string.IsNullOrWhiteSpace(outTradeNo) && refundAmount > 0)   //Cần hoàn trả theo đường cũ
             {
                 string errorMsg;
-                var refundReuslt = _payApp.TradeRefund(outTradeNo, refundAmount, "门诊退费", "", out errorMsg);
+                var refundReuslt = _payApp.TradeRefund(outTradeNo, refundAmount, "Ngoại trú hoàn phí", "", out errorMsg);
                 isTradeRefundError = refundReuslt == (int)Newtouch.Sett.Domain.EnumRefundStatus.Failed || refundReuslt == (int)Newtouch.Sett.Domain.EnumRefundStatus.UnKnown;    //Thất bại hoặc chưabiết
             }
             _hospdrugbillingRepo.Updatezy_brxxexpand(this.OrganizeId, zyh);

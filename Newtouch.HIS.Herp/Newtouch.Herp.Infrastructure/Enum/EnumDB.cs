@@ -109,67 +109,67 @@ namespace Newtouch.Herp.Infrastructure.Enum
         /// <summary>
         /// Nhập kho ngoài
         /// </summary>
-        [Description("外部入库")]
+        [Description("Nhập kho ngoài")]
         Wbrk = 1,
 
         /// <summary>
         /// Xuất kho ngoài
         /// </summary>
-        [Description("外部出库")]
+        [Description("Xuất kho ngoài")]
         Wbck = 2,
 
         /// <summary>
         /// Xuất kho trực tiếp
         /// </summary>
-        [Description("直接出库")]
+        [Description("Xuất kho trực tiếp")]
         Zjck = 3,
 
         /// <summary>
         /// Xuất kho theo phiếu lĩnh
         /// </summary>
-        [Description("申领出库")]
+        [Description("Xuất kho theo đơn lĩnh")]
         Slck = 4,
 
         /// <summary>
         /// Trả hàng nội bộ
         /// </summary>
-        [Description("内部退货")]
+        [Description("Trả lại nội bộ")]
         Nbth = 5,
 
         /// <summary>
         /// Báo hỏng/báo thừa
         /// </summary>
-        [Description("报损报溢")]
+        [Description("Báo hỏng/báo thừa")]
         Bsby = 6,
 
         /// <summary>
         /// Phân phối đến khoa phòng
         /// </summary>
-        [Description("出库至科室")] //Số chứng từ ckZKS111111111111
+        [Description("Xuất kho đến khoa")] //Số chứng từ ckZKS111111111111
         chukuzhikeshi = 7,
 
         /// <summary>
         /// Khoa phòng lĩnh
         /// </summary>
-        [Description("科室申领")]
+        [Description("Khoa lĩnh")]
         kssl = 8,
 
         /// <summary>
         /// Xuất kho theo phiếu lĩnh khoa phòng
         /// </summary>
-        [Description("科室申领出库")]
+        [Description("Khoa lĩnh xuất kho")]
         ksSlck = 9,
 
         /// <summary>
         /// Kế hoạch mua sắm
         /// </summary>
-        [Description("采购计划")]
+        [Description("Kế hoạch mua sắm")]
         purchasingPlan = 10,
 
         /// <summary>
         /// Đơn hàng mua sắm
         /// </summary>
-        [Description("采购订单")]
+        [Description("Đơn hàng mua sắm")]
         purchasingOrder = 11,
     }
 

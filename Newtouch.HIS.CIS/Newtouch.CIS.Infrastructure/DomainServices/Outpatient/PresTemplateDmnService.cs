@@ -58,8 +58,8 @@ SELECT mbmx.mxId, mbId, xmCode, xmmc, mczll, pcCode, sl,
         pc.yzpcmc AS pcmc,
 pc.yzpcmc AS pcmc,
 bw,mbmx.zxks,ks.Name AS zxksmc,
-        CASE WHEN ISNULL(sfxm.ybdm, '') = '' THEN '否'
-             ELSE '是'
+        CASE WHEN ISNULL(sfxm.ybdm, '') = '' THEN 'Không'
+             ELSE 'Có'
         END sfyb
 FROM xt_cfmbmx mbmx
 LEFT JOIN NewtouchHIS_Base..V_S_xt_sfxm(nolock) sfxm
@@ -84,8 +84,8 @@ WHERE mbmx.OrganizeId = @orgId
 SELECT mbmx.mxId, mbId, xmCode, xmmc, zl,mbmx.mczll,mbmx.sl,mbmx.pcCode,pc.yzpcmc pcmc,
         sfxm.dj,
         sfxm.dw,sfxm.dwjls,
-        CASE WHEN ISNULL(sfxm.ybdm, '') = '' THEN '否'
-             ELSE '是'
+        CASE WHEN ISNULL(sfxm.ybdm, '') = '' THEN 'Không'
+             ELSE 'Có'
         END sfyb,mbmx.zxks,ks.Name zxksmc
 FROM xt_cfmbmx mbmx
 LEFT JOIN NewtouchHIS_Base..V_S_xt_sfxm(nolock) sfxm ON sfxm.sfxmCode = mbmx.xmCode AND sfxm.OrganizeId = mbmx.OrganizeId
@@ -108,8 +108,8 @@ SELECT mbmx.px,mbmx.mxId, mbmx.mbId, mbmx.ypCode, yp.ypmc, mcjl, mcjldw, yp.jldw
         yp.mzcls AS cls,
         yf.yfmc,mbmx.Remark,
 mbmx.zxks ,
-        CASE WHEN ISNULL(yp.ybdm, '') = '' THEN '否'
-             ELSE '是'
+        CASE WHEN ISNULL(yp.ybdm, '') = '' THEN 'Không'
+             ELSE 'Có'
         END sfyb,yp.jx jxCode
 FROM xt_cfmbmx mbmx
 left join xt_cfmb cfmb
@@ -135,8 +135,8 @@ WHERE mbmx.OrganizeId=@orgId
                 sql = @"SELECT mbmx.ztxmId mxId,  mbzt.ztId mbId,mbzt.ztmc, mbmx.sfxmCode xmCode, mbmx.sfxmmc xmmc, sl zl, sl mczll,mbmx.sl,pc.yzpcCode pcCode,pc.yzpcmc pcmc,
         sfxm.dj,
         sfxm.dw,sfxm.dwjls,
-        CASE WHEN ISNULL(sfxm.ybdm, '') = '' THEN '否'
-             ELSE '是'
+        CASE WHEN ISNULL(sfxm.ybdm, '') = '' THEN 'Không'
+             ELSE 'Có'
         END sfyb
 FROM jyjc_ztxm (nolock) mbmx
 JOIN jyjc_zt (nolock) mbzt on mbzt.ztId=mbmx.ztId and mbzt.OrganizeId=mbmx.OrganizeId and mbzt.zt='1'

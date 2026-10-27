@@ -35,23 +35,23 @@
 		}
 		var defaults = {
 
-			dataUrl: '../../Content/js/city.json',     //数据库地址
-			dataType: 'json',          //数据库类型:'json'或'jsonp'
-			provinceField: 'province', //省份字段名
-			cityField: 'city',         //城市字段名
-			areaField: 'area',         //地区字段名
-			valueType: 'code',         //下拉框值的类型,code行政区划代码,name地名
-			code: 0,                   //地区编码
-			province: 0,               //省份,可以为地区编码或者名称
-			city: 0,                   //城市,可以为地区编码或者名称
-			area: 0,                   //地区,可以为地区编码或者名称
-			required: true,           //是否必须选一个
-			nodata: 'hidden',         //当无数据时的表现形式:'hidden'隐藏,'disabled'禁用,为空不做任何处理
-			onChange: function () { }     //地区切换时触发,回调函数传入地区数据
+			dataUrl: '../../Content/js/city.json',     //Địa chỉ cơ sở dữ liệu
+			dataType: 'json',          //Loại cơ sở dữ liệu:'json'或'jsonp'
+			provinceField: 'province', //Tên trường tỉnh
+			cityField: 'city',         //Tên trường thành phố
+			areaField: 'area',         //Tên trường khu vực
+			valueType: 'code',         //Loại giá trị hộp thả xuống,codeMã hành chính,nameTên địa danh
+			code: 0,                   //Mã vùng
+			province: 0,               //Tỉnh,Có thể là mã hoặc tên vùng
+			city: 0,                   //Thành phố,Có thể là mã hoặc tên vùng
+			area: 0,                   //Khu vực,Có thể là mã hoặc tên vùng
+			required: true,           //Có bắt buộc chọn một không
+			nodata: 'hidden',         //Cách hiển thị khi không có dữ liệu:'hidden'隐藏,'disabled'Vô hiệu hóa,Nếu trống thì không xử lý gì
+			onChange: function () { }     //Kích hoạt khi chuyển vùng,Hàm回调 nhận dữ liệu vùng
 		};
 		var options = $.extend({}, defaults, parameter);
 		return this.each(function () {
-			//对象定义
+			//Định nghĩa đối tượng
 			var _api = {};
 			var $this = $(this);
 			var $province = $this.find('select[name="' + options.provinceField + '"]'),
@@ -65,7 +65,7 @@
 				jsonpCallback: 'jsonp_location',
 				success: function (data) {
 					var province, city, area, hasCity;
-					if (options.code) {   //如果设置地区编码，则忽略单独设置的信息
+					if (options.code) {   //Nếu đặt mã vùng，thì bỏ qua thông tin đặt riêng
 						var c = options.code - options.code % 1e4;
 						if (data[c]) {
 							options.province = c;
@@ -81,12 +81,12 @@
 					}
 					var updateData = function () {
 						province = {}, city = {}, area = {};
-						hasCity = false;       //判断是非有地级城市
+						hasCity = false;       //Xác định có thành phố cấp địa khu không
 						for (var code in data) {
-							if (!(code % 1e4)) {     //获取所有的省级行政单位
+							if (!(code % 1e4)) {     //Lấy tất cả đơn vị hành chính cấp tỉnh
 								province[code] = data[code];
 								if (options.required && !options.province) {
-									if (options.city && !(options.city % 1e4)) {  //省未填，并判断为直辖市
+									if (options.city && !(options.city % 1e4)) {  //Tỉnh chưa điền，và xác định là thành phố trực thuộc trung ương
 										options.province = options.city;
 									} else {
 										options.province = code;
@@ -96,28 +96,28 @@
 								}
 							} else {
 								var p = code - options.province;
-								if (options.province && p > 0 && p < 1e4) {    //同省的城市或地区
+								if (options.province && p > 0 && p < 1e4) {    //Thành phố hoặc vùng cùng tỉnh
 									if (!(code % 100)) {
 										hasCity = true;
 										city[code] = data[code];
 										if (data[code].indexOf(options.city) > -1) {
 											options.city = isNaN(options.city) ? code : options.city;
 										}
-									} else if (p > 9000) {                   //省直辖县级行政单位
+									} else if (p > 9000) {                   //Đơn vị hành chính cấp huyện trực thuộc tỉnh
 										city[code] = data[code];
 										if (data[code].indexOf(options.city) > -1) {
 											options.city = isNaN(options.city) ? code : options.city;
 										}
-									} else if (hasCity) {                  //非直辖市
+									} else if (hasCity) {                  //Không phải thành phố trực thuộc trung ương
 										var c = code - options.city;
-										if (options.city && c > 0 && c < 100) {     //同个城市的地区
+										if (options.city && c > 0 && c < 100) {     //Các khu vực cùng thành phố
 											area[code] = data[code];
 											if (data[code].indexOf(options.area) > -1) {
 												options.area = isNaN(options.area) ? code : options.area;
 											}
 										}
 									} else {
-										area[code] = data[code];            //直辖市
+										area[code] = data[code];            //Thành phố trực thuộc trung ương
 										if (data[code].indexOf(options.area) > -1) {
 											options.area = isNaN(options.area) ? code : options.area;
 										}
@@ -188,7 +188,7 @@
 							}
 						}
 					};
-					//获取当前地理信息
+					//Lấy thông tin địa lý hiện tại
 					_api.getInfo = function () {
 						var status = {
 							direct: !hasCity,
@@ -199,9 +199,9 @@
 						};
 						return status;
 					};
-					//事件绑定
+					//Gắn sự kiện
 					$province.on('change', function () {
-						options.province = $(this).find('option:selected').data('code') || 0; //选中节点的区划代码
+						options.province = $(this).find('option:selected').data('code') || 0; //Mã hành chính của nút được chọn
 						options.city = 0;
 						options.area = 0;
 						updateData();
@@ -209,14 +209,14 @@
 						options.onChange(_api.getInfo());
 					});
 					$city.on('change', function () {
-						options.city = $(this).find('option:selected').data('code') || 0; //选中节点的区划代码
+						options.city = $(this).find('option:selected').data('code') || 0; //Mã hành chính của nút được chọn
 						options.area = 0;
 						updateData();
 						format.area();
 						options.onChange(_api.getInfo());
 					});
 					$area.on('change', function () {
-						options.area = $(this).find('option:selected').data('code') || 0; //选中节点的区划代码
+						options.area = $(this).find('option:selected').data('code') || 0; //Mã hành chính của nút được chọn
 						options.onChange(_api.getInfo());
 					});
 					//初始化

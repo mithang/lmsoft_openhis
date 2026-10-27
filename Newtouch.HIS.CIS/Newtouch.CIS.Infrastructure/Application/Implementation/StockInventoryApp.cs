@@ -124,7 +124,7 @@ namespace Newtouch.Application.Implementation
             }
             //tạoKiểm kêthông tin
             var resultMessage = _stockInventoryDmnService.EndInventory(pdId, OrganizeId, OperatorProvider.GetCurrent().UserCode);
-            if (!string.IsNullOrEmpty(resultMessage) && !resultMessage.Contains("成功"))
+            if (!string.IsNullOrEmpty(resultMessage) && resultMessage.IndexOf("thành công", StringComparison.OrdinalIgnoreCase) < 0)
             {
                 throw new FailedException(resultMessage);
             }

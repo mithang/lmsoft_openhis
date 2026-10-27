@@ -177,7 +177,7 @@ left join Newtouch_CIS..zy_PatDocInfo zrys on a.ZYH=zrys.zyh and zrys.OrganizeId
 left join Newtouch_CIS..zy_PatDocInfo zz on a.ZYH=zz.zyh and zz.OrganizeId=@orgId and zrys.zt=1 and zz.TypeName='主诊医生'
 left join Newtouch_CIS..zy_PatDocInfo zzys on a.ZYH=zzys.zyh and zzys.OrganizeId=@orgId and zzys.zt=1 and zzys.TypeName='主治医生'
 left join Newtouch_CIS..zy_PatDocInfo zrhs on a.ZYH=zrhs.zyh and zrhs.OrganizeId=@orgId and zrhs.zt=1 and zrhs.TypeName='责任护士'
-left join Newtouch_CIS..zy_PatDocInfo zyys on a.ZYH=zyys.zyh and zyys.OrganizeId=@orgId and zyys.zt=1 and zyys.TypeName='住院医生'
+left join Newtouch_CIS..zy_PatDocInfo zyys on a.ZYH=zyys.zyh and zyys.OrganizeId=@orgId and zyys.zt=1 and zyys.TypeName='Nội trú医生'
 where a.organizeid=@orgId  and a.zyh=@zyh";
 
             BasyVO vo = this.FindList<BasyVO>(sql, new SugarParameter[] {

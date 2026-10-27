@@ -53,9 +53,9 @@ SELECT  --CAST(NEWID() AS VARCHAR(50)) jzId ,
 	xxk.blh ,
 	zjk.PatName xm ,
 		CASE zjk.PatSex
-		WHEN 1 THEN '男'
-		WHEN 2 THEN '女'
-		ELSE '不详'
+		WHEN 1 THEN 'Nam'
+		WHEN 2 THEN 'Nữ'
+		ELSE 'Khong ro'
 	END xb ,
 	CONVERT(DATETIME, zjk.PatBirth, 112) csny,
 	zjk.PatTypeName brxzmc ,

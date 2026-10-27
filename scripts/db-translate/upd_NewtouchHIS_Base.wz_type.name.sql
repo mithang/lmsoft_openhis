@@ -1,0 +1,28 @@
+-- DB translation Scope A: NewtouchHIS_Base.wz_type.name (applied live; re-runnable; keyless targets match N'old' values)
+USE [NewtouchHIS_Base];
+UPDATE [wz_type] SET [name] = 'Van phong pham' WHERE [name] = N'办公用品';
+UPDATE [wz_type] SET [name] = 'Vat tu tram rang' WHERE [name] = N'补牙材料类';
+UPDATE [wz_type] SET [name] = 'Mui khoan' WHERE [name] = N'车针';
+UPDATE [wz_type] SET [name] = 'Nha cua' WHERE [name] = N'房屋建筑';
+UPDATE [wz_type] SET [name] = 'Tai san co dinh' WHERE [name] = N'固定资产';
+UPDATE [wz_type] SET [name] = 'Vat tu tieu hao' WHERE [name] = N'耗材';
+UPDATE [wz_type] SET [name] = 'Do noi that' WHERE [name] = N'家具类';
+UPDATE [wz_type] SET [name] = 'Vat tu tai su dung' WHERE [name] = N'可复用耗材';
+UPDATE [wz_type] SET [name] = 'Cham soc rang mieng' WHERE [name] = N'口腔保健';
+UPDATE [wz_type] SET [name] = 'Dung cu nha khoa' WHERE [name] = N'口腔器材';
+UPDATE [wz_type] SET [name] = 'Khac' WHERE [name] = N'其他';
+UPDATE [wz_type] SET [name] = 'Vat tu khac' WHERE [name] = N'其他材料';
+UPDATE [wz_type] SET [name] = 'Dung cu' WHERE [name] = N'器械';
+UPDATE [wz_type] SET [name] = 'Thau kinh nhan tao' WHERE [name] = N'人工晶体';
+UPDATE [wz_type] SET [name] = 'Dung cu phau thuat' WHERE [name] = N'手术器材';
+UPDATE [wz_type] SET [name] = 'Vat tu sua chua' WHERE [name] = N'维修物品';
+UPDATE [wz_type] SET [name] = 'Vat tu khu trung' WHERE [name] = N'消毒类材料';
+UPDATE [wz_type] SET [name] = 'Thuoc khu trung' WHERE [name] = N'消毒药品';
+UPDATE [wz_type] SET [name] = 'Phuc hoi' WHERE [name] = N'修复';
+UPDATE [wz_type] SET [name] = 'Vat tu loc mau' WHERE [name] = N'血透材料';
+UPDATE [wz_type] SET [name] = 'Dung cu dung mot lan' WHERE [name] = N'一次性器械';
+UPDATE [wz_type] SET [name] = 'Vat tu y te dung mot lan' WHERE [name] = N'一次性医生材料';
+UPDATE [wz_type] SET [name] = 'Thiet bi y te' WHERE [name] = N'医疗设备';
+UPDATE [wz_type] SET [name] = 'Chinh nha' WHERE [name] = N'正畸';
+UPDATE [wz_type] SET [name] = 'Phan loai thuoc dieu tri' WHERE [name] = N'治疗药品分类';
+UPDATE [wz_type] SET [name] = 'Cay ghep' WHERE [name] = N'种植';

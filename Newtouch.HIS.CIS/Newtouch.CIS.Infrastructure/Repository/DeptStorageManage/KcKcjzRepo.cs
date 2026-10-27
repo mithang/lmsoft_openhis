@@ -49,7 +49,7 @@ namespace Newtouch.Herp.Repository
             {
                 result.Add(new SelectVo
                 {
-                    text = "Vui lòng chọn历史kết chuyển",
+                    text = "Vui lòng chọnlịch sửkết chuyển",
                     value = ""
                 });
             }

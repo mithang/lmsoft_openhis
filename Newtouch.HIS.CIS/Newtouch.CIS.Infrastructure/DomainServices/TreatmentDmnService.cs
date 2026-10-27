@@ -62,7 +62,7 @@ WHERE jz.mzh=@mzh AND jz.OrganizeId=@orgId AND jz.zt='1'
      , gh.blh                                                         as blh
      , cast(isnull(gh.mjzbz, '1') as int)                                            mjzbz
      , gh.xm                                                          AS xm
-     , (CASE gh.xb WHEN '1' THEN '男' WHEN '2' THEN '女' ELSE '不详' END) as xb
+     , (CASE gh.xb WHEN '1' THEN 'Nam' WHEN '2' THEN 'Nữ' ELSE 'Khong ro' END) as xb
      , xx.csny                                                        AS csny
      , xz.brxz                                                           brxzCode
      , xz.brxzmc                                                         brxzmc
@@ -118,7 +118,7 @@ from NewtouchHIS_Sett..mz_gh gh
         public IList<PatientVisitInfoVO> GetPatientVisitList(Pagination pagination, string kh, string xm, string jzlx, string jszt, DateTime? kssj, DateTime? jssj, string orgId)
         {
             var strMzSql = new StringBuilder(@"
-                SELECT '0' jzlx,'门诊' jzlxmc,jz.xm,jz.kh,jz.jzId,jz.mzh mzzyh,jz.ghksmc ksmc,jz.zlkssj sj, cast(c.jszt as char ) jszt,case c.jszt when 0 then '未结算' when 1 then '已结算' when 2 then '已退费' else '' end jsztmc
+                SELECT '0' jzlx,'Ngoại trú' jzlxmc,jz.xm,jz.kh,jz.jzId,jz.mzh mzzyh,jz.ghksmc ksmc,jz.zlkssj sj, cast(c.jszt as char ) jszt,case c.jszt when 0 then 'Chưa quyết toán' when 1 then 'Đã quyết toán' when 2 then 'Đã hoàn phí' else '' end jsztmc
                 FROM dbo.xt_jz(NOLOCK) jz
                 left join NewtouchHIS_Sett..mz_gh b on jz.mzh = b.mzh and jz.OrganizeId=b.OrganizeId
                 left join NewtouchHIS_Sett..mz_js c on b.ghnm = c.ghnm and b.OrganizeId=c.OrganizeId and c.jslx='0'
@@ -126,13 +126,13 @@ from NewtouchHIS_Sett..mz_gh gh
                 "); 
             var inSqlParameterList = new List<DbParameter>();
             var strZySql = new StringBuilder(@"
-                select '1' jzlx,'住院' jzlxmc,
+                select '1' jzlx,'Nội trú' jzlxmc,
        a.xm,
        a.kh,
        ''     jzId,
        a.zyh mzzyh,
        c.Name ksmc,
-       ryrq   sj,js.jszt,case js.jszt when '1' then '已结算' when '2' then '已退费' else '未结算' end jsztmc
+       ryrq   sj,js.jszt,case js.jszt when '1' then 'Đã quyết toán' when '2' then 'Đã hoàn phí' else 'Chưa quyết toán' end jsztmc
 from NewtouchHIS_Sett..zy_brjbxx a
 left join NewtouchHIS_Sett..zy_js js on a.zyh=js.zyh and a.OrganizeId = js.OrganizeId
          --left join zy_cwsyjlk b on a.zyh = b.zyh and b.zt = '1' and a.OrganizeId = b.OrganizeId
@@ -219,12 +219,12 @@ where a.OrganizeId = @orgId
        ryrq,
        cyrq,
        case zybz
-           when '0' then '入院登记'
-           when '1' then '病区中'
-           when '2' then '已出区'
-           when '3' then '已出院'
-           when '7' then '转区'
-           when '9' then '作废记录'
+           when '0' then 'Đăng ký nhập viện'
+           when '1' then 'Đang ở khu bệnh'
+           when '2' then 'Đã ra khỏi khu'
+           when '3' then 'Đã ra viện'
+           when '7' then 'Chuyển khu'
+           when '9' then 'Hồ sơ hủy bỏ'
            else '' end                                                                                     zybz,
         d.brxzmc                                                                                           brxz
 from NewtouchHIS_Sett..zy_brjbxx a

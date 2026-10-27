@@ -13,7 +13,7 @@ BEGIN TRANSACTION
 BEGIN TRY 
 	IF @sl<=0
 	BEGIN
-		SELECT '消耗库存必须大于零';
+		SELECT 'Tồn kho tiêu hao phải lớn hơn 0';
 		ROLLBACK TRANSACTION
 		RETURN;
 	END 
@@ -94,7 +94,7 @@ BEGIN TRY
 	END
 	IF @sl <=0
 	BEGIN
-		SELECT '需冻结库存必须大于零';
+		SELECT 'Tồn kho cần đóng băng phải lớn hơn 0';
 		ROLLBACK TRANSACTION;
 		RETURN
 	END
@@ -150,13 +150,13 @@ BEGIN TRY
 	WHERE productId=@proId AND pc=@pc AND ph=@ph AND OrganizeId=@OrganizeId AND zt='1' AND ks=@warehouseId AND djsl>0 AND kcsl>0
 	IF @kcsl<=0 OR @djsl<=0
 	BEGIN
-		SELECT '库存中未有已冻结物资';
+		SELECT 'Trong kho chưa có vật tư đã đóng băng';
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END 
 	IF @kcsl<@sl OR @kcsl<@djsl
 	BEGIN
-		SELECT '已冻数量小于出库数量，禁止出库';
+		SELECT 'Số lượng đã đóng băng nhỏ hơn số lượng xuất kho，禁止出库';
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END 
@@ -219,7 +219,7 @@ BEGIN TRANSACTION
 BEGIN TRY 
 	IF @sl<=0
 	BEGIN
-		SELECT '需要解冻的数量必须大于零'
+		SELECT 'Số lượng cần rã đông phải lớn hơn 0'
 		ROLLBACK TRANSACTION
 		RETURN;
 	END 
@@ -280,7 +280,7 @@ BEGIN TRANSACTION
 BEGIN TRY 
 	IF @sl<=0
 	BEGIN
-		SELECT '需作废的库存数量必须大于零';
+		SELECT 'Số lượng tồn kho cần hủy bỏ phải lớn hơn 0';
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END 

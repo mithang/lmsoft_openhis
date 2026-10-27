@@ -1,7 +1,7 @@
 ﻿@using Newtouch.Infrastructure;
 @{
     
-    //开关：是否开放检验检查
+    //Công tắc：Có mở xét nghiệm kiểm tra không
     var iSOpenZycfnew = ViewData["ISOpenZycfnew"] as bool?;
     
 }
@@ -16,7 +16,7 @@
         if (!fromcflx) {
             return;
         }
-        $("#divPresTree").html(''); //先清空掉
+        $("#divPresTree").html(''); //Xóa sạch trước
         
         $("#divPresTree").treeview({
             height: $(window).height() - 90,
@@ -58,13 +58,13 @@
 					getActionStr = getdzcfActionStr();
                     grid = "griddzcf";
                 }
-                //本次就诊   // 已收费处方进else引用处方
+                //Lần khám này   // Đơn thuốc đã thu phí vàoelseTham chiếu đơn thuốc
                 if (item.Ex2 == "current"
                     && !(!!item.Ex1 && item.Ex1.toString().toLowerCase() === "true")) {
-                    //重置 历史处方、处方模板
+                    //Đặt lại Đơn thuốc lịch sử、Mẫu đơn thuốc
                     cfLeftFloatHide();
 
-                    //重复添加到右边的判断
+                    //Kiểm tra thêm trùng lặp sang bên phải
                     var cfmxRepeated = false;
                     $.each($("#" + grid).jqGrid('getRowData_AllLine'), function () {
                         if (!cfmxRepeated) {
@@ -76,7 +76,7 @@
                     if (cfmxRepeated) {
                         return;
                     }
-                    //否则肯定不会发生明细重复
+                    //Nếu không thì chắc chắn không xảy ra trùng lặp chi tiết
 
                     //
                     var sourcecfdataArr = new Array();
@@ -136,7 +136,7 @@
                     }
                     if (fromcflx == '@Html.Raw(((int)EnumCflx.Dzcf).ToString())') {
                         if ($("#griddzcf").jqGrid('getRowData_AllLine').length > 0) {
-                            $.modalAlert("不能同时编辑多张电子处方", 'warning');
+                            $.modalAlert("Không thể đồng thời sửa nhiều đơn thuốc điện tử", 'warning');
                             return;
                         }
                         if (window.alldataArray.dzcf) {
@@ -149,7 +149,7 @@
                     }
                     if (fromcflx == '@Html.Raw(((int)EnumCflx.TCMPres).ToString())') {
                         if ($("#gridzycfnew").jqGrid('getRowData_AllLine').length > 0) {
-                            $.modalAlert("不能同时编辑多张中药处方", 'warning');
+                            $.modalAlert("Không thể đồng thời sửa nhiều đơn thuốc Đông y", 'warning');
                             return;
                         }
                         if (window.alldataArray.zycf) {
@@ -162,7 +162,7 @@
                     }
                     if (sourcecfdataArr && sourcecfdataArr.length) {
                         if (fromcflx == '@Html.Raw(((int)EnumCflx.TCMPres).ToString())') {
-                            //贴数 用法 是否代煎
+                            //Số thang Cách dùng Có sắc thay không
                             $("#cfyf").val(sourcecfdataArr[0].cfyf).trigger('change');
                             $("#tieshu").val(sourcecfdataArr[0].tieshu);
                             if (!!sourcecfdataArr[0].djbz) {
@@ -205,37 +205,37 @@
                     }
                 }
                 else {
-                    //引用历史处方
+                    //Tham chiếu đơn thuốc lịch sử
                     $.modalOpen({
                         id: "FormShowHistoryPresForm",
-                        title: "历史处方明细",
+                        title: "Chi tiết đơn thuốc lịch sử",
                         url: "/Prescription/HistoryPresForm?cfId=" + item.id + "&cflx=" + fromcflx + "&brxzCode=" + window.currPatientInfo.brxzCode,
                         width: "800px",
                         height: "650px",
-                        btn: ['复制', '关闭'],
+                        btn: ['Sao chép', 'Đóng'],
                         callBack: function (iframeId) {
                             top.frames[iframeId].submitForm(function (data) {
                                 var jj = 0;
-                                //data 选中的行
+                                //data Dòng đã chọn
                                 $.each(data, function () {
 
                                     jj += 1;
                                     var allRowID = $("#" + grid).jqGrid('getDataIDs');
                                     var lastrowid = allRowID[allRowID.length - 1]
-                                    var lastRowData = $("#" + grid).getRowData(lastrowid);  //获取最后一行的数据
+                                    var lastRowData = $("#" + grid).getRowData(lastrowid);  //Lấy dữ liệu dòng cuối cùng
                                     if (!!lastRowData && !!lastRowData.cfh) {
-                                        //将明细追加到最后一张处方
+                                        //Thêm chi tiết vào đơn thuốc cuối cùng
                                         this.cfId = lastRowData.cfId;
                                         this.cfh = lastRowData.cfh;
                                     }
                                     else {
-                                        //视为新处方
+                                        //Coi như đơn thuốc mới
                                         this.cfId = null;
                                         this.cfh = GetNewPresNo();
                                     }
                                     var thisCfh = this.cfh;
                                     this.action = getActionStr;
-                                    //检查重复
+                                    //Kiểm tra trùng lặp
                                     var isRepeatedAdd = false;
                                     if (grid == "gridkfcf") {
                                         var addxmCode = this.xmCode;
@@ -305,13 +305,13 @@
                                                 }
                                             }
                                         });
-                                        //中药贴数、用法、代煎带入
+                                        //Thuốc Đông ySố thang、Cách dùng、Sắc thay mang vào
                                         if ($("#gridzycf").jqGrid('getRowData_AllLine').length == 0
                                             && this.tieshu) {
                                             $('#tieshu').val(this.tieshu);
                                         }
-                                        //中药的金额
-                                       var tieshu = $.undefinedwith0($('#tieshu').val());    //贴数
+                                        //Số tiền thuốc Đông y
+                                       var tieshu = $.undefinedwith0($('#tieshu').val());    //Số thang
                                         if (tieshu) {
                                             //this.sl = roundingBy4she6ru5chengshuang((parseFloat(tieshu) * parseFloat($.undefinedwith0(this.mcjl))), 0);
                                             this.je = roundingBy4she6ru5chengshuang(parseFloat(this.dj) * parseFloat(this.sl), 2);
@@ -334,13 +334,13 @@
                                                 }
                                             }
                                         });
-                                        //中药贴数、用法、代煎带入
+                                        //Thuốc Đông ySố thang、Cách dùng、Sắc thay mang vào
                                         if ($("#gridzycfnew").jqGrid('getRowData_AllLine').length == 0
                                             && this.tieshu) {
                                             $('#tieshu').val(this.tieshu);
                                         }
-                                        //中药的金额
-                                        var tieshu = $.undefinedwith0($('#tieshu').val());    //贴数
+                                        //Số tiền thuốc Đông y
+                                        var tieshu = $.undefinedwith0($('#tieshu').val());    //Số thang
                                         if (tieshu) {
                                             //this.sl = roundingBy4she6ru5chengshuang((parseFloat(tieshu) * parseFloat($.undefinedwith0(this.mcjl))), 0);
                                             this.je = roundingBy4she6ru5chengshuang(parseFloat(this.dj) * parseFloat(this.sl), 2);
@@ -351,7 +351,7 @@
                                         }
                                     }
                                     if (isRepeatedAdd) {
-                                        $.modalAlert("单张处方下明细不能重复", 'warning');
+                                        $.modalAlert("Chi tiết trong một đơn thuốc không được trùng lặp", 'warning');
                                         return;
                                     }
                                     else {
@@ -378,7 +378,7 @@
                                         }
                                     }
                                 });
-                                //重置 历史处方、处方模板
+                                //Đặt lại Đơn thuốc lịch sử、Mẫu đơn thuốc
                                 cfLeftFloatHide();
                                 $.modalClose("FormShowHistoryPresForm");
                             });

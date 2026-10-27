@@ -81,8 +81,8 @@ WHERE zt.ztId is not null and mb.mbId=@mbId
         {
             var sql = @"
 SELECT ztxm.ztId,ztxm.sl,''bw, zt.ztmc, ztxm.sfxmCode AS xmCode,ztxm.sfxmCode AS xmdm, sfxm.sfxmmc AS xmmc, sfxm.dj, sfxm.dw, mb.zxks, Department.Name AS zxksmc,
-        CASE WHEN ISNULL(sfxm.ybdm, '') = '' THEN '否'
-             ELSE '是'
+        CASE WHEN ISNULL(sfxm.ybdm, '') = '' THEN 'Không'
+             ELSE 'Có'
         END sfyb,
 	   sfxm.sqlx,ztxm.px
 FROM [dbo].[jyjc_ztxm] ztxm

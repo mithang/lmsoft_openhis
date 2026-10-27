@@ -1,0 +1,25 @@
+-- DB translation Scope A: Newtouch_MRMS.mr_dic_common.RlueName (applied live; re-runnable; keyless targets match N'old' values)
+USE [Newtouch_MRMS];
+UPDATE [mr_dic_common] SET [RlueName] = 'Nhom mau' WHERE [RlueName] = N'血型';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nhom mau' WHERE [RlueName] = N'血型';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nghe nghiep' WHERE [RlueName] = N'职业';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nghe nghiep' WHERE [RlueName] = N'职业';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nhom mau' WHERE [RlueName] = N'血型';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nhom mau' WHERE [RlueName] = N'血型';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nghe nghiep' WHERE [RlueName] = N'职业';
+UPDATE [mr_dic_common] SET [RlueName] = 'Gioi tinh' WHERE [RlueName] = N'性别';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nghe nghiep' WHERE [RlueName] = N'职业';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nghe nghiep' WHERE [RlueName] = N'职业';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nghe nghiep' WHERE [RlueName] = N'职业';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nghe nghiep' WHERE [RlueName] = N'职业';
+UPDATE [mr_dic_common] SET [RlueName] = 'Gioi tinh' WHERE [RlueName] = N'性别';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nghe nghiep' WHERE [RlueName] = N'职业';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nghe nghiep' WHERE [RlueName] = N'职业';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nghe nghiep' WHERE [RlueName] = N'职业';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nghe nghiep' WHERE [RlueName] = N'职业';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nghe nghiep' WHERE [RlueName] = N'职业';
+UPDATE [mr_dic_common] SET [RlueName] = 'Gioi tinh' WHERE [RlueName] = N'性别';
+UPDATE [mr_dic_common] SET [RlueName] = 'Gioi tinh' WHERE [RlueName] = N'性别';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nhom mau' WHERE [RlueName] = N'血型';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nhom mau' WHERE [RlueName] = N'血型';
+UPDATE [mr_dic_common] SET [RlueName] = 'Nghe nghiep' WHERE [RlueName] = N'职业';

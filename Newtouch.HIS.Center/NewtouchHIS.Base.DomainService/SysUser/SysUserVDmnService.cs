@@ -101,7 +101,7 @@ namespace NewtouchHIS.Base.DomainService
                 TopOrganizeId = sysConfig.Top_OrganizeId ?? throw new FailedException(ResponseResultCode.FAILOfConfigInit, "Top_OrganizeId"),
                 Date = DateTime.Now,
                 CreateTime = DateTime.Now,
-                ModuleName = "系统登录",
+                ModuleName = "Dang nhap he thong",
                 Type = DbLogType.Login.ToString(),
                 Account = userId == "root" ? userId : user?.Account,
             };
@@ -175,7 +175,7 @@ namespace NewtouchHIS.Base.DomainService
 
                 logEntity.NickName = staff == null ? null : staff.Name;
                 logEntity.Result = true;
-                logEntity.Description = "系统登录成功";
+                logEntity.Description = "Dang nhap he thong thanh cong";
                 //Liên kết nhiềuTổ chứckhi không chính xác
                 logEntity.OrganizeId = staff == null ? null : staff?.OrganizeId;
             }

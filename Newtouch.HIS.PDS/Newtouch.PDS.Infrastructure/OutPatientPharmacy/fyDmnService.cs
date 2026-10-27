@@ -964,11 +964,11 @@ and sfxm.sfxmmc like '%' + @xmmc + '%'  ";
         {
             var parms = new List<SugarParameter> { };
             var strSql = new StringBuilder(@" select  c.mzh,c.xm,b.CreateTime kssj,a.zje,a.cftag
-    ,case  a.cftag when 'JI' then '精神I类处方' 
+    ,case  a.cftag when 'JI' then 'Đơn thuốc hướng thần loại I' 
 			   when 'JII' then '精神II类处方' 
-			   when 'MZ' then '麻醉处方' 
-			   when 'LXGB' then '离休干部'
-			   when 'TBCF' then '特病处方' end cftagName
+			   when 'MZ' then 'Đơn thuốc gây mê' 
+			   when 'LXGB' then 'Cán bộ nghỉ hưu'
+			   when 'TBCF' then 'Đơn thuốc bệnh đặc biệt' end cftagName
     ,a.ks,ks.name ksmc,c.xb,b.cfh,a.cfId,a.ys yscode,ys.name ysmc,a.cflx,b.fybz,tf.returnDrugBillNo AS tydh
 from Newtouch_CIS..xt_cf(nolock) a
 join NewtouchHIS_PDS..mz_cf (nolock) b on b.cfh=a.cfh and b.OrganizeId=a.OrganizeId and b.zt=1

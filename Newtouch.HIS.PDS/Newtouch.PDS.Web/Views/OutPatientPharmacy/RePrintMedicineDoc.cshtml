@@ -174,7 +174,7 @@
         var cfmx = $("#gridRpDetail").getCol('yfmc',true);
         //Lấy tất cả số đơn thuốc
         for (var i = 0; i < cfmx.length; i++) {
-            if (cfmx[i].value == "雾化") {
+            if (cfmx[i].value == "Khi dung") {
                 cfhs.push($("#gridRpInfo").jqGrid('getRowData', id).cfh);
             }
         }
@@ -194,7 +194,7 @@
             var cfmx = $("#gridRpDetail").getCol('yfmc',true);
             //Lấy tất cả số đơn thuốc
             for (var i = 0; i < cfmx.length; i++) {
-                if (cfmx[i].value == "静脉滴注") {
+                if (cfmx[i].value == "Truyen tinh mach") {
                     cfhs.push($("#gridRpInfo").jqGrid('getRowData', id).cfh);
                 }
             }
@@ -224,7 +224,7 @@
              var lscfmx = [];
              //Lấy tất cả số đơn thuốc
              for (var i = 0; i < cfmx.length; i++) {
-                 if (cfmx[i].value == "口服" || cfmx[i].value == "外用") {
+                 if (cfmx[i].value == "Uong" || cfmx[i].value == "Dung ngoai") {
                      lscfmx.push(cfh);
                  }
              }

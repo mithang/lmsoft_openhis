@@ -104,7 +104,7 @@
                                     var row = $(e.target).closest('tr.jqgrow');
                                     var rowid = row.attr('id');
                                     $("#" + rowid + "_yslbdm").val($(this).val());
-                                    if ($(this).find("option:selected").text() == "膳食自备") {
+                                    if ($(this).find("option:selected").text() == "Tự chuẩn bị bữa ăn") {
                                         $("#" + rowid + "_yszs").val('').attr('disabled', 'true').css('background-color', '#f6f7fb');//Vô hiệu hóauốngănchỉhiển thị
                                     } else {
                                         $("#" + rowid + "_yszs").removeAttr('disabled').css('background-color', 'white');//Vô hiệu hóauốngănchỉhiển thị

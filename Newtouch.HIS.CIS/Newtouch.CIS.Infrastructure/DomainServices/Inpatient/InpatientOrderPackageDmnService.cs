@@ -106,7 +106,7 @@ namespace Newtouch.DomainServices.Inpatient
                             {
                                 item.yznr = item.xmmc;
                             }
-                            else if (item.yslb == "膳食自备")
+                            else if (item.yslb == "Tự chuẩn bị bữa ăn")
                             {
                                 item.yznr = item.yslb;
                             }
@@ -118,7 +118,7 @@ namespace Newtouch.DomainServices.Inpatient
                         if (item.yzlx == (int)EnumYzlx.zcy)
                         {
                             //Y lệnhđịnh dạng：Tên thuốc Quy cách mỗi lầnLiều lượng mỗi lầnĐơn vị liều Cách dùng Tần suất dánsố
-                            item.yznr = item.xmmc + "  " + item.ypgg + " " + item.ypjl + item.dw + " " + item.yfmc + " " + item.pcmc + " " + item.sl + "剂";
+                            item.yznr = item.xmmc + "  " + item.ypgg + " " + item.ypjl + item.dw + " " + item.yfmc + " " + item.pcmc + " " + item.sl + " thang";
                         }
                         //đối tượngGán giá trị  
                         var addentity = item.MapperTo<InpatientOrderPackageVO, InpatientOrderPackageDetailEntity>();//AddCQdoctorService(item, orgId, tzsj);
@@ -287,7 +287,7 @@ ORDER BY tcmx.CreateTime");
             var par = new List<SqlParameter>();
             sqlstr = sqlstr.Append(@"select brjbxx.zyh,
 xm,
-case xb when '1' then '男' else '女' end xb,
+case xb when '1' then 'Nam' else 'Nữ' end xb,
 convert(varchar(50),ryrq,23) ryrq,
 convert(varchar(50),cyrq,23) cyrq,
 zd.zdmc ryzd,

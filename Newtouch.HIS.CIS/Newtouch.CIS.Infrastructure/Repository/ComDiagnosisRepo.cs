@@ -29,7 +29,7 @@ namespace Newtouch.Repository
         {
             try
             {
-                var sql = string.Format(@"select cyzdmc,cyzdbm,icd10,py,(case qxkz when '1' then '个人' else '科室' end) isgr
+                var sql = string.Format(@"select cyzdmc,cyzdbm,icd10,py,(case qxkz when '1' then 'Cá nhân' else 'Khoa' end) isgr
                 from [Newtouch_CIS].dbo.Com_Diagnosis with(nolock) 
                 where OrganizeId=@orgId and zt='1' 
                 and cyzdtype=@type and ((qxkz='2' and ksCode=@ks) or (qxkz='1' and CreatorCode=@ys)) ");
@@ -63,7 +63,7 @@ namespace Newtouch.Repository
         {
             try
             {
-                var sql = string.Format(@"select cyzdmc,cyzdbm,icd10,py,(case qxkz when '1' then '个人' else '科室' end) isgr
+                var sql = string.Format(@"select cyzdmc,cyzdbm,icd10,py,(case qxkz when '1' then 'Cá nhân' else 'Khoa' end) isgr
                 from [Newtouch_CIS].dbo.Com_Diagnosis with(nolock) 
                 where OrganizeId=@orgId and zt='1' 
                 and cyzdtype=@type and CreatorCode=@ys ");

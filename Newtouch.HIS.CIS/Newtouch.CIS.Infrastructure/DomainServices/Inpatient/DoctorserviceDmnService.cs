@@ -168,7 +168,7 @@ namespace Newtouch.DomainServices.Inpatient
                                     {
                                         item.yznr = item.xmmc;
                                     }
-                                    else if (item.yslb == "膳食自备")
+                                    else if (item.yslb == "Tự chuẩn bị bữa ăn")
                                     {
                                         item.yznr = item.yslb;
                                     }
@@ -414,7 +414,7 @@ namespace Newtouch.DomainServices.Inpatient
                             {
                                 item.yznr = item.xmmc;
                             }
-                            else if (item.yslb == "膳食自备")
+                            else if (item.yslb == "Tự chuẩn bị bữa ăn")
                             {
                                 item.yznr = item.yslb;
                             }
@@ -426,7 +426,7 @@ namespace Newtouch.DomainServices.Inpatient
                         if (item.yzlx == (int)EnumYzlx.zcy)
                         {
                             //Y lệnhđịnh dạng：Tên thuốc Quy cách mỗi lầnLiều lượng mỗi lầnĐơn vị liều Cách dùng Tần suất dánsố
-                            item.yznr = item.xmmc + "  " + item.ypgg + " " + item.ypjl + item.dwwwwwww + " " + item.yfmc + " " + item.pcmc + " " + item.sl + "剂";
+                            item.yznr = item.xmmc + "  " + item.ypgg + " " + item.ypjl + item.dwwwwwww + " " + item.yfmc + " " + item.pcmc + " " + item.sl + " thang";
                         }
                         if (item.yzlx == (int)EnumYzlx.jy)
                         {
@@ -1592,7 +1592,7 @@ namespace Newtouch.DomainServices.Inpatient
 						                yz.zxsj,
 										dept.Name deptName ,
                                         yz.yztag,
-                                        case yz.yztag when 'JI' then '精I' when 'JII' then '精II' when 'MZ' then '麻醉' else yz.yztag end yztagName,
+                                        case yz.yztag when 'JI' then 'Hướng thần I' when 'JII' then 'Hướng thần II' when 'MZ' then 'Gây mê' else yz.yztag end yztagName,
 										isnull(yz.isjf,1) isjf,ispscs,isnull(zzfbz,0) zzfbz , yz.xmdm,case when yzlx='10' then yz.sl* (cast(yz.ypjl as int)) else yz.sl end sl,  yz.Px,
                                         case when yzlx in (2,4,10) then (cast(case when yzlx='10' then convert(numeric(18,2),yz.sl*yz.ypjl) else yz.sl end as varchar)+ypxx.zycldw) end zycldw,
                                         yfztbs,yply,isfsyz,zyh,hzxm xm
@@ -1652,7 +1652,7 @@ namespace Newtouch.DomainServices.Inpatient
 						                yz.shsj,
 						                yz.zxsj,
 										dept.Name deptName,yztag,
-                                        case yztag when 'JI' then '精I' when 'JII' then '精II' when 'MZ' then '麻醉' else yztag end yztagName,
+                                        case yztag when 'JI' then 'Hướng thần I' when 'JII' then 'Hướng thần II' when 'MZ' then 'Gây mê' else yztag end yztagName,
                                         isnull(yz.isjf,1) isjf,
                                         ispscs ,isnull(zzfbz,0) zzfbz,
                                         xmdm,
@@ -2303,7 +2303,7 @@ namespace Newtouch.DomainServices.Inpatient
                         var lsyz = new InpatientSTATOrderEntity()
                         {
                             xmdm = "999999999999999999",
-                            xmmc = DateTime.Now + "出院及康复咨询",
+                            xmmc = DateTime.Now + "Ra viện và tư vấn phục hồi chức năng",
                             zyh = zyh,
                             WardCode = patientobj.WardCode,
                             DeptCode = patientobj.DeptCode,
@@ -2311,7 +2311,7 @@ namespace Newtouch.DomainServices.Inpatient
                             pcCode = "00",
                             yzzt = (int)EnumYzzt.Ds,
                             yzlx = (int)EnumYzlx.Wz,
-                            yznr = DateTime.Now + "出院及康复咨询     ST",
+                            yznr = DateTime.Now + "Ra viện và tư vấn phục hồi chức năng     ST",
                             OrganizeId = orgId,
                             kssj = tzsj,
                             hzxm = patientobj.xm
@@ -2385,7 +2385,7 @@ namespace Newtouch.DomainServices.Inpatient
                         var lsyz = new InpatientSTATOrderEntity()
                         {
                             xmdm = "999999999999999999",
-                            xmmc = DateTime.Now + "出院及康复咨询",
+                            xmmc = DateTime.Now + "Ra viện và tư vấn phục hồi chức năng",
                             zyh = req.zyh,
                             WardCode = patientobj.WardCode,
                             DeptCode = patientobj.DeptCode,
@@ -2393,7 +2393,7 @@ namespace Newtouch.DomainServices.Inpatient
                             pcCode = "00",
                             yzzt = (int)EnumYzzt.Ds,
                             yzlx = (int)EnumYzlx.Wz,
-                            yznr = req.kssj.ToString() + "转至" + req.bq,
+                            yznr = req.kssj.ToString() + "Chuyển đến" + req.bq,
                             OrganizeId = req.orgId,
                             kssj = req.kssj,
                             hzxm = patientobj.xm
@@ -2540,7 +2540,7 @@ zd.zddm ryzd,
 zd.zdmc ryzdmc,
 isnull(zd2.zddm,zd.zddm) cyzd,
 isnull(zd2.zdmc,zd.zdmc) cyzdmc,
-case zd2.cyqk when null then '无' when '1' then '治愈' when '2' then '好转' when '3' then '未愈' when '4' then '死亡' when '5' then '其他' when '6' then '转院'  else  '无' end cyqk,
+case zd2.cyqk when null then 'Không' when '1' then 'Khỏi bệnh' when '2' then 'Đỡ hơn' when '3' then 'Chưa khỏi' when '4' then 'Tử vong' when '5' then 'Khác' when '6' then 'Chuyển viện'  else  'Không' end cyqk,
 ks.name ksmc,
 ks.Code kscode,
 convert(varchar(50),brxx.rqrq,120) rqrq,
@@ -2870,7 +2870,7 @@ and idl.name=@ypyfmc
                 medicalDTO.DATA = dATA;
                 string responsexml = medicalDTO.XmlSerialize().Replace("<?xml version=\"1.0\"?>", "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
                 var ysgh = "000000";
-                var ysmc = "管理员";
+                var ysmc = "Quản trị viên";
                 var param = "serviceId{=}MR00001{,}userName{=}admin{,}password{=}adm@123{,}clientMAC{=}";
                 var logstr = AuditInterface(responsexml, orgId, zyh, ysgh, ysmc, param, "", "病案审核", GetMAC);//giao diện
                 return logstr;
@@ -2943,7 +2943,7 @@ and idl.name=@ypyfmc
                 medicalDTO.DATA = dATA;
                 string responsexml = medicalDTO.XmlSerialize().Replace("<?xml version=\"1.0\"?>", "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
                 var ysgh = "000000";
-                var ysmc = "管理员";
+                var ysmc = "Quản trị viên";
                 var param = "serviceId{=}AUDIT00101{,}userName{=}admin{,}password{=}adm@123{,}clientMAC{=}";
                 var logstr = AuditInterface(responsexml, orgId, zyh, ysgh, ysmc, param, "", "DIP接口", GetMAC);//giao diện
                 return logstr;
@@ -2989,7 +2989,7 @@ where id=@yzid");
                 medicalDTO.DATA = dATA;
                 string responsexml = medicalDTO.XmlSerialize().Replace("<?xml version=\"1.0\"?>", "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
                 var ysgh = "000000";
-                var ysmc = "管理员";
+                var ysmc = "Quản trị viên";
                 var param = "serviceId{=}AUDIT00002{,}userName{=}admin{,}password{=}adm@123{,}clientMAC{=}";
                 var logstr = AuditInterface(responsexml, OrganizeId, zyh, ysgh, ysmc, param, "", "单据删除", GetMAC);//giao diện
                 return logstr;
@@ -3017,7 +3017,7 @@ where id=@yzid");
                 var orgId = "";
                 var zyh = "00301";
                 var ysgh = "000000";
-                var ysmc = "管理员";
+                var ysmc = "Quản trị viên";
                 var param = "serviceId{=}ICD00001{,}userName{=}admin{,}password{=}adm@123{,}clientMAC{=}";
                 var logstr = AuditInterface(responsexml, orgId, zyh, ysgh, ysmc, param, "", "诊断查询", "");//giao diện
                 return logstr;

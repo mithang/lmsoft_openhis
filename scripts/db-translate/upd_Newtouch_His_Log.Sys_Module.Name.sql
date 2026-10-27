@@ -1,0 +1,20 @@
+-- DB translation Scope A: Newtouch_His_Log.Sys_Module.Name (applied live; re-runnable; keyless targets match N'old' values)
+USE [Newtouch_His_Log];
+UPDATE [Sys_Module] SET [Name] = 'Quan ly he thong' WHERE [Id] = '727F7A3C-EB58-4B3E-AD06-DA4DE83FB189';
+UPDATE [Sys_Module] SET [Name] = 'Menu he thong' WHERE [Id] = 'F7844A96-2F28-433A-9B34-7824D6D59963';
+UPDATE [Sys_Module] SET [Name] = 'Nguoi dung he thong' WHERE [Id] = 'A7B560E2-3E7D-496B-AFAA-185EBF810695';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly vai tro' WHERE [Id] = '7BAC38CB-1507-43CE-8F0F-9E5130921CDF';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly to chuc' WHERE [Id] = '3241f6e4-69c5-4fee-98ab-8a18ef6f0299';
+UPDATE [Sys_Module] SET [Name] = 'Nguoi dung he thong' WHERE [Id] = 'bde8ac86-abec-4e63-a002-c9129407bf7d';
+UPDATE [Sys_Module] SET [Name] = 'To chuc' WHERE [Id] = '77C7EABB-7064-46A6-B940-2BA9C88193E9';
+UPDATE [Sys_Module] SET [Name] = 'Nhat ky Tra cuu' WHERE [Id] = 'DBEA3963-7D48-4587-A72D-8E92F6E25511';
+UPDATE [Sys_Module] SET [Name] = 'Nhat ky Quan ly' WHERE [Id] = '539E2108-39E0-4BC1-A671-85E198E073FA';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly to chuc' WHERE [Id] = 'D3DDEF5A-5233-46C4-B7C0-4A20FD83A7A0';
+UPDATE [Sys_Module] SET [Name] = 'Menu he thong' WHERE [Id] = '3cf9a431-9873-4e04-98f2-b7254d928a58';
+UPDATE [Sys_Module] SET [Name] = 'Quan ly vai tro' WHERE [Id] = 'ec81d58f-fa5f-4596-99e8-c5fb4228c361';
+UPDATE [Sys_Module] SET [Name] = 'Giam sat Tra cuu' WHERE [Id] = '67f09472-b100-4b6d-84ed-af916cfdfe2d';
+UPDATE [Sys_Module] SET [Name] = 'Giam sat Tra cuu' WHERE [Id] = 'e3f22c9b-4f27-4699-92a7-76707517e8d7';
+UPDATE [Sys_Module] SET [Name] = 'Canh bao Quan ly' WHERE [Id] = '6a7be400-f83b-4114-b0a8-b2236b8395a0';
+UPDATE [Sys_Module] SET [Name] = 'Canh bao Cai dat' WHERE [Id] = '0df949b9-3a79-40b6-b4c8-94887088e579';
+UPDATE [Sys_Module] SET [Name] = 'Canh bao Cai dat' WHERE [Id] = 'ff9f5b76-d7b3-474c-8f86-d17d902093f2';
+UPDATE [Sys_Module] SET [Name] = 'Bieu do Tra cuu' WHERE [Id] = 'e1898957-88bd-4967-8527-5aa083a2a448';

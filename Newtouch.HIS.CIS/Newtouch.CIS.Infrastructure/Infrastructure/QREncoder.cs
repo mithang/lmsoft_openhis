@@ -22,7 +22,7 @@ namespace Newtouch.Infrastructure
         /// <param name="version">bảnbản 1 ~ 40</param>
         /// <param name="pixel">tốtốđiểmlớnnhỏ</param>
         /// <param name="iconPath">Biểu tượngĐường dẫn (ignored when iconSize is 0)</param>
-        /// <param name="iconSize">Biểu tượng尺寸</param>
+        /// <param name="iconSize">Biểu tượngkích thước</param>
         /// <param name="iconBorder">Biểu tượngbênkhung厚độ</param>
         /// <param name="whiteEdge">Mã QRtrắngbên (quiet zone)</param>
         /// <returns>PNG bytes (grayscale)</returns>

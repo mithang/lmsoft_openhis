@@ -62,7 +62,7 @@ namespace Newtouch.DomainServices
         {
             string sql = @" select a.cfmxId,c.mzh,c.blh,c.xm,a.ypmc,a.zh,a.CreateTime kssj,a.ypCode
  ,(a.ypmc + ' ' + d.ypgg + ' ' + convert(varchar(8), a.sl) + a.dw + ' (剂量)' + convert(varchar(8), a.mcjl) + a.mcjldw + ' ' + e.yzpcmc + ' ' + f.yfmc) cfmxnr
- ,(case when xb = '女' then '2'else'1' end) sex
+ ,(case when xb = 'Nữ' then '2'else'1' end) sex
    from xt_cfmx(nolock) a
  left join xt_cf(nolock) b on a.cfId = b.cfId and b.zt='1' and a.OrganizeId=b.OrganizeId
  left join xt_jz(nolock) c on c.jzId = b.jzId and c.zt='1' and c.OrganizeId=a.OrganizeId
@@ -105,8 +105,8 @@ namespace Newtouch.DomainServices
                 sql = @" insert into [Newtouch_CIS].dbo.xt_gmxx ([Id],[blh],[xm],[sex],[xmCode],[xmmc],[Result],[Remark],
 [CreateTime],[CreatorCode],[CreatorName],[LastModifyTime],[LastModifierCode],[LastModifierName],
 [mzzybz],[yzid],[cfmxid],[OrganizeId],[zt],[gmlx],[ypCode],[cancel])
-select newid(),c.blh,c.xm,(case when c.xb='女' then '2' else '1' end) sex,a.ypcode,a.ypmc,
-@lrjg,(case when @lrjg='1' then '阳性' else '阴性' end  ),
+select newid(),c.blh,c.xm,(case when c.xb='Nữ' then '2' else '1' end) sex,a.ypcode,a.ypmc,
+@lrjg,(case when @lrjg='1' then 'Dương tính' else 'Âm tính' end  ),
 getdate(),@user,@username,null,null,null,
 '1',null,a.cfmxId,a.OrganizeId,'1',null,a.ypcode,'1' 
  from xt_cfmx(nolock) a

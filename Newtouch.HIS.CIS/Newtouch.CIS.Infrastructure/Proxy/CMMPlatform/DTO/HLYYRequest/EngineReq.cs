@@ -84,7 +84,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string NowMedicalHistory { get; set; } // hiệnbệnhsử
         
         [XmlElement("ccr")]
-        public string Ccr { get; set; } // trongsinh肌酐xóatỷ lệ
+        public string Ccr { get; set; } // trongsinhCreatininxóatỷ lệ
         
         [XmlElement("anaphylactogen")]
         public string Anaphylactogen { get; set; } // quaTiền sử dị ứng
@@ -105,7 +105,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string BreastFeeding { get; set; } // làKhông哺乳
         
         [XmlElement("dialysis")]
-        public string Dialysis { get; set; } // làKhông透析
+        public string Dialysis { get; set; } // làKhôngThẩm tách
         
         [XmlElement("proxName")]
         public string ProxName { get; set; } // thaylàm ngườiHọ tên

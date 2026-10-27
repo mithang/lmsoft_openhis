@@ -627,7 +627,7 @@
                 var res=false;
                 var currZyfdm = sessionStorage.getItem('currentzyf');
                 $.each(ret, function () {
-                    if(!currZyfdm && this.yfbmmc.indexOf('中')!=-1)
+                    if(!currZyfdm && this.yfbmmc.indexOf('Y hoc co truyen')!=-1)
                         var option = "<option value='" + this.yfbmCode +"|"+ this.mzzybz + "' selected>" + this.yfbmmc + "</option>";
                     else if(currZyfdm && currZyfdm==this.yfbmCode)
                         var option = "<option value='" + this.yfbmCode +"|"+ this.mzzybz + "' selected>" + this.yfbmmc + "</option>";

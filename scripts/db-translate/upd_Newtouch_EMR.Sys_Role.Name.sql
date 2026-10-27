@@ -1,0 +1,27 @@
+-- DB translation Scope A: Newtouch_EMR.Sys_Role.Name (applied live; re-runnable; keyless targets match N'old' values)
+USE [Newtouch_EMR];
+UPDATE [Sys_Role] SET [Name] = 'Quan tri vien benh vien' WHERE [Id] = 'cd72454c-bb74-4d9a-9003-3f2045bc97cd';
+UPDATE [Sys_Role] SET [Name] = 'Quan tri van thu' WHERE [Id] = '2822e2a4-be93-436f-9f98-30b2c7f27025';
+UPDATE [Sys_Role] SET [Name] = 'Phong Dieu duong' WHERE [Id] = '8d58b05c-434e-4f67-95bf-91abdbf17854';
+UPDATE [Sys_Role] SET [Name] = 'Bac si' WHERE [Id] = '7053bd49-0fc1-4d07-8b4e-0eaea6881cb7';
+UPDATE [Sys_Role] SET [Name] = 'Y ta' WHERE [Id] = '99fbe0d1-0741-41dd-8101-d5188ae93140';
+UPDATE [Sys_Role] SET [Name] = 'Quan tri vien' WHERE [Id] = 'dad3a7f7-f65e-47ce-9b59-3daac0584551';
+UPDATE [Sys_Role] SET [Name] = 'Quan tri vien' WHERE [Id] = 'd7e6f573-a9bb-4611-8845-fdd1c7809c10';
+UPDATE [Sys_Role] SET [Name] = 'Bac si' WHERE [Id] = '1feb5d68-8de8-4472-844d-bf65a764f4b6';
+UPDATE [Sys_Role] SET [Name] = 'Y ta' WHERE [Id] = 'c92d4e2c-113f-4346-9b81-12c7de206993';
+UPDATE [Sys_Role] SET [Name] = 'Quan tri vien' WHERE [Id] = '7b5abe62-64df-45de-ab4a-580487a67349';
+UPDATE [Sys_Role] SET [Name] = 'Bac si' WHERE [Id] = '0b0506f2-bce8-4b0a-b88e-a665e8cceb73';
+UPDATE [Sys_Role] SET [Name] = 'Bac si' WHERE [Id] = '80f47182-01d9-45d1-bea5-9446c01ccea3';
+UPDATE [Sys_Role] SET [Name] = 'Quan tri vien' WHERE [Id] = '1a84d097-eb99-4f11-b182-53be40d34b9b';
+UPDATE [Sys_Role] SET [Name] = 'Quan tri vien' WHERE [Id] = '7435b6e3-c9b3-466a-80ed-a644d635e15b';
+UPDATE [Sys_Role] SET [Name] = 'Bac si' WHERE [Id] = '69268d9b-3024-47b3-8e82-28b6fe6933f6';
+UPDATE [Sys_Role] SET [Name] = 'Quan tri vien' WHERE [Id] = '74dbda88-bd50-42dd-b849-0115ab370410';
+UPDATE [Sys_Role] SET [Name] = 'Quan tri vien' WHERE [Id] = '45daf070-884e-4fb9-83e2-38b47108e72e';
+UPDATE [Sys_Role] SET [Name] = 'Bac si' WHERE [Id] = '1e4de070-37e5-47e5-9bf7-70a386f7b55c';
+UPDATE [Sys_Role] SET [Name] = 'Y ta' WHERE [Id] = 'ac5fc3e3-4bf9-4491-9dbc-b7cf99c0fc68';
+UPDATE [Sys_Role] SET [Name] = 'Ky thuat vien phuc hoi' WHERE [Id] = '77593312-e40c-486a-86c1-fd9fc10a5b9b';
+UPDATE [Sys_Role] SET [Name] = 'Bao tri he thong' WHERE [Id] = 'beb6ea79-f6e6-49bd-a212-2a00a2d4d6c1';
+UPDATE [Sys_Role] SET [Name] = 'Quan tri vien' WHERE [Id] = '4e45b0cf-2efa-4a84-9e32-38ad082ee212';
+UPDATE [Sys_Role] SET [Name] = 'Phong Cong nghe thong tin - Ky su Manh' WHERE [Id] = '3298b94e-236b-42f6-a6d7-7ea4860e32e4';
+UPDATE [Sys_Role] SET [Name] = 'Bac si' WHERE [Id] = '7d180030-cc49-4d69-ad6a-f656b685f1e8';
+UPDATE [Sys_Role] SET [Name] = 'Y ta' WHERE [Id] = 'd06663cc-31a5-47be-8776-d10526d9efa7';

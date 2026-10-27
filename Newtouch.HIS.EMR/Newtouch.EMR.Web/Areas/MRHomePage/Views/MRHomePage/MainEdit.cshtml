@@ -421,11 +421,11 @@
             $.modalAlert('Thông tin bệnh nhân Nghề nghiệpchưa điền', 'warning');
             return false;
         }
-        if (para.CSD == "" && gj == "中国") {
+        if (para.CSD == "" && gj == "Trung Quoc") {
             $.modalAlert('Thông tin bệnh nhân Địa chỉ nơi sinhchưa điền', 'warning');
             return false;
         }
-        if (para.XZZ == "" && gj == "中国") {
+        if (para.XZZ == "" && gj == "Trung Quoc") {
             $.modalAlert('Thông tin bệnh nhân Địa chỉ hiện tạichưa điền', 'warning');
             return false;
         }
@@ -437,7 +437,7 @@
             $.modalAlert('Thông tin bệnh nhân Mã bưu chính địa chỉ hiện tạichưa điền', 'warning');
             return false;
         }
-        if (para.HKDZ == "" && gj == "中国") {
+        if (para.HKDZ == "" && gj == "Trung Quoc") {
             $.modalAlert('Thông tin bệnh nhân Địa chỉ hộ khẩuchưa điền', 'warning');
             return false;
         }
@@ -484,7 +484,7 @@
         var yb = /^\d{6}$/;
         var dh = /^(13[0-9]|14[01456879]|15[0-35-9]|16[2567]|17[0-8]|18[0-9]|19[0-35-9])\d{8}$/;
         var zjh = /(^\d{15}$)|(^\d{18}$)|(^\d{17}(\d|X|x)$)/;
-        if (para.SFZH != "" && !zjh.exec(para.SFZH) && gj == "中国") {
+        if (para.SFZH != "" && !zjh.exec(para.SFZH) && gj == "Trung Quoc") {
             $.modalAlert('Thông tin bệnh nhân Định dạng CMND không chính xác', 'warning');
             return false;
         }
@@ -608,7 +608,7 @@
             $.modalAlert('Thông tin bệnh nhân Khi cách rời viện là tử vong Số lần cấp cứu thành công bằng Số lần cấp cứu-1', 'warning');
             return false;
         }
-        if (gj == "中国" && !$('#frm_edit').formValid()) {
+        if (gj == "Trung Quoc" && !$('#frm_edit').formValid()) {
             $.modalAlert('Thông tin điền chưa đầy đủ!', 'warning');
             return false;
         }

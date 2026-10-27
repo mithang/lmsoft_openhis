@@ -107,7 +107,7 @@ select a.[Id]
       ,a.[zt]
       ,a.[kh] 
 	  ,mzjbz=1
-,(CASE a.xb WHEN '1' THEN '男' WHEN '2' THEN '女' ELSE '不详' END ) as xb
+,(CASE a.xb WHEN '1' THEN 'Nam' WHEN '2' THEN 'Nữ' ELSE 'Khong ro' END ) as xb
 ,xz.brxzmc brxzmc
 ,a.nl nlshow
 ,a.mzh
@@ -115,7 +115,7 @@ select a.[Id]
 ,xz.brxz brxzCode 
 ,xx.csny
 ,gh.zjlx
-,'远程诊疗' ghksmc
+,'Khám chữa từ xa' ghksmc
 ,ysxmgl.Name ysxm
 ,CONVERT(varchar(100), isnull(gh.ghrq, gh.CreateTime), 20) AS ghsj
 ,bl.jzId

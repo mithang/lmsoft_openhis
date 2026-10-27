@@ -100,7 +100,7 @@ namespace NewtouchCIS.Infrastructure
                 // tạomột StreamReader củathựcVDđếnđọclấyvănmục ,using ngữ句cũngcó thểĐóng StreamReader
                 using (System.IO.StreamReader sr = new System.IO.StreamReader(filePath))
                 {
-                    // từvănmụcđọclấyvàHiển thịdòng，thẳngđếnvănmụccủa末尾 
+                    // từvănmụcđọclấyvàHiển thịdòng，thẳngđếnvănmụccủacuối 
                     while ((line = sr.ReadLine()) != null)
                     {
                         //Console.WriteLine(line);

@@ -130,7 +130,7 @@ and (name like '%'+@keyword+'%' or py LIKE '%'+@keyword+'%')";
         {
             string sql = @"
 SELECT TOP 20 s.ph,s.pc,s.yxq,s.scrq,s.fph,SUM(s.kcsl) kcsl,SUM(s.kykcsl) kykcsl
-,s.bmjj,s.minjj,SUM(s.jjzje) jjzje,CONCAT(CONVERT(NUMERIC(11,2),s.bmjj),'元/',s.bmdwmc) jjdwdj
+,s.bmjj,s.minjj,SUM(s.jjzje) jjzje,CONCAT(CONVERT(NUMERIC(11,2),s.bmjj),'đồng/',s.bmdwmc) jjdwdj
 ,NewtouchHIS_HERP.dbo.f_getComplexWzSlandDw(SUM(s.kykcsl),s.zhyz, s.bmdwmc, s.zxdwmc) slstr ,s.zhyz
 FROM (
 	SELECT kcxx.ph, kcxx.pc, kcxx.yxq, ISNULL(mx.scrq, '') scrq, ISNULL(mx.fph,'') fph
@@ -185,7 +185,7 @@ GROUP BY s.ph,s.pc,s.yxq,s.scrq,s.fph,s.bmjj,s.minjj,s.zhyz,s.bmdwmc,s.zxdwmc
         public IList<VProductStorageEntity> GetProductStorage(Pagination pagination, string ks, string organizeId, string keyWord, string lbId,string xslkc)
         {
             StringBuilder sqlstr = new StringBuilder(@"
-SELECT *,CAST(lsj as varchar)++'元/'+bmdwmc lsjStr FROM (
+SELECT *,CAST(lsj as varchar)++'đồng/'+bmdwmc lsjStr FROM (
     SELECT cast(ROW_NUMBER() over(partition by kcxx.productId,ks order by rpu.zhyz desc) as int) num,
     ks,dept.Name ksName,kcxx.productId, wz.name wzmc,wz.py, ISNULL(lb.name,'') lb
     ,NewtouchHIS_herp.dbo.f_getComplexWzSlandDw(SUM(kcxx.kcsl), rpu.zhyz, bmdw.name, zxdw.name) slStr, ISNULL(SUM(kcxx.kcsl),0) zkc
@@ -229,7 +229,7 @@ WHERE  num=1 ");
         public IList<VProductStorageEntity> GetExpiredProductStorage(Pagination pagination, string ks, string organizeId, string keyWord, string lbId,string xslkc)
         {
             StringBuilder sqlstr = new StringBuilder(@"
-SELECT *,CAST(lsj as varchar)++'元/'+bmdwmc lsjStr FROM (
+SELECT *,CAST(lsj as varchar)++'đồng/'+bmdwmc lsjStr FROM (
     SELECT cast(ROW_NUMBER() over(partition by kcxx.productId,ks order by rpu.zhyz desc) as int) num,
     ks,dept.Name ksName,kcxx.productId, wz.name wzmc,wz.py, ISNULL(lb.name,'') lb
     ,NewtouchHIS_herp.dbo.f_getComplexWzSlandDw(SUM(kcxx.kcsl), rpu.zhyz, bmdw.name, zxdw.name) slStr, ISNULL(SUM(kcxx.kcsl),0) zkc
@@ -281,7 +281,7 @@ WHERE  num=1 and yxq < GETDATE() ");
         /// <returns></returns>
         public IList<VProductStorageDetailEntity> GetProductStorageDetail(string ks, string OrganizeId, string proId, string zt)
         {
-            const string sql= @" SELECT *,cast(jj as varchar)+'元/'+bmdwmc jjStr,CAST(lsj as varchar)++'元/'+bmdwmc lsjStr  FROM (
+            const string sql= @" SELECT *,cast(jj as varchar)+'đồng/'+bmdwmc jjStr,CAST(lsj as varchar)++'đồng/'+bmdwmc lsjStr  FROM (
 	SELECT cast(ROW_NUMBER() over(partition by wz.Id,ph,pc order by rpu.zhyz desc) as int) num, kcxx.Id,wz.Id productId
 	,wz.name wzmc, kcxx.ph, kcxx.pc, kcxx.yxq, kcxx.zt, bmdw.name bmdwmc,rpu.zhyz,zxdw.name zxdwmc
 	,NewtouchHIS_herp.dbo.f_getComplexWzSlandDw((kcxx.djsl),rpu.zhyz,bmdw.name,zxdw.name) bmdjslStr

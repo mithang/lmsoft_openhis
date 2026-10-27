@@ -53,10 +53,10 @@ namespace Newtouch.HIS.DomainServices
                     mIdList = _sysRoleAuthorizeRepository.IQueryable(t => t.zt == "1"
     && t.RoleId == adminRoleId).Select(p => p.ItemId).ToList();
                 }
-                query = query.Where(p => p.Name == "系统管理"
-                   || p.Name == "角色管理" || p.Name == "系统角色" || p.Name == "字典管理"
-                   || p.Name == "组织机构" || p.Name == "机构管理"
-                   || p.Name == "系统科室" || p.Name == "科室管理" || p.Name == "系统人员" || p.Name == "系统用户"
+                query = query.Where(p => p.Name == "Quan ly he thong"
+                   || p.Name == "Quan ly vai tro" || p.Name == "Vai tro he thong" || p.Name == "Quan ly tu dien"
+                   || p.Name == "To chuc" || p.Name == "Quan ly to chuc"
+                   || p.Name == "Khoa he thong" || p.Name == "Quan ly khoa" || p.Name == "Nhan su he thong" || p.Name == "Nguoi dung he thong"
                    || (mIdList.Contains(p.Id)));
             }
             else

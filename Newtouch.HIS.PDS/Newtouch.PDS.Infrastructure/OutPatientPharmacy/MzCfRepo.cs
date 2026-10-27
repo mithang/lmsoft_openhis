@@ -612,7 +612,7 @@ WHERE s.sl>0
         public IList<patientInfoVO> GetElectronicPrescription(Pagination pagination, string organizeId, string isysh, string keyword = "")
         {
             var sql = new StringBuilder(@"
-select jz.xm,cf.cfh,case isnull(cf.ysshyj,'') when '' then isnull(rxStasName,'未审核') else '未通过' end zt,cf.ysshyj from
+select jz.xm,cf.cfh,case isnull(cf.ysshyj,'') when '' then isnull(rxStasName,'Chưa duyệt') else 'Không đạt' end zt,cf.ysshyj from
 [Newtouch_CIS]..xt_cf cf
 inner join [Newtouch_CIS]..xt_jz jz on jz.jzId=cf.jzId and jz.OrganizeId=cf.OrganizeId and jz.zt='1'
 left join [NewtouchHIS_Sett]..Dzcf_D003_output D003 on D003.cfh=cf.cfh and D003.zt='1'

@@ -203,7 +203,7 @@ namespace Newtouch.DomainServices.Inpatient
         {
             var sqlstr = new StringBuilder();
             var par = new List<SqlParameter>();
-            sqlstr = sqlstr.Append(@"   SELECT a.zyh,a.blh,xm,CONVERT(VARCHAR(10),DATEDIFF(year,birth,GETDATE()))  nl,CASE WHEN sex=1 THEN '男' WHEN sex=2 THEN '女' ELSE '未知' END xb,CONVERT(VARCHAR(10), ryrq,120)ryrq,zddm,brxzmc,ysgh,b.StaffName ysmc,a.BedCode lastcwCode,c.TransDeptCode DeptCode
+            sqlstr = sqlstr.Append(@"   SELECT a.zyh,a.blh,xm,CONVERT(VARCHAR(10),DATEDIFF(year,birth,GETDATE()))  nl,CASE WHEN sex=1 THEN 'Nam' WHEN sex=2 THEN 'Nữ' ELSE 'Khong ro' END xb,CONVERT(VARCHAR(10), ryrq,120)ryrq,zddm,brxzmc,ysgh,b.StaffName ysmc,a.BedCode lastcwCode,c.TransDeptCode DeptCode
             FROM Newtouch_CIS.dbo.zy_brxxk a 
             LEFT JOIN NewtouchHIS_Base..V_C_Sys_StaffDuty b ON a.ysgh=b.StaffGh AND a.OrganizeId=b.OrganizeId AND b.zt='1' 
             left join zy_cwsyjlk c on a.zyh=c.zyh and c.zt='1' and a.OrganizeId=c.OrganizeId
@@ -714,7 +714,7 @@ FROM    dbo.zy_brxxk zyxx
                                 Type = Convert.ToInt32(EnumYslx.ZyDoc),
                                 ysgh = inareaReq.ysgh,
                                 ysmc = inareaReq.ysmc,
-                                TypeName = "住院医生",
+                                TypeName = "Nội trú医生",
                                 zt = "1"
                             };
                             docEntity.Create();
@@ -888,7 +888,7 @@ FROM    dbo.zy_brxxk zyxx
                         docEntity.Type = Convert.ToInt32(EnumYslx.ZyDoc);
                         docEntity.ysgh = patChangeAreaRequestDto.ysgh;
                         docEntity.ysmc = patChangeAreaRequestDto.ysmc;
-                        docEntity.TypeName = "住院医生";
+                        docEntity.TypeName = "Nội trú医生";
                         docEntity.zt = "1";
                         docEntity.Create();
                         db.Insert(docEntity);
@@ -1372,7 +1372,7 @@ FROM    dbo.zy_brxxk zyxx
                         docEntity.Type = Convert.ToInt32(EnumYslx.ZyDoc);
                         docEntity.ysgh = patChangeAreaRequestDto.ysgh;
                         docEntity.ysmc = patChangeAreaRequestDto.ysmc;
-                        docEntity.TypeName = "住院医生";
+                        docEntity.TypeName = "Nội trú医生";
                         docEntity.zt = "1";
                         docEntity.Create();
                         db.Insert(docEntity);
@@ -1565,7 +1565,7 @@ FROM    dbo.zy_brxxk zyxx
                                 Type = Convert.ToInt32(EnumYslx.ZyDoc),
                                 ysgh = inareaReq.ysgh,
                                 ysmc = inareaReq.ysmc,
-                                TypeName = "住院医生",
+                                TypeName = "Nội trú医生",
                                 zt = "1"
                             };
                             docEntity.Create();

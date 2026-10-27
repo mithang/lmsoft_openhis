@@ -158,7 +158,7 @@
                 { label: 'Số giấy tờ', name: 'zjh', width: 120, align: 'left' },
                 {
                     label: 'DuyệtTrạng thái', name: 'shzt', width: 80, align: 'left', formatter: function (cellvalue) {
-                        if (cellvalue == '无效') return 'Chưa duyệt';
+                        if (cellvalue == 'Không hiệu lực') return 'Chưa duyệt';
                         else if (cellvalue == 'Hiệu lực') return 'Đã duyệt';
                         else return cellvalue;
                     }
@@ -215,11 +215,11 @@
             $.modalAlert("Vui lòng chọn đơn thuốc cần hủy bỏ", 'warning');
             return;
         }
-        if (rowData.shzt != "Hiệu lực" && rowData.shzt != "已审核" ) {
+        if (rowData.shzt != "Hiệu lực" && rowData.shzt != "Đã duyệt" ) {
             $.modalAlert("Vui lòng chọn đơn thuốc điện tử đã tải lên", 'warning');
             return;
         }
-        if (rowData.qyzt != "未Sử dụng" ) {
+        if (rowData.qyzt != "Chưa sử dụng" ) {
             $.modalAlert("Vui lòng chọn đơn thuốc điện tử chưa lấy thuốc", 'warning');
             return;
         }

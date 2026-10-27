@@ -3,16 +3,16 @@
     Layout = null;
 }
 <div id="floatLeftMostPartDiv" style="display:none;">
-    @*<div data-href="dqcf"><span>当前处方</span></div>*@
-    <div data-href="lscf"><span>历史处方</span></div>
-    <div data-href="cfmb"><span>处方模板</span></div>
+    @*<div data-href="dqcf"><span>Đơn thuốc hiện tại</span></div>*@
+    <div data-href="lscf"><span>Đơn thuốc lịch sử</span></div>
+    <div data-href="cfmb"><span>Mẫu đơn thuốc</span></div>
 </div>
 
 <script>
     $("#floatLeftMostPartDiv div").on("click", function (e) {
         e.preventDefault();
         if ($(this).hasClass('activepart')) {
-            //再点击 隐藏
+            //Nhấn lại Ẩn
             $("#floatLeftMostPartDiv div").removeClass("activepart");
             $('#floadHistoryPresTree').hide();
             $('#floatPreTemplateTree').hide();
@@ -22,7 +22,7 @@
             $(this).addClass("activepart");
 
             var fromcflx;
-            var currPage = $('#myTab li.active>a').attr('href');    //判断当前是哪一页签
+            var currPage = $('#myTab li.active>a').attr('href');    //Xác định tab hiện tại là tab nào
             if (currPage == "#linkkfcf") {
                 fromcflx = '@Html.Raw(((int)EnumCflx.RehabPres).ToString())';
             }

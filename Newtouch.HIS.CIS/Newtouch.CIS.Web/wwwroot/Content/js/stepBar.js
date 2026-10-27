@@ -6,7 +6,7 @@
  * đầu tiêntham sốlàstepBardungdụng cụcủaid，bắt buộc，cho phéptruyềnvàocủaGiá trịgóigồmVDdưới：
  *     jQueryđối tượng
  *     javascriptđối tượng
- *     DOM元tố（có thểchuyểnhóalàIDcủachữkýchuỗi，VD “stepBar” || “#stepBar”） 纠sai：saijQueryđối tượngcủa“#”viếtthành“.”cũngcùngdạngcó thểbiếtloạirađến，nhưngCóphảicầnbảochứng lầntham sốcó thểchuyểnhóathành元tốID
+ *     phần tử DOM（có thểchuyểnhóalàIDcủachữkýchuỗi，VD “stepBar” || “#stepBar”） 纠sai：saijQueryđối tượngcủa“#”viếtthành“.”cũngcùngdạngcó thểbiếtloạirađến，nhưngCóphảicầnbảochứng lầntham sốcó thểchuyểnhóathành元tốID
  * thứhaicáitham sốlàmộtđối tượngtrực tiếplượng，tùy chọn，góichứaVDdướicủakhôngcáihoặcnhiềucái
  *     step                string number   Mục tiêuvàođộ  Mặc địnhlà1（thứmộtbước），tùy chọn
  *     change              boolean    Cài đặtchènmụcCóKhôngcó thểbịThao tác，tùy chọn  Mặc địnhfalse

@@ -382,9 +382,9 @@ namespace Newtouch.HIS.DomainServices
 SELECT o.*, dbo.f_getYfbmYpComplexYpSlandDwV2(o.zxdwsl, @yfbmCode, o.ypCode, @OrganizeId,'2') slStr , o.zxdwsl as sl
 FROM (
 	SELECT SUM(c.sl) zxdwsl, a.zyh, c.ypCode,a.yzId, a.zxId, a.patientName, a.cw, a.yl, a.yldw, a.pcmc, a.zh, a.zlff, a.dj, a.je, a.yzxz,
-	CASE when a.yzxz = '1' then '临时' when a.yzxz = '2' then '长期' else '/' end yzxzmc,
+	CASE when a.yzxz = '1' then 'Tạm thời' when a.yzxz = '2' then 'Dài hạn' else '/' end yzxzmc,
     CASE WHEN a.yzxz = '1' THEN lsyz.yzh WHEN a.yzxz = '2' THEN cqyz.yzh ELSE NULL END AS yzh,
-	yp.ycmc,(case when cqyz.yzzt=4 or lsyz.yzzt=4 then '[停]'+yp.ypmc else yp.ypmc end) ypmc, ypsx.ypgg,c.CreatorCode pyry, c.CreateTime pyrq, RTRIM(LTRIM(c.ph)) ph, RTRIM(LTRIM(c.pc)) pc,a.ts,ypsx.gjybdm
+	yp.ycmc,(case when cqyz.yzzt=4 or lsyz.yzzt=4 then '[Dừng]'+yp.ypmc else yp.ypmc end) ypmc, ypsx.ypgg,c.CreatorCode pyry, c.CreateTime pyrq, RTRIM(LTRIM(c.ph)) ph, RTRIM(LTRIM(c.pc)) pc,a.ts,ypsx.gjybdm
 	FROM NewtouchHIS_PDS.dbo.zy_ypyzxx(NOLOCK) a 
 	INNER JOIN NewtouchHIS_PDS.dbo.zy_ypyzzxph(NOLOCK) c ON c.zxId=a.zxId AND c.yzId=a.yzId AND c.ypCode=a.ypCode AND c.zt='1' AND c.gjzt='0' AND c.OrganizeId=a.OrganizeId
 	INNER JOIN NewtouchHIS_Base.dbo.v_s_xt_yp yp ON yp.ypCode=a.ypCode AND yp.OrganizeId=a.OrganizeId
@@ -823,7 +823,7 @@ AND yz.fybz IN ('2','3')
             const string sql = @"
 SELECT r.*, CONCAT(r.dj, '元/', r.bmdw) djStr, CONVERT(NUMERIC(11,2),ISNULL(r.zxdwsl*r.dj/r.zhyz,0)) je
 FROM (
-	SELECT d.patientName, d.zyh, d.cw, d.yzId, d.zxId, d.ypCode, yp.ypmc, ypsx.ypgg,ISNULL(CONVERT(VARCHAR(50),d.zh),'') zh , CASE when d.yzxz = '1' then '临时' when d.yzxz = '2' then '长期' else '/' end yzxzmc
+	SELECT d.patientName, d.zyh, d.cw, d.yzId, d.zxId, d.ypCode, yp.ypmc, ypsx.ypgg,ISNULL(CONVERT(VARCHAR(50),d.zh),'') zh , CASE when d.yzxz = '1' then 'Tạm thời' when d.yzxz = '2' then 'Dài hạn' else '/' end yzxzmc
 	,yp.ycmc, CONVERT(INT,ISNULL(d.zxdwsl/d.zhyz,0)) sl, CONVERT(INT,d.zxdwsl) zxdwsl, dbo.f_getyfbmDw(@yfbmCode, d.ypCode, @OrganizeId) bmdw
 	,dbo.f_getYfbmYpComplexYpSlandDw(d.zxdwsl, @yfbmCode, d.ypCode, @OrganizeId) slStr, CONCAT(d.yl,d.yldw) ylStr
 	,d.dj, LTRIM(RTRIM(d.ph)) ph, LTRIM(RTRIM(d.pc)) pc, d.zhyz, rdb.applyNo, rdbd.Id rdbdId
@@ -888,7 +888,7 @@ ORDER BY r.applyNo, r.ypmc
 SELECT r.*, CONCAT(r.dj, '元/', r.bmdw) djStr, CONVERT(NUMERIC(11,2),ISNULL(r.zxdwsl*r.dj/r.zhyz,0)) je
 FROM (
 	SELECT d.patientName, d.zyh, d.cw, d.yzId, d.zxId, d.ypCode, yp.ypmc, ypsx.ypgg,ISNULL(CONVERT(VARCHAR(50),d.zh),'') zh 
-	,CASE when d.yzxz = '1' then '临时' when d.yzxz = '2' then '长期' else '/' end yzxzmc
+	,CASE when d.yzxz = '1' then 'Tạm thời' when d.yzxz = '2' then 'Dài hạn' else '/' end yzxzmc
 	,yp.ycmc, CONVERT(INT,ISNULL(d.zxdwsl/d.zhyz,0)) sl, CONVERT(INT,d.zxdwsl) zxdwsl, dbo.f_getyfbmDw(@yfbmCode, d.ypCode, @OrganizeId) bmdw
 	,dbo.f_getYfbmYpComplexYpSlandDw(d.zxdwsl, @yfbmCode, d.ypCode, @OrganizeId) slStr, CONCAT(d.yl,d.yldw) ylStr
 	,d.dj, LTRIM(RTRIM(d.ph)) ph, LTRIM(RTRIM(d.pc)) pc, rdbd.zhyz, rdb.applyNo, rdbd.Id rdbdId
@@ -1107,10 +1107,10 @@ WHERE rdb.applyNo=@applyNo
 SELECT s.Id,s.yzId,s.zxId,s.patientName,s.pc,s.ypCode, s.ypmc, s.cw,s.czlx, s.slStr	,s.jxmc, s.ypgg, s.pcmc, ISNULL(CONVERT(VARCHAR(50),s.zh),'') zh, s.yl, s.yldw
 ,s.ylStr,s.yzxzmc,s.ycmc,s.zlff,s.djStr,s.je,s.CreateTime,s.CreatorCode,zyh
 FROM (
-	SELECT a.Id,a.yzId, a.zxId, c.patientName,a.pc,a.ypCode, b.ypmc, c.cw,'发药' czlx
+	SELECT a.Id,a.yzId, a.zxId, c.patientName,a.pc,a.ypCode, b.ypmc, c.cw,'Phát thuốc' czlx
 	, dbo.f_getYfbmYpComplexYpSlandDw(SUM(a.sl), @yfbmCode, a.ypCode, @OrganizeId) slStr
 	,e.jxmc, ypsx.ypgg, c.pcmc, ISNULL(CONVERT(VARCHAR(50),c.zh),'') zh, c.yl, c.yldw, CONCAT(c.yl,c.yldw) ylStr
-	,(case when c.yzxz = '1' then '临时' when c.yzxz = '2' then '长期' else '/' END) yzxzmc
+	,(case when c.yzxz = '1' then 'Tạm thời' when c.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc
 	,b.ycmc,c.zlff,CONCAT(c.dj,'元/',b.djdw) djStr,CONVERT(NUMERIC(11,2),ISNULL(SUM(c.dj/c.zhyz*a.sl),0)) je
 	,a.CreateTime,a.CreatorCode,c.bqCode,c.zyh
 	FROM NewtouchHIS_PDS.dbo.zy_ypyzzxph(NOLOCK) a 
@@ -1127,10 +1127,10 @@ FROM (
 	AND a.zyypxxId=c.Id
 	GROUP BY a.Id,c.zyh,a.yzId, a.zxId,a.ypCode, c.patientName,a.pc, b.ypmc, c.cw,e.jxmc, ypsx.ypgg, c.pcmc, c.zh, c.yl, c.yldw,b.ycmc,c.zlff,a.CreateTime,a.CreatorCode, c.yzxz, c.dj, b.djdw ,c.bqCode
 	UNION ALL
-	SELECT a.Id,a.yzId, a.zxId, c.patientName,a.pc,a.ypCode, b.ypmc, c.cw,'退药' czlx
+	SELECT a.Id,a.yzId, a.zxId, c.patientName,a.pc,a.ypCode, b.ypmc, c.cw,'Trả thuốc' czlx
 	,dbo.f_getYfbmYpComplexYpSlandDw(SUM(a.sl), @yfbmCode, a.ypCode, @OrganizeId) slStr
 	,e.jxmc, ypsx.ypgg, c.pcmc, ISNULL(CONVERT(VARCHAR(50),c.zh),'') zh, c.yl, c.yldw, CONCAT(c.yl,c.yldw) ylStr
-	,(case when c.yzxz = '1' then '临时' when c.yzxz = '2' then '长期' else '/' END) yzxzmc
+	,(case when c.yzxz = '1' then 'Tạm thời' when c.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc
 	,b.ycmc,c.zlff,CONCAT(c.dj,'元/',b.djdw) djStr,CONVERT(NUMERIC(11,2),ISNULL(SUM(c.dj/c.zhyz*a.sl),0)) je
 	,a.CreateTime,a.CreatorCode,c.bqCode,c.zyh
 	FROM NewtouchHIS_PDS.dbo.zy_tymx(NOLOCK) a 
@@ -1188,10 +1188,10 @@ WHERE (s.bqCode=@bqCode OR ''=ISNULL(@bqCode,'')) ");
         public IList<HospitalizationDispenseDetail> GetZyfyQueryList(Pagination pagination, QueryZYFYInfoReqVO req)
         {
             var strSql = new StringBuilder(@"
-SELECT a.Id,a.yzId, a.zxId, c.patientName,a.pc,a.ypCode, b.ypmc, c.cw,'发药' czlx
+SELECT a.Id,a.yzId, a.zxId, c.patientName,a.pc,a.ypCode, b.ypmc, c.cw,'Phát thuốc' czlx
 , dbo.f_getYfbmYpComplexYpSlandDw(SUM(a.sl), @yfbmCode, a.ypCode, @OrganizeId) slStr
 ,e.jxmc, ypsx.ypgg, c.pcmc, ISNULL(CONVERT(VARCHAR(50),c.zh),'') zh, c.yl, c.yldw, CONCAT(c.yl,c.yldw) ylStr
-,(case when c.yzxz = '1' then '临时' when c.yzxz = '2' then '长期' else '/' END) yzxzmc
+,(case when c.yzxz = '1' then 'Tạm thời' when c.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc
 ,b.ycmc,c.zlff,CONCAT(c.dj,'元/',b.djdw) djStr,CONVERT(NUMERIC(11,2),ISNULL(SUM(c.dj/c.zhyz*a.sl),0)) je
 ,a.CreateTime,a.CreatorCode ,c.zyh
 FROM NewtouchHIS_PDS.dbo.zy_ypyzzxph(NOLOCK) a 
@@ -1255,10 +1255,10 @@ AND a.zyypxxId=c.Id
         public IList<HospitalizationDispenseDetail> GetZytyQueryList(Pagination pagination, QueryZYFYInfoReqVO req)
         {
             var strSql = new StringBuilder(@"
-SELECT a.Id,a.yzId, a.zxId, c.patientName,a.pc,a.ypCode, b.ypmc, c.cw,'退药' czlx
+SELECT a.Id,a.yzId, a.zxId, c.patientName,a.pc,a.ypCode, b.ypmc, c.cw,'Trả thuốc' czlx
 ,dbo.f_getYfbmYpComplexYpSlandDw(SUM(a.sl), @yfbmCode, a.ypCode, @OrganizeId) slStr
 ,e.jxmc, ypsx.ypgg, c.pcmc, ISNULL(CONVERT(VARCHAR(50),c.zh),'') zh, c.yl, c.yldw, CONCAT(c.yl,c.yldw) ylStr
-,(case when c.yzxz = '1' then '临时' when c.yzxz = '2' then '长期' else '/' END) yzxzmc
+,(case when c.yzxz = '1' then 'Tạm thời' when c.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc
 ,b.ycmc,c.zlff,CONCAT(c.dj,'元/',b.djdw) djStr,CONVERT(NUMERIC(11,2),ISNULL(SUM(c.dj/c.zhyz*a.sl),0)) je
 ,a.CreateTime,a.CreatorCode ,c.zyh
 FROM NewtouchHIS_PDS.dbo.zy_tymx(NOLOCK) a 
@@ -1316,9 +1316,9 @@ AND c.fyyf=@yfbmCode
         public IList<HospitalizationDispenseDetail> GetYzCzjlList(Pagination pagination, QueryZYFYInfoReqVO req)
         {
             var strSql = new StringBuilder(@"
-select (case when a.operateType='1' then '发药' when a.operateType='2' then '退药' end) czlx,
+select (case when a.operateType='1' then 'Phát thuốc' when a.operateType='2' then 'Trả thuốc' end) czlx,
 b.zyh,b.patientName,b.cw,b.ypCode,c.ypmc,b.pcmc,ISNULL(CONVERT(VARCHAR(50),b.zh),'') zh, b.yl, b.yldw, CONCAT(b.yl,b.yldw) ylStr
-,(case when b.yzxz = '1' then '临时' when b.yzxz = '2' then '长期' else '/' END) yzxzmc,b.zlff,c.ycmc,CONCAT(b.dj,'元/',c.djdw) djStr,
+,(case when b.yzxz = '1' then 'Tạm thời' when b.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc,b.zlff,c.ycmc,CONCAT(b.dj,'元/',c.djdw) djStr,
 (case when a.operateType='1' then dbo.f_getYfbmYpComplexYpSlandDw(SUM(d.sl), @yfbmCode, b.ypCode, @OrganizeId) when a.operateType='2' then dbo.f_getYfbmYpComplexYpSlandDw(SUM(a.sl), @yfbmCode, b.ypCode, @OrganizeId) end) slStr,
 (case when a.operateType='1' then CONVERT(NUMERIC(11,2),ISNULL(SUM(b.dj/b.zhyz*d.sl),0)) when a.operateType='2' then CONVERT(NUMERIC(11,2),ISNULL(SUM(b.dj/b.zhyz*a.sl),0)) end) je,
 a.Id,a.yzId,a.zxId,a.CreateTime,a.CreatorCode,d.pc,e.jxmc,ypsx.ypgg
@@ -1477,9 +1477,9 @@ a.Id, a.yzId, a.zxId, a.ypCode, b.yzxz, b.zlff, c.ycmc, b.dj, c.djdw, a.CreateTi
         public IList<HospitalizationDispenseDetail> GetYzCzjlListV2(Pagination pagination, QueryZYFYInfoReqVO req)
         {
             var strSql = new StringBuilder(@"
-select (case when a.operateType='1' then '发药' when a.operateType='2' then '退药' end) czlx,
+select (case when a.operateType='1' then 'Phát thuốc' when a.operateType='2' then 'Trả thuốc' end) czlx,
 b.zyh,b.patientName,b.cw,b.ypCode,c.ypmc,b.pcmc,ISNULL(CONVERT(VARCHAR(50),b.zh),'') zh, b.yl, b.yldw, CONCAT(b.yl,b.yldw) ylStr
-,(case when b.yzxz = '1' then '临时' when b.yzxz = '2' then '长期' else '/' END) yzxzmc,b.zlff,c.ycmc,CONCAT(b.dj,'元/',c.djdw) djStr,
+,(case when b.yzxz = '1' then 'Tạm thời' when b.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc,b.zlff,c.ycmc,CONCAT(b.dj,'元/',c.djdw) djStr,
 (case when a.operateType='1' then dbo.f_getYfbmYpComplexYpSlandDwV2(SUM(d.sl), @yfbmCode, b.ypCode, @OrganizeId,'2') when a.operateType='2' then dbo.f_getYfbmYpComplexYpSlandDwV2(SUM(a.sl), @yfbmCode, b.ypCode, @OrganizeId,'2') end) slStr,
 (case when a.operateType='1' then CONVERT(NUMERIC(11,2),ISNULL(SUM(b.dj/b.zhyz*d.sl),0)) when a.operateType='2' then CONVERT(NUMERIC(11,2),ISNULL(SUM(b.dj/b.zhyz*a.sl),0)) end) je,
 a.Id,a.yzId,a.zxId,a.CreateTime,a.CreatorCode,d.pc,e.jxmc,ypsx.ypgg,a.zytyapplyno,b.bqCode
@@ -1525,9 +1525,9 @@ a.Id, a.yzId, a.zxId, a.ypCode, b.yzxz, b.zlff, c.ycmc, b.dj, c.djdw, a.CreateTi
             strSql.AppendLine(@" union all ");
 
             strSql.AppendLine(@" 
-            select '退药' as czlx,
+            select 'Trả thuốc' as czlx,
 	            s.zyh,s.patientName,s.cw,s.ypCode,s.ypmc,s.pcmc,s.zh, s.yl, s.yldw, CONCAT(s.yl,s.yldw) ylStr,
-                (case when s.yzxz = '1' then '临时' when s.yzxz = '2' then '长期' else '/' END) yzxzmc,s.zlff,s.ycmc, CONCAT(s.dj,'元/',s.djdw) djStr,
+                (case when s.yzxz = '1' then 'Tạm thời' when s.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc,s.zlff,s.ycmc, CONCAT(s.dj,'元/',s.djdw) djStr,
 	            dbo.f_getYfbmYpComplexYpSlandDwV2(SUM(s.sl),@yfbmCode, s.ypCode, @OrganizeId,'2') slStr,
 	            CONVERT(NUMERIC(11,2),ISNULL(SUM(s.dj/s.zhyz*s.sl),0)) je,
 	            s.Id,s.yzId,s.zxId,s.CreateTime,s.CreatorCode,s.pc,s.jxmc,s.ypgg,s.zytyapplyno,s.bqCode 
@@ -1607,7 +1607,7 @@ s.Id, s.yzId, s.zxId, s.ypCode, s.yzxz, s.zlff, s.ycmc, s.dj, s.djdw, s.CreateTi
 SELECT r.*, CONCAT(r.dj, '元/', r.bmdw) djStr, CONVERT(NUMERIC(11,2),ISNULL(r.zxdwsl*r.dj/r.zhyz,0)) je
 FROM (
 	SELECT d.patientName, d.zyh, d.cw, d.yzId, d.zxId, d.ypCode, yp.ypmc, ypsx.ypgg,ISNULL(CONVERT(VARCHAR(50),d.zh),'') zh 
-	,CASE when d.yzxz = '1' then '临时' when d.yzxz = '2' then '长期' else '/' end yzxzmc
+	,CASE when d.yzxz = '1' then 'Tạm thời' when d.yzxz = '2' then 'Dài hạn' else '/' end yzxzmc
 	,yp.ycmc, CONVERT(INT,ISNULL(d.zxdwsl/d.zhyz,0)) sl, CONVERT(INT,d.zxdwsl) zxdwsl, dbo.f_getyfbmDw(@yfbmCode, d.ypCode, @OrganizeId) bmdw
 	,dbo.f_getYfbmYpComplexYpSlandDwV2(d.zxdwsl, @yfbmCode, d.ypCode, @OrganizeId,'2') slStr, CONCAT(d.yl,d.yldw) ylStr
 	,d.dj, LTRIM(RTRIM(d.ph)) ph, LTRIM(RTRIM(d.pc)) pc, rdbd.zhyz, rdb.applyNo, rdbd.Id rdbdId
@@ -1669,7 +1669,7 @@ ORDER BY r.applyNo, r.ypmc
 SELECT distinct r.zytyapplyno, r.zyh
 FROM (
 	SELECT d.patientName, d.zyh, d.cw, d.yzId, d.zxId, d.ypCode, yp.ypmc, ypsx.ypgg,ISNULL(CONVERT(VARCHAR(50),d.zh),'') zh 
-	,CASE when d.yzxz = '1' then '临时' when d.yzxz = '2' then '长期' else '/' end yzxzmc
+	,CASE when d.yzxz = '1' then 'Tạm thời' when d.yzxz = '2' then 'Dài hạn' else '/' end yzxzmc
 	,yp.ycmc, CONVERT(INT,ISNULL(d.zxdwsl/d.zhyz,0)) sl, CONVERT(INT,d.zxdwsl) zxdwsl, dbo.f_getyfbmDw(@yfbmCode, d.ypCode, @OrganizeId) bmdw
 	,dbo.f_getYfbmYpComplexYpSlandDw(d.zxdwsl, @yfbmCode, d.ypCode, @OrganizeId) slStr, CONCAT(d.yl,d.yldw) ylStr
 	,d.dj, LTRIM(RTRIM(d.ph)) ph, LTRIM(RTRIM(d.pc)) pc, rdbd.zhyz, rdb.applyNo, rdbd.Id rdbdId
@@ -1734,7 +1734,7 @@ ORDER BY r.zytyapplyno
             const string sql = @"
 SELECT r.*, CONCAT(r.dj, '元/', r.bmdw) djStr, CONVERT(NUMERIC(11,2),ISNULL(r.zxdwsl*r.dj/r.zhyz,0)) je
 FROM (
-	SELECT d.patientName, d.zyh, d.cw, d.yzId, d.zxId, d.ypCode, yp.ypmc, ypsx.ypgg,ISNULL(CONVERT(VARCHAR(50),d.zh),'') zh , CASE when d.yzxz = '1' then '临时' when d.yzxz = '2' then '长期' else '/' end yzxzmc
+	SELECT d.patientName, d.zyh, d.cw, d.yzId, d.zxId, d.ypCode, yp.ypmc, ypsx.ypgg,ISNULL(CONVERT(VARCHAR(50),d.zh),'') zh , CASE when d.yzxz = '1' then 'Tạm thời' when d.yzxz = '2' then 'Dài hạn' else '/' end yzxzmc
 	,yp.ycmc, CONVERT(INT,ISNULL(d.zxdwsl/d.zhyz,0)) sl, CONVERT(INT,d.zxdwsl) zxdwsl, dbo.f_getyfbmDw(@yfbmCode, d.ypCode, @OrganizeId) bmdw
 	,dbo.f_getYfbmYpComplexYpSlandDw(d.zxdwsl, @yfbmCode, d.ypCode, @OrganizeId) slStr, CONCAT(d.yl,d.yldw) ylStr, rdb.zytyapplyno
 	,d.dj, LTRIM(RTRIM(d.ph)) ph, LTRIM(RTRIM(d.pc)) pc, d.zhyz, rdb.applyNo, rdbd.Id rdbdId
@@ -1815,9 +1815,9 @@ WHERE yz.OrganizeId= @OrganizeId
         {
             var strSql = new StringBuilder(@"
 select 
-    '发药' czlx,b.lyxh,
+    'Phát thuốc' czlx,b.lyxh,
     b.zyh,b.patientName,b.cw,b.ypCode,c.ypmc,b.pcmc,ISNULL(CONVERT(VARCHAR(50),b.zh),'') zh, b.yl, b.yldw, CONCAT(b.yl,b.yldw) ylStr
-    ,(case when b.yzxz = '1' then '临时' when b.yzxz = '2' then '长期' else '/' END) yzxzmc,b.zlff,c.ycmc,CONCAT(b.dj,'元/',c.djdw) djStr,
+    ,(case when b.yzxz = '1' then 'Tạm thời' when b.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc,b.zlff,c.ycmc,CONCAT(b.dj,'元/',c.djdw) djStr,
     dbo.f_getYfbmYpComplexYpSlandDw(SUM(d.sl), @yfbmCode, b.ypCode, @OrganizeId) slStr,
     CONVERT(NUMERIC(11,2),ISNULL(SUM(b.dj/b.zhyz*d.sl),0)) je,
     a.Id,a.yzId,a.zxId,a.CreateTime,a.CreatorCode,d.pc,e.jxmc,ypsx.ypgg,b.bqCode
@@ -2050,7 +2050,7 @@ where ksby.zt=1  and ksby.OrganizeId=@OrgId
             var strSql = new StringBuilder(@"");
             if (req.yzxz == "1")
             {
-                strSql.AppendLine(@"select yz.zyh,hzxm,WardCode,bq.bqmc,DeptCode,yzh cfh,'1' yzxz,'临时' yzxzmc
+                strSql.AppendLine(@"select yz.zyh,hzxm,WardCode,bq.bqmc,DeptCode,yzh cfh,'1' yzxz,'Tạm thời' yzxzmc
 	,yz.ysgh,staff.Name ysmc,sum(CONVERT(decimal(12,2),(yz.sl*yp.lsj))) je,yz.yzlx,yz.yzlx yzlxstr,kssj,yzxx.fybz,yzxx.lyxh
 from Newtouch_CIS..zy_lsyz  (nolock) yz
 join NewtouchHIS_PDS..zy_ypyzxx (nolock) yzxx on yz.Id=yzxx.yzId and yzxx.OrganizeId=yz.OrganizeId
@@ -2063,7 +2063,7 @@ where yz.OrganizeId=@OrganizeId and yz.zt=1
                 
             }
             else {
-                strSql.AppendLine(@"select  yz.zyh,hzxm,WardCode,bq.bqmc,DeptCode,yzh cfh,'2' yzxz,'长期' yzxzmc
+                strSql.AppendLine(@"select  yz.zyh,hzxm,WardCode,bq.bqmc,DeptCode,yzh cfh,'2' yzxz,'Dài hạn' yzxzmc
 	,yz.ysgh,staff.Name ysmc,sum(CONVERT(decimal(12,2),(yz.sl*yp.lsj))) je,yz.yzlx,yz.yzlx yzlxstr,yzxx.zxrq kssj,yzxx.fybz,yzxx.lyxh
 from Newtouch_CIS..zy_cqyz  (nolock) yz
 join NewtouchHIS_PDS..zy_ypyzxx (nolock) yzxx on yz.Id=yzxx.yzId
@@ -2100,13 +2100,13 @@ where yz.OrganizeId=@OrganizeId and yz.zt=1
             var parms = new List<SugarParameter>{};
             if (req.yzxz == "1")
             {
-                sql.AppendLine(@"select  yz.Id,yz.zyh,hzxm,'1' yzxz,'临时' yzxzmc,yz.zh,WardCode,bq.bqmc,DeptCode,yzh cfh,yz.ysgh,staff.Name ysmc
+                sql.AppendLine(@"select  yz.Id,yz.zyh,hzxm,'1' yzxz,'Tạm thời' yzxzmc,yz.zh,WardCode,bq.bqmc,DeptCode,yzh cfh,yz.ysgh,staff.Name ysmc
 ,pcCode,xmdm,xmmc,yzzt,dw,yz.sl,yp.lsj dj,CONVERT(decimal(12,2),(yz.sl*yp.lsj)) je,yz.yzlx,kssj,ypjl,yz.ypgg,yznr,yzxx.fybz,yzxx.lyxh,yz.yztag 
-,case  yz.yztag when 'JI' then '精神I类处方' 
+,case  yz.yztag when 'JI' then 'Đơn thuốc hướng thần loại I' 
 			   when 'JII' then '精神II类处方' 
-			   when 'MZ' then '麻醉处方' 
-			   when 'LXGB' then '离休干部'
-			   when 'TBCF' then '特病处方' end yztagName
+			   when 'MZ' then 'Đơn thuốc gây mê' 
+			   when 'LXGB' then 'Cán bộ nghỉ hưu'
+			   when 'TBCF' then 'Đơn thuốc bệnh đặc biệt' end yztagName
 from Newtouch_CIS..zy_lsyz  (nolock) yz
 join NewtouchHIS_PDS..zy_ypyzxx (nolock) yzxx on yz.Id=yzxx.yzId
 left join NewtouchHIS_Base..V_S_xt_yp yp on yp.ypCode=yz.xmdm and yp.OrganizeId=yz.OrganizeId
@@ -2115,13 +2115,13 @@ left join NewtouchHIS_Base..V_S_Sys_Staff staff on staff.gh=yz.ysgh and staff.Or
 where yzh=@yzh and yz.OrganizeId=@OrganizeId and yz.zt=1");
             }
             else {
-                sql.AppendLine(@" select  yz.Id,yz.zyh,hzxm,'2' yzxz,'长期' yzxzmc,yz.zh,WardCode,bq.bqmc,DeptCode,yzh cfh,yz.ysgh,staff.Name ysmc
+                sql.AppendLine(@" select  yz.Id,yz.zyh,hzxm,'2' yzxz,'Dài hạn' yzxzmc,yz.zh,WardCode,bq.bqmc,DeptCode,yzh cfh,yz.ysgh,staff.Name ysmc
 ,pcCode,xmdm,xmmc,yzzt,dw,yz.sl,yp.lsj dj,CONVERT(decimal(12,2),(yz.sl*yp.lsj)) je,yz.yzlx,yzxx.zxrq kssj,ypjl,yz.ypgg,yznr,yzxx.fybz,yzxx.lyxh,yz.yztag 
-,case  yz.yztag when 'JI' then '精神I类处方' 
+,case  yz.yztag when 'JI' then 'Đơn thuốc hướng thần loại I' 
 			   when 'JII' then '精神II类处方' 
-			   when 'MZ' then '麻醉处方' 
-			   when 'LXGB' then '离休干部'
-			   when 'TBCF' then '特病处方' end yztagName
+			   when 'MZ' then 'Đơn thuốc gây mê' 
+			   when 'LXGB' then 'Cán bộ nghỉ hưu'
+			   when 'TBCF' then 'Đơn thuốc bệnh đặc biệt' end yztagName
 from Newtouch_CIS..zy_cqyz  (nolock) yz
 join NewtouchHIS_PDS..zy_ypyzxx (nolock) yzxx on yz.Id=yzxx.yzId  
 left join NewtouchHIS_Base..V_S_xt_yp yp on yp.ypCode=yz.xmdm and yp.OrganizeId=yz.OrganizeId

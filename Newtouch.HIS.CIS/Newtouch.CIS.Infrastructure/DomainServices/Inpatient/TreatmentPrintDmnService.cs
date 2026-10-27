@@ -47,7 +47,7 @@ namespace Newtouch.DomainServices.Inpatient
         public IList<TreatmentPrintVO> GetDetailGridJson(Pagination pagination, string orgId,string zyh,DateTime? kssj, DateTime? jssj,int? zyxz) {
             var sqlstr = new StringBuilder();
             var par = new List<SqlParameter>();
-             sqlstr.Append(@"select aaa.*,isnull(b.yznr,c.yznr) yznr,staff.name lrz,'已执行' zt,d.bedcode,d.xm hzxm,case when zyxz=0 then '临' when zyxz=1 then '长' else '' end clbz  from 
+             sqlstr.Append(@"select aaa.*,isnull(b.yznr,c.yznr) yznr,staff.name lrz,'Đã thực hiện' zt,d.bedcode,d.xm hzxm,case when zyxz=0 then '临' when zyxz=1 then '长' else '' end clbz  from 
                 (select Id,zyh,yzxh,zxrq,createtime,mcsl,creatorcode,dw,zyxz,fzxh from zy_tyssqqk where organizeId=@orgId
                 union all
                 select Id,zyh,yzxh,zxrq,createtime,mcsl,creatorcode,ypdw dw,yzxz as zyxz,fzxh from zy_fyqqk where organizeId=@orgId) aaa

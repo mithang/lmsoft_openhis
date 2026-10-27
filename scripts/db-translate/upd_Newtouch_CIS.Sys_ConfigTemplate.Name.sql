@@ -1,0 +1,26 @@
+-- DB translation Scope A: Newtouch_CIS.Sys_ConfigTemplate.Name (applied live; re-runnable; keyless targets match N'old' values)
+USE [Newtouch_CIS];
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Cong tac ： Ngoai tru Co mo hay khong Phuc hoi Don thuoc' WHERE [Id] = '16227720-3151-420c-9e1c-1b56bb45d19b';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Loai phieu thuc hien - Don tiem' WHERE [Id] = '1976F8A1-B5B1-444F-B22B-937504920827';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Noi tru Xet nghiem Dang ky don' WHERE [Id] = '1BEC788F-8A0B-48DD-B82B-33EB1F63517B';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'CIS Noi tru Phuc hoi Y lenh Trang Co mo hay khong Cau hinh' WHERE [Id] = '26F9C811-17A3-40D5-8E10-AC685ACA0324';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Noi tru Co hay khong Bat Thuoc Y hoc co truyen Y lenh' WHERE [Id] = '31D99848-0743-4EF0-8644-48095B9DA979';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Co mo hay khong Dinh duong Y lenh' WHERE [Id] = '38801e5b-18df-4fd6-b224-74f4d1ad7de2';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Xet nghiem Tuong ung Dang ky Loai Ma' WHERE [Id] = '4404329A-2EDB-44FA-81F4-1609E1B4709B';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Loai phieu thuc hien - Truyen dich don' WHERE [Id] = '465E49C4-0F40-422E-9B19-59D5BA74ADCA';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Cong tac ： Co mo hay khong Xet nghiem Kiem tra' WHERE [Id] = '481dc4e9-e6a8-4da6-a655-d72e1e0b5455';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Bao hiem y te Noi thuoc ve' WHERE [Id] = '55FCEE14-9986-4FAE-81A8-E3A250D46341';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Don thuoc Cho kham Lay so ngay' WHERE [Id] = '5DA062AB-BADD-4CBF-96D6-CDC97C9C6D70';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Loai phieu thuc hien - Dieu duong don' WHERE [Id] = '6A59FC49-8671-43AD-A6B9-4282AB0F0A9B';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Kiem tra Xet nghiem In' WHERE [Id] = '745C9D01-2209-410A-B744-372752A83627';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Cong tac ： Ngoai tru Co mo hay khong Hang muc thong thuong Don thuoc' WHERE [Id] = '7bfbd2cd-e8d5-4c50-b8c6-067e9cb4d511';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Phi sac thuoc ho Gan ket Hang muc' WHERE [Id] = '848BE6D3-7CA6-46D8-9C2C-BF8472264201';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Loai phieu thuc hien - Duoc lieu Y hoc co truyen Y lenh' WHERE [Id] = '901BE8ED-FE5A-493D-A894-904984670CC3';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'In lai y lenh tam thoi' WHERE [Id] = 'AED63DEB-9E0B-4984-8620-22CD842D1516';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Co hay khong Bat Thuoc Y hoc co truyen Don thuoc' WHERE [Id] = 'C7DFC049-DA70-4C74-B16B-1259349E722E';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Cong tac ： Noi tru Co mo hay khong Hang muc thong thuong Don thuoc' WHERE [Id] = 'c92e3773-5a33-4cd7-b0f2-203f949cec4e';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Co hay khong In Phuc hoi Don thuoc don' WHERE [Id] = 'D628808D-4EEA-4C73-91C0-6E5D17A1E320';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Bac si Don thuoc Kiem soat quyen mo' WHERE [Id] = 'EA7C1061-4D50-4A8A-9D5F-F816F0FB3E44';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Loai phieu thuc hien - Dieu tri don' WHERE [Id] = 'EC3952D4-0FC1-480E-B288-C3AFE4E45491';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Khi dung Cach dung Cau hinh' WHERE [Id] = 'FA297CC2-EB45-45C1-83F8-E043E7CFAC96';
+UPDATE [Sys_ConfigTemplate] SET [Name] = 'Dien tim Tuong ung Dang ky Loai Ma' WHERE [Id] = 'FD158111-37DF-4B6C-BFDA-82BA7B49BC8B';

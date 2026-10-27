@@ -18,22 +18,22 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// CMND/CCCD
         /// </summary>
-        [Description("身份证")]
+        [Description("Chứng minh nhân dân")]
         sfz = 1,
         /// <summary>
         /// Hộ chiếu
         /// </summary>
-        [Description("护照")]
+        [Description("Hộ chiếu")]
         hz,
         /// <summary>
         /// Giấy chứng nhận sĩ quan
         /// </summary>
-        [Description("军官证")]
+        [Description("Chứng minh sĩ quan")]
         jgz,
         /// <summary>
         /// Khác
         /// </summary>
-        [Description("其他")]
+        [Description("Khác")]
         other = 9
     }
 
@@ -45,37 +45,37 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Được thanh toán
         /// </summary>
-        [Description("可报")]
+        [Description("Được bảo hiểm")]
         KB = 0,
         /// <summary>
         /// tự chi trả
         /// </summary>
-        [Description("自费")]
+        [Description("Tự chi trả")]
         ZF = 1,
         /// <summary>
         /// Tự trả theo loại
         /// </summary>
-        [Description("分类自负")]
+        [Description("Tự trả theo loại")]
         FLZF = 2,
         /// <summary>
         /// Tự túc hoàn toàn
         /// </summary>
-        [Description("绝对自理")]
+        [Description("Hoàn toàn tự trả")]
         JueDuiZiLi = 3,
         /// <summary>
         /// Loại A
         /// </summary>
-        [Description("甲类")]
+        [Description("Hạng A")]
         Jia,
         /// <summary>
         /// Loại B
         /// </summary>
-        [Description("乙类")]
+        [Description("Hạng B")]
         Yi,
         /// <summary>
         /// Loại C
         /// </summary>
-        [Description("丙类")]
+        [Description("Hạng C")]
         Bing,
     }
 
@@ -84,17 +84,17 @@ namespace Newtouch.Infrastructure
 	/// </summary>
 	public enum EnumYpsx
 	{
-		[Description("麻精药品（麻醉、精一、精二）")]
+		[Description("Thuốc gây nghiện, hướng thần (gây mê, hướng thần I, hướng thần II)")]
 		Mzyp = 9,
-		[Description("毒性药品")]
+		[Description("Thuốc độc")]
 		Dxyp = 4,
-		[Description("血液制品")]
+		[Description("Chế phẩm máu")]
 		Xyzp = 5,
-		[Description("激素药品")]
+		[Description("Thuốc hormone")]
 		Jsyp = 6,
-		[Description("贵重药品")]
+		[Description("Thuốc quý hiếm")]
 		Gzyp = 7,
-		[Description("抗肿瘤药物药品")]
+		[Description("Thuốc chống ung thư")]
 		Kzlywyp = 8,
 	}
 	/// <summary>
@@ -103,11 +103,11 @@ namespace Newtouch.Infrastructure
 	public enum EnumKss
 	{
 
-		[Description("非限制使用药物")]
+		[Description("Thuốc dùng không hạn chế")]
 		Fxzsyyw = 0,
-		[Description("限制使用药物")]
+		[Description("Thuốc dùng hạn chế")]
 		Xzsyyw = 1,
-		[Description("特殊使用药物")]
+		[Description("Thuốc dùng đặc biệt")]
 		Tssyyw = 2,
 	}
 
@@ -119,17 +119,17 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// chưaKhám bệnh
         /// </summary>
-        [Description("未就诊")]
+        [Description("Chưa khám")]
         NotYetTreate = 1,
         /// <summary>
         /// Khám bệnhtrong
         /// </summary>
-        [Description("就诊中")]
+        [Description("Đang khám")]
         Treating = 2,
         /// <summary>
         /// Khám bệnhKết thúc
         /// </summary>
-        [Description("就诊结束")]
+        [Description("Đã khám xong")]
         Treated = 3,
     }
 
@@ -141,62 +141,62 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// thông thườngNgoại trú
         /// </summary>
-        [Description("普通门诊")]
+        [Description("Khám ngoại trú thông thường")]
         generalOutpat = 1,
         /// <summary>
         /// gấpkhám
         /// </summary>
-        [Description("急诊")]
+        [Description("Cấp cứu")]
         emerDiagnosis = 2,
         /// <summary>
         /// chuyên giaNgoại trú
         /// </summary>
-        [Description("专家门诊")]
+        [Description("Khám chuyên gia")]
         expertOutpat = 3,
         /// <summary>
         /// chuyên giaNgoại trú
         /// </summary>
-        [Description("特病门诊")]
+        [Description("Khám bệnh đặc biệt")]
         SpecialOutpat = 4,
         /// <summary>
         /// trọnglớnbệnhbệnhNgoại trú
         /// </summary>
-        [Description("重大疾病门诊")]
+        [Description("Khám bệnh hiểm nghèo")]
         MajorDiseases = 5,
         /// <summary>
         /// Bệnh mạn tínhNgoại trú
         /// </summary>
-        [Description("慢性病门诊")]
+        [Description("Khám bệnh mạn tính")]
         ChronicDisease = 6,
         /// <summary>
         /// cư dânhaibệnh
         /// </summary>
-        [Description("居民两病")]
+        [Description("Hai bệnh của dân cư")]
         jmlb = 7,
         /// <summary>
-        /// ýngoài伤害Ngoại trú
+        /// Khám ngoại trú chấn thương ngoài ý muốn
         /// </summary>
-        [Description("意外伤害门诊")]
+        [Description("Khám tai nạn thương tích")]
         ywshmz = 8,
         /// <summary>
         /// sinhdụcNgoại trú
         /// </summary>
-        [Description("生育门诊")]
+        [Description("Khám sinh sản")]
         symz = 9,
         /// <summary>
-        /// 耐nhiềuthuốckếthạt nhânNgoại trú
+        /// Khám ngoại trú lao đa kháng thuốc
         /// </summary>
-        [Description("耐多药结核门诊")]
+        [Description("Khám lao đa kháng thuốc")]
         ndyjhmz = 10,
         /// <summary>
         /// trẻ emhaibệnhNgoại trú
         /// </summary>
-        [Description("儿童两病门诊")]
+        [Description("Hai bệnh trẻ em")]
         etlbmz = 11,
         /// <summary>
-        /// đơn giản易Ngoại trú
+        /// Khám ngoại trú đơn giản
         /// </summary>
-        [Description("简易门诊")]
+        [Description("Khám đơn giản")]
         jymz = 12
     }
 
@@ -208,50 +208,50 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Thuốc TâyĐơn thuốc
         /// </summary>
-        [Description("西药处方")]
+        [Description("Đơn thuốc Tây")]
         WMPres = 1,
         /// <summary>
         /// Thuốc Đông yĐơn thuốc
         /// </summary>
-        [Description("中药处方")]
+        [Description("Đơn thuốc Đông y")]
         TCMPres = 2,
         /// <summary>
         /// Phục hồi chức năngĐơn thuốc
         /// </summary>
-        [Description("康复处方")]
+        [Description("Đơn phục hồi chức năng")]
         RehabPres = 3,
         /// <summary>
         /// Xét nghiệmĐơn thuốc
         /// </summary>
-        [Description("检验处方")]
+        [Description("Đơn xét nghiệm")]
         InspectionPres = 4,
         /// <summary>
         /// Kiểm traĐơn thuốc
         /// </summary>
-        [Description("检查处方")]
+        [Description("Đơn kiểm tra")]
         ExaminationPres = 5,
         /// <summary>
         /// Hạng mục thông thườngĐơn thuốc
         /// </summary>
-        [Description("常规项目处方")]
+        [Description("Đơn hạng mục thường quy")]
         RegularItemPres = 6,
         /// <summary>
         /// điện tửĐơn thuốc
         /// </summary>
-		[Description("电子处方")]
+		[Description("Đơn thuốc điện tử")]
 		Dzcf =7,
         /// <summary>
         /// ydùngVật tư tiêu hao
         /// </summary>
-        [Description("医用耗材")]
+        [Description("Vật tư y tế")]
         Yyhc = 8
     }
 
     public enum EnumYpyf
     {
-        [Description("西医")]
+        [Description("Tây y")]
         WM=1,
-        [Description("中医")]
+        [Description("Đông y")]
         TCM=2
     }
 
@@ -263,12 +263,12 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// chínhChẩn đoán
         /// </summary>
-        [Description("主诊断")]
+        [Description("Chẩn đoán chính")]
         Main = 1,
         /// <summary>
         /// phụChẩn đoán
         /// </summary>
-        [Description("副诊断")]
+        [Description("Chẩn đoán phụ")]
         Deputy = 2
     }
 
@@ -281,17 +281,17 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Cá nhân
         /// </summary>
-        [Description("个人")]
+        [Description("Cá nhân")]
         personal = 1,
         /// <summary>
         /// Khoa
         /// </summary>
-        [Description("科室")]
+        [Description("Khoa")]
         department = 2,
         /// <summary>
         /// Toàn viện
         /// </summary>
-        [Description("全院")]
+        [Description("Toàn viện")]
         hospital = 3,
     }
 
@@ -303,12 +303,12 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Xét nghiệm
         /// </summary>
-        [Description("检验")]
+        [Description("Xét nghiệm")]
         jy = 1,
         /// <summary>
         /// Kiểm tra
         /// </summary>
-        [Description("检查")]
+        [Description("Kiểm tra")]
         jc = 2
     }
 
@@ -320,12 +320,12 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Xét nghiệm
         /// </summary>
-        [Description("检验")]
+        [Description("Xét nghiệm")]
         jy = 1,
         /// <summary>
         /// Kiểm tra
         /// </summary>
-        [Description("检查")]
+        [Description("Kiểm tra")]
         jc = 2
     }
 
@@ -337,17 +337,17 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Theo thời lượng
         /// </summary>
-        [Description("按时长")]
+        [Description("Theo thời lượng")]
         Time = 1,
         /// <summary>
         /// Theo số lượng
         /// </summary>
-        [Description("按数量")]
+        [Description("Theo số lượng")]
         Amount,
         /// <summary>
         /// Theo diện tích
         /// </summary>
-        [Description("按面积")]
+        [Description("Theo diện tích")]
         Acreage,
     }
 
@@ -359,7 +359,7 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// 
         /// </summary>
-        [Description("本系统")]
+        [Description("Hệ thống này")]
         self = 1,
         /// <summary>
         /// 
@@ -376,12 +376,12 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// 
         /// </summary>
-        [Description("单点登录")]
+        [Description("Đăng nhập một lần (SSO)")]
         SSO = 1,
         /// <summary>
         /// 
         /// </summary>
-        [Description("系统登录")]
+        [Description("Đăng nhập hệ thống")]
         App = 2
     }
 
@@ -392,52 +392,52 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// 
         /// </summary>
-        [Description("回民普食")]
+        [Description("Cơm thường người Hồi")]
         hmps = 1,
         /// <summary>
         /// 
         /// </summary>
-        [Description("回民半流")]
+        [Description("Ăn bán lỏng người Hồi")]
         hmbl = 2,
         /// <summary>
         /// 
         /// </summary>
-        [Description("回民流质")]
+        [Description("Ăn lỏng người Hồi")]
         hmlz = 3,
         /// <summary>
         /// 
         /// </summary>
-        [Description("一般普食")]
+        [Description("Cơm thường")]
         ybps = 4,
         /// <summary>
         /// 
         /// </summary>
-        [Description("一般半流")]
+        [Description("Ăn bán lỏng")]
         ybbl = 5,
         /// <summary>
         /// 
         /// </summary>
-        [Description("一般流质")]
+        [Description("Ăn lỏng")]
         yblz = 6,
         /// <summary>
         /// 
         /// </summary>
-        [Description("膳食自备")]
+        [Description("Tự chuẩn bị bữa ăn")]
         sszb = 7,
         /// <summary>
         /// 
         /// </summary>
-        [Description("禁食")]
+        [Description("Nhịn ăn")]
         js = 8,
         /// <summary>
         /// 
         /// </summary>
-        [Description("肠内营养")]
+        [Description("Dinh dưỡng qua đường ruột")]
         cnyy = 9,
         /// <summary>
         /// 
         /// </summary>
-        [Description("营养补充剂")]
+        [Description("Chất bổ sung dinh dưỡng")]
         yybcj = 10,
     }
 
@@ -448,15 +448,15 @@ namespace Newtouch.Infrastructure
     {
         [Description("His")]
         his = 0,
-        [Description("预约")]
+        [Description("Đặt hẹn")]
         yy = 1,
-        [Description("银医通")]
+        [Description("Ngân hàng - Y tế (Yin Yi Tong)")]
         yyt = 3,
-        [Description("微信")]
+        [Description("WeChat")]
         wechat = 4,
-        [Description("支付宝")]
+        [Description("Alipay")]
         alipay = 5,
-        [Description("体检")]
+        [Description("Khám sức khỏe")]
         tj = 6,
     }
 
@@ -465,13 +465,13 @@ namespace Newtouch.Infrastructure
     /// </summary>
     public enum EmunQueueCalledStu
     {
-        [Description("已签到")]
+        [Description("Đã điểm danh")]
         sign = 1,
-        [Description("已叫")]
+        [Description("Đã gọi")]
         call = 2,
-        [Description("过号")]
+        [Description("Quá số")]
         pass = 3,
-        [Description("应答")]
+        [Description("Đã trả lời")]
         reply = 4,
     }
 
@@ -484,12 +484,12 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// chỉNgoại trú
         /// </summary>
-        [Description("门诊")]
+        [Description("Ngoại trú")]
         mz = 1,
         /// <summary>
         /// chỉNhập viện
         /// </summary>
-        [Description("住院")]
+        [Description("Nội trú")]
         zy = 2,
         ///// <summary>
         ///// Chung
@@ -502,12 +502,12 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// chưaThực hiện
         /// </summary>
-        [Description("未执行")]
+        [Description("Chưa thực hiện")]
         wzx = 0,
         /// <summary>
         /// đãThực hiện
         /// </summary>
-        [Description("已执行")]
+        [Description("Đã thực hiện")]
         yzx = 1
        
     } 
@@ -516,15 +516,15 @@ namespace Newtouch.Infrastructure
     /// </summary>
     public enum EmunConsultCalledStu
     {
-        [Description("待叫号")]
+        [Description("Chờ gọi số")]
         wait = 1,
-        [Description("已叫")]
+        [Description("Đã gọi")]
         call = 2,
-        [Description("过号")]
+        [Description("Quá số")]
         pass = 3,
-        [Description("应答")]
+        [Description("Đã trả lời")]
         reply = 4,
-        [Description("重新叫号")]
+        [Description("Gọi lại số")]
         recall = 5,
     }
     /// <summary>
@@ -532,17 +532,17 @@ namespace Newtouch.Infrastructure
     /// </summary>
     public enum Emunzlzt
     {
-        [Description("待确认")]
+        [Description("Chờ xác nhận")]
         dqr = 1,
-        [Description("就诊中")]
+        [Description("Đang khám")]
         jzz = 2,
-        [Description("已结束")]
+        [Description("Đã kết thúc")]
         yjs = 3,
-        [Description("已退回")]
+        [Description("Đã trả lại")]
         yth = 4,
-        [Description("已撤销")]
+        [Description("Đã hủy")]
         ycx = 5,
-        [Description("已发药")]
+        [Description("Đã phát thuốc")]
         yfy = 6,
     }
     /// <summary>
@@ -553,13 +553,13 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Báo hỏng
         /// </summary>
-        [Description("报损")]
+        [Description("Báo hỏng")]
         Loss = 0,
 
         /// <summary>
         /// báo thừa
         /// </summary>
-        [Description("报溢")]
+        [Description("Báo thừa")]
         Profit = 1,
     }
     public enum EnumOutOrInStorageBillType
@@ -567,67 +567,67 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// ngoàibộNhập kho
         /// </summary>
-        [Description("外部入库")]
+        [Description("Nhập kho ngoài")]
         Wbrk = 1,
 
         /// <summary>
         /// ngoàibộXuất kho
         /// </summary>
-        [Description("外部出库")]
+        [Description("Xuất kho ngoài")]
         Wbck = 2,
 
         /// <summary>
         /// trực tiếpXuất kho
         /// </summary>
-        [Description("直接出库")]
+        [Description("Xuất kho trực tiếp")]
         Zjck = 3,
 
         /// <summary>
         /// đăng kýlĩnhXuất kho
         /// </summary>
-        [Description("申领出库")]
+        [Description("Xuất kho theo đơn lĩnh")]
         Slck = 4,
 
         /// <summary>
         /// trongbộtrả hàng
         /// </summary>
-        [Description("内部退货")]
+        [Description("Trả lại nội bộ")]
         Nbth = 5,
 
         /// <summary>
         /// Báo hỏngbáo thừa
         /// </summary>
-        [Description("报损报溢")]
+        [Description("Báo hỏng/báo thừa")]
         Bsby = 6,
 
         /// <summary>
         /// phốigửiđếnKhoa
         /// </summary>
-        [Description("出库至科室")] //phiếusố phiếuckZKS111111111111
+        [Description("Xuất kho đến khoa")] //phiếusố phiếuckZKS111111111111
         chukuzhikeshi = 7,
 
         /// <summary>
         /// Khoađăng kýlĩnh
         /// </summary>
-        [Description("科室申领")]
+        [Description("Khoa lĩnh")]
         kssl = 8,
 
         /// <summary>
         /// Khoađăng kýlĩnhXuất kho
         /// </summary>
-        [Description("科室申领出库")]
+        [Description("Khoa lĩnh xuất kho")]
         ksSlck = 9,
 
         /// <summary>
         /// Mua hàngtínhvạch
         /// </summary>
-        [Description("采购计划")]
+        [Description("Kế hoạch mua sắm")]
         purchasingPlan = 10,
 
         /// <summary>
         /// Mua hàngđặtphiếu
         /// </summary>
-        [Description("采购订单")]
+        [Description("Đơn hàng mua sắm")]
         purchasingOrder = 11,
     }
     /// <summary>
@@ -638,13 +638,13 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Vô hiệu
         /// </summary>
-        [Description("无效")]
+        [Description("Không hiệu lực")]
         Disable = 0,
 
         /// <summary>
         /// Hiệu lực
         /// </summary>
-        [Description("有效")]
+        [Description("Hiệu lực")]
         Enable = 1
 
     }
@@ -657,31 +657,31 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// chờchỗlý
         /// </summary>
-        [Description("待处理")]
+        [Description("Chờ xử lý")]
         Waiting = 0,
 
         /// <summary>
         /// Phê duyệtthông qua
         /// </summary>
-        [Description("审核通过")]
+        [Description("Duyệt đạt")]
         Adopt = 1,
 
         /// <summary>
         /// Phê duyệtkhôngthông qua
         /// </summary>
-        [Description("审核不通过")]
+        [Description("Duyệt không đạt")]
         Refuse = 2,
 
         /// <summary>
         /// Đã hủy bỏ
         /// </summary>
-        [Description("已作废")]
+        [Description("Đã hủy bỏ")]
         Cancelled = 3,
 
         /// <summary>
         /// tạmtồn tại
         /// </summary>
-        [Description("暂存")]
+        [Description("Lưu tạm")]
         Temporary = 4,
     }
     /// <summary>
@@ -692,27 +692,27 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// None
         /// </summary>
-        [Description("全部")]
+        [Description("Tất cả")]
         None = -1,
         /// <summary>
         /// Hiển thịkhôngTồn kho
         /// </summary>
-        [Description("显示零库存")]
+        [Description("Hiển thị tồn kho bằng 0")]
         Xslkc = 0,
         /// <summary>
         /// khôngHiển thịlýluậnSố lượnglàkhông
         /// </summary>
-        [Description("不显示理论数量为零")]
+        [Description("Không hiển thị số lượng lý thuyết bằng 0")]
         Bxsllslwl = 1,
         /// <summary>
         /// khôngHiển thịthực tếSố lượnglàkhông
         /// </summary>
-        [Description("不显示实际数量为零")]
+        [Description("Không hiển thị số lượng thực tế bằng 0")]
         Bxssjslwl = 2,
         /// <summary>
         /// khôngHiển thịthực tếSố lượnglàkhông
         /// </summary>
-        [Description("不显示两者都为零")]
+        [Description("Không hiển thị khi cả hai bằng 0")]
         Bxslzdwl = 4
     }
 }

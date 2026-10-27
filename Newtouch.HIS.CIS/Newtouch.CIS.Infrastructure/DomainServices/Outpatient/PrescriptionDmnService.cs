@@ -34,8 +34,8 @@ SELECT cfmxId,Createtime, zh, xmmc, cfmx.ypmc, ypgg,
  yfmc, dj, mczll, cfmx.pcCode, pc.yzpcmc pcmc, sl, bw,
  cast(isnull(isnull(zl,0),0) as varchar)+'('+dw+')' AS zl, 
  je,cfmx.zxks,ks.name AS zxksmc,
-        CASE WHEN ISNULL(yp.ybdm, '') = '' THEN '否'
-             ELSE '是'
+        CASE WHEN ISNULL(yp.ybdm, '') = '' THEN 'Không'
+             ELSE 'Có'
         END sfyb
 FROM xt_cfmx cfmx
 LEFT JOIN [NewtouchHIS_Base]..V_S_xt_yzpc(nolock) pc

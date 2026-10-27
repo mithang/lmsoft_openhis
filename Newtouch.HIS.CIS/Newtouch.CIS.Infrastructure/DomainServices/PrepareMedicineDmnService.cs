@@ -55,7 +55,7 @@ select distinct top 100
     ,CONVERT(DECIMAL(12,4),yp.pfj) Ykpfj
 	,CONVERT(DECIMAL(12,4),kcxx.jj/yp.bzs) jj
     ,sfdl.dlmc yplb
-    ,case yp.mzzybz when '1' then '正常' when '0' then '停用' end ypzt
+    ,case yp.mzzybz when '1' then 'Bình thường' when '0' then 'Đã ngừng dùng' end ypzt
 from [Newtouch_CIS].[dbo].xt_ksby_kcxx(NOLOCK) kcxx
 INNER join NewtouchHIS_Base.dbo.xt_yp(NOLOCK) yp on kcxx.ypdm=yp.ypCode and yp.organizeId=@OrganizeId AND yp.zt='1'
 INNER join NewtouchHIS_Base.dbo.xt_ypsx(NOLOCK) ypsx on ypsx.ypId=yp.ypId AND ypsx.OrganizeId=yp.OrganizeId AND ypsx.zt='1'
@@ -205,7 +205,7 @@ order by a.ypcode,a.kcsl,a.yxq
         public IList<LossAndProditInfoVO> SelectLossAndProditInfoList(Pagination pagination, string startTime, string endTime, string inputCode, string syyy, int syqk)
         {
             var strSql = new StringBuilder(@"
-         SELECT DISTINCT syxx.syId, FLOOR(syxx.sykc/syxx.Zhyz) sykc, CASE WHEN syxx.sysl > 0 THEN '报溢' ELSE '报损' END AS syqk, yp.ypmc,yp.ypCode, sf.dlmc AS yplb
+         SELECT DISTINCT syxx.syId, FLOOR(syxx.sykc/syxx.Zhyz) sykc, CASE WHEN syxx.sysl > 0 THEN 'Báo thừa' ELSE 'Báo hỏng' END AS syqk, yp.ypmc,yp.ypCode, sf.dlmc AS yplb
 	    , yp.py, syxx.ph, convert(varchar(100), syxx.yxq, 111) AS yxq, syxx.bgsj 
 		,[NewtouchHIS_PDS].dbo.f_getYfbmYpComplexYpSlandDw(syxx.sysl,syxx.yfbmCode,syxx.ypdm,syxx.OrganizeId) sysl
 		,syxx.Zhyz
@@ -444,7 +444,7 @@ FROM (
             const string sql = @"
 SELECT s.dlmc,s.ypmc,s.ypCode ypdm,s.ypgg gg,SUM(s.kykc) kykc, [NewtouchHIS_PDS].dbo.f_getComplexYpSlandDw(SUM(s.kykc),s.zhyz,s.bmdw,s.zxdw) slStr,s.bmdw dw,CONVERT(INT,s.zhyz) zhyz,CONVERT(INT,s.bzs) bzs
 ,s.bzdw,s.zxdw,s.pzwh,CONVERT(NUMERIC(11,4),s.zxdwlsj) zxdwlsj,CONVERT(NUMERIC(11,4),s.zxdwlsj*s.zhyz) lsj,CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz) pfj,s.ycmc sccj,s.yklsj,s.ykpfj
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwlsj*s.zhyz))+'元/'+s.bmdw) lsjdjdw,yxq,pc,ph
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwlsj*s.zhyz))+'đồng/'+s.bmdw) lsjdjdw,yxq,pc,ph
 FROM 
 (
 	select 
@@ -475,7 +475,7 @@ GROUP BY s.dlmc,s.ypmc,s.ypCode,s.ypgg,s.bmdw,s.zhyz,s.bzs,s.bzdw,s.zxdw,s.pzwh,
             const string sql = @"
 SELECT s.dlmc,s.ypmc,s.ypCode ypdm,s.ypgg gg,SUM(s.kykc) kykc, [NewtouchHIS_PDS].dbo.f_getComplexYpSlandDw(SUM(s.kykc),s.zhyz,s.bmdw,s.zxdw) slStr,s.bmdw dw,CONVERT(INT,s.zhyz) zhyz,CONVERT(INT,s.bzs) bzs
 ,s.bzdw,s.zxdw,s.pzwh,CONVERT(NUMERIC(11,4),s.zxdwlsj) zxdwlsj,CONVERT(NUMERIC(11,4),s.zxdwlsj*s.zhyz) lsj,CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz) pfj,s.ycmc sccj,s.yklsj,s.ykpfj
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwlsj*s.zhyz))+'元/'+s.bmdw) lsjdjdw,yxq,pc,ph
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwlsj*s.zhyz))+'đồng/'+s.bmdw) lsjdjdw,yxq,pc,ph
 FROM 
 (
 	select 

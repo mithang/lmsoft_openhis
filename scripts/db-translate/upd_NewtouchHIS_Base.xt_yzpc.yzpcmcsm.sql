@@ -1,0 +1,27 @@
+-- DB translation Scope A: NewtouchHIS_Base.xt_yzpc.yzpcmcsm (applied live; re-runnable; keyless targets match N'old' values)
+USE [NewtouchHIS_Base];
+UPDATE [xt_yzpc] SET [yzpcmcsm] = '12 mot lan moi gio' WHERE [yzpcmcsm] = N'12小时一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = '30 mot lan moi phut' WHERE [yzpcmcsm] = N'30分钟一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = '8 mot lan moi gio' WHERE [yzpcmcsm] = N'8小时一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Thuoc du phong theo y lenh dai han' WHERE [yzpcmcsm] = N'长期医嘱用药备用';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Cach ngay mot lan' WHERE [yzpcmcsm] = N'隔日一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Cach tuan mot lan' WHERE [yzpcmcsm] = N'隔周一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Ngay lap tuc' WHERE [yzpcmcsm] = N'立即';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi 12 gio mot lan' WHERE [yzpcmcsm] = N'每12小时一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi 2 gio mot lan' WHERE [yzpcmcsm] = N'每2小时一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi 6 gio mot lan' WHERE [yzpcmcsm] = N'每6小时一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi 2 tuan mot lan' WHERE [yzpcmcsm] = N'每两周一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi ngay 2 lan' WHERE [yzpcmcsm] = N'每日两次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi ngay 3 lan' WHERE [yzpcmcsm] = N'每日三次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi ngay 4 lan' WHERE [yzpcmcsm] = N'每日四次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi ngay mot lan' WHERE [yzpcmcsm] = N'每日一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi 3 tuan mot lan' WHERE [yzpcmcsm] = N'每三周一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi 4 tuan mot lan' WHERE [yzpcmcsm] = N'每四周一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi toi mot lan' WHERE [yzpcmcsm] = N'每晚一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi gio mot lan' WHERE [yzpcmcsm] = N'每小时一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi tuan 2 lan' WHERE [yzpcmcsm] = N'每周两次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi tuan 3 lan' WHERE [yzpcmcsm] = N'每周三次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Moi tuan mot lan' WHERE [yzpcmcsm] = N'每周一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = '3 gio mot lan' WHERE [yzpcmcsm] = N'三小时一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = '4 gio mot lan' WHERE [yzpcmcsm] = N'四小时一次';
+UPDATE [xt_yzpc] SET [yzpcmcsm] = 'Khi can' WHERE [yzpcmcsm] = N'需要时';

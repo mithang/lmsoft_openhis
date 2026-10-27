@@ -42,7 +42,7 @@ SELECT jzId,jz.OrganizeId,jz.mzh,mjzbz,jz.blh,jz.xm,jz.xb,jz.csny,brxzmc,jz.zjlx
 ,jz.zjh,ghksmc,ghys,ghsj,tizhong,tiwen,maibo,xueya,xuetang,fzbz,zlkssj,zljssj,jzks,jzys
 ,jzzt,jz.CreateTime,jz.CreatorCode,jz.LastModifyTime,jz.LastModifierCode,jz.zt
 ,ghczsj,jzysmc,brxzCode,ybjsh,cfzbz,jz.sbbh,jz.cbdbm,shengao,shousuoya,shuzhangya,jz.py
-,ContactNum,jz.kh,xx.xian_sheng province,xx.xian_shi city,xx.xian_xian county,xx.xian_dz address,jz.nlshow,jz.ghlybz,queue.queno,case when zz.ghnm is not null then '转诊' else '' end zzbs
+,ContactNum,jz.kh,xx.xian_sheng province,xx.xian_shi city,xx.xian_xian county,xx.xian_dz address,jz.nlshow,jz.ghlybz,queue.queno,case when zz.ghnm is not null then 'Chuyển tuyến' else '' end zzbs
 FROM dbo.xt_jz(NOLOCK) jz
 LEFT JOIN NewtouchHIS_Sett.dbo.xt_brjbxx(NOLOCK)  xx on jz.blh=xx.blh and jz.OrganizeId=xx.OrganizeId and xx.zt='1'
 LEFT JOIN NewtouchHIS_Base.dbo.Sys_Staff(NOLOCK) ss ON ss.gh=@rygh AND ss.OrganizeId=jz.OrganizeId 

@@ -62,7 +62,7 @@ BEGIN TRY
 	) s
 	IF NOT EXISTS(SELECT 1 FROM #djmx)
 	BEGIN
-		SELECT '没有可出库的药品';
+		SELECT 'Không có thuốc có thể xuất kho';
 		ROLLBACK TRANSACTION
 		RETURN;
 	END 
@@ -93,7 +93,7 @@ BEGIN TRY
 			);
 	IF @@ROWCOUNT<=0
 	BEGIN 
-		SELECT '保存出入库单据失败';
+		SELECT 'Lưu chứng từ xuất nhập kho thất bại';
 		ROLLBACK TRANSACTION
 		RETURN;
 	END
@@ -136,7 +136,7 @@ BEGIN TRY
 		--Kiểm tra tồn kho có đủ xuất kho không
 		IF @tmpkcsl<@kykcsl
 		BEGIN
-			SELECT '【'+@ypmc+'】库存不足';
+			SELECT '【'+@ypmc+'】Tồn kho không đủ';
 			ROLLBACK TRANSACTION
 			RETURN;
 		END 
@@ -149,7 +149,7 @@ BEGIN TRY
 		AND zt='1' AND (kcsl-djsl)>0 AND yfbmCode=@yfbmCode AND OrganizeId=@Organizeid
 		IF @@ROWCOUNT<=0
 		BEGIN
-			SELECT '【'+@ypmc+'】扣库存失败';
+			SELECT '【'+@ypmc+'】Trừ tồn kho thất bại';
 			ROLLBACK TRANSACTION
 			BREAK;
 		END 
@@ -170,7 +170,7 @@ BEGIN TRY
 			AND zt='1' AND yfbmCode=@rkbm AND OrganizeId=@Organizeid
 			IF @@ROWCOUNT<=0
 			BEGIN
-				SELECT '【'+@ypmc+'】入库失败';
+				SELECT '【'+@ypmc+'】Nhập kho thất bại';
 				ROLLBACK TRANSACTION
 				BREAK;
 			END 
@@ -205,7 +205,7 @@ BEGIN TRY
 			        )
 			IF @@ROWCOUNT<=0
 			BEGIN
-				SELECT '【'+@ypmc+'】入库失败';
+				SELECT '【'+@ypmc+'】Nhập kho thất bại';
 				ROLLBACK TRANSACTION
 				BREAK;
 			END 
@@ -241,7 +241,7 @@ BEGIN TRY
 				)
 		IF @@ROWCOUNT<=0
 		BEGIN
-			SELECT '【'+@ypmc+'】保存出入库单据明细失败';
+			SELECT '【'+@ypmc+'】Lưu chi tiết chứng từ xuất nhập kho thất bại';
 			ROLLBACK TRANSACTION
 			BREAK;
 		END 
@@ -275,14 +275,14 @@ BEGIN TRY
 	GROUP BY yp.ypmc
 	IF @kykc<@sl
 	BEGIN
-		SELECT '【'+@ypmc+'】'+ '库存不足';
+		SELECT '【'+@ypmc+'】'+ 'Tồn kho không đủ';
 		ROLLBACK TRANSACTION
 		RETURN;
 	END 
 
 	IF NOT EXISTS(SELECT 1 FROM dbo.xt_yp_kcxx WHERE ypdm=@ypdm AND ypdm=@ypdm AND pc=@pc AND ph=@ph AND OrganizeId=@Organizeid AND yfbmCode=@rkbm AND zt='1')
 	BEGIN
-		SELECT '入库部门不存在批次为【'+@pc+'】的药品【'+@ypmc+'】';
+		SELECT 'Khoa nhập kho không có lô là【'+@pc+'】thuốc【'+@ypmc+'】';
 		ROLLBACK TRANSACTION;
 		RETURN ;
 	END
@@ -338,7 +338,7 @@ BEGIN TRY
 	GROUP BY yp.ypmc
 	IF @kykc<@sl
 	BEGIN
-		SELECT '【'+@ypmc+'】'+ '库存不足';
+		SELECT '【'+@ypmc+'】'+ 'Tồn kho không đủ';
 		ROLLBACK TRANSACTION
 		RETURN;
 	END 
@@ -589,7 +589,7 @@ END CATCH
 BEGIN TRY 
 	IF @sl<=0
 	BEGIN
-		SELECT '需作废的库存数量必须大于零';
+		SELECT 'Số lượng tồn kho cần hủy bỏ phải lớn hơn 0';
 		RETURN;
 	END 
 	DECLARE @totalDjsl INT;
@@ -599,12 +599,12 @@ BEGIN TRY
 	IF @totalDjsl>0  
 	BEGIN
 		-- Có đóng băng nghĩa là đang được sử dụng，Hủy bỏ có thể dẫn tới sau này trừ tồn kho không đủ
-		SELECT '该批次存在冻结库存，不能作废';
+		SELECT 'Lô này có tồn kho đóng băng，không thể hủy bỏ';
 		RETURN;
 	END
 	IF @totalKcsl<@sl
 	BEGIN
-		SELECT '库存不足，不能作废';
+		SELECT 'Tồn kho không đủ，không thể hủy bỏ';
 		RETURN;
 	END
 
@@ -673,7 +673,7 @@ BEGIN TRY
 				  0, --jj -DECIMAL(11,4) Giá nhập đơn vị kho thuốc
 		          0, -- djsl - int
 				  GETDATE(),
-		          '目标数量必须大于等于零'  -- errorMsg - varchar(200)
+		          'Số lượng mục tiêu phải lớn hơn hoặc bằng 0'  -- errorMsg - varchar(200)
 		          );
 		SELECT * FROM #returnData;
 		RETURN;
@@ -696,7 +696,7 @@ BEGIN TRY
 				  0, --jj -DECIMAL(11,4) Giá nhập đơn vị kho thuốc
 		          0, -- djsl - int
 				  GETDATE(),
-		          '【'+@ypmc+'】'+'库存不足'  -- errorMsg - varchar(200)
+		          '【'+@ypmc+'】'+'Tồn kho không đủ'  -- errorMsg - varchar(200)
 		          );
 		SELECT * FROM #returnData;
 		RETURN;
@@ -872,12 +872,12 @@ PRINT @kykc
 
 IF @sl<=0
 BEGIN
-	SELECT CONCAT('【',@ypmc,'】数量必须为自然数');
+	SELECT CONCAT('【',@ypmc,'】Số lượng phải là số tự nhiên');
 	RETURN;
 END
 IF(@kykc<@sl)
 BEGIN
-	SELECT CONCAT('【',@ypmc,'】库存不足');
+	SELECT CONCAT('【',@ypmc,'】Tồn kho không đủ');
 	RETURN;
 END
 
@@ -944,7 +944,7 @@ where ksby.zt=1  and ksby.OrganizeId=@orgId and shzt=1
  IF EXISTS(SELECT 1 FROM #ypkc where kykc<sl)
 	BEGIN
 	    select top 1 @resultMsg=djh+' 药品代码:'+ypdm from #ypkc where kykc<sl
-		SET @resultMsg=CONCAT('【单据号:',@resultMsg,'】的库存不足')
+		SET @resultMsg=CONCAT('【Số đơn:',@resultMsg,'】的库存不足')
         select @resultMsg;
 		RETURN;
 	END 
@@ -1000,7 +1000,7 @@ end
 
  IF @@ERROR <> 0
 	BEGIN
-		SET @resultMsg= CONCAT('【单据号:',@resultMsg,'】插入科室备药库存表失败') 
+		SET @resultMsg= CONCAT('【Số đơn:',@resultMsg,'】Chèn vào bảng tồn kho thuốc dự trữ khoa thất bại') 
 		BREAK;
 	END
 DELETE FROM #ypkc WHERE djh=@djh
@@ -1041,7 +1041,7 @@ where ksby.zt=1  and ksby.OrganizeId=@orgId
  and yfbm=@yfbmCode and djh =@sqd
 if(@djh='')
 begin
-	SET @resultMsg=CONCAT('【单据号:',@djh,'】不存在!')
+	SET @resultMsg=CONCAT('【Số đơn:',@djh,'】không tồn tại!')
 	SELECT @resultMsg;
 	RETURN;
 end
@@ -1049,7 +1049,7 @@ end
 if NOT EXISTS(select 1 from Newtouch_CIS.[dbo].[zy_ksbyth] (nolock) where OrganizeId=@orgId
 and djh =@sqd and thzt=2 and zt=1)
 begin
-	SET @resultMsg=CONCAT('【医生站单据号:',@djh,'】不为已申请状态或单据号不存在,不能退药!')
+	SET @resultMsg=CONCAT('【Số đơn trạm bác sĩ:',@djh,'】không phải trạng thái đã đăng ký hoặc số đơn không tồn tại,không thể trả thuốc!')
 	SELECT @resultMsg;
 	RETURN;
 end
@@ -1057,7 +1057,7 @@ end
 if EXISTS(select 1 from Newtouch_CIS.[dbo].[xt_ksby_kcxx] (nolock) where OrganizeId=@orgId
  and yfbmCode=@yfbmCode and ypdm=@ypdm and pc=@pc and ph=@ph and zt=1 and (kcsl-djsl)<@tsl)
  begin
- SET @resultMsg=CONCAT('药品：',@ypdm,'在科室备药库存信息中有效库存数量小于退数量,不能退药!')
+ SET @resultMsg=CONCAT('Thuốc：',@ypdm,'Số lượng tồn kho hiệu lực trong thông tin tồn kho thuốc dự trữ khoa nhỏ hơn số lượng trả,không thể trả thuốc!')
 	SELECT @resultMsg;
 	RETURN;
  end
@@ -1066,7 +1066,7 @@ select top 1 @kcId=kcId from xt_yp_kcxx(NOLOCK) kcxx
  where OrganizeId=@orgId and yfbmCode=@yfbmCode and ypdm=@ypdm and pc=@pc and ph=@ph and zt=1
  if(@kcId='')
  begin
-    SET @resultMsg=CONCAT('【药房库存不存在药品代码:',@ypdm,'】的库存信息!')
+    SET @resultMsg=CONCAT('【Tồn kho nhà thuốc không có mã thuốc:',@ypdm,'】!')
 	SELECT @resultMsg;
 	RETURN;
  end

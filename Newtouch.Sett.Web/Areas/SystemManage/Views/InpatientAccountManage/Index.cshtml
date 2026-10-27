@@ -341,9 +341,9 @@
                 var ids = $gridList.getDataIDs();
                 for (i = 0; i < ids.length; i++) {
                     var rowData = $gridList.getRowData(ids[i]);
-                    if (rowData && rowData.szxz == "充值" || rowData.szxz == "住院结算退回") {
+                    if (rowData && rowData.szxz == "充值" || rowData.szxz == "Nội trú结算退回") {
                         $gridList.find('tr[id="' + ids[i] + '"]').css("background-color", "#DDDDFF");
-                    } else if (rowData && (rowData.szxz == "取款" || rowData.szxz == "住院结算" || rowData.szxz == "退余额" )) {
+                    } else if (rowData && (rowData.szxz == "取款" || rowData.szxz == "Nội trú结算" || rowData.szxz == "退余额" )) {
                         $gridList.find('tr[id="' + ids[i] + '"]').css("background-color", "#ACD6FF");
                     }
                 }

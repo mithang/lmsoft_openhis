@@ -121,16 +121,16 @@
                     var rowsData = $("#gridXSHYPInfoList").jqGrid("getRowData_AllLine", true);
                     var rowsDataArray = rowsData;
                     for (var i = 0; i < rowsDataArray.length; i++) {
-                        if (rowsDataArray[i].shzt === "未审核") {
+                        if (rowsDataArray[i].shzt === "Chưa duyệt") {
                             isHasWSH = true;
                         }
-                        if (rowsDataArray[i].shzt === "已审核") {
+                        if (rowsDataArray[i].shzt === "Đã duyệt") {
                             isHasYSH = true;
                         }
-                        if (rowsDataArray[i].shzt === "已拒绝") {
+                        if (rowsDataArray[i].shzt === "Đã từ chối") {
                             isHasYJJ = true;
                         }
-                        if (rowsDataArray[i].shzt === "已撤销" || rowsDataArray[i].zxbz === '已执行') {
+                        if (rowsDataArray[i].shzt === "Đã hủy" || rowsDataArray[i].zxbz === 'Đã thực hiện') {
                             isHasYCX = true;
                         }
                     }

@@ -1,0 +1,20 @@
+-- DB translation Scope A: Newtouch_CIS.Sys_Config.Memo (applied live; re-runnable; keyless targets match N'old' values)
+USE [Newtouch_CIS];
+UPDATE [Sys_Config] SET [Memo] = 'ON Bat ：OFF: Tat' WHERE [Id] = '02c3d1f2-e158-46f5-959c-2e214abc51f2';
+UPDATE [Sys_Config] SET [Memo] = 'Mac dinh Giao dien' WHERE [Id] = '12efff48-8d37-4c54-bb2c-ad1e9705f759';
+UPDATE [Sys_Config] SET [Memo] = 'Mac dinh Giao dien' WHERE [Id] = '2b3659f3-f07b-451d-a09a-c65298a26678';
+UPDATE [Sys_Config] SET [Memo] = 'ON Bat ；OFF Tat' WHERE [Id] = '3f88d396-6d08-48a9-8db9-b498c7b81b47';
+UPDATE [Sys_Config] SET [Memo] = '1 Bieu thi Bao gom ，0 Khong bao gom, Mac dinh 1' WHERE [Id] = '465da530-1f63-4ab8-a93c-87a346688d3c';
+UPDATE [Sys_Config] SET [Memo] = 'ON Bat ；OFF Tat' WHERE [Id] = '479d9d8e-58bd-4a52-8405-d5e49d6f0dc2';
+UPDATE [Sys_Config] SET [Memo] = 'Uong' WHERE [Id] = '5a1d9cb0-24c2-42de-a2c0-08cbe821a809';
+UPDATE [Sys_Config] SET [Memo] = 'Tiem bap' WHERE [Id] = '7bab71a6-5b4f-45be-b69a-a07ca01997d6';
+UPDATE [Sys_Config] SET [Memo] = 'ON Bat ；OFF Tat' WHERE [Id] = '7f33aca2-9d3c-487f-ad80-a8af9b658645';
+UPDATE [Sys_Config] SET [Memo] = 'Phuc hoi' WHERE [Id] = '84ebc2a4-c6fe-435c-bd4f-6b995b70e231';
+UPDATE [Sys_Config] SET [Memo] = 'Mac dinh Giao dien' WHERE [Id] = '8dc00a09-f56b-4a69-91e3-d82b47f95c5a';
+UPDATE [Sys_Config] SET [Memo] = '1 Bieu thi Bao gom ，0 Khong bao gom, Mac dinh 1' WHERE [Id] = '9a18299b-74b2-4cce-85a6-2587d4c5876d';
+UPDATE [Sys_Config] SET [Memo] = 'Phi dieu duong' WHERE [Id] = 'a36a74d7-5297-4a5e-ab6b-16ab9ec9f2f5';
+UPDATE [Sys_Config] SET [Memo] = 'Truyen tinh mach' WHERE [Id] = 'a811fa9b-9211-4124-ae25-b81ccd1568ed';
+UPDATE [Sys_Config] SET [Memo] = 'cg Bieu thi Hang muc thong thuong ，kf Bieu thi Phuc hoi Hang muc ， Mac dinh Thuong quy' WHERE [Id] = 'b08e3848-d3e6-4a0f-9239-9c27a7637fcb';
+UPDATE [Sys_Config] SET [Memo] = 'cg Bieu thi Hang muc thong thuong ，kf Bieu thi Phuc hoi Hang muc ， Mac dinh Thuong quy' WHERE [Id] = 'cf08739e-a549-451d-8d9e-a9bf6ed0b759';
+UPDATE [Sys_Config] SET [Memo] = 'ON Bat ：OFF: Tat' WHERE [Id] = 'cf265b92-84ee-4ac3-8dcb-8ec5a74c3f96';
+UPDATE [Sys_Config] SET [Memo] = 'ON Bat ；OFF Tat' WHERE [Id] = 'fc1a92f8-0053-4c0d-a4dd-542907f20cb0';

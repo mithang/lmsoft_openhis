@@ -101,7 +101,7 @@ WHERE yp.OrganizeId =@OrganizeId
             var strSql = new StringBuilder();
             strSql.Append(@"
 SELECT yfbm.yfbmmc deptname, kcxx.pc, kcxx.ph, convert(varchar(100),kcxx.yxq, 111) as yxq, ISNULL(kcxx.ypkw, '') ypkw, kcxx.djsl,kcxx.zhyz,
-case when kcxx.zt = 1 then '不控制' else '控制' end kzbz,
+case when kcxx.zt = 1 then 'Không kiểm soát' else 'Kiểm soát' end kzbz,
 (select dbo.[f_getYfbmYpComplexYpSlandDw](kcxx.djsl,@YfbmCode,yp.ypcode,@OrganizeId)) djslstr, 
 (select dbo.[f_getYfbmYpComplexYpSlandDw](kcxx.kcsl,@YfbmCode,yp.ypcode,@OrganizeId)) kcslstr,
 convert(decimal(12,4),yp.pfj) ykpfj,

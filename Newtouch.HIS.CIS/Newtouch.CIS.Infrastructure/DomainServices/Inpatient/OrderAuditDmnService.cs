@@ -166,12 +166,12 @@ CONVERT(VARCHAR(25),CASE DATEDIFF(DAY, xx.ryrq,GETDATE()) WHEN 0 THEN 1 else  DA
             string sql = @"select iszt,zyh,max(yzid) yzid, yzxz,yzxzsm,max(kssj) kssj,xmmc,ypjl,yzmc,yzjl,yfmc,yzpcmc,max(tzsj) tzsj,tzysgh,tzr,Creator,zh,zh1,OrganizeId,yzzt,yzlx,hzxm,yztag,yztagName,isjf,ispscs,yzh
 ,psjgms,psjg,yfztbs,yply,sum(case when yzlx in ('6','7') then dj*sl else dj end) dj,sum(je) je,case when zh1 is null or zh1='' then  sum(sl) else 1 end sl,slstr,Px
 from (
-select iszt,a.zyh, a.id yzid,2 yzxz,'长期' yzxzsm,a.kssj,case when ztid is not null then ztmc else a.xmmc end xmmc,a.ypjl,
-case when ztid is not null then (case when a.yzzt=3 then '[停]'+a.ztmc else a.ztmc end) else 
-	(case when a.yzzt=3 then '[停]'+a.yznr else a.yznr end) end as yzmc,  CONCAT(CONVERT(float,ypjl),a.dw) as yzjl, ypyf.yfmc, yzpc.yzpcmc,
+select iszt,a.zyh, a.id yzid,2 yzxz,'Dài hạn' yzxzsm,a.kssj,case when ztid is not null then ztmc else a.xmmc end xmmc,a.ypjl,
+case when ztid is not null then (case when a.yzzt=3 then '[Dừng]'+a.ztmc else a.ztmc end) else 
+	(case when a.yzzt=3 then '[Dừng]'+a.yznr else a.yznr end) end as yzmc,  CONCAT(CONVERT(float,ypjl),a.dw) as yzjl, ypyf.yfmc, yzpc.yzpcmc,
 a.tzsj,a.tzysgh,a.tzr ,b.Name Creator,a.zh,
 case when ztid is not null then yzh else '' end zh1,a.OrganizeId,yzzt,a.yzlx,a.hzxm,
-a.yztag,case a.yztag when 'JI' then '精I' when 'JII' then '精II' when 'MZ' then '麻醉' else a.yztag end yztagName,
+a.yztag,case a.yztag when 'JI' then 'Hướng thần I' when 'JII' then 'Hướng thần II' when 'MZ' then 'Gây mê' else a.yztag end yztagName,
 isnull(a.isjf,1) isjf,isnull(a.ispscs,'') ispscs,a.yzh,c.Remark psjgms,c.result psjg,yfztbs,yply
 ,isnull(convert(numeric(18,4),isnull(case when yp.zycldw=yp.bzdw THEN yp.lsj else yp.lsj/bzs end,sfxm.dj)),0) dj
 ,convert(numeric(18,2),isnull(convert(numeric(18,4),case when yp.zycldw=yp.bzdw THEN yp.lsj else yp.lsj/bzs end)*sl,sfxm.dj*sl)) je
@@ -195,12 +195,12 @@ LEFT JOIN [NewtouchHIS_Base].[dbo].[xt_sfxm] sfxm on a.xmdm=sfxm.sfxmCode and a.
 LEFT JOIN  [NewtouchHIS_Base].[dbo].[xt_yp] yp on a.xmdm=yp.ypCode and a.OrganizeId=yp.OrganizeId
 --where num=1
 union all
-select iszt,a.zyh,a.id yzid,1 yzxz,'临时' yzxzsm,a.kssj,case when ztid is not null then ztmc else a.xmmc end xmmc,a.ypjl,
-case when ztid is not null then (case when a.yzzt=3 then '[停]'+a.ztmc else a.ztmc end) else 
-	(case when a.yzzt=3 then '[停]'+a.yznr else a.yznr end) end as yzmc, CONCAT(CONVERT(float,ypjl),a.dw) as yzjl, ypyf.yfmc, yzpc.yzpcmc,
+select iszt,a.zyh,a.id yzid,1 yzxz,'Tạm thời' yzxzsm,a.kssj,case when ztid is not null then ztmc else a.xmmc end xmmc,a.ypjl,
+case when ztid is not null then (case when a.yzzt=3 then '[Dừng]'+a.ztmc else a.ztmc end) else 
+	(case when a.yzzt=3 then '[Dừng]'+a.yznr else a.yznr end) end as yzmc, CONCAT(CONVERT(float,ypjl),a.dw) as yzjl, ypyf.yfmc, yzpc.yzpcmc,
 a.zfsj,a.zfysgh,a.zfr ,b.Name Creator,a.zh,
 case when ztId is not null then yzh else '' end zh1,a.OrganizeId,yzzt,a.yzlx,a.hzxm,
-a.yztag,case a.yztag when 'JI' then '精I' when 'JII' then '精II' when 'MZ' then '麻醉' else a.yztag end yztagName,
+a.yztag,case a.yztag when 'JI' then 'Hướng thần I' when 'JII' then 'Hướng thần II' when 'MZ' then 'Gây mê' else a.yztag end yztagName,
 isnull(a.isjf,1) isjf,a.ispscs,a.yzh,c.Remark psjgms,c.result psjg,yfztbs,yply
 ,isnull(convert(numeric(18,4),isnull((case when yp.zycldw=yp.bzdw THEN yp.lsj else yp.lsj/bzs end),sfxm.dj)),0) dj
 ,case when yzlx='10' then isnull(isnull(yp.lsj*sl*ypjl,sfxm.dj*sl*ypjl),0) else 
@@ -245,16 +245,16 @@ group by iszt,zyh, yzxz,yzxzsm,xmmc,ypjl,yzmc,yzjl,yfmc,yzpcmc,tzysgh,tzr,Creato
         /// <returns></returns>
         public IList<OrderAuditVO> GetOrderAuditYZList_KF(Pagination pagination, string patList, string orgId, string zxks)
         {
-            string sql = @"select a.zyh,a.id yzid,2 yzxz,'长期' yzxzsm,a.kssj,a.xmmc,a.ypjl,
-(case when a.yzzt=3 then '[停]'+a.yznr else a.yznr end)yznr,a.tzsj,a.tzysgh,a.tzr ,
+            string sql = @"select a.zyh,a.id yzid,2 yzxz,'Dài hạn' yzxzsm,a.kssj,a.xmmc,a.ypjl,
+(case when a.yzzt=3 then '[Dừng]'+a.yznr else a.yznr end)yznr,a.tzsj,a.tzysgh,a.tzr ,
 b.Name Creator,a.zh,a.OrganizeId,yzzt,zxksdm,a.yzlx,a.hzxm
 from [dbo].[zy_cqyz] a with(nolock) 
 left join [NewtouchHIS_Base].[dbo].[V_C_Sys_UserStaff] b with(nolock) on a.CreatorCode=b.Account and a.OrganizeId=b.OrganizeId
 where a.zt=1 and a.yzzt in(0,3) and zyh in(select col from dbo.f_split(@zyh,',') where col>'')
 and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime,a.kssj)< Convert(datetime,getDate()) 
 union
-select a.zyh,a.id yzid,1 yzxz,'临时' yzxzsm,a.kssj,a.xmmc,a.ypjl,
-(case when a.yzzt=3 then '[停]'+a.yznr else a.yznr end)yznr,a.zfsj,a.zfysgh,a.zfr ,
+select a.zyh,a.id yzid,1 yzxz,'Tạm thời' yzxzsm,a.kssj,a.xmmc,a.ypjl,
+(case when a.yzzt=3 then '[Dừng]'+a.yznr else a.yznr end)yznr,a.zfsj,a.zfysgh,a.zfr ,
 b.Name Creator,a.zh,a.OrganizeId,yzzt,zxksdm,a.yzlx,a.hzxm
 from [dbo].[zy_lsyz] a with(nolock) 
 left join [NewtouchHIS_Base].[dbo].[V_C_Sys_UserStaff] b with(nolock) on a.CreatorCode=b.Account and a.OrganizeId=b.OrganizeId 
@@ -280,7 +280,7 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
             string sql = "";
             if (Yzxz == Convert.ToInt32(EnumYzxz.Cq))
             {
-                sql = @"select zyh,id yzid,2 yzxz,'长期' yzxzsm,kssj,xmmc,ypjl,yznr,tzsj,tzysgh,tzr ,''Creator,a.zh,a.OrganizeId,yzzt,a.yzlx,a.hzxm
+                sql = @"select zyh,id yzid,2 yzxz,'Dài hạn' yzxzsm,kssj,xmmc,ypjl,yznr,tzsj,tzysgh,tzr ,''Creator,a.zh,a.OrganizeId,yzzt,a.yzlx,a.hzxm
                     from [dbo].[zy_cqyz] with(nolock) 
                     where OrganizeId=@orgId and a.zt=1 and yzzt in(0,3) and zyh in(select col from dbo.f_split(@zyh,',') where col>'')
                     ";
@@ -289,7 +289,7 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
             {
 
                 sql = @"
-                    select zyh,id yzid,1 yzxz,'临时' yzxzsm,kssj,xmmc,ypjl,yznr,zfsj tzsj,zfysgh tzysgh,zfr  tzr,''Creator,a.zh,a.OrganizeId,yzzt,a.yzlx,a.hzxm
+                    select zyh,id yzid,1 yzxz,'Tạm thời' yzxzsm,kssj,xmmc,ypjl,yznr,zfsj tzsj,zfysgh tzysgh,zfr  tzr,''Creator,a.zh,a.OrganizeId,yzzt,a.yzlx,a.hzxm
                     from [dbo].[zy_lsyz] with(nolock) 
                     where OrganizeId=@orgId and  a.zt=1 and yzzt in(0,3) and zyh in(select col from dbo.f_split(@zyh,',') where col>'')";
             }
@@ -945,24 +945,24 @@ group by WardCode,bqmc,zyh,hzxm";
             }
             if (selectkey == "1")
             {
-                sql = @"select a.zyh,a.id yzid,2 yzxz,'长期' yzxzsm,a.kssj,a.xmmc,a.xmdm,a.ypjl,
-(case when a.yzzt=3 then '[停]'+a.yznr else a.yznr end)yznr,a.tzsj,a.tzysgh,a.tzr ,d.CreatorName Creator,a.zh,'' zh1,a.OrganizeId,yzzt,
+                sql = @"select a.zyh,a.id yzid,2 yzxz,'Dài hạn' yzxzsm,a.kssj,a.xmmc,a.xmdm,a.ypjl,
+(case when a.yzzt=3 then '[Dừng]'+a.yznr else a.yznr end)yznr,a.tzsj,a.tzysgh,a.tzr ,d.CreatorName Creator,a.zh,'' zh1,a.OrganizeId,yzzt,
 --a.yzlx,
 (case when d.Remark>'' then d.Remark else ''  end) lrjg,
 a.hzxm,
-a.yztag,case a.yztag when 'JI' then '精I' when 'JII' then '精II' when 'MZ' then '麻醉' else a.yztag end yztagName,
+a.yztag,case a.yztag when 'JI' then 'Hướng thần I' when 'JII' then 'Hướng thần II' when 'MZ' then 'Gây mê' else a.yztag end yztagName,
 isnull(a.isjf,1) isjf,ispscs,d.[CreateTime],d.[CreatorCode],d.[CreatorName],d.[LastModifyTime],d.[LastModifierCode],d.[LastModifierName]
 from xt_gmxx d with(nolock),zy_cqyz a with(nolock)
 left join NewtouchHIS_Base.dbo.xt_bq c with(nolock) on a.WardCode=c.bqCode and a.OrganizeId=c.OrganizeId 
 where  d.OrganizeId=@orgId and d.yzid=a.id and d.zt='1' and a.zt='1' 
 and a.zyh in(select col from dbo.f_split(@zyh,',') where col>'')
 union all
-select a.zyh,a.id yzid,1 yzxz,'临时' yzxzsm,a.kssj,a.xmmc,a.xmdm,a.ypjl,
-(case when a.yzzt=3 then '[停]'+a.yznr else a.yznr end)yznr,a.zfsj,a.zfysgh,a.zfr ,d.CreatorName Creator,a.zh,'' zh1,a.OrganizeId,yzzt,
+select a.zyh,a.id yzid,1 yzxz,'Tạm thời' yzxzsm,a.kssj,a.xmmc,a.xmdm,a.ypjl,
+(case when a.yzzt=3 then '[Dừng]'+a.yznr else a.yznr end)yznr,a.zfsj,a.zfysgh,a.zfr ,d.CreatorName Creator,a.zh,'' zh1,a.OrganizeId,yzzt,
 --a.yzlx,
 (case when d.Remark>'' then d.Remark else ''  end) lrjg,
 a.hzxm,
-a.yztag,case a.yztag when 'JI' then '精I' when 'JII' then '精II' when 'MZ' then '麻醉' else a.yztag end yztagName,
+a.yztag,case a.yztag when 'JI' then 'Hướng thần I' when 'JII' then 'Hướng thần II' when 'MZ' then 'Gây mê' else a.yztag end yztagName,
 isnull(a.isjf,1) isjf,ispscs,d.[CreateTime],d.[CreatorCode],d.[CreatorName],d.[LastModifyTime],d.[LastModifierCode],d.[LastModifierName]
 from xt_gmxx d with(nolock),zy_lsyz a with(nolock)
 left join NewtouchHIS_Base.dbo.xt_bq c with(nolock) on a.WardCode=c.bqCode and a.OrganizeId=c.OrganizeId 
@@ -973,12 +973,12 @@ and a.zyh in(select col from dbo.f_split(@zyh,',') where col>'')
             else if (selectkey == "0")
             {
                 sqlwhere += " and not exists(select 1 from xt_gmxx x with(nolock) where a.id=x.yzid and x.zt='1')";
-                sql = @"select a.zyh,a.id yzid,2 yzxz,'长期' yzxzsm,a.kssj,a.xmmc,a.xmdm,a.ypjl,
-(case when a.yzzt=3 then '[停]'+a.yznr else a.yznr end)yznr,a.tzsj,a.tzysgh,a.tzr ,b.Name Creator,a.zh,'' zh1,a.OrganizeId,yzzt,
+                sql = @"select a.zyh,a.id yzid,2 yzxz,'Dài hạn' yzxzsm,a.kssj,a.xmmc,a.xmdm,a.ypjl,
+(case when a.yzzt=3 then '[Dừng]'+a.yznr else a.yznr end)yznr,a.tzsj,a.tzysgh,a.tzr ,b.Name Creator,a.zh,'' zh1,a.OrganizeId,yzzt,
 --a.yzlx,
 (case when d.Remark>'' then d.Remark  else  '' end) lrjg,
 a.hzxm,
-a.yztag,case a.yztag when 'JI' then '精I' when 'JII' then '精II' when 'MZ' then '麻醉' else a.yztag end yztagName,
+a.yztag,case a.yztag when 'JI' then 'Hướng thần I' when 'JII' then 'Hướng thần II' when 'MZ' then 'Gây mê' else a.yztag end yztagName,
 isnull(a.isjf,1) isjf,ispscs,'长' yzlb
 from [dbo].[zy_cqyz] a with(nolock) 
 left join [NewtouchHIS_Base].[dbo].[V_C_Sys_UserStaff] b with(nolock) on a.CreatorCode=b.Account and a.OrganizeId=b.OrganizeId
@@ -987,12 +987,12 @@ where a.OrganizeId=@orgId  and  a.zt=1 and a.zyh in(select col from dbo.f_split(
 and a.ispscs='1' " + sqlwhere;
                 sql += @"
 union all
-select a.zyh, a.id yzid,1 yzxz,'临时' yzxzsm,a.kssj,a.xmmc,a.xmdm,a.ypjl,
-(case when a.yzzt=3 then '[停]'+a.yznr else a.yznr end)yznr,a.zfsj,a.zfysgh,a.zfr ,b.Name Creator,a.zh,'' zh1,a.OrganizeId,yzzt,
+select a.zyh, a.id yzid,1 yzxz,'Tạm thời' yzxzsm,a.kssj,a.xmmc,a.xmdm,a.ypjl,
+(case when a.yzzt=3 then '[Dừng]'+a.yznr else a.yznr end)yznr,a.zfsj,a.zfysgh,a.zfr ,b.Name Creator,a.zh,'' zh1,a.OrganizeId,yzzt,
 --a.yzlx,
 (case when d.Remark>'' then d.Remark  else  '' end) lrjg,
 a.hzxm,
-a.yztag,case a.yztag when 'JI' then '精I' when 'JII' then '精II' when 'MZ' then '麻醉' else a.yztag end yztagName,
+a.yztag,case a.yztag when 'JI' then 'Hướng thần I' when 'JII' then 'Hướng thần II' when 'MZ' then 'Gây mê' else a.yztag end yztagName,
 isnull(a.isjf,1) isjf,ispscs,'长' yzlb
 from [dbo].[zy_lsyz] a with(nolock) 
 left join [NewtouchHIS_Base].[dbo].[V_C_Sys_UserStaff] b with(nolock) on a.CreatorCode=b.Account and a.OrganizeId=b.OrganizeId
@@ -1016,7 +1016,7 @@ and  a.ispscs='1' " + sqlwhere;
                 {
                     foreach (var item in orderList)
                     {
-                        string Remark = item.psbz == "0" ? "阴性" : "阳性";
+                        string Remark = item.psbz == "0" ? "Âm tính" : "Dương tính";
                         var ety = _allergyRepo.FindEntity(p => p.yzid == item.yzid && p.zt == "1");
                         if (ety != null && !string.IsNullOrWhiteSpace(ety.yzid))
                         {
@@ -1049,13 +1049,13 @@ and  a.ispscs='1' " + sqlwhere;
         //duyệtlôNhắc nhởlàKhônglàm test dathử
         public IList<DisplayinformationVO> Displayinformation(string patList, string orgId)
         {
-            string sql = @"select a.Id yzid,a.zyh,a.hzxm xm,a.xmmc,(case when a.ispscs='1'  and b.Result is null then '未录入' when b.Result<>'' then b.Remark  end) ispscs,b.Result,
+            string sql = @"select a.Id yzid,a.zyh,a.hzxm xm,a.xmmc,(case when a.ispscs='1'  and b.Result is null then 'Chưa nhập' when b.Result<>'' then b.Remark  end) ispscs,b.Result,
 b.Remark ,'2' yzxz,a.zh
 from [dbo].[zy_cqyz] a with(nolock)
 left join [Newtouch_CIS].dbo.xt_gmxx b with(nolock) on a.Id=b.yzid and a.OrganizeId=b.OrganizeId 
 where a.OrganizeId=@orgId and a.Id in(select col from dbo.f_split(@patList,',') where col>'' )  and a.ispscs='1' 
 union all
-select a.Id yzid,a.zyh,a.hzxm xm,a.xmmc,(case when a.ispscs='1'  and b.Result is null then '未录入' when b.Result<>'' then b.Remark  end) ispscs,b.Result,
+select a.Id yzid,a.zyh,a.hzxm xm,a.xmmc,(case when a.ispscs='1'  and b.Result is null then 'Chưa nhập' when b.Result<>'' then b.Remark  end) ispscs,b.Result,
 b.Remark  ,'1' yzxz,a.zh
 from [dbo].[zy_lsyz] a with(nolock)
 left join [Newtouch_CIS].dbo.xt_gmxx b with(nolock) on a.Id=b.yzid and a.OrganizeId=b.OrganizeId 
@@ -1094,7 +1094,7 @@ where a.OrganizeId=@orgId and a.Id in(select col from dbo.f_split(@patList,',') 
 [CreateTime],[CreatorCode],[CreatorName],[LastModifyTime],[LastModifierCode],[LastModifierName],
 [mzzybz],[yzid],[cfmxid],[OrganizeId],[zt],[gmlx],[ypCode])
 select newid(),b.blh,b.xm,b.sex,a.xmdm,a.xmmc,
-@lrjg,(case when @lrjg='1' then '阳性' else '阴性' end  ),
+@lrjg,(case when @lrjg='1' then 'Dương tính' else 'Âm tính' end  ),
 getdate(),@user,@username,null,null,null,
 '2',a.Id,null,a.OrganizeId,'1',null,a.xmdm 
 from [Newtouch_CIS].[dbo].[zy_lsyz] a
@@ -1113,7 +1113,7 @@ and not exists(select 1 from xt_gmxx c with(nolock) where a.OrganizeId=c.Organiz
 [CreateTime],[CreatorCode],[CreatorName],[LastModifyTime],[LastModifierCode],[LastModifierName],
 [mzzybz],[yzid],[cfmxid],[OrganizeId],[zt],[gmlx],[ypCode])
 select newid(),b.blh,b.xm,b.sex,a.xmdm,a.xmmc,
-@lrjg,(case when @lrjg='1' then '阳性' else '阴性' end  ),
+@lrjg,(case when @lrjg='1' then 'Dương tính' else 'Âm tính' end  ),
 getdate(),@user,@username,null,null,null,
 '2',a.Id,null,a.OrganizeId,'1',null,a.xmdm 
 from [Newtouch_CIS].[dbo].[zy_cqyz] a
@@ -1163,7 +1163,7 @@ and not exists(select 1 from xt_gmxx c with(nolock) where a.OrganizeId=c.Organiz
             if (ety != null && !string.IsNullOrWhiteSpace(ety.yzid))
             {
                 ety.Result = lrjg;
-                ety.Remark = lrjg == "0" ? "阴性" : "阳性";
+                ety.Remark = lrjg == "0" ? "Âm tính" : "Dương tính";
                 ety.LastModifierName = user.UserName;
                 ety.Modify();
                 _allergyRepo.Update(ety);
@@ -1194,7 +1194,7 @@ and not exists(select 1 from xt_gmxx c with(nolock) where a.OrganizeId=c.Organiz
             {
                 foreach (var item in data)
                 {
-                    string Remark = lrjg == "0" ? "阴性" : "阳性";
+                    string Remark = lrjg == "0" ? "Âm tính" : "Dương tính";
                     string sql2 = string.Format(@"insert into [Newtouch_CIS].dbo.xt_gmxx 
 values(
 newid(), '" + item.blh + "', '" + item.hzxm + "', '" + item.sex + "', '" + item.xmdm + "', '" + item.xmmc + "', '" + lrjg + "', '" + Remark + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff") + "','" + user.UserCode + "', " +
@@ -1228,8 +1228,8 @@ from  ( select
 b.zyh,b.patientName,b.cw,b.ypCode,c.ypmc,b.pcmc,
 ISNULL(CONVERT(VARCHAR(50), b.zh), '') zh,
 b.yl, b.yldw, CONCAT(b.yl, b.yldw) ylStr
-,(case when b.yzxz = '1' then '临时' when b.yzxz = '2' then '长期' else '/' END) yzxzmc,
-b.zlff,c.ycmc,CONCAT(b.dj, '元/', c.djdw) djStr,
+,(case when b.yzxz = '1' then 'Tạm thời' when b.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc,
+b.zlff,c.ycmc,CONCAT(b.dj, 'đồng/', c.djdw) djStr,
 (case when a.operateType = '1' then NewtouchHIS_PDS.dbo.f_getYfbmYpComplexYpSlandDw(SUM(d.sl), d.fyyf, b.ypCode, @OrganizeId) when a.operateType = '2' then NewtouchHIS_PDS.dbo.f_getYfbmYpComplexYpSlandDw(SUM(a.sl), d.fyyf, b.ypCode, @OrganizeId) end) slStr,
 (case when a.operateType = '1' then CONVERT(NUMERIC(11,2),ISNULL(SUM(b.dj / b.zhyz * d.sl), 0)) when a.operateType = '2' then CONVERT(NUMERIC(11,2),ISNULL(SUM(b.dj / b.zhyz * a.sl), 0)) end) je,
 a.Id,a.yzId,a.zxId,a.CreateTime,a.CreatorCode,d.pc,e.jxmc,ypsx.ypgg,
@@ -1562,7 +1562,7 @@ select * from  zy_bqksbymx where  OrganizeId=@orgId and zt='1' and byId=@byId
             const string sql = @"
 SELECT s.dlmc,s.ypmc,s.ypCode ypdm,s.ypgg gg,SUM(s.kykc) kykc, [NewtouchHIS_PDS].dbo.f_getComplexYpSlandDw(SUM(s.kykc),s.zhyz,s.bmdw,s.zxdw) slStr,s.bmdw dw,CONVERT(INT,s.zhyz) zhyz,CONVERT(INT,s.bzs) bzs
 ,s.bzdw,s.zxdw,s.pzwh,CONVERT(NUMERIC(11,4),s.zxdwlsj) zxdwlsj,CONVERT(NUMERIC(11,4),s.zxdwlsj*s.zhyz) lsj,CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz) pfj,s.ycmc sccj,s.yklsj,s.ykpfj
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwlsj*s.zhyz))+'元/'+s.bmdw) lsjdjdw,yxq,pc,ph
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwlsj*s.zhyz))+'đồng/'+s.bmdw) lsjdjdw,yxq,pc,ph
 FROM 
 (
 	SELECT sfdl.dlmc, yp.ypmc, bmypxx.Ypdm ypCode, ypsx.ypgg, (kcxx.kcsl-kcxx.djsl) kykc, [NewtouchHIS_PDS].dbo.f_getyfbmDw(@yfbmCode, bmypxx.Ypdm, @Organizeid) bmdw

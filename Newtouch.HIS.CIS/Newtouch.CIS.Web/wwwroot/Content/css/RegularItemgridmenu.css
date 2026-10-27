@@ -1,21 +1,21 @@
-﻿/*表头二级菜单*/
+﻿/*Menu cấp hai tiêu đề bảng*/
 #linkcgxmcf .ui-th-ltr, #linkcgxmcf .ui-jqgrid .ui-jqgrid-htable th.ui-th-ltr{
     border: solid 1px #ddd;
 }
-/*内容td分隔线*/
+/*Nội dung td đường phân cách*/
 #linkcgxmcf .ui-jqgrid .ui-jqgrid-bdiv table.table-bordered td{
     border: solid 1px #ddd;
 }
-/*内容td分隔线防止移位*/
+/*Nội dung td đường phân cáchchống xê dịch*/
 #linkcgxmcf .table > tbody > tr > td, #linkcgxmcf .table > tbody > tr > th, #linkcgxmcf .table > tfoot > tr > td, #linkcgxmcf .table > tfoot > tr > th, #linkcgxmcf .table > thead > tr > td, #linkcgxmcf .table > thead > tr > th{
     padding: 0px;
 }
-/*二级菜单高度*/
+/*Chiều cao menu cấp hai*/
 #linkcgxmcf .ui-jqgrid-labels.jqg-second-row-header, #linkcgxmcf .ui-jqgrid-labels.jqg-third-row-header{
     height: 30px;
 }
 
-/*td内的编辑框*/
+/*tdHộp chỉnh sửa trong ô*/
 #linkcgxmcf #gridcgxmcf td .form-control{
     border-radius: 0px;
     border: 0px !important;

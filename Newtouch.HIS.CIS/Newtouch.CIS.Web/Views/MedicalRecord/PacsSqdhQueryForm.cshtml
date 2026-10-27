@@ -95,7 +95,7 @@
                 btn: null
             });
         } else {
-            if (syncStatus != "己出报告" && syncStatus != "等待报告") {
+            if (syncStatus != "Đã có báo cáo" && syncStatus != "Chờ báo cáo") {
                 $.modalAlert("Trạng thái hiện tại không phải đã hoàn thành nên không thể xem báo cáo", 'warning');
                 return;
             }
@@ -117,7 +117,7 @@
     //jqGrid nhấp đúpĐã chọnnào đódòng
     function btn_editbak() {
         var $gridList = $("#gridList");
-        if ($gridList.jqGridRowValue().syncStatus != "己出报告") {
+        if ($gridList.jqGridRowValue().syncStatus != "Đã có báo cáo") {
             $.modalAlert("Trạng thái hiện tại không phải đã hoàn thành nên không thể xem báo cáo", 'warning');
             return;
         }

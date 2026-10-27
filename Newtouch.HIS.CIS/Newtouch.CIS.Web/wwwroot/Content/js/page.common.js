@@ -514,7 +514,7 @@ $.fn.cfzutaoFloatingSelector12 = function (options) {
 						3: "Xét nghiệmĐơn thuốc",
 						4: "Kiểm traĐơn thuốc",
 						5: "Phục hồi chức năngĐơn thuốc",
-						6: "Thường quy项目Đơn thuốc",
+						6: "Đơn thuốc hạng mục thường quy",
 					};
 					return prescriptionTypes[value] || "Loại không rõ"; // Mặc địnhGiá trịlà "Không xác địnhLoại"
 				}
