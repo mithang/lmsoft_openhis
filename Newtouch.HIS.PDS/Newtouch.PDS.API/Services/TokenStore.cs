@@ -45,6 +45,28 @@ namespace Newtouch.PDS.API.Services
             }
         }
 
+        /// <summary>
+        /// Cấp token: mint GUID thô làm key Redis, value là JSON identity, TTL
+        /// 20 phút (GetIdentity gia hạn 20 phút mỗi lần đọc thành công — trượt).
+        /// Trả null khi Redis không ghi được; caller phải từ chối cấp token.
+        /// </summary>
+        public string SaveIdentity(Identity identity)
+        {
+            var db = DbOrNull();
+            if (db == null) return null;
+            try
+            {
+                var token = Guid.NewGuid().ToString();
+                if (!db.StringSet(token, JsonConvert.SerializeObject(identity), TimeSpan.FromMinutes(20)))
+                    return null;
+                return token;
+            }
+            catch
+            {
+                return null;
+            }
+        }
+
         public Identity GetIdentity(string token, string tokenType = null)
         {
             if (string.IsNullOrWhiteSpace(token)) return null;

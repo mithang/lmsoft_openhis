@@ -27,5 +27,13 @@ namespace Newtouch.PDS.Requset
         /// 
         /// </summary>
         public string TopOrganizeId { get; set; }
+
+        /// <summary>
+        /// Mật khẩu dạng md5 (như web login) — bổ sung giai đoạn GetToken chạy
+        /// thật; identity lấy từ kết quả CheckPwd, các trường UserId/
+        /// OrganizeId/TopOrganizeId do client gửi không còn dùng để dựng
+        /// identity. KHÔNG BAO GIỜ log trường này.
+        /// </summary>
+        public string Password { get; set; }
     }
 }
