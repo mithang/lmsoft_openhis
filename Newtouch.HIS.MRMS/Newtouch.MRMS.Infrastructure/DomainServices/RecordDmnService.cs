@@ -13,6 +13,7 @@ using SqlSugar;
 using NewtouchHIS.Lib.Base;
 using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Base.Extension;
+using DbConfigHelper;
 using NewtouchHIS.Lib.Base.Model;
 using NewtouchHIS.Lib.Base.Utilities;
 using NewtouchHIS.Lib.Framework.Filter;
@@ -48,7 +49,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
 
             string sql = @"update a
                         set a.IsLock = @IsLock,a.LastModifierCode = '" + UserCode + @"',a.LastModifyTime = getdate()
-                        from [Newtouch_EMR].[dbo]." + bllxmc + @" a
+                        from " + DbNames.Name("EmrDb", "Newtouch_EMR") + ".[dbo]." + bllxmc + @" a
                         where a.id = @id and a.OrganizeId = @OrgId ";
             try
             {
@@ -237,7 +238,9 @@ namespace Newtouch.MR.ManageSystem.DomainServices
         public int updateRecordStu(string id, string organizeId,string LastModifierCode, DateTime LastModifyTime,string blzt)
         {
             //string sql = "update [Newtouch_EMR].[dbo].[zy_brjbxx] set RecordStu='3',LastModifyTime=@LastModifyTime,LastModifierCode=@LastModifierCode where 1=1 ";
-            string sql = "update [Newtouch_EMR].[dbo].[zy_brjbxx] set RecordStu=@blzt,LastModifyTime=@LastModifyTime,LastModifierCode=@LastModifierCode where 1=1 ";
+            // Giai doan 7: dung ten DB cau hinh thay vi hardcode [Newtouch_EMR].
+            // (Helper ConfigDbName private cuoi file — tranh refresh DLL Lib.Base.)
+            string sql = "update " + DbNames.Name("EmrDb", "Newtouch_EMR") + ".[dbo].[zy_brjbxx] set RecordStu=@blzt,LastModifyTime=@LastModifyTime,LastModifierCode=@LastModifierCode where 1=1 ";
 
             if (!string.IsNullOrWhiteSpace(organizeId))
             {
@@ -257,5 +260,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
                 };
             return this.ExecuteSqlCommand(sql, para);
         }
+
+
     }
 }

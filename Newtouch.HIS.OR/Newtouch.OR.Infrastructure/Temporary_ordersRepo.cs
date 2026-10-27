@@ -1,4 +1,5 @@
 using Newtouch.OR.ManageSystem.Domain.Entity;
+using DbConfigHelper;
 using Newtouch.OR.ManageSystem.Domain.IRepository;
 using System;
 using System.Collections.Generic;
@@ -18,8 +19,7 @@ namespace Newtouch.OR.ManageSystem.Repository
         public int Submitlsyz(Temporary_ordersEntity entity, string keyVaue)
         {
 
-            string sql = string.Format(@"
-insert into [Newtouch_CIS].[dbo].[zy_lsyz] 
+            string sql = "insert into " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].[zy_lsyz] 
 (Id, OrganizeId, zyh, zh, WardCode, DeptCode, ysgh, pcCode, zxcs, zxzq, 
 zxzqdw, zdm, xmdm, xmmc, yzzt, dw, zbbz, sl, dwlb, yzlx, zfysgh, zfsj, 
 zfr, shsj, shr, sssj, ssr, kssj, zxsj, zxr, ypjl, ypgg, ztnr, yznr, ypyfdm, 
@@ -32,7 +32,7 @@ newid(),'"+ entity.OrganizeId + "', '" + entity.zyh + "', NULL, '" + entity.Ward
 "'"+entity.zfr+"',NULL, '"+entity.shr+"', '"+entity.sssj+"', '"+entity.ssr+"', '"+entity.kssj+"', NULL,NULL, '" + entity.ypjl+ "', NULL, '" + entity.ztnr+"', '"+entity.yznr+ "',NULL," +
 "NULL,NULL, '" + entity.CreateTime+"', '"+entity.CreatorCode+"', '"+entity.LastModifyTime+"', '"+entity.LastModifierCode+"',"+
 "'"+entity.zt+"', '"+entity.hzxm+"', '"+entity.bw+ "', NULL,NULL,NULL, NULL, NULL,NULL, NULL, '"+entity.sqdh+"', NULL, '" + entity.yzh+"',"+
-"NULL,NULL, NULL, NULL,NULL,NULL, NULL, NULL,'0')");
+"NULL,NULL, NULL, NULL,NULL,NULL, NULL, NULL,'0')";
 
            var count= ExecuteSqlCommand(sql);
             

@@ -1,6 +1,7 @@
 
 
 using NewtouchHIS.Lib.Framework.Operator;
+using DbConfigHelper;
 using NewtouchHIS.Lib.Base.Model;
 using NewtouchHIS.Lib.Base.Model;
 using Newtouch.CIS.Compat;
@@ -102,7 +103,7 @@ namespace Newtouch.DomainServices
             }
             try
             {
-                sql = @" insert into [Newtouch_CIS].dbo.xt_gmxx ([Id],[blh],[xm],[sex],[xmCode],[xmmc],[Result],[Remark],
+                sql = @" insert into " + DbNames.Name("CisDb", "Newtouch_CIS") + @".dbo.xt_gmxx ([Id],[blh],[xm],[sex],[xmCode],[xmmc],[Result],[Remark],
 [CreateTime],[CreatorCode],[CreatorName],[LastModifyTime],[LastModifierCode],[LastModifierName],
 [mzzybz],[yzid],[cfmxid],[OrganizeId],[zt],[gmlx],[ypCode],[cancel])
 select newid(),c.blh,c.xm,(case when c.xb='Nữ' then '2' else '1' end) sex,a.ypcode,a.ypmc,

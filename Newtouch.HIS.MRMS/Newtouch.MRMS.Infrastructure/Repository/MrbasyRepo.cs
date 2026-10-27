@@ -12,6 +12,7 @@ using SqlSugar;
 using NewtouchHIS.Lib.Base;
 using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Base.Extension;
+using DbConfigHelper;
 using NewtouchHIS.Lib.Base.Model;
 using NewtouchHIS.Lib.Base.Utilities;
 using NewtouchHIS.Lib.Framework.Filter;
@@ -97,6 +98,8 @@ namespace Newtouch.MR.ManageSystem.Repository
 
 
 
+        // Ten DB lay tu DbNames (DbNames.cs, dung chung trong Infra).
+
         /// <summary>
         /// Sửa trạng thái lưu trữ
         /// </summary>
@@ -106,10 +109,18 @@ namespace Newtouch.MR.ManageSystem.Repository
         public int Updatebazt(string dataId, string ZYH,string XM)
         {
             var GDRQ= DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            var sql = "update  [Newtouch_MRMS].[dbo].[mr_basy] set bazt='3',GDRQ='"+ GDRQ + "' where Id='"+dataId+"' and ZYH='"+ZYH+"' and XM='"+XM+"'";
-           var bazt1=  ExecuteSqlCommand(sql);
-            var sql2 = "update  [Newtouch_EMR].[dbo].[mr_basy] set bazt='3',GDRQ='" + GDRQ + "' where  ZYH='" + ZYH + "' and XM='" + XM + "'";
-            var bazt2= ExecuteSqlCommand(sql2);
+            var mrmsDb = DbNames.Name("MrmsDb", "Newtouch_MRMS");
+            var emrDb = DbNames.Name("EmrDb", "Newtouch_EMR");
+            var sql = "update  " + mrmsDb + ".[dbo].[mr_basy] set bazt='3',GDRQ=@GDRQ where Id=@dataId and ZYH=@ZYH and XM=@XM";
+            SugarParameter[] para ={
+                new SugarParameter("@GDRQ",GDRQ),
+                new SugarParameter("@dataId",dataId),
+                new SugarParameter("@ZYH",ZYH),
+                new SugarParameter("@XM",XM)
+                };
+           var bazt1=  ExecuteSqlCommand(sql, para);
+            var sql2 = "update  " + emrDb + ".[dbo].[mr_basy] set bazt='3',GDRQ=@GDRQ where  ZYH=@ZYH and XM=@XM";
+            var bazt2= ExecuteSqlCommand(sql2, para);
             if (bazt1!=0 && bazt2 != 0)
             {
                 return 1;
@@ -120,7 +131,9 @@ namespace Newtouch.MR.ManageSystem.Repository
         public int CXUpdatebazt(string dataId, string ZYH, string XM, string organizeId, string LastModifierCode, DateTime LastModifyTime)
         {
             var GDRQ = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            var sql = "update  [Newtouch_MRMS].[dbo].[mr_basy] set bazt='2',GDRQ=null where Id=@dataId and ZYH=@ZYH and XM=@XM";
+            // Giai doan 7: cau nay cung hardcode [Newtouch_MRMS] (tren staging
+            // update nham DB demo, tra 0 du dong EMR da doi) — dung ten cau hinh.
+            var sql = "update  " + DbNames.Name("MrmsDb", "Newtouch_MRMS") + ".[dbo].[mr_basy] set bazt='2',GDRQ=null where Id=@dataId and ZYH=@ZYH and XM=@XM";
             
             SugarParameter[] para ={
                 new SugarParameter("@dataId",dataId),
@@ -129,11 +142,15 @@ namespace Newtouch.MR.ManageSystem.Repository
                 };
             var data1= this.ExecuteSqlCommand(sql, para);
 
-            string sql2 = "update [Newtouch_EMR].[dbo].[zy_brjbxx] set RecordStu=2,LastModifyTime=@LastModifyTime,LastModifierCode=@LastModifierCode where 1=1 and zt='1'";
+            // Giai doan 7: ban cu hardcode [Newtouch_EMR] (ghi sang demo tren
+            // staging) VA khong loc zyh (1 lan goi doi TOAN BO dong zt='1').
+            // Ban nay dung ten DB cau hinh + chi doi dung dong cua zyh do.
+            string sql2 = "update " + DbNames.Name("EmrDb", "Newtouch_EMR") + ".[dbo].[zy_brjbxx] set RecordStu=2,LastModifyTime=@LastModifyTime,LastModifierCode=@LastModifierCode where zt='1' and zyh=@ZYH";
             SugarParameter[] para2 ={
                 new SugarParameter("@LastModifyTime",Convert.ToDateTime(LastModifyTime)),
                 new SugarParameter("@LastModifierCode",LastModifierCode ?? ""),
-                new SugarParameter("@organizeId",organizeId ?? "")
+                new SugarParameter("@organizeId",organizeId ?? ""),
+                new SugarParameter("@ZYH",ZYH)
                 };
             var data2 = this.ExecuteSqlCommand(sql2, para2);
             if (data1 != 0 && data2 != 0)
@@ -148,7 +165,7 @@ namespace Newtouch.MR.ManageSystem.Repository
         public int CXGDZT(string dataId, string ZYH, string XM, string organizeId, string LastModifierCode, DateTime LastModifyTime)
         {
             var GDRQ = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
-            var sql = "update  [Newtouch_MRMS].[dbo].[mr_basy] set bazt='2',GDRQ=@GDRQ where Id=@dataId and ZYH=@ZYH and XM=@XM";
+            var sql = "update  " + DbNames.Name("MrmsDb", "Newtouch_MRMS") + ".[dbo].[mr_basy] set bazt='2',GDRQ=@GDRQ where Id=@dataId and ZYH=@ZYH and XM=@XM";
 
             SugarParameter[] para ={
                 new SugarParameter("@GDRQ",GDRQ),

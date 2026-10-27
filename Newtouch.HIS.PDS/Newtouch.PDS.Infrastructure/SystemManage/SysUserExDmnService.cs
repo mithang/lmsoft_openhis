@@ -1,4 +1,5 @@
 using Newtouch.Infrastructure.EF;
+using DbConfigHelper;
 using Newtouch.HIS.Domain.IRepository;
 using Newtouch.HIS.Domain.IDomainServices;
 using Newtouch.Infrastructure;
@@ -107,7 +108,7 @@ and A.zt = '1' and B.zt = '1' and C.zt = '1'";
                         //Đã tới Số lần lỗi tối đa，khóa nó
                         //Cập nhật trạng thái tới‘Khóa’
                         //Cập nhậtBASE.SYS_USERLOGON
-                        this.ExecuteSqlCommand("update [NewtouchHIS_Base]..Sys_UserLogOn set Locked = 1 where UserId = @userId and zt = '1'", new SugarParameter("@userId", userEntity.Id));
+                        this.ExecuteSqlCommand("update " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + "..Sys_UserLogOn set Locked = 1 where UserId = @userId and zt = '1'", new SugarParameter("@userId", userEntity.Id));
                         userEntity.Locked = true;
                         throw new FailedException(string.Format("Mật khẩu nhập sai liên tiếp{0}lần,Tài khoản bị khóa", _loginFailedTimesLimit_Count));
                     }
@@ -305,7 +306,7 @@ and cc.Code = @dutyCode";
             var password = Md5.md5(DESEncrypt.Encrypt(Md5.md5(userPassword, 32).ToLower(), secretkey).ToLower(), 32).ToLower();
 
             //Ở đây không trực tiếp thao tác bảng thì không làm được nữa，Không thể qua khung nhìn
-            this.ExecuteSqlCommand("update [NewtouchHIS_Base]..sys_userlogon set UserSecretkey = @secretkey, UserPassword = @password where UserId = @userId and zt = '1'", new[] {
+            this.ExecuteSqlCommand("update " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + "..sys_userlogon set UserSecretkey = @secretkey, UserPassword = @password where UserId = @userId and zt = '1'", new[] {
                 new SugarParameter("@userId", userId)
                 ,new SugarParameter("@secretkey", secretkey)
                 ,new SugarParameter("@password", password)

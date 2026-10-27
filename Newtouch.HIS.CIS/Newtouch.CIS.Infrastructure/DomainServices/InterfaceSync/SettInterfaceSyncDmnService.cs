@@ -1,6 +1,7 @@
 
 
 using Newtouch.Domain.DTO.InterfaceSync;
+using DbConfigHelper;
 using Newtouch.Domain.IDomainServices.InterfaceSync;
 using System;
 using Newtouch.CIS.Compat;
@@ -39,7 +40,7 @@ namespace Newtouch.DomainServices
             try
             {
                 string sql = @"update a set a.sfzy=@sfzy,a.LastModifyTime=getdate(),a.LastModifierCode=@user 
-from NewtouchHIS_Base.dbo. xt_cw  a
+from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo. xt_cw  a
 where a.OrganizeId=@orgId and a.bqCode=@bq and a.cwCode=@cwcode and sfzy<>@sfzy
 
 select @@ROWCOUNT rowcount ;";

@@ -1,4 +1,5 @@
 using Newtouch.OR.ManageSystem.Domain.Entity;
+using DbConfigHelper;
 using Newtouch.OR.ManageSystem.Domain.IRepository;
 using Newtouch.OR.ManageSystem.Infrastructure;
 using SqlSugar;
@@ -50,13 +51,13 @@ namespace Newtouch.OR.ManageSystem.Repository
             }
             // Insert into the Base database via fully-qualified table mapping.
             return Db.Insertable(entities.ToArray())
-                .AS("[NewtouchHIS_Base]..Sys_GlobalConfig")
+                .AS(DbNames.Name("BaseDb", "NewtouchHIS_Base") + "..Sys_GlobalConfig")
                 .ExecuteCommand();
         }
 
         public ISugarQueryable<SysConfigEntity> IQueryable()
         {
-            return Db.Queryable<SysConfigEntity>().AS("[NewtouchHIS_Base]..Sys_GlobalConfig");
+            return Db.Queryable<SysConfigEntity>().AS(DbNames.Name("BaseDb", "NewtouchHIS_Base") + "..Sys_GlobalConfig");
         }
     }
 

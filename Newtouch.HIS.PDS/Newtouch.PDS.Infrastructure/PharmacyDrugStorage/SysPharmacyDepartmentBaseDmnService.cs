@@ -1,4 +1,5 @@
 using Newtouch.Infrastructure.EF;
+using DbConfigHelper;
 using Newtouch.Infrastructure;
 using FrameworkBase.MultiOrg.Infrastructure;
 using NewtouchHIS.Lib.Base.Model;
@@ -123,7 +124,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     using (var db = new EFDbTransaction().BeginTrans())
                     {
                         var strSql = new StringBuilder();
-                        strSql.Append(@"  UPDATE [NewtouchHIS_Base].dbo.xt_yfbm
+                        strSql.Append(@"  UPDATE " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_yfbm
 SET yfbmCode=@yfbmCode,yfbmmc=@yfbmmc,OrganizeId=@OrganizeId,ksCode=@ksCode,ynwbz=@ynwbz,yjbmjb=@yjbmjb,fybz=@fybz,mzzybz=@mzzybz,py=@py,LastModifyTime=@LastModifyTime,LastModifierCode=@LastModifierCode,zt=@zt
 where yfbmId=@yfbmId");
                         var paraList = new SugarParameter[]
@@ -169,7 +170,7 @@ where yfbmId=@yfbmId");
                     using (var db = new EFDbTransaction().BeginTrans())
                     {
                         var strSql = new StringBuilder();
-                        strSql.Append(@"insert into [NewtouchHIS_Base].dbo.xt_yfbm
+                        strSql.Append(@"insert into " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_yfbm
                                   (yfbmCode,yfbmmc,OrganizeId,ksCode,ynwbz,yjbmjb,fybz,mzzybz,jsfs,py,CreatorCode,CreateTime,LastModifyTime,LastModifierCode,zt,px)
                                   values (@yfbmCode,@yfbmmc,@OrganizeId,@ksCode,@ynwbz,@yjbmjb,@fybz,@mzzybz,null,@py,@CreatorCode,@CreateTime,null,null,@zt,null);");
                         var paraList = new SugarParameter[]

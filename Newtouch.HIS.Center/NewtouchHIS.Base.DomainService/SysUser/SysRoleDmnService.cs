@@ -1,4 +1,5 @@
-﻿using NewtouchHIS.Base.Domain.Entity;
+using NewtouchHIS.Base.Domain.Entity;
+using DbConfigHelper;
 using NewtouchHIS.Base.Domain.Entity.SysManage;
 using NewtouchHIS.Base.Domain.Organize;
 using NewtouchHIS.Lib.Base;
@@ -66,7 +67,7 @@ namespace NewtouchHIS.Base.DomainService
                 throw new FailedException("MãAdministrator được hệ thống giữ lại,không thể xóa");
             }
             await Delete<SysRoleEntity>(sysRoleEntity);
-            var sql = "delete from [Newtouch_Union]..Sys_RoleAuthorize where RoleId=@RoleId";
+            var sql = "delete from " + DbNames.Name("UnionDb", "Newtouch_Union") + "..Sys_RoleAuthorize where RoleId=@RoleId";
 
             await ExecuteCommandSql(sql, new SugarParameter[] {
                 new SugarParameter("@RoleId",sysRoleEntity.Id) });
@@ -109,7 +110,7 @@ namespace NewtouchHIS.Base.DomainService
                 await Add<SysRoleEntity>(roleEntity);
             }
             //var RoleAuthorize = await GetFirstOrDefaultWithAttr<SysRoleAuthorizeEntity>(p => p.zt == "1" && p.RoleId == roleEntity.Id);
-            var sql = "delete from [Newtouch_Union]..Sys_RoleAuthorize where RoleId=@RoleId";
+            var sql = "delete from " + DbNames.Name("UnionDb", "Newtouch_Union") + "..Sys_RoleAuthorize where RoleId=@RoleId";
 
             await ExecuteCommandSql(sql, new SugarParameter[] {
                 new SugarParameter("@RoleId",keyValue) });

@@ -1,4 +1,5 @@
 using NewtouchHIS.Lib.Base.Extension;
+using DbConfigHelper;
 using Newtouch.Infrastructure.Log;
 using System;
 using NewtouchHIS.Lib.Base.Model;
@@ -395,8 +396,8 @@ where yp.OrganizeId=@OrganizeId
 				}
 				//1.update xt_ypbảng
 				var medicineEntity = _sysMedicineRepo.GetMedicineByCode(OperatorProvider.GetCurrent().OrganizeId, item.ToString());
-				const string strSql = @" 
-update NewtouchHIS_Base.dbo.V_S_xt_yp 
+				string strSql = @" 
+update " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.V_S_xt_yp 
 set pfj=@pfj,lsj=@lsj,LastModifyTime=@LastModifyTime,LastModifierCode=@LastModifierCode 
 where ypCode=@ypCode and OrganizeId=@OrganizeId ";
 				SugarParameter[] param =
@@ -461,8 +462,8 @@ where ypCode=@ypCode and OrganizeId=@OrganizeId ";
 				catch (Exception ex)
 				{
 					AppLogger.Instance.Error("Ngoại lệ thực hiện điều chỉnh giá thuốc", ex, "ExecteAdjustPrice error");
-					const string strSql2 = @"
-update NewtouchHIS_Base.dbo.V_S_xt_yp set pfj=@pfj,lsj=@lsj where ypCode=@ypCode and OrganizeId=@OrganizeId ";
+					string strSql2 = @"
+update " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.V_S_xt_yp set pfj=@pfj,lsj=@lsj where ypCode=@ypCode and OrganizeId=@OrganizeId ";
 					SugarParameter[] param2 =
 					{
 						new SugarParameter("@pfj", entity.ypfj),

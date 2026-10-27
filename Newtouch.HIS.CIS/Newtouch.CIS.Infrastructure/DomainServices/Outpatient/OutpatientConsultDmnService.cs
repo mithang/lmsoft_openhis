@@ -1,6 +1,7 @@
 
 
 using NewtouchHIS.Lib.Base.Model;
+using DbConfigHelper;
 using Newtouch.Domain.IDomainServices.Outpatient;
 using Newtouch.Domain.ValueObjects.Inpatient;
 using Newtouch.Domain.ValueObjects.Outpatient;
@@ -343,7 +344,7 @@ where a.zt='1' and a.OrganizeId=@orgid";
         /// <returns></returns>
 		public int UpdatePatient(string mzh, int calledstu, string orgid)
 		{
-			var sqlstr = @"UPDATE b set b.calledstu=@calledstu from NewtouchHIS_Sett..mz_gh a
+			var sqlstr = @"UPDATE b set b.calledstu=@calledstu from " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @"..mz_gh a
 left join mz_ghzs b on a.ghnm=b.ghnm and a.OrganizeId=b.OrganizeId and b.zt='1'
 where a.zt='1' and a.OrganizeId=@orgid and a.mzh=@mzh and b.ghnm is not null";
 

@@ -20,6 +20,7 @@ exec env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY 
   BusinessDB__DBConf__4__DBName=Newtouch_MRQC_STG \
   BusinessDB__DBConf__5__DBName=Newtouch_CIS_STG \
   BusinessDB__DBConf__6__DBName=Newtouch_Union_STG \
+  BusinessDB__DBConf__7__DBName=Newtouch_OR_STG \
   BusinessConfig__AppAPIHost__HisAppBaseAPIHost=http://127.0.0.1:17001/ \
   BusinessConfig__AppAPIHost__SiteBaseAPIHost=http://127.0.0.1:17001/ \
   BusinessConfig__AppAPIHost__SiteApiManageHost=http://127.0.0.1:18016/ \

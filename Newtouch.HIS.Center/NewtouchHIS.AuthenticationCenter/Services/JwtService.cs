@@ -1,4 +1,4 @@
-﻿using Microsoft.Extensions.Options;
+using Microsoft.Extensions.Options;
 using Microsoft.IdentityModel.Tokens;
 using NewtouchHIS.Lib.Base;
 using NewtouchHIS.Lib.Base.Model;
@@ -66,7 +66,7 @@ namespace NewtouchHIS.Lib.Services
             string sessionExpiryKey = $"SessionExpiryKey:{code}";
             DateTime sessionExpirTime = DateTime.Now.AddDays(1);
             _cachelper.SetCache<DateTime>(sessionExpiryKey, sessionExpirTime, TimeSpan.FromDays(1));
-            Console.WriteLine($"Đăng nhập thành công,Phiên toàn cụccode:{code}");
+            Console.WriteLine($"Đăng nhập thành công,Phiên toàn cụccode_prefix={(code?.Length >= 8 ? code.Substring(0, 8) : code)}"); // SECURITY (G7): khong ghi ma phien day du vao log
             //Lấy mã ủy quyền từ cachetokenthời gian hiệu lực dài nhất
             _cachelper.SetCache<DateTime>($"AuthCodeSessionTime:{code}", sessionExpirTime, TimeSpan.FromDays(1));
 
@@ -197,7 +197,7 @@ namespace NewtouchHIS.Lib.Services
             //Lưu refresh token vào cachetokenThời gian hết hạn
             _cachelper.SetCache($"RefreshTokenExpiry:{refreshToken}", DateTime.Now.AddSeconds(refreshTokenExpiry.TotalSeconds), refreshTokenExpiry);
             //result.SetSuccess(new JWTToken() { Token = token });
-            Console.WriteLine($"client_id:{clientId}Lấytoken,Thời hạn hiệu lực:{sessionExpiryTime.ToString("yyyy-MM-dd HH:mm:ss")},token:{token}");
+            Console.WriteLine($"client_id:{clientId}Lấytoken,Thời hạn hiệu lực:{sessionExpiryTime.ToString("yyyy-MM-dd HH:mm:ss")},token_present={!string.IsNullOrEmpty(token)},token_prefix={(token?.Length >= 8 ? token.Substring(0, 8) : token)}"); // SECURITY (G7): khong ghi JWT day du vao log
             return result;
         }
 

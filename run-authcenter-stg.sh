@@ -4,6 +4,8 @@
 # applies). DBConf (0 Base, 1 Sett, 2 Emr, 3 Mrms) all point at *_STG clones,
 # Redis to staging 6380. Secrets from env files at launch time only.
 source ~/workspace/.sqlserver.env
+source ~/workspace/.redis.env
+source ~/workspace/.appsecrets.env
 REDIS_STG_PASS="$(cat ~/workspace/.redis-stg.env)"
 cd "$(dirname "$0")/Newtouch.HIS.Center/NewtouchHIS.AuthenticationCenter" || exit 1
 exec env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY -u all_proxy \
@@ -16,4 +18,13 @@ exec env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY 
   BusinessDB__DBConf__2__DBName=Newtouch_EMR_STG \
   BusinessDB__DBConf__3__DBName=Newtouch_MRMS_STG \
   RedisConfig__Connection="127.0.0.1:6380,password=$REDIS_STG_PASS" \
+  JWT__Key="$AUTHCENTER_JWT_KEY" \
+  JWT__SSOAuthApp__0__AppSecret="$AUTHCENTER_APPSECRET_0" \
+  JWT__SSOAuthApp__1__AppSecret="$AUTHCENTER_APPSECRET_1" \
+  JWT__SSOAuthApp__2__AppSecret="$AUTHCENTER_APPSECRET_2" \
+  JWT__SSOAuthApp__3__AppSecret="$AUTHCENTER_APPSECRET_3" \
+  JWT__SSOAuthApp__4__AppSecret="$AUTHCENTER_APPSECRET_4" \
+  JWT__SSOAuthApp__5__AppSecret="$AUTHCENTER_APPSECRET_5" \
+  JWT__SSOAuthApp__6__AppSecret="$AUTHCENTER_APPSECRET_6" \
+  JWT__SSOAuthApp__7__AppSecret="$AUTHCENTER_APPSECRET_7" \
   ~/.dotnet/dotnet bin/Release/net6.0/NewtouchHIS.AuthenticationCenter.dll

@@ -1,4 +1,5 @@
 using NewtouchHIS.Lib.Base.Extension;
+using DbConfigHelper;
 using Newtouch.Infrastructure.EF;
 using Newtouch.HIS.Repository;
 using Newtouch.HIS.Domain.Entity;
@@ -716,7 +717,7 @@ AND x.OrganizeId=@OrganizeId
                         model.OrganizeId = ypEntity.OrganizeId;//Tổ chức Cơ sở Không thể thay đổi
                         UpdateEnityProperties(ypEntity, ypsxEntity, model);
                         var strSql = new StringBuilder();
-                        strSql.Append(@"  UPDATE [NewtouchHIS_Base].dbo.xt_yp
+                        strSql.Append(@"  UPDATE " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_yp
 SET ypCode=@ypCode,ypmc=@ypmc,OrganizeId=@OrganizeId,ypqz=@ypqz,yphz=@yphz,spm=@spm,py=@py,cfl=@cfl,cfdw=@cfdw,jl=@jl,jldw=@jldw,bzs=@bzs,bzdw=@bzdw,mzcls=@mzcls,mzcldw=@mzcldw,zycls=@zycls,zycldw=@zycldw,zxdw=@zxdw,djdw=@djdw,lsj=@lsj,pfj=@pfj,zfbl=@zfbl,zfxz=@zfxz,dlCode=@dlCode,jx=@jx,ycmc=@ycmc,medid=@medid,medextid=@medextid,ypbzdm=@ypbzdm,nbdl=@nbdl,mzzybz=@mzzybz,CreatorCode=@CreatorCode,CreateTime=@CreateTime,LastModifyTime=@LastModifyTime,LastModifierCode=@LastModifierCode,zt=@zt,px=@px,lsbz=@lsbz,mjzbz=@mjzbz,yfCode=@yfCode,isKss=@isKss,kssId=@kssId,jybz=@jybz,bz=@bz,cxjje=@cxjje,tsypbz=@tsypbz
 where ypId=@ypId");
                         var paraList = new SugarParameter[]
@@ -773,7 +774,7 @@ where ypId=@ypId");
 
                         //Cập nhật thuộc tính thuốc
                         var strSql2 = new StringBuilder();
-                        strSql2.Append(@"  UPDATE [NewtouchHIS_Base].dbo.xt_ypsx
+                        strSql2.Append(@"  UPDATE " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_ypsx
 SET ypId=@ypId,OrganizeId=@OrganizeId,ypCode=@ypCode,shbz=@shbz,tsbz=@tsbz,jsbz=@jsbz,gzy=@gzy,mzy=@mzy,yljsy=@yljsy,zbbz=@zbbz,zlff=@zlff,sjap=@sjap,yl=@yl,yldw=@yldw,ypgg=@ypgg,ybdm=@ybdm,syts=@syts,dczdjl=@dczdjl,dczdsl=@dczdsl,ljzdjl=@ljzdjl,ljzdsl=@ljzdsl,pzwh=@pzwh,yptssx=@yptssx,ypflCode=@ypflCode,jzlx=@jzlx,mrbzq=@mrbzq,zjtzsj=@zjtzsj,xglx=@xglx,ghdw=@ghdw,ypcd=@ypcd,CreatorCode=@CreatorCode,CreateTime=@CreateTime,LastModifyTime=@LastModifyTime,LastModifierCode=@LastModifierCode,zt=@zt,px=@px,xzyy=@xzyy,xzyysm=@xzyysm,LastYBUploadTime=@LastYBUploadTime,mrjl=@mrjl,mrpc=@mrpc,ybbz=@ybbz,xnhybdm=@xnhybdm,gjybdm=@gjybdm,ybmlscrq=@ybmlscrq,gjybmc=@gjybmc,xjbs=@xjbs,dcxl=@dcxl,mbxl=@mbxl,mryf=@mryf,ybgg=@ybgg
 where ypId=@ypId");
                         var paraList2 = new SugarParameter[]
@@ -860,7 +861,7 @@ where ypId=@ypId");
                     {
                         //Chèn thuốc
                         var strSql = new StringBuilder();
-                        strSql.Append(@"insert into [NewtouchHIS_Base].dbo.xt_yp
+                        strSql.Append(@"insert into " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_yp
                                   (ypCode,ypmc,OrganizeId,ypqz,yphz,spm,py,cfl,cfdw,jl,jldw,bzs,bzdw,mzcls,mzcldw,zycls,zycldw,zxdw,djdw,lsj,pfj,zfbl,zfxz,dlCode,jx,ycmc,medid,medextid,ypbzdm,nbdl,mzzybz,CreatorCode,CreateTime,LastModifyTime,LastModifierCode,zt,px,lsbz,mjzbz,yfCode,isKss,kssId,jybz,bz,cxjje,tsypbz)
                                   values (@ypCode,@ypmc,@OrganizeId,@ypqz,@yphz,@spm,@py,@cfl,@cfdw,@jl,@jldw,@bzs,@bzdw,@mzcls,@mzcldw,@zycls,@zycldw,@zxdw,@djdw,@lsj,@pfj,@zfbl,@zfxz,@dlCode,@jx,@ycmc,@medid,@medextid,@ypbzdm,@nbdl,@mzzybz,@CreatorCode,@CreateTime,@LastModifyTime,@LastModifierCode,@zt,@px,@lsbz,@mjzbz,@yfCode,@isKss,@kssId,@jybz,@bz,@cxjje,@tsypbz);");
                         var paraList = new SugarParameter[]
@@ -916,7 +917,7 @@ where ypId=@ypId");
 
                         //Chèn thuộc tính thuốc
                         var strSql2 = new StringBuilder();
-                        strSql2.Append(@"insert into [NewtouchHIS_Base].dbo.xt_ypsx
+                        strSql2.Append(@"insert into " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_ypsx
                                   (ypId,OrganizeId,ypCode,shbz,tsbz,jsbz,gzy,mzy,yljsy,zbbz,zlff,sjap,yl,yldw,ypgg,ybdm,syts,dczdjl,dczdsl,ljzdjl,ljzdsl,pzwh,yptssx,ypflCode,jzlx,mrbzq,zjtzsj,xglx,ghdw,ypcd,CreatorCode,CreateTime,LastModifyTime,LastModifierCode,zt,px,xzyy,xzyysm,LastYBUploadTime,mrjl,mrpc,ybbz,xnhybdm,gjybdm,ybmlscrq,gjybmc,xjbs,dcxl,mbxl,mryf,ybgg)
                                   values (@ypId,@OrganizeId,@ypCode,@shbz,@tsbz,@jsbz,@gzy,@mzy,@yljsy,@zbbz,@zlff,@sjap,@yl,@yldw,@ypgg,@ybdm,@syts,@dczdjl,@dczdsl,@ljzdjl,@ljzdsl,@pzwh,@yptssx,@ypflCode,@jzlx,@mrbzq,@zjtzsj,@xglx,@ghdw,@ypcd,@CreatorCode,@CreateTime,@LastModifyTime,@LastModifierCode,@zt,@px,@xzyy,@xzyysm,@LastYBUploadTime,@mrjl,@mrpc,@ybbz,@xnhybdm,@gjybdm,@ybmlscrq,@gjybmc,@xjbs,@dcxl,@mbxl,@mryf,@ybgg);");
                         var paraList2 = new SugarParameter[]

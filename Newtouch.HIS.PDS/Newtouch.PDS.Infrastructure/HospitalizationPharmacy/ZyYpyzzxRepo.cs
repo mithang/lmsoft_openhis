@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using DbConfigHelper;
 using System.Data.Common;
 using SqlSugar;
 using System.Linq;
@@ -112,8 +113,8 @@ WHERE zxId=@zxId AND OrganizeId=@OrganizeId AND yzId=@yzId AND ypCode=@ypCode
         /// <param name="db"></param>
         public int UpdateFybzTy(string yzId, string zxId, string userCode, string organizeId, Newtouch.Infrastructure.EFDbTransaction db)
         {
-            const string sql = @"
-UPDATE NewtouchHIS_PDS.dbo.zy_ypyzxx
+            string sql = @"
+UPDATE " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + @".dbo.zy_ypyzxx
 SET fybz = @fybz,
     LastModiFierCode = @userCode,
     LastModifyTime = GETDATE()

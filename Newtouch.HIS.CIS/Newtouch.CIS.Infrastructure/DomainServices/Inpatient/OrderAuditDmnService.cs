@@ -1,4 +1,5 @@
 using System;
+using DbConfigHelper;
 using Newtouch.Infrastructure.EF;
 using System.Collections.Generic;
 using System.Data;
@@ -1027,12 +1028,12 @@ and  a.ispscs='1' " + sqlwhere;
                         }
                         else
                         {
-                            string sql = string.Format(@"insert into [Newtouch_CIS].dbo.xt_gmxx 
+                            string sql = "insert into " + DbNames.Name("CisDb", "Newtouch_CIS") + @".dbo.xt_gmxx 
     select
     newid(), blh, '" + item.hzxm + "', sex, '" + item.xmdm + "', '" + item.xmmc + "', '" + item.psbz + "', '" + Remark + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff") + "','" + user.UserCode + "', " +
             "'" + user.UserName + "',NULL,null,null ,2 ,'" + item.yzid.Trim() + "','', '" + user.OrganizeId.Trim() + "', '1','' , '" + item.xmdm + "'" +
     @" from zy_brxxk with(nolock)
-    where zyh = '" + item.zyh.Trim() + "' and OrganizeId ='" + user.OrganizeId.Trim() + "' and zt = '1'");
+    where zyh = '" + item.zyh.Trim() + "' and OrganizeId ='" + user.OrganizeId.Trim() + "' and zt = '1'";
 
                             ExecuteSqlCommand(sql);
                         }
@@ -1090,7 +1091,7 @@ where a.OrganizeId=@orgId and a.Id in(select col from dbo.f_split(@patList,',') 
             }
             try
             {
-                sql = @"insert into [Newtouch_CIS].dbo.xt_gmxx ([Id],[blh],[xm],[sex],[xmCode],[xmmc],[Result],[Remark],
+                sql = @"insert into " + DbNames.Name("CisDb", "Newtouch_CIS") + @".dbo.xt_gmxx ([Id],[blh],[xm],[sex],[xmCode],[xmmc],[Result],[Remark],
 [CreateTime],[CreatorCode],[CreatorName],[LastModifyTime],[LastModifierCode],[LastModifierName],
 [mzzybz],[yzid],[cfmxid],[OrganizeId],[zt],[gmlx],[ypCode])
 select newid(),b.blh,b.xm,b.sex,a.xmdm,a.xmmc,
@@ -1109,7 +1110,7 @@ and not exists(select 1 from xt_gmxx c with(nolock) where a.OrganizeId=c.Organiz
                     new SqlParameter("user",user.rygh),
                     new SqlParameter("username",user.UserName),
                 });
-                sql = @"insert into [Newtouch_CIS].dbo.xt_gmxx ([Id],[blh],[xm],[sex],[xmCode],[xmmc],[Result],[Remark],
+                sql = @"insert into " + DbNames.Name("CisDb", "Newtouch_CIS") + @".dbo.xt_gmxx ([Id],[blh],[xm],[sex],[xmCode],[xmmc],[Result],[Remark],
 [CreateTime],[CreatorCode],[CreatorName],[LastModifyTime],[LastModifierCode],[LastModifierName],
 [mzzybz],[yzid],[cfmxid],[OrganizeId],[zt],[gmlx],[ypCode])
 select newid(),b.blh,b.xm,b.sex,a.xmdm,a.xmmc,
@@ -1195,10 +1196,10 @@ and not exists(select 1 from xt_gmxx c with(nolock) where a.OrganizeId=c.Organiz
                 foreach (var item in data)
                 {
                     string Remark = lrjg == "0" ? "Âm tính" : "Dương tính";
-                    string sql2 = string.Format(@"insert into [Newtouch_CIS].dbo.xt_gmxx 
+                    string sql2 = "insert into " + DbNames.Name("CisDb", "Newtouch_CIS") + @".dbo.xt_gmxx 
 values(
 newid(), '" + item.blh + "', '" + item.hzxm + "', '" + item.sex + "', '" + item.xmdm + "', '" + item.xmmc + "', '" + lrjg + "', '" + Remark + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff") + "','" + user.UserCode + "', " +
-    "'" + user.UserName + "',NULL,NULL,NULL ,2 ,'" + item.yzid.Trim() + "','', '" + user.OrganizeId.Trim() + "', '1','' , '" + item.xmdm + "','')");
+    "'" + user.UserName + "',NULL,NULL,NULL ,2 ,'" + item.yzid.Trim() + "','', '" + user.OrganizeId.Trim() + "', '1','' , '" + item.xmdm + "','')";
 
                     ExecuteSqlCommand(sql2);
                 }

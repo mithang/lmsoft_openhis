@@ -1,3 +1,4 @@
+using DbConfigHelper;
 namespace Newtouch.Infrastructure.TSQL
 {
     /// <summary>
@@ -922,7 +923,7 @@ END CATCH
         /// <summary>
         /// Phát thuốc chuẩn bị cho khoa
         /// </summary>
-        public const string KsbyStock = @"IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#ypkc') AND type='U')
+        public static string KsbyStock => @"IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#ypkc') AND type='U')
 BEGIN
 	DROP TABLE #ypkc;
 END
@@ -962,15 +963,15 @@ DECLARE @bqbm VARCHAR(50);
 WHILE EXISTS(SELECT 1 FROM #ypkc)
 BEGIN
 SELECT top 1 @djh=djh,@sqsl=sl,@kcId=kcId,@byId=byId,@ypdm=ypdm,@pc=pc,@ph=ph,@ksbm=ksbm,@bqbm=bqbm FROM #ypkc
-if EXISTS(select * from Newtouch_CIS.[dbo].[xt_ksby_kcxx] 
+if EXISTS(select * from " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].[xt_ksby_kcxx] 
 where ypdm=@ypdm and ph=@ph and pc=@pc and yfbmCode=@yfbmCode and ksbm=@ksbm and bqbm=@bqbm and zt=1)
 begin
-	update Newtouch_CIS.[dbo].[xt_ksby_kcxx] set kcsl=kcsl+@sqsl,lastmodifiercode=@userCode ,lastmodifytime=getdate()
+	update " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].[xt_ksby_kcxx] set kcsl=kcsl+@sqsl,lastmodifiercode=@userCode ,lastmodifytime=getdate()
 	where OrganizeId=@orgId and ypdm=@ypdm and ph=@ph and pc=@pc and yfbmCode=@yfbmCode and ksbm=@ksbm and bqbm=@bqbm and zt=1 
 end
 else
 begin
-insert into Newtouch_CIS.[dbo].[xt_ksby_kcxx](kcId,OrganizeId,yfbmCode,ypdm,ph,yxq,kcsl,djsl,tybz,jj,zhyz,cd,pc,px,creatorCode,CreateTime,zt,ksbm,bqbm)
+insert into " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].[xt_ksby_kcxx](kcId,OrganizeId,yfbmCode,ypdm,ph,yxq,kcsl,djsl,tybz,jj,zhyz,cd,pc,px,creatorCode,CreateTime,zt,ksbm,bqbm)
 select NEWID(),
 	   OrganizeId,
 	   yfbmCode,
@@ -996,7 +997,7 @@ end
  update [xt_yp_kcxx] set kcsl=kcsl-@sqsl,lastmodifiercode=@userCode ,lastmodifytime=getdate() where kcId=@kcId and OrganizeId=@orgId
 
  update [xt_bqksby] set shzt=3,lastmodifiercode=@userCode ,lastmodifytime=getdate()  where Id=@byId and OrganizeId=@orgId
- update Newtouch_CIS.[dbo].zy_bqksby set shzt=3,lastmodifiercode=@userCode ,lastmodifytime=getdate() where djh=@djh and OrganizeId=@orgId
+ update " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].zy_bqksby set shzt=3,lastmodifiercode=@userCode ,lastmodifytime=getdate() where djh=@djh and OrganizeId=@orgId
 
  IF @@ERROR <> 0
 	BEGIN
@@ -1022,7 +1023,7 @@ BEGIN CATCH
 END CATCH
  select @resultMsg resultMsg";
 
-        public const string KsbyTslStock = @"
+        public static string KsbyTslStock => @"
 DECLARE @resultMsg VARCHAR(500);
 SET @resultMsg=''
 DECLARE @djh VARCHAR(50); 
@@ -1046,7 +1047,7 @@ begin
 	RETURN;
 end
 
-if NOT EXISTS(select 1 from Newtouch_CIS.[dbo].[zy_ksbyth] (nolock) where OrganizeId=@orgId
+if NOT EXISTS(select 1 from " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].[zy_ksbyth] (nolock) where OrganizeId=@orgId
 and djh =@sqd and thzt=2 and zt=1)
 begin
 	SET @resultMsg=CONCAT('【Số đơn trạm bác sĩ:',@djh,'】không phải trạng thái đã đăng ký hoặc số đơn không tồn tại,không thể trả thuốc!')
@@ -1054,7 +1055,7 @@ begin
 	RETURN;
 end
 
-if EXISTS(select 1 from Newtouch_CIS.[dbo].[xt_ksby_kcxx] (nolock) where OrganizeId=@orgId
+if EXISTS(select 1 from " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].[xt_ksby_kcxx] (nolock) where OrganizeId=@orgId
  and yfbmCode=@yfbmCode and ypdm=@ypdm and pc=@pc and ph=@ph and zt=1 and (kcsl-djsl)<@tsl)
  begin
  SET @resultMsg=CONCAT('Thuốc：',@ypdm,'Số lượng tồn kho hiệu lực trong thông tin tồn kho thuốc dự trữ khoa nhỏ hơn số lượng trả,không thể trả thuốc!')
@@ -1075,7 +1076,7 @@ select top 1 @kcId=kcId from xt_yp_kcxx(NOLOCK) kcxx
  where OrganizeId=@orgId and ypdm=@ypdm and ph=@ph and pc=@pc and yfbmCode=@yfbmCode and zt=1 
 
  update [xt_ksbyth] set thzt=3,lastmodifiercode=@userCode ,lastmodifytime=getdate()  where djh=@djh and OrganizeId=@orgId
- update Newtouch_CIS.[dbo].zy_bqksby set shzt=3,lastmodifiercode=@userCode ,lastmodifytime=getdate() where djh=@djh and OrganizeId=@orgId
+ update " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].zy_bqksby set shzt=3,lastmodifiercode=@userCode ,lastmodifytime=getdate() where djh=@djh and OrganizeId=@orgId
 
  select @resultMsg;
 ";

@@ -1,4 +1,5 @@
 using System;
+using DbConfigHelper;
 using System.Collections.Generic;
 using SqlSugar;
 using System.Linq;
@@ -63,7 +64,7 @@ and exists(select 1 from [NewtouchHIS_Base].dbo.V_S_Sys_Department d with(nolock
             if (!string.IsNullOrWhiteSpace(entity.sfmbbh))
             {
                 sql = @"select sfmbbh
-                from[NewtouchHIS_Sett].dbo.xt_sfmb with(nolock)
+                from " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @".dbo.xt_sfmb with(nolock)
                 where OrganizeId = @orgId and zt = '1' and sfmb = @sfmb and sfmbbh <> @sfmbbh ";
 
                 var ety = this.FindList<SysChargeTemplateGridVO>(sql, new SugarParameter[]
@@ -78,7 +79,7 @@ and exists(select 1 from [NewtouchHIS_Base].dbo.V_S_Sys_Department d with(nolock
                 }
 
                 sql = "update a set  a.sfmb = @sfmb,a.sfmbmc=@sfmbmc,a.ks=@ks,a.LastModifyTime=getdate(),a.LastModifierCode=@user,a.zt=@zt " +
-                      "from [NewtouchHIS_Sett].dbo.xt_sfmb a " +
+                      "from " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + ".dbo.xt_sfmb a " +
                       "where a.OrganizeId = @orgId and a.zt = '1' and a.sfmbbh = @sfmbbh ";
                 this.ExecuteSqlCommand(sql, new SugarParameter[]
                 {
@@ -93,7 +94,7 @@ and exists(select 1 from [NewtouchHIS_Base].dbo.V_S_Sys_Department d with(nolock
 
                 sql = @"update a
                 set a.zt = '0',a.LastModifyTime=getdate(),a.LastModifierCode=@user
-                from[NewtouchHIS_Sett].dbo.xt_sfmbxm  a
+                from " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @".dbo.xt_sfmbxm  a
                     where a.OrganizeId = @orgId and a.sfmbbh = @sfmbbh and a.zt = '1'";
                 this.ExecuteSqlCommand(sql, new SugarParameter[]
                 {
@@ -109,7 +110,7 @@ and exists(select 1 from [NewtouchHIS_Base].dbo.V_S_Sys_Department d with(nolock
                 entity.sfmbbh = sfmbbh;
 
                 sql = @"select sfmbbh
-                from[NewtouchHIS_Sett].dbo.xt_sfmb with(nolock)
+                from " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @".dbo.xt_sfmb with(nolock)
                 where OrganizeId = @orgId and zt = '1' and sfmb = @sfmb ";
                 var mbety = this.FindList<SysChargeTemplateGridVO>(sql, new SugarParameter[]
                 {
@@ -121,7 +122,7 @@ and exists(select 1 from [NewtouchHIS_Base].dbo.V_S_Sys_Department d with(nolock
                     throw new FailedException("Mã không được trùng lặp");
                 }
 
-                sql = @"insert into [NewtouchHIS_Sett].dbo.xt_sfmb([sfmbbh],[OrganizeId],[sfmb],[sfmbmc],[mzzybz],[kffw],[zt],
+                sql = @"insert into " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @".dbo.xt_sfmb([sfmbbh],[OrganizeId],[sfmb],[sfmbmc],[mzzybz],[kffw],[zt],
 [CreatorCode],[CreateTime],[ks])
 values(@sfmbbh,@orgId,@sfmb,@sfmbmc,2,0,'1',@user,getdate(),@ks)";
                 this.ExecuteSqlCommand(sql, new SugarParameter[]
@@ -135,7 +136,7 @@ values(@sfmbbh,@orgId,@sfmb,@sfmbmc,2,0,'1',@user,getdate(),@ks)";
                 });
             }
 
-            string sqlitems = @"INSERT INTO [NewtouchHIS_Sett].dbo.[xt_sfmbxm]
+            string sqlitems = @"INSERT INTO " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @".dbo.[xt_sfmbxm]
                 ([sfmbxmId],[OrganizeId],[sfmbbh],[sfxm],[CreatorCode],[CreateTime],[zt],[sl])
 ";
             int i = 0;

@@ -5,6 +5,8 @@
 # 7 Pds) all point at *_STG clones; SiteSettAPIHost points at Sett-API staging
 # 17002 (never prod 7002, which writes demo); Redis to staging 6380.
 source ~/workspace/.sqlserver.env
+source ~/workspace/.redis.env
+source ~/workspace/.appsecrets.env
 REDIS_STG_PASS="$(cat ~/workspace/.redis-stg.env)"
 cd "$(dirname "$0")/Newtouch.HIS.Center/NewtouchHIS.WebAPI.Manage" || exit 1
 exec env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY -u all_proxy \
@@ -24,4 +26,5 @@ exec env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY 
   BusinessDB__DBConf__6__DBName=Newtouch_Interface_STG \
   BusinessDB__DBConf__7__DBName=NewtouchHIS_PDS_STG \
   RedisConfig__Connection="127.0.0.1:6380,password=$REDIS_STG_PASS" \
+  SSOAuthIdentity__0__AppSecret="$MANAGE_APPSECRET" \
   ~/.dotnet/dotnet bin/Release/net6.0/NewtouchHIS.WebAPI.Manage.dll

@@ -1,4 +1,5 @@
 using NewtouchHIS.Lib.Base.Extension;
+using DbConfigHelper;
 using Newtouch.Core.Common.Utils;
 using FrameworkBase.MultiOrg.DmnService;
 using System;
@@ -178,7 +179,7 @@ namespace Newtouch.HIS.DomainServices
                     {
                         var strSql = new StringBuilder();
                         //Sửa trạng thái phát thuốcLastModiFierCode
-                        strSql.Append(@"UPDATE NewtouchHIS_PDS.dbo.zy_ypyzxx
+                        strSql.Append(@"UPDATE " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + @".dbo.zy_ypyzxx
                                   SET       fybz = @fybz,
                                             LastModiFierCode = @user,
                                             LastModifyTime = @time
@@ -194,7 +195,7 @@ namespace Newtouch.HIS.DomainServices
 
                         //Trừ đóng băng phát thuốc khỏi đóng băng
                         strSql.Clear();
-                        strSql.Append(@"update NewtouchHIS_PDS.dbo.xt_yp_kcxx
+                        strSql.Append(@"update " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + @".dbo.xt_yp_kcxx
                                   SET	djsl=djsl-@sl,
 						                LastModifyTime=GETDATE(),
 						                LastModifierCode=@CreatorCode
@@ -285,7 +286,7 @@ namespace Newtouch.HIS.DomainServices
                     {
                         var strSql = new StringBuilder();
                         //Sửa trạng thái phát thuốcLastModiFierCode
-                        strSql.Append(@"UPDATE NewtouchHIS_PDS.dbo.zy_ypyzxx
+                        strSql.Append(@"UPDATE " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + @".dbo.zy_ypyzxx
                                   SET       fybz = @fybz,
                                             LastModiFierCode = @user,
                                             LastModifyTime = @time
@@ -300,7 +301,7 @@ namespace Newtouch.HIS.DomainServices
                         db.ExecuteSqlCommand(strSql.ToString(), paraList);
                         //Thêm bản ghi thao tác phát thuốc
                         strSql.Clear();
-                        strSql.Append(@"insert into NewtouchHIS_PDS.dbo.zy_ypyzczjl
+                        strSql.Append(@"insert into " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + @".dbo.zy_ypyzczjl
                                   (ypyzxxId,operateType,ypCode,sl,CreateTime,CreatorCode)
                                   values (@ypyzxxId,@operateType,@ypCode,@sl,@CreateTime,@CreatorCode);");
                         paraList = new SugarParameter[]
@@ -316,7 +317,7 @@ namespace Newtouch.HIS.DomainServices
 
                         //Trừ phát thuốc khỏi tồn kho
                         strSql.Clear();
-                        strSql.Append(@"update NewtouchHIS_PDS.dbo.xt_yp_kcxx
+                        strSql.Append(@"update " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + @".dbo.xt_yp_kcxx
                                   SET	kcsl=kcsl-@sl,
 						                djsl=djsl-@sl,
 						                LastModifyTime=GETDATE(),
@@ -604,7 +605,7 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
                     {
                         var strSql = new StringBuilder();
                         //Sửa trạng thái phát thuốcLastModiFierCode
-                        strSql.Append(@"UPDATE NewtouchHIS_PDS.dbo.zy_ypyzxx
+                        strSql.Append(@"UPDATE " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + @".dbo.zy_ypyzxx
                                   SET       fybz = @fybz,
                                             LastModiFierCode = @user,
                                             LastModifyTime = @time
@@ -620,7 +621,7 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
 
                         //Thêm bản ghi thao tác trả thuốc
                         strSql.Clear();
-                        strSql.Append(@"insert into NewtouchHIS_PDS.dbo.zy_ypyzczjl
+                        strSql.Append(@"insert into " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + @".dbo.zy_ypyzczjl
                                   (ypyzxxId,operateType,ypCode,sl,LastModifyTime,LastModifierCode)
                                   values (@ypyzxxId,@operateType,@ypCode,@sl,@LastModifyTime,@LastModifierCode);");
                         paraList = new SugarParameter[]
@@ -636,7 +637,7 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
 
                         //Lượng trả thuốc trả về tồn kho
                         strSql.Clear();
-                        strSql.Append(@"update NewtouchHIS_PDS.dbo.xt_yp_kcxx
+                        strSql.Append(@"update " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + @".dbo.xt_yp_kcxx
                                   SET	kcsl=kcsl+@tysl,
 						                LastModifyTime=GETDATE(),
 						                LastModifierCode=@CreatorCode

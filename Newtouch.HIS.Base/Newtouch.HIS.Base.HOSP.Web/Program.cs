@@ -70,6 +70,7 @@ builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 });
 builder.Services.AddSignalR();
 var app = builder.Build();
+Newtouch.Tools.ConfigurationHelper.Configuration = builder.Configuration;
 
 if (!app.Environment.IsDevelopment())
 {

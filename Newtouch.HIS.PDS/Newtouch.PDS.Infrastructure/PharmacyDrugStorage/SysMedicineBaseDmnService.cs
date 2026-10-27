@@ -1,4 +1,5 @@
 using Newtouch.Infrastructure.EF;
+using DbConfigHelper;
 using FrameworkBase.MultiOrg.Infrastructure;
 using NewtouchHIS.Lib.Framework.Operator;
 using NewtouchHIS.Lib.Base.Exceptions;
@@ -133,7 +134,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     using (var db = new EFDbTransaction().BeginTrans())
                     {
                         var strSql = new StringBuilder();
-                        strSql.Append(@"insert into [NewtouchHIS_Base].dbo.xt_yfbm_yp
+                        strSql.Append(@"insert into " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_yfbm_yp
                                (Id,yfbmCode ,dlCode,OrganizeId,CreateTime,CreatorCode,LastModifyTime,LastModifierCode,zt,px)
                                   values (newid(),@yfbmCode ,@dlCode,@OrganizeId,@CreateTime,@CreatorCode,@LastModifyTime,@LastModifierCode,@zt,@px);");
                         var paraList = new SugarParameter[]

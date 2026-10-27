@@ -1,6 +1,7 @@
 
 
 using NewtouchHIS.Lib.Base.Model;
+using DbConfigHelper;
 using Newtouch.Infrastructure.EF;
 using Newtouch.CIS.Compat;
 using Newtouch.Domain.DTO.InputDto;
@@ -338,7 +339,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
             };
             return (string.IsNullOrWhiteSpace(gmxxId))
                 ? 0
-                : ExecuteSqlCommand(@"update [Newtouch_CIS].[dbo].[xt_gmxx] set zt=@zt,LastModifierCode=@LastModifierCode,LastModifierName=@LastModifierName,LastModifyTime=@LastModifyTime
+                : ExecuteSqlCommand(@"update " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].[xt_gmxx] set zt=@zt,LastModifierCode=@LastModifierCode,LastModifierName=@LastModifierName,LastModifyTime=@LastModifyTime
                     where Id=@Id and OrganizeId=@orgId;",
                     param.ToArray());
         }

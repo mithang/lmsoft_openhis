@@ -1,4 +1,5 @@
 using Newtouch.EMR.Domain.Entity;
+using DbConfigHelper;
 using Newtouch.EMR.Domain.IRepository;
 using Newtouch.Infrastructure;
 using System.Collections.Generic;
@@ -146,7 +147,7 @@ where zt=1 and OrganizeId=@OrgId
             
             foreach (var item in data)
             {
-                var sql = @"insert into [Newtouch_EMR].[dbo].[bl_hljldata] values(
+                var sql = @"insert into " + DbNames.Name("EmrDb", "Newtouch_EMR") + @".[dbo].[bl_hljldata] values(
 newId(),'"+item.blId+ "','" + item.jlrq + "','" + item.tw+ "','" + item.mb + "','" + item.hx + "','" + item.xy + "','" + item.ybhd + "','" + item.cxxdjc + "'" +
 ",'" + item.xroyx + "','" + item.hljb + "','" + item.xzjs + "','" + item.pbjyxkt + "','" + item.ycyf + "','" + item.ddyf + "','" + item.qtjh + "'" +
 ",'" + item.zkhl + "','" + item.dglb + "','" + item.hlzd + "','" + item.nl + "','" + item.wy + "','" + item.bqhlcontent + "','" + item.hsqm + "'" +

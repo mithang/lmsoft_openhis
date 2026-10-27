@@ -1,11 +1,11 @@
 using NewtouchHIS.Lib.Framework.Filter;
 using NewtouchHIS.Framework.Web.Controllers;
-using NewtouchHIS.Lib.Framework.Attributes;
 using Newtouch.Infrastructure;
 
 namespace Newtouch.HIS.Web
 {
-    [HandlerLogin]
+    // SECURITY (giai doan 7): KHONG dat [HandlerLogin] o day — attribute do lam
+    // FrameworkAuthorizationFilter bo qua moi action ke thua base nay.
     public abstract class ControllerBase : OrgControllerBase
     {
         protected ControllerBase()

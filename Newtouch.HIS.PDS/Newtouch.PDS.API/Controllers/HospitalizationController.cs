@@ -1,4 +1,5 @@
 using System;
+using DbConfigHelper;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -127,7 +128,7 @@ namespace Newtouch.PDS.API.Controllers
                 }
                 else
                 {
-                    const string strSql = "update NewtouchHIS_PDS.dbo.zy_ypyzxx set sqtybz = @sqtybz where zxId = @zxId and ypCode = @ypCode and zxrq = @zxrq";
+                    string strSql = "update " + DbNames.Name("PdsDb", "NewtouchHIS_PDS") + ".dbo.zy_ypyzxx set sqtybz = @sqtybz where zxId = @zxId and ypCode = @ypCode and zxrq = @zxrq";
                     int count;
                     using (var db = NewDb())
                     {

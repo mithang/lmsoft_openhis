@@ -1,4 +1,5 @@
 using Newtouch.MR.ManageSystem.Domain.DTO.InputDto;
+using DbConfigHelper;
 using Newtouch.MR.ManageSystem.Domain.Entity;
 using Newtouch.MR.ManageSystem.Domain.IDomainServices;
 using Newtouch.MR.ManageSystem.Domain.ValueObjects;
@@ -773,7 +774,7 @@ order by SSOrder ";
                             //Ghi đèEMR
                             try
                             {
-                                string sql = @"update Newtouch_EMR.dbo.mr_basy set BABAH='" + vo.BAH + "',LastModifyTime=getdate(),LastModifierCode='MRMS' where organizeid=@orgId and zyh=@zyh and zt='1'";
+                                string sql = @"update " + DbNames.Name("EmrDb", "Newtouch_EMR") + @".dbo.mr_basy set BABAH='" + vo.BAH + "',LastModifyTime=getdate(),LastModifierCode='MRMS' where organizeid=@orgId and zyh=@zyh and zt='1'";
                                 ExecuteSqlCommand(sql, new SugarParameter[] {
                                     new SugarParameter("@orgId",orgId),
                                     new SugarParameter("@zyh",ety.ZYH)

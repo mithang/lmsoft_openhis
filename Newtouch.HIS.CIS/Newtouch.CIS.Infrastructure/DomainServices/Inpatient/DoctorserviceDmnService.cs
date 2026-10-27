@@ -1,4 +1,5 @@
 using System;
+using DbConfigHelper;
 using Newtouch.CIS.Proxy.ServiceReferenceSqsq;
 using Newtouch.Infrastructure.EF;
 using System.Collections.Generic;
@@ -1882,8 +1883,8 @@ namespace Newtouch.DomainServices.Inpatient
                                     if (listjg.Count > 0)
                                     {
                                         var sqlupdate = @"update a set a.sqzt=3
-                                                        from [Newtouch_OR].[dbo].[OR_ApplyInfo] a 
-                                                        left join [Newtouch_OR].[dbo].[OR_ApplyInfo_Expand] b 
+                                                        from " + DbNames.Name("OrDb", "Newtouch_OR") + @".[dbo].[OR_ApplyInfo] a 
+                                                        left join " + DbNames.Name("OrDb", "Newtouch_OR") + @".[dbo].[OR_ApplyInfo_Expand] b 
                                                         on a.applyno=b.applyno and b.px=1
                                                         where a.zyh=@zyh and  a.zt=1 and a.OrganizeId=@orgId and  a.sqzt<>2 and  a.Applyno=@sqdh";
 
@@ -2042,8 +2043,8 @@ namespace Newtouch.DomainServices.Inpatient
                                         if (listjg.Count > 0)
                                         {
                                             var sqlupdate = @"update a set a.sqzt=3
-                                                        from [Newtouch_OR].[dbo].[OR_ApplyInfo] a 
-                                                        left join [Newtouch_OR].[dbo].[OR_ApplyInfo_Expand] b 
+                                                        from " + DbNames.Name("OrDb", "Newtouch_OR") + @".[dbo].[OR_ApplyInfo] a 
+                                                        left join " + DbNames.Name("OrDb", "Newtouch_OR") + @".[dbo].[OR_ApplyInfo_Expand] b 
                                                         on a.applyno=b.applyno and b.px=1
                                                         where a.zyh=@zyh and  a.zt=1 and a.OrganizeId=@orgId and  a.sqzt<>2 and  a.Applyno=@sqdh";
 
@@ -3171,7 +3172,7 @@ where id=@yzid");
                                  WHERE zt=1 and OrganizeId=@orgId 
                                        and sqdh IN ( SELECT  col FROM dbo.f_split(@str, ',') ) 
 
-                            DELETE FROM  NewtouchHIS_Sett..zy_xmjfb
+                            DELETE FROM  " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @"..zy_xmjfb
                                 WHERE yzwym in (select Id from zy_lsyz with(nolock) where zt=1 and OrganizeId=@orgId 
                                  and sqdh IN ( SELECT  col FROM dbo.f_split(@str, ',') ))
 ";

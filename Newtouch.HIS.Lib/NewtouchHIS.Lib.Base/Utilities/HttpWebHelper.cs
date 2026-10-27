@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using NewtouchHIS.Lib.Base.Extension;
@@ -96,12 +96,18 @@ namespace NewtouchHIS.Lib.Base.Utilities
         /// <param name="strValue">giá trị</param>
         public static void WriteCookie(string strName, string strValue)
         {
+            // SECURITY (G7): cookie phien luon co HttpOnly + SameSite=Lax; Secure chi khi request la HTTPS
+            // (hien tai chay HTTP nen Secure=false, neu set Secure=true mu se hong login).
+            // Quirk giu nguyen: chi ghi khi cookie chua ton tai; cookie cu van dung duoc den khi dang nhap lai.
             CookieOptions options = new CookieOptions();
+            options.HttpOnly = true;
+            options.SameSite = SameSiteMode.Lax;
+            options.Secure = HttpCurrent.Request.IsHttps;
 
             var cookie = HttpCurrent.Request.Cookies[strName];
             if (cookie == null)
             {
-                HttpCurrent.Response.Cookies.Append(strName, strValue);
+                HttpCurrent.Response.Cookies.Append(strName, strValue, options);
             }
             else
             {
@@ -120,6 +126,9 @@ namespace NewtouchHIS.Lib.Base.Utilities
         {
             RemoveCookie(strName);
             CookieOptions options = new CookieOptions();
+            options.HttpOnly = true;
+            options.SameSite = SameSiteMode.Lax;
+            options.Secure = HttpCurrent.Request.IsHttps;
             options.Expires = DateTime.Now.AddMinutes(expires);//Thời gian hết hạn
             HttpCurrent.Response.Cookies.Append(strName, strValue, options);
         }

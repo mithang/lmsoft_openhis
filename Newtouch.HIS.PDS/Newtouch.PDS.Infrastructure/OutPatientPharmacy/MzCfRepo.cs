@@ -1,4 +1,5 @@
 using NewtouchHIS.Lib.Base.Extension;
+using DbConfigHelper;
 using System;
 using NewtouchHIS.Lib.Base.Model;
 using System.Collections.Generic;
@@ -718,7 +719,7 @@ SELECT
         }
         public int UpdateCfYsshyj(string cfh, string ysshyj, string orgId)
         {
-            const string sql = " UPDATE [Newtouch_CIS]..xt_cf SET ysshyj=@ysshyj WHERE cfh=@cfh and organizeid=@orgId ";
+            string sql = " UPDATE " + DbNames.Name("CisDb", "Newtouch_CIS") + "..xt_cf SET ysshyj=@ysshyj WHERE cfh=@cfh and organizeid=@orgId ";
             SugarParameter[] param =
             {
                 new SugarParameter("@cfh", cfh),

@@ -1,4 +1,5 @@
 using NewtouchHIS.Lib.Framework.Operator;
+using DbConfigHelper;
 using NewtouchHIS.Lib.Base.Model;
 using NewtouchHIS.Lib.Base.Exceptions;
 using Newtouch.Domain.ValueObjects;
@@ -765,7 +766,7 @@ select CONVERT(varchar(10),'临') yzlb,yz.yzlx,yz.yzzt, yz.kssj kssj ,ry.Name ys
                             new SugarParameter("@user", user)
                 };
 
-            string sql = "update Newtouch_EMR..bl_hljl set IsLock='0',LastModifierCode=@user where Id=@blid and OrganizeId=@organizeId";
+            string sql = "update " + DbNames.Name("EmrDb", "Newtouch_EMR") + "..bl_hljl set IsLock='0',LastModifierCode=@user where Id=@blid and OrganizeId=@organizeId";
 
             return this.ExecuteSqlCommand(sql, para.ToArray());
         }
@@ -789,7 +790,7 @@ select CONVERT(varchar(10),'临') yzlb,yz.yzlx,yz.yzzt, yz.kssj kssj ,ry.Name ys
                             new SugarParameter("@blid", blid),
                             new SugarParameter("@organizeId", orgId)
                 };
-                string sql = "delete from Newtouch_EMR..bl_ysjgnr where blid=@blid and OrganizeId=@organizeId";
+                string sql = "delete from " + DbNames.Name("EmrDb", "Newtouch_EMR") + "..bl_ysjgnr where blid=@blid and OrganizeId=@organizeId";
                 this.ExecuteSqlCommand(sql, para.ToArray());
             }
             catch (Exception ex)

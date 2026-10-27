@@ -1,4 +1,5 @@
 using Newtouch.Infrastructure.EF;
+using DbConfigHelper;
 using Newtouch.Infrastructure;
 using FrameworkBase.MultiOrg.Infrastructure;
 using NewtouchHIS.Lib.Framework.Operator;
@@ -105,7 +106,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                     using (var db = new EFDbTransaction().BeginTrans())
                     {
                         var strSql = new StringBuilder();
-                        strSql.Append(@"  UPDATE [NewtouchHIS_Base].dbo.xt_kssType
+                        strSql.Append(@"  UPDATE " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_kssType
 SET OrganizeId=@OrganizeId,typeName=@typeName,typelevel=@typelevel,qxjb=@qxjb,qxjbmc=@qxjbmc,parentId=@parentId,LastModifyTime=@LastModifyTime,LastModifierCode=@LastModifierCode,zt=@zt
 where Id=@Id");
                         var paraList = new SugarParameter[]
@@ -137,7 +138,7 @@ where Id=@Id");
                     using (var db = new EFDbTransaction().BeginTrans())
                     {
                         var strSql = new StringBuilder();
-                        strSql.Append(@"insert into [NewtouchHIS_Base].dbo.xt_kssType
+                        strSql.Append(@"insert into " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.xt_kssType
                                   (Id,OrganizeId ,typeName,typelevel,qxjb,qxjbmc,parentId,CreateTime,CreatorCode,LastModifyTime,LastModifierCode,zt)
                                   values (newid(),@OrganizeId,@typeName,@typelevel,@qxjb,@qxjbmc,@parentId,@CreateTime,@CreatorCode,null,null,@zt);");
                         var paraList = new SugarParameter[]

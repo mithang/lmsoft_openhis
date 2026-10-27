@@ -7,6 +7,8 @@
 # DBConf index order (BaseAPI appsettings): 0 BaseDb, 1 SettDb, 2 EmrDb,
 # 3 MrmsDb, 4 MrQcDb, 5 CisDb, 6 UnionDb.
 source ~/workspace/.sqlserver.env
+source ~/workspace/.redis.env
+source ~/workspace/.appsecrets.env
 REDIS_STG_PASS="$(cat ~/workspace/.redis-stg.env)"
 cd "$(dirname "$0")/Newtouch.HIS.SSO/HIS.BaseAPI" || exit 1
 exec env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY -u all_proxy \
@@ -22,4 +24,5 @@ exec env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY 
   BusinessDB__DBConf__5__DBName=Newtouch_CIS_STG \
   BusinessDB__DBConf__6__DBName=Newtouch_Union_STG \
   RedisConfig__Connection="127.0.0.1:6380,password=$REDIS_STG_PASS" \
+  SSOAuthIdentity__0__AppSecret="$BASEAPI_APPSECRET" \
   ~/.dotnet/dotnet bin/Release/net6.0/HIS.BaseAPI.dll

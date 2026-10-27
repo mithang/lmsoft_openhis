@@ -1,4 +1,5 @@
 using NewtouchHIS.Lib.Framework.Operator;
+using DbConfigHelper;
 using NewtouchHIS.Lib.Base.Model;
 using Newtouch.EMR.Domain.Entity;
 using Newtouch.EMR.Domain.IRepository;
@@ -43,7 +44,7 @@ where a.mbId='"+mbbh+"' and a.zyh='"+zyh+"' and a.OrganizeId='"+orgId+"' order b
                 item.blId = (string.IsNullOrWhiteSpace(item.blId)) ? blId : item.blId;
                 if (!string.IsNullOrWhiteSpace(item.Id))
                 {
-                    var sqldelete = "update [Newtouch_EMR].[dbo].[bl_hljldata] set zt='0',LastModifierCode="+user.rygh
+                    var sqldelete = "update " + DbNames.Name("EmrDb", "Newtouch_EMR") + ".[dbo].[bl_hljldata] set zt='0',LastModifierCode="+user.rygh
                         +",LastModifyTime=getdate()  where Id='" + item.Id+"'";
                     ExecuteSqlCommand(sqldelete);
                     item.Id = null;
@@ -54,7 +55,7 @@ where a.mbId='"+mbbh+"' and a.zyh='"+zyh+"' and a.OrganizeId='"+orgId+"' order b
 //",'" + item.zkhl + "','" + item.dglb + "','" + item.hlzd + "','" + item.nl + "','" + item.wy + "','" + item.bqhlcontent + "','" + item.hsqm + "'" +
 //",'1',getdate(),'" + user.UserCode + "',NULL,NULL,'" + user.OrganizeId + "','"+item.jlwzsj+"','"+zyh+"')";
 
-                string sql = @"insert into [Newtouch_EMR].[dbo].[bl_hljldata]([Id],[blId],[jlrq],[tw],[mb],[hx],[xy],[ybhd],[cxxdjc],[xroyx],[hljb],[xzjs],[pbjyxkt],[ycyf],[ddyf]
+                string sql = @"insert into " + DbNames.Name("EmrDb", "Newtouch_EMR") + @".[dbo].[bl_hljldata]([Id],[blId],[jlrq],[tw],[mb],[hx],[xy],[ybhd],[cxxdjc],[xroyx],[hljb],[xzjs],[pbjyxkt],[ycyf],[ddyf]
 ,[qtjh],[zkhl],[dglb],[hlzd],[nl],[wy],[bqhlcontent],[hsqm],[zt],[CreateTime]
 ,[CreatorCode],[LastModifyTime],[LastModifierCode],[OrganizeId],[jlwzsj],[zyh]) 
 values(

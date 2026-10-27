@@ -1,4 +1,5 @@
 using NewtouchHIS.Lib.Base.Model;
+using DbConfigHelper;
 using NewtouchHIS.Lib.Base.Exceptions;
 using Newtouch.EMR.Domain.BusinessObjects;
 using Newtouch.EMR.Domain.DTO.InputDto;
@@ -97,7 +98,7 @@ where a.organizeid=@orgId and a.zt='1'
                                set basy.CYSJ = brjbxx.cqrq,
                                    basy.CYSJS = SUBSTRING(CONVERT(varchar(100),brjbxx.cqrq,21),11,3),
                                    basy.SJZYTS = dbo.get_zyts(brjbxx.ryrq,brjbxx.cqrq)
-                              from Newtouch_CIS.dbo.zy_brxxk as brjbxx,Newtouch_EMR.dbo.mr_basy as basy
+                              from " + DbNames.Name("CisDb", "Newtouch_CIS") + @".dbo.zy_brxxk as brjbxx," + DbNames.Name("EmrDb", "Newtouch_EMR") + @".dbo.mr_basy as basy
                              where brjbxx.ZYH = @zyh 
                                and brjbxx.OrganizeId = @orgId
                                and brjbxx.zyh = basy.ZYH
@@ -150,8 +151,8 @@ where a.organizeid=@orgId and a.zt='1'
             if (mrbasy != null)
             {
                 string usql = @"update basy set 
-                                       basy.ZYCS = (select NewtouchHIS_Sett.dbo.get_zycs(@zyh,'',@orgId))
-                                  from Newtouch_EMR.dbo.mr_basy as basy
+                                       basy.ZYCS = (select " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @".dbo.get_zycs(@zyh,'',@orgId))
+                                  from " + DbNames.Name("EmrDb", "Newtouch_EMR") + @".dbo.mr_basy as basy
                                  where basy.ZYH = @zyh
                                    and basy.OrganizeId = @orgId
                                    and basy.zt = '1'";
@@ -1368,7 +1369,7 @@ where a.organizeid=@orgId and a.zyh=@zyh";
             {
 
 
-                var sqldelete = "delete from [Newtouch_CIS].dbo.zy_PatDxInfo where zyh=@zyh and zdlb='2' and OrganizeId = @orgId";
+                var sqldelete = "delete from " + DbNames.Name("CisDb", "Newtouch_CIS") + ".dbo.zy_PatDxInfo where zyh=@zyh and zdlb='2' and OrganizeId = @orgId";
                 this.ExecuteSqlCommand(sqldelete, new SugarParameter[] {
                            new SugarParameter("@zyh",zyh),
                            new SugarParameter("@orgId", orgId)
@@ -1391,7 +1392,7 @@ where a.organizeid=@orgId and a.zyh=@zyh";
                     {
                         //i = int.Parse(datacount.ToString());
                         var zdlx = datacount + i;
-                        var sql = "insert into [Newtouch_CIS]..zy_PatDxInfo  " +
+                        var sql = "insert into " + DbNames.Name("CisDb", "Newtouch_CIS") + "..zy_PatDxInfo  " +
                             "values(@Id, @OrganizeId, @zyh, @zddl,@zdlb, @zdlx, @zddm, @zdmc, NULL, @CreateTime, @CreatorCode, NULL, NULL, @zt, @cyqk,@px)";
 
                         this.ExecuteSqlCommand(sql, new SugarParameter[] {
@@ -1418,7 +1419,7 @@ where a.organizeid=@orgId and a.zyh=@zyh";
                     {
                         //i = int.Parse(datacount.ToString());
                         var zdlx = datacount + i;
-                        var sql = "insert into [Newtouch_CIS]..zy_PatDxInfo  " +
+                        var sql = "insert into " + DbNames.Name("CisDb", "Newtouch_CIS") + "..zy_PatDxInfo  " +
                             "values(@Id, @OrganizeId, @zyh,@zddl, @zdlb, @zdlx, @zddm, @zdmc, NULL, @CreateTime, @CreatorCode, NULL, NULL, @zt, @cyqk,@px)";
 
                         this.ExecuteSqlCommand(sql, new SugarParameter[] {

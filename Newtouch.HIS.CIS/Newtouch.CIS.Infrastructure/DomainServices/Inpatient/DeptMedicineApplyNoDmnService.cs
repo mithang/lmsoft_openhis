@@ -1,6 +1,7 @@
 
 
 using Newtouch.Domain.Api;
+using DbConfigHelper;
 using Newtouch.Domain.IDomainServices.Inpatient;
 using Newtouch.Domain.ViewModels;
 using System;
@@ -53,8 +54,8 @@ where  organizeid=@orgId and zt=1 and djh in ( select col from f_split(@sqdArr,'
         public int UpdateApplyNoStatus(string orgId, string sqdArr,string UserCode)
         {
 
-            const string sql = @"
-update Newtouch_CIS.[dbo].zy_bqksby set shzt=5 ,lastmodifiercode=@UserCode,lastmodifytime=GETDATE()
+            string sql = @"
+update " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].zy_bqksby set shzt=5 ,lastmodifiercode=@UserCode,lastmodifytime=GETDATE()
 where  organizeid=@orgId and zt=1 and djh in ( select col from f_split(@sqdArr,',') )
 ";
             var param = new DbParameter[]
@@ -92,8 +93,8 @@ where  organizeid=@orgId and zt=1 and djh =@djh
         public int UpdateReturnApplyNoStatus(string orgId, string sqdArr, string UserCode)
         {
 
-            const string sql = @"
-update Newtouch_CIS.[dbo].[zy_ksbyth] set shzt=5 ,lastmodifiercode=@UserCode,lastmodifytime=GETDATE()
+            string sql = @"
+update " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].[zy_ksbyth] set shzt=5 ,lastmodifiercode=@UserCode,lastmodifytime=GETDATE()
 where  organizeid=@orgId and zt=1 and djh=@sqdArr
 ";
             var param = new DbParameter[]

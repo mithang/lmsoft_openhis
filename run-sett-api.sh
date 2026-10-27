@@ -12,10 +12,12 @@
 # or this script. {0} is the Initial Catalog slot filled from
 # SettApi:SettDb in appsettings.json (NewtouchHIS_Sett for prod).
 source ~/workspace/.sqlserver.env
+source ~/workspace/.redis.env
 cd "$(dirname "$0")/Newtouch.HIS.Sett/Newtouch.Sett.API" || exit 1
 exec env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY -u all_proxy \
   ASPNETCORE_ENVIRONMENT=Development \
   DOTNET_SYSTEM_NET_DISABLEIPV6=true \
   ASPNETCORE_URLS=http://127.0.0.1:7002 \
   BusinessDB__DefaultConn="Data Source=localhost;Initial Catalog={0};User ID=sa;Password=$MSSQL_SA_PASSWORD" \
+  RedisConfig__Connection="127.0.0.1:6379,password=$REDIS_PASSWORD" \
   ~/.dotnet/dotnet bin/Release/net6.0/Newtouch.Sett.API.dll

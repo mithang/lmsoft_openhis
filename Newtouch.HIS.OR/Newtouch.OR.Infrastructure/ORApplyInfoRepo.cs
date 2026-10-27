@@ -1,4 +1,5 @@
 using Newtouch.OR.ManageSystem.Domain.Entity;
+using DbConfigHelper;
 using Newtouch.OR.ManageSystem.Domain.IRepository;
 using Newtouch.OR.ManageSystem.Infrastructure;
 using NewtouchHIS.Lib.Base.Exceptions;
@@ -64,12 +65,12 @@ namespace Newtouch.OR.ManageSystem.Repository
                 dbEntity.sqzt = ((int)EnumSqzt.yqx).ToString();
                 Update(dbEntity);
 
-                var sqlcx = @"select 1 from [Newtouch_CIS].[dbo].[zy_lsyz] 
+                var sqlcx = @"select 1 from " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].[zy_lsyz] 
 where yzlx=3  and zyh=" + dbEntity.zyh + " and xmmc='" + ssmcn+"' and ysgh='"+dbEntity.ysgh+"' and  OrganizeId='"+dbEntity.OrganizeId+"' and sssj='"+dbEntity.sssj+"'";
                 var a = ExecuteSqlCommand(sqlcx);
                 if (a !=0)
                 {
-                    var sql = @"update [Newtouch_CIS].[dbo].[zy_lsyz]
+                    var sql = @"update " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].[zy_lsyz]
                                 set zt=0
                                 where yzlx=3 and yzzt=0 and zyh='"+dbEntity.zyh+"' and xmmc='" + ssmcn + "' and ysgh='" + dbEntity.ysgh + "' and  OrganizeId='" + dbEntity.OrganizeId + "'and sssj='" + dbEntity.sssj + "'";
                     ExecuteSqlCommand(sql);

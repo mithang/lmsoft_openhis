@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Newtouch.CIS.Web.Attributes;
 using Newtouch.HIS.Domain.IRepository;
 using NewtouchHIS.Framework.Web.Controllers;
-using NewtouchHIS.Lib.Framework.Attributes;
 
 namespace Newtouch.CIS.Web
 {
@@ -12,8 +11,9 @@ namespace Newtouch.CIS.Web
     /// the vendor net6.0 Framework.Web bases (OrgControllerBase -> BaseController).
     /// The original Framework local base also provided default Index/Form/Details
     /// actions returning their views; those are preserved here.
+    /// SECURITY (giai doan 7): KHONG dat [HandlerLogin] o day — attribute do lam
+    /// FrameworkAuthorizationFilter bo qua moi action ke thua base nay.
     /// </summary>
-    [HandlerLogin]
     public abstract class ControllerBase : OrgControllerBase
     {
         // NOTE: Lib BaseController already declares virtual Index()/Form().

@@ -68,6 +68,7 @@ builder.Services.AddControllersWithViews().AddMvcOptions(options =>
     options.Filters.Add(typeof(FrameworkAuthorizationFilter));
 });
 var app = builder.Build();
+Newtouch.Tools.ConfigurationHelper.Configuration = builder.Configuration;
 
 if (!app.Environment.IsDevelopment())
 {

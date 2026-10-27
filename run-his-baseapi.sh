@@ -11,10 +11,14 @@
 # as run-sso.sh) and is NEVER written into appsettings.json or this script.
 # Top_OrganizeId (demo org) comes from appsettings.json and is correct.
 source ~/workspace/.sqlserver.env
+source ~/workspace/.redis.env
+source ~/workspace/.appsecrets.env
 cd "$(dirname "$0")/Newtouch.HIS.SSO/HIS.BaseAPI" || exit 1
 exec env -u http_proxy -u https_proxy -u HTTP_PROXY -u HTTPS_PROXY -u ALL_PROXY -u all_proxy \
   ASPNETCORE_ENVIRONMENT=Development \
   DOTNET_SYSTEM_NET_DISABLEIPV6=true \
   ASPNETCORE_URLS=http://127.0.0.1:7001 \
   BusinessDB__DefaultConn="Data Source=localhost;Initial Catalog={0};User ID=sa;Password=$MSSQL_SA_PASSWORD" \
+  RedisConfig__Connection="127.0.0.1:6379,password=$REDIS_PASSWORD" \
+  SSOAuthIdentity__0__AppSecret="$BASEAPI_APPSECRET" \
   ~/.dotnet/dotnet bin/Release/net6.0/HIS.BaseAPI.dll

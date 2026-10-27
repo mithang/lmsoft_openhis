@@ -1,6 +1,7 @@
 
 
 using Newtonsoft.Json;
+using DbConfigHelper;
 using NewtouchHIS.Lib.Base.Model;
 using Newtouch.CIS.Compat;
 using Newtouch.Domain.DTO.OutputDto.Outpatient.API;
@@ -536,13 +537,13 @@ where OrganizeId = @orgId and zt = '1'";
         a.RptCode=@rptcode,
 		a.[LastModifyTime]=getdate(),
 		a.[LastModifierCode]=@rygh
-		from [NewtouchHIS_Base].dbo.ReportSvsConfig a
+		from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.ReportSvsConfig a
 		where a.id=@rptId and a.OrganizeId=@orgId and a.zt='1'
 ";
             }
             else
             {
-                sql = @"insert into [NewtouchHIS_Base].dbo.ReportSvsConfig([Id],[OrganizeId],[AppId],[RptName],[RptHost],[RptUrl],
+                sql = @"insert into " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.ReportSvsConfig([Id],[OrganizeId],[AppId],[RptName],[RptHost],[RptUrl],
 		[RptSource],[Paras],[Tools],[CreateTime],[CreatorCode],[LastModifyTime],
 		[LastModifierCode],[px],[zt],RptCode)
 		select newid(),
@@ -585,7 +586,7 @@ where OrganizeId = @orgId and zt = '1'";
             string sql = @"update a set a.zt='0',		
 a.[LastModifyTime]=getdate(),
 a.[LastModifierCode]=@rygh
-from [NewtouchHIS_Base].dbo.ReportSvsConfig a 
+from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".dbo.ReportSvsConfig a 
 where a.id=@rptId and a.OrganizeId=@orgId and a.zt='1'
 ";
             ExecuteSqlCommand(sql, new SqlParameter[] {

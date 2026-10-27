@@ -2,6 +2,7 @@
 
 using Newtouch.Domain.Entity;
 
+using DbConfigHelper;
 using Newtouch.Infrastructure.EF;
 using Newtouch.CIS.Repository;
 
@@ -1728,7 +1729,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                 apicflx = 1;
                 apicfh = cflist.cfh;
                 isAlertinherit = false;
-                string cfsqls = @"update Newtouch_CIS..xt_dzcf set zt='0' where cfid='{0}' and zt='1';  update Newtouch_CIS..xt_dzcfmx set zt='0' where cfid='{0}' and zt='1' ";
+                string cfsqls = @"update " + DbNames.Name("CisDb", "Newtouch_CIS") + @"..xt_dzcf set zt='0' where cfid='{0}' and zt='1';  update " + DbNames.Name("CisDb", "Newtouch_CIS") + "..xt_dzcfmx set zt='0' where cfid='{0}' and zt='1' ";
                 cfsqls = string.Format(cfsqls, cfId);
                 this.ExecuteSqlCommand(cfsqls);
             }

@@ -1,4 +1,5 @@
 using System;
+using DbConfigHelper;
 using System.Collections.Generic;
 using SqlSugar;
 using Newtouch.Infrastructure.EF;
@@ -359,12 +360,12 @@ AND wz.Id=@Id
         /// <returns></returns>
         public int InsertProductToSfxm(WzProductEntity entity)
         {
-            const string sql = @"
+            string sql = @"
 DECLARE @sfdlCode VARCHAR(50)
-SELECT @sfdlCode = Value FROM [NewtouchHIS_herp].[dbo].[Sys_Config] where Code='sfdlCode'
+SELECT @sfdlCode = Value FROM " + DbNames.Name("HerpDb", "NewtouchHIS_herp") + @".[dbo].[Sys_Config] where Code='sfdlCode'
 DECLARE @unit VARCHAR(50)
-SELECT @unit=name FROM [NewtouchHIS_Base].[dbo].[wz_unit]  WHERE id=@minUnit
-INSERT INTO [NewtouchHIS_Base].[dbo].[xt_sfxm]
+SELECT @unit=name FROM " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".[dbo].[wz_unit]  WHERE id=@minUnit
+INSERT INTO " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".[dbo].[xt_sfxm]
 ([sfxmCode]
 ,[sfxmmc]
 ,[sfdlCode]
@@ -451,12 +452,12 @@ INSERT INTO [NewtouchHIS_Base].[dbo].[xt_sfxm]
 		/// <returns></returns>
 		public int updateProductToSfxm(WzProductEntity entity)
         {
-            const string sql = @"
+            string sql = @"
 DECLARE @oldProductCode VARCHAR(50)
-SELECT @oldProductCode = productCode FROM [NewtouchHIS_herp].[dbo].[wz_product] WHERE Id=@Id
+SELECT @oldProductCode = productCode FROM " + DbNames.Name("HerpDb", "NewtouchHIS_herp") + @".[dbo].[wz_product] WHERE Id=@Id
 DECLARE @unit VARCHAR(50)
-SELECT @unit=name FROM  [NewtouchHIS_Base].[dbo].[wz_unit]  WHERE id=@minUnit
-UPDATE [NewtouchHIS_Base].[dbo].[xt_sfxm] set 
+SELECT @unit=name FROM  " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".[dbo].[wz_unit]  WHERE id=@minUnit
+UPDATE " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".[dbo].[xt_sfxm] set 
 [sfxmCode]=@productCode
 ,[sfxmmc]=@name
 ,[OrganizeId]=@OrganizeId
@@ -506,8 +507,8 @@ WHERE sfxmCode=@oldProductCode
         /// <returns></returns>
         public int DeleteProductToSfxm(string id)
         {
-            const string sql = @"
-DELETE FROM  [NewtouchHIS_Base].[dbo].[xt_sfxm] WHERE sfxmcode=(SELECT productCode FROM [wz_product] WHERE id=@id)";
+            string sql = @"
+DELETE FROM  " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".[dbo].[xt_sfxm] WHERE sfxmcode=(SELECT productCode FROM [wz_product] WHERE id=@id)";
             var param = new SugarParameter[] {
                 new SugarParameter("@id", id),
             };

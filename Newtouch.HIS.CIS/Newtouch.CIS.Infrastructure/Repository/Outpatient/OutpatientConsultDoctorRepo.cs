@@ -1,5 +1,6 @@
 
 using Newtouch.CIS.Repository;
+using DbConfigHelper;
 using Newtouch.Domain.Entity.Outpatient;
 using Newtouch.Domain.IRepository.Outpatient;
 using Newtouch.Domain.ValueObjects.Outpatient;
@@ -50,7 +51,7 @@ namespace Newtouch.Repository.Outpatient
 		public int UpdateZS(OutpatientConsultDoctorVO zsov)
 		{
 
-			var sqlstr = @"update NewtouchHIS_Base..xt_zs set zslc=(case when @zslc='' then null else @zslc end ),
+			var sqlstr = @"update " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @"..xt_zs set zslc=(case when @zslc='' then null else @zslc end ),
 zsfh=(case when @zsfh='' then null else @zsfh end ),
 ys=(case when @ys='' then null else @ys end ),
 ysmc=(case when @ysmc='' then null else @ysmc end )
