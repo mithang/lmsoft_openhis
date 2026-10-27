@@ -272,31 +272,261 @@ sfbz của demo không đổi).
 
 ---
 
-## 4. Herp — (chưa làm)
+## 4. Herp — XONG (checkpoint 2026-10-27 tối; web 15236 + BaseAPI-stg 17001 + Redis 6380)
+
+- Cụm staging đã dùng và **đã dừng**: BaseAPI-stg 17001 (PID 8677),
+  Herp web-stg 15236 (PID 8848, build worktree Release 0 lỗi), Redis
+  6380 (PID 8667, giữ lại cho app sau — chỉ là Redis staging, không
+  phải app). Login web staging 000000 qua BaseAPI-stg ĐẠT.
+  Launcher `run-herp-stg.sh` đã có sẵn, chỉ chmod +x lại trước khi dùng.
+- Probe cách ly (trước mọi luồng ghi): fixture `G6-PROBE-001` chỉ chèn
+  vào `xt_wz_cg` của STG → `GetPurchaseGridJson` của app staging trả
+  đúng dòng đó → app đọc đúng STG (không cần `appsettings.Staging.json`
+  như PDS; Herp dùng DmnService/Process tôn trọng env DBConf).
+
+| Luồng ghi | Kết quả live (STG) |
+|---|---|
+| Mua hàng `PurchaseManage/Purchase/SubmitPurchase` (đủ trường NOT NULL) | success; `xt_wz_cg` dòng mới cgId `c99d09d9…`, ddzt=1, yyjhdh `CG20261027134020054`; `xt_wz_cgmx` 1 dòng productCode G6PROD, sl 10, dj 5.5. **Quirk:** thiếu `cgEntity.zt` → lỗi NULL `zt` ở header; thiếu `sxh/cglx` ở chi tiết → lỗi NULL tương ứng — và mỗi lần lỗi chi tiết vẫn để lại header mồ côi (không transaction: 2 header G6YY/G6YY2 không có chi tiết) |
+| Phê duyệt/chuyển trạng thái mua hàng `PurchaseStateUpdate` (cgId trên, ddzt 1→2) | success; STG ddzt=2 |
+| Nhập kho `StorageManage/Storage/SaveInStorageInfo` (djlx 1, Pdh G6RK001) | **LỖI MỚI — BUG PORTING: `Cannot insert explicit value for identity column in table 'kf_crkdj'`**. `KfCrkdjEntity.Id` là long identity nhưng `[SugarColumn(IsPrimaryKey=true)]` không có IsIdentity → SqlSugar insert cả Id=0. Không ghi gì |
+| Xuất kho ngoài `SaveOutStorageInfo` (djlx 2, Pdh G6CK001) | **Cùng lỗi identity `kf_crkdj`** |
+| Giao hàng cho khoa `SaveDeliveryToDepartment` (Pdh G6CKZKS001) | error chung "Xử lý nội bộ thất bại, vui lòng liên hệ quản trị viên" (Process nuốt lỗi gốc — không xác định được từ response có phải cùng lỗi identity không; chuyển cho build xác minh cùng nhóm bug) |
+| Lĩnh thuốc khoa `SubmitDepartmentApply` (sldh G6SL001) | **Cùng lỗi identity, bảng `kf_applyOrder`** |
+| Duyệt phiếu `BillManage/OutOrInStorageBill/SubmitReceiptApproval` | success trên fixture SQL chỉ có trong STG (Id=1, djlx 1, Pdh G6RK-FIX): auditState 0→1, shczy=000000 → **đường duyệt bản thân đạt**, chỉ bị chặn ở khâu tạo phiếu. Negative: djId không tồn tại → error "Không tìm thấy phiếu" đúng |
+| Giao hàng nhà cung cấp `PurchaseManage/Purchase/DeliveryAccept` | error "Nghiệm thu phiếu giao hàng thất bại: Permission denied (192.168.20.110:80)" — gọi host Sun bên ngoài không tới được (phụ thuộc ngoài, không phải lỗi port; giống nhóm SunUnavailable ở các app khác) |
+
+- Chứng minh không ghi demo (trước = sau, đếm trực tiếp): demo Herp
+  mọi bảng ghi đều 0 trước và sau (`xt_wz_cg`, `xt_wz_cgmx`,
+  `kf_crkdj`, `kf_crkmx`, `kf_applyOrder`, `kf_applyOrderDetail`,
+  `gys_delivery`, `gys_deliveryDetail`). STG sau: `xt_wz_cg` 4
+  (1 probe + 3 header mua hàng), `xt_wz_cgmx` 1, `kf_crkdj` 1
+  (fixture duyệt), còn lại 0.
+- Dừng cụm: Herp-stg 15236 + BaseAPI-stg 17001 đã kill theo PID chính
+  xác, cổng đã down; prod 5236/7001 vẫn UP sau đó.
 
 ---
 
-## 5. EMR — (chưa làm)
+## 5. EMR — XONG (checkpoint 2026-10-27 tối; web 15235 Release từ worktree + BaseAPI-stg 17001 + Redis 6380)
+
+- Cụm staging đã dùng và **đã dừng**: BaseAPI-stg 17001 (PID 9737),
+  EMR web-stg 15235 (PID 9879, build worktree **Release** 0 lỗi —
+  đúng yêu cầu giai đoạn 4, prod 5235 cũng đang chạy Release),
+  Redis 6380. Login web staging 000000 qua BaseAPI-stg ĐẠT.
+  Launcher staging mới `run-emr-stg.sh` (DBConf EMR web: 0 Base, 1 Sett,
+  2 Emr, 3 Mrms, 4 MrQc, 5 Cis, 6 Union → toàn bộ `*_STG`).
+- Probe cách ly (trước mọi luồng ghi): fixture `G6-PROBE-MB-001`
+  (mẫu "Mau kiem chung G6") chỉ chèn vào `bl_mblb` của STG →
+  `MedRecordTemplate/GetGridJson?keyword=G6MB` của app staging trả
+  đúng dòng đó → app đọc đúng STG, không cần `appsettings.Staging.json`.
+  Lưu ý đọc rò rỉ (không chặn): `CommonDmnService.GetBllxListDetail`
+  đọc hardcode `[NewtouchHIS_Base]..V_S_Sys_Duty` (demo Base) — cùng
+  lớp với Sett/CIS đã ghi.
+
+| Luồng ghi | Kết quả live (STG) |
+|---|---|
+| Tạo bệnh án `MedicalRecord/SavePatientBl` (mẫu probe, zyh 01000, submitData base64 HTML, KHÔNG docData) | success; BLID `7b108692…`, BLLX 1026, file HTML đã ghi dưới worktree `File/住院病历/2026/10/27/01000/`; `zy_meddocs_relation` STG tăng thêm 1 |
+| Tạo bệnh án `SavePatientBl` CÓ docData (keyCode G6KEY) | **LỖI MỚI — cùng mẫu thiếu Id như CIS vital signs:** `BL_Save` chạy xong (file + relation đã tạo) rồi `BLJG_Save` fail "Cannot insert NULL into column 'Id', table 'bl_ysjgnr'" — repo không tự sinh Id cho dòng yếu tố bệnh án. Không transaction nên lần gọi này vẫn để lại relation/file mồ côi |
+| Sửa bệnh án `UpdatePatientBl` | Không kiểm chứng riêng: cùng đường BLJG/BL_Save với SavePatientBl, bị chặn bởi cùng lỗi NULL Id khi có docData |
+| Mẫu bệnh án `MedRecordTemplate/submitForm` (tạo mới, thử cả bllx="1026" và bllx=Id "Van ban khac") | **LỖI MỚI — NRE tại dòng 162 (`blmb.bllxId = bllxDic.Id`)**: `GetBllxListDetail` trả rỗng nên bllxDic null, controller không null-check. Tạo/sửa mẫu qua web đều chặn. Đọc mẫu (`GetGridJson`, `GetFormJson` theo keyValue) vẫn đạt |
+| Xóa mẫu `DeleteForm` (keyValue không tồn tại) | NRE tại controller (không null-check entity trước khi xóa) — negative cũng crash thay vì báo "không tìm thấy" |
+| Ký/khóa bệnh án `MedicalRecord/LockRecord` (blid mới tạo, bllx 1026, isToLock=1; và blid không tồn tại) | **LỖI MỚI — NRE trong `MedicalRecordDmnService.LockRecord`** cả hai trường hợp → đường khóa/ký bệnh án chặn hoàn toàn |
+| Khóa `UpdateLockzt` (blid mới tạo) | success (lưu ý: code trả Success vô điều kiện kể cả khi update = 0, nên "success" này yếu — chỉ ghi nhận response) |
+| Nộp bệnh án `PatInfo/CommitPatMedRecord` (zyh 01000) | success "Bệnh án đã nộp" |
+| Sửa liên kết bệnh án `UpdatePatMedRecordRel` (blId mới tạo) | **LỖI MỚI — NRE trong `ZybrjbxxDmnService.UpdtPatMedRecord`** |
+| Đổi trạng thái kế hoạch `UpdatePlanStu` (blId mới tạo, stu rỗng) | success "Thao tác thành công"; STG PlanStu = 1 (đã đổi) |
+
+- Chứng minh không ghi demo: demo `bl_mblb` 52, `bl_ysjgnr` 22,
+  `zy_meddocs_relation` 2, `bl_patrecords` 0 — giữ nguyên trước/sau.
+  STG sau: `bl_mblb` 53 (chỉ probe), `bl_ysjgnr` 22,
+  `zy_meddocs_relation` 4 (2 lần SavePatientBl), `bl_patrecords` 0.
+- Dừng cụm: EMR-stg 15235 + BaseAPI-stg 17001 đã kill theo PID chính
+  xác, cổng đã down; prod 5235/7001 vẫn UP sau đó.
 
 ---
 
-## 6. MRQC — (chưa làm)
+## 6. MRQC — XONG (checkpoint 2026-10-27 tối; web 15220 + BaseAPI-stg 17001 + AuthCenter-stg 18015 + WebAPI.Manage-stg 18016 + Redis 6380)
+
+- Cụm staging đã dùng và **đã dừng**: BaseAPI-stg 17001 (PID 10575),
+  MRQC web-stg 15220 (PID 10742, build worktree Release 0 lỗi),
+  AuthCenter-stg 18015 (PID 10931), WebAPI.Manage-stg 18016
+  (PID 10932), Redis 6380. Login web staging 000000 qua BaseAPI-stg
+  ĐẠT. Launcher staging mới `run-mrqc-stg.sh` (DBConf MRQC web:
+  0 Base, 1 Sett, 2 Emr, 3 Mrms, 4 MrQc, 5 Cis, 6 Union → `*_STG`).
+- Probe cách ly (trước mọi luồng ghi): fixture `G6-PROBE-APPLY` chỉ
+  chèn vào `Mr_Apply` của STG → `GetBlApplyList` của app staging trả
+  đúng dòng đó (cùng 2 dòng PILOT-DEMO clone) → đường DmnService đọc
+  đúng STG. Lưu ý: MRQC có `MrqcDb` tĩnh (`SqlSugarDbContext.Db.
+  GetConnection("MrQcDb")`) cùng lớp rủi ro với PDS, nhưng probe này
+  chứng minh với cấu hình hiện tại nó đọc đúng STG — không cần
+  `appsettings.Staging.json`.
+
+| Luồng ghi | Kết quả live (STG) |
+|---|---|
+| Phê duyệt Mr_Apply `QualityControlManage/Apply/ApprovalApply` (chỉ có Mr_Apply STG, chưa có bản ghi EMR) | error đúng "Phê duyệt thất bại, vui lòng làm mới danh sách chờ phê duyệt" — center-stg trả `data:false` vì không tìm thấy dòng tương ứng. Không ghi gì, không silent-success |
+| Phê duyệt Mr_Apply (đủ cả hai phía: thêm fixture `Mr_BlApplyRecord` vào EMR STG với applyReturnNo = Id Mr_Apply) | **success "Phê duyệt thành công" đầu-cuối:** center-stg cập nhật EMR STG `Mr_BlApplyRecord` applyStatus 0→1, ApprovePerson 000000/KS01, rồi MRQC-stg cập nhật `Mr_Apply` ApplyStatus 0→1, Approver 000000. **Phát hiện thiết kế:** `ModifyApplyApprove` của center update bảng `Mr_BlApplyRecord` ở DB EMR theo `applyReturnNo`, không update `Mr_Apply` ở DB MRQC — nên đơn MRQC không có bản ghi EMR đối ứng thì không bao giờ duyệt được qua web (chuỗi nộp đơn thật từ EMR phải tạo cả hai bản ghi; ngoài phạm vi giai đoạn 6) |
+| Chấm điểm MedicalCenter `MedicalCenter/SaveScoreDate` (zyh 01000, bllx 1026, 1 item 90 điểm) | success; `Mr_Qc_Score` STG 0→1 (zyh 01000, score 90.00, CreatorCode 000000) |
+| Gửi tin nhắn QC `MedicalCenter/SendMsg` (zyh 01000) | **LỖI MỚI — chặn ở bước lấy token app-to-app:** "[Xác thực] Lỗi khi lấy mã định danh Api: Unexpected character encountered while parsing value … Path 'BusData.data'" — `AuthenManageHelper` không lấy được token từ AuthCenter-stg (dù AuthCenter-stg đang chạy và chuỗi phê duyệt qua 18016 vẫn chạy). Chuyển cho build xác minh cơ chế token của MRQC |
+| Đọc MedicalCenter `GetPatList` (zyh 01000), `GetMedicalCenterDiag`, `GetMedicalCenterBlTree` | đạt (bệnh nhân A Binh, chẩn đoán "Cho xac dinh", cây loại bệnh án) — lỗi NRE `GetPatList` đã sửa từ trước không tái hiện |
+
+- Chứng minh không ghi demo: demo `Mr_Apply` 3, `Mr_Qc_Score` 0,
+  EMR demo `Mr_BlApplyRecord` 0 — giữ nguyên trước/sau. STG sau:
+  `Mr_Apply` 4 (chỉ probe đã duyệt), `Mr_Qc_Score` 1,
+  `Mr_BlApplyRecord` STG 1 (fixture đã duyệt).
+- Dừng cụm: toàn bộ PID staging đã kill theo PID chính xác, các cổng
+  15220/18015/18016/17001 đã down; prod 5220/8015/8016/7001 vẫn UP.
 
 ---
 
-## 7. MRMS — (chưa làm)
+## 7. MRMS — XONG (checkpoint 2026-10-27 tối; web 15232 + BaseAPI-stg 17001 + Redis 6380)
+
+- Cụm staging đã dùng và **đã dừng**: BaseAPI-stg 17001 (PID 11427),
+  MRMS web-stg 15232 (PID 11595, build worktree Release 0 lỗi),
+  Redis 6380. Login web staging 000000 qua BaseAPI-stg ĐẠT.
+  Launcher staging mới `run-mrms-stg.sh` (DBConf MRMS web: 0 Base,
+  1 Sett, 2 Emr, 3 Mrms, 4 MrQc, 5 Cis, 6 Union → `*_STG`).
+- Probe cách ly (trước mọi luồng ghi): fixture `G6-PROBE-BASY`
+  (mr_basy BAH G6BAH, zyh 01000) chỉ chèn vào MRMS STG →
+  `MainRecord/GetFormJson?keyValue=G6-PROBE-BASY` của app staging
+  trả đúng dòng đó → đường DmnService đọc đúng STG.
+- **Không có controller mượn/trả hồ sơ trong bản port MRMS web:**
+  grep toàn bộ Areas + API không thấy action Borrow/Return nào;
+  bảng `brly` trong DB MRMS chỉ có 2 cột (F1 float, F2 nvarchar,
+  42950 dòng) và không được controller nào dùng. Luồng mượn/trả
+  theo thiết kế §3.4 vì vậy **không kiểm chứng được qua web port** —
+  gap porting, chuyển cho chương trình build (không báo là đạt).
+
+| Luồng ghi | Kết quả live (STG) |
+|---|---|
+| Tạo trang đầu bệnh án `MainRecord/SubmitPatBasic` (mới, thiếu PATID rồi đủ trường) | Lỗi kiểm soát đúng theo từng bước: thiếu trường → liệt kê đủ lỗi ("Đường nhập viện…", "Số lần nội trú…", …); đủ trường nhưng zyh 01000 đã có fixture probe → error "Bệnh nhân đã có thông tin bệnh án, vui lòng không gửi trùng lặp" (không ghi thêm). Tạo mới cho bệnh nhân chưa có hồ sơ nền không kiểm chứng được vì nguồn `V_EMR_MrBasy` chỉ có đúng 1 bệnh nhân (01000) trong STG — cần dữ liệu nền thật, không bịa |
+| Sửa trang đầu `SubmitPatBasic` (keyValue = fixture probe, đổi XM) | **LỖI MỚI — ghi một phần dù trả lỗi:** response NRE tại `PatBasyInfoRelSet` (dòng rel không tồn tại), nhưng dòng `mr_basy` chính ĐÃ đổi XM thành "Benh nhan G6 sua" trước khi lỗi — UI sẽ báo lỗi trong khi dữ liệu đã đổi |
+| Lưu chẩn đoán `SubmitZdList` (Code sai "G6") | IndexOutOfRange tại `dtcsxx[0]` — `DiagnosticSave` đọc hardcode `[Newtouch_MRMS].dbo.Sys_Config` (xem ghi chú đọc rò rỉ dưới) với Code không tồn tại → list rỗng, controller không kiểm tra |
+| Lưu chẩn đoán `SubmitZdList` (Code đúng "DiagnosticSave" = ON) | Trả `{"data":"Không thể thêm thông tin chẩn đoán"}` (cổng kiểm tra quyết toán chặn), không ghi gì — thông điệp kiểm soát, không crash |
+| Lưu phẫu thuật `SubmitOpList` (BAH G6BAH, zyh 01000, SS G6SS) | success "Lưu phẫu thuật thành công"; `mr_basy_ss` STG 0→1 |
+| Lưu trữ hồ sơ `guidang` / hủy lưu trữ `CXguidang` (fixture probe) | Trả 0 cả hai (không đổi `bazt`) — **nhưng xem sự cố rò rỉ ghi demo dưới đây: nguyên nhân là 2 action này hardcode tên DB demo** |
+| Đổi trạng thái hồ sơ `Record/updateRecordStu` (Id = fixture probe) | **LỖI MỚI — SQL injection bề mặt + crash:** Id dạng chuỗi được nối trực tiếp không có dấu nháy vào câu SQL → SQL Server báo "Invalid column name 'G6'/'PROBE'/'BASY'". Với Id số thì câu lệnh chạy được nhưng vẫn là nối chuỗi không tham số hóa |
+| Đọc/truy vấn Main* (`GetFormJson`, `GetGridList` qua các form Main) | đạt (fixture probe đọc được; form Main* hiển thị qua view, không lỗi 404) |
+
+### Sự cố rò rỉ GHI sang demo trong lúc kiểm chứng MRMS (đã khắc phục + khôi phục)
+
+- `MrbasyRepo.Updatebazt` (guidang) hardcode
+  `update [Newtouch_MRMS]..mr_basy` + `update [Newtouch_EMR]..mr_basy`;
+  `CXUpdatebazt` hardcode `update [Newtouch_EMR]..zy_brjbxx set
+  RecordStu=2 … where 1=1 and zt='1'` (**không lọc theo zyh**).
+  Trên staging, các câu này vẫn trỏ về DB demo bất chấp env DBConf.
+- Hậu quả thực tế: lần gọi `CXguidang` đã **ghi thật vào demo**:
+  demo EMR `zy_brjbxx` zyh 01000 đổi RecordStu 1→2,
+  LastModifyTime thành thời điểm gọi (2026-10-27 13:49:59).
+  Phát hiện bằng đối chiếu STG (RecordStu vẫn 1, thời gian gốc
+  2026-10-26 15:39:09) với demo sau gọi.
+- Khắc phục ngay: đã UPDATE khôi phục dòng demo về đúng giá trị
+  gốc (RecordStu=1, LastModifyTime 2026-10-26 15:39:09.017,
+  LastModifierCode giữ nguyên) và kiểm chứng lại bằng SELECT.
+  Các bảng demo khác không đổi (`mr_basy` demo vẫn 0 — guidang
+  không khớp dòng demo nào nên không đổi gì thêm).
+- **Kết luận cho build:** guidang/CXguidang là luồng ghi rò rỉ demo
+  đã chứng minh, không chỉ đọc rò rỉ — phải sửa sang tên DB cấu
+  hình trước khi cho chạy thật, và CXUpdatebazt phải thêm điều kiện
+  zyh (hiện tại 1 lần gọi đổi toàn bộ hồ sơ zt=1 trong DB đích).
+
+- Chứng minh không ghi demo (sau khôi phục, đếm trực tiếp):
+  demo `mr_basy` 0, `mr_basy_zd` 0, `mr_basy_ss` 0 — giữ nguyên.
+  STG sau: `mr_basy` 1 (chỉ fixture probe, XM đã sửa),
+  `mr_basy_zd` 0, `mr_basy_ss` 1.
+- Dừng cụm: MRMS-stg 15232 + BaseAPI-stg 17001 đã kill theo PID
+  chính xác, cổng đã down; prod 5232/7001 vẫn UP sau đó.
 
 ---
 
-## 8. OR — (chưa làm)
+## 8. OR — XONG (checkpoint 2026-10-27 tối; web 15231 + BaseAPI-stg 17001 + Redis 6380)
+
+- Cụm staging đã dùng và **đã dừng**: BaseAPI-stg 17001 (PID 12130),
+  OR web-stg 15231 (PID 12319, build worktree Release 0 lỗi),
+  Redis 6380. Login web staging 000000 qua BaseAPI-stg ĐẠT.
+  Launcher staging mới `run-or-stg.sh` (DBConf OR web có 8 mục:
+  0 Base, 1 Sett, 2 Emr, 3 Mrms, 4 MrQc, 5 Cis, 6 Union, 7 Or →
+  toàn bộ `*_STG`).
+- Probe cách ly (trước mọi luồng ghi): fixture `G6APPLY001`
+  (OR_ApplyInfo, zyh 01000) chỉ chèn vào OR STG →
+  `OpApply/GetFormJson?keyValue=G6APPLY001` của app staging trả
+  đúng dòng đó → app đọc đúng STG.
+
+| Luồng ghi | Kết quả live (STG) |
+|---|---|
+| Đăng ký mổ `Operation/OpApply/SubmitForm` (thiếu zyh; thiếu bác sĩ mổ chính) | Lỗi kiểm soát đúng: "Thông tin bệnh nhân không được để trống", rồi "Bác sĩ mổ chính không được để trống!" — không ghi gì |
+| Đăng ký mổ `SubmitForm` (đủ: zyh 01000, ysgh 000000, ssmcn Phau thuat G6) | success "Gửi đơn thành công", applyno `S20261027A000001`, sqzt=1; `OR_ApplyInfo` STG tăng 1 |
+| Xếp lịch mổ `Operation/OpArrangement/submitForm` (keyValue = applyno) | **LỖI MỚI — NRE tại `ORApplyInfoRepo.UpdateSqzt` dòng 95:** controller truyền applyno nhưng `UpdateSqzt` dùng `FindEntity(keyValue)` theo khóa chính Id → null → NRE. UI phải truyền Id đơn, không phải số đơn |
+| Xếp lịch mổ `submitForm` (keyValue = Id đơn `8d5cf668…`) | success "Thao tác thành công"; `OR_Arrangement` STG 0→1 (ApplyId = Id đơn, Applyno đúng), đơn chuyển sqzt 1→2 |
+| Hủy xếp lịch `OpArrangement/DeleteForm` (keyValue = Id đơn) | success; đơn về sqzt 2→1 (dòng Arrangement vẫn còn — DeleteForm của repo chỉ đổi trạng thái? xem ghi chú: số dòng Arrangement vẫn 1 sau hủy, tức hủy lịch không xóa dòng lịch mà chỉ trả trạng thái đơn) |
+| Danh sách mổ `OpApply/GetGridListOP` (zyh 01000) | đạt: trả đúng đơn vừa tạo (kèm thông tin bệnh nhân A Binh từ nguồn Sett/EMR) |
+| Hủy đơn mổ `OpApply/DeleteApply` (applyno) | success "Hủy đơn thành công"; sqzt → 3 (đã hủy), zt giữ 1 — hủy bằng trạng thái, đúng thiết kế, không xóa dòng |
+
+- Chứng minh không ghi demo: demo `OR_ApplyInfo` 0,
+  `OR_Arrangement` 0, `OR_Operation` 17599 — giữ nguyên trước/sau.
+  STG sau: `OR_ApplyInfo` 2 (1 probe + 1 đơn đã hủy),
+  `OR_Arrangement` 1, `OR_Operation` 17599.
+- Dừng cụm: OR-stg 15231 + BaseAPI-stg 17001 đã kill theo PID chính
+  xác, cổng đã down; prod 5231/7001 vẫn UP sau đó.
 
 ---
 
-## 9. Base/HOSP + SSO — (chưa làm)
+## 9. Base/HOSP + SSO — XONG (checkpoint 2026-10-27 tối; HOSP 15233 + SSO portal 15208 + BaseAPI-stg 17001 + Redis 6380)
+
+- Cụm staging đã dùng và **đã dừng**: BaseAPI-stg 17001 (PID 12646),
+  HOSP web-stg 15233 (PID 13049, build worktree Release 0 lỗi),
+  SSO portal-stg 15208 (PID 13050, build worktree Release 0 lỗi —
+  SSO không hardcode cổng nên dùng ASPNETCORE_URLS), Redis 6380.
+  Login staging 000000 qua BaseAPI-stg ĐẠT ở cả HOSP và SSO portal.
+  Launcher staging mới `run-hosp-stg.sh`, `run-sso-stg.sh`
+  (DBConf → `*_STG`, BaseAPI 17001, Redis 6380). Lưu ý cổng worktree:
+  Base.Web → 15238 (prod 5238), HOSP.Web → 15233 (prod 5233).
+- Probe cách ly: fixture `G6-PROBE-ORG` (Sys_Organize, Code G6KHOA)
+  chỉ chèn vào Base STG → `Sys/Organize/GetGridJson?keyword=G6KHOA`
+  của HOSP-stg trả đúng dòng đó (cùng dòng khoa mới tạo) → đường
+  đọc đúng STG.
+
+| Luồng ghi | Kết quả live (STG) |
+|---|---|
+| Tạo khoa/phòng `Sys/Organize/SubmitForm` (Name, Code G6KHOA2, CategoryCode 1) | success; `Sys_Organize` STG tăng 1, Id `9bb5aeda…`, TopOrganizeId tự set bằng chính Id mới. **Lưu ý:** code có nhánh tự tạo tài khoản quản trị mặc định cho tổ chức cấp cao nhất (`CreateDefaultAdminToOrg`) nhưng exception bị nuốt lặng (catch rỗng) — thực tế `Sys_User` STG vẫn 3, không có admin mới nào được tạo, và response cũng không báo nhánh này |
+| Sửa khoa/phòng `SubmitForm` (keyValue = Id khoa mới) | **LỖI MỚI (2 dạng):** không gửi TopOrganizeId → error "Dữ liệu bất thường, chưa chỉ định cơ sở cấp cao nhất"; gửi TopOrganizeId → lỗi SqlSugar "The parameter format is wrong" tại `SysOrganizeRepo.SubmitForm` dòng 154 (đường update của repo hỏng). Tạo thì đạt, sửa thì chặn |
+| Đọc khoa `GetFormJson` (keyValue = fixture probe) | **LỖI MỚI — cùng lỗi SqlSugar "parameter format"** tại `RepositoryBase.FindEntity` — đọc chi tiết 1 khoa cũng hỏng (trong khi đọc danh sách vẫn đạt) |
+| Tạo vai trò `SysManage/SysRole/SubmitForm` qua SSO portal (thử Name riêng, Name+EnCode, Name+Code+zt) | **LỖI MỚI — chặn ở validation model, không phụ thuộc input:** "Unable to cast object of type 'System.DateTime' to type 'System.String'" tại `StringLengthAttribute.IsValid` trong quá trình model binding — một thuộc tính DateTime của entity (hoặc base class) đang mang attribute StringLength. Tạo vai trò qua web chặn hoàn toàn |
+| Tạo tham số `Sys/SysGlobalConfig/SubmitForm` (Code G6CFG) | success; `Sys_GlobalConfig` STG 0→1 |
+| Tạo người dùng (web) | **Không có action tạo user trong bản port:** SSO SysManage/UserController chỉ có Selector/UserRoles/GetPagintionGridJson/GetSysUserSelectorTree (đọc); BaseAPI SysUserController chỉ có GetSysUserPage/GetOrgUserTreeWithDept (đọc). Tạo user qua web không kiểm chứng được — gap porting (user mới hiện chỉ tạo được qua đường tạo admin mặc định của Organize, mà nhánh đó cũng đang nuốt lỗi — xem trên) |
+| Tạo hồ sơ bệnh nhân cơ bản (qua HOSP) | Không có controller bệnh nhân trong HOSP port; đường tạo bệnh nhân là Sett `OutpatientReg` — đã ghi ở §1 là stub giai đoạn 1 (không ghi). Không làm lại ở đây |
+| Điều hướng SSO liên app (portal→module không đăng nhập lại) | **CHƯA ĐẠT trên staging:** trang HOSP-stg `/Sys/Organize/Index?appId=His.SSO` kèm cookie phiên SSO-stg vẫn 302 về `/Login/Index`; appId sai cũng 302 (đúng), nhưng appId đúng cũng không adoption được. Đồng thời `Login/GetUALoginAddres` của SSO-stg trả success nhưng data null (portal không có địa chỉ UALogin của module staging). Nguyên nhân chưa xác định dứt điểm (cần build đối chiếu Redis prefix/Db và cấu hình UALoginAddress của portal) — ghi nhận là blocker liên app, không báo đạt |
+| Phát hiện bảo mật (kiểm chứng bằng urllib không cookie) | **LỖI MỚI — HOSP web JSON API không kiểm tra phiên:** `Sys/Organize/GetGridJson`, `Sys/Duty/GetGridJson`, `Sys/SysGlobalConfig/GetGridJson` và cả `SysGlobalConfig/SubmitForm` (POST ghi) đều thực thi khi KHÔNG gửi bất kỳ cookie nào — SubmitForm không cookie đã chạm tới INSERT (chỉ fail ở NOT NULL CreatorCode vì không có identity). Trong khi đó trang View (`/Sys/Organize/Index`) không cookie vẫn 302 về login, và endpoint tương đương của SSO portal không cookie cũng 302. Tức filter `FrameworkAuthorizationFilter` (đã đăng ký global trong HOSP Program.cs) không chặn các action JSON này — build phải xác minh và siết trước khi chạy thật, vì đây là lỗi vượt qua xác thực, không chỉ là thiếu tính năng |
+
+- Chứng minh không ghi demo: demo `Sys_Organize` 2, `Sys_Role` 154,
+  `Sys_User` 3, `Sys_GlobalConfig` 0 — giữ nguyên trước/sau.
+  STG sau: `Sys_Organize` 4 (2 ban đầu + 1 probe + 1 tạo mới),
+  `Sys_Role` 154,
+  `Sys_User` 3, `Sys_GlobalConfig` 1 (G6CFG; dòng G6NOLOGIN thử
+  không cookie đã fail NOT NULL nên không tạo dòng).
+- Dừng cụm: HOSP-stg 15233 + SSO-stg 15208 + BaseAPI-stg 17001 đã
+  kill theo PID chính xác, cổng đã down; prod 5233/5208/7001 vẫn UP.
 
 ---
 
-## 10. Center — (chưa làm)
+## 10. Center — XONG (checkpoint 2026-10-27 tối; AuthCenter-stg 18015 + WebAPI.Manage-stg 18016 + BaseAPI-stg 17001 + Redis 6380)
+
+- Cụm staging đã dùng và **đã dừng**: BaseAPI-stg 17001 (PID 14036),
+  AuthCenter-stg 18015 (PID 14037), WebAPI.Manage-stg 18016
+  (PID 14038), Redis 6380. Launcher staging dùng lại từ §11
+  (`run-authcenter-stg.sh`, `run-apimanage-stg.sh`).
+- DRG chỉ spot-check Single theo brief (không làm lại toàn bộ giai
+  đoạn 5): envelope đúng của Manage API là top-level
+  `{Data:{...}, AppId, OrganizeId, Timestamp}` kèm Bearer JWT
+  (không phải `{"request":{...}}` như log §11 của chuỗi khác, và
+  `Data` là object chứ không phải chuỗi JSON — thử sai 3 dạng mới
+  ra dạng đúng, ghi lại để đợt sau khỏi mò lại).
+
+| Kiểm chứng | Kết quả live |
+|---|---|
+| Cấp JWT app-to-app cặp khác §11: AuthCenter-stg `POST api/Auth/GetAppToken {AppId MRQC, Data API.Manage}` | 10000, JWT MRQC→API.Manage đã cấp (chỉ lưu file tạm, không in ra báo cáo) |
+| DRG Single spot-check `api/DRGGrouper/DrgGroupByMedRecord` (Index G6DRG001, gender 1, age 25, dept KS01, zdList ["0.001"], version chs_drg_11) | 10000, engine trả kết quả có cấu trúc: status "无法入组" (không vào nhóm được), mdc 0000, adrg 00, drg 0000, messages "0.001 未知名称" + "不符合所有MDC的入组条件" — engine chạy thật, mã chẩn đoán test không có trong danh mục nên không nhóm được (đúng hành vi, không crash). Thử sai validation trước đó cũng đúng: thiếu dept → 20000 "The dept field is required." |
+| MsgQueue ghi `api/MsgQueue/NewNoticeGroup` (tag G6NoticeTag001, JWT MRQC) | 10000 "Thêm thành công", Id mới `0851787a…`; `GetNoticeGroup` trả lại đúng nhóm. Tag cũ ZKNoticeBl000000 → 40004 "Nhãn nhóm đã được đăng ký" (trùng tag kiểm soát đúng) |
+| Chứng minh không ghi demo | Base demo `Msg_NoticeGroup` 3, `Msg_NoticeQueue` 0 — giữ nguyên; STG sau: `Msg_NoticeGroup` 4 (chỉ nhóm G6 mới), `Msg_NoticeQueue` 0. Bảng notice nằm ở DB Base (không phải Interface như phỏng đoán ban đầu) |
+| Dừng cụm | Toàn bộ PID staging đã kill theo PID chính xác, các cổng 17001/18015/18016 đã down; prod 8015/8016/7001 vẫn UP |
 
 ---
 
@@ -330,8 +560,78 @@ sfbz của demo không đổi).
 
 ---
 
+## 12. Tổng kết gap toàn giai đoạn 6 (cho chương trình build — không sửa trong giai đoạn này)
+
+Đã biết từ trước (ghi nhận lại, không phải lỗi mới): engine Pay\*
+Sett `SETT_ENGINE_NOT_PORTED`; PDS chuyển kho 404 (controller bị
+loại khỏi build); CIS Infusion NRE (DI wiring); CIS hủy hẹn web
+no-op im lặng; CIS vital signs cần client tự cấp GUID Id; PDS phát
+thuốc cần đủ fyfs + pc và không tự trừ đơn lĩnh.
+
+Mới phát hiện ở đợt này (7 app sau), xếp theo mức độ:
+
+1. **Rò rỉ GHI sang demo — sửa trước khi chạy thật:**
+   - MRMS `guidang`/`CXguidang` hardcode `[Newtouch_MRMS]`/
+     `[Newtouch_EMR]`; `CXUpdatebazt` update `zy_brjbxx` toàn bộ
+     dòng zt=1 không lọc zyh. Đã gây ghi demo thật 1 dòng trong lúc
+     kiểm chứng và đã khôi phục về giá trị gốc (xem §7).
+2. **Vượt qua xác thực — sửa trước khi chạy thật:**
+   - HOSP web JSON API (Organize/Duty/SysGlobalConfig GetGridJson,
+     SubmitForm) thực thi không cần session cookie, trong khi trang
+     View và endpoint SSO tương đương vẫn chặn (xem §9).
+3. **Chặn luồng ghi chính:**
+   - Herp: mọi phiếu nhập/xuất kho + lĩnh thuốc fail identity
+     (`kf_crkdj`/`kf_applyOrder` long Id không IsIdentity);
+     giao hàng cho khoa lỗi chung không rõ nguyên nhân (§4).
+   - EMR: tạo/sửa mẫu NRE (bllxDic null); xóa mẫu NRE; khóa/ký bệnh
+     án NRE trong DmnService; lưu bệnh án có docData fail NULL Id
+     `bl_ysjgnr`; sửa liên kết bệnh án NRE (§5).
+   - MRQC: SendMsg chặn ở bước lấy token app-to-app từ AuthCenter
+     (lỗi parse `BusData.data`) (§6).
+   - MRMS: sửa trang đầu ghi một phần dù trả lỗi NRE (rel);
+     SubmitZdList crash IndexOutOfRange khi Code tham số không tồn
+     tại; `updateRecordStu` nối chuỗi SQL không tham số hóa (lỗi
+     injection bề mặt + crash với Id chuỗi); không có controller
+     mượn/trả hồ sơ trong bản port (§7).
+   - OR: xếp lịch mổ NRE khi truyền applyno thay vì Id đơn
+     (controller/repo không thống nhất key) (§8).
+   - Base/SSO: sửa khoa fail 2 dạng (thiếu TopOrganizeId / lỗi
+     SqlSugar parameter ở đường update); đọc chi tiết khoa fail
+     cùng lỗi SqlSugar; tạo vai trò chặn ở validation DateTime→
+     String; không có action tạo user qua web; adoption SSO→module
+     qua trang chưa đạt trên staging (§9).
+4. **Thiếu trường do UI phải tự cấp (không chặn nếu UI gửi đủ):**
+   Herp SubmitPurchase cần đủ zt/sxh/cglx/… và không có transaction
+   (lỗi chi tiết vẫn để lại header mồ côi); Herp duyệt phiếu bản
+   thân đạt (chứng minh qua fixture); MRQC phê duyệt cần cả hai
+   phía (Mr_Apply + Mr_BlApplyRecord ở EMR) mới thông.
+5. **Phụ thuộc ngoài / dữ liệu nền:**
+   Herp DeliveryAccept gọi host Sun không tới được; MRMS tạo trang
+   đầu mới cần bệnh nhân trong `V_EMR_MrBasy` (STG chỉ có 01000);
+   EMR SavePatientBl ghi file HTML dưới worktree (không phải DB).
+6. **Đọc rò rỉ sang demo (không chặn, chỉ ghi nhận):**
+   Sett `[NewtouchHIS_Base]`, CIS `[NewtouchHIS_Sett]`, EMR
+   `GetBllxListDetail` `[NewtouchHIS_Base]`, MRMS `DiagnosticSave`
+   `[Newtouch_MRMS]` + `Updatebazt` (mục 1 là ghi, khác đọc).
+
+### Kiểm chứng cuối giai đoạn (sau khi dừng toàn bộ staging)
+
+- 26/26 cổng prod LISTEN: 1433, 6379, 41142, 5208, 7001, 7002,
+  8015, 8016, 5220, 5221, 5231–5238, 5320, 5331–5337 (không cổng
+  staging nào còn nghe).
+- SSO prod login 000000 thành công sau cùng.
+- Git: KHÔNG commit/push trong giai đoạn này (theo brief). Thay đổi
+  chờ điều phối viên soát: `scripts/staging/REPORT.md` (§4–§10, §12),
+  launcher staging mới `run-emr-stg.sh`, `run-mrqc-stg.sh`,
+  `run-mrms-stg.sh`, `run-or-stg.sh`, `run-hosp-stg.sh`,
+  `run-sso-stg.sh` + chmod +x `run-herp-stg.sh` (đã có từ đợt trước).
+
+---
+
+
 ## App còn lại
 
-Herp, EMR, MRQC, MRMS, OR, Base/HOSP + SSO, Center
-(Sett, CIS, PDS, Liên app đã xong; mục 9 SSO liên app còn lại phần điều
-hướng portal→module, làm cùng app 9).
+Không còn — cả 7 app đợt này (Herp, EMR, MRQC, MRMS, OR, Base/HOSP + SSO,
+Center) đều đã có checkpoint §4–§10; Sett, CIS, PDS, Liên app đã xong từ
+đợt trước. Còn lại cho điều phối viên: soát REPORT.md rồi commit cuối
+giai đoạn (worker không commit/push theo brief).
