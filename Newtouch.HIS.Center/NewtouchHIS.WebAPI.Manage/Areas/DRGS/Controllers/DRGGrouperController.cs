@@ -48,7 +48,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.DRGS.Controllers
         [Route("DrgGroupByMedRecordList")]
         public async Task<BusResult<List<DrgGroupResult>>> GroupRecordList(RequestBus<DrgAreaMedicalRecordS> request)
         {
-            if (request == null || request.Data == null || (request.Data.medicalArr.Length == 0 && request.Data.medicalList.Count == 0))
+            if (request == null || request.Data == null || ((request.Data.medicalArr == null || request.Data.medicalList == null) || (request.Data.medicalArr.Length == 0 && request.Data.medicalList.Count == 0)))
             {
                 return new BusResult<List<DrgGroupResult>> { code = ResponseResultCode.FAIL, msg = "Thông tin bệnh án quan trọng không được để trống,medicalArr và medicalListÍt nhất một mục không được để trống" };
             }

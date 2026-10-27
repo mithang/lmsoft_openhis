@@ -59,7 +59,7 @@ namespace NewtouchHIS.DrgGroup.wuhan_2022
                 if (col_index.Length != cols.Length)
                 {
                     Console.WriteLine("Tên trường không khớp với tệp CSV");
-                    System.Environment.Exit(-1);
+                    throw new InvalidOperationException("Tên trường không khớp với tệp CSV");
                 }
                 return File.ReadLines(file).Skip(1).Select(x => string.Join(',', col_index.Select(y => replace_csv(x).Split(',')[y])));
             }
@@ -67,7 +67,7 @@ namespace NewtouchHIS.DrgGroup.wuhan_2022
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine("Đọc tệp thất bại");
-                System.Environment.Exit(-1);
+                throw new InvalidOperationException("Đọc tệp thất bại", e);
             }
             return new String[0];
         }
@@ -81,7 +81,7 @@ namespace NewtouchHIS.DrgGroup.wuhan_2022
                 if (col_index.Length != cols.Length)
                 {
                     Console.WriteLine("Tên trường không khớp với tệp CSV");
-                    System.Environment.Exit(-1);
+                    throw new InvalidOperationException("Tên trường không khớp với tệp CSV");
                 }
                 var flines = await File.ReadAllLinesAsync(file);
                 return flines.Skip(1).Select(x => string.Join(',', col_index.Select(y => replace_csv(x).Split(',')[y])));
@@ -90,7 +90,7 @@ namespace NewtouchHIS.DrgGroup.wuhan_2022
             {
                 Console.WriteLine(e.Message);
                 Console.WriteLine("Đọc tệp thất bại");
-                System.Environment.Exit(-1);
+                throw new InvalidOperationException("Đọc tệp thất bại", e);
             }
             return new String[0];
         }
