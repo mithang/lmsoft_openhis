@@ -827,8 +827,8 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             {
                 var xnhSettResult = _guiAnOutpatientXnhApp.Sett(bacDto.mzh, OrganizeId, UserIdentity.UserCode, out xnhybfeeRelated, out outpId);
                 if (!string.IsNullOrWhiteSpace(xnhSettResult)
-                    && xnhSettResult.IndexOf("Ngoại trú补偿序号不能为空！", StringComparison.Ordinal) < 0
-                    && xnhSettResult.IndexOf("Ngoại trú补偿序号未落地，请检查是否有Ngoại trú上传操作", StringComparison.Ordinal) < 0)
+                    && xnhSettResult.IndexOf("门诊补偿序号不能为空！", StringComparison.Ordinal) < 0
+                    && xnhSettResult.IndexOf("门诊补偿序号未落地，请检查是否有门诊上传操作", StringComparison.Ordinal) < 0)
                 {
                     return Error(xnhSettResult);
                 }

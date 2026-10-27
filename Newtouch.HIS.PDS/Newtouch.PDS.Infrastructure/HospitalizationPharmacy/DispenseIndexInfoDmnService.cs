@@ -2103,7 +2103,7 @@ where yz.OrganizeId=@OrganizeId and yz.zt=1
                 sql.AppendLine(@"select  yz.Id,yz.zyh,hzxm,'1' yzxz,'Tạm thời' yzxzmc,yz.zh,WardCode,bq.bqmc,DeptCode,yzh cfh,yz.ysgh,staff.Name ysmc
 ,pcCode,xmdm,xmmc,yzzt,dw,yz.sl,yp.lsj dj,CONVERT(decimal(12,2),(yz.sl*yp.lsj)) je,yz.yzlx,kssj,ypjl,yz.ypgg,yznr,yzxx.fybz,yzxx.lyxh,yz.yztag 
 ,case  yz.yztag when 'JI' then 'Đơn thuốc hướng thần loại I' 
-			   when 'JII' then '精神II类处方' 
+			   when 'JII' then 'Đơn thuốc hướng thần loại II' 
 			   when 'MZ' then 'Đơn thuốc gây mê' 
 			   when 'LXGB' then 'Cán bộ nghỉ hưu'
 			   when 'TBCF' then 'Đơn thuốc bệnh đặc biệt' end yztagName
@@ -2118,7 +2118,7 @@ where yzh=@yzh and yz.OrganizeId=@OrganizeId and yz.zt=1");
                 sql.AppendLine(@" select  yz.Id,yz.zyh,hzxm,'2' yzxz,'Dài hạn' yzxzmc,yz.zh,WardCode,bq.bqmc,DeptCode,yzh cfh,yz.ysgh,staff.Name ysmc
 ,pcCode,xmdm,xmmc,yzzt,dw,yz.sl,yp.lsj dj,CONVERT(decimal(12,2),(yz.sl*yp.lsj)) je,yz.yzlx,yzxx.zxrq kssj,ypjl,yz.ypgg,yznr,yzxx.fybz,yzxx.lyxh,yz.yztag 
 ,case  yz.yztag when 'JI' then 'Đơn thuốc hướng thần loại I' 
-			   when 'JII' then '精神II类处方' 
+			   when 'JII' then 'Đơn thuốc hướng thần loại II' 
 			   when 'MZ' then 'Đơn thuốc gây mê' 
 			   when 'LXGB' then 'Cán bộ nghỉ hưu'
 			   when 'TBCF' then 'Đơn thuốc bệnh đặc biệt' end yztagName

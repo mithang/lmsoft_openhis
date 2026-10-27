@@ -201,7 +201,7 @@
         onItem: function (context, e){
             var menuName=$(e.target).text();
             var tt = $('#gridPatientList').jqGrid('getRowData', $('#gridPatientList').data('contextmenu-rowId'));
-            if(menuName=="Y lệnh复制Tạo mới"){
+            if(menuName=="Y lệnhSao chépTạo mới"){
                 if(tt.yzzt!="Dừng")
                 {
                     $.modalAlert("Y lệnh không ở trạng thái dừng không thể tạo mới", "warning");

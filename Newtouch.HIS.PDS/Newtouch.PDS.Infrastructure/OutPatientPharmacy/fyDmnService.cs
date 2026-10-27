@@ -965,7 +965,7 @@ and sfxm.sfxmmc like '%' + @xmmc + '%'  ";
             var parms = new List<SugarParameter> { };
             var strSql = new StringBuilder(@" select  c.mzh,c.xm,b.CreateTime kssj,a.zje,a.cftag
     ,case  a.cftag when 'JI' then 'Đơn thuốc hướng thần loại I' 
-			   when 'JII' then '精神II类处方' 
+			   when 'JII' then 'Đơn thuốc hướng thần loại II' 
 			   when 'MZ' then 'Đơn thuốc gây mê' 
 			   when 'LXGB' then 'Cán bộ nghỉ hưu'
 			   when 'TBCF' then 'Đơn thuốc bệnh đặc biệt' end cftagName

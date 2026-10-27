@@ -35,7 +35,7 @@ BEGIN TRY
 	SET @pdId= @@IDENTITY  
 	IF(@pdId<=0)
 	BEGIN
-		SELECT 'tạoKiểm kê主thông tinthất bại'  AS Jgxx;
+		SELECT 'Tạo thông tin chính kiểm kê thất bại'  AS Jgxx;
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END
@@ -226,7 +226,7 @@ BEGIN
 END 
 IF @sysl<>0
 BEGIN
-	SELECT 'Hệ thốngcủaTồn khosốkhôngđủlấy抵hủynhậpcủathực tếsố，vui lòngKiểm traKiểm kêquatrìnhtronglàKhôngphátsinhXuất khohoặcBáo hỏngđợithao tác！';
+	SELECT 'Số tồn kho của hệ thống không đủ để bù trừ số thực nhập, vui lòng kiểm tra trong quá trình kiểm kê có phát sinh xuất kho hoặc báo hỏng hay không!';
 END
 ELSE
 BEGIN

@@ -305,7 +305,7 @@
         },
         ondblClickRow: function (rowid) {
             var rowData = $("#gridFeeList").jqGrid('getRowData', rowid);
-            if (rowData.zxzt == "已Thực hiện")
+            if (rowData.zxzt == "Đã thực hiện")
             {
                 $.modalAlert("Chi phí này đã thực hiện, không được phép sửa.", "warning");
                 return;
@@ -490,7 +490,7 @@
         //yêu cầuXóadòng
         if (rowid) {
             var rowData = $("#gridFeeList").jqGrid('getRowData', rowid);
-            if (rowData.zxzt == "已Thực hiện") {
+            if (rowData.zxzt == "Đã thực hiện") {
                 $.modalAlert("Chi phí này đã thực hiện, không được phép sửa.", "warning");
                 return;
             }
@@ -522,7 +522,7 @@
         $.each(dataIDs, function () {
             var detail = $("#gridFeeList").jqGrid('getRowData', this);
             detail.yzlb = detail.yzlb == "Thuốc" ? "0" : "-1";
-            detail.zxzt = detail.zxzt == "已Thực hiện" ? "1" : "0";
+            detail.zxzt = detail.zxzt == "Đã thực hiện" ? "1" : "0";
             delete detail.newid;
             dataInfo.push(detail);
         });
@@ -699,7 +699,7 @@
         $.each(dataIDs, function () {
             var detail = $("#gridFeeList").jqGrid('getRowData', this);
             detail.yzlb = detail.yzlb == "Thuốc" ? "0" : "-1";
-            detail.zxzt = detail.zxzt == "已Thực hiện" ? "1" : "0";
+            detail.zxzt = detail.zxzt == "Đã thực hiện" ? "1" : "0";
             gridMxList.push(detail);
         });
     }

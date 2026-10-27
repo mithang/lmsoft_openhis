@@ -156,7 +156,7 @@ BEGIN TRY
 	END 
 	IF @kcsl<@sl OR @kcsl<@djsl
 	BEGIN
-		SELECT 'Số lượng đã đóng băng nhỏ hơn số lượng xuất kho，禁止出库';
+		SELECT 'Số lượng đã đóng băng nhỏ hơn số lượng xuất kho, cấm xuất kho';
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END 
@@ -230,7 +230,7 @@ BEGIN TRY
 	
 	IF @sl>@totalDjsl
 	BEGIN
-		SELECT '已冻结Tổng lượng小于cầnRã đông数，Rã đôngthất bại'
+		SELECT 'Tổng lượng đã đóng băng nhỏ hơn số lượng cần rã đông, rã đông thất bại'
 		ROLLBACK TRANSACTION
 		RETURN;
 	END 
@@ -291,7 +291,7 @@ BEGIN TRY
 	IF @totalDjsl>0  
 	BEGIN
 		-- cóđôngkếtMô tảđangởbịsử dụng，hủy bỏcó thểhướnggâysaukỳkhấuTồn khoTồn kho không đủ
-		SELECT '该Lô存在冻结Tồn kho，không thểhủy bỏ';
+		SELECT 'Lô này còn tồn kho đóng băng, không thể hủy bỏ';
 		ROLLBACK TRANSACTION;
 		RETURN;
 	END

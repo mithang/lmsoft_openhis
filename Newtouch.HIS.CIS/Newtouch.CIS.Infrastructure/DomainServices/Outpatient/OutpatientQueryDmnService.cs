@@ -51,7 +51,7 @@ and jz.zlkssj between @kssj and @jssj
 jz.mzh,jz.xm,jz.xb,jz.nlshow nl,
 ghksmc ks,
 staff.name ys,
-case gh.mjzbz  when 1 then 'Khám ngoại trú thông thường' when 2 then 'Cấp cứu' when 3 then 'Khám chuyên gia' when 4 then 'Khám bệnh đặc biệt' when 5 then '重大疾病Ngoại trú' when 6 then '慢性病Ngoại trú' when 7 then '居民两病' when 8 then '意外伤害Ngoại trú' when 9 then '生育Ngoại trú' when 10 then '耐多药结核Ngoại trú' when 11 then '儿童两病Ngoại trú' end  jzlx,  
+case gh.mjzbz  when 1 then 'Khám ngoại trú thông thường' when 2 then 'Cấp cứu' when 3 then 'Khám chuyên gia' when 4 then 'Khám bệnh đặc biệt' when 5 then 'Khám ngoại trú bệnh hiểm nghèo' when 6 then 'Khám ngoại trú bệnh mạn tính' when 7 then 'Hai bệnh của cư dân' when 8 then 'Khám ngoại trú do tai nạn' when 9 then 'Khám ngoại trú sinh sản' when 10 then 'Khám ngoại trú lao đa kháng thuốc' when 11 then 'Khám ngoại trú hai bệnh trẻ em' end  jzlx,  
 case when jz.fzbz=1 then 'Không' else 'Có' end cz,
 jz.zlkssj,isnull(jz.zljssj,isnull(jz.lastmodifytime,jz.createtime)) zljssj,
 case jzzt when '1' then 'Chưa khám' when '2' then 'Đang khám' when '3' then 'Đã khám xong' end jzzt,

@@ -12,7 +12,7 @@ namespace Newtouch.Sett.Domain
         /// <summary>
         /// quyết toán xuất viện
         /// </summary>
-        [Description("quyết to án xuất viện")]
+        [Description("quyết toán xuất viện")]
         DischargeSettlement = 101,
 
     }
@@ -35,7 +35,7 @@ namespace Newtouch.Sett.Domain
         /// <summary>
         /// Khoa bệnhXuất viện（raKhoa bệnh）（Chờ quyết toán）
         /// </summary>
-        [Description("Chờ quyết to án")]
+        [Description("Chờ quyết toán")]
         Djz = 2,
         /// <summary>
         /// Đã xuất viện（quyết toán xuất viện）
@@ -210,11 +210,11 @@ namespace Newtouch.Sett.Domain
         MZZH = 0,
         [Description("giường bệnh tại nhà ghi sổ")]
         JCZH = 1,
-        [Description("Quyết to án ngoại trú")]
+        [Description("Quyết toán ngoại trú")]
         MZJS = 2,
         [Description("Khoa bệnh ghi sổ")]
         BQJZ = 3,
-        [Description("quyết to án nhập viện")]
+        [Description("quyết toán nhập viện")]
         ZYJS = 4,
         [Description("nhập việnTài khoản gửi/rút")]
         ZYZH = 5,
@@ -391,7 +391,7 @@ namespace Newtouch.Sett.Domain
         /// <summary>
         /// Đãquyết toán（chưahoàn）
         /// </summary>
-        [Description("Đã quyết to án")]
+        [Description("Đã quyết toán")]
         YJ = 1,
         /// <summary>
         /// Đã hoàn
@@ -916,13 +916,13 @@ namespace Newtouch.Sett.Domain
         cz = 1,
         [Description("Rút tiền")]
         qk = 2,
-        [Description("Quyết to án ngoại trú")]
+        [Description("Quyết toán ngoại trú")]
         mzjs = 3,
-        [Description("Hoàn trả quyết to án ngoại trú")]
+        [Description("Hoàn trả quyết toán ngoại trú")]
         mzjsth = 4,
-        [Description("quyết to án nhập viện")]
+        [Description("quyết toán nhập viện")]
         zyjs = 5,
-        [Description("Hoàn trả quyết to án nhập viện")]
+        [Description("Hoàn trả quyết toán nhập viện")]
         zyjsth = 6,
         [Description("Hoàn số dư")]
         tye = 9
@@ -981,9 +981,9 @@ namespace Newtouch.Sett.Domain
 
     public enum EnumPayStatus
     {
-        [Description("Thanh to án thành công")]
+        [Description("Thanh toán thành công")]
         Success = 1,
-        [Description("Thanh to án thất bại")]
+        [Description("Thanh toán thất bại")]
         Failed = 2
     }
 
@@ -1118,15 +1118,15 @@ namespace Newtouch.Sett.Domain
         zgmzjz = 1,
         [Description("dân cư phí xinVui lòng bảng(cứu trợ dân chính)")]
         jmmzjz = 2,
-        [Description("báo cáo thanh to án thông thường(người lao động)")]
+        [Description("báo cáo thanh toán thông thường(người lao động)")]
         zgbz = 3,
-        [Description("báo cáo thanh to án thông thường(dân cư)")]
+        [Description("báo cáo thanh toán thông thường(dân cư)")]
         jmbz = 4,
-        [Description("báo cáo thanh to án thông thường(Nghỉ hưu nghỉ hưu)")]
+        [Description("báo cáo thanh toán thông thường(Nghỉ hưu nghỉ hưu)")]
         lxbz = 5,
-        [Description("báo cáo thanh to án thông thường(khác địa phương người lao động)")]
+        [Description("báo cáo thanh toán thông thường(khác địa phương người lao động)")]
         ydzgbz = 6,
-        [Description("báo cáo thanh to án thông thường(khác địa phương dân cư)")]
+        [Description("báo cáo thanh toán thông thường(khác địa phương dân cư)")]
         ydjmbz = 7,
 
     }
@@ -1199,7 +1199,7 @@ namespace Newtouch.Sett.Domain
         jzxxcx = 2,
         [Description("【5202】Chẩn đo án thông tinTruy vấn")]
         zdxxcx = 3,
-        [Description("【5203】Thông tin quyết to ánTruy vấn")]
+        [Description("【5203】Thông tin quyết toánTruy vấn")]
         jsxxcx = 4,
         [Description("【5204】Chi tiết phíTruy vấn")]
         fymxcx = 5,
@@ -1238,7 +1238,7 @@ namespace Newtouch.Sett.Domain
         yljgrkspzsxx = 3512,
         [Description("【3513】chỉ định cơ sở y tế hàng hóa bán truy xuất thông tinTruy vấn")]
         yljgspxszsxx = 3513,
-        [Description("【3607】quyết to án bảngKết quả kiểm soát chất lượngTruy vấn")]
+        [Description("【3607】quyết toán bảngKết quả kiểm soát chất lượngTruy vấn")]
         jsqdzkjg = 3607,
         [Description("【5101】Khoa thông tinTruy vấn")]
         ksxxcx = 5101,
@@ -1628,12 +1628,12 @@ namespace Newtouch.Sett.Domain
         /// <summary>
         /// Chờthanh toán
         /// </summary>
-        [Description("Chờthanh to án")]
+        [Description("Chờthanh toán")]
         dzf = 0,
         /// <summary>
         /// đãthanh toán
         /// </summary>
-        [Description("đãthanh to án")]
+        [Description("đãthanh toán")]
         yzf = 1,
         /// <summary>
         /// Đã hoàn khoản
@@ -1643,7 +1643,7 @@ namespace Newtouch.Sett.Domain
         /// <summary>
         /// Đang thanh toán
         /// </summary>
-        [Description("Đang thanh to án")]
+        [Description("Đang thanh toán")]
         zfz = 3,
     }
     /// <summary>

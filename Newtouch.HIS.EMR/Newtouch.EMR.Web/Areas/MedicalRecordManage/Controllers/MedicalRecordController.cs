@@ -2418,7 +2418,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
             //Thiết lậpxml Đường dẫn
             string currentFileName = "";//Đường dẫn đọc bản ghi diễn biến bệnh đã hợp nhất
-            string fileUrl = WebPath.Map("~/file/Nội trú病历/Merge/" + zyh);//文件夹路径
+            string fileUrl = WebPath.Map("~/file/住院病历/Merge/" + zyh);//文件夹路径
             if (!Directory.Exists(fileUrl))
             {//Tạo thư mục
                 Directory.CreateDirectory(fileUrl);
@@ -2446,7 +2446,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     _month = _month.Substring(_month.Length - 2);
                     string _day = "00" + date.Day.ToString();
                     _day = _day.Substring(_day.Length - 2);
-                    var url = WebPath.Map("~/file/Nội trú病历/" + date.Year + "/" + _month + "/" + _day + "/" + obj.zyh + "/" + obj.Name + ".xml");
+                    var url = WebPath.Map("~/file/住院病历/" + date.Year + "/" + _month + "/" + _day + "/" + obj.zyh + "/" + obj.Name + ".xml");
                     urlList.Add(url);
                     XmlDocument doc = new XmlDocument();
                     doc.Load(url);

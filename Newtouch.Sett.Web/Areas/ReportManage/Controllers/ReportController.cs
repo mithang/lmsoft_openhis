@@ -1032,7 +1032,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 			}
 			string pathname = "YNE" + year + Month + types + ".dbf";
 			var uri = Request.Scheme + "://" + Request.Host.Value + Request.Path.Value + Request.QueryString.Value;
-			string filepath = SettPathHelper.MapPath("~/BHYT申报 tải lên Tệp/" + pathname);
+			string filepath = SettPathHelper.MapPath("~/医保申报上传文件/" + pathname);
 			var Scheme = Request.Scheme;
 			var Host = Request.Host.Value;
 			
@@ -1216,7 +1216,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 			//return File(filepath, "application/x-dbf", pathname);
 			#endregion
 
-			var refpath = Scheme + "://" + Host + "/BHYT申报 tải lên Tệp/" + pathname;
+			var refpath = Scheme + "://" + Host + "/医保申报上传文件/" + pathname;
 			refdata = new
 			{
 				path = refpath

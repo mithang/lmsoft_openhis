@@ -63,22 +63,22 @@ namespace Newtouch.CIS.Proxy
             switch (code)
             {
                 case "01":
-                    return "cư dânchứng minh nhân dân";
+                    return "居民身份证";
                 case "02":
-                    return "cư dân户miệngbản";
+                    return "居民户口本";
                 case "03":
-                    return "Hộ chiếu";
+                    return "护照";
                 case "04":
-                    return "Giấy chứng nhận sĩ quan";
+                    return "军官证";
                 case "05":
-                    return "驾驶chứng";
+                    return "驾驶证";
                 case "06":
-                    return "港澳cư dânđếntớitrongđịathôngdòngchứng";
+                    return "港澳居民来往内地通行证";
                 case "07":
-                    return "太晚cư dânđếntớitrongđịathôngdòngchứng";
+                    return "太晚居民来往内地通行证";
                 case "09":
                 default:
-                    return "khácphương phápđịnhhiệu lựcchứngmục";
+                    return "其他法定有效证件";
 
             }
         }
@@ -113,22 +113,22 @@ namespace Newtouch.CIS.Proxy
             switch (code)
             {
                 case "10":
-                    return "chưa婚";
+                    return "未婚";
                 case "20":
-                    return "đã kết hôn";
+                    return "已婚";
                 case "21":
-                    return "ban đầu婚";
+                    return "初婚";
                 case "22":
-                    return "lại婚";
+                    return "再婚";
                 case "23":
-                    return "lại婚";
+                    return "复婚";
                 case "30":
-                    return "丧chẵn";
+                    return "丧偶";
                 case "40":
                     return "离婚";
                 case "90":
                 default:
-                    return "chưa biết";
+                    return "未知";
             }
         }
 

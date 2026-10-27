@@ -57,7 +57,7 @@ namespace Newtouch.Application.Implementation
         private string UpdateChargeStatus(string body)
         {
             var o = body.ToObject<PrescriptionChargeRequest>();
-            if (o == null) return "giải析yêu cầutham sốthất bại";
+            if (o == null) return "Phân tích tham số yêu cầu thất bại";
             var op = OperatorProvider.GetCurrent();
             _prescriptionRepo.UpdateChargeStatus(o, op.OrganizeId, op.UserCode);
             return "";

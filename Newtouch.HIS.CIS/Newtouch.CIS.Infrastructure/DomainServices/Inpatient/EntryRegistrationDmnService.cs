@@ -714,7 +714,7 @@ FROM    dbo.zy_brxxk zyxx
                                 Type = Convert.ToInt32(EnumYslx.ZyDoc),
                                 ysgh = inareaReq.ysgh,
                                 ysmc = inareaReq.ysmc,
-                                TypeName = "Nội trú医生",
+                                TypeName = "住院医生",
                                 zt = "1"
                             };
                             docEntity.Create();
@@ -888,7 +888,7 @@ FROM    dbo.zy_brxxk zyxx
                         docEntity.Type = Convert.ToInt32(EnumYslx.ZyDoc);
                         docEntity.ysgh = patChangeAreaRequestDto.ysgh;
                         docEntity.ysmc = patChangeAreaRequestDto.ysmc;
-                        docEntity.TypeName = "Nội trú医生";
+                        docEntity.TypeName = "住院医生";
                         docEntity.zt = "1";
                         docEntity.Create();
                         db.Insert(docEntity);
@@ -1372,7 +1372,7 @@ FROM    dbo.zy_brxxk zyxx
                         docEntity.Type = Convert.ToInt32(EnumYslx.ZyDoc);
                         docEntity.ysgh = patChangeAreaRequestDto.ysgh;
                         docEntity.ysmc = patChangeAreaRequestDto.ysmc;
-                        docEntity.TypeName = "Nội trú医生";
+                        docEntity.TypeName = "住院医生";
                         docEntity.zt = "1";
                         docEntity.Create();
                         db.Insert(docEntity);
@@ -1565,7 +1565,7 @@ FROM    dbo.zy_brxxk zyxx
                                 Type = Convert.ToInt32(EnumYslx.ZyDoc),
                                 ysgh = inareaReq.ysgh,
                                 ysmc = inareaReq.ysmc,
-                                TypeName = "Nội trú医生",
+                                TypeName = "住院医生",
                                 zt = "1"
                             };
                             docEntity.Create();

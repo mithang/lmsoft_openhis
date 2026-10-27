@@ -802,7 +802,7 @@ namespace Newtouch.CIS.Web.Controllers
                 }
                 else
                 {
-                    PerformanceMonitoring.Running(() => _medicalRecordDmnService.sendPresToHis(jzObject.mzh, OrganizeId, UserIdentity.UserCode), "SaveMedicalRecord-sendPresToHis", "Ghi chép用Giao diệnĐồng bộ至HIS耗时");//dùnggiao diệnĐồng bộđếnHIS
+                    PerformanceMonitoring.Running(() => _medicalRecordDmnService.sendPresToHis(jzObject.mzh, OrganizeId, UserIdentity.UserCode), "SaveMedicalRecord-sendPresToHis", "Thời gian đồng bộ ghi chép đến HIS qua giao diện");//dùnggiao diệnĐồng bộđếnHIS
                 }
             }
             catch (Exception ex)
@@ -1580,11 +1580,11 @@ namespace Newtouch.CIS.Web.Controllers
             var j = "";
             switch (item.title)
             {
-                case "In中草药":
+                case "打印中草药":
                     j = _reportDmnService.GetZCYCFjson(item.cfId, item.mzh, OrganizeId);
                     break;
                 case "InĐơn thuốc":
-                case "In常规Đơn thuốc":
+                case "打印常规处方":
                     j = _reportDmnService.GetCFDjson(item.cfId, item.mzh, OrganizeId);
                     break;
                 case "In phiếu xét nghiệm":
@@ -1593,10 +1593,10 @@ namespace Newtouch.CIS.Web.Controllers
                 case "In phiếu kiểm tra":
                     j = _reportDmnService.GetJCDjson(item.cfId, item.mzh, OrganizeId);
                     break;
-                case "In雾化单":
+                case "打印雾化单":
                     j = _reportDmnService.GetWHDjson(item.cfId, item.mzh, OrganizeId);
                     break;
-                case "In注射单":
+                case "打印注射单":
                     j = _reportDmnService.GetZSDjson(item.cfId, item.mzh, OrganizeId);
                     break;
             }
@@ -1694,7 +1694,7 @@ namespace Newtouch.CIS.Web.Controllers
         public IActionResult OpenExe(string sqdh)
         {
             System.Diagnostics.Process p = new System.Diagnostics.Process();
-            p.StartInfo.FileName = "C:\\Users\\len\\Desktop\\金马扬名Bệnh án điện tử\\GoldHISManager.exe";//cầnkhởiđộngcủatrìnhthứ tựtên 
+            p.StartInfo.FileName = "C:\\Users\\len\\Desktop\\金马扬名电子病历\\GoldHISManager.exe";//cầnkhởiđộngcủatrìnhthứ tựtên 
             p.StartInfo.Arguments = "G_HisApply.ReqNO='"+sqdh+"'" + " ";
             p.Start();//khởiđộng
             return Content("");
