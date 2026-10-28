@@ -1,0 +1,192 @@
+/* =====================================================================
+   redesign-tokens.css — Nền tảng dùng chung chặng 3 redesign OpenHIS
+   Nguồn chuẩn duy nhất: openhis-core/scripts/redesign/assets/
+   Đồng bộ vào wwwroot từng app bằng scripts/redesign/sync-assets.sh
+   (KHÔNG sửa file này trực tiếp trong wwwroot, sẽ bị ghi đè khi sync).
+   Nạp SAU framework-theme.css trong _LayoutIndex.cshtml / _Form.cshtml
+   bằng GetStaticResourceScriptUrl(..., false) — tức app-local, có ?V=.
+   Stack: Bootstrap 3.3.4 + jQuery 2.1.1 + jqGrid 5.1.0. KHÔNG dùng class
+   Bootstrap 5. Mọi rule toàn cục ở đây đều đã đối chiếu markup thật:
+   .toolbar (130+ chỗ dùng), table.form > th.formTitle + td.formValue,
+   jqGrid chèn div.unwritten (xem mục 4).
+   ===================================================================== */
+
+/* ---- 1. Token DESIGN.md §2 (giá trị kế thừa theme/Bootstrap đang chạy) -- */
+:root {
+    /* Màu ngữ nghĩa. --rd-primary lấy theo Bootstrap 3 mặc định; theme
+       skin có thể override .btn-primary trên từng app — token này CHỈ
+       dùng cho thành phần redesign mới, KHÔNG override .btn-primary
+       toàn cục (tránh đổi màu nút đang chạy). */
+    --rd-primary: #337ab7;
+    --rd-success: #5cb85c;
+    --rd-warning: #f0ad4e;
+    --rd-danger: #d9534f;
+    --rd-info: #5bc0de;
+    --rd-text: #333333;
+    --rd-text-muted: #6b7280;
+    --rd-bg-muted: #f8f9fa;
+    --rd-border: #dddddd;
+    /* Khoảng cách bội số 4 (§2.3). */
+    --rd-space-1: 4px;
+    --rd-space-2: 8px;
+    --rd-space-3: 12px;
+    --rd-space-4: 16px;
+    --rd-space-6: 24px;
+    /* Bo góc: nút/input nhỏ, thẻ lớn hơn một bậc (§2.3). */
+    --rd-radius: 4px;
+    --rd-radius-card: 6px;
+    /* Chữ tiếng Việt (§7): line-height tương đối, không cố định pixel,
+       để dấu xếp chồng (ế, ữ, ộ, ấ) không bị cắt. */
+    --rd-line-height: 1.5;
+    --rd-line-height-heading: 1.35;
+}
+
+/* ---- 2. Chữ + chống tràn (áp dụng mọi trang dùng layout này) -------- */
+body {
+    line-height: var(--rd-line-height);
+    min-width: 0;
+}
+
+h1, h2, h3, .panel-title {
+    line-height: var(--rd-line-height-heading);
+}
+
+/* Ảnh trong vùng nội dung không được đẩy trang tràn ngang. Logo dùng
+   background-image nên rule này không chạm tới logo. */
+img {
+    max-width: 100%;
+}
+
+/* ---- 3. Toolbar / nút (§2.1, §3.1, §9.5) ------------------------------ */
+/* Nút nguy hiểm tách vị trí khỏi nút thường: lề trái 16px. Nếu danger
+   đứng đầu toolbar thì lề này chỉ là khoảng đệm trái, không gây vỡ. */
+.toolbar .btn-danger {
+    margin-left: var(--rd-space-4);
+}
+
+/* QUY ƯỚC (không ép bằng CSS, vì CSS không biết nút nào là "chính"):
+   mỗi .toolbar chỉ giữ MỘT .btn-primary; các nút còn lại dùng
+   .btn-default. Bằng chứng vì sao không ép theo vị trí DOM: trang
+   PDS FypzIndex đặt nút reload (icon-only) TRƯỚC nút "Tạo mới" —
+   rule :not(:first-of-type) sẽ hạ nhầm nút chính. Việc hạ cấp nút
+   thừa là việc per-page của chặng sau, có audit từng trang. */
+
+/* ---- 4. Trạng thái rỗng (§6.2): rỗng KHÔNG phải lỗi ------------------- */
+/* Cơ chế thật (đã đọc jqgrid.min.js): khi lưới không có dòng, jqGrid
+   chèn <div class="unwritten" style="color:red;..."> + chuỗi
+   locale unwrittentext ("Không tìm thấy dữ liệu liên quan!") vào
+   .ui-jqgrid-bdiv. Rule này trung hòa đúng div đó (cần !important để
+   thắng style inline color:red), không đổi chuỗi locale (việc đổi
+   câu chữ "chưa có dữ liệu" vs "lọc không ra kết quả" thuộc chặng sau). */
+.ui-jqgrid-bdiv > .unwritten {
+    color: var(--rd-text-muted) !important;
+    background: var(--rd-bg-muted);
+    text-align: center;
+    font-style: normal;
+    padding: 8px 12px !important;
+    border-bottom: 1px solid var(--rd-border);
+}
+
+/* Thành phần trạng thái rỗng dùng chung cho trang/thẻ tự viết. */
+.rd-empty {
+    padding: var(--rd-space-6) var(--rd-space-4);
+    text-align: center;
+    color: var(--rd-text-muted);
+    background: var(--rd-bg-muted);
+    border: 1px solid var(--rd-border);
+    border-radius: var(--rd-radius-card);
+    line-height: var(--rd-line-height);
+}
+
+.rd-empty .rd-empty-action {
+    margin-top: var(--rd-space-3);
+}
+
+/* ---- 5. Lưới: wrapper cuộn ngang, chiến lược A (§4.2) ----------------- */
+/* Wrapper do Redesign.makeGridScrollable() bọc quanh .ui-jqgrid.
+   Không đặt min-width lên lưới: chiều rộng lưới do jqGrid tự tính từ
+   tổng chiều rộng cột; wrapper chỉ việc cho cuộn khi lưới rộng hơn
+   khung chứa. Cột neo dùng tính năng frozen có sẵn của jqGrid
+   (setFrozenColumns, đã xác nhận có trong jqgrid.min.js) — cột phải
+   khai frozen:true trong colModel của trang, helper chỉ kích hoạt. */
+.rd-grid-scroll {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    max-width: 100%;
+}
+
+/* ---- 6. Mobile (viewport giả lập, không app native) ------------------- */
+@media (max-width: 767px) {
+    /* Toolbar: bỏ float (theme đặt .toolbar{float:left}), xếp hàng
+       co được, nút đủ 44px chạm (§9.5). Chỉ áp dụng dưới 768px để
+       desktop giữ nguyên bố cục đang chạy. */
+    .toolbar {
+        float: none;
+        display: flex;
+        flex-wrap: wrap;
+        gap: var(--rd-space-2);
+        align-items: center;
+    }
+
+    .toolbar .btn {
+        min-height: 44px;
+        display: inline-flex;
+        align-items: center;
+    }
+
+    .toolbar .form-control {
+        min-height: 44px;
+    }
+
+    /* Form bảng vendor: table.form > tr > th.formTitle + td.formValue.
+       Dưới 768px chuyển thành một cột, nhãn nằm TRÊN trường (§4.3).
+       Thứ tự DOM được giữ nguyên nên đọc vẫn đúng: nhãn, trường,
+       nhãn, trường. Áp dụng cho cả hàng 2 cặp nhãn–trường. */
+    table.form,
+    table.form tbody,
+    table.form tr,
+    table.form th.formTitle,
+    table.form td.formValue {
+        display: block;
+        width: 100% !important;
+        max-width: none;
+    }
+
+    table.form th.formTitle {
+        text-align: left;
+        white-space: normal;
+        height: auto !important;
+        padding: 0 0 4px 0;
+    }
+
+    table.form td.formValue {
+        padding: 0 0 12px 0;
+    }
+
+    table.form .form-control {
+        width: 100%;
+    }
+
+    /* Form div-based dùng class opt-in (trang mới / trang được sửa
+       ở chặng sau): nhãn trên trường, một cột. */
+    .rd-form-stack .control-label {
+        display: block;
+        text-align: left;
+        margin-bottom: 4px;
+    }
+
+    .rd-form-stack .form-control {
+        width: 100%;
+    }
+}
+
+/* Dashboard KPI opt-in (§6.1, §4.3): 2 cột trên mobile, không giữ
+   4–5 thẻ/hàng gây bóp. Trang home (Layout = null) tự gắn class này
+   khi được sửa ở chặng sau. */
+@media (max-width: 767px) {
+    .rd-kpi-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: var(--rd-space-3);
+    }
+}

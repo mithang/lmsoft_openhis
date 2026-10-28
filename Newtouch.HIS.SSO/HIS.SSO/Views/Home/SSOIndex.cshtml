@@ -13,6 +13,7 @@
     <META HTTP-EQUIV="pragma" CONTENT="no-cache">
     <META HTTP-EQUIV="expires" CONTENT="0">
     <title>nền tảng thống nhất y tế mã nguồn mở</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" href="@MvcHelper.GetStaticResourceScriptUrl("~/img/newtouchcloud.ico")">
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     @Html.Partial("_FrontReference")
@@ -21,9 +22,12 @@
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/dialog/dialog.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/cookie/jquery.cookie.js")"></script>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" id="color-skin" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-tokens.css", false)" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-portal.css", false)" rel="stylesheet" />
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-clientdata.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/redesign-portal.js", false)"></script>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/_all-skins.css")" rel="stylesheet" />
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/AdminLTE.min.css")" rel="stylesheet" />
 
@@ -39,9 +43,11 @@
         <img src="~/img/ajax-loader.gif" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;" />
     </div>
     <div id="theme-wrapper">
+        <div id="rd-drawer-overlay" aria-hidden="true"></div>
         <header class="navbar" id="header-navbar">
             <div class="container" style="padding-right: 0px;">
                 <a href="#" id="logo" class="navbar-brand" style="background-image:url(/img/logo1.png); background-size: 100% auto;background-position:left center; background-repeat:no-repeat"></a>
+                <button type="button" class="btn rd-nav-toggle" id="rd-nav-toggle" aria-label="Mở menu" aria-expanded="false" aria-controls="nav-col"><i class="fa fa-bars"></i></button>
                 <div class="clearfix">
                     <div class="nav-no-collapse navbar-left pull-left hidden-sm hidden-xs">
                         <ul class="nav navbar-nav pull-left">

@@ -1,0 +1,109 @@
+/* =====================================================================
+   redesign-portal.css — Shell portal SSO trên mobile, chặng 3 redesign
+   Nguồn chuẩn: openhis-core/scripts/redesign/assets/
+   Đồng bộ vào SSO wwwroot bằng scripts/redesign/sync-assets.sh.
+   Nạp trong Views/Home/SSOIndex.cshtml (portal shell, Layout = null).
+   Cơ chế collapse/pushmenu sẵn có KHÔNG bị thay: nút #make-small-nav
+   và class nav-small trên desktop giữ nguyên. File này CHỈ thêm lớp
+   drawer dưới 992px (DESIGN §3.5) — desktop không bị đổi một pixel nào
+   bởi các rule dưới đây (toàn bộ nằm trong media max-width:991px,
+   trừ nút toggle vốn display:none trên desktop).
+   Lưu ý: portal có HAI div id="nav-col" (menu + footer .login-foot,
+   id trùng là lỗi markup sẵn có, không sửa ở đây). Rule drawer dùng
+   :not(.login-foot) để chỉ nhắm khối menu, không chạm footer.
+   ===================================================================== */
+
+/* Nút hamburger: ẩn trên desktop, luôn thấy được dưới 992px. */
+.rd-nav-toggle {
+    display: none;
+}
+
+/* Nút đóng drawer: chỉ tồn tại trong drawer mobile. */
+.rd-drawer-close {
+    display: none;
+}
+
+/* Lớp phủ: chặn bấm vào nội dung phía sau khi drawer mở. */
+#rd-drawer-overlay {
+    display: none;
+}
+
+@media (max-width: 991px) {
+    /* Nút hamburger 44x44, đặt cạnh logo trong header portal. */
+    .rd-nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        float: left;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        font-size: 20px;
+        line-height: 1;
+        margin: 3px 4px 0 0;
+        color: #fff;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .rd-nav-toggle:focus {
+        outline: 2px solid #fff;
+        outline-offset: -2px;
+    }
+
+    /* Drawer: khối menu trượt từ trái, phủ lên nội dung. Khi đóng,
+       translate ra ngoài viewport (không dùng display:none để giữ
+       transition và để nút đóng/focus không nhảy layout). */
+    #page-wrapper > .row > #nav-col:not(.login-foot) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 280px;
+        max-width: 85vw;
+        z-index: 1040;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background: #2c3e50;
+        transform: translateX(-102%);
+        transition: transform 0.2s ease;
+    }
+
+    body.rd-drawer-open #page-wrapper > .row > #nav-col:not(.login-foot) {
+        transform: translateX(0);
+    }
+
+    /* Nút đóng trong drawer. */
+    body.rd-drawer-open .rd-drawer-close {
+        display: block;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 44px;
+        height: 44px;
+        font-size: 22px;
+        line-height: 1;
+        color: #fff;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    /* Overlay phủ toàn viewport, dưới drawer, trên nội dung. */
+    body.rd-drawer-open #rd-drawer-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 1030;
+        background: rgba(0, 0, 0, 0.45);
+    }
+
+    /* Khóa cuộn nền: body portal vốn đã có inline style
+       overflow:hidden nên trang nền không cuộn được; class này chỉ
+       khẳng định lại trạng thái khi drawer mở. */
+    body.rd-drawer-open {
+        overflow: hidden;
+    }
+}
