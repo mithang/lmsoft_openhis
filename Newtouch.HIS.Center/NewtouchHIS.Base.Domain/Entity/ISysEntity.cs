@@ -15,7 +15,8 @@ namespace NewtouchHIS.Base.Domain.Entity
         /// Nullable:False
         /// </summary>           
         [Required(ErrorMessage = "CreateTime không được để trống")]
-        [StringLength(23, ErrorMessage = "CreateTime giới hạn độ dài là 23")]
+        // QA-phase2: nhu IEntity — StringLength tren DateTime gay loi validation
+        // cho moi post entity; cot DB la datetime nen bo attribute.
         public DateTime CreateTime { get; set; }
 
         /// <summary>
@@ -32,7 +33,7 @@ namespace NewtouchHIS.Base.Domain.Entity
         /// Default:
         /// Nullable:True
         /// </summary>           
-        [StringLength(23, ErrorMessage = "LastModifyTime giới hạn độ dài là 23")]
+        // QA-phase2: nhu CreateTime — StringLength tren DateTime? throw khi khong null.
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>

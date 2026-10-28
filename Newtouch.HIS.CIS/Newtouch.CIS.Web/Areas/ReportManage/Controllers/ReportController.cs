@@ -27,6 +27,14 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
     public class ReportController : OrgControllerBase
     {
         private readonly IReportDmnService reportDmnService;
+        // QA-phase2: truoc day khong co constructor nen field nay luon null va
+        // 4 action ReportConfig (GetGridJson/GetReportFormJson/ReportEdit/
+        // ReportDelete) deu NRE — trong khi 3 view ReportConfig(.Form).cshtml
+        // dang goi chung va Program.cs da dang ky DI IReportDmnService.
+        public ReportController(IReportDmnService reportDmnService)
+        {
+            this.reportDmnService = reportDmnService;
+        }
         /// <summary>
         /// Phục hồi chức năngĐơn thuốc
         /// </summary>

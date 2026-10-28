@@ -24,6 +24,10 @@ namespace Newtouch.Common
         public string id { get; set; }
         public string text { get; set; }
         public string value { get; set; }
+        // QA-phase2: UserController (port tu mau HOSP) gan staffTree.Code =
+        // UserCode; model PDS thieu thuoc tinh nay nen controller khong build
+        // duoc va bi Remove khoi csproj. Them 1 dong, khong doi cac user khac.
+        public string Code { get; set; }
         public string parentId { get; set; }
         public bool isexpand { get; set; }
         public bool complete { get; set; }

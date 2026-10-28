@@ -69,8 +69,22 @@ namespace Newtouch.Infrastructure
             if (pagination != null && !string.IsNullOrWhiteSpace(pagination.sidx)
                 && Regex.IsMatch(pagination.sidx, @"^[A-Za-z0-9_,\s]+$"))
             {
-                var sord = (pagination.sord ?? "").Trim().ToLower() == "desc" ? "desc" : "asc";
-                q = q.OrderBy(pagination.sidx.Trim() + " " + sord);
+                // QA-phase2: nhieu controller dat sidx kem huong san
+                // ("CreateTime desc", "Ypdm desc"); noi them sord se tao
+                // "CreateTime desc asc" -> loi SQL. Khi sidx da ket thuc bang
+                // asc/desc thi dung nguyen sidx; neu khong thi noi sord nhu cu.
+                // Chi anh huong cac truy van truoc day loi cu phap (khong the
+                // chay duoc), khong doi truy van sidx la ten cot don.
+                var sidx = pagination.sidx.Trim();
+                if (Regex.IsMatch(sidx, @"\s+(asc|desc)$", RegexOptions.IgnoreCase))
+                {
+                    q = q.OrderBy(sidx);
+                }
+                else
+                {
+                    var sord = (pagination.sord ?? "").Trim().ToLower() == "desc" ? "desc" : "asc";
+                    q = q.OrderBy(sidx + " " + sord);
+                }
             }
             int total = 0;
             var page = pagination?.page ?? 1;

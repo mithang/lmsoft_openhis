@@ -285,24 +285,32 @@ AND wz.Id=@Id
                 sql.AppendLine("SELECT @tjwzCount=COUNT(wztjId) FROM ( ");
                 sql.AppendLine("SELECT DISTINCT tj.wztjId ");
                 sql.AppendLine("FROM dbo.wz_priceAdjustment(NOLOCK) tj ");
-                sql.AppendLine("INNER JOIN dbo.rel_productWarehouse(NOLOCK) rpw ON rpw.productId=tj.productId AND rpw.warehouseId=tj.warehouseId AND rpw.zt='" + (int)Enumzt.Enable + "' ");
-                sql.AppendLine("WHERE tj.zxbz='" + (int)EnumTjZxbz.Already + "' and tj.warehouseId=@warehouseId AND tj.OrganizeId=@OrganizeId AND tj.zt='" + (int)Enumzt.Enable + "' AND tj.zxsj>=DATEADD(DAY, " + ago + ", GETDATE()) ");
+                // QA-phase2: tham so hoa cac gia tri enum int + ago (truoc day
+                // noi truc tiep vao SQL). Gia tri enum truyen dang string de
+                // giu nguyen phep so sanh zt='1' nhu ban cu; ago truyen int
+                // cho DATEADD. Khong doi ngu nghia truy van.
+                sql.AppendLine("INNER JOIN dbo.rel_productWarehouse(NOLOCK) rpw ON rpw.productId=tj.productId AND rpw.warehouseId=tj.warehouseId AND rpw.zt=@enable ");
+                sql.AppendLine("WHERE tj.zxbz=@tjAlready and tj.warehouseId=@warehouseId AND tj.OrganizeId=@OrganizeId AND tj.zt=@enable AND tj.zxsj>=DATEADD(DAY, @ago, GETDATE()) ");
                 sql.AppendLine(") a ");
                 sql.AppendLine("--Duyệt nhập kho ");
                 sql.AppendLine("SELECT @rkdshCount=COUNT(Id) FROM ( ");
                 sql.AppendLine("SELECT DISTINCT dj.Id FROM dbo.kf_crkdj(NOLOCK) dj ");
                 sql.AppendLine("INNER JOIN dbo.kf_crkmx(NOLOCK) mx ON mx.crkId=dj.Id ");
-                sql.AppendLine("WHERE dj.Rkbm=@warehouseId AND dj.OrganizeId=@OrganizeId AND dj.zt='" + (int)Enumzt.Enable + "' AND dj.auditState='" + (int)EnumAuditState.Waiting + "' ");
+                sql.AppendLine("WHERE dj.Rkbm=@warehouseId AND dj.OrganizeId=@OrganizeId AND dj.zt=@enable AND dj.auditState=@auditWaiting ");
                 sql.AppendLine(") a ");
                 sql.AppendLine("--Số lượng vật tư quá hạn ");
                 sql.AppendLine("SELECT @expriedWzCount=COUNT(a.Id) FROM ( ");
-                sql.AppendLine("	SELECT DISTINCT a.Id FROM dbo.kf_kcxx(NOLOCK) a WHERE a.kcsl > 0 AND a.yxq < GETDATE() AND a.warehouseId=@warehouseId AND a.OrganizeId=@OrganizeId AND a.zt='" + (int)Enumzt.Enable + "' ");
+                sql.AppendLine("	SELECT DISTINCT a.Id FROM dbo.kf_kcxx(NOLOCK) a WHERE a.kcsl > 0 AND a.yxq < GETDATE() AND a.warehouseId=@warehouseId AND a.OrganizeId=@OrganizeId AND a.zt=@enable ");
                 sql.AppendLine(") a ");
                 sql.AppendLine("SELECT ISNULL(@tjwzCount,0) tjwzCount, ISNULL(@rkdshCount,0) rkdshCount, ISNULL(@expriedWzCount,0) expriedWzCount ");
                 var param = new SugarParameter[]
                 {
                     new SugarParameter("@warehouseId",warehouseId??""),
-                    new SugarParameter("@OrganizeId", organizeId??"")
+                    new SugarParameter("@OrganizeId", organizeId??""),
+                    new SugarParameter("@enable", ((int)Enumzt.Enable).ToString()),
+                    new SugarParameter("@tjAlready", ((int)EnumTjZxbz.Already).ToString()),
+                    new SugarParameter("@auditWaiting", ((int)EnumAuditState.Waiting).ToString()),
+                    new SugarParameter("@ago", ago)
                 };
                 return FindList<NeedDealCountVO>(sql.ToString(), param).FirstOrDefault();
             }

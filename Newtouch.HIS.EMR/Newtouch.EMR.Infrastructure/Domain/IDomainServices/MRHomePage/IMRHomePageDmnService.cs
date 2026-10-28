@@ -28,7 +28,9 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// Lưu danh sách chẩn đoán
         /// </summary>
         /// <param name="list"></param>
-        void ZdListSubmit(List<BasyZdDto> list, string orgId);
+        // QA-phase2: them userCode (mau PatBasicSubmit: controller truyen
+        // UserIdentity.rygh) de nhanh INSERT set duoc CreatorCode NOT NULL.
+        void ZdListSubmit(List<BasyZdDto> list, string orgId, string userCode);
         /// <summary>
         /// Lưu danh sách phẫu thuật
         /// </summary>

@@ -221,7 +221,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                         else
                         {
                             //Lưu chẩn đoán
-                            _MainRecordDmnService.ZdListSubmit(dto, OrganizeId);
+                            _MainRecordDmnService.ZdListSubmit(dto, OrganizeId, this.UserIdentity.rygh);
                             data = "Lưu thông tin chẩn đoán thành công";
                             if (dtcsxx.Count > 0)
                             {
@@ -235,7 +235,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                     }
                     else {
                         //Lưu chẩn đoán
-                        _MainRecordDmnService.ZdListSubmit(dto, OrganizeId);
+                        _MainRecordDmnService.ZdListSubmit(dto, OrganizeId, this.UserIdentity.rygh);
                         data = "Lưu thông tin chẩn đoán thành công";
                         if (dtcsxx.Count > 0)
                         {
@@ -250,7 +250,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                 }
                 else {
                     //Khi chưa thanh toán và tham số được bật thì đồng bộ và lưu chẩn đoán
-                    _MainRecordDmnService.ZdListSubmit(dto, OrganizeId);
+                    _MainRecordDmnService.ZdListSubmit(dto, OrganizeId, this.UserIdentity.rygh);
                     data = "Lưu thông tin chẩn đoán thành công";
 
                     if (dtcsxx.Count > 0) {
@@ -306,7 +306,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                 //_MainRecordDmnService.PatBasicSubmit(dto, reldto, OrganizeId, this.UserIdentity.rygh);
                 if (zddto != null && zddto.Count > 0)
                 {
-                    //_MainRecordDmnService.ZdListSubmit(zddto, OrganizeId);
+//_MainRecordDmnService.ZdListSubmit(zddto, OrganizeId);
 
                     //Thông tin bệnh nhân đã thanh toán
                     var jsbrxx = _MainRecordDmnService.SettlementQuery(zyh, this.OrganizeId);
@@ -323,12 +323,12 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                             if (outpatDiagModify[0].Value != "OFF" || outpatDiagModify[0].Value != "off")
                             {
                                 //Lưu chẩn đoán
-                                _MainRecordDmnService.ZdListSubmit(zddto, OrganizeId);
+                                _MainRecordDmnService.ZdListSubmit(zddto, OrganizeId, this.UserIdentity.rygh);
                             }
                         }
                         else {
                             //Lưu chẩn đoán
-                            _MainRecordDmnService.ZdListSubmit(zddto, OrganizeId);
+                            _MainRecordDmnService.ZdListSubmit(zddto, OrganizeId, this.UserIdentity.rygh);
                             if (dtcsxx.Count > 0) {
                                 if (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on")
                                 {
@@ -341,7 +341,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                     else
                     {
                         //Lưu chẩn đoán
-                        _MainRecordDmnService.ZdListSubmit(zddto, OrganizeId);
+                        _MainRecordDmnService.ZdListSubmit(zddto, OrganizeId, this.UserIdentity.rygh);
                         if (dtcsxx.Count > 0)
                         {
                             if (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on")

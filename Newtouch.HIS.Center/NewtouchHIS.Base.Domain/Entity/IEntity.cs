@@ -23,7 +23,9 @@ namespace NewtouchHIS.Base.Domain.Entity
         /// Nullable:False
         /// </summary>           
         [Required(ErrorMessage = "CreateTime không được để trống")]
-        [StringLength(23, ErrorMessage = "CreateTime giới hạn độ dài là 23")]
+        // QA-phase2: StringLength tren DateTime la vo nghia va gay loi validation
+        // ("Unable to cast DateTime to String") cho moi post entity. Cot DB la
+        // datetime (khong co gioi han 23 ky tu) nen bo attribute, khong format lai gia tri.
         public DateTime CreateTime { get; set; }
 
         /// <summary>
@@ -40,7 +42,8 @@ namespace NewtouchHIS.Base.Domain.Entity
         /// Default:
         /// Nullable:True
         /// </summary>           
-        [StringLength(23, ErrorMessage = "LastModifyTime giới hạn độ dài là 23")]
+        // QA-phase2: nhu CreateTime — StringLength tren DateTime? cung throw khi
+        // gia tri khong null (duong edit set LastModifyTime = Now).
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>

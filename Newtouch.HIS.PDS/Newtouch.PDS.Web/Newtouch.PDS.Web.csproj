@@ -61,14 +61,17 @@
 
   <ItemGroup>
     <Compile Remove="Controllers/AntibioticTypeController.cs" />
-    <Compile Remove="Controllers/PharmacyWindowController.cs" />
-    <Compile Remove="Controllers/SysMedicineController.cs" />
+    <!-- QA-phase2: 3 controller duoi duoc dua lai vao build vi view van goi
+         chung (PharmacyWindow/Index+Form, SysMedicine/Index+SysMedicineAdd,
+         User/Selector+SubmitPersonalPassword, Role/Index -> User/Selector)
+         va DI cua chung da dang ky trong Program.cs; cac Remove con lai
+         giu nguyen (ngoai pham vi). Luu y: SysMedicine.submitForm van bi
+         comment trong source nen duong ghi do van 404 — khong tu mo lai. -->
     <Compile Remove="Controllers/SystemManagerController.cs" />
     <Compile Remove="Controllers/Base/ModuleController.cs" />
     <Compile Remove="Controllers/Base/OrganizeController.cs" />
     <Compile Remove="Controllers/Base/RoleAuthorizeController.cs" />
     <Compile Remove="Controllers/Base/RoleController.cs" />
-    <Compile Remove="Controllers/Base/UserController.cs" />
     <Compile Remove="Areas/OutOrInStoredManage/Controllers/TransferController.cs" />
   </ItemGroup>
 

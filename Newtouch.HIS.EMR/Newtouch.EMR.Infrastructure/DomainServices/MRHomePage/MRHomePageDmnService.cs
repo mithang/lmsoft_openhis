@@ -409,7 +409,7 @@ order by SSOrder ";
         /// </summary>
         /// <param name="list"></param>
         /// <param name="orgId"></param>
-        public void ZdListSubmit(List<BasyZdDto> list, string orgId)
+        public void ZdListSubmit(List<BasyZdDto> list, string orgId, string userCode)
         {
             int i = 1;
             int zycnt = 1;
@@ -465,6 +465,11 @@ order by SSOrder ";
                         zdety.BAH = v.BAH;
                         zdety.ZYH = v.ZYH;
                         zdety.OrganizeId = orgId;
+                        // QA-phase2: nhanh INSERT truoc day khong bao gio set
+                        // CreatorCode (cot NOT NULL) nen luon fail; Id do
+                        // RepositoryBase.EnsureStringKey tu sinh Guid.
+                        zdety.CreatorCode = userCode;
+                        zdety.CreateTime = DateTime.Now;
                         zdety.RYBQ = v.RYBQ;
                         zdety.RYBQMS = v.RYBQMS;
                         zdety.CYQK = v.CYQK;

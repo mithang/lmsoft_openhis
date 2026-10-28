@@ -499,29 +499,47 @@ namespace Newtouch.EMR.DomainServices
 
         public void TbDataSavebyWriter(IList<BlHljlData> data, string ksrq, string jsrq)
         {
-            string sql = "";
-            string sqlval = "";
-            string sqlcols = "";
+            // QA-phase2: tham so hoa bulk INSERT (truoc day noi truc tiep gia tri
+            // nhap tu DCSoft document — dau ' trong du lieu dieu duong pha vo SQL).
+            // null -> "" de khop noi chuoi cu (C# concat null thanh "").
+            // Chia nho moi lenh 50 dong (25 param/dong = 1250 < gioi han 2100).
+            // LUU Y THAY DOI HANH VI CO CHU Y: vong lap cu gan lai sqlval (=,
+            // khong phai +=) nen thuc te chi insert DONG CUOI; ban nay insert
+            // DU tat ca cac dong nhu y do union-all goc dinh lam.
             if (data.Count > 0)
             {
-                sql = @"INSERT INTO [dbo].[bl_hljldata]
+                const string sqlHead = @"INSERT INTO [dbo].[bl_hljldata]
 ([Id],[blId],[jlrq],[tw],[mb],[hx],[xy],[ybhd],[cxxdjc],[xroyx],[hljb],[xzjs],[pbjyxkt],[ycyf],[ddyf]
 ,[qtjh],[zkhl],[dglb],[hlzd],[nl],[wy],[bqhlcontent],[hsqm],[zt],[CreateTime],[CreatorCode],[OrganizeId]) ";
-                //                sqlval = @"select @Id,@blId,@jlrq,@tw,@mb,@hx,@xy,@ybhd,@cxxdjc,@xroyx,@hljb,@xzjs,@pbjyxkt,@ycyf,@ddyf
-                //,@qtjh,@zkhl,@dglb,@hlzd,@nl,@wy,@bqhlcontent,@hsqm,@zt,@CreateTime,@CreatorCode,@OrganizeId ";
-                foreach (var item in data)
+                string[] cols = { "Id", "blId", "jlrq", "tw", "mb", "hx", "xy", "ybhd", "cxxdjc", "xroyx", "hljb", "xzjs", "pbjyxkt", "ycyf", "ddyf", "qtjh", "zkhl", "dglb", "hlzd", "nl", "wy", "bqhlcontent", "hsqm" };
+                for (int start = 0; start < data.Count; start += 50)
                 {
-                    if (!string.IsNullOrWhiteSpace(sqlval))
+                    var batch = data.Skip(start).Take(50).ToList();
+                    var sqlval = new System.Text.StringBuilder();
+                    var par = new List<SugarParameter>();
+                    for (int i = 0; i < batch.Count; i++)
                     {
-                        sqlval += " union all";
+                        var item = batch[i];
+                        string[] vals = { item.Id, item.blId, item.jlrq, item.tw, item.mb, item.hx, item.xy, item.ybhd, item.cxxdjc, item.xroyx, item.hljb, item.xzjs, item.pbjyxkt, item.ycyf, item.ddyf, item.qtjh, item.zkhl, item.dglb, item.hlzd, item.nl, item.wy, item.bqhlcontent, item.hsqm };
+                        if (i > 0) sqlval.Append(" union all ");
+                        sqlval.Append("select ");
+                        for (int c = 0; c < vals.Length; c++)
+                        {
+                            if (c > 0) sqlval.Append(",");
+                            string pname = "@" + cols[c] + i;
+                            sqlval.Append(pname);
+                            par.Add(new SugarParameter(pname, vals[c] ?? ""));
+                        }
+                        // Thu tu cot: ... hsqm, zt='1', CreateTime=getdate(),
+                        // CreatorCode, OrganizeId (nhu ban cu).
+                        string pCreator = "@CreatorCode" + i;
+                        string pOrg = "@OrganizeId" + i;
+                        sqlval.Append(",'1',getdate(),").Append(pCreator).Append(",").Append(pOrg);
+                        par.Add(new SugarParameter(pCreator, item.CreatorCode ?? ""));
+                        par.Add(new SugarParameter(pOrg, item.OrganizeId ?? ""));
                     }
-                    sqlval = "select '" + item.Id + "','" + item.blId + "','" + item.jlrq + "','" + item.tw + "','" + item.mb + "','" + item.hx + "','"
-                         + item.xy + "','" + item.ybhd + "','" + item.cxxdjc + "','" + item.xroyx + "','" + item.hljb + "','" + item.xzjs + "','" + item.pbjyxkt + "','"
-                          + item.ycyf + "','" + item.ddyf + "','" + item.qtjh + "','" + item.zkhl + "','" + item.dglb + "','" + item.hlzd + "','" + item.nl + "','"
-                           + item.wy + "','" + item.bqhlcontent + "','" + item.hsqm + "','1',getdate(),'" + item.CreatorCode + "','" + item.OrganizeId + "' ";
+                    ExecuteSqlCommand(sqlHead + sqlval.ToString(), par.ToArray());
                 }
-
-                ExecuteSqlCommand(sql + sqlval);
             }
         }
 

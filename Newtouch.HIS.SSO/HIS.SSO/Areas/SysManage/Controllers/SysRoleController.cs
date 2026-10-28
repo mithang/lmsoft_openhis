@@ -98,7 +98,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
             var data = await _sysRoleDmnService.GetForm(keyValue);
             return Content(data.ToJson());
         }
-        public ActionResult SubmitForm(SysRoleEntity roleEntity, string permissionIds, string keyValue)
+        public async Task<ActionResult> SubmitForm(SysRoleEntity roleEntity, string permissionIds, string keyValue)
         {
             roleEntity.zt = roleEntity.zt == "true" ? "1" : "0";
             //chủ yếu là để có khóa chính duy nhất
@@ -127,7 +127,9 @@ namespace HIS.SSO.Areas.SysManage.Controllers
                     roleAuthorizeEntityList.Add(roleAuthorizeEntity);
                 }
             }
-            _sysRoleDmnService.SubmitForm(roleEntity, roleAuthorizeEntityList, keyValue, UserIdentity.UserCode, OrganizeId);
+            // QA-phase2: await de client nhan ket qua that sau khi DB commit
+            // (truoc day fire-and-forget: tra success truoc khi task chay xong).
+            await _sysRoleDmnService.SubmitForm(roleEntity, roleAuthorizeEntityList, keyValue, UserIdentity.UserCode, OrganizeId);
             return (ActionResult)Success("Thao tác thành công.");
         }
         /// <summary>
@@ -140,9 +142,10 @@ namespace HIS.SSO.Areas.SysManage.Controllers
             _userRoleAuthDmnService.submitRoleUser(roleId, userList, UserIdentity.UserCode);
             return (ActionResult)Success("Thao tác thành công");
         }
-        public ActionResult DeleteForm(string keyValue)
+        public async Task<ActionResult> DeleteForm(string keyValue)
         {
-            _sysRoleDmnService.DeleteForm(keyValue);
+            // QA-phase2: await (xem SubmitForm).
+            await _sysRoleDmnService.DeleteForm(keyValue);
             return (ActionResult)Success("Xóa thành công.");
         }
     }
