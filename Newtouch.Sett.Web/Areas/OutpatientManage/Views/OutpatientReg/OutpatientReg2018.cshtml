@@ -59,7 +59,7 @@
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>Số bệnh án/Họ tên：</th>
+                    <th class="formTitle"><span class="required">*</span>Số bệnh án/Họ tên:</th>
                     <td class="formValue">
                         <input type="hidden" id="patid" />
                         <input type="text" class="form-control" id="blh" placeholder="Ít nhất1ký tự" />
@@ -71,41 +71,41 @@
                     <td class="formValue">
                         @Html.Partial("YibaoRedCardCommon")
                     </td>
-                    <th class="formTitle">Họ tên：</th>
+                    <th class="formTitle">Họ tên:</th>
                     <td class="formValue" >
                         <label id="xm"></label>
                     </td>
-					<th class="formTitle">Giới tính：</th>
+					<th class="formTitle">Giới tính:</th>
 					<td class="formValue">
 						<label id="xb"></label>
 					</td>
-                    <th class="formTitle">Tuổi：</th>
+                    <th class="formTitle">Tuổi:</th>
 	                <td class="formValue">
 		                <label id="nlshow"></label>
 	                </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Số thẻ：</td>
+                    <td class="formTitle">Số thẻ:</td>
                     <td class="formValue">
                         <label id="CardTypeName"></label>
                         <label id="kh"></label>
                     </td>
                     <td class="formTitle">
-                        <label id="zjlx">Số giấy tờ：</label>
+                        <label id="zjlx">Số giấy tờ:</label>
                     </td>
                     <td class="formValue">
                         <label id="zjh"></label>
                         <input type="text" style="display:none;" id="hiddenzjlx" />
                     </td>
-                    <th class="formTitle">Khám lần đầu/tái khám：</th>
+                    <th class="formTitle">Khám lần đầu/tái khám:</th>
                     <td class="formValue">
                         <label id="txtcfz"></label>
                     </td>
-                    <th class="formTitle">Số dư BHYT：</th>
+                    <th class="formTitle">Số dư BHYT:</th>
                     <td class="formValue">
                         <label id="txtybye"></label>
                     </td>
-					<th class="formTitle">Loại tham gia bảo hiểm：</th>
+					<th class="formTitle">Loại tham gia bảo hiểm:</th>
                     <td class="formValue">
                         <label id="cblbmc"></label>
                         <input type="hidden" id="cblb" />
@@ -116,18 +116,18 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>Tính chất chi phí：</th>
+                    <th class="formTitle"><span class="required">*</span>Tính chất chi phí:</th>
                     <td class="formValue">
                         <input type="text" id="brxzmc" name="brxzmc" class="form-control form-an">
                     </td>
-                    <th class="formTitle">Lý do khám：</th>
+                    <th class="formTitle">Lý do khám:</th>
                     <td class="formValue">
                         <select id="jzyy" name="jzyy" class="form-control">
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
                     <th class="formTitle">
-                        Số điện thoại：
+                        Số điện thoại:
                     </th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="phone" />
@@ -139,7 +139,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>Loại khám ngoại trú：</th>
+                    <th class="formTitle"><span class="required">*</span>Loại khám ngoại trú:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="sel_mzlx" class="form-control required" data-EnumType="EnumOutPatientType">
                             <option value="">Vui lòng chọn</option>
@@ -147,19 +147,19 @@
                         @*@Html.DropDownList("sel_mzlx", EnumOutPatientType.generalOutpat.ToDescSelectList(), new { @class = "form-control form-an" })*@
                     </td>
                     <th class="formTitle">
-                        <span class="required">*</span>Khoa：
+                        <span class="required">*</span>Khoa:
                     </th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtkschoose" />
                     </td>
                     <th class="formTitle">
-                        <span class="required">*</span>Lịch trực đăng ký khám：
+                        <span class="required">*</span>Lịch trực đăng ký khám:
                     </th>
                     <td class="formValue" colspan="1">
                         <input type="text" class="form-control" id="txtghpbchoose" />
                     </td>
 
-                    <th class="formTitle">Loại bệnh đặc biệt：</th>
+                    <th class="formTitle">Loại bệnh đặc biệt:</th>
                     <td class="formValue">
                         <select id="sel_tsbbz" name="sel_tsbbz" class="form-control"></select>
                     </td>
@@ -167,28 +167,28 @@
             </table>
             <table class="form" style="width:98%;line-height:40px;">
                 <tr>
-                    <td class="formTitle">Khoa đăng ký khám：</td>
+                    <td class="formTitle">Khoa đăng ký khám:</td>
                     <td class="formValue">
                         <input type="text" id="txtghpbId" style="display:none;" />
                         <input type="text" id="txtghks" style="display:none;" />
                         <label id="txtghksmc"></label>
                     </td>
-                    <td class="formTitle">Bác sĩ：</td>
+                    <td class="formTitle">Bác sĩ:</td>
                     <td class="formValue">
                         <input type="text" id="txtghysgh" style="display:none;" />
                         <label id="txtghysmc"></label>
                     </td>
-                    <td class="formTitle">Phí đăng ký khám： </td>
+                    <td class="formTitle">Phí đăng ký khám: </td>
                     <td class="formValue">
                         <input type="text" id="txtghfxm" style="display:none;" />
                         <label id="newghf"></label>
                     </td>
-                    <th class="formTitle">Phí chẩn trị：</th>
+                    <th class="formTitle">Phí chẩn trị:</th>
                     <td class="formValue">
                         <input type="text" id="txtzlxm" style="display:none;" />
                         <label id="newzlf"></label>
                     </td>
-                    <th class="formTitle">Tổng số tiền：</th>
+                    <th class="formTitle">Tổng số tiền:</th>
                     <td class="formValue">
                         <label id="newtotalfees"></label>
                     </td>
@@ -211,8 +211,8 @@
     </div>
 </div>
 <script lang="javascript">
-    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
-    var ybSettOnce = '@ybSettOnce' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có quyết toán một lần không
+    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc:bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+    var ybSettOnce = '@ybSettOnce' === 'True'; //cấu hình công tắc:bệnh nhân BHYT có quyết toán một lần không
     var openCSReport = '@openCSReport';
     var IsOpenPdjhxt = '@IsOpenPdjhxt';
     var IsOpenSfzYbJz='@IsOpenSfzYbJz';
@@ -281,7 +281,7 @@
             clickautotrigger: true,
             filter: function (keyword) {
                 debugger
-                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                //duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                     resultObjArr.push(val);
@@ -302,7 +302,7 @@
                         .attr("data-brxz", $thistr.attr('data-brxz')).attr("data-brxzlb", $thistr.attr('data-brxzlb'));
                     $("#brxzmc").val($thistr.attr('data-brxzmc'));
 
-                    //hss 2019.7.19 khi cùng một bệnh nhân tồn tại nhiều loại giao dịch，theo chính sách hoàn trảtảisố thẻ
+                    //hss 2019.7.19 khi cùng một bệnh nhân tồn tại nhiều loại giao dịch,theo chính sách hoàn trảtảisố thẻ
                     $.ajax({
                         type: "POST",
                         url: "/PatientManage/HospiterRes/GetkhInfoBybrxz",
@@ -346,7 +346,7 @@
             width: 300,
             clickautotrigger: true,
             filter: function (keyword) {
-                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                //duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysDepartList, function (idx, val) {
                     if (((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -496,7 +496,7 @@
             //dataType: "json",
             success: function (rep) {
                 if (rep === "true") {
-                    $.modalConfirm("Bệnh nhân này hôm nay đã đăng ký khám，Có đăng ký lại không？", function (flag) {
+                    $.modalConfirm("Bệnh nhân này hôm nay đã đăng ký khám,Có đăng ký lại không？", function (flag) {
                         if (!flag) {
                             newtouch_event_f4();
                             return;
@@ -562,14 +562,14 @@
             $("#newtotalfees").html('');
             if ('@zlxmzhconf' == 1){
                 GHFeesGroup(function (feesList) {
-                    $("#txtghpbId").val(yyghModel.ScheduId);   //đặt ở đây，phía sau dùng để xác định đã chọn lịch trực thành công chưa
+                    $("#txtghpbId").val(yyghModel.ScheduId);   //đặt ở đây,phía sau dùng để xác định đã chọn lịch trực thành công chưa
                     $("#newghf").html(parseFloat(feesList.ghf).toFixed(2));
                     $("#newzlf").html(parseFloat(feesList.zlf).toFixed(2));
                     $("#newtotalfees").html(parseFloat(feesList.totalfees).toFixed(2));
                 });
             }else{
             GHFees(function (feesList) {
-                $("#txtghpbId").val(yyghModel.ScheduId);   //đặt ở đây，phía sau dùng để xác định đã chọn lịch trực thành công chưa
+                $("#txtghpbId").val(yyghModel.ScheduId);   //đặt ở đây,phía sau dùng để xác định đã chọn lịch trực thành công chưa
                 $("#newghf").html(parseFloat(feesList.ghf).toFixed(2));
                 $("#newzlf").html(parseFloat(feesList.zlf).toFixed(2));
                 $("#newtotalfees").html(parseFloat(feesList.totalfees).toFixed(2));
@@ -593,7 +593,7 @@
             async: false,
             success: function (rep) {
                 if (rep.data && !!!rep.data.brxz) {
-                    $.modalAlert("Thông tin bệnh nhân bất thường，Thiếu tính chất chi phí", 'warning');
+                    $.modalAlert("Thông tin bệnh nhân bất thường,Thiếu tính chất chi phí", 'warning');
                     return false;
                 }
                 if (rep.data && !!!rep.data.CardTypeName) {
@@ -669,8 +669,8 @@
             alertbierror: false,
             errorCallback: function (rep) {
                 if (rep.code === 'OUTPAT_REGIST_ISINVALID') {
-                    //làBHYTthẻ đọc thẻ，chưa từng đăng ký
-                    $.modalConfirm("Thẻ chưa đăng ký，Có tạo đăng ký mới không", function (flag) {
+                    //làBHYTthẻ đọc thẻ,chưa từng đăng ký
+                    $.modalConfirm("Thẻ chưa đăng ký,Có tạo đăng ký mới không", function (flag) {
                         if (flag) {
                             btn_NocardRes();
                         }
@@ -744,7 +744,7 @@
             fyyGhpbId=$thistr.attr('data-ghpbId');
             if(isAppointment==true && fyyGhpbId!=yyGhpbid)
             {
-                $.modalConfirm("Bệnh nhân này đã hẹn đăng ký khám，Có thay đổi lịch trực đăng ký khám hiện tại không？", function (flag) {
+                $.modalConfirm("Bệnh nhân này đã hẹn đăng ký khám,Có thay đổi lịch trực đăng ký khám hiện tại không？", function (flag) {
                     if (flag) {
                         ghpbchooseBind($thistr);
                         //newtouch_event_yygh();//khởi tạo
@@ -799,7 +799,7 @@
             //lấyđăng ký khámphí phí chẩn trị phí thẻ từ phí làm thẻ
         if ('@zlxmzhconf' == 1) {
             GHFeesGroup(function (feesList) {
-                $("#txtghpbId").val($thistr.attr('data-ghpbId'));   //đặt ở đây，phía sau dùng để xác định đã chọn lịch trực thành công chưa
+                $("#txtghpbId").val($thistr.attr('data-ghpbId'));   //đặt ở đây,phía sau dùng để xác định đã chọn lịch trực thành công chưa
                 $("#newghf").html(parseFloat(feesList.ghf).toFixed(2));
                 $("#newzlf").html(parseFloat(feesList.zlf).toFixed(2));
                 $("#newtotalfees").html(parseFloat(feesList.totalfees).toFixed(2));
@@ -807,7 +807,7 @@
         }
         else {
             GHFees(function (feesList) {
-                $("#txtghpbId").val($thistr.attr('data-ghpbId'));   //đặt ở đây，phía sau dùng để xác định đã chọn lịch trực thành công chưa
+                $("#txtghpbId").val($thistr.attr('data-ghpbId'));   //đặt ở đây,phía sau dùng để xác định đã chọn lịch trực thành công chưa
                 $("#newghf").html(parseFloat(feesList.ghf).toFixed(2));
                 $("#newzlf").html(parseFloat(feesList.zlf).toFixed(2));
                 $("#newtotalfees").html(parseFloat(feesList.totalfees).toFixed(2));
@@ -887,7 +887,7 @@
         if('@IsOpenYbgh' !== 'True')
             isYbjyjz=false;
         if (isYbjyjz && cqPatInfo.ybVer == undefined && !document.getElementById('isjm').checked) {
-            $.modalAlert("Bệnh nhân BHYT vui lòng đọc thẻ，hoặc chọn tự chi trả", 'error');
+            $.modalAlert("Bệnh nhân BHYT vui lòng đọc thẻ,hoặc chọn tự chi trả", 'error');
             return;
         }
         ConfirmFee(isYbjyjz, regInfo);
@@ -947,7 +947,7 @@
         });
         if (isYbjyjz && !document.getElementById('isjm').checked) {
              cqPatInfo.zymzh = MZJS.qzmzh;//số khám ngoại trú
-             $.loading(true, 'Đang đăng ký khám bệnh，Vui lòng chờ...');
+             $.loading(true, 'Đang đăng ký khám bệnh,Vui lòng chờ...');
              switch(cqPatInfo.ybVer)
              {
                  case "shanghaiV5":
@@ -1052,7 +1052,7 @@
                     MZJS.msg="Lấy số tiền phí đăng ký khám tải lên thất bại";
                 }
             },error:function (request, error, ex) {
-                MZJS.msg="HISDịch vụ(Không thể truy cập số tiền phí đăng ký khám tải lên)：[" + ex + "]";
+                MZJS.msg="HISDịch vụ(Không thể truy cập số tiền phí đăng ký khám tải lên):[" + ex + "]";
             }
         });
         if (MZJS.msg.length > 0) {
@@ -1086,7 +1086,7 @@
             if (!MxscHisData()) {
                 return;
             }
-            $.loading(true, 'Đang quyết toán BHYT，Vui lòng chờ...');
+            $.loading(true, 'Đang quyết toán BHYT,Vui lòng chờ...');
             setTimeout(function () {
                 var jsstate = true;
 
@@ -1127,7 +1127,7 @@
             carddata:cqPatInfo.carddata,
             deptid:$("#txtghks").val(),//MZJS.ysxx.ybksbm,
             zlxmdm:zlxmdm,
-            personspectag:cqPatInfo.accountattr.substr(3, 1),//0：thường 1：nghỉ hưu 2：thương tật 3：điểm chăm sóc sức khỏe cán bộ
+            personspectag:cqPatInfo.accountattr.substr(3, 1),//0:thường 1:nghỉ hưu 2:thương tật 3:điểm chăm sóc sức khỏe cán bộ
             dbtype:"",
             yllb:"S11",
             persontype:"0",
@@ -1147,7 +1147,7 @@
         };
         var ybjsSettReturn1;
         var ybjsSettReturn;
-        //tiến hành trướcquyết toán，khôngcóbáo lỗi rồi tiến hànhquyết toán
+        //tiến hành trướcquyết toán,khôngcóbáo lỗi rồi tiến hànhquyết toán
         $.ajax({
             type: "POST",
             url: "http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_SH01",
@@ -1225,7 +1225,7 @@
                 /* xác nhận thu phí vàHIScổng vào quyết toán */
                 ybjs_confirm(regInfo);
             }else{
-                $.loading(true, 'Đang quyết toán BHYT，Vui lòng chờ...');
+                $.loading(true, 'Đang quyết toán BHYT,Vui lòng chờ...');
                 setTimeout(function () {
                     var jsstate = true;
                     YbMxsc();
@@ -1301,7 +1301,7 @@
                 }
             },
             error: function (request, error, ex) {
-                msg = "Dịch vụ BHYT【2201】(Giao diện đăng ký khám bệnh)Không thể truy cập：[" + ex + "]";
+                msg = "Dịch vụ BHYT【2201】(Giao diện đăng ký khám bệnh)Không thể truy cập:[" + ex + "]";
             }
         });
         if (!rs) {
@@ -1341,7 +1341,7 @@
                     if (medicalReg){
                         if (medicalReg.infcode == "0" || medicalReg.infcode == 0){
                         }else{
-                            MZJS.msg=  "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA)Thất bại：" + medicalReg.err_msg;
+                            MZJS.msg=  "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA)Thất bại:" + medicalReg.err_msg;
                             ref=false;
                         }
                     }else {
@@ -1350,7 +1350,7 @@
                     }
                 },
                 error: function (request, error, ex) {
-                    MZJS.msg= "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA)Không thể truy cập：[" + ex + "]";
+                    MZJS.msg= "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA)Không thể truy cập:[" + ex + "]";
                     ref=false;
                 }
             });
@@ -1395,13 +1395,13 @@
                         return;
                     }
                     if (cfUpload.infcode != "0" && cfUpload.infcode != 0) {
-                        MZJS.msg="Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Thất bại：" + cfUpload.err_msg;
+                        MZJS.msg="Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Thất bại:" + cfUpload.err_msg;
                         return;
                     }
                     isuccer=true;
                 },
                 error: function (request, error, ex) {
-                    MZJS.msg="Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Không thể truy cập：[" + ex + "]";
+                    MZJS.msg="Dịch vụ BHYT(Tải lên chi tiết chi phí khám ngoại trú)Không thể truy cập:[" + ex + "]";
                 }
             });
         }
@@ -1435,7 +1435,7 @@
         };
 		var ybjsSettReturn1;
 		var ybjsSettReturn;
-		//tiến hành trướcquyết toán，khôngcóbáo lỗi rồi tiến hànhquyết toán
+		//tiến hành trướcquyết toán,khôngcóbáo lỗi rồi tiến hànhquyết toán
 		$.ajax({
 			type: "POST",
 			url: "http://127.0.0.1:33333/api/YiBao/AccounSettlement_2206",
@@ -1567,14 +1567,14 @@
                     return;
                 }
                 if (data.indexOf("{") >= 0 || data.indexOf("<") >= 0) {
-                    msg = "HISDịch vụ(Lấy số hóa đơn)Nội dung trả vềLỗi：" + data;
+                    msg = "HISDịch vụ(Lấy số hóa đơn)Nội dung trả vềLỗi:" + data;
                     return;
                 }
                 rs = true;
                 fph = data;
             },
             error: function (request, error, ex) {
-                msg = "HISDịch vụ(Lấy số hóa đơn)Không thể truy cập：[" + ex + "]";
+                msg = "HISDịch vụ(Lấy số hóa đơn)Không thể truy cập:[" + ex + "]";
             }
         });
 
@@ -1679,7 +1679,7 @@
         $.najax({
             url: "/OutpatientManage/OutpatientReg/Save",
             dataType: "json",
-            loadingtext: "ĐangHISĐăng ký khám，Vui lòng chờ…",
+            loadingtext: "ĐangHISĐăng ký khám,Vui lòng chờ…",
             data: {
                 patid: regInfo.patid, kh: regInfo.kh,
                 mjzbz: regInfo.mjzbz, ks: regInfo.ks, ys: regInfo.ys,
@@ -1798,7 +1798,7 @@
     //**************in báo cáoSTAR******************//
     function CSPrint(jsnm)
     {
-        setTimeout("$.loading(true, 'Đang tải dữ liệu in，Vui lòng chờ...');", 5);
+        setTimeout("$.loading(true, 'Đang tải dữ liệu in,Vui lòng chờ...');", 5);
         $.ajax({
             url: '/OutpatientManage/OutpatientReg/printCqOutpatientChargeBill',
             data: { jsnm: jsnm },
@@ -2097,9 +2097,9 @@
             if (!!obj) {
                 obj.readCardCardType = $('#readCardCardType').val();
 
-                //1.xác định làkhônglần khám đầu tiên（tạo mới khám lần đầu，còn lạitảithông tin bệnh nhân）
-                //cách xác thực khám lần đầu：1.CMND/CCCDsố+họ tên，2：mã cá nhân hợp tác nông thôn mới
-                $.loading("Đang tải dữ liệu，Vui lòng chờ một chút");
+                //1.xác định làkhônglần khám đầu tiên（tạo mới khám lần đầu,còn lạitảithông tin bệnh nhân）
+                //cách xác thực khám lần đầu:1.CMND/CCCDsố+họ tên,2:mã cá nhân hợp tác nông thôn mới
+                $.loading("Đang tải dữ liệu,Vui lòng chờ một chút");
                 $.ajax({
                     type: "POST",
                     url: "/PatientManage/HospiterRes/ValidateFirstVisit",
@@ -2176,7 +2176,7 @@
                 });
             }
         }
-		//giữ lại2chữ số thập phân，thiếu thì bù0
+		//giữ lại2chữ số thập phân,thiếu thì bù0
         function parse2Float(value){
 	        var value = Math.round(parseFloat(value) * 100) / 100;
 	        var s = value.toString().split(".");
@@ -2240,12 +2240,12 @@
                                 axFpInitJson.InfoTaxRate = 0;
                                 var theFpNote = "";
                                 if (!!newTempPatModel.sbbh) {
-                                    theFpNote += 'Số BHXH：' + newTempPatModel.sbbh + ";";
+                                    theFpNote += 'Số BHXH:' + newTempPatModel.sbbh + ";";
                                 }
-                                theFpNote += 'Số thứ tự khám：' + newTempPatModel.mzh + ";";
-                                theFpNote += 'HISSố quyết toán：' + newJszbInfo.jsnm + ";";
+                                theFpNote += 'Số thứ tự khám:' + newTempPatModel.mzh + ";";
+                                theFpNote += 'HISSố quyết toán:' + newJszbInfo.jsnm + ";";
                                 if (!!newJszbInfo.ybjsh) {
-                                    theFpNote += 'Số quyết toán BHYT：' + newJszbInfo.ybjsh + ";";
+                                    theFpNote += 'Số quyết toán BHYT:' + newJszbInfo.ybjsh + ";";
                                 }
                                 if (newTempPatModel.ksmc) {
                                     theFpNote += newTempPatModel.ksmc + ";";
@@ -2254,22 +2254,22 @@
                                     theFpNote += newTempPatModel.ysmc + ";";
                                 }
                                 if (!isNaN(newJszbInfo.jszje) && newJszbInfo.jszje != null && newJszbInfo.jszje != undefined) {
-                                    theFpNote += 'Tổng số tiền：' + parseFloat(newJszbInfo.jszje).toFixed(2) + ";";
+                                    theFpNote += 'Tổng số tiền:' + parseFloat(newJszbInfo.jszje).toFixed(2) + ";";
                                 }
                                 if (!isNaN(newJszbInfo.jsxjzf) && newJszbInfo.jsxjzf != null && newJszbInfo.jsxjzf != undefined) {
-                                    theFpNote += 'Thanh toán tiền mặt：' + parseFloat(newJszbInfo.jsxjzf).toFixed(2) + ";";
+                                    theFpNote += 'Thanh toán tiền mặt:' + parseFloat(newJszbInfo.jsxjzf).toFixed(2) + ";";
                                     if (parseFloat(newJszbInfo.jsxjzf) > 0 && !!newJszbInfo.zffsmcstr) {
-                                        theFpNote += 'Phương thức thanh toán tiền mặt：' + newJszbInfo.zffsmcstr + ";";
+                                        theFpNote += 'Phương thức thanh toán tiền mặt:' + newJszbInfo.zffsmcstr + ";";
                                     }
                                 }
                                 if (!isNaN(newJszbInfo.YBZHZC) && newJszbInfo.YBZHZC != null && newJszbInfo.YBZHZC != undefined) {
-                                    theFpNote += 'Chi tài khoản：' + parseFloat(newJszbInfo.YBZHZC).toFixed(2) + ";";
+                                    theFpNote += 'Chi tài khoản:' + parseFloat(newJszbInfo.YBZHZC).toFixed(2) + ";";
                                 }
                                 if (!isNaN(newJszbInfo.JBYE) && newJszbInfo.JBYE != null && newJszbInfo.JBYE != undefined) {
-                                    theFpNote += 'Số dư tài khoản cá nhân：' + parseFloat(newJszbInfo.JBYE).toFixed(2) + ";";
+                                    theFpNote += 'Số dư tài khoản cá nhân:' + parseFloat(newJszbInfo.JBYE).toFixed(2) + ";";
                                 }
                                 if (!isNaN(newJszbInfo.GBYE) && newJszbInfo.GBYE != null && newJszbInfo.GBYE != undefined) {
-                                    theFpNote += 'Số dư tài khoản bổ sung công：' + parseFloat(newJszbInfo.GBYE).toFixed(2) + ";";
+                                    theFpNote += 'Số dư tài khoản bổ sung công:' + parseFloat(newJszbInfo.GBYE).toFixed(2) + ";";
                                 }
                                 axFpInitJson.InfoNotes = theFpNote.substring(0, (theFpNote.length - 1));
                                 axFpInitJson.InfoInvoicer = '@(opr.UserName)';
@@ -2312,7 +2312,7 @@
         function axPrintInvoice(jsnm, axFpInitJson, axFpInvoiceItemJson) {
             var printInvoiceReturn = $.printAX.PrintInvoice(JSON.stringify(axFpInitJson), JSON.stringify(axFpInvoiceItemJson));
             if (printInvoiceReturn && printInvoiceReturn.Code == 0) {
-                //in hóa đơn，trả vềđã thành công
+                //in hóa đơn,trả vềđã thành công
                 var axFpInfo = printInvoiceReturn.Data;
                 if (axFpInfo.InfoNumber) {
                     //cập nhậtquyết toánbảng chínhcủafphtrường

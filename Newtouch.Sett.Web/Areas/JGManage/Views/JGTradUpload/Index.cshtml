@@ -39,13 +39,13 @@
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">Giờ bắt đầu：</th>
+                <th class="formTitle">Giờ bắt đầu:</th>
                 <td class="formValue" style="width:150px;">
                     <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left">—</span>
                     <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
-                <th class="formTitle" style="width:70px;padding-right:12px;">tải lên trường hợp：</th>
+                <th class="formTitle" style="width:70px;padding-right:12px;">tải lên trường hợp:</th>
                 <td class="formValue">
                     <select id="scqk" name="scqk" class="form-control">
                         <option value="">==Vui lòng chọn==</option>
@@ -54,7 +54,7 @@
                         <option value="2">Chưa tải lên</option>
                     </select>
                 </td>
-                <th class="formTitle" style="width:70px;padding-right:12px;">giao dịch Loại：</th>
+                <th class="formTitle" style="width:70px;padding-right:12px;">giao dịch Loại:</th>
                 <td class="formValue" style="width:140px">
                     <select id="trad" name="trad" class="form-control">
                         <option value="">==Vui lòng chọn==</option>
@@ -67,7 +67,7 @@
                         <option value="JG40003">【JG40003】Quyết toán dữ liệu phiếu treo</option>
                     </select>
                 </td>
-                @*<th class="formTitle">Số nhập viện：</th>
+                @*<th class="formTitle">Số nhập viện:</th>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" autocomplete="off" class="form-control" />
                 </td>*@
@@ -266,14 +266,14 @@
             return;
         }
         if (seleRow.length > 1) {
-            // Bật hộp xác nhận，Xác nhận tải lên
+            // Bật hộp xác nhận,Xác nhận tải lên
             $.modalConfirm("Chọn nhiều dòng dữ liệu sẽ tải lên toàn bộ!!", function(f) {
                 if (f){
                     uploadData(orgId, operatorId, operatorName, crkId);
                 }
             });
         } else {
-            // Chọn một dòng dữ liệu，Tải lên trực tiếp
+            // Chọn một dòng dữ liệu,Tải lên trực tiếp
             uploadData(orgId, operatorId, operatorName, crkId);
         }
         function uploadData(orgId, operatorId, operatorName, crkId) {
@@ -359,7 +359,7 @@
                     $.modalClose();
                 },
                 error: function(error) {
-                    $.modalAlert("Tải lên thất bại，Vui lòng thử lại", 'error');
+                    $.modalAlert("Tải lên thất bại,Vui lòng thử lại", 'error');
                 }
             });
         }
@@ -382,7 +382,7 @@
         //    return;
         //}
 
-        ////Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái lưu
+        ////Lấy tất cả các dòngId,Duyệt để hộp chỉnh sửa ở trạng thái lưu
         //var rowIds = $("#gridList").jqGrid('getDataIDs');
         //return selRowIds;
     }

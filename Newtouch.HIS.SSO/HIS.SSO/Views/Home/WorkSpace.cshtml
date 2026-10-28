@@ -41,10 +41,27 @@
         font-size: 20px;
     }
 
+    /* QA-phase2 (SSO-06): overflow-x:hidden clipped the last column of the
+       statistics table at 1440px. Let the table scroll horizontally instead. */
     .bootstrap-table {
-        height: 95%; /* hoặc là phần trăm，ví dụ height: 100%; */
+        height: 95%; /* hoặc là phần trăm, ví dụ height: 100%; */
         overflow-y: auto;
-        overflow-x: hidden;
+        overflow-x: auto;
+    }
+
+    /* QA-phase2 (SSO-07, mobile only): the carousel labels (20px font on a
+       100px line) overlap at narrow widths. Shrink them and let the banner
+       grow instead of clipping. No desktop change. */
+    @@media (max-width: 768px) {
+        .app-blocktheme-blue {
+            height: auto;
+            padding: 1rem;
+        }
+
+        .app-item {
+            font-size: 14px;
+            line-height: 1.5;
+        }
     }
 
     .fixed-table-body {
@@ -387,7 +404,7 @@
                 GetLeaveChart(data);
             },
             formatLoadingMessage: function () {
-                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
+                return "<span class='table-loading-text'>đang tải,vui lòng chờ</span>";
             },
             formatNoMatches: function () {
                 return "chưa có dữ liệu";
@@ -457,7 +474,7 @@
                 }
             },
             error: function (request, error, ex) {
-                $.modalAlert("dịch vụ không thể truy cập：[" + ex + "]", 'error');
+                $.modalAlert("dịch vụ không thể truy cập:[" + ex + "]", 'error');
             }
         });
     }

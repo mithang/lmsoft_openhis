@@ -36,19 +36,19 @@
     <div style="padding: 2px;padding-right:20px;">
         <table class="form">
             <tr>
-                <td class="formTitle">Số hồ sơ bệnh án：</td>
+                <td class="formTitle">Số hồ sơ bệnh án:</td>
                 <td class="formValue">
                     <input id="blh" type="text" class="form-control form-control-focus" placeholder="Vui lòng nhập số hồ sơ bệnh án">
                 </td>
                 <td class="formValue">
                     <input type="button" class="btn btn-default btn-md btn-default-color" style="width: 25px;" id="btnsyy" value="Tra cứu" onclick="GetPatSerarchView($('#blh').val());" />
                 </td>
-                <td class="formTitle">Ngày thao tác：từ</td>
+                <td class="formTitle">Ngày thao tác:từ</td>
                 <td class="formValue">
                     <input class="form-control input-wdatepicker" type="text" onfocus="WdatePicker({
                                 onpicked: function () {getAge($(this).val());return true;}})" id="ks" value="@DateTime.Now.AddMonths(-1).ToString("yyy-MM-dd")" />
                 </td>
-                <td class="formTitle">đến：</td>
+                <td class="formTitle">đến:</td>
                 <td class="formValue">
                     <input class="form-control input-wdatepicker" type="text" onfocus="WdatePicker({
                                 onpicked: function () {getAge($(this).val());return true;}})" id="js" value="@DateTime.Now.AddDays(1).ToString("yyy-MM-dd")" />
@@ -215,12 +215,12 @@
             //onSelectRow_page: function (rowid, status) {
             //    if (rowid && lastRowId && rowid !== lastRowId) {   //&&: tương đươngtrue/fase(xác định làkhôngcógiá trị)
             //        $gridList.saveRow(lastRowId, function (result) {
-            //            // return false;   //xác thực nội dung nhập làkhônghợp lệ，hủy lưutrả vềfalse    //không hợp lệ v.v.sửa chữa
+            //            // return false;   //xác thực nội dung nhập làkhônghợp lệ,hủy lưutrả vềfalse    //không hợp lệ v.v.sửa chữa
             //        }); //lưu trước đang sửatrạng tháicủadòng đó    //function checksave
             //    }
             //    lastRowId = rowid;
             //    $gridList.jqGrid('editRow', rowid, true, null, function (result) {
-            //        return false;   //xác thực nội dung nhập làkhônghợp lệ，hủy lưutrả vềfalse    //không hợp lệ v.v.sửa chữa
+            //        return false;   //xác thực nội dung nhập làkhônghợp lệ,hủy lưutrả vềfalse    //không hợp lệ v.v.sửa chữa
             //    }, null, null, function () {
             //    });
             //},
@@ -320,17 +320,17 @@
                 break;
             }
             if (!(/^(\+|-)?\d+$/.test(rowData.RETURNS_SL))) {
-                $.modalAlert("Khoản mục（" + rowData.YPMC + "）Số lượng hoàn không phải số，Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Khoản mục（" + rowData.YPMC + "）Số lượng hoàn không phải số,Vui lòng xác nhận。", 'warning');
                 EnableInlineEditBox();
                 return;
             }
             if (parseInt(rowData.RETURNS_SL) > parseInt(rowData.SL)) {
-                $.modalAlert("Khoản mục（" + rowData.YPMC + "）Số lượng hoàn lớn hơn số lượng ghi sổ，Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Khoản mục（" + rowData.YPMC + "）Số lượng hoàn lớn hơn số lượng ghi sổ,Vui lòng xác nhận。", 'warning');
                 EnableInlineEditBox();
                 return;
             }
             if (parseInt(rowData.RETURNS_SL) < 1) {
-                $.modalAlert("Khoản mục（" + rowData.YPMC + "）Số lượng hoàn nhỏ hơn1，Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Khoản mục（" + rowData.YPMC + "）Số lượng hoàn nhỏ hơn1,Vui lòng xác nhận。", 'warning');
                 EnableInlineEditBox();
                 return;
             }
@@ -371,19 +371,19 @@
                         }
                     });
                 } else {
-                    $.modalAlert("Dữ liệu chưa đầy đủ，Vui lòng kiểm traSố thẻhoặc liên hệ quản trị viên！", "error");
+                    $.modalAlert("Dữ liệu chưa đầy đủ,Vui lòng kiểm traSố thẻhoặc liên hệ quản trị viên！", "error");
                 }
             }
         }, false);
 
     }
 
-    //phím tắt：xóa
+    //phím tắt:xóa
     function newtouch_event_f4() {
         $('#gridListTuifei').jqGrid("clearGridData");
     }
 
-    //phím tắt：F6：hoàn phí
+    //phím tắt:F6:hoàn phí
     function newtouch_event_f6() {
         Refund();
     }

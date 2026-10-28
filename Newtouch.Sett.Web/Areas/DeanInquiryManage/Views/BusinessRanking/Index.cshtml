@@ -24,7 +24,7 @@
     <input type="hidden" id="jssj" />
     <table class="form">
         <tr>
-            <th class="formTitle" id="xzsjtext">Loại：</th>
+            <th class="formTitle" id="xzsjtext">Loại:</th>
             <td class="formValue" style="width:150px">
                 <select id="dateType" class="form-control" onchange="updateSjType()">
                     <option value="1">năm</option>
@@ -32,7 +32,7 @@
                     <option value="3">ngày</option>
                 </select>
             </td>
-            <th class="formTitle" id="xzsjtext">Thời gian：</th>
+            <th class="formTitle" id="xzsjtext">Thời gian:</th>
             <td class="formValue" style="width:150px">
                 <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"*@>
             </td>
@@ -129,8 +129,8 @@
         var $gridJsList = $("#gridJSListmzysgzl");
         $gridJsList.dataGrid({
             height: 230,
-            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/BusinessRanking/GetMzysgzl",
             postData: { kssj: kssj, jssj: jssj },
             colModel: [
@@ -146,8 +146,8 @@
         var $gridJsList = $("#gridJSListmzkssr");
         $gridJsList.dataGrid({
             height: 230,
-            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/BusinessRanking/GetMzkssr",
             postData: { kssj: kssj, jssj: jssj },
             colModel: [
@@ -164,8 +164,8 @@
         var $gridJsList = $("#gridJSListzyywks");
         $gridJsList.dataGrid({
             height: 170,
-            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/BusinessRanking/GetZyywks",
             postData: { kssj: kssj, jssj: jssj },
             colModel: [
@@ -191,7 +191,10 @@
 
             },
             loadComplete: function (data) {
-                if (data.length > 0)
+                // QA-phase2 (SETT-05): the endpoint returns null when the
+                // demo has no rows, and data.length on null threw. Guard it;
+                // an object response (no .length) already skipped this branch.
+                if (data && data.length > 0)
                 {
                     var firstRow = data[0];
                     var $gridysListys = $("#gridJSListysyw");
@@ -208,8 +211,8 @@
         var $gridysListys = $("#gridJSListysyw");
         $gridysListys.dataGrid({
             height: 170,
-            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "",
             colModel: [
                 { label: 'Bác sĩ', name: 'ys', align: 'center' },

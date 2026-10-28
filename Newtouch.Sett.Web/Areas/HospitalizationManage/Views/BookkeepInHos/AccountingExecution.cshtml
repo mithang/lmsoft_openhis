@@ -36,7 +36,7 @@
         </div>
         <table class="form" style="width:95%">
             <tr>
-                <th class="formTitle">&nbsp;&nbsp; <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>&nbsp;&nbsp;Họ tên/Số bệnh án：</th>
+                <th class="formTitle">&nbsp;&nbsp; <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>&nbsp;&nbsp;Họ tên/Số bệnh án:</th>
                 <td class="formValue">
                     <input id="keyword" type="text" class="form-control" />
                 </td>
@@ -58,9 +58,9 @@
         WapperInlineStyle = "float:right;width:100px;margin:10px 30px 12px;text-align:right;"
     })
     <ul class="ul-hj">
-        <li><span class="sp-bottom-title">Tổng cộng mục điều trị：</span><span class="sp-bottom-value" id="sp_zlxmhj">___</span></li>
-        <li><span class="sp-bottom-title">Tổng số tiền điều trị：</span><span class="sp-bottom-value" id="sp_zljehj">___</span></li>
-        <li><span class="sp-bottom-title">Số bệnh nhân：</span><span class="sp-bottom-value" id="sp_hzrs">___</span></li>
+        <li><span class="sp-bottom-title">Tổng cộng mục điều trị:</span><span class="sp-bottom-value" id="sp_zlxmhj">___</span></li>
+        <li><span class="sp-bottom-title">Tổng số tiền điều trị:</span><span class="sp-bottom-value" id="sp_zljehj">___</span></li>
+        <li><span class="sp-bottom-title">Số bệnh nhân:</span><span class="sp-bottom-value" id="sp_hzrs">___</span></li>
     </ul>
 </div>
 <script type="text/javascript">
@@ -317,7 +317,7 @@
     function newtouch_event_f8() {
         var jzjhmxIdStr = "";
         var zxItem = [];
-        //Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái lưu
+        //Lấy tất cả các dòngId,Duyệt để hộp chỉnh sửa ở trạng thái lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) {

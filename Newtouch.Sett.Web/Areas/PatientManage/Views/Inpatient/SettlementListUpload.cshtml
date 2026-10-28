@@ -9,7 +9,7 @@
     var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
     //Có giao dịch với nông thôn mới hay không
     var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-    //Nơi quản lý BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
+    //Nơi quản lý BHYT,Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
     var opr = OperatorProvider.GetCurrent();
     var openManualinputCard = SysConfigReader.Bool("Inpatient_Open_ManualinputCard", false).Value;
@@ -27,17 +27,17 @@
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle" style="width:70px;padding-right:12px;">Từ khóa：</th>
+                <th class="formTitle" style="width:70px;padding-right:12px;">Từ khóa:</th>
                 <td class="formValue">
                     <input id="txt_keyword" type="text" class="form-control form-an" placeholder="Họ tên/Số hồ sơ bệnh án/Số nhập viện">
                 </td>
-                <th class="formTitle">Ngày xuất viện：</th>
+                <th class="formTitle">Ngày xuất viện:</th>
                 <td class="formValue" colspan="2">
                     <input id="cykssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-2).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left">—</span>
                     <input id="cyjssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
-                <th class="formTitle" style="width:70px;padding-right:12px;">Trạng thái tải lên：</th>
+                <th class="formTitle" style="width:70px;padding-right:12px;">Trạng thái tải lên:</th>
                 <td class="formValue">
                     <select id="sczt" name="sczt" class="form-control">
                         <option value="">Tất cả</option>
@@ -140,8 +140,8 @@
 </script>
 <script type="text/javascript">
     var orgId = '@(ViewBag.OrgId)';
-        var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
-        var openXnhSett = '@openXnhSett' === 'True';//cấu hình công tắc：Bệnh nhân nông thôn mới có dùng quy trình giao dịch nông thôn mới không
+        var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc:bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+        var openXnhSett = '@openXnhSett' === 'True';//cấu hình công tắc:Bệnh nhân nông thôn mới có dùng quy trình giao dịch nông thôn mới không
     var medicalInsurance = '@medicalInsurance';
         var zyh = '';
         var kh = "";
@@ -164,16 +164,16 @@
         }
         var isBrxzOk = seleRow.brxz == '0';
         if (isBrxzOk) {
-            $.modalAlert("Lỗi：Đã chọn là không phải BHYT", "error");
+            $.modalAlert("Lỗi:Đã chọn là không phải BHYT", "error");
             return;
         }
         var zyh = seleRow.zyh;
         if (seleRow.sczt == "未上传") {
-            $.modalAlert("Lỗi：Vui lòng chọn Đã tải lên của dữ liệu tiến hành Gửi", "error");
+            $.modalAlert("Lỗi:Vui lòng chọn Đã tải lên của dữ liệu tiến hành Gửi", "error");
             return;
         }
         if (seleRow.sczt == "已提交") {
-            $.modalAlert("Lỗi：Chọn của Có Đã gửi", "error");
+            $.modalAlert("Lỗi:Chọn của Có Đã gửi", "error");
             return;
         }
         upqddataupdate(zyh, "1")
@@ -187,12 +187,12 @@
         }
         var isBrxzOk = seleRow.brxz == '0';
         if (isBrxzOk) {
-            $.modalAlert("Lỗi：Đã chọn là không phải BHYT", "error");
+            $.modalAlert("Lỗi:Đã chọn là không phải BHYT", "error");
             return;
         }
         var zyh = seleRow.zyh;
         if (seleRow.sczt == "未上传") {
-            $.modalAlert("Lỗi：Vui lòng chọn Đã tải lên của dữ liệu tiến hành Gửi", "error");
+            $.modalAlert("Lỗi:Vui lòng chọn Đã tải lên của dữ liệu tiến hành Gửi", "error");
             return;
         }
         if (seleRow.sczt == "未提交") {
@@ -214,7 +214,7 @@
         }
         var isBrxzOk = seleRow.brxz == '0';
         if (isBrxzOk) {
-            $.modalAlert("Lỗi：Đã chọn là không phải BHYT", "error");
+            $.modalAlert("Lỗi:Đã chọn là không phải BHYT", "error");
             return;
         }
         var zyh = seleRow.zyh;
@@ -236,7 +236,7 @@
                 }
             }, error: function () {
                 $.loading(false);
-                $.modalAlert("Dịch vụ bất thường：", 'error');
+                $.modalAlert("Dịch vụ bất thường:", 'error');
                 return;
             }
         });
@@ -272,7 +272,7 @@
             success: function (ckdata) {
                 var data = ckdata.data;
                 if (data != null && data != "") {
-                    $.loading("Đang tải dữ liệu，Vui lòng chờ một chút");
+                    $.loading("Đang tải dữ liệu,Vui lòng chờ một chút");
                     for (var i = 0; i < data.split(',').length; i++) {
                         var dbscobj = { mdtrt_id: "", psn_no: "", hisId: data.split(',')[i], operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', orgId: '@(opr.OrganizeId)', insuplc_admdvs: "" };
                         $.ajax({
@@ -292,14 +292,14 @@
                                     }
                                     else {
                                         $.loading(false);
-                                        $.modalAlert("Tải lên bảng quyết toán Thất bại：" + tfReturn.err_msg, 'error');
+                                        $.modalAlert("Tải lên bảng quyết toán Thất bại:" + tfReturn.err_msg, 'error');
                                         $('#btn_search').trigger('click');
                                         return;
                                     }
                                 }
                             }, error: function () {
                                 $.loading(false);
-                                $.modalAlert("Dịch vụ bất thường：", 'error');
+                                $.modalAlert("Dịch vụ bất thường:", 'error');
                                 return;
                             }
                         });
@@ -339,16 +339,16 @@
                         $.loading(false);
                         $('#btn_search').trigger('click');
                         if (stas_type == "0") {
-                            $.modalAlert("Rút lại trạng thái thất bại：" + tfReturn.err_msg, 'error');
+                            $.modalAlert("Rút lại trạng thái thất bại:" + tfReturn.err_msg, 'error');
                         } else {
-                            $.modalAlert("Gửi thất bại：" + tfReturn.err_msg, 'error');
+                            $.modalAlert("Gửi thất bại:" + tfReturn.err_msg, 'error');
                         }
                         return;
                     }
                 }
             }, error: function (request, error, ex) {
                 $.loading(false);
-                $.modalAlert("Dịch vụ BHYT【4102】(dịch vụ sửa đổi trạng thái thông tin danh sách quyết toán quỹ BHYT) không truy cập được：[" + ex + "]", 'error');
+                $.modalAlert("Dịch vụ BHYT【4102】(dịch vụ sửa đổi trạng thái thông tin danh sách quyết toán quỹ BHYT) không truy cập được:[" + ex + "]", 'error');
                 return;
             }
         });
@@ -360,13 +360,13 @@
             }
             var isBrxzOk = seleRow.brxz == '0';
             if (isBrxzOk) {
-                $.modalAlert("Lỗi：Đã chọn là không phải BHYT", "error");
+                $.modalAlert("Lỗi:Đã chọn là không phải BHYT", "error");
                 return;
             }
             var zyh = seleRow.zyh;
 
             if (seleRow.sczt=="已上传") {
-                $.modalAlert("Lỗi：Chọn của Có Đã tải lên", "error");
+                $.modalAlert("Lỗi:Chọn của Có Đã tải lên", "error");
                 return;
             }
             var dbscobj = { mdtrt_id: "", psn_no: "", hisId: zyh, operatorId: '@(opr.rygh)', operatorName: '@(opr.UserName)', orgId: '@(opr.OrganizeId)', insuplc_admdvs: "" };
@@ -376,7 +376,7 @@
                     upUrl = "http://127.0.0.1:33333/api/YiBao/PostMedicalSettlement_4101_V2";
                     break;
             }
-            $.loading("Đang tải dữ liệu，Vui lòng chờ một chút");
+            $.loading("Đang tải dữ liệu,Vui lòng chờ một chút");
             $.ajax({
                 type: "POST",
                 url: upUrl,
@@ -389,18 +389,18 @@
                         if (tfReturn.infcode === 0 || tfReturn.infcode === "0") {
                             $.loading(false);
                             $('#btn_search').trigger('click');
-                            $.modalAlert("Số nhập viện là:" + zyh + "，Tải lên thành công", 'warning');
+                            $.modalAlert("Số nhập viện là:" + zyh + ",Tải lên thành công", 'warning');
                         }
                         else {
                             $.loading(false);
                             $('#btn_search').trigger('click');
-                            $.modalAlert("Tải lên bảng quyết toán Thất bại：" + tfReturn.err_msg, 'error');
+                            $.modalAlert("Tải lên bảng quyết toán Thất bại:" + tfReturn.err_msg, 'error');
                             
                         }
                     }
                 }, error: function () {
                     $.loading(false);
-                    $.modalAlert("Dịch vụ bất thường：", 'error');
+                    $.modalAlert("Dịch vụ bất thường:", 'error');
                 }
             });
     }

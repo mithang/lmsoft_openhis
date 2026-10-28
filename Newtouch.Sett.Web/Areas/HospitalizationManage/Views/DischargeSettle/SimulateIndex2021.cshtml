@@ -16,7 +16,7 @@
     var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
     //Có giao dịch với nông thôn mới hay không
     var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-    //Nơi quản lý BHYT，phân biệt hệ thốngsẽthực hiệnở đâuLogic BHYT
+    //Nơi quản lý BHYT,phân biệt hệ thốngsẽthực hiệnở đâuLogic BHYT
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
 
     var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
@@ -30,26 +30,26 @@
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">Mã nhập viện：</th>
+                    <th class="formTitle">Mã nhập viện:</th>
                     <td class="formValue">
                         <input class="form-control" type="text" id="zyh" value="" />
                     </td>
                     <td class="formValue">
                         <input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" id="zy_btnsyy" value="Truy vấn" onclick="GetPatSerarchView();">
                     </td>
-                    <th class="formTitle">Họ tên：</th>
+                    <th class="formTitle">Họ tên:</th>
                     <td class="formValue">
                         <label id="xm"></label>
                     </td>
-                    <th class="formTitle">Giới tính：</th>
+                    <th class="formTitle">Giới tính:</th>
                     <td class="formValue">
                         <label id="xb"></label>
                     </td>
-                    <th class="formTitle">Tuổi：</th>
+                    <th class="formTitle">Tuổi:</th>
                     <td class="formValue">
                         <label id="nlshow"></label>
                     </td>
-                    <th class="formTitle">Chẩn đoán xuất viện：</th>
+                    <th class="formTitle">Chẩn đoán xuất viện:</th>
                     <td class="formValue">
                         <label id="cyzd"></label>
                     </td>
@@ -58,23 +58,23 @@
             <tbody>
                 <tr>
 
-                    <th class="formTitle">Tính chất phí：</th>
+                    <th class="formTitle">Tính chất phí:</th>
                     <td class="formValue" colspan="2">
                         <label id="zyxz"></label>
                     </td>
-                    <th class="formTitle">Số ngày nằm viện：</th>
+                    <th class="formTitle">Số ngày nằm viện:</th>
                     <td class="formValue">
                         <label id="zyts"></label>
                     </td>
-                    <th class="formTitle">Ngày sinh：</th>
+                    <th class="formTitle">Ngày sinh:</th>
                     <td class="formValue">
                         <label id="csny"></label>
                     </td>
-                    <th class="formTitle">Ngày nhập viện：</th>
+                    <th class="formTitle">Ngày nhập viện:</th>
                     <td class="formValue">
                         <label id="ryrq"></label>
                     </td>
-                    <th class="formTitle">Ngày xuất viện：</th>
+                    <th class="formTitle">Ngày xuất viện:</th>
                     <td class="formValue">
                         <label id="cyrq"></label>
                     </td>
@@ -95,8 +95,8 @@
 })
 
 <script>
-    var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc：Bệnh nhân BHYT có sử dụng quy trình giao dịch BHYT hay không
-    var openXnhSett = '@openXnhSett' === 'True'; //Cấu hình công tắc：Bệnh nhân nông thôn mớilàkhôngsử dụngNông thôn mớiGiao dịch BHYTquy trình
+    var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc:Bệnh nhân BHYT có sử dụng quy trình giao dịch BHYT hay không
+    var openXnhSett = '@openXnhSett' === 'True'; //Cấu hình công tắc:Bệnh nhân nông thôn mớilàkhôngsử dụngNông thôn mớiGiao dịch BHYTquy trình
     var isYbjyjz; //Lần khám hiện tại có giao dịch BHYT hay không
     var isXnhjyjz;
     var medicalInsurance = '@medicalInsurance';
@@ -170,7 +170,7 @@
                     loadJfmxByZyh(ajaxresp.data.GroupFeeVOList);
                 }
                 else {
-                    $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán", 'warning');
+                    $.modalAlert("cònchưaphát sinh phí,Không thểquyết toán", 'warning');
                     return false;
                 }
             },
@@ -217,7 +217,7 @@
 
     //Liên kếtgrid
     function gridListData() {
-        var captionCon = "Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền：<label style='color:red;'>￥</label></span>&nbsp;<span id='yeCon' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng";
+        var captionCon = "Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền:<label style='color:red;'>￥</label></span>&nbsp;<span id='yeCon' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng";
         var $gridList = $("#gridList");
         $gridList.newtouchLocalDataGrid({
             height: $(window).height() - 225,
@@ -249,7 +249,7 @@
         }
         var data = $("#gridList").jqGrid('getRowData_AllLine');
         if (!(data && data.length)) {
-            $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán.", 'warning')
+            $.modalAlert("cònchưaphát sinh phí,Không thểquyết toán.", 'warning')
             return;
         }
         if (!patModel.ryrq) {

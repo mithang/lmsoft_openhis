@@ -19,12 +19,22 @@
 </html>
 
 <script>
+        // QA-phase2 (MRQC-01): myWriterControl is the DCSoft.Writer control,
+        // rendered only when ViewBag.WriterControlHtml is set by the document
+        // flow. On a direct GET (and on MedicalCenter/Index, which includes
+        // this partial) the element does not exist, so the unconditional
+        // ctl.style access threw "ctl is null" on page load. Guard it: the
+        // DCSoft editor itself remains Windows-only (deferred), but the page
+        // no longer throws when the control is absent.
         var ctl = document.getElementById("myWriterControl");
+        if (ctl) {
         ctl.style.height = "800px";
         ctl.Options.workspacebackcolorstring = "#66CCCC"
+        }
         //Mở tài liệu
         function FileOpen(fileUrl) {
             var ctl = document.getElementById("myWriterControl");
+            if (!ctl) { return; }
             var doc = ctl.GetContentDocument();
             $(doc).find("[dctype='XTextDocumentHeaderElement'],[dctype='XTextDocumentFooterElement'],[dctype='XTextDocumentHeaderForFirstPageElement'],[dctype='XTextDocumentFooterForFirstPageElement']").html("");
             ctl.ClearDocumentBody();
@@ -39,16 +49,19 @@
         //In
         function print() {
             var ctl = document.getElementById("myWriterControl");
+            if (!ctl) { return; }
             ctl.PrintDocument();
 
         }
         //Xem trước khi in
         function PrintPreview() {
             var ctl = document.getElementById("myWriterControl");
+            if (!ctl) { return; }
             ctl.LoadPrintPreview();
         }
         var ctl = document.getElementById("myWriterControl");
         function Build() {
+            if (!ctl) { return; }
             if (ctl) {
                 BindingDCWriterClientControl(ctl);
                 ctl.EventAfterPrintPreview = function (PrintPreviewDoc) {

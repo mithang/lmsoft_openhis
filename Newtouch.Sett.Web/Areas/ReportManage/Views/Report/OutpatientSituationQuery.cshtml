@@ -10,7 +10,7 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                @*<th class="formTitle">Thống kê theo loại：</th>
+                @*<th class="formTitle">Thống kê theo loại:</th>
                 <td class="formValue">
                     <select id="querytype" class="form-control">
                         <option value="0">Thống kê theo bác sĩ điều trị chính</option>
@@ -21,14 +21,14 @@
                 <td class="formValue">
                     <select id="sfdl" name="sfdl" class="form-control required"></select>
                 </td>*@
-                <th class="formTitle">Ngày bắt đầu：</th>
+                <th class="formTitle">Ngày bắt đầu:</th>
                 <td class="formValue">
                     <input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            value="@DateTime.Now.ToString("yyyy-MM-01")" />
                 </td>
-                <th class="formTitle">Ngày kết thúc：</th>
+                <th class="formTitle">Ngày kết thúc:</th>
                 <td class="formValue">
                     <input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"

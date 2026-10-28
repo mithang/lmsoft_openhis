@@ -16,7 +16,7 @@
 	var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
 	//Có giao dịch với nông thôn mới hay không
 	var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-	//Nơi quản lý BHYT，phân biệt hệ thốngsẽthực hiệnở đâuLogic BHYT
+	//Nơi quản lý BHYT,phân biệt hệ thốngsẽthực hiệnở đâuLogic BHYT
 	var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
 
 	var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
@@ -29,16 +29,16 @@
 		<table class="form" style="width:96%;">
 			<tbody>
 				<tr>
-					<th class="formTitle">Mã nhập viện：</th>
+					<th class="formTitle">Mã nhập viện:</th>
 					<td class="formValue">
 						<input class="form-control" type="text" id="zyh" value="" style="width:49%;float:left;" />
 						&nbsp;&nbsp; <input type="button" class="btn btn-default btn-md btn-default-color" style="width: 25%;" title="Chọn bệnh nhân nhập viện" id="zy_btnsyy" value="Truy vấn" onclick="GetPatSerarchView();">
 					</td>
-					<th class="formTitle">Ngày chốt phí：</th>
+					<th class="formTitle">Ngày chốt phí:</th>
 					<td class="formValue" colspan="1">
 						<input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="float:left" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd  HH:mm:ss' })" />
 					</td>
-					<th class="formTitle">Tên mục：</th>
+					<th class="formTitle">Tên mục:</th>
 					<td class="formValue">
 						<input type="text" class="form-control" id="xmmc" style="width:90%;float:left;" />
 					</td>
@@ -56,30 +56,30 @@
                     </td>
 				</tr>
 				<tr>
-					<th class="formTitle">Họ tên：</th>
+					<th class="formTitle">Họ tên:</th>
 					<td class="formValue" colspan="8">
 						<label id="xm"></label><label style="width:15%"></label><span>tính chất:</span> <label id="brxz"></label>
 						<label style="width:15%"></label> <span>Giới tính:</span> <label id="xb"></label>
 						<label style="width:15%"></label><span>Ngày nhập viện:</span> <label id="ryrq"></label>
 						<label style="width:15%"></label><span>Ngày xuất viện:</span> <label id="cyrq"></label>
 					</td>
-					@*<th class="formTitle">Giới tính：</th>
+					@*<th class="formTitle">Giới tính:</th>
 						<td class="formValue">
 							<label id="xb"></label>
 
 						</td>*@
-					@*<th class="formTitle" style="width:50px;">Ngày nhập viện：</th>
+					@*<th class="formTitle" style="width:50px;">Ngày nhập viện:</th>
 						<td class="formValue">
 							<label id="ryrq"></label>
 						</td>
-						<th class="formTitle">Ngày xuất viện：</th>
+						<th class="formTitle">Ngày xuất viện:</th>
 						<td class="formValue">
 							<label id="cyrq"></label>
 						</td>*@
 
 				</tr>
 				<tr>
-					<th class="formTitle">Chẩn đoán nhập viện：</th>
+					<th class="formTitle">Chẩn đoán nhập viện:</th>
 					<td class="formValue" colspan="8">
 						<label id="ryzdmc"></label>
 						<label style="width:15%"></label><span>Số dư tài khoản:</span><label id="zhye"></label>
@@ -92,19 +92,19 @@
 						<td class="formValue" colspan="2">
 							<label></label>
 						</td>
-						<th class="formTitle">Số ngày nằm viện：</th>
+						<th class="formTitle">Số ngày nằm viện:</th>
 						<td class="formValue">
 							<label id="zyts"></label>
 						</td>
-						<th class="formTitle">Ngày sinh：</th>
+						<th class="formTitle">Ngày sinh:</th>
 						<td class="formValue">
 							<label id="csny"></label>
 						</td>
-						 <th class="formTitle">Tuổi：</th>
+						 <th class="formTitle">Tuổi:</th>
 						<td class="formValue">
 							<label id="nlshow"></label>
 						</td>
-						<th class="formTitle">Chẩn đoán xuất viện：</th>
+						<th class="formTitle">Chẩn đoán xuất viện:</th>
 						<td class="formValue">
 							<label id="cyzd"></label>
 						</td>
@@ -129,8 +129,8 @@
 </div>
 
 <script>
-    var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc：Bệnh nhân BHYT có sử dụng quy trình giao dịch BHYT hay không
-    var openXnhSett = '@openXnhSett' === 'True'; //Cấu hình công tắc：Bệnh nhân nông thôn mớilàkhôngsử dụngNông thôn mớiGiao dịch BHYTquy trình
+    var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc:Bệnh nhân BHYT có sử dụng quy trình giao dịch BHYT hay không
+    var openXnhSett = '@openXnhSett' === 'True'; //Cấu hình công tắc:Bệnh nhân nông thôn mớilàkhôngsử dụngNông thôn mớiGiao dịch BHYTquy trình
     var isYbjyjz; //Lần khám hiện tại có giao dịch BHYT hay không
     var isXnhjyjz;
     var medicalInsurance = '@medicalInsurance';
@@ -245,7 +245,7 @@
                     loadJfmxByZyh(zyh, null);
                 }
                 else {
-                    $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán", 'warning');
+                    $.modalAlert("cònchưaphát sinh phí,Không thểquyết toán", 'warning');
                     return false;
                 }
             },
@@ -285,7 +285,7 @@
                     loadJfmxByZyh2(ajaxresp.data.GroupFeeVOList);
                 }
                 else {
-                    $.modalAlert("cònchưaphát sinh phí，Không thểquyết toán", 'warning');
+                    $.modalAlert("cònchưaphát sinh phí,Không thểquyết toán", 'warning');
                     return false;
                 }
             },
@@ -332,7 +332,7 @@
     //quyết toán trước
     $('#zy_btyjs').click(function () {
         setTimeout(function () {
-            $.loading(true, 'Đangquyết toán trước，Vui lòng đợi...');
+            $.loading(true, 'Đangquyết toán trước,Vui lòng đợi...');
             setTimeout(function () {
                 ybpreeSettCall();
             }, 50);
@@ -362,21 +362,21 @@
                             }
                         }
                         if (error != "") {
-                            $.modalAlert("Phê duyệt trong quá trìnhvi phạmthông tin：" + error, 'error');
+                            $.modalAlert("Phê duyệt trong quá trìnhvi phạmthông tin:" + error, 'error');
                         }
                         else {
-                            $.modalAlert("Xét duyệt đã hoàn thành，Không có thông tin vi phạm!", 'success');
+                            $.modalAlert("Xét duyệt đã hoàn thành,Không có thông tin vi phạm!", 'success');
                         }
                     } else {
-                        $.modalAlert("Xét duyệt đã hoàn thành，Không có thông tin vi phạm!", 'success');
+                        $.modalAlert("Xét duyệt đã hoàn thành,Không có thông tin vi phạm!", 'success');
                     }
                 }
                 else {
-                    $.modalAlert("Xét duyệt thất bại：" + bfDataReturn.err_msg, 'error');
+                    $.modalAlert("Xét duyệt thất bại:" + bfDataReturn.err_msg, 'error');
                 }
             },
             error: function (request, error, ex) {
-                $.modalAlert("Dịch vụ BHYT【3102】(Phê duyệt trong quá trình)không thể truy cập：[" + ex + "]", 'error');
+                $.modalAlert("Dịch vụ BHYT【3102】(Phê duyệt trong quá trình)không thể truy cập:[" + ex + "]", 'error');
             }
         });
     })
@@ -452,7 +452,7 @@
             return;
         }
         if (isnewyb=="1") {
-            $.modalAlert("Bệnh nhân hiện tại tạm thời không thể hoàn phí riêng lẻ，Vui lòng chọn phí hoàn toàn bộ，Và tải lên lại", 'warning');
+            $.modalAlert("Bệnh nhân hiện tại tạm thời không thể hoàn phí riêng lẻ,Vui lòng chọn phí hoàn toàn bộ,Và tải lên lại", 'warning');
             return;
         }
         $.each(selRowIds, function (i, item) {
@@ -473,11 +473,11 @@
                     $('#zy_cx').click();
                 }
                 else {
-                    $.modalAlert("Hoàn trả phí thất bại：" + bfDataReturn.err_msg, 'error');
+                    $.modalAlert("Hoàn trả phí thất bại:" + bfDataReturn.err_msg, 'error');
                 }
             },
             error: function (request, error, ex) {
-                $.modalAlert("Dịch vụ BHYT【2302】(Hủy chi tiết phí nhập viện)không thể truy cập：[" + ex + "]", 'error');
+                $.modalAlert("Dịch vụ BHYT【2302】(Hủy chi tiết phí nhập viện)không thể truy cập:[" + ex + "]", 'error');
             }
         });
     })
@@ -493,7 +493,7 @@
             $.modalAlert("Bệnh nhân tự phí không thể giao dịch BHYT", 'warning');
             return;
         }
-        $.modalConfirm("Sẽ hoàn trả tất cả phí đã tải lên của bệnh nhân này，Xác nhận có tiếp tục hay không？",
+        $.modalConfirm("Sẽ hoàn trả tất cả phí đã tải lên của bệnh nhân này,Xác nhận có tiếp tục hay không？",
            function (flag) {
                if (!flag) {
                    return;
@@ -514,14 +514,14 @@
                                    $('#zy_cx').click();
                                }
                                else {
-                                   errmsg = "toàn bộHoàn trả phí thất bại：" + qbDataReturn.fhxx;
+                                   errmsg = "toàn bộHoàn trả phí thất bại:" + qbDataReturn.fhxx;
                                    setTimeout(function () {
                                        errorInfo(errmsg);
                                    }, 50);
                                }
                            },
                            error: function (request, error, ex) {
-                               errmsg = "Dịch vụ BHYT【SN02】(Hủy chi tiết phí nhập viện)không thể truy cập：[" + ex + "]";
+                               errmsg = "Dịch vụ BHYT【SN02】(Hủy chi tiết phí nhập viện)không thể truy cập:[" + ex + "]";
                                setTimeout(function () {
                                    errorInfo(errmsg);
                                }, 50);
@@ -542,14 +542,14 @@
                                    setTimeout("succInfo();", 50);
                                }
                                else {
-                                   errmsg = "toàn bộHoàn trả phí thất bại：" + qbDataReturn.err_msg;
+                                   errmsg = "toàn bộHoàn trả phí thất bại:" + qbDataReturn.err_msg;
                                    setTimeout(function () {
                                        errorInfo(errmsg);
                                    }, 50);
                                }
                            },
                            error: function (request, error, ex) {
-                               errmsg = "Dịch vụ BHYT【2302】(Hủy chi tiết phí nhập viện)không thể truy cập：[" + ex + "]";
+                               errmsg = "Dịch vụ BHYT【2302】(Hủy chi tiết phí nhập viện)không thể truy cập:[" + ex + "]";
                                setTimeout(function () {
                                    errorInfo(errmsg);
                                }, 50);
@@ -599,7 +599,7 @@
                     orgId: '@(opr.OrganizeId)',
                     hisId: patModel.zyh,//Mã nhập viện
                     cyjsbz: "0",
-                    personspectag: 0,//0：thông thường 1：Nghỉ hưunghỉ hưu 2：Thương tật 3：Chăm sóc sức khỏe cán bộchỉ định,
+                    personspectag: 0,//0:thông thường 1:Nghỉ hưunghỉ hưu 2:Thương tật 3:Chăm sóc sức khỏe cán bộchỉ định,
                     yllb: "S21",
                     persontype: "0",
                     gsrdh: "",
@@ -616,7 +616,7 @@
                 },
                 error: function (request, error, ex) {
                     $.loading(false);
-                    $.modalAlert("Dịch vụ BHYT【SI51】(quyết toán trước)không thể truy cập：[" + ex + "]", 'error');
+                    $.modalAlert("Dịch vụ BHYT【SI51】(quyết toán trước)không thể truy cập:[" + ex + "]", 'error');
                     return;
                 }
             });
@@ -666,7 +666,7 @@
             presett.mdtrt_cert_type = "03";
             presett.orgId = '@(opr.OrganizeId)';
             var ybjsSettReturn;
-            //Làm thủ tục xuất viện，Tiến hànhquyết toán trước tiếp Sau khi hoàn thànhquyết toán trước mới tiến hành hủy
+            //Làm thủ tục xuất viện,Tiến hànhquyết toán trước tiếp Sau khi hoàn thànhquyết toán trước mới tiến hành hủy
             @*$.ajax({
 		    type: "POST",
 		    url: "/PatientManage/HospiterRes/GetCQjzdjInfo",
@@ -696,13 +696,13 @@
                         }
                         else {
                             $.loading(false);
-                            $.modalAlert("Làm thủ tục xuất việnThất bại：" + cyblReg.err_msg, 'error');
+                            $.modalAlert("Làm thủ tục xuất việnThất bại:" + cyblReg.err_msg, 'error');
                             return;
                         }
                     },
                     error: function (request, error, ex) {
                         $.loading(false);
-                        $.modalAlert("Dịch vụ BHYT【2402】(Làm thủ tục xuất viện)không thể truy cập：[" + ex + "]", 'error');
+                        $.modalAlert("Dịch vụ BHYT【2402】(Làm thủ tục xuất viện)không thể truy cập:[" + ex + "]", 'error');
                         return;
                     }
                 });
@@ -721,7 +721,7 @@
                 },
                 error: function (request, error, ex) {
                     $.loading(false);
-                    $.modalAlert("Dịch vụ BHYT【2303】(quyết toán trước)không thể truy cập：[" + ex + "]", 'error');
+                    $.modalAlert("Dịch vụ BHYT【2303】(quyết toán trước)không thể truy cập:[" + ex + "]", 'error');
                     return;
                 }
             });
@@ -773,7 +773,7 @@
             success: function (data) {
                 var cxcyReturn = eval('(' + data + ')');
                 if (cxcyReturn.infcode != '0') {
-                    $.modalAlert('Hủy xuất việnThất bại：' + cxcyReturn.err_msg + '【Vui lòng liên hệ nhà phát triển HIS xử lý】', 'success');
+                    $.modalAlert('Hủy xuất việnThất bại:' + cxcyReturn.err_msg + '【Vui lòng liên hệ nhà phát triển HIS xử lý】', 'success');
                 }
             }
         });
@@ -796,8 +796,8 @@
     }
 
 	function gridListData2() {
-		//Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền：<label style='color:red;'>￥</label></span>&nbsp;<span id='yeCon' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng"
-        var captionCon = "Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền：<label style='color:red;'>￥</label></span>&nbsp;<span id='yeCon2' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng";
+		//Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền:<label style='color:red;'>￥</label></span>&nbsp;<span id='yeCon' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng"
+        var captionCon = "Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền:<label style='color:red;'>￥</label></span>&nbsp;<span id='yeCon2' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng";
         var $gridList2 = $("#gridList2");
         $gridList2.newtouchLocalDataGrid({
             height: $(window).height() - 225,
@@ -854,7 +854,7 @@
     function ybBussiness(jfbbhlist)
     {
         setTimeout(function () {
-            $.loading(true, 'Đang tải lên chi tiết，Vui lòng đợi...');
+            $.loading(true, 'Đang tải lên chi tiết,Vui lòng đợi...');
             setTimeout(function () {
                 if (isnewyb=="1") {
                     shanghaimxsc(jfbbhlist);
@@ -924,13 +924,13 @@
                                         else {
                                             $.loading(false);
                                             isuccer = false;
-                                            $.modalAlert("Tải lên chi tiết thất bại：" + upDataReturn.fhxx, 'error');
+                                            $.modalAlert("Tải lên chi tiết thất bại:" + upDataReturn.fhxx, 'error');
                                             return;
                                         }
                                     },
                                     error: function (request, error, ex) {
                                         $.loading(false);
-                                        $.modalAlert("Dịch vụ BHYT【SN01】(Tải lên chi tiết phí nhập viện)không thể truy cập：[" + ex + "]", 'error');
+                                        $.modalAlert("Dịch vụ BHYT【SN01】(Tải lên chi tiết phí nhập viện)không thể truy cập:[" + ex + "]", 'error');
                                     }
                                 });
                            // }
@@ -1003,13 +1003,13 @@
                                         else {
                                             $.loading(false);
                                             isuccer = false;
-                                            $.modalAlert("Tải lên chi tiết thất bại：" + upDataReturn.err_msg, 'error');
+                                            $.modalAlert("Tải lên chi tiết thất bại:" + upDataReturn.err_msg, 'error');
                                             return;
                                         }
                                     },
                                     error: function (request, error, ex) {
                                         $.loading(false);
-                                        $.modalAlert("Dịch vụ BHYT【2301】(Tải lên chi tiết phí nhập viện)không thể truy cập：[" + ex + "]", 'error');
+                                        $.modalAlert("Dịch vụ BHYT【2301】(Tải lên chi tiết phí nhập viện)không thể truy cập:[" + ex + "]", 'error');
                                     }
                                 });
                             }
@@ -1027,7 +1027,7 @@
     function gridListData()
     {
         var $gridList = $("#gridList");
-        var captionCon = "Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền：<label style='color:red;'>￥</label></span>&nbsp;<span id='yeCon' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng";
+        var captionCon = "Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền:<label style='color:red;'>￥</label></span>&nbsp;<span id='yeCon' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng";
         $gridList.dataGrid({
             height: $(window).height() - 80,
             caption: captionCon,

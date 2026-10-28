@@ -18,7 +18,7 @@
         <div style="padding: 2px;padding-right:20px;" id="divPatInfo">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span><label id="lbl_mzh">Số khám ngoại trú：</label></th>
+                    <th class="formTitle"><span class="required">*</span><label id="lbl_mzh">Số khám ngoại trú:</label></th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="mzh" name="mzh" />
                         <label id="blh" hidden="hidden"></label>
@@ -28,38 +28,38 @@
                         <input type="button" class="btn btn-default btn-md btn-default-color" style="width: 25px;" id="btnsyy" value="Tra cứu" onclick="GetPatSerarchView($('#mzh').val());" />
                         <input type="hidden" id="brxz" />
                     </td>
-                    <th class="formTitle">Họ tên：</th>
+                    <th class="formTitle">Họ tên:</th>
                     <td class="formValue">
                         <label id="xm" style="width: 150%"></label>
                     </td>
-                    <th class="formTitle">Giới tính：</th>
+                    <th class="formTitle">Giới tính:</th>
                     <td class="formValue">
                         <label id="xb"></label>
                     </td>
-                    <th class="formTitle">Tuổi：</th>
+                    <th class="formTitle">Tuổi:</th>
                     <td class="formValue">
                         <label id="nlshow"></label>
                     </td>
-                    <td class="formTitle">Số giấy tờ：</td>
+                    <td class="formTitle">Số giấy tờ:</td>
                     <td class="formValue" colspan="2">
                         <label id="zjh"></label>
                     </td>
                 </tr>
                 <tbody class="dispTbody" style="display:none;">
                     <tr>
-                        <td class="formTitle">Số điện thoại：</td>
+                        <td class="formTitle">Số điện thoại:</td>
                         <td class="formValue seWidth" colspan="2">
                             <label id="phone"></label>
                         </td>
-                        <th class="formTitle">Ngày sinh：</th>
+                        <th class="formTitle">Ngày sinh:</th>
                         <td class="formValue seWidth">
                             <label id="csny"></label>
                         </td>
-                        <th class="formTitle">Thời gian khám：</th>
+                        <th class="formTitle">Thời gian khám:</th>
                         <td class="formValue" colspan="2">
                             <label id="ghsj"></label>
                         </td>
-                        <th class="formTitle" hidden>Người giới thiệu：</th>
+                        <th class="formTitle" hidden>Người giới thiệu:</th>
                         <td class="formValue">
                             <label id="jsr" hidden></label>
                         </td>
@@ -78,7 +78,7 @@
         <div id="divSLMX" style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>Khoản thu phí：</th>
+                    <th class="formTitle"><span class="required">*</span>Khoản thu phí:</th>
                     <td class="formValue">
                         <input id="sfxmmc" type="text" class="form-control form-an" />
                         <input id="sfxmCode" type="text" style="display:none;" class="form-control" />
@@ -87,15 +87,15 @@
                         <input id="sfdlCode" type="text" style="display:none;" class="form-control" />
                         <input id="sfdlmc" type="text" style="display:none;" class="form-control" />
                     </td>
-                    <th class="formTitle"><span class="required" style="display:inline">*</span>Thời lượng đơn vị(phút)：</th>
+                    <th class="formTitle"><span class="required" style="display:inline">*</span>Thời lượng đơn vị(phút):</th>
                     <td class="formValue">
                         <input id="duration" type="text" class="form-control form-an" value="" />
                     </td>
-                    <th class="formTitle">Đơn vị：</th>
+                    <th class="formTitle">Đơn vị:</th>
                     <td class="formValue">
                         <label id="dw"></label>
                     </td>
-                    <th class="formTitle">Đơn giá(đồng)：</th>
+                    <th class="formTitle">Đơn giá(đồng):</th>
                     <td class="formValue" id="input1">
                         @*<label id="dj"></label>*@
                     </td>
@@ -107,28 +107,28 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>Số lượng：</th>
+                    <th class="formTitle"><span class="required">*</span>Số lượng:</th>
                     <td class="formValue">
                         <input id="sl" type="text" class="form-control form-an" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Kỹ thuật viên trị liệu：</th>
+                    <th class="formTitle"><span class="required">*</span>Kỹ thuật viên trị liệu:</th>
                     <td class="formValue">
                         <input id="zlsList" type="text" class="form-control form-an" />
                     </td>
-                    <td class="formTitle"><span class="required">*</span>Ngày trị liệu：</td>
+                    <td class="formTitle"><span class="required">*</span>Ngày trị liệu:</td>
                     <td class="formValue">
                         <input id="jzsj" type="text" class="form-control input-wdatepicker form-an"
                                onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
                         <span style="color: red; display: none">￥</span><a id="zje" style="display: none">0.00</a>
                         <input type="hidden" id="IsBlh" value="@ViewBag.IsBlh" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Loại phục hồi chức năng：</th>
+                    <th class="formTitle"><span class="required">*</span>Loại phục hồi chức năng:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="kflb" name="kflb" class="form-control">
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle">Ghi chú：</th>
+                    <th class="formTitle">Ghi chú:</th>
                     <td class="formValue">
                         <input id="bz" type="text" class="form-control form-an form-an-end" />
                     </td>
@@ -164,7 +164,7 @@
     });
     $("#kflb").val("RTM_PT").trigger("change");
     var Editing_ysList = [];
-    $("#lbl_mzh").html('@(IsBlh)' === "ON" ? "Số hồ sơ bệnh án：" : "Số khám ngoại trú：");
+    $("#lbl_mzh").html('@(IsBlh)' === "ON" ? "Số hồ sơ bệnh án:" : "Số khám ngoại trú:");
     $("#input1").html('@(ViewBag.sfxm_dj)' === 'ON' ? " <input id='dj' type='text' class='form-control form-an' />" : " <label id='dj'></label>");
     $('#btn_bottombutton_f3').attr('disabled', 'disabled');
     $('#btn_bottombutton_f6').attr('disabled', 'disabled');
@@ -391,7 +391,7 @@
     function Tips() {
         var html = "Khoản mục ghi sổ";
         if (jfXm_jfjesx) {
-            html += "&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:red;'>Tổng số tiền đã tính phí（Tháng hiện tại）：" + jfXm_yjfzje + "đồng，Giới hạn trên（Tháng hiện tại）：" + jfXm_jfjesx + "đồng</span>";
+            html += "&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:red;'>Tổng số tiền đã tính phí（Tháng hiện tại）:" + jfXm_yjfzje + "đồng,Giới hạn trên（Tháng hiện tại）:" + jfXm_jfjesx + "đồng</span>";
         }
         $('#divPanelJzxm').html(html);
     }
@@ -433,7 +433,7 @@
             zlsNames = zlsNames.substring(0, zlsNames.length - 1);
         }
         $('#zlsList').val(zlsNames);
-        //công tắc：mở
+        //công tắc:mở
         if ('@ViewBag.IsUpperLimitReminder' == 'ON') {
             //refreshZlsJzjeInfo();
         }
@@ -506,7 +506,7 @@
     //        if (!keyword) {
     //            return null;
     //        }
-    //        //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+    //        //duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
     //        var resultObjArr = new Array();
     //        $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
     //            if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -542,7 +542,7 @@
     function reCalcZje(xm) {
         if (xm) {
             if (xm.tdxmList && xm.tdxmList.length > 0) {
-                //cóthay thếkhoản mục，dùng nó để tínhtổng số tiền
+                //cóthay thếkhoản mục,dùng nó để tínhtổng số tiền
                 xm.zje = 0;
                 $.each(xm.tdxmList, function () {
                     xm.zje += this.dj * this.sl;
@@ -616,7 +616,7 @@
         if (rowid) {
             var rowData = $("#gridMX").jqGrid('getRowData', rowid);
             if (rowData) {
-                if (!rowData.newid) {   //dòng này không thể sửa，có lẽ thuộc vềoldxmList
+                if (!rowData.newid) {   //dòng này không thể sửa,có lẽ thuộc vềoldxmList
                     return;
                 }
                 var rowDataArr = $.jsonWhere(newxmList, function (v) {
@@ -663,7 +663,7 @@
     //nút thêm
     function newtouch_event_f2() {
         var data = getEditRowData();
-        if (!(checkEditingRowData(data))) {    //dữ liệu có đầy đủ không，kiểm tra các mục bắt buộc
+        if (!(checkEditingRowData(data))) {    //dữ liệu có đầy đủ không,kiểm tra các mục bắt buộc
             return;
         }
 
@@ -671,7 +671,7 @@
 
         data.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
 
-        editingNewid = null;    //?vào trạng thái sửa，sau đó nhấn thêm？
+        editingNewid = null;    //?vào trạng thái sửa,sau đó nhấn thêm？
 
         newxmList.unshift(data);   //thêm dưới dạng khoản mới //”đầu mảng“
 
@@ -704,7 +704,7 @@
     //sửanút
     function newtouch_event_f3() {
         if (editingNewid && editingJzjhmxId) {
-            $.modalConfirm("Chương trình bất thường，Trang sẽ tự động làm mới", function (flag) {
+            $.modalConfirm("Chương trình bất thường,Trang sẽ tự động làm mới", function (flag) {
                 location.href = location.href;
             });
             return; //lỗi chương trình
@@ -712,7 +712,7 @@
         if (editingNewid || editingJzjhmxId) {
             //gửisửa
             var data = getEditRowData();
-            if (!(checkEditingRowData(data))) {    //dữ liệu có đầy đủ không，kiểm tra các mục bắt buộc
+            if (!(checkEditingRowData(data))) {    //dữ liệu có đầy đủ không,kiểm tra các mục bắt buộc
                 return;
             }
 
@@ -813,13 +813,13 @@
             if (rowid) {
                 var rowData = $("#gridMX").jqGrid('getRowData', rowid);
                 if (rowData) {
-                    if (!rowData.newid) {   //dòng này không thể xóa，có lẽ thuộc vềoldxmList
-                        $.modalAlert("ĐãGửighi sổ，Không thể xóa", 'warning');
+                    if (!rowData.newid) {   //dòng này không thể xóa,có lẽ thuộc vềoldxmList
+                        $.modalAlert("ĐãGửighi sổ,Không thể xóa", 'warning');
                         return;
                     }
                     if (rowData.newid === editingNewid) {
-                        $.modalAlert("Dòng này đang ở trạng thái sửa，Không thể xóa", 'warning');
-                        return; //dòng này đang ở trạng thái sửa，không thể xóa
+                        $.modalAlert("Dòng này đang ở trạng thái sửa,Không thể xóa", 'warning');
+                        return; //dòng này đang ở trạng thái sửa,không thể xóa
                     }
 
                     var matchedIndex = -1;
@@ -863,7 +863,7 @@
             return;
         }
         if (patInfoObj.mzh !== respblh) {
-            $.modalAlert("Lỗi：Trong quá trình nhập liệu，Thay đổi số khám ngoại trú", 'warning');
+            $.modalAlert("Lỗi:Trong quá trình nhập liệu,Thay đổi số khám ngoại trú", 'warning');
             return;
         }
         $.submitForm({
@@ -919,7 +919,7 @@
         //$('#sfxmmc').trigger('focus');
     }
 
-    //phân tíchbác sĩmảng，lấybác sĩchuỗi tên
+    //phân tíchbác sĩmảng,lấybác sĩchuỗi tên
     function getYsNamesByList(ysList) {
         if (ysList) {
             //phân tíchkỹ thuật viên trị liệu[{},{}]lấychuỗi
@@ -935,7 +935,7 @@
         return "";
     }
 
-    //phần tử trong trang，tínhtổng số tiền
+    //phần tử trong trang,tínhtổng số tiền
     function reCalcZjeFromTxt() {
         var resultZje = "0.00";
         var txtDj = '@(ViewBag.sfxm_dj)' === 'ON' ? $("#dj").val() : $("#dj").html();
@@ -1039,7 +1039,7 @@
                         newxmList.unshift(val);   //thêm dưới dạng khoản mới //”đầu mảng“
                     });
 
-                    editingNewid = null;    //?vào trạng thái sửa，sau đó nhấn thêm？
+                    editingNewid = null;    //?vào trạng thái sửa,sau đó nhấn thêm？
                     //đưa lạixmmảng hiển thị vàogrid
                     fillDataToGrid();
                     top.top.window.frames['Form'].$.modalClose();   //đóng nó

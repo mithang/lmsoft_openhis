@@ -56,12 +56,12 @@
             onSelectRow_page: function (rowid, status) {
                 if (rowid && lastRowId && rowid !== lastRowId) {   //&&: tương đươngtrue/fase(Xét có giá trị không)
                     $gridList.saveRow(lastRowId, function (result) {
-                        // return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //không hợp lệ v.v. cần sửa
+                        // return false;   //Kiểm tra nội dung nhập có hợp lệ không,Hủy lưu và quay lạifalse    //không hợp lệ v.v. cần sửa
                     }); //Lưu trước dòng đang ở trạng thái soạn thảo    //function checksave
                 }
                 lastRowId = rowid;
                 $gridList.jqGrid('editRow', rowid, true, null, function (result) {
-                    return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //không hợp lệ v.v. cần sửa
+                    return false;   //Kiểm tra nội dung nhập có hợp lệ không,Hủy lưu và quay lạifalse    //không hợp lệ v.v. cần sửa
                 }, null, null, function () {
                 });
 
@@ -97,7 +97,7 @@
         var ysgh = $("#ysgh").html();
         var par = {};
         var dic = [];
-        //Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái lưu
+        //Lấy tất cả các dòngId,Duyệt để hộp chỉnh sửa ở trạng thái lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
@@ -125,7 +125,7 @@
         <table class="form">
             <tr>
                 <td class="formTitle">
-                    Mã nhân viên：
+                    Mã nhân viên:
                 </td>
                 <td class="formValue">
                     <label id="ysgh"></label>
@@ -137,7 +137,7 @@
                     <label id="NAME"></label>
                 </td>
                 <td class="formTitle">
-                    năm tháng：
+                    năm tháng:
                 </td>
                 <td class="formValue">
                     <label id="ny"></label>

@@ -80,7 +80,7 @@
             </div>
             <table class="form" style="margin-left: 10px;">
                 <tr>
-                    <th class="formTitles"><span class="rema">*</span><label id="lbl_kh">Số hồ sơ bệnh án：</label> </th>
+                    <th class="formTitles"><span class="rema">*</span><label id="lbl_kh">Số hồ sơ bệnh án:</label> </th>
                     <td class="formValue" colspan="1">
                         <input type="text" id="kh" name="kh" class="form-control" placeholder="Ít nhất1ký tự" />
                     </td>
@@ -92,15 +92,15 @@
                     <td class="formValue" style="width:140px">
                         @Html.Partial("YibaoRedCardCommon")
                     </td>
-                    <th class="formTitle">Họ tên：</th>
+                    <th class="formTitle">Họ tên:</th>
                     <td class="formValue" style="width:80px;">
                         <span id="xm"></span>
                     </td>
-                    <td class="formTitle">Giới tính：</td>
+                    <td class="formTitle">Giới tính:</td>
                     <td class="formValue">
                         <label id="xb"></label>
                     </td>
-                    <td class="formTitle">Tuổi：</td>
+                    <td class="formTitle">Tuổi:</td>
                     <td class="formValue">
                         <label id="nlshow"></label>
                     </td>
@@ -108,23 +108,23 @@
                 </tr>
                 <tr>
                     <td class="formTitles">
-                        <label id="zjlx">Số CMND/CCCD：</label>
+                        <label id="zjlx">Số CMND/CCCD:</label>
                         <input hidden="hidden" id="hiddenzjlx" />
                     </td>
                     <td class="formValue" colspan="1">
                         <label id="zjh"></label>
                     </td>
-                    <td class="formTitles">Điện thoại di động：</td>
+                    <td class="formTitles">Điện thoại di động:</td>
                     <td class="formValue" colspan="1">
                         <label id="phone"></label>
                     </td>
                     <td class="formTitle">
-                        <label id="lbl_blh">Số thẻ：</label>
+                        <label id="lbl_blh">Số thẻ:</label>
                     </td>
                     <td class="formValue">
                         <label id="blh"></label>
                     </td>
-                    <th class="formTitle" id="thYbye" style="display:none;">Số dư BHYT：</th>
+                    <th class="formTitle" id="thYbye" style="display:none;">Số dư BHYT:</th>
                     <td class="formValue">
                         <label id="txtybye"></label>
                     </td>
@@ -147,65 +147,65 @@
             <div class="panel-heading navb-bg">Nhập viện Thông tin cơ bản</div>
             <table class="form" style="width:98%;border:0">
                 <tr>
-                    <td class="formTitle"><span id="zyhlog" class="rema">*</span>Số nhập viện：</td>
+                    <td class="formTitle"><span id="zyhlog" class="rema">*</span>Số nhập viện:</td>
                     <td class="formValue"><input type="text" id="zyh" name="zyh" class="form-control form-an" /></td>
-                    <td class="formTitle">Huấn luyện viên sức khỏe：</td>
+                    <td class="formTitle">Huấn luyện viên sức khỏe:</td>
                     <td class="formValue"><input type="text" id="jkjlmc" class="form-control form-an" /></td>
-                    <td class="formTitle"><span class="rema">*</span>Bác sĩ：</td>
+                    <td class="formTitle"><span class="rema">*</span>Bác sĩ:</td>
                     <td class="formValue"><input type="text" id="doctormc" name="doctormc" class="form-control form-an" /></td>
-                    <td class="formTitle">Giường bệnh：</td>
+                    <td class="formTitle">Giường bệnh:</td>
                     <td class="formValue"><input type="text" id="cw" class="form-control form-an" /></td>
                 </tr>
                 <tr>
-                    <td class="formTitle"><span class="rema">*</span>chính sách hoàn trả：</td>
+                    <td class="formTitle"><span class="rema">*</span>chính sách hoàn trả:</td>
                     <td class="formValue"><input type="text" id="brxzmc" name="brxzmc" class="form-control form-an" /></td>
-                    <td class="formTitle"><span class="rema" id="spanZyzd">*</span>Chẩn đoán nhập viện một：</td>
+                    <td class="formTitle"><span class="rema" id="spanZyzd">*</span>Chẩn đoán nhập viện một:</td>
                     <td class="formValue">
                         <input type="text" id="zdmc1" name="zdmc1" class="form-control form-an" />
                         <input type="hidden" id="isDiagnosisRequired" value="@((ViewBag.isDiagnosisRequired == true) ? " True":"False" )" />
                     </td>
-                    <td class="formTitle">Chẩn đoán nhập viện hai：</td>
+                    <td class="formTitle">Chẩn đoán nhập viện hai:</td>
                     <td class="formValue"> <input type="text" id="zdmc2" class="form-control form-an" /></td>
-                    <td class="formTitle">Chẩn đoán nhập viện ba：</td>
+                    <td class="formTitle">Chẩn đoán nhập viện ba:</td>
                     <td class="formValue"> <input type="text" id="zdmc3" class="form-control form-an" /></td>
                 </tr>
                 <tr>
-                    <td class="formTitle"><span class="rema">*</span>Thời gian nhập viện：</td>
+                    <td class="formTitle"><span class="rema">*</span>Thời gian nhập viện:</td>
                     <td class="formValue">
                         <input id="ryrq" type="text" name="ryrq" class="form-control input-wdatepicker formClearIgnore
                         form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" />
                     </td>
-                    <td class="formTitle"><span class="rema">*</span>Khoa：</td>
+                    <td class="formTitle"><span class="rema">*</span>Khoa:</td>
                     <td class="formValue">   <input type="text" id="ksmc" name="ksmc" class="form-control form-an" /></td>
-                    <td class="formTitle"><span class="rema">*</span>Khoa bệnh：</td>
+                    <td class="formTitle"><span class="rema">*</span>Khoa bệnh:</td>
                     <td class="formValue"> <input type="text" id="bqmc" name="bqmc" class="form-control form-an" /></td>
-                    <td class="formTitle">Tiền sử dị ứng：</td>
+                    <td class="formTitle">Tiền sử dị ứng:</td>
                     <td class="formValue"> <input type="text" id="gms" class="form-control form-an" /></td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Tình trạng bệnh khi nhập viện：</td>
+                    <td class="formTitle">Tình trạng bệnh khi nhập viện:</td>
                     <td class="formValue">
                         <select id="rybq" name="rybq" class="form-control" data-EnumType="EnumWzjb">
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <td class="formTitle">Loại y tế：</td>
+                    <td class="formTitle">Loại y tế:</td>
                     <td class="formValue formDdlSelectorTd">
                         @Html.DropDownList("rytj", EnumRYTJ.mz.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control form-an" })
                     </td>
-                    <td class="formTitle">Bệnh viện chuyển đi：</td>
+                    <td class="formTitle">Bệnh viện chuyển đi:</td>
                     <td class="formValue"> <input type="text" id="zcyy" name="zcyy" class="form-control form-an" /></td>
                     @*<td class="formValue formDdlSelectorTd">
                 <select class="form-control form-an" id="zcyy" name="zcyy">
                     <option value="">==Vui lòng chọn==</option>
                 </select>
             </td>*@
-                    <td class="formTitle">Ăn uống：</td>
+                    <td class="formTitle">Ăn uống:</td>
                     <td class="formValue"> <input type="text" id="ys" class="form-control form-an" /></td>
                 </tr>
 
                 <tr id="citylist_CSD">
-                    <td class="formTitle">Nơi sinh：</td>
+                    <td class="formTitle">Nơi sinh:</td>
                     <td class="formValue">
                         <select name="province" class="form-control form-an">
                             <option>Vui lòng chọn</option>
@@ -225,11 +225,11 @@
                         </select>
                     </td>
 
-                    <td class="formTitle"><span style="float:left;">Huyện</span>&nbsp;&nbsp;<span style="float:right;">địa chỉ：</span></td>
+                    <td class="formTitle"><span style="float:left;">Huyện</span>&nbsp;&nbsp;<span style="float:right;">địa chỉ:</span></td>
                     <td class="formValue"><input type="text" id="cs_dz" class="form-control form-an" /></td>
                 </tr>
                 <tr id="citylist_XDZ">
-                    <td class="formTitle">Địa chỉ hiện tại：</td>
+                    <td class="formTitle">Địa chỉ hiện tại:</td>
                     <td class="formValue">
                         <select name="province" class="form-control form-an">
                             <option>Vui lòng chọn</option>
@@ -247,12 +247,12 @@
                             <option>Vui lòng chọn</option>
                         </select>
                     </td>
-                    <td class="formTitle"><span style="float:left;">Huyện</span>&nbsp;&nbsp;<span style="float:right;">địa chỉ：</span></td>
+                    <td class="formTitle"><span style="float:left;">Huyện</span>&nbsp;&nbsp;<span style="float:right;">địa chỉ:</span></td>
                     <td class="formValue"><input type="text" id="xian_dz" class="form-control form-an" /></td>
 
                 </tr>
                 <tr id="citylist_HKDZ">
-                    <td class="formTitle">Địa chỉ hộ khẩu：</td>
+                    <td class="formTitle">Địa chỉ hộ khẩu:</td>
                     <td class="formValue">
                         <select name="province" class="form-control form-an">
                             <option>Vui lòng chọn</option>
@@ -270,30 +270,30 @@
                             <option>Vui lòng chọn</option>
                         </select>
                     </td>
-                    <td class="formTitle"><span style="float:left;">Huyện (quận)</span>&nbsp;&nbsp;<span style="float:right;">địa chỉ：</span></td>
+                    <td class="formTitle"><span style="float:left;">Huyện (quận)</span>&nbsp;&nbsp;<span style="float:right;">địa chỉ:</span></td>
                     <td class="formValue"><input type="text" id="hu_dz" class="form-control form-an" /></td>
                 </tr>
                 <tr class="icon">
-                    <td class="formTitle">Dân tộc：</td>
+                    <td class="formTitle">Dân tộc:</td>
                     <td class="formValue"> <input type="text" id="mzmc" name="mzmc" class="form-control form-an" /></td>
-                    <td class="formTitle">quốc tịch：</td>
+                    <td class="formTitle">quốc tịch:</td>
                     <td class="formValue"> <input type="text" id="gjmc" name="gjmc" class="form-control form-an" /></td>
-                    <td class="formTitle">Hôn nhân：</td>
+                    <td class="formTitle">Hôn nhân:</td>
                     <td class="formValue formDdlSelectorTd">
                         @Html.DropDownList("hy", EnumHF.wh.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control form-an" })
                     </td>
 
                 </tr>
                 <tr>
-                    <td class="formTitle">Nghề nghiệp：</td>
+                    <td class="formTitle">Nghề nghiệp:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control form-an" id="zy" name="zy">
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <td class="formTitle">Mức cảnh báo tiền tạm ứng：</td>
+                    <td class="formTitle">Mức cảnh báo tiền tạm ứng:</td>
                     <td class="formValue"> <input type="text" id="bje" name="bje" class="form-control form-an" /></td>
-                    <td class="formTitle">Loại bệnh đặc biệt：</td>
+                    <td class="formTitle">Loại bệnh đặc biệt:</td>
                     <td class="formValue">
                         <select id="sel_tsbbz" name="sel_tsbbz" class="form-control"></select>
 
@@ -304,11 +304,11 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Phẫu thuật Thao tác Mã：</td>
+                    <td class="formTitle">Phẫu thuật Thao tác Mã:</td>
                     <td class="formValue"> <input type="text" id="ssczdm" class="form-control form-an" /></td>
-                    <td class="formTitle">Phẫu thuật Thao tác Tên：</td>
+                    <td class="formTitle">Phẫu thuật Thao tác Tên:</td>
                     <td class="formValue"> <input type="text" id="ssczmc" class="form-control form-an" /></td>
-                    <td class="formTitle">sinh sản Dịch vụ số chứng nhận：</td>
+                    <td class="formTitle">sinh sản Dịch vụ số chứng nhận:</td>
                     <td class="formValue"> <input type="text" id="syfwzh" class="form-control form-an" /></td>
                     <td class="formTitle">sinh sản Ngày:</td>
                     <td class="formValue">
@@ -317,25 +317,25 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">sinh sản Loại：</td>
+                    <td class="formTitle">sinh sản Loại:</td>
                     <td class="formValue">
                         <select id="sylb" name="sylb" class="form-control" data-EnumType="EnumSylb">
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <td class="formTitle">sinh sản Phẫu thuật Loại：</td>
+                    <td class="formTitle">sinh sản Phẫu thuật Loại:</td>
                     <td class="formValue">
                         <select id="sysslb" name="sysslb" class="form-control" data-EnumType="EnumSysslb">
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <td class="formTitle">Dấu hiệu sinh muộn：</td>
+                    <td class="formTitle">Dấu hiệu sinh muộn:</td>
                     <td class="formValue">
                         <select id="wybz" name="wybz" class="form-control" data-EnumType="EnumWybz">
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <td class="formTitle">Dấu hiệu sinh non：</td>
+                    <td class="formTitle">Dấu hiệu sinh non:</td>
                     <td class="formValue">
                         <select id="zcbz" name="zcbz" class="form-control" data-EnumType="EnumWybz">
                             <option value="">==Vui lòng chọn==</option>
@@ -343,37 +343,37 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Số tuần thai：</td>
+                    <td class="formTitle">Số tuần thai:</td>
                     <td class="formValue"> <input type="text" id="yzs" class="form-control form-an" /></td>
-                    <td class="formTitle">Số lần mang thai：</td>
+                    <td class="formTitle">Số lần mang thai:</td>
                     <td class="formValue"> <input type="text" id="tc" class="form-control form-an" /></td>
-                    <td class="formTitle">Số thai nhi：</td>
+                    <td class="formTitle">Số thai nhi:</td>
                     <td class="formValue"> <input type="text" id="tes" class="form-control form-an" /></td>
 
                 </tr>
 
                 <tr class="icon">
-                    <td class="formTitle">Người liên hệ khẩn cấp：</td>
+                    <td class="formTitle">Người liên hệ khẩn cấp:</td>
                     <td class="formValue"> <input type="text" id="lxr" name="lxr" class="form-control form-an" /></td>
-                    <td class="formTitle">Quan hệ người liên hệ khẩn cấp：</td>
+                    <td class="formTitle">Quan hệ người liên hệ khẩn cấp:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select id="lxrgx" name="lxrgx" class="form-control form-an">
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <td class="formTitle">Điện thoại di động khẩn cấp：</td>
+                    <td class="formTitle">Điện thoại di động khẩn cấp:</td>
                     <td class="formValue"><input type="text" id="lxrdh" name="lxrdh" class="form-control form-an" /></td>
-                    <td class="formTitle">Điện thoại gia đình khẩn cấp：</td>
+                    <td class="formTitle">Điện thoại gia đình khẩn cấp:</td>
                     <td class="formValue"> <input type="text" id="lxrjtdh" class="form-control form-an" /></td>
                 </tr>
                 <tr class="icon">
-                    <td class="formTitle">WeChat người liên hệ khẩn cấp：</td>
+                    <td class="formTitle">WeChat người liên hệ khẩn cấp:</td>
                     <td class="formValue">  <input type="text" id="lxrWebchat" class="form-control form-an" /></td>
-                    <td class="formTitle">Email người liên hệ khẩn cấp：</td>
+                    <td class="formTitle">Email người liên hệ khẩn cấp:</td>
                     <td class="formValue"><input type="text" id='lxrEmail' class="form-control form-an" /></td>
                 </tr>
                 <tr id="citylist_JJLXRDZ">
-                    <td class="formTitle">Địa chỉ người liên hệ khẩn cấp：</td>
+                    <td class="formTitle">Địa chỉ người liên hệ khẩn cấp:</td>
                     <td class="formValue">
                         <select name="province" class="form-control form-an">
                             <option>Vui lòng chọn</option>
@@ -391,30 +391,30 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
                             <option>Vui lòng chọn</option>
                         </select>
                     </td>
-                    <td class="formTitle">Huyện (quận) &nbsp;&nbsp; địa chỉ：</td>
+                    <td class="formTitle">Huyện (quận) &nbsp;&nbsp; địa chỉ:</td>
                     <td class="formValue"><input type="text" id="jjlxr_dz" class="form-control form-an" /></td>
 
                 </tr>
                 <tr class="icon">
-                    <td class="formTitle">Thứ hai Người liên hệ：</td>
+                    <td class="formTitle">Thứ hai Người liên hệ:</td>
                     <td class="formValue"> <input type="text" id="lxr2" class="form-control form-an" /></td>
-                    <td class="formTitle">Thứ hai Người liên hệ quan hệ：</td>
+                    <td class="formTitle">Thứ hai Người liên hệ quan hệ:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select id="lxrgx2" name="lxrgx2" class="form-control form-an">
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <td class="formTitle">Điện thoại di động thứ hai：</td>
+                    <td class="formTitle">Điện thoại di động thứ hai:</td>
                     <td class="formValue"> <input type="text" id="lxryddh2" class="form-control form-an" /></td>
-                    <td class="formTitle">Điện thoại gia đình thứ hai：</td>
+                    <td class="formTitle">Điện thoại gia đình thứ hai:</td>
                     <td class="formValue"> <input type="text" id="lxrjtdh2" class="form-control form-an" /></td>
                 </tr>
                 <tr class="icon">
-                    <td class="formTitle">Thứ hai Người liên hệ WeChat：</td>
+                    <td class="formTitle">Thứ hai Người liên hệ WeChat:</td>
                     <td class="formValue">  <input type="text" id="lxrWebchat2" class="form-control form-an" /></td>
-                    <td class="formTitle">Thứ hai Người liên hệ Email：</td>
+                    <td class="formTitle">Thứ hai Người liên hệ Email:</td>
                     <td class="formValue"> <input type="text" id="lxrEmail2" class="form-control form-an" /></td>
-                    <td class="formTitle">Thứ hai Người liên hệ địa chỉ：</td>
+                    <td class="formTitle">Thứ hai Người liên hệ địa chỉ:</td>
                     <td colspan="3" class="formValue">
                         <input type="text" id="lxrdz2" class="form-control form-an form-an-end" style="width:101%" />
                         <input type="hidden" id="zyhpz" value="@ViewBag.zyhpz" />
@@ -438,7 +438,7 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
 
 <script type="text/javascript" src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/PatientManage/HospiterRes/Register.js",false)"></script>
 <script type="text/javascript">
-    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc:bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
     var medicalInsurance = '@medicalInsurance';//cấu hình địa phương BHYT:phân biệt khu vực BHYT của bệnh viện
     var openXnhSett = '@openXnhSett';
     var ybkCardType = "@((int)EnumCardType.YBJYK)";//Loại thẻ BHYT
@@ -535,8 +535,8 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
             alertbierror: false,
             errorCallback: function (rep) {
                if (!!obj.kh && rep.code && rep.code == 'OUTPAT_REGIST_ISINVALID') {
-                    //lày tếbảo hiểmthẻđọcthẻ，chưa từng đăng ký
-                    $.modalConfirm("Thẻ chưa đăng ký，Có tạo đăng ký mới không", function (flag) {
+                    //lày tếbảo hiểmthẻđọcthẻ,chưa từng đăng ký
+                    $.modalConfirm("Thẻ chưa đăng ký,Có tạo đăng ký mới không", function (flag) {
                         if (flag) {
                             //$('#noCardRes').trigger('click');
                             btn_NocardRes();
@@ -544,8 +544,8 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
                     });
                 }
                 else if (!!obj.zjh && rep.code == 'OUTPAT_REGIST_ISINVALID') {
-                    //làthânphầnchứngđọcthẻ，chưa từng đăng ký
-                    $.modalConfirm("Thẻ chưa đăng ký，Có tạo đăng ký mới không", function (flag) {
+                    //làthânphầnchứngđọcthẻ,chưa từng đăng ký
+                    $.modalConfirm("Thẻ chưa đăng ký,Có tạo đăng ký mới không", function (flag) {
                         if (flag) {
                             //$('#noCardRes').trigger('click');
                             btn_NocardRes();
@@ -563,7 +563,7 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
     function loadByBasicInfo(patModel) {
         var boolsearchwithkh = $("#searchwithkh").val() === "ON";
         if (!!!patModel.brxz) {
-            $.modalAlert("Thông tin bệnh nhân bất thường，Thiếu tính chất chi phí", 'warning');
+            $.modalAlert("Thông tin bệnh nhân bất thường,Thiếu tính chất chi phí", 'warning');
             return false;
         }
         if (!!!patModel.CardTypeName) {
@@ -619,8 +619,8 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
     function yibaoValidateFirstVisit(cardInfo) {
 
 	    if (!!cardInfo) {
-		    //1.Xét có phải khám lần đầu không（tạo mới khám lần đầu，Tái khám tải thông tin bệnh nhân）
-	        //cách xác thực khám lần đầu：1.Số CMND/CCCD+Họ tên，2：Số BHXH
+		    //1.Xét có phải khám lần đầu không（tạo mới khám lần đầu,Tái khám tải thông tin bệnh nhân）
+	        //cách xác thực khám lần đầu:1.Số CMND/CCCD+Họ tên,2:Số BHXH
 	        var paramVo = { kh: cardInfo.kh, jzpzlx: cardInfo.jzlx };
 	        if (cardInfo.output) {
 	            paramVo.sfzh = cardInfo.output.baseinfo.certno;
@@ -670,8 +670,8 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
     function yibaoValidateFirstVisitshanghaiV5(cardInfo) {
 
 	    if (!!cardInfo) {
-		    //1.Xét có phải khám lần đầu không（tạo mới khám lần đầu，Tái khám tải thông tin bệnh nhân）
-		    //cách xác thực khám lần đầu：1.Số CMND/CCCD+Họ tên，2：Số BHXH
+		    //1.Xét có phải khám lần đầu không（tạo mới khám lần đầu,Tái khám tải thông tin bệnh nhân）
+		    //cách xác thực khám lần đầu:1.Số CMND/CCCD+Họ tên,2:Số BHXH
 		    $.ajax({
 			    type: "POST",
 			    url: "@Url.Action("ValidateYbFirstVisit")",
@@ -840,7 +840,7 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
 
     function newtouch_globalevent_f10() {
         if (!$("#patid").val()) {
-            $.modalAlert("Thông tin cơ bản của bệnh nhân chưa đầy đủ，Không thể in Thông tin nhập viện", 'error');
+            $.modalAlert("Thông tin cơ bản của bệnh nhân chưa đầy đủ,Không thể in Thông tin nhập viện", 'error');
             return;
         }
         var orgId = '@curOpr.OrganizeId';

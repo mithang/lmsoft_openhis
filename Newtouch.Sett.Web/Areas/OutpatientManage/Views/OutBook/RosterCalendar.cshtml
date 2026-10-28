@@ -198,17 +198,17 @@
     </div>
     <table class="form">
         <tr>
-            <th class="formTitle">Ngày bắt đầu：</th>
+            <th class="formTitle">Ngày bắt đầu:</th>
             <td class="formValue">
                 <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
             </td>
-            <th class="formTitle">Ngày kết thúc：</th>
+            <th class="formTitle">Ngày kết thúc:</th>
             <td class="formValue">
                 <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="float:left; margin-left:5%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
             </td>
-            <th class="formTitle">Bác sĩ trực：</th>
+            <th class="formTitle">Bác sĩ trực:</th>
             <td class="formValue"><input type="text" id="doctormc" name="doctormc" class="form-control form-an" /></td>
-            <th class="formTitle">Trạng thái khám bệnh：</th>
+            <th class="formTitle">Trạng thái khám bệnh:</th>
             <td class="formValue">
                 <select class="form-control" id="czztcx">
                     <option value="0">-----</option>
@@ -229,22 +229,22 @@
     <div class="cxtj">
         <table class="xzsj form">
             <tr>
-                <th class="formTitle">Thời gian ：</th>
+                <th class="formTitle">Thời gian :</th>
                 <td class="formValue">
                     <input type="text" id="rlsj" class="form-control input-wdatepicker formClearIgnore" style="height:20px;width:100px" value="@DateTime.Now.ToString("yyyy-MM")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM' });xzsj()" />
                 </td>
-                <th class="formTitle">Khoa ：</th>
+                <th class="formTitle">Khoa :</th>
                 <td class="formValue">
                     <input type="hidden" class="form-control" id="ks" />
                     <input type="text" class="form-control required" id="ksmz" />
                 </td>
-                <th class="formTitle">Loại khám ngoại trú：</th>
+                <th class="formTitle">Loại khám ngoại trú:</th>
                 <td class="formValue">
                     <select id="mjzbz" class="form-control required" data-EnumType="EnumOutPatientType">
                         <option value="">Vui lòng chọn</option>
                     </select>
                 </td>
-                <th class="formTitle">Bác sĩ trực：</th>
+                <th class="formTitle">Bác sĩ trực:</th>
                 <td class="formValue"><input type="text" id="doctormc2" name="doctormc2" class="form-control form-an" /></td>
                 <td class="formTitle">
                     <input type="button" style="float:right" id="btn_searchrl" class="btn btn-primary" value="Tra cứu" />
@@ -459,7 +459,7 @@
                             }
                         }
                     }
-                   else if (data != null && data.rows.length != null) {
+                   else if (data != null && data.rows != null) {
                         for (var j = 0; j < data.rows.length; j++) {
                             //alert(data.rows[j].OutDate.toString().substring(0, 4) + "=="+now.getFullYear().toString())
                             //alert(parseInt(data.rows[j].OutDate.toString().substring(5, 7)).toString() + "==" + (now.getMonth() + 1).toString())
@@ -486,7 +486,9 @@
                             }
                         }
                     }
-                    else if (loaddata != null && loaddata.rows.length != null) {
+                    // QA-phase2 (SETT-05): rows is null (not merely empty)
+                    // when the calendar has no data; .length on null threw.
+                    else if (loaddata != null && loaddata.rows != null) {
                         for (var j = 0; j < loaddata.rows.length; j++) {
                             //alert(data.rows[j].OutDate.toString().substring(0, 4) + "=="+now.getFullYear().toString())
                             //alert(parseInt(data.rows[j].OutDate.toString().substring(5, 7)).toString() + "==" + (now.getMonth() + 1).toString())
@@ -544,7 +546,7 @@
                     })
 
                 }
-                //hướng suy nghĩ：mỗithángtrước ngày mùng 1 trống mấy ô trốngcủasố lượnglàthứ mấy thì trống mấy ô
+                //hướng suy nghĩ:mỗithángtrước ngày mùng 1 trống mấy ô trốngcủasố lượnglàthứ mấy thì trống mấy ô
                 now.setDate(1) //đặt thời gian thành ngày mùng 1 tháng này
                 let firstDay = now.getDay() // lấy ngày mùng 1 là thứ mấy
                 for (let i = 0; i < firstDay; i++) { // số lần lặp tương ứng với thứ mấy
@@ -554,7 +556,7 @@
                 }
                 now.setDate(now.getDate() + firstDay) //đặt thời gian về thời gian hiện tại nếu không sẽ ảnh hưởng việc lấy thời gian phía sau
                 now.setDate(allDays)
-                //hướng suy nghĩ：mỗithángnhấtsaumột ngàysaumặt trống mấy ô trốngcủasố lượnglà6trừ thứ mấy thì trống mấy ô
+                //hướng suy nghĩ:mỗithángnhấtsaumột ngàysaumặt trống mấy ô trốngcủasố lượnglà6trừ thứ mấy thì trống mấy ô
                 now.setDate(allDays) //đặt thời gian thành ngày cuối cùng mỗi tháng
                 let lastDay = 6 - now.getDay() //số ô trống cuối cùng
                 for (let i = 0; i < lastDay; i++) {
@@ -589,14 +591,14 @@
             });
         }
         function zhrllist() {
-            //lấynơicódòngId，duyệt để khung sửa ở trạng thái lưutrạng thái
+            //lấynơicódòngId,duyệt để khung sửa ở trạng thái lưutrạng thái
 
             var rowIds = $("#gridList").jqGrid('getDataIDs');
             for (var i = 0; i < rowIds.length; i++) {
                 var saveResult = $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
                 if (!saveResult) {
                     EnableInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
-                    return;   //lưu thất bại，thìreturn
+                    return;   //lưu thất bại,thìreturn
                 }
             }
             var gridzljyData = $("#gridList").jqGrid('getRowData');
@@ -700,7 +702,7 @@
                 $.modalAlert("Vui lòng chọn thông tin lịch trực cần sửa", 'warning');
                 return;
             }
-            //lấynơicódòngId，duyệt để khung sửa ở trạng thái lưutrạng thái
+            //lấynơicódòngId,duyệt để khung sửa ở trạng thái lưutrạng thái
             var rowIds = $("#gridList").jqGrid('getDataIDs');
             if (rowIds.length == 0) {
                 $.modalAlert("Vui lòng chọn thông tin lịch trực cần sửa", 'warning');
@@ -711,7 +713,7 @@
 
                 if (!saveResult) {
                     EnableInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
-                    return;   //lưu thất bại，thìreturn
+                    return;   //lưu thất bại,thìreturn
                 }
             }
             var gridzljyData = $("#gridList").jqGrid('getRowData');
@@ -754,7 +756,7 @@
             width: 480,
             clickautotrigger: true,
             filter: function (keyword) {
-                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                //duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
                 var resultObjArr = new Array();
 
                 $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
@@ -845,7 +847,7 @@
             width: 480,
             clickautotrigger: true,
             filter: function (keyword) {
-                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                //duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
                 var resultObjArr = new Array();
 
                 $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
@@ -1084,13 +1086,13 @@
         function istz(ScheduId, czzt) {
             var tzyystr = "";
             if (czzt == "1") {
-                //lấynơicódòngId，duyệt để khung sửa ở trạng thái lưutrạng thái
+                //lấynơicódòngId,duyệt để khung sửa ở trạng thái lưutrạng thái
                 var rowIds = $("#gridList").jqGrid('getDataIDs');
                 for (var i = 0; i < rowIds.length; i++) {
                     var saveResult = $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
                     if (!saveResult) {
                         EnableInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
-                        return;   //lưu thất bại，thìreturn
+                        return;   //lưu thất bại,thìreturn
                     }
                 }
                 var gridzljyData = $("#gridList").jqGrid('getRowData');

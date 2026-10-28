@@ -12,11 +12,11 @@
         <div style="padding-top:1%;padding-bottom:1%; padding-left:7%;" id="divInpatientBasicInfo">
             <table class="form">
                 <tr>
-                    <th class="formTitle">prm_yka103：</th>
+                    <th class="formTitle">prm_yka103:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="yka103" style="float:left;" />
                     </td>
-                    <th class="formTitle">Số nhập viện：</th>
+                    <th class="formTitle">Số nhập viện:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="zyh" style="float:left;" />
                     </td>
@@ -82,7 +82,7 @@
         }
         $.najax({
             url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + zyh,
-            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân，Vui lòng chờ...",
+            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân,Vui lòng chờ...",
             type: 'POST',
             success: function (ybPreSettleReq) {
                 var ybjshtReturn;
@@ -244,7 +244,7 @@
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
             if (!rowData) {
-                $.modalAlert("Lấy thông tin thất bại，Vui lòng thao tác lại", 'error');
+                $.modalAlert("Lấy thông tin thất bại,Vui lòng thao tác lại", 'error');
                 break;
             }
             $.najax({
@@ -255,7 +255,7 @@
                 success: function (rep) {
                     if (rep == "") {
                         IsSuccess = false;
-                        $.modalAlert("Trong hệ thống không tồn tại số giao dịch【" + rowData["yke014"] + "】bản ghi giao dịch，Vui lòng xác nhận。", 'warning');
+                        $.modalAlert("Trong hệ thống không tồn tại số giao dịch【" + rowData["yke014"] + "】bản ghi giao dịch,Vui lòng xác nhận。", 'warning');
                     } else {
                         alert(rep);
                         try {
@@ -271,12 +271,12 @@
                                 }
                             });
                             if (!ybjySettReturn || !(ybjySettReturn.Code == 0)) {
-                                $.modalAlert("Số giao dịch【" + jylsh + "】Gửi thất bại，Vui lòng thao tác lại", 'error');
+                                $.modalAlert("Số giao dịch【" + jylsh + "】Gửi thất bại,Vui lòng thao tác lại", 'error');
                                 IsSuccess = false;
                             }
                         } catch (err) {
                             IsSuccess = false;
-                            $.modalAlert("Gửi BHYT thất bại，Vui lòng thao tác lại" + err, 'error');
+                            $.modalAlert("Gửi BHYT thất bại,Vui lòng thao tác lại" + err, 'error');
                         }
                     }
                 }
@@ -305,7 +305,7 @@
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
             if (!rowData) {
-                $.modalAlert("Lấy thông tin thất bại，Vui lòng thao tác lại", 'error');
+                $.modalAlert("Lấy thông tin thất bại,Vui lòng thao tác lại", 'error');
                 break;
             }
             var ybjySettReturn;// = $.guianyibao.YibaoCancle(rowData["yke014"]);
@@ -320,7 +320,7 @@
                 }
             });
             if (!(ybjySettReturn.Code == 0)) {
-                $.modalAlert("Số giao dịch【" + jylsh + "】Hủy thất bại，Vui lòng thao tác lại", 'error');
+                $.modalAlert("Số giao dịch【" + jylsh + "】Hủy thất bại,Vui lòng thao tác lại", 'error');
                 loadDataResult();
                 return;
             }

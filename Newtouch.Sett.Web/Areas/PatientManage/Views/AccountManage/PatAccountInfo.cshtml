@@ -137,7 +137,7 @@
     //Lấy hiển thị giao diện thông tin cơ bản bệnh nhân
     function setPatInfoModel(patModel) { 
         $('#formPat1').formSerialize(patModel);
-        //đượclấymạngtrangtrongcủaphiếuchọntheonút，chọnchọncủa nótrongname=angel，value=0của，đểcủa nóchọntrong
+        //đượclấymạngtrangtrongcủaphiếuchọntheonút,chọnchọncủa nótrongname=angel,value=0của,đểcủa nóchọntrong
         //$("input[type=radio][name=xb][value=" + patmodel[idname] + "]").attr("checked", 'checked');
         $("#xb").val($.getGender(patModel.xb));
         $("#zhsyr").val(patModel.xm);//nơicóngười
@@ -158,7 +158,7 @@
         } 
         $("#zhye").val(zhye); //valuegán giá trị
         var captionCon = "Bảng thu chi tài khoản";
-        captionCon += "<span id='ye Con'>Số dư tài khoản：" + zhye + "đồng</span>"; 
+        captionCon += "<span id='ye Con'>Số dư tài khoản:" + zhye + "đồng</span>"; 
         $gridList.dataNewGrid({
             height: 150, 
             autowidth: false,
@@ -189,7 +189,7 @@
         if (mydata.length>0) {
             $('.ui-jqgrid-bdiv').find(".unwritten").remove();
         }
-        $("#yeCon").text("Số dư tài khoản：" + zhye + "đồng");
+        $("#yeCon").text("Số dư tài khoản:" + zhye + "đồng");
     }
 
     var patid,

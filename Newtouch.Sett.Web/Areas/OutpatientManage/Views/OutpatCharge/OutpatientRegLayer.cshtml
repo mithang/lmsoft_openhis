@@ -8,29 +8,29 @@
 }
 <table class="form" style="margin: 5px 10px 5px 0;width:98%;">
     <tr>
-        <th class="formTitle">Lý do khám：</th>
+        <th class="formTitle">Lý do khám:</th>
         <td class="formValue">
             <select id="jzyy" name="jzyy" class="form-control">
                 <option value="">==Vui lòng chọn==</option>
             </select>
         </td>
-        <th class="formTitle"><span class="required">*</span>Loại khám ngoại trú：</th>
+        <th class="formTitle"><span class="required">*</span>Loại khám ngoại trú:</th>
         <td class="formValue formDdlSelectorTd">
             <select id="sel_mzlx" class="form-control required" data-EnumType="EnumOutPatientType">
                 <option value="">Vui lòng chọn</option>
             </select>
         </td>
-        <th class="formTitle"><span class="required">*</span>Khoa：</th>
+        <th class="formTitle"><span class="required">*</span>Khoa:</th>
         <td class="formValue">
             <input type="text" class="form-control" id="txtkschoose" />
         </td>
     </tr>
     <tr>
-        <th class="formTitle"><span class="required">*</span>Lịch trực đăng ký khám：</th>
+        <th class="formTitle"><span class="required">*</span>Lịch trực đăng ký khám:</th>
         <td class="formValue">
             <input type="text" class="form-control" id="txtghpbchoose" />
         </td>
-        <th class="formTitle">Loại bệnh đặc biệt：</th>
+        <th class="formTitle">Loại bệnh đặc biệt:</th>
         <td class="formValue">
             <select id="sel_tsbbz" name="sel_tsbbz" class="form-control"></select>
         </td>
@@ -38,43 +38,43 @@
         <td></td>
     </tr>
     <tr>
-        <th class="formTitle">Tính chất chi phí：</th>
+        <th class="formTitle">Tính chất chi phí:</th>
         <td class="formValue">
             <label id="brxzmc" name="brxzmc"></label>
             <input type="hidden" id="grbh" />
             <input type="hidden" id="cbdbm" />
         </td>
-        <td class="formTitle">Khoa đăng ký khám：</td>
+        <td class="formTitle">Khoa đăng ký khám:</td>
         <td class="formValue">
             <input type="hidden" id="txtghpbId" />
             <input type="hidden" id="txtghks" />
             <label id="txtghksmc"></label>
         </td>
-        <td class="formTitle">Bác sĩ：</td>
+        <td class="formTitle">Bác sĩ:</td>
         <td class="formValue">
             <input type="hidden" id="txtghysgh" />
             <label id="txtghysmc"></label>
         </td>
     </tr>
     <tr>
-        <td class="formTitle">Số thẻ：</td>
+        <td class="formTitle">Số thẻ:</td>
         <td class="formValue">
             <label id="CardTypeName"></label>
             <label id="kh"></label>
         </td>
-        <td class="formTitle">Phí đăng ký khám： </td>
+        <td class="formTitle">Phí đăng ký khám: </td>
         <td class="formValue">
             <input type="hidden" id="txtghfxm" />
             <label id="newghf"></label>
         </td>
-        <th class="formTitle">Phí chẩn trị：</th>
+        <th class="formTitle">Phí chẩn trị:</th>
         <td class="formValue">
             <input type="hidden" id="txtzlxm" />
             <label id="newzlf"></label>
         </td>
     </tr>
     <tr>
-        <th class="formTitle">Tổng số tiền：</th>
+        <th class="formTitle">Tổng số tiền:</th>
         <td class="formValue">
             <label id="newtotalfees"></label>
         </td>
@@ -129,7 +129,7 @@
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
-            //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+            //duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysDepartList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -241,7 +241,7 @@
         //lấyđăng ký khámphí phí chẩn trị phí thẻ từ phí làm thẻ
         if ('@zlxmzhconf' == 1) {
             GHFeesGroup(function (feesList) {
-                $("#txtghpbId").val($thistr.attr('data-ghpbId'));   //đặt ở đây，phía sau dùng để xác định đã chọn lịch trực thành công chưa
+                $("#txtghpbId").val($thistr.attr('data-ghpbId'));   //đặt ở đây,phía sau dùng để xác định đã chọn lịch trực thành công chưa
                 $("#newghf").html(parseFloat(feesList.ghf).toFixed(2));
                 $("#newzlf").html(parseFloat(feesList.zlf).toFixed(2));
                 $("#newtotalfees").html(parseFloat(feesList.totalfees).toFixed(2));
@@ -249,7 +249,7 @@
         }
         else {
             GHFees(function (feesList) {
-                $("#txtghpbId").val($thistr.attr('data-ghpbId'));   //đặt ở đây，phía sau dùng để xác định đã chọn lịch trực thành công chưa
+                $("#txtghpbId").val($thistr.attr('data-ghpbId'));   //đặt ở đây,phía sau dùng để xác định đã chọn lịch trực thành công chưa
                 $("#newghf").html(parseFloat(feesList.ghf).toFixed(2));
                 $("#newzlf").html(parseFloat(feesList.zlf).toFixed(2));
                 $("#newtotalfees").html(parseFloat(feesList.totalfees).toFixed(2));
@@ -444,7 +444,7 @@
         $.najax({
             url: "../OutpatientReg/Save",
             dataType: "json",
-            loadingtext: "ĐangHISĐăng ký khám，Vui lòng chờ…",
+            loadingtext: "ĐangHISĐăng ký khám,Vui lòng chờ…",
             data: {
                 patid: regInfo.patid, kh: regInfo.kh,
                 mjzbz: regInfo.mjzbz, ks: regInfo.ks, ys: regInfo.ys,

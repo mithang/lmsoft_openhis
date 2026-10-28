@@ -21,15 +21,15 @@
                 <td class="formValue"> 
                     <input id="txtysk" name="txtysk" type="text" class="form-control formClearIgnore newtouch_Readonly" value="0.00" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Số tiền thực thu：</th>
+                <th class="formTitle"><span class="required">*</span>Số tiền thực thu:</th>
                 <td class="formValue">
                     <input id="txtmoney" name="txtmoney" type="text" class="form-control required" placeholder="Vui lòng nhập số tiền" />
                 </td>
-                <th class="formTitle">Tiền thừa：</th>
+                <th class="formTitle">Tiền thừa:</th>
                 <td class="formValue">
                     <input id="txtzl" name="txtzl" type="text" class="form-control formClearIgnore newtouch_Readonly"  value="0.00" />
                 </td> 
-                <th class="formTitle">Ngày：</th>
+                <th class="formTitle">Ngày:</th>
                 <td class="formValue">
                     <input id="txtzfrq" name="txtzfrq" type="text" class="form-control formClearIgnore required " />
                 </td> 
@@ -47,8 +47,12 @@
             attdata: "xjzffsbh",
             datasource: function () {
                 //duyệtdữ liệunguồn
-                var resultObjArr = new Array(); 
-                $.each(top.clients.SysForCashPayList, function (idx, val) {
+                var resultObjArr = new Array();
+                // QA-phase2 (SETT-05): the standalone _Index bootstrap only
+                // sets clients = {enums, itemDetails}; SysForCashPayList is
+                // undefined outside the portal frame, and $.each(undefined)
+                // throws "can't access property length of undefined" on load.
+                $.each((top.clients && top.clients.SysForCashPayList) || [], function (idx, val) {
                     if (val.zhxz == 'a') {
                         resultObjArr.push(val);
                     }

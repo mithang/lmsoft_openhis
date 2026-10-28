@@ -32,23 +32,33 @@ namespace NewtouchHIS.Framework.Web.Controllers.SysManage
             {
                 return Content(tree.ToJson());
             }
+            // QA-phase2 (SSO-03): the page renders with js/wdtree/tree.js
+            // (bootstrap-treeview is commented out in _Form.cshtml) and
+            // wdtree's buildnode() calls nd.id.replace(...), so a node without
+            // a string id throws "nd.id is undefined" and the tree renders
+            // empty. BsTreeSelectModel has no id field (same reason GetRoleList
+            // already emits anonymous objects), so emit id here too; href is
+            // kept for existing readers. No menu data changed.
             if (justTop)
             {
-                tree = data.Where(p => string.IsNullOrWhiteSpace(p.ParentId)).Select(m => new BsTreeSelectModel
+                var topTree = data.Where(p => string.IsNullOrWhiteSpace(p.ParentId)).Select(m => new
                 {
+                    id = m.Id,
                     href = m.Id,
                     text = m.Name,
                 }).ToList();
+                return Content(topTree.ToJson());
             }
             else
             {
-                tree = data.Select(m => new BsTreeSelectModel
+                var fullTree = data.Select(m => new
                 {
+                    id = m.Id,
                     href = m.Id,
                     text = m.Name,
                 }).ToList();
+                return Content(fullTree.ToJson());
             }
-            return Content(tree.ToJson());
         }
 
         /// <summary>

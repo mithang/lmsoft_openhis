@@ -36,7 +36,7 @@
             width: 300,
             clickautotrigger: true,
             filter: function (keyword) {
-                //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
+                //Duyệt nguồn dữ liệu,dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();//
                 $.each(top.window.clients.doctorInHosBookkeep, function (idx, val) {
                     if ($.trim(keyword).length == 0 ||
@@ -249,11 +249,11 @@
     function checkNotNull() {
         var patid = $("#patid").val();
         if (!patid) {
-            $.modalAlert("Thông tin cơ bản của bệnh nhân không Tồn tại，Không thể Lưu", 'warning');
+            $.modalAlert("Thông tin cơ bản của bệnh nhân không Tồn tại,Không thể Lưu", 'warning');
             return false;
         }
         if (objblh === "" || !objblh) {
-            $.modalAlert("Thông tin cơ bản của bệnh nhân không Tồn tại，Không thể Lưu", 'warning');
+            $.modalAlert("Thông tin cơ bản của bệnh nhân không Tồn tại,Không thể Lưu", 'warning');
             return false;
         }
         var validator = $('#form1').validate();
@@ -374,7 +374,7 @@
             </div>
             <table class="form" style="margin-left: 10px;">
                 <tr>
-                    <th class="formTitle"><span class="rema">*</span><label id="lbl_kh">Số hồ sơ bệnh án/Họ tên：</label> </th>
+                    <th class="formTitle"><span class="rema">*</span><label id="lbl_kh">Số hồ sơ bệnh án/Họ tên:</label> </th>
                     <td class="formValue" colspan="2">
                         <input type="text" id="blh" name="blh" class="form-control" placeholder="Ít nhất1ký tự" />
                     </td>
@@ -386,21 +386,21 @@
                         <input type="button" class="btn btn-default btn-md btn-default-color" id="btnsyy" value="Tra cứu" onclick="GetPatSerarchView($('#blh').val());" />
                     </td>
                     <td class="formTitle">
-                        Họ tên：
+                        Họ tên:
                     </td>
                     <td class="formValue">
                         <label id="xm"></label>
                     </td>
-                    <td class="formTitle">Giới tính：</td>
+                    <td class="formTitle">Giới tính:</td>
                     <td class="formValue">
                         <label id="xb"></label>
                     </td>
-                    <td class="formTitle">Tuổi：</td>
+                    <td class="formTitle">Tuổi:</td>
                     <td class="formValue">
                         <label id="nlshow"></label>
                     </td>
                     <td class="formTitle">
-                        <label id="zjlx">Số CMND/CCCD：</label>
+                        <label id="zjlx">Số CMND/CCCD:</label>
                         <input hidden="hidden" id="hiddenzjlx" />
                     </td>
                     <td class="formValue" colspan="2">
@@ -408,10 +408,10 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Điện thoại di động：</td>
+                    <td class="formTitle">Điện thoại di động:</td>
                     <td class="formValue"><label id="phone"></label></td>
                     <td class="formTitle">
-                        <label>Số thẻ：</label>
+                        <label>Số thẻ:</label>
                     </td>
                     <td class="formValue">
                         <label id="kh"></label>
@@ -431,16 +431,16 @@
             <div class="panel-heading navb-bg">Thông tin cơ bản ngoại trú</div>
             <table class="form" style="width:98%;border:0">
                 <tr>
-                    <td class="formTitle"><span id="mzlog" class="rema">*</span>Số khám ngoại trú：</td>
+                    <td class="formTitle"><span id="mzlog" class="rema">*</span>Số khám ngoại trú:</td>
                     <td class="formValue"><input type="text" id="mzh" class="form-control form-an" /></td>
-                    <td class="formTitle"><span class="rema">*</span>Bác sĩ：</td>
+                    <td class="formTitle"><span class="rema">*</span>Bác sĩ:</td>
                     <td class="formValue"><input type="text" id="doctormc" name="doctormc" class="form-control form-an formClearIgnore" /></td>
-                    <td class="formTitle"><span class="rema">*</span>Ngày đăng ký：</td>
+                    <td class="formTitle"><span class="rema">*</span>Ngày đăng ký:</td>
                     <td class="formValue">
                         <input id="ghrq" type="text" name="ghrq" class="form-control input-wdatepicker form-an formClearIgnore"
                                onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
                     </td>
-                    <td class="formTitle">Nguồn bệnh nhân：</td>
+                    <td class="formTitle">Nguồn bệnh nhân:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control form-an-end" id="brly" name="brly">
                             <option value="">==Vui lòng chọn==</option>
@@ -454,20 +454,20 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Người liên hệ khẩn cấp：</td>
+                    <td class="formTitle">Người liên hệ khẩn cấp:</td>
                     <td class="formValue"><input type="text" name="lxr" id="lxr" class="form-control form-an" /></td>
-                    <td class="formTitle">Người liên hệ quan hệ：</td>
+                    <td class="formTitle">Người liên hệ quan hệ:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select id="lxrgx" name="lxrgx" class="form-control form-an">
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <td class="formTitle">Điện thoại người liên hệ：</td>
+                    <td class="formTitle">Điện thoại người liên hệ:</td>
                     <td class="formValue">
                         <input id="lxrdh" type="text" name="lxrdh" class="form-control form-an" />
                     </td>
                     <td class="formTitle">
-                        Người giới thiệu：
+                        Người giới thiệu:
                     </td>
                     <td class="formValue">
                         <input id="tjr" type="text" name="tjr" class="form-control form-an-end" />

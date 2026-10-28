@@ -29,12 +29,12 @@
     <div id="divTmx">
         <div class="panel panel-default" style="margin: 20px;">
             <div class="panel-heading navb-bg">
-                <span>Thời gian quyết toán：<span id="settTime"></span></span>
-                <span>Số tiền quyết toán：<span id="zje"></span></span>
-                <span>Số tiền thanh toán：<span id="xjzf"></span></span>
+                <span>Thời gian quyết toán:<span id="settTime"></span></span>
+                <span>Số tiền quyết toán:<span id="zje"></span></span>
+                <span>Số tiền thanh toán:<span id="xjzf"></span></span>
                 <br />
-                <span>Phương thức thanh toán：<span id="xjzffsmc"></span></span>
-                <span>Ngày thu phí：<span id="sfrq"></span></span>
+                <span>Phương thức thanh toán:<span id="xjzffsmc"></span></span>
+                <span>Ngày thu phí:<span id="sfrq"></span></span>
             </div>
             <div style="padding-right:20px;">
                 <table class="form">
@@ -66,10 +66,10 @@
         </div>
         <div style="margin: 20px;">
             <ul class="nav nav-pills" style="position: fixed;right: 80px;bottom: 20px;">
-                <li>Nhân viên hoàn phí：<span>@(OperatorProvider.GetCurrent().UserName)</span></li>
-                <li>Ngày hoàn phí：<span>@(DateTime.Now.ToString("yyyy-MM-dd"))</span></li>
-                <li>Thời gian hoàn phí：<span>@(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))</span></li>
-                <li>Tổng hoàn phí：<span id="tje"></span>&nbsp;&nbsp;&nbsp;<span id="mzyjj"  style="display:none;"><input type="checkbox" checked="checked" id="yjjth" name="yjjth" /> Hoàn về tài khoản tạm ứng </span>
+                <li>Nhân viên hoàn phí:<span>@(OperatorProvider.GetCurrent().UserName)</span></li>
+                <li>Ngày hoàn phí:<span>@(DateTime.Now.ToString("yyyy-MM-dd"))</span></li>
+                <li>Thời gian hoàn phí:<span>@(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))</span></li>
+                <li>Tổng hoàn phí:<span id="tje"></span>&nbsp;&nbsp;&nbsp;<span id="mzyjj"  style="display:none;"><input type="checkbox" checked="checked" id="yjjth" name="yjjth" /> Hoàn về tài khoản tạm ứng </span>
                 </li>
             </ul>
         </div>

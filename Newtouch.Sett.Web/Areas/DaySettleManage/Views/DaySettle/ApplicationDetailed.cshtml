@@ -14,17 +14,17 @@
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle" id="thCZRQ">Ngày quyết toán：</th>
+				<th class="formTitle" id="thCZRQ">Ngày quyết toán:</th>
 				<td class="formValue" colspan="2">
 					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:130px; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
 					<span style="margin-left:2%;float:left;">—</span>
 					<input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :130px;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
 				</td>
-				<th class="formTitle">Loại quyết toán：</th>
+				<th class="formTitle">Loại quyết toán:</th>
 				<td class="formValue">
 					<select class="form-control" id="jslx" style="width:140px;"></select>
 				</td>
-				@*<th class="formTitle">Loại bảo hiểm：</th>
+				@*<th class="formTitle">Loại bảo hiểm:</th>
 				<td class="formValue">
 					<select class="form-control" id="xzlx" style="width:140px;"></select>
 				</td>*@
@@ -107,7 +107,7 @@
         $gridJsList.dataGrid({
             //postData: getSearchPostData(),
 			height: 300,
-			caption: "Số giao dịch quyết toán：0",
+			caption: "Số giao dịch quyết toán:0",
             url: "",
             colModel: [
                 { label: 'Mã cá nhân', name: 'grbm', width: 180, align: 'left' },
@@ -157,7 +157,7 @@
 				jjzfje = parseFloat(jjzfje).toFixed(2);
 				grzhje = parseFloat(grzhje).toFixed(2);
 				xjzfje = parseFloat(xjzfje).toFixed(2);
-				var textcaption = "Số giao dịch quyết toán：" + sl + "（trong đó Tổng chi phí：" + zfy + " Quỹ Số tiền thanh toán：" + jjzfje + " Tài khoản Số tiền thanh toán：" + grzhje + " Thanh toán tiền mặt Số tiền：" + xjzfje + " ）";
+				var textcaption = "Số giao dịch quyết toán:" + sl + "（trong đó Tổng chi phí:" + zfy + " Quỹ Số tiền thanh toán:" + jjzfje + " Tài khoản Số tiền thanh toán:" + grzhje + " Thanh toán tiền mặt Số tiền:" + xjzfje + " ）";
 				$("#gridJSList").jqGrid("setCaption", textcaption);
 				
 				//$("#gridJSList").jqGrid('footerData', 'set', { name: "count", count: gridData.length });
@@ -191,7 +191,7 @@
 		var jsrq = $("#jsrq").val() +" 23:59:59";
 		var ts = Date.parse(jsrq) - Date.parse(ksrq)+1;
 		//if (ts >= 11) {
-		//	$.modalAlert("giữacáchthời giangiữalớntại10Ngày，xóatínhrõchi tiếtđốitài khoản", 'warning');
+		//	$.modalAlert("giữacáchthời giangiữalớntại10Ngày,xóatínhrõchi tiếtđốitài khoản", 'warning');
 		//	return false;
 		//}
 
@@ -223,7 +223,7 @@
 			    refinfo = eval('(' + data + ')');
 			},
 			error: function (request, error, ex) {
-			    $.modalAlert("Dịch vụ BHYT【3202】(BHYT đối với sổ chi tiết)Không thể truy cập：[" + ex + "]", 'error');
+			    $.modalAlert("Dịch vụ BHYT【3202】(BHYT đối với sổ chi tiết)Không thể truy cập:[" + ex + "]", 'error');
 			}
 		});
 
@@ -240,7 +240,7 @@
 		            }).trigger('reloadGrid');
 		        }
 		    } else {
-		        $.modalAlert("Đối chiếu tổng sổ BHYT thất bại：" + refinfo.err_msg, 'error');
+		        $.modalAlert("Đối chiếu tổng sổ BHYT thất bại:" + refinfo.err_msg, 'error');
 		    }
 		} else {
 		    $.modalAlert("Dịch vụ BHYT【3202】(BHYT đối với sổ chi tiết)Chưa trả về thông tin", 'error');

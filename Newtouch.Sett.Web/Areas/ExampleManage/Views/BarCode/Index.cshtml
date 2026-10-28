@@ -2,8 +2,11 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Form.cshtml";
 }
-<script src="~/Content/js/qrcode/jquery.qrcode.js"></script>
-<script src="~/Content/js/qrcode/qrcode.js"></script>
+@* QA-phase2 (SETT-04): the qrcode plugin files live on the static host
+   (js/qrcode/), not under the app's wwwroot/Content — the old ~/Content
+   paths 404'd, so $(...).qrcode was never defined. *@
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/qrcode/jquery.qrcode.js")"></script>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/qrcode/qrcode.js")"></script>
 <script>
     $(function () {
         $('#qrcodeTable').qrcode({

@@ -6,7 +6,7 @@
     //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
     var opr = OperatorProvider.GetCurrent();
-    //Nơi quản lý BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
+    //Nơi quản lý BHYT,Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
     //Loại chứng từ khám có lấy từ phía BHYT không
     var YB_Jzpzl = SysConfigReader.String("YB_Jzpzl");
@@ -35,11 +35,11 @@
 <script>
     var ybkCardType = "@((int)EnumCardType.YBJYK)";
     var medicalInsurance = '@medicalInsurance';
-    var cqPatInfo = {};//thông tin đọc thẻ bệnh nhân，confirmformSử dụng
+    var cqPatInfo = {};//thông tin đọc thẻ bệnh nhân,confirmformSử dụng
     var errmsg = "";//đọcthẻsaisainêuhiển thị
     var brxzobj = { brxz: "1", brxzmc: "BHYT thường" };
     $('#readCard i').click(function () {
-         $.loading(true, 'Đang đọc thẻ，Vui lòng chờ…');
+         $.loading(true, 'Đang đọc thẻ,Vui lòng chờ…');
          setTimeout("readCard();", 50);
      });
     $("#readCard").show();
@@ -65,7 +65,7 @@
 
                  break;
              default:
-                 $.modalAlert("Địa phương BHYT chưa được thiết lập，Vui lòng thiết lập xong rồi quẹt thẻ", 'warning');
+                 $.modalAlert("Địa phương BHYT chưa được thiết lập,Vui lòng thiết lập xong rồi quẹt thẻ", 'warning');
                  return;
          }
      }
@@ -116,7 +116,7 @@
                  yibaoCardInfo = eval('(' + data + ')');
              },
              error: function (request, error, ex) {
-                 errmsg = "Đọc thẻ dịch vụ BHYT không thể truy cập：[" + ex + "]";
+                 errmsg = "Đọc thẻ dịch vụ BHYT không thể truy cập:[" + ex + "]";
              }
          });
          if (yibaoCardInfo) {
@@ -249,7 +249,7 @@
                      yibaoCardInfo = eval('(' + data + ')');
                  },
                  error: function (request, error, ex) {
-                     errmsg = "Đọc thẻ dịch vụ BHYT không thể truy cập：[" + ex + "]";
+                     errmsg = "Đọc thẻ dịch vụ BHYT không thể truy cập:[" + ex + "]";
                  }
              });debugger
              if (yibaoCardInfo) {

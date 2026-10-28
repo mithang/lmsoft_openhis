@@ -2,17 +2,54 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>MRQC Hệ thống kiểm soát chất lượng (bản thử nghiệm ASP.NET Core)</title>
+    <title>Sett — Hệ thống quản lý thu phí</title>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
 </head>
 <body style="padding: 30px; font-family: sans-serif;">
-    <h2>MRQC Hệ thống kiểm soát chất lượng — Bản thử nghiệm ASP.NET Core 6.0</h2>
-    <p>Trang này là trang chủ tạm thời của bản thử nghiệm di chuyển (trang khung cổng thông tin gốc phụ thuộc vào các thành phần chuyên dụng của Framework, bản thử nghiệm tạm dùng trang điều hướng đơn giản thay thế).</p>
+    <h2>Sett — Hệ thống quản lý thu phí</h2>
+    <p>Trang chủ của ứng dụng thanh toán / thu phí. Mỗi liên kết dưới đây trỏ tới một trang có thật của đúng area đó trong ứng dụng này.</p>
+    <h3>Nghiệp vụ thu phí / quyết toán</h3>
     <ul>
-        <li><a href="/QualityControlManage/Apply/Index">Đơn đăng ký hồ sơ kiểm soát chất lượng (Apply, trang kiểm chứng cơ sở dữ liệu nội bộ)</a></li>
-        <li><a href="/QualityControlManage/SysItem/Index">Bảo trì hạng mục kiểm soát chất lượng (SysItem)</a></li>
-        <li><a href="/QualityControlManage/MedicalCenter/Index">Trung tâm kiểm soát chất lượng (MedicalCenter, trình soạn thảo tài liệu tạm thời chưa được hỗ trợ)</a></li>
-        <li><a href="/SystemManage/Common/GetStaffListByDutyCode?dutyCode=">Giao diện danh sách nhân sự theo vị trí (JSON, dữ liệu thực của Base)</a></li>
+        <li><a href="/BusinessManage/Refund/Index">Hoàn phí (BusinessManage)</a></li>
+        <li><a href="/OutpatientManage/OutpatCharge/ChargeIndex">Thu phí ngoại trú (OutpatientManage)</a></li>
+        <li><a href="/OutpatientManage/OutBook/Index">Đặt lịch khám (OutpatientManage)</a></li>
+        <li><a href="/HospitalizationManage/BookkeepInHos/Index">Ghi sổ nội trú (HospitalizationManage)</a></li>
+        <li><a href="/HospitalizationManage/DischargeSettle/Index">Quyết toán ra viện (HospitalizationManage)</a></li>
+        <li><a href="/HospitalizationManage/Settlement/Index">Quyết toán (HospitalizationManage)</a></li>
+        <li><a href="/NonTreatmentItemManage/NonTreatmentItem/Bookkeeping">Ghi sổ hạng mục không điều trị</a></li>
+        <li><a href="/DaySettleManage/DaySettle/ApplicationIndex">Quyết toán ngày (DaySettleManage)</a></li>
+        <li><a href="/DaySettleManage/DaySettle/DzrIndex">Đối chiếu sổ sách ngày (DaySettleManage)</a></li>
+        <li><a href="/FeeConfirmManage/FeeConfirm/Index">Xác nhận phí (FeeConfirmManage)</a></li>
+        <li><a href="/PayManage/MicroPay/MicroPayQuery">Thanh toán vi mô (PayManage)</a></li>
+    </ul>
+    <h3>Bệnh nhân</h3>
+    <ul>
+        <li><a href="/PatientManage/PatientCenter/Index">Trung tâm bệnh nhân (PatientManage)</a></li>
+        <li><a href="/PatientManage/PatientInHosList/Index">Danh sách bệnh nhân nội trú (PatientManage)</a></li>
+        <li><a href="/PatientManage/HospiterRes/Index">Tiếp nhận nội trú (PatientManage)</a></li>
+    </ul>
+    <h3>Báo cáo / truy vấn / DRG / BHYT</h3>
+    <ul>
+        <li><a href="/ReportManage/Report/ChargeTypeQuery">Báo cáo theo loại phí (ReportManage)</a></li>
+        <li><a href="/ReportManage/Echarts/PerformanceIndicator">Biểu đồ chỉ số hiệu suất (ReportManage)</a></li>
+        <li><a href="/DeanInquiryManage/BusinessRanking/Index">Xếp hạng kinh doanh (DeanInquiryManage)</a></li>
+        <li><a href="/DRGManage/DRGUpload/Index">Upload DRG (DRGManage)</a></li>
+        <li><a href="/JGManage/JGUpload/Index">Upload JG (JGManage)</a></li>
+        <li><a href="/InsuranceManage/CommercialInsurance/Index">Bảo hiểm thương mại (InsuranceManage)</a></li>
+        <li><a href="/KnowledgeBaseManage/MedicalInsurance/Index">Cơ sở tri thức BHYT (KnowledgeBaseManage)</a></li>
+        <li><a href="/KPI/MedicalOrg/Index">KPI tổ chức y tế (KPI)</a></li>
+        <li><a href="/TherapeutistManage/TherapistAdvice/Index">Y lệnh trị liệu (TherapeutistManage)</a></li>
+        <li><a href="/IssueTreatRecord/ComfirmIssue/Index">Xác nhận phát hành hồ sơ điều trị</a></li>
+    </ul>
+    <h3>Hệ thống / kỹ thuật</h3>
+    <ul>
+        <li><a href="/SystemManage/Area/Index">Danh mục khu vực (SystemManage)</a></li>
+        <li><a href="/SystemManage/Organize/Index">Danh mục tổ chức (SystemManage)</a></li>
+        <li><a href="/SystemSecurity/DbBackup/Index">Sao lưu cơ sở dữ liệu (SystemSecurity)</a></li>
+        <li><a href="/SystemSecurity/ServerMonitoring/Index">Giám sát máy chủ (SystemSecurity)</a></li>
+        <li><a href="/SiteManage/SiteStatistics/Index">Thống kê site (SiteManage)</a></li>
+        <li><a href="/HighchartsManage/Highcharts/Sample1">Ví dụ biểu đồ (HighchartsManage)</a></li>
+        <li><a href="/ExampleManage/BarCode/Index">Ví dụ mã QR (ExampleManage)</a></li>
     </ul>
     <p><a href="/Login/OutLogin">Đăng xuất</a></p>
 </body>

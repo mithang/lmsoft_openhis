@@ -4,5 +4,67 @@
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 
-<h2>Index</h2>
-
+@* QA-phase2 (SETT-07): the original view (and this port) rendered only
+   "<h2>Index</h2>" — the page was unusable although LoadData already
+   exists. Minimal list view wired to that endpoint, following the sibling
+   list views (filter + jqGrid). The service behind LoadData currently
+   returns an empty list, so the grid renders its empty state until real
+   patient-list data is wired; no rows are invented here. *@
+<div class="topPanel">
+    <div class="toolbar">
+        <div class="btn-group">
+            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+        </div>
+    </div>
+    <div class="search">
+        <table>
+            <tr>
+                <td>
+                    <div class="input-group">
+                        <input id="txt_keyword" type="text" class="form-control" placeholder="Họ tên / Số nhập viện" style="width: 200px;">
+                        <span class="input-group-btn">
+                            <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                        </span>
+                    </div>
+                </td>
+            </tr>
+        </table>
+    </div>
+</div>
+<div class="gridPanel">
+    <table id="gridList"></table>
+    <div id="gridPager"></div>
+</div>
+<script>
+    $(function () {
+        gridList();
+    });
+    function gridList() {
+        var $gridList = $("#gridList");
+        $gridList.dataGrid({
+            url: "/PatientManage/PatientInHosList/LoadData",
+            height: $(window).height() - 120,
+            colModel: [
+                { label: 'Số hồ sơ', name: 'blh', width: 100, align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 100, align: 'left' },
+                { label: 'Giới tính', name: 'xb', width: 60, align: 'center' },
+                { label: 'Tuổi', name: 'nl', width: 60, align: 'center' },
+                { label: 'Số nhập viện', name: 'zyh', width: 100, align: 'left' },
+                { label: 'Số giường', name: 'cw', width: 80, align: 'left' },
+                { label: 'Chẩn đoán nhập viện', name: 'ryzd', width: 200, align: 'left' },
+                { label: 'Ngày nhập viện', name: 'ryrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
+                { label: 'Ngày xuất viện', name: 'cyrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
+                { label: 'Ngày sinh', name: 'csrq', width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d' } },
+                { label: 'Số giấy tờ', name: 'zjh', width: 150, align: 'left' }
+            ],
+            pager: "#gridPager",
+            sortname: 'ryrq desc',
+            viewrecords: true
+        });
+        $("#btn_search").click(function () {
+            $gridList.jqGrid('setGridParam', {
+                postData: { keyword: $("#txt_keyword").val() },
+            }).trigger('reloadGrid');
+        });
+    }
+</script>

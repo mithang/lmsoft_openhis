@@ -45,11 +45,11 @@
     <div class="search">
         <table>
             <tr>
-                <th class="newformTitle">Từ khóa：</th>
+                <th class="newformTitle">Từ khóa:</th>
                 <td>
                     <input id="keyword" type="text" class="newform-control form-control" placeholder="Khoa/Bác sĩ" style="width: 75%;">
                 </td>
-                <th class="newformTitle">Loại：</th>
+                <th class="newformTitle">Loại:</th>
                 <td style="width: 28%;">
                     @Html.DropDownList("reminderType", EnmuReminderType.TienTrenHanNhacNho.ToDescSelectList(), "Tất cả", new { @class = "newform-control form-control required", @style = "width: 100%;" })
                 </td>

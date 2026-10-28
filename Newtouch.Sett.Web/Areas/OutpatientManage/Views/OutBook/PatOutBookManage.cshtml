@@ -32,7 +32,7 @@
                                 <option value="">Vui lòng chọn</option>
                             </select>
                         </td>
-                        <th class="formTitle">Ngày hẹn：</th>
+                        <th class="formTitle">Ngày hẹn:</th>
                         <td class="formValue" colspan="2">
                             <input id="txtyykssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                             <span style="margin-left:2%;float:left;">—</span>
@@ -43,12 +43,12 @@
                     </tr>
                     <tr>
                         <th class="formTitle">
-                            <span class="required">*</span>Khoa：
+                            <span class="required">*</span>Khoa:
                         </th>
                         <td class="formValue">
                             <input type="text" class="form-control" id="txtkschoose" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Loại khám ngoại trú：</th>
+                        <th class="formTitle"><span class="required">*</span>Loại khám ngoại trú:</th>
                         <td class="formValue formDdlSelectorTd">
                             <select id="sel_mzlx" class="form-control required" data-EnumType="EnumOutPatientType">
                                 <option value="">Vui lòng chọn</option>
@@ -72,7 +72,7 @@
             <div class="panel panel-default">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Số bệnh án/Họ tên：</th>
+                        <th class="formTitle"><span class="required">*</span>Số bệnh án/Họ tên:</th>
                         <td class="formValue">
                             <input type="hidden" id="patid" />
                             <input type="text" class="form-control" id="blh" placeholder="Ít nhất1ký tự" />
@@ -80,19 +80,19 @@
                         <th class="formTitle">
                             <input type="button" class="btn btn-default btn-md btn-default-color" id="btnsyy" value="Tra cứu" onclick="GetPatSerarchView($('#blh').val());" />
                         </th>
-                        <th class="formTitle">Họ tên：</th>
+                        <th class="formTitle">Họ tên:</th>
                         <td class="formValue" style="width:80px;">
                             <label id="xm"></label>
                         </td>
-                        <th class="formTitle">Giới tính：</th>
+                        <th class="formTitle">Giới tính:</th>
                         <td class="formValue">
                             <label id="xb"></label>
                         </td>
-                        <th class="formTitle">Tuổi：</th>
+                        <th class="formTitle">Tuổi:</th>
                         <td class="formValue">
                             <label id="nlshow"></label>
                         </td>
-                        <td class="formTitle">Số thẻ：</td>
+                        <td class="formTitle">Số thẻ:</td>
                         <td class="formValue">
                             <label id="CardTypeName"></label>
                             <label id="kh"></label>
@@ -100,13 +100,13 @@
                     </tr>
                     <tr>
                         <td class="formTitle">
-                            <label id="zjlx">Số giấy tờ：</label>
+                            <label id="zjlx">Số giấy tờ:</label>
                         </td>
                         <td class="formValue">
                             <label id="zjh"></label>
                             <input type="text" style="display:none;" id="hiddenzjlx" />
                         </td>
-                        <th class="formTitle">Khám lần đầu/tái khám：</th>
+                        <th class="formTitle">Khám lần đầu/tái khám:</th>
                         <td class="formValue">
                             <label id="txtcfz"></label>
                         </td>
@@ -123,22 +123,22 @@
                 </div>
                 <table class="form">
                     <tr>
-                        <th class="formTitle">Thời gian ：</th>
+                        <th class="formTitle">Thời gian :</th>
                         <td class="formValue">
                             <input type="text" id="czrq" class="form-control input-wdatepicker formClearIgnore" style="height:20px;width:100px" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' });xzsj()" />
                         </td>
-                        <th class="formTitle">Loại khám ngoại trú：</th>
+                        <th class="formTitle">Loại khám ngoại trú:</th>
                         <td class="formValue">
                             <select id="mjzbz" class="form-control required" data-EnumType="EnumOutPatientType">
                                 <option value="">Vui lòng chọn</option>
                             </select>
                         </td>
-                        <th class="formTitle">Khoa：</th>
+                        <th class="formTitle">Khoa:</th>
                         <td class="formValue">
                             <input type="text" class="form-control" id="txtyykschoose" />
                         </td>
 
-                        <th class="formTitle">Bác sĩ trực：</th>
+                        <th class="formTitle">Bác sĩ trực:</th>
                         <td class="formValue"><input type="text" id="doctormc2" name="doctormc2" class="form-control form-an" /></td>
                         <td class="formValue" colspan="2">
                             <input type="button" id="btn_searchrl" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="Tra cứu" />
@@ -175,7 +175,7 @@
             width: 300,
             clickautotrigger: true,
             filter: function (keyword) {
-                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                //duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysDepartList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -206,7 +206,7 @@
             width: 300,
             clickautotrigger: true,
             filter: function (keyword) {
-                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                //duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysDepartList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -237,7 +237,7 @@
             width: 480,
             clickautotrigger: true,
             filter: function (keyword) {
-                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                //duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
                 var resultObjArr = new Array();
 
                 $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
@@ -435,7 +435,7 @@
             async: false,
             success: function (rep) {
                 if (rep.data && !!!rep.data.brxz) {
-                    $.modalAlert("Thông tin bệnh nhân bất thường，Thiếu tính chất chi phí", 'warning');
+                    $.modalAlert("Thông tin bệnh nhân bất thường,Thiếu tính chất chi phí", 'warning');
                     return false;
                 }
                 if (rep.data && !!!rep.data.CardTypeName) {
@@ -473,7 +473,7 @@
         $.najax({
             url: "/OutpatientManage/OutBook/PatBookGh",
             dataType: "json",
-            loadingtext: "Đang hẹn，Vui lòng chờ…",
+            loadingtext: "Đang hẹn,Vui lòng chờ…",
             data: { OutDate: seleRow.OutDate, cardNo: patModel.kh, ScheduId: seleRow.ghpbId, brxz: patModel.brxz },
             type: "POST",
             success: function (ajaxresp) {
@@ -526,7 +526,7 @@
         $.najax({
             url: "/OutpatientManage/OutBook/CancalBook",
             dataType: "json",
-            loadingtext: "Đang hẹn，Vui lòng chờ…",
+            loadingtext: "Đang hẹn,Vui lòng chờ…",
             data: { BookId: seleRow.BookId },
             type: "POST",
             success: function (ajaxresp) {

@@ -22,35 +22,35 @@
 <div style="margin:2% 7% 0 7%;">
     <table class="table">
         <tr>
-            <th class="text-right">Mã nhập viện：</th>
+            <th class="text-right">Mã nhập viện:</th>
             <td class="text-left">
                 @Model.HospSettPatInfo.zyh
             </td>
-            <th class="text-right">Số thẻ：</th>
+            <th class="text-right">Số thẻ:</th>
             <td class="text-left">
                 @Model.HospSettPatInfo.kh
             </td>
-            <th class="text-right">Họ tên：</th>
+            <th class="text-right">Họ tên:</th>
             <td class="text-left">
                 @Model.HospSettPatInfo.xm
             </td>
-            <th class="text-right">Giới tính：</th>
+            <th class="text-right">Giới tính:</th>
             <td class="text-left">@(Model.HospSettPatInfo.xb == null ? "" : ((EnumSex)(Model.HospSettPatInfo.xb.ToInt(-1))).GetDescription(""))</td>
         </tr>
         <tr>
-            <th class="text-right">Tuổi：</th>
+            <th class="text-right">Tuổi:</th>
             <td class="text-left">
                 @Model.HospSettPatInfo.csny.ToAge()
             </td>
-            <th class="text-right">ghi sổ：</th>
+            <th class="text-right">ghi sổ:</th>
             <td class="text-left">
                 @Model.jzfy.ToString("0.00")
             </td>
-            <th class="text-right">Tự trả theo loại：</th>
+            <th class="text-right">Tự trả theo loại:</th>
             <td class="text-left">
                 @Model.flzf.ToString("0.00")
             </td>
-            <th class="text-right">Tự trả：</th>
+            <th class="text-right">Tự trả:</th>
             <td class="text-left">
                 @Model.zifu.ToString("0.00")
             </td>
@@ -60,11 +60,11 @@
             <td class="text-left"></td>
             <th class="text-right"></th>
             <td class="text-left"></td>
-            <th class="text-right">Tự phí：</th>
+            <th class="text-right">Tự phí:</th>
             <td class="text-left">
                 @Model.zifei.ToString("0.00")
             </td>
-            <th class="text-right">Khác：</th>
+            <th class="text-right">Khác:</th>
             <td class="text-left">
                 @Model.jmje.ToString("0.00")
             </td>
@@ -95,7 +95,7 @@
                             <i class="fa fa-minus-circle fa-lg" id="btn_Remove" style="cursor:pointer;" onclick="btn_delete()"></i>
                         </td>
                         <td class="formValue">
-                            Số dư tài khoản：@Model.zhye
+                            Số dư tài khoản:@Model.zhye
                         </td>
                     </tr>
                 </table>
@@ -108,21 +108,21 @@
                         <td class="text-left"></td>
                         <th class="text-right"></th>
                         <td class="text-left"></td>
-                        <th class="text-right" style="font-weight:700;">Số phải thu：</th>
+                        <th class="text-right" style="font-weight:700;">Số phải thu:</th>
                         <td class="text-left" id="tdYsk">
                             <span>@Model.yingshoukuan.ToString("0.00")</span>
                         </td>
                     </tr>
                     <tr>
-                        <th class="text-right" style="font-weight:700;color:red;">Tiền thừa：</th>
+                        <th class="text-right" style="font-weight:700;color:red;">Tiền thừa:</th>
                         <td class="text-left" id="tdZhaoling" style="color:red;">
                             <span>@Model.zhaoling.ToString("0.00")</span>
                         </td>
-                        <th class="text-right">Chênh lệch làm tròn：</th>
+                        <th class="text-right">Chênh lệch làm tròn:</th>
                         <td class="text-left">
                             @Model.srce.ToString("0.00")
                         </td>
-                        <th class="text-right" style="font-weight:700;">Thực thu：</th>
+                        <th class="text-right" style="font-weight:700;">Thực thu:</th>
                         <td class="text-left" id="tdSsk">
                             <span>@Model.ssk.ToString("0.00")</span>
                         </td>

@@ -61,16 +61,16 @@
             <div style="padding-right:20px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">Loại：</th>
+                        <th class="formTitle">Loại:</th>
                         <td class="formValue" style="width:180px">
                             @Html.DropDownList("sel_rptype", EnumYbQuery.rydyxs.ToDescSelectList(), new { @class = "form-control form-an" })
                         </td>
-                        <th class="formTitle">Ngày bắt đầu：</th>
+                        <th class="formTitle">Ngày bắt đầu:</th>
                         <td class="formValue">
                             <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                                    onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                         </td>
-                        <th class="formTitle">Ngày kết thúc：</th>
+                        <th class="formTitle">Ngày kết thúc:</th>
                         <td class="formValue">
                             <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                                    onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
@@ -83,20 +83,20 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Loại y tế：</th>
+                        <th class="formTitle">Loại y tế:</th>
                         <td class="formValue" style="width: 180px">
                             @Html.DropDownList("sel_yllb", Enumyllb.ptmz.ToDescSelectList(), new { @class = "form-control form-an" })
 
                         </td>
-                        <th class="formTitle">quyết toánID：</th>
+                        <th class="formTitle">quyết toánID:</th>
                         <td class="formValue">
                             <input type="text" id="settId" name="settId" class="form-control" style="width:150px" />
                         </td>
-                        <th class="formTitle">khámID：</th>
+                        <th class="formTitle">khámID:</th>
                         <td class="formValue">
                             <input type="text" id="jzId" name="jzId" class="form-control" style="width:150px" />
                         </td>
-                        <th class="formTitle">Số phiếu báo cáo：</th>
+                        <th class="formTitle">Số phiếu báo cáo:</th>
                         <td class="formValue">
                             <input type="text" id="rpotc_no" name="rpotc_no" class="form-control" placeholder="tại5401trong Lấy" style="width:150px" />
                         </td>
@@ -126,34 +126,34 @@
             <div style="padding-right:0px; text-align:center">
                 <table class="form">
                     <tr>
-                        <th class="formTitleTh">Số hiệu nhân viên：</th>
+                        <th class="formTitleTh">Số hiệu nhân viên:</th>
                         <td class="formValueYb" style="width: 120px;">
                             <label id="rybh"></label>
                         </td>
-                        <th class="formTitleTh">Số giấy tờ：</th>
+                        <th class="formTitleTh">Số giấy tờ:</th>
                         <td class="formValueYb" style="width: 120px;">
                             <label id="zjhm"></label>
                         </td>
-                        <td class="formTitleTh">Họ tên：</td>
+                        <td class="formTitleTh">Họ tên:</td>
                         <td class="formValueYb">
                             <label id="xm"></label>
                         </td>
-                        <td class="formTitleTh">Giới tính：</td>
+                        <td class="formTitleTh">Giới tính:</td>
                         <td class="formValueYb">
                             <label id="xb"></label>
                         </td>
-                        @*<th class="formTitleTh">Dân tộc：</th>
+                        @*<th class="formTitleTh">Dân tộc:</th>
                             <td class="formValueYb">
                                 <label id="mz"></label>
                             </td>*@
 
                     </tr>
                     <tr>
-                        <th class="formTitleTh">Ngày sinh：</th>
+                        <th class="formTitleTh">Ngày sinh:</th>
                         <td class="formValueYb">
                             <label id="csny"></label>
                         </td>
-                        <th class="formTitleTh">Tuổi：</th>
+                        <th class="formTitleTh">Tuổi:</th>
                         <td class="formValueYb">
                             <label id="nl"></label>
                         </td>
@@ -186,24 +186,24 @@
             <div style="padding-right:20px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">Loại：</th>
+                        <th class="formTitle">Loại:</th>
                         <td class="formValue" style="width:180px">
                             @Html.DropDownList("sel_jgcxtype", EnumYbJGQuery.jgxx.ToDescSelectList(), new { @class = "form-control form-an" })
                         </td>
-                        <th class="formTitle 1201-show">Tên cơ sở y dược：</th>
+                        <th class="formTitle 1201-show">Tên cơ sở y dược:</th>
                         <td class="formValue 1201-show" style="width: 180px">
                             <input type="text" id="fixmedins_name" name="fixmedins_name" class="form-control" style="width:150px" />
                         </td>
-                        <th class="formTitle  1201-show">Mã số cơ sở y dược：</th>
+                        <th class="formTitle  1201-show">Mã số cơ sở y dược:</th>
                         <td class="formValue  1201-show">
                             <input type="text" id="fixmedins_code" name="fixmedins_code" class="form-control" style="width:150px" />
                         </td>
-                        <th class="formTitle time-show">Ngày bắt đầu：</th>
+                        <th class="formTitle time-show">Ngày bắt đầu:</th>
                         <td class="formValue  time-show">
                             <input id="jg_kssj" type="text" class="form-control input-wdatepicker form-an" style="width:150px"
                                    onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                         </td>
-                        <th class="formTitle  time-show">Ngày kết thúc：</th>
+                        <th class="formTitle  time-show">Ngày kết thúc:</th>
                         <td class="formValue  time-show">
                             <input id="jg_jssj" type="text" class="form-control input-wdatepicker form-an" style="width:150px"
                                    onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
@@ -222,19 +222,19 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle 35-show">Mã mục lục cơ sở y dược：</th>
+                        <th class="formTitle 35-show">Mã mục lục cơ sở y dược:</th>
                         <td class="formValue 35-show" style="width: 180px">
                             <input type="text" id="medins_list_codg" name="medins_list_codg" class="form-control" style="width:150px" />
                         </td>
-                        <th class="formTitle 35-show">Số giao dịch lô của cơ sở y dược chỉ định：</th>
+                        <th class="formTitle 35-show">Số giao dịch lô của cơ sở y dược chỉ định:</th>
                         <td class="formValue 35-show">
                             <input type="text" id="fixmedins_bchno" name="fixmedins_bchno" class="form-control" style="width:150px" />
                         </td>
-                        <th class="formTitle 35-show">Mã mục lục y tế：</th>
+                        <th class="formTitle 35-show">Mã mục lục y tế:</th>
                         <td class="formValue 35-show">
                             <input type="text" id="med_list_codg" name="med_list_codg" class="form-control" style="width:150px" />
                         </td>
-                        <th class="formTitle 35-show">khámID：</th>
+                        <th class="formTitle 35-show">khámID:</th>
                         <td class="formValue 35-show">
                             <input type="text" id="mdtrt_id" name="mdtrt_id" class="form-control" style="width:150px" />
                         </td>
@@ -242,7 +242,7 @@
                         <td class="formValue 3607-show">
                             <input id="setl_ym" type="text" class="form-control input-wdatepicker" style="width:120px; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyyMM")" onfocus="WdatePicker({ dateFmt: 'yyyyMM' })" />
                         </td>
-                        <th class="formTitle 3607-show">quyết toánID：</th>
+                        <th class="formTitle 3607-show">quyết toánID:</th>
                         <td class="formValue 3607-show">
                             <input type="text" id="setl_id" name="setl_id" class="form-control" style="width:150px" />
                         </td>
@@ -265,8 +265,8 @@
 
 
 <script type="text/javascript">
-    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
-    var ybSettOnce = '@ybSettOnce' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có quyết toán một lần không
+    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc:bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+    var ybSettOnce = '@ybSettOnce' === 'True'; //cấu hình công tắc:bệnh nhân BHYT có quyết toán một lần không
     var medicalInsurance = '@medicalInsurance';//cấu hình địa phương BHYT:phân biệt khu vực BHYT của bệnh viện
     var cqPatInfo = {};                       //thông tin đọc thẻ bệnh nhân
 

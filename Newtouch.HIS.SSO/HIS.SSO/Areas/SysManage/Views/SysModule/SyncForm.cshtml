@@ -5,7 +5,7 @@
 
 
     .bootstrap-table {
-        height: 60%; /* hoặc là phần trăm，ví dụ height: 100%; */
+        height: 60%; /* hoặc là phần trăm,ví dụ height: 100%; */
         overflow-y: auto;
     }
 
@@ -29,7 +29,7 @@
             <div class="btn-toolbar">
                 <form class="form-inline" role="form">
                     <div class="form-group">
-                        <i class="fa fa-filter"></i> mục tiêu nhập vào：
+                        <i class="fa fa-filter"></i> mục tiêu nhập vào:
                     </div>
                     <div class="form-group">
                         <div class="ckbox">
@@ -53,7 +53,7 @@
         <div class="step-pane" id="step-2" style="margin: 10px; margin-bottom: 0px;">
             <div class="alert alert-danger">
                 <i class="fa fa-warning alert-dismissible"></i>
-                vui lòng chọn cấp cha của menu cần nhập，hoặc nhập tên menu cấp cha（nếu không tồn tại thì tạo mới），mặc định nhập theo cấp bậc của menu nguồn。
+                vui lòng chọn cấp cha của menu cần nhập,hoặc nhập tên menu cấp cha（nếu không tồn tại thì tạo mới）,mặc định nhập theo cấp bậc của menu nguồn。
             </div>
             <form class="form-horizontal" role="form">
                 <div class="form-group" style="margin:5px 5px;">
@@ -115,17 +115,23 @@
         });
 
         $('#input-search').on('keyup', search);
+        // wdtree has no unselect event: clearing the text must clear the id too.
+        $('#ParentMenuSelect').on('input', function () {
+            if (!$(this).val()) { $(this).data("id", ""); }
+        });
         $("#dv_treeParent").height($(window).height() - 150);
         $("#dv_selectmenu").height($(window).height() - 150);
     }
+    // QA-phase2 (SSO-03): #treeParent renders with js/wdtree/tree.js, which
+    // has NO 'search' method — the old call re-initialised the widget with no
+    // data and wiped the tree on the first keystroke. Filter client-side by
+    // hiding non-matching nodes instead.
     var search = function (e) {
-        var pattern = $('#input-search').val();
-        var options = {
-            //ignoreCase: $('#chk-ignore-case').is(':checked'),
-            //exactMatch: $('#chk-exact-match').is(':checked'),
-            //revealResults: $('#chk-reveal-results').is(':checked')
-        };
-        $('#treeParent').treeview('search', [pattern, options]);
+        var pattern = ($('#input-search').val() || "").toLowerCase();
+        $('#treeParent .bbit-tree-node').each(function () {
+            var text = $(this).find('.bbit-tree-node-text').text().toLowerCase();
+            $(this).toggle(!pattern || text.indexOf(pattern) >= 0);
+        });
     }
 
     function treeDataInit() {
@@ -134,17 +140,15 @@
             data: { withSystemMenu: true },
             dataType: "json",
             success: function (data) {
+                // QA-phase2 (SSO-03): wdtree API, not bootstrap-treeview.
+                // onNodeSelected/expandIcon/nodeIcon are bootstrap-treeview
+                // options that wdtree silently ignores, so a click never set
+                // the parent menu. wdtree calls onnodeclick(item) with the
+                // node object (id/text from GetBsTreeSelectJson).
                 $('#treeParent').treeview({
-                    color: "#428bca",
-                    expandIcon: 'fa fa-chevron-right',
-                    collapseIcon: 'fa fa-chevron-down',
-                    nodeIcon: 'fa fa-bookmark',
                     data: data,
-                    onNodeSelected: function (event, node) {
-                        $("#ParentMenuSelect").val(node.text).data("id", node.href);
-                    },
-                    onNodeUnselected: function (event, node) {
-                        $("#ParentMenuSelect").val("").data("id", "");
+                    onnodeclick: function (item) {
+                        $("#ParentMenuSelect").val(item.text).data("id", item.id || item.href);
                     }
                 });
             }
@@ -301,7 +305,7 @@
             search: true,                       //có hiển thị tìm kiếm bảng hay không
             sortable: true,                     //có bật sắp xếp hay không
             sortOrder: "desc",                   //phương thức sắp xếp
-            //sidePagination: 'client',           //phương thức phân trang：clientphân trang phía máy khách，serverphân trang phía máy chủ（*）
+            //sidePagination: 'client',           //phương thức phân trang:clientphân trang phía máy khách,serverphân trang phía máy chủ（*）
             onLoadSuccess: function (data) {
                 $table.treegrid({
                     initialState: "expanded",//mở rộng
@@ -315,7 +319,7 @@
                 bstableMutiSelected($table, "Id", [row.Id], $element);
             },
             formatLoadingMessage: function () {
-                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
+                return "<span class='table-loading-text'>đang tải,vui lòng chờ</span>";
             },
             formatNoMatches: function () {
                 return "chưa có dữ liệu";
@@ -413,7 +417,7 @@
             ],
             uniqueId: 'Id',
             formatLoadingMessage: function () {
-                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
+                return "<span class='table-loading-text'>đang tải,vui lòng chờ</span>";
             },
             formatNoMatches: function () {
                 return "chưa có dữ liệu";

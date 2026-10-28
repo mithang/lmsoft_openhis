@@ -12,27 +12,27 @@
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">Mã nhập viện：</th>
+                    <th class="formTitle">Mã nhập viện:</th>
                     <td class="formValue">
                         <input class="form-control" type="text" id="zyh" value="" />
                     </td>
                     <td class="formValue">
                         <input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" id="zy_btnsyy" value="Truy vấn" onclick="GetPatSerarchView($('#zyh').val());">
                     </td>
-                    <th class="formTitle">Ngày xuất viện：</th>
+                    <th class="formTitle">Ngày xuất viện:</th>
                     <td class="formValue" style="width:143px;">
                         <input id="cyrq" type="text" class="form-control input-wdatepicker form-an formClearIgnore"
                                onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@(System.DateTime.Now.ToString("yyyy-MM-dd"))" />
                     </td>
-                    <th class="formTitle">Họ tên：</th>
+                    <th class="formTitle">Họ tên:</th>
                     <td class="formValue">
                         <label id="zy_xm"></label>
                     </td>
-                    <th class="formTitle">Giới tính：</th>
+                    <th class="formTitle">Giới tính:</th>
                     <td class="formValue">
                         <label id="zy_xb"></label>
                     </td>
-                    <th class="formTitle">Tuổi：</th>
+                    <th class="formTitle">Tuổi:</th>
                     <td class="formValue">
                         <label id="zy_nl"></label>
                     </td>
@@ -40,23 +40,23 @@
             </tbody>
             <tbody class="dispTbody" style="display:none;">
                 <tr>
-                    <th class="formTitle">Số giấy tờ：</th>
+                    <th class="formTitle">Số giấy tờ:</th>
                     <td class="formValue" colspan="2">
                         <label id="zy_zjh"></label>
                     </td>
-                    <th class="formTitle">Chẩn đoán nhập viện：</th>
+                    <th class="formTitle">Chẩn đoán nhập viện:</th>
                     <td class="formValue">
                         <label id="zy_ryzd"></label>
                     </td>
-                    <th class="formTitle">Số điện thoại：</th>
+                    <th class="formTitle">Số điện thoại:</th>
                     <td class="formValue">
                         <label id="zy_phone"></label>
                     </td>
-                    <th class="formTitle">Ngày sinh：</th>
+                    <th class="formTitle">Ngày sinh:</th>
                     <td class="formValue">
                         <label id="zy_csny"></label>
                     </td>
-                    <th class="formTitle">Ngày nhập viện：</th>
+                    <th class="formTitle">Ngày nhập viện:</th>
                     <td class="formValue">
                         <label id="zy_ryrq"></label>
                     </td>
@@ -74,11 +74,11 @@
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">Phí đãquyết toán：</th>
+                    <th class="formTitle">Phí đãquyết toán:</th>
                     <td class="formValue" style="width:100px;">
                         <label id="lblSumje" style="color:red;font-weight: bold;font-size: large;"></label>
                     </td>
-                    <th class="formTitle" style="width:125px;">Có tồn tại bản ghi phí chưaquyết toán hay không：</th>
+                    <th class="formTitle" style="width:125px;">Có tồn tại bản ghi phí chưaquyết toán hay không:</th>
                     <td class="formValue">
                         <label id="isExistUnSetted"></label>
                     </td>
@@ -243,7 +243,7 @@
         }
         var isExistUnSetted = $('#isExistUnSetted').html();
         if (isExistUnSetted.indexOf('là') != -1) {
-            $.modalConfirm("Tồn tại phí chưaquyết toán，trướcđiquyết toán", function (flag) {
+            $.modalConfirm("Tồn tại phí chưaquyết toán,trướcđiquyết toán", function (flag) {
                 if (flag) {
                     $('#isExistUnSetted a').trigger('click');
                 }

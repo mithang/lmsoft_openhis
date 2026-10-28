@@ -6,7 +6,7 @@
 
     //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
-    //Nơi quản lý BHYT，phân biệt hệ thốngsẽthực hiệnở đâuLogic BHYT
+    //Nơi quản lý BHYT,phân biệt hệ thốngsẽthực hiệnở đâuLogic BHYT
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
 
     //thu phí thành côngSaulàkhôngTrực tiếpInBiên lai
@@ -27,7 +27,7 @@
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">Mã nhập viện：</th>
+                    <th class="formTitle">Mã nhập viện:</th>
                     <td class="formValue">
                         <input class="form-control" type="text" id="zyh" value="" />
                     </td>
@@ -40,11 +40,11 @@
                             @Html.Partial("YibaoRedCardCommon")
                         }
                     </td>
-                    <th class="formTitle">Thời gian bắt đầu：</th>
+                    <th class="formTitle">Thời gian bắt đầu:</th>
                     <td class="formValue" colspan="2">
                         <label id="startTime"></label>
                     </td>
-                    <th class="formTitle">Thời gian kết thúc：</th>
+                    <th class="formTitle">Thời gian kết thúc:</th>
                     <td class="formValue" colspan="2">
                         <input id="endTime" type="text" class="form-control input-wdatepicker form-an formClearIgnore"
                                onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { thenreload(); } })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
@@ -55,27 +55,27 @@
             </tbody>
             <tbody class="dispTbody" >
                 <tr>
-                    <th class="formTitle">Họ tên：</th>
+                    <th class="formTitle">Họ tên:</th>
                     <td class="formValue">
                         <label id="zy_xm" style="min-width:100px"></label>
                     </td>
-                    <th class="formTitle">Giới tính：</th>
+                    <th class="formTitle">Giới tính:</th>
                     <td class="formValue">
                         <label id="zy_xb"></label>
                     </td>
-                    <th class="formTitle">Tuổi：</th>
+                    <th class="formTitle">Tuổi:</th>
                     <td class="formValue">
                         <label id="zy_nl"></label>
                     </td>
-                    <th class="formTitle">Chẩn đoán nhập viện：</th>
+                    <th class="formTitle">Chẩn đoán nhập viện:</th>
                     <td class="formValue">
                         <label id="zy_ryzd"></label>
                     </td>
-                    <th class="formTitle">Ngày sinh：</th>
+                    <th class="formTitle">Ngày sinh:</th>
                     <td class="formValue">
                         <label id="zy_csny" style="min-width:100px"></label>
                     </td>
-                    <th class="formTitle">Ngày nhập viện：</th>
+                    <th class="formTitle">Ngày nhập viện:</th>
                     <td class="formValue">
                         <label id="zy_ryrq" style="min-width:100px"></label>
                     </td>
@@ -110,11 +110,11 @@
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">Phí chưaquyết toán：</th>
+                    <th class="formTitle">Phí chưaquyết toán:</th>
                     <td class="formValue" style="width:100px;">
                         <label id="lblSumje" style="color:red;font-weight: bold;font-size: large;"></label>
                     </td>
-                    <th class="formTitle" style="width:105px;">Thời gian kết thúcquyết toán lần trước：</th>
+                    <th class="formTitle" style="width:105px;">Thời gian kết thúcquyết toán lần trước:</th>
                     <td class="formValue">
                         <label id="lastValidMidwaySettTime"></label>
                     </td>
@@ -134,7 +134,7 @@
     F8Hidden = true,
 })
 <script type="text/javascript">
-    var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc：Bệnh nhân BHYT có sử dụng quy trình giao dịch BHYT hay không
+    var openYbSett = '@openYbSett' === 'True'; //Cấu hình công tắc:Bệnh nhân BHYT có sử dụng quy trình giao dịch BHYT hay không
     var isYbjyjz; //Lần khám hiện tại có giao dịch BHYT hay không
     var medicalInsurance = '@medicalInsurance';
     var curTime = $.getDate() + " 23:59:59";
@@ -340,7 +340,7 @@
     var jszje = 0.00;
     //Nạp thông tin cơ bản nhập viện
     function ajaxLoadDataResult(obj, funcSuccCallback) {
-        $('#startTime').html('');   //chỉcóchuyển đổiMã nhập việncủalúcchờ，mớichuyển đổiNgày bắt đầu
+        $('#startTime').html('');   //chỉcóchuyển đổiMã nhập việncủalúcchờ,mớichuyển đổiNgày bắt đầu
             $.najax({
                 type: "POST",
                 data: obj,
@@ -490,7 +490,7 @@
                     });
                 },
                 cancelCallBack: function (iframeId) {
-                    //Hủyquyết toán xuất viện，Làm thủ tục xuất việnhoàn trả
+                    //Hủyquyết toán xuất viện,Làm thủ tục xuất việnhoàn trả
                     if (isYbjyjz) {
                             var cqybjyDenySettleReturn;
                             var payoptype = { hisId:zyh,'setl_id': ybjyFeeReturn.setl_id, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id': ybjyFeeReturn.mdtrt_id, 'psn_no': cqPatInfo.grbh, "insuplc_admdvs": cqPatInfo.xzqh };
@@ -505,7 +505,7 @@
                                 }
                             });
                             if (cqybjyDenySettleReturn.infcode !== "0") {
-                                $.modalAlert('Đảo ngược quyết toán nhập viện thất bại：' + cqybjyDenySettleReturn.err_msg + '【lúc nàyBHYTđã quyết toán thành công，Vui lòng liên hệ nhà phát triển HIS xử lý】', 'error');
+                                $.modalAlert('Đảo ngược quyết toán nhập viện thất bại:' + cqybjyDenySettleReturn.err_msg + '【lúc nàyBHYTđã quyết toán thành công,Vui lòng liên hệ nhà phát triển HIS xử lý】', 'error');
                             }
 
                             $.loading(false);
@@ -540,7 +540,7 @@
     //Hủyquyết toán
     function newtouch_event_f6() {
         if (!zyh) {
-            $.modalAlert("Mã nhập việnlàtrống，Vui lòng xác nhận", 'warning');
+            $.modalAlert("Mã nhập việnlàtrống,Vui lòng xác nhận", 'warning');
             return;
         }
         $.ajax({
@@ -551,7 +551,7 @@
             success: function (jsnm) {
                 if (isYbjyjz) {
                     if (!ybIsReadCard) {
-                        $.modalAlert("Hủyquyết toán bệnh nhân BHYT，Vui lòng đọc thẻ trước！", 'warning');
+                        $.modalAlert("Hủyquyết toán bệnh nhân BHYT,Vui lòng đọc thẻ trước！", 'warning');
                         return;
                     }
                         var cqybjyDenySettleReturn;
@@ -585,11 +585,11 @@
                                             }
                                         });
                                     } else {
-                                        $.modalAlert('Đảo ngược quyết toán nhập viện thất bại：' + cqybjyDenySettleReturn.err_msg + '【lúc nàyBHYTđã quyết toán thành công，Vui lòng liên hệ nhà phát triển HIS xử lý】', 'warning');
+                                        $.modalAlert('Đảo ngược quyết toán nhập viện thất bại:' + cqybjyDenySettleReturn.err_msg + '【lúc nàyBHYTđã quyết toán thành công,Vui lòng liên hệ nhà phát triển HIS xử lý】', 'warning');
                                         return;
                                     }
                                 } else {
-                                    $.modalAlert('Hủyquyết toán thất bại，Bảngquyết toáncqyb_OutPut05trongkhông cóLầnquyết toánBHYTlưuDữ liệu：Mãquyết toán' + jsnm, 'warning');
+                                    $.modalAlert('Hủyquyết toán thất bại,Bảngquyết toáncqyb_OutPut05trongkhông cóLầnquyết toánBHYTlưuDữ liệu:Mãquyết toán' + jsnm, 'warning');
                                     return;
                                 }
                                 $.loading(false);
@@ -624,7 +624,7 @@
                             }
                             else {
                                 $.loading(false);
-                                $.modalAlert("Nhập viện BHYT sửa đổi đăng ký khám thất bại：" + medicalReg.ErrorMsg, 'error');
+                                $.modalAlert("Nhập viện BHYT sửa đổi đăng ký khám thất bại:" + medicalReg.ErrorMsg, 'error');
                                 return;
                             }
                         }
@@ -669,21 +669,21 @@
 
         if (isYbjyjz) {//BHYT
             if (!medicalInsurance) {
-                $.modalAlert("Chương trình chưa cấu hình động nơi BHYT，Vui lòng cấu hình rồi thử lại", 'warning');
+                $.modalAlert("Chương trình chưa cấu hình động nơi BHYT,Vui lòng cấu hình rồi thử lại", 'warning');
                 return;
             }
                 if (!ybIsReadCard) {
-                    $.modalAlert("quyết toán bệnh nhân BHYT，Vui lòng đọc thẻ trước！", 'warning');
+                    $.modalAlert("quyết toán bệnh nhân BHYT,Vui lòng đọc thẻ trước！", 'warning');
                     return;
                 }
-                $.loading(true, 'Đang sửa đăng ký khám，Vui lòng đợi...');
+                $.loading(true, 'Đang sửa đăng ký khám,Vui lòng đợi...');
                 setTimeout(function() {
                     CQjzdj(function (jzxx) {
-                            $.loading(true, 'Đang kiểm tra chi tiết phí，Vui lòng đợi...');
+                            $.loading(true, 'Đang kiểm tra chi tiết phí,Vui lòng đợi...');
                             setTimeout(function() {
                                 CQmxsc(jzxx,
                                         function (mxxx) {
-                                            $.loading(true, 'Đangquyết toán BHYT，Vui lòng đợi...');
+                                            $.loading(true, 'Đangquyết toán BHYT,Vui lòng đợi...');
                                             setTimeout(function() {
                                                 CQybjs(jzxx, mxxx);
                                                 });
@@ -788,7 +788,7 @@
 		                    }
 		                    else {
 		                        $.loading(false);
-		                        $.modalAlert("Thay đổi thông tin nhập viện thất bại：" + medicalReg.err_msg, 'error');
+		                        $.modalAlert("Thay đổi thông tin nhập viện thất bại:" + medicalReg.err_msg, 'error');
 		                        return;
 		                    }
 		                }
@@ -912,8 +912,8 @@
                     if (ybjsSettReturn.infcode == "0") {
                         var ybjyCqFeeReturn = ybjsSettReturn.output.setlinfo;
                         //hisXác nhậnquyết toán（bao gồmBHYTXác nhậnquyết toán）
-                        //Theo kết quả truy vấn từ máy chủ，Nếu bệnh nhân này có mục tự lập đã mở（khôngcóMã BHYT），Thì tổng số tiền khiquyết toán，Điền tổng số tiền tổng hợp
-                        //Nếu chỉ có mục BHYT，Thìquyết toán theo kết quả trả về BHYT củaquyết toán BHYT
+                        //Theo kết quả truy vấn từ máy chủ,Nếu bệnh nhân này có mục tự lập đã mở（khôngcóMã BHYT）,Thì tổng số tiền khiquyết toán,Điền tổng số tiền tổng hợp
+                        //Nếu chỉ có mục BHYT,Thìquyết toán theo kết quả trả về BHYT củaquyết toán BHYT
                         ybjyCqFeeReturn.his_hisfyze = jszje;
                         ybjyCqFeeReturn.ybzje = mxxx.ybzje;
                         ybjyCqFeeReturn.jzid = jzxx.mdtrt_id;
@@ -959,14 +959,14 @@
                     return;
                 }
                 if (data.indexOf("{") >= 0 || data.indexOf("<") >= 0) {
-                    msg = "HISdịch vụ(lấySố hóa đơn)Nội dung trả về lỗi：" + data;
+                    msg = "HISdịch vụ(lấySố hóa đơn)Nội dung trả về lỗi:" + data;
                     return;
                 }
                 rs = true;
                 fph = data;
             },
             error: function (request, error, ex) {
-                msg = "HISdịch vụ(lấySố hóa đơn)không thể truy cập：[" + ex + "]";
+                msg = "HISdịch vụ(lấySố hóa đơn)không thể truy cập:[" + ex + "]";
             }
         });
 
@@ -1015,7 +1015,7 @@
     function funcGetSettPatientInfo(funcSuccCallback) {
         $.najax({
             url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + patModel.zyh,
-            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân，Vui lòng đợi...",
+            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân,Vui lòng đợi...",
             type: 'POST',
             success: function (ajaxResp) {
                 //

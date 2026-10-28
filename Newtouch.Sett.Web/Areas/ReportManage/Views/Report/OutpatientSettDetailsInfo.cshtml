@@ -7,23 +7,23 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Ngày bắt đầu：</th>
+                <th class="formTitle">Ngày bắt đầu:</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                 </td>
-                <th class="formTitle">Ngày kết thúc：</th>
+                <th class="formTitle">Ngày kết thúc:</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
-                <th class="formTitle">Khoa：</th>
+                <th class="formTitle">Khoa:</th>
                 <td class="formValue">
                     <select id="depa" class="form-control">
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                <th class="formTitle">Nhân viên thao tác：</th>
+                <th class="formTitle">Nhân viên thao tác:</th>
                 <td class="formValue">
                     <div class="row">
                         <div class="col-md-9">
@@ -37,7 +37,7 @@
                 <td class="formValue"></td>
             </tr>
             <tr>
-                <th class="formTitle">Tính chất bệnh nhân：</th>
+                <th class="formTitle">Tính chất bệnh nhân:</th>
                 <td class="formValue">
                     <input type="text" id="brxzmc" name="brxzmc" class="form-control form-an">
                 </td>
@@ -156,7 +156,7 @@
             width: 400,
             clickautotrigger: true,
             filter: function (keyword) {
-                //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
+                //Duyệt nguồn dữ liệu,dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                     resultObjArr.push(val);

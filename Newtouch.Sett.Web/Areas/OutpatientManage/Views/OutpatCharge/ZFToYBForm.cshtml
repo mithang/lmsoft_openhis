@@ -6,7 +6,7 @@
 
 	//làkhôngvàBHYTgiao dịch
 	var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
-	//BHYTđịa phương trực thuộc，phân biệt hệ thống sẽ thực hiện ở đâuBHYTlogic
+	//BHYTđịa phương trực thuộc,phân biệt hệ thống sẽ thực hiện ở đâuBHYTlogic
 	var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
 	//HISnhà sản xuấtmã số
 	var his_manufacturerID = SysConfigReader.String("HIS_ManufacturerID");
@@ -97,7 +97,7 @@
 </script>
 <script type="text/javascript">
 
-	var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+	var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc:bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
 	var medicalInsurance = '@medicalInsurance';
     var ybkCardType = "@((int)EnumCardType.YBJYK)";
     //var klx = $.request('klx');
@@ -137,7 +137,7 @@
 
 	function funcStep1(nextStepCallback) {
 		if (!!!mzh) {
-			$.modalAlert('Thiếu tham số：mzh', 'error');
+			$.modalAlert('Thiếu tham số:mzh', 'error');
 			return false;
 		}
 		$.najax({
@@ -260,14 +260,14 @@
 		                        nextStepCallback(true);
 		                    }
 		                    else {
-		                        $.modalAlert("Đăng ký khám ngoại trú thất bại：" + medicalReg.fhxx, 'error');
+		                        $.modalAlert("Đăng ký khám ngoại trú thất bại:" + medicalReg.fhxx, 'error');
 		                        $.loading(false);
 		                        nextStepCallback(false);
 		                    }
 		                }
 		            },
 		            error: function (request, error, ex) {
-		                $.modalAlert("Dịch vụ BHYT【SJ11】(Nghiệp vụ đăng ký khám)Thất bại：[" + ex + "]", 'error');
+		                $.modalAlert("Dịch vụ BHYT【SJ11】(Nghiệp vụ đăng ký khám)Thất bại:[" + ex + "]", 'error');
 		                $.loading(false);
 		                nextStepCallback(false);
 		            }
@@ -287,7 +287,7 @@
 		                        nextStepCallback(true);
 		                    }
 		                    else {
-		                        $.modalAlert("Đăng ký khám ngoại trú thất bại：" + medicalReg.err_msg, 'error');
+		                        $.modalAlert("Đăng ký khám ngoại trú thất bại:" + medicalReg.err_msg, 'error');
 		                        $.loading(false);
 		                        nextStepCallback(false);
 		                        return false;;
@@ -395,7 +395,7 @@
 	            },
 	            error: function (request, error, ex) {
 	                res.success = false;
-	                res.msg = "Đọc thẻ dịch vụ BHYT không thể truy cập：[" + ex + "]";
+	                res.msg = "Đọc thẻ dịch vụ BHYT không thể truy cập:[" + ex + "]";
 	            }
 	        });
 	        if (yibaoCardInfo) {
@@ -591,7 +591,7 @@
 	            }
 	        } else {
 	            res.success = false;
-	            res.msg = "Quẹt thẻ lấy thông tin BHYT thất bại！Nguyên nhân thất bại：Trung tâm BHYT không trả về thông tin，Vui lòng thử lại！";
+	            res.msg = "Quẹt thẻ lấy thông tin BHYT thất bại！Nguyên nhân thất bại:Trung tâm BHYT không trả về thông tin,Vui lòng thử lại！";
 	            return res;
 	        }
 	   // }, 50);

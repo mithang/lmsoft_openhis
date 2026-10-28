@@ -33,7 +33,7 @@
     <input type="hidden" id="jssj" />
     <table class="form">
         <tr>
-            <th class="formTitle" id="xzsjtext">Loại：</th>
+            <th class="formTitle" id="xzsjtext">Loại:</th>
             <td class="formValue" style="width:150px">
                 <select id="dateType" class="form-control" onchange="updateSjType()">
                     <option value="1">năm</option>
@@ -41,7 +41,7 @@
                     <option value="3">ngày</option>
                 </select>
             </td>
-            <th class="formTitle" id="xzsjtext">Thời gian：</th>
+            <th class="formTitle" id="xzsjtext">Thời gian:</th>
             <td class="formValue" style="width:150px">
                 <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"*@>
             </td>
@@ -107,8 +107,8 @@
             height: $(window).height() * 0.5 - 118,
             postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val()},
             url: "/DeanInquiryManage/ConsumableTracking/Consumablestatistics",
-            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             colModel: [
                 { label: 'Vật tư tiêu hao Tên', name: 'sfxmmc', align: 'left' },
                 { label: 'sfxmdm', name: 'sfxmCode', align: 'left', hidden: true },
@@ -157,8 +157,8 @@
         $gridysList.dataGrid({
             height: $(window).height() * 0.5 - 118,
             url: "",
-            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             colModel: [
                 { label: 'Bác sĩ', name: 'Name', align: 'left' },
                 { label: 'Số y lệnh / Số lượt ngoại trú', name: 'sl', align: 'left' },
@@ -174,8 +174,8 @@
         $gridsyList.dataGrid({
             height: $(window).height() * 0.5 - 118,
             url: "/DeanInquiryManage/ConsumableTracking/ProfitandlossrankingHC",
-            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             colModel: [
                 { label: 'Lý do tổn thất', name: 'syyy', align: 'left' },
                 { label: 'Tổng số tiền bán sỉ (đồng)', name: 'pfjze', align: 'left' },

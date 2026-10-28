@@ -7,17 +7,17 @@
         <table class="form">
             <tr>
 
-                <th class="formTitle">Ngày bắt đầu：</th>
+                <th class="formTitle">Ngày bắt đầu:</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width: 140px;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" value="@(DateTime.Now.ToString("yyyy-MM-dd 00:00:00"))" />
                 </td>
-                <th class="formTitle" style="padding-right:5px;">Ngày kết thúc：</th>
+                <th class="formTitle" style="padding-right:5px;">Ngày kết thúc:</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an" style="width:140px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@(DateTime.Now.ToString("yyyy-MM-dd 23:59:59"))" />
                 </td>
-                @*<th class="formTitle">Người thu tiền：</th>
+                @*<th class="formTitle">Người thu tiền:</th>
                 <td class="formValue" style="width:200px">
                     <input id="skr" name="rad" type="radio" checked="checked" />Bản thân&nbsp;&nbsp;&nbsp;<input name="rad" id="qb" type="radio" />Tất cả
                 </td>*@

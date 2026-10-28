@@ -6,7 +6,7 @@
     <div style="padding-top: 20px; margin-right: 55px;">
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>Ngày xuất viện：</th>
+                <th class="formTitle"><span class="required">*</span>Ngày xuất viện:</th>
                 <td class="formValue">
                     <input class="form-control input-wdatepicker required" id="cyrq" name="cyrq"
                            value=@DateTime.Now.ToString("yyyy-MM-dd") type="text"
@@ -28,7 +28,7 @@
             return false;
         }
         var date = $('#cyrq').val();
-        if ($.getDate() < date) {   //định dạng giống nhau，Có thể so sánh trực tiếp
+        if ($.getDate() < date) {   //định dạng giống nhau,Có thể so sánh trực tiếp
             $.modalAlert("Không thể tiến hànhquyết toán xuất viện sớm", 'warning');
             return false;
         }

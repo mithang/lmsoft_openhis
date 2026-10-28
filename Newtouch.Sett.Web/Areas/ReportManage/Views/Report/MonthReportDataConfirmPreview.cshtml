@@ -8,33 +8,33 @@
     <div style="padding-top: 20px; margin-right: 55px;">
         <table class="form">
             <tr>
-                <th class="formTitle">Tháng：</th>
+                <th class="formTitle">Tháng:</th>
                 <td class="formValue">
                     <label id="lblYearMonth"></label>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Chi phí：</th>
+                <th class="formTitle">Chi phí:</th>
                 <td class="formValue">
                     <label id="lblCalcZje"></label>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Điều chỉnh bù chênh lệch：</th>
+                <th class="formTitle">Điều chỉnh bù chênh lệch:</th>
                 <td class="formValue">
                     <input id="balance" type="text" class="form-control" placeholder="Điều chỉnh Số tiền" />
                 </td>
             </tr>
             <tr>
                 <th class="formTitle" valign="top" style="padding-top: 5px;">
-                    Điều chỉnh lý do：
+                    Điều chỉnh lý do:
                 </th>
                 <td class="formValue">
                     <textarea id="balanceReason" class="form-control" style="height: 60px;"></textarea>
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Chi phí Tổng cộng：</th>
+                <th class="formTitle">Chi phí Tổng cộng:</th>
                 <td class="formValue">
                     <label id="lblResultZje"></label>
                 </td>
@@ -76,11 +76,11 @@
         var resultZje = $('#lblResultZje').html();
         var details = $.currentWindow().details;
         if (!year || !month) {
-            $.modalAlert("Ngày Lỗi，Vui lòng thử lại", 'error');
+            $.modalAlert("Ngày Lỗi,Vui lòng thử lại", 'error');
             return;
         }
         if (!calcZje || !resultZje) {
-            $.modalAlert("Chi phí Lỗi，Vui lòng thử lại", 'error');
+            $.modalAlert("Chi phí Lỗi,Vui lòng thử lại", 'error');
             return;
         }
         if (!isNaN(parseFloat(resultZje)) && parseFloat(resultZje) <= 0) {

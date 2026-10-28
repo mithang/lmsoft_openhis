@@ -36,6 +36,11 @@
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
     <script src="/js/sett-vi.js"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/datepicker/WdatePicker.js")"></script>
+    @* QA-phase2 (SETT-09): _Index loads bootstrap-datetimepicker but _Form
+       did not, so Refund/Index's $(".form_datetime").datetimepicker() threw
+       "is not a function". Mirror _Index here. *@
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/datepicker/bootstrap-datetimepicker.js")"></script>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/bootstrap-datetimepicker.css")" rel="stylesheet" />
 
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery-ui/jquery-ui.min.js")"></script>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery-ui/jquery-ui.min.css")" rel="stylesheet" />

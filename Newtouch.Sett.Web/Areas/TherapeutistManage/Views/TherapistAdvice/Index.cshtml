@@ -22,14 +22,14 @@
             <table class="form" style="width:96%;">
                 <tbody>
                     <tr>
-                        <th class="formTitle">Loại bệnh nhân：</th>
+                        <th class="formTitle">Loại bệnh nhân:</th>
                         <td class="formValue" style="width:60px;">
                             <select id="kflb" name="kflb" class="form-control">
                                 <option value="2">&nbsp;&nbsp;Nhập viện</option>
                                 <option value="1">&nbsp;&nbsp;Ngoại trú</option>
                             </select>
                         </td>
-                        <th class="formTitle dv-lable" id="brlxSearch">Số nhập viện：</th>
+                        <th class="formTitle dv-lable" id="brlxSearch">Số nhập viện:</th>
                         <td class="formValue" style="width:80px;">
                             <input class="form-control" type="text" id="mzzyh"  value="" />
                         </td> 
@@ -37,19 +37,19 @@
                             <input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" id="zy_btnsyy" value="Tra cứu" onclick="GetPatSerarchView($('#mzzyh').val());">
                             <input hidden="hidden" id="btn_search" />
                         </td>
-                        <th class="formTitle dv-lable">Họ tên：</th>
+                        <th class="formTitle dv-lable">Họ tên:</th>
                         <td class="formValue" style="width:120px;">
                             <label id="xm" ></label>
                         </td>
-                        <th class="formTitle dv-lable">Giới tính：</th>
+                        <th class="formTitle dv-lable">Giới tính:</th>
                         <td class="formValue">
                             <label id="xb"></label>
                         </td>
-                        <th class="formTitle dv-lable">Tuổi：</th>
+                        <th class="formTitle dv-lable">Tuổi:</th>
                         <td class="formValue" style="width:30px;">
                             <label id="nlshow"></label>
                         </td>
-                        <th class="formTitle dv-lable">Số giấy tờ：</th>
+                        <th class="formTitle dv-lable">Số giấy tờ:</th>
                         <td class="formValue" style="width:120px;">
                             <label id="zjh"></label>
                         </td>
@@ -58,19 +58,19 @@
                 <tbody class="dispTbody" style="display:none;">
                     <tr>
                         
-                        <th class="formTitle dv-lable">Số điện thoại：</th>
+                        <th class="formTitle dv-lable">Số điện thoại:</th>
                         <td class="formValue" colspan="2">
                             <label id="phone"></label>
                         </td>
-                        <th class="formTitle dv-lable">Ngày sinh：</th>
+                        <th class="formTitle dv-lable">Ngày sinh:</th>
                         <td class="formValue" colspan="2">
                             <label id="csny"></label>
                         </td>
-                        <th class="formTitle zy dv-lable">Ngày nhập viện：</th>
+                        <th class="formTitle zy dv-lable">Ngày nhập viện:</th>
                         <td class="formValue zy " >
                             <label id="ryrq"></label>
                         </td>
-                        <th class="formTitle zy dv-lable">Chẩn đoán nhập viện：</th>
+                        <th class="formTitle zy dv-lable">Chẩn đoán nhập viện:</th>
                         <td class="formValue zy" colspan="2">
                             <label id="ryzd"></label>
                         </td>
@@ -111,7 +111,7 @@
         gridzljy();
         $("#kflb").change(function () {
             var options = $("#kflb option:selected");
-            $("#brlxSearch").html(options.text() + "số：");
+            $("#brlxSearch").html(options.text() + "số:");
             brlx = options.val();
             if (brlx=="1") {
                 $(".zy").hide();
@@ -296,11 +296,11 @@
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("Số lượng là trống，Vui lòng xác nhận。", 'warning');
+                                            $.modalAlert("Số lượng là trống,Vui lòng xác nhận。", 'warning');
                                             return;
                                         }
                                         if (isNaN(cellval)) {
-                                            $.modalAlert("Số lượng：Vui lòng điền chữ số", 'warning');
+                                            $.modalAlert("Số lượng:Vui lòng điền chữ số", 'warning');
                                             $(this).val('')
                                             return;
                                         }
@@ -314,11 +314,11 @@
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("Số lượng là trống，Vui lòng xác nhận。", 'warning');
+                                            $.modalAlert("Số lượng là trống,Vui lòng xác nhận。", 'warning');
                                             return;
                                         }
                                         if (isNaN(cellval)) {
-                                            $.modalAlert("Số lượng：Vui lòng điền chữ số", 'warning');
+                                            $.modalAlert("Số lượng:Vui lòng điền chữ số", 'warning');
                                             $(this).val('')
                                             return;
                                         }
@@ -574,7 +574,7 @@
             return;
         }
        
-        //Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái lưu
+        //Lấy tất cả các dòngId,Duyệt để hộp chỉnh sửa ở trạng thái lưu
         var rowIds = $("#gridzljy").jqGrid('getDataIDs');
         //alert(rowIds.length);
         if (rowIds.length == 0) {
@@ -586,7 +586,7 @@
 
             if (!saveResult) {
                 EnableRehabInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
-                return;   //lưu thất bại，thìreturn
+                return;   //lưu thất bại,thìreturn
             }
         }
         var gridzljyData = $("#gridzljy").jqGrid('getRowData');

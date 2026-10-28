@@ -13,26 +13,26 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Khoa：</th>
+                <th class="formTitle">Khoa:</th>
                 <td class="formValue">
                     <select id="depa" class="form-control">
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                <th class="formTitle">Bác sĩ：</th>
+                <th class="formTitle">Bác sĩ:</th>
                 <td class="formValue">
                     <select id="doctor" class="form-control">
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                <th class="formTitle">Ngày bắt đầu：</th>
+                <th class="formTitle">Ngày bắt đầu:</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
                            value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" />
                 </td>
-                <th class="formTitle">Ngày kết thúc：</th>
+                <th class="formTitle">Ngày kết thúc:</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"

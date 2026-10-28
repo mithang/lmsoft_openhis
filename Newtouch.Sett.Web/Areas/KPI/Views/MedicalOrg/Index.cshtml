@@ -7,13 +7,13 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Năm：</th>
+                <th class="formTitle">Năm:</th>
                 <td class="formValue">
                     <select id="year" name="year" class="formClearIgnore">
                         <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <th class="formTitle">Tháng：</th>
+                <th class="formTitle">Tháng:</th>
                 <td class="formValue">
                     <select id="month" name="month" class="formClearIgnore">
                         <option value="">==Vui lòng chọn==</option>
@@ -162,7 +162,7 @@
             url: "/KPI/MedicalOrg/DoGenerate",
             data: { year: $('#year').val(), month: $('#month').val(), isReGene: isReGene },
             dataType: "json",
-            loadingtext: "báo cáo Tạo trong，Vui lòng chờ...",
+            loadingtext: "báo cáo Tạo trong,Vui lòng chờ...",
             success: function (ajaxResp) {
                 $.modalMsg('báo cáo Tạo Thành công', 'success');
                 setTimeout("$('#btn_search').trigger('click');", 1000); //Tra cứu lại báo cáo

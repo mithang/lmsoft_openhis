@@ -5,7 +5,7 @@
     //ghi sổ nhập việnlàkhôngcó thểghiThuốc
     var isacountingPageMayMedicine =
         SysConfigReader.Bool("HOSP_AccountingPage_May_Medicine", true).Value;
-    //Tìm kiếm thuốc，Thuốc có liên kết tồn kho nhà thuốc hay không
+    //Tìm kiếm thuốc,Thuốc có liên kết tồn kho nhà thuốc hay không
     var isMedicineSearchRelatedKC = (ViewBag.ISMedicineSearchRelatedKC as bool?) ?? false;
 }
 
@@ -22,26 +22,26 @@
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">Mã nhập viện：</th>
+                    <th class="formTitle">Mã nhập viện:</th>
                     <td class="formValue">
                         <input class="form-control" type="text" id="zyh" value="" />
                     </td>
                     <td class="formValue">
                         <input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" id="zy_btnsyy" value="Truy vấn" onclick="GetPatSerarchView();">
                     </td>
-                    <th class="formTitle">Họ tên：</th>
+                    <th class="formTitle">Họ tên:</th>
                     <td class="formValue">
                         <label id="xm"></label>
                     </td>
-                    <th class="formTitle">Giới tính：</th>
+                    <th class="formTitle">Giới tính:</th>
                     <td class="formValue">
                         <label id="xb"></label>
                     </td>
-                    <th class="formTitle">Tuổi：</th>
+                    <th class="formTitle">Tuổi:</th>
                     <td class="formValue">
                         <label id="nlshow"></label>
                     </td>
-                    <th class="formTitle">Số giấy tờ：</th>
+                    <th class="formTitle">Số giấy tờ:</th>
                     <td class="formValue">
                         <label id="zjh"></label>
                     </td>
@@ -49,19 +49,19 @@
             </tbody>
             <tbody class="dispTbody">
                 <tr>
-                    <th class="formTitle">Chẩn đoán nhập viện：</th>
+                    <th class="formTitle">Chẩn đoán nhập viện:</th>
                     <td class="formValue" colspan="2">
                         <label id="ryzd"></label>
                     </td>
-                    <th class="formTitle">Số điện thoại：</th>
+                    <th class="formTitle">Số điện thoại:</th>
                     <td class="formValue">
                         <label id="phone"></label>
                     </td>
-                    <th class="formTitle">Ngày sinh：</th>
+                    <th class="formTitle">Ngày sinh:</th>
                     <td class="formValue">
                         <label id="csny"></label>
                     </td>
-                    <th class="formTitle">Ngày nhập viện：</th>
+                    <th class="formTitle">Ngày nhập viện:</th>
                     <td class="formValue">
                         <label id="ryrq"></label>
                         <label id="cyrq" hidden></label>
@@ -93,25 +93,25 @@
         <table class="form">
             <tr>
                 <td class="formTitle">
-                    <span class="napan">*</span>Ngàyghi sổ：
+                    <span class="napan">*</span>Ngàyghi sổ:
                 </td>
                 <td class="formValue">
                     <input id="jzrq" type="text" class="form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss' })" />
                 </td>
                 <td class="formTitle">
-                    <span class="napan">*</span>Bác sĩ：
+                    <span class="napan">*</span>Bác sĩ:
                 </td>
                 <td class="formValue">
                     <input type="text" id="doctor" class="form-control form-an formClearIgnore" />
                 </td>
                 <td class="formTitle">
-                    <span class="napan">*</span>Khoa：
+                    <span class="napan">*</span>Khoa:
                 </td>
                 <td class="formValue">
                     <input type="text" id="jzks" class="form-control formClearIgnore" />
                 </td>
                 <td class="formTitle">
-                    Khoa thực hiện：
+                    Khoa thực hiện:
                 </td>
                 <td class="formValue">
                     <input type="text" id="zxks" class="form-control formClearIgnore" />
@@ -119,7 +119,7 @@
             </tr>
             <tr>
                 <td class="formTitle">
-                    <span class="napan">*</span>Mụcthu phí：
+                    <span class="napan">*</span>Mụcthu phí:
                 </td>
                 <td class="formValue">
                     <input id="sfxmmc" type="text" class="form-control form-an" autocomplete="off" />
@@ -134,19 +134,19 @@
                     <input id="cls" type="text" style="display:none;" class="form-control" />
                 </td>
                 <td class="formTitle">
-                    <span class="napan">*</span>Số lượng：
+                    <span class="napan">*</span>Số lượng:
                 </td>
                 <td class="formValue">
                     <input type="text" id="sl" class="form-control form-an" />
                 </td>
                 <td class="formTitle">
-                    Đơn vị：
+                    Đơn vị:
                 </td>
                 <td class="formValue">
                     <label id="dw"></label>
                 </td>
                 <td class="formTitle">
-                    Đơn giá(đồng)：
+                    Đơn giá(đồng):
                 </td>
                 <td class="formValue">
                     <label id="dj"></label>
@@ -330,7 +330,7 @@
         });
     }
 
-    //Nạp mụcthu phí，Bác sĩdướihộp chọncủagiá trị
+    //Nạp mụcthu phí,Bác sĩdướihộp chọncủagiá trị
     function initControl() {
         //Mụcthu phí Lớp nổi
         @*var searchType = "sfxm";
@@ -410,7 +410,7 @@
                     $.modalAlert("Thông tin cơ bản bệnh nhânKhông thểlàtrống", 'warning');
                     return;
                 }
-                //Duyệt nguồn dữ liệu，dùngkeywordđếnLọcraKết quả
+                //Duyệt nguồn dữ liệu,dùngkeywordđếnLọcraKết quả
                 var resultObjArr = new Array();
                 if (!!top.window.clients.doctorInHosBookkeep) {
                     $.each(top.window.clients.doctorInHosBookkeep, function (idx, val) {
@@ -448,7 +448,7 @@
             width: 250,
             clickautotrigger: true,
             filter: function (keyword) {
-                //Duyệt nguồn dữ liệu，dùngkeywordđếnLọcraKết quả
+                //Duyệt nguồn dữ liệu,dùngkeywordđếnLọcraKết quả
                 if (!keyword) {
                     keyword = '@ViewBag.staffDeptName';
                 }
@@ -595,7 +595,7 @@
         debugger
         var newRowData = getEditRowData();
         if (!(checkEditingRowData(newRowData))) {
-            //Dữ liệu có đầy đủ hay không，Kiểm tra mục bắt buộc
+            //Dữ liệu có đầy đủ hay không,Kiểm tra mục bắt buộc
             return;
         }
 
@@ -672,7 +672,7 @@
             //GửiSửa đổi
             var data = getEditRowData();
             if (!(checkEditingRowData(data))) {
-                //Dữ liệu có đầy đủ hay không，Kiểm tra mục bắt buộc
+                //Dữ liệu có đầy đủ hay không,Kiểm tra mục bắt buộc
                 return;
             }
             var updategoon = function () {
@@ -705,7 +705,7 @@
                 //setTimeout("$('#sfxmmc').trigger('focus');$('#sfxmmc').trigger('click');", 100);
             }
             if (data && (parseFloat(data.dj) < '0' || parseFloat(data.dj) == '0')) {
-                $.modalConfirm("Đơn giá là0，Xác nhận có sửa đổi hay không", function (flag) {
+                $.modalConfirm("Đơn giá là0,Xác nhận có sửa đổi hay không", function (flag) {
                     if (!flag) {
                         return;
                     }
@@ -769,14 +769,14 @@
         if (!rowData.tdrq) {
             $.modalAlert("Vui lòng chọn ngàyghi sổ", 'warning');
         } else if (ryrq > new Date(rowData.tdrq)) {
-            $.modalAlert("Ngàyghi sổ không nằm trong thời gian nằm viện<br/>Ngày nhập viện：" + $('#ryrq').html(), 'warning');
+            $.modalAlert("Ngàyghi sổ không nằm trong thời gian nằm viện<br/>Ngày nhập viện:" + $('#ryrq').html(), 'warning');
         } else if (!!cyrq && cyrq < new Date(rowData.tdrq) && ryrq) {
-            $.modalAlert("Ngàyghi sổ không nằm trong thời gian nằm viện<br/>Ngày xuất viện：" + $('#cyrq').html(), 'warning');
+            $.modalAlert("Ngàyghi sổ không nằm trong thời gian nằm viện<br/>Ngày xuất viện:" + $('#cyrq').html(), 'warning');
         } else if (!!cqrq && cqrq < new Date(rowData.tdrq)) {
-            $.modalAlert("Ngàyghi sổKhông thểmuộn hơnNgày ra khoa<br/>Ngày ra khoa：" + $('#cqrq').html(), 'warning');
+            $.modalAlert("Ngàyghi sổKhông thểmuộn hơnNgày ra khoa<br/>Ngày ra khoa:" + $('#cqrq').html(), 'warning');
         }
         else if (!!ztjsrq && ztjsrq < new Date(rowData.tdrq)) {
-            $.modalAlert("Ngàyghi sổ không được muộn hơn ngàyquyết toán giữa kỳ<br/>Ngàyquyết toán giữa kỳ：" + $('#ztjsrq').html(), 'warning');
+            $.modalAlert("Ngàyghi sổ không được muộn hơn ngàyquyết toán giữa kỳ<br/>Ngàyquyết toán giữa kỳ:" + $('#ztjsrq').html(), 'warning');
         }
         else if (!rowData.ksmc || !rowData.ysmc || !rowData.ys || !rowData.ks) {
             $.modalAlert("Vui lòng chọn bác sĩ", 'warning');

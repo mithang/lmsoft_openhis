@@ -146,7 +146,7 @@
         $("#zjh").val(card);
         if ($('#zjlx').val() !== "1") {
             if (card === '') {
-                $.modalAlert('Vui lòng nhập số giấy tờ，Số giấy tờ không được trống', 'warning');
+                $.modalAlert('Vui lòng nhập số giấy tờ,Số giấy tờ không được trống', 'warning');
                 return false;
             }
             return true;
@@ -154,13 +154,13 @@
 
         //làkhônglàtrống
         if (card === '') {
-            $.modalAlert('Vui lòng nhập số CMND/CCCD，Số CMND/CCCD không được trống', 'warning');
+            $.modalAlert('Vui lòng nhập số CMND/CCCD,Số CMND/CCCD không được trống', 'warning');
             // $("#zjh").focus;
             return false;
         }
-        //kiểm tra độ dài，loại
+        //kiểm tra độ dài,loại
         if (isCardNo(card) === false) {
-            $.modalAlert('Số CMND/CCCD bạn nhập không đúng，Vui lòng nhập lại', 'warning');
+            $.modalAlert('Số CMND/CCCD bạn nhập không đúng,Vui lòng nhập lại', 'warning');
             //$("#zjh").focus;
             return false;
         }
@@ -186,9 +186,9 @@
     };
 
 
-    //kiểm trasố làkhôngphù hợp quy chuẩn，bao gồm độ dài，loại
+    //kiểm trasố làkhôngphù hợp quy chuẩn,bao gồm độ dài,loại
     isCardNo = function (card) {
-        //CMND/CCCDsốlà15vị tríhoặcngười18vị trí，15khi ở vị trí đầy đủlàchữ số，18trước vị trí17vị trílàchữ số，nhấtsaumột vị trí là vị trí kiểm tra，có thểlàchữ sốhoặcký tựX
+        //CMND/CCCDsốlà15vị tríhoặcngười18vị trí,15khi ở vị trí đầy đủlàchữ số,18trước vị trí17vị trílàchữ số,nhấtsaumột vị trí là vị trí kiểm tra,có thểlàchữ sốhoặcký tựX
         var reg = /(^\d{15}$)|(^\d{17}(\d|X)$)/;
         if (reg.test(card) === false) {
             return false;
@@ -209,7 +209,7 @@
     //kiểm trasinhngàylàkhôngđúng
     checkBirthday = function (card) {
         var len = card.length;
-        //CMND/CCCD15khi ở vị trí，thứ tựlàtỉnh（3vị trí）thành phố（3vị trí）năm（2vị trí）tháng（2vị trí）ngày（2vị trí）vị trí kiểm tra（3vị trí），đềulàchữ số
+        //CMND/CCCD15khi ở vị trí,thứ tựlàtỉnh（3vị trí）thành phố（3vị trí）năm（2vị trí）tháng（2vị trí）ngày（2vị trí）vị trí kiểm tra（3vị trí）,đềulàchữ số
         if (len == '15') {
             var re_fifteen = /^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/;
             var arr_data = card.match(re_fifteen);
@@ -219,7 +219,7 @@
             var birthday = new Date('19' + year + '/' + month + '/' + day);
             return verifyBirthday('19' + year, month, day, birthday);
         }
-        //CMND/CCCD18khi ở vị trí，thứ tựlàtỉnh（3vị trí）thành phố（3vị trí）năm（4vị trí）tháng（2vị trí）ngày（2vị trí）vị trí kiểm tra（4vị trí），vị trí kiểm tra cuối có thểlàX
+        //CMND/CCCD18khi ở vị trí,thứ tựlàtỉnh（3vị trí）thành phố（3vị trí）năm（4vị trí）tháng（2vị trí）ngày（2vị trí）vị trí kiểm tra（4vị trí）,vị trí kiểm tra cuối có thểlàX
         if (len == '18') {
             var re_eighteen = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/;
             var arr_data = card.match(re_eighteen);
@@ -402,40 +402,40 @@
     <input type="hidden" id="py" name="py" />
     <table class="form" style="width: 98%; border: 0; margin-top: 10px">
         <tr>
-            <td class="formTitle"><span class="required">*</span>Số hồ sơ bệnh án：</td>
+            <td class="formTitle"><span class="required">*</span>Số hồ sơ bệnh án:</td>
             <td class="formValue">
                 <input type="text" id="blh" class="form-control form-an ">
             </td>
-            <td class="formTitle"><span>*</span>Tên bệnh nhân：</td>
+            <td class="formTitle"><span>*</span>Tên bệnh nhân:</td>
             <td class="formValue">
                 <input type="text" id="xm" name="xm" class="form-control form-an ">
             </td>
-            <td class="formTitle">Điện thoại di động：</td>
+            <td class="formTitle">Điện thoại di động:</td>
             <td class="formValue">
                 <input type="text" id="phone" name="phone" class="form-control form-an ">
             </td>
         </tr>
         <tr>
-            <td class="formTitle"><span>*</span>giấy tờLoại：</td>
+            <td class="formTitle"><span>*</span>giấy tờLoại:</td>
             <td class="formValue">
                 @Html.DropDownList("zjlx", EnumZJLX.sfz.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control" })
             </td>
-            <td class="formTitle"><span>*</span>Số giấy tờ：</td>
+            <td class="formTitle"><span>*</span>Số giấy tờ:</td>
             <td class="formValue">
                 <input type="text" id="zjh" name="zjh" class="form-control form-an ">
             </td>
-            <td class="formTitle"><span>*</span>Năm sinh：</td>
+            <td class="formTitle"><span>*</span>Năm sinh:</td>
             <td class="formValue">
                 <input id="csny" type="text" class="form-control form-an  input-wdatepicker" onfocus="WdatePicker({
     onpicked: function () {jsGetAge($(this).val());return true;}})" />
             </td>
         </tr>
         <tr>
-            <td class="formTitle"><span>*</span>Tuổi：</td>
+            <td class="formTitle"><span>*</span>Tuổi:</td>
             <td class="formValue">
                 <input type="text" id="nl" name="nl" class="form-control form-an ">
             </td>
-            <td class="formTitle"><span>*</span>Giới tính：</td>
+            <td class="formTitle"><span>*</span>Giới tính:</td>
             <td class="formValue">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
@@ -448,7 +448,7 @@
                     </label>
                 </div>
             </td>
-            <td class="formTitle">Người giới thiệu：</td>
+            <td class="formTitle">Người giới thiệu:</td>
             <td class="formValue">
                 <input type="text" id="jsr" name="jsr" class="form-control form-an form-an-end">
             </td>

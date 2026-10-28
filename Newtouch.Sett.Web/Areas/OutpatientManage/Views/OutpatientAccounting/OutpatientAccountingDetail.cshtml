@@ -87,7 +87,7 @@
             if (tdxmHeight < 288) {
                 $("#divTDXM").height(tdxmHeight + parseInt(36));
                 var html = '<tr>';
-                html += '<th class="formTitle">Thay thếKhoản mục：</th>';
+                html += '<th class="formTitle">Thay thếKhoản mục:</th>';
                 html += '<td class="formValue">';
                 html +=
                     '<input type="text" class="form-control" id="tdxmName' + trlen + '" name="tdxmName' + trlen + '" />';
@@ -95,12 +95,12 @@
                 html += '<input id="tdxmDw' + trlen + '" type="text" style="display:none;" class="form-control" />';
                 html += '</td>';
                 //html += '";
-                html += '<th class="formTitle">Số lượng：</th>';
+                html += '<th class="formTitle">Số lượng:</th>';
                 html +=
                     '<td class="formValue">' +
                     '<input type="text" id="tdxmSl' + trlen + '" name="tdxmSl' + trlen + '" value="1" class="form-control txt-num" >' +
                     '<input type="text" id="tdxmdj' + trlen + '" id="tdxmdj' + trlen + '" class="form-control" style="display:none"></td>';
-                html += '<th class="formTitle">Tiêu chuẩn thu phí：</th>';
+                html += '<th class="formTitle">Tiêu chuẩn thu phí:</th>';
                 html += '<td class="formValue"><input type="text" class="form-control newtouch_Readonly" id="tdxmsfbz' +
                     trlen +
                     '" ' +
@@ -108,7 +108,7 @@
                 html +=
                     '<td class="formTitle"><i class="fa fa-minus-square-o" aria-hidden=true style="font-size: 20px;color:#00a0e9; position: absolute; right: 55px; top: 7px" onclick="DelCurrentRow(this)"></i></td>';
                 html += '<th class="formValue">';
-                html += '<th class="formTitle">Số tiền：</th>';
+                html += '<th class="formTitle">Số tiền:</th>';
                 html += '<td class="formValue"><span style="font-size: 13px">￥<i id="zje' +
                     trlen +
                     '" >0.00</i></span></td>';
@@ -126,7 +126,7 @@
         $("#divTDXM,#tblTDXM").height(parseInt(tdxmHeight) - parseInt(36));
     }
 
-    //đóng trang con，lưukhoản mụcthông tin đến trang chaGrid
+    //đóng trang con,lưukhoản mụcthông tin đến trang chaGrid
     function SubmitForm() {
         var data = [];
         data[0] = $("#form1").formSerialize();
@@ -136,7 +136,7 @@
         if (data[0].isSaved === undefined) {
             data[0].isSaved = 1;
         }
-        if (!!editDataJson) { //nếu sửa dữ liệu hiện tại chưa lưu，xóa trước，sau đó thêm lại
+        if (!!editDataJson) { //nếu sửa dữ liệu hiện tại chưa lưu,xóa trước,sau đó thêm lại
             $.currentWindow().GlobalData.splice(editDataJson.id - 1, 1);
         }
         $.currentWindow().ReloadGridData(data);
@@ -149,17 +149,17 @@
     <input type="hidden" id="py" name="py" />
     <table class="form">
         <tr>
-            <th class="formTitle  ">Kỹ thuật viên trị liệu 1：</th>
+            <th class="formTitle  ">Kỹ thuật viên trị liệu 1:</th>
             <td class="formValue"><input type="text" class="form-control" id="zlsgh1" /></td>
-            <th class="formTitle  ">Kỹ thuật viên trị liệu 2：</th>
+            <th class="formTitle  ">Kỹ thuật viên trị liệu 2:</th>
             <td class="formValue"><input type="text" class="form-control" id="zlsgh2" /></td>
-            <th class="formTitle  ">Kỹ thuật viên trị liệu 3：</th>
+            <th class="formTitle  ">Kỹ thuật viên trị liệu 3:</th>
             <td class="formValue"><input type="text" class="form-control" id="zlsgh3" /></td>
-            <th class="formTitle  ">ghi sổThời gian：</th>
+            <th class="formTitle  ">ghi sổThời gian:</th>
             <td class="formValue"><input type="text" class="form-control input-wdatepicker" id="jzsj" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" style="width: 180%" /></td>
         </tr>
         <tr>
-            <th class="formTitle  ">Khoản mục trị liệu：</th>
+            <th class="formTitle  ">Khoản mục trị liệu:</th>
             <td class="formValue">
                 <input id="zlxmName" type="text" class="form-control" />
                 <input id="zlxmCode" type="text" style="display:none;" class="form-control" />
@@ -167,13 +167,13 @@
                 <input id="sfdlmc" type="text" style="display:none;" class="form-control" />
                 <input id="sfxmdj" type="text" style="display:none;" class="form-control" />
             </td>
-            <th class="formTitle  ">Số lượng：</th>
+            <th class="formTitle  ">Số lượng:</th>
             <td class="formValue"><input type="text" class="form-control" id="sl" name="sl" value="1" /></td>
-            <th class="formTitle  ">Tiêu chuẩn thu phí：</th>
+            <th class="formTitle  ">Tiêu chuẩn thu phí:</th>
             <td class="formValue"><input type="text" class="form-control newtouch_Readonly" id="sfbz" /></td>
-            <th class="formTitle  ">Thời lượng trị liệu：</th>
+            <th class="formTitle  ">Thời lượng trị liệu:</th>
             <td class="formValue"><input type="text" class="form-control " id="zlsc" placeholder="phút" /></td>
-            <th class="formTitle  ">Số tiền：</th>
+            <th class="formTitle  ">Số tiền:</th>
             <td class="formValue">
                 <span style="font-size: 13px" id="je">￥0.00</span>
                 <i class="fa fa-plus-square-o" aria-hidden="true" style="font-size: 20px; color: rgb(0, 160, 233);margin-left: 20px;" id="addIcon"></i>
@@ -183,26 +183,26 @@
     <div style="padding: 2px 0; border-top: 1px dashed rgb(221, 221, 221); position: relative" id="divTDXM">
         <table class="form" id="tblTDXM">
             <tr>
-                <th class="formTitle">Thay thếKhoản mục：</th>
+                <th class="formTitle">Thay thếKhoản mục:</th>
                 <td class="formValue">
                     <input id="tdxmName1" type="text" class="form-control" value="" />
                     <input id="tdxmCode1" type="text" style="display:none;" class="form-control" />
                     <input id="tdxmDw1" type="text" style="display:none;" class="form-control" />
                     <input id="tdxmdj1" type="text" style="display:none;" class="form-control" />
                 </td>
-                <th class="formTitle  ">Số lượng：</th>
+                <th class="formTitle  ">Số lượng:</th>
                 <td class="formValue"><input type="text" class="form-control txt-num" id="tdxmSl1" name="tdxmSl1" value="1" /></td>
-                <th class="formTitle  ">Tiêu chuẩn thu phí：</th>
+                <th class="formTitle  ">Tiêu chuẩn thu phí:</th>
                 <td class="formValue"><input type="text" class="form-control newtouch_Readonly" id="tdxmsfbz1" name="tdxmsfbz1" /></td>
                 <td class="formTitle"><i class="fa fa-minus-square-o" aria-hidden=true style="font-size: 20px; color: #00a0e9; position: absolute; right: 55px; top: 7px" onclick="DelCurrentRow(this)"></i></td>
                 <th class="formValue">
-                <th class="formTitle">Số tiền：</th>
+                <th class="formTitle">Số tiền:</th>
                 <td class="formValue"><span style="font-size: 13px">￥<i id="zje1">0.00</i></span></td>
             </tr>
         </table>
     </div>
     <div style="float: right; position: relative; padding-top: 5px; padding-right: 40px;">
-        <span style="font-size: 20px">Tổng số tiền：</span>
+        <span style="font-size: 20px">Tổng số tiền:</span>
         <span style="color: red; font-size: 25px;">￥<i id="bxje">0.00</i></span>
     </div>
 </div>

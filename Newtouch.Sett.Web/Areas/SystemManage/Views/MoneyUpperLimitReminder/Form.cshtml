@@ -13,31 +13,31 @@
             <div role="tabpanel" class="tab-pane fade in active" style="padding-top: 20px; margin-right: 99px; margin-left:69px;" id="basicInfo">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>nhắc nhở Loại：</th>
+                        <th class="formTitle"><span class="required">*</span>nhắc nhở Loại:</th>
                         <td class="formValue formDdlSelectorTd">
                             @Html.DropDownList("reminderType", EnmuReminderType.TienTrenHanNhacNho.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">@*<span class="required">*</span>*@Khoa：</th>
+                        <th class="formTitle">@*<span class="required">*</span>*@Khoa:</th>
                         <td class="formValue">
                             <input type="text" class="form-control" id="ks" name="ks" placeholder="Vui lòng nhập khoảng trắng hoặc từ khóa để chọn" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">@*<span class="required">*</span>*@Bác sĩ：</th>
+                        <th class="formTitle">@*<span class="required">*</span>*@Bác sĩ:</th>
                         <td class="formValue">
                             <input type="text" class="form-control " id="ys" name="ys" placeholder="Vui lòng nhập khoảng trắng hoặc từ khóa để chọn"/>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Số tiền Giới hạn trên（đồng）：</th>
+                        <th class="formTitle">Số tiền Giới hạn trên（đồng）:</th>
                         <td class="formValue">
                             <input type="text" class="form-control required" id="jesx" name="jesx" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Hiệu lực：</th>
+                        <th class="formTitle">Hiệu lực:</th>
                         <td class="formValue">
                             <div class="ckbox">
                                 <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt"></label>

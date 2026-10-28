@@ -7,21 +7,21 @@
 <div class="panel panel-default">
     <table class="form">
         <tr>
-            <th class="formTitle">Ngày bắt đầu：</th>
+            <th class="formTitle">Ngày bắt đầu:</th>
             <td class="formValue">
                 <input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                        onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                        onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
                        value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" />
             </td>
-            <th class="formTitle">Ngày kết thúc：</th>
+            <th class="formTitle">Ngày kết thúc:</th>
             <td class="formValue">
                 <input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                        onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                        onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
                        value="@DateTime.Now.ToString("yyyy-MM-dd")" />
             </td>
-            <th class="formTitle">Phương thức thanh toán：</th>
+            <th class="formTitle">Phương thức thanh toán:</th>
             <td class="formValue">
                 <select id="payType" data-EnumType="EnumPayStatus">
                     <option value="">==Tất cả==</option>

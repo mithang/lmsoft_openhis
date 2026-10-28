@@ -11,7 +11,7 @@
     <div style="padding: 20px 35px 0 2px;">
         <table class="form" id="timetable">
             <tr>
-                <th class="formTitle"><span class="required">*</span>Tổ chức：</th>
+                <th class="formTitle"><span class="required">*</span>Tổ chức:</th>
                 <td class="formValue" colspan="3">
                     <select id="OrganizeId" name="OrganizeId" class="form-control required">
                         <option value="">==Vui lòng chọn==</option>
@@ -19,7 +19,7 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>Loại khám ngoại trú：</th>
+                <th class="formTitle"><span class="required">*</span>Loại khám ngoại trú:</th>
                 <td class="formValue" colspan="3">
                     <select id="mjzbz" name="mjzbz" class="form-control required" data-EnumType="EnumOutPatientType">
                         <option value="">==Vui lòng chọn==</option>
@@ -27,34 +27,34 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Mô tả lịch trực ：</th>
+                <th class="formTitle">Mô tả lịch trực :</th>
                 <td class="formValue" colspan="3">
                     <input type="text" class="form-control" id="pbdesc" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Khoản mục đăng ký khám ：</th>
+                <th class="formTitle">Khoản mục đăng ký khám :</th>
                 <td class="formValue" colspan="3">
                     <input type="hidden" class="form-control" id="ghlx" />
                     <input type="text" class="form-control" id="sfxmmc" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Khoản mục chẩn trị ：</th>
+                <th class="formTitle">Khoản mục chẩn trị :</th>
                 <td class="formValue" colspan="3">
                     <input type="hidden" class="form-control" id="zlxm" />
                     <input type="text" class="form-control" id="zlxmmc" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>Khoa ：</th>
+                <th class="formTitle"><span class="required">*</span>Khoa :</th>
                 <td class="formValue" colspan="3">
                     <input type="hidden" class="form-control" id="ks" />
                     <input type="text" class="form-control required" id="ksmz" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Bác sĩ chuyên gia ：</th>
+                <th class="formTitle">Bác sĩ chuyên gia :</th>
                 <td class="formValue" colspan="3">
                     <input type="hidden" class="form-control" id="ys" />
                     <input type="text" class="form-control" id="ysxm" />
@@ -62,17 +62,17 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle" style="padding-left:10px;">Mở hẹn qua mạng ：</th>
+                <th class="formTitle" style="padding-left:10px;">Mở hẹn qua mạng :</th>
                 <td class="formValue" style="padding-left:10px;">
                     <input name='isBook' id="isBook1" type='radio' value='1' />Có
                     <input name='isBook' id="isBook2" type='radio' value='0' checked="checked" />Không
                 </td>
-                <th class="formTitle" style="padding-left:10px;">Loại khung giờ ：</th>
+                <th class="formTitle" style="padding-left:10px;">Loại khung giờ :</th>
                 <td class="formValue" colspan="2">
                     <input name='issjd' id="issjd1" type='radio' value='1' onclick="xzsd(true)" />Khoảng thời gian
                     <input name='issjd' id="issjd2" type='radio' value='0' checked="checked" onclick="xzsd(false)" />Buổi sáng/chiều
                 </td>
-                <th class="formTitle" style="padding-left:10px;">Số nguồn khám mặc định ：</th>
+                <th class="formTitle" style="padding-left:10px;">Số nguồn khám mặc định :</th>
                 <td class="formValue" style="padding-left:10px;">
                     <input type="text" value="0" class="form-control required" placeholder="Số nguồn khám mặc định" id="mrhys" />
                 </td>
@@ -627,7 +627,7 @@
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
-            //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+            //duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
             var resultObjArr = new Array();
 
             $.each(top.window.clients.sysStaffDutyList, function (idx, val) {

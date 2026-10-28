@@ -111,7 +111,7 @@
                                 dataType: "json",
                                 success: function (data) {
                                     if (data.state == "success") {
-                                        $("#login_button").find('span').html("đăng nhập thành công，đang chuyển hướng...");
+                                        $("#login_button").find('span').html("đăng nhập thành công,đang chuyển hướng...");
                                         window.setTimeout(function () {
                                             window.location.href = "/Home/Index";
                                         }, 10);
@@ -148,7 +148,7 @@
                                     $.login.formMessage("đăng nhập hệ thống đã hết thời gian,vui lòng đăng nhập lại");
                                     break;
                                 case "sidelined":
-                                    $.login.formMessage("tài khoản này đã đăng nhập ở nơi khác，bạn đã bị buộc thoát");
+                                    $.login.formMessage("tài khoản này đã đăng nhập ở nơi khác,bạn đã bị buộc thoát");
                                     break;
                                 case "-1":
                                     $.login.formMessage("lỗi hệ thống không xác định,vui lòng đăng nhập lại");

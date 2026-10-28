@@ -33,7 +33,7 @@
     <input type="hidden" id="jssj" />
     <table class="form">
         <tr>
-            <th class="formTitle" id="xzsjtext">Loại：</th>
+            <th class="formTitle" id="xzsjtext">Loại:</th>
             <td class="formValue" style="width:150px">
                 <select id="dateType" class="form-control" onchange="updateSjType()">
                     <option value="1">năm</option>
@@ -41,11 +41,11 @@
                     <option value="3">ngày</option>
                 </select>
             </td>
-            <th class="formTitle" id="xzsjtext">Thời gian：</th>
+            <th class="formTitle" id="xzsjtext">Thời gian:</th>
             <td class="formValue" style="width:150px">
                 <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"*@>
             </td>
-            <th class="formTitle">Thuốc Loại：</th>
+            <th class="formTitle">Thuốc Loại:</th>
             <td class="formValue" style="width:150px">
                 <select id="ypsx" class="form-control">
                     <option value="Tất cả">Tất cả</option>
@@ -126,8 +126,8 @@
             height: $(window).height() * 0.5 - 118,
             postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val(), type: ypsx},
             url: "/DeanInquiryManage/DrugTracking/GetDrugTracking",
-            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             colModel: [
                 { label: 'ypdm', name: 'ypdm', align: 'left', hidden: true },
                 { label: 'Tên thuốc', name: 'ypmc',align: 'left' },
@@ -167,8 +167,8 @@
                     var $gridysList = $("#gridJSListyskdl");
                     $gridysList.dataGrid({
                         height: $(window).height() * 0.5 - 118,
-                        autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-                        shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+                        autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+                        shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
                         url: "/DeanInquiryManage/DrugTracking/DoctorBillingRanking",
                         postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val(), Ypcode: firstRow.ypdm },
                         colModel: [
@@ -191,8 +191,8 @@
             height: $(window).height() * 0.5 - 118,
             postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val() },
             url: "/DeanInquiryManage/DrugTracking/Profitandlossranking",
-            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             colModel: [
                 { label: 'Lý do tổn thất', name: 'syyy',align: 'left' },
                 { label: 'Tổng số tiền bán sỉ (đồng)', name: 'pfjze',align: 'left' },

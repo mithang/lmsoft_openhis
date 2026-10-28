@@ -75,13 +75,13 @@
                             colModel: colModel,
                         }, tfReturn.output);                    }
                     else {
-                        $.modalAlert("quyết toán bảng Số lượng Tra cứu thất bại：" + tfReturn.err_msg, 'error');
+                        $.modalAlert("quyết toán bảng Số lượng Tra cứu thất bại:" + tfReturn.err_msg, 'error');
                         return;
                     }
                 }
             }, error: function () {
                 $.loading(false);
-                $.modalAlert("Dịch vụ bất thường：", 'error');
+                $.modalAlert("Dịch vụ bất thường:", 'error');
                 return;
             }
         });

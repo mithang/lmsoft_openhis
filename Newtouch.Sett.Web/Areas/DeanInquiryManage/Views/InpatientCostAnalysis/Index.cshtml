@@ -52,7 +52,7 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle" id="xzsjtext">Loại：</th>
+                <th class="formTitle" id="xzsjtext">Loại:</th>
                 <td class="formValue" style="width:150px">
                     <select id="dateType" class="form-control" onchange="updateSjType()">
                         <option value="1">năm</option>
@@ -60,7 +60,7 @@
                         <option value="3">ngày</option>
                     </select>
                 </td>
-                <th class="formTitle" id="xzsjtext">Thời gian：</th>
+                <th class="formTitle" id="xzsjtext">Thời gian:</th>
                 <td class="formValue" style="width:150px">
                     <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"*@>
                 </td>
@@ -275,8 +275,8 @@
         var $gridJsList = $("#gridJSListksfyfx");
         $gridJsList.dataGrid({
             height: 150,
-            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/InpatientCostAnalysis/ZYFYFX_KSFYFXDTO",
             postData: getSearchData(),
             colModel: [
@@ -298,8 +298,8 @@
         var $gridJsList = $("#gridJSListcyhzfyfx");
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 100,
-            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/InpatientCostAnalysis/GetCYHZFYFData",
             postData: getSearchData(),
             colModel: [
@@ -333,7 +333,7 @@
                 for (var i = 0; i < ajaxresp.length; i++) {
                     arr.push(ajaxresp[i].nf);
                 }
-                //nặngmớinhómlắpsốdữ liệu，nơilýkhôngcó thểphản ánhchiếubánhbiểu đồcủahỏivấn đề
+                //nặngmớinhómlắpsốdữ liệu,nơilýkhôngcó thểphản ánhchiếubánhbiểu đồcủahỏivấn đề
                 let stat1 = [];
                 stat1.push(arr)
                 if (ajaxresp.length > 0) {

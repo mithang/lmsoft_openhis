@@ -34,25 +34,25 @@
         <table class="form" style="width:750px;height:45px !important;">
             <tr>
                 <td class="formTitle">
-                    Cơ sở：
+                    Cơ sở:
                 </td>
                 <td class="formValue" style="width:125px;">
                     <select id="siteId" name="siteId" class="form-control" multiple="multiple">
                     </select>
                 </td>
-                <th class="formTitle">Năm：</th>
+                <th class="formTitle">Năm:</th>
                 <td class="formValue" style="width:75px;">
                     <select id="year" name="year" class="form-control" style="width:65px">
                         <option value="-1">Tất cả</option>
                     </select>
                 </td>
-                <th class="formTitle">Tháng：</th>
+                <th class="formTitle">Tháng:</th>
                 <td class="formValue" style="width:75px;">
                     <select id="month" name="month" class="form-control" style="width:65px">
                         <option value="-1">Tất cả</option>
                     </select>
                 </td>
-                <th class="formTitle">Trạng thái phê duyệt：</th>
+                <th class="formTitle">Trạng thái phê duyệt:</th>
                 <td class="formValue" style="width:65px;">
                     @Html.DropDownList("shzt", Newtouch.Sett.Domain.EnumOrgshzt.DS.ToDescSelectList(), "Tất cả", new { @class = "newform-control form-control required", @style = "width: 100%;" })
                 </td>

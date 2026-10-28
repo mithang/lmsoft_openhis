@@ -8,29 +8,29 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Ngày bắt đầu：</th>
+                <th class="formTitle">Ngày bắt đầu:</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
                 </td>
-                <th class="formTitle">Ngày kết thúc：</th>
+                <th class="formTitle">Ngày kết thúc:</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
                 </td>
-                <th class="formTitle" style="left: 20px;">Tên khoa：</th>
+                <th class="formTitle" style="left: 20px;">Tên khoa:</th>
                 <td class="formValue">
                     <select id="depa" class="form-control">
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                @*<th class="formTitle">Tên loại lớn：</th>
+                @*<th class="formTitle">Tên loại lớn:</th>
                 <td class="formValue">
                     <select id="dlmc" class="form-control">
                         <option value="">Tất cả</option>
                     </select>
                 </td>*@
-                <th class="formTitle">Khoa bệnh：</th>
+                <th class="formTitle">Khoa bệnh:</th>
                 <td class="formValue" style="width:100px;">
                     <select class="form-control" id="bq" name="bq" multiple="multiple">
                         <option value="">==Vui lòng chọn==</option>
@@ -38,17 +38,17 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Đơn giá Số tiền lớn hơn：</th>
+                <th class="formTitle">Đơn giá Số tiền lớn hơn:</th>
                 <td class="formValue">
                     <input id="dj" name="dj"  type="number" autocomplete="off" class="form-control"/>
                 </td>
-                <th class="formTitle">Số nhập viện：</th>
+                <th class="formTitle">Số nhập viện:</th>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" autocomplete="off" class="form-control" />
                 </td>
 
 
-                <th class="formTitle">Khoản mục：</th>
+                <th class="formTitle">Khoản mục:</th>
                 <td class="formValue"><input type="text" id="sfxmmc" class="form-control formClearIgnore" /></td>
                 <th class="formTitle"></th>
 

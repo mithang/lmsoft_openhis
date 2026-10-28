@@ -1,7 +1,7 @@
 @using NewtouchHIS.Lib.Framework.Operator;
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
-    //Nơi quản lý BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
+    //Nơi quản lý BHYT,Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
     var opr = OperatorProvider.GetCurrent();
 }
@@ -18,7 +18,7 @@
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">thuộc tính：</th>
+                <th class="formTitle">thuộc tính:</th>
                 <td class="formValue" colspan="1">
                     <select id="isjs" name="isjs" class="form-control">
                         <option value="yj" selected="selected">Đã quyết toán</option>
@@ -26,14 +26,14 @@
                         <option value="cz">Đảo ngược</option>
                     </select>
                 </td>
-                <th class="formTitle">Loại：</th>
+                <th class="formTitle">Loại:</th>
                 <td class="formValue" style="width:70px">
                     <select id="lx" name="lx" class="form-control">
                         <option value="mz">Ngoại trú</option>
                         <option value="zy" selected="selected">Nhập viện</option>
                     </select>
                 </td>
-                <th class="formTitle">Từ khóa：</th>
+                <th class="formTitle">Từ khóa:</th>
                 <td class="formValue" style="width:100px">
                     <input id="txt_keyword" type="text" class="form-control form-an" placeholder="Họ tên/Số khám ngoại trú/Số nhập viện">
                 </td>
@@ -121,7 +121,7 @@
             $('#btn_search').trigger('click');
         })
 
-        //hủyhủyphiếubênkếttính，trướcnêu:HISy tếbảo hiểmghighibảngđãlưulấyy tếbảo hiểmkếttínhtrảquaysốdữ liệu
+        //hủyhủyphiếubênkếttính,trướcnêu:HISy tếbảo hiểmghighibảngđãlưulấyy tếbảo hiểmkếttínhtrảquaysốdữ liệu
         $("#btn_settRefund").click(function () {
             var seleRow = $("#gridList").jqGridRowValue();
             var zymzh = seleRow.zymzh;
@@ -146,7 +146,7 @@
                                 cqybjyDenySettleReturn = eval('(' + data + ')');
                             },
                             error: function (request, error, ex) {
-                                $.modalAlert("Dịch vụ BHYT【2305】(Nhập viện quyết toán Hủy bỏ)Không thể truy cập：[" + ex + "]", 'error');
+                                $.modalAlert("Dịch vụ BHYT【2305】(Nhập viện quyết toán Hủy bỏ)Không thể truy cập:[" + ex + "]", 'error');
                                 return;
                             }
                         });
@@ -163,23 +163,23 @@
                                         $.modalAlert('Hủy thành công', 'success');
                                     }
                                     else {
-                                        $.modalAlert('BHYT xuất viện Hủy thất bại：' + cxcyReturn.err_msg + '【Vui lòng thử lại】', 'error');
+                                        $.modalAlert('BHYT xuất viện Hủy thất bại:' + cxcyReturn.err_msg + '【Vui lòng thử lại】', 'error');
                                         return;
                                     }
                                 },
                                 error: function (request, error, ex) {
-                                    $.modalAlert("Dịch vụ BHYT【2405】(Hủy xuất viện)Không thể truy cập：[" + ex + "]", 'error');
+                                    $.modalAlert("Dịch vụ BHYT【2405】(Hủy xuất viện)Không thể truy cập:[" + ex + "]", 'error');
                                     return;
                                 }
                             });
                         } else {
-                            $.modalAlert('đảo quyết toán BHYT Thất bại：' + cqybjyDenySettleReturn.err_msg + '【Vui lòng thử lại】', 'error');
+                            $.modalAlert('đảo quyết toán BHYT Thất bại:' + cqybjyDenySettleReturn.err_msg + '【Vui lòng thử lại】', 'error');
                         }
                         break;
 
                     case "离休医保单边":
                         if (medicalInsurance == "chongqing") {
-                            var payoptype = { 'jylsh': seleRow.setl_id, 'jbr': '@(opr.rygh)', 'zymzh': seleRow.zymzh, 'czlx': '0', 'xzlb': '1' };//loại bảo hiểm mặc định，1、bảo hiểm y tế；2、bảo hiểm tai nạn lao động；3、bảo hiểm sinh sản；
+                            var payoptype = { 'jylsh': seleRow.setl_id, 'jbr': '@(opr.rygh)', 'zymzh': seleRow.zymzh, 'czlx': '0', 'xzlb': '1' };//loại bảo hiểm mặc định,1、bảo hiểm y tế；2、bảo hiểm tai nạn lao động；3、bảo hiểm sinh sản；
                             lxybcz(payoptype);
                         }
                         break;
@@ -206,7 +206,7 @@
                                 mzSettleReturn = eval('(' + data + ')');
                             },
                             error: function (request, error, ex) {
-                                $.modalAlert("Dịch vụ BHYT【2208】(Hủy quyết toán ngoại trú)Không thể truy cập：[" + ex + "]", 'error');
+                                $.modalAlert("Dịch vụ BHYT【2208】(Hủy quyết toán ngoại trú)Không thể truy cập:[" + ex + "]", 'error');
                                 return;
                             }
                         });
@@ -214,12 +214,12 @@
                             $.modalAlert('Hủy thành công', 'success');
                         }
                         else {
-                            $.modalAlert('BHYT quyết toán Hủy thất bại：' + mzSettleReturn.err_msg + '【Vui lòng thử lại】', 'error');
+                            $.modalAlert('BHYT quyết toán Hủy thất bại:' + mzSettleReturn.err_msg + '【Vui lòng thử lại】', 'error');
                         }
                         break;
                     case "离休医保单边":
                         if (medicalInsurance == "chongqing") {
-                            var payoptype = { 'jylsh': seleRow.setl_id, 'jbr': '@(opr.rygh)', 'zymzh': seleRow.zymzh, 'czlx': '0', 'xzlb': '1' };//loại bảo hiểm mặc định，1、bảo hiểm y tế；2、bảo hiểm tai nạn lao động；3、bảo hiểm sinh sản；
+                            var payoptype = { 'jylsh': seleRow.setl_id, 'jbr': '@(opr.rygh)', 'zymzh': seleRow.zymzh, 'czlx': '0', 'xzlb': '1' };//loại bảo hiểm mặc định,1、bảo hiểm y tế；2、bảo hiểm tai nạn lao động；3、bảo hiểm sinh sản；
                             lxybcz(payoptype);
                         }
                         break;
@@ -254,11 +254,11 @@
                             }
                         });
                         if (!iskt) {
-                            $.modalAlert('Số lượng có thể hoàn là0，Vui lòng xác nhận Có hay không Có thể hoàn！', 'success');
+                            $.modalAlert('Số lượng có thể hoàn là0,Vui lòng xác nhận Có hay không Có thể hoàn！', 'success');
                             return;
                         }
                         var ybjyCqFeeReturn = {
-                            jylsh: "111111111",//giá trị không thể sửa，máy chủ sẽ xác định，nếu là111111111，thì không ghi vào bảng ghi nhận quyết toán BHYT nữa--Trùng Khánh
+                            jylsh: "111111111",//giá trị không thể sửa,máy chủ sẽ xác định,nếu là111111111,thì không ghi vào bảng ghi nhận quyết toán BHYT nữa--Trùng Khánh
                             cqtczf: 0,
                             zhzf: 0,
                             gwybz: 0,
@@ -311,7 +311,7 @@
                     cqybjyDenySettleReturn = eval('(' + data + ')');
                 },
                 error: function (request, error, ex) {
-                    $.modalAlert("nghỉ hưu Dịch vụ BHYT【99】giao dịch đảo Không thể truy cập：[" + ex + "]", 'error');
+                    $.modalAlert("nghỉ hưu Dịch vụ BHYT【99】giao dịch đảo Không thể truy cập:[" + ex + "]", 'error');
                     return;
                 }
             });
@@ -337,7 +337,7 @@
                 },
                 url: "/OutpatientManage/OutpatientRefund/guianhandleRefund",
                 dataType: "json",
-                loadingtext: "Đang yêu cầu Đảo ngược HIS quyết toán，Vui lòng chờ…",
+                loadingtext: "Đang yêu cầu Đảo ngược HIS quyết toán,Vui lòng chờ…",
                 success: function (ajaxresp) {
                     if (funcSuccCallback) {
                         if (ajaxresp && ajaxresp.data) {
@@ -385,11 +385,11 @@
                         $.modalAlert('Hủy thành công', 'success');
                     }
                     else {
-                        $.modalAlert('BHYT xuất viện Hủy thất bại：' + cxcyReturn.err_msg + '【Vui lòng thử lại】', 'error');
+                        $.modalAlert('BHYT xuất viện Hủy thất bại:' + cxcyReturn.err_msg + '【Vui lòng thử lại】', 'error');
                     }
                 },
                 error: function (request, error, ex) {
-                    $.modalAlert("Dịch vụ BHYT【2405】(Hủy xuất viện)Không thể truy cập：[" + ex + "]", 'error');
+                    $.modalAlert("Dịch vụ BHYT【2405】(Hủy xuất viện)Không thể truy cập:[" + ex + "]", 'error');
                 }
             });
         });
@@ -409,11 +409,11 @@
                         $.modalAlert('【2601】Đảo ngược thành công', 'success');
                     }
                     else {
-                        $.modalAlert('【2601】Đảo ngược【2401】Thất bại：', 'error');
+                        $.modalAlert('【2601】Đảo ngược【2401】Thất bại:', 'error');
                     }
                 },
                 error: function (request, error, ex) {
-                    $.modalAlert("Dịch vụ BHYT【2601】(giao dịch đảo)Không thể truy cập：[" + ex + "]", 'error');
+                    $.modalAlert("Dịch vụ BHYT【2601】(giao dịch đảo)Không thể truy cập:[" + ex + "]", 'error');
                     return;
                 }
             });
@@ -447,11 +447,11 @@
                         $.modalAlert('【2601】Đảo ngược thành công', 'success');
                     }
                     else {
-                        $.modalAlert('【2601】Đảo ngược【' +seleRow.infno+ '】Thất bại：' + mzImpactIs.err_msg + '【Vui lòng thử lại】', 'error');
+                        $.modalAlert('【2601】Đảo ngược【' +seleRow.infno+ '】Thất bại:' + mzImpactIs.err_msg + '【Vui lòng thử lại】', 'error');
                     }
                 },
                 error: function (request, error, ex) {
-                    $.modalAlert("Dịch vụ BHYT【2601】(giao dịch đảo)Không thể truy cập：[" + ex + "]", 'error');
+                    $.modalAlert("Dịch vụ BHYT【2601】(giao dịch đảo)Không thể truy cập:[" + ex + "]", 'error');
                     return;
                 }
             });
@@ -470,11 +470,11 @@
                                 $.modalAlert('Hủy thành công', 'success');
                             }
                             else {
-                                $.modalAlert('BHYT xuất viện Hủy thất bại：' + cxcyReturn.err_msg + '【Vui lòng thử lại】', 'error');
+                                $.modalAlert('BHYT xuất viện Hủy thất bại:' + cxcyReturn.err_msg + '【Vui lòng thử lại】', 'error');
                             }
                         },
                         error: function (request, error, ex) {
-                            $.modalAlert("Dịch vụ BHYT【2405】(Hủy xuất viện)Không thể truy cập：[" + ex + "]", 'error');
+                            $.modalAlert("Dịch vụ BHYT【2405】(Hủy xuất viện)Không thể truy cập:[" + ex + "]", 'error');
                         }
                     });
                 }

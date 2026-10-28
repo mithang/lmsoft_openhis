@@ -23,15 +23,15 @@
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">Số hồ sơ bệnh án：</th>
+                <th class="formTitle">Số hồ sơ bệnh án:</th>
                 <td class="formValue">
                     <input type="text" class="form-control form-an" id="blh" />
                 </td>
-                <th class="formTitle">Họ tên：</th>
+                <th class="formTitle">Họ tên:</th>
                 <td class="formValue">
                     <input type="text" class="form-control form-an" id="xm" />
                 </td>
-                <th class="formTitle">tải lên Thời gian：</th>
+                <th class="formTitle">tải lên Thời gian:</th>
                 <td class="formValue" colspan="2">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left;">—</span>
@@ -40,7 +40,7 @@
                 <td></td>
             </tr>
             <tr>
-                <th class="formTitle">Loại bệnh nhân：</th>
+                <th class="formTitle">Loại bệnh nhân:</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="brlx" class="form-control form-an">
                         <option value="-1">Tất cả</option>
@@ -48,7 +48,7 @@
                         <option value="Inpatient">Nhập viện</option>
                     </select>
                 </td>
-                <th class="formTitle">dữ liệu Loại：</th>
+                <th class="formTitle">dữ liệu Loại:</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="wtjlbz" class="form-control form-an">
                         <option value="-1">Tất cả</option>
@@ -56,14 +56,14 @@
                         <option value=true selected>Có vấn đề</option>
                     </select>
                 </td>
-                <th class="formTitle">Kỹ thuật viên trị liệu：</th>
+                <th class="formTitle">Kỹ thuật viên trị liệu:</th>
                 <td class="formValue">
                     @*<input type="text" readonly="readonly" class="form-control formClearIgnore form-an" id="smryName" data-smry="@OperatorProvider.GetCurrent().rygh" data-staffId="@OperatorProvider.GetCurrent().StaffId" value=@OperatorProvider.GetCurrent().UserName />*@
                     <select id="smryName" class="form-control">
                         <option>==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <th class="formTitle">Đã hay chưa Xóa：</th>
+                <th class="formTitle">Đã hay chưa Xóa:</th>
                 <td class="formValue">
                     <select id="isDeleted" class="form-control">
                         <option>Tất cả</option>

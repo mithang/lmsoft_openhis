@@ -13,7 +13,7 @@
         <table class="form" style="width:96%;">
             <tbody>
                 <tr>
-                    <th class="formTitle">Mã nhập viện：</th>
+                    <th class="formTitle">Mã nhập viện:</th>
                     <td class="formValue" colspan="2">
                         <input class="form-control form-control-focus" type="text" id="zyh" value="" style="width:49%;float:left;" />
                         &nbsp;&nbsp;<input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" style="width: 17%;" id="btnsyy" value="Truy vấn" onclick="GetPatSerarchView($('#zyh').val());">
@@ -21,19 +21,19 @@
                     <td class="formValue">
                         <input type="button" id="btn_search" class="btn btn-primary btn-md" value="&nbsp;&nbsp;Truy vấn&nbsp;&nbsp;">
                     </td>
-                    <th class="formTitle">Họ tên：</th>
+                    <th class="formTitle">Họ tên:</th>
                     <td class="formValue">
                         <label id="xm"></label>
                     </td>
-                    <th class="formTitle">Giới tính：</th>
+                    <th class="formTitle">Giới tính:</th>
                     <td class="formValue">
                         <label id="xb"></label>
                     </td>
-                    <th class="formTitle">Tuổi：</th>
+                    <th class="formTitle">Tuổi:</th>
                     <td class="formValue">
                         <label id="nlshow"></label>
                     </td>
-                    <th class="formTitle">Số giấy tờ：</th>
+                    <th class="formTitle">Số giấy tờ:</th>
                     <td class="formValue">
                         <label id="zjh"></label>
                     </td>
@@ -41,19 +41,19 @@
             </tbody>
             <tbody class="dispTbody" style="display:none;">
                 <tr>
-                    <th class="formTitle">Chẩn đoán nhập viện：</th>
+                    <th class="formTitle">Chẩn đoán nhập viện:</th>
                     <td class="formValue" colspan="2">
                         <label id="ryzd"></label>
                     </td>
-                    <th class="formTitle">Số điện thoại：</th>
+                    <th class="formTitle">Số điện thoại:</th>
                     <td class="formValue">
                         <label id="phone"></label>
                     </td>
-                    <th class="formTitle">Ngày sinh：</th>
+                    <th class="formTitle">Ngày sinh:</th>
                     <td class="formValue">
                         <label id="csny"></label>
                     </td>
-                    <th class="formTitle">Ngày nhập viện：</th>
+                    <th class="formTitle">Ngày nhập viện:</th>
                     <td class="formValue">
                         <label id="ryrq"></label>
                     </td>
@@ -71,7 +71,7 @@
         <div id="divSLMX" style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>Mụcthu phí：</th>
+                    <th class="formTitle"><span class="required">*</span>Mụcthu phí:</th>
                     <td class="formValue">
                         <input id="sfxmmc" type="text" class="form-control  form-an" />
                         <input id="sfxmCode" type="text" style="display:none;" class="form-control" />
@@ -81,15 +81,15 @@
                         <input id="sfdlCode" type="text" style="display:none;" class="form-control" />
                         <input id="sfdlmc" type="text" style="display:none;" class="form-control" />
                     </td>
-                    <th class="formTitle">Thời lượng đơn vị：</th>
+                    <th class="formTitle">Thời lượng đơn vị:</th>
                     <td class="formValue">
                         <input id="duration" type="text" class="form-control  form-an" value="" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Đơn vị：</th>
+                    <th class="formTitle"><span class="required">*</span>Đơn vị:</th>
                     <td class="formValue">
                         <label id="dw"></label>
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Đơn giá(đồng)：</th>
+                    <th class="formTitle"><span class="required">*</span>Đơn giá(đồng):</th>
                     <td class="formValue">
                         @if (zyjzDjEditable)
                         {
@@ -108,25 +108,25 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>Số lượng：</th>
+                    <th class="formTitle"><span class="required">*</span>Số lượng:</th>
                     <td class="formValue">
                         <input id="sl" type="text" class="form-control  form-an" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Trị liệu sư：</th>
+                    <th class="formTitle"><span class="required">*</span>Trị liệu sư:</th>
                     <td class="formValue">
                         <input id="zlsList" readonly="readonly" type="text" class="form-control form-an" value="" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Loại phục hồi：</th>
+                    <th class="formTitle"><span class="required">*</span>Loại phục hồi:</th>
                     <td class="formValue">
                         <select id="kflb" name="kflb" class="form-control">
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Ngàyghi sổ：</th>
+                    <th class="formTitle"><span class="required">*</span>Ngàyghi sổ:</th>
                     <td class="formValue">
                         <input id="tdrq" type="text" class="form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@(System.DateTime.Now.ToString("yyyy-MM-dd"))" />
                     </td>
-                    <th class="formTitle">Ghi chú：</th>
+                    <th class="formTitle">Ghi chú:</th>
                     <td class="formValue">
                         <input id="bz" type="text" class="form-control form-an form-an-end" value="" />
                     </td>
@@ -326,7 +326,7 @@
         ]
     });
 
-    //Theo thời gian tạo đảo ngượckể xếpCột， Mới tạo nhất Ở phía trước nhất
+    //Theo thời gian tạo đảo ngượckể xếpCột, Mới tạo nhất Ở phía trước nhất
     var oldxmList = [];   //Mục lịch sử đã gửiList
     var newxmList = [];   //Mục mớiList
 
@@ -342,7 +342,7 @@
 
     fillDataToGrid();
 
-    //phân tíchBác sĩMảng，Lấy chuỗi tên bác sĩ
+    //phân tíchBác sĩMảng,Lấy chuỗi tên bác sĩ
     function getYsNamesByList(ysList) {
         if (ysList) {
             //phân tíchTrị liệu sư[{},{}]Lấy chuỗi
@@ -569,11 +569,11 @@
     //Nút thêm
     function newtouch_event_f2() {
         if (editingNewid) {
-            return; //Đang ở trạng thái sửa đổi，làKhông thểNhấnNút thêmcủa   cầndisableXử lý
+            return; //Đang ở trạng thái sửa đổi,làKhông thểNhấnNút thêmcủa   cầndisableXử lý
         }
 
         var data = getEditRowData();
-        if (!(checkEditingRowData(data))) {    //Dữ liệu có đầy đủ hay không，Kiểm tra mục bắt buộc
+        if (!(checkEditingRowData(data))) {    //Dữ liệu có đầy đủ hay không,Kiểm tra mục bắt buộc
             return;
         }
 
@@ -608,7 +608,7 @@
         if (editingNewid) {
             //GửiSửa đổi
             var data = getEditRowData();
-            if (!(checkEditingRowData(data))) {    //Dữ liệu có đầy đủ hay không，Kiểm tra mục bắt buộc
+            if (!(checkEditingRowData(data))) {    //Dữ liệu có đầy đủ hay không,Kiểm tra mục bắt buộc
                 return;
             }
             if (data.yzxz == '1') {
@@ -747,7 +747,7 @@
             return;
         }
         if (paramData.zyh != respZyh) {
-            $.modalAlert("Lỗi：Trong quá trình nhập，Thay đổi mã nhập viện", 'warning');
+            $.modalAlert("Lỗi:Trong quá trình nhập,Thay đổi mã nhập viện", 'warning');
             return;
         }
         if (!paramData.xmList || paramData.xmList.length == 0) {
@@ -784,12 +784,12 @@
                 var rowData = $("#gridMX").jqGrid('getRowData', rowid);
                 if (rowData) {
                     if (!rowData.newid) {   //Dòng này không thể xóa
-                        $.modalAlert("ghi sổ đã xác nhận，Không thể xóa", 'warning');
+                        $.modalAlert("ghi sổ đã xác nhận,Không thể xóa", 'warning');
                         return;
                     }
                     if (rowData.newid == editingNewid) {
-                        $.modalAlert("Dòng này đang ở trạng thái chỉnh sửa，Không thể xóa", 'warning');
-                        return; //Dòng này đang ở trạng thái chỉnh sửa，Không thể xóa
+                        $.modalAlert("Dòng này đang ở trạng thái chỉnh sửa,Không thể xóa", 'warning');
+                        return; //Dòng này đang ở trạng thái chỉnh sửa,Không thể xóa
                     }
 
                     var matchedIndex = -1;

@@ -32,9 +32,12 @@ namespace HIS.SSO.Controllers
 
         }
 
+        // QA-phase2 (SSO-05): /Home/DashBoard was the default ASP.NET scaffold
+        // page, linked from no menu. Redirect to the real portal home instead
+        // of serving scaffold content (no new content invented, no 404).
         public IActionResult DashBoard()
         {
-            return View();
+            return RedirectToAction("Index");
         }
         public override IActionResult Index()
         {

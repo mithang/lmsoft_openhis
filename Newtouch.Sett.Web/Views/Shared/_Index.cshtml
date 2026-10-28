@@ -45,6 +45,13 @@
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/datepicker/WdatePicker.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/page.common.js", false)"></script>
+    <style>
+        /* QA-phase2 (SETT-11): Vietnamese labels are longer than the short
+           Chinese labels the shared framework CSS sizes .formTitle for
+           (90px, table-layout:fixed). Widen label columns so the full label
+           shows instead of clipping. Mirrors the rule already in _Form. */
+        table.form th.formTitle { width: 210px; }
+    </style>
     @Html.Partial("_BrowseAdaptiveSupport")
 </head>
 <body>

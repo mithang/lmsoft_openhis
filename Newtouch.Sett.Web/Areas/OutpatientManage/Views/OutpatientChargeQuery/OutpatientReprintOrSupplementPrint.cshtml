@@ -19,15 +19,15 @@
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Ngày bắt đầu：</th>
+                    <th class="formTitle">Ngày bắt đầu:</th>
                     <td class="formValue">
                         <input id="txtstartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">Ngày kết thúc：</th>
+                    <th class="formTitle">Ngày kết thúc:</th>
                     <td class="formValue">
                         <input id="txtendDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">Mã nội bộ quyết toán：</th>
+                    <th class="formTitle">Mã nội bộ quyết toán:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtjsnm" name="txtjsnm" />
                     </td>
@@ -36,7 +36,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Số thẻ：</th>
+                    <th class="formTitle">Số thẻ:</th>
                     <td class="formValue">
                         <div class="row">
                             <div class="col-md-9">
@@ -47,7 +47,7 @@
                             </div>
                         </div>
                     </td>
-                    <th class="formTitle">Số hóa đơn gốc：</th>
+                    <th class="formTitle">Số hóa đơn gốc:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtyfph" name="txtyfph" />
                     </td>
@@ -87,7 +87,7 @@
         });
         //quyết toánbản ghi chính
         gridMzjsRecordsData();
-        //chọn tất cả/không chọn gì cả：tìm thấyGridtrong titlecủacheckbox，đăng ký mộtonclicksự kiện，khiclicklúc，tảichi tiết
+        //chọn tất cả/không chọn gì cả:tìm thấyGridtrong titlecủacheckbox,đăng ký mộtonclicksự kiện,khiclicklúc,tảichi tiết
         $("table input[type=checkbox]:eq(0)").bind("click", function () {
            
             btn_selectrow();
@@ -152,7 +152,7 @@
     //sự kiện nhấn
     function btn_selectrow()
     {
-        //mỗi lần nhấn，xóa chi tiết trước làm lạitảinơicódòng đã chọnchi tiết
+        //mỗi lần nhấn,xóa chi tiết trước làm lạitảinơicódòng đã chọnchi tiết
         $('#gridMzjsMXInfo').jqGrid("clearGridData");
         var rowsData = $("#gridMzjsRecords").jqGrid("getRowData_AllLine", true);
         var rowsDataArray = JSON.parse(rowsData)
@@ -469,25 +469,25 @@
         });
 
     }
-    //phím tắt：xóa
+    //phím tắt:xóa
     function newtouch_event_f4() {
         //xóaGrid 
         $('#gridMzjsRecords').jqGrid("clearGridData");
         $('#gridMzjsMXInfo').jqGrid("clearGridData");
     }
-    //phím tắt：in chi tiết
+    //phím tắt:in chi tiết
     function newtouch_event_f6() {
         PrintMxData();
     }
-    //phím tắt：in hóa đơn
+    //phím tắt:in hóa đơn
     function newtouch_event_f7() {
         InvoicePrint();
     }
-    //phím tắt：in bổ sung
+    //phím tắt:in bổ sung
     function newtouch_event_f8() {
         SupplementPrint();
     }
-    //phím tắt：in lại
+    //phím tắt:in lại
     function newtouch_event_f9() {
         RePrint();
     }

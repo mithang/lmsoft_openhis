@@ -9,7 +9,13 @@
         <tr>
             <td>
                 <div class="input-group" style="width:200px;">
-                    <select id="OrganizeId" name="OrganizeId" class="form-control"></select>
+                    @* QA-phase2 (SETT-13): without a first option, framework-ui's
+                       bindSelect renders the vendor hard-coded "No results
+                       found" option when the org tree comes back empty. A
+                       default first option makes it render this placeholder
+                       instead (and it is kept as the placeholder when data
+                       loads). Vendor file itself is untouched. *@
+                    <select id="OrganizeId" name="OrganizeId" class="form-control"><option value="">==Vui lòng chọn==</option></select>
                 </div>
             </td>
         </tr>

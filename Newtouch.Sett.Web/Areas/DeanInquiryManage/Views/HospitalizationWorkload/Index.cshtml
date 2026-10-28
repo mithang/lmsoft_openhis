@@ -31,7 +31,7 @@
     <table class="form">
         <tr>
 
-            <th class="formTitle" id="xzsjtext">Loại：</th>
+            <th class="formTitle" id="xzsjtext">Loại:</th>
             <td class="formValue" style="width:150px">
                 <select id="dateType" class="form-control" onchange="updateSjType()">
                     <option value="1">năm</option>
@@ -39,7 +39,7 @@
                     <option value="3">ngày</option>
                 </select>
             </td>
-            <th class="formTitle" id="xzsjtext">Thời gian：</th>
+            <th class="formTitle" id="xzsjtext">Thời gian:</th>
             <td class="formValue" style="width:150px">
                 <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"*@>
             </td>
@@ -192,8 +192,8 @@
         var $gridJsList = $("#gridJSListhzrjfyfx");
         $gridJsList.dataGrid({
             height: 120,
-            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/HospitalizationWorkload/DepartmentWorkload",
             postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val()},
             colModel: [
@@ -239,8 +239,8 @@
         var $gridysList = $("#gridJSListmzxyfx");
         $gridysList.dataGrid({
             height: 120,
-            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị，thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue，thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
             url: "/DeanInquiryManage/HospitalizationWorkload/StaffWorkload",
             postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val(), bq: bqCode },
             colModel: [

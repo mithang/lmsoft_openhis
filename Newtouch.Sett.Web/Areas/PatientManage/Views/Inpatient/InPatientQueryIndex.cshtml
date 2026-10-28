@@ -9,7 +9,7 @@
     var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
     //Có giao dịch với nông thôn mới hay không
     var openXnhSett = SysConfigReader.Bool("Inpatient_Sett_OpenXnhSett");
-    //Nơi quản lý BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
+    //Nơi quản lý BHYT,Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
     var opr = OperatorProvider.GetCurrent();
     //Loại chứng từ khám có lấy từ phía BHYT không
@@ -32,7 +32,7 @@
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">Trạng thái đang nằm viện：</th>
+                <th class="formTitle">Trạng thái đang nằm viện:</th>
                 <td class="formValue">
                     <select id="zybz" name="zybz" class="form-control">
                         <option value="">==Vui lòng chọn==</option>
@@ -41,27 +41,27 @@
                         <option value="9">Đã hủy bỏ</option>
                     </select>
                 </td>
-                <th class="formTitle">Từ khóa：</th>
+                <th class="formTitle">Từ khóa:</th>
                 <td class="formValue">
                     <input id="txt_keyword" type="text" class="form-control form-an" placeholder="Họ tên/Số hồ sơ bệnh án/Số nhập viện">
                 </td>
-                <th class="formTitle">Ngày nhập viện：</th>
+                <th class="formTitle">Ngày nhập viện:</th>
                 <td class="formValue" colspan="2">
                     <input id="ryrqkssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-6).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left">—</span>
                     <input id="ryrqjssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
-                <th class="formTitle" style="width:70px;padding-right:12px;">Nhập viện Khoa：</th>
+                <th class="formTitle" style="width:70px;padding-right:12px;">Nhập viện Khoa:</th>
                 <td class="formValue">
                     <input type="text" id="ksmc" name="ksmc" class="form-control form-an" />
                 </td>
-                <th class="formTitle" style="width:70px;padding-right:12px;">Nhập viện Khoa bệnh：</th>
+                <th class="formTitle" style="width:70px;padding-right:12px;">Nhập viện Khoa bệnh:</th>
                 <td class="formValue">
                     <input type="text" id="bqmc" name="bqmc" class="form-control form-an" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Mới Số nhập viện：</th>
+                <th class="formTitle">Mới Số nhập viện:</th>
                 <td class="formValue" colspan="1">
                     <select id="sel_newzyh">
                         <option value="0">Không</option>
@@ -69,7 +69,7 @@
                     </select>
                 </td>
                 <td class="formTitle">
-                    Hình thức nhập viện：
+                    Hình thức nhập viện:
                 </td>
                 <td class="formValue">
                     <select id="sel_ryfs">
@@ -475,8 +475,8 @@
 @if (isZFtoYB || isYBtoZF)
 {
 <script type="text/javascript">
-        var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
-        var openXnhSett = '@openXnhSett' === 'True';//cấu hình công tắc：Bệnh nhân nông thôn mới có dùng quy trình giao dịch nông thôn mới không
+        var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc:bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+        var openXnhSett = '@openXnhSett' === 'True';//cấu hình công tắc:Bệnh nhân nông thôn mới có dùng quy trình giao dịch nông thôn mới không
         var medicalInsurance = '@medicalInsurance';
         var zyh = '';
         var kh = "";
@@ -514,7 +514,7 @@
             }
             var isBrxzOk = seleRow.brxz == '0';
             if (isBrxzOk) {
-                $.modalAlert("Lỗi：Đã chọn là không phải BHYT", "error");
+                $.modalAlert("Lỗi:Đã chọn là không phải BHYT", "error");
                 return;
             }
             var zyh = seleRow.zyh;
@@ -541,7 +541,7 @@
                     upUrl = "http://127.0.0.1:33333/api/YiBao/PostMedicalRecords_4701";
                     break;
             }
-            $.loading("Đang tải dữ liệu，Vui lòng chờ một chút");
+            $.loading("Đang tải dữ liệu,Vui lòng chờ một chút");
             $.ajax({
                 type: "POST",
                 url: upUrl,
@@ -553,16 +553,16 @@
                     if (tfReturn) {
                         if (tfReturn.infcode == "0") {
                             $.loading(false);
-                            $.modalAlert("Số nhập viện là:" + zyh + "，Tải lên thành công", 'warning');
+                            $.modalAlert("Số nhập viện là:" + zyh + ",Tải lên thành công", 'warning');
                         }
                         else {
                             $.loading(false);
-                            $.modalAlert("Tải lên bảng quyết toán Thất bại：" + tfReturn.err_msg, 'error');
+                            $.modalAlert("Tải lên bảng quyết toán Thất bại:" + tfReturn.err_msg, 'error');
                         }
                     }
                 }, error: function () {
                     $.loading(false);
-                    $.modalAlert("Dịch vụ bất thường：", 'error');
+                    $.modalAlert("Dịch vụ bất thường:", 'error');
                 }
             });
         }
@@ -576,7 +576,7 @@
         }
         var isBrxzOk = seleRow.brxzlb == '0';
         if (!isBrxzOk) {
-            $.modalAlert("Lỗi：Chọn của Có Không phải Tự chi trả", "error");
+            $.modalAlert("Lỗi:Chọn của Có Không phải Tự chi trả", "error");
             return;
         }
         zyh = seleRow.zyh;
@@ -691,7 +691,7 @@
                 $.modalAlert("Quẹt thẻ thất bại:" + yibaoCardInfo.err_msg, 'error');
             }
         } else {
-            $.modalAlert("Quẹt thẻ lấy thông tin BHYT thất bại！Nguyên nhân thất bại：Trung tâm BHYT không trả thông tin，vui lòng thử lại！", 'error');
+            $.modalAlert("Quẹt thẻ lấy thông tin BHYT thất bại！Nguyên nhân thất bại:Trung tâm BHYT không trả thông tin,vui lòng thử lại！", 'error');
         }
     }*@
 
@@ -722,7 +722,7 @@
         }
         var isBrxzOk = seleRow.brxz == '0';
         if (!isBrxzOk) {
-            $.modalAlert("Lỗi：Chọn của Có Không phải Tự chi trả", "error");
+            $.modalAlert("Lỗi:Chọn của Có Không phải Tự chi trả", "error");
             return;
         }
         zyh = seleRow.zyh;
@@ -806,7 +806,7 @@
 
 
         if (!isybjy && !jsxnhjy) {
-            $.modalAlert("Lỗi：Vui lòng chọn BHYT Hoặc Bệnh nhân nông thôn mới", "error");
+            $.modalAlert("Lỗi:Vui lòng chọn BHYT Hoặc Bệnh nhân nông thôn mới", "error");
             return;
         }
         var zyh = seleRow.zyh;
@@ -814,7 +814,7 @@
             if (medicalInsurance == "guian") {
                 $.najax({
                     url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + zyh,
-                    loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân，Vui lòng chờ...",
+                    loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân,Vui lòng chờ...",
                     type: 'POST',
                     success: function (ybPreSettleReq) {
                         //var ybjshtReturn;
@@ -903,7 +903,7 @@
                     url: "/HospitalizationManage/DischargeSettle/GuiAnXnhCyblCancel?zyh=" + patModel.zyh,
                     dataType: 'json',
                     async: false,
-                    loadingtext: "Bệnh nhân Làm thủ tục xuất viện hoàn tác trong，Vui lòng chờ…",
+                    loadingtext: "Bệnh nhân Làm thủ tục xuất viện hoàn tác trong,Vui lòng chờ…",
                     success: function (ajaxresp) {
                         if (ajaxresp.state != "1") {
                             $.modalAlert(ajaxresp.message, 'warning');
@@ -929,7 +929,7 @@
 
 
         if (!isybjy ) {
-            $.modalAlert("Lỗi：Vui lòng chọn Bệnh nhân BHYT", "error");
+            $.modalAlert("Lỗi:Vui lòng chọn Bệnh nhân BHYT", "error");
             return;
         }
 
@@ -965,7 +965,7 @@
                             async: false,
                             success: function (ajaxresp) {
                                 if (ajaxresp.state != "1") {
-                                    $.modalAlert("chuyển tự chi trả Thất bại：" + ajaxresp.message, 'error');
+                                    $.modalAlert("chuyển tự chi trả Thất bại:" + ajaxresp.message, 'error');
                                     $.modalClose();
                                     return;
                                 } else {
@@ -1027,7 +1027,7 @@
         clickautotrigger: true,
         filter: function (keyword) {
 
-            //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
+            //Duyệt nguồn dữ liệu,dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysDepartList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -1057,7 +1057,7 @@
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
-            //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
+            //Duyệt nguồn dữ liệu,dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             var ks = $("#ksmc").attr("data-label");
             var bqlist = top.window.clients.sysWardDeptRelation.filter((item) => item.ks == ks);

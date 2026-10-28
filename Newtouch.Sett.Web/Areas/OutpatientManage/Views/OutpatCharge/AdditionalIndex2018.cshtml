@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "Ghi bổ sung phí ngoại trú";
     Layout = "~/Views/Shared/_Index.cshtml";
-    //thuốctra cứu，thuốclàkhôngliên kếtnhà thuốctồn kho
+    //thuốctra cứu,thuốclàkhôngliên kếtnhà thuốctồn kho
     var isMedicineSearchRelatedKC = (ViewBag.ISMedicineSearchRelatedKC as bool?) ?? false;
     //làkhôngvàBHYTgiao dịch
     var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
@@ -35,7 +35,7 @@
         </div>
         <table class="form" style="width:95%">
             <tr>
-                <th class="formTitle">&nbsp;&nbsp; <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>&nbsp;&nbsp;Họ tên/Số hồ sơ bệnh án：</th>
+                <th class="formTitle">&nbsp;&nbsp; <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>&nbsp;&nbsp;Họ tên/Số hồ sơ bệnh án:</th>
                 <td class="formValue">
                     <input id="keyword" type="text" class="form-control" />
                 </td>
@@ -54,7 +54,7 @@
             </div>
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span><label id="lbl_mzh">Số khám ngoại trú：</label></th>
+                    <th class="formTitle"><span class="required">*</span><label id="lbl_mzh">Số khám ngoại trú:</label></th>
                     <td class="formValue" style="width: 100px;">
                         <input type="text" class="form-control" id="mzh" name="mzh" />
                     </td>
@@ -64,40 +64,40 @@
                     <td class="formValue" >
                         <input type="button" class="btn btn-default btn-md btn-default-color" id="btnsyy" value="Tra cứu" onclick="GetPatSerarchView($('#mzh').val());" />
                     </td>
-                    <th class="formTitle">Họ tên：</th>
+                    <th class="formTitle">Họ tên:</th>
                     <td class="formValue" style="width: 50px">
                         <label id="xm"></label>
                     </td>
-                    <th class="formTitle">Giới tính：</th>
+                    <th class="formTitle">Giới tính:</th>
                     <td class="formValue">
                         <label id="xb"></label>
                     </td>
-                    <th class="formTitle">Tuổi：</th>
+                    <th class="formTitle">Tuổi:</th>
                     <td class="formValue">
                         <label id="nlshow"></label>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Tính chất chi phí：</th>
+                    <th class="formTitle">Tính chất chi phí:</th>
                     <td class="formValue">
                         <label id="brxzmc"></label>
                     </td>
-                    <th class="formTitle">Dấu hiệu khám：</th>
+                    <th class="formTitle">Dấu hiệu khám:</th>
                     <td class="formValue">
                         <label id="jiuzhenbiaozhi"></label>
                     </td>
                 </tr>
                 <tbody class="dispTbody" style="display: none;">
                     <tr>
-                        <td class="formTitle">Số giấy tờ：</td>
+                        <td class="formTitle">Số giấy tờ:</td>
                         <td class="formValue" colspan="2">
                             <label id="zjh"></label>
                         </td>
-                        <td class="formTitle">Số điện thoại：</td>
+                        <td class="formTitle">Số điện thoại:</td>
                         <td class="formValue">
                             <label id="phone"></label>
                         </td>
-                        <th class="formTitle">Ngày sinh：</th>
+                        <th class="formTitle">Ngày sinh:</th>
                         <td class="formValue">
                             <label id="csny"></label>
                         </td>
@@ -146,7 +146,7 @@
 })
 </div>
 <script>
-    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc:bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
     var isYbjyjz; //lần khám hiện tại có đi theo giao dịch BHYT không
     //
     var leftdata = [];//nguồn dữ liệu bên trái
@@ -176,7 +176,7 @@
         setTimeout("gridPatList()", 50);
     });
 
-    //phần tử trong trang，tínhtổng số tiền số lượngphiên bản
+    //phần tử trong trang,tínhtổng số tiền số lượngphiên bản
     function reCalcZjeFromsl() {
         var resultZje = "0.00";
         var txtDj = '@(ViewBag.sfxm_dj)' === 'ON' ? $("#dj").val() : $("#dj").html();
@@ -249,7 +249,7 @@
             type: "GET",
             url: "/OutpatientManage/OutpatientReg/GetCurrentDayRegListJson",
             loading: true,
-            loadingtext: "Đang tải danh sách bệnh nhân，Vui lòng chờ...",
+            loadingtext: "Đang tải danh sách bệnh nhân,Vui lòng chờ...",
             success: function (ajaxresp) {
                 leftdata = ajaxresp;
                 var $gridPatList = $("#gridPatList");
@@ -268,7 +268,7 @@
             dataType: "json",
             cache: false,
             async: true,
-            loadingtext: "Đang yêu cầu thông tin chi phí，Vui lòng chờ...",
+            loadingtext: "Đang yêu cầu thông tin chi phí,Vui lòng chờ...",
             success: function (ajaxresp) {
                 FillgridFeeList(ajaxresp);
             }
@@ -370,7 +370,7 @@
     //thêm
     function newtouch_event_f2() {
         if (editingNewid) {
-            return; //đang ở trạng thái sửa，không được nhấn nút thêm   cầndisablexử lý
+            return; //đang ở trạng thái sửa,không được nhấn nút thêm   cầndisablexử lý
         }
 
         if (!patInfoPostObj.mzh) {
@@ -378,18 +378,18 @@
             return;
         }
         if (patInfoPostObj.mzh !== respmzh) {
-            $.modalAlert("Lỗi：Trong quá trình nhập liệu，Thay đổi số khám ngoại trú", 'warning');
+            $.modalAlert("Lỗi:Trong quá trình nhập liệu,Thay đổi số khám ngoại trú", 'warning');
             return;
         }
 
         var data = getEditRowData();
-        if (!(CheckreAdddata(data) && checkEditingRowData(data))) {    //dữ liệu có đầy đủ không，kiểm tra các mục bắt buộc
+        if (!(CheckreAdddata(data) && checkEditingRowData(data))) {    //dữ liệu có đầy đủ không,kiểm tra các mục bắt buộc
             return;
         }
         var addgoon = function () {
             //kiểm trakhoản trùng
 
-            if (!(CheckreAdddata(data) && checkEditingRowData(data))) {    //dữ liệu có đầy đủ không，kiểm tra các mục bắt buộc
+            if (!(CheckreAdddata(data) && checkEditingRowData(data))) {    //dữ liệu có đầy đủ không,kiểm tra các mục bắt buộc
                 return;
             }
             reCalcZjeFromsl();
@@ -407,7 +407,7 @@
             return;
         }
         else if (data && parseFloat(data.dj) == '0') {
-            $.modalConfirm("Đơn giá là0，Xác nhận có thêm không", function (flag) {
+            $.modalConfirm("Đơn giá là0,Xác nhận có thêm không", function (flag) {
                 if (!flag) {
                     return;
                 }
@@ -426,7 +426,7 @@
         if (editingNewid) {
             var data = getEditRowData();
             if (!(checkEditingRowData(data))) {
-                //dữ liệu có đầy đủ không，kiểm tra các mục bắt buộc
+                //dữ liệu có đầy đủ không,kiểm tra các mục bắt buộc
                 return;
             }
             reCalcZjeFromsl();
@@ -465,7 +465,7 @@
                 return;
             }
             else if (data && parseFloat(data.dj) == '0') {
-                $.modalConfirm("Đơn giá là0，Xác nhận có sửa không", function (flag) {
+                $.modalConfirm("Đơn giá là0,Xác nhận có sửa không", function (flag) {
                     if (!flag) {
                         return;
                     }
@@ -670,7 +670,7 @@
             return;
         }
         if (patInfoPostObj.mzh !== respmzh) {
-            $.modalAlert("Lỗi：Trong quá trình nhập liệu，Thay đổi số khám ngoại trú", 'warning');
+            $.modalAlert("Lỗi:Trong quá trình nhập liệu,Thay đổi số khám ngoại trú", 'warning');
             return;
         }
 
@@ -762,7 +762,7 @@
     //hàm gọi lại hộp tra cứu bệnh nhân
     function GetQueryFphAjax(obj) {
         newtouch_event_f4();
-        $.loading(true, "Đang yêu cầu thông tin bệnh nhân，Vui lòng chờ...");
+        $.loading(true, "Đang yêu cầu thông tin bệnh nhân,Vui lòng chờ...");
         $.ajax({
             type: "POST",
             url: "/OutpatientManage/OutpatCharge/GetpatientAccountInfo",
@@ -773,7 +773,7 @@
             success: function (ajaxresp) {
                 if (ajaxresp.state === 'success' && ajaxresp.data && ajaxresp.data.OutpatAccInfoDto) {
                     if (ajaxresp.data.OutpatAccInfoDto && !!!ajaxresp.data.OutpatAccInfoDto.brxz) {
-                        $.modalAlert("Thông tin bệnh nhân bất thường，Thiếu tính chất chi phí", 'warning');
+                        $.modalAlert("Thông tin bệnh nhân bất thường,Thiếu tính chất chi phí", 'warning');
                         return false;
                     }
                     if (ajaxresp.data.OutpatAccInfoDto && !!!ajaxresp.data.OutpatAccInfoDto.CardTypeName) {
@@ -830,7 +830,7 @@
     //kiểm trađang sửacủadữ liệu（chờ gửi）củatính đầy đủ
     function checkEditingRowData(rowData) {
         if (true) {
-            //thông thường，số lượng
+            //thông thường,số lượng
             if (!((/^(\+|-)?\d+$/).test(rowData.sl)) || rowData.sl < 1) {
                 $.modalAlert("Số lượng phải lớn hơn0số nguyên", 'warning');
                 return;
@@ -1066,7 +1066,7 @@
         $("#readCard").css('top', (referDomPoint.t + 0)).css('left', (referDomPoint.l + 47)).show();
         //
         function readCard() {
-            var yibaoCardInfo = $.yibao.GetCardInfo($('#readCardCardType').val());  //đọc thẻ BHYT，trả về thông tin danh tính thẻ
+            var yibaoCardInfo = $.yibao.GetCardInfo($('#readCardCardType').val());  //đọc thẻ BHYT,trả về thông tin danh tính thẻ
             $.loading(false);
             if (yibaoCardInfo && yibaoCardInfo.Code == 0) {
                 //thẻ đã đọc được
@@ -1088,7 +1088,7 @@
         })
         //kích hoạt đọc thẻ
         function setTimeoutReadCard() {
-            $.loading(true, 'Đang đọc thẻ，Vui lòng chờ…');
+            $.loading(true, 'Đang đọc thẻ,Vui lòng chờ…');
             setTimeout("readCard();", 50);
         }
 

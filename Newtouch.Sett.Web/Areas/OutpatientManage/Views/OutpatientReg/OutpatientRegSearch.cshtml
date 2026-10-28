@@ -16,13 +16,13 @@
             <div style="padding: 2px;padding-right:20px;" class="tab-pane fade in active" id="ghmx">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">Ngày đăng ký khám：</th>
+                        <th class="formTitle">Ngày đăng ký khám:</th>
                         <td class="formValue" colspan="2">
                             <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                             <span style="margin-left:1%;float:left">—</span>
                             <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         </td>
-                        <th class="formTitle">Khoa đăng ký khám：</th>
+                        <th class="formTitle">Khoa đăng ký khám:</th>
                         <td class="formValue">
                             <input type="text" class="form-control" id="txtksmc" />
                         </td>
@@ -45,13 +45,13 @@
             <div class="tab-pane fade" ;style="background-color: #fff; height:100%;width:100%" id="ghtj">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">Ngày đăng ký khám：</th>
+                        <th class="formTitle">Ngày đăng ký khám:</th>
                         <td class="formValue" colspan="2">
                             <input id="tjkssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                             <span style="margin-left:1%;float:left">—</span>
                             <input id="tjjssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         </td>
-                        <th class="formTitle">Khoa đăng ký khám：</th>
+                        <th class="formTitle">Khoa đăng ký khám:</th>
                         <td class="formValue">
                             <input type="text" class="form-control" id="txttjksmc" />
                         </td>
@@ -107,7 +107,7 @@
 			clickautotrigger: true,
 			//url: '/OutpatientManage/OutpatientReg/GetCurrentDayRegListJson',
 			filter: function (keyword) {
-				//duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+				//duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
 				var resultObjArr = new Array();
 				$.each(kszdlist, function (idx, val) {
 					if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -138,7 +138,7 @@
 		    clickautotrigger: true,
 		    //url: '/OutpatientManage/OutpatientReg/GetCurrentDayRegListJson',
 		    filter: function (keyword) {
-		        //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+		        //duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
 		        var resultObjArr = new Array();
 		        $.each(kszdlist, function (idx, val) {
 		            if ((val.py && val.py.toLowerCase().indexOf(keyword) >= 0)
@@ -264,8 +264,8 @@
 						thrc += 1;
 					}
 				}
-				$("#ghrc").html("Lượt đăng ký khám：" + ids.length + "lần");
-				$("#thrc").html("Trong đó lượt hủy số：" + thrc + "lần");
+				$("#ghrc").html("Lượt đăng ký khám:" + ids.length + "lần");
+				$("#thrc").html("Trong đó lượt hủy số:" + thrc + "lần");
 				//console.log(ids);
 			},
 		});

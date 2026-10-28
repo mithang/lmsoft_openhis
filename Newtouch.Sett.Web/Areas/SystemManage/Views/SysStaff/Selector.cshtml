@@ -28,7 +28,7 @@
             oncheckboxclick: function (a, ck) {
                 window.treeaid = a.id;
                 if (single == 'true' && ck == 1 && !a.hasChildren) {
-                    //Để các ô khác đều không được chọn，nhưng không bao gồm nóCấp chacủa
+                    //Để các ô khác đều không được chọn,nhưng không bao gồm nóCấp chacủa
                     $.each($('img.bbit-tree-node-cb'), function () {
                         if ($(this).attr('id').indexOf(window.treeaid) == -1
                             && $(this).attr('src').indexOf('checkbox_1') != -1) {

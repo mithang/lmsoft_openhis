@@ -52,7 +52,15 @@ namespace NewtouchHIS.Framework.Web.Implementation
             }
             else if (result != null && result.code == ResponseResultCode.FAIL)
             {
-                throw new FailedException($"Đăng nhập thất bại, vui lòng liên hệ quản trị viên:{result?.msg}");
+                // QA-phase2 (SETT-16): the login page shows the exception
+                // message verbatim, and an upstream built from older source
+                // returns the login-failure text in Chinese ("登录失败，请联系管理员").
+                // Map that known message to Vietnamese here so the user never
+                // sees it, whatever the upstream build. Unknown messages pass
+                // through unchanged for diagnosis.
+                var upstreamMsg = result?.msg ?? "";
+                upstreamMsg = upstreamMsg.Replace("登录失败，请联系管理员", "Đăng nhập thất bại, vui lòng liên hệ quản trị viên");
+                throw new FailedException($"Đăng nhập thất bại, vui lòng liên hệ quản trị viên:{upstreamMsg}");
             }
             throw new FailedException($"Đăng nhập thất bại, vui lòng liên hệ quản trị viên");
         }

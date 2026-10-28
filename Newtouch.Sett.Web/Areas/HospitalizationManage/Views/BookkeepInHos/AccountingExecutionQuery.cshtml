@@ -14,7 +14,7 @@
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Trạng thái hủy：</th>
+                    <th class="formTitle">Trạng thái hủy:</th>
                     <td class="formValue">
                         <select id="cxzt" name="cxzt" class="form-control">
                             <option value="">==Tất cả==</option>
@@ -24,7 +24,7 @@
                     </td>
                     @if (!(reqFrom == "mz"))
                     {
-                        <th class="formTitle">Trạng tháithu phí：</th>
+                        <th class="formTitle">Trạng tháithu phí:</th>
                         <td class="formValue">
                             <select id="sfzt" name="sfzt" class="form-control">
                                 <option value="">==Tất cả==</option>
@@ -33,19 +33,19 @@
                             </select>
                         </td>
                     }
-                    <th class="formTitle">Trị liệu sư：</th>
+                    <th class="formTitle">Trị liệu sư:</th>
                     <td class="formValue">
                         <select id="zls" name="zls" class="form-control">
                             <option value="">==Tất cả==</option>
                         </select>
                     </td>
-                    <th class="formTitle">Từ khóa：</th>
+                    <th class="formTitle">Từ khóa:</th>
                     <td class="formValue" style="width:145px;">
                         <input type="text" style="width:145px;" class="form-control" id="keyword" placeholder="" />
                     </td>
                     @if (reqFrom == "mz")
                     {
-                        <th class="formTitle">Thời gian thao tác：</th>
+                        <th class="formTitle">Thời gian thao tác:</th>
                         <td class="formValue" colspan="2">
                             <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                             <span style="margin-left:1%;float:left">—</span>
@@ -59,7 +59,7 @@
                 @if (!(reqFrom == "mz"))
                 {
                     <tr>
-                        <th class="formTitle">Thời gian thao tác：</th>
+                        <th class="formTitle">Thời gian thao tác:</th>
                         <td class="formValue" colspan="2">
                             <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                             <span style="margin-left:1%;float:left">—</span>

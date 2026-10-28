@@ -12,12 +12,12 @@
     <table class="form" style="width: 98%; border: 0">
         <tr>
             <td class="formTitle">
-                <span>*</span>Số thẻ：
+                <span>*</span>Số thẻ:
             </td>
             <td class="formValue">
                 <input type="text" id="kh" class="form-control form-an">
             </td>
-            <td class="formTitle"><span>*</span>Số hồ sơ bệnh án：</td>
+            <td class="formTitle"><span>*</span>Số hồ sơ bệnh án:</td>
             <td class="formValue">
                 <input type="text" id="blh" class="form-control form-an">
                 <input hidden id="py" />
@@ -28,12 +28,12 @@
             </td>
         </tr>
         <tr>
-            <td class="formTitle"><span>*</span>Tên bệnh nhân：</td>
+            <td class="formTitle"><span>*</span>Tên bệnh nhân:</td>
             <td class="formValue">
                 <input type="text" id="xm" name="xm" class="form-control form-an">
             </td>
             <th class="formTitle">
-                <span class="required">*</span>Lịch trực đăng ký khám：
+                <span class="required">*</span>Lịch trực đăng ký khám:
             </th>
             <td class="formValue">
                 <input type="text" class="form-control" id="txtghpbchoose" />
@@ -41,11 +41,11 @@
             
         </tr>
         <tr>
-            <td class="formTitle"><span>*</span>Tính chất bệnh nhân：</td>
+            <td class="formTitle"><span>*</span>Tính chất bệnh nhân:</td>
             <td class="formValue">
                 <input type="text" id="brxzmc" name="brxzmc" class="form-control form-an">
             </td>
-            <td class="formTitle"><span>*</span>Giới tính：</td>
+            <td class="formTitle"><span>*</span>Giới tính:</td>
             <td class="formValue">
                 <div class="btn-group" data-toggle="buttons">
                     <label class="btn btn-default">
@@ -81,7 +81,7 @@
             width: 400,
             clickautotrigger: true,
             filter: function (keyword) {
-                //duyệtdữ liệunguồn，dùngkeywordđể lọc rakết quả
+                //duyệtdữ liệunguồn,dùngkeywordđể lọc rakết quả
                 var resultObjArr = new Array();
                 $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) ||

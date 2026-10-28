@@ -276,14 +276,14 @@
             //toolbar: '.btn-toolbar',            //nút công cụ dùng vùng chứa nào #toolbar
             //toolbarAlign: 'left',
             pagination: true,                   //có hiển thị phân trang hay không（*）
-            pageNumber: 1,                      //tải ban đầu trang đầu tiên，mặc định trang đầu tiên,và ghi lại
+            pageNumber: 1,                      //tải ban đầu trang đầu tiên,mặc định trang đầu tiên,và ghi lại
             pageSize: 30,                       //số dòng bản ghi mỗi trang（*）
             pageList: [5, 50, 100],            //số dòng mỗi trang có thể chọn（*）
             paginationHAlign: "left",
             paginationDetailHAlign: "right",
             sortable: true,                     //có bật sắp xếp hay không
             sortOrder: "desc",                   //phương thức sắp xếp
-            sidePagination: 'server',           //phương thức phân trang：clientphân trang phía máy khách，serverphân trang phía máy chủ（*）
+            sidePagination: 'server',           //phương thức phân trang:clientphân trang phía máy khách,serverphân trang phía máy chủ（*）
             //******thiết lập phân trang****
             onLoadSuccess: function (data) {
 
@@ -300,7 +300,7 @@
                 noticeReadProc(row.Id);
             },
             formatLoadingMessage: function () {
-                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
+                return "<span class='table-loading-text'>đang tải,vui lòng chờ</span>";
             },
             formatNoMatches: function () {
                 return "chưa có dữ liệu";

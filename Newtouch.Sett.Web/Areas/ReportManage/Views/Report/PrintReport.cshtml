@@ -10,25 +10,25 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Số nhập viện：</th>
+                <th class="formTitle">Số nhập viện:</th>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" autocomplete="off" class="form-control" />
                 </td>
-                <th class="formTitle">Ngày bắt đầu：</th>
+                <th class="formTitle">Ngày bắt đầu:</th>
                 <td class="formValue">
                     <input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
                            value="@DateTime.Now.ToString("yyyy-MM-01")" />
                 </td>
-                <th class="formTitle">Ngày kết thúc：</th>
+                <th class="formTitle">Ngày kết thúc:</th>
                 <td class="formValue">
                     <input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
                            onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
                            value="@DateTime.Now.ToString("yyyy-MM-dd")" />
                 </td>
-                <th class="formTitle">Ngày nhập viện：</th>
+                <th class="formTitle">Ngày nhập viện:</th>
                 <td class="formValue"><p id="ryrq" name="ryrq" type="text" style="margin-bottom:0" /></td>
                 <th class="formTitle">
                     <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu chi phí một ngày" style="width:60px" />
@@ -167,7 +167,7 @@
         }
         srcUrl = srcUrl2;
         srcUrl = reportServerHOST + srcUrl;
-        //console.info("địa chỉ：" + srcUrl);
+        //console.info("địa chỉ:" + srcUrl);
         //alert(srcUrl);
         return srcUrl;
     }

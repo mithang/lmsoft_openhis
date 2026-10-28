@@ -284,7 +284,7 @@
         clickautotrigger: true,
         filter: function (keyword) {
             
-            //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
+            //Duyệt nguồn dữ liệu,dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysPatientNatureList, function (idx, val) {
                 if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) ||

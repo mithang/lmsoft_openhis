@@ -92,15 +92,15 @@
             <div id="basicInfo" role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><a class="btn btn-primary" onclick="reload()" style="margin:auto 5px"><span class="glyphicon glyphicon-refresh"></span></a><span class="required">*</span>Trạm：</th>
+                        <th class="formTitle"><a class="btn btn-primary" onclick="reload()" style="margin:auto 5px"><span class="glyphicon glyphicon-refresh"></span></a><span class="required">*</span>Trạm:</th>
                         <td class="formValue" style="width:180px">
                             <select id="siteId" name="siteId" class="form-control"></select>
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Năm：</th>
+                        <th class="formTitle"><span class="required">*</span>Năm:</th>
                         <td class="formValue" style="width:80px">
                             <select id="year" name="year" class="form-control"></select>
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Tháng：</th>
+                        <th class="formTitle"><span class="required">*</span>Tháng:</th>
                         <td class="formValue" style="width:80px">
                             <select id="month" name="month" class="form-control" style="width:50px"></select>
                         </td>
@@ -114,7 +114,7 @@
             <div id="cb" role="tabpanel" class="tab-pane fade in">
                 <table class="form" style="margin-bottom:10px;width:745px">
                     <tr>
-                        <th class="formTitle"><span style="color:red">*</span>Loại：</th>
+                        <th class="formTitle"><span style="color:red">*</span>Loại:</th>
                         <td class="formValue">
                             <input type="hidden" id="cbId" />
                             <select id="cblb" name="cblb" class="form-control">
@@ -123,13 +123,13 @@
                                 <option value="GRSbillObj">Khoa mục GRS chịu</option>
                             </select>
                         </td>
-                        <th class="formTitle"><span style="color:red">*</span>Khoa mục：</th>
+                        <th class="formTitle"><span style="color:red">*</span>Khoa mục:</th>
                         <td class="formValue">
                             <select id="kmmc" name="kmmc" class="form-control">
                                 <option value="" selected>==Vui lòng chọn==</option>
                             </select>
                         </td>
-                        <th class="formTitle"><span style="color:red">*</span>Số tiền：</th>
+                        <th class="formTitle"><span style="color:red">*</span>Số tiền:</th>
                         <td class="formValue">
                             <input id="je" class="form-control" />
                         </td>
@@ -271,7 +271,7 @@
                     $.loading(false);
                 }
             });
-            //cấmdùngtrạmđiểm，thànhnàythông tintin，Tệp đính kèm
+            //cấmdùngtrạmđiểm,thànhnàythông tintin,Tệp đính kèm
             $('#siteId').attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
             $('#year').attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
             $('#month').attr("disabled", "disabled").css("background-color", "rgb(238, 238, 238)");
@@ -319,7 +319,7 @@
                         return false;
                     }
                     files.push(t_files[i]);
-                    //str += '<li>Tên：' + t_files[i].name + 'Kích thước' + t_files[i].size / 1024 / 2014 + 'M<i class="fa fa-times" aria-hidden="true" hidden="" style="display: inline;"></i></li> ';
+                    //str += '<li>Tên:' + t_files[i].name + 'Kích thước' + t_files[i].size / 1024 / 2014 + 'M<i class="fa fa-times" aria-hidden="true" hidden="" style="display: inline;"></i></li> ';
                 }
             }
             renderFiles();
@@ -336,7 +336,7 @@
         var htmlstring = '';
         for (var i = 0; i < files.length; i++) {
             var file = files[i];
-            htmlstring += '<li style="list-style-type: none;height:20px;">Tên：';
+            htmlstring += '<li style="list-style-type: none;height:20px;">Tên:';
             if (file.Id != null && file.Id != undefined) {
                 htmlstring += "<a id='file" + i + "' href='/SiteManage/SiteStatistics/download?id=" + rtndata.fjxx[i].Id + "'>" + rtndata.fjxx[i].fjmc + "</a>";
             } else {
@@ -500,7 +500,7 @@
     }
     //Yêu cầu dữ liệu thu nhập
     function ajaxCR() {
-        //mớithêmđãthutậpthời gian，giới hạnchếtheonút
+        //mớithêmđãthutậpthời gian,giới hạnchếtheonút
         if (keyValue == null || keyValue==="") {
             $.najax({
                 url: "/SiteManage/SiteStatistics/isAlreadyCollect",
@@ -649,7 +649,7 @@
     }
 
     function validatesave() {
-        //Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái lưu
+        //Lấy tất cả các dòngId,Duyệt để hộp chỉnh sửa ở trạng thái lưu
         var rowIds = $("#CRGridList").jqGrid('getDataIDs');
         if (rowIds.length < 1) {
             $.modalAlert("Hiện tại không có nội dung thu nhập đã lưu", 'warning');
@@ -661,7 +661,7 @@
         //
         if (!saveResult) {
             EnableInlineEditBox();    //khởi động lại và bật sửa nếu không lần sauSavesẽ trả vềfalse
-            return false;   //lưu thất bại，thìreturn
+            return false;   //lưu thất bại,thìreturn
         }
     }
 
@@ -732,7 +732,7 @@
     //thêmthêmthànhnày
     function btn_bottombutton_add() {
         if (editingNewid || editingId) {
-            return; //đang ở trạng thái sửa，không được nhấn nút thêm   cầndisablexử lý
+            return; //đang ở trạng thái sửa,không được nhấn nút thêm   cầndisablexử lý
         }
         if (validatecbinfo()) {
             var item = {
@@ -805,7 +805,7 @@
             //nêunộpsửasửa
             var data = getEditRowData();
             if (!(validatecbinfo())) {
-                //dữ liệu có đầy đủ không，kiểm tra các mục bắt buộc
+                //dữ liệu có đầy đủ không,kiểm tra các mục bắt buộc
                 return;
             }
             data.Id = editingNewid;
@@ -874,8 +874,8 @@
             var rowData = $("#CbGridList").jqGrid('getRowData', rowid);
             if (rowData) {
                 if (rowData.Id == editingNewid) {
-                    $.modalAlert("Dòng này đang ở trạng thái sửa，Không thể xóa", 'warning');
-                    return; //Dòng này đang ở trạng thái sửa，Không thể xóa
+                    $.modalAlert("Dòng này đang ở trạng thái sửa,Không thể xóa", 'warning');
+                    return; //Dòng này đang ở trạng thái sửa,Không thể xóa
                 }
                 var matchedIndex = -1;
 

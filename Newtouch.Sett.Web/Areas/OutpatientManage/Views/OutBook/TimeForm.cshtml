@@ -17,11 +17,11 @@
             </td>
         </tr>
         <tr id="trtime1">
-            <th class="formTitle">Giờ bắt đầu ：</th>
+            <th class="formTitle">Giờ bắt đầu :</th>
             <td class="formValue">
                 <input id="begintime1" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("HH:mm")" onfocus="WdatePicker({ dateFmt: 'HH:mm' })" />
             </td>
-            <th class="formTitle">Giờ kết thúc ：</th>
+            <th class="formTitle">Giờ kết thúc :</th>
             <td class="formValue">
                 <input id="endtime1" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("HH:mm")" onfocus="WdatePicker({ dateFmt: 'HH:mm' })" />
             </td>
@@ -44,7 +44,7 @@
                         $('#begintime1').val(data[i].split('-')[0]);
                         $('#endtime1').val(data[i].split('-')[1]);
                     } else {
-                    var thisHtml = '<tr id="trtime' + inttime + '"><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"  onclick="btn_clertime(' + inttime + ')"></i>Giờ bắt đầu ：</th><td class="formValue"><input id="begintime' + inttime + '" type="text" class="form-control input-wdatepicker" value="' + data[i].split('-')[0] + '" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td><th class="formTitle">Giờ kết thúc ：</th><td class="formValue"><input id="endtime' + inttime + '" type="text" class="form-control input-wdatepicker" value="' + data[i].split('-')[1]  + '" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td></tr>';
+                    var thisHtml = '<tr id="trtime' + inttime + '"><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"  onclick="btn_clertime(' + inttime + ')"></i>Giờ bắt đầu :</th><td class="formValue"><input id="begintime' + inttime + '" type="text" class="form-control input-wdatepicker" value="' + data[i].split('-')[0] + '" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td><th class="formTitle">Giờ kết thúc :</th><td class="formValue"><input id="endtime' + inttime + '" type="text" class="form-control input-wdatepicker" value="' + data[i].split('-')[1]  + '" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td></tr>';
                         $('#tabletime').append(thisHtml);
                         inttime += 1;
                     }
@@ -62,7 +62,7 @@
                     $('#endtime1').val(sjd.split(',')[i].split('-')[1]);
                 }
                 else {
-                    var thisHtml = '<tr id="trtime' + inttime + '"><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"  onclick="btn_clertime(' + inttime + ')"></i>Giờ bắt đầu ：</th><td class="formValue"><input id="begintime' + inttime + '" type="text" class="form-control input-wdatepicker" value="' + sjd.split(',')[i].split('-')[0]+'" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td><th class="formTitle">Giờ kết thúc ：</th><td class="formValue"><input id="endtime' + inttime + '" type="text" class="form-control input-wdatepicker" value="' + sjd.split(',')[i].split('-')[1]+'" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td></tr>';
+                    var thisHtml = '<tr id="trtime' + inttime + '"><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"  onclick="btn_clertime(' + inttime + ')"></i>Giờ bắt đầu :</th><td class="formValue"><input id="begintime' + inttime + '" type="text" class="form-control input-wdatepicker" value="' + sjd.split(',')[i].split('-')[0]+'" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td><th class="formTitle">Giờ kết thúc :</th><td class="formValue"><input id="endtime' + inttime + '" type="text" class="form-control input-wdatepicker" value="' + sjd.split(',')[i].split('-')[1]+'" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td></tr>';
                     $('#tabletime').append(thisHtml);
                     inttime += 1;
                 }
@@ -71,7 +71,7 @@
         }
     });
     function btn_addtime() {
-        var thisHtml = '<tr id="trtime' + inttime + '"><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"  onclick="btn_clertime(' + inttime + ')"></i>Giờ bắt đầu ：</th><td class="formValue"><input id="begintime' + inttime + '" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("HH:mm")" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td><th class="formTitle">Giờ kết thúc ：</th><td class="formValue"><input id="endtime' + inttime + '" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("HH:mm")" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td></tr>';
+        var thisHtml = '<tr id="trtime' + inttime + '"><th class="formTitle"><i class="fa fa-minus minusToggleCircle" aria-hidden="true" style="margin-left: 10px; color: #6ff3ad; font-size: large;"  onclick="btn_clertime(' + inttime + ')"></i>Giờ bắt đầu :</th><td class="formValue"><input id="begintime' + inttime + '" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("HH:mm")" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td><th class="formTitle">Giờ kết thúc :</th><td class="formValue"><input id="endtime' + inttime + '" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("HH:mm")" onfocus="WdatePicker({ dateFmt: \'HH:mm\' })" /></td></tr>';
         $('#tabletime').append(thisHtml);
         inttime += 1;
     }
@@ -118,11 +118,11 @@
                             return false;
                         }
                         if (begintimej > begintimei && begintimej < endtimi) {
-                            $.modalAlert("Thời gian giao nhau，Vui lòng kiểm tra giờ bắt đầu có sai không", 'warning');
+                            $.modalAlert("Thời gian giao nhau,Vui lòng kiểm tra giờ bắt đầu có sai không", 'warning');
                             return false;
                         }
                         if (endtimej > begintimei && endtimej < endtimi) {
-                            $.modalAlert("Thời gian giao nhau，Vui lòng kiểm tra giờ kết thúc có sai không", 'warning');
+                            $.modalAlert("Thời gian giao nhau,Vui lòng kiểm tra giờ kết thúc có sai không", 'warning');
                             return false;
                         }
                     }

@@ -9,22 +9,22 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Ngày bắt đầu：</th>
+                <th class="formTitle">Ngày bắt đầu:</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width: 140px;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" value="@(DateTime.Now.ToString("yyyy-MM-01 00:00:00"))" />
                 </td>
-                <th class="formTitle" style="padding-right:5px;">Ngày kết thúc：</th>
+                <th class="formTitle" style="padding-right:5px;">Ngày kết thúc:</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an" style="width:140px"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@(DateTime.Now.ToString("yyyy-MM-dd 23:59:59"))" />
                 </td>
-                <th class="formTitle"><label id="mzzylab">Số nhập viện/Số khám ngoại trú：</label></th>
+                <th class="formTitle"><label id="mzzylab">Số nhập viện/Số khám ngoại trú:</label></th>
                 <td class="formValue">
                     <input id="zyh" name="zyh" type="text" class="form-control" />
                     <input id="mzh" name="mzh" type="text" class="form-control" style="display:none;" />
                 </td>
-                <th class="formTitle">Nhập viện/Ngoại trú：</th>
+                <th class="formTitle">Nhập viện/Ngoại trú:</th>
                 <td class="formValue">
                     <select id="mzorzy" onchange="panduan()" class="form-control" >
                         <option value="">Vui lòng chọn</option>
@@ -34,13 +34,13 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Thực hiện Bác sĩ：</th>
+                <th class="formTitle">Thực hiện Bác sĩ:</th>
                 <td class="formValue"><input type="text" id="doctormc" name="doctormc" class="form-control form-an" /></td>
-                <th class="formTitle">Khoa thực hiện：</th>
+                <th class="formTitle">Khoa thực hiện:</th>
                 <td class="formValue">
                     <input type="text" id="jzks" class="form-control formClearIgnore" />
                 </td>
-                <th class="formTitle">Khoản mục：</th>
+                <th class="formTitle">Khoản mục:</th>
                 <td class="formValue"><input type="text" id="sfxmmc" class="form-control formClearIgnore" /></td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
@@ -157,7 +157,7 @@
         width: 300,
         clickautotrigger: true,
         filter: function (keyword) {
-            //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
+            //Duyệt nguồn dữ liệu,dùngkeywordđể lọc ra kết quả
             var resultObjArr = new Array();
             $.each(top.window.clients.sysStaffDutyList, function (idx, val) {
                 if (((val.StaffPY && val.StaffPY.toLowerCase().indexOf(keyword.toLowerCase()) >= 0)

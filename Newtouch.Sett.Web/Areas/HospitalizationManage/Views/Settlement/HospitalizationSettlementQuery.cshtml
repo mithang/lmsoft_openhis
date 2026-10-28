@@ -16,15 +16,15 @@
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">Từ khóa：</th>
+                <th class="formTitle">Từ khóa:</th>
                 <td class="formValue">
                     <input id="txt_keyword" type="text" class="form-control form-an" placeholder="Họ tên/Số bệnh án/Mã nhập viện">
                 </td>
-                <th class="formTitle">Số hóa đơn：</th>
+                <th class="formTitle">Số hóa đơn:</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="searchFPH" name="searchFPH" />
                 </td>
-                <th class="formTitle">Ngàyquyết toán：</th>
+                <th class="formTitle">Ngàyquyết toán:</th>
                 <td class="formValue" colspan="2">
                     <input id="jsksrq" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:1%;float:left">—</span>
@@ -146,7 +146,7 @@
         console.info("jsnms:" + jsnms);
         console.info("zyh:" + zyhs);
 
-        //Mỗi lần nhấp，Xóa chi tiết dòng trước trước Và tổng cộng
+        //Mỗi lần nhấp,Xóa chi tiết dòng trước trước Và tổng cộng
         $('#gridJSMXList').jqGrid("clearGridData");
         $.najax({
             type: "POST",
@@ -277,7 +277,7 @@
             async: false,
             success: function (data) {
                 if (data.code == "0") {
-                    $.loading(true, 'Đang lập hóa đơn điện tử，Vui lòng đợi...');
+                    $.loading(true, 'Đang lập hóa đơn điện tử,Vui lòng đợi...');
                     setTimeout(function () {
                         window.open(data.data.pictureUrl,
                             "_blank",
@@ -302,7 +302,7 @@
     }
     //In phiếu
     function printReceipt(zyh, jsnm) {
-        $.loading(true, 'Đang in phiếu hóa đơn điện tử，Vui lòng đợi...');
+        $.loading(true, 'Đang in phiếu hóa đơn điện tử,Vui lòng đợi...');
         var requestJson = { "BusinessName": "In phiếu", "paySerialNo": zyh, "paySettlementNo": jsnm, "type": "nhập viện", "PlaceCode": "003" };//Điểm lập hóa đơn tạm ghi cố định003
         $.ajax({
             type: "POST",
@@ -344,7 +344,7 @@
     }
 
     var tempJSNM;
-    //In bổ sung，Đã chọn số hóa đơn mới
+    //In bổ sung,Đã chọn số hóa đơn mới
     function chooseFPHSuccessCallback(fph) {
         //cập nhậtquyết toánBản ghicủaSố hóa đơnlàmớiSố hóa đơn
         $.najax({
@@ -360,7 +360,7 @@
     }
 
     function printybjsd(setlId) {
-    $.loading(true, 'Đang truy vấn chứng từquyết toán BHYT nhập viện，Vui lòng đợi...');
+    $.loading(true, 'Đang truy vấn chứng từquyết toán BHYT nhập viện,Vui lòng đợi...');
 
     var inputp0001 = { "mzzy_lx": "2", "setlId": setlId, "operatorId": '@curOpr.UserCode', "operatorName": '@curOpr.UserName'  };
    //  var inputp0001 = { "mzzy_lx": "2", "setlId": setlId, "operatorId": "000000", "operatorName": "admin" };

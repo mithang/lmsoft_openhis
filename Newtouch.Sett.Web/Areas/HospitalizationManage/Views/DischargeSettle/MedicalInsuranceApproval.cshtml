@@ -18,7 +18,7 @@
         initgridList();
 
         setTimeout(function () {
-            $.loading(true, 'Đang tải lên chi tiết，Vui lòng đợi...');
+            $.loading(true, 'Đang tải lên chi tiết,Vui lòng đợi...');
             CQmxsc(function () {
                 setTimeout(function () {
                     GetApprovalXm();
@@ -71,7 +71,7 @@
         var ybzje = 0.00;
         var succTimes = 0;
         var mxnum = 0;
-        //Mỗi lần tải lên lại，Trước tiên xử lý phần đã tải lên trước đây，nhưngChưaquyết toáncủahoàn đơn thuốc，Ngược lại sẽ tải lên trùng lặp
+        //Mỗi lần tải lên lại,Trước tiên xử lý phần đã tải lên trước đây,nhưngChưaquyết toáncủahoàn đơn thuốc,Ngược lại sẽ tải lên trùng lặp
         $.ajax({
             type: "POST",
             url: "/OutpatientManage/OutpatCharge/GetCqyb10Data",
@@ -102,7 +102,7 @@
                                         }
                                     });
                                 } else {
-                                    $.modalAlert("Truyền lại đơn thuốc，Hoàn đơn thuốc đã tải lên thất bại：" + tfReturn.ErrorMsg + "nàyLỗicó thể tạm thời bỏ qua", 'error');
+                                    $.modalAlert("Truyền lại đơn thuốc,Hoàn đơn thuốc đã tải lên thất bại:" + tfReturn.ErrorMsg + "nàyLỗicó thể tạm thời bỏ qua", 'error');
                                 }
                             }
                         });
@@ -124,8 +124,8 @@
                             n = ajaxResp.total;
                             mxnum = ajaxResp.records;
                             // zfzje = ajaxResp.zfzje;
-                            ///Thứ nhấtLầnlúc，Xóa chi tiết trước，Đồng thờilấytớiTổng số lần（Tổng số dòng/10），Gọi tải lên theo vòng lặp
-                            ////Mỗi lần tải lên lại，Trước tiên xử lý phần đã tải lên trước đây，nhưngChưaquyết toáncủahoàn đơn thuốc，Ngược lại sẽ tải lên trùng lặp
+                            ///Thứ nhấtLầnlúc,Xóa chi tiết trước,Đồng thờilấytớiTổng số lần（Tổng số dòng/10）,Gọi tải lên theo vòng lặp
+                            ////Mỗi lần tải lên lại,Trước tiên xử lý phần đã tải lên trước đây,nhưngChưaquyết toáncủahoàn đơn thuốc,Ngược lại sẽ tải lên trùng lặp
                             //$.ajax({
                             //    type: "POST",
                             //    url: "/OutpatientManage/OutpatCharge/GetCqyb10Data",
@@ -156,7 +156,7 @@
                             //                                }
                             //                            });
                             //                        } else {
-                            //                            $.modalAlert("Truyền lại đơn thuốc，Hoàn đơn thuốc đã tải lên thất bại：" + tfReturn.ErrorMsg + "nàyLỗicó thể tạm thời bỏ qua", 'error');
+                            //                            $.modalAlert("Truyền lại đơn thuốc,Hoàn đơn thuốc đã tải lên thất bại:" + tfReturn.ErrorMsg + "nàyLỗicó thể tạm thời bỏ qua", 'error');
                             //                        }
                             //                    }
                             //                });
@@ -165,7 +165,7 @@
                             //    }
                             //});
                         }
-                        //Nếu có chi tiết cần tải lên，Thì gọi giao diện tải lên
+                        //Nếu có chi tiết cần tải lên,Thì gọi giao diện tải lên
                         if (ajaxResp.updata.cflist.length > 0) {
                             var cfmxjsh = new Array();
                             $.each(ajaxResp.updata.cflist, function (index, value) {
@@ -203,7 +203,7 @@
 
                                 } else {
                                     $.loading(false);
-                                    $.modalAlert("Tải lên chi tiết đơn thuốc thất bại：" + upDataReturn.ErrorMsg, 'error');
+                                    $.modalAlert("Tải lên chi tiết đơn thuốc thất bại:" + upDataReturn.ErrorMsg, 'error');
                                     n = 1;//thoát vòng lặp
                                     return;
                                 }
@@ -268,7 +268,7 @@
         var spGsfReturn = {};
         var spBdbReturn = {};
         $.ajax({
-            loading: "Đang truy vấn mục chưa phê duyệt，Vui lòng đợi...",
+            loading: "Đang truy vấn mục chưa phê duyệt,Vui lòng đợi...",
             type: "POST",
             url: "http://127.0.0.1:22222/api/CQYiBao/GetApprovalXm",
             data: parameter1,
@@ -338,7 +338,7 @@
 
             if (!saveResult) {
                 EnableInlineEditBox();    //nặngbậtbậtdùngChỉnh sửa Ngược lại lần sauSavelúcsẽTrả vềfalse
-                return;   //Lưu thất bại，thìreturn
+                return;   //Lưu thất bại,thìreturn
             }
         }
 
@@ -365,7 +365,7 @@
 
                 var postdata = { zyh: zyh, cfmxlsh: $(this)[i].jylsh, spbj: $(this)[i].spbj == "Chưa đạt" ? "0" : "1", xzlb: "1" }
                 var cfh = $(this)[i].cfh;
-                //21Giao diện：thu phí cao BHYT(Protein cao)Phê duyệt phí
+                //21Giao diện:thu phí cao BHYT(Protein cao)Phê duyệt phí
                 $.ajax({
                     type: "POST",
                     url: "http://127.0.0.1:22222/api/CQYiBao/HighfeesExamination",
@@ -377,7 +377,7 @@
                         if (tfReturn && tfReturn.Code === "1") {
                             cfhlist.push(cfh);
                         } else {
-                            $.modalAlert("thu phí cao BHYT(Protein cao)Phê duyệt phíThất bại：" + tfReturn.ErrorMsg + "nàyLỗicó thể tạm thời bỏ qua", 'error');
+                            $.modalAlert("thu phí cao BHYT(Protein cao)Phê duyệt phíThất bại:" + tfReturn.ErrorMsg + "nàyLỗicó thể tạm thời bỏ qua", 'error');
                         }
                     }
                 });
@@ -399,7 +399,7 @@
                     $.modalClose();
                     //GetApprovalXm();
                 } else {
-                    $.modalAlert("cqyb_OutPutInPar04cập nhậtPhê duyệtcờThất bại：" + tfReturn.ErrorMsg, 'error');
+                    $.modalAlert("cqyb_OutPutInPar04cập nhậtPhê duyệtcờThất bại:" + tfReturn.ErrorMsg, 'error');
                 }
             }
         });

@@ -16,26 +16,26 @@
             </div>
             <table class="form" style="margin-left: 10px;">
                 <tr>
-                    <th class="formTitle"><span style="color:red">*</span><label id="lbl_kh">Số hồ sơ bệnh án/Họ tên：</label> </th>
+                    <th class="formTitle"><span style="color:red">*</span><label id="lbl_kh">Số hồ sơ bệnh án/Họ tên:</label> </th>
                     <td class="formValue" colspan="2">
                         <input type="text" id="keyword" name="keyword" class="form-control" placeholder="Ít nhất1ký tự" />
                     </td>
                     <td class="formTitle">
-                        Họ tên：
+                        Họ tên:
                     </td>
                     <td class="formValue">
                         <label id="xm"></label>
                     </td>
-                    <td class="formTitle">Giới tính：</td>
+                    <td class="formTitle">Giới tính:</td>
                     <td class="formValue">
                         <label id="xb"></label>
                     </td>
-                    <td class="formTitle">Tuổi：</td>
+                    <td class="formTitle">Tuổi:</td>
                     <td class="formValue">
                         <label id="nlshow"></label>
                     </td>
                     <td class="formTitle">
-                        <label id="zjlx">Số CMND/CCCD：</label>
+                        <label id="zjlx">Số CMND/CCCD:</label>
                         <input hidden="hidden" id="hiddenzjlx" />
                     </td>
                     <td class="formValue" colspan="2">
@@ -43,7 +43,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Điện thoại di động：</td>
+                    <td class="formTitle">Điện thoại di động:</td>
                     <td class="formValue"><label id="phone"></label></td>
                     <td class="formTitle"></td>
                     <td class="formValue"></td>
@@ -77,15 +77,15 @@
     <div style="padding: 2px;padding-right:20px;">
         <table class="form">
             <tr>
-                <th class="formTitle">Phương thức thanh toán：</th>
+                <th class="formTitle">Phương thức thanh toán:</th>
                 <td class="formValue">
                     <select id="ddlzffs" name="zffs" class="form-control required"></select>
                 </td>
-                <th class="formTitle"><span class="required">*</span>Số tiền：</th>
+                <th class="formTitle"><span class="required">*</span>Số tiền:</th>
                 <td class="formValue">
                     <input id="txtmoney" name="txtmoney" type="text" class="form-control required" placeholder="Vui lòng nhập số tiền" />
                 </td>
-                <th class="formTitle">Số chứng từ：</th>
+                <th class="formTitle">Số chứng từ:</th>
                 <td class="formValue">
                     <input type="text" id="txtlpzh" class="form-control newtouch_Readonly" style="width: 49.5%;display: inline;" value="" />
                     <a id="receipt" class="btn btn-primary" onclick=""><i class="fa"></i>Số chứng từ</a>
@@ -221,7 +221,7 @@
             },
             errorCallback: function (rtnval) {
                 if (rtnval.message == "缺少账户") {
-                    $.modalConfirm("Không tìm thấy bệnh nhân này tạm ứng Tài khoản，Có hay không Tạo mới", function (f) {
+                    $.modalConfirm("Không tìm thấy bệnh nhân này tạm ứng Tài khoản,Có hay không Tạo mới", function (f) {
                         if (f) {
                             $.najax({
                                 type: "POST",
@@ -293,7 +293,7 @@
         var captionCon = "Bảng thu chi tài khoản";
         captionCon += '<label style="height: 7px; width: 36px; background-color:#DDDDFF; border: 1px solid #ddd;margin-left: 40px;"></label> nạp tiền ' ;
         captionCon += '<label style="height: 7px; width: 36px; background-color:#ACD6FF; border: 1px solid #ddd;margin-left: 40px;"></label> Rút tiền ';
-        captionCon += "<span id='ye Con'>Số dư tài khoản：" + zhye + "đồng</span>";
+        captionCon += "<span id='ye Con'>Số dư tài khoản:" + zhye + "đồng</span>";
         $gridList.dataNewGrid({
             height: $(window).height() - 330,
             autowidth: false,
@@ -332,7 +332,7 @@
         if (mydata.length > 0) {
             $('.ui-jqgrid-bdiv').find(".unwritten").remove();
         }
-        $("#yeCon").text("Số dư tài khoản：" + zhye + "đồng");
+        $("#yeCon").text("Số dư tài khoản:" + zhye + "đồng");
     }
 
     var patid,
@@ -458,7 +458,7 @@
     var gridIMoney = "";//Số tiền thu chi đang chọn
     var gridIpzh = ""; //Số chứng từ đang chọn
     var gridId = "";//đang chọn hiện tạiId
-    var gridtId="";//đang chọn hiện tạiId，Căn cứ đã hoàn hay chưa
+    var gridtId="";//đang chọn hiện tạiId,Căn cứ đã hoàn hay chưa
     //Sự kiện nhấn
     function btn_edit() {
         var szje = $("#gridList").jqGridRowValue().szje;
@@ -509,7 +509,7 @@
             return false;
         }
         if (gridIMoney != money.substring(1, money.length)) {
-            $.modalAlert("nạp tiền Số tiền và Hoàn tiền Số tiền không nhất quán，Vui lòng kiểm tra", 'warning');
+            $.modalAlert("nạp tiền Số tiền và Hoàn tiền Số tiền không nhất quán,Vui lòng kiểm tra", 'warning');
             return false;
         }
         if (parseFloat(money) + parseFloat(zhye) < 0) {

@@ -7,7 +7,7 @@
 
     //Có giao dịch với BHYT hay không
     var openYbSett = SysConfigReader.Bool("Inpatient_Sett_OpenYbSett");
-    //Nơi quản lý BHYT，Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
+    //Nơi quản lý BHYT,Phân biệt hệ thống sẽ thực hiện logic BHYT ở đâu
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
     //HISMã nhà sản xuất
     var his_manufacturerID = SysConfigReader.String("HIS_ManufacturerID");
@@ -97,7 +97,7 @@
 </script>
 <script type="text/javascript">
 
-    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc:bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
     var medicalInsurance = '@medicalInsurance';
 
     var zyh = $.request('zyh');
@@ -115,7 +115,7 @@
 
     function funcStep1(nextStepCallback) {
         if (!!!zyh) {
-            $.modalAlert('Thiếu tham số：zyh', 'error');
+            $.modalAlert('Thiếu tham số:zyh', 'error');
             return false;
         }
         $.najax({
@@ -196,7 +196,7 @@
                             nextStepCallback(true);
                         }
                         else {
-                            $.modalAlert("BHYT Hủy Nhập viện đăng ký Thất bại：" + medicalReg.err_msg, 'error');
+                            $.modalAlert("BHYT Hủy Nhập viện đăng ký Thất bại:" + medicalReg.err_msg, 'error');
                             $.loading(false);
                             nextStepCallback(false);
                         }
@@ -220,7 +220,7 @@
 		    if (cqybjyDenySettleReturn.infcode == "0") {
 			    nextStepCallback(true);
 		    } else {
-		        $.modalAlert("BHYT Hủy Nhập viện đăng ký Thất bại：" + cqybjyDenySettleReturn.err_msg, 'error');
+		        $.modalAlert("BHYT Hủy Nhập viện đăng ký Thất bại:" + cqybjyDenySettleReturn.err_msg, 'error');
 			    nextStepCallback(false);
 		    }
         }

@@ -25,7 +25,7 @@
     });
 
     function FeeGrid(zyh_) {
-        var captionCon = "Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền：<label style='color:red;'>￥</label></span>&nbsp;<span id='sp_billje' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng";
+        var captionCon = "Chi tiết tính phí&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền:<label style='color:red;'>￥</label></span>&nbsp;<span id='sp_billje' class='moneybg' style='font-size:large;'>" + "0.00" + "</span>đồng";
         _zyh = zyh_;
         gridFeeList.dataGrid({
             caption: captionCon,
@@ -131,11 +131,11 @@
             },
             url: "/PatientManage/PatientCenter/GetFeeMainGridList?t=" + Math.random(),
         }).trigger('reloadGrid');
-        $('#gridFeeIDetail').jqGrid("clearGridData");//mỗi lần nhấn，xóa chi tiết dòng trước trước Và tổng cộng
+        $('#gridFeeIDetail').jqGrid("clearGridData");//mỗi lần nhấn,xóa chi tiết dòng trước trước Và tổng cộng
     }
 
     function cellClickHandler(sfrq, dlCode) {
-        $('#gridFeeIDetail').jqGrid("clearGridData");//mỗi lần nhấn，xóa chi tiết dòng trước trước Và tổng cộng
+        $('#gridFeeIDetail').jqGrid("clearGridData");//mỗi lần nhấn,xóa chi tiết dòng trước trước Và tổng cộng
         $.najax({
             type: "POST",
             url: "/PatientManage/PatientCenter/GetFeeDetail",

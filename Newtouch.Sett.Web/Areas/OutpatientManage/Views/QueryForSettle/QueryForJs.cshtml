@@ -13,14 +13,14 @@
     <div style="border-bottom:1px solid rgb(221, 221, 221);">
         <table class="form">
             <tr>
-                <th class="formTitle">Loại tra cứu：</th>
+                <th class="formTitle">Loại tra cứu:</th>
                 <td class="formValue">
                     <select id="jslx" class="form-control">
                         <option value="0">Chưa quyết toán</option>
                         <option value="1">Đã quyết toán</option>
                     </select>
                 </td>
-                <th class="formTitle">Số BHXH：</th>
+                <th class="formTitle">Số BHXH:</th>
                 <td class="formValue">
                     <input id="sbbh" name="sbbh" type="text" class="form-control" placeholder="Vui lòng nhập số BHXH" />
                 </td>
@@ -160,7 +160,7 @@
                     var tb = document.getElementById("tb2");
                     var td;
                     for (var i = 0; i < jsobj.Data.length; i++) {
-                        var tr = tb.insertRow(i + 1);//thêm dòng mới，ichính là vị trí cần thêm
+                        var tr = tb.insertRow(i + 1);//thêm dòng mới,ichính là vị trí cần thêm
                         td = tr.insertCell();
                         td.innerHTML = jsobj.Data[i].DAC001;
                         td = tr.insertCell();

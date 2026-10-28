@@ -27,7 +27,7 @@
     }
     var useSfrqFilter = SysConfigReader.Bool("Outpatient_ChargeQuery_UseSfrqFilter");
     var opr = OperatorProvider.GetCurrent();
-    //BHYTđịa phương trực thuộc，phân biệt hệ thống sẽ thực hiện ở đâuBHYTlogic
+    //BHYTđịa phương trực thuộc,phân biệt hệ thống sẽ thực hiện ở đâuBHYTlogic
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
     var reportUrl = "";
     var ReportSystemCode = "";
@@ -51,21 +51,21 @@
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">Số bệnh án/Họ tên：</th>
+                <th class="formTitle">Số bệnh án/Họ tên:</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="txtxm" name="txtxm" />
                 </td>
-                <th class="formTitle">Số hóa đơn：</th>
+                <th class="formTitle">Số hóa đơn:</th>
                 <td class="formValue" colspan="2">
                     <input type="text" class="form-control" id="txtfph" name="txtfph" style="width:40%; float:left;" />
                     <span style="margin-left:0%;float:left;">đến</span>
                     <input type="text" class="form-control" id="txtjsfph" name="txtjsfph" style="width:40%; float:left;" />
                 </td>
-                <th class="formTitle">Số giao dịch trung tâm：</th>
+                <th class="formTitle">Số giao dịch trung tâm:</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="txtzxlsh" value="" />
                 </td>
-                <th class="formTitle">Thu phínhân viên：</th>
+                <th class="formTitle">Thu phínhân viên:</th>
                 <td class="formValue">
                     <div class="row">
                         <div class="col-md-9">
@@ -77,7 +77,7 @@
                     </div>
                 </td>
                 <td style="width:20px"></td>
-                <th class="formTitle" id="thCZRQ">Ngày thao tác：</th>
+                <th class="formTitle" id="thCZRQ">Ngày thao tác:</th>
                 <td class="formValue" colspan="3">
                     <input id="txtCreateTimestart" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:0%;float:left;">—</span>
@@ -101,15 +101,15 @@
         <content style="float:right;margin-right:45px ;width:70% ;" id="ctmx">
             <table class="form" id="tbcfmx" style="display:none">
                 <tr>
-                    <th class="formTitle">Số đơn thuốc：</th>
+                    <th class="formTitle">Số đơn thuốc:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtcfh" name="txtcfh" readonly="readonly" style="border:0px;color:#aaa" />
                     </td>
-                    <th class="formTitle">Bác sĩ：</th>
+                    <th class="formTitle">Bác sĩ:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtys" name="txtys" readonly="readonly" style="border:0px;color:#aaa" />
                     </td>
-                    <th class="formTitle">Khoa：</th>
+                    <th class="formTitle">Khoa:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtks" name="txtks" readonly="readonly" style="border:0px;color:#aaa" />
                     </td>
@@ -157,13 +157,13 @@
     }
 
     var medicalInsurance = '@(medicalInsurance)';
-    //cấu hình：ngàylọc kỳ là theo thu phíngàykỳ，hay thời gian thao tác thu phí
+    //cấu hình:ngàylọc kỳ là theo thu phíngàykỳ,hay thời gian thao tác thu phí
     var useSfrqFilter = '@(useSfrqFilter)' == 'True';
     //đăng ký khám ngoại trúquyết toántra cứu
     function gridJSListData() {
         var gridSort = 'CreateTime asc';
         if (useSfrqFilter) {
-            $('#thCZRQ').html('Ngày chi phí：');
+            $('#thCZRQ').html('Ngày chi phí:');
             gridSort = 'sfrq asc';
         }
         //
@@ -305,7 +305,7 @@
     //sự kiện nhấn
     var jsmxarrlist;
     function btn_selectrow() {
-        //mỗi lần nhấn，xóa chi tiết dòng trước trước vàtổng cộng
+        //mỗi lần nhấn,xóa chi tiết dòng trước trước vàtổng cộng
         $('#gridleftList').jqGrid("clearGridData");
         $('#gridJSMXList').jqGrid("clearGridData");
         $('#gridrightList').jqGrid("clearGridData");
@@ -538,7 +538,7 @@
                 async: false,
                 success: function (data) {
                     if (data.code == "0") {
-                        $.loading(true, 'ĐangXuất hóa đơn điện tử，Vui lòng chờ...');
+                        $.loading(true, 'ĐangXuất hóa đơn điện tử,Vui lòng chờ...');
                         setTimeout(function () {
                             window.open(data.data.pictureUrl,
                                 "_blank",
@@ -595,7 +595,7 @@
     }
     //in phiếu
     function printReceipt(mzh, jsnm) {
-        $.loading(true, 'Đang in phiếu hóa đơn điện tử，Vui lòng chờ...');
+        $.loading(true, 'Đang in phiếu hóa đơn điện tử,Vui lòng chờ...');
         var requestJson = { "BusinessName": "In phiếu", "paySerialNo": mzh, "paySettlementNo": jsnm, "type": "Ngoại trú", "PlaceCode": "003" };//điểm xuất hóa đơn tạm ghi cố định003
         $.ajax({
             type: "POST",
@@ -622,7 +622,7 @@
     }
     //inBHYTquyết toánđơn Grk 20240606
     function printybjsd(setlId) {
-        $.loading(true, 'Đang tra cứu chứng từ quyết toán BHYT ngoại trú，Vui lòng chờ...');
+        $.loading(true, 'Đang tra cứu chứng từ quyết toán BHYT ngoại trú,Vui lòng chờ...');
 
         var inputp0001 = { "mzzy_lx": "1", "setlId": setlId, "operatorId": '@curOpr.UserCode' , "operatorName": '@curOpr.UserName'  };
 
@@ -747,12 +747,12 @@
                                 axFpInitJson.InfoTaxRate = 0;
                                 var theFpNote = "";
                                 if (!!newTempPatModel.sbbh) {
-                                    theFpNote += 'Số BHXH：' + newTempPatModel.sbbh + ";";
+                                    theFpNote += 'Số BHXH:' + newTempPatModel.sbbh + ";";
                                 }
-                                theFpNote += 'Số thứ tự khám：' + newTempPatModel.mzh + ";";
-                                theFpNote += 'HISSố quyết toán：' + newJszbInfo.jsnm + ";";
+                                theFpNote += 'Số thứ tự khám:' + newTempPatModel.mzh + ";";
+                                theFpNote += 'HISSố quyết toán:' + newJszbInfo.jsnm + ";";
                                 if (!!newJszbInfo.ybjsh) {
-                                    theFpNote += 'Số quyết toán BHYT：' + newJszbInfo.ybjsh + ";";
+                                    theFpNote += 'Số quyết toán BHYT:' + newJszbInfo.ybjsh + ";";
                                 }
                                 if (newTempPatModel.ksmc) {
                                     theFpNote += newTempPatModel.ksmc + ";";
@@ -761,22 +761,22 @@
                                     theFpNote += newTempPatModel.ysmc + ";";
                                 }
                                 if (!isNaN(newJszbInfo.jszje) && newJszbInfo.jszje != null && newJszbInfo.jszje != undefined) {
-                                    theFpNote += 'Tổng số tiền：' + parseFloat(newJszbInfo.jszje).toFixed(2) + ";";
+                                    theFpNote += 'Tổng số tiền:' + parseFloat(newJszbInfo.jszje).toFixed(2) + ";";
                                 }
                                 if (!isNaN(newJszbInfo.jsxjzf) && newJszbInfo.jsxjzf != null && newJszbInfo.jsxjzf != undefined) {
-                                    theFpNote += 'Thanh toán tiền mặt：' + parseFloat(newJszbInfo.jsxjzf).toFixed(2) + ";";
+                                    theFpNote += 'Thanh toán tiền mặt:' + parseFloat(newJszbInfo.jsxjzf).toFixed(2) + ";";
                                     if (parseFloat(newJszbInfo.jsxjzf) > 0 && !!newJszbInfo.zffsmcstr) {
-                                        theFpNote += 'Phương thức thanh toán tiền mặt：' + newJszbInfo.zffsmcstr + ";";
+                                        theFpNote += 'Phương thức thanh toán tiền mặt:' + newJszbInfo.zffsmcstr + ";";
                                     }
                                 }
                                 if (!isNaN(newJszbInfo.YBZHZC) && newJszbInfo.YBZHZC != null && newJszbInfo.YBZHZC != undefined) {
-                                    theFpNote += 'Chi tài khoản：' + parseFloat(newJszbInfo.YBZHZC).toFixed(2) + ";";
+                                    theFpNote += 'Chi tài khoản:' + parseFloat(newJszbInfo.YBZHZC).toFixed(2) + ";";
                                 }
                                 if (!isNaN(newJszbInfo.JBYE) && newJszbInfo.JBYE != null && newJszbInfo.JBYE != undefined) {
-                                    theFpNote += 'Số dư tài khoản cá nhân：' + parseFloat(newJszbInfo.JBYE).toFixed(2) + ";";
+                                    theFpNote += 'Số dư tài khoản cá nhân:' + parseFloat(newJszbInfo.JBYE).toFixed(2) + ";";
                                 }
                                 if (!isNaN(newJszbInfo.GBYE) && newJszbInfo.GBYE != null && newJszbInfo.GBYE != undefined) {
-                                    theFpNote += 'Số dư tài khoản bổ sung công：' + parseFloat(newJszbInfo.GBYE).toFixed(2) + ";";
+                                    theFpNote += 'Số dư tài khoản bổ sung công:' + parseFloat(newJszbInfo.GBYE).toFixed(2) + ";";
                                 }
                                 axFpInitJson.InfoNotes = theFpNote.substring(0, (theFpNote.length - 1));
                                 axFpInitJson.InfoInvoicer = '@(opr.UserName)';
@@ -819,7 +819,7 @@
         function axPrintInvoice(jsnm, axFpInitJson, axFpInvoiceItemJson) {
             var printInvoiceReturn = $.printAX.PrintInvoice(JSON.stringify(axFpInitJson), JSON.stringify(axFpInvoiceItemJson));
             if (printInvoiceReturn && printInvoiceReturn.Code == 0) {
-                //in hóa đơn，trả vềđã thành công
+                //in hóa đơn,trả vềđã thành công
                 var axFpInfo = printInvoiceReturn.Data;
                 if (axFpInfo.InfoNumber) {
                     //cập nhậtquyết toánbảng chínhcủafphtrường

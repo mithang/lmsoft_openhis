@@ -233,7 +233,7 @@
                 },
                 url: "/OutpatientManage/OutpatientReg/UnSettedRegBackNum",
                 dataType: "json",
-                loadingtext: "Đang yêu cầuHISHủy đăng ký khám，Vui lòng chờ…",
+                loadingtext: "Đang yêu cầuHISHủy đăng ký khám,Vui lòng chờ…",
                 success: function (ajaxresp) {
                     $.modalAlert('Ngoại trúHISHủy số thành công', 'success');
                     $("#ghmzh").val('');
@@ -248,7 +248,7 @@
             type: "POST",
             url: "/OutpatientManage/OutpatCharge/YibaoConnectedTest",
             dataType: "json",
-            loadingtext: "Đang yêu cầu kiểm tra kết nối BHYT，Vui lòng chờ…",
+            loadingtext: "Đang yêu cầu kiểm tra kết nối BHYT,Vui lòng chờ…",
             success: function (ajaxresp) {
                 $.modalAlert('' + JSON.stringify(ajaxresp));
                 return;

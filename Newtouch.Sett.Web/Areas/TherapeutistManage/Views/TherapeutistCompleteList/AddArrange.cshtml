@@ -55,12 +55,12 @@
             onSelectRow_page: function (rowid, status) {
                 if (rowid && lastRowId && rowid !== lastRowId) {   //&&: tương đươngtrue/fase(Xét có giá trị không)
                     $gridList.saveRow(lastRowId, function (result) {
-                        // return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //không hợp lệ v.v. cần sửa
+                        // return false;   //Kiểm tra nội dung nhập có hợp lệ không,Hủy lưu và quay lạifalse    //không hợp lệ v.v. cần sửa
                     }); //Lưu trước dòng đang ở trạng thái soạn thảo    //function checksave
                 }
                 lastRowId = rowid;
                 $gridList.jqGrid('editRow', rowid, true, null, function (result) {
-                    return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //không hợp lệ v.v. cần sửa
+                    return false;   //Kiểm tra nội dung nhập có hợp lệ không,Hủy lưu và quay lạifalse    //không hợp lệ v.v. cần sửa
                 }, null, null, function () {
                 });
             },
@@ -100,11 +100,11 @@
                 break;
             }
             if (!(/^(\+|-)?\d+$/.test(rowData.ts))) {
-                $.modalAlert("Mã nhân viên（" + rowData.gh + "）số ngày không Có chữ số，Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Mã nhân viên（" + rowData.gh + "）số ngày không Có chữ số,Vui lòng xác nhận。", 'warning');
                 return;
             }
             if ((rowData.ts > 31)) {
-                $.modalAlert("Không thể lớn hơn31Ngày，Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Không thể lớn hơn31Ngày,Vui lòng xác nhận。", 'warning');
                 return;
             }
         }
@@ -146,7 +146,7 @@
                         <option value="-1">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <td class="formTitle"><span style="color:red">*</span>Tháng：</td>
+                <td class="formTitle"><span style="color:red">*</span>Tháng:</td>
                 <td class="formValue">
                     <select id="Month" class="form-control">
                         <option value="-1">==Vui lòng chọn==</option>

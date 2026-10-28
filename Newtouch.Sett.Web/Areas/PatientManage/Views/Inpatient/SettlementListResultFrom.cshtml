@@ -61,13 +61,13 @@
                         displayDetailInfo(tfReturn.output.data[0].detailinfo);
                     }
                     else {
-                        $.modalAlert("quyết toán bảng Kiểm soát chất lượng Tra cứu thất bại：" + tfReturn.err_msg, 'error');
+                        $.modalAlert("quyết toán bảng Kiểm soát chất lượng Tra cứu thất bại:" + tfReturn.err_msg, 'error');
                         return;
                     }
                 }
             }, error: function () {
                 $.loading(false);
-                $.modalAlert("Dịch vụ bất thường：", 'error');
+                $.modalAlert("Dịch vụ bất thường:", 'error');
                 return;
             }
         });

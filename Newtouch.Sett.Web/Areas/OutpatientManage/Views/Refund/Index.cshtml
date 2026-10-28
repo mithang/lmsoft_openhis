@@ -32,18 +32,18 @@
     <div style="padding: 2px;padding-right:20px;">
         <table class="form" style="width:96%;">
             <tr>
-                <td class="formTitle">Số thẻ：</td>
+                <td class="formTitle">Số thẻ:</td>
                 <td class="formValue">
                     <input id="kh" type="text" class="form-control form-control-focus" placeholder="Vui lòng nhập số thẻ">
 
                 </td>
-                <td class="formTitle">từ：</td>
+                <td class="formTitle">từ:</td>
                 <td class="formValue">
 
                     <input class="form-control input-wdatepicker" type="text" onfocus="WdatePicker({
                                 onpicked: function () {getAge($(this).val());return true;}})" id="ks" value="@DateTime.Now.AddMonths(-1).ToString("yyy-MM-dd")" />
                 </td>
-                <td class="formTitle">đến：</td>
+                <td class="formTitle">đến:</td>
                 <td class="formValue">
                     <input class="form-control input-wdatepicker" type="text" onfocus="WdatePicker({
                                 onpicked: function () {getAge($(this).val());return true;}})" id="js" value="@DateTime.Now.AddDays(1).ToString("yyy-MM-dd")" />
@@ -98,11 +98,11 @@
     <div style="padding: 2px;padding-right:20px;">
         <table class="form" style="width:96%;">
             <tr>
-                <td class="formTitle">Tự chi trả：</td>
+                <td class="formTitle">Tự chi trả:</td>
                 <td class="formValue">
                     <input class="form-control newtouch_Readonly" type="text" id="zifu" value="" />
                 </td>
-                <td class="formTitle">Phải hoàn：</td>
+                <td class="formTitle">Phải hoàn:</td>
                 <td class="formValue">
                     <input class="form-control newtouch_Readonly" type="text" id="yingtui" value="" />
                 </td>
@@ -363,7 +363,7 @@
                             dataType: "json",
                             cache: false,
                             success: function (ajaxresp) {
-                                var msg = "Hoàn phí thành công！Số tiền phải hoàn là：";
+                                var msg = "Hoàn phí thành công！Số tiền phải hoàn là:";
                                 if (ajaxresp.data) {
                                     msg = msg + $("#yingtui").val();
                                 } else {
@@ -383,7 +383,7 @@
                             }
                         });
                     } else {
-                        $.modalAlert("Dữ liệu chưa đầy đủ，Vui lòng kiểm traSố thẻhoặc liên hệ quản trị viên！", "error");
+                        $.modalAlert("Dữ liệu chưa đầy đủ,Vui lòng kiểm traSố thẻhoặc liên hệ quản trị viên！", "error");
                     }
                 }
             }, false);
@@ -433,13 +433,13 @@
         chajilu(data.jsnm);
     }
 
-    //phím tắt：xóa
+    //phím tắt:xóa
     function newtouch_event_f4() {
         clearFPYSInfo();
         $('#gridListTuifei').jqGrid("clearGridData");
     }
 
-    //phím tắt：F6：hoàn phí
+    //phím tắt:F6:hoàn phí
     function newtouch_event_f6() {
         Refund();
     }

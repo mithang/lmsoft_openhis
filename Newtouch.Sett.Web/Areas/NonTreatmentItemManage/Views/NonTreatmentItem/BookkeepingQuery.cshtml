@@ -12,24 +12,24 @@
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle" id="th_zyh" style="display:none">Số nhập viện：</th>
+                    <th class="formTitle" id="th_zyh" style="display:none">Số nhập viện:</th>
                     <td class="formValue" id="td_zyh" style="display:none">
                         <input type="text" class="form-control" id="zyh" placeholder="" />
                     </td>
-                    <th class="formTitle">Số hồ sơ bệnh án：</th>
+                    <th class="formTitle">Số hồ sơ bệnh án:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="blh" placeholder="" style="width: 54%; float: left;" />
                         <input type="button" class="btn btn-default btn-md btn-default-color" style="margin-left: 2%;" title="Chọn bệnh nhân" value="Tra cứu" onclick="GetPatSerarchView($('#blh').val(), $('#kehu').val());">
                     </td>
-                    <th class="formTitle">Tên khách hàng：</th>
+                    <th class="formTitle">Tên khách hàng:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="kehu" placeholder="" />
                     </td>
-                    <th class="formTitle">Nhân viên bán hàng：</th>
+                    <th class="formTitle">Nhân viên bán hàng:</th>
                     <td class="formValue">
                         <input type="text" readonly="readonly" class="form-control" id="smry" data-smryCode="@OperatorProvider.GetCurrent().rygh" data-staffId="@OperatorProvider.GetCurrent().StaffId" value=@OperatorProvider.GetCurrent().UserName />
                     </td>
-                    <th class="formTitle">Khoa bán hàng：</th>
+                    <th class="formTitle">Khoa bán hàng:</th>
                     <td class="formValue formDdlSelectorTd" style="width: 11%;">
                         <select id="smks" class="form-control">
                             <option>==Vui lòng chọn==</option>
@@ -37,13 +37,13 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Khoản mục Phân loại：</th>
+                    <th class="formTitle">Khoản mục Phân loại:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="sfdl" class="form-control">
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle">Khoản thu phí：</th>
+                    <th class="formTitle">Khoản thu phí:</th>
                     <td class="formValue">
                         <input type="text" class="form-control form-an" id="keyword" placeholder="Mã Tên" />
                     </td>

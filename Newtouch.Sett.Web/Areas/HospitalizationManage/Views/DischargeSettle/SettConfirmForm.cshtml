@@ -14,7 +14,7 @@
     var defaultPayMethod = SysConfigReader.String("Sett_PayMethod_Inp_Default");
     //Có cho phép nhiều phương thức thanh toán hay không
     var sfyxdzzf = SysConfigReader.Bool("Intpatient_Sett_Open_Dzzf", false);
-    //Nơi quản lý BHYT，phân biệt hệ thốngsẽthực hiệnở đâuLogic BHYT
+    //Nơi quản lý BHYT,phân biệt hệ thốngsẽthực hiệnở đâuLogic BHYT
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
     //Số tiềnquyết toánphântiềnsaikhácđiều khiểnchế
     var SettPayBalance = SysConfigReader.Bool("SettPayBalance", false);
@@ -31,31 +31,31 @@
     <div style="height:auto;">
         <table class="form">
             <tr>
-                <th class="formTitle">Tổng số phí：</th>
+                <th class="formTitle">Tổng số phí:</th>
                 <td class="formValue">￥<label id="his_hisfyze">0.00</label></td>
-                <th class="formTitle">Thanh toán tiền mặt：</th>
+                <th class="formTitle">Thanh toán tiền mặt:</th>
                 <td class="formValue">￥<label id="calc_xjzf">0.00</label></td>
-                <th class="formTitle">Thanh toán tài khoản：</th>
+                <th class="formTitle">Thanh toán tài khoản:</th>
                 <td class="formValue">￥<label id="prm_yka065">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Bồi hoàn y tế cơ bản：</th>
+                <th class="formTitle">Bồi hoàn y tế cơ bản:</th>
                 <td class="formValue">￥<label id="prm_yka248">0.00</label></td>
-                <th class="formTitle">Bồi hoàn y tế bệnh nặng：</th>
+                <th class="formTitle">Bồi hoàn y tế bệnh nặng:</th>
                 <td class="formValue">￥<label id="prm_yka062">0.00</label></td>
-                <th class="formTitle">Bồi hoàn bổ sung công chức：</th>
+                <th class="formTitle">Bồi hoàn bổ sung công chức:</th>
                 <td class="formValue">￥<label id="prm_yke030">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Bảo đảm y tế người thương tật：</th>
+                <th class="formTitle">Bảo đảm y tế người thương tật:</th>
                 <td class="formValue">￥<label id="prm_ake032">0.00</label></td>
-                <th class="formTitle">Trợ cấp dân chính：</th>
+                <th class="formTitle">Trợ cấp dân chính:</th>
                 <td class="formValue">￥<label id="prm_ake181">0.00</label></td>
-                <th class="formTitle">Thanh toán quỹ khác：</th>
+                <th class="formTitle">Thanh toán quỹ khác:</th>
                 <td class="formValue">￥<label id="prm_ake173">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Mức khởi trả lần này：</th>
+                <th class="formTitle">Mức khởi trả lần này:</th>
                 <td class="formValue">￥<label id="prm_yka058">0.00</label></td>
             </tr>
         </table>
@@ -70,45 +70,45 @@
     <div style="height:auto;">
         <table class="form">
             <tr>
-                <th class="formTitle">Tổng số phí：</th>
+                <th class="formTitle">Tổng số phí:</th>
                 <td class="formValue">￥<label id="cq_fyze">0.00</label></td>
-                <th class="formTitle">Tổng thanh toán tiền mặt：</th>
+                <th class="formTitle">Tổng thanh toán tiền mặt:</th>
                 <td class="formValue">￥<label id="cq_xjzf">0.00</label></td>
-                <th class="formTitle">khôngTính phí tiền mặt BHYT：</th>
+                <th class="formTitle">khôngTính phí tiền mặt BHYT:</th>
                 <td class="formValue">￥<label id="zf_xjzf">0.00</label></td>
 
             </tr>
             <tr>
-                <th class="formTitle">Tính phí tiền mặt BHYT：</th>
+                <th class="formTitle">Tính phí tiền mặt BHYT:</th>
                 <td class="formValue">￥<label id="yb_xjzf">0.00</label></td>
-                <th class="formTitle">Thanh toánquỹ chung：</th>
+                <th class="formTitle">Thanh toánquỹ chung:</th>
                 <td class="formValue">￥<label id="cq_tczf">0.00</label></td>
-                <th class="formTitle">Trợ cấp công chức：</th>
+                <th class="formTitle">Trợ cấp công chức:</th>
                 <td class="formValue">￥<label id="cq_gwybz">0.00</label></td>
 
 
             </tr>
             <tr>
-                <th class="formTitle">Thanh toán tài khoản：</th>
+                <th class="formTitle">Thanh toán tài khoản:</th>
                 <td class="formValue">￥<label id="cq_zhzf">0.00</label></td>
-                <th class="formTitle">Số tiền bệnh viện chịu：</th>
+                <th class="formTitle">Số tiền bệnh viện chịu:</th>
                 <td class="formValue">￥<label id="dbzddyljgdz">0.00</label></td>
 
-                <th class="formTitle">Thanh toán bồi thường lớn：</th>
+                <th class="formTitle">Thanh toán bồi thường lớn:</th>
                 <td class="formValue">￥<label id="cq_delp">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Chi bảo hiểm y tế doanh nghiệp：</th>
+                <th class="formTitle">Chi bảo hiểm y tế doanh nghiệp:</th>
                 <td class="formValue">￥<label id="cq_qybxzc">0.00</label></td>
-                <th class="formTitle">Chi bệnh nặng dân cư：</th>
+                <th class="formTitle">Chi bệnh nặng dân cư:</th>
                 <td class="formValue">￥<label id="cq_jmdbzc">0.00</label></td>
-                <th class="formTitle">Chi quỹ cứu trợ y tế：</th>
+                <th class="formTitle">Chi quỹ cứu trợ y tế:</th>
                 <td class="formValue">￥<label id="cq_mzbz">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Thanh toánđồng chi trả tài khoản：</th>
+                <th class="formTitle">Thanh toánđồng chi trả tài khoản:</th>
                 <td class="formValue">￥<label id="cq_zhgjzf">0.00</label></td>
-                <th class="formTitle">Khác：</th>
+                <th class="formTitle">Khác:</th>
                 <td class="formValue">￥<label id="cq_qt">0.00</label></td>
             </tr>
         </table>
@@ -122,68 +122,68 @@
     <div style="height:auto;">
         <table class="form">
             <tr>
-                <th class="formTitle">Tổng phí：</th><!--sử dụng-->
+                <th class="formTitle">Tổng phí:</th><!--sử dụng-->
                 <td class="formValue">￥<label id="ZFY">0.00</label></td>
-                <th class="formTitle">Tổng thanh toán tiền mặt：</th>
+                <th class="formTitle">Tổng thanh toán tiền mặt:</th>
                 <td class="formValue">￥<label id="XJZF">0.00</label></td>
-                <th class="formTitle">Tính phí tiền mặt BHYT：</th><!--sử dụng-->
+                <th class="formTitle">Tính phí tiền mặt BHYT:</th><!--sử dụng-->
                 <td class="formValue">￥<label id="YBJF">0.00</label></td>
 
             </tr>
             <tr>
-                <th class="formTitle">khôngTính phí tiền mặt BHYT：</th><!--Số tiền không có mã BHYT-->
+                <th class="formTitle">khôngTính phí tiền mặt BHYT:</th><!--Số tiền không có mã BHYT-->
                 <td class="formValue">￥<label id="ZFJF">0.00</label></td>
-                <th class="formTitle">Số thanh toán tài khoản năm nay：</th>
+                <th class="formTitle">Số thanh toán tài khoản năm nay:</th>
                 <td class="formValue">￥<label id="curaccountpay">0.00</label></td>
-                <th class="formTitle">Số thanh toán tài khoảncác năm trước：</th>
+                <th class="formTitle">Số thanh toán tài khoảncác năm trước:</th>
                 <td class="formValue">￥<label id="hisaccountpay">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Số thanh toán tiền mặt đoạn tự trả：</th>
+                <th class="formTitle">Số thanh toán tiền mặt đoạn tự trả:</th>
                 <td class="formValue">￥<label id="zfdxjzfs">0.00</label></td>
-                <th class="formTitle">Số thanh toáncác năm trước đoạn tự trả：</th>
+                <th class="formTitle">Số thanh toáncác năm trước đoạn tự trả:</th>
                 <td class="formValue">￥<label id="zfdlnzhzfs">0.00</label></td>
 
-                <th class="formTitle">Số thanh toán tài khoản đoạnquỹ chung：</th>
+                <th class="formTitle">Số thanh toán tài khoản đoạnquỹ chung:</th>
                 <td class="formValue">￥<label id="tcdzhzfs">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Số thanh toán tiền mặt đoạnquỹ chung：</th>
+                <th class="formTitle">Số thanh toán tiền mặt đoạnquỹ chung:</th>
                 <td class="formValue">￥<label id="tcdxjzfs">0.00</label></td>
-                <th class="formTitle">Số thanh toánquỹ chung：</th>
+                <th class="formTitle">Số thanh toánquỹ chung:</th>
                 <td class="formValue">￥<label id="tczfs">0.00</label></td>
-                <th class="formTitle">Số thanh toán tài khoản đoạnbổ sung：</th>
+                <th class="formTitle">Số thanh toán tài khoản đoạnbổ sung:</th>
                 <td class="formValue">￥<label id="fjdzhzfs">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Số thanh toán tiền mặt đoạnbổ sung：</th>
+                <th class="formTitle">Số thanh toán tiền mặt đoạnbổ sung:</th>
                 <td class="formValue">￥<label id="fjdxjzfs">0.00</label></td>
-                <th class="formTitle">Số thanh toánbổ sung：</th>
+                <th class="formTitle">Số thanh toánbổ sung:</th>
                 <td class="formValue">￥<label id="fjzfs">0.00</label></td>
-                <th class="formTitle">Số dư tài khoản năm nay：</th>
+                <th class="formTitle">Số dư tài khoản năm nay:</th>
                 <td class="formValue">￥<label id="curaccountamt">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Số dư tài khoảncác năm trước：</th>
+                <th class="formTitle">Số dư tài khoảncác năm trước:</th>
                 <td class="formValue">￥<label id="hisaccountamt">0.00</label></td>
-                <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạnbổ sung：</th>
+                <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạnbổ sung:</th>
                 <td class="formValue">￥<label id="fjdgjzhzfs">0.00</label></td>
-                <th class="formTitle">đoạn khởi trảđồng chi trảThanh toán tài khoản：</th>
+                <th class="formTitle">đoạn khởi trảđồng chi trảThanh toán tài khoản:</th>
                 <td class="formValue">￥<label id="qfdgjzhzfs">0.00</label></td>
                 @*
-                    <th class="formTitle">quyết toán BHYTtổng số phạm vi：</th>
+                    <th class="formTitle">quyết toán BHYTtổng số phạm vi:</th>
                     <td class="formValue">￥<label id="ybjsfwfyze">0.00</label></td>
-                    <th class="formTitle">khôngquyết toán BHYTtổng số phạm vi：</th>
+                    <th class="formTitle">khôngquyết toán BHYTtổng số phạm vi:</th>
                     <td class="formValue">￥<label id="fybjsfwfyze">0.00</label></td>*@
 
             </tr>
             <tr>
-                <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạnquỹ chung：</th>
+                <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạnquỹ chung:</th>
                 <td class="formValue">￥<label id="tcdgjzhzfs">0.00</label></td>
-                <th class="formTitle">Số dư tài khoảnquyết toán trước：</th>
+                <th class="formTitle">Số dư tài khoảnquyết toán trước:</th>
                 <td class="formValue">￥<label id="yjs">0.00</label></td>
                 @*
-                    <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạn tự phí：</th>
+                    <th class="formTitle">Thanh toán tài khoảnđồng chi trả đoạn tự phí:</th>
                     <td class="formValue">￥<label id="zfdgjzhzfs">0.00</label></td>*@
 
             </tr>
@@ -198,13 +198,13 @@
     <div style="height:auto;">
         <table class="form" id="tablezf">
             <tr>
-                <th class="formTitle">Mã nhập viện：</th>
+                <th class="formTitle">Mã nhập viện:</th>
                 <td class="formValue">
                     <label id="lblZyh"></label>
                 </td>
                 @if (relatedFPH == true)
                 {
-                    <th class="formTitle"><span style="color:red">*</span>Số hóa đơn：</th>
+                    <th class="formTitle"><span style="color:red">*</span>Số hóa đơn:</th>
                     <td class="formValue">
                         <label id="txtfph"></label>
                         <div style="position:absolute;top:5px;left:60px;">
@@ -219,24 +219,24 @@
                 }
             </tr>
             <tr>
-                <th class="formTitle">Ngày nhập viện：</th>
+                <th class="formTitle">Ngày nhập viện:</th>
                 <td class="formValue" colspan="2">
                     <label id="lblRyrq"></label>
                 </td>
-                <th class="formTitle"><p class="ztjsyc"><span style="color:red">*</span>Ngày xuất viện：</p></th>
+                <th class="formTitle"><p class="ztjsyc"><span style="color:red">*</span>Ngày xuất viện:</p></th>
                 <td class="formValue" colspan="2">
                     <input id="cyrq" type="text" class="form-control  form-an input-wdatepicker ztjsyc" style="float: left; margin-left: 5px; width:90%" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Số phải thu：</th>
+                <th class="formTitle">Số phải thu:</th>
                 <td class="formValue">
                     ￥<label id="yingshoukuan"></label>
                 </td>
             </tr>
 
             <tr id="trYjjzf" style="display:none;">
-                <th class="formTitle">Số dưtạm ứng：</th>
+                <th class="formTitle">Số dưtạm ứng:</th>
                 <td class="formValue">
                     ￥<label id="yjjye"></label>
                 </td>
@@ -252,11 +252,11 @@
                     </div>
                 </td>
                 @*<td class="formValue" id="td_accountcharge">
-                <input type="button" class="btn btn-default" id="btn_czyjj" style="color: red;" value="Số dư không đủ，trướcVàonạp tiền" onclick="InpAccountDeposit();"  />
+                <input type="button" class="btn btn-default" id="btn_czyjj" style="color: red;" value="Số dư không đủ,trướcVàonạp tiền" onclick="InpAccountDeposit();"  />
             </td>*@
             </tr>
             <tr style="display:none;">
-                <th class="formTitle">Phương thức thanh toán：</th>
+                <th class="formTitle">Phương thức thanh toán:</th>
                 <td class="formValue" colspan="2">
                     <select id="zffs1" class="form-control  form-an" style="width:90%">
                         <option value="">==Vui lòng chọn==</option>
@@ -264,13 +264,13 @@
                 </td>
             </tr>
             <tr class="isShowZFFS" style="display:none;">
-                <th class="formTitle">Thứ haiPhương thức thanh toán：</th>
+                <th class="formTitle">Thứ haiPhương thức thanh toán:</th>
                 <td class="formValue">
                     <select id="zffs2" class="form-control form-an" style="width:90%">
                         <option value="">==Có thể chọn==</option>
                     </select>
                 </td>
-                <th class="formTitle">Thu tiền：</th>
+                <th class="formTitle">Thu tiền:</th>
                 <td class="formValue" colspan="2">
                     <input type="text" id="zfje2" class="form-control form-an" style="width:90%" />
                 </td>
@@ -281,21 +281,21 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle ztjsyc" style="color:red;">Khấu trừtạm ứng：</th>
+                <th class="formTitle ztjsyc" style="color:red;">Khấu trừtạm ứng:</th>
                 <td class="formValue ztjsyc" style="font-size:large" colspan="2">￥<label id="yjjzfje">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle ztjsyc" style="color:red;">ChờnộpSố tiền：</th>
+                <th class="formTitle ztjsyc" style="color:red;">ChờnộpSố tiền:</th>
                 <td class="formValue ztjsyc" style="font-size:large" colspan="2">￥<label id="djje">0.00</label></td>
             </tr>
             <tr class="trUseZk" style="display:none;">
-                <th class="formTitle" style="color:red;">Tỷ lệ chiết khấu：</th>
+                <th class="formTitle" style="color:red;">Tỷ lệ chiết khấu:</th>
                 <td class="formValue">
                     <input id="zkbl" type="text" class="form-control  form-an" style="width:40%; float:left;" />
                     <span style="line-height:25px; color:red;">%</span>
                 </td>
 
-                <th class="formTitle" style="display:none;">Số tiền chiết khấu：</th>
+                <th class="formTitle" style="display:none;">Số tiền chiết khấu:</th>
                 <td class="formValue" style="display:none;">
                     <input id="zkje" type="text" class="form-control  form-an" />
                 </td>
@@ -303,12 +303,12 @@
             <tr>
                 <th class="formTitle" style="color:red;">
                     <i id="zffsCircle" class="fa fa-plus-circle plusToggleCircle" aria-hidden="true" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>
-                    Thực thu tại cửa sổ：
+                    Thực thu tại cửa sổ:
                 </th>
                 <td class="formValue" style="font-size:large" colspan="2">
                     <input type="text" id="djjess" class="form-control required zffsinput" onfocus="clearnum()" autocomplete="off" onkeyup="setzfje('')" onchange="verifyZffs('')" style="width:90%" value="0.00" oninput="inputnum(this)" />
                 </td>
-                <th class="formTitle">Phương thức thanh toán：</th>
+                <th class="formTitle">Phương thức thanh toán:</th>
                 <td class="formValue" colspan="2">
                     <select id="djjesszffs" class="form-control  form-an" style="width:90%">
                         <option value="">==Vui lòng chọn==</option>
@@ -317,13 +317,13 @@
             </tr>
 
             @*<tr class="trUseZk" style="display:none;">
-            <th class="formTitle">Số phải thu sau chiết khấu：</th>
+            <th class="formTitle">Số phải thu sau chiết khấu:</th>
             <td class="formValue">
                 ￥<label id="zhysk"></label>
             </td>
         </tr>*@
             <tr hidden>
-                <th class="formTitle" style="color:red;">Thu tiền（old）：</th>
+                <th class="formTitle" style="color:red;">Thu tiền（old）:</th>
                 <td class="formValue" style="font-size:large" colspan="2">
                     <input type="text" id="zfje1" class="form-control form-an" style="width:90%" />
                 </td>
@@ -340,19 +340,19 @@
                 <th></th>
                 <td></td>
                 <td></td>
-                <th class="formTitle" style="color:red;font-weight:bold;">Tổng thực thu：</th>
+                <th class="formTitle" style="color:red;font-weight:bold;">Tổng thực thu:</th>
                 <td class="formValue" style="font-size:large" colspan="2">￥<label id="hjssk">0.00</label></td>
             </tr>
             <tr>
                 <th></th>
                 <td colspan="2"></td>
-                <th class="formTitle ztjsyc" style="color:red;font-weight:bold;">Tiền thừa：</th>
+                <th class="formTitle ztjsyc" style="color:red;font-weight:bold;">Tiền thừa:</th>
                 <td class="formValue ztjsyc" style="font-size:large" colspan="2">￥<label id="zhaoling">0.00</label></td>
             </tr>
             <tr id="tr_yjjtye" hidden>
                 <th></th>
                 <td colspan="2"></td>
-                <th class="formTitle ztjsyc" style="color:red;font-weight:bold;">Trong đó：bao gồmtạm ứnghoànSố dư</th>
+                <th class="formTitle ztjsyc" style="color:red;font-weight:bold;">Trong đó:bao gồmtạm ứnghoànSố dư</th>
                 <td class="formValue ztjsyc" style="font-weight:bold;">（ ￥<label id="yjjtye">0.00</label> ）</td>
             </tr>
         </table>
@@ -395,7 +395,7 @@
     var isYbjy = $.request("isYbjy");
     var brxz = $.request("brxz");
     var brxzmc = $.request("brxzmc");
-    var strdyjylsh = "";//SốDòng chảy tài khoảnkhấu trừ，BHYT Trùng Khánh，làcập nhậtkhấu trừlưuBảngcủajsnm
+    var strdyjylsh = "";//SốDòng chảy tài khoảnkhấu trừ,BHYT Trùng Khánh,làcập nhậtkhấu trừlưuBảngcủajsnm
     var xnhjyFeeReturn;
     var isXnhjy = $.request("isXnhjy");
     var cqPatInfo = JSON.parse(sessionStorage.getItem('cqPatInfo'));
@@ -404,7 +404,7 @@
         ybjyFeeReturn = JSON.parse(sessionStorage.getItem('ybjyFeeReturn'));
         if (!!ybjyFeeReturn) {
             if (!medicalInsurance) {
-                $.modalAlert("Chương trình chưa cấu hình động nơi BHYT，Vui lòng cấu hình rồi thử lại", 'warning');
+                $.modalAlert("Chương trình chưa cấu hình động nơi BHYT,Vui lòng cấu hình rồi thử lại", 'warning');
                 $.modalClose();
             }
             if (cqPatInfo.ybVer === "gjyb")
@@ -502,7 +502,7 @@
         else {
             //Bất thường
             orglxjzfys = xjzfys = zje = 0;
-            $.modalAlert("Thanh toán BHYT bất thường，Vui lòng thử lại", "error");
+            $.modalAlert("Thanh toán BHYT bất thường,Vui lòng thử lại", "error");
             $.modalClose();
         }
     }
@@ -511,7 +511,7 @@
         xnhjyFeeReturn = JSON.parse(sessionStorage.getItem('xnhjyFeeReturn'));
         if (!!xnhjyFeeReturn) {
             if (!medicalInsurance) {
-                $.modalAlert("Chương trình chưa cấu hình động nơi BHYT，Vui lòng cấu hình rồi thử lại", 'warning');
+                $.modalAlert("Chương trình chưa cấu hình động nơi BHYT,Vui lòng cấu hình rồi thử lại", 'warning');
                 $.modalClose();
             }
             //Nếu theo logic BHYT Quý An
@@ -542,7 +542,7 @@
         else {
             //Bất thường
             orglxjzfys = xjzfys = zje = 0;
-            $.modalAlert("Thanh toán BHYT bất thường，Vui lòng thử lại", "error");
+            $.modalAlert("Thanh toán BHYT bất thường,Vui lòng thử lại", "error");
             $.modalClose();
         }
     }
@@ -671,7 +671,7 @@
                 $("#ckyjjzfuse").trigger('click');
             }
             $("#tr_yjjtye").show();
-            //Phương thức thanh toántạm ứng，‘Hoàn toàn bộ số dư’
+            //Phương thức thanh toántạm ứng,‘Hoàn toàn bộ số dư’
             if (!!yjjye && yjjye >= xjzfys) {
                 $('#yeqtje').html((yjjye - xjzfys).toFixed(2));
                 $('#yjjtye').html((yjjye - xjzfys).toFixed(2));
@@ -813,7 +813,7 @@
         zfje1 = (!!zffs1 || zffs1 == '0') && !!ovpraseFloat(zfje1) ? ovpraseFloat(zfje1) : 0;
         if (zffs1 == '3' && yjjye) {
             if (!(parseFloat(zfje1) <= parseFloat(yjjye) || parseFloat(zfje1) <= parseFloat(xjzfys))) {
-                $.modalAlert("Không đủtạm ứng，Không thể tiến hànhquyết toán，Vui lòngnạp tiềntạm ứnghoặcChọnnónóPhương thức thanh toán", "error");
+                $.modalAlert("Không đủtạm ứng,Không thể tiến hànhquyết toán,Vui lòngnạp tiềntạm ứnghoặcChọnnónóPhương thức thanh toán", "error");
                 return false;
             }
         }
@@ -870,7 +870,7 @@
         }
         return parseFloat(val);
     }
-    //Vào trang，Nạp số hóa đơn
+    //Vào trang,Nạp số hóa đơn
     function initFPH() {
         if (!($("#txtfph").length == 1)) {
             return;
@@ -922,7 +922,7 @@
     $('#zkje,#zkbl').keyup(function () {
         discountCal();
     });
-    //Tỷ lệ chiết khấu，Số tiền chiết khấu Tính chiết khấu
+    //Tỷ lệ chiết khấu,Số tiền chiết khấu Tính chiết khấu
     function discountCal() {
         var zkje = ovpraseFloat(0).toFixed(2);//$('#zkje').val();
         var zkbl = $('#zkbl').val();
@@ -1019,7 +1019,7 @@
     function hjsskZhaolingCal() {
         var djje = 0.00; //thaynộpSố tiền
         if (!$('#zffs1').val() && $('#zfje1').val() != 0) {
-            //Chưa chọnPhương thức thanh toán，đối vớiphảiSố tiềncầnđặtlà0.00
+            //Chưa chọnPhương thức thanh toán,đối vớiphảiSố tiềncầnđặtlà0.00
             $('#zfje1').val('0.00');
             djje = xjzfys.toFixed(2);
         }
@@ -1166,7 +1166,7 @@
             ToPay(out_trade_no, 'quyết toán xuất viện', payMoney, djjesszffs);
             payingOrFailed = true;
         }
-        return !(payingOrFailed === true); //Đang thanh toán Trả vềtrue，Ngược lại trả vềfalse
+        return !(payingOrFailed === true); //Đang thanh toán Trả vềtrue,Ngược lại trả vềfalse
     }
     //Gửithanh toán
     function ToPay(out_trade_no, subject, total_amount, djjesszffs) {
@@ -1291,7 +1291,7 @@
         var isAdd=verifyZfje();
         if(isAdd==false)
         {
-            $.modalAlert("Tổng thực thu tại cửa sổ hiện tại lớn hơn hoặc bằng số tiền chờ nộp，không thểThêmmớiPhương thức thanh toán", 'error');
+            $.modalAlert("Tổng thực thu tại cửa sổ hiện tại lớn hơn hoặc bằng số tiền chờ nộp,không thểThêmmớiPhương thức thanh toán", 'error');
             return;
         }
         var vcn = 0;
@@ -1304,7 +1304,7 @@
         if (number >= vcn) {
             return;
         }
-        var $newTr= $('<tr><th class="formTitle" style="color:red;"><i class="fa fa-minus minusToggleCircle" aria-hidden="true"  name="idjjess' + number + '" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Thực thu tại cửa sổ： </th><td class="formValue" style="font-size:large" colspan="2"> <input type="text" id="djjess' + number + '" name="djjess' + number + '" class="form-control required zffsinput" autocomplete="off" onkeyup="setzfje(' + number + ')" onfocus="clearnum(' + number + ')" onchange="verifyZffs('+number+')" style="width:90%" value="0.00" oninput="inputnum(this)" /></td><th class="formTitle">Phương thức thanh toán：</th> <td class="formValue" colspan="2"><select id="djjesszffs' + number + '" class="form-control  form-an" style="width:90%"><option value="">==Vui lòng chọn==</option></select></td></tr>');
+        var $newTr= $('<tr><th class="formTitle" style="color:red;"><i class="fa fa-minus minusToggleCircle" aria-hidden="true"  name="idjjess' + number + '" style="width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;"></i>Thực thu tại cửa sổ: </th><td class="formValue" style="font-size:large" colspan="2"> <input type="text" id="djjess' + number + '" name="djjess' + number + '" class="form-control required zffsinput" autocomplete="off" onkeyup="setzfje(' + number + ')" onfocus="clearnum(' + number + ')" onchange="verifyZffs('+number+')" style="width:90%" value="0.00" oninput="inputnum(this)" /></td><th class="formTitle">Phương thức thanh toán:</th> <td class="formValue" colspan="2"><select id="djjesszffs' + number + '" class="form-control  form-an" style="width:90%"><option value="">==Vui lòng chọn==</option></select></td></tr>');
         
         $newTr.appendTo($(this).closest('table'));  
         binddzffsFloatingSelector(number);

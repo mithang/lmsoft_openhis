@@ -96,11 +96,11 @@
             return false;
         }
         if (!((/^(\+|-)?\d+$/).test($("#ts").val())) || ($("#ts").val() < 1)) {
-            $.modalAlert("số ngày không Có lớn hơn0số nguyên，Vui lòng xác nhận。", 'warning');
+            $.modalAlert("số ngày không Có lớn hơn0số nguyên,Vui lòng xác nhận。", 'warning');
             return;
         }
         if (($("#ts").val() > 31)) {
-            $.modalAlert("Không thể lớn hơn31Ngày，Vui lòng xác nhận。", 'warning');
+            $.modalAlert("Không thể lớn hơn31Ngày,Vui lòng xác nhận。", 'warning');
             return;
         }
         return true;
@@ -110,20 +110,20 @@
     <div style="padding-right:30px">
         <table class="form">
             <tr>
-                <td class="formTitle"><span style="color:red">*</span>Mã nhân viên：</td>
+                <td class="formTitle"><span style="color:red">*</span>Mã nhân viên:</td>
                 <td class="formValue">
                     <input type="text" id="ysgh" name="ysgh" class="form-control" />
                     <input type="hidden" id="Id" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">Họ tên：</td>
+                <td class="formTitle">Họ tên:</td>
                 <td class="formValue">
                     <input type="text" id="Name" name="Name" class="form-control" />
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span style="color:red">*</span>Năm：</td>
+                <td class="formTitle"><span style="color:red">*</span>Năm:</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="year" name="year" class="form-control">
                         <option value="">===Vui lòng chọn===</option>
@@ -131,7 +131,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span style="color:red">*</span>Tháng：</td>
+                <td class="formTitle"><span style="color:red">*</span>Tháng:</td>
                 <td class="formValue formDdlSelectorTd">
                     <select id="month" name="month" class="form-control">
                         <option value="">===Vui lòng chọn===</option>
@@ -139,7 +139,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span style="color:red">*</span>số ngày：</td>
+                <td class="formTitle"><span style="color:red">*</span>số ngày:</td>
                 <td class="formValue">
                     <input type="text" id="ts" name="ts" class="form-control" />
                 </td>

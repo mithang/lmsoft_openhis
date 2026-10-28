@@ -11,21 +11,21 @@
     <div style="height:auto;">
         <table class="form">
             <tr>
-                <th class="formTitle">Mã nhập viện：</th>
+                <th class="formTitle">Mã nhập viện:</th>
                 <td class="formValue"><label id="zyh"></label></td>
-                @*<th class="formTitle">Ngày nhập viện：</th>
+                @*<th class="formTitle">Ngày nhập viện:</th>
                     <td class="formValue"><label id=""></label></td>*@
-                <th class="formTitle">Số hiệu cá nhân：</th>
+                <th class="formTitle">Số hiệu cá nhân:</th>
                 <td class="formValue"><label id="sbbh"></label></td>
-                <th class="formTitle">trung tâm chi nhánhSố hiệu：</th>
+                <th class="formTitle">trung tâm chi nhánhSố hiệu:</th>
                 <td class="formValue"><label id="fzxbh"></label></td>
             </tr>
             <tr>
-                <th class="formTitle">Loại thanh toán：</th>
+                <th class="formTitle">Loại thanh toán:</th>
                 <td class="formValue"><label id="zhifuleibie"></label></td>
-                <th class="formTitle">Phương pháp BHXH：</th>
+                <th class="formTitle">Phương pháp BHXH:</th>
                 <td class="formValue"><label id="sbbf"></label></td>
-                <th class="formTitle">Tổng số phí：</th>
+                <th class="formTitle">Tổng số phí:</th>
                 <td class="formValue"><label id="hisfyze"></label></td>
             </tr>
         </table>
@@ -40,49 +40,49 @@
 	<div style="height:auto;">
         <table class="form">
             <tr>
-                <th class="formTitle">Tổng số phí：</th>
+                <th class="formTitle">Tổng số phí:</th>
                 <td class="formValue">￥<label id="cq_fyze">0.00</label></td>
-                <th class="formTitle">Tổng thanh toán tiền mặt：</th>
+                <th class="formTitle">Tổng thanh toán tiền mặt:</th>
                 <td class="formValue">￥<label id="cq_xjzf">0.00</label></td>
-                <th class="formTitle">khôngTính phí tiền mặt BHYT：</th>
+                <th class="formTitle">khôngTính phí tiền mặt BHYT:</th>
                 <td class="formValue">￥<label id="zf_xjzf">0.00</label></td>
 
             </tr>
             <tr>
-                <th class="formTitle">Tính phí tiền mặt BHYT：</th>
+                <th class="formTitle">Tính phí tiền mặt BHYT:</th>
                 <td class="formValue">￥<label id="yb_xjzf">0.00</label></td>
-                <th class="formTitle">Thanh toánquỹ chung：</th>
+                <th class="formTitle">Thanh toánquỹ chung:</th>
                 <td class="formValue">￥<label id="cq_tczf">0.00</label></td>
-                <th class="formTitle">Trợ cấp công chức：</th>
+                <th class="formTitle">Trợ cấp công chức:</th>
                 <td class="formValue">￥<label id="cq_gwybz">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Thanh toán tài khoản：</th>
+                <th class="formTitle">Thanh toán tài khoản:</th>
                 <td class="formValue">￥<label id="cq_zhzf">0.00</label></td>
-                <th class="formTitle">Tạm ứng y tế đơn bệnh：</th>
+                <th class="formTitle">Tạm ứng y tế đơn bệnh:</th>
                 <td class="formValue">￥<label id="dbzddyljgdz">0.00</label></td>
 
-                <th class="formTitle">Thanh toán bồi thường lớn：</th>
+                <th class="formTitle">Thanh toán bồi thường lớn:</th>
                 <td class="formValue">￥<label id="cq_delp">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Chi bảo hiểm y tế doanh nghiệp：</th>
+                <th class="formTitle">Chi bảo hiểm y tế doanh nghiệp:</th>
                 <td class="formValue">￥<label id="cq_qybxzc">0.00</label></td>
-                <th class="formTitle">Chi bệnh nặng dân cư：</th>
+                <th class="formTitle">Chi bệnh nặng dân cư:</th>
                 <td class="formValue">￥<label id="cq_jmdbzc">0.00</label></td>
-                <th class="formTitle">Chi quỹ cứu trợ y tế：</th>
+                <th class="formTitle">Chi quỹ cứu trợ y tế:</th>
                 <td class="formValue">￥<label id="cq_mzbz">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Thanh toánđồng chi trả tài khoản：</th>
+                <th class="formTitle">Thanh toánđồng chi trả tài khoản:</th>
                 <td class="formValue">￥<label id="cq_zhgjzf">0.00</label></td>
-                <th class="formTitle">Khác：</th>
+                <th class="formTitle">Khác:</th>
                 <td class="formValue">￥<label id="cq_qt">0.00</label></td>
-                <th class="formTitle">Số tiền phù hợp phạm vi chính sách：</th>
+                <th class="formTitle">Số tiền phù hợp phạm vi chính sách:</th>
                 <td class="formValue">￥<label id="cq_hszjfw">0.00</label></td>
             </tr>
             <tr>
-                <th class="formTitle">Mức khởi trả thanh toán thực tế：</th>
+                <th class="formTitle">Mức khởi trả thanh toán thực tế:</th>
                 <td class="formValue">￥<label id="cq_zfqfx">0.00</label></td>
             </tr>
         </table>
@@ -109,16 +109,16 @@
         if (isYbjyjz) {
             if (medicalInsurance == "chongqing") {
             	setTimeout(function(){ 
-                    $.loading(true, 'Đang tải lên chi tiết，Vui lòng đợi...');
+                    $.loading(true, 'Đang tải lên chi tiết,Vui lòng đợi...');
                     setTimeout(function() {
                             CQmxsc(function(mxxx) {
-                                $.loading(true, 'Đangquyết toán mô phỏng，Vui lòng đợi...');
+                                $.loading(true, 'Đangquyết toán mô phỏng,Vui lòng đợi...');
                                 setTimeout(function () {
                                     CQybjs(mxxx);
                                         //CQsppd(mxxx,
                                         //    function() {
                                         //        setTimeout(function() {
-                                        //                $.loading(true, 'Đangquyết toán mô phỏng，Vui lòng đợi...');
+                                        //                $.loading(true, 'Đangquyết toán mô phỏng,Vui lòng đợi...');
                                         //                CQybjs(mxxx);
                                         //            },
                                         //            50);
@@ -146,7 +146,7 @@
         $('#sbbf').html(data.sbbf);
         $('#hisfyze').html(parseFloat(hisfyze).toFixed(2));
     }
-    //Phán định phê duyệt，Gọi22Giao diện kiểm tra có dữ liệu chưa phê duyệt hay không
+    //Phán định phê duyệt,Gọi22Giao diện kiểm tra có dữ liệu chưa phê duyệt hay không
     function CQsppd(mxxx, funcSuccCallback) {
         var parameter1 = { "zyh": zyh, "splx": "1", "rq": $.getDate({ date: ryrq }), "xzlb": "1" };
         var parameter2 = { "zyh": zyh, "splx": "2", "rq": $.getDate({ date: ryrq }), "xzlb": "1" };
@@ -175,12 +175,12 @@
         if (!!spGsfReturn && !!spBdbReturn && spGsfReturn.Code === "1" && spBdbReturn.Code === "1") {
             if (!!spGsfReturn.Data && spGsfReturn.Data.cfmxlshList.length > 0) {
                 $.loading(false);
-                $.modalAlert("Bệnh nhân có mụcthu phí cao chưa phê duyệt，Vui lòng liên hệ phòng BHYT phê duyệt rồiquyết toán lại！", 'error');
+                $.modalAlert("Bệnh nhân có mụcthu phí cao chưa phê duyệt,Vui lòng liên hệ phòng BHYT phê duyệt rồiquyết toán lại！", 'error');
                 return;
             }
             if (!!spGsfReturn.Data && spBdbReturn.Data.cfmxlshList.length > 0) {
                 $.loading(false);
-                $.modalAlert("Bệnh nhân có mục Albumin chưa phê duyệt，Vui lòng liên hệ phòng BHYT phê duyệt rồiquyết toán lại！", 'error');
+                $.modalAlert("Bệnh nhân có mục Albumin chưa phê duyệt,Vui lòng liên hệ phòng BHYT phê duyệt rồiquyết toán lại！", 'error');
                 return;
             }
         } else {
@@ -202,7 +202,7 @@
     function funcGetSettPatientInfo(funcSuccCallback) {
         $.najax({
             url: '/HospitalizationManage/DischargeSettle/GetInpatientSettYbPatInfo?zyh=' + zyh,
-            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân，Vui lòng đợi...",
+            loadingtext: "Đang yêu cầu thông tin xuất viện của bệnh nhân,Vui lòng đợi...",
             type: 'POST',
             success: function (ajaxResp) {
                 initPatientInfo(ajaxResp.data);
@@ -236,7 +236,7 @@
 	        async: false,
 	        success: function (payoptype) {
 	            if (payoptype) {
-	                //Mỗi lần tải lên lại，Trước tiên xử lý phần đã tải lên trước đây，nhưngChưaquyết toáncủahoàn đơn thuốc
+	                //Mỗi lần tải lên lại,Trước tiên xử lý phần đã tải lên trước đây,nhưngChưaquyết toáncủahoàn đơn thuốc
 	                payoptype.feedetl_sn = "0000";
 	                $.ajax({
 	                    type: "POST",
@@ -296,7 +296,7 @@
 	                                    else {
 	                                        $.loading(false);
 	                                        isuccer = false;
-	                                        $.modalAlert("Tải lên chi tiết thất bại：" + upDataReturn.err_msg, 'error');
+	                                        $.modalAlert("Tải lên chi tiết thất bại:" + upDataReturn.err_msg, 'error');
 	                                        return;
 	                                    }
 

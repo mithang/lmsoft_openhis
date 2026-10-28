@@ -55,7 +55,7 @@
                             </td>
                             <td class="formValue">
                                 <input type="text" id="kh" class="form-control form-an">
-                                <!-- mặc địnhnhậnrỗngtrắng，khôngy tếbảo hiểmthẻ -->
+                                <!-- mặc địnhnhậnrỗngtrắng,khôngy tếbảo hiểmthẻ -->
                                 <input type="hidden" id="cardtype" value="" />
                                 <input type="hidden" id="cbdbm" value="" />
                                 <input type="hidden" id="sbbh" value="" />
@@ -242,7 +242,7 @@
                     </tr>
 
                     <tr id="citylist_XDZ">
-                        <td class="formTitle">Địa chỉ hiện tại：</td>
+                        <td class="formTitle">Địa chỉ hiện tại:</td>
                         <td class="formValue">
                             <select name="province" class="form-control form-an">
                                 <option>Vui lòng chọn</option>
@@ -260,13 +260,13 @@
                                 <option>Vui lòng chọn</option>
                             </select>
                         </td>
-                        <td class="formTitle"><span style="float:left;color:#475059">Huyện</span>&nbsp;&nbsp;<span style="float:right;color:#475059">địa chỉ：</span></td>
+                        <td class="formTitle"><span style="float:left;color:#475059">Huyện</span>&nbsp;&nbsp;<span style="float:right;color:#475059">địa chỉ:</span></td>
                         <td class="formValue"><input type="text" id="xian_dz" class="form-control form-an" /></td>
 
                     </tr>
 
                     <tr id="citylist_CSD">
-                        <td class="formTitle">Nơi sinh：</td>
+                        <td class="formTitle">Nơi sinh:</td>
                         <td class="formValue">
                             <select name="province" class="form-control form-an">
                                 <option>Vui lòng chọn</option>
@@ -285,7 +285,7 @@
                                 <option>Vui lòng chọn</option>
                             </select>
                         </td>
-                        <td class="formTitle"><span style="float:left;color:#475059">Huyện</span>&nbsp;&nbsp;<span style="float:right;color:#475059">địa chỉ：</span></td>
+                        <td class="formTitle"><span style="float:left;color:#475059">Huyện</span>&nbsp;&nbsp;<span style="float:right;color:#475059">địa chỉ:</span></td>
                         <td class="formValue">
                             <input type="text" id="cs_dz" class="form-control form-an form-an-end" />
                         </td>
@@ -295,7 +295,7 @@
                     </tr>
 
                     <tr id="citylist_HKDZ">
-                        <td class="formTitle">Địa chỉ hộ khẩu：</td>
+                        <td class="formTitle">Địa chỉ hộ khẩu:</td>
                         <td class="formValue">
                             <select name="province" class="form-control form-an">
                                 <option>Vui lòng chọn</option>
@@ -313,7 +313,7 @@
                                 <option>Vui lòng chọn</option>
                             </select>
                         </td>
-                        <td class="formTitle"><span style="float:left;color:#475059">Huyện (quận)</span>&nbsp;&nbsp;<span style="float:right;color:#475059">địa chỉ：</span></td>
+                        <td class="formTitle"><span style="float:left;color:#475059">Huyện (quận)</span>&nbsp;&nbsp;<span style="float:right;color:#475059">địa chỉ:</span></td>
                         <td class="formValue"><input type="text" id="hu_dz" class="form-control form-an" /></td>
                         <td class="formTitle" style="padding-right:60px">
                             <input type="button" class="btn btn-primary" id="btnsyy" value="Giống trên" onclick="GetDefaultCityToCurrent('_HKDZ');" />
@@ -336,7 +336,7 @@
                         </td>
                     </tr>
                     <tr id="citylist_JJLXRDZ">
-                        <td class="formTitle">Người liên hệ địa chỉ：</td>
+                        <td class="formTitle">Người liên hệ địa chỉ:</td>
                         <td class="formValue">
                             <select name="province" class="form-control form-an">
                                 <option>Vui lòng chọn</option>
@@ -354,7 +354,7 @@
                                 <option>Vui lòng chọn</option>
                             </select>
                         </td>
-                        <td class="formTitle">Huyện (quận) &nbsp;&nbsp; địa chỉ：</td>
+                        <td class="formTitle">Huyện (quận) &nbsp;&nbsp; địa chỉ:</td>
                         <td class="formValue"><input type="text" id="jjlxr_dz" class="form-control form-an" /></td>
                         <td class="formTitle" style="padding-right:60px">
                             <input type="button" class="btn btn-primary" id="btnsyy" value="Giống trên" onclick="GetDefaultCityToCurrent('_JJLXRDZ');" />
@@ -431,7 +431,7 @@
 <script type="text/javascript" src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/PatientManage/HospiterRes/PatientBasic.js",false)"></script>
 <script src="~/Content/js/jquery.citys.js"></script>
 <script type="text/javascript">
-    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc:bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
     var medicalInsurance = '@medicalInsurance';//cấu hình địa phương BHYT:phân biệt khu vực BHYT của bệnh viện
 
     var zjpz = "@ViewBag.zjpz";
@@ -626,7 +626,7 @@
                     $('#cardtype').val(yibaoCardInfo.jzlx);
 
                     $('#cblb').val(ybPatInfo.accountattr);
-                    //BHYT Trùng Khánh，Dựa vào mã hành chính trả về để phân biệt người khám tại chỗ và khác địa phương，Độ dài mã hành chính của người khám tại chỗ nhỏ hơn6vị trí，Mã hành chính của người khám khác địa phương là6vị trí
+                    //BHYT Trùng Khánh,Dựa vào mã hành chính trả về để phân biệt người khám tại chỗ và khác địa phương,Độ dài mã hành chính của người khám tại chỗ nhỏ hơn6vị trí,Mã hành chính của người khám khác địa phương là6vị trí
                     //Giao diện mới thống nhất khu vực điều phối6vị trí50phần đầuvar bkbz = sm01Info.accountattr.substr(11, 1)
                     if (ybPatInfo.accountattr.substr(11, 1) == "Y") {
                         $('#dybh').val("1");
@@ -721,7 +721,7 @@
                     $('#cardtype').val(yibaoCardInfo.jzlx);
 
                     $('#cblb').val(ybPatInfo2.psn_type);
-                    //BHYT Trùng Khánh，Dựa vào mã hành chính trả về để phân biệt người khám tại chỗ và khác địa phương，Độ dài mã hành chính của người khám tại chỗ nhỏ hơn6vị trí，Mã hành chính của người khám khác địa phương là6vị trí
+                    //BHYT Trùng Khánh,Dựa vào mã hành chính trả về để phân biệt người khám tại chỗ và khác địa phương,Độ dài mã hành chính của người khám tại chỗ nhỏ hơn6vị trí,Mã hành chính của người khám khác địa phương là6vị trí
                     //Giao diện mới thống nhất khu vực điều phối6vị trí50phần đầu
                     if (!!ybPatInfo2.insuplc_admdvs && ybPatInfo2.insuplc_admdvs.length == 6 && yibaoCardInfo.kh != null && yibaoCardInfo.kh.substring(0, 1) == "#") {
                         $('#dybh').val("1");

@@ -3,9 +3,11 @@
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 @*<script src="~/Content/js/echarts/echarts.js"></script>*@
-<script src="~/Content/js/echarts/echarts-all.js"></script>
-@*<script src="~/Content/js/echarts/echarts.min.js" type="text/javascript"></script>*@
-<script src="~/Content/js/echarts/infographic.js"></script>
+@* QA-phase2 (SETT-08): echarts lives on the static host (js/echarts/),
+   not under the app's wwwroot/Content — the old ~/Content paths 404'd,
+   so `echarts` was never defined and no chart rendered. *@
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/echarts/echarts-all.js")"></script>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/echarts/infographic.js")"></script>
 <script>
     $(function () {
         loadGaugeIIS();
@@ -20,7 +22,7 @@
                 {
                     name: 'Chỉ số nghiệp vụ',
                     type: 'gauge',
-                    splitNumber: 10,       // Số đoạn chia，Mặc định là5
+                    splitNumber: 10,       // Số đoạn chia,Mặc định là5
                     axisLine: {            // Đường trục tọa độ
                         lineStyle: {       // thuộc tínhlineStyleĐiều khiển kiểu đường kẻ
                             color: [[0.2, '#228b22'], [0.8, '#48b'], [1, '#ff4500']],
@@ -34,13 +36,13 @@
                             color: 'auto'
                         }
                     },
-                    axisLabel: {           // Nhãn văn bản trục tọa độ，Xem chi tiếtaxis.axisLabel
-                        textStyle: {       // Các thuộc tính còn lại mặc định dùng kiểu văn bản toàn cục，Xem chi tiếtTEXTSTYLE
+                    axisLabel: {           // Nhãn văn bản trục tọa độ,Xem chi tiếtaxis.axisLabel
+                        textStyle: {       // Các thuộc tính còn lại mặc định dùng kiểu văn bản toàn cục,Xem chi tiếtTEXTSTYLE
                             color: 'auto'
                         }
                     },
                     splitLine: {           // Đường phân cách
-                        show: true,        // Hiển thị mặc định，thuộc tínhshowĐiều khiển hiển thị hay không
+                        show: true,        // Hiển thị mặc định,thuộc tínhshowĐiều khiển hiển thị hay không
                         length: 30,         // thuộc tínhlengthĐiều khiển độ dài đường kẻ
                         lineStyle: {       // thuộc tínhlineStyle（Xem chi tiếtlineStyle）Điều khiển kiểu đường kẻ
                             color: 'auto'
@@ -49,7 +51,7 @@
 
                     detail: {
                         formatter: '{value}%',
-                        textStyle: {       // Các thuộc tính còn lại mặc định dùng kiểu văn bản toàn cục，Xem chi tiếtTEXTSTYLE
+                        textStyle: {       // Các thuộc tính còn lại mặc định dùng kiểu văn bản toàn cục,Xem chi tiếtTEXTSTYLE
                             color: 'auto',
                             fontWeight: 'bolder',
                             fontSize: 20
@@ -68,7 +70,7 @@
                 {
                     name: 'Chỉ số nghiệp vụ',
                     type: 'gauge',
-                    splitNumber: 10,       // Số đoạn chia，Mặc định là5
+                    splitNumber: 10,       // Số đoạn chia,Mặc định là5
                     axisLine: {            // Đường trục tọa độ
                         lineStyle: {       // thuộc tínhlineStyleĐiều khiển kiểu đường kẻ
                             color: [[0.2, '#228b22'], [0.8, '#48b'], [1, '#ff4500']],
@@ -82,13 +84,13 @@
                             color: 'auto'
                         }
                     },
-                    axisLabel: {           // Nhãn văn bản trục tọa độ，Xem chi tiếtaxis.axisLabel
-                        textStyle: {       // Các thuộc tính còn lại mặc định dùng kiểu văn bản toàn cục，Xem chi tiếtTEXTSTYLE
+                    axisLabel: {           // Nhãn văn bản trục tọa độ,Xem chi tiếtaxis.axisLabel
+                        textStyle: {       // Các thuộc tính còn lại mặc định dùng kiểu văn bản toàn cục,Xem chi tiếtTEXTSTYLE
                             color: 'auto'
                         }
                     },
                     splitLine: {           // Đường phân cách
-                        show: true,        // Hiển thị mặc định，thuộc tínhshowĐiều khiển hiển thị hay không
+                        show: true,        // Hiển thị mặc định,thuộc tínhshowĐiều khiển hiển thị hay không
                         length: 30,         // thuộc tínhlengthĐiều khiển độ dài đường kẻ
                         lineStyle: {       // thuộc tínhlineStyle（Xem chi tiếtlineStyle）Điều khiển kiểu đường kẻ
                             color: 'auto'
@@ -97,7 +99,7 @@
 
                     detail: {
                         formatter: '{value}%',
-                        textStyle: {       // Các thuộc tính còn lại mặc định dùng kiểu văn bản toàn cục，Xem chi tiếtTEXTSTYLE
+                        textStyle: {       // Các thuộc tính còn lại mặc định dùng kiểu văn bản toàn cục,Xem chi tiếtTEXTSTYLE
                             color: 'auto',
                             fontWeight: 'bolder',
                             fontSize: 20
@@ -121,7 +123,7 @@
                 {
                     name: 'Chỉ số nghiệp vụ',
                     type: 'gauge',
-                    splitNumber: 10,       // Số đoạn chia，Mặc định là5
+                    splitNumber: 10,       // Số đoạn chia,Mặc định là5
                     axisLine: {            // Đường trục tọa độ
                         lineStyle: {       // thuộc tínhlineStyleĐiều khiển kiểu đường kẻ
                             color: [[0.2, '#228b22'], [0.8, '#48b'], [1, '#ff4500']],
@@ -135,13 +137,13 @@
                             color: 'auto'
                         }
                     },
-                    axisLabel: {           // Nhãn văn bản trục tọa độ，Xem chi tiếtaxis.axisLabel
-                        textStyle: {       // Các thuộc tính còn lại mặc định dùng kiểu văn bản toàn cục，Xem chi tiếtTEXTSTYLE
+                    axisLabel: {           // Nhãn văn bản trục tọa độ,Xem chi tiếtaxis.axisLabel
+                        textStyle: {       // Các thuộc tính còn lại mặc định dùng kiểu văn bản toàn cục,Xem chi tiếtTEXTSTYLE
                             color: 'auto'
                         }
                     },
                     splitLine: {           // Đường phân cách
-                        show: true,        // Hiển thị mặc định，thuộc tínhshowĐiều khiển hiển thị hay không
+                        show: true,        // Hiển thị mặc định,thuộc tínhshowĐiều khiển hiển thị hay không
                         length: 30,         // thuộc tínhlengthĐiều khiển độ dài đường kẻ
                         lineStyle: {       // thuộc tínhlineStyle（Xem chi tiếtlineStyle）Điều khiển kiểu đường kẻ
                             color: 'auto'
@@ -150,7 +152,7 @@
 
                     detail: {
                         formatter: '{value}%',
-                        textStyle: {       // Các thuộc tính còn lại mặc định dùng kiểu văn bản toàn cục，Xem chi tiếtTEXTSTYLE
+                        textStyle: {       // Các thuộc tính còn lại mặc định dùng kiểu văn bản toàn cục,Xem chi tiếtTEXTSTYLE
                             color: 'auto',
                             fontWeight: 'bolder',
                             fontSize: 20
@@ -169,7 +171,7 @@
                 trigger: 'axis'
             },
             legend: {
-                data: ['Tỷ lệ sử dụng IIS', 'Tỷ lệ sử dụng CPU', 'Tỷ lệ sử dụng ARM']
+                data: ['Tỷ lệ sử dụng IIS', 'Tỷ lệ sử dụng CPU', 'Tỷ lệ sử dụng RAM']
             },
 
             xAxis: {
@@ -190,7 +192,7 @@
                     data: [2620, 4182, 5191, 4234, 2290, 1330, 9310]
                 },
                 {
-                    name: 'Tỷ lệ sử dụng ARM', type: 'line',
+                    name: 'Tỷ lệ sử dụng RAM', type: 'line',
                     data: [2320, 1822, 7791, 23344, 22790, 5530, 5110]
                 }
             ]
@@ -210,7 +212,7 @@
         <div style="position: relative; top: -20px;">
             <div style="width: 33%; float: left; text-align: center;">Tỷ lệ sử dụng IIS</div>
             <div style="width: 34%; float: left; text-align: center;">Tỷ lệ sử dụng CPU</div>
-            <div style="width: 33%; float: left; text-align: center;">Tỷ lệ sử dụng ARM</div>
+            <div style="width: 33%; float: left; text-align: center;">Tỷ lệ sử dụng RAM</div>
         </div>
     </div>
 </div>

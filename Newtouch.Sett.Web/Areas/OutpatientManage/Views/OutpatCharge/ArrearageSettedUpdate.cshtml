@@ -15,7 +15,7 @@
     <table>
         <tr>
             <td>
-                Chọn bản ghi quyết toán trước nợ phí：
+                Chọn bản ghi quyết toán trước nợ phí:
             </td>
             <td>
                 <div class="input-group" style="width:200px;">
@@ -32,13 +32,13 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span style="color:red">*</span>Ngày thu phí：</th>
+                    <th class="formTitle"><span style="color:red">*</span>Ngày thu phí:</th>
                     <td class="formValue">
                         <input id="sfrq" type="text" class="form-control  form-an input-wdatepicker" style="float: left; margin-left: 5px; width:90%" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     </td>
                     @if (relatedFPH == true)
                     {
-                        <th class="formTitle"><span style="color:red">*</span>Số hóa đơn：</th>
+                        <th class="formTitle"><span style="color:red">*</span>Số hóa đơn:</th>
                         <td class="formValue">
                             <label id="txtfph"></label>
                             <div style="position:absolute;top:5px;right:20px;">
@@ -53,29 +53,29 @@
                     }
                 </tr>
                 <tr>
-                    <th class="formTitle">Số phải thu trước chiết khấu：</th>
+                    <th class="formTitle">Số phải thu trước chiết khấu:</th>
                     <td class="formValue">
                         ￥<label id="zqysk"></label>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Tỷ lệ chiết khấu：</th>
+                    <th class="formTitle">Tỷ lệ chiết khấu:</th>
                     <td class="formValue">
                         <input id="zkbl" type="text" class="form-control  form-an" style="width:80%;float:left;margin-left: 5px;" /><span style="line-height:25px; margin-left:10px">%</span>
                     </td>
-                    <th class="formTitle">Số tiền chiết khấu：</th>
+                    <th class="formTitle">Số tiền chiết khấu:</th>
                     <td class="formValue">
                         <input id="zkje" type="text" class="form-control  form-an" style="width:90%" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Số phải thu sau chiết khấu：</th>
+                    <th class="formTitle">Số phải thu sau chiết khấu:</th>
                     <td class="formValue">
                         ￥<label id="zhysk"></label>
                     </td>
                 </tr>
                 <tr id="trYjjzf" style="display:none;">
-                    <th class="formTitle">Số dư tạm ứng：</th>
+                    <th class="formTitle">Số dư tạm ứng:</th>
                     <td class="formValue">
                         ￥<label id="yjjye"></label>
                     </td>
@@ -86,35 +86,35 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Phương thức thanh toán：</th>
+                    <th class="formTitle">Phương thức thanh toán:</th>
                     <td class="formValue">
                         <select id="zffs1" class="form-control  form-an" style="width:90%">
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle">Thu tiền：</th>
+                    <th class="formTitle">Thu tiền:</th>
                     <td class="formValue">
                         <input type="text" id="zfje1" class="form-control form-an" style="width:90%" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Phương thức thanh toán：</th>
+                    <th class="formTitle">Phương thức thanh toán:</th>
                     <td class="formValue">
                         <select id="zffs2" class="form-control form-an" style="width:90%">
                             <option value="">==Có thể chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle">Thu tiền：</th>
+                    <th class="formTitle">Thu tiền:</th>
                     <td class="formValue">
                         <input type="text" id="zfje2" class="form-control form-an" style="width:90%" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Tổng số tiền thực thu：</th>
+                    <th class="formTitle">Tổng số tiền thực thu:</th>
                     <td class="formValue">￥<label id="hjssk">0.00</label></td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Tiền thừa：</th>
+                    <th class="formTitle">Tiền thừa:</th>
                     <td class="formValue">￥<label id="zhaoling">0.00</label></td>
                 </tr>
             </table>
@@ -160,7 +160,7 @@
                 var resultObjArr = new Array();
                 $.each(top.clients.SysForCashPayList, function (key, value) {
                     if (!yjjye && value.xjzffs == '3') {
-                        return; //tài khoản hiện tại không có số dư tạm ứng，thì không hiển thị phương thức thanh toán này
+                        return; //tài khoản hiện tại không có số dư tạm ứng,thì không hiển thị phương thức thanh toán này
                     }
                     var sele = false;
                     if (!!yjjye && yjjye >= xjzfys) {
@@ -198,7 +198,7 @@
 
         $("#ckyjjzfyeqt").click(function () {
             if ($('#ckyjjzfyeqt').is(':checked')) {
-                //phương thức thanh toán tạm ứng，‘hoàn toàn bộ số dư’
+                //phương thức thanh toán tạm ứng,‘hoàn toàn bộ số dư’
                 if (!!yjjye && yjjye >= xjzfys) {
                     //
                     $("#zffs1").val('3').trigger('change');
@@ -379,7 +379,7 @@
 
     //common start
 
-    //vào trang，tảisố hóa đơn
+    //vào trang,tảisố hóa đơn
     function initFPH() {
         if (!($("#txtfph").length == 1)) {
             return;
@@ -425,7 +425,7 @@
     //tính theo thanh toán phải thu、phương thức thanh toán tính tổng thựcthu tiền、tiền thừa
     function hjsskZhaolingCal() {
         if (!$('#zffs1').val() && $('#zfje1').val() != 0) {
-            //chưa chọn phương thức thanh toán，số tiền tương ứngcầnđặtlà0.00
+            //chưa chọn phương thức thanh toán,số tiền tương ứngcầnđặtlà0.00
             $('#zfje1').val('0.00');
         }
         var zfje1 = $('#zfje1').val();
@@ -433,7 +433,7 @@
             zfje1 = '0.00';
         }
         if (!$('#zffs2').val() && $('#zfje2').val() != 0) {
-            //chưa chọn phương thức thanh toán，số tiền tương ứngcầnđặtlà0.00
+            //chưa chọn phương thức thanh toán,số tiền tương ứngcầnđặtlà0.00
             $('#zfje2').val('0.00');
         }
         var zfje2 = $('#zfje2').val();
@@ -452,7 +452,7 @@
         discountCal();
     });
 
-    //tỷ lệ chiết khấu，số tiền chiết khấu tính chiết khấu
+    //tỷ lệ chiết khấu,số tiền chiết khấu tính chiết khấu
     function discountCal() {
         var zkje = $('#zkje').val();
         var zkbl = $('#zkbl').val();
@@ -492,7 +492,7 @@
             }
             if (zkje) {
                 if (parseFloat(zkje) > parseFloat(je)) {
-                    $.modalAlert('Chiết khấu bất thường，Phát sinh số phải thu âm', 'warning');
+                    $.modalAlert('Chiết khấu bất thường,Phát sinh số phải thu âm', 'warning');
                     return false;
                 }
                 //số tiền chiết khấu

@@ -17,6 +17,17 @@
         margin-left: 1%;
         width: 77%;
     }
+
+    /* QA-phase2 (MRQC-05, mobile only): at 390px the 22% filter column
+       squeezed the filter fields until they overlapped. Stack the columns
+       instead; desktop layout unchanged. */
+    @@media (max-width: 768px) {
+        .dv-left, .dv-right {
+            width: 100%;
+            float: none;
+            margin-left: 0;
+        }
+    }
 </style>
 <div class="dv-body">
     <div class="dv-left">

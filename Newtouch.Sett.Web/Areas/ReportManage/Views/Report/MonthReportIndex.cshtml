@@ -11,13 +11,13 @@
         </div>
         <table class="form">
             <tr>
-                <th class="formTitle">Năm：</th>
+                <th class="formTitle">Năm:</th>
                 <td class="formValue">
                     <select id="year" name="year">
                         <option value="">==Vui lòng chọn==</option>
                     </select>
                 </td>
-                <th class="formTitle">Tháng：</th>
+                <th class="formTitle">Tháng:</th>
                 <td class="formValue">
                     <select id="month" name="month">
                         <option value="">==Vui lòng chọn==</option>
@@ -36,7 +36,7 @@
 <div id="divNavNew" class="rows hide">
     <div class="panel panel-default">
         <div class="panel-body">
-            <span id="span"></span>Báo cáo cố định vẫn chưa được tạo，Nhấn<a id="btnToNewReport" class="text-primary">Tạo Mới báo cáo</a>
+            <span id="span"></span>Báo cáo cố định vẫn chưa được tạo,Nhấn<a id="btnToNewReport" class="text-primary">Tạo Mới báo cáo</a>
         </div>
         <div></div>
     </div>
@@ -112,7 +112,7 @@
                         //báo cáobảngsinhthànhngàykỳ
                         var caption = year + 'năm' + $.zeroPrefixInteger(month, 2) + 'tháng tháng báo cáo';
                         caption += '(Ngày tạo báo cáo đã cố định: ' + $.getDate({ date: new Date(ajaxresp.data[0].CreateTime) });
-                        caption += ' Chi phí Tổng cộng：';
+                        caption += ' Chi phí Tổng cộng:';
                         caption += getFeeTotal(ajaxresp.data).toFixed(2);
                         caption += '）';
                         $("#gridList").setCaption(caption);
@@ -222,16 +222,16 @@
             buchaRow = buchaRow[0];
             //Chèn vàogridListDòng cuối cùng
             $("#gridList").newtouchLocalDataGrid({ posttofirst: false, actions: 'addRowData' }, [
-                { zyhmzh: 'Bù chênh lệch: ' + buchaRow.dlje.toFixed(2), brxm: 'Điều chỉnh lý do：' + buchaRow.bz }]);
+                { zyhmzh: 'Bù chênh lệch: ' + buchaRow.dlje.toFixed(2), brxm: 'Điều chỉnh lý do:' + buchaRow.bz }]);
             var $tds = $('#gridList tr:last td:visible:gt(3)').not(':first');
             var tdslength = $tds.length;
             $('#gridList tr:last td:visible:eq(4)').attr('colspan', (tdslength + 1));
             $tds.remove();
         }
-        //nàythánghợptính：
+        //nàythánghợptính:
         //Chèn vàogridListDòng cuối cùng
         $("#gridList").newtouchLocalDataGrid({ posttofirst: false, actions: 'addRowData' }, [
-            { zyhmzh: 'Tháng này Chi phí Tổng cộng：' + getFeeTotal(data).toFixed(2) }]);
+            { zyhmzh: 'Tháng này Chi phí Tổng cộng:' + getFeeTotal(data).toFixed(2) }]);
         var $tds = $('#gridList tr:last td:visible:gt(2)').not(':first');
         var tdslength = $tds.length;
         $('#gridList tr:last td:visible:eq(3)').attr('colspan', (tdslength + 1));
@@ -250,7 +250,7 @@
                         && respData[iiii].zyhmzh === this.zyhmzh
                         && respData[iiii].brxm === this.brxm) {
                         respData[iiii][this.dl] = this.dlje;
-                        return; //return， màkhônglàcontinue
+                        return; //return, màkhônglàcontinue
                     }
                 }
                 var newPatientData = { patientType: this.patientType, blh: this.blh, zyhmzh: this.zyhmzh, brxm: this.brxm };

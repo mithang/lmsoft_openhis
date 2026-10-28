@@ -2,6 +2,23 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
+<style>
+    /* QA-phase2 (SETT-17, mobile only): the 75% + 23% floated columns
+       squeezed each other at 390px so the right "Thong tin chung tu" panel
+       overlapped the main form. Stack them; desktop layout unchanged. */
+    @@media (max-width: 768px) {
+        div[style*="width:75%"] {
+            width: 100% !important;
+            float: none !important;
+        }
+
+        div[style*="width:23%"] {
+            width: 100% !important;
+            float: none !important;
+            margin-left: 0 !important;
+        }
+    }
+</style>
 
 <div class="topPanel">
     <div class="toolbar">
@@ -37,53 +54,53 @@
             </div>
             <table class="form" style="width:96%;">
                 <tr>
-                    <td class="formTitle">Số thẻ：</td>
+                    <td class="formTitle">Số thẻ:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" id="kh" value="" />
                     </td>
-                    <td class="formTitle">Mã nhập viện：</td>
+                    <td class="formTitle">Mã nhập viện:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" id="zyh" value="" />
                     </td>
-                    <td class="formTitle">Số bệnh án：</td>
+                    <td class="formTitle">Số bệnh án:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" id="blh" value="" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Họ tên：</td>
+                    <td class="formTitle">Họ tên:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" id="xm" value="" />
                     </td>
-                    <td class="formTitle">Giới tính：</td>
+                    <td class="formTitle">Giới tính:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" id="xb" value="" />
                     </td>
-                    <td class="formTitle">Khoa nhập viện：</td>
+                    <td class="formTitle">Khoa nhập viện:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" id="ksmc" value="" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Loại bệnh nhân：</td>
+                    <td class="formTitle">Loại bệnh nhân:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" id="brxzmc" value="" />
                     </td>
-                    <td class="formTitle">tạm ứng：</td>
+                    <td class="formTitle">tạm ứng:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" value="" id="zhyjj" />
                     </td>
-                    <td class="formTitle">BHYTsố chứng nhận：</td>
+                    <td class="formTitle">BHYTsố chứng nhận:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" value="" id="pzh" />
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Ngày nhập viện：</td>
+                    <td class="formTitle">Ngày nhập viện:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" value="" id="ryrq" />
                     </td>
-                    <td class="formTitle">Ngày xuất viện：</td>
+                    <td class="formTitle">Ngày xuất viện:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" value="" id="cyrq" />
                     </td>
@@ -99,11 +116,11 @@
             </div>
             <table class="form" style="width:96%;">
                 <tr>
-                    <td class="formTitle">Loạiquyết toán：</td>
+                    <td class="formTitle">Loạiquyết toán:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" value="" id="txtSettType" />
                     </td>
-                    <td class="formTitle">Số tiềnquyết toán：</td>
+                    <td class="formTitle">Số tiềnquyết toán:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" value="" id="txtSettJSJE" />
                     </td>
@@ -121,12 +138,18 @@
 </div>
 
 
-<div class="rows" style="margin-top:0.5%;float:left;width:24%;margin-left:1%;">
+@* QA-phase2 (SETT-11): 75% + 24% + 1% margin = 100% before borders, so
+   this panel overflowed the right edge. 23% leaves a 1% gutter. *@
+<div class="rows" style="margin-top:0.5%;float:left;width:23%;margin-left:1%;">
     <table id="dlFeeGridList"></table>
 </div>
 @Html.Partial("_BottomButtonsView", new Newtouch.Sett.Web.Models.BottomButtonViewModel()
 {
-    ShowKeyList = new int[] { 4, 8 }
+    ShowKeyList = new int[] { 4, 8 },
+    // QA-phase2 (SETT-12): labels taken from the key handlers below —
+    // F4 clears the grids ("Xoa thao tac"), F8 settles ("quyet toan").
+    F4Text = "Xóa",
+    F8Text = "Quyết toán"
 })
 
 <script type="text/javascript">
@@ -141,7 +164,7 @@
     txt_keyword.addEventListener('keydown', function (event) {
         event = event || window.event;
         if (isLoadingIIII) {
-            stopDefault(event); //Trong quá trình nạp dữ liệu，Ngăn hành vi mặc định
+            stopDefault(event); //Trong quá trình nạp dữ liệu,Ngăn hành vi mặc định
             return false;
         }
         if (event.keyCode == 13) {

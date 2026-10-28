@@ -19,7 +19,7 @@
                 success: function (data) {
                     if (data) {
                         initIdSelected = data.kbxmmc;
-                        strdlList = false;//chọntronglớnloạiđãghépnhậnchữphùchuỗi，sautiếp tụckhôngdùnglạighépnhận
+                        strdlList = false;//chọntronglớnloạiđãghépnhậnchữphùchuỗi,sautiếp tụckhôngdùnglạighépnhận
                         $("#form1").formSerialize(data);
                     }
                 }
@@ -95,27 +95,27 @@
             <div role="tabpanel" id="divPatInfo" class="tab-pane fade in active" style="padding-top: 20px; margin-right: 30px;">
                 <table class="form" style="margin-top: 10px; width: 95%">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Tên công ty：</th>
+                        <th class="formTitle"><span class="required">*</span>Tên công ty:</th>
                         <td class="formValue">
                             <input type="text" class="form-control form-an" id="Name" required />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Tiếng Anh：</th>
+                        <th class="formTitle"><span class="required">*</span>Tiếng Anh:</th>
                         <td class="formValue">
                             <input type="text" class="form-control form-an" id="EnglishName" required />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Tỷ lệ thanh toán：</th>
+                        <th class="formTitle"><span class="required">*</span>Tỷ lệ thanh toán:</th>
                         <td class="formValue">
                             <input type="text" class="form-control form-an" id="bxbl" required />
                         </td>
-                        <th class="formTitle">Ghi chú：</th>
+                        <th class="formTitle">Ghi chú:</th>
                         <td class="formValue">
                             <input type="text" class="form-control form-an" id="remark" />
                         </td>
                     </tr>
                     <tr>
-                        <td class="formTitle">có thể báo Khoản mục：</td>
+                        <td class="formTitle">có thể báo Khoản mục:</td>
                         <td class="formValue"> <input id="sfxmList" type="text" class="form-control form-an" /></td>
                         <th class="formTitle">Hiệu lực</th>
                         <td class="formValue">
@@ -124,11 +124,11 @@
                             </div>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Nhân viên lập hồ sơ：</th>
+                        <th class="formTitle"><span class="required">*</span>Nhân viên lập hồ sơ:</th>
                         <td class="formValue">
                             <input class="form-control newtouch_Readonly" id="CreatorCode" value=@OperatorProvider.GetCurrent().UserCode type="text" required />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Ngày lập hồ sơ：</th>
+                        <th class="formTitle"><span class="required">*</span>Ngày lập hồ sơ:</th>
                         <td class="formValue">
                             <input class="form-control newtouch_Readonly" id="CreateTime" value=@DateTime.Now.ToString("yyyy-MM-dd") type="text" required />
                         </td>

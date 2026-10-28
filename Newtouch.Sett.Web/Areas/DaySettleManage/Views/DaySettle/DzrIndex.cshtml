@@ -1,17 +1,23 @@
 @using NewtouchHIS.Lib.Framework.Operator;
+@inject Microsoft.Extensions.Configuration.IConfiguration Config
 
 @{
     ViewBag.Title = "DzrIndex";
     Layout = "~/Views/Shared/_Form.cshtml";
     var opr = OperatorProvider.GetCurrent();
-    var reportUrl = "";
-    var ReportSystemCode = "";
+    // QA-phase2 (SETT-06): port of the original's
+    // ConfigurationHelper.GetAppConfigValue("ReportUrl"/"ReportSystemCode").
+    // No report server is configured in this deployment, so both stay empty
+    // here — and search() below refuses to self-load in that case instead
+    // of recursing the page inside its own iframe.
+    var reportUrl = Config["ReportUrl"] ?? "";
+    var ReportSystemCode = Config["ReportSystemCode"] ?? "";
 }
 <div class="rows">
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle" id="thCZRQ">Ngày đối chiếu sổ sách：</th>
+                <th class="formTitle" id="thCZRQ">Ngày đối chiếu sổ sách:</th>
                 <td class="formValue" colspan="2">
                     <input id="txtCreateTimestart" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:20%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                     <span style="margin-left:2%;float:left;">—</span>
@@ -24,6 +30,9 @@
             </tr>
         </table>
     </div>
+</div>
+<div id="reportEmptyState" class="alert alert-warning" style="display:none; margin:10px;">
+    Chưa cấu hình máy chủ báo cáo (ReportUrl) nên không hiển thị được báo cáo đối chiếu sổ sách. Vui lòng cấu hình ReportUrl / ReportSystemCode rồi tải lại trang.
 </div>
 <div class="ui-layout" id="layout" style="height:100%;width:100%;">
     <iframe class="ui-layout-center" style="width:100%;" id="iframerightiframerightiframerightttt" name="iframerightiframerightiframerightttt"
@@ -50,6 +59,13 @@
             return;
         }
 
+        // QA-phase2 (SETT-06): with an empty reportUrl, getUrl() returned
+        // "?tempCode=1260&systemCode=" — the page itself — so the iframe
+        // recursively embedded this page. Refuse instead, with a clear state.
+        if ('@Html.Raw(reportUrl)' === '') {
+            $('#reportEmptyState').show();
+            return;
+        }
         var url = getUrl();
         var orgId = '@opr.OrganizeId';
         url += "&orgId=" + orgId;

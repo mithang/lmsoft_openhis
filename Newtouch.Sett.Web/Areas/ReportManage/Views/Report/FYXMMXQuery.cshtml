@@ -19,7 +19,7 @@
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle">Tra cứu Loại：</th>
+				<th class="formTitle">Tra cứu Loại:</th>
 				<td class="formValue">
 					<select id="tjfw" class="form-control">
 						<option value="Ngoại trú">Ngoại trú</option>
@@ -27,14 +27,14 @@
 					</select>
 				</td>
 
-				<th class="formTitle">Ngày bắt đầu：</th>
+				<th class="formTitle">Ngày bắt đầu:</th>
 				<td class="formValue">
 					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
 						   value="@DateTime.Now.ToString("yyyy-MM-01")" />
 				</td>
-				<th class="formTitle">Ngày kết thúc：</th>
+				<th class="formTitle">Ngày kết thúc:</th>
 				<td class="formValue">
 					<input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
 						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
@@ -58,9 +58,9 @@
                         <input type="radio" value="qc" name="optionsRadios" class="optionsRadios" onclick="qingchu()" />Xóa
                     </label>
                 </td>
-                <th class="formTitle">Khoản mục tra cứu：</th>
+                <th class="formTitle">Khoản mục tra cứu:</th>
                 <td class="formValue"> <input type="text" id="sfxmmc"  onkeyup="sfxmsx()" class="form-control" /></td>
-                <th class="formTitle">Bác sĩ：</th>
+                <th class="formTitle">Bác sĩ:</th>
                 <td class="formValue">
 
                     <select id="yscode" class="form-control">
@@ -68,7 +68,7 @@
                     </select>
                 </td>
 
-                <th class="formTitle">nhóm lớn Tên：</th>
+                <th class="formTitle">nhóm lớn Tên:</th>
                 <td class="formValue">
                     <select id="dlmc" onchange="selsfdl()" class="form-control">
                         <option value="" selected>Tất cả</option>
@@ -178,13 +178,13 @@
                         xzstr += rowIndex + ",";
                     }
                 },
-                //khibảngđịnh dạngnơicósốdữ liệuđềuthêmtảixongthànhmàvàcủa nóanh tacủanơilýcũngđềuxongthànhthời gianchạmphátnàyviệchạng，Sắp xếp，lậttrangcùngmẫucũngsẽchạmphátnàyviệchạng
+                //khibảngđịnh dạngnơicósốdữ liệuđềuthêmtảixongthànhmàvàcủa nóanh tacủanơilýcũngđềuxongthànhthời gianchạmphátnàyviệchạng,Sắp xếp,lậttrangcùngmẫucũngsẽchạmphátnàyviệchạng
                 gridComplete: function () {
                     //if ($("#dlmc").val() != "") {
                     //    var ids = new Array();
                     //    //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                     //    ids = $("#" + this.id).getDataIDs();
-                    //    //Chọn hoặc bỏ chọn dòng chỉ định。nếuonselectrowlàturethì sẽ kích hoạt sự kiệnonSelectRow，onselectrowMặc định làture
+                    //    //Chọn hoặc bỏ chọn dòng chỉ định。nếuonselectrowlàturethì sẽ kích hoạt sự kiệnonSelectRow,onselectrowMặc định làture
                     //    $.each(ids, function () {
                     //        //$("#gridList").setSelection(this, true);
                     //        xzstr += this + ",";
@@ -196,7 +196,7 @@
                         //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                         ids = $("#" + this.id).getDataIDs();
                         xzstr = "";
-                        //Chọn hoặc bỏ chọn dòng chỉ định。nếuonselectrowlàturethì sẽ kích hoạt sự kiệnonSelectRow，onselectrowMặc định làture
+                        //Chọn hoặc bỏ chọn dòng chỉ định。nếuonselectrowlàturethì sẽ kích hoạt sự kiệnonSelectRow,onselectrowMặc định làture
                         $.each(ids, function () {
                             $("#gridList").setSelection(this, true);
                             xzstr += this + ",";

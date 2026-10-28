@@ -11,12 +11,12 @@
         <div style="padding-top:1%;padding-bottom:1%; padding-right:7%;" id="divInpatientBasicInfo">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Mã nhập viện：</th>
+                    <th class="formTitle">Mã nhập viện:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="zyh" style="width:49%;float:left;" />
                         &nbsp;&nbsp;<input type="button" class="btn btn-default btn-md btn-default-color" title="Chọn bệnh nhân nhập viện" style="width: 25%;" id="btnsyy" value="Truy vấn" onclick="GetPatSerarchView($('#zyh').val());">
                     </td>
-                    <th class="formTitle">Ngàyghi sổ：</th>
+                    <th class="formTitle">Ngàyghi sổ:</th>
                     <td class="formValue" colspan="3">
                         <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:29%; float:left;" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
                         <span style="margin-left:5%;float:left;">—</span>
@@ -27,11 +27,11 @@
                     </td>*@
                 </tr>
                 <tr>
-                    <th class="formTitle">Loại mục：</th>
+                    <th class="formTitle">Loại mục:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="xmlb" name="xmlb" style="width:90%;float:left;" placeholder="Ít nhất1Ký tự" />
                     </td>
-                    <th class="formTitle">Tên mục：</th>
+                    <th class="formTitle">Tên mục:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="xmmc" style="width:90%;float:left;" />
                     </td>
@@ -45,42 +45,42 @@
     <div class="panel panel-default" style="margin-bottom: 1%;" id="divPatInfo">
         <table class="form">
             <tr>
-                <th class="formTitle">Họ tên：</th>
+                <th class="formTitle">Họ tên:</th>
                 <td class="formValue">
                     <label id="xm"></label>
                 </td>
-                <th class="formTitle">Giới tính：</th>
+                <th class="formTitle">Giới tính:</th>
                 <td class="formValue">
                     <label id="xb"></label>
                 </td>
-                <th class="formTitle">Tuổi：</th>
+                <th class="formTitle">Tuổi:</th>
                 <td class="formValue">
                     <label id="nlshow"></label>
                 </td>
-                <th class="formTitle">Số giấy tờ：</th>
+                <th class="formTitle">Số giấy tờ:</th>
                 <td class="formValue" colspan="3">
                     <label id="zjh"></label>
                 </td>
             </tr>
             <tbody class="dispTbody" style="display:none;">
                 <tr>
-                    <th class="formTitle">Chẩn đoán nhập viện：</th>
+                    <th class="formTitle">Chẩn đoán nhập viện:</th>
                     <td class="formValue">
                         <label id="ryzdmc"></label>
                     </td>
-                    <th class="formTitle">Đang ở việnTrạng thái：</th>
+                    <th class="formTitle">Đang ở việnTrạng thái:</th>
                     <td class="formValue">
                         <label id="zybz"></label>
                     </td>
-                    <th class="formTitle">Chính sách bồi hoàn：</th>
+                    <th class="formTitle">Chính sách bồi hoàn:</th>
                     <td class="formValue">
                         <label id="brxzmc"></label>
                     </td>
-                    <th class="formTitle">Ngày sinh：</th>
+                    <th class="formTitle">Ngày sinh:</th>
                     <td class="formValue">
                         <label id="csny"></label>
                     </td>
-                    <th class="formTitle">Ngày nhập viện：</th>
+                    <th class="formTitle">Ngày nhập viện:</th>
                     <td class="formValue">
                         <label id="ryrq"></label>
                     </td>
@@ -195,7 +195,7 @@
                 $("#ryrq").text((ajaxresp.data.InpatientSettPatInfo.ryrq && ajaxresp.data.InpatientSettPatInfo.ryrq.length >= 10 ? ajaxresp.data.InpatientSettPatInfo.ryrq.substring(0, 10) : ""));
 
                 //Chi tiết tính phí、Phân trang；Tổng số tiềnTổng cộng
-                //GhépThuốcvàMục，Sắp xếp lại tập hợp
+                //GhépThuốcvàMục,Sắp xếp lại tập hợp
                 //var c = ajaxresp.data.InpatientSettleItemBO.TreatmentItemList.concat(ajaxresp.data.InpatientSettleItemBO.DrugList).sort(function (a, b) { return new Date(a.tdrq) - new Date(b.tdrq); });
                 var c = ajaxresp.data.InpatientSettleItemBO.TreatmentItemList.sort(function (a, b) { return new Date(a.tdrq) - new Date(b.tdrq); });
                 //console.info(c);
@@ -209,7 +209,7 @@
                 $.each(c, function () {
                     zfy += this.je;
                 });
-                $("#gridList").jqGrid("setCaption", "Chi tiết tính phí（Tổng số tiền：" + "<label style='color:red;'>￥"
+                $("#gridList").jqGrid("setCaption", "Chi tiết tính phí（Tổng số tiền:" + "<label style='color:red;'>￥"
                     + zfy.toFixed(2) + "</label>）");
             },
             errorCallback: function (data) {
@@ -310,7 +310,7 @@
             $.modalAlert("Vui lòng chọn trước thông tin cần hoàn phí", 'warning');
             return;
         }
-        //Lấy tất cả các dòngId，Duyệt để hộp chỉnh sửa ở trạng thái lưu
+        //Lấy tất cả các dòngId,Duyệt để hộp chỉnh sửa ở trạng thái lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
@@ -322,7 +322,7 @@
                 break;
             }
             if (rowData.tsl.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                $.modalAlert("Mục（" + rowData.sfxmmc + "）Số lượng hoàn để trống，Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Mục（" + rowData.sfxmmc + "）Số lượng hoàn để trống,Vui lòng xác nhận。", 'warning');
                 //Bật hộp chỉnh sửa trong dòng
                 EnableInlineEditBox();
                 return;
@@ -333,7 +333,7 @@
                 return;
             }
             if (parseFloat(rowData.tsl) > parseFloat(rowData.sl)) {
-                $.modalAlert("Mục（" + rowData.sfxmmc + "）Số lượng hoàn lớn hơn số lượngghi sổ，Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Mục（" + rowData.sfxmmc + "）Số lượng hoàn lớn hơn số lượngghi sổ,Vui lòng xác nhận。", 'warning');
                 //Bật hộp chỉnh sửa trong dòng
                 EnableInlineEditBox();
                 return;
