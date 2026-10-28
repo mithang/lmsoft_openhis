@@ -53,25 +53,51 @@ namespace NewtouchHIS.Lib.Base.Extension
                         .Where(x => x != baseType && baseType.IsAssignableFrom(x)).ToList();
             var implementTypes = types.Where(x => x.IsClass).ToList();
             var interfaceTypes = types.Where(x => x.IsInterface).ToList();
+            // Marker interfaces must never be registration targets. Every domain
+            // interface inherits one of them, so the old FirstOrDefault over the
+            // scanned interface list could pick the marker (interface order
+            // follows Directory.GetFiles order, which is filesystem order and
+            // unsorted) and leave the domain interface unregistered, aborting
+            // startup at DI validation. Register the class under EVERY
+            // non-marker interface it implements instead, so the result no
+            // longer depends on enumeration order at all. Lifetime rules are
+            // unchanged from the old code.
+            var markerTypes = new HashSet<Type>
+            {
+                typeof(IDependency),
+                typeof(ITransientDependency),
+                typeof(ISingletonDependency),
+                typeof(IScopedDependency),
+            };
             foreach (var implementType in implementTypes)
             {
-                if (typeof(IScopedDependency).IsAssignableFrom(implementType))
+                var domainInterfaces = interfaceTypes
+                    .Where(x => !markerTypes.Contains(x) && x.IsAssignableFrom(implementType))
+                    .OrderBy(x => x.FullName, StringComparer.Ordinal)
+                    .ToList();
+                if (domainInterfaces.Count == 0)
                 {
-                    var interfaceType = interfaceTypes.FirstOrDefault(x => x.IsAssignableFrom(implementType));
-                    if (interfaceType != null)
+                    // Marker-only class (no domain interface): keep the old
+                    // behaviour so it stays resolvable exactly as before.
+                    var fallbackInterfaceType = interfaceTypes.FirstOrDefault(x => x.IsAssignableFrom(implementType));
+                    if (fallbackInterfaceType == null)
+                        continue;
+                    domainInterfaces.Add(fallbackInterfaceType);
+                }
+                foreach (var interfaceType in domainInterfaces)
+                {
+                    if (typeof(IScopedDependency).IsAssignableFrom(implementType))
+                    {
                         services.AddScoped(interfaceType, implementType);
-                }
-                else if (typeof(ISingletonDependency).IsAssignableFrom(implementType))
-                {
-                    var interfaceType = interfaceTypes.FirstOrDefault(x => x.IsAssignableFrom(implementType));
-                    if (interfaceType != null)
+                    }
+                    else if (typeof(ISingletonDependency).IsAssignableFrom(implementType))
+                    {
                         services.AddSingleton(interfaceType, implementType);
-                }
-                else
-                {
-                    var interfaceType = interfaceTypes.FirstOrDefault(x => x.IsAssignableFrom(implementType));
-                    if (interfaceType != null)
+                    }
+                    else
+                    {
                         services.AddTransient(interfaceType, implementType);
+                    }
                 }
             }
             //AddAutoMapDependencyService(services, referencedAssemblies);
