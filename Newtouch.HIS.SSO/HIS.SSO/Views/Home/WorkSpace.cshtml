@@ -62,6 +62,19 @@
             font-size: 14px;
             line-height: 1.5;
         }
+
+        /* FIX-1 (SSO-07, mobile only): three 33% columns with nowrap
+           Bootstrap labels inside a ~240-390px iframe squeezed the app
+           badges into unreadable clipped slivers. Stack them full-width
+           with wrapping text instead; desktop layout unchanged. */
+        .app-blocktheme-blue .app-item {
+            float: none;
+            width: 100%;
+            margin-left: 0;
+            margin-bottom: 8px;
+            white-space: normal;
+            text-align: center;
+        }
     }
 
     .fixed-table-body {

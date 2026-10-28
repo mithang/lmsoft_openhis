@@ -408,7 +408,14 @@ namespace NewtouchHIS.Base.DomainService
             }
             if (!string.IsNullOrWhiteSpace(request?.Recipient))
             {
-                whereExp.And((a, b, c) => a.RecipientType == (int)RecipientTypeEnum.user ? a.Recipient == request.Recipient : a.Recipient.Contains(request.Recipient));
+                // FIX-1 (A-01): SqlSugar cannot translate the ternary (SqlFunc.IIF +
+                // Contains) used here before, so msgtype=1 (inbox) always errored.
+                // Rewritten as an OR of two AND-branches with identical semantics:
+                // user recipients match by equality, other recipient types by Contains.
+                // RecipientType is a non-nullable int, so the two branches partition
+                // all rows exactly like the ternary did.
+                whereExp.And((a, b, c) => (a.RecipientType == (int)RecipientTypeEnum.user && a.Recipient == request.Recipient)
+                    || (a.RecipientType != (int)RecipientTypeEnum.user && a.Recipient.Contains(request.Recipient)));
             }
             if (!string.IsNullOrWhiteSpace(request?.keyword) && !string.IsNullOrWhiteSpace(request?.SendFrom))
             {

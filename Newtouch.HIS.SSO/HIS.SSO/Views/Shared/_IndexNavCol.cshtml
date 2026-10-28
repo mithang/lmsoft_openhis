@@ -5,6 +5,26 @@
         padding-left: 12px;
         padding-right: 10px;
     }
+
+    /* FIX-1 (SSO-07, mobile only): the footer strip carries an inline
+       width:14%, which squeezed the copyright into a vertical column on
+       narrow screens. Make it a full-width footer line instead. */
+    @@media (max-width: 991px) {
+        #nav-col.login-foot {
+            width: 100% !important;
+            height: auto;
+        }
+    }
+
+    /* FIX-1 (SSO-07, mobile only): .row negative margins (-8px) against
+       the .container mobile padding (5px) pushed the portal row 3px past
+       the viewport (measured 393/390). Match the padding. */
+    @@media (max-width: 767px) {
+        #page-wrapper > .row {
+            margin-left: -5px;
+            margin-right: -5px;
+        }
+    }
 </style>
 <div id="nav-col">
     <div id="col-left-inner" class="col-left-nano-content">

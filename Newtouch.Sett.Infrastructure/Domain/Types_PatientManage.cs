@@ -29,6 +29,14 @@ namespace Newtouch.Sett.Domain
 
     public class PatientListInputVO
     {
+        // FIX-1 (Sett PatientInHosList): the view posts { keyword } to
+        // LoadData, but this VO was empty so the keyword could never bind.
+        // Field added so binding works. NOTE (gap, not implemented here):
+        // the server behind LoadData is currently a stub returning an empty
+        // list regardless of input, so no real keyword filtering exists yet
+        // on the server side; inventing filter logic in the stub is out of
+        // scope — a real PatientList service must honour this field.
+        public string keyword { get; set; }
     }
 
     public class PendingExecutionPatientVO

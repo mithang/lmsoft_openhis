@@ -67,14 +67,32 @@ namespace NewtouchHIS.Base.DomainService.SysManage
                 return new BusResult<string> { code = ResponseResultCode.FAIL, msg = $"Menu đã tồn tại:{existsMenu.Select(p => p.Name).ToList().ToJson()}" };
             }
             var parentMenu = vo.Where(p => string.IsNullOrWhiteSpace(p.ParentId)).ToList();
+            // FIX-1 (A-02): map from each SOURCE menu Id to the NEW Guid assigned
+            // to its copy. The old code looked the parent up in `parentMenu` (the
+            // pre-copy VOs, still carrying source Ids) and matched by Name, so a
+            // child copy ended up pointing at the source parent Id (dangling in
+            // the Union DB), and a copied root never got defaultParentId.
+            var oldToNewId = new Dictionary<string, string>();
             if (parentMenu != null && parentMenu.Count() > 0)
             {
                 var pEntityList = parentMenu.Adapt<List<SysModuleEntity>>();
-                foreach (var p in pEntityList)
+                for (var i = 0; i < pEntityList.Count; i++)
                 {
+                    var p = pEntityList[i];
                     p.NewEntity(orgId, user);
                     p.Id = Guid.NewGuid().ToString();
                     p.Target = p.Target ?? EnumModuleTargetType.expand.ToString();
+                    // A copied root belongs under the caller-chosen parent
+                    // (custom parent created by SubmitMenuSync, or an existing
+                    // node); only when no parent was chosen does it stay root.
+                    if (!string.IsNullOrWhiteSpace(defaultParentId))
+                    {
+                        p.ParentId = defaultParentId;
+                    }
+                    if (!string.IsNullOrWhiteSpace(parentMenu[i].Id))
+                    {
+                        oldToNewId[parentMenu[i].Id] = p.Id;
+                    }
                 }
                 var parentSync = await AddRange(pEntityList);
                 if (parentSync <= 0)
@@ -87,20 +105,33 @@ namespace NewtouchHIS.Base.DomainService.SysManage
             if (childMenu != null && childMenu.Count() > 0)
             {
                 var cEntityList = childMenu.Adapt<List<SysModuleEntity>>();
+                // Assign new Ids first so deeper levels (a child whose parent
+                // is itself a copied child) can also be remapped by Id.
+                for (var i = 0; i < cEntityList.Count; i++)
+                {
+                    cEntityList[i].Id = Guid.NewGuid().ToString();
+                    if (!string.IsNullOrWhiteSpace(childMenu[i].Id))
+                    {
+                        oldToNewId[childMenu[i].Id] = cEntityList[i].Id;
+                    }
+                }
                 foreach (var c in cEntityList)
                 {
-                    var thisParent = vo.FirstOrDefault(a => a.Id == c.ParentId);
-                    if (thisParent != null)
+                    // c.ParentId still holds the SOURCE parent Id at this point
+                    // (Adapt copied it from the VO); remap it to the copy's Id.
+                    if (!string.IsNullOrWhiteSpace(c.ParentId) && oldToNewId.TryGetValue(c.ParentId, out var newParentId))
                     {
-                        c.ParentId = parentMenu?.FirstOrDefault(a => a.Name == thisParent.Name)?.Id ?? defaultParentId;
+                        c.ParentId = newParentId;
                     }
                     else
                     {
+                        // Parent was not part of the copied set: fall back to
+                        // the caller-chosen parent, else keep the original value
+                        // (previous behaviour for this branch).
                         c.ParentId = defaultParentId ?? c.ParentId;
                     }
 
                     c.NewEntity(orgId, user);
-                    c.Id = Guid.NewGuid().ToString();
                     c.Target = c.Target ?? EnumModuleTargetType.iframe.ToString();
                 }
                 var childSync = await AddRange(cEntityList);

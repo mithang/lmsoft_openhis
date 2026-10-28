@@ -43,10 +43,16 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
         public IActionResult GetSettlementGridJson(Pagination pagination, string keyword, DateTime? kssj, DateTime? jssj, bool? containsTF = true)
         {
-            IList<OutpatientSettlementVO> list;
+            // FIX-1 (Sett B3): the settlement service is a stub that returns
+            // null, so list.Select(...) threw "Value cannot be null (Parameter
+            // 'source')" on every load. Guard to an empty grid in the exact
+            // jqGrid shape instead of erroring; no data is invented — a real
+            // service is still needed before rows can ever appear.
+            IList<OutpatientSettlementVO> list = _outChargeDmnService.GetSettlementList(pagination, this.OrganizeId, keyword, kssj, jssj, containsTF.Value)
+                ?? new List<OutpatientSettlementVO>();
             var data = new
             {
-                rows = (list = _outChargeDmnService.GetSettlementList(pagination, this.OrganizeId, keyword, kssj, jssj, containsTF.Value)),
+                rows = list,
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records
@@ -55,7 +61,8 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             var jsnms = string.Join(",", list.Select(p => p.jsnm).Distinct());
             if (!string.IsNullOrWhiteSpace(jsnms))
             {
-                var zffsList = _outPatienChargeQueryDmnService.GetSettZffsResultList(this.OrganizeId, jsnms);
+                var zffsList = _outPatienChargeQueryDmnService.GetSettZffsResultList(this.OrganizeId, jsnms)
+                    ?? new List<SettZffsDto>();
                 foreach (var js in list)
                 {
                     js.zffsmcstr = string.Join(",", zffsList.Where(p => p.jsnm == js.jsnm).Select(p => p.xjzffsmc));

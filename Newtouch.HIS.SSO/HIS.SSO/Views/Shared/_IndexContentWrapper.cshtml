@@ -1,8 +1,59 @@
 ﻿@using NewtouchHIS.Lib.Framework.Operator;
- 
+
 @{
     var opr = OperatorProvider.GetCurrent();
 }
+<style>
+    /* FIX-1 (SSO-07, mobile only): the theme's tab-bar layout (relative
+       bar + absolute roll buttons) only exists inside its min-width:992px
+       media block; below that the bar keeps its 41px theme height while
+       its buttons wrap onto a second line that spills over the iframe top
+       (measured: bar 81..121, buttons 128..174, iframe from 121 — the
+       "thao tác tab" button covered the first carousel badge). Restore
+       the theme's desktop tab-bar geometry on small screens. No
+       overflow:hidden on the bar, so the tab dropdown menu still opens
+       over the iframe exactly as on desktop. */
+    @@media (max-width: 991px) {
+        .content-tabs {
+            position: relative;
+            height: 42px;
+        }
+
+        .content-tabs .roll-nav {
+            position: absolute;
+            top: 0;
+            z-index: 2;
+        }
+
+        .content-tabs .roll-left {
+            left: 0;
+        }
+
+        .content-tabs .roll-right.tabRight {
+            right: 120px;
+        }
+
+        .content-tabs .roll-right.btn-group {
+            right: 40px;
+            width: 80px;
+        }
+
+        .content-tabs .roll-right.fullscreen {
+            right: 0;
+        }
+
+        .content-tabs button {
+            height: 39px;
+            line-height: 39px;
+        }
+
+        .content-tabs nav.page-tabs {
+            margin-left: 40px;
+            height: 40px;
+            overflow: hidden;
+        }
+    }
+</style>
 <div id="content-wrapper">
     <div class="content-tabs">
         <button class="roll-nav roll-left tabLeft">

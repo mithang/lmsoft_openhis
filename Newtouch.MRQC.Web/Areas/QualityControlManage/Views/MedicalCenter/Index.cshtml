@@ -27,6 +27,15 @@
             float: none;
             margin-left: 0;
         }
+
+        /* FIX-1 (MRQC-05, mobile only): the window-resize handler sets
+           .dv-body width to the full window width, but .dv-body sits
+           inside padded portal content, so the page overflowed by ~15px
+           after any resize (sweep-A: 405/390). !important beats the
+           inline width the handler sets; desktop behaviour unchanged. */
+        .dv-body {
+            width: auto !important;
+        }
     }
 </style>
 <div class="dv-body">
