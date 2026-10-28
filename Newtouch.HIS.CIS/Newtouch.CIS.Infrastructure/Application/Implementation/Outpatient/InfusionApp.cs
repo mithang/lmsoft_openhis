@@ -25,6 +25,21 @@ namespace Newtouch.Application.Implementation
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly IMzsyypxxDmnService _mzsyypxxDmnService;
 
+        // FIX-2B (B-CIS-05, goc): class nay khong co constructor DI nen 4 field
+        // readonly tren luon null — moi lan goi MzsyxxQuery (id dang so hop le)
+        // deu NRE o lambda InfusionApp.cs:293, du controller da guard tags rong/
+        // sai dinh dang. Cac App khac (vd BespeakRegisterApp) deu co constructor
+        // DI; ca 4 service deu da dang ky trong Program.cs nen chi can them
+        // constructor nay la khoi phuc duong happy path.
+        public InfusionApp(IMzsyypxxRepo mzsyypxx, IMzsyzxxxRepo mzsyzxxxRepo,
+            ISysConfigRepo sysConfigRepo, IMzsyypxxDmnService mzsyypxxDmnService)
+        {
+            _mzsyypxx = mzsyypxx;
+            _mzsyzxxxRepo = mzsyzxxxRepo;
+            _sysConfigRepo = sysConfigRepo;
+            _mzsyypxxDmnService = mzsyypxxDmnService;
+        }
+
         /// <summary>
         /// Đồng bộđãquyết toánĐơn thuốcthông tin
         /// </summary>

@@ -18,6 +18,15 @@ namespace Newtouch.HIS.API.Common
 
         public string OrganizeId { get; set; }
 
+        // FIX-2 (EMR API header-only token): RequestBase goc cua FrameworkBase.API
+        // (mirror o PDS/MRMS/OR) co truong Token trong BODY; ban port EMR da lam
+        // mat truong nay nen client gui token trong body bi bo qua lang (chi con
+        // header "token" doc duoc). Khoi phuc Token (+ TokenType cho dong bo) —
+        // header van duoc uu tien, khong doi contract cua client dang dung header.
+        public string Token { get; set; }
+
+        public string TokenType { get; set; }
+
         [Required(ErrorMessage = "Timestamp là bắt buộc")]
         public DateTime Timestamp { get; set; }
     }

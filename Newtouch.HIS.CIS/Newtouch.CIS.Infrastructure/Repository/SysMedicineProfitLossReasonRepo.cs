@@ -81,8 +81,21 @@ namespace Newtouch.Repository
             };
             if (!string.IsNullOrEmpty(keyValue))
             {
+                // FIX-2B (B-CIS-03, cung mau AuxiliaryDictionary): SubmitForm sua
+                // dung entity moi chi co 4 field + full-column Update nen se ghi
+                // NULL de len CreatorCode/CreateTime goc. Nap ban goc de giu lai
+                // khi phia post trong. (Bang xt_ksbysyyy khong co tren STG nen
+                // chi kiem chung bang code, khong co bang chung live.)
+                var oldEntity = FindEntity(keyValue);
                 entity.Modify();
                 entity.syyyId = keyValue;
+                if (oldEntity != null)
+                {
+                    if (string.IsNullOrWhiteSpace(entity.CreatorCode))
+                        entity.CreatorCode = oldEntity.CreatorCode;
+                    if (entity.CreateTime == default)
+                        entity.CreateTime = oldEntity.CreateTime;
+                }
                 Update(entity);
             }
             else

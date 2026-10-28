@@ -84,7 +84,9 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
 ";
             var par = new DbParameter[]
             {
-                new SqlParameter("@keyword", "%" + keyword.Trim() + "%"),
+                // FIX-2 B-CIS-04: keyword null (grid goi khong keyword) thi dung ""
+                // thay vi NRE o keyword.Trim().
+                new SqlParameter("@keyword", "%" + (keyword ?? "").Trim() + "%"),
                 new SqlParameter("@kscode", ksCode),
                 new SqlParameter("@ysgh", ysgh),
                 new SqlParameter("@orgId", orgId),

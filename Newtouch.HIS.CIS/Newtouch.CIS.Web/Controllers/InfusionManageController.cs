@@ -43,19 +43,37 @@ namespace Newtouch.CIS.Web.Controllers
         [HttpGet]
         public IActionResult Query(string tags, string organizeId)
         {
+            // FIX-2 B-CIS-05: view luon bind ViewBag.drugs / ViewBag.patInfo
+            // (dynamic). Truoc day khi tags rong thi controller tra View() ma
+            // khong dat 2 gia tri nay -> "Cannot perform runtime binding on a
+            // null reference"; tags sai dinh dang thi Convert.ToInt64 nem
+            // FormatException. Bay gio: mac dinh luon duoc dat, tags sai bi loai
+            // bo bang TryParse, khong co thuoc thi view trong + thong bao.
+            ViewBag.drugs = new List<MzsyypxxVO>();
+            ViewBag.patInfo = new InfusionExecVO();
             if (string.IsNullOrWhiteSpace(tags))
             {
+                ViewBag.InfusionNotice = "Chưa nhập mã phiếu truyền dịch.";
                 return View();
             }
             var ids = tags.Split(',');
             if (ids.Length == 0)
             {
+                ViewBag.InfusionNotice = "Chưa nhập mã phiếu truyền dịch.";
                 return View();
             }
-            var tmpids = ids.Select(item => Convert.ToInt64(item)).Where(i => i != 0).ToList();
-            var drugs = _infusionApp.MzsyxxQuery(tmpids, organizeId);
+            var tmpids = new List<long>();
+            foreach (var item in ids)
+            {
+                if (long.TryParse(item, out var v) && v != 0) tmpids.Add(v);
+            }
+            if (tmpids.Count == 0)
+            {
+                ViewBag.InfusionNotice = "Mã phiếu truyền dịch không hợp lệ.";
+                return View();
+            }
+            var drugs = _infusionApp.MzsyxxQuery(tmpids, string.IsNullOrWhiteSpace(organizeId) ? OrganizeId : organizeId);
             ViewBag.drugs = drugs ?? new List<MzsyypxxVO>();
-            ViewBag.patInfo = new InfusionExecVO();
             if (drugs != null && drugs.Count > 0)
             {
                 ViewBag.patInfo.kh = drugs[0].kh;
@@ -68,6 +86,10 @@ namespace Newtouch.CIS.Web.Controllers
                 ViewBag.patInfo.executorName = drugs[0].executorName;
                 ViewBag.patInfo.sykssj = drugs[0].sykssj;
                 ViewBag.patInfo.syjssj = drugs[0].syjssj;
+            }
+            else
+            {
+                ViewBag.InfusionNotice = "Không tìm thấy phiếu truyền dịch.";
             }
             return View();
         }

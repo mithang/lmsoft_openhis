@@ -56,12 +56,20 @@ namespace Newtouch.EMR.DomainServices.MRHomePage
             List<SugarParameter> para = new List<SugarParameter>();
             para.Add(new SugarParameter("@orgId", orgId));
 
+            // FIX-2 C2-B4 (sua loi FIX-2B): mr_dic_common chi co o DB MRMS, khong
+            // co o DB EMR; [dbo] trong context EMR luon loi 'Invalid object name'.
+            // Di qua DbNames sang DB MRMS (STG thi Newtouch_MRMS_STG), khong tao
+            // bang moi, khong doi schema. Chon cach nay thay vi luoi rong vi
+            // YLFKFS la du lieu hien thi that cua trang dau. LUU Y: comment giai
+            // thich PHAI o ngoai chuoi SQL — ban FIX-2 dat no trong chuoi verbatim
+            // nen cac dong sau dong '--' tro thanh SQL tho va gay loi cu phap
+            // 'Incorrect syntax near context'.
             string sql = @"select a.Id,b.ItemName YLFKFS,a.JKKH,a.ZYCS,a.BAH,a.ZYH,a.XM,a.XB,a.NL,a.RYTJ,convert(varchar(20),a.RYSJ,120)RYSJ,convert(varchar(20),a.CYSJ,120)CYSJ,
 c.Name RYKB,d.Name CYKB,a.MZZD,a.bazt,datediff(dd,a.CYSJ,getdate()) cyts
 from mr_basy a with(nolock)
-left join [dbo].[mr_dic_common] b with(nolock) on a.YLFKFS=ItemCode and b.RlueCode ='YLFKFS' and a.organizeid=b.organizeid and b.zt='1'
-left join [NewtouchHIS_Base].[dbo].[V_S_Sys_Department] c with(nolock) on a.RYKB=c.Code and a.organizeid=c.organizeid and c.zt='1'
-left join [NewtouchHIS_Base].[dbo].[V_S_Sys_Department] d with(nolock) on a.CYKB=d.Code and a.organizeid=d.organizeid and d.zt='1'
+left join " + DbNames.Name("MrmsDb", "Newtouch_MRMS") + @".[dbo].[mr_dic_common] b with(nolock) on a.YLFKFS=ItemCode and b.RlueCode ='YLFKFS' and a.organizeid=b.organizeid and b.zt='1'
+left join " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".[dbo].[V_S_Sys_Department] c with(nolock) on a.RYKB=c.Code and a.organizeid=c.organizeid and c.zt='1'
+left join " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + @".[dbo].[V_S_Sys_Department] d with(nolock) on a.CYKB=d.Code and a.organizeid=d.organizeid and d.zt='1'
 where a.organizeid=@orgId and a.zt='1'
 ";
             if (!string.IsNullOrWhiteSpace(cyksrq) && !string.IsNullOrWhiteSpace(cyjsrq))

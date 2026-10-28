@@ -75,11 +75,16 @@ namespace Newtouch.EMR.DomainServices
         public IList<bl_hljl_wzEntity> GetPaginationListWZ(Pagination pagination, string orgId, DateTime? kssj, DateTime? jssj, string zyh, string wardCode, string isShowDelete)
         {
             string sql = @"select * from bl_hljl_wz where createtime>=@kssj  and createtime<=@jssj and OrganizeId=@orgId and zt='1'";
+            // FIX-2 C2-B5: khong co kssj/jssj thi .Value nem 'Nullable object
+            // must have a value'. UI luon gui ngay o luong chinh; khong ngay
+            // thi tra luoi rong dung dang thay vi crash.
+            if (!kssj.HasValue || !jssj.HasValue)
+                return new List<bl_hljl_wzEntity>();
             var pars = new List<SugarParameter>();
             pars.Add(new SugarParameter("@orgId", orgId));
             pars.Add(new SugarParameter("@kssj", kssj.Value.ToString()));
             pars.Add(new SugarParameter("@jssj", jssj.Value.AddDays(1).ToString()));
-            if (zyh != "")
+            if (!string.IsNullOrWhiteSpace(zyh))
             {
                 sql += " and zyh=@zyh";
                 pars.Add(new SugarParameter("@zyh", zyh.Trim()));

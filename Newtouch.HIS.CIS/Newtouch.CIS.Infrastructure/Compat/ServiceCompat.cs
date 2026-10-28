@@ -165,16 +165,64 @@ namespace Newtouch.CIS.Compat
                     try { kp.SetValue(entity, System.Convert.ChangeType(keyValue, System.Nullable.GetUnderlyingType(kp.PropertyType) ?? kp.PropertyType)); } catch { }
                 }
             }
+            else if (isNew)
+            {
+                // FIX-2 B-CIS-02: theo mau Herp (EntityExtensions.Create): tao moi
+                // phai sinh Id khi chua co; truoc day Create(bool) chi dat audit
+                // nen INSERT vao cot Id NOT NULL bi NULL (xt_fzcd).
+                GenerateKeyIfEmpty(entity);
+            }
             SetAudit(entity, true);
         }
         public static void Create(this object entity, bool isNew)
         {
+            // FIX-2 B-CIS-02: nhu tren — sinh Guid Id khi tao moi va khoa dang trong.
+            if (isNew)
+            {
+                GenerateKeyIfEmpty(entity);
+            }
             SetAudit(entity, true);
+        }
+
+        /// <summary>Sinh khoa chinh khi dang trong: string/Guid nhan Guid moi;
+        /// khoa int (DB tu sinh) thi de nguyen — khong tu gan Id.</summary>
+        private static void GenerateKeyIfEmpty(object entity)
+        {
+            if (entity == null) return;
+            var kp = entity.GetType().GetProperties().FirstOrDefault(x => x.GetCustomAttribute<System.ComponentModel.DataAnnotations.KeyAttribute>() != null) ?? entity.GetType().GetProperty("Id");
+            if (kp == null || !kp.CanWrite) return;
+            var target = System.Nullable.GetUnderlyingType(kp.PropertyType) ?? kp.PropertyType;
+            try
+            {
+                if (target == typeof(string))
+                {
+                    if (string.IsNullOrWhiteSpace(kp.GetValue(entity) as string))
+                        kp.SetValue(entity, System.Guid.NewGuid().ToString());
+                }
+                else if (target == typeof(System.Guid))
+                {
+                    if (System.Guid.Empty.Equals(kp.GetValue(entity)))
+                        kp.SetValue(entity, System.Guid.NewGuid());
+                }
+            }
+            catch { }
         }
 
         public static void Modify(this object entity) { Modify(entity, (object)null); }
         public static void Modify(this object entity, object keyValue)
         {
+            // FIX-2 B-CIS-03 (phan chung): Modify(keyValue) truoc day bo qua keyValue
+            // nen entity tu form post (khong co Id) duoc Update voi khoa trong, trong
+            // khi Update dung WhereColumns(khoa). Theo mau Herp Modify(id): gan Id
+            // tu keyValue khi co, de WHERE dung dong can sua.
+            if (keyValue != null && !string.IsNullOrWhiteSpace(keyValue.ToString()))
+            {
+                var kp = entity.GetType().GetProperties().FirstOrDefault(x => x.GetCustomAttribute<System.ComponentModel.DataAnnotations.KeyAttribute>() != null) ?? entity.GetType().GetProperty("Id");
+                if (kp != null && kp.CanWrite)
+                {
+                    try { kp.SetValue(entity, System.Convert.ChangeType(keyValue, System.Nullable.GetUnderlyingType(kp.PropertyType) ?? kp.PropertyType)); } catch { }
+                }
+            }
             SetAudit(entity, false);
         }
 

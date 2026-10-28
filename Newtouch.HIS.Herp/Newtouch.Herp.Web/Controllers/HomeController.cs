@@ -89,19 +89,41 @@ namespace Newtouch.Herp.Web.Controllers
         /// <summary>Thống kê nhập–xuất–tồn theo tháng của kho hiện tại</summary>
         public IActionResult GetPsiByKf()
         {
-            var result = new MonthlySummaryDTO[3];
-            result[0] = _homeApp.GetPsiCountVoByKf(_storageManageDmnService.GetCkCountByKf(Constants.CurrentKf.currentKfId, OrganizeId));
-            result[1] = _homeApp.GetPsiCountVoByKf(_storageManageDmnService.GetRkCountByKf(Constants.CurrentKf.currentKfId, OrganizeId));
-            result[2] = _homeApp.GetPsiCountVoByKf(_storageManageDmnService.GetSyCountByKf(Constants.CurrentKf.currentKfId, OrganizeId));
-            return Content(result.ToJson());
+            try
+            {
+                var result = new MonthlySummaryDTO[3];
+                result[0] = _homeApp.GetPsiCountVoByKf(_storageManageDmnService.GetCkCountByKf(Constants.CurrentKf.currentKfId, OrganizeId));
+                result[1] = _homeApp.GetPsiCountVoByKf(_storageManageDmnService.GetRkCountByKf(Constants.CurrentKf.currentKfId, OrganizeId));
+                result[2] = _homeApp.GetPsiCountVoByKf(_storageManageDmnService.GetSyCountByKf(Constants.CurrentKf.currentKfId, OrganizeId));
+                return Content(result.ToJson());
+            }
+            catch
+            {
+                // FIX-2B (B-HERP-01, chi chuoi hien thi): khi DB loi, exception
+                // cua SqlSugar mang tien to tieng Trung "中文提示 :" (format cung
+                // trong DLL SqlSugar, khong sua duoc bang chuoi app) va middleware
+                // tra nguyen message tho ra JSON. Chan o seam action nay va tra
+                // thong bao tieng Viet chung; khong dich framework, khong doi
+                // duong thanh cong.
+                return Error("Không thể lấy dữ liệu từ cơ sở dữ liệu. Vui lòng thử lại sau.");
+            }
         }
 
         /// <summary>Nhập kho trong năm theo loại phiếu (dữ liệu biểu đồ tròn)</summary>
         public IActionResult GetRkCountByLx()
         {
-            var result = _storageManageDmnService.GetRkCountByLx(Constants.CurrentKf.currentKfId, OrganizeId) ?? new List<ClassificationStatisticsEntity>();
-            _homeApp.TransformRkCount(result);
-            return Content(result.ToJson());
+            try
+            {
+                var result = _storageManageDmnService.GetRkCountByLx(Constants.CurrentKf.currentKfId, OrganizeId) ?? new List<ClassificationStatisticsEntity>();
+                _homeApp.TransformRkCount(result);
+                return Content(result.ToJson());
+            }
+            catch
+            {
+                // FIX-2B (B-HERP-01): nhu GetPsiByKf — chan message tho cua
+                // SqlSugar ("中文提示 :") o seam action, tra thong bao tieng Viet.
+                return Error("Không thể lấy dữ liệu từ cơ sở dữ liệu. Vui lòng thử lại sau.");
+            }
         }
         #endregion
 
@@ -116,22 +138,31 @@ namespace Newtouch.Herp.Web.Controllers
         /// </summary>
         public IActionResult getmesquery()
         {
-            string yfbm = Constants.CurrentKf.currentKfId;
-            int gqyjz = -_sysConfigRepo.GetIntValue("GET_YFGQYG", OrganizeId);
-            var retdata = _storageManageDmnService.MSGQuery(yfbm, OrganizeId, gqyjz);
-            int gqyjcount = 0, kcyjcount = 0;
-            if (retdata != null)
+            try
             {
-                kcyjcount = retdata.Where(p => p.typeas == "1").Count();
-                gqyjcount = retdata.Where(p => p.typeas == "2").Count();
+                string yfbm = Constants.CurrentKf.currentKfId;
+                int gqyjz = -_sysConfigRepo.GetIntValue("GET_YFGQYG", OrganizeId);
+                var retdata = _storageManageDmnService.MSGQuery(yfbm, OrganizeId, gqyjz);
+                int gqyjcount = 0, kcyjcount = 0;
+                if (retdata != null)
+                {
+                    kcyjcount = retdata.Where(p => p.typeas == "1").Count();
+                    gqyjcount = retdata.Where(p => p.typeas == "2").Count();
+                }
+                var data = new
+                {
+                    rows = retdata,
+                    kcyj = kcyjcount,
+                    gqyj = gqyjcount
+                };
+                return Content(data.ToJson());
             }
-            var data = new
+            catch
             {
-                rows = retdata,
-                kcyj = kcyjcount,
-                gqyj = gqyjcount
-            };
-            return Content(data.ToJson());
+                // FIX-2B (B-HERP-01): nhu GetPsiByKf — chan message tho cua
+                // SqlSugar ("中文提示 :") o seam action, tra thong bao tieng Viet.
+                return Error("Không thể lấy dữ liệu từ cơ sở dữ liệu. Vui lòng thử lại sau.");
+            }
         }
         #endregion
 

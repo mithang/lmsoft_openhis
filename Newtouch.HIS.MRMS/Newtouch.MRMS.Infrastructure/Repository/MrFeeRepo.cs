@@ -37,7 +37,11 @@ namespace Newtouch.MR.ManageSystem.Repository
 		
         public int SubmitForm(bafeeVO entity, string keyValue,string OrganizeId,bafeeVO oldEntity)
         {
-			var flag = (oldEntity.Lev == 1 && entity.name1 == oldEntity.name1) || (oldEntity.Lev == 2 && entity.name1 == oldEntity.name1 && entity.name2 == oldEntity.name2);//trueThực hiệnThêm mới
+			// FIX-2 C2-B2: tao moi (keyValue rong) thi controller van goi
+			// GetFormJson -> oldEntity null; dereference oldEntity.Lev o day
+			// gay NRE. Khi khong co ban cu, flag = false: tao moi di nhanh
+			// insert (keyValue rong), sua doi ten thi di nhanh update nhu cu.
+			var flag = oldEntity != null && ((oldEntity.Lev == 1 && entity.name1 == oldEntity.name1) || (oldEntity.Lev == 2 && entity.name1 == oldEntity.name1 && entity.name2 == oldEntity.name2));//trueThực hiệnThêm mới
 
 			if ( (!string.IsNullOrEmpty(keyValue)) && (!flag) )
             {

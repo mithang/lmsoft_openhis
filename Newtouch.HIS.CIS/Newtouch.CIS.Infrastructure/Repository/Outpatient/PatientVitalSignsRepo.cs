@@ -32,6 +32,15 @@ namespace Newtouch.HIS.Repository
                 this.DetacheEntity(oldEntity);
 
                 entity.Modify(keyValue);
+                // FIX-2 B-CIS-03 (cung mau AuxiliaryDictionary): giu CreatorCode/
+                // CreateTime goc khi form post khong co cac truong nay.
+                if (oldEntity != null)
+                {
+                    if (string.IsNullOrWhiteSpace(entity.CreatorCode))
+                        entity.CreatorCode = oldEntity.CreatorCode;
+                    if (entity.CreateTime == default)
+                        entity.CreateTime = oldEntity.CreateTime;
+                }
                 this.Update(entity);
             }
             else

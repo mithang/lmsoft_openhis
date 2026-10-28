@@ -69,6 +69,16 @@ namespace Newtouch.HIS.Repository
 
                 entity.Modify();
                 entity.sfflId = sfflId;
+                // FIX-2B (mau B-CIS-03): form post khong co CreatorCode/CreateTime;
+                // Update full-column se ghi NULL de len cot NOT NULL. Giu gia tri
+                // goc khi phia post trong (oldEntity da duoc nap san o tren).
+                if (oldEntity != null)
+                {
+                    if (string.IsNullOrWhiteSpace(entity.CreatorCode))
+                        entity.CreatorCode = oldEntity.CreatorCode;
+                    if (entity.CreateTime == default)
+                        entity.CreateTime = oldEntity.CreateTime;
+                }
                 this.Update(entity);
 
                 if (oldEntity != null)

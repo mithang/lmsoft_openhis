@@ -45,7 +45,18 @@ namespace Newtouch.Repository
                     throw new FailedException("Vị tríSố hiệu không được trùng lặp");
                 }
 
+                // FIX-2 B-CIS-03 (cung mau AuxiliaryDictionary: edit bang posted
+                // entity + full-column update): nap ban goc de giu CreatorCode/
+                // CreateTime khi form post khong co cac truong nay.
+                var oldEntity = this.FindEntity(keyValue);
                 entity.Modify(keyValue);
+                if (oldEntity != null)
+                {
+                    if (string.IsNullOrWhiteSpace(entity.CreatorCode))
+                        entity.CreatorCode = oldEntity.CreatorCode;
+                    if (entity.CreateTime == default)
+                        entity.CreateTime = oldEntity.CreateTime;
+                }
                 this.Update(entity);
             }
             else

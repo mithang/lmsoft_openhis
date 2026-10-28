@@ -118,3 +118,14 @@ font-weight:bolder;
    
 }  
 #input1{width: 100px;}   
+
+/* FIX-2 (C-B4, login mobile): nen trang tri + form desktop co dinh (1160px /
+   float right) bi cat 2 bien o viewport hep. Chi thu hep o <=640px: head ve
+   100%, nen cover toan chieu rong, form can giua thay vi float right. Form
+   van dung duoc nhu cu; khong doi layout desktop. */
+@media (max-width: 640px) {
+    .login .login-head { width: 100%; }
+    .login .login-con { height: auto; }
+    .login .login-con .login-a { background-size: cover; min-height: 0; }
+    .login .login-con .login-a .login-b { float: none; margin: 20px auto; width: calc(100% - 40px); max-width: 280px; padding: 0 20px; }
+}

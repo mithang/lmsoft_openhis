@@ -93,8 +93,11 @@
 }
 <div style="margin-top:40px;">
     @Html.Partial("_LeftMostPartDiv")
-    @Html.Partial("_PresTemplateTreeForm", new ViewDataDictionary(ViewData) { { "ISOpenZycfnew", iSOpenZycfnew } })
-    @Html.Partial("_HistoryPresTreeForm",new ViewDataDictionary(ViewData) { { "ISOpenZycfnew", iSOpenZycfnew } })
+    @* FIX-2 B-CIS-01: ViewBag.ISOpenZycfnew da co trong ViewData (controller dat),
+       new ViewDataDictionary(ViewData) { { "ISOpenZycfnew", ... } } dung Add nen
+       trung key -> throw. Dung indexer (ghi de) de giu nguyen du lieu hien thi. *@
+    @Html.Partial("_PresTemplateTreeForm", new ViewDataDictionary(ViewData) { ["ISOpenZycfnew"] = iSOpenZycfnew })
+    @Html.Partial("_HistoryPresTreeForm", new ViewDataDictionary(ViewData) { ["ISOpenZycfnew"] = iSOpenZycfnew })
     @Html.Partial("_InspectTemplateTreeForm")
     <div class="tab-content">
         @Html.Partial("~/Views/PatientList/PatientList.cshtml")

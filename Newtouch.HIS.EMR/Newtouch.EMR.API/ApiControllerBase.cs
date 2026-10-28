@@ -19,8 +19,9 @@ namespace Newtouch.EMR.API
     /// - Token validation: unless the action carries [IgnoreTokenDecrypt], the request
     ///   must carry a token previously issued by SaveIdentity (header "token" or the
     ///   request's Token field when present); an unknown/missing token yields FAIL.
-    ///   The original token transport (encrypted header vs field) is not recoverable
-    ///   from source, so this port accepts the plain token in either place.
+    ///   FIX-2: goc FrameworkBase.API mang Token trong BODY (RequestBase.Token,
+    ///   mirror o PDS/MRMS/OR); ban port EMR truoc day lam mat truong nay nen
+    ///   body token bi bo qua — nay khoi phuc (header uu tien, body fallback).
     /// - SaveIdentity stores the identity JSON in Redis with a 2-hour expiry and
     ///   returns a fresh Guid token. The original expiry/key format is not in source;
     ///   key "EMR:ApiIdentity:{token}" is this port's own convention.
@@ -40,20 +41,36 @@ namespace Newtouch.EMR.API
         {
             get
             {
-                var token = Request?.Headers["token"].ToString();
-                if (string.IsNullOrWhiteSpace(token))
-                    token = Request?.Query["token"].ToString();
-                if (string.IsNullOrWhiteSpace(token) || _redis == null)
-                    return null;
-                try
-                {
-                    var json = _redis.GetDatabase().StringGet("EMR:ApiIdentity:" + token);
-                    return json.IsNullOrEmpty ? null : JsonConvert.DeserializeObject<UserIdentity>(json);
-                }
-                catch
-                {
-                    return null;
-                }
+                // FIX-2: CommonExecute dat _requestIdentity tu header HOAC body
+                // truoc khi chay action; neu co thi dung no (body token), neu
+                // khong thi fallback ve header/query nhu cu.
+                if (_requestIdentity != null)
+                    return _requestIdentity;
+                return ResolveIdentity(null);
+            }
+        }
+
+        private UserIdentity _requestIdentity;
+
+        /// <summary>Tra identity tu header "token", fallback sang token trong body
+        /// (RequestBase.Token goc), roi query "token" nhu cu.</summary>
+        private UserIdentity ResolveIdentity(string bodyToken)
+        {
+            var token = Request?.Headers["token"].ToString();
+            if (string.IsNullOrWhiteSpace(token))
+                token = bodyToken;
+            if (string.IsNullOrWhiteSpace(token))
+                token = Request?.Query["token"].ToString();
+            if (string.IsNullOrWhiteSpace(token) || _redis == null)
+                return null;
+            try
+            {
+                var json = _redis.GetDatabase().StringGet("EMR:ApiIdentity:" + token);
+                return json.IsNullOrEmpty ? null : JsonConvert.DeserializeObject<UserIdentity>(json);
+            }
+            catch
+            {
+                return null;
             }
         }
 
@@ -84,7 +101,13 @@ namespace Newtouch.EMR.API
             var resp = new DefaultResponse();
             try
             {
-                if (!ignoreTokenDecrypt && Identity == null)
+                // FIX-2: giai identity tu token trong BODY (RequestBase.Token)
+                // truoc khi kiem tra, de client gui token dung contract goc
+                // khong bi danh rot; header van duoc uu tien trong ResolveIdentity.
+                _requestIdentity = ignoreTokenDecrypt
+                    ? null
+                    : ResolveIdentity((request as RequestBase)?.Token);
+                if (!ignoreTokenDecrypt && _requestIdentity == null)
                 {
                     resp.code = APIRequestHelper.ResponseResultCode.FAIL;
                     resp.msg = "Token không hợp lệ hoặc đã hết hạn";

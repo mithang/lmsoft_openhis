@@ -42,8 +42,14 @@ namespace Newtouch.CIS.Web.Areas.QueueManage.Controllers
 
         public IActionResult GetQueueInfo(Pagination pagination, string qdsj, string ks, string ys, string ywbz, string ywlx, int? calledstu, string keyword)
         {
-            DateTime kssj = Convert.ToDateTime(qdsj);
-            DateTime jssj = Convert.ToDateTime(qdsj).AddDays(1).AddMilliseconds(-1);
+            pagination = pagination ?? new Pagination();
+            // FIX-2 B-CIS-06: qdsj rong/sai/ngoai khoang datetime cua SQL Server
+            // (1753-01-01..9999-12-31) thi Convert.ToDateTime / truy van nem
+            // SqlDateTime overflow. Tra loi validation thay vi exception SQL.
+            if (!TryQueueRange(qdsj, out var kssj, out var jssj))
+            {
+                return Error("Vui lòng chọn ngày xếp hàng hợp lệ (từ 01/01/1753 đến 30/12/9999).");
+            }
             var data = new
             {
                 rows = _queueDmnService.GetQueue(pagination,OrganizeId, kssj, jssj, ks, ys, ywbz, ywlx, calledstu, keyword),
@@ -52,6 +58,20 @@ namespace Newtouch.CIS.Web.Areas.QueueManage.Controllers
                 records = pagination.records
             };
             return Content(data.ToJson());
+        }
+
+        /// <summary>Kiem chung ngay hang doi: parse duoc va nam trong khoang
+        /// datetime SQL Server, tru hao 1 ngay cho jssj = kssj + 1 ngay.</summary>
+        private static bool TryQueueRange(string qdsj, out DateTime kssj, out DateTime jssj)
+        {
+            kssj = default;
+            jssj = default;
+            if (string.IsNullOrWhiteSpace(qdsj)) return false;
+            if (!DateTime.TryParse(qdsj, out var d)) return false;
+            if (d < new DateTime(1753, 1, 1) || d > new DateTime(9999, 12, 30)) return false;
+            kssj = d;
+            jssj = d.AddDays(1).AddMilliseconds(-1);
+            return true;
         }
         /// <summary>
         /// xếpđộiTrạng tháiSửa
@@ -75,9 +95,12 @@ namespace Newtouch.CIS.Web.Areas.QueueManage.Controllers
         }
 
         public IActionResult getNextCall(string qdsj, string ks, string ys, string ywbz, string ywlx, int? calledstu, string keyword, string mzh) {
+            // FIX-2 B-CIS-06: cung guard ngay nhu GetQueueInfo (tranh overflow).
+            if (!TryQueueRange(qdsj, out var kssj, out var jssj))
+            {
+                return Error("Vui lòng chọn ngày xếp hàng hợp lệ (từ 01/01/1753 đến 30/12/9999).");
+            }
             //var callData = _queueDmnService.GetQueueByMzh(mzh, OrganizeId);
-            DateTime kssj = Convert.ToDateTime(qdsj);
-            DateTime jssj = Convert.ToDateTime(qdsj).AddDays(1).AddMilliseconds(-1);
             //var alldata = _inpatientOrderPackageRepo.IQueryable().Where(p => p.tcfw == tcfw && p.tclx == linqyzlx && p.OrganizeId == OrganizeId && p.zt == "1").OrderBy(a => a.CreateTime).ThenBy(a => a.tcmc).ToList();
 
             var allCallData = _queueDmnService.GetQueue(OrganizeId, kssj, jssj, ks, ys, ywbz, ywlx, calledstu, keyword).Where(a => a.calledstu == 2 && a.zt == "1").OrderByDescending(a => a.LastModifyTime);

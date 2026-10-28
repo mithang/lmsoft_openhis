@@ -53,7 +53,10 @@ namespace Newtouch.MR.ManageSystem.Infrastructure
 
         public T FindEntity(object keyValue)
         {
-            return Db.Queryable<T>().Where("Id=@id", new SugarParameter("@id", keyValue)).First();
+            // FIX-2 C2-B1: SqlSugar Where(string, object) chi chap nhan anonymous
+            // object / Dictionary / SugarParameter[] — truyen 1 SugarParameter don
+            // le bi "The parameter format is wrong". Truyen dang mang.
+            return Db.Queryable<T>().Where("Id=@id", new SugarParameter[] { new SugarParameter("@id", keyValue) }).First();
         }
 
         public T FindEntity(Expression<Func<T, bool>> predicate)

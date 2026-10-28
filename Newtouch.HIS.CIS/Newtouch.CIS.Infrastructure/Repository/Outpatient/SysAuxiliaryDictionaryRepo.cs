@@ -73,6 +73,16 @@ namespace Newtouch.HIS.Repository
                 this.DetacheEntity(oldEntity);
 
                 entity.Modify(keyValue);
+                // FIX-2 B-CIS-03: form post khong co CreatorCode/CreateTime; Update
+                // full-column se ghi NULL de len cot NOT NULL. Giu lai gia tri goc
+                // khi phia post trong (khong ghi de bang null/mac dinh).
+                if (oldEntity != null)
+                {
+                    if (string.IsNullOrWhiteSpace(entity.CreatorCode))
+                        entity.CreatorCode = oldEntity.CreatorCode;
+                    if (entity.CreateTime == default)
+                        entity.CreateTime = oldEntity.CreateTime;
+                }
                 this.Update(entity);
             }
             else

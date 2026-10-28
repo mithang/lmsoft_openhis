@@ -20,6 +20,7 @@ using Newtouch.Domain.Entity;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.IRepository;
 using Newtouch.Domain.ValueObjects;
+using Newtouch.Domain.ValueObjects.API;
 using Newtouch.HIS.Domain.IRepository;
 using Newtouch.Infrastructure;
 using Newtouch.CIS.Compat;
@@ -44,7 +45,7 @@ namespace Newtouch.CIS.Web.Controllers
         private readonly IInpatientPatientDiagnosisRepo _inpatientPatientDiagnosisRepo;
 
         // GET: PatientList
-        public PatientListController(ITreatmentRepo treatmentRepo, IPatientVitalSignsRepo patientVitalSignsRepo, IInpatientPatientDmnService inpatientPatientDmnService, IBaseDataDmnService iBaseDataDmnService, ISysConfigRepo sysConfigRepo, IIDBDmnService idbDmnService, ISysUserDmnService sysUserDmnService, IMedicalRecordDmnService medicalRecordDmnService, ITreatmentDmnService treatmentDmnService, IInpatientPatientDiagnosisRepo inpatientPatientDiagnosisRepo)
+        public PatientListController(ITreatmentRepo treatmentRepo, IPatientVitalSignsRepo patientVitalSignsRepo, IInpatientPatientDmnService inpatientPatientDmnService, IBaseDataDmnService iBaseDataDmnService, ISysConfigRepo sysConfigRepo, IIDBDmnService idbDmnService, ISysUserDmnService sysUserDmnService, IMedicalRecordDmnService medicalRecordDmnService, ITreatmentDmnService treatmentDmnService, IInpatientPatientDiagnosisRepo inpatientPatientDiagnosisRepo, IVisitDeptSetRepo visitDeptSetRepo)
         {
             this._treatmentRepo = treatmentRepo;
             this._patientVitalSignsRepo = patientVitalSignsRepo;
@@ -56,6 +57,10 @@ namespace Newtouch.CIS.Web.Controllers
             this._medicalRecordDmnService = medicalRecordDmnService;
             this._treatmentDmnService = treatmentDmnService;
             this._inpatientPatientDiagnosisRepo = inpatientPatientDiagnosisRepo;
+            // FIX-2 B-CIS-04: truong nay truoc day KHONG BAO GIO duoc gan (constructor
+            // khong co tham so tuong ung, DI khong the inject field) nen moi lan goi
+            // SelectNotYetTreateList deu NRE o visitDeptSetRepo.SelectData.
+            this.visitDeptSetRepo = visitDeptSetRepo;
 
         }
         // QA-phase2 CIS-01: khong co Views/PatientList/Index.cshtml nen
@@ -143,6 +148,11 @@ namespace Newtouch.CIS.Web.Controllers
         /// <returns></returns>
         public IActionResult SelectNotYetTreateList(Pagination pagination, string keyword, int mjzbz,bool? zzhz)
         {
+            // FIX-2 B-CIS-04: guard dung cho — pagination null (GET khong tham so)
+            // thi tao moi thay vi NRE o pagination.sidx; API Sett tra null (host
+            // chua cau hinh / khong toi duoc) thi tra loi giao dien that bai chu
+            // khong NRE o apiResp.data; list null thi luoi rong dung dang.
+            pagination = pagination ?? new Pagination();
 
             #region LấyKhoa khám
 
@@ -202,7 +212,7 @@ namespace Newtouch.CIS.Web.Controllers
             //kéolấyđăng ký khámthông tin
             var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RegisteredInfoResponse>>(
                 "/api/Patient/OutPatientRegistrationQuery", reqObj);
-            if (apiResp.data == null) return Error("Gọi giao diệnthất bại【" + apiResp.msg + apiResp.sub_msg + "】");
+            if (apiResp == null || apiResp.data == null) return Error("Gọi giao diệnthất bại【" + apiResp?.msg + apiResp?.sub_msg + "】");
 
             var showUnTreateDays = _sysConfigRepo.GetValueByCode("ShowUnTreateDays", this.OrganizeId);
             var unTreateDays = 3;
@@ -212,7 +222,7 @@ namespace Newtouch.CIS.Web.Controllers
             }
 
             var apiRespList = new List<TreatEntityObj>();
-            foreach (var item in apiResp.data.list)
+            foreach (var item in apiResp.data.list ?? new List<RegisteredInfoRespVO>())
             {
                 var ds = item.ghsj.Date;
                 if (item.ghsj.Date.AddDays(unTreateDays) < DateTime.Now)
@@ -261,7 +271,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 rows = apiRespList,
                 total = Math.Ceiling(Convert.ToDecimal(apiRespList.Count / pagination.rows)),
-                page = apiResp.data.pagination.page,
+                page = apiResp.data.pagination?.page ?? pagination.page,
                 records = apiRespList.Count
             };
             return Content(tlist.ToJson());

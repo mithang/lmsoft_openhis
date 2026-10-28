@@ -21,9 +21,18 @@ namespace Newtouch.HIS.Domain
                 foreach (var a in p.GetCustomAttributes(false))
                 {
                     var at = a.GetType();
-                    if (at.Name == "SugarColumnAttribute")
+                    // FIX-2B (E-01, goc that): attribute cua SqlSugar ten la
+                    // "SugarColumn", khong phai "SugarColumnAttribute" — ban cu chi
+                    // khop ten sau nen FindPkProperty luon tra null (entity khong
+                    // co prop "Id"), SetPk thanh no-op va moi Create(true, Guid)
+                    // deu de PK NULL du FIX-2 da sua Guid->string. EMR da xu ly
+                    // ca 2 ten (Repositories.cs:198); Base nay khop ca 2.
+                    if (at.Name == "SugarColumnAttribute" || at.Name == "SugarColumn")
                     {
-                        var prop = at.GetType().GetProperty("IsPrimaryKey");
+                        // FIX-2B: at DA LA Type nen phai at.GetProperty; ban cu dung
+                        // at.GetType().GetProperty (tra cuu tren RuntimeType) nen
+                        // prop luon null va FindPkProperty khong bao gio khop.
+                        var prop = at.GetProperty("IsPrimaryKey");
                         if (prop != null && prop.GetValue(a) is bool b && b)
                         {
                             return p;
@@ -62,7 +71,26 @@ namespace Newtouch.HIS.Domain
             try
             {
                 var target = Nullable.GetUnderlyingType(pk.PropertyType) ?? pk.PropertyType;
-                pk.SetValue(this, value == null ? null : Convert.ChangeType(value, target));
+                // FIX-2 E-01: Convert.ChangeType(Guid, string) nem InvalidCastException
+                // (Guid khong implement IConvertible) va bi catch rong nuot, nen
+                // Create(true, Guid.NewGuid()) de sfflId NULL -> INSERT loi. Chuyen
+                // Guid <-> string bang ToString/Parse truoc khi ChangeType chung.
+                if (value == null)
+                {
+                    pk.SetValue(this, null);
+                }
+                else if (target == typeof(string))
+                {
+                    pk.SetValue(this, value.ToString());
+                }
+                else if (target == typeof(Guid) && value is string s)
+                {
+                    pk.SetValue(this, Guid.Parse(s));
+                }
+                else
+                {
+                    pk.SetValue(this, Convert.ChangeType(value, target));
+                }
             }
             catch
             {

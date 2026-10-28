@@ -33,12 +33,15 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
         {
             var oplist = _ORStaffRepo.GetPagintionList(pagination, keyword,OrganizeId);
 
+            // FIX-2 C2-B3: truoc day hardcode page/records/total = 1 nen khi
+            // keyword loc ra rows rong thi pager van bao 1. Dung pagination that
+            // do QueryWithPage dien (giong GetPagintionList ben canh).
             var data = new
             {
                 rows = oplist,
-                page = 1,
-                records = 1,
-                total = 1
+                total = pagination.total,
+                page = pagination.page,
+                records = pagination.records
             };
             return Content(data.ToJson());
         }

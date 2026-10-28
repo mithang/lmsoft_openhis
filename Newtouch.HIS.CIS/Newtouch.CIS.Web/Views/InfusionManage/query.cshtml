@@ -31,6 +31,10 @@
     }
 </style>
 <div class="dv-content">
+    @if (!string.IsNullOrWhiteSpace(ViewBag.InfusionNotice as string))
+    {
+        <div class="dv-patientInfo" style="color:#c00;">@ViewBag.InfusionNotice</div>
+    }
     <div class="dv-patientInfo">
         <h1 style="font-weight:600;font-size:0.6rem;">
             <span>@ViewBag.patInfo.patientName</span>

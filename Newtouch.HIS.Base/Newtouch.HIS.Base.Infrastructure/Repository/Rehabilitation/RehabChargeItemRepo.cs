@@ -38,6 +38,15 @@ namespace Newtouch.HIS.Repository
 
                 entity.Modify();
                 entity.sfxmId = sfxmId;
+                // FIX-2B (mau B-CIS-03): nhu RehabChargeClassification — giu
+                // CreatorCode/CreateTime goc khi form post khong co cac truong nay.
+                if (oldEntity != null)
+                {
+                    if (string.IsNullOrWhiteSpace(entity.CreatorCode))
+                        entity.CreatorCode = oldEntity.CreatorCode;
+                    if (entity.CreateTime == default)
+                        entity.CreateTime = oldEntity.CreateTime;
+                }
                 this.Update(entity);
 
                 if (oldEntity != null)

@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Repository
             {
                 return null;
             }
-            return Db.Queryable<TEntity>().Where($"{pk.Name} = @pk", new SugarParameter("@pk", keyValue)).FirstOrDefault();
+            return Db.Queryable<TEntity>().Where($"{pk.Name} = @pk", new SugarParameter[] { new SugarParameter("@pk", keyValue) }).FirstOrDefault();
         }
 
         public TEntity FindEntity(Expression<Func<TEntity, bool>> predicate)
@@ -117,7 +117,7 @@ namespace Newtouch.HIS.Repository
             {
                 return 0;
             }
-            return Db.Deleteable<TEntity>().Where($"{pk.Name} = @pk", new SugarParameter("@pk", keyValue)).ExecuteCommand();
+            return Db.Deleteable<TEntity>().Where($"{pk.Name} = @pk", new SugarParameter[] { new SugarParameter("@pk", keyValue) }).ExecuteCommand();
         }
 
         public virtual int Update(TEntity entity, IEnumerable<string> dstnFieldNameList = null, IEnumerable<string> ignoreFieldNameList = null, bool attach = true)
@@ -310,7 +310,7 @@ namespace Newtouch.HIS.Repository
             {
                 return null;
             }
-            return Db.Queryable<T>().Where($"{pk.Name} = @pk", new SugarParameter("@pk", keyValue)).FirstOrDefault();
+            return Db.Queryable<T>().Where($"{pk.Name} = @pk", new SugarParameter[] { new SugarParameter("@pk", keyValue) }).FirstOrDefault();
         }
 
         public T FindEntity<T>(Expression<Func<T, bool>> predicate) where T : class, new()
@@ -345,7 +345,7 @@ namespace Newtouch.HIS.Repository
             {
                 return 0;
             }
-            return Db.Deleteable<T>().Where($"{pk.Name} = @pk", new SugarParameter("@pk", keyValue)).ExecuteCommand();
+            return Db.Deleteable<T>().Where($"{pk.Name} = @pk", new SugarParameter[] { new SugarParameter("@pk", keyValue) }).ExecuteCommand();
         }
 
         public int SubmitForm<T>(T entity, object keyValue) where T : class, new()
@@ -379,7 +379,8 @@ namespace Newtouch.HIS.Repository
             {
                 foreach (var a in p.GetCustomAttributes(false))
                 {
-                    if (a.GetType().Name == "SugarColumnAttribute")
+                    // FIX-2B (E-01, goc that): SqlSugar dung ten "SugarColumn", khong phai "SugarColumnAttribute" (xem EntityBase).
+                    if (a.GetType().Name == "SugarColumnAttribute" || a.GetType().Name == "SugarColumn")
                     {
                         var prop = a.GetType().GetProperty("IsPrimaryKey");
                         if (prop != null && prop.GetValue(a) is bool b && b)
@@ -399,7 +400,8 @@ namespace Newtouch.HIS.Repository
             {
                 foreach (var a in p.GetCustomAttributes(false))
                 {
-                    if (a.GetType().Name == "SugarColumnAttribute")
+                    // FIX-2B (E-01, goc that): SqlSugar dung ten "SugarColumn", khong phai "SugarColumnAttribute" (xem EntityBase).
+                    if (a.GetType().Name == "SugarColumnAttribute" || a.GetType().Name == "SugarColumn")
                     {
                         var prop = a.GetType().GetProperty("IsPrimaryKey");
                         if (prop != null && prop.GetValue(a) is bool b && b)

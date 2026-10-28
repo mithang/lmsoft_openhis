@@ -12,10 +12,7 @@ namespace Newtouch.EMR.APIRequest
         /// <summary>Mật khẩu dạng md5 (như web login), KHÔNG BAO GIỜ log.</summary>
         public string Password { get; set; }
 
-        /// <summary>
-        /// Loại token (RequestBase của EMR không có TokenType nên khai ở đây
-        /// để thống nhất shape với các API khác).
-        /// </summary>
-        public string TokenType { get; set; }
+        // FIX-2: TokenType nay lay tu RequestBase (khoi phuc theo goc
+        // FrameworkBase.API); khong khai rieng nua de tranh hide warning.
     }
 }

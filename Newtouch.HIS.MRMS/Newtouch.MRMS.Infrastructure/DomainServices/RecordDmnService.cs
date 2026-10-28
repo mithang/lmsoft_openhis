@@ -134,7 +134,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
 
         public bl_ryblVO bl_ryblGetByID(string ID, string organizeId)
         {
-            string sql = @"select * from [Newtouch_EMR].[dbo].bl_rybl (nolock) where zt != 0";
+            string sql = @"select * from " + DbNames.Name("EmrDb", "Newtouch_EMR") + @".[dbo].bl_rybl (nolock) where zt != 0";
             if (!string.IsNullOrWhiteSpace(organizeId))
             {
                 sql += " and organizeid = @organizeId";
@@ -153,7 +153,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
         public bl_bcjlVO bl_bcjlGetByID(string ID, string organizeId)
         {
 
-            string sql = @"select * from [Newtouch_EMR].[dbo].bl_bcjl (nolock) where zt != 0";
+            string sql = @"select * from " + DbNames.Name("EmrDb", "Newtouch_EMR") + @".[dbo].bl_bcjl (nolock) where zt != 0";
             if (!string.IsNullOrWhiteSpace(organizeId))
             {
                 sql += " and organizeid = @organizeId";
@@ -168,9 +168,13 @@ namespace Newtouch.MR.ManageSystem.DomainServices
             });
             return result;
         }
+        // FIX-2 C2-B6: 6 helper duoi day chuyen sang DbNames (truoc day hardcode
+        // [Newtouch_EMR] nen tren staging doc nham DB demo). Luu y: bl_zqwsGetByID
+        // von truy van bang bl_bcjl (nghi copy-paste goc) — giu nguyen ten bang,
+        // chi doi ten DB, khong tu sua logic bang ngoai pham vi.
         public bl_zqwsVO bl_zqwsGetByID(string ID, string organizeId)
         {
-            string sql = @"select * from [Newtouch_EMR].[dbo].bl_bcjl (nolock) where  zt != 0";
+            string sql = @"select * from " + DbNames.Name("EmrDb", "Newtouch_EMR") + @".[dbo].bl_bcjl (nolock) where  zt != 0";
             if (!string.IsNullOrWhiteSpace(organizeId))
             {
                 sql += " and organizeid = @organizeId";
@@ -188,7 +192,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
 
         public bl_hljlVO bl_hljlGetByID(string ID, string organizeId)
         {
-            string sql = @"select * from [Newtouch_EMR].[dbo].bl_hljl (nolock) where zt != 0";
+            string sql = @"select * from " + DbNames.Name("EmrDb", "Newtouch_EMR") + @".[dbo].bl_hljl (nolock) where zt != 0";
             if (!string.IsNullOrWhiteSpace(organizeId))
             {
                 sql += " and organizeid = @organizeId";
@@ -205,7 +209,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
         }
         public BlbasyVO bl_basyGetByID(string ID, string organizeId)
         {
-            string sql = @"select * from [Newtouch_EMR].[dbo].bl_basy (nolock) where zt != 0";
+            string sql = @"select * from " + DbNames.Name("EmrDb", "Newtouch_EMR") + @".[dbo].bl_basy (nolock) where zt != 0";
             if (!string.IsNullOrWhiteSpace(organizeId))
             {
                 sql += " and organizeid = @organizeId";
@@ -223,7 +227,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
 
         public ZymeddocsrelationVO GetZymeddocsrelation(string blId, string organizeId)
         {
-            string sql = @"select * from [Newtouch_EMR].[dbo].zy_meddocs_relation (nolock) where zt != 0";
+            string sql = @"select * from " + DbNames.Name("EmrDb", "Newtouch_EMR") + @".[dbo].zy_meddocs_relation (nolock) where zt != 0";
             if (!string.IsNullOrWhiteSpace(organizeId))
             {
                 sql += " and organizeid = @organizeId";

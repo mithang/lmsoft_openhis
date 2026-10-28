@@ -238,6 +238,13 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
                 if (MedicalRecord.IsLock != 1)
                 {
                     _RecordDmnService.LockRecord(blid, bllx, OrganizeId, this.UserIdentity.UserCode, isToLock);
+                    // FIX-2 C2-B6 (message): truoc day moi duong ve deu tra
+                    // "Mo khoa thanh cong" ke ca khi khoa. Khoa that -> bao khoa.
+                    return Success("Khóa thành công");
+                }
+                else
+                {
+                    return Success("Đã bị khóa");
                 }
             }
             else
@@ -260,7 +267,6 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
                 }
 
             }
-            return Success("Mở khóa thành công");
         }
 
 
