@@ -1,6 +1,11 @@
 @{
     ViewBag.Title = "Ngoại trúHẹn trước";
-    Layout = null;
+    // QA-phase2 CIS-02/CIS-08: truoc day Layout = null nen trang doc lap khong
+    // co jQuery/framework (script dung $ ngay lap tuc -> "$ is not defined")
+    // va khong co layout chuan. Dung _Index nhu cac trang anh em (jQuery,
+    // jqGrid, framework-ui o head). Khi view nay duoc nhung qua Partial thi
+    // Layout bi bo qua nen khong anh huong trang cha.
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
     #linkbespeakRegister {

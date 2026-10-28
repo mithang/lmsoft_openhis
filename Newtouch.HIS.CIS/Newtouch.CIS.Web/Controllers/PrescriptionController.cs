@@ -37,6 +37,15 @@ namespace Newtouch.CIS.Web.Controllers
         private readonly ISysConfigRepo _sysConfigRepo;
         // GET: Prescription
 
+        // QA-phase2 CIS-01: khong co Views/Prescription/Index.cshtml nen
+        // Index() ke thua tu base tra JSON "view not found". Redirect ve
+        // action don thuoc that dang chay (WMPrescription) thay vi bia view moi.
+        [HttpGet]
+        public override IActionResult Index()
+        {
+            return RedirectToAction("WMPrescription");
+        }
+
         #region View
         /// <summary>
         /// tâyyĐơn thuốc

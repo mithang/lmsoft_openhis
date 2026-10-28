@@ -498,14 +498,18 @@
 				async: false,
 				cache: false,
 				success: function (res) {
-					if (res != null) {
+					// QA-phase2 PDS-03: res co the null (khong tim thay ton kho)
+					// hoac mang rong; nhanh cu dereference res.message khi
+					// res == null -> pageerror khi load. Chi bao loi khi that
+					// su co ma thuoc can tra cuu; dong trong thi bo qua.
+					if (res != null && res.length) {
 						$("#" + rowid + "_lsjdjdw").val(res[0].lsjdjdw);
 						$("#" + rowid + "_zxdwlsj").val(res[0].zxdwlsj);
 						$("#sel_dw_" + rowid).empty();
 						$("#sel_dw_" + rowid).append('<option value="bzdw" data-zhyz="' + res[0].bzs + '" selected>' + res[0].bzdw + '</option>');
 					}
-					else {
-						$.modalAlert(res.message, 'error');
+					else if (ypdm) {
+						$.modalAlert('Không tìm thấy thông tin tồn kho của thuốc.', 'error');
 					}
 				}
 			});
@@ -671,8 +675,14 @@
 					$("#gysCode").val(res.gyscode);
 					$("#gysmc").val(res.gysmc);
 				}
-				else {
-					$.modalAlert(res.message, 'error');
+				// QA-phase2 PDS-03: GetDjh chay ngay khi load (init). Voi
+				// form moi (khong co keyValue/crkId) GetCrkDjh tra null;
+				// nhanh cu doc res.message khi res == null -> pageerror
+				// "res is null" va init() dung giua chung. Khong co crkId
+				// thi bo qua lang (chua co chung tu de lay so); co crkId
+				// ma tra null thi bao loi that, khong dereference null.
+				else if (crkId) {
+					$.modalAlert('Không lấy được số chứng từ nhập kho.', 'error');
 				}
 			}
 		});

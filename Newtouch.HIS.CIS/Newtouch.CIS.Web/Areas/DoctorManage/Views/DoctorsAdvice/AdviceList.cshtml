@@ -2,7 +2,12 @@
 @{
     //Y lệnhTra cứu
     ViewBag.Title = "AdviceList";
-    Layout = null;
+    // QA-phase2 CIS-02: truoc day Layout = null nen trang doc lap khong co
+    // jQuery (script dung $ ngay lap tuc, bootstrap-contextmenu cung can
+    // jQuery -> "$/jQuery is not defined"). Dung _Index nhu trang cha
+    // DoctorsAdvice/Index. Khi view nay duoc nhung qua Partial thi Layout
+    // bi bo qua nen khong anh huong trang cha.
+    Layout = "~/Views/Shared/_Index.cshtml";
     //Y lệnh dài hạnInphiếuCóKhôngHiển thịchữ ký
     var isShowSign = SysConfigReader.String("IS_ShowSigner");
     //LấyInĐơn thuốccấu hình

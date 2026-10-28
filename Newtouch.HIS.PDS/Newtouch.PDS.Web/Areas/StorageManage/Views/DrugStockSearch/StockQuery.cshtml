@@ -90,7 +90,11 @@
     <div class="panel panel-default" style="margin-bottom: 5px;">
         <div class="panel-heading">
             <span>Tổng lượng thuốc > Trang hiện tại > </span>
-            <span id='yeCon'>Tổng giá lẻ：" + "đ</span>
+            @* QA-phase2 PDS-01: text tinh truoc day la manh noi chuoi JS
+               ("Tổng giá lẻ：" + "đ") lot ra HTML. Gia tri khoi tao dung
+               dinh dang cua loadComplete (toFixed(2)); gia tri that duoc
+               ComputePjzeAndLjze() cap nhat khi luoi load xong. *@
+            <span id='yeCon'>Tổng giá lẻ：0.00đ</span>
         </div>
         <div class="gridPanel" id="div-main">
             <table id="gridYPZL"></table>

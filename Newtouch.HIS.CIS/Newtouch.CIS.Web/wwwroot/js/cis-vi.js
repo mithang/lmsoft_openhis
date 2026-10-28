@@ -90,3 +90,38 @@
         }
     }
 })();
+
+// QA-phase2 CIS-03/PDS-05 (cung root cause, file nay cua CIS): framework-ui.js
+// cua static host dinh nghia $.modalMsg goi thang top.layer.msg(...) khong
+// guard; khi trang chay doc lap (khong co frame portal SSO cung cap layer)
+// moi loi AJAX cua framework (vd. bindSelect loi trong $.najax error) lai
+// nem them "top.layer is undefined" va che loi goc. Override nay, nap SAU
+// framework-ui.js trong _Index/_Form, giu nguyen hanh vi khi co layer, va
+// khi khong co layer thi hien toast khong chan (khong nem loi) thay vi crash.
+(function () {
+    $.modalMsg = function (content, type, msgtime) {
+        if (window.top && window.top.layer && window.top.layer.msg) {
+            if (!msgtime) { msgtime = 2000; }
+            if (type !== undefined) {
+                var icon = "";
+                if (type == 'success') { icon = "fa-check-circle"; }
+                if (type == 'ok') { icon = "fa-check-circle-o"; }
+                if (type == 'error') { icon = "fa-times-circle"; }
+                if (type == 'warning') { icon = "fa-exclamation-circle"; }
+                window.top.layer.msg(content, { icon: icon, time: msgtime, shift: 5 });
+                if (window.top.$) {
+                    window.top.$(".layui-layer-msg").find('i.' + icon).parents('.layui-layer-msg').addClass('layui-layer-msg-' + type);
+                }
+            } else {
+                window.top.layer.msg(content);
+            }
+            return;
+        }
+        var ms = msgtime || 2000;
+        var toast = document.createElement("div");
+        toast.textContent = content;
+        toast.style.cssText = "position:fixed;left:50%;top:20px;transform:translateX(-50%);z-index:100010;background:#333;color:#fff;padding:8px 16px;border-radius:4px;max-width:90%;font-size:14px;";
+        document.body.appendChild(toast);
+        setTimeout(function () { if (toast.parentNode) { toast.parentNode.removeChild(toast); } }, ms);
+    };
+})();

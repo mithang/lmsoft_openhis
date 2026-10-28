@@ -18,7 +18,11 @@
         <li><a href="/NurseManage/InpatientList/Index">Quản lý điều dưỡng (NurseManage)</a></li>
         <li><a href="/QueueManage/QueueInfo/Index">Quản lý hàng đợi (QueueManage)</a></li>
         <li><a href="/ReportManage/Report/Index">Báo cáo (ReportManage)</a></li>
-        <li><a href="/SystemManage/BaseData/Index">Quản trị hệ thống (SystemManage)</a></li>
+        @* QA-phase2 CIS-07: /SystemManage/BaseData/Index khong co controller
+           (controller that la SysBaseDataController, chi co endpoint du lieu)
+           nen link cu tra 404 rong. Tro ve trang SystemManage that dang chay
+           (AuxiliaryDictionary/Index co view + base Index) thay vi tao stub. *@
+        <li><a href="/SystemManage/AuxiliaryDictionary/Index">Quản trị hệ thống (SystemManage)</a></li>
         <li><a href="/TemplateManage/PresTemplate/Index">Quản lý mẫu (TemplateManage)</a></li>
     </ul>
     <p>Chức năng gốc: <a href="/MedicalRecord/Index">Bệnh án ngoại trú</a> | <a href="/PatientList/Index">Danh sách bệnh nhân</a> | <a href="/Prescription/Index">Đơn thuốc</a></p>

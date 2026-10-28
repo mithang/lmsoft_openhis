@@ -1,5 +1,12 @@
 @using Newtouch.Infrastructure;
 @{
+    // QA-phase2 CIS-02: trang nay dung DoctorManage/_Layout (chi co jQuery +
+    // bootstrap, khong co framework-ui/jqGrid) nen script inline chet o
+    // $.itemDetails (framework-ui.js) va gridmedicine() khong khoi tao duoc.
+    // Chuyen sang layout chuan _Index (co jQuery/jqGrid/framework-ui o head)
+    // nhu DoctorsAdvice/Index va AdviceList. Khi duoc nhung qua @Html.Partial
+    // trong DoctorsAdvice thi Layout bi bo qua nen flow cha khong doi.
+    Layout = "~/Views/Shared/_Index.cshtml";
     ViewBag.Title = "Nhập thuốc";
     var IsQyKssKz = (ViewBag.IsQyKssKz as bool?) ?? false;
     var qxjb = ViewBag.qxjb;

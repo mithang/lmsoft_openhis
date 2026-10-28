@@ -58,6 +58,15 @@ namespace Newtouch.CIS.Web.Controllers
             this._inpatientPatientDiagnosisRepo = inpatientPatientDiagnosisRepo;
 
         }
+        // QA-phase2 CIS-01: khong co Views/PatientList/Index.cshtml nen
+        // Index() ke thua tu base tra JSON "view not found". Redirect ve
+        // action danh sach that dang chay (PatientList) thay vi bia view moi.
+        [HttpGet]
+        public override IActionResult Index()
+        {
+            return RedirectToAction("PatientList");
+        }
+
         /// <summary>
         /// Danh sách bệnh nhân
         /// </summary>

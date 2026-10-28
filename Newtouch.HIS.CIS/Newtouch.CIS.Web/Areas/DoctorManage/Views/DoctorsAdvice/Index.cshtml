@@ -150,9 +150,34 @@
         text-align: center;
     }
 
+    /* QA-phase2 CIS-04: tab bar cu position:fixed cao ~2 hang (nhan tab xuong
+       dong o width 10%) trong khi khoi noi dung chi margin-top:40px nen tab
+       de len hang loc. Sticky van dinh dinh khi cuon nhung tham gia flow
+       nen noi dung luon nam duoi tab, khong phu thuoc chieu cao tab. */
+    /* QA-phase2 CIS-04/CIS-05: luoi nhieu cot rong hon viewport -> cho phep
+       cuon ngang trong than luoi (jqGrid tu dong bo header theo khi cuon
+       body) thay vi cot cuoi bi cat. */
+    #linkyzcx .ui-jqgrid-bdiv {
+        overflow-x: auto;
+    }
+
+    @@media (max-width: 768px) {
+        /* Mobile: tab khong ep 10% nua (chu khong doc duoc), de tab xuong
+           dong tu nhien va noi dung chay duoi; day la sua cuc bo, khong
+           redesign layout desktop. */
+        #myTab {
+            position: static;
+        }
+
+        ul.nav > li {
+            width: auto;
+            text-align: left;
+        }
+    }
+
 </style>
 @*Thanh điều hướng*@
-<ul class="nav nav-tabs navb-bg" id="myTab" style="position:fixed;top:0;z-index:100009;width:99%">
+<ul class="nav nav-tabs navb-bg" id="myTab" style="position:sticky;top:0;z-index:100009;width:99%">
     <li role="presentation"><a href="#linkyzcx" role="tab" data-toggle="tab">Y lệnhTra cứu</a></li>
 
     @if (!isOnlyLook)

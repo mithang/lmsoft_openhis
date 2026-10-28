@@ -57,6 +57,19 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         }
         // GET: NurseManage/InpatientList
+        // QA-phase2 CIS-01: khong co Areas/NurseManage/Views/InpatientList/Index.cshtml
+        // nen Index() ke thua tu base tra JSON "view not found". Redirect ve
+        // action danh sach noi tru that dang chay (Inpatient) thay vi bia view moi.
+        // Dung Redirect literal: route "default" trong Program.cs dang ky TRUOC
+        // route "areas" nen RedirectToAction (ke ca kem area) deu sinh URL
+        // khong area + area thanh query (da kiem chung live STG:
+        // /InpatientList/Inpatient?area=NurseManage -> 404).
+        [HttpGet]
+        public override IActionResult Index()
+        {
+            return Redirect("/NurseManage/InpatientList/Inpatient");
+        }
+
         public IActionResult Inpatient()
         {
             var bqAuth = _iBaseDataDmnService.GetWardListByStaffGh(UserIdentity.rygh, OrganizeId).FirstOrDefault();

@@ -35,6 +35,19 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
         {
             this.reportDmnService = reportDmnService;
         }
+
+        // QA-phase2 CIS-01: khong co Areas/ReportManage/Views/Report/Index.cshtml
+        // nen Index() ke thua tu base tra JSON "view not found". Redirect ve
+        // action quan ly bao cao that dang chay (ReportConfig) thay vi bia view moi.
+        // Dung Redirect literal: route "default" trong Program.cs dang ky TRUOC
+        // route "areas" nen RedirectToAction (ke ca kem area) deu sinh URL
+        // khong area + area thanh query (da kiem chung live STG:
+        // /Report/ReportConfig?area=ReportManage -> 404).
+        [HttpGet]
+        public override IActionResult Index()
+        {
+            return Redirect("/ReportManage/Report/ReportConfig");
+        }
         /// <summary>
         /// Phục hồi chức năngĐơn thuốc
         /// </summary>

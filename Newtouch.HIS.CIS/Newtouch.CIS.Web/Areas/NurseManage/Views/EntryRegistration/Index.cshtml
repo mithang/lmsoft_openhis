@@ -293,7 +293,11 @@
     function DefaultCheck() {
         debugger;
         var dss = $("div[id^='wardTree_']:first").attr("id");
-        var firstid = $("div[id^='wardTree_']:first").attr("id").replace("wardTree_", "");//gốctiếtđiểmKhu bệnhMã
+        // QA-phase2: cay khu co the rong (user khong co khu tren STG) thi
+        // attr("id") tra undefined, .replace se throw va chet ca ready handler.
+        // Khong co node thi khong co gi de chon mac dinh: thoat lang.
+        if (dss == undefined) { return; }
+        var firstid = dss.replace("wardTree_", "");//gốctiếtđiểmKhu bệnhMã
         //var firstid = $("div[id^='BQtree_']:first").attr("id").replace("BQtree_", "");//gốctiếtđiểmKhu bệnhMã
         //var firstid = "nkbq01";//gốctiếtđiểmKhu bệnhMã
         
