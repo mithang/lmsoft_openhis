@@ -103,7 +103,8 @@ img {
 }
 
 /* ---- 5. Lưới: wrapper cuộn ngang, chiến lược A (§4.2) ----------------- */
-/* Wrapper do Redesign.makeGridScrollable() bọc quanh .ui-jqgrid.
+/* Wrapper do Redesign.autoWrapGrids() tự bọc quanh mọi .ui-jqgrid
+   (makeGridScrollable() giữ lại để gọi tay khi cần).
    Không đặt min-width lên lưới: chiều rộng lưới do jqGrid tự tính từ
    tổng chiều rộng cột; wrapper chỉ việc cho cuộn khi lưới rộng hơn
    khung chứa. Cột neo dùng tính năng frozen có sẵn của jqGrid
