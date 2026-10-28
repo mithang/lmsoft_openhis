@@ -246,6 +246,13 @@ namespace Newtouch.Domain.Entity
         public string zxsjd { get; set; }
 
         public string nlmddm { get; set; }
+        // QA-phase2 (nhom B, muc 3): zy_lsyz o DB version nay KHONG co cot ztmbId
+        // (da kiem chung INFORMATION_SCHEMA ca demo lan STG; chi thieu dung cot nay),
+        // nen moi Queryable/Insert/Update qua entity nay deu loi "Invalid column
+        // name 'ztmbId'" (AdviceStop/AdviceDel). Danh dau IsIgnore thay vi doi schema
+        // demo; khong caller nao doc/ghi STAT.ztmbId (chi SQL tho o OrderExecution
+        // dung ten cot truc tiep, khong qua entity nay).
+        [SugarColumn(IsIgnore = true)]
         public string ztmbId { get; set; }
         public string ztId { get; set; }
         public string ztmc { get; set; }

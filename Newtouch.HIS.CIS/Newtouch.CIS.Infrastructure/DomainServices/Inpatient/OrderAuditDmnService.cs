@@ -33,12 +33,20 @@ namespace Newtouch.DomainServices
         public readonly IInpatientSTATOrderRepo _InpatientSTATOrderRepo;
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly IAllergyRepo _allergyRepo;
+        // QA-phase2 (nhom B, muc 1): _allergyRepo truoc day khai bao nhung khong bao
+        // gio duoc gan (ctor goc cua vendor cung vay), nen Inputskintestresults va
+        // Enteragain NRE ngay tai FindEntity dau tien du controller/view van goi
+        // live (NurseManage/OrderAuditController + InputresultsSkintest.cshtml).
+        // IAllergyRepo da dang ky DI san o CIS Web/API Program.cs nen chi can them
+        // tham so ctor, khong mo them duong moi.
         public OrderAuditDmnService(IInpatientLongTermOrderRepo InpatientLongTermOrderRepo,
-                                    IInpatientSTATOrderRepo InpatientSTATOrderRepo)
+                                    IInpatientSTATOrderRepo InpatientSTATOrderRepo,
+                                    IAllergyRepo allergyRepo)
             : base()
         {
             this._InpatientLongTermOrderRepo = InpatientLongTermOrderRepo;
             this._InpatientSTATOrderRepo = InpatientSTATOrderRepo;
+            this._allergyRepo = allergyRepo;
         }
 
         public IList<InpWardPatTreeVO> GetPatWardTree(string staffId)
@@ -449,24 +457,35 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
                 //        listcq += item.yzid + "','";                        
                 //    }
                 //}
-                if (!string.IsNullOrWhiteSpace(listcqzt) || !string.IsNullOrWhiteSpace(liscqyfzt))
+                // QA-phase2 (nhom B, muc 5): tham so hoa 2 cau IN nay. Gia tri zh1 /
+                // yfztbs den tu orderList do client POST (khong phai chi noi bo DB),
+                // nen noi chuoi cu cho phep chen SQL qua dau '. Giu nguyen ngu nghia:
+                // union all 2 select, cung dieu kien OrganizeId/zt, cung thu tu.
+                var cqztArr = orderList.Where(p => p.yzxz == (int)EnumYzxz.Cq && p.zh1 != null).Select(p => p.zh1).Distinct().ToArray();
+                var cqyfArr = orderList.Where(p => p.yzxz == (int)EnumYzxz.Cq && p.yfztbs != null).Select(p => p.yfztbs).Distinct().ToArray();
+                if (cqztArr.Length > 0 || cqyfArr.Length > 0)
                 {
                     string strsql = "";
-                    if (!string.IsNullOrWhiteSpace(listcqzt)) {
-                        strsql = @"select Id from zy_cqyz with(nolock) where yzh in('" + listcqzt + "') and OrganizeId=@orgId and zt=1 ";
-                    }
-                    if (!string.IsNullOrWhiteSpace(listcqzt) && !string.IsNullOrWhiteSpace(liscqyfzt))
-                        strsql += " union all";
-                    if (!string.IsNullOrWhiteSpace(liscqyfzt))
-                    {
-                        strsql += @" 
-                                select Id from zy_cqyz with(nolock) where yfztbs in('" + liscqyfzt + "') and OrganizeId=@orgId and zt=1 ";
-                    }
-                    var cqyzId = FindList<yzinfoVo>(strsql, new SqlParameter[] {
+                    var cqPars = new List<SqlParameter> {
                         new SqlParameter("orgId",user.OrganizeId),
                         new SqlParameter("jyyz",((int)EnumYzlx.jy).ToString() ),
                         new SqlParameter("jcyz",((int)EnumYzlx.jc).ToString() ),
-                    }).Select(p => p.Id).ToArray();
+                    };
+                    if (cqztArr.Length > 0) {
+                        var ph = cqztArr.Select((v, i) => "@cqzt" + i).ToArray();
+                        for (int i = 0; i < cqztArr.Length; i++) cqPars.Add(new SqlParameter("cqzt" + i, cqztArr[i]));
+                        strsql = @"select Id from zy_cqyz with(nolock) where yzh in(" + string.Join(",", ph) + ") and OrganizeId=@orgId and zt=1 ";
+                    }
+                    if (cqztArr.Length > 0 && cqyfArr.Length > 0)
+                        strsql += " union all";
+                    if (cqyfArr.Length > 0)
+                    {
+                        var ph = cqyfArr.Select((v, i) => "@cqyf" + i).ToArray();
+                        for (int i = 0; i < cqyfArr.Length; i++) cqPars.Add(new SqlParameter("cqyf" + i, cqyfArr[i]));
+                        strsql += @"
+                                select Id from zy_cqyz with(nolock) where yfztbs in(" + string.Join(",", ph) + ") and OrganizeId=@orgId and zt=1 ";
+                    }
+                    var cqyzId = FindList<yzinfoVo>(strsql, cqPars.ToArray()).Select(p => p.Id).ToArray();
                     if (cqyzId != null && cqyzId.Length > 0)
                     {
                         cqyzIds = string.Join("','", cqyzId);
@@ -476,23 +495,30 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
                         listcq += "','" + cqyzIds;
                     }
                 }
-                if (!string.IsNullOrWhiteSpace(jyjcyzhs) || !string.IsNullOrWhiteSpace(lislsyfzt))
+                var lsyzhArr = orderList.Where(p => p.yzxz == (int)EnumYzxz.Ls && p.zh1 != null).Select(p => p.zh1).Distinct().ToArray();
+                var lsyfArr = orderList.Where(p => p.yzxz == (int)EnumYzxz.Ls && p.yfztbs != null).Select(p => p.yfztbs).Distinct().ToArray();
+                if (lsyzhArr.Length > 0 || lsyfArr.Length > 0)
                 {
                     string strsql = "";
-                    if (!string.IsNullOrWhiteSpace(jyjcyzhs))
-                    {
-                        strsql = @"select Id from zy_lsyz with(nolock) where yzh in('" + jyjcyzhs + "') and OrganizeId=@orgId and zt=1 ";
-                    }
-                    if (!string.IsNullOrWhiteSpace(jyjcyzhs) && !string.IsNullOrWhiteSpace(lislsyfzt))
-                        strsql += " union all";
-                    if (!string.IsNullOrWhiteSpace(lislsyfzt))
-                    {
-                        strsql += @" 
-                                select Id from zy_lsyz with(nolock) where yfztbs in('" + lislsyfzt + "') and OrganizeId=@orgId and zt=1";
-                    }
-                    var jyjc = FindList<yzinfoVo>(strsql, new SqlParameter[] {
+                    var lsPars = new List<SqlParameter> {
                         new SqlParameter("orgId",user.OrganizeId),
-                    }).Select(p => p.Id).ToArray();
+                    };
+                    if (lsyzhArr.Length > 0)
+                    {
+                        var ph = lsyzhArr.Select((v, i) => "@lsyzh" + i).ToArray();
+                        for (int i = 0; i < lsyzhArr.Length; i++) lsPars.Add(new SqlParameter("lsyzh" + i, lsyzhArr[i]));
+                        strsql = @"select Id from zy_lsyz with(nolock) where yzh in(" + string.Join(",", ph) + ") and OrganizeId=@orgId and zt=1 ";
+                    }
+                    if (lsyzhArr.Length > 0 && lsyfArr.Length > 0)
+                        strsql += " union all";
+                    if (lsyfArr.Length > 0)
+                    {
+                        var ph = lsyfArr.Select((v, i) => "@lsyf" + i).ToArray();
+                        for (int i = 0; i < lsyfArr.Length; i++) lsPars.Add(new SqlParameter("lsyf" + i, lsyfArr[i]));
+                        strsql += @"
+                                select Id from zy_lsyz with(nolock) where yfztbs in(" + string.Join(",", ph) + ") and OrganizeId=@orgId and zt=1";
+                    }
+                    var jyjc = FindList<yzinfoVo>(strsql, lsPars.ToArray()).Select(p => p.Id).ToArray();
                     if (jyjc != null && jyjc.Length > 0)
                     {
                         jyjcIds = string.Join("','", jyjc);

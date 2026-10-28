@@ -909,7 +909,8 @@ GROUP BY d.Slbm ,M.sldmxId ,m.sldId ,d.sldh ,M.ypcode ,J.ypmc, ypsx.ypgg ,J.py ,
 		/// <returns></returns>
 		public List<DrugStockInfoVEntity> GetMedicinesrmList(string srm, string yfbmCode, string organizeId, int topCount = 100)
 		{
-			var sql = new StringBuilder(@"SELECT TOP " + topCount + " bmypxx.Ypdm, yp.ypmc, yp.dlCode, sfdl.dlmc, ypsx.ypgg gg, kcxx.yxq, CONVERT(INT, yp.bzs) bzs, yp.bzdw, yp.zxdw, kcxx.zhyz, yp.ycmc sccj ");
+			// QA-phase2 (nhom B, muc 5): TOP (@topCount) thay cho noi int vao SQL.
+			var sql = new StringBuilder(@"SELECT TOP (@topCount) bmypxx.Ypdm, yp.ypmc, yp.dlCode, sfdl.dlmc, ypsx.ypgg gg, kcxx.yxq, CONVERT(INT, yp.bzs) bzs, yp.bzdw, yp.zxdw, kcxx.zhyz, yp.ycmc sccj ");
 			sql.Append(@"
 ,CONVERT(INT,ISNULL(SUM(kcxx.kcsl-kcxx.djsl),0)) kcsl
 ,CONVERT(INT,ISNULL(SUM(kcxx.kcsl-kcxx.djsl)/kcxx.zhyz,0)) sl
@@ -934,7 +935,8 @@ ORDER BY yp.ypmc
 			{
 				new SugarParameter("@Organizeid", organizeId),
 				new SugarParameter("@yfbmCode", yfbmCode),
-				new SugarParameter("@srm", srm ?? "")
+				new SugarParameter("@srm", srm ?? ""),
+				new SugarParameter("@topCount", topCount)
 			};
 			return FindList<DrugStockInfoVEntity>(sql.ToString(), param);
 		}
@@ -949,7 +951,8 @@ ORDER BY yp.ypmc
 		/// <returns></returns>
 		public List<DrugStockInfoVEntity> GetValidMedicinesrmList(string srm, string yfbmCode, string organizeId, int topCount = 100)
 		{
-			var sql = new StringBuilder(@"SELECT TOP " + topCount + " bmypxx.Ypdm, yp.ypmc, yp.dlCode, sfdl.dlmc, ypsx.ypgg gg, CONVERT(INT, yp.bzs) bzs, yp.bzdw, yp.zxdw, kcxx.zhyz, yp.ycmc sccj ");
+			// QA-phase2 (nhom B, muc 5): TOP (@topCount) thay cho noi int vao SQL.
+			var sql = new StringBuilder(@"SELECT TOP (@topCount) bmypxx.Ypdm, yp.ypmc, yp.dlCode, sfdl.dlmc, ypsx.ypgg gg, CONVERT(INT, yp.bzs) bzs, yp.bzdw, yp.zxdw, kcxx.zhyz, yp.ycmc sccj ");
 			sql.Append(@"
 ,CONVERT(INT,ISNULL(SUM(kcxx.kcsl-kcxx.djsl),0)) kcsl
 ,CONVERT(INT,ISNULL(SUM(kcxx.kcsl-kcxx.djsl)/kcxx.zhyz,0)) sl
@@ -975,7 +978,8 @@ ORDER BY yp.ypmc
 			{
 				new SugarParameter("@Organizeid", organizeId),
 				new SugarParameter("@yfbmCode", yfbmCode),
-				new SugarParameter("@srm", srm ?? "")
+				new SugarParameter("@srm", srm ?? ""),
+				new SugarParameter("@topCount", topCount)
 			};
 			return FindList<DrugStockInfoVEntity>(sql.ToString(), param);
 		}
@@ -990,7 +994,8 @@ ORDER BY yp.ypmc
 		/// <returns></returns>
 		public List<DrugStockInfoVEntity> GetPcKcList(string ypdm, string yfbmCode, string organizeId, int topCount = 100)
 		{
-			var sql = new StringBuilder(@"SELECT TOP " + topCount + " bmypxx.Ypdm, kcxx.yxq, kcxx.pc, kcxx.ph ");
+			// QA-phase2 (nhom B, muc 5): TOP (@topCount) thay cho noi int vao SQL.
+			var sql = new StringBuilder(@"SELECT TOP (@topCount) bmypxx.Ypdm, kcxx.yxq, kcxx.pc, kcxx.ph ");
 			sql.Append(@"
 ,CONVERT(INT,ISNULL(SUM(kcxx.kcsl-kcxx.djsl),0)) kcsl
 ,CONVERT(INT,ISNULL(SUM(kcxx.kcsl-kcxx.djsl)/kcxx.zhyz,0)) sl
@@ -1011,7 +1016,8 @@ ORDER BY yp.ypmc
 			{
 				new SugarParameter("@Organizeid", organizeId),
 				new SugarParameter("@yfbmCode", yfbmCode),
-				new SugarParameter("@ypdm", ypdm)
+				new SugarParameter("@ypdm", ypdm),
+				new SugarParameter("@topCount", topCount)
 			};
 			return FindList<DrugStockInfoVEntity>(sql.ToString(), param);
 		}

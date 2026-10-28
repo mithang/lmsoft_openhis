@@ -514,11 +514,17 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
                 return new List<ModelBQBRYZZXTYInfoVO>();
             }
 
-            foreach (ModelZyTyYszyzIdInfoVO item in list)
+            // QA-phase2 (nhom B, muc 5): tham so hoa StrSQL. yszyzId/zxId la int
+            // nen noi chuoi cu kho bi chen, nhung van la SQL dong; dung tham so
+            // danh so theo mau IsTYHasOperated cung file. Giu nguyen hinh dang
+            // ket qua (2 cot yszyzId, zxId) va cau join phia sau khong doi.
+            var tyPars = new List<SugarParameter>();
+            for (int i = 0; i < list.Count; i++)
             {
-                //yszyzId += strstu + item.yszyzId;
-                //zxId += strstu + item.zxId;
-                StrSQL += strstu + " select yszyzId=" + item.yszyzId + ",zxId=" + item.zxId;
+                var item = list[i];
+                StrSQL += strstu + " select @yszyzId" + i + " as yszyzId, @zxId" + i + " as zxId";
+                tyPars.Add(new SugarParameter("@yszyzId" + i, item.yszyzId));
+                tyPars.Add(new SugarParameter("@zxId" + i, item.zxId));
                 strstu = " union all ";
             }
 
@@ -527,9 +533,8 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
                     + " ,p.sl,t.tysqczyh from (" + StrSQL + ")y join  NewtouchHIS_PDS..zy_yptymx t on y.yszyzId=t.yszyzId  and t.tybz = '1'"
                     + " join NewtouchHIS_PDS..zy_ypyzzxph p on y.zxId=p.zxId  "
                     + " where t.OrganizeId =@OrganizeId  ";
-            return this.FindList<ModelBQBRYZZXTYInfoVO>(sql, new SugarParameter[] {
-                new SugarParameter("@OrganizeId", OrganizeId ?? "")
-            });
+            tyPars.Add(new SugarParameter("@OrganizeId", OrganizeId ?? ""));
+            return this.FindList<ModelBQBRYZZXTYInfoVO>(sql, tyPars.ToArray());
         }
 
         /// <summary>

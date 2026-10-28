@@ -12,7 +12,13 @@ namespace Newtouch.Domain.Entity.Outpatient
     [SugarTable("mz_zsys")]
     public class OutpatientConsultDoctorEntity
     {
+        // QA-phase2 (nhom B, muc 3): cot Id cua mz_zsys la IDENTITY (da kiem chung
+        // COLUMNPROPERTY IsIdentity=1) nhung entity chi co [Key] nen SqlSugar INSERT
+        // kem Id tuong minh va loi "Cannot insert explicit value for identity
+        // column", chan ca SaveConsultDoctor (SubmitForm chay truoc UpdateZS). Giu
+        // [Key] (RepositoryBase.GetKeyProperty chi nhan [Key]) va them IsIdentity.
         [Key]
+        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public int Id { get; set; }
         public string OrganizeId { get; set; }
         public string gh { get; set; }

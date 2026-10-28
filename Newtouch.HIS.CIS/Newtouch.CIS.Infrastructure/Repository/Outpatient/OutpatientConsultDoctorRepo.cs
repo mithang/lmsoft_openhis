@@ -44,6 +44,12 @@ namespace Newtouch.Repository.Outpatient
                 return Update(dbEntity);
             }
             //Lưu
+            // QA-phase2 (nhom B, muc 3, noi tiep fix identity mz_zsys): controller
+            // chi set gh/zsCode/rq/OrganizeId, Create() khong set zt, trong khi cot
+            // zt NOT NULL va khong co default -> INSERT van loi NULL zt sau khi
+            // het loi identity. Row moi mac dinh la dang hoat dong (zt='1', dung
+            // dieu kien GetTodayDoctorByConsult/UpdateZS deu loc zt='1').
+            if (string.IsNullOrWhiteSpace(entity.zt)) entity.zt = "1";
             entity.Create();
             return Insert(entity);
         }
