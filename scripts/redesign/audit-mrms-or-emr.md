@@ -351,3 +351,101 @@ cắt ở mép, không có cột neo, không có nút "Xem thêm"/thẻ chi ti�
    (e) trạng thái rỗng theo §6.2; (f) sửa tràn trang đăng nhập; (g) footer
    tiếng Việt dùng chung (đợt chuẩn hóa chuỗi, không sửa lẻ).
 3. Không cần worker audit này chạy thêm vòng nào — audit đã dừng đúng phạm vi.
+
+## 10. BỔ SUNG sau khôi phục SQL (2026-10-28, sau khi điều phối viên xác nhận SQL đã hồi phục và tài khoản `000000` không bị khóa)
+
+> Phần này CHỈ làm đúng 3 mục còn thiếu ở §0/§9, không làm lại pass chính,
+> không sửa code, không commit, không khởi động/dừng app, không submit form,
+> không ghi database (kể cả STG). Ảnh mới đặt tên khác, không ghi đè ảnh đợt
+> trước. Probe JSON: `shots-redesign/supplement5.json`,
+> `shots-redesign/supplement6.json` (script probe ở `/tmp/audit_suppl5.py`,
+> `/tmp/audit_suppl6.py`, không lưu vào repo).
+> Lưu ý phương pháp: đăng nhập xác minh thành công bằng POST form
+> `/Login/CheckLogin` (tài khoản `000000`, mật khẩu md5 bằng `md5sum`,
+> trả `{"state":"success","message":"Đăng nhập thành công"}`) rồi đưa cookie
+> phiên vào Playwright — cách này có trong skill gstack-qa. Lần bấm nút
+> `#login_button` trực tiếp trong Firefox headless bị treo ở bước thực thi
+> click (timeout 30s) nên không dùng; đây là ghi nhận về công cụ headless,
+> KHÔNG kết luận là lỗi app, vì cùng endpoint đăng nhập thành công và phiên
+> sau đó mở được mọi trang dưới đây. Mobile = giả lập viewport, KHÔNG phải
+> app native.
+
+### 10.1. (1) Ảnh thật route EMR `MRHomePage/Main` — ĐÃ XÁC MINH ✅
+
+Route thật: `http://127.0.0.1:5235/MRHomePage/MRHomePage/Main`
+(area `MRHomePage`, controller `MRHomePageController`, action `Main()` —
+đối chiếu source, khớp với kết luận EMR-03 là `Index()` đã bị comment).
+Trang trả về trang thật, KHÔNG còn JSON lỗi.
+
+| Viewport | Đo thật | Ảnh |
+|---|---|---|
+| Desktop 1280 | URL đúng route `Main`, tiêu đề "Trang đầu bệnh án", document overflow **0** (scrollW 1280 = clientW 1280); nội dung thật: 6 tab ("Thông tin bệnh nhân / Danh sách chẩn đoán / Thông tin nhập viện / Danh sách phẫu thuật / Thông tin chi phí / Thông tin trang phụ"), form trang đầu đầy đủ + nút F2/F3/F6/F7/F8 cuối trang. Console errors: 2 lỗi giống nhau `can't access property "msg", top.layer is undefined` (chỉ quan sát trên trang `Main`, pass chính không đo trang này nên không so được với "console rỗng"). | `emr/mrhomepage-main-desktop-suppl.png` (bản đo lại: `emr/mrhomepage-main-desktop-suppl2.png`, cùng nội dung) |
+| Mobile 390×844 | URL đúng route `Main`, document overflow **0** (390 = 390); form hiển thị được nhưng **nhãn và trường không xếp dọc mà chồng lấn ngang**: các nhãn ("Phương thức thanh toán", "Giới tính", "Quốc tịch", "Dân tộc", "Ngày sinh", "Tuổi"…) đè lên nhau và lên trường nhập, nhiều trường bị cắt ở mép phải. Đây là lỗi bố cục form mobile của chính trang `Main`, không phải lỗi route. | `emr/mrhomepage-main-mobile-suppl.png` |
+
+| ID | Mức | Phát hiện |
+|---|---|---|
+| EMR-MAIN-01 | Đã đóng (route) | Route `Main` tồn tại và trả trang thật ở cả 2 viewport — mục (1) của §0 coi như xác minh xong; quyết định còn lại (sửa menu sang `Main` hay khôi phục `Index`) vẫn thuộc điều phối viên như §8. |
+| EMR-MAIN-M1 | Trung bình (mobile) | Form `Main` mobile không xếp dọc: nhãn/trường chồng lấn, khó nhập liệu trên viewport hẹp (§9.3, §9.7). |
+
+### 10.2. (2) Nút thu gọn/hamburger trang chủ mobile MRMS + EMR — KHÔNG CÓ NÚT BẤM ĐƯỢC ❌
+
+Đo trên trang chủ mobile 390×844 của cả 2 app, ở cả document chính và
+các iframe cùng nguồn: **ứng viên duy nhất là `a.btn.btnshrink`**
+(nút thu gọn của shell) — ở cả MRMS (5232) và EMR (5235) đều đo được
+`vis=false, w=0, h=0, x=0, y=0, display=block` (tồn tại trong DOM nhưng
+kích thước 0, không thể bấm bằng ngón tay hay bằng Playwright click).
+Không tìm thấy phần tử hamburger/`sidebar-toggle`/`fa-bars` nào khác
+đang hiển thị. Vì không có nút nào ở trạng thái bấm được nên **không có
+hành vi sau-bấm nào để đo** — trường `clicked` = null ở cả 2 app, và ảnh
+trước/sau giống hệt nhau theo từng byte (EMR: md5 `39249f8e…` cho cả
+`home-mobile-suppl-before.png` và `home-mobile-suppl2-before.png`;
+MRMS: `home-mobile-suppl2-before.png` = `home-mobile-suppl2-after.png`,
+70.812 byte). Console errors trên trang chủ mobile cả 2 app: `[]`.
+
+| App | Ảnh trước/sau (không đổi) | Kết luận |
+|---|---|---|
+| EMR 5235 | `emr/home-mobile-suppl-before.png`, `emr/home-mobile-suppl-after.png` (+ bản đo lại `emr/home-mobile-suppl2-before.png`, `emr/home-mobile-suppl2-after.png`) | Shell mobile không có hamburger bấm được; sidebar vẫn là dải hẹp như §4.2; kết luận §6c giữ nguyên và nay đã xác minh trong điều kiện phiên còn sống (không còn là "chưa xác minh được"). |
+| MRMS 5232 | `mrms/home-mobile-suppl2-before.png`, `mrms/home-mobile-suppl2-after.png` | Như EMR: `btnshrink` 0×0, không có nút thay thế nào hiển thị. |
+
+| ID | Mức | Phát hiện |
+|---|---|---|
+| MRMS-HOME-M1 / EMR-HOME-M1 (bổ sung) | Chặn (mobile) — đã xác minh | Không phải "chưa rõ nút ở đâu" nữa: nút thu gọn tồn tại nhưng có kích thước 0 trên mobile, người dùng không thể mở/đóng sidebar (§9.1, §9.2, §10: hamburger luôn thấy được < 992px). |
+
+### 10.3. (3) Cuộn ngang bên trong lưới NursingRecord (EMR) mobile — KHÔNG CUỘN ĐƯỢC ❌
+
+Đo trên `http://127.0.0.1:5235/MedicalRecordManage/NursingRecord/Index`
+ở viewport 390×844, lưới `#gbox_gridList` (`.ui-jqgrid-bdiv`):
+
+- `.ui-jqgrid-bdiv`: `scrollW = 3496, clientW = 3496` — bản thân vùng lưới
+  rộng đúng bằng nội dung nên **không có gì để cuộn bên trong nó**;
+  `scrollLeft` đặt thành 1000 vẫn giữ nguyên `0`.
+- Chuỗi tổ tiên: `.ui-jqgrid-view` 3498/3498, `.ui-jqgrid` 3500/3498
+  (chỉ thừa 2px, đặt `scrollLeft = 1500` vẫn giữ `0`), `#gridPanel` và
+  `.dv-right` có `clientW = 0` nhưng `scrollW = 3500` (không cuộn được),
+  `.dv-body` `scrollW = 3705, clientW = 390` nhưng `overflowX = visible`,
+  và `BODY` `overflowX = hidden` — tức **cả cuộn trang cũng bị chặn**.
+- Ảnh sau khi thử cuộn (`emr/nursingrecord-mobile-suppl-scrolled.png`,
+  `emr/nursingrecord-mobile-suppl-scrolled2.png`) giống hệt ảnh trước khi
+  cuộn (23.561 byte): vẫn chỉ thấy các cột đầu ("Số nhập viện", "Họ tên",
+  "Ngày", "Nhiệt độ…"), mọi cột sau đều không với tới được bằng cuộn
+  ngang hay cuộn trang. Console errors trên trang này: `[]`.
+- Ghi nhận thêm (không phải phát hiện mới): một lần tải trang
+  NursingRecord ở vòng probe đầu làm tab Firefox headless bị crash
+  (`TargetClosedError: Page crashed`); chạy lại trên trình duyệt mới với
+  cùng URL thì tải và đo bình thường — với RAM trống ~1,2 GB lúc đó,
+  đây nhiều khả năng là sự cố tài nguyên headless, KHÔNG kết luận là lỗi
+  app; không lặp lại crash ở 2 lần chạy sau.
+
+| ID | Mức | Phát hiện |
+|---|---|---|
+| EMR-NURS-01 (bổ sung) | Cao (mobile) — đã xác minh | Lưới NursingRecord mobile **không cuộn ngang được bằng bất kỳ cơ chế nào**: bdiv không thừa chiều rộng để cuộn, tổ tiên không cuộn được, body chặn cuộn trang. Các cột sau "Nhiệt độ" là không với tới được trên mobile — xác nhận giả thuyết ở §4.4 thành phát hiện chắc chắn; chiến lược A (§6d: wrapper cuộn + cột neo) là bắt buộc, không phải tùy chọn. |
+
+### 10.4. Kết luận phần bổ sung
+
+- 3/3 mục còn thiếu đã có kết quả đo thật, không mục nào còn treo:
+  (1) `Main` có ảnh thật cả 2 viewport ✅ (kèm lỗi form mobile mới
+  EMR-MAIN-M1); (2) hamburger mobile **không bấm được** ở cả MRMS và EMR
+  (nút 0×0) ❌; (3) lưới NursingRecord mobile **không cuộn ngang được** ❌.
+- Không phát hiện lỗi 500 hay trang không tải được trong 3 mục này;
+  không thay đổi code, không commit, không ghi database, không khởi động/
+  dừng app trong suốt phần bổ sung.
