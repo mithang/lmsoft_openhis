@@ -80,8 +80,8 @@
                     </td>
                     <td class="formTitle" style="width: 240px;">
                         <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
-                        <input type="button" id="btn_print" class="btn btn-md btn-primary" value="In" />
-                        <input type="button" id="btn_expiredDrugsSearch" class="btn btn-md btn-primary" value="Tra cứu thuốc hết hạn" />
+                        <input type="button" id="btn_print" class="btn btn-md btn-default" value="In" />
+                        <input type="button" id="btn_expiredDrugsSearch" class="btn btn-md btn-default" value="Tra cứu thuốc hết hạn" />
                     </td>
                 </tr>
             </table>
@@ -209,7 +209,7 @@
             postData: getSearchPostData(),
             url: "/StorageManage/DrugStockSearch/DrugAndStockSearchByPage",
             colModel: [
-                { label: 'Tên thuốc', name: 'ypmc', width: 150, align: 'left' },
+                { label: 'Tên thuốc', name: 'ypmc', width: 150, align: 'left', frozen: true },
                 { label: 'Mã BHYT quốc gia', name: 'gjybdm', width: 100, align: 'left' },
                 { label: 'Mã thuốc', name: 'ypdm', width: 60, align: 'left' },
                 { label: 'Quy cách', name: 'gg', width: 100, align: 'left' },

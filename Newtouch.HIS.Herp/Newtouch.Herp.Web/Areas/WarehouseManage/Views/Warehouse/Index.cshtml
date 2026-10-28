@@ -7,19 +7,19 @@
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="$.reload()"><span class="fa fa-refresh"></span></a>
+            <a class="btn btn-default" onclick="$.reload()" aria-label="Tải lại" title="Tải lại"><span class="fa fa-refresh"></span></a>
         </div>
         <div class="btn-group">
             <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Thêm mới</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+            <a class="btn btn-default" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
+            <a class="btn btn-danger" onclick="btn_delete()" style="margin-left:16px;"><i class="fa fa-trash-o"></i>Xóa</a>
         </div>
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="btn_synce()"><i class="fa fa fa-exchange"></i>Đồng bộ vật tư</a>
+            <a class="btn btn-default" onclick="btn_synce()"><i class="fa fa fa-exchange"></i>Đồng bộ vật tư</a>
         </div>
     </div>
     <div class="search">
@@ -29,7 +29,7 @@
                     <div class="input-group">
                         <input id="txt_keyword" type="text" class="form-control" placeholder="Tên" style="width: 180px;">
                         <span class="input-group-btn">
-                            <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
+                            <button id="btn_search" type="button" class="btn btn-primary" aria-label="Tìm kiếm" title="Tìm kiếm"><i class="fa fa-search"></i></button>
                         </span>
                     </div>
                 </td>
@@ -54,8 +54,8 @@
             ExpandColumn: "address",
             height: $(window).height() - 90,
             colModel: [
-                { label: "Khóa chính", name: "Id", hidden: true, key: true },
-                { label: 'Tên kho', name: 'name', width: 190, align: 'left' },
+                { label: "Khóa chính", name: "Id", hidden: true, key: true, frozen: true },
+                { label: 'Tên kho', name: 'name', width: 190, align: 'left', frozen: true },
                 { label: 'Vị trí', name: 'address', width: 190, align: 'left' },
                 { label: 'Cấp', name: 'level', width: 40, align: 'left' },
                 { label: 'Ghi chú', name: 'remark', width: 150, align: 'left' },
@@ -187,4 +187,22 @@
             }
         });
     }
+</script>
+
+<script>
+// PER-APP (B) redesign: nut "Sua" chi bat khi co dong duoc chon (trang thai truc quan;
+// handler btn_edit() von da chan khi chua chon - day chi la lop vo hieu truc quan).
+$(function () {
+    try {
+        var $editBtn = $(".toolbar a[onclick=\"btn_edit()\"]");
+        function rdSyncEditState() {
+            var sel = $("#gridList").jqGrid("getGridParam", "selrow");
+            var has = !!sel;
+            $editBtn.toggleClass("disabled", !has);
+            $editBtn.attr("aria-disabled", has ? "false" : "true");
+        }
+        $("#gridList").on("jqGridSelectRow jqGridGridComplete jqGridAfterGridComplete", rdSyncEditState);
+        rdSyncEditState();
+    } catch (e) { /* tang cuong giao dien: khong lam hong trang neu luoi chua khoi tao */ }
+});
 </script>

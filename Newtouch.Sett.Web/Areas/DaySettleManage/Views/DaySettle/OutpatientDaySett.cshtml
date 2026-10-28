@@ -31,7 +31,7 @@
 <div class="topPanel">
     <div class="toolbar">
         <div class="btn-group">
-            <a class="btn btn-primary" onclick="$.reload()"><span class="glyphicon glyphicon-refresh"></span></a>
+            <a class="btn btn-default" onclick="$.reload()" aria-label="Tải lại" title="Tải lại"><span class="glyphicon glyphicon-refresh"></span></a>
         </div>
     </div>
     <div class="search">
@@ -88,9 +88,9 @@
             postData: getSearchPostData(),
             height: $(window).height() - 175,
             colModel: [
-             { label: "Khóa chính", name: "Id", hidden: true, key: true },
+             { label: "Khóa chính", name: "Id", hidden: true, key: true, frozen: true },
              {
-                 label: "này lần Số tiền quyết toán", name: "bcje", width: 100, align: "left",
+                 label: "này lần Số tiền quyết toán", name: "bcje", width: 100, align: "left", frozen: true,
                  formatter: function (val) {
                      if (val) {
                          return val.toFixed(2);

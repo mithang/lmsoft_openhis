@@ -89,11 +89,11 @@
             <span class="glyphicon glyphicon-chevron-left btn-lg"></span>
         </div>
         <div class="panel panel-default">
-            <input type="button" id="btn_delete" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Hủy" />
+            <input type="button" id="btn_delete" class="btn btn-danger" style="width:7%;display:inline-block;float:right;margin-left:16px;margin-top:30px;" value="Hủy" />
             @*<input type="button" id="btn_receive" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Nghiệm thu" />*@
-            <input type="button" id="btn_submit" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Truyền báo" />
-            <input type="button" id="btn_edit" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Sửa" />
-            <input type="button" id="btn_add" class="btn btn-info" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Tạo mới" />
+            <input type="button" id="btn_submit" class="btn btn-default" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Truyền báo" />
+            <input type="button" id="btn_edit" class="btn btn-default" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Sửa" />
+            <input type="button" id="btn_add" class="btn btn-primary" style="width:7%;display:inline-block;float:right;margin-left:20px;margin-top:30px;" value="Tạo mới" />
 
             <input type="button" id="btn_writeTest" class="btn btn-info" style="width:7%;display:none;float:right;margin-left:20px;margin-top:30px;" value="Kiểm thử lập báo cáo" />
             <input type="button" id="btn_sureTest" class="btn btn-info" style="width:7%;display:none;float:right;margin-left:20px;margin-top:30px;" value="Kiểm thử xác nhận" />
@@ -141,8 +141,8 @@
             postData: {  kssj: $("#kssj").val(), jssj: $("#jssj").val(),ddzt:0 },
             colModel: [
 
-                { label: 'cgId', name: 'cgId', hidden: true },
-                { label: 'Thời gian đơn hàng', name: 'ddsj', width: 120, align: 'left' },
+                { label: 'cgId', name: 'cgId', hidden: true, frozen: true },
+                { label: 'Thời gian đơn hàng', name: 'ddsj', width: 120, align: 'left', frozen: true },
                 {
                     label: 'Điểm giao hàng', name: 'psdbm', width: 120, align: 'left', formatter: function (cellvalue) {
                         return "上海明德五官科医院";
@@ -470,4 +470,22 @@
         });
     });
 
+</script>
+
+<script>
+// PER-APP (B) redesign: nut "Sua" chi bat khi co dong duoc chon (trang thai truc quan;
+// handler von da chan khi chua chon - day chi la lop vo hieu truc quan).
+$(function () {
+    try {
+        function rdSyncEditState() {
+            var sel = $("#gridList").jqGrid("getGridParam", "selrow");
+            var arr = $("#gridList").jqGrid("getGridParam", "selarrrow");
+            var has = !!sel || (arr && arr.length > 0);
+            $("#btn_edit").prop("disabled", !has);
+            $("#btn_edit").attr("aria-disabled", has ? "false" : "true");
+        }
+        $("#gridList").on("jqGridSelectRow jqGridGridComplete jqGridAfterGridComplete", rdSyncEditState);
+        rdSyncEditState();
+    } catch (e) { /* tang cuong giao dien: khong lam hong trang neu luoi chua khoi tao */ }
+});
 </script>

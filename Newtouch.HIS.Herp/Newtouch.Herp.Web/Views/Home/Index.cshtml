@@ -2,9 +2,11 @@
 <html>
 <head>
     <meta charset="utf-8" />
-    <title>Herp — Trang chủ hệ thống quản lý vật tư (ASP.NET Core 6.0)</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trang chủ — Hệ thống quản lý vật tư</title>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-tokens.css", false)" rel="stylesheet" />
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/common.css")" rel="stylesheet" />
     <style>
         .dashboard-stats { float: left; width: 20%; }
@@ -17,9 +19,42 @@
         .panel-default > .panel-heading { color: #777; background-color: #fff; border-color: #e6e6e6; padding: 10px 10px; }
         .panel-default > .panel-body { padding: 10px; padding-bottom: 0; }
     </style>
+    @* REDESIGN home-responsive (chặng C): dashboard trong iframe co giãn theo viewport.
+       KPI: desktop giữ tối đa 5 thẻ/hàng (float gốc), tablet 3 cột, mobile 2 cột
+       (class .rd-kpi-grid của foundation + rule con ở đây vì thẻ KPI dùng float 20%);
+       2 cột biểu đồ xếp dọc ở <=991px; không scale, không thu nhỏ font. *@
+    <style>
+        #areascontent { min-width: 0; }
+        @@media (max-width: 767px) { body { padding: 16px !important; } }
+        .dashboard-stats-item h5, .dashboard-stats-item h4 { padding-right: 40px; line-height: 1.35; }
+        @@media (max-width: 991px) {
+            #areascontent .rows > div { float: none !important; width: 100% !important; }
+            #areascontent .rows > div > div { height: auto !important; }
+            #container { min-width: 0 !important; width: 100% !important; }
+            canvas { max-width: 100% !important; }
+        }
+        @@media (max-width: 767px) {
+            .rd-kpi-grid { display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; }
+            .rd-kpi-grid::before, .rd-kpi-grid::after { display: none !important; content: none !important; }
+            .rd-kpi-grid > * { float: none !important; width: auto !important; }
+            .rd-kpi-grid .dashboard-stats, .rd-kpi-grid .dashboard-statss { float: none !important; width: auto !important; }
+            .rd-kpi-grid .dashboard-stats-item { margin-right: 0 !important; height: auto !important; min-height: 105px; padding: 16px 12px; }
+            .rd-kpi-grid .dashboard-stats-item h2 { font-size: 28px; line-height: 1.2; }
+            .rd-kpi-grid .dashboard-stats-item h5, .rd-kpi-grid .dashboard-stats-item h4 { line-height: 1.35; white-space: normal; }
+            .rd-kpi-grid .dashboard-stats-item .stat-icon { font-size: 22px; }
+        }
+        @@media (min-width: 768px) and (max-width: 991px) {
+            .rd-kpi-grid { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+            .rd-kpi-grid::before, .rd-kpi-grid::after { display: none !important; content: none !important; }
+            .rd-kpi-grid > * { float: none !important; width: auto !important; }
+            .rd-kpi-grid .dashboard-stats, .rd-kpi-grid .dashboard-statss { float: none !important; width: auto !important; }
+            .rd-kpi-grid .dashboard-stats-item { margin-right: 0 !important; height: auto !important; min-height: 105px; }
+            .rd-kpi-grid .dashboard-stats-item h5, .rd-kpi-grid .dashboard-stats-item h4 { line-height: 1.35; white-space: normal; }
+        }
+    </style>
 </head>
 <body style="padding: 20px 30px; font-family: sans-serif;">
-    <h2>Herp — Hệ thống quản lý vật tư (bản ASP.NET Core 6.0)</h2>
+    <h1>Trang chủ — Hệ thống quản lý vật tư</h1>
     <p>
         <a href="/WarehouseManage/Warehouse/Index">Quản lý kho</a> |
         <a href="/BillManage/ApplyBill/Query">Quản lý phiếu</a> |
@@ -35,14 +70,14 @@
         <a href="/Home/KfChange">Chuyển kho hiện tại</a> |
         <a href="/Login/OutLogin">Đăng xuất</a>
     </p>
-    <p id="p_msgalert" style="color:#a94442;">Đang tải cảnh báo…</p>
+    <p id="p_msgalert" style="color:#6b7280;">Đang tải cảnh báo…</p>
     <div id="areascontent">
         <div class="rows" style="margin-bottom: 1%; border: 1px solid #e6e6e6; overflow: hidden; padding-left: 1px;">
             <div class="panel panel-default">
                 <div class="panel-heading">
                     <i class="fa fa-line-chart fa-lg" style="padding-right: 5px;"></i>Số lượng cần xử lý
                 </div>
-                <div class="panel-body" style="width:100%" id="dv_needDeal"></div>
+                <div class="panel-body rd-kpi-grid" style="width:100%" id="dv_needDeal"></div>
             </div>
         </div>
         <div class="rows" style="overflow: hidden;">
@@ -226,7 +261,15 @@
         }
 
         // Vẽ biểu đồ tròn
+        // REDESIGN home-responsive: panel trống không để trắng trơn — trạng thái rỗng
+        // trung tính + hành động tiếp theo, không bịa số liệu.
         function GetLeaveChart(pData) {
+            var total = 0;
+            if (pData) { for (var i = 0; i < pData.length; i++) { total += Number(pData[i].y) || 0; } }
+            if (!pData || pData.length === 0 || total === 0) {
+                $("#container").html('<div class="rd-empty"><div style="font-size:28px;">&#9432;</div><p>Chưa có số liệu nhập kho trong năm nay.</p><p class="rd-empty-action"><a class="btn btn-default" href="/PurchaseManage/Purchase/Index">Xem quản lý mua sắm</a></p></div>');
+                return;
+            }
             Highcharts.chart('container', {
                 chart: {
                     plotBackgroundColor: null,

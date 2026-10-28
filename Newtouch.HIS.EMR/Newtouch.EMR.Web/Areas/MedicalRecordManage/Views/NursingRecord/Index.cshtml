@@ -147,11 +147,11 @@
                                 &nbsp;
                                 <input type="button" id="btn_add" class="btn btn-primary" value=" Nhập mới " />
                                 &nbsp;
-                                <input type="button" id="btn_edit" class="btn btn-primary" value=" Sửa " />
+                                <input type="button" id="btn_edit" class="btn btn-default" value=" Sửa " />
                                 &nbsp;
-                                <input type="button" id="btn_delete" class="btn btn-primary" value=" Hủy hiệu lực " />
+                                <input type="button" id="btn_delete" class="btn btn-danger" style="margin-left:16px;" value=" Hủy hiệu lực " />
                                 &nbsp;
-                                <input type="button" id="btn_export" class="btn btn-primary" value=" In " />
+                                <input type="button" id="btn_export" class="btn btn-default" value=" In " />
                                 &nbsp;
                             </td>
                         </tr>
@@ -538,4 +538,21 @@
 	}
 
 
+</script>
+
+<script>
+// PER-APP (B) redesign: nut "Sua" chi bat khi co dong duoc chon (trang thai truc quan;
+// handler von da chan khi chua chon - day chi la lop vo hieu truc quan).
+$(function () {
+    try {
+        function rdSyncEditState() {
+            var sel = $("#gridList").jqGrid("getGridParam", "selrow");
+            var has = !!sel;
+            $("#btn_edit").prop("disabled", !has);
+            $("#btn_edit").attr("aria-disabled", has ? "false" : "true");
+        }
+        $("#gridList").on("jqGridSelectRow jqGridGridComplete jqGridAfterGridComplete", rdSyncEditState);
+        rdSyncEditState();
+    } catch (e) { /* tang cuong giao dien: khong lam hong trang neu luoi chua khoi tao */ }
+});
 </script>

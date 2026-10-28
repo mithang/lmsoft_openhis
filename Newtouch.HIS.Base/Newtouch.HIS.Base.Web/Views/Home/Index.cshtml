@@ -9,7 +9,8 @@
     <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache,no-store, must-revalidate">
     <META HTTP-EQUIV="pragma" CONTENT="no-cache">
     <META HTTP-EQUIV="expires" CONTENT="0">
-    <title>Y tế đám mâyHIS.BASEHệ thống</title>
+    <title>Trang chủ — Quản trị dữ liệu cơ sở</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link rel="shortcut icon" href="@MvcHelper.GetStaticResourceScriptUrl("~/img/newtouchcloud.ico")">
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery/jquery.choose.js")"></script>
@@ -31,6 +32,21 @@
             document.write(linkHtml);
         }
     </script>
+    @* REDESIGN home-responsive (chặng C): trang chủ standalone-responsive tối thiểu.
+       Không ép shell portal; chỉ sửa khung trang chủ này: khi sidebar ẩn ở
+       viewport hẹp, vùng nội dung + iframe phải chiếm toàn bộ chiều rộng
+       (trước đây iframe chỉ còn ~170px ở 390px dù sidebar đã display:none).
+       Không dùng transform:scale, không thu nhỏ font để nhét vừa. *@
+    <style>
+        @@media (max-width: 991px) {
+            #theme-wrapper #page-wrapper { width: 100%; }
+            #theme-wrapper #content-wrapper { margin-left: 0 !important; width: 100% !important; max-width: 100%; }
+            #theme-wrapper #content-wrapper .content-iframe { overflow-x: auto; -webkit-overflow-scrolling: touch; }
+            #theme-wrapper #content-wrapper .content-iframe { clear: both; }
+            #theme-wrapper #content-wrapper iframe.Newtouch_iframe { width: 100% !important; max-width: 100% !important; min-width: 0; }
+            #theme-wrapper .content-tabs { max-width: 100%; }
+        }
+    </style>
 </head>
 <body style="overflow: hidden;" class="hold-transition skin-blue sidebar-mini" onload="Onload()" id="bodyPageHomeIndex"
             data-appid="@(Newtouch.Infrastructure.Constants.AppId)"
@@ -234,6 +250,7 @@
                     </section>
                 </div>
                 <div id="content-wrapper">
+        <h1 class="sr-only">Trang chủ — Quản trị dữ liệu cơ sở</h1>
                     <div class="content-tabs">
                         <button class="roll-nav roll-left tabLeft">
                             <i class="fa fa-backward"></i>

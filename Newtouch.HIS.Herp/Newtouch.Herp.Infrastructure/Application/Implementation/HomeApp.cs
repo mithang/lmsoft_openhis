@@ -55,7 +55,7 @@ namespace Newtouch.Herp.Application.Implementation
                             <h2 class='m-top-none' id='h_tjshCount'></h2>
                             <h5>Duyệt điều chỉnh giá</h5>
                             <div class='stat-icon'>
-                                <i class='fa fa-cny fa-3x'></i>
+                                <span style='font-size:42px;font-weight:700;line-height:1;' aria-hidden='true'>₫</span>
                             </div>
                         </div>
                     </div>

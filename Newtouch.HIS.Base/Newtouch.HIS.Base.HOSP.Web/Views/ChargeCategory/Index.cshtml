@@ -11,7 +11,7 @@
             <a id="NF-add" authorize="yes" class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
         </div>
         <div class="btn-group">
-            <a id="NF-edit" class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
+            <a id="NF-edit" class="btn btn-default" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
         </div>
     </div>
     <div class="search">
@@ -21,7 +21,7 @@
                     <div class="input-group">
                         <input id="txt_keyword" type="text" class="form-control" placeholder="Tên" style="width: 180px;">
                         <span class="input-group-btn">
-                            <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                            <button id="btn_search" type="button" class="btn  btn-primary" aria-label="Tìm kiếm" title="Tìm kiếm"><i class="fa fa-search"></i></button>
                         </span>
                     </div>
                 </td>
@@ -57,8 +57,8 @@
             url: "/ChargeCategory/GetTreeGridJson",
             height: $(window).height() - 128,
             colModel: [
-                 { label: "Khóa chính", name: "dlId", hidden: true, key: true },
-                    { label: 'Tên', name: 'dlmc', width: 150, align: 'left' },
+                 { label: "Khóa chính", name: "dlId", hidden: true, key: true, frozen: true },
+                    { label: 'Tên', name: 'dlmc', width: 150, align: 'left', frozen: true },
                   { label: "Mã", name: "dlCode", width: 100, align: 'left' },
                  {
                      label: "Cờ ngoại trú/nội trú", name: "mzzybz", width: 100, align: "left",
@@ -181,3 +181,20 @@
 
 </script>
 
+<script>
+// PER-APP (B) redesign: nut "Sua" chi bat khi co dong duoc chon (trang thai truc quan;
+// handler btn_edit() von da chan khi chua chon - day chi la lop vo hieu truc quan).
+$(function () {
+    try {
+        var $editBtn = $(".toolbar a[onclick=\"btn_edit()\"]");
+        function rdSyncEditState() {
+            var sel = $("#gridList").jqGrid("getGridParam", "selrow");
+            var has = !!sel;
+            $editBtn.toggleClass("disabled", !has);
+            $editBtn.attr("aria-disabled", has ? "false" : "true");
+        }
+        $("#gridList").on("jqGridSelectRow jqGridGridComplete jqGridAfterGridComplete", rdSyncEditState);
+        rdSyncEditState();
+    } catch (e) { /* tang cuong giao dien: khong lam hong trang neu luoi chua khoi tao */ }
+});
+</script>

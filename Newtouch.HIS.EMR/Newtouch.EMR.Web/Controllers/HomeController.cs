@@ -25,6 +25,17 @@ namespace Newtouch.EMR.Web.Controllers
         }
 
         /// <summary>
+        /// Root users' default tab (see Views/Home/_IndexContentWrapper.cshtml:
+        /// defaultPage is "/Home/Default" when Operator IsRoot). The view is a
+        /// standalone dashboard needing no model; previously the missing action
+        /// made the root default tab 404. Added in the redesign program.
+        /// </summary>
+        public IActionResult Default()
+        {
+            return View();
+        }
+
+        /// <summary>
         /// Business-field auto value (increment + format), via stored procedure spFieldGetNewID.
         /// Called by the template Form views.
         /// </summary>

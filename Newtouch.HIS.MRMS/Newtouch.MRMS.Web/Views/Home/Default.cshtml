@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title></title>
+    <title>Trang chủ — Quản lý bệnh án</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-ui.css")" rel="stylesheet" />
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery/jquery-2.1.1.min.js")"></script>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-tokens.css", false)" rel="stylesheet" />
     <style>.panel-body li a{display:inline-block;max-width:72%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;vertical-align:bottom}</style>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" />
@@ -88,6 +90,38 @@
             $("#d_value").html(d_value + " người");
         }
     </script>
+    @* REDESIGN home-responsive (chặng C): dashboard trong iframe co giãn theo viewport.
+       KPI: desktop giữ tối đa 5 thẻ/hàng (float gốc), tablet 3 cột, mobile 2 cột
+       (class .rd-kpi-grid của foundation + rule con ở đây vì thẻ KPI dùng float 20%);
+       2 cột biểu đồ xếp dọc ở <=991px; không scale, không thu nhỏ font. *@
+    <style>
+        #areascontent { min-width: 0; }
+        .dashboard-stats-item h5, .dashboard-stats-item h4 { padding-right: 40px; line-height: 1.35; }
+        @@media (max-width: 991px) {
+            #areascontent .rows > div { float: none !important; width: 100% !important; }
+            #areascontent .rows > div > div { height: auto !important; }
+            #container { min-width: 0 !important; width: 100% !important; }
+            canvas { max-width: 100% !important; }
+        }
+        @@media (max-width: 767px) {
+            .rd-kpi-grid { display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; }
+            .rd-kpi-grid::before, .rd-kpi-grid::after { display: none !important; content: none !important; }
+            .rd-kpi-grid > * { float: none !important; width: auto !important; }
+            .rd-kpi-grid .dashboard-stats, .rd-kpi-grid .dashboard-statss { float: none !important; width: auto !important; }
+            .rd-kpi-grid .dashboard-stats-item { margin-right: 0 !important; height: auto !important; min-height: 105px; padding: 16px 12px; }
+            .rd-kpi-grid .dashboard-stats-item h2 { font-size: 28px; line-height: 1.2; }
+            .rd-kpi-grid .dashboard-stats-item h5, .rd-kpi-grid .dashboard-stats-item h4 { line-height: 1.35; white-space: normal; }
+            .rd-kpi-grid .dashboard-stats-item .stat-icon { font-size: 22px; }
+        }
+        @@media (min-width: 768px) and (max-width: 991px) {
+            .rd-kpi-grid { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+            .rd-kpi-grid::before, .rd-kpi-grid::after { display: none !important; content: none !important; }
+            .rd-kpi-grid > * { float: none !important; width: auto !important; }
+            .rd-kpi-grid .dashboard-stats, .rd-kpi-grid .dashboard-statss { float: none !important; width: auto !important; }
+            .rd-kpi-grid .dashboard-stats-item { margin-right: 0 !important; height: auto !important; min-height: 105px; }
+            .rd-kpi-grid .dashboard-stats-item h5, .rd-kpi-grid .dashboard-stats-item h4 { line-height: 1.35; white-space: normal; }
+        }
+    </style>
 </head>
 <body>
     <div id="areascontent">
@@ -99,7 +133,7 @@
                             <iframe name="weather_inc" src="http://i.tianqi.com/index.php?c=code&id=1" width="330" height="35" frameborder="0" marginwidth="0" marginheight="0" scrolling="no"></iframe>
                         </div>*@
                 </div>
-                <div class="panel-body">
+                <div class="panel-body rd-kpi-grid">
                     <div class="dashboard-stats">
                         <div class="dashboard-stats-item" style="background-color: #fc8675;">
                             <h2 class="m-top-none">8</h2>
