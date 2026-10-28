@@ -1,4 +1,4 @@
-using Newtonsoft.Json.Linq;
+﻿using Newtonsoft.Json.Linq;
 
 namespace Newtouch.Sett.API.Models
 {
@@ -35,14 +35,21 @@ namespace Newtouch.Sett.API.Models
             return new ResponseBaseOld { code = ResultCode.SUCCESS, msg = msg, data = data, sub_code = "", sub_msg = "" };
         }
 
+        // QA PHASE 2 (SETT-01): sub_code trước đây luôn rỗng (trừ vài nơi
+        // truyền tay như 10001-10003) nên client chỉ đọc sub_code tưởng lỗi
+        // không có mã. Nay Fail/Error tự điền mã mặc định khi caller không
+        // truyền (msg GIỮ NGUYÊN — 8016 đọc msg, xem ghi chú envelope ở trên).
+        // Cố tình KHÔNG điền sub_msg ở đây: 8016 nối msg+sub_code+sub_msg
+        // thành msg (điền sub_msg sẽ nhân đôi msg), và ở nhánh SUCCESS thì
+        // sub_msg mang JSON Pagination cho Y009 (không được đụng vào).
         public static ResponseBaseOld Fail(string msg, string subCode = "")
         {
-            return new ResponseBaseOld { code = ResultCode.FAIL, msg = msg, data = null, sub_code = subCode ?? "", sub_msg = "" };
+            return new ResponseBaseOld { code = ResultCode.FAIL, msg = msg, data = null, sub_code = string.IsNullOrWhiteSpace(subCode) ? "SETT_FAIL" : subCode, sub_msg = "" };
         }
 
         public static ResponseBaseOld Error(string msg)
         {
-            return new ResponseBaseOld { code = ResultCode.ERROR, msg = msg, data = null, sub_code = "", sub_msg = "" };
+            return new ResponseBaseOld { code = ResultCode.ERROR, msg = msg, data = null, sub_code = "SETT_ERROR", sub_msg = "" };
         }
     }
 

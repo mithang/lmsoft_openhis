@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtouch.HIS.Base.HOSP.API.Envelope;
@@ -57,7 +57,8 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
                 {
                     resp.code = ResponseResultCode.FAIL;
                     resp.sub_code = "AUTH_FAILED";
-                    resp.sub_msg = "";
+                    // QA PHASE 2 (API-09): trước đây sub_msg rỗng.
+                    resp.sub_msg = "UserId, AppId và OrganizeId không được để trống";
                     return;
                 }
                 var ident = new Newtouch.HIS.Domain.Entity.AccessIdentity();

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtouch.CIS.API.Envelope;
 using Newtouch.CIS.API.Requests;
 using Newtouch.CIS.API.Services;
@@ -27,6 +27,7 @@ namespace Newtouch.CIS.API.Controllers
 
         /// <summary>Tra cứu thông tin khám bệnh của bệnh nhân.</summary>
         [HttpPost("PatientTreatmentInfoQuery")]
+        [DefaultAuthorize]
         public IActionResult PatientTreatmentInfoQuery([FromBody] PatientTreatmentInfoQueryRequestDTO request)
         {
             var response = CommonExecute<PatientTreatmentInfoQueryRequestDTO, DefaultResponse>((req, resp) =>

@@ -1,4 +1,4 @@
-namespace Newtouch.EMR.API.Models
+﻿namespace Newtouch.EMR.API.Models
 {
     /// <summary>
     /// API caller identity (port of the original UserIdentity : Identity).
@@ -25,6 +25,15 @@ namespace Newtouch.EMR.API.Models
         public int code { get; set; }
         public string msg { get; set; }
         public object data { get; set; }
+        /// <summary>QA PHASE 2 (API-11): thêm sub_code/sub_msg cho tương thích
+        /// dần với envelope chuẩn {code, sub_code, sub_msg, data} của các API
+        /// anh em. CHỈ THÊM field, không bỏ/đổi code/msg/data — client cũ parse
+        /// {code,msg,data} vẫn chạy (parser JSON bỏ qua field lạ). Trong cây
+        /// repo không có client HTTP nào parse EMR.API (EMR Web gọi repo trực
+        /// tiếp), nên đổi envelope hoàn toàn sang dạng chuẩn được hoãn lại:
+        /// client ngoài chưa xác minh được.</summary>
+        public string sub_code { get; set; }
+        public string sub_msg { get; set; }
     }
 
     /// <summary>Marker attribute: skip token decryption/validation for this action (port of the binary IgnoreTokenDecrypt).</summary>

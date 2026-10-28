@@ -143,7 +143,10 @@ namespace NewtouchHIS.Lib.Base.Filter
                     {
                         var result = (ValidationProblemDetails)objectResult.Value;
                         var resultmsg = string.Join(';', result.Errors.Select(p => string.Join(',', p.Value)).ToList());
-                        context.Result = new JsonResult(Result.BuildResult(null, resultmsg, watch.ElapsedMilliseconds, ResponseResultCode.ERROR));
+                        // QA PHASE 2 (CTR-03): lỗi thiếu tham số là FAIL (40004),
+                        // không phải ERROR hệ thống (20000) — client phân biệt
+                        // được "thiếu tham số" với "lỗi hệ thống".
+                        context.Result = new JsonResult(Result.BuildResult(null, resultmsg, watch.ElapsedMilliseconds, ResponseResultCode.FAIL));
                         return;
                     }
                     else if (objectResult.Value is ProblemDetails)
@@ -223,6 +226,10 @@ namespace NewtouchHIS.Lib.Base.Filter
                 errormsg = $"PATH:{path}======";
 #endif
                 errormsg = $"[Ngoại lệ]:{errormsg}{context.Exception.Message}";
+                // QA PHASE 2 (API-13/CTR-07): lỗi DB (provider + ConfigId + tiếng
+                // Trung) không rò ra client; chi tiết đầy đủ vẫn nằm trong log
+                // server qua LogTrackingAttribute/exception pipeline.
+                errormsg = DbErrorSanitizer.Sanitize(context.Exception, errormsg);
                 //Lấy danh sách tham số tiêu đề yêu cầu
                 //var Headers_keys = "Token";
                 //object hk = context.HttpContext.Request.Headers.Where(x => Headers_keys.Contains(x.Key)).ToList();
@@ -236,7 +243,12 @@ namespace NewtouchHIS.Lib.Base.Filter
                         result = Result.BuildResult(ex.Data, ex.Msg, watch.ElapsedMilliseconds, ResponseResultCode.FAIL);
                         break;
                     default:
-                        result = Result.BuildResult(context.Exception.InnerException, errormsg, watch.ElapsedMilliseconds, ResponseResultCode.ERROR);
+                        // QA PHASE 2 (API-13/CTR-07): với lỗi DB, BusData.data
+                        // cũng không được mang InnerException (serialize
+                        // exception sẽ rò provider/ConfigId/stack trace).
+                        result = Result.BuildResult(
+                            DbErrorSanitizer.IsDbError(context.Exception) ? null : context.Exception.InnerException,
+                            errormsg, watch.ElapsedMilliseconds, ResponseResultCode.ERROR);
                         break;
                 }
                 //Trả về nội dung lỗi

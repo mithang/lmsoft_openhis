@@ -1,8 +1,10 @@
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Newtouch.HIS.Base.HOSP.API.Services;
 using Newtonsoft.Json;
 
@@ -105,14 +107,45 @@ namespace Newtouch.HIS.Base.HOSP.API.Envelope
             }
             catch (Exception ex)
             {
-                while (ex.InnerException != null) ex = ex.InnerException;
+                var inner = ex;
+                while (inner.InnerException != null) inner = inner.InnerException;
                 response.code = ResponseResultCode.ERROR;
                 response.sub_code = "INTERNAL_SERVER_ERROR";
-                response.sub_msg = ex.Message;
+                response.sub_msg = SanitizeDbError(ex, inner);
             }
             return response;
         }
 
+
+        /// <summary>QA PHASE 2 (API-13): lỗi mất kết nối DB không được rò ra client
+        /// (provider error + ConfigId + tiếng Trung của lớp DB). Chỉ lỗi DB mới bị
+        /// thay bằng thông điệp chung; các lỗi khác giữ nguyên message. Chi tiết
+        /// đầy đủ được ghi vào log server qua ILoggerFactory khi resolve được.</summary>
+        private string SanitizeDbError(System.Exception ex, System.Exception inner)
+        {
+            for (var e = ex; e != null; e = e.InnerException)
+            {
+                var typeName = e.GetType().FullName ?? "";
+                var msg = e.Message ?? "";
+                if (typeName.Contains("Sql") || e is System.Data.Common.DbException
+                    || msg.Contains("ConfigId=") || msg.Contains("network-related")
+                    || msg.Contains("instance-specific") || msg.Contains("连接数据库"))
+                {
+                    try
+                    {
+                        var lf = HttpContext?.RequestServices?.GetService(typeof(Microsoft.Extensions.Logging.ILoggerFactory))
+                            as Microsoft.Extensions.Logging.ILoggerFactory;
+                        lf?.CreateLogger(GetType().FullName ?? "ApiControllerBase")
+                            ?.LogError(ex, "DB error sanitized for client response");
+                    }
+                    catch
+                    {
+                    }
+                    return "Không kết nối được cơ sở dữ liệu, vui lòng liên hệ quản trị viên";
+                }
+            }
+            return inner.Message;
+        }
         private static void MapIdentityToRequest(Identity identity, RequestBase request)
         {
             var prop = request.GetType().GetProperty("OrganizeId");

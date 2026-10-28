@@ -62,6 +62,11 @@ namespace Newtouch.Application.Implementation
             };
             try
             {
+                // QA PHASE 2 (API-06): thiếu jzxx trước đây NRE ở jzxx.mzh và
+                // catch trả desc = text NullReference với code "0" (không phải
+                // envelope chuẩn — contract {code,desc} của nền tảng GuiAn giữ
+                // nguyên, chỉ sửa validation/thông điệp, không đổi envelope).
+                if (jzxx == null) return new Result { code = "0", desc = "Thông tin khám bệnh (jzxx) không được để trống" };
                 if (CheckIsUpload(jzxx.mzh, organizeId)) return result;
                 var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", organizeId);
                 if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration");
@@ -115,10 +120,30 @@ namespace Newtouch.Application.Implementation
             }
             catch (Exception e)
             {
+                // QA PHASE 2 (API-06): NullReference (thường do field null trong
+                // jzxx) không được rò text exception ra desc; lỗi nghiệp vụ khác
+                // (thiếu cấu hình cmm_configuration...) giữ nguyên message để
+                // nền tảng đối tác còn chẩn đoán được.
+                // QA PHASE 2 (API-13): lỗi DB (SqlSugar/SqlException, message chứa
+                // ConfigId/provider/tiếng Trung) cũng không được rò ra desc —
+                // đường này không qua CommonExecute nên sanitize tại chỗ với
+                // cùng marker set như DbErrorSanitizer ở tầng API.
+                var fullMsg = e.Message + (e.InnerException == null ? "" : e.InnerException.Message);
+                var isDbError = e.GetType().Name.Contains("Sql")
+                    || (e.InnerException != null && e.InnerException.GetType().Name.Contains("Sql"))
+                    || fullMsg.Contains("ConfigId=")
+                    || fullMsg.Contains("network-related")
+                    || fullMsg.Contains("instance-specific")
+                    || fullMsg.Contains("连接数据库");
+                var desc = e is NullReferenceException
+                    ? "Dữ liệu khám bệnh không đầy đủ, vui lòng kiểm tra và thử lại"
+                    : isDbError
+                        ? "Không kết nối được cơ sở dữ liệu, vui lòng liên hệ quản trị viên"
+                        : fullMsg;
                 result = new Result
                 {
                     code = "0",
-                    desc = e.Message + (e.InnerException == null ? "" : e.InnerException.Message)
+                    desc = desc
                 };
                 LogCore.Error("OutpatientCmmManagerApp TcmHis01 error", e, result.ToJson());
             }

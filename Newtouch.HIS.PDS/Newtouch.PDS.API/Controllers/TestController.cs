@@ -2,7 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Newtouch.HIS.Application.Implementation;
 using Newtouch.PDS.API.Envelope;
 using Newtouch.PDS.API.Services;
-using Newtouch.PDS.Requset.ResourcesOperate;
 
 namespace Newtouch.PDS.API.Controllers
 {
@@ -39,17 +38,12 @@ namespace Newtouch.PDS.API.Controllers
             return Content(new TestMultithreadTransApp().testEFDbTransaction(), "text/plain");
         }
 
-        // Gốc KHÔNG gọi CommonExecute ở action này: nó tạo DefaultResponse, gán SUCCESS
-        // và trả luôn, bất kể request có Timestamp hay field bắt buộc hay không.
-        // Bản port giữ nguyên hành vi đó (không kiểm tra token/Timestamp/Validate).
-        [HttpPost("TestToken")]
-        public IActionResult TestToken([FromBody] OutpatientCommitRequestDTO request)
-        {
-            var response = new DefaultResponse
-            {
-                code = ResponseResultCode.SUCCESS,
-            };
-            return CreateResponse(response);
-        }
+        // QA PHASE 2 (API-12): TestToken ĐÃ XÓA. Gốc trả SUCCESS vô điều kiện
+        // (không CommonExecute, không token/Timestamp/Validate); caller duy nhất
+        // tìm thấy là ConsoleApp test của bản gốc (không thuộc deployment), nên
+        // xóa hẳn thay vì gắn auth — endpoint kiểm thử không có chỗ trong vận
+        // hành thật. TestMultithreadTrans/TestEFDbTransaction vẫn còn (chạy
+        // transaction thử nghiệm) — cần quyết định vô hiệu hóa riêng trước khi
+        // vận hành thật, xem báo cáo qa-phase2/api-auth.md.
     }
 }

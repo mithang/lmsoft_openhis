@@ -1,4 +1,4 @@
-
+﻿
 using Newtouch.Application.Interface;
 using Newtouch.CIS.APIRequest.Dto;
 using Newtouch.CIS.APIRequest.Prescription;
@@ -26,16 +26,16 @@ namespace Newtouch.Application.Implementation
         {
             if (requestDto == null)
             {
-                throw new FailedException("yêu cầubáovănvàkhông thểlàtrống");
+                throw new FailedException("Yêu cầu (báo văn) không được để trống"); // QA PHASE 2 (API-08): chuỗi gốc bị mojibake
             }
             if (string.IsNullOrWhiteSpace(requestDto.body))
             {
-                throw new FailedException("báovănbodykhông thểlàtrống");
+                throw new FailedException("Body của báo văn không được để trống"); // QA PHASE 2 (API-08): chuỗi gốc bị mojibake
             }
             var o = requestDto.body.ToObject<MqGeneralTaskBody>();
             if (o == null)
             {
-                throw new FailedException("bodyphảnthứ tựcộthóathất bại，kếtnếulànull");
+                throw new FailedException("Phân tích body thất bại (kết quả null)"); // QA PHASE 2 (API-08): chuỗi gốc bị mojibake
             }
 
             switch (o.OperationType)
@@ -45,7 +45,7 @@ namespace Newtouch.Application.Implementation
                     if (!string.IsNullOrWhiteSpace(pr)) throw new FailedException(pr);
                     break;
                 default:
-                    throw new FailedException("chưakhớpphốiđếnhưởngứngcủachỗlýdòngtrình，vui lòngXemOperationTypeGán giá trịlàKhôngđangxác");
+                    throw new FailedException("Chưa khớp được quy trình xử lý tương ứng, vui lòng kiểm tra OperationType có đúng không"); // QA PHASE 2 (API-08): chuỗi gốc bị mojibake
             }
         }
 

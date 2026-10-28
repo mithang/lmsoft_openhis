@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtouch.HIS.Application.Interface;
 using Newtouch.PDS.API.Envelope;
 using Newtouch.PDS.API.Services;
@@ -26,6 +26,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("SupplementPatientBaseInfo")]
+        [DefaultAuthorize]
         public IActionResult SupplementPatientBaseInfo([FromBody] SupplementPatientBaseInfoRequest par)
         {
             var response = CommonExecute<SupplementPatientBaseInfoRequest, DefaultResponse>((req, resp) =>

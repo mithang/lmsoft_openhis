@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Newtouch.HIS.Base.HOSP.API.Envelope;
@@ -22,6 +22,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
         }
 
         [HttpPost("Query")]
+        [DefaultAuthorize]
         public ContentResult Query([FromBody] MedicineStorageIOModeQueryRequest request)
         {
             System.Action<MedicineStorageIOModeQueryRequest, DefaultResponse> ac = (req, resp) =>

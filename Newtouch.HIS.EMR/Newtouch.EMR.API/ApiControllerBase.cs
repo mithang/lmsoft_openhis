@@ -1,4 +1,6 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Newtouch.EMR.API.Models;
 using Newtouch.EMR.Infrastructure;
 using Newtouch.HIS.API.Common;
@@ -86,6 +88,8 @@ namespace Newtouch.EMR.API
                 {
                     resp.code = APIRequestHelper.ResponseResultCode.FAIL;
                     resp.msg = "Token không hợp lệ hoặc đã hết hạn";
+                    resp.sub_code = "TOKEN_IS_EXPIRED";
+                    resp.sub_msg = resp.msg;
                     return resp;
                 }
                 action(request, resp);
@@ -94,12 +98,46 @@ namespace Newtouch.EMR.API
             }
             catch (Exception ex)
             {
+                var inner = ex;
+                while (inner.InnerException != null) inner = inner.InnerException;
                 resp.code = APIRequestHelper.ResponseResultCode.ERROR;
-                resp.msg = ex.Message;
+                resp.msg = SanitizeDbError(ex, inner);
+                resp.sub_code = "INTERNAL_SERVER_ERROR";
+                resp.sub_msg = resp.msg;
             }
             return resp;
         }
 
+
+        /// <summary>QA PHASE 2 (API-13): lỗi mất kết nối DB không được rò ra client
+        /// (provider error + ConfigId + tiếng Trung của lớp DB). Chỉ lỗi DB mới bị
+        /// thay bằng thông điệp chung; các lỗi khác giữ nguyên message. Chi tiết
+        /// đầy đủ được ghi vào log server qua ILoggerFactory khi resolve được.</summary>
+        private string SanitizeDbError(System.Exception ex, System.Exception inner)
+        {
+            for (var e = ex; e != null; e = e.InnerException)
+            {
+                var typeName = e.GetType().FullName ?? "";
+                var msg = e.Message ?? "";
+                if (typeName.Contains("Sql") || e is System.Data.Common.DbException
+                    || msg.Contains("ConfigId=") || msg.Contains("network-related")
+                    || msg.Contains("instance-specific") || msg.Contains("连接数据库"))
+                {
+                    try
+                    {
+                        var lf = HttpContext?.RequestServices?.GetService(typeof(Microsoft.Extensions.Logging.ILoggerFactory))
+                            as Microsoft.Extensions.Logging.ILoggerFactory;
+                        lf?.CreateLogger(GetType().FullName ?? "ApiControllerBase")
+                            ?.LogError(ex, "DB error sanitized for client response");
+                    }
+                    catch
+                    {
+                    }
+                    return "Không kết nối được cơ sở dữ liệu, vui lòng liên hệ quản trị viên";
+                }
+            }
+            return inner.Message;
+        }
         protected ContentResult CreateResponse(DefaultResponse response)
         {
             return Content(JsonConvert.SerializeObject(response), "application/json");

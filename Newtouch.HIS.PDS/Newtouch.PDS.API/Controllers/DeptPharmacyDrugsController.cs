@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtouch.PDS.API.Envelope;
 using Newtouch.PDS.API.Services;
 using Newtouch.PDS.Requset.DeptPharmacyDrugs;
@@ -20,6 +20,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("GetDeptPharmacyDrugs")]
+        [DefaultAuthorize]
         public IActionResult GetDeptPharmacyDrugs([FromBody] DeptPharmacyDrugsRequset par)
         {
             var response = CommonExecute<DeptPharmacyDrugsRequset, DefaultResponse>((req, resp) =>

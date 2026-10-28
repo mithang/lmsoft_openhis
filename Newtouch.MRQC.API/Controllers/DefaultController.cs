@@ -1,4 +1,4 @@
-using System.Linq;
+﻿using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Newtouch.MRQC.API.Envelope;
 using Newtouch.MRQC.API.Requests;
@@ -26,6 +26,7 @@ namespace Newtouch.MRQC.API.Controllers
 
         /// <summary>Trả toàn bộ Sys_Config (đúng hành vi gốc: không lọc theo keyword).</summary>
         [HttpPost("Query")]
+        [DefaultAuthorize]
         public IActionResult Query([FromBody] DefaultQueryRequest par)
         {
             var response = CommonExecute<DefaultQueryRequest, DefaultResponse>((req, resp) =>

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtouch.CIS.API.Envelope;
 using Newtouch.CIS.API.Requests;
 using Newtouch.CIS.API.Services;
@@ -16,8 +16,13 @@ namespace Newtouch.CIS.API.Controllers
     /// action đều đọc UserIdentity.OrganizeId: gọi không kèm token sẽ rơi về
     /// envelope lỗi hệ thống (bản gốc sẽ NullReference 500) — hành vi này được
     /// giữ nguyên, chỉ khác là lỗi trả về dạng envelope thay vì crash.
-    /// 3 action tra cứu là đọc (live-test được); KeepAnAppointment GHI dữ liệu —
-    /// code chạy thật nhưng KHÔNG live-test ghi trong task này.
+    /// 3 action tra cứu là đọc; KeepAnAppointment GHI dữ liệu.
+    /// QA PHASE 2 (API-02/API-04): cả 4 action gắn [DefaultAuthorize] — caller
+    /// hợp pháp là Sett (SiteCISAPIHelper mặc định tự kèm token); luồng đặt hẹn
+    /// công khai không token không tồn tại trong cây port (site đặt hẹn của Sett
+    /// đã bị stub hoá, callsite KeepAnAppointment gốc trong Sett đã bị comment).
+    /// Trước đây KeepAnAppointment không token với mzyyghId thật sẽ ghi thật vì
+    /// repo call không dùng UserIdentity (khác Prescription: NRE ở OrganizeId).
     /// </summary>
     [ApiController]
     [Route("api/MzBespeakRegister")]
@@ -37,6 +42,7 @@ namespace Newtouch.CIS.API.Controllers
         }
 
         [HttpPost("MzBespeakRegisterQuery")]
+        [DefaultAuthorize]
         public IActionResult MzBespeakRegisterQuery([FromBody] MzBespeakRegisterQueryRequestDTO request)
         {
             var response = CommonExecute<MzBespeakRegisterQueryRequestDTO, DefaultResponse>((req, resp) =>
@@ -48,6 +54,7 @@ namespace Newtouch.CIS.API.Controllers
         }
 
         [HttpPost("MzBespeakRegisterSchedulingQuery")]
+        [DefaultAuthorize]
         public IActionResult MzBespeakRegisterSchedulingQuery([FromBody] SysBespeakRegisterQueryRequestDTO request)
         {
             var response = CommonExecute<SysBespeakRegisterQueryRequestDTO, DefaultResponse>((req, resp) =>
@@ -59,6 +66,7 @@ namespace Newtouch.CIS.API.Controllers
         }
 
         [HttpPost("MzAlreadyBespeakRegisterCountQuery")]
+        [DefaultAuthorize]
         public IActionResult MzAlreadyBespeakRegisterCountQuery([FromBody] MzAlreadyBespeakRegisterCountQueryRequestDTO request)
         {
             var response = CommonExecute<MzAlreadyBespeakRegisterCountQueryRequestDTO, DefaultResponse>((req, resp) =>
@@ -70,6 +78,7 @@ namespace Newtouch.CIS.API.Controllers
         }
 
         [HttpPost("KeepAnAppointment")]
+        [DefaultAuthorize]
         public IActionResult KeepAnAppointment([FromBody] KeepAnAppointmentRequestDTO request)
         {
             var response = CommonExecute<KeepAnAppointmentRequestDTO, DefaultResponse>((req, resp) =>

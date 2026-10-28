@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtouch.HIS.Application.Interface;
 using Newtouch.PDS.API.Envelope;
 using Newtouch.PDS.API.Services;
@@ -25,6 +25,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("yzzx")]
+        [DefaultAuthorize]
         public IActionResult Yzzx([FromBody] ZyypyzzxRequest par)
         {
             var response = CommonExecute<ZyypyzzxRequest, DefaultResponse>((req, resp) =>

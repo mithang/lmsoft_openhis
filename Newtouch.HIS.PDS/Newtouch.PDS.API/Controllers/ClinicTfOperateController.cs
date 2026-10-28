@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtouch.HIS.Application.Implementation;
 using Newtouch.PDS.API.Envelope;
 using Newtouch.PDS.API.Services;
@@ -22,6 +22,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("UpdateCfByTf")]
+        [DefaultAuthorize]
         public IActionResult UpdateCfByTf([FromBody] ClinicTfOperateRequest par)
         {
             var response = CommonExecute<ClinicTfOperateRequest, DefaultResponse>((req, resp) =>

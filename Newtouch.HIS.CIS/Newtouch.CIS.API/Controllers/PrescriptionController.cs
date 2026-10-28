@@ -12,11 +12,15 @@ namespace Newtouch.CIS.API.Controllers
     /// (ctor chỉ nhận IComponentContext) — bản Core inject qua DI nên cả 3 action
     /// cập nhật trạng thái đều chạy thật. Cả 3 action đều GHI dữ liệu — code chạy
     /// thật nhưng KHÔNG live-test ghi trong task này, chỉ live-test envelope/token.
-    /// Controller gốc KHÔNG gắn [DefaultAuthorize]: UpdateChargeStatus và
-    /// UpdateChargeTbz đọc UserIdentity (gọi không kèm token sẽ rơi về envelope
-    /// lỗi thay vì NullReference 500 như gốc); UpdateChargeStatusApi gắn
-    /// [IgnoreTokenDecrypt] và tự null Token/TokenType rồi dùng OrganizeId/AppId
-    /// từ request — giữ nguyên semantics đó.
+    /// QA PHASE 2 (API-01): UpdateChargeStatus và UpdateChargeTbz gắn
+    /// [DefaultAuthorize] — caller hợp pháp là Sett Web, gọi qua
+    /// SiteCISAPIHelper.Request mặc định (tự kèm token của user đang đăng nhập).
+    /// UpdateChargeStatusApi KHÔNG gắn auth (cố tình giữ nguyên): kênh nội bộ
+    /// tokenless theo thiết kế gốc (tự null Token/TokenType, dùng OrganizeId/AppId
+    /// do request gửi — caller gốc là OrderDmnService của Sett); kênh này phải
+    /// được chặn ở tầng mạng (chỉ host Sett được tới CIS API), xem báo cáo
+    /// qa-phase2/api-auth.md. Trong cây port hiện tại, caller tokenless cũ
+    /// (Sett.API BookingRegister) không còn tồn tại.
     /// </summary>
     [ApiController]
     [Route("api/Prescription")]
@@ -32,6 +36,7 @@ namespace Newtouch.CIS.API.Controllers
 
         /// <summary>Cập nhật dấu hiệu thu phí đơn thuốc.</summary>
         [HttpPost("UpdateChargeStatus")]
+        [DefaultAuthorize]
         public IActionResult UpdateChargeStatus([FromBody] PrescriptionChargeRequest par)
         {
             var response = CommonExecute<PrescriptionChargeRequest, DefaultResponse>((req, resp) =>
@@ -71,6 +76,7 @@ namespace Newtouch.CIS.API.Controllers
 
         /// <summary>Cập nhật dấu hiệu trả phí đơn thuốc.</summary>
         [HttpPost("UpdateChargeTbz")]
+        [DefaultAuthorize]
         public IActionResult UpdateChargeTbz([FromBody] PrescriptionReturnChargeRequest par)
         {
             var response = CommonExecute<PrescriptionReturnChargeRequest, DefaultResponse>((req, resp) =>

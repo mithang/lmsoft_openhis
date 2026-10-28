@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Newtouch.Herp.API.Common;
@@ -32,6 +32,7 @@ namespace Newtouch.Herp.API.Controllers
 
         [HttpPost]
         [Route("Query")]
+        [DefaultAuthorize]
         public IActionResult Query([FromBody] DefaultQueryRequest request)
         {
             Action<DefaultQueryRequest, DefaultResponse> action = (req, resp) =>

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtouch.OR.API.Envelope;
 using Newtouch.OR.API.Requests;
 using Newtouch.OR.API.Services;
@@ -36,7 +36,8 @@ namespace Newtouch.OR.API.Controllers
                 {
                     resp.code = ResponseResultCode.FAIL;
                     resp.sub_code = "AUTH_FAILED";
-                    resp.sub_msg = "";
+                    // QA PHASE 2 (API-09): trước đây sub_msg rỗng.
+                    resp.sub_msg = "Access_token hoặc AppId không được để trống";
                     return;
                 }
 
@@ -45,7 +46,8 @@ namespace Newtouch.OR.API.Controllers
                 {
                     resp.code = ResponseResultCode.FAIL;
                     resp.sub_code = "AUTH_FAILED";
-                    resp.sub_msg = "";
+                    // QA PHASE 2 (API-09): trước đây sub_msg rỗng.
+                    resp.sub_msg = "Access_token không hợp lệ hoặc đã hết hạn";
                     return;
                 }
 

@@ -1,4 +1,4 @@
-using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Mvc;
 using Newtouch.HIS.Application.Interface;
 using Newtouch.PDS.API.Envelope;
 using Newtouch.PDS.API.Services;
@@ -13,6 +13,16 @@ namespace Newtouch.PDS.API.Controllers
     /// Bản Core inject IResourcesOperateApp qua DI nên các action chạy thật.
     /// OutpatientPartReturnBeforeDispensingMedicine mang [IgnoreTokenDecrypt] như gốc;
     /// ở bản port toàn bộ token đều dùng thô nên attribute chỉ còn ý nghĩa ghi chú.
+    /// QA PHASE 2 (API-03): chỉ 4 action gắn [DefaultAuthorize] (CancelPartBook,
+    /// CancelAllBook, CancelDjYpReturn, CancelArrangement — caller mang token được
+    /// hoặc không có caller tokenless). 5 action còn lại KHÔNG gắn vì caller thật
+    /// gọi tokenless có chủ đích: Book/BookModify (CIS MedicalRecordDmnService,
+    /// autoAppendToken: false), OutpatientCommit + PartReturnBeforeDispensing
+    /// (Sett Web Task.Run/refund thread, autoAppendToken: false),
+    /// HospitalizatiionReturnDispensingMedicine (CIS InpatientMedReturnDmnService,
+    /// autoAppendToken: false). Gắn auth vào 5 action này sẽ phá luồng thật;
+    /// chúng phải được chặn ở tầng mạng (chỉ host CIS/Sett được tới PDS API),
+    /// xem báo cáo qa-phase2/api-auth.md.
     /// </summary>
     [ApiController]
     [Route("api/ResourcesOperate")]
@@ -49,10 +59,21 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("OutpatientCancelPartBook")]
+        [DefaultAuthorize]
         public IActionResult OutpatientCancelPartBook([FromBody] OutpatientCancelPartBookRequestDTO request)
         {
             var response = CommonExecute<OutpatientCancelPartBookRequestDTO, DefaultResponse>((req, resp) =>
             {
+                // QA PHASE 2 (API-07b): Items null/rỗng trước đây rơi vào app
+                // (Items.Select) gây ArgumentNullException → 20000. Chặn sớm
+                // bằng FAIL tiếng Việt; caller hợp lệ luôn gửi Items thật.
+                if (req.Items == null || req.Items.Count == 0)
+                {
+                    resp.code = ResponseResultCode.FAIL;
+                    resp.sub_code = "FAILED";
+                    resp.sub_msg = "Danh sách hủy một phần không được để trống";
+                    return;
+                }
                 resp.data = _resourcesOperateApp.OutpatientCancelBook(req);
                 resp.code = ResponseResultCode.SUCCESS;
             }, request);
@@ -60,6 +81,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("OutpatientCancelAllBook")]
+        [DefaultAuthorize]
         public IActionResult OutpatientCancelAllBook([FromBody] OutpatientCancelAllBookRequestDTO request)
         {
             var response = CommonExecute<OutpatientCancelAllBookRequestDTO, DefaultResponse>((req, resp) =>
@@ -71,6 +93,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("OutpatientCancelDjYpReturn")]
+        [DefaultAuthorize]
         public IActionResult OutpatientCancelDjYpReturn([FromBody] OutpatientCancelAllBookRequestDTO request)
         {
             var response = CommonExecute<OutpatientCancelAllBookRequestDTO, DefaultResponse>((req, resp) =>
@@ -105,6 +128,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("OutpatientCancelArrangement")]
+        [DefaultAuthorize]
         public IActionResult OutpatientCancelArrangement([FromBody] OutpatientCancelArrangementRequestDTO request)
         {
             var response = CommonExecute<OutpatientCancelArrangementRequestDTO, DefaultResponse>((req, resp) =>

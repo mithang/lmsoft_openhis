@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Newtouch.EMR.API.Models;
@@ -60,12 +60,14 @@ namespace Newtouch.EMR.API.Controllers
                 {
                     resp.code = APIRequestHelper.ResponseResultCode.FAIL;
                     resp.msg = "TOKEN_TYPE_IS_REQUIRED: Loại token truy cập trống";
+                    resp.sub_code = "TOKEN_TYPE_IS_REQUIRED";
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(req.Account) || string.IsNullOrWhiteSpace(req.Password))
                 {
                     resp.code = APIRequestHelper.ResponseResultCode.FAIL;
                     resp.msg = "Tên đăng nhập và mật khẩu không được để trống";
+                    resp.sub_code = "AUTH_FAILED";
                     return;
                 }
                 var user = CheckPwd(req.Account, req.Password);
@@ -73,6 +75,7 @@ namespace Newtouch.EMR.API.Controllers
                 {
                     resp.code = APIRequestHelper.ResponseResultCode.FAIL;
                     resp.msg = "Tên đăng nhập hoặc mật khẩu không đúng, hoặc tài khoản đã bị khóa";
+                    resp.sub_code = "AUTH_FAILED";
                     return;
                 }
                 if (user.Locked == true)
@@ -83,6 +86,7 @@ namespace Newtouch.EMR.API.Controllers
                     // Locked = true.
                     resp.code = APIRequestHelper.ResponseResultCode.FAIL;
                     resp.msg = "Tài khoản đã bị khóa";
+                    resp.sub_code = "AUTH_FAILED";
                     return;
                 }
                 var configuredTopOrg = _config["BusinessConfig:Top_OrganizeId"] ?? _config["Top_OrganizeId"];
@@ -92,6 +96,7 @@ namespace Newtouch.EMR.API.Controllers
                 {
                     resp.code = APIRequestHelper.ResponseResultCode.FAIL;
                     resp.msg = "Tài khoản không thuộc phạm vi tổ chức của API này";
+                    resp.sub_code = "ORGANIZE_MISMATCH";
                     return;
                 }
                 var identity = new UserIdentity
@@ -108,6 +113,7 @@ namespace Newtouch.EMR.API.Controllers
                 {
                     resp.code = APIRequestHelper.ResponseResultCode.FAIL;
                     resp.msg = "Không lưu được token, vui lòng thử lại";
+                    resp.sub_code = "TOKEN_SAVE_FAILED";
                     return;
                 }
                 resp.code = APIRequestHelper.ResponseResultCode.SUCCESS;

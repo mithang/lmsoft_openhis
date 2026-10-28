@@ -1,4 +1,4 @@
-using Microsoft.Data.SqlClient;
+﻿using Microsoft.Data.SqlClient;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using Newtouch.Sett.API.Models;
@@ -34,8 +34,12 @@ namespace Newtouch.Sett.API.Services
         public ResponseBaseOld Dispatch(BookingRequest req)
         {
             if (req == null) return ResponseBaseOld.Fail("Vui lòng kiểm tra định dạng tham số có đúng không");
+            // QA PHASE 2 (SETT-02): cổng BookingESB thiếu OrganizeId/methodcode
+            // phải khác với validation nghiệp vụ bên trong từng Y-code (Y004...
+            // cũng dùng msg "Tham số quan trọng không được để trống" trước đây).
+            // Nay cổng dùng msg + sub_code riêng để client biết mình sai ở tầng nào.
             if (string.IsNullOrWhiteSpace(req.OrganizeId) || string.IsNullOrWhiteSpace(req.methodcode))
-                return ResponseBaseOld.Fail("Tham số quan trọng không được để trống");
+                return ResponseBaseOld.Fail("Tham số cổng BookingESB không được để trống (OrganizeId/methodcode)", "GATEWAY_PARAM_REQUIRED");
             var para = new ParaData(req.paradata);
             try
             {

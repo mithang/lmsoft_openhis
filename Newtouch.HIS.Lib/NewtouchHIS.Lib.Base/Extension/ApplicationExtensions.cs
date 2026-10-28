@@ -26,7 +26,9 @@ namespace NewtouchHIS.Lib.Base.Extension
                     if (error != null)
                     {
                         var ex = error.Error;
-                        var errorMsg = ex.Message;
+                        // QA PHASE 2 (API-13/CTR-07): lỗi DB không rò provider +
+                        // ConfigId + tiếng Trung ra client (8016 dùng handler này).
+                        var errorMsg = NewtouchHIS.Lib.Base.Filter.DbErrorSanitizer.Sanitize(ex, ex.Message);
                         var data = new Result
                         {
                             HttpStatus = HttpStatusCode.OK,

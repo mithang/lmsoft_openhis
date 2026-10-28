@@ -1,4 +1,4 @@
-using System;
+﻿using System;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Newtouch.HIS.Base.HOSP.API.Envelope;
@@ -22,6 +22,7 @@ namespace Newtouch.HIS.Base.HOSP.API.Controllers
         }
 
         [HttpPost("Query")]
+        [DefaultAuthorize]
         public ContentResult Query([FromBody] MedicineSupplierQueryRequest request)
         {
             Action<MedicineSupplierQueryRequest, DefaultResponse> ac = (req, resp) =>

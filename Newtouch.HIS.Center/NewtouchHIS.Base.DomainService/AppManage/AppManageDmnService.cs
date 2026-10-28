@@ -19,7 +19,10 @@ namespace NewtouchHIS.Base.DomainService
             var app = await GetFirstOrDefault(p => p.AppId == request.AppId && p.zt == "1");
             if (app == null)
             {
-                throw new FailedException($"Không tìm thấy ứng dụng đích{request.AppId}");
+                // QA PHASE 2 (CTR-01): KHÔNG nối AppId vào msg — ở luồng
+                // GetAppToken, AppId ở đây chính là Data (secret) do client gửi,
+                // nối vào sẽ echo secret ra response (và log).
+                throw new FailedException("Không tìm thấy ứng dụng đích");
             }
             return app.Adapt<AuthAppVO>();
         }
@@ -51,19 +54,22 @@ namespace NewtouchHIS.Base.DomainService
             var app = await GetFirstOrDefault(p => p.AppId == request.AppId && p.zt == "1");
             if (app == null)
             {
-                throw new FailedException($"Không tìm thấy ứng dụng đích{request.AppId}");
+                // QA PHASE 2 (CTR-01): KHÔNG nối AppId vào msg — ở luồng
+                // GetAppToken, AppId ở đây chính là Data (secret) do client gửi,
+                // nối vào sẽ echo secret ra response (và log).
+                throw new FailedException("Không tìm thấy ứng dụng đích");
             }
             if (!string.IsNullOrWhiteSpace(request.FriendAppId))
             {
                 var friendApp = await GetFirstOrDefault(p => p.AppId == request.FriendAppId && p.zt == "1");
                 if (friendApp == null)
                 {
-                    throw new FailedException($"Không tìm thấy ứng dụng xin cấp quyền {request.FriendAppId}");
+                    throw new FailedException("Không tìm thấy ứng dụng xin cấp quyền");
                 }
                 var findFriendAuth = await GetFirstOrDefaultWithAttr<SysAuthAppFriendEntity>(p => p.FriendId == friendApp.AuthId && p.AppAuthId == app.AuthId && p.zt == "1");
                 if (findFriendAuth == null)
                 {
-                    throw new FailedException($"Ứng dụng đích chưa cấp quyền cho {request.FriendAppId}mở quyền,Vui lòng liên hệ quản trị viên");
+                    throw new FailedException("Ứng dụng đích chưa cấp quyền mở quyền,Vui lòng liên hệ quản trị viên");
                 }
                 authKey.FriendAppId = friendApp.AppId;
                 authKey.FriendId = friendApp.AuthId;

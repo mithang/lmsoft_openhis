@@ -2,6 +2,8 @@ using System;
 using System.ComponentModel.DataAnnotations;
 using System.Reflection;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.Extensions.Logging;
 using Newtouch.HIS.API.Common;
 using Newtouch.PDS.API.Services;
 using Newtonsoft.Json;
@@ -118,14 +120,60 @@ namespace Newtouch.PDS.API.Envelope
                 response.sub_code = (ex.Code ?? "").ToUpper();
                 response.sub_msg = ex.Msg;
             }
+            catch (NewtouchHIS.Lib.Base.Exceptions.FailedException ex)
+            {
+                // QA PHASE 2 (API-07b): app tầng Infrastructure ném FailedException
+                // của Lib (ctor (code, msg), KHÔNG gọi base(message)) — trước đây
+                // nó rơi vào catch Exception chung và sub_msg chỉ còn text mặc
+                // định của .NET ("Exception of type '...FailedException' was
+                // thrown."), code 20000. Nay map đúng: FAIL + Msg thật của nghiệp
+                // vụ (vd. lý do hủy đặt trước), sub_code lấy Code nếu có.
+                response.code = ResponseResultCode.FAIL;
+                response.sub_code = !string.IsNullOrWhiteSpace(ex.Code)
+                    ? ex.Code.ToUpper() : "FAILED";
+                response.sub_msg = ex.Msg;
+            }
             catch (Exception ex)
             {
-                while (ex.InnerException != null) ex = ex.InnerException;
+                var inner = ex;
+                while (inner.InnerException != null) inner = inner.InnerException;
                 response.code = ResponseResultCode.ERROR;
                 response.sub_code = "INTERNAL_SERVER_ERROR";
-                response.sub_msg = ex.Message;
+                response.sub_msg = SanitizeDbError(ex, inner);
             }
             return response;
+        }
+
+        /// <summary>QA PHASE 2 (API-13): lỗi mất kết nối DB không được rò ra client
+        /// (provider error + ConfigId + tiếng Trung của lớp DB). Chỉ lỗi DB mới bị
+        /// thay bằng thông điệp chung; các lỗi khác giữ nguyên message. Chi tiết
+        /// đầy đủ được ghi vào log server qua ILoggerFactory (đã wiring
+        /// AddLibLogging ở Program.cs) khi resolve được.</summary>
+        private string SanitizeDbError(System.Exception ex, System.Exception inner)
+        {
+            for (var e = ex; e != null; e = e.InnerException)
+            {
+                var typeName = e.GetType().FullName ?? "";
+                var msg = e.Message ?? "";
+                if (typeName.Contains("Sql") || e is System.Data.Common.DbException
+                    || msg.Contains("ConfigId=") || msg.Contains("network-related")
+                    || msg.Contains("instance-specific") || msg.Contains("连接数据库"))
+                {
+                    try
+                    {
+                        var lf = HttpContext?.RequestServices?.GetService(typeof(Microsoft.Extensions.Logging.ILoggerFactory))
+                            as Microsoft.Extensions.Logging.ILoggerFactory;
+                        lf?.CreateLogger(GetType().FullName ?? "ApiControllerBase")
+                            ?.LogError(ex, "DB error sanitized for client response");
+                    }
+                    catch
+                    {
+                        // Log thất bại cũng không được làm hỏng response.
+                    }
+                    return "Không kết nối được cơ sở dữ liệu, vui lòng liên hệ quản trị viên";
+                }
+            }
+            return inner.Message;
         }
 
         /// <summary>
