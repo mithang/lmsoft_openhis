@@ -163,12 +163,9 @@
     $(function () {
     
 
-        $("#ssdm").bindSelect({
-            url: "/Operation/Common/GetOplist",
-            id: "ssdm",
-            text: "ssmc",
-            minimumResultsForSearch: 0
-        });
+        // (da go bindSelect cho #ssdm: #ssdm la <input type="hidden">, khong phai <select>;
+        // bindSelect goi .select2() tren hidden input gay throw "No select2/compat/inputData".
+        // Gia tri #ssdm do ApplyCard/ApplyOPDetail gan bang .val(), khong phu thuoc bindSelect nay.)
         //$("#ysgh").bindSelect({
         //    url: "/Operation/Common/GetStafflist",
         //    id: "rygh",

@@ -1,0 +1,29 @@
+@*
+    Trang tổng hợp báo cáo (QA phase 2, M-05).
+
+    Gốc: ReportController.Index() trả View() nhưng cây gốc cũng không có
+    view Index.cshtml cho Report (chỉ có HomePageReport và
+    EMRBasyPrintReport), nên trước đây route này trả lỗi JSON "view not
+    found". Không bịa thêm báo cáo mới: trang này chỉ liệt kê các báo cáo
+    đã có sẵn trong module.
+*@
+@{
+    ViewBag.Title = "Báo cáo thống kê";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<div style="padding:30px; font-family:sans-serif;">
+    <h3>Báo cáo thống kê bệnh án</h3>
+    <p>Chọn một báo cáo trong danh sách dưới đây:</p>
+    <ul>
+        <li><a href="/ReportManage/DeathReport/Index">Sổ đăng ký tử vong</a></li>
+        <li><a href="/ReportManage/DiseaseReport/Index">Báo cáo thống kê phổ bệnh</a></li>
+        <li><a href="/ReportManage/InHospitalReport/Index">Báo cáo nội trú</a></li>
+        <li><a href="/ReportManage/OperationReport/Index">Báo cáo thống kê phổ phẫu thuật</a></li>
+        <li><a href="/ReportManage/OpRegisterReport/Index">Sổ đăng ký phẫu thuật</a></li>
+        <li><a href="/ReportManage/PatientHistory/Index">Truy vấn lịch sử nội trú bệnh nhân</a></li>
+        <li><a href="/ReportManage/WardReport/Index">Thống kê nhật ký buồng bệnh</a></li>
+        <li><a href="/ReportManage/Report/HomePageReport">Trang đầu bệnh án nội trú (báo cáo SSRS)</a></li>
+        <li><a href="/ReportManage/Report/EMRBasyPrintReport">In trang đầu bệnh án (báo cáo SSRS)</a></li>
+    </ul>
+    <p>Lưu ý: các báo cáo SSRS cần máy chủ báo cáo riêng (ReportServer.HOST); khi chưa cấu hình, trang báo cáo sẽ hiển thị thông báo thay vì số liệu.</p>
+</div>

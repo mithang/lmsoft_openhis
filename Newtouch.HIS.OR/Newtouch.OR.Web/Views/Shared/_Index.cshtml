@@ -4,6 +4,7 @@
     <META HTTP-EQUIV="Cache-Control" CONTENT="no-cache,no-store, must-revalidate">
     <META HTTP-EQUIV="pragma" CONTENT="no-cache">
     <META HTTP-EQUIV="expires" CONTENT="0">
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title</title>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     @Html.Partial("_FrontReference")
@@ -25,6 +26,14 @@
     </script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.js")"></script>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
+    <!--bootstrap table (QA phase 2, O-02): ban port da danh roi cac include nay
+        cua _Index goc; khong co chung thi ApplyIndex/OpArrangement goi
+        $.fn.bootstrapTable khong ton tai. Chi nap core + locale vi-VN;
+        khong nap extension resizable vi dependency jquery.resizableColumns
+        cua no khong co tren static host (404).-->
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/v1.22.1/bootstrap-table.min.css")" rel="stylesheet" />
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/v1.22.1/bootstrap-table.min.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/v1.22.1/locale/bootstrap-table-vi-VN.min.js")"></script>
     <!--selectDanh sách thả xuống-->
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/select2/select2.min.js")"></script>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/select2/select2.min.css")" rel="stylesheet" />

@@ -145,8 +145,10 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
         {
             // DCSoft Writer ActiveX editor has no .NET Core build (same vendor
             // blocker as the EMR editor): the viewer area is an explicit error.
-            // Use PreViewV2 (open-source HTML editor path) instead.
-            return Content(new { state = "error", message = "Trình xem tài liệu DCSoft Writer (ActiveX, chỉ chạy trên .NET Framework/IE) không khả dụng trên .NET Core/Linux. Vui lòng dùng PreViewV2." }.ToJson());
+            // QA phase 2 (M-01): PreViewV2 is also a notice stub now — its
+            // HMEditor host (KyEmrEdiForUrl) was never configured, so do not
+            // point users at it as a working alternative.
+            return Content(new { state = "error", message = "Trình xem tài liệu DCSoft Writer (ActiveX, chỉ chạy trên .NET Framework/IE) không khả dụng trên .NET Core/Linux. Trình xem thay thế PreViewV2 cũng chưa xem được vì máy chủ trình soạn thảo KyEmr (KyEmrEdiForUrl) chưa được cấu hình." }.ToJson());
         }
 
 

@@ -1,5 +1,5 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Chi tiết quy trình phẫu thuật";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 @using Newtouch.OR.ManageSystem.Infrastructure
@@ -320,7 +320,7 @@
         getArrangeInfo();
         getSelectBind();
         var tablinkHeight = $(".tablink").height;
-        $("#arrange").attr();
+        // (da go dong $("#arrange").attr() khong doi so cua ban goc: goi .attr() khong doi so gay throw "nodeType" tren jQuery 2.1.1, dong nay khong co tac dung)
     });
     function OperationDicAjax(ssdmArray) {
         $.najax({
@@ -416,7 +416,7 @@
                 arrangeInfo = data;
 
                 $("#ysxm").val(data.ysxm);
-                $("#sssj").val(data.sssj.replace("T", " "));
+                $("#sssj").val(data.sssj ? data.sssj.replace("T", " ") : ""); // QA phase 2 (O-04): ca chua xep lich khong co sssj, guard nhu dong 523
                 $("#sqzt").val(data.sqzt);
                 $("#applyno").val(data.Applyno);
                 applyno = data.Applyno;
@@ -435,7 +435,7 @@
                     $("#ssmcn").val(data.ssmcn);
                 }
                 else {
-                    $("#ssmcn").val(ssmcArr[0]);
+                    $("#ssmcn").val((typeof ssmcArr !== "undefined" && ssmcArr.length > 0) ? ssmcArr[0] : ""); // QA phase 2 (O-04): khi data.ss rong thi ssmcArr khong co phan tu
                 }
 
             }

@@ -1,0 +1,25 @@
+@*
+    Trang tổng hợp báo cáo (QA phase 2, O-01).
+
+    Gốc: action Index của ReportController đã bị comment out trong cả cây
+    gốc lẫn bản port, nhưng lớp cơ sở vẫn có Index() trả View() nên route
+    này trước đây trả lỗi JSON "view not found". Không bịa thêm báo cáo
+    mới: trang này chỉ liệt kê các báo cáo đã có sẵn trong module.
+*@
+@{
+    ViewBag.Title = "Báo cáo phòng mổ";
+    Layout = "~/Views/Shared/_Index.cshtml";
+}
+<div style="padding:30px; font-family:sans-serif;">
+    <h3>Báo cáo phòng mổ</h3>
+    <p>Chọn một báo cáo trong danh sách dưới đây:</p>
+    <ul>
+        <li><a href="/Operation/OpRegisterReport/Index">Sổ đăng ký phẫu thuật</a></li>
+        <li><a href="/Operation/OpFeeReport/Index">Tra cứu chi phí phẫu thuật</a></li>
+    </ul>
+    <p>
+        Phiếu thông báo phẫu thuật (OperationNoticeReport) mở từ chi tiết ca
+        phẫu thuật đã sắp xếp, không mở trực tiếp từ đây.
+    </p>
+    <p>Lưu ý: các báo cáo SSRS cần máy chủ báo cáo riêng (ReportServer.HOST); khi chưa cấu hình, trang báo cáo sẽ hiển thị thông báo thay vì số liệu.</p>
+</div>

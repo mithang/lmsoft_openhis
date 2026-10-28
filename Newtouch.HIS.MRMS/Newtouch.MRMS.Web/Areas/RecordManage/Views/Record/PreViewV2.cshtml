@@ -1,78 +1,32 @@
+@*
+    Trang xem bệnh án PreViewV2 — stub thông báo có chủ đích (QA phase 2, M-01).
+
+    Gốc: view này nạp trình soạn thảo HMEditor từ máy chủ ngoài qua cấu hình
+    KyEmrEdiForUrl (gốc cũng chỉ để placeholder "http://IP:3071", chưa từng có
+    máy chủ editor thật trong deployment này), nên khi script không tải được thì
+    trang trắng hoàn toàn (HMEditorLoader is not defined) và không có thông báo.
+    Không bịa viewer thay thế: trang này chỉ thông báo rõ tình trạng và điều
+    kiện để khôi phục (cấu hình KyEmrEdiForUrl trỏ tới máy chủ trình soạn thảo
+    KyEmr thật, rồi khôi phục bản view cũ từ lịch sử git).
+*@
 @{
     Layout = "~/Views/Shared/_Index.cshtml";
-    var EmrEdiForUrl = AppSettings.GetConfig("KyEmrEdiForUrl");
+    ViewBag.Title = "Xem bệnh án";
 }
-<style>
-    .design-template-wrapper {
-        top: 0;
-        left: 0;
-        right: 0;
-        bottom: 0;
-        background: #fff;
-        display: flex;
-        flex-direction: column;
-        z-index: 100;
-        height: 800px;
-    }
-</style>
-<script src="@EmrEdiForUrl/iframe/HmEditorIfame.js"></script>
-<div class="design-template-wrapper" id="editorContainer">
+<div style="padding:30px; font-family:sans-serif;">
+    <h3>Chưa xem được bệnh án qua trình soạn thảo web</h3>
+    <p>
+        Trình xem bệnh án (HMEditor) cần một máy chủ trình soạn thảo KyEmr riêng,
+        cấu hình qua <code>KyEmrEdiForUrl</code>. Hiện tại cấu hình này chưa trỏ
+        tới máy chủ editor thật (vẫn đang để giá trị mẫu), nên trình xem không
+        thể tải được.
+    </p>
+    <p>
+        Vui lòng liên hệ quản trị hệ thống để cấu hình máy chủ trình soạn thảo
+        KyEmr, hoặc xem bệnh án bằng công cụ chuyên dụng của bệnh viện.
+    </p>
+    <p>
+        Lưu ý: trình xem DCSoft Writer (PreView) cũng không khả dụng trên
+        .NET Core/Linux (ActiveX, chỉ chạy trên .NET Framework/IE).
+    </p>
 </div>
-
-<script>
-    var editorInstance;
-    var id = "Editor_" + new Date().getTime();
-    var templateId;
-    var templateName;
-    var zyh = $.request('zyh');
-    var blid = $.request('blid');
-    var bllx = $.request('bllx');
-
-    $(function () {
-        // Tạo trình soạn thảo
-        HMEditorLoader.createEditorAsync({
-            container: "#editorContainer",
-            id: id,
-            style: {
-                width: '100%',
-                height: '100%',
-                border: '1px solid #ddd'
-            },
-            editorConfig: {
-                // Cấu hình trình soạn thảo
-            },
-            // Cài đặt chế độ
-            designMode: false,  // Có bật chế độ thiết kế không
-            allowModifyDatasource: true,
-            reviseMode: false,  // Có bật chế độ sửa đổi không
-            readOnly: false,     // Có bật chế độ chỉ đọc không
-            customParams: {     // Tham số tùy chỉnh
-
-            }
-        })
-            .then(function (result) {
-                // Khởi tạo trình soạn thảo hoàn tất
-                editorInstance = result; console.log(12);
-                $.ajax({
-                    type: "POST",
-                    url: "/RecordManage/Record/LoadMedicalRecordHtml",
-                    data: { blid: blid, bllx: bllx, zyh: zyh },
-                    dataType: "json",
-                    async: false,
-                    success: function (respdata) {
-                        console.log(respdata);
-                        editorInstance.setDocContent({
-                            code: respdata.templateId,
-                            docTplName: respdata.templateName,
-                            docContent: respdata.xmldata
-                        });
-                        templateId = respdata.templateId;
-                        templateName = respdata.templateName;
-                    }
-                })
-            })
-            .catch(function (error) {
-                console.error("Khởi tạo trình soạn thảo thất bại:", error);
-            });
-    });
-</script>

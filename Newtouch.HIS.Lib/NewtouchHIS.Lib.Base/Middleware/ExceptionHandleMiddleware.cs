@@ -46,22 +46,27 @@ namespace NewtouchHIS.Lib.Base.Middleware
             _logger.LogError(logError);
             if (environment.IsDevelopment())
             {
+                // QA phase 2 (M-05/O-01): khong bao gio tra stack trace ve client,
+                // ke ca o Development — truoc day launcher Development lam ro
+                // exStackTrace trong moi body JSON loi (vd view-not-found).
+                // Chi tiet day du chi nam trong log server.
                 //Thông tin lỗi
                 switch (e)
                 {
                     case FailedException ex:
-                        error = new AjaxResult { state = ResultType.error.ToString(), message = ex.Msg, exStackTrace = ex.Data.ToJson() }.ToJson();
+                        error = new AjaxResult { state = ResultType.error.ToString(), message = ex.Msg }.ToJson();
                         if (ex.Log)
                         {
-                            _logger.LogError(error);
+                            _logger.LogError(new AjaxResult { state = ResultType.error.ToString(), message = ex.Msg, exStackTrace = ex.Data.ToJson() }.ToJson());
                         }
                         break;
-                    case RuntimeBinderException ex:
-                        error = new AjaxResult { state = ResultType.error.ToString(), message = e.Message, exStackTrace = e.StackTrace, InnerException = e.InnerException }.ToJson();
+                    case RuntimeBinderException:
+                        error = new AjaxResult { state = ResultType.error.ToString(), message = e.Message }.ToJson();
+                        _logger.LogError(new AjaxResult { state = ResultType.error.ToString(), message = e.Message, exStackTrace = e.StackTrace, InnerException = e.InnerException }.ToJson());
                         break;
                     default:
-                        error = new AjaxResult { state = ResultType.error.ToString(), message = e.Message, exStackTrace = e.StackTrace, InnerException = e.InnerException }.ToJson();
-                        _logger.LogError(error);
+                        error = new AjaxResult { state = ResultType.error.ToString(), message = e.Message }.ToJson();
+                        _logger.LogError(new AjaxResult { state = ResultType.error.ToString(), message = e.Message, exStackTrace = e.StackTrace, InnerException = e.InnerException }.ToJson());
                         break;
                 }
             }

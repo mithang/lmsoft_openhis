@@ -1,6 +1,6 @@
 ﻿@using Newtouch.OR.ManageSystem.Infrastructure
 @{
-	ViewBag.Title = "Index";
+	ViewBag.Title = "Chi tiết sắp xếp phẫu thuật";
 	Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
@@ -378,13 +378,13 @@
 				$("#ryzd").html(data.zd);
 				$("#ssmcn").html(data.ssmcn);
 				$("#ysxm").html(data.ysxm);
-				$("#sssj").html(data.sssj.replace("T", " "));
+				$("#sssj").html(data.sssj ? data.sssj.replace("T", " ") : ""); // QA phase 2 (O-04): ca chua xep lich khong co sssj, guard nhu dong 418
                 $("#sqzt").html(data.sqzt);
 
 				applyno = data.Applyno;
 
 				//Tên phẫu thuật
-				var number = data.ss.length;
+				var number = (data.ss || []).length; // QA phase 2 (O-04): nhu sssj, ca chua co danh sach phau thuat thi data.ss undefined
 				if (number > 0) {//Phẫu thuật chính
 					$("#ssmc").val(data.ss[0].ssmc);
 					$("#ssdm").val(data.ss[0].ssdm);

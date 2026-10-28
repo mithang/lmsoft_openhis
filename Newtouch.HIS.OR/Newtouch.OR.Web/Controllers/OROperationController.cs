@@ -32,6 +32,16 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         /// <param name="pagination">Phân trang</param>
         /// <param name="keyword">Từ khóa lọc</param>
         /// <returns></returns>
+        /// <summary>
+        /// QA phase 2 (O-01): controller goc chi co action JSON, khong co view Index
+        /// (lop co so tra View() nen route nay truoc day loi "view not found").
+        /// Chuyen ve trang chinh cua module thay vi tao view gia.
+        /// </summary>
+        public override IActionResult Index()
+        {
+            return Redirect("/Operation/OpOperation/Index");
+        }
+
         public IActionResult GetPagintionGridJson(Pagination pagination, string keyword)
         {
             var list = new
