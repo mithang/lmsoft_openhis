@@ -39,10 +39,17 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var cookieLoginFlag = HttpWebHelper.GetCookie(Constants.AppId + "_" + OperatorProvider.GetCurrent().UserCode + "_" + "LoginFlag");
+            // Home mang [HandlerLogin] nên filter không chặn request ẩn danh:
+            // không có session thì về Login (mẫu Organize) thay vì NRE kèm
+            // stack trace ở GetCurrent().UserCode như trước.
+            var opr = OperatorProvider.GetCurrent();
+            if (opr == null)
+            {
+                return Redirect("/Login/Index");
+            }
+            var cookieLoginFlag = HttpWebHelper.GetCookie(Constants.AppId + "_" + opr.UserCode + "_" + "LoginFlag");
             ViewBag.cookieLoginFlag = cookieLoginFlag;
 
-            var opr = OperatorProvider.GetCurrent();
             var nLanguageTypeKey = "Newtouch_language_type";
             if (!string.IsNullOrWhiteSpace(Constants.AppId))
             {
@@ -51,7 +58,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             var language_type = HttpWebHelper.GetCookie(nLanguageTypeKey);
             if (string.IsNullOrWhiteSpace(language_type))
             {
-                language_type = _sysUserDmnService.GetLanguageTypeByUserId(OperatorProvider.GetCurrent().UserId);   //Thuộc tính người dùng
+                language_type = _sysUserDmnService.GetLanguageTypeByUserId(opr.UserId);   //Thuộc tính người dùng
                 // Port fix: Lib HttpWebHelper.WriteCookie throws on a null value
                 // (Uri.EscapeDataString); the demo user has no language type set, so
                 // only write the cookie when a value actually came back.
@@ -96,6 +103,10 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         public IActionResult UserOrgChoose()
         {
             var opr = OperatorProvider.GetCurrent();
+            if (opr == null)
+            {
+                return Redirect("/Login/Index");
+            }
 
             var mediOrgList = _sysOrganizeDmnService.GetMedicalOrganizeListByUserId(opr.UserId);
 
@@ -113,6 +124,10 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         public IActionResult SwithOrg(string dstnOrgId)
         {
             var opr = OperatorProvider.GetCurrent();
+            if (opr == null)
+            {
+                return Content(new AjaxResult { state = ResultType.error.ToString(), message = "Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại." }.ToJson());
+            }
 
             var staffList = _sysUserDmnService.GetStaffListByUserId(opr.UserId);
 
@@ -156,8 +171,13 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         [HttpGet]
         public IActionResult Notice()
         {
-            ViewBag.UserCode = OperatorProvider.GetCurrent().UserCode;
-            ViewBag.OrganizeId = OperatorProvider.GetCurrent().OrganizeId;
+            var opr = OperatorProvider.GetCurrent();
+            if (opr == null)
+            {
+                return Redirect("/Login/Index");
+            }
+            ViewBag.UserCode = opr.UserCode;
+            ViewBag.OrganizeId = opr.OrganizeId;
             return View();
         }
 
@@ -168,7 +188,12 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         public IActionResult GetVisitNum()
         {
             VisitNumBO BO = null;
-            var userCode = OperatorProvider.GetCurrent().UserCode;
+            var opr = OperatorProvider.GetCurrent();
+            if (opr == null)
+            {
+                return Content(new AjaxResult { state = ResultType.error.ToString(), message = "Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại." }.ToJson());
+            }
+            var userCode = opr.UserCode;
             if (userCode == "root")
             {
                 BO = null;
@@ -185,7 +210,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             }
             else
             {
-                var orgId = OperatorProvider.GetCurrent().OrganizeId;
+                var orgId = opr.OrganizeId;
                 if (string.IsNullOrEmpty(orgId))
                 {
                     throw new FailedCodeException("SYS_GET_ORGANIZATIONAL_FAILURE");
@@ -210,7 +235,10 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             {
                 if (orgIdIsStar.HasValue)
                 {
-                    orgId = orgIdIsStar.Value ? "*" : OperatorProvider.GetCurrent().OrganizeId;
+                    // Ẩn danh (GetCurrent null) thì coi như không có org:
+                    // nhánh dưới trả value null như trường hợp thiếu org.
+                    var opr = OperatorProvider.GetCurrent();
+                    orgId = orgIdIsStar.Value ? "*" : opr?.OrganizeId;
                 }
             }
             if (string.IsNullOrWhiteSpace(topOrgId))

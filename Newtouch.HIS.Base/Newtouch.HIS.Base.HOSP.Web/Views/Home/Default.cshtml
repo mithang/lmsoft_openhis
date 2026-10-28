@@ -13,7 +13,11 @@
         $(function () {
             GetSalaryChart();
             GetLeaveChart();
-            $('.menuItem').on('click', window.parent.$.Newtouchtab.addTab);
+            // Newtouchtab chỉ tồn tại khi Default chạy trong iframe của khung Home;
+            // mở standalone thì để link điều hướng bình thường thay vì vỡ script.
+            if (window.parent && window.parent.$ && window.parent.$.Newtouchtab) {
+                $('.menuItem').on('click', window.parent.$.Newtouchtab.addTab);
+            }
         });
 
         function GetSalaryChart() {
@@ -28,14 +32,17 @@
                 cache: false,
                 success: function (data) {
                     if (data.data) {
-                        OutpatientList = data.data.OutpatientList;
-                        InpatientList = data.data.InpatientList
+                        OutpatientList = data.data.OutpatientList || [];
+                        InpatientList = data.data.InpatientList || [];
                     } else {
-                        for (var i = 0; i < 12; i++) {
-                            OutpatientList.push([0]);
-                            InpatientList.push([0]);
-                        }
+                        OutpatientList = [];
+                        InpatientList = [];
                     }
+                    // Dashboard luôn vẽ 12 tháng: list ngắn hơn 12 (kể cả rỗng)
+                    // thì đệm {num:0} thay vì truy cập OutpatientList[0..11].num
+                    // rồi vỡ khi list rỗng/ngắn (lỗi chập chờn theo dữ liệu).
+                    while (OutpatientList.length < 12) { OutpatientList.push({ num: 0 }); }
+                    while (InpatientList.length < 12) { InpatientList.push({ num: 0 }); }
                 }
             });
 

@@ -843,7 +843,7 @@
                 //        }, 1000);
                 //    }
                 //},
-                
+                @*{
                 name: '<span class="glyphicon glyphicon-send" style="color: rgb(28, 179, 173); font-size: 13px;"></span> Lưu thành mẫu cá nhân',
                 width: 300,
                     onClick: function (obj) {
@@ -865,7 +865,7 @@
                         }
                 }
                 }
-
+                ,*@
                 {
                 name: '<span class="glyphicon glyphicon-open" style="color: rgb(28, 179, 173); font-size: 13px;"></span> In gộp',
                 width: 300,
@@ -893,7 +893,7 @@
     function init(type) {
         thistype = type;
         //Bệnh nhân đang nằm viện không nộp bệnh án
-        if (type == 2 && @EnableLinkToMRMS) {
+        if (type == 2 && @(EnableLinkToMRMS == "true" ? "true" : "false")) {
             $("#dv_btn_commit").show();
             $("#dv_btn_return").show();
             $("#dv_bl_tool").show();
@@ -941,10 +941,10 @@
                             return "<span style='color:red;font-weight:bold;'>Trả lại</span>";
                         else if (row.RecordStu == '@((int)EnumRecordStu.yqs)')
                             return "<span style='color:blue;font-weight:bold;'>Ký</span>";
-                        
+                        @*else if (row.RecordStu == '@((int)EnumRecordStu.ytj)' || row.RecordStu == '@((int)EnumRecordStu.yqs)' )
                             return '<img src="../../Content/img/tj_ytj.png"/>';
                         else if (row.RecordStu == '@((int)EnumRecordStu.th)')
-
+                            return '<img src="../../Content/img/tj_th.png"/>';*@
                         else
                             return '';
                     }
@@ -969,7 +969,7 @@
                 },
                 { label: 'Số nhập viện', name: 'zyh', width: 50, align: 'left' },
                 { label: 'Số giường', name: 'cwmc', width: 50, align: 'left' },
-                
+                @*{
                     label: 'Cấp độ điều dưỡng', name: 'hljb', width:20, align: 'left', formatter: function (val) {
                         if (val == '@((int)EnumHljb.I)') {
                             return '@(EnumHljb.I)';
@@ -986,7 +986,7 @@
                         else
                             return "";
                     }
-
+                },*@
                 { label: 'Họ tên', name: 'xm', width: 80, align: 'left' },
                 {
                     label: 'Giới tính', name: 'sex', width: 40, align: 'left', formatter: function (val) {

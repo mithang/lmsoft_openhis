@@ -52,7 +52,11 @@
                 {
                     label: 'Phân loại cơ sở', name: 'CategoryCode', width: 100, align: 'center',
                     formatter: function (cellvalue) {
-                        return top.clients.dataItems['OrganizeType'][cellvalue] == null ? "" : top.clients.dataItems['OrganizeType'][cellvalue];
+                        // Như BH-01: top.clients chỉ tồn tại trong khung portal;
+                        // mở standalone thì hiển thị mã gốc thay vì vỡ script.
+                        var items = (typeof top !== 'undefined' && top.clients && top.clients.dataItems) ? top.clients.dataItems['OrganizeType'] : null;
+                        if (!items) { return cellvalue == null ? "" : cellvalue; }
+                        return items[cellvalue] == null ? "" : items[cellvalue];
                     }
                 },
                 { label: 'Điện thoại', name: 'TelePhone', width: 100, align: 'left' },

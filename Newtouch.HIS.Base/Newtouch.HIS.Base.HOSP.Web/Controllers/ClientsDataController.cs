@@ -38,6 +38,17 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         [HandlerAjaxOnly]
         public IActionResult GetClientsDataJson()
         {
+            // Controller mang [HandlerLogin] nên request ẩn danh vẫn vào đây:
+            // không có session thì trả dữ liệu rỗng hợp lệ thay vì NRE kèm
+            // stack trace ở GetCurrent().IsRoot như trước.
+            if (OperatorProvider.GetCurrent() == null)
+            {
+                return Content(new
+                {
+                    dataItems = new Dictionary<string, object>(),
+                    authorizeMenu = (object)null,
+                }.ToJson());
+            }
             var data = new
             {
                 //Từ điển Bao gồm cả vô hiệu

@@ -4,6 +4,15 @@
 
 	Layout = null;
 }
+@* RecordList vừa là fragment nhúng qua ViewComponent trong các trang editor
+   (đã có jQuery từ layout chủ), vừa là action độc lập với Layout = null.
+   Chỉ nạp jQuery khi cửa sổ hiện tại chưa có, để mở standalone không còn
+   lỗi "$ is not defined" mà không nạp đè jQuery của trang editor. *@
+<script>
+    if (typeof jQuery === 'undefined') {
+        document.write('<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery/jquery-2.1.1.min.js")"><\/script>');
+    }
+</script>
 <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
 <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
 

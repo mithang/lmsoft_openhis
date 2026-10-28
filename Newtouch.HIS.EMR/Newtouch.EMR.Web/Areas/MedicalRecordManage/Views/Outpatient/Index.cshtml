@@ -464,6 +464,7 @@
 
 
                 
+                @*//Bệnh nhân ra viện thêm nút nộp (như bản gốc: khối này được comment Razor)
                 if (rowData.zybz == '@((int)EnumZYBZ.Djz)' || rowData.zybz == '@((int)EnumZYBZ.Ycy)') {
                     if (rowData.RecordStu != '@((int)EnumRecordStu.ytj)' && $("#dv_btn_commit").is(":hidden")) {
                         $("#dv_btn_commit").show();
@@ -473,7 +474,7 @@
                     if (!$("#dv_btn_commit").is(":hidden")) {
                         $("#dv_btn_commit").hide();
                     }
-
+                }*@
 
                 $('#divPatientBasicInfo').html("Thông tin bệnh nhân:"
                     + rowData.xm

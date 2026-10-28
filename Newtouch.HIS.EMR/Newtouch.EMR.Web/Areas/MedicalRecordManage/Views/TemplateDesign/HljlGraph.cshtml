@@ -443,6 +443,7 @@
             cache: false,
             success: function (data) {
                 var datas = eval(data)[0];
+                if (!datas) return; // không có bệnh nhân (mở trang không kèm zyh) thì để trống, không throw
                 //console.info(datas)
                 $("#xmlb").text(datas.xm);
                 if (!!datas.sex) {
@@ -487,7 +488,7 @@
         LoadGrid();
         $("#dv_tj").hide();
         $("#a_edit").show();
-        
+        @*$.ajax({
             type: "POST",
             url: "/MedicalRecord/LockRecord",
             dataType: "json",
@@ -495,7 +496,7 @@
             async: false,
             success: function (ajaxresp) {
             }
-  
+        });*@
     }
 
 </script>

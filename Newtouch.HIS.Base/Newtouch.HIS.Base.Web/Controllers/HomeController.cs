@@ -27,7 +27,15 @@ namespace Newtouch.HIS.Base.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            var cookieLoginFlag = HttpWebHelper.GetCookie(Constants.AppId + "_" + OperatorProvider.GetCurrent().UserCode + "_" + "LoginFlag");
+            // Home mang [HandlerLogin] nên filter không chặn request ẩn danh:
+            // không có session thì về Login (mẫu Organize) thay vì NRE kèm
+            // stack trace ở GetCurrent().UserCode như trước.
+            var opr = OperatorProvider.GetCurrent();
+            if (opr == null)
+            {
+                return Redirect("/Login/Index");
+            }
+            var cookieLoginFlag = HttpWebHelper.GetCookie(Constants.AppId + "_" + opr.UserCode + "_" + "LoginFlag");
             ViewBag.cookieLoginFlag = cookieLoginFlag;
             return View();
         }
@@ -48,7 +56,12 @@ namespace Newtouch.HIS.Base.Web.Controllers
         public IActionResult GetVisitNum()
         {
             VisitNumBO BO = null;
-            var userCode = OperatorProvider.GetCurrent().UserCode;
+            var opr = OperatorProvider.GetCurrent();
+            if (opr == null)
+            {
+                return Content(new AjaxResult { state = ResultType.error.ToString(), message = "Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại." }.ToJson());
+            }
+            var userCode = opr.UserCode;
             if (userCode == "root")
             {
                 BO = null;
@@ -65,7 +78,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
             }
             else
             {
-                var orgId = OperatorProvider.GetCurrent().OrganizeId;
+                var orgId = opr.OrganizeId;
                 if (string.IsNullOrEmpty(orgId))
                 {
                     throw new FailedCodeException("SYS_GET_ORGANIZATIONAL_FAILURE");
@@ -90,7 +103,10 @@ namespace Newtouch.HIS.Base.Web.Controllers
             {
                 if (orgIdIsStar.HasValue)
                 {
-                    orgId = orgIdIsStar.Value ? "*" : OperatorProvider.GetCurrent().OrganizeId;
+                    // Ẩn danh (GetCurrent null) thì coi như không có org:
+                    // nhánh dưới trả value null như trường hợp thiếu org.
+                    var opr = OperatorProvider.GetCurrent();
+                    orgId = orgIdIsStar.Value ? "*" : opr?.OrganizeId;
                 }
             }
             if (string.IsNullOrWhiteSpace(topOrgId))

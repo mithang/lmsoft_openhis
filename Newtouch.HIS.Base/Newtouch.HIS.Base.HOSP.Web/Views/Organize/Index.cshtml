@@ -62,7 +62,12 @@
                 {
                     label: 'Phân loại cơ sở', name: 'CategoryCode', width: 100, align: 'left',
                     formatter: function (cellvalue) {
-                        return top.clients.dataItems['OrganizeType'][cellvalue] == null ? "" : top.clients.dataItems['OrganizeType'][cellvalue];
+                        // top.clients chỉ tồn tại trong khung portal (ClientsData của
+                        // portal nạp dataItems); mở standalone thì hiển thị mã gốc
+                        // thay vì vỡ script vì top.clients undefined.
+                        var items = (typeof top !== 'undefined' && top.clients && top.clients.dataItems) ? top.clients.dataItems['OrganizeType'] : null;
+                        if (!items) { return cellvalue == null ? "" : cellvalue; }
+                        return items[cellvalue] == null ? "" : items[cellvalue];
                     }
                 },
                 {

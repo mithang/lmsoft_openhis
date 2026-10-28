@@ -1,6 +1,19 @@
 ﻿@{
     Layout = null;
 }
+@* treeview dùng plugin wdtree: các fragment anh em (RecordList, Bljgh/Index,
+   YSList) đều nạp 2 file này ở đầu; CTGLList trước đây trông chờ trang chủ
+   nạp hộ nên trong Blctgl/Index thì $.fn.treeview không tồn tại. Mở trực tiếp
+   /Blctgl/CTGLList (Layout = null) thì còn thiếu cả jQuery nên nạp có điều
+   kiện như RecordList (E-04): khi nhúng trong Index thì jQuery của layout đã
+   có, không nạp đè. *@
+<script>
+    if (typeof jQuery === 'undefined') {
+        document.write('<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery/jquery-2.1.1.min.js")"><\/script>');
+    }
+</script>
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
+<link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.css")" rel="stylesheet" />
 <style>
     #ctglDiv {
         position: fixed;
