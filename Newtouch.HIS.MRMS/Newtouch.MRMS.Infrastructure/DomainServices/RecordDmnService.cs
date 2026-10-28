@@ -47,8 +47,11 @@ namespace Newtouch.MR.ManageSystem.DomainServices
 
             var bllxmc = _CommonDmnService.GetBllxTB(bllx.Substring(0,1));
 
+            // 7-fix: tham so hoa LastModifierCode (truoc day noi UserCode truc tiep).
+            // Ten bang dong bllxmc van noi chuoi (khong tham so hoa duoc) — no lay tu
+            // bang anh xa bllx trong DB (GetBllxTB), khong phai input truc tiep cua user.
             string sql = @"update a
-                        set a.IsLock = @IsLock,a.LastModifierCode = '" + UserCode + @"',a.LastModifyTime = getdate()
+                        set a.IsLock = @IsLock,a.LastModifierCode = @UserCode,a.LastModifyTime = getdate()
                         from " + DbNames.Name("EmrDb", "Newtouch_EMR") + ".[dbo]." + bllxmc + @" a
                         where a.id = @id and a.OrganizeId = @OrgId ";
             try
@@ -58,6 +61,7 @@ namespace Newtouch.MR.ManageSystem.DomainServices
                 para.Add(new SugarParameter("@OrgId", OrganizeId));
                 para.Add(new SugarParameter("@Id", blid));
                 para.Add(new SugarParameter("@IsLock", isLock));
+                para.Add(new SugarParameter("@UserCode", UserCode ?? ""));
                 this.ExecuteSqlCommand(sql, para.ToArray());
             }
             catch (FailedException ex)
@@ -246,19 +250,48 @@ namespace Newtouch.MR.ManageSystem.DomainServices
             {
                 sql += " and organizeId = @organizeId";
             }
-            if (!string.IsNullOrWhiteSpace(id))
+            // Giai doan 7-fix (P0): THAM SO HOA HOAN TOAN danh sach Id.
+            // Truoc day id noi truc tiep vao IN (...) -> Id chuoi crash
+            // "Invalid column name" va la be mat injection; id rong lai co the
+            // update toan bo bang (khi organizeId cung rong). Nay: tach Id theo
+            // dau phay, moi Id mot tham so; id rong/khong hop le -> 1=0 (0 dong).
+            var paraList = new System.Collections.Generic.List<SugarParameter>
             {
-                sql += "  and id in (" + id + ")";
-            }
-            SugarParameter[] para ={
                 new SugarParameter("@LastModifyTime",Convert.ToDateTime(LastModifyTime)),
                 new SugarParameter("@LastModifierCode",LastModifierCode ?? ""),
-				new SugarParameter("@blzt",blzt ?? ""),
-                //new SugarParameter("@id",id ?? ""),
-
+                new SugarParameter("@blzt",blzt ?? ""),
                 new SugarParameter("@organizeId",organizeId ?? "")
-                };
-            return this.ExecuteSqlCommand(sql, para);
+            };
+            if (!string.IsNullOrWhiteSpace(id))
+            {
+                var ids = id.Split(new[] { ',' }, System.StringSplitOptions.RemoveEmptyEntries)
+                    .Select(s => s.Trim())
+                    .Where(s => s.Length > 0)
+                    .Distinct()
+                    .ToList();
+                if (ids.Count == 0)
+                {
+                    sql += " and 1=0";
+                }
+                else
+                {
+                    var names = new System.Collections.Generic.List<string>();
+                    for (int i = 0; i < ids.Count; i++)
+                    {
+                        string pname = "@id" + i;
+                        names.Add(pname);
+                        paraList.Add(new SugarParameter(pname, ids[i]));
+                    }
+                    sql += " and id in (" + string.Join(",", names) + ")";
+                }
+            }
+            else
+            {
+                // id rong: truoc day khong co dieu kien id -> nguy co update hang loat.
+                // Nay khoa chat: khong doi dong nao khi khong chi ro Id.
+                sql += " and 1=0";
+            }
+            return this.ExecuteSqlCommand(sql, paraList.ToArray());
         }
 
 

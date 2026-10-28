@@ -1729,9 +1729,11 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                 apicflx = 1;
                 apicfh = cflist.cfh;
                 isAlertinherit = false;
-                string cfsqls = @"update " + DbNames.Name("CisDb", "Newtouch_CIS") + @"..xt_dzcf set zt='0' where cfid='{0}' and zt='1';  update " + DbNames.Name("CisDb", "Newtouch_CIS") + "..xt_dzcfmx set zt='0' where cfid='{0}' and zt='1' ";
-                cfsqls = string.Format(cfsqls, cfId);
-                this.ExecuteSqlCommand(cfsqls);
+                // 7-fix: tham so hoa cfId (truoc day string.Format noi truc tiep
+                // vao 2 cau update). Luu y: SELECT kiem tra o tren van doc
+                // [Newtouch_CIS] cung (read leak, khong phai write leak).
+                string cfsqls = @"update " + DbNames.Name("CisDb", "Newtouch_CIS") + @"..xt_dzcf set zt='0' where cfid=@cfId and zt='1';  update " + DbNames.Name("CisDb", "Newtouch_CIS") + "..xt_dzcfmx set zt='0' where cfid=@cfId and zt='1' ";
+                this.ExecuteSqlCommand(cfsqls, new[] { new SqlParameter("@cfId", cfId) });
             }
             else
             {

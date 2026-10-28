@@ -1028,14 +1028,33 @@ and  a.ispscs='1' " + sqlwhere;
                         }
                         else
                         {
-                            string sql = "insert into " + DbNames.Name("CisDb", "Newtouch_CIS") + @".dbo.xt_gmxx 
+                            // 7-fix: tham so hoa INSERT-SELECT xt_gmxx (truoc day noi
+                            // hzxm/xmdm/xmmc/psbz/Remark/user/yzid/zyh/OrganizeId truc tiep).
+                            // Dong thoi them danh sach cot tuong minh + gia tri cancel='1'
+                            // (nhu Enteragain): ban cu khong liet ke cot ma chi select 21
+                            // gia tri cho bang 22 cot nen INSERT khong bao gio chay duoc.
+                            string sql = "insert into " + DbNames.Name("CisDb", "Newtouch_CIS") + @".dbo.xt_gmxx
+    ([Id],[blh],[xm],[sex],[xmCode],[xmmc],[Result],[Remark],[CreateTime],[CreatorCode],[CreatorName],
+     [LastModifyTime],[LastModifierCode],[LastModifierName],[mzzybz],[yzid],[cfmxid],[OrganizeId],[zt],[gmlx],[ypCode],[cancel])
     select
-    newid(), blh, '" + item.hzxm + "', sex, '" + item.xmdm + "', '" + item.xmmc + "', '" + item.psbz + "', '" + Remark + "', '" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss:fff") + "','" + user.UserCode + "', " +
-            "'" + user.UserName + "',NULL,null,null ,2 ,'" + item.yzid.Trim() + "','', '" + user.OrganizeId.Trim() + "', '1','' , '" + item.xmdm + "'" +
-    @" from zy_brxxk with(nolock)
-    where zyh = '" + item.zyh.Trim() + "' and OrganizeId ='" + user.OrganizeId.Trim() + "' and zt = '1'";
+    newid(), blh, @hzxm, sex, @xmdm, @xmmc, @psbz, @remark, @now, @userCode,
+    @userName, NULL, null, null, 2, @yzid, '', @orgId, '1', '', @xmdm, '1'
+    from zy_brxxk with(nolock)
+    where zyh = @zyh and OrganizeId = @orgId and zt = '1'";
 
-                            ExecuteSqlCommand(sql);
+                            ExecuteSqlCommand(sql, new SqlParameter[] {
+                                new SqlParameter("@hzxm", item.hzxm),
+                                new SqlParameter("@xmdm", item.xmdm),
+                                new SqlParameter("@xmmc", item.xmmc),
+                                new SqlParameter("@psbz", item.psbz),
+                                new SqlParameter("@remark", Remark),
+                                new SqlParameter("@now", DateTime.Now),
+                                new SqlParameter("@userCode", user.UserCode),
+                                new SqlParameter("@userName", user.UserName),
+                                new SqlParameter("@yzid", item.yzid == null ? "" : item.yzid.Trim()),
+                                new SqlParameter("@orgId", user.OrganizeId == null ? "" : user.OrganizeId.Trim()),
+                                new SqlParameter("@zyh", item.zyh == null ? "" : item.zyh.Trim()),
+                            });
                         }
 
                     }

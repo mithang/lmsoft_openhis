@@ -226,10 +226,8 @@ namespace NewtouchHIS.Base.DomainService.SysManage
 
         private async Task<bool> MenuEditAuthcation(string user, string orgId)
         {
-            if (user == "root")
-            {
-                return true;
-            }
+            // Giai doan 7-fix: da xoa mien quyen sua menu cho account "root".
+            // Tai khoan DB ten "root" (neu tu tao) phai co vai tro HospAdmin nhu moi user.
             //Lấy quyền người dùng
             var userEty = await GetByWhereWithAttr<SysUserEntity>(p => p.Account == user && p.TopOrganizeId == sysConfig.Top_OrganizeId && p.zt == "1");
             if (userEty == null || userEty.Count != 1)

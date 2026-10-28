@@ -44,18 +44,10 @@ namespace NewtouchHIS.Base.DomainService
             {
                 return new BusResult<SysUserVEntity> { code = ResponseResultCode.FAIL, msg = "Vui lòng cấu hình thông tin tổ chức cấp cao nhất" };
             }
-            if (login.Username == "root" && CheckRootPwd(login.Password))
-            {
-                return new BusResult<SysUserVEntity>
-                {
-                    code = ResponseResultCode.SUCCESS,
-                    Data = new SysUserVEntity()
-                    {
-                        Id = "root",
-                        Account = "root"
-                    }
-                };
-            }
+            // Giai doan 7-fix (P0): DA XOA backdoor "root" — moi dang nhap deu phai qua DB.
+            // Truoc day co nhanh dac biet tra success voi Id/Account "root" ma khong can
+            // tai khoan DB nao, chay TRUOC ca kiem tra Locked. Nhanh do va CheckRootPwd
+            // da bi xoa hoan toan; userId "root" tu day se tra DB nhu moi tai khoan khac.
             var user = await GetFirstOrDefaultWithAttr<SysUserVEntity>(p => p.TopOrganizeId == sysConfig.Top_OrganizeId && p.zt == "1" && p.Account == login.Username);
             if (user == null)
             {
@@ -64,34 +56,67 @@ namespace NewtouchHIS.Base.DomainService
 
             if (user.Locked.HasValue && user.Locked.Value)
             {
-                //Không cung cấp Tự động mở khóa Chức năng
-                return new BusResult<SysUserVEntity> { code = ResponseResultCode.FAIL, msg = string.Format("Nhập sai mật khẩu liên tiếp quá {0} lần, tài khoản đã bị khóa", sysConfig.LoginFailedTimesLimit_Count) };
+                //Không cung cấp Tự động mở khóa Chức năng — mo khoa chi bang can thiep thu cong
+                //(UPDATE Sys_UserLogOn SET Locked=0, xem bao cao giai doan 7-fix).
+                return new BusResult<SysUserVEntity> { code = ResponseResultCode.FAIL, msg = string.Format("Nhập sai mật khẩu liên tiếp quá {0} lần, tài khoản đã bị khóa", FailureLimit) };
             }
             string dbPassword = MD5Encrypt.Md5(DESEncrypt.Encrypt(login.Password.ToLower(), user.UserSecretkey).ToLower(), 32).ToLower();
             if (dbPassword != user.UserPassword)
             {
+                // Giai doan 7-fix (P0): LOCKOUT THAT — ghi 1 dong that bai vao Sys_Log roi dem
+                // so that bai LIEN TIEP trong cua so cau hinh; du nguong thi set Locked=1.
+                // (Truoc day ham nay chi kiem tra co Locked san, khong bao gio dem/set.)
+                // Loi ghi log/kiem tra khong duoc lam hong duong bao sai mat khau: neu
+                // bookkeeping loi, van tra thong diep sai mat khau nhu cu.
+                try
+                {
+                    await RecordLoginFailureAsync(user);
+                    if (await HasReachedFailureLimitAsync(user))
+                    {
+                        await base.Context.Ado.ExecuteCommandAsync(
+                            "update Sys_UserLogOn set Locked=1 where UserId=@userId and zt='1'",
+                            new SugarParameter("@userId", user.Id));
+                        return new BusResult<SysUserVEntity> { code = ResponseResultCode.FAIL, msg = string.Format("Nhập sai mật khẩu liên tiếp quá {0} lần, tài khoản đã bị khóa", FailureLimit) };
+                    }
+                }
+                catch
+                {
+                    // Giu nguyen hanh vi cu khi bookkeeping loi (khong khoa, chi bao sai mat khau).
+                }
                 return new BusResult<SysUserVEntity> { code = ResponseResultCode.FAILOfPwdError, msg = "Mật khẩu không đúng, vui lòng nhập lại" };
             }
 
+            // 7-fix: ghi 1 dong thanh cong vao Sys_Log de chuoi that bai LIEN TIEP
+            // duoc reset dung nghia (neu khong, sau mo khoa, 1 lan sai moi lai du
+            // ngay nguong nho cac dong that bai cu chua co dong thanh cong xen giua).
+            // Loi ghi log khong duoc lam hong login thanh cong -> try/catch nuot.
+            try
+            {
+                var now = DateTime.Now;
+                await base.Context.Ado.ExecuteCommandAsync(
+                    "insert into Sys_Log (Id, TopOrganizeId, Date, Account, Type, ModuleName, Result, Description, CreateTime) " +
+                    "values (@id, @topOrg, @date, @account, 'Login', 'Dang nhap he thong', 1, @desc, @now)",
+                    new SugarParameter("@id", Guid.NewGuid().ToString()),
+                    new SugarParameter("@topOrg", user.TopOrganizeId),
+                    new SugarParameter("@date", now),
+                    new SugarParameter("@account", user.Account),
+                    new SugarParameter("@desc", "Dang nhap thanh cong"),
+                    new SugarParameter("@now", now));
+            }
+            catch
+            {
+            }
             return new BusResult<SysUserVEntity> { code = ResponseResultCode.SUCCESS, Data = new SysUserVEntity { Id = user.Id, Account = user.Account, TopOrganizeId = user.TopOrganizeId } };
         }
 
         public async Task<OperatorModel?> BuildLoginStatusOpr(string userId, string staffOrganizeId = null)
         {
-            SysUserVEntity user = new SysUserVEntity();
-            if (userId == "root")
+            // Giai doan 7-fix (P0): DA XOA nhanh dac biet "root" khong qua DB.
+            // userId "root" tu day tra DB nhu moi Id khac: khong thay thi null -> tu choi.
+            SysUserVEntity user = await GetFirstOrDefaultWithAttr<SysUserVEntity>(p => p.Id == userId);
+            if (user == null)
             {
-                user.Id = userId;
-                user.Account = userId;
-                user.TopOrganizeId = staffOrganizeId;
-            }
-            else
-            {
-                user = await GetFirstOrDefaultWithAttr<SysUserVEntity>(p => p.Id == userId);
-                if (user == null)
-                {
-                    return null;
-                }
+                return null;
             }
 
             //Đăng nhập thành công,Xây dựng thông tin danh tính hệ thống
@@ -103,7 +128,7 @@ namespace NewtouchHIS.Base.DomainService
                 CreateTime = DateTime.Now,
                 ModuleName = "Dang nhap he thong",
                 Type = DbLogType.Login.ToString(),
-                Account = userId == "root" ? userId : user?.Account,
+                Account = user?.Account,
             };
 
             return await BuildLoginStatusOpr(user, logEntity, staffOrganizeId);
@@ -122,9 +147,12 @@ namespace NewtouchHIS.Base.DomainService
             if (userEntity != null)
             {
                 IList<SysStaffVEntity>? staffList = null;
-                if (userEntity.Account != "root" && userEntity.Account != "admin")
+                // Giai doan 7-fix: khong con mien lien ket nhan vien cho tai khoan "root".
+                // Tai khoan DB (ke ca ten "root" neu benh vien tu tao) phai co staff link
+                // va vai tro nhu moi tai khoan khac; chi "admin" giu dac quyen nhu cu.
+                if (userEntity.Account != "admin")
                 {
-                    //root admin không thể liên kết bệnh việnId,dù đã lập liên kết cũng bỏ qua
+                    //admin không liên kết bệnh việnId,dù đã lập liên kết cũng bỏ qua (7-fix: root khong con mien)
                     staffList = await _sysStaffDmn.GetStaffListByUserId(userEntity.Id);
                     if (!string.IsNullOrWhiteSpace(staffOrganizeId))
                     {
@@ -158,11 +186,9 @@ namespace NewtouchHIS.Base.DomainService
                     NeedChooseOrgFlag = writedNeedChooseOrgFlag
                 };
 
-                if (userEntity.Account == "root")
-                {
-                    operatorModel.IsRoot = true;
-                }
-                else if (userEntity.Account == "admin")
+                // Giai doan 7-fix: khong con co IsRoot dac biet cho tai khoan "root".
+                // (IsRoot tren OperatorModel giu nguyen kieu, mac dinh false.)
+                if (userEntity.Account == "admin")
                 {
                     operatorModel.IsAdministrator = true;
                 }
@@ -183,16 +209,80 @@ namespace NewtouchHIS.Base.DomainService
         }
         #endregion
 
-        #region private
+        #region private — lockout (giai doan 7-fix)
         /// <summary>
-        /// rootĐăng nhập(Trường hợp đặc biệt),Kiểm chứng mật khẩu
-        /// Đạt thì trả vềtrue,nếu không thì trả vềfalse
+        /// Nguong khoa: doc tu BusinessConfig, fallback giong legacy (3 lan / 60 phut).
+        /// AuthCenter/Manage khong co 2 key nay trong appsettings nen nhan fallback,
+        /// cung gia tri 3/60 nhu BaseAPI (co key) — xem bao cao giai doan 7-fix.
         /// </summary>
-        /// <param name="password"></param>
-        /// <returns></returns>
-        private bool CheckRootPwd(string password)
+        private int FailureLimit
         {
-            return password == MD5Encrypt.Md5(DateTime.Now.ToString("HHMMdd"), 32).ToLower();
+            get
+            {
+                var v = sysConfig.LoginFailedTimesLimit_Count;
+                return v.HasValue && v.Value > 0 ? v.Value : 3;
+            }
+        }
+
+        private int FailureWindowMinutes
+        {
+            get
+            {
+                var v = sysConfig.LoginFailedTimesLimit_Minutes;
+                return v.HasValue && v.Value > 0 ? v.Value : 60;
+            }
+        }
+
+        /// <summary>
+        /// Ghi 1 dong that bai vao Sys_Log (bang cua SysUserLoginLog).
+        /// Liet ke cot tuong minh vi Sys_Log THUC TE khong co cot OrganizeId
+        /// ma entity co — insert ca entity se loi "Invalid column name 'OrganizeId'".
+        /// Dong that bai nay cung la nguon dem cho logic legacy (sys_log Type='Login')
+        /// neu duong legacy duoc khoi phuc sau nay.
+        /// </summary>
+        private async Task RecordLoginFailureAsync(SysUserVEntity user)
+        {
+            var now = DateTime.Now;
+            await base.Context.Ado.ExecuteCommandAsync(
+                "insert into Sys_Log (Id, TopOrganizeId, Date, Account, Type, ModuleName, Result, Description, CreateTime) " +
+                "values (@id, @topOrg, @date, @account, 'Login', 'Dang nhap he thong', 0, @desc, @now)",
+                new SugarParameter("@id", Guid.NewGuid().ToString()),
+                new SugarParameter("@topOrg", user.TopOrganizeId),
+                new SugarParameter("@date", now),
+                new SugarParameter("@account", user.Account),
+                new SugarParameter("@desc", "Mat khau khong dung"),
+                new SugarParameter("@now", now));
+        }
+
+        /// <summary>
+        /// Dem so that bai LIEN TIEP moi nhat trong cua so (gap dong thanh cong
+        /// thi dung dem). Tra true khi du nguong — tuc lan that bai hien tai
+        /// la lan thu N lien tiep, dung ngu nghia legacy "N-1 dong truoc toan that bai".
+        /// </summary>
+        private async Task<bool> HasReachedFailureLimitAsync(SysUserVEntity user)
+        {
+            int limit = FailureLimit;
+            var start = DateTime.Now.AddMinutes(-FailureWindowMinutes);
+            // limit la int noi bo da clamp (>0), khong phai input nguoi dung.
+            var table = await base.Context.Ado.GetDataTableAsync(
+                $"select top {limit} Result from Sys_Log where Type='Login' and Account=@account " +
+                "and TopOrganizeId=@topOrg and CreateTime>@start order by CreateTime desc",
+                new SugarParameter("@account", user.Account),
+                new SugarParameter("@topOrg", user.TopOrganizeId),
+                new SugarParameter("@start", start));
+            if (table == null || table.Rows.Count < limit)
+            {
+                return false;
+            }
+            foreach (System.Data.DataRow row in table.Rows)
+            {
+                var result = row["Result"];
+                if (result != null && result != System.DBNull.Value && (bool)result)
+                {
+                    return false; // co dong thanh cong xen giua -> chua du N that bai lien tiep
+                }
+            }
+            return true;
         }
 
         #endregion

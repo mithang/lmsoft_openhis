@@ -403,7 +403,9 @@ FROM (
                 sql += "";
             }
             else{
-                sql += " and a.yzxz ='"+ req.yzxz + "'";
+                // 7-fix: tham so hoa (truoc day noi truc tiep; gia tri da whitelist "1"/"2" o tren).
+                // Tham so @yzxz duoc them vao mang param ben duoi (thua khi nhanh khong chay cung vo hai).
+                sql += " and a.yzxz =@yzxz";
             }
             sql += @" AND a.CreateTime BETWEEN @kssj AND @jssj
     AND ISNULL(a.patientName, '') LIKE '%' + @patientName + '%'
@@ -423,7 +425,8 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
                 new SugarParameter("@jssj", req.Jssj),
                 new SugarParameter("@patientName", req.patientName??""),
                 new SugarParameter("@ypmc", req.ypmc??""),
-                new SugarParameter("@cw", req.cw??"")
+                new SugarParameter("@cw", req.cw??""),
+                new SugarParameter("@yzxz", req.yzxz??"")
             };
             return FindList<YPFYPatientInfoVO>(sql, param);
         }

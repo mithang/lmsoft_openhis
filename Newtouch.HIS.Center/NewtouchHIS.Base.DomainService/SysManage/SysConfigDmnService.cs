@@ -45,7 +45,10 @@ namespace NewtouchHIS.Base.DomainService.SysManage
         public async Task<List<SysModuleVO>?> GetMenuListbyAppId(string orgId, string appId, string userId = null, bool validLimit = true, bool? systemMenuLimit = true)
         {
             var isAdmin = await _roleDmn.IsHospAdmin(userId, orgId);
-            if (!isAdmin && userId!="root")
+            // Giai doan 7-fix: da xoa mien quyen admin cho userId "root".
+            // Sau khi xoa login root, khong con phien hop le nao mang Id "root";
+            // tai khoan DB (ke ca Id "root" neu tu tao) phai co vai tro HospAdmin nhu moi user.
+            if (!isAdmin)
             {
                 throw new FailedException(ResponseResultCode.FAILOfAuth, "Chỉ quản trị viên mới được thao tác");
             }

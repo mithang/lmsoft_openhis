@@ -21,11 +21,16 @@ namespace Newtouch.EMR.Repository
 
         public List<HljldataVO> blIdselect(string zyh, string mbbh, string orgId)
         {
+            // 7-fix: tham so hoa (truoc day noi mbbh/zyh/orgId truc tiep).
             var sql = @"select top 1 b.Id from [Newtouch_EMR].[dbo].[zy_meddocs_relation] a
 left join  [Newtouch_EMR].[dbo].[bl_hljl] b
 on a.blId=b.Id and a.OrganizeId=b.OrganizeId and b.zt='1'
-where a.mbId='"+mbbh+"' and a.zyh='"+zyh+"' and a.OrganizeId='"+orgId+"' order by b.CreateTime desc";
-            return this.FindList<HljldataVO>(sql);
+where a.mbId=@mbbh and a.zyh=@zyh and a.OrganizeId=@orgId order by b.CreateTime desc";
+            return this.FindList<HljldataVO>(sql, new SugarParameter[] {
+                new SugarParameter("@mbbh", mbbh ?? ""),
+                new SugarParameter("@zyh", zyh ?? ""),
+                new SugarParameter("@orgId", orgId ?? "")
+            });
         }
 
 
@@ -44,9 +49,13 @@ where a.mbId='"+mbbh+"' and a.zyh='"+zyh+"' and a.OrganizeId='"+orgId+"' order b
                 item.blId = (string.IsNullOrWhiteSpace(item.blId)) ? blId : item.blId;
                 if (!string.IsNullOrWhiteSpace(item.Id))
                 {
-                    var sqldelete = "update " + DbNames.Name("EmrDb", "Newtouch_EMR") + ".[dbo].[bl_hljldata] set zt='0',LastModifierCode="+user.rygh
-                        +",LastModifyTime=getdate()  where Id='" + item.Id+"'";
-                    ExecuteSqlCommand(sqldelete);
+                    // 7-fix: tham so hoa (truoc day noi rygh khong dau nhay + Id truc tiep).
+                var sqldelete = "update " + DbNames.Name("EmrDb", "Newtouch_EMR") + ".[dbo].[bl_hljldata] set zt='0',LastModifierCode=@rygh"
+                        +",LastModifyTime=getdate()  where Id=@itemId";
+                    ExecuteSqlCommand(sqldelete, new SugarParameter[] {
+                        new SugarParameter("@rygh", user.rygh ?? ""),
+                        new SugarParameter("@itemId", item.Id ?? "")
+                    });
                     item.Id = null;
                 }
 //                var sql = @"insert into [Newtouch_EMR].[dbo].[bl_hljldata] values(
@@ -55,14 +64,15 @@ where a.mbId='"+mbbh+"' and a.zyh='"+zyh+"' and a.OrganizeId='"+orgId+"' order b
 //",'" + item.zkhl + "','" + item.dglb + "','" + item.hlzd + "','" + item.nl + "','" + item.wy + "','" + item.bqhlcontent + "','" + item.hsqm + "'" +
 //",'1',getdate(),'" + user.UserCode + "',NULL,NULL,'" + user.OrganizeId + "','"+item.jlwzsj+"','"+zyh+"')";
 
+                // 7-fix: tham so hoa UserCode/OrganizeId/zyh (truoc day noi truc tiep).
                 string sql = @"insert into " + DbNames.Name("EmrDb", "Newtouch_EMR") + @".[dbo].[bl_hljldata]([Id],[blId],[jlrq],[tw],[mb],[hx],[xy],[ybhd],[cxxdjc],[xroyx],[hljb],[xzjs],[pbjyxkt],[ycyf],[ddyf]
 ,[qtjh],[zkhl],[dglb],[hlzd],[nl],[wy],[bqhlcontent],[hsqm],[zt],[CreateTime]
-,[CreatorCode],[LastModifyTime],[LastModifierCode],[OrganizeId],[jlwzsj],[zyh]) 
+,[CreatorCode],[LastModifyTime],[LastModifierCode],[OrganizeId],[jlwzsj],[zyh])
 values(
 newId(),@blId,@jlrq,@tw,@mb,@hx,@xy,@ybhd,@cxxdjc" +
 ",@xroyx,@hljb,@xzjs,@pbjyxkt,@ycyf,@ddyf,@qtjh" +
 ",@zkhl,@dglb,@hlzd,@nl,@wy,@bqhlcontent,@hsqm" +
-",'1',getdate(),'" + user.UserCode + "',NULL,NULL,'" + user.OrganizeId + "',@jlwzsj,'" + zyh+"')";
+",'1',getdate(),@userCode,NULL,NULL,@userOrgId,@jlwzsj,@zyh)";
 
                 ExecuteSqlCommand(sql,new SugarParameter[] {
                     new SugarParameter("blId",item.blId),
@@ -87,7 +97,10 @@ newId(),@blId,@jlrq,@tw,@mb,@hx,@xy,@ybhd,@cxxdjc" +
                     new SugarParameter("wy",item.wy??""),
                     new SugarParameter("bqhlcontent",item.bqhlcontent??""),
                     new SugarParameter("hsqm",item.hsqm??""),
-                    new SugarParameter("jlwzsj",item.jlwzsj)
+                    new SugarParameter("jlwzsj",item.jlwzsj),
+                    new SugarParameter("userCode",user.UserCode ?? ""),
+                    new SugarParameter("userOrgId",user.OrganizeId ?? ""),
+                    new SugarParameter("zyh",zyh ?? "")
                 });                 
             }
 
@@ -157,9 +170,12 @@ order by jlwzsj,jlrq ";
 from [Newtouch_EMR].[dbo].[zy_brjbxx] a
 left join NewtouchHIS_Base.[dbo].[Sys_Department] b
 on a.DeptCode=b.Code and a.OrganizeId=b.OrganizeId and b.zt='1'
-where zyh='" + zyh+"' and a.zt='1'and a.OrganizeId='"+orgId+"'";
+where zyh=@zyh and a.zt='1'and a.OrganizeId=@orgId";
 
-            return this.FindList<InfordivVO>(sql);
+            return this.FindList<InfordivVO>(sql, new SugarParameter[] {
+                new SugarParameter("@zyh", zyh ?? ""),
+                new SugarParameter("@orgId", orgId ?? "")
+            });
            
         }
 
@@ -170,8 +186,14 @@ b.ddyf, b.qtjh, b.zkhl, b.dglb, b.hlzd, b.nl, b.wy, b.bqhlcontent, b.hsqm, b.zt,
 b.CreatorCode, b.LastModifyTime, b.LastModifierCode, b.OrganizeId, CONVERT(varchar(10), b.jlwzsj, 120)jlwzsj  
 from [Newtouch_EMR].[dbo].[zy_meddocs_relation] a ,[Newtouch_EMR].[dbo].[bl_hljldata] b
 where a.blId=b.blId and a.OrganizeId=b.OrganizeId and a.zt='1' and  b.zt='1' 
-and a.zyh='" + zyh+"' and a.mbId= '"+mbbh+ " ' and a.OrganizeId='"+orgId+ "'and b.jlwzsj between '"+kssj+"' and '"+jssj+"'+' 23:59:59'";
-            return this.FindList<HljldataVO>(sql);
+and a.zyh=@zyh and a.mbId=@mbbh and a.OrganizeId=@orgId and b.jlwzsj between @kssj and @jssj";
+            return this.FindList<HljldataVO>(sql, new SugarParameter[] {
+                new SugarParameter("@zyh", zyh ?? ""),
+                new SugarParameter("@mbbh", (mbbh ?? "").Trim()),
+                new SugarParameter("@orgId", orgId ?? ""),
+                new SugarParameter("@kssj", kssj ?? ""),
+                new SugarParameter("@jssj", (jssj ?? "") + " 23:59:59")
+            });
         }
     }
 }

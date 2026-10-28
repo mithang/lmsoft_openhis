@@ -510,14 +510,16 @@ where OrganizeId = @orgId and zt = '1'";
 
         public void ReportAdd(ReportConfigVO ety,string keyValue,string rygh)
         {
-            string sql = "select 1 from [NewtouchHIS_Base].dbo.ReportSvsConfig where OrganizeId=@orgId and zt='1' and RptCode='" + ety.RptCode+"'";
+            // 7-fix: tham so hoa RptCode (truoc day noi truc tiep).
+            string sql = "select 1 from [NewtouchHIS_Base].dbo.ReportSvsConfig where OrganizeId=@orgId and zt='1' and RptCode=@rptCode";
             if (!string.IsNullOrWhiteSpace(keyValue))
             {
                 sql += " and Id<>@rptId ";
-            }                
+            }
             int ck = ExecuteSqlCommand(sql, new SqlParameter[] {
                     new SqlParameter("orgId",ety.OrganizeId),
                     new SqlParameter("rptId",keyValue??""),
+                    new SqlParameter("rptCode",ety.RptCode??""),
                 });
             if (ck > 0)
             {

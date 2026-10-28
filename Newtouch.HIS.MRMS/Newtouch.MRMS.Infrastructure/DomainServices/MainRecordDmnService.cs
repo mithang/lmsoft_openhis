@@ -90,8 +90,10 @@ where a.organizeid=@orgId and a.zt='1'
             if(!string.IsNullOrWhiteSpace(keyword))
             {
                 //sql += " and (charindex(@keyword,a.XM)>0 or a.ZYH=@keyword or a.BAH=@keyword  )";
-                sql += " and (charindex(@keyword,a.XM)>0 or a.ZYH=@keyword or a.BAH=@keyword or  a.XM IN (select XM from  [NewtouchHIS_Sett].[dbo].[xt_brjbxx] where py like  ('%" + keyword + "%')) )";
+                // 7-fix: tham so hoa LIKE con (truoc day noi keyword truc tiep vao '%...%').
+                sql += " and (charindex(@keyword,a.XM)>0 or a.ZYH=@keyword or a.BAH=@keyword or  a.XM IN (select XM from  [NewtouchHIS_Sett].[dbo].[xt_brjbxx] where py like @pykeyword) )";
 				para.Add(new SugarParameter("@keyword", keyword));
+				para.Add(new SugarParameter("@pykeyword", "%" + keyword + "%"));
             }
             if (!string.IsNullOrWhiteSpace(sfzh))
             {
@@ -774,10 +776,12 @@ order by SSOrder ";
                             //Ghi đèEMR
                             try
                             {
-                                string sql = @"update " + DbNames.Name("EmrDb", "Newtouch_EMR") + @".dbo.mr_basy set BABAH='" + vo.BAH + "',LastModifyTime=getdate(),LastModifierCode='MRMS' where organizeid=@orgId and zyh=@zyh and zt='1'";
+                                // 7-fix: tham so hoa BABAH (truoc day noi truc tiep).
+                                string sql = @"update " + DbNames.Name("EmrDb", "Newtouch_EMR") + @".dbo.mr_basy set BABAH=@bah,LastModifyTime=getdate(),LastModifierCode='MRMS' where organizeid=@orgId and zyh=@zyh and zt='1'";
                                 ExecuteSqlCommand(sql, new SugarParameter[] {
                                     new SugarParameter("@orgId",orgId),
-                                    new SugarParameter("@zyh",ety.ZYH)
+                                    new SugarParameter("@zyh",ety.ZYH),
+                                    new SugarParameter("@bah",vo.BAH ?? "")
                                 });
                             }
                             catch (Exception ex)
@@ -1101,8 +1105,12 @@ where organizeid=@orgId and zyh=@zyh ";
         {
             try
             {
-                var sql = @" exec usp_sync_basy_Exportscv '"+ orgId+"','"+ kssj + "','"+ jssj+"'";
-                DataTable dt = this.SqlQueryForDataTatable(sql);
+                // 7-fix: tham so hoa goi proc (truoc day noi orgId/kssj/jssj truc tiep).
+                var sql = @" exec usp_sync_basy_Exportscv @orgId,@kssj,@jssj";
+                DataTable dt = this.SqlQueryForDataTatable(sql,
+                    new SugarParameter("@orgId", orgId ?? ""),
+                    new SugarParameter("@kssj", kssj ?? ""),
+                    new SugarParameter("@jssj", jssj ?? ""));
                 string TemplatePath = AppSettings.GetConfig("MedicalRecordExport");
                 string FullFileName = AppSettings.GetConfig("MedicalRecordExport") + "N041_武胜瑞康精神病专科医院.csv";
                 if (Directory.Exists(TemplatePath))
@@ -1147,8 +1155,12 @@ where organizeid=@orgId and zyh=@zyh ";
         {
             try
             {
-                var sql = @" exec usp_sync_basy_Exportscvfy '" + orgId + "','" + kssj + "','" + jssj + "'";
-                DataTable dt = this.SqlQueryForDataTatable(sql);
+                // 7-fix: tham so hoa goi proc (truoc day noi orgId/kssj/jssj truc tiep).
+                var sql = @" exec usp_sync_basy_Exportscvfy @orgId,@kssj,@jssj";
+                DataTable dt = this.SqlQueryForDataTatable(sql,
+                    new SugarParameter("@orgId", orgId ?? ""),
+                    new SugarParameter("@kssj", kssj ?? ""),
+                    new SugarParameter("@jssj", jssj ?? ""));
                 string TemplatePath = AppSettings.GetConfig("MedicalRecordExport");
                 string FullFileName = AppSettings.GetConfig("MedicalRecordExport")+"N043_武胜瑞康精神病专科医院.csv";
                 if (Directory.Exists(TemplatePath))

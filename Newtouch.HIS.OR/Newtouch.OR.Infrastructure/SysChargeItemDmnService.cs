@@ -136,10 +136,8 @@ values(@sfmbbh,@orgId,@sfmb,@sfmbmc,2,0,'1',@user,getdate(),@ks)";
                 });
             }
 
-            string sqlitems = @"INSERT INTO " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @".dbo.[xt_sfmbxm]
-                ([sfmbxmId],[OrganizeId],[sfmbbh],[sfxm],[CreatorCode],[CreateTime],[zt],[sl])
-";
-            int i = 0;
+            // 7-fix: tham so hoa INSERT xt_sfmbxm theo tung item (truoc day noi
+            // OrganizeId/sfmbbh/sfxmCode/user/sl truc tiep vao chuoi SQL).
             if (!string.IsNullOrWhiteSpace(xmListStr))
             {
                 var itemList = Json.ToObject<IList<SysChargeItemTemplateVO>>(xmListStr);
@@ -147,25 +145,19 @@ values(@sfmbbh,@orgId,@sfmb,@sfmbmc,2,0,'1',@user,getdate(),@ks)";
                 {
                     foreach (var item in itemList)
                     {
-                        i++;
-                        var sl = string.IsNullOrWhiteSpace(item.sl.ToString()) == true ? "null" : item.sl.ToString();
-                        if (i == 1)
+                        var sqlitems = @"INSERT INTO " + DbNames.Name("SettDb", "NewtouchHIS_Sett") + @".dbo.[xt_sfmbxm]
+                ([sfmbxmId],[OrganizeId],[sfmbbh],[sfxm],[CreatorCode],[CreateTime],[zt],[sl])
+                values(newid(),@orgId,@sfmbbh,@sfxm,@user,getdate(),'1',@sl)";
+                        this.ExecuteSqlCommand(sqlitems, new SugarParameter[]
                         {
-                            sqlitems += @"
-select newid(),'" + entity.OrganizeId + "','" + entity.sfmbbh + "','" + item.sfxmCode + "','" + user +
-                                "',getdate(),'1'," + sl + @"  
-";
-                        }
-                        else
-                        {
-                            sqlitems += @"
-union all select newid(),'" + entity.OrganizeId+"','"+ entity.sfmbbh+"','"+ item.sfxmCode+"','"+user+"',getdate(),'1',"+ sl + @"  
-";                            
-                        }
+                            new SugarParameter("@orgId", entity.OrganizeId),
+                            new SugarParameter("@sfmbbh", entity.sfmbbh),
+                            new SugarParameter("@sfxm", item.sfxmCode),
+                            new SugarParameter("@user", user),
+                            new SugarParameter("@sl", (object)item.sl ?? System.DBNull.Value)
+                        });
                     }
                 }
-
-                this.ExecuteSqlCommand(sqlitems);
             }
         }
         /// <summary>

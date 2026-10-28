@@ -65,15 +65,24 @@ namespace Newtouch.OR.ManageSystem.Repository
                 dbEntity.sqzt = ((int)EnumSqzt.yqx).ToString();
                 Update(dbEntity);
 
-                var sqlcx = @"select 1 from " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].[zy_lsyz] 
-where yzlx=3  and zyh=" + dbEntity.zyh + " and xmmc='" + ssmcn+"' and ysgh='"+dbEntity.ysgh+"' and  OrganizeId='"+dbEntity.OrganizeId+"' and sssj='"+dbEntity.sssj+"'";
-                var a = ExecuteSqlCommand(sqlcx);
+                // 7-fix: tham so hoa (truoc day noi zyh/xmmc/ysgh/OrganizeId/sssj truc tiep).
+                // Giu nguyen ngu nghia cu: ExecuteSqlCommand tra ve so dong/khac 0 thi update.
+                var pars = new SugarParameter[] {
+                    new SugarParameter("@zyh", dbEntity.zyh ?? ""),
+                    new SugarParameter("@ssmcn", ssmcn ?? ""),
+                    new SugarParameter("@ysgh", dbEntity.ysgh ?? ""),
+                    new SugarParameter("@orgId", dbEntity.OrganizeId ?? ""),
+                    new SugarParameter("@sssj", (object)dbEntity.sssj ?? System.DBNull.Value)
+                };
+                var sqlcx = @"select 1 from " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].[zy_lsyz]
+where yzlx=3 and zyh=@zyh and xmmc=@ssmcn and ysgh=@ysgh and OrganizeId=@orgId and sssj=@sssj";
+                var a = ExecuteSqlCommand(sqlcx, pars);
                 if (a !=0)
                 {
                     var sql = @"update " + DbNames.Name("CisDb", "Newtouch_CIS") + @".[dbo].[zy_lsyz]
                                 set zt=0
-                                where yzlx=3 and yzzt=0 and zyh='"+dbEntity.zyh+"' and xmmc='" + ssmcn + "' and ysgh='" + dbEntity.ysgh + "' and  OrganizeId='" + dbEntity.OrganizeId + "'and sssj='" + dbEntity.sssj + "'";
-                    ExecuteSqlCommand(sql);
+                                where yzlx=3 and yzzt=0 and zyh=@zyh and xmmc=@ssmcn and ysgh=@ysgh and OrganizeId=@orgId and sssj=@sssj";
+                    ExecuteSqlCommand(sql, pars);
                 }
                 
             }

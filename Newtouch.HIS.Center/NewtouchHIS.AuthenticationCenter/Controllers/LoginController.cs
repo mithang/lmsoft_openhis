@@ -50,6 +50,11 @@ namespace NewtouchHIS.AuthenticationCenter.Controllers
                 {
                     TopOrganizeId = logResult.Data.TopOrganizeId,
                     Account = logResult.Data.Account,
+                    // 7-fix: HSJWTService.OptionValid (AuthType.Web) bat buoc ca Account
+                    // lan UserCode; truoc day controller khong set UserCode nen UserLogin
+                    // center khong bao gio qua duoc buoc cap JWT (loi "thong tin tai
+                    // khoan khong duoc de trong") ngay ca khi mat khau dung.
+                    UserCode = logResult.Data.Account,
                     AppId = login.AppId,
                     OrganizeId = login.OrganizeId
                 }
