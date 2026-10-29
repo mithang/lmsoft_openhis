@@ -5,7 +5,10 @@
 
 	ViewBag.Title = "PatientList";
 	var opr = OperatorProvider.GetCurrent();
-	Layout = null;
+	// T-02: partial trong MainBusiness (render partial bo qua Layout) dong thoi
+	// mo duoc bang URL truc tiep; URL standalone can _Index de co jQuery
+	// (truoc day: "$ is not defined").
+	Layout = "~/Views/Shared/_Index.cshtml";
 	var iSReminderBeforehand = SysConfigReader.Bool("IS_ReminderBeforehand", false).Value;
 	var isShowghlybz = SysConfigReader.String("IS_Showghlybz");
 	var cmmSwitch = SysConfigReader.Bool("cmmSwitch", false).Value;

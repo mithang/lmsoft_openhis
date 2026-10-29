@@ -2,7 +2,10 @@
 @{
     //Thuốc TâyĐơn thuốc
     ViewBag.Title = "WMPrescription";
-    Layout = null;
+    // T-02: partial trong MainBusiness (render partial bo qua Layout) dong thoi
+    // mo duoc bang URL truc tiep; URL standalone can _Index de co jQuery
+    // (truoc day: "$ is not defined").
+    Layout = "~/Views/Shared/_Index.cshtml";
     //ThuốcTìm kiếm，ThuốcCóKhôngNhà thuốc liên quanTồn kho
     var isMedicineSearchRelatedKC = (ViewBag.ISMedicineSearchRelatedKC as bool?) ?? false;
     var IsQyKssKz = (ViewBag.IsQyKssKz as bool?) ?? false;//Kích hoạtKháng sinh

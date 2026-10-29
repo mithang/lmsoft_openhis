@@ -1,18 +1,21 @@
 ﻿@{ 
     var isCheckChkCode = (ViewBag.IsCheckChkCode as bool?) ?? true;
 }
-<script type="text/javascript">
-    if (window.top != window) {
-        top.location.href = location.href;
-    }
-</script>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EMRHệ thống quản lý</title>
+    <!-- T-01: script chong-frame phai nam SAU doctype. Ban cu dat script truoc
+         doctype nen trinh duyet roi ve quirks mode, scrollWidth do duoc
+         2024 (desktop) / 548 (mobile) thay vi bang viewport. -->
+    <script type="text/javascript">
+        if (window.top != window) {
+            top.location.href = location.href;
+        }
+    </script>
+    <title>EMR Hệ thống quản lý</title>
     <link rel="shortcut icon" href="@MvcHelper.GetStaticResourceScriptUrl("~/img/newtouchcloud.ico")">
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/Content/css/login.css", false)" rel="stylesheet" />
     @Html.Partial("_FrontReference")

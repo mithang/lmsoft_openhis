@@ -54,7 +54,7 @@ namespace Newtouch.Herp.API.Controllers
                 {
                     resp.code = ResponseResultCode.FAIL;
                     resp.sub_code = "TOKEN_TYPE_IS_REQUIRED";
-                    resp.sub_msg = "Loại mã truy cập trống";
+                    resp.sub_msg = "Loại token truy cập trống";
                     return;
                 }
                 if (string.IsNullOrWhiteSpace(req.Account) || string.IsNullOrWhiteSpace(req.Password))

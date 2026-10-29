@@ -2,7 +2,10 @@
 
 @{
     ViewBag.Title = "Bệnh án";//Bệnh án ngoại trú
-    Layout = null;
+    // T-02: partial trong MainBusiness (render partial bo qua Layout) dong thoi
+    // mo duoc bang URL truc tiep; URL standalone can _Index de co jQuery
+    // (truoc day: "$ is not defined").
+    Layout = "~/Views/Shared/_Index.cshtml";
 
     var pacsHost = SiteUrl.GetUrl("OuterPacsServiceHost", "");
     var isPrintRehabPres = (ViewBag.ISPrintRehabPres as bool?) ?? false;

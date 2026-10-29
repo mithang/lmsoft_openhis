@@ -118,25 +118,25 @@ namespace Newtouch.Herp.API
             {
                 response.code = ResponseResultCode.FAIL;
                 response.sub_code = "TOKEN_TYPE_IS_REQUIRED";
-                response.sub_msg = "Loại mã truy cập trống";
+                response.sub_msg = "Loại token truy cập trống";
             }
             catch (TokenRequiredException)
             {
                 response.code = ResponseResultCode.FAIL;
                 response.sub_code = "TOKEN_IS_REQUIRED";
-                response.sub_msg = "Mã truy cập trống";
+                response.sub_msg = "Token truy cập trống";
             }
             catch (TokenExpiredException)
             {
                 response.code = ResponseResultCode.FAIL;
                 response.sub_code = "TOKEN_IS_EXPIRED";
-                response.sub_msg = "Mã truy cập đã hết hạn";
+                response.sub_msg = "Token truy cập đã hết hạn";
             }
             catch (TokenTypeNotMatchException)
             {
                 response.code = ResponseResultCode.FAIL;
                 response.sub_code = "TOKEN_TYPE_NOT_MATCH";
-                response.sub_msg = "Loại mã truy cập không khớp";
+                response.sub_msg = "Loại token truy cập không khớp";
             }
             catch (TokenIllegalException)
             {

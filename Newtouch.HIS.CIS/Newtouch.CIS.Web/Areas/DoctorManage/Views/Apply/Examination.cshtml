@@ -1,7 +1,10 @@
 @using Newtouch.Infrastructure
 @{
     ViewBag.Title = "Examination";
-    Layout = null;
+    // T-02: partial trong DoctorsAdvice/Index (render partial bo qua Layout)
+    // dong thoi mo duoc bang URL truc tiep; URL standalone can _Index de co
+    // jQuery (truoc day: "$ is not defined").
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
     #divGridjc select[role=select] {
