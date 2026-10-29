@@ -21,6 +21,27 @@
     var cmmSwitch = (bool)SysConfigReader.Bool("cmmSwitch", false);
 }
 <style>
+    /* RS-05 (mobile): #myTab position:fixed + li width 11% (cispage.css) lam
+       tab wrap 2-3 dong tren viewport hep, cao hon margin-top:40px cua khoi
+       noi dung ben duoi nen tab che kin hang filter (radio/keyword/nut tim
+       kiem) va nut #btn_search khong bam duoc (Playwright timeout 30s x2).
+       Cuon trang khong giup vi tab co dinh. Tren mobile (<=767px) chuyen tab
+       sang mot hang cuon ngang: chieu cao tab ve ~40px, khoi noi dung va
+       hang filter hien day du ben duoi. Desktop khong doi. */
+    @@media (max-width: 767px) {
+        #myTab {
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        #myTab > li {
+            width: auto;
+            float: none;
+            display: inline-block;
+        }
+        #myTab > li > a {
+            white-space: nowrap;
+        }
+    }
     #divPatientBasicInfo {
         position: fixed;
         top: 0px;
@@ -100,9 +121,13 @@
     @Html.Partial("_HistoryPresTreeForm", new ViewDataDictionary(ViewData) { ["ISOpenZycfnew"] = iSOpenZycfnew })
     @Html.Partial("_InspectTemplateTreeForm")
     <div class="tab-content">
-        @Html.Partial("~/Views/PatientList/PatientList.cshtml")
+        @* RS-01/RS-02: truyen CisEmbeddedPartial=true de cac view nay render
+           Layout=null (xem ghi chu o PatientList.cshtml); neu khong, moi
+           partial render ca tai lieu _Index long nhau va nap lai jQuery,
+           xoa plugin treeview/validate cua trang cha. *@
+        @Html.Partial("~/Views/PatientList/PatientList.cshtml", new ViewDataDictionary(ViewData) { ["CisEmbeddedPartial"] = true })
 
-        @Html.Partial("~/Views/MedicalRecord/MedicalRecord.cshtml")
+        @Html.Partial("~/Views/MedicalRecord/MedicalRecord.cshtml", new ViewDataDictionary(ViewData) { ["CisEmbeddedPartial"] = true })
         @if (isOpenKfcf == true)
         {
             @Html.Partial("~/Views/Prescription/RehabPrescription.cshtml")
@@ -111,7 +136,7 @@
         {
             @Html.Partial("~/Views/Prescription/RegularItemPrescription.cshtml")
         }
-        @Html.Partial("~/Views/Prescription/WMPrescription.cshtml")
+        @Html.Partial("~/Views/Prescription/WMPrescription.cshtml", new ViewDataDictionary(ViewData) { ["CisEmbeddedPartial"] = true })
         @if (iSOpenZycf == true)
         {
             @Html.Partial("~/Views/Prescription/TCMPrescription.cshtml")
@@ -127,11 +152,11 @@
         @if (IsOpenJyJcSwitch == true)
         {
             @Html.Partial("~/Views/Apply/Inspection.cshtml")
-            @Html.Partial("~/Views/Apply/Examination.cshtml")
+            @Html.Partial("~/Views/Apply/Examination.cshtml", new ViewDataDictionary(ViewData) { ["CisEmbeddedPartial"] = true })
         }
         @if (isOpenBespeakRegister == true)
         {
-            @Html.Partial("~/Views/BespeakRegister/BespeakRegister.cshtml")
+            @Html.Partial("~/Views/BespeakRegister/BespeakRegister.cshtml", new ViewDataDictionary(ViewData) { ["CisEmbeddedPartial"] = true })
         }
 
         <!--ZYHY20230630điện tửĐơn thuốc-->

@@ -5,10 +5,16 @@
 
 	ViewBag.Title = "PatientList";
 	var opr = OperatorProvider.GetCurrent();
-	// T-02: partial trong MainBusiness (render partial bo qua Layout) dong thoi
-	// mo duoc bang URL truc tiep; URL standalone can _Index de co jQuery
-	// (truoc day: "$ is not defined").
-	Layout = "~/Views/Shared/_Index.cshtml";
+	// T-02 (sua RS-01/RS-02): view nay vua mo duoc bang URL truc tiep (can
+	// _Index de co jQuery, truoc day: "$ is not defined") vua duoc nhung
+	// lam partial trong MainBusiness. O che do partial, Layout KHONG bi bo
+	// qua: Razor render ca tai lieu _Index long nhau (kem mot ban jQuery
+	// moi), ban jQuery moi nay xoa sach plugin da nap o trang cha
+	// (wdtree treeview, jquery.validate) -> "$(...).treeview is not a
+	// function" va "jQuery.validator is undefined" tren MainBusiness.
+	// MainBusiness truyen ViewData CisEmbeddedPartial=true thi Layout=null
+	// (giong ban goc), con mo truc tiep thi giu _Index.
+	Layout = (ViewData["CisEmbeddedPartial"] as bool?) == true ? null : "~/Views/Shared/_Index.cshtml";
 	var iSReminderBeforehand = SysConfigReader.Bool("IS_ReminderBeforehand", false).Value;
 	var isShowghlybz = SysConfigReader.String("IS_Showghlybz");
 	var cmmSwitch = SysConfigReader.Bool("cmmSwitch", false).Value;
@@ -17,7 +23,16 @@
 @Html.Partial("_YibaoCommonView")
 
 <div id="linkbrlb" role="tabpanel" class="tab-pane">
-    <div class="topPanel" style="width: 99%; margin-top: 15px; border-radius: 5px; height:75px">
+    @* RS-07 + RS-05 (cung goc): khung filter bi cat/che vi chieu cao co
+       dinh. Ban dau la height:75px inline; framework-ui.css con dat
+       .topPanel{height:50px} nen chi doi sang min-height:75px van chua du:
+       height co dinh thang, noi dung cao hon (radio tieng Viet wrap 2 dong
+       o desktop, cac o filter don lai o mobile) tran ra ngoai va bi
+       caption/noi dung luoi ben duoi ve de len (desktop: radio thu 3
+       "Da kham benh" chi thay nua dong; mobile: nut #btn_search bi luoi
+       che nen Playwright timeout). height:auto (inline, thang stylesheet)
+       de khung cao theo noi dung that, caption/luoi dich xuong duoi. *@
+    <div class="topPanel" style="width: 99%; margin-top: 15px; border-radius: 5px; height:auto; min-height:75px">
         <table class="form">
             <tr>
                 <th class="formTitle">Khám bệnhLoại:</th>

@@ -16,6 +16,23 @@
 }
 
 @*Thanh điều hướng*@
+@* RS-05 (mobile) + RS-01/RS-02: xem ghi chu tuong tu o Index.cshtml. *@
+<style>
+    @@media (max-width: 767px) {
+        #myTab {
+            overflow-x: auto;
+            white-space: nowrap;
+        }
+        #myTab > li {
+            width: auto;
+            float: none;
+            display: inline-block;
+        }
+        #myTab > li > a {
+            white-space: nowrap;
+        }
+    }
+</style>
 <link href="@MvcHelper.GetStaticResourceScriptUrl("~/Content/css/cispage.css", false)" rel="stylesheet" />
 
 <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/layout/jquery.layout.js")"></script>
@@ -61,8 +78,8 @@
     @Html.Partial("_HistoryPresTreeForm")
     @Html.Partial("_InspectTemplateTreeForm")
     <div class="tab-content">
-        @Html.Partial("~/Views/PatientList/PatientList.cshtml")
-        @Html.Partial("~/Views/MedicalRecord/MedicalRecord.cshtml")
+        @Html.Partial("~/Views/PatientList/PatientList.cshtml", new ViewDataDictionary(ViewData) { ["CisEmbeddedPartial"] = true })
+        @Html.Partial("~/Views/MedicalRecord/MedicalRecord.cshtml", new ViewDataDictionary(ViewData) { ["CisEmbeddedPartial"] = true })
         @if (isOpenKfcf == true)
         {
             @Html.Partial("~/Views/Prescription/RehabPrescription.cshtml")
@@ -71,7 +88,7 @@
         {
             @Html.Partial("~/Views/Prescription/RegularItemPrescription.cshtml")
         }
-        @Html.Partial("~/Views/Prescription/WMPrescription.cshtml")
+        @Html.Partial("~/Views/Prescription/WMPrescription.cshtml", new ViewDataDictionary(ViewData) { ["CisEmbeddedPartial"] = true })
         @if (iSOpenZycf == true)
         {
             @Html.Partial("~/Views/Prescription/TCMPrescription.cshtml")
@@ -80,11 +97,11 @@
         @if (IsOpenJyJcSwitch == true)
         {
             @Html.Partial("~/Views/Apply/Inspection.cshtml")
-            @Html.Partial("~/Views/Apply/Examination.cshtml")
+            @Html.Partial("~/Views/Apply/Examination.cshtml", new ViewDataDictionary(ViewData) { ["CisEmbeddedPartial"] = true })
         }
         @if (isOpenBespeakRegister == true)
         {
-            @Html.Partial("~/Views/BespeakRegister/BespeakRegister.cshtml")
+            @Html.Partial("~/Views/BespeakRegister/BespeakRegister.cshtml", new ViewDataDictionary(ViewData) { ["CisEmbeddedPartial"] = true })
         }
     </div>
 </div>
