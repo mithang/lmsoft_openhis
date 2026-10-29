@@ -51,10 +51,10 @@
 <ul class="nav nav-tabs navb-bg" id="myTab" style="position:fixed;top:0;z-index:100009;width:99%">
     <li role="presentation" id="librlb"><a href="#linkbrlb" role="tab" data-toggle="tab">Danh sách bệnh nhân</a></li>
     <li role="presentation"><a href="#linkbl" role="tab" data-toggle="tab">Bệnh án</a></li>
-    <li role="presentation"><a href="#linkxycf" role="tab" data-toggle="tab">Thuốc TâyĐơn thuốc</a></li>
+    <li role="presentation"><a href="#linkxycf" role="tab" data-toggle="tab">Thuốc Tây Đơn thuốc</a></li>
     @if (iSOpenZycf == true)
     {
-        <li role="presentation"><a href="#linkzycf" role="tab" data-toggle="tab">Thuốc YHCTĐơn thuốc</a></li>
+        <li role="presentation"><a href="#linkzycf" role="tab" data-toggle="tab">Thuốc YHCT Đơn thuốc</a></li>
     }
     @if (iSOpenZycfnew == true)
     {
@@ -62,11 +62,11 @@
     }
     @if (isOpenKfcf == true)
     {
-        <li role="presentation"><a href="#linkkfcf" role="tab" data-toggle="tab">Phục hồi chức năngĐơn thuốc</a></li>
+        <li role="presentation"><a href="#linkkfcf" role="tab" data-toggle="tab">Phục hồi chức năng Đơn thuốc</a></li>
     }
     @if (isOpenCgxmcf == true)
     {
-        <li role="presentation"><a href="#linkcgxmcf" role="tab" data-toggle="tab">Thường quyMục</a></li>
+        <li role="presentation"><a href="#linkcgxmcf" role="tab" data-toggle="tab">Thường quy Mục</a></li>
     }
     @if (iSOpenWzhc == true)
     {
@@ -681,6 +681,15 @@
             }
         });
     }
+    // FIX gstack T-21: jclocaldata/jylocaldata chi duoc dinh nghia trong
+    // partial Xet nghiem/Kiem tra (Apply/Examination.cshtml,
+    // Apply/Inspection.cshtml), ma 2 partial nay chi render khi
+    // IsOpenJyJcSwitch == true. Khi switch tat, click tab benh nhan danh
+    // vao `jclocaldata.length` -> ReferenceError (pageerror) va handler
+    // chet truoc khi chuyen tab. Khai bao mac dinh rong o day (var khai
+    // bao lai khong reset mang da co neu partial da render).
+    if (typeof jclocaldata === 'undefined') { var jclocaldata = []; }
+    if (typeof jylocaldata === 'undefined') { var jylocaldata = []; }
     //click：điểmnhấptabnội dungcủasự kiện
     $('a[data-toggle="tab"]').on('click', function (e, v) {
         var currentlink = $('.nav-tabs').find("li.active a").attr("href");//hiện tạitrangmặt

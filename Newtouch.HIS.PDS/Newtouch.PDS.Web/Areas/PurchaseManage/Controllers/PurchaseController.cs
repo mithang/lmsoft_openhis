@@ -23,9 +23,17 @@ namespace Newtouch.HIS.Web.Areas.PurchaseManage.Controllers
         private readonly IPurchaseLocationRepo _purchaseLocationRepo;
 
         #region Trang
-        public IActionResult Index()
+        // FIX gstack T-28: khong co Views/Purchase/Index.cshtml (chi co
+        // LocationForm/LocationIndex); Index() ke thua tra JSON view-not-found.
+        // Menu DB PDS KHONG tro toi route tran nay — menu tro toi
+        // LocationIndex (cung controller) va OutOrInStoredManage/Purchase/Index
+        // (trang mua hang that). Chuyen huong toi thieu ve LocationIndex
+        // thay vi tao view gia. Dung Redirect literal (xem T-23: route
+        // "default" dang ky truoc "areas" nen RedirectToAction sinh URL
+        // khong area).
+        public override IActionResult Index()
         {
-            return View();
+            return Redirect("/PurchaseManage/Purchase/LocationIndex");
         }
 
         //Điểm giao hàng

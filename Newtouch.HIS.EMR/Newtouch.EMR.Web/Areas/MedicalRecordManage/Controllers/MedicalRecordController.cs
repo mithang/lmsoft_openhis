@@ -143,6 +143,18 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             string currentFileName = WebPath.Map(BlTemplatePath + "newFile.xml");
             var mb = _bl_mblbRepo.GetTemplateById(mbbh);
             string errormsg = "";
+            // FIX gstack T-03 (GF-N1): goi tran khong mbbh/zyh truoc day NRE o
+            // mb.bllxmc (145) / zyh.Trim(). UI that luon gui mbbh + zyh (hoac
+            // mzh) nen guard nay chi doi NRE thanh loi tieng Viet ro rang,
+            // khong doi hanh vi UI.
+            if (mb == null || (string.IsNullOrWhiteSpace(zyh) && string.IsNullOrWhiteSpace(mzh)))
+            {
+                return Content(new AjaxResult
+                {
+                    state = ResultType.error.ToString(),
+                    message = "Không tìm thấy mẫu bệnh án (thiếu mbbh hoặc số nhập viện/số khám)."
+                }.ToJson());
+            }
             string bllxmc = mb.bllxmc; // _CommonDmnService.GetBllxTB(mb.bllx);
                                        // Tải tệp
             WebWriterControlEngine eng;

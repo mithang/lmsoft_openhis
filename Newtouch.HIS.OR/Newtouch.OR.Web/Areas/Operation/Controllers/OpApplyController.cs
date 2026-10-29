@@ -127,7 +127,11 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
             //};
             #endregion
 
-            var pat = _applyDmnService.GetPatList(paging.search ?? paging.queryParams.keyword, null, paging.queryParams.bq, this.UserIdentity.rygh, OrganizeId, 1);
+            // FIX gstack T-03 (F-02): goi tran thieu queryParams truoc day NRE.
+            // UI that luon gui DTO nen guard nay chi chong NRE, khong doi
+            // hanh vi UI (DTO rong -> loc rong nhu khi UI gui rong).
+            var qp = paging?.queryParams ?? new QueryBaseDTO();
+            var pat = _applyDmnService.GetPatList(paging?.search ?? qp.keyword, null, qp.bq, this.UserIdentity.rygh, OrganizeId, 1);
 
             var data = new
             {
@@ -186,7 +190,9 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
             //};
             #endregion
 
-            if (string.IsNullOrWhiteSpace(reqdata.queryParams.zyh))
+            // FIX gstack T-03 (F-01): goi tran thieu queryParams truoc day NRE.
+            // Giu dung quy uoc cua overload (string): zyh trong -> tra rong.
+            if (string.IsNullOrWhiteSpace(reqdata?.queryParams?.zyh))
             {
                 return Content("");
             }

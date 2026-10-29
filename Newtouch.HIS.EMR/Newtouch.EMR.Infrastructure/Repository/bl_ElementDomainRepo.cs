@@ -140,6 +140,15 @@ namespace Newtouch.EMR.Repository
             var bljgTab = this.IQueryable(p => p.Zt == 1).ToList();
             foreach (var item in bljgTab)
             {
+                // FIX gstack T-46: mot dong Regex NULL lam new Regex() throw
+                // truoc moi nhanh ghi/xoa, tra 20000 cho moi blmc. Bo qua
+                // dong khong co mau (khong the khop) thay vi throw; cac
+                // dong co Regex van khop nhu cu. Khong tu dien Regex gia
+                // cho dong NULL (do la du lieu, can quyet rieng).
+                if (string.IsNullOrWhiteSpace(item.Regex))
+                {
+                    continue;
+                }
                 Regex regex = new Regex(item.Regex);
                 if (regex.IsMatch(req.blmc))
                 {

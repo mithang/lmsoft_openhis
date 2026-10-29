@@ -1,6 +1,10 @@
 ﻿@using Newtouch.OR.ManageSystem.Infrastructure
 @{
-    Layout = null;
+    // T-02: fragment nay vua la partial trong OpApply/Index (khi render partial,
+    // Layout bi bo qua) vua mo duoc bang URL truc tiep. De URL standalone co
+    // du jQuery/framework-ui (truoc day: "$ is not defined"), dung layout
+    // _Index cho duong render full-view; duong partial khong doi.
+    Layout = "~/Views/Shared/_Index.cshtml";
 }
 @*<div class="panel-heading">
     <span style="font-weight:bold;">Chi tiết bệnh nhân</span>
@@ -19,7 +23,7 @@
                         (Số nhập viện:<span id="zyh" style="font-weight:bold;color:#00a0ea;width:100px;">___________</span>)
                     </td>
                     <td class="formValue" colspan="2" rowspan="3">
-                        <a class='btn btn-default glyphicon glyphicon-plus' style='width:100px;background:#00CD66;color:#eee;height:25px;font-size:16px;padding-top:5px;float:right;' onclick="showOpApply();">Đăng ký phẫu thuật</a>
+                        <a class='btn btn-default glyphicon glyphicon-plus' style='width:auto;min-width:175px;background:#00CD66;color:#eee;height:25px;font-size:16px;padding:5px 12px 0 12px;white-space:nowrap;float:right;' onclick="showOpApply();">Đăng ký phẫu thuật</a>
                     </td>
                 </tr>
                 <tr>
@@ -87,12 +91,12 @@ $(function () {
                 { label: "Applyno", name: "Applyno", hidden: true },
                 { label: "Tên phẫu thuật", name: "ssmcn", width: 150, align: 'left' },
                 { label: "Thời gian phẫu thuật", name: "sssj", width: 120, align: 'left', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
-                { label: "Bác sĩ mổ chính", name: "ysxm", width: 80, align: 'left' },
+                { label: "Bác sĩ mổ chính", name: "ysxm", width: 115, align: 'left' },
                 //{ label: "Phòng phẫu thuật", name: "ssj", width: 50, align: 'left' },
                 //{ label: "Lượt mổ", name: "sstc", width: 30, align: 'left' },
                 { label: "sqzt", name: "sqzt", hidden: true },
                 {
-                    label: "Trạng thái phẫu thuật", name: "sqztmc", width: 60, align: 'left', formatter: function (val, option, row) {
+                    label: "Trạng thái phẫu thuật", name: "sqztmc", width: 130, align: 'left', formatter: function (val, option, row) {
                         if (row.sqzt == (@((int)EnumSqzt.dsh)))
                             return "Đã gửi đơn";
                         else if (row.sqzt == (@((int)EnumSqzt.ypb)))

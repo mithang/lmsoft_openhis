@@ -15,11 +15,14 @@ namespace Newtouch.HIS.Web.Areas.ReportManage.Controllers
         private readonly IMedicineDmnService _medicineDmnService;
         // GET: ReportManage/Ypfy
         //Thống kê phát thuốc
-        public IActionResult Index()
+        // FIX gstack T-29: khong co Views/Ypfy/Index.cshtml (chi co
+        // ypfyQuery.cshtml, cung set 2 ViewBag nay). Menu DB PDS tro toi
+        // ypfyQuery, khong tro toi Index tran. Chuyen huong toi thieu ve
+        // ypfyQuery thay vi tao view gia. Dung Redirect literal (xem T-23:
+        // route "default" dang ky truoc "areas").
+        public override IActionResult Index()
         {
-            ViewBag.ReportServerHOST = ConfigurationHelper.GetAppConfigValue("ReportServer.HOST");
-            ViewBag.OrganizeId = OrganizeId;
-            return View();
+            return Redirect("/ReportManage/Ypfy/ypfyQuery");
         }
 
         public IActionResult ypfyQuery()

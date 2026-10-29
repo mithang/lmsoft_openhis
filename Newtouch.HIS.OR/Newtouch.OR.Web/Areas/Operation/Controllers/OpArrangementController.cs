@@ -54,6 +54,13 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
         [HttpPost]
         public IActionResult GetGridList(PagingData<QueryArrangeDto> reqdata)
         {
+            // FIX gstack T-03 (GF-N2): goi tran thieu queryParams truoc day NRE
+            // o dto.ksrq. UI that luon gui postData (Index.cshtml) nen guard
+            // nay chi tra luoi rong, khong doi hanh vi UI.
+            if (reqdata?.queryParams == null)
+            {
+                return Content(new { rows = new object[0], total = 0 }.ToJson());
+            }
             var dto = reqdata.queryParams;
             if (dto.ksrq != null)
             {
@@ -136,6 +143,12 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
             //return Content(list.ToJson());
             #endregion
 
+            // FIX gstack T-03: cung guard nhu overload PagingData — dto null
+            // (goi tran) thi tra luoi rong thay vi NRE o dto.ksrq.
+            if (dto == null)
+            {
+                return Content(new { rows = new object[0], total = 0, page = 1, records = 0 }.ToJson());
+            }
             //Chuyển đổi định dạng thời gian
             if (dto.ksrq != null)
             {
