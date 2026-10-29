@@ -326,7 +326,7 @@
             { label: "Trị liệu theo nhóm", name: "ttbz", align: "left", hidden: true },
             { label: "Loại", name: "sfdlmc", width: 100, align: "left" },
             { label: "Đơn vị", name: "dw", width: 70, align: "left" },
-            { label: "Thời lượng đơn vị", name: "duration", width: 70, align: "left" },
+            { label: "Thời lượng đơn vị (phút)", name: "duration", width: 70, align: "left" },
             {
                 label: "Đơn giá (đồng)", name: "dj", width: 70, align: "left",
                 formatter: function (val) {
@@ -340,7 +340,7 @@
         }
     },
     {
-        label: "Tổng số tiền(đồng)", name: "zje", width: 70, align: "left",
+        label: "Tổng số tiền (đồng)", name: "zje", width: 70, align: "left",
         formatter: function (val) {
             return val.length > 0 ? parseInt(val).toFixed(2) : "0.00";
         }
