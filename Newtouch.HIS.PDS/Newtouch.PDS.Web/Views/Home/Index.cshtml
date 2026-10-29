@@ -54,6 +54,43 @@
             #theme-wrapper #content-wrapper iframe.Newtouch_iframe { width: 100% !important; max-width: 100% !important; min-width: 0; }
             #theme-wrapper .content-tabs { max-width: 100%; }
         }
+        @* RS-PDS-M01: menu mobile. Gốc lỗi: #sidebar-nav mang class Bootstrap
+           "collapse" nên bị display:none dưới 768px, mà không có nút nào trỏ tới
+           nó (nút thu gọn #make-small-nav nằm trong khối hidden-sm hidden-xs nên
+           cũng biến mất trên mobile). Fix chỉ trong shell này, không đụng CSS
+           static host, không đổi phân quyền menu, không đổi luồng nghiệp vụ:
+           - Nút hamburger chỉ hiện ở <=767px (đúng ngưỡng Bootstrap collapse;
+             từ 768px trở lên sidebar đã hiện sẵn theo luồng desktop, không cần nút).
+           - Nút KHÔNG dùng data-toggle="collapse" của Bootstrap để tránh xung đột
+             với plugin collapse; trạng thái mở/đóng do class body
+             .pds-mobile-nav-open điều khiển, sidebar thành drawer fixed phủ lên
+             nội dung (body vốn overflow:hidden nên không thể để sidebar xổ
+             trong luồng trang rồi cuộn trang được).
+           - Bấm link lá (menuItem) / backdrop / Esc / resize lên desktop đều đóng
+             drawer; menu con vẫn dùng handler click .dropdown-toggle sẵn có. *@
+        .pds-mobile-menu-btn { display: none; }
+        #pds-mobile-nav-backdrop { display: none; }
+        @@media (max-width: 767px) {
+            .pds-mobile-menu-btn {
+                display: inline-flex; align-items: center; gap: 6px; float: left;
+                height: 44px; min-width: 44px; margin: 3px 8px 3px 0; padding: 0 10px;
+                background: transparent; border: 1px solid rgba(255, 255, 255, 0.4);
+                border-radius: 4px; color: #fff; font-size: 15px; line-height: 1; cursor: pointer;
+            }
+            .pds-mobile-menu-btn:focus { outline: 2px solid #fff; outline-offset: 1px; }
+            body.pds-mobile-nav-open #pds-mobile-nav-backdrop {
+                display: block; position: fixed; top: 50px; left: 0; right: 0; bottom: 0;
+                background: rgba(0, 0, 0, 0.45); z-index: 1040;
+            }
+            body.pds-mobile-nav-open #theme-wrapper .pds-sidebar-col {
+                position: fixed; top: 50px; bottom: 0; left: 0; width: 280px; max-width: 85vw;
+                z-index: 1050; overflow-y: auto; -webkit-overflow-scrolling: touch;
+                background: #2c3e50; box-shadow: 2px 0 12px rgba(0, 0, 0, 0.35);
+            }
+            body.pds-mobile-nav-open #theme-wrapper .pds-sidebar-col #sidebar-nav { display: block !important; }
+            body.pds-mobile-nav-open #theme-wrapper .pds-sidebar-col #col-left,
+            body.pds-mobile-nav-open #theme-wrapper .pds-sidebar-col #col-left-inner { height: auto; overflow: visible; }
+        }
     </style>
 </head>
 <body style="overflow: hidden;" class="hold-transition skin-blue sidebar-mini" onload="Onload()" id="bodyPageHomeIndex"
@@ -64,6 +101,13 @@
     <div id="theme-wrapper">
         <header class="navbar" id="header-navbar">
             <div class="container" style="padding-right: 0px;">
+                @* RS-PDS-M01: nút mở menu chỉ hiện trên mobile (CSS ở <head>).
+                   Không dùng data-toggle="collapse": trạng thái do script cuối
+                   trang bật/tắt class body .pds-mobile-nav-open. *@
+                <button type="button" id="pds-mobile-menu-btn" class="pds-mobile-menu-btn"
+                        aria-label="Mở menu" aria-expanded="false" aria-controls="sidebar-nav">
+                    <i class="fa fa-bars" aria-hidden="true"></i><span>Menu</span>
+                </button>
                 <a href="#" id="logo" class="navbar-brand" style="background-image:url(/Content/img/logo2.png); background-size:100%"></a>
 				<div class="clearfix">
 					<div class="nav-no-collapse navbar-left pull-left hidden-sm hidden-xs">
@@ -134,9 +178,11 @@
 				</div>
             </div>
         </header>
+        @* RS-PDS-M01: lớp phủ đóng drawer khi chạm ra ngoài (chỉ hiện khi mở, mobile). *@
+        <div id="pds-mobile-nav-backdrop" aria-hidden="true"></div>
         <div id="page-wrapper" class="container">
             <div class="row">
-                <div id="nav-col" style="overflow-y:auto;">
+                <div id="nav-col" class="pds-sidebar-col" style="overflow-y:auto;">
                     <section id="col-left" class="col-left-nano">
                         <div id="col-left-inner" class="col-left-nano-content">
                             <div class="collapse navbar-collapse navbar-ex1-collapse" id="sidebar-nav">
@@ -507,5 +553,47 @@
             });
         }
 	</script>
+    <script type="text/javascript">
+        // RS-PDS-M01: toggle drawer menu mobile (vanilla JS, không phụ thuộc jQuery).
+        // Mở: thêm class body .pds-mobile-nav-open (CSS ở <head> biến sidebar
+        // thành drawer fixed). Đóng: bấm lại nút, bấm backdrop, bấm link lá
+        // .menuItem (tab vẫn mở bình thường qua handler sẵn có), Esc, hoặc
+        // resize lên >= 768px (ở đó sidebar desktop tự hiện, không cần drawer).
+        (function () {
+            var btn = document.getElementById('pds-mobile-menu-btn');
+            var backdrop = document.getElementById('pds-mobile-nav-backdrop');
+            var sidebarNav = document.getElementById('sidebar-nav');
+            if (!btn) { return; }
+            function setOpen(open) {
+                if (open) { document.body.classList.add('pds-mobile-nav-open'); }
+                else { document.body.classList.remove('pds-mobile-nav-open'); }
+                btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+                btn.setAttribute('aria-label', open ? 'Đóng menu' : 'Mở menu');
+            }
+            function isOpen() { return document.body.classList.contains('pds-mobile-nav-open'); }
+            btn.addEventListener('click', function (e) {
+                e.preventDefault();
+                setOpen(!isOpen());
+            });
+            if (backdrop) {
+                backdrop.addEventListener('click', function () { setOpen(false); });
+            }
+            if (sidebarNav) {
+                // Capture phase: handler mở tab của vendor (indextab.js) chặn
+                // lan truyền sự kiện, nên listener bubble ở đây sẽ không bao giờ
+                // chạy sau khi bấm link lá — bắt ở capture thì drawer luôn đóng.
+                sidebarNav.addEventListener('click', function (e) {
+                    var link = e.target && e.target.closest ? e.target.closest('a.menuItem') : null;
+                    if (link) { setOpen(false); }
+                }, true);
+            }
+            document.addEventListener('keydown', function (e) {
+                if ((e.key === 'Escape' || e.key === 'Esc') && isOpen()) { setOpen(false); }
+            });
+            window.addEventListener('resize', function () {
+                if (window.innerWidth > 767 && isOpen()) { setOpen(false); }
+            });
+        })();
+    </script>
 </body>
 </html>
