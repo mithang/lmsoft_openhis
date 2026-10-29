@@ -18,6 +18,7 @@ builder.Services.AddSingleton<SettDb>();
 builder.Services.AddSingleton<BookingService>();
 builder.Services.AddSingleton<PatientAnonService>();
 builder.Services.AddSingleton<OrderService>();
+builder.Services.AddSingleton<PatientQueryService>();
 
 // Newtonsoft bắt buộc: BookingRequest.paradata là JObject, System.Text.Json
 // không deserialise được; 8016 cũng serialise bằng Newtonsoft.
