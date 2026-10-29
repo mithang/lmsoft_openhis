@@ -195,3 +195,14 @@
         $("#addBlForm").submit();
     })
 </script>
+
+@* RS-N01 (họ T-02, EMR): trang editor nạp lại jQuery 1.7.2 của DCSoft ở đầu
+   thân trang (sau guard emr-vi.js của layout), thay đối tượng $ nên guard và
+   cả $.modal* gốc đều mất trên $ cuối; fragment CtglList/RecordList nhúng giữa
+   trang còn nạp lại framework-ui.js (bản gốc không guard). Nạp lại cả hai ở
+   CUỐI file để guard là lớp cuối cùng bất kể fragment nào chạy trước đó.
+   Nạp lại framework-ui là idempotent (chỉ định nghĩa lại $.modal*...);
+   nạp lại emr-vi.js bọc lại bản vừa nạp (bọc kép an toàn: có layer thì ủy
+   thác, không có layer thì fallback). *@
+<script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
+<script src="/js/emr-vi.js"></script>

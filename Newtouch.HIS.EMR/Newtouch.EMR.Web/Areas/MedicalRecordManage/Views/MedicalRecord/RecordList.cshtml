@@ -94,6 +94,11 @@
 
 <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-ui.css")" rel="stylesheet" />
 <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
+@* RS-N01 (họ T-02, EMR): fragment này vừa chạy standalone (Layout = null, không
+   có guard) vừa nhúng qua ViewComponent vào các trang editor (nơi lần nạp
+   framework-ui này ghi đè guard của trang chủ). Nạp lại emr-vi.js ngay sau để
+   $.modal* luôn có guard, cả khi chạy độc lập lẫn khi nhúng. *@
+<script src="/js/emr-vi.js"></script>
 <script type="text/javascript">
 
     $(function () {

@@ -27,6 +27,12 @@
     <script src="/js/jqgrid/grid.locale-vi.js"></script>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-ui.css")" rel="stylesheet" />
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
+    @* RS-N02 (mau T-02): SSO khong nap layer.js o bat ky trang nao nen
+       $.modal* goc nem "top.layer is undefined" moi khi nhanh loi chay toi
+       (WorkSpace ca trong iframe Home shell lan standalone). sso-vi.js boc
+       modalAlert/modalConfirm/modalMsg/modalOpen/modalClose: co layer thi uy
+       thac ve ban goc, khong co layer thi fallback khong nem loi. *@
+    <script src="/js/sso-vi.js"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/datepicker/bootstrap-datetimepicker.js")"></script>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/bootstrap-datetimepicker.css")" rel="stylesheet" />
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery-ui/jquery-ui.min.js")"></script>

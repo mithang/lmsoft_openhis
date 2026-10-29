@@ -15,6 +15,12 @@
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     @Html.Partial("_FrontReference")
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
+    @* RS-N01 (họ T-02, CIS): layout này nạp framework-ui nhưng chưa từng nạp
+       cis-vi.js, nên $.modalAlert ở trang ApplyFormUpload (nhánh lỗi xóa báo
+       cáo) nem "top.layer is undefined" khi không có layer (không trang CIS
+       nào nạp layer.js). Nạp cis-vi.js ngay sau framework-ui theo đúng mẫu
+       _Index/_Form: có layer thì ủy thác về bản gốc, không có thì fallback. *@
+    <script src="/js/cis-vi.js"></script>
 </head>
 <body>
     <div class="container1">

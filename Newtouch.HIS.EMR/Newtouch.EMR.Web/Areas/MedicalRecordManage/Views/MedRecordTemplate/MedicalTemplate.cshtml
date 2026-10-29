@@ -2988,6 +2988,10 @@
 </script>
 
 <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
+@* RS-N01 (họ T-02, EMR): framework-ui nạp lại ở đây — sau guard emr-vi.js của
+   layout và sau các lần nạp jQuery của editor — ghi đè $.modal* bằng bản gốc
+   không guard. Nạp lại emr-vi.js ngay sau để guard là lớp cuối cùng. *@
+<script src="/js/emr-vi.js"></script>
 <script>
 
     function btn_add() {

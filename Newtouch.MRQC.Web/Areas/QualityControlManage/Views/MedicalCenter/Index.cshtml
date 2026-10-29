@@ -272,6 +272,12 @@
 <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jqgrid/jqgrid.min.js")"></script>
 <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
 <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jqgrid/grid.locale-cn.js")"></script>
+@* RS-N01: block framework-ui nạp lại ở cuối trang này ghi đè guard T-02 trong
+   mrqc-vi.js (layout nạp ở <head>) VÀ jQuery nạp lại qua partial PreView cũng
+   thay đối tượng $ mà guard đã bám vào. Nạp lại mrqc-vi.js SAU block thừa này
+   để guard là lớp cuối cùng trên $ cuối cùng; không đổi hành vi khác (guard
+   ủy thác nguyên vẹn về bản gốc khi có top.layer, chỉ fallback khi không có). *@
+<script src="/js/mrqc-vi.js"></script>
 <script>
     var last = "";//Số nhóm của dòng trước
     $(function () {
