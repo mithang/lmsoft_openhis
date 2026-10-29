@@ -206,7 +206,7 @@
         },mydata);
         $("#btn_search").click(function () {
             if ($('#kssj').val() && $('#jssj').val() && ($('#kssj').val() > $('#jssj').val())) {
-                $.modalAlert("Bắt đầu ghi sổ Ngày Không thể lớn hơn Kết thúc ghi sổ Thời gian", 'warning');
+                $.modalAlert("Ngày bắt đầu ghi sổ không thể lớn hơn ngày kết thúc ghi sổ", 'warning');
                 return;
             }
             $gridList.jqGrid('setGridParam', {

@@ -60,15 +60,22 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         public IActionResult GetdlGridJson(Pagination pagination, string keyword)
         {
-            return null;
-            //var data = new
-            //{
-            //    rows = _sysChargeCategoryRepo.GetListBySearch(pagination, keyword),
-            //    total = pagination.total,
-            //    page = pagination.page,
-            //    records = pagination.records
-            //};
-            //return Content(data.ToJson());
+            // T-11: the original (and this port) returned null here, which
+            // ASP.NET Core rejects ("Cannot return null from an action
+            // method"). Restore the commented-out grid envelope, the same
+            // shape SysChargeClassifyController.GetdlGridJson already
+            // returns. The repo behind it is still a stub returning []
+            // (see T-20), so an empty grid is the correct shape until
+            // that repo is ported.
+            pagination = pagination ?? new Pagination();
+            var data = new
+            {
+                rows = _sysChargeCategoryRepo.GetListBySearch(pagination, keyword),
+                total = pagination.total,
+                page = pagination.page,
+                records = pagination.records
+            };
+            return Content(data.ToJson());
         }
 
         /// <summary>

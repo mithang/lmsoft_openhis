@@ -92,7 +92,7 @@
                 { label: "Loại phục hồi", name: "kflb", width: 100, align: "center", editable: true, edittype: 'select' },
                 { label: "Trị liệu sư", name: "zlsgh", width: 115, align: "center", editable: true, edittype: 'select'},
                 { label: "Tên bệnh nhân", name: "patientName", width: 65, align: "left" },
-                { label: "Mụcthu phí", name: "sfxmmc", width: 150, align: "left" },
+                { label: "Mục thu phí", name: "sfxmmc", width: 150, align: "left" },
                 { label: (from == "mz" ? "Tổng số lần" : "Số lần"), name: "zcs", width: 45, align: "left" },
                 { label: "Số lần đã thực hiện", name: "yzxcs", width: 40, align: "left" },
                 { label: "Số lần đã thực hiện hôm nay", name: "dtzxcs", width: 65, align: "left" },
@@ -343,7 +343,7 @@
             zxItem.push({ jzjhmxId: rowData.jzjhmxId, kflb: rowData.kflb, zlsgh: rowData.zlsgh });
         }
         if (zxItem == [] || zxItem.length < 1) {
-            $.modalAlert("Chưa chọnKế hoạchMụcghi sổ", 'warning');
+            $.modalAlert("Chưa chọn Kế hoạchMục ghi sổ", 'warning');
             return;
         }
         var paramData = {};

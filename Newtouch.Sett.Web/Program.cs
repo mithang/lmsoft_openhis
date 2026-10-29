@@ -153,6 +153,11 @@ builder.Services.AddScoped<Newtouch.Sett.Domain.ISysPatientMedicalRecordDmnServi
 builder.Services.AddScoped<Newtouch.Sett.Domain.ISysPatientNatureRepo, Newtouch.Sett.DomainServices.SysPatientNatureRepo>();
 builder.Services.AddScoped<Newtouch.Sett.Domain.ISysWardRepo, Newtouch.Sett.DomainServices.SysWardRepo>();
 builder.Services.AddScoped<Newtouch.Sett.Domain.IPatientListPrintDmnService, Newtouch.Sett.DomainServices.PatientListPrintDmnServiceStub>();
+// T-12: minimal BaseData service (SelectSfxmYp / zxks / ward selects).
+builder.Services.AddScoped<Newtouch.Sett.DomainServices.BaseDataDmnService>();
+// T-15: real inpatient-list query behind PatientInHosList/LoadData only
+// (PatientOutOfHosList keeps the stub above — different list semantics).
+builder.Services.AddScoped<Newtouch.Sett.DomainServices.PatientInHosListService>();
 builder.Services.AddScoped<Newtouch.Sett.Domain.IAreaApp, Newtouch.Sett.DomainServices.AreaApp>();
 builder.Services.AddScoped<Newtouch.Sett.Domain.IDutyApp, Newtouch.Sett.DomainServices.DutyApp>();
 builder.Services.AddScoped<Newtouch.Sett.Domain.IEchartsDmnService, Newtouch.Sett.DomainServices.EchartsDmnService>();

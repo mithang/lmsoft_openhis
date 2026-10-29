@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtouch.Sett.Domain;
+using Newtouch.Sett.DomainServices;
 using Newtouch.Sett.Infrastructure;
 using Newtouch.Sett.Web.Controllers;
 using Newtouch.Sett.Web.Helpers;
@@ -21,26 +22,25 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 
     public class PatientInHosListController : Newtouch.Sett.Web.Controllers.ControllerBase
     {
-        private IPatientListPrintDmnService _printService;
+        private readonly PatientInHosListService _inHosService;
 
-        public PatientInHosListController(IPatientListPrintDmnService printService)
+        public PatientInHosListController(PatientInHosListService inHosService)
         {
-            this._printService = printService;
+            _inHosService = inHosService;
         }
 
         /// <summary>
-        /// Tìm theo điều kiện
+        /// Tìm theo điều kiện. T-15: backed by the real inpatient query
+        /// (zy_brjbxx) with server-side keyword filtering on name/admission
+        /// number — the previous stub behind this endpoint always returned
+        /// [], so filtering could never be proven.
         /// </summary>
         /// <param name="patientListVO"></param>
         /// <returns></returns>
         public IActionResult LoadData(PatientListInputVO patientListVO)
         {
-            var data = _printService.PatientList(patientListVO);
-            if (data != null)
-            {
-                return Content(data.ToJson());
-            }
-            return View();
+            var data = _inHosService.PatientList(this.OrganizeId, patientListVO?.keyword);
+            return Content(data.ToJson());
         }
     }
 }

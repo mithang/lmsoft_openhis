@@ -64,9 +64,12 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
         /// <returns></returns>
         public IActionResult GetDaySettListJson(Pagination pagination, DateTime? kssj, DateTime? jssj, string mzzybz)
         {
+            // T-14: the day-settle service returns null when there are no
+            // rows, which serialized as rows:null. Normalize to [] so the
+            // contract matches GetSettlementGridJson.
             var list = new
             {
-                rows = _DaySettleDmnService.GetOutPatientSettListJson(pagination, kssj, jssj, this.OrganizeId, mzzybz),
+                rows = _DaySettleDmnService.GetOutPatientSettListJson(pagination, kssj, jssj, this.OrganizeId, mzzybz) ?? new List<object>(),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records
@@ -303,7 +306,12 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
         /// <returns></returns>
         public IActionResult GetHistoryCheckList(string ksrq, string jsrq)
         {
-            var list = _DaySettleDmnService.GetHistoryCheckList(this.OrganizeId, ksrq, jsrq);
+            // T-16 (DzrCheck instance): the stub service returns null, which
+            // serialized as a literal null body, so the grid never populated
+            // and its pager stayed at the initial blank state. Normalize to
+            // [] like T-14; the grid then renders its empty state with a
+            // populated pager instead of a dead one.
+            var list = _DaySettleDmnService.GetHistoryCheckList(this.OrganizeId, ksrq, jsrq) ?? new List<object>();
             return Content(list.ToJson());
         }
     }

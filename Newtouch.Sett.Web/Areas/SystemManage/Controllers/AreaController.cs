@@ -48,7 +48,31 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
         public IActionResult GetTreeGridJson(string keyword)
         {
-            return null;
+            // T-11: the original (and this port) returned null here, which
+            // ASP.NET Core rejects ("Cannot return null from an action
+            // method"). Build the tree grid from the area list, following
+            // the ItemsTypeController pattern in this same area; keyword
+            // filters on the area name. The list service itself is still
+            // a stub returning [] (see T-20), so an empty grid is the
+            // correct shape until that service is ported.
+            var data = _areaApp.GetList() ?? new List<AreaEntity>();
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                data = data.Where(t => (t.F_FullName ?? "").Contains(keyword)).ToList();
+            }
+            var treeList = new List<TreeGridModel>();
+            foreach (AreaEntity item in data)
+            {
+                TreeGridModel treeModel = new TreeGridModel();
+                bool hasChildren = data.Count(t => t.F_ParentId == item.Id) == 0 ? false : true;
+                treeModel.id = item.Id;
+                treeModel.isLeaf = hasChildren;
+                treeModel.parentId = item.F_ParentId;
+                treeModel.expanded = hasChildren;
+                treeModel.entityJson = item.ToJson();
+                treeList.Add(treeModel);
+            }
+            return Content(treeList.TreeGridJson());
         }
         [HttpGet]
 

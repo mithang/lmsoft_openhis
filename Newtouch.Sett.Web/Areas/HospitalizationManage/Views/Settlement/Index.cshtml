@@ -112,15 +112,15 @@
     <div class="rows" style="margin-bottom: 1%;" id="divPatHospitalizationSettFeeInfo">
         <div class="panel panel-default" style="margin-bottom:0;">
             <div class="panel-heading navb-bg">
-                Thông tinquyết toán
+                Thông tin quyết toán
             </div>
             <table class="form" style="width:96%;">
                 <tr>
-                    <td class="formTitle">Loạiquyết toán:</td>
+                    <td class="formTitle">Loại quyết toán:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" value="" id="txtSettType" />
                     </td>
-                    <td class="formTitle">Số tiềnquyết toán:</td>
+                    <td class="formTitle">Số tiền quyết toán:</td>
                     <td class="formValue">
                         <input class="form-control" disabled readonly="readonly" type="text" value="" id="txtSettJSJE" />
                     </td>
@@ -211,7 +211,7 @@
                     $('#chargeGridList').newtouchLocalDataGrid(null, ajaxresp.data.ChargeList);
                     //Thông tin chứng từ
                     $('#dlFeeGridList').newtouchLocalDataGrid(null, ajaxresp.data.DLFeeList);
-                    //Thông tinquyết toán
+                    //Thông tin quyết toán
                     $('#txtSettType').val('quyết toán xuất viện');
                     $('#txtSettJSJE').val(ajaxresp.data.jsje.toFixed(2));
                 },
