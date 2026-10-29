@@ -1,5 +1,5 @@
 @{
-    ViewBag.Title = "Ngoại trúghi sổ";
+    ViewBag.Title = "Ngoại trú ghi sổ";
     Layout = "~/Views/Shared/_Form.cshtml";
     var IsBlh = (ViewBag.IsBlh as string) ?? "";
 }
@@ -87,7 +87,7 @@
                         <input id="sfdlCode" type="text" style="display:none;" class="form-control" />
                         <input id="sfdlmc" type="text" style="display:none;" class="form-control" />
                     </td>
-                    <th class="formTitle"><span class="required" style="display:inline">*</span>Thời lượng đơn vị(phút):</th>
+                    <th class="formTitle"><span class="required" style="display:inline">*</span>Thời lượng đơn vị (phút):</th>
                     <td class="formValue">
                         <input id="duration" type="text" class="form-control form-an" value="" />
                     </td>
@@ -95,7 +95,7 @@
                     <td class="formValue">
                         <label id="dw"></label>
                     </td>
-                    <th class="formTitle">Đơn giá(đồng):</th>
+                    <th class="formTitle">Đơn giá (đồng):</th>
                     <td class="formValue" id="input1">
                         @*<label id="dj"></label>*@
                     </td>
@@ -328,7 +328,7 @@
             { label: "Đơn vị", name: "dw", width: 70, align: "left" },
             { label: "Thời lượng đơn vị", name: "duration", width: 70, align: "left" },
             {
-                label: "Đơn giá(đồng)", name: "dj", width: 70, align: "left",
+                label: "Đơn giá (đồng)", name: "dj", width: 70, align: "left",
                 formatter: function (val) {
                     return val.length > 0 ? parseInt(val).toFixed(4) : "0.0000";
                 }
