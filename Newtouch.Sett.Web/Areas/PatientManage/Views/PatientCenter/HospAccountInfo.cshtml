@@ -88,9 +88,9 @@
                             var ids = $gridList.getDataIDs();
                             for (i = 0; i < ids.length; i++) {
                                 var rowData = $gridList.getRowData(ids[i]);
-                                if (rowData && rowData.szxz == "充值") {
+                                if (rowData && rowData.szxz == "nạp tiền") {
                                     $gridList.find('tr[id="' + ids[i] + '"]').css("background-color", "#DDDDFF");
-                                } else if (rowData && rowData.szxz == "取款") {
+                                } else if (rowData && rowData.szxz == "Rút tiền") {
                                     $gridList.find('tr[id="' + ids[i] + '"]').css("background-color", "#ACD6FF");
                                 }
                             }

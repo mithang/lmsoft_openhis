@@ -48,7 +48,7 @@ namespace Newtouch.Sett.API.Services
                 if (book == null) return ResponseBaseOld.Fail("Vui lòng xác nhận trạng thái đặt hẹn và ngày có hiệu lực hay không.");
                 if (SettDb.Str(book, "kh") != kh) return ResponseBaseOld.Fail("Thông tin thẻ bất thường, vui lòng xác nhận thông tin đặt hẹn.");
                 var regFee = SettDb.Dec(book, "RegFee") ?? 0m;
-                if (regFee != payFee) return ResponseBaseOld.Fail("Số tiền đăng ký khám có誤.");
+                if (regFee != payFee) return ResponseBaseOld.Fail("Số tiền đăng ký khám có lỗi.");
                 var patList = GetPatInfo(conn, null, req.OrganizeId, kh, null, null);
                 if (patList.Count == 0) return ResponseBaseOld.Fail("Thông tin thẻ bất thường, vui lòng liên hệ quản trị viên.");
                 var pat = patList[0];
@@ -83,8 +83,8 @@ namespace Newtouch.Sett.API.Services
                 string ghly = "1";
                 string zffs = "";
                 var appId = SettDb.Str(book, "AppId") ?? "";
-                if (appId == "WeChat") { zffs = CashPayModel(conn, null, "微信"); ghly = "4"; }
-                else if (appId == "Alipay") { zffs = CashPayModel(conn, null, "支付宝"); ghly = "5"; }
+                if (appId == "WeChat") { zffs = CashPayModel(conn, null, "WeChat"); ghly = "4"; }
+                else if (appId == "Alipay") { zffs = CashPayModel(conn, null, "Alipay"); ghly = "5"; }
                 fee.zffs1 = zffs;
                 fee.zfje1 = string.IsNullOrEmpty(zffs) ? (decimal?)null : regFee;
                 object regObj;

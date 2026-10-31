@@ -191,8 +191,8 @@
                 btn_edit();
             }, onSelectRow: function (rowid, status) {
                 var shzt = $("#gridList").jqGridRowValue().shzt;
-                if (shzt == "通过" || shzt == "待审" || shzt == "预提交") {
-                    if (shzt != "预提交") {
+                if (shzt == "Thông qua" || shzt == "Chờ xét duyệt" || shzt == "Gửi trước") {
+                    if (shzt != "Gửi trước") {
                         $('#inputedit').attr('disabled', true);
                     }
                     $('#inputdel').attr('disabled', 'disabled');
@@ -238,7 +238,7 @@
             $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
             return false;
         }
-        if ($("#gridList").jqGridRowValue().shzt !== "预提交"&&$("#gridList").jqGridRowValue().shzt !== "未提交" && $("#gridList").jqGridRowValue().shzt !== "未通过") {
+        if ($("#gridList").jqGridRowValue().shzt !== "Gửi trước"&&$("#gridList").jqGridRowValue().shzt !== "Chưa gửi" && $("#gridList").jqGridRowValue().shzt !== "Chưa đạt") {
             return false;
         }
         $.modalOpen({

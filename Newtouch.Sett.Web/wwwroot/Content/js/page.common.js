@@ -146,7 +146,7 @@ $.fn.sfxmFloatingSelector = function (options) {
             }
         });
         if (!!colsfxmmc && !!colgg && !!colsfdlmc && !!coldwjls && !!colyfbmmc && !!colclkcsl && !!colkzbz) {
-            //Đã bị chiếm50宽
+            //Đã bị chiếm 50 độ rộng
             switch (options.searchType) {
                 case "yp":
                     colsfxmmc.widthratio = 23;
