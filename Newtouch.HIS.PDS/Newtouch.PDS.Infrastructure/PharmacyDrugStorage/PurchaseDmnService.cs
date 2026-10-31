@@ -186,7 +186,7 @@ order by sxh
 
             var strSql = new StringBuilder(@" SELECT  cgmxId,ypCode,ypName ypmc,sxh,cglx,splx,zxspbm,cgjldw,ggbz,cgsl,cgdj,zje,dw,yqbm,yqmc,dlmc,SUM(kykc) kykc, 
 dbo.f_getComplexYpSlandDw(SUM(kykc),zhyz,bmdw,zxdw) slStr,bmdw,zhyz,bzs,bzdw,zxdw,pzwh,ycmc sccj,CONVERT(NUMERIC(11,4),zxdwlsj) zxdwlsj,
-CONVERT(NUMERIC(11,4),zxdwpfj) zxdwpfj,yklsj,ykpfj,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),zxdwlsj*zhyz))+'元/'+bmdw) lsjdjdw 
+CONVERT(NUMERIC(11,4),zxdwpfj) zxdwpfj,yklsj,ykpfj,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),zxdwlsj*zhyz))+'đ/'+bmdw) lsjdjdw 
 FROM (
 	SELECT cgmx.cgmxId,cgmx.ypCode,cgmx.ypName,cgmx.sxh,cgmx.cglx,cgmx.splx,cgmx.zxspbm,cgmx.cgjldw,cgmx.ggbz,cgmx.cgsl,cgmx.cgdj,
 		cgmx.dcpsbs,cgmx.bzsm,cgmx.dw,cgmx.zje,cgmx.yqbm,gys.gysmc yqmc,
@@ -237,7 +237,7 @@ select * from
 select fpmx.*,yp.ypmc ,gys.gysmc yqmc ,yp.ypCode
 ,case dlsgbz when 0 then 'Không' when 1 then 'Có' end dlsgbzmc
 ,case sfwpsfp when 0 then 'Không' when 1 then 'Có' end sfwpsfpmc
-,case splx when 1 then '药品类' when 1 then '医用耗材类' when 3 then '医疗器械类' when 9 then '其他' end splxmc
+,case splx when 1 then 'Loại thuốc' when 1 then 'Loại vật tư y tế' when 3 then 'Loại thiết bị y tế' when 9 then 'Khác' end splxmc
 ,case sfch when 0 then 'Không' when 1 then 'Có' end sfchmc
 from xt_yp_fpmx fpmx
 left join  NewtouchHIS_Base.dbo.V_S_xt_ypsx ypsx on fpmx.zxspbm=ypsx.gjybdm and fpmx.OrganizeId=ypsx.OrganizeId and fpmx.zt=ypsx.zt
@@ -251,7 +251,7 @@ left join [NewtouchHIS_Base].[dbo].[xt_ypgys] gys on fpmx.yqbm=gys.gysCode and f
   left join (
 SELECT  s.dlmc,s.ypmc,s.ypCode ypdm,s.ypgg gg,SUM(s.kykc) kykc, dbo.f_getComplexYpSlandDw(SUM(s.kykc),s.zhyz,s.bmdw,s.zxdw) slStr,s.bmdw dw,CONVERT(INT,s.zhyz) zhyz,CONVERT(INT,s.bzs) bzs
 ,s.bzdw,s.zxdw,s.pzwh,CONVERT(NUMERIC(11,4),s.zxdwlsj) zxdwlsj,CONVERT(NUMERIC(11,4),s.zxdwlsj*s.zhyz) lsj,CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz) pfj,s.ycmc sccj,s.yklsj,s.ykpfj
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwlsj*s.zhyz))+'元/'+s.bmdw) lsjdjdw
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwlsj*s.zhyz))+'đ/'+s.bmdw) lsjdjdw
 FROM 
 (
 	SELECT sfdl.dlmc, yp.ypmc, bmypxx.Ypdm ypCode, ypsx.ypgg, (kcxx.kcsl-kcxx.djsl) kykc, dbo.f_getyfbmDw(@yfbmCode, bmypxx.Ypdm, @orgId) bmdw

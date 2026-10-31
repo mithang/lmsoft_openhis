@@ -137,7 +137,7 @@ SELECT sldmx.sldmxId,sld.sldId,sld.Sldh sldh,sld.Slbm
 ,dbo.f_getComplexYpSlandDw(sldmx.yfsl,yp.bzs,yp.bzdw,yp.zxdw) yfslStr,dbo.f_getComplexYpSlandDw(sldmx.slsl,yp.bzs,yp.bzdw,yp.zxdw) slslStr
 ,yp.ypmc,yp.ypCode ypdm,yp.ycmc sccj
 ,dbo.f_getComplexYpSlandDw(SUM(kcxx.kcsl-kcxx.djsl),yp.bzs,yp.bzdw,yp.zxdw) kyslStr,SUM(kcxx.kcsl-kcxx.djsl) kykc
-,CONCAT(CONVERT(NUMERIC(11,2),yp.pfj),'元/'+yp.bzdw) pfjdwdj,CONCAT(CONVERT(NUMERIC(11,2),yp.lsj),'元/'+yp.bzdw) lsjdwdj
+,CONCAT(CONVERT(NUMERIC(11,2),yp.pfj),'đ/'+yp.bzdw) pfjdwdj,CONCAT(CONVERT(NUMERIC(11,2),yp.lsj),'đ/'+yp.bzdw) lsjdwdj
 ,CONVERT(NUMERIC(11,4),yp.pfj/yp.bzs) zxdwpfj,CONVERT(NUMERIC(11,4),yp.lsj/yp.bzs) zxdwlsj
 ,CONVERT(NUMERIC(11,2),yp.pfj*sldmx.slsl/yp.bzs) pjze,CONVERT(NUMERIC(11,2),yp.lsj*sldmx.slsl/yp.bzs) lsze 
 FROM dbo.xt_yp_sldmx(NOLOCK) sldmx 
@@ -383,7 +383,7 @@ SELECT @@ROWCOUNT;
 SELECT crkdjmx.crkmxId,crkdjmx.Yxq yxq,REPLACE(LTRIM(RTRIM(CONVERT(VARCHAR(20),crkdjmx.Fph))),'	','') fph,yp.dlCode ypdlCode,sfdl.dlmc yplbmc,yp.py,yp.ypmc,ypsx.ypgg gg,yp.ycmc sccj,crkdjmx.Sl sl
 ,CONVERT(NUMERIC(11,2),crkdjmx.Pfj*crkdjmx.Sl) pjze
 ,CONVERT(NUMERIC(11,2),crkdjmx.Lsj*crkdjmx.Sl) ljze
-,CONCAT(isnull(crkdjmx.jj,0.00),'元/',yp.bzdw) jjdwdj ");
+,CONCAT(isnull(crkdjmx.jj,0.00),'đ/',yp.bzdw) jjdwdj ");
             sql.Append(new[] {(int) EnumDanJuLX.yaopinruku}.Contains(djlx)
                 ? @"
 ,dbo.f_getComplexYpSlandDw(crkdjmx.Sl*crkdjmx.Rkzhyz,yp.bzs,yp.bzdw,yp.zxdw) slanddw

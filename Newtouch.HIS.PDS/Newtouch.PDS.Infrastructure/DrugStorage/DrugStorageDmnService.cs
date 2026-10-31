@@ -340,8 +340,8 @@ where yp.OrganizeId=@OrganizeId
 			var strSql = new StringBuilder(@"
 							select 
                                 yptj.ypfj,yptj.ylsj,yptj.pfj,yptj.lsj,
-                                case yptj.shzt when '0' then 'Chưa duyệt' when '1' then '已审核' when '2' then '已拒绝' when '3' then '已撤销' end shzt,
-                                case yptj.zxbz when '0' then '待执行' when '1' then 'Đã thực hiện' end zxbz,
+                                case yptj.shzt when '0' then 'Chưa duyệt' when '1' then 'Đã duyệt' when '2' then 'Đã từ chối' when '3' then 'Đã hủy' end shzt,
+                                case yptj.zxbz when '0' then 'Chờ thực hiện' when '1' then 'Đã thực hiện' end zxbz,
                                 yptj.ypcode,yp.ypmc,ypsx.ypgg,yp.djdw,itemsdetail.name yptssxmc,
                                 substring( sfdl.dlmc,0,len(sfdl.dlmc)) yplb,
                                 yp.jl,yp.jldw,yp.bzs,yp.bzdw,yp.mzcls,yp.mzcldw,yp.zycls,yp.zycldw,yp.zxdw,yp.zfbl,

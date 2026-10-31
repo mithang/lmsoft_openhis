@@ -830,7 +830,7 @@ AND yz.fybz IN ('2','3')
         public List<HospitalizationReturnDispenseDetail> SelectReturnDrugDetail(HospitalizationReturnDrugParam req)
         {
             const string sql = @"
-SELECT r.*, CONCAT(r.dj, '元/', r.bmdw) djStr, CONVERT(NUMERIC(11,2),ISNULL(r.zxdwsl*r.dj/r.zhyz,0)) je
+SELECT r.*, CONCAT(r.dj, 'đ/', r.bmdw) djStr, CONVERT(NUMERIC(11,2),ISNULL(r.zxdwsl*r.dj/r.zhyz,0)) je
 FROM (
 	SELECT d.patientName, d.zyh, d.cw, d.yzId, d.zxId, d.ypCode, yp.ypmc, ypsx.ypgg,ISNULL(CONVERT(VARCHAR(50),d.zh),'') zh , CASE when d.yzxz = '1' then 'Tạm thời' when d.yzxz = '2' then 'Dài hạn' else '/' end yzxzmc
 	,yp.ycmc, CONVERT(INT,ISNULL(d.zxdwsl/d.zhyz,0)) sl, CONVERT(INT,d.zxdwsl) zxdwsl, dbo.f_getyfbmDw(@yfbmCode, d.ypCode, @OrganizeId) bmdw
@@ -894,7 +894,7 @@ ORDER BY r.applyNo, r.ypmc
         public List<HospitalizationReturnDispenseDetail> SelectReturnDrugDetailNoBatch(HospitalizationReturnDrugParam req)
         {
             const string sql = @"
-SELECT r.*, CONCAT(r.dj, '元/', r.bmdw) djStr, CONVERT(NUMERIC(11,2),ISNULL(r.zxdwsl*r.dj/r.zhyz,0)) je
+SELECT r.*, CONCAT(r.dj, 'đ/', r.bmdw) djStr, CONVERT(NUMERIC(11,2),ISNULL(r.zxdwsl*r.dj/r.zhyz,0)) je
 FROM (
 	SELECT d.patientName, d.zyh, d.cw, d.yzId, d.zxId, d.ypCode, yp.ypmc, ypsx.ypgg,ISNULL(CONVERT(VARCHAR(50),d.zh),'') zh 
 	,CASE when d.yzxz = '1' then 'Tạm thời' when d.yzxz = '2' then 'Dài hạn' else '/' end yzxzmc
@@ -1120,7 +1120,7 @@ FROM (
 	, dbo.f_getYfbmYpComplexYpSlandDw(SUM(a.sl), @yfbmCode, a.ypCode, @OrganizeId) slStr
 	,e.jxmc, ypsx.ypgg, c.pcmc, ISNULL(CONVERT(VARCHAR(50),c.zh),'') zh, c.yl, c.yldw, CONCAT(c.yl,c.yldw) ylStr
 	,(case when c.yzxz = '1' then 'Tạm thời' when c.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc
-	,b.ycmc,c.zlff,CONCAT(c.dj,'元/',b.djdw) djStr,CONVERT(NUMERIC(11,2),ISNULL(SUM(c.dj/c.zhyz*a.sl),0)) je
+	,b.ycmc,c.zlff,CONCAT(c.dj,'đ/',b.djdw) djStr,CONVERT(NUMERIC(11,2),ISNULL(SUM(c.dj/c.zhyz*a.sl),0)) je
 	,a.CreateTime,a.CreatorCode,c.bqCode,c.zyh
 	FROM NewtouchHIS_PDS.dbo.zy_ypyzzxph(NOLOCK) a 
 	INNER JOIN NewtouchHIS_PDS.dbo.zy_ypyzxx(NOLOCK) c on c.ypCode=a.ypCode AND c.OrganizeId=a.OrganizeId AND c.zxId=a.zxId AND c.yzId=a.yzId
@@ -1140,7 +1140,7 @@ FROM (
 	,dbo.f_getYfbmYpComplexYpSlandDw(SUM(a.sl), @yfbmCode, a.ypCode, @OrganizeId) slStr
 	,e.jxmc, ypsx.ypgg, c.pcmc, ISNULL(CONVERT(VARCHAR(50),c.zh),'') zh, c.yl, c.yldw, CONCAT(c.yl,c.yldw) ylStr
 	,(case when c.yzxz = '1' then 'Tạm thời' when c.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc
-	,b.ycmc,c.zlff,CONCAT(c.dj,'元/',b.djdw) djStr,CONVERT(NUMERIC(11,2),ISNULL(SUM(c.dj/c.zhyz*a.sl),0)) je
+	,b.ycmc,c.zlff,CONCAT(c.dj,'đ/',b.djdw) djStr,CONVERT(NUMERIC(11,2),ISNULL(SUM(c.dj/c.zhyz*a.sl),0)) je
 	,a.CreateTime,a.CreatorCode,c.bqCode,c.zyh
 	FROM NewtouchHIS_PDS.dbo.zy_tymx(NOLOCK) a 
 	INNER JOIN NewtouchHIS_PDS.dbo.zy_ypyzxx(NOLOCK) c on a.ypCode = c.ypCode AND c.OrganizeId=a.OrganizeId AND c.zxId=a.zxId AND c.yzId=a.yzId
@@ -1201,7 +1201,7 @@ SELECT a.Id,a.yzId, a.zxId, c.patientName,a.pc,a.ypCode, b.ypmc, c.cw,'Phát thu
 , dbo.f_getYfbmYpComplexYpSlandDw(SUM(a.sl), @yfbmCode, a.ypCode, @OrganizeId) slStr
 ,e.jxmc, ypsx.ypgg, c.pcmc, ISNULL(CONVERT(VARCHAR(50),c.zh),'') zh, c.yl, c.yldw, CONCAT(c.yl,c.yldw) ylStr
 ,(case when c.yzxz = '1' then 'Tạm thời' when c.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc
-,b.ycmc,c.zlff,CONCAT(c.dj,'元/',b.djdw) djStr,CONVERT(NUMERIC(11,2),ISNULL(SUM(c.dj/c.zhyz*a.sl),0)) je
+,b.ycmc,c.zlff,CONCAT(c.dj,'đ/',b.djdw) djStr,CONVERT(NUMERIC(11,2),ISNULL(SUM(c.dj/c.zhyz*a.sl),0)) je
 ,a.CreateTime,a.CreatorCode ,c.zyh
 FROM NewtouchHIS_PDS.dbo.zy_ypyzzxph(NOLOCK) a 
 INNER JOIN NewtouchHIS_PDS.dbo.zy_ypyzxx(NOLOCK) c on c.ypCode=a.ypCode AND c.OrganizeId=a.OrganizeId AND c.zxId=a.zxId AND c.yzId=a.yzId
@@ -1268,7 +1268,7 @@ SELECT a.Id,a.yzId, a.zxId, c.patientName,a.pc,a.ypCode, b.ypmc, c.cw,'Trả thu
 ,dbo.f_getYfbmYpComplexYpSlandDw(SUM(a.sl), @yfbmCode, a.ypCode, @OrganizeId) slStr
 ,e.jxmc, ypsx.ypgg, c.pcmc, ISNULL(CONVERT(VARCHAR(50),c.zh),'') zh, c.yl, c.yldw, CONCAT(c.yl,c.yldw) ylStr
 ,(case when c.yzxz = '1' then 'Tạm thời' when c.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc
-,b.ycmc,c.zlff,CONCAT(c.dj,'元/',b.djdw) djStr,CONVERT(NUMERIC(11,2),ISNULL(SUM(c.dj/c.zhyz*a.sl),0)) je
+,b.ycmc,c.zlff,CONCAT(c.dj,'đ/',b.djdw) djStr,CONVERT(NUMERIC(11,2),ISNULL(SUM(c.dj/c.zhyz*a.sl),0)) je
 ,a.CreateTime,a.CreatorCode ,c.zyh
 FROM NewtouchHIS_PDS.dbo.zy_tymx(NOLOCK) a 
 INNER JOIN NewtouchHIS_PDS.dbo.zy_ypyzxx(NOLOCK) c on a.ypCode = c.ypCode AND c.OrganizeId=a.OrganizeId AND c.zxId=a.zxId AND c.yzId=a.yzId
@@ -1327,7 +1327,7 @@ AND c.fyyf=@yfbmCode
             var strSql = new StringBuilder(@"
 select (case when a.operateType='1' then 'Phát thuốc' when a.operateType='2' then 'Trả thuốc' end) czlx,
 b.zyh,b.patientName,b.cw,b.ypCode,c.ypmc,b.pcmc,ISNULL(CONVERT(VARCHAR(50),b.zh),'') zh, b.yl, b.yldw, CONCAT(b.yl,b.yldw) ylStr
-,(case when b.yzxz = '1' then 'Tạm thời' when b.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc,b.zlff,c.ycmc,CONCAT(b.dj,'元/',c.djdw) djStr,
+,(case when b.yzxz = '1' then 'Tạm thời' when b.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc,b.zlff,c.ycmc,CONCAT(b.dj,'đ/',c.djdw) djStr,
 (case when a.operateType='1' then dbo.f_getYfbmYpComplexYpSlandDw(SUM(d.sl), @yfbmCode, b.ypCode, @OrganizeId) when a.operateType='2' then dbo.f_getYfbmYpComplexYpSlandDw(SUM(a.sl), @yfbmCode, b.ypCode, @OrganizeId) end) slStr,
 (case when a.operateType='1' then CONVERT(NUMERIC(11,2),ISNULL(SUM(b.dj/b.zhyz*d.sl),0)) when a.operateType='2' then CONVERT(NUMERIC(11,2),ISNULL(SUM(b.dj/b.zhyz*a.sl),0)) end) je,
 a.Id,a.yzId,a.zxId,a.CreateTime,a.CreatorCode,d.pc,e.jxmc,ypsx.ypgg
@@ -1488,7 +1488,7 @@ a.Id, a.yzId, a.zxId, a.ypCode, b.yzxz, b.zlff, c.ycmc, b.dj, c.djdw, a.CreateTi
             var strSql = new StringBuilder(@"
 select (case when a.operateType='1' then 'Phát thuốc' when a.operateType='2' then 'Trả thuốc' end) czlx,
 b.zyh,b.patientName,b.cw,b.ypCode,c.ypmc,b.pcmc,ISNULL(CONVERT(VARCHAR(50),b.zh),'') zh, b.yl, b.yldw, CONCAT(b.yl,b.yldw) ylStr
-,(case when b.yzxz = '1' then 'Tạm thời' when b.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc,b.zlff,c.ycmc,CONCAT(b.dj,'元/',c.djdw) djStr,
+,(case when b.yzxz = '1' then 'Tạm thời' when b.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc,b.zlff,c.ycmc,CONCAT(b.dj,'đ/',c.djdw) djStr,
 (case when a.operateType='1' then dbo.f_getYfbmYpComplexYpSlandDwV2(SUM(d.sl), @yfbmCode, b.ypCode, @OrganizeId,'2') when a.operateType='2' then dbo.f_getYfbmYpComplexYpSlandDwV2(SUM(a.sl), @yfbmCode, b.ypCode, @OrganizeId,'2') end) slStr,
 (case when a.operateType='1' then CONVERT(NUMERIC(11,2),ISNULL(SUM(b.dj/b.zhyz*d.sl),0)) when a.operateType='2' then CONVERT(NUMERIC(11,2),ISNULL(SUM(b.dj/b.zhyz*a.sl),0)) end) je,
 a.Id,a.yzId,a.zxId,a.CreateTime,a.CreatorCode,d.pc,e.jxmc,ypsx.ypgg,a.zytyapplyno,b.bqCode
@@ -1536,7 +1536,7 @@ a.Id, a.yzId, a.zxId, a.ypCode, b.yzxz, b.zlff, c.ycmc, b.dj, c.djdw, a.CreateTi
             strSql.AppendLine(@" 
             select 'Trả thuốc' as czlx,
 	            s.zyh,s.patientName,s.cw,s.ypCode,s.ypmc,s.pcmc,s.zh, s.yl, s.yldw, CONCAT(s.yl,s.yldw) ylStr,
-                (case when s.yzxz = '1' then 'Tạm thời' when s.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc,s.zlff,s.ycmc, CONCAT(s.dj,'元/',s.djdw) djStr,
+                (case when s.yzxz = '1' then 'Tạm thời' when s.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc,s.zlff,s.ycmc, CONCAT(s.dj,'đ/',s.djdw) djStr,
 	            dbo.f_getYfbmYpComplexYpSlandDwV2(SUM(s.sl),@yfbmCode, s.ypCode, @OrganizeId,'2') slStr,
 	            CONVERT(NUMERIC(11,2),ISNULL(SUM(s.dj/s.zhyz*s.sl),0)) je,
 	            s.Id,s.yzId,s.zxId,s.CreateTime,s.CreatorCode,s.pc,s.jxmc,s.ypgg,s.zytyapplyno,s.bqCode 
@@ -1613,7 +1613,7 @@ s.Id, s.yzId, s.zxId, s.ypCode, s.yzxz, s.zlff, s.ycmc, s.dj, s.djdw, s.CreateTi
         public List<HospitalizationReturnDispenseDetail> SelectReturnDrugDetailNoBatchV2(HospitalizationReturnDrugParam req)
         {
             const string sql = @"
-SELECT r.*, CONCAT(r.dj, '元/', r.bmdw) djStr, CONVERT(NUMERIC(11,2),ISNULL(r.zxdwsl*r.dj/r.zhyz,0)) je
+SELECT r.*, CONCAT(r.dj, 'đ/', r.bmdw) djStr, CONVERT(NUMERIC(11,2),ISNULL(r.zxdwsl*r.dj/r.zhyz,0)) je
 FROM (
 	SELECT d.patientName, d.zyh, d.cw, d.yzId, d.zxId, d.ypCode, yp.ypmc, ypsx.ypgg,ISNULL(CONVERT(VARCHAR(50),d.zh),'') zh 
 	,CASE when d.yzxz = '1' then 'Tạm thời' when d.yzxz = '2' then 'Dài hạn' else '/' end yzxzmc
@@ -1741,7 +1741,7 @@ ORDER BY r.zytyapplyno
         public List<HospitalizationReturnDispenseDetail> SelectReturnDrugDetailV2(HospitalizationReturnDrugParam req)
         {
             const string sql = @"
-SELECT r.*, CONCAT(r.dj, '元/', r.bmdw) djStr, CONVERT(NUMERIC(11,2),ISNULL(r.zxdwsl*r.dj/r.zhyz,0)) je
+SELECT r.*, CONCAT(r.dj, 'đ/', r.bmdw) djStr, CONVERT(NUMERIC(11,2),ISNULL(r.zxdwsl*r.dj/r.zhyz,0)) je
 FROM (
 	SELECT d.patientName, d.zyh, d.cw, d.yzId, d.zxId, d.ypCode, yp.ypmc, ypsx.ypgg,ISNULL(CONVERT(VARCHAR(50),d.zh),'') zh , CASE when d.yzxz = '1' then 'Tạm thời' when d.yzxz = '2' then 'Dài hạn' else '/' end yzxzmc
 	,yp.ycmc, CONVERT(INT,ISNULL(d.zxdwsl/d.zhyz,0)) sl, CONVERT(INT,d.zxdwsl) zxdwsl, dbo.f_getyfbmDw(@yfbmCode, d.ypCode, @OrganizeId) bmdw
@@ -1826,7 +1826,7 @@ WHERE yz.OrganizeId= @OrganizeId
 select 
     'Phát thuốc' czlx,b.lyxh,
     b.zyh,b.patientName,b.cw,b.ypCode,c.ypmc,b.pcmc,ISNULL(CONVERT(VARCHAR(50),b.zh),'') zh, b.yl, b.yldw, CONCAT(b.yl,b.yldw) ylStr
-    ,(case when b.yzxz = '1' then 'Tạm thời' when b.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc,b.zlff,c.ycmc,CONCAT(b.dj,'元/',c.djdw) djStr,
+    ,(case when b.yzxz = '1' then 'Tạm thời' when b.yzxz = '2' then 'Dài hạn' else '/' END) yzxzmc,b.zlff,c.ycmc,CONCAT(b.dj,'đ/',c.djdw) djStr,
     dbo.f_getYfbmYpComplexYpSlandDw(SUM(d.sl), @yfbmCode, b.ypCode, @OrganizeId) slStr,
     CONVERT(NUMERIC(11,2),ISNULL(SUM(b.dj/b.zhyz*d.sl),0)) je,
     a.Id,a.yzId,a.zxId,a.CreateTime,a.CreatorCode,d.pc,e.jxmc,ypsx.ypgg,b.bqCode

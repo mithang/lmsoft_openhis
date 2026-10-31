@@ -12,7 +12,7 @@ namespace Newtouch.Infrastructure.TSQL
         public const string direct_delivery_batch_search = @"
 SELECT s.ypdm, s.ypmc, s.dlmc, s.gg, s.ycmc, dbo.f_getComplexYpSlandDw(s.kysl, s.ckbmzhyz, s.ckbmbmdw, s.zxdw) slStr
 ,CONVERT(NUMERIC(11,4),s.zxdwlsj*s.ckbmzhyz) lsj, CONVERT(NUMERIC(11,2),s.zxdwlsj*s.kysl) lsze, s.ckbmbmdw dw
-,CONCAT(CONVERT(NUMERIC(11,4),s.zxdwlsj*s.ckbmzhyz),'元/', s.ckbmbmdw) lsjdjdw
+,CONCAT(CONVERT(NUMERIC(11,4),s.zxdwlsj*s.ckbmzhyz),'đ/', s.ckbmbmdw) lsjdjdw
 FROM (
 	SELECT kcxx.ypdm, yp.ypmc, sfdl.dlmc, yp.ypgg gg, yp.ycmc, SUM(kcxx.kcsl-kcxx.djsl) kysl
     ,dbo.f_getyfbmZhyz(@yfbmCode, kcxx.ypdm, kcxx.OrganizeId) ckbmzhyz, dbo.f_getyfbmDw(@yfbmCode, kcxx.ypdm, kcxx.OrganizeId) ckbmbmdw
@@ -944,8 +944,8 @@ where ksby.zt=1  and ksby.OrganizeId=@orgId and shzt=1
 
  IF EXISTS(SELECT 1 FROM #ypkc where kykc<sl)
 	BEGIN
-	    select top 1 @resultMsg=djh+' 药品代码:'+ypdm from #ypkc where kykc<sl
-		SET @resultMsg=CONCAT('【Số đơn:',@resultMsg,'】的库存不足')
+	    select top 1 @resultMsg=djh+' Mã thuốc:'+ypdm from #ypkc where kykc<sl
+		SET @resultMsg=CONCAT('【Số đơn:',@resultMsg,'】không đủ tồn kho')
         select @resultMsg;
 		RETURN;
 	END 

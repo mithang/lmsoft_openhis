@@ -95,7 +95,7 @@ namespace Newtouch.HIS.DomainServices.OutOrInStoredOperate
             var sql = new StringBuilder(@"select  mx.ypdm,yp.ypmc,dl.dlmc,mx.pc,mx.fph,cast(convert(decimal(12,0),(kcxx.kcsl-kcxx.djsl)/kcxx.zhyz) as varchar)+rkdw slStr,
 convert(decimal(12,0),(kcxx.kcsl-kcxx.djsl)/kcxx.zhyz) sl,
 rkdw dw,yp.ypgg gg,mx.Ph ph,convert(varchar(10),mx.Yxq,121) yxq,yp.ycmc sccj,
-cast(convert(decimal(10,2),mx.Yklsj) as varchar(20))+'元/'+mx.rkdw lsjdjdw,convert(decimal(12,2),yp.lsj*(kcxx.kcsl-kcxx.djsl)/kcxx.zhyz) lsze,
+cast(convert(decimal(10,2),mx.Yklsj) as varchar(20))+'đ/'+mx.rkdw lsjdjdw,convert(decimal(12,2),yp.lsj*(kcxx.kcsl-kcxx.djsl)/kcxx.zhyz) lsze,
 yp.bzs,yp.bzdw,yp.zxdw,convert(decimal(12,0),(kcxx.kcsl-kcxx.djsl)) kykc,mx.Pfj pfj,mx.Lsj lsj,CONVERT(decimal(12,4),yp.lsj/yp.bzs) zxdwlsj,
 mx.ykpfj,mx.yklsj,convert(decimal(12,4),mx.jj/mx.Rkzhyz) zxdwjj,mx.jj bzdwjj
 from xt_yp_crkdj zb (nolock)

@@ -31,7 +31,7 @@ namespace Newtouch.HIS.DomainServices
 			const string sql = @"
 SELECT s.dlmc,s.ypmc,s.ypCode ypdm,s.ypgg gg,SUM(s.kykc) kykc, dbo.f_getComplexYpSlandDw(SUM(s.kykc),s.zhyz,s.bmdw,s.zxdw) slStr,s.bmdw dw,CONVERT(INT,s.zhyz) zhyz,CONVERT(INT,s.bzs) bzs
 ,s.bzdw,s.zxdw,s.pzwh,CONVERT(NUMERIC(11,4),s.zxdwlsj) zxdwlsj,CONVERT(NUMERIC(11,4),s.zxdwlsj*s.zhyz) lsj,CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz) pfj,s.ycmc sccj,s.yklsj,s.ykpfj
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwlsj*s.zhyz))+'元/'+s.bmdw) lsjdjdw, gjybdm
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwlsj*s.zhyz))+'đ/'+s.bmdw) lsjdjdw, gjybdm
 FROM 
 (
 	SELECT sfdl.dlmc, yp.ypmc, bmypxx.Ypdm ypCode, ypsx.ypgg, (kcxx.kcsl-kcxx.djsl) kykc, dbo.f_getyfbmDw(@YfbmCode, bmypxx.Ypdm, @Organizeid) bmdw
@@ -72,8 +72,8 @@ GROUP BY s.dlmc,s.ypmc,s.ypCode,s.ypgg,s.bmdw,s.zhyz,s.bzs,s.bzdw,s.zxdw,s.pzwh,
 			const string sql = @"
 SELECT s.dlmc,s.ypmc,s.ypCode ypdm,s.ypgg gg,SUM(s.kykc) kykc, dbo.f_getComplexYpSlandDw(SUM(s.kykc),s.zhyz,s.bmdw,s.zxdw) slStr,s.bmdw dw,CONVERT(INT,s.zhyz) zhyz,CONVERT(INT,s.bzs) bzs
 ,s.bzdw,s.zxdw,s.pzwh,CONVERT(NUMERIC(11,4),s.zxdwlsj) zxdwlsj,CONVERT(NUMERIC(11,4),s.zxdwlsj*s.zhyz) lsj,CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz) pfj,s.ycmc sccj,s.yklsj,s.ykpfj
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwlsj*s.zhyz))+'元/'+s.bmdw) lsjdjdw
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwpfj*s.zhyz))+'元/'+s.bmdw) pfjdjdw,gjybdm
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwlsj*s.zhyz))+'đ/'+s.bmdw) lsjdjdw
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwpfj*s.zhyz))+'đ/'+s.bmdw) pfjdjdw,gjybdm
 FROM 
 (
 	SELECT sfdl.dlmc, yp.ypmc, bmypxx.Ypdm ypCode, yp.ypgg, (kcxx.kcsl-kcxx.djsl) kykc, dbo.f_getyfbmDw(@yfbmCode, bmypxx.Ypdm, @Organizeid) bmdw
@@ -112,7 +112,7 @@ GROUP BY s.dlmc,s.ypmc,s.ypCode,s.ypgg,s.bmdw,s.zhyz,s.bzs,s.bzdw,s.zxdw,s.pzwh,
 			const string sql = @"
 SELECT s.dlmc,s.ypmc,s.ypCode ypdm,s.ypgg gg,SUM(s.kykc) kykc, dbo.f_getComplexYpSlandDw(SUM(s.kykc),s.zhyz,s.bmdw,s.zxdw) slStr,s.bmdw dw,CONVERT(INT,s.zhyz) zhyz,CONVERT(INT,s.bzs) bzs
 ,s.bzdw,s.zxdw,s.pzwh,CONVERT(NUMERIC(11,4),s.zxdwlsj) zxdwlsj,CONVERT(NUMERIC(11,4),s.zxdwlsj*s.zhyz) lsj,CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz) pfj,s.ycmc sccj,s.yklsj,s.ykpfj
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwlsj*s.zhyz))+'元/'+s.bmdw) lsjdjdw
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwlsj*s.zhyz))+'đ/'+s.bmdw) lsjdjdw
 FROM 
 (
 	SELECT sfdl.dlmc, yp.ypmc, bmypxx.Ypdm ypCode, ypsx.ypgg, (kcxx.kcsl-kcxx.djsl) kykc, dbo.f_getyfbmDw(@yfbmCode, bmypxx.Ypdm, @Organizeid) bmdw
@@ -159,7 +159,7 @@ GROUP BY s.dlmc,s.ypmc,s.ypCode,s.ypgg,s.bmdw,s.zhyz,s.bzs,s.bzdw,s.zxdw,s.pzwh,
 SELECT s.ypdm,dbo.f_getComplexYpSlandDw(s.kykc,s.zhyz,s.bmdw,s.zxdw) slStr, CONVERT(INT,s.kykc) kykc,s.zxdw
 ,s.bmdw dw,CONVERT(INT,s.zhyz) zhyz,CONVERT(INT,s.bzs) bzs,s.bzdw,LTRIM(RTRIM(s.pc)) pc,LTRIM(RTRIM(s.ph)) ph,s.yxq,fph
 ,s.zxdwjj,s.bzdwjj,CONVERT(NUMERIC(11,4),s.zxdwjj*s.zhyz) bmdwjj
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwjj*s.zhyz))+'元/'+s.bmdw) jjdjdw
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwjj*s.zhyz))+'đ/'+s.bmdw) jjdjdw
 FROM (
 	SELECT yp.ypCode ypdm,SUM(kcxx.kcsl-kcxx.djsl) kykc,yp.zxdw,dbo.f_getyfbmDw(@yfbmCode, yp.ypCode, @Organizeid) bmdw
 	,dbo.f_getyfbmZhyz(@yfbmCode, yp.ypCode, @Organizeid) zhyz, yp.bzs, yp.bzdw,kcxx.pc,kcxx.ph,crkmx.Fph
@@ -198,7 +198,7 @@ ORDER BY s.kykc DESC
 SELECT s.ypdm,dbo.f_getComplexYpSlandDw(s.kykc,s.zhyz,s.bmdw,s.zxdw) slStr, CONVERT(INT,s.kykc) kykc,s.zxdw
 ,s.bmdw dw,CONVERT(INT,s.zhyz) zhyz,CONVERT(INT,s.bzs) bzs,s.bzdw,LTRIM(RTRIM(s.pc)) pc,LTRIM(RTRIM(s.ph)) ph,s.yxq
 ,s.zxdwjj,s.bzdwjj,CONVERT(NUMERIC(11,4),s.zxdwjj*s.zhyz) bmdwjj
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwjj*s.zhyz))+'元/'+s.bmdw) jjdjdw
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,2),s.zxdwjj*s.zhyz))+'đ/'+s.bmdw) jjdjdw
 FROM (
 	SELECT yp.ypCode ypdm,SUM(kcxx.kcsl-kcxx.djsl) kykc,yp.zxdw,dbo.f_getyfbmDw(@yfbmCode, yp.ypCode, @Organizeid) bmdw
 	,dbo.f_getyfbmZhyz(@yfbmCode, yp.ypCode, @Organizeid) zhyz, yp.bzs, yp.bzdw,kcxx.pc,kcxx.ph
@@ -246,9 +246,9 @@ SELECT s.ypdm,s.zxdw,s.bmdw dw,s.bzdw,CONVERT(INT,s.zhyz) zhyz,CONVERT(INT,s.bzs
 ,dbo.f_getComplexYpSlandDw(s.djsl,s.zhyz,s.bmdw,s.zxdw) djslStr
 ,CONVERT(INT,s.kykc) kykc
 ,CONVERT(NUMERIC(11,4),s.zxdwjj*s.zhyz) bmdwjj
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,4),s.zxdwjj*s.zhyz))+'元/'+s.bmdw) jjdjdw
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,4),s.zxdwlsj*s.zhyz))+'元/'+s.bmdw) lsjdjdw
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz))+'元/'+s.bmdw) pfjdjdw
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,4),s.zxdwjj*s.zhyz))+'đ/'+s.bmdw) jjdjdw
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,4),s.zxdwlsj*s.zhyz))+'đ/'+s.bmdw) lsjdjdw
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz))+'đ/'+s.bmdw) pfjdjdw
 ,CONVERT(NUMERIC(11,2),s.zxdwpfj*s.kcsl) pjze
 ,CONVERT(NUMERIC(11,2),s.zxdwlsj*s.kcsl) lsze
 ,CONVERT(NUMERIC(11,2),s.zxdwjj*s.kcsl) jjze
@@ -296,8 +296,8 @@ SELECT s.dlmc,s.ypmc,s.ypCode ypdm,s.py,s.ypgg gg,s.bmdw dw,s.bzdw,s.zxdw,s.pzwh
 ,dbo.f_getComplexYpSlandDw(s.kykc,s.zhyz,s.bmdw,s.zxdw) slStr
 ,CONVERT(NUMERIC(11,4),s.zxdwlsj) zxdwlsj,CONVERT(NUMERIC(11,4),s.zxdwlsj*s.zhyz) lsj,CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz) pfj
 ,CONVERT(NUMERIC(11,2),s.zxdwlsj*s.kcsl) lsze,CONVERT(NUMERIC(11,2),s.zxdwpfj*s.kcsl) pjze
-,CONCAT(CONVERT(NUMERIC(11,4),s.zxdwlsj*s.zhyz),'元/',s.bmdw) lsjdjdw
-,CONCAT(CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz),'元/',s.bmdw) pfjdjdw,gjybdm
+,CONCAT(CONVERT(NUMERIC(11,4),s.zxdwlsj*s.zhyz),'đ/',s.bmdw) lsjdjdw
+,CONCAT(CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz),'đ/',s.bmdw) pfjdjdw,gjybdm
 FROM (
 	SELECT sfdl.dlmc, yp.ypmc, yp.py, bmypxx.Ypdm ypCode,yp.ycmc, yp.ypgg
 	,SUM(ISNULL((kcxx.kcsl-kcxx.djsl),0)) kykc,SUM(ISNULL(kcxx.kcsl,0)) kcsl,kcyjz
@@ -390,8 +390,8 @@ GROUP BY kcxx.ypdm, yp.ypmc, kcxx.yfbmCode, yfbm.yfbmmc ";
 SELECT yp.ypmc, yp.ypgg gg, yp.py, yp.ycmc sccj, kcxx.ph, kcxx.pc, kcxx.yxq
 ,dbo.f_getYfbmYpComplexYpSlandDw(kcxx.kcsl, @yfbmCode, kcxx.ypdm, @OrganizeId) kcslStr
 ,dbo.f_getYfbmYpComplexYpSlandDw(kcxx.djsl, @yfbmCode, kcxx.ypdm, @OrganizeId) djslStr
-,CONCAT(kcxx.jj, '元/', yp.bzdw) jjdjdw, CONVERT(NUMERIC(11,2),kcxx.jj*kcxx.kcsl/yp.bzs) jjze
-,CONCAT(yp.lsj, '元/', yp.bzdw) lsjdjdw, CONVERT(NUMERIC(11,2),yp.lsj*kcxx.kcsl/yp.bzs) lsze 
+,CONCAT(kcxx.jj, 'đ/', yp.bzdw) jjdjdw, CONVERT(NUMERIC(11,2),kcxx.jj*kcxx.kcsl/yp.bzs) jjze
+,CONCAT(yp.lsj, 'đ/', yp.bzdw) lsjdjdw, CONVERT(NUMERIC(11,2),yp.lsj*kcxx.kcsl/yp.bzs) lsze 
 ,yp.ypCode ypdm,d.gysmc,kcxx.kcsl
 FROM dbo.xt_yp_kcxx(NOLOCK) kcxx 
 INNER JOIN NewtouchHIS_Base.dbo.V_C_xt_yp yp ON yp.ypCode=kcxx.ypdm AND yp.OrganizeId=kcxx.OrganizeId AND yp.zt='1' 
@@ -541,9 +541,9 @@ SELECT s.ypdm,s.zxdw,s.bmdw dw,s.bzdw,CONVERT(INT,s.zhyz) zhyz,CONVERT(INT,s.bzs
 ,dbo.f_getComplexYpSlandDw(s.djsl,s.zhyz,s.bmdw,s.zxdw) djslStr
 ,CONVERT(INT,s.kykc) kykc
 ,CONVERT(NUMERIC(11,4),s.zxdwjj*s.zhyz) bmdwjj
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,4),s.zxdwjj*s.zhyz))+'元/'+s.bmdw) jjdjdw
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,4),s.zxdwlsj*s.zhyz))+'元/'+s.bmdw) lsjdjdw
-,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz))+'元/'+s.bmdw) pfjdjdw
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,4),s.zxdwjj*s.zhyz))+'đ/'+s.bmdw) jjdjdw
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,4),s.zxdwlsj*s.zhyz))+'đ/'+s.bmdw) lsjdjdw
+,(CONVERT(VARCHAR(11),CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz))+'đ/'+s.bmdw) pfjdjdw
 ,CONVERT(NUMERIC(11,2),s.zxdwpfj*s.kcsl) pjze
 ,CONVERT(NUMERIC(11,2),s.zxdwlsj*s.kcsl) lsze
 ,CONVERT(NUMERIC(11,2),s.zxdwjj*s.kcsl) jjze

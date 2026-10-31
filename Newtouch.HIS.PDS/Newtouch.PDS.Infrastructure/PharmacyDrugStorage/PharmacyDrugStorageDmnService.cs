@@ -151,7 +151,7 @@ group by  kcxx.yxq,kcxx.ph, kcxx.pc, kcxx.ypkw, kcxx.zt, yfbm.yfbmmc, kcxx.djsl,
         {
             var sb = new StringBuilder(@"
 select crkdj.djlx, crkdj.shzt
-,case crkdj.djlx when 1 then '药品入库' when 2 then '外部出库' when 3 then '直接出库' when 4 then '申领出库' when 5 then '内部发药退回' when 6 then '科室发药' else '' end djlxmc
+,case crkdj.djlx when 1 then 'Nhập thuốc' when 2 then 'Xuất kho ngoài' when 3 then 'Xuất kho trực tiếp' when 4 then 'Xuất kho theo lĩnh' when 5 then 'Trả lại phát thuốc nội bộ' when 6 then 'Phát thuốc khoa' else '' end djlxmc
 ,crkdj.crkId crkId, crkdj.Pdh pdh
 ,(case crkdj.djlx when 1 then '' else ckyfbm.yfbmmc end) ckbmmc
 ,(case crkdj.djlx when 1 then ckypgys.gysmc when 2 then rkypgys.gysmc else '' end) gysmc
@@ -236,13 +236,13 @@ group by crkdj.djlx, crkdj.shzt, crkdj.crkId , crkdj.Pdh ,crkdj.Czsj, ypcrkfs.cr
         {
             var sb = new StringBuilder(@"
 select crkdj.djlx, crkdj.shzt
-,case crkdj.djlx when 1 then  '药品入库' 
-when 2 then (case crkdj.Crkfsdm when '13' then '基药出库' when '14' then '报损出库' else '外部出库' end)
-when 3 then (case crkdj.Crkfsdm when '13' then '基药出库' when '14' then '报损出库' else '直接出库' end) 
-when 4 then (case crkdj.Crkfsdm when '13' then '基药出库' when '14' then '报损出库' else '申领出库' end)
-when 5 then (case crkdj.Crkfsdm when '13' then '基药出库' when '14' then '报损出库' else '内部发药退回' end)
-when 6 then (case crkdj.Crkfsdm when '13' then '基药出库' when '14' then '报损出库' else '科室发药' end) 
-when 14 then '批量出库' 
+,case crkdj.djlx when 1 then  'Nhập thuốc' 
+when 2 then (case crkdj.Crkfsdm when '13' then 'Xuất thuốc thiết yếu' when '14' then 'Xuất báo hỏng' else 'Xuất kho ngoài' end)
+when 3 then (case crkdj.Crkfsdm when '13' then 'Xuất thuốc thiết yếu' when '14' then 'Xuất báo hỏng' else 'Xuất kho trực tiếp' end) 
+when 4 then (case crkdj.Crkfsdm when '13' then 'Xuất thuốc thiết yếu' when '14' then 'Xuất báo hỏng' else 'Xuất kho theo lĩnh' end)
+when 5 then (case crkdj.Crkfsdm when '13' then 'Xuất thuốc thiết yếu' when '14' then 'Xuất báo hỏng' else 'Trả lại phát thuốc nội bộ' end)
+when 6 then (case crkdj.Crkfsdm when '13' then 'Xuất thuốc thiết yếu' when '14' then 'Xuất báo hỏng' else 'Phát thuốc khoa' end) 
+when 14 then 'Xuất kho hàng loạt' 
 else '' end djlxmc,crkdj.crkId crkId, crkdj.Pdh pdh
 ,(case crkdj.djlx when 1 then '' else ckyfbm.yfbmmc end) ckbmmc
 ,(case crkdj.djlx when 1 then ckypgys.gysmc when 2 then rkypgys.gysmc else '' end) gysmc
@@ -407,13 +407,13 @@ select crkmxId,ISNULL(RTRIM(LTRIM(Fph)),'') Fph,yp.ypmc,ypsfdl.dlmc yplbmc,ph, p
             {
                 sb.AppendLine(@"
 ,dbo.f_getComplexYpSlandDw(crkmx.sl*crkmx.Rkzhyz, yp.bzs, yp.bzdw, yp.zxdw) slanddw 
-,(CASE WHEN crkmx.Rkzhyz<=0 THEN '' ELSE (CONVERT(VARCHAR(15),CONVERT(NUMERIC(11,2),crkmx.jj/crkmx.Rkzhyz*yp.bzs))+'元/'+yp.bzdw) END) jjdwdj ");
+,(CASE WHEN crkmx.Rkzhyz<=0 THEN '' ELSE (CONVERT(VARCHAR(15),CONVERT(NUMERIC(11,2),crkmx.jj/crkmx.Rkzhyz*yp.bzs))+'đ/'+yp.bzdw) END) jjdwdj ");
             }
             else
             {
                 sb.AppendLine(@"
 ,dbo.f_getComplexYpSlandDw(crkmx.sl*crkmx.Ckzhyz, yp.bzs, yp.bzdw, yp.zxdw) slanddw 
-,(CASE WHEN crkmx.Ckzhyz<=0 THEN '' ELSE (CONVERT(VARCHAR(15),CONVERT(NUMERIC(11,2),crkmx.jj/crkmx.Ckzhyz*yp.bzs))+'元/'+yp.bzdw) END) jjdwdj ");
+,(CASE WHEN crkmx.Ckzhyz<=0 THEN '' ELSE (CONVERT(VARCHAR(15),CONVERT(NUMERIC(11,2),crkmx.jj/crkmx.Ckzhyz*yp.bzs))+'đ/'+yp.bzdw) END) jjdwdj ");
             }
             sb.AppendLine(@"
 ,CONVERT(DECIMAL(12, 2), crkmx.pfj * crkmx.sl ) pjze
