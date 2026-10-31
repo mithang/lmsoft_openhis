@@ -12,7 +12,7 @@ function etchinese(s) {
     return result;
 }
 function specialcharacter(s) {
-    //đốiđặcđặctình hìnhvàodòngchỗlý，vàgọietchinese(s)Phương pháp，Quay lạiliên quancủatrongvăn  
+    //đốiđặcđặctình hìnhvàodòngchỗlý,vàgọietchinese(s)Phương pháp,Quay lạiliên quancủatrongvăn  
     s = "" + s;
     var result = "";
     if (s.length == 2) {
@@ -26,7 +26,7 @@ function specialcharacter(s) {
     return etchinese(s)
 }
 function transformchinese(s) {
-    //kiểm tranhậpcủaNgàyđịnh dạng，vàgọispecialcharacter(s)Phương pháp，sẽliên quansốchữchuyểnhóalàtrongvăn  
+    //kiểm tranhậpcủaNgàyđịnh dạng,vàgọispecialcharacter(s)Phương pháp,sẽliên quansốchữchuyểnhóalàtrongvăn  
     var datePat = /^(\d{2}|\d{4})(\/|-)(\d{1,2})(\2)(\d{1,2})$/;
     var matchArray = s.match(datePat);
     var ok = "";

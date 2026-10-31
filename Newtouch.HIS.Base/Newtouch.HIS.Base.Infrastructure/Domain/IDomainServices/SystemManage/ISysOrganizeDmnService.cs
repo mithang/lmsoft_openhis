@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<SysApplicationEntity> GetAuthedAppListByTopOrgId(string topOrgId);
 
         /// <summary>
-        /// Có chứa tổ chức cấp dưới không，Có tổ chức cấp dưới thì trả vềtrue
+        /// Có chứa tổ chức cấp dưới không,Có tổ chức cấp dưới thì trả vềtrue
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         bool IsClinic(string orgId);
 
         /// <summary>
-        /// Xét theo loại tổ chức Có hay không Có Cơ sở y tế（Có nghiệp vụ cụ thể）
+        /// Xét theo loại tổ chức Có hay không Có Cơ sở y tế(Có nghiệp vụ cụ thể)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

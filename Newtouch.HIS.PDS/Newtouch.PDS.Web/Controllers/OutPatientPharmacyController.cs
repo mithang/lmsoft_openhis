@@ -757,7 +757,7 @@ namespace Newtouch.HIS.Web.Controllers
         //{
         //    if (string.IsNullOrEmpty(pCfh))
         //    {
-        //        return Error(string.Format("Đơn thuốc{0} Không có thông tin cần phát thuốc！", pCfh));
+        //        return Error(string.Format("Đơn thuốc{0} Không có thông tin cần phát thuốc!", pCfh));
         //    }
         //    var reqObj = new
         //    {
@@ -796,7 +796,7 @@ namespace Newtouch.HIS.Web.Controllers
         //    {
         //        if (string.IsNullOrEmpty(item))
         //        {
-        //            return Error(string.Format("Đơn thuốc{0}Không có thông tin cần phát thuốc！", item));
+        //            return Error(string.Format("Đơn thuốc{0}Không có thông tin cần phát thuốc!", item));
         //        }
         //        var reqObj = new
         //        {
@@ -1220,7 +1220,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// Giao diện truy vấn phát thuốc ngoại trú，Thông tin bảng chính
+        /// Giao diện truy vấn phát thuốc ngoại trú,Thông tin bảng chính
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>

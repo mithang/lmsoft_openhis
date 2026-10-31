@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Application.Interface
         IList<LossAndProditInfoVO> SelectLossAndProditInfoList(Pagination pagination, string startTime, string endTime, string inputCode, string syyy, int syqk);
 
         /// <summary>
-        /// Tổng số tiền giá bán buôn、Truy vấn tổng số tiền giá bán lẻ
+        /// Tổng số tiền giá bán buôn,Truy vấn tổng số tiền giá bán lẻ
         /// </summary>
         /// <param name="startTime">Thời gian bắt đầu</param>
         /// <param name="endTime">Thời gian kết thúc</param>

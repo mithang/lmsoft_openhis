@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         }
 
         /// <summary>
-        /// Lấy tất cả nhân viên hệ thống thuộc tổ chức（Không bao gồm tổ chức con）
+        /// Lấy tất cả nhân viên hệ thống thuộc tổ chức(Không bao gồm tổ chức con)
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

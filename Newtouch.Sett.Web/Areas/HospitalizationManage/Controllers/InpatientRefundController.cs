@@ -130,7 +130,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
                 {
                     throw new FailedCodeException("HOSP_BILLING ITEMS_BILLING DRUGS_DISTINGUISH_BETWEEN_FAILURE");
                 }
-                //Có phải mục không điều trị hay không 0：không 1：là
+                //Có phải mục không điều trị hay không 0:không 1:là
                 if (item.isYp == "1")
                 {
                     if (string.IsNullOrEmpty(item.jfbbh))

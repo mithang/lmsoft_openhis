@@ -18,9 +18,9 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 {
 
     /// <summary>
-    /// tạo lập：Trương Đông Lâm
-    /// ngày kỳ：2017-09-30 14:54
-    /// mô tả kể：saisainêuhiển thịphốiđặt
+    /// tạo lập:Trương Đông Lâm
+    /// ngày kỳ:2017-09-30 14:54
+    /// mô tả kể:saisainêuhiển thịphốiđặt
     /// </summary>
     [Area("SystemManage")]
 
@@ -63,7 +63,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

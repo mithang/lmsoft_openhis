@@ -5,9 +5,9 @@ using NewtouchHIS.Lib.Base.Model;
 namespace Newtouch.OR.ManageSystem.Domain.IRepository
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-10-31 15:44
-    /// Mô tả：Bảng từ điển gây mê
+    /// Tạo bởi:chl
+    /// Ngày:2019-10-31 15:44
+    /// Mô tả:Bảng từ điển gây mê
     /// </summary>
     public interface IORAnesthesiaRepo : IRepositoryBase<ORAnesthesiaEntity>
     {
@@ -19,7 +19,7 @@ namespace Newtouch.OR.ManageSystem.Domain.IRepository
         /// <returns></returns>
         IList<ORAnesthesiaEntity> GetPagintionList(Pagination pagination, string keyword,string organizeId);
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

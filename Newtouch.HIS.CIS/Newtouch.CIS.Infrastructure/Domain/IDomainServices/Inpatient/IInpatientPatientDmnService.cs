@@ -37,7 +37,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<InPatientPatientSearchVO> GetInPatSearchPaginationList(Pagination pagination, string orgId, string bq, string zyh, string xm, string ch, string bqCode,string zybz = null);
 
         /// <summary>
-        /// Số nhập viện、Họ tên、Số thẻLấybệnh nhânThông tin cơ bản Họ tên，Giới tính，Tuổi，bệnh nhânTính chất、Ngày nhập viện
+        /// Số nhập viện,Họ tên,Số thẻLấybệnh nhânThông tin cơ bản Họ tên,Giới tính,Tuổi,bệnh nhânTính chất,Ngày nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -45,7 +45,7 @@ namespace Newtouch.Domain.IDomainServices
         List<patientInfoDto> GetInfoBykeyword(string keyword, string orgId);
 
         /// <summary>
-        /// Số nhập việnLấybệnh nhânThông tin cơ bản Họ tên，Giới tính，Tuổi，bệnh nhânTính chất
+        /// Số nhập việnLấybệnh nhânThông tin cơ bản Họ tên,Giới tính,Tuổi,bệnh nhânTính chất
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

@@ -24,7 +24,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string address { get; set; }
         public int? queno { get; set; }
         /// <summary>
-        /// chuyểnkhámnhận dạng：làKhônglàchuyểnkhámBệnh nhân
+        /// chuyểnkhámnhận dạng:làKhônglàchuyểnkhámBệnh nhân
         /// </summary>
         public string zzbs { get; set; }
     }
@@ -182,7 +182,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string operatingTime { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếquyết toánsố（trướcđặt）
+        /// Bảo hiểm y tếquyết toánsố(trướcđặt)
         /// </summary>
         public string ybjsh { get; set; }
 
@@ -202,7 +202,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string cbdbm { get; set; }
 
         /// <summary>
-        /// Pinyin（Tên bệnh nhânMã đầu chữ）
+        /// Pinyin(Tên bệnh nhânMã đầu chữ)
         /// </summary>
         public string py { get; set; }
         /// <summary>

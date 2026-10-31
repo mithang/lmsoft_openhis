@@ -113,7 +113,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Giá bán buônTổng số tiền、Giá bán lẻTổng số tiềnTra cứu
+        /// Giá bán buônTổng số tiền,Giá bán lẻTổng số tiềnTra cứu
         /// </summary>
         /// <param name="startTime">Thời gian bắt đầu</param>
         /// <param name="endTime">Thời gian kết thúc</param>
@@ -142,7 +142,7 @@ namespace Newtouch.Application.Implementation
         //        {
         //            if (kcsl + item.Sysl >= 0)
         //            {
-        //                //Lưu（updateTồn kho insertlãi lỗbảng）
+        //                //Lưu(updateTồn kho insertlãi lỗbảng)
         //                _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
         //            }
         //            else
@@ -152,7 +152,7 @@ namespace Newtouch.Application.Implementation
         //        }
         //        else  //báo thừa
         //        {
-        //            //Lưu（updateTồn kho insertlãi lỗbảng）
+        //            //Lưu(updateTồn kho insertlãi lỗbảng)
         //            _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
         //        }
         //    }

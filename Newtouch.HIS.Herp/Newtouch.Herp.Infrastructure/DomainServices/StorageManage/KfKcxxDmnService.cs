@@ -27,7 +27,7 @@ namespace Newtouch.Herp.DomainServices.StorageManage
         }
 
         /// <summary>
-        /// Sửa số lượng tồn kho(Cộng tồn kho)，Không sửa số lượng đóng băng  Trả về số dòng bị ảnh hưởng
+        /// Sửa số lượng tồn kho(Cộng tồn kho),Không sửa số lượng đóng băng  Trả về số dòng bị ảnh hưởng
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
@@ -46,7 +46,7 @@ namespace Newtouch.Herp.DomainServices.StorageManage
         }
 
         /// <summary>
-        /// Sửa số lượng tồn kho，Không sửa số lượng đóng băng  Phương pháp này sửa hàng loạt vật tư cùng lô hàng và số lô，Dùng thận trọng
+        /// Sửa số lượng tồn kho,Không sửa số lượng đóng băng  Phương pháp này sửa hàng loạt vật tư cùng lô hàng và số lô,Dùng thận trọng
         /// </summary>
         /// <param name="updateKcslDto"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace Newtouch.Herp.DomainServices.StorageManage
         }
 
         /// <summary>
-        /// Cộng thêm tồn kho，Không sửa số lượng đóng băng Trả về số dòng bị ảnh hưởng
+        /// Cộng thêm tồn kho,Không sửa số lượng đóng băng Trả về số dòng bị ảnh hưởng
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
@@ -113,7 +113,7 @@ SELECT @@ROWCOUNT ;
         }
 
         /// <summary>
-        /// Sửa số lượng tồn kho，Không sửa số lượng đóng băng
+        /// Sửa số lượng tồn kho,Không sửa số lượng đóng băng
         /// </summary>
         /// <param name="updateKcslDto"></param>
         /// <returns></returns>
@@ -133,7 +133,7 @@ SELECT @@ROWCOUNT ;
         }
 
         /// <summary>
-        /// Sửa số lượng tồn kho，Không sửa số lượng đóng băng
+        /// Sửa số lượng tồn kho,Không sửa số lượng đóng băng
         /// </summary>
         /// <param name="updateKcslDto"></param>
         /// <param name="db"></param>
@@ -150,7 +150,7 @@ SELECT @@ROWCOUNT ;
         }
 
         /// <summary>
-        /// Sửa số lượng tồn kho，Không sửa số lượng đóng băng
+        /// Sửa số lượng tồn kho,Không sửa số lượng đóng băng
         /// </summary>
         /// <param name="updateKcslDto"></param>
         /// <param name="db"></param>
@@ -178,7 +178,7 @@ SELECT @@ROWCOUNT ;
         }
 
         /// <summary>
-        /// Số lượng giảm tồn kho、Số lượng đóng băng（Xuất kho khả dụng）
+        /// Số lượng giảm tồn kho,Số lượng đóng băng(Xuất kho khả dụng)
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
@@ -283,7 +283,7 @@ SELECT @@ROWCOUNT ;
         }
 
         /// <summary>
-        /// Hủy nhập kho（Hủy xuất kho trực tiếp） Nếu muốn dùng phương pháp này hãy bọc trong transaction，Trong phương pháp không rollback
+        /// Hủy nhập kho(Hủy xuất kho trực tiếp) Nếu muốn dùng phương pháp này hãy bọc trong transaction,Trong phương pháp không rollback
         /// </summary>
         /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="pc"></param>
@@ -335,7 +335,7 @@ AND kcxx.zt=@zt
         }
 
         //        /// <summary>
-        //        /// Hủy nhập kho（Hủy xuất kho trực tiếp）
+        //        /// Hủy nhập kho(Hủy xuất kho trực tiếp)
         //        /// </summary>
         //        /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         //        /// <param name="pc"></param>

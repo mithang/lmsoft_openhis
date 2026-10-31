@@ -106,7 +106,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// vai trò（Cây）   （Người dùng chủ động liên kết vai trò）
+        /// vai trò(Cây)   (Người dùng chủ động liên kết vai trò)
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="organizeId"></param>

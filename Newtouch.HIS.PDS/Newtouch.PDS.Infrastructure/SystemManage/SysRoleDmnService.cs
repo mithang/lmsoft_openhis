@@ -32,7 +32,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Gửi mới、Cập nhật Thực thể
+        /// Gửi mới,Cập nhật Thực thể
         /// </summary>
         /// <param name="roleEntity"></param>
         /// <param name="roleAuthorizeEntitys"></param>

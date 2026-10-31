@@ -171,7 +171,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// Theovật tưIDLấymỗiLôTồn kho
         /// </summary>
         /// <param name="proId"></param>
-        /// <param name="zt">tạmkhiHiệu lựccủachi tiết  true：Có  false：Không</param>
+        /// <param name="zt">tạmkhiHiệu lựccủachi tiết  true:Có  false:Không</param>
         /// <returns></returns>
         public IActionResult GetWarehouseStorageDetail(string ks,string proId, string zt)
         {

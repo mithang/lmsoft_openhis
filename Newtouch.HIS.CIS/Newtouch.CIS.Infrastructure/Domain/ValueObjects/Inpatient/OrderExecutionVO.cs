@@ -98,7 +98,7 @@ namespace Newtouch.Domain.ValueObjects
         public string zh1 { get; set; }
         public string yfztbs { get; set; }
         /// <summary>
-        /// ThuốcmởlậpTồn khođếnnguồn 1：Bác sĩtrạmKhoachuẩn bị thuốcTồn kho 2：Nhà thuốcTồn kho
+        /// ThuốcmởlậpTồn khođếnnguồn 1:Bác sĩtrạmKhoachuẩn bị thuốcTồn kho 2:Nhà thuốcTồn kho
         /// </summary>
         public int? yply { get; set; }
         public decimal? je { get; set; }
@@ -126,7 +126,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public int yzxz { get; set; }
         /// <summary>
-        /// Kiểu y lệnh，ThuốcOrMục
+        /// Kiểu y lệnh,ThuốcOrMục
         /// </summary>
         public int yzlx { get; set; }
         /// <summary>
@@ -160,7 +160,7 @@ namespace Newtouch.Domain.ValueObjects
         public string zh1 { get; set; }
         public string yfztbs { get; set; }
         /// <summary>
-        /// Thuốcđếnnguồn 1：Bác sĩtrạmKhoachuẩn bị thuốcTồn kho  2：Nhà thuốcTồn kho
+        /// Thuốcđếnnguồn 1:Bác sĩtrạmKhoachuẩn bị thuốcTồn kho  2:Nhà thuốcTồn kho
         /// </summary>
         public string yply { get; set; }
         /// <summary>

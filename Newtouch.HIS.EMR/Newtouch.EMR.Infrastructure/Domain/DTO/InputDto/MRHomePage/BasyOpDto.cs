@@ -122,7 +122,7 @@ namespace Newtouch.EMR.Domain.DTO.InputDto
 		public string MZFSMS { get; set; }
 
 		/// <summary>
-		/// Có phải phẫu thuật cấp cứu không 0：Không，1：Có
+		/// Có phải phẫu thuật cấp cứu không 0:Không,1:Có
 		/// </summary>
 		public int? SSLX { get; set; }
 

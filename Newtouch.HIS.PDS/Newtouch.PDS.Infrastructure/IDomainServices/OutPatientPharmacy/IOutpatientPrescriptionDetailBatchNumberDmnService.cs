@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
         /// <param name="ypCode"></param>
-        /// <param name="gjzt">Trạng thái xếp kệ：0-Chưa xếp lên kệ  1-Đã xếp lên kệ</param>
+        /// <param name="gjzt">Trạng thái xếp kệ:0-Chưa xếp lên kệ  1-Đã xếp lên kệ</param>
         /// <returns></returns>
         List<OutpatientPrescriptionDetailBatchNumberEntity> GetList(string cfh, string organizeId, string ypCode = "", string gjzt = "0");
     }

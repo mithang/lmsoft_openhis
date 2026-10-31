@@ -80,7 +80,7 @@ namespace Newtouch.Domain.ValueObjects
         public string iszt { get; set; }
         public string yfztbs { get; set; }
         /// <summary>
-        /// ThuốcmởlậpTồn khođếnnguồn 1:Khoachuẩn bị thuốcTồn kho 2：Nhà thuốcTồn kho
+        /// ThuốcmởlậpTồn khođếnnguồn 1:Khoachuẩn bị thuốcTồn kho 2:Nhà thuốcTồn kho
         /// </summary>
         public int? yply { get; set; }
         public decimal? dj { get; set; }

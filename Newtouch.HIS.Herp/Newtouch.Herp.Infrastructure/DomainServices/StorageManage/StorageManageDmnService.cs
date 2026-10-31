@@ -365,9 +365,9 @@ GROUP BY s.ph,s.pc,s.yxq,s.scrq,s.fph,s.bmjj,s.minjj,s.zhyz,s.bmdwmc,s.zxdwmc
         /// <param name="lbId"></param>
         /// <param name="kzbz"></param>
         /// <param name="wzzt"></param>
-        /// <param name="xslkc">Hiển thị tồn kho bằng 0  1：Hiển thị  0：Không hiển thị</param>
+        /// <param name="xslkc">Hiển thị tồn kho bằng 0  1:Hiển thị  0:Không hiển thị</param>
         /// <param name="ygq">Đã quá hạn</param>
-        /// <param name="mxyx">Chi tiết tạm thời còn hiệu lực  true：Có  false：Không</param>
+        /// <param name="mxyx">Chi tiết tạm thời còn hiệu lực  true:Có  false:Không</param>
         /// <returns></returns>
         public IList<VProductStorageEntity> GetProductStorage(Pagination pagination,
             string warehouseId,
@@ -478,7 +478,7 @@ FROM (
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
         /// <param name="proId"></param>
-        /// <param name="zt">Chi tiết tạm thời còn hiệu lực  true：Có  false：Không</param>
+        /// <param name="zt">Chi tiết tạm thời còn hiệu lực  true:Có  false:Không</param>
         /// <returns></returns>
         public IList<VProductStorageDetailEntity> GetProductStorageDetail(string warehouseId, string organizeId, string proId, string zt)
         {
@@ -525,9 +525,9 @@ GROUP BY s.productId,s.wzmc,s.ph,s.pc,s.yxq,s.zt,s.bmdwmc,s.jj,s.zhyz,s.zxdwmc
         /// <param name="lbId"></param>
         /// <param name="kzbz"></param>
         /// <param name="wzzt"></param>
-        /// <param name="xslkc">Hiển thị tồn kho bằng 0  1：Hiển thị  0：Không hiển thị</param>
-        /// <param name="mxyx">Chi tiết tạm thời còn hiệu lực  true：Có  false：Không</param>
-        /// <param name="isExpired">true:Hiển thị quá hạn  false：Hiển thị chưa quá hạn</param>
+        /// <param name="xslkc">Hiển thị tồn kho bằng 0  1:Hiển thị  0:Không hiển thị</param>
+        /// <param name="mxyx">Chi tiết tạm thời còn hiệu lực  true:Có  false:Không</param>
+        /// <param name="isExpired">true:Hiển thị quá hạn  false:Hiển thị chưa quá hạn</param>
         /// <returns></returns>
         public IList<VProductStorageDetailEntity> SelectStorageDetail(Pagination pagination,
             string warehouseId,
@@ -684,7 +684,7 @@ FROM (
         }
 
         /// <summary>
-        /// Xuất kho ngoài，Trừ tồn kho，Đã duyệt
+        /// Xuất kho ngoài,Trừ tồn kho,Đã duyệt
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mx"></param>
@@ -716,7 +716,7 @@ FROM (
         }
 
         /// <summary>
-        /// Xuất kho ngoài/Xuất kho trực tiếp/Trả hàng phát nội bộ，Rã đóng băng，Không duyệt
+        /// Xuất kho ngoài/Xuất kho trực tiếp/Trả hàng phát nội bộ,Rã đóng băng,Không duyệt
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mx"></param>

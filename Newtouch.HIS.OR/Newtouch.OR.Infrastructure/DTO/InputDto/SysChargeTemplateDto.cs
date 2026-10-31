@@ -11,7 +11,7 @@ namespace Newtouch.OR.ManageSystem.Domain.DTO.InputDto
         public string sfmbbh { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（bệnh viện có nghiệp vụ cụ thể）
+        /// Tổ chứcId(bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 

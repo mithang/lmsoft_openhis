@@ -80,7 +80,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Khi sửa thông tin，Mang thông tin sang trang mới
+        /// Khi sửa thông tin,Mang thông tin sang trang mới
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

@@ -21,7 +21,7 @@ namespace Newtouch.Infrastructure
         private static string _topOrganizeId;
 
         /// <summary>
-        /// Tổ chứcId（Cấp cao nhất，Cấu hình hệ thống）
+        /// Tổ chứcId(Cấp cao nhất,Cấu hình hệ thống)
         /// </summary>
         public static string TopOrganizeId
         {
@@ -46,7 +46,7 @@ namespace Newtouch.Infrastructure
         private static string _AppId;
 
         /// <summary>
-        /// Tổ chứcId（Cấp cao nhất，Cấu hình hệ thống）
+        /// Tổ chứcId(Cấp cao nhất,Cấu hình hệ thống)
         /// </summary>
         public static string AppId
         {
@@ -103,7 +103,7 @@ namespace Newtouch.Infrastructure
         #region Thông tin bộ phận nhà thuốc hiện tại của người dùng đăng nhập Không bao giờ hết hạn Chia sẻ giữa các hệ thống khác nhau
 
         /// <summary>
-        /// Lấy bộ phận dược hiện tại（Nhà thuốc hoặc kho thuốc）
+        /// Lấy bộ phận dược hiện tại(Nhà thuốc hoặc kho thuốc)
         /// </summary>
         public static LoginUserCurrentYfbmModel CurrentYfbm
         {
@@ -115,7 +115,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấy bộ phận dược hiện tại（Nhà thuốc hoặc kho thuốc）
+        /// Lấy bộ phận dược hiện tại(Nhà thuốc hoặc kho thuốc)
         /// </summary>
         /// <param name="userId"></param>
         public static LoginUserCurrentYfbmModel GetCurrentYfbm(string userId)
@@ -125,7 +125,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Đặt bộ phận dược hiện tại（Nhà thuốc hoặc kho thuốc）
+        /// Đặt bộ phận dược hiện tại(Nhà thuốc hoặc kho thuốc)
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="value"></param>

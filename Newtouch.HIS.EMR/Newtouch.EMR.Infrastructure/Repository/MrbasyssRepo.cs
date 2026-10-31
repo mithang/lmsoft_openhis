@@ -5,9 +5,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2020-03-13 11:29
-    /// Mô tả：Trang đầu bệnh án-Bản ghi phẫu thuật
+    /// Người tạo:chl
+    /// Ngày:2020-03-13 11:29
+    /// Mô tả:Trang đầu bệnh án-Bản ghi phẫu thuật
     /// </summary>
     public class MrbasyssRepo : RepositoryBase<MrbasyssEntity>, IMrbasyssRepo
     {

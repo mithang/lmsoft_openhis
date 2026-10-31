@@ -78,7 +78,7 @@
                 <i id="singleItemIcon" class="fa">(Đóng)</i>
             </div>
             <form id="form1">
-                <label id="dwjls" hidden="hidden"></label>@*Một lầntínhlượngsố，vàMột lầnĐiều trịlượnglàmsokhá*@
+                <label id="dwjls" hidden="hidden"></label>@*Một lầntínhlượngsố,vàMột lầnĐiều trịlượnglàmsokhá*@
                 <input id="zfxz" type="text" style="display:none;" class="form-control" />
                 @{
                     @Html.Partial("originalCharge"); //Thu phí thường quy. Số lượng
@@ -108,7 +108,7 @@
 </div>
 <script>
     //
-    var multiTimesSettWithUnSettedSingleItem = false; //Công tắccấu hình：có thểnhiều lầngiao dịchchế độ khôngĐơn thuốcchưaMục thu phíCóKhôngtựđộngmangvào
+    var multiTimesSettWithUnSettedSingleItem = false; //Công tắccấu hình:có thểnhiều lầngiao dịchchế độ khôngĐơn thuốcchưaMục thu phíCóKhôngtựđộngmangvào
     //
     var leftdata = [];//tráibênNguồn dữ liệu
     var respmzh; //Số khám ngoại trúkiểm tra(Không cóđổi)
@@ -132,7 +132,7 @@
         setTimeout("gridPatList()", 50);
     });
 
-    //trangmặttrongtố，Tính toánTổng số tiền Số lượngbảnbản
+    //trangmặttrongtố,Tính toánTổng số tiền Số lượngbảnbản
     function reCalcZjeFromsl() {
         var resultZje = "0.00";
         var txtDj = $("#dj").html();
@@ -357,13 +357,13 @@
         }
 
         var data = getEditRowData();
-        if (!checkEditingRowData(data)) {    //Dữ liệuCóKhônghoàn thiện，Kiểm trabắt buộc mục
+        if (!checkEditingRowData(data)) {    //Dữ liệuCóKhônghoàn thiện,Kiểm trabắt buộc mục
             return;
         }
         reCalcZjeFromsl();
         var addgoon = function () {
 
-            if (!checkEditingRowData(data)) {    //Dữ liệuCóKhônghoàn thiện，Kiểm trabắt buộc mục
+            if (!checkEditingRowData(data)) {    //Dữ liệuCóKhônghoàn thiện,Kiểm trabắt buộc mục
                 return;
             }
             data.zje = $('#zje').html();
@@ -404,7 +404,7 @@
         if (editingNewid) {
             var data = getEditRowData();
             if (!(checkEditingRowData(data))) {
-                //Dữ liệuCóKhônghoàn thiện，Kiểm trabắt buộc mục
+                //Dữ liệuCóKhônghoàn thiện,Kiểm trabắt buộc mục
                 return;
             }
             reCalcZjeFromsl();
@@ -612,7 +612,7 @@
             $.modalAlert("ThiếuSố lượng", 'warning');
             return;
         }
-        //Thường quy，Số lượng
+        //Thường quy,Số lượng
         if (!((/^(\+|-)?\d+$/).test(rowData.sl)) || rowData.sl < 1) {
             $.modalAlert("Số lượng là số nguyên lớn hơn 0", 'warning');
             return;

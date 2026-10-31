@@ -151,7 +151,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         /// </summary>
         public string psjg { get; set; }
         /// <summary>
-        /// dathửCờ 0:Không 1：là
+        /// dathửCờ 0:Không 1:là
         /// </summary>
         public string ispsbz { get; set; }
         /// <summary>

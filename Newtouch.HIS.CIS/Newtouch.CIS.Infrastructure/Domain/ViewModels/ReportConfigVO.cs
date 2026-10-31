@@ -35,7 +35,7 @@ namespace Newtouch.Domain.ViewModels
         /// </summary>
         public string Paras { get; set; }
         /// <summary>
-        /// côngcụ thểcột date（phiếuNgày） ,daterange（Thời gianphạm vi）
+        /// côngcụ thểcột date(phiếuNgày) ,daterange(Thời gianphạm vi)
         /// </summary>
         public string Tools { get; set; }
         public DateTime CreateTime { get; set; }

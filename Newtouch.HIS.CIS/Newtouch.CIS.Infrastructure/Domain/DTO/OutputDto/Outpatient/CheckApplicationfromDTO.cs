@@ -50,7 +50,7 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
         public string DoctorName { get; set; }
         // Bác sĩ đăng kýCMND/CCCD
         public string DoctorIdCard { get; set; }
-        // Khám bệnhghi chépMã  Y Ngoại trú、Nhập viện、thểkiểm trasố
+        // Khám bệnhghi chépMã  Y Ngoại trú,Nhập viện,thểkiểm trasố
         public string RecordID { get; set; }
         //đếnnguồn   Y Ngoại trú MagQ700001   Nhập viện MagQ700002  thểkiểm tra MagQ700003
         public string Source { get; set; }
@@ -64,7 +64,7 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
         public string BodyPart { get; set; }
         //thứ tựsố
         public int? WhichNo { get; set; }
-        // Cờ hiệu lực ký tự  N/Y，N biểu thịHủy
+        // Cờ hiệu lực ký tự  N/Y,N biểu thịHủy
         public string IsVaild { get; set; }
         //làKhôngđãquaThu phí
         public string IsCharge { get; set; }
@@ -107,7 +107,7 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
 
     public class CheckfromDTO
     {
-        // Khám bệnhghi chépMã  Y Ngoại trú、Nhập viện、thểkiểm trasố
+        // Khám bệnhghi chépMã  Y Ngoại trú,Nhập viện,thểkiểm trasố
         public string RecordID { get; set; }
         //PhiếuTên
         public string ApplyName { get; set; }

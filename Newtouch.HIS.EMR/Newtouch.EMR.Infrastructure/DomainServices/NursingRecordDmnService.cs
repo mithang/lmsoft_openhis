@@ -48,11 +48,11 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
             {
                 switch (zyzt)
                 {
-                    case "zy"://Đang nằm viện：không phải đã ra viện，không phải bản ghi đã hủy，không phải hủy nhập viện
+                    case "zy"://Đang nằm viện:không phải đã ra viện,không phải bản ghi đã hủy,không phải hủy nhập viện
                         sql += " and b.zybz in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SugarParameter("@zybz", (int)EnumZYBZ.Bqz));
                         break;
-                    case "cy"://Ra viện：Trạng thái đã ra viện
+                    case "cy"://Ra viện:Trạng thái đã ra viện
                         sql += " and b.zybz in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SugarParameter("@zybz", (int)EnumZYBZ.Ycy + "," + (int)EnumZYBZ.Djz));
                         break;
@@ -86,7 +86,7 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
             return this.FirstOrDefault<InpWardPatTreeVO>(sql, par.ToArray());
         }
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

@@ -71,7 +71,7 @@ namespace Newtouch.Herp.Repository
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="keyWord"></param>
-        /// <param name="supplierType">0：Khác     1：Nhà sản xuất      2：Nhà phân phối</param>
+        /// <param name="supplierType">0:Khác     1:Nhà sản xuất      2:Nhà phân phối</param>
         /// <param name="zt"></param>
         /// <returns></returns>
         public IList<GysSupplierEntity> GetList(string organizeId, string keyWord, int supplierType, string zt = "1")

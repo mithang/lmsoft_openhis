@@ -533,7 +533,7 @@ WHERE s.sl>0
         }
 
         /// <summary>
-        /// Hủy đơn thuốc，Trả phí
+        /// Hủy đơn thuốc,Trả phí
         /// </summary>
         /// <param name="cfh">Số đơn thuốc</param>
         /// <param name="organizeId"></param>

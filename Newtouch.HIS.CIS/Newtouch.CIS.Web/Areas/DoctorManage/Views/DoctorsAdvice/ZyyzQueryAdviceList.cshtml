@@ -349,7 +349,7 @@
                  {
                     label: 'Trạng thái', name: 'yzzt', align: 'center', width: 40, formatter: function (val, options, rowObject) {
                         if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.DC).ToString())) {//DCTrạng thái
-                            //cóThực hiệnThời gian，lấyĐã thực hiệnTrạng thái，cóPhê duyệtThời gian，lấyĐã duyệtTrạng thái
+                            //cóThực hiệnThời gian,lấyĐã thực hiệnTrạng thái,cóPhê duyệtThời gian,lấyĐã duyệtTrạng thái
                             if (rowObject["zxsj"] !== typeof (undefined) && rowObject["zxsj"] !== "") {
                               return "Thực hiện";
                             } else {

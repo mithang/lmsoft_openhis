@@ -1601,7 +1601,7 @@ namespace Newtouch.EMR.Domain.BusinessObjects
         /// <returns></returns>
         public string ylfffs { get; set; }
         /// <summary>
-        /// Hộ khẩu（Tỉnh）
+        /// Hộ khẩu(Tỉnh)
         /// </summary>
         /// <returns></returns>
         public string hkdz_s { get; set; }

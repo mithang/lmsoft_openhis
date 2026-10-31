@@ -67,7 +67,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
         public string XB { get; set; }
 
         /// <summary>
-        /// Định dạng là：YYYYMMDD，ví dụ：20131125
+        /// Định dạng là:YYYYMMDD,ví dụ:20131125
         /// </summary>
         /// <returns></returns>
         public string CSRQ { get; set; }
@@ -97,7 +97,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
         public decimal? XSECSTZ { get; set; }
 
         /// <summary>
-        /// Cân nặng nhập viện của trẻ sơ sinh(gam）
+        /// Cân nặng nhập viện của trẻ sơ sinh(gam)
         /// </summary>
         /// <returns></returns>
         public decimal? XSERYTZ { get; set; }
@@ -247,7 +247,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
         public string ZKKB { get; set; }
 
         /// <summary>
-        /// Định dạng là：YYYYMMDD，ví dụ：20131125
+        /// Định dạng là:YYYYMMDD,ví dụ:20131125
         /// </summary>
         /// <returns></returns>
         public string CYSJ { get; set; }
@@ -259,7 +259,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
         public decimal? CYSJS { get; set; }
 
         /// <summary>
-        /// Mã：Mã khoa
+        /// Mã:Mã khoa
         /// </summary>
         /// <returns></returns>
         public string CYKB { get; set; }
@@ -361,7 +361,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
         public string ZQSS { get; set; }
 
         /// <summary>
-        /// Mã：Mã nguồn bệnh nhân
+        /// Mã:Mã nguồn bệnh nhân
         /// </summary>
         /// <returns></returns>
         public string BRLY { get; set; }
@@ -439,7 +439,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
         public string XX { get; set; }
 
         /// <summary>
-        /// Mã：Rh
+        /// Mã:Rh
         /// </summary>
         /// <returns></returns>
         public string RH { get; set; }
@@ -530,7 +530,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
         public string KZR { get; set; }
 
         /// <summary>
-        /// Chủ nhiệm（Phó chủ nhiệm）Bác sĩ
+        /// Chủ nhiệm(Phó chủ nhiệm)Bác sĩ
         /// </summary>
         /// <returns></returns>
         public string ZRYS { get; set; }
@@ -578,7 +578,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
 		public string BMY { get; set; }
 
         /// <summary>
-        /// Mã：Chất lượng hồ sơ bệnh án
+        /// Mã:Chất lượng hồ sơ bệnh án
         /// </summary>
         /// <returns></returns>
         public string BAZL { get; set; }
@@ -608,13 +608,13 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
         public string LYFS { get; set; }
 
         /// <summary>
-        /// Chuyển viện theo y lệnh，Tên cơ sở y tế dự kiến tiếp nhận
+        /// Chuyển viện theo y lệnh,Tên cơ sở y tế dự kiến tiếp nhận
         /// </summary>
         /// <returns></returns>
         public string YZZY_YLJG { get; set; }
 
         /// <summary>
-        /// Chuyển đến cơ sở dịch vụ y tế cộng đồng theo y lệnh/Trạm y tế xã，Tên cơ sở y tế dự kiến tiếp nhận
+        /// Chuyển đến cơ sở dịch vụ y tế cộng đồng theo y lệnh/Trạm y tế xã,Tên cơ sở y tế dự kiến tiếp nhận
         /// </summary>
         /// <returns></returns>
         public string WSY_YLJG { get; set; }
@@ -632,37 +632,37 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
         public string MD { get; set; }
 
         /// <summary>
-        /// Thời gian hôn mê trước nhập viện của bệnh nhân chấn thương sọ não：Ngày
+        /// Thời gian hôn mê trước nhập viện của bệnh nhân chấn thương sọ não:Ngày
         /// </summary>
         /// <returns></returns>
         public decimal? RYQ_T { get; set; }
 
         /// <summary>
-        /// Thời gian hôn mê trước nhập viện của bệnh nhân chấn thương sọ não：Giờ
+        /// Thời gian hôn mê trước nhập viện của bệnh nhân chấn thương sọ não:Giờ
         /// </summary>
         /// <returns></returns>
         public decimal? RYQ_XS { get; set; }
 
         /// <summary>
-        /// Thời gian hôn mê trước nhập viện của bệnh nhân chấn thương sọ não：phút
+        /// Thời gian hôn mê trước nhập viện của bệnh nhân chấn thương sọ não:phút
         /// </summary>
         /// <returns></returns>
         public decimal? RYQ_F { get; set; }
 
         /// <summary>
-        /// Thời gian hôn mê sau nhập viện của bệnh nhân chấn thương sọ não：Ngày
+        /// Thời gian hôn mê sau nhập viện của bệnh nhân chấn thương sọ não:Ngày
         /// </summary>
         /// <returns></returns>
         public decimal? RYH_T { get; set; }
 
         /// <summary>
-        /// Thời gian hôn mê sau nhập viện của bệnh nhân chấn thương sọ não：Giờ
+        /// Thời gian hôn mê sau nhập viện của bệnh nhân chấn thương sọ não:Giờ
         /// </summary>
         /// <returns></returns>
         public decimal? RYH_XS { get; set; }
 
         /// <summary>
-        /// Thời gian hôn mê sau nhập viện của bệnh nhân chấn thương sọ não：phút
+        /// Thời gian hôn mê sau nhập viện của bệnh nhân chấn thương sọ não:phút
         /// </summary>
         /// <returns></returns>
         public decimal? RYH_F { get; set; }
@@ -1098,7 +1098,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
         /// </summary>
         public string ZYQJSTYY { get; set; }
         /// <summary>
-        /// Thẩm tách khi rời viện（Thẩm tách máu、Thẩm tách phúc mạc）Giá trị nitơ urê
+        /// Thẩm tách khi rời viện(Thẩm tách máu,Thẩm tách phúc mạc)Giá trị nitơ urê
         /// </summary>
         public decimal? LYTXNSDZ { get; set; }
         /// <summary>

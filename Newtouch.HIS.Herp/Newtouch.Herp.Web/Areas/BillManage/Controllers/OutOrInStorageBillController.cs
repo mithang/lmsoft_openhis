@@ -73,7 +73,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// Trả lại đơn Từ chờ xử lý chuyển thành bản nháp，Chỉ áp dụng cho nhập kho ngoài
+        /// Trả lại đơn Từ chờ xử lý chuyển thành bản nháp,Chỉ áp dụng cho nhập kho ngoài
         /// </summary>
         public IActionResult BackToTemporary(long crkId)
         {

@@ -62,7 +62,7 @@ namespace NewtouchHIS.Framework.Web.Controllers.SysManage
         }
 
         /// <summary>
-        /// thả xuống（chọn menu chỉnh sửa cấp trên）
+        /// thả xuống(chọn menu chỉnh sửa cấp trên)
         /// </summary>
         /// <param name="justTop">chỉ cấp cao nhất</param>
         /// <returns></returns>

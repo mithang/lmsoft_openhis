@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface ISysUserExDmnService
     {
         /// <summary>
-        /// Lấy nhà thuốc người dùng có thể thao tác（Kho thuốc）Danh sách
+        /// Lấy nhà thuốc người dùng có thể thao tác(Kho thuốc)Danh sách
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="userId"></param>
@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void UpdateUserRole(string keyValue, string[] roleList);
 
         /// <summary>
-        /// TheoOrganizeIdLấy Nhân sự hệ thốngVO（và có tương ứngSysUser）
+        /// TheoOrganizeIdLấy Nhân sự hệ thốngVO(và có tương ứngSysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string GetLanguageTypeByUserId(string userId);
 
         /// <summary>
-        /// Theo cấp chaOrgId（Cây đệ quy）Lấy Tất cả Chỉ định Chức vụ của StaffId
+        /// Theo cấp chaOrgId(Cây đệ quy)Lấy Tất cả Chỉ định Chức vụ của StaffId
         /// </summary>
         /// <param name="parentOrgId"></param>
         /// <param name="dutyCode"></param>

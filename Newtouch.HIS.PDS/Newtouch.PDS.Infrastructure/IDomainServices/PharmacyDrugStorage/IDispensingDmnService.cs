@@ -14,14 +14,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
     {
 
         /// <summary>
-        /// Đặt trước đơn ngoại trú（Đóng băng tồn kho）
+        /// Đặt trước đơn ngoại trú(Đóng băng tồn kho)
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
         string OutPatientBook(BookItemDo bookItemDo);
 
         /// <summary>
-        /// Đặt trước đơn ngoại trú（Đóng băng tồn kho） V2
+        /// Đặt trước đơn ngoại trú(Đóng băng tồn kho) V2
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -80,7 +80,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutpatientDispensingReduceStock(string ypCode, string yfbmCode, string cfh, string organizeId, string userCode);
 
         /// <summary>
-        /// Phát thuốc ngoại trú(Trừ tồn kho、Sửa cờ phát thuốc đơn thuốc、Tạo bản ghi phát thuốc)
+        /// Phát thuốc ngoại trú(Trừ tồn kho,Sửa cờ phát thuốc đơn thuốc,Tạo bản ghi phát thuốc)
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
             string patientName);
 
         /// <summary>
-        /// Hủy đóng băng，và xóa vật lý thông tin y lệnh Thận trọng khi dùng
+        /// Hủy đóng băng,và xóa vật lý thông tin y lệnh Thận trọng khi dùng
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="zxId"></param>

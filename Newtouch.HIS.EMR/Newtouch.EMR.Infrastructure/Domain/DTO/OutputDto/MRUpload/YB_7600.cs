@@ -148,7 +148,7 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string BKF641 { get; set; }
 
         /// <summary>
-        /// Nơi sinh_Tỉnh(Quận、Thành phố)
+        /// Nơi sinh_Tỉnh(Quận,Thành phố)
         /// </summary>
         /// <returns></returns>
         [Required]
@@ -172,7 +172,7 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string BKF134 { get; set; }
 
         /// <summary>
-        /// Quê quán_Tỉnh(Quận、Thành phố)
+        /// Quê quán_Tỉnh(Quận,Thành phố)
         /// </summary>
         /// <returns></returns>
         [Required]
@@ -228,31 +228,31 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string AAC017 { get; set; }
 
         /// <summary>
-        /// Địa chỉ hiện tại_Tỉnh(Quận、Thành phố)
+        /// Địa chỉ hiện tại_Tỉnh(Quận,Thành phố)
         /// </summary>
         /// <returns></returns>
         public string BKF366 { get; set; }
 
         /// <summary>
-        /// Địa chỉ hiện tại-Thành phố（Khu vực、Châu）
+        /// Địa chỉ hiện tại-Thành phố(Khu vực,Châu)
         /// </summary>
         /// <returns></returns>
         public string BKF363 { get; set; }
 
         /// <summary>
-        /// Địa chỉ hiện tại-Huyện（Quận）
+        /// Địa chỉ hiện tại-Huyện(Quận)
         /// </summary>
         /// <returns></returns>
         public string BKF364 { get; set; }
 
         /// <summary>
-        /// Địa chỉ hiện tại-Xã（Thị trấn、Văn phòng phường）
+        /// Địa chỉ hiện tại-Xã(Thị trấn,Văn phòng phường)
         /// </summary>
         /// <returns></returns>
         public string BKF365 { get; set; }
 
         /// <summary>
-        /// Địa chỉ hiện tại-thôn（phố、đường、ngõ,...）
+        /// Địa chỉ hiện tại-thôn(phố,đường,ngõ,...)
         /// </summary>
         /// <returns></returns>
         public string BKF361 { get; set; }
@@ -278,31 +278,31 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string BKC280 { get; set; }
 
         /// <summary>
-        /// Địa chỉ hộ khẩu-Tỉnh（Khu tự trị、Thành phố trực thuộc trung ương）
+        /// Địa chỉ hộ khẩu-Tỉnh(Khu tự trị,Thành phố trực thuộc trung ương)
         /// </summary>
         /// <returns></returns>
         public string BKF180 { get; set; }
 
         /// <summary>
-        /// Địa chỉ hộ khẩu-Thành phố（Khu vực、Châu）
+        /// Địa chỉ hộ khẩu-Thành phố(Khu vực,Châu)
         /// </summary>
         /// <returns></returns>
         public string BKF181 { get; set; }
 
         /// <summary>
-        /// Địa chỉ hộ khẩu-Huyện（Quận）
+        /// Địa chỉ hộ khẩu-Huyện(Quận)
         /// </summary>
         /// <returns></returns>
         public string BKF182 { get; set; }
 
         /// <summary>
-        /// Địa chỉ hộ khẩu-Xã（Thị trấn、Văn phòng phường）
+        /// Địa chỉ hộ khẩu-Xã(Thị trấn,Văn phòng phường)
         /// </summary>
         /// <returns></returns>
         public string BKF183 { get; set; }
 
         /// <summary>
-        /// Địa chỉ hộ khẩu-thôn（phố、đường、ngõ,...）
+        /// Địa chỉ hộ khẩu-thôn(phố,đường,ngõ,...)
         /// </summary>
         /// <returns></returns>
         public string BKF178 { get; set; }
@@ -326,13 +326,13 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string AAB004 { get; set; }
 
         /// <summary>
-        /// Địa chỉ đơn vị công tác_Tỉnh(Khu tự trị、Thành phố trực thuộc trung ương)
+        /// Địa chỉ đơn vị công tác_Tỉnh(Khu tự trị,Thành phố trực thuộc trung ương)
         /// </summary>
         /// <returns></returns>
         public string BKF163 { get; set; }
 
         /// <summary>
-        /// Địa chỉ đơn vị công tác_Thành phố(Khu vực、Châu)
+        /// Địa chỉ đơn vị công tác_Thành phố(Khu vực,Châu)
         /// </summary>
         /// <returns></returns>
         public string BKF164 { get; set; }
@@ -344,13 +344,13 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string BKF165 { get; set; }
 
         /// <summary>
-        /// Địa chỉ đơn vị công tác_Xã(Thị trấn、Văn phòng phường)
+        /// Địa chỉ đơn vị công tác_Xã(Thị trấn,Văn phòng phường)
         /// </summary>
         /// <returns></returns>
         public string BKF166 { get; set; }
 
         /// <summary>
-        /// Địa chỉ đơn vị công tác_thôn(phố、đường、ngõ,...)
+        /// Địa chỉ đơn vị công tác_thôn(phố,đường,ngõ,...)
         /// </summary>
         /// <returns></returns>
         public string BKF161 { get; set; }
@@ -388,13 +388,13 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string BKF654 { get; set; }
 
         /// <summary>
-        /// Địa chỉ người liên hệ_Tỉnh(Khu tự trị、Thành phố trực thuộc trung ương)
+        /// Địa chỉ người liên hệ_Tỉnh(Khu tự trị,Thành phố trực thuộc trung ương)
         /// </summary>
         /// <returns></returns>
         public string BKF219 { get; set; }
 
         /// <summary>
-        /// Địa chỉ người liên hệ_Thành phố(Khu vực、Châu)
+        /// Địa chỉ người liên hệ_Thành phố(Khu vực,Châu)
         /// </summary>
         /// <returns></returns>
         public string BKF220 { get; set; }
@@ -406,13 +406,13 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string BKF221 { get; set; }
 
         /// <summary>
-        /// Địa chỉ người liên hệ_Xã(Thị trấn、Văn phòng phường)
+        /// Địa chỉ người liên hệ_Xã(Thị trấn,Văn phòng phường)
         /// </summary>
         /// <returns></returns>
         public string BKF222 { get; set; }
 
         /// <summary>
-        /// Địa chỉ người liên hệ_thôn(phố、đường、ngõ,...)
+        /// Địa chỉ người liên hệ_thôn(phố,đường,ngõ,...)
         /// </summary>
         /// <returns></returns>
         public string BKF217 { get; set; }
@@ -518,37 +518,37 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string BKF668 { get; set; }
 
         /// <summary>
-        /// Ngoại trú（cấp cứu）Chẩn đoán（Chẩn đoán Đông y）Mã tên bệnh
+        /// Ngoại trú(cấp cứu)Chẩn đoán(Chẩn đoán Đông y)Mã tên bệnh
         /// </summary>
         /// <returns></returns>
         public string BKF855 { get; set; }
 
         /// <summary>
-        /// Ngoại trú（cấp cứu）Chẩn đoán（Chẩn đoán Đông y）Tên
+        /// Ngoại trú(cấp cứu)Chẩn đoán(Chẩn đoán Đông y)Tên
         /// </summary>
         /// <returns></returns>
         public string BKF854 { get; set; }
 
         /// <summary>
-        /// Ngoại trú（cấp cứu）Chẩn đoán（Chứng hậu Đông y）Mã chứng hậu
+        /// Ngoại trú(cấp cứu)Chẩn đoán(Chứng hậu Đông y)Mã chứng hậu
         /// </summary>
         /// <returns></returns>
         public string BKF241 { get; set; }
 
         /// <summary>
-        /// Ngoại trú（cấp cứu）Chẩn đoán（Chứng hậu Đông y）Tên
+        /// Ngoại trú(cấp cứu)Chẩn đoán(Chứng hậu Đông y)Tên
         /// </summary>
         /// <returns></returns>
         public string BKF240 { get; set; }
 
         /// <summary>
-        /// Ngoại trú（cấp cứu）Chẩn đoán（Chẩn đoán Tây y）Mã bệnh
+        /// Ngoại trú(cấp cứu)Chẩn đoán(Chẩn đoán Tây y)Mã bệnh
         /// </summary>
         /// <returns></returns>
         public string BKF857 { get; set; }
 
         /// <summary>
-        /// Ngoại trú（cấp cứu）Chẩn đoán（Chẩn đoán Tây y）Tên
+        /// Ngoại trú(cấp cứu)Chẩn đoán(Chẩn đoán Tây y)Tên
         /// </summary>
         /// <returns></returns>
         public string BKF856 { get; set; }
@@ -608,7 +608,7 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string BKF676 { get; set; }
 
         /// <summary>
-        /// Dấu hiệu dị ứng thuốc 1 Có；2 Không
+        /// Dấu hiệu dị ứng thuốc 1 Có;2 Không
         /// </summary>
         /// <returns></returns>
         [Required]
@@ -624,7 +624,7 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string AKE001 { get; set; }
 
         /// <summary>
-        /// Dấu hiệu khám nghiệm tử thi bệnh nhân tử vong1 Có；2 Không；
+        /// Dấu hiệu khám nghiệm tử thi bệnh nhân tử vong1 Có;2 Không;
         /// </summary>
         /// <returns></returns>
         public string BKF324 { get; set; }
@@ -1100,7 +1100,7 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public decimal? BKF250 { get; set; }
 
         /// <summary>
-        /// Cân nặng（kg）
+        /// Cân nặng(kg)
         /// </summary>
         /// <returns></returns>
         public string BKF353 { get; set; }

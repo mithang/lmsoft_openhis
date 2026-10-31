@@ -27,7 +27,7 @@ namespace Newtouch.DomainServices.DeptStorageManage
         }
 
          /// <summary>
-         /// SửaTồn khoSố lượng(thêmTồn kho)，khôngSửađôngkếtSố lượng  Quay lạihìnhhưởngdòng
+         /// SửaTồn khoSố lượng(thêmTồn kho),khôngSửađôngkếtSố lượng  Quay lạihìnhhưởngdòng
          /// </summary>
          /// <param name="productId"></param>
          /// <param name="pc"></param>
@@ -69,7 +69,7 @@ namespace Newtouch.DomainServices.DeptStorageManage
 //         }
 //
         /// <summary>
-        /// đuổithêmTồn kho，khôngSửađôngkếtSố lượng Quay lạihìnhhưởngdòng
+        /// đuổithêmTồn kho,khôngSửađôngkếtSố lượng Quay lạihìnhhưởngdòng
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
@@ -113,7 +113,7 @@ SELECT @@ROWCOUNT ;
         }
 //
          // /// <summary>
-         // /// SửaTồn khoSố lượng，khôngSửađôngkếtSố lượng
+         // /// SửaTồn khoSố lượng,khôngSửađôngkếtSố lượng
          // /// </summary>
          // /// <param name="updateKcslDto"></param>
          // /// <returns></returns>
@@ -133,7 +133,7 @@ SELECT @@ROWCOUNT ;
          // }
 //
 //         /// <summary>
-//         /// SửaTồn khoSố lượng，khôngSửađôngkếtSố lượng
+//         /// SửaTồn khoSố lượng,khôngSửađôngkếtSố lượng
 //         /// </summary>
 //         /// <param name="updateKcslDto"></param>
 //         /// <param name="db"></param>
@@ -150,7 +150,7 @@ SELECT @@ROWCOUNT ;
 //         }
 //
          /// <summary>
-         /// SửaTồn khoSố lượng，khôngSửađôngkếtSố lượng
+         /// SửaTồn khoSố lượng,khôngSửađôngkếtSố lượng
          /// </summary>
          /// <param name="updateKcslDto"></param>
          /// <param name="db"></param>
@@ -173,7 +173,7 @@ SELECT @@ROWCOUNT ;
          }
 //
 //         /// <summary>
-//         /// giảmTồn khoSố lượng、đôngkếtSố lượng（Xuất khocó thểdùng）
+//         /// giảmTồn khoSố lượng,đôngkếtSố lượng(Xuất khocó thểdùng)
 //         /// </summary>
 //         /// <param name="productId"></param>
 //         /// <param name="pc"></param>
@@ -278,7 +278,7 @@ SELECT @@ROWCOUNT ;
         // }
 
         // /// <summary>
-        // /// Thu hồiNhập kho（trực tiếpXuất khoHủy bỏ） nếucầnSử dụngPhương phápvui lòngbộtrênviệcvụ，Phương pháptrongkhônglàmvềcuộn
+        // /// Thu hồiNhập kho(trực tiếpXuất khoHủy bỏ) nếucầnSử dụngPhương phápvui lòngbộtrênviệcvụ,Phương pháptrongkhônglàmvềcuộn
         // /// </summary>
         // /// <param name="sl">Đơn vị nhỏ nhấtSố lượng</param>
         // /// <param name="pc"></param>
@@ -330,7 +330,7 @@ AND kcxx.zt=@zt
         }
 
         //        /// <summary>
-        //        /// Thu hồiNhập kho（trực tiếpXuất khoHủy bỏ）
+        //        /// Thu hồiNhập kho(trực tiếpXuất khoHủy bỏ)
         //        /// </summary>
         //        /// <param name="sl">Đơn vị nhỏ nhấtSố lượng</param>
         //        /// <param name="pc"></param>

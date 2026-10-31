@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Outpatient
 {
     /// <summary>
-    /// Thông tin phòng khám（nhỏmàn hình）
+    /// Thông tin phòng khám(nhỏmàn hình)
     /// </summary>
     public class OutpatientConsultInfoVO
     {

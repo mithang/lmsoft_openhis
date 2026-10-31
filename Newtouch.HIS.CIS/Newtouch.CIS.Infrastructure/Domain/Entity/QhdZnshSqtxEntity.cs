@@ -27,7 +27,7 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string mzzyh { get; set; }
         /// <summary>
-        /// 1：Ngoại trú 2：Nhập viện
+        /// 1:Ngoại trú 2:Nhập viện
         /// </summary>
         public string Type { get; set; }
         /// <summary>

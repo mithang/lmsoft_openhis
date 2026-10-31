@@ -17,7 +17,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấy phân loại từ điển（Gồm cả không hiệu lực）
+        /// Lấy phân loại từ điển(Gồm cả không hiệu lực)
         /// </summary>
         /// <returns></returns>
         public IList<SysItemsEntity> GetList(string keyword = null)

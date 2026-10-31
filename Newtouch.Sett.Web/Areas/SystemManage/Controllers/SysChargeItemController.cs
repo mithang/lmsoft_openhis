@@ -77,7 +77,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// đượclấymáycơ quanngườiviêncây Cấp ba（Cơ sở+Khoa+Nhân viên）
+        /// đượclấymáycơ quanngườiviêncây Cấp ba(Cơ sở+Khoa+Nhân viên)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -107,7 +107,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
                         deptTree.text = Item.dlmc;
                         deptTree.value = Item.dlCode;
                         deptTree.parentId = null;
-                        deptTree.isexpand = isExpand;  //Mặc định không mở rộng，Quá nhiều người
+                        deptTree.isexpand = isExpand;  //Mặc định không mở rộng,Quá nhiều người
                         deptTree.complete = true;
                         deptTree.showcheck = true;
                         deptTree.hasChildren = false;

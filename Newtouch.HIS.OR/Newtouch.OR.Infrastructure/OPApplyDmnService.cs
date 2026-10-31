@@ -99,7 +99,7 @@ namespace Newtouch.OR.ManageSystem.DomainServices
                 sql += " and zybz in(" + Convert.ToInt32(EnumZYBZ.Bqz) + "," + Convert.ToInt32(EnumZYBZ.Zq) + ")";
 
             }
-            //Xuất viện（Đã thanh toán、Chờ thanh toán）
+            //Xuất viện(Đã thanh toán,Chờ thanh toán)
             else if (type == Convert.ToInt32(EnumZYBZ.Ycy) || type == Convert.ToInt32(EnumZYBZ.Djz))
             {
                 sql += " and zybz in(" + Convert.ToInt32(EnumZYBZ.Ycy) + "," + Convert.ToInt32(EnumZYBZ.Djz) + ") ";

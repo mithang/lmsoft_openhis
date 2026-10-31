@@ -52,7 +52,7 @@ namespace Newtouch.HIS.Web.Controllers
         [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysRoleEntity roleEntity, string permissionIds, string keyValue)
         {
-            roleEntity.OrganizeId = "*";    //Vai trò phiên bản này theoTopOrganizeId，không tới được bệnh viện cụ thể
+            roleEntity.OrganizeId = "*";    //Vai trò phiên bản này theoTopOrganizeId,không tới được bệnh viện cụ thể
             roleEntity.TopOrganizeId = Constants.TopOrganizeId;
             roleEntity.zt = roleEntity.zt == "true" ? "1" : "0";
             _roleApp.SubmitForm(roleEntity, permissionIds.Split(','), keyValue);

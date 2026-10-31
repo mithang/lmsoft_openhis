@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// Cấu hình quyền mở của tổ chức（Menu、Nút）
+    /// Cấu hình quyền mở của tổ chức(Menu,Nút)
     /// </summary>
     [SugarTable("Sys_OrganizeAuthorize")]
     public class SysOrganizeAuthorizeEntity : EntityBase

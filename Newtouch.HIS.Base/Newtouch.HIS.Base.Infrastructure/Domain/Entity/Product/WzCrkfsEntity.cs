@@ -23,12 +23,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string crkfsmc { get; set; }
 
         /// <summary>
-        ///  Cờ xuất/nhập kho     0：Nhập kho  1：Xuất kho
+        ///  Cờ xuất/nhập kho     0:Nhập kho  1:Xuất kho
         /// </summary>
         public string crkbz { get; set; }
 
         /// <summary>
-        /// Trạng thái  0:Hủy bỏ；1.Hiệu lực
+        /// Trạng thái  0:Hủy bỏ;1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

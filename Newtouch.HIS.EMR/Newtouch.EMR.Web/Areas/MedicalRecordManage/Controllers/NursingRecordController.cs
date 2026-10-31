@@ -19,9 +19,9 @@ using Newtouch.Domain.ValueObjects;
 namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 {
     /// <summary>
-    /// Người tạo：mhz
-    /// Ngày：2023-04-24 15:46
-    /// Mô tả：Nhập bản ghi điều dưỡng
+    /// Người tạo:mhz
+    /// Ngày:2023-04-24 15:46
+    /// Mô tả:Nhập bản ghi điều dưỡng
     /// </summary>
     [Area("MedicalRecordManage")]
     public class NursingRecordController : OrgControllerBase

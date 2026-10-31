@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
                     kzbz = 0,
                     tybz = 0,
                     crkmxId = p.crkmxId,
-                    jj = p.jj, //Đơn nhập kho từ ngoài chỉ dùng đơn vị kho thuốc，jjLưu chính là giá nhập đơn vị kho thuốc
+                    jj = p.jj, //Đơn nhập kho từ ngoài chỉ dùng đơn vị kho thuốc,jjLưu chính là giá nhập đơn vị kho thuốc
                     zhyz = p.Rkzhyz,
                     cd = p.cd, //Danh mục nơi sản xuất
                 };

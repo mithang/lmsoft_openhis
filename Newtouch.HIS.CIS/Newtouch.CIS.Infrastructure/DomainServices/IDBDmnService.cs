@@ -106,7 +106,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
 
         /// <summary>
         /// sẽmzhcủaChưa thu phíĐơn thuốcđợithông tin Đồng bộđếntronggiữakho   
-        /// （vàĐồng bộĐơn thuốcthành côngsaucầnvềviếtĐơn thuốcTrạng thái đồng bộ）
+        /// (vàĐồng bộĐơn thuốcthành côngsaucầnvềviếtĐơn thuốcTrạng thái đồng bộ)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>

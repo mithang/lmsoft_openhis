@@ -31,12 +31,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Trước nhất ví dụ：(giáp) (ất10%)……
+        /// Trước nhất ví dụ:(giáp) (ất10%)……
         /// </summary>
         public string ypqz { get; set; }
 
         /// <summary>
-        /// Sau nhất ví dụ：……
+        /// Sau nhất ví dụ:……
         /// </summary>
         public string yphz { get; set; }
 
@@ -86,7 +86,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public decimal? mzcls { get; set; }
 
         /// <summary>
-        /// Chuẩn bị bãi bỏ，bằng“Đơn vị chia lẻ”Thay thế
+        /// Chuẩn bị bãi bỏ,bằng“Đơn vị chia lẻ”Thay thế
         /// </summary>
         public string mzcldw { get; set; }
 
@@ -128,7 +128,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// 1 Tự lo 2 Tự trả theo loại   Xem chi tiết trong bảng hạng mục hệ thống“Tính chất tự trả”Giải thích      Ngoại trú có thể dùng，Cấp cứu không thể dùng，hoặc ngược lại，Kiểm soát theo bộ phận dược khác nhau có thuốc hay không
+        /// 1 Tự lo 2 Tự trả theo loại   Xem chi tiết trong bảng hạng mục hệ thống“Tính chất tự trả”Giải thích      Ngoại trú có thể dùng,Cấp cứu không thể dùng,hoặc ngược lại,Kiểm soát theo bộ phận dược khác nhau có thuốc hay không
         /// </summary>
         public string zfxz { get; set; }
 
@@ -168,7 +168,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string nbdl { get; set; }
 
         /// <summary>
-        /// ----0：Ngừng dùng  1：Bật   ---0：Chung，1：Ngoại trú，2：Nội trú  （Hủy bỏ）      
+        /// ----0:Ngừng dùng  1:Bật   ---0:Chung,1:Ngoại trú,2:Nội trú  (Hủy bỏ)      
         /// </summary>
         public string mzzybz { get; set; }
 
@@ -193,7 +193,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 1：Hiệu lực 0：Không hiệu lực
+        /// 1:Hiệu lực 0:Không hiệu lực
         /// </summary>
         public string zt { get; set; }
 

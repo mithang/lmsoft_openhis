@@ -10,7 +10,7 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
     {
 
         /// <summary>
-        /// Tổ chứcId（Cấp cao nhất，Cấu hình hệ thống）
+        /// Tổ chứcId(Cấp cao nhất,Cấu hình hệ thống)
         /// </summary>
         public static string TopOrganizeId
         {
@@ -21,7 +21,7 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
         }
 
         /// <summary>
-        /// Tổ chứcId（Cấp cao nhất，Cấu hình hệ thống）
+        /// Tổ chứcId(Cấp cao nhất,Cấu hình hệ thống)
         /// </summary>
         public static string AppId
         {

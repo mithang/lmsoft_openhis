@@ -12,8 +12,8 @@ namespace Newtouch.Repository
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày：2018-06-28 13:27
-    /// Mô tả：Nhập việnY lệnhgóichi tiết
+    /// Ngày:2018-06-28 13:27
+    /// Mô tả:Nhập việnY lệnhgóichi tiết
     /// </summary>
     public class InpatientOrderPackageDetailRepo : RepositoryBase<InpatientOrderPackageDetailEntity>, IInpatientOrderPackageDetailRepo
     {
@@ -28,7 +28,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// Lưubảngphiếu（Thêm mới、Sửa）
+        /// Lưubảngphiếu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">thựcthểđối tượng</param>
         /// <param name="keyValue">Khóa chínhGiá trị</param>

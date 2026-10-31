@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// Mã nhập Thông tin thuốc（Nhập kho）
+        /// Mã nhập Thông tin thuốc(Nhập kho)
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -184,7 +184,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// Mã nhập Thông tin thuốc（Xuất kho）
+        /// Mã nhập Thông tin thuốc(Xuất kho)
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -296,7 +296,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// Đơn xin điều chỉnh giá （Truy vấn）
+        /// Đơn xin điều chỉnh giá (Truy vấn)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="inputCode"></param>
@@ -629,7 +629,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region Gọi chung
 
         /// <summary>
-        /// Tự động gợi ý mã nhập（Nhắc nhở bộ phận cấp 1，Không có hệ số chuyển đổi，Ví dụ khoa dược）
+        /// Tự động gợi ý mã nhập(Nhắc nhở bộ phận cấp 1,Không có hệ số chuyển đổi,Ví dụ khoa dược)
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="ckbm">Bộ phận xuất kho(Nhà thuốc phát thuốc)</param>
@@ -664,7 +664,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// Tự động gợi ý mã nhập（Nhắc nhở bộ phận cấp 2，Tính hệ số chuyển đổi，Ví dụ nhà thuốc ngoại trú）
+        /// Tự động gợi ý mã nhập(Nhắc nhở bộ phận cấp 2,Tính hệ số chuyển đổi,Ví dụ nhà thuốc ngoại trú)
         /// </summary>
         /// <returns></returns>
         public IActionResult MedicinesrmSlevelList(string rkbm, string keyword)
@@ -995,7 +995,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region Lấy thông tin thuốc và tồn kho của bộ phận này
 
         /// <summary>
-        /// Lấy thuốc còn hạn dùng，Không phân lô
+        /// Lấy thuốc còn hạn dùng,Không phân lô
         /// </summary>
         /// <param name="srm"></param>
         /// <param name="ypYfbmCode"></param>
@@ -1035,7 +1035,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <summary>
         /// Lấy phương thức xuất nhập kho
         /// </summary>
-        /// <param name="crkbz">0:Nhập kho  1：Xuất kho</param>
+        /// <param name="crkbz">0:Nhập kho  1:Xuất kho</param>
         /// <returns></returns>
         public IActionResult GetCrkfs(string crkbz)
         {

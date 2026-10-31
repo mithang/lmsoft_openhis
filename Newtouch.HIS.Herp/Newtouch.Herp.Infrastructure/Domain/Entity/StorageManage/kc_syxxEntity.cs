@@ -18,7 +18,7 @@ namespace Newtouch.Herp.Domain.Entity
         public long Id { get; set; }
 
         /// <summary>
-        /// Tổ chức（Bệnh viện）
+        /// Tổ chức(Bệnh viện)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -53,12 +53,12 @@ namespace Newtouch.Herp.Domain.Entity
         public DateTime Bgsj { get; set; }
 
         /// <summary>
-        /// Số dương：Báo thừa，Số âm：Báo hỏng Số đơn vị nhỏ nhất
+        /// Số dương:Báo thừa,Số âm:Báo hỏng Số đơn vị nhỏ nhất
         /// </summary>
         public int Sysl { get; set; }
 
         /// <summary>
-        /// Đơn vị ID  sử dụng phối hợp với giá，và zhyz thành bộ
+        /// Đơn vị ID  sử dụng phối hợp với giá,và zhyz thành bộ
         /// </summary>
         public string UnitId { get; set; }
 

@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Application.Interface
         List<InventoryDateDropDownVO> GetPdDateDropdownList();
 
         /// <summary>
-        /// Lấy loại thuốc （Kiểm kê）
+        /// Lấy loại thuốc (Kiểm kê)
         /// </summary>
         /// <returns></returns>
         List<MedicineCategoryVO> GetMedicineCategoryList();
@@ -125,7 +125,7 @@ namespace Newtouch.HIS.Application.Interface
         List<MedicineFormulationVO> GetMedicineFormulationList();
 
         /// <summary>
-        /// Loại thuốc （Nhập xuất tồn）
+        /// Loại thuốc (Nhập xuất tồn)
         /// </summary>
         /// <returns></returns>
         List<MedicineCategoryVO> GetMedicineCategoryList2();

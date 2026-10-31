@@ -19,7 +19,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public long Id { get; set; }
 
         /// <summary>
-        /// Tổ chức（yviện）
+        /// Tổ chức(yviện)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -54,12 +54,12 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public DateTime Bgsj { get; set; }
 
         /// <summary>
-        /// đangsố：báo thừa，âmsố：Báo hỏng Đơn vị nhỏ nhấtsố
+        /// đangsố:báo thừa,âmsố:Báo hỏng Đơn vị nhỏ nhấtsố
         /// </summary>
         public int Sysl { get; set; }
 
         /// <summary>
-        /// Đơn vịID  vàgiáôphốihợpSử dụng，vàzhyzthànhbộ
+        /// Đơn vịID  vàgiáôphốihợpSử dụng,vàzhyzthànhbộ
         /// </summary>
         public string UnitId { get; set; }
 

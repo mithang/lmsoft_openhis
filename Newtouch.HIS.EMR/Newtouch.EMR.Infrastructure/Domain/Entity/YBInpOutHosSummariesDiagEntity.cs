@@ -4,9 +4,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2021-03-01 15:24
-    /// Mô tả：Tóm tắt ra viện-Chẩn đoán
+    /// Người tạo:chl
+    /// Ngày:2021-03-01 15:24
+    /// Mô tả:Tóm tắt ra viện-Chẩn đoán
     /// </summary>
     [SugarTable("YB_Inp_OutHosSummaries_Diag")]
     public class YBInpOutHosSummariesDiagEntity 
@@ -32,13 +32,13 @@ namespace Newtouch.EMR.Domain.Entity
         public string BKC191 { get; set; }
 
         /// <summary>
-        /// Phân loại chẩn đoán1 Chẩn đoán nhập viện；2 Chẩn đoán ra viện
+        /// Phân loại chẩn đoán1 Chẩn đoán nhập viện;2 Chẩn đoán ra viện
         /// </summary>
         /// <returns></returns>
         public string BKF417 { get; set; }
 
         /// <summary>
-        /// Dấu hiệu chẩn đoán chính/phụ1 Chẩn đoán chính；2 Chẩn đoán khác；3 Chẩn đoán bệnh lý
+        /// Dấu hiệu chẩn đoán chính/phụ1 Chẩn đoán chính;2 Chẩn đoán khác;3 Chẩn đoán bệnh lý
         /// </summary>
         /// <returns></returns>
         public string BKF718 { get; set; }

@@ -372,7 +372,7 @@ where zyxx.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// Số nhập viện、Họ tên、Số thẻLấybệnh nhânThông tin cơ bản Họ tên，Giới tính，Tuổi，bệnh nhânTính chất、Ngày nhập viện
+        /// Số nhập viện,Họ tên,Số thẻLấybệnh nhânThông tin cơ bản Họ tên,Giới tính,Tuổi,bệnh nhânTính chất,Ngày nhập viện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -400,7 +400,7 @@ where zyxx.OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// Số nhập việnLấybệnh nhânThông tin cơ bản Họ tên，Giới tính，Tuổi，bệnh nhânTính chất
+        /// Số nhập việnLấybệnh nhânThông tin cơ bản Họ tên,Giới tính,Tuổi,bệnh nhânTính chất
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -511,11 +511,11 @@ left join zy_cwsyjlk cw with(nolock) on cw.zyh=b.zyh and cw.organizeid=b.Organiz
             {
                 switch (zyzt)
                 {
-                    case "zy"://Đang nằm viện：Không phải đã xuất viện，Không phải bản ghi đã hủy，Không phải hủy nhập viện
+                    case "zy"://Đang nằm viện:Không phải đã xuất viện,Không phải bản ghi đã hủy,Không phải hủy nhập viện
                         sql += " and b.zybz in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Bqz));
                         break;
-                    case "cy"://Xuất viện：Trạng thái đã xuất viện
+                    case "cy"://Xuất viện:Trạng thái đã xuất viện
                         sql += " and b.zybz in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Ycy + "," + (int)EnumZYBZ.Djz));
                         break;

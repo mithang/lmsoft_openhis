@@ -18,7 +18,7 @@ using Newtouch.PDS.Requset.Zyypyz;
 namespace Newtouch.HIS.Application.Implementation.Process
 {
     /// <summary>
-    /// Tài nguyên đặt trước nội trú（Đóng băng tồn kho）
+    /// Tài nguyên đặt trước nội trú(Đóng băng tồn kho)
     /// </summary>
     public class YzzxAppV2 : ProcessorFun<ZyypyzzxRequest>
     {
@@ -179,7 +179,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
 
             if (string.IsNullOrWhiteSpace(errorMsg.ToString()))
             {
-                actResult.Data = Request.yzList;//Do kiểm soát giao dịch，vì vậy hoặc tất cả thất bại，nếu không tất cả thành công，DataTrả về hàng đợi thành công
+                actResult.Data = Request.yzList;//Do kiểm soát giao dịch,vì vậy hoặc tất cả thất bại,nếu không tất cả thành công,DataTrả về hàng đợi thành công
                 return;
             }
 
@@ -207,7 +207,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         }
 
         /// <summary>
-        /// Hủy đóng băng，Xóa chi tiết y lệnh
+        /// Hủy đóng băng,Xóa chi tiết y lệnh
         /// </summary>
         /// <param name="tg"></param>
         private void CancelForzen(List<ZyYpyzxxEntity> tg)

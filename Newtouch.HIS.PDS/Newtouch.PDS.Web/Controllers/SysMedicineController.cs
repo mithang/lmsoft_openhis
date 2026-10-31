@@ -124,17 +124,17 @@ namespace Newtouch.HIS.Web.Controllers
 
         //    if (!_sysOrganizeDmnService.IsMedicalOrganize(model.OrganizeId))
         //    {
-        //        throw new FailedException("Vui lòng chọn cơ sở y tế（Bệnh viện hoặc phòng khám）");
+        //        throw new FailedException("Vui lòng chọn cơ sở y tế(Bệnh viện hoặc phòng khám)");
         //    }
         //    _sysMedicineDmnService.SubmitMedicine(model, keyValue);
         //    var t = _sysPharmacyDepartmentApp.SubmitEmpowermentPharmacyDepartment(keyValue, ypCode, OrganizeId, UserIdentity.UserCode, p);
 
-        //    var msg = string.IsNullOrWhiteSpace(t) ? "Thao tác thành công。" : ("Lưu thông tin thuốc thành công，Nhưng ủy quyền nhà thuốc kho thuốc thất bại，" + t);
+        //    var msg = string.IsNullOrWhiteSpace(t) ? "Thao tác thành công." : ("Lưu thông tin thuốc thành công,Nhưng ủy quyền nhà thuốc kho thuốc thất bại," + t);
         //    return Success(msg);
         //}
 
         /// <summary>
-        /// Khi sửa thông tin，Mang thông tin tới trang mới
+        /// Khi sửa thông tin,Mang thông tin tới trang mới
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -157,7 +157,7 @@ namespace Newtouch.HIS.Web.Controllers
         //{
         //    if (ypId <= 0)
         //    {
-        //        return Success("Vui lòng chọn thuốc cần đồng bộ！");
+        //        return Success("Vui lòng chọn thuốc cần đồng bộ!");
         //    }
         //    var ypEntity = _sysMedicineDmnService.GetFormJson(ypId);
         //    if (!string.IsNullOrWhiteSpace(ypEntity.ybdm))
@@ -170,16 +170,16 @@ namespace Newtouch.HIS.Web.Controllers
         //            {
         //                return Error(error);
         //            }
-        //            return Success(string.Format("[{0}]Đồng bộ BHYT thành công！", ypEntity.ypmc));
+        //            return Success(string.Format("[{0}]Đồng bộ BHYT thành công!", ypEntity.ypmc));
         //        }
         //        else
         //        {
-        //            return Error(string.Format("[{0}]Đồng bộ BHYT thất bại：{1}", ypEntity.ypmc, Result.ErrorMsg));
+        //            return Error(string.Format("[{0}]Đồng bộ BHYT thất bại:{1}", ypEntity.ypmc, Result.ErrorMsg));
         //        }
         //    }
         //    else
         //    {
-        //        return Success("Thiếu mã BHYT！");
+        //        return Success("Thiếu mã BHYT!");
         //    }
         //}
 
@@ -303,7 +303,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(list.ToJson());
         }
 
-        //Cây loại thu phí lớn（Bệnh viện） Thả xuống Nguồn dữ liệu
+        //Cây loại thu phí lớn(Bệnh viện) Thả xuống Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetTreeSelectJson(string organizeId, string treeidFieldName = "Code")

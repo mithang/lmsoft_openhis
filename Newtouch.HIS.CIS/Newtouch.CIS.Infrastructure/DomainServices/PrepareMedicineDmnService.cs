@@ -265,7 +265,7 @@ order by a.ypcode,a.kcsl,a.yxq
             }
 
         /// <summary>
-        /// Giá bán buônTổng số tiền、Giá bán lẻTổng số tiềnTra cứu
+        /// Giá bán buônTổng số tiền,Giá bán lẻTổng số tiềnTra cứu
         /// </summary>
         /// <param name="startTime">Thời gian bắt đầu</param>
         /// <param name="endTime">Thời gian kết thúc</param>

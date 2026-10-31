@@ -134,7 +134,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// Y lệnhThực hiệnsau，InThuốcphiếu
+        /// Y lệnhThực hiệnsau,InThuốcphiếu
         /// </summary>
         /// <returns></returns>
         public IActionResult PrintYzYpReport()

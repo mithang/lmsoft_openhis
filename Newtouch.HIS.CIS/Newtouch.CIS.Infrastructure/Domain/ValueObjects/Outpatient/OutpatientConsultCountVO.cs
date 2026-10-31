@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Domain.ValueObjects.Outpatient
 {
     /// <summary>
-    /// Ngoại trúphútkhám，mỗiPhòng khámchờKhám bệnhSố lượng
+    /// Ngoại trúphútkhám,mỗiPhòng khámchờKhám bệnhSố lượng
     /// </summary>
     public class OutpatientConsultCountVO
     {

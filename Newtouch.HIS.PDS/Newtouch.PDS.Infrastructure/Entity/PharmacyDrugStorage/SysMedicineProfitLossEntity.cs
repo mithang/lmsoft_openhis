@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime Bgsj { get; set; }
 
         /// <summary>
-        /// Số dương：Báo thừa，Số âm：Báo hỏng  Số lượng đơn vị nhỏ nhất
+        /// Số dương:Báo thừa,Số âm:Báo hỏng  Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int Sysl { get; set; }
 

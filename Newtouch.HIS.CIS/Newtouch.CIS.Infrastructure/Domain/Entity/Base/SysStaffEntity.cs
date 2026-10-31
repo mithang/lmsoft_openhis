@@ -18,12 +18,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（Khoasởtương ứngcủaOrganizeId）
+        /// Tổ chứcId(Khoasởtương ứngcủaOrganizeId)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（đỉnhcấp，Hệ thốngcấu hình）
+        /// Tổ chứcId(đỉnhcấp,Hệ thốngcấu hình)
         /// </summary>
         public string TopOrganizeId { get; set; }
 
@@ -132,7 +132,7 @@ namespace Newtouch.HIS.Domain.Entity
 
 
         /// <summary>
-        /// góiQuyền（TheoLiệt kê）
+        /// góiQuyền(TheoLiệt kê)
         /// </summary>
         public string mbqx { get; set; }
         /// <summary>

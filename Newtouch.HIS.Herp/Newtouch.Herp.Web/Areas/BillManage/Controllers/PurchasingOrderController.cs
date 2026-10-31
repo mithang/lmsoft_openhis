@@ -79,7 +79,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// Lấy đơn mua sắm kèm chi tiết （Chi tiết đến phiếu kế hoạch mua sắm）
+        /// Lấy đơn mua sắm kèm chi tiết (Chi tiết đến phiếu kế hoạch mua sắm)
         /// </summary>
         public IActionResult CgOrderDetailGroupByCgdhQuery(string orderNo)
         {
@@ -88,7 +88,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// Lấy đơn mua sắm kèm chi tiết （Không phân biệt phiếu kế hoạch mua sắm）
+        /// Lấy đơn mua sắm kèm chi tiết (Không phân biệt phiếu kế hoạch mua sắm)
         /// </summary>
         public IActionResult CgOrderDetailNoCgdhQuery(string orderNo)
         {

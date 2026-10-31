@@ -10,13 +10,13 @@ namespace NewtouchHIS.Framework.Web.Implementation
     public interface ISysUserAppService : IScopedDependency
     {
         /// <summary>
-        /// danh sách người dùng hệ thống（phân trang）
+        /// danh sách người dùng hệ thống(phân trang)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
         Task<PageResponseRow<List<SysUserVO>>> GetSysUserPageAsync(OLPagination<QueryParamsBase> request);
         /// <summary>
-        /// cây người dùng tổ chức（phân nhóm khoa）
+        /// cây người dùng tổ chức(phân nhóm khoa)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

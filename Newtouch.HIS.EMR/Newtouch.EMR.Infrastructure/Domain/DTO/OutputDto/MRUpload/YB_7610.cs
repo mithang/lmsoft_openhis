@@ -27,7 +27,7 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         /// </summary>
         public string BKC191 { get; set; }
         /// <summary>
-        /// Dấu hiệu chẩn đoán chính/phụ 1 Chẩn đoán chính；2 Chẩn đoán khác
+        /// Dấu hiệu chẩn đoán chính/phụ 1 Chẩn đoán chính;2 Chẩn đoán khác
         /// 1
         /// </summary>
         public string BKF718 { get; set; }

@@ -96,7 +96,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string yfmc { get; set; }
 
         /// <summary>
-        /// Sắp xếp thời gian（Tần suất）
+        /// Sắp xếp thời gian(Tần suất)
         /// </summary>
         public string sjap { get; set; }
 
@@ -121,7 +121,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public short plh { get; set; }
 
         /// <summary>
-        /// 0:Đã phát thuốc  1：Đã trả thuốc  -1：Tất cả
+        /// 0:Đã phát thuốc  1:Đã trả thuốc  -1:Tất cả
         /// </summary>
         public string gjzt { get; set; }
     }

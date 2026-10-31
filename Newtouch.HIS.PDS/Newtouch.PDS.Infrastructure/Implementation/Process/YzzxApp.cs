@@ -176,7 +176,7 @@ namespace Newtouch.HIS.Application.Implementation
             AssembleZyYpyzzxEntity();
             if (_yzEntities == null || _yzEntities.Count <= 0) throw new ProcessException("Lưu dữ liệu thực hiện y lệnh thuốc nội trú thất bại");
             _zyYpyzzxRepo.Insert(_yzEntities);
-            actResult.Data = Request.yzList;//Do kiểm soát giao dịch，vì vậy hoặc tất cả thất bại，nếu không tất cả thành công，DataTrả về hàng đợi thành công
+            actResult.Data = Request.yzList;//Do kiểm soát giao dịch,vì vậy hoặc tất cả thất bại,nếu không tất cả thành công,DataTrả về hàng đợi thành công
         }
 
         /// <summary>

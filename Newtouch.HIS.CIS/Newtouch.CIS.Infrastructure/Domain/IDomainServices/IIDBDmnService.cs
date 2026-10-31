@@ -24,7 +24,7 @@ namespace Newtouch.Domain.IDomainServices
 
         /// <summary>
         /// sẽmzhcủaChưa thu phíĐơn thuốc+Khám bệnhCờ đợithông tin Đồng bộđếntronggiữakho
-        /// （vàĐồng bộĐơn thuốcthành côngsaucầnvềviếtĐơn thuốcTrạng thái đồng bộ）
+        /// (vàĐồng bộĐơn thuốcthành côngsaucầnvềviếtĐơn thuốcTrạng thái đồng bộ)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>

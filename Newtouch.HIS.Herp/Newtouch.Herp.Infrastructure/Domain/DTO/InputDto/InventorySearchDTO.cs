@@ -27,7 +27,7 @@ namespace Newtouch.Herp.Domain.DTO.InputDto
         public string keyWord { get; set; }
 
         /// <summary>
-        /// Trạng thái vật tư 0：Không hiệu lực  1：Hiệu lực
+        /// Trạng thái vật tư 0:Không hiệu lực  1:Hiệu lực
         /// </summary>
         public string wzzt { get; set; }
 

@@ -20,11 +20,11 @@ namespace Newtouch.HIS.Application.Implementation
     public class SysUserApp : ISysUserApp
     {
         /// <summary>
-        /// Số lần đăng nhập quá nhiều，Tài khoản tự động khóa của Khoảng thời gian（Đơn vị：phút）
+        /// Số lần đăng nhập quá nhiều,Tài khoản tự động khóa của Khoảng thời gian(Đơn vị:phút)
         /// </summary>
         private static int _loginFailedTimesLimit_Minutes = 60;
         /// <summary>
-        /// Số lần đăng nhập quá nhiều，Tài khoản tự động khóa của Số lần tối đa
+        /// Số lần đăng nhập quá nhiều,Tài khoản tự động khóa của Số lần tối đa
         /// </summary>
         private static int _loginFailedTimesLimit_Count = 3;
 
@@ -94,9 +94,9 @@ namespace Newtouch.HIS.Application.Implementation
                     var startTime = DateTime.Now.AddMinutes(-_loginFailedTimesLimit_Minutes);
                     //LấyMtrong vòng phút mới nhấtN-1bản ghi nhật ký đăng nhập
                     var loginLogList = _sysLogRepository.IQueryable().Where(p => p.Type == "Login" && p.Account == username && p.TopOrganizeId == Constants.TopOrganizeId && p.CreateTime > startTime).OrderByDescending(p => p.CreateTime).Take(_loginFailedTimesLimit_Count - 1).Select(p => p.Result).ToList();
-                    if (loginLogList.Count == _loginFailedTimesLimit_Count - 1 && !loginLogList.Any(p => p.HasValue && p.Value))  //Nếu làN-1dòng，và không có bản ghi đăng nhập thành công
+                    if (loginLogList.Count == _loginFailedTimesLimit_Count - 1 && !loginLogList.Any(p => p.HasValue && p.Value))  //Nếu làN-1dòng,và không có bản ghi đăng nhập thành công
                     {
-                        //Đã đến số lần lỗi tối đa，Khóa nó
+                        //Đã đến số lần lỗi tối đa,Khóa nó
                         //Cập nhật trạng thái thành‘Khóa’
                         //Cập nhậtBASE.SYS_USERLOGON
                         userLogOnEntity.Locked = false;

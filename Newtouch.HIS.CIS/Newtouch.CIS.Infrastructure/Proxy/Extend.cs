@@ -44,7 +44,7 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// kiểm traQuay lạilàKhôngđangxác，kiểm tratheocứlàlàKhôngchứacó"<return>"
+        /// kiểm traQuay lạilàKhôngđangxác,kiểm tratheocứlàlàKhôngchứacó"<return>"
         /// </summary>
         /// <param name="response"></param>
         /// <returns></returns>

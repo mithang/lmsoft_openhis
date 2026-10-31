@@ -23,12 +23,12 @@ namespace Newtouch.Herp.Domain.Entity
         public string crkfsmc { get; set; }
 
         /// <summary>
-        ///  Cờ nhập/xuất kho     0：Nhập kho  1：Xuất kho
+        ///  Cờ nhập/xuất kho     0:Nhập kho  1:Xuất kho
         /// </summary>
         public string crkbz { get; set; }
         
         /// <summary>
-        /// Trạng thái  0:Hủy bỏ；1.Hiệu lực
+        /// Trạng thái  0:Hủy bỏ;1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

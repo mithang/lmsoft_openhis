@@ -10,7 +10,7 @@ namespace Newtouch.PDS.Requset.DeptPharmacyDrugs
     public class DeptPharmacyDrugsRequset : RequestBase
     {
         /// <summary>
-        /// Bộ phận nhà thuốc yfdm như：mzyf、zyyf、yjk
+        /// Bộ phận nhà thuốc yfdm như:mzyf,zyyf,yjk
         /// </summary>
         [Required]
         public string DeptCode { get; set; }

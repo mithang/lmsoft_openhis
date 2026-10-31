@@ -60,7 +60,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             if (!isDoctor)
             {
                 ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//Nhập việnY lệnhgóiCóKhônggóichứaKhu bệnh
-                //VDnếuCóĐiều dưỡng，vàovàoNhập việnY lệnhXemtrangmặt
+                //VDnếuCóĐiều dưỡng,vàovàoNhập việnY lệnhXemtrangmặt
                 return View("ZyyzQuery");
             }
             ViewBag.ysgh = UserIdentity.rygh;//Bác sĩMã nhân viên
@@ -71,15 +71,15 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             ViewBag.IsOpenJyJcSwitch = _sysConfigRepo.GetBoolValueByCode("OpenZYJyJcSwitch", this.OrganizeId, false);//Có mở khôngXét nghiệmKiểm tra
             ViewBag.IsOpenRehabSwitch = _sysConfigRepo.GetBoolValueByCode("OpenZYRehabSwitch", this.OrganizeId, false);//Có mở khôngPhục hồi chức năngY lệnh
             
-            ViewBag.ISOpenWzhc = _sysConfigRepo.GetBoolValueByCode("openWzhccf", this.OrganizeId);//Công tắc：Có mở khôngydùngVật tư tiêu hao
+            ViewBag.ISOpenWzhc = _sysConfigRepo.GetBoolValueByCode("openWzhccf", this.OrganizeId);//Công tắc:Có mở khôngydùngVật tư tiêu hao
             ViewBag.sfxmService = _sysConfigRepo.GetValueByCode("sfxmService", this.OrganizeId) == "" ? "cg" : _sysConfigRepo.GetValueByCode("sfxmService", this.OrganizeId);//CóKhôngmởHạng mục thông thường
             ViewBag.ISOpenSsyz = _sysConfigRepo.GetBoolValueByCode("ISOpenSsyzSwitch", this.OrganizeId, false);//Có mở khôngăn uốngY lệnh																					  
             ViewBag.ISWithRehabSuggestion = _sysConfigRepo.GetBoolValueByCode("IS_WithRehabSuggestion", this.OrganizeId, false);//Phục hồi chức năngĐơn thuốcCóKhôngTrích dẫnĐiều trịxâynghị
                                                                                                                                 
-            var frequencyStr = _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId) ?? "";//Tạm thờiTần suấtchuỗi phútcắtcủaTần suấtMãchữkýchuỗiVDVD：00,01
+            var frequencyStr = _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId) ?? "";//Tạm thờiTần suấtchuỗi phútcắtcủaTần suấtMãchữkýchuỗiVDVD:00,01
             ViewBag.isqfswith = _sysConfigRepo.GetValueByCode("accountqfexecute_switch", OrganizeId);//Công tắc mở lập, thực hiện y lệnh khi nợ phí
             ViewBag.isopenPriorReview = _sysConfigRepo.GetValueByCode("OpenPriorReview", OrganizeId);//CóKhôngbậtviệctrướcPhê duyệtgiao diện
-            ViewBag.openYjzxSwitch = _sysConfigRepo.GetValueByCode("openYjzxSwitch", OrganizeId); //Công tắc：kỹ thuật y họcQuản lýCóKhôngKích hoạt 
+            ViewBag.openYjzxSwitch = _sysConfigRepo.GetValueByCode("openYjzxSwitch", OrganizeId); //Công tắc:kỹ thuật y họcQuản lýCóKhôngKích hoạt 
             if (!string.IsNullOrWhiteSpace(frequencyStr))
             {
                 var FequencyList = frequencyStr.Split(',');
@@ -455,7 +455,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// Y lệnhTra cứutạoKiểu y lệnhhộp thả xuốngkhi，cấu hìnhcủaXét nghiệmKiểm traHiển thị
+        /// Y lệnhTra cứutạoKiểu y lệnhhộp thả xuốngkhi,cấu hìnhcủaXét nghiệmKiểm traHiển thị
         /// </summary>
         /// <returns></returns>
         public IActionResult GetyzlxContain()

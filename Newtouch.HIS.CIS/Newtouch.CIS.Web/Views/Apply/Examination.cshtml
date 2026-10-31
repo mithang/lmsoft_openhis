@@ -324,14 +324,14 @@
     }
     //Lưu(Bản cũThao tác)
     function SaveJC(savetodb, justUpdateAlldataArray) {
-        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+        //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#alreadyJCAppliedList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             var saveResult = $("#alreadyJCAppliedList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
             if (!saveResult) {
                 EnableExaIInlineEditBox($("#alreadyJCAppliedList"));    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-                return;   //Lưu thất bại，thìreturn
+                return;   //Lưu thất bại,thìreturn
             }
         }
         //làmlàmộtĐơn thuốc mới
@@ -371,7 +371,7 @@
             else {
                 //nhảy vềHồ sơtrang
                 $('#myTab [href="#linkbl"]').trigger('click'); //Khởi tạoHiển thịnàotab
-                //bệnhVDtranglạitảiĐơn thuốc，Dữ liệu đơn thuốc đã thay đổi
+                //bệnhVDtranglạitảiĐơn thuốc,Dữ liệu đơn thuốc đã thay đổi
                 triggleActive();
             }
         }
@@ -392,7 +392,7 @@
                 var objZtid = $("#" + objId + "_ztId").val();
                 if (objZtid == currRowZtid) {
                     currRowbw = $("#" + rowid + "_bw").val();
-                    if (valiate && currRowbw != $("#" + objId + "_bw").val()) {//kiểm trakhi，Quay lạitrue or false
+                    if (valiate && currRowbw != $("#" + objId + "_bw").val()) {//kiểm trakhi,Quay lạitrue or false
                         rtnval == false;
                     } else {
                         $("#" + objId + "_bw").val(currRowbw);
@@ -492,14 +492,14 @@
     function SaveJCbyZT(savetodb, justUpdateAlldataArray) {
         debugger;
         var gridjcData ;
-        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+        //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#alreadyJCAppliedGroupList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             var saveResult = $("#alreadyJCAppliedGroupList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
             if (!saveResult) {
                 EnableExaIInlineEditBoxZT();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-                return;   //Lưu thất bại，thìreturn
+                return;   //Lưu thất bại,thìreturn
             }
         }
         //Xóa trắng ấn tượng lâm sàng, ghi chú đăng ký
@@ -549,7 +549,7 @@
             else {
                 //nhảy vềHồ sơtrang
                 $('#myTab [href="#linkbl"]').trigger('click'); //Khởi tạoHiển thịnàotab
-                //bệnhVDtranglạitảiĐơn thuốc，Dữ liệu đơn thuốc đã thay đổi
+                //bệnhVDtranglạitảiĐơn thuốc,Dữ liệu đơn thuốc đã thay đổi
                 triggleActive();
             }
         }

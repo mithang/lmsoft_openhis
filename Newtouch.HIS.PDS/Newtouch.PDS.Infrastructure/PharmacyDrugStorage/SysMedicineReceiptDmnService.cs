@@ -41,14 +41,14 @@ namespace Newtouch.HIS.DomainServices
                 var djsh = db.IQueryable<SysMedicineReceiptApprovalEntity>().FirstOrDefault(p => p.crkId == crkId);
                 if (dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())
                 {
-                    if (djsh == null)   //Thao tác hủy bỏ，Phải tồn tại bản ghi duyệt chứng từ
+                    if (djsh == null)   //Thao tác hủy bỏ,Phải tồn tại bản ghi duyệt chứng từ
                     {
                         throw new FailedException("Không tìm thấy bản ghi duyệt chứng từ，Hủy bỏ thất bại");
                     }
                 }
                 else
                 {
-                    if (djsh != null)   //Phí thao tác không hủy bỏ，Phải không tồn tại bản ghi duyệt chứng từ
+                    if (djsh != null)   //Phí thao tác không hủy bỏ,Phải không tồn tại bản ghi duyệt chứng từ
                     {
                         throw new FailedException("Chứng từ đã duyệt，Không thể duyệt trùng lặp");
                     }
@@ -185,7 +185,7 @@ namespace Newtouch.HIS.DomainServices
         /// <param name="curUser">Thông tin người dùng đăng nhập</param>
         private void Yaopinruku(Newtouch.Infrastructure.EFDbTransaction db, SysMedicineStorageIOReceiptEntity crkdj, SysMedicineStorageIOReceiptDetailEntity mx, string dstnShzt, OperatorModel curUser)
         {
-            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác：Duyệt đạt
+            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác:Duyệt đạt
             {
                 var entity = new SysMedicineStockInfoEntity
                 {
@@ -209,11 +209,11 @@ namespace Newtouch.HIS.DomainServices
                 entity.Create();
                 db.Insert(entity);
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //Loại thao tác：Duyệt không đạt
+            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //Loại thao tác:Duyệt không đạt
             {
 
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //Loại thao tác：Hủy bỏ
+            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //Loại thao tác:Hủy bỏ
             {
                 var entity = db.IQueryable<SysMedicineStockInfoEntity>().Single(p => p.OrganizeId == curUser.OrganizeId && p.yfbmCode == crkdj.Rkbm && p.pc == mx.pc && p.ph == mx.Ph);
                 if (entity.djsl > 0)
@@ -239,7 +239,7 @@ namespace Newtouch.HIS.DomainServices
         /// <param name="curUser"></param>
         private void Waibuchuku(Newtouch.Infrastructure.EFDbTransaction db, SysMedicineStorageIOReceiptEntity crkdj, SysMedicineStorageIOReceiptDetailEntity mx, string dstnShzt, OperatorModel curUser)
         {
-            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác：Duyệt đạt
+            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác:Duyệt đạt
             {
                 var entities = db.IQueryable<SysMedicineStockInfoEntity>(p => p.ypdm == mx.Ypdm
                   && p.yfbmCode == crkdj.Ckbm
@@ -276,7 +276,7 @@ namespace Newtouch.HIS.DomainServices
                     db.Update(ckbmkcEntity);
                 }
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //Loại thao tác：Duyệt không đạt
+            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //Loại thao tác:Duyệt không đạt
             {
                 //Số lượng đóng băng cần trả lại
                 var entities = db.IQueryable<SysMedicineStockInfoEntity>(p => p.ypdm == mx.Ypdm
@@ -309,7 +309,7 @@ namespace Newtouch.HIS.DomainServices
                     }
                 }
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //Loại thao tác：Hủy bỏ
+            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //Loại thao tác:Hủy bỏ
             {
                 var ckbmkcEntity = db.FindEntity<SysMedicineStockInfoEntity>(p => p.ypdm == mx.Ypdm
                     && p.zt == ((int)EnumKCZT.Enabled).ToString()
@@ -333,7 +333,7 @@ namespace Newtouch.HIS.DomainServices
         /// <param name="db"></param>
         private void Waibucuku(Newtouch.Infrastructure.EFDbTransaction db, SysMedicineStorageIOReceiptEntity crkdj, SysMedicineStorageIOReceiptDetailEntity mx, string dstnShzt, OperatorModel curUser)
         {
-            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác：Duyệt đạt
+            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác:Duyệt đạt
             {
                 var entity = db.IQueryable<SysMedicineStockInfoEntity>().Single(p => p.OrganizeId == curUser.OrganizeId && p.yfbmCode == crkdj.Ckbm && p.pc == mx.pc);
                 if (entity.kcsl < mx.Sl * mx.Ckzhyz)
@@ -344,24 +344,24 @@ namespace Newtouch.HIS.DomainServices
                 entity.djsl -= mx.Sl * mx.Ckzhyz;   //Khi xin xuất kho sẽ đóng băng
                 db.Update(entity);
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //Loại thao tác：Duyệt không đạt
+            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //Loại thao tác:Duyệt không đạt
             {
                 //Số lượng đóng băng cần trả lại
                 var entity = db.IQueryable<SysMedicineStockInfoEntity>().Single(p => p.OrganizeId == curUser.OrganizeId && p.yfbmCode == crkdj.Ckbm && p.pc == mx.pc);
                 //Trả lại số lượng đóng băng
-                entity.djsl -= mx.Sl * mx.Ckzhyz;  //Phần này không còn bị đóng băng，Không trả cho nhà cung cấp。Có thể dùng được
+                entity.djsl -= mx.Sl * mx.Ckzhyz;  //Phần này không còn bị đóng băng,Không trả cho nhà cung cấp.Có thể dùng được
                 db.Update(entity);
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //Loại thao tác：Hủy bỏ
+            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //Loại thao tác:Hủy bỏ
             {
                 var entity = db.IQueryable<SysMedicineStockInfoEntity>().Single(p => p.OrganizeId == curUser.OrganizeId && p.yfbmCode == crkdj.Ckbm && p.pc == mx.pc);
                 //if (entity.djsl > 0)
                 //{
-                //    throw new FailedException("Tồn tại tồn kho đóng băng，Không thể hủy bỏ");
+                //    throw new FailedException("Tồn tại tồn kho đóng băng,Không thể hủy bỏ");
                 //}
                 //else if (entity.kcsl < mx.Sl)   //tức Tồn kho đã thay đổi thì không thể hủy bỏ
                 //{
-                //    throw new FailedException("Tồn kho không đủ，Không thể hủy bỏ");
+                //    throw new FailedException("Tồn kho không đủ,Không thể hủy bỏ");
                 //}
                 entity.kcsl += mx.Sl * mx.Ckzhyz;
                 db.Update(entity);
@@ -391,7 +391,7 @@ namespace Newtouch.HIS.DomainServices
         private void Shenlingfayao(Newtouch.Infrastructure.EFDbTransaction db, SysMedicineStorageIOReceiptEntity crkdj, SysMedicineStorageIOReceiptDetailEntity mx, string dstnShzt, OperatorModel curUser)
         {
             UnfreezeAndSubtractKcsl(db, crkdj, mx, dstnShzt, curUser);
-            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác：Duyệt đạt
+            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác:Duyệt đạt
             {
             }
             else
@@ -434,7 +434,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Phát thuốc Giải đông và giảm tồn kho（Xuất kho trực tiếp、Xuất kho theo đơn lĩnh、Trả lại phát thuốc nội bộ）
+        /// Phát thuốc Giải đông và giảm tồn kho(Xuất kho trực tiếp,Xuất kho theo đơn lĩnh,Trả lại phát thuốc nội bộ)
         /// </summary>
         /// <param name="db"></param>
         /// <param name="crkdj"></param>
@@ -447,7 +447,7 @@ namespace Newtouch.HIS.DomainServices
             string dstnShzt,
             OperatorModel curUser)
         {
-            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác：Duyệt đạt
+            if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Approved).ToString())   //Loại thao tác:Duyệt đạt
             {
                 var ckbmkcEntities = db.IQueryable<SysMedicineStockInfoEntity>(p => p.ypdm == mx.Ypdm
                 && p.OrganizeId == curUser.OrganizeId
@@ -528,7 +528,7 @@ namespace Newtouch.HIS.DomainServices
                     db.Insert(entity);
                 }
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //Loại thao tác：Duyệt không đạt
+            else if (crkdj.shzt == ((int)EnumDjShzt.WaitingApprove).ToString() && dstnShzt == ((int)EnumDjShzt.Rejected).ToString())   //Loại thao tác:Duyệt không đạt
             {
                 //Số lượng đóng băng cần trả lại
                 var entities = db.IQueryable<SysMedicineStockInfoEntity>(p => p.ypdm == mx.Ypdm
@@ -561,7 +561,7 @@ namespace Newtouch.HIS.DomainServices
                     }
                 }
             }
-            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //Loại thao tác：Hủy bỏ
+            else if (crkdj.shzt == ((int)EnumDjShzt.Approved).ToString() && dstnShzt == ((int)EnumDjShzt.Cancelled).ToString())   //Loại thao tác:Hủy bỏ
             {
                 #region Nhập kho lúc đó của Liên quan Đếm
                 var ckbmkcEntities = db.IQueryable<SysMedicineStockInfoEntity>(p => p.ypdm == mx.Ypdm && p.zt == ((int)EnumKCZT.Enabled).ToString() && p.ph == mx.Ph && p.OrganizeId == curUser.OrganizeId && p.yfbmCode == crkdj.Ckbm && p.pc == mx.pc);

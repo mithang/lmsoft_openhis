@@ -190,7 +190,7 @@
         $("#ddlSYYY").empty();
         var sylx = "";
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-            sylx = "0";//0 Báo hỏng，1 báo thừa
+            sylx = "0";//0 Báo hỏng,1 báo thừa
         } else {
             sylx = "1";
         }
@@ -475,7 +475,7 @@
             dataType: "json",
             success: function (data) {
                 $.modalMsg("Lưu thành công", 'success', 1000);
-                newtouch_event_f7();//mớihỏngthừa：mớiphiếusố phiếu chínhDữ liệuXóa trắng chi tiếtXóa trắng
+                newtouch_event_f7();//mớihỏngthừa:mớiphiếusố phiếu chínhDữ liệuXóa trắng chi tiếtXóa trắng
                 $('#gridSYXX').jqGrid("clearGridData");//Xóa trắngGrid
 				$("#txtSYZE").val("");//Xóa trắnglãi lỗtổngmức
 				window.open("/Report/PrintReport?type=Báo hỏngBáo thừaInbảng&param=syIds=" + data.message +"|OrganizeId=" + $("#OrganizeId").val(),"height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
@@ -566,7 +566,7 @@
             return false;
         }
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') == 'Loss') {
-            if (Sysl > parseFloat($("#txtXYKC").attr('data-kcsl'))) {   //phảncủa，trực tiếpsokháSố lượng(Đơn vị nhỏ nhấtSố lượng)
+            if (Sysl > parseFloat($("#txtXYKC").attr('data-kcsl'))) {   //phảncủa,trực tiếpsokháSố lượng(Đơn vị nhỏ nhấtSố lượng)
                 $.modalAlert("Số lượng báo hỏng phải nhỏ hơn tồn kho hiện có", 'warning');
                 return false;
             }

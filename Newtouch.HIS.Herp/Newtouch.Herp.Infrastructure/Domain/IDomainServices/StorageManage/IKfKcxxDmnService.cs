@@ -31,7 +31,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         string UpdateKcsl(List<UpdateKcslDTO> updateKcslDto);
 
         /// <summary>
-        /// Cộng thêm tồn kho，Không sửa số lượng đóng băng Trả về số dòng bị ảnh hưởng
+        /// Cộng thêm tồn kho,Không sửa số lượng đóng băng Trả về số dòng bị ảnh hưởng
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
@@ -44,14 +44,14 @@ namespace Newtouch.Herp.Domain.IDomainServices
         int AddKcsl(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode);
 
         /// <summary>
-        /// Sửa số lượng tồn kho，Không sửa số lượng đóng băng
+        /// Sửa số lượng tồn kho,Không sửa số lượng đóng băng
         /// </summary>
         /// <param name="updateKcslDto"></param>
         /// <returns></returns>
         string JustSubtractKcsl(List<UpdateKcslDTO> updateKcslDto);
 
         /// <summary>
-        /// Sửa số lượng tồn kho，Không sửa số lượng đóng băng
+        /// Sửa số lượng tồn kho,Không sửa số lượng đóng băng
         /// </summary>
         /// <param name="updateKcslDto"></param>
         /// <param name="db"></param>
@@ -59,7 +59,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         string JustSubtractKcslNoTrans(List<UpdateKcslDTO> updateKcslDto, EFDbTransaction db = null);
 
         /// <summary>
-        /// Sửa số lượng tồn kho，Không sửa số lượng đóng băng
+        /// Sửa số lượng tồn kho,Không sửa số lượng đóng băng
         /// </summary>
         /// <param name="updateKcslDto"></param>
         /// <param name="db"></param>
@@ -67,7 +67,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         string JustSubtractKcsl(UpdateKcslDTO updateKcslDto, EFDbTransaction db = null);
 
         /// <summary>
-        /// Số lượng giảm tồn kho、Số lượng đóng băng（Xuất kho khả dụng）
+        /// Số lượng giảm tồn kho,Số lượng đóng băng(Xuất kho khả dụng)
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
@@ -119,7 +119,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         string WbrkKkc(int sl, string pc, string ph, string productId, string organizeId, string warehouseId, string userCode);
 
         /// <summary>
-        /// Hủy nhập kho（Hủy xuất kho trực tiếp）
+        /// Hủy nhập kho(Hủy xuất kho trực tiếp)
         /// </summary>
         /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
         /// <param name="pc"></param>

@@ -117,7 +117,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Vai trò（cây）   （dùnghộchínhđộngliên quanliênVai trò）
+        /// Vai trò(cây)   (dùnghộchínhđộngliên quanliênVai trò)
         /// </summary>
         /// <param name="userId"></param>
         /// <param name="organizeId"></param>

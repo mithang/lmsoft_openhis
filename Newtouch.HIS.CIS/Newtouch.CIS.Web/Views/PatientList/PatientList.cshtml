@@ -257,7 +257,7 @@
   //          dataType: "json",
   //          async: false,
   //          success: function (data) {
-  //              $.modalAlert("Gọi sốHoàn thành！", 'success');
+  //              $.modalAlert("Gọi sốHoàn thành!", 'success');
   //              startTreat(rowid);
   //          }
 		//});
@@ -408,7 +408,7 @@
         }
 
         $.loading(true);
-        window.mrflag = 0;    //nhậnlàCóthứmột lầntảiHồ sơtrang，nàydạngmỗi lầnChẩn đoán，đềusẽTheobệnh ngườicủajzIdtraraLịch sửHồ sơ
+        window.mrflag = 0;    //nhậnlàCóthứmột lầntảiHồ sơtrang,nàydạngmỗi lầnChẩn đoán,đềusẽTheobệnh ngườicủajzIdtraraLịch sửHồ sơ
         selRowData.mjzbz = $('#mjzbz option:selected').val();
         window.currPatientInfo = selRowData;
         $('#tip_yfly').unbind('change'); //đitrừMặc địnhNhà thuốcchangesự kiện
@@ -495,7 +495,7 @@
     }
 
     //TheoSố bệnh ánĐồng bộBệnh nhâncủaĐơn thuốcThu phíTrạng thái
-    //sync：CóKhôngĐồng bộ
+    //sync:CóKhôngĐồng bộ
     function syncPresChargeStatus(blh, sync) {
         $.ajax({
             url: '/PatientList/SyncPresChargeStatus',

@@ -108,12 +108,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// Số thực tế bộ phận （Dùng kết hợp với số thực tế đơn vị nhỏ nhất）
+        /// Số thực tế bộ phận (Dùng kết hợp với số thực tế đơn vị nhỏ nhất)
         /// </summary>
         public int deptSjsl { get; set; }
 
         /// <summary>
-        /// Số thực tế đơn vị nhỏ nhất （Dùng kết hợp với số thực tế bộ phận）
+        /// Số thực tế đơn vị nhỏ nhất (Dùng kết hợp với số thực tế bộ phận)
         /// </summary>
         public int minSjsl { get; set; }
 
@@ -218,8 +218,8 @@ namespace Newtouch.HIS.Domain.ValueObjects
 
         /// <summary>
         /// Có chia lẻ không
-        /// 1： Có
-        /// 2： Không
+        /// 1: Có
+        /// 2: Không
         /// </summary>
         public int? sfcl { get; set; }
 

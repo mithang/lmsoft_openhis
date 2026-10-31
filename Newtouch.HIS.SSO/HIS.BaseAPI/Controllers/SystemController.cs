@@ -72,7 +72,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<List<SysModuleVO>> { code = ResponseResultCode.SUCCESS, Data = list != null ? list.Adapt<List<SysModuleVO>>() : null };
         }
         /// <summary>
-        /// lấy danh sách menu hệ thống ứng dụng（chỉ quản trị viên dùng để đồng bộ）
+        /// lấy danh sách menu hệ thống ứng dụng(chỉ quản trị viên dùng để đồng bộ)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

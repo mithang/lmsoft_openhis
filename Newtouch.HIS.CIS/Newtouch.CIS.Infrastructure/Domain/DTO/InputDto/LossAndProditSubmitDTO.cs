@@ -118,22 +118,22 @@ namespace Newtouch.Domain.DTO.InputDto
         public string remark { get; set; }
 
         /// <summary>
-        /// Đơn vị giáôĐơn vị，vàzhyzmộtthẳng
+        /// Đơn vị giáôĐơn vị,vàzhyzmộtthẳng
         /// </summary>
         public string UnitId { get; set; }
 
         /// <summary>
-        /// Số lượng，Khoa phòngĐơn vị
+        /// Số lượng,Khoa phòngĐơn vị
         /// </summary>
         public int bmsl { get; set; }
 
         /// <summary>
-        /// Số lượng，Đơn vị nhỏ nhất
+        /// Số lượng,Đơn vị nhỏ nhất
         /// </summary>
         public int zxsl { get; set; }
 
         /// <summary>
-        /// Số lượng，mangĐơn vị  
+        /// Số lượng,mangĐơn vị  
         /// </summary>
         public string slstr { get; set; }
 

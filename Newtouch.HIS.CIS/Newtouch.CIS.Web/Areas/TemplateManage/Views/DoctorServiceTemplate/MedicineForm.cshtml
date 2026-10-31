@@ -217,14 +217,14 @@
                         var jldw = $("#" + rowid + "_redundant_jldw").val();    //Đơn vị liều Thuốcbảng từ điểncủaĐơn vị
                         var dw = $("#" + rowid + "_dwwwwwww").val();     //Đơn vị nhập viện
                         if (!!dw) {
-                            //cách tìm phần tử nàyPhương phápkhông nên dùng，nhưng doselectKhông cóidThuộc tính
+                            //cách tìm phần tử nàyPhương phápkhông nên dùng,nhưng doselectKhông cóidThuộc tính
                             $("#" + rowid + "_ypjl").parent().next().children('select').html('');
 
                             if (jldw == dw) {
                                 $("#" + rowid + "_ypjl").parent().next().children('select').append('<option value="1">' + jldw + '</option>');
                             }
                             else {
-                                var dwlb = $("#" + rowid + "_dwlb").val(); //tồn tạiởĐơn vịLoạikhi，thaybảngđãtồn tạiởĐã chọncủaĐơn vị，trangmặtĐã chọn
+                                var dwlb = $("#" + rowid + "_dwlb").val(); //tồn tạiởĐơn vịLoạikhi,thaybảngđãtồn tạiởĐã chọncủaĐơn vị,trangmặtĐã chọn
                                 var jldwlb = 1, dwdwlb = 4;
                                 if (!!dwlb) {
                                     if (jldwlb == dwlb) {
@@ -369,7 +369,7 @@
                     $("#" + rowid + "_zyzhxs").val($this.attr('data-cls'));
                     $("#" + rowid + "_zxksdm").val($this.attr('data-yfbmCode'));
                     $("#" + rowid + "_qzfs").val($this.attr('data-zyqzlx') == "1" ? "day" : "times"); 
-                    //cách tìm phần tử nàyPhương phápkhông nên dùng，nhưng doselectKhông cóidThuộc tính
+                    //cách tìm phần tử nàyPhương phápkhông nên dùng,nhưng doselectKhông cóidThuộc tính
                     var jldw = $this.attr('data-jldw');    //Đơn vị liều
                     var dw = $this.attr('data-dw');     //Đơn vị nhập viện
                     $("#" + rowid + "_ypjl").parent().next().children('select').html('');
@@ -384,8 +384,8 @@
                             $("#" + rowid + "_ypjl").parent().next().children('select').append('<option value="4">' + dw + '</option>');
                         }
                     }
-                    //Khởi tạoĐơn vịvàĐơn vịLoạicủaGiá trị，KhôngthìKhông cóGiá trịtruyềnđếnmáy chủ
-                    //Mặc địnhĐơn vị liều，khôngtồn tạiởĐơn vị liều，Mặc địnhĐơn vị nhập viện，đềukhôngtồn tạiở，khôngGán giá trị
+                    //Khởi tạoĐơn vịvàĐơn vịLoạicủaGiá trị,KhôngthìKhông cóGiá trịtruyềnđếnmáy chủ
+                    //Mặc địnhĐơn vị liều,khôngtồn tạiởĐơn vị liều,Mặc địnhĐơn vị nhập viện,đềukhôngtồn tạiở,khôngGán giá trị
                     if (!!jldw) {
                         $("#" + rowid + "_dwwwwwww").val(jldw);
                         $("#" + rowid + "_dwlb").val("1");
@@ -480,7 +480,7 @@
             $.modalAlert("Đơn vịLoạikhông được để trống", 'error');
             return;
         }
-        var qzint = ypjl * ts;//Mặc địnhĐơn vị nhập viện ，khôngcầnchuyểnđổi
+        var qzint = ypjl * ts;//Mặc địnhĐơn vị nhập viện ,khôngcầnchuyểnđổi
         if (dwlb == 1) {//Đơn vị liều chuyểnđổithànhĐơn vị liều
             qzint = (ypjl * ts / jlzhxs / zyzhxs);
         }
@@ -570,7 +570,7 @@
     //Lưu
     function Save() {
         if (Validate()) {//kiểm traDữ liệu
-            //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+            //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
             var rowIds = $("#gridmedicine").jqGrid('getDataIDs');
 
             for (var i = 0; i < rowIds.length; i++) {
@@ -578,7 +578,7 @@
                 if (MatchWMZuhaoInfo(rowIds[i])) {
                     var saveResult = $("#gridmedicine").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
                     if (!saveResult) {
-                        return;   //Lưu thất bại，thìreturn
+                        return;   //Lưu thất bại,thìreturn
                     }
                 } else {
                     return;
@@ -665,7 +665,7 @@
         var curyfmc = $("#" + rowid + "_yfmcval").val();
         var jxyfdy = top.top.clients.ypjxyfdy;
         var jxyf = top.top.clients.ypyf;//tất cảCách dùng
-        var basejx = false;//hiện tạiThuốcCóKhôngBảo trìDạng bào chếtương ứng，Mặc địnhKhông
+        var basejx = false;//hiện tạiThuốcCóKhôngBảo trìDạng bào chếtương ứng,Mặc địnhKhông
         $("#" + rowid + "_dwwwwwww").parent().next().children('select').html("");
         //Cách dùnghộp thả xuống
         if (currentjx !== null && currentjx !== "") {//hiện tạiDạng bào chế thuốc

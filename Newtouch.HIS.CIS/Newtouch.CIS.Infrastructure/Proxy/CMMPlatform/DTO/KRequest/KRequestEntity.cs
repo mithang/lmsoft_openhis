@@ -7,7 +7,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.KRequest
     public class KRequestEntity
     {
         /// <summary>
-        /// tàinguồnTên：K_LOOK
+        /// tàinguồnTên:K_LOOK
         /// </summary>
         public string resource { get; set; }
     }

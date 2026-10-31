@@ -4,9 +4,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// Người tạo：hyj
-    /// Ngày：2018-09-19 19:07
-    /// Mô tả：Trang đầu bệnh án
+    /// Người tạo:hyj
+    /// Ngày:2018-09-19 19:07
+    /// Mô tả:Trang đầu bệnh án
     /// </summary>
     [SugarTable("bl_basy")]
     public class BlbasyEntity 
@@ -163,7 +163,7 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string czrmc { get; set; }
         /// <summary>
-        /// Người thao tác trên bản ghi hiện tại(chỉ người được phép thao tác trên bản ghi này,mới được phép lưu、thao tác sửa đổi,nếu không chỉ có quyền đọc)
+        /// Người thao tác trên bản ghi hiện tại(chỉ người được phép thao tác trên bản ghi này,mới được phép lưu,thao tác sửa đổi,nếu không chỉ có quyền đọc)
         /// </summary>
         /// <returns></returns>
         public string czydm_czr { get; set; }
@@ -173,7 +173,7 @@ namespace Newtouch.EMR.Domain.Entity
         /// <returns></returns>
         public string sxysmc { get; set; }
         /// <summary>
-        /// Bác sĩ thực tập(Do bác sĩ thực tập、bác sĩ tu nghiệp đều có thầy hướng dẫn)
+        /// Bác sĩ thực tập(Do bác sĩ thực tập,bác sĩ tu nghiệp đều có thầy hướng dẫn)
         /// </summary>
         /// <returns></returns>
         public string czydm_sxys { get; set; }

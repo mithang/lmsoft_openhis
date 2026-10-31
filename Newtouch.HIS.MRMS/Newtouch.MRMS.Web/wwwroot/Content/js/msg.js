@@ -47,7 +47,7 @@ document.getElementById("sendButton").addEventListener("click", function (event)
 ////    var li = document.createElement("li");
 ////    document.getElementById("messagesList").appendChild(li);
 
-////    li.textContent = `${user} ：${message}`;
+////    li.textContent = `${user} :${message}`;
 ////});
  
 

@@ -55,7 +55,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
         #region Lấy dữ liệu
 
         /// <summary>
-        /// đượclấyngoại trúkhám（Nội trú）ngàykếttínhcộtbảng
+        /// đượclấyngoại trúkhám(Nội trú)ngàykếttínhcộtbảng
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="kssj"></param>
@@ -218,7 +218,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
 		}
 
 		/// <summary>
-		/// Lấy chi tiết thanh toán（trênnửabộphân）
+		/// Lấy chi tiết thanh toán(trênnửabộphân)
 		/// </summary>
 		/// <param name="ksrq">Ngày bắt đầu</param>
 		/// <param name="jsrq">Ngày kết thúc</param>
@@ -231,7 +231,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
 		}
 
 		/// <summary>
-		/// Lấy chi tiết thanh toán（dướinửabộphân）
+		/// Lấy chi tiết thanh toán(dướinửabộphân)
 		/// </summary>
 		/// <param name="ksrq">Ngày bắt đầu</param>
 		/// <param name="jsrq">Ngày kết thúc</param>

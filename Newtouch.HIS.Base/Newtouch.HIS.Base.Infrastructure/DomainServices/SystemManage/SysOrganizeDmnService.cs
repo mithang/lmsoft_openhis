@@ -42,7 +42,7 @@ select ApplicationId from Sys_OrganizeApplication where OrganizeId in (select Id
         }
 
         /// <summary>
-        /// Có chứa tổ chức cấp dưới không，Có tổ chức cấp dưới thì trả vềtrue
+        /// Có chứa tổ chức cấp dưới không,Có tổ chức cấp dưới thì trả vềtrue
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

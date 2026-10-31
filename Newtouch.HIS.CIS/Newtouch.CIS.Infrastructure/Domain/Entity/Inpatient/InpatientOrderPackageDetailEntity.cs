@@ -7,8 +7,8 @@ namespace Newtouch.Domain.Entity
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày：2018-06-28 15:37
-    /// Mô tả：Nhập việnY lệnhgóichi tiết
+    /// Ngày:2018-06-28 15:37
+    /// Mô tả:Nhập việnY lệnhgóichi tiết
     /// </summary>
     [SugarTable("zy_yztcmx")]
     public class InpatientOrderPackageDetailEntity
@@ -50,7 +50,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int? zxzq { get; set; }
         /// <summary>
-        /// Chu kỳ thực hiệnĐơn vị -1:khôngquythìchu kỳ，0：ngày,1：giờ,2：Phút.Lưu ý：khilà-1khi，tuầnMã（zdm）làsốchữ（1234567）trongcủaBất kỳ vàicáisốchữ
+        /// Chu kỳ thực hiệnĐơn vị -1:khôngquythìchu kỳ,0:ngày,1:giờ,2:Phút.Lưu ý:khilà-1khi,tuầnMã(zdm)làsốchữ(1234567)trongcủaBất kỳ vàicáisốchữ
         /// </summary>
         /// <returns></returns>
         public int? zxzqdw { get; set; }
@@ -85,12 +85,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int sl { get; set; }
         /// <summary>
-        /// Đơn vịLoại 0Đơn vị liều，1Đơn vị kho thuốc，2Đơn vị ngoại trú，3Đơn vị nhập viện，4vàohàngĐơn vị(chỉhiển thịY lệnhĐơn vịLoạilà0)
+        /// Đơn vịLoại 0Đơn vị liều,1Đơn vị kho thuốc,2Đơn vị ngoại trú,3Đơn vị nhập viện,4vàohàngĐơn vị(chỉhiển thịY lệnhĐơn vịLoạilà0)
         /// </summary>
         /// <returns></returns>
         public int? dwlb { get; set; }
         /// <summary>
-        /// bảnđịaLoại y lệnh 0：ThuốcY lệnh，1：Kháng sinhY lệnh，2：Kiểm traY lệnh，3：Xét nghiệmY lệnh，4：chỉhiển thịY lệnh，5：thông thườngY lệnh ， 6 DừngY lệnh， 7  Xuất việnmang thuốc， 8 ăn uốngY lệnh， 9 Phẫu thuậtY lệnh   10  trongthảo dược  
+        /// bảnđịaLoại y lệnh 0:ThuốcY lệnh,1:Kháng sinhY lệnh,2:Kiểm traY lệnh,3:Xét nghiệmY lệnh,4:chỉhiển thịY lệnh,5:thông thườngY lệnh , 6 DừngY lệnh, 7  Xuất việnmang thuốc, 8 ăn uốngY lệnh, 9 Phẫu thuậtY lệnh   10  trongthảo dược  
         /// </summary>
         /// <returns></returns>
         public int yzlx { get; set; }

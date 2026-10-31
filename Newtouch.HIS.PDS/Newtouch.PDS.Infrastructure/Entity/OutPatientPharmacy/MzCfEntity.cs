@@ -85,7 +85,7 @@ namespace Newtouch.HIS.Domain.Entity
         public DateTime? sfsj { get; set; }
 
         /// <summary>
-        /// 0：Chưa xếp；1：Đã xếp；2：Đã phát；3：Đã trả
+        /// 0:Chưa xếp;1:Đã xếp;2:Đã phát;3:Đã trả
         /// </summary>
         public string fybz { get; set; }
 
@@ -100,7 +100,7 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal je { get; set; }
 
         /// <summary>
-        /// 0：Không hiệu lực 1：Hiệu lực
+        /// 0:Không hiệu lực 1:Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

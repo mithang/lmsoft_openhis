@@ -359,7 +359,7 @@
                 var objZtid = $("#" + objId + "_ztId").val();
                 if (objZtid == currRowZtid && objId != rowid) {
                     currRowbw = $("#" + rowid + "_bw").val();
-                    if (valiate && currRowbw != $("#" + objId + "_bw").val()) {//kiểm trakhi，Quay lạitrue or false
+                    if (valiate && currRowbw != $("#" + objId + "_bw").val()) {//kiểm trakhi,Quay lạitrue or false
                         rtnval == false;
                     } else {
                         $("#" + objId + "_bw").val(currRowbw);
@@ -413,7 +413,7 @@
 
     //LưuNútthao tác
     function SaveExamination(savetodb) {
-        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+        //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#alreadyJCAppliedList").jqGrid('getDataIDs');
         if (rowIds.length < 1) {
             $.modalAlert("Thiếu dữ liệu y lệnh", "warning");
@@ -423,7 +423,7 @@
             var saveResult = $("#alreadyJCAppliedList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
             if (!saveResult) {
                 EnableExaIInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-                    return;   //Lưu thất bại，thìreturn
+                    return;   //Lưu thất bại,thìreturn
                 }
 
         }
@@ -574,7 +574,7 @@
         //    return;
         //}
         var gridjcData;
-        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+        //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#alreadyJCAppliedGroupList").jqGrid('getDataIDs');
         if (rowIds.length < 1) {
             $.modalAlert("Thiếu dữ liệu y lệnh", "warning");
@@ -584,7 +584,7 @@
             var saveResult = $("#alreadyJCAppliedGroupList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
             if (!saveResult) {
                 EnableExaIInlineEditBoxZT();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-                    return;   //Lưu thất bại，thìreturn
+                    return;   //Lưu thất bại,thìreturn
                 }
         }
         var jcmbId = $("#alreadyJCAppliedGroupList").getRowData(rowIds[0]).mbId;

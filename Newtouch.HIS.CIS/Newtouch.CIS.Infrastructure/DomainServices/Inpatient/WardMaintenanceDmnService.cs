@@ -123,11 +123,11 @@ where czjl.createtime=@bysj
 			using (var db = new EFDbTransaction().BeginTrans())
 			{
                 //lấyCấp độ chăm sóctương ứngMã
-                string configsql = @"select value from [Newtouch_CIS]..[Sys_Config] where code = 'NursinLevelChargeItemMapp' and organizeId='"+ req.OrganizeId + "' and zt=1";//XemlàKhôngcụ thểcómởthuốccủaQuyền,nàybảngcủavalue 0làchưabậtnàyQuyền，1làbật
+                string configsql = @"select value from [Newtouch_CIS]..[Sys_Config] where code = 'NursinLevelChargeItemMapp' and organizeId='"+ req.OrganizeId + "' and zt=1";//XemlàKhôngcụ thểcómởthuốccủaQuyền,nàybảngcủavalue 0làchưabậtnàyQuyền,1làbật
                 var value = this.FirstOrDefault<string>(configsql);
                 var hljbList = value.Split(',').ToList();
 
-                //trướcXóa，lạiThêm mới
+                //trướcXóa,lạiThêm mới
                 db.Delete<InpatientBedChargeItemEntity>(a => a.BedCode == req.bedCode && a.OrganizeId == req.OrganizeId);
 
 				if (mxList != null && mxList.Count() > 0)
@@ -194,7 +194,7 @@ where czjl.createtime=@bysj
 		{
 			using (var db = new EFDbTransaction().BeginTrans())
 			{
-				//trướcHủy bỏ，lạiThêm mới
+				//trướcHủy bỏ,lạiThêm mới
 				var patDocsList = db.IQueryable<InpatientPatientDoctorEntity>().Where(p => p.zyh == req.zyh && p.OrganizeId == req.OrganizeId && p.zt == "1").ToList();
 				foreach (var item in patDocsList)
 				{
@@ -216,7 +216,7 @@ where czjl.createtime=@bysj
 
 					patDoc.Create();
 					db.Insert(patDoc);
-					//nếunếulàNhập việnBác sĩ，thìĐồng bộCập nhậtđếnThông tin bệnh nhânbảng
+					//nếunếulàNhập việnBác sĩ,thìĐồng bộCập nhậtđếnThông tin bệnh nhânbảng
 					if (patInfo != null && item.Type == Convert.ToInt32(EnumYslx.ZyDoc))
 					{
 						patInfo.ysgh = item.ysgh;
@@ -324,7 +324,7 @@ where czjl.createtime=@bysj
                     zybz = Convert.ToInt32(EnumZYBZ.Djz),
                     cyrq = patOutAreaVO.cqsj
                 };
-                //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
+                //Cập nhậtgiường ký tựTrạng thái(làKhôngchiếmdùng)
                 var apiRespCw = _hospInterfaceSyncDmnService.UpdateOccupyByCode(bedUsedEntity.BedCode, bedUsedEntity.WardCode, false, bedUsedEntity.OrganizeId, req.user);
 
                 //Cập nhậtBệnh nhânNhập việnTrạng thái
@@ -338,7 +338,7 @@ where czjl.createtime=@bysj
 						zyh = patOutAreaVO.zyh,
 						zybz = Convert.ToInt32(EnumZYBZ.Zq)
 					};
-                    //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
+                    //Cập nhậtgiường ký tựTrạng thái(làKhôngchiếmdùng)
                     _hospInterfaceSyncDmnService.UpdateOccupyByCode(bedUsedEntity.BedCode, bedUsedEntity.WardCode, true, bedUsedEntity.OrganizeId, req.user); 
 					//Cập nhậtBệnh nhânNhập việnTrạng thái
 					SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfoBackReq);
@@ -483,7 +483,7 @@ where czjl.createtime=@bysj
 						zyh = patOutAreaVO.zyh,
 						zybz = Convert.ToInt32(EnumZYBZ.Zq)
 					};
-                    //Cập nhậtgiường ký tựTrạng thái（làKhôngchiếmdùng）
+                    //Cập nhậtgiường ký tựTrạng thái(làKhôngchiếmdùng)
                     _hospInterfaceSyncDmnService.UpdateOccupyByCode(bedUsedEntity.BedCode, bedUsedEntity.WardCode, true, bedUsedEntity.OrganizeId, req.user);
                     //Cập nhậtBệnh nhânNhập việnTrạng thái
                     SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfoBackReq);
@@ -509,7 +509,7 @@ where czjl.createtime=@bysj
 			//var apiRespzd= SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RequestMsgDto>>("/api/patient/UpdateInpatientOutInfo", patInfoReq);
 			//if (apiRespzd.code != APIRequestHelper.ResponseResultCode.SUCCESS)
 			//{
-			//    return "F|gọigiao diệnthất bại：Cập nhậtXuất việnChẩn đoán";
+			//    return "F|gọigiao diệnthất bại:Cập nhậtXuất việnChẩn đoán";
 			//}
 			using (var db = new EFDbTransaction().BeginTrans())
 			{
@@ -727,7 +727,7 @@ where czjl.createtime=@bysj
 		//		}
 		//		catch (Exception ex)
 		//		{
-		//			return "F|Lưu thất bại：" + ex.Message;
+		//			return "F|Lưu thất bại:" + ex.Message;
 		//		}
 		//	}
 		//}

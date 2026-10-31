@@ -30,7 +30,7 @@ namespace Newtouch.HIS.Domain.VO
         public string gg { get; set; }
 
         /// <summary>
-        /// Số lượng（Đơn vị bộ phận）
+        /// Số lượng(Đơn vị bộ phận)
         /// </summary>
         public int sl { get; set; }
 
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Domain.VO
         public string dw { get; set; }
 
         /// <summary>
-        /// Đơn giá（Đơn vị bộ phận）
+        /// Đơn giá(Đơn vị bộ phận)
         /// </summary>
         public decimal dj { get; set; }
 

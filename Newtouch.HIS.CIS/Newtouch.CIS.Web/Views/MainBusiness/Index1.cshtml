@@ -3,15 +3,15 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
 
-    //Công tắc：Có mở khôngXét nghiệmKiểm tra
+    //Công tắc:Có mở khôngXét nghiệmKiểm tra
     var IsOpenJyJcSwitch = ViewBag.IsOpenJyJcSwitch as bool?;
-    //Công tắc：Ngoại trúCó mở khôngPhục hồi chức năngĐơn thuốc
+    //Công tắc:Ngoại trúCó mở khôngPhục hồi chức năngĐơn thuốc
     var isOpenKfcf = (ViewBag.ISOpenKfcf as bool?);
-    //Công tắc：Ngoại trúCó mở khôngHạng mục thông thườngĐơn thuốc
+    //Công tắc:Ngoại trúCó mở khôngHạng mục thông thườngĐơn thuốc
     var isOpenCgxmcf = (ViewBag.ISOpenCgxmcf as bool?);
 
     var iSOpenZycf = (ViewBag.ISOpenZycf as bool?);
-    //Công tắc：đặt hẹnđăng ký khám
+    //Công tắc:đặt hẹnđăng ký khám
     var isOpenBespeakRegister = (ViewBag.ISOpenBespeakRegister as bool?);
 }
 
@@ -107,7 +107,7 @@
 </div>
 
 <script>
-    //Công tắc：Có mở khôngdấu hiệu sinh tồn
+    //Công tắc:Có mở khôngdấu hiệu sinh tồn
     var IsVitalSignsSwitch = '@ViewBag.IsVitalSignsSwitch';
     //Đăng nhập ngườicủavị trí ký tự
     var IsNurse = '@ViewBag.IsNurse';
@@ -118,7 +118,7 @@
     }
 
     $(function () {
-        //show：CóKhônghiển thịhiệntabnội dungcủasự kiện
+        //show:CóKhônghiển thịhiệntabnội dungcủasự kiện
         $('a[data-toggle="tab"]').on('show.bs.tab', function (e) {
             var targetHref = $(e.target).attr('href');    //e.target  kíchsốngcủanhãntrang
             if (targetHref && targetHref.indexOf('linkbrlb') == -1) {
@@ -187,7 +187,7 @@
             }
         })
 
-        //shown：tabnội dunghiển thịhiệnsaucủasự kiện
+        //shown:tabnội dunghiển thịhiệnsaucủasự kiện
         $('a[data-toggle="tab"]').on('shown.bs.tab', function (e) {
             cfLeftFloatHide();
 

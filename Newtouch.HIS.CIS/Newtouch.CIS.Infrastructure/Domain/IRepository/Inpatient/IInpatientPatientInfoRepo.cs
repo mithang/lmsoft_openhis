@@ -8,13 +8,13 @@ namespace Newtouch.Domain.IRepository
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày：2018-06-28 13:27
-    /// Mô tả：Nhập việnThông tin bệnh nhân
+    /// Ngày:2018-06-28 13:27
+    /// Mô tả:Nhập việnThông tin bệnh nhân
     /// </summary>
     public interface IInpatientPatientInfoRepo : IRepositoryBase<InpatientPatientInfoEntity>
     {
         /// <summary>
-        /// Lưubảngphiếu（Thêm mới、Sửa）
+        /// Lưubảngphiếu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">thựcthểđối tượng</param>
         /// <param name="keyValue">Khóa chínhGiá trị</param>

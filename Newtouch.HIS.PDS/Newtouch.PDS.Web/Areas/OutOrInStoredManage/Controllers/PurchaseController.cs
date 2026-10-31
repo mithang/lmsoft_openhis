@@ -144,7 +144,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             return Success();
         }
         /// <summary>
-        /// Thay đổi trạng thái đơn mua hàng 1：Chưa duyệt 2：Duyệt đạt 3：Hủy bỏ
+        /// Thay đổi trạng thái đơn mua hàng 1:Chưa duyệt 2:Duyệt đạt 3:Hủy bỏ
         /// </summary>
         /// <param name="cgId"></param>
         /// <param name="ddzt"></param>

@@ -179,7 +179,7 @@ SELECT @@ROWCOUNT;
         }
 
         /// <summary>
-        /// Gửi phát thuốc theo đơn lĩnh Lấy đơn lĩnh làm nguyên tử，Kết quả chỉ có hai loại 1.Tất cả thành công 2.Tất cả thất bại   Không có trường hợp thành công một nửa 
+        /// Gửi phát thuốc theo đơn lĩnh Lấy đơn lĩnh làm nguyên tử,Kết quả chỉ có hai loại 1.Tất cả thành công 2.Tất cả thất bại   Không có trường hợp thành công một nửa 
         /// </summary>
         /// <param name="group">Thông tin phát thuốc của cùng một đơn lĩnh</param>
         /// <param name="source">Tất cả thông tin phát thuốc</param>

@@ -18,19 +18,19 @@ namespace Newtouch.HIS.Domain.IRepository
         List<SysOrganizeEntity> GetListByTopOrg(string topOrganizeId);
 
         /// <summary>
-        /// Lấy tất cả tổ chức hiệu lực thuộc tổ chức（top）
+        /// Lấy tất cả tổ chức hiệu lực thuộc tổ chức(top)
         /// </summary>
         /// <returns></returns>
         List<SysOrganizeEntity> GetValidListByTopOrg(string topOrganizeId);
 
         /// <summary>
-        /// Lấy tất cả tổ chức hiệu lực thuộc tổ chức（parent）
+        /// Lấy tất cả tổ chức hiệu lực thuộc tổ chức(parent)
         /// </summary>
         /// <returns></returns>
         List<SysOrganizeVO> GetValidListByParentOrg(string parentOrgId);
 
         /// <summary>
-        /// Lấy tất cả tổ chức thuộc tổ chức（parent）（Bao gồm cả vô hiệu）
+        /// Lấy tất cả tổ chức thuộc tổ chức(parent)(Bao gồm cả vô hiệu)
         /// </summary>
         /// <returns></returns>
         List<SysOrganizeVO> GetListByParentOrg(string parentOrgId);
@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Domain.IRepository
         List<SysOrganizeEntity> GetValidTopOrgList();
 
         /// <summary>
-        /// Gửi tạo mới、Cập nhật Thực thể
+        /// Gửi tạo mới,Cập nhật Thực thể
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>

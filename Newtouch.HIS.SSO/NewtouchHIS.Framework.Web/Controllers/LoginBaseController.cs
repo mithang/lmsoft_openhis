@@ -22,7 +22,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
             _sysUserVDmn = sysUserVDmn;
         }
         /// <summary>
-        /// overridekhi，vui lòng cuối cùngreturn base.Index();
+        /// overridekhi,vui lòng cuối cùngreturn base.Index();
         /// </summary>
         public virtual IActionResult Index()
         {
@@ -57,7 +57,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         /// xác minh tính đúng đắn của mã xác minh
         /// </summary>
         /// <param name="code"></param>
-        /// <returns>mã xác minh đúng trả vềtrue，nếu không thì trả vềfalse</returns>
+        /// <returns>mã xác minh đúng trả vềtrue,nếu không thì trả vềfalse</returns>
         [NonAction]
         public virtual bool CheckChkCode(string code)
         {

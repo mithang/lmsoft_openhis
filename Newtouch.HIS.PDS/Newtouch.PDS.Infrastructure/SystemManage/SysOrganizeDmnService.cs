@@ -15,7 +15,7 @@ namespace Newtouch.HIS.DomainServices
     {
         
         /// <summary>
-        /// Lấy loại tổ chức（Tập đoàn、Bệnh viện）
+        /// Lấy loại tổ chức(Tập đoàn,Bệnh viện)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -29,7 +29,7 @@ where a.Id = @orgId and (b.TopOrganizeId = @topOrgId or b.TopOrganizeId = '*')";
         }
 
         /// <summary>
-        /// Có chứa tổ chức cấp dưới không，Trả về nếu có tổ chức cấp dướitrue
+        /// Có chứa tổ chức cấp dưới không,Trả về nếu có tổ chức cấp dướitrue
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -40,7 +40,7 @@ where a.Id = @orgId and (b.TopOrganizeId = @topOrgId or b.TopOrganizeId = '*')";
         }
 
         /// <summary>
-        /// Lấy tất cả tổ chức hiệu lực thuộc tổ chức（parent）
+        /// Lấy tất cả tổ chức hiệu lực thuộc tổ chức(parent)
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeVEntity> GetValidListByParentOrg(string parentOrgId)

@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// Lấy cây nhân sự cơ sở Cấp 3（Cơ sở+Khoa+Nhân sự）
+        /// Lấy cây nhân sự cơ sở Cấp 3(Cơ sở+Khoa+Nhân sự)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Web.Controllers
                             staffTree.parentId = deptItem.Id;
                             staffTree.hasChildren = false;
                             staffTree.showcheck = true;
-                            staffTree.checkstate = 0;   //Gán từ bên ngoài，Thuận tiện lưu đệm
+                            staffTree.checkstate = 0;   //Gán từ bên ngoài,Thuận tiện lưu đệm
                             iitreeList.Add(staffTree);
                         }
                         #endregion
@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Web.Controllers
                         deptTree.text = deptItem.Name;
                         deptTree.value = deptItem.Code;
                         deptTree.parentId = deptItem.ParentId == null ? orgItem.Id : deptItem.ParentId;
-                        deptTree.isexpand = true;  //Mặc định không mở rộng，Quá nhiều người
+                        deptTree.isexpand = true;  //Mặc định không mở rộng,Quá nhiều người
                         deptTree.complete = true;
                         deptTree.showcheck = false;
                         deptTree.hasChildren = deptStaffData.Count > 0 || orgDetpData.Any(p => p.ParentId == deptItem.Id);
@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Web.Controllers
                         var thisParentNode = treeList.Where(p => p.id == treeItem.parentId).FirstOrDefault();
                         if (thisParentNode != null)
                         {
-                            thisParentNode.isexpand = true;  //Cấp dưới có được chọn，Ở đây nhất định mở rộng nó
+                            thisParentNode.isexpand = true;  //Cấp dưới có được chọn,Ở đây nhất định mở rộng nó
                         }
                     }
                 }
@@ -131,7 +131,7 @@ namespace Newtouch.HIS.Web.Controllers
                 while (count > 0)
                 {
                     count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-                    //Điều chỉnh lại cây Loại bỏ Không có cấp dưới（Cấp dưới vừa bị chuyển） lại Không hiển thịshowcheckcủa
+                    //Điều chỉnh lại cây Loại bỏ Không có cấp dưới(Cấp dưới vừa bị chuyển) lại Không hiển thịshowcheckcủa
                     treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
                 }
             }

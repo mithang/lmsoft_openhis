@@ -43,7 +43,7 @@ namespace Newtouch.Herp.DomainServices
         /// <param name="param"></param>
         /// <param name="alldjlx"></param>
         /// <param name="warehouseId">Kho hiện tại</param>
-        /// <param name="ope">Thao tác  query：Truy vấn  approval：Duyệt</param>
+        /// <param name="ope">Thao tác  query:Truy vấn  approval:Duyệt</param>
         /// <returns></returns>
         public IList<VCrkdjEntity> GetCrkdjMainList(Pagination pagination, CrkdjSearchParamDTO param, string[] alldjlx, string warehouseId, string ope = "")
         {

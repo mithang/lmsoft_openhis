@@ -123,7 +123,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// LấychờThực hiệnY lệnhBệnh nhâncây（góigồmvăn bảnY lệnh）
+        /// LấychờThực hiệnY lệnhBệnh nhâncây(góigồmvăn bảnY lệnh)
         /// </summary>
         /// <param name="staffId"></param>
         /// <param name="vzxsj"></param>
@@ -532,7 +532,7 @@ FROM(
             }
         }
         /// <summary>
-        /// khôngtínhphí、Khoachuẩn bị thuốcmởlậpY lệnhThực hiện
+        /// khôngtínhphí,Khoachuẩn bị thuốcmởlậpY lệnhThực hiện
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orderExeList"></param>
@@ -677,7 +677,7 @@ FROM(
                 var yzxhlistbindfee = string.Empty;
                 var zyhArr = orderExeList.Select(p => p.zyh).Distinct().ToArray();
                 zyhs = string.Join(",", zyhArr);
-                if (yzxz != null)//Thực hiệnTất cả/Dài hạn、Y lệnh tạm thời
+                if (yzxz != null)//Thực hiệnTất cả/Dài hạn,Y lệnh tạm thời
                 {
                     if (!string.IsNullOrWhiteSpace(zyhs) && yzxz != null)
                     {

@@ -12,8 +12,8 @@ namespace Newtouch.Repository
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày：2018-06-28 13:27
-    /// Mô tả：Nhập việntrảthuốcyêu cầukho
+    /// Ngày:2018-06-28 13:27
+    /// Mô tả:Nhập việntrảthuốcyêu cầukho
     /// </summary>
     public class InpatientMedicineReturnRepo : RepositoryBase<InpatientMedicineReturnEntity>, IInpatientMedicineReturnRepo
     {
@@ -28,7 +28,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// Lưubảngphiếu（Thêm mới、Sửa）
+        /// Lưubảngphiếu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">thựcthểđối tượng</param>
         /// <param name="keyValue">Khóa chínhGiá trị</param>

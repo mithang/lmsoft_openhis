@@ -7,14 +7,14 @@ using Newtouch.EMR.Domain.ValueObjects.MedicalRecord;
 namespace Newtouch.EMR.Domain.IRepository
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2018-09-05 11:34
-    /// Mô tả：Danh sách mẫu bệnh án
+    /// Người tạo:chl
+    /// Ngày:2018-09-05 11:34
+    /// Mô tả:Danh sách mẫu bệnh án
     /// </summary>
     public interface IBlmblbRepo : IRepositoryBase<BlmblbEntity>
     {
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

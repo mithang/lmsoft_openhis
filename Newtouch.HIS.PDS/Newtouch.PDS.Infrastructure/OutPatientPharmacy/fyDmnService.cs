@@ -420,7 +420,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Trả thuốc ngoại trú（mz_cfmxphKiểm tra）
+        /// Trả thuốc ngoại trú(mz_cfmxphKiểm tra)
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>

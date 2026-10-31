@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     {
         #region Phát thuốc
         /// <summary>
-        /// Chuẩn bị thuốc hoàn thành，Sửa trạng thái thực hiện y lệnh
+        /// Chuẩn bị thuốc hoàn thành,Sửa trạng thái thực hiện y lệnh
         /// </summary>
         /// <param name="tdrq"></param>
         /// <param name="zxId"></param>
@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region Trả thuốc
 
         /// <summary>
-        /// Lấy bảng chi tiết trả thuốc，Bảng y lệnh liên kếtID
+        /// Lấy bảng chi tiết trả thuốc,Bảng y lệnh liên kếtID
         /// </summary>
         /// <returns></returns>
         List<ModelZyTyYszyzIdInfoVO> YpTyyszyzidList();
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string DeleteYzxx(string yzId, string zxId, string organizeId, string userCode);
 
         /// <summary>
-        /// Lấy khu bệnh cần phát thuốc（Khử trùng lặp）
+        /// Lấy khu bệnh cần phát thuốc(Khử trùng lặp)
         /// </summary>
         /// <returns></returns>
         IList<ZYFYBQModelVO> GetFyBq(string orgId);
@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string ZYBQFYOperate(List<DispenseBQRYXXIndexVO> list, string zyyf);
 
         /// <summary>
-        /// Phát nội trú、Truy vấn trả thuốc
+        /// Phát nội trú,Truy vấn trả thuốc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>

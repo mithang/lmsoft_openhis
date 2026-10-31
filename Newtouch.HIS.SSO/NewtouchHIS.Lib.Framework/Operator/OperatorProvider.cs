@@ -13,7 +13,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
     public class OperatorProvider
     {
         /// <summary>
-        /// ứng dụngId（trongconfigcấu hình AppId）
+        /// ứng dụngId(trongconfigcấu hình AppId)
         /// </summary>
         public static string _appId { get; private set; }
 
@@ -21,7 +21,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
         private static string _loginUserKeyPart1 = "newtouch_loginuserkey_2016";
 
         /// <summary>
-        /// liên kếtkey，keycó thể đổi nhómModel
+        /// liên kếtkey,keycó thể đổi nhómModel
         /// </summary>
         private static string _loginUserKey = _loginUserKeyPart1;
 
@@ -84,9 +84,9 @@ namespace NewtouchHIS.Lib.Framework.Operator
         }
 
         /// <summary>
-        /// lấy danh tính đăng nhập hiện tại（loại ngoại lệ：SIDELINED-đã bị đẩy ra）
+        /// lấy danh tính đăng nhập hiện tại(loại ngoại lệ:SIDELINED-đã bị đẩy ra)
         /// </summary>
-        /// <param name="exception">loại ngoại lệ：SIDELINED-đã bị đẩy ra</param>
+        /// <param name="exception">loại ngoại lệ:SIDELINED-đã bị đẩy ra</param>
         /// <param name="withInnerCatch">có không ném ngoại lệ ra ngoài hay không</param>
         /// <returns></returns>
         public static OperatorModel? GetCurrent(ref string? exception, bool withInnerCatch = false)
@@ -112,7 +112,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
         /// <summary>
         /// lấy danh tính đăng nhập hiện tại
         /// </summary>
-        /// <param name="exception">loại ngoại lệ：SIDELINED-đã bị đẩy ra</param>
+        /// <param name="exception">loại ngoại lệ:SIDELINED-đã bị đẩy ra</param>
         /// <returns></returns>
         private static OperatorModel? GetCurrent(ref string? exception)
         {
@@ -175,7 +175,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
                 }
             }
 
-            //nếu lấy được，giải tuần tự hóa thành đối tượng
+            //nếu lấy được,giải tuần tự hóa thành đối tượng
             operatorModel = JsonConvert.DeserializeObject<OperatorModel>(encryptedResult); // encryptedResult.ToObject<OperatorModel>();
 
             if (operatorModel != null &&
@@ -229,7 +229,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
                 return null;
             }
 
-            //nếu lấy được，giải tuần tự hóa thành đối tượng
+            //nếu lấy được,giải tuần tự hóa thành đối tượng
             var operatorModel = JsonConvert.DeserializeObject<OperatorModel>(encryptedResult);// encryptedResult.ToObject<OperatorModel>();
 
             if (operatorModel == null || string.IsNullOrWhiteSpace(operatorModel.UserId) &&
@@ -267,7 +267,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
             {
                 //đã vô hiệu hóa đăng nhập nhiều nơi
 
-                //ứng dụng+UserId+tài khoản đăng nhập duy nhất người dùng đó của hệ thống，những cái đã đăng nhậpTokenList
+                //ứng dụng+UserId+tài khoản đăng nhập duy nhất người dùng đó của hệ thống,những cái đã đăng nhậpTokenList
                 var keyUserTokenList = string.Format("list:Token_WithUser_{0}_{1}_{2}"
                     , _appId, operatorModel.UserId, operatorModel.UserCode);
                 var existTokenList = RedisHelper.GetList<string>(keyUserTokenList)
@@ -276,7 +276,7 @@ namespace NewtouchHIS.Lib.Framework.Operator
                 if (existTokenList != null && existTokenList.Count >= limitCount) //có thể kiểm soát số lượng trạng thái đăng nhập đồng thời
                 {
                     var availablyOnlineCount = 0;    //cùng một người dùng máy khách đăng nhập trực tuyến có hiệu lực đã thống kê được
-                    existTokenList.Reverse();   //đảo ngược trước đã，khiến người đăng nhập sau lên phía trước
+                    existTokenList.Reverse();   //đảo ngược trước đã,khiến người đăng nhập sau lên phía trước
                     //đẩy ra những cái thừa
                     for (var i = 0; i < existTokenList.Count; i++)
                     {
@@ -310,14 +310,14 @@ namespace NewtouchHIS.Lib.Framework.Operator
                     }
                     if (existTokenList.Count > limitCount + 20)
                     {
-                        //sau khi bị đẩy ra không cóGetCurrent、thao tác thoát。 dẫn đếnexistTokenListkhông thểRemoveAt
-                        //existTokenList.RemoveRange(5, limitCount + 20 - 5);  //xóa những cái phía trước（lần đăng nhập mới nhất bịreverseđã lên phía trước）
-                        existTokenList.RemoveRange(limitCount, 20 - 1);  //xóa những cái phía trước（lần đăng nhập mới nhất bịreverseđã lên phía trước）
+                        //sau khi bị đẩy ra không cóGetCurrent,thao tác thoát. dẫn đếnexistTokenListkhông thểRemoveAt
+                        //existTokenList.RemoveRange(5, limitCount + 20 - 5);  //xóa những cái phía trước(lần đăng nhập mới nhất bịreverseđã lên phía trước)
+                        existTokenList.RemoveRange(limitCount, 20 - 1);  //xóa những cái phía trước(lần đăng nhập mới nhất bịreverseđã lên phía trước)
                     }
                 }
                 if (existTokenList != null && existTokenList.Count > 0)
                 {
-                    existTokenList.Reverse();   //đảo ngược lại，khiến người đăng nhập sau quay lạilistphía sau
+                    existTokenList.Reverse();   //đảo ngược lại,khiến người đăng nhập sau quay lạilistphía sau
                     existTokenList.Add(token);
                     RedisHelper.SetList<string>(keyUserTokenList, existTokenList);
                 }

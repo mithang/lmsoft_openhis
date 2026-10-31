@@ -55,12 +55,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string czh { get; set; }
 
         /// <summary>
-        /// Chi tiết đơn ngoại trúID，mz_cfmx.Id
+        /// Chi tiết đơn ngoại trúID,mz_cfmx.Id
         /// </summary>
         public long? cfmxId { get; set; }
 
         /// <summary>
-        /// Trạng thái：1-Hiệu lực ；0-Không hiệu lực
+        /// Trạng thái:1-Hiệu lực ;0-Không hiệu lực
         /// </summary>
         public string zt { get; set; }
 
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// Trạng thái về nhà：1-Đã xếp lên kệ；0-Chưa xếp lên kệ
+        /// Trạng thái về nhà:1-Đã xếp lên kệ;0-Chưa xếp lên kệ
         /// </summary>
         public string gjzt { get; set; }
 

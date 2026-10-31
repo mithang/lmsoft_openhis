@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Domain.VO
         public string ksmc { get; set; }
 
         /// <summary>
-        /// 0：Chưa xếp；1：Đã xếp；2：Đã phát；3：Đã trả
+        /// 0:Chưa xếp;1:Đã xếp;2:Đã phát;3:Đã trả
         /// </summary>
         public string fybz { get; set; }
 

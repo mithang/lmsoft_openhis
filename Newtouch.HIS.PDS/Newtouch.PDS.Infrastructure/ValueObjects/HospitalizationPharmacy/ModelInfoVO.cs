@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string fyrq { get; set; }//Ngày phát thuốc
         public string rymc { get; set; }//Tên nhân sự
         public string Pcmc { get; set; }// PC Tên
-        public string fybz { get; set; }//Trạng thái phát thuốc 2 là đã phát，1là chưa phát
+        public string fybz { get; set; }//Trạng thái phát thuốc 2 là đã phát,1là chưa phát
         public string OrganizeId { get; set; }//Tổ chức
         public string yppc { get; set; }//Lô
         public string ypph { get; set; }//Số lô
@@ -72,7 +72,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
 
 
     /// <summary>
-    /// Lấy đơn giá cần tính phát thuốc，Số tiền，
+    /// Lấy đơn giá cần tính phát thuốc,Số tiền,
     /// </summary>
     public class ModelBQBRYZZXJEInfoVO
     {
@@ -83,7 +83,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     }
 
     /// <summary>
-    /// Trả thuốc nội trú，Y lệnh trạm bác sĩID
+    /// Trả thuốc nội trú,Y lệnh trạm bác sĩID
     /// </summary>
     public class ModelZyTyYszyzIdInfoVO
     {
@@ -93,7 +93,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     }
 
     /// <summary>
-    /// Lưu bảng chi tiết trả thuốc，Lô
+    /// Lưu bảng chi tiết trả thuốc,Lô
     /// </summary>
     public class ModelBQBRYZZXTYInfoVO
     {
@@ -163,8 +163,8 @@ namespace Newtouch.HIS.Domain.ValueObjects
 
         /// <summary>
         /// Có chia lẻ không
-        /// 1： Có
-        /// 2： Không
+        /// 1: Có
+        /// 2: Không
         /// </summary>
         public int? sfcl { get; set; }
 

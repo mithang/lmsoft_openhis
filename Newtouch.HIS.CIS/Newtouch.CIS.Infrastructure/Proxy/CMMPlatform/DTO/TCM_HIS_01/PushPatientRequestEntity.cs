@@ -24,7 +24,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
         private string _id = "";
 
         /// <summary>
-        ///Bệnh nhânSố hiệu（mộtBệnh nhântương ứngmộtSố hiệu，vàvàCMND/CCCDsốmãmộtmộttương ứng）
+        ///Bệnh nhânSố hiệu(mộtBệnh nhântương ứngmộtSố hiệu,vàvàCMND/CCCDsốmãmộtmộttương ứng)
         /// bắt buộc
         /// </summary>
         public string id
@@ -90,7 +90,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _cardType = "";
         /// <summary>
-        /// chứngmụcLoại（Bình thườngchỉcư dânCMND/CCCDsố）
+        /// chứngmụcLoại(Bình thườngchỉcư dânCMND/CCCDsố)
         /// bắt buộc
         /// </summary>
         public string cardType
@@ -214,7 +214,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _areaCode = "";
         /// <summary>
-        /// nhàĐịa chỉ nhàkhuhuyệnMã（bảogiữvàmâybìnhbàncủaPhân vùng hành chínhMãnhất quán）
+        /// nhàĐịa chỉ nhàkhuhuyệnMã(bảogiữvàmâybìnhbàncủaPhân vùng hành chínhMãnhất quán)
         /// bắt buộc
         /// </summary>
         public string areaCode
@@ -387,7 +387,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
         public string jgdm { get; set; }
 
         /// <summary>
-        /// nhàĐịa chỉ nhàkhuhuyệnMã（bảogiữvàmâybìnhbàncủaPhân vùng hành chínhMãnhất quán）
+        /// nhàĐịa chỉ nhàkhuhuyệnMã(bảogiữvàmâybìnhbàncủaPhân vùng hành chínhMãnhất quán)
         /// </summary>
         public string areaCode { get; set; }
     }

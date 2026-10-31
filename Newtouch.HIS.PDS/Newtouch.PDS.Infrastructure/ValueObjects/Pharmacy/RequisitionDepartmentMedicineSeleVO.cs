@@ -21,17 +21,17 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string ypdlmc { get; set; }
 
         /// <summary>
-        /// Số lượng có thể lĩnhandĐơn vị 5hộp6chi，Chỉ hiển thị để dùng
+        /// Số lượng có thể lĩnhandĐơn vị 5hộp6chi,Chỉ hiển thị để dùng
         /// </summary>
         public string Klslanddw { get; set; }
         
         /// <summary>
-        /// Số lượng tồn kho（XT_YP_KCXXK.Kcsl）
+        /// Số lượng tồn kho(XT_YP_KCXXK.Kcsl)
         /// </summary>
         public int Kcsl { get; set; }
 
         /// <summary>
-        /// Đơn vị Số lượng tồn kho（Tương ứng XT_YP_KCXXK.Kcsl）
+        /// Đơn vị Số lượng tồn kho(Tương ứng XT_YP_KCXXK.Kcsl)
         /// </summary>
         public string Kcsldw { get; set; }
 
@@ -56,7 +56,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public decimal pfj { get; set; }
 
         /// <summary>
-        /// Hệ số chuyển đổi kho thuốc（Dùng để tính giá）
+        /// Hệ số chuyển đổi kho thuốc(Dùng để tính giá)
         /// </summary>
         public decimal ykzhyz { get; set; }
 

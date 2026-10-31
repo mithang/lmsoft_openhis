@@ -16,7 +16,7 @@ namespace Newtouch.Herp.Repository
         /// Sửa số lượng đã phát
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="sl">Số lượng đơn vị khoa phòng，với bảng kf_applyOrderDetail.zhyz*sl=Số lượng đơn vị nhỏ nhất</param>
+        /// <param name="sl">Số lượng đơn vị khoa phòng,với bảng kf_applyOrderDetail.zhyz*sl=Số lượng đơn vị nhỏ nhất</param>
         /// <returns></returns>
         // PORT NOTE: the original SQL referenced @userCode without supplying
         // it (and the second method's SET clause used the literal column `sl`
@@ -34,10 +34,10 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// Sửa số lượng đã phát，và trả về bản ghi thay đổi
+        /// Sửa số lượng đã phát,và trả về bản ghi thay đổi
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="sl">Số lượng đơn vị khoa phòng，với bảng kf_applyOrderDetail.zhyz*sl=Số lượng đơn vị nhỏ nhất</param>
+        /// <param name="sl">Số lượng đơn vị khoa phòng,với bảng kf_applyOrderDetail.zhyz*sl=Số lượng đơn vị nhỏ nhất</param>
         /// <returns></returns>
         public KfApplyOrderDetailEntity UpdateYfslAndSelectChangeRecord(long id, int sl)
         {

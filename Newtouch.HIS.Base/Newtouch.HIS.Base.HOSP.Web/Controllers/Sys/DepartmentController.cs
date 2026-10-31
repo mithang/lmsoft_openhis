@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             this._sysDepartmentWardRelationRepo = sysDepartmentWardRelationRepo;
         }
 
-        //Tổ chức（Bệnh viện） Khoa Thả xuống Nguồn dữ liệu
+        //Tổ chức(Bệnh viện) Khoa Thả xuống Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetTreeSelectJson(string organizeId, string treeidFieldName = "Code")
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// Khi sửa thông tin，Mang thông tin sang trang mới
+        /// Khi sửa thông tin,Mang thông tin sang trang mới
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

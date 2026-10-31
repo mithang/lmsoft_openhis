@@ -122,7 +122,7 @@ END CATCH
 
 
         /// <summary>
-        /// Đặt trước tài nguyên ngoại trú（Đóng băng tồn kho，Tạo chi tiết xếp thuốc）
+        /// Đặt trước tài nguyên ngoại trú(Đóng băng tồn kho,Tạo chi tiết xếp thuốc)
         /// </summary>
         public const string mz_yp_book_v2 = @"
 DECLARE @resultMsg VARCHAR(500);
@@ -290,7 +290,7 @@ SELECT @resultMsg resultMsg;
         #region Hủy đặt trước ngoại trú Giải đông
 
         /// <summary>
-        /// Hủy đặt trước ngoại trú Giải đông （Bản rút gọn）
+        /// Hủy đặt trước ngoại trú Giải đông (Bản rút gọn)
         /// </summary>
         public const string mz_yp_book_cancel_simplify = @"
 IF EXISTS(SELECT 1 FROM tempdb..sysobjects WHERE id=OBJECT_ID(N'tempdb..#mxph') AND type='U')
@@ -944,7 +944,7 @@ SELECT @resultMsg resultMsg
 ";
 
         /// <summary>
-        /// Hủy đóng băng thuốc nội trú，và xóa vật lý thông tin y lệnh（Thận trọng khi dùng）
+        /// Hủy đóng băng thuốc nội trú,và xóa vật lý thông tin y lệnh(Thận trọng khi dùng)
         /// </summary>
         public const string zy_yp_cancelForzen_deleteData = @"
 DECLARE @resultMsg VARCHAR(500);

@@ -47,7 +47,7 @@ namespace Newtouch.HIS.DomainServices
         #region Chuẩn bị thuốc khu bệnh
 
         /// <summary>
-        /// Thực hiện thao tác chuẩn bị thuốc gọi thủ tục lưu trữ （Nếu số lượng thuốc thực hiện y lệnh lớn hơn0 Dữ liệu và đã lấy được，Trực tiếp thực hiện thao tác chuẩn bị thuốc）
+        /// Thực hiện thao tác chuẩn bị thuốc gọi thủ tục lưu trữ (Nếu số lượng thuốc thực hiện y lệnh lớn hơn0 Dữ liệu và đã lấy được,Trực tiếp thực hiện thao tác chuẩn bị thuốc)
         /// </summary>
         /// <param name="zxId"></param>
         /// <param name="tdrq"></param>
@@ -73,7 +73,7 @@ namespace Newtouch.HIS.DomainServices
             sqlParList.Add(new SugarParameter("@as_fkcbz", "0"));//Cờ tồn kho âm 0 Không dùng tồn kho âm 1Sử dụng  
             PdsDb.GetConnection().Ado.ExecuteCommand(" Exec YP_XT_OP_PY @ai_nm,@ai_mxnm,@as_yp,"
                + "@as_yjbm,@adc_sl,@ai_cls,@OrganizeId,@user_code,@adt_tdrq,@yzzxid,@as_err out,@as_fkcbz", sqlParList.ToArray());
-            if (outpar.Value.ToString().Trim() == "" || outpar.Value.ToString().Trim() == "1")// Thủ tục lưu trữ trả về 1 là thực hiện thành công。
+            if (outpar.Value.ToString().Trim() == "" || outpar.Value.ToString().Trim() == "1")// Thủ tục lưu trữ trả về 1 là thực hiện thành công.
             {
                 return "1";
             }
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Khi thực hiện xếp thuốc thì thao tác trả thuốc gọi thủ tục lưu trữ（Nếu số lượng thuốc thực hiện y lệnh nhỏ hơn hoặc bằng0  Thực hiện thao tác trả thuốc）
+        /// Khi thực hiện xếp thuốc thì thao tác trả thuốc gọi thủ tục lưu trữ(Nếu số lượng thuốc thực hiện y lệnh nhỏ hơn hoặc bằng0  Thực hiện thao tác trả thuốc)
         /// </summary>
         /// <param name="zxId"></param>
         /// <param name="tdrq"></param>
@@ -105,7 +105,7 @@ namespace Newtouch.HIS.DomainServices
             sqlParList.Add(new SugarParameter("@a_fkcbz", "0"));//Cờ tồn kho âm 0 Không dùng tồn kho âm 1Sử dụng 
             sqlParList.Add(outpar);// Thông báo lỗi
             PdsDb.GetConnection().Ado.ExecuteCommand("Exec YP_XT_OP_BQPY @a_yzId, @a_yp,@adt_tdrq, @a_yjbm,@a_sl,@a_cls,@a_fkcbz, @a_err out ", sqlParList.ToArray());
-            if (outpar.ToString().Trim() == "" || outpar.ToString().Trim() == "1")// Thủ tục lưu trữ trả về 1 là thực hiện thành công。
+            if (outpar.ToString().Trim() == "" || outpar.ToString().Trim() == "1")// Thủ tục lưu trữ trả về 1 là thực hiện thành công.
             {
                 return "1";
             }
@@ -351,17 +351,17 @@ namespace Newtouch.HIS.DomainServices
             }
         }
 
-        //Chuẩn bị thuốc/Phát thuốc Hoàn thành，Sửa trạng thái thực hiện y lệnh
+        //Chuẩn bị thuốc/Phát thuốc Hoàn thành,Sửa trạng thái thực hiện y lệnh
         public string UPBQPYyzzxZT(string tdrq, string zxId, string fybz, string ypdj, string ypje, string zfbl, string zfxz)
         {
-            //fybz 0：Chưa chuẩn bị thuốc，1：Đã chuẩn bị thuốc ，2：Đã phát thuốc
+            //fybz 0:Chưa chuẩn bị thuốc,1:Đã chuẩn bị thuốc ,2:Đã phát thuốc
             var reqObj = new
             {//Sửa bảng thực hiện y lệnh Trạng thái ghi chú phát thuốc
                 pyry = OperatorProvider.GetCurrent().UserCode,
                 pyrq = "",
                 tdrq = tdrq,
                 zxId = zxId,
-                fybz = fybz,// Sửa thành 1 là trạng thái chuẩn bị thuốc，2 là trạng thái phát thuốc
+                fybz = fybz,// Sửa thành 1 là trạng thái chuẩn bị thuốc,2 là trạng thái phát thuốc
                 ypdj = ypdj,
                 ypje = ypje,
                 zfbl = zfbl,
@@ -490,7 +490,7 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
         #region  Lấy thông tin dữ liệu có thể thực hiện thao tác trả thuốc bằng cách tra chuỗi bảng chi tiết trả thuốc và bảng số lô y lệnh
 
         /// <summary>
-        /// Lấy bảng chi tiết trả thuốc，Bảng y lệnh liên kếtID
+        /// Lấy bảng chi tiết trả thuốc,Bảng y lệnh liên kếtID
         /// </summary>
         /// <returns></returns>
         public List<ModelZyTyYszyzIdInfoVO> YpTyyszyzidList()
@@ -541,7 +541,7 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
         /// Trước khi trả thuốc kiểm tra có phù hợp điều kiện không
         /// </summary>
         /// <param name="list"></param>
-        /// <returns>0:Không có thông tin phát thuốc，1：Có thể trả thuốc，2：Không xin trả thuốc，3：Đã trả rồi</returns>
+        /// <returns>0:Không có thông tin phát thuốc,1:Có thể trả thuốc,2:Không xin trả thuốc,3:Đã trả rồi</returns>
         public int IsTYHasOperated(List<ModelBQBRYZZXTYInfoVO> list)
         {
             StringBuilder strSql = new StringBuilder("select fybz,sqtybz from NewtouchHIS_PDS.dbo.zy_ypyzxx");
@@ -709,7 +709,7 @@ AND yz.OrganizeId=@OrganizeId
 
         #region Phát thuốc nội trú
         /// <summary>
-        /// Lấy khu bệnh cần phát thuốc（Khử trùng lặp）
+        /// Lấy khu bệnh cần phát thuốc(Khử trùng lặp)
         /// </summary>
         /// <returns></returns>
         public IList<ZYFYBQModelVO> GetFyBq(string orgId)
@@ -1105,7 +1105,7 @@ WHERE rdb.applyNo=@applyNo
         #region  Nội trú phát/trả/Tất cả Truy vấn thuốc
 
         /// <summary>
-        /// Phát nội trú、Danh sách truy vấn trả thuốc
+        /// Phát nội trú,Danh sách truy vấn trả thuốc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>

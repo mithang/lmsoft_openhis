@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Application.Interface
         /// <summary>
         /// Truy vấn thuốc của bộ phận hiện tại(Nhập kho)
         /// </summary>
-        /// <param name="keyword">ypmc、py、spm、ypCode</param>
+        /// <param name="keyword">ypmc,py,spm,ypCode</param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
         List<DepartmentMedicineVO> SelectDepartmentMedicineList(string keyword, string yfbmCode, string organizeId);
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Application.Interface
         /// <summary>
         /// Truy vấn thuốc của bộ phận hiện tại(Xuất kho)
         /// </summary>
-        /// <param name="keyword">ypmc、py、spm、ypCode</param>
+        /// <param name="keyword">ypmc,py,spm,ypCode</param>
         /// <param name="fph"></param>
         /// <param name="gyscode"></param>
         /// <returns></returns>

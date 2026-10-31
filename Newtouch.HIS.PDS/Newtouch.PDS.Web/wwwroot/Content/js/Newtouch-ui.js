@@ -318,7 +318,7 @@ $.fn.newtouchFloatingSelector = function (options) {
                         godbclick = options.itemdbclickhandleBefore($(this));    //Nhấp đúp một dòng Trước khi xử lý
                     }
                     if (!(godbclick === false)) {
-                        options.itemdbclickhandler($(this), options.$this); //Ai kích hoạt，Trả về cho trang
+                        options.itemdbclickhandler($(this), options.$this); //Ai kích hoạt,Trả về cho trang
                     }
                     if (options.isinputchangetriggered) {
                         options.focusfromdbclickitem = true; options.$this.trigger('focus');

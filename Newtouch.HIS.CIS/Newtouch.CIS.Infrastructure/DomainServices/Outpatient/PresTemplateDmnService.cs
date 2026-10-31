@@ -166,15 +166,15 @@ WHERE mbmx.OrganizeId = @orgId
                     mbObj.Modify();
 
                     var dbMbObj = db.IQueryable<PresTemplateEntity>(p => p.mbId == mbObj.mbId).FirstOrDefault();
-                    mbObj.tieshu = dbMbObj.tieshu;  //bảogiữdánsố、sắc hộCờ、Đơn thuốcCách dùng
+                    mbObj.tieshu = dbMbObj.tieshu;  //bảogiữdánsố,sắc hộCờ,Đơn thuốcCách dùng
                     mbObj.djbz = dbMbObj.djbz;
                     mbObj.cfyf = dbMbObj.cfyf;
-                    //đâynếunếulàThuốc Đông yĐơn thuốc，Số lượngkhôngCập nhậtcũngkhôngquan hệ，vìdẫndùngkhisẽ khôngháidùng
+                    //đâynếunếulàThuốc Đông yĐơn thuốc,Số lượngkhôngCập nhậtcũngkhôngquan hệ,vìdẫndùngkhisẽ khôngháidùng
                     db.DetacheEntity(dbMbObj);
 
                     db.Update(mbObj);
 
-                    db.Delete<PresTemplateDetailEntity>(a => a.mbId == mbObj.mbId && a.OrganizeId == mbObj.OrganizeId); //trướctoànxóa，lạiThêm mới
+                    db.Delete<PresTemplateDetailEntity>(a => a.mbId == mbObj.mbId && a.OrganizeId == mbObj.OrganizeId); //trướctoànxóa,lạiThêm mới
                 }
                 else
                 {

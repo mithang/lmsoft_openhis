@@ -66,12 +66,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string slStr { get; set; }
 
         /// <summary>
-        /// Uống、Truyền tĩnh mạch...
+        /// Uống,Truyền tĩnh mạch...
         /// </summary>
         public string zlff { get; set; }
 
         /// <summary>
-        /// Thời gian thực hiện：04,06,08...
+        /// Thời gian thực hiện:04,06,08...
         /// </summary>
         public string sjap { get; set; }
 
@@ -116,7 +116,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string fyyf { get; set; }
 
         /// <summary>
-        /// 1：Tạm thời；2：Dài hạn
+        /// 1:Tạm thời;2:Dài hạn
         /// </summary>
         public string yzxzmc { get; set; }
 
@@ -171,7 +171,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string cw { get; set; }
 
         /// <summary>
-        /// Cờ phát thuốc  0：Chưa phát；1：Đã xếp；2：Đã phát；3：Đã trả
+        /// Cờ phát thuốc  0:Chưa phát;1:Đã xếp;2:Đã phát;3:Đã trả
         /// </summary>
         public string fybz { get; set; }
 
@@ -358,7 +358,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string yldw { get; set; }
 
         /// <summary>
-        /// Cờ phát thuốc  0：Chưa phát；1：Đã xếp；2：Đã phát；3：Đã trả
+        /// Cờ phát thuốc  0:Chưa phát;1:Đã xếp;2:Đã phát;3:Đã trả
         /// </summary>
         public string fybz { get; set; }
     }
@@ -490,7 +490,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public int tysl { get; set; }
 
         /// <summary>
-        /// Số lượng xin trả thuốc（kèm đơn vị）  
+        /// Số lượng xin trả thuốc(kèm đơn vị)  
         /// </summary>
         public string tyslStr { get; set; }
 

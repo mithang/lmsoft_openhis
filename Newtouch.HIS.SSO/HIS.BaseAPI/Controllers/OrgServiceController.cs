@@ -32,7 +32,7 @@ namespace HIS.BaseAPI.Controllers
             _sysFailedCodeMessageMappDmnService = sysFailedCodeMessageMappDmnService;
         }
         /// <summary>
-        /// danh sách tổ chức（Toporganizethuộc về）
+        /// danh sách tổ chức(Toporganizethuộc về)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

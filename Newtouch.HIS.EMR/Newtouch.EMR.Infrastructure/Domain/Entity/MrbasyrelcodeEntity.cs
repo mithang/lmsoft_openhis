@@ -4,9 +4,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2020-03-13 11:29
-    /// Mô tả：Bản ghi phụ trợ trang đầu bệnh án
+    /// Người tạo:chl
+    /// Ngày:2020-03-13 11:29
+    /// Mô tả:Bản ghi phụ trợ trang đầu bệnh án
     /// </summary>
     [SugarTable("mr_basy_rel_code")]
     public class MrbasyrelcodeEntity 

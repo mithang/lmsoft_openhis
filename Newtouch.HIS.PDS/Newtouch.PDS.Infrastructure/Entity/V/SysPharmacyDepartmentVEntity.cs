@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string ksCode { get; set; }
 
         /// <summary>
-        /// Trạng thái 0：Không hiệu lực  1：Hiệu lực
+        /// Trạng thái 0:Không hiệu lực  1:Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

@@ -32,7 +32,7 @@
         activeTab: function () {
             var currentId = $(this).data('id');
             if (currentId != "") {
-                var dataId = $('a.menuItem[href="' + currentId + '"]').attr('data-id'); //Giống nhauUrlcủaModule？
+                var dataId = $('a.menuItem[href="' + currentId + '"]').attr('data-id'); //Giống nhauUrlcủaModule?
                 if (dataId && dataId != "") {
                     top.$.cookie('Newtouch_currentmoduleid', dataId, { path: "/" });
                 }
@@ -62,7 +62,7 @@
                 if ($(this).parents('.menuTab').next('.menuTab').size()) {
                     var activeId = $(this).parents('.menuTab').next('.menuTab:eq(0)').data('id');
                     if (activeId != "") {
-                        var dataId = $('a.menuItem[href="' + activeId + '"]').attr('data-id'); //Giống nhauUrlcủaModule？
+                        var dataId = $('a.menuItem[href="' + activeId + '"]').attr('data-id'); //Giống nhauUrlcủaModule?
                         if (dataId && dataId != "") {
                             top.$.cookie('Newtouch_currentmoduleid', dataId, { path: "/" });
                         }
@@ -91,7 +91,7 @@
                 if ($(this).parents('.menuTab').prev('.menuTab').size()) {
                     var activeId = $(this).parents('.menuTab').prev('.menuTab:last').data('id');
                     if (activeId != "") {
-                        var dataId = $('a.menuItem[href="' + activeId + '"]').attr('data-id'); //Giống nhauUrlcủaModule？
+                        var dataId = $('a.menuItem[href="' + activeId + '"]').attr('data-id'); //Giống nhauUrlcủaModule?
                         if (dataId && dataId != "") {
                             top.$.cookie('Newtouch_currentmoduleid', dataId, { path: "/" });
                         }

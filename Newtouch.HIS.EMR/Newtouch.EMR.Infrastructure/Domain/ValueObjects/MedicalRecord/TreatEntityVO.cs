@@ -131,17 +131,17 @@ namespace Newtouch.EMR.Domain.ValueObjects
         public string jzks { get; set; }
 
         /// <summary>
-        /// Liên quanbaseBảng nhân viên trong kho（Bác sĩ khám cuối cùng）
+        /// Liên quanbaseBảng nhân viên trong kho(Bác sĩ khám cuối cùng)
         /// </summary>
         public string jzys { get; set; }
 
         /// <summary>
-        /// （Cuối cùng）Tên bác sĩ khám
+        /// (Cuối cùng)Tên bác sĩ khám
         /// </summary>
         public string jzysmc { get; set; }
 
         /// <summary>
-        /// Liệt kê 1 Chưa khám 2 Đang khám 3 Đã khám （dùng để khôi phục bản ghi kết thúc khám）
+        /// Liệt kê 1 Chưa khám 2 Đang khám 3 Đã khám (dùng để khôi phục bản ghi kết thúc khám)
         /// </summary>
         public int jzzt { get; set; }
 
@@ -173,7 +173,7 @@ namespace Newtouch.EMR.Domain.ValueObjects
         public string brxzCode { get; set; }
 
         /// <summary>
-        /// Số thanh toán bảo hiểm y tế（bảo hiểm y tế trả về）
+        /// Số thanh toán bảo hiểm y tế(bảo hiểm y tế trả về)
         /// </summary>
         public string ybjsh { get; set; }
         /// <summary>

@@ -166,7 +166,7 @@
 				$("#librlb").hide();
 				$("#linbl").hide();
 				$("#linlsjz").show();
-				//console.log("bản lầnnhấp đúpSố bệnh án：", blh);
+				//console.log("bản lầnnhấp đúpSố bệnh án:", blh);
 				
 				break;
 			default:
@@ -182,7 +182,7 @@
 			$.modalAlert("Vui lòng chọnmột dòngBệnh nhânThông tin", 'warning');
 			return;
 		}
-		//$.modalMsg("chọnBệnh nhâncủaSố khám ngoại trúlà：" + selRowData.mzh, 'warning');
+		//$.modalMsg("chọnBệnh nhâncủaSố khám ngoại trúlà:" + selRowData.mzh, 'warning');
 		mzh = selRowData.mzh;//Hồ sơChi tiếtthông tinSử dụng
 		blh = selRowData.blh;//Lịch sửHồ sơthông tinSử dụng
 		blxqinfo();//tảiHồ sơChi tiếtthông tin
@@ -232,7 +232,7 @@
 			onSelectRow: function (rowid) {
 				var rowdata = $("#gridListls").getRowData(rowid);
 				if (rowdata) {
-					//console.log("Đã chọnKhám bệnhID：", rowdata.jzId);
+					//console.log("Đã chọnKhám bệnhID:", rowdata.jzId);
 					var jzid = rowdata.jzId;
 					$('#gridListlscfmx').jqGrid("clearGridData");//Xóa trắng chi tiết trước
 					$("#gridListlscfmx").jqGrid('setGridParam', {

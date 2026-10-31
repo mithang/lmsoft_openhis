@@ -118,22 +118,22 @@ namespace Newtouch.Herp.Domain.DTO.InputDto
         public string remark { get; set; }
 
         /// <summary>
-        /// Đơn vị Đơn vị giá，với zhyz luôn khớp
+        /// Đơn vị Đơn vị giá,với zhyz luôn khớp
         /// </summary>
         public string UnitId { get; set; }
 
         /// <summary>
-        /// Số lượng，Đơn vị khoa phòng
+        /// Số lượng,Đơn vị khoa phòng
         /// </summary>
         public int bmsl { get; set; }
 
         /// <summary>
-        /// Số lượng，Đơn vị nhỏ nhất
+        /// Số lượng,Đơn vị nhỏ nhất
         /// </summary>
         public int zxsl { get; set; }
 
         /// <summary>
-        /// Số lượng，Kèm đơn vị  
+        /// Số lượng,Kèm đơn vị  
         /// </summary>
         public string slstr { get; set; }
 

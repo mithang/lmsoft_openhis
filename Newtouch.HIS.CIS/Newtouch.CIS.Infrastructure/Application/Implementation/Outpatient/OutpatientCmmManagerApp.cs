@@ -263,7 +263,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// Đồng bộ thuốcphẩm，vàLưuĐồng bộghi chépbảng
+        /// Đồng bộ thuốcphẩm,vàLưuĐồng bộghi chépbảng
         /// </summary>
         /// <param name="yp"></param>
         /// <param name="organizeId"></param>

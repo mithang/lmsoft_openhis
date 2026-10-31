@@ -3,21 +3,21 @@
     ViewBag.Title = "Index";
     Layout = "~/Views/Shared/_Index.cshtml";
 
-    //Công tắc：Có mở khôngXét nghiệmKiểm tra
+    //Công tắc:Có mở khôngXét nghiệmKiểm tra
     var IsOpenJyJcSwitch = ViewBag.IsOpenJyJcSwitch as bool?;
-    //Công tắc：Ngoại trúCó mở khôngPhục hồi chức năngĐơn thuốc
+    //Công tắc:Ngoại trúCó mở khôngPhục hồi chức năngĐơn thuốc
     var isOpenKfcf = (ViewBag.ISOpenKfcf as bool?);
-    //Công tắc：Ngoại trúCó mở khôngHạng mục thông thườngĐơn thuốc
+    //Công tắc:Ngoại trúCó mở khôngHạng mục thông thườngĐơn thuốc
     var isOpenCgxmcf = (ViewBag.ISOpenCgxmcf as bool?);
-    //Công tắc：Ngoại trúCó mở khôngThuốc Đông yĐơn thuốc
+    //Công tắc:Ngoại trúCó mở khôngThuốc Đông yĐơn thuốc
     var iSOpenZycf = (ViewBag.ISOpenZycf as bool?);
     var iSOpenZycfnew = (ViewBag.ISOpenZycfnew as bool?);
-    //Công tắc：Ngoại trúCó mở khôngydùngVật tư tiêu haoĐơn thuốc
+    //Công tắc:Ngoại trúCó mở khôngydùngVật tư tiêu haoĐơn thuốc
     var iSOpenWzhc = (ViewBag.ISOpenWzhc as bool?);
-    //Công tắc：đặt hẹnđăng ký khám
+    //Công tắc:đặt hẹnđăng ký khám
     var isOpenBespeakRegister = (ViewBag.ISOpenBespeakRegister as bool?);
 
-    //Công tắc：trongyquán
+    //Công tắc:trongyquán
     var cmmSwitch = (bool)SysConfigReader.Bool("cmmSwitch", false);
 }
 <style>
@@ -165,7 +165,7 @@
 </div>
 
 <script>
-    //Công tắc：Có mở khôngdấu hiệu sinh tồn
+    //Công tắc:Có mở khôngdấu hiệu sinh tồn
     var IsVitalSignsSwitch = '@ViewBag.IsVitalSignsSwitch';
     //Đăng nhập ngườicủavị trí ký tự
     var IsNurse = '@ViewBag.IsNurse';
@@ -178,7 +178,7 @@
     var pageType = $.request("pageType");
     var Id = $.request("Id");//Chẩn đoán từ xaĐăng kýthông tinId
     $(function () {
-        //show：CóKhônghiển thịhiệntabnội dungcủasự kiện
+        //show:CóKhônghiển thịhiệntabnội dungcủasự kiện
         $('a[data-toggle="tab"]').on('show.bs.tab',
             function (e) {
                 //console.log(e)
@@ -386,7 +386,7 @@
                 }
             });
 
-        //shown：tabnội dunghiển thịhiệnsaucủasự kiện
+        //shown:tabnội dunghiển thịhiệnsaucủasự kiện
         $('a[data-toggle="tab"]').on('shown.bs.tab',
             function(e) {
                 cfLeftFloatHide();
@@ -715,11 +715,11 @@
     // bao lai khong reset mang da co neu partial da render).
     if (typeof jclocaldata === 'undefined') { var jclocaldata = []; }
     if (typeof jylocaldata === 'undefined') { var jylocaldata = []; }
-    //click：điểmnhấptabnội dungcủasự kiện
+    //click:điểmnhấptabnội dungcủasự kiện
     $('a[data-toggle="tab"]').on('click', function (e, v) {
         var currentlink = $('.nav-tabs').find("li.active a").attr("href");//hiện tạitrangmặt
         var targetlink = e.target.hash;//Mục tiêutrangmặt
-        if ((currentlink !== "#linkbrlb" || currentlink !== "#linkbl") && targetlink == "#linkbrlb") {//Danh sách bệnh nhân，Ngoại trúHồ sơ khôngNhắc nhở//KháctrangmặtcóDữ liệutồn tạiởkhibậtcửa sổNhắc nhở
+        if ((currentlink !== "#linkbrlb" || currentlink !== "#linkbl") && targetlink == "#linkbrlb") {//Danh sách bệnh nhân,Ngoại trúHồ sơ khôngNhắc nhở//KháctrangmặtcóDữ liệutồn tạiởkhibậtcửa sổNhắc nhở
             if ($("#gridcgxmcf").jqGrid('getDataIDs').length > 0 || $("#gridkfcf").jqGrid('getDataIDs').length > 0
                 || $("#gridxycf").jqGrid('getDataIDs').length > 0 || $("#gridzycf").jqGrid('getDataIDs').length > 0
                 || $("#gridwzhccf").jqGrid('getDataIDs').length > 0

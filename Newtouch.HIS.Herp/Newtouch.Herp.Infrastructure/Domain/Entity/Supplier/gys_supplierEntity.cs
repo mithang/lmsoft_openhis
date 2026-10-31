@@ -18,12 +18,12 @@ namespace Newtouch.Herp.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chức Id（Bệnh viện có nghiệp vụ cụ thể）
+        /// Tổ chức Id(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 0：Khác     1：Nhà sản xuất      2：Nhà phân phối
+        /// 0:Khác     1:Nhà sản xuất      2:Nhà phân phối
         /// </summary>
         public int? supplierType { get; set; }
 

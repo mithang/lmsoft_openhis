@@ -51,13 +51,13 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
         public string localCode { get; set; }
 
         /// <summary>
-        /// Mã chẩn đoán（ICD10）
+        /// Mã chẩn đoán(ICD10)
         /// bắt buộc
         /// </summary>
         public string code { get; set; }
 
         /// <summary>
-        ///Chẩn đoánLoại 0：tâyy 1：trongy
+        ///Chẩn đoánLoại 0:tâyy 1:trongy
         /// bắt buộc
         /// </summary>
         public string cate { get; set; }
@@ -69,7 +69,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
         public string name { get; set; }
 
         /// <summary>
-        ///Chẩn đoán YHCTLoại 0：bệnhbệnh 1：hội chứng； khiChẩn đoánPhân loạilàtrongykhibắt buộc
+        ///Chẩn đoán YHCTLoại 0:bệnhbệnh 1:hội chứng; khiChẩn đoánPhân loạilàtrongykhibắt buộc
         /// bắt buộc
         /// </summary>
         public string type { get; set; }
@@ -80,7 +80,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
         public string group { get; set; }
 
         /// <summary>
-        ///Chẩn đoán YHCTcấploại 0：chínhcầnChẩn đoán 1： lầncầnChẩn đoán
+        ///Chẩn đoán YHCTcấploại 0:chínhcầnChẩn đoán 1: lầncầnChẩn đoán
         /// </summary>
         public string level { get; set; }
 

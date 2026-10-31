@@ -33,7 +33,7 @@ namespace Newtouch.Domain.ValueObjects
         public int kykcsl { get; set; }
 
         /// <summary>
-        /// Khoa phòngĐơn vịSố lượng（mangĐơn vị）
+        /// Khoa phòngĐơn vịSố lượng(mangĐơn vị)
         /// </summary>
         public string slstr { get; set; }
 
@@ -125,17 +125,17 @@ namespace Newtouch.Domain.ValueObjects
         public string pc { get; set; }
 
         /// <summary>
-        /// Tồn khoSố lượng，Đơn vị nhỏ nhất
+        /// Tồn khoSố lượng,Đơn vị nhỏ nhất
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// có thểdùngTồn kho（kcsl-djsl），Đơn vị nhỏ nhất
+        /// có thểdùngTồn kho(kcsl-djsl),Đơn vị nhỏ nhất
         /// </summary>
         public int kykcsl { get; set; }
 
         /// <summary>
-        /// Đơn vịTồn kho，Khoa phòngĐơn vị
+        /// Đơn vịTồn kho,Khoa phòngĐơn vị
         /// </summary>
         public string slstr { get; set; }
 

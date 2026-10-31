@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string ParentId { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（Cấp cao nhất，Cấu hình hệ thống）
+        /// Tổ chứcId(Cấp cao nhất,Cấu hình hệ thống)
         /// </summary>
         public string TopOrganizeId { get; set; }
 

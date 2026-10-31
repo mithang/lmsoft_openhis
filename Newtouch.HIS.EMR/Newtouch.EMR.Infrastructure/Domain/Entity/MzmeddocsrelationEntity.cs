@@ -4,9 +4,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2018-09-11 10:46
-    /// Mô tả：Bảng quan hệ văn bản bệnh án của bệnh nhân-Ngoại trú
+    /// Người tạo:chl
+    /// Ngày:2018-09-11 10:46
+    /// Mô tả:Bảng quan hệ văn bản bệnh án của bệnh nhân-Ngoại trú
     /// </summary>
     [SugarTable("mz_meddocs_relation")]
     public class MzmeddocsrelationEntity 

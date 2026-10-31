@@ -43,14 +43,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<SysModuleButtonEntity> GetOpenMenuButtonListByTopOrg(string topOrgId);
 
         /// <summary>
-        /// Gửi mới、Cập nhật Thực đơn
+        /// Gửi mới,Cập nhật Thực đơn
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
         void SubmitForm(SysModuleEntity moduleEntity, string keyValue, string topOrgId = null);
 
         /// <summary>
-        /// Gửi mới、Cập nhật Nút quyền
+        /// Gửi mới,Cập nhật Nút quyền
         /// </summary>
         /// <param name="moduleButtonEntity"></param>
         /// <param name="keyValue"></param>
@@ -58,26 +58,26 @@ namespace Newtouch.HIS.Domain.IDomainServices
 
 
         /// <summary>
-        /// （Thực đơn、Nút thực đơn）Lấy danh sách tổ chức ứng dụng đã ủy quyền
+        /// (Thực đơn,Nút thực đơn)Lấy danh sách tổ chức ứng dụng đã ủy quyền
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
         IList<SysOrganizeVEntity> GetAuthedOrgListByModuleId(string moduleId, int itemType);
 
         /// <summary>
-        /// （Thực đơn、Nút thực đơn）Ủy quyền thực đơn cho cơ sở chỉ định
+        /// (Thực đơn,Nút thực đơn)Ủy quyền thực đơn cho cơ sở chỉ định
         /// </summary>
         /// <param name="moduleId"></param>
         void UpdateAuthOrganizeList(string moduleId, string orgList, int itemType);
 
         /// <summary>
-        /// （Thực đơn、Nút thực đơn）Ủy quyền thực đơn cho tất cả cơ sở
+        /// (Thực đơn,Nút thực đơn)Ủy quyền thực đơn cho tất cả cơ sở
         /// </summary>
         /// <param name="moduleId"></param>
         void AuthAllOrganize(string moduleId, int itemType);
 
         /// <summary>
-        /// （Thực đơn、Nút thực đơn）Thu hồi tất cả ủy quyền（Tổ chức）
+        /// (Thực đơn,Nút thực đơn)Thu hồi tất cả ủy quyền(Tổ chức)
         /// </summary>
         /// <param name="moduleId"></param>
         void AuthCancelAllOrganize(string moduleId, int itemType);

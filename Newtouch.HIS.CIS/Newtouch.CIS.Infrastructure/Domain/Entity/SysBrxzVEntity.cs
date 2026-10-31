@@ -11,7 +11,7 @@ namespace Newtouch.Domain.Entity
         public int brxzbh { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（cócụ thểthểnghiệp vụcủayviện）
+        /// Tổ chứcId(cócụ thểthểnghiệp vụcủayviện)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -56,7 +56,7 @@ namespace Newtouch.Domain.Entity
         public string pzbz { get; set; }
 
         /// <summary>
-        /// 0 Chung 1 chỉNgoại trú 2 chỉNhập viện    3 Hệ thống（Ngoại trúNhập việnđềukhôngcó thểdùng）VDnếu：nhàgiường
+        /// 0 Chung 1 chỉNgoại trú 2 chỉNhập viện    3 Hệ thống(Ngoại trúNhập việnđềukhôngcó thểdùng)VDnếu:nhàgiường
         /// </summary>
         public string mzzybz { get; set; }
 
@@ -66,12 +66,12 @@ namespace Newtouch.Domain.Entity
         public int? bzs { get; set; }
 
         /// <summary>
-        /// 0 khônghưởng giảm miễn（khámtrịphí）   1 hưởng giảm miễn
+        /// 0 khônghưởng giảm miễn(khámtrịphí)   1 hưởng giảm miễn
         /// </summary>
         public string sqjmbz { get; set; }
 
         /// <summary>
-        /// from xt_zhxz   nếunếucóCài đặt：thìởquyết toánkhi，ưutrướckhấutrừCài đặtcủaTài khoản   （VDnếu：Hỗ trợ khó khănbệnh nhânnàychữđoạnCài đặtlà4，khiquyết toánkhi，trướckhấutrừHỗ trợ khó khănTài khoản）
+        /// from xt_zhxz   nếunếucóCài đặt:thìởquyết toánkhi,ưutrướckhấutrừCài đặtcủaTài khoản   (VDnếu:Hỗ trợ khó khănbệnh nhânnàychữđoạnCài đặtlà4,khiquyết toánkhi,trướckhấutrừHỗ trợ khó khănTài khoản)
         /// </summary>
         public string zhxz { get; set; }
 

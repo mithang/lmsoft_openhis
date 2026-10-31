@@ -589,7 +589,7 @@
             success: function (res) {
                 if (res.state === "success") {
                     $.modalAlert("Xuất khothành công", 'success');
-                    newtouch_event_f7();//raNhập kho：mớiphiếusố phiếu chínhDữ liệuXóa trắng chi tiếtXóa trắng
+                    newtouch_event_f7();//raNhập kho:mớiphiếusố phiếu chínhDữ liệuXóa trắng chi tiếtXóa trắng
                 } else {
                     $.modalAlert(res.message, "error");
                     var rowIds = $gridList.getDataIDs();

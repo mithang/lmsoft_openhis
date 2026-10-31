@@ -7,8 +7,8 @@ namespace Newtouch.Domain.Entity
 {
     /// <summary>
     /// Tạo：hoàng杉杉
-    /// Ngày：2018-12-12 15:37
-    /// Mô tả：Nhập việnPhí giường bệnhdùngtương ứngbảng
+    /// Ngày:2018-12-12 15:37
+    /// Mô tả:Nhập việnPhí giường bệnhdùngtương ứngbảng
     /// </summary>
     [SugarTable("zy_LevelChargedy")]
     public class InpatientBedLevelChargeItemEntity

@@ -394,14 +394,14 @@
             var jldw = $("#" + rowid + "_redundant_jldw").val();    //Đơn vị liều Thuốcbảng từ điểncủaĐơn vị
             var dw = $("#" + rowid + "_dwwwwwww").val();     //Đơn vị nhập viện
             if (!!dw) {
-                //cách tìm phần tử nàyPhương phápkhông nên dùng，nhưng doselectKhông cóidThuộc tính
+                //cách tìm phần tử nàyPhương phápkhông nên dùng,nhưng doselectKhông cóidThuộc tính
                 $("#" + rowid + "_ypjl").parent().next().children('select').html('');
 
                 if (jldw === dw) {
                     $("#" + rowid + "_ypjl").parent().next().children('select').append('<option value="1">' + jldw + '</option>');
                 }
                 else {
-                    var dwlb = $("#" + rowid + "_dwlb").val(); //tồn tạiởĐơn vịLoạikhi，thaybảngđãtồn tạiởĐã chọncủaĐơn vị，trangmặtĐã chọn
+                    var dwlb = $("#" + rowid + "_dwlb").val(); //tồn tạiởĐơn vịLoạikhi,thaybảngđãtồn tạiởĐã chọncủaĐơn vị,trangmặtĐã chọn
                     var jldwlb = 1, dwdwlb = 4;
                     if (!!dwlb) {
                         if (jldwlb == dwlb) {
@@ -468,7 +468,7 @@
         if (!!selRowId) {
             var Id = $("#gridTCMmedicine").jqGrid('getRowData', selRowId).Id;
             $("#gridTCMmedicine").jqGrid("delRowData", selRowId);
-            if (Id.indexOf("0.") == '-1') {//ghi lại，từCơ sở dữ liệuXóa
+            if (Id.indexOf("0.") == '-1') {//ghi lại,từCơ sở dữ liệuXóa
                 deldata.push(Id);
             }
         }
@@ -643,7 +643,7 @@
                 $("#" + rowid + "_dw").val($this.attr('data-dw'));
                 $("#" + rowid + "_zxksdm").val($this.attr('data-yfbmCode'));
                 $("#" + rowid + "_xmmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
-                //cách tìm phần tử nàyPhương phápkhông nên dùng，nhưng doselectKhông cóidThuộc tính
+                //cách tìm phần tử nàyPhương phápkhông nên dùng,nhưng doselectKhông cóidThuộc tính
                 var jldw = $this.attr('data-jldw');    //Đơn vị liều
                 var dw = $this.attr('data-dw');     //Đơn vị nhập viện
                 $("#" + rowid + "_ypjl").parent().next().children('select').html('');
@@ -690,7 +690,7 @@
             return;
         }
         patobjValidate();
-        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+        //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#gridTCMmedicine").jqGrid('getDataIDs');
             for (var i = 0; i < rowIds.length; i++) {
                 if (MatchTCMZuhaoInfo(rowIds[i], true)) {
@@ -698,7 +698,7 @@
 
                     if (!saveResult) {
                         EnableTCMInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-                        return;   //Lưu thất bại，thìreturn
+                        return;   //Lưu thất bại,thìreturn
                     }
                 } else {
                     return false;
@@ -961,7 +961,7 @@
         var jxyfdy = top.top.clients.ypjxyfdy;
         var jxyf = top.top.clients.ypyf;//tất cảCách dùng
         $("#" + rowid + "_pcCode").parent().next().children('select').html('<option>Vui lòng chọn</option>');
-        var basejx = false;//hiện tạiThuốcCóKhôngBảo trìDạng bào chếtương ứng，Mặc địnhKhông
+        var basejx = false;//hiện tạiThuốcCóKhôngBảo trìDạng bào chếtương ứng,Mặc địnhKhông
         //Cách dùnghộp thả xuống
         if (currentjx !== null && currentjx !== "") {//hiện tạiDạng bào chế thuốc
             $.each(jxyfdy, function (idx, val) {//Dạng bào chếCách dùngtương ứng
@@ -1030,7 +1030,7 @@
                     mbObj.ysgh = '@ViewBag.ysgh';
                 }
 
-                //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+                //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
                 var rowIds = $("#gridTCMmedicine").jqGrid('getDataIDs');
                 for (var i = 0; i < rowIds.length; i++) {
                     calMsl(rowIds[i]);
@@ -1041,7 +1041,7 @@
 
                         if (!saveResult) {
                             EnableTCMInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-                            return;   //Lưu thất bại，thìreturn
+                            return;   //Lưu thất bại,thìreturn
                         }
                 }
                 var gridmedicineData = $("#gridTCMmedicine").jqGrid('getRowData_AllLine', null, true);
@@ -1084,7 +1084,7 @@
     //                dataType: "json",
     //                data: { yzlistId: yzlistId },
     //                type: "POST",
-    //                loadingtext: "Lịch sửY lệnhTrích dẫntrong，Vui lòng đợi trong giây lát...",
+    //                loadingtext: "Lịch sửY lệnhTrích dẫntrong,Vui lòng đợi trong giây lát...",
     //                success: function (resp) {
     //                    var getActionStr = getTCMActionStr();
     //                    if (resp != "") {

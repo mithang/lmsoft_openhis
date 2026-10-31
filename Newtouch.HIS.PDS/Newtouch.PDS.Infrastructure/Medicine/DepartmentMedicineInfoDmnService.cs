@@ -19,7 +19,7 @@ namespace Newtouch.HIS.DomainServices.Medicine
         }
 
         /// <summary>
-        /// Theo mã nhà thuốc、Mã thuốc Lấy của nhà thuốc Thuốc của Số lượng và đơn vị tồn kho
+        /// Theo mã nhà thuốc,Mã thuốc Lấy của nhà thuốc Thuốc của Số lượng và đơn vị tồn kho
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="ypCode"></param>

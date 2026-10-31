@@ -28,7 +28,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
             return View(user);
         }
         /// <summary>
-        /// cây quyền hệ thống （menu+nút）
+        /// cây quyền hệ thống (menu+nút)
         /// </summary>
         /// <param name="roleId">vai trò hiện tạiId</param>
         /// <returns></returns>

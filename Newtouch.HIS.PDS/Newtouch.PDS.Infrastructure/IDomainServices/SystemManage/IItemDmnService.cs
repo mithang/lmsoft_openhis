@@ -4,7 +4,7 @@ using System.Collections.Generic;
 namespace Newtouch.HIS.Domain.IDomainServices
 {
     /// <summary>
-    /// Từ điển、Mục từ điển DmnService
+    /// Từ điển,Mục từ điển DmnService
     /// </summary>
     public interface IItemDmnService
     {

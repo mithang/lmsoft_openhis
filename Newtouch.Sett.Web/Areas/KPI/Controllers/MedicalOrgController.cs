@@ -160,7 +160,7 @@ namespace Newtouch.Sett.Web.Areas.KPI.Controllers
         }
 
         /// <summary>
-        /// Khi sửa thông tin，Mang thông tin sang trang mới
+        /// Khi sửa thông tin,Mang thông tin sang trang mới
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

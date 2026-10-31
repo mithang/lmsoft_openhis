@@ -7,8 +7,8 @@ namespace Newtouch.Domain.Entity
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày：2018-06-28 15:37
-    /// Mô tả：Y lệnh tạm thời
+    /// Ngày:2018-06-28 15:37
+    /// Mô tả:Y lệnh tạm thời
     /// </summary>
     [SugarTable("zy_lsyz")]
     public class InpatientSTATOrderEntity
@@ -30,7 +30,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// Y lệnhsố，cùng mộtY lệnhsốtronggóichứanhiềucáiyzId
+        /// Y lệnhsố,cùng mộtY lệnhsốtronggóichứanhiềucáiyzId
         /// </summary>
         /// <returns></returns>
         public string yzh { get; set; }
@@ -76,7 +76,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int? zxzq { get; set; }
         /// <summary>
-        /// Chu kỳ thực hiệnĐơn vị -1:khôngquythìchu kỳ，0：ngày,1：giờ,2：Phút.Lưu ý：khilà-1khi，tuầnMã（zdm）làsốchữ（1234567）trongcủaBất kỳ vàicáisốchữ
+        /// Chu kỳ thực hiệnĐơn vị -1:khôngquythìchu kỳ,0:ngày,1:giờ,2:Phút.Lưu ý:khilà-1khi,tuầnMã(zdm)làsốchữ(1234567)trongcủaBất kỳ vàicáisốchữ
         /// </summary>
         /// <returns></returns>
         public int? zxzqdw { get; set; }
@@ -96,7 +96,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string xmmc { get; set; }
         /// <summary>
-        /// Y lệnhTrạng thái 0chờduyệt，1Phê duyệt，2Thực hiện，3Hủy(DC)，4Dừng
+        /// Y lệnhTrạng thái 0chờduyệt,1Phê duyệt,2Thực hiện,3Hủy(DC),4Dừng
         /// </summary>
         /// <returns></returns>
         public int yzzt { get; set; }
@@ -111,17 +111,17 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int zbbz { get; set; }
         /// <summary>
-        /// Thuốc，Mụcnhậpkhi，tồn tạimỗingàySố lượng，Xuất việnmang thuốc，tồn tạiTổng lượng。văn bảnnhậpSố lượnglà0
+        /// Thuốc,Mụcnhậpkhi,tồn tạimỗingàySố lượng,Xuất việnmang thuốc,tồn tạiTổng lượng.văn bảnnhậpSố lượnglà0
         /// </summary>
         /// <returns></returns>
         public int sl { get; set; }
         /// <summary>
-        /// Đơn vịLoại 0Đơn vị liều，1Đơn vị kho thuốc，2Đơn vị ngoại trú，3Đơn vị nhập viện，4vàohàngĐơn vị(chỉhiển thịY lệnhĐơn vịLoạilà0)
+        /// Đơn vịLoại 0Đơn vị liều,1Đơn vị kho thuốc,2Đơn vị ngoại trú,3Đơn vị nhập viện,4vàohàngĐơn vị(chỉhiển thịY lệnhĐơn vịLoạilà0)
         /// </summary>
         /// <returns></returns>
         public int dwlb { get; set; }
         /// <summary>
-        /// bảnđịaLoại y lệnh 0：ThuốcY lệnh，1：Kháng sinhY lệnh，2：Kiểm traY lệnh，3：Xét nghiệmY lệnh，4：chỉhiển thịY lệnh，5：thông thườngY lệnh ， 6 DừngY lệnh， 7  Xuất việnmang thuốc， 8 ăn uốngY lệnh， 9 Phẫu thuậtY lệnh   10  trongthảo dược  
+        /// bảnđịaLoại y lệnh 0:ThuốcY lệnh,1:Kháng sinhY lệnh,2:Kiểm traY lệnh,3:Xét nghiệmY lệnh,4:chỉhiển thịY lệnh,5:thông thườngY lệnh , 6 DừngY lệnh, 7  Xuất việnmang thuốc, 8 ăn uốngY lệnh, 9 Phẫu thuậtY lệnh   10  trongthảo dược  
         /// </summary>
         /// <returns></returns>
         public int yzlx { get; set; }
@@ -262,7 +262,7 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string kssReason { get; set; }
         /// <summary>
-        /// Loại đăng ký，truyềnđếnpacsdùng
+        /// Loại đăng ký,truyềnđếnpacsdùng
         /// </summary>
         public string sqlx { get; set; }
         /// <summary>
@@ -270,7 +270,7 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string bwff { get; set; }
         /// <summary>
-        /// Số phiếu，kimđốiXét nghiệmKiểm tra
+        /// Số phiếu,kimđốiXét nghiệmKiểm tra
         /// </summary>
         public string sqdh { get; set; }
 
@@ -278,7 +278,7 @@ namespace Newtouch.Domain.Entity
 
         public string sqbz { get; set; }
         /// <summary>
-        /// PhiếuchỗlýTrạng thái（0、Đã gửi đơn 1、đãnhậnthu 2、đãHoàn thành） 
+        /// PhiếuchỗlýTrạng thái(0,Đã gửi đơn 1,đãnhậnthu 2,đãHoàn thành) 
         /// </summary>
         public int? sqdzt { get; set; }
 
@@ -322,7 +322,7 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string yfztbs { get; set; }
         /// <summary>
-        /// Thuốcđếnnguồn 1:KhoaTồn kho 2：Nhà thuốc
+        /// Thuốcđếnnguồn 1:KhoaTồn kho 2:Nhà thuốc
         /// </summary>
         public int? yply { get; set; }
         /// <summary>

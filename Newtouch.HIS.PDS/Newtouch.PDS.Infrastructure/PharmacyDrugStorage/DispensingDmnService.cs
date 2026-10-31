@@ -44,7 +44,7 @@ namespace Newtouch.HIS.DomainServices
         #region Ngoại trú
 
         /// <summary>
-        /// Đặt trước đơn ngoại trú（Đóng băng tồn kho）
+        /// Đặt trước đơn ngoại trú(Đóng băng tồn kho)
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Đặt trước đơn ngoại trú（Đóng băng tồn kho） V2
+        /// Đặt trước đơn ngoại trú(Đóng băng tồn kho) V2
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -477,7 +477,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// Hủy đóng băng，và xóa vật lý thông tin y lệnh Thận trọng khi dùng
+        /// Hủy đóng băng,và xóa vật lý thông tin y lệnh Thận trọng khi dùng
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="zxId"></param>
@@ -730,7 +730,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         }
 
         /// <summary>
-        /// Phát thuốc nội trú Hỗ trợ nhiều y lệnh nhiều chi tiết xếp thuốc，Nhưng y lệnh và chi tiết xếp thuốc phải tương ứng
+        /// Phát thuốc nội trú Hỗ trợ nhiều y lệnh nhiều chi tiết xếp thuốc,Nhưng y lệnh và chi tiết xếp thuốc phải tương ứng
         /// </summary>
         /// <param name="zyphLs"></param>
         /// <param name="yzLs"></param>

@@ -294,7 +294,7 @@
                 {
                     label: 'Trạng thái', name: 'yzzt', align: 'center', width: 30, formatter: function (val, options, rowObject) {
                         if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.DC).ToString())) {//DCTrạng thái
-                            //cóThực hiệnThời gian，lấyĐã thực hiệnTrạng thái，cóPhê duyệtThời gian，lấyĐã duyệtTrạng thái
+                            //cóThực hiệnThời gian,lấyĐã thực hiệnTrạng thái,cóPhê duyệtThời gian,lấyĐã duyệtTrạng thái
                             if (rowObject["zxsj"]&&rowObject["zxsj"] !== typeof (undefined) && rowObject["zxsj"] !== "") {
                             return "Thực hiện";
                         } else {
@@ -902,7 +902,7 @@
             { label: 'Số nhóm', name: 'GroupNo', align: 'center', width: 100 },
             { label: 'Tên thuốc', name: 'DrugName', align: 'center', width: 150,
                 formatter: function (cellValue, options, rowObject) {
-                    // tạoTên thuốccủavượtchuỗinhận，điểmnhấpkhitruyềnvàodrugId
+                    // tạoTên thuốccủavượtchuỗinhận,điểmnhấpkhitruyềnvàodrugId
                     return '<a href="javascript:void(0);" onclick="getYpsms(\'' + rowObject.DrugId + '\')">' + cellValue + '</a>';
                 }},
             { label: 'Đường dùng thuốc', name: 'AdminRoute', align: 'center', width: 100 },

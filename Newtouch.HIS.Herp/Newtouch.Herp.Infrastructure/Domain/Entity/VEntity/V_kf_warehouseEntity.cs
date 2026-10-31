@@ -13,7 +13,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chức Id（Bệnh viện có nghiệp vụ cụ thể）
+        /// Tổ chức Id(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 

@@ -11,7 +11,7 @@ namespace HIS.BaseAPI.Controllers
 {
     /// <summary>
     /// dùng chung cho hệ thốngAPI 
-    /// （liên quan Entity CRUD）
+    /// (liên quan Entity CRUD)
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]

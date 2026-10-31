@@ -56,17 +56,17 @@ namespace Newtouch.Domain.Entity
         //public string ypkw { get; set; }
 
         /// <summary>
-        /// 0：khôngđiều khiển1：điều khiển
+        /// 0:khôngđiều khiển1:điều khiển
         /// </summary>
         //public short kzbz { get; set; }
 
         /// <summary>
-        /// đãphốithuốcchưaphát（lĩnh）thuốccủaSố lượng
+        /// đãphốithuốcchưaphát(lĩnh)thuốccủaSố lượng
         /// </summary>
         public int djsl { get; set; }
 
         /// <summary>
-        /// 0：Kích hoạt1：Vô hiệu
+        /// 0:Kích hoạt1:Vô hiệu
         /// </summary>
         public short tybz { get; set; }
 
@@ -98,7 +98,7 @@ namespace Newtouch.Domain.Entity
         public string pc { get; set; }
 
         /// <summary>
-        /// làKhôngđãkhóa  0：chưakhóa ；    1/null：đãkhóa
+        /// làKhôngđãkhóa  0:chưakhóa ;    1/null:đãkhóa
         /// </summary>
         public string locked { get; set; }
 

@@ -86,7 +86,7 @@ $.fn.staffFloatingSelector = function (options) {
 }
 
 
-//Khoản thu phí Lớp nổi（Bao gồm thuốc、Khoản，Cũng có thể là khoản không điều trị）
+//Khoản thu phí Lớp nổi(Bao gồm thuốc,Khoản,Cũng có thể là khoản không điều trị)
 $.fn.sfxmFloatingSelector = function (options) {
     //Mặc địnhoptions
     var defaults = {
@@ -97,7 +97,7 @@ $.fn.sfxmFloatingSelector = function (options) {
         ajaxparameters: null,   //Vui lòng chỉ định
         itemdbclickhandler: null,   //Vui lòng chỉ định
         djDecimalPlaces: 2,  //Độ chính xác đơn giá Mặc định2
-        searchType: null,   //Chỉ kiểm soát hiện/ẩn cột，Không tham gia lọc//Mục tiêu tìm kiếm "yp,sfxm"、"yp"、"sfxm"、"yp.kc"、"sfxm.dwjls"、"yp,sfxm.dwjls"、"yp.kc,sfxm"、"yp.kc,sfxm.dwjls"
+        searchType: null,   //Chỉ kiểm soát hiện/ẩn cột,Không tham gia lọc//Mục tiêu tìm kiếm "yp,sfxm","yp","sfxm","yp.kc","sfxm.dwjls","yp,sfxm.dwjls","yp.kc,sfxm","yp.kc,sfxm.dwjls"
         showColModel: null,   //Có thể chỉ định [{name:;widthratio:;},{name:;widthratio:;}] widthratioTùy chọn
     ypkccbjc: true,    //Kiểm tra sơ bộ tồn kho thuốc: có bị kiểm soát không, có tồn kho không (0)
         colModel: [
@@ -159,7 +159,7 @@ $.fn.sfxmFloatingSelector = function (options) {
             },
             {
                 label: 'Tồn kho', name: 'clkcsl', formatter: function (cellvalue, a, b) {
-                    //Đã chokcsllà đơn vị nhỏ nhất，Ở đây hiển thị đơn vị ngoại trú/số lượng đơn vị nội trú
+                    //Đã chokcsllà đơn vị nhỏ nhất,Ở đây hiển thị đơn vị ngoại trú/số lượng đơn vị nội trú
                     return b.yzlx === '1' ? (!!b.kcsl && !!b.cls ? (parseInt(b.kcsl / b.cls)) : 'Không có') : '';
                 }, widthratio: 6, hidden: true
             },

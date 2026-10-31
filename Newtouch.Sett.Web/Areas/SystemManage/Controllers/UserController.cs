@@ -50,8 +50,8 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <returns></returns>
         /// <summary>
-        /// dùnghộchọnchọncây（Cấp ba：Cơ sở+Khoa+Người dùng）。gốcthựchiệnđiềudùnghaivàochếquỹloạiphươngphương pháp
-        /// ComGetSysUserSelectorTree（khôngnguồnmã）；nàynơitrảquayrỗngcây JSON，chờ SSO/quỹloạinặngcơ quan。
+        /// dùnghộchọnchọncây(Cấp ba:Cơ sở+Khoa+Người dùng).gốcthựchiệnđiềudùnghaivàochếquỹloạiphươngphương pháp
+        /// ComGetSysUserSelectorTree(khôngnguồnmã);nàynơitrảquayrỗngcây JSON,chờ SSO/quỹloạinặngcơ quan.
         /// </summary>
         public IActionResult GetSysUserSelectorTree(string organizeId = null, string keyValue = null, string from = null, bool isExpand = true, bool isContansChildOrg = true
             , bool isShowEmpty = false)
@@ -60,11 +60,11 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// đượclấyhệthốngdùnghộcây haicấp（Khoa+Người dùng（Nhân viên））-có thểtratra cứu
+        /// đượclấyhệthốngdùnghộcây haicấp(Khoa+Người dùng(Nhân viên))-có thểtratra cứu
         /// </summary>
         /// <param name="keyValue"></param>
         /// <param name="from"></param>
-        /// <param name="isShowEmpty">làkhônghiển thịhiển thịrỗngtrắngtiếtđiểm（khoaphòngtiếtđiểm）</param>
+        /// <param name="isShowEmpty">làkhônghiển thịhiển thịrỗngtrắngtiếtđiểm(khoaphòngtiếtđiểm)</param>
         /// <param name="isExpand"></param>
         /// <returns></returns>
 
@@ -91,7 +91,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
             //khoaphòngtậphợp
             var detpData = _sysDepartmentRepo.GetList(OrganizeId??orgId, "1");
-            //ngườiviêntậphợp（cóđốiphảiđăngghitài khoảnhộ）
+            //ngườiviêntậphợp(cóđốiphảiđăngghitài khoảnhộ)
             var userStaffData = _sysUserDmnService.GetSatffVOListByOrg(OrganizeId??orgId, keyword);
 
             foreach (SysDepartmentVEntity deptItem in detpData)
@@ -107,7 +107,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
                     staffTree.Code = userStaffVO.UserCode;
                     staffTree.hasChildren = false;
                     staffTree.showcheck = true;
-                    staffTree.checkstate = 0;   //Gán giá trị ở ngoài，Thuận tiện cho bộ nhớ đệm
+                    staffTree.checkstate = 0;   //Gán giá trị ở ngoài,Thuận tiện cho bộ nhớ đệm
 
                     treeList.Add(staffTree);
                 }
@@ -116,7 +116,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
                 deptTree.text = deptItem.Name;
                 deptTree.value = deptItem.Code;
                 deptTree.parentId = deptItem.ParentId;
-                deptTree.isexpand = isExpand;  //Mặc định không mở rộng，Quá nhiều người
+                deptTree.isexpand = isExpand;  //Mặc định không mở rộng,Quá nhiều người
                 deptTree.complete = true;
                 deptTree.showcheck = false;
                 //deptTree.hasChildren = deptUserStaffData.Count > 0 || detpData.Any(p => p.ParentId == deptItem.Id);
@@ -137,9 +137,9 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             }
 
             #region Bổ sungNút cha start
-            // by haijiang.mo sửalạitìmtìmhaicấpbằngdướicủaconbộngoại trúdùnghộ，vìkhôngphương phápcơ quanlậpracâykếtcơ quan，màtìmtìmmấtthất bại
+            // by haijiang.mo sửalạitìmtìmhaicấpbằngdướicủaconbộngoại trúdùnghộ,vìkhôngphương phápcơ quanlậpracâykếtcơ quan,màtìmtìmmấtthất bại
             var parentDeptList = new HashSet<string>();
-            // điều khiểnchếtổngtínhtínhsâuđộ，phòng ngừadừngvìlàsốdữ liệusaisai，tìmkhôngđếnNút chachếttuân theovòng
+            // điều khiểnchếtổngtínhtínhsâuđộ,phòng ngừadừngvìlàsốdữ liệusaisai,tìmkhôngđếnNút chachếttuân theovòng
             var totalReFindParent = 10;
             do
             {
@@ -176,7 +176,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
                         deptTree.text = deptItem.Name;
                         deptTree.value = deptItem.Code;
                         deptTree.parentId = deptItem.ParentId;
-                        deptTree.isexpand = isExpand;  //Mặc định không mở rộng，Quá nhiều người
+                        deptTree.isexpand = isExpand;  //Mặc định không mở rộng,Quá nhiều người
                         deptTree.complete = true;
                         deptTree.showcheck = false;
                         deptTree.hasChildren = true;
@@ -216,7 +216,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
                         var thisParentNode = treeList.Where(p => p.id == treeItem.parentId).FirstOrDefault();
                         if (thisParentNode != null)
                         {
-                            thisParentNode.isexpand = true;  //Cấp dưới có dòng được chọn，Ở đây nhất định mở rộng
+                            thisParentNode.isexpand = true;  //Cấp dưới có dòng được chọn,Ở đây nhất định mở rộng
                         }
                     }
                 }

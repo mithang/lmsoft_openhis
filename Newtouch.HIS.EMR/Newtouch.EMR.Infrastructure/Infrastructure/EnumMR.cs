@@ -21,11 +21,11 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 		/// </summary>
 		Bqz = 1,
 		/// <summary>
-		/// Ra khỏi khu bệnh（Ra khỏi khu bệnh）（Chờ quyết toán）
+		/// Ra khỏi khu bệnh(Ra khỏi khu bệnh)(Chờ quyết toán)
 		/// </summary>
 		Djz = 2,
 		/// <summary>
-		/// Đã ra viện（Quyết toán ra viện）
+		/// Đã ra viện(Quyết toán ra viện)
 		/// </summary>
 		Ycy = 3,
 		/// <summary>

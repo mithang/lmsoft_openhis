@@ -110,7 +110,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <returns></returns>
         IList<SysDicDto> DicNationsList(string orgId, string keyword);
         /// <summary>
-        /// Nhân viên（Vị trí）
+        /// Nhân viên(Vị trí)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dutyCode"></param>
@@ -151,7 +151,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         /// <returns></returns>
         IList<BaseBllxVO> GetBllxListDetail(string orgId,string bllx=null,string keyword=null,string type=null);
         /// <summary>
-        /// Lấy thông tin nhân viên（Chữ ký）
+        /// Lấy thông tin nhân viên(Chữ ký)
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orgId"></param>

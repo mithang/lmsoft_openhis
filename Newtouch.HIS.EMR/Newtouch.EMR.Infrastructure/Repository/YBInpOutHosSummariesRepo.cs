@@ -7,9 +7,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2021-03-01 15:24
-    /// Mô tả：Tóm tắt ra viện
+    /// Người tạo:chl
+    /// Ngày:2021-03-01 15:24
+    /// Mô tả:Tóm tắt ra viện
     /// </summary>
     public class YBInpOutHosSummariesRepo : RepositoryBase<YBInpOutHosSummariesEntity>, IYBInpOutHosSummariesRepo
     {

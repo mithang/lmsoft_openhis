@@ -17,7 +17,7 @@ namespace Newtouch.Domain.IRepository.DeptStorageManage
         KcPdxxEntity SelectPdInfByPdId(long pdId, string organizeId);
 
         /// <summary>
-        /// kiểm tralàKhôngcóchưaHoàn thànhcủaKiểm kê （Kết thúc）
+        /// kiểm tralàKhôngcóchưaHoàn thànhcủaKiểm kê (Kết thúc)
         /// </summary>
         /// <returns></returns>
         int SelectUnfinishedInventoryByPdId(long pdId, string organizeId);

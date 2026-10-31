@@ -14,7 +14,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
     public class FrameworkAuthorizationFilter : IAuthorizationFilter
     {
         /// <summary>
-        /// ứng dụngId（trongconfigcấu hình AppId）
+        /// ứng dụngId(trongconfigcấu hình AppId)
         /// </summary>
         public static string _appId { get; private set; }
 
@@ -56,7 +56,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
 
                     if (context.Request.IsAjaxRequest())
                     {
-                        //is ajax yêu cầu，thì trả về mã lỗi
+                        //is ajax yêu cầu,thì trả về mã lỗi
                         filtercontext.Result = new ContentResult
                         {
                             Content = new AjaxResult
@@ -83,7 +83,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
 
                 if (context.Request.IsAjaxRequest())
                 {
-                    //is ajax yêu cầu，thì trả về mã lỗi
+                    //is ajax yêu cầu,thì trả về mã lỗi
                     filtercontext.Result = new ContentResult
                     {
                         Content = new AjaxResult

@@ -7,8 +7,8 @@ namespace Newtouch.Domain.Entity
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày：2018-06-28 15:37
-    /// Mô tả：Nhập việnphát thuốcyêu cầukho
+    /// Ngày:2018-06-28 15:37
+    /// Mô tả:Nhập việnphát thuốcyêu cầukho
     /// </summary>
     [SugarTable("zy_fyqqk")]
     public class InpatientMedicineGrantEntity
@@ -130,7 +130,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int zxcs { get; set; }
         /// <summary>
-        /// （1phát thuốc 2trảthuốc）
+        /// (1phát thuốc 2trảthuốc)
         /// </summary>
         /// <returns></returns>
         public int? tybz { get; set; }
@@ -140,7 +140,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string fyczyh { get; set; }
         /// <summary>
-        /// （0Tạm thời1Dài hạn）
+        /// (0Tạm thời1Dài hạn)
         /// </summary>
         /// <returns></returns>
         public int? yzxz { get; set; }

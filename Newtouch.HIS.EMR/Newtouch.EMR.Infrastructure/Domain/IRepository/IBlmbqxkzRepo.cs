@@ -5,14 +5,14 @@ using NewtouchHIS.Lib.Base.Model;
 namespace Newtouch.EMR.Domain.IRepository
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2018-09-20 14:48
-    /// Mô tả：Bảng kiểm soát quyền mẫu
+    /// Người tạo:chl
+    /// Ngày:2018-09-20 14:48
+    /// Mô tả:Bảng kiểm soát quyền mẫu
     /// </summary>
     public interface IBlmbqxkzRepo : IRepositoryBase<BlmbqxkzEntity>
     {
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

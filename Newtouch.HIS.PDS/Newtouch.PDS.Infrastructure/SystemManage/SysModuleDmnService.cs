@@ -195,7 +195,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SugarParam
         }
 
         /// <summary>
-        /// Gửi mới、Cập nhật Thực đơn
+        /// Gửi mới,Cập nhật Thực đơn
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
@@ -233,7 +233,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SugarParam
         }
 
         /// <summary>
-        /// Gửi mới、Cập nhật Nút quyền
+        /// Gửi mới,Cập nhật Nút quyền
         /// </summary>
         /// <param name="moduleButtonEntity"></param>
         /// <param name="keyValue"></param>

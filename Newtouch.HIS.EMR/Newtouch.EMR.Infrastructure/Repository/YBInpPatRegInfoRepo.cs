@@ -8,9 +8,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2021-02-03 15:08
-    /// Mô tả：Thông tin bản ghi nhập viện
+    /// Người tạo:chl
+    /// Ngày:2021-02-03 15:08
+    /// Mô tả:Thông tin bản ghi nhập viện
     /// </summary>
     public class YBInpPatRegInfoRepo : RepositoryBase<YBInpPatRegInfoEntity>, IYBInpPatRegInfoRepo
     {

@@ -33,12 +33,12 @@ namespace Newtouch.Sett.Domain
         [Description("Đang ở khoa bệnh")]
         Bqz = 1,
         /// <summary>
-        /// Khoa bệnhXuất viện（raKhoa bệnh）（Chờ quyết toán）
+        /// Khoa bệnhXuất viện(raKhoa bệnh)(Chờ quyết toán)
         /// </summary>
         [Description("Chờ quyết toán")]
         Djz = 2,
         /// <summary>
-        /// Đã xuất viện（quyết toán xuất viện）
+        /// Đã xuất viện(quyết toán xuất viện)
         /// </summary>
         [Description("Đã xuất viện")]
         Ycy = 3,
@@ -141,7 +141,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Tính chất tự trả（Thuốc、MụcTừ điểncủathuộc tính）
+    /// Tính chất tự trả(Thuốc,MụcTừ điểncủathuộc tính)
     /// </summary>
     public enum EnumZiFuXingZhi
     {
@@ -189,7 +189,7 @@ namespace Newtouch.Sett.Domain
     public enum EnumSuanFaZFXZ
     {
         /// <summary>
-        /// Tự trả（cùngGiao dịch BHYTsauTự trảTiền mặt）
+        /// Tự trả(cùngGiao dịch BHYTsauTự trảTiền mặt)
         /// </summary>
         [Description("Tự trả")]
         ZF = 0,
@@ -236,7 +236,7 @@ namespace Newtouch.Sett.Domain
         [Description("Thẻ từ BHYT")]
         CTK = 0,
         /// <summary>
-        /// Thẻ ảo/việntrongThẻ（tự độngTạolúcThẻ ảo/Nhập taylúcviệntrongThẻ）
+        /// Thẻ ảo/việntrongThẻ(tự độngTạolúcThẻ ảo/Nhập taylúcviệntrongThẻ)
         /// </summary>
         [Description("Thẻ ảo")]
         XNK = 1,
@@ -335,7 +335,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Ngoại trúnhập việncờ  0 Chung 1 chỉNgoại trú 2 chỉnhập viện 3 hệ thống（Ngoại trúnhập việnđềukhông thểdùng）ví dụnhư：Giường gia đình
+    /// Ngoại trúnhập việncờ  0 Chung 1 chỉNgoại trú 2 chỉnhập viện 3 hệ thống(Ngoại trúnhập việnđềukhông thểdùng)ví dụnhư:Giường gia đình
     /// </summary>
     public enum Enummzzybz
     {
@@ -389,7 +389,7 @@ namespace Newtouch.Sett.Domain
     public enum EnumJieSuanZT
     {
         /// <summary>
-        /// Đãquyết toán（chưahoàn）
+        /// Đãquyết toán(chưahoàn)
         /// </summary>
         [Description("Đã quyết toán")]
         YJ = 1,
@@ -733,11 +733,11 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// thích hợpdùngBHYTphương pháp 0：Bảo hiểm thành phố 1：cáiBHYT cá thể 2：Thị trấn nhỏ 3：nhỏlúccông
+    /// thích hợpdùngBHYTphương pháp 0:Bảo hiểm thành phố 1:cáiBHYT cá thể 2:Thị trấn nhỏ 3:nhỏlúccông
     // A:dânchínhy tếđiều trịgiúpkhó
-    // B：cũNămđể lạidặn dò C:nămbảo hiểmcũngười D：nặngkhuyết tậtnhân viên
-    // E:trongnhỏhọcsinhvàtrẻ sơ sinhtrẻ nhỏtrẻ F： Khácdân cư
-    //G：y tếđiều trịlẫn nhautrợgiúpkhóĐối tượng
+    // B:cũNămđể lạidặn dò C:nămbảo hiểmcũngười D:nặngkhuyết tậtnhân viên
+    // E:trongnhỏhọcsinhvàtrẻ sơ sinhtrẻ nhỏtrẻ F: Khácdân cư
+    //G:y tếđiều trịlẫn nhautrợgiúpkhóĐối tượng
     /// </summary>
     public enum EnumSYYBBF
     {
@@ -828,7 +828,7 @@ namespace Newtouch.Sett.Domain
         /// Số tiềntrêngiới hạnnhắc nhở
         /// </summary>
         [Description("Nhắc nhở vượt hạn mức số tiền")]
-        TienTrenHanNhacNho = 1,    //sonhư：Trị liệu sưmộtThángtrongthu phíkhôngđượcvượtquamườivạn
+        TienTrenHanNhacNho = 1,    //sonhư:Trị liệu sưmộtThángtrongthu phíkhôngđượcvượtquamườivạn
     }
 
     /// <summary>
@@ -893,7 +893,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Ngoại trúBệnh nhânkhámTrạng thái（khámcờ）
+    /// Ngoại trúBệnh nhânkhámTrạng thái(khámcờ)
     /// </summary>
     public enum EnumOutpatientJzbz
     {
@@ -1515,12 +1515,12 @@ namespace Newtouch.Sett.Domain
         [Description("phục hồi triệt sảnPhẫu thuật")]
         jyftss = 6,
         /// <summary>
-        /// Triệt sảnPhẫu thuật（Ống dẫn tinh）
+        /// Triệt sảnPhẫu thuật(Ống dẫn tinh)
         /// </summary>
         [Description("triệt sảnPhẫu thuật（ống dẫn tinh）")]
         jysssjg = 7,
         /// <summary>
-        /// Nối lại sau triệt sảnPhẫu thuật（Ống dẫn tinh）
+        /// Nối lại sau triệt sảnPhẫu thuật(Ống dẫn tinh)
         /// </summary>
         [Description("phục hồi triệt sảnPhẫu thuật（ống dẫn tinh）")]
         jyftsssjg = 8,
@@ -1621,7 +1621,7 @@ namespace Newtouch.Sett.Domain
         pt = 1,
     }
     /// <summary>
-    /// đặtphiếuTrạng thái0:Chờthanh toán 1:đãthanh toán  2::Đã hoàn khoản 3：Đang thanh toán
+    /// đặtphiếuTrạng thái0:Chờthanh toán 1:đãthanh toán  2::Đã hoàn khoản 3:Đang thanh toán
     /// </summary>
     public enum EnumOrderStatus
     {

@@ -67,7 +67,7 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public string dl { get; set; }
 
         /// <summary>
-        /// Số lượng（Đơn vị bộ phận）
+        /// Số lượng(Đơn vị bộ phận)
         /// </summary>
         public decimal sl { get; set; }
 
@@ -77,12 +77,12 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public int zhyz { get; set; }
 
         /// <summary>
-        /// Uống、Truyền tĩnh mạch...
+        /// Uống,Truyền tĩnh mạch...
         /// </summary>
         public string zlff { get; set; }
 
         /// <summary>
-        /// Thời gian thực hiện：04,06,08...
+        /// Thời gian thực hiện:04,06,08...
         /// </summary>
         public string sjap { get; set; }
 
@@ -122,7 +122,7 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public string fyyf { get; set; }
 
         /// <summary>
-        /// Tính chất y lệnh 1：Tạm thời；2：Dài hạn
+        /// Tính chất y lệnh 1:Tạm thời;2:Dài hạn
         /// </summary>
         public string yzxz { get; set; }
 

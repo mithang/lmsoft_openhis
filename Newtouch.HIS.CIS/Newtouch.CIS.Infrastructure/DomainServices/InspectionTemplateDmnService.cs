@@ -196,7 +196,7 @@ WHERE mb.mbId=@mbId
 
                     db.Update(mbobj);
 
-                    db.Delete<TemplateGroupPackageEntity>(a => a.mbId == mbobj.mbId); //trướctoànxóa，lạiThêm mới
+                    db.Delete<TemplateGroupPackageEntity>(a => a.mbId == mbobj.mbId); //trướctoànxóa,lạiThêm mới
                 }
                 else
                 {

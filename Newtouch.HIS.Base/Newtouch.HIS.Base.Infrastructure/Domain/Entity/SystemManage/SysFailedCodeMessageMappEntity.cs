@@ -18,12 +18,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（Bệnh viện có nghiệp vụ cụ thể）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Tổ chức cấp cao nhất（Nhân viên đang đăng nhập cóOrgkhiOrg，Ngược lạiTopOrg）
+        /// Tổ chức cấp cao nhất(Nhân viên đang đăng nhập cóOrgkhiOrg,Ngược lạiTopOrg)
         /// </summary>
         public string TopOrganizeId { get; set; }
 

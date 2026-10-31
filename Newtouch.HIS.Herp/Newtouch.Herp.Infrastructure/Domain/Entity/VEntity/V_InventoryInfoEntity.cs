@@ -22,7 +22,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public string gg { get; set; }
 
         /// <summary>
-        /// Số lý thuyết（Kèm đơn vị）
+        /// Số lý thuyết(Kèm đơn vị)
         /// </summary>
         public string llsl { get; set; }
         

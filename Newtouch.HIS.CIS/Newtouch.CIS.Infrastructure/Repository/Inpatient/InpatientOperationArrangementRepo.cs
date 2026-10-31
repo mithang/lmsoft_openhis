@@ -12,8 +12,8 @@ namespace Newtouch.Repository
 {
     /// <summary>
     /// Tác giả: 周珏琦
-    /// Ngày：2019-01-28 13:27
-    /// Mô tả：Sắp xếp phẫu thuậtbảng
+    /// Ngày:2019-01-28 13:27
+    /// Mô tả:Sắp xếp phẫu thuậtbảng
     /// </summary>
     public class InpatientOperationArrangementRepo : RepositoryBase<InpatientOperationArrangementEntity>, IInpatientOperationArrangementRepo
     {
@@ -28,7 +28,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// Lưubảngphiếu（Thêm mới、Sửa）
+        /// Lưubảngphiếu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">thựcthểđối tượng</param>
         /// <param name="keyValue">Khóa chínhGiá trị</param>

@@ -98,7 +98,7 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string BKF385 { get; set; }
 
         /// <summary>
-        /// Tiền sử bệnh（bao gồm chấn thương）
+        /// Tiền sử bệnh(bao gồm chấn thương)
         /// </summary>
         /// <returns></returns>
         [Required]
@@ -167,13 +167,13 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string BKF744 { get; set; }
 
         /// <summary>
-        /// Khám thực thể--Nhiệt độ（℃）
+        /// Khám thực thể--Nhiệt độ(℃)
         /// </summary>
         /// <returns></returns>
         public string BKF352 { get; set; }
 
         /// <summary>
-        /// Khám thực thể--Mạch（Lần/miSố）
+        /// Khám thực thể--Mạch(Lần/miSố)
         /// </summary>
         /// <returns></returns>
         public string BKF339 { get; set; }
@@ -185,25 +185,25 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string BKF350 { get; set; }
 
         /// <summary>
-        /// Khám thực thể--Huyết áp tâm thu（mmHg）
+        /// Khám thực thể--Huyết áp tâm thu(mmHg)
         /// </summary>
         /// <returns></returns>
         public string BKF343 { get; set; }
 
         /// <summary>
-        /// Khám thực thể--Huyết áp tâm trương（mmHg）
+        /// Khám thực thể--Huyết áp tâm trương(mmHg)
         /// </summary>
         /// <returns></returns>
         public string BKF344 { get; set; }
 
         /// <summary>
-        /// Khám thực thể--Chiều cao（cm）
+        /// Khám thực thể--Chiều cao(cm)
         /// </summary>
         /// <returns></returns>
         public string BKF351 { get; set; }
 
         /// <summary>
-        /// Khám thực thể--Cân nặng（kg）
+        /// Khám thực thể--Cân nặng(kg)
         /// </summary>
         /// <returns></returns>
         public string BKF353 { get; set; }
@@ -471,12 +471,12 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         /// <returns></returns>
         public string BKF359 { get; set; }
         /// <summary>
-        /// Lượng hút thuốc mỗi ngày（điếu）
+        /// Lượng hút thuốc mỗi ngày(điếu)
         /// </summary>
         /// <returns></returns>
         public string BKF258 { get; set; }
         /// <summary>
-        /// Dấu hiệu uống rượu 0 Không；1 Có
+        /// Dấu hiệu uống rượu 0 Không;1 Có
         /// </summary>
         /// <returns></returns>
         public string BKF401 { get; set; }
@@ -486,12 +486,12 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         /// <returns></returns>
         public string BKF402 { get; set; }
         /// <summary>
-        /// Lượng rượu uống mỗi ngày（mL）
+        /// Lượng rượu uống mỗi ngày(mL)
         /// </summary>
         /// <returns></returns>
         public string BKF259 { get; set; }
         /// <summary>
-        /// Định dạng ngày giờ đánh giá：yyyymmddhhmiss
+        /// Định dạng ngày giờ đánh giá:yyyymmddhhmiss
         /// </summary>
         /// <returns></returns>
         public string BKF249 { get; set; }

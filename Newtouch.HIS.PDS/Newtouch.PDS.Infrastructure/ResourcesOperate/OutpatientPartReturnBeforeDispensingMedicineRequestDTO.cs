@@ -6,7 +6,7 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.PDS.Requset.ResourcesOperate
 {
     /// <summary>
-    /// （Trước khi phát thuốc）Bản tin yêu cầu trả thuốc một phần
+    /// (Trước khi phát thuốc)Bản tin yêu cầu trả thuốc một phần
     /// </summary>
     public class OutpatientPartReturnBeforeDispensingMedicineRequestDTO : RequestBase
     {
@@ -52,7 +52,7 @@ namespace Newtouch.PDS.Requset.ResourcesOperate
         public string Yfbm { get; set; }
 
         /// <summary>
-        /// Số lượng trả （Số lượng đơn vị bộ phận）
+        /// Số lượng trả (Số lượng đơn vị bộ phận)
         /// </summary>
         public int sl { get; set; }
 

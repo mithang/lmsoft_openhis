@@ -370,7 +370,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// Lấy loại thuốc （Kiểm kê）
+        /// Lấy loại thuốc (Kiểm kê)
         /// </summary>
         /// <returns></returns>
         public IActionResult GetMedicineCategoryList()
@@ -462,7 +462,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// Kết thúc kiểm kê
         /// </summary>
         /// <param name="pdId">Đơn kiểm kêID</param>
-        /// <param name="autoCarryDown">null/0：Không tự động kết chuyển  1：Tự động kết chuyển</param>
+        /// <param name="autoCarryDown">null/0:Không tự động kết chuyển  1:Tự động kết chuyển</param>
         /// <returns></returns>
         public IActionResult EndInventory(string pdId, string autoCarryDown)
         {
@@ -575,7 +575,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// Lấy loại thuốc （Nhập xuất tồn）
+        /// Lấy loại thuốc (Nhập xuất tồn)
         /// </summary>
         /// <returns></returns>
         public IActionResult GetMedicineCategoryList2()
@@ -615,7 +615,7 @@ namespace Newtouch.HIS.Web.Controllers
         #region Khác
 
         /// <summary>
-        /// Người dùng đăng nhập hiện tại Nhà thuốc có thể thao tác（Kho thuốc）Danh sách Nguồn dữ liệu
+        /// Người dùng đăng nhập hiện tại Nhà thuốc có thể thao tác(Kho thuốc)Danh sách Nguồn dữ liệu
         /// </summary>
         /// <returns></returns>
         public IActionResult PharmacyDepartmentList()

@@ -34,7 +34,7 @@ $.fn.sfxmFloatingSelector = function (options) {
         ajaxparameters: null,   //Vui lòng chỉ định
         itemdbclickhandler: null,   //Vui lòng chỉ định
         djDecimalPlaces: 2,  //Độ chính xác đơn giá Mặc định2
-        searchType: null,   //Chỉ điều khiển ẩn/hiện cột，Không tham gia lọc//Mục tiêu tìm kiếm "yp,sfxm"、"yp"、"sfxm"、"yp.kc"、"sfxm.dwjls"、"yp,sfxm.dwjls"、"yp.kc,sfxm"、"yp.kc,sfxm.dwjls"
+        searchType: null,   //Chỉ điều khiển ẩn/hiện cột,Không tham gia lọc//Mục tiêu tìm kiếm "yp,sfxm","yp","sfxm","yp.kc","sfxm.dwjls","yp,sfxm.dwjls","yp.kc,sfxm","yp.kc,sfxm.dwjls"
         showColModel: null,   //Có thể chỉ định [{name:;widthratio:;},{name:;widthratio:;}] widthratioCó thể chọn
         ypkccbjc: true,    //Kiểm tra sơ bộ tồn kho thuốc   Có bị kiểm soát hay không Có tồn kho hay không0
         colModel: [
@@ -96,7 +96,7 @@ $.fn.sfxmFloatingSelector = function (options) {
             },
             {
                 label: 'Tồn kho', name: 'clkcsl', formatter: function (cellvalue, a, b) {
-                    //được chokcsllà của đơn vị tối thiểu，Ở đây cần hiển thị khám ngoại trú/Số lượng đơn vị nội trú
+                    //được chokcsllà của đơn vị tối thiểu,Ở đây cần hiển thị khám ngoại trú/Số lượng đơn vị nội trú
                     return b.yzlx === '1' || b.yzlx === '3' ? (!!b.kcsl && !!b.cls ? (parseInt(b.kcsl / b.cls)) : '无') : '';
                 }, widthratio: 6, hidden: true
             },

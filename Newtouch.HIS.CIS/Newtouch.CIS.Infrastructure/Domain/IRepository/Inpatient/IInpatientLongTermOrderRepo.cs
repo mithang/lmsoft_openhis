@@ -7,13 +7,13 @@ namespace Newtouch.Domain.IRepository
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày：2018-06-28 13:27
-    /// Mô tả：Y lệnh dài hạn
+    /// Ngày:2018-06-28 13:27
+    /// Mô tả:Y lệnh dài hạn
     /// </summary>
     public interface IInpatientLongTermOrderRepo : IRepositoryBase<InpatientLongTermOrderEntity>
     {
         /// <summary>
-        /// Lưubảngphiếu（Thêm mới、Sửa）
+        /// Lưubảngphiếu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">thựcthểđối tượng</param>
         /// <param name="keyValue">Khóa chínhGiá trị</param>

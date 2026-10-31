@@ -30,7 +30,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
             HttpWebHelper.RemoveCookie(nLanguageTypeKey);
             if (!string.IsNullOrWhiteSpace(UserIdentity?.OrganizeId))
             {
-                //hiện tạiOrgtên（liên kếtStaff）
+                //hiện tạiOrgtên(liên kếtStaff)
                 ViewBag.OrgName = _organizeApp.GetNameByOrgId(this.UserIdentity.OrganizeId);
             }
             else

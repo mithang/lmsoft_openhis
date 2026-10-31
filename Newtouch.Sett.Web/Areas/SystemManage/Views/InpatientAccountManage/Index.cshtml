@@ -676,7 +676,7 @@
 
         if ((payingOrFailed === null || payingOrFailed === true) && payMoney > 0) {
             payMoney = parseFloat(payMoney).toFixed(2);
-            var out_trade_no = (new Date()).getTime().toString();   //làkhôngcóVấn đề？
+            var out_trade_no = (new Date()).getTime().toString();   //làkhôngcóVấn đề?
             ToPay(out_trade_no, 'tạm ứng nạp tiền', payMoney, djjesszffs);
             payingOrFailed = true;
         }

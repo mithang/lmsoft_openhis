@@ -125,7 +125,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         ///// <summary>
-        ///// Báo hỏngbáo thừa （Lưu）
+        ///// Báo hỏngbáo thừa (Lưu)
         ///// </summary>
         ///// <param name="syxx"></param>
         ///// <returns></returns>
@@ -251,7 +251,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Khoachuẩn bị thuốcPhiếu：Thuốcthông tingắn
+        /// Khoachuẩn bị thuốcPhiếu:Thuốcthông tingắn
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="yfbm"></param>

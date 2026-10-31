@@ -24,7 +24,7 @@ namespace Newtouch.CIS.APIRequest.Dto
         public string OperationType { get; set; }
 
         /// <summary>
-        /// nội dung，actiontruyềntham số
+        /// nội dung,actiontruyềntham số
         /// </summary>
         public string Content { get; set; }
     }

@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấy tất cả tổ chức hiệu lực thuộc tổ chức（parent）
+        /// Lấy tất cả tổ chức hiệu lực thuộc tổ chức(parent)
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeVO> GetValidListByParentOrg(string parentOrgId)
@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấy tất cả tổ chức thuộc tổ chức（parent）（Bao gồm cả vô hiệu）
+        /// Lấy tất cả tổ chức thuộc tổ chức(parent)(Bao gồm cả vô hiệu)
         /// </summary>
         /// <returns></returns>
         public List<SysOrganizeVO> GetListByParentOrg(string parentOrgId)
@@ -127,7 +127,7 @@ where ParentId is null and
         }
 
         /// <summary>
-        /// Gửi tạo mới、Cập nhật Thực thể
+        /// Gửi tạo mới,Cập nhật Thực thể
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>

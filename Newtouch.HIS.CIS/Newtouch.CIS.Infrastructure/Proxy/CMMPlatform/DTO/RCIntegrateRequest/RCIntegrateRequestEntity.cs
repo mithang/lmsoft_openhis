@@ -7,7 +7,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.RCIntegrateRequest
     public class RCIntegrateRequestEntity
     {
         /// <summary>
-        /// bìnhbànNgười dùngduy nhấtmột：Bác sĩĐăng nhậpHệ thốngcủaNgười dùngtên
+        /// bìnhbànNgười dùngduy nhấtmột:Bác sĩĐăng nhậpHệ thốngcủaNgười dùngtên
         /// bắt buộc
         /// </summary>
         public string openid { get; set; }

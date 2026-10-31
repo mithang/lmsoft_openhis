@@ -90,7 +90,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// điều dưỡngTra cứu（theoNgàyThời gianThứ tự）
+        /// điều dưỡngTra cứu(theoNgàyThời gianThứ tự)
         /// </summary>
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
@@ -119,12 +119,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             if (patInfo!=null&&patInfo.ryrq>kssj)
             {
                 kssj = patInfo.ryrq;
-                //throw new FailedException("Ngày nhập viện："+patInfo.ryrq+";vui lòngnhậpđangxáccủaThời gian bắt đầu");
+                //throw new FailedException("Ngày nhập viện:"+patInfo.ryrq+";vui lòngnhậpđangxáccủaThời gian bắt đầu");
             }
             if (patInfo != null && patInfo.cqrq != null && patInfo.cqrq < jssj)
             {
                 jssj = patInfo.cqrq;
-                //throw new FailedException("Ngày xuất viện：" + patInfo.cqrq + ";vui lòngnhậpđangxáccủaThời gian kết thúc");
+                //throw new FailedException("Ngày xuất viện:" + patInfo.cqrq + ";vui lòngnhậpđangxáccủaThời gian kết thúc");
             }
            
             var ValidList = _inpatientVitalSignsRepo.GetValidList(this.OrganizeId, kssj, jssj, zyh);
@@ -375,7 +375,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         public IActionResult DrawData(DateTime? kssj, DateTime? jssj, string zyh,int? pagesize)
 		{
 			var patInfo = _inpatientPatientDmnService.GetInfoByZyh(zyh, this.OrganizeId);
-            //2021-9-7Sửa：Phiếu đo ba chỉ sốBỏThời gianĐiều kiện tìm kiếm
+            //2021-9-7Sửa:Phiếu đo ba chỉ sốBỏThời gianĐiều kiện tìm kiếm
             //if (!kssj.HasValue || !jssj.HasValue)
             //{
             //    throw new FailedException("HLCX_DATE_REQUIRED", "Vui lòng chọnNgày");
@@ -400,12 +400,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             if (patInfo != null && patInfo.ryrq > kssj)
             {
                 kssj = patInfo.ryrq;
-                //throw new FailedException("Ngày nhập viện："+patInfo.ryrq+";vui lòngnhậpđangxáccủaThời gian bắt đầu");
+                //throw new FailedException("Ngày nhập viện:"+patInfo.ryrq+";vui lòngnhậpđangxáccủaThời gian bắt đầu");
             }
             if (patInfo != null && patInfo.cqrq != null && patInfo.cqrq < jssj  && patInfo.zybz==(int)EnumZYBZ.Ycy)
             {
                 jssj = patInfo.cqrq;
-                //throw new FailedException("Ngày xuất viện：" + patInfo.cqrq + ";vui lòngnhậpđangxáccủaThời gian kết thúc");
+                //throw new FailedException("Ngày xuất viện:" + patInfo.cqrq + ";vui lòngnhậpđangxáccủaThời gian kết thúc");
             }
 
             var ValidList = _inpatientVitalSignsRepo.GetTempratureData(this.OrganizeId, kssj, jssj, zyh, pagesize??6);

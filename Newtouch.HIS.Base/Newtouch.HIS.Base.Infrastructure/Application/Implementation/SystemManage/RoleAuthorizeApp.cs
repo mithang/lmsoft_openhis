@@ -77,7 +77,7 @@ namespace Newtouch.HIS.Application.Implementation.SystemManage
             {
                 if (!string.IsNullOrEmpty(item.UrlAddress))
                 {
-                    //Nếu đã thêmHandlerAuthorizeAttribute，thì yêu cầu có tương ứngMeum/MenuButton và có cài đặtUrl
+                    //Nếu đã thêmHandlerAuthorizeAttribute,thì yêu cầu có tương ứngMeum/MenuButton và có cài đặtUrl
                     string[] url = item.UrlAddress.Split('?');
                     if (item.Id == moduleId && url[0] == action)
                     {

@@ -33,7 +33,7 @@ namespace Newtouch.Domain.Entity
         public string visitksCode { get; set; }
 
         /// <summary>
-        /// rakhámLoại  1-thông thườngNgoại trú；2-gấpkhám；3-chuyên giaNgoại trú
+        /// rakhámLoại  1-thông thườngNgoại trú;2-gấpkhám;3-chuyên giaNgoại trú
         /// </summary>
         public int czlx { get; set; }
 
@@ -43,7 +43,7 @@ namespace Newtouch.Domain.Entity
         public string SubordinateDepartments { get; set; }
 
         /// <summary>
-        /// Trạng thái     1:Hiệu lực  0：Vô hiệu
+        /// Trạng thái     1:Hiệu lực  0:Vô hiệu
         /// </summary>
         public string zt { get; set; }
 

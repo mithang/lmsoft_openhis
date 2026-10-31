@@ -191,7 +191,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutPatientCancelArrangement(RpCancelVo cfInfo, string userCode);
 
         /// <summary>
-        /// Xếp thuốc lên kệ，Giải đông tồn kho
+        /// Xếp thuốc lên kệ,Giải đông tồn kho
         /// </summary>
         /// <param name="mxphs"></param>
         /// <param name="userCode"></param>

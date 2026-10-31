@@ -47,7 +47,7 @@ and a.zt = '1' and b.zt = '1'";
         }
 
         /// <summary>
-        /// Lấy vai trò Liên kết Người dùng（org）
+        /// Lấy vai trò Liên kết Người dùng(org)
         /// </summary>
         /// <param name="UserId"></param>
         /// <returns></returns>
@@ -135,7 +135,7 @@ and a.zt = '1' and b.zt = '1'";
                     && orgRoleIdList.Contains(p.RoleId)).ToList();
                 for (int i = 0; i < roleLists.Count; i++)
                 {
-                    //Hạn chế：Liên kết vai trò của tổ chức khác
+                    //Hạn chế:Liên kết vai trò của tổ chức khác
 
                     if (oldRoleList.Any(p => p.RoleId == roleLists[i].RoleId))
                     {

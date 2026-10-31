@@ -10,9 +10,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// Người tạo：hyj
-    /// Ngày：2018-10-12 17:43
-    /// Mô tả：Bảng phần tử
+    /// Người tạo:hyj
+    /// Ngày:2018-10-12 17:43
+    /// Mô tả:Bảng phần tử
     /// </summary>
     public class BlysRepo : RepositoryBase<BlysEntity>, IBlysRepo
     {
@@ -56,7 +56,7 @@ where  b.zt='1' and (b.OrganizeId=@orgId or b.OrganizeId='*')
             return this.FindList<BlysMXEntity>(sqlstr.ToString(), para.ToArray());
         }
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

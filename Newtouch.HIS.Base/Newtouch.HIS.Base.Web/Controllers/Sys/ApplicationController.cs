@@ -95,7 +95,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
         }
 
         /// <summary>
-        /// Hủy tất cả ủy quyền（Tổ chức）
+        /// Hủy tất cả ủy quyền(Tổ chức)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

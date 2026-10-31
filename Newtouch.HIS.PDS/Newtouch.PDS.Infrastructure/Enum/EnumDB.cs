@@ -223,7 +223,7 @@ namespace Newtouch.Infrastructure
         All,
 
         /// <summary>
-        /// Đã chấm dứt（Một số（Thậm chí tất cả）Chi tiết sau này sẽ không phát nữa，Nhưng điều này sẽ được coi là đơn lĩnh đã kết thúc）
+        /// Đã chấm dứt(Một số(Thậm chí tất cả)Chi tiết sau này sẽ không phát nữa,Nhưng điều này sẽ được coi là đơn lĩnh đã kết thúc)
         /// </summary>
         [Description("Đã kết thúc")]
         Abandon
@@ -245,12 +245,12 @@ namespace Newtouch.Infrastructure
         [Description("Đã đạt")]
         Approved = 1,
         /// <summary>
-        /// Không đạt（Trạng thái cuối cùng）
+        /// Không đạt(Trạng thái cuối cùng)
         /// </summary>
         [Description("Không đạt")]
         Rejected = 2,
         /// <summary>
-        /// Đã hủy bỏ（Trạng thái cuối cùng）（Chỉ khi duyệt đạt -> mới có thể tới trạng thái này）
+        /// Đã hủy bỏ(Trạng thái cuối cùng)(Chỉ khi duyệt đạt -> mới có thể tới trạng thái này)
         /// </summary>
         [Description("Đã hủy")]
         Cancelled = 3,
@@ -275,7 +275,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Loại thao tác điều chỉnh giá thuốc（Thu hồi Phê duyệt Từ chối Thực hiện）
+    /// Loại thao tác điều chỉnh giá thuốc(Thu hồi Phê duyệt Từ chối Thực hiện)
     /// </summary>
     public enum EnumPriceAdjustOperationType
     {
@@ -307,7 +307,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Trạng thái thực hiện điều chỉnh giá thuốc（0：Chưa thực hiện 1：Đã thực hiện）
+    /// Trạng thái thực hiện điều chỉnh giá thuốc(0:Chưa thực hiện 1:Đã thực hiện)
     /// </summary>
     public enum EnumPriceAdjustZXStatus
     {
@@ -346,7 +346,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Ghi chú phát thuốc 0：Chưa phát；1：Đã xếp；2：Đã phát；3：Đã trả
+    /// Ghi chú phát thuốc 0:Chưa phát;1:Đã xếp;2:Đã phát;3:Đã trả
     /// </summary>
     public enum EnumFybz
     {
@@ -376,7 +376,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Tính chất y lệnh Tạm thời、Dài hạn
+    /// Tính chất y lệnh Tạm thời,Dài hạn
     /// </summary>
     public enum Yzxz
     {

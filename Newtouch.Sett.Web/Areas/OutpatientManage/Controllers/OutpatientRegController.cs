@@ -244,7 +244,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         {
             ViewBag.ReportServerHOST = "";
             ViewBag.OrgId = this.OrganizeId;
-            //công tắc：hẹn đăng ký khám
+            //công tắc:hẹn đăng ký khám
             var brSwitch = (bool)_sysConfigRepo.GetBoolValueByCode("BespeakRegisterSwitch", OrganizeId, false);
             ViewBag.ISOpenBespeakRegister = brSwitch ? "true" : "false";
             ViewBag.Xzqh = _outPatientSettleDmnService.GetOrgXzqh(this.OrganizeId);
@@ -283,7 +283,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// tạo duy nhấtsố khám ngoại trú、số thứ tự khám
+        /// tạo duy nhấtsố khám ngoại trú,số thứ tự khám
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="ghlx"></param>
@@ -305,7 +305,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             return Success(null, data);
         }
         /// <summary>
-        /// chongqing lịch trực mới duy nhấtsố khám ngoại trú、số thứ tự khám
+        /// chongqing lịch trực mới duy nhấtsố khám ngoại trú,số thứ tự khám
         /// </summary>
         /// <param name="patid"></param>
         /// <param name="ghpbId"></param>
@@ -368,8 +368,8 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// <param name="sfrq"></param>
         /// <param name="fph"></param>
         /// <param name="feeRelated"></param>
-        /// <param name="brxz">tính chất bệnh nhândo trang truyền sang，vìlàBHYTbệnh nhân có thể đăng ký số tự chi trả</param>
-        /// <param name="ybjsh">BHYTphíasố quyết toán（BHYTphía đãđăng ký khám）</param>
+        /// <param name="brxz">tính chất bệnh nhândo trang truyền sang,vìlàBHYTbệnh nhân có thể đăng ký số tự chi trả</param>
+        /// <param name="ybjsh">BHYTphíasố quyết toán(BHYTphía đãđăng ký khám)</param>
         /// <param name="qzjzxh">số thứ tự khám tiền tố</param>
         /// <param name="qzmzh">tiền tốsố khám ngoại trú</param>
         /// <returns></returns>
@@ -392,7 +392,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                     || string.IsNullOrWhiteSpace(brxz) || (feeRelated != null && feeRelated.zje < 0))
                 {
                     //181008phải truyềnbrxz
-                    //zjecó thể bằng0，nhưng không được nhỏ hơn0
+                    //zjecó thể bằng0,nhưng không được nhỏ hơn0
                     return Error("Dữ liệu yêu cầu chưa đầy đủ");
                 }
                 object newJszbInfo;
@@ -405,7 +405,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             {
                 if (!string.IsNullOrWhiteSpace(ybjsh))
                 {
-                    //BHYTphía đãđăng ký khám，HISđăng ký khámthất bại，phải hủyBHYTphíacủađăng ký khám，nhắc đăng ký lại
+                    //BHYTphía đãđăng ký khám,HISđăng ký khámthất bại,phải hủyBHYTphíacủađăng ký khám,nhắc đăng ký lại
                     //20181018tạiClientgọi
 
                 }
@@ -545,7 +545,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 		    decimal zfje = Convert.ToDecimal(0.0000);
 			foreach (var item in ghdata)
 		    {
-				//xác địnhkhoản mụclàBHYTkhoản mụchay tự chi trảkhoản mục，ở đây vìlàsypcchắc chắnlànull，vì vậy khi tra cứu trước tiên dùng trường này làmlàBHYTdấu hiệugán trường，có thể không thêm trường mới nữa
+				//xác địnhkhoản mụclàBHYTkhoản mụchay tự chi trảkhoản mục,ở đây vìlàsypcchắc chắnlànull,vì vậy khi tra cứu trước tiên dùng trường này làmlàBHYTdấu hiệugán trường,có thể không thêm trường mới nữa
 			    if (item.issc==1)
 			    {
 					ybje += Convert.ToDecimal(item.je);

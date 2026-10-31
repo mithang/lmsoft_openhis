@@ -11,9 +11,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// Người tạo：hyj
-    /// Ngày：2018-09-20 18:23
-    /// Mô tả：Bảng chi tiết tùy chọn
+    /// Người tạo:hyj
+    /// Ngày:2018-09-20 18:23
+    /// Mô tả:Bảng chi tiết tùy chọn
     /// </summary>
     public class BabasyRepo : RepositoryBase<BabasyEntity>, IBabasyRepo
     {
@@ -24,7 +24,7 @@ namespace Newtouch.EMR.Repository
 
 
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

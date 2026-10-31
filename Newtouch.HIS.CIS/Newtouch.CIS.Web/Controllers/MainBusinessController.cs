@@ -49,21 +49,21 @@ namespace Newtouch.CIS.Web.Controllers
             //Đăng nhập ngườiCóKhôngCóĐiều dưỡng
             ViewBag.IsNurse = _sysUserDmnService.CheckStaffIsBelongDuty(this.UserIdentity.StaffId, "Nurse");
 
-            //Công tắc：Điều dưỡngnhậpdấu hiệu sinh tồn
+            //Công tắc:Điều dưỡngnhậpdấu hiệu sinh tồn
             ViewBag.IsVitalSignsSwitch = _sysConfigRepo.GetValueByCode("vitalSignsSwitch", this.OrganizeId);
-            //Công tắc：Có mở khôngXét nghiệmKiểm tra
+            //Công tắc:Có mở khôngXét nghiệmKiểm tra
             ViewBag.IsOpenJyJcSwitch = _sysConfigRepo.GetBoolValueByCode("openJyJcSwitch", this.OrganizeId);
-            //Công tắc：Ngoại trúCó mở khôngPhục hồi chức năngĐơn thuốc
+            //Công tắc:Ngoại trúCó mở khôngPhục hồi chức năngĐơn thuốc
             ViewBag.ISOpenKfcf = _sysConfigRepo.GetBoolValueByCode("openKfcf", this.OrganizeId);
-            //Công tắc：Ngoại trúCó mở khôngHạng mục thông thườngĐơn thuốc
+            //Công tắc:Ngoại trúCó mở khôngHạng mục thông thườngĐơn thuốc
             ViewBag.ISOpenCgxmcf = _sysConfigRepo.GetBoolValueByCode("openCgxmcf", this.OrganizeId);
             ViewBag.isOpenRationalUse = _sysConfigRepo.GetValueByCode("OpenRationalUse", OrganizeId);//CóKhôngbậthợplýdùngthuốc
-            //Công tắc：Ngoại trúCó mở khôngThuốc Đông yĐơn thuốc
+            //Công tắc:Ngoại trúCó mở khôngThuốc Đông yĐơn thuốc
             ViewBag.ISOpenZycf = _sysConfigRepo.GetBoolValueByCode("openZycf", this.OrganizeId);
             ViewBag.ISOpenZycfnew = _sysConfigRepo.GetBoolValueByCode("openZycfnew", this.OrganizeId);
-            //Công tắc：Ngoại trúCó mở khôngydùngVật tư tiêu hao
+            //Công tắc:Ngoại trúCó mở khôngydùngVật tư tiêu hao
             ViewBag.ISOpenWzhc = _sysConfigRepo.GetBoolValueByCode("openWzhccf", this.OrganizeId);
-            //Công tắc：ThuốcCóKhôngNhà thuốc liên quanTồn kho
+            //Công tắc:ThuốcCóKhôngNhà thuốc liên quanTồn kho
             ViewBag.ISMedicineSearchRelatedKC = _sysConfigRepo.GetBoolValueByCode("IS_MedicineSearchRelatedKC", OrganizeId);
             //Phục hồi chức năngĐơn thuốcInCông tắc
             ViewBag.ISPrintRehabPres = _sysConfigRepo.GetBoolValueByCode("IS_PrintRehabPres", OrganizeId, true);
@@ -93,7 +93,7 @@ namespace Newtouch.CIS.Web.Controllers
             }
             #endregion Kháng sinhliên quan
 
-            //Công tắc：đặt hẹnđăng ký khám
+            //Công tắc:đặt hẹnđăng ký khám
             ViewBag.ISOpenBespeakRegister = _sysConfigRepo.GetBoolValueByCode("IS_BespeakRegister", OrganizeId);
             var defualtFrequency = _sysConfigRepo.GetValueByCode("RehabItemDefaultFrequency", OrganizeId);
             if (!string.IsNullOrWhiteSpace(defualtFrequency))

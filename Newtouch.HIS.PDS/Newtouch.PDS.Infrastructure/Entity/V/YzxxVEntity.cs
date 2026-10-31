@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.Entity.V
         public string fybz { get; set; }
 
         /// <summary>
-        /// Cờ xin trả thuốc 0：Không  1：Có
+        /// Cờ xin trả thuốc 0:Không  1:Có
         /// </summary>
         public int? sqtybz { get; set; }
 

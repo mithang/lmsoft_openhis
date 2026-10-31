@@ -316,7 +316,7 @@
         }
 
         var currlineId = $("#gridsfxm").getRowData(rowid).Id;
-        if (currlineId.indexOf("0.") == '-1') {//SửacủaDữ liệu，khôngcho phépSửaMục thu phí
+        if (currlineId.indexOf("0.") == '-1') {//SửacủaDữ liệu,khôngcho phépSửaMục thu phí
             $("#" + rowid + "_xmmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
         } else {
             var searchType = "sfxm";
@@ -380,8 +380,8 @@
                     }
                     var jldw = $this.attr('data-jldw');    //Đơn vị liều
                     var dw = $this.attr('data-dw');     //Đơn vị nhập viện
-                    //Khởi tạoĐơn vịvàĐơn vịLoạicủaGiá trị，KhôngthìKhông cóGiá trịtruyềnđếnmáy chủ
-                    //Mặc địnhĐơn vị liều，khôngtồn tạiởĐơn vị liều，Mặc địnhĐơn vị nhập viện，đềukhôngtồn tạiở，khôngGán giá trị
+                    //Khởi tạoĐơn vịvàĐơn vịLoạicủaGiá trị,KhôngthìKhông cóGiá trịtruyềnđếnmáy chủ
+                    //Mặc địnhĐơn vị liều,khôngtồn tạiởĐơn vị liều,Mặc địnhĐơn vị nhập viện,đềukhôngtồn tạiở,khôngGán giá trị
                     if (!!jldw) {
                         $("#" + rowid + "_dwwwwwww").val(jldw);
                         $("#" + rowid + "_dwlb").val("1");
@@ -583,7 +583,7 @@
         if (!!selRowId) {
            var Id= $("#gridsfxm").jqGrid('getRowData', selRowId).Id;
             $("#gridsfxm").jqGrid("delRowData", selRowId);
-            if (Id.indexOf("0.")==='-1') {//ghi lại，từCơ sở dữ liệuXóa
+            if (Id.indexOf("0.")==='-1') {//ghi lại,từCơ sở dữ liệuXóa
                 deldata.push(Id);
             }
             if (!(recalc === false)) {
@@ -604,13 +604,13 @@
         //    return;
         //}
         patobjValidate();
-            //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+            //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
             var rowIds = $("#gridsfxm").jqGrid('getDataIDs');
             for (var i = 0; i < rowIds.length; i++) {
                     var saveResult = $("#gridsfxm").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
                     if (!saveResult) {
                         EnableIInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-                        return;   //Lưu thất bại，thìreturn
+                        return;   //Lưu thất bại,thìreturn
                     }
             }
             var gridsfxmData = $("#gridsfxm").jqGrid('getRowData_AllLine', null, true);
@@ -754,7 +754,7 @@
                     mbObj.tclx = @Html.Raw(((int)EnumYzlx.sfxm).ToString());
                     mbObj.ysgh = '@ViewBag.ysgh';
                 }
-                //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+                //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
                 var rowIds = $("#gridsfxm").jqGrid('getDataIDs');
                 for (var i = 0; i < rowIds.length; i++) {
                     calitemsl(rowIds[i]);
@@ -762,7 +762,7 @@
 
                     if (!saveResult) {
                         EnableIInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-                        return;   //Lưu thất bại，thìreturn
+                        return;   //Lưu thất bại,thìreturn
                     }
                 }
                 var gridsfxmData = $("#gridsfxm").jqGrid('getRowData_AllLine', null, true);

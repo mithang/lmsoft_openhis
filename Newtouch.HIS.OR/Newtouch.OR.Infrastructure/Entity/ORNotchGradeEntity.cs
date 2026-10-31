@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.OR.ManageSystem.Domain.Entity
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-11-06 10:22
-    /// Mô tả：Cấp vết mổ
+    /// Tạo bởi:chl
+    /// Ngày:2019-11-06 10:22
+    /// Mô tả:Cấp vết mổ
     /// </summary>
     [SugarTable("OR_NotchGrade")]
     public class ORNotchGradeEntity : IEntityBase
@@ -39,7 +39,7 @@ namespace Newtouch.OR.ManageSystem.Domain.Entity
         public string Name { get; set; }
 
         /// <summary>
-        /// Trạng thái     1:Có hiệu lực  0：Không hiệu lực
+        /// Trạng thái     1:Có hiệu lực  0:Không hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }

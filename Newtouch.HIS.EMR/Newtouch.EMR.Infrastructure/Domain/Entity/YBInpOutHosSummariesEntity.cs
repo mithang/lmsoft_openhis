@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2021-03-01 15:24
-    /// Mô tả：Tóm tắt ra viện
+    /// Người tạo:chl
+    /// Ngày:2021-03-01 15:24
+    /// Mô tả:Tóm tắt ra viện
     /// </summary>
     [SugarTable("YB_Inp_OutHosSummaries")]
     public class YBInpOutHosSummariesEntity 
@@ -68,7 +68,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string BKB410 { get; set; }
 
         /// <summary>
-        /// Định dạng ngày giờ nhập viện：yyymmddhhmiss
+        /// Định dạng ngày giờ nhập viện:yyymmddhhmiss
         /// </summary>
         /// <returns></returns>
         [Description("Ngày giờ nhập viện")]
@@ -76,7 +76,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string BKC192 { get; set; }
 
         /// <summary>
-        /// Định dạng ngày giờ ra viện：yyymmddhhmiss
+        /// Định dạng ngày giờ ra viện:yyymmddhhmiss
         /// </summary>
         /// <returns></returns>
         [Description("Ngày giờ ra viện")]
@@ -160,7 +160,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string BKF267 { get; set; }
 
         /// <summary>
-        /// Ngày giờ ký ( Bác sĩ nội trú) Định dạng：yyyymmddhhmiss
+        /// Ngày giờ ký ( Bác sĩ nội trú) Định dạng:yyyymmddhhmiss
         /// </summary>
         /// <returns></returns>
         public string BKF254 { get; set; }

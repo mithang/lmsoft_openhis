@@ -116,7 +116,7 @@ namespace Newtouch.Domain.Entity
         public bool? tbz { get; set; }
 
         /// <summary>
-        /// Số phiếu（xatrìnhy tếĐăng kýcầnguid）
+        /// Số phiếu(xatrìnhy tếĐăng kýcầnguid)
         /// </summary>
         public string sqdh { get; set; }
         /// <summary>

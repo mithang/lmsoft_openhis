@@ -88,7 +88,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public int? ckbmkc { get; set; }
 
         /// <summary>
-        /// Xuất khoĐơn vị（Tên đơn vị）
+        /// Xuất khoĐơn vị(Tên đơn vị)
         /// </summary>
         public string ckdw { get; set; }
 
@@ -103,7 +103,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public int? rkzhyz { get; set; }
 
         /// <summary>
-        /// Nhập khoĐơn vị（Tên đơn vị）
+        /// Nhập khoĐơn vị(Tên đơn vị)
         /// </summary>
         public string rkdw { get; set; }
         public string dw { get; set; }

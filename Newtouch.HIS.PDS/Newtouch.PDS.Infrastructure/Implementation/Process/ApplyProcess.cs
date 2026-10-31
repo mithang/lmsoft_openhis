@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
                 {
                     sldId = sysMedicineRequisitionEntity.sldId,
                     ypCode = p.ypdm,
-                    slsl = p.sl * (int)p.rkzhyz,    //Chuyển thành đơn vị nhỏ nhất，lưu nó
+                    slsl = p.sl * (int)p.rkzhyz,    //Chuyển thành đơn vị nhỏ nhất,lưu nó
                     Zhyz = 1,
                     yfsl = 0,   //Số lượng đã phát
                     zt = "1"

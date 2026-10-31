@@ -52,7 +52,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public string sccj { get; set; }
 
         /// <summary>
-        /// Cờ kiểm soát  1：Hiệu lực  0：Không hiệu lực（Bị kiểm soát）
+        /// Cờ kiểm soát  1:Hiệu lực  0:Không hiệu lực(Bị kiểm soát)
         /// </summary>
         public string zt { get; set; }
     }

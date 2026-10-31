@@ -336,10 +336,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         #region Thực hiệnTạm thời, Dài hạn,Tất cả
         /// <summary>
-        /// Thực hiệnTạm thời，Dài hạn，Tất cảY lệnh
+        /// Thực hiệnTạm thời,Dài hạn,Tất cảY lệnh
         /// </summary>
         /// <param name="patlist">Số nhập viện</param>
-        /// <param name="yzxz">Tạm thời，Dài hạn，Tất cả</param>
+        /// <param name="yzxz">Tạm thời,Dài hạn,Tất cả</param>
         /// <param name="Vzxsj"></param>
         /// <returns></returns>
         public IActionResult submitOrderExecutionListbyPat(string patlist, int yzxz, DateTime Vzxsj)
@@ -379,7 +379,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Thực hiệnY lệnhkhi，kiểm traNgày nhập viện+vật tưVật tư tiêu haoTồn khokiểm tra
+        /// Thực hiệnY lệnhkhi,kiểm traNgày nhập viện+vật tưVật tư tiêu haoTồn khokiểm tra
         /// </summary>
         /// <param name="patlist"></param>
         public void Validatepatryrq(string patlist, DateTime Vzxsj)

@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly ISysPharmacyDepartmentMedicineRepo _sysPharmacyDepartmentMedicineRepo;
 
         /// <summary>
-        /// Lấy kho thuốc theo mã nhà thuốcList（Nhà thuốc có thể lĩnh từ kho thuốc đích）
+        /// Lấy kho thuốc theo mã nhà thuốcList(Nhà thuốc có thể lĩnh từ kho thuốc đích)
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="yfbmCode"></param>
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Lấy nhà thuốc theo mã kho thuốcList（Kho thuốc có thể phát thuốc cho nhà thuốc đích）
+        /// Lấy nhà thuốc theo mã kho thuốcList(Kho thuốc có thể phát thuốc cho nhà thuốc đích)
         /// </summary>
         /// <param name="ykbmCode"></param>
         /// <returns></returns>
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Lấy khoa theo mã nhà thuốcList（Nhà thuốc có thể phát thuốc cho khoa đích）
+        /// Lấy khoa theo mã nhà thuốcList(Nhà thuốc có thể phát thuốc cho khoa đích)
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <returns></returns>
@@ -102,7 +102,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Bộ phận nhà thuốc được ủy quyền thuốc vàEmpowermentPharmacyDepartmentKhác nhau，Phương thức này sẽ hủy trước ủy quyền tất cả nhà thuốc của thuốc này，trong việc cấp lại quyền
+        /// Bộ phận nhà thuốc được ủy quyền thuốc vàEmpowermentPharmacyDepartmentKhác nhau,Phương thức này sẽ hủy trước ủy quyền tất cả nhà thuốc của thuốc này,trong việc cấp lại quyền
         /// </summary>
         /// <param name="req"></param>
         /// <returns></returns>

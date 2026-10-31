@@ -52,7 +52,7 @@ namespace Newtouch.HIS.DomainServices.DrugStorage
         }
 
         /// <summary>
-        /// Đóng băng tồn kho，và trả về thông tin lô bị đóng băng
+        /// Đóng băng tồn kho,và trả về thông tin lô bị đóng băng
         /// </summary>
         /// <param name="kcsl"></param>
         /// <param name="ypdm"></param>

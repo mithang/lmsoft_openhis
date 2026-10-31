@@ -74,7 +74,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
         /// <param name="xm"></param>
-        /// <param name="brzybz">bệnhngườitạiviệntiêuchí：null/Emptyxếptrừlàmhủylấyhủyvàoviện；của nóanh tađốiphảizybzEnum，nhiềucáidùngtrêusốphâncắt</param>
+        /// <param name="brzybz">bệnhngườitạiviệntiêuchí:null/Emptyxếptrừlàmhủylấyhủyvàoviện;của nóanh tađốiphảizybzEnum,nhiềucáidùngtrêusốphâncắt</param>
         /// <returns></returns>
         [HttpGet]
 

@@ -21,7 +21,7 @@ namespace Newtouch.Domain.IDomainServices
         List<MedicalRecordTreeVO> GetHistoryMedicalRecordTree(string blh, int queryDate, string orgId);
 
         /// <summary>
-        /// Chi tiếtcâytiếtđiểmnội dung （TheojzIdTra cứuHồ sơvàĐơn thuốcnội dung）
+        /// Chi tiếtcâytiếtđiểmnội dung (TheojzIdTra cứuHồ sơvàĐơn thuốcnội dung)
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="orgId"></param>
@@ -29,7 +29,7 @@ namespace Newtouch.Domain.IDomainServices
         NodeContentDto SelectNodeContent(string jzId);
 
         /// <summary>
-        /// Chi tiếtcâytiếtđiểmnội dung （TheoMbIdTra cứuHồ sơvàĐơn thuốcnội dung）
+        /// Chi tiếtcâytiếtđiểmnội dung (TheoMbIdTra cứuHồ sơvàĐơn thuốcnội dung)
         /// </summary>
         /// <param name="jzId"></param>
         /// <param name="orgId"></param>
@@ -37,7 +37,7 @@ namespace Newtouch.Domain.IDomainServices
         NodeContentDto SelectNodeContentByBlmb(string mbId,string orgId);
         
         /// <summary>
-        /// LưuKhám bệnhghi chép、Chẩn đoán、Hồ sơ、Đơn thuốc、Đơn thuốcchi tiết
+        /// LưuKhám bệnhghi chép,Chẩn đoán,Hồ sơ,Đơn thuốc,Đơn thuốcchi tiết
         /// </summary>
         /// <param name="jzObject"></param>
         /// <param name="xydList"></param>
@@ -67,12 +67,12 @@ namespace Newtouch.Domain.IDomainServices
         void ObsoleteAllPresToHIS(string jzId, string orgId);
 
         /// <summary>
-        /// gửiMột lầnKhám bệnhcủatất cảĐơn thuốc（nhưngkhôngđẩyĐã thu phícủa）、hoặcchỉđịnhĐơn thuốc
+        /// gửiMột lầnKhám bệnhcủatất cảĐơn thuốc(nhưngkhôngđẩyĐã thu phícủa),hoặcchỉđịnhĐơn thuốc
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
         /// <param name="opr">Thao tácviên</param>
-        /// <param name="cfId">chỉđịnhkhigửiphiếumộtĐơn thuốc，KhôngthìgửiMột lầnKhám bệnhcủatất cảĐơn thuốc（nhưngkhôngđẩyĐã thu phícủa）</param>
+        /// <param name="cfId">chỉđịnhkhigửiphiếumộtĐơn thuốc,KhôngthìgửiMột lầnKhám bệnhcủatất cảĐơn thuốc(nhưngkhôngđẩyĐã thu phícủa)</param>
         bool sendPresToHis(string mzh, string orgId, string opr, string cfId = null);
 
         bool sendPresToPDS(string orgId, string operatorCode, string mzh, string cfId = null, List<string> addedYpCfList = null, List<string> updatedYpCfList = null);
@@ -112,7 +112,7 @@ namespace Newtouch.Domain.IDomainServices
             IList<SysMedicineUsageVEntity> ypyfList);
 
         /// <summary>
-        /// Hủy đơn thuốc（vàđẩychoHIS）
+        /// Hủy đơn thuốc(vàđẩychoHIS)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>

@@ -48,7 +48,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 
 
         /// <summary>
-        /// Lấy bệnh nhân nhập viện Cấp ba（Cơ sở+Khoa bệnh+bệnh nhân）
+        /// Lấy bệnh nhân nhập viện Cấp ba(Cơ sở+Khoa bệnh+bệnh nhân)
         /// </summary>
         /// <returns></returns>
 
@@ -85,9 +85,9 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             //            subsubTree.parentId = "bq_" + bqItem.bqCode;
             //            subsubTree.hasChildren = false;
             //            subsubTree.showcheck = true;
-            //            subsubTree.checkstate = 0;   //Gán giá trị ở ngoài，Thuận tiện cho bộ nhớ đệm
+            //            subsubTree.checkstate = 0;   //Gán giá trị ở ngoài,Thuận tiện cho bộ nhớ đệm
 
-            //            subsubTree.Ex1 = "1";    //tiêuhiển thịlàbệnhngười，dùngtạiquậnphân bệnh nhân、bệnhquậncủalạichọnkhung
+            //            subsubTree.Ex1 = "1";    //tiêuhiển thịlàbệnhngười,dùngtạiquậnphân bệnh nhân,bệnhquậncủalạichọnkhung
 
             //            treeList.Add(subsubTree);
             //        }
@@ -97,7 +97,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             //        subTree.text = bqItem.bqmc;
             //        subTree.value = "bq_" + bqItem.bqCode;
             //        subTree.parentId = orgItem.Id;
-            //        subTree.isexpand = isExpand;  //Mặc định không mở rộng，Quá nhiều người
+            //        subTree.isexpand = isExpand;  //Mặc định không mở rộng,Quá nhiều người
             //        subTree.complete = true;
             //        subTree.showcheck = true;
             //        subTree.hasChildren = bqPatientData.Count > 0;
@@ -140,7 +140,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             //            var thisParentNode = treeList.Where(p => p.id == treeItem.parentId).FirstOrDefault();
             //            if (thisParentNode != null)
             //            {
-            //                thisParentNode.isexpand = true;  //Cấp dưới có dòng được chọn，Ở đây nhất định mở rộng
+            //                thisParentNode.isexpand = true;  //Cấp dưới có dòng được chọn,Ở đây nhất định mở rộng
             //            }
             //        }
             //    }
@@ -151,7 +151,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             //    while (count > 0)
             //    {
             //        count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-            //        //nặngmớiđiềuchỉnhdướicây gỡ khôngcódướicấp（dướicấpvừabịdi chuyểnrồi） lại khônghiển thịhiển thịshowcheckcủa
+            //        //nặngmớiđiềuchỉnhdướicây gỡ khôngcódướicấp(dướicấpvừabịdi chuyểnrồi) lại khônghiển thịhiển thịshowcheckcủa
             //        treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
             //    }
             //}
@@ -185,7 +185,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// lớp nổi，Nguồn dữ liệu Lấy bệnh nhân nhập viện
+        /// lớp nổi,Nguồn dữ liệu Lấy bệnh nhân nhập viện
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="brlx"></param>

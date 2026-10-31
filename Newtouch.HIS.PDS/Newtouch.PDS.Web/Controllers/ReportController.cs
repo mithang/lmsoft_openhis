@@ -12,8 +12,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// <summary>
         /// Trang in đơn
         /// </summary>
-        /// <param name="type">1:Phát thuốc nội trú（Chi tiết）,2:Phát thuốc nội trú（Tổng hợp）
-        /// 3：Trả thuốc nội trú（Chi tiết），4：Trả thuốc nội trú（Tổng hợp）</param>
+        /// <param name="type">1:Phát thuốc nội trú(Chi tiết),2:Phát thuốc nội trú(Tổng hợp)
+        /// 3:Trả thuốc nội trú(Chi tiết),4:Trả thuốc nội trú(Tổng hợp)</param>
         /// <param name="param"></param>
         /// <returns></returns>
         public IActionResult PrintReport(string type, string param)

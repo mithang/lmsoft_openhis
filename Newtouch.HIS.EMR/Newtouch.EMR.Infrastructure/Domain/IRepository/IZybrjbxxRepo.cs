@@ -5,16 +5,16 @@ using NewtouchHIS.Lib.Base.Model;
 namespace Newtouch.EMR.Domain.IRepository
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2018-08-30 11:31
-    /// Mô tả：Thông tin bệnh nhân nội trú
+    /// Người tạo:chl
+    /// Ngày:2018-08-30 11:31
+    /// Mô tả:Thông tin bệnh nhân nội trú
     /// </summary>
     public interface IZybrjbxxRepo : IRepositoryBase<ZybrjbxxEntity>
     {
 
         ZybrjbxxEntity GetZybrjbxx(string zyh, string OrganizeId);
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

@@ -232,7 +232,7 @@ and exists (
                             ClientNo = Guid.NewGuid(),
                             TimeStamp = DateTime.Now.ToString()
                         };
-                        //gọiNhà thuốcKho thuốcgiao diệnyêu cầutrảthuốc，Quay lạiIsSucceed==true thìTất cảthành công，nếufalse thìnhậnlàTất cảthất bại 
+                        //gọiNhà thuốcKho thuốcgiao diệnyêu cầutrảthuốc,Quay lạiIsSucceed==true thìTất cảthành công,nếufalse thìnhậnlàTất cảthất bại 
                         var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>(
                         "/api/ResourcesOperate/HospitalizatiionReturnDispensingMedicine", reqobj, autoAppendToken: false);
 
@@ -299,7 +299,7 @@ and exists (
                         //        db.Commit();
                         //    }
                         //}
-                        //throw new FailedException("trảthuốcGửi đơn thất bại，" + errMsg);
+                        //throw new FailedException("trảthuốcGửi đơn thất bại," + errMsg);
 
                         //}
                         //else
@@ -423,13 +423,13 @@ and exists (
 
                 //    }
                 //    else {
-                //        throw new FailedException("trảthuốcGửi đơn thất bại(thứ tựsố)，vui lòngtrọngthử");
+                //        throw new FailedException("trảthuốcGửi đơn thất bại(thứ tựsố),vui lòngtrọngthử");
                 //    }
 
                 //}
                 //else
                 //{
-                //    throw new FailedException("trảthuốcGửi đơn thất bại(phát thuốcTrạng thái)，vui lòngtrọngthử");
+                //    throw new FailedException("trảthuốcGửi đơn thất bại(phát thuốcTrạng thái),vui lòngtrọngthử");
                 //}
             //}
         }

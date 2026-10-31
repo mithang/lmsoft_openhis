@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Web.Controllers
         private readonly IXtypcrkfsRepo iXtypcrkfsRepo;
 
         /// <summary>
-        /// Lấy phương thức xuất nhập kho（Nguồn dữ liệu thả xuống）
+        /// Lấy phương thức xuất nhập kho(Nguồn dữ liệu thả xuống)
         /// </summary>
         /// <param name="crkbz"></param>
         /// <returns></returns>

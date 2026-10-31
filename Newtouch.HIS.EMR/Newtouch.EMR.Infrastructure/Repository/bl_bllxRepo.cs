@@ -8,9 +8,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2018-08-30 11:31
-    /// Mô tả：Nhóm lớn bệnh án
+    /// Người tạo:chl
+    /// Ngày:2018-08-30 11:31
+    /// Mô tả:Nhóm lớn bệnh án
     /// </summary>
     public class bl_bllxRepo : RepositoryBase<bl_bllxEntity>, Ibl_bllxRepo
     {
@@ -21,7 +21,7 @@ namespace Newtouch.EMR.Repository
 
 
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

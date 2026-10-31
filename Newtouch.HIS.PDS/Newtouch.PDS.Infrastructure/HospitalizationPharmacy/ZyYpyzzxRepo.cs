@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Repository
         public ZyYpyzzxRepo(FrameworkBase.MultiOrg.Infrastructure.IDefaultDatabaseFactory databaseFactory) : base(databaseFactory) { }
         
         /// <summary>
-        /// Lấy khu bệnh cần phát thuốc（Khử trùng lặp）
+        /// Lấy khu bệnh cần phát thuốc(Khử trùng lặp)
         /// </summary>
         /// <returns></returns>
         public List<string> GetFyBq()
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấy bệnh nhân và khu bệnh cần phát thuốc（Khử trùng lặp）
+        /// Lấy bệnh nhân và khu bệnh cần phát thuốc(Khử trùng lặp)
         /// </summary>
         /// <returns></returns>
         public List<string> GetFyPatients()
@@ -134,7 +134,7 @@ AND yzId=@yzId
         }
 
         /// <summary>
-        /// Theo thực hiệnID，Xóa vật lý tất cả chi tiết của lần thực hiện này
+        /// Theo thực hiệnID,Xóa vật lý tất cả chi tiết của lần thực hiện này
         /// </summary>
         /// <param name="zxId"></param>
         /// <returns></returns>

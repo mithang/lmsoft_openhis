@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
         }
         [HttpGet]
         /// <summary>
-        /// Lấy số lượng người khám（Ghi nợ ngoại trú、Ghi nợ nội trú）
+        /// Lấy số lượng người khám(Ghi nợ ngoại trú,Ghi nợ nội trú)
         /// </summary>
         public IActionResult GetVisitNum()
         {
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
         }
 
         /// <summary>
-        /// Lấy giá trị sinh ngẫu nhiên của trường nghiệp vụ（Tự tăng+Format）
+        /// Lấy giá trị sinh ngẫu nhiên của trường nghiệp vụ(Tự tăng+Format)
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgIdIsStar"></param>

@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// Cây quyền hệ thống （Menu+Nút）
+        /// Cây quyền hệ thống (Menu+Nút)
         /// </summary>
         /// <param name="roleId">Vai trò hiện tạiId</param>
         /// <returns></returns>

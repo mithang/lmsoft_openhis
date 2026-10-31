@@ -51,7 +51,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
 
         }
             /// <summary>
-            /// lấy cây người dùng hệ thống cấp ba（tổ chức+khoa+người dùng（nhân viên））
+            /// lấy cây người dùng hệ thống cấp ba(tổ chức+khoa+người dùng(nhân viên))
             /// </summary>
             /// <returns></returns>
             public async Task<ActionResult> GetSysUserSelectorTree(string organizeId = null, string keyValue = null, string from = null, bool isShowEmpty = false, bool isExpand = true, bool isContansChildOrg = true)
@@ -72,7 +72,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
             {
                 //tập hợp khoa của tổ chức
                 var orgDetpData = await _sysDepartmentDmnService.GetListByOrg(orgItem.OrganizeId);
-                //tập hợp nhân viên tổ chức（có tài khoản đăng nhập tương ứng）
+                //tập hợp nhân viên tổ chức(có tài khoản đăng nhập tương ứng)
                 var orgUserStaffData = await _sysUserDmnService.GetSatffVOListByOrg(orgItem.OrganizeId, this.UserIdentity.TopOrganizeId);
                 #region tất cả các khoa thuộc tổ chức
                 foreach (SysDepartmentEntity deptItem in orgDetpData)
@@ -89,7 +89,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
                         staffTree.Code = userStaffVO.UserCode;
                         staffTree.hasChildren = false;
                         staffTree.showcheck = true;
-                        staffTree.checkstate = 0;   //gán giá trị từ bên ngoài，để tiện lưu bộ nhớ đệm
+                        staffTree.checkstate = 0;   //gán giá trị từ bên ngoài,để tiện lưu bộ nhớ đệm
 
                         staffTree.Ex3 = orgItem.OrganizeId; //closest OrganizeId
 
@@ -101,7 +101,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
                     deptTree.text = deptItem.Name;
                     deptTree.value = deptItem.Code;
                     deptTree.parentId = deptItem.ParentId == null ? orgItem.OrganizeId : deptItem.ParentId;
-                    deptTree.isexpand = isExpand;  //mặc định không mở rộng，quá nhiều người
+                    deptTree.isexpand = isExpand;  //mặc định không mở rộng,quá nhiều người
                     deptTree.complete = true;
                     deptTree.showcheck = false;
                     //deptTree.hasChildren = deptUserStaffData.Count > 0 || orgDetpData.Any(p => p.ParentId == deptItem.Id);
@@ -138,7 +138,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
                         var thisParentNode = treeList.Where(p => p.id == treeItem.parentId).FirstOrDefault();
                         if (thisParentNode != null)
                         {
-                            thisParentNode.isexpand = true;  //cấp dưới có mục đã chọn，ở đây nhất định phải mở rộng
+                            thisParentNode.isexpand = true;  //cấp dưới có mục đã chọn,ở đây nhất định phải mở rộng
                         }
                     }
                 }
@@ -149,7 +149,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
                 while (count > 0)
                 {
                     count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-                    //điều chỉnh lại cây xóa không có cấp dưới（cấp dưới vừa bị dời đi） lại không hiển thịshowcheckcủa
+                    //điều chỉnh lại cây xóa không có cấp dưới(cấp dưới vừa bị dời đi) lại không hiển thịshowcheckcủa
                     treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
                 }
             }

@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Application
             {
                 if (!string.IsNullOrEmpty(item.UrlAddress))
                 {
-                    //Nếu đã thêmHandlerAuthorizeAttribute，thì yêu cầu có tương ứngMeum/MenuButton và có cài đặtUrl
+                    //Nếu đã thêmHandlerAuthorizeAttribute,thì yêu cầu có tương ứngMeum/MenuButton và có cài đặtUrl
                     string[] url = item.UrlAddress.Split('?');
                     if (url[0].Equals(action, System.StringComparison.OrdinalIgnoreCase))
                     {
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Application
         }
 
         /// <summary>
-        /// Kiểm tra quyền truy cập（Yêu cầu phải qua cách nhấp thực đơn Trang chấm công）
+        /// Kiểm tra quyền truy cập(Yêu cầu phải qua cách nhấp thực đơn Trang chấm công)
         /// </summary>
         /// <param name="roleIdList"></param>
         /// <param name="moduleId"></param>
@@ -92,7 +92,7 @@ namespace Newtouch.HIS.Application
             {
                 if (!string.IsNullOrEmpty(item.UrlAddress))
                 {
-                    //Nếu đã thêmHandlerAuthorizeAttribute，thì yêu cầu có tương ứngMeum/MenuButton và có cài đặtUrl
+                    //Nếu đã thêmHandlerAuthorizeAttribute,thì yêu cầu có tương ứngMeum/MenuButton và có cài đặtUrl
                     string[] url = item.UrlAddress.Split('?');
                     if (url[0].Equals(action, System.StringComparison.OrdinalIgnoreCase))
                     {

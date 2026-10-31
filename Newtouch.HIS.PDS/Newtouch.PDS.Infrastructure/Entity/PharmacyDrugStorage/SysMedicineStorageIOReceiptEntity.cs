@@ -26,11 +26,11 @@ namespace Newtouch.HIS.Domain.Entity
 
         /// <summary>
         /// Loại chứng từ 
-        /// 1：Nhập kho thuốc  Số chứng từYPRKD111111111111
-        /// 2：Xuất kho ra ngoài  Số chứng từWBCKD111111111111
-        /// 3：Xuất kho trực tiếp  Số chứng từNBFYD111111111111
-        /// 4：Xuất kho theo đơn lĩnh  Số chứng từSLCKD111111111111
-        /// 5：Trả lại phát thuốc nội bộ    Số chứng từNBFYTHD111111111111
+        /// 1:Nhập kho thuốc  Số chứng từYPRKD111111111111
+        /// 2:Xuất kho ra ngoài  Số chứng từWBCKD111111111111
+        /// 3:Xuất kho trực tiếp  Số chứng từNBFYD111111111111
+        /// 4:Xuất kho theo đơn lĩnh  Số chứng từSLCKD111111111111
+        /// 5:Trả lại phát thuốc nội bộ    Số chứng từNBFYTHD111111111111
         /// </summary>
         public int djlx { get; set; }
 
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string Shczy { get; set; }
 
         /// <summary>
-        /// 0:Chưa duyệt 1:Đã đạt 2：Không đạt
+        /// 0:Chưa duyệt 1:Đã đạt 2:Không đạt
         /// </summary>
         public string shzt { get; set; }
 

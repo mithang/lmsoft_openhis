@@ -58,7 +58,7 @@ WHERE cfmx.cfId=@cfId and cfmx.zt='1' --and cfmx.ypmc is not null
         /// <param name="cflx"></param>
         /// <param name="cfId"></param>
         /// <param name="cfmxIdStr"></param>
-        /// 20190619 huangshanshan đitrừcf.zt='1'vàcfmx.zt='1'củahạnchế，có thểsao chépHủy đơn thuốc
+        /// 20190619 huangshanshan đitrừcf.zt='1'vàcfmx.zt='1'củahạnchế,có thểsao chépHủy đơn thuốc
         /// <returns></returns>
         public List<PrescriptionDetailQueryVO> GetPresDetailList(int cflx, string cfId, string cfmxIdStr)
         { 
@@ -81,7 +81,7 @@ SELECT cf.cfId, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw
         isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0)*isnull(sfxm.dj,0) je,   --theo mới nhấtdwjlsvàdj，Tính ra tổng số
         ";
             }
-            if (cflx == (int)EnumCflx.InspectionPres || cflx == (int)EnumCflx.ExaminationPres)   //Xét nghiệm、Kiểm traĐơn thuốc
+            if (cflx == (int)EnumCflx.InspectionPres || cflx == (int)EnumCflx.ExaminationPres)   //Xét nghiệm,Kiểm traĐơn thuốc
             {
                 sql += @"
 SELECT cf.cfId, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw, 

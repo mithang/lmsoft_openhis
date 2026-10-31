@@ -7,8 +7,8 @@ namespace Newtouch.Domain.Entity
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày：2018-06-28 15:37
-    /// Mô tả：Nhập việnY lệnhgói
+    /// Ngày:2018-06-28 15:37
+    /// Mô tả:Nhập việnY lệnhgói
     /// </summary>
     [SugarTable("zy_yztc")]
     public class InpatientOrderPackageEntity
@@ -30,7 +30,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string tcmc { get; set; }
         /// <summary>
-        /// Kiểu y lệnh： 0：ThuốcY lệnh，1：Kháng sinhY lệnh，2：Kiểm traY lệnh，3：Xét nghiệmY lệnh，4：chỉhiển thịY lệnh，5：thông thườngY lệnh ， 6 DừngY lệnh， 7  Xuất việnmang thuốc， 8 ăn uốngY lệnh， 9 Phẫu thuậtY lệnh   10  trongthảo dược 
+        /// Kiểu y lệnh: 0:ThuốcY lệnh,1:Kháng sinhY lệnh,2:Kiểm traY lệnh,3:Xét nghiệmY lệnh,4:chỉhiển thịY lệnh,5:thông thườngY lệnh , 6 DừngY lệnh, 7  Xuất việnmang thuốc, 8 ăn uốngY lệnh, 9 Phẫu thuậtY lệnh   10  trongthảo dược 
         /// </summary>
         /// <returns></returns>
         public int tclx { get; set; }

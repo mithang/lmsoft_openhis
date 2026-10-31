@@ -161,7 +161,7 @@
             gridComplete: function () {
                 var ids = $("#gridzycf").getDataIDs();
                 $.each(ids, function () {
-                    $gridzycf.jqGrid('editRow', this, true, initTCMInlineFunc);  //editRow：MởSửachế độ initTCMInlineFunc:Khởi tạolớp nổi
+                    $gridzycf.jqGrid('editRow', this, true, initTCMInlineFunc);  //editRow:MởSửachế độ initTCMInlineFunc:Khởi tạolớp nổi
 
                     CalculateTCMEachLineSlANDJe(this);
                 });
@@ -356,13 +356,13 @@
             $.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
             return;
         }
-        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+        //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#gridzycf").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             var saveResult = $("#gridzycf").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
             if (!saveResult) {
-                return;   //Lưu thất bại，thìreturn
+                return;   //Lưu thất bại,thìreturn
             }
         }
         var gridzycfData = $("#gridzycf").jqGrid('getRowData_AllLine', null, true);

@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Lấy loại thuốc （Kiểm kê）
+        /// Lấy loại thuốc (Kiểm kê)
         /// </summary>
         /// <returns></returns>
         public List<MedicineCategoryVO> GetMedicineCategoryList()
@@ -249,7 +249,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Loại thuốc （Nhập xuất tồn）
+        /// Loại thuốc (Nhập xuất tồn)
         /// </summary>
         /// <returns></returns>
         public List<MedicineCategoryVO> GetMedicineCategoryList2()

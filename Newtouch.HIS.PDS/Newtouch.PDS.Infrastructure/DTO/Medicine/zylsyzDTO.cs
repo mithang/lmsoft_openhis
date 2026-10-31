@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// Số y lệnh，Trong cùng một số y lệnh chứa nhiềuyzId
+        /// Số y lệnh,Trong cùng một số y lệnh chứa nhiềuyzId
         /// </summary>
         /// <returns></returns>
         public string yzh { get; set; }
@@ -66,7 +66,7 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         /// <returns></returns>
         public int? zxzq { get; set; }
         /// <summary>
-        /// Đơn vị chu kỳ thực hiện -1:Chu kỳ không đều，0：ngày,1：giờ,2：phút.Chú ý：Khi là-1khi，Mã tuần（zdm）là số（1234567）vài số bất kỳ trong
+        /// Đơn vị chu kỳ thực hiện -1:Chu kỳ không đều,0:ngày,1:giờ,2:phút.Chú ý:Khi là-1khi,Mã tuần(zdm)là số(1234567)vài số bất kỳ trong
         /// </summary>
         /// <returns></returns>
         public int? zxzqdw { get; set; }
@@ -86,7 +86,7 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         /// <returns></returns>
         public string xmmc { get; set; }
         /// <summary>
-        /// Trạng thái y lệnh 0Chờ xét，1Duyệt，2Thực hiện，3Hủy(DC)，4Dừng
+        /// Trạng thái y lệnh 0Chờ xét,1Duyệt,2Thực hiện,3Hủy(DC),4Dừng
         /// </summary>
         /// <returns></returns>
         public int yzzt { get; set; }
@@ -101,17 +101,17 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         /// <returns></returns>
         public int zbbz { get; set; }
         /// <summary>
-        /// Thuốc，Khi nhập hạng mục，Lưu Số lượng mỗi ngày，Thuốc mang về khi xuất viện，Lưu tổng lượng。Số lượng nhập bằng chữ là0
+        /// Thuốc,Khi nhập hạng mục,Lưu Số lượng mỗi ngày,Thuốc mang về khi xuất viện,Lưu tổng lượng.Số lượng nhập bằng chữ là0
         /// </summary>
         /// <returns></returns>
         public int sl { get; set; }
         /// <summary>
-        /// Loại đơn vị 0Đơn vị liều lượng，1Đơn vị kho thuốc，2Đơn vị ngoại trú，3Đơn vị nội trú，4Đơn vị nhập hàng(Loại đơn vị y lệnh chỉ thị là0)
+        /// Loại đơn vị 0Đơn vị liều lượng,1Đơn vị kho thuốc,2Đơn vị ngoại trú,3Đơn vị nội trú,4Đơn vị nhập hàng(Loại đơn vị y lệnh chỉ thị là0)
         /// </summary>
         /// <returns></returns>
         public int dwlb { get; set; }
         /// <summary>
-        /// Loại y lệnh địa phương 0：Y lệnh thuốc，1：Y lệnh kháng sinh，2：Y lệnh kiểm tra，3：Y lệnh xét nghiệm，4：Y lệnh chỉ thị，5：Y lệnh thường ， 6 Y lệnh dừng， 7  Thuốc mang về khi xuất viện， 8 Y lệnh ăn uống， 9 Y lệnh phẫu thuật   10  Thuốc thảo dược Trung Quốc  
+        /// Loại y lệnh địa phương 0:Y lệnh thuốc,1:Y lệnh kháng sinh,2:Y lệnh kiểm tra,3:Y lệnh xét nghiệm,4:Y lệnh chỉ thị,5:Y lệnh thường , 6 Y lệnh dừng, 7  Thuốc mang về khi xuất viện, 8 Y lệnh ăn uống, 9 Y lệnh phẫu thuật   10  Thuốc thảo dược Trung Quốc  
         /// </summary>
         /// <returns></returns>
         public int yzlx { get; set; }
@@ -244,7 +244,7 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         /// </summary>
         public string kssReason { get; set; }
         /// <summary>
-        /// Loại đơn xin，Truyền tớipacsdùng
+        /// Loại đơn xin,Truyền tớipacsdùng
         /// </summary>
         public string sqlx { get; set; }
         /// <summary>
@@ -252,7 +252,7 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         /// </summary>
         public string bwff { get; set; }
         /// <summary>
-        /// Số đơn xin，Nhằm vào xét nghiệm kiểm tra
+        /// Số đơn xin,Nhằm vào xét nghiệm kiểm tra
         /// </summary>
         public string sqdh { get; set; }
 
@@ -260,7 +260,7 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
 
         public string sqbz { get; set; }
         /// <summary>
-        /// Trạng thái xử lý đơn xin（0、Đã xin 1、Đã nhận 2、Đã hoàn thành） 
+        /// Trạng thái xử lý đơn xin(0,Đã xin 1,Đã nhận 2,Đã hoàn thành) 
         /// </summary>
         public int? sqdzt { get; set; }
 

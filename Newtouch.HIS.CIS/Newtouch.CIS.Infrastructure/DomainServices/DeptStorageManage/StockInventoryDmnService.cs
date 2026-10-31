@@ -337,7 +337,7 @@ LEFT JOIN NewtouchHIS_Base.dbo.wz_unit zxdw
 
         /// <summary>
         /// HủyKiểm kê 
-        /// Xóa Kiểm kêthông tin（xt_yp_pdxx）、Kiểm kêthông tinchi tiết（xt_yp_pdxxmx）
+        /// Xóa Kiểm kêthông tin(xt_yp_pdxx),Kiểm kêthông tinchi tiết(xt_yp_pdxxmx)
         /// </summary>
         public void CancelInventory(long pdId)
         {

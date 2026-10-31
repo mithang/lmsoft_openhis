@@ -21,7 +21,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
     public class HandlerAuthorizeAttribute : ActionFilterAttribute
     {
         /// <summary>
-        /// ứng dụngId（trongconfigcấu hình AppId）
+        /// ứng dụngId(trongconfigcấu hình AppId)
         /// </summary>
         public static string _appId { get; private set; }
 
@@ -41,7 +41,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
         /// <summary>
         /// đăng ký xác minh quyền của phương thức
         /// </summary>
-        /// <param name="func">danh sách vai trò、mô-đunId，liên kết（không mang tham số），trả về việc xác minh có thành công hay không</param>
+        /// <param name="func">danh sách vai trò,mô-đunId,liên kết(không mang tham số),trả về việc xác minh có thành công hay không</param>
         public static void Register(Func<IList<string>, string, string, bool> func)
         {
             _func = func;
@@ -49,7 +49,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
 
 
         /// <summary>
-        /// （ghi đè）Called by the ASP.NET MVC framework before the action method executes.
+        /// (ghi đè)Called by the ASP.NET MVC framework before the action method executes.
         /// </summary>
         /// <param name="filterContext"></param>
         public override void OnActionExecuting(ActionExecutingContext filterContext)
@@ -75,7 +75,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
 
                     if (filterContext.HttpContext.Request.IsAjaxRequest())
                     {
-                        //is ajax yêu cầu，thì trả về mã lỗi
+                        //is ajax yêu cầu,thì trả về mã lỗi
                         filterContext.Result = new ContentResult
                         {
                             Content = new AjaxResult
@@ -106,7 +106,7 @@ namespace NewtouchHIS.Lib.Framework.Filter
 
                 if (filterContext.HttpContext.Request.IsAjaxRequest())
                 {
-                    //is ajax yêu cầu，thì trả về mã lỗi
+                    //is ajax yêu cầu,thì trả về mã lỗi
                     filterContext.Result = new ContentResult
                     {
                         Content = new AjaxResult

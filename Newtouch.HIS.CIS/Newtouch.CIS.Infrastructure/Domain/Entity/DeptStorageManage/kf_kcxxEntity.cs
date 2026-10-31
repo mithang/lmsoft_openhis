@@ -19,7 +19,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（cócụ thểthểnghiệp vụcủayviện）
+        /// Tổ chứcId(cócụ thểthểnghiệp vụcủayviện)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -70,12 +70,12 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public decimal jj { get; set; }
 
         /// <summary>
-        /// chuyểnhóavìcon，chuyểnhóathànhhiện tạiKhoĐơn vị
+        /// chuyểnhóavìcon,chuyểnhóathànhhiện tạiKhoĐơn vị
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// Tồn khokhóa 0/null：chưatrênkhóa      >0：đãkhóa
+        /// Tồn khokhóa 0/null:chưatrênkhóa      >0:đãkhóa
         /// </summary>
         public int? locked { get; set; }
 

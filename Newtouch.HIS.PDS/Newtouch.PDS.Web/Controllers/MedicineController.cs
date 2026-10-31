@@ -109,7 +109,7 @@ namespace Newtouch.HIS.Web.Controllers
 		/// Đồng bộ
 		/// </summary>
 		/// <param name="yp"></param>
-		/// <param name="opereateType">0:Thêm  1：Xóa</param>
+		/// <param name="opereateType">0:Thêm  1:Xóa</param>
 		/// <returns></returns>
 		[HttpPost]
 		public IActionResult FreshList(string[] yp, int opereateType)
@@ -272,7 +272,7 @@ namespace Newtouch.HIS.Web.Controllers
 		}
 
 		/// <summary>
-		/// Báo hỏng báo thừa （Lưu）
+		/// Báo hỏng báo thừa (Lưu)
 		/// </summary>
 		/// <param name="syxx"></param>
 		/// <returns></returns>
@@ -359,7 +359,7 @@ namespace Newtouch.HIS.Web.Controllers
 			return Content(list.ToJson());
 		}
 		/// <summary>
-		/// Tổng số tiền giá bán buôn、Truy vấn tổng số tiền giá bán lẻ
+		/// Tổng số tiền giá bán buôn,Truy vấn tổng số tiền giá bán lẻ
 		/// </summary>
 		/// <param name="startTime">Thời gian bắt đầu</param>
 		/// <param name="endTime">Thời gian kết thúc</param>

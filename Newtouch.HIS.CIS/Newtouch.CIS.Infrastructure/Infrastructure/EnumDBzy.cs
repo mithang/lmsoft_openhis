@@ -16,11 +16,11 @@ namespace Newtouch.Infrastructure
         /// </summary>
         Bqz = 1,
         /// <summary>
-        /// Khu bệnhXuất viện（raKhu bệnh）（chờkếtsổ）
+        /// Khu bệnhXuất viện(raKhu bệnh)(chờkếtsổ)
         /// </summary>
         Djz = 2,
         /// <summary>
-        /// đãXuất viện（Xuất việnquyết toán）
+        /// đãXuất viện(Xuất việnquyết toán)
         /// </summary>
         Ycy = 3,
         /// <summary>
@@ -177,7 +177,7 @@ namespace Newtouch.Infrastructure
         Hosp = 4
     }
     /// <summary>
-    /// điều dưỡngbệnh nhânTrạng thái（điều dưỡngdấu hiệu sinh tồnnhậpdùng）
+    /// điều dưỡngbệnh nhânTrạng thái(điều dưỡngdấu hiệu sinh tồnnhậpdùng)
     /// </summary>
     public enum EnumHlbrzt
     {

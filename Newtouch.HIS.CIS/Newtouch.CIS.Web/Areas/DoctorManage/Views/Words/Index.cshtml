@@ -191,7 +191,7 @@
         $("#" + rowid + "_pcmc").attr('readonly', 'true');
         var currlineId = $("#gridword").getRowData(rowid).Id;
         $("#" + rowid + "_xmmc").attr('autocomplete', 'off');
-        if (currlineId.indexOf("0.") == '-1') {//SửacủaDữ liệu，khôngcho phépSửaMục thu phí
+        if (currlineId.indexOf("0.") == '-1') {//SửacủaDữ liệu,khôngcho phépSửaMục thu phí
            // $("#" + rowid + "_xmmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
         }
 
@@ -281,7 +281,7 @@
         if (!!selRowId) {
            var Id= $("#gridword").jqGrid('getRowData', selRowId).Id;
             $("#gridword").jqGrid("delRowData", selRowId);
-            if (Id.indexOf("0.")==='-1') {//ghi lại，từCơ sở dữ liệuXóa
+            if (Id.indexOf("0.")==='-1') {//ghi lại,từCơ sở dữ liệuXóa
                 deldata.push(Id);
             }
         }
@@ -294,14 +294,14 @@
     //LưuNútthao tác 
     function SaveWordMedicine(savetodb) {
         patobjValidate();
-            //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+            //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
             var rowIds = $("#gridword").jqGrid('getDataIDs');
             for (var i = 0; i < rowIds.length; i++) {
                 var saveResult = $("#gridword").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
                 if (!saveResult) {
                     EnableWordInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-                    return;   //Lưu thất bại，thìreturn
+                    return;   //Lưu thất bại,thìreturn
                 }
             }
         var gridwordData = $("#gridword").jqGrid('getRowData_AllLine', null, true);
@@ -428,14 +428,14 @@
                     mbObj.ysgh = '@ViewBag.ysgh';
                 }
 
-                //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+                //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
                 var rowIds = $("#gridword").jqGrid('getDataIDs');
                 for (var i = 0; i < rowIds.length; i++) {
                     var saveResult = $("#gridword").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
                     if (!saveResult) {
                         EnableWordInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-                        return;   //Lưu thất bại，thìreturn
+                        return;   //Lưu thất bại,thìreturn
                     }
                 }
                 var gridWordData = $("#gridword").jqGrid('getRowData_AllLine', null, true);

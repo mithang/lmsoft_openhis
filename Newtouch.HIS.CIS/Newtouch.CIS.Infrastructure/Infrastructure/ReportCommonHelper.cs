@@ -100,7 +100,7 @@ namespace NewtouchCIS.Infrastructure
                 // Tạo một thể hiện (instance) của StreamReader để đọc file, câu lệnh using cũng có thể đóng StreamReader
                 using (System.IO.StreamReader sr = new System.IO.StreamReader(filePath))
                 {
-                    // từvănmụcđọclấyvàHiển thịdòng，thẳngđếnvănmụccủacuối 
+                    // từvănmụcđọclấyvàHiển thịdòng,thẳngđếnvănmụccủacuối 
                     while ((line = sr.ReadLine()) != null)
                     {
                         //Console.WriteLine(line);

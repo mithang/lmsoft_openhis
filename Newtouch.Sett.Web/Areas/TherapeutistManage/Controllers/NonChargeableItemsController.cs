@@ -79,7 +79,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// thời giandàiđiềuchỉnh，hơnmớiđếnsốdữ liệukho
+        /// thời giandàiđiềuchỉnh,hơnmớiđếnsốdữ liệukho
         /// </summary>
         /// <param name="vo"></param>
         /// <returns></returns>

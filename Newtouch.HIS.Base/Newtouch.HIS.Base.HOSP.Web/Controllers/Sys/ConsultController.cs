@@ -81,7 +81,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers.Sys
 
 
         /// <summary>
-        /// Phòng khám thường：Khi tạo phòng khám thông thường thì khởi tạo nội dung phòng khám
+        /// Phòng khám thường:Khi tạo phòng khám thông thường thì khởi tạo nội dung phòng khám
         /// </summary>
         /// <param name="ksCode"></param>
         /// <returns></returns>
@@ -101,7 +101,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers.Sys
 
 
         /// <summary>
-        /// Phòng khám chuyên gia：Lấy danh sách chuyên gia thuộc khoa
+        /// Phòng khám chuyên gia:Lấy danh sách chuyên gia thuộc khoa
         /// </summary>
         /// <param name="ksCode">Số hiệu khoa</param>
         /// <returns></returns>

@@ -63,7 +63,7 @@ namespace Newtouch.Domain.Entity
         public string arrivalOpereater { get; set; }
 
         /// <summary>
-        /// Trạng thái     1:Hiệu lực  0：Vô hiệu
+        /// Trạng thái     1:Hiệu lực  0:Vô hiệu
         /// </summary>
         public string zt { get; set; }
 

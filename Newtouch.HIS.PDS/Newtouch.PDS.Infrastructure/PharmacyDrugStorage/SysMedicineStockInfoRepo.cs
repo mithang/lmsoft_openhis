@@ -235,7 +235,7 @@ WHERE pc=@pc AND ph=@ph AND ypdm=@ypCode AND OrganizeId=@OrganizeId AND yfbmCode
         /// <summary>
         /// Thay đổi Số lượng tồn kho
         /// </summary>
-        /// <param name="sl">Số lượng đơn vị nhỏ nhất +：Tăng tồn kho  -：Giảm tồn kho</param>
+        /// <param name="sl">Số lượng đơn vị nhỏ nhất +:Tăng tồn kho  -:Giảm tồn kho</param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="ypCode"></param>

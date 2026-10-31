@@ -27,7 +27,7 @@ namespace Newtouch.HIS.DomainServices
     {
         
         /// <summary>
-        /// Tự động gợi ý mã nhập（Nhắc nhở bộ phận cấp 1，Không có hệ số chuyển đổi，Ví dụ khoa dược）
+        /// Tự động gợi ý mã nhập(Nhắc nhở bộ phận cấp 1,Không có hệ số chuyển đổi,Ví dụ khoa dược)
         /// </summary>
         /// <param name="yfbmCode"></param>
         /// <param name="srm"></param>

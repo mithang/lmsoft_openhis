@@ -18,7 +18,7 @@ namespace Newtouch.Domain.ViewModels
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Dấu hiệu ngoại trú/nội trú 1：thông thườngNgoại trú  2：gấpkhám   3：chuyên giaNgoại trú
+        /// Dấu hiệu ngoại trú/nội trú 1:thông thườngNgoại trú  2:gấpkhám   3:chuyên giaNgoại trú
         /// </summary>
         public string mzlx { get; set; }
 
@@ -58,7 +58,7 @@ namespace Newtouch.Domain.ViewModels
         public int bespeakMaxCount { get; set; }
 
         /// <summary>
-        /// Trạng thái     1:Hiệu lực  0：Vô hiệu
+        /// Trạng thái     1:Hiệu lực  0:Vô hiệu
         /// </summary>
         public string zt { get; set; }
 

@@ -61,7 +61,7 @@
                         <label><input type="radio" id="radioTreating" name="optionsRadios" class="optionsRadios formClearIgnore" value="yx" />Hiệu lựcY lệnh</label>
                     </div>
                 </td>
-                @*<th class="formTitle">Số nhập viện：</th>
+                @*<th class="formTitle">Số nhập viện:</th>
                     <td class="formValue">
                         <input id="zyh" type="text" class="form-control" value="00001" />
                     </td>*@
@@ -368,7 +368,7 @@
                  {
                     label: 'Trạng thái', name: 'yzzt', align: 'center', width: 40, formatter: function (val, options, rowObject) {
                         if (rowObject["yzzt"] ==@Html.Raw(((int)EnumYzzt.DC).ToString())) {//DCTrạng thái
-                            //cóThực hiệnThời gian，lấyĐã thực hiệnTrạng thái，cóPhê duyệtThời gian，lấyĐã duyệtTrạng thái
+                            //cóThực hiệnThời gian,lấyĐã thực hiệnTrạng thái,cóPhê duyệtThời gian,lấyĐã duyệtTrạng thái
                             if (rowObject["zxsj"] !== typeof (undefined) && rowObject["zxsj"] !== "") {
                               return "Thực hiện";
                             } else {

@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <summary>
         /// Truy vấn thuốc của bộ phận hiện tại(Nhập kho)
         /// </summary>
-        /// <param name="keyword">ypmc、py、spm、ypCode</param>
+        /// <param name="keyword">ypmc,py,spm,ypCode</param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <summary>
         /// Truy vấn thuốc của bộ phận hiện tại(Xuất kho)
         /// </summary>
-        /// <param name="keyword">ypmc、py、spm、ypCode</param>
+        /// <param name="keyword">ypmc,py,spm,ypCode</param>
         /// <param name="fph"></param>
         /// <param name="gyscode"></param>
         /// <returns></returns>
@@ -123,7 +123,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<PsiStatisticsVo> GetPsiStatisticsVo(Pagination pagination, PsiStatisticsParam searchParam, string yfbmCode, string organizeId);
 
         /// <summary>
-        /// Lấy mặt hàng，Không phân biệt lô/số lô，Gồm hạn dùng
+        /// Lấy mặt hàng,Không phân biệt lô/số lô,Gồm hạn dùng
         /// </summary>
         /// <param name="srm">Từ khóa</param>
         /// <param name="yfbmCode">Bộ phận hiện tại</param>
@@ -133,7 +133,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<DrugStockInfoVEntity> GetMedicinesrmList(string srm, string yfbmCode, string organizeId, int topCount = 100);
 
         /// <summary>
-        /// Lấy thuốc còn hạn dùng，Không phân biệt lô/số lô，Không gồm hạn dùng
+        /// Lấy thuốc còn hạn dùng,Không phân biệt lô/số lô,Không gồm hạn dùng
         /// </summary>
         /// <param name="srm">Từ khóa</param>
         /// <param name="yfbmCode">Bộ phận hiện tại</param>
@@ -143,7 +143,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<DrugStockInfoVEntity> GetValidMedicinesrmList(string srm, string yfbmCode, string organizeId, int topCount = 100);
 
         /// <summary>
-        /// Lấy thuốc còn hạn dùng，Không phân biệt lô/số lô，Không gồm hạn dùng
+        /// Lấy thuốc còn hạn dùng,Không phân biệt lô/số lô,Không gồm hạn dùng
         /// </summary>
         /// <param name="ypdm">Mã thuốc</param>
         /// <param name="yfbmCode">Bộ phận hiện tại</param>
@@ -163,7 +163,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<DrugStockInfoVEntity> GetDrugAndStock(string ckbm, string rkbm, string keyWord, string organizeid);
 
         /// <summary>
-        /// Lấy thông tin thuốc và tồn kho của bộ phận hiện tại  （Nhập kho từ ngoài）
+        /// Lấy thông tin thuốc và tồn kho của bộ phận hiện tại  (Nhập kho từ ngoài)
         /// </summary>
         /// <param name="currentYfbmCode"></param>
         /// <param name="keyWord"></param>
@@ -172,7 +172,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<DrugStockInfoVEntity> GetDrugAndStock(string currentYfbmCode, string keyWord, string organizeid);
 
         /// <summary>
-        /// Lấy thông tin thuốc và tồn kho của bộ phận hiện tại  （Xuất kho ra ngoài）
+        /// Lấy thông tin thuốc và tồn kho của bộ phận hiện tại  (Xuất kho ra ngoài)
         /// </summary>
         /// <param name="currentYfbmCode"></param>
         /// <param name="keyWord"></param>

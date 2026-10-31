@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         //        && p.Id != keyValue && p.bfCode == entity.bfCode
         //        ))
         //        {
-        //            throw new FailedException("Mã phòng không được trùng lặp！");
+        //            throw new FailedException("Mã phòng không được trùng lặp!");
         //        }
 
         //        SysWardRoomEntity oldEntity = null;   //Trước khi thay đổiEntity
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Repository.SystemManage
         //        if (this.IQueryable().Any(p => p.OrganizeId == entity.OrganizeId &&
         //        p.bfCode == entity.bfCode))
         //        {
-        //            throw new FailedException("Mã phòng không được trùng lặp！");
+        //            throw new FailedException("Mã phòng không được trùng lặp!");
         //        }
         //        entity.Create();
         //        this.Insert(entity);

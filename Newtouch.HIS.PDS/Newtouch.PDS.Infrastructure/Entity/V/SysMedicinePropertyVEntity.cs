@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 0 Hạng mục thường 1 Hạng mục đặc biệt, thuốc đặc biệt chỉ dùng cho tính chất bệnh nhân đặc biệt。
+        /// 0 Hạng mục thường 1 Hạng mục đặc biệt, thuốc đặc biệt chỉ dùng cho tính chất bệnh nhân đặc biệt.
         /// </summary>
         public string tsbz { get; set; }
 
@@ -48,7 +48,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string yljsy { get; set; }
 
         /// <summary>
-        /// Phương pháp điều trị（Cũng vậy Liên kết Cách dùng thuốc）
+        /// Phương pháp điều trị(Cũng vậy Liên kết Cách dùng thuốc)
         /// </summary>
         public string zlff { get; set; }
 
@@ -78,27 +78,27 @@ namespace Newtouch.HIS.Domain.Entity
         public string ybdm { get; set; }
 
         /// <summary>
-        /// Số ngày sử dụng（Trường cài đặt khống chế số lượng BHYT）
+        /// Số ngày sử dụng(Trường cài đặt khống chế số lượng BHYT)
         /// </summary>
         public int? syts { get; set; }
 
         /// <summary>
-        /// Liều lượng tối đa mỗi lần（Trường cài đặt khống chế số lượng BHYT）
+        /// Liều lượng tối đa mỗi lần(Trường cài đặt khống chế số lượng BHYT)
         /// </summary>
         public decimal? dczdjl { get; set; }
 
         /// <summary>
-        /// Số lượng tối đa mỗi lần（Trường cài đặt khống chế số lượng BHYT）
+        /// Số lượng tối đa mỗi lần(Trường cài đặt khống chế số lượng BHYT)
         /// </summary>
         public decimal? dczdsl { get; set; }
 
         /// <summary>
-        /// Liều lượng tối đa tích lũy（Trường cài đặt khống chế số lượng BHYT）
+        /// Liều lượng tối đa tích lũy(Trường cài đặt khống chế số lượng BHYT)
         /// </summary>
         public decimal? ljzdjl { get; set; }
 
         /// <summary>
-        /// Số lượng tối đa tích lũy（Trường cài đặt khống chế số lượng BHYT）
+        /// Số lượng tối đa tích lũy(Trường cài đặt khống chế số lượng BHYT)
         /// </summary>
         public decimal? ljzdsl { get; set; }
 
@@ -118,7 +118,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string ypflCode { get; set; }
 
         /// <summary>
-        /// Loại ghi sổ    0：Thu phí làm tròn mỗi bữa1：Thu phí làm tròn mỗi lần
+        /// Loại ghi sổ    0:Thu phí làm tròn mỗi bữa1:Thu phí làm tròn mỗi lần
         /// </summary>
         public string jzlx { get; set; }
 

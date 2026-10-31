@@ -242,7 +242,7 @@ namespace Newtouch.CIS.Web.Controllers
                     zjlx = item.zjlx,
                     zjh = item.zjh,
                     ghksmc = item.ksmc,
-                    ghys = item.ysxm,//đăng ký khámBác sĩTên（chuyên giasốkhichắcđịnhcó）
+                    ghys = item.ysxm,//đăng ký khámBác sĩTên(chuyên giasốkhichắcđịnhcó)
                     ghsj = item.ghsj,
                     ghczsj = item.operatingTime,
                     jzzt = (int)EnumJzzt.NotYetTreate,
@@ -649,7 +649,7 @@ namespace Newtouch.CIS.Web.Controllers
 					zjlx = item.zjlx.ToInt(),
 					zjh = item.zjh,
 					ghksmc = item.ksmc,
-					ghys = item.ysxm,//đăng ký khámBác sĩTên（chuyên giasốkhichắcđịnhcó）
+					ghys = item.ysxm,//đăng ký khámBác sĩTên(chuyên giasốkhichắcđịnhcó)
 					ghsj = item.ghsj.ToDate(),
 					ghczsj = item.operatingTime.ToDate(),
 					jzzt = (int)EnumJzzt.NotYetTreate,

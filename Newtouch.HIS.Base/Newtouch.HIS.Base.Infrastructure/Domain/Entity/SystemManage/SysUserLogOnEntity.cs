@@ -73,7 +73,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// Có bị khóa không。trueKhóa，Ngược lại chưa khóa
+        /// Có bị khóa không.trueKhóa,Ngược lại chưa khóa
         /// </summary>
         public bool? Locked { get; set; }
 

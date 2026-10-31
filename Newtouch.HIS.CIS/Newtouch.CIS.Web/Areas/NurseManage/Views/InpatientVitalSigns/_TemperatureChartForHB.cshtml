@@ -20,14 +20,14 @@
         <td class="formValue" colspan="4">Ngày:<label id="lblRq"></label></td>
     </tr>
     <tr>
-        <td class="formValue">Họ tên：<label id="lblXm" class="lblXm"></label></td>
-        <td class="formValue">Số bệnh án：<label id="lblBlh" class="lblBlh"></label></td>
-        <td class="formValue" style="display:none;">Số nhập viện：<label id="lblZyh" class="lblZyh"></label></td>
-        <td class="formValue">Khu bệnh：<label id="lblBq" class="lblBq"></label></td>
+        <td class="formValue">Họ tên:<label id="lblXm" class="lblXm"></label></td>
+        <td class="formValue">Số bệnh án:<label id="lblBlh" class="lblBlh"></label></td>
+        <td class="formValue" style="display:none;">Số nhập viện:<label id="lblZyh" class="lblZyh"></label></td>
+        <td class="formValue">Khu bệnh:<label id="lblBq" class="lblBq"></label></td>
     </tr>
     <tr>
-        <td class="formValue">giường ký tự：<label id="lblCw" class="lblCw"></label></td>
-        <td class="formValue">Ngày nhập viện：<label id="lblRqrq" class="lblRqrq"></label></td>
+        <td class="formValue">giường ký tự:<label id="lblCw" class="lblCw"></label></td>
+        <td class="formValue">Ngày nhập viện:<label id="lblRqrq" class="lblRqrq"></label></td>
         <td class="formValue" style="display:none">ra khỏi khuNgày:<label id="lblCqrq" class="lblCqrq"></label></td>
     </tr>
 </table>*@
@@ -462,7 +462,7 @@
             }
             drawLine(origin.x, top, widthlength);
         }
-        //dưới cùngtable  tablecủađườngvàdivkhóđốicủa nó，sởlấydùngdivvẽđường
+        //dưới cùngtable  tablecủađườngvàdivkhóđốicủa nó,sởlấydùngdivvẽđường
         $board.find('.bottomtbl').css('width', twLastLeft - origin.x)
             .css('left', origin.x).css('top', twLastTop).show();
         $board.find('.bottomtbl td').css('width', contentStartLeft - origin.x)
@@ -650,7 +650,7 @@
             $td.appendTo($($board.find('.bottomtbl tr')[11]));
         }
 
-        //viếtNgày，Nhập việnSố ngàyvàThời gianth
+        //viếtNgày,Nhập việnSố ngàyvàThời gianth
         {
             var left = origin.x;
             var top = origin.y;
@@ -873,7 +873,7 @@
             left += sspacewidth / 2;
             if ($.jsonWhere(twArr, function (v) { return v == item.tw }).length == 1
                 && item.tw != twArr[0] && item.tw != twArr[twArr.length - 1]) {
-                top = top + 0.5;    //hiển thị đặc biệt đúng giờ，vì chiều cao đường kẻ2px
+                top = top + 0.5;    //hiển thị đặc biệt đúng giờ,vì chiều cao đường kẻ2px
             }
             item.twLocation = { x: left, y: top };
             drawX(left, top, twColor, item.tw);
@@ -905,7 +905,7 @@
             left += sspacewidth / 2;
             if ($.jsonWhere(mbArr, function (v) { return v == item.mb }).length == 1
                 && item.mb != mbArr[0] && item.mb != mbArr[mbArr.length - 1]) {
-                top = top + 0.5;    //hiển thị đặc biệt đúng giờ，vì chiều cao đường kẻ2px
+                top = top + 0.5;    //hiển thị đặc biệt đúng giờ,vì chiều cao đường kẻ2px
             }
             item.mbLocation = { x: left, y: top };
             if (item.twLocation.x == left && item.twLocation.y == top) {
@@ -945,7 +945,7 @@
             left += sspacewidth / 2;
             if ($.jsonWhere(hxArr, function (v) { return v == item.hx }).length == 1
                 && item.hx != hxArr[0] && item.hx != hxArr[hxArr.length - 1]) {
-                top = top + 0.5;    //hiển thị đặc biệt đúng giờ，vì chiều cao đường kẻ2px
+                top = top + 0.5;    //hiển thị đặc biệt đúng giờ,vì chiều cao đường kẻ2px
             }
             item.hxLocation = { x: left, y: top };
             drawSquare(left, top, hxColor, item.hx);
@@ -977,7 +977,7 @@
             left += sspacewidth / 2;
             if ($.jsonWhere(xyArr, function (v) { return v == item.xysz }).length == 1
                 && item.xysz != xyArr[0] && item.xysz != xyArr[xyArr.length - 1]) {
-                top = top + 0.5;    //hiển thị đặc biệt đúng giờ，vì chiều cao đường kẻ2px
+                top = top + 0.5;    //hiển thị đặc biệt đúng giờ,vì chiều cao đường kẻ2px
             }
             item.xyszLocation = { x: left, y: top };
             drawUparrow(left, top, xyszColor, item.xysz);
@@ -1001,7 +1001,7 @@
             left += sspacewidth / 2;
             if ($.jsonWhere(xyArr, function (v) { return v == item.xyxz }).length == 1
                 && item.xyxz != xyArr[0] && item.xyxz != xyArr[xyArr.length - 1]) {
-                top = top + 0.5;    //hiển thị đặc biệt đúng giờ，vì chiều cao đường kẻ2px
+                top = top + 0.5;    //hiển thị đặc biệt đúng giờ,vì chiều cao đường kẻ2px
             }
             item.xyxzLocation = { x: left, y: top };
             drawDownarrow(left, top, xyxzColor, item.xyxz);
@@ -1033,7 +1033,7 @@
             left += sspacewidth / 2;
             if ($.jsonWhere(wljwArr, function (v) { return v == item.wljw }).length == 1
                 && item.wljw != wljwArr[0] && item.wljw != wljwArr[wljwArr.length - 1]) {
-                top = top + 0.5;    //hiển thị đặc biệt đúng giờ，vì chiều cao đường kẻ2px
+                top = top + 0.5;    //hiển thị đặc biệt đúng giờ,vì chiều cao đường kẻ2px
             }
             item.wljwLocation = { x: left, y: top };
             drawRound(left, top, wljwColor, item.wljw);
@@ -1042,7 +1042,7 @@
         }
     }
 
-    //typeMặc địnhđường ngang，truyềnfalsevẽđường dọc
+    //typeMặc địnhđường ngang,truyềnfalsevẽđường dọc
     function drawLine(left, top, length, colorClass, type, bold, zIndex) {
         var html = '<div style="position:absolute;left:' + left + 'px;top:' + top + 'px;';
         html += (type === 'vline' ? 'height' : 'width') + ":" + length + "px;";

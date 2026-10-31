@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Domain.Entity.V
 		public int Rkbmkc { get; set; }
 
 		/// <summary>
-		/// Đơn vị nhập kho（Tên đơn vị）
+		/// Đơn vị nhập kho(Tên đơn vị)
 		/// </summary>
 		public string rkdw { get; set; }
 
@@ -109,7 +109,7 @@ namespace Newtouch.HIS.Domain.Entity.V
 		public int Ckbmkc { get; set; }
 
 		/// <summary>
-		/// Đơn vị xuất kho（Tên đơn vị）
+		/// Đơn vị xuất kho(Tên đơn vị)
 		/// </summary>
 		public string ckdw { get; set; }
 

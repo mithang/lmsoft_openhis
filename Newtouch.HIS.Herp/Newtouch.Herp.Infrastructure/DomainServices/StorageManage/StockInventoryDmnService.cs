@@ -236,7 +236,7 @@ FROM (
 
         /// <summary>
         /// Hủy kiểm kê 
-        /// Xóa Thông tin kiểm kê（xt_yp_pdxx）、Chi tiết thông tin kiểm kê（xt_yp_pdxxmx）
+        /// Xóa Thông tin kiểm kê(xt_yp_pdxx),Chi tiết thông tin kiểm kê(xt_yp_pdxxmx)
         /// </summary>
         public void CancelInventory(long pdId)
         {

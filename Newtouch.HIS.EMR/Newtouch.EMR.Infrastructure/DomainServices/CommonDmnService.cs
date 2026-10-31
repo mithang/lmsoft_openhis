@@ -628,7 +628,7 @@ where zt='1' ";
             });
         }
         /// <summary>
-        /// TheoDutyCode（Chức vụ）Truy vấn danh sách nhân viên
+        /// TheoDutyCode(Chức vụ)Truy vấn danh sách nhân viên
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="dutyCode"></param>

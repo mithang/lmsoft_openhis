@@ -18,14 +18,14 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Lấy số lượng người khám（Ngoại trú và nội trú）
+        /// Lấy số lượng người khám(Ngoại trú và nội trú)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         public VisitNumBO GetVisitNum(bool isAdministrator, string orgId = null, string topOrgId = null)
         {
 
-            /*************************************Khoa ngoại trú，Tạm chưa xét trả toàn bộ*****************************************************/
+            /*************************************Khoa ngoại trú,Tạm chưa xét trả toàn bộ*****************************************************/
             List<OutpatientVisitNumVO> outpatientlist = null;
             StringBuilder sqlStr = new StringBuilder();
             sqlStr.Append(@"
@@ -38,7 +38,7 @@ SET @currYearMoth=@currYear+'01';
 --select @currYearMoth
 
 ");
-            //Nếu làadminĐăng nhập，thì thống kê số người khám của tất cả bệnh viện thuộc tổ chức đó
+            //Nếu làadminĐăng nhập,thì thống kê số người khám của tất cả bệnh viện thuộc tổ chức đó
             if (isAdministrator)
             {
                 sqlStr.Append(@"
@@ -77,7 +77,7 @@ LEFT JOIN
     where zt = '1'
                     ");
             }
-            //Ngược lại，thì chỉ liên kết bệnh viện đó
+            //Ngược lại,thì chỉ liên kết bệnh viện đó
             else
             {
                 sqlStr.Append(@" where zt = '1' and OrganizeId=@orgId");
@@ -121,7 +121,7 @@ DECLARE @currYearMoth varchar(30)
 SET @currYearMoth=@currYear+'01';
 --select @currYearMoth
 ");
-            //Nếu làadminĐăng nhập，thì thống kê số người khám của tất cả bệnh viện thuộc tổ chức đó
+            //Nếu làadminĐăng nhập,thì thống kê số người khám của tất cả bệnh viện thuộc tổ chức đó
             if (isAdministrator)
             {
                 sqlStr2.Append(@"
@@ -159,7 +159,7 @@ LEFT JOIN
 	where zt = '1'
                 ");
             }
-            //Ngược lại，thì chỉ liên kết bệnh viện đó
+            //Ngược lại,thì chỉ liên kết bệnh viện đó
             else {
                 sqlStr2.Append(@" where zt = '1' and OrganizeId=@orgId");
             }
@@ -179,7 +179,7 @@ LEFT JOIN
 	inner join cteTree on cteTree.id=ccc.OrganizeId
                 ");
             }
-            //Ngược lại，thì chỉ liên kết bệnh viện đó
+            //Ngược lại,thì chỉ liên kết bệnh viện đó
             else
             {
                 sqlStr2.Append(@" on bbb.zyh = ccc.zyh and OrganizeId=@orgId");
@@ -207,7 +207,7 @@ ON a.groupDate=col
                 inpatientList = this.FindList<InpatientVisitNumVO>(sqlStr2.ToString(), param).ToList();
             }
 
-            //Đặt trong một đối tượng，Trở về trang
+            //Đặt trong một đối tượng,Trở về trang
             var visitNumBO = new VisitNumBO
             {
                 OutpatientList = outpatientlist,

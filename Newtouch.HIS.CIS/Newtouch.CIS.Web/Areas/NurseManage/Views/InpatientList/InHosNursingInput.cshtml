@@ -264,7 +264,7 @@
             editurl: "clientArray",  //dòngSửakhông gửi lên máy chủGửiDữ liệu
             multiselect: true,//hộp kiểm
             unwritten: false,
-            autoScroll: false,//khiautoScrollvàshrinkToFitđềulàfalsekhi，sẽ xuất hiệndòngthanh cuộn
+            autoScroll: false,//khiautoScrollvàshrinkToFitđềulàfalsekhi,sẽ xuất hiệndòngthanh cuộn
             shrinkToFit: false,//Có hay không độ rộng cột tự thích ứng. true = thích ứng, false = không thích ứng
             colModel: [
                 { label: "Id", name: "Id", hidden: true, frozen: true },
@@ -689,7 +689,7 @@
         var xysxzList = [];
         headdata = validate();
         if (headdata) {
-            //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+            //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
             var rowIds = $("#gridtwdsList").jqGrid("getGridParam", "selarrrow");
             var validationFailedArr = [];
             for (var i = 0; i < rowIds.length; i++) {
@@ -752,7 +752,7 @@
     }
 
     function validaterow(rowdata) {
-        // Theolongancầncầu，HủyNhiệt độbắt buộc by haijiang.mo
+        // Theolongancầncầu,HủyNhiệt độbắt buộc by haijiang.mo
 
         //         //1. Nhiệt độphương thức đo
         //         if (!rowdata.twclfs) {

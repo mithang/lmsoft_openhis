@@ -87,7 +87,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             }
             else { 
             
-                //mớivàokhuBệnh nhân，gọigiao diệnLấyThông tin bệnh nhân；chuyển khuBệnh nhântrực tiếpSửa thông tin
+                //mớivàokhuBệnh nhân,gọigiao diệnLấyThông tin bệnh nhân;chuyển khuBệnh nhântrực tiếpSửa thông tin
                 if (enterArea.qqlx =="0")
                 {
                     retMsg= _ientryRegistrationDmnService.SavePatInArea(reqInarea);
@@ -111,7 +111,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     retMsg = _ientryRegistrationDmnService.SaveChangeAreaPatInfo(patChangeAreaRequestDto);
                 }
             }
-            //VDnếuthành công，thìsản xuấtsinhgiường ký tựgắnliên quanChi phí
+            //VDnếuthành công,thìsản xuấtsinhgiường ký tựgắnliên quanChi phí
             if (retMsg.Split('|')[0].ToString()=="T")
             {
                 patBedFeeRequestDto req = new patBedFeeRequestDto()

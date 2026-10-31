@@ -35,7 +35,7 @@ namespace Newtouch.Herp.Domain.Entity
         public string Code { get; set; }
 
         /// <summary>
-        /// Cờ kỹ thuật y tế（Có phải khoa kỹ thuật y tế không，như khoa X-quang）
+        /// Cờ kỹ thuật y tế(Có phải khoa kỹ thuật y tế không,như khoa X-quang)
         /// </summary>
         public bool yjbz { get; set; }
 

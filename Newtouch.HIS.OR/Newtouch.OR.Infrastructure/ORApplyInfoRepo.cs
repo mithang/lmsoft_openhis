@@ -12,9 +12,9 @@ using System.Data;
 namespace Newtouch.OR.ManageSystem.Repository
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-10-31 10:04
-    /// Mô tả：Hồ sơ đơn đăng ký phẫu thuật
+    /// Tạo bởi:chl
+    /// Ngày:2019-10-31 10:04
+    /// Mô tả:Hồ sơ đơn đăng ký phẫu thuật
     /// </summary>
     public class ORApplyInfoRepo : RepositoryBase<ORApplyInfoEntity>, IORApplyInfoRepo
     {
@@ -28,7 +28,7 @@ namespace Newtouch.OR.ManageSystem.Repository
         }
 
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

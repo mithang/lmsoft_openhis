@@ -23,7 +23,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public string rkbmmc { get; set; }
 
         /// <summary>
-        /// Trạng thái duyệt 0-Chờ duyệt； 1-Đã duyệt； 2-Không duyệt；3-Đã hủy bỏ；4-Lưu tạm
+        /// Trạng thái duyệt 0-Chờ duyệt; 1-Đã duyệt; 2-Không duyệt;3-Đã hủy bỏ;4-Lưu tạm
         /// </summary>
         public int auditState { get; set; }
 
@@ -84,12 +84,12 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public int sjsl { get; set; }
 
         /// <summary>
-        /// Số lượng mua theo kế hoạch（Kèm đơn vị）
+        /// Số lượng mua theo kế hoạch(Kèm đơn vị)
         /// </summary>
         public string slStr { get; set; }
 
         /// <summary>
-        /// Số lượng mua thực tế（Kèm đơn vị）
+        /// Số lượng mua thực tế(Kèm đơn vị)
         /// </summary>
         public string sjslStr { get; set; }
 
@@ -149,7 +149,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public string productId { get; set; }
 
         /// <summary>
-        /// Chi tiết kế hoạch mua sắm ID，cg_purchaseOrderDetail Khóa chính của bảng
+        /// Chi tiết kế hoạch mua sắm ID,cg_purchaseOrderDetail Khóa chính của bảng
         /// </summary>
         public long pdId { get; set; }
 

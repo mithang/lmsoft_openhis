@@ -23,7 +23,7 @@ namespace Newtouch.Herp.Domain.Entity
         public string syyy { get; set; }
 
         /// <summary>
-        /// 0 Báo hỏng，1 Báo thừa
+        /// 0 Báo hỏng,1 Báo thừa
         /// </summary>
         public string sybz { get; set; }
 

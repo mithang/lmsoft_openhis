@@ -7,8 +7,8 @@ namespace Newtouch.Domain.Entity
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày：2018-06-28 15:37
-    /// Mô tả：Nhập việnChungăn uốngyêu cầukho
+    /// Ngày:2018-06-28 15:37
+    /// Mô tả:Nhập việnChungăn uốngyêu cầukho
     /// </summary>
     [SugarTable("zy_tyssqqk")]
     public class InpatientChargeItemDietExeEntity

@@ -66,7 +66,7 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public string dl { get; set; }
 
         /// <summary>
-        /// Số lượng（Khoa phòngĐơn vị）
+        /// Số lượng(Khoa phòngĐơn vị)
         /// </summary>
         public decimal sl { get; set; }
 
@@ -76,12 +76,12 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public int zhyz { get; set; }
 
         /// <summary>
-        /// uống、tĩnhgiọt...
+        /// uống,tĩnhgiọt...
         /// </summary>
         public string zlff { get; set; }
 
         /// <summary>
-        /// Thời gian thực hiện：04,06,08...
+        /// Thời gian thực hiện:04,06,08...
         /// </summary>
         public string sjap { get; set; }
 
@@ -121,7 +121,7 @@ namespace Newtouch.PDS.Requset.Zyypyz
         public string fyyf { get; set; }
 
         /// <summary>
-        /// Y lệnhTính chất 1：Tạm thời；2：Dài hạn
+        /// Y lệnhTính chất 1:Tạm thời;2:Dài hạn
         /// </summary>
         public string yzxz { get; set; }
 

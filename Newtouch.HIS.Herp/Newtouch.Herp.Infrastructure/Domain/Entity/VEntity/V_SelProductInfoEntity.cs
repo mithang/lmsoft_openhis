@@ -31,7 +31,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public int kykcsl { get; set; }
 
         /// <summary>
-        /// Số lượng đơn vị khoa phòng（Kèm đơn vị）
+        /// Số lượng đơn vị khoa phòng(Kèm đơn vị)
         /// </summary>
         public string slstr { get; set; }
 

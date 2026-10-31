@@ -38,7 +38,7 @@ namespace Newtouch.Herp.Domain.Entity
         public string productId { get; set; }
 
         /// <summary>
-        /// Số lượng，sl*zhyz=Số lượng đơn vị nhỏ nhất
+        /// Số lượng,sl*zhyz=Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int sl { get; set; }
 
@@ -78,24 +78,24 @@ namespace Newtouch.Herp.Domain.Entity
         public DateTime yxq { get; set; }
 
         /// <summary>
-        /// Giá nhập，với sl cùng đơn vị
+        /// Giá nhập,với sl cùng đơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal jj { get; set; }
 
         /// <summary>
-        /// Giá bán lẻ，với sl cùng đơn vị
+        /// Giá bán lẻ,với sl cùng đơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// Tồn kho khoa nhập kho，Thống kê trước thao tác，Đơn vị nhỏ nhất
+        /// Tồn kho khoa nhập kho,Thống kê trước thao tác,Đơn vị nhỏ nhất
         /// </summary>
         public int rkbmkc { get; set; }
 
         /// <summary>
-        /// Tồn kho khoa xuất kho，Thống kê trước thao tác，Đơn vị nhỏ nhất
+        /// Tồn kho khoa xuất kho,Thống kê trước thao tác,Đơn vị nhỏ nhất
         /// </summary>
         public int ckbmkc { get; set; }
 

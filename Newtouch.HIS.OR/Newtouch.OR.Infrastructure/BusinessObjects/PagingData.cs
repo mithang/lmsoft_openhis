@@ -9,11 +9,11 @@ namespace Newtouch.OR.ManageSystem.Domain
     public class PagingData<T>
     {
         /// <summary>
-        /// Cách sắp xếpascCần máy chủ của bạn sắp xếp theo thứ tự，descSắp xếp ngược
+        /// Cách sắp xếpascCần máy chủ của bạn sắp xếp theo thứ tự,descSắp xếp ngược
         /// </summary>
         public string order { get; set; }
         /// <summary>
-        /// Dòng bắt đầu，Ví dụ CSDL của bạn có100bản ghi，offsetbằng10nghĩa là máy chủ cần trả từ bản ghi thứ10bản ghi để trả kết quả
+        /// Dòng bắt đầu,Ví dụ CSDL của bạn có100bản ghi,offsetbằng10nghĩa là máy chủ cần trả từ bản ghi thứ10bản ghi để trả kết quả
         /// </summary>
         public int offset { get; set; }
         /// <summary>
@@ -25,7 +25,7 @@ namespace Newtouch.OR.ManageSystem.Domain
         /// </summary>
         public string search { get; set; }
         /// <summary>
-        /// Khi phân trang bạn có thể truyền tham số tùy chỉnh，Ví dụ bạn muốn mỗi lần yêu cầu máy chủ kèmaction="getlist"tham sốfunction(params) { return params }
+        /// Khi phân trang bạn có thể truyền tham số tùy chỉnh,Ví dụ bạn muốn mỗi lần yêu cầu máy chủ kèmaction="getlist"tham sốfunction(params) { return params }
         /// </summary>
         public T queryParams { get; set; }
     }

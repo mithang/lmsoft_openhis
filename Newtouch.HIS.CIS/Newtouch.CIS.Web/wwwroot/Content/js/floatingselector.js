@@ -17,9 +17,9 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         isjsonp: false,
         //CóKhôngSử dụngjsonp
         isinputchangetriggered: true,
-        //Cóinput changekích hoạtcủa（soVD phiếunhấpNút lớp nổirađến，thìCótruyềnfalse）
+        //Cóinput changekích hoạtcủa(soVD phiếunhấpNút lớp nổirađến,thìCótruyềnfalse)
         inputtextcheck: null,
-        //doinput changekích hoạt，có thểtrướckiểm tranhậpcủavăn bản function
+        //doinput changekích hoạt,có thểtrướckiểm tranhậpcủavăn bản function
         mutiselect: false,
         bwlx: null,  //Vị tríLoại
         TempArr:[] 
@@ -66,7 +66,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
             //if (options.bwlx != "jc")
             $divContainer.append('<div style="height:40px;position:relative"><table class="form"> <tr> <td class="formTitle" style="width:35px">Phân loại:</td><td class="formValue"> <span class="second"><input type="text" name="makeupCo" id="makeupCo" autocomplete="off" style ="width:60px" class="makeinp" placeholder="" /></span> </td> <td class="formTitle" style="width:60px">Vị tríTên:</td><td class="formValue"> <input type = "text"  class= "btn_sr" value = "" style = "width:95px;border: 1px solid #ddd; display:table-cell;" ></td> </tr></table> <select id="bwfl" name="bwfl" class="sel sel_bwdl" size="10" style = "width: 100px;border: 1px solid rgb(153, 153, 153);position: absolute;left: 35px;top: 0px;height: 106px;margin: 31px 0px 0px;outline: none;z-index: 10001;"></select></div> ');
             $divContainer.append('<div class="' + className+'"><ul></ul>');
-            //VDnếunhiềuchọn，tăng thêmXác nhậnĐóngNút
+            //VDnếunhiềuchọn,tăng thêmXác nhậnĐóngNút
             if (options.mutiselect) {
                 $divContainer.append('<div class="ui-nfs-container_bottom" style="float: right;width: 95px;margin-top: -5px;"><input type="button" class="btn btn-primary btn_submit"  value="Xác nhận" style="display:table-cell;margin-right: 10px;"><input type = "button"  class= "btn btn-primary btn_close" value = "Đóng" style = "display:table-cell;" ></div>');
             }
@@ -83,7 +83,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         //if (options.bwlx != "jc")
             options.funcBindBwflSelData();
     };
-    //cholớp nổiđịnh ký tự（TheoelementcủaVị trí）
+    //cholớp nổiđịnh ký tự(TheoelementcủaVị trí)
     options.location = function () {
         if (options.X && options.Y) {
             options.container.css('left', options.X);
@@ -126,7 +126,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
             var thisUrl = options.url;
             var thisReqData = null;
             if (options.ajaxparameters) {
-                var thisParameters =  options.ajaxparameters(options.$this); //aikích hoạtcủa，Quay lạichotrangmặt
+                var thisParameters =  options.ajaxparameters(options.$this); //aikích hoạtcủa,Quay lạichotrangmặt
                 if (thisParameters) {
                     thisUrl += "?" + thisParameters;
                 }
@@ -235,7 +235,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         });
     }
 
-    //đượcđếnQuay lạikếtnếu，duyệthiển thị
+    //đượcđếnQuay lạikếtnếu,duyệthiển thị
     options.funcBindRowData = function (resultObjArr) {
         debugger;
         if (resultObjArr) {
@@ -279,7 +279,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                     } else //phiếuchọn
                     {
                         debugger
-                        options.itemdbclickhandler($(this), options.$this); //aikích hoạtcủa，Quay lạichotrangmặt
+                        options.itemdbclickhandler($(this), options.$this); //aikích hoạtcủa,Quay lạichotrangmặt
                         if (options.isinputchangetriggered) {
                             options.$this.trigger('focus'); //VDnếuCóinputbảnthâncủachangekích hoạt chovăn bảnkhungtiêu điểmđiểm
                         }
@@ -303,7 +303,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                     selectorsList.push($(this));
                 }
             });
-            options.itemdbclickhandler(selectorsList, options.$this); //aikích hoạtcủa，Quay lạichotrangmặt
+            options.itemdbclickhandler(selectorsList, options.$this); //aikích hoạtcủa,Quay lạichotrangmặt
             options.container.find('.btn_close').trigger('click');
         });
 
@@ -374,7 +374,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
 
                 options.prveValue = options.$this.val();
                 if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                    return; //khôngđếnđộ dài tối thiểu，Ẩncủa
+                    return; //khôngđếnđộ dài tối thiểu,Ẩncủa
                 }
                 if (typeof options.inputtextcheck === 'function') {
                     if (!(options.inputtextcheck(options.$this.val()))) {
@@ -389,7 +389,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
 
                 options.prveValue = options.$this.val();
                 if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                    return; //khôngđếnđộ dài tối thiểu，Ẩncủa
+                    return; //khôngđếnđộ dài tối thiểu,Ẩncủa
                 }
                 if (typeof options.inputtextcheck === 'function') {
                     if (!(options.inputtextcheck(options.$this.val()))) {
@@ -417,7 +417,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
 
             options.prveValue = options.$this.val();
             if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                return; //khôngđếnđộ dài tối thiểu，Ẩncủa
+                return; //khôngđếnđộ dài tối thiểu,Ẩncủa
             }
             if (typeof options.inputtextcheck === 'function') {
                 if (!(options.inputtextcheck(options.$this.val()))) {
@@ -446,19 +446,19 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                     dstnIndex = 0;
                 } else {
                     if (event.keyCode == 37) {
-                        //alert("theođã←phím！");
+                        //alert("theođã←phím!");
                         dstnIndex = curActiveIndex - 1;
                     }
                     if (event.keyCode == 39) {
-                        //alert("theođã →phím！");
+                        //alert("theođã →phím!");
                         dstnIndex = curActiveIndex + 1;
                     }
                     //if (event.keyCode == 38) {
-                    //    //alert("theođã↑phím！");
+                    //    //alert("theođã↑phím!");
                     //    dstnIndex = curActiveIndex - 1;
                     //}
                     //if (event.keyCode == 40) {
-                    //    //alert("theođã↓phím！");
+                    //    //alert("theođã↓phím!");
                     //    dstnIndex = curActiveIndex + 1;
                     //}
                     if (dstnIndex < 0) {
@@ -546,8 +546,8 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         ajaxsync: false,
         ajaxparameters: null,    //function get
         isjsonp: false,  //CóKhôngSử dụngjsonp
-        isinputchangetriggered: true,    //Cóinput changekích hoạtcủa（soVD phiếunhấpNút lớp nổirađến，thìCótruyềnfalse）
-        inputtextcheck: null,   //doinput changekích hoạt，có thểtrướckiểm tranhậpcủavăn bản function
+        isinputchangetriggered: true,    //Cóinput changekích hoạtcủa(soVD phiếunhấpNút lớp nổirađến,thìCótruyềnfalse)
+        inputtextcheck: null,   //doinput changekích hoạt,có thểtrướckiểm tranhậpcủavăn bản function
     };
     var options = $.extend(defaults, options);
     options.$this = $(this);
@@ -596,7 +596,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         }
         options.container = $divContainer;
     };
-    //cholớp nổiđịnh ký tự（TheoelementcủaVị trí）
+    //cholớp nổiđịnh ký tự(TheoelementcủaVị trí)
     options.location = function () {
         if (options.X && options.Y) {
             options.container.css('left', options.X);
@@ -645,7 +645,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             var thisUrl = options.url;
             var thisReqData = null;
             if (options.ajaxparameters) {
-                var thisParameters = options.ajaxparameters(options.$this);  //aikích hoạtcủa，Quay lạichotrangmặt
+                var thisParameters = options.ajaxparameters(options.$this);  //aikích hoạtcủa,Quay lạichotrangmặt
                 if (thisParameters) {
                     thisUrl += "?" + thisParameters;
                 }
@@ -722,7 +722,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             }
         }
     };
-    //đượcđếnQuay lạikếtnếu，duyệthiển thị
+    //đượcđếnQuay lạikếtnếu,duyệthiển thị
     options.funcBindRowData = function (resultObjArr) {
         if (resultObjArr) {
             if (options.container) {
@@ -757,7 +757,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         if (options.container && options.itemdbclickhandler) {
             options.container.unbind();
             options.container.on('click', 'ul li', function () {
-                options.itemdbclickhandler($(this), options.$this); //aikích hoạtcủa，Quay lạichotrangmặt
+                options.itemdbclickhandler($(this), options.$this); //aikích hoạtcủa,Quay lạichotrangmặt
                 if (options.isinputchangetriggered) {
                     //VDnếuCóinputbảnthâncủachangekích hoạt chovăn bảnkhungtiêu điểmđiểm
                     options.focusfromdbclickitem = true;
@@ -789,7 +789,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
 
                 options.prveValue = options.$this.val();
                 if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                    return; //khôngđếnđộ dài tối thiểu，Ẩncủa
+                    return; //khôngđếnđộ dài tối thiểu,Ẩncủa
                 }
                 if (typeof options.inputtextcheck === 'function') {
                     if (!(options.inputtextcheck(options.$this.val()))) {
@@ -811,7 +811,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
 
                 options.prveValue = options.$this.val();
                 if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                    return; //khôngđếnđộ dài tối thiểu，Ẩncủa
+                    return; //khôngđếnđộ dài tối thiểu,Ẩncủa
                 }
                 if (typeof options.inputtextcheck === 'function') {
                     if (!(options.inputtextcheck(options.$this.val()))) {
@@ -841,7 +841,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
 
             options.prveValue = options.$this.val();
             if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                return; //khôngđếnđộ dài tối thiểu，Ẩncủa
+                return; //khôngđếnđộ dài tối thiểu,Ẩncủa
             }
             if (typeof options.inputtextcheck === 'function') {
                 if (!(options.inputtextcheck(options.$this.val()))) {
@@ -872,19 +872,19 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
                 }
                 else {
                     if (event.keyCode == 37) {
-                        //alert("theođã←phím！");
+                        //alert("theođã←phím!");
                         dstnIndex = curActiveIndex - 1;
                     }
                     if (event.keyCode == 39) {
-                        //alert("theođã →phím！");
+                        //alert("theođã →phím!");
                         dstnIndex = curActiveIndex + 1;
                     }
                     //if (event.keyCode == 38) {
-                    //    //alert("theođã↑phím！");
+                    //    //alert("theođã↑phím!");
                     //    dstnIndex = curActiveIndex - 1;
                     //}
                     //if (event.keyCode == 40) {
-                    //    //alert("theođã↓phím！");
+                    //    //alert("theođã↓phím!");
                     //    dstnIndex = curActiveIndex + 1;
                     //}
                     if (dstnIndex < 0) {
@@ -971,9 +971,9 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
         isjsonp: false,
         //CóKhôngSử dụngjsonp
         isinputchangetriggered: true,
-        //Cóinput changekích hoạtcủa（soVD phiếunhấpNút lớp nổirađến，thìCótruyềnfalse）
+        //Cóinput changekích hoạtcủa(soVD phiếunhấpNút lớp nổirađến,thìCótruyềnfalse)
         inputtextcheck: null,
-        //doinput changekích hoạt，có thểtrướckiểm tranhậpcủavăn bản function
+        //doinput changekích hoạt,có thểtrướckiểm tranhậpcủavăn bản function
         mutiselect: false
     };
     var options = $.extend(defaults, options);
@@ -1015,7 +1015,7 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
                 className = options.className
             }
             $divContainer.append('<div class="' + className + '"><ul></ul>');
-            //VDnếunhiềuchọn，tăng thêmXác nhậnĐóngNút
+            //VDnếunhiềuchọn,tăng thêmXác nhậnĐóngNút
             if (options.mutiselect) {
                 $divContainer.append('<div class="ui-nfs-container_bottom" style="float: right;width: 95px;margin-top: -5px;"><input type="button" class="btn btn-primary btn_submit"  value="Xác nhận" style="display:table-cell;margin-right: 10px;"><input type = "button"  class= "btn btn-primary btn_close" value = "Đóng" style = "display:table-cell;" ></div>');
             }
@@ -1031,7 +1031,7 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
         }
 
     };
-    //cholớp nổiđịnh ký tự（TheoelementcủaVị trí）
+    //cholớp nổiđịnh ký tự(TheoelementcủaVị trí)
     options.location = function () {
         if (options.X && options.Y) {
             options.container.css('left', options.X);
@@ -1073,7 +1073,7 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
             var thisUrl = options.url;
             var thisReqData = null;
             if (options.ajaxparameters) {
-                var thisParameters = options.ajaxparameters(options.$this); //aikích hoạtcủa，Quay lạichotrangmặt
+                var thisParameters = options.ajaxparameters(options.$this); //aikích hoạtcủa,Quay lạichotrangmặt
                 if (thisParameters) {
                     thisUrl += "?" + thisParameters;
                 }
@@ -1141,7 +1141,7 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
             }
         }
     };
-    //đượcđếnQuay lạikếtnếu，duyệthiển thị
+    //đượcđếnQuay lạikếtnếu,duyệthiển thị
     options.funcBindRowData = function (resultObjArr) {
         if (resultObjArr) {
             if (options.container) {
@@ -1190,7 +1190,7 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
                         };
                     } else //phiếuchọn
                     {
-                        options.itemdbclickhandler($(this), options.$this); //aikích hoạtcủa，Quay lạichotrangmặt
+                        options.itemdbclickhandler($(this), options.$this); //aikích hoạtcủa,Quay lạichotrangmặt
                         if (options.isinputchangetriggered) {
                             options.$this.trigger('focus'); //VDnếuCóinputbảnthâncủachangekích hoạt chovăn bảnkhungtiêu điểmđiểm
                         }
@@ -1214,7 +1214,7 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
                     selectorsList.push($(this));
                 }
             });
-            options.itemdbclickhandler(selectorsList, options.$this); //aikích hoạtcủa，Quay lạichotrangmặt
+            options.itemdbclickhandler(selectorsList, options.$this); //aikích hoạtcủa,Quay lạichotrangmặt
             options.container.find('.btn_close').trigger('click');
         });
 
@@ -1245,7 +1245,7 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
 
                 options.prveValue = options.$this.val();
                 if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                    return; //khôngđếnđộ dài tối thiểu，Ẩncủa
+                    return; //khôngđếnđộ dài tối thiểu,Ẩncủa
                 }
                 if (typeof options.inputtextcheck === 'function') {
                     if (!(options.inputtextcheck(options.$this.val()))) {
@@ -1260,7 +1260,7 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
 
                 options.prveValue = options.$this.val();
                 if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                    return; //khôngđếnđộ dài tối thiểu，Ẩncủa
+                    return; //khôngđếnđộ dài tối thiểu,Ẩncủa
                 }
                 if (typeof options.inputtextcheck === 'function') {
                     if (!(options.inputtextcheck(options.$this.val()))) {
@@ -1288,7 +1288,7 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
 
             options.prveValue = options.$this.val();
             if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                return; //khôngđếnđộ dài tối thiểu，Ẩncủa
+                return; //khôngđếnđộ dài tối thiểu,Ẩncủa
             }
             if (typeof options.inputtextcheck === 'function') {
                 if (!(options.inputtextcheck(options.$this.val()))) {
@@ -1317,19 +1317,19 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
                     dstnIndex = 0;
                 } else {
                     if (event.keyCode == 37) {
-                        //alert("theođã←phím！");
+                        //alert("theođã←phím!");
                         dstnIndex = curActiveIndex - 1;
                     }
                     if (event.keyCode == 39) {
-                        //alert("theođã →phím！");
+                        //alert("theođã →phím!");
                         dstnIndex = curActiveIndex + 1;
                     }
                     //if (event.keyCode == 38) {
-                    //    //alert("theođã↑phím！");
+                    //    //alert("theođã↑phím!");
                     //    dstnIndex = curActiveIndex - 1;
                     //}
                     //if (event.keyCode == 40) {
-                    //    //alert("theođã↓phím！");
+                    //    //alert("theođã↓phím!");
                     //    dstnIndex = curActiveIndex + 1;
                     //}
                     if (dstnIndex < 0) {

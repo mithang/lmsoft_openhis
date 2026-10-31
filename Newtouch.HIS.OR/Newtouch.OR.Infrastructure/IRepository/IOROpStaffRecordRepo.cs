@@ -4,14 +4,14 @@ using System.Collections.Generic;
 namespace Newtouch.OR.ManageSystem.Domain.IRepository
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-11-06 10:22
-    /// Mô tả：Hồ sơ nhân viên phẫu thuật
+    /// Tạo bởi:chl
+    /// Ngày:2019-11-06 10:22
+    /// Mô tả:Hồ sơ nhân viên phẫu thuật
     /// </summary>
     public interface IOROpStaffRecordRepo : IRepositoryBase<OROpStaffRecordEntity>
     {
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

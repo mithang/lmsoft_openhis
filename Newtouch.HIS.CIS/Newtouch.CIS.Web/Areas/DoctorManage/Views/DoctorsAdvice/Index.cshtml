@@ -6,21 +6,21 @@
     var isOnlyLook = Context.Request.Query["IsOnlyLook"] == "true" ? true : false;
     var kssj = Context.Request.Query["kssj"];
 
-    //Công tắc：Có mở khôngXét nghiệmKiểm tra
+    //Công tắc:Có mở khôngXét nghiệmKiểm tra
     var IsOpenJyJcSwitch = ViewBag.IsOpenJyJcSwitch as bool?;
 
     //hợplýdùngthuốcgiao diện
     var isOpenRationalUse = (ViewBag.isOpenRationalUse); //CóKhôngbậthợplýdùngthuốcPhê duyệtgiao diện
 
-    //Công tắc：Ngoại trúCó mở khôngăn uốngY lệnh
+    //Công tắc:Ngoại trúCó mở khôngăn uốngY lệnh
     var ISOpenSsyz = (ViewBag.ISOpenSsyz as bool?);
 
-    //Công tắc：Nhập việnCóKhôngtrongthảo dượcY lệnh
+    //Công tắc:Nhập việnCóKhôngtrongthảo dượcY lệnh
     var ISOpenzcyyz = (ViewBag.ISOpenzcyyzSwitch as bool?);
-    //Công tắc：CóKhôngmởPhục hồi chức năngY lệnh
+    //Công tắc:CóKhôngmởPhục hồi chức năngY lệnh
     var IsOpenRehabSwitch = ViewBag.IsOpenRehabSwitch as bool?;
 
-    //Công tắc：Có mở khôngydùngVật tư tiêu haoĐơn thuốc
+    //Công tắc:Có mở khôngydùngVật tư tiêu haoĐơn thuốc
     var iSOpenWzhc = (ViewBag.ISOpenWzhc as bool?);
     //nợ phíY lệnhThực hiệnCông tắc
     var ISOpenqfswith = (ViewBag.isqfswith);
@@ -654,7 +654,7 @@
             return;
         }
         var rtnsl;
-        switch (zxzqdw) {//1：ngày，2：giờ，3：Phút
+        switch (zxzqdw) {//1:ngày,2:giờ,3:Phút
             case "1":
                 rtnsl = (zxcs / zxzq);
                 break;
@@ -680,7 +680,7 @@
             $.modalAlert("Đơn vịLoạikhông được để trống", 'error');
             return;
         }
-        var qzint = ypjl * ts;//Mặc địnhĐơn vị nhập viện ，khôngcầnchuyểnđổi
+        var qzint = ypjl * ts;//Mặc địnhĐơn vị nhập viện ,khôngcầnchuyểnđổi
         if (dwlb == 1) {//Đơn vị liều chuyểnđổithànhĐơn vị liều
             qzint = parseFloat((qzint / (jlzhxs * zyzhxs)).toFixed(10));
         }
@@ -733,7 +733,7 @@
                                     // kiểm tra Cfstate CóKhônglà "1" hoặc "2"
                                     if (reqdata.data.Cfstate === "1" || reqdata.data.Cfstate === "2") {
                                         
-                                        // bạncó thểlấyTheocầnvàomộtbướcchỗlý infoList，VDnếucầnvàodòngLọccó thểlấyởnàychỗvàodòng
+                                        // bạncó thểlấyTheocầnvàomộtbướcchỗlý infoList,VDnếucầnvàodòngLọccó thểlấyởnàychỗvàodòng
                                         HlyyDrugInfo(reqdata.data);  // truyền InfoList Dữ liệu
                                         $('#drugInfoModal').modal('show');
                                     }

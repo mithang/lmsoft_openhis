@@ -121,7 +121,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
 
-        //--------------------------------------lấydướiCó：Y lệnhtrảthuốcTra cứu--------------------------------------
+        //--------------------------------------lấydướiCó:Y lệnhtrảthuốcTra cứu--------------------------------------
 
         public IActionResult Drug_withdrawal() {
             ViewBag.OrgId = this.OrganizeId;

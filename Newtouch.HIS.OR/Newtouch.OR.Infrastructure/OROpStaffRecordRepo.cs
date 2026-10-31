@@ -7,9 +7,9 @@ using System.Collections.Generic;
 namespace Newtouch.OR.ManageSystem.Repository
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-11-06 10:22
-    /// Mô tả：Hồ sơ nhân viên phẫu thuật
+    /// Tạo bởi:chl
+    /// Ngày:2019-11-06 10:22
+    /// Mô tả:Hồ sơ nhân viên phẫu thuật
     /// </summary>
     public class OROpStaffRecordRepo : RepositoryBase<OROpStaffRecordEntity>, IOROpStaffRecordRepo
     {
@@ -23,7 +23,7 @@ namespace Newtouch.OR.ManageSystem.Repository
         }
 
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

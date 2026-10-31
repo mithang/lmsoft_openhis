@@ -21,14 +21,14 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <summary>
         /// Lấy Tổ chức đơn nhất Mục từ điểnList
         /// </summary>
-        /// <param name="orgId">Cơ sở y tếId，không truyền thì dùng chung theo chênh lệch</param>
+        /// <param name="orgId">Cơ sở y tếId,không truyền thì dùng chung theo chênh lệch</param>
         /// <param name="itemId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         IList<SysItemsDetailVO> GetListByOrgId(string orgId = null, string itemId = null, string keyword = null);
 
         /// <summary>
-        /// Cập nhật、Lưu mục từ điển
+        /// Cập nhật,Lưu mục từ điển
         /// </summary>
         /// <param name="itemsDetailEntity"></param>
         /// <param name="keyValue"></param>

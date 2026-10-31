@@ -151,7 +151,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 			},
 			{
 				label: 'Tồn kho', name: 'clkcsl', formatter: function (cellvalue, a, b) {
-					//chocủakcslCóĐơn vị nhỏ nhấtcủa，đâycầnHiển thịNgoại trú/Đơn vị nhập việncủaSố lượng
+					//chocủakcslCóĐơn vị nhỏ nhấtcủa,đâycầnHiển thịNgoại trú/Đơn vị nhập việncủaSố lượng
 					return b.yzlx === '1' ? (!!b.kcsl && !!b.cls ? (parseInt(b.kcsl / b.cls)) : 'không') : '';
 				}, widthratio: 4, hidden: true
 			},
@@ -743,7 +743,7 @@ $.fn.yszsFloatingSelector = function (options, data) {
 	$(this).multiFoodFloatingSelector(options, data);
 }
 
-//Loại y lệnh（dài hạn/tạm thời） lớp nổibộ chọn
+//Loại y lệnh(dài hạn/tạm thời) lớp nổibộ chọn
 $.fn.yzlbFloatingSelector = function (options, data) {
 	//Mặc địnhoptions
 	var defaults = {

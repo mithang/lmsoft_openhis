@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Domain.DTO.DrugStorage
 
         private string _ypCodes = "";
         /// <summary>
-        /// Tập hợp mã thuốc dùng','Phân tách，Độ dài ký tự không được vượt quá1000
+        /// Tập hợp mã thuốc dùng','Phân tách,Độ dài ký tự không được vượt quá1000
         /// </summary>
         public string ypCodes
         {

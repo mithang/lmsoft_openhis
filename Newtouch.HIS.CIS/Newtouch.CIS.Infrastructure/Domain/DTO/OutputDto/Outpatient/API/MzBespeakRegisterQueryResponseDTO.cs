@@ -28,7 +28,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string blh { get; set; }
         
         /// <summary>
-        /// Dấu hiệu ngoại trú/nội trú 1：thông thườngNgoại trú  2：gấpkhám   3：chuyên giaNgoại trú
+        /// Dấu hiệu ngoại trú/nội trú 1:thông thườngNgoại trú  2:gấpkhám   3:chuyên giaNgoại trú
         /// </summary>
         public string mzlx { get; set; }
 

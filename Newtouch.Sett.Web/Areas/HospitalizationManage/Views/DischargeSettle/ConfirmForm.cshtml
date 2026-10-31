@@ -506,7 +506,7 @@
                  }
              }
          }
-         var payoptype = { "sbkh": sbkh, "xzlb": "1" };//Loại bảo hiểm mặc định,1. Bảo hiểm y tế；2. Bảo hiểm tai nạn lao động；3. Bảo hiểm sinh đẻ；
+         var payoptype = { "sbkh": sbkh, "xzlb": "1" };//Loại bảo hiểm mặc định,1. Bảo hiểm y tế;2. Bảo hiểm tai nạn lao động;3. Bảo hiểm sinh đẻ;
          $.ajax({
              type: "POST",
              url: "http://127.0.0.1:22222/api/CQYiBao/PatAccountInfo",
@@ -548,7 +548,7 @@
             return;
         }
         var yibaoZhdy;
-        var payoptype = { "zymzh": cqPatInfo.zymzh, "jyrbh": cqPatInfo.sbkh, "jyrxm": cqPatInfo.xm, "jyrsfz": cqPatInfo.sfzh, "jyrxzqh": cqPatInfo.xzqh, "dyrsbh": $("#zhdy").val(), "ddyje": (ybjyFeeReturn.cqxjzf - ybjyFeeReturn.lsqfxgwyff), "jbr": '@(opr.rygh)', "jsjylsh": ybjyFeeReturn.jylsh, "jyrcblb": cqPatInfo.cblb };//Loại bảo hiểm mặc định,1. Bảo hiểm y tế；2. Bảo hiểm tai nạn lao động；3. Bảo hiểm sinh đẻ；
+        var payoptype = { "zymzh": cqPatInfo.zymzh, "jyrbh": cqPatInfo.sbkh, "jyrxm": cqPatInfo.xm, "jyrsfz": cqPatInfo.sfzh, "jyrxzqh": cqPatInfo.xzqh, "dyrsbh": $("#zhdy").val(), "ddyje": (ybjyFeeReturn.cqxjzf - ybjyFeeReturn.lsqfxgwyff), "jbr": '@(opr.rygh)', "jsjylsh": ybjyFeeReturn.jylsh, "jyrcblb": cqPatInfo.cblb };//Loại bảo hiểm mặc định,1. Bảo hiểm y tế;2. Bảo hiểm tai nạn lao động;3. Bảo hiểm sinh đẻ;
         $.ajax({
             type: "POST",
             url: "http://127.0.0.1:22222/api/CQYiBao/MedicalAccountToUse",
@@ -832,7 +832,7 @@
         }
         if ((payingOrFailed === null || payingOrFailed === true) && needPay && payMoney > 0) {
             payMoney = ovpraseFloat(payMoney).toFixed(2);
-            var out_trade_no = (new Date()).getTime().toString();   //Có vấn đề hay không？
+            var out_trade_no = (new Date()).getTime().toString();   //Có vấn đề hay không?
             ToPay(out_trade_no, 'quyết toán xuất viện', payMoney);
             payingOrFailed = true;
         }

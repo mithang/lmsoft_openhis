@@ -1,4 +1,4 @@
-﻿//Vô hiệu hóa phần mềm  1：Vô hiệu hóa  2：Kích hoạt
+﻿//Vô hiệu hóa phần mềm  1:Vô hiệu hóa  2:Kích hoạt
 function readonly(list, type) {
     if (list && list.length > 0) {
         for (var i = 0; i < list.length; i++) {

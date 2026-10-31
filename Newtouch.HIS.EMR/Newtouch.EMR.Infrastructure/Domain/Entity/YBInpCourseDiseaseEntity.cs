@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2021-03-01 15:24
-    /// Mô tả：Ghi chép diễn biến bệnh
+    /// Người tạo:chl
+    /// Ngày:2021-03-01 15:24
+    /// Mô tả:Ghi chép diễn biến bệnh
     /// </summary>
     [SugarTable("YB_Inp_CourseDisease")]
     public class YBInpCourseDiseaseEntity 
@@ -62,7 +62,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string BKB410 { get; set; }
 
         /// <summary>
-        /// Định dạng ngày giờ ghi chép：yyyymmddhhmiss
+        /// Định dạng ngày giờ ghi chép:yyyymmddhhmiss
         /// </summary>
         /// <returns></returns>
         [Description("Ngày giờ ghi chép")]

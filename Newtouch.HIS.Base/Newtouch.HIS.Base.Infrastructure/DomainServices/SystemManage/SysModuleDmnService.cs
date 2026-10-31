@@ -13,7 +13,7 @@ using System.Data;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// Menu hệ thống、Nút menu DmnService
+    /// Menu hệ thống,Nút menu DmnService
     /// </summary>
     public class SysModuleDmnService : DmnServiceBase, ISysModuleDmnService
     {
@@ -183,7 +183,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
         }
 
         /// <summary>
-        /// Gửi tạo mới、Cập nhật Menu
+        /// Gửi tạo mới,Cập nhật Menu
         /// </summary>
         /// <param name="moduleEntity"></param>
         /// <param name="keyValue"></param>
@@ -203,7 +203,7 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)", new SqlParamet
         }
 
         /// <summary>
-        /// Gửi tạo mới、Cập nhật Nút quyền
+        /// Gửi tạo mới,Cập nhật Nút quyền
         /// </summary>
         /// <param name="moduleButtonEntity"></param>
         /// <param name="keyValue"></param>
@@ -338,7 +338,7 @@ else
         }
 
         /// <summary>
-        /// Xem người dùng có thể truy cập hệ thống này không（Xét theo menu quyền đã mở cho người đó）
+        /// Xem người dùng có thể truy cập hệ thống này không(Xét theo menu quyền đã mở cho người đó)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="topOrgId"></param>

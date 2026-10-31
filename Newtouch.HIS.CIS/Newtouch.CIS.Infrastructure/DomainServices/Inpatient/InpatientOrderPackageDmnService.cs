@@ -50,7 +50,7 @@ namespace Newtouch.DomainServices.Inpatient
 
                         db.Update(mbObj);
 
-                        db.Delete<InpatientOrderPackageDetailEntity>(a => a.MainId == mbObj.Id && a.OrganizeId == mbObj.OrganizeId); //trướctoànxóa，lạiThêm mới
+                        db.Delete<InpatientOrderPackageDetailEntity>(a => a.MainId == mbObj.Id && a.OrganizeId == mbObj.OrganizeId); //trướctoànxóa,lạiThêm mới
                     }
                     else
                     {
@@ -61,11 +61,11 @@ namespace Newtouch.DomainServices.Inpatient
                         db.Insert(mbObj);
                     }
 
-                    //Số nhómtạotậphợp keyThao tácgiớimặtmangquađếncủaSố nhóm，valuemáy chủtạocủaSố nhóm，nhấtcuốiLưuđếnDữ liệukho
+                    //Số nhómtạotậphợp keyThao tácgiớimặtmangquađếncủaSố nhóm,valuemáy chủtạocủaSố nhóm,nhấtcuốiLưuđếnDữ liệukho
                     var diczh = new Dictionary<int, int>();
                     foreach (var item in mxList)
                     {
-                        //khôngtồn tạiởTần suất，khônglàmphương phápkếtiếp。
+                        //khôngtồn tạiởTần suất,khônglàmphương phápkếtiếp.
                         if (string.IsNullOrWhiteSpace(item.pcCode))
                         {
                             continue;
@@ -92,7 +92,7 @@ namespace Newtouch.DomainServices.Inpatient
                             }
                         }
 
-                        //Nội dung y lệnh định dạng：Tên thuốc Quy cách thuốc  ThuốcLiều lượng  Đơn vị liều Mã cách dùng Tên tần suất Vị trí
+                        //Nội dung y lệnh định dạng:Tên thuốc Quy cách thuốc  ThuốcLiều lượng  Đơn vị liều Mã cách dùng Tên tần suất Vị trí
                         item.yznr = item.xmmc + " "
                             + (item.ypgg ?? "")
                             + " " + (item.ypjl.ToString() ?? "")
@@ -117,7 +117,7 @@ namespace Newtouch.DomainServices.Inpatient
                         }
                         if (item.yzlx == (int)EnumYzlx.zcy)
                         {
-                            //Y lệnhđịnh dạng：Tên thuốc Quy cách mỗi lầnLiều lượng mỗi lầnĐơn vị liều Cách dùng Tần suất dánsố
+                            //Y lệnhđịnh dạng:Tên thuốc Quy cách mỗi lầnLiều lượng mỗi lầnĐơn vị liều Cách dùng Tần suất dánsố
                             item.yznr = item.xmmc + "  " + item.ypgg + " " + item.ypjl + item.dw + " " + item.yfmc + " " + item.pcmc + " " + item.sl + " thang";
                         }
                         //đối tượngGán giá trị  

@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             this._SysChargeCategoryBaseRepo = SysChargeCategoryBaseRepo;
         }
 
-        //Cây danh mục thu phí lớn（Bệnh viện） Thả xuống Nguồn dữ liệu
+        //Cây danh mục thu phí lớn(Bệnh viện) Thả xuống Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetTreeSelectJson(string organizeId, string treeidFieldName = "Code")

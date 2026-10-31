@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         /// </summary>
         public string bz1 { get; set; }
         /// <summary>
-        /// Ghi chú（Cờ thuộc tính đặc biệt）
+        /// Ghi chú(Cờ thuộc tính đặc biệt)
         /// </summary>
         public string bztssxbs { get; set; }
         /// <summary>

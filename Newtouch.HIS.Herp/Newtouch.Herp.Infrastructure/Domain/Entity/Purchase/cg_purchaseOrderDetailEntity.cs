@@ -38,7 +38,7 @@ namespace Newtouch.Herp.Domain.Entity
         public int sjsl { get; set; }
 
         /// <summary>
-        /// Đơn vị ID（Dư thừa）
+        /// Đơn vị ID(Dư thừa)
         /// </summary>
         public string unitId { get; set; }
 
@@ -48,7 +48,7 @@ namespace Newtouch.Herp.Domain.Entity
         public int zhyz { get; set; }
 
         /// <summary>
-        /// Trạng thái 0:Hủy bỏ；1.Hiệu lực
+        /// Trạng thái 0:Hủy bỏ;1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

@@ -33,7 +33,7 @@ namespace Newtouch.Herp.Domain.Entity
         public string subOrderNo { get; set; }
 
         /// <summary>
-        /// Chi tiết kế hoạch mua sắm ID，cg_purchaseOrderDetail Khóa chính của bảng
+        /// Chi tiết kế hoạch mua sắm ID,cg_purchaseOrderDetail Khóa chính của bảng
         /// </summary>
         public long pdId { get; set; }
 
@@ -43,17 +43,17 @@ namespace Newtouch.Herp.Domain.Entity
         public string productId { get; set; }
 
         /// <summary>
-        /// Số lượng，sl*zhyz=Số lượng đơn vị nhỏ nhất
+        /// Số lượng,sl*zhyz=Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// Hệ số chuyển đổi，tương ứng với đơn vị
+        /// Hệ số chuyển đổi,tương ứng với đơn vị
         /// </summary>
         public int zhyz { get; set; }
 
         /// <summary>
-        /// Giá nhập，tương ứng với đơn vị
+        /// Giá nhập,tương ứng với đơn vị
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal jj { get; set; }
@@ -69,7 +69,7 @@ namespace Newtouch.Herp.Domain.Entity
         public string unitId { get; set; }
 
         /// <summary>
-        /// Quy trình xử lý đơn mua sắm -1：Từ chối xử lý； 0：Chờ xử lý； 1：Chuẩn bị hàng； 2：Phân phối； 3：Ký nhận； 4：Hoàn thành； 5：Từ chối ký nhận 
+        /// Quy trình xử lý đơn mua sắm -1:Từ chối xử lý; 0:Chờ xử lý; 1:Chuẩn bị hàng; 2:Phân phối; 3:Ký nhận; 4:Hoàn thành; 5:Từ chối ký nhận 
         /// </summary>
         public int orderProcess { get; set; }
 
@@ -79,7 +79,7 @@ namespace Newtouch.Herp.Domain.Entity
         public string remark { get; set; }
 
         /// <summary>
-        /// Trạng thái 0:Hủy bỏ；1.Hiệu lực
+        /// Trạng thái 0:Hủy bỏ;1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

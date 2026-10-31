@@ -6,9 +6,9 @@ using Newtouch.OR.ManageSystem.Infrastructure;
 namespace Newtouch.OR.ManageSystem.Repository
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-11-06 10:22
-    /// Mô tả：Đăng ký phẫu thuật
+    /// Tạo bởi:chl
+    /// Ngày:2019-11-06 10:22
+    /// Mô tả:Đăng ký phẫu thuật
     /// </summary>
     public class ORRegistrationRepo : RepositoryBase<ORRegistrationEntity>, IORRegistrationRepo
     {
@@ -22,7 +22,7 @@ namespace Newtouch.OR.ManageSystem.Repository
         }
 
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

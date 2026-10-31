@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void DeleteForm(string keyValue);
 
         /// <summary>
-        /// Gửi tạo mới、Cập nhật Thực thể vai trò、Quyền vai trò
+        /// Gửi tạo mới,Cập nhật Thực thể vai trò,Quyền vai trò
         /// </summary>
         /// <param name="roleEntity"></param>
         /// <param name="roleAuthorizeEntitys"></param>

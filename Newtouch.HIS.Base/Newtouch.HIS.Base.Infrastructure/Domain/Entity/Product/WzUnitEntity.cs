@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string remark { get; set; }
 
         /// <summary>
-        /// Trạng thái  0:Hủy bỏ；1.Hiệu lực
+        /// Trạng thái  0:Hủy bỏ;1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

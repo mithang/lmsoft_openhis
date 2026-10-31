@@ -238,7 +238,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
             return Success("Gửi đơn thành công", new { applyno });
         }
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

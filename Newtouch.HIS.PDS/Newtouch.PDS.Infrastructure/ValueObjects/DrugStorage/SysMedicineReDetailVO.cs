@@ -10,12 +10,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string sldId { get; set; }
 
         /// <summary>
-        /// Tồn kho khả dụng，kèm đơn vị
+        /// Tồn kho khả dụng,kèm đơn vị
         /// </summary>
         public string kc { get; set; }
 
         /// <summary>
-        /// Tồn kho khả dụng（Đơn vị nhỏ nhất）
+        /// Tồn kho khả dụng(Đơn vị nhỏ nhất)
         /// </summary>
         public int kcsl { get; set; }
         public string Ypdm { get; set; }
@@ -42,7 +42,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public decimal Lsj { get; set; }
 
         /// <summary>
-        /// Số lượng lĩnh，kèm đơn vị
+        /// Số lượng lĩnh,kèm đơn vị
         /// </summary>
         public string Sl { get; set; }
         public decimal Pjze { get; set; }
@@ -59,12 +59,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public int Slsl { get; set; }
 
         /// <summary>
-        /// Số lượng phát thuốc（Số lượng lĩnh-Số lượng đã phát， Đơn vị nhỏ nhất）
+        /// Số lượng phát thuốc(Số lượng lĩnh-Số lượng đã phát, Đơn vị nhỏ nhất)
         /// </summary>
         public int fysl { get; set; }
 
         /// <summary>
-        /// Số lượng đã phát（Đơn vị nhỏ nhất）
+        /// Số lượng đã phát(Đơn vị nhỏ nhất)
         /// </summary>
         public int yfsl { get; set; }
 

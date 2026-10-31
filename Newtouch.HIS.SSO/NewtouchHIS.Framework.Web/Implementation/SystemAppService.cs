@@ -96,7 +96,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
         /// </summary>
         public string GetMenuListApi => $"{Host}api/System/GetMenuList";
         /// <summary>
-        /// lấy danh sách menu，cơ sở dữ liệu tùy chọn
+        /// lấy danh sách menu,cơ sở dữ liệu tùy chọn
         /// </summary>
         public string GetMenuListbyDBApi => $"{Host}api/System/GetAppMenuList";
 

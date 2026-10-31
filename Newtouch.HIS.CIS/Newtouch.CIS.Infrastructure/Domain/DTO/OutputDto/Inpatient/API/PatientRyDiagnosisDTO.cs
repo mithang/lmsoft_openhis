@@ -33,12 +33,12 @@ namespace Newtouch.Domain.DTO.OutputDto
         public string zdmc { get; set; }
 
         /// <summary>
-        /// Chẩn đoánThứ tự   1：Chẩn đoán1 2：Chẩn đoán2  3：Chẩn đoán3
+        /// Chẩn đoánThứ tự   1:Chẩn đoán1 2:Chẩn đoán2  3:Chẩn đoán3
         /// </summary>
         public string zdpx { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（cócụ thểthểnghiệp vụcủayviện）
+        /// Tổ chứcId(cócụ thểthểnghiệp vụcủayviện)
         /// </summary>
         public string OrganizeId { get; set; }
         
@@ -68,7 +68,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public int? px { get; set; }
 
         /// <summary>
-        /// Trạng thái 0:Vô hiệu  1：Hiệu lực
+        /// Trạng thái 0:Vô hiệu  1:Hiệu lực
         /// </summary>
         public string zt { get; set; }
     }

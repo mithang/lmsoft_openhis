@@ -55,7 +55,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// phútkhámGọi sốtrangmặt（lớnmàn hình）
+        /// phútkhámGọi sốtrangmặt(lớnmàn hình)
         /// </summary>
         /// <returns></returns>
         public IActionResult ConsultCall() {
@@ -73,7 +73,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// Phòng khámthông tin（nhỏmàn hình）
+        /// Phòng khámthông tin(nhỏmàn hình)
         /// </summary>
         /// <returns></returns>
         public IActionResult ConsultInfo()

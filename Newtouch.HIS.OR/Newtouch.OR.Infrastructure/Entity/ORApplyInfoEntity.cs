@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.OR.ManageSystem.Domain.Entity
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-10-31 10:04
-    /// Mô tả：Hồ sơ đơn đăng ký phẫu thuật
+    /// Tạo bởi:chl
+    /// Ngày:2019-10-31 10:04
+    /// Mô tả:Hồ sơ đơn đăng ký phẫu thuật
     /// </summary>
     [SugarTable("OR_ApplyInfo")]
     public class ORApplyInfoEntity : IEntityBase
@@ -145,7 +145,7 @@ namespace Newtouch.OR.ManageSystem.Domain.Entity
         /// </summary>
         public string isgl { get; set; }
         /// <summary>
-        /// Trạng thái     1:Có hiệu lực  0：Không hiệu lực
+        /// Trạng thái     1:Có hiệu lực  0:Không hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }

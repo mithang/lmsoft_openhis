@@ -8,12 +8,12 @@ namespace Newtouch.Herp.Domain.Entity
     public class VApplyBillInfoEntity
     {
         /// <summary>
-        /// Loại chứng từ 1-Khoa phòng lĩnh；2-Kho lĩnh
+        /// Loại chứng từ 1-Khoa phòng lĩnh;2-Kho lĩnh
         /// </summary>
         public int applyType { get; set; }
 
         /// <summary>
-        /// Quá trình xử lý   0:Chờ xử lý；1:Đã duyệt；2:Không duyệt；3:Phân phối；4:Hoàn thành một phần；5:Hoàn thành；6:Từ chối nhận
+        /// Quá trình xử lý   0:Chờ xử lý;1:Đã duyệt;2:Không duyệt;3:Phân phối;4:Hoàn thành một phần;5:Hoàn thành;6:Từ chối nhận
         /// </summary>
         public int applyProcess { get; set; }
 

@@ -24,7 +24,7 @@ namespace Newtouch.Domain.DTO.InterfaceSync
         public string sub_msg { get; set; }
         //
         // háicần:
-        //     hưởngứngDữ liệu（ResponseResultCode.SUCCESSkhicủaQuay lạiDữ liệu）
+        //     hưởngứngDữ liệu(ResponseResultCode.SUCCESSkhicủaQuay lạiDữ liệu)
         public object data { get; set; }
         public int rowcount { get; set; }
     }

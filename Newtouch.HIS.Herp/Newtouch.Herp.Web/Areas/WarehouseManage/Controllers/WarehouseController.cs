@@ -230,7 +230,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         /// </summary>
         /// <param name="relId"></param>
         /// <param name="wId">khoID</param>
-        /// <param name="op">Thao tác 1：Hủy kiểm soát  0：Kiểm soát </param>
+        /// <param name="op">Thao tác 1:Hủy kiểm soát  0:Kiểm soát </param>
         /// <returns></returns>
         public IActionResult ControlWz(string relId, string wId, string op = "")
         {
@@ -244,7 +244,7 @@ namespace Newtouch.Herp.Web.Areas.WarehouseManage.Controllers
         /// Cập nhật quan hệ liên kết vật tư kho
         /// </summary>
         /// <param name="productIds"></param>
-        /// <param name="opereateType">0:Thêm  1：Xóa</param>
+        /// <param name="opereateType">0:Thêm  1:Xóa</param>
         /// <param name="keyWord">Kho đích</param>
         /// <returns></returns>
         public IActionResult FreshWhAndwzRelList(string[] productIds, int opereateType, string keyWord)

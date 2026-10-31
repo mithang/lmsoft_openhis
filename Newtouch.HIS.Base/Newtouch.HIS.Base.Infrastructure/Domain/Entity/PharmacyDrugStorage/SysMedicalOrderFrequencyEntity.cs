@@ -88,7 +88,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int? px { get; set; }
 
         /// <summary>
-        /// Giải thích tên tần suất y lệnh（Tên tiếng Trung）
+        /// Giải thích tên tần suất y lệnh(Tên tiếng Trung)
         /// </summary>
         public string yzpcmcsm { get; set; }
 

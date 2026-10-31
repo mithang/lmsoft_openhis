@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Domain.DO
         public string Ypmc { get; set; }
 
         /// <summary>
-        /// Tổng Số lượng thuốc cần đóng băng（Đơn vị nhỏ nhất）
+        /// Tổng Số lượng thuốc cần đóng băng(Đơn vị nhỏ nhất)
         /// </summary>
         public int Kcsl { get; set; }
 
@@ -107,7 +107,7 @@ namespace Newtouch.HIS.Domain.DO
         public string YpCode { get; set; }
 
         /// <summary>
-        /// Tổng số lượng thuốc cần hủy đóng băng（Đơn vị nhỏ nhất）
+        /// Tổng số lượng thuốc cần hủy đóng băng(Đơn vị nhỏ nhất)
         /// </summary>
         public int Kcsl { get; set; }
 
@@ -162,7 +162,7 @@ namespace Newtouch.HIS.Domain.DO
         public string YpCode { get; set; }
 
         /// <summary>
-        /// Tổng số lượng thuốc cần hủy đóng băng（Đơn vị nhỏ nhất）
+        /// Tổng số lượng thuốc cần hủy đóng băng(Đơn vị nhỏ nhất)
         /// </summary>
         public int Kcsl { get; set; }
 

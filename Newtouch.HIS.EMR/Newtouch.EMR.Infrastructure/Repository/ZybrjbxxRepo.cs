@@ -8,9 +8,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2018-08-30 11:31
-    /// Mô tả：Thông tin bệnh nhân nội trú
+    /// Người tạo:chl
+    /// Ngày:2018-08-30 11:31
+    /// Mô tả:Thông tin bệnh nhân nội trú
     /// </summary>
     public class ZybrjbxxRepo : RepositoryBase<ZybrjbxxEntity>, IZybrjbxxRepo
     {
@@ -25,7 +25,7 @@ namespace Newtouch.EMR.Repository
             return this.FindEntity(p => p.zyh==zyh&&p.OrganizeId== OrganizeId);
         }
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

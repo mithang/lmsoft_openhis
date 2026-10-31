@@ -370,7 +370,7 @@ border: 0;">
                 if (this.presDetailList) {
                     //nàyCómộtĐơn thuốc
                     var cflx = this.presEntity.cflx == @Html.Raw(((int)EnumCflx.RehabPres).ToString()) ? "kfcf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.RegularItemPres).ToString()) ? "cgxmcf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.WMPres).ToString()) ? "xycf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.TCMPres).ToString()) ? "zycf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.InspectionPres).ToString()) ? "jycf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.ExaminationPres).ToString()) ? "jccf" : "0";
-                    var newCfh = GetNewPresNo();    //đâycóĐơn thuốc mớisố，saumặtthìcó thểlấytrực tiếpdùngđã
+                    var newCfh = GetNewPresNo();    //đâycóĐơn thuốc mớisố,saumặtthìcó thểlấytrực tiếpdùngđã
                     //var newCfh = this.cfh;
                     //cfmxList
                     if (cflx == "kfcf") {
@@ -608,7 +608,7 @@ border: 0;">
             //1.duyệttất cảDữ liệu
             $.each(Object.keys(newdataArray), function () {    //Object.keys(newdataArray):["kfcf"]
                 var itemsKey = String(this);      //String(Object.keys(newdataArray):["kfcf"]) : kfcf
-                //2.Theomỗicáitìmdẫntìmđếncủa nótương ứngcủaValue(valueCómộtsốnhóm，sốnhómtrongCónhiềucáiđối tượng)
+                //2.Theomỗicáitìmdẫntìmđếncủa nótương ứngcủaValue(valueCómộtsốnhóm,sốnhómtrongCónhiềucáiđối tượng)
                 var itemsMxArr = newdataArray[String(this)];    //itemsMxArr lấyrakeylàkfcfcủatất cảchi tiết
                 // 3.1.1tìmđếnkeyCóKhônglàPhục hồi chức năngĐơn thuốc
                 if (itemsKey == "kfcf") {
@@ -620,12 +620,12 @@ border: 0;">
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
+                        //3.3.1 nếutồn tạiở,thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
                         else {
-                            //3.3.2 nếukhôngtồn tạiở，thìpush
+                            //3.3.2 nếukhôngtồn tạiở,thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                 ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -637,7 +637,7 @@ border: 0;">
                             });
                         }
                     }
-                    //duyệtĐơn thuốc，hiển thị
+                    //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
@@ -691,12 +691,12 @@ border: 0;">
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
+                        //3.3.1 nếutồn tạiở,thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
                         else {
-                            //3.3.2 nếukhôngtồn tạiở，thìpush
+                            //3.3.2 nếukhôngtồn tạiở,thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                 ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -708,7 +708,7 @@ border: 0;">
                             });
                         }
                     }
-                    //duyệtĐơn thuốc，hiển thị
+                    //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
@@ -771,12 +771,12 @@ border: 0;">
 
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
+                        //3.3.1 nếutồn tạiở,thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
                         else {
-                            //3.3.2 nếukhôngtồn tạiở，thìpush
+                            //3.3.2 nếukhôngtồn tạiở,thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                   ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -790,7 +790,7 @@ border: 0;">
                             });
                         }
                     }
-                    //duyệtĐơn thuốc，hiển thị
+                    //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
@@ -862,12 +862,12 @@ border: 0;">
                             }
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
+                        //3.3.1 nếutồn tạiở,thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
                         else {
-                            //3.3.2 nếukhôngtồn tạiở，thìpush
+                            //3.3.2 nếukhôngtồn tạiở,thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                    ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -881,7 +881,7 @@ border: 0;">
                             });
                         }
                     }
-                    //duyệtĐơn thuốc，hiển thị
+                    //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
@@ -932,12 +932,12 @@ border: 0;">
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
+                        //3.3.1 nếutồn tạiở,thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
                         else {
-                            //3.3.2 nếukhôngtồn tạiở，thìpush
+                            //3.3.2 nếukhôngtồn tạiở,thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                          ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -947,7 +947,7 @@ border: 0;">
                             });
                         }
                     }
-                    //duyệtĐơn thuốc，hiển thị
+                    //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="PhiếuChi tiết" >Req</a>';
@@ -989,12 +989,12 @@ border: 0;">
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
+                        //3.3.1 nếutồn tạiở,thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
                         else {
-                            //3.3.2 nếukhôngtồn tạiở，thìpush
+                            //3.3.2 nếukhôngtồn tạiở,thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                      ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -1004,7 +1004,7 @@ border: 0;">
                             });
                         }
                     }
-                    //duyệtĐơn thuốc，hiển thị
+                    //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="PhiếuChi tiết" >Req</a>';

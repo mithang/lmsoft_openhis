@@ -28,7 +28,7 @@ namespace Newtouch.Herp.Domain.DTO.InputDto
         public string inputCode { get; set; }
 
         /// <summary>
-        /// Cờ chênh lệch  0：Lỗ  1：Lãi  -1：Tất cả
+        /// Cờ chênh lệch  0:Lỗ  1:Lãi  -1:Tất cả
         /// </summary>
         public string sybz { get; set; }
     }

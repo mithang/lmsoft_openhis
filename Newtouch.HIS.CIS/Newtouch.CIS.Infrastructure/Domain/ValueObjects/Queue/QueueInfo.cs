@@ -43,7 +43,7 @@ namespace Newtouch.Domain.ValueObjects.Queue
         /// </summary>
         public int iscalling { get; set; }
         /// <summary>
-        /// gọisốTrạng thái 1 đãkýđến 2 đãgọisố  3 đãquasố  4 đãứngđáp（gọisốKết thúc）
+        /// gọisốTrạng thái 1 đãkýđến 2 đãgọisố  3 đãquasố  4 đãứngđáp(gọisốKết thúc)
         /// </summary>
         public int calledstu { get; set; }
         /// <summary>

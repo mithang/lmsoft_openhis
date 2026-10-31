@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// Hệ thống Bộ phận nhà thuốc Thuốc（Cấu hình nhà thuốc/Loại thu phí lớn kho thuốc mở）
+    /// Hệ thống Bộ phận nhà thuốc Thuốc(Cấu hình nhà thuốc/Loại thu phí lớn kho thuốc mở)
     /// </summary>
     [Table("xt_yfbm_yp")]
     [SugarTable("xt_yfbm_yp")]

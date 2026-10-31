@@ -322,7 +322,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 		}
 
 		/// <summary>
-		/// Lấy cây nhân viên tổ chức Ba cấp（Cơ sở+Khoa+Nhân viên）
+		/// Lấy cây nhân viên tổ chức Ba cấp(Cơ sở+Khoa+Nhân viên)
 		/// </summary>
 		/// <param name="keyValue"></param>
 		/// <returns></returns>
@@ -355,7 +355,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 						staffTree.parentId = deptItem.Id;
 						staffTree.hasChildren = false;
 						staffTree.showcheck = true;
-						staffTree.checkstate = 0;   //Gán giá trị bên ngoài，Thuận tiện cho bộ nhớ đệm
+						staffTree.checkstate = 0;   //Gán giá trị bên ngoài,Thuận tiện cho bộ nhớ đệm
 						treeList.Add(staffTree);
 					}
 					#endregion
@@ -364,7 +364,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 					deptTree.text = deptItem.Name;
 					deptTree.value = deptItem.Code;
 					deptTree.parentId = deptItem.ParentId == null ? orgItem.Id : deptItem.ParentId;
-					deptTree.isexpand = isExpand;  //Mặc định không mở rộng，Quá nhiều người
+					deptTree.isexpand = isExpand;  //Mặc định không mở rộng,Quá nhiều người
 					deptTree.complete = true;
 					deptTree.showcheck = false;
 					deptTree.hasChildren = deptStaffData.Count > 0 || orgDetpData.Any(p => p.ParentId == deptItem.Id);
@@ -404,7 +404,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 						var thisParentNode = treeList.Where(p => p.id == treeItem.parentId).FirstOrDefault();
 						if (thisParentNode != null)
 						{
-							thisParentNode.isexpand = true;  //Cấp dưới có mục đã chọn，Ở đây nhất định mở rộng
+							thisParentNode.isexpand = true;  //Cấp dưới có mục đã chọn,Ở đây nhất định mở rộng
 						}
 					}
 				}
@@ -415,7 +415,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 				while (count > 0)
 				{
 					count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-					//Điều chỉnh lại cây Loại bỏ Không có cấp dưới（Cấp dưới vừa bị chuyển） lại Không hiển thịshowcheckcủa
+					//Điều chỉnh lại cây Loại bỏ Không có cấp dưới(Cấp dưới vừa bị chuyển) lại Không hiển thịshowcheckcủa
 					treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
 				}
 			}

@@ -16,7 +16,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public int slsl { get; set; }
 
         /// <summary>
-        /// Hệ số chuyển đổi bộ phận này（Bộ phận lĩnh）
+        /// Hệ số chuyển đổi bộ phận này(Bộ phận lĩnh)
         /// </summary>
         public int bbmzhyz { get; set; }
     }

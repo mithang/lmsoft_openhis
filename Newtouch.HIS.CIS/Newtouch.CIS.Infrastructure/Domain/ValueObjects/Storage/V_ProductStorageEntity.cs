@@ -53,12 +53,12 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public decimal lsze { get; set; }
 
         /// <summary>
-        /// vàogiáĐơn giá（vàkcxx.zhyztương ứng）
+        /// vàogiáĐơn giá(vàkcxx.zhyztương ứng)
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// vàogiáĐơn giá（Đơn vị nhỏ nhất）
+        /// vàogiáĐơn giá(Đơn vị nhỏ nhất)
         /// </summary>
         public decimal minjj { get; set; }
 
@@ -93,7 +93,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string sccj { get; set; }
 
         /// <summary>
-        /// Hạn hiệu lực varchar（10）
+        /// Hạn hiệu lực varchar(10)
         /// </summary>
         public string yxqStr { get; set; }
 

@@ -30,7 +30,7 @@ namespace Newtouch.DomainServices
         /// <param name="kh"></param>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
-        /// <param name="isEnd">true：đãKết thúctruyền dịch；false：chưaKết thúctruyền dịch</param>
+        /// <param name="isEnd">true:đãKết thúctruyền dịch;false:chưaKết thúctruyền dịch</param>
         /// <returns></returns>
         public IList<MzsyypxxVO> SelectMzsyypxxByKh(Pagination pagination, string kh,string mzh, string organizeId, bool isEnd)
         {
@@ -115,7 +115,7 @@ AND syyp.OrganizeId=@OrganizeId ");
         /// <param name="kssj"></param>
         /// <param name="jssj"></param>
         /// <param name="organizeId"></param>
-        /// <param name="isEnd">làKhôngKết thúc  false：truyền dịchchưaKết thúc  true：truyền dịchđãKết thúc</param>
+        /// <param name="isEnd">làKhôngKết thúc  false:truyền dịchchưaKết thúc  true:truyền dịchđãKết thúc</param>
         /// <returns></returns>
         public IList<MzsyhzxxVO> SelectKhAndXm(Pagination pagination, string kh,string keyvalue, string fph, DateTime kssj, DateTime jssj, string organizeId, bool isEnd = false)
         {

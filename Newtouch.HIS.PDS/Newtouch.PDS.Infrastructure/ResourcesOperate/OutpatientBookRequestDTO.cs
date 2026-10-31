@@ -53,7 +53,7 @@ namespace Newtouch.PDS.Requset.ResourcesOperate
         public string ItemCode { get; set; }
 
         /// <summary>
-        /// Hạng mục/Số lượng thuốc （Đơn vị bộ phận nhà thuốc）
+        /// Hạng mục/Số lượng thuốc (Đơn vị bộ phận nhà thuốc)
         /// </summary>
         [Required]
         public decimal ItemCount { get; set; }
@@ -74,12 +74,12 @@ namespace Newtouch.PDS.Requset.ResourcesOperate
         public string ItemSpecifications { get; set; }
 
         /// <summary>
-        /// Hạng mục/Đơn giá thuốc （Đơn giá đơn vị bộ phận nhà thuốc vớiItemUnitKhớp）
+        /// Hạng mục/Đơn giá thuốc (Đơn giá đơn vị bộ phận nhà thuốc vớiItemUnitKhớp)
         /// </summary>
         public decimal ItemUnitPrice { get; set; }
 
         /// <summary>
-        /// Hạng mục/Tên đơn vị thuốc （Đơn vị bộ phận nhà thuốc，vàItemCountKhớp）
+        /// Hạng mục/Tên đơn vị thuốc (Đơn vị bộ phận nhà thuốc,vàItemCountKhớp)
         /// </summary>
         public string ItemUnitName { get; set; }
 

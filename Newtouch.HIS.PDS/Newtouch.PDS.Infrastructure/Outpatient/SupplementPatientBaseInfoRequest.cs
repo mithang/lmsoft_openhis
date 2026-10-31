@@ -20,7 +20,7 @@ namespace Newtouch.PDS.Requset
         public int patid { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（Bệnh viện có nghiệp vụ cụ thể）
+        /// Tổ chứcId(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -30,7 +30,7 @@ namespace Newtouch.PDS.Requset
         public string brxz { get; set; }
 
         /// <summary>
-        /// Số thẻ từ bệnh viện này（Gồm bệnh nhân BHYT nghỉ hưu），hoặc Số thẻ BHYT
+        /// Số thẻ từ bệnh viện này(Gồm bệnh nhân BHYT nghỉ hưu),hoặc Số thẻ BHYT
         /// </summary>
         public string blh { get; set; }
 
@@ -180,7 +180,7 @@ namespace Newtouch.PDS.Requset
         public string pzzd { get; set; }
 
         /// <summary>
-        /// --2006-07-9 Hủy???Quy tắc tài khoản，Thanh toán giường gia đình，Khi truyền biến lấy Số âm，Không sửa bảng      --2006.07.09 Không cho phép tự động hủy tài khoản，Để không nhầm lẫn với thất bại rút giường gia đình   Tài khoản âm chỉ có một ý nghĩa，chính là thất bại rút giường      Tài khoản đặc ước đơn vị、Tài khoản đặc ước cá nhân from xtzh   Khi tài khoản là Số âm，Biểu thị tài khoản này đã bị hệ thống tự động hủy(Hạn dùng đã qua、hoặc giao dịch giường gia đình thành công，nhưng rút giường thất bại。)
+        /// --2006-07-9 Hủy???Quy tắc tài khoản,Thanh toán giường gia đình,Khi truyền biến lấy Số âm,Không sửa bảng      --2006.07.09 Không cho phép tự động hủy tài khoản,Để không nhầm lẫn với thất bại rút giường gia đình   Tài khoản âm chỉ có một ý nghĩa,chính là thất bại rút giường      Tài khoản đặc ước đơn vị,Tài khoản đặc ước cá nhân from xtzh   Khi tài khoản là Số âm,Biểu thị tài khoản này đã bị hệ thống tự động hủy(Hạn dùng đã qua,hoặc giao dịch giường gia đình thành công,nhưng rút giường thất bại.)
         /// </summary>
         public int? zh { get; set; }
 
@@ -265,7 +265,7 @@ namespace Newtouch.PDS.Requset
         public short? bxgs { get; set; }
 
         /// <summary>
-        /// Cờ trả về của thẻ BHYT，Không phải thẻ BHYT là ký tự rỗng
+        /// Cờ trả về của thẻ BHYT,Không phải thẻ BHYT là ký tự rỗng
         /// </summary>
         public string zhbz { get; set; }
 
@@ -330,7 +330,7 @@ namespace Newtouch.PDS.Requset
         public string sbbh { get; set; }
 
         /// <summary>
-        /// Mã nơi tham gia bảo hiểm（181019Mã nơi tham gia BHYT）
+        /// Mã nơi tham gia bảo hiểm(181019Mã nơi tham gia BHYT)
         /// </summary>
         public string cbdbm { get; set; }
 

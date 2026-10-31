@@ -128,7 +128,7 @@ AND yygh.zt='1' ";
         /// <summary>
         /// Tra cứuđãđặt hẹnđăng ký khám
         /// </summary>
-        /// <param name="mzlx">Dấu hiệu ngoại trú/nội trú 1：thông thườngNgoại trú  2：gấpkhám   3：chuyên giaNgoại trú</param>
+        /// <param name="mzlx">Dấu hiệu ngoại trú/nội trú 1:thông thườngNgoại trú  2:gấpkhám   3:chuyên giaNgoại trú</param>
         /// <param name="departmentCode"></param>
         /// <param name="ysgh"></param>
         /// <param name="beginTime"></param>

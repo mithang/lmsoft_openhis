@@ -1,7 +1,7 @@
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// Bộ phận nhà thuốc Thuốc Số lượng tồn kho、Đơn vị
+    /// Bộ phận nhà thuốc Thuốc Số lượng tồn kho,Đơn vị
     /// </summary>
     public class DepartmentMedicineStockUnitVO
     {
@@ -16,17 +16,17 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public decimal fybmzhyz { get; set; }
 
         /// <summary>
-        /// Số lượng tồn kho（Đơn vị nhỏ nhất tương ứng）
+        /// Số lượng tồn kho(Đơn vị nhỏ nhất tương ứng)
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// Số lượng tồn kho hiện có+Đơn vị（Hiển thị theo cách kho thuốc）
+        /// Số lượng tồn kho hiện có+Đơn vị(Hiển thị theo cách kho thuốc)
         /// </summary>
         public string kcslandDw { get; set; }
 
         /// <summary>
-        /// Đơn vị（Bộ phận nhà thuốc hiện tại Thuốc Đơn vị）
+        /// Đơn vị(Bộ phận nhà thuốc hiện tại Thuốc Đơn vị)
         /// </summary>
         public string dw { get; set; }
 

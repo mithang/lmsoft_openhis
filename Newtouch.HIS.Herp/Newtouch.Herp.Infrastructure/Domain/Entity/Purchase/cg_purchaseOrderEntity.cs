@@ -33,7 +33,7 @@ namespace Newtouch.Herp.Domain.Entity
         public string rkbmCode { get; set; }
 
         /// <summary>
-        /// Trạng thái duyệt 0-Chờ duyệt； 1-Đã duyệt； 2-Không duyệt；3-Đã hủy bỏ；4-Lưu tạm
+        /// Trạng thái duyệt 0-Chờ duyệt; 1-Đã duyệt; 2-Không duyệt;3-Đã hủy bỏ;4-Lưu tạm
         /// </summary>
         public int auditState { get; set; }
 
@@ -43,7 +43,7 @@ namespace Newtouch.Herp.Domain.Entity
         public string remark { get; set; }
 
         /// <summary>
-        /// Trạng thái 0:Hủy bỏ；1.Hiệu lực
+        /// Trạng thái 0:Hủy bỏ;1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

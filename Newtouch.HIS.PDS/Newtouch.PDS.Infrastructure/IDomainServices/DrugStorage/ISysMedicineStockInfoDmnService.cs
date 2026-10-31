@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Domain.IDomainServices.DrugStorage
         string WbrkKkc(int sl, string pc, string ph, string ypdm, string organizeId, string yfbmCode, string userCode);
 
         /// <summary>
-        /// Đóng băng tồn kho，và trả về thông tin lô bị đóng băng
+        /// Đóng băng tồn kho,và trả về thông tin lô bị đóng băng
         /// </summary>
         /// <param name="kcsl"></param>
         /// <param name="ypdm"></param>

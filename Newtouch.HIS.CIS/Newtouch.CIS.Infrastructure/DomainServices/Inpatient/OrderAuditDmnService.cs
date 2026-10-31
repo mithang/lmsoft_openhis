@@ -423,7 +423,7 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
 
             string liscqyfzt = "";
             string lislsyfzt = "";
-            //string PSidcq = "";  //xếptrừcầnlàmchưalàm test dathử、dathửdươngtính
+            //string PSidcq = "";  //xếptrừcầnlàmchưalàm test dathử,dathửdươngtính
             //string PSidls = "";
             //string pssql = "";
             //string psretid = "";
@@ -903,7 +903,7 @@ where a.OrganizeId=@OrganizeId and a.zt=1 and yzzt in(0,3) and zyh in(select col
         //    }
         //    catch (Exception ex)
         //    {
-        //        throw new FailedException("Phê duyệtGửithất bại，" + ex.InnerException);
+        //        throw new FailedException("Phê duyệtGửithất bại," + ex.InnerException);
         //    }
 
         //}

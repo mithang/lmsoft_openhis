@@ -9,12 +9,12 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
     {
 
         /// <summary>
-        /// Loại đơn hàng 0：Phiếu lưu tạm；1：Phiếu chính thức
+        /// Loại đơn hàng 0:Phiếu lưu tạm;1:Phiếu chính thức
         /// </summary>
         public int orderType { get; set; }
 
         /// <summary>
-        /// Quy trình xử lý đơn mua sắm -1：Từ chối xử lý； 0：Chờ xử lý； 1：Chuẩn bị hàng； 2：Phân phối； 3：Ký nhận； 4：Hoàn thành； 5：Từ chối ký nhận 
+        /// Quy trình xử lý đơn mua sắm -1:Từ chối xử lý; 0:Chờ xử lý; 1:Chuẩn bị hàng; 2:Phân phối; 3:Ký nhận; 4:Hoàn thành; 5:Từ chối ký nhận 
         /// </summary>
         public int orderProcess { get; set; }
 

@@ -3,19 +3,19 @@
  *
  *
  * Phương pháp gọi khởi tạo: trong sự kiện onload của js hoặc $(document).ready() của jq, gọi stepBar.init(id, option) là được.
- * đầu tiêntham sốlàstepBardungdụng cụcủaid，bắt buộc，cho phéptruyềnvàocủaGiá trịgóigồmVDdưới：
+ * đầu tiêntham sốlàstepBardungdụng cụcủaid,bắt buộc,cho phéptruyềnvàocủaGiá trịgóigồmVDdưới:
  *     jQueryđối tượng
  *     javascriptđối tượng
  *     Phần tử DOM (có thể chuyển hóa là ID của chuỗi ký tự, VD “stepBar” || “#stepBar”). Sửa sai: đối tượng jQuery sai viết “#” thành “.” cũng cùng dạng có thể nhận biết ra, nhưng phải cần bảo chứng tham số lần này có thể chuyển hóa thành ID của phần tử.
- * thứhaicáitham sốlàmộtđối tượngtrực tiếplượng，tùy chọn，góichứaVDdướicủakhôngcáihoặcnhiềucái
- *     step                string number   Mục tiêuvàođộ  Mặc địnhlà1（thứmộtbước），tùy chọn
- *     change              boolean    Cài đặtchènmụcCóKhôngcó thểbịThao tác，tùy chọn  Mặc địnhfalse
- *     animation           boolean    Cài đặtchènmụcCóKhôngháidùngđộngvẽhìnhkiểu（điều kiện tiên quyếtstepBar.changelàtrue），tùy chọn  Mặc địnhfalse
- *     speed               number     độngvẽnhanhđộ（điều kiện tiên quyết，changevàanimationlàtrue） tùy chọn   Mặc định1000ms
- *     stepEasingForward   string     từhiện tạibướcsốtớitrướcquavượtđộngvẽ（điều kiện tiên quyết，changevàanimationlàtrue） tùy chọn  Mặc định "easeOutExpo"  Thêmtham sốvui lòngtham sốchiếu jquery.easing.js
- *     stepEasingBackward  string     từhiện tạibướcsốtớisauquavượtđộngvẽ（điều kiện tiên quyết，changevàanimationlàtrue） tùy chọn  Mặc định "easeOutElastic"  Thêmtham sốvui lòngtham sốchiếu jquery.easing.js
+ * thứhaicáitham sốlàmộtđối tượngtrực tiếplượng,tùy chọn,góichứaVDdướicủakhôngcáihoặcnhiềucái
+ *     step                string number   Mục tiêuvàođộ  Mặc địnhlà1(thứmộtbước),tùy chọn
+ *     change              boolean    Cài đặtchènmụcCóKhôngcó thểbịThao tác,tùy chọn  Mặc địnhfalse
+ *     animation           boolean    Cài đặtchènmụcCóKhôngháidùngđộngvẽhìnhkiểu(điều kiện tiên quyếtstepBar.changelàtrue),tùy chọn  Mặc địnhfalse
+ *     speed               number     độngvẽnhanhđộ(điều kiện tiên quyết,changevàanimationlàtrue) tùy chọn   Mặc định1000ms
+ *     stepEasingForward   string     từhiện tạibướcsốtớitrướcquavượtđộngvẽ(điều kiện tiên quyết,changevàanimationlàtrue) tùy chọn  Mặc định "easeOutExpo"  Thêmtham sốvui lòngtham sốchiếu jquery.easing.js
+ *     stepEasingBackward  string     từhiện tạibướcsốtớisauquavượtđộngvẽ(điều kiện tiên quyết,changevàanimationlàtrue) tùy chọn  Mặc định "easeOutElastic"  Thêmtham sốvui lòngtham sốchiếu jquery.easing.js
  *
- *     PS：khônghợpphương phápcủatham sốsẽmạnhdòngSử dụngMặc địnhGiá trị
+ *     PS:khônghợpphương phápcủatham sốsẽmạnhdòngSử dụngMặc địnhGiá trị
  */
 
 var stepBar = {

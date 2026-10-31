@@ -17,9 +17,9 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         isjsonp: false,
         //Có sử dụng hay khôngjsonp
         isinputchangetriggered: true,
-        //Cóinput changeđược kích hoạt（ví dụ như nhấn nút để lớp nổi hiện ra，tức là truyềnfalse）
+        //Cóinput changeđược kích hoạt(ví dụ như nhấn nút để lớp nổi hiện ra,tức là truyềnfalse)
         inputtextcheck: null,
-        //Bởiinput changekích hoạt，có thể kiểm tra trước văn bản đã nhập function
+        //Bởiinput changekích hoạt,có thể kiểm tra trước văn bản đã nhập function
         mutiselect: false,
     };
     var options = $.extend(defaults, options);
@@ -61,7 +61,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                 className = options.className
             }
             $divContainer.append('<div class="' + className+'"><ul></ul>');
-            //Nếu chọn nhiều，thêm nút xác nhận đóng
+            //Nếu chọn nhiều,thêm nút xác nhận đóng
             if (options.mutiselect) {
                 $divContainer.append('<div class="ui-nfs-container_bottom" style="float: right;width: 95px;margin-top: -5px;"><input type="button" class="btn btn-primary btn_submit"  value="Xác nhận" style="display:table-cell;margin-right: 10px;"><input type = "button"  class= "btn btn-primary btn_close" value = "Đóng" style = "display:table-cell;" ></div>');
             }
@@ -77,7 +77,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         }
 
     };
-    //Định vị lớp nổi（Theoelementvị trí）
+    //Định vị lớp nổi(Theoelementvị trí)
     options.location = function () {
         if (options.X && options.Y) {
             options.container.css('left', options.X);
@@ -119,7 +119,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
             var thisUrl = options.url;
             var thisReqData = null;
             if (options.ajaxparameters) {
-                var thisParameters = options.ajaxparameters(options.$this); //Ai đã kích hoạt，trả về cho trang
+                var thisParameters = options.ajaxparameters(options.$this); //Ai đã kích hoạt,trả về cho trang
                 if (thisParameters) {
                     thisUrl += "?" + thisParameters;
                 }
@@ -187,7 +187,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
             }
         }
     };
-    //Nhận được kết quả trả về，duyệt và hiển thị
+    //Nhận được kết quả trả về,duyệt và hiển thị
     options.funcBindRowData = function (resultObjArr) {
         if (resultObjArr) {
             if (options.container) {
@@ -228,7 +228,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                         };
                     } else //Chọn một
                     {
-                        options.itemdbclickhandler($(this), options.$this); //Ai đã kích hoạt，trả về cho trang
+                        options.itemdbclickhandler($(this), options.$this); //Ai đã kích hoạt,trả về cho trang
                         if (options.isinputchangetriggered) {
                             options.$this.trigger('focus'); //Nếu change của chính input kích hoạt thì focus vào hộp văn bản
                         }
@@ -252,7 +252,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                     selectorsList.push($(this));
                 }
             });
-            options.itemdbclickhandler(selectorsList, options.$this); //Ai đã kích hoạt，trả về cho trang
+            options.itemdbclickhandler(selectorsList, options.$this); //Ai đã kích hoạt,trả về cho trang
             options.container.find('.btn_close').trigger('click');
         });
 
@@ -283,7 +283,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
 
                 options.prveValue = options.$this.val();
                 if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                    return; //Chưa đạt độ dài tối thiểu，ẩn đi
+                    return; //Chưa đạt độ dài tối thiểu,ẩn đi
                 }
                 if (typeof options.inputtextcheck === 'function') {
                     if (!(options.inputtextcheck(options.$this.val()))) {
@@ -298,7 +298,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
 
                 options.prveValue = options.$this.val();
                 if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                    return; //Chưa đạt độ dài tối thiểu，ẩn đi
+                    return; //Chưa đạt độ dài tối thiểu,ẩn đi
                 }
                 if (typeof options.inputtextcheck === 'function') {
                     if (!(options.inputtextcheck(options.$this.val()))) {
@@ -326,7 +326,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
 
             options.prveValue = options.$this.val();
             if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                return; //Chưa đạt độ dài tối thiểu，ẩn đi
+                return; //Chưa đạt độ dài tối thiểu,ẩn đi
             }
             if (typeof options.inputtextcheck === 'function') {
                 if (!(options.inputtextcheck(options.$this.val()))) {
@@ -355,19 +355,19 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                     dstnIndex = 0;
                 } else {
                     if (event.keyCode == 37) {
-                        //alert("Đã nhấn←phím！");
+                        //alert("Đã nhấn←phím!");
                         dstnIndex = curActiveIndex - 1;
                     }
                     if (event.keyCode == 39) {
-                        //alert("Đã nhấn →phím！");
+                        //alert("Đã nhấn →phím!");
                         dstnIndex = curActiveIndex + 1;
                     }
                     //if (event.keyCode == 38) {
-                    //    //alert("Đã nhấn↑phím！");
+                    //    //alert("Đã nhấn↑phím!");
                     //    dstnIndex = curActiveIndex - 1;
                     //}
                     //if (event.keyCode == 40) {
-                    //    //alert("Đã nhấn↓phím！");
+                    //    //alert("Đã nhấn↓phím!");
                     //    dstnIndex = curActiveIndex + 1;
                     //}
                     if (dstnIndex < 0) {
@@ -447,8 +447,8 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         ajaxsync: false,
         ajaxparameters: null,    //function get
         isjsonp: false,  //Có sử dụng hay khôngjsonp
-        isinputchangetriggered: true,    //Cóinput changeđược kích hoạt（ví dụ như nhấn nút để lớp nổi hiện ra，tức là truyềnfalse）
-        inputtextcheck: null,   //Bởiinput changekích hoạt，có thể kiểm tra trước văn bản đã nhập function
+        isinputchangetriggered: true,    //Cóinput changeđược kích hoạt(ví dụ như nhấn nút để lớp nổi hiện ra,tức là truyềnfalse)
+        inputtextcheck: null,   //Bởiinput changekích hoạt,có thể kiểm tra trước văn bản đã nhập function
     };
     var options = $.extend(defaults, options);
     options.$this = $(this);
@@ -497,7 +497,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         }
         options.container = $divContainer;
     };
-    //Định vị lớp nổi（Theoelementvị trí）
+    //Định vị lớp nổi(Theoelementvị trí)
     options.location = function () {
         if (options.X && options.Y) {
             options.container.css('left', options.X);
@@ -546,7 +546,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             var thisUrl = options.url;
             var thisReqData = null;
             if (options.ajaxparameters) {
-                var thisParameters = options.ajaxparameters(options.$this);  //Ai đã kích hoạt，trả về cho trang
+                var thisParameters = options.ajaxparameters(options.$this);  //Ai đã kích hoạt,trả về cho trang
                 if (thisParameters) {
                     thisUrl += "?" + thisParameters;
                 }
@@ -623,7 +623,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             }
         }
     };
-    //Nhận được kết quả trả về，duyệt và hiển thị
+    //Nhận được kết quả trả về,duyệt và hiển thị
     options.funcBindRowData = function (resultObjArr) {
         if (resultObjArr) {
             if (options.container) {
@@ -658,7 +658,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
         if (options.container && options.itemdbclickhandler) {
             options.container.unbind();
             options.container.on('click', 'ul li', function () {
-                options.itemdbclickhandler($(this), options.$this); //Ai đã kích hoạt，trả về cho trang
+                options.itemdbclickhandler($(this), options.$this); //Ai đã kích hoạt,trả về cho trang
                 if (options.isinputchangetriggered) {
                     //Nếu change của chính input kích hoạt thì focus vào hộp văn bản
                     options.focusfromdbclickitem = true;
@@ -691,7 +691,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
 
                 options.prveValue = options.$this.val();
                 if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                    return; //Chưa đạt độ dài tối thiểu，ẩn đi
+                    return; //Chưa đạt độ dài tối thiểu,ẩn đi
                 }
                 if (typeof options.inputtextcheck === 'function') {
                     if (!(options.inputtextcheck(options.$this.val()))) {
@@ -713,7 +713,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
 
                 options.prveValue = options.$this.val();
                 if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                    return; //Chưa đạt độ dài tối thiểu，ẩn đi
+                    return; //Chưa đạt độ dài tối thiểu,ẩn đi
                 }
                 if (typeof options.inputtextcheck === 'function') {
                     if (!(options.inputtextcheck(options.$this.val()))) {
@@ -743,7 +743,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
 
             options.prveValue = options.$this.val();
             if (options.minlength && $.trim(options.$this.val()).length < options.minlength) {
-                return; //Chưa đạt độ dài tối thiểu，ẩn đi
+                return; //Chưa đạt độ dài tối thiểu,ẩn đi
             }
             if (typeof options.inputtextcheck === 'function') {
                 if (!(options.inputtextcheck(options.$this.val()))) {
@@ -774,19 +774,19 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
                 }
                 else {
                     if (event.keyCode == 37) {
-                        //alert("Đã nhấn←phím！");
+                        //alert("Đã nhấn←phím!");
                         dstnIndex = curActiveIndex - 1;
                     }
                     if (event.keyCode == 39) {
-                        //alert("Đã nhấn →phím！");
+                        //alert("Đã nhấn →phím!");
                         dstnIndex = curActiveIndex + 1;
                     }
                     //if (event.keyCode == 38) {
-                    //    //alert("Đã nhấn↑phím！");
+                    //    //alert("Đã nhấn↑phím!");
                     //    dstnIndex = curActiveIndex - 1;
                     //}
                     //if (event.keyCode == 40) {
-                    //    //alert("Đã nhấn↓phím！");
+                    //    //alert("Đã nhấn↓phím!");
                     //    dstnIndex = curActiveIndex + 1;
                     //}
                     if (dstnIndex < 0) {

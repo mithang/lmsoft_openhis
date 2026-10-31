@@ -20,7 +20,7 @@ namespace HIS.BaseAPI.Controllers
             _sysUserDmn = sysUserDmn;
         }
         /// <summary>
-        /// lấy người dùng hệ thống（phân trang）
+        /// lấy người dùng hệ thống(phân trang)
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -31,7 +31,7 @@ namespace HIS.BaseAPI.Controllers
             return new BusResult<PageResponseRow<List<SysUserVO>>> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// cây người dùng tổ chức（phân nhóm khoa）
+        /// cây người dùng tổ chức(phân nhóm khoa)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

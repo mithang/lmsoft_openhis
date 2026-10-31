@@ -24,7 +24,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string gg { get; set; }
 
         /// <summary>
-        /// kết chuyểnSố lượng（mangĐơn vị）
+        /// kết chuyểnSố lượng(mangĐơn vị)
         /// </summary>
         public string jzsl { get; set; }
 

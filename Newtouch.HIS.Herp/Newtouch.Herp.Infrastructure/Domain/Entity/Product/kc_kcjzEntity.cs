@@ -18,7 +18,7 @@ namespace Newtouch.Herp.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chức Id（Bệnh viện có nghiệp vụ cụ thể）
+        /// Tổ chức Id(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -48,18 +48,18 @@ namespace Newtouch.Herp.Domain.Entity
         public DateTime? yxq { get; set; }
 
         /// <summary>
-        /// Số lượng tồn kho，Số lượng đơn vị nhỏ nhất
+        /// Số lượng tồn kho,Số lượng đơn vị nhỏ nhất
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// Giá bán lẻ khoa phòng，Đơn vị tương ứng với hệ số chuyển đổi
+        /// Giá bán lẻ khoa phòng,Đơn vị tương ứng với hệ số chuyển đổi
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal bmlsj { get; set; }
 
         /// <summary>
-        /// Giá nhập，Đơn vị tương ứng với hệ số chuyển đổi
+        /// Giá nhập,Đơn vị tương ứng với hệ số chuyển đổi
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal jj { get; set; }
@@ -75,7 +75,7 @@ namespace Newtouch.Herp.Domain.Entity
         public DateTime jzsj { get; set; }
 
         /// <summary>
-        /// Trạng thái  0:Hủy bỏ；1.Hiệu lực
+        /// Trạng thái  0:Hủy bỏ;1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Repository
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="organizeId"></param>
-        /// <param name="gjzt">Trạng thái xếp kệ：0-Chưa xếp lên kệ  1-Đã xếp lên kệ</param>
+        /// <param name="gjzt">Trạng thái xếp kệ:0-Chưa xếp lên kệ  1-Đã xếp lên kệ</param>
         /// <returns></returns>
         public List<OutpatientPrescriptionDetailBatchNumberEntity> GetList(string cfh, string organizeId, string gjzt = "0")
         {
@@ -57,7 +57,7 @@ AND zt='1'
         /// <param name="cfh"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
-        /// <param name="gjzt">Trạng thái xếp kệ：0-Chưa xếp lên kệ  1-Đã xếp lên kệ</param>
+        /// <param name="gjzt">Trạng thái xếp kệ:0-Chưa xếp lên kệ  1-Đã xếp lên kệ</param>
         /// <returns></returns>
         public List<OutpatientPrescriptionDetailBatchNumberEntity> GetList(string cfh, string yfbmCode, string organizeId, string gjzt = "0")
         {
@@ -86,7 +86,7 @@ AND zt='1'
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
-        /// <param name="gjzt">Trạng thái xếp kệ：0-Chưa xếp lên kệ  1-Đã xếp lên kệ</param>
+        /// <param name="gjzt">Trạng thái xếp kệ:0-Chưa xếp lên kệ  1-Đã xếp lên kệ</param>
         /// <returns></returns>
         public List<OutpatientPrescriptionDetailBatchNumberEntity> GetList(string cfh, string ypCode, string yfbmCode, string organizeId, string gjzt = "0")
         {
@@ -118,7 +118,7 @@ AND zt='1'
         /// <param name="ypCode"></param>
         /// <param name="yfbmCode"></param>
         /// <param name="organizeId"></param>
-        /// <param name="gjzt">Trạng thái xếp kệ：0-Chưa xếp lên kệ  1-Đã xếp lên kệ</param>
+        /// <param name="gjzt">Trạng thái xếp kệ:0-Chưa xếp lên kệ  1-Đã xếp lên kệ</param>
         /// <returns></returns>
         public List<MzcfphxxVO> GetListByGroup(string cfh, string ypCode, string yfbmCode, string organizeId, string gjzt = "0")
         {

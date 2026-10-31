@@ -52,7 +52,7 @@ namespace Newtouch.PDS.Requset.ResourcesOperate
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// Số lượng hủy （Số lượng đơn vị bộ phận）
+        /// Số lượng hủy (Số lượng đơn vị bộ phận)
         /// </summary>
         public int sl { get; set; }
 

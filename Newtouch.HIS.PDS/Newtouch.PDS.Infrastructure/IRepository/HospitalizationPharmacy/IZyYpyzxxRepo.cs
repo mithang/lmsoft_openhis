@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Domain.IRepository
         int UpdateFybzTy(string yzId, string zxId, string userCode, string organizeId, Newtouch.Infrastructure.EFDbTransaction db);
 
         /// <summary>
-        /// Theo thực hiệnID，Xóa vật lý tất cả chi tiết của lần thực hiện này
+        /// Theo thực hiệnID,Xóa vật lý tất cả chi tiết của lần thực hiện này
         /// </summary>
         /// <param name="zxId"></param>
         /// <returns></returns>

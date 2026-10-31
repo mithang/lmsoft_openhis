@@ -30,7 +30,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // string UpdateKcsl(List<UpdateKcslDTO> updateKcslDto);
 
         /// <summary>
-        /// đuổithêmTồn kho，khôngSửađôngkếtSố lượng Quay lạihìnhhưởngdòng
+        /// đuổithêmTồn kho,khôngSửađôngkếtSố lượng Quay lạihìnhhưởngdòng
         /// </summary>
         /// <param name="productId"></param>
         /// <param name="pc"></param>
@@ -43,7 +43,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         int AddKcsl(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode);
         
         // // /// <summary>
-        // // /// SửaTồn khoSố lượng，khôngSửađôngkếtSố lượng
+        // // /// SửaTồn khoSố lượng,khôngSửađôngkếtSố lượng
         // // /// </summary>
         // // /// <param name="updateKcslDto"></param>
         // // /// <returns></returns>
@@ -51,7 +51,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // //
         // //
         // // // /// <summary>
-        // // // /// SửaTồn khoSố lượng，khôngSửađôngkếtSố lượng
+        // // // /// SửaTồn khoSố lượng,khôngSửađôngkếtSố lượng
         // // // /// </summary>
         // // // /// <param name="updateKcslDto"></param>
         // // // /// <param name="db"></param>
@@ -59,7 +59,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // // // string JustSubtractKcslNoTrans(List<UpdateKcslDTO> updateKcslDto, EFDbTransaction db = null);
         // // //
         // // // /// <summary>
-        // // // /// SửaTồn khoSố lượng，khôngSửađôngkếtSố lượng
+        // // // /// SửaTồn khoSố lượng,khôngSửađôngkếtSố lượng
         // // // /// </summary>
         // // // /// <param name="updateKcslDto"></param>
         // // // /// <param name="db"></param>
@@ -67,7 +67,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // // // string JustSubtractKcsl(UpdateKcslDTO updateKcslDto, EFDbTransaction db = null);
         //
         // /// <summary>
-        // /// giảmTồn khoSố lượng、đôngkếtSố lượng（Xuất khocó thểdùng）
+        // /// giảmTồn khoSố lượng,đôngkếtSố lượng(Xuất khocó thểdùng)
         // /// </summary>
         // /// <param name="productId"></param>
         // /// <param name="pc"></param>
@@ -119,7 +119,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         // string WbrkKkc(int sl, string pc, string ph, string productId, string organizeId, string warehouseId, string userCode);
         //
         // /// <summary>
-        // /// Thu hồiNhập kho（trực tiếpXuất khoHủy bỏ）
+        // /// Thu hồiNhập kho(trực tiếpXuất khoHủy bỏ)
         // /// </summary>
         // /// <param name="sl">Đơn vị nhỏ nhấtSố lượng</param>
         // /// <param name="pc"></param>

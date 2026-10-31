@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// đãKhám bệnh Khám bệnhtrong danh sách( đãKhám bệnh： chỉcó thểXemtựtựtêndướicủaBệnh nhân)
+        /// đãKhám bệnh Khám bệnhtrong danh sách( đãKhám bệnh: chỉcó thểXemtựtựtêndướicủaBệnh nhân)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>

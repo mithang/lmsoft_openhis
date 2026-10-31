@@ -153,7 +153,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// Lấy cây người dùng hệ thống Ba cấp（Cơ sở+Khoa+Người dùng（Nhân viên））
+        /// Lấy cây người dùng hệ thống Ba cấp(Cơ sở+Khoa+Người dùng(Nhân viên))
         /// </summary>
         /// <returns></returns>
         [HandlerAjaxOnly]
@@ -175,7 +175,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             {
                 //Tập hợp khoa của tổ chức
                 var orgDetpData = _sysDepartmentRepository.GetListByOrg(orgItem.Id);
-                //Tập hợp nhân viên của tổ chức（Có tài khoản đăng nhập tương ứng）
+                //Tập hợp nhân viên của tổ chức(Có tài khoản đăng nhập tương ứng)
                 var orgUserStaffData = _sysUserDmnService.GetSatffVOListByOrg(orgItem.Id);
                 #region Tất cả khoa thuộc tổ chức
                 foreach (SysDepartmentEntity deptItem in orgDetpData)
@@ -192,7 +192,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                         staffTree.Code = userStaffVO.UserCode;
                         staffTree.hasChildren = false;
                         staffTree.showcheck = true;
-                        staffTree.checkstate = 0;   //Gán giá trị bên ngoài，Thuận tiện cho bộ nhớ đệm
+                        staffTree.checkstate = 0;   //Gán giá trị bên ngoài,Thuận tiện cho bộ nhớ đệm
 
                         staffTree.Ex3 = orgItem.Id; //closest OrganizeId
 
@@ -204,7 +204,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                     deptTree.text = deptItem.Name;
                     deptTree.value = deptItem.Code;
                     deptTree.parentId = deptItem.ParentId == null ? orgItem.Id : deptItem.ParentId;
-                    deptTree.isexpand = isExpand;  //Mặc định không mở rộng，Quá nhiều người
+                    deptTree.isexpand = isExpand;  //Mặc định không mở rộng,Quá nhiều người
                     deptTree.complete = true;
                     deptTree.showcheck = false;
                     //deptTree.hasChildren = deptUserStaffData.Count > 0 || orgDetpData.Any(p => p.ParentId == deptItem.Id);
@@ -241,7 +241,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                         var thisParentNode = treeList.Where(p => p.id == treeItem.parentId).FirstOrDefault();
                         if (thisParentNode != null)
                         {
-                            thisParentNode.isexpand = true;  //Cấp dưới có mục đã chọn，Ở đây nhất định mở rộng
+                            thisParentNode.isexpand = true;  //Cấp dưới có mục đã chọn,Ở đây nhất định mở rộng
                         }
                     }
                 }
@@ -252,7 +252,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                 while (count > 0)
                 {
                     count = treeList.RemoveAll(p => !p.showcheck && !p.hasChildren);
-                    //Điều chỉnh lại cây Loại bỏ Không có cấp dưới（Cấp dưới vừa bị chuyển） lại Không hiển thịshowcheckcủa
+                    //Điều chỉnh lại cây Loại bỏ Không có cấp dưới(Cấp dưới vừa bị chuyển) lại Không hiển thịshowcheckcủa
                     treeList.RemoveAll(p => !p.showcheck && !treeList.Any(sub => sub.parentId == p.id));
                 }
             }

@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             this._SysOrganizeDmnService = sysOrganizeDmnService;
         }
 
-        //Phân loại cây thu phí（Bệnh viện） Thả xuống Nguồn dữ liệu
+        //Phân loại cây thu phí(Bệnh viện) Thả xuống Nguồn dữ liệu
         [HttpGet]
         [HandlerAjaxOnly]
         public IActionResult GetTreeSelectJson(string organizeId, string treeidFieldName = "Code")

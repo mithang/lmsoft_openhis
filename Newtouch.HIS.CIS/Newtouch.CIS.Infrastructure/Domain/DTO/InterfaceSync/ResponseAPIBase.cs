@@ -19,7 +19,7 @@ namespace Newtouch.Domain.DTO.InterfaceSync
         public string msg { get; set; }
 
         /// <summary>
-        /// hưởngứngDữ liệu（ResponseResultCode.SUCCESSkhicủaQuay lạiDữ liệu）
+        /// hưởngứngDữ liệu(ResponseResultCode.SUCCESSkhicủaQuay lạiDữ liệu)
         /// </summary>
         public object data { get; set; }
     }
@@ -46,7 +46,7 @@ namespace Newtouch.Domain.DTO.InterfaceSync
         SUCCESS = 10000,
 
         /// <summary>
-        /// phụcvụdụng cụtrongbộLỗi（trìnhthứ tựphátsinhNgoại lệ）
+        /// phụcvụdụng cụtrongbộLỗi(trìnhthứ tựphátsinhNgoại lệ)
         /// </summary>
         ERROR = 20000,
 

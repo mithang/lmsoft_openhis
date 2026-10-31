@@ -11,7 +11,7 @@ namespace Newtouch.Domain.DTO
         public string mzh { get; set; }
 
         /// <summary>
-        /// Bác sĩMã nhân viên：tứcBác sĩĐăng nhậpHệ thốngcủaNgười dùngtên
+        /// Bác sĩMã nhân viên:tứcBác sĩĐăng nhậpHệ thốngcủaNgười dùngtên
         /// </summary>
         public string jzys { get; set; }
 

@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysItemsRepository : IRepositoryBase<SysItemsEntity>
     {
         /// <summary>
-        /// Lấy phân loại từ điển（Bao gồm cả vô hiệu）
+        /// Lấy phân loại từ điển(Bao gồm cả vô hiệu)
         /// </summary>
         /// <returns></returns>
         IList<SysItemsEntity> GetList();
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<SysItemsEntity> GetValidList();
 
         /// <summary>
-        /// Gửi tạo mới、Cập nhật Thực thể
+        /// Gửi tạo mới,Cập nhật Thực thể
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>

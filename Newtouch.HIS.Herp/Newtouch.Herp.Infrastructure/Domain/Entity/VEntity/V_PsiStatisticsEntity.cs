@@ -31,27 +31,27 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public string bmdwmc { get; set; }
 
         /// <summary>
-        /// Số lượng đầu kỳ，Kèm đơn vị
+        /// Số lượng đầu kỳ,Kèm đơn vị
         /// </summary>
         public string qcsl { get; set; }
 
         /// <summary>
-        /// Số lượng nhập kho，Kèm đơn vị
+        /// Số lượng nhập kho,Kèm đơn vị
         /// </summary>
         public string rksl { get; set; }
 
         /// <summary>
-        /// Số lượng xuất kho，Kèm đơn vị
+        /// Số lượng xuất kho,Kèm đơn vị
         /// </summary>
         public string cksl { get; set; }
 
         /// <summary>
-        /// Số lượng chênh lệch，Kèm đơn vị
+        /// Số lượng chênh lệch,Kèm đơn vị
         /// </summary>
         public string sysl { get; set; }
 
         /// <summary>
-        /// Số lượng cuối kỳ，Kèm đơn vị
+        /// Số lượng cuối kỳ,Kèm đơn vị
         /// </summary>
         public string qmsl { get; set; }
 

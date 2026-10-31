@@ -65,7 +65,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             }
             data = _hospitalRefundApp.GetZyXmjfbGroup(zyh, zxks, xmmc, yrh);        //Mục
 
-            //Cấu hình hoàn phí nhập viện：Có bao gồm thuốc hay không 0 Không bao gồm thuốc
+            //Cấu hình hoàn phí nhập viện:Có bao gồm thuốc hay không 0 Không bao gồm thuốc
 
 
             /// Lấy thông tin cấu hình theo mã

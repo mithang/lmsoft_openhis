@@ -37,7 +37,7 @@ namespace Newtouch.HIS.DomainServices
 		/// <summary>
 		/// Truy vấn thuốc của bộ phận hiện tại(Nhập kho)
 		/// </summary>
-		/// <param name="keyword">ypmc、py、spm、ypCode</param>
+		/// <param name="keyword">ypmc,py,spm,ypCode</param>
 		/// <returns></returns>
 		public List<DepartmentMedicineVO> SelectDepartmentMedicineList(string keyword, string yfbmCode, string organizeId)
 		{
@@ -123,7 +123,7 @@ AND c.shzt = @shzt
 		/// <summary>
 		/// Truy vấn thuốc của bộ phận hiện tại(Xuất kho)
 		/// </summary>
-		/// <param name="keyword">ypmc、py、spm、ypCode</param>
+		/// <param name="keyword">ypmc,py,spm,ypCode</param>
 		/// <param name="fph"></param>
 		/// <param name="gyscode"></param>
 		/// <returns></returns>
@@ -421,7 +421,7 @@ where ypCode=@ypCode and OrganizeId=@OrganizeId ";
 						entity.Modify();
 						db.Update(entity);
 
-						//Lấy giá trị，Đánh giá ngoại lệ
+						//Lấy giá trị,Đánh giá ngoại lệ
 						var list = GetNeedColumnValue(item.ToString());
 						if (list == null)
 						{
@@ -900,7 +900,7 @@ GROUP BY d.Slbm ,M.sldmxId ,m.sldId ,d.sldh ,M.ypcode ,J.ypmc, ypsx.ypgg ,J.py ,
 		#region Lấy thông tin thuốc và tồn kho của bộ phận này
 
 		/// <summary>
-		/// Lấy mặt hàng，Không phân biệt lô/số lô，Gồm hạn dùng
+		/// Lấy mặt hàng,Không phân biệt lô/số lô,Gồm hạn dùng
 		/// </summary>
 		/// <param name="srm">Từ khóa</param>
 		/// <param name="yfbmCode">Bộ phận hiện tại</param>
@@ -942,7 +942,7 @@ ORDER BY yp.ypmc
 		}
 
 		/// <summary>
-		/// Lấy thuốc còn hạn dùng，Không phân biệt lô/số lô，Không gồm hạn dùng
+		/// Lấy thuốc còn hạn dùng,Không phân biệt lô/số lô,Không gồm hạn dùng
 		/// </summary>
 		/// <param name="srm">Từ khóa</param>
 		/// <param name="yfbmCode">Bộ phận hiện tại</param>
@@ -985,7 +985,7 @@ ORDER BY yp.ypmc
 		}
 
 		/// <summary>
-		/// Lấy thuốc còn hạn dùng，Không phân biệt lô/số lô，Không gồm hạn dùng
+		/// Lấy thuốc còn hạn dùng,Không phân biệt lô/số lô,Không gồm hạn dùng
 		/// </summary>
 		/// <param name="ypdm">Mã thuốc</param>
 		/// <param name="yfbmCode">Bộ phận hiện tại</param>

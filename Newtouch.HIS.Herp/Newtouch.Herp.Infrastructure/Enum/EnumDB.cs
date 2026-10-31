@@ -335,7 +335,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
     }
 
     /// <summary>
-    /// Quá trình xử lý   1:Chờ xử lý；2:Đã duyệt；3:Không duyệt；4:Phân phối；5:Hoàn thành một phần；6:Hoàn thành；7:Từ chối nhận
+    /// Quá trình xử lý   1:Chờ xử lý;2:Đã duyệt;3:Không duyệt;4:Phân phối;5:Hoàn thành một phần;6:Hoàn thành;7:Từ chối nhận
     /// </summary>
     public enum EnumApplyProcess
     {
@@ -383,7 +383,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
     }
 
     /// <summary>
-    /// Loại chứng từ 1-Khoa phòng lĩnh；2-Kho lĩnh
+    /// Loại chứng từ 1-Khoa phòng lĩnh;2-Kho lĩnh
     /// </summary>
     public enum EnumApplyType
     {
@@ -401,7 +401,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
     }
 
     /// <summary>
-    /// Quy trình xử lý đơn mua sắm -1：Từ chối xử lý； 0：Chờ xử lý； 1：Chuẩn bị hàng； 2：Phân phối； 3：Ký nhận； 4：Hoàn thành； 5：Từ chối ký nhận 
+    /// Quy trình xử lý đơn mua sắm -1:Từ chối xử lý; 0:Chờ xử lý; 1:Chuẩn bị hàng; 2:Phân phối; 3:Ký nhận; 4:Hoàn thành; 5:Từ chối ký nhận 
     /// </summary>
     public enum EnumOrderProcess
     {
@@ -449,7 +449,7 @@ namespace Newtouch.Herp.Infrastructure.Enum
     }
 
     /// <summary>
-    /// Loại đơn hàng 0：Phiếu lưu tạm；1：Phiếu chính thức
+    /// Loại đơn hàng 0:Phiếu lưu tạm;1:Phiếu chính thức
     /// </summary>
     public enum EnumOrderTypeHrp
     {

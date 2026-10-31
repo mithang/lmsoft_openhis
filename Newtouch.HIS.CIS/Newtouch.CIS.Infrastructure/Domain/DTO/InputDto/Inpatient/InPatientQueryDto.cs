@@ -139,12 +139,12 @@ namespace Newtouch.Domain.DTO.InputDto
     //    public decimal sl { get; set; }
 
     //    /// <summary>
-    //    /// uống、tĩnhgiọt...
+    //    /// uống,tĩnhgiọt...
     //    /// </summary>
     //    public string zlff { get; set; }
 
     //    /// <summary>
-    //    /// Thời gian thực hiện：04,06,08...
+    //    /// Thời gian thực hiện:04,06,08...
     //    /// </summary>
     //    public string sjap { get; set; }
 
@@ -184,7 +184,7 @@ namespace Newtouch.Domain.DTO.InputDto
     //    public string fyyf { get; set; }
 
     //    /// <summary>
-    //    /// 1：Tạm thời；2：Dài hạn
+    //    /// 1:Tạm thời;2:Dài hạn
     //    /// </summary>
     //    public string yzxz { get; set; }
 
@@ -234,7 +234,7 @@ namespace Newtouch.Domain.DTO.InputDto
     //    public string cw { get; set; }
 
     //    /// <summary>
-    //    /// Cờ phát thuốc  0：chưaphát；1：đãxếp；2：đãphát；3：đãtrả
+    //    /// Cờ phát thuốc  0:chưaphát;1:đãxếp;2:đãphát;3:đãtrả
     //    /// </summary>
     //    public char fybz { get; set; }
 

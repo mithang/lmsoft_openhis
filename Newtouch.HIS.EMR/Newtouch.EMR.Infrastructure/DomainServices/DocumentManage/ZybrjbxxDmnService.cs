@@ -57,7 +57,7 @@ namespace Newtouch.EMR.DomainServices
         }
 
         /// <summary>
-        ///  Đồng bộhisGiao diện thông tin bệnh nhân（API）
+        ///  Đồng bộhisGiao diện thông tin bệnh nhân(API)
         /// </summary>
         /// <param name="lastUpdate"></param>
         /// <param name="user"></param>
@@ -132,7 +132,7 @@ namespace Newtouch.EMR.DomainServices
             }
         }
         /// <summary>
-        /// Đồng bộhisThông tin bệnh nhân（Cơ sở dữ liệu）
+        /// Đồng bộhisThông tin bệnh nhân(Cơ sở dữ liệu)
         /// </summary>
         /// <param name="OrgId"></param>
         /// <param name="Bdate"></param>
@@ -508,7 +508,7 @@ FROM    dbo.zy_brjbxx zyxx  with(nolock)
                 sql += " and zybz in(" + Convert.ToInt32(EnumZYBZ.Bqz) + "," + Convert.ToInt32(EnumZYBZ.Zq) + ")";
 
             }
-            //Ra viện（Đã thanh toán、Chờ quyết toán）
+            //Ra viện(Đã thanh toán,Chờ quyết toán)
             else if (type == Convert.ToInt32(EnumZYBZ.Ycy) || type == Convert.ToInt32(EnumZYBZ.Djz))
             {
                 sql += " and zybz in(" + Convert.ToInt32(EnumZYBZ.Ycy) + "," + Convert.ToInt32(EnumZYBZ.Djz) + ") ";
@@ -584,7 +584,7 @@ FROM    dbo.zy_brjbxx zyxx  with(nolock)
 
 
         /// <summary>
-        /// Xóa bệnh án（Xóa logic）
+        /// Xóa bệnh án(Xóa logic)
         /// </summary>
         /// <param name="blId"></param>
         /// <param name="blgxId">Quan hệ bệnh ánId</param>

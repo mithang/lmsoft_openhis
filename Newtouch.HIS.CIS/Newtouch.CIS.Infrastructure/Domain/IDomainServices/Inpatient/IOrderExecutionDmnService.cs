@@ -19,7 +19,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<InpWardPatTreeVO> GetPatTree(string staffId, DateTime Vzxsj, bool wnes, string orgId);
 
         /// <summary>
-        /// LấychờThực hiệnY lệnhBệnh nhâncây（góigồmvăn bảnY lệnh）
+        /// LấychờThực hiệnY lệnhBệnh nhâncây(góigồmvăn bảnY lệnh)
         /// </summary>
         /// <param name="staffId"></param>
         /// <param name="vzxsj"></param>
@@ -106,7 +106,7 @@ namespace Newtouch.Domain.IDomainServices
         /// <returns></returns>
         string IsOKOrderExecution(IList<ApiResponseVO> OrderList, DateTime Vzxsj,string orgId, string user = null);
         ///// <summary>
-        /////  Tạm thời，Dài hạn，Tất cảăn uốngMụcThực hiện
+        /////  Tạm thời,Dài hạn,Tất cảăn uốngMụcThực hiện
         ///// </summary>
         ///// <param name="user"></param>
         ///// <param name="zyh"></param>
@@ -115,7 +115,7 @@ namespace Newtouch.Domain.IDomainServices
         ///// <param name="yzxz"></param>
         //void OrderExecutionALLXM(OperatorModel user, IList<ApiResponseVO> orderExeList, DateTime zxsj);
         ///// <summary>
-        ///// Tạm thời，Dài hạn，Tất cả，ThuốcMụcThực hiện
+        ///// Tạm thời,Dài hạn,Tất cả,ThuốcMụcThực hiện
         ///// </summary>
         ///// <param name="user"></param>
         ///// <param name="orderExeList"></param>

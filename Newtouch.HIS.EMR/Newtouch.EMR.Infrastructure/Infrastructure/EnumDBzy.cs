@@ -16,11 +16,11 @@ namespace Newtouch.Infrastructure
         /// </summary>
         Bqz = 1,
         /// <summary>
-        /// Ra khỏi khu bệnh（Ra khỏi khu bệnh）（Chờ quyết toán）
+        /// Ra khỏi khu bệnh(Ra khỏi khu bệnh)(Chờ quyết toán)
         /// </summary>
         Djz = 2,
         /// <summary>
-        /// Đã ra viện（Quyết toán ra viện）
+        /// Đã ra viện(Quyết toán ra viện)
         /// </summary>
         Ycy = 3,
         /// <summary>
@@ -171,7 +171,7 @@ namespace Newtouch.Infrastructure
         Hosp = 4
     }
     /// <summary>
-    /// Trạng thái bệnh nhân điều dưỡng（dùng để nhập dấu hiệu sinh tồn điều dưỡng）
+    /// Trạng thái bệnh nhân điều dưỡng(dùng để nhập dấu hiệu sinh tồn điều dưỡng)
     /// </summary>
     public enum EnumHlbrzt
     {

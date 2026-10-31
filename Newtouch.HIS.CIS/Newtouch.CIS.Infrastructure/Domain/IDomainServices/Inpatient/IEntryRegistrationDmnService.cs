@@ -105,7 +105,7 @@ namespace Newtouch.Domain.IDomainServices
         IList<InAreapatientInfo> GetINAreaPatlist(Pagination pagination, string keyword, string bqdm,string orgId);
 
         /// <summary>
-        /// mớivàokhu、chuyển khu giường ký tựlàKhôngbịchiếmdùng
+        /// mớivàokhu,chuyển khu giường ký tựlàKhôngbịchiếmdùng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="OrganizeId"></param>

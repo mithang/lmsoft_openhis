@@ -123,7 +123,7 @@ public WarehouseApp(IRelWarehouseDeptRepo relWarehouseDeptRepo, IKfWarehouseRepo
         /// Đồng bộ vật tư kho
         /// </summary>
         /// <param name="productIds">Vật tư ID</param>
-        /// <param name="opereateType">0:Thêm  1：Xóa</param>
+        /// <param name="opereateType">0:Thêm  1:Xóa</param>
         /// <param name="organizeId"></param>
         /// <param name="warehouseId">Kho</param>
         /// <returns></returns>

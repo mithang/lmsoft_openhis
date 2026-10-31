@@ -18,12 +18,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（tương ứng với khoaOrganizeId）
+        /// Tổ chứcId(tương ứng với khoaOrganizeId)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（Cấp cao nhất，Cấu hình hệ thống）
+        /// Tổ chứcId(Cấp cao nhất,Cấu hình hệ thống)
         /// </summary>
         public string TopOrganizeId { get; set; }
 
@@ -132,7 +132,7 @@ namespace Newtouch.HIS.Domain.Entity
 
 
         /// <summary>
-        /// Quyền gói（Theo enum）
+        /// Quyền gói(Theo enum)
         /// </summary>
         public string mbqx { get; set; }
         /// <summary>

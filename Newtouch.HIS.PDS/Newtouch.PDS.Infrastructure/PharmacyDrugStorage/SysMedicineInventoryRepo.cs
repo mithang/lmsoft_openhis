@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         /// <param name="databaseFactory"></param>
         
         /// <summary>
-        /// Kiểm tra có kiểm kê chưa hoàn thành không （Bắt đầu）
+        /// Kiểm tra có kiểm kê chưa hoàn thành không (Bắt đầu)
         /// </summary>
         /// <returns></returns>
         public int SelectUnfinishedInventory()
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Kiểm tra có kiểm kê chưa hoàn thành không （Kết thúc）
+        /// Kiểm tra có kiểm kê chưa hoàn thành không (Kết thúc)
         /// </summary>
         /// <returns></returns>
         public int SelectUnfinishedInventoryByPdId(string pdId)

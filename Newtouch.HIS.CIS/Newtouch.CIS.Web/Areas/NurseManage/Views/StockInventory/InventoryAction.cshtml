@@ -201,7 +201,7 @@
 
     //LấyKiểm kêThời gian
     function GetPdsj() {
-        $("#ddlRQ").empty();//Xóa trắng trước，lạiđiền
+        $("#ddlRQ").empty();//Xóa trắng trước,lạiđiền
         $("#ddlRQ").bindSelect({
             url: "/NurseManage/StockInventory/GetPdsj",
             id: "pdId",
@@ -369,13 +369,13 @@
         var $targetJqg;
         var noPc = "0";
         if ($("#i-noPc").hasClass("fa-toggle-off")) {
-            $targetJqg = $gridKCInfoNoPc;//Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+            $targetJqg = $gridKCInfoNoPc;//Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
             noPc = "1";
         } else {
-            $targetJqg = $gridKCInfo;//Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+            $targetJqg = $gridKCInfo;//Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
             noPc = "0";
         }
-        var rowIds = $targetJqg.jqGrid('getDataIDs');//Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+        var rowIds = $targetJqg.jqGrid('getDataIDs');//Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
 
         //kiểm tratrảSố lượng
         for (var i = 0; i < rowIds.length; i++) {
@@ -399,7 +399,7 @@
             objArrSave.push(this);
         });
 
-        //vàtrangmặttảicủasốnhómvàodòngsođối，sẽSửaquacủaDữ liệudòngđặtởresultObjArrtrong，truyềnchomáy chủ
+        //vàtrangmặttảicủasốnhómvàodòngsođối,sẽSửaquacủaDữ liệudòngđặtởresultObjArrtrong,truyềnchomáy chủ
         var resultObjArr = new Array();
         if ($("#i-noPc").hasClass("fa-toggle-off")) {
             for (var i = 0; i < objArrSave.length; i++) {

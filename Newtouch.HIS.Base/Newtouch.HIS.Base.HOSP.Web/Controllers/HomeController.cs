@@ -69,7 +69,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             }
             if (!string.IsNullOrWhiteSpace(opr.OrganizeId))
             {
-                //Hiện tạiOrgTên（Liên kếtStaff）
+                //Hiện tạiOrgTên(Liên kếtStaff)
                 ViewBag.OrgName = _sysOrganizeDmnService.GetNameByOrgId(opr.OrganizeId);
             }
             else
@@ -143,7 +143,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                 opr.DepartmentName = _sysDepartmentRepo.GetNameByCode(orgStaff.DepartmentCode, orgStaff.OrganizeId);
 
                 var roleList = _userRoleAuthDmnService.GetUserRoleList(opr.UserId, orgStaff.OrganizeId);
-                //170904 AdministratorKhông thể liên kết nữaStaff，Chỉadmin
+                //170904 AdministratorKhông thể liên kết nữaStaff,Chỉadmin
                 opr.RoleIdList = roleList.Select(p => p.Id).ToList();
                 opr.IsHospAdministrator = roleList.Any(p => p.Code == "HospAdministrator");
 
@@ -183,7 +183,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
         [HttpGet]
         /// <summary>
-        /// Lấy số lượng người khám（Ghi nợ ngoại trú、Ghi nợ nội trú）
+        /// Lấy số lượng người khám(Ghi nợ ngoại trú,Ghi nợ nội trú)
         /// </summary>
         public IActionResult GetVisitNum()
         {
@@ -221,7 +221,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// Lấy giá trị sinh ngẫu nhiên của trường nghiệp vụ（Tự tăng+Format）
+        /// Lấy giá trị sinh ngẫu nhiên của trường nghiệp vụ(Tự tăng+Format)
         /// </summary>
         /// <param name="fieldName"></param>
         /// <param name="orgIdIsStar"></param>

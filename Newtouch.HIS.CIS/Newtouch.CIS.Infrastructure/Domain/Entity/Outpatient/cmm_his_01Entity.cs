@@ -18,7 +18,7 @@ namespace Newtouch.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Bệnh nhânSố hiệu（mộtBệnh nhântương ứngmộtSố hiệu，vàvàCMND/CCCDsốmãmộtmộttương ứng），tương ứnggiao diệnidchữđoạn，bảnđịaLưublh
+        /// Bệnh nhânSố hiệu(mộtBệnh nhântương ứngmộtSố hiệu,vàvàCMND/CCCDsốmãmộtmộttương ứng),tương ứnggiao diệnidchữđoạn,bảnđịaLưublh
         /// </summary>
         public string cmmId { get; set; }
 
@@ -53,7 +53,7 @@ namespace Newtouch.Domain.Entity
         public string cardTypeCode { get; set; }
 
         /// <summary>
-        /// chứngmụcLoại（Bình thườngchỉcư dânCMND/CCCDsố）
+        /// chứngmụcLoại(Bình thườngchỉcư dânCMND/CCCDsố)
         /// bắt buộc
         /// </summary>
         public string cardType { get; set; }
@@ -117,7 +117,7 @@ namespace Newtouch.Domain.Entity
         public string cityCode { get; set; }
 
         /// <summary>
-        /// nhàĐịa chỉ nhàkhuhuyệnMã（bảogiữvàmâybìnhbàncủaPhân vùng hành chínhMãnhất quán）
+        /// nhàĐịa chỉ nhàkhuhuyệnMã(bảogiữvàmâybìnhbàncủaPhân vùng hành chínhMãnhất quán)
         /// bắt buộc
         /// </summary>
         public string areaCode { get; set; }
@@ -195,27 +195,27 @@ namespace Newtouch.Domain.Entity
         public string orgCode { get; set; }
 
         /// <summary>
-        /// gửiứngdùngtrìnhthứ tự，chỉđịnhlà：HIS
+        /// gửiứngdùngtrìnhthứ tự,chỉđịnhlà:HIS
         /// </summary>
         public string sender { get; set; }
 
         /// <summary>
-        /// nhậnthuứngdùngtrìnhthứ tự，chỉđịnhlà：EMR,HEAL,PLAT
+        /// nhậnthuứngdùngtrìnhthứ tự,chỉđịnhlà:EMR,HEAL,PLAT
         /// </summary>
         public string receiver { get; set; }
 
         /// <summary>
-        /// Thời gian gửi，định dạng：yyyyMMddHHmmss
+        /// Thời gian gửi,định dạng:yyyyMMddHHmmss
         /// </summary>
         public string sendTime { get; set; }
 
         /// <summary>
-        /// hủytinLoại：TCM_HIS_01
+        /// hủytinLoại:TCM_HIS_01
         /// </summary>
         public string msgType { get; set; }
 
         /// <summary>
-        /// hủytin ID(ứngdùngtrìnhthứ tựMã+phát gửi khi giữa ) ， nếu ：HIS20170606020202
+        /// hủytin ID(ứngdùngtrìnhthứ tựMã+phát gửi khi giữa ) , nếu :HIS20170606020202
         /// </summary>
         public string msgID { get; set; }
 
@@ -225,17 +225,17 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Quay lạikếtnếuTrạng tháimã  1： thành công； 0：thất bại
+        /// Quay lạikếtnếuTrạng tháimã  1: thành công; 0:thất bại
         /// </summary>
         public string resultCode { get; set; }
 
         /// <summary>
-        /// Quay lạikếtnếuMô tả  thành công；thất bại(Bổ sungthất bạinguyên nhânMô tả)
+        /// Quay lạikếtnếuMô tả  thành công;thất bại(Bổ sungthất bạinguyên nhânMô tả)
         /// </summary>
         public string resultDesc { get; set; }
 
         /// <summary>
-        /// Trạng thái     1:Hiệu lực  0：Vô hiệu
+        /// Trạng thái     1:Hiệu lực  0:Vô hiệu
         /// </summary>
         public string zt { get; set; }
 

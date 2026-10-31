@@ -55,7 +55,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Khi sửa thông tin，thông tinmangđếnmớitrangmặt
+        /// Khi sửa thông tin,thông tinmangđếnmớitrangmặt
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

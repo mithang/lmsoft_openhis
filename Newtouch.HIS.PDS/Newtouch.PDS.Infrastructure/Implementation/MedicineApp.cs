@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Application.Implementation
                 {
                     if (kcsl + item.Sysl >= 0)
                     {
-                        //Lưu（updateTồn kho insertBảng lãi lỗ）
+                        //Lưu(updateTồn kho insertBảng lãi lỗ)
                         _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
                     }
                     else
@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Application.Implementation
                 }
                 else  //Báo thừa
                 {
-                    //Lưu（updateTồn kho insertBảng lãi lỗ）
+                    //Lưu(updateTồn kho insertBảng lãi lỗ)
                     _medicineDmnService.SaveReportLossAndProfit(item, kcsl, jj);
                 }
             }
@@ -97,7 +97,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Tổng số tiền giá bán buôn、Truy vấn tổng số tiền giá bán lẻ
+        /// Tổng số tiền giá bán buôn,Truy vấn tổng số tiền giá bán lẻ
         /// </summary>
         /// <param name="startTime">Thời gian bắt đầu</param>
         /// <param name="endTime">Thời gian kết thúc</param>

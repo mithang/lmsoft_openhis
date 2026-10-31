@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string reportdlcode { get; set; }
 
         /// <summary>
-        /// Loại lớn，Enum tương ứng EnumSfdlDllb 1Thuốc 2Hạng mục điều trị 3Hạng mục không điều trị
+        /// Loại lớn,Enum tương ứng EnumSfdlDllb 1Thuốc 2Hạng mục điều trị 3Hạng mục không điều trị
         /// </summary>
         public int? dllb { get; set; }
 

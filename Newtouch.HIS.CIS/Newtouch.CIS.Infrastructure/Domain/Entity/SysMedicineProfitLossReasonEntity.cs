@@ -29,7 +29,7 @@ namespace Newtouch.Domain.Entity
         public string syyy { get; set; }
 
         /// <summary>
-        /// 0 Báo hỏng，1 báo thừa
+        /// 0 Báo hỏng,1 báo thừa
         /// </summary>
         public string sybz { get; set; }
 

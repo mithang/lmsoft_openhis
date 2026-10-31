@@ -48,12 +48,12 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public decimal lsze { get; set; }
 
         /// <summary>
-        /// Đơn giá nhập（với kcxx.zhyz tương ứng）
+        /// Đơn giá nhập(với kcxx.zhyz tương ứng)
         /// </summary>
         public decimal jj { get; set; }
 
         /// <summary>
-        /// Đơn giá nhập（Đơn vị nhỏ nhất）
+        /// Đơn giá nhập(Đơn vị nhỏ nhất)
         /// </summary>
         public decimal minjj { get; set; }
 
@@ -88,7 +88,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public string sccj { get; set; }
 
         /// <summary>
-        /// Hạn sử dụng varchar（10）
+        /// Hạn sử dụng varchar(10)
         /// </summary>
         public string yxqStr { get; set; }
 

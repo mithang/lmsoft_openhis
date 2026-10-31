@@ -63,7 +63,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string clinicDate { get; set; }
 
         /// <summary>
-        /// Bác sĩSố hiệu（Người dùngtên）
+        /// Bác sĩSố hiệu(Người dùngtên)
         /// bắt buộc
         /// </summary>
         public string doctorId { get; set; }

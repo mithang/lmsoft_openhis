@@ -136,7 +136,7 @@
                                         var row = $(e.target).closest('tr.jqgrow');
                                         var rowid = row.attr('id');
 
-                                        $("#" + rowid + "_selected_jldw").val($(this).val());   //selected_jldw：dùng làmLưuĐơn thuốcvềđếnHồ sơtrang，lạitừHồ sơtrangvềđếnkhi，Tính toántrên lầnĐã chọncủamcjldwcủaGiá trị
+                                        $("#" + rowid + "_selected_jldw").val($(this).val());   //selected_jldw:dùng làmLưuĐơn thuốcvềđếnHồ sơtrang,lạitừHồ sơtrangvềđếnkhi,Tính toántrên lầnĐã chọncủamcjldwcủaGiá trị
                                         $("#" + rowid + "_mcjldwwwwwww").val($(this).val());
                                     }
                                 }
@@ -191,13 +191,13 @@
             gridComplete: function () {
                 var ids = $("#gridxycf").getDataIDs();
                 $.each(ids, function () {
-                    $gridxycf.jqGrid('editRow', this, true, initWMInlineFunc);  //editRow：MởSửachế độ initWMInlineFunc:Khởi tạolớp nổi
+                    $gridxycf.jqGrid('editRow', this, true, initWMInlineFunc);  //editRow:MởSửachế độ initWMInlineFunc:Khởi tạolớp nổi
 
-                    //chomỗi lầnĐơn vị liềuđiềnoption  (chỉcó thểnàysaoviếtđơn giảnphiếu，Mặc dùtôicũngBiếtnàydạngviếtkhôngtốt)
+                    //chomỗi lầnĐơn vị liềuđiềnoption  (chỉcó thểnàysaoviếtđơn giảnphiếu,Mặc dùtôicũngBiếtnàydạngviếtkhôngtốt)
                     var jldw = $("#" + this + "_redundant_jldw").val();    //Đơn vị liều
                     var dw = $("#" + this + "_dw").val();     //Đơn vị ngoại trú
                     if (!!dw) {
-                        //cách tìm phần tử nàyPhương phápkhông nên dùng，nhưng doselectKhông cóidThuộc tính
+                        //cách tìm phần tử nàyPhương phápkhông nên dùng,nhưng doselectKhông cóidThuộc tính
                         $("#" + this + "_mcjl").parent().next().children('select').html('');
                         if (jldw == dw) {
                             $("#" + this + "_mcjl").parent().next().children('select').append('<option>' + jldw + '</option>');
@@ -297,7 +297,7 @@
                 $("#" + rowid + "_zxks").val($this.attr('data-yfbmCode'));
                 var jldw = $this.attr('data-jldw');    //Đơn vị liều
                 var dw = $this.attr('data-dw');     //Đơn vị ngoại trú
-                //cách tìm phần tử nàyPhương phápkhông nên dùng，nhưng doselectKhông cóidThuộc tính
+                //cách tìm phần tử nàyPhương phápkhông nên dùng,nhưng doselectKhông cóidThuộc tính
                 if (jldw == dw) {
                     $("#" + rowid + "_mcjl").parent().next().children('select').append('<option>' + jldw + '</option>');
                 }
@@ -415,13 +415,13 @@
             return;
         }
 
-        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+        //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#gridxycf").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             var saveResult = $("#gridxycf").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
             if (!saveResult) {
-                return;   //Lưu thất bại，thìreturn
+                return;   //Lưu thất bại,thìreturn
             }
         }
         var gridxycfData = $("#gridxycf").jqGrid('getRowData_AllLine', null, true);

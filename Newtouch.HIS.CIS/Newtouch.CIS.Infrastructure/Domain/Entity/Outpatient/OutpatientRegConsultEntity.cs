@@ -42,7 +42,7 @@ namespace Newtouch.Domain.Entity.Outpatient
         /// </summary>
         public string zt { get; set; }
         /// <summary>
-        /// gọisốTrạng thái （chờgọisố1，đãgọi2，quasố3 ứngđáp4 lạigọisố5）
+        /// gọisốTrạng thái (chờgọisố1,đãgọi2,quasố3 ứngđáp4 lạigọisố5)
         /// </summary>
         public int? calledstu { get; set; }
 

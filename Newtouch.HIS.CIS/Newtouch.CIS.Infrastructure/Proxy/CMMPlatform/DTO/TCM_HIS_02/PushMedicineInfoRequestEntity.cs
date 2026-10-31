@@ -49,7 +49,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_02
         public string manufacturer { get; set; }
 
         /// <summary>
-        /// làKhôngKích hoạt：Y： là N： Không
+        /// làKhôngKích hoạt:Y: là N: Không
         /// </summary>
         public string activeFlg { get; set; }
 

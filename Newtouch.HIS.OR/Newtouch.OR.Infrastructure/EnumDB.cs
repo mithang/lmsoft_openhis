@@ -13,11 +13,11 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
         /// </summary>
         Bqz = 1,
         /// <summary>
-        /// Xuất khoa（Rời khoa）（Chờ thanh toán）
+        /// Xuất khoa(Rời khoa)(Chờ thanh toán)
         /// </summary>
         Djz = 2,
         /// <summary>
-        /// Đã xuất viện（Thanh toán xuất viện）
+        /// Đã xuất viện(Thanh toán xuất viện)
         /// </summary>
         Ycy = 3,
         /// <summary>

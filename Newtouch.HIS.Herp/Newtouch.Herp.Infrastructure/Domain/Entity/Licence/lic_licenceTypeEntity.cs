@@ -18,17 +18,17 @@ namespace Newtouch.Herp.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tên loại Giấy phép kinh doanh、Quyền đại lý、Giấy đăng ký...
+        /// Tên loại Giấy phép kinh doanh,Quyền đại lý,Giấy đăng ký...
         /// </summary>
         public string typeName { get; set; }
 
         /// <summary>
-        /// Thuộc về Id Vật tư、Nhà cung cấp
+        /// Thuộc về Id Vật tư,Nhà cung cấp
         /// </summary>
         public string belongedId { get; set; }
 
         /// <summary>
-        /// Trạng thái  0:Hủy bỏ；1.Hiệu lực
+        /// Trạng thái  0:Hủy bỏ;1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

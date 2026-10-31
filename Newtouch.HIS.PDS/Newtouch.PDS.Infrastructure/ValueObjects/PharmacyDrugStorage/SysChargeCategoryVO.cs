@@ -35,12 +35,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// In báo cáo ngoại trú Phí thuộc về（Tỷ lệ quy về phí ăn uống‘Khác’）
+        /// In báo cáo ngoại trú Phí thuộc về(Tỷ lệ quy về phí ăn uống‘Khác’)
         /// </summary>
         public string mzprintreportcode { get; set; }
 
         /// <summary>
-        /// Thanh toán ngoại trú Phí thuộc về（Tỷ lệ quy về phí ăn uống‘Khác’）
+        /// Thanh toán ngoại trú Phí thuộc về(Tỷ lệ quy về phí ăn uống‘Khác’)
         /// </summary>
         public string mzprintbillcode { get; set; }
 
@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string reportdlcode { get; set; }
 
         /// <summary>
-        /// Loại lớn，Enum tương ứng EnumSfdlDllb 1Thuốc 2Hạng mục điều trị 3Hạng mục không điều trị
+        /// Loại lớn,Enum tương ứng EnumSfdlDllb 1Thuốc 2Hạng mục điều trị 3Hạng mục không điều trị
         /// </summary>
         public int? dllb { get; set; }
 

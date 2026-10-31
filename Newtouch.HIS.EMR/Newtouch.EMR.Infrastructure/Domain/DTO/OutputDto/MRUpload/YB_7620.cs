@@ -42,7 +42,7 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         /// </summary>
         public string BKF721 { get; set; }
         /// <summary>
-        /// Định dạng ngày giờ phẫu thuật và thủ thuật：yyyymmddhhmiss
+        /// Định dạng ngày giờ phẫu thuật và thủ thuật:yyyymmddhhmiss
         /// 1
         /// </summary>
         public string BKF723 { get; set; }
@@ -52,16 +52,16 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         /// </summary>
         public string BKF922 { get; set; }
         /// <summary>
-        /// Quan hệ chính/phụ của phẫu thuật 1 Phẫu thuật chính；0 Phẫu thuật phụ
+        /// Quan hệ chính/phụ của phẫu thuật 1 Phẫu thuật chính;0 Phẫu thuật phụ
         /// </summary>
         public string BKF960 { get; set; }
         /// <summary>
-        /// Tham khảo cấp độ phẫu thuật《Cấp độ phẫu thuật》
+        /// Tham khảo cấp độ phẫu thuật<Cấp độ phẫu thuật>
         /// 1
         /// </summary>
         public string BKF773 { get; set; }
         /// <summary>
-        /// Tham khảo mã loại vết mổ phẫu thuật《Loại vết mổ phẫu thuật》
+        /// Tham khảo mã loại vết mổ phẫu thuật<Loại vết mổ phẫu thuật>
         /// 1
         /// </summary>
         public string BKF283 { get; set; }
@@ -94,7 +94,7 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         /// </summary>
         public string BKC770 { get; set; }
         /// <summary> 
-        /// Tham khảo phương pháp gây mê《Phương pháp gây mê》
+        /// Tham khảo phương pháp gây mê<Phương pháp gây mê>
         /// </summary>
         public string BKC772 { get; set; }
         /// <summary>

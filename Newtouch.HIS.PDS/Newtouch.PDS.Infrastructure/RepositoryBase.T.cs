@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Repository
         /// <param name="entity"></param>
         /// <param name="dstnFieldNameList">Cột đích</param>
         /// <param name="ignoreFieldNameList">Cột loại trừ</param>
-        /// <param name="attach">Có cần khôngEntityThêm ngữ cảnh vào（Nếu cái nàyEntitylà từdbcontexttra ra，false）</param>
+        /// <param name="attach">Có cần khôngEntityThêm ngữ cảnh vào(Nếu cái nàyEntitylà từdbcontexttra ra,false)</param>
         /// <returns></returns>
         public override int Update(TEntity entity, IEnumerable<string> dstnFieldNameList = null, IEnumerable<string> ignoreFieldNameList = null, bool attach = true)
         {

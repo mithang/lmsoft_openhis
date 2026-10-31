@@ -113,7 +113,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Hủy tất cảPhân quyền（Tổ chức）
+        /// Hủy tất cảPhân quyền(Tổ chức)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>

@@ -170,7 +170,7 @@ GROUP BY yp.ypId ,sx.ypgg ,bm.Zcxh ,bm.zt,bm.yfbmCode,bm.OrganizeId,bm.Ypdm,bm.Y
         /// Đồng bộ thông tin thuốc bộ phận này
         /// </summary>
         /// <param name="yp"></param>
-        /// <param name="operateType">0:Thêm  1：Xóa</param>
+        /// <param name="operateType">0:Thêm  1:Xóa</param>
         /// <param name="orgId"></param>
         /// <param name="yfbmCode"></param>
         /// <returns></returns>
@@ -190,7 +190,7 @@ GROUP BY yp.ypId ,sx.ypgg ,bm.Zcxh ,bm.zt,bm.yfbmCode,bm.OrganizeId,bm.Ypdm,bm.Y
         /// Đồng bộ thông tin thuốc bộ phận này
         /// </summary>
         /// <param name="ypId"></param>
-        /// <param name="operateType">0:Thêm  1：Xóa</param>
+        /// <param name="operateType">0:Thêm  1:Xóa</param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         private string Fresh(string ypId, int operateType, string orgId, string yfbmCode)

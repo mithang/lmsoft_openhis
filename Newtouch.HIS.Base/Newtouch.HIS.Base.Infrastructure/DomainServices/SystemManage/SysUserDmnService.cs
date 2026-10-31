@@ -36,7 +36,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Gửi tạo mới、Cập nhật Người dùng hệ thống
+        /// Gửi tạo mới,Cập nhật Người dùng hệ thống
         /// </summary>
         /// <param name="userEntity"></param>
         /// <param name="userLogOnEntity"></param>
@@ -91,7 +91,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Lấy hệ thống（Đăng nhập）Người dùng
+        /// Lấy hệ thống(Đăng nhập)Người dùng
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -143,7 +143,7 @@ where 1 = 1
         }
 
         /// <summary>
-        /// Theo hệ thống（Đăng nhập）Người dùngId Lấy Nhân viên hệ thống
+        /// Theo hệ thống(Đăng nhập)Người dùngId Lấy Nhân viên hệ thống
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -246,7 +246,7 @@ where a.UserId = @userId";
         }
 
         /// <summary>
-        /// TheoOrganizeIdLấy Nhân viên hệ thốngVO（và có tương ứngSysUser）
+        /// TheoOrganizeIdLấy Nhân viên hệ thốngVO(và có tương ứngSysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -314,7 +314,7 @@ and a.zt = '1' and b.zt = '1' and c.zt = '1'";
             var secretkey = Md5.md5(Comm.CreateNo(), 16).ToLower();
             var password = Md5.md5(DESEncrypt.Encrypt(Md5.md5(userPassword, 32).ToLower(), secretkey).ToLower(), 32).ToLower();
 
-            //Ở đây không thao tác trực tiếp với bảng thì không làm được nữa，Không thể qua khung nhìn
+            //Ở đây không thao tác trực tiếp với bảng thì không làm được nữa,Không thể qua khung nhìn
             this.ExecuteSqlCommand("update sys_userlogon set UserSecretkey = @secretkey, UserPassword = @password where UserId = @userId and zt = '1'", new[] {
                 new SqlParameter("@userId", userId)
                 ,new SqlParameter("@secretkey", secretkey)

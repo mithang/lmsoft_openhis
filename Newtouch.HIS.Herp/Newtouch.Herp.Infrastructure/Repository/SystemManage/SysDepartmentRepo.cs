@@ -26,7 +26,7 @@ namespace Newtouch.Herp.Repository
         /// Lấy danh sách khoa phòng
         /// </summary>
         /// <param name="orgId">Cơ sở y tế</param>
-        /// <param name="zt">Cờ hiệu lực。0 Không hiệu lực 1 Hiệu lực null、Empty Tất cả</param>
+        /// <param name="zt">Cờ hiệu lực.0 Không hiệu lực 1 Hiệu lực null,Empty Tất cả</param>
         /// <param name="keyword"></param>
         /// <returns></returns>
         public IList<SysDepartmentVEntity> GetList(string orgId, string zt = null, string keyword = null)

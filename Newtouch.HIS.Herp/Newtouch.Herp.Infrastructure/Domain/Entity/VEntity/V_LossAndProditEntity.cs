@@ -77,7 +77,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public string Zrr { get; set; }
 
         /// <summary>
-        /// Số lượng chênh lệch（Kèm đơn vị）
+        /// Số lượng chênh lệch(Kèm đơn vị)
         /// </summary>
         public string syslStr { get; set; }
 

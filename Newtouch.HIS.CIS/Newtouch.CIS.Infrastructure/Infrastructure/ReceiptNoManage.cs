@@ -11,7 +11,7 @@ namespace Newtouch.Infrastructure
         public static Random random = new Random();
 
         /// <summary>
-        /// tạoNgẫu nhiênsố Thời gianđiểm（Ngày tháng nămkhiphútgiây）+ba ký tựNgẫu nhiênsố
+        /// tạoNgẫu nhiênsố Thời gianđiểm(Ngày tháng nămkhiphútgiây)+ba ký tựNgẫu nhiênsố
         /// </summary>
         /// <returns></returns>
         public static string GetNewOrderNoV1()

@@ -23,7 +23,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public string gg { get; set; }
 
         /// <summary>
-        /// Số lượng kết chuyển（Kèm đơn vị）
+        /// Số lượng kết chuyển(Kèm đơn vị)
         /// </summary>
         public string jzsl { get; set; }
 

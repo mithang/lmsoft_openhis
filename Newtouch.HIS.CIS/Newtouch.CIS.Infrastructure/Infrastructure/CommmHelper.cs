@@ -18,7 +18,7 @@ namespace Newtouch.Infrastructure
         /// <param name="zll">chỉcủalàPhục hồi chức năngĐơn thuốctrangcủaTổng lượng</param>
         /// <param name="dwjls"></param>
         /// <param name="jjcl">Liệt kêEnumSfxmJjcl</param>
-        /// <param name="throwExWhenZero">khiSố lượngkếtnếulà0khi làKhôngnémNgoại lệ，Mặc địnhném</param>
+        /// <param name="throwExWhenZero">khiSố lượngkếtnếulà0khi làKhôngnémNgoại lệ,Mặc địnhném</param>
         /// <returns></returns>
         public static int CalcSfxmSl(int? mczll, int? dwjls, int? jjcl,
             bool throwExWhenZero = true)

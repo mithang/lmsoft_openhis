@@ -7,13 +7,13 @@ namespace Newtouch.Domain.IRepository
 {
     /// <summary>
     /// Tác giả: 周珏琦
-    /// Ngày：2019-01-30 10:23
-    /// Mô tả：Sắp xếp phẫu thuậtbảng
+    /// Ngày:2019-01-30 10:23
+    /// Mô tả:Sắp xếp phẫu thuậtbảng
     /// </summary>
     public interface IInpatientOperationArrangementRepo : IRepositoryBase<InpatientOperationArrangementEntity>
     {
         /// <summary>
-        /// Lưubảngphiếu（Thêm mới、Sửa）
+        /// Lưubảngphiếu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">thựcthểđối tượng</param>
         /// <param name="keyValue">Khóa chínhGiá trị</param>

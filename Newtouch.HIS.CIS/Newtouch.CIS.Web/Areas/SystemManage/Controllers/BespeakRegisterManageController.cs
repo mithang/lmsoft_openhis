@@ -132,7 +132,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Khi sửa thông tin，thông tinmangđếnmớitrangmặt
+        /// Khi sửa thông tin,thông tinmangđếnmớitrangmặt
         /// </summary>
         /// <param name="deptCode"></param>
         /// <param name="regDate"></param>
@@ -300,7 +300,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         public IActionResult GetAllBespeakRegisterByMonth(int year, int month, string deptCode, string ysgh)
         {
             if (month <= 0) throw new Exception("Tháng truyền vào không hợp lệ, vui lòng truyền số tự nhiên");
-            var mzlx = string.IsNullOrWhiteSpace(ysgh) ? "1" : "3";//Dấu hiệu ngoại trú/nội trú 1：thông thườngNgoại trú  2：gấpkhám   3：chuyên giaNgoại trú
+            var mzlx = string.IsNullOrWhiteSpace(ysgh) ? "1" : "3";//Dấu hiệu ngoại trú/nội trú 1:thông thườngNgoại trú  2:gấpkhám   3:chuyên giaNgoại trú
             var beginTime = Convert.ToDateTime(year + "-" + month + "-01");
             var endTime = beginTime.AddMonths(1).AddDays(-1);
             var yyghDetail = _mzyyghDmnService.SelectMzyyghDetail(mzlx, deptCode, ysgh, beginTime, endTime, OrganizeId);

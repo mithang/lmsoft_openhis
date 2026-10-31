@@ -45,7 +45,7 @@ namespace HIS.SSO.Controllers
             {
                 sysMajorClassList = await _organizeApp.GetsysMajorClassListAsync(OrganizeId),//nhóm lớn
                 doctorInHosBookkeep = await _organizeApp.GetStaffByDutyCodeAsync(OrganizeId),
-                commercialInsuranceList = "",//bảo hiểm thương mại（tạm thời chưa có）
+                commercialInsuranceList = "",//bảo hiểm thương mại(tạm thời chưa có)
                 yearArr = yearArr.ToArray(),
                 monthArr = monthArr.ToArray(),
                 SysFailedCodeMessageMapList = await _organizeApp.GetSysFailedCodeMessageMapListAsync(OrganizeId),
@@ -66,7 +66,7 @@ namespace HIS.SSO.Controllers
                 sysNationList = await _systemApp.GetsysNationListAsync(""),//dân tộc
                 sysPatientNatureList = await _organizeApp.GetsysatientNatureListAsync(OrganizeId),//tính chất bệnh nhân,chính sách hoàn trả
                 SysForCashPayList = await _systemApp.GetSysForCashPayAsync(""),//lấy phương thức thanh toán tiền mặt
-                sysStaffDutyList = await _organizeApp.GetsysStaffDutyListAsync(OrganizeId),//huấn luyện viên sức khỏe，bác sĩ
+                sysStaffDutyList = await _organizeApp.GetsysStaffDutyListAsync(OrganizeId),//huấn luyện viên sức khỏe,bác sĩ
                 sysDepartList = sysDepartList.ToJson(new[] { "Name", "Code", "yjbz", "py", "zlks", "mzzybz" }),    //khoa
                 sysPatiAreaList = await _organizeApp.GetsysPatiAreaListAsync(OrganizeId),  //khu bệnh
                 sysWardDeptRelation = await _organizeApp.GetsysWardDeptRelationAsync(OrganizeId),  //khu bệnh

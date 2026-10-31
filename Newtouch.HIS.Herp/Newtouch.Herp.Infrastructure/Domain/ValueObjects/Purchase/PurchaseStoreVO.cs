@@ -88,7 +88,7 @@ namespace Newtouch.Herp.Domain.ValueObjects.Purchase
         public int? kykcsl { get; set; }
 
         /// <summary>
-        /// Số lượng đơn vị khoa phòng（Kèm đơn vị）
+        /// Số lượng đơn vị khoa phòng(Kèm đơn vị)
         /// </summary>
         public string slstr { get; set; }
 

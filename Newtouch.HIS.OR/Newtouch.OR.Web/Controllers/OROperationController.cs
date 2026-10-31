@@ -9,9 +9,9 @@ using System;
 namespace Newtouch.OR.ManageSystem.Web.Controllers
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-10-31 14:15
-    /// Mô tả：Bảng từ điển phẫu thuật
+    /// Tạo bởi:chl
+    /// Ngày:2019-10-31 14:15
+    /// Mô tả:Bảng từ điển phẫu thuật
     /// </summary>
     public class OROperationController : NewtouchHIS.Framework.Web.Controllers.OrgControllerBase
     {
@@ -66,7 +66,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

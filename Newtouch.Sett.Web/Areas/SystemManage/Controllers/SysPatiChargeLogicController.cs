@@ -81,7 +81,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// Khi sửa thông tin，mangchọntrongthực hiệnđốitượngmangđếnmớitrangmặt
+        /// Khi sửa thông tin,mangchọntrongthực hiệnđốitượngmangđếnmớitrangmặt
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -96,8 +96,8 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
         /// <summary>
         /// bệnhngườitínhchấtdướikéokhung 
-        /// bệnhngườithuphíThuật toánbệnhngườitínhchấtdướikéokhungđãkhônglạikhiếndùng，
-        /// nàyphươngphương pháptạithuphígiảmmiễnnơicũngkhiếndùngđến，nhưkết quảgiảmmiễnsửasửarồibệnhngườitínhchấtmở rộnghiệnphươngkiểu，khônglạikhiếndùngnàyphươngphương pháp，vui lòngghiđượcxóatrừ
+        /// bệnhngườithuphíThuật toánbệnhngườitínhchấtdướikéokhungđãkhônglạikhiếndùng,
+        /// nàyphươngphương pháptạithuphígiảmmiễnnơicũngkhiếndùngđến,nhưkết quảgiảmmiễnsửasửarồibệnhngườitínhchấtmở rộnghiệnphươngkiểu,khônglạikhiếndùngnàyphươngphương pháp,vui lòngghiđượcxóatrừ
         /// </summary>
         /// <returns></returns>
         [HttpGet]

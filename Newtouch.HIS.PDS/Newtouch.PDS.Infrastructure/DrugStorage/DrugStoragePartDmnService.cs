@@ -61,7 +61,7 @@ GROUP BY s.dlmc,s.ypmc,s.ypCode,s.ypgg,s.bmdw,s.zhyz,s.bzs,s.bzdw,s.zxdw,s.pzwh,
 		}
 
 		/// <summary>
-		/// Lấy thông tin thuốc và tồn kho của bộ phận hiện tại  （Nhập kho từ ngoài）
+		/// Lấy thông tin thuốc và tồn kho của bộ phận hiện tại  (Nhập kho từ ngoài)
 		/// </summary>
 		/// <param name="currentYfbmCode"></param>
 		/// <param name="keyWord"></param>
@@ -99,7 +99,7 @@ GROUP BY s.dlmc,s.ypmc,s.ypCode,s.ypgg,s.bmdw,s.zhyz,s.bzs,s.bzdw,s.zxdw,s.pzwh,
 		}
 
 		/// <summary>
-		/// Lấy thông tin thuốc và tồn kho của bộ phận hiện tại  （Xuất kho ra ngoài）
+		/// Lấy thông tin thuốc và tồn kho của bộ phận hiện tại  (Xuất kho ra ngoài)
 		/// </summary>
 		/// <param name="currentYfbmCode"></param>
 		/// <param name="keyWord"></param>

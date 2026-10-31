@@ -18,17 +18,17 @@ namespace Newtouch.Herp.Domain.DTO.InputDto
         public int zhyz { get; set; }
 
         /// <summary>
-        /// Giá bán lẻ tương ứng với hệ số chuyển đổi，thường là giá đơn vị khoa phòng
+        /// Giá bán lẻ tương ứng với hệ số chuyển đổi,thường là giá đơn vị khoa phòng
         /// </summary>
         public decimal lsj { get; set; }
 
         /// <summary>
-        /// Giá bán lẻ gốc tương ứng với hệ số chuyển đổi，thường là giá đơn vị khoa phòng
+        /// Giá bán lẻ gốc tương ứng với hệ số chuyển đổi,thường là giá đơn vị khoa phòng
         /// </summary>
         public decimal ylsj { get; set; }
 
         /// <summary>
-        /// Đơn vị với zhyz tương ứng，thường là đơn vị khoa phòng
+        /// Đơn vị với zhyz tương ứng,thường là đơn vị khoa phòng
         /// </summary>
         public string dwmc { get; set; }
 

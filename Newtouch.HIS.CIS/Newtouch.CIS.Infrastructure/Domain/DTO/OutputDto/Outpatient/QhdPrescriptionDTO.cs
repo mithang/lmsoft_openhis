@@ -174,7 +174,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string AKC223 { get; set; }
         /// <summary>
-        /// MụcLoại1:Thuốc 2：Hạng mục chẩn trị 3：phụcvụthiếtthi
+        /// MụcLoại1:Thuốc 2:Hạng mục chẩn trị 3:phụcvụthiếtthi
         /// </summary>
         public string AKC224 { get; set; }
         /// <summary>

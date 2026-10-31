@@ -4,7 +4,7 @@ using Newtouch.HIS.API.Common;
 namespace Newtouch.PDS.Requset
 {
     /// <summary>
-    /// Bằng thông tin quan trọng（Tên người dùng、Mật khẩu v.v.）Đổi lấy mã truy cập
+    /// Bằng thông tin quan trọng(Tên người dùng,Mật khẩu v.v.)Đổi lấy mã truy cập
     /// </summary>
     public class AuthGetTokenRequest : RequestBase
     {

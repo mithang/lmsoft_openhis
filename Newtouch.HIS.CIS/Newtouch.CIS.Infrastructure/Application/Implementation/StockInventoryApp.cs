@@ -55,7 +55,7 @@ namespace Newtouch.Application.Implementation
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         /// <param name="pdId">Kiểm kêphiếuID</param>
-        /// <param name="noPc">  0：theoLôKiểm kê 1：khôngtheoLôKiểm kê</param>
+        /// <param name="noPc">  0:theoLôKiểm kê 1:khôngtheoLôKiểm kê</param>
         public void SaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList, long pdId, string noPc = "0")
         {
             var pdInfo = _kcPdxxRepo.SelectPdInfByPdId(pdId, OperatorProvider.GetCurrent().OrganizeId);
@@ -75,7 +75,7 @@ namespace Newtouch.Application.Implementation
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         /// <param name="pdId"></param>
-        /// <param name="noPc">0：theoLôKiểm kê 1：khôngtheoLôKiểm kê</param>
+        /// <param name="noPc">0:theoLôKiểm kê 1:khôngtheoLôKiểm kê</param>
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
         private void SaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList, long pdId, string noPc, string warehouseId, string organizeId)

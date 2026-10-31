@@ -21,7 +21,7 @@ namespace Newtouch.EMR.Domain.DTO
         /// </summary>
         public string dutyName { get; set; }
         /// <summary>
-        /// Mã kiểm soát quyền（EnummbqxFp）
+        /// Mã kiểm soát quyền(EnummbqxFp)
         /// </summary>
         public int ctrlLevel { get; set; }
         /// <summary>

@@ -13,7 +13,7 @@ namespace Newtouch.Domain.ViewModels
         public int patid { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（cócụ thểthểnghiệp vụcủayviện）
+        /// Tổ chứcId(cócụ thểthểnghiệp vụcủayviện)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -263,7 +263,7 @@ namespace Newtouch.Domain.ViewModels
         public short? bxgs { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếthẻQuay lạicủaCờ ký tự，khôngBảo hiểm y tếthẻlàtrốngchữký
+        /// Bảo hiểm y tếthẻQuay lạicủaCờ ký tự,khôngBảo hiểm y tếthẻlàtrốngchữký
         /// </summary>
         public string zhbz { get; set; }
 
@@ -328,7 +328,7 @@ namespace Newtouch.Domain.ViewModels
         public string sbbh { get; set; }
 
         /// <summary>
-        /// tham sốbảođịaMã（181019Bảo hiểm y tếtham sốbảođịaMã）
+        /// tham sốbảođịaMã(181019Bảo hiểm y tếtham sốbảođịaMã)
         /// </summary>
         public string cbdbm { get; set; }
 
@@ -419,7 +419,7 @@ namespace Newtouch.Domain.ViewModels
         public string Memo { get; set; }
 
         /// <summary>
-        /// Trạng thái  1：Hiệu lực  0：Vô hiệu
+        /// Trạng thái  1:Hiệu lực  0:Vô hiệu
         /// </summary>
         public string zt { get; set; }
 

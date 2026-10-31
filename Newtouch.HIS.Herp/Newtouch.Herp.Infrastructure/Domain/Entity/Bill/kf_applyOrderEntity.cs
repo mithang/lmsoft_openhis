@@ -18,12 +18,12 @@ namespace Newtouch.Herp.Domain.Entity
         public long Id { get; set; }
 
         /// <summary>
-        /// Tổ chức Id（Bệnh viện có nghiệp vụ cụ thể）
+        /// Tổ chức Id(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Loại chứng từ 1-Khoa phòng lĩnh；2-Kho lĩnh
+        /// Loại chứng từ 1-Khoa phòng lĩnh;2-Kho lĩnh
         /// </summary>
         public int applyType { get; set; }
 
@@ -43,12 +43,12 @@ namespace Newtouch.Herp.Domain.Entity
         public string ckbm { get; set; }
 
         /// <summary>
-        /// 0:Chờ xử lý；1:Đã duyệt；2:Không duyệt；3:Phân phối；4:Hoàn thành một phần；5:Hoàn thành；6:Từ chối nhận
+        /// 0:Chờ xử lý;1:Đã duyệt;2:Không duyệt;3:Phân phối;4:Hoàn thành một phần;5:Hoàn thành;6:Từ chối nhận
         /// </summary>
         public int applyProcess { get; set; }
 
         /// <summary>
-        /// Trạng thái 0:Hủy bỏ；1.Hiệu lực
+        /// Trạng thái 0:Hủy bỏ;1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Sett.Request
         public string ryzdICD10 { get; set; }
 
         /// <summary>
-        /// Chẩn đoánThứ tự  1：Chẩn đoán1 2：Chẩn đoán2  3：Chẩn đoán3
+        /// Chẩn đoánThứ tự  1:Chẩn đoán1 2:Chẩn đoán2  3:Chẩn đoán3
         /// </summary>
         public string zdpx { get; set; }
     }

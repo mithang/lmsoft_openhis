@@ -18,7 +18,7 @@ namespace Newtouch.Infrastructure
         /// <param name="zll"></param>
         /// <param name="dwjls"></param>
         /// <param name="jjcl">EnumEnumSfxmJjcl</param>
-        /// <param name="throwExWhenZero">Khi kết quả Số lượng là0khi Có ném ngoại lệ không，Mặc định ném</param>
+        /// <param name="throwExWhenZero">Khi kết quả Số lượng là0khi Có ném ngoại lệ không,Mặc định ném</param>
         /// <returns></returns>
         public static int CalcSfxmSl(int? zll, int? dwjls, int? jjcl,
             bool throwExWhenZero = true)
@@ -47,7 +47,7 @@ namespace Newtouch.Infrastructure
         /// Xuất tới thư mục chỉ định
         /// </summary>
         /// <param name="path"></param>
-        /// <param name="filepaths">Ổ đĩa chỉ định Ví dụ："D:\\"</param>
+        /// <param name="filepaths">Ổ đĩa chỉ định Ví dụ:"D:\\"</param>
         /// <returns></returns>
         public static string GetLocalFilePath(string path,string filepaths)
         {
@@ -350,7 +350,7 @@ namespace Newtouch.Infrastructure
         }
 
         /////   <summary> 
-        /////   Lấy chữ cái đầu phiên âm của một chữ Hán，Nếu là chữ cái tiếng Anh thì trả về trực tiếp chữ hoa 
+        /////   Lấy chữ cái đầu phiên âm của một chữ Hán,Nếu là chữ cái tiếng Anh thì trả về trực tiếp chữ hoa 
         /////   </summary> 
         /////   <param   name="CnChar">Một chữ Hán</param> 
         /////   <returns>Một chữ hoa</returns> 
@@ -359,7 +359,7 @@ namespace Newtouch.Infrastructure
         //    long iCnChar;
         //    byte[] ZW = System.Text.Encoding.Default.GetBytes(CnChar);
 
-        //    //Nếu là chữ cái，thì trả về trực tiếp 
+        //    //Nếu là chữ cái,thì trả về trực tiếp 
         //    if (ZW.Length == 1)
         //    {
         //        return CnChar.ToUpper();

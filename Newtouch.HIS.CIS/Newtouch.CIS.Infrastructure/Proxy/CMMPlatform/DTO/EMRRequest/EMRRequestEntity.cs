@@ -7,17 +7,17 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.EMRRequest
     public class EMRRequestEntity
     {
         /// <summary>
-        /// tàinguồnTên：EMR_WRITE
+        /// tàinguồnTên:EMR_WRITE
         /// </summary>
         public string resource { get; set; }
 
         /// <summary>
-        /// Bác sĩSố hiệu：tứcBác sĩĐăng nhậpHệ thốngcủaNgười dùngtên
+        /// Bác sĩSố hiệu:tứcBác sĩĐăng nhậpHệ thốngcủaNgười dùngtên
         /// </summary>
         public string doctorId { get; set; }
 
         /// <summary>
-        /// Bệnh nhânSố hiệu：Bệnh nhânduy nhấtmộtnhận dạng
+        /// Bệnh nhânSố hiệu:Bệnh nhânduy nhấtmộtnhận dạng
         /// </summary>
         public string patientId { get; set; }
     }

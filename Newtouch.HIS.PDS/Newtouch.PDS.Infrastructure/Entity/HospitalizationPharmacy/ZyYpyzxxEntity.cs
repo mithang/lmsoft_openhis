@@ -27,12 +27,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Thực hiện y lệnhID，Do nhà thuốc kho thuốc tự tạo，Tạo mỗi lần gọi thực hiện y lệnh
+        /// Thực hiện y lệnhID,Do nhà thuốc kho thuốc tự tạo,Tạo mỗi lần gọi thực hiện y lệnh
         /// </summary>
         public string zxId { get; set; }
 
         /// <summary>
-        /// Y lệnhId，Y lệnh trạm làm việc phối hợp y tế tương ứngId
+        /// Y lệnhId,Y lệnh trạm làm việc phối hợp y tế tương ứngId
         /// </summary>
         public string yzId { get; set; }
 
@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string dl { get; set; }
 
         /// <summary>
-        /// Số lượng（Đơn vị bộ phận）
+        /// Số lượng(Đơn vị bộ phận)
         /// </summary>
         public decimal sl { get; set; }
 
@@ -72,12 +72,12 @@ namespace Newtouch.HIS.Domain.Entity
         public int zhyz { get; set; }
 
         /// <summary>
-        /// Uống、Truyền tĩnh mạch...
+        /// Uống,Truyền tĩnh mạch...
         /// </summary>
         public string zlff { get; set; }
 
         /// <summary>
-        /// Thời gian thực hiện：04,06,08...
+        /// Thời gian thực hiện:04,06,08...
         /// </summary>
         public string sjap { get; set; }
 
@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string fyyf { get; set; }
 
         /// <summary>
-        /// 1：Tạm thời；2：Dài hạn
+        /// 1:Tạm thời;2:Dài hạn
         /// </summary>
         public string yzxz { get; set; }
 
@@ -173,7 +173,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string cw { get; set; }
 
         /// <summary>
-        /// Cờ phát thuốc  0：Chưa phát；1：Đã xếp；2：Đã phát；3：Đã trả
+        /// Cờ phát thuốc  0:Chưa phát;1:Đã xếp;2:Đã phát;3:Đã trả
         /// </summary>
         public string fybz { get; set; }
 
@@ -225,8 +225,8 @@ namespace Newtouch.HIS.Domain.Entity
 
         /// <summary>
         /// Có chia lẻ không
-        /// 1： Có
-        /// 2： Không
+        /// 1: Có
+        /// 2: Không
         /// </summary>
         public int? sfcl { get; set; }
     }

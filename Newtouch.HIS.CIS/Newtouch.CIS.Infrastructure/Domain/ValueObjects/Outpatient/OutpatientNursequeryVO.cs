@@ -25,7 +25,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string xm { get; set; }
         /// <summary>
-        /// Bệnh nhânGiới tính 1:Nam 2：Nữ
+        /// Bệnh nhânGiới tính 1:Nam 2:Nữ
         /// </summary>
         public string sex { get; set; }
         /// <summary>

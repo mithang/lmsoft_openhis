@@ -23,7 +23,7 @@ namespace Newtouch.Domain.BusinessObjects
         public DateTime? cfzhdysj { get; set; }
 
         /// <summary>
-        /// Điều trịphiếuInThời gian（chỉPhục hồi chức năng）
+        /// Điều trịphiếuInThời gian(chỉPhục hồi chức năng)
         /// </summary>
         public DateTime? zldzhdysj { get; set; }
 

@@ -13,9 +13,9 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
         PurchaseHead GetHead();
         string PurchaseInterface(string responsexml, string OrganizeId, string param,string jydm, string jymc);
 
-        //Khai báo đơn hàng（YY009）
+        //Khai báo đơn hàng(YY009)
         string Purchase_YY009(string orgId, string cgId);
-        //Xác nhận khai báo đơn hàng（YY010）
+        //Xác nhận khai báo đơn hàng(YY010)
         string Purchase_YY010(string orgId, string cgId);
 
         //Truy vấn và lấy hóa đơn(YY004)
@@ -26,9 +26,9 @@ namespace Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage
         List<OutputStructYY003> Purchase_YY003(string orgId, string yqbm, string psmxbh);
         //Nghiệm thu chi tiết giao hàng
         string Purchase_YY018(PurchaseMainYY018 main, string orgId);
-        //Khai báo đơn trả hàng（YY011）
+        //Khai báo đơn trả hàng(YY011)
         string Purchase_YY011(string orgId, string cgId);
-        //Xác nhận khai báo đơn trả hàng（YY012）
+        //Xác nhận khai báo đơn trả hàng(YY012)
         string Purchase_YY012(string orgId, string cgId);
 
         //Truyền báo thông tin cơ bản điểm giao hàng bệnh viện(YY001)

@@ -195,7 +195,7 @@
         if (!!selRowId) {
            var Id= $("#gridword").jqGrid('getRowData', selRowId).Id;
             $("#gridword").jqGrid("delRowData", selRowId);
-            if (Id.indexOf("0.")=='-1') {//ghi lại，từCơ sở dữ liệuXóa
+            if (Id.indexOf("0.")=='-1') {//ghi lại,từCơ sở dữ liệuXóa
                 deldata.push(Id);
             }
         }
@@ -208,7 +208,7 @@
       //Lưu
     function Save() {
         if (ValidateWord()) {//kiểm traDữ liệu
-            //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+            //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
             var rowIds = $("#gridword").jqGrid('getDataIDs');
 
             for (var i = 0; i < rowIds.length; i++) {
@@ -216,7 +216,7 @@
 
                 if (!saveResult) {
                     EnableWordInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-                    return;   //Lưu thất bại，thìreturn
+                    return;   //Lưu thất bại,thìreturn
                 }
             }
             var gridwordData = $("#gridword").jqGrid('getRowData_AllLine', null, true);

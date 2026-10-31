@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysStaffRepo : IRepositoryBase<SysStaffEntity>
     {
         /// <summary>
-        /// Lấy tất cả nhân viên hệ thống thuộc tổ chức（Không bao gồm tổ chức con）
+        /// Lấy tất cả nhân viên hệ thống thuộc tổ chức(Không bao gồm tổ chức con)
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

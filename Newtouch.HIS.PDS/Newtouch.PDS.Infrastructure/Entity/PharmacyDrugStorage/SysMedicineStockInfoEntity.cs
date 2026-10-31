@@ -56,17 +56,17 @@ namespace Newtouch.HIS.Domain.Entity
         public string ypkw { get; set; }
 
         /// <summary>
-        /// 0：Không kiểm soát1：Kiểm soát
+        /// 0:Không kiểm soát1:Kiểm soát
         /// </summary>
         public short kzbz { get; set; }
 
         /// <summary>
-        /// Đã chuẩn bị thuốc chưa phát（nhận）Số lượng thuốc
+        /// Đã chuẩn bị thuốc chưa phát(nhận)Số lượng thuốc
         /// </summary>
         public int djsl { get; set; }
 
         /// <summary>
-        /// 0：Bật1：Ngừng dùng
+        /// 0:Bật1:Ngừng dùng
         /// </summary>
         public short tybz { get; set; }
 
@@ -99,7 +99,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string pc { get; set; }
 
         /// <summary>
-        /// Đã khóa chưa  0：Chưa khóa ；    1/null：Đã khóa
+        /// Đã khóa chưa  0:Chưa khóa ;    1/null:Đã khóa
         /// </summary>
         public string locked { get; set; }
 

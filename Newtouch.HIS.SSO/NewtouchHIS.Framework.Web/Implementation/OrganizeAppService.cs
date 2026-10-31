@@ -20,7 +20,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
     public interface IOrganizeAppService : ISingletonDependency
     {
         /// <summary>
-        /// danh sách tổ chức （TopOrganize）
+        /// danh sách tổ chức (TopOrganize)
         /// </summary>
         /// <param name="keyword"></param>
         /// <param name="userCacheKey"></param>

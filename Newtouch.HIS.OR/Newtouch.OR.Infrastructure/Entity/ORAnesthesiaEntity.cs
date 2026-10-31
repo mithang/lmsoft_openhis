@@ -6,9 +6,9 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.OR.ManageSystem.Domain.Entity
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-10-31 15:44
-    /// Mô tả：Bảng từ điển gây mê
+    /// Tạo bởi:chl
+    /// Ngày:2019-10-31 15:44
+    /// Mô tả:Bảng từ điển gây mê
     /// </summary>
     [SugarTable("OR_Anesthesia")]
     public class ORAnesthesiaEntity : IEntityBase
@@ -45,7 +45,7 @@ namespace Newtouch.OR.ManageSystem.Domain.Entity
         public string Aneszjm { get; set; }
 
         /// <summary>
-        /// Trạng thái     1:Có hiệu lực  0：Không hiệu lực
+        /// Trạng thái     1:Có hiệu lực  0:Không hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }

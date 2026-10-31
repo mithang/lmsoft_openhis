@@ -224,7 +224,7 @@
 
     //phiếunhấpsự kiện
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp，Xóa trắng chi tiết trước lạilạitảitất cảĐã chọndòngchi tiết
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp,Xóa trắng chi tiết trước lạilạitảitất cảĐã chọndòngchi tiết
         $.najax({
             type: "Get",
             url: "/PrepareMedicine/QueryPrepareMedicine",
@@ -317,7 +317,7 @@
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
         //if (rowData.thzt != "Lưu") {
-        //    $.modalAlert("Đã chọncủaphiếucứkhôngCóLưuTrạng thái，khôngcó thểGửi", 'warning');
+        //    $.modalAlert("Đã chọncủaphiếucứkhôngCóLưuTrạng thái,khôngcó thểGửi", 'warning');
         //    return;
         //}
         //var postData = rowData;

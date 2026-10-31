@@ -28,7 +28,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string ksmc { get; set; }
 
         /// <summary>
-        /// Ngoại trúLoại  1：thông thườngNgoại trú    2：Cấp cứu     3：chuyên giaNgoại trú
+        /// Ngoại trúLoại  1:thông thườngNgoại trú    2:Cấp cứu     3:chuyên giaNgoại trú
         /// </summary>
         public string mzlx { get; set; }
 

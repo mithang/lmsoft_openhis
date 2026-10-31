@@ -28,7 +28,7 @@ namespace Newtouch.Herp.Repository
         }
 
         /// <summary>
-        /// Kiểm tra có kiểm kê chưa hoàn thành không （Kết thúc）
+        /// Kiểm tra có kiểm kê chưa hoàn thành không (Kết thúc)
         /// </summary>
         /// <returns></returns>
         public int SelectUnfinishedInventoryByPdId(long pdId, string organizeId)

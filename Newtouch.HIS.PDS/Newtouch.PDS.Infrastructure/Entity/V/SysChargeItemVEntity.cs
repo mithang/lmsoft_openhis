@@ -132,7 +132,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// Thời lượng liên tục（Đơn vị：phần）
+        /// Thời lượng liên tục(Đơn vị:phần)
         /// </summary>
         public int? duration { get; set; }
 

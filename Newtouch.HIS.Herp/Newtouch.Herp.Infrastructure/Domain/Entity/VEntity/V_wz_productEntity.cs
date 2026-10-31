@@ -13,7 +13,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chức Id（Bệnh viện có nghiệp vụ cụ thể）
+        /// Tổ chức Id(Bệnh viện có nghiệp vụ cụ thể)
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -23,12 +23,12 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public string name { get; set; }
 
         /// <summary>
-        /// Loại、Nhóm lớn ID(Bắt buộc)
+        /// Loại,Nhóm lớn ID(Bắt buộc)
         /// </summary>
         public string typeId { get; set; }
 
         /// <summary>
-        /// Loại、Nhóm lớn(Bắt buộc)
+        /// Loại,Nhóm lớn(Bắt buộc)
         /// </summary>
         public string typeName { get; set; }
 
@@ -108,7 +108,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public string sfgt { get; set; }
 
         /// <summary>
-        /// Trạng thái  0:Hủy bỏ；1.Hiệu lực
+        /// Trạng thái  0:Hủy bỏ;1.Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

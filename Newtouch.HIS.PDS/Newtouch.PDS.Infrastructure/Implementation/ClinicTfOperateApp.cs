@@ -59,11 +59,11 @@ namespace Newtouch.HIS.Application.Implementation
             {
                 foreach (var item in _cfEntities)
                 {
-                    //Trước khi trả phí，Kiểm tra trước đã xếp thuốc chưa
+                    //Trước khi trả phí,Kiểm tra trước đã xếp thuốc chưa
                     if (IsPrescribeYp(item.cfh, item.OrganizeId))
                     {
                         List<MzCfmxEntity> Cfmx = mzCfmxRepo.GetCfmxByCfh(item.cfh);
-                        //Trường hợp đã xếp thuốc，Trả lại đóng băng trước
+                        //Trường hợp đã xếp thuốc,Trả lại đóng băng trước
                         Cfmx.ForEach(p =>
                         {
                             try

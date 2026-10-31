@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface ISysUserDmnService
     {
         /// <summary>
-        /// Gửi tạo mới、Cập nhật Người dùng hệ thống
+        /// Gửi tạo mới,Cập nhật Người dùng hệ thống
         /// </summary>
         /// <param name="userEntity"></param>
         /// <param name="userLogOnEntity"></param>
@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void SubmitForm(SysUserEntity userEntity, SysUserLogOnEntity userLogOnEntity, string keyValue);
 
         /// <summary>
-        /// Lấy hệ thống（Đăng nhập）Người dùng
+        /// Lấy hệ thống(Đăng nhập)Người dùng
         /// </summary>
         /// <param name="topOrganizeId"></param>
         /// <param name="pagination"></param>
@@ -29,7 +29,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<SysUserVO> GetPagintionList(Pagination pagination, string OrganizeId, string keyword = null);
 
         /// <summary>
-        /// Theo hệ thống（Đăng nhập）Người dùngId Lấy Nhân viên hệ thống
+        /// Theo hệ thống(Đăng nhập)Người dùngId Lấy Nhân viên hệ thống
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<SysStaffEntity> GetStaffListByUserId(string userId);
 
         /// <summary>
-        /// TheoOrganizeIdLấy Nhân viên hệ thốngVO（và có tương ứngSysUser）
+        /// TheoOrganizeIdLấy Nhân viên hệ thốngVO(và có tương ứngSysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

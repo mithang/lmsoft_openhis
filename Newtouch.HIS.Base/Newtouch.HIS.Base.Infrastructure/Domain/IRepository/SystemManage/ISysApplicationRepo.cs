@@ -10,7 +10,7 @@ namespace Newtouch.HIS.Domain.IRepository
     public interface ISysApplicationRepo : IRepositoryBase<SysApplicationEntity>
     {
         /// <summary>
-        /// Lấy danh sách（Bao gồm cả vô hiệu）
+        /// Lấy danh sách(Bao gồm cả vô hiệu)
         /// </summary>
         /// <returns></returns>
         IList<SysApplicationEntity> GetList();
@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Domain.IRepository
         IList<SysApplicationEntity> GetValidList();
 
         /// <summary>
-        /// Gửi tạo mới、Cập nhật Thực thể
+        /// Gửi tạo mới,Cập nhật Thực thể
         /// </summary>
         /// <returns></returns>
         void SubmitForm(SysApplicationEntity entity, string keyValue);

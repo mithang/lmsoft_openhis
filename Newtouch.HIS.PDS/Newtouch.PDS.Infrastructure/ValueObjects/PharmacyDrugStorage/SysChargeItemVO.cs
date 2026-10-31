@@ -64,32 +64,32 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string flCode { get; set; }
 
         /// <summary>
-        /// Xác định tỷ lệ tiền mặt tự trả，Không liên quan tính chất phần này（Tự trả theo loại、Tự lo）   Xem trườngzfxz      Chú ý：Khi tỷ lệ tự trả là số âm，Biểu thị tự trả định mức   (tỷ lệ：Một vật tư nào đó12300，Có thể báo10000,vậy tỷ lệ tự trả＝-2300)
+        /// Xác định tỷ lệ tiền mặt tự trả,Không liên quan tính chất phần này(Tự trả theo loại,Tự lo)   Xem trườngzfxz      Chú ý:Khi tỷ lệ tự trả là số âm,Biểu thị tự trả định mức   (tỷ lệ:Một vật tư nào đó12300,Có thể báo10000,vậy tỷ lệ tự trả=-2300)
         /// </summary>
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// Xác định phần tự trả（Phí×Tỷ lệ tự trả）tính chất của   0  Có thể báo 1 Tự lo 2 Tự trả theo loại 3 Tuyệt đối tự lo（Xử lý chuyên gia nghỉ hưu、Phí đăng ký đặc biệt）      （Phí×（1－Tỷ lệ tự trả） là phần có thể ghi sổ）
+        /// Xác định phần tự trả(Phí×Tỷ lệ tự trả)tính chất của   0  Có thể báo 1 Tự lo 2 Tự trả theo loại 3 Tuyệt đối tự lo(Xử lý chuyên gia nghỉ hưu,Phí đăng ký đặc biệt)      (Phí×(1-Tỷ lệ tự trả) là phần có thể ghi sổ)
         /// </summary>
         public string zfxz { get; set; }
 
         /// <summary>
-        /// 0：Chung，1：Ngoại trú，2：Nội trú
+        /// 0:Chung,1:Ngoại trú,2:Nội trú
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 0 Không cần thực hiện，（Nhập sổ trực tiếp nội trú）    1 Cần thực hiện，（Nội trú sau khi thực hiện mới được nhập sổ）   from xt_yjxmdz
+        /// 0 Không cần thực hiện,(Nhập sổ trực tiếp nội trú)    1 Cần thực hiện,(Nội trú sau khi thực hiện mới được nhập sổ)   from xt_yjxmdz
         /// </summary>
         public string ssbz { get; set; }
 
         /// <summary>
-        /// 0 Hạng mục thường 1 Hạng mục đặc biệt refer xt_sfxmtsbz   Hạng mục đặc biệt chỉ dùng cho tính chất bệnh nhân đặc biệt。 
+        /// 0 Hạng mục thường 1 Hạng mục đặc biệt refer xt_sfxmtsbz   Hạng mục đặc biệt chỉ dùng cho tính chất bệnh nhân đặc biệt. 
         /// </summary>
         public string tsbz { get; set; }
 
         /// <summary>
-        /// 0 Hạng mục không thu phí（tỷ lệ：Phí đăng ký..） 1 Hạng mục thu phí
+        /// 0 Hạng mục không thu phí(tỷ lệ:Phí đăng ký..) 1 Hạng mục thu phí
         /// </summary>
         public string sfbz { get; set; }
 
@@ -134,7 +134,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string zt { get; set; }
 
         /// <summary>
-        /// Thời lượng liên tục（Đơn vị：phần）
+        /// Thời lượng liên tục(Đơn vị:phần)
         /// </summary>
         public int? duration { get; set; }
 
@@ -174,7 +174,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
 
         public string sqlx { get; set; }
         /// <summary>
-        /// Cờ BHYT1：BHYT；0：Tự trả
+        /// Cờ BHYT1:BHYT;0:Tự trả
         /// </summary>
         public string ybbz { get; set; }
         /// <summary>

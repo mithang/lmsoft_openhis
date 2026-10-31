@@ -59,7 +59,7 @@ namespace Newtouch.Repository
         /// <summary>
         /// đổihơnTồn khoSố lượng
         /// </summary>
-        /// <param name="sl">Đơn vị nhỏ nhấtSố lượng +：thêmTồn kho  -：giảmTồn kho</param>
+        /// <param name="sl">Đơn vị nhỏ nhấtSố lượng +:thêmTồn kho  -:giảmTồn kho</param>
         /// <param name="pc"></param>
         /// <param name="ph"></param>
         /// <param name="ypCode"></param>

@@ -13,7 +13,7 @@ namespace NewtouchHIS.Framework.Web.ServiceModels
         public string? DB { get; set; }
         public string? UserId { get; set; }
         /// <summary>
-        /// （menu）hệ thống nghiệp vụAppId
+        /// (menu)hệ thống nghiệp vụAppId
         /// </summary>
         public string? MenuAppId { get; set; }
         /// <summary>

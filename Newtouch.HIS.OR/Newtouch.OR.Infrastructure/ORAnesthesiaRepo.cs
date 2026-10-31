@@ -10,9 +10,9 @@ using System.Linq;
 namespace Newtouch.OR.ManageSystem.Repository
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-10-31 15:44
-    /// Mô tả：Bảng từ điển gây mê
+    /// Tạo bởi:chl
+    /// Ngày:2019-10-31 15:44
+    /// Mô tả:Bảng từ điển gây mê
     /// </summary>
     public class ORAnesthesiaRepo : RepositoryBase<ORAnesthesiaEntity>, IORAnesthesiaRepo
     {
@@ -55,7 +55,7 @@ namespace Newtouch.OR.ManageSystem.Repository
         }
 
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

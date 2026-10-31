@@ -32,12 +32,12 @@ namespace Newtouch.Domain.ValueObjects
         public string ypjx { get; set; }
 
         /// <summary>
-        /// Sử dụngTrạng thái điều khiển、Bình thường
+        /// Sử dụngTrạng thái điều khiển,Bình thường
         /// </summary>
         public string syzt { get; set; }
 
         /// <summary>
-        /// ThuốcTrạng thái Vô hiệu、Kích hoạt
+        /// ThuốcTrạng thái Vô hiệu,Kích hoạt
         /// </summary>
         public string ypzt { get; set; }
 

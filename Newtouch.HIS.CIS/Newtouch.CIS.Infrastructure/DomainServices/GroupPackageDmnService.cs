@@ -74,7 +74,7 @@ WHERE ztxm.OrganizeId=@orgId
 
                     db.Update(ztobj);
 
-                    db.Delete<GroupPackageItemEntity>(a => a.ztId == ztobj.ztId); //trướctoànxóa，lạiThêm mới
+                    db.Delete<GroupPackageItemEntity>(a => a.ztId == ztobj.ztId); //trướctoànxóa,lạiThêm mới
                 }
                 else
                 {

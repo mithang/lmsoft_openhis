@@ -39,11 +39,11 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IOutpatientPrescriptionDetailBatchNumberRepo _mxphRepo;
 
         /// <summary>
-        /// bookHạng mục thất bại，Trả về cho bên yêu cầu
+        /// bookHạng mục thất bại,Trả về cho bên yêu cầu
         /// </summary>
         private readonly List<FailItemDetail> _failList;
         /// <summary>
-        /// bookHạng mục thành công， Khôi phục sau này
+        /// bookHạng mục thành công, Khôi phục sau này
         /// </summary>
         private readonly List<BookItemDo> _successList;
 
@@ -147,7 +147,7 @@ namespace Newtouch.HIS.Application.Implementation
         {
             try
             {
-                //Chèn mz_cf、mz_cfmx bảng
+                //Chèn mz_cf,mz_cfmx bảng
                 var mzcfxx = new List<MzCfEntity>();
                 var mzcfmx = new List<MzCfmxEntity>();
                 Parallel.For(0, 2, i => //Lắp ráp dữ liệu

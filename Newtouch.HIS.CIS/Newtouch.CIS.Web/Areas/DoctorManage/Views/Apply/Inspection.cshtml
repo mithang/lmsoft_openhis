@@ -274,7 +274,7 @@
 
     //LưuNútthao tác
     function SaveInspection(savetodb) {
-        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+        //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#alreadyJYAppliedList").jqGrid('getDataIDs');
         if (rowIds.length < 1) {
             $.modalAlert("Thiếu dữ liệu y lệnh", "warning");
@@ -284,7 +284,7 @@
             var saveResult = $("#alreadyJYAppliedList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
                 if (!saveResult) {
                     EnableInInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-                    return;   //Lưu thất bại，thìreturn
+                    return;   //Lưu thất bại,thìreturn
                 }
 
         }
@@ -374,7 +374,7 @@
         //    return;
         //}
         var gridjyData;
-        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+        //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#alreadyJYAppliedGroupList").jqGrid('getDataIDs');
         if (rowIds.length < 1) {
             $.modalAlert("Thiếu dữ liệu y lệnh", "warning");

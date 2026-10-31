@@ -1189,7 +1189,7 @@
         }
         if ((payingOrFailed === null || payingOrFailed === true) && needPay && payMoney > 0) {
             payMoney = ovpraseFloat(payMoney).toFixed(2);
-            var out_trade_no = (new Date()).getTime().toString();   //có vấn đề không？
+            var out_trade_no = (new Date()).getTime().toString();   //có vấn đề không?
             ToPay(out_trade_no, 'Thu phí ngoại trú', payMoney, djjesszffs);
             payingOrFailed = true;
         }

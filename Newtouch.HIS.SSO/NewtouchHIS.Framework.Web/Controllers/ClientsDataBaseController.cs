@@ -27,7 +27,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
 
 
         /// <summary>
-        /// từ điển phân loại chỉ những cái có hiệu lực，mục từ điển bao gồm những cái không hợp lệ（có thể dùng để hiển thị thànhselect）
+        /// từ điển phân loại chỉ những cái có hiệu lực,mục từ điển bao gồm những cái không hợp lệ(có thể dùng để hiển thị thànhselect)
         /// {Type:"OrganizeType",Items:[{Code:"001",Name:"tập đoàn",zt:"1"},{Code:"002",Name:"khu vực",zt:"1"}]}
         /// </summary>
         /// <returns></returns>
@@ -173,7 +173,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         //    {
         //        sysPatientNatureList = _organizeApp.GetsysatientNatureListAsync(orgId),//tính chất bệnh nhân,chính sách hoàn trả
         //        SysForCashPayList = _systemApp.GetSysForCashPayAsync(""),//lấy phương thức thanh toán tiền mặt
-        //        sysStaffDutyList = _organizeApp.GetsysStaffDutyListAsync(orgId) == null ? null : _organizeApp.GetsysStaffDutyListAsync(orgId).ToJson(new[] { "StaffGh", "StaffName", "StaffPY", "DutyCode" }),//huấn luyện viên sức khỏe，bác sĩ
+        //        sysStaffDutyList = _organizeApp.GetsysStaffDutyListAsync(orgId) == null ? null : _organizeApp.GetsysStaffDutyListAsync(orgId).ToJson(new[] { "StaffGh", "StaffName", "StaffPY", "DutyCode" }),//huấn luyện viên sức khỏe,bác sĩ
         //        sysDepartList = _organizeApp.GetsysDepartListAsync(orgId) == null ? null : _organizeApp.GetsysDepartListAsync(orgId).ToJson(new[] { "Name", "Code", "yjbz", "py", "zlks" }),    //khoa
         //        sysPatiAreaList = _organizeApp.GetsysPatiAreaListAsync(orgId) == null ? null : _organizeApp.GetsysPatiAreaListAsync(orgId).ToJson(new[] { "bqCode", "bqmc", "py" }),  //khu bệnh
         //        sysWardDeptRelation = _organizeApp.GetsysWardDeptRelationAsync(orgId) == null ? null : _organizeApp.GetsysWardDeptRelationAsync(orgId).ToJson(),  //khu bệnh
@@ -181,7 +181,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         //        sysNationList = _systemApp.GetsysNationListAsync("") == null ? null : _systemApp.GetsysNationListAsync("").ToJson(new string[] { "mzCode", "mzmc", "py" }),//dân tộc
         //        sysMajorClassList = _organizeApp.GetsysMajorClassListAsync(orgId) == null ? null : _organizeApp.GetsysMajorClassListAsync(orgId).ToJson(new string[] { "dlCode", "dlmc", "py" }),//nhóm lớn
         //        doctorInHosBookkeep = _organizeApp.GetStaffByDutyCodeAsync(orgId),
-        //        commercialInsuranceList = "",//bảo hiểm thương mại（tạm thời chưa có）
+        //        commercialInsuranceList = "",//bảo hiểm thương mại(tạm thời chưa có)
         //        yearArr = yearArr.ToArray(),
         //        monthArr = monthArr.ToArray(),
         //        SysFailedCodeMessageMapList = _organizeApp.GetSysFailedCodeMessageMapListAsync(orgId),
@@ -198,7 +198,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         //{
         //    var data = new
         //    {
-        //        sysPatientNatureList = _organizeApp.GetsysatientNatureListAsync(orgId),//tính chất bệnh nhân,chính sách hoàn trả                sysStaffDutyList = _organizeApp.GetsysStaffDutyListAsync(orgId) == null ? null : _organizeApp.GetsysStaffDutyListAsync(orgId).ToJson(new[] { "StaffGh", "StaffName", "StaffPY", "DutyCode" }),//huấn luyện viên sức khỏe，bác sĩ
+        //        sysPatientNatureList = _organizeApp.GetsysatientNatureListAsync(orgId),//tính chất bệnh nhân,chính sách hoàn trả                sysStaffDutyList = _organizeApp.GetsysStaffDutyListAsync(orgId) == null ? null : _organizeApp.GetsysStaffDutyListAsync(orgId).ToJson(new[] { "StaffGh", "StaffName", "StaffPY", "DutyCode" }),//huấn luyện viên sức khỏe,bác sĩ
         //        sysNationalityList = _systemApp.GetsysNationalityListAsync("") == null ? null : _systemApp.GetsysNationalityListAsync("").ToJson(new[] { "gjCode", "gjmc", "py" }),   //quốc tịch
         //        sysNationList = _systemApp.GetsysNationListAsync("") == null ? null : _systemApp.GetsysNationListAsync("").ToJson(new string[] { "mzCode", "mzmc", "py" }),//dân tộc
         //        doctorInHosBookkeep = _organizeApp.GetStaffByDutyCodeAsync(orgId),

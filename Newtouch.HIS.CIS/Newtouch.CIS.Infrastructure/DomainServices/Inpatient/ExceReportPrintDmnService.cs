@@ -49,11 +49,11 @@ from(select distinct zyh from zy_cqyz with(nolock)  where yzzt='2' and OrganizeI
             if (!string.IsNullOrWhiteSpace(zyzt))
             {
                 switch (zyzt) {
-                    case "zy"://Đang nằm viện：Không phải đã xuất viện，Không phải bản ghi đã hủy，Không phải hủy nhập viện
+                    case "zy"://Đang nằm viện:Không phải đã xuất viện,Không phải bản ghi đã hủy,Không phải hủy nhập viện
                         sql += " and b.zybz not in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Ycy + "," + (int)EnumZYBZ.Wry+","+(int)EnumZYBZ.Djz));
                         break;
-                    case "cy"://Xuất viện：Trạng thái đã xuất viện
+                    case "cy"://Xuất viện:Trạng thái đã xuất viện
                         sql += " and b.zybz in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Ycy + "," + (int)EnumZYBZ.Djz));
                         break;
@@ -311,15 +311,15 @@ where ciszyxx.OrganizeId=@orgId ";
             {
                 switch (zyzt)
                 {
-                    case "zy"://Đang nằm viện：Không phải đã xuất viện，Không phải bản ghi đã hủy，Không phải hủy nhập viện
+                    case "zy"://Đang nằm viện:Không phải đã xuất viện,Không phải bản ghi đã hủy,Không phải hủy nhập viện
                         sql += " and zyxx.zybz not in (SELECT * FROM dbo.f_split(@zybz, ','))";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Ycy + "," + (int)EnumZYBZ.Wry+","+ (int)EnumZYBZ.Djz));
                         break;
-                    case "cq"://ra khỏi khu：ra khỏi khuChưa quyết toán
+                    case "cq"://ra khỏi khu:ra khỏi khuChưa quyết toán
                         sql += " and zyxx.zybz = @zybz";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Djz));
                         break;
-                    case "cy"://Xuất viện：Trạng thái đã xuất viện
+                    case "cy"://Xuất viện:Trạng thái đã xuất viện
                         sql += " and zyxx.zybz = @zybz";
                         par.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Ycy));
                         break;

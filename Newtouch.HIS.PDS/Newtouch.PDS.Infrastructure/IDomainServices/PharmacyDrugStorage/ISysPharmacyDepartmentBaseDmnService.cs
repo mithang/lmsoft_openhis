@@ -45,14 +45,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void submitForm(SysPharmacyDepartmentVO entity, int? keyValue);
 
         /// <summary>
-        /// LấyUserIdđã liên kết hiện tạiyfbmCode （Không gồm tổ chức con）
+        /// LấyUserIdđã liên kết hiện tạiyfbmCode (Không gồm tổ chức con)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
         IList<string> GetCurPharmacyList(string userId, string orgId);
 
         /// <summary>
-        /// Lấy nhà thuốc thuộc tổ chức/Kho thuốc （Không gồm tổ chức con）
+        /// Lấy nhà thuốc thuộc tổ chức/Kho thuốc (Không gồm tổ chức con)
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

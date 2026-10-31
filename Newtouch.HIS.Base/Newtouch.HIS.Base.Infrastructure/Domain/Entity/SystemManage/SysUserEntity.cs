@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.HIS.Domain.Entity
 {
     /// <summary>
-    /// Hệ thống（Đăng nhập）Người dùng
+    /// Hệ thống(Đăng nhập)Người dùng
     /// </summary>
     [SugarTable("Sys_User")]
     public class SysUserEntity : EntityBase
@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（Cấp cao nhất，Cấu hình hệ thống）
+        /// Tổ chứcId(Cấp cao nhất,Cấu hình hệ thống)
         /// </summary>
         public string TopOrganizeId { get; set; }
 
@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string Account { get; set; }
 
         /// <summary>
-        /// Loại ngôn ngữ：enTiếng Anh
+        /// Loại ngôn ngữ:enTiếng Anh
         /// </summary>
         public string LanguageType { get; set; }
 

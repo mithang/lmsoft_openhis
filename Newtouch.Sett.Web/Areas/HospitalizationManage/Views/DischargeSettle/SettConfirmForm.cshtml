@@ -1162,7 +1162,7 @@
         }
         if ((payingOrFailed === null || payingOrFailed === true) && needPay && payMoney > 0) {
             payMoney = ovpraseFloat(payMoney).toFixed(2);
-            var out_trade_no = (new Date()).getTime().toString();   //Có vấn đề hay không？
+            var out_trade_no = (new Date()).getTime().toString();   //Có vấn đề hay không?
             ToPay(out_trade_no, 'quyết toán xuất viện', payMoney, djjesszffs);
             payingOrFailed = true;
         }

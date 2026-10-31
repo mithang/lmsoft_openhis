@@ -102,7 +102,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         }
 
         /// <summary>
-        /// mớithêmxếpcathời gian，nêunộpđếnsốdữ liệukho
+        /// mớithêmxếpcathời gian,nêunộpđếnsốdữ liệukho
         /// </summary>
         /// <param name="vo"></param>
         /// <param name="orgId"></param>
@@ -175,7 +175,7 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
             if (string.IsNullOrWhiteSpace(time) || string.IsNullOrWhiteSpace(type))
             {
                 return Content("");
-                //throw FailedException("loạiloạihoặcthời giangiữalàrỗng！");
+                //throw FailedException("loạiloạihoặcthời giangiữalàrỗng!");
             }
             time = (int.Parse(time) + 1).ToString();
             var data = _therapeutistCompleteDmnService.GetVisitDetailSC(pagination, OrganizeId, type, time);

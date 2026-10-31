@@ -183,8 +183,8 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
 
         /// <summary>
         /// Có chia lẻ không
-        /// 1： Có
-        /// 2： Không
+        /// 1: Có
+        /// 2: Không
         /// </summary>
         public int? sfcl { get; set; }
     }
@@ -196,7 +196,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
     {
 
         /// <summary>
-        /// Số lượng(Số lượng đơn vị bộ phận，zhyz*sl=Số lượng đơn vị nhỏ nhất)
+        /// Số lượng(Số lượng đơn vị bộ phận,zhyz*sl=Số lượng đơn vị nhỏ nhất)
         /// </summary>
         public int sl { get; set; }
 
@@ -252,7 +252,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
         public string ypmc { get; set; }
 
         /// <summary>
-        /// Số lượng(Số lượng đơn vị bộ phận，zhyz*sl=Số lượng đơn vị nhỏ nhất)
+        /// Số lượng(Số lượng đơn vị bộ phận,zhyz*sl=Số lượng đơn vị nhỏ nhất)
         /// </summary>
         public int sl { get; set; }
 
@@ -296,8 +296,8 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
 
         /// <summary>
         /// Có chia lẻ không
-        /// 1： Có
-        /// 2： Không
+        /// 1: Có
+        /// 2: Không
         /// </summary>
         public int? sfcl { get; set; }
     }

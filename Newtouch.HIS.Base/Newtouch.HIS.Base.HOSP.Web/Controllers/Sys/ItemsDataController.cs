@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             return Content(data.ToJson());
         }
 
-        //Lưu、Sửa
+        //Lưu,Sửa
         [HttpPost]
         [HandlerAjaxOnly]
         //[ValidateAntiForgeryToken]

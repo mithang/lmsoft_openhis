@@ -359,7 +359,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
        
 
         /// <summary>
-        /// Chỉ số hiệu quả（Chi phí lượt người）
+        /// Chỉ số hiệu quả(Chi phí lượt người)
         /// </summary>
         /// <returns></returns>
         public IActionResult PerformanceIndicatorFee()
@@ -422,7 +422,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 
 		#region bệnh nhân Thông tin khám bệnh（khám Số lần v.v.）
 		/// <summary>
-		/// bệnhngườithìkhámthông tintin（thìkhámlầnsố v.v.）
+		/// bệnhngườithìkhámthông tintin(thìkhámlầnsố v.v.)
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult OutpatientTreatmentInfo()
@@ -449,7 +449,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Lợi nhuận mã dịch vụ（Nhóm trị liệu sư）
+        /// Lợi nhuận mã dịch vụ(Nhóm trị liệu sư)
         /// </summary>
         /// <returns></returns>
         public IActionResult RevenueDetailesByTherapistReport()
@@ -471,7 +471,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
         /// <summary>
-        /// Đồng bộ lợi nhuận mã dịch vụ（Nhóm trị liệu sư）
+        /// Đồng bộ lợi nhuận mã dịch vụ(Nhóm trị liệu sư)
         /// </summary>
         /// <returns></returns>
         public IActionResult SyncRevenueDetailesByTherapistReport()
@@ -545,7 +545,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
             return View();
         }
         /// <summary>
-        /// thángđộkhaibáo cáokếttínhbảng（BHYT）
+        /// thángđộkhaibáo cáokếttínhbảng(BHYT)
         /// </summary>
         /// <returns></returns>
         public IActionResult SettMonthForYB()

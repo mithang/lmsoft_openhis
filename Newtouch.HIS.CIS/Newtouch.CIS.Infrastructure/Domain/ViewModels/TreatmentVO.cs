@@ -133,17 +133,17 @@ namespace Newtouch.Domain.ViewModels
         public string jzks { get; set; }
 
         /// <summary>
-        /// liên kếtbasekho  ngườiviênbảng（cuối cùngxemkhámBác sĩ）
+        /// liên kếtbasekho  ngườiviênbảng(cuối cùngxemkhámBác sĩ)
         /// </summary>
         public string jzys { get; set; }
 
         /// <summary>
-        /// （cuối cùng）xemkhámBác sĩTên
+        /// (cuối cùng)xemkhámBác sĩTên
         /// </summary>
         public string jzysmc { get; set; }
 
         /// <summary>
-        /// Liệt kê 1 chưaKhám bệnh 2 Khám bệnhtrong 3 đãKhám bệnh （dùngđếnkhôi phụclạiKết thúcKhám bệnhcủaghi chép）
+        /// Liệt kê 1 chưaKhám bệnh 2 Khám bệnhtrong 3 đãKhám bệnh (dùngđếnkhôi phụclạiKết thúcKhám bệnhcủaghi chép)
         /// </summary>
         public int jzzt { get; set; }
 
@@ -175,7 +175,7 @@ namespace Newtouch.Domain.ViewModels
         public string brxzCode { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếquyết toánsố（Bảo hiểm y tếQuay lại）
+        /// Bảo hiểm y tếquyết toánsố(Bảo hiểm y tếQuay lại)
         /// </summary>
         public string ybjsh { get; set; }
         /// <summary>

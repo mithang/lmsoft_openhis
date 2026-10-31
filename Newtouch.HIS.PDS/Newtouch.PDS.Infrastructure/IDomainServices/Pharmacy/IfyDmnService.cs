@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface IfyDmnService
     {
         /// <summary>
-        /// Qua thông tin đơn thuốc，Lấy chi tiết đơn thuốc
+        /// Qua thông tin đơn thuốc,Lấy chi tiết đơn thuốc
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>
@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         List<string> MzDistributingMedicines(List<GetfyDetailCFList> reqdata);
 
         /// <summary>
-        /// Trả thuốc ngoại trú（mz_cfmxphKiểm tra）
+        /// Trả thuốc ngoại trú(mz_cfmxphKiểm tra)
         /// </summary>
         /// <param name="reqdata"></param>
         /// <returns></returns>

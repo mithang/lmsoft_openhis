@@ -38,12 +38,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// In báo cáo ngoại trú Thuộc về chi phí（so với phí ăn uống‘Khác’）
+        /// In báo cáo ngoại trú Thuộc về chi phí(so với phí ăn uống‘Khác’)
         /// </summary>
         public string mzprintreportcode { get; set; }
 
         /// <summary>
-        /// Quyết toán ngoại trú Thuộc về chi phí（so với phí ăn uống‘Khác’）
+        /// Quyết toán ngoại trú Thuộc về chi phí(so với phí ăn uống‘Khác’)
         /// </summary>
         public string mzprintbillcode { get; set; }
 
@@ -93,7 +93,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string reportdlcode { get; set; }
 
         /// <summary>
-        /// Loại nhóm lớn，Enum tương ứng EnumSfdlDllb 1Thuốc 2Hạng mục điều trị 3Hạng mục không điều trị
+        /// Loại nhóm lớn,Enum tương ứng EnumSfdlDllb 1Thuốc 2Hạng mục điều trị 3Hạng mục không điều trị
         /// </summary>
         public int? dllb { get; set; }
 

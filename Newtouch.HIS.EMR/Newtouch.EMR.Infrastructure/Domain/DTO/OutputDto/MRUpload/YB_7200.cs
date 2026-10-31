@@ -46,7 +46,7 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         [Required]
         public string BKB410 { get; set; }
         /// <summary>
-        /// Định dạng ngày giờ ghi chép：yyyymmddhhmiss
+        /// Định dạng ngày giờ ghi chép:yyyymmddhhmiss
         /// 1
         /// </summary>
         [Required]

@@ -194,7 +194,7 @@
                 $("#zybz").text(ajaxresp.data.InpatientSettPatInfo.zybz == '0' ? 'Đăng ký nhập viện' : (ajaxresp.data.InpatientSettPatInfo.zybz == '1' ? 'Đang ở khoa bệnh' : 'Khác'));
                 $("#ryrq").text((ajaxresp.data.InpatientSettPatInfo.ryrq && ajaxresp.data.InpatientSettPatInfo.ryrq.length >= 10 ? ajaxresp.data.InpatientSettPatInfo.ryrq.substring(0, 10) : ""));
 
-                //Chi tiết tính phí, Phân trang；Tổng số tiềnTổng cộng
+                //Chi tiết tính phí, Phân trang;Tổng số tiềnTổng cộng
                 //GhépThuốcvàMục,Sắp xếp lại tập hợp
                 //var c = ajaxresp.data.InpatientSettleItemBO.TreatmentItemList.concat(ajaxresp.data.InpatientSettleItemBO.DrugList).sort(function (a, b) { return new Date(a.tdrq) - new Date(b.tdrq); });
                 var c = ajaxresp.data.InpatientSettleItemBO.TreatmentItemList.sort(function (a, b) { return new Date(a.tdrq) - new Date(b.tdrq); });

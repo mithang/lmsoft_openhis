@@ -7,8 +7,8 @@ namespace Newtouch.Domain.Entity
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày：2018-06-28 15:37
-    /// Mô tả：Nhập việntrảthuốcyêu cầukho
+    /// Ngày:2018-06-28 15:37
+    /// Mô tả:Nhập việntrảthuốcyêu cầukho
     /// </summary>
     [SugarTable("zy_tyjl")]
     public class InpatientMedicineReturnEntity
@@ -29,7 +29,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// trảthuốcthứ tựsố （dấughimột lầntrảthuốc）
+        /// trảthuốcthứ tựsố (dấughimột lầntrảthuốc)
         /// </summary>
         /// <returns></returns>
         public decimal tyxh { get; set; }
@@ -103,12 +103,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public decimal? ypdj { get; set; }
         /// <summary>
-        /// （0 Đăng kýtrảthuốc 1 trảthuốcthành công）
+        /// (0 Đăng kýtrảthuốc 1 trảthuốcthành công)
         /// </summary>
         /// <returns></returns>
         public int? tyqrbz { get; set; }
         /// <summary>
-        /// trảthuốcxác nhậnthứ tựsố thaythaygốc：tyqqxh
+        /// trảthuốcxác nhậnthứ tựsố thaythaygốc:tyqqxh
         /// </summary>
         /// <returns></returns>
         public decimal? tyqrxh { get; set; }

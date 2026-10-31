@@ -27,13 +27,13 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string BKC191 { get; set; }
 
         /// <summary>
-        /// Phân loại chẩn đoán1 Chẩn đoán nhập viện；2 Chẩn đoán ra viện
+        /// Phân loại chẩn đoán1 Chẩn đoán nhập viện;2 Chẩn đoán ra viện
         /// </summary>
         /// <returns></returns>
         public string BKF417 { get; set; }
 
         /// <summary>
-        /// Dấu hiệu chẩn đoán chính/phụ1 Chẩn đoán chính；2 Chẩn đoán khác；3 Chẩn đoán bệnh lý
+        /// Dấu hiệu chẩn đoán chính/phụ1 Chẩn đoán chính;2 Chẩn đoán khác;3 Chẩn đoán bệnh lý
         /// </summary>
         /// <returns></returns>
         public string BKF718 { get; set; }

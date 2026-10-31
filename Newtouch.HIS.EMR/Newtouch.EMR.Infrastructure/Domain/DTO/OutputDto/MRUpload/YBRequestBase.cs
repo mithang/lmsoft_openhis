@@ -35,11 +35,11 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         /// </summary>
         public string OPERNAME { get; set; }
         /// <summary>
-        /// Số chu kỳ nghiệp vụ khi nhân viên thao tác đăng nhập，trung tâm trả về cho his số chu kỳ nghiệp vụ
+        /// Số chu kỳ nghiệp vụ khi nhân viên thao tác đăng nhập,trung tâm trả về cho his số chu kỳ nghiệp vụ
         /// </summary>
         public string PERIODNO { get; set; }
         /// <summary>
-        /// Số thứ tự giao dịch của bên gửi do HIS điền vào，sử dụng mã cơ sở y tế chỉ định+Thời gian yyyymmddhh24miss+dãy số
+        /// Số thứ tự giao dịch của bên gửi do HIS điền vào,sử dụng mã cơ sở y tế chỉ định+Thời gian yyyymmddhh24miss+dãy số
         /// </summary>
         public string MSGID { get; set; }
         /// <summary>

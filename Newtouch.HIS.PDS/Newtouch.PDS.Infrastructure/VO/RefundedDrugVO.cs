@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.VO
         public string pc { get; set; }
 
         /// <summary>
-        /// Đơn giá（Đơn vị bộ phận）
+        /// Đơn giá(Đơn vị bộ phận)
         /// </summary>
         public decimal dj { get; set; }
 
@@ -58,12 +58,12 @@ namespace Newtouch.HIS.Domain.VO
         public string czh { get; set; }
 
         /// <summary>
-        /// Số lượng （Số lượng đơn vị bộ phận） Mặc định vớiktslGiống nhau
+        /// Số lượng (Số lượng đơn vị bộ phận) Mặc định vớiktslGiống nhau
         /// </summary>
         public int sl { get; set; }
 
         /// <summary>
-        /// Số lượng có thể trả （Số lượng đơn vị bộ phận） Mặc định vớislGiống nhau
+        /// Số lượng có thể trả (Số lượng đơn vị bộ phận) Mặc định vớislGiống nhau
         /// </summary>
         public int ktsl { get; set; }
 

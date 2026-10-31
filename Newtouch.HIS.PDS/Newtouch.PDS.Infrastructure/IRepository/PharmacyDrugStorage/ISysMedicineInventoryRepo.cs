@@ -10,13 +10,13 @@ namespace Newtouch.HIS.Domain.IRepository
     {
 
         /// <summary>
-        /// Kiểm tra có kiểm kê chưa hoàn thành không  （Bắt đầu）
+        /// Kiểm tra có kiểm kê chưa hoàn thành không  (Bắt đầu)
         /// </summary>
         /// <returns></returns>
         int SelectUnfinishedInventory();
 
         /// <summary>
-        /// Kiểm tra có kiểm kê chưa hoàn thành không  （Kết thúc）
+        /// Kiểm tra có kiểm kê chưa hoàn thành không  (Kết thúc)
         /// </summary>
         /// <returns></returns>
         int SelectUnfinishedInventoryByPdId(string pdId);

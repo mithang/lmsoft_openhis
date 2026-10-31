@@ -55,7 +55,7 @@ namespace Newtouch.EMR.Domain.IDomainServices
         IList<TemplateQxkzVO> Getqxkz(string staffId, string mbId,string bllx);
 
         /// <summary>
-        /// Lấy danh sách mẫu bệnh án（bao gồm loại lớn bệnh án）
+        /// Lấy danh sách mẫu bệnh án(bao gồm loại lớn bệnh án)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="OrganizeId"></param>

@@ -55,12 +55,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string bqCode { get; set; }
 
         /// <summary>
-        /// Trạng thái xử lý： 0-Chờ xử lý ；1-Đang xử lý ；2-Xử lý hoàn thành 
+        /// Trạng thái xử lý: 0-Chờ xử lý ;1-Đang xử lý ;2-Xử lý hoàn thành 
         /// </summary>
         public int ProcessState { get; set; }
 
         /// <summary>
-        /// Trạng thái：0-Không hiệu lực ；1-Hiệu lực
+        /// Trạng thái:0-Không hiệu lực ;1-Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

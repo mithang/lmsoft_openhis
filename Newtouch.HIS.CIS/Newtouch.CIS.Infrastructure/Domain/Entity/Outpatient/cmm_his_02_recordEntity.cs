@@ -61,17 +61,17 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Quay lạikếtnếuTrạng tháimã  1： thành công； 0：thất bại
+        /// Quay lạikếtnếuTrạng tháimã  1: thành công; 0:thất bại
         /// </summary>
         public string resultCode { get; set; }
 
         /// <summary>
-        /// Quay lạikếtnếuMô tả  thành công；thất bại(Bổ sungthất bạinguyên nhânMô tả)
+        /// Quay lạikếtnếuMô tả  thành công;thất bại(Bổ sungthất bạinguyên nhânMô tả)
         /// </summary>
         public string resultDesc { get; set; }
 
         /// <summary>
-        /// Trạng thái     1:Hiệu lực  0：Vô hiệu
+        /// Trạng thái     1:Hiệu lực  0:Vô hiệu
         /// </summary>
         public string zt { get; set; }
 

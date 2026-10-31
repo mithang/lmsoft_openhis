@@ -62,7 +62,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="warningDTO">Thực thể</param>
         /// <param name="keyValue">Idgiá trị</param>
@@ -127,7 +127,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(_ISysDispensingaConfigRepo.FindEntity(keyValue).ToJson());
         }
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="warningDTO">Thực thể</param>
         /// <param name="keyValue">Idgiá trị</param>
@@ -257,7 +257,7 @@ namespace Newtouch.HIS.Web.Controllers
             return Content(_ISysYpksfypzEntityRepo.FindEntity(keyValue).ToJson());
         }
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="warningDTO">Thực thể</param>
         /// <param name="keyValue">Idgiá trị</param>

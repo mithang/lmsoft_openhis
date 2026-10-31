@@ -118,7 +118,7 @@ namespace Newtouch.Domain.ValueObjects
         public string pcCode { get; set; }
 
         /// <summary>
-        /// ThuốctrongcủaSố lượng=Tổng lượng   Phục hồi chức năngtrongcủaTổng lượng（khônglàSố lượng）=Tổng lượng
+        /// ThuốctrongcủaSố lượng=Tổng lượng   Phục hồi chức năngtrongcủaTổng lượng(khônglàSố lượng)=Tổng lượng
         /// </summary>
         public int? zl { get; set; }
         
@@ -143,7 +143,7 @@ namespace Newtouch.Domain.ValueObjects
         public decimal je { get; set; }
 
         /// <summary>
-        /// Số nhóm（ThuốccủaSố nhóm）
+        /// Số nhóm(ThuốccủaSố nhóm)
         /// </summary>
         public string zh { get; set; }
 
@@ -168,7 +168,7 @@ namespace Newtouch.Domain.ValueObjects
         public string Remark { get; set; }
 
         /// <summary>
-        /// Khoa thực hiện（ThuốccủaKhoa dược、Xét nghiệmKiểm tracủaKhoa thực hiện）（Phục hồi chức năngĐơn thuốccủaKhoa thực hiện）
+        /// Khoa thực hiện(ThuốccủaKhoa dược,Xét nghiệmKiểm tracủaKhoa thực hiện)(Phục hồi chức năngĐơn thuốccủaKhoa thực hiện)
         /// </summary>
         public string zxks { get; set; }
 
@@ -275,7 +275,7 @@ namespace Newtouch.Domain.ValueObjects
         public string Remark2 { get; set; }
 
         /// <summary>
-        /// Khoa thực hiện（ThuốccủaKhoa dược、Xét nghiệmKiểm tracủaKhoa thực hiện）（Phục hồi chức năngĐơn thuốccủaKhoa thực hiện）
+        /// Khoa thực hiện(ThuốccủaKhoa dược,Xét nghiệmKiểm tracủaKhoa thực hiện)(Phục hồi chức năngĐơn thuốccủaKhoa thực hiện)
         /// </summary>
         public string zxks2 { get; set; }
 

@@ -65,8 +65,8 @@ namespace Newtouch.HIS.Domain.ValueObjects
 
         /// <summary>
         /// Có chia lẻ không
-        /// 1： Có
-        /// 2： Không
+        /// 1: Có
+        /// 2: Không
         /// </summary>
         public int? sfcl { get; set; }
 

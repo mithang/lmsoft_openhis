@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int TemplateID { get; set; }
 
         /// <summary>
-        /// Tổ chứcId（tương ứng với khoaOrganizeId）
+        /// Tổ chứcId(tương ứng với khoaOrganizeId)
         /// </summary>
         public string HospitalCode { get; set; }
         /// <summary>

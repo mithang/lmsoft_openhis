@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Repository
         /// <summary>
         /// Trả về thực thể nhà cung cấp theo từ khóa
         /// </summary>
-        /// <param name="keyword">Gysdm、Gysmc、Mcsx、</param>
+        /// <param name="keyword">Gysdm,Gysmc,Mcsx,</param>
         /// <returns></returns>
         public SysMedicineSupplierEntity SelectMedicineSupplier(string keyword)
         {

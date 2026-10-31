@@ -120,7 +120,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// LấyUserIdcái đã liên kết hiện tại cầnyfbmCode （Không bao gồm tổ chức con）
+        /// LấyUserIdcái đã liên kết hiện tại cầnyfbmCode (Không bao gồm tổ chức con)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -134,7 +134,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấy nhà thuốc thuộc tổ chức/Kho thuốc （Không bao gồm tổ chức con）
+        /// Lấy nhà thuốc thuộc tổ chức/Kho thuốc (Không bao gồm tổ chức con)
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

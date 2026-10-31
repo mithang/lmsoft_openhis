@@ -30,12 +30,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string ypCode { get; set; }
 
         /// <summary>
-        /// Số lượng trả thuốc（Đơn vị bộ phận）
+        /// Số lượng trả thuốc(Đơn vị bộ phận)
         /// </summary>
         public int tysl { get; set; }
 
         /// <summary>
-        /// Hệ số chuyển đổi（tysl*zhyz=Số lượng đơn vị nhỏ nhất）  Số chia lẻ nội trú mặc định
+        /// Hệ số chuyển đổi(tysl*zhyz=Số lượng đơn vị nhỏ nhất)  Số chia lẻ nội trú mặc định
         /// </summary>
         public int? zhyz { get; set; }
 
@@ -45,7 +45,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zh { get; set; }
 
         /// <summary>
-        /// Trạng thái：0-Không hiệu lực ；1-Hiệu lực
+        /// Trạng thái:0-Không hiệu lực ;1-Hiệu lực
         /// </summary>
         public string zt { get; set; }
 

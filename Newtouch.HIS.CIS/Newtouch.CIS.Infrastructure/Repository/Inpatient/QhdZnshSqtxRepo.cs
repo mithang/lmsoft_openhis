@@ -23,7 +23,7 @@ namespace Newtouch.Repository.Inpatient
 
         }
         /// <summary>
-        /// Lưu（Thêm mới、Sửa）
+        /// Lưu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">thựcthểđối tượng</param>
         /// <param name="keyValue">Khóa chínhGiá trị</param>

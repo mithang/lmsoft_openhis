@@ -83,7 +83,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public decimal xlsj { get; set; }
 
         /// <summary>
-        /// Hệ số chuyển đổi với ylsj、xlsj、dssl tương ứng
+        /// Hệ số chuyển đổi với ylsj,xlsj,dssl tương ứng
         /// </summary>
         public int zhyz { get; set; }
 

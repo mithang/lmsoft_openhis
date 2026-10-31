@@ -29,11 +29,11 @@ namespace Newtouch.HIS.DomainServices
     public class SysUserExDmnService : DmnServiceBase, ISysUserExDmnService
     {
         /// <summary>
-        /// Số lần đăng nhập quá nhiều，Tài khoản tự động khóa của Khoảng thời gian（Đơn vị：phần）
+        /// Số lần đăng nhập quá nhiều,Tài khoản tự động khóa của Khoảng thời gian(Đơn vị:phần)
         /// </summary>
         private static int _loginFailedTimesLimit_Minutes = 60;
         /// <summary>
-        /// Số lần đăng nhập quá nhiều，Tài khoản tự động khóa của Số lần tối đa
+        /// Số lần đăng nhập quá nhiều,Tài khoản tự động khóa của Số lần tối đa
         /// </summary>
         private static int _loginFailedTimesLimit_Count = 3;
 
@@ -51,7 +51,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Lấy nhà thuốc người dùng có thể thao tác（Kho thuốc）Danh sách
+        /// Lấy nhà thuốc người dùng có thể thao tác(Kho thuốc)Danh sách
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="userId"></param>
@@ -99,13 +99,13 @@ and A.zt = '1' and B.zt = '1' and C.zt = '1'";
                         throw new FailedException("Mật khẩu không đúng，Vui lòng nhập lại");
                     }
 
-                    //lấyMtrong vài phút mới nhấtN-1bản ghi（Lần này cũng đăng nhập thất bại）
+                    //lấyMtrong vài phút mới nhấtN-1bản ghi(Lần này cũng đăng nhập thất bại)
                     var loginLogList = this.FindList<bool?>(string.Format(@"select top {0} Result from sys_log where [Type] = 'Login' and Account = @account and TopOrganizeId = @topOrgId and CreateTime > @startTime order by CreateTime desc", _loginFailedTimesLimit_Count - 1)
 , new[] { new SugarParameter("@account", username), new SugarParameter("@startTime", DateTime.Now.AddMinutes(-_loginFailedTimesLimit_Minutes))
 , new SugarParameter("@topOrgId", Constants.TopOrganizeId)});
-                    if (loginLogList.Count == _loginFailedTimesLimit_Count - 1 && !loginLogList.Any(p => p.HasValue && p.Value))  //Nếu làN-1dòng，và không có bản ghi đăng nhập thành công
+                    if (loginLogList.Count == _loginFailedTimesLimit_Count - 1 && !loginLogList.Any(p => p.HasValue && p.Value))  //Nếu làN-1dòng,và không có bản ghi đăng nhập thành công
                     {
-                        //Đã tới Số lần lỗi tối đa，khóa nó
+                        //Đã tới Số lần lỗi tối đa,khóa nó
                         //Cập nhật trạng thái tới‘Khóa’
                         //Cập nhậtBASE.SYS_USERLOGON
                         this.ExecuteSqlCommand("update " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + "..Sys_UserLogOn set Locked = 1 where UserId = @userId and zt = '1'", new SugarParameter("@userId", userEntity.Id));
@@ -182,7 +182,7 @@ where a.UserId = @userId";
         }
 
         /// <summary>
-        /// TheoOrganizeIdLấy Nhân sự hệ thốngVO（và có tương ứngSysUser）
+        /// TheoOrganizeIdLấy Nhân sự hệ thốngVO(và có tương ứngSysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>
@@ -249,7 +249,7 @@ where OrganizeId = @orgId";
         }
 
         /// <summary>
-        /// Theo cấp chaOrgId（Cây đệ quy）Lấy Tất cả Chỉ định Chức vụ của StaffId
+        /// Theo cấp chaOrgId(Cây đệ quy)Lấy Tất cả Chỉ định Chức vụ của StaffId
         /// </summary>
         /// <param name="parentOrgId"></param>
         /// <param name="dutyCode"></param>
@@ -305,7 +305,7 @@ and cc.Code = @dutyCode";
             var secretkey = Md5.md5(Comm.CreateNo(), 16).ToLower();
             var password = Md5.md5(DESEncrypt.Encrypt(Md5.md5(userPassword, 32).ToLower(), secretkey).ToLower(), 32).ToLower();
 
-            //Ở đây không trực tiếp thao tác bảng thì không làm được nữa，Không thể qua khung nhìn
+            //Ở đây không trực tiếp thao tác bảng thì không làm được nữa,Không thể qua khung nhìn
             this.ExecuteSqlCommand("update " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + "..sys_userlogon set UserSecretkey = @secretkey, UserPassword = @password where UserId = @userId and zt = '1'", new[] {
                 new SugarParameter("@userId", userId)
                 ,new SugarParameter("@secretkey", secretkey)

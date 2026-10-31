@@ -28,7 +28,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void AuthAllOrganize(string appId, string curUserCode);
 
         /// <summary>
-        /// Hủy tất cả ủy quyền（Tổ chức）
+        /// Hủy tất cả ủy quyền(Tổ chức)
         /// </summary>
         /// <param name="appId"></param>
         void AuthCancelAllOrganize(string appId);

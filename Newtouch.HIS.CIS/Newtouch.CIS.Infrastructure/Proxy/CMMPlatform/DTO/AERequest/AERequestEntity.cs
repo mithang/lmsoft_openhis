@@ -7,7 +7,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.AERequest
     public class AERequestEntity
     {
         /// <summary>
-        /// tàinguồnTên：AE_EDIT
+        /// tàinguồnTên:AE_EDIT
         /// bắt buộc
         /// </summary>
         public string resource { get; set; }
@@ -19,7 +19,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.AERequest
         public string orgCode { get; set; }
 
         /// <summary>
-        /// Bác sĩMã nhân viên：tứcBác sĩĐăng nhậpHệ thốngcủaNgười dùngtên
+        /// Bác sĩMã nhân viên:tứcBác sĩĐăng nhậpHệ thốngcủaNgười dùngtên
         /// bắt buộc
         /// </summary>
         public string chisZggh { get; set; }
@@ -49,7 +49,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.AERequest
         public string sex { get; set; }
 
         /// <summary>
-        /// Bệnh nhânSố hiệu：Bệnh nhânduy nhấtmộtnhận dạng
+        /// Bệnh nhânSố hiệu:Bệnh nhânduy nhấtmộtnhận dạng
         /// bắt buộc
         /// </summary>
         public string patientid { get; set; }

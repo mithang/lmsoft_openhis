@@ -157,7 +157,7 @@ namespace Newtouch.HIS.Web.Controllers
         //    }
         //    else if (!_SysOrganizeDmnService.IsMedicalOrganize(entity.OrganizeId))
         //    {
-        //        throw new FailedException("Vui lòng chọn cơ sở y tế（Bệnh viện hoặc phòng khám）");
+        //        throw new FailedException("Vui lòng chọn cơ sở y tế(Bệnh viện hoặc phòng khám)");
         //    }
         //    _SysPharmacyDepartmentOpenMedicineRepo.submitForm(entity, keyValue);
         //    return Success("Thao tác thành công");

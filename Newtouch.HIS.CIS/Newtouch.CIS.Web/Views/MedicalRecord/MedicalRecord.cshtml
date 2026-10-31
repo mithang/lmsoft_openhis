@@ -14,15 +14,15 @@
     //hợplýdùngthuốcgiao diện
     var isOpenRationalUse = (ViewBag.isOpenRationalUse); //CóKhôngbậthợplýdùngthuốcPhê duyệtgiao diện
 
-    //Công tắc：Có mở khôngXét nghiệmKiểm tra
+    //Công tắc:Có mở khôngXét nghiệmKiểm tra
     var IsOpenJyJcSwitch = ViewBag.IsOpenJyJcSwitch as bool?;
-    //Công tắc：Ngoại trúCó mở khôngPhục hồi chức năngĐơn thuốc
+    //Công tắc:Ngoại trúCó mở khôngPhục hồi chức năngĐơn thuốc
     var isOpenKfcf = (ViewBag.ISOpenKfcf as bool?);
-    //Công tắc：Ngoại trúCó mở khôngHạng mục thông thườngĐơn thuốc
+    //Công tắc:Ngoại trúCó mở khôngHạng mục thông thườngĐơn thuốc
     var isOpenCgxmcf = (ViewBag.ISOpenCgxmcf as bool?);
-    //Công tắc：Ngoại trúCó mở khôngydùngVật tư tiêu haoĐơn thuốc
+    //Công tắc:Ngoại trúCó mở khôngydùngVật tư tiêu haoĐơn thuốc
     var iSOpenWzhc = (ViewBag.ISOpenWzhc as bool?);
-    //Công tắc：CóKhôngbậtnhắc trước
+    //Công tắc:CóKhôngbậtnhắc trước
     var iSReminderBeforehand = SysConfigReader.Bool("IS_ReminderBeforehand", false).Value;
 
     //LấyInĐơn thuốccấu hình
@@ -306,7 +306,7 @@
             </div>
             <div style="padding: 2px;padding-right:20px;">
                 <form id="form1">
-                    @*form1khôngcó thểlấyxóarớt，Sử dụnghỗ trợtừ điểnGán giá trịkhilợidùngidđếnđịnh ký tựbịGán giá trịcủatố*@
+                    @*form1khôngcó thểlấyxóarớt,Sử dụnghỗ trợtừ điểnGán giá trịkhilợidùngidđếnđịnh ký tựbịGán giá trịcủatố*@
                     <table id="table1" class="form supercompact" style="margin-left: 1.3%;">
                         <tr>
                             <th class="formTitle">Chiều cao:</th>
@@ -364,7 +364,7 @@
                                     </div>
                                 </div>
                             </td>
-                            @*<th class="formTitle">Huyết áp：</th>
+                            @*<th class="formTitle">Huyết áp:</th>
                                 <td class="formValue">
                                     <div class="row">
                                         <div class="col-md-8">
@@ -742,7 +742,7 @@
                             </tr>
                         }
                         @*<tr>
-            <th class="formTitle">điện tửĐơn thuốc：</th>
+            <th class="formTitle">điện tửĐơn thuốc:</th>
             <td class="formValue" colspan="4">
                 <div style="border: 1px solid #ddd; border-radius:4px;height:auto;" data-href="linkdzcf" class="activeValue">
                     <table class="form" style="width: 97%; margin: 5px 0px 5px 20px;">
@@ -1358,7 +1358,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                     //điểmnhấp“Đang khám bệnh”củatiếtđiểm
                                     //if(!!!window.currPatientInfo.jzId){
                                     if(window.currPatientInfo.jzId != item.id){
-                                        //chỉcómộtloạicó thểcó thể，treođãhaicáiKhoa，KhôngthìphảicầntrướcKết thúctrướcmột
+                                        //chỉcómộtloạicó thểcó thể,treođãhaicáiKhoa,KhôngthìphảicầntrướcKết thúctrướcmột
                                         //biểu thịvàođếncủaCómớicủaKhám bệnh
                                         //Khám bệnh mới, không cho phép hiển thị nội dung “Đang khám bệnh”; nội dung “Đã kết thúc” có thể lấy hiển thị.
                                         $.modalAlert("Không được xem nội dung lần khám trước", 'warning');
@@ -1368,7 +1368,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                     newtouch_globalevent_f4();
                                 }
                                 var reqSource = sessionStorage.getItem('reqSourcePage');
-                                //kiểm traCóKhôngCótừĐã khám bệnhdanh sáchnhấp đúpvàođến，vàvàcâytrongĐã chọncủaCóĐã kết thúccủaghi chép，nếuCó，chỉHiển thịHồ sơChi tiết，trừ“In”NútngoàiđềuVô hiệu hóa
+                                //kiểm traCóKhôngCótừĐã khám bệnhdanh sáchnhấp đúpvàođến,vàvàcâytrongĐã chọncủaCóĐã kết thúccủaghi chép,nếuCó,chỉHiển thịHồ sơChi tiết,trừ“In”NútngoàiđềuVô hiệu hóa
                                 if(reqSource == "fromTreatedPage" && (item.Ex1=='@Html.Raw(((int)@EnumJzzt.Treated).ToString())')){
                                     DisabledControls();
                                 }
@@ -1423,9 +1423,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     //    dataType: "json",
                     //    data: { mbId: item.id },
                     //    type: "POST",
-                    //    loadingtext :'mẫuĐang tải dữ liệu，Vui lòng đợi trong giây lát…',
+                    //    loadingtext :'mẫuĐang tải dữ liệu,Vui lòng đợi trong giây lát…',
                     //    success: function (ajaxresp) {
-                    //        $.modalConfirm("sẽthayđổiHồ sơChi tiếtcủanội dung，CóKhôngkếtiếp？", function (flag) {
+                    //        $.modalConfirm("sẽthayđổiHồ sơChi tiếtcủanội dung,CóKhôngkếtiếp?", function (flag) {
                     //            $('#form1 .minusToggleCircle').trigger('click');  //trướckhôi phục
                     //            if (flag) {
                     //                điền tất cả văn bản, đơn thuốc, đơn thuốc lịch sử, grid danh sách
@@ -1482,7 +1482,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             || (window.currPatientInfo.jzzt == ((int)@EnumJzzt.NotYetTreate).toString() && pageType=="yczl") //xatrìnhkhámtrịChờ khám bệnh
         )*@
         {
-            //Đang khám bệnh(hoặcCótừĐã khám bệnhdanh sáchnhấp đúpvàođến，vàvàĐã chọncủaCóĐã kết thúccủaghi chép)    trực tiếphiển thịhiệnđếnhiện tạivăn bảntrong
+            //Đang khám bệnh(hoặcCótừĐã khám bệnhdanh sáchnhấp đúpvàođến,vàvàĐã chọncủaCóĐã kết thúccủaghi chép)    trực tiếphiển thịhiệnđếnhiện tạivăn bảntrong
             //hoặcchọncủaCóHồ sơmẫu
             $('#form1').formSerialize(ajaxresp);
             if (ajaxresp.cfzbz == "1") {
@@ -2018,7 +2018,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             });
             return;
             // ban đầubản Lịch sửHồ sơtrongđiệnĐã kết thúcLịch sửHồ sơHiển thịhiện tạiHồ sơphía dướicung cấpsao chép- hiệnsửalàtrênphươngbậtcửa sổ
-            //Kết thúccủaKhám bệnhghi chép       thìHiển thịởLịch sửHồ sơtrong，có thểvàodòngsao chép
+            //Kết thúccủaKhám bệnhghi chép       thìHiển thịởLịch sửHồ sơtrong,có thểvàodòngsao chép
             //1.Hiển thịphía dướicủatiếtđiểmnội dung
             $('#form1').formSerialize(ajaxresp);
             $('#dispDiv').show();
@@ -2107,7 +2107,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     if (this.presDetailList) {
                         //nàyCómộtĐơn thuốc
                         var cflx = this.presEntity.cflx == @Html.Raw(((int)EnumCflx.RehabPres).ToString()) ? "kfcf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.RegularItemPres).ToString()) ? "cgxmcf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.WMPres).ToString()) ? "xycf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.TCMPres).ToString()) ? "zycf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.InspectionPres).ToString()) ? "jycf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.ExaminationPres).ToString()) ? "jccf" : this.presEntity.cflx == @Html.Raw(((int)EnumCflx.Dzcf).ToString()) ? "dzcf" : "0";
-                        var newCfh = GetNewPresNo();    //đâycóĐơn thuốc mớisố，saumặtthìcó thểlấytrực tiếpdùngđã
+                        var newCfh = GetNewPresNo();    //đâycóĐơn thuốc mớisố,saumặtthìcó thểlấytrực tiếpdùngđã
                         //var newCfh = this.cfh;
                         //cfmxList
                         if (cflx == "kfcf") {
@@ -2394,7 +2394,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                   zdObj.ysbz = $($('#nc_tablexyzd .nc_zdText')[i]).siblings('.chkValue').is(':checked')
                                   if (zdObj.zdmc && zdObj.zdmc) {    //làcủaCóxếptrừtrốngChẩn đoán
                                       if (i == 0) {
-                                          zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
+                                          zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1:chínhChẩn đoán 2phụChẩn đoán
                                       } else {
                                           zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Deputy).ToString());
                                       }
@@ -2447,7 +2447,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                   zdObj.zhCode = $($('#nc_tablezyzd .nc_zhText')[i]).attr('data-zhCode');
                                   if (zdObj.zdmc && zdObj.zdmc) {    //làcủaCóxếptrừtrốngChẩn đoán
                                       if (i == 0) {
-                                          zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
+                                          zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1:chínhChẩn đoán 2phụChẩn đoán
                                       } else {
                                           zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Deputy).ToString());
                                       }
@@ -2937,7 +2937,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             }
             if (!!zdObj.zdCode && !!zdObj.zdmc) {
                 if (i === 0) {
-                    zdObj.zdlx = @Html.Raw(((int) EnumZdlx.Main).ToString()); //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
+                    zdObj.zdlx = @Html.Raw(((int) EnumZdlx.Main).ToString()); //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1:chínhChẩn đoán 2phụChẩn đoán
                 } else {
                     zdObj.zdlx = @Html.Raw(((int) EnumZdlx.Deputy).ToString());
                 }
@@ -2967,7 +2967,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             }
             if (!!zdObj.zdCode && !!zdObj.zdmc) {
                 if (i === 0) {
-                    zdObj.zdlx = @Html.Raw(((int) EnumZdlx.Main).ToString()); //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
+                    zdObj.zdlx = @Html.Raw(((int) EnumZdlx.Main).ToString()); //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1:chínhChẩn đoán 2phụChẩn đoán
                 } else {
                     zdObj.zdlx = @Html.Raw(((int) EnumZdlx.Deputy).ToString());
                 }
@@ -3019,7 +3019,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             $.modalAlert(ret.msg, "warning");
             return;
 		}
-		//console.log("tất cảĐơn thuốcthông tin：", cfDtoArray);
+		//console.log("tất cảĐơn thuốcthông tin:", cfDtoArray);
 		//return false;
         //Lưu
         if (window.currPatientInfo.brxzCode !== "" && '@ViewBag.ControlbrxzCode'.indexOf(window.currPatientInfo.brxzCode) > -1) {
@@ -3296,7 +3296,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     function jz_sqtx(sqtxHead,patInfoObj)
     {
         try {
-            //VDnếuBệnh nhânlàchưaKhám bệnh，vàlàBảo hiểm y tếBệnh nhân,vàcấu hìnhlàđinhắc trước
+            //VDnếuBệnh nhânlàchưaKhám bệnh,vàlàBảo hiểm y tếBệnh nhân,vàcấu hìnhlàđinhắc trước
             if (!patInfoObj.jzId && patInfoObj.brxzCode != "0" && '@ViewBag.ControlbrxzCode'.indexOf(patInfoObj.brxzCode) > -1 && @(iSReminderBeforehand.ToString().ToLower()) == true && $("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.NotYetTreate)') {
                 $.najax({
                     url: "/MedicalRecord/GetPatJzJson",
@@ -3316,7 +3316,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         }
 
     }
-    //Đơn thuốcnhắc trước，cfDtoArraylàcầnnhắcnhắcDữ liệu；dqczlx：phiếudòngnhắcnhắckhi，1Lưu2Xóa；isbctx:CóKhônggọiLưucủanhắc trước
+    //Đơn thuốcnhắc trước,cfDtoArraylàcầnnhắcnhắcDữ liệu;dqczlx:phiếudòngnhắcnhắckhi,1Lưu2Xóa;isbctx:CóKhônggọiLưucủanhắc trước
     function cf_sqtx(sqtxHead,patInfoObj,cfDtoArray,dqczlx,isbctx)
     {
         try {
@@ -3356,7 +3356,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         }
 
     }
-    //điểmnhấpXóaNútkhi，gọinhắc trước
+    //điểmnhấpXóaNútkhi,gọinhắc trước
     function delSqtx(cflxmc,selRowId)
     {
         if (window.currPatientInfo.brxzCode!="" && '@ViewBag.ControlbrxzCode'.indexOf(window.currPatientInfo.brxzCode) > -1 && @(iSReminderBeforehand.ToString().ToLower()) == true){
@@ -3384,7 +3384,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     function zd_sqtx(sqtxHead,patInfoObj)
     {
         try {
-            //VDnếuBệnh nhânlàchưaKhám bệnh，vàlàBảo hiểm y tếBệnh nhân,vàcấu hìnhlàđinhắc trước
+            //VDnếuBệnh nhânlàchưaKhám bệnh,vàlàBảo hiểm y tếBệnh nhân,vàcấu hìnhlàđinhắc trước
             if (patInfoObj.brxzCode!="" && '@ViewBag.ControlbrxzCode'.indexOf(patInfoObj.brxzCode) > -1 && @(iSReminderBeforehand.ToString().ToLower()) == true) {
                 var jysj = $.getTime();
                 var ZD={ZS:$('#zs').val(),ZZMS:"",LCBX:"",YWGMS:"",JWS:$('#jws').val(),SG:"",TZ:$('#tizhong').val(),TW:$('#tiwen').val(),XL:$('#maibo').val(),HXPL:"",XX:"",SSY:$('#shousuoya').val(),SZY:$('#shuzhangya').val(),XTZ1:"",XTZ2:$('#xuetang').val(),SFHY:"",YQ:"",PR:""};
@@ -3415,7 +3415,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 });
                 //var Head = JSON.stringify(trHead);
                 var strJzInfo = JSON.stringify(ZD);
-                var strList = JSON.stringify(zdList); //VDnếucóChẩn đoán，thìgọiChẩn đoánnhắc trước
+                var strList = JSON.stringify(zdList); //VDnếucóChẩn đoán,thìgọiChẩn đoánnhắc trước
                 if (zdList.length>0) {
                     $.shiqian.MzlrZDInfo(sqtxHead,strJzInfo,strList);
                 }
@@ -3426,7 +3426,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         }
 
     }
-    //Hủy đơn thuốckhi，TheoCFIDvàodòngnhắc trước
+    //Hủy đơn thuốckhi,TheoCFIDvàodòngnhắc trước
     function zfcf_sqtx(delcfid)
     {
         try {
@@ -3499,7 +3499,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     zdObj.ysbz = $($('#tablexyzd .zdText')[i]).closest('input[type=checkbox]').is(':checked');
                     if (zdObj.zdmc && zdObj.zdmc) {    //làcủaCóxếptrừtrốngChẩn đoán
                         if (i == 1) {
-                            zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
+                            zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1:chínhChẩn đoán 2phụChẩn đoán
                         } else {
                             zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Deputy).ToString());
                         }
@@ -3517,7 +3517,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     zdObj.ysbz = $($('#tablezyzd .zdText')[i]).closest('input[type=checkbox]').is(':checked');
                     if (zdObj.zdmc && zdObj.zdmc) {    //làcủaCóxếptrừtrốngChẩn đoán
                         if (i == 1) {
-                            zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
+                            zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1:chínhChẩn đoán 2phụChẩn đoán
                         }
                         else {
                             zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Deputy).ToString());
@@ -3606,7 +3606,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         $('.vitalsignschange').trigger("change");
     });
 
-    //dấu hiệu sinh tồnđổihóakhi，trathểtrướchậu tốĐiện thoại
+    //dấu hiệu sinh tồnđổihóakhi,trathểtrướchậu tốĐiện thoại
     $('.vitalsignschange').change(function () {
         //$('#ct').val("");
         var xuetangclfs = "";//đường huyếtphương thức đo
@@ -3788,8 +3788,8 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         }
     }
 
-    var alldataArray = new Array();    //biến toàn cục，dùngđếntồn tạiđặttất cảĐơn thuốcDữ liệu
-    var historydataArray = new Array();  //biến toàn cục，dùngđếntồn tạiđặtĐơn thuốc lịch sửDữ liệu
+    var alldataArray = new Array();    //biến toàn cục,dùngđếntồn tạiđặttất cảĐơn thuốcDữ liệu
+    var historydataArray = new Array();  //biến toàn cục,dùngđếntồn tạiđặtĐơn thuốc lịch sửDữ liệu
     //nhậnthu'Đơn thuốc'Dữ liệu hiển thị   typeFlag  khuphútphía dướicây
     function triggleActive(typeFlag) {
         var newdataArray = new Array();
@@ -3824,11 +3824,11 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 			$newtableDzCfMx = $('#tableDzcfMx');
         }
         if (newdataArray && Object.keys(newdataArray)) {
-            //alldataArray :[kfcf:[{cfh：‘Đơn thuốc1’，xmmc：‘’},{cfh：‘Đơn thuốc2’，xmmc：‘’}，{cfh：‘Đơn thuốc1’，xmmc：‘’}]]
+            //alldataArray :[kfcf:[{cfh:‘Đơn thuốc1’,xmmc:‘’},{cfh:‘Đơn thuốc2’,xmmc:‘’},{cfh:‘Đơn thuốc1’,xmmc:‘’}]]
             //1.duyệttất cảDữ liệu
             $.each(Object.keys(newdataArray), function () {    //Object.keys(newdataArray):["kfcf"]
                 var itemsKey = String(this);      //String(Object.keys(newdataArray):["kfcf"]) : kfcf
-                //2.Theomỗicáitìmdẫntìmđếncủa nótương ứngcủaValue(valueCómộtsốnhóm，sốnhómtrongCónhiềucáiđối tượng)
+                //2.Theomỗicáitìmdẫntìmđếncủa nótương ứngcủaValue(valueCómộtsốnhóm,sốnhómtrongCónhiềucáiđối tượng)
                 var itemsMxArr = newdataArray[String(this)];    //itemsMxArr lấyrakeylàkfcfcủatất cảchi tiết
                 // 3.1.1tìmđếnkeyCóKhônglàPhục hồi chức năngĐơn thuốc
                 if (itemsKey == "kfcf") {
@@ -3840,7 +3840,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
+                        //3.3.1 nếutồn tạiở,thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
@@ -3868,7 +3868,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             }
                             let toJe = "";
                             if (JeArrays.length > 0) toJe = JeArrays.reduce((prev, items) => { return prev += parseFloat(items.je) }, 0).toFixed(2);
-                            //3.3.2 nếukhôngtồn tạiở，thìpush
+                            //3.3.2 nếukhôngtồn tạiở,thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                 ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -3881,7 +3881,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //duyệtĐơn thuốc，hiển thị
+                    //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
@@ -3936,7 +3936,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
+                        //3.3.1 nếutồn tạiở,thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
@@ -3959,7 +3959,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
                             let toJe = "";
                             if (JeArrays.length > 0) toJe = JeArrays.reduce((prev, items) => { return prev += parseFloat(items.je) }, 0).toFixed(2);
-                            //3.3.2 nếukhôngtồn tạiở，thìpush
+                            //3.3.2 nếukhôngtồn tạiở,thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                 ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -3972,7 +3972,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //duyệtĐơn thuốc，hiển thị
+                    //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
@@ -4022,7 +4022,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
+                        //3.3.1 nếutồn tạiở,thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
@@ -4045,7 +4045,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
                             let toJe = "";
                             if (JeArrays.length > 0) toJe = JeArrays.reduce((prev, items) => { return prev += parseFloat(items.je) }, 0).toFixed(2);
-                            //3.3.2 nếukhôngtồn tạiở，thìpush
+                            //3.3.2 nếukhôngtồn tạiở,thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                 ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -4058,7 +4058,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //duyệtĐơn thuốc，hiển thị
+                    //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcChi tiết" >Rp</a>';
@@ -4128,7 +4128,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             }
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
+                        //3.3.1 nếutồn tạiở,thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
@@ -4151,7 +4151,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
                             let toJe = "";
                             if (JeArrays.length > 0) toJe = JeArrays.reduce((prev, items) => { return prev += parseFloat(items.je) }, 0).toFixed(2);
-                            //3.3.2 nếukhôngtồn tạiở，thìpush
+                            //3.3.2 nếukhôngtồn tạiở,thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                   ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -4168,7 +4168,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //duyệtĐơn thuốc，hiển thị
+                    //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         var isysh = isyshycx(typeClassificationArr[i].cfh);
@@ -4247,7 +4247,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             }
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
+                        //3.3.1 nếutồn tạiở,thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
@@ -4269,7 +4269,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             }
                             let toJe = "";
                             if (JeArrays.length > 0) toJe = JeArrays.reduce((prev, items) => { return prev += parseFloat(roundingBy4she6ru5chengshuang(items.je, 2)) }, 0).toFixed(2);
-                            //3.3.2 nếukhôngtồn tạiở，thìpush
+                            //3.3.2 nếukhôngtồn tạiở,thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                    ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -4285,7 +4285,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //duyệtĐơn thuốc，hiển thị
+                    //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         var isysh = isyshycx(typeClassificationArr[i].cfh);
@@ -4338,7 +4338,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
+                        //3.3.1 nếutồn tạiở,thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
@@ -4361,7 +4361,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
                             let toJe = "";
                             if (JeArrays.length > 0) toJe = JeArrays.reduce((prev, items) => { return prev += items.je }, 0).toFixed(2);
-                            //3.3.2 nếukhôngtồn tạiở，thìpush
+                            //3.3.2 nếukhôngtồn tạiở,thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                          ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -4372,7 +4372,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //duyệtĐơn thuốc，hiển thị
+                    //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="PhiếuChi tiết" >Req</a>';
@@ -4416,7 +4416,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         var existPres = $.jsonWhere(typeClassificationArr, function (v) {
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
+                        //3.3.1 nếutồn tạiở,thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
@@ -4439,7 +4439,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
                             let toJe = "";
                             if (JeArrays.length > 0) toJe = JeArrays.reduce((prev, items) => { return prev += items.je }, 0).toFixed(2);
-                            //3.3.2 nếukhôngtồn tạiở，thìpush
+                            //3.3.2 nếukhôngtồn tạiở,thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                 ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -4450,7 +4450,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //duyệtĐơn thuốc，hiển thị
+                    //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="PhiếuChi tiết" >Req</a>';
@@ -4487,7 +4487,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 @*if (itemsKey == "dzcf") {
 					$newtableDzCfMx.html('');   //Xóa trắng trướchtml
 					var typeClassificationArr = new Array();
-					//console.log("điện tửĐơn thuốcDữ liệu：", itemsMxArr);
+					//console.log("điện tửĐơn thuốcDữ liệu:", itemsMxArr);
                     for (var i = 0; i < itemsMxArr.length; i++) {
                         var Iscontainwh = false;
                         var Iscontainzs = false;
@@ -4511,12 +4511,12 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             }
                             return v && v.cfh == cfh;
                         });
-                        //3.3.1 nếutồn tạiở，thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
+                        //3.3.1 nếutồn tạiở,thìpushSố đơn thuốcphía dướicủaĐơn thuốcchi tiết
                         if (existPres && existPres.length && existPres.length == 1) {
                             continue;
                         }
                         else {
-                            //3.3.2 nếukhôngtồn tạiở，thìpush
+                            //3.3.2 nếukhôngtồn tạiở,thìpush
                             typeClassificationArr.push({ cfId: itemsMxArr[i].cfId
                                   ,cfh: itemsMxArr[i].cfh
                                 ,klrq: itemsMxArr[i].klrq
@@ -4530,7 +4530,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             });
                         }
                     }
-                    //duyệtĐơn thuốc，hiển thị
+                    //duyệtĐơn thuốc,hiển thị
                     for (var i = 0; i < typeClassificationArr.length; i++) {
                         var lasttdContent = '';
                         lasttdContent += '&nbsp;&nbsp;<a class="btn btn-default btn-md iconPreviewSingleCf" title="Đơn thuốcchi tiết" >Rp</a>';
@@ -5006,7 +5006,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     var filteredData = data.data.filter(function(item) {
                         return item.Cfstate === "1" || item.Cfstate === "2";
                     });
-                    // VDnếucókýhợpdòngmụccủatố，gọi HlyyDrugInfo
+                    // VDnếucókýhợpdòngmụccủatố,gọi HlyyDrugInfo
                     if (filteredData.length > 0) {
                         HlyyDrugInfo(filteredData);  // truyềnLọcsaucủaDữ liệu
                         $('#drugInfoModal').modal('show');
@@ -5031,7 +5031,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         var filteredData = data.data.filter(function(item) {
                             return item.Cfstate === "1" || item.Cfstate === "2";
                         });
-                        // VDnếucókýhợpdòngmụccủatố，gọi HlyyDrugInfo
+                        // VDnếucókýhợpdòngmụccủatố,gọi HlyyDrugInfo
                         if (filteredData.length > 0) {
                             HlyyDrugInfo(filteredData);  // truyềnLọcsaucủaDữ liệu
                             $('#drugInfoModal').modal('show');
@@ -6386,7 +6386,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     //Con trỏchỗChènnội dung
     function insertAtCursor(id, text) {
         const contentEditableDiv = document.getElementById(id);
-        //LấybịĐã chọncủanội dung，từđiểmvàcuốiđiểmởcùng mộtVị trílàCon trỏ，khôngcùngVị trílàchọnkhu
+        //LấybịĐã chọncủanội dung,từđiểmvàcuốiđiểmởcùng mộtVị trílàCon trỏ,khôngcùngVị trílàchọnkhu
         const selection = window.getSelection();
         //const selection = HTMLInputElement.setSelectionRange();
         //bịĐã chọncủafocuscủatố
@@ -6401,7 +6401,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 
         if (anchorNode == contentEditableDiv || parentNode == contentEditableDiv || childNode[1] == contentEditableDiv || childNode[2] == contentEditableDiv) {
             range.insertNode(textNode);
-            range.collapse(true);//true:Con trỏ false：chọnkhu
+            range.collapse(true);//true:Con trỏ false:chọnkhu
         }
         var flag = false;
         if (anchorNode == contentEditableDiv || parentNode == contentEditableDiv) {
@@ -6643,11 +6643,11 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         //if (ywdata.ywlx == "yw") {
                         //    ywxsnr += "Răng vĩnh viễn, ";
                         //} else if (ywdata.ywlx == "ry") {
-                        //    ywxsnr += "răng sữa，";
+                        //    ywxsnr += "răng sữa,";
                         //} else if (ywdata.ywlx == "hhy") {
                         //    ywxsnr += "Răng hỗn hợp";
                         //} else if (ywdata.ywlx == "dsy") {
-                        //    ywxsnr += "nhiềusinhrăng，";
+                        //    ywxsnr += "nhiềusinhrăng,";
                         //}
 
                         if (ywdata.ywtstr != "") {
@@ -6714,7 +6714,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                     //        ywnum = id.substr(2, 1);
                                     //    }
                                     //}
-                                    //ywxsnr += id.substr(4, 1)+"、";
+                                    //ywxsnr += id.substr(4, 1)+",";
                                 }
                             }
                             if (ywdata.ywlx == "yw") {
@@ -6832,7 +6832,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 					//Tra cứuĐang khám bệnhcủaHồ sơ Xóa trắng trước
 					newtouch_globalevent_f4();
 					window.currPatientInfo = null;
-					window.mrflag = 0;    //nhậnlàCóthứmột lầntảiHồ sơtrang，nàydạngmỗi lầnChẩn đoán，đềusẽTheobệnh ngườicủajzIdtraraLịch sửHồ sơ
+					window.mrflag = 0;    //nhậnlàCóthứmột lầntảiHồ sơtrang,nàydạngmỗi lầnChẩn đoán,đềusẽTheobệnh ngườicủajzIdtraraLịch sửHồ sơ
 					window.currPatientInfo = nextrow;
 					//Hiển thịThông tin bệnh nhân
 					showPatientBasicInfo();
@@ -6877,7 +6877,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             dataType: "json",
             success: function (ajaxresp) {
                 window.currPatientInfo = null;
-                window.mrflag = 0;    //nhậnlàCóthứmột lầntảiHồ sơtrang，nàydạngmỗi lầnChẩn đoán，đềusẽTheobệnh ngườicủajzIdtraraLịch sửHồ sơ
+                window.mrflag = 0;    //nhậnlàCóthứmột lầntảiHồ sơtrang,nàydạngmỗi lầnChẩn đoán,đềusẽTheobệnh ngườicủajzIdtraraLịch sửHồ sơ
                 window.currPatientInfo = ajaxresp;
                 //Hiển thịThông tin bệnh nhân
                 showPatientBasicInfo();
@@ -7000,7 +7000,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 };
             }
 
-            // VDnếu InfoList cóDữ liệu，ThêmThuốcthông tin
+            // VDnếu InfoList cóDữ liệu,ThêmThuốcthông tin
             if (item.Message.Infos.InfoList && item.Message.Infos.InfoList.length > 0) {
                 groupedData[prescriptionId].prescriptions.push(...item.Message.Infos.InfoList);
             }
@@ -7017,10 +7017,10 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 formatter: function(cellValue, options, rowObject) {
                     // xácbảođiểmnhấpkhiđangxáctruyềnvào DrugId
                     if ('@(isOpenRationalUse)' === 'ON') {
-                        // tạomộtvượtchuỗinhận，điểmnhấpkhitruyềnvàoDrugId
+                        // tạomộtvượtchuỗinhận,điểmnhấpkhitruyềnvàoDrugId
                         return '<a href="javascript:void(0);" onclick="getYpsms(\'' + rowObject.DrugId + '\')">' + cellValue + '</a>';
                     }
-                    return cellValue; // VDnếuKhông cóbật rational use，trực tiếpHiển thịTên thuốc
+                    return cellValue; // VDnếuKhông cóbật rational use,trực tiếpHiển thịTên thuốc
                 }
             },
             { label: 'Đường dùng thuốc', name: 'AdminRoute', align: 'center', width: 100 },

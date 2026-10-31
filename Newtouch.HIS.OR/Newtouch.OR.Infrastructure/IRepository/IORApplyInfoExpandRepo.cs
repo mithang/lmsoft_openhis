@@ -10,7 +10,7 @@ namespace Newtouch.OR.ManageSystem.Domain.IRepository
 	public interface IORApplyInfoExpandRepo : IRepositoryBase<ORApplyInfoExpandEntity>
 	{
 		/// <summary>
-		/// Lưu biểu mẫu（Thêm mới、Sửa）
+		/// Lưu biểu mẫu(Thêm mới,Sửa)
 		/// </summary>
 		/// <param name="entity">Đối tượng thực thể</param>
 		/// <param name="keyValue">Giá trị khóa chính</param>

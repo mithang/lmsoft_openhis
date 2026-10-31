@@ -5,7 +5,7 @@ using Newtouch.HIS.Domain.Entity;
 namespace Newtouch.HIS.Domain.ValueObjects
 {
     /// <summary>
-    /// Chi tiết đơn thuốc（Có thể dùng khi xếp thuốc）
+    /// Chi tiết đơn thuốc(Có thể dùng khi xếp thuốc)
     /// </summary>
     [NotMapped]
     public class CfmxVo : MzCfmxEntity

@@ -37,7 +37,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.API
         /// </summary>
         public string ApplyDoctor { get; set; }
         /// <summary>
-        /// Loại đơn 1：Sửa bệnh án 0：Tạo mới bệnh án
+        /// Loại đơn 1:Sửa bệnh án 0:Tạo mới bệnh án
         /// </summary>
         public string ApplyType { get; set; }
         /// <summary>

@@ -6,7 +6,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 namespace Newtouch.Domain.Entity
 {
     /// <summary>
-    /// （Ngoại trú）Điều dưỡngnhập，Bác sĩsáchviếtHồ sơkhimangvào
+    /// (Ngoại trú)Điều dưỡngnhập,Bác sĩsáchviếtHồ sơkhimangvào
     /// </summary>
     [SugarTable("xt_brsmtz")]
     public class PatientVitalSignsEntity

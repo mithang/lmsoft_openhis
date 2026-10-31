@@ -126,7 +126,7 @@ namespace Newtouch.HIS.Repository
             }
         }
         /// <summary>
-        /// Bỏ đi，Sửa trạng thái đã chuyển sang chương trình BHYT
+        /// Bỏ đi,Sửa trạng thái đã chuyển sang chương trình BHYT
         /// </summary>
         /// <param name="uploadYB"></param>
         /// <param name="id"></param>

@@ -238,7 +238,7 @@
          $.modalConfirm("Xác nhận đề nghị trả thuốc đã chọn hiện tại?", function (flag) {
              if (flag) {
 
-                 //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+                 //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
                  var rowIds = $("#gridYztyList").jqGrid('getDataIDs');
                  for (var i = 0; i < rowIds.length; i++) {
                      $("#gridYztyList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);

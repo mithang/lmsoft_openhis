@@ -31,27 +31,27 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string bmdwmc { get; set; }
 
         /// <summary>
-        /// kỳban đầuSố lượng，mangĐơn vị
+        /// kỳban đầuSố lượng,mangĐơn vị
         /// </summary>
         public string qcsl { get; set; }
 
         /// <summary>
-        /// Nhập khoSố lượng，mangĐơn vị
+        /// Nhập khoSố lượng,mangĐơn vị
         /// </summary>
         public string rksl { get; set; }
 
         /// <summary>
-        /// Xuất khoSố lượng，mangĐơn vị
+        /// Xuất khoSố lượng,mangĐơn vị
         /// </summary>
         public string cksl { get; set; }
 
         /// <summary>
-        /// lãi lỗSố lượng，mangĐơn vị
+        /// lãi lỗSố lượng,mangĐơn vị
         /// </summary>
         public string sysl { get; set; }
 
         /// <summary>
-        /// cuối kỳSố lượng，mangĐơn vị
+        /// cuối kỳSố lượng,mangĐơn vị
         /// </summary>
         public string qmsl { get; set; }
 

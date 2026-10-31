@@ -101,7 +101,7 @@ namespace Newtouch.HIS.Application.Implementation
             }
             //if (_mx.Any(p => p.Sl <= 0))
             //{
-            //    throw new FailedException("Tồn tại bản ghi chi tiết có Số lượng bằng 0，Thao tác thất bại");
+            //    throw new FailedException("Tồn tại bản ghi chi tiết có Số lượng bằng 0,Thao tác thất bại");
             //}
             return new ActResult();
         }

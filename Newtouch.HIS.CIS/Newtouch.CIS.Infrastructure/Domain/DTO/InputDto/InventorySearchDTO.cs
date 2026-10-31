@@ -27,7 +27,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string keyWord { get; set; }
 
         /// <summary>
-        /// vật tưTrạng thái 0：Vô hiệu  1：Hiệu lực
+        /// vật tưTrạng thái 0:Vô hiệu  1:Hiệu lực
         /// </summary>
         public string wzzt { get; set; }
 

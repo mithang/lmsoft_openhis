@@ -5,9 +5,9 @@ using NewtouchHIS.Lib.Base.Model;
 namespace Newtouch.OR.ManageSystem.Domain.IRepository
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-11-06 10:22
-    /// Mô tả：Cấp vết mổ
+    /// Tạo bởi:chl
+    /// Ngày:2019-11-06 10:22
+    /// Mô tả:Cấp vết mổ
     /// </summary>
     public interface IORNotchGradeRepo : IRepositoryBase<ORNotchGradeEntity>
     {
@@ -19,7 +19,7 @@ namespace Newtouch.OR.ManageSystem.Domain.IRepository
         /// <returns></returns>
         IList<ORNotchGradeEntity> GetPagintionList(Pagination pagination, string keyword,string organizeId);
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

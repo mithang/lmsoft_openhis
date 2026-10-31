@@ -18,7 +18,7 @@ namespace Newtouch.HIS.DomainServices
         /// <summary>
         /// Lấy phương thức xuất nhập kho
         /// </summary>
-        /// <param name="crkbz">Cờ xuất nhập kho 0：Nhập kho  1：Xuất kho</param>
+        /// <param name="crkbz">Cờ xuất nhập kho 0:Nhập kho  1:Xuất kho</param>
         /// <returns></returns>
         public List<SysMedicineCrkfsVEntity> GetList(string crkbz)
         {

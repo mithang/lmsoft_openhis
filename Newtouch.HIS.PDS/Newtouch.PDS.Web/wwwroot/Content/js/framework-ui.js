@@ -379,7 +379,7 @@ $.fn.bindSelect = function (options) {
         }
         else {
             if (options.pleaseselect !== true && options.handlenoresult === true) {
-                //Xử lýnoresult，lạiun pleaseselect
+                //Xử lýnoresult,lạiun pleaseselect
                 $element.append($("<option value=''>No results found</option>"));
             }
         }
@@ -484,10 +484,10 @@ $.addNum = function (num1, num2) {
     m = Math.pow(10, Math.max(sq1, sq2)); return (num1 * m + num2 * m) / m;
 }
 /**
- ** Hàm trừ，Dùng để có kết quả trừ chính xác
- ** Giải thích：javascriptkết quả trừ sẽ có sai Số，Khi hai Số thực trừ nhau sẽ rõ ràng hơn。Hàm này trả về kết quả trừ khá chính xác。
- ** Gọi：accSub(arg1,arg2)
- ** Giá trị trả về：arg1trừ điarg2kết quả chính xác của
+ ** Hàm trừ,Dùng để có kết quả trừ chính xác
+ ** Giải thích:javascriptkết quả trừ sẽ có sai Số,Khi hai Số thực trừ nhau sẽ rõ ràng hơn.Hàm này trả về kết quả trừ khá chính xác.
+ ** Gọi:accSub(arg1,arg2)
+ ** Giá trị trả về:arg1trừ điarg2kết quả chính xác của
  **/
 $.accSub = function (arg1, arg2) {
     if (!!!arg2) {
@@ -639,7 +639,7 @@ $(function () { $('select[data-ItemType]').each(function () { $(this).itemDetail
         return obj;
     }
 };
-//$('any').val() Trả vềundefined ，nvalTrả về chuỗi rỗng
+//$('any').val() Trả vềundefined ,nvalTrả về chuỗi rỗng
 $.fn.nval = function () {
     var val = $(this).val();
     if (!!val || !isNaN(val)) {

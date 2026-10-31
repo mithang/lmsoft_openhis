@@ -16,7 +16,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// Lấy danh sách phòng（Phân trang）
+        /// Lấy danh sách phòng(Phân trang)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="organizeId"></param>

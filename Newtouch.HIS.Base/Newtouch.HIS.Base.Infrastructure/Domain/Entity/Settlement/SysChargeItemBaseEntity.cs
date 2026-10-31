@@ -68,32 +68,32 @@ namespace Newtouch.HIS.Domain.Entity
         public string flCode { get; set; }
 
         /// <summary>
-        /// Xác định tỷ lệ tiền mặt tự chi trả，Không liên quan tính chất của phần này（Tự trả theo loại、Tự chi trả）   xem trườngzfxz      Chú ý：Khi tỷ lệ tự chi trả là số âm，thể hiện tự chi trả định mức   (VD：Một vật tư nào đó12300，Được thanh toán10000,thì tỷ lệ tự chi trả＝-2300)
+        /// Xác định tỷ lệ tiền mặt tự chi trả,Không liên quan tính chất của phần này(Tự trả theo loại,Tự chi trả)   xem trườngzfxz      Chú ý:Khi tỷ lệ tự chi trả là số âm,thể hiện tự chi trả định mức   (VD:Một vật tư nào đó12300,Được thanh toán10000,thì tỷ lệ tự chi trả=-2300)
         /// </summary>
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// Xác định phần tự chi trả（Chi phí×Tỷ lệ tự trả）tính chất của   0  Được thanh toán 1 Tự chi trả 2 Tự trả theo loại 3 Tự túc hoàn toàn（Xử lý chuyên gia nghỉ hưu、Phí đăng ký khám đặc biệt）      （Chi phí×（1－Tỷ lệ tự trả） Cho phần có thể ghi sổ）
+        /// Xác định phần tự chi trả(Chi phí×Tỷ lệ tự trả)tính chất của   0  Được thanh toán 1 Tự chi trả 2 Tự trả theo loại 3 Tự túc hoàn toàn(Xử lý chuyên gia nghỉ hưu,Phí đăng ký khám đặc biệt)      (Chi phí×(1-Tỷ lệ tự trả) Cho phần có thể ghi sổ)
         /// </summary>
         public string zfxz { get; set; }
 
         /// <summary>
-        /// 0：Chung，1：Ngoại trú，2：Nội trú
+        /// 0:Chung,1:Ngoại trú,2:Nội trú
         /// </summary>
         public string mzzybz { get; set; }
 
         /// <summary>
-        /// 0 Không cần thực hiện，（Nội trú ghi sổ trực tiếp）    1 Cần thực hiện，（Nội trú sau khi thực hiện mới được ghi sổ）   from xt_yjxmdz
+        /// 0 Không cần thực hiện,(Nội trú ghi sổ trực tiếp)    1 Cần thực hiện,(Nội trú sau khi thực hiện mới được ghi sổ)   from xt_yjxmdz
         /// </summary>
         public string ssbz { get; set; }
 
         /// <summary>
-        /// 0 Hạng mục thông thường 1 Hạng mục đặc biệt refer xt_sfxmtsbz   Giải thích hạng mục đặc biệt chỉ nhóm bệnh nhân có tính chất nhất định mới được dùng。 
+        /// 0 Hạng mục thông thường 1 Hạng mục đặc biệt refer xt_sfxmtsbz   Giải thích hạng mục đặc biệt chỉ nhóm bệnh nhân có tính chất nhất định mới được dùng. 
         /// </summary>
         public string tsbz { get; set; }
 
         /// <summary>
-        /// 0 Hạng mục không thu phí（VD：Phí đăng ký khám..） 1 Hạng mục thu phí
+        /// 0 Hạng mục không thu phí(VD:Phí đăng ký khám..) 1 Hạng mục thu phí
         /// </summary>
         public string sfbz { get; set; }
 
@@ -138,7 +138,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// Thời lượng duy trì（Đơn vị：phút）
+        /// Thời lượng duy trì(Đơn vị:phút)
         /// </summary>
         public int? duration { get; set; }
 
@@ -178,7 +178,7 @@ namespace Newtouch.HIS.Domain.Entity
 
         public string sqlx { get; set; }
         /// <summary>
-        /// Cờ BHYT1：BHYT；0：Tự trả
+        /// Cờ BHYT1:BHYT;0:Tự trả
         /// </summary>
         public string ybbz { get; set; }
         /// <summary>

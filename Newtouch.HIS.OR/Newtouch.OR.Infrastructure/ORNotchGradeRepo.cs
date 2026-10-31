@@ -9,9 +9,9 @@ using System.Linq;
 namespace Newtouch.OR.ManageSystem.Repository
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-11-06 10:22
-    /// Mô tả：Cấp vết mổ
+    /// Tạo bởi:chl
+    /// Ngày:2019-11-06 10:22
+    /// Mô tả:Cấp vết mổ
     /// </summary>
     public class ORNotchGradeRepo : RepositoryBase<ORNotchGradeEntity>, IORNotchGradeRepo
     {
@@ -53,7 +53,7 @@ namespace Newtouch.OR.ManageSystem.Repository
         }
 
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

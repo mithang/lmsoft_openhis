@@ -69,7 +69,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
 		/// <returns></returns>
 		public string R_ZKKB { get; set; }
 		/// <summary>
-		/// Mã：Mã khoa
+		/// Mã:Mã khoa
 		/// </summary>
 		/// <returns></returns>
 		public string R_CYKB { get; set; }
@@ -85,7 +85,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
 		/// <returns></returns>
 		public string R_BLZDDM { get; set; }
 		/// <summary>
-		/// Mã：Mã nguồn bệnh nhân
+		/// Mã:Mã nguồn bệnh nhân
 		/// </summary>
 		/// <returns></returns>
 		public string R_BRLY { get; set; }
@@ -101,7 +101,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
 		public string R_XX { get; set; }
 
 		/// <summary>
-		/// Mã：Rh
+		/// Mã:Rh
 		/// </summary>
 		/// <returns></returns>
 		public string R_RH { get; set; }
@@ -112,7 +112,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
 		public string R_KZR { get; set; }
 
 		/// <summary>
-		/// Chủ nhiệm（Phó chủ nhiệm）Bác sĩ
+		/// Chủ nhiệm(Phó chủ nhiệm)Bác sĩ
 		/// </summary>
 		/// <returns></returns>
 		public string R_ZRYS { get; set; }
@@ -158,7 +158,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
 		public string R_BMY { get; set; }
 
 		/// <summary>
-		/// Mã：Chất lượng hồ sơ bệnh án
+		/// Mã:Chất lượng hồ sơ bệnh án
 		/// </summary>
 		/// <returns></returns>
 		public string R_BAZL { get; set; }

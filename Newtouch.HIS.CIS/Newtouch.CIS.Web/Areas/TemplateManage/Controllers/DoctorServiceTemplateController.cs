@@ -153,7 +153,7 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
             switch (mbObj.tcfw) {
                 case (int)EnumCfMbLx.personal:
                     mbObj.ysgh = UserIdentity.rygh;
-                    break; //Cá nhânkhi，Bác sĩGán giá trị
+                    break; //Cá nhânkhi,Bác sĩGán giá trị
                 case (int)EnumCfMbLx.department:
                     mbObj.DeptCode = UserIdentity.DepartmentCode;
                     break; //Khoakhi

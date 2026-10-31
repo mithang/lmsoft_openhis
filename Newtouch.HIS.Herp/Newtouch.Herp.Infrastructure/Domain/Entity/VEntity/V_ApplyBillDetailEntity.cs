@@ -81,7 +81,7 @@ namespace Newtouch.Herp.Domain.Entity
         public int bmdwsysl { get; set; }
 
         /// <summary>
-        /// Số lượng phát hiện tại，Mặc định bằng số lượng còn lại của đơn vị khoa phòng
+        /// Số lượng phát hiện tại,Mặc định bằng số lượng còn lại của đơn vị khoa phòng
         /// </summary>
         public int xfsl { get; set; }
 

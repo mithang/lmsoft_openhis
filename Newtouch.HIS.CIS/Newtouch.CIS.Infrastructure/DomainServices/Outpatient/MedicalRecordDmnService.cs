@@ -108,7 +108,7 @@ AND jz.zt='1' AND bl.zt='1'");
             return list;
         }
         /// <summary>
-        /// Chi tiếtcâytiếtđiểmnội dung （TheojzIdTra cứuHồ sơvàĐơn thuốcnội dung）
+        /// Chi tiếtcâytiếtđiểmnội dung (TheojzIdTra cứuHồ sơvàĐơn thuốcnội dung)
         /// </summary>
         /// <param name="jzId"></param>
         /// <returns></returns>
@@ -193,7 +193,7 @@ SELECT cf.cfId, cfmx.xmCode, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfm
         isnull(cfmx.mczll,1)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,1)*isnull(sfxm.dj,0) je,   --theo mới nhấtdwjlsvàdj，Tính ra tổng số
         ";
                 }
-                if (item.cflx == (int)EnumCflx.InspectionPres || item.cflx == (int)EnumCflx.ExaminationPres)   //Xét nghiệm、Kiểm traĐơn thuốc
+                if (item.cflx == (int)EnumCflx.InspectionPres || item.cflx == (int)EnumCflx.ExaminationPres)   //Xét nghiệm,Kiểm traĐơn thuốc
                 {
                     sql = @"
 SELECT cf.cfId, cfmx.xmCode, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw,
@@ -518,7 +518,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
             return contentDto;
         }
         /// <summary>
-        /// LưuKhám bệnhghi chép、Chẩn đoán、Hồ sơ、Đơn thuốc、Đơn thuốcchi tiết
+        /// LưuKhám bệnhghi chép,Chẩn đoán,Hồ sơ,Đơn thuốc,Đơn thuốcchi tiết
         /// </summary>
         /// <param name="jzObject"></param>
         /// <param name="xyzdList"></param>
@@ -553,7 +553,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                         jzObject.mjzbz = 1;
                     }
 
-                    //2.Khám bệnh、Hồ sơbảng，trướcXóacũDữ liệulạiThêm mới
+                    //2.Khám bệnh,Hồ sơbảng,trướcXóacũDữ liệulạiThêm mới
                     if (!string.IsNullOrWhiteSpace(jzObject.jzId))
                     {
                         const string sql1 = @"SELECT TOP 1 * FROM dbo.xt_jz(NOLOCK) WHERE jzId=@jzId ";
@@ -841,7 +841,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                     if (dbPresEnitty.sfbz)
                                     {
                                         cf.sfbz = true;
-                                        //throw new FailedException("Thao tácNgoại lệ，Đã thu phíĐơn thuốckhôngcho phépđổihơn");
+                                        //throw new FailedException("Thao tácNgoại lệ,Đã thu phíĐơn thuốckhôngcho phépđổihơn");
                                     }
                                 }
                                 if (!cf.sfbz)
@@ -861,7 +861,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                         cfklrq = dbPresEnitty.CreateTime;
                                         cfCreator = dbPresEnitty.CreatorCode;
                                         sqdh = dbPresEnitty.sqdh;
-                                        //bảngtrongđãtồn tạiởĐơn thuốc，trướcXóa chi tiếtvàXóachínhghi chép，lạiThêm mới
+                                        //bảngtrongđãtồn tạiởĐơn thuốc,trướcXóa chi tiếtvàXóachínhghi chép,lạiThêm mới
                                         // Chi tiết lặp lại khiến bảng chính của đơn thuốc bị Delete nhiều lần, tạm thời tránh, chờ tối ưu hóa
                                         if (lastEty == null || lastEty.cfId != dbPresEnitty.cfId)
                                         {
@@ -990,7 +990,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                     #region gửiĐơn thuốcđếnpds
 
                                     var t = "";
-                                    if (cf.isdzcf != "1")//nếunếuđiđiện tửĐơn thuốc，khônggửiĐơn thuốcđếnNhà thuốc
+                                    if (cf.isdzcf != "1")//nếunếuđiđiện tửĐơn thuốc,khônggửiĐơn thuốcđếnNhà thuốc
                                     {
                                         if (needOutpatientBook)
                                         {
@@ -1119,12 +1119,12 @@ WHERE cfmx.zt='1' AND cf.zt='1'
         }
 
         /// <summary>
-        /// gửiMột lầnKhám bệnhcủatất cảĐơn thuốc（nhưngkhôngđẩyĐã thu phícủa）、hoặcchỉđịnhĐơn thuốc
+        /// gửiMột lầnKhám bệnhcủatất cảĐơn thuốc(nhưngkhôngđẩyĐã thu phícủa),hoặcchỉđịnhĐơn thuốc
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="orgId"></param>
         /// <param name="opr">Thao tácviên</param>
-        /// <param name="cfId">chỉđịnhkhigửiphiếumộtĐơn thuốc，KhôngthìgửiMột lầnKhám bệnhcủatất cảĐơn thuốc（nhưngkhôngđẩyĐã thu phícủa）</param>
+        /// <param name="cfId">chỉđịnhkhigửiphiếumộtĐơn thuốc,KhôngthìgửiMột lầnKhám bệnhcủatất cảĐơn thuốc(nhưngkhôngđẩyĐã thu phícủa)</param>
         public bool sendPresToHis(string mzh, string orgId, string opr, string cfId = null)
         {
             var pushResult = true;
@@ -1657,7 +1657,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
         }
 
         /// <summary>
-        /// Hủy đơn thuốc（vàđẩychoHIS）
+        /// Hủy đơn thuốc(vàđẩychoHIS)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -2431,7 +2431,7 @@ WHERE   b.mzh = @mzh
                     string retKey = doc.SelectSingleNode(@"/BGESBEnvelope/BGESBResult/LIS_system/StatusCode").InnerText;
                     if (retKey == "0000") //Gửi đơn thành công
                     {
-                        ////2.2pháttừxatrìnhy tếvàođộTra cứuhủytin（ESBRMTQ002）
+                        ////2.2pháttừxatrìnhy tếvàođộTra cứuhủytin(ESBRMTQ002)
                         //sBusinessReqCGQ = @"<BusinessRequest>
                         //  <Parameters>
                         //    <Card_id>{0}</Card_id>
@@ -3221,7 +3221,7 @@ WHERE zt = '1' and organizeId = @orgId and sfxmCode = @sfxmCode";
             return list;
         }
 
-        //Thuốc、Hạng mục chẩn trị、Vật tư tiêu haothông tinTra cứu
+        //Thuốc,Hạng mục chẩn trị,Vật tư tiêu haothông tinTra cứu
         //
         public IList<MedicineInfoVO2> GetMedicineInfoList(Pagination pagination, string xmbm, string xmmc, string ck_kc, string orgId)
         {

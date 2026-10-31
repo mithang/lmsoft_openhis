@@ -114,7 +114,7 @@ namespace Newtouch.Domain.ValueObjects
         public string Remark { get; set; }
 
         /// <summary>
-        /// Khoa thực hiện（ThuốccủalĩnhthuốcKhoa phòng yfbmCode）
+        /// Khoa thực hiện(ThuốccủalĩnhthuốcKhoa phòng yfbmCode)
         /// </summary>
         public string zxks { get; set; }
         /// <summary>
@@ -192,7 +192,7 @@ namespace Newtouch.Domain.ValueObjects
         public string Remark2 { get; set; }
 
         /// <summary>
-        /// Khoa thực hiện（ThuốccủalĩnhthuốcKhoa phòng yfbmCode）
+        /// Khoa thực hiện(ThuốccủalĩnhthuốcKhoa phòng yfbmCode)
         /// </summary>
         public string zxks2 { get; set; }
     }

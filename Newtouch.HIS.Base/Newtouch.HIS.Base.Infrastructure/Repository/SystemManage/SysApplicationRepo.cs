@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Lấy danh sách（Bao gồm cả vô hiệu）
+        /// Lấy danh sách(Bao gồm cả vô hiệu)
         /// </summary>
         /// <returns></returns>
         public IList<SysApplicationEntity> GetList()
@@ -37,7 +37,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Gửi tạo mới、Cập nhật Thực thể
+        /// Gửi tạo mới,Cập nhật Thực thể
         /// </summary>
         /// <returns></returns>
         public void SubmitForm(SysApplicationEntity entity, string keyValue)

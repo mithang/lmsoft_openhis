@@ -25,12 +25,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string ypCode { get; set; }
 
         /// <summary>
-        /// --0 Không cần duyệt 1 Cần duyệt   －－Giai đoạn 1 tạm thời chưa làm 2006.06.21
+        /// --0 Không cần duyệt 1 Cần duyệt   --Giai đoạn 1 tạm thời chưa làm 2006.06.21
         /// </summary>
         public string shbz { get; set; }
 
         /// <summary>
-        /// 0 Hạng mục thường 1 Hạng mục đặc biệt refer xt_yptsbz   Thuốc đặc biệt chỉ dùng cho tính chất bệnh nhân đặc biệt。
+        /// 0 Hạng mục thường 1 Hạng mục đặc biệt refer xt_yptsbz   Thuốc đặc biệt chỉ dùng cho tính chất bệnh nhân đặc biệt.
         /// </summary>
         public string tsbz { get; set; }
 
@@ -130,7 +130,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public string ypflCode { get; set; }
 
         /// <summary>
-        /// 0：Thu phí làm tròn mỗi bữa1：Thu phí làm tròn mỗi lần
+        /// 0:Thu phí làm tròn mỗi bữa1:Thu phí làm tròn mỗi lần
         /// </summary>
         public string jzlx { get; set; }
 
@@ -145,7 +145,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public DateTime? zjtzsj { get; set; }
 
         /// <summary>
-        /// xg：Sửa,xz：Thêm mới,ty：Ngừng dùng,qy：Bật,tj：Điều chỉnh giá
+        /// xg:Sửa,xz:Thêm mới,ty:Ngừng dùng,qy:Bật,tj:Điều chỉnh giá
         /// </summary>
         public string xglx { get; set; }
 

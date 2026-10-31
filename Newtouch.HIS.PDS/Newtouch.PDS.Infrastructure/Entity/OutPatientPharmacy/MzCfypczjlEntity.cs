@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.Entity
         public long mzcfmxId { get; set; }
 
         /// <summary>
-        /// Loại thao tác 1：Phát thuốc 2：Trả thuốc
+        /// Loại thao tác 1:Phát thuốc 2:Trả thuốc
         /// </summary>
         public string operateType { get; set; }
 

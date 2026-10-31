@@ -96,7 +96,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 
         /// <summary>
-        /// Truy vấn đơn lĩnh（Bộ phận nhà thuốc gửi đi）
+        /// Truy vấn đơn lĩnh(Bộ phận nhà thuốc gửi đi)
         /// </summary>
         /// <returns></returns>
         public IActionResult RequisitionSearchIndex()

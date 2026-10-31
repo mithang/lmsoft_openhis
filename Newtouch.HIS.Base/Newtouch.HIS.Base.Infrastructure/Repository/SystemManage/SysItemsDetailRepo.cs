@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Repository
         /// <summary>
         /// Lấy Tổ chức đơn nhất Mục từ điểnList
         /// </summary>
-        /// <param name="orgId">Cơ sở y tếId，không truyền thì dùng chung theo chênh lệch</param>
+        /// <param name="orgId">Cơ sở y tếId,không truyền thì dùng chung theo chênh lệch</param>
         /// <param name="itemId"></param>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -70,7 +70,7 @@ order by CreateTime desc";
         }
 
         /// <summary>
-        /// Cập nhật、Lưu mục từ điển
+        /// Cập nhật,Lưu mục từ điển
         /// </summary>
         /// <param name="itemsDetailEntity"></param>
         /// <param name="keyValue"></param>
@@ -125,7 +125,7 @@ order by CreateTime desc";
         /// <summary>
         /// Lấy Sơ đồ cây phân loại môn học
         /// </summary>
-        /// <param name="orgId">Cơ sở y tếId，không truyền thì dùng chung theo chênh lệch</param>
+        /// <param name="orgId">Cơ sở y tếId,không truyền thì dùng chung theo chênh lệch</param>
         /// <returns></returns>
         public List<ProjectZbVO> GetTreeViewdata(string orgId)
         {

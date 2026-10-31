@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Domain.Entity
         [SugarColumn(IsPrimaryKey = true)]
         public string Id { get; set; }
         /// <summary>
-        /// Tổ chứcId（tương ứng với khoaOrganizeId）
+        /// Tổ chứcId(tương ứng với khoaOrganizeId)
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>

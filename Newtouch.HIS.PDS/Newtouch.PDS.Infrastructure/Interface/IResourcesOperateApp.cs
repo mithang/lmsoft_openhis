@@ -47,7 +47,7 @@ namespace Newtouch.HIS.Application.Interface
         string OutpatientCancelDjYpReturn(OutpatientCancelAllBookRequestDTO request);
 
         /// <summary>
-        /// Xác định tài nguyên ngoại trú（commit）
+        /// Xác định tài nguyên ngoại trú(commit)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -68,7 +68,7 @@ namespace Newtouch.HIS.Application.Interface
         string OutpatientPartReturnBeforeDispensingMedicine(OutpatientPartReturnBeforeDispensingMedicineRequestDTO request);
 
         /// <summary>
-        /// Lưu y lệnh nội trú  Lưu thông tin y lệnh、Xếp thuốc、Đóng băng tồn kho
+        /// Lưu y lệnh nội trú  Lưu thông tin y lệnh,Xếp thuốc,Đóng băng tồn kho
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

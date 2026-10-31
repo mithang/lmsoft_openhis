@@ -5,14 +5,14 @@ using NewtouchHIS.Lib.Base.Model;
 namespace Newtouch.OR.ManageSystem.Domain.IRepository
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-11-06 10:22
-    /// Mô tả：Hồ sơ xếp lịch phẫu thuật
+    /// Tạo bởi:chl
+    /// Ngày:2019-11-06 10:22
+    /// Mô tả:Hồ sơ xếp lịch phẫu thuật
     /// </summary>
     public interface IORArrangementRepo : IRepositoryBase<ORArrangementEntity>
     {
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

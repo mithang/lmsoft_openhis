@@ -84,7 +84,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// SửaY lệnhkhi，TheoY lệnhIdLấyChi tiết
+        /// SửaY lệnhkhi,TheoY lệnhIdLấyChi tiết
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="yzlx"></param>
@@ -274,7 +274,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// <exception cref="FailedException"></exception>
         public IActionResult GetYzHlyy(List<DoctorServiceRequestDto> reqdoctorservices, string yzh)
         {
-            // tạomộtngoàibộcủa request thựcVD，chỉcầnmột
+            // tạomộtngoàibộcủa request thựcVD,chỉcầnmột
             var request = new EngineReq
             {
                 Type = "prescription",

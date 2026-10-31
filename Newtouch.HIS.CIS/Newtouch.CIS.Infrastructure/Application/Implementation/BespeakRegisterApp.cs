@@ -512,7 +512,7 @@ namespace Newtouch.Application.Implementation
         public string BuildCalendar(int year, int month, string deptCode, string ysgh)
         {
             if (month <= 0) throw new Exception("truyềnvàoThángphầnkhônghợpphương pháp,vui lòngtruyềnvàotựnhiênsố");
-            var mzlx = string.IsNullOrWhiteSpace(ysgh) ? "1" : "3";//Dấu hiệu ngoại trú/nội trú 1：thông thườngNgoại trú  2：gấpkhám   3：chuyên giaNgoại trú
+            var mzlx = string.IsNullOrWhiteSpace(ysgh) ? "1" : "3";//Dấu hiệu ngoại trú/nội trú 1:thông thườngNgoại trú  2:gấpkhám   3:chuyên giaNgoại trú
             var beginTime = Convert.ToDateTime(year + "-" + month + "-01");
             var endTime = beginTime.AddMonths(1).AddDays(-1);
             var calendarDate = GetCalendarDate(mzlx, deptCode, ysgh, beginTime, endTime);

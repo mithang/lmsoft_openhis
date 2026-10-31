@@ -43,17 +43,17 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public DateTime Jssj { get; set; }
 
         /// <summary>
-        /// Trạng thái phát thuốc 0：Chưa phát；1：Đã xếp；2：Đã phát；3：Đã trả
+        /// Trạng thái phát thuốc 0:Chưa phát;1:Đã xếp;2:Đã phát;3:Đã trả
         /// </summary>
         public string Fyzt { get; set; }
 
         /// <summary>
-        /// Loại thao tác 1：Phát thuốc  2：Trả thuốc
+        /// Loại thao tác 1:Phát thuốc  2:Trả thuốc
         /// </summary>
         public string operateType { get; set; }
 
         /// <summary>
-        /// Cờ xin trả thuốc 0：Không  1：Có
+        /// Cờ xin trả thuốc 0:Không  1:Có
         /// </summary>
         public string sqtybz { get; set; }
 
@@ -160,7 +160,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Cờ phát thuốc  0：Chưa phát；1：Đã xếp；2：Đã phát；3：Đã trả
+        /// Cờ phát thuốc  0:Chưa phát;1:Đã xếp;2:Đã phát;3:Đã trả
         /// </summary>
         public string fybz { get; set; }
 

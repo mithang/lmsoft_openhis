@@ -158,14 +158,14 @@ order by sxh
                 //    var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/PrepareMedicineReturn", request, autoAppendToken: false);
                 //    if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.msg == "")
                 //    {
-                //        return "Lưu và gửi thành công！";
+                //        return "Lưu và gửi thành công!";
                 //    }
                 //    else
                 //    {
-                //        return "Gọi giao diện nhà thuốc thất bại，Vui lòng liên hệ nhân viên phát triển！";
+                //        return "Gọi giao diện nhà thuốc thất bại,Vui lòng liên hệ nhân viên phát triển!";
                 //    }
                 //}
-                //return "Lưu trả lại chuẩn bị thuốc cho khoa thành công！";
+                //return "Lưu trả lại chuẩn bị thuốc cho khoa thành công!";
             }
             catch (Exception ex)
             {

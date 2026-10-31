@@ -207,7 +207,7 @@ where crkdj.OrganizeId =@Organizeid ");
             }
             if (!string.IsNullOrWhiteSpace(shzt))
             {
-                //Trạng thái duyệt chứng từ 0:Chưa duyệt 1:Đã đạt 2：Không đạt
+                //Trạng thái duyệt chứng từ 0:Chưa duyệt 1:Đã đạt 2:Không đạt
                 sb.Append(" and crkdj.shzt = @shzt");
                 par.Add(new SugarParameter("@shzt", shzt));
             }
@@ -302,7 +302,7 @@ where crkdj.OrganizeId =@Organizeid  and crkdj.zt='1'
             }
             if (!string.IsNullOrWhiteSpace(param.shzt))
             {
-                //Trạng thái duyệt chứng từ 0:Chưa duyệt 1:Đã đạt 2：Không đạt
+                //Trạng thái duyệt chứng từ 0:Chưa duyệt 1:Đã đạt 2:Không đạt
                 sb.AppendLine(" and crkdj.shzt = @shzt ");
                 par.Add(new SugarParameter("@shzt", param.shzt));
             }
@@ -502,7 +502,7 @@ where crkmx.crkId = @crkId
         }
 
         /// <summary>
-        /// Lấy loại thuốc（Kiểm kê）
+        /// Lấy loại thuốc(Kiểm kê)
         /// </summary>
         /// <returns></returns>
         public List<MedicineCategoryVO> GetMedicineCategoryList()
@@ -777,7 +777,7 @@ AND pdxx.yfbmCode = @yfbmCode
 
         /// <summary>
         /// Hủy kiểm kê 
-        /// Xóa Thông tin kiểm kê（xt_yp_pdxx）、Chi tiết thông tin kiểm kê（xt_yp_pdxxmx）
+        /// Xóa Thông tin kiểm kê(xt_yp_pdxx),Chi tiết thông tin kiểm kê(xt_yp_pdxxmx)
         /// </summary>
         public void CancelInventory_old(string pdId)
         {
@@ -798,7 +798,7 @@ AND pdxx.yfbmCode = @yfbmCode
 
         /// <summary>
         /// Hủy kiểm kê 
-        /// Xóa Thông tin kiểm kê（xt_yp_pdxx）、Chi tiết thông tin kiểm kê（xt_yp_pdxxmx）
+        /// Xóa Thông tin kiểm kê(xt_yp_pdxx),Chi tiết thông tin kiểm kê(xt_yp_pdxxmx)
         /// </summary>
         public void CancelInventory(string pdId)
         {
@@ -925,7 +925,7 @@ where kcxx.yfbmCode=@YfbmCode ");
         }
 
         /// <summary>
-        /// Truy vấn thuốc đã kết chuyển （Bảng chính là bảng kết chuyển）
+        /// Truy vấn thuốc đã kết chuyển (Bảng chính là bảng kết chuyển)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zq"></param>
@@ -996,7 +996,7 @@ and jz.OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// Loại thuốc （Nhập xuất tồn）
+        /// Loại thuốc (Nhập xuất tồn)
         /// </summary>
         /// <returns></returns>
         public List<MedicineCategoryVO> GetMedicineCategoryList2()
@@ -1166,7 +1166,7 @@ AND (b.Name LIKE '%'+@keyword+'%' OR b.py LIKE '%'+@keyword+'%' OR b.Code LIKE '
         #region Đặt trước tài nguyên
 
         /// <summary>
-        /// Đặt trước tài nguyên （Đóng băng tồn kho，ghimz_cfmxphbảng）
+        /// Đặt trước tài nguyên (Đóng băng tồn kho,ghimz_cfmxphbảng)
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -1191,7 +1191,7 @@ AND (b.Name LIKE '%'+@keyword+'%' OR b.py LIKE '%'+@keyword+'%' OR b.Code LIKE '
         }
 
         /// <summary>
-        /// Đặt trước đơn ngoại trú（Đóng băng tồn kho）
+        /// Đặt trước đơn ngoại trú(Đóng băng tồn kho)
         /// </summary>
         /// <param name="apiResp"></param>
         /// <param name="cfnm"></param>
@@ -1228,7 +1228,7 @@ AND (b.Name LIKE '%'+@keyword+'%' OR b.py LIKE '%'+@keyword+'%' OR b.Code LIKE '
         }
 
         /// <summary>
-        /// Đặt trước đơn ngoại trú（Đóng băng tồn kho）
+        /// Đặt trước đơn ngoại trú(Đóng băng tồn kho)
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
@@ -1250,7 +1250,7 @@ AND (b.Name LIKE '%'+@keyword+'%' OR b.py LIKE '%'+@keyword+'%' OR b.Code LIKE '
         }
 
         /// <summary>
-        /// Thực hiện y lệnh nội trú（Đóng băng tồn kho）
+        /// Thực hiện y lệnh nội trú(Đóng băng tồn kho)
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>

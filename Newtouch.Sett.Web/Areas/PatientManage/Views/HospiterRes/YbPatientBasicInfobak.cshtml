@@ -383,8 +383,8 @@
 </div>
 
 <script type="text/javascript">
-    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
-    var ybSettOnce = '@ybSettOnce' === 'True'; //cấu hình công tắc：bệnh nhân BHYT có quyết toán một lần không
+    var openYbSett = '@openYbSett' === 'True'; //cấu hình công tắc:bệnh nhân BHYT có dùng quy trình giao dịch BHYT không
+    var ybSettOnce = '@ybSettOnce' === 'True'; //cấu hình công tắc:bệnh nhân BHYT có quyết toán một lần không
     var medicalInsurance = '@medicalInsurance';//cấu hình địa phương BHYT:phân biệt khu vực BHYT của bệnh viện
     //Đọc thẻ
     function readCard() {
@@ -587,7 +587,7 @@
                     return;
                 }
 
-                var payoptype = { "sbkh": cqcardInfo.sbkh, "xzlb": "1" };//loại bảo hiểm mặc định, 1. bảo hiểm y tế；2. bảo hiểm tai nạn lao động；3. bảo hiểm sinh sản；
+                var payoptype = { "sbkh": cqcardInfo.sbkh, "xzlb": "1" };//loại bảo hiểm mặc định, 1. bảo hiểm y tế;2. bảo hiểm tai nạn lao động;3. bảo hiểm sinh sản;
                 $.ajax({
                     type: "POST",
                     url: "http://127.0.0.1:22222/api/CQYiBao/PatAccountInfo",
@@ -616,10 +616,10 @@
                         //gán giá trị
                         SetValue(cardInfo, yibaoCardInfo.Data.accountInfo);
                         $("#kh").html(cqcardInfo.sbkh);
-                        //$("#txtybye").html(yibaoCardInfo.Data.accountInfo.zhye); /////191108 Số dư thẻ, làkhôngđọcthẻthời gianliên quanliêntrảquaythẻthông tintin, tiềnbảo hiểmthẻvàxã hộibảo hiểmthẻquậnkhác？？？
+                        //$("#txtybye").html(yibaoCardInfo.Data.accountInfo.zhye); /////191108 Số dư thẻ, làkhôngđọcthẻthời gianliên quanliêntrảquaythẻthông tintin, tiềnbảo hiểmthẻvàxã hộibảo hiểmthẻquậnkhác???
 
                         var param = "07|" + cqcardInfo.sbkh;
-                        var payoptype = { "inStr": param };//loại bảo hiểm mặc định, 1. bảo hiểm y tế；2. bảo hiểm tai nạn lao động；3. bảo hiểm sinh sản；
+                        var payoptype = { "inStr": param };//loại bảo hiểm mặc định, 1. bảo hiểm y tế;2. bảo hiểm tai nạn lao động;3. bảo hiểm sinh sản;
                         $.ajax({
                             type: "POST",
                             url: "http://127.0.0.1:22222/api/CQYiBao/BusinessCall",
@@ -714,7 +714,7 @@
 
     $("#tbbzbm").change(function () {
         var param = "28|" + $('#kh').html() + "|" + $('#tbbzbm').val();
-        var payoptype = { "inStr": param };//loại bảo hiểm mặc định, 1. bảo hiểm y tế；2. bảo hiểm tai nạn lao động；3. bảo hiểm sinh sản；
+        var payoptype = { "inStr": param };//loại bảo hiểm mặc định, 1. bảo hiểm y tế;2. bảo hiểm tai nạn lao động;3. bảo hiểm sinh sản;
         $.ajax({
             type: "POST",
             url: "http://127.0.0.1:22222/api/CQYiBao/BusinessCall",

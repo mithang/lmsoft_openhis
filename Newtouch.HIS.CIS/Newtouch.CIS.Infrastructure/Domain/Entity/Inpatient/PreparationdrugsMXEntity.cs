@@ -7,8 +7,8 @@ namespace Newtouch.Domain.Entity
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày：2018-06-28 15:37
-    /// Mô tả：Y lệnh dài hạn
+    /// Ngày:2018-06-28 15:37
+    /// Mô tả:Y lệnh dài hạn
     /// </summary>
     [SugarTable("zy_bqksbymx")]
     public class PreparationdrugsMXEntity

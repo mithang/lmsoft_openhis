@@ -989,7 +989,7 @@ WHERE cfh=@cfh and OrganizeId=@OrganizeId and zt='1'
         }
 
         /// <summary>
-        /// Hủy xếp thuốc Hủy đóng băng，Xếp kệ thuốc
+        /// Hủy xếp thuốc Hủy đóng băng,Xếp kệ thuốc
         /// </summary>
         /// <param name="mxphs"></param>
         /// <param name="userCode"></param>

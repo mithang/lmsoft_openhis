@@ -15,7 +15,7 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         /// <summary>
         /// Số thứ tự khám 
         /// 1
-        /// Dấu hiệu duy nhất ghi lại thông tin khám lần này của bệnh nhân trong nội bộ cơ sở y tế，bắt buộc phải liên kết với hệ thống bảo hiểm y tế
+        /// Dấu hiệu duy nhất ghi lại thông tin khám lần này của bệnh nhân trong nội bộ cơ sở y tế,bắt buộc phải liên kết với hệ thống bảo hiểm y tế
         /// </summary>
         [Required]
         public string AKC190 { get; set; }
@@ -52,13 +52,13 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         [Required]
         public string BKB410 { get; set; }
         /// <summary>
-        /// Định dạng ngày nhập viện：yyyymmddhhmiss
+        /// Định dạng ngày nhập viện:yyyymmddhhmiss
         /// 1
         /// </summary>
         [Required]
         public string BKC192 { get; set; }
         /// <summary>
-        /// Định dạng ngày ra viện：yyyymmddhhmiss
+        /// Định dạng ngày ra viện:yyyymmddhhmiss
         /// 1
         /// </summary>
         [Required]

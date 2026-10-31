@@ -9,21 +9,21 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface ISysOrganizeDmnService
     {
         /// <summary>
-        /// Lấy loại tổ chức（Tập đoàn、Bệnh viện）
+        /// Lấy loại tổ chức(Tập đoàn,Bệnh viện)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         string GetOrganizeTypeByOrganizeId(string orgId);
 
         /// <summary>
-        /// Có chứa tổ chức cấp dưới không，Trả về nếu có tổ chức cấp dướitrue
+        /// Có chứa tổ chức cấp dưới không,Trả về nếu có tổ chức cấp dướitrue
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
         bool IsHasLowerOrganize(string orgId);
 
         /// <summary>
-        /// Lấy tất cả tổ chức hiệu lực thuộc tổ chức（parent）
+        /// Lấy tất cả tổ chức hiệu lực thuộc tổ chức(parent)
         /// </summary>
         /// <returns></returns>
         List<SysOrganizeVEntity> GetValidListByParentOrg(string parentOrgId);
@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         bool IsClinic(string orgId);
 
         /// <summary>
-        /// Đánh giá theo loại cơ sở Có hay không Có Cơ sở y tế（Có nghiệp vụ cụ thể）
+        /// Đánh giá theo loại cơ sở Có hay không Có Cơ sở y tế(Có nghiệp vụ cụ thể)
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>

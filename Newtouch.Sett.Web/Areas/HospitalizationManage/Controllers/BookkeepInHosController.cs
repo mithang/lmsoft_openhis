@@ -355,7 +355,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Theo số hiệu mẫuthu phí Lấy nội dung mẫu （Danh sách mục）
+        /// Theo số hiệu mẫuthu phí Lấy nội dung mẫu (Danh sách mục)
         /// </summary>
         /// <param name="sfxmbh"></param>
         /// <returns></returns>
@@ -377,7 +377,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         /// <summary>
         /// ghi sổ nhập viện
-        /// Phương thứcghi sổ：Dài hạn or Tạm thời
+        /// Phương thứcghi sổ:Dài hạn or Tạm thời
         /// </summary>
         /// <returns></returns>
         public IActionResult Accounting()
@@ -446,7 +446,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// PopLớp Dừng kế hoạchghi sổ Chọn trước（Dừng）Ngày
+        /// PopLớp Dừng kế hoạchghi sổ Chọn trước(Dừng)Ngày
         /// </summary>
         /// <returns></returns>
         public IActionResult StopPlan()
@@ -669,7 +669,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// Truy vấn Trị liệu sư Tháng này đã Số tiềnghi sổ（jfb、mzxm、mzcfmx）、Số tiền giới hạnghi sổ
+        /// Truy vấn Trị liệu sư Tháng này đã Số tiềnghi sổ(jfb,mzxm,mzcfmx),Số tiền giới hạnghi sổ
         /// </summary>
         /// <param name="gh"></param>
         /// <returns></returns>

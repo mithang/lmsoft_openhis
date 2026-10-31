@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         }
 
         /// <summary>
-        /// Thả xuống（Chọn menu Sửa Cấp trên）
+        /// Thả xuống(Chọn menu Sửa Cấp trên)
         /// </summary>
         /// <param name="justTop">Chỉ cấp cao nhất</param>
         /// <returns></returns>
@@ -64,7 +64,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
                 newList = data.ToList().TreeWhere(t => t.Name.Contains(keyword), parentId: "ParentId");
                 if (newList.Count == 1)
                 {
-                    //Nếu có nút con，Bao gồm nó
+                    //Nếu có nút con,Bao gồm nó
                     newList.AddRange(data.Where(p => p.ParentId == newList[0].Id));
                 }
             }

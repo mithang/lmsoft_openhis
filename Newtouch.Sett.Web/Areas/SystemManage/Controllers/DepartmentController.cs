@@ -31,7 +31,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
 
-        //Tổ chức（Bệnh viện） Khoa Hộp chọn Nguồn dữ liệu
+        //Tổ chức(Bệnh viện) Khoa Hộp chọn Nguồn dữ liệu
         [HttpGet]
 
         public IActionResult GetTreeSelectJson(string organizeId)

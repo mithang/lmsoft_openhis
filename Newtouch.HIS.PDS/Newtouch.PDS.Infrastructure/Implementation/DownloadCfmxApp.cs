@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Application.Implementation
                 {
                     _mzCfmxRepo.DeleteCfmx(Request);
                 }
-                //Khi đồng bộ chi tiết đơn thuốc，Kiểm tra Số lượng lớn hơn0lưu trữ của
+                //Khi đồng bộ chi tiết đơn thuốc,Kiểm tra Số lượng lớn hơn0lưu trữ của
                 if (p.sl > 0)
                 {
                     var zhyz = _sysMedicineReceiptDmnService.GetZhyz(OperatorProvider.GetCurrent(true).OrganizeId, Constants.CurrentYfbm.yfbmCode, p.yp);

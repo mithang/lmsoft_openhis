@@ -349,7 +349,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// <param name="hcybjsh"></param>
         /// <param name="newwjybjsh"></param>
         /// <param name="hcybfeeRelated">đảo đỏquyết toán của quyết toánBHYTliên quan số tiền</param>
-        /// <param name="newybfeeRelated">mớicủaquyết toán（không hoàn toàn bộ） của quyết toánBHYTliên quan số tiền</param>
+        /// <param name="newybfeeRelated">mớicủaquyết toán(không hoàn toàn bộ) của quyết toánBHYTliên quan số tiền</param>
         /// <returns></returns>
         public IActionResult YbRefundSettlement(string mzh, int jsnm
             , Dictionary<string, decimal> tjsxmDict, decimal expectedTmxZje, string hcybjsh, string newwjybjsh
@@ -389,7 +389,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         #region private methods
 
         /// <summary>
-        /// （đã thu phí chưaphát thuốc）đã thu phí chưaphát thuốctrạng thái sự kiện thông báo thay đổi đơn thuốc
+        /// (đã thu phí chưaphát thuốc)đã thu phí chưaphát thuốctrạng thái sự kiện thông báo thay đổi đơn thuốc
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="refundDict">jsmx tsl</param>
@@ -421,7 +421,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// （đã thu phí chưaphát thuốc）thuốcđơn thuốcthông báo thay đổiPDS
+        /// (đã thu phí chưaphát thuốc)thuốcđơn thuốcthông báo thay đổiPDS
         /// </summary>
         /// <param name="tmxList"></param>
         /// <param name="orgId"></param>
@@ -446,7 +446,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// HIShoàn phí（BHYT、không phảiBHYTdùng chung）
+        /// HIShoàn phí(BHYT,không phảiBHYTdùng chung)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="jsnm"></param>
@@ -567,7 +567,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// hoàn phí（Quý An）
+        /// hoàn phí(Quý An)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="jsnm"></param>

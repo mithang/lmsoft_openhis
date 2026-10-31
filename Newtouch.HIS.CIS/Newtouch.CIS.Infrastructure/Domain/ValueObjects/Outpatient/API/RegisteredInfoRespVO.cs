@@ -68,7 +68,7 @@ namespace Newtouch.Domain.ValueObjects.API
         /// </summary>
         public string ks { get; set; }
         /// <summary>
-        /// Bảo hiểm y tếquyết toánsố（Bảo hiểm y tếQuay lại）
+        /// Bảo hiểm y tếquyết toánsố(Bảo hiểm y tếQuay lại)
         /// </summary>
         public string ybjsh { get; set; }
         /// <summary>

@@ -283,11 +283,11 @@
         var dfl = $("#" + rowid + "_DietBigType").parent().next().children('select').find("option:selected").attr('data-DietBigType');
         var lastdfl = $("#" + rowid + "_DietBigType").val();
         $("#" + rowid + "_DietBigType").val(dfl);
-        if (lastdfl!==""&&lastdfl!==dfl) {//SửalớnPhân loại，Xóa trắngăn uốngchỉhiển thị
+        if (lastdfl!==""&&lastdfl!==dfl) {//SửalớnPhân loại,Xóa trắngăn uốngchỉhiển thị
             $("#" + rowid + "_yszs").val('');
             $("#" + rowid + "_yszsval").val('');
         }
-        if (dfl == "PTSS") {//thông thườngăn uống Tần suấtQD，Liều lượng，mật độ năng lượngVô hiệu hóa
+        if (dfl == "PTSS") {//thông thườngăn uống Tần suấtQD,Liều lượng,mật độ năng lượngVô hiệu hóa
             var ssxh = $("#" + rowid + "_ssxhval").val();
             if (ssxh == "禁食") {
                 $("#" + rowid + "_yszs").attr('disabled', 'true').css('background-color', '#f6f7fb');//Vô hiệu hóaăn uốngchỉhiển thị
@@ -305,12 +305,12 @@
             $("#" + rowid + "_zxzqdw").val('0');
             $("#" + rowid + "_ypjl").val('').attr('disabled', 'true').css('background-color', '#f6f7fb');//Vô hiệu hóaTần suất
             $("#" + rowid + "_pcCode").parent().next().children('select').attr('disabled', 'true').html('').css('background-color', '#f6f7fb');//Vô hiệu hóamật độ năng lượng
-        } else if (dfl == "CNYY") { //ruộttrongdinh dưỡng Tần suấtMặc địnhST，có thểdùng，Liều lượng500ml
+        } else if (dfl == "CNYY") { //ruộttrongdinh dưỡng Tần suấtMặc địnhST,có thểdùng,Liều lượng500ml
             $("#" + rowid + "_ypjl").val('500').attr('disabled', 'true').css('background-color', '#f6f7fb');
             $("#" + rowid + "_pcCode").parent().next().children('select').removeAttr('disabled').css('background-color', 'white');//Hủy cấmmật độ năng lượng
             Generatenlmdoption(rowid);//tạomật độ năng lượnghộp thả xuống
             $("#" + rowid + "_yszs").removeAttr('disabled').css('background-color', 'white');//Hủy cấmăn uốngchỉhiển thị
-        } else if (dfl == "YYBCJ") { //dinh dưỡngBổ sungliều Tần suấtMặc địnhST，Vô hiệu hóa，Cách dùngMặc địnhuống，Vô hiệu hóa，Số ngàyVô hiệu hóa
+        } else if (dfl == "YYBCJ") { //dinh dưỡngBổ sungliều Tần suấtMặc địnhST,Vô hiệu hóa,Cách dùngMặc địnhuống,Vô hiệu hóa,Số ngàyVô hiệu hóa
             $("#" + rowid + "_pcmc").attr('disabled', 'true').css('background-color', '#f6f7fb');
             $("#" + rowid + "_pcmc").val('ST');
             $("#" + rowid + "_pcCode").val('00');
@@ -494,7 +494,7 @@
         if (!!selRowId) {
            var Id= $("#gridssyz").jqGrid('getRowData', selRowId).Id;
             $("#gridssyz").jqGrid("delRowData",  selRowId);
-            if (Id.indexOf("0.")=='-1') {//ghi lại，từCơ sở dữ liệuXóa
+            if (Id.indexOf("0.")=='-1') {//ghi lại,từCơ sở dữ liệuXóa
                 deldata.push(Id);
             }
         }
@@ -507,7 +507,7 @@
     //LưuNútthao tác
     function SavessyzMedicine(savetodb) {
         patobjValidate();
-        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+        //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#gridssyz").jqGrid('getDataIDs');
         var validationFailedArr = [];
         for (var i = 0; i < rowIds.length; i++) {
@@ -682,14 +682,14 @@
                     mbObj.ysgh = '@ViewBag.ysgh';
                 }
 
-                //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+                //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
                 var rowIds = $("#gridssyz").jqGrid('getDataIDs');
                 for (var i = 0; i < rowIds.length; i++) {
                     var saveResult = $("#gridssyz").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
                     if (!saveResult) {
                         EnableInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-                        return;   //Lưu thất bại，thìreturn
+                        return;   //Lưu thất bại,thìreturn
                     }
                 }
                 var gridssyzData = $("#gridssyz").jqGrid('getRowData_AllLine', null, true);

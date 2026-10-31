@@ -51,13 +51,13 @@ namespace Newtouch.HIS.Domain.Entity
         public int Sjsl { get; set; }
 
         /// <summary>
-        /// Giá bán buôn（Đơn vị bộ phận）
+        /// Giá bán buôn(Đơn vị bộ phận)
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Pfj { get; set; }
 
         /// <summary>
-        /// Giá bán lẻ（Đơn vị bộ phận）
+        /// Giá bán lẻ(Đơn vị bộ phận)
         /// </summary>
         [DecimalPrecision(11, 4)]
         public decimal Lsj { get; set; }
@@ -121,8 +121,8 @@ namespace Newtouch.HIS.Domain.Entity
 
         /// <summary>
         /// Có chia lẻ không
-        /// 1： Có
-        /// 2： Không
+        /// 1: Có
+        /// 2: Không
         /// </summary>
         public int? sfcl { get; set; }
 

@@ -77,7 +77,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string Zrr { get; set; }
 
         /// <summary>
-        /// lãi lỗSố lượng（mangĐơn vị）
+        /// lãi lỗSố lượng(mangĐơn vị)
         /// </summary>
         public string syslStr { get; set; }
 

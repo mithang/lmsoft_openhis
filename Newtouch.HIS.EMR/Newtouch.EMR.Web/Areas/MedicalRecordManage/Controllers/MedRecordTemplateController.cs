@@ -164,7 +164,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
             _BlmblbRepo.SubmitForm(blmb, keyValue);
 
-            if (mbly != null && mbly == 0)  //Dấu hiệu chuyển bệnh án thành mẫu，Thao tác di chuyển tệp
+            if (mbly != null && mbly == 0)  //Dấu hiệu chuyển bệnh án thành mẫu,Thao tác di chuyển tệp
             {
                 //Di chuyển tệp
                 if (!string.IsNullOrWhiteSpace(blmb.Memo))
@@ -192,7 +192,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             //    return Success();
             //}
             //else
-            //    return Error("Xóa mẫu bất thường，Vui lòng liên hệ quản trị viên");
+            //    return Error("Xóa mẫu bất thường,Vui lòng liên hệ quản trị viên");
         }
 
         public IActionResult GetSysDept()
@@ -258,7 +258,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 bool loaded = false;
                 if ((sd == "Lưu tài liệu" || sd == "Lưu tài liệu") && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
-                    // Người dùng đã nhấn“Lưu tài liệu”Nút，
+                    // Người dùng đã nhấn“Lưu tài liệu”Nút,
                     // thì thửWEBtải tài liệu từ yêu cầu rồi lưu
                     loaded = eng.LoadDocumentFromRequestFormData();
                     if (loaded)

@@ -127,7 +127,7 @@ namespace Newtouch.Domain.Entity
         public string Remark { get; set; }
 
         /// <summary>
-        /// Khoa thực hiện（ThuốccủalĩnhthuốcKhoa phòng yfbmCode）
+        /// Khoa thực hiện(ThuốccủalĩnhthuốcKhoa phòng yfbmCode)
         /// </summary>
         public string zxks { get; set; }
         /// <summary>

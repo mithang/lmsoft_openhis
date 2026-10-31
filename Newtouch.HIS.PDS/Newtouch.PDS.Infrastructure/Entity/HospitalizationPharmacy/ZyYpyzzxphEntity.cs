@@ -75,7 +75,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int? zh { get; set; }
 
         /// <summary>
-        /// Thông tin thuốc nội trúID，zy_ypyzxxKhóa chính bảng
+        /// Thông tin thuốc nội trúID,zy_ypyzxxKhóa chính bảng
         /// </summary>
         public long? zyypxxId { get; set; }
 

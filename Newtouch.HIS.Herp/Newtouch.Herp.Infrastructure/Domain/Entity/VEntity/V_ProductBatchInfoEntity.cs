@@ -18,17 +18,17 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public string pc { get; set; }
 
         /// <summary>
-        /// Số lượng tồn kho，Đơn vị nhỏ nhất
+        /// Số lượng tồn kho,Đơn vị nhỏ nhất
         /// </summary>
         public int kcsl { get; set; }
 
         /// <summary>
-        /// Tồn kho khả dụng（kcsl-djsl），Đơn vị nhỏ nhất
+        /// Tồn kho khả dụng(kcsl-djsl),Đơn vị nhỏ nhất
         /// </summary>
         public int kykcsl { get; set; }
 
         /// <summary>
-        /// Tồn kho đơn vị，Đơn vị khoa phòng
+        /// Tồn kho đơn vị,Đơn vị khoa phòng
         /// </summary>
         public string slstr { get; set; }
 

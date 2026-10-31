@@ -12,7 +12,7 @@ namespace Newtouch.Herp.Repository
         
         
         /// <summary>
-        /// Trả lại đơn xin Từ chờ xử lý chuyển thành lưu tạm，Chỉ áp dụng cho nhập kho ngoài
+        /// Trả lại đơn xin Từ chờ xử lý chuyển thành lưu tạm,Chỉ áp dụng cho nhập kho ngoài
         /// </summary>
         /// <param name="crkId"></param>
         /// <returns></returns>

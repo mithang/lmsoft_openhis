@@ -54,7 +54,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         IList<VInventoryInfoEntity> QueryInventoryInfoListNoPc(Pagination pagination, InventorySearchDTO param, string warehouseId, string organizeId);
         /// <summary>
         /// HủyKiểm kê 
-        /// Xóa Kiểm kêthông tin（xt_yp_pdxx）、Kiểm kêthông tinchi tiết（xt_yp_pdxxmx）
+        /// Xóa Kiểm kêthông tin(xt_yp_pdxx),Kiểm kêthông tinchi tiết(xt_yp_pdxxmx)
         /// </summary>
         void CancelInventory(long pdId);
 

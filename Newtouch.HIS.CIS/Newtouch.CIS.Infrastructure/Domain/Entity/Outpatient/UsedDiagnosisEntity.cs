@@ -23,7 +23,7 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 1 Chẩn đoán Tây y，2 Chẩn đoán YHCT
+        /// 1 Chẩn đoán Tây y,2 Chẩn đoán YHCT
         /// </summary>
         public int? type { get; set; }
 

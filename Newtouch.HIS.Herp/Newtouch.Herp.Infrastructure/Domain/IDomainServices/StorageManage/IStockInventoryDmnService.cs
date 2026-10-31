@@ -53,7 +53,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         IList<VInventoryInfoEntity> QueryInventoryInfoListNoPc(Pagination pagination, InventorySearchDTO param, string warehouseId, string organizeId);
         /// <summary>
         /// Hủy kiểm kê 
-        /// Xóa Thông tin kiểm kê（xt_yp_pdxx）、Chi tiết thông tin kiểm kê（xt_yp_pdxxmx）
+        /// Xóa Thông tin kiểm kê(xt_yp_pdxx),Chi tiết thông tin kiểm kê(xt_yp_pdxxmx)
         /// </summary>
         void CancelInventory(long pdId);
 

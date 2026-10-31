@@ -33,7 +33,7 @@ namespace Newtouch.EMR.Domain.DTO.OutputDto.MRUpload
         public string BKF260 { get; set; }
 
         /// <summary>
-        /// Dấu hiệu chẩn đoán chính/phụ1 Chẩn đoán chính；2 Chẩn đoán khác；3 Chẩn đoán bệnh lý
+        /// Dấu hiệu chẩn đoán chính/phụ1 Chẩn đoán chính;2 Chẩn đoán khác;3 Chẩn đoán bệnh lý
         /// </summary>
         /// <returns></returns>
         public string BKF718 { get; set; }

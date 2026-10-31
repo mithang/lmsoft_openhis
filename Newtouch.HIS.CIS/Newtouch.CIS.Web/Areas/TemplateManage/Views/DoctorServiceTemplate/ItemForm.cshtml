@@ -142,13 +142,13 @@
             gridComplete: function () {
                 var ids = $("#gridsfxm").getDataIDs();
                 $.each(ids, function () {
-                    $gridsfxm.jqGrid('editRow', this, true, initWMInlineFunc);  //editRow：MởSửachế độ initWMInlineFunc:Khởi tạolớp nổi
+                    $gridsfxm.jqGrid('editRow', this, true, initWMInlineFunc);  //editRow:MởSửachế độ initWMInlineFunc:Khởi tạolớp nổi
 
-                    //chomỗi lầnĐơn vị liềuđiềnoption  (chỉcó thểnàysaoviếtđơn giảnphiếu，Mặc dùtôicũngBiếtnàydạngviếtkhôngtốt)
+                    //chomỗi lầnĐơn vị liềuđiềnoption  (chỉcó thểnàysaoviếtđơn giảnphiếu,Mặc dùtôicũngBiếtnàydạngviếtkhôngtốt)
                     var jldw = $("#" + this + "_redundant_jldw").val();    //Đơn vị liều
                     var dw = $("#" + this + "_dw").val();     //Đơn vị ngoại trú
                     if (!!dw) {
-                        //cách tìm phần tử nàyPhương phápkhông nên dùng，nhưng doselectKhông cóidThuộc tính
+                        //cách tìm phần tử nàyPhương phápkhông nên dùng,nhưng doselectKhông cóidThuộc tính
                         $("#" + this + "_mcjl").parent().next().children('select').html('');
                         if (jldw == dw) {
                             $("#" + this + "_mcjl").parent().next().children('select').append('<option>' + jldw + '</option>');
@@ -381,7 +381,7 @@
     //Lưu
     function Save() {
         if (ValidateI()) {//kiểm traDữ liệu
-            //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+            //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
             var rowIds = $("#gridsfxm").jqGrid('getDataIDs');
             for (var i = 0; i < rowIds.length; i++) {
                 if (calitemsl(rowIds[i])) {
@@ -389,7 +389,7 @@
 
                     if (!saveResult) {
                         EnableIInlineEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-                        return;   //Lưu thất bại，thìreturn
+                        return;   //Lưu thất bại,thìreturn
                     }
                 } else {
                     return;

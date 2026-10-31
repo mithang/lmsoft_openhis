@@ -204,7 +204,7 @@ where yfbmId=@yfbmId");
         }
 
         /// <summary>
-        /// LấyUserIdđã liên kết hiện tạiyfbmCode （Không gồm tổ chức con）
+        /// LấyUserIdđã liên kết hiện tạiyfbmCode (Không gồm tổ chức con)
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
@@ -218,7 +218,7 @@ where yfbmId=@yfbmId");
         }
 
         /// <summary>
-        /// Lấy nhà thuốc thuộc tổ chức/Kho thuốc （Không gồm tổ chức con）
+        /// Lấy nhà thuốc thuộc tổ chức/Kho thuốc (Không gồm tổ chức con)
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <returns></returns>

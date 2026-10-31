@@ -269,7 +269,7 @@ namespace Newtouch.Infrastructure
         /// </summary>
         blank,
         /// <summary>
-        /// Trang con（Không hiển thị trong menu）
+        /// Trang con(Không hiển thị trong menu)
         /// </summary>
         subpage,
         /// <summary>

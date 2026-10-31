@@ -34,7 +34,7 @@ namespace Newtouch.Herp.Domain.DTO.InputDto
         public string organizeId { get; set; }
 
         /// <summary>
-        /// Có hiển thị tồn kho bằng 0 không 1：Có 0：Không
+        /// Có hiển thị tồn kho bằng 0 không 1:Có 0:Không
         /// </summary>
         public string lkc { get; set; }
 

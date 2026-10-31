@@ -57,7 +57,7 @@ namespace Newtouch.EMR.Domain.Entity
         public DateTime? zkwcsj { get; set; }
 
         /// <summary>
-        /// Trạng thái phê duyệt 0:Chờ phê duyệt 1：Phê duyệt thông qua  2：Trả lại
+        /// Trạng thái phê duyệt 0:Chờ phê duyệt 1:Phê duyệt thông qua  2:Trả lại
         /// </summary>
         public int applyStatus { get; set; }
         /// <summary>
@@ -65,7 +65,7 @@ namespace Newtouch.EMR.Domain.Entity
         /// </summary>
         public string applyReturnNo { get; set; }
         /// <summary>
-        /// Bộ phận phê duyệt、Khoa
+        /// Bộ phận phê duyệt,Khoa
         /// </summary>
         public string ApproveDept { get; set; }
         /// <summary>

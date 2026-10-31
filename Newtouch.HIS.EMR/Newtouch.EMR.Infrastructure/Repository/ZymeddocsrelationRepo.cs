@@ -12,9 +12,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Repository
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2018-09-11 10:46
-    /// Mô tả：Bảng quan hệ văn bản bệnh án của bệnh nhân
+    /// Người tạo:chl
+    /// Ngày:2018-09-11 10:46
+    /// Mô tả:Bảng quan hệ văn bản bệnh án của bệnh nhân
     /// </summary>
     public class ZymeddocsrelationRepo : RepositoryBase<ZymeddocsrelationEntity>, IZymeddocsrelationRepo
     {
@@ -29,7 +29,7 @@ namespace Newtouch.EMR.Repository
             return this.IQueryable().Where(p => p.OrganizeId == orgId && p.zt == "1"&&p.zyh==zyh).OrderBy(p => p.CreateTime).ToList();
         }
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

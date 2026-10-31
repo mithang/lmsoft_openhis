@@ -264,7 +264,7 @@
             var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
             ksCode = rowData.Code;
         }
-        $('#zjGridList').jqGrid("clearGridData");//mỗi lầnnhấp đúp，Xóa trắng chi tiết trước lạilạitảitất cảĐã chọndòngchi tiết
+        $('#zjGridList').jqGrid("clearGridData");//mỗi lầnnhấp đúp,Xóa trắng chi tiết trước lạilạitảitất cảĐã chọndòngchi tiết
         $.najax({
             url: "/SystemManage/BespeakRegisterManage/GetStaff",
             data: { deptCode: ksCode },

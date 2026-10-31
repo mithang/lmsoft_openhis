@@ -18,7 +18,7 @@ namespace Newtouch.Domain.DTO.InputDto.Outpatient
         public string CheckNumber { get; set; }
         public string FileDesc { get; set; }
         /// <summary>
-        /// xatrìnhy tếTải lên，ápthu nhỏvănmụctrướchậu tố（hisCơ sởCờ）
+        /// xatrìnhy tếTải lên,ápthu nhỏvănmụctrướchậu tố(hisCơ sởCờ)
         /// </summary>
         public string Sjscjgmc { get; set; }
     }

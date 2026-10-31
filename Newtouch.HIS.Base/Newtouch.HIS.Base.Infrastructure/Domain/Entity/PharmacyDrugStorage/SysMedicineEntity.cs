@@ -34,12 +34,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Ví dụ trước nhất：(A) (B10%)……
+        /// Ví dụ trước nhất:(A) (B10%)……
         /// </summary>
         public string ypqz { get; set; }
 
         /// <summary>
-        /// Ví dụ sau cùng：……
+        /// Ví dụ sau cùng:……
         /// </summary>
         public string yphz { get; set; }
 
@@ -89,7 +89,7 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal? mzcls { get; set; }
 
         /// <summary>
-        /// Chuẩn bị hủy bỏ，bằng“Đơn vị lẻ”Thay thế
+        /// Chuẩn bị hủy bỏ,bằng“Đơn vị lẻ”Thay thế
         /// </summary>
         public string mzcldw { get; set; }
 
@@ -129,7 +129,7 @@ namespace Newtouch.HIS.Domain.Entity
         public decimal zfbl { get; set; }
 
         /// <summary>
-        /// 1 Tự chi trả 2 Tự trả theo loại   Xem chi tiết trong bảng hạng mục hệ thống“Tính chất tự trả”Mô tả      Ngoại trú có thể dùng，Cấp cứu không dùng được，hoặc ngược lại，Kiểm soát theo việc khoa dược khác nhau có thuốc hay không
+        /// 1 Tự chi trả 2 Tự trả theo loại   Xem chi tiết trong bảng hạng mục hệ thống“Tính chất tự trả”Mô tả      Ngoại trú có thể dùng,Cấp cứu không dùng được,hoặc ngược lại,Kiểm soát theo việc khoa dược khác nhau có thuốc hay không
         /// </summary>
         public string zfxz { get; set; }
 
@@ -169,7 +169,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string nbdl { get; set; }
 
         /// <summary>
-        /// ----0：Vô hiệu hóa  1：Kích hoạt   ---0：Chung，1：Ngoại trú，2：Nội trú  （Hủy bỏ）      
+        /// ----0:Vô hiệu hóa  1:Kích hoạt   ---0:Chung,1:Ngoại trú,2:Nội trú  (Hủy bỏ)      
         /// </summary>
         public string mzzybz { get; set; }
 
@@ -194,7 +194,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string LastModifierCode { get; set; }
 
         /// <summary>
-        /// 1：Hiệu lực 0：Vô hiệu
+        /// 1:Hiệu lực 0:Vô hiệu
         /// </summary>
         public string zt { get; set; }
 

@@ -168,7 +168,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<CarryOverMedicineVO> SelectCarryOverMedicineList(Pagination pagination, string zq, string inputCode);
 
         /// <summary>
-        /// Loại thuốc （Nhập xuất tồn）
+        /// Loại thuốc (Nhập xuất tồn)
         /// </summary>
         /// <returns></returns>
         List<MedicineCategoryVO> GetMedicineCategoryList2();
@@ -234,13 +234,13 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region Đặt trước tài nguyên
 
         /// <summary>
-        /// Đặt trước tài nguyên （Đóng băng tồn kho，ghimz_cfmxphbảng）
+        /// Đặt trước tài nguyên (Đóng băng tồn kho,ghimz_cfmxphbảng)
         /// </summary>
         /// <param name="bookItemDo"></param>
         void BookItem(BookItemDo bookItemDo);
 
         /// <summary>
-        /// Đặt trước đơn ngoại trú（Đóng băng tồn kho）
+        /// Đặt trước đơn ngoại trú(Đóng băng tồn kho)
         /// </summary>
         /// <param name="apiResp"></param>
         /// <param name="cfnm"></param>
@@ -249,14 +249,14 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutPatientBookItem(object apiResp, string cfnm, cdInfoVO vo);
 
         /// <summary>
-        /// Đặt trước đơn ngoại trú（Đóng băng tồn kho）
+        /// Đặt trước đơn ngoại trú(Đóng băng tồn kho)
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>
         void OutPatientBookItem(BookItemDo bookItemDo);
 
         /// <summary>
-        /// Thực hiện y lệnh nội trú（Đóng băng tồn kho）
+        /// Thực hiện y lệnh nội trú(Đóng băng tồn kho)
         /// </summary>
         /// <param name="bookItemDo"></param>
         /// <returns></returns>

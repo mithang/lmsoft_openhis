@@ -490,7 +490,7 @@
                 { label: 'Đơn thuốcLoại', name: 'cflx', width: 120, align: 'left',
                     formatter: function(value, options, row) {
                         debugger;
-                            // VDnếuGiá trịCósốchữ，thìchuyểnđổilàHánchữ
+                            // VDnếuGiá trịCósốchữ,thìchuyểnđổilàHánchữ
                             if (typeof value === 'number' || Number.isInteger(value)) {
                                 const prescriptionTypes = {
                                     1: "Thuốc TâyĐơn thuốc",
@@ -502,7 +502,7 @@
                                 };
                                 return prescriptionTypes[value] || "Loại không rõ";
                             }
-                            // VDnếukhôngCósốchữ，trực tiếpQuay lạigốcGiá trị
+                            // VDnếukhôngCósốchữ,trực tiếpQuay lạigốcGiá trị
                             return value;
                       }
                 },
@@ -515,7 +515,7 @@
         $('#groupPackageListGridList').newtouchLocalDataGrid(null, [{
             mbId: $thistr.attr('data-mbId'),        // tương ứngbảngôtrongcủa cfmbId
             mbmc: $thistr.attr('data-mbmc'),        // tương ứngbảngôtrongcủa Tên mẫu (mbmc)
-            cflx: $thistr.attr('data-cflx'),                          // dùngHánchữthaythaysốchữ，Hiển thịĐơn thuốcLoại
+            cflx: $thistr.attr('data-cflx'),                          // dùngHánchữthaythaysốchữ,Hiển thịĐơn thuốcLoại
             Description: $thistr.attr('data-Description'),  // tương ứngbảngôtrongcủa Mô tả
             Remark: $thistr.attr('data-Remark')     // tương ứngbảngôtrongcủa Lưu ýviệc mục
         }]);
@@ -549,7 +549,7 @@
             zdObj.ysbz = $($('#tablexyzd .zdText')[i]).siblings('.chkValue').is(':checked')
             if (zdObj.zdmc && zdObj.zdmc) {    //làcủaCóxếptrừtrốngChẩn đoán
                 if (i == 0) {
-                    zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
+                    zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1:chínhChẩn đoán 2phụChẩn đoán
                 }
                 else {
                     zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Deputy).ToString());
@@ -570,7 +570,7 @@
             zdObj.zhCode = $($('#tablezyzd .zhText')[i]).attr('data-zhCode');
             if (zdObj.zdmc && zdObj.zdmc) {    //làcủaCóxếptrừtrốngChẩn đoán
                 if (i == 0) {
-                    zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1：chínhChẩn đoán 2phụChẩn đoán
+                    zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Main).ToString());   //Mặc địnhđầu tiênChẩn đoánlàchínhChẩn đoán  1:chínhChẩn đoán 2phụChẩn đoán
                 }
                 else {
                     zdObj.zdlx =  @Html.Raw(((int)EnumZdlx.Deputy).ToString());

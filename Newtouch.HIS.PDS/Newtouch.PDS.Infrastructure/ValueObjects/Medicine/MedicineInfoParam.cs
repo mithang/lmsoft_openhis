@@ -26,12 +26,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string ypjx { get; set; }
 
         /// <summary>
-        /// Trạng thái sử dụng Kiểm soát、Bình thường
+        /// Trạng thái sử dụng Kiểm soát,Bình thường
         /// </summary>
         public string syzt { get; set; }
 
         /// <summary>
-        /// Trạng thái thuốc Ngừng dùng、Bật
+        /// Trạng thái thuốc Ngừng dùng,Bật
         /// </summary>
         public string ypzt { get; set; }
 

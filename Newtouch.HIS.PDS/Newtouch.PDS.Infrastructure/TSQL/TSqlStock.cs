@@ -261,7 +261,7 @@ COMMIT TRANSACTION
 ";
 
         /// <summary>
-        /// Đóng băng tồn kho（Sử dụng giảm tồn kho  Trả lại phát thuốc nội bộ）
+        /// Đóng băng tồn kho(Sử dụng giảm tồn kho  Trả lại phát thuốc nội bộ)
         /// </summary>
         public const string frozen_stock_Reduce_use_by_returninward = @"
 BEGIN TRANSACTION
@@ -324,7 +324,7 @@ END CATCH
 ";
 
         /// <summary>
-        /// Đóng băng tồn kho（Sử dụng giảm tồn kho  Xuất kho trực tiếp）
+        /// Đóng băng tồn kho(Sử dụng giảm tồn kho  Xuất kho trực tiếp)
         /// </summary>
         public const string frozen_stock_Reduce_use_by_deliveryDirect = @"
 BEGIN TRANSACTION

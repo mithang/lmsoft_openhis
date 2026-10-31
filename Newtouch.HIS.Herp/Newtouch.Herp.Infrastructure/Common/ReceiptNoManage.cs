@@ -11,7 +11,7 @@ namespace Newtouch.Herp.Infrastructure.Common
         public static Random random = new Random();
 
         /// <summary>
-        /// Tạo số ngẫu nhiên Thời điểm（Năm tháng ngày giờ phút giây）+Số ngẫu nhiên 3 chữ số
+        /// Tạo số ngẫu nhiên Thời điểm(Năm tháng ngày giờ phút giây)+Số ngẫu nhiên 3 chữ số
         /// </summary>
         /// <returns></returns>
         public static string GetNewOrderNoV1()

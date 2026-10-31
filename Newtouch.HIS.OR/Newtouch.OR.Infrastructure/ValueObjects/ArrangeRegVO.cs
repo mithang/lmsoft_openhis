@@ -175,7 +175,7 @@ namespace Newtouch.OR.ManageSystem.Domain.ValueObjects
         public string ssbw { get; set; }
 
         /// <summary>
-        /// Trạng thái     1:Có hiệu lực  0：Không hiệu lực
+        /// Trạng thái     1:Có hiệu lực  0:Không hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }

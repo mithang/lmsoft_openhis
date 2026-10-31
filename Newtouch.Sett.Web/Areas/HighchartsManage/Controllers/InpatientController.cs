@@ -66,7 +66,7 @@ namespace Newtouch.Sett.Web.Areas.HighchartsManage.Controllers
             List<OutpatientVisitNumVO> outpatientlist = _highchartsDmnService.GetInpatientVisitNum(OrganizeId);
             //đượclấyraviệnngườisố
             List<InpatientVisitNumVO> inpatientList = _highchartsDmnService.GetInpatientDischargeNum(OrganizeId);
-            //đặttạimộtcáiđốitượng，trảquayđếntrangmặt
+            //đặttạimộtcáiđốitượng,trảquayđếntrangmặt
             var data = new VisitNumBO
             {
                 OutpatientList = outpatientlist,

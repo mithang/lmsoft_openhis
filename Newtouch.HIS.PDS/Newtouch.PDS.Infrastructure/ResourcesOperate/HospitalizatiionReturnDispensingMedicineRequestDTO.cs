@@ -57,7 +57,7 @@ namespace Newtouch.PDS.Requset.ResourcesOperate
         public string zyh { get; set; }
 
         /// <summary>
-        /// Hệ số chuyển đổi（tysl*zhyz=Số lượng đơn vị nhỏ nhất）  Số chia lẻ nội trú mặc định
+        /// Hệ số chuyển đổi(tysl*zhyz=Số lượng đơn vị nhỏ nhất)  Số chia lẻ nội trú mặc định
         /// </summary>
         public int? zhyz { get; set; }
 

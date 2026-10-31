@@ -23,7 +23,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         /// </summary>
         public bool wsh { get; set; }
         /// <summary>
-        /// Tất cả，Hiệu lực
+        /// Tất cả,Hiệu lực
         /// </summary>
         public string yx { get; set; }
         public DateTime kssj { get; set; }

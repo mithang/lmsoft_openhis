@@ -12,9 +12,9 @@ using Newtouch.OR.ManageSystem.Domain.DTO.OutputDto;
 namespace Newtouch.OR.ManageSystem.Repository
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-10-31 14:15
-    /// Mô tả：Bảng từ điển phẫu thuật
+    /// Tạo bởi:chl
+    /// Ngày:2019-10-31 14:15
+    /// Mô tả:Bảng từ điển phẫu thuật
     /// </summary>
     public class OROperationRepo : RepositoryBase<OROperationEntity>, IOROperationRepo
     {
@@ -59,7 +59,7 @@ namespace Newtouch.OR.ManageSystem.Repository
         }
 
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

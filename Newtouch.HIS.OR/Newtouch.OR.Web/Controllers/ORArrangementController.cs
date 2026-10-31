@@ -8,9 +8,9 @@ using NewtouchHIS.Framework.Web.Controllers;
 namespace Newtouch.OR.ManageSystem.Web.Controllers
 {
     /// <summary>
-    /// Tạo bởi：chl
-    /// Ngày：2019-11-06 10:22
-    /// Mô tả：Hồ sơ xếp lịch phẫu thuật
+    /// Tạo bởi:chl
+    /// Ngày:2019-11-06 10:22
+    /// Mô tả:Hồ sơ xếp lịch phẫu thuật
     /// </summary>
     public class ORArrangementController : OrgControllerBase
     {
@@ -47,7 +47,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         }
 
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>
@@ -55,7 +55,7 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
         //public IActionResult SubmitForm(ORArrangementEntity entity, string keyValue)
         //{
         //    _oRArrangementRepo.SubmitForm(entity, keyValue);
-        //    return Success("Thao tác thành công。");
+        //    return Success("Thao tác thành công.");
         //}
 
         /// <summary>

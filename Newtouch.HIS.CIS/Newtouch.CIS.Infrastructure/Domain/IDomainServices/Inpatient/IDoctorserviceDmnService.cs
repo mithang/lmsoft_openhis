@@ -23,7 +23,7 @@ namespace Newtouch.Domain.IDomainServices
         void SubmitdoctorService(string orgId, List<DoctorServiceRequestDto> reqdoctorservices, List<string> deldata);
 
         /// <summary>
-        /// Y lệnhchuyểnđổithànhDữ liệubảngcủaTrạng thái Dài hạn、Tạm thờikhôngđicấu hình，cóBác sĩchínhxemđiều khiển
+        /// Y lệnhchuyểnđổithànhDữ liệubảngcủaTrạng thái Dài hạn,Tạm thờikhôngđicấu hình,cóBác sĩchínhxemđiều khiển
         /// </summary>
         /// <param name="orgId"></param>3
         /// <param name="reqdoctorservices"></param>

@@ -65,7 +65,7 @@ namespace Newtouch.HIS.Domain.VO
         /// </summary>
         public string yqbm { get; set; }
         /// <summary>
-        /// Cờ giao hàng nhiều lần（0Không cho phép  1Cho phép）
+        /// Cờ giao hàng nhiều lần(0Không cho phép  1Cho phép)
         /// </summary>
         public string dcpsbs { get; set; }
         /// <summary>

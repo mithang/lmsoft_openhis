@@ -102,7 +102,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
-        /// <param name="mzzybz">1Ngoại trú，2Nhập viện</param>
+        /// <param name="mzzybz">1Ngoại trú,2Nhập viện</param>
         /// <returns></returns>
         public IActionResult GetMzPatientPsItemsJson(Pagination pagination, string Id)
         {
@@ -125,7 +125,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
-        /// <param name="mzzybz">1Ngoại trú，2Nhập viện</param>
+        /// <param name="mzzybz">1Ngoại trú,2Nhập viện</param>
         /// <returns></returns>
         public IActionResult GetZyPatientPsItemsJson(Pagination pagination, string zyh)
         {

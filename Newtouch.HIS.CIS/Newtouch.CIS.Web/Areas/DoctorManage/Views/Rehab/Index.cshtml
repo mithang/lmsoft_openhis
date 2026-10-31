@@ -283,7 +283,7 @@
 		}
 
 		var currlineId = $("#gridkfxm").getRowData(rowid).Id;
-		if (currlineId.indexOf("0.") == '-1') {//SửacủaDữ liệu，khôngcho phépSửaMục thu phí
+		if (currlineId.indexOf("0.") == '-1') {//SửacủaDữ liệu,khôngcho phépSửaMục thu phí
 			$("#" + rowid + "_xmmc").css('background-color', '#f6f7fb').attr('readonly', 'true');
 		} else {
 			@*var searchType = "sfxm";
@@ -343,8 +343,8 @@
 					}
 					var jldw = $this.attr('data-jldw');    //Đơn vị liều
 					var dw = $this.attr('data-dw');     //Đơn vị nhập viện
-				    //Khởi tạoĐơn vịvàĐơn vịLoạicủaGiá trị，KhôngthìKhông cóGiá trịtruyềnđếnmáy chủ
-				    //Mặc địnhĐơn vị liều，khôngtồn tạiởĐơn vị liều，Mặc địnhĐơn vị nhập viện，đềukhôngtồn tạiở，khôngGán giá trị
+				    //Khởi tạoĐơn vịvàĐơn vịLoạicủaGiá trị,KhôngthìKhông cóGiá trịtruyềnđếnmáy chủ
+				    //Mặc địnhĐơn vị liều,khôngtồn tạiởĐơn vị liều,Mặc địnhĐơn vị nhập viện,đềukhôngtồn tạiở,khôngGán giá trị
 					if (!!jldw) {
 					    $("#" + rowid + "_dwwwwwww").val(jldw);
 					    $("#" + rowid + "_dwlb").val("1");
@@ -541,7 +541,7 @@
 		if (!!selRowId) {
 			var Id= $("#gridkfxm").jqGrid('getRowData', selRowId).Id;
 			$("#gridkfxm").jqGrid("delRowData", selRowId);
-			if (Id.indexOf("0.")==='-1') {//ghi lại，từCơ sở dữ liệuXóa
+			if (Id.indexOf("0.")==='-1') {//ghi lại,từCơ sở dữ liệuXóa
 				deldata.push(Id);
 			}
 		}
@@ -559,13 +559,13 @@
 	    //    return;
 	    //}
 		patobjValidate();
-		//Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+		//Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
 		var rowIds = $("#gridkfxm").jqGrid('getDataIDs');
 		for (var i = 0; i < rowIds.length; i++) {
 			var saveResult = $("#gridkfxm").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 			if (!saveResult) {
 				EnableRehabEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-				return;   //Lưu thất bại，thìreturn
+				return;   //Lưu thất bại,thìreturn
 			}
 		}
 		var gridkfxmData = $("#gridkfxm").jqGrid('getRowData_AllLine', null, true);
@@ -727,7 +727,7 @@
 			}
 		});
 	}
-	//Phục hồi chức năngĐơn thuốcchi tiết，ThêmTrích dẫn
+	//Phục hồi chức năngĐơn thuốcchi tiết,ThêmTrích dẫn
 	function AddRehabCfmx(cfItem, zhuijiaornew){
 
 		if(!(cfItem.xmdm && cfItem.xmmc && cfItem.dj && cfItem.dw
@@ -788,7 +788,7 @@
 					mbObj.tclx = @Html.Raw(((int)EnumYzlx.rehab).ToString());
 					mbObj.ysgh = '@ViewBag.ysgh';
 				}
-				//Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+				//Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
 				var rowIds = $("#gridkfxm").jqGrid('getDataIDs');
 				for (var i = 0; i < rowIds.length; i++) {
 					calitemsl(rowIds[i]);
@@ -796,7 +796,7 @@
 
 					if (!saveResult) {
 						EnableRehabEditBox();    //khởi động lạiKích hoạtSửa Khôngthì lần sau lầnSavekhisẽQuay lạifalse
-						return;   //Lưu thất bại，thìreturn
+						return;   //Lưu thất bại,thìreturn
 					}
 				}
 				var gridkfxmData = $("#gridkfxm").jqGrid('getRowData_AllLine', null, true);

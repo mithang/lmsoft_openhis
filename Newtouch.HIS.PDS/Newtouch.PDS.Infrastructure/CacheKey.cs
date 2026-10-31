@@ -14,7 +14,7 @@ namespace Newtouch.Infrastructure
         public static string CurrentYfbmInfoEntityKey = "string:CurrentYfbmInfo_{0}";
 
         /// <summary>
-        /// Cây người dùng tổ chức（được nhân sự tương ứng）Đệm   {0}OrganizeId
+        /// Cây người dùng tổ chức(được nhân sự tương ứng)Đệm   {0}OrganizeId
         /// </summary>
         public static string OrganizeUserTreeSetKey = "set:OrganizeUserTree_{0}";
 

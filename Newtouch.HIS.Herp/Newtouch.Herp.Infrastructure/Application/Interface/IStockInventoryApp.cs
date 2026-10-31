@@ -25,7 +25,7 @@ namespace Newtouch.Herp.Application.Interface
         /// </summary>
         /// <param name="inventoryInfoList"></param>
         /// <param name="pdId">Phiếu kiểm kê ID</param>
-        /// <param name="noPc">  0：Kiểm kê theo lô hàng 1：Kiểm kê không theo lô hàng</param>
+        /// <param name="noPc">  0:Kiểm kê theo lô hàng 1:Kiểm kê không theo lô hàng</param>
         void SaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList, long pdId, string noPc = "0");
 
         /// <summary>

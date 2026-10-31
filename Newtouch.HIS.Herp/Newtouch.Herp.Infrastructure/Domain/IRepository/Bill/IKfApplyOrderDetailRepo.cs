@@ -13,15 +13,15 @@ namespace Newtouch.Herp.Domain.IRepository
         /// Sửa số lượng đã phát
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="sl">Số lượng đơn vị khoa phòng，với bảng kf_applyOrderDetail.zhyz*sl=Số lượng đơn vị nhỏ nhất</param>
+        /// <param name="sl">Số lượng đơn vị khoa phòng,với bảng kf_applyOrderDetail.zhyz*sl=Số lượng đơn vị nhỏ nhất</param>
         /// <returns></returns>
         int UpdateYfsl(long id, int sl);
 
         /// <summary>
-        /// Sửa số lượng đã phát，và trả về bản ghi thay đổi
+        /// Sửa số lượng đã phát,và trả về bản ghi thay đổi
         /// </summary>
         /// <param name="id"></param>
-        /// <param name="sl">Số lượng đơn vị khoa phòng，với bảng kf_applyOrderDetail.zhyz*sl=Số lượng đơn vị nhỏ nhất</param>
+        /// <param name="sl">Số lượng đơn vị khoa phòng,với bảng kf_applyOrderDetail.zhyz*sl=Số lượng đơn vị nhỏ nhất</param>
         /// <returns></returns>
         KfApplyOrderDetailEntity UpdateYfslAndSelectChangeRecord(long id, int sl);
 

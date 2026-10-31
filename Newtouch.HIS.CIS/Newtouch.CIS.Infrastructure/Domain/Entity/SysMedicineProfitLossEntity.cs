@@ -53,7 +53,7 @@ namespace Newtouch.Domain.Entity
         public DateTime Bgsj { get; set; }
 
         /// <summary>
-        /// đangsố：báo thừa，âmsố：Báo hỏng  Đơn vị nhỏ nhấtSố lượng
+        /// đangsố:báo thừa,âmsố:Báo hỏng  Đơn vị nhỏ nhấtSố lượng
         /// </summary>
         public int Sysl { get; set; }
 

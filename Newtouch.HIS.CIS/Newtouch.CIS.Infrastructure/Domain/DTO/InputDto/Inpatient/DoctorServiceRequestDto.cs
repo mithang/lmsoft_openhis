@@ -5,7 +5,7 @@ using Newtouch.Domain.Entity;
 namespace Newtouch.Domain.DTO.InputDto.Inpatient
 {
     /// <summary>
-    /// LưuY lệnhkhi，viewtruyềnđếnmáy chủcủađối tượng
+    /// LưuY lệnhkhi,viewtruyềnđếnmáy chủcủađối tượng
     /// </summary>
     public class DoctorServiceRequestDto
     {
@@ -115,7 +115,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         public string yzlb { get; set; }
 
         /// <summary>
-        /// Y lệnhsố，cùng mộtY lệnhsốtronggóichứanhiềucáiyzId
+        /// Y lệnhsố,cùng mộtY lệnhsốtronggóichứanhiềucáiyzId
         /// </summary>
         public string yzh { get; set; }
 
@@ -227,7 +227,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         public string cyzd { get; set; }
     }
     /// <summary>
-    /// Nhập việnY lệnhQuản lý，Thuốcdựchuẩn bịDữ liệukhi
+    /// Nhập việnY lệnhQuản lý,Thuốcdựchuẩn bịDữ liệukhi
     /// </summary>
     public class MedicineInfoDto
     {

@@ -284,11 +284,11 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Tần Hoàng Đảosổphiếugiao diện（nhắccung cấpchoHIS）
+        /// Tần Hoàng Đảosổphiếugiao diện(nhắccung cấpchoHIS)
         /// </summary>
-        /// <param name="Opt">giao diệnLoại：lấyGiá trị：zd(sổphiếu)</param>
-        /// <param name="Brwym">bệnh ngườiduy nhấtmộtmã(bệnh ngườiởHIStrongcủaduy nhấtmộtmã，khônglàmSPcủatham sốdùng，chỉlàmhạt nhânđốidùng)</param>
-        /// <param name="Zdlx">sổphiếuLoại:00:dònghìnhmã01:Thuốc02:Kiểm tra03:Xét nghiệm04:Điều trịkhôngtruyềnnàychữđoạnthìQuay lạiTất cảsổphiếu(Đơn thuốc，LIS，PACS，Điều trị)</param>
+        /// <param name="Opt">giao diệnLoại:lấyGiá trị:zd(sổphiếu)</param>
+        /// <param name="Brwym">bệnh ngườiduy nhấtmộtmã(bệnh ngườiởHIStrongcủaduy nhấtmộtmã,khônglàmSPcủatham sốdùng,chỉlàmhạt nhânđốidùng)</param>
+        /// <param name="Zdlx">sổphiếuLoại:00:dònghìnhmã01:Thuốc02:Kiểm tra03:Xét nghiệm04:Điều trịkhôngtruyềnnàychữđoạnthìQuay lạiTất cảsổphiếu(Đơn thuốc,LIS,PACS,Điều trị)</param>
         /// <param name="Brxz">Tính chất bệnh nhân</param>
         /// <param name="startDate">Thời gian bắt đầu</param>
         /// <param name="endDate">Thời gian kết thúc</param>

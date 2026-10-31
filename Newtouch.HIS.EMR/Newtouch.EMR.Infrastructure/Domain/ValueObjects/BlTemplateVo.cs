@@ -10,11 +10,11 @@ namespace Newtouch.EMR.Domain.ValueObjects
     public class BlTemplateVo
     {
         /// <summary>
-        /// Văn bản、MẫuId
+        /// Văn bản,MẫuId
         /// </summary>
         public string templateId { get; set; }
         /// <summary>
-        /// Văn bản、Tên mẫu
+        /// Văn bản,Tên mẫu
         /// </summary>
         public string templateName { get; set; }
         /// <summary>

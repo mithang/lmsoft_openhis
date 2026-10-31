@@ -13,7 +13,7 @@ namespace HIS.SSO.Domain.SysManage
     {
         public string? Id { get; set; }
         /// <summary>
-        /// tổ chứcId（tùy chọn，nullkhi đó dùng chung cho tất cả các tổ chức）
+        /// tổ chứcId(tùy chọn,nullkhi đó dùng chung cho tất cả các tổ chức)
         /// </summary>
         public string? OrganizeId { get; set; }
         /// <summary>
@@ -37,7 +37,7 @@ namespace HIS.SSO.Domain.SysManage
         /// <returns></returns>
         public string? Code { get; set; }
         /// <summary>
-        /// ứng dụngId，ví dụCIS、Sett
+        /// ứng dụngId,ví dụCIS,Sett
         /// </summary>
         public string? AppId { get; set; }
         /// <summary>

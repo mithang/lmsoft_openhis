@@ -18,9 +18,9 @@ using Newtouch.EMR.Domain.IDomainServices;
 namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 {
     /// <summary>
-    /// Người tạo：hyj
-    /// Ngày：2018-09-07 15:46
-    /// Mô tả：Quản lý từ mục
+    /// Người tạo:hyj
+    /// Ngày:2018-09-07 15:46
+    /// Mô tả:Quản lý từ mục
     /// </summary>
     [Area("MedicalRecordManage")]
     public class BlctglController : OrgControllerBase
@@ -114,7 +114,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         /// <summary>
-        /// Lưu biểu mẫu（Thêm mới、Sửa）
+        /// Lưu biểu mẫu(Thêm mới,Sửa)
         /// </summary>
         /// <param name="entity">Đối tượng thực thể</param>
         /// <param name="keyValue">Giá trị khóa chính</param>

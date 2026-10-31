@@ -91,7 +91,7 @@ namespace Newtouch.CIS.Web.Controllers
             object sysStaffDutyList = null, doctorInHosBookkeep = null, sysPatientNatureList = null,sysDepartList = null;
             if (!string.IsNullOrWhiteSpace(opr.OrganizeId))
             {
-                sysStaffDutyList = _sysUserDmnService.GetStaffDutyListByOrganizeId(opr.OrganizeId);//（Bác sĩ，sức khỏehuấn luyện viên）
+                sysStaffDutyList = _sysUserDmnService.GetStaffDutyListByOrganizeId(opr.OrganizeId);//(Bác sĩ,sức khỏehuấn luyện viên)
                 doctorInHosBookkeep = _sysUserDmnService.GetStaffByDutyCode(opr.OrganizeId, "Doctor");//Ghi nợ nội trúLấyNgoại trúBác sĩ
                 sysDepartList = _sysDepartmentRepo.GetList(opr.OrganizeId, "1");//Khoa
                 sysPatientNatureList = _sysNationalityRepo.GetBRXZList(opr.OrganizeId);//Tính chất bệnh nhân,báobánchính sách
@@ -128,7 +128,7 @@ namespace Newtouch.CIS.Web.Controllers
                 enums = cisEnums,
                 sysDepartList = sysDepartList == null ? null : sysDepartList.ToJson(new[] { "Name", "Code", "yjbz", "py", "zlks" }),    //Khoa
                 sysPatientNatureList = sysPatientNatureList,
-                sysStaffDutyList = sysStaffDutyList == null ? null : sysStaffDutyList.ToJson(new[] { "StaffGh", "StaffName", "StaffPY", "DutyCode" }),//sức khỏehuấn luyện viên，Bác sĩ
+                sysStaffDutyList = sysStaffDutyList == null ? null : sysStaffDutyList.ToJson(new[] { "StaffGh", "StaffName", "StaffPY", "DutyCode" }),//sức khỏehuấn luyện viên,Bác sĩ
                 sysNationList = _sysNationRepo.GetmzList(),//dântộc
                 SysForCashPayList = _sysNationalityRepo.GetCashPay(), //LấyhiệnkimPhương thức thanh toán
                 sysNationalityList = _sysNationalityRepo.GetgjList()//quốc tịch

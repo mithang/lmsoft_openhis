@@ -32,7 +32,7 @@ namespace Newtouch.Herp.Domain.Entity.VEntity
         public int sl { get; set; }
 
         /// <summary>
-        /// Số lượng，Kèm đơn vị
+        /// Số lượng,Kèm đơn vị
         /// </summary>
         public string slStr { get; set; }
 

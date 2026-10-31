@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string yzId { get; set; }
 
         /// <summary>
-        /// 1：Phát thuốc 2：Trả thuốc
+        /// 1:Phát thuốc 2:Trả thuốc
         /// </summary>
         public string operateType { get; set; }
 
@@ -93,8 +93,8 @@ namespace Newtouch.HIS.Domain.Entity
 
         /// <summary>
         /// Có chia lẻ không
-        /// 1： Có
-        /// 2： Không
+        /// 1: Có
+        /// 2: Không
         /// </summary>
         public int? sfcl { get; set; }
     }

@@ -131,7 +131,7 @@ namespace Newtouch.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// liên tụcThời lượng（Đơn vị：phút）
+        /// liên tụcThời lượng(Đơn vị:phút)
         /// </summary>
         public int? duration { get; set; }
 

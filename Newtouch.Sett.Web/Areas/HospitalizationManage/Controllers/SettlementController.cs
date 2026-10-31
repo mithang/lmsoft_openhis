@@ -68,7 +68,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// GửiLưuquyết toán
         /// </summary>
         /// <param name="zyh"></param>
-        /// <param name="expectedyjjzhye">Tài khoảntạm ứngHiện tạiSố dư（cònChưaquyết toán） Ngăn thay đổi phí trong quá trình</param>
+        /// <param name="expectedyjjzhye">Tài khoảntạm ứngHiện tạiSố dư(cònChưaquyết toán) Ngăn thay đổi phí trong quá trình</param>
         /// <param name="expectedjsje">Số tiềnquyết toán Ngăn thay đổi phí trong quá trình</param>
         /// <param name="expectedzhaoling">Tiền thừa Ngăn thay đổi phí trong quá trình</param>
         /// <param name="xjzfListStr"></param>

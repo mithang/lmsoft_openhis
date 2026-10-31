@@ -324,7 +324,7 @@
             }
             drawLine(origin.x, top, widthlength);
         }
-        //dưới cùngtable  tablecủađườngvàdivkhóđốicủa nó，sởlấydùngdivvẽđường
+        //dưới cùngtable  tablecủađườngvàdivkhóđốicủa nó,sởlấydùngdivvẽđường
         $('.bottomtbl').css('width', twLastLeft - origin.x)
             .css('left', origin.x).css('top', twLastTop).show();
         $('.bottomtbl td').css('width', contentStartLeft - origin.x)
@@ -552,7 +552,7 @@
             left += sspacewidth / 2;
             if ($.jsonWhere(twArr, function (v) { return v == item.tw }).length == 1
                 && item.tw != twArr[0] && item.tw != twArr[twArr.length - 1]) {
-                top = top + 0.5;    //hiển thị đặc biệt đúng giờ，vì chiều cao đường kẻ2px
+                top = top + 0.5;    //hiển thị đặc biệt đúng giờ,vì chiều cao đường kẻ2px
             }
             item.twLocation = { x: left, y: top };
             drawDot(left, top, twColor, item.tw);
@@ -584,7 +584,7 @@
             left += sspacewidth / 2;
             if ($.jsonWhere(mbArr, function (v) { return v == item.mb }).length == 1
                 && item.mb != mbArr[0] && item.mb != mbArr[mbArr.length - 1]) {
-                top = top + 0.5;    //hiển thị đặc biệt đúng giờ，vì chiều cao đường kẻ2px
+                top = top + 0.5;    //hiển thị đặc biệt đúng giờ,vì chiều cao đường kẻ2px
             }
             item.mbLocation = { x: left, y: top };
             drawX(left, top, mbColor, item.mb);
@@ -616,7 +616,7 @@
             left += sspacewidth / 2;
             if ($.jsonWhere(hxArr, function (v) { return v == item.hx }).length == 1
                 && item.hx != hxArr[0] && item.hx != hxArr[hxArr.length - 1]) {
-                top = top + 0.5;    //hiển thị đặc biệt đúng giờ，vì chiều cao đường kẻ2px
+                top = top + 0.5;    //hiển thị đặc biệt đúng giờ,vì chiều cao đường kẻ2px
             }
             item.hxLocation = { x: left, y: top };
             drawSquare(left, top, hxColor, item.hx);
@@ -648,7 +648,7 @@
             left += sspacewidth / 2;
             if ($.jsonWhere(xyArr, function (v) { return v == item.xysz }).length == 1
                 && item.xysz != xyArr[0] && item.xysz != xyArr[xyArr.length - 1]) {
-                top = top + 0.5;    //hiển thị đặc biệt đúng giờ，vì chiều cao đường kẻ2px
+                top = top + 0.5;    //hiển thị đặc biệt đúng giờ,vì chiều cao đường kẻ2px
             }
             item.xyszLocation = { x: left, y: top };
             drawUparrow(left, top, xyszColor, item.xysz);
@@ -672,7 +672,7 @@
             left += sspacewidth / 2;
             if ($.jsonWhere(xyArr, function (v) { return v == item.xyxz }).length == 1
                 && item.xyxz != xyArr[0] && item.xyxz != xyArr[xyArr.length - 1]) {
-                top = top + 0.5;    //hiển thị đặc biệt đúng giờ，vì chiều cao đường kẻ2px
+                top = top + 0.5;    //hiển thị đặc biệt đúng giờ,vì chiều cao đường kẻ2px
             }
             item.xyxzLocation = { x: left, y: top };
             drawDownarrow(left, top, xyxzColor, item.xyxz);
@@ -681,7 +681,7 @@
         }
     }
 
-    //typeMặc địnhđường ngang，truyềnfalsevẽđường dọc
+    //typeMặc địnhđường ngang,truyềnfalsevẽđường dọc
     function drawLine(left, top, length, colorClass, type, bold, zIndex) {
         var html = '<div style="position:absolute;left:' + left + 'px;top:' + top + 'px;';
         html += (type === 'vline' ? 'height' : 'width') + ":" + length + "px;";

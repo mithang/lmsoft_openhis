@@ -27,7 +27,7 @@ namespace Newtouch.Domain.Entity
         public string ypCode { get; set; }
 
         /// <summary>
-        /// 0 thông thườngMục 1 đặcđặcMụcThuốc đặc biệtMô tảlàđặcđịnhcủabệnh nhânTính chấtmớicó thểSử dụngcủa。
+        /// 0 thông thườngMục 1 đặcđặcMụcThuốc đặc biệtMô tảlàđặcđịnhcủabệnh nhânTính chấtmớicó thểSử dụngcủa.
         /// </summary>
         public string tsbz { get; set; }
 
@@ -47,7 +47,7 @@ namespace Newtouch.Domain.Entity
         public string yljsy { get; set; }
 
         /// <summary>
-        /// Điều trịPhương pháp（cùngdạng liên kết Cách dùng thuốc）
+        /// Điều trịPhương pháp(cùngdạng liên kết Cách dùng thuốc)
         /// </summary>
         public string zlff { get; set; }
 
@@ -77,27 +77,27 @@ namespace Newtouch.Domain.Entity
         public string ybdm { get; set; }
 
         /// <summary>
-        /// Sử dụngSố ngày（Bảo hiểm y tếkiểm soátlượngCài đặtchữđoạn）
+        /// Sử dụngSố ngày(Bảo hiểm y tếkiểm soátlượngCài đặtchữđoạn)
         /// </summary>
         public int? syts { get; set; }
 
         /// <summary>
-        /// Một lầnnhấtlớnLiều lượng（Bảo hiểm y tếkiểm soátlượngCài đặtchữđoạn）
+        /// Một lầnnhấtlớnLiều lượng(Bảo hiểm y tếkiểm soátlượngCài đặtchữđoạn)
         /// </summary>
         public decimal? dczdjl { get; set; }
 
         /// <summary>
-        /// Một lầnnhấtlớnSố lượng（Bảo hiểm y tếkiểm soátlượngCài đặtchữđoạn）
+        /// Một lầnnhấtlớnSố lượng(Bảo hiểm y tếkiểm soátlượngCài đặtchữđoạn)
         /// </summary>
         public decimal? dczdsl { get; set; }
 
         /// <summary>
-        /// lũytínhnhấtlớnLiều lượng（Bảo hiểm y tếkiểm soátlượngCài đặtchữđoạn）
+        /// lũytínhnhấtlớnLiều lượng(Bảo hiểm y tếkiểm soátlượngCài đặtchữđoạn)
         /// </summary>
         public decimal? ljzdjl { get; set; }
 
         /// <summary>
-        /// lũytínhnhấtlớnSố lượng（Bảo hiểm y tếkiểm soátlượngCài đặtchữđoạn）
+        /// lũytínhnhấtlớnSố lượng(Bảo hiểm y tếkiểm soátlượngCài đặtchữđoạn)
         /// </summary>
         public decimal? ljzdsl { get; set; }
 

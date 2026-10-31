@@ -32,7 +32,7 @@ namespace Newtouch.HIS.DomainServices
         /// </summary>
         /// <param name="sldh">Số đơn lĩnh</param>
         /// <param name="fybmCode">Bộ phận phát thuốc</param>
-        /// <param name="slbmCode">Bộ phận lĩnh（Bộ phận nhà thuốc người dùng đăng nhập hiện tại）</param>
+        /// <param name="slbmCode">Bộ phận lĩnh(Bộ phận nhà thuốc người dùng đăng nhập hiện tại)</param>
         /// <param name="mxList">Chi tiết thuốc lĩnh</param>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.DomainServices
                         Zhyz = mx.bbmzhyz,  //Hệ số chuyển đổi của bộ phận phát thuốc
                         //ph = "",
                         //pc = "",
-                        slsl = mx.slsl,    //Chuyển thành đơn vị nhỏ nhất，lưu nó
+                        slsl = mx.slsl,    //Chuyển thành đơn vị nhỏ nhất,lưu nó
                         yfsl = 0,   //Số lượng đã phát
                     };
                     mxEntity.Create(true);

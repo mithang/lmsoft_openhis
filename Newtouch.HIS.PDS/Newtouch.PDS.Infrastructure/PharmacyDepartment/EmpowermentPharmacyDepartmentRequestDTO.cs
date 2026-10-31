@@ -77,7 +77,7 @@ namespace Newtouch.PDS.Requset.PharmacyDepartment
         public int? Jhd { get; set; }
 
         /// <summary>
-        /// Lượng kế hoạch Điểm nhập hàng tương ứng，Số lượng lĩnh nội bộ chỉ định
+        /// Lượng kế hoạch Điểm nhập hàng tương ứng,Số lượng lĩnh nội bộ chỉ định
         /// </summary>
         public int? Jhl { get; set; }
 
@@ -102,7 +102,7 @@ namespace Newtouch.PDS.Requset.PharmacyDepartment
         public int? px { get; set; }
 
         /// <summary>
-        /// Trạng thái  1：Bình thường 0：Kiểm soát
+        /// Trạng thái  1:Bình thường 0:Kiểm soát
         /// </summary>
         public string zt { get; set; }
 
@@ -188,7 +188,7 @@ namespace Newtouch.PDS.Requset.PharmacyDepartment
         public int? Jhd { get; set; }
 
         /// <summary>
-        /// Lượng kế hoạch Điểm nhập hàng tương ứng，Số lượng lĩnh nội bộ chỉ định
+        /// Lượng kế hoạch Điểm nhập hàng tương ứng,Số lượng lĩnh nội bộ chỉ định
         /// </summary>
         public int? Jhl { get; set; }
 
@@ -213,7 +213,7 @@ namespace Newtouch.PDS.Requset.PharmacyDepartment
         public int? px { get; set; }
 
         /// <summary>
-        /// Trạng thái  1：Bình thường 0：Kiểm soát
+        /// Trạng thái  1:Bình thường 0:Kiểm soát
         /// </summary>
         public string zt { get; set; }
 

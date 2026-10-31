@@ -19,7 +19,7 @@ namespace Newtouch.EMR.DomainServices
         }
 
         /// <summary>
-        /// Danh sách đã khám và đang khám( Đã khám： chỉ có thể xem bệnh nhân thuộc tên mình)
+        /// Danh sách đã khám và đang khám( Đã khám: chỉ có thể xem bệnh nhân thuộc tên mình)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>

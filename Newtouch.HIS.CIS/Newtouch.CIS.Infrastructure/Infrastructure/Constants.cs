@@ -12,7 +12,7 @@ namespace Newtouch.Infrastructure
     public class Constants
     {
         /// <summary>
-        /// Tổ chứcId（đỉnhcấp，Hệ thốngcấu hình）
+        /// Tổ chứcId(đỉnhcấp,Hệ thốngcấu hình)
         /// </summary>
         public static string TopOrganizeId
         {
@@ -23,7 +23,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Tổ chứcId（đỉnhcấp，Hệ thốngcấu hình）
+        /// Tổ chứcId(đỉnhcấp,Hệ thốngcấu hình)
         /// </summary>
         public static string AppId
         {
@@ -34,7 +34,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấyhiện tạicủathuốcliềuKhoa phòng（Nhà thuốchoặcKho thuốc）
+        /// Lấyhiện tạicủathuốcliềuKhoa phòng(Nhà thuốchoặcKho thuốc)
         /// </summary>
         public static LoginUserCurrentYfbmModel CurrentYfbm
         {
@@ -46,7 +46,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Lấyhiện tạicủathuốcliềuKhoa phòng（Nhà thuốchoặcKho thuốc）
+        /// Lấyhiện tạicủathuốcliềuKhoa phòng(Nhà thuốchoặcKho thuốc)
         /// </summary>
         /// <param name="userId"></param>
         public static LoginUserCurrentYfbmModel GetCurrentYfbm(string userId)

@@ -38,7 +38,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Tính chất tự trả（Thuốc、Mụctừ điểncủaThuộc tính）
+    /// Tính chất tự trả(Thuốc,Mụctừ điểncủaThuộc tính)
     /// </summary>
     public enum EnumZiFuXingZhi
     {
@@ -274,7 +274,7 @@ namespace Newtouch.Infrastructure
 
     /// <summary>
     /// Đơn thuốcmẫuLoại
-    /// （Hồ sơmẫuLoạicũnglàdùngnàyLiệt kê）
+    /// (Hồ sơmẫuLoạicũnglàdùngnàyLiệt kê)
     /// </summary>
     public enum EnumCfMbLx
     {
@@ -296,7 +296,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Xét nghiệmKiểm traBộ mẫuLoại  （Xét nghiệmKiểm trachungdùngmộttrangmặt，chỉlàtham số（tứctype）khôngcùng）
+    /// Xét nghiệmKiểm traBộ mẫuLoại  (Xét nghiệmKiểm trachungdùngmộttrangmặt,chỉlàtham số(tứctype)khôngcùng)
     /// </summary>
     public enum EnumjyjczutaoLx
     {
@@ -313,7 +313,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Xét nghiệmKiểm tramẫuLoại  （Xét nghiệmKiểm trachungdùngmộttrangmặt，chỉlàtham số（tứctype）khôngcùng）
+    /// Xét nghiệmKiểm tramẫuLoại  (Xét nghiệmKiểm trachungdùngmộttrangmặt,chỉlàtham số(tứctype)khôngcùng)
     /// </summary>
     public enum EnumjyjcmbLx
     {
@@ -476,7 +476,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Dấu hiệu ngoại trú/nội trú  0 Chung 1 chỉNgoại trú 2 chỉNhập viện 3 Hệ thống（Ngoại trúNhập việnđềukhôngcó thểdùng）VDnếu：nhàgiường
+    /// Dấu hiệu ngoại trú/nội trú  0 Chung 1 chỉNgoại trú 2 chỉNhập viện 3 Hệ thống(Ngoại trúNhập việnđềukhôngcó thểdùng)VDnếu:nhàgiường
     /// </summary>
     public enum Enummzzybz
     {

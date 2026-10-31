@@ -90,7 +90,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.Sys.Controllers
                 try
                 {
                     _sysUserApp.CreateDefaultAdminToOrg(entity.Id, Constants.LogonDefaultPassword);
-                    //return Success("Thao tác thành công。và đã khởi tạo thành công quản trị viên hệ thốngadmin");
+                    //return Success("Thao tác thành công.và đã khởi tạo thành công quản trị viên hệ thốngadmin");
                     return Success("Thao tác thành công<br/>và đã khởi tạo thành công quản trị viên hệ thốngadmin");
                 }
                 catch (Exception ex)

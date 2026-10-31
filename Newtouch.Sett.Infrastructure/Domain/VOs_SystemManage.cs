@@ -202,7 +202,7 @@ namespace Newtouch.Sett.Domain
             public string reportdlcode { get; set; }
     
             /// <summary>
-            /// lớnloạiloạikhác，đốiphảicáinêu EnumSfdlDllb 1Thuốc 2Khoản mục trị liệu 3Khoản mục không điều trị
+            /// lớnloạiloạikhác,đốiphảicáinêu EnumSfdlDllb 1Thuốc 2Khoản mục trị liệu 3Khoản mục không điều trị
             /// </summary>
             public int? dllb { get; set; }
     
@@ -225,7 +225,7 @@ namespace Newtouch.Sett.Domain
             public string ry { get; set; }
     
             /// <summary>
-            /// Tổ chứcId（cócụthểnghiệpvụcủay tếviện）
+            /// Tổ chứcId(cócụthểnghiệpvụcủay tếviện)
             /// </summary>
             public string OrganizeId { get; set; }
     
@@ -292,53 +292,53 @@ namespace Newtouch.Sett.Domain
         {
     
             /// <summary>
-            /// bệnhngườithuphíkèmthêmmãsố（xt_brsffj）
+            /// bệnhngườithuphíkèmthêmmãsố(xt_brsffj)
             /// </summary>
             public int brsffjbh { get; set; }
     
             /// <summary>
-            /// Tính chất bệnh nhân（xt_brxz）
+            /// Tính chất bệnh nhân(xt_brxz)
             /// </summary>
             public string brxzmc { get; set; }
     
             public string brxz { get; set; }
     
             /// <summary>
-            /// nhóm lớn（xt_sfdl）
+            /// nhóm lớn(xt_sfdl)
             /// </summary>
             public string dlmc { get; set; }
     
             public string dl { get; set; }
     
             /// <summary>
-            /// kèmthêmhiển thịhiển thịlớnloạitêngọi（xt_fjsfdl）
+            /// kèmthêmhiển thịhiển thịlớnloạitêngọi(xt_fjsfdl)
             /// </summary>
             public string fjxsdlmc { get; set; }
     
             public string fjxsdl { get; set; }
     
             /// <summary>
-            /// Khoản thu phí（xt_fjsfdl）
+            /// Khoản thu phí(xt_fjsfdl)
             /// </summary>
             public string sfxmmc { get; set; }
     
             public string sfxm { get; set; }
     
             /// <summary>
-            /// phục vụvụphísoví dụ（xt_brsffj）
+            /// phục vụvụphísoví dụ(xt_brsffj)
             /// </summary>
             public decimal fwfbl { get; set; }
     
             /// <summary>
-            /// Trạng thái（xt_brsffj）
+            /// Trạng thái(xt_brsffj)
             /// </summary>
             public string zt { get; set; }
             /// <summary>
-            /// Người lập hồ sơ（xt_brsffj）
+            /// Người lập hồ sơ(xt_brsffj)
             /// </summary>
             public string CreatorCode { get; set; }
             /// <summary>
-            /// Ngày lập hồ sơ（xt_brsffj）
+            /// Ngày lập hồ sơ(xt_brsffj)
             /// </summary>
             public DateTime CreateTime { get; set; }
         }

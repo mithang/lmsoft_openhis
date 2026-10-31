@@ -115,7 +115,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="resultObjArr"></param>
         /// <param name="pdId"></param>
-        /// <param name="noPc">0：theoLôKiểm kê  1：khôngtheoLôKiểm kê</param>
+        /// <param name="noPc">0:theoLôKiểm kê  1:khôngtheoLôKiểm kê</param>
         /// <returns></returns>
         public IActionResult SaveInventory(string resultObjArr, long pdId, string noPc)
         {
@@ -137,7 +137,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// Kết thúcKiểm kê
         /// </summary>
         /// <param name="pdId">Kiểm kêphiếuID</param>
-        /// <param name="autoCarryDown">null/0：khôngtựđộngkết chuyển  1：tựđộngkết chuyển</param>
+        /// <param name="autoCarryDown">null/0:khôngtựđộngkết chuyển  1:tựđộngkết chuyển</param>
         /// <returns></returns>
         public IActionResult EndInventory(long pdId, string autoCarryDown)
         {

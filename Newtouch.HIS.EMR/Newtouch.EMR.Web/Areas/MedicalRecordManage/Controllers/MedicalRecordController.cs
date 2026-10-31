@@ -204,7 +204,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                         if (xTextElements.Count > 0)
                         {
                             XTextInputFieldElement xTextInput = xTextElements[0] as XTextInputFieldElement;
-                            //Khi tạo mới mẫu diễn biến bệnh，Sử dụng ngày hiện tại
+                            //Khi tạo mới mẫu diễn biến bệnh,Sử dụng ngày hiện tại
                             xTextInput.InnerText = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");
                         }
                         XMLDataBind(Zybrjbxx, eng);
@@ -226,7 +226,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 {
                     try
                     {
-                        // Người dùng đã nhấn“Lưu tài liệu”Nút，
+                        // Người dùng đã nhấn“Lưu tài liệu”Nút,
                         // thì thửWEBtải tài liệu từ yêu cầu rồi lưu
                         //loaded = eng.LoadDocumentFromRequestFormData();
                         //Trình soạn thảo bệnh án 5.0
@@ -354,7 +354,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
                 if (sd == "保存为pdf" && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
-                    // Người dùng đã nhấn“Lưu tài liệu”Nút，
+                    // Người dùng đã nhấn“Lưu tài liệu”Nút,
                     // thì thửWEBtải tài liệu từ yêu cầu rồi lưu
                     loaded = eng.LoadDocumentFromRequestFormData();
                     if (loaded)
@@ -371,7 +371,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
                 if (sd == "保存为html" && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
-                    // Người dùng đã nhấn“Lưu tài liệu”Nút，
+                    // Người dùng đã nhấn“Lưu tài liệu”Nút,
                     // thì thửWEBtải tài liệu từ yêu cầu rồi lưu
                     loaded = eng.LoadDocumentFromRequestFormData();
                     if (loaded)
@@ -508,7 +508,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 if ((sd == "Lưu tài liệu" || sd == "Lưu tài liệu" || sd == "Tải lên bảo hiểm y tế" || sd == "Tải lên bảo hiểm y tế") && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
 
-                    // Người dùng đã nhấn“Lưu tài liệu”Nút，
+                    // Người dùng đã nhấn“Lưu tài liệu”Nút,
                     // thì thửWEBtải tài liệu từ yêu cầu rồi lưu
                     try {
                         //loaded = eng.LoadDocumentFromRequestFormData();
@@ -647,7 +647,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
                 if (sd == "保存为pdf" && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
-                    // Người dùng đã nhấn“Lưu tài liệu”Nút，
+                    // Người dùng đã nhấn“Lưu tài liệu”Nút,
                     // thì thửWEBtải tài liệu từ yêu cầu rồi lưu
                     loaded = eng.LoadDocumentFromRequestFormData();
                     if (loaded)
@@ -658,7 +658,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 }
                 if (sd == "保存为html" && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
-                    // Người dùng đã nhấn“Lưu tài liệu”Nút，
+                    // Người dùng đã nhấn“Lưu tài liệu”Nút,
                     // thì thửWEBtải tài liệu từ yêu cầu rồi lưu
                     loaded = eng.LoadDocumentFromRequestFormData();
                     if (loaded)
@@ -725,7 +725,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             ViewBag.userName = this.UserIdentity.UserName;
             if (!string.IsNullOrWhiteSpace(nameblxtmc.Trim()))
             {
-                //Phán đoán đường dẫn có tồn tại hay không，Tạo thư mục
+                //Phán đoán đường dẫn có tồn tại hay không,Tạo thư mục
                 string path = Getaddress + zyh;
                 if (Directory.Exists(path) == false)
                 {
@@ -742,7 +742,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return View();
         }
         /// <summary>
-        /// Khóa văn bản bệnh án- Mở khóa，không nhiều người được viết cùng một văn bản
+        /// Khóa văn bản bệnh án- Mở khóa,không nhiều người được viết cùng một văn bản
         /// </summary>
         /// <param name="blid"></param>
         /// <param name="bllx"></param>
@@ -1344,7 +1344,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
         
         /// <summary>
-        /// Thao tác bảng tương ứng khi lưu bệnh án，Lưu trữ dữ liệu
+        /// Thao tác bảng tương ứng khi lưu bệnh án,Lưu trữ dữ liệu
         /// </summary>
         /// <param name="bllx"></param>
         /// <param name="mbbh"></param>
@@ -2468,7 +2468,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     {
                         // Nhập nút trước
                         XmlNode n = result.ImportNode(node, true);
-                        // Sau đó，chèn vào vị trí đã chỉ định
+                        // Sau đó,chèn vào vị trí đã chỉ định
                         root.AppendChild(n);
                     }
 
@@ -2500,7 +2500,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 case 2://Hợp nhất2bản ghi diễn biến bệnh
                     MergeXML(urlList[0], urlList[1], saveUrl);
                     break;
-                default://Hợp nhất hai bản ghi diễn biến bệnh đầu tiên，lấy bản ghi diễn biến bệnh đã lưu hợp nhất lần lượt với các bản ghi còn lại
+                default://Hợp nhất hai bản ghi diễn biến bệnh đầu tiên,lấy bản ghi diễn biến bệnh đã lưu hợp nhất lần lượt với các bản ghi còn lại
                     MergeXML(urlList[0], urlList[1], saveUrl);
                     for (var i = 2; i < urlList.Count; i++)
                     {
@@ -2743,7 +2743,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             LockRecord(blid, bllx, 1);
             if (!string.IsNullOrWhiteSpace(nameblxtmc.Trim()))
             {
-                //Phán đoán đường dẫn có tồn tại hay không，Tạo thư mục
+                //Phán đoán đường dẫn có tồn tại hay không,Tạo thư mục
                 string path = Getaddress + zyh;
                 if (Directory.Exists(path) == false)
                 {

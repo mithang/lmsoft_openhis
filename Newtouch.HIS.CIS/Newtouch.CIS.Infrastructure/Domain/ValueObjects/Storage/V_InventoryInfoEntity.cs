@@ -22,7 +22,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string gg { get; set; }
 
         /// <summary>
-        /// lýluậnsố（mangĐơn vị）
+        /// lýluậnsố(mangĐơn vị)
         /// </summary>
         public string llsl { get; set; }
         

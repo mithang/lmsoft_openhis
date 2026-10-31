@@ -63,7 +63,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         public IActionResult GetsfdlJson(string keyword)
         {
-            var iszytfyp = _sysConfigRepo.GetBoolValueByCode("YXZ_SETT_1010", OrganizeId);//độngtrạng tháithamsố：nhập việnviệnhoànphílàkhônghoànthuốcphẩmphídùng
+            var iszytfyp = _sysConfigRepo.GetBoolValueByCode("YXZ_SETT_1010", OrganizeId);//độngtrạng tháithamsố:nhập việnviệnhoànphílàkhônghoànthuốcphẩmphídùng
             var sysDls = new List<SysChargeCategoryVEntity>();
             if (iszytfyp.Value == false)
             {//hiển thịhiển thịthuốcphẩm

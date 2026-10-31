@@ -88,7 +88,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         {
 
             ViewBag.zyhpz = _sysConfigRepo.GetBoolValueByCode("xt_zyh", OrganizeId, true).Value ? "ON" : "OFF";
-            //Có tìm bằng số thẻ không，mặc địnhOFF，tức là mặc định phải tìm bằng số bệnh án
+            //Có tìm bằng số thẻ không,mặc địnhOFF,tức là mặc định phải tìm bằng số bệnh án
             ViewBag.searchpz = _sysConfigRepo.GetBoolValueByCode("register_search", OrganizeId, false).Value ? "ON" : "OFF";
             ViewBag.isDiagnosisRequired = _sysConfigRepo.GetBoolValueByCode("Inpatient_Registe_Diagnosis_Required", this.OrganizeId);
             ViewBag.CurUserCode = UserIdentity.UserCode;
@@ -130,7 +130,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             ViewBag.IsDefaultDepart = _sysConfigRepo.GetByCode("IsDefaultDepart", OrganizeId) == null ? "OFF" : _sysConfigRepo.GetByCode("IsDefaultDepart", OrganizeId).Value;
             ViewBag.IsDefaultDoc = _sysConfigRepo.GetByCode("IsDefaultDoc", OrganizeId) == null ? "OFF" : _sysConfigRepo.GetByCode("IsDefaultDoc", OrganizeId).Value;
             ViewBag.IsOpenSfqr = _sysConfigRepo.GetValueByCode("xt_isopen_sfqr", OrganizeId) == "ON";
-            //Sau khi hoàn thành đăng ký ngoại trú，nhảychuyểntrangmặtphốiđặt
+            //Sau khi hoàn thành đăng ký ngoại trú,nhảychuyểntrangmặtphốiđặt
             ViewBag.TZPZ_OutpatientRegister = _sysConfigRepo.GetByCode("TZPZ_OutpatientRegister", OrganizeId) == null ? "" : _sysConfigRepo.GetByCode("TZPZ_OutpatientRegister", OrganizeId).Value;
             return View();
         }
@@ -144,7 +144,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             return View();
         }
         /// <summary>
-        /// y tếbảo hiểmbệnhngườiquỹnàythông tintin、thông tin tài khoản
+        /// y tếbảo hiểmbệnhngườiquỹnàythông tintin,thông tin tài khoản
         /// </summary>
         /// <returns></returns>
         public IActionResult YbPatientBasicInfo()
@@ -441,7 +441,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         public IActionResult CheckCardState(string kh, string zyh)
         {
             var blh = "";
-            //Có tìm bằng số thẻ không，mặc địnhOFF，tức là mặc định phải tìm bằng số bệnh án
+            //Có tìm bằng số thẻ không,mặc địnhOFF,tức là mặc định phải tìm bằng số bệnh án
             var searchpz = _sysConfigRepo.GetBoolValueByCode("register_search", OrganizeId, false).Value ? "ON" : "OFF";
             if (searchpz == "ON" && !string.IsNullOrWhiteSpace(kh))
             {
@@ -527,7 +527,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             }
             //if (_PatientBasicInfoDmnService.BoolRuQu(zyh, this.OrganizeId))
             //{
-            //    throw new FailedException("Bệnh nhân này đã ở trong khu bệnh，Không thể hủy nhập viện！");
+            //    throw new FailedException("Bệnh nhân này đã ở trong khu bệnh,Không thể hủy nhập viện!");
             //}
             _PatientBasicInfoDmnService.CancelAdmission(zyh, this.OrganizeId);
             return Success("Hủy nhập viện thành công！");
@@ -544,7 +544,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 		    }
             //if (_PatientBasicInfoDmnService.BoolRuQu(zyh, this.OrganizeId))
             //{
-            //    throw new FailedException("Bệnh nhân này đã ở trong khu bệnh，Không thể hủy nhập viện！");
+            //    throw new FailedException("Bệnh nhân này đã ở trong khu bệnh,Không thể hủy nhập viện!");
             //}
             return Success("Hủy nhập viện thành công！");
 	    }

@@ -297,7 +297,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             return false;
         }
         /// <summary>
-        /// Lấy mã nhập viện theo mã cá nhân（Nông thôn mới）
+        /// Lấy mã nhập viện theo mã cá nhân(Nông thôn mới)
         /// </summary>
         /// <param name="xnhgrbm">Mã cá nhân</param>
         /// <param name="sfjs">Cóquyết toán hay không1Đãquyết toán 0 chưakết</param>
@@ -310,10 +310,10 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #endregion
 
-        #region quyết toán xuất viện//（Không có thuật toán BHYT）//20190408sửalàCó thuật toán BHYT
+        #region quyết toán xuất viện//(Không có thuật toán BHYT)//20190408sửalàCó thuật toán BHYT
 
         /// <summary>
-        /// Dữ liệu truy vấn mã nhập viện（bao gồmBệnh nhânthông tinvàChi tiết tính phí） zyh hoặc kh +cardType hoặc sfz +cardType
+        /// Dữ liệu truy vấn mã nhập viện(bao gồmBệnh nhânthông tinvàChi tiết tính phí) zyh hoặc kh +cardType hoặc sfz +cardType
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="sfz"></param>
@@ -526,7 +526,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #endregion
 
-        #region Hủyquyết toán xuất viện//（Không có thuật toán BHYT）//20190408sửalàCó thuật toán BHYT
+        #region Hủyquyết toán xuất viện//(Không có thuật toán BHYT)//20190408sửalàCó thuật toán BHYT
 
         /// <summary>
         /// Truy vấn hủyquyết toán
@@ -739,7 +739,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             return Success();
         }
         /// <summary>
-        /// Dữ liệu truy vấn mã nhập viện（bao gồmBệnh nhânthông tinvàChi tiết tính phí） zyh hoặc kh +cardType hoặc sfz +cardType
+        /// Dữ liệu truy vấn mã nhập viện(bao gồmBệnh nhânthông tinvàChi tiết tính phí) zyh hoặc kh +cardType hoặc sfz +cardType
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="sfz"></param>

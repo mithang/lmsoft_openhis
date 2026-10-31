@@ -11,10 +11,10 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string lyyf { get; set; }//Loại cần nhà thuốc
         public string ypCode { get; set; }//Thuốccode
         public short cls { get; set; }// Số lượng chia
-        public DateTime jdrq { get; set; }//Ngày lấy hồ sơ、Ngày thao tác,Ngày lập hồ sơ
+        public DateTime jdrq { get; set; }//Ngày lấy hồ sơ,Ngày thao tác,Ngày lập hồ sơ
     }
     /// <summary>
-    /// Lấy lô thông tin chi tiết người dùng cần phát thuốc、Số lô、Số lượng
+    /// Lấy lô thông tin chi tiết người dùng cần phát thuốc,Số lô,Số lượng
     /// </summary>
     public class DispenseBQInfoZYFYVO
     {// 

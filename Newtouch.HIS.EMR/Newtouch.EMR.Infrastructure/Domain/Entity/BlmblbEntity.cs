@@ -4,9 +4,9 @@ using SqlSugar;
 namespace Newtouch.EMR.Domain.Entity
 {
     /// <summary>
-    /// Người tạo：chl
-    /// Ngày：2018-09-05 11:34
-    /// Mô tả：Danh sách mẫu bệnh án
+    /// Người tạo:chl
+    /// Ngày:2018-09-05 11:34
+    /// Mô tả:Danh sách mẫu bệnh án
     /// </summary>
     [SugarTable("bl_mblb")]
     public class BlmblbEntity 

@@ -47,13 +47,13 @@ namespace Newtouch.OR.ManageSystem.Domain.ValueObjects
         /// <summary>Cờ ngoại trú/nội trú</summary>
         public string mzzybz { get; set; }
 
-        /// <summary>Có cần thực hiện không 0 Không cần thực hiện，（Ghi sổ trực tiếp）    1 Cần thực hiện，（Chỉ ghi sổ sau khi thực hiện）</summary>
+        /// <summary>Có cần thực hiện không 0 Không cần thực hiện,(Ghi sổ trực tiếp)    1 Cần thực hiện,(Chỉ ghi sổ sau khi thực hiện)</summary>
         public string ssbz { get; set; }
 
-        /// <summary>0 Khoản thường 1 Khoản đặc biệt   Khoản đặc biệt chỉ dùng được cho tính chất bệnh nhân cụ thể。</summary>
+        /// <summary>0 Khoản thường 1 Khoản đặc biệt   Khoản đặc biệt chỉ dùng được cho tính chất bệnh nhân cụ thể.</summary>
         public string tsbz { get; set; }
 
-        /// <summary>Cờ thu phí    0 Khoản không thu phí（Ví dụ：Phí đăng ký khám..） 1 Khoản thu phí</summary>
+        /// <summary>Cờ thu phí    0 Khoản không thu phí(Ví dụ:Phí đăng ký khám..) 1 Khoản thu phí</summary>
         public string sfbz { get; set; }
 
         /// <summary>Mã bảo hiểm y tế</summary>
@@ -62,7 +62,7 @@ namespace Newtouch.OR.ManageSystem.Domain.ValueObjects
         /// <summary>Mã giá</summary>
         public string wjdm { get; set; }
 
-        /// <summary>Thời gian dịch vụ liên tục（Đơn vị：phút）</summary>
+        /// <summary>Thời gian dịch vụ liên tục(Đơn vị:phút)</summary>
         public int? duration { get; set; }
 
         /// <summary>Ghi chú</summary>
@@ -74,7 +74,7 @@ namespace Newtouch.OR.ManageSystem.Domain.ValueObjects
         /// <summary>Chính sách tính giá Enum tương ứngEnumKfxmJjcl 1Theo thời gian 2Theo số lượng 3Theo diện tích</summary>
         public int? jjcl { get; set; }
 
-        /// <summary>Khoa thực hiện（Khoa thực hiện mặc định）</summary>
+        /// <summary>Khoa thực hiện(Khoa thực hiện mặc định)</summary>
         public string zxks { get; set; }
 
         /// <summary>Quy cách</summary>

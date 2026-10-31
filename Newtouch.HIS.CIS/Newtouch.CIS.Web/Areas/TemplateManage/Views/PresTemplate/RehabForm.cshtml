@@ -173,7 +173,7 @@
             gridComplete: function () {
                 var ids = $("#gridkfcf").getDataIDs();
                 $.each(ids, function () {
-                    $gridkfcf.jqGrid('editRow', this, true, initRehabInlineFunc);  //editRow：MởSửachế độ initRehabInlineFunc:Khởi tạolớp nổi
+                    $gridkfcf.jqGrid('editRow', this, true, initRehabInlineFunc);  //editRow:MởSửachế độ initRehabInlineFunc:Khởi tạolớp nổi
 
                     calculateSlAndJe(this);   //Tính toán tổng số lượng chi tiết, số tiền chi tiết và số tiền đơn thuốc
                 });
@@ -388,13 +388,13 @@
             $.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
             return;
         }
-        //Lấytất cả các dòngId，duyệt đểSửakhung ở trạng tháiLưuTrạng thái
+        //Lấytất cả các dòngId,duyệt đểSửakhung ở trạng tháiLưuTrạng thái
         var rowIds = $("#gridkfcf").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             var saveResult = $("#gridkfcf").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
             if (!saveResult) {
-                return;   //Lưu thất bại，thìreturn
+                return;   //Lưu thất bại,thìreturn
             }
         }
         var gridkfcfData = $("#gridkfcf").jqGrid('getRowData_AllLine', null, true);

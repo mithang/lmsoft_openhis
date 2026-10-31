@@ -9,7 +9,7 @@ using FrameworkBase.MultiOrg.Infrastructure;
 namespace Newtouch.HIS.DomainServices
 {
     /// <summary>
-    /// Từ điển、Mục từ điển DmnService
+    /// Từ điển,Mục từ điển DmnService
     /// </summary>
     public class ItemDmnService : DmnServiceBase, IItemDmnService
     {

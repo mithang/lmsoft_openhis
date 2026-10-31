@@ -36,7 +36,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		}
 
 		/// <summary>
-		/// Lấy thông tin thuốc và tồn kho của bộ phận hiện tại  （Nhập kho từ ngoài）
+		/// Lấy thông tin thuốc và tồn kho của bộ phận hiện tại  (Nhập kho từ ngoài)
 		/// </summary>
 		/// <param name="rkbm"></param>
 		/// <param name="keyWord"></param>
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		}
 
 		/// <summary>
-		/// Lấy thông tin thuốc và tồn kho của bộ phận hiện tại  （Nhập kho từ ngoài）
+		/// Lấy thông tin thuốc và tồn kho của bộ phận hiện tại  (Nhập kho từ ngoài)
 		/// </summary>
 		/// <param name="keyword"></param>
 		/// <param name="fph"></param>

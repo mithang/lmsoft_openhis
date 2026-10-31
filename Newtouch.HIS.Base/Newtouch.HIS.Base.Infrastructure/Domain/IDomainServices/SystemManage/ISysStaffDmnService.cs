@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
     public interface ISysStaffDmnService
     {
         /// <summary>
-        /// Lấy nhân viên hệ thống Danh sách phân trang（Không bao gồm tổ chức con）
+        /// Lấy nhân viên hệ thống Danh sách phân trang(Không bao gồm tổ chức con)
         /// </summary>
         /// <param name="topOrganizeId"></param>
         /// <param name="pagination"></param>
@@ -20,11 +20,11 @@ namespace Newtouch.HIS.Domain.IDomainServices
         IList<SysStaffVO> GetPaginationList(Pagination pagination, string OrganizeId, string keyword = null);
 
         /// <summary>
-        /// Thêm、Cập nhật Nhân viên hệ thống
+        /// Thêm,Cập nhật Nhân viên hệ thống
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="keyValue"></param>
-        /// <param name="asLoginUser">Làm người dùng đăng nhập hệ thống（Chỉ khi tạo）</param>
+        /// <param name="asLoginUser">Làm người dùng đăng nhập hệ thống(Chỉ khi tạo)</param>
         void SubmitForm(SysStaffEntity entity, string keyValue, bool asLoginUser,out string staffId);
 
         /// <summary>

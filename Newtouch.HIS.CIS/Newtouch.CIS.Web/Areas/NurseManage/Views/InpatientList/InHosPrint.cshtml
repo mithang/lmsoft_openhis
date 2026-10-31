@@ -11,11 +11,11 @@
 <div id="linkzxddy" role="tabpanel" class="tab-pane" style="width:100%;margin-right: 5px; border:solid 1px #ddd; margin-top: 3px;">
     <table class="form" style="background-color:white">
         @*<tr>
-                <td class="formTitle">Họ tên：</td>
+                <td class="formTitle">Họ tên:</td>
                 <td class="formValue"><label id="hzxm"></label></td>
-                <td class="formTitle">Giới tính：</td>
+                <td class="formTitle">Giới tính:</td>
                 <td class="formValue" style="width:170px"><label id="sex"></label></td>
-                <td class="formTitle">Tuổi：</td>
+                <td class="formTitle">Tuổi:</td>
                 <td class="formValue"><label id="nl"></label></td>
                 <td class="formTitle"> </td>
                 <td class="formValue"></td>
@@ -422,7 +422,7 @@
         var reportServerHOST = '@(ViewBag.ReportServerHOST)';
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridzxddyList").jqGrid('getRowData', selRowIds[i]);
-            if ($.inArray(rowData.yzh, printed) < 0) {//cùng mộtlôđãInqua，thìkhônglạibậtra
+            if ($.inArray(rowData.yzh, printed) < 0) {//cùng mộtlôđãInqua,thìkhônglạibậtra
                 if (zxdlb === "jyd" || zxdlb === "jcd") {
                     //var rpturl = zxdlb === "jyd" ? reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E8%B4%B5%E5%AE%89%E4%BD%8F%E9%99%A2%E6%A3%80%E9%AA%8C%E7%94%B3%E8%AF%B7%E5%8D%95&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&yzdh=" + rowData.yzh + "&zyh=" + zyh + "&orgId=" + orgId + "&yzzt=2" : reportServerHOST + "/ReportServer/Pages/ReportViewer.aspx?%2fNewtouch.Report.1%2f%E4%BD%8F%E9%99%A2%E6%A3%80%E6%9F%A5%E7%94%B3%E8%AF%B7%E5%8D%95&rs:Command=Render&rc:Stylesheet=MyStyleSheetBlankPage&yzdh=" + rowData.yzh + "&zyh=" + zyh + "&orgId=" + orgId;
                     var rpturl = zxdlb == "jyd" ? jydURL + "&yzdh=" + rowData.yzh + "&zyh=" + rowData.zyh + "&orgId=" + orgId + "&yzzt=2" : jcdURL + "&yzdh=" + rowData.yzh + "&zyh=" + rowData.zyh + "&orgId=" + orgId;

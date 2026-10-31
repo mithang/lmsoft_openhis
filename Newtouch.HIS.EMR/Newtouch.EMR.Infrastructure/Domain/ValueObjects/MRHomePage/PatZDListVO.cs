@@ -29,7 +29,7 @@ namespace Newtouch.EMR.Domain.ValueObjects.MRHomePage
         /// <returns></returns>
         public int ZDOrder { get; set; }
         /// <summary>
-        /// Loại chẩn đoánWM  1：Chẩn đoán chính 2：Chẩn đoán phụ  TCM 1：Bệnh chính Đông y 2：Chứng chính Đông y
+        /// Loại chẩn đoánWM  1:Chẩn đoán chính 2:Chẩn đoán phụ  TCM 1:Bệnh chính Đông y 2:Chứng chính Đông y
         /// </summary>
         public string ZDLX { get; set; }
         /// <summary>

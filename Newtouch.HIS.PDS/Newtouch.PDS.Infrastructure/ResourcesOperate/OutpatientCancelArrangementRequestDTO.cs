@@ -14,7 +14,7 @@ namespace Newtouch.PDS.Requset.ResourcesOperate
         public string cfh { get; set; }
 
         /// <summary>
-        /// Số đơn thuốc xử lý tối đa 0：Xử lý tất cả
+        /// Số đơn thuốc xử lý tối đa 0:Xử lý tất cả
         /// </summary>
         public int processesMaxNum { get; set; }
 

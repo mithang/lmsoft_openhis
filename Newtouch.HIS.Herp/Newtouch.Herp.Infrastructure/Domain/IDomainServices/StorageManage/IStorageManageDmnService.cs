@@ -71,9 +71,9 @@ namespace Newtouch.Herp.Domain.IDomainServices
         /// <param name="lbId"></param>
         /// <param name="kzbz"></param>
         /// <param name="wzzt"></param>
-        /// <param name="xslkc">Hiển thị tồn kho bằng 0  1：Hiển thị  0：Không hiển thị</param>
+        /// <param name="xslkc">Hiển thị tồn kho bằng 0  1:Hiển thị  0:Không hiển thị</param>
         /// <param name="ygq">Đã quá hạn</param>
-        /// <param name="mxyx">Chi tiết tạm thời còn hiệu lực  true：Có  false：Không</param>
+        /// <param name="mxyx">Chi tiết tạm thời còn hiệu lực  true:Có  false:Không</param>
         /// <returns></returns>
         IList<VProductStorageEntity> GetProductStorage(Pagination pagination,
            string warehouseId,
@@ -101,7 +101,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         /// <param name="warehouseId"></param>
         /// <param name="organizeId"></param>
         /// <param name="proId">Vật tư ID</param>
-        /// <param name="zt">Chi tiết tạm thời còn hiệu lực  true：Có  false：Không</param>
+        /// <param name="zt">Chi tiết tạm thời còn hiệu lực  true:Có  false:Không</param>
         /// <returns></returns>
         IList<VProductStorageDetailEntity> GetProductStorageDetail(string warehouseId, string organizeId, string proId, string zt);
 
@@ -129,7 +129,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         string Wbck(KfCrkdjEntity dj, List<KfCrkmxEntity> mxList);
 
         /// <summary>
-        /// Xuất kho ngoài，Trừ tồn kho，Đã duyệt
+        /// Xuất kho ngoài,Trừ tồn kho,Đã duyệt
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mx"></param>
@@ -138,7 +138,7 @@ namespace Newtouch.Herp.Domain.IDomainServices
         string SubtractKc(KfCrkdjEntity dj, List<KfCrkmxEntity> mx, string userCode);
 
         /// <summary>
-        /// Xuất kho ngoài/Xuất kho trực tiếp/Trả hàng phát nội bộ，Rã đóng băng，Không duyệt
+        /// Xuất kho ngoài/Xuất kho trực tiếp/Trả hàng phát nội bộ,Rã đóng băng,Không duyệt
         /// </summary>
         /// <param name="dj"></param>
         /// <param name="mx"></param>
@@ -215,9 +215,9 @@ namespace Newtouch.Herp.Domain.IDomainServices
         /// <param name="lbId"></param>
         /// <param name="kzbz"></param>
         /// <param name="wzzt"></param>
-        /// <param name="xslkc">Hiển thị tồn kho bằng 0  1：Hiển thị  0：Không hiển thị</param>
-        /// <param name="mxyx">Chi tiết tạm thời còn hiệu lực  true：Có  false：Không</param>
-        /// <param name="isExpired">true:Hiển thị quá hạn  false：Hiển thị chưa quá hạn</param>
+        /// <param name="xslkc">Hiển thị tồn kho bằng 0  1:Hiển thị  0:Không hiển thị</param>
+        /// <param name="mxyx">Chi tiết tạm thời còn hiệu lực  true:Có  false:Không</param>
+        /// <param name="isExpired">true:Hiển thị quá hạn  false:Hiển thị chưa quá hạn</param>
         /// <returns></returns>
         IList<VProductStorageDetailEntity> SelectStorageDetail(Pagination pagination,
            string warehouseId,

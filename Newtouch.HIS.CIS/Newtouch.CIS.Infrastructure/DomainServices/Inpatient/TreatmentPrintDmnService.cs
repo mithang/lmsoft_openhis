@@ -57,7 +57,7 @@ namespace Newtouch.DomainServices.Inpatient
                                                                               AND staff.OrganizeId = @orgId
                 inner join zy_brxxk d on d.zyh=aaa.zyh and d.OrganizeId = @orgId
                 where 1=1 ");
-            if (zyxz != null)//dài hạn/tạm thờiCờ：0：Tạm thời，1：Dài hạn
+            if (zyxz != null)//dài hạn/tạm thờiCờ:0:Tạm thời,1:Dài hạn
             {
                 sqlstr.Append("  and zyxz=@zyxz");
                 par.Add(new SqlParameter("@zyxz", zyxz));

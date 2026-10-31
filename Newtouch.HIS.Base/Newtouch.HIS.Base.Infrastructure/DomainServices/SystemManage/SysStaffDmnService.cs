@@ -43,7 +43,7 @@ namespace Newtouch.HIS.DomainServices.SystemManage
         }
 
 		/// <summary>
-		/// Lấy nhân viên hệ thống Danh sách phân trang（Không bao gồm tổ chức con）
+		/// Lấy nhân viên hệ thống Danh sách phân trang(Không bao gồm tổ chức con)
 		/// </summary>
 		/// <param name="topOrganizeId"></param>
 		/// <param name="pagination"></param>
@@ -65,7 +65,7 @@ namespace Newtouch.HIS.DomainServices.SystemManage
 		}
 
 		/// <summary>
-		/// Thêm、Cập nhật Nhân viên hệ thống
+		/// Thêm,Cập nhật Nhân viên hệ thống
 		/// </summary>
 		/// <param name="entity"></param>
 		/// <param name="keyValue"></param>
