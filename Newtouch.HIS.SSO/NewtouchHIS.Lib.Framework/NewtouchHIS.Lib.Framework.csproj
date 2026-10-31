@@ -4,7 +4,7 @@
 		<TargetFramework>net6.0</TargetFramework>
 		<ImplicitUsings>enable</ImplicitUsings>
 		<Nullable>enable</Nullable>
-		<Description>云HIS旧版框架底层(Net 4.6)封装升级版</Description>
+		<Description>Bản nâng cấp đóng gói tầng nền framework phiên bản cũ của Cloud HIS (Net 4.6)</Description>
 	</PropertyGroup>
 
 	<ItemGroup>

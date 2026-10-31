@@ -1,1 +1,1 @@
-## 公共lib库
+## Thư viện lib dùng chung

@@ -150,7 +150,7 @@ left join Sys_Report b on a.ReportCode=b.ReportCode
                         reportTemplateEntity.SystemCode = ReortMXListVO.SystemCode;
                         reportTemplateEntity.zt = 1;
                         reportTemplateEntity.ReportStatus = 0;
-                        reportTemplateEntity.Content = @"<?xml version=""1.0"" encoding=""utf-8""?><Report xmlns=""http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition""><dd:Name xmlns:dd=""http://schemas.datadynamics.com/reporting/2005/02/reportdefinition""> 报表1</dd:Name><Body><Height>5cm</Height></Body><BottomMargin>2.5cm</BottomMargin><LeftMargin>2.5cm</LeftMargin><PageHeight>29.7cm</PageHeight><PageWidth>21cm</PageWidth><RightMargin>2.5cm</RightMargin><TopMargin>2.5cm</TopMargin><Width>16cm</Width></Report>";
+                        reportTemplateEntity.Content = @"<?xml version=""1.0"" encoding=""utf-8""?><Report xmlns=""http://schemas.microsoft.com/sqlserver/reporting/2005/01/reportdefinition""><dd:Name xmlns:dd=""http://schemas.datadynamics.com/reporting/2005/02/reportdefinition""> Báo cáo 1</dd:Name><Body><Height>5cm</Height></Body><BottomMargin>2.5cm</BottomMargin><LeftMargin>2.5cm</LeftMargin><PageHeight>29.7cm</PageHeight><PageWidth>21cm</PageWidth><RightMargin>2.5cm</RightMargin><TopMargin>2.5cm</TopMargin><Width>16cm</Width></Report>";
                         reportTemplateEntity.CreateTime = DateTime.Now;
                         reportTemplateEntity.CreatorCode = OperatorProvider.GetCurrent().UserCode;
                         db.Insert(reportTemplateEntity);

@@ -4,7 +4,7 @@
  */
 ;(function (factory) {
     if (typeof define === "function" && (define.amd || define.cmd) && !jQuery) {
-        // AMD或CMD
+        // AMD hoặc CMD
         define([ "jquery" ],factory);
     } else if (typeof module === 'object' && module.exports) {
         // Node/CommonJS
@@ -26,7 +26,7 @@
 }(function ($) {
     $.support.cors = true;
     $.fn.citys = function(parameter,getApi) {
-        if(typeof parameter == 'function'){ //重载
+        if(typeof parameter == 'function'){ // Nạp chồng (overload)
             getApi = parameter;
             parameter = {};
         }else{
@@ -36,18 +36,18 @@
         var defaults = {
 
             dataUrl:'../../Content/js/city.json',     //Địa chỉ cơ sở dữ liệu
-            dataType:'json',          //Loại cơ sở dữ liệu:'json'或'jsonp'
+            dataType:'json',          //Loại cơ sở dữ liệu: 'json' hoặc 'jsonp'
             provinceField:'province', //Tên trường tỉnh
             cityField:'city',         //Tên trường thành phố
             areaField:'area',         //Tên trường khu vực
-            valueType:'code',         //Loại giá trị hộp thả xuống,codeMã hành chính,nameTên địa danh
+            valueType:'code',         //Loại giá trị hộp thả xuống, code: mã hành chính, name: tên địa danh
             code:0,                   //Mã vùng
             province:0,               //Tỉnh,Có thể là mã hoặc tên vùng
             city:0,                   //Thành phố,Có thể là mã hoặc tên vùng
             area:0,                   //Khu vực,Có thể là mã hoặc tên vùng
             required: true,           //Có bắt buộc chọn một không
-            nodata: 'hidden',         //Cách hiển thị khi không có dữ liệu:'hidden'隐藏,'disabled'Vô hiệu hóa,Nếu trống thì không xử lý gì
-            onChange:function(){}     //Kích hoạt khi chuyển vùng,Hàm回调 nhận dữ liệu vùng
+            nodata: 'hidden',         //Cách hiển thị khi không có dữ liệu: 'hidden' ẩn, 'disabled' vô hiệu hóa, nếu trống thì không xử lý gì
+            onChange:function(){}     //Kích hoạt khi chuyển vùng, hàm callback nhận dữ liệu vùng
         };
         var options = $.extend({}, defaults, parameter);
         return this.each(function() {
@@ -130,7 +130,7 @@
                         province:function(){
                             $province.empty();
                             if(!options.required){
-                                $province.append('<option value=""> - 请选择 - </option>');
+                                $province.append('<option value=""> - Vui lòng chọn - </option>');
                             }
                             for(var i in province){
                                 $province.append('<option value="'+(options.valueType=='code'?i:province[i])+'" data-code="'+i+'">'+province[i]+'</option>');
@@ -148,7 +148,7 @@
                             }else{
                                 $city.css('display','');
                                 if(!options.required){
-                                    $city.append('<option value=""> - 请选择 - </option>');
+                                    $city.append('<option value=""> - Vui lòng chọn - </option>');
                                 }
                                 if(options.nodata=='disabled'){
                                     $city.prop('disabled',$.isEmptyObject(city));
@@ -171,7 +171,7 @@
                         area:function(){
                             $area.empty();
                             if(!options.required){
-                                $area.append('<option value=""> - 请选择 - </option>');
+                                $area.append('<option value=""> - Vui lòng chọn - </option>');
                             }
                             if(options.nodata=='disabled'){
                                 $area.prop('disabled',$.isEmptyObject(area));
@@ -219,7 +219,7 @@
                         options.area = $(this).find('option:selected').data('code')||0; //Mã hành chính của nút được chọn
                         options.onChange(_api.getInfo());
                     });
-                    //初始化
+                    // Khởi tạo
                     updateData();
                     format.province();
                     if(options.code){

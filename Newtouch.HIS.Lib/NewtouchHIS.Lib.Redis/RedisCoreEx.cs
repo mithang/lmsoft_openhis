@@ -2080,6 +2080,6 @@ namespace NewtouchHIS.Lib.Redis
 *	Author:Coffee
 *	Modify Recoder:
 ————————————————
-版权声明：本文为CSDN博主「牛奶咖啡13」的原创文章，遵循CC 4.0 BY-SA版权协议，转载请附上原文出处链接及本声明。
-原文链接：https://blog.csdn.net/xiaochenXIHUA/article/details/117589909*/
+Tuyên bố bản quyền: Bài viết này là bài viết gốc của blogger CSDN「牛奶咖啡13」, tuân theo giấy phép CC 4.0 BY-SA; khi đăng lại vui lòng đính kèm liên kết tới bài viết gốc và tuyên bố này.
+Liên kết bài viết gốc: https://blog.csdn.net/xiaochenXIHUA/article/details/117589909*/
 #endregion
