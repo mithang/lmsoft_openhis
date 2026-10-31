@@ -200,12 +200,19 @@ namespace Newtouch.Infrastructure
     }
     public enum EnumSffjdlmc
     {
+        [Description("Phí thuốc")]
         药品费 = 1001,
+        [Description("Phí khám")]
         检查费,
+        [Description("Phí xét nghiệm")]
         检验费,
+        [Description("Phí điều trị")]
         治疗费,
+        [Description("Phí giường bệnh")]
         床位费,
+        [Description("Phí vật tư")]
         材料费,
+        [Description("Phí gây mê")]
         麻醉费
     }
     /// <summary>
