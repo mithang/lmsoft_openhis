@@ -23,42 +23,42 @@
             <div style="padding: 2px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">Khu bệnh1：</th>
+                        <th class="formTitle">Khu bệnh1:</th>
                         <td class="formValue formDdlSelectorTd">
                             <select id="bqmc" class="form-control">
                                 <option value="">Tất cả</option>
                             </select>
                         </td>
-                        <th class="formTitle">Lô：</th>
+                        <th class="formTitle">Lô:</th>
                         <td class="formValue">
                             <input id="pc" type="text" class="form-control" placeholder="Lô" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Thời gian bắt đầu：</th>
+                        <th class="formTitle"><span class="required">*</span>Thời gian bắt đầu:</th>
                         <td class="formValue">
-                            <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                            <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({dateFmt:'dd/MM/yyyy HH:mm:ss'})" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Thời gian kết thúc：</th>
+                        <th class="formTitle"><span class="required">*</span>Thời gian kết thúc:</th>
                         <td class="formValue">
-                            <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddHours(2).ToString("yyyy-MM-dd 23:59")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd 23:59:59'})" />
+                            <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddHours(2).ToString("dd/MM/yyyy 23:59")" onfocus="WdatePicker({dateFmt:'dd/MM/yyyy 23:59:59'})" />
                         </td>
                         <td class="formTitle" rowspan="2">
                             <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Tên bệnh nhân：</th>
+                        <th class="formTitle">Tên bệnh nhân:</th>
                         <td class="formValue">
                             <input id="patientName" type="text" class="form-control" placeholder="Họ tên" />
                         </td>
-                        <th class="formTitle">Thuốc：</th>
+                        <th class="formTitle">Thuốc:</th>
                         <td class="formValue">
                             <input id="ypmc" type="text" class="form-control" placeholder="Thuốc" />
                         </td>
-                        <th class="formTitle">Số giường：</th>
+                        <th class="formTitle">Số giường:</th>
                         <td class="formValue">
                             <input id="cw" type="text" class="form-control" placeholder="Số giường" />
                         </td>
-                        <th class="formTitle">Loại thao tác：</th>
+                        <th class="formTitle">Loại thao tác:</th>
                         <td class="formValue">
                             <select id="fyzt" class="form-control">
                                 <option value="">Tất cả</option>
@@ -126,7 +126,7 @@
                         return cellvalue === "Phát thuốc" ? "<span style='color:#0000cd;'>Phát thuốc</span>" : "<span style='color:#ff0000;'>Trả thuốc</span>";
                     }
                 },
-                { label: 'Id', name: 'Id',   align: 'left', hidden: true },
+                { label: 'Id', name: 'Id', align: 'left', hidden: true },
                 { label: 'zyh', name: 'zyh', align: 'left', hidden: true },
                 { label: 'Họ tên', name: 'patientName', width: 80, align: 'left' },
                 { label: 'Lô', name: 'pc', width: 100, align: 'left' },
@@ -157,7 +157,7 @@
             viewrecords: true,
             //multiboxonly : false,
             onSelectAll: function (rowIds, status) {
-                //Kích hoạt khi chọn tất cả，rowIdslà tất cả của trang hiện tạirowId
+                //Kích hoạt khi chọn tất cả, rowIdslà tất cả của trang hiện tạirowId
                 //checkArrayXóa tất cả của trang hiện tại trong mảng jqGrid('getDataIDs');
                 for (var i = 0; i < rowIds.length; i++) {
                     for (var j = 0; j < checkArray.length; j++) {
@@ -167,21 +167,21 @@
                         }
                     }
                 }
-                //Nếu là chọn đã chọn，thì cộng tất cả mục của trang hiện tại
+                //Nếu là chọn đã chọn, thì cộng tất cả mục của trang hiện tại
                 if (status) {
                     for (var i = 0; i < rowIds.length; i++) {
                         var rowData = $gridBRXXDrugsList.jqGrid('getRowData', rowIds[i]);
-                        var checkedItem = { "pageNum": pageNum, "rowId": rowIds[i], "czlx": rowData.czlx, "yzId": rowData.yzId, "Id": rowData.Id, "zxId": rowData.zxId, "zyh": rowData.zyh  };
+                        var checkedItem = { "pageNum": pageNum, "rowId": rowIds[i], "czlx": rowData.czlx, "yzId": rowData.yzId, "Id": rowData.Id, "zxId": rowData.zxId, "zyh": rowData.zyh };
                         checkArray.push(checkedItem)
                     }
                 }
             },
-            onSelectRow: function (rowId, status) {  //NhấncheckboxKích hoạt rowIdlà kích hoạt hiện tạirowid
+            onSelectRow: function (rowId, status) { //NhấncheckboxKích hoạt rowIdlà kích hoạt hiện tạirowid
                 //Dữ liệu dòng của dòng được chọn
                 var rowData = $gridBRXXDrugsList.jqGrid('getRowData', rowId);
                 var checkedItem = { "pageNum": pageNum, "rowId": rowId, "czlx": rowData.czlx, "yzId": rowData.yzId, "Id": rowData.Id, "zxId": rowData.zxId, "zyh": rowData.zyh };
                 if (status) {
-                    //Nếu được chọn，thì kiểm tra nếu trong mảng chưa có thì thêm vào mảng
+                    //Nếu được chọn, thì kiểm tra nếu trong mảng chưa có thì thêm vào mảng
                     for (var i = 0; i < checkArray.length; i++) {
                         if (checkArray[i].pageNum == pageNum && checkArray[i].rowId == rowId) {
                             return false;
@@ -203,7 +203,7 @@
             loadComplete: function (data) {
                 //Thay đổi biến toàn cụcpageNumSố trang
                 pageNum = data.page;
-                //Lặp mảng，Để trong trang hiện tạirowIdtrở thành trạng thái được chọn
+                //Lặp mảng, Để trong trang hiện tạirowIdtrở thành trạng thái được chọn
                 for (var i = 0; i < checkArray.length; i++) {
                     if (checkArray[i].pageNum == pageNum) {
                         $gridBRXXDrugsList.jqGrid('setSelection', checkArray[i].rowId, true);
@@ -292,11 +292,11 @@
             operateType = "1,2";
         }
         //var zxIds = checkArray.map((item) => {
-        //    return item.zxId
+        // return item.zxId
         //}).join(",");
         //var yzIds = checkArray.map((item) => {
-        //    return item.yzId
-        //}).join(",");        
+        // return item.yzId
+        //}).join(",");
         var czIds = checkArray.map((item) => {
             return item.Id
         }).join(",");
@@ -352,10 +352,10 @@
             return false;
         }
         //var zxIds = checkArray.map((item) => {
-        //    return item.zxId
+        // return item.zxId
         //}).join(",");
         //var yzIds = checkArray.map((item) => {
-        //    return item.yzId
+        // return item.yzId
         //}).join(",");
         var czIds = checkArray.map((item) => {
             return item.Id

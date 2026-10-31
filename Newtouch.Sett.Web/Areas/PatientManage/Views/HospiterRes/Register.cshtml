@@ -173,7 +173,7 @@
                     <td class="formTitle"><span class="rema">*</span>Thời gian nhập viện:</td>
                     <td class="formValue">
                         <input id="ryrq" type="text" name="ryrq" class="form-control input-wdatepicker formClearIgnore
-                        form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" />
+                        form-an" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss'})" />
                     </td>
                     <td class="formTitle"><span class="rema">*</span>Khoa:</td>
                     <td class="formValue">   <input type="text" id="ksmc" name="ksmc" class="form-control form-an" /></td>
@@ -313,7 +313,7 @@
                     <td class="formTitle">sinh sản Ngày:</td>
                     <td class="formValue">
                         <input id="syrq" type="text" name="syrq" class="form-control input-wdatepicker formClearIgnore
-form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
+form-an" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy'})" />
                     </td>
                 </tr>
                 <tr>
@@ -446,7 +446,7 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
     var curUserCode = '@(ViewBag.CurUserCode)';//khitrướcdùnghộCode
     var curUserName = '@(ViewBag.CurUserName)';//khitrướcdùnghộhọtên
     var orgId= '@(curOpr.OrganizeId)';
-    var curTime = '@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")';//Thời gian hiện tại
+    var curTime = '@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")';//Thời gian hiện tại
     var his_manufacturerID = '@his_manufacturerID';//hisMã nhà sản xuất
     var IsOpenSfzYbJz='@IsOpenSfzYbJz';//thânphầnchứngkhiếndùngy tếbảo hiểmthìkhám
     var isZYZT = false;
@@ -619,7 +619,7 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
     function yibaoValidateFirstVisit(cardInfo) {
 
 	    if (!!cardInfo) {
-		    //1.Xét có phải khám lần đầu không（tạo mới khám lần đầu,Tái khám tải thông tin bệnh nhân）
+		    //1.Xét có phải khám lần đầu không(tạo mới khám lần đầu,Tái khám tải thông tin bệnh nhân)
 	        //cách xác thực khám lần đầu:1.Số CMND/CCCD+Họ tên,2:Số BHXH
 	        var paramVo = { kh: cardInfo.kh, jzpzlx: cardInfo.jzlx };
 	        if (cardInfo.output) {
@@ -670,7 +670,7 @@ form-an" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
     function yibaoValidateFirstVisitshanghaiV5(cardInfo) {
 
 	    if (!!cardInfo) {
-		    //1.Xét có phải khám lần đầu không（tạo mới khám lần đầu,Tái khám tải thông tin bệnh nhân）
+		    //1.Xét có phải khám lần đầu không(tạo mới khám lần đầu,Tái khám tải thông tin bệnh nhân)
 		    //cách xác thực khám lần đầu:1.Số CMND/CCCD+Họ tên,2:Số BHXH
 		    $.ajax({
 			    type: "POST",

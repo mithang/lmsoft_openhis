@@ -53,7 +53,7 @@
                                         <li>
                                             <input id="txt_code" type="text" placeholder="mã xác minh" style="width: 130px;float:left;">
                                             <div style="width: 120px; float: left; padding-top: -15px; padding-left: 14px;">
-                                                <img id="imgcode" class="authcode" src="~/Login/GetAuthCode" width="50" height="25" />
+                                                <img id="imgcode" class="authcode" src="~/Login/GetAuthCode" width="50" height="25" alt="Mã xác minh đăng nhập" />
                                                 <a id="switchCode" href="javascript:void(0);" style="text-decoration: none;">đổi tấm khác</a>
                                             </div>
                                         </li>
@@ -74,8 +74,8 @@
             </div>
             <div class="login-foot" style="left:0px;width:100%;text-align:center;font-size:20px;bottom:20px;color:#9BA0A8">
                 <span>
-                    Copyright © 2025湖北天天数链技术有限公司
-                    mã nguồn của hệ thống này được cấp phép theo<a href="https://open.tntlinking.com/communityTreaty" style="color:#9BA0A8">《天天开源软件（社区版）许可协议》</a>
+                    Bản quyền © 2025 Công ty TNHH Công nghệ Chuỗi Dữ liệu Thiên Thiên Hồ Bắc
+                    Mã nguồn phần mềm của hệ thống này được cấp phép theo<a href="https://open.tntlinking.com/communityTreaty" style="color:#9BA0A8">Giấy phép Phần mềm Nguồn mở Thiên Thiên (Bản cộng đồng)</a>
                 </span>
             </div>
         </div>
@@ -92,15 +92,15 @@
                         var $code = $("#txt_code");
                         if ($username.val() == "") {
                             $username.focus();
-                            $.login.formMessage('vui lòng nhập tên người dùng/số điện thoại di động/email。');
+                            $.login.formMessage('vui lòng nhập tên người dùng/số điện thoại di động/email.');
                             return false;
                         } else if ($password.val() == "") {
                             $password.focus();
-                            $.login.formMessage('vui lòng nhập mật khẩu đăng nhập。');
+                            $.login.formMessage('vui lòng nhập mật khẩu đăng nhập.');
                             return false;
                         } else if ($code.val() == "") {
                             $code.focus();
-                            $.login.formMessage('vui lòng nhập mã xác minh。');
+                            $.login.formMessage('vui lòng nhập mã xác minh.');
                             return false;
                         } else {
                             $("#login_button").attr('disabled', 'disabled').find('span').html("loading...");
@@ -111,7 +111,7 @@
                                 dataType: "json",
                                 success: function (data) {
                                     if (data.state == "success") {
-                                        $("#login_button").find('span').html("đăng nhập thành công,đang chuyển hướng...");
+                                        $("#login_button").find('span').html("Đăng nhập thành công, đang chuyển hướng...");
                                         window.setTimeout(function () {
                                             window.location.href = "/Home/Index";
                                         }, 10);
@@ -145,13 +145,13 @@
                         if (login_error != null) {
                             switch (login_error) {
                                 case "overdue":
-                                    $.login.formMessage("đăng nhập hệ thống đã hết thời gian,vui lòng đăng nhập lại");
+                                    $.login.formMessage("Đăng nhập hệ thống đã hết thời gian, vui lòng đăng nhập lại");
                                     break;
                                 case "sidelined":
-                                    $.login.formMessage("tài khoản này đã đăng nhập ở nơi khác,bạn đã bị buộc thoát");
+                                    $.login.formMessage("Tài khoản này đã đăng nhập ở nơi khác, bạn đã bị buộc thoát");
                                     break;
                                 case "-1":
-                                    $.login.formMessage("lỗi hệ thống không xác định,vui lòng đăng nhập lại");
+                                    $.login.formMessage("Lỗi hệ thống không xác định, vui lòng đăng nhập lại");
                                     break;
                             }
                             top.$.cookie(loginErrorKey, '', { path: "/", expires: -1 });

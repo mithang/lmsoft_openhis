@@ -5,6 +5,19 @@ using Newtouch.Sett.API.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// --- Việt Nam hóa: culture mặc định vi-VN -------------------------------------
+// Đặt DefaultThreadCurrentCulture/UICulture = vi-VN để:
+//   * model binding parse ngày theo dd/MM/yyyy (thay vì en-US MM/dd/yyyy),
+//   * decimal dùng dấu '.' phân cách hàng nghìn / ',' thập phân,
+//   * ToString("d") và {0:d} render đúng định dạng Việt Nam.
+// Không đổi AddControllers/AddControllersWithViews hiện có; nếu muốn thông báo
+// lỗi model binding tiếng Việt thì bổ sung options.ModelBindingMessageProvider.
+var vi = new System.Globalization.CultureInfo("vi-VN");
+System.Globalization.CultureInfo.DefaultThreadCurrentCulture = vi;
+System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = vi;
+// ---------------------------------------------------------------------------
+
+
 // Cổng cố định 7002 (config production của 8016 trỏ tới localhost:7002).
 // Override chỉ phục vụ kiểm chứng: 8016 đang chạy với
 // ASPNETCORE_ENVIRONMENT=Development nên config Development của nó trỏ sang

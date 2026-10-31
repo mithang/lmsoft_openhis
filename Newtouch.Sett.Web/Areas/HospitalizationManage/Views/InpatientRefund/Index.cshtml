@@ -18,9 +18,9 @@
                     </td>
                     <th class="formTitle">Ngàyghi sổ:</th>
                     <td class="formValue" colspan="3">
-                        <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:29%; float:left;" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:29%; float:left;" value="@DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         <span style="margin-left:5%;float:left;">—</span>
-                        <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :29%;float:left; margin-left:5%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :29%;float:left; margin-left:5%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     </td>
                     @*<td class="formValue">
                         <input type="button" id="btn_search" class="btn btn-primary" style="width:40%;margin-left:10%;" value="Truy vấn" />
@@ -168,7 +168,7 @@
 
         //var zyh = $.trim($("#zyh").val());
         if (zyh == '') {
-            $.modalAlert("Vui lòng nhập mã nhập viện。", 'warning');
+            $.modalAlert("Vui lòng nhập mã nhập viện.", 'warning');
             return false;
         }
         var xmlb = $.trim($("#xmlb").val());
@@ -182,7 +182,7 @@
             //async: false,
             success: function (ajaxresp) {
                 if (!ajaxresp.data) {
-                    $.modalAlert("Không truy vấn được thông tin bệnh nhân này,Vui lòng xác nhận。", 'warning');
+                    $.modalAlert("Không truy vấn được thông tin bệnh nhân này,Vui lòng xác nhận.", 'warning');
                     return;
                 }
                 debugger;
@@ -194,7 +194,7 @@
                 $("#zybz").text(ajaxresp.data.InpatientSettPatInfo.zybz == '0' ? 'Đăng ký nhập viện' : (ajaxresp.data.InpatientSettPatInfo.zybz == '1' ? 'Đang ở khoa bệnh' : 'Khác'));
                 $("#ryrq").text((ajaxresp.data.InpatientSettPatInfo.ryrq && ajaxresp.data.InpatientSettPatInfo.ryrq.length >= 10 ? ajaxresp.data.InpatientSettPatInfo.ryrq.substring(0, 10) : ""));
 
-                //Chi tiết tính phí、Phân trang；Tổng số tiềnTổng cộng
+                //Chi tiết tính phí, Phân trang；Tổng số tiềnTổng cộng
                 //GhépThuốcvàMục,Sắp xếp lại tập hợp
                 //var c = ajaxresp.data.InpatientSettleItemBO.TreatmentItemList.concat(ajaxresp.data.InpatientSettleItemBO.DrugList).sort(function (a, b) { return new Date(a.tdrq) - new Date(b.tdrq); });
                 var c = ajaxresp.data.InpatientSettleItemBO.TreatmentItemList.sort(function (a, b) { return new Date(a.tdrq) - new Date(b.tdrq); });
@@ -209,8 +209,8 @@
                 $.each(c, function () {
                     zfy += this.je;
                 });
-                $("#gridList").jqGrid("setCaption", "Chi tiết tính phí（Tổng số tiền:" + "<label style='color:red;'>￥"
-                    + zfy.toFixed(2) + "</label>）");
+                $("#gridList").jqGrid("setCaption", "Chi tiết tính phí(Tổng số tiền:" + "<label style='color:red;'>￥"
+                    + zfy.toFixed(2) + "</label>)");
             },
             errorCallback: function (data) {
                 newtouch_globalevent_f4();
@@ -322,7 +322,7 @@
                 break;
             }
             if (rowData.tsl.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                $.modalAlert("Mục（" + rowData.sfxmmc + "）Số lượng hoàn để trống,Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Mục(" + rowData.sfxmmc + ")Số lượng hoàn để trống,Vui lòng xác nhận.", 'warning');
                 //Bật hộp chỉnh sửa trong dòng
                 EnableInlineEditBox();
                 return;
@@ -333,7 +333,7 @@
                 return;
             }
             if (parseFloat(rowData.tsl) > parseFloat(rowData.sl)) {
-                $.modalAlert("Mục（" + rowData.sfxmmc + "）Số lượng hoàn lớn hơn số lượngghi sổ,Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Mục(" + rowData.sfxmmc + ")Số lượng hoàn lớn hơn số lượngghi sổ,Vui lòng xác nhận.", 'warning');
                 //Bật hộp chỉnh sửa trong dòng
                 EnableInlineEditBox();
                 return;

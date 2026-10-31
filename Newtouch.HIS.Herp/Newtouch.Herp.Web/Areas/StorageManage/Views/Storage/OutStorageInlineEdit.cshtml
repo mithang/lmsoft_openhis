@@ -61,24 +61,24 @@
         <div class="panel-heading">Thông tin xuất kho</div>
         <table class="form">
             <tr>
-                <th class="formTitle" style="width:55px;">Phiếu xuất kho：</th>
+                <th class="formTitle" style="width:55px;">Phiếu xuất kho:</th>
                 <td class="formValue" style="width:130px;">
                     <input id="Pdh" type="text" class="form-control newtouch_Readonly required" />
                     <input id="deliveryPdh" type="hidden" value="" />
                 </td>
-                <th class="formTitle" style="width:60px;"><span class="req">*</span>Nhà cung cấp：</th>
+                <th class="formTitle" style="width:60px;"><span class="req">*</span>Nhà cung cấp:</th>
                 <td class="formValue">
                     <input type="text" id="rkbm" data-rkbmId="" placeholder="Vui lòng chọn nhà cung cấp" class="form-control required" autocomplete="off" />
                 </td>
-                <th class="formTitle" style="width:70px;"><span class="required">*</span>Hình thức xuất kho：</th>
+                <th class="formTitle" style="width:70px;"><span class="required">*</span>Hình thức xuất kho:</th>
                 <td class="formValue">
                     <select id="crkfs" class="form-control required"></select>
                 </td>
-                <th class="formTitle" style="width:55px;">Phiếu giao hàng：</th>
+                <th class="formTitle" style="width:55px;">Phiếu giao hàng:</th>
                 <td class="formValue">
                     <input type="text" class="form-control" id="deliveryNo" placeholder="Số phiếu giao hàng" />
                 </td>
-                <th class="formTitle">Tổng xuất kho(đ)：</th>
+                <th class="formTitle">Tổng xuất kho(đ):</th>
                 <td class="formValue" style="width:80px;">
                     <input id="txtZje" type="text" class="form-control newtouch_Readonly" autocomplete="off" />
                 </td>
@@ -347,7 +347,7 @@
                 { label: 'minlsj', name: 'minlsj', hidden: true, editable: true }
             ],
             editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue(Có bo góc)
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -490,12 +490,12 @@
         var sl = Number($("#" + rowid + "_sl").val());
         var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
         if (!reg.test(sl)) {
-            $.modalMsg("Số lượng phải lớn hơn0số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn0số nguyên!", "warning", 1500);
             return false;
         }
         var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
         if (isNaN(zhyz)) {
-            $.modalMsg("Hệ số quy đổi phải lớn hơn0số nguyên！", "warning", 1500);
+            $.modalMsg("Hệ số quy đổi phải lớn hơn0số nguyên!", "warning", 1500);
             return false;
         }
         var maxsl = Number($("#" + rowid + "_kykcsl").val());
@@ -624,7 +624,7 @@
             return;
         }
         if (list == null || list.length == 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu chỉnh sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu chỉnh sửa!", 'warning', 1000);
             return;
         }
         var crkdj = Object();
@@ -643,7 +643,7 @@
             success: function (res) {
                 if (res.state === "success") {
                     $.modalAlert("Xuất kho thành công", 'success');
-                    newtouch_event_f7();//Nhập/xuất kho：Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
+                    newtouch_event_f7();//Nhập/xuất kho:Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
                 } else {
                     $.modalAlert(res.message, "error");
                     var rowIds = $("#gridList").getDataIDs();
@@ -687,11 +687,11 @@
         }
         var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("Số lượng phải lớn hơn0số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn0số nguyên!", "warning", 1500);
             return false;
         }
         if (rowData.pc === "" || rowData.ph === "") {
-            $.modalMsg("Lô、Số lô không được để trống！", "warning", 1000);
+            $.modalMsg("Lô,Số lô không được để trống!", "warning", 1000);
             return false;
         }
         return true;

@@ -41,7 +41,7 @@
             </td>
             <th class="formTitle" id="xzsjtext">Thời gian:</th>
             <td class="formValue" style="width:150px">
-                <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"*@>
+                <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"*@>
             </td>
 
             <td class="formValue" style="padding-left:20px;">
@@ -193,7 +193,7 @@
         $gridJsList.dataGrid({
             height: 120,
             autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
             url: "/DeanInquiryManage/HospitalizationWorkload/DepartmentWorkload",
             postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val()},
             colModel: [
@@ -240,7 +240,7 @@
         $gridysList.dataGrid({
             height: 120,
             autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
             url: "/DeanInquiryManage/HospitalizationWorkload/StaffWorkload",
             postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val(), bq: bqCode },
             colModel: [
@@ -304,7 +304,7 @@
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
         }
         if (dateType == "3") {//ngày
-            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM-dd' })");
+            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'dd/MM/yyyy' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
         }
         getSearchData();

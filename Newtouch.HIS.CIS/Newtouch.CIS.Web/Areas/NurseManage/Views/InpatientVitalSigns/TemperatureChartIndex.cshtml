@@ -57,9 +57,9 @@
                             <tr>
                                 <th class="formTitle">Ngày:</th>
                                 <td class="formValue" colspan="2">
-                                    <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString(" yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                                    <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString(" yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                                     <span style="margin-left:1%;float:left">—</span>
-                                    <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString(" yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                                    <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString(" dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                                 </td>
                                 <th class="formTitle">Số nhập viện:</th>
                                 <td class="formValue">
@@ -184,7 +184,7 @@
             data: { zyh: zyh },
             async: false,
             success: function (data) {
-                $('#kssj').val(new Date(data).format("yyyy-MM-dd"));
+                $('#kssj').val(new Date(data).format("dd/MM/yyyy"));
             }
         });
     }

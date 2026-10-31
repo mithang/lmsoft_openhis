@@ -122,7 +122,7 @@
     function Build() {
         if (ctl) {
             //BindingDCWriterClientControl(ctl);
-            //ctl.Options.CustomCSSString = "@@font-face {font-family: 宋体;src: local('宋体');}";
+            //ctl.Options.CustomCSSString = "@@font-face {font-family: Times New Roman;src: local('Times New Roman');}";
             //ctl.BuildFrame(function () {
             //    saveString && ctl.LoadDocumentFromString(saveString, "xml");
             //    ctl.DocumentLoad = function () {
@@ -134,7 +134,7 @@
                 console.log("Xử lý phông chữ khi in");
                 var styleDom = document.createElement("style");
                 // Giải quyết vấn đề in ấn font SimSun
-                var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
+                var cssStr = "@@font-face {font-family: Times New Roman;src: local('Times New Roman');}";
                 styleDom.innerHTML = cssStr;
                 var page = PrintPreviewDoc.querySelector("div[pageindex]");
                 if (page) {
@@ -147,7 +147,7 @@
                 var doc = ctl.GetContentDocument();
                 var styleDom = document.createElement("style");
                 // Giải quyết vấn đề in ấn font SimSun
-                var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
+                var cssStr = "@@font-face {font-family: Times New Roman;src: local('Times New Roman');}";
                 styleDom.innerHTML = cssStr;
                 var page = doc.querySelector("div[pageindex]");
                 if (page) {

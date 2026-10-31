@@ -13,6 +13,19 @@ using NewtouchHIS.Lib.Services.SignalR;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// --- Việt Nam hóa: culture mặc định vi-VN -------------------------------------
+// Đặt DefaultThreadCurrentCulture/UICulture = vi-VN để:
+//   * model binding parse ngày theo dd/MM/yyyy (thay vì en-US MM/dd/yyyy),
+//   * decimal dùng dấu '.' phân cách hàng nghìn / ',' thập phân,
+//   * ToString("d") và {0:d} render đúng định dạng Việt Nam.
+// Không đổi AddControllers/AddControllersWithViews hiện có; nếu muốn thông báo
+// lỗi model binding tiếng Việt thì bổ sung options.ModelBindingMessageProvider.
+var vi = new System.Globalization.CultureInfo("vi-VN");
+System.Globalization.CultureInfo.DefaultThreadCurrentCulture = vi;
+System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = vi;
+// ---------------------------------------------------------------------------
+
+
 // Add services to the container.
 builder.Services.AddLibLogging();
 builder.Services.AddHttpContextAccessor();

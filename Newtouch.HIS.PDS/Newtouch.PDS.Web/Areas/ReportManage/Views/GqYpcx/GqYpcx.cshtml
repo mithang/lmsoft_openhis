@@ -11,10 +11,10 @@
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle">Ngày hết hạn：</th>
+				<th class="formTitle">Ngày hết hạn:</th>
 				<td class="formValue" style="padding-left:20px;">
 					<input id="time" type="text" class="form-control input-wdatepicker form-an" style="width: 160px;"
-						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" value="@(DateTime.Now.ToString("yyyy-MM-01 00:00:00"))" />
+						   onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss'})" value="@(DateTime.Now.ToString("yyyy-MM-01 00:00:00"))" />
 				</td>
 				<th class="formTitle"></th>
 				<td class="formValue" style="padding-left:20px;">
@@ -38,7 +38,7 @@
     function submit() {
         var srcUrl = '@reportUrl' + "?tempCode=1004&systemCode=PDS" + "&hospitalCode=" + orgId + "&yfbmCode=" + yfbmCode + "&time=" + $('#time').val();
         //window.open(srcUrl);
-  //      var url = getUrl();
+  // var url = getUrl();
 		//url += "&organid=" + organId + "&time=" + $('#time').val();
         setTimeout("$.loading(true, 'Đang yêu cầu trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', srcUrl);
@@ -58,7 +58,7 @@
     function refReport() {
         $("#btn_search").trigger('click');
     }
-    
+
     function getUrl() {
         var reportServerHOST = '@(ViewBag.ReportServerHOST)';
         reportServerHOST += "/Pages/ReportViewer.aspx?%2fNewtouch.HIS.Bill%2f药品过期预警";

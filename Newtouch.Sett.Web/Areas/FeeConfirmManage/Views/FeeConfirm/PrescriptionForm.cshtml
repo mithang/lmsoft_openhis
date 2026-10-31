@@ -26,11 +26,11 @@
             <tr>
                 <th class="formTitle">Giờ bắt đầu:</th>
                 <td class="formValue">
-                    <input id="kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("01/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
                 <th class="formTitle">Giờ kết thúc:</th>
                 <td  class="formValue">
-                    <input id="jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
                 <td class="formValue">
                     <input type="button" id="btn_search" class="btn btn-primary" style="margin-left: 60px;" value="Tra cứu" />

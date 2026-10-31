@@ -238,7 +238,7 @@
             },
             errorCallback: function (rtnval) {
                 if (rtnval.message == "缺少账户") {
-                    $.modalConfirm("Không tìm thấy bệnh nhân này tạm ứng Tài khoản，Có hay không Tạo mới", function (f) {
+                    $.modalConfirm("Không tìm thấy bệnh nhân này tạm ứng Tài khoản, Có hay không Tạo mới", function (f) {
                         if (f) {
                             $.najax({
                                 type: "POST",
@@ -482,7 +482,7 @@
     }
     var gridIMoney = "";//Số tiền thu chi đang chọn
     var gridIpzh = ""; //Số chứng từ đang chọn
-    var gridId = "";//đang chọn hiện tạiId，Căn cứ đã hoàn hay chưa
+    var gridId = "";//đang chọn hiện tạiId, Căn cứ đã hoàn hay chưa
     //Sự kiện nhấn
     function btn_edit() {
         var szje = $("#gridList").jqGridRowValue().szje;

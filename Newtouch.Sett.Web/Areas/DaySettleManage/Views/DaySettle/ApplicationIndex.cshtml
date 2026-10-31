@@ -12,9 +12,9 @@
 			<tr>
 				<th class="formTitle" id="thCZRQ">Ngày quyết toán:</th>
 				<td class="formValue" colspan="2">
-					<input id="txtCreateTimestart" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:40%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+					<input id="txtCreateTimestart" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:40%; float:left;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
 					<span style="margin-left:2%;float:left;">—</span>
-					<input id="txtCreateTimeEnd" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :40%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+					<input id="txtCreateTimeEnd" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :40%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
 
 					
 				</td>
@@ -250,9 +250,9 @@
 		var jsrq = $("#txtCreateTimeEnd").val()+" 23:59:59";
 
 		var date = $("#txtCreateTimestart").val();
-		var datearr = date.split('-');
+		var datearr = date.split('/');
 
-		var qsny = datearr[0] + datearr[1];
+		var qsny = datearr[2] + datearr[1];
 		var predata = {
 			qslb: rowdata.qslb,
 			xz: rowdata.xz,

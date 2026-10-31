@@ -65,21 +65,21 @@
         <div class="panel-heading">Thông tin lọc</div>
         <table class="form">
             <tr>
-                <td class="formTitle">Kế hoạch mua sắm：</td>
+                <td class="formTitle">Kế hoạch mua sắm:</td>
                 <td class="formValue">
                     <input type="text" id="cgdh" name="cgdh" class="form-control" placeholder="Vui lòng nhập số kế hoạch mua sắm" />
                 </td>
-                <td class="formTitle">Khoa mua sắm：</td>
+                <td class="formTitle">Khoa mua sắm:</td>
                 <td class="formValue">
                     <select id="department" name="department" class="form-control"><option value="">Tất cả</option></select>
                 </td>
-                <th class="formTitle"><span class="required">*</span>Ngày gửi：</th>
+                <th class="formTitle"><span class="required">*</span>Ngày gửi:</th>
                 <td class="formValue">
-                    <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
-                <th class="formTitle" style="width: 60px;"><span class="required">*</span>Đến：</th>
+                <th class="formTitle" style="width: 60px;"><span class="required">*</span>Đến:</th>
                 <td class="formValue">
-                    <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
                 <td class="formTitle">
                     <input type="button" class="btn btn-primary btn-md" value="Tra cứu" id="btn_search" />
@@ -95,7 +95,7 @@
         <table id="gridMxList"></table>
         <div id="gridmxPager" rel="form1"></div>
     </div>
-    <div class="dv-remarks"><span>Ghi chú：</span><input type="text" id="remarks" value="" /></div>
+    <div class="dv-remarks"><span>Ghi chú:</span><input type="text" id="remarks" value="" /></div>
     @Html.Partial("_BottomButtonsView", new Newtouch.Herp.Web.Models.BottomButtonViewModel
     {
         ShowKeyList = new[] { 8 },
@@ -120,7 +120,7 @@
         }
     });
 
-    //Bên trái，Khu vực thông tin chính kế hoạch mua sắm
+    //Bên trái,Khu vực thông tin chính kế hoạch mua sắm
     function gridList() {
         $gridList.dataGrid({
             caption: "Thông tin kế hoạch mua sắm",
@@ -187,7 +187,7 @@
         return { kssj: kssj, jssj: jssj, cgdh: cgdh, deptCode: deptCode };
     };
 
-    //Bên phải，Khu vực chi tiết
+    //Bên phải,Khu vực chi tiết
     function gridMxList() {
         $GridMxList.dataGrid({
             caption: "Chi tiết kế hoạch mua sắm",
@@ -226,7 +226,7 @@
             multiselect: true,
             viewrecords: false,
             editinputwidthborder: false,    //Có cần viền không mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không mặc địnhtrue（có bo góc）
+            editinputborderradius: false,   //Có cần bo góc viền không mặc địnhtrue(có bo góc)
             gridComplete: function () {
                 var ids = $GridMxList.getDataIDs();
                 if (ids != null && ids.length > 0) {
@@ -281,7 +281,7 @@
     function RowDataValidate(obj) {
         var reg = /^[1-9]\d*$/;//Lớn hơn0số nguyên
         if (!reg.test($(obj).val())) {
-            $.modalMsg("Số lượng mua thực tế phải là số nguyên lớn hơn 0！", "warning", 1500);
+            $.modalMsg("Số lượng mua thực tế phải là số nguyên lớn hơn 0!", "warning", 1500);
             $(obj).val("0");
             return false;
         }
@@ -293,7 +293,7 @@
         debugger;
         var rowIds = $GridMxList.getDataIDs();
         if (rowIds == undefined || rowIds.length <= 0) {
-            $.modalMsg("Vui lòng chọn chi tiết kế hoạch mua sắm！", 'warning', 1500);
+            $.modalMsg("Vui lòng chọn chi tiết kế hoạch mua sắm!", 'warning', 1500);
             return false;
         }
         var cgmx = [];
@@ -308,7 +308,7 @@
             }
         });
         if (cgmx.length <= 0) {
-            $.modalMsg("Không tìm thấy chi tiết xuất kho hợp lệ！", 'warning', 1500);
+            $.modalMsg("Không tìm thấy chi tiết xuất kho hợp lệ!", 'warning', 1500);
             return false;
         }
         $.najax({

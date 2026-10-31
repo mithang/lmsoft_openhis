@@ -9,7 +9,7 @@
     <div style="margin: 10px; margin-bottom: 0px;">
         <div class="alert alert-danger" style="text-align: left; margin-bottom: 10px;">
             <i class="fa fa-warning alert-dismissible" style="position: relative; top: 1px; font-size: 15px; padding-right: 5px;"></i>
-            Vui lòng nhập thông tin nguyên nhân thừa thiếu，dùng để tạo hoặc sửa thông tin nguyên nhân thừa thiếu！
+            Vui lòng nhập thông tin nguyên nhân thừa thiếu, dùng để tạo hoặc sửa thông tin nguyên nhân thừa thiếu!
         </div>
         <div class="panel panel-default">
             <div class="panel-heading">
@@ -17,25 +17,25 @@
             </div>
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>Nguyên nhân lãi/lỗ：</th>
+                    <th class="formTitle"><span class="required">*</span>Nguyên nhân lãi/lỗ:</th>
                     <td class="formValue">
                         <input id="syyy" name="syyy" type="text" class="form-control required" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>Cờ thừa thiếu：</th>
+                    <th class="formTitle"><span class="required">*</span>Cờ thừa thiếu:</th>
                     <td class="formValue">
                         @Html.DropDownList("sybz", EnumProfitLossMark.Loss.ToDescSelectList(), new { @class = "form-control" })
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Sắp xếp：</th>
+                    <th class="formTitle">Sắp xếp:</th>
                     <td class="formValue">
                         <input id="px" name="px" type="text" class="form-control" placeholder="" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle" style="height: 35px;">Tùy chọn：</th>
+                    <th class="formTitle" style="height: 35px;">Tùy chọn:</th>
                     <td class="formValue" style="padding-top: 1px;">
                         <div class="ckbox">
                             <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>

@@ -67,8 +67,8 @@
         <div style="margin: 20px;">
             <ul class="nav nav-pills" style="position: fixed;right: 80px;bottom: 20px;">
                 <li>Nhân viên hoàn phí:<span>@(OperatorProvider.GetCurrent().UserName)</span></li>
-                <li>Ngày hoàn phí:<span>@(DateTime.Now.ToString("yyyy-MM-dd"))</span></li>
-                <li>Thời gian hoàn phí:<span>@(DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))</span></li>
+                <li>Ngày hoàn phí:<span>@(DateTime.Now.ToString("dd/MM/yyyy"))</span></li>
+                <li>Thời gian hoàn phí:<span>@(DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"))</span></li>
                 <li>Tổng hoàn phí:<span id="tje"></span>&nbsp;&nbsp;&nbsp;<span id="mzyjj"  style="display:none;"><input type="checkbox" checked="checked" id="yjjth" name="yjjth" /> Hoàn về tài khoản tạm ứng </span>
                 </li>
             </ul>
@@ -105,12 +105,12 @@
         var strTje = roundingBy4she6ru5chengshuang(tmxZje, 2);
         if (thisJszb.jszje == tmxZje && thisJszb.jsxjzf != thisJszb.jszje) {
             //không hoàn toàn tự chi trảquyết toánbản ghi
-            strTje += '（Thực hoàn' + thisJszb.jsxjzf.toFixed(2) + '）';
+            strTje += '(Thực hoàn' + thisJszb.jsxjzf.toFixed(2) + ')';
         }
         if (thisJszb.xjzffsmc.split(":").length - 1 == 1 && (thisJszb.xjzffsmc.indexOf("Alipay") !== -1 || thisJszb.xjzffsmc.indexOf("WeChat") !== -1 || (thisJszb.xjzffsmc.indexOf("Tài khoản tạm ứng") !== -1))) {
-            strTje += '（Hoàn theo đường cũ）';
+            strTje += '(Hoàn theo đường cũ)';
         } else {
-            strTje += '（Hoàn tiền mặt）';
+            strTje += '(Hoàn tiền mặt)';
         }
         $('#tje').html(strTje);
     });

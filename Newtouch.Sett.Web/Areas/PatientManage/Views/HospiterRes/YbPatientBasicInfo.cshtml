@@ -68,12 +68,12 @@
                         <th class="formTitle">Ngày bắt đầu:</th>
                         <td class="formValue">
                             <input id="kssj" type="text" class="form-control input-wdatepicker form-an"
-                                   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
+                                   onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy'})" value="@(DateTime.Now.ToString("01/MM/yyyy"))" />
                         </td>
                         <th class="formTitle">Ngày kết thúc:</th>
                         <td class="formValue">
                             <input id="jssj" type="text" class="form-control input-wdatepicker form-an"
-                                   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
+                                   onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy'})" value="@(DateTime.Now.ToString("dd/MM/yyyy"))" />
                         </td>
                         <td class="formTitle" style="width:50px">
                             <input type="button" class="btn btn-default btn-md btn-default-color" id="btkhsr" value="Tra cứu" onclick="GetYbInfo()" />
@@ -201,12 +201,12 @@
                         <th class="formTitle time-show">Ngày bắt đầu:</th>
                         <td class="formValue  time-show">
                             <input id="jg_kssj" type="text" class="form-control input-wdatepicker form-an" style="width:150px"
-                                   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-01"))" />
+                                   onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy'})" value="@(DateTime.Now.ToString("01/MM/yyyy"))" />
                         </td>
                         <th class="formTitle  time-show">Ngày kết thúc:</th>
                         <td class="formValue  time-show">
                             <input id="jg_jssj" type="text" class="form-control input-wdatepicker form-an" style="width:150px"
-                                   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" />
+                                   onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy'})" value="@(DateTime.Now.ToString("dd/MM/yyyy"))" />
                         </td>
                         <td class="formTitle 3607-show">*Số trang hiện tại:</td>
                         <td class="formValue 3607-show  style='width:150px'">
@@ -798,7 +798,7 @@
             case "2":
                 captionCon = "Thông tin khám bệnh";
                 colModel = [
-                   { label: 'khámID', name: 'mdtrt_id', width: 55,  align: 'center' },
+                   { label: 'khámID', name: 'mdtrt_id', width: 55, align: 'center' },
                    { label: 'Giờ bắt đầu', name: 'begntime', width: 105, formatter: "number", align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                    { label: 'Giờ kết thúc', name: 'endtime', width: 105, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                    { label: 'Nhập viện/Số khám ngoại trú', name: 'ipt_otp_no', width: 105, align: 'center' },

@@ -31,9 +31,9 @@
             <table class="form" style="margin-left:10px">
                 <tr>
                     <td class="formValue">
-                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:35%; float:left;" value="@DateTime.Now.ToString(" yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:35%; float:left;" value="@DateTime.Now.ToString(" dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         <span style="margin-left:5px;float:left;">—</span>
-                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width: 35%; float: left; margin-left: 5px;" value="@DateTime.Now.ToString(" yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width: 35%; float: left; margin-left: 5px;" value="@DateTime.Now.ToString(" dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         <button id="btn_search" type="button" class="btn  btn-default" style="margin-left:10px;"><i class="fa fa-search"></i></button>
                     </td>
                 </tr>
@@ -150,7 +150,7 @@
                         <td class="formTitle"><span class="required">*</span>Ngày trị liệu:</td>
                         <td class="formValue">
                             <input id="jzsj" type="text" class="form-control input-wdatepicker form-an formClearIgnore"
-                                   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
+                                   onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy'})" />
                             <span style="color: red; display: none">￥</span><a id="zje" style="display: none">0.00</a>
                             <input type="hidden" id="IsBlh" value="@ViewBag.IsBlh" />
                         </td>
@@ -499,7 +499,7 @@
     function Tips() {
         var html = "Khoản mục ghi sổ";
         if (jfXm_jfjesx) {
-            html += "<strong style='text-decoration:none;'>&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền đã tính phí（Tháng hiện tại）:<span style='color:red;'>" + jfXm_yjfzje + "</span>đồng,Giới hạn trên（Tháng hiện tại）:<span style='color:red;'>" + jfXm_jfjesx + "</span>đồng</strong>";
+            html += "<strong style='text-decoration:none;'>&nbsp;&nbsp;&nbsp;&nbsp;Tổng số tiền đã tính phí(Tháng hiện tại):<span style='color:red;'>" + jfXm_yjfzje + "</span>đồng,Giới hạn trên(Tháng hiện tại):<span style='color:red;'>" + jfXm_jfjesx + "</span>đồng</strong>";
         }
         $('#divPanelJzxm').html(html);
     }
@@ -1056,7 +1056,7 @@
     }
 
 
-    //kiểm trađang sửacủadữ liệu（chờ gửi）củatính đầy đủ
+    //kiểm trađang sửacủadữ liệu(chờ gửi)củatính đầy đủ
     function checkEditingRowData(rowData) {
         if (!rowData.ysList || rowData.ysList.length === 0) {
             $.modalAlert("Vui lòng chọn kỹ thuật viên trị liệu", 'warning');

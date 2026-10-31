@@ -393,9 +393,9 @@
         }
     }
 
-    //TheodataĐặt lạivẽbảng 长cao
+    //Đặt lại chiều cao bảng vẽ theo data
     function drawTemplet(data) {
-        //vẽbảngcủa长rộng
+        //chiều rộng bảng vẽ
         var totalwidth = $(window).width();
         var totalheight = bodyHeight;
         $board.css('width', totalwidth);
@@ -477,7 +477,7 @@
             //        + twArr[i + 1] + '℃</div>');
             //    $div.appendTo($board);
             //}
-            //tronggiữacủa4dòngnhiệtđộcủađường（ởnàydòngđườngcủatrên）
+            //tronggiữacủa4dòngnhiệtđộcủađường(ởnàydòngđườngcủatrên)
             for (var j = 0; j < 4; j++) {
                 top = contentStartTop + sspace * 5 * i + sspace * (j + 1);
                 drawLine(contentStartLeft, top, twLastLeft - contentStartLeft);
@@ -506,7 +506,7 @@
             var rqData = $.jsonWhere(data, function (v) { return v.rq && $.getDate({ date: v.rq }) == rqCellValueArr[i] });
             var thistz = ""; //thểtrọng
             var thissg = ""; //thâncao
-            var thisxybhd = 0; //血氧饱vàđộ
+            var thisxybhd = 0; //độ bão hòa oxy trong máu
             var thisxybhdpart2 = 0;
             var thisxyll = 0;
             var thisdbcs = 0;    //lớntiện lầnsố
@@ -932,30 +932,30 @@
                 var brztms = "";
                 if (ztItem[i].brzt == '@((int)EnumHlbrzt.Ry)') {
                     ztItem[i].tw = 42;
-                    brztms = "Nhập viện〡" + ztItem[i].showzt;
+                    brztms = "Nhập viện|" + ztItem[i].showzt;
                 }
                 else if (ztItem[i].brzt == '@((int)EnumHlbrzt.Cy)') {
                     ztItem[i].tw = 42;
-                    brztms = "Xuất viện〡" + ztItem[i].showzt;
+                    brztms = "Xuất viện|" + ztItem[i].showzt;
                 }
                 else if (ztItem[i].brzt == '@((int)EnumHlbrzt.Sw)') {
                     ztItem[i].tw = 42;
-                    brztms = "Tử vong〡" + ztItem[i].showzt;
+                    brztms = "Tử vong|" + ztItem[i].showzt;
                 }
                 else if (ztItem[i].brzt == '@((int)EnumHlbrzt.Zr)') {
                     ztItem[i].tw = 42;
-                    brztms = "Chuyển vào〡" + ztItem[i].showzt;
+                    brztms = "Chuyển vào|" + ztItem[i].showzt;
                 }
                 else if (ztItem[i].brzt == '@((int)EnumHlbrzt.Zc)') {
                     ztItem[i].tw = 42;
-                    brztms = "Chuyển ra 〡" + ztItem[i].showzt;
+                    brztms = "Chuyển ra |" + ztItem[i].showzt;
                 }
                  else if (ztItem[i].brzt == '@((int)EnumHlbrzt.ss)') {
                     ztItem[i].tw = 42;
-                    brztms = "Phẫu thuật〡" + ztItem[i].showzt;
+                    brztms = "Phẫu thuật|" + ztItem[i].showzt;
                 }else if (ztItem[i].brzt == '@((int)EnumHlbrzt.hs)') {
                     ztItem[i].tw = 42;
-                    brztms = "Về phòng 〡" + ztItem[i].showzt;
+                    brztms = "Về phòng |" + ztItem[i].showzt;
                 }
                 if (ztItem[i].brzt == '@((int)EnumHlbrzt.Ry)' || ztItem[i].brzt == '@((int)EnumHlbrzt.Cy)' || ztItem[i].brzt == '@((int)EnumHlbrzt.Sw)' || ztItem[i].brzt == '@((int)EnumHlbrzt.Zr)'|| ztItem[i].brzt == '@((int)EnumHlbrzt.Zc)'||ztItem[i].brzt == '@((int)EnumHlbrzt.ss)'||ztItem[i].brzt == '@((int)EnumHlbrzt.hs)') {
                     $.each(brztms.split(''), function () {

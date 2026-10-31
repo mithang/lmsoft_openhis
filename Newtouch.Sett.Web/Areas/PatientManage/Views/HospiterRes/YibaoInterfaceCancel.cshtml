@@ -179,7 +179,7 @@
 
                     case "离休医保单边":
                         if (medicalInsurance == "chongqing") {
-                            var payoptype = { 'jylsh': seleRow.setl_id, 'jbr': '@(opr.rygh)', 'zymzh': seleRow.zymzh, 'czlx': '0', 'xzlb': '1' };//loại bảo hiểm mặc định,1、bảo hiểm y tế；2、bảo hiểm tai nạn lao động；3、bảo hiểm sinh sản；
+                            var payoptype = { 'jylsh': seleRow.setl_id, 'jbr': '@(opr.rygh)', 'zymzh': seleRow.zymzh, 'czlx': '0', 'xzlb': '1' };//loại bảo hiểm mặc định,1. bảo hiểm y tế；2. bảo hiểm tai nạn lao động；3. bảo hiểm sinh sản；
                             lxybcz(payoptype);
                         }
                         break;
@@ -219,7 +219,7 @@
                         break;
                     case "离休医保单边":
                         if (medicalInsurance == "chongqing") {
-                            var payoptype = { 'jylsh': seleRow.setl_id, 'jbr': '@(opr.rygh)', 'zymzh': seleRow.zymzh, 'czlx': '0', 'xzlb': '1' };//loại bảo hiểm mặc định,1、bảo hiểm y tế；2、bảo hiểm tai nạn lao động；3、bảo hiểm sinh sản；
+                            var payoptype = { 'jylsh': seleRow.setl_id, 'jbr': '@(opr.rygh)', 'zymzh': seleRow.zymzh, 'czlx': '0', 'xzlb': '1' };//loại bảo hiểm mặc định,1. bảo hiểm y tế；2. bảo hiểm tai nạn lao động；3. bảo hiểm sinh sản；
                             lxybcz(payoptype);
                         }
                         break;
@@ -329,11 +329,11 @@
                 type: "POST",
                 data: {
                     mzh: zymzh, jsnm:jsnm, tjsxmDict: tjsxmDict, expectedTmxZje: tmxZje
-                    , hcybjsh: hcybjsh, newwjybjsh: newwjybjsh
-                    , hcybfeeRelated: hcybfeeRelated
-                    , newybfeeRelated: newybfeeRelated
-                    , guianMztfProDto: guianMztfProDto
-                    , outpId: null
+, hcybjsh: hcybjsh, newwjybjsh: newwjybjsh
+, hcybfeeRelated: hcybfeeRelated
+, newybfeeRelated: newybfeeRelated
+, guianMztfProDto: guianMztfProDto
+, outpId: null
                 },
                 url: "/OutpatientManage/OutpatientRefund/guianhandleRefund",
                 dataType: "json",

@@ -238,11 +238,11 @@
         }
         var tipStr = "";
         if (operationType === "@((int)EnumTjShzt.Audited)") {
-            tipStr = "Bạn có chắc muốn phê duyệt không?？";
+            tipStr = "Bạn có chắc muốn phê duyệt không??";
         } else if (operationType === "@((int)EnumTjShzt.Refuse)") {
-            tipStr = "Bạn có chắc muốn từ chối không?？";
+            tipStr = "Bạn có chắc muốn từ chối không??";
         } else if (operationType === "@((int)EnumTjShzt.Revoke)") {
-            tipStr = "Bạn có chắc muốn thu hồi không?？";
+            tipStr = "Bạn có chắc muốn thu hồi không??";
         }
         $.modalConfirm(tipStr, function (flag) {
             if (!flag) {
@@ -278,7 +278,7 @@
             $.modalAlert("Chưa lấy được dữ liệu cần thao tác", 'warning');
             return;
         }
-        $.modalConfirm("Bạn có chắc muốn thực hiện không?？", function (flag) {
+        $.modalConfirm("Bạn có chắc muốn thực hiện không??", function (flag) {
             if (!flag) {
                 return false;
             } else {
@@ -311,7 +311,7 @@
         }
         for (var i = 0; i < rowsDataArray.length; i++) {
             if (rowsDataArray[i].Isgq === 'Đã quá hạn') {
-                $.modalAlert(rowsDataArray[i].wzmc + " Đã quá hạn，Thời gian thực hiện phải lớn hơn thời gian hiện tại", 'warning');
+                $.modalAlert(rowsDataArray[i].wzmc + " Đã quá hạn,Thời gian thực hiện phải lớn hơn thời gian hiện tại", 'warning');
                 return false;
             }
             tjIds += rowsDataArray[i].wztjId + ",";

@@ -401,7 +401,7 @@
     }
 
     $('#sl').keydownEnterEvent(function (event) {
-        if ($('#sl').hasClass('form-an-cur')) { //thiếu陷-domột cái trướcenterquađếncủa
+        if ($('#sl').hasClass('form-an-cur')) { //thiếu phần tử DOM phía trước để chuyển sang
             $('#sl').removeClass('form-an-cur')
             return;
         }
@@ -565,7 +565,7 @@
         return data;
     }
 
-    //Kiểm trađangởSửacủaDữ liệu（chờGửi）củaxongchỉnhtính
+    //Kiểm trađangởSửacủaDữ liệu(chờGửi)củaxongchỉnhtính
     function checkEditingRowData(rowData) {
         var ryrq = new Date($('#ryrq').html());
         var cyrq = new Date($('#cyrq').html());

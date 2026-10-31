@@ -12,11 +12,11 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">Kết chuyển lịch sử：</th>
+                    <th class="formTitle">Kết chuyển lịch sử:</th>
                     <td class="formValue">
                         <select id="lsjz" class="form-control"></select>
                     </td>
-                    <th class="formTitle">Mã nhập：</th>
+                    <th class="formTitle">Mã nhập:</th>
                     <td class="formValue">
                         <input id="txtSRM" type="text" class="form-control" placeholder="Pinyin/Tên thuốc/Mã thuốc" />
                     </td>
@@ -76,7 +76,7 @@
                 if (ajaxresp != null) {
                     if (ajaxresp.state === "success") {
                         lastCarryTime = ajaxresp.data;
-                        var msg = ajaxresp.data === "" ? "Bạn có chắc muốn kết chuyển không？" : ("Thời gian kết chuyển gần nhất là:：" + lastCarryTime + " ,Bạn có chắc muốn kết chuyển không？")
+                        var msg = ajaxresp.data === "" ? "Bạn có chắc muốn kết chuyển không?" : ("Thời gian kết chuyển gần nhất là:: " + lastCarryTime + " ,Bạn có chắc muốn kết chuyển không?")
                         $.modalConfirm(msg,
                             function (flag) {
                                 if (flag) {
@@ -112,7 +112,7 @@
 
     //Thông tin thuốc
     function gridDrugsList() {
-        var captionCon = "Tổng cộng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Trang hiện tại Tổng giá bán buôn：" + "" + "đ&nbsp;&nbsp;&nbsp;&nbsp;Tổng tiền bán lẻ：" + "" + "đ</span>";
+        var captionCon = "Tổng cộng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Trang hiện tại Tổng giá bán buôn: " + "" + "đ&nbsp;&nbsp;&nbsp;&nbsp;Tổng tiền bán lẻ: " + "" + "đ</span>";
         var $gridDrugsList = $("#gridDrugsList");
         $gridDrugsList.dataGrid({
             postData: getSearchPostData(),
@@ -188,7 +188,7 @@
             }
             titlePjze = window.roundingBy4she6ru5chengshuang(titlePjze, 2);
             titleLsze = window.roundingBy4she6ru5chengshuang(titleLsze, 2);
-            $("#yeCon").text("Tổng giá bán buôn：" + titlePjze + "đ;Tổng giá lẻ：" + titleLsze + "đ");
+            $("#yeCon").text("Tổng giá bán buôn: " + titlePjze + "đ;Tổng giá lẻ: " + titleLsze + "đ");
             $.loading(false);
         }
     }

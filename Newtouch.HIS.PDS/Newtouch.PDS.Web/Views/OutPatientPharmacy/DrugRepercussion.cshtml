@@ -18,27 +18,27 @@
         <div class="panel-heading">Điều kiện lọc</div>
         <table class="form">
             <tr>
-                <th class="formTitle" style="width:50px;">Số thẻ：</th>
+                <th class="formTitle" style="width:50px;">Số thẻ:</th>
                 <td class="formValue">
                     <input type="text" id="kh" class="form-control" placeholder="Số thẻ" />
                 </td>
-                <th class="formTitle" style="width:50px;">Họ tên：</th>
+                <th class="formTitle" style="width:50px;">Họ tên:</th>
                 <td class="formValue">
                     <input type="text" id="xm" class="form-control" placeholder="Họ tên" />
                 </td>
-                <th class="formTitle" style="width:60px;">Số đơn thuốc：</th>
+                <th class="formTitle" style="width:60px;">Số đơn thuốc:</th>
                 <td class="formValue">
                     <input type="text" id="cfh" class="form-control" />
                 </td>
-                <th class="formTitle" style="width:60px;">Số hóa đơn：</th>
+                <th class="formTitle" style="width:60px;">Số hóa đơn:</th>
                 <td class="formValue">
                     <input type="text" id="fph" class="form-control" />
                 </td>
-                <th class="formTitle" style="width:70px;"><span style="color:red;">*</span>Thời gian phát thuốc：</th>
+                <th class="formTitle" style="width:70px;"><span style="color:red;">*</span>Thời gian phát thuốc:</th>
                 <td class="formValue" style="width: 220px;">
-                    <input id="begindate" type="text" class="form-control input-wdatepicker" style="width:85px;float:left;" value="@DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="begindate" type="text" class="form-control input-wdatepicker" style="width:85px;float:left;" value="@DateTime.Now.AddDays(-3).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     <span style="float:left;margin:0 5px;">-</span>
-                    <input id="enddate" type="text" class="form-control input-wdatepicker" style="width:85px;float:left;" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="enddate" type="text" class="form-control input-wdatepicker" style="width:85px;float:left;" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
                 <td class="formTitle" style="padding: 15px; width: 50px;">
                     <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" />
@@ -93,7 +93,7 @@
                 }
 
                 if (entries >= maxEntries) {
-                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này！", "warning", 1500);
+                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này!", "warning", 1500);
                     inputField.val(inputField.val().split(',').filter(entry => entry.trim() != "").slice(0, maxEntries).join(',') + ",");
                 }
             }
@@ -108,9 +108,9 @@
 
     //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
-//         if (event.keyCode === 13) {
-//             $("#btn_search").trigger("click");
-//         }
+// if (event.keyCode === 13) {
+// $("#btn_search").trigger("click");
+// }
     });
 
     //Lấy dữ liệu
@@ -226,7 +226,7 @@
 
     //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        var rowIds = $gridCfDetail.jqGrid('getDataIDs'); //GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
+        var rowIds = $gridCfDetail.jqGrid('getDataIDs'); //GridSau khi tải xong, bật chỉnh sửa trong dòng 1.Lấy tất cả các dòng trướcId 2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
             $gridCfDetail.jqGrid('editRow',
                 rowIds[i],
@@ -244,10 +244,10 @@
     function newtouch_event_f7() {
         var id = $gridCfList.jqGrid("getGridParam", "selrow");
         if (!id) {
-            $.modalAlert("Vui lòng chọn đơn thuốc cần trả thuốc！", 'warning');
+            $.modalAlert("Vui lòng chọn đơn thuốc cần trả thuốc!", 'warning');
             return false;
         }
-        var rowIds = $gridCfDetail.jqGrid('getDataIDs'); //Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
+        var rowIds = $gridCfDetail.jqGrid('getDataIDs'); //Lấy tất cả các dòngId, Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
         var tymx = [];
         //Kiểm tra số lượng trả
         for (var i = 0; i < rowIds.length; i++) {
@@ -260,12 +260,12 @@
                 rowData.sl === "" ||
                 isNaN(rowData.sl) ||
                 rowData.sl < 0) {
-                $.modalAlert("Hạng mục【" + rowData.ypmc + "】Số lượng trả thuốc phải là số tự nhiên，Vui lòng xác nhận。", "warning");
+                $.modalAlert("Hạng mục【" + rowData.ypmc + "】Số lượng trả thuốc phải là số tự nhiên, Vui lòng xác nhận.", "warning");
                 EnableInlineEditBox(); //Bật khung sửa trong dòng
                 return false;
             }
             if (parseInt(rowData.sl) > parseInt(rowData.ktsl)) {
-                $.modalAlert("Hạng mục【" + rowData.ypmc + "】Số lượng trả thuốc không được vượt quá" + rowData.slstr + "。", "warning");
+                $.modalAlert("Hạng mục【" + rowData.ypmc + "】Số lượng trả thuốc không được vượt quá" + rowData.slstr + ".", "warning");
                 EnableInlineEditBox(); //Bật khung sửa trong dòng
                 return false;
             }
@@ -275,7 +275,7 @@
             //Có chia lẻ không
             var sfclValue = Number($("#sel_sfcl_" + rowid).val());
 
-            // Kiểm tra số lượng mã truy xuất。 Có chia lẻ thì chọn Có，Chỉ cần quét một cái，Nếu không thì cần quét mã tương ứng với số lượng nhập kho
+            // Kiểm tra số lượng mã truy xuất. Có chia lẻ thì chọn Có, Chỉ cần quét một cái, Nếu không thì cần quét mã tương ứng với số lượng nhập kho
             const zsmLength = $("#sel_zsm_" + rowid).val().split(',').filter(entry => entry.trim() !== '').length
             var maxZsmLength = 1
             if (sfclValue === 1) {
@@ -284,7 +284,7 @@
                 maxZsmLength = parseInt(rowData.sl)
             }
             if (zsmLength != 0 && zsmLength != maxZsmLength) {
-                $.modalMsg("Mục: " + rowData.ypmc + " số lượng không khớp với số lượng mã truy xuất！", "warning", 1500);
+                $.modalMsg("Mục: " + rowData.ypmc + " số lượng không khớp với số lượng mã truy xuất!", "warning", 1500);
                 return false;
             }
             if (parseInt(rowData.sl) > 0) {
@@ -302,10 +302,10 @@
             }
         }
         if (tymx.length === 0) {
-            $.modalAlert("Không tìm thấy thông tin trả thuốc hợp lệ。", "warning");
+            $.modalAlert("Không tìm thấy thông tin trả thuốc hợp lệ.", "warning");
             return false;
         }
-        $.modalConfirm("Bạn có chắc muốn trả thuốc không?？",
+        $.modalConfirm("Bạn có chắc muốn trả thuốc không??",
             function (flag) {
                 if (flag) {
                     $.najax({

@@ -13,11 +13,11 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">Số đơn lĩnh：</th>
+                    <th class="formTitle">Số đơn lĩnh:</th>
                     <td class="formValue">
                         <input id="txtSldh" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Khoa phát thuốc：</th>
+                    <th class="formTitle">Khoa phát thuốc:</th>
                     <td class="formValue">
                         <input id="txtfybm" type="text" class="form-control" />
                     </td>
@@ -34,37 +34,37 @@
         <div id="divSLMX" style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Mã thuốc：</th>
+                    <th class="formTitle">Mã thuốc:</th>
                     <td class="formValue">
                         <input id="editRowId" value="" style="display:none;" />
                         <input id="ypCode" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Số lượng lĩnh<span id="spanSlslDw"></span>：</th>
+                    <th class="formTitle">Số lượng lĩnh<span id="spanSlslDw"></span>:</th>
                     <td class="formValue">
                         <input id="lqdw" value="" style="display:none;" />
                         <input id="slsl" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle" id="thRKSLDW">Tên thuốc：</th>
+                    <th class="formTitle" id="thRKSLDW">Tên thuốc:</th>
                     <td class="formValue">
                         <input id="ypmc" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Quy cách：</th>
+                    <th class="formTitle">Quy cách:</th>
                     <td class="formValue">
                         <input id="ypgg" type="text" class="form-control newtouch_Readonly" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Nhà sản xuất：</th>
+                    <th class="formTitle">Nhà sản xuất:</th>
                     <td class="formValue">
                         <input id="ycmc" type="text" class="form-control newtouch_Readonly" />
                     </td>
                     <!-- Kho thuốc đích của Tồn kho -->
-                    <th class="formTitle">Số lượng có thể lĩnh：</th>
+                    <th class="formTitle">Số lượng có thể lĩnh:</th>
                     <td class="formValue">
                         <input id="klslandDw" type="text" class="form-control newtouch_Readonly inline" style="width:120px; display: inline;" />
                         <label id="spanklslDw"></label>
                     </td>
-                    <th class="formTitle">Hệ số chuyển đổi kho thuốc：</th>
+                    <th class="formTitle">Hệ số chuyển đổi kho thuốc:</th>
                     <td class="formValue">
                         <input id="ykzhyz" type="text" class="form-control newtouch_Readonly" />
                         <input id="bbmzhyz" type="text" style="display:none;" />
@@ -72,19 +72,19 @@
                     <td colspan="2"></td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Giá bán buôn(đ)：</th>
+                    <th class="formTitle">Giá bán buôn(đ):</th>
                     <td class="formValue">
                         <input id="pfj" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Tổng giá bán buôn(đ)：</th>
+                    <th class="formTitle">Tổng giá bán buôn(đ):</th>
                     <td class="formValue">
                         <input id="pfjze" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Giá bán lẻ(đ)：</th>
+                    <th class="formTitle">Giá bán lẻ(đ):</th>
                     <td class="formValue">
                         <input id="lsj" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Tổng tiền bán lẻ(đ)：</th>
+                    <th class="formTitle">Tổng tiền bán lẻ(đ):</th>
                     <td class="formValue">
                         <input id="lsjze" type="text" class="form-control newtouch_Readonly" />
                     </td>
@@ -119,7 +119,7 @@
         $(window).resize(function () { //Khi thay đổi kích thước cửa sổ trình duyệt, tải lạijqGridchiều rộng
             window.initLayout("MyTabGrid");
         });
-        funcNewSLD();   //Khi trang tảiNewmột
+        funcNewSLD(); //Khi trang tảiNewmột
     });
 
     //Đơn lĩnh mới
@@ -162,7 +162,7 @@
         }
     });
 
-    //Mã thuốc（Thuốc）Lớp nổi
+    //Mã thuốc(Thuốc)Lớp nổi
     $("#ypCode").newtouchFloatingSelector({
         url: "/DrugStorage/GetValidMedicinesrmList",
         height: 350,
@@ -192,7 +192,7 @@
             { label: 'Số tối đa khả dụng sau khi chuyển sang đơn vị khoa', name: 'bmdwsl', hidden: true }
         ],
         itemdbclickhandler: function ($thistr) {
-            //Bộ phận lĩnh，Bộ phận không phát thuốc）
+            //Bộ phận lĩnh, Bộ phận không phát thuốc)
             $.najax({
                 url: "/DrugStorage/CheckRkbmOwnMedicine?yp=" + $thistr.attr('data-ypdm') + "&rkbm=@Constants.CurrentYfbm.yfbmCode",
                 dataType: "json",
@@ -204,7 +204,7 @@
                         $("#ypmc").val($thistr.attr('data-ypmc'));
                         $("#ypgg").val($thistr.attr('data-gg'));
                         $("#ycmc").val($thistr.attr('data-sccj'));
-                        $("#klslandDw").val($thistr.attr('data-bzdwsl'));  //Số lượng có thể lĩnh
+                        $("#klslandDw").val($thistr.attr('data-bzdwsl')); //Số lượng có thể lĩnh
                         $("#spanSlslDw").html('(' + $thistr.attr('data-bzdw') + ')'); //Đơn vị số lượng lĩnh
                         $("#spanklslDw").html($thistr.attr('data-bzdw'));
                         $("#pfj").val($thistr.attr('data-pfj'));
@@ -212,8 +212,8 @@
                         $("#lsj").val($thistr.attr('data-lsj'));
                         $("#lsjze").val('');
                         $('#ykzhyz').val($thistr.attr('data-bzs'));
-                        $("#bbmzhyz").val($thistr.attr('data-bzs'));   //Hệ số chuyển đổi kho thuốc
-                        $("#lqdw").val($thistr.attr('data-bzdw'));   //Đơn vị số lượng lĩnh
+                        $("#bbmzhyz").val($thistr.attr('data-bzs')); //Hệ số chuyển đổi kho thuốc
+                        $("#lqdw").val($thistr.attr('data-bzdw')); //Đơn vị số lượng lĩnh
                     }else {
                         $.modalAlert(res.message, 'error');
                     }
@@ -221,7 +221,7 @@
             });
         },
         itemdbclickhandleComplete: function () {
-            $('#slsl').trigger('focus');    //focusTới Số lượng lĩnh
+            $('#slsl').trigger('focus'); //focusTới Số lượng lĩnh
         }
     });
 
@@ -236,7 +236,7 @@
             { label: 'Số lượng có thể lĩnh', name: 'klslandDw', width: 80, align: 'left' },
             { label: 'Tồn kho hiện có', name: 'xykcslandDw', width: 80, align: 'left', hidden: true },
             { label: 'Số lượng lĩnh', name: 'slsl', width: 70, align: 'left' }, //Số lượng nhà thuốc
-            { label: 'Đơn vị', name: 'lqdw', width: 60, align: 'left' },   //Đơn vị nhà thuốc
+            { label: 'Đơn vị', name: 'lqdw', width: 60, align: 'left' }, //Đơn vị nhà thuốc
             { label: 'Nhà sản xuất', name: 'ycmc', width: 180, align: 'left' },
             { label: 'Giá bán buôn', name: 'pfj', width: 70, align: 'left' },
             { label: 'Giá bán lẻ', name: 'lsj', width: 70, align: 'left' },
@@ -313,11 +313,11 @@
 
     //Số lượng lĩnhinputsự kiện Enter của
     $('#slsl').keydownEnterEvent(function () {
-        if ($('#editRowId').val()) {            //là sửa đổi
-            newtouch_event_f3();    //Mô phỏng Sửa nút Nhấn
+        if ($('#editRowId').val()) { //là sửa đổi
+            newtouch_event_f3(); //Mô phỏng Sửa nút Nhấn
         }
         else {
-            newtouch_event_f2();    //Mô phỏng Nút xác nhận Nhấn
+            newtouch_event_f2(); //Mô phỏng Nút xác nhận Nhấn
         }
     });
 
@@ -328,7 +328,7 @@
             ypCode: $('#ypCode').val(),
             ypmc: $('#ypmc').val(),
             ypgg: $('#ypgg').val(),
-            klslandDw: $('#klslandDw').val(),   //Số lượng có thể lĩnh
+            klslandDw: $('#klslandDw').val(), //Số lượng có thể lĩnh
             xykcslandDw: $('#xykcslandDw').val(),
             slsl: $('#slsl').val(),
             lqdw: $('#lqdw').val(),
@@ -346,7 +346,7 @@
 
     //rõ ràng
     function newtouch_event_f4() {
-        $("#lqdw").val("");   //Đơn vị số lượng lĩnh
+        $("#lqdw").val(""); //Đơn vị số lượng lĩnh
         $("#spanSlslDw").html('');
         $('#spanklslDw').html("");
         $('#gridSLMX').jqGrid("clearGridData"); //Xóa của chi tiếtgrid
@@ -358,7 +358,7 @@
         if (!checkInputVal(data)) {
             return;
         }
-        
+
         //Kiểm tra mục trùng lặp
         var isRepeatedAdd = false;
         $.each($("#gridSLMX").getDataIDs(), function () {
@@ -373,7 +373,7 @@
         }
 
         $("#gridSLMX").newtouchLocalDataGrid(null, data);
-        $('#divSLMX input').val('');    //Khối chi tiết ở giữa Tất cảinput Đặt lại
+        $('#divSLMX input').val(''); //Khối chi tiết ở giữa Tất cảinput Đặt lại
         $("#spanSlslDw").html('');
         $("#spanklslDw").html("");
         $("#lqdw").val("");
@@ -423,7 +423,7 @@
                 return;
             }
             $("#gridSLMX").newtouchLocalDataGrid(null, data);
-            $('#divSLMX input').val('');    //Khối chi tiết ở giữa Tất cảinput Đặt lại
+            $('#divSLMX input').val(''); //Khối chi tiết ở giữa Tất cảinput Đặt lại
             $("#spanSlslDw").html('');
             $('#spanklslDw').html("");
             $("#lqdw").val("");
@@ -460,7 +460,7 @@
         newtouch_globalevent_f4();
         $('#txtfybm').val('');
         $('#txtfybmmc').val('');
-        $('#editRowId').val('');    //không có Dòng đang sửa đó
+        $('#editRowId').val(''); //không có Dòng đang sửa đó
         $('#gridSLMX').jqGrid("clearGridData");
         funcNewSLD();
         $("#txtfybm").nfnRemoveReadonly();
@@ -476,7 +476,7 @@
         var postData = {};
         postData.sldh = $('#txtSldh').val();
         postData.fybmCode = $('#txtfybm').val();
-        postData.slmxList = $("#gridSLMX").jqGrid('getRowData_AllLine', false, true);    //Lấy của dòng đã chọnJsonDữ liệu
+        postData.slmxList = $("#gridSLMX").jqGrid('getRowData_AllLine', false, true); //Lấy của dòng đã chọnJsonDữ liệu
         $.najax({
             type: "POST",
             url: "/Pharmacy/SubmitRequisition",

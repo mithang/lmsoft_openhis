@@ -124,7 +124,7 @@
                     </td>
                     <th class="formTitle"><span class="required">*</span>Ngàyghi sổ:</th>
                     <td class="formValue">
-                        <input id="tdrq" type="text" class="form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@(System.DateTime.Now.ToString("yyyy-MM-dd"))" />
+                        <input id="tdrq" type="text" class="form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" value="@(System.DateTime.Now.ToString("dd/MM/yyyy"))" />
                     </td>
                     <th class="formTitle">Ghi chú:</th>
                     <td class="formValue">
@@ -189,7 +189,7 @@
             { label: "Thời lượng đơn vị", name: "duration", width: 60, align: "left" },
             {
                 label: "Đơn giá(đồng)", name: "dj", width: 60, align: "left", formatter: "number", hidden: true
-                    , formatoptions: { decimalPlaces: 4, defaultValue: '0.0000' }
+, formatoptions: { decimalPlaces: 4, defaultValue: '0.0000' }
             },
             { label: "Số lượng", name: "sl", width: 40, align: "left" },
             {
@@ -358,7 +358,7 @@
         return "";
     }
 
-    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）củatính đầy đủ
+    //Kiểm tra dữ liệu đang chỉnh sửa(Chờ gửi)củatính đầy đủ
     function checkEditingRowData(rowData) {
         if (!rowData.ysList || rowData.ysList.length == 0) {
             $.modalAlert("Vui lòng chọn trị liệu sư", 'warning');
@@ -703,8 +703,8 @@
                         var newRowData = {
                             tdrq: $.getDate(),
                             sfxmCode: this.sfxm,
-                            sfxmmc: this.sfxmmc,               //    ？？？？
-                            yzlx: "2",  //Mục
+                            sfxmmc: this.sfxmmc, //    ？？？？
+                            yzlx: "2", //Mục
                             duration: this.duration,
                             dj: this.dj,
                             dw: this.dw,

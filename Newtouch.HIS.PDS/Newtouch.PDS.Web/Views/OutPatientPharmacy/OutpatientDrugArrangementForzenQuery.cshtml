@@ -20,19 +20,19 @@
         <div>
             <table class="form">
                 <tr>
-                    <td class="formTitle">Họ tên：</td>
+                    <td class="formTitle">Họ tên:</td>
                     <td class="formValue">
                         <input type="text" id="xm" class="form-control" placeholder="Vui lòng nhập họ tên" />
                     </td>
-                    <td class="formTitle">Số thẻ：</td>
+                    <td class="formTitle">Số thẻ:</td>
                     <td class="formValue">
                         <input type="text" id="cardNo" class="form-control" placeholder="Vui lòng nhập số thẻ" />
                     </td>
-                    <td class="formTitle">Số hóa đơn：</td>
+                    <td class="formTitle">Số hóa đơn:</td>
                     <td class="formValue">
                         <input type="text" id="invoiceNo" class="form-control" placeholder="Vui lòng nhập số hóa đơn" />
                     </td>
-                    <td class="formTitle">Cờ quyết toán：</td>
+                    <td class="formTitle">Cờ quyết toán:</td>
                     <td class="formValue">
                         <select class="form-control" id="seljsbz">
                             <option value="2">Tất cả</option>
@@ -45,20 +45,20 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Khoa：</td>
+                    <td class="formTitle">Khoa:</td>
                     <td class="formValue">
                         <input type="text" id="ksmc" name="ksmc" placeholder="Vui lòng chọn khoa" class="form-control" />
                         <input type="hidden" id="ksdm" name="ksdm" value="" />
                     </td>
-                    <td class="formTitle"><span class="required">*</span>Thời gian thu phí：</td>
+                    <td class="formTitle"><span class="required">*</span>Thời gian thu phí:</td>
                     <td class="formValue">
-                        <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddDays(-3).ToString("dd/MM/yyyy 00:00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
-                    <td class="formTitle"><span class="required">*</span>đến：</td>
+                    <td class="formTitle"><span class="required">*</span>đến:</td>
                     <td class="formValue">
-                        <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
-                    <td class="formTitle">Quyết toán đã hết hạn：</td>
+                    <td class="formTitle">Quyết toán đã hết hạn:</td>
                     <td class="formValue">
                         <div class="ckbox">
                             <input id="settExpired" name="settExpired" type="checkbox" checked="checked"><label for="settExpired">Có</label>
@@ -166,7 +166,7 @@
                 //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                 ids = $gridList.getDataIDs();
                 if (ids == null || ids.length <= 0) return;
-                //Chọn hoặc bỏ chọn dòng chỉ định。Nếuonselectrowchoturethì sẽ kích hoạt sự kiệnonSelectRow，onselectrowMặc định làture
+                //Chọn hoặc bỏ chọn dòng chỉ định.Nếuonselectrowchoturethì sẽ kích hoạt sự kiệnonSelectRow, onselectrowMặc định làture
                 $gridList.setSelection(ids[0], true);
                 var data = $gridList.jqGrid('getRowData', ids[0]);
                 if (data == null) return;
@@ -232,17 +232,17 @@
 
     //Hủy xếp thuốc
     function newtouch_event_f6() {
-        $.modalConfirm("Bạn có chắc muốn hủy xếp thuốc không?？",
+        $.modalConfirm("Bạn có chắc muốn hủy xếp thuốc không??",
             function(flag) {
                 if (!flag) return;
                 var id = $gridList.jqGrid("getGridParam", "selrow");
                 if (!id) {
-                    $.modalMsg("Vui lòng chọn thông tin bệnh nhân！", 'warning');
+                    $.modalMsg("Vui lòng chọn thông tin bệnh nhân!", 'warning');
                     return;
                 }
                 var data = $gridList.jqGrid('getRowData', id);
                 if (data == null) {
-                    $.modalMsg("Tham số không hợp lệ！", 'warning');
+                    $.modalMsg("Tham số không hợp lệ!", 'warning');
                     return;
                 }
                 $.najax({
@@ -268,12 +268,12 @@
     function newtouch_event_f7() {
         var id = $gridList.jqGrid("getGridParam", "selrow");
         if (!id) {
-            $.modalMsg("Vui lòng chọn đơn thuốc cần in！", 'warning');
+            $.modalMsg("Vui lòng chọn đơn thuốc cần in!", 'warning');
             return;
         }
         var data = $gridList.jqGrid('getRowData', id);
         if (data == null) {
-            $.modalMsg("Tham số không hợp lệ！", 'warning');
+            $.modalMsg("Tham số không hợp lệ!", 'warning');
             return;
         }
         window.open("/Report/PrintReport?type=MZPY_Bill&param=OrganizeId=@ViewBag.OrganizeId" + "|yfbmCode=@ViewBag.yfbmCode" + "|cfh=" + data.cfh);

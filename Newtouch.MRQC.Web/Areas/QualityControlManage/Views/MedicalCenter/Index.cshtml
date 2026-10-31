@@ -63,13 +63,13 @@
                     <tr>
                         <th class="formTitle" style="width:50px" id="thksrq">Từ ngày nhập viện:</th>
                         <td class="formValue">
-                            <input id="txt_kssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.AddMonths(-2).ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                            <input id="txt_kssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.AddMonths(-2).ToString("01/MM/yyyy 00:00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                         </td>
                     </tr>
                     <tr>
                         <th class="formTitle" id="thjsrq">Đến ngày nhập viện:</th>
                         <td class="formValue">
-                            <input id="txt_jssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                            <input id="txt_jssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                         </td>
                     </tr>
                     <tr>
@@ -226,11 +226,11 @@
                         <tr>
                             <th class="formTitle" style="width:50px" id="thksrq">Thời gian bắt đầu:</th>
                             <td class="formValue">
-                                <input id="txt_Jykssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                                <input id="txt_Jykssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("01/MM/yyyy 00:00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                             </td>
                             <th class="formTitle" id="thjsrq">Thời gian kết thúc:</th>
                             <td class="formValue">
-                                <input id="txt_Jyjssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                                <input id="txt_Jyjssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                             </td>
                             <th class="formTitle">
                                 <button id="btn_Jysearch" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
@@ -247,11 +247,11 @@
                         <tr>
                             <th class="formTitle" style="width:50px" id="thksrq">Thời gian bắt đầu:</th>
                             <td class="formValue">
-                                <input id="txt_Jckssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                                <input id="txt_Jckssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("01/MM/yyyy 00:00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                             </td>
                             <th class="formTitle" id="thjsrq">Thời gian kết thúc:</th>
                             <td class="formValue">
-                                <input id="txt_Jcjssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                                <input id="txt_Jcjssj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                             </td>
                             <th class="formTitle">
                                 <button id="btn_Jcsearch" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
@@ -519,7 +519,7 @@
                             }
                             returnval = "开始";
                         }
-                        $("#gridYzList").setCell(ids[i], "Zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell đặt kiểu ô, giá trị hoặc thuộc tính
+                        $("#gridYzList").setCell(ids[i], "Zh", '<img src="../../../../Content/img/' + returnval + '.png" alt="Ký hiệu nhóm y lệnh" />');//setCell đặt kiểu ô, giá trị hoặc thuộc tính
                     } else if (last !== rowData.Zh && last !== "") {
                         setlastrowzuhao(ids[i]);
                     }

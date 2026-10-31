@@ -104,15 +104,15 @@
                 <td class="formTitle"> Thực hiệnNgày:</td>
                 <td class="formValue">
                     <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" style="width:100%;"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
 
                 </td>
                 <td class="formTitle endTime-show" style="width:10px"> -</td>
                 <td class="formValue endTime-show">
                     <input id="txt_zxrqend" type="text" class="form-control input-wdatepicker" style="width:100%;"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
                 </td>
                 <td class="formTitle">
                     Thực hiệnLoại:
@@ -185,9 +185,9 @@
     var syxskURL = '@Html.Raw(reportUrl)' + "?tempCode=97&systemCode=CIS"; //truyền dịchtuần traxemthẻ
     var lsyzdURL = '@Html.Raw(reportUrl)' + "?tempCode=28&systemCode=CIS";//Y lệnh tạm thời
     var cqyzdURL = '@Html.Raw(reportUrl)' + "?tempCode=27&systemCode=CIS";//Y lệnh dài hạn
-    var ypbjURL = '@Html.Raw(reportUrl)' + "?tempCode=70&systemCode=CIS";//Thuốcnhãn（truyền dịchnhãn）
+    var ypbjURL = '@Html.Raw(reportUrl)' + "?tempCode=70&systemCode=CIS";//Thuốcnhãn(truyền dịchnhãn)
     var whbqURL = '@Html.Raw(reportUrl)' + "?tempCode=1310&systemCode=CIS";//khí dungnhãn
-    var jyztdyURL = '@Html.Raw(reportUrl)' + "?tempCode=32&systemCode=CIS";//Xét nghiệmBộ mẫunhãn（nhãn ống nghiệm）
+    var jyztdyURL = '@Html.Raw(reportUrl)' + "?tempCode=32&systemCode=CIS";//Xét nghiệmBộ mẫunhãn(nhãn ống nghiệm)
 
 
     $(".dv-body").height($(window).height());
@@ -580,13 +580,13 @@
 
     function FlPrint(tag, ids, printParam) {
 
-        //truyền dịchnhãn（Thuốcnhãn）
+        //truyền dịchnhãn(Thuốcnhãn)
        if (tag == "ypbj") {
             //window.open(ypbjURL + "&orgId=" + '@(ViewBag.OrgId)' + "&zyh=" + zyh + "&yzxz=" + clbz + "&yzhs=" + idspara + "&zxrq=" + zxrq, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
            window.open(ypbjURL + "&orgId=" + '@(ViewBag.OrgId)' + "&zxrqks=" + $('#txt_zxrq').val() + "&zxrqjs=" + $('#txt_zxrqend').val() + ' 23:59:59' + "&yzxz=" + clbz + "&lyxh=" + printParam.strlyxh + "&zyh=" + zyh + "&fybh=" + "@ypbjyfpz" + "&orgId=" + '@(ViewBag.OrgId)' + "&yzh=" + printParam.yzhstr + "&zh=" + printParam.zhstr, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
            return;
         }
-            //nhãn ống nghiệm（Xét nghiệmBộ mẫunhãn）
+            //nhãn ống nghiệm(Xét nghiệmBộ mẫunhãn)
         if (tag == "jyztdy") {
             $.ajax({
                 url: '/MedicalRecord/SaveBarCodeByYzh',

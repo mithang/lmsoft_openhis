@@ -13,19 +13,19 @@
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Thời gian bắt đầu：</th>
+                    <th class="formTitle">Thời gian bắt đầu:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlKSSJ" class="form-control"></select>
                     </td>
-                    <th class="formTitle">Thời gian kết thúc：</th>
+                    <th class="formTitle">Thời gian kết thúc:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlJSSJ" class="form-control"></select>
                     </td>
-                    <th class="formTitle">Trạng thái thuốc：</th>
+                    <th class="formTitle">Trạng thái thuốc:</th>
                     <td class="formValue formDdlSelectorTd">
                         @Html.DropDownList("ddlYPZT", EnumYPZT.Enabled.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">Tỷ lệ chênh lệch bằng 0：</th>
+                    <th class="formTitle">Tỷ lệ chênh lệch bằng 0:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlLCL" class="form-control">
                             <option value="">Tất cả</option>
@@ -34,17 +34,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Mã thuốc：</th>
+                    <th class="formTitle">Mã thuốc:</th>
                     <td class="formValue">
                         <input id="txtINPUTCODE" type="text" class="form-control" />
                     </td>
-                    <th class="formTitle">Dạng bào chế：</th>
+                    <th class="formTitle">Dạng bào chế:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlJX" class="form-control">
                             <option value="">Tất cả</option>
                         </select>
                     </td>
-                    <th class="formTitle">Loại thuốc：</th>
+                    <th class="formTitle">Loại thuốc:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlYPLB" class="form-control">
                             <option value="">Tất cả</option>
@@ -69,19 +69,19 @@
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Bán buôn nhập kho：</th>
+                    <th class="formTitle">Bán buôn nhập kho:</th>
                     <td class="formValue">
                         <input type="text" id="txtRKPFZE" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Bán buôn xuất kho：</th>
+                    <th class="formTitle">Bán buôn xuất kho:</th>
                     <td class="formValue">
                         <input type="text" id="txtCKPFZE" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Thừa thiếu do điều chỉnh giá：</th>
+                    <th class="formTitle">Thừa thiếu do điều chỉnh giá:</th>
                     <td class="formValue">
                         <input type="text" id="txtTJSYZE" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Bán lẻ thừa thiếu：</th>
+                    <th class="formTitle">Bán lẻ thừa thiếu:</th>
                     <td class="formValue">
                         <input type="text" id="txtSYLSZE" class="form-control newtouch_Readonly" />
                     </td>
@@ -134,7 +134,7 @@
         });
     }
 
-    
+
     var gridop = null;
     //Bản ghi chính của chứng từ
     function gridDrugsInfoData() {
@@ -215,7 +215,7 @@
             }
         };
         $gridDrugsInfoData.dataGrid(gridOptins);
-        
+
         //Thống kê
         $("#btn_TJ").click(function () {
             if ($("#ddlKSSJ").val() >= $("#ddlJSSJ").val() && $("#ddlJSSJ").val() !== "") {
@@ -248,10 +248,10 @@
 
     //Thống kê tổng số
     function StatisticsZE() {
-        var statisticsRkpfze = 0;  //Tổng giá nhập kho
-        var statisticsCkpfze = 0;  //Tổng giá xuất kho
-        var statisticsTjsyze = 0;  //Tổng lãi/lỗ điều giá
-        var statisticsSylsze = 0;  //Tổng tiền lẻ lãi/lỗ
+        var statisticsRkpfze = 0; //Tổng giá nhập kho
+        var statisticsCkpfze = 0; //Tổng giá xuất kho
+        var statisticsTjsyze = 0; //Tổng lãi/lỗ điều giá
+        var statisticsSylsze = 0; //Tổng tiền lẻ lãi/lỗ
         var count = $("#gridDrugsInfo").getGridParam('records');
         if (count > 0) {
             var rowIds = $("#gridDrugsInfo").getDataIDs();
@@ -324,13 +324,13 @@
         var cols = JSON.stringify(exportCols);
         top.$.cookie('ExportExcelCols', cols, { path: "/" });
         //$.najax({
-        //    type: "POST",
-        //    url: "/DrugStorage/ExcelGet",
-        //    data: { searchParam: getSearchPostData(), isContainFilter: isContainFilter, jxtext: $("#ddlJX option:selected").text(), lbtext: $("#ddlYPLB option:selected").text(), colStanWidth: "70", cols: cols },
-        //    alerterror: false,
-        //    success: function (res) {
+        // type: "POST",
+        // url: "/DrugStorage/ExcelGet",
+        // data: { searchParam: getSearchPostData(), isContainFilter: isContainFilter, jxtext: $("#ddlJX option:selected").text(), lbtext: $("#ddlYPLB option:selected").text(), colStanWidth: "70", cols: cols },
+        // alerterror: false,
+        // success: function (res) {
 
-        //    }
+        // }
         //});
         var ypzt = $("#ddlYPZT").val();
         var srm = $("#txtINPUTCODE").val();
@@ -350,14 +350,14 @@
         url += "&isContainFilter=" + isContainFilter;
         url += "&jxtext=" + $("#ddlJX option:selected").text();
         url += "&lbtext=" + $("#ddlYPLB option:selected").text();
-        url += "&colStanWidth=" + "70";  //Cột tiêu chuẩn chiều rộng cột
+        url += "&colStanWidth=" + "70"; //Cột tiêu chuẩn chiều rộng cột
         var cols = JSON.stringify(exportCols);
         top.$.cookie('ExportExcelCols', cols, { path: "/" });
         //url += "&cols=" + cols;
 
         window.open(url);
     }
-    
+
     $("#btn_print").click(function () {
 
         var ksjzsj = $("#ddlKSSJ").val();
@@ -373,7 +373,7 @@
         var jx = $("#ddlJX").val() ? $("#ddlJX").val() : "";
         var rate = $("#ddlLCL").val() ? $("#ddlLCL").val() : "-1";
         var shzt = "1";
-        
+
         var uri = '@Html.Raw(reportUrl)' + "?tempCode=1251&systemCode=PDS";
 
         uri += "&ksjzsj=" + ksjzsj;

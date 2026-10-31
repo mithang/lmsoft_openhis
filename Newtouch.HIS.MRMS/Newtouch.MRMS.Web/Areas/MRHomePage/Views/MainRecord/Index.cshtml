@@ -50,17 +50,17 @@
 			<tr>
 				<th class="formTitle">Thời gian xuất viện</th>
 				<td class="formValue" colspan="2">
-					<input id="txt_ksrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-01")">
+					<input id="txt_ksrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" value="@DateTime.Now.ToString("01/MM/yyyy")">
 					<span style="float:left;">_</span>
-					<input id="txt_jsrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")">
+					<input id="txt_jsrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy")">
 				</td>
-				@*<td class="formTitle">Trạng thái bệnh án：</td>
+				@*<td class="formTitle">Trạng thái bệnh án:</td>
 		<td class="formValue formDdlSelectorTd">
 			<select class="form-control" id="bazt" data-enumtype="Enumbazt">
 				<option value="">===Tất cả===</option>
 			</select>
 		</td>*@
-				@*<td class="formTitle">Khu bệnh：</td>
+				@*<td class="formTitle">Khu bệnh:</td>
 		<td class="formValue formDdlSelectorTd">
 			<select id="bqlist" name="bqlist" class="form-control " style="float:left;">
 				<option value=""> ==Vui lòng chọn== </option>

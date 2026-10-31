@@ -36,7 +36,7 @@
 					</td>
 					<th class="formTitle">Ngày chốt phí:</th>
 					<td class="formValue" colspan="1">
-						<input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="float:left" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd  HH:mm:ss' })" />
+						<input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="float:left" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy  HH:mm:ss' })" />
 					</td>
 					<th class="formTitle">Tên mục:</th>
 					<td class="formValue">
@@ -207,7 +207,7 @@
     var jszje = 0.00;
     var scbz = false;//trueTải lên tất cả false"Tải lên mục đã chọn
     var isnewyb = "0";//0  BHYT quốc gia 1 BHYT Thượng Hải giai đoạn 5
-    //theozyh Thông tin cơ bản bệnh nhân、Thông tin tính phí
+    //theozyh Thông tin cơ bản bệnh nhân, Thông tin tính phí
     function ajaxLoadDataResult(zyh) {
 
         $.najax({
@@ -256,7 +256,7 @@
         });
 	}
 
-    //theozyh Thông tin cơ bản bệnh nhân、Thông tin tính phí
+    //theozyh Thông tin cơ bản bệnh nhân, Thông tin tính phí
     function ajaxLoadDataResult2(zyh) {
         $.najax({
             type: "POST",
@@ -808,7 +808,7 @@
                 { label: 'Loại phí', name: 'dlmc', width: 100, align: 'left' },
                 {
                     label: 'Số tiền', name: 'je', width: 500, align: 'left', formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
             ],
             onSelectRow: function (rowIndex, s) {
@@ -1042,12 +1042,12 @@
                 { label: 'Đơn vị', name: 'jfdw', align: 'center', width: 30 },
                 {
                     label: 'Đơn giá', name: 'dj', align: 'center', width: 60, formatter: "number"
-                    , formatoptions: { decimalPlaces: 4, defaultValue: '0.0000' }
+, formatoptions: { decimalPlaces: 4, defaultValue: '0.0000' }
                 },
                 { label: 'Số lượng', name: 'sl', align: 'center', width: 30 },
                 {
                     label: 'phí', name: 'je', align: 'center', width: 60, formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
                     label: 'Ngày tính giá', name: 'tdrq', align: 'center', width: 100, formatter: "date",

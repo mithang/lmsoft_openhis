@@ -17,16 +17,16 @@
 				<th class="formTitle">Ngày:</th>
 				<td class="formValue" style="width:10%">
 					<input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
-						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-						   value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")" />
+						   onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+						   onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+						   value="@DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy")" />
 				</td>
 				<td class="formValue" style="width:8px;float:left;">-</td>
 				<td class="formValue" style="width:10%;float:left;">
 					<input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px;float:left;"
-						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-						   value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+						   onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+						   onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+						   value="@DateTime.Now.ToString("dd/MM/yyyy")" />
 				</td>
 				<td class="formValue" colspan="2">
 					<input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left: 10px; width: 40px;" value="Tra cứu" />

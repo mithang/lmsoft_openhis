@@ -49,7 +49,7 @@
         <div class="panel-heading">Thông tin hóa đơn</div>
         <table class="form">
             <tr>
-                <th class="formTitle "><span class="required">*</span>Công ty dược：</th>
+                <th class="formTitle "><span class="required">*</span>Công ty dược:</th>
                 <td class="formValue">
                     <input type="text" id="yq" name="yq" class="form-control" placeholder="Vui lòng chọn công ty dược" autocomplete="off" style="width:60%"/>
                     <input type="hidden" id="yqbm" />
@@ -114,7 +114,7 @@
             height: $(window).height() - 200,
             postData: { yqbm: $("#yqbm").val(), fpmxbh: '1' },
             colModel: [
-            
+
                 { label: 'Số hóa đơn', name: 'FPH', width: 80, align: 'left' ,key:true,},
                 { label: 'Ngày hóa đơn', name: 'FPRQ', width: 80, align: 'left' },
                 { label: 'Tổng số tiền hóa đơn bao gồm thuế', name: 'FPHSZJE', width: 100, align: 'left' },
@@ -219,12 +219,12 @@
                     dataType: "json",
                     success: function (res) {
                         if (res.state == "success") {
-                            $.modalMsg("Hóa đơn cập nhật thành công！", 'success');
+                            $.modalMsg("Hóa đơn cập nhật thành công!", 'success');
                             //$('#gridDJMXInfo').jqGrid("clearGridData");
 
                             $('#btn_search').trigger('click');
                         } else {
-                            $.modalMsg("Hóa đơn cập nhật thất bại：" + res.message, 'warning');
+                            $.modalMsg("Hóa đơn cập nhật thất bại: " + res.message, 'warning');
                         }
                     }
                 });
@@ -236,32 +236,32 @@
 
     ////Nghiệm thu chi tiết
     //$('#btn_accept').click(function () {
-    //    //var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
-    //    var rowData = $("#gridList").jqGridRowValue();
-    //    if (rowData == null ) {
-    //        $.modalAlert("Vui lòng chọn chứng từ cần nghiệm thu", 'warning');
-    //        return;
-    //    }
-    //    var yqbm = rowData.YQBM;
-    //    var fph = rowData.FPH;
-    //    var fphszje = rowData.FPHSZJE;
-    //    if (!fphszje) {
-    //        return; 
-    //    }
-    //    $.najax({
-    //        type: "POST",
-    //        url: "/Purchase/BillAccept",
-    //        data: { yqbm:yqbm,fph:fph,fphszje:fphszje },
-    //        dataType: "json",
-    //        success: function (res) {
-    //            if (res.state == "success") {
-    //                $('#btn_search').trigger('click');
-    //                $.modalAlert("Chứng từ nghiệm thu thành công！", 'success');
-    //            } else {
-    //                $.modalAlert("Chứng từ nghiệm thu thất bại：" + res.message, 'warning');
-    //            }
-    //        }
-    //    });
+    // //var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');
+    // var rowData = $("#gridList").jqGridRowValue();
+    // if (rowData == null) {
+    // $.modalAlert("Vui lòng chọn chứng từ cần nghiệm thu", 'warning');
+    // return;
+    // }
+    // var yqbm = rowData.YQBM;
+    // var fph = rowData.FPH;
+    // var fphszje = rowData.FPHSZJE;
+    // if (!fphszje) {
+    // return;
+    // }
+    // $.najax({
+    // type: "POST",
+    // url: "/Purchase/BillAccept",
+    // data: { yqbm:yqbm,fph:fph,fphszje:fphszje },
+    // dataType: "json",
+    // success: function (res) {
+    // if (res.state == "success") {
+    // $('#btn_search').trigger('click');
+    // $.modalAlert("Chứng từ nghiệm thu thành công!", 'success');
+    // } else {
+    // $.modalAlert("Chứng từ nghiệm thu thất bại: " + res.message, 'warning');
+    // }
+    // }
+    // });
     //});
 
 </script>

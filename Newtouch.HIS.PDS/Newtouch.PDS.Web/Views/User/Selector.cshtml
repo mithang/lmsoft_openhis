@@ -36,7 +36,7 @@
             }
         }
         else {
-            treeSeleData = $("#userStaffTree").getCheckedValues();  //Valuestương ứngUserId
+            treeSeleData = $("#userStaffTree").getCheckedValues(); //Valuestương ứngUserId
             if (single == 'true' && treeSeleData.length != 1) {
                 $.modalAlert('Chọn tối đa một dòng', 'warning');
                 return;
@@ -47,11 +47,11 @@
 
         }
         else if (fromDialog) {
-            //Hành vi mặc định，callbackTrướcDialogphương thức của
+            //Hành vi mặc định, callbackTrướcDialogphương thức của
             top.top.window.frames[fromDialog].userStaffTreeCallback(treeSeleData);
         }
         else {
-            //Hành vi mặc định，callbackPhương thức của trang trước
+            //Hành vi mặc định, callbackPhương thức của trang trước
             $.currentWindow().window.userStaffTreeCallback(treeSeleData);
         }
     }

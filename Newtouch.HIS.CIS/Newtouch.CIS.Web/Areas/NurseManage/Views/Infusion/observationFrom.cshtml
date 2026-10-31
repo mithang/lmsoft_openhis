@@ -65,9 +65,9 @@
                     </td>
                     <th class="formTitle">Theo dõiThời gian:</th>
                     <td class="formValue" colspan="3">
-                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                         <span style="margin-left:1%;float:left">—</span>
-                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.AddMinutes(30).ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.AddMinutes(30).ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
                 </tr>
             </table>
@@ -83,7 +83,7 @@
     $('#tabledjlg .plusToggleCircle').click(function () {
 
         var number = $('#tabledjlg .msinput').length;// + 1;
-        var $newTr = $("<tr><th class='formTitle' style='margin-left:20px;'><i id='" + number + "' class='fa fa-minus minusToggleCircle' aria-hidden='true' style='width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;'></i>Nguyên nhân đăng ký:</th><td class='formValue' colspan='2'><input id='txt_lgdjid" + number + "' name='txt_lgdjid" + number + "' type='hidden'  /><input id='txt_syxxid" + number + "' name='txt_syxxid" + number + "' type='hidden'  /><input id='txt_miaoshu" + number + "' name='txt_miaoshu" + number + "' type='text' class='form-control required msinput' /></td><th class='formTitle'>Theo dõiThời gian:</th><td class='formValue' colspan='3'><input id='kssj" + number + "' type='text' class='form-control input-wdatepicker' style='width:42%; float:left;' value='@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")' onfocus='WdatePicker({ dateFmt: &quot;yyyy-MM-dd HH:mm:ss&quot; })' /><span style='margin-left:1%;float:left'>—</span><input id='jssj" + number + "' type='text' class='form-control input-wdatepicker' style='width:43%; float:left;margin-left:1%;' value='@DateTime.Now.AddMinutes(30).ToString("yyyy-MM-dd HH:mm:ss")' onfocus='WdatePicker({ dateFmt: &quot;yyyy-MM-dd HH:mm:ss&quot; })' /></td></tr>");
+        var $newTr = $("<tr><th class='formTitle' style='margin-left:20px;'><i id='" + number + "' class='fa fa-minus minusToggleCircle' aria-hidden='true' style='width:30px;margin-left: 10px; color: #6ff3ad; font-size: large;'></i>Nguyên nhân đăng ký:</th><td class='formValue' colspan='2'><input id='txt_lgdjid" + number + "' name='txt_lgdjid" + number + "' type='hidden'  /><input id='txt_syxxid" + number + "' name='txt_syxxid" + number + "' type='hidden'  /><input id='txt_miaoshu" + number + "' name='txt_miaoshu" + number + "' type='text' class='form-control required msinput' /></td><th class='formTitle'>Theo dõiThời gian:</th><td class='formValue' colspan='3'><input id='kssj" + number + "' type='text' class='form-control input-wdatepicker' style='width:42%; float:left;' value='@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")' onfocus='WdatePicker({ dateFmt: &quot;dd/MM/yyyy HH:mm:ss&quot; })' /><span style='margin-left:1%;float:left'>—</span><input id='jssj" + number + "' type='text' class='form-control input-wdatepicker' style='width:43%; float:left;margin-left:1%;' value='@DateTime.Now.AddMinutes(30).ToString("dd/MM/yyyy HH:mm:ss")' onfocus='WdatePicker({ dateFmt: &quot;dd/MM/yyyy HH:mm:ss&quot; })' /></td></tr>");
 
         $newTr.appendTo($(this).closest('table'));
     });

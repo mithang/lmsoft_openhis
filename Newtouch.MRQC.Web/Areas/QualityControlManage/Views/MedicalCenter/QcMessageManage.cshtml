@@ -85,7 +85,7 @@
                             </td>
                             <th class="formTitle">Thời hạn xử lý:</th>
                             <td class="formValue" colspan="2">
-                                <input id="qxclsj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                                <input id="qxclsj" type="text" class="form-control input-wdatepicker" style="float:left;" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                             </td>
                         </tr>
                     </tbody>
@@ -213,7 +213,7 @@
             width: 2,
             treeGridModel: "adjacency",
             ExpandColumn: "Blmc",
-            postData: { status: "9", ksrq:"@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" , jsrq: "@DateTime.Now.ToString("yyyy-MM-dd 23:59:59")" },
+            postData: { status: "9", ksrq:"@DateTime.Now.ToString("01/MM/yyyy 00:00:00")" , jsrq: "@DateTime.Now.ToString("dd/MM/yyyy 23:59:59")" },
             rownumbers: false,
             height: $(window).height() - 123,
             colModel: [
@@ -249,7 +249,7 @@
     {
         $("#gridwqrxxList").jqGrid('setGridParam', {
             url: "/QualityControlManage/MedicalCenter/GetDclMsgJson",
-            postData: { status: "9", ksrq:"@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" , jsrq: "@DateTime.Now.ToString("yyyy-MM-dd 23:59:59")" },
+            postData: { status: "9", ksrq:"@DateTime.Now.ToString("01/MM/yyyy 00:00:00")" , jsrq: "@DateTime.Now.ToString("dd/MM/yyyy 23:59:59")" },
         }).trigger('reloadGrid');
     }
 

@@ -293,15 +293,15 @@
             //toolbarAlign: 'left',
             //******Cài đặt phân trang****
             queryParams: queryParams,
-            pagination: true,                   //Có hiển thị phân trang không（*）
-            pageNumber: 1,                      //Tải trang đầu tiên khi khởi tạo，Mặc định trang đầu tiên,và ghi lại
-            pageSize: 20,                       //Số dòng bản ghi mỗi trang（*）
-            pageList: [20, 50, 100],            //Số dòng mỗi trang có thể chọn（*）
+            pagination: true,                   //Có hiển thị phân trang không(*)
+            pageNumber: 1,                      //Tải trang đầu tiên khi khởi tạo, Mặc định là trang đầu tiên và có ghi nhớ
+            pageSize: 20,                       //Số dòng bản ghi mỗi trang(*)
+            pageList: [20, 50, 100],            //Số dòng mỗi trang có thể chọn(*)
             paginationHAlign: "left",
             paginationDetailHAlign: "right",
             //sortable: true,                     //Có bật sắp xếp không
             //sortOrder: "asc",                   //Cách sắp xếp
-            sidePagination: 'client',           //Cách phân trang：clientPhân trang phía client，serverPhân trang phía server（*）
+            sidePagination: 'client',           //Cách phân trang: client (phân trang phía máy khách), server (phân trang phía máy chủ)(*)
             showPaginationSwitch: false,
             //******Cài đặt phân trang****
             //******Cài đặt tiêu đề bảng****
@@ -413,7 +413,7 @@
             search: false,
             striped: true, //Có hiển thị màu xen kẽ hàng không
             queryParams: queryParams,
-            pagination: false,                   //Có hiển thị phân trang không（*）
+            pagination: false,                   //Có hiển thị phân trang không(*)
             uniqueId:"Id",
             //sortable: true,                     //Có bật sắp xếp không
             //sortOrder: "asc",                   //Cách sắp xếp
@@ -538,7 +538,7 @@
             dataType: "json",
             success: function (data) {
                 $("#formapply").formSerialize(data);
-                //$("#Applyno").html("Số đơn đăng ký phẫu thuật：" + data.Applyno);
+                //$("#Applyno").html("Số đơn đăng ký phẫu thuật: " + data.Applyno);
                 if (data.sssj != null) {
                     $("#sssj").val(data.sssj.replace("T", " "));
                 }

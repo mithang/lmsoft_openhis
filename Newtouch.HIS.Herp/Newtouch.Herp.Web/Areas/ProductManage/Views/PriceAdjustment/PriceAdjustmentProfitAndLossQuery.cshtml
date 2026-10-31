@@ -10,15 +10,15 @@
         </div>
         <table class="form">
             <tr>
-                <td class="formTitle">Ngày bắt đầu：</td>
-                <td class="formValue" style="width: 120px;"><input type="text" id="startTime" style="width: 120px;" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd 00:00' })" /></td>
-                <td class="formTitle" style="width:30px;padding-right: 5px;">Đến： </td>
-                <td class="formValue" style="width:120px;"><input type="text" id="endTime" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" /></td>
-                <td class="formTitle" style="padding-right:5px;width:70px;">Từ khóa：</td>
+                <td class="formTitle">Ngày bắt đầu:</td>
+                <td class="formValue" style="width: 120px;"><input type="text" id="startTime" style="width: 120px;" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy 00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy 00:00' })" /></td>
+                <td class="formTitle" style="width:30px;padding-right: 5px;">Đến: </td>
+                <td class="formValue" style="width:120px;"><input type="text" id="endTime" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm")" onfocus="WdatePicker({dateFmt:'dd/MM/yyyy HH:mm'})" /></td>
+                <td class="formTitle" style="padding-right:5px;width:70px;">Từ khóa:</td>
                 <td class="formValue" style="padding-right:5px;width:100px;">
                     <input type="text" id="Srm" class="form-control" placeholder="Phiên âm vật tư/Tên" />
                 </td>
-                <th class="formTitle" style="width:50px;padding-right:5px;">Kho：</th>
+                <th class="formTitle" style="width:50px;padding-right:5px;">Kho:</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="ddlkfbm" class="form-control required">
                         <option>Tất cả</option>

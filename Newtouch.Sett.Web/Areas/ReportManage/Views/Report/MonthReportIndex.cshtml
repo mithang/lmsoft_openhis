@@ -114,7 +114,7 @@
                         caption += '(Ngày tạo báo cáo đã cố định: ' + $.getDate({ date: new Date(ajaxresp.data[0].CreateTime) });
                         caption += ' Chi phí Tổng cộng:';
                         caption += getFeeTotal(ajaxresp.data).toFixed(2);
-                        caption += '）';
+                        caption += ')';
                         $("#gridList").setCaption(caption);
 
                         $('#btn_bottombutton_f9').removeAttr('disabled');   //Tạo lại nút Có thể thao tác
@@ -158,7 +158,7 @@
                         var caption = year + 'năm' + $.zeroPrefixInteger(month, 2) + 'tháng tháng báo cáo';
                         caption += '(Tổng chi phí vẫn chưa cố định: ';
                         caption += getFeeTotal(ajaxresp.data).toFixed(2);
-                        caption += '）';
+                        caption += ')';
                         $("#gridList").setCaption(caption);
 
                         $('#btn_bottombutton_f6').removeAttr('disabled');   //Tạo báo cáo nút Có thể thao tác
@@ -212,7 +212,7 @@
         $('.gridPanel').html('<table id="gridList"></table>');  //xóa trướcgridnội dung
         initGridList(dlColArr);
         //trìnhhiệnsốdữ liệu
-        //xử lýdata đến Mục tiêuĐịnh dạng（Có cột loại lớn）
+        //xử lýdata đến Mục tiêuĐịnh dạng(Có cột loại lớn)
         $("#gridList").newtouchLocalDataGrid({ posttofirst: false, actions: 'addRowData' }, formatDlData(data));
         //trìnhhiệndatatrongbổ sungkhácnàomộtthực hiện
         var buchaRow = $.jsonWhere(data, function (v) {
@@ -239,7 +239,7 @@
     }
 
     //resp data to data
-    //xử lýdata đến Mục tiêuĐịnh dạng（Có cột loại lớn）
+    //xử lýdata đến Mục tiêuĐịnh dạng(Có cột loại lớn)
     function formatDlData(data) {
         var respData = [];
         $.each(data, function () {

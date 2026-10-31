@@ -15,19 +15,19 @@
                 <tr>
                     <th class="formTitle ">Ngày thống kê:</th>
                     <td class="formValue">
-                        <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("dd/MM/yyyy 00:00:00")" on onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">Đến：</th>
+                    <th class="formTitle">Đến:</th>
                     <td class="formValue">
-                        <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("dd/MM/yyyy HH:mm:ss")" on onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">Định vị thuốc：</th>
+                    <th class="formTitle">Định vị thuốc:</th>
                     <td class="formValue">
                         <input id="keyword" type="text" class="form-control" />
                         <input id="ypcode" type="hidden" />
                     </td>
                     <td class="formTitle">
-                        <input type="button" id="btn_search" class="btn btn-primary" value="Tra cứu" style="margin-left:10px;"  />
+                        <input type="button" id="btn_search" class="btn btn-primary" value="Tra cứu" style="margin-left:10px;" />
                     </td>
                 </tr>
             </table>

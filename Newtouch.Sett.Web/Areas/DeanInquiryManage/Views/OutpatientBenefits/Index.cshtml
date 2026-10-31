@@ -138,7 +138,7 @@
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
         }
         if (dateType == "3") {//ngày
-            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM-dd' })");
+            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'dd/MM/yyyy' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
         }
     }
@@ -305,16 +305,16 @@
         $gridJsList.dataGrid({
             height: 100,
             autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
             url: "/DeanInquiryManage/OutpatientBenefits/GetMzxymx",
             postData: getSearchData(),
             colModel: [
                 { label: 'Ngoại trú Khoa', name: 'mzks',align: 'left' },
                 { label: 'Lượt người ngoại trú', name: 'mzzlrc',align: 'left' },
-                { label: 'Thu nhập ngoại trú（đồng）', name: 'mzsr',align: 'left' },
-                { label: 'Chi phí trị liệu bình quân đầu người（đồng）', name: 'rjfy', align: 'left' },
-                { label: 'Tự chi trả Chi phí Tỷ trọng（%）', name: 'zffyzb', align: 'left' },
-                { label: 'Chi phí BHYT Tỷ trọng（%）', name: 'ybfyzb', align: 'left' },
+                { label: 'Thu nhập ngoại trú(đồng)', name: 'mzsr',align: 'left' },
+                { label: 'Chi phí trị liệu bình quân đầu người(đồng)', name: 'rjfy', align: 'left' },
+                { label: 'Tự chi trả Chi phí Tỷ trọng(%)', name: 'zffyzb', align: 'left' },
+                { label: 'Chi phí BHYT Tỷ trọng(%)', name: 'ybfyzb', align: 'left' },
                 { label: 'Bình quân Thời lượng trị liệu', name: 'pjzlsc',align: 'left' },
                 { label: 'Tỷ lệ tái khám', name: 'fzl', align: 'left' },
                 { label: 'DeptmentCode', name: 'DeptmentCode', align: 'left', hidden: true }
@@ -349,16 +349,16 @@
         $gridJsList.dataGrid({
             height: 100,
             autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
             url: "/DeanInquiryManage/OutpatientBenefits/GetYsxy",
             postData: getSearchData(dpCode),
             colModel: [
                 { label: 'Bác sĩ', name: 'mzks', align: 'left' },
                 { label: 'Lượt người ngoại trú', name: 'mzzlrc', align: 'left' },
-                { label: 'Thu nhập ngoại trú（đồng）', name: 'mzsr', align: 'left' },
-                { label: 'Chi phí trị liệu bình quân đầu người（đồng）', name: 'rjzlfy', align: 'left' },
-                { label: 'Tự chi trả Chi phí Tỷ trọng（%）', name: 'zffyzb', align: 'left' },
-                { label: 'Chi phí BHYT Tỷ trọng（%）', name: 'ybfyzb', align: 'left' },
+                { label: 'Thu nhập ngoại trú(đồng)', name: 'mzsr', align: 'left' },
+                { label: 'Chi phí trị liệu bình quân đầu người(đồng)', name: 'rjzlfy', align: 'left' },
+                { label: 'Tự chi trả Chi phí Tỷ trọng(%)', name: 'zffyzb', align: 'left' },
+                { label: 'Chi phí BHYT Tỷ trọng(%)', name: 'ybfyzb', align: 'left' },
                 { label: 'Bình quân Thời lượng trị liệu', name: 'pjzlsc', align: 'left' },
                 { label: 'Tỷ lệ tái khám', name: 'fzl', align: 'left' }
             ],

@@ -18,27 +18,27 @@
         <table class="form">
             <tr>
                 <td class="formTitle1">
-                    <span class="rema">*</span>Khoa phòng：
+                    <span class="rema">*</span>Khoa phòng:
                 </td>
                 <td class="formValue">
                     <input type="text" id="ksmc" name="ksmc" autocomplete="off" class="form-control form-an" />
                 </td>
-                <td class="formTitle1"><span class="rema">*</span>Nhân viên：</td>
+                <td class="formTitle1"><span class="rema">*</span>Nhân viên:</td>
                 <td class="formValue"><input type="text" id="doctormc" autocomplete="off" name="doctormc" class="form-control form-an" /></td>
-                <td class="formTitle1"><span class="rema">*</span>Nguồn：</td>
+                <td class="formTitle1"><span class="rema">*</span>Nguồn:</td>
                 <td class="formTitle1">
                     <select id="slly">
                         <option value="1">Ngoại trú</option>
                         <option value="2">Nội trú</option>
                     </select>
                 </td>
-                <th class="formTitle">Thời gian phí：</th>
+                <th class="formTitle">Thời gian phí:</th>
                 <td class="formValue" colspan="2">
                     <input id="txtCreateTimestart" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 45%; float:left"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" value="@(DateTime.Now.ToString("yyyy-MM-01 00:00:00"))" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss'})" value="@(DateTime.Now.ToString("yyyy-MM-01 00:00:00"))" />
                     <span style="margin-left:2%;float:left;">-</span>
                     <input id="txtCreateTimeEnd" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 45%; float:left"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" value="@(DateTime.Now.ToString("yyyy-MM-01 00:00:00"))" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss'})" value="@(DateTime.Now.ToString("yyyy-MM-01 00:00:00"))" />
                 </td>
                 <th class="formTitle1">
                 </th>
@@ -46,7 +46,7 @@
             </tr>
             <tr>
                 <td class="formTitle">
-                    Tên hàng hóa：
+                    Tên hàng hóa:
                 </td>
                 <td class="formValue">
                     <input type="text" id="xmmc" name="xmmc" autocomplete="off" class="form-control form-an" />

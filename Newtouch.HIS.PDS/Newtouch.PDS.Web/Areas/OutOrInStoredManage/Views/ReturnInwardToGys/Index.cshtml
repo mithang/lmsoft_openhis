@@ -47,20 +47,20 @@
         <div class="panel-heading">Thông tin phát thuốc</div>
         <table class="form">
             <tr>
-                <th class="formTitle">Phiếu xuất kho：</th>
+                <th class="formTitle">Phiếu xuất kho:</th>
                 <td class="formValue">
                     <input type="text" id="djh" name="djh" class="form-control newtouch_Readonly" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Nhà cung cấp：</th>
+                <th class="formTitle"><span class="required">*</span>Nhà cung cấp:</th>
                 <td class="formValue">
                     <input type="text" id="gysmc" name="gysmc" class="form-control" placeholder="Vui lòng chọn nhà cung cấp" autocomplete="off" />
                     <input type="hidden" id="gysCode" value="" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Cách xuất kho：</th>
+                <th class="formTitle"><span class="required">*</span>Cách xuất kho:</th>
                 <td class="formValue">
                     <select class="form-control" id="fyfs" name="fyfs"></select>
                 </td>
-                <th class="formTitle">Số hóa đơn：</th>
+                <th class="formTitle">Số hóa đơn:</th>
                 <td class="formValue">
                     <input type="text" id="fph" name="fph" class="form-control" placeholder="Vui lòng chọn hóa đơn" />
                 </td>
@@ -121,7 +121,7 @@
                 }
 
                 if (entries >= maxEntries) {
-                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này！", "warning", 1000);
+                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này!", "warning", 1000);
                     inputField.val(inputField.val().split(',').filter(entry => entry.trim() != "").slice(0, maxEntries).join(',') + ",");
                 }
             }
@@ -231,9 +231,9 @@
         $gridList.newtouchLocalDataGrid({
             data: [],
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
-            rownumbers: true,  //Có hiển thị số thứ tự không
+            rownumbers: true, //Có hiển thị số thứ tự không
             multiselect: true,
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
                 { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
@@ -277,8 +277,8 @@
                 { label: 'zxdwjj', name: 'zxdwjj', hidden: true, editable: true },
                 { label: 'bzdwjj', name: 'bzdwjj', hidden: true, editable: true }
             ],
-            editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            editinputwidthborder: false, //Có cần viền không Mặc định làtrue
+            editinputborderradius: false, //Có cần bo góc viền không Mặc địnhtrue(Có bo góc)
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -511,7 +511,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu cần sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
         }
         var par = new Object();
@@ -601,7 +601,7 @@
             $("#" + rowid + "_sl").val("");
             return false;
         }
-        // Kiểm tra số lượng mã truy xuất。 Có chia lẻ thì chọn Có，Chỉ cần quét một cái，Nếu không thì cần quét mã tương ứng với số lượng nhập kho
+        // Kiểm tra số lượng mã truy xuất. Có chia lẻ thì chọn Có, Chỉ cần quét một cái, Nếu không thì cần quét mã tương ứng với số lượng nhập kho
         var sfclValue = Number($("#sel_sfcl_" + rowid).val());
         const zsmLength = $("#sel_zsm_" + rowid).val().split(',').filter(entry => entry.trim() !== '').length
         var maxZsmLength = 1
@@ -612,12 +612,12 @@
         }
 
         if (zsmLength != 0 && zsmLength != maxZsmLength) {
-            $.modalMsg("Mục: " + rowData.ypmc + " số lượng không khớp với số lượng mã truy xuất！", "warning", 1500);
+            $.modalMsg("Mục: " + rowData.ypmc + " số lượng không khớp với số lượng mã truy xuất!", "warning", 1500);
             return false;
         }
         return true;
     }
-    
+
     //Tạo số chứng từ
     function GetDjh() {
         $.ajax({

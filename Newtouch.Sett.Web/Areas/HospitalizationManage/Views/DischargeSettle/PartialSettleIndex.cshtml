@@ -15,7 +15,7 @@
     var invoiceReportUrl = SysConfigReader.OrgReportLink("NewInpatientSetts");
 
     var opr = NewtouchHIS.Lib.Framework.Operator.OperatorProvider.GetCurrent();
-    var yesterday = DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd 23:59:59");
+    var yesterday = DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy 23:59:59");
 }
 
 @Html.Partial("_YibaoCommonView")
@@ -47,7 +47,7 @@
                     <th class="formTitle">Thời gian kết thúc:</th>
                     <td class="formValue" colspan="2">
                         <input id="endTime" type="text" class="form-control input-wdatepicker form-an formClearIgnore"
-                               onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { thenreload(); } })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
+                               onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss', onpicked: function () { thenreload(); } })" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" />
                     </td>
                     <td></td>
                     <td></td>
@@ -183,11 +183,11 @@
                 { label: "Tên mụcthu phí", name: "sfxmmc", width: 180, align: "left" },
                 {
                     label: "Số lượng", name: "sl", width: 80, align: "left", formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
                     label: "Tổng số tiền", name: "zje", width: 80, align: "left", formatter: "number"
-                        , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
             ],
             gridComplete: function (data) {
@@ -234,7 +234,7 @@
                 { label: "Mã nhập viện", name: "zyh", align: "left", hidden: true },
                 {
                     label: "Số tiền quyết toán", name: "zje", width: 180, align: "left", formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
                     label: "Thời gian bắt đầuquyết toán", name: "jsksrq", width: 240, align: "left",
@@ -911,8 +911,8 @@
                     $.loading(false);
                     if (ybjsSettReturn.infcode == "0") {
                         var ybjyCqFeeReturn = ybjsSettReturn.output.setlinfo;
-                        //hisXác nhậnquyết toán（bao gồmBHYTXác nhậnquyết toán）
-                        //Theo kết quả truy vấn từ máy chủ,Nếu bệnh nhân này có mục tự lập đã mở（khôngcóMã BHYT）,Thì tổng số tiền khiquyết toán,Điền tổng số tiền tổng hợp
+                        //hisXác nhậnquyết toán(bao gồmBHYTXác nhậnquyết toán)
+                        //Theo kết quả truy vấn từ máy chủ,Nếu bệnh nhân này có mục tự lập đã mở(khôngcóMã BHYT),Thì tổng số tiền khiquyết toán,Điền tổng số tiền tổng hợp
                         //Nếu chỉ có mục BHYT,Thìquyết toán theo kết quả trả về BHYT củaquyết toán BHYT
                         ybjyCqFeeReturn.his_hisfyze = jszje;
                         ybjyCqFeeReturn.ybzje = mxxx.ybzje;

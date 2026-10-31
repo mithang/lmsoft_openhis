@@ -11,7 +11,7 @@
         color: #00a9ea;
         font-weight: bolder;
     }
-     
+
 </style>
 <form id="form1">
     <div class="panel panel-default" style="margin-bottom: 5px;">
@@ -20,21 +20,21 @@
         </div>
         <table class="form">
             <tr>
-                <td class="formTitle"><span class="required">*</span>Ngày bắt đầu：</td>
+                <td class="formTitle"><span class="required">*</span>Ngày bắt đầu:</td>
                 <td class="formValue">
-                    <input type="text" id="begindate" name="begindate" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00")" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })"/>
+                    <input type="text" id="begindate" name="begindate" value="@DateTime.Now.ToString("dd/MM/yyyy 00:00")" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })"/>
                 </td>
-                <td class="formTitle"><span class="required">*</span>Ngày kết thúc：</td>
+                <td class="formTitle"><span class="required">*</span>Ngày kết thúc:</td>
                 <td class="formValue">
-                    <input type="text" id="enddate" name="enddate" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })"/>
+                    <input type="text" id="enddate" name="enddate" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm")" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })"/>
                 </td>
-                <td class="formTitle">Dạng bào chế thuốc：</td>
+                <td class="formTitle">Dạng bào chế thuốc:</td>
                 <td class="formValue">
                     <select class="form-control" id="jxbh">
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                <td class="formTitle">thuộc tính：</td>
+                <td class="formTitle">thuộc tính:</td>
                 <td class="formValue">
                     <select class="form-control" id="yptssx">
                         <option value="">Tất cả</option>
@@ -45,23 +45,23 @@
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">Số chứng từ：</td>
+                <td class="formTitle">Số chứng từ:</td>
                 <td class="formValue">
                     <input type="text" id="Pdh" class="form-control" placeholder="Vui lòng nhập số chứng từ" />
                 </td>
-                <td class="formTitle">Bộ phận nhận hàng：</td>
+                <td class="formTitle">Bộ phận nhận hàng:</td>
                 <td class="formValue">
                     <select class="form-control" id="shbm">
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                <td class="formTitle">Loại thuốc：</td>
+                <td class="formTitle">Loại thuốc:</td>
                 <td class="formValue">
                     <select class="form-control" id="yplb">
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                <td class="formTitle">Loại xuất kho：</td>
+                <td class="formTitle">Loại xuất kho:</td>
                 <td class="formValue">
                     <select class="form-control" id="djlx">
                         <option value="">Tất cả</option>
@@ -128,10 +128,10 @@
                 { label: 'Giá nhập', name: 'JJ', width: 50, align: 'left' },
                 { label: 'Tổng số tiền', name: 'Zje', width: 50, align: 'left' },
                 //{
-                //    label: 'Số tiền xuất kho', name: 'ckje', width: 50, align: 'left',
-                //    formatter: function (val, opts, rowdata) {
-                //        return (rowdata.Lsj * rowdata.Sl).toFixed(2);
-                //    }
+                // label: 'Số tiền xuất kho', name: 'ckje', width: 50, align: 'left',
+                // formatter: function (val, opts, rowdata) {
+                // return (rowdata.Lsj * rowdata.Sl).toFixed(2);
+                // }
                 //},
                 { label: 'Nhân viên xuất kho', name: 'Ckczy', width: 50, align: 'left' }
             ],
@@ -157,7 +157,7 @@
         if ((begindate && enddate) || pdh) {
             return true;
         }
-        $.modalAlert("Số chứng từ và ngày, bắt buộc nhập một trong hai！", 'warning');
+        $.modalAlert("Số chứng từ và ngày, bắt buộc nhập một trong hai!", 'warning');
         return false;
     }
 

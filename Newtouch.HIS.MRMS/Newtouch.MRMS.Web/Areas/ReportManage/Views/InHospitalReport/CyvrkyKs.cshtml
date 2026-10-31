@@ -11,21 +11,21 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Thời gian bắt đầu：</th>
+                <th class="formTitle">Thời gian bắt đầu:</th>
                 <td class="formValue">
                     <input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:140px"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { refReport(); } })"
-                           value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss', onpicked: function () { refReport(); } })"
+                           value="@DateTime.Now.ToString("01/MM/yyyy 00:00:00")" />
                 </td>
-                <th class="formTitle">Thời gian kết thúc：</th>
+                <th class="formTitle">Thời gian kết thúc:</th>
                 <td class="formValue">
                     <input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:140px"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd  HH:mm:ss' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd  HH:mm:ss', onpicked: function () { refReport(); } })"
-                           value="@DateTime.Now.ToString("yyyy-MM-dd  23:59:59")" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy  HH:mm:ss' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy  HH:mm:ss', onpicked: function () { refReport(); } })"
+                           value="@DateTime.Now.ToString("dd/MM/yyyy  23:59:59")" />
                 </td>
-                <th class="formTitle">Khoa xuất viện：</th>
+                <th class="formTitle">Khoa xuất viện:</th>
                 <td class="formValue">
                     <input id="cykb" type="text" class="form-control formClearIgnore" style="width:90px" />
                 </td>

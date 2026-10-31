@@ -39,19 +39,19 @@
 	@*<div class="panel panel-default">
 		<div class="toolbar" style="margin-left:2%">
 			<div class="btn-group">
-				<label>Tên thuốc BHYT：</label>
+				<label>Tên thuốc BHYT: </label>
 			</div>
 			<div class="btn-group">
 				<input id="txt_gjybdm" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Tên thuốc BHYT">
 			</div>
 			<div class="btn-group">
-				<label>Số đăng ký：</label>
+				<label>Số đăng ký: </label>
 			</div>
 			<div class="btn-group">
 				<input id="txt_pzwh" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Số phê duyệt BHYT">
 			</div>
 			<div class="btn-group">
-				<label>Doanh nghiệp sản xuất：</label>
+				<label>Doanh nghiệp sản xuất: </label>
 			</div>
 			<div class="btn-group">
 				<input id="txt_scqy" type="text" style="width:200px; height:20px;" class="form-control form-an" placeholder="Doanh nghiệp sản xuất BHYT">
@@ -244,7 +244,7 @@
 
 		$("#txt_pzwh").val("");
 		$("#txt_scqy").val("");
-		//Mỗi lần nhấp，Xóa chi tiết dòng trước và tổng cộng
+		//Mỗi lần nhấp, Xóa chi tiết dòng trước và tổng cộng
 		$('#gridJSMXList').jqGrid("clearGridData");
 		$.najax({
 			type: "POST",

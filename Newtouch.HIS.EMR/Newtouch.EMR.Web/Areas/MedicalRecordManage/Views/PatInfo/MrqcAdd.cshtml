@@ -62,13 +62,13 @@
             $("#basyTotalScore").val(basyTotalScore);
             switch (!!basyTotalScore) {
                 case (basyTotalScore > 90):
-                    $("#basyLevel").val("甲");
+                    $("#basyLevel").val("Loại A");
                     break;
                 case (basyTotalScore > 80):
-                    $("#basyLevel").val("乙");
+                    $("#basyLevel").val("Loại B");
                     break;
                 case (basyTotalScore < 80):
-                    $("#basyLevel").val("丙");
+                    $("#basyLevel").val("Loại C");
                     break;
             }
 

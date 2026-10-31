@@ -11,7 +11,7 @@
     var IsQyKssKz = (ViewBag.IsQyKssKz as bool?) ?? false;
     var qxjb = ViewBag.qxjb;
 }
-<!--dẫndùngtựđộngtạocủaSignalR tậpđườngdụng cụ(Hub)脚bản.ởvận hànhdòngcủakhichờở浏xemdụng cụcủaSourcedướicó thểxemđến. -->
+<!--Script tự động tạo của SignalR (Hub) cho tập lệnh dùng cụ. Khi chạy dòng chờ trên trình duyệt, có thể xem mã nguồn của công cụ bên dưới. -->
 <script src="~/Content/js/index.js"></script>
 <div id="linkyplr" role="tabpanel" class="tab-pane" style="width:100%;margin-right: 5px; border:solid 1px #ddd; margin-top: 3px;">
     <div style="background-color: #fff;" id="dv_gridmedicine">
@@ -202,7 +202,7 @@
                             }
                         ]
 
-                    }   //Lưu ý：Đơn vị liềuphải định ký tựởLiều lượngphía dưới，vìphía dướiCóTheonàyCơ sởđến tìmĐơn vị liềucủa。（vìselectKhông cóidcủaThuộc tính）
+                    }   //Lưu ý：Đơn vị liềuphải định ký tựởLiều lượngphía dưới，vìphía dướiCóTheonàyCơ sởđến tìmĐơn vị liềucủa。(vìselectKhông cóidcủaThuộc tính)
                 },
                 { label: 'dwlb', name: 'dwlb', editwidth: '', align: 'center', editable: true, hidden: true },  //Không thể bỏ
                 { label: 'redundant_jldw', name: 'redundant_jldw', editwidth: '', align: 'center', editable: true, hidden: true },  //Không thể bỏ
@@ -423,7 +423,7 @@
                { name: 'Px', hidden: true },
             ],
             editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
-            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue(có bo tròn)
             pager: "gridmedicinePager",
             gridComplete: function () {
                 EnableMInlineEditBox();
@@ -522,7 +522,7 @@
                 var jldw = $("#" + rowid + "_redundant_jldw").val();    //Đơn vị liều Thuốcbảng từ điểncủaĐơn vị
                 var dw = $("#" + rowid + "_dwwwwwww").val();     //Đơn vị nhập viện
 
-                //Loại y lệnh 长、临
+                //Loại y lệnh: dài hạn, tạm thời
                 if ($("#" + rowid + "_yzlb").val() == undefined || $("#" + rowid + "_yzlb").val() === "") {
                     var yzlb = $("#chklsyz").is(":checked") ? "临" : "长";
                     $("#" + rowid + "_yzlb").val(yzlb);
@@ -561,7 +561,7 @@
                         $("#" + rowid + "_ypjl").parent().next().children('select').val(dwlb);
                     }
                 }
-                $("#" + rowid + "_kssj").css("text-align", "left");     //Loại y lệnh 长、临
+                $("#" + rowid + "_kssj").css("text-align", "left");     //Loại y lệnh: dài hạn, tạm thời
 
                 //tốc độ truyền
                 if ("@ViewBag.frequencyRelDroppingSpeed".indexOf($("#" + rowid + "_ypyfdm").val())>-1 ||
@@ -1098,7 +1098,7 @@
                 ts = Number(Math.ceil(zxzq));
             }
             var sl = 0;
-            var yzlb = $("#" + rowid + "_yzlb").val();     //Loại y lệnh 长、临
+            var yzlb = $("#" + rowid + "_yzlb").val();     //Loại y lệnh: dài hạn, tạm thời
             if (yzlb === "临") { //Y lệnh tạm thời
                 if (tsStr != undefined && tsStr !== "") ts = Number(Math.ceil(tsStr));
             }

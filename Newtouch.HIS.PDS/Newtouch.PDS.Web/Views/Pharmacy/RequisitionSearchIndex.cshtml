@@ -17,19 +17,19 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">Ngày：</th>
+                    <th class="formTitle">Ngày:</th>
                     <td class="formValue">
-                        <input id="txtStartDate" type="text" class="form-control input-wdatepicker " style="width:149px;" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                        <input id="txtStartDate" type="text" class="form-control input-wdatepicker " style="width:149px;" value="@DateTime.Now.ToString("dd/MM/yyyy 00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                     </td>
-                    <th class="formTitle">Đến：</th>
+                    <th class="formTitle">Đến:</th>
                     <td class="formValue">
-                        <input id="txtEndDate" type="text" class="form-control input-wdatepicker " style="width:149px;" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                        <input id="txtEndDate" type="text" class="form-control input-wdatepicker " style="width:149px;" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                     </td>
-                    <th class="formTitle">Số đơn lĩnh：</th>
+                    <th class="formTitle">Số đơn lĩnh:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtSLDH" />
                     </td>
-                    <th class="formTitle">Trạng thái cấp phát：</th>
+                    <th class="formTitle">Trạng thái cấp phát:</th>
                     <td class="formValue">
                         @Html.DropDownList("ddlFfzt", EnumSLDDeliveryStatus.None.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
@@ -131,7 +131,7 @@
 
     //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        //Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
+        //Mỗi lần nhấp, Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $('#gridDJMXInfo').jqGrid("clearGridData");
         $.najax({
             type: "POST",

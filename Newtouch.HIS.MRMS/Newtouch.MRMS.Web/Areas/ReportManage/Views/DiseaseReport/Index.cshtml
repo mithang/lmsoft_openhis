@@ -11,28 +11,28 @@
 	<div class="panel panel-default">
 		<table class="form">
 			<tr>
-				<th class="formTitle">Ngày xuất viện：</th>
+				<th class="formTitle">Ngày xuất viện:</th>
 				<td class="formValue">
 					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
-						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
-						   value="@DateTime.Now.ToString("yyyy-MM-01")" />
+						   onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+						   onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { refReport(); } })"
+						   value="@DateTime.Now.ToString("01/MM/yyyy")" />
 				</td>
 				<th class="formTitle">~</th>
 				<td class="formValue">
 					<input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
-						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
-						   value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+						   onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+						   onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { refReport(); } })"
+						   value="@DateTime.Now.ToString("dd/MM/yyyy")" />
 				</td>
-				@*<th class="formTitle">Chẩn đoán：</th>
+				@*<th class="formTitle">Chẩn đoán:</th>
 				<td class="formValue formDdlSelectorTd">
 					<select id="zd" name="zd" class="form-control ">
 						<option value="0"> Tất cả chẩn đoán </option>
 						<option value="1"> Chẩn đoán xuất viện </option>
 					</select>
 				</td>*@
-				<th class="formTitle">Khoa xuất viện：</th>
+				<th class="formTitle">Khoa xuất viện:</th>
 				<td class="formValue">
 					<input id="cykb" type="text" class="form-control formClearIgnore"  />
 				</td>

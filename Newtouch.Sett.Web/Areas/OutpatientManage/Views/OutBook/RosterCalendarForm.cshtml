@@ -401,9 +401,9 @@
 
             var zhcodetj = $("#zhcode").val();
             
-            //var id = $("#MXTable").jqGrid('getGridParam', 'selrow');//lấy dòng đã nhấn theo dòng đã nhấncủaid（idlàjsonReader: {id: "id" },）
+            //var id = $("#MXTable").jqGrid('getGridParam', 'selrow');//lấy dòng đã nhấn theo dòng đã nhấncủaid(idlàjsonReader: {id: "id" },)
             //var rowData = $("#MXTable").jqGrid("getRowData", id);//theo ở trênidlấy tất cả dữ liệu của dòng này
-            //var zhcodetj2 = rowData.zhcode; //lấy cột đã chỉ địnhcủagiá trị （auditStatus làcolModelcủaname）
+            //var zhcodetj2 = rowData.zhcode; //lấy cột đã chỉ địnhcủagiá trị (auditStatus làcolModelcủaname)
             //var zlxmmccx = rowData.zlxmmc;
 
             //lấycột nào đódữ liệu
@@ -416,11 +416,11 @@
 
             if (inzhcode = -1 && inzlxmmc == -1) {
                 $.ajax({
-                    url: "/Treatment/Tjchaxun",  //được yêu cầuurlđịa chỉ
-                    dataType: "json",   //định dạng trả về làjson
+                    url: "/Treatment/Tjchaxun", //được yêu cầuurlđịa chỉ
+                    dataType: "json", //định dạng trả về làjson
                     async: true,
-                    data: { zhcodetj: zhcodetj, sfxmmc123: sfxmmc123 },  //giá trị tham số
-                    type: "POST",   //phương thức yêu cầu
+                    data: { zhcodetj: zhcodetj, sfxmmc123: sfxmmc123 }, //giá trị tham số
+                    type: "POST", //phương thức yêu cầu
                     traditional: true,
                     success: function (data) {
                         
@@ -471,9 +471,9 @@
             
             var zhcodetj = $("#zhcode").val();
 
-            //var id = $("#MXTable").jqGrid('getGridParam', 'selrow');//lấy dòng đã nhấn theo dòng đã nhấncủaid（idlàjsonReader: {id: "id" },）
+            //var id = $("#MXTable").jqGrid('getGridParam', 'selrow');//lấy dòng đã nhấn theo dòng đã nhấncủaid(idlàjsonReader: {id: "id" },)
             //var rowData = $("#MXTable").jqGrid("getRowData", id);//theo ở trênidlấy tất cả dữ liệu của dòng này
-            //var zhcodetj2 = rowData.zhcode; //lấy cột đã chỉ địnhcủagiá trị （auditStatus làcolModelcủaname）
+            //var zhcodetj2 = rowData.zhcode; //lấy cột đã chỉ địnhcủagiá trị (auditStatus làcolModelcủaname)
             //var zlxmmccx = rowData.zlxmmc;
 
             //lấycột nào đódữ liệu
@@ -484,11 +484,11 @@
             
             if (inzhcode = -1 && inzlxmmc == -1) {
                 $.ajax({
-                    url: "/Treatment/Tjchaxun",  //được yêu cầuurlđịa chỉ
-                    dataType: "json",   //định dạng trả về làjson
+                    url: "/Treatment/Tjchaxun", //được yêu cầuurlđịa chỉ
+                    dataType: "json", //định dạng trả về làjson
                     async: true,
-                    data: { zhcodetj: zhcodetj, sfxmmc123: sfxmmc123 },  //giá trị tham số
-                    type: "POST",   //phương thức yêu cầu
+                    data: { zhcodetj: zhcodetj, sfxmmc123: sfxmmc123 }, //giá trị tham số
+                    type: "POST", //phương thức yêu cầu
                     traditional: true,
                     success: function (data2) {
                         

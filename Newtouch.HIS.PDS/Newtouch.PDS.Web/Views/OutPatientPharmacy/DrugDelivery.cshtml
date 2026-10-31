@@ -148,7 +148,7 @@
                 }
             });
         } else {
-            $.modalAlert("Vui lòng chọn thông tin đơn thuốc！", 'warning');
+            $.modalAlert("Vui lòng chọn thông tin đơn thuốc!", 'warning');
         }
     }
 
@@ -160,7 +160,7 @@
             cfh.push($("#gridFYCF").jqGrid('getRowData', val)["cfh"]);
         });
         if (cfh.length <= 0) {
-            $.modalAlert("Không có đơn thuốc cần phát thuốc！", 'warning');
+            $.modalAlert("Không có đơn thuốc cần phát thuốc!", 'warning');
             return;
         }
         $.najax({

@@ -145,7 +145,7 @@
             $('.glyphicon-new-window:visible').parent('div.ui-pg-div').removeClass('newZycfDisableBackgroud');
         }
 
-        //kích hoạt ngaySửacủa nótrongmột bản lầnKhám bệnhcủaĐã gửiĐơn thuốc（chưaGửiđếnkhotrongcủachắc chắn sẽởSửadanh sáchtrong）
+        //kích hoạt ngaySửacủa nótrongmột bản lầnKhám bệnhcủaĐã gửiĐơn thuốc(chưaGửiđếnkhotrongcủachắc chắn sẽởSửadanh sáchtrong)
         var triggereditcfh = sessionStorage.getItem("triggereditcfh");
         if(!!triggereditcfh){
             sessionStorage.removeItem("triggereditcfh");
@@ -295,7 +295,7 @@
                 { label: 'Thao tác', name: 'action', width: 110, align: 'center' }
             ],
             editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
-            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue(có bo tròn)
             pager: "#gridzycfPager",
             loadComplete: function () {
             },
@@ -671,7 +671,7 @@
             return;
         }
         $.each($("#gridzycf").getDataIDs(), function () {
-            CalculateTCMEachLineSlANDJe(String(this));   //nàychỗứngCóTính toánmỗidòngcủaSố lượngvàSố tiền（Phương pháptronggóichứaTính số tiền đơn thuốc）
+            CalculateTCMEachLineSlANDJe(String(this));   //nàychỗứngCóTính toánmỗidòngcủaSố lượngvàSố tiền(Phương pháptronggóichứaTính số tiền đơn thuốc)
         });
     });
 
@@ -717,7 +717,7 @@
 
     //Lưu
     function SaveTCMPres(savetodb, justUpdateAlldataArray) {
-        //bắt buộcthông tinkiểm tra  （chínhbảo、phátbệnhThời gian）
+        //bắt buộcthông tinkiểm tra  (chínhbảo、phátbệnhThời gian)
         if (!$('#formTCM').formValid(valOptions)) {
             $.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
             return;

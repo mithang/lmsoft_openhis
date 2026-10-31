@@ -116,7 +116,7 @@
                 { name: 'ysgh', hidden: true }, { name: 'Px', hidden: true },
             ],
             editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
-            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue(có bo tròn)
             pager: "gridwordPager",
             gridComplete: function () {
                 EnableWordInlineEditBox();
@@ -175,7 +175,7 @@
             $("#gridword").jqGrid('editRow', rowid, false, initWordInlineFunc);
             $("#" + rowid + "_kssj").css("text-align", "left");
 
-            //Loại y lệnh 长、临
+            //Loại y lệnh: dài hạn, tạm thời
             if ($("#" + rowid + "_yzlb").val() == undefined || $("#" + rowid + "_yzlb").val() === "") {
                 var yzlb = $("#chkwordyz").is(":checked") ? "临" : "长";
                 $("#" + rowid + "_yzlb").val(yzlb);

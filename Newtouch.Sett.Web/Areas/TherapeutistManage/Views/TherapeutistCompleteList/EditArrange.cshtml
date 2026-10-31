@@ -96,11 +96,11 @@
             return false;
         }
         if (!((/^(\+|-)?\d+$/).test($("#ts").val())) || ($("#ts").val() < 1)) {
-            $.modalAlert("số ngày không Có lớn hơn0số nguyên,Vui lòng xác nhận。", 'warning');
+            $.modalAlert("số ngày không Có lớn hơn0số nguyên,Vui lòng xác nhận.", 'warning');
             return;
         }
         if (($("#ts").val() > 31)) {
-            $.modalAlert("Không thể lớn hơn31Ngày,Vui lòng xác nhận。", 'warning');
+            $.modalAlert("Không thể lớn hơn31Ngày,Vui lòng xác nhận.", 'warning');
             return;
         }
         return true;

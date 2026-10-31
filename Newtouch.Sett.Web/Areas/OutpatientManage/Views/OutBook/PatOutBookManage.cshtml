@@ -34,9 +34,9 @@
                         </td>
                         <th class="formTitle">Ngày hẹn:</th>
                         <td class="formValue" colspan="2">
-                            <input id="txtyykssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <input id="txtyykssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:42%; float:left;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                             <span style="margin-left:2%;float:left;">—</span>
-                            <input id="txtyyjssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :41%;float:left;margin-left:2%;" value="@DateTime.Now.AddDays(3).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <input id="txtyyjssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :41%;float:left;margin-left:2%;" value="@DateTime.Now.AddDays(3).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         </td>
 
                         <td class="formValue"></td>
@@ -125,7 +125,7 @@
                     <tr>
                         <th class="formTitle">Thời gian :</th>
                         <td class="formValue">
-                            <input type="text" id="czrq" class="form-control input-wdatepicker formClearIgnore" style="height:20px;width:100px" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' });xzsj()" />
+                            <input type="text" id="czrq" class="form-control input-wdatepicker formClearIgnore" style="height:20px;width:100px" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' });xzsj()" />
                         </td>
                         <th class="formTitle">Loại khám ngoại trú:</th>
                         <td class="formValue">
@@ -450,7 +450,7 @@
                 $("#nlshow").html(getAgeFromBirthTime({ begin: patModel.csny.replace('T', ' ') }).text);
                 $("#kh").html(patModel.kh);
                 $("#patid").val(patModel.patid);
-                $("#CardTypeName").html('（' + patModel.CardTypeName + '）');
+                $("#CardTypeName").html('(' + patModel.CardTypeName + ')');
                 if (patModel.fzbz === 0) {
                     $("#txtcfz").html("Khám lần đầu");
                 }

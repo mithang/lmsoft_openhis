@@ -86,7 +86,7 @@
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
         }
         if (dateType == "3") {//ngày
-            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM-dd' })");
+            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'dd/MM/yyyy' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
         }
     }
@@ -146,15 +146,15 @@
         $gridJsList.dataGrid({
             height: 300,
             autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
             url: "/DeanInquiryManage/OutpatientWorkload/GetMzksgzl",
             postData: getSearchData(),
             colModel: [
-                { label: 'Ngoại trú Khoa', name: 'mzks',  align: 'left' },
-                { label: 'Ngoại trú lượt người chẩn trị', name: 'mzzlrc',  align: 'left' },
-                { label: 'đơn thuốc Số lượng', name: 'cfsl',  align: 'left' },
-                { label: 'Số đơn thuốc đã kê', name: 'kycfs',  align: 'left' },
-                { label: 'Số đơn thuốc đã phát', name: 'fycfs',  align: 'left' },
+                { label: 'Ngoại trú Khoa', name: 'mzks', align: 'left' },
+                { label: 'Ngoại trú lượt người chẩn trị', name: 'mzzlrc', align: 'left' },
+                { label: 'đơn thuốc Số lượng', name: 'cfsl', align: 'left' },
+                { label: 'Số đơn thuốc đã kê', name: 'kycfs', align: 'left' },
+                { label: 'Số đơn thuốc đã phát', name: 'fycfs', align: 'left' },
                 { label: 'Số đơn thuốc phục hồi chức năng', name: 'kfcfs', align: 'left' },
                 { label: 'DepartmentCode', name: 'DepartmentCode', align: 'left', hidden: true }
             ],
@@ -188,7 +188,7 @@
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 150,
             autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
             url: "/DeanInquiryManage/OutpatientWorkload/GetYsgzl",
             postData:getSearchData(ks),
             colModel: [

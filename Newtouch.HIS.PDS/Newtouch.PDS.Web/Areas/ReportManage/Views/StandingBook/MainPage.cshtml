@@ -26,7 +26,7 @@
         <div>
             <table class="form">
                 <tr>
-                    <td class="formTitle">Tên nhà thuốc：</td>
+                    <td class="formTitle">Tên nhà thuốc:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="yfbmCode" name="yfbmCode">
                             @foreach (LoginUserCurrentYfbmModel t in lt)
@@ -35,15 +35,15 @@
                             }
                         </select>
                     </td>
-                    <td class="formTitle">Ngày bắt đầu：</td>
+                    <td class="formTitle">Ngày bắt đầu:</td>
                     <td class="formValue">
-                        <input type="text" id="startTime" style="width: 140px;" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd 00:00:00' })" />
+                        <input type="text" id="startTime" style="width: 140px;" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy 00:00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy 00:00:00' })" />
                     </td>
-                    <td class="formTitle">Ngày kết thúc： </td>
+                    <td class="formTitle">Ngày kết thúc:</td>
                     <td class="formValue">
-                        <input type="text" id="endTime" style="width: 140px;" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" />
+                        <input type="text" id="endTime" style="width: 140px;" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy HH:mm")" onfocus="WdatePicker({dateFmt:'dd/MM/yyyy HH:mm'})" />
                     </td>
-                    <td class="formTitle">Thuốc：</td>
+                    <td class="formTitle">Thuốc:</td>
                     <td class="formValue">
                         <input type="text" id="ypdm" class="form-control" placeholder="Vui lòng nhập mã thuốc Pinyin Tên" />
                     </td>

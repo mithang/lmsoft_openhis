@@ -54,11 +54,11 @@
         <div class="panel-heading">Thông tin lĩnh</div>
         <table class="form">
             <tr>
-                <th class="formTitle">Đơn lĩnh：</th>
+                <th class="formTitle">Đơn lĩnh:</th>
                 <td class="formValue">
                     <input type="text" id="sldh" name="sldh" class="form-control newtouch_Readonly" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Khoa phát thuốc：</th>
+                <th class="formTitle"><span class="required">*</span>Khoa phát thuốc:</th>
                 <td class="formValue">
                     <input type="text" id="fybmmc" name="fybmmc" class="form-control" placeholder="Vui lòng chọn khoa phát thuốc" autocomplete="off" />
                     <input type="hidden" id="fybm" />
@@ -120,9 +120,9 @@
         $gridList.newtouchLocalDataGrid({
             data: [],
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
-            rownumbers: true,  //Có hiển thị số thứ tự không
+            rownumbers: true, //Có hiển thị số thứ tự không
             multiselect: true,
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
                 { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
@@ -145,14 +145,14 @@
                 { label: 'ypdm', name: 'ypdm', hidden: true, editable: true },
                 { label: 'pfj', name: 'pfj', hidden: true, editable: true },
                 { label: 'lsj', name: 'lsj', hidden: true, editable: true },
-                { label: 'jj', name: 'jj', hidden: true, editable: true },//Giá nhập  vàslCùng đơn vị
+                { label: 'jj', name: 'jj', hidden: true, editable: true },//Giá nhập vàslCùng đơn vị
                 { label: 'zxdwlsj', name: 'zxdwlsj', hidden: true, editable: true },
                 { label: 'ykpfj', name: 'ykpfj', hidden: true, editable: true },
                 { label: 'yklsj', name: 'yklsj', hidden: true, editable: true },
                 { label: 'zxdwjj', name: 'zxdwjj', hidden: true, editable: true }
             ],
-            editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            editinputwidthborder: false, //Có cần viền không Mặc định làtrue
+            editinputborderradius: false, //Có cần bo góc viền không Mặc địnhtrue(Có bo góc)
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -260,7 +260,7 @@
     function CheckKc(rowid) {
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if (!reg.test($("#" + rowid + "_sl").val())) {
-            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             $("#" + rowid + "_sl").val("");
             return false;
         }
@@ -399,7 +399,7 @@
                     $("#sldh").val(data);
                 }
                 else {
-                    $.modalAlert("Tạo số đơn lĩnh thuốc thất bại，Vui lòng liên hệ quản trị viên", 'error');
+                    $.modalAlert("Tạo số đơn lĩnh thuốc thất bại, Vui lòng liên hệ quản trị viên", 'error');
                 }
             }
         });
@@ -426,7 +426,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu cần sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
         }
         var par = new Object();
@@ -470,7 +470,7 @@
         }
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             return false;
         }
         return true;

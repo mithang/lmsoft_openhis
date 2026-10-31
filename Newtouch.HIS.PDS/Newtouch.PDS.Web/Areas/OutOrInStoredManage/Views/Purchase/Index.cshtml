@@ -55,12 +55,12 @@
         <div class="panel panel-default">
             <table class="form">
                 <tr>
-                    
-                    <th class="formTitle">Thời gian đơn hàng：</th>
+
+                    <th class="formTitle">Thời gian đơn hàng:</th>
                     <td class="formValue" colspan="3">
-                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-6).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-6).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         <span style="margin-left:1%;float:left">—</span>
-                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     </td>
                     <td class="formValue title">
                         <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
@@ -140,14 +140,14 @@
         $gridList.dataGrid({
             url: "/OutOrInStoredManage/Purchase/GetPurchaseGridJson",
             height: $(window).height() - 200,
-            postData: {  kssj: $("#kssj").val(), jssj: $("#jssj").val() ,ddzt:0},
+            postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val() ,ddzt:0},
             colModel: [
-                
+
                 { label: 'cgId', name: 'cgId', hidden: true },
                 { label: 'Thời gian đơn hàng', name: 'ddsj', width: 120, align: 'left' },
                 {
                     label: 'Điểm phân phối', name: 'psdbm', width: 120, align: 'left', formatter: function (cellvalue) {
-                        return "上海明德五官科医院";
+                        return "Bệnh viện Mắt Tai Mũi Họng Minh Đức Thượng Hải";
                     }
                 },
                 {
@@ -176,10 +176,10 @@
                 },
                 { label: 'Số bản ghi chi tiết', name: 'jls', width: 120, align: 'left' },
                 //{
-                //    label: "Thao tác", name: "", align: "center", width: 150,
-                //    formatter: function (cellvalue, options, rowobject) {
-                //        return '<input type="button" id="btn_rpt" onclick="rptdjmx(\'' + rowobject.Id + '\')" class="btn btn-info" style="width:100px;display:inline-block;"  value="Phiếu inchi tiết chứng từ"/>'
-                //    }
+                // label: "Thao tác", name: "", align: "center", width: 150,
+                // formatter: function (cellvalue, options, rowobject) {
+                // return '<input type="button" id="btn_rpt" onclick="rptdjmx(\'' + rowobject.Id + '\')" class="btn btn-info" style="width:100px;display:inline-block;" value="Phiếu inchi tiết chứng từ"/>'
+                // }
                 //},
                 { label: 'yfbm', name: 'yfbm', hidden: true },
                 { label: 'bqbm', name: 'bqbm', hidden: true },
@@ -198,7 +198,7 @@
         $("#btn_search").click(function () {
             $('#gridDJMXInfo').jqGrid("clearGridData");
             $gridList.jqGrid('setGridParam', {
-                postData: {  kssj: $("#kssj").val(), jssj: $("#jssj").val() },
+                postData: { kssj: $("#kssj").val(), jssj: $("#jssj").val() },
             }).trigger('reloadGrid');
         });
     }
@@ -214,7 +214,7 @@
 
     //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp, Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $.najax({
             type: "Get",
             url: "/OutOrInStoredManage/Purchase/QueryPurchaseDetailbyId",
@@ -289,7 +289,7 @@
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
         if (rowData.ddzt != "已保存") {
-            $.modalAlert("Chứng từ đã chọn không phải trạng thái đã lưu，Không thể sửa", 'warning');
+            $.modalAlert("Chứng từ đã chọn không phải trạng thái đã lưu, Không thể sửa", 'warning');
             return;
         }
         $.modalOpen({
@@ -322,22 +322,22 @@
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
         //if (rowData.thzt != "Lưu") {
-        //    $.modalAlert("Chứng từ đã chọn không ở trạng thái đã lưu，Không thể gửi", 'warning');
-        //    return;
+        // $.modalAlert("Chứng từ đã chọn không ở trạng thái đã lưu, Không thể gửi", 'warning');
+        // return;
         //}
         //var postData = rowData;
         //var postData = {
-        //    Id: rowData.Id,
-        //    OrganizeId: orgId,
-        //    djh: rowData.djh,
-        //    thzt: "2",
-        //    yfbm: rowData.yfbm,
-        //    ksbm: rowData.ksbm,
-        //    bqbm: rowData.bqbm,
-        //    thyy: rowData.thyy,
-        //    zt: "1",
-        //    CreatorCode: rowData.CreatorCode,
-        //    CreateTime: rowData.CreateTime
+        // Id: rowData.Id,
+        // OrganizeId: orgId,
+        // djh: rowData.djh,
+        // thzt: "2",
+        // yfbm: rowData.yfbm,
+        // ksbm: rowData.ksbm,
+        // bqbm: rowData.bqbm,
+        // thyy: rowData.thyy,
+        // zt: "1",
+        // CreatorCode: rowData.CreatorCode,
+        // CreateTime: rowData.CreateTime
 
         //}
         $.najax({
@@ -347,12 +347,12 @@
             dataType: "json",
             success: function (res) {
                 if (res.state == "success") {
-                    $.modalMsg("Gửi chứng từ thành công！", 'success');
+                    $.modalMsg("Gửi chứng từ thành công!", 'success');
                     //$('#gridDJMXInfo').jqGrid("clearGridData");
 
                     $('#btn_search').trigger('click');
                 } else {
-                    $.modalMsg("Gửi chứng từ thất bại：" + res.message, 'warning');
+                    $.modalMsg("Gửi chứng từ thất bại: " + res.message, 'warning');
                 }
             }
         });
@@ -371,7 +371,7 @@
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
         if (rowData.ddzt != "已传报") {
-            $.modalAlert("Chứng từ đã chọn không phải trạng thái đã báo cáo，không thể nghiệm thu", 'warning');
+            $.modalAlert("Chứng từ đã chọn không phải trạng thái đã báo cáo, không thể nghiệm thu", 'warning');
             return;
         }
         $.najax({
@@ -382,9 +382,9 @@
             success: function (res) {
                 if (res.state == "success") {
                     $('#btn_search').trigger('click');
-                    $.modalAlert("Chứng từ nghiệm thu thành công！", 'success');
+                    $.modalAlert("Chứng từ nghiệm thu thành công!", 'success');
                 } else {
-                    $.modalAlert("Chứng từ nghiệm thu thất bại：" + res.message, 'warning');
+                    $.modalAlert("Chứng từ nghiệm thu thất bại: " + res.message, 'warning');
                 }
             }
         });
@@ -430,9 +430,9 @@
             success: function (res) {
                 if (res.state == "success") {
                     $('#btn_search').trigger('click');
-                    $.modalAlert("Chứng từ trả hàng thành công！", 'success');
+                    $.modalAlert("Chứng từ trả hàng thành công!", 'success');
                 } else {
-                    $.modalAlert("Chứng từ trả hàng thất bại：" + res.message, 'warning');
+                    $.modalAlert("Chứng từ trả hàng thất bại: " + res.message, 'warning');
                 }
             }
         });
@@ -457,12 +457,12 @@
             dataType: "json",
             success: function (res) {
                 if (res.state == "success") {
-                    $.modalMsg("Gửi chứng từ thành công！", 'success');
+                    $.modalMsg("Gửi chứng từ thành công!", 'success');
                     //$('#gridDJMXInfo').jqGrid("clearGridData");
 
                     $('#btn_search').trigger('click');
                 } else {
-                    $.modalMsg("Gửi chứng từ thất bại：" + res.message, 'warning');
+                    $.modalMsg("Gửi chứng từ thất bại: " + res.message, 'warning');
                 }
             }
         });
@@ -486,12 +486,12 @@
             dataType: "json",
             success: function (res) {
                 if (res.state == "success") {
-                    $.modalMsg("Gửi chứng từ thành công！", 'success');
+                    $.modalMsg("Gửi chứng từ thành công!", 'success');
                     //$('#gridDJMXInfo').jqGrid("clearGridData");
 
                     $('#btn_search').trigger('click');
                 } else {
-                    $.modalMsg("Gửi chứng từ thất bại：" + res.message, 'warning');
+                    $.modalMsg("Gửi chứng từ thất bại: " + res.message, 'warning');
                 }
             }
         });

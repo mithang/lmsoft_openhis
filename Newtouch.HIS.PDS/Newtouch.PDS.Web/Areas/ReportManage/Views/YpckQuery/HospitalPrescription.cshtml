@@ -10,15 +10,15 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Ngày bắt đầu：</th>
+                <th class="formTitle">Ngày bắt đầu:</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width: 140px;"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" value="@(DateTime.Now.ToString("yyyy-MM-01 00:00:00"))" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss'})" value="@(DateTime.Now.ToString("yyyy-MM-01 00:00:00"))" />
                 </td>
-                <th class="formTitle" style="padding-right:5px;">Ngày kết thúc：</th>
+                <th class="formTitle" style="padding-right:5px;">Ngày kết thúc:</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker form-an" style="width:140px"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@(DateTime.Now.ToString("yyyy-MM-dd 23:59:59"))" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" value="@(DateTime.Now.ToString("dd/MM/yyyy 23:59:59"))" />
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
@@ -50,9 +50,9 @@
             return;
         }
 
-  
+
         var url = getUrl();
-      
+
         setTimeout("$.loading(true, 'Đang yêu cầu trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
     }
@@ -76,7 +76,7 @@
          var yfcode = "@Newtouch.Infrastructure.Constants.CurrentYfbm.yfbmCode";
         var orgId = "@ViewBag.OrgId"
         var reportServerHOST = '@reportUrl' + "?tempCode=1002&systemCode=PDS" + "&kssj=" + $('#kssj').val() + "&jssj=" + $('#jssj').val() + "&orgId=" + orgId + "&czydm=wadmin&yfcode=" + yfcode;
-     
+
         console.log(reportServerHOST)
         return reportServerHOST;
     }

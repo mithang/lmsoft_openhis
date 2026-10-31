@@ -30,13 +30,13 @@
                 <td class="formValue"></td>
             </tr>
             <tr>
-                <td class="formTitle">Cấp phân loại：</td>
+                <td class="formTitle">Cấp phân loại:</td>
                 <td class="formValue">
                     <label id="typelevel" name="typelevel">Phân loại cấp 1</label>
                 </td>
             </tr>
             <tr>
-                <td class="formTitle"><span class="required">*</span>Tên phân loại：</td>
+                <td class="formTitle"><span class="required">*</span>Tên phân loại:</td>
                 <td class="formValue">
                     <input type="text" width="120" id="typeName" name="typeName" />
                     <input type="hidden" id="Id" />
@@ -44,7 +44,7 @@
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">Cấp quyền：</td>
+                <td class="formTitle">Cấp quyền:</td>
                 <td class="formValue">
                     <select id="qxjb" name="qxjb" class="form-control" style="width:126px;">
                         <option value="0">Thuốc dùng không hạn chế</option>
@@ -122,11 +122,11 @@
             return;
         }
         if (!data.typelevel || $.trim(data.typelevel) == "") {
-            $.modalAlert("Lấy cấp phân loại thất bại，Vui lòng quay lại giao diện tra cứu và thao tác lại！", "warning");
+            $.modalAlert("Lấy cấp phân loại thất bại, Vui lòng quay lại giao diện tra cứu và thao tác lại!", "warning");
             return;
         }
         if (!data.qxjb || $.trim(data.qxjb) == "") {
-            $.modalAlert("Lấy cấp quyền thất bại！", "warning");
+            $.modalAlert("Lấy cấp quyền thất bại!", "warning");
             return;
         }
 

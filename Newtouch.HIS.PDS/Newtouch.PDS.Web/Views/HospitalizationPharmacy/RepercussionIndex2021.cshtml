@@ -47,15 +47,15 @@
                 <input type="hidden" id="Fyzt" value="2" />
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Đơn đăng ký trả thuốc：</th>
+                        <th class="formTitle"><span class="required">*</span>Đơn đăng ký trả thuốc:</th>
                         <td class="formValue">
                             <select id="selzytyapplyno" class="form-control"></select>
                         </td>
-                        <th class="formTitle" style="width: 80px;">Tên thuốc：</th>
+                        <th class="formTitle" style="width: 80px;">Tên thuốc:</th>
                         <td class="formValue">
                             <input id="ypmc" type="text" class="form-control" placeholder="Tên thuốc" />
                         </td>
-                        <th class="formTitle" style="width: 80px;display:none">Trạng thái phát thuốc：</th>
+                        <th class="formTitle" style="width: 80px;display:none">Trạng thái phát thuốc:</th>
                         <td class="formValue formDdlSelectorTd" style="width: 90px;display:none">
                             <select id="sel_fybz" class="form-control">
                                 <option value="2">Chưa trả thuốc</option>
@@ -64,13 +64,13 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" style="width: 75px; padding-right: 0px;"><span class="required">*</span>Thời gian bắt đầu：</th>
+                        <th class="formTitle" style="width: 75px; padding-right: 0px;"><span class="required">*</span>Thời gian bắt đầu:</th>
                         <td class="formValue">
-                            <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({onpicked:function(){zyTyApplyNoList(ThisbrCode);;},dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                            <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy 00:00:00")" onfocus="WdatePicker({onpicked:function(){zyTyApplyNoList(ThisbrCode);;},dateFmt:'dd/MM/yyyy HH:mm:ss'})" />
                         </td>
-                        <th class="formTitle" style="width: 40px;padding-right: 0;"><span class="required">*</span>đến：</th>
+                        <th class="formTitle" style="width: 40px;padding-right: 0;"><span class="required">*</span>đến:</th>
                         <td class="formValue">
-                            <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddHours(2).ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({onpicked:function(){zyTyApplyNoList(ThisbrCode);;},dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                            <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddHours(2).ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({onpicked:function(){zyTyApplyNoList(ThisbrCode);;},dateFmt:'dd/MM/yyyy HH:mm:ss'})" />
                         </td>
                         <td class="formTitle" style="width: 45px;">
                             <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" />
@@ -119,7 +119,7 @@
         //Truy vấn
         $("#btn_search").click(function () {
             if ($("#selzytyapplyno").val() == '' || $("#selzytyapplyno").val() == null) {
-                $.modalAlert("Vui lòng chọn số đơn đăng ký trả thuốc trước！", "warning");
+                $.modalAlert("Vui lòng chọn số đơn đăng ký trả thuốc trước!", "warning");
                 return;
             }
 
@@ -201,7 +201,7 @@
                 }
 
                 if (entries >= maxEntries) {
-                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này！", "warning", 1500);
+                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này!", "warning", 1500);
                     inputField.val(inputField.val().split(',').filter(entry => entry.trim() != "").slice(0, maxEntries).join(',') + ",");
                 }
             }
@@ -230,7 +230,7 @@
                 }
 
                 if (entries >= maxEntries) {
-                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này！", "warning", 1500);
+                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này!", "warning", 1500);
                     inputField.val(inputField.val().split(',').filter(entry => entry.trim() != "").slice(0, maxEntries).join(',') + ",");
                 }
             }
@@ -434,7 +434,7 @@
                 },
                 { label: 'Quy cách', name: 'ypgg', width: 100, align: 'center' },
                 { label: 'Liều lượng', name: 'ylStr', width: 60, align: 'right' },
-                { label: 'Số tiền', name: 'je', width: 60, align: 'center'  },
+                { label: 'Số tiền', name: 'je', width: 60, align: 'center' },
                 { label: 'Số nhóm', name: 'zh', width: 50, align: 'center' },
                 { label: 'Tính chất y lệnh', name: 'yzxzmc', width: 80, align: 'center' },
                 { label: 'Nhà sản xuất', name: 'ycmc', width: 100, align: 'left' },
@@ -446,7 +446,7 @@
                 { label: 'Đơn giá', name: 'djStr', hidden: true },
                 //{ label: 'Số tiền', name: 'je', hidden: true },
                 { label: 'Số lượng có thể trả', name: 'sl', hidden: true, classes: "quantity" },
-                { label: 'Số lượng đăng ký trả thuốc（Đơn vị nhỏ nhất）', name: 'tysl', hidden: true },
+                { label: 'Số lượng đăng ký trả thuốc(Đơn vị nhỏ nhất)', name: 'tysl', hidden: true },
                 { label: "Mã thuốc", name: 'ypCode', hidden: true },
                 { label: "yzId", name: 'yzId', hidden: true },
                 { label: "zxId", name: 'zxId', hidden: true },
@@ -464,7 +464,7 @@
 
     //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox(jgr) {
-        var rowIds = jgr.jqGrid('getDataIDs'); //GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
+        var rowIds = jgr.jqGrid('getDataIDs'); //GridSau khi tải xong, bật chỉnh sửa trong dòng 1.Lấy tất cả các dòng trướcId 2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
             jgr.jqGrid('editRow',
                 rowIds[i],
@@ -490,11 +490,11 @@
         }
 
         if ($("#selzytyapplyno").val() == '' || $("#selzytyapplyno").val() == null) {
-            $.modalAlert("Vui lòng chọn số đơn đăng ký trả thuốc trước！", "warning");
+            $.modalAlert("Vui lòng chọn số đơn đăng ký trả thuốc trước!", "warning");
             return;
         }
 
-        var ids = jqr.jqGrid('getDataIDs'); //Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
+        var ids = jqr.jqGrid('getDataIDs'); //Lấy tất cả các dòngId, Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
         if (ids == null || ids.length === 0) {
             $.modalMsg('Vui lòng tra cứu chi tiết trả thuốc', 'warning', 2000);
             return false;
@@ -511,12 +511,12 @@
                 rowData.tysl === "" ||
                 isNaN(rowData.tysl) ||
                 rowData.tysl < 0) {
-                $.modalAlert("【" + rowData.ypmc + "】Số lượng trả thuốc phải là số tự nhiên，Vui lòng xác nhận。", "warning");
+                $.modalAlert("【" + rowData.ypmc + "】Số lượng trả thuốc phải là số tự nhiên, Vui lòng xác nhận.", "warning");
                 EnableInlineEditBox(jqr); //Bật khung sửa trong dòng
                 return false;
             }
             if (parseInt(rowData.tysl) > parseInt(rowData.sl)) {
-                $.modalAlert("【" + rowData.ypmc + "】Số lượng trả thuốc không được vượt quá" + rowData.slStr + "。", "warning");
+                $.modalAlert("【" + rowData.ypmc + "】Số lượng trả thuốc không được vượt quá" + rowData.slStr + ".", "warning");
                 EnableInlineEditBox(jqr); //Bật khung sửa trong dòng
                 return false;
             }
@@ -527,7 +527,7 @@
                 //Có chia lẻ không
                 var sfclValue = Number($("#sel_sfcl_" + rowid).val());
 
-                // Kiểm tra số lượng mã truy xuất。 Có chia lẻ thì chọn Có，Chỉ cần quét một cái，Nếu không thì cần quét mã tương ứng với số lượng nhập kho
+                // Kiểm tra số lượng mã truy xuất. Có chia lẻ thì chọn Có, Chỉ cần quét một cái, Nếu không thì cần quét mã tương ứng với số lượng nhập kho
                 const zsmLength = $("#sel_zsm_" + rowid).val().split(',').filter(entry => entry.trim() !== '').length
                 var maxZsmLength = 1
                 if (sfclValue === 1) {
@@ -536,7 +536,7 @@
                     maxZsmLength = parseInt(rowData.sl)
                 }
                 if (zsmLength != 0 && zsmLength != maxZsmLength) {
-                    $.modalMsg("Mục: " + rowData.ypmc + " số lượng không khớp với số lượng mã truy xuất！", "warning", 1500);
+                    $.modalMsg("Mục: " + rowData.ypmc + " số lượng không khớp với số lượng mã truy xuất!", "warning", 1500);
                     return false;
                 }
 
@@ -564,7 +564,7 @@
             }
         }
 
-        $.modalConfirm("Xác nhận thực hiện trả thuốc?？", function (flag) {
+        $.modalConfirm("Xác nhận thực hiện trả thuốc??", function (flag) {
             if (!flag) return false;
             $.najax({
                 type: "POST",
@@ -618,7 +618,7 @@
         var systemCode = "PDS";//Mã hệ thống của báo cáo
         var uri = '@reportUrl' + "?tempCode=64" + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=" + '@ViewBag.OrganizeId' + "&systemCode=" + systemCode + "&yfbmCode=" + '@ViewBag.yfbmCode' + "&yzIds=" + "&zxIds=" + "&czIds=" + "&zyh=" + tyzyh[0].zyh + "&operateType=2" + "&zyfyapplyno=" + rdNo;
         window.open(uri);
-        
+
     }
 
     function printRpSummary(rdNo) {

@@ -35,15 +35,15 @@
         <div class="panel-heading">Điều kiện tra cứu</div>
         <table class="form">
             <tr>
-                <th class="formTitle" style="width: 50px;">Ngày：</th>
+                <th class="formTitle" style="width: 50px;">Ngày:</th>
                 <td class="formValue" colspan="2">
                     <select id="ddlRQ" class="form-control"></select>
                 </td>
-                <th class="formTitle" style="width: 65px;">Từ khóa：</th>
+                <th class="formTitle" style="width: 65px;">Từ khóa:</th>
                 <td class="formValue" style="width: 115px;">
                     <input id="txtSRM" type="text" class="form-control" placeholder="Pinyin Tên thuốc" />
                 </td>
-                <th class="formTitle">Trạng thái thuốc：</th>
+                <th class="formTitle">Trạng thái thuốc:</th>
                 <td class="formValue" style="width: 55px;">
                     <select id="ddlYPZT" name="ddlYPZT" class="form-control">
                         <option value="-1">Tất cả</option>
@@ -51,13 +51,13 @@
                         <option value="0">Ngừng dùng</option>
                     </select>
                 </td>
-                <th class="formTitle" style="display:none">Loại thuốc：</th>
+                <th class="formTitle" style="display:none">Loại thuốc:</th>
                 <td class="formValue" style="display:none">
                     <select id="ddlYPLB" class="form-control">
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                <th class="formTitle">Hiển thị tồn kho：</th>
+                <th class="formTitle">Hiển thị tồn kho:</th>
                 <td class="formValue">
                     <select id="ddlKCXS" name="ddlKCXS" class="form-control">
                         <option value="-1">Tất cả</option>
@@ -120,7 +120,7 @@
                 const entries = removeDuplicates(inputField.val()).split(',').filter(entry => entry.trim() !== '').length;
 
                 if (entries >= maxEntries) {
-                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này！", "warning", 1000);
+                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này!", "warning", 1000);
                     inputField.val(removeDuplicates(inputField.val()).split(',').filter(entry => entry.trim() != "").slice(0, maxEntries).join(',') + ",");
                 }
             }
@@ -135,9 +135,9 @@
 
     //Gắn sự kiện phím Enter
     $(document).keyup(function (event) {
-//         if (event.keyCode === 13) {
-//             $("#btn_search").trigger("click");
-//         }
+// if (event.keyCode === 13) {
+// $("#btn_search").trigger("click");
+// }
     });
 
 
@@ -155,7 +155,7 @@
             postData: getSearchPostData(),
             height: $(window).height() - 250,
             url: "",
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
                 { label: 'Mã thuốc', name: 'ypCode', width: 80, align: 'left' },
                 { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
@@ -260,7 +260,7 @@
             url: "/PharmacyDrugStorage/GetPDDateDropdownList",
             dataType: "json",
             success: function (ajaxresp) {
-                //Xóa trước，Điền tiếp
+                //Xóa trước, Điền tiếp
                 $("#ddlRQ").empty();
                 for (var i = 0; i < ajaxresp.data.length; i++) {
                     $("#ddlRQ").append('<option data-pdId=' + ajaxresp.data[i].pdId + '>' + ajaxresp.data[i].pdsj + '</option>');
@@ -316,8 +316,8 @@
 
     // Lưu mã truy xuất
     function savePdsPage() {
-   
-        var rowIds = $gridKCInfoHistory.jqGrid('getDataIDs');//Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
+
+        var rowIds = $gridKCInfoHistory.jqGrid('getDataIDs');//Lấy tất cả các dòngId, Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
 
         var kcInfoJsonSave = $gridKCInfoHistory.jqGrid('getRowData_AllLine');
         var objArrSave = new Array();
@@ -333,9 +333,9 @@
             }
         });
         var resultObjArr = new Array();
-        //so sánh với mảng tải từ trang，đặt dòng dữ liệu đã sửa vàoresultObjArrtrong，gửi cho máy chủ
+        //so sánh với mảng tải từ trang, đặt dòng dữ liệu đã sửa vàoresultObjArrtrong, gửi cho máy chủ
         for (var i = 0; i < objArrSave.length; i++) {
-                // Kiểm tra số lượng mã truy xuất。 Có chia lẻ thì chọn Có，Chỉ cần quét một cái，Nếu không thì cần quét mã tương ứng với số lượng nhập kho
+                // Kiểm tra số lượng mã truy xuất. Có chia lẻ thì chọn Có, Chỉ cần quét một cái, Nếu không thì cần quét mã tương ứng với số lượng nhập kho
                 const zsmLength = objArrSave[i].zsm.split(',').filter(entry => entry.trim() !== '').length
             var maxZsmLength = 1
                 if (objArrSave[i].sfcl === 1) {
@@ -345,7 +345,7 @@
                 }
 
                 if (zsmLength != 0 && zsmLength != maxZsmLength) {
-                    $.modalMsg("Mục: " + objArrSave[i].ypmc + " số lượng không khớp với số lượng mã truy xuất！", "warning", 1500);
+                    $.modalMsg("Mục: " + objArrSave[i].ypmc + " số lượng không khớp với số lượng mã truy xuất!", "warning", 1500);
                     return false;
                 }
 

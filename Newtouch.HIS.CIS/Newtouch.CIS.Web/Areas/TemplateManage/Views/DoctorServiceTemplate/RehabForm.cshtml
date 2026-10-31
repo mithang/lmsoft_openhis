@@ -138,7 +138,7 @@
                 { name: 'yzlx', hidden: true }
             ],
             editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
-            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue(có bo tròn)
             pager: "gridkfxmPager",
             loadComplete: function () {
                 if (localdata && localdata.length == 0) {
@@ -150,7 +150,7 @@
                 $.each(ids, function () {
                     $gridkfxm.jqGrid('editRow', this, true, initKFInlineFunc);  //editRow：MởSửachế độ initKFInlineFunc:Khởi tạolớp nổi
 
-                    //chomỗi lầnĐơn vị liềuđiềnoption  （chỉcó thểnàysaoviếtđơn giảnphiếu，Mặc dùtôicũngBiếtnàydạngviếtkhôngtốt）
+                    //chomỗi lầnĐơn vị liềuđiềnoption  (chỉcó thểnàysaoviếtđơn giảnphiếu，Mặc dùtôicũngBiếtnàydạngviếtkhôngtốt)
                     var jldw = $("#" + this + "_redundant_jldw").val();    //Đơn vị liều
                     var dw = $("#" + this + "_dw").val();     //Đơn vị ngoại trú
                     if (!!dw) {

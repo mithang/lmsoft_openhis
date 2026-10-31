@@ -39,20 +39,20 @@
             <div id="basicInfo" role="tabpanel" class="tab-pane fade in active">
                 <table class="form" style="width: 97%;">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Tên vật tư：</th>
+                        <th class="formTitle"><span class="required">*</span>Tên vật tư:</th>
                         <td class="formValue">
                             <input id="name" name="name" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Phiên âm đầu：</th>
+                        <th class="formTitle"><span class="required">*</span>Phiên âm đầu:</th>
                         <td class="formValue">
                             <input id="py" name="py" type="text" class="form-control" />
                         </td>
                         <td colspan="2" rowspan="5" align="center">
-                            <img id="imageUrl" src="~/Content/img/productDefault.png" style="width:240px; height:175px;" />
+                            <img id="imageUrl" src="~/Content/img/productDefault.png" style="width:240px; height:175px;" alt="Ảnh vật tư" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Loại：</th>
+                        <th class="formTitle"><span class="required">*</span>Loại:</th>
                         <td class="formValue" colspan="3">
                             <select id="typeId" name="typeId" class="form-control">
                                 <option value="">==Vui lòng chọn==</option>
@@ -60,7 +60,7 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Đơn vị nhỏ nhất：</th>
+                        <th class="formTitle"><span class="required">*</span>Đơn vị nhỏ nhất:</th>
                         <td class="formValue">
                             <div style="width:85px;float:left;margin-right:5px;">
                                 <select id="minUnit" name="minUnit" class="form-control">
@@ -69,7 +69,7 @@
                             </div>
                             <a class="btn btn-primary" onclick="ToAddUnit()"><i class="fa fa-plus"></i></a>
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Giá nhập：</th>
+                        <th class="formTitle"><span class="required">*</span>Giá nhập:</th>
                         <td class="formValue">
                             <input id="jj" name="jj" type="text" class="form-control" style="width:70px;float:left" />
                             <span style="margin-left: 2px;line-height: 26px;">đồng /</span>
@@ -77,19 +77,19 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Giá bán lẻ：</th>
+                        <th class="formTitle"><span class="required">*</span>Giá bán lẻ:</th>
                         <td class="formValue">
                             <input id="lsj" name="lsj" type="text" class="form-control" style="width:70px;float:left" />
                             <span style="margin-left: 2px;line-height: 26px;">đồng /</span>
                             <span name="dw"></span>
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Mã vật tư：</th>
+                        <th class="formTitle"><span class="required">*</span>Mã vật tư:</th>
                         <td class="formValue">
                             <input id="productCode" name="productCode" readonly="readonly" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Nhà sản xuất：</th>
+                        <th class="formTitle">Nhà sản xuất:</th>
                         <td class="formValue" colspan="3">
                             <input id="supplierName" name="supplierName" type="text" class="form-control" />
                             <input id="supplierId" name="supplierId" value="" type="hidden" />
@@ -99,44 +99,44 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Ảnh vật tư：</th>
+                        <th class="formTitle">Ảnh vật tư:</th>
                         <td class="formValue" colspan="3">
                             <input id="imgUpload" name="imgUpload" accept="image/*" type="file" style="float:left;" />
                         </td>
-                        <th class="formTitle">Thương hiệu：</th>
+                        <th class="formTitle">Thương hiệu:</th>
                         <td class="formValue">
                             <input id="brand" name="brand" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Số lượng đặt tối thiểu：</th>
+                        <th class="formTitle">Số lượng đặt tối thiểu:</th>
                         <td class="formValue">
                             <input id="zxqds" name="zxqds" type="text" class="form-control" style="width:70px; float: left; margin-right: 10px;" />
                             <span name="dw"></span>
                         </td>
-                        <th class="formTitle">Số giấy đăng ký：</th>
+                        <th class="formTitle">Số giấy đăng ký:</th>
                         <td class="formValue">
                             <input id="zczh" name="zczh" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">Kiểu mẫu, quy cách：</th>
+                        <th class="formTitle">Kiểu mẫu, quy cách:</th>
                         <td class="formValue">
                             <input id="gg" name="gg" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" style="height: 35px;">Có tái sử dụng không：</th>
+                        <th class="formTitle" style="height: 35px;">Có tái sử dụng không:</th>
                         <td class="formValue" style="padding-top: 1px;">
                             <div class="ckbox">
                                 <input id="sffy" name="sffy" type="checkbox"><label for="sffy">Có</label>
                             </div>
                         </td>
-                        <th class="formTitle" style="height: 35px;">Có theo ca mổ không：</th>
+                        <th class="formTitle" style="height: 35px;">Có theo ca mổ không:</th>
                         <td class="formValue" style="padding-top: 1px;">
                             <div class="ckbox">
                                 <input id="sfgt" name="sfgt" type="checkbox"><label for="sfgt">Có</label>
                             </div>
                         </td>
-                        <th class="formTitle" style="height: 35px;">Có tồn kho bằng 0 không：</th>
+                        <th class="formTitle" style="height: 35px;">Có tồn kho bằng 0 không:</th>
                         <td class="formValue" style="padding-top: 1px;">
                             <div class="ckbox">
                                 <input id="sflkc" name="sflkc" type="checkbox"><label for="sflkc">Có</label>
@@ -144,47 +144,47 @@
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Tính chất tự trả：</th>
+                        <th class="formTitle">Tính chất tự trả:</th>
                         <td class="formValue">
                             @*<input id="zfxz" name="zfxz" type="text" class="form-control" />*@
                             @Html.DropDownList("zfxz", Newtouch.Herp.Infrastructure.Enum.EnumZFXZv2.ZF.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })
                         </td>
-                        <th class="formTitle">Tỷ lệ tự trả：</th>
+                        <th class="formTitle">Tỷ lệ tự trả:</th>
                         <td class="formValue">
                             <input id="zfbl" name="zfbl" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">Mã bảo hiểm y tế tỉnh：</th>
+                        <th class="formTitle">Mã bảo hiểm y tế tỉnh:</th>
                         <td class="formValue">
                             <input id="ybdm" name="ybdm" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Mã bảo hiểm y tế quốc gia：</th>
+                        <th class="formTitle">Mã bảo hiểm y tế quốc gia:</th>
                         <td class="formValue" colspan="2">
                             <input id="gjybdm" name="gjybdm" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">Mã chi tiết(Mua hàng)：</th>
+                        <th class="formTitle">Mã chi tiết(Mua hàng):</th>
                         <td class="formValue" colspan="2">
                             <input id="hcgjybdm" name="hcgjybdm" type="text" class="form-control" />
                         </td>
 
                     </tr>
                     <tr>
-                        <th class="formTitle">Loại sổ sách：</th>
+                        <th class="formTitle">Loại sổ sách:</th>
                         <td class="formValue">
                             <input id="zblb" name="zblb" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">Loại hạch toán：</th>
+                        <th class="formTitle">Loại hạch toán:</th>
                         <td class="formValue">
                             <input id="hslb" name="hslb" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">Ngưỡng cảnh báo tồn kho：</th>
+                        <th class="formTitle">Ngưỡng cảnh báo tồn kho:</th>
                         <td class="formValue">
                             <input id="kcyjz" name="kcyjz" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" style="height: 35px;">Tùy chọn：</th>
+                        <th class="formTitle" style="height: 35px;">Tùy chọn:</th>
                         <td class="formValue" style="padding-top: 1px;" colspan="5">
                             <div class="ckbox">
                                 <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
@@ -199,14 +199,14 @@
             <div id="unit" role="tabpanel" class="tab-pane fade in">
                 <table class="form" style="width: 95%;">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Đơn vị：</th>
+                        <th class="formTitle"><span class="required">*</span>Đơn vị:</th>
                         <td class="formValue">
                             <select id="unitId" name="unitId" class="form-control">
                                 <option value="">==Vui lòng chọn==</option>
                             </select>
                             <input type="hidden" id="hdId" value="" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Hệ số chuyển đổi：</th>
+                        <th class="formTitle"><span class="required">*</span>Hệ số chuyển đổi:</th>
                         <td class="formValue">
                             <input id="zhyz" name="zhyz" type="text" class="form-control" />
                         </td>
@@ -225,19 +225,19 @@
             <div id="addUnit" role="tabpanel" class="tab-pane fade in">
                 <table class="form" style="width: 95%;">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Tên đơn vị：</th>
+                        <th class="formTitle"><span class="required">*</span>Tên đơn vị:</th>
                         <td class="formValue">
                             <input id="UnitName" name="UnitName" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Ghi chú：</th>
+                        <th class="formTitle">Ghi chú:</th>
                         <td class="formValue">
                             <input id="remark" name="remark" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle" style="height: 35px;">Tùy chọn：</th>
+                        <th class="formTitle" style="height: 35px;">Tùy chọn:</th>
 						<td class="formValue" style="padding-top: 1px;">
 							<div class="ckbox">
 								<input id="UnitZt" name="UnitZt" type="checkbox" checked="checked"><label for="UnitZt">Hiệu lực</label>
@@ -352,7 +352,7 @@
                 var n1 = file.name.lastIndexOf('.') + 1;
                 var fileExt = file.name.substring(n1, n1 + 3).toLowerCase();
                 if (fileExt !== "jpg" && fileExt !== "bmp" && fileExt !== "png") {
-                    $.modalAlert("Hiện hệ thống chỉ hỗ trợjpg、bmp、pngtải ảnh có hậu tố!", 'warning');
+                    $.modalAlert("Hiện hệ thống chỉ hỗ trợjpg,bmp,pngtải ảnh có hậu tố!", 'warning');
                     $("#imgUpload").val("");
                     return false;
                 }
@@ -376,7 +376,7 @@
     //Gửi
     function AcceptClick(callback) {
 		var form = $("#form1");
-		//console.log("Đã chọn：",document.getElementById("iswzsame").checked);
+		//console.log("Đã chọn:",document.getElementById("iswzsame").checked);
         var postData = {
             zt: document.getElementById("zt").checked,
             sflkc: document.getElementById("sflkc").checked,
@@ -461,7 +461,7 @@
             var n1 = strs.lastIndexOf('.') + 1;
             var fileExt = strs.substring(n1, n1 + 3).toLowerCase();
             if (fileExt !== "jpg" && fileExt !== "bmp" && fileExt !== "png") {
-                $.modalAlert("Hiện hệ thống chỉ hỗ trợjpg、bmp、pngtải ảnh có hậu tố!", 'warning');
+                $.modalAlert("Hiện hệ thống chỉ hỗ trợjpg,bmp,pngtải ảnh có hậu tố!", 'warning');
                 return false;
             }
         }

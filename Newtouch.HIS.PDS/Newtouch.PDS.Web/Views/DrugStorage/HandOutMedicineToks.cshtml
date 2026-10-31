@@ -35,7 +35,7 @@
                 </td>
                 <td class="formTitle"><span class="required">*</span>Ngày phát thuốc</td>
                 <td class="formValue">
-                    <input type="text" id="fyrq" name="fyrq" class="form-control input-wdatepicker" onchange="ValidateForm()" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    <input type="text" id="fyrq" name="fyrq" class="form-control input-wdatepicker" onchange="ValidateForm()" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                 </td>
                 <td class="formTitle"><span class="required">*</span>Cách phát thuốc</td>
                 <td class="formValue">
@@ -53,11 +53,11 @@
                 <td class="formTitle"><span class="required">*</span>Mã thuốc</td>
                 <td class="formValue">
                     <input type="hidden" id="newid" name="newid" class="form-control" />
-                    <input type="text" id="srm" name="srm" class="form-control  required" />
+                    <input type="text" id="srm" name="srm" class="form-control required" />
                 </td>
                 <td class="formTitle"><span class="required">*</span>Lô</td>
                 <td class="formValue">
-                    <input type="text" id="pc" name="pc" class="form-control  required" />
+                    <input type="text" id="pc" name="pc" class="form-control required" />
                 </td>
                 <td class="formTitle"><span class="required">*</span>Số lượng phát thuốc</td>
                 <td class="formValue">
@@ -153,8 +153,8 @@
     var zhyz;
     var pc;
     var globalpc;
-    var newxmList = [];   //Hạng mục mớiList
-    var editingNewid = null;    //Dòng đang sửa
+    var newxmList = []; //Hạng mục mớiList
+    var editingNewid = null; //Dòng đang sửa
 
     $(function () {
         $(window).resize(function () {
@@ -400,7 +400,7 @@
                     $('#btn_bottombutton_f6').attr('disabled', 'disabled');
                     $('#btn_bottombutton_f9').show();
                     $('#btn_bottombutton_f2').attr('disabled', 'disabled');
-                    editingNewid = rowData.newid;    //Dòng đang sửa
+                    editingNewid = rowData.newid; //Dòng đang sửa
                 }
             }
         }
@@ -409,15 +409,15 @@
     //Thêm
     function newtouch_event_f2() {
         if (editingNewid) {
-            return; //Đang ở trạng thái sửa đổi，thì không thể nhấp nút thêm   cầndisableXử lý
+            return; //Đang ở trạng thái sửa đổi, thì không thể nhấp nút thêm cầndisableXử lý
         }
-        if (!(checkEditingRowData() && CheckExistPC())) {    //Dữ liệu đã đầy đủ chưa，Kiểm tra mục bắt buộc
+        if (!(checkEditingRowData() && CheckExistPC())) { //Dữ liệu đã đầy đủ chưa, Kiểm tra mục bắt buộc
             return;
         }
         var data = getEditRowData();
-        data.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
-        editingNewid = null;    //?Vào trạng thái sửa đổi，Sau đó nhấp thêm？
-        newxmList.unshift(data);   //Thêm như mục mới //”Đầu trước nhất của mảng“
+        data.newid = Math.random().toString() + new Date().getMilliseconds(); //newid()
+        editingNewid = null; //?Vào trạng thái sửa đổi, Sau đó nhấp thêm?
+        newxmList.unshift(data); //Thêm như mục mới //”Đầu trước nhất của mảng“
         fillDataToGrid();//lạixmmảng hiển thị tớigrid
         clearMedicineInfo();//Xóa thông tin thuốc
     }
@@ -429,7 +429,7 @@
         var ph = $("#ph").val();
         for (var i = 0; i < newxmList.length; i++) {
             if (newxmList[i]["ypdm"] === ypdm && newxmList[i]["pc"] === pc && newxmList[i]["ph"] === ph) {
-                $.modalAlert("Lô thuốc này đã đăng ký，Không cho phép thêm mới！", 'warning');
+                $.modalAlert("Lô thuốc này đã đăng ký, Không cho phép thêm mới!", 'warning');
                 return false;
             }
         }
@@ -445,7 +445,7 @@
         return newData;
     }
 
-    //ĐiềnJQGridDữ liệu（Thuốc xuất kho） Kiểm tra trước bộ phận nhập kho có quyền dùng thuốc này không
+    //ĐiềnJQGridDữ liệu(Thuốc xuất kho) Kiểm tra trước bộ phận nhập kho có quyền dùng thuốc này không
     function fillDataToGrid() {
         $("#gridList").resetSelection();
         $('#gridList').jqGrid("clearGridData");
@@ -456,7 +456,7 @@
     function newtouch_event_f3() {
         if (editingNewid) {
             var data = getEditRowData();//Gửi sửa đổi
-            if (!(checkEditingRowData())) {    //Dữ liệu đã đầy đủ chưa，Kiểm tra mục bắt buộc
+            if (!(checkEditingRowData())) { //Dữ liệu đã đầy đủ chưa, Kiểm tra mục bắt buộc
                 return;
             }
             //Kiểm tra mục trùng lặp
@@ -472,8 +472,8 @@
                 if (matchedIndex == -1) {
                     return; //Phải là ngoại lệ
                 }
-                newxmList.remove(matchedIndex);   //Loại bỏ mục đó
-                newxmList.unshift(data);   //Thêm như mục mới    //”Đầu trước nhất của mảng“
+                newxmList.remove(matchedIndex); //Loại bỏ mục đó
+                newxmList.unshift(data); //Thêm như mục mới //”Đầu trước nhất của mảng“
             }
             fillDataToGrid(); //lạixmmảng hiển thị tớigrid
             clearMedicineInfo(); //Xóa thông tin thuốc
@@ -495,8 +495,8 @@
             var rowData = $("#gridList").jqGrid('getRowData', rowid);
             if (rowData) {
                 if (rowData.newid === editingNewid) {
-                    $.modalAlert("Dòng này đang ở trạng thái sửa，Không thể xóa", 'warning');
-                    return; //Dòng này đang ở trạng thái sửa，Không thể xóa
+                    $.modalAlert("Dòng này đang ở trạng thái sửa, Không thể xóa", 'warning');
+                    return; //Dòng này đang ở trạng thái sửa, Không thể xóa
                 }
                 var matchedIndex = -1;
                 for (var ii = 0; ii < newxmList.length; ii++) {
@@ -508,7 +508,7 @@
                 if (matchedIndex === -1) {
                     return; //Phải là ngoại lệ
                 }
-                newxmList.remove(matchedIndex);   //Loại bỏ mục đó
+                newxmList.remove(matchedIndex); //Loại bỏ mục đó
 
                 //lạixmmảng hiển thị tớigrid
                 fillDataToGrid();
@@ -521,7 +521,7 @@
     //Phát thuốc
     function newtouch_event_f8() {
         if (newxmList.length === 0) {
-            $.modalAlert("Thông tin thuốc không được để trống！", 'warning');
+            $.modalAlert("Thông tin thuốc không được để trống!", 'warning');
             return;
         }
         var par = new Object();
@@ -576,8 +576,8 @@
             container: "#form2",
             inner: false
         });
-        newxmList = [];   //Hạng mục mớiList
-        editingNewid = null;    //Dòng đang sửa
+        newxmList = []; //Hạng mục mớiList
+        editingNewid = null; //Dòng đang sửa
         bottomButtonsReset();
     }
 
@@ -605,7 +605,7 @@
         editingNewid = null;
     }
 
-    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）tính đầy đủ của
+    //Kiểm tra dữ liệu đang chỉnh sửa(Chờ gửi)tính đầy đủ của
     function checkEditingRowData() {
         var validator = $('#form1').validate();
         validator.settings = {
@@ -637,7 +637,7 @@
         if (bmsl > maxsl) {
             $("#fysl").val("");
             $("#fysl").focus();
-            $.modalAlert("Số lượng tối đa của lô này không được vượt quá " + maxsl + " ！", 'warning');
+            $.modalAlert("Số lượng tối đa của lô này không được vượt quá " + maxsl + " !", 'warning');
             return false;
         }
         else if (bmsl <= 0) {
@@ -660,16 +660,16 @@
 
     ////Vô hiệu hóa phần mềm
     //function readonly(list, type) {
-    //    if (list && list.length > 0) {
-    //        for (var i = 0; i < list.length; i++) {
-    //            if (type === 1) {//Vô hiệu hóa
-    //                $("#" + list[i]["id"]).addClass('newtouch_Readonly').attr("disabled", "disabled").css("background-color", "rgb(238,238,238)");
-    //            } else {//Bật
-    //                $("#" + list[i]["id"]).removeClass("newtouch_Readonly").removeAttr("disabled").css("background-color", "");
-    //            }
+    // if (list && list.length > 0) {
+    // for (var i = 0; i < list.length; i++) {
+    // if (type === 1) {//Vô hiệu hóa
+    // $("#" + list[i]["id"]).addClass('newtouch_Readonly').attr("disabled", "disabled").css("background-color", "rgb(238,238,238)");
+    // } else {//Bật
+    // $("#" + list[i]["id"]).removeClass("newtouch_Readonly").removeAttr("disabled").css("background-color", "");
+    // }
 
-    //        }
-    //    }
+    // }
+    // }
     //}
 
     //Kiểm traform

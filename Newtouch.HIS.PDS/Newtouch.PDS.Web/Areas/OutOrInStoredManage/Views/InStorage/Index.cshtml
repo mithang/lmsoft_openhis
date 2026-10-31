@@ -56,20 +56,20 @@
         <div class="panel-heading">Thông tin nhập kho</div>
         <table class="form">
             <tr>
-                <th class="formTitle">Đơn nhập kho：</th>
+                <th class="formTitle">Đơn nhập kho:</th>
                 <td class="formValue">
                     <input type="text" id="djh" name="djh" class="form-control newtouch_Readonly" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Nhà cung cấp：</th>
+                <th class="formTitle"><span class="required">*</span>Nhà cung cấp:</th>
                 <td class="formValue">
                     <input type="text" id="gysmc" name="gysmc" class="form-control" placeholder="Vui lòng chọn nhà cung cấp" autocomplete="off" />
                     <input type="hidden" id="gysCode" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Cách nhập kho：</th>
+                <th class="formTitle"><span class="required">*</span>Cách nhập kho:</th>
                 <td class="formValue">
                     <select class="form-control" id="fyfs" name="fyfs"></select>
                 </td>
-                <th class="formTitle">Tổng nhập kho(đ)：</th>
+                <th class="formTitle">Tổng nhập kho(đ):</th>
                 <td class="formValue">
                     <input id="txtRKZE" type="text" class="form-control newtouch_Readonly" />
                 </td>
@@ -122,7 +122,7 @@
                     maxEntries = parseInt(row.find('.quantity input').val(), 10);
                 }
 
-                
+
                 const entries = inputField.val().split(',').filter(entry => entry.trim() !== '').length;
 
                 if (inputField.val() && !inputField.val().endsWith(',')) {
@@ -130,7 +130,7 @@
                 }
 
                 if (entries >= maxEntries) {
-                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này！", "warning", 1000);
+                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này!", "warning", 1000);
                     inputField.val(inputField.val().split(',').filter(entry => entry.trim() != "").slice(0, maxEntries).join(',') + ",");
                 }
             }
@@ -179,9 +179,9 @@
         $gridList.newtouchLocalDataGrid({
             data: [],
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
-            rownumbers: true,  //Có hiển thị số thứ tự không
+            rownumbers: true, //Có hiển thị số thứ tự không
             multiselect: true,
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
                 { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
@@ -213,19 +213,19 @@
                 {
                     label: 'Ngày sản xuất', name: 'scrq', width: 100, hidden: true, editable: true, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<input id=\"scrq_" + options.rowId + "\" type=\"text\"  hidden=\"hidden\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"\" onfocus=\"WdatePicker({ dateFmt: 'yyyy-MM-dd' })\" />";
+                        return "<input id=\"scrq_" + options.rowId + "\" type=\"text\" hidden=\"hidden\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"\" onfocus=\"WdatePicker({ dateFmt: 'dd/MM/yyyy' })\" />";
                     }
                 },
                 {
                     label: 'Hạn sử dụng', name: 'yxq', width: 100, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<input id=\"yxq_" + options.rowId + "\" type=\"text\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"@DateTime.Now.AddYears(1).ToString("yyyy-MM-dd")\" onfocus=\"WdatePicker({ dateFmt: 'yyyy-MM-dd' })\" />";
+                        return "<input id=\"yxq_" + options.rowId + "\" type=\"text\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"@DateTime.Now.AddYears(1).ToString("dd/MM/yyyy")\" onfocus=\"WdatePicker({ dateFmt: 'dd/MM/yyyy' })\" />";
                     }
                 },
                 {
                     label: 'Ngày lập hóa đơn', name: 'kprq', width: 100, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<input id=\"kprq_" + options.rowId + "\" type=\"text\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"@DateTime.Now.ToString("yyyy-MM-dd")\" onfocus=\"WdatePicker({ dateFmt: 'yyyy-MM-dd' })\" />";
+                        return "<input id=\"kprq_" + options.rowId + "\" type=\"text\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"@DateTime.Now.ToString("dd/MM/yyyy")\" onfocus=\"WdatePicker({ dateFmt: 'dd/MM/yyyy' })\" />";
                     }
                 },
                 { label: 'Giá bán buôn', name: 'pfj', width: 75, align: 'center', editable: true, editwidth: "100%" },
@@ -240,20 +240,20 @@
                 { label: 'kykc', name: 'kykc', hidden: true, editable: true },
                 { label: 'ypdm', name: 'ypdm',hidden: true, editable: true },
                 { label: 'lsj', name: 'lsj', hidden: true, editable: true },
-                { label: 'jj', name: 'jj', hidden: true, editable: true },//Giá nhập  vàslCùng đơn vị
+                { label: 'jj', name: 'jj', hidden: true, editable: true },//Giá nhập vàslCùng đơn vị
                 { label: 'zxdwlsj', name: 'zxdwlsj', hidden: true, editable: true },
                 { label: 'ykpfj', name: 'ykpfj',hidden: true, editable: true },
                 { label: 'yklsj', name: 'yklsj', hidden: true, editable: true },
                 { label: 'zxdwjj', name: 'zxdwjj', hidden: true, editable: true }
             ],
-            editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            editinputwidthborder: false, //Có cần viền không Mặc định làtrue
+            editinputborderradius: false, //Có cần bo góc viền không Mặc địnhtrue(Có bo góc)
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
                 EnableInlineEditBox(lastRowoid);
             }
-            
+
         });
     }
 
@@ -293,7 +293,7 @@
         var lastRowoid = ids[ids.length - 1];
         var fph=$("#" + ids[ids.length - 2] + "_fph").val();
         if(fph)
-            $("#" + rowid + "_fph").val(fph);        
+            $("#" + rowid + "_fph").val(fph);
         InitSrm(rowid + "_ypmc", rowid);//Lớp nổi thuốc
         InitTabKey("kprq_" + rowid, rowid);//Chỗ nhập ngày lập hóa đơntabChuyển
         JJZE_Leave(rowid + "_jjze", rowid);//Tổng giá nhập thay đổi
@@ -401,13 +401,13 @@
         var bzs = Number($("#" + rowid + "_bzs").val());
         var pfj = parseFloat(ykpfj / bzs * zhyz);
         $("#" + rowid + "_pfjze").val((pfj * sl).toFixed(2));
-        
+
     }
     //Sự kiện kiểm tra tồn kho
     function CheckKc(rowid) {
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if (!reg.test($("#" + rowid + "_sl").val())) {
-            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             $("#" + rowid + "_sl").val("");
             return false;
         }
@@ -422,7 +422,7 @@
         $("#" + rowid + "_lsze").val((zhyz * sl * zxdwlsj).toFixed(2));
     }
 
-    //Tổng giá nhập mất tiêu điểm，Tính đơn giá nhập kho
+    //Tổng giá nhập mất tiêu điểm, Tính đơn giá nhập kho
     function JJZE_Leave(id, rowid) {
         $("#" + id).change(function () {
             if ($("#" + rowid +"_jjze").val() === "") {
@@ -433,7 +433,7 @@
             }
             var reg2 = /^\d+(?:\.\d{0,2})?$/;
             if (!reg2.test($("#" + rowid + "_jjze").val())) {
-                $.modalMsg("Tổng giá nhập vui lòng nhập đúng định dạng tiền！", "warning", 1500);
+                $.modalMsg("Tổng giá nhập vui lòng nhập đúng định dạng tiền!", "warning", 1500);
                 return false;
             }
             var sl = Number($("#" + rowid + "_sl").val());
@@ -456,7 +456,7 @@
         var pfj = parseFloat(ykpfj / bzs * zhyz);
         var jj = parseFloat($("#" + rowid + "_jjze").val());
         var sl = Number($("#" + rowid + "_sl").val());
-        $("#" + rowid + "_kl").val(parseFloat(jj/sl/pfj * 100).toFixed(2));  //Làm tròn 5 bỏ 6 lên
+        $("#" + rowid + "_kl").val(parseFloat(jj/sl/pfj * 100).toFixed(2)); //Làm tròn 5 bỏ 6 lên
     }
 
     //Tính tổng nhập kho
@@ -511,7 +511,7 @@
                 { label: 'zxdwlsj', name: 'zxdwlsj', hidden: true },
                 { label: 'gjybdm', name: 'gjybdm', hidden: true }
             ],
-            itemdbclickhandler: function ($thistr) {                
+            itemdbclickhandler: function ($thistr) {
                 $("#" + rowid + "_slStr").val($thistr.attr('data-slStr'));
                 $("#" + rowid + "_dlmc").val($thistr.attr('data-dlmc'));
                 $("#" + rowid + "_ypdm").val($thistr.attr('data-ypdm'));
@@ -552,10 +552,10 @@
         $("#sel_dw_" + rowid).empty();
         $("#sel_dw_" + rowid).append('<option value="bzdw" data-zhyz="' + $thistr.attr('data-bzs') + '" selected>' + $thistr.attr('data-bzdw') + '</option>');
         //if ($thistr.attr('data-dw') !== $thistr.attr('data-bzdw')) {
-        //    $("#sel_dw_" + rowid).append('<option value="bmdw" data-zhyz="' + $thistr.attr('data-zhyz') + '" selected>' + $thistr.attr('data-dw') + '</option>');
+        // $("#sel_dw_" + rowid).append('<option value="bmdw" data-zhyz="' + $thistr.attr('data-zhyz') + '" selected>' + $thistr.attr('data-dw') + '</option>');
         //}
         //if ($thistr.attr('data-zxdw') !== $thistr.attr('data-bzdw') && $thistr.attr('data-dw') !== $thistr.attr('data-zxdw')) {
-        //    $("#sel_dw_" + rowid).append('<option value="zxdw" data-zhyz="1" selected>' + $thistr.attr('data-zxdw') + '</option>');
+        // $("#sel_dw_" + rowid).append('<option value="zxdw" data-zhyz="1" selected>' + $thistr.attr('data-zxdw') + '</option>');
         //}
     }
 
@@ -625,7 +625,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu cần sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
         }
         var par = new Object();
@@ -661,7 +661,7 @@
 
     //Kiểm tra giá trị số
     function Validately(rowData, rowid) {
-        if ($("#gysCode").val() === "" || $("#gysmc").val() === "") {   //Loại bỏ khoảng trắng hai đầu
+        if ($("#gysCode").val() === "" || $("#gysmc").val() === "") { //Loại bỏ khoảng trắng hai đầu
             $.modalMsg("Vui lòng chọn nhà cung cấp", "error", 1000);
             return false;
         }
@@ -671,20 +671,20 @@
         }
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             return false;
         }
         var reg2 = /^\d+(?:\.\d{0,2})?$/;
         if (!reg2.test(rowData.jjze)) {
-            $.modalMsg("Tổng giá nhập vui lòng nhập đúng định dạng tiền！", "warning", 1500);
+            $.modalMsg("Tổng giá nhập vui lòng nhập đúng định dạng tiền!", "warning", 1500);
             return false;
         }
         if (rowData.ph === "") {
-            $.modalMsg("Số lô không được để trống！", "warning", 1000);
+            $.modalMsg("Số lô không được để trống!", "warning", 1000);
             return false;
         }
         var sfclValue = Number($("#sel_sfcl_" + rowid).val());
-        // Kiểm tra số lượng mã truy xuất。 Có chia lẻ thì chọn Có，Chỉ cần quét một cái，Nếu không thì cần quét mã tương ứng với số lượng nhập kho
+        // Kiểm tra số lượng mã truy xuất. Có chia lẻ thì chọn Có, Chỉ cần quét một cái, Nếu không thì cần quét mã tương ứng với số lượng nhập kho
         const zsmLength = $("#sel_zsm_" + rowid).val().split(',').filter(entry => entry.trim() !== '').length
         var maxZsmLength = 1
         if (sfclValue === 1) {
@@ -694,7 +694,7 @@
         }
 
         if (zsmLength != 0 && zsmLength != maxZsmLength) {
-            $.modalMsg("Mục: " + rowData.ypmc + " số lượng không khớp với số lượng mã truy xuất！", "warning", 1500);
+            $.modalMsg("Mục: " + rowData.ypmc + " số lượng không khớp với số lượng mã truy xuất!", "warning", 1500);
             return false;
         }
 
@@ -704,16 +704,16 @@
 
     ////Nhập đơn mua hàng-Mua hàng Sunshine
     //$("#btn_import").click(function () {
-    //    $.modalOpen({
-    //        id: "patSearch",
-    //        title: "Truy vấn hóa đơn",
-    //        url: "/OutOrInStoredManage/Purchase/BillView?",
-    //        width: "700px",
-    //        height: "500px",
-    //        callBack: function (iframeId) {
-    //            top.frames[iframeId].BillDbGrid(); //Trong sự kiện cửa sổ bật lên
-    //        }
-    //    });
+    // $.modalOpen({
+    // id: "patSearch",
+    // title: "Truy vấn hóa đơn",
+    // url: "/OutOrInStoredManage/Purchase/BillView?",
+    // width: "700px",
+    // height: "500px",
+    // callBack: function (iframeId) {
+    // top.frames[iframeId].BillDbGrid(); //Trong sự kiện cửa sổ bật lên
+    // }
+    // });
     //});
 
     //Nhập đơn mua hàng
@@ -751,7 +751,7 @@
                     $.each(ids,function(rowid,column){
                         if($("#" +column + "_ypmc").val()){
                             index++;
-                        } 
+                        }
                     });
                     var num=ids.length-index;//Số dòng trống=Tổng số dòng-Số dòng không trống
                     if(num<ajaxresp.length) //Bổ sung dòng trống
@@ -766,9 +766,9 @@
                             if(!$("#" +column + "_ypmc").val()){
                                 filldata(ajaxresp,index,obj.ddbh);
                                 return false;
-                            } 
+                            }
                         });
-                        
+
                     }
                 }
             }
@@ -816,7 +816,7 @@
                         $("#jqg" + (i + 1) + "_cgjldw").val(ajaxresp[i].dw);
                         //$("#jqg" + (i + 1) + "_ybgg").val(ajaxresp[i].gg);
                         $("#sel_dw_jqg" + (i + 1)).append('<option value="ckdw" data-zhyz="' + ajaxresp[i].zhyz + '" selected>' + ajaxresp[i].dw + '</option>');
-                        //$("#jqg" + (i + 1) + "_cglx").append('<option value="' + ajaxresp[i].cglx + '" selected>' + ajaxresp[i].cglxmc  + '</option>');
+                        //$("#jqg" + (i + 1) + "_cglx").append('<option value="' + ajaxresp[i].cglx + '" selected>' + ajaxresp[i].cglxmc + '</option>');
                         //$("#jqg" + (i + 1) + "_cglx").val(ajaxresp[i].cglxmc);
 
                         //Thông tin thuốc
@@ -859,7 +859,7 @@
             $("#" + ids[i+index] +"_gjybdm").val(ajaxresp[i].zxspbm);
             $("#" + ids[i+index] +"_jjze").val(ajaxresp[i].zje);
             $("#sel_dw_" + ids[i+index]).append('<option value="ckdw" data-zhyz="' + ajaxresp[i].zhyz + '" selected>' + ajaxresp[i].dw + '</option>');
-            //$("#jqg" + (i + 1) + "_cglx").append('<option value="' + ajaxresp[i].cglx + '" selected>' + ajaxresp[i].cglxmc  + '</option>');
+            //$("#jqg" + (i + 1) + "_cglx").append('<option value="' + ajaxresp[i].cglx + '" selected>' + ajaxresp[i].cglxmc + '</option>');
             //Thông tin thuốc
             $("#" + ids[i+index] +"_fph").val(fph);
             $("#" + ids[i+index] +"_slStr").val(ajaxresp[i].slStr);

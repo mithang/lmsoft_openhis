@@ -12,7 +12,7 @@
 	p {
 		/*box-sizing: border-box;
 		display: flex;
-		align-items:  center;
+		align-items: center;
 		justify-content: space-between;
 		position: relative;*/
 		margin: 1.0em auto;
@@ -38,7 +38,7 @@
 		<div id="dv_apply" style="width:30%;float:left;">
 			<p style="--slist: #90cbb7,#2fb1a9;">
 				<span id="xm">Nguyễn Văn A</span><br />
-				<span id="xb" style="font-size:13px;">Nam，26 tuổi</span>
+				<span id="xb" style="font-size:13px;">Nam, 26 tuổi</span>
 			</p>
 			<table class="form">
 				<tr>
@@ -113,7 +113,7 @@
 					<tr>
 						<th class="formTitle "><span class="required">*</span>Thời gian phẫu thuật:</th>
 						<td class="formValue" colspan="2">
-							<input id="sssj2" type="text" class="form-control input-wdatepicker formClearIgnore required" style="width:70%;" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+							<input id="sssj2" type="text" class="form-control input-wdatepicker formClearIgnore required" style="width:70%;" value="" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
 						</td>
 						<td class="formValue"></td>
 					</tr>
@@ -369,7 +369,7 @@
 				//Thông tin đơn đăng ký phẫu thuật
 				arrangeInfo = data;
 				var xb = data.xb == 1 ? "Nam" : "Nữ";
-				xb += data.nl == null ? "" : "，" + data.nl;
+				xb += data.nl == null ? "" : ", " + data.nl;
 				$("#xm").html(data.xm);
 				$("#xb").html(xb);
 				$("#zyh").html(data.zyh);

@@ -15,19 +15,19 @@
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Số phiếu xuất kho：</th>
+                    <th class="formTitle">Số phiếu xuất kho:</th>
                     <td class="formValue">
                         <input id="Pdh" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Số phiếu giao hàng：</th>
+                    <th class="formTitle">Số phiếu giao hàng:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="deliveryNo" placeholder="Số phiếu giao hàng" />
                     </td>
-                    <th class="formTitle">Hình thức xuất kho：</th>
+                    <th class="formTitle">Hình thức xuất kho:</th>
                     <td class="formValue">
                         <select id="crkfs" class="form-control required"></select>
                     </td>
-                    <th class="formTitle"><span class="req">*</span>Tên nhà cung cấp：</th>
+                    <th class="formTitle"><span class="req">*</span>Tên nhà cung cấp:</th>
                     <td class="formValue">
                         <input id="rkbmName" type="text" class="form-control" />
                         <input id="rkbmId" type="hidden" value="" />
@@ -39,18 +39,18 @@
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="req">*</span>Vật tư：</th>
+                    <th class="formTitle"><span class="req">*</span>Vật tư:</th>
                     <td class="formValue">
                         <input id="wzmc" type="text" class="form-control" placeholder="Mã Tên Phiên âm Tên hàng" />
                         <input id="productId" type="hidden" value="" />
                         <input id="editRowId" type="hidden" value="" />
                         <input id="lbmc" type="hidden" value="" />
                     </td>
-                    <th class="formTitle"><span class="req">*</span>Lô：</th>
+                    <th class="formTitle"><span class="req">*</span>Lô:</th>
                     <td class="formValue">
                         <input id="pc" type="text" class="form-control" />
                     </td>
-                    <th class="formTitle" id="slDW"><span class="req">*</span>Số lượng xuất kho：</th>
+                    <th class="formTitle" id="slDW"><span class="req">*</span>Số lượng xuất kho:</th>
                     <td class="formValue">
                         <div class="row">
                             <div class="col-md-8">
@@ -63,63 +63,63 @@
                             </div>
                         </div>
                     </td>
-                    <th class="formTitle"><span class="req">*</span>Số tiền xuất kho：</th>
+                    <th class="formTitle"><span class="req">*</span>Số tiền xuất kho:</th>
                     <td class="formValue">
                         <input id="zje" type="text" style="width:70%;float: left;" class="form-control" onchange="CKJE_Leave()" />
                         <span style="line-height:24px;margin-left: 10px;">(đ)</span>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Ghi chú：</th>
+                    <th class="formTitle">Ghi chú:</th>
                     <td class="formValue">
                         <input id="remark" type="text" class="form-control" />
                     </td>
-                    <th class="formTitle">Số lô：</th>
+                    <th class="formTitle">Số lô:</th>
                     <td class="formValue">
                         <input id="ph" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Tồn kho khả dụng：</th>
+                    <th class="formTitle">Tồn kho khả dụng:</th>
                     <td class="formValue">
                         <input id="slstr" type="text" class="form-control newtouch_Readonly" />
                         <input id="kykcsl" type="text" hidden="hidden" />
                     </td>
-                    <th class="formTitle" id="thJJDW">Đơn giá xuất kho：</th>
+                    <th class="formTitle" id="thJJDW">Đơn giá xuất kho:</th>
                     <td class="formValue">
                         <input id="jj" type="text" style="width: 70%;float: left;" class="form-control newtouch_Readonly" />
                         <span style="line-height:24px;margin-left: 10px;">(đ)</span>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Quy cách：</th>
+                    <th class="formTitle">Quy cách:</th>
                     <td class="formValue">
                         <input id="gg" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Giá bán lẻ：</th>
+                    <th class="formTitle">Giá bán lẻ:</th>
                     <td class="formValue">
                         <input id="lsj" type="text" style="width:65%;float: left;" class="form-control newtouch_Readonly" />
                         <span name="sp_bmdw" style="line-height:24px;margin-left: 10px;"></span>
                         <input id="minlsj" type="hidden" value="" />
                     </td>
-                    <th class="formTitle">Tổng bán lẻ：</th>
+                    <th class="formTitle">Tổng bán lẻ:</th>
                     <td class="formValue">
                         <input id="lsze" type="text" style="width:70%;float: left;" class="form-control newtouch_Readonly" />
                         <span style="line-height:24px;margin-left: 10px;">(đ)</span>
                     </td>
-                    <th class="formTitle">Hệ số quy đổi：</th>
+                    <th class="formTitle">Hệ số quy đổi:</th>
                     <td class="formValue">
                         <input id="zhyz" type="text" class="form-control newtouch_Readonly" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Hạn sử dụng：</th>
+                    <th class="formTitle">Hạn sử dụng:</th>
                     <td class="formValue">
-                        <input id="yxq" type="text" class="form-control input-wdatepicker newtouch_Readonly" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="yxq" type="text" class="form-control input-wdatepicker newtouch_Readonly" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     </td>
-                    <th class="formTitle">Nhà sản xuất：</th>
+                    <th class="formTitle">Nhà sản xuất:</th>
                     <td class="formValue">
                         <input id="sccj" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Ngày sản xuất：</th>
+                    <th class="formTitle">Ngày sản xuất:</th>
                     <td class="formValue">
                         <input id="scrq" type="text" class="form-control newtouch_Readonly" />
                     </td>
@@ -150,7 +150,7 @@
     F7Text = "Đặt lại",
     F8Text = "Xuất kho"
 })
-<span style="float: left;line-height: 25px;margin: 8px 5px;">Tổng xuất kho：&nbsp;<span id="txtCKZE"></span> &nbsp;đ</span>
+<span style="float: left;line-height: 25px;margin: 8px 5px;">Tổng xuất kho:&nbsp;<span id="txtCKZE"></span> &nbsp;đ</span>
 <script>
     $(function () {
         //Khi thay đổi kích thước cửa sổ trình duyệt thì tải lạijqGridchiều rộng
@@ -445,7 +445,7 @@
             success: function (res) {
                 if (res.state === "success") {
                     $.modalAlert("Xuất kho thành công", 'success');
-                    newtouch_event_f7();//Nhập/xuất kho：Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
+                    newtouch_event_f7();//Nhập/xuất kho:Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
                     $('#gridCKMX').jqGrid("clearGridData");//Xóa trắngGrid
                 } else {
                     $.modalAlert(res.message, 'error');

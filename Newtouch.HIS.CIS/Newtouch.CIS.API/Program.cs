@@ -11,6 +11,19 @@ using NewtouchHIS.Lib.Services.HttpService;
 
 var builder = WebApplication.CreateBuilder(args);
 
+// --- Việt Nam hóa: culture mặc định vi-VN -------------------------------------
+// Đặt DefaultThreadCurrentCulture/UICulture = vi-VN để:
+//   * model binding parse ngày theo dd/MM/yyyy (thay vì en-US MM/dd/yyyy),
+//   * decimal dùng dấu '.' phân cách hàng nghìn / ',' thập phân,
+//   * ToString("d") và {0:d} render đúng định dạng Việt Nam.
+// Không đổi AddControllers/AddControllersWithViews hiện có; nếu muốn thông báo
+// lỗi model binding tiếng Việt thì bổ sung options.ModelBindingMessageProvider.
+var vi = new System.Globalization.CultureInfo("vi-VN");
+System.Globalization.CultureInfo.DefaultThreadCurrentCulture = vi;
+System.Globalization.CultureInfo.DefaultThreadCurrentUICulture = vi;
+// ---------------------------------------------------------------------------
+
+
 // BusinessDB + RedisConfig dùng chung file appsettings của CIS Web (cùng deployment,
 // cùng trust boundary; tránh copy credential sang file mới). Launcher vẫn override
 // BusinessDB DefaultConn bằng env như Web (xem run-5334.sh).

@@ -162,7 +162,7 @@
         var keyValue = $("#gridList").jqGridRowValue().Id;
         var rowid = $("#gridList").jqGrid("getGridParam","selrow");
         var kfName = $($("#gridList").jqGrid("getRowData", rowid).name).text(); //namekfName
-        var title = "Đồng bộ 【" + kfName + "】 vật tư";
+        var title = "Đồng bộ [" + kfName + "] vật tư";
         if (!!!keyValue) {
             $.modalAlert("Vui lòng chọn một bản ghi", 'warning');
             return;

@@ -49,7 +49,7 @@
                 </td>
                 <th class="formTitle">Ngày khám:</th>
                 <td class="formValue" style="width:13%;">
-                    <input id="kzrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refleshPatientList(); } })" />
+                    <input id="kzrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" value="" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { refleshPatientList(); } })" />
                 </td>
                 <td class="formValue" style="width:18%;">
                     <div class="row">
@@ -103,7 +103,7 @@
         $("#btn_search").trigger('click');
     });
 
-    //Khởi tạoKhám bệnhLoại（Đăng nhậpNgười dùngCóchuyên gia,Khám bệnhLoạiMặc địnhgắnchuyên giaNgoại trú）
+    //Khởi tạoKhám bệnhLoại(Đăng nhậpNgười dùngCóchuyên gia,Khám bệnhLoạiMặc địnhgắnchuyên giaNgoại trú)
     function initMjzbz() {
         $.ajax({
             type: "POST",
@@ -327,7 +327,7 @@
         sessionStorage.removeItem('reqSourcePage');  //Xóa trắng trước
         if (selRowData.jzzt === '@((int)EnumJzzt.NotYetTreate)') {
             //Chờ khám bệnh
-            //phiếuđộcnhậpdấu hiệu sinh tồnCông tắc（Điều dưỡngnhập）
+            //phiếuđộcnhậpdấu hiệu sinh tồnCông tắc(Điều dưỡngnhập)
             if (window.IsVitalSignsSwitch=== 'ON') {
                 if (window.IsNurse === "True") {
                     //hiện tạiĐăng nhập ngườiCóĐiều dưỡng
@@ -343,7 +343,7 @@
                     });
                     return; //khônglạikếtiếpđi
                 }
-                //kiểm tracó thểkhôngcó thểBắt đầuKhám bệnh（Chờ khám bệnhcủa）
+                //kiểm tracó thểkhôngcó thểBắt đầuKhám bệnh(Chờ khám bệnhcủa)
             }
             //2.checkcó thểkhôngcó thểBắt đầumớicủaKhám bệnh
             //Tra cứuBệnh nhân cùng mộtcáiKhoa cửagấpkhám chuyên gia đợi cuối cùngmột lầnKhám bệnh  Khám bệnhTrạng thái
@@ -381,7 +381,7 @@
                                 $("input[name='cfzbzRadios'][value='1']").prop('checked', false);
                                 $("input[name='cfzbzRadios'][value='0']").prop('checked', true);
                             }
-                            //window.$('#tizhong').val(ajaxresp.tizhong); //Khởi tạo载vàođãnhậptốtcủadấu hiệu sinh tồn
+                            //window.$('#tizhong').val(ajaxresp.tizhong); //Khởi tạo nạp sẵn dấu hiệu sinh tồn đã nhập
                             //window.$('#tiwen').val(ajaxresp.tiwen);
                             //window.$('#maibo').val(ajaxresp.maibo);
                             ////window.$('#xueya').val(ajaxresp.xueya);

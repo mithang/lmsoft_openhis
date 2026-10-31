@@ -25,17 +25,17 @@
         <div>
             <table class="form">
                 <tr>
-                    <td class="formTitle">Thuốc：</td>
+                    <td class="formTitle">Thuốc:</td>
                     <td class="formValue">
                         <input type="text" id="ypdm" class="form-control" placeholder="Vui lòng nhập mã thuốc Pinyin Tên" />
                     </td>
-                    <td class="formTitle">Loại thuốc：</td>
+                    <td class="formTitle">Loại thuốc:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="yplb">
                             <option value="">Tất cả</option>
                         </select>
                     </td>
-                    <td class="formTitle">Thuộc tính thuốc：</td>
+                    <td class="formTitle">Thuộc tính thuốc:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="ypsx">
                             <option value="">Tất cả</option>
@@ -46,17 +46,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Dạng bào chế thuốc：</td>
+                    <td class="formTitle">Dạng bào chế thuốc:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="ypjx" name="ypjx">
                             <option value="">Tất cả</option>
                         </select>
                     </td>
-                    <td class="formTitle">Trạng thái sử dụng：</td>
+                    <td class="formTitle">Trạng thái sử dụng:</td>
                     <td class="formValue formDdlSelectorTd">
                         @Html.DropDownList("syzt", BenBuMenZT.Control.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <td class="formTitle">Trạng thái thuốc：</td>
+                    <td class="formTitle">Trạng thái thuốc:</td>
                     <td class="formValue formDdlSelectorTd">
                         @Html.DropDownList("ypzt", EnumYPZT.Enabled.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
@@ -174,11 +174,11 @@
             if (syzt === "Bình thường") {
                 ControlMedicine(0);
             } else {
-                $.modalAlert("Hiện tại đang ở trạng thái kiểm soát！", 'warning');
+                $.modalAlert("Hiện tại đang ở trạng thái kiểm soát!", 'warning');
                 return;
             }
         } else {
-            $.modalAlert("Vui lòng chọn thông tin！", 'warning');
+            $.modalAlert("Vui lòng chọn thông tin!", 'warning');
         }
     }
 
@@ -190,11 +190,11 @@
             if (syzt === "Kiểm soát") {
                 ControlMedicine(1);
             } else {
-                $.modalAlert("Hiện tại đang ở trạng thái bình thường！", 'warning');
+                $.modalAlert("Hiện tại đang ở trạng thái bình thường!", 'warning');
                 return;
             }
         } else {
-            $.modalAlert("Vui lòng chọn thông tin！", 'warning');
+            $.modalAlert("Vui lòng chọn thông tin!", 'warning');
         }
     }
 
@@ -214,7 +214,7 @@
                 }
             });
         } else {
-            $.modalAlert("Vui lòng chọn một dòng dữ liệu！", 'error');
+            $.modalAlert("Vui lòng chọn một dòng dữ liệu!", 'error');
         }
         return;
     }

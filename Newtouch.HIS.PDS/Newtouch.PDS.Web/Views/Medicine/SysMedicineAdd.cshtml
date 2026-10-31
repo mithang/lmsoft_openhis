@@ -35,7 +35,7 @@
                 if (!keyword) {
                     return null;
                 }
-                //Duyệt nguồn dữ liệu，dùngkeywordđể lọc ra kết quả
+                //Duyệt nguồn dữ liệu, dùngkeywordđể lọc ra kết quả
                 var resultObjArr = new Array();
                 $.each(top.window.newtouchclients.sysPatientNatureList, function (idx, val) {
                     if ((val.py && val.py.toLowerCase().indexOf(keyword.toLowerCase()) >= 0) || keyword.trim() == "") {
@@ -96,7 +96,7 @@
                         var kh = $.currentWindow().$("#kh").val();
                         getSysBasicInfoByCardNo(kh);
                     }
-                    $.currentWindow().DisableSysBasicInfo(true); //true:Cờ là từ đăng ký miễn thẻ hoặc trả về chi tiết theo truy vấn số thẻ, false:Khi trang tải，Có thể nhậpkh
+                    $.currentWindow().DisableSysBasicInfo(true); //true:Cờ là từ đăng ký miễn thẻ hoặc trả về chi tiết theo truy vấn số thẻ, false:Khi trang tải, Có thể nhậpkh
                 }
             })
         }
@@ -212,13 +212,13 @@
         //Số hồ sơ bệnh án
         var blh = $("#").val();
         if (!blh) {
-            $.modalAlert("Số hồ sơ bệnh án trống！", 'warning');
+            $.modalAlert("Số hồ sơ bệnh án trống!", 'warning');
             return false;
         }
         //Phiên âm
         var py = $("#").val();
         if (!py) {
-            $.modalAlert("Phiên âm trống！", 'warning');
+            $.modalAlert("Phiên âm trống!", 'warning');
             return false;
         }
         //Giới tính
@@ -231,7 +231,7 @@
             }
         });
         if (!xb) {
-            $.modalAlert("Vui lòng chọn giới tính！", 'warning');
+            $.modalAlert("Vui lòng chọn giới tính!", 'warning');
             return false;
         }
         return true;
@@ -319,7 +319,7 @@
             <tr>
                 <td class="formTitle">Thời gian thực hiện</td>
                 <td class="formValue">
-                    <input id="txtPY" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                    <input id="txtPY" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({dateFmt:'dd/MM/yyyy HH:mm:ss'})" />
                 </td>
                 @*<td>Hiệu lực</td>
                     <td class="formValue">

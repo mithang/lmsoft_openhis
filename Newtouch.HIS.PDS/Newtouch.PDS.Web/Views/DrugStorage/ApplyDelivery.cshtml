@@ -23,19 +23,19 @@
         <div class="panel-heading">Thông tin lọc</div>
         <table class="form">
             <tr>
-                <td class="formTitle">Số đơn lĩnh：</td>
+                <td class="formTitle">Số đơn lĩnh:</td>
                 <td class="formValue"><input type="text" id="sldh" name="sldh" class="form-control" placeholder="Vui lòng nhập số đơn lĩnh" /></td>
-                <td class="formTitle">Khoa lĩnh：</td>
+                <td class="formTitle">Khoa lĩnh:</td>
                 <td class="formValue"><input type="text" id="slbm" name="slbm" class="form-control" placeholder="Vui lòng nhập bộ phận lĩnh thuốc" /></td>
-                <th class="formTitle" style="width: 75px;padding-right: 0;">Ngày：</th>
+                <th class="formTitle" style="width: 75px;padding-right: 0;">Ngày:</th>
                 <td class="formValue" style="width:130px;">
-                    <input id="txtStartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddDays(-31).ToString("yyyy-MM-dd 00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                    <input id="txtStartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddDays(-31).ToString("dd/MM/yyyy 00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                 </td>
-                <th class="formTitle" style="width: 35px;padding-right: 0;">Đến：</th>
+                <th class="formTitle" style="width: 35px;padding-right: 0;">Đến:</th>
                 <td class="formValue" style="width:130px;">
-                    <input id="txtEndDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                    <input id="txtEndDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                 </td>
-                <td class="formTitle">Trạng thái phát thuốc：</td>
+                <td class="formTitle">Trạng thái phát thuốc:</td>
                 <td class="formValue">
                     @Html.DropDownList("ffzt", EnumSLDDeliveryStatus.None.ToDescSelectList((int)EnumSLDDeliveryStatus.None), "Tất cả", new { @class = "form-control" })
                 </td>
@@ -194,7 +194,7 @@
                 cache: false,
                 success: function (res) {
                     if (res.state === "success") {
-                        $.modalMsg("Kết thúc thành công！", 'success', 1000);
+                        $.modalMsg("Kết thúc thành công!", 'success', 1000);
                     }
                     $("#parentgridList").resetSelection();
                     $("#parentgridList").trigger("reloadGrid");
@@ -218,7 +218,7 @@
             autoScroll: true,
             caption: "Thông tin thuốc",
             height: $(window).height() - 220,
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
                 {
                     label: 'Số lượng phát hiện tại', name: 'fysl', width: 55, align: 'center', editable: true, editwidth:"88%",
@@ -238,22 +238,22 @@
                 { label: "sldmxId", name: "sldmxId", hidden: true },
                 { label: 'Mã thuốc', name: 'Ypdm', hidden: true },
                 { label: 'Khoa lĩnh', name: 'Slbm', hidden: true },
-                { label: 'Hệ số chuyển đổi（Đơn vị đóng gói）', name: 'zhyz', hidden: true },
+                { label: 'Hệ số chuyển đổi(Đơn vị đóng gói)', name: 'zhyz', hidden: true },
                 { label: 'Số lượng lĩnh', name: 'Slsl', hidden: true },
                 { label: 'Số lượng đã phát', name: 'yfsl', hidden: true },
                 { label: 'Số lượng tồn kho', name: 'kcsl', hidden: true },
                 { label: 'Đơn lĩnhID', name: 'sldId', hidden: true }
             ],
             onSelectRow: function (rowid, status) {
-                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: Tương đương vớitrue/fase(Kiểm tra có giá trị không)
+                if (rowid && lastRowId && rowid !== lastRowId) { //&&: Tương đương vớitrue/fase(Kiểm tra có giá trị không)
                     $MedicineGridList.saveRow(lastRowId, function (result) {
-                        // return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực v.v. cần sửa
-                    }); //Lưu trước dòng đang ở trạng thái chỉnh sửa    //function checksave
+                        // return false; //Kiểm tra nội dung nhập có hợp lệ không, Hủy lưu và quay lạifalse //Không hiệu lực v.v. cần sửa
+                    }); //Lưu trước dòng đang ở trạng thái chỉnh sửa //function checksave
                 }
                 //$("#" + rowid + "_fysl").attr("width", 50);
                 lastRowId = rowid;
                 $MedicineGridList.jqGrid('editRow', rowid, true, null, function (result) {
-                    //return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực v.v. cần sửa
+                    //return false; //Kiểm tra nội dung nhập có hợp lệ không, Hủy lưu và quay lạifalse //Không hiệu lực v.v. cần sửa
                 }, null, null, function () {
                 });
             },
@@ -270,7 +270,7 @@
         var kcInfoJsonSave = $MedicineGridList.jqGrid('getRowData_AllLine');
         var par = {};
         if (kcInfoJsonSave === [] || kcInfoJsonSave.length === 0) {
-            $.modalAlert("Phát thuốc thất bại,Không có thông tin thuốc！", 'error');
+            $.modalAlert("Phát thuốc thất bại,Không có thông tin thuốc!", 'error');
             return false;
         }
         var dic = [];
@@ -281,17 +281,17 @@
             if (fysl > 0) {
                 var maxfysl = parseInt(obj.Slsl) - parseInt(obj.yfsl);
                 if (fysl - maxfysl > 0) {
-                    $.modalAlert("【" + obj.ypmc + "】Số lượng phát không được lớn hơn" + maxfysl / parseInt(obj.zhyz) + "！", 'warning');
+                    $.modalAlert("【" + obj.ypmc + "】Số lượng phát không được lớn hơn" + maxfysl / parseInt(obj.zhyz) + "!", 'warning');
                     flag = false;
                     $MedicineGridList.jqGrid('editRow', obj.jqRowId, true, null, function (result) {
-                        //return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực v.v. cần sửa
+                        //return false; //Kiểm tra nội dung nhập có hợp lệ không, Hủy lưu và quay lạifalse //Không hiệu lực v.v. cần sửa
                     }, null, null, function () { });
                     return false;
                 } else if (parseInt(obj.kcsl) < fysl) {
-                    $.modalAlert("【" + obj.ypmc + "】Không đủ tồn kho！", 'warning');
+                    $.modalAlert("【" + obj.ypmc + "】Không đủ tồn kho!", 'warning');
                     flag = false;
                     $MedicineGridList.jqGrid('editRow', obj.jqRowId, true, null, function (result) {
-                        //return false;   //Kiểm tra nội dung nhập có hợp lệ không，Hủy lưu và quay lạifalse    //Không hiệu lực v.v. cần sửa
+                        //return false; //Kiểm tra nội dung nhập có hợp lệ không, Hủy lưu và quay lạifalse //Không hiệu lực v.v. cần sửa
                     }, null, null, function () { });
                     return false;
                 }

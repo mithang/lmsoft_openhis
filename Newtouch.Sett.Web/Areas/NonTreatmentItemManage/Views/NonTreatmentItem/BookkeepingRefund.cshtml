@@ -37,9 +37,9 @@
                     </td>
                     <th class="formTitle">ghi sổ Ngày:</th>
                     <td class="formValue" colspan="3">
-                        <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width:42%; float:left;" value="@DateTime.Now.ToString("01/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         <span style="margin-left:2%;float:left;">—</span>
-                        <input id="jssj" type="text" class="form-control input-wdatepicker form-an" style="width :41%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="jssj" type="text" class="form-control input-wdatepicker form-an" style="width :41%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     </td>
                     <td>
                         <input type="button" id="btn_search" class="btn btn-primary form-an" style="width:48%;margin-left:10%;" value="Tra cứu" />
@@ -298,7 +298,7 @@
                 break;
             }
             if (rowData.tsl.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                $.modalAlert("Khoản mục（" + rowData.sfxmName + "）Số lượng hoàn để trống,Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Khoản mục(" + rowData.sfxmName + ")Số lượng hoàn để trống,Vui lòng xác nhận.", 'warning');
                 //bật khung sửa trong dòng
                 EnableInlineEditBox();
                 return;
@@ -310,7 +310,7 @@
             }
             if (parseFloat(rowData.tsl) > parseFloat(rowData.sl)) {
                 $.loading(false);
-                $.modalAlert("Khoản mục（" + rowData.sfxmName + "）Số lượng hoàn lớn hơn số lượng ghi sổ,Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Khoản mục(" + rowData.sfxmName + ")Số lượng hoàn lớn hơn số lượng ghi sổ,Vui lòng xác nhận.", 'warning');
                 //bật khung sửa trong dòng
                 EnableInlineEditBox();
                 return;
@@ -378,8 +378,8 @@
     //Xóa
     function newtouch_event_f4() {
         $('#gridList').jqGrid("clearGridData");
-        $('#kssj').val('@DateTime.Now.ToString("yyyy-MM-01")');
-        $('#jssj').val('@DateTime.Now.ToString("yyyy-MM-dd")');
+        $('#kssj').val('@DateTime.Now.ToString("01/MM/yyyy")');
+        $('#jssj').val('@DateTime.Now.ToString("dd/MM/yyyy")');
     }
 
 </script>

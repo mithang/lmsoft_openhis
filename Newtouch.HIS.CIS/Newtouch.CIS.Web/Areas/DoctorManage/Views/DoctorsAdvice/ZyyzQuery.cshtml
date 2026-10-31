@@ -56,7 +56,7 @@
     function pickDate(cellvalue, options, cell) {
         $(cell).find('input[type=text]').addClass("input-wdatepicker");
         $(cell).find('input[type=text]').click(function () {
-            WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })
+            WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })
         });
     }
 
@@ -132,7 +132,7 @@
     }
 
     //function confirm(TargetHref) {
-    //    $.modalConfirm("hiện tạitrangmặtcòncóY lệnhDữ liệuchưaLưu，CóKhông仍cầnchuyển đến?", function (flag) {
+    //    $.modalConfirm("Trang hiện tại còn y lệnh chưa lưu, có vẫn cần chuyển đi?", function (flag) {
     //        if (flag) {
     //            transferbool = true;
     //            $('#myTab a[href="' + TargetHref + '"]').trigger('click'); //Khởi tạoHiển thịnàotab

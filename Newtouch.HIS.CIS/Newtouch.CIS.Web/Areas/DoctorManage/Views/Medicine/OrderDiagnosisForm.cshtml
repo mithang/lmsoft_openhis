@@ -10,8 +10,8 @@
             <tr>
                 <th class="formTitle">Chẩn đoánThời gian:</th>
                 <td class="formValue">
-                    <input id="txt_zdsj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:100%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
+                    <input id="txt_zdsj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:100%;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" />
                 </td>
             </tr>
 			<tr>
@@ -33,7 +33,7 @@
     $(function () {
     });
     //$(window).bind('beforeunload', function () {
-    //    alert("CóKhôngcần离mở");
+    //    alert("Có cần rời mở không");
     //    if ($('#txt_zdsj').val() == null || $('#txt_zdsj').val() == "") {
     //        $.modalAlert("cầnđiềnviếtThời gian！", "warning");
     //        return;

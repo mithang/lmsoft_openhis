@@ -23,9 +23,9 @@
                     </td>
                     <th class="formTitle "><span class="required">*</span>Thời gian phát thuốc:</th>
                     <td class="formValue" style="width: 220px;">
-                        <input id="txtstartDate" type="text" class="form-control input-wdatepicker" style="width:90px;float: left;" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="txtstartDate" type="text" class="form-control input-wdatepicker" style="width:90px;float: left;" value="@DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         <span style="float:left;margin:0 5px;">-</span>
-                        <input id="txtendDate" type="text" class="form-control input-wdatepicker" style="width:90px;float: left;" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="txtendDate" type="text" class="form-control input-wdatepicker" style="width:90px;float: left;" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     </td>
                     <td class="formTitle">
                         <input type="button" class="btn btn-primary btn-md" value="Tra cứu" id="btn_search" />
@@ -89,7 +89,7 @@
             ],
             onSelectRow_page: function (rowid, status) {
                 var data = $gridRpInfo.jqGrid('getRowData', rowid);
-                tempMzh =  data.mzh;
+                tempMzh = data.mzh;
                 $gridRpDetail.jqGrid('setGridParam', {
                     postData: { pCfh: data.cfh },
                     url: "/OutPatientPharmacy/pyDeailInfoSearch?r=" + Math.random()
@@ -101,7 +101,7 @@
                 //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                 ids = $gridRpInfo.getDataIDs();
                 if (ids == null || ids.length <= 0) return;
-                //Chọn hoặc bỏ chọn dòng chỉ định。Nếuonselectrowchoturethì sẽ kích hoạt sự kiệnonSelectRow，onselectrowMặc định làture
+                //Chọn hoặc bỏ chọn dòng chỉ định.Nếuonselectrowchoturethì sẽ kích hoạt sự kiệnonSelectRow, onselectrowMặc định làture
                 $gridRpInfo.setSelection(ids[0], true);
                 var pdata = $gridRpInfo.jqGrid('getRowData', ids[0]);
                 tempMzh = pdata.mzh;
@@ -162,7 +162,7 @@
             window.open(uri);
             //window.open("/Report/PrintReport?type=MZFYBD_Bill&param=OrganizeId=@ViewBag.OrganizeId" + "|yfbmCode=@ViewBag.yfbmCode" + "|cfh=" + chf);
         } else {
-            $.modalAlert("Vui lòng chọn thông tin bệnh nhân！", 'warning');
+            $.modalAlert("Vui lòng chọn thông tin bệnh nhân!", 'warning');
         }
     }
 
@@ -183,8 +183,8 @@
             var cfh = newcfhs.join(",");//Nối chuỗi mảng
             var uri = '@reportUrl' + "?tempCode=1311&systemCode=PDS" + "&orgId=" + '@ViewBag.OrganizeId' + "&cfh=" + cfh + "&mzh=" + tempMzh + "&UserCode=" + opeator.UserCode;
             window.open(uri);
-        } else $.modalAlert("Không có đơn thuốc khí dung，không thể in thẻ khí dung！", 'warning');
-    } else $.modalAlert("Vui lòng chọn thông tin bệnh nhân！", 'warning');
+        } else $.modalAlert("Không có đơn thuốc khí dung, không thể in thẻ khí dung!", 'warning');
+    } else $.modalAlert("Vui lòng chọn thông tin bệnh nhân!", 'warning');
 }
      //In bổ sung thẻ truyền dịch
     function newtouch_event_f9() {
@@ -212,8 +212,8 @@
                         window.open(uri);
                     }
                 });
-            } else $.modalAlert("Không có đơn thuốc truyền tĩnh mạch，không thể in thẻ truyền dịch！", 'warning');
-        } else $.modalAlert("Vui lòng chọn thông tin bệnh nhân！", 'warning');
+            } else $.modalAlert("Không có đơn thuốc truyền tĩnh mạch, không thể in thẻ truyền dịch!", 'warning');
+        } else $.modalAlert("Vui lòng chọn thông tin bệnh nhân!", 'warning');
     }
     //In bổ sung nhãn hướng dẫn sử dụng
      function newtouch_event_f10() {
@@ -233,7 +233,7 @@
                  var cfhStr = newcfh.join();//Nối chuỗi mảng
                  var uri = '@reportUrl' + "?tempCode=1306&systemCode=PDS" + "&orgId=" + '@ViewBag.OrganizeId' + "&cfh=" + cfhStr;
                  window.open(uri);
-             } else $.modalAlert("Không có đơn thuốc uống、đơn thuốc dùng ngoài，không thể in nhãn hướng dẫn sử dụng！", 'warning');
+             } else $.modalAlert("Không có đơn thuốc uống, đơn thuốc dùng ngoài, không thể in nhãn hướng dẫn sử dụng!", 'warning');
          }
     }
 </script>

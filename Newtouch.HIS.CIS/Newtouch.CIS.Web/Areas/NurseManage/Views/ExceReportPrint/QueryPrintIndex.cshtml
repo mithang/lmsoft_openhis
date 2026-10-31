@@ -90,15 +90,15 @@
                 <td class="formTitle"> Thực hiệnNgày:</td>
                 <td class="formValue">
                     <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" style="width:100%;"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("dd/MM/yyyy 00:00:00")" />
 
                 </td>
                 <td class="formTitle" style="width:10px"> -</td>
                     <td class="formValue">
                         <input id="txt_zxrqend" type="text" class="form-control input-wdatepicker" style="width:100%;"
-                               onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"
-                               onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd 23:59:59")" />
+                               onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })"
+                               onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("dd/MM/yyyy 23:59:59")" />
                     </td>
                 <td class="formTitle">
                     Thực hiệnLoại:

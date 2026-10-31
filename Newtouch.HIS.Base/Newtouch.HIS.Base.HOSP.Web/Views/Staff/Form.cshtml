@@ -130,7 +130,7 @@
                                 </td>
                                 <th class="formTitle">Xem trước chữ ký:</th>
                                 <td class="formValue">
-                                    <img id="dzqmImage" name="dzqmImage" class="form-control" style="height: 40px; width:auto" />
+                                    <img id="dzqmImage" name="dzqmImage" class="form-control" style="height: 40px; width:auto" alt="Ảnh chữ ký điện tử" />
                                 </td>
                             </tr>
                             <tr>
@@ -390,7 +390,7 @@
                         else
                             xb = "false";
                         //$('#zjh').val(sfzh);
-                        $('#Birthday').val($('#Birthday').attr('data-dateFmt') == 'yyyy-MM-dd' ? $.getDate({ date: csrq }) : $.getTime({ date: csrq }));
+                        $('#Birthday').val($('#Birthday').attr('data-dateFmt') == 'dd/MM/yyyy' ? $.getDate({ date: csrq }) : $.getTime({ date: csrq }));
                         var objSelect = document.getElementsByName('Gender');
                         for (var i = 0; i < objSelect[0].length; i++) {
                             if (objSelect[0].options[i].value == xb) {

@@ -31,11 +31,11 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">Lịch sửKết chuyển：</th>
+                    <th class="formTitle">Lịch sửKết chuyển:</th>
                     <td class="formValue">
                         <select id="lsjz" class="form-control"></select>
                     </td>
-                    <th class="formTitle">Mã nhập：</th>
+                    <th class="formTitle">Mã nhập:</th>
                     <td class="formValue">
                         <input id="txtSRM" type="text" class="form-control" placeholder="Tên vật tư/Phiên âm" />
                     </td>
@@ -94,7 +94,7 @@
             success: function (ajaxresp) {
                 if (ajaxresp != null) {
                     if (ajaxresp.state === "success") {
-                        var alertMmsg = ajaxresp.data == null || ajaxresp.data === "" ? "Bạn có chắc muốn kết chuyển?？" : "Gần nhấtKết chuyểnThời gian là：" + ajaxresp.data + " ,Bạn có chắc muốn kết chuyển?？";
+                        var alertMmsg = ajaxresp.data == null || ajaxresp.data === "" ? "Bạn có chắc muốn kết chuyển??" : "Gần nhấtKết chuyểnThời gian là:" + ajaxresp.data + " ,Bạn có chắc muốn kết chuyển??";
                         $.modalConfirm(alertMmsg,
                             function (flag) {
                                 if (flag) {
@@ -131,7 +131,7 @@
 
     //Thông tin vật tư
     function gridDrugsList() {
-        var captionCon = "Tổng cộng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Trang hiện tại Tổng bán lẻ：đ</span>";
+        var captionCon = "Tổng cộng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Trang hiện tại Tổng bán lẻ:đ</span>";
         var $gridDrugsList = $("#gridDrugsList");
         $gridDrugsList.dataGrid({
             postData: getSearchPostData(),
@@ -203,7 +203,7 @@
                 titleLsze += parseFloat(getRowLsze);
             }
             titleLsze = window.roundingBy4she6ru5chengshuang(titleLsze, 2);
-            $("#yeCon").text("Trang hiện tại Tổng bán lẻ：" + titleLsze + "đ");
+            $("#yeCon").text("Trang hiện tại Tổng bán lẻ:" + titleLsze + "đ");
         }
     }
 </script>

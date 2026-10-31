@@ -15,7 +15,7 @@
         </div>
         <table class="form" style="width:98%;border:0">
             <tr>
-                <th class="formTitle">Tình hình lãi/lỗ：</th>
+                <th class="formTitle">Tình hình lãi/lỗ:</th>
                 <td style="padding-left:12px;">
                     <div class="btn-group" id="btnLossAndProfitTypeGourp" style="margin-top:0;">
                         <button type="button" id="btnAll" data-keywordtype="All" class="btn active btn-restore">Tất cả</button>
@@ -23,21 +23,21 @@
                         <button type="button" id="btnProfit" data-keywordtype="Profit" class="btn btn-default">Báo thừa</button>
                     </div>
                 </td>
-                <th class="formTitle">Từ khóa：</th>
+                <th class="formTitle">Từ khóa:</th>
                 <td class="formValue">
                     <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Pinyin thuốc Mã Tên" />
                 </td>
-                <th class="formTitle">Ngày bắt đầu：</th>
+                <th class="formTitle">Ngày bắt đầu:</th>
                 <td class="formValue">
-                    <input type="text" id="txtStartDate" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd  HH:mm:ss' })" />
+                    <input type="text" id="txtStartDate" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                 </td>
-                <th class="formTitle">Ngày kết thúc： </th>
+                <th class="formTitle">Ngày kết thúc:</th>
                 <td class="formValue">
-                    <input type="text" id="txtEndDate" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd  HH:mm:ss' })" />
+                    <input type="text" id="txtEndDate" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Nguyên nhân thừa thiếu：</th>
+                <th class="formTitle">Nguyên nhân thừa thiếu:</th>
                 <td class="formValue">
                     <select class="form-control" id="ddlSYYY">
                         <option value="">Tất cả</option>
@@ -79,7 +79,7 @@
             postData: getSearchPostData(),
             url: "/Medicine/SelectLossAndProditInfoList?r=" + Math.random(),
             height: $(window).height() - 265,
-            caption: "Tổng lượng thuốc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Tổng giá bán buôn：" + "0.00" + "đ&nbsp;&nbsp;&nbsp;&nbsp;Tổng giá lẻ：" + "0.00" + "đ</span>",
+            caption: "Tổng lượng thuốc&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Tổng giá bán buôn: " + "0.00" + "đ&nbsp;&nbsp;&nbsp;&nbsp;Tổng giá lẻ: " + "0.00" + "đ</span>",
             colModel: [
                 { label: 'Tình hình lãi/lỗ', name: 'syqk', width: 80, align: 'left' },
                 { label: 'Nguyên nhân lãi/lỗ', name: 'syyy', width: 110, align: 'left' },
@@ -136,9 +136,9 @@
         var inputCode = $("#txtINPUTCODE").val();
         var syqk = -1; //Tất cả
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Profit') {
-            syqk = 1;  //Báo thừa
+            syqk = 1; //Báo thừa
         } else if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-            syqk = 2;  //Báo hỏng
+            syqk = 2; //Báo hỏng
         }
         return { startTime: startTime, endTime: endTime, syyy: syyy, inputCode: inputCode, syqk: syqk };
     };
@@ -156,7 +156,7 @@
                 titlePjze = parseFloat(titlePjze) + parseFloat(getRowPjze);
                 titleLjze = parseFloat(titleLjze) + parseFloat(getRowLjze);
             }
-            $("#yeCon").text("Tổng giá bán buôn：" + titlePjze.toFixed(4) + "đ; Tổng giá lẻ：" + titleLjze.toFixed(4) + "đ");
+            $("#yeCon").text("Tổng giá bán buôn: " + titlePjze.toFixed(4) + "đ; Tổng giá lẻ: " + titleLjze.toFixed(4) + "đ");
         }
     }
 
@@ -168,7 +168,7 @@
             data: getSearchPostData(),
             success: function (res) {
                 if (res != null) {
-                    $("#yeCon").text("Tổng giá bán buôn：" + res.Pjze.toFixed(2) + "đ; Tổng giá lẻ：" + res.Ljze.toFixed(2) + "đ");
+                    $("#yeCon").text("Tổng giá bán buôn: " + res.Pjze.toFixed(2) + "đ; Tổng giá lẻ: " + res.Ljze.toFixed(2) + "đ");
                 }
             }
         });
@@ -179,9 +179,9 @@
 		var key = $("#txtINPUTCODE").val();
 		var syqk = -1; //Tất cả
 		if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Profit') {
-			syqk = 1;  //Báo thừa
+			syqk = 1; //Báo thừa
 		} else if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-			syqk = 2;  //Báo hỏng
+			syqk = 2; //Báo hỏng
 		}
 		var uri = '@reportUrl' + "?tempCode=58&systemCode=PDS" + "&hospitalCode=" + $("#OrganizeId").val() + "&startTime=" + $("#txtStartDate").val() + "&endTime=" + $("#txtEndDate").val() + "&key=" + key + "&yfbm=" + $("#yfbmcode").val() + "&syqk=" + syqk;
 		window.open(uri);

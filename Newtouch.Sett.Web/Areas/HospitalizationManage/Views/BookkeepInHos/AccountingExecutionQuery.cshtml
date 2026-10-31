@@ -47,9 +47,9 @@
                     {
                         <th class="formTitle">Thời gian thao tác:</th>
                         <td class="formValue" colspan="2">
-                            <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("01/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                             <span style="margin-left:1%;float:left">—</span>
-                            <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         </td>
                         <td class="formValue">
                             <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Truy vấn" />
@@ -61,9 +61,9 @@
                     <tr>
                         <th class="formTitle">Thời gian thao tác:</th>
                         <td class="formValue" colspan="2">
-                            <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("01/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                             <span style="margin-left:1%;float:left">—</span>
-                            <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         </td>
                         <td class="formValue">
                             <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Truy vấn" />
@@ -167,7 +167,7 @@
         { label: "Số lượng", name: "sl", width: 50, align: "left" },
         {
             label: "Đơn giá", name: "dj", width: 55, align: "left", formatter: "number"
-                , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
         },
         {
             label: "Chính sách bồi hoàn", name: "zfxz", width: 60, align: "left",
@@ -177,7 +177,7 @@
         },
         {
             label: "Số tiền", name: "je", width: 55, align: "left", formatter: "number"
-                , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
         },
         {
             label: "Ngày điều trị", name: "zlrq", width: 80, align: "left",

@@ -13,18 +13,18 @@
 		<div style="padding: 2px;padding-right:20px;">
 			<table class="form">
 				<tr>
-					<th class="formTitle">Số chứng từ：</th>
+					<th class="formTitle">Số chứng từ:</th>
 					<td class="formValue">
 						<input type="text" id="txtSYDH" class="form-control newtouch_Readonly" />
 					</td>
-					<th class="formTitle">Tình hình lãi/lỗ：</th>
+					<th class="formTitle">Tình hình lãi/lỗ:</th>
 					<td style="padding-left:12px;">
 						<div class="btn-group" id="btnLossAndProfitTypeGourp" style="margin-top:0;">
 							<button type="button" id="btnLoss" data-keywordtype="Loss" class="btn active btn-restore">Báo hỏng</button>
 							<button type="button" id="btnProfit" data-keywordtype="Profit" class="btn btn-default">Báo thừa</button>
 						</div>
 					</td>
-					<th class="formTitle">Tổng thừa thiếu(đ)：</th>
+					<th class="formTitle">Tổng thừa thiếu(đ):</th>
 					<td class="formValue">
 						<input type="text" id="txtSYZE" class="form-control newtouch_Readonly" />
 					</td>
@@ -39,57 +39,57 @@
 		<div id="divYPXX" style="padding: 2px;padding-right:20px;">
 			<table class="form">
 				<tr>
-					<th class="formTitle"><span class="required">*</span>Mã thuốc：</th>
+					<th class="formTitle"><span class="required">*</span>Mã thuốc:</th>
 					<td class="formValue">
 						<input id="editRowId" value="" style="display:none;" />
 						<input type="text" id="txtYPCODE" class="form-control" />
 					</td>
-					<th class="formTitle">Tên thuốc：</th>
+					<th class="formTitle">Tên thuốc:</th>
 					<td class="formValue">
 						<input type="text" id="txtYPMC" class="form-control newtouch_Readonly" />
 					</td>
-					<th class="formTitle">Số lô：</th>
+					<th class="formTitle">Số lô:</th>
 					<td class="formValue">
 						<input type="text" id="txtPH" class="form-control newtouch_Readonly" />
 					</td>
-					<th class="formTitle">Lô：</th>
+					<th class="formTitle">Lô:</th>
 					<td class="formValue">
 						<input type="text" id="txtPC" class="form-control newtouch_Readonly" />
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle">Hạn sử dụng：</th>
+					<th class="formTitle">Hạn sử dụng:</th>
 					<td class="formValue">
-						<input id="txtYXQ" type="text" class="form-control input-wdatepicker newtouch_Readonly" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+						<input id="txtYXQ" type="text" class="form-control input-wdatepicker newtouch_Readonly" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
 					</td>
-					<th class="formTitle">Quy cách：</th>
+					<th class="formTitle">Quy cách:</th>
 					<td class="formValue">
 						<input type="text" id="txtYPGG" class="form-control newtouch_Readonly" />
 					</td>
-					<th class="formTitle" id="thXYKCDW">Tồn kho hiện có：</th>
+					<th class="formTitle" id="thXYKCDW">Tồn kho hiện có:</th>
 					<td class="formValue">
 						<input type="text" id="txtXYKC" class="form-control newtouch_Readonly" />
 						<input id="hidden_kcsl" type="text" hidden="hidden" />
 					</td>
-					<th class="formTitle">Nhà sản xuất：</th>
+					<th class="formTitle">Nhà sản xuất:</th>
 					<td class="formValue">
 						<input type="text" id="txtSCCJ" class="form-control newtouch_Readonly" />
 					</td>
 				</tr>
 				<tr>
-					<th class="formTitle" id="thPFJDW">Giá bán buôn：</th>
+					<th class="formTitle" id="thPFJDW">Giá bán buôn:</th>
 					<td class="formValue">
 						<input type="text" id="txtPFJ" class="form-control newtouch_Readonly" />
 					</td>
-					<th class="formTitle" id="thPFZEDW">Tổng giá bán buôn(đ)：</th>
+					<th class="formTitle" id="thPFZEDW">Tổng giá bán buôn(đ):</th>
 					<td class="formValue">
 						<input type="text" id="txtPFZE" class="form-control newtouch_Readonly" />
 					</td>
-					<th class="formTitle" id="thLSJDW">Giá bán lẻ：</th>
+					<th class="formTitle" id="thLSJDW">Giá bán lẻ:</th>
 					<td class="formValue">
 						<input type="text" id="txtLSJ" class="form-control newtouch_Readonly" />
 					</td>
-					<th class="formTitle" id="thLSZEDW">Tổng tiền bán lẻ(đ)：</th>
+					<th class="formTitle" id="thLSZEDW">Tổng tiền bán lẻ(đ):</th>
 					<td class="formValue">
 						<input type="text" id="txtLSZE" class="form-control newtouch_Readonly" />
 					</td>
@@ -102,7 +102,7 @@
 		<div id="divDGSYXX" style="padding: 2px;padding-right:20px;">
 			<table class="form">
 				<tr>
-					<th class="formTitle" id="thSYSLDW" style="width: 80px;"><span class="required">*</span>Số lượng thừa thiếu：</th>
+					<th class="formTitle" id="thSYSLDW" style="width: 80px;"><span class="required">*</span>Số lượng thừa thiếu:</th>
 					<td class="formValue">
 						<div class="row">
 							<div hidden id="div_sy" class="col-md-4">
@@ -119,15 +119,15 @@
 							</div>
 						</div>
 					</td>
-					<th class="formTitle">Nguyên nhân thừa thiếu：</th>
+					<th class="formTitle">Nguyên nhân thừa thiếu:</th>
 					<td class="formValue">
 						<select id="ddlSYYY" class="form-control"></select>
 					</td>
-					<th class="formTitle" style="width: 60px;">Ghi chú：</th>
+					<th class="formTitle" style="width: 60px;">Ghi chú:</th>
 					<td class="formValue">
 						<input type="text" id="txtRemark" class="form-control" />
 					</td>
-					<th class="formTitle"><span class="required">*</span>Mã nhân viên chịu trách nhiệm：</th>
+					<th class="formTitle"><span class="required">*</span>Mã nhân viên chịu trách nhiệm:</th>
 					<td class="formValue">
 						<input type="text" id="txtZRRGH" class="form-control" />
 						<input type="text" id="txtZRRMC" hidden />
@@ -189,7 +189,7 @@
         $("#ddlSYYY").empty();
         var sylx = "";
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-            sylx = "0";//0 Báo hỏng，1 Báo thừa
+            sylx = "0";//0 Báo hỏng, 1 Báo thừa
         } else {
             sylx = "1";
         }
@@ -274,12 +274,12 @@
             $("#txtSCCJ").val($thistr.attr('data-sccj'));
             $("#txtXYKC").attr('data-kcsl', $thistr.attr('data-kcsl')).val($thistr.attr('data-xykcstr'));
             $("#hidden_kcsl").val($thistr.attr('data-kcsl'));
-            $("#thXYKCDW").text('Tồn kho hiện có：');
+            $("#thXYKCDW").text('Tồn kho hiện có: ');
             $("#txtPFJ").val(parseFloat($thistr.attr('data-pfj')).toFixed(4)).attr("data-Ykpfj", $thistr.attr('data-Ykpfj'));
-            $("#thPFJDW").text('Giá bán buôn(đ/' + zxdw + ')：');
+            $("#thPFJDW").text('Giá bán buôn(đ/' + zxdw + '): ');
             $("#txtLSJ").val(parseFloat($thistr.attr('data-lsj')).toFixed(4)).attr("data-Yklsj", $thistr.attr('data-Yklsj'));;
-            $("#thLSJDW").text('Giá bán lẻ(đ/' + zxdw + ')：');
-            $("#thSYSLDW").text('Số lượng thừa thiếu：');
+            $("#thLSJDW").text('Giá bán lẻ(đ/' + zxdw + '): ');
+            $("#thSYSLDW").text('Số lượng thừa thiếu: ');
             $("#txtBMSL").val('');
             $("#txtZXSL").val('');
             if (djdw === zxdw) {
@@ -336,40 +336,40 @@
             ],
             ondblClickRow: function (rowid) {
                 //if (rowid) {
-                //    var getRowData = $("#gridSYXX").jqGrid('getRowData', rowid);
-                //    if (getRowData) {
-                //        if (getRowData.syqk === "Báo hỏng") {  //Báo hỏng
-                //            if (!$("#btnLoss").hasClass('active')) {
-                //                $("#btnProfit").removeClass('btn-restore').removeClass('active');
-                //                $("#btnLoss").addClass('btn-restore active');
-                //            }
-                //        } else {   //Báo thừa
-                //            if (!$("#btnProfit").hasClass('active')) {
-                //                $("#btnLoss").removeClass('btn-restore').removeClass('active');
-                //                $("#btnProfit").addClass('btn-restore active');
-                //            }
-                //        }
-                //        $("#txtYPCODE").attr("data-zhyz", getRowData.zhyz).val(getRowData.ypdm);
-                //        $("#txtYPMC").val(getRowData.ypmc);
-                //        $("#txtYPGG").val(getRowData.ypgg);
-                //        $("#txtPH").val(getRowData.ph);
-                //        $("#txtPC").val(getRowData.pc);
-                //        $("#txtYXQ").val(getRowData.yxq);
-                //        $("#txtSCCJ").val(getRowData.sccj);
-                //        $("#txtXYKC").val(getRowData.xykc);
-                //        $("#thXYKCDW").val(getRowData.xykcdw);
-                //        $("#txtLSJ").val(getRowData.lsj);
-                //        $("#thLSJDW").val(getRowData.lsjdw);
-                //        $("#txtPFJ").val(getRowData.pfj);
-                //        $("#thPFJDW").val(getRowData.pfjdw);
-                //        $("#thSYSLDW").val(getRowData.sysldw);
-                //        $("#txtLSZE").val(getRowData.lsze);
-                //        $("#txtPFZE").val(getRowData.pfze);
-                //        $("#hidden_kcsl").val(getRowData.kcsl);
-                //        $('#editRowId').val(rowid);
-                //        $('#txtRemark').val(getRowData.remark);
-                //        $("#ddlSYYY").val(getRowData.syyy);
-                //    }
+                // var getRowData = $("#gridSYXX").jqGrid('getRowData', rowid);
+                // if (getRowData) {
+                // if (getRowData.syqk === "Báo hỏng") { //Báo hỏng
+                // if (!$("#btnLoss").hasClass('active')) {
+                // $("#btnProfit").removeClass('btn-restore').removeClass('active');
+                // $("#btnLoss").addClass('btn-restore active');
+                // }
+                // } else { //Báo thừa
+                // if (!$("#btnProfit").hasClass('active')) {
+                // $("#btnLoss").removeClass('btn-restore').removeClass('active');
+                // $("#btnProfit").addClass('btn-restore active');
+                // }
+                // }
+                // $("#txtYPCODE").attr("data-zhyz", getRowData.zhyz).val(getRowData.ypdm);
+                // $("#txtYPMC").val(getRowData.ypmc);
+                // $("#txtYPGG").val(getRowData.ypgg);
+                // $("#txtPH").val(getRowData.ph);
+                // $("#txtPC").val(getRowData.pc);
+                // $("#txtYXQ").val(getRowData.yxq);
+                // $("#txtSCCJ").val(getRowData.sccj);
+                // $("#txtXYKC").val(getRowData.xykc);
+                // $("#thXYKCDW").val(getRowData.xykcdw);
+                // $("#txtLSJ").val(getRowData.lsj);
+                // $("#thLSJDW").val(getRowData.lsjdw);
+                // $("#txtPFJ").val(getRowData.pfj);
+                // $("#thPFJDW").val(getRowData.pfjdw);
+                // $("#thSYSLDW").val(getRowData.sysldw);
+                // $("#txtLSZE").val(getRowData.lsze);
+                // $("#txtPFZE").val(getRowData.pfze);
+                // $("#hidden_kcsl").val(getRowData.kcsl);
+                // $('#editRowId').val(rowid);
+                // $('#txtRemark').val(getRowData.remark);
+                // $("#ddlSYYY").val(getRowData.syyy);
+                // }
                 //}
             }
         });
@@ -424,7 +424,7 @@
             remark: $("#txtRemark").val()
         }];
 
-        if ($('#editRowId').val()) {            //là sửa đổi
+        if ($('#editRowId').val()) { //là sửa đổi
             $('#gridSYXX').jqGrid("delRowData", $('#editRowId').val()); //trướcremovebỏ dòng đó
         }
 
@@ -474,7 +474,7 @@
             dataType: "json",
             success: function (data) {
                 $.modalMsg("Lưu thành công", 'success', 1000);
-                newtouch_event_f7();//Thừa thiếu mới：Số chứng từ mới Xóa trống dữ liệu chính Xóa trống chi tiết
+                newtouch_event_f7();//Thừa thiếu mới: Số chứng từ mới Xóa trống dữ liệu chính Xóa trống chi tiết
                 $('#gridSYXX').jqGrid("clearGridData");//Xóa trốngGrid
 				$("#txtSYZE").val("");//Xóa tổng lãi lỗ
 				window.open("/Report/PrintReport?type=报损报溢打印表&param=syIds=" + data.message +"|OrganizeId=" + $("#OrganizeId").val(),"height=500, width=1195, top=100, left=50, toolbar=no, menubar=no, scrollbar=yes, resizeble=no, location=no, status=no");
@@ -502,7 +502,7 @@
         }
         bmsl = bmsl === '' ? 0 : bmsl;
         zxsl = zxsl === '' ? 0 : zxsl;
-        if ($("#div_sy").is(":hidden")) {   //Đơn vị đơn giá(Đơn vị của bộ phận hiện tại) sl/zhyz
+        if ($("#div_sy").is(":hidden")) { //Đơn vị đơn giá(Đơn vị của bộ phận hiện tại) sl/zhyz
             Sysl = parseFloat(zxsl);
         } else {
             Sysl = parseFloat(bmsl) * parseFloat($("#txtYPCODE").attr('data-zhyz')) + parseFloat(zxsl);
@@ -565,7 +565,7 @@
             return false;
         }
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') == 'Loss') {
-            if (Sysl > parseFloat($("#txtXYKC").attr('data-kcsl'))) {   //Ngược lại，So sánh trực tiếp số lượng（Số lượng đơn vị nhỏ nhất）
+            if (Sysl > parseFloat($("#txtXYKC").attr('data-kcsl'))) { //Ngược lại, So sánh trực tiếp số lượng(Số lượng đơn vị nhỏ nhất)
                 $.modalAlert("Số lượng báo hỏng phải nhỏ hơn tồn kho hiện có", 'warning');
                 return false;
             }

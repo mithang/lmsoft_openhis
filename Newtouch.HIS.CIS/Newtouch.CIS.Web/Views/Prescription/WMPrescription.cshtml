@@ -252,7 +252,7 @@
             }).trigger("reloadGrid");
         }
 
-        //kích hoạt ngaySửacủa nótrongmột bản lầnKhám bệnhcủaĐã gửiĐơn thuốc（chưaGửiđếnkhotrongcủachắc chắn sẽởSửadanh sáchtrong）
+        //kích hoạt ngaySửacủa nótrongmột bản lầnKhám bệnhcủaĐã gửiĐơn thuốc(chưaGửiđếnkhotrongcủachắc chắn sẽởSửadanh sáchtrong)
         var triggereditcfh = sessionStorage.getItem("triggereditcfh");
         if(!!triggereditcfh){
             sessionStorage.removeItem("triggereditcfh");
@@ -420,7 +420,7 @@
                                 }
                         ]
 
-                    }   //Lưu ý：Đơn vị liềuphải định ký tựởLiều lượngphía dưới，vìphía dướiCóTheonàyCơ sởđến tìmĐơn vị liềucủa。（vìselectKhông cóidcủaThuộc tính）
+                    }   //Lưu ý：Đơn vị liềuphải định ký tựởLiều lượngphía dưới，vìphía dướiCóTheonàyCơ sởđến tìmĐơn vị liềucủa。(vìselectKhông cóidcủaThuộc tính)
                 },
                 { label: 'redundant_jldw', name: 'redundant_jldw', width: 40, editwidth: '', align: 'center', editable: true, hidden: true },  //Không thể bỏ từ điểnjldw
                 { label: 'mcjldwwwwwww', name: 'mcjldwwwwwww', width: 40, editwidth: '', align: 'center', editable: true, hidden: true },  //Không thể bỏ Đã chọncủa
@@ -531,7 +531,7 @@
                                                     var tsnum=cls==1 ? '1': sl; //tháokhôngThuốchệsốlà1Số ngàyMặc định1
                                                     $("#" + rowid + "_tsss").val(tsnum);
                                                 }
-                                                if( $("#" + rowid + "_cls").val()==1){//tháokhông卖
+                                                if( $("#" + rowid + "_cls").val()==1){//bỏ đánh dấu không bán
                                                     var qzint = Number(Math.ceil(((ypjl/jlzhxs).toFixed(4))));
                                                     sl=Number(Math.ceil((cellval*qzint * zxcs)));
                                                 }
@@ -660,7 +660,7 @@
                 { label: 'Thao tác', name: 'action', width: 80, align: 'center' }
             ],
             editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
-            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue(có bo tròn)
             pager: "#gridxycfPager",
             loadComplete: function () {
             },
@@ -1140,7 +1140,7 @@
                 }
                 return resultObjArr;
 			},
-			//caption: "Liều lượng倍số",
+			//caption: "Bội số liều lượng",
 			colModel: [
 				{ label: '', name: 'jl', widthratio: 25 },
 			],

@@ -26,9 +26,9 @@
             </td>
             <th class="formTitle" style="width:75px;">Thời gian đăng ký khám:</th>
             <td class="formValue">
-                <input id="gh_kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 88px; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                <input id="gh_kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 88px; float:left;" value="@DateTime.Now.ToString("01/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 <span style="margin-left:2px; float: left; line-height: 25px;">—</span>
-                <input id="gh_jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 88px;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                <input id="gh_jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width: 88px;float:left;margin-left:2%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
             </td>
             <td class="formTitle" style="width: 50px;">
                 <button type="button" id="btn_search" class="btn btn-primary btn-md">Tra cứu</button>
@@ -49,8 +49,8 @@
         $("#selCardType").val(cardType);
         gridList();
         $("#btn_search").click(function () {
-            if ($("#gh_kssj").val() === "") $("#gh_kssj").val("@DateTime.Now.ToString("yyyy-MM-01")");
-            if ($("#gh_jssj").val() === "") $("#gh_kssj").val("@DateTime.Now.ToString("yyyy-MM-dd")");
+            if ($("#gh_kssj").val() === "") $("#gh_kssj").val("@DateTime.Now.ToString("01/MM/yyyy")");
+            if ($("#gh_jssj").val() === "") $("#gh_kssj").val("@DateTime.Now.ToString("dd/MM/yyyy")");
             $gridList.jqGrid("clearGridData");
             $gridList.jqGrid('setGridParam', {
                 postData: param(),

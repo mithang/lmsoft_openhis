@@ -16,7 +16,7 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">Thuốc：</th>
+                    <th class="formTitle">Thuốc:</th>
                     <td class="formValue">
                         <input id="keyword" type="text" class="form-control" />
                     </td>
@@ -25,11 +25,11 @@
                     </td>
                     <th class="formTitle ">Ngày thống kê:</th>
                     <td class="formValue">
-                        <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("dd/MM/yyyy 00:00:00")" on onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">Đến：</th>
+                    <th class="formTitle">Đến:</th>
                     <td class="formValue">
-                        <input id="endTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="endTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("dd/MM/yyyy HH:mm:ss")" on onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
                     <td class="formValue" style="width:15%;margin-left:10px">
                         <div id="rangeRadio" style="margin-left:30px">
@@ -88,7 +88,7 @@
             }
         });
     }
-    
+
     $(function () {
         InitSrm();
         $('#if_data').css('height', $(window).height() - 85);
@@ -96,7 +96,7 @@
         $("#btn_search").click(function () {
 
             if ($("#keyword").val() == "" || $("#keyword").val() == null) {
-                $.modalAlert("Vui lòng nhập thuốc trước，sau đó tìm kiếm！", 'error');
+                $.modalAlert("Vui lòng nhập thuốc trước, sau đó tìm kiếm!", 'error');
                 return false;
             }
 

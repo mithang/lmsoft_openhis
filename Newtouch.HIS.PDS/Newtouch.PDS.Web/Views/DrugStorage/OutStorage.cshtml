@@ -16,33 +16,33 @@
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Số phiếu xuất kho：</th>
+                    <th class="formTitle">Số phiếu xuất kho:</th>
                     <td class="formValue">
                         <input id="txtCKDH" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle"><span class="req">*</span>Số hóa đơn：</th>
+                    <th class="formTitle"><span class="req">*</span>Số hóa đơn:</th>
                     <td class="formValue">
                         <input id="txtFPH" type="text" class="form-control" onchange="ChangeFPH()" placeholder="Số hóa đơn" />
                     </td>
-                    <th class="formTitle">Cách xuất kho：</th>
+                    <th class="formTitle">Cách xuất kho:</th>
                     <td class="formValue">
                         <select id="ddlCKFS" class="form-control required"></select>
                     </td>
-                    <th class="formTitle">Ngày lập hóa đơn：</th>
+                    <th class="formTitle">Ngày lập hóa đơn:</th>
                     <td class="formValue">
-                        <input id="txtKPRQ" type="text" class="form-control input-wdatepicker newtouch_Readonly" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="txtKPRQ" type="text" class="form-control input-wdatepicker newtouch_Readonly" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Mã nhà cung cấp：</th>
+                    <th class="formTitle">Mã nhà cung cấp:</th>
                     <td class="formValue">
                         <input id="txtGYSCODE" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Tên nhà cung cấp：</th>
+                    <th class="formTitle">Tên nhà cung cấp:</th>
                     <td class="formValue">
                         <input id="txtGYSMC" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Tổng số tiền xuất kho(đ)：</th>
+                    <th class="formTitle">Tổng số tiền xuất kho(đ):</th>
                     <td class="formValue">
                         <input id="txtCKZE" type="text" class="form-control newtouch_Readonly" />
                     </td>
@@ -55,13 +55,13 @@
         <div id="divYPMX" style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="req">*</span>Mã thuốc：</th>
+                    <th class="formTitle"><span class="req">*</span>Mã thuốc:</th>
                     <td class="formValue">
                         <input id="editRowId" value="" style="display:none;" />
                         <input id="txtSRM" type="text" class="form-control" placeholder="Mã Tên Pinyin Tên hàng hóa" />
                     </td>
 
-                    <th class="formTitle" id="txtCKSLDW"><span class="req">*</span>Số lượng xuất kho：</th>
+                    <th class="formTitle" id="txtCKSLDW"><span class="req">*</span>Số lượng xuất kho:</th>
                     <td class="formValue">
                         <div class="row">
                             <div class="col-md-8">
@@ -73,84 +73,84 @@
                             </div>
                         </div>
                     </td>
-                    <th class="formTitle"><span class="req">*</span>Số tiền xuất kho(đ)：</th>
+                    <th class="formTitle"><span class="req">*</span>Số tiền xuất kho(đ):</th>
                     <td class="formValue">
                         <input id="txtCKJE" type="text" class="form-control" onchange="CKJE_Leave()" />
                     </td>
-                    <th class="formTitle">Lý do trả hàng：</th>
+                    <th class="formTitle">Lý do trả hàng:</th>
                     <td class="formValue">
                         <input id="txtTHYY" type="text" class="form-control" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Kết quả xử lý：</th>
+                    <th class="formTitle">Kết quả xử lý:</th>
                     <td class="formValue">
                         <input id="txtCLJG" type="text" class="form-control" />
                     </td>
-                    <th class="formTitle">Hạn sử dụng：</th>
+                    <th class="formTitle">Hạn sử dụng:</th>
                     <td class="formValue">
-                        <input id="txtYXQ" type="text" class="form-control input-wdatepicker newtouch_Readonly" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="txtYXQ" type="text" class="form-control input-wdatepicker newtouch_Readonly" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     </td>
-                    <th class="formTitle">Tồn kho khả dụng：</th>
+                    <th class="formTitle">Tồn kho khả dụng:</th>
                     <td class="formValue">
                         <input id="txtKYKC" type="text" class="form-control newtouch_Readonly" />
                         <input id="hidden_kcsl" type="text" hidden="hidden" />
                     </td>
-                    <th class="formTitle">Quy cách：</th>
+                    <th class="formTitle">Quy cách:</th>
                     <td class="formValue">
                         <input id="txtGG" type="text" class="form-control newtouch_Readonly" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Tên thuốc：</th>
+                    <th class="formTitle">Tên thuốc:</th>
                     <td class="formValue">
                         <input id="txtYPMC" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle" id="thPFJDW">Giá bán buôn(đ)：</th>
+                    <th class="formTitle" id="thPFJDW">Giá bán buôn(đ):</th>
                     <td class="formValue">
                         <input id="txtPFJ" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle" id="thLSJDW">Giá bán lẻ(đ)：</th>
+                    <th class="formTitle" id="thLSJDW">Giá bán lẻ(đ):</th>
                     <td class="formValue">
                         <input id="txtLSJ" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle" id="thJJDW">Đơn giá xuất kho(đ)：</th>
+                    <th class="formTitle" id="thJJDW">Đơn giá xuất kho(đ):</th>
                     <td class="formValue">
                         <input id="txtCKDJ" type="text" class="form-control newtouch_Readonly" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Tỷ lệ chiết khấu(%)：</th>
+                    <th class="formTitle">Tỷ lệ chiết khấu(%):</th>
                     <td class="formValue">
                         <input id="txtKL" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle" id="thPFZEDW">Tiền bán buôn(đ)：</th>
+                    <th class="formTitle" id="thPFZEDW">Tiền bán buôn(đ):</th>
                     <td class="formValue">
                         <input id="txtPFZE" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle" id="thLSZEDW">Tiền bán lẻ(đ)：</th>
+                    <th class="formTitle" id="thLSZEDW">Tiền bán lẻ(đ):</th>
                     <td class="formValue">
                         <input id="txtLSZE" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Số đăng ký：</th>
+                    <th class="formTitle">Số đăng ký:</th>
                     <td class="formValue">
                         <input id="txtPZWH" type="text" class="form-control newtouch_Readonly" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Số lô：</th>
+                    <th class="formTitle">Số lô:</th>
                     <td class="formValue">
                         <input id="txtPH" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Lô：</th>
+                    <th class="formTitle">Lô:</th>
                     <td class="formValue">
                         <input id="txtPC" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Ngày sản xuất：</th>
+                    <th class="formTitle">Ngày sản xuất:</th>
                     <td class="formValue">
                         <input id="txtscrq" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Hệ số chuyển đổi：</th>
+                    <th class="formTitle">Hệ số chuyển đổi:</th>
                     <td class="formValue">
                         <input id="txtzhyz" type="text" class="form-control newtouch_Readonly" />
                     </td>
@@ -253,7 +253,7 @@
         url: '/DrugStorage/SelectDepartmentMedicineList2',
         ajaxmethod: 'POST',
         inputtextcheck: function () {
-            if ($("#txtFPH").val().replace(/(^\s*)|(\s*$)/g, "") === "") {   //Loại bỏ khoảng trắng hai đầu
+            if ($("#txtFPH").val().replace(/(^\s*)|(\s*$)/g, "") === "") { //Loại bỏ khoảng trắng hai đầu
                 $.modalAlert("Vui lòng chọn số hóa đơn trước", 'warning');
                 return false;
             }
@@ -289,7 +289,7 @@
             { label: 'kcId', name: 'kcId', hidden: true },
             { label: 'zxdw', name: 'zxdw', hidden: true },
             { label: 'bzs', name: 'bzs', hidden: true },
-            { label: 'kykc', name: 'kykc', hidden: true }  //Tồn kho khả dụng
+            { label: 'kykc', name: 'kykc', hidden: true } //Tồn kho khả dụng
         ],
         itemdbclickhandler: function ($thistr) {
             //$("#txtzhyz").val($thistr.attr('data-zhyz'));
@@ -305,14 +305,14 @@
             var ykdw;
             if ($thistr.attr('data-ykdw') === $thistr.attr('data-zxdw')) {
                 ykdw = $thistr.attr('data-ykdw');
-                $("#ddlCKDW").append('<option value="ykdw">' + $thistr.attr('data-ykdw') + '</option>');   //Đơn vị xuất kho
+                $("#ddlCKDW").append('<option value="ykdw">' + $thistr.attr('data-ykdw') + '</option>'); //Đơn vị xuất kho
             } else {
                 //ykdw = $thistr.attr('data-ykdw') + "," + $thistr.attr('data-zxdw');
                 ykdw = $thistr.attr('data-ykdw');
                 $("#ddlCKDW").append('<option value="ykdw">' + $thistr.attr('data-ykdw') + '</option>');
                 //$("#ddlCKDW").append('<option value="zxdw">' + $thistr.attr('data-zxdw') + '</option>');
             }
-            $("#kxdw").val(ykdw);   //Đơn vị có thể chọn
+            $("#kxdw").val(ykdw); //Đơn vị có thể chọn
             $("#txtYXQ").val($thistr.attr('data-yxq'));
             $("#txtPFJ").val($thistr.attr('data-pfj'));
             $("#txtLSJ").val($thistr.attr('data-lsj'));
@@ -327,7 +327,7 @@
 
     });
 
-    //Thay đổi số hóa đơn，Chi tiết thuốcdivXóa
+    //Thay đổi số hóa đơn, Chi tiết thuốcdivXóa
     function ChangeFPH() {
         CleanInput();
     }
@@ -355,7 +355,7 @@
                 {
                     label: 'Số tiền xuất kho', name: 'zje', width: 80, align: 'left'
                     //formatter: function (val) {
-                    //    return val.toFixed(4);
+                    // return val.toFixed(4);
                     //}
                 },
                 { label: 'Tỷ lệ chiết khấu', name: 'kl', width: 80, align: 'left' },
@@ -370,7 +370,7 @@
                 { label: 'lsze', name: 'lsze', hidden: true },
                 { label: 'Ckzhyz', name: 'Ckzhyz', hidden: true },
                 { label: 'kcId', name: 'kcId', hidden: true },
-                { label: 'kxdw', name: 'kxdw', hidden: true },   //Đơn vị có thể chọn
+                { label: 'kxdw', name: 'kxdw', hidden: true }, //Đơn vị có thể chọn
                 { label: 'Ckbmkc', name: 'Ckbmkc', hidden: true }
 
             ],
@@ -434,11 +434,11 @@
 
     //Tải bằng Entergrid
     $('#txtCLJG').keydownEnterEvent(function () {
-        if ($('#editRowId').val()) {            //là sửa đổi
-            newtouch_event_f3();    //Mô phỏng Sửa nút Nhấn
+        if ($('#editRowId').val()) { //là sửa đổi
+            newtouch_event_f3(); //Mô phỏng Sửa nút Nhấn
         }
         else {
-            newtouch_event_f2();    //Mô phỏng Nút xác nhận Nhấn
+            newtouch_event_f2(); //Mô phỏng Nút xác nhận Nhấn
         }
     });
 
@@ -457,8 +457,8 @@
             ypdm: $("#txtSRM").val(),
             ypmc: $("#txtYPMC").val(),
             gg: $("#txtGG").val(),
-            Sl: sl,   //Số lượng lưu cuối cùng vào cơ sở dữ liệu
-            tusl: $("#txtCKSL").val(),   //Số lượng thoát
+            Sl: sl, //Số lượng lưu cuối cùng vào cơ sở dữ liệu
+            tusl: $("#txtCKSL").val(), //Số lượng thoát
             dw: $("#ddlCKDW").find("option:selected").text(),
             kxdw: $("#kxdw").val(),
             kykc: $("#txtKYKC").val(),
@@ -583,7 +583,7 @@
             success: function (res) {
                 if (res.state === "success") {
                     $.modalAlert("Xuất kho thành công", 'success');
-                    newtouch_event_f7();//Xuất nhập kho：Số chứng từ mới Xóa trống dữ liệu chính Xóa trống chi tiết
+                    newtouch_event_f7();//Xuất nhập kho: Số chứng từ mới Xóa trống dữ liệu chính Xóa trống chi tiết
                     $('#gridCKMX').jqGrid("clearGridData");//Xóa trốngGrid
                 } else {
                     $.modalAlert(res.message, 'error');
@@ -637,9 +637,9 @@
         var Sl;
         var pfj = parseFloat($("#txtPFJ").val());
         var lsj = parseFloat($("#txtLSJ").val());
-        if ($("#ddlCKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) {    //Nếu đơn vị có thể trả đã chọn：Đơn vị kho thuốc Số lượng=Nhập số lượng，Tiền bán buôn=Số lượng*Giá bán buôn，Tiền bán lẻ=Số lượng*Giá bán lẻ
+        if ($("#ddlCKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) { //Nếu đơn vị có thể trả đã chọn: Đơn vị kho thuốc Số lượng=Nhập số lượng, Tiền bán buôn=Số lượng*Giá bán buôn, Tiền bán lẻ=Số lượng*Giá bán lẻ
             Sl = parseFloat($("#txtCKSL").val());
-        } else {   //Đơn vị có thể trả：Đơn vị nhỏ nhất，Số lượng=Nhập số lượng/Hệ số chuyển đổi，Tiền bán buôn=Số lượng*Giá bán buôn，Tiền bán lẻ=Số lượng*Giá bán lẻ
+        } else { //Đơn vị có thể trả: Đơn vị nhỏ nhất, Số lượng=Nhập số lượng/Hệ số chuyển đổi, Tiền bán buôn=Số lượng*Giá bán buôn, Tiền bán lẻ=Số lượng*Giá bán lẻ
             Sl = window.roundingBy4she6ru5chengshuang(parseFloat($("#txtCKSL").val()) / parseFloat($("#txtSRM").attr('data-zhyz')), 4);
         }
 
@@ -665,10 +665,10 @@
             return false;
         }
         var Sl;
-        if ($("#ddlCKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) {    //Nếu đơn vị có thể trả đã chọn：Đơn vị kho thuốc Số lượng=Nhập số lượng
+        if ($("#ddlCKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) { //Nếu đơn vị có thể trả đã chọn: Đơn vị kho thuốc Số lượng=Nhập số lượng
 
             Sl = parseFloat($("#txtCKSL").val());
-        } else {   //Đơn vị có thể trả：Đơn vị nhỏ nhất，Số lượng=Nhập số lượng/Hệ số chuyển đổi
+        } else { //Đơn vị có thể trả: Đơn vị nhỏ nhất, Số lượng=Nhập số lượng/Hệ số chuyển đổi
             Sl = window.roundingBy4she6ru5chengshuang(parseFloat($("#txtCKSL").val()) / parseFloat($("#txtSRM").attr('data-zhyz')), 4);
         }
 
@@ -687,7 +687,7 @@
         var pfj = parseFloat($("#txtPFJ").val());
         var jj = parseFloat($("#txtCKDJ").val());
 
-        $("#txtKL").val(window.roundingBy4she6ru5chengshuang(pfj * 100 / jj, 4));  //Làm tròn 5 bỏ 6 lên
+        $("#txtKL").val(window.roundingBy4she6ru5chengshuang(pfj * 100 / jj, 4)); //Làm tròn 5 bỏ 6 lên
     }
 
     //Tính tổng Số tiền xuất kho
@@ -725,14 +725,14 @@
             $.modalAlert("Số tiền xuất kho phải lớn hơn0số", 'warning');
             return false;
         }
-        if ($("#ddlCKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) {   //Đơn vị kho thuốc Sl/zhyz
+        if ($("#ddlCKDW").find("option:selected").text() === $("#txtYPMC").attr('data-ykdw')) { //Đơn vị kho thuốc Sl/zhyz
             var kykcsl = parseFloat($("#txtKYKC").attr('data-kykc')) / parseFloat($("#txtSRM").attr('data-zhyz'));
-            if (parseFloat($("#txtCKSL").val()) > kykcsl) {   //So sánh Số lượng（Số lượng đơn vị nhỏ nhất）
+            if (parseFloat($("#txtCKSL").val()) > kykcsl) { //So sánh Số lượng(Số lượng đơn vị nhỏ nhất)
                 $.modalAlert("Số lượng xuất kho lớn hơn tồn kho khả dụng", 'warning');
                 return false;
             }
         } else {
-            if (parseFloat($("#txtCKSL").val()) > parseFloat($("#txtKYKC").attr('data-kykc'))) {   //Ngược lại，So sánh trực tiếp số lượng（Số lượng đơn vị nhỏ nhất）
+            if (parseFloat($("#txtCKSL").val()) > parseFloat($("#txtKYKC").attr('data-kykc'))) { //Ngược lại, So sánh trực tiếp số lượng(Số lượng đơn vị nhỏ nhất)
                 $.modalAlert("Số lượng xuất kho lớn hơn tồn kho khả dụng", 'warning');
                 return false;
             }

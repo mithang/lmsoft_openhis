@@ -59,15 +59,15 @@
         <div class="panel-heading">Thông tin xuất kho</div>
         <table class="form">
             <tr>
-                <th class="formTitle">Kế hoạch mua sắm：</th>
+                <th class="formTitle">Kế hoạch mua sắm:</th>
                 <td class="formValue">
                     <input id="Pdh" type="text" class="form-control newtouch_Readonly required" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Khoa mua sắm：</th>
+                <th class="formTitle"><span class="required">*</span>Khoa mua sắm:</th>
                 <td class="formValue">
                     <select id="department" name="department" class="form-control"></select>
                 </td>
-                <th class="formTitle">Ghi chú：</th>
+                <th class="formTitle">Ghi chú:</th>
                 <td class="formValue">
                     <input id="remark" name="remark" type="text" class="form-control " />
                 </td>
@@ -247,7 +247,7 @@
                 { label: 'productId', name: 'productId', hidden: true, editable: true }
             ],
             editinputwidthborder: false,    //Có cần viền không mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không mặc địnhtrue（có bo góc）
+            editinputborderradius: false,   //Có cần bo góc viền không mặc địnhtrue(có bo góc)
             gridComplete: function () {
                 var ids = $gridList.getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -394,7 +394,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng tích chọn dữ liệu cần sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng tích chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
         }
         $("#department").trigger("change");
@@ -446,7 +446,7 @@
         }
         var reg = /^[1-9]\d*$/;//Lớn hơn0số nguyên
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("Số lượng phải là số nguyên lớn hơn 0！", "warning", 1500);
+            $.modalMsg("Số lượng phải là số nguyên lớn hơn 0!", "warning", 1500);
             return false;
         }
         return true;

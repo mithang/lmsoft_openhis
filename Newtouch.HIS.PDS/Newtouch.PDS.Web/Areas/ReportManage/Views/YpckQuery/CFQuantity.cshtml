@@ -9,19 +9,19 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Thời gian bắt đầu：</th>
+                <th class="formTitle">Thời gian bắt đầu:</th>
                 <td class="formValue">
                     <input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:140px"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { refReport(); } })"
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss', onpicked: function () { refReport(); } })"
                            value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" />
                 </td>
-                <th class="formTitle">Thời gian kết thúc：</th>
+                <th class="formTitle">Thời gian kết thúc:</th>
                 <td class="formValue">
                     <input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:140px"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd  HH:mm:ss' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd  HH:mm:ss', onpicked: function () { refReport(); } })"
-                           value="@DateTime.Now.ToString("yyyy-MM-dd  23:59:59")" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss', onpicked: function () { refReport(); } })"
+                           value="@DateTime.Now.ToString("dd/MM/yyyy 23:59:59")" />
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">
                     <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
@@ -54,7 +54,7 @@
         url += "&OrganizeId=6d5752a7-234a-403e-aa1c-df8b45d3469f";
         url += "&beginDate=" + $('#ksrq').val();
         url += "&endDate=" + $('#jsrq').val();
-   
+
 		setTimeout("$.loading(true, 'Đang yêu cầu trang báo cáo...');", 10);
         $("#iframerightiframerightiframerightttt").attr('src', url);
 

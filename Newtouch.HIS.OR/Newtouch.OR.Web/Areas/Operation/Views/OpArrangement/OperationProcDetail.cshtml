@@ -7,7 +7,7 @@
     * {
         box-sizing: border-box;
     }
-    /* Đặt chiều cao của nội dung và tài liệu thành100%，để bật“Tab toàn trang” */
+    /* Đặt chiều cao của nội dung và tài liệu thành 100%, để bật"Tab toàn trang" */
     body,
     html {
         height: 100%;
@@ -42,7 +42,7 @@
             background-color: #C1CDCD;
         }
 
-    /* Đặt kiểu nội dung tab（và thêm chiều cao：Nội dung toàn trang là100%） */
+    /* Đặt kiểu nội dung tab(và thêm chiều cao: nội dung toàn trang là 100%) */
     .tabcontent {
         color: black;
         display: none;
@@ -191,7 +191,7 @@
                     <div class="form-group">
                         <label class="col-sm-2 control-label"><span class="required">*</span>Thời gian phẫu thuật:</label>
                         <div class="col-sm-3">
-                            <input id="sssj2" type="text" class="form-control input-wdatepicker formClearIgnore required" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <input id="sssj2" type="text" class="form-control input-wdatepicker formClearIgnore required" value="" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         </div>
                     </div>
                     <div class="form-group">
@@ -382,7 +382,7 @@
 
     }
     function openPage(pageName, elmnt, color) {
-        // Theo mặc định，Sử dụngclass=“tabcontent”Ẩn tất cả các phần tử
+        // Theo mặc định, Dùng class="tabcontent" để ẩn tất cả phần tử
         var i, tabcontent, tablinks;
         tabcontent = document.getElementsByClassName("tabcontent");
         for (i = 0; i < tabcontent.length; i++) {
@@ -402,7 +402,7 @@
         elmnt.style.backgroundColor = color;
     }
 
-    // Lấyidcho=“defaultOpen”phần tử và nhấp vào nó
+    // Lấyidcho="defaultOpen"phần tử và nhấp vào nó
     document.getElementById("defaultOpen").click();
 
     var applyInfo = {};
@@ -595,7 +595,7 @@
             zt: 1,
         }
         if (arrangeObj.sssj == "" || arrangeObj.oproom == "" || !arrangeObj.ysgh || !arrangeObj.ysxm) {
-            $.modalAlert("Vui lòng nhập thời gian phẫu thuật,Phòng mổ,Bác sĩ mổ chính", 'warning');
+            $.modalAlert("Vui lòng nhập thời gian phẫu thuật, phòng mổ và bác sĩ mổ chính", 'warning');
             return false;
         }
 

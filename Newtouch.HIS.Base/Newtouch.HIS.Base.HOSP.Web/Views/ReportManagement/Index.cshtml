@@ -190,8 +190,8 @@
                             });
                             
                            
-                            ////*thể hiện bất kỳ miền nào cũng có thể lắng nghe。    }      
-                            ////Khi tôi lắng nghe đượcmessagekhi sự kiện，Tôi biết có người gửi dữ liệu cho tôi，Tôi có dữ liệu thì có thể làm việc tương ứng。Nội bộ thực hiện tin nhắn    
+                            ////*thể hiện bất kỳ miền nào cũng có thể lắng nghe.     }      
+                            ////Khi tôi lắng nghe đượcmessagekhi sự kiện, Tôi biết có người gửi dữ liệu cho tôi, Tôi có dữ liệu thì có thể làm việc tương ứng. Nội bộ thực hiện tin nhắn    
                            
                              
                             //var childWindow = $("#mainIframe")[0].contentWindow;
@@ -263,7 +263,7 @@
                     dataType: "json",
                     success: function (res) {
                         if (res.message != "") {
-                            $.modalAlert("Xóa báo cáo thất bại：" + res.message, 'warning');
+                            $.modalAlert("Xóa báo cáo thất bại: " + res.message, 'warning');
                             gridload();
                             return;
                         } else {
@@ -291,7 +291,7 @@
                     dataType: "json",
                     success: function (res) {
                         if (res.message != "") {
-                            $.modalAlert("Xóa báo cáo thất bại：" + res.message, 'warning');
+                            $.modalAlert("Xóa báo cáo thất bại: " + res.message, 'warning');
                             gridload();
                             return;
                         } else {
@@ -317,7 +317,7 @@
             dataType: "json",
             success: function (res) {
                 if (res.message != "") {
-                    $.modalAlert("Dừng báo cáo thất bại：" + res.message, 'warning');
+                    $.modalAlert("Dừng báo cáo thất bại: " + res.message, 'warning');
                     gridload();
                     return;
                 } else {
@@ -337,7 +337,7 @@
             dataType: "json",
             success: function (res) {
                 if (res.message != "") {
-                    $.modalAlert("Bật báo cáo thất bại：" + res.message, 'warning');
+                    $.modalAlert("Bật báo cáo thất bại: " + res.message, 'warning');
                     gridload();
                     return;
                 } else {

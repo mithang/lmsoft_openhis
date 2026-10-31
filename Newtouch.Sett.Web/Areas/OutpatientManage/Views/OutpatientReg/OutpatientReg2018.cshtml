@@ -12,7 +12,7 @@
     var autoPrintFP = SysConfigReader.Bool("Outpatient_Register_AutoPrint");
     //cách in phiếu thu phí
     var invoicePrintMethod = SysConfigReader.String("Outpatient_ChargeFeeInvoice_PrintMethod");
-    //đăng ký khámđơn（không phải biên lai hình thức hướng dẫn khámcủa）
+    //đăng ký khámđơn(không phải biên lai hình thức hướng dẫn khámcủa)
     var formReportUrl = SysConfigReader.OrgReportLink("OutpatientRegisterForm");
     //làkhôngvàBHYTgiao dịch
     var openYbSett = SysConfigReader.Bool("Outpatient_ChargeFee_OpenYbSett");
@@ -311,7 +311,7 @@
                         async: false,
                         success: function (r) {
                             if (!!r.data && !!r.data.CardNo) {
-                                $("#CardTypeName").html('（' + r.data.CardTypeName + '）');
+                                $("#CardTypeName").html('(' + r.data.CardTypeName + ')');
                                 $("#kh").html(r.data.CardNo);
                             }
                         }
@@ -614,7 +614,7 @@
                 $("#phone").val(patModel.phone);
                 $("#nlshow").html(getAgeFromBirthTime({ begin: patModel.csny.replace('T',' ') }).text);
                 $("#blh").val(patModel.blh);
-                $("#CardTypeName").html('（' + patModel.CardTypeName + '）');
+                $("#CardTypeName").html('(' + patModel.CardTypeName + ')');
                 $("#kh").html(patModel.kh);
                 $("#patid").val(patModel.patid);
                 $("#hiddenzjlx").val(patModel.zjlx); 
@@ -1135,7 +1135,7 @@
             totalexpense:parseFloat($("#newzlf").html()).toFixed(2),//MZJS.ybzje,//regInfo.zje,//tổng số tiền giao dịch
             ybjsfwfyze:parseFloat($("#newzlf").html()).toFixed(2),//MZJS.ybzje,//tổng chi phí phạm vi quyết toán BHYT
             zhenlf:parseFloat($("#newzlf").html()).toFixed(2),//phí chẩn trị
-            ghf:parseFloat($("#newghf").html()).toFixed(2),//ngoại trú（cấp cứu）phí chẩn trị khám tự chi trả
+            ghf:parseFloat($("#newghf").html()).toFixed(2),//ngoại trú(cấp cứu)phí chẩn trị khám tự chi trả
             fybjsfwfyze:parseFloat($("#newghf").html()).toFixed(2),//MZJS.zfzje,//tổng chi phí phạm vi quyết toán ngoài BHYT
             jmbz:"1",
             xsywlx:"1",
@@ -2097,7 +2097,7 @@
             if (!!obj) {
                 obj.readCardCardType = $('#readCardCardType').val();
 
-                //1.xác định làkhônglần khám đầu tiên（tạo mới khám lần đầu,còn lạitảithông tin bệnh nhân）
+                //1.xác định làkhônglần khám đầu tiên(tạo mới khám lần đầu,còn lạitảithông tin bệnh nhân)
                 //cách xác thực khám lần đầu:1.CMND/CCCDsố+họ tên,2:mã cá nhân hợp tác nông thôn mới
                 $.loading("Đang tải dữ liệu,Vui lòng chờ một chút");
                 $.ajax({
@@ -2117,7 +2117,7 @@
                                     cardType: @Html.Raw(((int)EnumCardType.XNHJYK).ToString())
                                 });
                             } else {
-                                //khám lần đầu（dữ liệukho đã tồn tại thông tin bệnh nhân）obj.blh = resp.data.blh;
+                                //khám lần đầu(dữ liệukho đã tồn tại thông tin bệnh nhân)obj.blh = resp.data.blh;
                                 obj.zy = resp.data.zy;
                                 obj.zjlxfs = resp.data.zjlxfs;
                                 obj.hf = resp.data.hf;

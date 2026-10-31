@@ -139,7 +139,7 @@
     var count = 0;
         function getDateTime() {
             var date = new Date();
-        var d = date.format("yyyy-MM-dd hh:mm:ss");
+        var d = date.format("dd/MM/yyyy hh:mm:ss");
         $("#dateTime").html(d);
     }
     var a = window.setInterval("getDateTime()", 1000);
@@ -171,7 +171,7 @@
                     url: "/NurseManage/OutpatientConsult/GetConsultCall",
                     height: $(window).height() - 298,
                     width: $(window).width() - 298,
-                    postData: { ksCode: ksCode, keyword: '', ghrq: new Date().format('yyyy-MM-dd') },
+                    postData: { ksCode: ksCode, keyword: '', ghrq: new Date().format('dd/MM/yyyy') },
                     colModel: [
 
                         { label: 'Khoa', name: 'ksmc', width: 80, },
@@ -220,7 +220,7 @@
                 return str
     }
             if (str.length == 2) {
-                return str.substring(0, 1) + '*' //截lấyname chữkýchuỗi截lấyđầu tiênchữký，
+                return str.substring(0, 1) + '*' //Cắt lấy chữ ký đầu tiên của chuỗi tên
     }
 
     let starStr = ''
@@ -232,13 +232,13 @@
     }
         function getPostData() {
             var timeType = $("#time_horizon a.active").attr('data-value');
-        var dt = new Date().format("yyyy-MM-dd");
+        var dt = new Date().format("dd/MM/yyyy");
             if (timeType != 1) {
             dt = $("#txt_jhrq").val();
         }
             var queryJson = {
             keyword: '',
-        ghrq: new Date().format('yyyy-MM-dd'),
+        ghrq: new Date().format('dd/MM/yyyy'),
         //qdsj: dt,
         ksCode: $("#ksCode").val(),
         //ywbz: $("#ywbz").val(),
@@ -249,12 +249,12 @@
 
 //phútkhámGọi số
         function getConsultCall() {
-            //console.log(new Date().format('yyyy-MM-dd'));
+            //console.log(new Date().format('dd/MM/yyyy'));
             if (ksCode) {
             $.najax({
                 type: "POST",
                 url: "/NurseManage/OutpatientConsult/getConsultCall",
-                data: { ksCode: ksCode, keyword: '', ghrq: new Date().format('yyyy-MM-dd') },
+                data: { ksCode: ksCode, keyword: '', ghrq: new Date().format('dd/MM/yyyy') },
                 dataType: "json",
                 async: false,
                 success: function (ajaxresp) {

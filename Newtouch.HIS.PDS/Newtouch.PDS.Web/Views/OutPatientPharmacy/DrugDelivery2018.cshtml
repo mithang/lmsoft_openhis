@@ -60,39 +60,39 @@
             <div id="dv_cfInfo">
                 <ul>
                     <li>
-                        <span class="formTitle">Họ tên：</span>
+                        <span class="formTitle">Họ tên:</span>
                         <label id="lab_name" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Tuổi：</span>
+                        <span class="formTitle">Tuổi:</span>
                         <label id="lab_nl" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Bác sĩ：</span>
+                        <span class="formTitle">Bác sĩ:</span>
                         <label id="lab_ysmc" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle ">Số thẻ：</span>
+                        <span class="formTitle ">Số thẻ:</span>
                         <label id="lab_cardNo" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Tổng số tiền：</span>
+                        <span class="formTitle">Tổng số tiền:</span>
                         <label id="lab_zje" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Tính chất bệnh nhân：</span>
+                        <span class="formTitle">Tính chất bệnh nhân:</span>
                         <label id="lab_brxzmc" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Khoa：</span>
+                        <span class="formTitle">Khoa:</span>
                         <label id="lab_ksmc" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Số hóa đơn：</span>
+                        <span class="formTitle">Số hóa đơn:</span>
                         <label id="lab_fph" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Số đơn thuốc：</span>
+                        <span class="formTitle">Số đơn thuốc:</span>
                         <label id="lab_cfh" type="text" value=""></label>
                     </li>
                 </ul>
@@ -182,7 +182,7 @@
                 }
 
                 if (entries >= maxEntries) {
-                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này！", "warning", 1500);
+                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này!", "warning", 1500);
                     inputField.val(inputField.val().split(',').filter(entry => entry.trim() != "").slice(0, maxEntries).join(',') + ",");
                 }
             }
@@ -195,11 +195,11 @@
         return uniqueArr.join(',') + ','
     }
 
-    //Gắn sự kiện phím Enter--Xung đột với súng quét mã，Chú thích lại
+    //Gắn sự kiện phím Enter--Xung đột với súng quét mã, Chú thích lại
     //$(document).keyup(function (event) {
-    //    if (event.keyCode === 13) {
-    //        $("#btn_search").trigger("click");
-    //    }
+    // if (event.keyCode === 13) {
+    // $("#btn_search").trigger("click");
+    // }
     //});
 
     //Tự thích ứng
@@ -218,8 +218,8 @@
             caption: "Danh sách bệnh nhân",
             shrinkToFit: true,
             colModel: [
-                { label: 'Họ tên', name: 'xm',  align: 'left' },
-                { label: 'Số thẻ', name: 'CardNo',  align: 'center' }
+                { label: 'Họ tên', name: 'xm', align: 'left' },
+                { label: 'Số thẻ', name: 'CardNo', align: 'center' }
             ],
             beforeRequest: function () {
                 $("#gridPatientsPager_left").hide();
@@ -232,14 +232,14 @@
             }
             //,
             //gridComplete: function () {
-            //    $gridCfmx.jqGrid("clearGridData");
-            //    var ids = new Array();
-            //    //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
-            //    ids = $gridPatients.getDataIDs();
-            //    if (ids == null || ids.length <= 0) return;
-            //    //Chọn hoặc bỏ chọn dòng chỉ định。Nếuonselectrowchoturethì sẽ kích hoạt sự kiệnonSelectRow，onselectrowMặc định làture
-            //    $gridPatients.setSelection(ids[0], true);
-            //    doingSomethingAfterSelectRow(ids[0]);
+            // $gridCfmx.jqGrid("clearGridData");
+            // var ids = new Array();
+            // //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
+            // ids = $gridPatients.getDataIDs();
+            // if (ids == null || ids.length <= 0) return;
+            // //Chọn hoặc bỏ chọn dòng chỉ định.Nếuonselectrowchoturethì sẽ kích hoạt sự kiệnonSelectRow, onselectrowMặc định làture
+            // $gridPatients.setSelection(ids[0], true);
+            // doingSomethingAfterSelectRow(ids[0]);
             //}
         });
         $("#btn_RpSync").click(function () {
@@ -328,14 +328,14 @@
             }
         });
 	    //$.najax({
-		//    type: "get",
-		//    url: "/OutPatientPharmacy/GetFyCfInfo",
-		//    data: { cardNo: data.CardNo, xm: data.xm },
-		//    dataType: "json",
-		//    success: function (res) {
+		// type: "get",
+		// url: "/OutPatientPharmacy/GetFyCfInfo",
+		// data: { cardNo: data.CardNo, xm: data.xm },
+		// dataType: "json",
+		// success: function (res) {
 		//	    if (res != null) {
-        //            $("#lab_name").html(res.xm);
-        //            tempMzh = res.mzh;
+        // $("#lab_name").html(res.xm);
+        // tempMzh = res.mzh;
 		//		    $("#lab_cfh").html(res.cfh);
 		//		    $("#lab_cfh").attr("title", res.cfhComplete);
 		//		    $("#lab_cardNo").html(res.CardNo);
@@ -345,11 +345,11 @@
 		//		    $("#lab_brxzmc").html(res.brxzmc);
 		//		    $("#lab_nl").html(res.nl);
 		//		    $("#lab_ysmc").html(res.ysmc);
-        //            $("#lab_ksmc").html(res.ksmc);
+        // $("#lab_ksmc").html(res.ksmc);
 		//		    getcfmx("2","",data.CardNo, data.xm);
 		//	    } else {
-        //            $("#lab_name").html("");
-        //            tempMzh = "";
+        // $("#lab_name").html("");
+        // tempMzh = "";
 		//		    $("#lab_cfh").html("");
 		//		    $("#lab_cfh").attr("title", "");
 		//		    $("#lab_cardNo").html("");
@@ -361,7 +361,7 @@
 		//		    $("#lab_ysmc").html("");
 		//		    $("#lab_ksmc").html("");
 		//	    }
-		//    }
+		// }
         //});
     }
     function getcfmx(type,cfh,carno,xm) {
@@ -398,7 +398,7 @@
                 {
                     label: '<span class="required">*</span>Mã truy xuất', name: 'zsm', width: 80, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<input name=\"zsm\" id=\"sel_zsm_" + options.rowId + "\" rowid=" + options.rowId + "  class=\"scan-input editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" />";
+                        return "<input name=\"zsm\" id=\"sel_zsm_" + options.rowId + "\" rowid=" + options.rowId + " class=\"scan-input editable inline-edit-cell form-control\" style=\"padding:0; border-radius: 0px; border: 0px;\" />";
                     }
                 },
                 {
@@ -437,13 +437,13 @@
     function newtouch_event_f6() {
         var id = $gridPatients.jqGrid("getGridParam", "selrow");
         if (!id) {
-            $.modalAlert("Vui lòng chọn thông tin bệnh nhân！", 'warning');
+            $.modalAlert("Vui lòng chọn thông tin bệnh nhân!", 'warning');
             return;
         }
 
-        $.modalConfirm("Bạn có chắc muốn phát thuốc không?？", function (flag) {
+        $.modalConfirm("Bạn có chắc muốn phát thuốc không??", function (flag) {
             if (!flag) return;
-          
+
             var patient = new Array();
             var cfmx = $gridCfmx.getDataIDs();
             for (var i = 0; i < cfmx.length; i++) {
@@ -454,7 +454,7 @@
                 //Có chia lẻ không
                 var sfclValue = Number($("#sel_sfcl_" + rowid).val());
 
-                // Kiểm tra số lượng mã truy xuất。 Có chia lẻ thì chọn Có，Chỉ cần quét một cái，Nếu không thì cần quét mã tương ứng với số lượng nhập kho
+                // Kiểm tra số lượng mã truy xuất. Có chia lẻ thì chọn Có, Chỉ cần quét một cái, Nếu không thì cần quét mã tương ứng với số lượng nhập kho
                 const zsmLength = $("#sel_zsm_" + rowid).val().split(',').filter(entry => entry.trim() !== '').length
                 var maxZsmLength = 1
                 if (sfclValue === 1) {
@@ -463,7 +463,7 @@
                     maxZsmLength = parseInt(rowdata.sl)
                 }
                 if (zsmLength != 0 && zsmLength != maxZsmLength) {
-                    $.modalAlert("Mục: " + rowdata.ypmc + " số lượng không khớp với số lượng mã truy xuất！", 'warning');
+                    $.modalAlert("Mục: " + rowdata.ypmc + " số lượng không khớp với số lượng mã truy xuất!", 'warning');
                     return false;
                 }
 
@@ -478,7 +478,7 @@
                 });
             }
             if (patient.length <= 0) {
-                $.modalAlert("Không tìm thấy thông tin phát thuốc hợp lệ！", 'warning');
+                $.modalAlert("Không tìm thấy thông tin phát thuốc hợp lệ!", 'warning');
                 return;
             }
             $.najax({
@@ -503,12 +503,12 @@
             //printAtomizationCards(0);
             //printDrugUsage(0);
         }
-        );
+       );
     }
     //Phát thuốc tất cả
     function newtouch_event_f7() {
         var pats = new Array();
-        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true);//param2:Mặc định tất cả các dòng；param3：trueQuay lạiobject
+        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true);//param2:Mặc định tất cả các dòng; param3: trueQuay lạiobject
         var cfmx = $gridCfmx.getDataIDs();
         $(gridPatients).each(function () {
 			for (var i = 0; i < cfmx.length; i++) {
@@ -519,7 +519,7 @@
                 //Có chia lẻ không
                 var sfclValue = Number($("#sel_sfcl_" + rowid).val());
 
-                // Kiểm tra số lượng mã truy xuất。 Có chia lẻ thì chọn Có，Chỉ cần quét một cái，Nếu không thì cần quét mã tương ứng với số lượng nhập kho
+                // Kiểm tra số lượng mã truy xuất. Có chia lẻ thì chọn Có, Chỉ cần quét một cái, Nếu không thì cần quét mã tương ứng với số lượng nhập kho
                 const zsmLength = $("#sel_zsm_" + rowid).val().split(',').filter(entry => entry.trim() !== '').length
                 var maxZsmLength = 1
                 if (sfclValue === 1) {
@@ -528,7 +528,7 @@
                     maxZsmLength = parseInt(rowdata.sl)
                 }
                 if (zsmLength != 0 && zsmLength != maxZsmLength) {
-                    $.modalMsg("Mục: " + rowdata.ypmc + " số lượng không khớp với số lượng mã truy xuất！", "warning", 1500);
+                    $.modalMsg("Mục: " + rowdata.ypmc + " số lượng không khớp với số lượng mã truy xuất!", "warning", 1500);
                     return false;
                 }
 				pats.push({
@@ -544,10 +544,10 @@
 			}
         });
         if (pats.length <= 0) {
-            $.modalAlert("Không tìm thấy thông tin phát thuốc hợp lệ！", 'warning');
+            $.modalAlert("Không tìm thấy thông tin phát thuốc hợp lệ!", 'warning');
             return;
         }
-        $.modalConfirm("Bạn có chắc muốn phát tất cả thuốc không?？", function (flag) {
+        $.modalConfirm("Bạn có chắc muốn phát tất cả thuốc không??", function (flag) {
             if (!flag) return;
             //printInfusionCards(0);
             //printAtomizationCards(0);
@@ -564,7 +564,7 @@
                         $gridPatients.trigger("reloadGrid");
                         $gridCfmx.jqGrid("clearGridData");
                         cleanCfInfo();
-                    } else  $.modalAlert(res.message, Error);
+                    } else $.modalAlert(res.message, Error);
                 },
                 error: function (res) {
                     $.modalAlert(res.message, Error);
@@ -590,7 +590,7 @@
             var uri = '@reportUrl' + "?tempCode=1309&systemCode=PDS" + "&orgId=" + '@ViewBag.OrganizeId' + "&cfh=" + cfh + "&mzh=" + tempMzh + "&UserCode=" + opeator.UserCode;
             window.open(uri);
         }
-        else { if (type1 == 1) $.modalAlert("Không có đơn thuốc khí dung，không thể in thẻ khí dung！", 'warning'); }
+        else { if (type1 == 1) $.modalAlert("Không có đơn thuốc khí dung, không thể in thẻ khí dung!", 'warning'); }
     }
 
     function newtouch_event_f9() {
@@ -621,7 +621,7 @@
                 }
             });
         } else {
-            if (type1 == 1) $.modalAlert("Không có đơn thuốc truyền tĩnh mạch，không thể in thẻ truyền dịch！", 'warning');
+            if (type1 == 1) $.modalAlert("Không có đơn thuốc truyền tĩnh mạch, không thể in thẻ truyền dịch!", 'warning');
         }
     }
     function newtouch_event_f10() { printDrugUsage(1); }
@@ -640,7 +640,7 @@
             var cfhStr = newcfh.join(",");//Nối chuỗi mảng bằng dấu phẩy
             var uri = '@reportUrl' + "?tempCode=1306&systemCode=PDS" + "&orgId=" + '@ViewBag.OrganizeId' + "&cfh=" + cfhStr;
             window.open(uri);
-        } else { if (type == 1) $.modalAlert("Không có đơn thuốc uống、đơn thuốc dùng ngoài，không thể in nhãn hướng dẫn sử dụng！", 'warning'); }
+        } else { if (type == 1) $.modalAlert("Không có đơn thuốc uống, đơn thuốc dùng ngoài, không thể in nhãn hướng dẫn sử dụng!", 'warning'); }
     }
     //In đơn phát thuốc
     function printRpDetailV2(cfs) {
@@ -661,7 +661,7 @@
     function printRpDetail() {
         if ($("input[type='checkbox']").is(':checked')) {
             var pats = new Array();
-            var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true);//param2:Mặc định tất cả các dòng；param3：trueQuay lạiobject
+            var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true);//param2:Mặc định tất cả các dòng; param3: trueQuay lạiobject
             $(gridPatients).each(function () {
                 pats.push({
                     "CardNo": this.CardNo,
@@ -715,7 +715,7 @@
 
     //Đọccookie
     function getCookie(name) {
-        var arr, reg = new RegExp("(^| )" + name + "=([^;]*)(;|$)");
+        var arr, reg = new RegExp("(^|)" + name + "=([^;]*)(;|$)");
         if (arr === document.cookie.match(reg))
             return unescape(arr[2]);
         else

@@ -249,7 +249,7 @@
             { label: "Đơn vị", name: "dw", width: 40, align: "left" },
             {
                 label: "Đơn giá(đồng)", name: "dj", width: 60, align: "left", formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
             },
             { label: "Lượng điều trị mỗi lần", name: "zll", width: 70, align: "left" },
             { label: (from == "mz" ? "Tổng số lần" : "Số lần"), name: "sl", width: 40, align: "left" },
@@ -416,7 +416,7 @@
 
     fillDataToGrid();
 
-    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）củatính đầy đủ
+    //Kiểm tra dữ liệu đang chỉnh sửa(Chờ gửi)củatính đầy đủ
     function checkEditingRowData(rowData) {
         if (!rowData.sfxmCode || !rowData.sfxmmc || !rowData.yzlx || !rowData.sfdlCode || !rowData.sfdlmc) {
             $.modalAlert("Vui lòng chọn mụcthu phí", 'warning');
@@ -1029,7 +1029,7 @@
                         yzxz: (from == 'mz' ? ($('#sl').val() == 1 ? "1" : "2") : $('[name=yzxz]:checked').val()),
                         sfxmCode: this.sfxm,
                         sfxmmc: this.sfxmmc,
-                        yzlx: "2",  //Mục
+                        yzlx: "2", //Mục
                         duration: this.duration,
                         dwjls: this.dwjls,
                         dj: this.dj,

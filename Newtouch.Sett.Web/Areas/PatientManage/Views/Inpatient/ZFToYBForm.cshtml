@@ -139,7 +139,7 @@
     var yibaoCardInfo;
     var brxzobj = { brxz: "1", brxzmc: "BHYT thường" };
     var cqPatInfo = {};//thông tin đọc thẻ bệnh nhân
-    //thông tin làm thủ tục nhập viện（Giao diện BHYT trả về）
+    //thông tin làm thủ tục nhập viện(Giao diện BHYT trả về)
     var ryblInfo;
 
     function funcStep1(nextStepCallback) {
@@ -502,7 +502,7 @@
             });
             if (yibaoCardInfo) {
                 if (yibaoCardInfo.xxfhm === "P001") {
-                    sm01Info = yibaoCardInfo.sm01;//thông tin tài khoản(s000 、se01 、sm01)
+                    sm01Info = yibaoCardInfo.sm01;//thông tin tài khoản(s000 , se01 , sm01)
                     cqPatInfo.xm = sm01Info.xm;
                     cqPatInfo.sfzh = sm01Info.sfzh;
                     cqPatInfo.xzqh = sm01Info.xzqh;
@@ -514,7 +514,7 @@
                     //cqPatInfo.sfzh = sm01Info.sfzh;
                     cqPatInfo.kh = sm01Info.cardid;
                     //cqPatInfo.cblb = sm01Info.accountattr;
-                    var bkbz = sm01Info.accountattr.substr(11, 1);//trợ giúp khó khăn G、A
+                    var bkbz = sm01Info.accountattr.substr(11, 1);//trợ giúp khó khăn G, A
                     var gbbz = sm01Info.accountattr.substr(1, 1);//bảo hiểm cán bộ 1
                     if (bkbz == "G" || bkbz == "A" || gbbz == "1") {
                         cqPatInfo.ybVer = "shanghaiV5";

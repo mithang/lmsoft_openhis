@@ -22,7 +22,7 @@
             $(this).addClass("activepart");
 
             var fromcflx;
-            var currPage = $('#myTab li.active>a').attr('href');    //kiểm trahiện tạiCó哪mộttrangký
+            var currPage = $('#myTab li.active>a').attr('href');    //kiểm tra tab hiện tại đang mở
             if (currPage == "#linkkfcf") {
                 fromcflx = '@Html.Raw(((int)EnumCflx.RehabPres).ToString())';
             }

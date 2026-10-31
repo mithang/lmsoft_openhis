@@ -18,11 +18,11 @@
                     </td>
                     <td class="formValue" colspan="3">
                         <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
-                        <span style="color: red; margin-left:10px;">Lưu ý：Không thể tra cứu thuốc đã đăng ký điều chỉnh giá nhưng chưa thực hiện</span>
+                        <span style="color: red; margin-left:10px;">Lưu ý: Không thể tra cứu thuốc đã đăng ký điều chỉnh giá nhưng chưa thực hiện</span>
                     </td>
                 </tr>
             </table>
-        </div>       
+        </div>
     </div>
     <div class="gridPanel" style="margin-top:10px">
         <div class="gridPanel">
@@ -51,7 +51,7 @@
                     </td>
                     <th class="formTitle"><span class="required">*</span>Thời gian thực hiện</th>
                     <td class="formValue">
-                        <input id="txtZXSJ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ minDate: '%y-%M-#{%d+1}' })" />
+                        <input id="txtZXSJ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ minDate: '%y-%M-#{%d+1}' })" />
                     </td>
                 </tr>
                 <tr>
@@ -195,31 +195,31 @@
     function CheckData() {
         //Kiểm tra định dạng
         if ($("#txtYPFJ").val() === "") {
-            $.modalAlert("Vui lòng chọn thuốc để điều chỉnh giá！", 'warning');
+            $.modalAlert("Vui lòng chọn thuốc để điều chỉnh giá!", 'warning');
             return false;
         }
         if ($("#txtPFJ").val() === "") {
-            $.modalAlert("Giá bán buôn không được để trống！", 'warning');
+            $.modalAlert("Giá bán buôn không được để trống!", 'warning');
             return false;
         }
         if ($("#txtLSJ").val() === "") {
-            $.modalAlert("Giá bán lẻ không được để trống！", 'warning');
+            $.modalAlert("Giá bán lẻ không được để trống!", 'warning');
             return false;
         }
         if (isNaN($("#txtPFJ").val()) || isNaN($("#txtLSJ").val())) {
-            $.modalAlert("Định dạng giá bán buôn hoặc giá bán lẻ sai,Vui lòng nhập số！", 'warning');
+            $.modalAlert("Định dạng giá bán buôn hoặc giá bán lẻ sai,Vui lòng nhập số!", 'warning');
             return false;
-        }        
+        }
         if ($("#txtZXWJ").val() === "") {
-            $.modalAlert("Tệp thực hiện không được để trống！", 'warning');
+            $.modalAlert("Tệp thực hiện không được để trống!", 'warning');
             return false;
         }
         if ($("#txtZXSJ").val() === "") {
-            $.modalAlert("Thời gian thực hiện không được để trống！", 'warning');
+            $.modalAlert("Thời gian thực hiện không được để trống!", 'warning');
             return false;
         }
         if ($("#txtPFJ").val() === $("#txtYPFJ").val() && $("#txtLSJ").val() === $("#txtYLSJ").val()) {
-            $.modalAlert("Giá bán buôn và giá bán lẻ không được giống giá gốc！", "warning");
+            $.modalAlert("Giá bán buôn và giá bán lẻ không được giống giá gốc!", "warning");
             return false;
         }
         return true;

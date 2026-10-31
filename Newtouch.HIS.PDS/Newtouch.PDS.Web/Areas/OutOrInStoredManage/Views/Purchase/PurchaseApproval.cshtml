@@ -49,7 +49,7 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Trạng thái duyệt：</th>
+                <th class="formTitle">Trạng thái duyệt:</th>
                 <td class="formValue">
                     <select id="ddzt" name="ddzt" class="form-control required">
                         <option value="0">Tất cả</option>
@@ -58,19 +58,19 @@
                         <option value="3">Đã hủy</option>
                     </select>
                 </td>
-                <th class="formTitle">Thời gian：</th>
+                <th class="formTitle">Thời gian:</th>
                 <td class="formValue">
-                    <input id="kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
-                <th class="formTitle">đến：</th>
+                <th class="formTitle">đến:</th>
                 <td class="formValue">
-                    <input id="jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
-                <th class="formTitle">Số chứng từ：</th>
+                <th class="formTitle">Số chứng từ:</th>
                 <td class="formValue">
                     <input id="yyjhdh" type="text" class="form-control " />
                 </td>
-                <th class="formTitle">Nhà cung cấp：</th>
+                <th class="formTitle">Nhà cung cấp:</th>
                 <td class="formValue">
                     <select id="selgys" name="selgys" class="form-control" multiple="multiple"></select>
                 </td>
@@ -157,7 +157,7 @@
                         else return '';
                     }
                 },
-               
+
                 { label: 'Số kế hoạch mua hàng', name: 'yyjhdh', width: 130, align: 'left' },
                 {
                     label: 'Trạng thái đơn hàng', name: 'ddzt', width: 80, align: 'left', formatter: function (cellvalue) {
@@ -179,7 +179,7 @@
                 {
                     label: "Thao tác", name: "", align: "left", width: 150,
                     formatter: function (cellvalue, options, rowobject) {
-                        return '<input type="button" id="btn_rpt" onclick="Updatedjmx(\'' + rowobject.cgId + '\',\'' + rowobject.ddzt + '\')" class="btn btn-info" style="width:60px;display:inline-block;"  value="Sửa"/> <input type="button" id="btn_rpt" onclick="rptdjmx(\'' + rowobject.cgId + '\')" class="btn btn-info" style="width:80px;display:inline-block;"  value="Phiếu inchứng từ"/>'
+                        return '<input type="button" id="btn_rpt" onclick="Updatedjmx(\'' + rowobject.cgId + '\',\'' + rowobject.ddzt + '\')" class="btn btn-info" style="width:60px;display:inline-block;" value="Sửa"/> <input type="button" id="btn_rpt" onclick="rptdjmx(\'' + rowobject.cgId + '\')" class="btn btn-info" style="width:80px;display:inline-block;" value="Phiếu inchứng từ"/>'
                     }
                 },
 
@@ -217,20 +217,20 @@
             });
             gyssStr = gyssStr.substring(0, gyssStr.length - 1);
         }
- 
+
         var d = { kssj: $("#kssj").val(), jssj: $("#jssj").val(), ddzt: $("#ddzt").val(), yyjhdh: $("#yyjhdh").val(), gysCode: gyssStr }
         return d;
     };
 
     function rptdjmx(cgId) {
-         
+
         var uri = '@reportUrl' + "?tempCode=1327" + "&systemCode=PDS&hospitalCode=" + '@ViewBag.OrganizeId'+"&cgId="+cgId;
         window.open(uri);
     }
 
     //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp, Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $.najax({
             type: "Get",
             url: "/OutOrInStoredManage/Purchase/QueryPurchaseDetailbyId",
@@ -290,7 +290,7 @@
     function Updatedjmx(cgId, ddzt)
     {
         if (ddzt != "1") {
-            $.modalAlert("Chứng từ đã chọn không phải trạng thái chờ phê duyệt，Không thể sửa", 'warning');
+            $.modalAlert("Chứng từ đã chọn không phải trạng thái chờ phê duyệt, Không thể sửa", 'warning');
             return;
         }
         $.modalOpen({
@@ -330,15 +330,15 @@
         for (var i = 0; i < selRowIds.length; i++) {
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
             if (ddzt=='1' && rowData.ddzt != "审核通过") {
-                $.modalAlert("Số chứng từ" + rowData.yyjhdh + "không phải là chứng từ đã phê duyệt，không thể thu hồi", 'warning');
+                $.modalAlert("Số chứng từ" + rowData.yyjhdh + "không phải là chứng từ đã phê duyệt, không thể thu hồi", 'warning');
                 return;
             }
             if (ddzt == '2' && rowData.ddzt != "待审核") {
-                $.modalAlert("Số chứng từ" + rowData.yyjhdh + "không phải trạng thái chờ phê duyệt，không thể phê duyệt", 'warning');
+                $.modalAlert("Số chứng từ" + rowData.yyjhdh + "không phải trạng thái chờ phê duyệt, không thể phê duyệt", 'warning');
                 return;
             }
             if (ddzt == '3' && rowData.ddzt != "待审核") {
-                $.modalAlert("Số chứng từ" + rowData.yyjhdh + "không phải trạng thái chờ phê duyệt，không thể hủy bỏ", 'warning');
+                $.modalAlert("Số chứng từ" + rowData.yyjhdh + "không phải trạng thái chờ phê duyệt, không thể hủy bỏ", 'warning');
                 return;
             }
             cgIds.push(rowData.cgId);
@@ -350,7 +350,7 @@
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {
-                    $.modalMsg(ddzt == 1 ? "Thu hồi phê duyệt thành công！" : (ddzt == 2 ? "Phê duyệt hoàn tất！" : "Chứng từ hủy bỏ hoàn tất！"), 'success', 1000);
+                    $.modalMsg(ddzt == 1 ? "Thu hồi phê duyệt thành công!" : (ddzt == 2 ? "Phê duyệt hoàn tất!" : "Chứng từ hủy bỏ hoàn tất!"), 'success', 1000);
                     $("#btn_search").trigger('click');
                 } else {
                     $.modalAlert(res.message, 'error');
@@ -392,7 +392,7 @@
         var rowid = $(obj).attr("rowid");
         $("#gridList").jqGrid('setCell', rowid, 'fph', fph);
         if (fph !== "") {
-            $.modalConfirm("Bạn có chắc muốn đổi số hóa đơn thành " + fph + " không？",
+            $.modalConfirm("Bạn có chắc muốn đổi số hóa đơn thành " + fph + " không?",
                 function (flag) {
                     if (flag) {
                         $.najax({

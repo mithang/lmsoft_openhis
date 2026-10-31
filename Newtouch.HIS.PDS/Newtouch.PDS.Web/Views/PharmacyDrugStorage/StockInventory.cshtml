@@ -20,17 +20,17 @@
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Ngày：</th>
+                    <th class="formTitle">Ngày:</th>
                     <td class="formValue" colspan="2">
                         <select id="ddlRQ" class="form-control"></select>
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Từ khóa：</th>
+                    <th class="formTitle">Từ khóa:</th>
                     <td class="formValue">
                         <input id="txtSRM" type="text" class="form-control" placeholder="Pinyin Mã Tên thuốc" />
                     </td>
-                    <th class="formTitle">Trạng thái thuốc：</th>
+                    <th class="formTitle">Trạng thái thuốc:</th>
                     <td class="formValue">
                         <select id="ddlYPZT" name="ddlYPZT" class="form-control">
                             <option value="-1">Tất cả</option>
@@ -38,13 +38,13 @@
                             <option value="0">Ngừng dùng</option>
                         </select>
                     </td>
-                    <th class="formTitle">Loại thuốc：</th>
+                    <th class="formTitle">Loại thuốc:</th>
                     <td class="formValue">
                         <select id="ddlYPLB" class="form-control">
                             <option value="">Tất cả</option>
                         </select>
                     </td>
-                    <th class="formTitle">Hiển thị tồn kho：</th>
+                    <th class="formTitle">Hiển thị tồn kho:</th>
                     <td class="formValue">
                         @Html.DropDownList("ddlKCXS", EnumKCXS.Bxsllslwl.ToDescSelectList(-1), new { @class = "form-control" })
                     </td>
@@ -93,9 +93,9 @@
             postData: getSearchPostData(),
             height: $(window).height() - 240,
             url: "",
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             onSelectRow_page: function (rowid) {
-                if (rowid && lastRowId && rowid !== lastRowId) {   //&&: Tương đương vớitrue/fase(Kiểm tra có giá trị không)
+                if (rowid && lastRowId && rowid !== lastRowId) { //&&: Tương đương vớitrue/fase(Kiểm tra có giá trị không)
 
                     $gridKCInfo.saveRow(lastRowId, null, null, null, function (callbackRowId) {//Lưu trước dòng đang ở trạng thái chỉnh sửa
                         GetYfbmYpComplexYpSlandDw(callbackRowId);//Thay đổi số lượng thuộc đơn vị bộ phận hiện tại
@@ -104,7 +104,7 @@
                 lastRowId = rowid;
                 $gridKCInfo.jqGrid('editRow', rowid, true, null, null, null, null, function (callbackRowId) {
                     GetYfbmYpComplexYpSlandDw(callbackRowId);//Thay đổi số lượng thuộc đơn vị bộ phận hiện tại
-                    lastRowId = undefined;  //Gọi lại
+                    lastRowId = undefined; //Gọi lại
                 });
             },
             colModel: [
@@ -171,10 +171,10 @@
 
     //Tải dữ liệu truy vấn lần đầu
     function afterCompleteFunction() {
-        var rowIds = $("#gridKCInfo").jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
+        var rowIds = $("#gridKCInfo").jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng 1.Lấy tất cả các dòng trướcId 2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
             ObjArr_Load.push($("#gridKCInfo").jqGrid('getRowData', rowIds[i]));
-            $("#gridKCInfo").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+            $("#gridKCInfo").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) { //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
             });
 
         }
@@ -187,7 +187,7 @@
             url: "/PharmacyDrugStorage/GetPDDateDropdownList",
             dataType: "json",
             success: function (ajaxresp) {
-                //Xóa trước，Điền tiếp
+                //Xóa trước, Điền tiếp
                 $("#ddlRQ").empty();
                 for (var i = 0; i < ajaxresp.data.length; i++) {
                     $("#ddlRQ").append('<option data-pdId=' + ajaxresp.data[i].pdId + '>' + ajaxresp.data[i].pdsj + '</option>');
@@ -205,7 +205,7 @@
         });
     }
 
-    //Nhập Số lượng dưới đơn vị nhỏ nhất，Thay đổi số lượng thuộc đơn vị bộ phận hiện tại
+    //Nhập Số lượng dưới đơn vị nhỏ nhất, Thay đổi số lượng thuộc đơn vị bộ phận hiện tại
     function GetYfbmYpComplexYpSlandDw(callbackRowId) {
         var rowData = $("#gridKCInfo").jqGrid('getRowData', callbackRowId);
         $.najax({
@@ -236,7 +236,7 @@
 
     //Lưu
     function newtouch_event_f8() {
-        var rowIds = $("#gridKCInfo").jqGrid('getDataIDs');//Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
+        var rowIds = $("#gridKCInfo").jqGrid('getDataIDs');//Lấy tất cả các dòngId, Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
 
         //Kiểm tra số lượng trả
         for (var i = 0; i < rowIds.length; i++) {
@@ -249,7 +249,7 @@
                 (rowData.deptSjsl < 0 && rowData.minSjsl < 0) ||
                 (isNaN(rowData.deptSjsl) && isNaN(rowData.minSjsl)) ||
                 (rowData.deptSjsl === "" && rowData.minSjsl === "")) {
-                $.modalAlert("Hạng mục（" + rowData.ypmc + "）Số lượng thực tế phải là số tự nhiên，Vui lòng xác nhận。", "warning");
+                $.modalAlert("Hạng mục(" + rowData.ypmc + ")Số lượng thực tế phải là số tự nhiên, Vui lòng xác nhận.", "warning");
                 EnableInlineEditBox();//Bật khung sửa trong dòng
                 return false;
             }
@@ -260,7 +260,7 @@
             objArrSave.push(this);
         });
         var resultObjArr = new Array();
-        //so sánh với mảng tải từ trang，đặt dòng dữ liệu đã sửa vàoresultObjArrtrong，gửi cho máy chủ
+        //so sánh với mảng tải từ trang, đặt dòng dữ liệu đã sửa vàoresultObjArrtrong, gửi cho máy chủ
         for (var i = 0; i < objArrSave.length; i++) {
             if (objArrSave[i].deptSjsl !== ObjArr_Load[i].deptSjsl || objArrSave[i].minSjsl !== ObjArr_Load[i].minSjsl) {
                 //resultObjArr.push({ pdmxId: objArrSave[i].pdmxId, sjsl: CalculationMinUnitNum(objArrSave[i].deptSjsl, objArrSave[i].minSjsl, objArrSave[i].zhyz) });
@@ -283,21 +283,21 @@
         });
     };
 
-    //Quy đổi tồn kho thành số đơn vị nhỏ nhất  Chia lẻ
+    //Quy đổi tồn kho thành số đơn vị nhỏ nhất Chia lẻ
     function CalculationMinUnitNum(deptNum, minNum, zhyz) {
         return parseInt(deptNum) * parseInt(zhyz) + parseInt(minNum);
     }
 
-    //Quy đổi tồn kho thành số đơn vị nhỏ nhất  Không chia lẻ
+    //Quy đổi tồn kho thành số đơn vị nhỏ nhất Không chia lẻ
     function CalculationMinUnitNumNoOpen(deptNum, zhyz) {
         return parseInt(deptNum) * parseInt(zhyz);
     }
 
     //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        var rowIds = $("#gridKCInfo").jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
+        var rowIds = $("#gridKCInfo").jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng 1.Lấy tất cả các dòng trướcId 2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
-            $("#gridKCInfo").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+            $("#gridKCInfo").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) { //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
             });
         }
     }

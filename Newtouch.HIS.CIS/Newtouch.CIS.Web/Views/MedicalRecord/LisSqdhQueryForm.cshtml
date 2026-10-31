@@ -13,9 +13,9 @@
                 <tr>
                     <th class="formTitle">PhiếuThời gianPhạm vi:</th>
                     <td class="formValue" colspan="2">
-                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:30%;  float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:30%;  float:left;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         <span style="margin-left:1%;float:left">—</span>
-                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:30%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:30%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     </td>
                     <th class="formTitle">Tên bộ mẫu:</th>
                     <td class="formValue">
@@ -99,7 +99,7 @@
                 $.modalAlert("Trạng thái hiện tại không phải đã hoàn thành nên không thể xem báo cáo", 'warning');
                 return;
             } else {
-                //金风易通 LIS 2024-4-28
+                //Jinfeng Yitong LIS 2024-4-28
                 window.open("@pacsHost/doctor-api/api/viewer?type=1&pid=" + blh + "&areaCode=" + "@curOpr.OrganizeId", "_blank");
                 //$.ajax({
                 //    url: "http://127.0.0.1:22228/api/CQSmartCheck/GetLisReport",//lisbáo cáo

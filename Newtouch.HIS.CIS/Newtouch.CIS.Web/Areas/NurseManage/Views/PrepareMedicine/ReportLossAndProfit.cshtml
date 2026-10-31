@@ -60,7 +60,7 @@
                 <tr>
                     <th class="formTitle">Hạn hiệu lực:</th>
                     <td class="formValue">
-                        <input id="txtYXQ" type="text" class="form-control input-wdatepicker newtouch_Readonly" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="txtYXQ" type="text" class="form-control input-wdatepicker newtouch_Readonly" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     </td>
                     <th class="formTitle">Quy cách:</th>
                     <td class="formValue">
@@ -566,7 +566,7 @@
             return false;
         }
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') == 'Loss') {
-            if (Sysl > parseFloat($("#txtXYKC").attr('data-kcsl'))) {   //phảncủa，trực tiếpsokháSố lượng（Đơn vị nhỏ nhấtSố lượng）
+            if (Sysl > parseFloat($("#txtXYKC").attr('data-kcsl'))) {   //phảncủa，trực tiếpsokháSố lượng(Đơn vị nhỏ nhấtSố lượng)
                 $.modalAlert("Số lượng báo hỏng phải nhỏ hơn tồn kho hiện có", 'warning');
                 return false;
             }

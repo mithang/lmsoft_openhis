@@ -24,9 +24,9 @@
                 </td>
                 <th class="formTitle">Ngày bắt đầuquyết toán:</th>
                 <td class="formValue" colspan="2">
-                    <input id="jsksrq" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-6).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="jsksrq" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-6).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     <span style="margin-left:1%;float:left">—</span>
-                    <input id="jsjsrq" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="jsjsrq" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
                 <td class="formValue">
                     <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Truy vấn" />

@@ -33,7 +33,7 @@
                 },
                 {
                     label: 'Thời gian quyết toán', name: 'CreateTime', width: 130, align: "left"
-                    , formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
+, formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' }
                 },
                 {
                     label: 'Số tiền quyết toán', name: 'jszje', width: 80, align: "left",
@@ -49,7 +49,7 @@
                 { label: 'Ngày thu phí', name: 'sfrq', width: 100, align: "left", formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
                 { label: 'Nhân viên quyết toán', name: 'CreatorUserName', width: 80, align: "left" },
             ]
-            , ondblClickRow: function (rowid) {
+, ondblClickRow: function (rowid) {
                 var frameId = window.name;
                 top.$('div#' + frameId + '').siblings('div.layui-layer-btn').find('a.layui-layer-btn0').trigger('click');
             }

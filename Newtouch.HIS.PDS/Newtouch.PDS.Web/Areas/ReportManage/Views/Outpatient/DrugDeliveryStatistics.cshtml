@@ -19,13 +19,13 @@
                 <tr>
                     <th class="formTitle ">Ngày bắt đầu:</th>
                     <td class="formValue">
-                        <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                        <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("dd/MM/yyyy 00:00")" on onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                     </td>
-                    <th class="formTitle">Ngày kết thúc：</th>
+                    <th class="formTitle">Ngày kết thúc:</th>
                     <td class="formValue">
-                        <input id="endTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                        <input id="endTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("dd/MM/yyyy HH:mm")" on onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                     </td>
-                    <th class="formTitle">Mã nhập：</th>
+                    <th class="formTitle">Mã nhập:</th>
                     <td class="formValue">
                         <input id="txtSRM" type="text" class="form-control" placeholder="Họ tên/Số thẻ/Số hóa đơn" />
                     </td>
@@ -58,7 +58,7 @@
              var yfcode = "@Newtouch.Infrastructure.Constants.CurrentYfbm.yfbmCode";
             var uri = '@reportUrl' + "?tempCode=1309&systemCode=PDS" + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&yfbmCode=" + yfcode;
             uri += "&kssj=" + $('#startTime').val() + "&jssj=" + $('#endTime').val() + "&keyword=" + $("#txtSRM").val() ;
-           
+
             $("#if_data").attr('src', uri);
         });
         $("#btn_search").trigger("click");

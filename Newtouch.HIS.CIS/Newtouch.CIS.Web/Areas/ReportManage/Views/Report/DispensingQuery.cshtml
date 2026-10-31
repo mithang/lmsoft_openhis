@@ -17,9 +17,9 @@
                 <tr>
                     <th class="formTitle">Ngày tra cứu:</th>
                     <td class="formValue" colspan="2">
-                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         <span style="margin-left:1%;float:left">—</span>
-                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     </td>
                     <td class="formValue">
                         <input type="button" id="btn_search" class="btn btn-primary" style="width:36%;margin-left: 10%;" value="Tra cứu" />
@@ -175,7 +175,7 @@
                             //    returnval = "Kết thúc";
                             //}
                         }
-                        $("#gridJSMXList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
+                        $("#gridJSMXList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" alt="Trạng thái bệnh nhân" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
 
                     }
                     last = rowData.zh;
@@ -199,7 +199,7 @@
             //địnhnghĩahợpvàdòngsố
             var rowSpanTaxCount = 1;
             for (j = i + 1; j <= length; j++) {
-                //vàtrênbêncủathông tinđốiso VDnếuGiá trịmộtdạngthìhợpvàdòngsố+1 nhiênsauCài đặtrowspan 让hiện tạiphiếuôẨn
+                //Thông tin đối soát hiển thị theo cột: nếu một giá trị chỉ có một dạng thì gộp dòng (rowspan), ngược lại ẩn ô
                 var end = $("#" + gridName + "").jqGrid('getRowData', mya[j]);
                 var cellNames = CellName.split(",");
                 for (var n = 0; n < cellNames.length; n++) {
@@ -243,7 +243,7 @@
     //        { label: 'Thực hiệnThời gian', name: 'zxsj', width: 140, align: 'left' },
     //        { label: 'Tên thuốc', name: 'ypmc', width: 160, align: 'left' },
     //        { label: 'Quy cách', name: 'ypgg', width: 80, align: 'left' },
-    //        { label: '厂nhà', name: 'ycmc', width: 120, align: 'left' },
+    //        { label: 'Nhà sản xuất', name: 'ycmc', width: 120, align: 'left' },
     //        { label: 'ứngthu', name: 'ys', width: 50, align: 'left' },
     //        { label: 'thựcthu', name: 'ss', width: 50, align: 'left' },
     //        { label: 'Thời gian bắt đầu', name: 'kssj', width: 140, align: 'left' },
@@ -277,7 +277,7 @@
     //                else if (last !== rowData.zh) {
     //                    returnval = "Bắt đầu";
     //                }
-    //                $("#gridJSMXList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
+    //                $("#gridJSMXList").setCell(ids[i], "zh", '<img src="../../../../Content/img/' + returnval + '.png" alt="Trạng thái bệnh nhân" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
 
     //            }
     //            last = rowData.zh;
@@ -287,7 +287,7 @@
 
     function setlastrowzuhao(rowid) {
         var lastrow = parseInt(rowid) - 1;
-        $("#gridJSMXList").setCell(lastrow, "zh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
+        $("#gridJSMXList").setCell(lastrow, "zh", '<img src="../../../../Content/img/finished.png" alt="Kết thúc" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
     }
     //Inhộitổngxóaphiếu
 

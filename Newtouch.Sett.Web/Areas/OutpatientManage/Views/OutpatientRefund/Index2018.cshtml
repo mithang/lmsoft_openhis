@@ -43,9 +43,9 @@
                 </td>
                 <th class="formTitle">Ngày thu phí:</th>
                 <td class="formValue" colspan="2">
-                    <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { $('#btn_search').trigger('click'); } })" />
+                    <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:42%; float:left;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { $('#btn_search').trigger('click'); } })" />
                     <span style="margin-left:2%;float:left;">—</span>
-                    <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :41%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { $('#btn_search').trigger('click'); } })" />
+                    <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :41%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { $('#btn_search').trigger('click'); } })" />
                 </td>
                 <td>
                     <input type="button" id="btn_search" class="btn btn-primary form-an" style="margin-left:10%;" value="Tìm kiếm" />
@@ -620,7 +620,7 @@
                     break;
                 }
                 if (rowData.tsl.replace(/(^\s*)|(\s*$)/g, "") === "") {
-                    $.modalAlert("Khoản mục（" + rowData.mc + "）Số lượng hoàn làtrống,Vui lòng xác nhận。", 'warning');
+                    $.modalAlert("Khoản mục(" + rowData.mc + ")Số lượng hoàn làtrống,Vui lòng xác nhận.", 'warning');
                     EnableInlineEditBox(selRowIds[i]);//bật khung sửa trong dòng
                     return;
                 }
@@ -642,17 +642,17 @@
                     break;
                 }
                 if (rowData.tsl.replace(/(^\s*)|(\s*$)/g, "") === "") {
-                    $.modalAlert("Khoản mục（" + rowData.mc + "）Số lượng hoàn làtrống,Vui lòng xác nhận。", 'warning');
+                    $.modalAlert("Khoản mục(" + rowData.mc + ")Số lượng hoàn làtrống,Vui lòng xác nhận.", 'warning');
                     $("#gridList").jqGrid("setSelection", selRowIds[i], false);
                     return;
                 }
                 if (rowData.ktsl <= 0 || isNaN(rowData.ktsl) || rowData.ktsl === "") {
-                    $.modalAlert("Khoản mục（" + rowData.mc + "）Số lượng có thể hoàn là0,Không thể hoàn phí。Vui lòng đến nhà thuốc trả thuốc trước。", 'warning');
+                    $.modalAlert("Khoản mục(" + rowData.mc + ")Số lượng có thể hoàn là0,Không thể hoàn phí.Vui lòng đến nhà thuốc trả thuốc trước.", 'warning');
                     $("#gridList").jqGrid("setSelection", selRowIds[i], false);
                     return;
                 }
                 if (rowData.tsl <= 0 || isNaN(rowData.tsl) || rowData.tsl === "") {
-                    $.modalAlert("Khoản mục（" + rowData.mc + "）Số lượng hoàn là0,Vui lòng xác nhận。", 'warning');
+                    $.modalAlert("Khoản mục(" + rowData.mc + ")Số lượng hoàn là0,Vui lòng xác nhận.", 'warning');
                     $("#gridList").jqGrid("setSelection", selRowIds[i], false);
                     return;
                 }
@@ -662,12 +662,12 @@
                     return;
                 }
                 if (ovpraseFloat(rowData.ktsl) != ovpraseFloat(rowData.sl)) {
-                    $.modalAlert("Khoản mục（" + rowData.mc + "）Chưa hoàn toàn bộ thuốc Không thể hoàn phí。Vui lòng đến nhà thuốc trả thuốc trước。", 'warning');
+                    $.modalAlert("Khoản mục(" + rowData.mc + ")Chưa hoàn toàn bộ thuốc Không thể hoàn phí.Vui lòng đến nhà thuốc trả thuốc trước.", 'warning');
                     $("#gridList").jqGrid("setSelection", selRowIds[i], false);
                     return;
                 }
                 if (rowData.cflxmc == "Kiểm tra đơn thuốc" && (rowData.sqdzt == "2" || rowData.sqdzt == "3")) {
-                    $.modalAlert("Khoản mục kiểm tra này（" + rowData.mc + "） Đã đăng ký hoặc đã có báo cáo Không thể hoàn phí", 'warning');
+                    $.modalAlert("Khoản mục kiểm tra này(" + rowData.mc + ") Đã đăng ký hoặc đã có báo cáo Không thể hoàn phí", 'warning');
                     $("#gridList").jqGrid("setSelection", selRowIds[i], false);
                     return;
                 }
@@ -767,7 +767,7 @@
                     //    });
 					//}
                     $.currentWindow(iframeId).AcceptClick(function (ajaxresp) {
-                        //thu hồi hóa đơn cũ（hủy hóa đơn cũ）//in phiếu thu phí mới
+                        //thu hồi hóa đơn cũ(hủy hóa đơn cũ)//in phiếu thu phí mới
                         if (ajaxresp && ajaxresp.data) {
                             refundPrintInvoiceReq(thisJszb.fph, patModel, ajaxresp.data);
                         }
@@ -834,9 +834,9 @@
     }
 
     function refundPrintInvoiceReq(oldFph, newTempPatModel, newJszbInfo) {
-        //1、in hóa đơn mới
+        //1. in hóa đơn mới
         printNewInvoice(newTempPatModel, newJszbInfo);
-        //2、sau đósauhủy hóa đơn gốc lại
+        //2. sau đósauhủy hóa đơn gốc lại
         if (!!oldFph) {
             if ('@(invoicePrintMethod)' == 'ActiveX') {
                 //hủy hóa đơn gốc
@@ -1035,7 +1035,7 @@
                                                     null,//cqybjyDenySettleReturn.output.setlinfo,
                                                     mztfProDto,
                                                     function (hisSuccessAjaxResp) {
-                                                        //3、modalAlertthông tin chênh lệch  xem tham số truyền
+                                                        //3. modalAlertthông tin chênh lệch  xem tham số truyền
                                                         if (hisSuccessAjaxResp && hisSuccessAjaxResp.message !== 'Hoàn phí thành công') {
                                                             $.modalAlert(hisSuccessAjaxResp.message, 'error');
                                                         } else {
@@ -1320,8 +1320,8 @@
 			        mzjzje: 0,
 			        zxjssj: $.getDate()
 		        };
-		        //hisquyết toánxác nhận（bao gồmBHYTquyết toánxác nhận）
-		        //theosaumáy tra racủakết quả,nếunàybệnh nhâncólập tự lậpcủakhoản mục（khôngcómã BHYT）,thìquyết toánlúccủatổng số tiền,điền tổngcủatổng hợptổng số tiền
+		        //hisquyết toánxác nhận(bao gồmBHYTquyết toánxác nhận)
+		        //theosaumáy tra racủakết quả,nếunàybệnh nhâncólập tự lậpcủakhoản mục(khôngcómã BHYT),thìquyết toánlúccủatổng số tiền,điền tổngcủatổng hợptổng số tiền
 		        //nếu chỉcóBHYTkhoản mục,thìbằngBHYTquyết toáncủaBHYTtrả vềkết quảlàcho phép tiến hànhquyết toán
 		        mxxx.zje = xmzje;
 		        mxxx.xjzfys = ovpraseFloat(mxxx.zfzje) + ovpraseFloat(ybjyCqFeeReturn.cqxjzf);
@@ -1409,8 +1409,8 @@
 					                ybjyCqFeeReturn.jylsh = ybjyCqFeeReturn.setl_id;
 					                mxxx.xjzfys = ovpraseFloat(mxxx.zfzje) + ovpraseFloat(ybjyCqFeeReturn.cqxjzf);
 					            }
-						        //hisquyết toánxác nhận（bao gồmBHYTquyết toánxác nhận）
-						        //theosaumáy tra racủakết quả,nếunàybệnh nhâncólập tự lậpcủakhoản mục（khôngcómã BHYT）,thìquyết toánlúccủatổng số tiền,điền tổngcủatổng hợptổng số tiền
+						        //hisquyết toánxác nhận(bao gồmBHYTquyết toánxác nhận)
+						        //theosaumáy tra racủakết quả,nếunàybệnh nhâncólập tự lậpcủakhoản mục(khôngcómã BHYT),thìquyết toánlúccủatổng số tiền,điền tổngcủatổng hợptổng số tiền
 						        //nếu chỉcóBHYTkhoản mục,thìbằngBHYTquyết toáncủaBHYTtrả vềkết quảlàcho phép tiến hànhquyết toán
 						        mxxx.zje = xmzje;
 						        if (funcSuccCallback) {
@@ -1486,18 +1486,18 @@
                 type: "POST",
                 data: {
                     mzh: patModel.mzh, jsnm: thisJszb.jsnm, tjsxmDict: tjsxmDict, expectedTmxZje: tmxZje
-                    , hcybjsh: hcybjsh, newwjybjsh: newwjybjsh
-                    , hcybfeeRelated: hcybfeeRelated
-                    , newybfeeRelated: newybfeeRelated
-                    , guianMztfProDto: guianMztfProDto
-                    , outpId: newOutpId
+, hcybjsh: hcybjsh, newwjybjsh: newwjybjsh
+, hcybfeeRelated: hcybfeeRelated
+, newybfeeRelated: newybfeeRelated
+, guianMztfProDto: guianMztfProDto
+, outpId: newOutpId
                 },
                 url: "/OutpatientManage/OutpatientRefund/guianhandleRefund",
                 dataType: "json",
                 loadingtext: "Đang yêu cầuHISHoàn phíquyết toán,Vui lòng chờ…",
                 success: function (ajaxresp) {
                     if (funcSuccCallback) {
-                        //thu hồi hóa đơn cũ（hủy hóa đơn cũ）//in phiếu thu phí mới
+                        //thu hồi hóa đơn cũ(hủy hóa đơn cũ)//in phiếu thu phí mới
                         if (ajaxresp && ajaxresp.data) {
                             //var uri = '@Html.Raw(invoiceReportUrl)' + "&jsnm=" + ajaxresp.data.jsnm;
                             //window.open(uri, "_blank", "height=500, width=1195,top=100, left=50, toolbar =no, menubar=no, scrollbars=yes, resizable=yes, location=no, status=no");
@@ -1556,7 +1556,7 @@
         function ybReSett(tjsxmDictObj, ybReq, ybfyxzCompResult) {
             $.loading(true, 'ĐangHủyĐã quyết toánBHYTquyết toán,Vui lòng chờ…');
             timeoutFunc = function () {
-                //BHYThoàn phí（xác nhận hoàn） trả vềhaisố quyết toán mộtđảo đỏ một mớicủachưa quyết toán
+                //BHYThoàn phí(xác nhận hoàn) trả vềhaisố quyết toán mộtđảo đỏ một mớicủachưa quyết toán
                 var ybjyDenySettleReturn = $.yibao.DenySettle($('#readCardCardType').val(), thisJszb.ybjsh, ybReq.sbbh, ybReq.AKE279, ybReq.AKE278);
                 $.loading(false);
                 if (ybjyDenySettleReturn.Code === 0) {
@@ -1584,18 +1584,18 @@
             setTimeout("invokeTimeoutFunc();", 50);
         }
 
-        //chưa hoàn xong quyết toán lại（BHYTquyết toán trước+quyết toánxác nhận） + HISquyết toán lại
+        //chưa hoàn xong quyết toán lại(BHYTquyết toán trước+quyết toánxác nhận) + HISquyết toán lại
         function ybSettWtwCxj(hcybfeeRelated, tjsxmDictObj, ybReq, tmxzje, yxzje, hcybjsh, newwjybjsh) {
             $.loading(true, 'Đang quyết toán lại BHYT,Vui lòng chờ…');
             timeoutFunc = function () {
-                //1、BHYTquyết toán lại
+                //1. BHYTquyết toán lại
                 var ybjySettleClinicAReturn = $.yibao.SettleClinicA($('#readCardCardType').val(), newwjybjsh, ybReq.sbbh, yxzje, ybReq.jzyy, ybReq.AKE181, ybReq.AKC195, ybReq.ys, ybReq.ysmc, ybReq.zdicd10, ybReq.zdmc, ybReq.AKE279, ybReq.AKE278, ybReq.ks, ybReq.ksmc);
                 $.loading(false);
                 if (ybjySettleClinicAReturn.Code == 0) {
                     var newybfeeRelated = ybjySettleClinicAReturn.Data;
-                    //2、HIShoàn phí
+                    //2. HIShoàn phí
                     YbHISRefundSettlement(hcybfeeRelated, tjsxmDictObj, tmxzje, hcybjsh, newwjybjsh, newybfeeRelated, function (hisSuccessAjaxResp) {
-                        //3、modalAlertthông tin chênh lệch
+                        //3. modalAlertthông tin chênh lệch
                         if (hisSuccessAjaxResp && hisSuccessAjaxResp.message !== 'Hoàn phí thành công') {
                             $.modalAlert(hisSuccessAjaxResp.message, 'error');
                         }
@@ -1614,19 +1614,19 @@
             setTimeout("invokeTimeoutFunc();", 50);
         }
 
-        //đã hoàn xong quyết toán lại（BHYThủyđăng ký khám） + HISquyết toán lại
+        //đã hoàn xong quyết toán lại(BHYThủyđăng ký khám) + HISquyết toán lại
         function ybSettYtwCxj(hcybfeeRelated, tjsxmDictObj, ybReq, ybfyxzCompResult, tmxzje, hcybjsh, newwjybjsh) {
             $.loading(true, 'ĐangBHYTHủy quyết toán,Vui lòng chờ…');
             timeoutFunc = function () {
-                //1、BHYThủyđăng ký khám
+                //1. BHYThủyđăng ký khám
                 var ybjyDenyRegReturn = $.yibao.DenyReg(newwjybjsh, ybReq.sbbh, ybfyxzCompResult.TTCode);
                 $.loading(false);
                 if (ybjyDenyRegReturn.Code == 0) {
                     //nhất địnhcầnchonull,khôngcầncho trốngđối tượng
                     var newybfeeRelated = null;
-                    //2、HIShoàn phí
+                    //2. HIShoàn phí
                     YbHISRefundSettlement(hcybfeeRelated, tjsxmDictObj, tmxzje, hcybjsh, newwjybjsh, newybfeeRelated, function (hisSuccessAjaxResp) {
-                        //3、alertđã hoàn xong
+                        //3. alertđã hoàn xong
                         if (hisSuccessAjaxResp && hisSuccessAjaxResp.message !== 'Hoàn phí thành công') {
                             $.modalAlert(hisSuccessAjaxResp.message, 'error');
                         }
@@ -1654,16 +1654,16 @@
                 type: "POST",
                 data: {
                     mzh: patModel.mzh, jsnm: thisJszb.jsnm, tjsxmDict: tjsxmDict, expectedTmxZje: tmxZje
-                    , hcybjsh: hcybjsh, newwjybjsh: newwjybjsh
-                    , hcybfeeRelated: hcybfeeRelated
-                    , newybfeeRelated: newybfeeRelated
+, hcybjsh: hcybjsh, newwjybjsh: newwjybjsh
+, hcybfeeRelated: hcybfeeRelated
+, newybfeeRelated: newybfeeRelated
                 },
                 url: "/OutpatientManage/OutpatientRefund/YbRefundSettlement",
                 dataType: "json",
                 loadingtext: "Đang yêu cầuHISHoàn phíquyết toán,Vui lòng chờ…",
                 success: function (ajaxresp) {
                     if (funcSuccCallback) {
-                        //thu hồi hóa đơn cũ（hủy hóa đơn cũ）//in phiếu thu phí mới
+                        //thu hồi hóa đơn cũ(hủy hóa đơn cũ)//in phiếu thu phí mới
                         if (ajaxresp && ajaxresp.data) {
                             refundPrintInvoiceReq(thisJszb.fph, patModel, ajaxresp.data);
                             //writeOffEBill(patModel.mzh, thisJszb.jsnm); //hóa đơn điện tử Quảng Tây

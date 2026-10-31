@@ -23,14 +23,14 @@
                 <th class="formTitle">Ngày bắt đầu:</th>
                 <td class="formValue">
                     <input id="ksrq" type="text" class="form-control input-wdatepicker form-an formClearIgnore"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy'})" />
                 </td>
             </tr>
             <tr>
                 <th class="formTitle">Ngày kết thúc:</th>
                 <td class="formValue">
                     <input id="jsrq" type="text" class="form-control input-wdatepicker form-an formClearIgnore"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy'})" />
                 </td>
             </tr>
             <tr>
@@ -150,7 +150,7 @@
                     <td class="formTitle"><span class="required">*</span>Ngày trị liệu:</td>
                     <td class="formValue">
                         <input id="jzsj" type="text" class="form-control input-wdatepicker form-an"
-                               onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
+                               onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy'})" />
                         <span style="color: red; display: none">￥</span><a id="zje" style="display: none">0.00</a>
                         <input type="hidden" id="IsBlh" value="@ViewBag.IsBlh" />
                     </td>
@@ -1095,7 +1095,7 @@
     }
 
 
-    //kiểm trađang sửacủadữ liệu（chờ gửi）củatính đầy đủ
+    //kiểm trađang sửacủadữ liệu(chờ gửi)củatính đầy đủ
     function checkEditingRowData(rowData) {
         if (!rowData.ysList || rowData.ysList.length === 0 || rowData.ysList[0].gh == "") {
             $.modalAlert("Vui lòng chọn kỹ thuật viên trị liệu", 'warning');

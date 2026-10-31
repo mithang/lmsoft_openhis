@@ -10,15 +10,15 @@
         </div>
         <table class="form" >
             <tr>
-                <td class="formTitle">Ngày bắt đầu：</td>
-                <td class="formValue"><input type="text" id="startTime" style="width: 140px;" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd 00:00:00' })" /></td>
-                <td class="formTitle">Ngày kết thúc： </td>
-                <td class="formValue"><input type="text" id="endTime" style="width: 140px;" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm'})" /></td>
-                <td class="formTitle">Từ khóa：</td>
+                <td class="formTitle">Ngày bắt đầu:</td>
+                <td class="formValue"><input type="text" id="startTime" style="width: 140px;" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy 00:00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy 00:00:00' })" /></td>
+                <td class="formTitle">Ngày kết thúc:</td>
+                <td class="formValue"><input type="text" id="endTime" style="width: 140px;" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy HH:mm")" onfocus="WdatePicker({dateFmt:'dd/MM/yyyy HH:mm'})" /></td>
+                <td class="formTitle">Từ khóa:</td>
                 <td class="formValue">
                     <input type="text" id="Srm" class="form-control" placeholder="Mã thuốc Pinyin Tên" />
                 </td>
-                <th class="formTitle">Nhà thuốc - Kho thuốc：</th>
+                <th class="formTitle">Nhà thuốc - Kho thuốc:</th>
                 <td class="formValue formDdlSelectorTd">
                     <select id="ddlyfbm" class="form-control required">
                         <option>Tất cả</option>
@@ -174,7 +174,7 @@
         });
     }
     function Export(isContainFilter) {
-        
+
         var startTime = $("#startTime").val();
         var endTime = $("#endTime").val();
         var srm = $("#Srm").val();
@@ -184,14 +184,14 @@
         var cols = JSON.stringify(exportCols);
         top.$.cookie('ExportExcelCols', cols, { path: "/" });
         //$.najax({
-        //    type: "POST",
-        //    url: "/Medicine/ExcelGet",
-        //    loading: $.loading("Đang xuấtExcleTệp"),
-        //    data: { startTime: startTime, endTime: endTime, Srm: srm, ddlyfbm: ddlyfbm, Lkc: lkc, isContainFilter: isContainFilter, yfykmc: yfykmc, colStanWidth: "70", cols: cols },
-        //    alerterror: false,
-        //    success: function (res) {
+        // type: "POST",
+        // url: "/Medicine/ExcelGet",
+        // loading: $.loading("Đang xuấtExcleTệp"),
+        // data: { startTime: startTime, endTime: endTime, Srm: srm, ddlyfbm: ddlyfbm, Lkc: lkc, isContainFilter: isContainFilter, yfykmc: yfykmc, colStanWidth: "70", cols: cols },
+        // alerterror: false,
+        // success: function (res) {
 
-        //    }
+        // }
         //});
         var url = "/Medicine/ExcelGet?";
         url += "startTime=" + startTime;
@@ -201,7 +201,7 @@
         url += "&Lkc=" + lkc;
         url += "&isContainFilter=" + isContainFilter;
         url += "&yfykmc=" + yfykmc;
-        url += "&colStanWidth=" + "70";  //Cột tiêu chuẩn chiều rộng cột
+        url += "&colStanWidth=" + "70"; //Cột tiêu chuẩn chiều rộng cột
         //var cols = JSON.stringify(exportCols);
         //top.$.cookie('ExportExcelCols', cols, { path: "/" });
         //url += "&cols=" + cols;

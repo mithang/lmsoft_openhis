@@ -9,11 +9,11 @@
         <tr>
             <th class="formTitle"><span class="required">*</span>Tra cứu Thời gian phạm vi:</th>
             <td class="formValue">
-                <input id="kssj" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.AddDays(-3).ToString("yyyy-MM-dd")" />
+                <input id="kssj" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" value="@DateTime.Now.AddDays(-3).ToString("dd/MM/yyyy")" />
             </td>
             <th style="text-align:center;width:50px;">đến</th>
             <td class="formValue">
-                <input id="jssj" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" />
+                <input id="jssj" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy")" />
             </td>
             <td class="formTitle">
                 <input type="button" class="btn btn-default btn-md" id="btn_search" value="Tra cứu" />

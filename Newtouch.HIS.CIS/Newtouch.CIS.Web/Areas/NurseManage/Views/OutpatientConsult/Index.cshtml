@@ -97,7 +97,7 @@
         $gridList.dataGrid({
             url: "/NurseManage/OutpatientConsult/GetExpertInfo",
             height: $(window).height() - 258,
-            postData: { ksCode: $("#ksCode").val(),keyword: $("#txt_keyword").val(), ghrq: new Date().format('yyyy-MM-dd')},
+            postData: { ksCode: $("#ksCode").val(),keyword: $("#txt_keyword").val(), ghrq: new Date().format('dd/MM/yyyy')},
             colModel: [
                 { label: 'Id', name: 'ghzsId', hidden: true, },
                 { label: 'Đăng ký khámMã nội bộ', name: 'ghnm', hidden: true, },
@@ -177,7 +177,7 @@
         $gridListRight.dataGrid({
             url: "/NurseManage/OutpatientConsult/GetNormalInfo",
             height: $(window).height() - 298,
-			postData: { ksCode: ksCode, keyword: $("#txt_keyword").val(), ghrq: new Date().format('yyyy-MM-dd') },
+			postData: { ksCode: ksCode, keyword: $("#txt_keyword").val(), ghrq: new Date().format('dd/MM/yyyy') },
             colModel: [
 
                 { label: 'Id', name: 'ghzsId', hidden: true, },
@@ -234,13 +234,13 @@
 
     function getPostData() {
         var timeType = $("#time_horizon a.active").attr('data-value');
-        var dt = new Date().format("yyyy-MM-dd");
+        var dt = new Date().format("dd/MM/yyyy");
         if (timeType != 1) {
             dt = $("#txt_jhrq").val();
         }
         var queryJson = {
             keyword: $("#txt_keyword").val(),
-            ghrq: new Date().format('yyyy-MM-dd'),
+            ghrq: new Date().format('dd/MM/yyyy'),
             //qdsj: dt,
 			ksCode: ksCode,
             //ywbz: $("#ywbz").val(),
@@ -255,7 +255,7 @@
             $.najax({
                 type: "POST",
                 url: "/NurseManage/OutpatientConsult/getConsultCount",
-                data: { ksCode: ksCode, ghrq: new Date().format('yyyy-MM-dd')},
+                data: { ksCode: ksCode, ghrq: new Date().format('dd/MM/yyyy')},
                 dataType: "json",
                 async: false,
                 success: function (ajaxresp) {
@@ -371,7 +371,7 @@
 		$.najax({
 			type: "POST",
 			url: "/NurseManage/OutpatientConsult/getConsultCall",
-			data: { ksCode: ksCode, keyword: keyword, ghrq: new Date().format('yyyy-MM-dd') },
+			data: { ksCode: ksCode, keyword: keyword, ghrq: new Date().format('dd/MM/yyyy') },
 			dataType: "json",
 			async: false,
 			success: function (ajaxresp) {
@@ -389,7 +389,7 @@
 					//for (var k = 1; k <= 3; k++) {
 					//	bobao(text);
 					//}
-					//Cập nhậtGọi sốTrạng thái（2đãgọi）
+					//Cập nhậtGọi sốTrạng thái(2đãgọi)
 					$.najax({
 					    type: "POST",
 						url: "/NurseManage/OutpatientConsult/UpdateCalledstu",

@@ -11,20 +11,20 @@
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Kỳ bắt đầu：</th>
+                    <th class="formTitle">Kỳ bắt đầu:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlKSZQ" class="form-control">
                             <option>==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle">Kỳ kết thúc：</th>
+                    <th class="formTitle">Kỳ kết thúc:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlJSZQ" class="form-control">
                             <option>==Vui lòng chọn==</option>
                             @*<option>@DateTime.Now.ToString("yyyyMM")</option>*@
                         </select>
                     </td>
-                    <th class="formTitle">Trạng thái thuốc：</th>
+                    <th class="formTitle">Trạng thái thuốc:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlYPZT" name="ddlYPZT" class="form-control">
                             <option value="">Tất cả</option>
@@ -32,7 +32,7 @@
                             <option value="0">Ngừng dùng</option>
                         </select>
                     </td>
-                    <th class="formTitle">Tỷ lệ chênh lệch bằng 0：</th>
+                    <th class="formTitle">Tỷ lệ chênh lệch bằng 0:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlLCL" class="form-control">
                             <option value="">Tất cả</option>
@@ -41,17 +41,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Mã thuốc：</th>
+                    <th class="formTitle">Mã thuốc:</th>
                     <td class="formValue">
                         <input id="txtINPUTCODE" type="text" class="form-control" />
                     </td>
-                    <th class="formTitle">Dạng bào chế：</th>
+                    <th class="formTitle">Dạng bào chế:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlJX" class="form-control">
                             <option value="">Tất cả</option>
                         </select>
                     </td>
-                    <th class="formTitle">Loại thuốc：</th>
+                    <th class="formTitle">Loại thuốc:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlYPLB" class="form-control">
                             <option value="">Tất cả</option>
@@ -81,29 +81,29 @@
         <div style="padding: 2px;padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Tổng giá nhập nhập kho：</th>
+                    <th class="formTitle">Tổng giá nhập nhập kho:</th>
                     <td class="formValue">
                         <input type="text" id="txtRKJJZE" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Tổng giá nhập xuất kho：</th>
+                    <th class="formTitle">Tổng giá nhập xuất kho:</th>
                     <td class="formValue">
                         <input type="text" id="txtCKJJZE" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Số tiền bán lẻ đầu kỳ：</th>
+                    <th class="formTitle">Số tiền bán lẻ đầu kỳ:</th>
                     <td class="formValue">
                         <input type="text" id="txtQCLSZE" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Số tiền bán lẻ cuối kỳ：</th>
+                    <th class="formTitle">Số tiền bán lẻ cuối kỳ:</th>
                     <td class="formValue">
                         <input type="text" id="txtQMLSZE" class="form-control newtouch_Readonly" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Tổng lãi/lỗ điều giá：</th>
+                    <th class="formTitle">Tổng lãi/lỗ điều giá:</th>
                     <td class="formValue">
                         <input type="text" id="txtTJSYZE" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Tổng giá bán lẻ thừa thiếu：</th>
+                    <th class="formTitle">Tổng giá bán lẻ thừa thiếu:</th>
                     <td class="formValue">
                         <input type="text" id="txtSYLSZE" class="form-control newtouch_Readonly" />
                     </td>
@@ -224,12 +224,12 @@
 
     //Thống kê tổng số
     function StatisticsZE() {
-        var statisticsRkjjze = 0;  //Tổng giá nhập kho
-        var statisticsCkjjze = 0;  //Tổng giá xuất kho
-        var statisticsQclsze = 0;  //Tổng tiền lẻ đầu kỳ
-        var statisticsQmlsze = 0;  //Tổng tiền lẻ cuối kỳ
-        var statisticsTjsyze = 0;  //Tổng lãi/lỗ điều giá
-        var statisticsSylsze = 0;  //Tổng tiền lẻ lãi/lỗ
+        var statisticsRkjjze = 0; //Tổng giá nhập kho
+        var statisticsCkjjze = 0; //Tổng giá xuất kho
+        var statisticsQclsze = 0; //Tổng tiền lẻ đầu kỳ
+        var statisticsQmlsze = 0; //Tổng tiền lẻ cuối kỳ
+        var statisticsTjsyze = 0; //Tổng lãi/lỗ điều giá
+        var statisticsSylsze = 0; //Tổng tiền lẻ lãi/lỗ
         var count = $("#gridDrugsInfo").getGridParam('records');
         if (count > 0) {
             var rowIds = $("#gridDrugsInfo").getDataIDs();

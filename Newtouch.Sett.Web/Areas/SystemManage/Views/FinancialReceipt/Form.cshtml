@@ -42,7 +42,7 @@
                 </td>
                 <th class="formTitle">Ngày lĩnh dùng:</th>
                 <td class="formValue">
-                    <input id="CreateTime" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    <input id="CreateTime" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                 </td>
             </tr>
         </table>
@@ -62,8 +62,8 @@
                 success: function (data) {
                     $("#form1").formSerialize(data);
                     //Định dạngUTCNgày
-                    $("#CreateTime").val(new Date(data.CreateTime).format("yyyy-MM-dd hh:mm:ss"));
-                    $("#CreateTime").val(new Date(data.CreateTime).format("yyyy-MM-dd hh:mm:ss"));
+                    $("#CreateTime").val(new Date(data.CreateTime).format("dd/MM/yyyy hh:mm:ss"));
+                    $("#CreateTime").val(new Date(data.CreateTime).format("dd/MM/yyyy hh:mm:ss"));
                 }
             });
         }

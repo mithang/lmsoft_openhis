@@ -14,9 +14,9 @@
             <tr>
                 <th class="formTitle">Ngày đăng ký:</th>
                 <td class="formValue" colspan="3">
-                    <input id="ksrq" type="text" class="form-control input-wdatepicker" style="width: 42%; float: left;" value="@DateTime.Now.ToString("yyyy-MM-01 ")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="ksrq" type="text" class="form-control input-wdatepicker" style="width: 42%; float: left;" value="@DateTime.Now.ToString("01/MM/yyyy ")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     <span style="margin-left: 2%; float: left;">—</span>
-                    <input id="jsrq" type="text" class="form-control input-wdatepicker" style="width: 41%; float: left; margin-left: 2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="jsrq" type="text" class="form-control input-wdatepicker" style="width: 41%; float: left; margin-left: 2%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
                 <td class="formValue" colspan="2">
                     <input type="radio" name="spzt" class="ribbon-group" value="" checked>

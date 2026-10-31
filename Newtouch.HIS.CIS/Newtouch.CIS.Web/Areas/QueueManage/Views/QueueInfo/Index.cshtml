@@ -31,8 +31,8 @@
                         <a class="btn btn-default" data-value="2">Lịch sử gọi số</a>
                     </div>
                     <input id="txt_jhrq" type="text" class="form-control input-wdatepicker" style="height:12px;margin-top:10px;width:30%;float:left;"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd',maxDate: new Date().format('yyyy-MM-dd')})" value="@DateTime.Now.ToString("yyyy-MM-dd ")" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy',maxDate: new Date().format('dd/MM/yyyy')})" value="@DateTime.Now.ToString("dd/MM/yyyy ")" />
                 </td>
                 <td class="formTitle">Loại hàng đợi</td>
                 <td class="formValue">
@@ -78,7 +78,7 @@
                 <span id="sp_calling_dept">hủyhóaKhoa nộiNgoại trú</span>
             </td>
             <td>
-                <span id="sp_calling_doc">熊甜甜 </span>
+                <span id="sp_calling_doc">Nguyễn Thị Hương </span>
             </td>
             <td>
                 <span id="sp_calling_ywlx" style="color:#ff6a00;">【Chuyên gia】</span>
@@ -89,13 +89,13 @@
                 <span>Tiếp tục chờ gọi:</span><span id="sp_nextcall_no">2</span>
             </td>
             <td>
-                <span id="sp_nextcall_xm">李四</span>
+                <span id="sp_nextcall_xm">Trần Văn Nam</span>
             </td>
             <td>
                 <span id="sp_nextcall_dept">hủyhóaKhoa nộiNgoại trú</span>
             </td>
             <td>
-                <span id="sp_nextcall_doc">熊甜甜 </span>
+                <span id="sp_nextcall_doc">Nguyễn Thị Hương </span>
             </td>
             <td>
                 <span id="sp_nextcall_ywlx" style="color:#ff6a00;">【Chuyên gia】</span>
@@ -146,7 +146,7 @@
         $gridList.dataGrid({
             url: "/QueueManage/QueueInfo/GetQueueInfo",
             height: $(window).height() - 258,
-            postData: { keyword: $("#txt_keyword").val(), qdsj: new Date().format('yyyy-MM-dd'), calledstu: '@((int)EmunQueueCalledStu.sign)'},
+            postData: { keyword: $("#txt_keyword").val(), qdsj: new Date().format('dd/MM/yyyy'), calledstu: '@((int)EmunQueueCalledStu.sign)'},
             colModel: [
                 {
                     label: 'Khu thao tác', name: 'action', width: 80, align: 'center', frozen: true, formatter: function (cellvalue, op, row) {
@@ -193,7 +193,7 @@
 
         $("#btn_search").click(function () {
             //var timeType = $("#time_horizon a.active").attr('data-value');
-            //var dt = new Date().format("yyyy-MM-dd hh:mm:ss");
+            //var dt = new Date().format("dd/MM/yyyy hh:mm:ss");
             //if (timeType != 1) {
             //    dt = $("#txt_jhrq").val();
             //}
@@ -253,7 +253,7 @@
         $gridListcalled.dataGrid({
             url: "/QueueManage/QueueInfo/GetQueueInfo",
             height: $(window).height() - 258,
-            postData: { keyword: $("#txt_keyword").val(), qdsj: new Date().format('yyyy-MM-dd'), calledstu: $("#called_horizon a.active").attr('data-value')},
+            postData: { keyword: $("#txt_keyword").val(), qdsj: new Date().format('dd/MM/yyyy'), calledstu: $("#called_horizon a.active").attr('data-value')},
             colModel: [
                 {
                     label: 'Khu thao tác', name: 'action', width: 80, align: 'center', frozen: true, formatter: function (cellvalue, op, row) {
@@ -388,7 +388,7 @@
 
     function getPostData() {
         var timeType = $("#time_horizon a.active").attr('data-value');
-        var dt = new Date().format("yyyy-MM-dd");
+        var dt = new Date().format("dd/MM/yyyy");
         if (timeType != 1) {
             dt = $("#txt_jhrq").val();
         }

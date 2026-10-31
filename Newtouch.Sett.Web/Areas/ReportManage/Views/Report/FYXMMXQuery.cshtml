@@ -30,16 +30,16 @@
 				<th class="formTitle">Ngày bắt đầu:</th>
 				<td class="formValue">
 					<input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
-						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-						   value="@DateTime.Now.ToString("yyyy-MM-01")" />
+						   onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+						   onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+						   value="@DateTime.Now.ToString("01/MM/yyyy")" />
 				</td>
 				<th class="formTitle">Ngày kết thúc:</th>
 				<td class="formValue">
 					<input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
-						   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-						   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-						   value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+						   onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+						   onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+						   value="@DateTime.Now.ToString("dd/MM/yyyy")" />
 				</td>
 				<th class="formTitle"></th>
 				<td class="formValue" style="padding-left:20px;">
@@ -184,7 +184,7 @@
                     //    var ids = new Array();
                     //    //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                     //    ids = $("#" + this.id).getDataIDs();
-                    //    //Chọn hoặc bỏ chọn dòng chỉ định。nếuonselectrowlàturethì sẽ kích hoạt sự kiệnonSelectRow,onselectrowMặc định làture
+                    //    //Chọn hoặc bỏ chọn dòng chỉ định.nếuonselectrowlàturethì sẽ kích hoạt sự kiệnonSelectRow,onselectrowMặc định làture
                     //    $.each(ids, function () {
                     //        //$("#gridList").setSelection(this, true);
                     //        xzstr += this + ",";
@@ -196,7 +196,7 @@
                         //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                         ids = $("#" + this.id).getDataIDs();
                         xzstr = "";
-                        //Chọn hoặc bỏ chọn dòng chỉ định。nếuonselectrowlàturethì sẽ kích hoạt sự kiệnonSelectRow,onselectrowMặc định làture
+                        //Chọn hoặc bỏ chọn dòng chỉ định.nếuonselectrowlàturethì sẽ kích hoạt sự kiệnonSelectRow,onselectrowMặc định làture
                         $.each(ids, function () {
                             $("#gridList").setSelection(this, true);
                             xzstr += this + ",";

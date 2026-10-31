@@ -23,22 +23,22 @@
         <div style="padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Số phiếu：</th>
+                    <th class="formTitle">Số phiếu:</th>
                     <td class="formValue">
                         <input type="text" id="Djh" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Tình hình lãi lỗ：</th>
+                    <th class="formTitle">Tình hình lãi lỗ:</th>
                     <td style="padding-left:12px;">
                         <div class="btn-group" id="btnLossAndProfitTypeGourp" style="margin-top:0;">
                             <button type="button" id="btnLoss" data-keywordtype="@EnumSybz.Loss.ToString()" class="btn active btn-restore">@EnumSybz.Loss.GetDescription()</button>
                             <button type="button" id="btnProfit" data-keywordtype="@EnumSybz.Profit.ToString()" class="btn btn-default">@EnumSybz.Profit.GetDescription()</button>
                         </div>
                     </td>
-                    <th class="formTitle">Nguyên nhân lãi lỗ：</th>
+                    <th class="formTitle">Nguyên nhân lãi lỗ:</th>
                     <td class="formValue">
                         <select id="syyy" class="form-control" onchange="SyyyChange()"></select>
                     </td>
-                    <th class="formTitle">Ghi chú：</th>
+                    <th class="formTitle">Ghi chú:</th>
                     <td class="formValue">
                         <input type="text" id="remark" class="form-control" />
                     </td>
@@ -49,18 +49,18 @@
         <div style="padding-right:20px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="required">*</span>Tên vật tư：</th>
+                    <th class="formTitle"><span class="required">*</span>Tên vật tư:</th>
                     <td class="formValue">
                         <input type="text" id="wzmc" class="form-control" />
                         <input type="hidden" id="productId" value="" />
                         <input type="hidden" id="zhyz" value="" />
                         <input type="hidden" id="editRowId" value="" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Lô：</th>
+                    <th class="formTitle"><span class="required">*</span>Lô:</th>
                     <td class="formValue">
                         <input type="text" id="pc" class="form-control" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Số lượng lãi lỗ：</th>
+                    <th class="formTitle"><span class="required">*</span>Số lượng lãi lỗ:</th>
                     <td class="formValue">
                         <div class="row">
                             <div hidden id="div_sy" class="col-md-4">
@@ -78,45 +78,45 @@
                             </div>
                         </div>
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Người chịu trách nhiệmMã nhân viên：</th>
+                    <th class="formTitle"><span class="required">*</span>Người chịu trách nhiệmMã nhân viên:</th>
                     <td class="formValue">
                         <input type="text" id="zrrmc" class="form-control" />
                         <input type="text" id="zrr" hidden />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Hạn sử dụng：</th>
+                    <th class="formTitle">Hạn sử dụng:</th>
                     <td class="formValue">
                         <input id="Yxq" type="text" class="form-control input-wdatepicker newtouch_Readonly" value="" />
                     </td>
-                    <th class="formTitle">Quy cách：</th>
+                    <th class="formTitle">Quy cách:</th>
                     <td class="formValue">
                         <input type="text" id="gg" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Tồn kho hiện tại：</th>
+                    <th class="formTitle">Tồn kho hiện tại:</th>
                     <td class="formValue">
                         <input type="text" id="slstr" class="form-control newtouch_Readonly" />
                         <input id="Sykc" type="text" hidden="hidden" />
                     </td>
-                    <th class="formTitle">Nhà sản xuất：</th>
+                    <th class="formTitle">Nhà sản xuất:</th>
                     <td class="formValue">
                         <input type="text" id="sccj" class="form-control newtouch_Readonly" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Số lô：</th>
+                    <th class="formTitle">Số lô:</th>
                     <td class="formValue">
                         <input type="text" id="Ph" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Giá nhập：</th>
+                    <th class="formTitle">Giá nhập:</th>
                     <td class="formValue">
                         <input type="text" id="bmjj" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Giá bán lẻ：</th>
+                    <th class="formTitle">Giá bán lẻ:</th>
                     <td class="formValue">
                         <input type="text" id="Lsj" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Tổng bán lẻ(đ)：</th>
+                    <th class="formTitle">Tổng bán lẻ(đ):</th>
                     <td class="formValue">
                         <input type="text" id="Lsjze" class="form-control newtouch_Readonly" />
                     </td>
@@ -140,7 +140,7 @@
     F7Text = "Đặt lại",
     F8Text = "Lưu"
 })
-<span class="sp-syze">Tổng lãi lỗ：&nbsp;<span id="txtSYZE"></span> &nbsp;đ</span>
+<span class="sp-syze">Tổng lãi lỗ:&nbsp;<span id="txtSYZE"></span> &nbsp;đ</span>
 <script>
     var Sysl = 0;
     $(function () {
@@ -185,7 +185,7 @@
     function GetSyyy() {
         var sybz = "";
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === '@EnumSybz.Loss.ToString()') {
-            sybz = "@((int)EnumSybz.Loss)";//0 Báo hỏng，1 Báo thừa
+            sybz = "@((int)EnumSybz.Loss)";//0 Báo hỏng,1 Báo thừa
         } else {
             sybz = "@((int)EnumSybz.Profit)";
         }
@@ -365,7 +365,7 @@
         var sybz = "";
         var syqk = "";
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === '@EnumSybz.Loss.ToString()') {
-            sybz ="@((int)EnumSybz.Loss)";//0 Báo hỏng，1 Báo thừa
+            sybz ="@((int)EnumSybz.Loss)";//0 Báo hỏng,1 Báo thừa
             syqk = "@EnumSybz.Loss.GetDescription()";
         } else {
             sybz = "@((int)EnumSybz.Profit)";
@@ -539,7 +539,7 @@
                     $.modalAlert("Lưu thành công", 'success');
                     $('#gridSYXX').jqGrid("clearGridData"); //Xóa chi tiếtgrid
                     $("#gridSYXX").resetSelection();
-                    newtouch_event_f7(); //Lãi lỗ mới：Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
+                    newtouch_event_f7(); //Lãi lỗ mới:Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
                 } else {
                     if (data != null) {
                         $.modalAlert(data.message, 'warning');
@@ -555,7 +555,7 @@
     //MớiLãi lỗ
     function newtouch_event_f7() {
         //if ($("#gridSYXX").getGridParam('records') > 0) {
-        //    $.modalConfirm("Có chưa hoàn thànhLãi lỗ，Xác nhậncần tạo mớiLãi lỗkhông？", function (flag) {
+        //    $.modalConfirm("Có chưa hoàn thànhLãi lỗ,Xác nhậncần tạo mớiLãi lỗkhông?", function (flag) {
         //        if (!flag) {
         //            return false;
         //        } else {
@@ -614,7 +614,7 @@
             return false;
         }
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-            if (sysl > parseFloat($("#Sykc").val())) {   //Ngược lại，So sánh trực tiếpSố lượng（NhấtNhỏĐơn vịSố lượng）
+            if (sysl > parseFloat($("#Sykc").val())) {   //Ngược lại,So sánh trực tiếpSố lượng(NhấtNhỏĐơn vịSố lượng)
                 $.modalAlert("Báo hỏngSố lượngNênNhỏtạiTồn kho hiện tại", 'warning');
                 return false;
             }

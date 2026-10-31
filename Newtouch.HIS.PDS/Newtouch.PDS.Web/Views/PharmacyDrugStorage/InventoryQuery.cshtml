@@ -30,15 +30,15 @@
         <div class="panel-heading">Điều kiện tra cứu</div>
         <table class="form">
             <tr>
-                <th class="formTitle" style="width: 50px;">Ngày：</th>
+                <th class="formTitle" style="width: 50px;">Ngày:</th>
                 <td class="formValue" colspan="2">
                     <select id="ddlRQ" class="form-control"></select>
                 </td>
-                <th class="formTitle" style="width: 65px;">Từ khóa：</th>
+                <th class="formTitle" style="width: 65px;">Từ khóa:</th>
                 <td class="formValue" style="width: 115px;">
                     <input id="txtSRM" type="text" class="form-control" placeholder="Pinyin Tên thuốc" />
                 </td>
-                <th class="formTitle">Trạng thái thuốc：</th>
+                <th class="formTitle">Trạng thái thuốc:</th>
                 <td class="formValue" style="width: 55px;">
                     <select id="ddlYPZT" name="ddlYPZT" class="form-control">
                         <option value="-1">Tất cả</option>
@@ -46,13 +46,13 @@
                         <option value="0">Ngừng dùng</option>
                     </select>
                 </td>
-                <th class="formTitle" style="display:none">Loại thuốc：</th>
+                <th class="formTitle" style="display:none">Loại thuốc:</th>
                 <td class="formValue" style="display:none">
                     <select id="ddlYPLB" class="form-control">
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                <th class="formTitle">Hiển thị tồn kho：</th>
+                <th class="formTitle">Hiển thị tồn kho:</th>
                 <td class="formValue">
                     <select id="ddlKCXS" name="ddlKCXS" class="form-control">
                         <option value="-1">Tất cả</option>
@@ -99,7 +99,7 @@
             $("#btn_search").trigger("click");
         }
     });
-    
+
     //Khởi tạo kiểm kê
     function InitialPd() {
         gridKCInfoHistory();
@@ -113,7 +113,7 @@
             postData: getSearchPostData(),
             height: $(window).height() - 220,
             url: "",
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
                 { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'ypgg', width: 70, align: 'left' },
@@ -181,7 +181,7 @@
             url: "/PharmacyDrugStorage/GetPDDateDropdownList",
             dataType: "json",
             success: function (ajaxresp) {
-                //Xóa trước，Điền tiếp
+                //Xóa trước, Điền tiếp
                 $("#ddlRQ").empty();
                 for (var i = 0; i < ajaxresp.data.length; i++) {
                     $("#ddlRQ").append('<option data-pdId=' + ajaxresp.data[i].pdId + '>' + ajaxresp.data[i].pdsj + '</option>');
@@ -190,7 +190,7 @@
             }
         });
     }
-    
+
     //In chi tiết loại lớn
     function newtouch_event_f10() {
         var srm = $("#txtSRM").val();

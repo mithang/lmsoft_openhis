@@ -140,7 +140,7 @@
                         <td class="formTitle"><span class="required">*</span>Cờ BHYT:</td>
                         <td class="formValue">
                             <div class="ckbox">
-                                <!-- Cờ BHYT：Dù đã có đối chiếu mã BHYT，cũng cần gắn cờ BHYT thì mới tương tác với BHYT -->
+                                <!-- Cờ BHYT: Dù đã có đối chiếu mã BHYT, cũng cần gắn cờ BHYT thì mới tương tác với BHYT -->
                                 <select id="ybbz" name="ybbz" class="form-control required">
                                     <option value="">==Vui lòng chọn==</option>
                                     <option value="1">Có</option>
@@ -331,29 +331,29 @@
                 </div>*@
                 <table class="form" style="width:98%; height:80%; border:0">
                     <tr>
-                       @* <td class="formTitle">Hình thức đấu thầu：</td>
+                       @* <td class="formTitle">Hình thức đấu thầu: </td>
                         <td class="formValue">
                             <select id="zbbz" name="zbbz" class="form-control">
                                 <option value="">==Vui lòng chọn==</option>
                             </select>
                         </td>
-                        <td class="formTitle">Thuộc tính thuốc：</td>
+                        <td class="formTitle">Thuộc tính thuốc: </td>
                         <td class="formValue">
                             <select id="yptssx" name="yptssx" class="form-control">
                                 <option value="">==Vui lòng chọn==</option>
                             </select>
                         </td>
-                        <td class="formTitle"><span class="required">*</span>Loại ghi sổ khu bệnh：</td>
+                        <td class="formTitle"><span class="required">*</span>Loại ghi sổ khu bệnh: </td>
                         <td class="formValue">
                             @Html.DropDownList("jzlx", Newtouch.Infrastructure.EnumBQJZQZ.Day.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })
                         </td>
                     </tr>
 					<tr>
-						<td class="formTitle"><span class="required">*</span>Cờ thuốc cơ bản：</td>
+						<td class="formTitle"><span class="required">*</span>Cờ thuốc cơ bản: </td>
 						<td class="formValue" style="padding-top: 1px;">
 							@Html.DropDownList("jybz", Newtouch.Infrastructure.EnumJybz.Gjy.ToDescSelectList(), "==Vui lòng chọn==", new { @class = "form-control required" })
 						</td>
-						<td class="formTitle">Cờ thuốc đặc biệt：</td>
+						<td class="formTitle">Cờ thuốc đặc biệt: </td>
 						<td class="formValue" style="padding-top: 1px;">
 							<select id="tsypbz" name="tsypbz" class="form-control">
 								<option value="">==Vui lòng chọn==</option>
@@ -817,7 +817,7 @@
 				for (var k = 0; k < rowIds.length; k++) {
 					var curRowData = jQuery(curData).jqGrid('getRowData', rowIds[k]);
 					//if ($thistr.attr('data-gjybdm') != "" && $thistr.attr('data-gjybdm') != null && curRowData.gjybdm == $thistr.attr('data-gjybdm')) {
-					//	$.modalAlert("Hệ thống đã tồn tại mã BHYT quốc gia là" + $thistr.attr("data-gjybdm") + " của thuốc，" + $thistr.attr("data-ypmc"), 'warning');
+					//	$.modalAlert("Hệ thống đã tồn tại mã BHYT quốc gia là" + $thistr.attr("data-gjybdm") + " của thuốc, " + $thistr.attr("data-ypmc"), 'warning');
 					//};
 				};
                 if (($('#ypmc').val() != "" || $('#ypmc').val() != null) && $('#ybdm').val() != $thistr.attr('data-ybdm')) {
@@ -1322,7 +1322,7 @@
             }
         }
 	}
-    //Mô tả：Ở đây sẽ tự động sửa giá bán lẻ，Ôn Giang không cần。
+    //Mô tả: Ở đây sẽ tự động sửa giá bán lẻ, Ôn Giang không cần. 
 	//function getlsj() {
 	//	var pfj = $("#pfj").val();
 	//	//alert(pfj);

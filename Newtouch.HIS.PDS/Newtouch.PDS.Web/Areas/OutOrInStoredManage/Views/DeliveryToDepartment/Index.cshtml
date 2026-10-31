@@ -45,16 +45,16 @@
         <div class="panel-heading">Thông tin phát thuốc</div>
         <table class="form">
             <tr>
-                <th class="formTitle">Đơn phát thuốc：</th>
+                <th class="formTitle">Đơn phát thuốc:</th>
                 <td class="formValue">
                     <input type="text" id="djh" name="djh" class="form-control newtouch_Readonly" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Khoa：</th>
+                <th class="formTitle"><span class="required">*</span>Khoa:</th>
                 <td class="formValue">
                     <input type="text" id="rkbmmc" name="rkbmmc" class="form-control" placeholder="Vui lòng chọn khoa lĩnh thuốc" />
                     <input type="hidden" id="rkbm" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Cách phát thuốc：</th>
+                <th class="formTitle"><span class="required">*</span>Cách phát thuốc:</th>
                 <td class="formValue">
                     <select class="form-control" id="fyfs" name="fyfs"></select>
                 </td>
@@ -139,9 +139,9 @@
         $gridList.newtouchLocalDataGrid({
             data: [],
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
-            rownumbers: true,  //Có hiển thị số thứ tự không
+            rownumbers: true, //Có hiển thị số thứ tự không
             multiselect: true,
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
                 { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
@@ -168,8 +168,8 @@
                 { label: 'zxdwjj', name: 'zxdwjj', hidden: true, editable: true },
                 { label: 'bzdwjj', name: 'bzdwjj', hidden: true, editable: true }
             ],
-            editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            editinputwidthborder: false, //Có cần viền không Mặc định làtrue
+            editinputborderradius: false, //Có cần bo góc viền không Mặc địnhtrue(Có bo góc)
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -449,7 +449,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu cần sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
         }
         var par = new Object();
@@ -477,7 +477,7 @@
 
     //Kiểm tra giá trị số
     function Validately(rowData, rowid) {
-        if ($("#rkbm").val() === "" || $("#rkbmmc").val() === "") {   //Loại bỏ khoảng trắng hai đầu
+        if ($("#rkbm").val() === "" || $("#rkbmmc").val() === "") { //Loại bỏ khoảng trắng hai đầu
             $.modalMsg("Vui lòng chọn khoa phát thuốc", "error", 1000);
             return false;
         }
@@ -491,7 +491,7 @@
         }
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             return false;
         }
         if ($("#sel_dw_" + rowid).val() === "") {

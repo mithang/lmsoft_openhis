@@ -8,7 +8,7 @@
         <div style="padding-top: 20px; margin-right: 30px;">
             <table id="tb_xm" class="form">
                 @*<tr>
-                    <th class="formTitle">Khoa có quyền：</th>
+                    <th class="formTitle">Khoa có quyền: </th>
                     <td class="formValue">
                         <select id="dllDepartment" name="dllDepartment" class="form-control">
                             <option>==Vui lòng chọn==</option>
@@ -163,7 +163,7 @@
         }
         postData['xmListStr'] = JSON.stringify(xmArr);
 
-        postData['sfmbbh'] = keyValue;  //Khóa chính，Quyết định là thêm mới hay sửa
+        postData['sfmbbh'] = keyValue;  //Khóa chính, Quyết định là thêm mới hay sửa
         postData['ks'] = $('#dllDepartment').val();
 
         $.submitForm({

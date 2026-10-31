@@ -47,8 +47,8 @@
             <tr>
                 <th class="formTitle">Phạm vi ghi:</th>
                 <td class="formValue" style="height:30px;" colspan="2">
-                    <input id="txt_ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:40%;float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { LoadGrid()}})" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd")" />
-                    <span style="padding:15px 15px;">_</span>  <input id="txt_jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:40%;float:right;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { LoadGrid() } })" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    <input id="txt_ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:40%;float:left;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { LoadGrid()}})" value="@DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy")" />
+                    <span style="padding:15px 15px;">_</span>  <input id="txt_jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:40%;float:right;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { LoadGrid() } })" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
                 </td>
                 <td class="formValue" colspan="3">
                     <div id="dv_prew">
@@ -141,7 +141,7 @@
                                 type: 'click',
                                 fn: function (e) {
                                     $(this).find('input[type=text]').addClass("input-wdatepicker");
-                                    WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { } });
+                                    WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { } });
                                 }
                             }
                         ]
@@ -319,7 +319,7 @@
         window.hljlView = false;
         var rowData = $("#gridList").jqGrid('getGridParam', 'records');
         var dataRow = {
-            jlwzsj:"@DateTime.Now.ToString("yyyy-MM-dd")",
+            jlwzsj:"@DateTime.Now.ToString("dd/MM/yyyy")",
             blId: "" + blId + ""
            
         };

@@ -89,13 +89,13 @@
 
 <div class="panel panel-default">
     <div id="myCarousel" class="carousel slide">
-        <!-- băng chuyền（Carousel）chỉ số -->
+        <!-- băng chuyền (Carousel) chỉ số -->
         <ol class="carousel-indicators" style="margin-bottom:-1rem;">
             <li data-target="#myCarousel" data-slide-to="0" class="active"></li>
             <li data-target="#myCarousel" data-slide-to="1"></li>
 @*            <li data-target="#myCarousel" data-slide-to="2"></li>*@
         </ol>
-        <!-- băng chuyền（Carousel）dự án -->
+        <!-- băng chuyền (Carousel) dự án -->
         <div class="carousel-inner">
             <div class="item active">
                 <div class="app-blocktheme-blue">
@@ -123,7 +123,7 @@
                 </div>
             </div>*@
         </div>
-        <!-- băng chuyền（Carousel）điều hướng -->
+        <!-- băng chuyền (Carousel) điều hướng -->
         <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
             <span class="fa fa-chevron-left" style="margin-top:45%;" aria-hidden="true"></span>
             <span class="sr-only">Previous</span>
@@ -159,8 +159,8 @@
         <form class="form-inline" role="form" style="padding:0.5rem;">
             <div class="form-group" id="dv_tjrq">
                 <label class="control-label text-title" for="tjrq">ngày thống kê</label>
-                <input id="tjrq" type="text" class="forme-default input-wdatepicker" onclick="WdatePicker({dateFmt: 'yyyy-MM-dd'})"
-                       onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked:function(){ refreshTab();} })" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                <input id="tjrq" type="text" class="forme-default input-wdatepicker" onclick="WdatePicker({dateFmt: 'dd/MM/yyyy'})"
+                       onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked:function(){ refreshTab();} })" value="@DateTime.Now.ToString("dd/MM/yyyy")">
             </div>
             <div class="form-group pull-right">
                 <label class="control-label text-title" for="sel_Duty"><i class="fa fa-vcard-o icon-theme-warning"></i> Vị  trí</label>

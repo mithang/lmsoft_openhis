@@ -83,7 +83,7 @@
                     <tr>
                         <th class="formTitle "><span class="required">*</span>Thời gian phẫu thuật:</th>
                         <td class="formValue" colspan="3">
-                            <input id="sssj" type="text" class="form-control input-wdatepicker formClearIgnore required" style="width:70%;" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <input id="sssj" type="text" class="form-control input-wdatepicker formClearIgnore required" style="width:70%;" value="" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         </td>
                     </tr>
                     <tr>
@@ -283,15 +283,15 @@
 
     function submitApply() {
 
-        //console.info("Họ tên：" + $("#sq_xm").text());
-        //console.info("Số nhập viện：" + $("#sq_zyh").val());
+        //console.info("Họ tên: " + $("#sq_xm").text());
+        //console.info("Số nhập viện: " + $("#sq_zyh").val());
         var xingbie = $("#sq_basic").text();
         var arr = xingbie.split(",");
-        //console.info("Giới tính：" + arr[0]);
-        //console.info("Tuổi：" + arr[1]);
-        //console.info("Khoa：" + $("#sq_bqmc").text());
-        //console.info("Số giường：" + $("#sq_bedcode").text());
-        //console.info("Chẩn đoán lúc nhập viện：" + $("#sq_ryzdmc").text());
+        //console.info("Giới tính: " + arr[0]);
+        //console.info("Tuổi: " + arr[1]);
+        //console.info("Khoa: " + $("#sq_bqmc").text());
+        //console.info("Số giường: " + $("#sq_bedcode").text());
+        //console.info("Chẩn đoán lúc nhập viện: " + $("#sq_ryzdmc").text());
 
         var datajbxx = "{\"xm\":\"" + $("#sq_xm").text() + "\",\"zyhs\":\"" + $("#sq_zyh").text() + "\",\"xb\":\"" + arr[0] + "\",\"nl\":\"" + arr[1] + "\",\"bq\":\"" + $("#sq_bqmc").text() + "\",\"ch\":\"" + $("#sq_bedcode").text() + "\",\"ryzd\":\"" + $("#sq_ryzdmc").text() +"\"}";
 

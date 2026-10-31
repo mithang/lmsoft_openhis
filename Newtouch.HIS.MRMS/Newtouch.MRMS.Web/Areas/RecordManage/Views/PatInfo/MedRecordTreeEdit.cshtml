@@ -30,7 +30,7 @@
     <div style="padding-top:18px; margin-right: 30px;">
         <table class="form">
             <tr>
-                <th class="formTitle" colspan="4">Thông tin bệnh nhân：</th>
+                <th class="formTitle" colspan="4">Thông tin bệnh nhân:</th>
                 <td class="formValue" style="white-space: nowrap;text-overflow: ellipsis;text-align:center;font-style:italic;">
                     <input id="brjs" name="brjs" type="text" class="form-control required" value="Tóm tắt bệnh nhân" readonly="readonly" style="border:none" />
                     <input id="zyh" name="zyh" type="hidden" class="form-control required" value="Số nội trú" readonly="readonly" style="border:none;" />
@@ -39,7 +39,7 @@
         </table>
         <table class="form">
             <tr>
-                <th class="formTitle">Loại bệnh án：</th>
+                <th class="formTitle">Loại bệnh án:</th>
                 <td class="formValue">
                     <select id="bllx" class="form-control required" data-EnumType="EnumBllx">
                         <option value="">==Vui lòng chọn==</option>
@@ -47,17 +47,17 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Thời gian bệnh án：</th>
+                <th class="formTitle">Thời gian bệnh án:</th>
                 <td class="formValue">
-                    <input id="blsj" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss'})" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
+                    <input id="blsj" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss'})" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" />
                 </td>
             </tr>
             <tr>
-                @*<th class="formTitle">Số văn bản：</th>
+                @*<th class="formTitle">Số văn bản:</th>
                     <td class="formValue">
                         <input id="px" name="px" type="text" class="form-control" placeholder="" />
                     </td>*@
-                <th class="formTitle">Quyền mẫu：</th>
+                <th class="formTitle">Quyền mẫu:</th>
                 <td class="formValue">
                     <select id="mbqx" name="mbqx" class="form-control required" data-EnumType="Enummbqx"></select>
                 </td>

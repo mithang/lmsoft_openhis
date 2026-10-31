@@ -79,9 +79,9 @@
                     </td>
                     <th class="formTitle">Thời gian nhập kế hoạch:</th>
                     <td class="formValue" colspan="2">
-                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })">
+                        <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.ToString("01/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })">
                         <span style="margin-left:1%;float:left">—</span>
-                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })">
+                        <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })">
                     </td>
                     <td class="formValue">
                         <input type="button" class="btn btn-primary btn_search" style="margin-left: 10%;" value="Truy vấn">
@@ -328,8 +328,8 @@
     function newtouch_event_f4() {
         $('#gridList').jqGrid("resetSelection");
         $('#gridList').jqGrid("clearGridData");
-        $('#kssj').val('@DateTime.Now.ToString("yyyy-MM-01")');
-        $('#jssj').val('@DateTime.Now.ToString("yyyy-MM-dd")');
+        $('#kssj').val('@DateTime.Now.ToString("01/MM/yyyy")');
+        $('#jssj').val('@DateTime.Now.ToString("dd/MM/yyyy")');
     }
 
     function EditRow(rowObj) {

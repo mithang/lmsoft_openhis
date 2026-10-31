@@ -28,16 +28,16 @@
                 <th class="formTitle">Ngày bắt đầu:</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
-                           value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { refReport(); } })"
+                           value="@DateTime.Now.AddDays(-7).ToString("dd/MM/yyyy")" />
                 </td>
                 <th class="formTitle">Ngày kết thúc:</th>
                 <td class="formValue">
                     <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
-                           value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { refReport(); } })"
+                           value="@DateTime.Now.ToString("dd/MM/yyyy")" />
                 </td>
                 <th class="formTitle"></th>
                 <td class="formValue" style="padding-left:20px;">

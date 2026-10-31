@@ -79,9 +79,9 @@
                 <td style="width:20px"></td>
                 <th class="formTitle" id="thCZRQ">Ngày thao tác:</th>
                 <td class="formValue" colspan="3">
-                    <input id="txtCreateTimestart" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:42%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="txtCreateTimestart" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:42%; float:left;" value="@DateTime.Now.ToString("01/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     <span style="margin-left:0%;float:left;">—</span>
-                    <input id="txtCreateTimeEnd" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :41%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="txtCreateTimeEnd" type="text" class="form-control input-wdatepicker formClearIgnore" style="width :41%;float:left;margin-left:2%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
                 <td class="formValue">
                     <input type="button" id="btn_search" class="btn btn-primary btn-md" style="margin-left:10px;width:40px;" value="Tra cứu" />
@@ -287,7 +287,7 @@
         var sfrqTimeEnd = useSfrqFilter ? $("#txtCreateTimeEnd").val() : null;
         return {
             kh: kh, fph: fph, xm: xm, syy: syy, CreateTimestart: createTimestart, CreateTimeEnd: createTimeEnd
-            , sfrqTimestart: sfrqTimestart, sfrqTimeEnd: sfrqTimeEnd, zxlsh: zxlsh
+, sfrqTimestart: sfrqTimestart, sfrqTimeEnd: sfrqTimeEnd, zxlsh: zxlsh
         };
     };
     function uniq(dataList, byName) {
@@ -471,7 +471,7 @@
     var ZFinvoiceReportUrl = '@Html.Raw(ZFinvoiceReportUrl)';
 
     function printFp(jsnm, jslx, brxz) {
-        //inHISbiên lai（hiện tại không phải hóa đơn）
+        //inHISbiên lai(hiện tại không phải hóa đơn)
         var uri;
         var orgId = '@(ViewBag.OrgId)';
         uri = '@reportUrl' + "?tempCode=02" + "&systemCode=" + '@Html.Raw(ReportSystemCode)' + "&hospitalCode=" + orgId + "&jsnm=" + jsnm;
@@ -644,7 +644,7 @@
             error: function (request, error, ex) {
                 $.loading(false);
                 isuccer = false;
-                $.modalAlert('Gọi giao diện BHYTP0001Thất bại！Vui lòng kiểm tra chương trình giao diện BHYT đã chạy chưa。[' + ex + ']', 'error');
+                $.modalAlert('Gọi giao diện BHYTP0001Thất bại！Vui lòng kiểm tra chương trình giao diện BHYT đã chạy chưa.[' + ex + ']', 'error');
                 return;
             }
         });
@@ -660,7 +660,7 @@
                 oWin.close()
             }
         }
-        let html = '<div style="height: 100%;width: 100%;">' + `<img src="${imgSrc}" onload="fn()" style="max-height:100%;max-width: 100%;" />` + '</div>'
+        let html = '<div style="height: 100%;width: 100%;">' + `<img src="${imgSrc}" alt="Ảnh đính kèm" onload="fn()" style="max-height:100%;max-width: 100%;" />` + '</div>'
         oWin.document.open()
         oWin.document.write(html)
         oWin.document.close()
@@ -714,7 +714,7 @@
                     }
                 });
                 if (matched) {
-                    //1、in hóa đơn mới
+                    //1. in hóa đơn mới
                     axPrintInvoiceBySettInfo(newTempPatModel, newJszbInfo);
                 }
             }

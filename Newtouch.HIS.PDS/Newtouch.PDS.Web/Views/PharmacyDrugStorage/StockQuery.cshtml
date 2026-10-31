@@ -34,15 +34,15 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">Từ khóa：</th>
+                    <th class="formTitle">Từ khóa:</th>
                     <td class="formValue" style="width:150px;">
                         <input id="txtINPUTCODE" type="text" class="form-control" placeholder="Tên thuốc Mã Pinyin" />
                     </td>
-                    <th class="formTitle">Trạng thái tồn kho：</th>
+                    <th class="formTitle">Trạng thái tồn kho:</th>
                     <td class="formValue" style="width:80px;">
                         @Html.DropDownList("ddlKCZT", EnumKCZT.Disabled.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">Trạng thái khoa này：</th>
+                    <th class="formTitle">Trạng thái khoa này:</th>
                     <td class="formValue" style="width:80px;">
                         @Html.DropDownList("ddlBBMZT", BenBuMenZT.Control.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
@@ -62,7 +62,7 @@
     <div class="panel panel-default" style="margin-bottom: 5px;">
         <div class="panel-heading">
             <span>Tổng lượng thuốc&nbsp;&nbsp;&nbsp;Trang hiện tại&nbsp;&nbsp;</span>
-            <span id='yeCon'>Tổng giá bán buôn：" + "đ；Tổng giá lẻ：" + "đ</span>
+            <span id='yeCon'>Tổng giá bán buôn: " + "đ; Tổng giá lẻ: " + "đ</span>
             <i class='fa fa-angle-down fa-2x i-showMore' onclick="mainShowMore()" aria-hidden='true'></i>
         </div>
         <div class="gridPanel" id="div-main">
@@ -193,14 +193,14 @@
         });
 
         $("#btn_search").click(function () {
-            $("#yeCon").text("Tổng giá bán buôn：__đ;Tổng giá lẻ：__đ");
+            $("#yeCon").text("Tổng giá bán buôn: __đ;Tổng giá lẻ: __đ");
             //Mỗi lần truy vấn xóa trướcGrid
             $('#gridYPZL').jqGrid("clearGridData");
             $('#gridYPMXInfo').jqGrid("clearGridData");
 
             $gridYpzlData.jqGrid('setGridParam', {
                 postData: getSearchPostData(), url: '/PharmacyDrugStorage/SelectStockTotal'
-            }).trigger('reloadGrid');            
+            }).trigger('reloadGrid');
             ComputePjzeAndLjze();//Tính tổng giá bán buôn và tổng giá bán lẻ trong thanh tiêu đề
         });
     }
@@ -226,18 +226,18 @@
                 titlePjze += parseFloat(getRowPjze);
                 titleLjze += parseFloat(getRowLjze);
             }
-            $("#yeCon").text("Tổng giá bán buôn：" + titlePjze.toFixed(2) + "đ;Tổng giá lẻ：" + titleLjze.toFixed(2) + "đ");
+            $("#yeCon").text("Tổng giá bán buôn: " + titlePjze.toFixed(2) + "đ;Tổng giá lẻ: " + titleLjze.toFixed(2) + "đ");
         }
     }
 
     //Sự kiện nhấp chuột
     function btn_selectrow() {
-        //Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
+        //Mỗi lần nhấp, Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $gridkcmxData.jqGrid("clearGridData");
         $gridkcmxData.jqGrid('setGridParam', {
             postData: { ypCode: $("#gridYPZL").jqGridRowValue().ypCode, yfbmCode: $("#gridYPZL").jqGridRowValue().yfbmCode },
             url: '/PharmacyDrugStorage/SelectStockDetail'
-        }).trigger('reloadGrid');            
+        }).trigger('reloadGrid');
     }
 
     //Chi tiết thuốc

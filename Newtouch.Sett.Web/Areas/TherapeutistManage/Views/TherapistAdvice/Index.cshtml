@@ -271,11 +271,11 @@
             data: kflocaldata,
             height: $(window).height() - 230,
             //altRows: true,//cáchthực hiệnđổimàu
-            shrinkToFit: true,   //true:theosoví dụđầubắt đầuhóacộtrộngđộ false:Sử dụngcolModelchỉđịnhcủarộngđộ
+            shrinkToFit: true, //true:theosoví dụđầubắt đầuhóacộtrộngđộ false:Sử dụngcolModelchỉđịnhcủarộngđộ
             autowidth: true,
-            rownumbers: true,  //làkhônghiển thịhiển thịthứ tựsố
+            rownumbers: true, //làkhônghiển thịhiển thịthứ tựsố
             multiselect: true,
-            editurl: "clientArray",  //sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
                 { label: 'jyId', name: 'jyId', width: 120, align: 'center', hidden: true },
@@ -296,7 +296,7 @@
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("Số lượng là trống,Vui lòng xác nhận。", 'warning');
+                                            $.modalAlert("Số lượng là trống,Vui lòng xác nhận.", 'warning');
                                             return;
                                         }
                                         if (isNaN(cellval)) {
@@ -308,13 +308,13 @@
                                         var rowid = row.attr('id');
                                     }
                                 }
-                                ,
+,
                                 {
                                     type: 'keyup',
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("Số lượng là trống,Vui lòng xác nhận。", 'warning');
+                                            $.modalAlert("Số lượng là trống,Vui lòng xác nhận.", 'warning');
                                             return;
                                         }
                                         if (isNaN(cellval)) {
@@ -336,8 +336,8 @@
                 { label: '<span class="required"></span>Dặn dò', name: 'bz', width: 400, editwidth: '100%', align: 'center', editable: true },
                 { label: 'Thao tác', name: 'action', width: 100, align: 'center' }
             ],
-            editinputwidthborder: false,    //làkhôngcầncầnbênkhung Mặc định làtrue
-            editinputborderradius: false,   //làkhôngcầncầnbênkhungtròngóc mặc địnhtrue（cótròngóc）
+            editinputwidthborder: false, //làkhôngcầncầnbênkhung Mặc định làtrue
+            editinputborderradius: false, //làkhôngcầncầnbênkhungtròngóc mặc địnhtrue(cótròngóc)
             pager: "#gridzljyPager",
             loadComplete: function () {
                 ////tựđộngchạmphátmớiđiều trịđiều trịlậpnghị

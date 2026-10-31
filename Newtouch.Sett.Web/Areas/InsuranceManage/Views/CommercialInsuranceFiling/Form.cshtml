@@ -50,11 +50,11 @@
                         >
                         <th class="formTitle"><span class="required">*</span>Ngày bắt đầu:</th>
                         <td class="formValue">
-                            <input id="ksrq" type="text" class="form-control input-wdatepicker" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" required />
+                            <input id="ksrq" type="text" class="form-control input-wdatepicker" value="" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" required />
                         </td>
                         <th class="formTitle"><span class="required">*</span>Ngày kết thúc:</th>
                         <td class="formValue">
-                            <input id="jsrq" type="text" class="form-control input-wdatepicker" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" required />
+                            <input id="jsrq" type="text" class="form-control input-wdatepicker" value="" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" required />
                         </td>
                     </tr>
                     <tr>
@@ -74,7 +74,7 @@
                         </td>
                         <th class="formTitle"><span class="required">*</span>Ngày lập hồ sơ:</th>
                         <td class="formValue">
-                            <input class="form-control newtouch_Readonly" id="CreateTime" value=@DateTime.Now.ToString("yyyy-MM-dd") type="text" required />
+                            <input class="form-control newtouch_Readonly" id="CreateTime" value=@DateTime.Now.ToString("dd/MM/yyyy") type="text" required />
                         </td>
                     </tr>
                 </table>

@@ -309,9 +309,9 @@ var EnableLinkToOR = SysConfigReader.String("EnableLinkToOR");
         }
     }
 
-    //TheodataĐặt lạivẽbảng 长cao
+    //Đặt lại chiều cao bảng vẽ theo data
     function drawTemplet(data) {
-        //vẽbảngcủa长rộng
+        //chiều rộng bảng vẽ
         var totalwidth = $(window).width();
         var totalheight = bodyHeight;
         $board.css('width', totalwidth);
@@ -388,7 +388,7 @@ var EnableLinkToOR = SysConfigReader.String("EnableLinkToOR");
  //+ xyArr[i + 1] + '</div>');
  //               $div.appendTo($board);
             }
-            //tronggiữacủa4dòngnhiệtđộcủađường（ởnàydòngđườngcủatrên）
+            //tronggiữacủa4dòngnhiệtđộcủađường(ởnàydòngđườngcủatrên)
             for (var j = 0; j < 4; j++) {
                 top = contentStartTop + sspace * 5 * i + sspace * (j + 1);
                 drawLine(contentStartLeft, top, twLastLeft - contentStartLeft);
@@ -515,8 +515,8 @@ var EnableLinkToOR = SysConfigReader.String("EnableLinkToOR");
 				}
 
 				//Nhập việnTrạng thái
-				var brzt1 = ["", "vào", "ở", "ra", "vui lòng", "chuyển", "chuyển", "拒", "返", "lại", "nằm"];
-				var brzt2 = ["", "viện", "viện", "viện", "假", "vào", "ra", "đo", "viện", "đo", "giường"];
+				var brzt1 = ["", "Nhập", "Tại", "Xuất", "Xin phép", "Chuyển", "Chuyển", "Từ chối", "Trở lại", "Trở lại", "Về"];
+				var brzt2 = ["", " viện", " viện", " viện", "", " vào", " ra", " đo", " viện", " đo", " giường"];
 				for (var j = 0; j < rqData.length; j++) {
 					if (rqData[j] && rqData[j].brzt) {
 						thisbrzt = rqData[j].brzt;
@@ -750,7 +750,7 @@ var EnableLinkToOR = SysConfigReader.String("EnableLinkToOR");
                     //Khoảng cách vượt quá1ngày thì không vẽ đường nối
 					if (tempArr[i].brzt != 4) {
 						//drawLigature(tempArr[i].twLocation, tempArr[i + 1].twLocation, twColor);
-						drawLigature(tempArr[i].twLocation, tempArr[i + 1].twLocation, 'cblue');//Nhiệt độđường nốiđổithành蓝màu
+						drawLigature(tempArr[i].twLocation, tempArr[i + 1].twLocation, 'cblue');//Đường nối nhiệt độ đổi thành màu xanh lam
 					}
                 }
             }

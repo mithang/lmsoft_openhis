@@ -107,7 +107,7 @@
                 </td>
                 <th class="formTitle"><p class="ztjsyc"><span style="color:red">*</span>Ngày xuất viện:</p></th>
                 <td class="formValue" colspan="2">
-                    <input id="cyrq" type="text" class="form-control  form-an input-wdatepicker ztjsyc" style="float: left; margin-left: 5px; width:90%" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="cyrq" type="text" class="form-control  form-an input-wdatepicker ztjsyc" style="float: left; margin-left: 5px; width:90%" value="" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
             </tr>
             <tr>
@@ -227,7 +227,7 @@
     var withYjj = '@(withYjj)';
     //Tổng số tiềnquyết toán
     var zje = ovpraseFloat($.request("zje"));
-    //thanh toánphảithu Số phải thu khiquyết toán（zje = Được báo + Số phải thu khiquyết toán + v.v.）
+    //thanh toánphảithu Số phải thu khiquyết toán(zje = Được báo + Số phải thu khiquyết toán + v.v.)
     var orglxjzfys = ovpraseFloat($.request("xjzfys"));
     //Khi có chiết khấu thì không bằng original
     var xjzfys = orglxjzfys;    //Khi có chiết khấu thì sẽ không bằng
@@ -506,7 +506,7 @@
                  }
              }
          }
-         var payoptype = { "sbkh": sbkh, "xzlb": "1" };//Loại bảo hiểm mặc định,1、Bảo hiểm y tế；2、Bảo hiểm tai nạn lao động；3、Bảo hiểm sinh đẻ；
+         var payoptype = { "sbkh": sbkh, "xzlb": "1" };//Loại bảo hiểm mặc định,1. Bảo hiểm y tế；2. Bảo hiểm tai nạn lao động；3. Bảo hiểm sinh đẻ；
          $.ajax({
              type: "POST",
              url: "http://127.0.0.1:22222/api/CQYiBao/PatAccountInfo",
@@ -548,7 +548,7 @@
             return;
         }
         var yibaoZhdy;
-        var payoptype = { "zymzh": cqPatInfo.zymzh, "jyrbh": cqPatInfo.sbkh, "jyrxm": cqPatInfo.xm, "jyrsfz": cqPatInfo.sfzh, "jyrxzqh": cqPatInfo.xzqh, "dyrsbh": $("#zhdy").val(), "ddyje": (ybjyFeeReturn.cqxjzf - ybjyFeeReturn.lsqfxgwyff), "jbr": '@(opr.rygh)', "jsjylsh": ybjyFeeReturn.jylsh, "jyrcblb": cqPatInfo.cblb };//Loại bảo hiểm mặc định,1、Bảo hiểm y tế；2、Bảo hiểm tai nạn lao động；3、Bảo hiểm sinh đẻ；
+        var payoptype = { "zymzh": cqPatInfo.zymzh, "jyrbh": cqPatInfo.sbkh, "jyrxm": cqPatInfo.xm, "jyrsfz": cqPatInfo.sfzh, "jyrxzqh": cqPatInfo.xzqh, "dyrsbh": $("#zhdy").val(), "ddyje": (ybjyFeeReturn.cqxjzf - ybjyFeeReturn.lsqfxgwyff), "jbr": '@(opr.rygh)', "jsjylsh": ybjyFeeReturn.jylsh, "jyrcblb": cqPatInfo.cblb };//Loại bảo hiểm mặc định,1. Bảo hiểm y tế；2. Bảo hiểm tai nạn lao động；3. Bảo hiểm sinh đẻ；
         $.ajax({
             type: "POST",
             url: "http://127.0.0.1:22222/api/CQYiBao/MedicalAccountToUse",
@@ -645,7 +645,7 @@
             return false;
         }
         if (cyrq < ryrq) {
-            $.modalAlert("Ngày xuất việnnhỏ hơnNgày nhập viện,Vui lòng xác nhận。", 'warning');
+            $.modalAlert("Ngày xuất việnnhỏ hơnNgày nhập viện,Vui lòng xác nhận.", 'warning');
             return;
         }
         if ($.getDate() < cyrq) {
@@ -703,9 +703,9 @@
         }
         return {
             fph: fph, cyrq: cyrq
-            , zffs1: zffs1, zfje1: zfje1, zffs2: zffs2, zfje2: zfje2
-            , zje: ovpraseFloat(zje).toFixed(2), orglxjzfys: orglxjzfys, xjzfys: ovpraseFloat(xjzfys).toFixed(2)
-            , ssk: hjssk, zhaoling: zhaoling, dyjylsh: strdyjylsh
+, zffs1: zffs1, zfje1: zfje1, zffs2: zffs2, zfje2: zfje2
+, zje: ovpraseFloat(zje).toFixed(2), orglxjzfys: orglxjzfys, xjzfys: ovpraseFloat(xjzfys).toFixed(2)
+, ssk: hjssk, zhaoling: zhaoling, dyjylsh: strdyjylsh
         };
     }
 
@@ -759,7 +759,7 @@
         }
     });
 
-    //Tính theo thanh toánphảithu、Phương thức thanh toán Tính tổng thực thu、Tiền thừa
+    //Tính theo thanh toánphảithu, Phương thức thanh toán Tính tổng thực thu, Tiền thừa
     function hjsskZhaolingCal() {
         if (!$('#zffs1').val() && $('#zfje1').val() != 0) {
             //Chưa chọnPhương thức thanh toán,đối vớiphảiSố tiềncầnđặtlà0.00

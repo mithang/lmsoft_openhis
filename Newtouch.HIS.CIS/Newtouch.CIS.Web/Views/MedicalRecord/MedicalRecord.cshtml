@@ -281,7 +281,7 @@
                         </a>
                         <a class="btn  " onclick="ct_btn_edit()" style="width:25px;height:30px;" title="Sửa">
                             <i class="fa fa-pencil-square-o"></i>
-                            @*<img src="~/Content/img/icon/copy.png" title="Sửa" />*@
+                            @*<img src="~/Content/img/icon/copy.png" title="Sửa" alt="Sửa" />*@
                         </a>
                     </span>
                     <hr style="margin-top:-13px;">
@@ -452,7 +452,7 @@
                             </td>
                             <th class="formTitle">Khởi phátNgày:</th>
                             <td class="formValue">
-                                <input type="text" id="fbsj" name="fbsj" class="form-control input-wdatepicker activeValue focusInput" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                                <input type="text" id="fbsj" name="fbsj" class="form-control input-wdatepicker activeValue focusInput" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                                 <i class="fa fa-times" aria-hidden="true" hidden></i>
                             </td>
                         </tr>
@@ -798,7 +798,7 @@
                         </td>
                         <th class="formTitle">Khởi phátNgày:</th>
                         <td class="formValue">
-                            <input type="text" id="nc_fbsj" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <input type="text" id="nc_fbsj" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         </td>
                     </tr>
                     <tr>
@@ -1322,9 +1322,9 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 //clickjzid = item.id;
                 /******câycủanội dung********/
                 if(item.Ex2 == "medicalRecord"){
-                    //chọncủa Lịch sửHồ sơ（góigồmĐang khám bệnh）
+                    //chọncủa Lịch sửHồ sơ(góigồmĐang khám bệnh)
                     if(item.Ex3=='@Html.Raw(((int)@Enumlsblly.api).ToString())'){
-                        //chờhoàn thiện###################（mâysức khỏecầncầu）
+                        //chờhoàn thiện###################(mâysức khỏecầncầu)
                         //kéolấygiao diệncủaLịch sửHồ sơchi tiết
                         //$('#dispDiv').show();
                         $('.historyleft').hide();
@@ -1482,7 +1482,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             || (window.currPatientInfo.jzzt == ((int)@EnumJzzt.NotYetTreate).toString() && pageType=="yczl") //xatrìnhkhámtrịChờ khám bệnh
         )*@
         {
-            //Đang khám bệnh（hoặcCótừĐã khám bệnhdanh sáchnhấp đúpvàođến，vàvàĐã chọncủaCóĐã kết thúccủaghi chép）    trực tiếphiển thịhiệnđếnhiện tạivăn bảntrong
+            //Đang khám bệnh(hoặcCótừĐã khám bệnhdanh sáchnhấp đúpvàođến，vàvàĐã chọncủaCóĐã kết thúccủaghi chép)    trực tiếphiển thịhiệnđếnhiện tạivăn bảntrong
             //hoặcchọncủaCóHồ sơmẫu
             $('#form1').formSerialize(ajaxresp);
             if (ajaxresp.cfzbz == "1") {
@@ -3095,7 +3095,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         return { rs: rs, msg: msg };
     }
     function SaveMedicalRecord(jzObject, xyzdArray, zyzdArray, blObject, cfDtoArray, jzFinish, fromCfSaveCallback) {
-        //cfDtoArray = '[{"cflx":"cgxmcf","cfHtml":[{"cfzhdysj":null,"sendtohisResult":"1","sfbz":false,"klrq":"2019-05-29T11:22:00.87","cfId":"e86194b8-98f5-4417-81e4-f9b18a846556","cfh":"R20190529N000095","xmmc":"Bình thườngkhámtrịphí","xmCode":"3905","dj":9,"dw":" lần","bw":"","dwjls":1,"jjcl":2,"mczll":1,"pcmc":"","pcCode":"","sl":1,"zl":1,"je":9,"ybwym":"Pnd9Wl1559100105204","xzsybz":"","cfmxId":"d200c4c3-8d22-4543-ac5c-a203b90961a2","ts":null,"px":1}]},{"cflx":"xycf","cfHtml":[{"cfzhdysj":"2019-05-29T11:20:24.15","sendtohisResult":"1","sfbz":false,"klrq":"2019-05-29T11:09:14.807","cfId":"59536a08-3643-4867-ad79-1957e23cf84c","cfh":"R20190529N000094","zh":"","ypmc":"mâynamtrắngthuốc膏","ypCode":"00000078","ypgg":"6.5cm×10cm","dj":4.21,"mcjl":1,"mcjldw":"ảnh","mcjldwwwwwww":"ảnh","redundant_jldw":"ảnh","yfmc":"uống","yfCode":"1","pcmc":"ST","pcCode":"00","sl":1,"dw":"ảnh","je":4.21,"zxks":"00000001","ybwym":"u3SZ1F1559099349093","xzsybz":"","cfmxId":"b439c1ba-fd96-4ad4-8978-94085b75d9c9","ts":null,"jxCode":"6","px":1},{"cfzhdysj":"2019-05-29T11:20:24.15","sendtohisResult":"1","sfbz":false,"klrq":"2019-05-29T11:09:14.807","cfId":"59536a08-3643-4867-ad79-1957e23cf84c","cfh":"R20190529N000094","zh":"","ypmc":"(mới)có thểhítthutínhngoàikhoa缝đường","ypCode":"00000012","ypgg":"6-0","dj":8.75,"mcjl":1,"mcjldw":"gói","mcjldwwwwwww":"gói","redundant_jldw":"gói","yfmc":"hítvàodùngthuốc","yfCode":"5","pcmc":"ST","pcCode":"00","sl":1,"dw":"gói","je":8.75,"zxks":"00000001","ybwym":"jH6iCq1559099417059","xzsybz":"","cfmxId":"85251e8d-fe4a-4a89-ab64-f91d2cd24d3b","ts":null,"jxCode":"42","px":2}]},{ "cflx": "zycf", "cfHtml": [{ "cfId": "", "ybwym": "xKNJQb1559100182816", "xzsybz": "", "cfmxId": "", "zxks": "00000001", "cfh": "R20190529N000096", "ypCode": "00000077", "ypmc": "mâynamtrắngthuốc胶囊", "ypgg": "16hạt/hộp", "dj": "17.6500", "mcjl": "", "mcjldw": "hạt", "ts": "", "sl": "1", "dw": "hộp", "je": "17.65", "Remark": "", "tieshu": "1", "cfyf": "", "djbz": false, "sfbz": false, "px": 1 }] },{ "cflx": "jycf", "cfHtml": [{ "xmmc": "RhNhóm máugiámđịnh", "xmCode": "926", "dj": "6.40", "dw": " lần", "zxks": "08", "zxksmc": "Xét nghiệmphòng", "ztId": "059b16ad-360b-4fc0-a360-7d623e999936", "ztmc": "Nhóm máuđịnhloạiđođịnh", "cfh": "R20190529N000098", "px": 1 }, { "xmmc": "ABONhóm máugiámđịnh", "xmCode": "7", "dj": "1.50", "dw": " mục", "zxks": "08", "zxksmc": "Xét nghiệmphòng", "ztId": "059b16ad-360b-4fc0-a360-7d623e999936", "ztmc": "Nhóm máuđịnhloạiđođịnh", "cfh": "R20190529N000098", "px": 2 }] }, { "cflx": "jccf", "cfHtml": [{ "xmmc": "肝、胆、胰腺 vượttiếng", "xmCode": "00000017", "sqlx": "US", "bw": "bụngbộ", "bwff": "", "sl": "1", "dj": "63.75", "dw": " lần", "zxks": "14", "ztId": "4fe927a7-8081-4404-aa79-4a93bc0fd258", "ztmc": "Bvượt（cụ thểthểVị trí）", "zxksmc": "Bvượtphòng", "sfyb": "", "lcyx": "", "sqbz": "", "cfh": "R20190529N000099", "px": 1 }, { "xmmc": "甲状腺彩màunhiều普勒vượttiếngKiểm tra", "xmCode": "00000033", "sqlx": "", "bw": "bụngbộ", "bwff": "", "sl": "1", "dj": "63.75", "dw": " lần", "zxks": "14", "ztId": "4fe927a7-8081-4404-aa79-4a93bc0fd258", "ztmc": "Bvượt（cụ thểthểVị trí）", "zxksmc": "Bvượtphòng", "sfyb": "", "lcyx": "", "sqbz": "", "cfh": "R20190529N000099", "px": 2 }] }]';
+        //cfDtoArray = '[{"cflx":"cgxmcf","cfHtml":[{"cfzhdysj":null,"sendtohisResult":"1","sfbz":false,"klrq":"2019-05-29T11:22:00.87","cfId":"e86194b8-98f5-4417-81e4-f9b18a846556","cfh":"R20190529N000095","xmmc":"Phí khám thông thường","xmCode":"3905","dj":9,"dw":" lần","bw":"","dwjls":1,"jjcl":2,"mczll":1,"pcmc":"","pcCode":"","sl":1,"zl":1,"je":9,"ybwym":"Pnd9Wl1559100105204","xzsybz":"","cfmxId":"d200c4c3-8d22-4543-ac5c-a203b90961a2","ts":null,"px":1}]},{"cflx":"xycf","cfHtml":[{"cfzhdysj":"2019-05-29T11:20:24.15","sendtohisResult":"1","sfbz":false,"klrq":"2019-05-29T11:09:14.807","cfId":"59536a08-3643-4867-ad79-1957e23cf84c","cfh":"R20190529N000094","zh":"","ypmc":"Cao thuốc nam trắng","ypCode":"00000078","ypgg":"6.5cm×10cm","dj":4.21,"mcjl":1,"mcjldw":"ảnh","mcjldwwwwwww":"ảnh","redundant_jldw":"ảnh","yfmc":"uống","yfCode":"1","pcmc":"ST","pcCode":"00","sl":1,"dw":"ảnh","je":4.21,"zxks":"00000001","ybwym":"u3SZ1F1559099349093","xzsybz":"","cfmxId":"b439c1ba-fd96-4ad4-8978-94085b75d9c9","ts":null,"jxCode":"6","px":1},{"cfzhdysj":"2019-05-29T11:20:24.15","sendtohisResult":"1","sfbz":false,"klrq":"2019-05-29T11:09:14.807","cfId":"59536a08-3643-4867-ad79-1957e23cf84c","cfh":"R20190529N000094","zh":"","ypmc":"(mới) thuốc hít dùng ngoài khoa","ypCode":"00000012","ypgg":"6-0","dj":8.75,"mcjl":1,"mcjldw":"gói","mcjldwwwwwww":"gói","redundant_jldw":"gói","yfmc":"hítvàodùngthuốc","yfCode":"5","pcmc":"ST","pcCode":"00","sl":1,"dw":"gói","je":8.75,"zxks":"00000001","ybwym":"jH6iCq1559099417059","xzsybz":"","cfmxId":"85251e8d-fe4a-4a89-ab64-f91d2cd24d3b","ts":null,"jxCode":"42","px":2}]},{ "cflx": "zycf", "cfHtml": [{ "cfId": "", "ybwym": "xKNJQb1559100182816", "xzsybz": "", "cfmxId": "", "zxks": "00000001", "cfh": "R20190529N000096", "ypCode": "00000077", "ypmc": "Nang thuốc nam trắng", "ypgg": "16hạt/hộp", "dj": "17.6500", "mcjl": "", "mcjldw": "hạt", "ts": "", "sl": "1", "dw": "hộp", "je": "17.65", "Remark": "", "tieshu": "1", "cfyf": "", "djbz": false, "sfbz": false, "px": 1 }] },{ "cflx": "jycf", "cfHtml": [{ "xmmc": "Định nhóm máu Rh", "xmCode": "926", "dj": "6.40", "dw": " lần", "zxks": "08", "zxksmc": "Phòng xét nghiệm", "ztId": "059b16ad-360b-4fc0-a360-7d623e999936", "ztmc": "Định nhóm máu, đo định lượng", "cfh": "R20190529N000098", "px": 1 }, { "xmmc": "Định nhóm máu ABO", "xmCode": "7", "dj": "1.50", "dw": " mục", "zxks": "08", "zxksmc": "Phòng xét nghiệm", "ztId": "059b16ad-360b-4fc0-a360-7d623e999936", "ztmc": "Định nhóm máu, đo định lượng", "cfh": "R20190529N000098", "px": 2 }] }, { "cflx": "jccf", "cfHtml": [{ "xmmc": "Siêu âm gan, mật, tụy", "xmCode": "00000017", "sqlx": "US", "bw": "bụngbộ", "bwff": "", "sl": "1", "dj": "63.75", "dw": " lần", "zxks": "14", "ztId": "4fe927a7-8081-4404-aa79-4a93bc0fd258", "ztmc": "Siêu âm (vị trí cụ thể)", "zxksmc": "Phòng siêu âm", "sfyb": "", "lcyx": "", "sqbz": "", "cfh": "R20190529N000099", "px": 1 }, { "xmmc": "Siêu âm Doppler màu tuyến giáp", "xmCode": "00000033", "sqlx": "", "bw": "bụngbộ", "bwff": "", "sl": "1", "dj": "63.75", "dw": " lần", "zxks": "14", "ztId": "4fe927a7-8081-4404-aa79-4a93bc0fd258", "ztmc": "Siêu âm (vị trí cụ thể)", "zxksmc": "Phòng siêu âm", "sfyb": "", "lcyx": "", "sqbz": "", "cfh": "R20190529N000099", "px": 2 }] }]';
         var jzObject2 = jzObject; jzObject2.action = "";
         $.najax({
             url: "/MedicalRecord/SaveMedicalRecord",
@@ -3615,7 +3615,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             xuetangclfs = $("#xuetangclfs option:selected").text() + ",";
         }
         var cfzbz = $('[name="cfzbzRadios"]:checked').val();
-        var cthtml = "";//Bác sĩcó thểcó thểsẽtayviếtmột些trathể，cầnbảogiữdướiđến
+        var cthtml = "";//Bác sĩ có thể viết tay một số chỉ định, cần bảo lưu bên dưới
         if ($('#ct').val().split('Khám lần đầu;').length>1) {
             cthtml = $('#ct').val().split('Khám lần đầu;')[1];
         }
@@ -3748,7 +3748,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         $(this).closest('tr').remove();
     })
 
-    //văn bản聚tiêu điểmsự kiện，caosángvàtriểnmởcâytiếtđiểm
+    //Văn bản tập trung sự kiện, làm nổi bật và triển khai cây tiêu điểm
     var lasthtml;
     $('.focusInput').focus(function(){
         var focusThHtml = $(this).parent().prev().html().replace(/<[^>]*>|<\/[^>]*>/gm,"").replace(new RegExp(/(:)/g),'').replace('*','')
@@ -3828,7 +3828,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             //1.duyệttất cảDữ liệu
             $.each(Object.keys(newdataArray), function () {    //Object.keys(newdataArray):["kfcf"]
                 var itemsKey = String(this);      //String(Object.keys(newdataArray):["kfcf"]) : kfcf
-                //2.Theomỗicáitìmdẫntìmđếncủa nótương ứngcủaValue（valueCómộtsốnhóm，sốnhómtrongCónhiềucáiđối tượng）
+                //2.Theomỗicáitìmdẫntìmđếncủa nótương ứngcủaValue(valueCómộtsốnhóm，sốnhómtrongCónhiềucáiđối tượng)
                 var itemsMxArr = newdataArray[String(this)];    //itemsMxArr lấyrakeylàkfcfcủatất cảchi tiết
                 // 3.1.1tìmđếnkeyCóKhônglàPhục hồi chức năngĐơn thuốc
                 if (itemsKey == "kfcf") {
@@ -5730,7 +5730,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     //    success: function (resp) {
                     //        if (!!resp) {
                     //            //var title1 = "InĐơn thuốc";
-                    //            //var tmplData1 = '{\"PatientInfo\":{\"blh\":\"00018\",\"xm\":\"ceshi4\",\"xb\":\"Nữ\",\"nl\":\"24 tuổi\",\"ghksmc\":\"hủyhóatrongkhoa\",\"brxzmc\":\"tự chi trả\",\"jzysmc\":\"Quản lýviên\",\"xyzdmc\":\"chờtra\",\"zyzdmc\":null,\"zs\":\"\",\"jws\":null,\"ContactNum\":null,\"kh\":\"18\",\"ADDRESS\":\"123\",\"hf\":\"không详\",\"mzh\":\"2105124340004\"},\"cfd_xmInfo\":[{\"cfh\":\"R20210514N000062\",\"CreateTime\":\"2021-05-14T14:36:47.58\",\"sl\":\"1\",\"xmmc\":\"đothửThuốc Tây\",\"dj\":1.0000,\"ypgg\":\"10ml*10chi/hộp\",\"mcjl\":\"1.00\",\"mcjldw\":\"ml\",\"yfmc\":\"uống\",\"yzpcmcsm\":\"lậptức\",\"je\":1.00,\"mzcldw\":\"chi\",\"ds\":\"\"}],\"orgInfo\":{\"Name\":\"trọngkhánhtrọngykèmhaiviệnrộng仁Phục hồi chức năngyviện\"}}';
+                    //            //var tmplData1 = '{\"PatientInfo\":{\"blh\":\"00018\",\"xm\":\"ceshi4\",\"xb\":\"Nữ\",\"nl\":\"24 tuổi\",\"ghksmc\":\"Khoa hủy hóa\",\"brxzmc\":\"tự chi trả\",\"jzysmc\":\"Quản lýviên\",\"xyzdmc\":\"Chờ xác định\",\"zyzdmc\":null,\"zs\":\"\",\"jws\":null,\"ContactNum\":null,\"kh\":\"18\",\"ADDRESS\":\"123\",\"hf\":\"Không rõ\",\"mzh\":\"2105124340004\"},\"cfd_xmInfo\":[{\"cfh\":\"R20210514N000062\",\"CreateTime\":\"2021-05-14T14:36:47.58\",\"sl\":\"1\",\"xmmc\":\"Thuốc Tây thử nghiệm\",\"dj\":1.0000,\"ypgg\":\"10ml*10chi/hộp\",\"mcjl\":\"1.00\",\"mcjldw\":\"ml\",\"yfmc\":\"uống\",\"yzpcmcsm\":\"Lập tức\",\"je\":1.00,\"mzcldw\":\"chi\",\"ds\":\"\"}],\"orgInfo\":{\"Name\":\"Bệnh viện Phục hồi chức năng Nhân Ái\"}}';
                     //            //var tmplData2 = JSON.stringify(tmplData1).replace(/\#/g, "%23");
                     //            //var url2='http://localhost:11111/api/CISReport/post/?tmplName=' + title + "&tmplData=" + tmplData2;
                     //            ////console.log(url2);
@@ -5812,7 +5812,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         triggleActive();
     }
 
-    //hơnĐơn thuốc mớicủaTrạng thái đồng bộ（toHIS）
+    //hơnĐơn thuốc mớicủaTrạng thái đồng bộ(toHIS)
     function updateSendtohisResult(fromcflx, cfh) {
         if (fromcflx == 'kfcf') {
             $.each(window.alldataArray.kfcf, function () {
@@ -6016,7 +6016,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 btnclass: ['', 'btn btn-danger'],
             });
         }else{
-            //金风易通 PACS 2024-4-28 chl trực tiếpTheoThông tin bệnh nhânTra cứubáo cáo
+            //Jinfeng Yitong PACS 2024-4-28 chl trực tiếpTheoThông tin bệnh nhânTra cứubáo cáo
             $.ajax({
                 type: "POST",
                 dataType: "json", //Quay lạijsondữ liệu dạng
@@ -6049,7 +6049,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 btnclass: ['', 'btn btn-danger'],
             });
         }else{
-            //金风易通 LIS 2024-4-28 chl
+            //Jinfeng Yitong LIS 2024-4-28 chl
             $.ajax({
                 type: "POST",
                 dataType: "json", //Quay lạijsondữ liệu dạng
@@ -6068,7 +6068,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 }
             });
         }
-        //2024-4-29 chl 金风易通giao diệnhơnđổi Lưu ýgiải thíchgốcgiao diệnlogictập begin
+        //2024-4-29 chl Jinfeng Yitonggiao diệnhơnđổi Lưu ýgiải thíchgốcgiao diệnlogictập begin
         @*if ("@IsreportOpen" == "true") {
             $.modalOpen({
                 id: "medicaljyForm",
@@ -6094,7 +6094,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                 });
             }
         }*@
-        //2024-4-29 chl 金风易通giao diệnhơnđổi Lưu ýgiải thíchgốcgiao diệnlogictập end
+        //2024-4-29 chl Jinfeng Yitonggiao diệnhơnđổi Lưu ýgiải thíchgốcgiao diệnlogictập end
     });
 
     $('#btn_hyfq').click(function () {
@@ -6473,7 +6473,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         }
     }
 
-    //Lấy鼠dấuĐã chọnVị trídivcủaid
+    //Lấy id của div tại vị trí con trỏ chuột
     function getFocusId(idArray) {
         var id = "";
         var flag = false;
@@ -6641,7 +6641,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         $("#ywstr" + zdrow).val(ywdata.ywtstr);
                         $("#ywlx" + zdrow).val(ywdata.ywlx);
                         //if (ywdata.ywlx == "yw") {
-                        //    ywxsnr += "恒răng，";
+                        //    ywxsnr += "Răng vĩnh viễn, ";
                         //} else if (ywdata.ywlx == "ry") {
                         //    ywxsnr += "răng sữa，";
                         //} else if (ywdata.ywlx == "hhy") {

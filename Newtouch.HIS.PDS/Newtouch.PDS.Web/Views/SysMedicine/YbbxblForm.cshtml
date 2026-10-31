@@ -38,11 +38,11 @@
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("Giá trị trống，Vui lòng xác nhận。", 'warning');
+                                            $.modalAlert("Giá trị trống, Vui lòng xác nhận.", 'warning');
                                             return;
                                         }
                                         if (cellval<0 ||cellval>100) {
-                                            $.modalAlert("Tỷ lệ tự trả：Giá trị nhập vào phải trong khoảng 0~100", 'warning');
+                                            $.modalAlert("Tỷ lệ tự trả: Giá trị nhập vào phải trong khoảng 0~100", 'warning');
                                             $(this).val('')
                                             return;
                                         }
@@ -59,11 +59,11 @@
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("Giá trị trống，Vui lòng xác nhận。", 'warning');
+                                            $.modalAlert("Giá trị trống, Vui lòng xác nhận.", 'warning');
                                             return;
                                         }
                                         if (cellval < 0 || cellval > 100) {
-                                            $.modalAlert("Hạn mức phí：Giá trị nhập vào phải trong khoảng 0~100", 'warning');
+                                            $.modalAlert("Hạn mức phí: Giá trị nhập vào phải trong khoảng 0~100", 'warning');
                                             $(this).val('')
                                             return;
                                         }
@@ -80,11 +80,11 @@
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("Giá trị trống，Vui lòng xác nhận。", 'warning');
+                                            $.modalAlert("Giá trị trống, Vui lòng xác nhận.", 'warning');
                                             return;
                                         }
                                         if (cellval < 0 || cellval > 100) {
-                                            $.modalAlert("Tỷ lệ vượt hạn：Giá trị nhập vào phải trong khoảng 0~100", 'warning');
+                                            $.modalAlert("Tỷ lệ vượt hạn: Giá trị nhập vào phải trong khoảng 0~100", 'warning');
                                             $(this).val('')
                                             return;
                                         }
@@ -112,7 +112,7 @@
     function submitForm() {
         debugger;
         var res = true;
-        //Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
+        //Lấy tất cả các dòngId, Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) {
@@ -159,7 +159,7 @@
     }
     //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        //GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
+        //GridSau khi tải xong, bật chỉnh sửa trong dòng 1.Lấy tất cả các dòng trướcId 2.Duyệt để gọieditRowPhương thức
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {

@@ -37,11 +37,11 @@
                     <tr>
                         <th class="formTitle"><span class="required">*</span>Ngày bắt đầu:</th>
                         <td class="formValue">
-                            <input id="ksrq" type="text" class="form-control input-wdatepicker form-an" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" required />
+                            <input id="ksrq" type="text" class="form-control input-wdatepicker form-an" value="" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" required />
                         </td>
                         <th class="formTitle"><span class="required">*</span>Ngày kết thúc:</th>
                         <td class="formValue">
-                            <input id="jsrq" type="text" class="form-control input-wdatepicker form-an"value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" required />
+                            <input id="jsrq" type="text" class="form-control input-wdatepicker form-an"value="" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" required />
                         </td>
                     </tr>
                     <tr>
@@ -81,7 +81,7 @@
                 success: function (data) {
                     $("#form1").formSerialize(data);
                     //Định dạngUTCNgày
-                    $("#CreateTime").val(new Date(data.CreateTime).format("yyyy-MM-dd hh:mm:ss"));
+                    $("#CreateTime").val(new Date(data.CreateTime).format("dd/MM/yyyy hh:mm:ss"));
                     $("#ksrq").val((data.ksrq && data.ksrq.length >= 10 ? data.ksrq.substring(0, 10) : ""));
                     $("#jsrq").val((data.jsrq && data.jsrq.length >= 10 ? data.jsrq.substring(0, 10) : ""));
                 }

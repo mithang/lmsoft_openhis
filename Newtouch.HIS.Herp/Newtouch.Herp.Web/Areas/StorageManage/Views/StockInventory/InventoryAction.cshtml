@@ -82,25 +82,25 @@
         <div class="panel-heading">Điều kiện tra cứu</div>
         <table class="form">
             <tr>
-                <th class="formTitle" style="width: 45px;">Ngày：</th>
+                <th class="formTitle" style="width: 45px;">Ngày:</th>
                 <td class="formValue" colspan="2">
                     <select id="ddlRQ" class="form-control"></select>
                 </td>
-                <th class="formTitle" style="width: 60px;">Từ khóa：</th>
+                <th class="formTitle" style="width: 60px;">Từ khóa:</th>
                 <td class="formValue" style="width: 65px;">
                     <input id="txtSRM" type="text" class="form-control" placeholder="Tên vật tư/Phiên âm" />
                 </td>
-                <th class="formTitle" style="width: 70px;">Trạng thái vật tư：</th>
+                <th class="formTitle" style="width: 70px;">Trạng thái vật tư:</th>
                 <td class="formValue" style="width: 55px;">
                     @Html.DropDownList("ddlwzzt", Enumzt.Enable.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                 </td>
-                <th class="formTitle" style="width: 70px;">Loại vật tư：</th>
+                <th class="formTitle" style="width: 70px;">Loại vật tư:</th>
                 <td class="formValue">
                     <select id="ddllb" class="form-control">
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                <th class="formTitle" style="width: 70px;">Hiển thị tồn kho：</th>
+                <th class="formTitle" style="width: 70px;">Hiển thị tồn kho:</th>
                 <td class="formValue">
                     @Html.DropDownList("ddlKCXS", EnumKCXS.None.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                 </td>
@@ -124,7 +124,7 @@
         <table id="gridKCInfoNoPc"></table>
         <div id="gridPagerNoPc" rel="form1"></div>
     </div>
-    <div class="dv-remark">(Thực)Số khoa：Thực tếKhoaĐơn vịSố；(Thực)Số nhỏ nhất：Thực tếNhấtNhỏĐơn vịSố！Vui lòngSố khoavàSố nhỏ nhấtSử dụng kết hợp</div>
+    <div class="dv-remark">(Thực)Số khoa:Thực tếKhoaĐơn vịSố;(Thực)Số nhỏ nhất:Thực tếNhấtNhỏĐơn vịSố!Vui lòngSố khoavàSố nhỏ nhấtSử dụng kết hợp</div>
     @Html.Partial("_BottomButtonsView", new Newtouch.Herp.Web.Models.BottomButtonViewModel
     {
         ShowKeyList = new[] { 8, 3, 7 },
@@ -136,7 +136,7 @@
         <input id="autoCarryDown" name="autoCarryDown" type="checkbox" checked="checked">
         <label for="autoCarryDown"></label>
     </div>
-    <div style="float:right;margin: 10px 5px 0 0;font-size: 14px;">Tự động kết chuyển：</div>
+    <div style="float:right;margin: 10px 5px 0 0;font-size: 14px;">Tự động kết chuyển:</div>
 </form>
 <script>
     var $gridKCInfo = $("#gridKCInfo");
@@ -200,7 +200,7 @@
 
     //Lấy thời gian kiểm kê
     function GetPdsj() {
-        $("#ddlRQ").empty();//Xóa trắng trước，Rồi điền
+        $("#ddlRQ").empty();//Xóa trắng trước,Rồi điền
         $("#ddlRQ").bindSelect({
             url: "/StorageManage/StockInventory/GetPdsj",
             id: "pdId",
@@ -368,13 +368,13 @@
         var $targetJqg;
         var noPc = "0";
         if ($("#i-noPc").hasClass("fa-toggle-off")) {
-            $targetJqg = $gridKCInfoNoPc;//Lấy tất cả các dòngId，Duyệt để khung chỉnh sửa ở trạng thái đã lưu
+            $targetJqg = $gridKCInfoNoPc;//Lấy tất cả các dòngId,Duyệt để khung chỉnh sửa ở trạng thái đã lưu
             noPc = "1";
         } else {
-            $targetJqg = $gridKCInfo;//Lấy tất cả các dòngId，Duyệt để khung chỉnh sửa ở trạng thái đã lưu
+            $targetJqg = $gridKCInfo;//Lấy tất cả các dòngId,Duyệt để khung chỉnh sửa ở trạng thái đã lưu
             noPc = "0";
         }
-        var rowIds = $targetJqg.jqGrid('getDataIDs');//Lấy tất cả các dòngId，Duyệt để khung chỉnh sửa ở trạng thái đã lưu
+        var rowIds = $targetJqg.jqGrid('getDataIDs');//Lấy tất cả các dòngId,Duyệt để khung chỉnh sửa ở trạng thái đã lưu
 
         //Xét trảSố lượng
         for (var i = 0; i < rowIds.length; i++) {
@@ -387,7 +387,7 @@
                 (rowData.deptSjsl < 0 && rowData.minSjsl < 0) ||
                 (isNaN(rowData.deptSjsl) && isNaN(rowData.minSjsl)) ||
                 (rowData.deptSjsl === "" && rowData.minSjsl === "")) {
-                $.modalAlert("Hạng mục（" + rowData.ypmc + "）Số lượng thực tếPhải là số tự nhiên，Vui lòng xác nhận。", "warning");
+                $.modalAlert("Hạng mục(" + rowData.ypmc + ")Số lượng thực tếPhải là số tự nhiên,Vui lòng xác nhận.", "warning");
                 EnableInlineEditBox($targetJqg);//Bật khung chỉnh sửa trong dòng
                 return false;
             }
@@ -469,7 +469,7 @@
     //Kết thúc kiểm kê
     function newtouch_event_f3() {
         if ($("#autoCarryDown").is(":checked")) {
-            $.modalConfirm("Xác nhậnTự động tạoKết chuyển？",
+            $.modalConfirm("Xác nhậnTự động tạoKết chuyển?",
                 function (flag) {
                     if (flag) {
                         InventorySubmit();

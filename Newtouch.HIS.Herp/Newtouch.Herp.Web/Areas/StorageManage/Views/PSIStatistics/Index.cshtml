@@ -28,19 +28,19 @@
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Thời gian bắt đầu：</th>
+                    <th class="formTitle">Thời gian bắt đầu:</th>
                     <td class="formValue" style="width:145px;">
                         <select id="ddlKSSJ" class="form-control"></select>
                     </td>
-                    <th class="formTitle">Thời gian kết thúc：</th>
+                    <th class="formTitle">Thời gian kết thúc:</th>
                     <td class="formValue" style="width:145px;">
                         <select id="ddlJSSJ" class="form-control"></select>
                     </td>
-                    <th class="formTitle">Trạng thái vật tư：</th>
+                    <th class="formTitle">Trạng thái vật tư:</th>
                     <td class="formValue " style="width: 60px;">
                         @Html.DropDownList("ddlWZZT", Enumzt.Enable.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">Loại vật tư：</th>
+                    <th class="formTitle">Loại vật tư:</th>
                     <td class="formValue formDdlSelectorTd" colspan="2" style="width:260px;">
                         <select id="ddlWZLB" class="form-control">
                             <option value="">Tất cả</option>
@@ -48,7 +48,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Tên vật tư：</th>
+                    <th class="formTitle">Tên vật tư:</th>
                     <td class="formValue">
                         <input id="txtSrm" type="text" class="form-control" placeholder="Tên vật tư/Phiên âm" />
                     </td>
@@ -70,19 +70,19 @@
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Tổng nhập kho：</th>
+                    <th class="formTitle">Tổng nhập kho:</th>
                     <td class="formValue">
                         <input type="text" id="txtRKLSZE" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Tổng xuất kho：</th>
+                    <th class="formTitle">Tổng xuất kho:</th>
                     <td class="formValue">
                         <input type="text" id="txtCKLSZE" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Tổng lãi lỗ do điều chỉnh giá：</th>
+                    <th class="formTitle">Tổng lãi lỗ do điều chỉnh giá:</th>
                     <td class="formValue">
                         <input type="text" id="txtTJSYZE" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Tổng lãi lỗ：</th>
+                    <th class="formTitle">Tổng lãi lỗ:</th>
                     <td class="formValue">
                         <input type="text" id="txtSYLSZE" class="form-control newtouch_Readonly" />
                     </td>
@@ -106,7 +106,7 @@
             window.open('@reportUrl' + "?tempCode=1271" + "&systemCode=" + '@reportSystemCode' + "&hospitalCode=" + '@ViewBag.OrganizeId' + "&OrganizeId=@ViewBag.OrganizeId&warehouseId=@Constants.CurrentKf.currentKfId" +
                 "&shzt=@(((int) EnumAuditState.Adopt).ToString())"+
                 "&kssj=" + $('#ddlKSSJ').val() +
-                "&jssj=" + ($("#ddlJSSJ").val() === "" || $("#ddlJSSJ").val() == undefined ? "@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" : $("#ddlJSSJ").val()) +
+                "&jssj=" + ($("#ddlJSSJ").val() === "" || $("#ddlJSSJ").val() == undefined ? "@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" : $("#ddlJSSJ").val()) +
                 "&keyWord=" + ($('#txtSrm').val() === "" ? "n" : $('#txtSrm').val()) +
                 "&lbId=" + ($('#ddlWZLB').val() === "" ? "n" : $('#ddlWZLB').val()) +
                 "&endOfToday=" + ($("#ddlJSSJ").val() === "" || $("#ddlJSSJ").val() == undefined ? "1" : "0") +

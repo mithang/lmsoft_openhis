@@ -26,16 +26,16 @@
                 <td class="formValue" id="td_kssj" style="display:none;">
                     <span id="sp_kssj" class="sp_lable">Ngày bắt đầu:</span>
                     <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore inp_p" style="width:90px;float:left;"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
-                           value="@DateTime.Now.AddDays(-7).ToString("yyyy-MM-dd")" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { refReport(); } })"
+                           value="@DateTime.Now.AddDays(-7).ToString("dd/MM/yyyy")" />
                 </td>
                 <td class="formValue" id="td_jssj" style="display:none;">
                     <span id="sp_jssj" class="sp_lable">Ngày bắt đầu:</span>
                     <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px;float:left;"
-                           onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { refReport(); } })"
-                           value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                           onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { refReport(); } })"
+                           value="@DateTime.Now.ToString("dd/MM/yyyy")" />
                 </td>
                 <td class="formValue" id="td_doctor" style="display:none;">
                     <span class="sp_lable">Bác sĩ:</span><input name="doctor" id="doctor" class="form-control inp_p" value=" " />

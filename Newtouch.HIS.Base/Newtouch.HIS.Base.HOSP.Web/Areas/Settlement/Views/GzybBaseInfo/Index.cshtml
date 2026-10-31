@@ -50,7 +50,7 @@
         var folder = getFolder();
         if (folder) {
             var fso = new ActiveXObject("Scripting.FileSystemObject");
-            var filePath = folder + "\\BHYT Quý Châu_中心ICD10数据.txt";
+            var filePath = folder + "\\BHYT Quý Châu_ICD10 trung tâm_du lieu.txt";
             if (fso.FileExists(filePath)) {
                 var f = fso.GetFile(filePath);
                 f.Delete();
@@ -150,8 +150,8 @@
         try {
             var Message = "Vui lòng chọn thư mục"; //Thông tin nhắc hộp chọn
             var Shell = new ActiveXObject("Shell.Application");
-            var Folder = Shell.BrowseForFolder(0, Message, 64, 17); //Thư mục bắt đầu là：Máy tính của tôi
-            //var Folder = Shell.BrowseForFolder(0, Message, 0); //Thư mục bắt đầu là：Màn hình nền
+            var Folder = Shell.BrowseForFolder(0, Message, 64, 17); //Thư mục bắt đầu là: Máy tính của tôi
+            //var Folder = Shell.BrowseForFolder(0, Message, 0); //Thư mục bắt đầu là: Màn hình nền
             if (Folder != null && Folder.self.Path.indexOf("::") == -1) {
                 return Folder.self.Path;
             } else return "";

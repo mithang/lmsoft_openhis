@@ -37,7 +37,7 @@
                 </td>
                 <th class="formTitle" id="xzsjtext">Thời gian:</th>
                 <td class="formValue" style="width:150px">
-                    <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"*@>
+                    <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"*@>
                 </td>
                 <td class="formValue" style="padding-left:20px;">
                     <input type="button" id="btn_search" onclick="submit();" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px" />
@@ -110,7 +110,7 @@
 
         <div style="margin-top:20px;background-color:#ffffff;height:75%">
             @*<div style="text-align:left;" class="font">
-                <span><img src="~/Content/img/report.png" style="width:30px;height:30px;"></span>
+                <span><img src="~/Content/img/report.png" style="width:30px;height:30px;" alt="Biểu tượng báo cáo"></span>
                 <span style="margin-top: 20px;">Phân tích bệnh nhân ngoại trú</span>
             </div>*@
             <div class="panel-heading down_border" style="font-size: 15px;">
@@ -158,7 +158,7 @@
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth())+1));
         }
         if (dateType == "3") {//ngày
-            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM-dd' })");
+            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'dd/MM/yyyy' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
         }
     }
@@ -246,7 +246,7 @@
                     tooltip: {//tooltip Nhãn hiển thị khi di chuột lên biểu đồ
                         trigger: 'item'
                     },
-                    legend: {//Dữ liệu bên trái（Chú giải）
+                    legend: {//Dữ liệu bên trái(Chú giải)
                         orient: 'vertical',
                         bottom: 'bottom'
                     },
@@ -279,7 +279,7 @@
                     tooltip: {//tooltip Nhãn hiển thị khi di chuột lên biểu đồ
                         trigger: 'item'
                     },
-                    legend: {//Dữ liệu bên trái（Chú giải）
+                    legend: {//Dữ liệu bên trái(Chú giải)
                         orient: 'vertical',
                         bottom: 'bottom'
                     },

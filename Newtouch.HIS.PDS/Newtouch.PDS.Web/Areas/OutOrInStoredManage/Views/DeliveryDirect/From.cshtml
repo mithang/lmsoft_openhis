@@ -18,15 +18,15 @@
     <div class="search">
         <table class="form">
             <tr>
-                <th class="formTitle">Số hóa đơn：</th>
+                <th class="formTitle">Số hóa đơn:</th>
                 <td class="formValue">
                     <input id="fph" name="fph" type="text" class="form-control form-an" placeholder="Vui lòng nhập số hóa đơn" />
                 </td>
-                <th class="formTitle">Thời gian nhập kho：</th>
+                <th class="formTitle">Thời gian nhập kho:</th>
                 <td class="formValue" colspan="3">
-                    <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; margin-top:10px;float:left;" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    <input id="kssj" type="text" class="form-control input-wdatepicker" style="width:42%; margin-top:10px;float:left;" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     <span style="margin-left:1%;float:left">—</span>
-                    <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; margin-top:10px;float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd 23:59:59")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    <input id="jssj" type="text" class="form-control input-wdatepicker" style="width:43%; margin-top:10px;float:left;margin-left:1%;" value="@DateTime.Now.ToString("dd/MM/yyyy 23:59:59")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                 </td>
                 <td style="padding-left: 20px;">
                     <button type="button" id="btn_search" class="btn btn-primary btn-md">&nbsp;Tra cứu&nbsp;</button>

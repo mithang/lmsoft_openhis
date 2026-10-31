@@ -96,7 +96,7 @@
 <body style="overflow: hidden;" class="hold-transition skin-blue sidebar-mini" onload="Onload()" id="bodyPageHomeIndex"
       data-appid="@(Newtouch.Infrastructure.Constants.AppId)">
     <div id="ajax-loader" style="cursor: progress; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: #fff; z-index: 10000; overflow: hidden;">
-        <img src="~/Content/img/ajax-loader.gif" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;" />
+        <img src="~/Content/img/ajax-loader.gif" alt="Đang tải" style="position: absolute; top: 0; left: 0; right: 0; bottom: 0; margin: auto;" />
     </div>
     <div id="theme-wrapper">
         <header class="navbar" id="header-navbar">
@@ -169,7 +169,7 @@
 						<ul class="nav nav-pills nav-stacked">
 
 							<li role="presentation" class="active" id="countentli">
-								<span style="float:left; padding-top:15px;" id="txtb"><img src="~/Content/img/消息提醒.png" width="20" height="20" /></span>
+								<span style="float:left; padding-top:15px;" id="txtb"><img src="~/Content/img/消息提醒.png" width="20" height="20" alt="Thông báo" /></span>
 							</li>
 						</ul>
 
@@ -193,8 +193,8 @@
                 </div>
 	<div id="nav-col" class="login-foot" style="left:0px;width:14%;height:5%; text-align:center;font-size:9px;bottom:0px;color:#9BA0A8">
                     <span>
-                        Copyright © 2025湖北天天数链技术有限公司
-                        Mã nguồn của hệ thống này được cấp phép từ<a href="https://open.tntlinking.com/communityTreaty">《天天开源软件（Bản cộng đồng）Thỏa thuận cấp phép》</a>
+                        Bản quyền © 2025 Công ty TNHH Công nghệ Chuỗi Dữ liệu Hồ Bắc Thiên Thiên
+                        Mã nguồn của hệ thống này được cấp phép theo <a href="https://open.tntlinking.com/communityTreaty">"Thỏa thuận cấp phép phần mềm nguồn mở Thiên Thiên (Bản cộng đồng)"</a>
                     </span>
                 </div>
                 <div id="content-wrapper">
@@ -237,7 +237,7 @@
     </div>
     <div id="loadingPage" style="display: none;">
         <div class="loading-shade"></div>
-        <div class="loading-content" onclick="$.loading(false)">Đang tải dữ liệu，Vui lòng đợi…</div>
+        <div class="loading-content" onclick="$.loading(false)">Đang tải dữ liệu, Vui lòng đợi…</div>
     </div>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/index.common.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/index.js", false)"></script>
@@ -357,8 +357,8 @@
                 $('#txtb').hide();
             }
 			sessionStorage.setItem('kcyjyp', kcyjypcode);
-			top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Tra cứu lượng tồn kho（Nhắc tin nhắn）", enName: "", url: "/OutOrInStoredManage/Purchase/PurchasePlan" });
-			//top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Truy vấn lượng tồn kho（Nhắc nhở tin nhắn）", enName: "", url: "/StorageManage/DrugStockSearch/StockQuery"});
+			top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Tra cứu lượng tồn kho(Nhắc tin nhắn)", enName: "", url: "/OutOrInStoredManage/Purchase/PurchasePlan" });
+			//top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Truy vấn lượng tồn kho(Nhắc nhở tin nhắn)", enName: "", url: "/StorageManage/DrugStockSearch/StockQuery"});
 		}
         //Đã hết hạn
 		function gqyj() {
@@ -374,7 +374,7 @@
                 $('#txtb').hide();
             }
 			sessionStorage.setItem('gqyjyp', gqyjypcode);
-			top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Tra cứu thuốc hết hạn（Nhắc tin nhắn）", enName: "", url: "/StorageManage/DrugStockSearch/ExpiredDrugsView"});
+			top.top.$.Newtouchtab.addTabWithOutMenu({ name: "Tra cứu thuốc hết hạn(Nhắc tin nhắn)", enName: "", url: "/StorageManage/DrugStockSearch/ExpiredDrugsView"});
         }
         //Hết hạn trong ngày
 		function drgqyj()
@@ -390,7 +390,7 @@
 		        $('#txtb').hide();
 		    }
 		    sessionStorage.setItem('drgqyjyp', drgqyjypcode);
-		    top.top.$.Newtouchtab.addTabWithOutMenu({ name: "1 tháng tới hết hạn - tra cứu thuốc（Nhắc tin nhắn）", enName: "", url: "/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1" });
+		    top.top.$.Newtouchtab.addTabWithOutMenu({ name: "1 tháng tới hết hạn - tra cứu thuốc(Nhắc tin nhắn)", enName: "", url: "/StorageManage/DrugStockSearch/ExpiredDrugsView?type=1" });
 		}
 
         function Onload() {
@@ -489,7 +489,7 @@
             $("body").addClass(cls);
             store('skin', cls);
             var pifu = "#1ABC9C";
-            var cssURL = "@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")";  //~/Content/css/framework-theme.css
+            var cssURL = "@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")"; //~/Content/css/framework-theme.css
             switch (cls) {
                 case "skin-black": pifu = "#383d41"; cssURL = "@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/framework-theme-blue.css")"; break;
 

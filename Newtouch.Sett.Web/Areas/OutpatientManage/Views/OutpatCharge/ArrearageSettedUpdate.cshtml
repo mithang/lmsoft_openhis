@@ -34,7 +34,7 @@
                 <tr>
                     <th class="formTitle"><span style="color:red">*</span>Ngày thu phí:</th>
                     <td class="formValue">
-                        <input id="sfrq" type="text" class="form-control  form-an input-wdatepicker" style="float: left; margin-left: 5px; width:90%" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="sfrq" type="text" class="form-control  form-an input-wdatepicker" style="float: left; margin-left: 5px; width:90%" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     </td>
                     @if (relatedFPH == true)
                     {
@@ -129,7 +129,7 @@
     var withYjj = '@(withYjj)';
     //quyết toántổng số tiền
     var zje = 0;
-    //thanh toán phải thu quyết toánlúc đó phải thu（zje = có thể báo + quyết toánlúc đó phải thu + v.v.）
+    //thanh toán phải thu quyết toánlúc đó phải thu(zje = có thể báo + quyết toánlúc đó phải thu + v.v.)
     var orglxjzfys = 0;
     //cókhi chiết khấu thì không bằng original
     var xjzfys = orglxjzfys;    //khi có chiết khấu sẽ không bằng nhau
@@ -371,9 +371,9 @@
         }
         return {
             sfrq: sfrq, fph: fph
-            , zffs1: zffs1, zfje1: zfje1, zffs2: zffs2, zfje2: zfje2
-            , zje: zje, orglxjzfys: orglxjzfys, zkje: zkje, zkbl: zkbl, xjzfys: xjzfys
-            , ssk: hjssk, zhaoling: zhaoling
+, zffs1: zffs1, zfje1: zfje1, zffs2: zffs2, zfje2: zfje2
+, zje: zje, orglxjzfys: orglxjzfys, zkje: zkje, zkbl: zkbl, xjzfys: xjzfys
+, ssk: hjssk, zhaoling: zhaoling
         };
     }
 
@@ -422,7 +422,7 @@
         }
     });
 
-    //tính theo thanh toán phải thu、phương thức thanh toán tính tổng thựcthu tiền、tiền thừa
+    //tính theo thanh toán phải thu, phương thức thanh toán tính tổng thựcthu tiền, tiền thừa
     function hjsskZhaolingCal() {
         if (!$('#zffs1').val() && $('#zfje1').val() != 0) {
             //chưa chọn phương thức thanh toán,số tiền tương ứngcầnđặtlà0.00

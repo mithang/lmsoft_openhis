@@ -12,7 +12,7 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Tháng năm thống kê：</th>
+                <th class="formTitle">Tháng năm thống kê:</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width: 140px;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM'})" value="@(DateTime.Now.ToString("yyyy-MM"))" />
@@ -38,14 +38,14 @@
     $(function () {
         refReport();
     });
-    
+
 
     function submit() {
         if ($('#kssj').val().length == 0) {
             $.modalAlert("Thiếu thời gian bắt đầu", "error");
             return;
         }
-       
+
         var kssj = $('#kssj').val() + "-01 00:00:00";
         var jssj = $('#kssj').val() + "-" + mGetDate($('#kssj').val().substring(0, 4), $('#kssj').val().substring(5, 7)) + " 23:59:59";
         var yfcode = "@Newtouch.Infrastructure.Constants.CurrentYfbm.yfbmCode";

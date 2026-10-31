@@ -56,7 +56,7 @@
                 </td>
                 <th class="formTitle "><span class="required">*</span>Ngày trả hàng thực tế:</th>
                 <td class="formValue">
-                    <input id="SJTHRQ" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="SJTHRQ" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
                 @*<th class="formTitle "><span class="required">*</span>Nhà cung cấp:</th>
                 <td class="formValue">
@@ -310,7 +310,7 @@
                 { label: '<span class="required">*</span>Lý do trả hàng', name: 'THYY', width: 100, align: 'center', editable: true, editwidth: "100%" },
             ],
             editinputwidthborder: false,    //CóKhôngcần viền mặc định làtrue
-            editinputborderradius: false,   //CóKhôngcần bo góc viền mặc địnhtrue（có bo góc）
+            editinputborderradius: false,   //CóKhôngcần bo góc viền mặc địnhtrue(có bo góc)
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];

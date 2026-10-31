@@ -48,8 +48,8 @@
                 <td class="formValue">
                     <select id="Tools" class="form-control">
                         <option value="">==Vui lòng chọn==</option>
-                        <option value="1">Ngày(yyyy-MM-dd)</option>
-                        <option value="2">Khoảng thời gian (yyyy-MM-dd đến yyyy-MM-dd)</option>
+                        <option value="1">Ngày(dd/MM/yyyy)</option>
+                        <option value="2">Khoảng thời gian (dd/MM/yyyy đến dd/MM/yyyy)</option>
                     </select>
                 </td>
             </tr>
@@ -116,7 +116,7 @@
             ],
             caption:"Tham số",
             editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
-            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue(có bo tròn)
             loadComplete: function () {
                 if (paras && paras.length == 0) {
                     newRptData();

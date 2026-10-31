@@ -34,7 +34,7 @@
             </td>
             <th class="formTitle" id="xzsjtext">Thời gian:</th>
             <td class="formValue" style="width:150px">
-                <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"*@>
+                <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"*@>
             </td>
 
             <td class="formValue" style="padding-left:20px;">
@@ -130,11 +130,11 @@
         $gridJsList.dataGrid({
             height: 230,
             autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
             url: "/DeanInquiryManage/BusinessRanking/GetMzysgzl",
             postData: { kssj: kssj, jssj: jssj },
             colModel: [
-                { label: 'Bác sĩ', name: 'ys',  align: 'left' },
+                { label: 'Bác sĩ', name: 'ys', align: 'left' },
                 { label: 'Ngoại trú Khoa', name: 'mzks',align: 'left' },
                 { label: 'Số lượt ngoại trú', name: 'mzl', align: 'left' }
             ],
@@ -147,11 +147,11 @@
         $gridJsList.dataGrid({
             height: 230,
             autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
             url: "/DeanInquiryManage/BusinessRanking/GetMzkssr",
             postData: { kssj: kssj, jssj: jssj },
             colModel: [
-                { label: 'Ngoại trú Khoa', name: 'mzks',  align: 'center' },
+                { label: 'Ngoại trú Khoa', name: 'mzks', align: 'center' },
                 { label: 'Thu nhập ngoại trú', name: 'mzsr', align: 'left' },
                 { label: 'Thu nhập thuốc', name: 'ypsr', align: 'left' },
                 { label: 'Tỷ trọng thuốc', name: 'ypzb',align: 'left' }
@@ -165,7 +165,7 @@
         $gridJsList.dataGrid({
             height: 170,
             autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
             url: "/DeanInquiryManage/BusinessRanking/GetZyywks",
             postData: { kssj: kssj, jssj: jssj },
             colModel: [
@@ -174,7 +174,7 @@
                 { label: 'Số người xuất viện', name: 'cyrs', align: 'center' },
                 { label: 'Số người nhập viện', name: 'ryrs', align: 'center' },
                 { label: 'Số người phẫu thuật', name: 'ssrs', align: 'center' },
-                { label: 'Nhập viện Tổng chi phí（đồng）', name: 'zyzfy',align: 'center' },
+                { label: 'Nhập viện Tổng chi phí(đồng)', name: 'zyzfy',align: 'center' },
                 { label: 'Chi phí bình quân mỗi lượt', name: 'cjfy', align: 'center' },
                 { label: 'Số ngày nằm viện bình quân', name: 'pjzyts',align: 'center' }
             ],
@@ -212,14 +212,14 @@
         $gridysListys.dataGrid({
             height: 170,
             autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
             url: "",
             colModel: [
                 { label: 'Bác sĩ', name: 'ys', align: 'center' },
                 { label: 'Số người xuất viện', name: 'cyrs', align: 'center' },
                 { label: 'Số người nhập viện', name: 'ryrs', align: 'center' },
                 { label: 'Số người phẫu thuật', name: 'ssrs', align: 'center' },
-                { label: 'Nhập viện Tổng chi phí（đồng）', name: 'zyzfy',align: 'center' },
+                { label: 'Nhập viện Tổng chi phí(đồng)', name: 'zyzfy',align: 'center' },
                 { label: 'Chi phí bình quân mỗi lượt', name: 'cjfy',align: 'center' },
                 { label: 'Số ngày nằm viện bình quân', name: 'pjzyts', align: 'center' }
             ],
@@ -241,7 +241,7 @@
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
         }
         if (dateType == "3") {//ngày
-            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM-dd' })");
+            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'dd/MM/yyyy' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
         }
         getSearchData();

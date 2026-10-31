@@ -43,20 +43,20 @@
 		<div class="panel-heading">Thông tin phát thuốc</div>
 		<table class="form">
 			<tr>
-				<th class="formTitle">Phiếu xuất kho：</th>
+				<th class="formTitle">Phiếu xuất kho:</th>
 				<td class="formValue">
 					<input type="text" id="djh" name="djh" class="form-control newtouch_Readonly" />
 				</td>
-				<th class="formTitle"><span class="required">*</span>Nhà cung cấp：</th>
+				<th class="formTitle"><span class="required">*</span>Nhà cung cấp:</th>
 				<td class="formValue">
 					<input type="text" id="gysmc" name="gysmc" class="form-control" placeholder="Vui lòng chọn nhà cung cấp" autocomplete="off" />
 					<input type="hidden" id="gysCode" value="" />
 				</td>
-				<th class="formTitle"><span class="required">*</span>Cách xuất kho：</th>
+				<th class="formTitle"><span class="required">*</span>Cách xuất kho:</th>
 				<td class="formValue">
 					<select class="form-control" id="fyfs" name="fyfs"></select>
 				</td>
-				<th class="formTitle">Số hóa đơn：</th>
+				<th class="formTitle">Số hóa đơn:</th>
 				<td class="formValue">
 					<input type="text" id="fph" name="fph" class="form-control" placeholder="Vui lòng chọn hóa đơn" />
 				</td>
@@ -191,9 +191,9 @@
 			postData: { crkId: crkId },
 			url: "/StorageManage/DrugStockSearch/GetCrkMxAll",
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
-            rownumbers: true,  //Có hiển thị số thứ tự không
+            rownumbers: true, //Có hiển thị số thứ tự không
             multiselect: true,
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
 				{
@@ -236,8 +236,8 @@
 
 
             ],
-            editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            editinputwidthborder: false, //Có cần viền không Mặc định làtrue
+            editinputborderradius: false, //Có cần bo góc viền không Mặc địnhtrue(Có bo góc)
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -252,7 +252,7 @@
 			$("#gridList").jqGrid('editRow', rowid[i], false, initInlineFunc);//Mở chế độ sửa
 			$("#jqg_gridList_" + rowid[i]).trigger("click");
 		}
-     
+
     }
 
     //Khởi tạo Lớp nổi
@@ -399,7 +399,7 @@
 				var sl = $("#" + rowid + "_sl").val();
 				var pfj = $("#" + rowid + "_pfj").val();
 				var lsj = $("#" + rowid + "_lsj").val();
-				$("#" + rowid + "_pfjze").val(parseFloat(pfj * sl).toFixed(2)); 
+				$("#" + rowid + "_pfjze").val(parseFloat(pfj * sl).toFixed(2));
 				$("#" + rowid + "_lsze").val((lsj * sl).toFixed(2));
 			});
 		}
@@ -533,7 +533,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu cần sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
 		}
 		$.ajax({
@@ -659,21 +659,21 @@
 
     ////Tạo số chứng từ
     //function GetDjh() {
-    //    $.ajax({
-    //        url: "/DrugStorage/InitDjh",
-    //        data: { djmc: '外部出库单', r: Math.random() },
-    //        dataType: "json",
-    //        async: false,
-    //        cache: false,
-    //        success: function (res) {
-    //            if (res.state === "success") {
-    //                $("#djh").val(res.data);
-    //            }
-    //            else {
-    //                $.modalAlert(res.message, 'error');
-    //            }
-    //        }
-    //    });
+    // $.ajax({
+    // url: "/DrugStorage/InitDjh",
+    // data: { djmc: '外部出库单', r: Math.random() },
+    // dataType: "json",
+    // async: false,
+    // cache: false,
+    // success: function (res) {
+    // if (res.state === "success") {
+    // $("#djh").val(res.data);
+    // }
+    // else {
+    // $.modalAlert(res.message, 'error');
+    // }
+    // }
+    // });
     //}
 
 	//Tạo số chứng từ

@@ -16,20 +16,20 @@
         <div style="padding: 2px;padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Số phiếu nhập kho：</th>
+                    <th class="formTitle">Số phiếu nhập kho:</th>
                     <td class="formValue">
                         <input id="txtRKDH" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle"><span class="req">*</span>Nhà cung cấp：</th>
+                    <th class="formTitle"><span class="req">*</span>Nhà cung cấp:</th>
                     <td class="formValue">
                         <input id="txtGYSMC" type="text" onchange="ChangeGYSCODE()" class="form-control" placeholder="Mã Tên Pinyin" />
                         <input id="txtGYSCODE" type="hidden" value="" />
                     </td>
-                    <th class="formTitle">Ngày nhập kho：</th>
+                    <th class="formTitle">Ngày nhập kho:</th>
                     <td class="formValue">
-                        <input id="txtRKRQ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="txtRKRQ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">Cách nhập kho：</th>
+                    <th class="formTitle">Cách nhập kho:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlRKFS" class="form-control required"></select>
                     </td>
@@ -42,11 +42,11 @@
         <div id="divYPMX" style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="req">*</span>Mã thuốc：</th>
+                    <th class="formTitle"><span class="req">*</span>Mã thuốc:</th>
                     <td class="formValue">
                         <input id="txtSRM" type="text" class="form-control" placeholder="Mã Tên Pinyin Tên hàng hóa" />
                     </td>
-                    <th class="formTitle"><span class="req">*</span>Số lượng nhập kho：</th>
+                    <th class="formTitle"><span class="req">*</span>Số lượng nhập kho:</th>
                     <td class="formValue">
                         <div class="row">
                             <div class="col-md-8">
@@ -58,60 +58,60 @@
                             </div>
                         </div>
                     </td>
-                    <th class="formTitle"><span class="req">*</span>Tổng giá nhập：</th>
+                    <th class="formTitle"><span class="req">*</span>Tổng giá nhập:</th>
                     <td class="formValue">
                         <input id="txtJJZE" type="text" class="form-control" onchange="JJZE_Leave()" style="width: 75%;float: left;" />
                         <span style="float: left;line-height:24px;margin-left: 5px;">(đ)</span>
                     </td>
-                    <th class="formTitle"><span class="req">*</span>Số lô：</th>
+                    <th class="formTitle"><span class="req">*</span>Số lô:</th>
                     <td class="formValue">
                         <input id="txtPH" type="text" class="form-control" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Số hóa đơn：</th>
+                    <th class="formTitle">Số hóa đơn:</th>
                     <td class="formValue">
                         <input id="txtFPH" type="text" class="form-control" />
                         <input id="editRowId" value="" style="display:none;" />
                     </td>
-                    <th class="formTitle">Ngày lập hóa đơn：</th>
+                    <th class="formTitle">Ngày lập hóa đơn:</th>
                     <td class="formValue">
-                        <input id="txtKPRQ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="txtKPRQ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     </td>
-                    <th class="formTitle">Hạn sử dụng：</th>
+                    <th class="formTitle">Hạn sử dụng:</th>
                     <td class="formValue">
-                        <input id="txtYXQ" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onblur="updatePC()" />
+                        <input id="txtYXQ" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onblur="updatePC()" />
                     </td>
-                    <th class="formTitle">Ngày sản xuất：</th>
+                    <th class="formTitle">Ngày sản xuất:</th>
                     <td class="formValue">
-                        <input id="txtSCRQ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input id="txtSCRQ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Tên thuốc：</th>
+                    <th class="formTitle">Tên thuốc:</th>
                     <td class="formValue">
                         <input id="txtYPMC" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Số đăng ký：</th>
+                    <th class="formTitle">Số đăng ký:</th>
                     <td class="formValue">
                         <input id="txtPZWH" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Tồn kho hiện có：</th>
+                    <th class="formTitle">Tồn kho hiện có:</th>
                     <td class="formValue">
                         <input id="txtkykc" type="text" class="form-control newtouch_Readonly" />
                         <input id="hidden_kcsl" type="text" hidden="hidden" />
                     </td>
-                    <th class="formTitle">Quy cách：</th>
+                    <th class="formTitle">Quy cách:</th>
                     <td class="formValue">
                         <input id="txtGG" type="text" class="form-control newtouch_Readonly" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Lô：</th>
+                    <th class="formTitle">Lô:</th>
                     <td class="formValue">
                         <input id="txtPC" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Nhà sản xuất：</th>
+                    <th class="formTitle">Nhà sản xuất:</th>
                     <td class="formValue">
                         <input id="txtSCCJ" type="text" class="form-control newtouch_Readonly" />
                     </td>
@@ -147,7 +147,7 @@ ShowKeyList = new int[] { 7, 8 },
 F7Text = "Đặt lại",
 F8Text = "Đăng ký nhập kho"
 })
-<span style="float: left;line-height: 25px;margin: 8px 5px;">Tổng nhập kho：&nbsp;<span id="txtRKZE"></span> &nbsp;đ</span>
+<span style="float: left;line-height: 25px;margin: 8px 5px;">Tổng nhập kho: &nbsp;<span id="txtRKZE"></span> &nbsp;đ</span>
 
 <script>
     window.newtouch_globalconfig.f4opions = {
@@ -258,8 +258,8 @@ F8Text = "Đăng ký nhập kho"
             $("#hidden_kcsl").val($thistr.attr('data-kykc'));
             $("#ddlRKDW").empty();
             var kxdw;
-            $("#ddlRKDW").append('<option >' + $thistr.attr('data-bzdw') + '</option>');   //Đơn vị xuất kho
-            $("#kxdw").val(kxdw);   //Đơn vị có thể chọn
+            $("#ddlRKDW").append('<option >' + $thistr.attr('data-bzdw') + '</option>'); //Đơn vị xuất kho
+            $("#kxdw").val(kxdw); //Đơn vị có thể chọn
 
             $("#txtSCCJ").val($thistr.attr('data-sccj'));
             $("#txtPZWH").val($thistr.attr('data-pzwh'));
@@ -289,7 +289,7 @@ F8Text = "Đăng ký nhập kho"
 
     });
 
-    //Nhà cung cấpcodeThay đổi，Chi tiết thuốcdivXóa
+    //Nhà cung cấpcodeThay đổi, Chi tiết thuốcdivXóa
     function ChangeGYSCODE() {
         ClearRKMX();
     }
@@ -348,7 +348,7 @@ F8Text = "Đăng ký nhập kho"
                 { label: 'Ysjg', name: 'Ysjg', hidden: true, align: 'left' },
                 { label: 'rkbmkc', name: 'rkbmkc', hidden: true },
                 { label: 'sl', name: 'sl', hidden: true }, //Số lượng lưu cuối cùng vào cơ sở dữ liệu
-                { label: 'kxdw', name: 'kxdw', hidden: true }  //Đơn vị có thể chọn
+                { label: 'kxdw', name: 'kxdw', hidden: true } //Đơn vị có thể chọn
             ],
             ondblClickRow: function (rowid) {
                 gridDbclickRow(rowid);
@@ -405,11 +405,11 @@ F8Text = "Đăng ký nhập kho"
 
     //Tải bằng Entergrid
     $('#txtWG').keydownEnterEvent(function () {
-        if ($('#editRowId').val()) {            //là sửa đổi
-            newtouch_event_f3();    //Mô phỏng Sửa nút Nhấn
+        if ($('#editRowId').val()) { //là sửa đổi
+            newtouch_event_f3(); //Mô phỏng Sửa nút Nhấn
         }
         else {
-            newtouch_event_f2();    //Mô phỏng Nút xác nhận Nhấn
+            newtouch_event_f2(); //Mô phỏng Nút xác nhận Nhấn
         }
     });
 
@@ -431,7 +431,7 @@ F8Text = "Đăng ký nhập kho"
         if ($("#ddlRKDW").find("option:selected").text() === $("#txtYPMC").attr('data-bzdw')) {
             sl = parseFloat($("#txtRKSL").val());
         } else {
-            sl = parseFloat($("#txtRKSL").val() / parseFloat($("#txtSRM").attr('data-bzs'))); //Nếu đơn vị nhập kho đã chọn：Đơn vị kho thuốc,thìsllà số lượng nhập kho/Hệ số chuyển đổi，Sau đó lưu vào cơ sở dữ liệu
+            sl = parseFloat($("#txtRKSL").val() / parseFloat($("#txtSRM").attr('data-bzs'))); //Nếu đơn vị nhập kho đã chọn: Đơn vị kho thuốc,thìsllà số lượng nhập kho/Hệ số chuyển đổi, Sau đó lưu vào cơ sở dữ liệu
         }
         var data = [{
             dlmc: $("#txtSRM").attr('data-dlmc'),
@@ -439,8 +439,8 @@ F8Text = "Đăng ký nhập kho"
             ypdm: $("#txtSRM").val(),
             ypmc: $("#txtYPMC").val(),
             gg: $("#txtGG").val(),
-            sl: sl,   //Số lượng lưu cuối cùng vào cơ sở dữ liệu
-            rksl: $("#txtRKSL").val(),   //Số lượng nhập kho trên trang
+            sl: sl, //Số lượng lưu cuối cùng vào cơ sở dữ liệu
+            rksl: $("#txtRKSL").val(), //Số lượng nhập kho trên trang
             dw: $("#ddlRKDW").find("option:selected").text(),
             kxdw: $("#kxdw").val(),
             ph: $("#txtPH").val(),
@@ -589,7 +589,7 @@ F8Text = "Đăng ký nhập kho"
             success: function (data) {
                 if (data.state === 'success') {
                     $.modalAlert("Đăng ký nhập kho đã được gửi", 'success');
-                    newtouch_event_f7();//Nhập kho mới：Số chứng từ mới Xóa trống dữ liệu chính Xóa trống chi tiết
+                    newtouch_event_f7();//Nhập kho mới: Số chứng từ mới Xóa trống dữ liệu chính Xóa trống chi tiết
                     $('#gridRKMX').jqGrid("clearGridData");//Xóa trốngGrid
                 }
                 else {
@@ -629,7 +629,7 @@ F8Text = "Đăng ký nhập kho"
         ComputeKL();
     }
 
-    //Tổng giá nhập mất tiêu điểm，Tính đơn giá nhập kho
+    //Tổng giá nhập mất tiêu điểm, Tính đơn giá nhập kho
     function JJZE_Leave() {
         if (isNaN($("#txtJJZE").val())) {
             $.modalMsg("Định dạng tổng giá nhập sai", "warning", 1000);
@@ -642,9 +642,9 @@ F8Text = "Đăng ký nhập kho"
             return false;
         }
         var sl;
-        if ($("#ddlRKDW").find("option:selected").text() === $("#txtYPMC").attr('data-bzdw')) {    //Nếu đơn vị có thể trả đã chọn：Đơn vị kho thuốc Số lượng=Nhập số lượng
+        if ($("#ddlRKDW").find("option:selected").text() === $("#txtYPMC").attr('data-bzdw')) { //Nếu đơn vị có thể trả đã chọn: Đơn vị kho thuốc Số lượng=Nhập số lượng
             sl = parseFloat($("#txtRKSL").val());
-        } else {   //Đơn vị có thể trả：Đơn vị nhỏ nhất，Số lượng=Nhập số lượng/Hệ số chuyển đổi
+        } else { //Đơn vị có thể trả: Đơn vị nhỏ nhất, Số lượng=Nhập số lượng/Hệ số chuyển đổi
             sl = roundingBy4she6ru5chengshuang(parseFloat($("#txtRKSL").val()) / parseFloat($("#txtSRM").attr('data-bzs')), 4);
         }
         var jjze = parseFloat($("#txtJJZE").val());
@@ -662,7 +662,7 @@ F8Text = "Đăng ký nhập kho"
         var pfj = parseFloat($("#txtPFJ").val());
         var jj = parseFloat($("#txtJJ").val());
 
-        $("#txtKL").val(roundingBy4she6ru5chengshuang((pfj * 100 / jj), 2));  //Làm tròn 5 bỏ 6 lên
+        $("#txtKL").val(roundingBy4she6ru5chengshuang((pfj * 100 / jj), 2)); //Làm tròn 5 bỏ 6 lên
     }
 
     //Tính tổng nhập kho
@@ -682,7 +682,7 @@ F8Text = "Đăng ký nhập kho"
         }
     }
 
-    //Khi hạn dùng thay đổi，Lô thuốc cũng thay đổi theo
+    //Khi hạn dùng thay đổi, Lô thuốc cũng thay đổi theo
     function updatePC() {
         var date = new Date();
         var hours = date.getHours().toString();

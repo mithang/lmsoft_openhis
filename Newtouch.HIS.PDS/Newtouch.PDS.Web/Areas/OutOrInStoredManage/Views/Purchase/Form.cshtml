@@ -49,17 +49,17 @@
         <div class="panel-heading">Thông tin phát thuốc</div>
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>Điểm phân phối：</th>
+                <th class="formTitle"><span class="required">*</span>Điểm phân phối:</th>
                 <td class="formValue">
                     <input type="text" id="psd" name="psd" class="form-control" placeholder="Vui lòng chọn điểm phân phối" autocomplete="off" />
                     <input type="hidden" id="psdbm" />
                 </td>
                 @*<td class="formValue" id="psdtd">
                     <select id="psd" name="psdOptionRadio" class="form-control required">
-                        <option value="MDWGK01">上海明德五官科医院</option>
+                        <option value="MDWGK01">Bệnh viện Mắt Tai Mũi Họng Minh Đức Thượng Hải</option>
                     </select>
                 </td>*@
-                <th class="formTitle"><span class="required">*</span>Loại đơn hàng：</th>
+                <th class="formTitle"><span class="required">*</span>Loại đơn hàng:</th>
                 <td class="formValue" id="ddlxtd">
                     <select id="ddlx" name="ddlx" class="form-control required">
                         <option value="1">Đơn hàng tự đặt của bệnh viện</option>
@@ -67,11 +67,11 @@
                         <option value="3">Đơn hàng thuốc đặc biệt</option>
                     </select>
                 </td>
-                <th class="formTitle "><span class="required">*</span>Ngày giao hàng muộn nhất：</th>
+                <th class="formTitle "><span class="required">*</span>Ngày giao hàng muộn nhất:</th>
                 <td class="formValue">
-                    <input id="zwdhrq" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" value="@DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="zwdhrq" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" value="@DateTime.Now.AddMonths(1).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
-                @*<th class="formTitle "><span class="required">*</span>Doanh nghiệp dược：</th>
+                @*<th class="formTitle "><span class="required">*</span>Doanh nghiệp dược:</th>
         <td class="formValue">
             <input type="text" id="yq" name="yq" class="form-control" placeholder="Vui lòng chọn công ty dược" autocomplete="off" />
             <input type="hidden" id="yqbm" />
@@ -162,20 +162,20 @@
                             $("#jqg" + (i + 1) + "_cgjldw").val(ajaxresp[i].cgjldw);
                             $("#jqg" + (i + 1) + "_ybgg").val(ajaxresp[i].ggbz);
                             $("#sel_dw_jqg" + (i + 1)).append('<option value="dw" data-dw="' + ajaxresp[i].dw + '" selected>' + ajaxresp[i].dw + '</option>');
-                            //$("#jqg" + (i + 1) + "_cglx").append('<option value="' + ajaxresp[i].cglx + '" selected>' + ajaxresp[i].cglxmc  + '</option>');
+                            //$("#jqg" + (i + 1) + "_cglx").append('<option value="' + ajaxresp[i].cglx + '" selected>' + ajaxresp[i].cglxmc + '</option>');
                             $("#jqg" + (i + 1) + "_cglx").val(ajaxresp[i].cglxmc);
                             //$.ajax({
-                            //    type: "POST",
-                            //    url: "/PrepareMedicine/BydjQueryKykc",
-                            //    data: { ypbm: ajaxresp[i].ypdm, pc: ajaxresp[i].pc, ph: ajaxresp[i].ph, yfbm: $("#yfbm").val() },
-                            //    dataType: "json",
-                            //    async: false,
-                            //    success: function (res) {
-                            //        if (res != null) {
-                            //            $("#jqg" + (i + 1) + "_kykc").val(res.kysl);
-                            //            $("#jqg" + (i + 1) + "_slStr").val(res.kysl);
-                            //        }
-                            //    }
+                            // type: "POST",
+                            // url: "/PrepareMedicine/BydjQueryKykc",
+                            // data: { ypbm: ajaxresp[i].ypdm, pc: ajaxresp[i].pc, ph: ajaxresp[i].ph, yfbm: $("#yfbm").val() },
+                            // dataType: "json",
+                            // async: false,
+                            // success: function (res) {
+                            // if (res != null) {
+                            // $("#jqg" + (i + 1) + "_kykc").val(res.kysl);
+                            // $("#jqg" + (i + 1) + "_slStr").val(res.kysl);
+                            // }
+                            // }
                             //});
                             //$("#sel_dw_jqg" + (i + 1)).append('<option value="ckdw" data-zhyz="' + ajaxresp[i].zhyz + '" selected>' + ajaxresp[i].dw + '</option>');
                         }
@@ -186,26 +186,26 @@
             $("#gridList").jqGrid("addRowData", undefined, { operate: GetOperatehtml() }, "last");
         }
         //if (ypcodestr != null && yfbmstr != null && ypcodestr != "" && yfbmstr != "") {
-        //    $("#lybm").val(yfmcstr);
-        //    $("#yfbm").val(yfbmstr);
-        //    $.najax({
-        //        type: "Get",
-        //        url: "/PrepareMedicine/ApplyDrugsSearch",
-        //        data: { ypcodestr: ypcodestr, yfbmstr: yfbmstr },
-        //        dataType: "json",
-        //        success: function (ajaxresp) {
-        //            if (ajaxresp !== null) {
-        //                for (var i = 0; i < ajaxresp.length; i++) {
-        //                    ajaxresp[i].operate = GetOperatehtml();
-        //                    $("#gridList").jqGrid("addRowData", undefined, ajaxresp[i], "last");
-        //                    $("#sel_dw_jqg" + (i + 1)).append('<option value="ckdw" data-zhyz="' + ajaxresp[i].zhyz + '" selected>' + ajaxresp[i].dw + '</option>');
-        //                }
-        //            }
-        //        }
-        //    });
+        // $("#lybm").val(yfmcstr);
+        // $("#yfbm").val(yfbmstr);
+        // $.najax({
+        // type: "Get",
+        // url: "/PrepareMedicine/ApplyDrugsSearch",
+        // data: { ypcodestr: ypcodestr, yfbmstr: yfbmstr },
+        // dataType: "json",
+        // success: function (ajaxresp) {
+        // if (ajaxresp !== null) {
+        // for (var i = 0; i < ajaxresp.length; i++) {
+        // ajaxresp[i].operate = GetOperatehtml();
+        // $("#gridList").jqGrid("addRowData", undefined, ajaxresp[i], "last");
+        // $("#sel_dw_jqg" + (i + 1)).append('<option value="ckdw" data-zhyz="' + ajaxresp[i].zhyz + '" selected>' + ajaxresp[i].dw + '</option>');
+        // }
+        // }
+        // }
+        // });
         //}
         //else {
-        //   // $("#gridList").jqGrid("addRowData", undefined, { operate: GetOperatehtml() }, "last");
+        // // $("#gridList").jqGrid("addRowData", undefined, { operate: GetOperatehtml() }, "last");
         //}
     });
 
@@ -256,10 +256,10 @@
         $gridList.newtouchLocalDataGrid({
             data: [],
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
-            rownumbers: true,  //Có hiển thị số thứ tự không
+            rownumbers: true, //Có hiển thị số thứ tự không
             shrinkToFit: true,
             multiselect: true,
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
                 { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
@@ -313,7 +313,7 @@
                         ]
                     }
                 },
-                { label: 'cgjldwwwwwww', name: 'cgjldwwwwwww', editwidth: '', align: 'center', editable: true,  hidden:true,},  //Không thể bỏ
+                { label: 'cgjldwwwwwww', name: 'cgjldwwwwwww', editwidth: '', align: 'center', editable: true, hidden:true,}, //Không thể bỏ
                 {
                     label: '<span class="required">*</span>Đơn vị đo mua', name: 'cgjldw', width: 80, align: 'center', editable: true, editwidth: "100%", edittype: "select", editoptions: {
                         dataEvents: [
@@ -330,7 +330,7 @@
                         ]
                     }
                 },
-                { label: 'dcpsbsssssss', name: 'dcpsbsssssss', editwidth: '', align: 'center', editable: true, hidden: true },  //Không thể bỏ
+                { label: 'dcpsbsssssss', name: 'dcpsbsssssss', editwidth: '', align: 'center', editable: true, hidden: true }, //Không thể bỏ
                 {
                     label: '<span class="required">*</span>Phân phối nhiều lần', name: 'dcpsbs', width: 60, align: 'center', editable: true, editwidth: "100%", edittype: "select", editoptions: {
                         dataEvents: [
@@ -368,8 +368,8 @@
                 { label: 'zxdwjj', name: 'zxdwjj', hidden: true, editable: true },
                 { label: 'bzdwjj', name: 'bzdwjj', hidden: true, editable: true }
             ],
-            editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            editinputwidthborder: false, //Có cần viền không Mặc định làtrue
+            editinputborderradius: false, //Có cần bo góc viền không Mặc địnhtrue(Có bo góc)
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -607,41 +607,41 @@
 
     ////Khởi tạo lô thuốc
     //function InitPc(id, rowid) {
-    //    $("#" + id).newtouchBatchFloatingSelector({
-    //        height: 300,
-    //        width: 720,
-    //        clickautotrigger: true,
-    //        url: "/StorageManage/DrugStockSearch/StockGroupByBatchSearch",
-    //        ajaxmethod: 'POST',
-    //        ajaxreqdata: function () {
-    //            var reqData = {};
-    //            reqData.ypdm = $("#" + rowid + "_ypdm").val();
-    //            return reqData;
-    //        },
-    //        caption: "Lô",
-    //        colModel: [
-    //            { label: 'Lô', name: 'pc', width: 150, align: 'center' },
-    //            { label: 'Số lô', name: 'ph', width: 150, align: 'center' },
-    //            { label: 'Tồn kho', name: 'slStr', width: 100, align: 'center' },
-    //            { label: 'Giá nhập', name: 'jjdjdw', width: 100, align: 'center' },
-    //            { label: 'Hệ số', name: 'zhyz', width: 60 },
-    //            { label: 'Hạn dùng', name: 'yxq', width: 150, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
-    //            { label: 'kykc', name: 'kykc', hidden: true },
-    //            { label: 'zxdwjj', name: 'zxdwjj', hidden: true },
-    //            { label: 'bzdwjj', name: 'bzdwjj', hidden: true }
-    //        ],
-    //        itemdbclickhandler: function ($thistr) {
-    //            $("#" + rowid + "_ph").val($thistr.attr('data-ph'));
-    //            $("#" + rowid + "_pc").val($thistr.attr('data-pc'));
-    //            $("#" + rowid + "_slStr").val($thistr.attr('data-slStr'));
-    //            $("#" + rowid + "_yxq").val($thistr.attr('data-yxq'));
-    //            $("#" + rowid + "_kykc").val($thistr.attr('data-kykc'));
-    //            $("#" + rowid + "_zxdwjj").val($thistr.attr('data-zxdwjj'));
-    //            $("#" + rowid + "_bzdwjj").val($thistr.attr('data-bzdwjj'));
-    //            $("#" + rowid + "_sl").val("");
-    //            $("#" + rowid + "_lsze").val("");
-    //        }
-    //    });
+    // $("#" + id).newtouchBatchFloatingSelector({
+    // height: 300,
+    // width: 720,
+    // clickautotrigger: true,
+    // url: "/StorageManage/DrugStockSearch/StockGroupByBatchSearch",
+    // ajaxmethod: 'POST',
+    // ajaxreqdata: function () {
+    // var reqData = {};
+    // reqData.ypdm = $("#" + rowid + "_ypdm").val();
+    // return reqData;
+    // },
+    // caption: "Lô",
+    // colModel: [
+    // { label: 'Lô', name: 'pc', width: 150, align: 'center' },
+    // { label: 'Số lô', name: 'ph', width: 150, align: 'center' },
+    // { label: 'Tồn kho', name: 'slStr', width: 100, align: 'center' },
+    // { label: 'Giá nhập', name: 'jjdjdw', width: 100, align: 'center' },
+    // { label: 'Hệ số', name: 'zhyz', width: 60 },
+    // { label: 'Hạn dùng', name: 'yxq', width: 150, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' } },
+    // { label: 'kykc', name: 'kykc', hidden: true },
+    // { label: 'zxdwjj', name: 'zxdwjj', hidden: true },
+    // { label: 'bzdwjj', name: 'bzdwjj', hidden: true }
+    // ],
+    // itemdbclickhandler: function ($thistr) {
+    // $("#" + rowid + "_ph").val($thistr.attr('data-ph'));
+    // $("#" + rowid + "_pc").val($thistr.attr('data-pc'));
+    // $("#" + rowid + "_slStr").val($thistr.attr('data-slStr'));
+    // $("#" + rowid + "_yxq").val($thistr.attr('data-yxq'));
+    // $("#" + rowid + "_kykc").val($thistr.attr('data-kykc'));
+    // $("#" + rowid + "_zxdwjj").val($thistr.attr('data-zxdwjj'));
+    // $("#" + rowid + "_bzdwjj").val($thistr.attr('data-bzdwjj'));
+    // $("#" + rowid + "_sl").val("");
+    // $("#" + rowid + "_lsze").val("");
+    // }
+    // });
     //}
 
     //Khởi tạo đơn vị
@@ -673,25 +673,25 @@
 
         ////Doanh nghiệp dược
         //$("#yq").newtouchBatchFloatingSelector({
-        //    clickautotrigger: true,
-        //    height: 200,
-        //    width: 400,
-        //    url: "/Medicine/MedicineSupplierList",
-        //    ajaxmethod: 'Get',
-        //    ajaxreqdata: function () {
-        //        var reqData = {};
-        //        reqData.keyword = $.trim($("#yq").val());
-        //        return reqData;
-        //    },
-        //    colModel: [
-        //        { label: 'Mã doanh nghiệp dược', name: 'gysCode', widthratio: 30 },
-        //        { label: 'Doanh nghiệp dược', name: 'gysmc', widthratio: 70 }
-        //    ],
-        //    itemdbclickhandler: function ($thistr) {
-        //        $("#yqbm").val($thistr.attr('data-gysCode'));
-        //        $("#yq").val($thistr.attr('data-gysmc'));
-        //        return;
-        //    }
+        // clickautotrigger: true,
+        // height: 200,
+        // width: 400,
+        // url: "/Medicine/MedicineSupplierList",
+        // ajaxmethod: 'Get',
+        // ajaxreqdata: function () {
+        // var reqData = {};
+        // reqData.keyword = $.trim($("#yq").val());
+        // return reqData;
+        // },
+        // colModel: [
+        // { label: 'Mã doanh nghiệp dược', name: 'gysCode', widthratio: 30 },
+        // { label: 'Doanh nghiệp dược', name: 'gysmc', widthratio: 70 }
+        // ],
+        // itemdbclickhandler: function ($thistr) {
+        // $("#yqbm").val($thistr.attr('data-gysCode'));
+        // $("#yq").val($thistr.attr('data-gysmc'));
+        // return;
+        // }
         //});
 
         //Điểm giao hàng
@@ -703,7 +703,7 @@
             caption: "Điểm phân phối",
             ajaxmethod: "Get",
             //ajaxparameters: function () {
-            //    return "key=" + $("#psd").val();
+            // return "key=" + $("#psd").val();
             //},
             colModel: [
                 { label: 'Id', name: 'Id', hidden: true },
@@ -739,18 +739,18 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu cần sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
         }
         var par = new Object();
         par["cgmx"] = list; //Chi tiết mua hàng
-        par["psdbm"] = $("#psd").val();//Mã điểm phân phối 
+        par["psdbm"] = $("#psd").val();//Mã điểm phân phối
         par["ddlx"] = $("#ddlx").val();//Loại đơn hàng
         par["zwdhrq"] = $("#zwdhrq").val();//Ngày giao hàng muộn nhất
         par["yqbm"] = $("#yqbm").val();//Mã công ty dược
         par["jls"] = list.length//Số bản ghi
         par["yybm"] = "77370296000";//Mã bệnh viện
-        par["ddbh"] = " ";//Số đơn hàng Thêm mới:trống   Sửa/Thu hồi:Số đơn hàng
+        par["ddbh"] = " ";//Số đơn hàng Thêm mới:trống Sửa/Thu hồi:Số đơn hàng
         par["yyjhdh"] = "test";//Số kế hoạch của bệnh viện
         par["ddzt"] = "1";//1Đã lưu 2Đã gửi báo cáo 3Đã nghiệm thu
         par["ddsj"] = new Date();//Thời gian đơn hàng
@@ -791,18 +791,18 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu cần sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
         }
         var par = new Object();
         par["cgmx"] = list; //Chi tiết mua hàng
-        par["psdbm"] = $("#psd").val();//Mã điểm phân phối 
+        par["psdbm"] = $("#psd").val();//Mã điểm phân phối
         par["ddlx"] = $("#ddlx").val();//Loại đơn hàng
         par["zwdhrq"] = $("#zwdhrq").val();//Ngày giao hàng muộn nhất
         par["yqbm"] = $("#yqbm").val();//Mã công ty dược
         par["jls"] = list.length//Số bản ghi
         par["yybm"] = "77370296000";//Mã bệnh viện
-        par["ddbh"] = " ";//Số đơn hàng Thêm mới:trống   Sửa/Thu hồi:Số đơn hàng
+        par["ddbh"] = " ";//Số đơn hàng Thêm mới:trống Sửa/Thu hồi:Số đơn hàng
         par["yyjhdh"] = "test";//Số kế hoạch của bệnh viện
         par["ddzt"] = "1";//1Đã lưu 2Đã gửi báo cáo 3Đã nghiệm thu
         par["ddsj"] = new Date();//Thời gian đơn hàng
@@ -824,26 +824,26 @@
     }
     //Kiểm tra giá trị số
     function Validately(rowData, rowid) {
-        //if ($("#rkbm").val() === "" || $("#rkbmmc").val() === "") {   //Loại bỏ khoảng trắng hai đầu
-        //    $.modalMsg("Vui lòng chọn bộ phận phát thuốc", "error", 1000);
-        //    return false;
+        //if ($("#rkbm").val() === "" || $("#rkbmmc").val() === "") { //Loại bỏ khoảng trắng hai đầu
+        // $.modalMsg("Vui lòng chọn bộ phận phát thuốc", "error", 1000);
+        // return false;
         //}
         if (rowData.ypmc === "") {
             $.modalMsg('Bắt buộc chọn thuốc', 'error', 1000);
             return false;
         }
         //if (rowData.pc === "") {
-        //    $.modalMsg('Lô bắt buộc chọn', 'error', 1000);
-        //    return false;
+        // $.modalMsg('Lô bắt buộc chọn', 'error', 1000);
+        // return false;
         //}
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if (!reg.test(rowData.cgsl)) {
-            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             return false;
         }
         //if ($("#sel_dw_" + rowid).val() === "") {
-        //    $.modalMsg('Vui lòng chọn đơn vị', 'error', 1000);
-        //    return false;
+        // $.modalMsg('Vui lòng chọn đơn vị', 'error', 1000);
+        // return false;
         //}
         return true;
     }

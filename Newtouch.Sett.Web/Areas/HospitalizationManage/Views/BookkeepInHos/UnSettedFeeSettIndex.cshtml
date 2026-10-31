@@ -26,7 +26,7 @@
                     <th class="formTitle">Thời gian kết thúc:</th>
                     <td class="formValue" style="width:143px;">
                         <input id="endTime" type="text" class="form-control input-wdatepicker form-an formClearIgnore"
-                               onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss', onpicked: function () { thenreload(); } })" value="@(System.DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))" />
+                               onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss', onpicked: function () { thenreload(); } })" value="@(System.DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss"))" />
                     </td>
                     <th class="formTitle">Họ tên:</th>
                     <td class="formValue">
@@ -150,11 +150,11 @@
                 { label: "Tên mụcthu phí", name: "sfxmmc", width: 180, align: "left" },
                 {
                     label: "Số lượng", name: "sl", width: 80, align: "left", formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
                     label: "Tổng số tiền", name: "zje", width: 80, align: "left", formatter: "number"
-                        , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
             ],
             gridComplete: function (data) {
@@ -203,7 +203,7 @@
                 { label: "Mã nhập viện", name: "zyh", width: 140, align: "left", hidden: true },
                 {
                     label: "Số tiền quyết toán", name: "zje", width: 80, align: "left", formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
                     label: "Thời gian bắt đầuquyết toán", name: "jsksrq", width: 140, align: "left",

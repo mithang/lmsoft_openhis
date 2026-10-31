@@ -36,61 +36,61 @@
             <div id="basicInfo" role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Tên：</th>
+                        <th class="formTitle"><span class="required">*</span>Tên:</th>
                         <td class="formValue">
                             <input id="name" name="name" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Viết tắt đầu：</th>
+                        <th class="formTitle"><span class="required">*</span>Viết tắt đầu:</th>
                         <td class="formValue">
                             <input id="py" name="py" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Mã bưu điện：</th>
+                        <th class="formTitle">Mã bưu điện:</th>
                         <td class="formValue">
                             <input id="zipCode" name="zipCode" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">Điện thoại công ty：</th>
+                        <th class="formTitle">Điện thoại công ty:</th>
                         <td class="formValue">
                             <input id="tel" name="tel" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Fax：</th>
+                        <th class="formTitle">Fax:</th>
                         <td class="formValue">
                             <input id="fax" name="fax" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">Địa chỉ：</th>
+                        <th class="formTitle">Địa chỉ:</th>
                         <td class="formValue">
                             <input id="address" name="address" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Ngân hàng：</th>
+                        <th class="formTitle">Ngân hàng:</th>
                         <td class="formValue">
                             <input id="khh" name="khh" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">Số tài khoản ngân hàng：</th>
+                        <th class="formTitle">Số tài khoản ngân hàng:</th>
                         <td class="formValue">
                             <input id="khhzh" name="khhzh" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Mã số thuế：</th>
+                        <th class="formTitle">Mã số thuế:</th>
                         <td class="formValue">
                             <input id="sh" name="sh" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">Chu kỳ thanh toán：</th>
+                        <th class="formTitle">Chu kỳ thanh toán:</th>
                         <td class="formValue">
                             <input id="jszq" name="jszq" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Loại công ty：</th>
+                        <th class="formTitle">Loại công ty:</th>
                         <td class="formValue">
                             @Html.DropDownList("supplierType", EnumSupplierType.Distributor.ToDescSelectList(), new { @class = "form-control form-an" })
                         </td>
-                        <th class="formTitle" style="height: 35px;">Tùy chọn：</th>
+                        <th class="formTitle" style="height: 35px;">Tùy chọn:</th>
                         <td class="formValue" style="padding-top: 1px;" colspan="3">
                             <div class="ckbox">
                                 <input id="zt" name="zt" type="checkbox" checked="checked"><label for="zt">Hiệu lực</label>
@@ -102,26 +102,26 @@
             <div id="contacts" role="tabpanel" class="tab-pane fade in">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Họ tên：</th>
+                        <th class="formTitle"><span class="required">*</span>Họ tên:</th>
                         <td class="formValue">
                             <input id="contactName" name="contactName" type="text" class="form-control required" placeholder="Vui lòng nhập tên" />
                             <input type="hidden" id="hdId" value="" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Di động：</th>
+                        <th class="formTitle"><span class="required">*</span>Di động:</th>
                         <td class="formValue">
                             <input id="telphone" name="telphone" type="text" class="form-control required" />
                         </td>
-                        <th class="formTitle">Chức vụ：</th>
+                        <th class="formTitle">Chức vụ:</th>
                         <td class="formValue">
                             <input id="duties" name="duties" type="text" class="form-control" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Điện thoại cố định：</th>
+                        <th class="formTitle">Điện thoại cố định:</th>
                         <td class="formValue">
                             <input id="phone" name="phone" type="text" class="form-control" />
                         </td>
-                        <th class="formTitle">Email：</th>
+                        <th class="formTitle">Email:</th>
                         <td class="formValue">
                             <input id="email" name="email" type="text" class="form-control" />
                         </td>

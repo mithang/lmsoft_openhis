@@ -100,11 +100,11 @@
                 break;
             }
             if (!(/^(\+|-)?\d+$/.test(rowData.ts))) {
-                $.modalAlert("Mã nhân viên（" + rowData.gh + "）số ngày không Có chữ số,Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Mã nhân viên(" + rowData.gh + ")số ngày không Có chữ số,Vui lòng xác nhận.", 'warning');
                 return;
             }
             if ((rowData.ts > 31)) {
-                $.modalAlert("Không thể lớn hơn31Ngày,Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Không thể lớn hơn31Ngày,Vui lòng xác nhận.", 'warning');
                 return;
             }
         }

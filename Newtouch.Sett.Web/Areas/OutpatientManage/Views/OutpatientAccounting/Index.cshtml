@@ -118,7 +118,7 @@
                     <td class="formTitle"><span class="required">*</span>Ngày trị liệu:</td>
                     <td class="formValue">
                         <input id="jzsj" type="text" class="form-control input-wdatepicker form-an"
-                               onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" />
+                               onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy'})" />
                         <span style="color: red; display: none">￥</span><a id="zje" style="display: none">0.00</a>
                         <input type="hidden" id="IsBlh" value="@ViewBag.IsBlh" />
                     </td>
@@ -391,7 +391,7 @@
     function Tips() {
         var html = "Khoản mục ghi sổ";
         if (jfXm_jfjesx) {
-            html += "&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:red;'>Tổng số tiền đã tính phí（Tháng hiện tại）:" + jfXm_yjfzje + "đồng,Giới hạn trên（Tháng hiện tại）:" + jfXm_jfjesx + "đồng</span>";
+            html += "&nbsp;&nbsp;&nbsp;&nbsp;<span style='color:red;'>Tổng số tiền đã tính phí(Tháng hiện tại):" + jfXm_yjfzje + "đồng,Giới hạn trên(Tháng hiện tại):" + jfXm_jfjesx + "đồng</span>";
         }
         $('#divPanelJzxm').html(html);
     }
@@ -949,7 +949,7 @@
     }
 
 
-    //kiểm trađang sửacủadữ liệu（chờ gửi）củatính đầy đủ
+    //kiểm trađang sửacủadữ liệu(chờ gửi)củatính đầy đủ
     function checkEditingRowData(rowData) {
         if (!rowData.ysList || rowData.ysList.length === 0) {
             $.modalAlert("Vui lòng chọn kỹ thuật viên trị liệu", 'warning');

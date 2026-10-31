@@ -96,7 +96,7 @@
                     <span class="napan">*</span>Ngàyghi sổ:
                 </td>
                 <td class="formValue">
-                    <input id="jzrq" type="text" class="form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt:'yyyy-MM-dd HH:mm:ss' })" />
+                    <input id="jzrq" type="text" class="form-control input-wdatepicker formClearIgnore" onfocus="WdatePicker({ dateFmt:'dd/MM/yyyy HH:mm:ss' })" />
                 </td>
                 <td class="formTitle">
                     <span class="napan">*</span>Bác sĩ:
@@ -273,7 +273,7 @@
                 { label: 'Đơn vị', name: 'dw', width: 100, align: 'left', editor: "text" },
                 {
                     label: 'Đơn giá', name: 'dj', width: 100, align: 'left', editor: "text", formatter: "number"
-                    , formatoptions: { decimalPlaces: 4, defaultValue: '0.0000' }
+, formatoptions: { decimalPlaces: 4, defaultValue: '0.0000' }
                 },
                 { label: 'Số lượng', name: 'sl', width: 100, align: 'left', editor: "text" },
                 { label: 'Số tiền', name: 'je', width: 100, align: 'left', editor: "text" },
@@ -553,7 +553,7 @@
                             sfxmmc: this.sfxmmc,
                             dw: this.dw,
                             dj: this.dj,
-                            yzlx: 2,    //2Mục
+                            yzlx: 2, //2Mục
                             zfbl: this.zfbl,
                             zfxz: this.zfxz,
                             //cls: this.cls,
@@ -759,7 +759,7 @@
         return data;
     }
 
-    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）củatính đầy đủ
+    //Kiểm tra dữ liệu đang chỉnh sửa(Chờ gửi)củatính đầy đủ
     function checkEditingRowData(rowData) {
         var ryrq = new Date($('#ryrq').html());
         var cyrq = new Date($('#cyrq').html());

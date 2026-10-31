@@ -29,7 +29,7 @@
                     </th>
                     <td class="formValue">
                         <input id="searchTime" style="min-width:100px" type="text" class="form-control input-wdatepicker form-an"
-                               onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () {} })" value="@(System.DateTime.Now.ToString("yyyy-MM-dd"))" />
+                               onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () {} })" value="@(System.DateTime.Now.ToString("dd/MM/yyyy"))" />
 
                     </td>
                     <th class="formTitle">
@@ -91,11 +91,11 @@
                 { label: "Đơn giá", name: "dj", width: 60 },
                 {
                     label: "Số lượng", name: "sl", width: 60, align: "left", formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
                     label: "Tổng số tiền", name: "je", width: 60, align: "left", formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
             ]
         });

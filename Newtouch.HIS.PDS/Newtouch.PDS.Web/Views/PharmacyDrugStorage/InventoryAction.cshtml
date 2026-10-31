@@ -66,15 +66,15 @@
         <div class="panel-heading">Điều kiện tra cứu</div>
         <table class="form">
             <tr>
-                <th class="formTitle" style="width: 50px;">Ngày：</th>
+                <th class="formTitle" style="width: 50px;">Ngày:</th>
                 <td class="formValue" colspan="2">
                     <select id="ddlRQ" class="form-control"></select>
                 </td>
-                <th class="formTitle" style="width: 65px;">Từ khóa：</th>
+                <th class="formTitle" style="width: 65px;">Từ khóa:</th>
                 <td class="formValue" style="width: 115px;">
                     <input id="txtSRM" type="text" class="form-control" placeholder="Pinyin Tên thuốc" />
                 </td>
-                <th class="formTitle">Trạng thái thuốc：</th>
+                <th class="formTitle">Trạng thái thuốc:</th>
                 <td class="formValue" style="width: 55px;">
                     <select id="ddlYPZT" name="ddlYPZT" class="form-control">
                         <option value="-1">Tất cả</option>
@@ -82,13 +82,13 @@
                         <option value="0">Ngừng dùng</option>
                     </select>
                 </td>
-                <th class="formTitle" style="display:none">Loại thuốc：</th>
+                <th class="formTitle" style="display:none">Loại thuốc:</th>
                 <td class="formValue" style="display:none">
                     <select id="ddlYPLB" class="form-control">
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                <th class="formTitle">Hiển thị tồn kho：</th>
+                <th class="formTitle">Hiển thị tồn kho:</th>
                 <td class="formValue">
                     <select id="ddlKCXS" name="ddlKCXS" class="form-control">
                         <option value="-1">Tất cả</option>
@@ -107,7 +107,7 @@
     </div>
     <div class="panel panel-default" style="margin-bottom: 0;">
         <div class="panel-heading">
-            <span>Chi tiết kiểm kê | Chọn đơn vị：  Đơn vị khoa</span>
+            <span>Chi tiết kiểm kê | Chọn đơn vị: Đơn vị khoa</span>
             <i id='i-changeUnit' onclick='ChooseUnit(this)' class='fa fa-toggle-off' style='margin:0 5px;font-size:1.6rem;color:#ff9813;vertical-align:middle;'></i>Đơn vị nhỏ nhất
         </div>
     </div>
@@ -119,10 +119,10 @@
         <table id="gridKCInfoByMinUnit"></table>
         <div id="gridKCInfoByMinUnitPager" rel="form1"></div>
     </div>
-    <div style="color: #ff0000;float: left;margin-top: 10px;">(Thực tế)Số khoa：Số đơn vị khoa thực tế；(Thực tế)Số nhỏ nhất：Số đơn vị nhỏ nhất thực tế！</div>
+    <div style="color: #ff0000;float: left;margin-top: 10px;">(Thực tế)Số khoa: Số đơn vị khoa thực tế; (Thực tế)Số nhỏ nhất: Số đơn vị nhỏ nhất thực tế!</div>
     @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
-    ShowKeyList = new[] { 8,  7, 3,9 },
+    ShowKeyList = new[] { 8, 7, 3,9 },
     F3Text = "Kết thúc",
     F7Text = "Kiểm kê lại",
     F9Text = "In kiểm kê"
@@ -131,7 +131,7 @@
         <input id="autoCarryDown" name="autoCarryDown" type="checkbox" checked="checked">
         <label for="autoCarryDown"></label>
     </div>
-    <div style="float:right;margin: 10px 5px 0 0;font-size: 14px;">Tự động kết chuyển：</div>
+    <div style="float:right;margin: 10px 5px 0 0;font-size: 14px;">Tự động kết chuyển:</div>
 </form>
 <script language="javascript">
     var $gridKCInfo = $("#gridKCInfo");
@@ -191,7 +191,7 @@
             url: "/PharmacyDrugStorage/GetPDDateDropdownList",
             dataType: "json",
             success: function (ajaxresp) {
-                //Xóa trước，Điền tiếp
+                //Xóa trước, Điền tiếp
                 $("#ddlRQ").empty();
                 for (var i = 0; i < ajaxresp.data.length; i++) {
                     $("#ddlRQ").append('<option data-pdId=' + ajaxresp.data[i].pdId + '>' + ajaxresp.data[i].pdsj + '</option>');
@@ -207,7 +207,7 @@
             postData: getSearchPostData(),
             height: $(window).height() - 270,
             url: "",
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
                 { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'ypgg', width: 80, align: 'left' },
@@ -253,7 +253,7 @@
             postData: getSearchPostData(),
             height: $(window).height() - 270,
             url: "",
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             colModel: [
                 { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
                 { label: 'Quy cách', name: 'ypgg', width: 80, align: 'left' },
@@ -329,10 +329,10 @@
     function afterCompleteFunction() {
         ObjArr_Load = [];
         $.loading("Đang tải dữ liệu");
-        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
+        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng 1.Lấy tất cả các dòng trướcId 2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
             ObjArr_Load.push($gridKCInfo.jqGrid('getRowData', rowIds[i]));
-            $gridKCInfo.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+            $gridKCInfo.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) { //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
             });
         }
         $.loading(false);
@@ -342,10 +342,10 @@
     function afterCompleteFunctionMinUnit() {
         ObjArr_Load = [];
         $.loading("Đang tải dữ liệu");
-        var rowIds = $gridKCInfoMinUnit.jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
+        var rowIds = $gridKCInfoMinUnit.jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng 1.Lấy tất cả các dòng trướcId 2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
             ObjArr_Load.push($gridKCInfoMinUnit.jqGrid('getRowData', rowIds[i]));
-            $gridKCInfoMinUnit.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+            $gridKCInfoMinUnit.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) { //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
             });
         }
         $.loading(false);
@@ -355,11 +355,11 @@
     function newtouch_event_f8() {
         var $targetJqg;
         if ($("#i-changeUnit").hasClass("fa-toggle-off")) {
-            $targetJqg = $gridKCInfo;//Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
+            $targetJqg = $gridKCInfo;//Lấy tất cả các dòngId, Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
         } else {
-            $targetJqg = $gridKCInfoMinUnit;//Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
+            $targetJqg = $gridKCInfoMinUnit;//Lấy tất cả các dòngId, Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
         }
-        var rowIds = $targetJqg.jqGrid('getDataIDs');//Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
+        var rowIds = $targetJqg.jqGrid('getDataIDs');//Lấy tất cả các dòngId, Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
 
         //Kiểm tra số lượng trả
         for (var i = 0; i < rowIds.length; i++) {
@@ -370,13 +370,13 @@
             }
             if ($("#i-changeUnit").hasClass("fa-toggle-off")) { //Đơn vị khoa
                 if (rowData.deptSjsl.replace(/(^\s*)|(\s*$)/g, "") === "" || rowData.deptSjsl < 0 || isNaN(rowData.deptSjsl) || rowData.deptSjsl === "") {
-                    $.modalAlert("Hạng mục（" + rowData.ypmc + "）Số lượng thực tế phải là số tự nhiên，Vui lòng xác nhận。", "warning");
+                    $.modalAlert("Hạng mục(" + rowData.ypmc + ")Số lượng thực tế phải là số tự nhiên, Vui lòng xác nhận.", "warning");
                     EnableInlineEditBox();//Bật khung sửa trong dòng
                     return false;
                 }
             } else { //Đơn vị nhỏ nhất
                 if (rowData.minSjsl.replace(/(^\s*)|(\s*$)/g, "") === "" || rowData.minSjsl < 0 || isNaN(rowData.minSjsl) || rowData.minSjsl === "") {
-                    $.modalAlert("Hạng mục（" + rowData.ypmc + "）Số lượng thực tế phải là số tự nhiên，Vui lòng xác nhận。", "warning");
+                    $.modalAlert("Hạng mục(" + rowData.ypmc + ")Số lượng thực tế phải là số tự nhiên, Vui lòng xác nhận.", "warning");
                     EnableInlineEditBoxMinUnit();//Bật khung sửa trong dòng
                     return false;
                 }
@@ -388,7 +388,7 @@
             objArrSave.push(this);
         });
         var resultObjArr = new Array();
-        //so sánh với mảng tải từ trang，đặt dòng dữ liệu đã sửa vàoresultObjArrtrong，gửi cho máy chủ
+        //so sánh với mảng tải từ trang, đặt dòng dữ liệu đã sửa vàoresultObjArrtrong, gửi cho máy chủ
         for (var i = 0; i < objArrSave.length; i++) {
             if (objArrSave[i].deptSjsl !== ObjArr_Load[i].deptSjsl || objArrSave[i].minSjsl !== ObjArr_Load[i].minSjsl) {
                 resultObjArr.push({ pdmxId: objArrSave[i].pdmxId, sjsl: CalculationMinUnitNum(objArrSave[i].deptSjsl, objArrSave[i].minSjsl, objArrSave[i].zhyz) });
@@ -416,32 +416,32 @@
         });
     };
 
-    //Quy đổi tồn kho thành số đơn vị nhỏ nhất  Chia lẻ
+    //Quy đổi tồn kho thành số đơn vị nhỏ nhất Chia lẻ
     function CalculationMinUnitNum(deptNum, minNum, zhyz) {
         if (deptNum == null) return parseInt(minNum);
         if (minNum == null) return parseInt(deptNum) * parseInt(zhyz);
         return parseInt(deptNum) * parseInt(zhyz) + parseInt(minNum);
     }
 
-    //Quy đổi tồn kho thành số đơn vị nhỏ nhất  Không chia lẻ
+    //Quy đổi tồn kho thành số đơn vị nhỏ nhất Không chia lẻ
     function CalculationMinUnitNumNoOpen(deptNum, zhyz) {
         return parseInt(deptNum) * parseInt(zhyz);
     }
 
     //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBox() {
-        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
+        var rowIds = $gridKCInfo.jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng 1.Lấy tất cả các dòng trướcId 2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
-            $gridKCInfo.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+            $gridKCInfo.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) { //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
             });
         }
     }
 
     //Bật hộp chỉnh sửa trong dòng
     function EnableInlineEditBoxMinUnit() {
-        var rowIds = $gridKCInfoMinUnit.jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng   1.Lấy tất cả các dòng trướcId  2.Duyệt để gọieditRowPhương thức
+        var rowIds = $gridKCInfoMinUnit.jqGrid('getDataIDs');//GridSau khi tải xong, bật chỉnh sửa trong dòng 1.Lấy tất cả các dòng trướcId 2.Duyệt để gọieditRowPhương thức
         for (var i = 0; i < rowIds.length; i++) {
-            $gridKCInfoMinUnit.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
+            $gridKCInfoMinUnit.jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) { //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
             });
         }
     }
@@ -449,7 +449,7 @@
     //Kết thúc kiểm kê
     function newtouch_event_f3() {
         if ($("#autoCarryDown").is(":checked")) {
-            $.modalConfirm("Bạn có chắc muốn tự động tạo kết chuyển không?？",
+            $.modalConfirm("Bạn có chắc muốn tự động tạo kết chuyển không??",
                 function (flag) {
                     if (flag) {
                         InventorySubmit();
@@ -480,7 +480,7 @@
 
     //Hủy kiểm kê
     function newtouch_event_f7() {
-        $.modalConfirm("Bạn có chắc muốn kiểm kê lại không?？",
+        $.modalConfirm("Bạn có chắc muốn kiểm kê lại không??",
             function (flag) {
                 if (flag) {
                     var pdId = $("#ddlRQ option:selected").attr('data-pdId');

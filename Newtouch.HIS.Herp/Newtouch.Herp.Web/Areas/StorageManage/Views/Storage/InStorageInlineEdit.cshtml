@@ -60,24 +60,24 @@
         <div class="panel-heading">Thông tin nhập kho</div>
         <table class="form">
             <tr>
-                <th class="formTitle" style="width:70px;">Số phiếu nhập kho：</th>
+                <th class="formTitle" style="width:70px;">Số phiếu nhập kho:</th>
                 <td class="formValue">
                     <input id="Pdh" type="text" class="form-control newtouch_Readonly" />
                 </td>
-                <th class="formTitle" style="width:70px;"><span class="req">*</span>Nhà cung cấp：</th>
+                <th class="formTitle" style="width:70px;"><span class="req">*</span>Nhà cung cấp:</th>
                 <td class="formValue">
                     <input id="supplierName" class="form-control" placeholder="Tên Phiên âm" autocomplete="off" />
                     <input id="supplierId" type="hidden" value="" />
                 </td>
-                <th class="formTitle" style="width:80px;">Hình thức nhập kho：</th>
+                <th class="formTitle" style="width:80px;">Hình thức nhập kho:</th>
                 <td class="formValue formDdlSelectorTd" style="width:80px;">
                     <select id="ddlRKFS" class="form-control required"></select>
                 </td>
-                <th class="formTitle" style="width:80px;">Số phiếu giao hàng：</th>
+                <th class="formTitle" style="width:80px;">Số phiếu giao hàng:</th>
                 <td class="formValue">
                     <input id="deliveryNo" class="form-control" placeholder="Số phiếu giao hàng" autocomplete="off"/>
                 </td>
-                <th class="formTitle">Tổng nhập kho(đ)：</th>
+                <th class="formTitle">Tổng nhập kho(đ):</th>
                 <td class="formValue" style="width:80px;">
                     <input id="txtRKZE" type="text" class="form-control newtouch_Readonly" />
                 </td>
@@ -349,13 +349,13 @@
                 {
                     label: 'Ngày sản xuất', name: 'scrq', width: 100, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<input id=\"scrq_" + options.rowId + "\" type=\"text\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"\" onfocus=\"WdatePicker({ dateFmt: 'yyyy-MM-dd' })\" />";
+                        return "<input id=\"scrq_" + options.rowId + "\" type=\"text\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"\" onfocus=\"WdatePicker({ dateFmt: 'dd/MM/yyyy' })\" />";
                     }
                 },
                 {
                     label: 'Hạn sử dụng', name: 'yxq', width: 100, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<input id=\"yxq_" + options.rowId + "\" type=\"text\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"@DateTime.Now.AddYears(1).ToString("yyyy-MM-dd")\" onfocus=\"WdatePicker({ dateFmt: 'yyyy-MM-dd' })\" />";
+                        return "<input id=\"yxq_" + options.rowId + "\" type=\"text\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"@DateTime.Now.AddYears(1).ToString("dd/MM/yyyy")\" onfocus=\"WdatePicker({ dateFmt: 'dd/MM/yyyy' })\" />";
                     }
                 },
                 { label: 'Tồn kho', name: 'slstr', width: 70, align: 'center', editable: true, editwidth: "100%" },
@@ -370,7 +370,7 @@
                 { label: 'minlsj', name: 'minlsj', hidden: true, editable: true, width: 75 }
             ],
             editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue(Có bo góc)
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -513,7 +513,7 @@
     function CheckKc(rowid) {
         var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
         if (!reg.test($("#" + rowid + "_sl").val())) {
-            $.modalMsg("Số lượng phải lớn hơn0số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn0số nguyên!", "warning", 1500);
             $("#" + rowid + "_sl").val("");
             return false;
         }
@@ -529,7 +529,7 @@
         $("#" + rowid + "_lsze").val((zhyz * sl * minlsj).toFixed(2));
     }
 
-    //Tổng giá nhậpMất focus，Tính toánPhiếu nhập khoGiá
+    //Tổng giá nhậpMất focus,Tính toánPhiếu nhập khoGiá
     function JJZE_Leave(id, rowid) {
         $("#" + id).change(function () {
             if ($("#" + rowid +"_zje").val() === "") {
@@ -540,7 +540,7 @@
             }
             var reg2 = /^\d+(?:\.\d{0,2})?$/;
             if (!reg2.test($("#" + rowid + "_zje").val())) {
-                $.modalMsg("Tổng giá nhậpVui lòng nhập đúng định dạng số tiền！", "warning", 1500);
+                $.modalMsg("Tổng giá nhậpVui lòng nhập đúng định dạng số tiền!", "warning", 1500);
                 return false;
             }
             var sl = Number($("#" + rowid + "_sl").val());
@@ -651,7 +651,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu chỉnh sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu chỉnh sửa!", 'warning', 1000);
             return;
         }
         var crkdj = Object();
@@ -703,7 +703,7 @@
             return;
         }
         if (list == null || list.length == 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu chỉnh sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu chỉnh sửa!", 'warning', 1000);
             return;
         }
 
@@ -784,16 +784,16 @@
         }
         var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("Số lượng phải lớn hơn0số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn0số nguyên!", "warning", 1500);
             return false;
         }
         var reg2 = /^\d+(?:\.\d{0,2})?$/;
         if (!reg2.test(rowData.zje)) {
-            $.modalMsg("Tổng giá nhậpVui lòng nhập đúng định dạng số tiền！", "warning", 1500);
+            $.modalMsg("Tổng giá nhậpVui lòng nhập đúng định dạng số tiền!", "warning", 1500);
             return false;
         }
         if (rowData.ph === "") {
-            $.modalMsg("Số lô không được để trống！", "warning", 1000);
+            $.modalMsg("Số lô không được để trống!", "warning", 1000);
             return false;
         }
         return true;

@@ -47,7 +47,7 @@ border: 0;">
                     </td>
                     <th class="formTitle">Khởi phátNgày:</th>
                     <td class="formValue">
-                        <input type="text" id="nc_fbsj" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                        <input type="text" id="nc_fbsj" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     </td>
                 </tr>
                 <tr>
@@ -608,7 +608,7 @@ border: 0;">
             //1.duyệttất cảDữ liệu
             $.each(Object.keys(newdataArray), function () {    //Object.keys(newdataArray):["kfcf"]
                 var itemsKey = String(this);      //String(Object.keys(newdataArray):["kfcf"]) : kfcf
-                //2.Theomỗicáitìmdẫntìmđếncủa nótương ứngcủaValue（valueCómộtsốnhóm，sốnhómtrongCónhiềucáiđối tượng）
+                //2.Theomỗicáitìmdẫntìmđếncủa nótương ứngcủaValue(valueCómộtsốnhóm，sốnhómtrongCónhiềucáiđối tượng)
                 var itemsMxArr = newdataArray[String(this)];    //itemsMxArr lấyrakeylàkfcfcủatất cảchi tiết
                 // 3.1.1tìmđếnkeyCóKhônglàPhục hồi chức năngĐơn thuốc
                 if (itemsKey == "kfcf") {

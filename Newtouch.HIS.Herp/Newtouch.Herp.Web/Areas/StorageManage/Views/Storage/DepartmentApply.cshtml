@@ -57,15 +57,15 @@
         <div class="panel-heading">Thông tin xuất kho</div>
         <table class="form">
             <tr>
-                <th class="formTitle">Số phiếu lĩnh：</th>
+                <th class="formTitle">Số phiếu lĩnh:</th>
                 <td class="formValue">
                     <input id="Pdh" type="text" class="form-control newtouch_Readonly required" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Khoa đăng ký：</th>
+                <th class="formTitle"><span class="required">*</span>Khoa đăng ký:</th>
                 <td class="formValue" colspan="2">
                     <select id="department" name="department" class="form-control"></select>
                 </td>
-                <th class="formTitle"><span class="required">*</span>Kho xuất kho：</th>
+                <th class="formTitle"><span class="required">*</span>Kho xuất kho:</th>
                 <td class="formValue" colspan="2">
                     <select id="ckbm" name="ckbm" class="form-control"></select>
                 </td>
@@ -178,7 +178,7 @@
                 { label: 'minjj', name: 'minjj', hidden: true, editable: true }
             ],
             editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue(Có bo góc)
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -307,12 +307,12 @@
         var sl = Number($("#" + rowid + "_sl").val());
         var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
         if (!reg.test(sl)) {
-            $.modalMsg("Số lượng phải lớn hơn0số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn0số nguyên!", "warning", 1500);
             return false;
         }
         var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
         if (isNaN(zhyz)) {
-            $.modalMsg("Hệ số quy đổi phải lớn hơn0số nguyên！", "warning", 1500);
+            $.modalMsg("Hệ số quy đổi phải lớn hơn0số nguyên!", "warning", 1500);
             return false;
         }
         var maxsl = Number($("#" + rowid + "_kykcsl").val());
@@ -365,7 +365,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu chỉnh sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu chỉnh sửa!", 'warning', 1000);
             return;
         }
         var sld = Object();
@@ -419,11 +419,11 @@
         }
         var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("Số lượng phải lớn hơn0số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn0số nguyên!", "warning", 1500);
             return false;
         }
         if (rowData.pc === "" || rowData.ph === "") {
-            $.modalMsg("Lô、Số lô không được để trống！", "warning", 1000);
+            $.modalMsg("Lô,Số lô không được để trống!", "warning", 1000);
             return false;
         }
         return true;

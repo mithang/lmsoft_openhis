@@ -62,13 +62,13 @@
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle">Tên vật tư：</td>
+                    <td class="formTitle">Tên vật tư:</td>
                     <td class="formValue" s>
                         <input type="text" id="keyWord" class="form-control" placeholder="Pinyin/Tên" />
                         <input type="hidden" id="productId" value="" />
                         <input type="hidden" id="kccg" value="1" />
                     </td>
-                    <td class="formTitle">Loại：</td>
+                    <td class="formTitle">Loại:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="lb">
                             <option value="">Tất cả</option>
@@ -81,7 +81,7 @@
                         </div>
                         <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
                     </td>
-                    <th class="formTitle">Ghi chú mua sắm：</th>
+                    <th class="formTitle">Ghi chú mua sắm:</th>
                     <td class="formValue">
                         <input id="remark" name="remark" type="text" class="form-control " />
                     </td>
@@ -406,7 +406,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng tích chọn dữ liệu cần sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng tích chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
         }
         var pp = Object();
@@ -442,7 +442,7 @@
         }
         var reg = /^[1-9]\d*$/;//Lớn hơn0số nguyên
         if (!reg.test(rowData.cgsl)) {
-            $.modalMsg("Số lượng phải là số nguyên lớn hơn 0！", "warning", 1500);
+            $.modalMsg("Số lượng phải là số nguyên lớn hơn 0!", "warning", 1500);
             return false;
         }
         return true;

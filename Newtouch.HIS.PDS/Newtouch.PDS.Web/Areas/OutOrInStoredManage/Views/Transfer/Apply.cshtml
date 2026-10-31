@@ -54,11 +54,11 @@
         <div class="panel-heading">Đơn xin điều chuyểnthông tin</div>
         <table class="form">
             <tr>
-                <th class="formTitle">Đơn xin điều chuyểnSố phiếu：</th>
+                <th class="formTitle">Đơn xin điều chuyểnSố phiếu:</th>
                 <td class="formValue">
                     <input type="text" id="sldh" name="sldh" class="form-control newtouch_Readonly" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Nhà thuốc phát thuốc：</th>
+                <th class="formTitle"><span class="required">*</span>Nhà thuốc phát thuốc:</th>
                 <td class="formValue">
                     <input type="text" id="fybmmc" name="fybmmc" class="form-control" placeholder="Vui lòng chọn nhà thuốc phát thuốc" autocomplete="off" />
                     <input type="hidden" id="fybm" />
@@ -113,7 +113,7 @@
                     $("#sldh").val(data);
                 }
                 else {
-                    $.modalAlert("TạoĐơn xin điều chuyển số thất bại，Vui lòng liên hệ quản trị viên", 'error');
+                    $.modalAlert("TạoĐơn xin điều chuyển số thất bại, Vui lòng liên hệ quản trị viên", 'error');
                 }
             }
         });
@@ -190,7 +190,7 @@
             ],
             itemdbclickhandler: function ($thistr) {
                 if ($thistr.attr('data-kykc')<=0) {
-                    $.modalMsg("Số tồn kho khả dụng của lô thuốc này không đủ，Vui lòng chọn lô khác", "error", 1000);
+                    $.modalMsg("Số tồn kho khả dụng của lô thuốc này không đủ, Vui lòng chọn lô khác", "error", 1000);
                     return false;
                 }
 
@@ -239,9 +239,9 @@
         $gridList.newtouchLocalDataGrid({
             data: [],
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
-            rownumbers: true,  //Có hiển thị số thứ tự không
+            rownumbers: true, //Có hiển thị số thứ tự không
             multiselect: true,
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
                 { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
@@ -264,15 +264,15 @@
                 { label: 'Mã thuốc', name: 'ypdm', hidden: true, editable: true },
                 { label: 'pfj', name: 'pfj', hidden: true, editable: true },
                 { label: 'lsj', name: 'lsj', hidden: true, editable: true },
-                { label: 'Giá nhập đơn vị kho thuốc', name: 'jj', hidden: true, editable: true },//Giá nhập đơn vị kho thuốc（bzs）
+                { label: 'Giá nhập đơn vị kho thuốc', name: 'jj', hidden: true, editable: true },//Giá nhập đơn vị kho thuốc(bzs)
                 { label: 'Giá bán lẻ đơn vị nhỏ nhất', name: 'zxdwlsj', hidden: true, editable: true },
                 { label: 'Giá bán buôn kho thuốc', name: 'ykpfj', hidden: true, editable: true },
                 { label: 'Giá lẻ kho thuốc', name: 'yklsj', hidden: true, editable: true },
                 { label: 'Giá nhập đơn vị nhỏ nhất', name: 'zxdwjj', hidden: true, editable: true },
                 { label: 'Hệ số chuyển đổi xuất kho', name: 'zhyz', hidden: true, editable: true }
             ],
-            editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            editinputwidthborder: false, //Có cần viền không Mặc định làtrue
+            editinputborderradius: false, //Có cần bo góc viền không Mặc địnhtrue(Có bo góc)
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -355,7 +355,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu cần sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
         }
         var par = new Object();
@@ -426,7 +426,7 @@
     function CheckKc(rowid) {
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if (!reg.test($("#" + rowid + "_sl").val())) {
-            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             $("#" + rowid + "_sl").val("");
             return false;
         }
@@ -494,7 +494,7 @@
         }
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             return false;
         }
         return true;

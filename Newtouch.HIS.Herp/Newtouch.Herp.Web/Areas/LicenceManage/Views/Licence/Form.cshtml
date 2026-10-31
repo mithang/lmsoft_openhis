@@ -15,45 +15,45 @@
             <div role="tabpanel" class="tab-pane fade in active">
                 <table class="form">
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Chủ thể giấy phép：</th>
+                        <th class="formTitle"><span class="required">*</span>Chủ thể giấy phép:</th>
                         <td class="formValue">
                             <select class="form-control" id="belongedId" onchange="changeBelonged()"></select>
                         </td>
                         <td rowspan="4" style="width:250px;" align="center">
-                            <img id="fileUrl" src="~/Content/img/productDefault.png" style="width:200px; height:140px;" />
+                            <img id="fileUrl" src="~/Content/img/productDefault.png" style="width:200px; height:140px;" alt="Ảnh giấy phép" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Loại giấy phép：</th>
+                        <th class="formTitle"><span class="required">*</span>Loại giấy phép:</th>
                         <td class="formValue">
                             <select class="form-control" id="licenceTypeId"></select>
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Số giấy phép：</th>
+                        <th class="formTitle"><span class="required">*</span>Số giấy phép:</th>
                         <td class="formValue">
                             <input id="licenceNo" name="licenceNo" type="text" class="form-control required" placeholder="Số giấy phép" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Tên đối tượng：</th>
+                        <th class="formTitle"><span class="required">*</span>Tên đối tượng:</th>
                         <td class="formValue">
                             <input id="objectName" name="objectName" type="text" class="form-control required" placeholder="Tên đối tượng giấy phép" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Ngày hiệu lực：</th>
+                        <th class="formTitle"><span class="required">*</span>Ngày hiệu lực:</th>
                         <td class="formValue">
-                            <input id="qxrq" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <input id="qxrq" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         </td>
                         <td class="formValue" style="padding-left:25px;">
                             <input id="fileUpload" name="fileUpload" type="file" style="float:left;" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle"><span class="required">*</span>Ngày hết hiệu lực：</th>
+                        <th class="formTitle"><span class="required">*</span>Ngày hết hiệu lực:</th>
                         <td class="formValue">
-                            <input id="sxrq" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddYears(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                            <input id="sxrq" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddYears(1).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                         </td>
                         <td class="formValue" style="padding-left: 25px;">
                             <div class="ckbox">

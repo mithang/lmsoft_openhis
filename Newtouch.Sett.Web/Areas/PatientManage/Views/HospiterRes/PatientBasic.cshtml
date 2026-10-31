@@ -9,10 +9,10 @@
     //Nơi quản lý BHYT
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
     //rasinhnămthángcủađịnh dạngkiểu làkhôngtinhxác nhậnđếncụthểthời giangiữa
-    var csnyFormat = "yyyy-MM-dd";
+    var csnyFormat = "dd/MM/yyyy";
     if (SysConfigReader.Bool("PatientBasicInfo_Birthday_withTime", false).Value)
     {
-        csnyFormat = "yyyy-MM-dd HH:mm:ss"; ;
+        csnyFormat = "dd/MM/yyyy HH:mm:ss"; ;
     }
 }
 <style>

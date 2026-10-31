@@ -61,15 +61,15 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle" style="width: 85px;">Từ khóa：</th>
+                    <th class="formTitle" style="width: 85px;">Từ khóa:</th>
                     <td class="formValue" style="width:150px;">
                         <input id="txtINPUTCODE" type="text" class="form-control" placeholder="Tên thuốc" />
                     </td>
-                    <th class="formTitle">Trạng thái tồn kho：</th>
+                    <th class="formTitle">Trạng thái tồn kho:</th>
                     <td class="formValue" style="width:80px;">
                         @Html.DropDownList("ddlKCZT", EnumKCZT.Disabled.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">Trạng thái khoa này：</th>
+                    <th class="formTitle">Trạng thái khoa này:</th>
                     <td class="formValue" style="width:80px;">
                         @Html.DropDownList("ddlBBMZT", BenBuMenZT.Control.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
@@ -89,12 +89,12 @@
     </div>
     <div class="panel panel-default" style="margin-bottom: 5px;">
         <div class="panel-heading">
-            <span>Tổng lượng thuốc > Trang hiện tại > </span>
+            <span>Tổng lượng thuốc > Trang hiện tại ></span>
             @* QA-phase2 PDS-01: text tinh truoc day la manh noi chuoi JS
-               ("Tổng giá lẻ：" + "đ") lot ra HTML. Gia tri khoi tao dung
+               ("Tổng giá lẻ: " + "đ") lot ra HTML. Gia tri khoi tao dung
                dinh dang cua loadComplete (toFixed(2)); gia tri that duoc
                ComputePjzeAndLjze() cap nhat khi luoi load xong. *@
-            <span id='yeCon'>Tổng giá lẻ：0.00đ</span>
+            <span id='yeCon'>Tổng giá lẻ: 0.00đ</span>
         </div>
         <div class="gridPanel" id="div-main">
             <table id="gridYPZL"></table>
@@ -140,7 +140,7 @@
         gridYPZLData();
 
         $("#btn_search").click(function () {
-            $("#yeCon").text("Tổng giá lẻ：__đ");
+            $("#yeCon").text("Tổng giá lẻ: __đ");
             //Mỗi lần truy vấn xóa trướcGrid
             $('#gridYPZL').jqGrid("clearGridData");
             $('#gridYPMXInfo').jqGrid("clearGridData");
@@ -233,7 +233,7 @@
             sortname: 'ypdm desc',
             viewrecords: true,
             ondblClickRow: function (rowid, iRow, iCol, e) {
-                $gridkcmxData.jqGrid("clearGridData");//Mỗi lần nhấp đúp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
+                $gridkcmxData.jqGrid("clearGridData");//Mỗi lần nhấp đúp, Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
                 $gridkcmxData.jqGrid('setGridParam', {
                     postData: { ypdm: $("#gridYPZL").jqGridRowValue().ypdm, kczt: $("#ddlKCZT").val() },
                     url: '/StorageManage/DrugStockSearch/StockGroupByBatchSearchByPage?r=' + Math.random()
@@ -259,7 +259,7 @@
                 titleJjze += parseFloat(getRowJjze);
                 titleLjze += parseFloat(getRowLjze);
             }
-            $("#yeCon").text("Tổng giá lẻ：" + titleLjze.toFixed(2) + "đ");
+            $("#yeCon").text("Tổng giá lẻ: " + titleLjze.toFixed(2) + "đ");
         }
     }
 

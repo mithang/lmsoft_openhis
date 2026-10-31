@@ -141,7 +141,7 @@
     //
     var jszje = 0.00;
 
-    //theozyh Thông tin cơ bản bệnh nhân、Thông tin tính phí
+    //theozyh Thông tin cơ bản bệnh nhân, Thông tin tính phí
     function ajaxLoadDataResult(zyh) {
         $.najax({
             type: "POST",
@@ -228,7 +228,7 @@
                 { label: 'Loại phí', name: 'dlmc', width: 100, align: 'left' },
                 {
                     label: 'Số tiền', name: 'je', width: 500, align: 'left', formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
             ],
             onSelectRow: function (rowIndex, s) {

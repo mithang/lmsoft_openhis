@@ -126,7 +126,7 @@
     var isYbjyjz; //Lần khám hiện tại có giao dịch BHYT hay không
     var isXnhjyjz;//Lần khám hiện tại có giao dịch nông thôn mới hay không
     var medicalInsurance = '@medicalInsurance';
-    var curTime = '@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")';//Thời gian hiện tại
+    var curTime = '@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")';//Thời gian hiện tại
 
     var ybkCardType = "@((int)EnumCardType.YBJYK)";//Loại thẻ BHYT
     var xnkCardType = "@((int)EnumCardType.XNK)";//Loại thẻ ảo
@@ -185,7 +185,7 @@
     //
     var jszje = 0.00;
 
-    //theozyh Thông tin cơ bản bệnh nhân、Thông tin tính phí
+    //theozyh Thông tin cơ bản bệnh nhân, Thông tin tính phí
     function ajaxLoadDataResult(obj, funcSuccCallback) {
         //Xóa một chút
         newtouch_globalevent_f4();
@@ -275,7 +275,7 @@
                 { label: 'Loại phí', name: 'dlmc', width: 100, align: 'left' },
                 {
                     label: 'Số tiền', name: 'je', width: 500, align: 'left', formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
             ],
         });
@@ -336,7 +336,7 @@
                 $.loading(true, 'Đangquyết toán trước BHYT,Vui lòng đợi…');
                 $.najax({
                     url: "/HospitalizationManage/DischargeSettle/GuiAnXnhSettlement?zyh=" + patModel.zyh,
-                    data: { format: "yyyy-MM-dd HH:mm:ss" },
+                    data: { format: "dd/MM/yyyy HH:mm:ss" },
                     dataType: 'json',
                     async: false,
                     success: function (ajaxresp) {
@@ -512,7 +512,7 @@
                         //ybzje += ajaxResp.ybzje;
                         if (i == 0) {
                             n = ajaxResp.total;
-                            ///Thứ nhấtLầnlúc,Xóa chi tiết trước,Đồng thờilấytớiTổng số lần（Tổng số dòng/50）,Gọi tải lên theo vòng lặp
+                            ///Thứ nhấtLầnlúc,Xóa chi tiết trước,Đồng thờilấytớiTổng số lần(Tổng số dòng/50),Gọi tải lên theo vòng lặp
                             var delMx = {
                                 prm_akc190: ajaxResp.updata.akc190,
                                 prm_aka130: ajaxResp.updata.aka130,
@@ -571,7 +571,7 @@
                                 n = 1;//thoát vòng lặp
                                 return;
                             }
-                            ////////////lưu？？、
+                            ////////////lưu？？, 
                         }
 
                     } else {
@@ -857,8 +857,8 @@
 							    $.loading(false);
 							    if (ybjsSettReturn.infcode == "0") {
 							        var ybjyCqFeeReturn = ybjsSettReturn.output.setlinfo;
-								    //hisXác nhậnquyết toán（bao gồmBHYTXác nhậnquyết toán）
-								    //Theo kết quả truy vấn từ máy chủ,Nếu bệnh nhân này có mục tự lập đã mở（khôngcóMã BHYT）,Thì tổng số tiền khiquyết toán,Điền tổng số tiền tổng hợp
+								    //hisXác nhậnquyết toán(bao gồmBHYTXác nhậnquyết toán)
+								    //Theo kết quả truy vấn từ máy chủ,Nếu bệnh nhân này có mục tự lập đã mở(khôngcóMã BHYT),Thì tổng số tiền khiquyết toán,Điền tổng số tiền tổng hợp
 								    //Nếu chỉ có mục BHYT,Thìquyết toán theo kết quả trả về BHYT củaquyết toán BHYT
 								    ybjyCqFeeReturn.his_hisfyze = jszje;
 								    ybjyCqFeeReturn.ybzje = mxxx.ybzje;
@@ -877,7 +877,7 @@
 							    return;
 						    }
 				        } else {
-				            var payoptype = { hisId: patModel.zyh,  'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id':jzxx.mdtrt_id, 'psn_no': cqPatInfo.grbh, "insuplc_admdvs": cqPatInfo.xzqh };
+				            var payoptype = { hisId: patModel.zyh, 'operatorId': '@(opr.rygh)', 'operatorName': '@(opr.UserName)', 'mdtrt_id':jzxx.mdtrt_id, 'psn_no': cqPatInfo.grbh, "insuplc_admdvs": cqPatInfo.xzqh };
 				            UpOutMdtrtinfo(payoptype);
 						    $.loading(false);
 						    $.modalAlert(ybjsSettReturn1.err_msg, 'error');
@@ -990,7 +990,7 @@
             var ybReturnData = ybjyPreSettReturn.Data;
             ybReturnData.astr_jylsh = ybjyPreSettReturn.jylsh;
             ybReturnData.astr_jyyzm = ybjyPreSettReturn.jyyzm;
-            //hisXác nhậnquyết toán（bao gồmBHYTXác nhậnquyết toán）
+            //hisXác nhậnquyết toán(bao gồmBHYTXác nhậnquyết toán)
             //GhépYêu cầuTham số
             ybReturnData.prm_akc190 = ybRealSettleReq.prm_akc190,
                 ybReturnData.prm_yab003 = ybRealSettleReq.prm_yab003,
@@ -1056,7 +1056,7 @@
             prm_yab003: ybPreSettleReq.prm_yab003,
             prm_aka130: ybPreSettleReq.prm_aka130,
             prm_ykb065: ybPreSettleReq.prm_ykb065,
-            prm_hisfyze: ybPreSettleReq.prm_hisfyze //dùngBHYTmột phầncủaTổng số phí（khôngbao gồmkhôngvàGiao dịch BHYTcủatoàn bộTự phímột phần）
+            prm_hisfyze: ybPreSettleReq.prm_hisfyze //dùngBHYTmột phầncủaTổng số phí(khôngbao gồmkhôngvàGiao dịch BHYTcủatoàn bộTự phímột phần)
         };
         $.ajax({
             type: "POST",
@@ -1102,7 +1102,7 @@
                     gzyb_Cybl.prm_akc190 = rep.prm_akc190; //Số hiệu khám
                     gzyb_Cybl.prm_aac001 = rep.prm_aac001; //Số thẻ
                     gzyb_Cybl.prm_aka130 = rep.prm_aka130; //Loại thanh toán
-                    gzyb_Cybl.prm_akc195 = "9"; //Lý do xuất viện (1、Khỏi bệnh；2、Đỡ hơn；3、Tử vong；4Chuyển viện;5quyết toán giữa kỳ bệnh tâm thần(Chỉquyết toán giữa kỳ khoán ngày bệnh tâm thần sử dụng);9 Khác)
+                    gzyb_Cybl.prm_akc195 = "9"; //Lý do xuất viện (1. Khỏi bệnh；2. Đỡ hơn；3. Tử vong；4Chuyển viện;5quyết toán giữa kỳ bệnh tâm thần(Chỉquyết toán giữa kỳ khoán ngày bệnh tâm thần sử dụng);9 Khác)
                     gzyb_Cybl.prm_akc194 = patModel.cyrq.replace('T', ' '); //Ngày xuất viện
                     gzyb_Cybl.prm_akc196 = patModel.cyzdicd10; //Chẩn đoán xuất viện
                     gzyb_Cybl.prm_ykc015 = patModel.ksmc; //Khoa xuất viện(Khoalàtrongvăn,Không thể làm mã)
@@ -1112,7 +1112,7 @@
                     gzyb_Cybl.prm_ykc018 = $.getTime(); //Thời gian xử lý xuất viện
                     $.najax({
                         url: "/Com/GetSysNowDate",
-                        data: { format: "yyyy-MM-dd HH:mm:ss" },
+                        data: { format: "dd/MM/yyyy HH:mm:ss" },
                         dataType: 'text',
                         async: false,
                         success: function (strTime) {
@@ -1285,7 +1285,7 @@
                     ajaxLoadDataResult({ zyh: resp.data });
                 }
                 else {
-                    $.modalAlert("Mã cá nhân nông thôn mới【" + obj.xnhgrbm+"】khôngcóTruy vấntớiđãRa khoa、Bệnh nhân nhập viện chờquyết toán,Vui lòng xác nhận bệnh nhân này đã ra khoa！", 'warning');
+                    $.modalAlert("Mã cá nhân nông thôn mới【" + obj.xnhgrbm+"】khôngcóTruy vấntớiđãRa khoa, Bệnh nhân nhập viện chờquyết toán,Vui lòng xác nhận bệnh nhân này đã ra khoa！", 'warning');
                     return;
                      }
             }

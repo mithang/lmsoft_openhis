@@ -64,7 +64,7 @@
         <div class="panel-heading">Thông tin xuất kho</div>
         <table class="form">
             <tr>
-                <th class="formTitle">Số phiếu xuất kho：</th>
+                <th class="formTitle">Số phiếu xuất kho:</th>
                 <td class="formValue">
                     <input id="Pdh" type="text" class="form-control newtouch_Readonly required" />
                 </td>
@@ -72,7 +72,7 @@
                 <td class="formValue">
                     <input type="text" id="rkbm" name="rkbm" data-rkbmId="" placeholder="Vui lòng chọn kho nhập trước" class="form-control required" autocomplete="off" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Hình thức xuất kho：</th>
+                <th class="formTitle"><span class="required">*</span>Hình thức xuất kho:</th>
                 <td class="formValue">
                     <select id="crkfs" class="form-control required"></select>
                 </td>
@@ -88,7 +88,7 @@
     </div>
 </form>
 <div style="float: left; line-height: 35px; font-weight: bolder;">
-    <span>Lần nàyTổng xuất kho(đ)：</span>
+    <span>Lần nàyTổng xuất kho(đ):</span>
     <span class="sp-ckze">0.00</span>
 </div>
 @Html.Partial("_BottomButtonsView", new Newtouch.Herp.Web.Models.BottomButtonViewModel
@@ -232,7 +232,7 @@
                 { label: 'minlsj', name: 'minlsj', hidden: true, editable: true }
             ],
             editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue(Có bo góc)
             gridComplete: function () {
                 var ids = $gridList.getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -374,12 +374,12 @@
         var sl = Number($("#" + rowid + "_sl").val());
         var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
         if (!reg.test(sl)) {
-            $.modalMsg("Số lượng phải lớn hơn0số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn0số nguyên!", "warning", 1500);
             return false;
         }
         var zhyz = Number($("#sel_dw_" + rowid).find("option:selected").attr("data-zhyz"));
         if (isNaN(zhyz)) {
-            $.modalMsg("Hệ số quy đổi phải lớn hơn0số nguyên！", "warning", 1500);
+            $.modalMsg("Hệ số quy đổi phải lớn hơn0số nguyên!", "warning", 1500);
             return false;
         }
         var maxsl = Number($("#" + rowid + "_kykcsl").val());
@@ -527,7 +527,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu chỉnh sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu chỉnh sửa!", 'warning', 1000);
             return;
         }
         var crkdj = Object();
@@ -546,7 +546,7 @@
             success: function (res) {
                 if (res.state === "success") {
                     $.modalAlert("Xuất kho thành công", 'success');
-                    newtouch_event_f7();//Nhập/xuất kho：Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
+                    newtouch_event_f7();//Nhập/xuất kho:Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
                 } else {
                     $.modalAlert(res.message, "error");
                     var rowIds = $gridList.getDataIDs();
@@ -589,11 +589,11 @@
         }
         var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("Số lượng phải lớn hơn0số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn0số nguyên!", "warning", 1500);
             return false;
         }
         if (rowData.pc === "" || rowData.ph === "") {
-            $.modalMsg("Lô、Số lô không được để trống！", "warning", 1000);
+            $.modalMsg("Lô,Số lô không được để trống!", "warning", 1000);
             return false;
         }
         return true;

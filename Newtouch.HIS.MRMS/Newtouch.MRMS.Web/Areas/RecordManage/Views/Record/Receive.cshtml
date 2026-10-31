@@ -87,9 +87,9 @@
                         </div>
                     </td>
                     <td class="formValue" colspan="2">
-                        <input id="txt_ksrq" type="text" class="form-control input-wdatepicker" style="float:left;width:30%;height:18px;margin-left:15px;margin-top:10px;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { Timeclick(); } })" value="@DateTime.Now.ToString("yyyy-MM-01")">
+                        <input id="txt_ksrq" type="text" class="form-control input-wdatepicker" style="float:left;width:30%;height:18px;margin-left:15px;margin-top:10px;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { Timeclick(); } })" value="@DateTime.Now.ToString("01/MM/yyyy")">
                         <span style="float:left;margin-left:10px;">--</span>
-                        <input id="txt_jsrq" type="text" class="form-control input-wdatepicker" style="float:left;width:30%;height:18px;margin-left:12px;margin-top:10px;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { Timeclick(); } })" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")">
+                        <input id="txt_jsrq" type="text" class="form-control input-wdatepicker" style="float:left;width:30%;height:18px;margin-left:12px;margin-top:10px;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { Timeclick(); } })" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy")">
                     </td>
                 </tr>
             </table>
@@ -177,7 +177,7 @@
                 gridList(currentobj);
 
 
-                $('#divPatientBasicInfo').html("Thông tin bệnh nhân：" + currentobj.xm
+                $('#divPatientBasicInfo').html("Thông tin bệnh nhân:" + currentobj.xm
                         + '&nbsp;/&nbsp;' + $.getGender(currentobj.sex)
                         + '&nbsp;/&nbsp;' + currentobj.age + " tuổi"
                         + '&nbsp;/&nbsp;' + currentobj.brxzmc
@@ -436,7 +436,7 @@ sessionStorage.removeItem('currentobj');
                     postData: { zyh: rowData.zyh }
                 }).trigger('reloadGrid');
 
-                $('#divPatientBasicInfo').html("Thông tin bệnh nhân：" + rowData.xm
+                $('#divPatientBasicInfo').html("Thông tin bệnh nhân:" + rowData.xm
                     + '&nbsp;/&nbsp;' + $.getGender(rowData.sex)
                     //+ '&nbsp;/&nbsp;' + window.currentobj.age + " tuổi"
                     //+ '&nbsp;/&nbsp;' + window.currentobj.brxzmc

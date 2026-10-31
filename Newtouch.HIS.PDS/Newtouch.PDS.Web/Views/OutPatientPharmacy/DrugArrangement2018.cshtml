@@ -41,44 +41,44 @@
             <div id="dv_cfInfo">
                 <ul>
                     <li>
-                        <span class="formTitle">Họ tên：</span>
+                        <span class="formTitle">Họ tên:</span>
                         <label id="lab_name" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Tuổi：</span>
+                        <span class="formTitle">Tuổi:</span>
                         <label id="lab_nl" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Bác sĩ：</span>
+                        <span class="formTitle">Bác sĩ:</span>
                         <label id="lab_ysmc" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle ">Số thẻ：</span>
+                        <span class="formTitle ">Số thẻ:</span>
                         <label id="lab_cardNo" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Tổng số tiền：</span>
+                        <span class="formTitle">Tổng số tiền:</span>
                         <label id="lab_zje" type="text" value=""></label>
                         <label id="lab_je" type="text" value="" style="display:none;"></label>
                     </li>
                     <li>
-                        <span class="formTitle">Tính chất bệnh nhân：</span>
+                        <span class="formTitle">Tính chất bệnh nhân:</span>
                         <label id="lab_brxzmc" type="text" value=""></label>
                     </li>
                     @*<li>
-                            <span class="formTitle">Thời gian thu phí：</span>
+                            <span class="formTitle">Thời gian thu phí:</span>
                             <label id="lab_sfsj" type="text" value=""></label>
                         </li>*@
                     <li>
-                        <span class="formTitle">Khoa：</span>
+                        <span class="formTitle">Khoa:</span>
                         <label id="lab_ksmc" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Số hóa đơn：</span>
+                        <span class="formTitle">Số hóa đơn:</span>
                         <label id="lab_fph" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Số đơn thuốc：</span>
+                        <span class="formTitle">Số đơn thuốc:</span>
                         <label id="lab_cfh" type="text" value=""></label>
                     </li>
                 </ul>
@@ -93,7 +93,7 @@
            F8Text = "Xếp tất cả thuốc",
            F7Text = "Xếp thuốc"
        })
-    </div>   
+    </div>
 </form>
 
 <script>
@@ -158,7 +158,7 @@
 
                 $gridCfmx.jqGrid('setGridParam', {
                     postData: { cardNo: data.CardNo, xm: data.xm }, url: "/OutPatientPharmacy/QueryCfmx"
-                }).trigger('reloadGrid');                
+                }).trigger('reloadGrid');
             }
         });
         $("#btn_RpSync").click(function () {
@@ -229,7 +229,7 @@
     //Xếp tất cả thuốc
     function newtouch_globalevent_f8() {
         var pats = new Array();
-        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true); //param2:Mặc định tất cả các dòng；param3：trueQuay lạiobject
+        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true); //param2:Mặc định tất cả các dòng; param3: trueQuay lạiobject
         $(gridPatients).each(function () {
             pats.push({
                 "CardNo": this.CardNo,
@@ -237,7 +237,7 @@
             });
         });
         if (pats.length > 0) {
-            $.modalConfirm("Bạn có chắc muốn xếp tất cả thuốc không?？",
+            $.modalConfirm("Bạn có chắc muốn xếp tất cả thuốc không??",
                 function (flag) {
                     if (flag) {
                         $.najax({
@@ -248,7 +248,7 @@
                             cache: false,
                             success: function (res) {
                                 if (res.state === "success") {
-                                    $.modalMsg('Cấp thuốc thành công！', 'success', 2000);
+                                    $.modalMsg('Cấp thuốc thành công!', 'success', 2000);
                                     $gridPatients.jqGrid("clearGridData");
                                     $gridPatients.jqGrid('resetSelection');
                                     $gridPatients.trigger('reloadGrid');
@@ -283,7 +283,7 @@
                     cache: false,
                     success: function (res) {
                         if (res.state === "success") {
-                            $.modalMsg('Cấp thuốc thành công！', 'success', 2000);
+                            $.modalMsg('Cấp thuốc thành công!', 'success', 2000);
                             $gridPatients.jqGrid("clearGridData");
                             $gridPatients.jqGrid('resetSelection');
                             $gridPatients.trigger('reloadGrid');

@@ -22,7 +22,7 @@
         <div style="padding-right: 10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Số phiếu xuất kho：</th>
+                    <th class="formTitle">Số phiếu xuất kho:</th>
                     <td class="formValue">
                         <input id="Pdh" type="text" class="form-control newtouch_Readonly required" />
                     </td>
@@ -30,7 +30,7 @@
                     <td class="formValue">
                         <input type="text" id="rkbm" name="rkbm" data-rkbmId="" placeholder="Vui lòng chọn kho nhập trước" class="form-control required" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Hình thức xuất kho：</th>
+                    <th class="formTitle"><span class="required">*</span>Hình thức xuất kho:</th>
                     <td class="formValue">
                         <select id="crkfs" class="form-control required"></select>
                     </td>
@@ -55,7 +55,7 @@
                         <input type="text" id="pc" name="pc" class="form-control required" />
                         <input id="fph" type="hidden" value="" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Số lượng xuất kho：</th>
+                    <th class="formTitle"><span class="required">*</span>Số lượng xuất kho:</th>
                     <td class="formValue">
                         <div class="row">
                             <div class="col-md-8">
@@ -68,7 +68,7 @@
                             </div>
                         </div>
                     </td>
-                    <th class="formTitle">Hệ số quy đổi：</th>
+                    <th class="formTitle">Hệ số quy đổi:</th>
                     <td class="formValue">
                         <input id="zhyz" type="text" class="form-control newtouch_Readonly" />
                     </td>
@@ -242,7 +242,7 @@
             success: function (res) {
                 if (res.state === "success") {
                     $.modalAlert("Xuất kho thành công", 'success');
-                    newtouch_event_f7();//Nhập/xuất kho：Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
+                    newtouch_event_f7();//Nhập/xuất kho:Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
                 } else {
                     $.modalAlert(res.message, 'error');
                 }
@@ -398,7 +398,7 @@
         $('#btn_bottombutton_f6').attr('disabled', 'disabled');
     }
 
-    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）tính đầy đủ
+    //Kiểm tra dữ liệu đang chỉnh sửa(Chờ gửi)tính đầy đủ
     function checkEditingRowData() {
         var validator = $('#form1').validate();
         validator.settings = {
@@ -436,7 +436,7 @@
         if (sl * zhyz > kykcsl) {
             $("#sl").val("");
             $("#sl").focus();
-            $.modalAlert("Số xuất kho của lô này không đượcLớntạiTồn kho khả dụngSố！", 'warning');
+            $.modalAlert("Số xuất kho của lô này không đượcLớntạiTồn kho khả dụngSố!", 'warning');
             return false;
         }
         else if (sl <= 0) {
@@ -452,7 +452,7 @@
             }
         });
         if (isRepeatedAdd) {
-            $.modalAlert("Không được thêm trùng！", 'warning');
+            $.modalAlert("Không được thêm trùng!", 'warning');
             return false;
         }
         return true;

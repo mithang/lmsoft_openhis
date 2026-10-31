@@ -6,13 +6,13 @@
 <div class="panel" style="padding-left:5px;">
     <table class="form">
         <tr>
-            <td class="formTitle">Thời gian xuất viện：</td>
+            <td class="formTitle">Thời gian xuất viện:</td>
             <td class="formValue" colspan="3">
-                <input id="txt_ksrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-01")">
+                <input id="txt_ksrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" value="@DateTime.Now.ToString("01/MM/yyyy")">
                 <span style="float:left;">_</span>
-                <input id="txt_jsrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")">
+                <input id="txt_jsrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy")">
             </td>
-            @*<td class="formTitle">Trạng thái bệnh án：</td>
+            @*<td class="formTitle">Trạng thái bệnh án:</td>
         <td class="formValue formDdlSelectorTd">
             <select class="form-control" id="bazt" data-enumtype="Enumbazt"></select>
         </td>*@
@@ -26,7 +26,7 @@
             </td>
         </tr>
         <tr>
-            <td class="formTitle">Họ tên/Số nội trú：</td>
+            <td class="formTitle">Họ tên/Số nội trú:</td>
             <td class="formValue" colspan="3">
                 <input id="txt_keyword" name="txt_keyword" class="form-control"  />
             </td>

@@ -278,23 +278,23 @@
 
     var mzghData = [], //dữ liệu đăng ký khám ngoại trú
         mzghDocVo = null, //đăng ký khám ngoại trú-khoa chuyên gia
-        myCFData = [],    //tập hợp dữ liệu danh sách đơn thuốc
-        myCFCount = 0,   //số dòng danh sách đơn thuốc
+        myCFData = [], //tập hợp dữ liệu danh sách đơn thuốc
+        myCFCount = 0, //số dòng danh sách đơn thuốc
         iszhbrxz = false, //xác định tính chất bệnh nhân có phải là tính chất kết hợp không
-        zh_sbrxz = "", //đầu、tính chất bệnh nhân cuối
+        zh_sbrxz = "", //đầu, tính chất bệnh nhân cuối
         zh_sbrxzmc = "",
         zh_mbrxz = "",
         zh_mbrxzmc = "",
         zh_sbrxzbh = 0,
         zh_mbrxzbh = 0,
-        lsCfh = "",     //số đơn thuốc tạm thời
-        sfxmbh = "",   //khoản thu phíintmã số loại
-        sfxmcbh = "",   //khoản thu phícharmã số loại
-        sfxmzfbl = "",  //tỷ lệ tự chi trả khoản thu phí
-        sfxmdlmc = "",  //tên nhóm lớn khoản thu phí
-        sfxmdl = "",    //nhóm lớn khoản thu phí
-        sfxmzfxz = "",  //tính chất tự chi trả khoản thu phí
-        sfxmtype = "",  //loại khoản thu phí（ví dụ:khoản mục đăng ký khám、khoản mục loại đơn thuốc、xét nghiệm、kiểm tra）
+        lsCfh = "", //số đơn thuốc tạm thời
+        sfxmbh = "", //khoản thu phíintmã số loại
+        sfxmcbh = "", //khoản thu phícharmã số loại
+        sfxmzfbl = "", //tỷ lệ tự chi trả khoản thu phí
+        sfxmdlmc = "", //tên nhóm lớn khoản thu phí
+        sfxmdl = "", //nhóm lớn khoản thu phí
+        sfxmzfxz = "", //tính chất tự chi trả khoản thu phí
+        sfxmtype = "", //loại khoản thu phí(ví dụ:khoản mục đăng ký khám, khoản mục loại đơn thuốc, xét nghiệm, kiểm tra)
         sfxmypgg = "", //quy cách thuốc
         sfxmNbdl = "", //nhóm lớn bảo hiểm nông nghiệp
         sfxmYbdm = "", //mã BHYT
@@ -318,8 +318,8 @@
         yfCode = "",//mã nhà thuốc
         ypbzdm = "",//mã đóng gói
         sfxmfwf = "", //phí dịch vụ khoản thu phí
-        cffwf = new Object(),  //dữ liệu máy chủ trả về về phí dịch vụ khoản thu phí đơn thuốc
-        jeNum = 0, //số tiền khoản mục hiện tại （bao gồm phí dịch vụ）
+        cffwf = new Object(), //dữ liệu máy chủ trả về về phí dịch vụ khoản thu phí đơn thuốc
+        jeNum = 0, //số tiền khoản mục hiện tại (bao gồm phí dịch vụ)
         dqzje = 0, //tổng số tiền hiện tại
         cfzje = 0, //tổng số tiền đơn thuốc
         dqcfhList = [], //lưu số đơn thuốc hiện tại
@@ -329,7 +329,7 @@
     //lấy số hóa đơn
     function GetInvoiceListByEmpCode() {
         $.najax({
-            url: "/OutpatientManage/OutpatientReg/GetInvoice?r=" + Math.random(),  //chú ý
+            url: "/OutpatientManage/OutpatientReg/GetInvoice?r=" + Math.random(), //chú ý
             dataType: "text",
             async: false,
             success: function (data) {
@@ -1077,7 +1077,7 @@
             obj.zfxz = tempDetailData[i].zfxz;
             var sfxmfwf = 0;
             var je = ((parseFloat(obj.dj) + parseFloat(sfxmfwf)) * (parseFloat(obj.sl))).toFixed(2);
-            //số tiền = （đơn giá + phí dịch vụ bổ sung）* số lượng
+            //số tiền = (đơn giá + phí dịch vụ bổ sung)* số lượng
 
             obj.fwfdj = sfxmfwf; //phí dịch vụ khoản thu phí
             obj.je = je;
@@ -1151,7 +1151,7 @@
 
     //đổi đơnxóa
     function clearHfItem() {
-        clearItemXM(); //xóa khoản mục,không xóa đăng ký khám và bác sĩ、khoa
+        clearItemXM(); //xóa khoản mục,không xóa đăng ký khám và bác sĩ, khoa
         GetNewCFH(); //lấy số đơn thuốc mới
     }
 
@@ -1283,12 +1283,12 @@
 
     //lưu F8
     function newtouch_event_f8() {
-        //trước tiên xác định làkhôngchọn đơn thuốc、phương thức thanh toán、số tiền
+        //trước tiên xác định làkhôngchọn đơn thuốc, phương thức thanh toán, số tiền
         CheckSave();
         //hộp bật lên
     }
 
-    //lưu ajax saumáy thêm đơn thuốcvàkhoản mục、quyết toán
+    //lưu ajax saumáy thêm đơn thuốcvàkhoản mục, quyết toán
     function SaveAjax(allJson) {
         //đemđơn thuốcdữ liệutruyền đếnsaumáy
         $.najax({
@@ -1331,7 +1331,7 @@
         if (gridIds != "" && gridIds != undefined) {
             for (var i = 0; i < gridIds.length; i++) {
                 var rowData = $("#listGrid").jqGrid("getRowData", gridIds[i]);//theo ở trênidlấy tất cả dữ liệu của dòng này
-                var xmje = rowData.je; //lấy giá trị của cột chỉ định （auditStatus làcolModelcủaname）
+                var xmje = rowData.je; //lấy giá trị của cột chỉ định (auditStatus làcolModelcủaname)
                 ysk = parseFloat(ysk) + parseFloat(xmje);
             }
         }

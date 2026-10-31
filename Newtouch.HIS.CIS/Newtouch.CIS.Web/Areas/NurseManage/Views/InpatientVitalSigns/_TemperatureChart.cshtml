@@ -244,9 +244,9 @@
         }
     }
 
-    //TheodataĐặt lạivẽbảng 长cao
+    //Đặt lại chiều cao bảng vẽ theo data
     function drawTemplet(data) {
-        //vẽbảngcủa长rộng
+        //chiều rộng bảng vẽ
         var totalwidth = $(window).width();
         var totalheight = bodyHeight;
         $board.css('width', totalwidth);
@@ -309,7 +309,7 @@
  + xyArr[i + 1] + '</div>');
                 $div.appendTo($board);
             }
-            //tronggiữacủa4dòngnhiệtđộcủađường（ởnàydòngđườngcủatrên）
+            //tronggiữacủa4dòngnhiệtđộcủađường(ởnàydòngđườngcủatrên)
             for (var j = 0; j < 4; j++) {
                 top = contentStartTop + sspace * 5 * i + sspace * (j + 1);
                 drawLine(contentStartLeft, top, twLastLeft - contentStartLeft);

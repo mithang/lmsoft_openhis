@@ -22,7 +22,7 @@
                     <th class="formTitle">Ngày xuất viện:</th>
                     <td class="formValue" style="width:143px;">
                         <input id="cyrq" type="text" class="form-control input-wdatepicker form-an formClearIgnore"
-                               onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@(System.DateTime.Now.ToString("yyyy-MM-dd"))" />
+                               onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" value="@(System.DateTime.Now.ToString("dd/MM/yyyy"))" />
                     </td>
                     <th class="formTitle">Họ tên:</th>
                     <td class="formValue">
@@ -119,7 +119,7 @@
                 { label: "Mã nhập viện", name: "zyh", width: 140, align: "left", hidden: true },
                 {
                     label: "Số tiền quyết toán", name: "zje", width: 80, align: "left", formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
                     label: "Thời gian bắt đầuquyết toán", name: "jsksrq", width: 140, align: "left",

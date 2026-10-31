@@ -42,16 +42,16 @@
         <div class="panel-heading">Thông tin phát thuốc</div>
         <table class="form">
             <tr>
-                <th class="formTitle">Đơn phát thuốc：</th>
+                <th class="formTitle">Đơn phát thuốc:</th>
                 <td class="formValue">
                     <input type="text" id="djh" name="djh" class="form-control newtouch_Readonly" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Nhà thuốc đích：</th>
+                <th class="formTitle"><span class="required">*</span>Nhà thuốc đích:</th>
                 <td class="formValue">
                     <input type="text" id="rkbmmc" name="rkbmmc" class="form-control" placeholder="Vui lòng chọn nhà thuốc đích" autocomplete="off" />
                     <input type="hidden" id="rkbm" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Cách phát thuốc：</th>
+                <th class="formTitle"><span class="required">*</span>Cách phát thuốc:</th>
                 <td class="formValue">
                     <select class="form-control" id="fyfs" name="fyfs"></select>
                 </td>
@@ -141,9 +141,9 @@
         $gridList.newtouchLocalDataGrid({
             data: [],
             height: $(window).height() - document.getElementById('gridList').offsetTop - 90,
-            rownumbers: true,  //Có hiển thị số thứ tự không
+            rownumbers: true, //Có hiển thị số thứ tự không
             multiselect: true,
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
                 { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
@@ -161,18 +161,18 @@
                 { label: 'Tổng tiền bán lẻ', name: 'lsze', width: 80, align: 'center', editable: true, editwidth: "100%" },
                 { label: 'bzs', name: 'bzs',hidden: true, editable: true },
                 { label: 'fph', name: 'fph',hidden: true, editable: true },
-                { label: 'kykc', name: 'kykc',hidden: true,  editable: true },
+                { label: 'kykc', name: 'kykc',hidden: true, editable: true },
                 { label: 'ypdm', name: 'ypdm',hidden: true, editable: true },
                 { label: 'pfj', name: 'pfj', hidden: true, editable: true },
                 { label: 'lsj', name: 'lsj', hidden: true, editable: true },
                 { label: 'zxdwlsj', name: 'zxdwlsj',hidden: true, editable: true },
                 { label: 'ykpfj', name: 'ykpfj', hidden: true, editable: true },
-                { label: 'yklsj', name: 'yklsj',hidden: true,  editable: true },
+                { label: 'yklsj', name: 'yklsj',hidden: true, editable: true },
                 { label: 'zxdwjj', name: 'zxdwjj',hidden: true, editable: true },
                 { label: 'bzdwjj', name: 'bzdwjj',hidden: true, editable: true }
             ],
-            editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            editinputwidthborder: false, //Có cần viền không Mặc định làtrue
+            editinputborderradius: false, //Có cần bo góc viền không Mặc địnhtrue(Có bo góc)
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -447,7 +447,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu cần sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
         }
         var par = new Object();
@@ -475,7 +475,7 @@
 
     //Kiểm tra giá trị số
     function Validately(rowData, rowid) {
-        if ($("#rkbm").val() === "" || $("#rkbmmc").val() === "") {   //Loại bỏ khoảng trắng hai đầu
+        if ($("#rkbm").val() === "" || $("#rkbmmc").val() === "") { //Loại bỏ khoảng trắng hai đầu
             $.modalMsg("Vui lòng chọn khoa phát thuốc", "error", 1000);
             return false;
         }
@@ -546,7 +546,7 @@
                     $.each(ids,function(rowid,column){
                         if($("#" +column + "_ypmc").val()){
                             index++;
-                        } 
+                        }
                     });
                     var num=ids.length-index;//Số dòng trống=Tổng số dòng-Số dòng không trống
                     if(num<ajaxresp.length) //Bổ sung dòng trống
@@ -561,9 +561,9 @@
                             if(!$("#" +column + "_ypmc").val()){
                                 filldata(ajaxresp,index);
                                 return false;
-                            } 
+                            }
                         });
-                        
+
                     }
                 }
             }

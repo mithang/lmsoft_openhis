@@ -22,8 +22,8 @@
             <tr>
                 <th class="formTitle">Xuất việnThời gian:</th>
                 <td class="formValue">
-                    <input id="txt_cqrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss',  onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" />
+                    <input id="txt_cqrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss',  onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" />
                 </td>
             </tr>
             <tr>
@@ -41,8 +41,8 @@
             <tr>
                 <th class="formTitle">Chẩn đoánThời gian:</th>
                 <td class="formValue">
-                    <input id="txt_zdsj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-                           onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd ")" />
+                    <input id="txt_zdsj" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:70%;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+                           onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("dd/MM/yyyy ")" />
                 </td>
             </tr>
             @*<tr>

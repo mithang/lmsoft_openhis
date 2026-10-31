@@ -15,20 +15,20 @@
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle">Số phiếu giao hàng：</th>
+                    <th class="formTitle">Số phiếu giao hàng:</th>
                     <td class="formValue">
                         <input id="deliveryNo" class="form-control" placeholder="Số phiếu giao hàng" />
                     </td>
-                    <th class="formTitle"><span class="req">*</span>Nhà cung cấp：</th>
+                    <th class="formTitle"><span class="req">*</span>Nhà cung cấp:</th>
                     <td class="formValue">
                         <input id="supplierName" class="form-control" placeholder="Tên Phiên âm" />
                         <input id="supplierId" type="hidden" value="" />
                     </td>
-                    <th class="formTitle">Hình thức nhập kho：</th>
+                    <th class="formTitle">Hình thức nhập kho:</th>
                     <td class="formValue formDdlSelectorTd">
                         <select id="ddlRKFS" class="form-control required"></select>
                     </td>
-                    <th class="formTitle">Số phiếu nhập kho：</th>
+                    <th class="formTitle">Số phiếu nhập kho:</th>
                     <td class="formValue">
                         <input id="Pdh" type="text" class="form-control newtouch_Readonly" />
                     </td>
@@ -39,13 +39,13 @@
         <div id="divYPMX" style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle"><span class="req">*</span>Vật tư：</th>
+                    <th class="formTitle"><span class="req">*</span>Vật tư:</th>
                     <td class="formValue">
                         <input id="wzmc" type="text" class="form-control" placeholder="Phiên âm Tên Tên hàng" oninput="cleanProductId()" />
                         <input id="productId" type="hidden" value="" />
                         <input id="lbmc" type="hidden" value="" />
                     </td>
-                    <th class="formTitle"><span class="req">*</span>Số lượng nhập kho：</th>
+                    <th class="formTitle"><span class="req">*</span>Số lượng nhập kho:</th>
                     <td class="formValue">
                         <div class="row">
                             <div class="col-md-8">
@@ -58,46 +58,46 @@
                             </div>
                         </div>
                     </td>
-                    <th class="formTitle"><span class="req">*</span>Tổng giá nhập：</th>
+                    <th class="formTitle"><span class="req">*</span>Tổng giá nhập:</th>
                     <td class="formValue">
                         <input id="zje" type="text" class="form-control" onchange="JJZE_Leave()" style="width: 70%;float: left;" />
                         <span style="line-height:24px;margin-left: 10px;">(đ)</span>
                     </td>
-                    <th class="formTitle"><span class="req">*</span>Số lô：</th>
+                    <th class="formTitle"><span class="req">*</span>Số lô:</th>
                     <td class="formValue">
                         <input id="ph" type="text" class="form-control" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Số hóa đơn：</th>
+                    <th class="formTitle">Số hóa đơn:</th>
                     <td class="formValue">
                         <input id="fph" type="text" class="form-control" />
                         <input id="editRowId" value="" type="hidden" />
                     </td>
-                    <th class="formTitle"><span class="req">*</span>Hạn sử dụng：</th>
+                    <th class="formTitle"><span class="req">*</span>Hạn sử dụng:</th>
                     <td class="formValue">
-                        <input id="Yxq" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.AddYears(1).ToString("yyyy-MM-dd")" />
+                        <input id="Yxq" type="text" class="form-control input-wdatepicker" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" value="@DateTime.Now.AddYears(1).ToString("dd/MM/yyyy")" />
                     </td>
-                    <th class="formTitle">Ngày sản xuất：</th>
+                    <th class="formTitle">Ngày sản xuất:</th>
                     <td class="formValue">
-                        <input id="scrq" type="text" class="form-control input-wdatepicker" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' });" />
+                        <input id="scrq" type="text" class="form-control input-wdatepicker" value="" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' });" />
                     </td>
-                    <th class="formTitle">Ghi chú：</th>
+                    <th class="formTitle">Ghi chú:</th>
                     <td class="formValue">
                         <input id="remark" type="text" class="form-control" />
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Tồn kho hiện tại：</th>
+                    <th class="formTitle">Tồn kho hiện tại:</th>
                     <td class="formValue">
                         <input id="slstr" type="text" class="form-control newtouch_Readonly" />
                         <input id="kykcsl" type="text" hidden="hidden" />
                     </td>
-                    <th class="formTitle">Quy cách：</th>
+                    <th class="formTitle">Quy cách:</th>
                     <td class="formValue">
                         <input id="gg" type="text" class="form-control newtouch_Readonly" />
                     </td>
-                    <th class="formTitle">Nhà sản xuất：</th>
+                    <th class="formTitle">Nhà sản xuất:</th>
                     <td class="formValue">
                         <input id="sccj" type="text" class="form-control newtouch_Readonly" />
                         <input id="lsj" type="hidden" value="" />
@@ -127,7 +127,7 @@
     F8Text = "Nhập kho",
     F9Text = "Lưu tạm"
 })
-<span style="float: left;line-height: 25px;margin: 8px 5px;">Nhập khoTổng giá nhập：&nbsp;<span id="txtRKZE"></span> &nbsp;đ</span>
+<span style="float: left;line-height: 25px;margin: 8px 5px;">Nhập khoTổng giá nhập:&nbsp;<span id="txtRKZE"></span> &nbsp;đ</span>
 <script>
     window.newtouch_globalconfig.f4opions = {
         container: "#divYPMX"
@@ -214,7 +214,7 @@
     function newtouch_event_f7() {
         var djmx = $gridRkmx.jqGrid('getRowData_AllLine');
         if (djmx != null && djmx.length > 0) {
-            $.modalConfirm("Tồn tại chưaGửibản ghi，Xác nhậnTạoPhiếu xuất kho mớikhông？",
+            $.modalConfirm("Tồn tại chưaGửibản ghi,Xác nhậnTạoPhiếu xuất kho mớikhông?",
                 function (flag) {
                     if (flag) {
                         newBill();
@@ -657,7 +657,7 @@
             success: function (data) {
                 if (data.state === 'success') {
                     $.modalMsg("Nhập kho thành công", 'success', 1000);
-                    newBill();//Nhập kho mới：Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
+                    newBill();//Nhập kho mới:Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
                     $gridRkmx.jqGrid("clearGridData");//Xóa trắngGrid
                 }
                 else {
@@ -696,7 +696,7 @@
             success: function (data) {
                 if (data.state === 'success') {
                     $.modalMsg("Nhập kho thành công", 'success', 1000);
-                    newBill();//Nhập kho mới：Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
+                    newBill();//Nhập kho mới:Số phiếu mới Xóa trắng dữ liệu chính Xóa trắng chi tiết
                     $gridRkmx.jqGrid("clearGridData");//Xóa trắngGrid
                 }
                 else {
@@ -731,7 +731,7 @@
         return true;
     }
 
-    //Tổng giá nhậpMất focus，Tính toánPhiếu nhập khoGiá
+    //Tổng giá nhậpMất focus,Tính toánPhiếu nhập khoGiá
     function JJZE_Leave() {
         if (isNaN($("#zje").val())) {
             $.modalAlert("Định dạng tổng giá nhập sai", 'warning');
@@ -780,7 +780,7 @@
     //Kiểm tra dữ liệu
     function DataValate() {
         if ($("#Pdh").val() === "") {
-            $.modalAlert("Số phiếu nhập khoTạoThất bại，Vui lòng làm mới trang", 'warning');
+            $.modalAlert("Số phiếu nhập khoTạoThất bại,Vui lòng làm mới trang", 'warning');
             return false;
         }
         if ($("#supplierName").val() === "" || $("#supplierId").val() === "") {

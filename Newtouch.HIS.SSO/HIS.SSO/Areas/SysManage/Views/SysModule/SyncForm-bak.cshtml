@@ -13,7 +13,7 @@
             <div class="btn-toolbar">
                 <form class="form-inline" role="form">
                     <div class="form-group">
-                        <i class="fa fa-filter"></i> mục tiêu nhập vào：
+                        <i class="fa fa-filter"></i> mục tiêu nhập vào: 
                     </div>
                     <div class="form-group">
                         <div class="ckbox">
@@ -239,10 +239,10 @@
             //******thiết lập phân trang****
             toolbar: '.btn-toolbar',            //nút công cụ dùng vùng chứa nào #toolbar
             toolbarAlign: 'left',
-            pagination: false,                   //có hiển thị phân trang hay không（*）
+            pagination: false,                   //có hiển thị phân trang hay không(*)
             sortable: true,                     //có bật sắp xếp hay không
             sortOrder: "desc",                   //phương thức sắp xếp
-            //sidePagination: 'client',           //phương thức phân trang：clientphân trang phía máy khách，serverphân trang phía máy chủ（*）
+            //sidePagination: 'client',           //phương thức phân trang: client (phân trang phía máy khách), server (phân trang phía máy chủ)(*)
             onLoadSuccess: function (data) {
                 $table.treegrid({
                     initialState: "expanded",//mở rộng
@@ -258,7 +258,7 @@
                 bstableMutiSelected($table, "Id", [row.Id], $element);
             },
             formatLoadingMessage: function () {
-                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
+                return "<span class='table-loading-text'>đang tải, vui lòng chờ</span>";
             },
             formatNoMatches: function () {
                 return "chưa có dữ liệu";
@@ -354,7 +354,7 @@
             uniqueId: 'Id',
             search: true,                       //có hiển thị tìm kiếm bảng hay không
             //******thiết lập phân trang****
-            pagination: false,                   //có hiển thị phân trang hay không（*）
+            pagination: false,                   //có hiển thị phân trang hay không(*)
             onLoadSuccess: function (data) {
                 $table.treegrid({
                     initialState: "expanded",//mở rộng
@@ -365,7 +365,7 @@
                 });
             },
             formatLoadingMessage: function () {
-                return "<span class='table-loading-text'>đang tải，vui lòng chờ</span>";
+                return "<span class='table-loading-text'>đang tải, vui lòng chờ</span>";
             },
             formatNoMatches: function () {
                 return "chưa có dữ liệu";

@@ -332,7 +332,7 @@
     function pickDate(cellvalue, options, cell) {
         $(cell).find('input[type=text]').addClass("input-wdatepicker");
         $(cell).find('input[type=text]').click(function () {
-            WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' });
+            WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' });
         });
     }
 
@@ -687,7 +687,7 @@
         if (qzfs == "day") {
             zysl = Number(Math.ceil(qzint * getpcsl(zxcs, zxzq, zxzqdw)));
         } else if (qzfs == "times") {
-            if(zxzq>1)//theolớngóilắpbán卖tình hình
+            if(zxzq>1)//theo tình hình bán của gói liệu trình
                 zysl = Number(Math.ceil(qzint * getpcsl(zxcs, zxzq, zxzqdw)));
             else
                 zysl = Number(Math.ceil(qzint) * getpcsl(zxcs, zxzq, zxzqdw));

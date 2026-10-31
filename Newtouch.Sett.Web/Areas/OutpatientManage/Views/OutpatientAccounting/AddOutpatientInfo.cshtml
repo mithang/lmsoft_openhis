@@ -209,7 +209,7 @@
     //kiểm trasinhngàylàkhôngđúng
     checkBirthday = function (card) {
         var len = card.length;
-        //CMND/CCCD15khi ở vị trí,thứ tựlàtỉnh（3vị trí）thành phố（3vị trí）năm（2vị trí）tháng（2vị trí）ngày（2vị trí）vị trí kiểm tra（3vị trí）,đềulàchữ số
+        //CMND/CCCD15khi ở vị trí,thứ tựlàtỉnh(3vị trí)thành phố(3vị trí)năm(2vị trí)tháng(2vị trí)ngày(2vị trí)vị trí kiểm tra(3vị trí),đềulàchữ số
         if (len == '15') {
             var re_fifteen = /^(\d{6})(\d{2})(\d{2})(\d{2})(\d{3})$/;
             var arr_data = card.match(re_fifteen);
@@ -219,7 +219,7 @@
             var birthday = new Date('19' + year + '/' + month + '/' + day);
             return verifyBirthday('19' + year, month, day, birthday);
         }
-        //CMND/CCCD18khi ở vị trí,thứ tựlàtỉnh（3vị trí）thành phố（3vị trí）năm（4vị trí）tháng（2vị trí）ngày（2vị trí）vị trí kiểm tra（4vị trí）,vị trí kiểm tra cuối có thểlàX
+        //CMND/CCCD18khi ở vị trí,thứ tựlàtỉnh(3vị trí)thành phố(3vị trí)năm(4vị trí)tháng(2vị trí)ngày(2vị trí)vị trí kiểm tra(4vị trí),vị trí kiểm tra cuối có thểlàX
         if (len == '18') {
             var re_eighteen = /^(\d{6})(\d{4})(\d{2})(\d{2})(\d{3})([0-9]|X)$/;
             var arr_data = card.match(re_eighteen);
@@ -238,7 +238,7 @@
         var now_year = now.getFullYear();
         //nămthángngàylàkhônghợp lý
         if (birthday.getFullYear() == year && (birthday.getMonth() + 1) == month && birthday.getDate() == day) {
-            //xác địnhnămphầncủaphạm vi（3tuổiđến100tuổigiữa)
+            //xác địnhnămphầncủaphạm vi(3tuổiđến100tuổigiữa)
             var time = now_year - year;
             if (time >= 3 && time <= 100) {
                 return true;

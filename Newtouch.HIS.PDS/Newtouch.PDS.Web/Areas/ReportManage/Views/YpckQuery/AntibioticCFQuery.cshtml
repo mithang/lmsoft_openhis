@@ -10,12 +10,12 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <th class="formTitle">Tháng năm thống kê：</th>
+                <th class="formTitle">Tháng năm thống kê:</th>
                 <td class="formValue">
                     <input id="kssj" type="text" class="form-control input-wdatepicker form-an" style="width: 140px;"
                            onclick="WdatePicker({ dateFmt: 'yyyy-MM'})" value="@(DateTime.Now.ToString("yyyy-MM"))" />
                 </td>
-                <th class="formTitle">Ngoại trú/Nội trú：</th>
+                <th class="formTitle">Ngoại trú/Nội trú:</th>
                 <td class="formValue">
                     <select id="SelKss" name="SelKss" class="form-control">
                         <option value="-1">Tất cả</option>
@@ -56,7 +56,7 @@
             head = "Nội trú";
         }
         head = kssj.substring(5, 7) + " tháng " + head;
-        
+
         var url = getUrl();
         //url += "&tjsj=" + kssj + "&jssj=" + jssj + "&mzorzy=" + selkss + "&OrganizeId=" + orgId + "&systemCode=PDS&czydm=wadmin&hospitalCode=" + orgId;
         setTimeout("$.loading(true, 'Đang yêu cầu trang báo cáo...');", 10);
@@ -73,7 +73,7 @@
     $(function () {
         var h = $(window).height() - 55
         $('#layout iframe').css('height', h);
-      
+
     });
 
     //Làm mới danh sách

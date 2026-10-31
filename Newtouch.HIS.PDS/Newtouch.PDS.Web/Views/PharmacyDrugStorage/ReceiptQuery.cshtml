@@ -4,9 +4,9 @@
     ViewBag.Title = "ReceiptQuery";
     Layout = "~/Views/Shared/_Index.cshtml";
     var djlxItemStrs = "1,2,3,4,5,6"; //Enum tương ứngEnumDanJuLX
-    if (Constants.CurrentYfbm.yfbmjb == "2")    //Nhà thuốc
+    if (Constants.CurrentYfbm.yfbmjb == "2") //Nhà thuốc
     {
-        djlxItemStrs = "3,4,5,6"; //Phát thuốc trực tiếp、Phát thuốc theo đơn lĩnh、Trả lại phát thuốc nội bộ
+        djlxItemStrs = "3,4,5,6"; //Phát thuốc trực tiếp, Phát thuốc theo đơn lĩnh, Trả lại phát thuốc nội bộ
     }
 }
 
@@ -18,23 +18,23 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">Trạng thái duyệt：</th>
+                    <th class="formTitle">Trạng thái duyệt:</th>
                     <td class="formValue">
                         @Html.DropDownList("ddlSHZT", EnumDjShzt.WaitingApprove.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle" style="width: 75px;padding-right: 0;">Ngày：</th>
+                    <th class="formTitle" style="width: 75px;padding-right: 0;">Ngày:</th>
                     <td class="formValue" style="width:130px;">
-                        <input id="txtStartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                        <input id="txtStartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("dd/MM/yyyy 00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                     </td>
-                    <th class="formTitle" style="width: 35px;padding-right: 0;">Đến：</th>
+                    <th class="formTitle" style="width: 35px;padding-right: 0;">Đến:</th>
                     <td class="formValue" style="width:130px;">
-                        <input id="txtEndDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                        <input id="txtEndDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                     </td>
-                    <th class="formTitle">Số chứng từ：</th>
+                    <th class="formTitle">Số chứng từ:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtPDH" />
                     </td>
-                    <th class="formTitle">Loại chứng từ：</th>
+                    <th class="formTitle">Loại chứng từ:</th>
                     <td class="formValue">
                         @Html.DropDownList("ddlDJLX", EnumDanJuLX.yaopinruku.ToSomeDescSelectList(djlxItemStrs), "Tất cả", new { @class = "form-control" })
                     </td>
@@ -84,7 +84,7 @@
                 { label: 'Tiền giá lẻ', name: 'ljze', width: 80, align: 'left' },
                 { label: 'Tổng số tiền giá nhập', name: 'zje', width: 80, align: 'left' },
                 { label: 'Chênh lệch nhập-xuất', name: 'jxcj', width: 80, align: 'left' },
-                { label: 'Thời gian thao tác', name: 'czsj', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' }  },
+                { label: 'Thời gian thao tác', name: 'czsj', width: 130, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:s', newformat: 'Y-m-d H:s' } },
                 { label: 'crkId', name: 'crkId', hidden: true, align: 'left' },
                 { label: 'djlx', name: 'djlx', hidden: true, align: 'left' }
             ],
@@ -117,7 +117,7 @@
 
     //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        //Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
+        //Mỗi lần nhấp, Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $('#gridDJMXInfo').jqGrid("clearGridData");
         $.najax({
             type: "POST",

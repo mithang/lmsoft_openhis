@@ -33,27 +33,27 @@
         <div class="panel-heading">Điều kiện tra cứu</div>
         <table class="form">
             <tr>
-                <th class="formTitle">Ngày：</th>
+                <th class="formTitle">Ngày:</th>
                 <td class="formValue">
                     <select id="ddlRQ" class="form-control"></select>
                 </td>
-                <th class="formTitle">Từ khóa：</th>
+                <th class="formTitle">Từ khóa:</th>
                 <td class="formValue">
                     <input id="txtSRM" type="text" class="form-control" placeholder="Tên vật tư/Phiên âm" />
                 </td>
-                <th class="formTitle">Trạng thái vật tư：</th>
+                <th class="formTitle">Trạng thái vật tư:</th>
                 <td class="formValue">
                     @Html.DropDownList("ddlwzzt", Enumzt.Enable.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Loại vật tư：</th>
+                <th class="formTitle">Loại vật tư:</th>
                 <td class="formValue">
                     <select id="ddllb" class="form-control">
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                <th class="formTitle">Hiển thị tồn kho：</th>
+                <th class="formTitle">Hiển thị tồn kho:</th>
                 <td class="formValue">
                     @Html.DropDownList("ddlKCXS", EnumKCXS.None.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                 </td>
@@ -130,7 +130,7 @@
 
     //Lấy thời gian kiểm kê
     function GetPdsj() {
-        $("#ddlRQ").empty();//Xóa trắng trước，Rồi điền
+        $("#ddlRQ").empty();//Xóa trắng trước,Rồi điền
         $("#ddlRQ").bindSelect({
             url: "/StorageManage/StockInventory/GetPdsj",
             id: "pdId",

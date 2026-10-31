@@ -31,7 +31,7 @@
         </div>
         <table class="form" style="width:98%;border:0">
             <tr>
-                <th class="formTitle">Tình hình lãi lỗ：</th>
+                <th class="formTitle">Tình hình lãi lỗ:</th>
                 <td style="padding-left:12px;">
                     <div class="btn-group" id="btnLossAndProfitTypeGourp" style="margin-top:0;">
                         <button type="button" id="btnAll" data-keywordtype="All" class="btn active btn-restore">Tất cả</button>
@@ -39,21 +39,21 @@
                         <button type="button" id="btnProfit" data-keywordtype="Profit" class="btn btn-default">Báo thừa</button>
                     </div>
                 </td>
-                <th class="formTitle">Từ khóa：</th>
+                <th class="formTitle">Từ khóa:</th>
                 <td class="formValue">
                     <input type="text" id="txtINPUTCODE" class="form-control" placeholder="Phiên âm/Tên" />
                 </td>
-                <th class="formTitle">Bắt đầuNgày：</th>
+                <th class="formTitle">Bắt đầuNgày:</th>
                 <td class="formValue">
-                    <input type="text" id="txtStartDate" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    <input type="text" id="txtStartDate" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                 </td>
-                <th class="formTitle">Kết thúcNgày： </th>
+                <th class="formTitle">Kết thúcNgày: </th>
                 <td class="formValue">
-                    <input type="text" id="txtEndDate" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    <input type="text" id="txtEndDate" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                 </td>
             </tr>
             <tr>
-                <th class="formTitle">Nguyên nhân lãi lỗ：</th>
+                <th class="formTitle">Nguyên nhân lãi lỗ:</th>
                 <td class="formValue">
                     <select class="form-control" id="ddlSYYY">
                         <option value="">Tất cả</option>
@@ -118,7 +118,7 @@
             postData: getSearchPostData(),
             url: "/StorageManage/ProfitAndLoss/SelectLossAndProditInfoList",
             height: $(window).height() - 220,
-            caption: "Lãi lỗChi tiết&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Tổng giá 0 của trang hiện tại：" + "0.00" + "đ</span>",
+            caption: "Lãi lỗChi tiết&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Tổng giá 0 của trang hiện tại:" + "0.00" + "đ</span>",
             colModel: [
                 {
                     label: "Dấu hiệu lãi lỗ", name: "sybz", width: 55, align: "center",
@@ -188,7 +188,7 @@
                 var getRowLjze = $("#gridSYXXMXList").getRowData(rowIds[i]).ljze;
                 titleLjze = parseFloat(titleLjze) + parseFloat(getRowLjze);
             }
-            $("#yeCon").text("Tổng giá 0 của trang hiện tại：" + titleLjze.toFixed(2) + "đ");
+            $("#yeCon").text("Tổng giá 0 của trang hiện tại:" + titleLjze.toFixed(2) + "đ");
         }
     }
 

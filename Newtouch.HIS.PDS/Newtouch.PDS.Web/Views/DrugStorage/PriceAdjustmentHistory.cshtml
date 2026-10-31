@@ -18,18 +18,18 @@
                     </td>
                     <th class="formTitle">Thời gian thực hiện</th>
                     <td class="formValue">
-                        <input id="txtStartTime" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(-31).ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="txtStartTime" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(-31).ToString("dd/MM/yyyy 00:00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
                     <th class="formTitle">đến</th>
                     <td class="formValue">
-                        <input id="txtEndTime" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="txtEndTime" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
                     <td class="formValue">
                         <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" style="width:55px;margin-left:30%;" />
                     </td>
                 </tr>
             </table>
-        </div>       
+        </div>
     </div>
     <div class="gridPanel" style="margin-top:10px;">
         <table id="gridYPInfoList"></table>

@@ -6,8 +6,8 @@
     <tr>
         <th class="formTitle"><span style="color:red">*</span>Ngày điều trị:</th>
         <td class="formValue">
-            <input id="zxrq" value="@(DateTime.Now.ToString("yyyy-MM-dd"))" type="text" class="form-control input-wdatepicker"
-                   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd',maxDate:'%y-%M-%d', minDate: '%y-%M-#{%d-@(((ViewBag.DefaultPrevDate as int?)??0).ToString())}' })" />
+            <input id="zxrq" value="@(DateTime.Now.ToString("dd/MM/yyyy"))" type="text" class="form-control input-wdatepicker"
+                   onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy',maxDate:'%y-%M-%d', minDate: '%y-%M-#{%d-@(((ViewBag.DefaultPrevDate as int?)??0).ToString())}' })" />
         </td>
     </tr>
 </table>

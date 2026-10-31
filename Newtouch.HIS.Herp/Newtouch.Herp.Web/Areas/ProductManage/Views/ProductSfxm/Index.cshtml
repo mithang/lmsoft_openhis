@@ -18,19 +18,19 @@
                         <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa</a>
                     </div>
                 </td>
-                <th class="formTitle">Hạng mục lớn thu phí：</th>
+                <th class="formTitle">Hạng mục lớn thu phí:</th>
                 <td class="formValue">
                     <select class="form-control" id="selSfdl">
                         <option value="">==Tất cả==</option>
                     </select>
                 </td>
-                <th class="formTitle">Loại vật tư：</th>
+                <th class="formTitle">Loại vật tư:</th>
                 <td class="formValue">
                     <select class="form-control" id="selProductType">
                         <option value="">==Tất cả==</option>
                     </select>
                 </td>
-                <th class="formTitle" style="width: 50px;">Trạng thái：</th>
+                <th class="formTitle" style="width: 50px;">Trạng thái:</th>
                 <td class="formValue" style="width: 60px;">
                     <select class="form-control" id="selZt">
                         <option value="">=Tất cả=</option>
@@ -164,7 +164,7 @@
 
     //Xóa
     function btn_delete() {
-        $.modalConfirm("Bạn có chắc muốn xóa quan hệ đối chiếu này không?？",
+        $.modalConfirm("Bạn có chắc muốn xóa quan hệ đối chiếu này không??",
             function (flag) {
                 if (flag) {
                     var keyValue = $("#gridList").jqGridRowValue().Id;

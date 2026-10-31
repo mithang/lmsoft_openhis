@@ -139,11 +139,11 @@
                             globalData.push(data);
                         } else {
                             //if (globalData && globalData.length > 0) {
-                            //    for (var i = 0; i < globalData.length; i++) {
-                            //        if (globalData[i].sldmxId == data.sldmxId) {
-                            //            globalData.splice(i, 1);
-                            //        }
-                            //    }
+                            // for (var i = 0; i < globalData.length; i++) {
+                            // if (globalData[i].sldmxId == data.sldmxId) {
+                            // globalData.splice(i, 1);
+                            // }
+                            // }
                             //}
                             while (i--) {
                                 for (var j = 0; j < globalData.length; j++) {
@@ -192,7 +192,7 @@
 
                                     };
                                     //if (contains(globalData, redata, "sldmxId")) {
-                                    //    delpbj(globalData, redata);
+                                    // delpbj(globalData, redata);
                                     //}
                                 }
                             }
@@ -212,13 +212,13 @@
     }
 
     //function contains(arr, obj, val) {
-    //    var i = arr.length;
-    //    while (i--) {
-    //        if (arr[i][val] == obj[val]) {
-    //            return true;
-    //        }
-    //    }
-    //    return false;
+    // var i = arr.length;
+    // while (i--) {
+    // if (arr[i][val] == obj[val]) {
+    // return true;
+    // }
+    // }
+    // return false;
     //}
 
     function delpbj(arr, obj) {
@@ -264,103 +264,103 @@
         }
     }
     //function btn_loaddata(rowid) {
-    //    $('#ChildgridList').jqGrid("clearGridData");
-    //    var sldId = $("#parentgridList").jqGridRowValue().sldId
-    //    var SelectRowIndx;
-    //    $("#ChildgridList").dataGrid({
-    //        autoScroll: true,
-    //        url: "/DrugStorage/RequestMedicineInfo?sldId=" + sldId,
-    //        caption: "Thông tin thuốc",
-    //        onSelectRow_page: function (rowid, status) {
-    //            var data = $("#ChildgridList").getRowData(rowid);
-    //            if (status) {
-    //                if (globalData.length > 0) {
-    //                    for (var i = 0; i < globalData.length; i++) {
-    //                        if (globalData[i].sldmxId != data.sldmxId) {
-    //                            globalData.push(data);
-    //                            return;
-    //                        }
-    //                    }
-    //                } else {
-    //                    globalData.push(data);
-    //                    return;
-    //                }
-    //            } else {
-    //                if (globalData && globalData.length > 0) {
-    //                    for (var i = 0; i < globalData.length; i++) {
-    //                        if (globalData[i].sldmxId == data.sldmxId) {
-    //                            globalData.splice(i, 1);
-    //                        }
-    //                    }
-    //                }
-    //            }
-    //        },
-    //        height: $(window).height() - 410,
-    //        colModel: [
-    //            {
-    //                label: 'Số lượng phát', name: 'ffsl',
-    //                formatter: function (cellVal) {
-    //                    return '<input type="text" data-rowid="' + arguments[1].rowId + '" value="' + (cellVal || 0) + '" class="txt-ffsl form-control" />';
-    //                }
-    //            },
-    //            { label: "Khóa chính", name: "sldmxId", hidden: true, key: true },
-    //            {
-    //                label: 'Tên thuốc', name: 'ypmc', width: 250, align: 'left'
-    //            },
-    //            { label: 'Số lượng phát thuốc', name: 'Sl', width: 50, align: 'left' },
-    //            { label: 'Đơn vị', name: 'bzdw', width: 50, align: 'left' },
-    //            {
-    //                label: 'Giá bán buôn', name: 'Pfj', width: 50, align: 'left',
-    //                formatter: function (cellvalue) {
-    //                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
-    //                }
-    //            },
-    //            {
-    //                label: 'Giá bán lẻ', name: 'lsj', width: 50, align: 'left',
-    //                formatter: function (cellvalue) {
-    //                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
-    //                }
-    //            },
-    //            { label: 'Nhà sản xuất', name: 'ycmc', width: 250, align: 'left' },
-    //            { label: 'Số lô', name: 'Ph', width: 100, align: 'left' },
-    //            { label: 'Ngày hiệu lực', name: 'Yxrq', width: 120, align: 'left' },
-    //             { label: 'Số lô', name: 'pc', hidden: true, width: 50, align: 'left' },
-    //            { label: 'Mã thuốc', name: 'ypCode', hidden: true, width: 50, align: 'left' },
-    //            {
-    //                label: 'Giá bán lẻ', name: 'pfj', hidden: true, width: 50, align: 'left',
-    //                formatter: function (cellvalue) {
-    //                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
-    //                }
-    //            },
-    //            {
-    //                label: 'Giá bán buôn', name: 'lsj', hidden: true, width: 50, align: 'left',
-    //                formatter: function (cellvalue) {
-    //                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
-    //                }
-    //            },
-    //            {
-    //                label: 'Tổng giá bán buôn', name: 'Pjze', width: 50, align: 'left',
-    //                formatter: function (cellvalue) {
-    //                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
-    //                }
-    //            },
-    //            {
-    //                label: 'Tổng giá lẻ', name: 'Ljze', width: 50, align: 'left',
-    //                formatter: function (cellvalue) {
-    //                    return cellvalue ? cellvalue.toFixed(2) : "0.00";
-    //                }
-    //            },
-    //            { label: 'Số đơn lĩnh', name: 'sldh', width: 50, align: 'left', hidden: true, },
-    //            { label: 'Hệ số chuyển đổi', name: 'Zhyz', align: 'left', hidden: true, }
-    //        ],
-    //        multiselect: true,
-    //        pager: "#gridPager2",
-    //        sortname: 'sldmxId desc',
-    //        viewrecords: true
-    //    });
-    //    var grid = $('#ChildgridList').jqGrid()[0].grid;
-    //    $('#ChildgridList').jqGrid().setGridParam({ url: '/DrugStorage/RequestMedicineInfo?sldId=' + sldId });
-    //    grid.populate();
+    // $('#ChildgridList').jqGrid("clearGridData");
+    // var sldId = $("#parentgridList").jqGridRowValue().sldId
+    // var SelectRowIndx;
+    // $("#ChildgridList").dataGrid({
+    // autoScroll: true,
+    // url: "/DrugStorage/RequestMedicineInfo?sldId=" + sldId,
+    // caption: "Thông tin thuốc",
+    // onSelectRow_page: function (rowid, status) {
+    // var data = $("#ChildgridList").getRowData(rowid);
+    // if (status) {
+    // if (globalData.length > 0) {
+    // for (var i = 0; i < globalData.length; i++) {
+    // if (globalData[i].sldmxId != data.sldmxId) {
+    // globalData.push(data);
+    // return;
+    // }
+    // }
+    // } else {
+    // globalData.push(data);
+    // return;
+    // }
+    // } else {
+    // if (globalData && globalData.length > 0) {
+    // for (var i = 0; i < globalData.length; i++) {
+    // if (globalData[i].sldmxId == data.sldmxId) {
+    // globalData.splice(i, 1);
+    // }
+    // }
+    // }
+    // }
+    // },
+    // height: $(window).height() - 410,
+    // colModel: [
+    // {
+    // label: 'Số lượng phát', name: 'ffsl',
+    // formatter: function (cellVal) {
+    // return '<input type="text" data-rowid="' + arguments[1].rowId + '" value="' + (cellVal || 0) + '" class="txt-ffsl form-control" />';
+    // }
+    // },
+    // { label: "Khóa chính", name: "sldmxId", hidden: true, key: true },
+    // {
+    // label: 'Tên thuốc', name: 'ypmc', width: 250, align: 'left'
+    // },
+    // { label: 'Số lượng phát thuốc', name: 'Sl', width: 50, align: 'left' },
+    // { label: 'Đơn vị', name: 'bzdw', width: 50, align: 'left' },
+    // {
+    // label: 'Giá bán buôn', name: 'Pfj', width: 50, align: 'left',
+    // formatter: function (cellvalue) {
+    // return cellvalue ? cellvalue.toFixed(2) : "0.00";
+    // }
+    // },
+    // {
+    // label: 'Giá bán lẻ', name: 'lsj', width: 50, align: 'left',
+    // formatter: function (cellvalue) {
+    // return cellvalue ? cellvalue.toFixed(2) : "0.00";
+    // }
+    // },
+    // { label: 'Nhà sản xuất', name: 'ycmc', width: 250, align: 'left' },
+    // { label: 'Số lô', name: 'Ph', width: 100, align: 'left' },
+    // { label: 'Ngày hiệu lực', name: 'Yxrq', width: 120, align: 'left' },
+    // { label: 'Số lô', name: 'pc', hidden: true, width: 50, align: 'left' },
+    // { label: 'Mã thuốc', name: 'ypCode', hidden: true, width: 50, align: 'left' },
+    // {
+    // label: 'Giá bán lẻ', name: 'pfj', hidden: true, width: 50, align: 'left',
+    // formatter: function (cellvalue) {
+    // return cellvalue ? cellvalue.toFixed(2) : "0.00";
+    // }
+    // },
+    // {
+    // label: 'Giá bán buôn', name: 'lsj', hidden: true, width: 50, align: 'left',
+    // formatter: function (cellvalue) {
+    // return cellvalue ? cellvalue.toFixed(2) : "0.00";
+    // }
+    // },
+    // {
+    // label: 'Tổng giá bán buôn', name: 'Pjze', width: 50, align: 'left',
+    // formatter: function (cellvalue) {
+    // return cellvalue ? cellvalue.toFixed(2) : "0.00";
+    // }
+    // },
+    // {
+    // label: 'Tổng giá lẻ', name: 'Ljze', width: 50, align: 'left',
+    // formatter: function (cellvalue) {
+    // return cellvalue ? cellvalue.toFixed(2) : "0.00";
+    // }
+    // },
+    // { label: 'Số đơn lĩnh', name: 'sldh', width: 50, align: 'left', hidden: true, },
+    // { label: 'Hệ số chuyển đổi', name: 'Zhyz', align: 'left', hidden: true, }
+    // ],
+    // multiselect: true,
+    // pager: "#gridPager2",
+    // sortname: 'sldmxId desc',
+    // viewrecords: true
+    // });
+    // var grid = $('#ChildgridList').jqGrid()[0].grid;
+    // $('#ChildgridList').jqGrid().setGridParam({ url: '/DrugStorage/RequestMedicineInfo?sldId=' + sldId });
+    // grid.populate();
     //}
 
     function newtouch_event_f6() {
@@ -390,7 +390,7 @@
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {
-                    $.modalAlert("Thêm thành công！", 'success');
+                    $.modalAlert("Thêm thành công!", 'success');
                 }
                 $("#gridList").trigger("reloadGrid");
             }

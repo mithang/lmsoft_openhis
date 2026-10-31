@@ -36,37 +36,37 @@
                     Điều kiện tra cứu
                 </div>
                 <div style="padding: 2px;padding-right:20px;">
-                    <input type="hidden"  id="Fyzt" value="2" />
+                    <input type="hidden" id="Fyzt" value="2" />
                     <table class="form">
                         <tr>
-                            <th class="formTitle">Tên bệnh nhân：</th>
+                            <th class="formTitle">Tên bệnh nhân:</th>
                             <td class="formValue">
                                 <input id="patientName" type="text" class="form-control" placeholder="Họ tên" />
                             </td>
-                            <th class="formTitle">Thuốc：</th>
+                            <th class="formTitle">Thuốc:</th>
                             <td class="formValue">
                                 <input id="ypmc" type="text" class="form-control" placeholder="Thuốc" />
                             </td>
-                            <th class="formTitle">Số giường：</th>
+                            <th class="formTitle">Số giường:</th>
                             <td class="formValue">
                                 <input id="cw" type="text" class="form-control" placeholder="Số giường" />
                             </td>
                         </tr>
                         <tr>
-                            <th class="formTitle">Trạng thái phát thuốc：</th>
+                            <th class="formTitle">Trạng thái phát thuốc:</th>
                             <td class="formValue formDdlSelectorTd">
                                 <select id="sel_fybz" class="form-control">
                                     <option value="2">Chưa trả thuốc</option>
                                     <option value="3">Đã trả thuốc</option>
                                 </select>
-                            </td> 
-                            <th class="formTitle">Thời gian bắt đầu：</th>
-                            <td class="formValue">
-                                <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
                             </td>
-                            <th class="formTitle">Thời gian kết thúc：</th>
+                            <th class="formTitle">Thời gian bắt đầu:</th>
                             <td class="formValue">
-                                <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd'})" />
+                                <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01")" onfocus="WdatePicker({dateFmt:'dd/MM/yyyy'})" />
+                            </td>
+                            <th class="formTitle">Thời gian kết thúc:</th>
+                            <td class="formValue">
+                                <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({dateFmt:'dd/MM/yyyy'})" />
                             </td>
                             <td class="formValue" style="text-align: right;">
                                 <input type="button" id="btn_search" class="btn btn-md btn-primary" style="width:50px; margin-left:40px;" value="Tra cứu" />
@@ -103,7 +103,7 @@
         //Gắn chi tiết phát thuốc của bệnh nhân
         dispenseMedicinGridList(null, null);
     });
-    
+
     //Gắn khu bệnh và bệnh nhân
     function bqGridList() {
         $("#BqTreeList").treeview({
@@ -231,7 +231,7 @@
                 { label: 'Đơn vị sử dụng', name: 'yldw', width: 60, align: 'left' },
                 { label: 'Số lượng phát thực tế', name: 'sl', width: 60, align: 'left' },
                 { label: 'Đơn vị phát thực tế', name: 'zycldw', width: 60, align: 'left' },
-                { label: 'Tính chất y lệnh', name: 'yzxzmc', width: 80, align: 'left' },                
+                { label: 'Tính chất y lệnh', name: 'yzxzmc', width: 80, align: 'left' },
                 { label: 'Nhà sản xuất', name: 'ycmc', width: 100, align: 'left' },
                 { label: 'Cách dùng', name: 'zlff', width: 60, align: 'left' },
                 { label: 'Đơn giá', name: 'dj', width: 60, align: 'left' },
@@ -291,22 +291,22 @@
 
     // Trả thuốc
     function newtouch_event_f6() {
-        globalData = []//Hủy chọn nhiều，Xóa giá trị gốc
+        globalData = []//Hủy chọn nhiều, Xóa giá trị gốc
         var ids = $("#dispenseMedicinGridList").jqGrid('getGridParam', 'selarrrow');
         for (var i = 0; i < ids.length; i++) {
             var data = $("#dispenseMedicinGridList").getRowData(ids[i]);
             if (data.sqtyzt == '否') {
-                $.modalAlert("Chưa đăng ký trả thuốc,Cấm trả thuốc！", 'warning');
+                $.modalAlert("Chưa đăng ký trả thuốc,Cấm trả thuốc!", 'warning');
                 return;
             }
             globalData.push(data);
         }
         if (globalData == [] || globalData.length <= 0) {
-            $.modalAlert("Trả thuốc thất bại,Không có thông tin thuốc！", 'warning');
+            $.modalAlert("Trả thuốc thất bại,Không có thông tin thuốc!", 'warning');
             return;
         }
-        $.modalConfirm("Xác nhận thực hiện trả thuốc?？", function (flag) {
-            if (flag) { 
+        $.modalConfirm("Xác nhận thực hiện trả thuốc??", function (flag) {
+            if (flag) {
                 var par = {};
                 var medicineList = [];
                 for (var i = 0; i < globalData.length; i++) {
@@ -330,12 +330,12 @@
                     dataType: "text",
                     success: function (res) {
                         if (res == "Trả thuốc thành công") {
-                            $.modalAlert("Trả thuốc thành công！", 'success');
+                            $.modalAlert("Trả thuốc thành công!", 'success');
                             //Tải lại thông tin phát thuốc y lệnh
                             $("#dispenseMedicinGridList").trigger("reloadGrid");
                         } else {
                             $.modalAlert(res, 'error');
-                        }                
+                        }
                     }
                 });
             } else

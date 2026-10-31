@@ -212,7 +212,7 @@
             <tr>
                 <th class="formTitle"><span style="color:red">*</span>Ngày thu phí:</th>
                 <td class="formValue">
-                    <input id="sfrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="float: left; margin-left: 5px; width:90%" value="@DateTime.Now.ToString(" yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="sfrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="float: left; margin-left: 5px; width:90%" value="@DateTime.Now.ToString(" dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
                 <th class="formTitle">Tính chất chi phí:</th>
                 <td class="formValue">
@@ -367,7 +367,7 @@
                 <th></th>
                 <td colspan="2"></td>
                 <th class="formTitle ztjsyc" style="color:red;font-weight:bold;">trong đó:Bao gồm số dư hoàn tạm ứng</th>
-                <td class="formValue ztjsyc" style="font-weight:bold;">（ ￥<label id="yjjtye">0.00</label> ）</td>
+                <td class="formValue ztjsyc" style="font-weight:bold;">( ￥<label id="yjjtye">0.00</label> )</td>
             </tr>
         </table>
     </div>
@@ -384,7 +384,7 @@
     var defaultPayMethod = "@(defaultPayMethod)";
     //quyết toántổng số tiền
     var zje = ovpraseFloat($.request("zje"));
-    //thanh toán phải thu quyết toánlúc đó phải thu（zje = có thể báo + quyết toánlúc đó phải thu + v.v.）
+    //thanh toán phải thu quyết toánlúc đó phải thu(zje = có thể báo + quyết toánlúc đó phải thu + v.v.)
     var orglxjzfys = ovpraseFloat($.request("xjzfys"));
     //cókhi chiết khấu thì không bằng original
     var xjzfys = orglxjzfys;    //khi có chiết khấu sẽ không bằng nhau
@@ -840,10 +840,10 @@
         var xjwc=(ovpraseFloat($("#zqysk").html())-ovpraseFloat($("#djje").html())-ovpraseFloat($("#yjjzfje").html())).toFixed(2);
         return {
             sfrq: sfrq, fph: fph
-            , zje: ovpraseFloat(zje).toFixed(2), orglxjzfys: orglxjzfys, zkje: zkje, zkbl: zkbl, xjzfys: ovpraseFloat(xjzfys).toFixed(2)
-            , ssk: hjssk, zhaoling: zhaoling, dyjylsh: strdyjylsh
+, zje: ovpraseFloat(zje).toFixed(2), orglxjzfys: orglxjzfys, zkje: zkje, zkbl: zkbl, xjzfys: ovpraseFloat(xjzfys).toFixed(2)
+, ssk: hjssk, zhaoling: zhaoling, dyjylsh: strdyjylsh
 			, yjjzfje: ovpraseFloat(yjjzfje).toFixed(2), yjjtye: ovpraseFloat(yjjtye).toFixed(2)
-            , PatZfList:PatZfList,xjwc:xjwc
+, PatZfList:PatZfList,xjwc:xjwc
 			, djjesszffs: djjesszffs, djjess: ovpraseFloat(djjess).toFixed(2)
         };
     }
@@ -990,7 +990,7 @@
         //}
     });
 
-    //tính theo thanh toán phải thu、phương thức thanh toán tính tổng thựcthu tiền、tiền thừa
+    //tính theo thanh toán phải thu, phương thức thanh toán tính tổng thựcthu tiền, tiền thừa
     function hjsskZhaolingCal() {
         if (!$('#zffs1').val() && $('#zfje1').val() != 0) {
             //chưa chọn phương thức thanh toán,số tiền tương ứngcầnđặtlà0.00

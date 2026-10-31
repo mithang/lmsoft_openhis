@@ -433,7 +433,7 @@
                             }
                             return "<a class=\"moneyunderline\" style=\"text-decoration:underline;cursor:pointer\" color:blue onclick=\"btn_detail('" + rowObject.dlCode + "','inpatient')\">" + cellvalue + "</a>";
                         }
-                    }   ,
+                    },
                     { label: 'trị liệu Thực hiện Số tiền', name: 'zyzxje', width: 80, formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 }, align: 'center' },
                     { label: 'Tổng thu nhập', name: 'zsr', width: 100, formatter: 'number', formatoptions: { thousandsSeparator: ",", decimalPlaces: 2 }, editable: true, align: 'center', editwidth: "98%" },
                     {
@@ -444,7 +444,7 @@
                                     fn: function (e) {
                                         var cellval = $(this).val();
                                         if (cellval.replace(/(^\s*)|(\s*$)/g, "") == "") {
-                                            $.modalAlert("Thu nhập đã xác minh, vui lòng xác nhận。", 'warning');
+                                            $.modalAlert("Thu nhập đã xác minh, vui lòng xác nhận.", 'warning');
                                             return;
                                         }
                                         if (isNaN(cellval)) {
@@ -477,7 +477,7 @@
                     //var sum_ce = $("#CRGridList").getCol('ce', false, 'sum');
                     zsf = $.addNum(mzsf, zysf);
                     $("#CRGridList").footerData('set', { "dlmc": 'Tổng cộng(đồng)', mzsfje: '<a class="money">' + mzsf + '</a>', mzzxje: sum_mzzxje, zysfje: '<a class="money">' + zysf + '</a>', zyzxje: sum_zyzxje, zsr: zsf });
-                    //$('#sfspan').html('<a class="money">' + mzsf + '</a>' + "（Ngoại trú）+" + '<a class="money">' + zysf + '</a>'+ "（Nội trú）=" + '<a class="money">' +zsf+'</a>');
+                    //$('#sfspan').html('<a class="money">' + mzsf + '</a>' + "(Ngoại trú)+" + '<a class="money">' + zysf + '</a>'+ "(Nội trú)=" + '<a class="money">' +zsf+'</a>');
                     $('.money').formatCurrency();
                     $('.moneyunderline').formatCurrency();
 

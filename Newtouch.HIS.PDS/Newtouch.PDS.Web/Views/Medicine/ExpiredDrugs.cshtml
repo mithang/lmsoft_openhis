@@ -25,17 +25,17 @@
         <div>
             <table class="form">
                 <tr>
-                    <td class="formTitle">Mã thuốc：</td>
+                    <td class="formTitle">Mã thuốc:</td>
                     <td class="formValue">
                         <input type="text" id="ypdm" class="form-control" placeholder="Vui lòng nhập mã thuốc Pinyin Tên" />
                     </td>
-                    <td class="formTitle">Loại thuốc：</td>
+                    <td class="formTitle">Loại thuốc:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="yplb">
                             <option value="">Tất cả</option>
                         </select>
                     </td>
-                    <td class="formTitle">Thuộc tính thuốc：</td>
+                    <td class="formTitle">Thuộc tính thuốc:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="ypsx">
                             <option value="">Tất cả</option>
@@ -46,17 +46,17 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="formTitle">Dạng bào chế thuốc：</td>
+                    <td class="formTitle">Dạng bào chế thuốc:</td>
                     <td class="formValue formDdlSelectorTd">
                         <select class="form-control" id="ypjx" name="ypjx">
                             <option value="">Tất cả</option>
                         </select>
                     </td>
-                    <td class="formTitle">Trạng thái sử dụng：</td>
+                    <td class="formTitle">Trạng thái sử dụng:</td>
                     <td class="formValue formDdlSelectorTd">
                         @Html.DropDownList("syzt", BenBuMenZT.Control.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <td class="formTitle">Trạng thái thuốc：</td>
+                    <td class="formTitle">Trạng thái thuốc:</td>
                     <td class="formValue formDdlSelectorTd">
                         @Html.DropDownList("ypzt", EnumYPZT.Enabled.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>

@@ -75,13 +75,13 @@
                 <input type="hidden" id="Fyzt" value="2" />
                 <table class="form">
                     <tr>
-                        <th class="formTitle" style="width: 75px; padding-right: 0px;"><span class="required">*</span>Ngày：</th>
+                        <th class="formTitle" style="width: 75px; padding-right: 0px;"><span class="required">*</span>Ngày:</th>
                         <td class="formValue">
-                            <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({onpicked:function(){operateTimeList(ThisbrCode,Thisbqbian);;},dateFmt:'yyyy-MM-dd'})" />
+                            <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({onpicked:function(){operateTimeList(ThisbrCode,Thisbqbian);;},dateFmt:'dd/MM/yyyy'})" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Thời gian thao tác：</th>
+                        <th class="formTitle"><span class="required">*</span>Thời gian thao tác:</th>
                         <td class="formValue">
-                            <select id="seloperatetime"  class="form-control" multiple="multiple"></select>
+                            <select id="seloperatetime" class="form-control" multiple="multiple"></select>
                         </td>
                         <td class="formTitle" style="width: 45px;">
                             <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" />
@@ -140,7 +140,7 @@
             success: function (ajaxresp) {
                 if (ajaxresp !== null) {
                     $("#seloperatetime").html("");
-                    
+
                     for (var i = 0; i < ajaxresp.length; i++) {
                         $("#seloperatetime").append("<option value='" + ajaxresp[i].operatetime + "'>" + ajaxresp[i].operatetime + "</option>");
                     }
@@ -161,14 +161,14 @@
         });
 
         //$("#seloperatetime").bindSelect({
-        //    url: "/HospitalizationPharmacy/GetFybdComboboxList",
-        //    id: "operatetime",
-        //    param: {
-        //        Zyh: zyh,
-        //        Kssj: $("#Kssj").val() + " 00:00:00",
-        //        Jssj: $("#Kssj").val() + " 23:59:59"
-        //    },
-        //    text: "operatetime"
+        // url: "/HospitalizationPharmacy/GetFybdComboboxList",
+        // id: "operatetime",
+        // param: {
+        // Zyh: zyh,
+        // Kssj: $("#Kssj").val() + " 00:00:00",
+        // Jssj: $("#Kssj").val() + " 23:59:59"
+        // },
+        // text: "operatetime"
         //});
 
         $("#seloperatetime").change(function () {
@@ -222,7 +222,7 @@
             viewrecords: true,
             //multiboxonly : false,
             onSelectAll: function (rowIds, status) {
-                //Kích hoạt khi chọn tất cả，rowIdslà tất cả của trang hiện tạirowId
+                //Kích hoạt khi chọn tất cả, rowIdslà tất cả của trang hiện tạirowId
                 //checkArrayXóa tất cả của trang hiện tại trong mảng jqGrid('getDataIDs');
                 for (var i = 0; i < rowIds.length; i++) {
                     for (var j = 0; j < checkArray.length; j++) {
@@ -232,7 +232,7 @@
                         }
                     }
                 }
-                //Nếu là chọn đã chọn，thì cộng tất cả mục của trang hiện tại
+                //Nếu là chọn đã chọn, thì cộng tất cả mục của trang hiện tại
                 if (status) {
                     for (var i = 0; i < rowIds.length; i++) {
                         var rowData = $dispenseMedicinGridList.jqGrid('getRowData', rowIds[i]);
@@ -241,12 +241,12 @@
                     }
                 }
             },
-            onSelectRow: function (rowId, status) {  //NhấncheckboxKích hoạt rowIdlà kích hoạt hiện tạirowid
+            onSelectRow: function (rowId, status) { //NhấncheckboxKích hoạt rowIdlà kích hoạt hiện tạirowid
                 //Dữ liệu dòng của dòng được chọn
                 var rowData = $dispenseMedicinGridList.jqGrid('getRowData', rowId);
                 var checkedItem = { "pageNum": pageNum, "rowId": rowId, "czlx": rowData.czlx, "yzId": rowData.yzId, "Id": rowData.Id, "zxId": rowData.zxId, "zyh": rowData.zyh, "zytyapplyno": rowData.zytyapplyno };
                 if (status) {
-                    //Nếu được chọn，thì kiểm tra nếu trong mảng chưa có thì thêm vào mảng
+                    //Nếu được chọn, thì kiểm tra nếu trong mảng chưa có thì thêm vào mảng
                     for (var i = 0; i < checkArray.length; i++) {
                         if (checkArray[i].pageNum == pageNum && checkArray[i].rowId == rowId) {
                             return false;
@@ -268,7 +268,7 @@
             loadComplete: function (data) {
                 //Thay đổi biến toàn cụcpageNumSố trang
                 pageNum = data.page;
-                //Lặp mảng，Để trong trang hiện tạirowIdtrở thành trạng thái được chọn
+                //Lặp mảng, Để trong trang hiện tạirowIdtrở thành trạng thái được chọn
                 for (var i = 0; i < checkArray.length; i++) {
                     if (checkArray[i].pageNum == pageNum) {
                         $dispenseMedicinGridList.jqGrid('setSelection', checkArray[i].rowId, true);
@@ -455,26 +455,26 @@
         //var fy = checkArray.filter((item) => item.czlx.indexOf("Phát thuốc") > 0);
         //var ty = checkArray.filter((item) => item.czlx.indexOf("Trả thuốc") > 0);
         //if (fy.length > 0 && ty.length > 0) {
-        //    $.modalMsg("Loại thao tác, vui lòng chọn trả thuốc hoặc phát thuốc", "warning");
-        //    return false;
+        // $.modalMsg("Loại thao tác, vui lòng chọn trả thuốc hoặc phát thuốc", "warning");
+        // return false;
         //}
         //else if (fy.length > 0) {
-        //    operateType = 1;
+        // operateType = 1;
         //}
         //else if (ty.length > 0) {
-        //    operateType = 2;
+        // operateType = 2;
         //}
 
         var zyh = checkArray[0].zyh;
         //if (!!zyh && checkArray.filter((item) => item.zyh != zyh).length>0) {
-        //    $.modalMsg("In nhiều người, vui lòng chọn in tổng hợp", "warning");
-        //    return false;
+        // $.modalMsg("In nhiều người, vui lòng chọn in tổng hợp", "warning");
+        // return false;
         //}
         //var zxIds = checkArray.map((item) => {
-        //    return item.zxId
+        // return item.zxId
         //}).join(",");
         //var yzIds = checkArray.map((item) => {
-        //    return item.yzId
+        // return item.yzId
         //}).join(",");
         var czIds = checkArray.map((item) => {
             return item.Id

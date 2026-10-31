@@ -22,30 +22,30 @@
             <div style="padding: 2px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">Khu bệnh：</th>
+                        <th class="formTitle">Khu bệnh:</th>
                         <td class="formValue formDdlSelectorTd">
                             <select id="bqmc" class="form-control">
                                 <option value="">Tất cả</option>
                             </select>
                         </td>
-                        <th class="formTitle">Họ tên/Số nội trú：</th>
+                        <th class="formTitle">Họ tên/Số nội trú:</th>
                         <td class="formValue">
                             <input id="keyword" type="text" class="form-control" placeholder="Họ tên/Số nội trú" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Thời gian bắt đầu：</th>
+                        <th class="formTitle"><span class="required">*</span>Thời gian bắt đầu:</th>
                         <td class="formValue">
-                            <input id="kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01 00:00")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd HH:mm:ss'})" />
+                            <input id="kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01 00:00")" onfocus="WdatePicker({dateFmt:'dd/MM/yyyy HH:mm:ss'})" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Thời gian kết thúc：</th>
+                        <th class="formTitle"><span class="required">*</span>Thời gian kết thúc:</th>
                         <td class="formValue">
-                            <input id="jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddHours(2).ToString("yyyy-MM-dd 23:59")" onfocus="WdatePicker({dateFmt:'yyyy-MM-dd 23:59:59'})" />
+                            <input id="jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddHours(2).ToString("dd/MM/yyyy 23:59")" onfocus="WdatePicker({dateFmt:'dd/MM/yyyy 23:59:59'})" />
                         </td>
                         <td class="formTitle" rowspan="2">
                             <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" />
                         </td>
                     </tr>
                     <tr>
-                        <th class="formTitle">Tính chất đơn thuốc：</th>
+                        <th class="formTitle">Tính chất đơn thuốc:</th>
                         <td class="formValue formDdlSelectorTd">
                             <select id="yzxz" class="form-control">
                                 <option value="2">Dài hạn</option>
@@ -122,7 +122,7 @@
                 },
                 {
                     label: 'Cờ phát thuốc', name: 'fybz', width: 50, align: 'center', formatter: function (val) {
-                        return val== "2" ? "Đã phát thuốc":(val=="3"?"Đã trả thuốc":"Chưa phát thuốc");  //$.enum.getDescByValue("EnumFybz", val);
+                        return val== "2" ? "Đã phát thuốc":(val=="3"?"Đã trả thuốc":"Chưa phát thuốc"); //$.enum.getDescByValue("EnumFybz", val);
                     }
                 }
             ],
@@ -142,19 +142,19 @@
             var yzxz = $("#gridList").jqGrid('getRowData', rowId).yzxz;
             var zxrq = $("#gridList").jqGrid('getRowData', rowId).kssj;
             //$.modalOpen({
-            //    id: "GetCfDetail",
-            //    title: "Chi tiết đơn thuốc",
-            //    url: "/HospitalizationPharmacy/PrescriptionDetailFrom?cfh=" + cfh + "&yzxz="+yzxz+"&zxrq="+zxrq,
-            //    width: "950px",
-            //    height: "600px",
-            //    btn: ['', 'Đóng'],
-            //    callBack: function (iframeId) {
-            //    }
+            // id: "GetCfDetail",
+            // title: "Chi tiết đơn thuốc",
+            // url: "/HospitalizationPharmacy/PrescriptionDetailFrom?cfh=" + cfh + "&yzxz="+yzxz+"&zxrq="+zxrq,
+            // width: "950px",
+            // height: "600px",
+            // btn: ['', 'Đóng'],
+            // callBack: function (iframeId) {
+            // }
             //});
 
             var $gridMxList = $("#gridMXList");
             $gridMxList.jqGrid("clearGridData");
-           
+
             $gridMxList.jqGrid('setGridParam', {
                 url: '/HospitalizationPharmacy/GetZycfGridDetailJson',
                 postData: { yzh: cfh, zxrq: zxrq, yzxz: yzxz }
@@ -216,7 +216,7 @@
         });
     }
 
-    
+
 
     function newtouch_event_f6() {
         var selRowIds = $("#gridList").jqGrid('getGridParam', 'selarrrow');

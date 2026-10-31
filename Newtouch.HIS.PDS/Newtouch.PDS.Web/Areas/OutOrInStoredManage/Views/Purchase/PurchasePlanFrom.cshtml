@@ -47,14 +47,14 @@
         <div class="panel-heading">Thông tin phát thuốc</div>
         <table class="form">
             <tr>
-                <th class="formTitle"><span class="required">*</span>Loại đơn hàng：</th>
+                <th class="formTitle"><span class="required">*</span>Loại đơn hàng:</th>
                 <td class="formValue" id="ddlxtd">
                     <select id="ddlx" name="ddlx" class="form-control required">
                         <option value="1">Mua thường xuyên</option>
                         <option value="2">Mua khẩn cấp</option>
                     </select>
                 </td>
-                <th class="formTitle "><span class="required">*</span>Nhà cung cấp：</th>
+                <th class="formTitle "><span class="required">*</span>Nhà cung cấp:</th>
                 <td class="formValue">
                     <input type="text" id="yq" name="yq" class="form-control" placeholder="Vui lòng chọn nhà cung cấp" autocomplete="off" />
                     <input type="hidden" id="yqbm" />
@@ -116,7 +116,7 @@
                             $("#jqg" + (i + 1) + "_cgjldw").val(ajaxresp[i].cgjldw);
                             $("#jqg" + (i + 1) + "_ybgg").val(ajaxresp[i].ggbz);
                             $("#sel_dw_jqg" + (i + 1)).append('<option value="dw" data-dw="' + ajaxresp[i].dw + '" selected>' + ajaxresp[i].dw + '</option>');
-                            //$("#jqg" + (i + 1) + "_cglx").append('<option value="' + ajaxresp[i].cglx + '" selected>' + ajaxresp[i].cglxmc  + '</option>');
+                            //$("#jqg" + (i + 1) + "_cglx").append('<option value="' + ajaxresp[i].cglx + '" selected>' + ajaxresp[i].cglxmc + '</option>');
                             $("#jqg" + (i + 1) + "_cglx").val(ajaxresp[i].cglxmc);
                             $("#jqg" + (i + 1) + "_pfze").val((ajaxresp[i].cgdj * ajaxresp[i].cgsl).toFixed(2));
                             InitKcCheck("jqg" + (i + 1));
@@ -192,10 +192,10 @@
         $gridList.newtouchLocalDataGrid({
             data: [],
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
-            rownumbers: true,  //Có hiển thị số thứ tự không
+            rownumbers: true, //Có hiển thị số thứ tự không
             shrinkToFit: true,
             multiselect: true,
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
                 { label: 'Thao tác', name: 'operate', width: 50, align: 'center' },
@@ -243,8 +243,8 @@
                 { label: 'zxdwjj', name: 'zxdwjj', hidden: true, editable: true },
                 { label: 'zxspbm', name: 'zxspbm', hidden: true, editable: true }
             ],
-            editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            editinputwidthborder: false, //Có cần viền không Mặc định làtrue
+            editinputborderradius: false, //Có cần bo góc viền không Mặc địnhtrue(Có bo góc)
             gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -350,16 +350,16 @@
             }
         });
     }
-  
+
     //Khởi tạo đơn vị
     function initDw($thistr, rowid) {
         $("#sel_dw_" + rowid).empty();
         $("#sel_dw_" + rowid).append('<option value="bzdw" data-zhyz="' + $thistr.attr('data-bzs') + '" selected>' + $thistr.attr('data-bzdw') + '</option>');
         //if ($thistr.attr('data-dw') !== $thistr.attr('data-bzdw')) {
-        //    $("#sel_dw_" + rowid).append('<option value="bmdw" data-zhyz="' + $thistr.attr('data-zhyz') + '" selected>' + $thistr.attr('data-dw') + '</option>');
+        // $("#sel_dw_" + rowid).append('<option value="bmdw" data-zhyz="' + $thistr.attr('data-zhyz') + '" selected>' + $thistr.attr('data-dw') + '</option>');
         //}
         //if ($thistr.attr('data-zxdw') !== $thistr.attr('data-bzdw') && $thistr.attr('data-dw') != $thistr.attr('data-zxdw')) {
-        //    $("#sel_dw_" + rowid).append('<option value="zxdw" data-zhyz="1" selected>' + $thistr.attr('data-zxdw') + '</option>');
+        // $("#sel_dw_" + rowid).append('<option value="zxdw" data-zhyz="1" selected>' + $thistr.attr('data-zxdw') + '</option>');
         //}
     }
 
@@ -368,7 +368,7 @@
         $("#" + rowid + "_cgsl").blur(function () {
             var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
             if (!reg.test($("#" + rowid + "_cgsl").val())) {
-                $.modalMsg("Số lượng phải lớn hơn 0 số nguyên！", "warning", 1500);
+                $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
                 return false;
             }
             CalculationLsze(rowid);
@@ -376,7 +376,7 @@
         $("#" + rowid + "_cgdj").blur(function () {
             var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
             if (!reg.test($("#" + rowid + "_cgdj").val())) {
-                $.modalMsg("Chứng từ mua hàng, vui lòng nhập đúng định dạng số tiền！", "warning", 1500);
+                $.modalMsg("Chứng từ mua hàng, vui lòng nhập đúng định dạng số tiền!", "warning", 1500);
                 return false;
             }
             CalculationLsze(rowid);
@@ -436,19 +436,19 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu cần sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
         }
         var par = new Object();
         par["cgmx"] = list; //Chi tiết mua hàng
-        par["psdbm"] = $("#psd").val()? $("#psd").val():'01';//Mã điểm phân phối 
+        par["psdbm"] = $("#psd").val()? $("#psd").val():'01';//Mã điểm phân phối
         par["ddlx"] = $("#ddlx").val();//Loại đơn hàng
         //par["zwdhrq"] = $("#zwdhrq").val();//Ngày nhận hàng muộn nhất
         par["gysCode"] = $("#yqbm").val();//Mã công ty dược
         par["gysName"] = $("#yq").val();//Tên doanh nghiệp dược
         par["jls"] = list.length//Số bản ghi
         par["yybm"] = "001";//Mã bệnh viện
-        //par["ddbh"] = " ";//Số đơn hàng Thêm mới:trống   Sửa/Thu hồi:Số đơn hàng
+        //par["ddbh"] = " ";//Số đơn hàng Thêm mới:trống Sửa/Thu hồi:Số đơn hàng
         //par["yyjhdh"] = "test";//Số kế hoạch của bệnh viện Tạo ở máy chủ
         //par["ddzt"] = "1";//1Đã lưu 2Đã truyền báo 3Đã nghiệm thu
         par["ddsj"] = new Date();//Thời gian đơn hàng
@@ -479,12 +479,12 @@
         }
         var reg2 = /^\d+(?:\.\d{0,2})?$/;
         if (!reg2.test(rowData.cgdj)) {
-            $.modalMsg("Giá mua, vui lòng nhập đúng định dạng số tiền！", "warning", 1500);
+            $.modalMsg("Giá mua, vui lòng nhập đúng định dạng số tiền!", "warning", 1500);
             return false;
         }
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if (!reg.test(rowData.cgsl)) {
-            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             return false;
         }
         return true;

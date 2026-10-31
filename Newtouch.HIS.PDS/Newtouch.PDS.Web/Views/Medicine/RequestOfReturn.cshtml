@@ -21,17 +21,17 @@
         </div>
         <table class="form" style="width:98%;border:0">
             <tr>
-                <td class="formTitle">Số đơn trả thuốc：</td>
+                <td class="formTitle">Số đơn trả thuốc:</td>
                 <td class="formValue"><input type="text" id="tydh" name="tydh" class="form-control newtouch_Readonly" /></td>
-                <td class="formTitle"><span class="required">*</span>Khoa trả thuốc：</td>
+                <td class="formTitle"><span class="required">*</span>Khoa trả thuốc:</td>
                 <td class="formValue">
                     <input type="text" id="tybm" name="tybm" class="form-control" placeholder="Vui lòng chọn khoa trả thuốc" />
                 </td>
-                <td class="formTitle"><span class="required">*</span>Ngày trả thuốc：</td>
+                <td class="formTitle"><span class="required">*</span>Ngày trả thuốc:</td>
                 <td class="formValue">
-                    <input type="text" id="tyrq" name="tyrq" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                    <input type="text" id="tyrq" name="tyrq" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                 </td>
-                <td class="formTitle"><span class="required">*</span>Phương thức trả thuốc：</td>
+                <td class="formTitle"><span class="required">*</span>Phương thức trả thuốc:</td>
                 <td class="formValue">
                     <select class="form-control" id="fyfs" name="fyfs" onchange="ValidateForm()">
                         <option value="">==Vui lòng chọn==</option>
@@ -51,20 +51,20 @@
         </div>
         <table class="form" style="width:98%;border:0;" id="form2">
             <tr>
-                <td class="formTitle">Mã thuốc：</td>
+                <td class="formTitle">Mã thuốc:</td>
                 <td class="formValue">
                     <input type="hidden" id="newid" name="newid" class="form-control" />
                     <input type="text" id="srm" name="srm" class="form-control newtouch_Readonly" />
                 </td>
-                <td class="formTitle">Lô：</td>
+                <td class="formTitle">Lô:</td>
                 <td class="formValue">
                     <input type="text" id="pc" name="pc" class="form-control newtouch_Readonly" />
                 </td>
-                <td class="formTitle">Hạn sử dụng：</td>
+                <td class="formTitle">Hạn sử dụng:</td>
                 <td class="formValue">
                     <input type="text" id="yxq" name="yxq" class="form-control newtouch_Readonly" />
                 </td>
-                <td class="formTitle">Số lượng trả thuốc：</td>
+                <td class="formTitle">Số lượng trả thuốc:</td>
                 <td class="formValue">
                     <div class="row">
                         <div class="col-md-8">
@@ -77,35 +77,35 @@
                 </td>
             </tr>
             <tr>
-                <td class="formTitle">Tên thuốc：</td>
+                <td class="formTitle">Tên thuốc:</td>
                 <td class="formValue"><input type="text" id="ypmc" class="form-control newtouch_Readonly" /></td>
-                <td class="formTitle">Quy cách：</td>
+                <td class="formTitle">Quy cách:</td>
                 <td class="formValue"><input type="text" id="gg" class="form-control newtouch_Readonly" /></td>
-                <td class="formTitle">Số lượng có thể trả：</td>
+                <td class="formTitle">Số lượng có thể trả:</td>
                 <td class="formValue">
                     <input type="text" id="kykc" class="form-control newtouch_Readonly inline" />
                     <label id="kykc_dw"></label>
                 </td>
-                <td class="formTitle">Nhà sản xuất：</td>
+                <td class="formTitle">Nhà sản xuất:</td>
                 <td class="formValue"><input type="text" id="sccj" class="form-control newtouch_Readonly" /></td>
             </tr>
             <tr>
-                <td class="formTitle">Giá bán buôn：</td>
+                <td class="formTitle">Giá bán buôn:</td>
                 <td class="formValue">
                     <input type="text" id="pfj" class="form-control newtouch_Readonly PriceInline" />
                     <label id="pf_dw">đ/Chai</label>
                 </td>
-                <td class="formTitle">Giá bán lẻ：</td>
+                <td class="formTitle">Giá bán lẻ:</td>
                 <td class="formValue">
                     <input type="text" id="lsj" class="form-control newtouch_Readonly PriceInline" />
                     <label id="ls_dw">đ/Chai</label>
                 </td>
-                <td class="formTitle">Tiền bán buôn：</td>
+                <td class="formTitle">Tiền bán buôn:</td>
                 <td class="formValue">
                     <input type="text" id="pfje" class="form-control newtouch_Readonly inline" />
                     <label>đ</label>
                 </td>
-                <td class="formTitle">Tiền bán lẻ：</td>
+                <td class="formTitle">Tiền bán lẻ:</td>
                 <td class="formValue">
                     <input type="text" id="lsje" class="form-control newtouch_Readonly inline" />
                     <label>đ</label>
@@ -143,8 +143,8 @@
 <script type="text/javascript">
     var dtdw;
     var globalpc;
-    var newxmList = [];   //Hạng mục mớiList
-    var editingNewid = null;    //Dòng đang sửa
+    var newxmList = []; //Hạng mục mớiList
+    var editingNewid = null; //Dòng đang sửa
     var dw = "";
 
     $(function () {
@@ -154,7 +154,7 @@
         init();
         fillDataToGrid();
     });
-    
+
     //Khởi tạo
     function init() {
         GetDjh();
@@ -236,7 +236,7 @@
                     colModel: [
                         //{ label: 'Tên thuốc', name: 'ypmc', width: 100, align: 'left' },
                         { label: 'Lô', name: 'pc', width: 150, align: 'left' },
-                        { label: 'Số lô', name: 'ph', width: 150, align: 'left' },                        
+                        { label: 'Số lô', name: 'ph', width: 150, align: 'left' },
                         { label: 'Tồn kho', name: 'bzdwsl', width: 100, align: 'left' },
                         { label: 'Hạn sử dụng', name: 'yxq', width: 150, formatter: "date", formatoptions: { srcformat: 'Y-m-d', newformat: 'Y-m-d' }, align: 'left' },
                         { label: 'Hệ số chuyển đổi', name: 'zhyz', hidden: true },
@@ -360,7 +360,7 @@
         var ph = $("#ph").val();
         for (var i = 0; i < newxmList.length; i++) {
             if (newxmList[i]["ypdm"] === ypdm && newxmList[i]["pc"] === pc && newxmList[i]["ph"] === ph) {
-                $.modalAlert("Lô thuốc này đã đăng ký，Không cho phép thêm mới！", 'warning');
+                $.modalAlert("Lô thuốc này đã đăng ký, Không cho phép thêm mới!", 'warning');
                 return false;
             }
         }
@@ -378,7 +378,7 @@
                 if (!rowDataArr || rowDataArr.length === 0) {
                     return; //Tại sao không tìm thấy
                 }
-                rowData = rowDataArr[0];  //ĐạtrowData.newidLấy dữ liệu dòng đó từ mảng đối tượng
+                rowData = rowDataArr[0]; //ĐạtrowData.newidLấy dữ liệu dòng đó từ mảng đối tượng
                 if (true) { //&&Có thể chỉnh sửa
                     //Tuần tự hóa vào vùng chỉnh sửa
                     var data = {};
@@ -387,7 +387,7 @@
                     $('#btn_bottombutton_f6').attr('disabled', 'disabled');
                     $('#btn_bottombutton_f9').show();
                     $('#btn_bottombutton_f2').attr('disabled', 'disabled');
-                    editingNewid = rowData.newid;    //Dòng đang sửa
+                    editingNewid = rowData.newid; //Dòng đang sửa
                 }
             }
         }
@@ -396,25 +396,25 @@
     //Thêm
     function newtouch_event_f2() {
         if (editingNewid) {
-            return; //Đang ở trạng thái sửa đổi，thì không thể nhấp nút thêm   cầndisableXử lý
+            return; //Đang ở trạng thái sửa đổi, thì không thể nhấp nút thêm cầndisableXử lý
         }
-        if (!(checkEditingRowData() && CheckExistPC())) {    //Dữ liệu đã đầy đủ chưa，Kiểm tra mục bắt buộc
+        if (!(checkEditingRowData() && CheckExistPC())) { //Dữ liệu đã đầy đủ chưa, Kiểm tra mục bắt buộc
             return;
         }
         var data = getEditRowData();
-        data.newid = Math.random().toString() + new Date().getMilliseconds();   //newid()
-        editingNewid = null;    //?Vào trạng thái sửa đổi，Sau đó nhấp thêm？
-        newxmList.unshift(data);   //Thêm như mục mới //”Đầu trước nhất của mảng“
+        data.newid = Math.random().toString() + new Date().getMilliseconds(); //newid()
+        editingNewid = null; //?Vào trạng thái sửa đổi, Sau đó nhấp thêm?
+        newxmList.unshift(data); //Thêm như mục mới //”Đầu trước nhất của mảng“
         fillDataToGrid();//lạixmmảng hiển thị tớigrid
         clearMedicineInfo();//Xóa thông tin thuốc
     }
-    
+
     //Sửa
     function newtouch_event_f3() {
         if (editingNewid) {
             //Gửi sửa đổi
             var data = getEditRowData();
-            if (!(checkEditingRowData())) {    //Dữ liệu đã đầy đủ chưa，Kiểm tra mục bắt buộc
+            if (!(checkEditingRowData())) { //Dữ liệu đã đầy đủ chưa, Kiểm tra mục bắt buộc
                 return;
             }
             //Kiểm tra mục trùng lặp
@@ -430,8 +430,8 @@
                 if (matchedIndex === -1) {
                     return; //Phải là ngoại lệ
                 }
-                newxmList.remove(matchedIndex);   //Loại bỏ mục đó
-                newxmList.unshift(data);   //Thêm như mục mới    //”Đầu trước nhất của mảng“
+                newxmList.remove(matchedIndex); //Loại bỏ mục đó
+                newxmList.unshift(data); //Thêm như mục mới //”Đầu trước nhất của mảng“
             }
             fillDataToGrid();//lạixmmảng hiển thị tớigrid
             clearMedicineInfo();//Xóa thông tin thuốc
@@ -453,8 +453,8 @@
             var rowData = $("#gridList").jqGrid('getRowData', rowid);
             if (rowData) {
                 if (rowData.newid === editingNewid) {
-                    $.modalAlert("Dòng này đang ở trạng thái sửa，Không thể xóa", 'warning');
-                    return; //Dòng này đang ở trạng thái sửa，Không thể xóa
+                    $.modalAlert("Dòng này đang ở trạng thái sửa, Không thể xóa", 'warning');
+                    return; //Dòng này đang ở trạng thái sửa, Không thể xóa
                 }
                 var matchedIndex = -1;
                 for (var ii = 0; ii < newxmList.length; ii++) {
@@ -465,7 +465,7 @@
                 if (matchedIndex === -1) {
                     return; //Phải là ngoại lệ
                 }
-                newxmList.remove(matchedIndex);   //Loại bỏ mục đó
+                newxmList.remove(matchedIndex); //Loại bỏ mục đó
                 fillDataToGrid();//lạixmmảng hiển thị tớigrid
                 bottomButtonsReset();
             }
@@ -498,15 +498,15 @@
             container: "#form2",
             inner: false
         });
-        newxmList = [];   //Hạng mục mớiList
-        editingNewid = null;    //Dòng đang sửa
+        newxmList = []; //Hạng mục mớiList
+        editingNewid = null; //Dòng đang sửa
         bottomButtonsReset();
     }
-    
+
     //Trả thuốc
     function newtouch_event_f8() {
         if (newxmList.length === 0) {
-            $.modalAlert("Thông tin thuốc không được để trống！", 'warning');
+            $.modalAlert("Thông tin thuốc không được để trống!", 'warning');
             return;
         }
         var par = new Object();
@@ -535,10 +535,10 @@
 
     ////Hủy sửa đổi
     //function newtouch_event_f8() {
-    //    clearMedicineInfo();
-    //    editingNewid = null;    //Dòng đang sửa
-    //    $("#gridList").resetSelection();
-    //    bottomButtonsReset();
+    // clearMedicineInfo();
+    // editingNewid = null; //Dòng đang sửa
+    // $("#gridList").resetSelection();
+    // bottomButtonsReset();
     //}
 
     //Đặt lại nút
@@ -603,7 +603,7 @@
         return true;
     }
 
-    //Kiểm tra dữ liệu đang chỉnh sửa（Chờ gửi）tính đầy đủ của
+    //Kiểm tra dữ liệu đang chỉnh sửa(Chờ gửi)tính đầy đủ của
     function checkEditingRowData() {
         if (validatelyInfo()) {
             var validator = $('#form1').validate();
@@ -647,7 +647,7 @@
                 zxdwsl = tysl * zhyz;
             }
             if (zxdwsl > zxsl) {
-                $.modalAlert("Số lượng trả hàng không được lớn hơn số lượng tồn kho khả dụng！", 'warning');
+                $.modalAlert("Số lượng trả hàng không được lớn hơn số lượng tồn kho khả dụng!", 'warning');
                 $("#tysl").val("");
                 $("#tysl").focus();
                 return false;
@@ -668,7 +668,7 @@
             }
         }
     }
-    
+
     //Vô hiệu hóa phần mềm
     function readonly(list, type) {
         if (list && list.length > 0) {

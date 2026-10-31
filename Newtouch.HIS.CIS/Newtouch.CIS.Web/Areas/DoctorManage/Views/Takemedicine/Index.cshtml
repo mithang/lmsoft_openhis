@@ -157,7 +157,7 @@
                             }
                         ]
 
-                    }  //Lưu ý：Đơn vị liềuphải định ký tựởLiều lượngphía dưới，vìphía dướiCóTheonàyCơ sởđến tìmĐơn vị liềucủa。（vìselectKhông cóidcủaThuộc tính）
+                    }  //Lưu ý：Đơn vị liềuphải định ký tựởLiều lượngphía dưới，vìphía dướiCóTheonàyCơ sởđến tìmĐơn vị liềucủa。(vìselectKhông cóidcủaThuộc tính)
                 },
                 { label: 'dwlb', name: 'dwlb', editwidth: '', align: 'center', editable: true, hidden: true },  //Không thể bỏ
                 { label: 'redundant_jldw', name: 'redundant_jldw', editwidth: '', align: 'center', editable: true, hidden: true },  //Không thể bỏ
@@ -319,7 +319,7 @@
                 { name: 'jxCode', width: 50, editwidth: '100%', align: 'center', editable: true, hidden: true }
             ],
             editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
-            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue(có bo tròn)
             pager: "gridTakePager",
             gridComplete: function () {
                 EnableTInlineEditBox();
@@ -447,7 +447,7 @@
             }
             $("#" + rowid + "_kssj").css("text-align", "left");
 
-            //Loại y lệnh 长、临
+            //Loại y lệnh: dài hạn, tạm thời
             if ($("#" + rowid + "_yzlb").val() == undefined || $("#" + rowid + "_yzlb").val() === "") {
                 var yzlb = $("#chkTakelsyz").is(":checked") ? "临" : "长";
                 $("#" + rowid + "_yzlb").val(yzlb);

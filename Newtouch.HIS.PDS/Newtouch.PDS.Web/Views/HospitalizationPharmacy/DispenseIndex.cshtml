@@ -47,21 +47,21 @@
             <div style="padding: 2px;padding-right:20px;">
                 <table class="form">
                     <tr>
-                        <th class="formTitle">Tính chất y lệnh：</th>
+                        <th class="formTitle">Tính chất y lệnh:</th>
                         <td class="formValue">
                             @Html.DropDownList("yzxz", Yzxz.None.ToDescSelectList(), null, new { @class = "form-control" })
                         </td>
-                        <th class="formTitle">Thuốc：</th>
+                        <th class="formTitle">Thuốc:</th>
                         <td class="formValue">
                             <input type="text" id="ypmc" class="form-control" placeholder="Thuốc" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Thời gian bắt đầu：</th>
+                        <th class="formTitle"><span class="required">*</span>Thời gian bắt đầu:</th>
                         <td class="formValue">
-                            <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01 00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                            <input id="Kssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.ToString("yyyy-MM-01 00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                         </td>
-                        <th class="formTitle"><span class="required">*</span>Thời gian kết thúc：</th>
+                        <th class="formTitle"><span class="required">*</span>Thời gian kết thúc:</th>
                         <td class="formValue">
-                            <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddHours(2).ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                            <input id="Jssj" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddHours(2).ToString("dd/MM/yyyy HH:mm")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                         </td>
                         <td td class="formTitle">
                             <input type="button" id="btn_search" class="btn btn-primary btn-md" value="Tra cứu" />
@@ -77,7 +77,7 @@
 </div>
 @Html.Partial("_BottomButtonsView", new Newtouch.HIS.Web.Core.Models.BottomButtonViewModel
 {
-    ShowKeyList = new int[] {3,  6, 7},
+    ShowKeyList = new int[] {3, 6, 7},
     F3Text = "Phát thuốc",
     F6Text = "Hủy xếp thuốc",
     F7Text = "Xóa y lệnh"
@@ -154,7 +154,7 @@ else
                 }
 
                 if (entries >= maxEntries) {
-                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này！", "warning", 1500);
+                    $.modalMsg("Đã đạt số lượng mục quét tối đa của dòng này!", "warning", 1500);
                     inputField.val(inputField.val().split(',').filter(entry => entry.trim() != "").slice(0, maxEntries).join(',') + ",");
                 }
             }
@@ -167,7 +167,7 @@ else
         return uniqueArr.join(',')+','
     }
 
-    // Bật tác vụ định kỳ，Khoảng thời gian là3000 ms。
+    // Bật tác vụ định kỳ, Khoảng thời gian là3000 ms.
     function startRefresh() {
         var sp =@ViewBag.refreshInterval;
         if (sp > 0) {
@@ -396,7 +396,7 @@ else
 
     //Xóa y lệnh
     function newtouch_event_f7() {
-        $.modalConfirm("Bạn có chắc thực hiện xóa y lệnh không？", function (flag) {
+        $.modalConfirm("Bạn có chắc thực hiện xóa y lệnh không?", function (flag) {
             if (flag) {
                 var id = $gridBRXXDrugsList.jqGrid('getGridParam', 'selrow');
                 if (!id) {
@@ -427,7 +427,7 @@ else
 
     //Hủy xếp thuốc
     function newtouch_event_f6() {
-        $.modalConfirm("Bạn có chắc thực hiện hủy xếp thuốc không？", function (flag) {
+        $.modalConfirm("Bạn có chắc thực hiện hủy xếp thuốc không?", function (flag) {
             if (flag) {
                 var id = $gridBRXXDrugsList.jqGrid('getGridParam', 'selrow');
                 if (!id) {
@@ -457,7 +457,7 @@ else
 
     //Phát thuốc
     function newtouch_event_f3() {
-        $.modalConfirm("Bạn có chắc gửi toàn bộ thuốc trong danh sách phát thuốc không？", function (flag) {
+        $.modalConfirm("Bạn có chắc gửi toàn bộ thuốc trong danh sách phát thuốc không?", function (flag) {
             if (flag) {
                 var rowIds = $gridBRXXDrugsList.getDataIDs();
                 if (rowIds == null || rowIds.length === 0) {
@@ -473,7 +473,7 @@ else
                     var zsm = $("#sel_zsm_" + rowid).val()
                     //Có chia lẻ không
                     var sfclValue = Number($("#sel_sfcl_" + rowid).val());
-                    // Kiểm tra số lượng mã truy xuất。 Có chia lẻ thì chọn Có，Chỉ cần quét một cái，Nếu không thì cần quét mã tương ứng với số lượng nhập kho
+                    // Kiểm tra số lượng mã truy xuất. Có chia lẻ thì chọn Có, Chỉ cần quét một cái, Nếu không thì cần quét mã tương ứng với số lượng nhập kho
                     const zsmLength = $("#sel_zsm_" + rowid).val().split(',').filter(entry => entry.trim() !== '').length
                     var maxZsmLength = 1
                     if (sfclValue === 1) {
@@ -482,10 +482,10 @@ else
                         maxZsmLength = parseInt(rowData.sl)
                     }
                     if (zsmLength != 0 && zsmLength != maxZsmLength) {
-                        $.modalMsg("Mục: " + rowData.ypmc + " số lượng không khớp với số lượng mã truy xuất！", "warning", 1500);
+                        $.modalMsg("Mục: " + rowData.ypmc + " số lượng không khớp với số lượng mã truy xuất!", "warning", 1500);
                         return false;
                     }
-                    
+
                     var obj = new Object();
                     obj["yzId"] = rowData.yzId;
                     obj["zxId"] = rowData.zxId;

@@ -105,10 +105,10 @@
     var fisdtdjload = true;
     $(function () {
         if ('@MutipatientNursingInputFlag' == '0') {
-            $('#rq').val('@DateTime.Now.ToString("yyyy-MM-dd")').focus(function () { WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { btn_search() } }) });
+            $('#rq').val('@DateTime.Now.ToString("dd/MM/yyyy")').focus(function () { WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { btn_search() } }) });
             searchsjd = $("[name=optionsSj]:checked").val();
         } else {
-            $('#rq').val('@DateTime.Now.ToString("yyyy-MM-dd HH:00:00")').focus(function () { WdatePicker({ dateFmt: 'yyyy-MM-dd HH:00:00', onpicked: function () { btn_search() } }) });
+            $('#rq').val('@DateTime.Now.ToString("dd/MM/yyyy HH:00:00")').focus(function () { WdatePicker({ dateFmt: 'dd/MM/yyyy HH:00:00', onpicked: function () { btn_search() } }) });
             $('.sjd').css("display", "none");
             searchsjd = new Date($.trim($('#rq').val())).getHours();
         }
@@ -375,7 +375,7 @@
             viewrecords: true,
             rownumbers: false,
             editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
-            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue(có bo tròn)
             gridComplete: function () {
                 EnableInlineEditBox();
             },

@@ -132,7 +132,7 @@
                 { label: 'Thao tác', name: 'action', width: 30, align: 'center' },
                 { name: 'yzlx', hidden: true }],
             editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
-            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue(có bo tròn)
             pager: "gridsfxmPager",
             loadComplete: function () {
                 if (localdata && localdata.length == 0) {
@@ -144,7 +144,7 @@
                 $.each(ids, function () {
                     $gridsfxm.jqGrid('editRow', this, true, initWMInlineFunc);  //editRow：MởSửachế độ initWMInlineFunc:Khởi tạolớp nổi
 
-                    //chomỗi lầnĐơn vị liềuđiềnoption  （chỉcó thểnàysaoviếtđơn giảnphiếu，Mặc dùtôicũngBiếtnàydạngviếtkhôngtốt）
+                    //chomỗi lầnĐơn vị liềuđiềnoption  (chỉcó thểnàysaoviếtđơn giảnphiếu，Mặc dùtôicũngBiếtnàydạngviếtkhôngtốt)
                     var jldw = $("#" + this + "_redundant_jldw").val();    //Đơn vị liều
                     var dw = $("#" + this + "_dw").val();     //Đơn vị ngoại trú
                     if (!!dw) {

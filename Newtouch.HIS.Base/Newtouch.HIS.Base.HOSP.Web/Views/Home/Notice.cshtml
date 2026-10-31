@@ -76,7 +76,7 @@
         var hubUrl = 'http://localhost:55144/signalr'; //Phía máy chủip
 
         $(function () {
-            //Gắn hộp nhập，Ở đây chỉ có thể CóID
+            //Gắn hộp nhập, Ở đây chỉ có thể CóID
             $("#btnSend").keydown(function (event) {
                 event = document.all ? window.event : event;
                 if ((event.keyCode || event.which) == 13) {
@@ -164,7 +164,7 @@
 
             });
         }
-        //Phương thức đăng nhập，Gọi sau khi đăng nhập thành công initTalk()Tiến hành$.connectionKết nối phía máy chủ
+        //Phương thức đăng nhập, Gọi sau khi đăng nhập thành công initTalk()Tiến hành$.connectionKết nối phía máy chủ
         function GoHome() {
             clientName = $("#nickname").val();
             if (clientName.length == 0 || clientName == "Vui lòng nhập biệt danh") {

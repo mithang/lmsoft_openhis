@@ -52,7 +52,7 @@
             </td>
         </tr>
         <tr>
-            <td rowspan="4" style="width:40%;"><img id="photo"/></td>
+            <td rowspan="4" style="width:40%;"><img id="photo" alt="Ảnh bệnh nhân"/></td>
         </tr>
         <tr>
             <td id="ysxm" style="text-align:left;font-size:16px;">Bác sĩ(Chủ nhiệmBác sĩ)</td>
@@ -99,15 +99,15 @@
             url: "/NurseManage/OutpatientConsult/GetConsultInfo",
             dataType: "json",
 
-            data: { zsCode: zsCode,  ghrq: new Date().format('yyyy-MM-dd') },
+            data: { zsCode: zsCode,  ghrq: new Date().format('dd/MM/yyyy') },
             type: "POST",
             success: function (data) {
                 $("#ksmc").html(data.ksmc);
                 $("#ysxm").html(data.ysxm);
                 $("#zsmc").html(data.zsmc);
                 $("#ysjs").html(data.ysjs);
-                $("#jzz").html(data.jzz==null?"Không có":data.jzz+"（"+data.jzzxh+"）");
-                $("#djz").html(data.djz == null ? "Không có " : data.djz + "（" + data.djzxh + "）");
+                $("#jzz").html(data.jzz==null?"Không có":data.jzz+"("+data.jzzxh+")");
+                $("#djz").html(data.djz == null ? "Không có " : data.djz + "(" + data.djzxh + ")");
                 document.getElementById("photo").src  ="../../Content/img/photo/"+ data.ysxm+".jpg";
             }
         });

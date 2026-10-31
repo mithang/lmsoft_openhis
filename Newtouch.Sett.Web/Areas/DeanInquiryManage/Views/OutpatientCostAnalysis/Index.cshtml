@@ -98,7 +98,7 @@
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
         }
         if (dateType == "3") {//ngày
-            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM-dd' })");
+            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'dd/MM/yyyy' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
         }
     }
@@ -401,7 +401,7 @@
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 140,
             autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
             url: "/DeanInquiryManage/OutpatientCostAnalysis/GetMzfyflfx",
             postData: getSearchData(),
             colModel: [
@@ -417,7 +417,7 @@
         $gridJsList.dataGrid({
             height: $(window).height() * 0.5 - 140,
             autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
             url: "/DeanInquiryManage/OutpatientCostAnalysis/GetHzrjfyfx",
             postData: getSearchData(),
             colModel: [

@@ -83,7 +83,7 @@
         });
     }
     function btn_sync() {
-        $.modalConfirm("Bạn có chắc muốn đồng bộ tất cả tham số hệ thống không?？", function (r) {
+        $.modalConfirm("Bạn có chắc muốn đồng bộ tất cả tham số hệ thống không??", function (r) {
             if (r) {
                 $.loading(true, 'Đang đồng bộ dữ liệu...');
                 $.najax({
@@ -103,7 +103,7 @@
             }
         });
     }
-    
+
 
     function btn_ShowAllConfig() {
         $.modalOpen({
@@ -147,7 +147,7 @@
                     <div class="input-group">
                         <input id="txt_keyword" type="text" class="form-control" placeholder="Tên cấu hình/Mã cấu hình" style="width: 200px;">
                         <span class="input-group-btn">
-                            <button id="btn_search" type="button" class="btn  btn-primary"><i class="fa fa-search"></i></button>
+                            <button id="btn_search" type="button" class="btn btn-primary"><i class="fa fa-search"></i></button>
                         </span>
                     </div>
                 </td>

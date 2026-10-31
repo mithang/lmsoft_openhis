@@ -43,7 +43,7 @@
                 </td>
                 <th class="formTitle"><span style="color:red">*</span>Ngày xuất viện:</th>
                 <td class="formValue">
-                    <input id="cyrq" type="text" class="form-control  form-an input-wdatepicker" style="float: left; margin-left: 5px; width:90%" value="" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="cyrq" type="text" class="form-control  form-an input-wdatepicker" style="float: left; margin-left: 5px; width:90%" value="" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
             </tr>
             <tr>
@@ -112,7 +112,7 @@
     var withYjj = '@(withYjj)';
     //kếttínhtổngtiềnmức
     var zje = parseFloat($.request("zje"));
-    //thanh toán phải thu Khoản phải thu khi quyết toán（zje = Được BHYT chi trả + Khoản phải thu khi quyết toán + v.v.）
+    //thanh toán phải thu Khoản phải thu khi quyết toán(zje = Được BHYT chi trả + Khoản phải thu khi quyết toán + v.v.)
     var orglxjzfys = parseFloat($.request("xjzfys"));
     //Khi có chiết khấu thì không bằng original
     var xjzfys = orglxjzfys;    //khi có chiết khấu sẽ không bằng nhau
@@ -250,7 +250,7 @@
             return false;
         }
         if (cyrq < ryrq) {
-            $.modalAlert("Ngày xuất viện nhỏ hơn Ngày nhập viện,Vui lòng xác nhận。", 'warning');
+            $.modalAlert("Ngày xuất viện nhỏ hơn Ngày nhập viện,Vui lòng xác nhận.", 'warning');
             return;
         }
         if ($.getDate() < cyrq) {
@@ -299,9 +299,9 @@
         }
         return {
             fph: fph, cyrq: cyrq
-            , zffs1: zffs1, zfje1: zfje1, zffs2: zffs2, zfje2: zfje2
-            , zje: zje, orglxjzfys: orglxjzfys, xjzfys: xjzfys
-            , ssk: hjssk, zhaoling: zhaoling
+, zffs1: zffs1, zfje1: zfje1, zffs2: zffs2, zfje2: zfje2
+, zje: zje, orglxjzfys: orglxjzfys, xjzfys: xjzfys
+, ssk: hjssk, zhaoling: zhaoling
         };
     }
 
@@ -350,7 +350,7 @@
         }
     });
 
-    //tính theo thanh toán phải thu、Phương thức thanh toán Tính tổng thực thu、Tiền thừa
+    //tính theo thanh toán phải thu, Phương thức thanh toán Tính tổng thực thu, Tiền thừa
     function hjsskZhaolingCal() {
         if (!$('#zffs1').val() && $('#zfje1').val() != 0) {
             //chưa chọn phương thức thanh toán,Số tiền tương ứng phải đặt thành0.00

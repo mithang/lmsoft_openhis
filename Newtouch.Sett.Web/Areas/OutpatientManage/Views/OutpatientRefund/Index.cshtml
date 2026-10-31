@@ -211,7 +211,7 @@
             width: $("#tabGrid").width() - 2,
             caption: "Hoàn phíDanh sách",
             multiselect: true,
-            editurl: "clientArray",  //sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //sửa dòng không gửi dữ liệu lên máy chủ
             //onSelectRow_page: function (rowid, status) {
             //    if (rowid && lastRowId && rowid !== lastRowId) {   //&&: tương đươngtrue/fase(xác định làkhôngcógiá trị)
             //        $gridList.saveRow(lastRowId, function (result) {
@@ -320,17 +320,17 @@
                 break;
             }
             if (!(/^(\+|-)?\d+$/.test(rowData.RETURNS_SL))) {
-                $.modalAlert("Khoản mục（" + rowData.YPMC + "）Số lượng hoàn không phải số,Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Khoản mục(" + rowData.YPMC + ")Số lượng hoàn không phải số,Vui lòng xác nhận.", 'warning');
                 EnableInlineEditBox();
                 return;
             }
             if (parseInt(rowData.RETURNS_SL) > parseInt(rowData.SL)) {
-                $.modalAlert("Khoản mục（" + rowData.YPMC + "）Số lượng hoàn lớn hơn số lượng ghi sổ,Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Khoản mục(" + rowData.YPMC + ")Số lượng hoàn lớn hơn số lượng ghi sổ,Vui lòng xác nhận.", 'warning');
                 EnableInlineEditBox();
                 return;
             }
             if (parseInt(rowData.RETURNS_SL) < 1) {
-                $.modalAlert("Khoản mục（" + rowData.YPMC + "）Số lượng hoàn nhỏ hơn1,Vui lòng xác nhận。", 'warning');
+                $.modalAlert("Khoản mục(" + rowData.YPMC + ")Số lượng hoàn nhỏ hơn1,Vui lòng xác nhận.", 'warning');
                 EnableInlineEditBox();
                 return;
             }

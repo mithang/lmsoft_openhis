@@ -33,7 +33,7 @@
                     <td></td>
                 </tr>
             </table>
-        </div>        
+        </div>
     </div>
     <div class="gridPanel" style="margin-top:10px">
         <div class="gridPanel">
@@ -72,7 +72,7 @@
                 { label: 'Tên thuốc', name: 'ypmc', width: 120, align: 'left' },
                 { label: 'Quy cách thuốc', name: 'ypgg', width: 120, align: 'left' },
                 { label: 'Đơn vị định giá', name: 'djdw', width: 80, align: 'left' },
-                { label: 'Giá bán buôn gốc', name: 'ypfj', width: 80, align: 'left' },                
+                { label: 'Giá bán buôn gốc', name: 'ypfj', width: 80, align: 'left' },
                 { label: 'Giá lẻ gốc', name: 'ylsj', width: 80, align: 'left' },
                 { label: 'Giá bán buôn mới', name: 'pfj', width: 80, align: 'left' },
                 { label: 'Giá lẻ mới', name: 'lsj', width: 80, align: 'left' },
@@ -216,7 +216,7 @@
         var ypCodeStr = "";
         for (var i = 0; i < rowsDataArray.length; i++) {
             if (rowsDataArray[i].Isgq === '已过期' && operationType=="4") {
-                $.modalAlert(rowsDataArray[i].ypCode + " Đã hết hạn，Thời gian thực hiện phải lớn hơn thời gian hiện tại", 'warning');
+                $.modalAlert(rowsDataArray[i].ypCode + " Đã hết hạn, Thời gian thực hiện phải lớn hơn thời gian hiện tại", 'warning');
                 return;
             }
             ypCodeStr += rowsDataArray[i].ypCode + ",";
@@ -228,13 +228,13 @@
         }
         var tipStr = "";
         if (operationType == "1") {
-            tipStr = "Bạn có chắc muốn phê duyệt không?？";
+            tipStr = "Bạn có chắc muốn phê duyệt không??";
         } else if (operationType == "2") {
-            tipStr = "Bạn có chắc muốn từ chối không?？";
+            tipStr = "Bạn có chắc muốn từ chối không??";
         } else if (operationType == "3") {
-            tipStr = "Bạn có chắc muốn thu hồi không?？";
+            tipStr = "Bạn có chắc muốn thu hồi không??";
         } else if (operationType == "4") {
-            tipStr = "Bạn có chắc muốn thực hiện không?？";
+            tipStr = "Bạn có chắc muốn thực hiện không??";
         }
         $.modalConfirm(tipStr, function (flag) {
             if (flag) {
@@ -255,7 +255,7 @@
             }
             else
                 return false;
-        }, false);        
+        }, false);
     }
 
     //Vô hiệu hóa

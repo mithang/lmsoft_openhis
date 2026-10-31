@@ -15,11 +15,11 @@
                 <tr>
                     <th class="formTitle ">Ngày thống kê:</th>
                     <td class="formValue">
-                        <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                        <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm")" on onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                     </td>
-                    <th class="formTitle">Đến：</th>
+                    <th class="formTitle">Đến:</th>
                     <td class="formValue">
-                        <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd 00:00' })" />
+                        <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("dd/MM/yyyy HH:mm")" on onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy 00:00' })" />
                     </td>
                     <td class="formTitle">
                         <input type="button" id="btn_search" class="btn btn-primary" value="Tra cứu" style="margin-left:10px;" />
@@ -76,13 +76,13 @@
         // TạoDateĐối tượng
         var date = new Date(
             parseInt(datePart[0]), // Năm
-            parseInt(datePart[1]) - 1, // Tháng bắt đầu từ0bắt đầu，vì vậy cần trừ1
+            parseInt(datePart[1]) - 1, // Tháng bắt đầu từ0bắt đầu, vì vậy cần trừ1
             parseInt(datePart[2]), // ngày
             parseInt(timePart[0]), // giờ
             parseInt(timePart[1]), // phút
             0, // giây
             0 // mili giây
-        );
+       );
         return date;
     }
 

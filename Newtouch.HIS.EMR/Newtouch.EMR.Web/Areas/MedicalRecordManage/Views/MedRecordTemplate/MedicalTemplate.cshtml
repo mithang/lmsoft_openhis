@@ -442,15 +442,15 @@
     <div class="panel combo-p" id="fontf" style="display: none;">
         <div class="combo-panel panel-body panel-body-noheader" title="" style="width: 114px;">
             <div id="fontfh" class="combobox-item"
-                 style="font-size: 10px; cursor: pointer; font-family: 黑体;">黑体</div>
+                 style="font-size: 10px; cursor: pointer; font-family: Arial;">Arial</div>
             <div id="fontfs" class="combobox-item"
-                 style="font-size: 12px; cursor: pointer; font-family: 宋体;">宋体</div>
+                 style="font-size: 12px; cursor: pointer; font-family: Times New Roman;">Times New Roman</div>
             <div id="fontfw" class="combobox-item"
-                 style="font-size: 14px; cursor: pointer; font-family: 微软雅黑;">
-                微软雅黑
+                 style="font-size: 14px; cursor: pointer; font-family: Segoe UI;">
+                Segoe UI
             </div>
             <div id="fontfk" class="combobox-item"
-                 style="font-size: 14px; cursor: pointer; font-family: 楷体;">楷体</div>
+                 style="font-size: 14px; cursor: pointer; font-family: Tahoma;">Tahoma</div>
         </div>
     </div>
     
@@ -981,7 +981,7 @@
     <div id="tszfa" style="display: none;">
         <div id="aaa" style="line-height: 32px; border-bottom: 1px solid #ddd; position: relative;">
             <span style="font-size: 16px;">Chèn ký tự</span>
-            <img style="position: absolute; right: 0; top: 0; cursor: pointer;" id="closeimg"
+            <img style="position: absolute; right: 0; top: 0; cursor: pointer;" id="closeimg" alt="Đóng"
                  src="~/Content/img/close2.png" />
         </div>
         <div id="tabHeads" class="tabhead">
@@ -1018,7 +1018,7 @@
     <div id="zshtml" style="display: none;">
         <div id="htmltop" style="line-height: 32px; border-bottom: 1px solid #ddd; position: relative;">
             <span style="font-size: 16px;">Html văn bản</span>
-            <img style="position: absolute; right: 0; top: 0; cursor: pointer;" id="closeimga"
+            <img style="position: absolute; right: 0; top: 0; cursor: pointer;" id="closeimga" alt="Đóng"
                  src="~/Content/img/close2.png" />
         </div>
         <div class="tabbody">
@@ -1029,7 +1029,7 @@
     <div id="zsxml" style="display: none;">
         <div id="xmltop" style="line-height: 32px; border-bottom: 1px solid #ddd; position: relative;">
             <span style="font-size: 16px;">Xml văn bản</span>
-            <img style="position: absolute; right: 0; top: 0; cursor: pointer;" id="closeimgb"
+            <img style="position: absolute; right: 0; top: 0; cursor: pointer;" id="closeimgb" alt="Đóng"
                  src="~/Content/img/close2.png" />
         </div>
         <div class="tabbody">
@@ -1047,13 +1047,13 @@
     
     <div id='NewComment_box'>
         <div class="tit">
-            <img style="position: absolute; right: 20px; top: 20px; cursor: pointer;"
+            <img style="position: absolute; right: 20px; top: 20px; cursor: pointer;" alt="Đóng"
                  src="~/Content/img/close2.png" />
         </div>
         <div class="cont">
             <p>Vui lòng nhập nội dung chú thích:</p>
             <input type="text" class="text" />
-            <p style="text-align: right;">Người chú thích:李四主任医师<br />Người dùng ID:lisi</p>
+            <p style="text-align: right;">Người chú thích:Bác sĩ điều trị Nguyễn Văn B<br />Người dùng ID:lisi</p>
             <input type="button" value="Nộp" class="sub" />
             <input type="button" value="Hủy" class="quit" />
         </div>
@@ -1224,7 +1224,7 @@
 </div>
 <iframe id="mainIframeright" style="width:15%;height:900px;float:right;" name="mainIframe" src="/MedicalRecordManage/MedRecordTemplate/RightMedicalTemplate" frameborder="0" scrolling="auto"></iframe>
 <script>
-    var mburl = "";//"\\File\\Template\\出院病历\\测试出院病历模板1.xml";
+    var mburl = "";//"\\File\\Template\\BenhAnRaVien\\MauBenhAnRaVien1.xml";
     window.addEventListener('message', function (e) {
         debugger;
         if (e.data.Turl != null && e.data.Turl != undefined) {
@@ -1734,7 +1734,7 @@
         //        ctl.EventAfterPrintPreview = function (PrintPreviewDoc) {
         //            var styleDom = document.createElement("style");
         //             Giải quyết vấn đề in ấn font SimSun
-        //            var cssStr = "@@font-face {font-family: 宋体;src: local('宋体');}";
+        //            var cssStr = "@@font-face {font-family: Times New Roman;src: local('Times New Roman');}";
         //            styleDom.innerHTML = cssStr;
         //            var page = PrintPreviewDoc.querySelector("div[pageindex]");
         //            if (page) {
@@ -1953,7 +1953,7 @@
     function NewComment(text) {
         var opts = {
             Text: text,
-            UserName: "李四主任医师",
+            UserName: "Bác sĩ điều trị Nguyễn Văn B",
             UserID: "lisi"
         }
         document.getElementById("myWriterControl").NewComment(opts);
@@ -2535,7 +2535,7 @@
                 "AutoZoomDropdownListFontSize": true,
                 "BackgroundTextColor": "#808080",
                 "BothBlackWhenPrint": false,
-                "CommentDateFormatString": "yyyy-MM-dd HH:mm:ss",
+                "CommentDateFormatString": "dd/MM/yyyy HH:mm:ss",
                 "CommentFontName": null,
                 "CommentFontSize": 10,
                 "DefaultAdornTextType": "DataSource",

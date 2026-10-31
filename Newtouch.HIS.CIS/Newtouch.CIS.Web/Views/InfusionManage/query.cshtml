@@ -47,11 +47,11 @@
         <div style="font-size:0.35rem;color:#808080; margin-top:0.1rem;">
             <div>
                 <span>Thời gian bắt đầu:</span>
-                <span>@(ViewBag.patInfo.sykssj == null ? "" : ((DateTime)ViewBag.patInfo.sykssj).ToString("yyyy-MM-dd HH:mm:ss"))</span>
+                <span>@(ViewBag.patInfo.sykssj == null ? "" : ((DateTime)ViewBag.patInfo.sykssj).ToString("dd/MM/yyyy HH:mm:ss"))</span>
             </div>
             <div>
                 <span>Kết thúcThời gian:</span>
-                <span>@(ViewBag.patInfo.syjssj == null ? "" : ((DateTime)ViewBag.patInfo.syjssj).ToString("yyyy-MM-dd HH:mm:ss"))</span>
+                <span>@(ViewBag.patInfo.syjssj == null ? "" : ((DateTime)ViewBag.patInfo.syjssj).ToString("dd/MM/yyyy HH:mm:ss"))</span>
             </div>
         </div>
     </div>
@@ -68,7 +68,7 @@
                         <div style="float:right;">
                             <div style="font-size:0.4rem;text-align:right;color:#000000;">@item.ypmc</div>
                             <div>
-                                Thu phíThời gian:<span>@item.sfsj.ToString("yyyy-MM-dd HH:mm:ss")</span>
+                                Thu phíThời gian:<span>@item.sfsj.ToString("dd/MM/yyyy HH:mm:ss")</span>
                             </div>
                             <div>
                                 Số đơn thuốc:<span>@item.cfh</span>

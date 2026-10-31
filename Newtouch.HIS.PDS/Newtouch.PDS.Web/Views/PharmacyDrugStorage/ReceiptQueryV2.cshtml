@@ -78,19 +78,19 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">Trạng thái duyệt：</th>
+                    <th class="formTitle">Trạng thái duyệt:</th>
                     <td class="formValue" style="width: 100px;">
                         @Html.DropDownList("ddlSHZT", EnumDjShzt.WaitingApprove.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">Ngày：</th>
+                    <th class="formTitle">Ngày:</th>
                     <td class="formValue">
-                        <input id="txtStartDate" type="text" style="width: 150px;" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="txtStartDate" type="text" style="width: 150px;" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("dd/MM/yyyy 00:00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">đến：</th>
+                    <th class="formTitle">đến:</th>
                     <td class="formValue">
-                        <input id="txtEndDate" type="text" style="width: 150px;" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="txtEndDate" type="text" style="width: 150px;" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">Số hóa đơn：</th>
+                    <th class="formTitle">Số hóa đơn:</th>
                     <td class="formValue">
                         <input id="txtFPH" type="text" class="form-control " />
                     </td>
@@ -99,19 +99,19 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Số chứng từ：</th>
+                    <th class="formTitle">Số chứng từ:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="txtPDH" />
                     </td>
-                    <th class="formTitle">Loại chứng từ：</th>
+                    <th class="formTitle">Loại chứng từ:</th>
                     <td class="formValue">
                         @Html.DropDownList("ddlDJLX", EnumDanJuLX.yaopinruku.ToSomeDescSelectList(String.Join(",", djlxItemStrs)), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">Nhà cung cấp：</th>
+                    <th class="formTitle">Nhà cung cấp:</th>
                     <td class="formValue">
                         <select id="selgys" name="selgys" class="form-control" multiple="multiple"></select>
                     </td>
-                    <th class="formTitle">Tổng giá nhập：</th>
+                    <th class="formTitle">Tổng giá nhập:</th>
                     <td class="formValue">
                         <input type="text" id="jjze" name="jjze" class="form-control newtouch_Readonly" />
                     </td>
@@ -306,7 +306,7 @@
 
     //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp, Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $.najax({
             type: "POST",
             url: "/PharmacyDrugStorage/SelectReceipDetailInfo",

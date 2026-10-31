@@ -11,25 +11,25 @@
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <td class="formTitle" style="width: 80px;">Số đơn mua sắm：</td>
+                    <td class="formTitle" style="width: 80px;">Số đơn mua sắm:</td>
                     <td class="formValue">
                         <input type="text" id="orderNo" class="form-control" placeholder="Số đơn mua sắm" />
                     </td>
-                    <td class="formTitle">Loại đơn hàng：</td>
+                    <td class="formTitle">Loại đơn hàng:</td>
                     <td class="formValue formDdlSelectorTd" style="width: 90px;">
                         @Html.DropDownList("orderType", EnumOrderTypeHrp.TempOrder.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <td class="formTitle" style="display:none">Trạng thái xử lý：</td>
+                    <td class="formTitle" style="display:none">Trạng thái xử lý:</td>
                     <td class="formValue formDdlSelectorTd" style="width: 90px;display:none">
                         @Html.DropDownList("orderProcess", EnumOrderProcess.Waiting.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Thời gian gửi：</th>
+                    <th class="formTitle"><span class="required">*</span>Thời gian gửi:</th>
                     <td class="formValue">
-                        <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-01 00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                        <input id="kssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-01 00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                     </td>
-                    <th class="formTitle" style="width: 50px;"><span class="required">*</span>Đến：</th>
+                    <th class="formTitle" style="width: 50px;"><span class="required">*</span>Đến:</th>
                     <td class="formValue">
-                        <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(2).ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                        <input id="jssj" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(2).ToString("dd/MM/yyyy HH:mm")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                     </td>
                     <td class="formTitle" style="width: 70px;">
                         <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
@@ -148,7 +148,7 @@
                 }).trigger('reloadGrid');
         });
         $("#gridPager_left").html("<span onclick='shrinkGridList(this)' style='cursor: pointer;margin-right: 250px;font-size: 1.3rem;padding: 0 20px;'><i class='fa fa-angle-up'></i></span>");
-        $("#gridPager_right").html("<span>Chi tiết đơn mua sắm | Hiển thị tổng hợp：</span><i id='i-noPc' onclick='accordingBatch(this)' class='fa fa-toggle-off' style='margin-left: 5px;font-size: 1.6rem;color: #ff9813;vertical-align: middle;'></i>");
+        $("#gridPager_right").html("<span>Chi tiết đơn mua sắm | Hiển thị tổng hợp:</span><i id='i-noPc' onclick='accordingBatch(this)' class='fa fa-toggle-off' style='margin-left: 5px;font-size: 1.6rem;color: #ff9813;vertical-align: middle;'></i>");
     }
 
     //Ghép điều kiện tìm kiếm

@@ -75,19 +75,19 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">Trạng thái duyệt：</th>
+                    <th class="formTitle">Trạng thái duyệt:</th>
                     <td class="formValue">
                         @Html.DropDownList("ddlSHZT", EnumDjShzt.WaitingApprove.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">Ngày：</th>
+                    <th class="formTitle">Ngày:</th>
                     <td class="formValue">
-                        <input id="txtStartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="txtStartDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-01 00:00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">đến：</th>
+                    <th class="formTitle">đến:</th>
                     <td class="formValue">
-                        <input id="txtEndDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="txtEndDate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">Nhà thuốc：</th>
+                    <th class="formTitle">Nhà thuốc:</th>
                     <td class="formValue">
                         <input id="txtyf" type="text" class="form-control " />
                     </td>
@@ -248,7 +248,7 @@
 
     //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp, Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $.najax({
             type: "Get",
             url: "/BillManage/OutOrInStorageBill/SelectDrupreparationInfoMX",
@@ -299,7 +299,7 @@
 
     //Duyệt hàng loạt
     function newtouch_event_f6() {
-        var ids = $("#gridDJMainRecords").jqGrid('getDataIDs'); //Lấy tất cả các dòngId，Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
+        var ids = $("#gridDJMainRecords").jqGrid('getDataIDs'); //Lấy tất cả các dòngId, Duyệt để đưa hộp chỉnh sửa về trạng thái lưu
         if (ids == null || ids.length === 0) {
             $.modalMsg('Vui lòng tra cứu chứng từ cần phê duyệt', 'warning', 2000);
             return false;
@@ -321,7 +321,7 @@
             return false;
         }
 
-        $.modalConfirm("Bạn có chắc muốn phê duyệt hàng loạt không?？Phê duyệt hàng loạt chỉ áp dụng cho chứng từ trên trang hiển thị hiện tại！",
+        $.modalConfirm("Bạn có chắc muốn phê duyệt hàng loạt không??Phê duyệt hàng loạt chỉ áp dụng cho chứng từ trên trang hiển thị hiện tại!",
             function(flag) {
                 if (!flag) return false;
                 $.najax({
@@ -356,7 +356,7 @@
         submitReceiptApproval('@((int)EnumDjShzt.Cancelled)');
     }
 
-    //Cập nhật trạng thái duyệt chứng từ，Gửi lên máy chủ
+    //Cập nhật trạng thái duyệt chứng từ, Gửi lên máy chủ
     function submitReceiptApproval(dstnShzt) {
         var selRowData = $("#gridDJMainRecords").jqGridRowValue();
         if (!selRowData || !selRowData.Id) {
@@ -392,7 +392,7 @@
         var fph = $(obj).val();
         var crkmxId = $("#gridDJMXInfo").getRowData($(obj).attr("rowid")).crkmxId;
         if (fph !== "") {
-            $.modalConfirm("Bạn có chắc muốn đổi số hóa đơn thành " + fph + " không？",
+            $.modalConfirm("Bạn có chắc muốn đổi số hóa đơn thành " + fph + " không?",
                 function(flag) {
                     if (flag) {
                         $.najax({

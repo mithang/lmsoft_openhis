@@ -53,11 +53,11 @@
                 { label: "Đơn giá", name: "dj", width: 60 },
                 {
                     label: "Số lượng", name: "sl", width: 60, align: "left", formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
                 {
                     label: "Tổng số tiền", name: "zje", width: 60, align: "left", formatter: "number"
-                    , formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
+, formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
                 },
             ],
             gridComplete: function (data) {
@@ -124,7 +124,7 @@
                             n = ajaxResp.total;
                             mxnum = ajaxResp.records;
                             // zfzje = ajaxResp.zfzje;
-                            ///Thứ nhấtLầnlúc,Xóa chi tiết trước,Đồng thờilấytớiTổng số lần（Tổng số dòng/10）,Gọi tải lên theo vòng lặp
+                            ///Thứ nhấtLầnlúc,Xóa chi tiết trước,Đồng thờilấytớiTổng số lần(Tổng số dòng/10),Gọi tải lên theo vòng lặp
                             ////Mỗi lần tải lên lại,Trước tiên xử lý phần đã tải lên trước đây,nhưngChưaquyết toáncủahoàn đơn thuốc,Ngược lại sẽ tải lên trùng lặp
                             //$.ajax({
                             //    type: "POST",

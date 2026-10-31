@@ -20,16 +20,16 @@
             <th class="formTitle" style="width:60px;">Ngày:</th>
             <td class="formValue" style="width:100px;">
                 <input id="ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
-                       onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-                       onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { Timeclick(); } })"
+                       onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+                       onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { Timeclick(); } })"
                        value="@DateTime.Now.ToString("yyyy-MM-01")" />
             </td>
             <td class="formValue" style="width:20px;text-align:center;">---</td>
             <td class="formValue" style="width:100px;">
                 <input id="jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" style="width:90px"
-                       onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-                       onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { Timeclick();  } })"
-                       value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                       onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+                       onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { Timeclick();  } })"
+                       value="@DateTime.Now.ToString("dd/MM/yyyy")" />
             </td>
             <th class="formTitle" style="text-align:right;width:70px;">Nội dung y lệnh:</th>
             <td class="formValue" style="width:90px;">

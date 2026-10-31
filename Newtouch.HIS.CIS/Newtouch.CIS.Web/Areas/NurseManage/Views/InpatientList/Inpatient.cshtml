@@ -211,11 +211,11 @@
             <tr>
                 <th class="formTitle">Chuyển khuNgày bắt đầu:</th>
                 <td class="formValue">
-                    <input id="txt_ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="@DateTime.Now.ToString("yyyy-MM-01")" />
+                    <input id="txt_ksrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy'})" value="@DateTime.Now.ToString("yyyy-MM-01")" />
                 </td>
                 <th class="formTitle">Ngày kết thúc:</th>
                 <td class="formValue">
-                    <input id="txt_jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                    <input id="txt_jsrq" type="text" class="form-control input-wdatepicker formClearIgnore" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
                 </td>
                 <th class="formTitle" style="width:120px">Số nhập viện/Họ tên/Số thẻ:</th>
                 <td class="formValue">
@@ -544,7 +544,7 @@
                 }, {
                     name: 'LISBáo cáo',
                     onClick: function (row) {
-                         //金风易通 LIS 2024-4-28 chl
+                         //Jinfeng Yitong LIS 2024-4-28 chl
                         window.open("@pacsHost/doctor-api/api/viewer?type=1&pid=" + currentobj.blh + "&areaCode=" + "@curOpr.OrganizeId", "_blank");
                         //đothửchuỗinhận
                         //window.open("@pacsHost/doctor-api/api/viewer?type=1&pid=JF566&areaCode=6d5752a7-234a-403e-aa1c-df8b45d3469f", "_blank");
@@ -563,7 +563,7 @@
                 , {
                     name: 'PASCBáo cáo',
                     onClick: function (row) {
-                        //金风易通 PACS 2024-4-28 chl
+                        //Jinfeng Yitong PACS 2024-4-28 chl
                         window.open("@pacsHost/doctor-api/api/viewer?pid=" + currentobj.blh + "&areaCode=" + "@curOpr.OrganizeId", "_blank");
                         //đothửchuỗinhận
                         //window.open("@pacsHost/doctor-api/api/viewer?pid=1034097&areaCode=6d5752a7-234a-403e-aa1c-df8b45d3469f", "_blank");

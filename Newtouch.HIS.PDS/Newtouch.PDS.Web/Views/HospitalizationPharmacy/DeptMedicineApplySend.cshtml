@@ -36,7 +36,7 @@
         <table class="form" style="width:95%">
             <tbody>
                 <tr>
-                    <th class="formTitle" style="width:50px">Khoa：</th>
+                    <th class="formTitle" style="width:50px">Khoa:</th>
                     <td class="formValue">
                         <select id="sel_inpatientArea" class="form-control">
                             <option value="">==Vui lòng chọn==</option>
@@ -92,7 +92,7 @@
         });
     });
 
-    // Bật tác vụ định kỳ，Khoảng thời gian là3000 ms。
+    // Bật tác vụ định kỳ, Khoảng thời gian là3000 ms.
     function startRefresh() {
         var sp =@ViewBag.refreshInterval;
         if (sp > 0) {
@@ -218,7 +218,7 @@
                 { label: 'Số lượng đăng ký', name: 'sqslStr', width: 80, align: 'center' },
                 { label: 'Lô', name: 'pc', width: 60, align: 'center' },
                 { label: 'Số lô', name: 'ph', width: 60, align: 'center' },
-                { label: 'Hạn sử dụng', name: 'yxq', width: 90, align: 'center',  formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
+                { label: 'Hạn sử dụng', name: 'yxq', width: 90, align: 'center', formatter: "date", formatoptions: { srcformat: 'Y-m-d H:i:s', newformat: 'Y-m-d H:i:s' } },
                 { label: 'Nhà sản xuất', name: 'ycmc', width: 120, align: 'center' },
                 { label: "ksbm", name: 'ksbm', hidden: true },
                 { label: "bqbm", name: 'bqbm', hidden: true },
@@ -255,7 +255,7 @@
 
     //Phát thuốc
     function newtouch_event_f3() {
-        $.modalConfirm("Bạn có chắc muốn gửi tất cả thuốc trong danh sách đăng ký không?？", function (flag) {
+        $.modalConfirm("Bạn có chắc muốn gửi tất cả thuốc trong danh sách đăng ký không??", function (flag) {
             if (flag) {
                 var rowIds = $gridBRXXDrugsList.getDataIDs();
                 if (rowIds == null || rowIds.length === 0) {
@@ -293,7 +293,7 @@
             $.modalMsg('Vui lòng tích chọn đơn đăng ký', 'warning', 1500);
             return false;
         }
-        $.modalConfirm("Bạn có chắc muốn trả lại đơn đăng ký đã chọn không?？", function (flag) {
+        $.modalConfirm("Bạn có chắc muốn trả lại đơn đăng ký đã chọn không??", function (flag) {
             if(flag)
             {
                 $.najax({

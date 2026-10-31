@@ -7,17 +7,17 @@
     <div class="panel panel-default">
         <table class="form">
             <tr>
-                <td class="formTitle">Từ khóa：</td>
+                <td class="formTitle">Từ khóa:</td>
                 <td class="formValue">
                     <input type="text" id="srm" class="form-control" placeholder="Vui lòng nhập mã thuốc Pinyin Tên" />
                 </td>
-                <td class="formTitle">Loại thuốc：</td>
+                <td class="formTitle">Loại thuốc:</td>
                 <td class="formValue formDdlSelectorTd">
                     <select class="form-control" id="yplb">
                         <option value="">Tất cả</option>
                     </select>
                 </td>
-                <td class="formTitle">Dạng bào chế thuốc：</td>
+                <td class="formTitle">Dạng bào chế thuốc:</td>
                 <td class="formValue formDdlSelectorTd">
                     <select class="form-control" id="ypjx" name="ypjx">
                         <option value="">Tất cả</option>
@@ -97,7 +97,7 @@
                     if (statue) {//Chọn tất cả
                         Save(rowids, 0);
                     } else { //Hủy tất cả
-                        $.modalConfirm("Bạn có chắc muốn xóa tất cả không?？", function (flag) {
+                        $.modalConfirm("Bạn có chắc muốn xóa tất cả không??", function (flag) {
                             if (flag) {
                                 Save(rowids, 1);
                             }
@@ -121,7 +121,7 @@
         });
     }
 
-    //Gửi operateType=0:Thêm  1：Xóa
+    //Gửi operateType=0:Thêm 1: Xóa
     function Save(items, opereateType) {
         $.najax({
             type: "POST",

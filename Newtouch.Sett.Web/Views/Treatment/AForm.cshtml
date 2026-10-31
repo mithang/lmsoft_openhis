@@ -83,11 +83,11 @@
             $('#zhmc').attr("readonly", "readonly");
             $('#zhcode').attr("readonly", "readonly");
             $.ajax({
-                url: "/Treatment/Codecx",  //của yêu cầuurlĐịa chỉ
-                dataType: "json",   //Định dạng trả về làjson
+                url: "/Treatment/Codecx", //của yêu cầuurlĐịa chỉ
+                dataType: "json", //Định dạng trả về làjson
                 async: false,
-                data: { zhcode: keyValue },  //Giá trị tham số
-                type: "POST",   //Phương thức yêu cầu
+                data: { zhcode: keyValue }, //Giá trị tham số
+                type: "POST", //Phương thức yêu cầu
                 traditional: true,
                 success: function (data) {
                     $("#form1").formSerialize(data[0]);
@@ -199,11 +199,11 @@
 
                 if (inzhcode = -1 && inzlxmmc == -1) {
                     $.ajax({
-                        url: "/Treatment/Tjchaxun",  //của yêu cầuurlĐịa chỉ
-                        dataType: "json",   //Định dạng trả về làjson
+                        url: "/Treatment/Tjchaxun", //của yêu cầuurlĐịa chỉ
+                        dataType: "json", //Định dạng trả về làjson
                         async: false,
-                        data: { zhcodetj: zhcodetj, sfxmmc: sfxmmc, orgId: $.request('orgId') },  //Giá trị tham số
-                        type: "POST",   //Phương thức yêu cầu
+                        data: { zhcodetj: zhcodetj, sfxmmc: sfxmmc, orgId: $.request('orgId') }, //Giá trị tham số
+                        type: "POST", //Phương thức yêu cầu
                         traditional: true,
                         success: function (data) {
 
@@ -245,11 +245,11 @@
 
                 if (inzhcode = -1 && inzlxmmc == -1) {
                     $.ajax({
-                        url: "/Treatment/Tjchaxun",  //của yêu cầuurlĐịa chỉ
-                        dataType: "json",   //Định dạng trả về làjson
+                        url: "/Treatment/Tjchaxun", //của yêu cầuurlĐịa chỉ
+                        dataType: "json", //Định dạng trả về làjson
                         async: true,
-                        data: { zhcodetj: zhcodetj, sfxmmc: sfxmmc,orgId: $.request('orgId')  },  //Giá trị tham số
-                        type: "POST",   //Phương thức yêu cầu
+                        data: { zhcodetj: zhcodetj, sfxmmc: sfxmmc,orgId: $.request('orgId')  }, //Giá trị tham số
+                        type: "POST", //Phương thức yêu cầu
                         traditional: true,
                         success: function (data2) {
 

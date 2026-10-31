@@ -40,7 +40,7 @@
                 <table class="form" style="width:98%;border:0">
                     <tr>
                         @* <td class="formTitle"> *@
-                        @*     <span class="required">*</span>Tổ chức： *@
+                        @*     <span class="required">*</span>Tổ chức: *@
                         @* </td> *@
                         @* <td class="formValue" colspan="3"> *@
                         @*     <select id="OrganizeId" name="OrganizeId" class="form-control required"> *@
@@ -155,7 +155,7 @@
                         <td class="formTitle"><span class="required">*</span>Cờ BHYT:</td>
                         <td class="formValue">
                             <div class="ckbox">
-                                <!-- Cờ BHYT：Dù đã có đối chiếu mã BHYT，cũng cần gắn cờ BHYT thì mới tương tác với BHYT -->
+                                <!-- Cờ BHYT: Dù đã có đối chiếu mã BHYT, cũng cần gắn cờ BHYT thì mới tương tác với BHYT -->
                                 <select id="ybbz" name="ybbz" class="form-control required">
                                     <option value="">==Vui lòng chọn==</option>
                                     <option value="1">Có</option>
@@ -831,7 +831,7 @@
 				for (var k = 0; k < rowIds.length; k++) {
 					var curRowData = jQuery(curData).jqGrid('getRowData', rowIds[k]);
 					//if ($thistr.attr('data-gjybdm') != "" && $thistr.attr('data-gjybdm') != null && curRowData.gjybdm == $thistr.attr('data-gjybdm')) {
-					//	$.modalAlert("Hệ thống đã tồn tại mã BHYT quốc gia là" + $thistr.attr("data-gjybdm") + " của thuốc，" + $thistr.attr("data-ypmc"), 'warning');
+					//	$.modalAlert("Hệ thống đã tồn tại mã BHYT quốc gia là" + $thistr.attr("data-gjybdm") + " của thuốc, " + $thistr.attr("data-ypmc"), 'warning');
 					//};
 				};
                 if (($('#ypmc').val() != "" || $('#ypmc').val() != null) && $('#ybdm').val() != $thistr.attr('data-ybdm')) {
@@ -1336,7 +1336,7 @@
             }
         }
 	}
-    //Mô tả：Ở đây sẽ tự động sửa giá bán lẻ，Ôn Giang không cần。
+    //Mô tả: Ở đây sẽ tự động sửa giá bán lẻ, Ôn Giang không cần. 
 	//function getlsj() {
 	//	var pfj = $("#pfj").val();
 	//	//alert(pfj);

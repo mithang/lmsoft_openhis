@@ -12,19 +12,19 @@
         <div style="padding-right:10px;">
             <table class="form">
                 <tr>
-                    <th class="formTitle" style="width:50px;">Kỳ sổ sách：</th>
+                    <th class="formTitle" style="width:50px;">Kỳ sổ sách:</th>
                     <td class="formValue">
                         <select id="ddlZQ1" class="form-control"></select>
                     </td>
-                    <th class="formTitle" style="width:50px;">Kỳ kết chuyển：</th>
+                    <th class="formTitle" style="width:50px;">Kỳ kết chuyển:</th>
                     <td class="formValue">
                         <select id="ddlZQ2" class="form-control"></select>
                     </td>
-                    <th class="formTitle">Thời gian kết chuyển：</th>
+                    <th class="formTitle">Thời gian kết chuyển:</th>
                     <td class="formValue" style="width: 150px;">
-                        <input id="txtJZTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="txtJZTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle">Mã nhập：</th>
+                    <th class="formTitle">Mã nhập:</th>
                     <td class="formValue">
                         <input id="txtSRM" type="text" class="form-control" placeholder="Pinyin/Tên thuốc/Mã thuốc" />
                     </td>
@@ -64,7 +64,7 @@
         });
     }
 
-    //Không thể kết chuyển ngược thứ tự，Không thể chọn kỳ đã quyết toán
+    //Không thể kết chuyển ngược thứ tự, Không thể chọn kỳ đã quyết toán
     function CheckddlZQList() {
         $.najax({
             url: "/PharmacyDrugStorage/GetLastAccountPeriod",
@@ -116,7 +116,7 @@
                         $.modalAlert("Thời gian kết chuyển phải lớn hơn thời gian kết chuyển lần trước", 'warning');
                         return;
                     }
-                    $.modalConfirm("Kỳ kết chuyển lần này là" + zq + ",Thời gian kết chuyển là:" + lastCarryTime + "~~~~" + currJzsj + ",Bạn có chắc muốn kết chuyển không？", function (flag) {
+                    $.modalConfirm("Kỳ kết chuyển lần này là" + zq + ",Thời gian kết chuyển là:" + lastCarryTime + "~~~~" + currJzsj + ",Bạn có chắc muốn kết chuyển không?", function (flag) {
                         if (flag) {
                             $.najax({
                                 url: "/PharmacyDrugStorage/CarryOverMedicine",
@@ -147,7 +147,7 @@
 
     //Thông tin thuốc
     function gridDrugsList() {
-        var captionCon = "Tổng cộng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Trang hiện tại Tổng giá bán buôn：" + "" + "đ&nbsp;&nbsp;&nbsp;&nbsp;Tổng tiền bán lẻ：" + "" + "đ</span>";
+        var captionCon = "Tổng cộng&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span id='yeCon'>Trang hiện tại Tổng giá bán buôn: " + "" + "đ&nbsp;&nbsp;&nbsp;&nbsp;Tổng tiền bán lẻ: " + "" + "đ</span>";
         var $gridDrugsList = $("#gridDrugsList");
         $gridDrugsList.dataGrid({
             postData: getSearchPostData(),
@@ -206,7 +206,7 @@
             }
             titlePjze = window.roundingBy4she6ru5chengshuang(titlePjze, 2);
             titleLsze = window.roundingBy4she6ru5chengshuang(titleLsze, 2);
-            $("#yeCon").text("Tổng giá bán buôn：" + titlePjze + "đ;Tổng giá lẻ：" + titleLsze + "đ");
+            $("#yeCon").text("Tổng giá bán buôn: " + titlePjze + "đ;Tổng giá lẻ: " + titleLsze + "đ");
             $.loading(false);
         }
     }

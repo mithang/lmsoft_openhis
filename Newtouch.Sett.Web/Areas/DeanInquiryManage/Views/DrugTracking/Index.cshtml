@@ -43,7 +43,7 @@
             </td>
             <th class="formTitle" id="xzsjtext">Thời gian:</th>
             <td class="formValue" style="width:150px">
-                <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"*@>
+                <input id="rSJ" type="text" class="form-control input-wdatepicker" @*onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"*@>
             </td>
             <th class="formTitle">Thuốc Loại:</th>
             <td class="formValue" style="width:150px">
@@ -127,14 +127,14 @@
             postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val(), type: ypsx},
             url: "/DeanInquiryManage/DrugTracking/GetDrugTracking",
             autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
             colModel: [
                 { label: 'ypdm', name: 'ypdm', align: 'left', hidden: true },
                 { label: 'Tên thuốc', name: 'ypmc',align: 'left' },
                 { label: 'Quy cách', name: 'ypgg',align: 'left' },
                 { label: 'Đơn vị', name: 'zxdw',align: 'left' },
                 { label: 'Số lượng', name: 'sl',align: 'left' },
-                { label: 'Số tiền（đồng）', name: 'je',align: 'left' }
+                { label: 'Số tiền(đồng)', name: 'je',align: 'left' }
             ],
             sortname: gridSort,
             viewrecords: true,
@@ -168,13 +168,13 @@
                     $gridysList.dataGrid({
                         height: $(window).height() * 0.5 - 118,
                         autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-                        shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+                        shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
                         url: "/DeanInquiryManage/DrugTracking/DoctorBillingRanking",
                         postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val(), Ypcode: firstRow.ypdm },
                         colModel: [
                             { label: 'Bác sĩ', name: 'Name', align: 'left' },
                             { label: 'Số y lệnh / Số đơn thuốc', name: 'sl', align: 'left' },
-                            { label: 'mở đơn Số tiền（đồng）', name: 'zje', align: 'left' }
+                            { label: 'mở đơn Số tiền(đồng)', name: 'zje', align: 'left' }
                         ],
                         sortname: gridSort,
                         viewrecords: true
@@ -192,7 +192,7 @@
             postData: { kssj: $('#kssj').val(), jssj: $('#jssj').val() },
             url: "/DeanInquiryManage/DrugTracking/Profitandlossranking",
             autowidth: true,//nếushrinkToFitlàtruevà đã đặtwidthGiá trị,thì chiều rộng mỗi cột sẽ theowidthco giãn theo tỷ lệ；
-            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha。**
+            shrinkToFit: true, //nếu đặt thànhtrue,thìGridchiều rộng sẽ tự tính lại theo chiều rộng của vùng chứa cha.**
             colModel: [
                 { label: 'Lý do tổn thất', name: 'syyy',align: 'left' },
                 { label: 'Tổng số tiền bán sỉ (đồng)', name: 'pfjze',align: 'left' },
@@ -342,7 +342,7 @@
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1));
         }
         if (dateType == "3") {//ngày
-            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'yyyy-MM-dd' })");
+            $('#rSJ').attr('onfocus', "WdatePicker({ dateFmt: 'dd/MM/yyyy' })");
             $('#rSJ').val(myDate.getFullYear() + "-" + (parseInt(myDate.getMonth()) + 1) + "-" + myDate.getDate());
         }
         getSearchData();

@@ -66,9 +66,9 @@
                     <tr>
                         <td class="formTitle">Ngày phẫu thuật:</td>
                         <td class="formValue" colspan="2">
-                            <input id="txt_ksrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-01")">
+                            <input id="txt_ksrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" value="@DateTime.Now.ToString("01/MM/yyyy")">
                             <span style="float:left;">_</span>
-                            <input id="txt_jsrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.AddMonths(1).ToString("yyyy-MM-dd")">
+                            <input id="txt_jsrq" type="text" class="form-control input-wdatepicker" style="float:left;width:45%;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" value="@DateTime.Now.AddMonths(1).ToString("dd/MM/yyyy")">
                         </td>
                         <td class="formTitle">Trạng thái phẫu thuật:</td>
                         <td class="formValue formDdlSelectorTd">
@@ -373,15 +373,15 @@
             uniqueId: "Id",
             //******Cài đặt phân trang****
             queryParams: queryParams,
-            pagination: true,                   //Có hiển thị phân trang không（*）
-            pageNumber: 1,                      //Tải trang đầu tiên khi khởi tạo，Mặc định trang đầu tiên,và ghi lại
-            pageSize: 10,                       //Số dòng bản ghi mỗi trang（*）
-            pageList: [20, 50, 100],            //Số dòng mỗi trang có thể chọn（*）
+            pagination: true,                   //Có hiển thị phân trang không(*)
+            pageNumber: 1,                      //Tải trang đầu tiên khi khởi tạo, Mặc định là trang đầu tiên và có ghi nhớ
+            pageSize: 10,                       //Số dòng bản ghi mỗi trang(*)
+            pageList: [20, 50, 100],            //Số dòng mỗi trang có thể chọn(*)
             paginationHAlign: "left",
             paginationDetailHAlign: "right",
             //sortable: true,                     //Có bật sắp xếp không
             //sortOrder: "asc",                   //Cách sắp xếp
-            sidePagination: 'client',           //Cách phân trang：clientPhân trang phía client，serverPhân trang phía server（*）
+            sidePagination: 'client',           //Cách phân trang: client (phân trang phía máy khách), server (phân trang phía máy chủ)(*)
             showPaginationSwitch: false,
             //******Cài đặt phân trang****
             //******Cài đặt tiêu đề bảng****

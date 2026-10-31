@@ -112,7 +112,7 @@
     function submitForm() {
         debugger;
         var res = true;
-        //Lấy tất cả dòngId，Duyệt để hộp sửa ở trạng thái lưu
+        //Lấy tất cả dòngId, Duyệt để hộp sửa ở trạng thái lưu
         var rowIds = $("#gridList").jqGrid('getDataIDs');
         for (var i = 0; i < rowIds.length; i++) {
             $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) {

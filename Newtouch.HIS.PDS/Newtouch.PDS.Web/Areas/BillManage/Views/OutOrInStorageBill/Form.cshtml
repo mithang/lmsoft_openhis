@@ -58,20 +58,20 @@
 		<div class="panel-heading">Thông tin nhập kho</div>
 		<table class="form">
 			<tr>
-				<th class="formTitle">Đơn nhập kho：</th>
+				<th class="formTitle">Đơn nhập kho:</th>
 				<td class="formValue">
 					<input type="text" id="djh" name="djh" class="form-control newtouch_Readonly" />
 				</td>
-				<th class="formTitle"><span class="required">*</span>Nhà cung cấp：</th>
+				<th class="formTitle"><span class="required">*</span>Nhà cung cấp:</th>
 				<td class="formValue">
 					<input type="text" id="gysmc" name="gysmc" class="form-control" placeholder="Vui lòng chọn nhà cung cấp" autocomplete="off" />
 					<input type="hidden" id="gysCode" />
 				</td>
-				<th class="formTitle"><span class="required">*</span>Cách nhập kho：</th>
+				<th class="formTitle"><span class="required">*</span>Cách nhập kho:</th>
 				<td class="formValue">
 					<select class="form-control" id="fyfs" name="fyfs"></select>
 				</td>
-				<th class="formTitle">Tổng nhập kho(đ)：</th>
+				<th class="formTitle">Tổng nhập kho(đ):</th>
 				<td class="formValue">
 					<input id="txtRKZE" type="text" class="form-control newtouch_Readonly" />
 				</td>
@@ -102,7 +102,7 @@
             $("#gridList").jqGrid("addRowData", undefined, { operate: GetOperatehtml() }, "last");
         });
         InitBackspaceKeyForGys();
-        
+
     });
 
     //theobackspacephím để xóa tất cả
@@ -133,7 +133,7 @@
         GetDjh();
         InitJqGrid();
         //$("#gridList").jqGrid("addRowData", undefined, { operate: GetOperatehtml() }, "last");
-        
+
     }
 
     //Khởi tạo chi tiết xuất kho
@@ -142,9 +142,9 @@
 			postData: { crkId: crkId },
 			url: "/StorageManage/DrugStockSearch/GetCrkMxAll",
             height: $(window).height() - document.getElementById('gridList').offsetTop - 85,
-            rownumbers: true,  //Có hiển thị số thứ tự không
+            rownumbers: true, //Có hiển thị số thứ tự không
             multiselect: true,
-            editurl: "clientArray",  //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
+            editurl: "clientArray", //Chỉnh sửa dòng không gửi dữ liệu lên máy chủ
             unwritten: false,
             colModel: [
 				{
@@ -170,19 +170,19 @@
                 {
                     label: 'Ngày sản xuất', name: 'scrq', width: 100, hidden: true, editable: true, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<input id=\"scrq_" + options.rowId + "\" type=\"text\"  hidden=\"hidden\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"\" onfocus=\"WdatePicker({ dateFmt: 'yyyy-MM-dd' })\" />";
+                        return "<input id=\"scrq_" + options.rowId + "\" type=\"text\" hidden=\"hidden\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"\" onfocus=\"WdatePicker({ dateFmt: 'dd/MM/yyyy' })\" />";
                     }
                 },
                 {
                     label: 'Hạn sử dụng', name: 'yxq', width: 100, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<input id=\"yxq_" + options.rowId + "\" type=\"text\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"@DateTime.Now.AddYears(1).ToString("yyyy-MM-dd")\" onfocus=\"WdatePicker({ dateFmt: 'yyyy-MM-dd' })\" />";
+                        return "<input id=\"yxq_" + options.rowId + "\" type=\"text\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"@DateTime.Now.AddYears(1).ToString("dd/MM/yyyy")\" onfocus=\"WdatePicker({ dateFmt: 'dd/MM/yyyy' })\" />";
                     }
                 },
                 {
                     label: 'Ngày lập hóa đơn', name: 'kprq', width: 100, align: 'center',
                     formatter: function (cellvalue, options) {
-                        return "<input id=\"kprq_" + options.rowId + "\" type=\"text\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"@DateTime.Now.ToString("yyyy-MM-dd")\" onfocus=\"WdatePicker({ dateFmt: 'yyyy-MM-dd' })\" />";
+                        return "<input id=\"kprq_" + options.rowId + "\" type=\"text\" class=\"form-control input-wdatepicker input-wdatepicker-native\" value=\"@DateTime.Now.ToString("dd/MM/yyyy")\" onfocus=\"WdatePicker({ dateFmt: 'dd/MM/yyyy' })\" />";
                     }
                 },
                 { label: 'Giá bán buôn', name: 'pfj', width: 75, align: 'center', editable: true, editwidth: "100%" },
@@ -198,7 +198,7 @@
                 { label: 'ypdm', name: 'ypdm', hidden: true, editable: true },
                 { label: 'pfj', name: 'pfj', hidden: true, editable: true },
                 { label: 'lsj', name: 'lsj', hidden: true, editable: true },
-                { label: 'jj', name: 'jj', hidden: true, editable: true },//Giá nhập  vàslCùng đơn vị
+                { label: 'jj', name: 'jj', hidden: true, editable: true },//Giá nhập vàslCùng đơn vị
                 { label: 'zxdwlsj', name: 'zxdwlsj', hidden: true, editable: true },
                 { label: 'ykpfj', name: 'ykpfj', hidden: true, editable: true },
                 { label: 'yklsj', name: 'yklsj', hidden: true, editable: true },
@@ -213,8 +213,8 @@
 				{ label: 'rkdw', name: 'rkdw', hidden: true, editable: true },
 				{ label: 'lsj', name: 'lsj', hidden: true, editable: true },
             ],
-            editinputwidthborder: false,    //Có cần viền không Mặc định làtrue
-            editinputborderradius: false,   //Có cần bo góc viền không Mặc địnhtrue（Có bo góc）
+            editinputwidthborder: false, //Có cần viền không Mặc định làtrue
+            editinputborderradius: false, //Có cần bo góc viền không Mặc địnhtrue(Có bo góc)
 			gridComplete: function () {
                 var ids = $("#gridList").getDataIDs();
                 var lastRowoid = ids[ids.length - 1];
@@ -411,7 +411,7 @@
     function CheckKc(rowid) {
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if (!reg.test($("#" + rowid + "_sl").val())) {
-            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             $("#" + rowid + "_sl").val("");
             return false;
         }
@@ -426,7 +426,7 @@
         $("#" + rowid + "_lsze").val((zhyz * sl * zxdwlsj).toFixed(2));
     }
 
-    //Tổng giá nhập mất tiêu điểm，Tính đơn giá nhập kho
+    //Tổng giá nhập mất tiêu điểm, Tính đơn giá nhập kho
 	function JJZE_Leave(id, rowid) {
         $("#" + id).change(function () {
 			if ($("#" + rowid +"_Zje").val() === "") {
@@ -437,7 +437,7 @@
             }
             var reg2 = /^\d+(?:\.\d{0,2})?$/;
 			if (!reg2.test($("#" + rowid + "_Zje").val())) {
-                $.modalMsg("Tổng giá nhập vui lòng nhập đúng định dạng tiền！", "warning", 1500);
+                $.modalMsg("Tổng giá nhập vui lòng nhập đúng định dạng tiền!", "warning", 1500);
                 return false;
             }
             var sl = Number($("#" + rowid + "_sl").val());
@@ -460,7 +460,7 @@
         var pfj = parseFloat(ykpfj / bzs * zhyz);
 		var jj = parseFloat($("#" + rowid + "_Zje").val());
         var sl = Number($("#" + rowid + "_sl").val());
-        $("#" + rowid + "_kl").val(parseFloat(jj/sl/pfj * 100).toFixed(2));  //Làm tròn 5 bỏ 6 lên
+        $("#" + rowid + "_kl").val(parseFloat(jj/sl/pfj * 100).toFixed(2)); //Làm tròn 5 bỏ 6 lên
     }
 
 	function hzjs(id, id2,rowid) {
@@ -471,7 +471,7 @@
 				var sl = $("#" + rowid + "_sl").val();
 				var pfj = $("#" + rowid + "_pfj").val();
 				var lsj = $("#" + rowid + "_lsj").val();
-				$("#" + rowid + "_kl").val(parseFloat(Zje / sl / pfj * 100).toFixed(2));  //Làm tròn 5 bỏ 6 lên
+				$("#" + rowid + "_kl").val(parseFloat(Zje / sl / pfj * 100).toFixed(2)); //Làm tròn 5 bỏ 6 lên
 				$("#" + rowid + "_lsze").val((lsj * sl).toFixed(2));
 				$("#" + rowid + "_pfjze").val((pfj * sl).toFixed(2));
 			});
@@ -480,7 +480,7 @@
 				var sl = $("#" + rowid + "_sl").val();
 				var pfj = $("#" + rowid + "_pfj").val();
 				var lsj = $("#" + rowid + "_lsj").val();
-				$("#" + rowid + "_kl").val(parseFloat(Zje / sl / pfj * 100).toFixed(2));  //Làm tròn 5 bỏ 6 lên
+				$("#" + rowid + "_kl").val(parseFloat(Zje / sl / pfj * 100).toFixed(2)); //Làm tròn 5 bỏ 6 lên
 				$("#" + rowid + "_lsze").val((lsj * sl).toFixed(2));
 				$("#" + rowid + "_pfjze").val((pfj * sl).toFixed(2));
 			});
@@ -609,10 +609,10 @@
         $("#sel_dw_" + rowid).empty();
         $("#sel_dw_" + rowid).append('<option value="bzdw" data-zhyz="' + $thistr.attr('data-bzs') + '" selected>' + $thistr.attr('data-bzdw') + '</option>');
         //if ($thistr.attr('data-dw') !== $thistr.attr('data-bzdw')) {
-        //    $("#sel_dw_" + rowid).append('<option value="bmdw" data-zhyz="' + $thistr.attr('data-zhyz') + '" selected>' + $thistr.attr('data-dw') + '</option>');
+        // $("#sel_dw_" + rowid).append('<option value="bmdw" data-zhyz="' + $thistr.attr('data-zhyz') + '" selected>' + $thistr.attr('data-dw') + '</option>');
         //}
         //if ($thistr.attr('data-zxdw') !== $thistr.attr('data-bzdw') && $thistr.attr('data-dw') !== $thistr.attr('data-zxdw')) {
-        //    $("#sel_dw_" + rowid).append('<option value="zxdw" data-zhyz="1" selected>' + $thistr.attr('data-zxdw') + '</option>');
+        // $("#sel_dw_" + rowid).append('<option value="zxdw" data-zhyz="1" selected>' + $thistr.attr('data-zxdw') + '</option>');
         //}
     }
 
@@ -643,21 +643,21 @@
 
     ////Tạo số chứng từ
     //function GetDjh() {
-    //    $.ajax({
-    //        url: "/DrugStorage/InitDjh",
-    //        data: { djmc: '药品入库单', r: Math.random() },
-    //        dataType: "json",
-    //        async: false,
-    //        cache: false,
-    //        success: function (res) {
-    //            if (res.state === "success") {
-    //                $("#djh").val(res.data);
-    //            }
-    //            else {
-    //                $.modalAlert(res.message, 'error');
-    //            }
-    //        }
-    //    });
+    // $.ajax({
+    // url: "/DrugStorage/InitDjh",
+    // data: { djmc: '药品入库单', r: Math.random() },
+    // dataType: "json",
+    // async: false,
+    // cache: false,
+    // success: function (res) {
+    // if (res.state === "success") {
+    // $("#djh").val(res.data);
+    // }
+    // else {
+    // $.modalAlert(res.message, 'error');
+    // }
+    // }
+    // });
     //}
 
 
@@ -715,7 +715,7 @@
             return;
         }
         if (list.length === 0) {
-            $.modalMsg("Vui lòng chọn dữ liệu cần sửa！", 'warning', 1000);
+            $.modalMsg("Vui lòng chọn dữ liệu cần sửa!", 'warning', 1000);
             return;
 			}
 			$.ajax({
@@ -769,7 +769,7 @@
 
     //Kiểm tra giá trị số
     function Validately(rowData, rowid) {
-        if ($("#gysCode").val() === "" || $("#gysmc").val() === "") {   //Loại bỏ khoảng trắng hai đầu
+        if ($("#gysCode").val() === "" || $("#gysmc").val() === "") { //Loại bỏ khoảng trắng hai đầu
             $.modalMsg("Vui lòng chọn nhà cung cấp", "error", 1000);
             return false;
         }
@@ -779,16 +779,16 @@
         }
         var reg = /^[1-9]\d*$/;//Lớn hơn0 số nguyên
         if (!reg.test(rowData.sl)) {
-            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên！", "warning", 1500);
+            $.modalMsg("Số lượng phải lớn hơn 0 số nguyên!", "warning", 1500);
             return false;
         }
         var reg2 = /^\d+(?:\.\d{0,2})?$/;
 		if (!reg2.test(rowData.Zje)) {
-            $.modalMsg("Tổng giá nhập vui lòng nhập đúng định dạng tiền！", "warning", 1500);
+            $.modalMsg("Tổng giá nhập vui lòng nhập đúng định dạng tiền!", "warning", 1500);
             return false;
         }
         if (rowData.ph === "") {
-            $.modalMsg("Số lô không được để trống！", "warning", 1000);
+            $.modalMsg("Số lô không được để trống!", "warning", 1000);
             return false;
         }
         return true;

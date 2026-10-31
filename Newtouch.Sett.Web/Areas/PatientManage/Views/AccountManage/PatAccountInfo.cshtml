@@ -13,7 +13,7 @@
             <tr>
                 <td>
                     <div class="input-group">
-                        <input id="txt_keyword" type="text" class="form-control form-control-focus" placeholder="Vui lòng nhập số thẻ、Số nhập viện、Họ tên" style="width: 200px;">
+                        <input id="txt_keyword" type="text" class="form-control form-control-focus" placeholder="Vui lòng nhập số thẻ, Số nhập viện, Họ tên" style="width: 200px;">
                     </div>
                 </td>
                 <td style="padding-left:12px;">
@@ -80,7 +80,7 @@
         $.loading(true, "Đang yêu cầu dữ liệu..."); 
         var keyword = $.trim($("#txt_keyword").val());
         if (keyword == "") {
-            $.modalAlert("Vui lòng nhập Hiệu lực Số nhập viện、Số thẻ、hoặc Họ tên", 'warning');
+            $.modalAlert("Vui lòng nhập Hiệu lực Số nhập viện, Số thẻ, hoặc Họ tên", 'warning');
             return false;
         }
         var zyh = null;

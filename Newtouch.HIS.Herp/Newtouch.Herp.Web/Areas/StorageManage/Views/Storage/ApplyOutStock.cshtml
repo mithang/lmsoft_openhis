@@ -75,19 +75,19 @@
         <div class="panel-heading">Lọc thông tin</div>
         <table class="form">
             <tr>
-                <td class="formTitle">Số phiếu lĩnh：</td>
+                <td class="formTitle">Số phiếu lĩnh:</td>
                 <td class="formValue">
                     <input type="text" id="djh" name="djh" class="form-control" placeholder="Vui lòng nhậpSố phiếu lĩnh" />
                 </td>
-                <td class="formTitle">Trạng thái lĩnh：</td>
+                <td class="formTitle">Trạng thái lĩnh:</td>
                 <td class="formValue">
                     @Html.DropDownList("applyProcess", EnumApplyProcess.Waiting.ToDescSelectList().Where(x => applyProcess.ToString().Split(',').Contains(x.Value)).ToList(), "Tất cả", new { @class = "form-control" })
                 </td>
-                <th class="formTitle">Loại phiếu：</th>
+                <th class="formTitle">Loại phiếu:</th>
                 <td class="formValue" style="width: 110px;">
                     @Html.DropDownList("applyType", EnumApplyType.DepartmentApply.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                 </td>
-                <td class="formTitle">Khoa lĩnh：</td>
+                <td class="formTitle">Khoa lĩnh:</td>
                 <td class="formValue" style="width: 200px;">
                     <select id="slbm" name="slbm" class="form-control"><option value="">Tất cả</option></select>
                 </td>
@@ -96,13 +96,13 @@
                 </td>
             </tr>
             <tr>
-                <th class="formTitle"><span class="required">*</span>Đăng kýNgày：</th>
+                <th class="formTitle"><span class="required">*</span>Đăng kýNgày:</th>
                 <td class="formValue" style="width:130px;">
-                    <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddMonths(-1).ToString("yyyy-MM-dd 00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                    <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddMonths(-1).ToString("dd/MM/yyyy 00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                 </td>
-                <th class="formTitle"><span class="required">*</span>Đến：</th>
+                <th class="formTitle"><span class="required">*</span>Đến:</th>
                 <td class="formValue">
-                    <input id="endTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                    <input id="endTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("dd/MM/yyyy HH:mm")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                 </td>
                 <td colspan="4"></td>
             </tr>
@@ -193,7 +193,7 @@
         }
     });
 
-    //Bên trái，Khu vực đơn đăng ký
+    //Bên trái,Khu vực đơn đăng ký
     function gridList() {
         $gridList.dataGrid({
             caption: "Thông tin lĩnh",
@@ -309,7 +309,7 @@
         return { kssj: kssj, jssj: jssj, pdh: pdh, applyType: applyType, applyProcess: applyProcess, slbm: slbm, applyProcesses:"@applyProcess" };
     };
 
-    //Bên phải，Khu vực chi tiết
+    //Bên phải,Khu vực chi tiết
     function productGridList() {
         $ProductGridList.dataGrid({
             caption: "Chi tiết lĩnh",
@@ -355,17 +355,17 @@
         var rowData = $ProductGridList.getRowData(rowid);
         var reg = /^[1-9]\d*$/;//Lớntại0số nguyên
         if (!reg.test(rowData.xfsl)) {
-            $.modalMsg("Phát thuốcSố lượng phải lớn hơn0số nguyên！", "warning", 1500);
+            $.modalMsg("Phát thuốcSố lượng phải lớn hơn0số nguyên!", "warning", 1500);
             return false;
         }
         var xfsl = parseInt(rowData.xfsl);
         var zhyz = parseInt(rowData.zhyz);
         if (xfsl - parseInt(rowData.bmdwsysl) > 0) {
-            $.modalMsg("Phát hiện tạiSố lượngKhông thểLớntại" + rowData.bmdwsysl + "！", 'warning', 1500);
+            $.modalMsg("Phát hiện tạiSố lượngKhông thểLớntại" + rowData.bmdwsysl + "!", 'warning', 1500);
             return false;
         }
         if ((xfsl * zhyz - parseInt(rowData.kykcsl) > 0)) {
-            $.modalMsg("Phát hiện tạiSố lượngKhông thểLớntạiTồn kho khả dụng！", 'warning', 1500);
+            $.modalMsg("Phát hiện tạiSố lượngKhông thểLớntạiTồn kho khả dụng!", 'warning', 1500);
             return false;
         }
         return true;
@@ -375,7 +375,7 @@
     function newtouch_event_f8() {
         var rowIds = $ProductGridList.getDataIDs();
         if (rowIds == undefined || rowIds.length <= 0) {
-            $.modalMsg("Vui lòng chọnPhiếu xuất kho！", 'warning', 1500);
+            $.modalMsg("Vui lòng chọnPhiếu xuất kho!", 'warning', 1500);
             return false;
         }
         var ckmx = [];
@@ -385,7 +385,7 @@
             if (rowData != null) ckmx.push(rowData);
         });
         if (ckmx.length <= 0) {
-            $.modalMsg("Không tìm thấyHiệu lựcchi tiết xuất kho！", 'warning', 1500);
+            $.modalMsg("Không tìm thấyHiệu lựcchi tiết xuất kho!", 'warning', 1500);
             return false;
         }
         $.najax({

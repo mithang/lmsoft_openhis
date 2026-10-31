@@ -178,11 +178,11 @@
     var isYbjyjz; //Lần khám hiện tại có giao dịch BHYT hay không
     var isXnhjyjz;//Lần khám hiện tại có giao dịch nông thôn mới hay không
     @*var medicalInsurance = '@medicalInsurance';*@
-    var curTime = '@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")';//Thời gian hiện tại
+    var curTime = '@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")';//Thời gian hiện tại
     var cqPatInfo = {};
     var zyh;
     var jsnm;
-    var ybjsh; //Sốquyết toán BHYT（Số hiệuquyết toán）
+    var ybjsh; //Sốquyết toán BHYT(Số hiệuquyết toán)
     var isybdk = false;
     var ybkCardType = "@((int)EnumCardType.YBJYK)";//Loại thẻ BHYT
     var xnkCardType = "@((int)EnumCardType.XNK)";//Loại thẻ ảo
@@ -562,7 +562,7 @@
                     gzyb_Cyblcx.prm_aae036 = $.getTime();//Thời gian xử lý
                     $.najax({
                         url: "/Com/GetSysNowDate",
-                        data: { format: "yyyy-MM-dd HH:mm:ss" },
+                        data: { format: "dd/MM/yyyy HH:mm:ss" },
                         dataType: 'text',
                         async: false,
                         success: function (strTime) {

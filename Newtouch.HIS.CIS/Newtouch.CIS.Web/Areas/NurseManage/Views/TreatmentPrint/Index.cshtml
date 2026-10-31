@@ -55,14 +55,14 @@
                         <td class="formTitle"> Ngày bắt đầu:</td>
                         <td class="formValue">
                             <input id="txt_ksrq" type="text" class="form-control input-wdatepicker" 
-                                   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-                                   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-01 ")" />
+                                   onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+                                   onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-01 ")" />
                         </td>
                         <td class="formTitle"> Ngày kết thúc:</td>
                         <td class="formValue">
                             <input id="txt_jsrq" type="text" class="form-control input-wdatepicker"
-                                   onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })"
-                                   onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("yyyy-MM-dd ")" />
+                                   onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })"
+                                   onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { RefreshOrder() } })" value="@DateTime.Now.ToString("dd/MM/yyyy ")" />
                         </td>
                         <td class="formTitle"> Dài hạn/Tạm thờiY lệnh:</td>
                         <td class="formValue">
@@ -250,7 +250,7 @@
                             }
                             returnval = "Bắt đầu";
                         }
-                        $("#gridList").setCell(ids[i], "fzxh", '<img src="../../../../Content/img/' + returnval + '.png" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
+                        $("#gridList").setCell(ids[i], "fzxh", '<img src="../../../../Content/img/' + returnval + '.png" alt="Trạng thái bệnh nhân" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
                     } else if (last !== rowData.fzxh && last !== "") {
                         setlastrowzuhao(ids[i]);
                     }
@@ -263,7 +263,7 @@
     //Cài đặtcái trướcdòngSố nhóm
     function setlastrowzuhao(rowid) {
         var lastrow = parseInt(rowid) - 1;
-        $("#gridList").setCell(lastrow, "fzxh", '<img src="../../../../Content/img/Kết thúc.png" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
+        $("#gridList").setCell(lastrow, "fzxh", '<img src="../../../../Content/img/finished.png" alt="Kết thúc" />');//setCell Cài đặtkiểu ô đơn Giá trị hoặc thuộc tính
     }
     //làm mớiY lệnh mới
     function RefreshOrder() {

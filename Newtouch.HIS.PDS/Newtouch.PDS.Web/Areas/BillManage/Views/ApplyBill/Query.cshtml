@@ -63,21 +63,21 @@
         <div>
             <table class="form">
                 <tr>
-                    <th class="formTitle">Trạng thái cấp phát：</th>
+                    <th class="formTitle">Trạng thái cấp phát:</th>
                     <td class="formValue" style="width: 100px;">
                         @Html.DropDownList("ffzt", EnumSLDDeliveryStatus.None.ToDescSelectList(), "Tất cả", new { @class = "form-control" })
                     </td>
-                    <th class="formTitle">Số chứng từ：</th>
+                    <th class="formTitle">Số chứng từ:</th>
                     <td class="formValue">
                         <input type="text" class="form-control" id="djh" />
                     </td>
-                    <th class="formTitle">Ngày xin：</th>
+                    <th class="formTitle">Ngày xin:</th>
                     <td class="formValue">
-                        <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00:00")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="startTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("dd/MM/yyyy 00:00:00")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
-                    <th class="formTitle" style="width:45px;">đến：</th>
+                    <th class="formTitle" style="width:45px;">đến:</th>
                     <td class="formValue">
-                        <input id="endTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("yyyy-MM-dd HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" />
+                        <input id="endTime" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.AddHours(1).ToString("dd/MM/yyyy HH:mm:ss")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" />
                     </td>
                     <td class="formTitle" style="width:150px;">
                         <input type="button" id="btn_search" class="btn btn-md btn-primary" value="Tra cứu" />
@@ -207,7 +207,7 @@
 
     //Sự kiện nhấp chuột
     function btn_selectrow(rowId) {
-        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp，Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
+        $('#gridDJMXInfo').jqGrid("clearGridData");//Mỗi lần nhấp, Xóa chi tiết trước Sau đó tải lại chi tiết của tất cả các dòng đã chọn
         $('#gridDJMXInfo').jqGrid('setGridParam', {
             postData: { sldId: $("#gridDJMainRecords").jqGrid('getRowData', rowId).sldId },
             url: "/BillManage/ApplyBill/ApplyDetailSearch"

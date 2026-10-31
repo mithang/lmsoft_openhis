@@ -35,11 +35,11 @@
             </td>
             <td class="formTitle"><span style="color:#ff0000;">*</span>Thu phíThời gian:</td>
             <td class="formValue">
-                <input id="txtsfkssj" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.AddDays(-1).ToString("yyyy-MM-dd 00:00:00")">
+                <input id="txtsfkssj" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" value="@DateTime.Now.AddDays(-1).ToString("dd/MM/yyyy 00:00:00")">
             </td>
             <td class="formTitle" style="width:10px">đến</td>
             <td class="formValue">
-                <input id="txtsfjssj" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm:ss' })" value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")">
+                <input id="txtsfjssj" type="text" class="form-control input-wdatepicker" style="width:90%; float:left;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm:ss' })" value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss")">
             </td>
             <td class="formValue">
                 <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
@@ -553,7 +553,7 @@
             }
             //var ids = getCheckedIds();
             //if (ids == null || ids.length <= 0) {
-            //    $.modalMsg("vui lòng勾chọncầnIntruyền dịch của thuốc", "warning");
+            //    $.modalMsg("Vui lòng chọn thuốc cần in phiếu truyền dịch", "warning");
             //    return;
             //}
             //var tmpIds = "";

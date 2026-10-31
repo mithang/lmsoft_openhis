@@ -101,7 +101,7 @@
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
         if (rowData.psdzt != "已保存") {
-            $.modalAlert("Điểm phân phối đã chọn không phải trạng thái đã lưu，Không thể sửa", 'warning');
+            $.modalAlert("Điểm phân phối đã chọn không phải trạng thái đã lưu, Không thể sửa", 'warning');
             return;
         }
         $.modalOpen({
@@ -137,10 +137,10 @@
             dataType: "json",
             success: function (res) {
                 if (res.state == "success") {
-                    $.modalMsg("Điểm phân phối báo cáo thành công！", 'success');
+                    $.modalMsg("Điểm phân phối báo cáo thành công!", 'success');
                     $('#btn_search').trigger('click');
                 } else {
-                    $.modalMsg("Điểm phân phối báo cáo thất bại：" + res.message, 'warning');
+                    $.modalMsg("Điểm phân phối báo cáo thất bại: " + res.message, 'warning');
                 }
             }
         });
@@ -158,7 +158,7 @@
             return;
         }
         var rowData = $("#gridList").jqGrid('getRowData', selRowIds[0]);
-        if (rowData.psdzt == "已作废" ) {
+        if (rowData.psdzt == "已作废") {
             $.modalAlert("Điểm phân phối này đã bị hủy bỏ", 'warning');
             return;
         }
@@ -169,10 +169,10 @@
             dataType: "json",
             success: function (res) {
                 if (res.state == "success") {
-                    $.modalMsg("Điểm phân phối hủy bỏ thành công！", 'success');
+                    $.modalMsg("Điểm phân phối hủy bỏ thành công!", 'success');
                     $('#btn_search').trigger('click');
                 } else {
-                    $.modalMsg("Điểm phân phối hủy bỏ thất bại：" + res.message, 'warning');
+                    $.modalMsg("Điểm phân phối hủy bỏ thất bại: " + res.message, 'warning');
                 }
             }
         });

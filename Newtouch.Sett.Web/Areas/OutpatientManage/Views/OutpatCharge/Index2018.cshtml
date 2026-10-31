@@ -191,11 +191,11 @@
                 <input id="zfxz" type="text" style="display:none;" class="form-control" />
                 @if (orginal)
                 {
-                    @Html.Partial("originalCharge"); //thu phí thông thường。số lượng
+                    @Html.Partial("originalCharge"); //thu phí thông thường.số lượng
                 }
                 else
                 {
-                    @Html.Partial("UnoriginalCharge"); //thu phí không thông thường。số lượng đo đơn vị,lượng trị liệu mỗi lần,số lần trị liệu
+                    @Html.Partial("UnoriginalCharge"); //thu phí không thông thường.số lượng đo đơn vị,lượng trị liệu mỗi lần,số lần trị liệu
                 }
             </form>
         </div>
@@ -250,10 +250,10 @@
     var multiTimesSettWithUnSettedSingleItem = '@multiTimesSettWithUnSettedSingleItem' === 'True'; //cấu hình công tắc:chế độ giao dịch nhiều lần khoản chưa thu phí ngoài đơn thuốc có tự động đưa vào không
     //
     var leftdata = [];//nguồn dữ liệu bên trái
-    var respmzh; //xác thực số khám ngoại trú（chưa đổi）
+    var respmzh; //xác thực số khám ngoại trú(chưa đổi)
     var editingNewid = null; //dòng đang sửa
     var patInfoPostObj = {}; //thông tin cá nhânObjectđối tượng cần gửi lên máy chủ
-    var lastcfh; //số đơn thuốc dùng ở dòng trước（khoản mở ở giữa không tính là lần trước）
+    var lastcfh; //số đơn thuốc dùng ở dòng trước(khoản mở ở giữa không tính là lần trước)
     var currentNewPreNo;
     var orgId = '@(opr.OrganizeId)';
     var paySettlementNo = "";//mã nội bộ quyết toán vé điện tử
@@ -388,7 +388,7 @@
             //quyết toán trước nợ phí sửa lại
             $.modalOpen({
                 id: "ArrearageSettedUpdate",
-                title: "Thu bổ sung nợ phí（" + rowData.xm + "）",
+                title: "Thu bổ sung nợ phí(" + rowData.xm + ")",
                 url: "/OutpatientManage/OutpatCharge/ArrearageSettedUpdate?mzh=" + mzh + "&patid=" + rowData.patid,
                 width: "750px",
                 height: "600px",
@@ -605,7 +605,7 @@
             { label: "Đơn vị", name: "dw", width: 40, align: "left" },
             {
                 label: "Đơn giá(đồng)", name: "dj", width: 80, align: "left", formatter: "number"
-                , formatoptions: { decimalPlaces: 4, defaultValue: '0.0000' }
+, formatoptions: { decimalPlaces: 4, defaultValue: '0.0000' }
             },
             {
                 label: "Số tiền(đồng)", name: "zje", width: 80, align: "left", formatoptions: { decimalPlaces: 2, defaultValue: '0.00' }
@@ -833,7 +833,7 @@
         editingNewid = null;    //dòng đang sửa
         patModel = null;
         lastcfh = "";//số đơn thuốc sửa lần cuối
-        respmzh = "";//xác thực số khám ngoại trú（chưa đổi）
+        respmzh = "";//xác thực số khám ngoại trú(chưa đổi)
         $("#gridFeeList").clearGridData();
         $('#xm,#xb,#nlshow,#jsr,#zjlx,#zjh,#csny,#phone,#brxzmc,#jiuzhenbiaozhi').html('');
         $("#zje").html('0.00');
@@ -943,7 +943,7 @@
                         tempCfh = $('#cfh').val();
                     }
                     else if (lastcfh) {
-                        //số đơn thuốc dùng ở dòng trước（khoản mở ở giữa không tính là lần trước）
+                        //số đơn thuốc dùng ở dòng trước(khoản mở ở giữa không tính là lần trước)
                         tempCfh = lastcfh;
                     }
                     else {
@@ -1880,7 +1880,7 @@
     }
     /**********************nghiệp vụ BHYTEND*****************************/
 
-    /* tổng hợp riêng số tiền đơn thuốc、số tiền BHYT trả về,gọiHISquyết toán */
+    /* tổng hợp riêng số tiền đơn thuốc, số tiền BHYT trả về,gọiHISquyết toán */
     function CQybjs_confirm(xmzje) {
         var xmzje = openAllCfSettPz === 'True' ? xmzje : MZJS.getTotalXmzje();
         var ybjyFeeReturn = openAllCfSettPz === 'True' ? MZJS.ybjyFeeReturn : MZJS.getTotalYbjyFeeReturn();
@@ -2141,7 +2141,7 @@
                 oWin.close()
             }
         }
-        let html = '<div style="height: 100%;width: 100%;">' + `<img src="${imgSrc}" onload="fn()" style="max-height:100%;max-width: 100%;" />` + '</div>'
+        let html = '<div style="height: 100%;width: 100%;">' + `<img src="${imgSrc}" alt="Ảnh đính kèm" onload="fn()" style="max-height:100%;max-width: 100%;" />` + '</div>'
         oWin.document.open()
         oWin.document.write(html)
         oWin.document.close()
@@ -3119,7 +3119,7 @@
 			    }
 		    });
     }
-    //tra cứu bằng nút（tra cứu nhân viên）
+    //tra cứu bằng nút(tra cứu nhân viên)
     function GetPatSerarchView(mzh, blh) {
         $.modalOpen({
             id: "patSearch",
@@ -3286,7 +3286,7 @@
         cqPatInfo.zymzh = patModel.mzh;//số khám ngoại trú
     }
 
-    //kiểm trađang sửacủadữ liệu（chờ gửi）củatính đầy đủ
+    //kiểm trađang sửacủadữ liệu(chờ gửi)củatính đầy đủ
     function checkEditingRowData(rowData) {
         if ('@orginal' == 'True' || ('@orginal' == 'False' && rowData.yzlx == "1")) {
             //thông thường,số lượng
@@ -3503,10 +3503,10 @@
     function FillgridFeeList(data) {
         $.each(data, function () {
             var newRowData = {
-                newid: null,   //newid()
+                newid: null, //newid()
                 cfh: this.cfh,
                 cfnm: this.cfnm,
-                xmnm: this.xmnm,    //20181010khoản tính phí riêng chưa thu phí
+                xmnm: this.xmnm, //20181010khoản tính phí riêng chưa thu phí
                 sfxmCode: this.sfxmCode,
                 sfxmmc: this.sfxmmc,
                 sfdlCode: this.sfdlCode,
@@ -3761,7 +3761,7 @@
                     $.modalAlert("Chỉ áp dụng cho đăng ký khám ngoại trú bệnh nhân BHYT", 'error');
                     return;
                 }
-                //yêu cầusaumáy hủy số（HIShủy số+BHYThủy số）
+                //yêu cầusaumáy hủy số(HIShủy số+BHYThủy số)
                 if (!!!patModel.ybjsh) {
                     $.modalAlert("Xảy ra bất thường,Thiếu số quyết toán BHYT", 'error');
                     return;
@@ -3802,7 +3802,7 @@
             }
             $.loading(true, 'ĐangBHYTHủy quyết toán,Vui lòng chờ…');
             timeoutFunc = function () {
-                //1、BHYThủyđăng ký khám
+                //1. BHYThủyđăng ký khám
                 var ybjyDenyRegReturn = $.yibao.DenyReg(patModel.ybjsh, patModel.sbbh, ybfyxzCompResult.TTCode);
                 $.loading(false);
                 if (ybjyDenyRegReturn.Code == 0) {

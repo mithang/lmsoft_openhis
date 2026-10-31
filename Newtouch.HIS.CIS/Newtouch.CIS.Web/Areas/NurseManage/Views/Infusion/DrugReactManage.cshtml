@@ -65,11 +65,11 @@
                 </td>
                 <td class="formTitle">Thời gian tạo:</td>
                 <td class="formValue">
-                    <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" style="width:80%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-01")">
+                    <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" style="width:80%; float:left;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" value="@DateTime.Now.ToString("yyyy-MM-01")">
                 </td>
                 <td class="formTitle" style="width:10px">đến</td>
                 <td class="formValue">
-                    <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" style="width:80%; float:left;" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" value="@DateTime.Now.ToString("yyyy-MM-dd")">
+                    <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" style="width:80%; float:left;" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" value="@DateTime.Now.ToString("dd/MM/yyyy")">
                 </td>
                 <td class="formTitle">
                     <input type="button" class="btn btn-primary btn-md" id="btn_search" value="Tra cứu" />
@@ -166,7 +166,7 @@
                     </td>
                     <td class="formTitle">Ngày sinh:</td>
                     <td class="formValue">
-                        <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="">
+                        <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { RefreshOrder() } })" value="">
                     </td>
                 </tr>
                 <tr>
@@ -280,7 +280,7 @@
                     </td>
                     <td class="formTitle" colspan="2">Thời gian xảy ra phản ứng/sự kiện bất lợi:</td>
                     <td class="formValue">
-                        <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd'})" value="">
+                        <input id="txt_zxrq" type="text" class="form-control input-wdatepicker" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy'})" value="">
                     </td>
                     <td class="formTitle"></td>
                 </tr>
@@ -465,7 +465,7 @@
                     </td>
                     <td class="formTitle">Báo cáoNgày:</td>
                     <td class="formValue">
-                        <input id="bgrq" type="text" class="form-control input-wdatepicker" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { RefreshOrder() } })" value="">
+                        <input id="bgrq" type="text" class="form-control input-wdatepicker" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { RefreshOrder() } })" value="">
                     </td>
                 </tr>
                 <tr>
@@ -644,7 +644,7 @@
                 { label: 'Thao tác', name: 'action', width: 100, align: 'center' }
             ],
             editinputwidthborder: false,    //CóKhôngcần viền Mặc địnhlàtrue
-            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue（có bo tròn）
+            editinputborderradius: false,   //CóKhôngcần bo tròn viền Mặc địnhtrue(có bo tròn)
             pager: "#gridXGYPPager",
             loadComplete: function () {
                 ////tựđộngkích hoạtĐơn thuốc mới

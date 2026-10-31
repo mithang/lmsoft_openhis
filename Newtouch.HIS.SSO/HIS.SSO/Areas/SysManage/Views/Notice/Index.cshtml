@@ -275,15 +275,15 @@
             //******thiết lập phân trang****
             //toolbar: '.btn-toolbar',            //nút công cụ dùng vùng chứa nào #toolbar
             //toolbarAlign: 'left',
-            pagination: true,                   //có hiển thị phân trang hay không（*）
+            pagination: true,                   //có hiển thị phân trang hay không(*)
             pageNumber: 1,                      //tải ban đầu trang đầu tiên,mặc định trang đầu tiên,và ghi lại
-            pageSize: 30,                       //số dòng bản ghi mỗi trang（*）
-            pageList: [5, 50, 100],            //số dòng mỗi trang có thể chọn（*）
+            pageSize: 30,                       //số dòng bản ghi mỗi trang(*)
+            pageList: [5, 50, 100],            //số dòng mỗi trang có thể chọn(*)
             paginationHAlign: "left",
             paginationDetailHAlign: "right",
             sortable: true,                     //có bật sắp xếp hay không
             sortOrder: "desc",                   //phương thức sắp xếp
-            sidePagination: 'server',           //phương thức phân trang:clientphân trang phía máy khách,serverphân trang phía máy chủ（*）
+            sidePagination: 'server',           //phương thức phân trang:client (phân trang phía máy khách), server (phân trang phía máy chủ)(*)
             //******thiết lập phân trang****
             onLoadSuccess: function (data) {
 
@@ -312,7 +312,7 @@
     }
 
 
-    //hàm tương ứng thực hiện phán đoán；
+    //hàm tương ứng thực hiện phán đoán; 
     function checkFormatter(value, row, index) {
         if (row.type)//type là giá trị trạng thái có được chọn hay không
             return {

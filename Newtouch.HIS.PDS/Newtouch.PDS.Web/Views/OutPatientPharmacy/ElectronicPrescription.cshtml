@@ -64,55 +64,55 @@
             <div id="dv_cfInfo">
                 <ul>
                     <li>
-                        <span class="formTitle">Số ngoại trú：</span>
+                        <span class="formTitle">Số ngoại trú:</span>
                         <label id="lab_mzh" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Họ tên：</span>
+                        <span class="formTitle">Họ tên:</span>
                         <label id="lab_name" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Giới tính：</span>
+                        <span class="formTitle">Giới tính:</span>
                         <label id="lab_xb" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Tuổi：</span>
+                        <span class="formTitle">Tuổi:</span>
                         <label id="lab_nl" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Bác sĩ：</span>
+                        <span class="formTitle">Bác sĩ:</span>
                         <label id="lab_ysmc" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Mã nhân viên bác sĩ：</span>
+                        <span class="formTitle">Mã nhân viên bác sĩ:</span>
                         <label id="lab_yscode" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle ">Số thẻ：</span>
+                        <span class="formTitle ">Số thẻ:</span>
                         <label id="lab_cardNo" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Tổng số tiền：</span>
+                        <span class="formTitle">Tổng số tiền:</span>
                         <label id="lab_zje" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Tính chất bệnh nhân：</span>
+                        <span class="formTitle">Tính chất bệnh nhân:</span>
                         <label id="lab_brxzmc" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Khoa：</span>
+                        <span class="formTitle">Khoa:</span>
                         <label id="lab_ksmc" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Số đơn thuốc：</span>
+                        <span class="formTitle">Số đơn thuốc:</span>
                         <label id="lab_cfh" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Chẩn đoán Tây y：</span>
+                        <span class="formTitle">Chẩn đoán Tây y:</span>
                         <label id="lab_zd" type="text" value=""></label>
                     </li>
                     <li>
-                        <span class="formTitle">Chẩn đoán Đông y：</span>
+                        <span class="formTitle">Chẩn đoán Đông y:</span>
                         <label id="lab_zyzd" type="text" value=""></label>
                     </li>
                 </ul>
@@ -199,7 +199,7 @@
             caption: "Danh sách bệnh nhân",
             shrinkToFit: true,
             colModel: [
-                { label: 'Họ tên', name: 'xm', width: 50,  align: 'left' },
+                { label: 'Họ tên', name: 'xm', width: 50, align: 'left' },
                 { label: 'Số đơn thuốc', name: 'cfh', width: 100, align: 'left' },
                 { label: 'Trạng thái', name: 'zt', width: 40, align: 'left' },
                 { label: 'ysshyj', name: 'ysshyj', width: 40, hidden: true, align: 'left' }
@@ -219,7 +219,7 @@
                 //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                 ids = $gridPatients.getDataIDs();
                 if (ids == null || ids.length <= 0) return;
-                //Chọn hoặc bỏ chọn dòng chỉ định。Nếuonselectrowchoturethì sẽ kích hoạt sự kiệnonSelectRow，onselectrowMặc định làture
+                //Chọn hoặc bỏ chọn dòng chỉ định.Nếuonselectrowchoturethì sẽ kích hoạt sự kiệnonSelectRow, onselectrowMặc định làture
                 $gridPatients.setSelection(ids[0], true);
                 doingSomethingAfterSelectRow(ids[0]);
             }
@@ -338,7 +338,7 @@
     }
     function newtouch_event_f6() {
         var pats = new Array();
-        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true);//param2:Mặc định tất cả các dòng；param3：trueQuay lạiobject
+        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true);//param2:Mặc định tất cả các dòng; param3: trueQuay lạiobject
         $(gridPatients).each(function () {
             pats.push({
                 "cfh": this.cfh,
@@ -346,19 +346,19 @@
             });
         });
         if (pats.length <= 0) {
-            $.modalAlert("Không tìm thấy thông tin đơn thuốc điện tử hợp lệ！", 'warning');
+            $.modalAlert("Không tìm thấy thông tin đơn thuốc điện tử hợp lệ!", 'warning');
             return;
         }
         if (shzt == '有效') {
-            $.modalAlert("Đơn thuốc này đã được phê duyệt！không thể không thông qua！", 'warning');
+            $.modalAlert("Đơn thuốc này đã được phê duyệt!không thể không thông qua!", 'warning');
             return;
         }
         if (shzt == '已撤回') {
-            $.modalAlert("Đơn thuốc này đã thu hồi！không thể không thông qua！", 'warning');
+            $.modalAlert("Đơn thuốc này đã thu hồi!không thể không thông qua!", 'warning');
             return;
         }
         if ($("#txtbtgyy").val()=="") {
-            $.modalAlert("Vui lòng nhập lý do không thông qua！", 'warning');
+            $.modalAlert("Vui lòng nhập lý do không thông qua!", 'warning');
             return;
         }
         var shyy = $("#txtbtgyy").val();
@@ -383,7 +383,7 @@
     //Đơn điện tử Tải lên Chữ ký
     function newtouch_event_f8() {
         var pats = new Array();
-        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true);//param2:Mặc định tất cả các dòng；param3：trueQuay lạiobject
+        var gridPatients = $gridPatients.jqGrid('getRowData_AllLine', null, true);//param2:Mặc định tất cả các dòng; param3: trueQuay lạiobject
         $(gridPatients).each(function () {
             pats.push({
                 "cfh": this.cfh,
@@ -391,13 +391,13 @@
             });
         });
         if (pats.length <= 0) {
-            $.modalAlert("Không tìm thấy thông tin đơn thuốc điện tử hợp lệ！", 'warning');
+            $.modalAlert("Không tìm thấy thông tin đơn thuốc điện tử hợp lệ!", 'warning');
             return;
         }
         // Tạo một mớiDateĐối tượng
         var date = new Date();
 
-        // Lấy năm、Tháng（Chú ý tháng bắt đầu từ0bắt đầu đếm）、Ngày、giờ、Phút và giây
+        // Lấy năm, Tháng(Chú ý tháng bắt đầu từ0bắt đầu đếm), Ngày, giờ, Phút và giây
         var year = date.getFullYear(); // 2021
         var month = (date.getMonth() + 1).toString().padStart(2, '0'); // 09
         var day = date.getDate().toString().padStart(2, '0'); // 30
@@ -408,7 +408,7 @@
         // Kết hợp kết quả thành chuỗi định dạng chỉ định
         var currentTime = `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
         if (shzt == "已撤回" || shzt == "有效") {
-            $.modalAlert("Đơn thuốc này đã được phê duyệt hoặc đã thu hồi！không thể phê duyệt！", 'warning');
+            $.modalAlert("Đơn thuốc này đã được phê duyệt hoặc đã thu hồi!không thể phê duyệt!", 'warning');
             return;
         }
 
@@ -445,7 +445,7 @@
                                         var D002return = data2;//eval('(' + medicalD002.output + ')').encData;
                                         if (D002return.rxFile == null || D002return.rxFile == "") {
                                             $.loading(false);
-                                            $.modalAlert("Tải lên kiểm tra trước thất bại，tệp không có thông tin trả về！", 'warning');
+                                            $.modalAlert("Tải lên kiểm tra trước thất bại, tệp không có thông tin trả về!", 'warning');
                                             return;
                                         }
                                         var d003data = { "hisId": $('#lab_mzh').text(), "cfh": $("#lab_cfh").text(), "shysgh": '@(opr.rygh)', "shys": '@(opr.UserName)', "shks": '@(opr.DepartmentCode)', "kfys": $("#lab_ysmc").text(), "kfysgh": $("#lab_yscode").text(), "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "rxFile": D002return.rxFile, "orgId": '@(opr.OrganizeId)', "signDigest": D002return.signDigest, "shrq": currentTime };
@@ -468,7 +468,7 @@
                                                     }
                                                     else {
                                                         $.loading(false);
-                                                        $.modalAlert("Tải lên đơn thuốc điện tử thất bại：" + medicalReg.err_msg, 'error');
+                                                        $.modalAlert("Tải lên đơn thuốc điện tử thất bại: " + medicalReg.err_msg, 'error');
                                                         return;
                                                     }
                                                 }
@@ -477,7 +477,7 @@
                                     }
                                     else {
                                         $.loading(false);
-                                        $.modalAlert("Chữ ký điện tử thất bại：" + medicalD002.err_msg, 'error');
+                                        $.modalAlert("Chữ ký điện tử thất bại: " + medicalD002.err_msg, 'error');
                                         return;
                                     }
                                 }
@@ -486,14 +486,14 @@
                     }
                     else {
                         $.loading(false);
-                        $.modalAlert("Tải lên kiểm tra trước đơn thuốc điện tử thất bại：" + medicalD001.err_msg, 'error');
+                        $.modalAlert("Tải lên kiểm tra trước đơn thuốc điện tử thất bại: " + medicalD001.err_msg, 'error');
                         return;
                     }
                 }
             },
             error: function (request, error, ex) {
                 $.loading(false);
-                $.modalAlert("Dịch vụ BHYT đơn thuốc điện tử không truy cập được：[" + ex + "]", 'error');
+                $.modalAlert("Dịch vụ BHYT đơn thuốc điện tử không truy cập được: [" + ex + "]", 'error');
                 return;
             }
         });
@@ -547,7 +547,7 @@
                                 rs = true;
 							}
 							else {
-                                msg = "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA)Thất bại：" + medicalReg.err_msg;
+                                msg = "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA)Thất bại: " + medicalReg.err_msg;
 							}
                         }
                         else {
@@ -555,12 +555,12 @@
                         }
                     },
                     error: function (request, error, ex) {
-                        msg = "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA)Không truy cập được：[" + ex + "]";
+                        msg = "Dịch vụ BHYT(Tải lên thông tin khám ngoại trúA)Không truy cập được: [" + ex + "]";
                     }
 				});
             },
             error: function (request, error, ex) {
-                msg = "HISDịch vụ(GetCQjzdjInfo)Không truy cập được：[" + ex + "]";
+                msg = "HISDịch vụ(GetCQjzdjInfo)Không truy cập được: [" + ex + "]";
             }
         });
 

@@ -44,7 +44,7 @@
                     </td>
                     <th class="formTitle"><span class="required">*</span>Thời gian thực hiện</th>
                     <td class="formValue">
-                        <input id="txtZXSJ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ minDate: '%y-%M-#{%d+1}' })" />
+                        <input id="txtZXSJ" type="text" class="form-control input-wdatepicker" value="@DateTime.Now.AddDays(1).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ minDate: '%y-%M-#{%d+1}' })" />
                     </td>
                     <th class="formTitle">Giá bán lẻ cũ</th>
                     <td class="formValue">
@@ -167,27 +167,27 @@
     //Kiểm tra dữ liệu
     function CheckData() {
         if ($("#txtYLSJ").val() === "") {
-            $.modalAlert("Vui lòng chọn vật tư！", 'warning');
+            $.modalAlert("Vui lòng chọn vật tư!", 'warning');
             return false;
         }
         if ($("#txtLSJ").val() === "") {
-            $.modalAlert("Giá bán lẻ không được để trống！", 'warning');
+            $.modalAlert("Giá bán lẻ không được để trống!", 'warning');
             return false;
         }
         if (isNaN($("#txtLSJ").val())) {
-            $.modalAlert("Định dạng giá bán lẻ sai,Vui lòng nhập số！", 'warning');
+            $.modalAlert("Định dạng giá bán lẻ sai,Vui lòng nhập số!", 'warning');
             return false;
         }
         if ($("#txtZXWJ").val() === "") {
-            $.modalAlert("Văn bản thực hiện không được để trống！", 'warning');
+            $.modalAlert("Văn bản thực hiện không được để trống!", 'warning');
             return false;
         }
         if ($("#txtZXSJ").val() === "") {
-            $.modalAlert("Thời gian thực hiện không được để trống！", 'warning');
+            $.modalAlert("Thời gian thực hiện không được để trống!", 'warning');
             return false;
         }
         if ($("#txtLSJ").val() === $("#txtYLSJ").val()) {
-            $.modalAlert("Giá bán buôn không được giống giá gốc！", "warning");
+            $.modalAlert("Giá bán buôn không được giống giá gốc!", "warning");
             return false;
         }
         return true;

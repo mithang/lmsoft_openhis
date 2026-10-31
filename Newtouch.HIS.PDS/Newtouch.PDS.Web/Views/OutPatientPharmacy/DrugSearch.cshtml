@@ -26,11 +26,11 @@
                     <td class="formValue">
                         <input id="keyWord" type="text" class="form-control" placeholder="Họ tên Số thẻ" />
                     </td>
-                    <th class="formTitle">Số hóa đơn：</th>
+                    <th class="formTitle">Số hóa đơn:</th>
                     <td class="formValue">
                         <input id="fph" type="text" class="form-control" />
                     </td>
-                    <th class="formTitle">Số đơn thuốc：</th>
+                    <th class="formTitle">Số đơn thuốc:</th>
                     <td class="formValue">
                         <input id="cfh" type="text" class="form-control" />
                     </td>
@@ -39,7 +39,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <th class="formTitle">Trạng thái：</th>
+                    <th class="formTitle">Trạng thái:</th>
                     <td class="formValue">
                         <select class="form-control" id="seltype">
                             <option value="0">Tất cả</option>
@@ -49,11 +49,11 @@
                     </td>
                     <th class="formTitle ">Ngày bắt đầu:</th>
                     <td class="formValue">
-                        <input id="begindate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd 00:00")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                        <input id="begindate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("dd/MM/yyyy 00:00")" on onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                     </td>
-                    <th class="formTitle">Ngày kết thúc：</th>
+                    <th class="formTitle">Ngày kết thúc:</th>
                     <td class="formValue">
-                        <input id="enddate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("yyyy-MM-dd HH:mm")" on onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd HH:mm' })" />
+                        <input id="enddate" type="text" class="form-control input-wdatepicker " value="@DateTime.Now.ToString("dd/MM/yyyy HH:mm")" on onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy HH:mm' })" />
                     </td>
                 </tr>
             </table>
@@ -147,7 +147,7 @@
                 //getDataIDs()Trả về hiện tạigridcủa tất cả dữ liệu trongid
                 ids = $gridList.getDataIDs();
                 if (ids == null || ids.length <= 0) return;
-                //Chọn hoặc bỏ chọn dòng chỉ định。Nếuonselectrowchoturethì sẽ kích hoạt sự kiệnonSelectRow，onselectrowMặc định làture
+                //Chọn hoặc bỏ chọn dòng chỉ định.Nếuonselectrowchoturethì sẽ kích hoạt sự kiệnonSelectRow, onselectrowMặc định làture
                 $gridList.setSelection(ids[0], true);
                 var pdata = $gridList.jqGrid('getRowData', ids[0]);
                 if (pdata == null) return;

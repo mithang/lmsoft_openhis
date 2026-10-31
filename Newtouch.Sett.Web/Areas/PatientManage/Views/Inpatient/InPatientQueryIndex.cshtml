@@ -47,9 +47,9 @@
                 </td>
                 <th class="formTitle">Ngày nhập viện:</th>
                 <td class="formValue" colspan="2">
-                    <input id="ryrqkssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-6).ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="ryrqkssj" type="text" class="form-control input-wdatepicker" style="width:42%; float:left;" value="@DateTime.Now.AddMonths(-6).ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                     <span style="margin-left:1%;float:left">—</span>
-                    <input id="ryrqjssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("yyyy-MM-dd")" onfocus="WdatePicker({ dateFmt: 'yyyy-MM-dd' })" />
+                    <input id="ryrqjssj" type="text" class="form-control input-wdatepicker" style="width:43%; float:left;margin-left:1%;" value="@DateTime.Now.ToString("dd/MM/yyyy")" onfocus="WdatePicker({ dateFmt: 'dd/MM/yyyy' })" />
                 </td>
                 <th class="formTitle" style="width:70px;padding-right:12px;">Nhập viện Khoa:</th>
                 <td class="formValue">
@@ -652,7 +652,7 @@
         var patsbkh = null;
         var ydsfzh = $("#txtsfz").val();
         var url = "http://127.0.0.1:33333/api/YiBao/CardecInfo_1161";
-        var payoptype = { "mdtrt_cert_type": "03", "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "内科" };
+        var payoptype = { "mdtrt_cert_type": "03", "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "Khoa Nội" };
         if (ydsfzh.length > 0) {
             payoptype.mdtrt_cert_no = ydsfzh;
             payoptype.mdtrt_cert_type = "02";

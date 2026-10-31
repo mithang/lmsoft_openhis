@@ -1,3 +1,4 @@
+<!-- TODO(VN): Module Yibao (医保) là bảo hiểm TQ. Phải thay bằng tích hợp BHYT / Giám định BHXH Việt Nam trước khi dùng thật. -->
 @using NewtouchHIS.Lib.Framework.Operator;
 @using Newtouch.Sett.Domain;
 @{
@@ -76,7 +77,7 @@
          var sm01Info;
          var jzpzlx = $('#readCardCardType').val();
          var url ="http://127.0.0.1:33333/api/FifthPhaseYiBao/ybInterface_S000";
-         var payoptype = { "cardtype": "1","orgId":'@(opr.OrganizeId)', "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "内科" };
+         var payoptype = { "cardtype": "1","orgId":'@(opr.OrganizeId)', "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "Khoa Nội" };
          if (jzpzlx=="0") {//thẻ từ
              payoptype.cardtype = "0";
              payoptype.carddata = khxx.sbkh;
@@ -121,7 +122,7 @@
          });
          if (yibaoCardInfo) {
              if (yibaoCardInfo.xxfhm === "P001") {
-                 sm01Info = yibaoCardInfo.sm01;//thông tin tài khoản(s000 、se01 、sm01)
+                 sm01Info = yibaoCardInfo.sm01;//thông tin tài khoản(s000 , se01 , sm01)
                  cqPatInfo.xm = sm01Info.xm;
                  cqPatInfo.sfzh = sm01Info.sfzh;
                  cqPatInfo.xzqh = sm01Info.xzqh;
@@ -139,7 +140,7 @@
                      cqPatInfo.carddata = "";
                  }
                  cqPatInfo.kh = sm01Info.kh;
-                 var bkbz = sm01Info.accountattr.substr(11, 1);//trợ giúp khó khăn G、A
+                 var bkbz = sm01Info.accountattr.substr(11, 1);//trợ giúp khó khăn G, A
                  var gbbz = sm01Info.accountattr.substr(1, 1);//bảo hiểm cán bộ 1
                  var resultObjArr = new Array();
                  if (bkbz == "G" || bkbz == "A" || gbbz == "1") {
@@ -206,7 +207,7 @@
          var yibaoCardInfo;
          var patsbkh = null;
          var jzpzlx = $('#readCardCardType').val();
-         var payoptype = { "mdtrt_cert_type": "02", "mdtrt_cert_no": sbkobj.sfzh, "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "口腔科" };
+         var payoptype = { "mdtrt_cert_type": "02", "mdtrt_cert_no": sbkobj.sfzh, "operatorId": '@(opr.rygh)', "operatorName": '@(opr.UserName)', "businessType": "01101", "officeId": "0201", "officeName": "Khoa Răng Hàm Mặt" };
          var url = "http://127.0.0.1:33333/api/YiBao/CardecInfo_1161";
 
         if (jzpzlx === "6") {//Quét khuôn mặt

@@ -23,11 +23,11 @@
                 <tr>
                     <th class="formTitle">Ngày bắt đầu:</th>
                     <td class="formValue">
-                        <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" onchange="" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { btn_search() } })" value="@DateTime.Now.ToString("yyyy-MM-01")" />
+                        <input id="kssj" type="text" class="form-control input-wdatepicker formClearIgnore" onchange="" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { btn_search() } })" value="@DateTime.Now.ToString("yyyy-MM-01")" />
                     </td>
                     <th class="formTitle">Ngày kết thúc:</th>
                     <td class="formValue">
-                        <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" onchange="" onclick="WdatePicker({ dateFmt: 'yyyy-MM-dd', onpicked: function () { btn_search() }  })" value="@DateTime.Now.ToString("yyyy-MM-dd")" />
+                        <input id="jssj" type="text" class="form-control input-wdatepicker formClearIgnore" onchange="" onclick="WdatePicker({ dateFmt: 'dd/MM/yyyy', onpicked: function () { btn_search() }  })" value="@DateTime.Now.ToString("dd/MM/yyyy")" />
                     </td>
                     <td><input type="button" id="yzmc" name="jgdc" style="float:right;width:50px" value="Y lệnh" class="btn btn-primary" /></td>
                     <td><input type="button" id="yfyl" name="jgdc" style="float:right;" value="Y lệnh+Liều dùng+Cách dùng+Tần suất" class="btn btn-primary" /></td>

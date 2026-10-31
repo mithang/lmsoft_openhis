@@ -555,7 +555,7 @@
     //mớilãi lỗ
     function newtouch_event_f7() {
         //if ($("#gridSYXX").getGridParam('records') > 0) {
-        //    $.modalConfirm("cóchưaHoàn thànhcủalãi lỗ，Xác nhậncầntạomớilãi lỗ吗？", function (flag) {
+        //    $.modalConfirm("Có phiếu lãi lỗ chưa hoàn thành, xác nhận tạo mới phiếu lãi lỗ?", function (flag) {
         //        if (!flag) {
         //            return false;
         //        } else {
@@ -614,7 +614,7 @@
             return false;
         }
         if ($('#btnLossAndProfitTypeGourp .btn.active').attr('data-keywordtype') === 'Loss') {
-            if (sysl > parseFloat($("#Sykc").val())) {   //phảncủa，trực tiếpsokháSố lượng（Đơn vị nhỏ nhấtSố lượng）
+            if (sysl > parseFloat($("#Sykc").val())) {   //phảncủa，trực tiếpsokháSố lượng(Đơn vị nhỏ nhấtSố lượng)
                 $.modalAlert("Số lượng báo hỏng phải nhỏ hơn tồn kho hiện có", 'warning');
                 return false;
             }
