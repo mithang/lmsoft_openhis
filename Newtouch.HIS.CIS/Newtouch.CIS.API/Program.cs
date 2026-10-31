@@ -211,7 +211,14 @@ builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowAll", p => p.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 });
-builder.Services.AddControllers();
+// F-API-02: cấu hình như PDS.API — [ApiController] mặc định chặn request bằng
+// HTTP 400 problem-details trước khi vào action, và System.Text.Json chỉ parse
+// Timestamp dạng ISO 8601. Formatter gốc của Web API Framework là Newtonsoft:
+// chấp nhận cả "yyyy-MM-dd HH:mm:ss" (định dạng RequestBase mô tả) lẫn ISO 8601.
+// SuppressModelStateInvalidFilter để lỗi deserialize (Timestamp thật sự không
+// hợp lệ) rơi vào CommonExecute và trả envelope SOMEARGUMENTS_IS_REQUIRED thay
+// vì 400 trần; Timestamp thiếu/null vẫn trả TIMESTAMP_IS_REQUIRED như cũ.
+builder.Services.AddControllers().AddNewtonsoftJson().ConfigureApiBehaviorOptions(o => o.SuppressModelStateInvalidFilter = true);
 
 var app = builder.Build();
 app.UseCors("AllowAll");

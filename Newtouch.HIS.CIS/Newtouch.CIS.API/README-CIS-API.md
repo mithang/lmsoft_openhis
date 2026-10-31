@@ -2,7 +2,9 @@
 
 Port của `NewtouchCIS.API` gốc (Framework, 13 controller) sang .NET 6, theo đúng
 tiền lệ OR.API: envelope `code/sub_code/sub_msg/data`, SUCCESS=10000 / ERROR=20000 /
-FAIL=40004, `Timestamp` ISO bắt buộc, JSON Newtonsoft indent + `yyyy-MM-dd HH:mm:ss`,
+FAIL=40004, `Timestamp` bắt buộc, chấp nhận cả `yyyy-MM-dd HH:mm:ss` lẫn ISO 8601
+(Newtonsoft + suppress model-state filter, như PDS.API — F-API-02; Timestamp sai hẳn
+trả envelope, không trả HTTP 400 trần), JSON Newtonsoft indent + `yyyy-MM-dd HH:mm:ss`,
 hỗ trợ `jsonpCallback` (request JSONRequestBase).
 
 ## Chạy
