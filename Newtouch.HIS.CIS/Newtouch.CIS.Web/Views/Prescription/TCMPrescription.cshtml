@@ -583,7 +583,7 @@
             var currRowSl = $('#' + rowid + '_sl').val(); //Số lượng
             var currRowDj = $('#' + rowid + '_dj').val();
 
-            //điều kiện tiên quyết：Thuốc Đông ycủaĐơn vị、Đơn vị liềucầnBảo trìcủanhất quán
+            //Điều kiện tiên quyết: đơn vị và đơn vị liều của thuốc Đông y cần được duy trì nhất quán
             if (currRowDj && parseFloat(currRowSl) > 0) {
                 //Đơn giá Số lượng khônglàtrống
                 currRowZe = roundingBy4she6ru5chengshuang(parseFloat(currRowDj) * parseFloat(currRowSl),2);
@@ -603,7 +603,7 @@
         var currRowSl = $('#' + rowid + '_sl').val(); //Số lượng
         var currRowDj = $('#' + rowid + '_dj').val();
 
-        //điều kiện tiên quyết：Thuốc Đông ycủaĐơn vị、Đơn vị liềucầnBảo trìcủanhất quán
+        //Điều kiện tiên quyết: đơn vị và đơn vị liều của thuốc Đông y cần được duy trì nhất quán
         if (currRowDj && parseFloat(currRowSl) > 0) {
             //Đơn giá Số lượng khônglàtrống
             currRowZe = roundingBy4she6ru5chengshuang(parseFloat(currRowDj) * parseFloat(currRowSl), 2);
@@ -717,7 +717,7 @@
 
     //Lưu
     function SaveTCMPres(savetodb, justUpdateAlldataArray) {
-        //bắt buộcthông tinkiểm tra  (chínhbảo、phátbệnhThời gian)
+        //Kiểm tra thông tin bắt buộc (chính bảo, thời gian phát bệnh)
         if (!$('#formTCM').formValid(valOptions)) {
             $.modalAlert("Thông tin bắt buộc chưa hoàn thiện", 'warning');
             return;

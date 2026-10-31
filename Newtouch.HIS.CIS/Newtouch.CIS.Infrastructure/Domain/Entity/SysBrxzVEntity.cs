@@ -41,12 +41,12 @@ namespace Newtouch.Domain.Entity
         public string ybjylx { get; set; }
 
         /// <summary>
-        /// 0：thông thường  1：nghỉ hưu  2：Thương tật   đâycủaCài đặtchỉhìnhhưởngđếnThêm mớibệnh nhânkhicủa“bệnh nhânTính chất”qua滤，tất cảgiao dịchChi phícủaphạm viXác nhậnSử dụng“giao dịchChi phíphạm vi”đếnđiều khiển      --nàychữđoạnchứanghĩatồn tạiởcủahỏiđề！！！！！！   khi“Thương tật”bệnh nhânkhi，khôngphương phápchọntự chi trảThuộc tính
+        /// 0: thông thường 1: nghỉ hưu 2: thương tật. Cài đặt này chỉ ảnh hưởng đến bộ lọc “tính chất bệnh nhân” khi thêm mới bệnh nhân; phạm vi chi phí giao dịch được xác nhận bằng “phạm vi chi phí giao dịch”. -- Ý nghĩa của trường này còn tồn tại vấn đề! Khi bệnh nhân “thương tật”, không thể chọn thuộc tính tự chi trả
         /// </summary>
         public string ybtsdy { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếgiao dịchcủaChi phíphạm vi   0 có thểghi帐bộphúttham sốvàTính toán（thông thườngBảo hiểm y tế）   1 có thểghi帐＋Tự trả theo loạivàodònggiao dịch（Thương tật）   2 có thểghi帐＋Tự trả theo loại＋tựlývàodònggiao dịch（chưa có）      ----cmsHủy bỏchữđoạn
+        /// Phạm vi chi phí giao dịch BHYT: 0: có thể ghi sổ theo tham số bộ phận và tính toán (BHYT thông thường) 1: có thể ghi sổ + tự trả theo loại đưa vào giao dịch (thương tật) 2: có thể ghi sổ + tự trả theo loại + tự chi trả đưa vào giao dịch (chưa có) ---- CMS đã hủy bỏ trường này
         /// </summary>
         public string jyfyfw { get; set; }
 
@@ -81,7 +81,7 @@ namespace Newtouch.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// 0：thành phốbảo 1：cáithểBảo hiểm y tế 2：nhỏthành phốtrấn 3：giờcông   A:dânchínhy tếHỗ trợ khó khăn   B：giànămdi嘱 C:nămbảogià người D：trọng残 ngườiviên   E:trongnhỏhọcsinhvà婴幼儿  F： Kháccư dân   G：y tếlẫn nhaugiúpHỗ trợ khó khănđối tượng   
+        /// 0: bảo hiểm thành phố 1: BHYT cá thể 2: BHYT thị trấn nhỏ 3: công nhân làm theo giờ A: đối tượng hỗ trợ khó khăn y tế dân chính B: người già theo di chúc C: người già hưởng bảo đảm năm D: người khuyết tật nặng E: học sinh tiểu học và trẻ sơ sinh F: cư dân khác G: đối tượng hỗ trợ khó khăn tương trợ y tế
         /// </summary>
         public string syybbf { get; set; }
 

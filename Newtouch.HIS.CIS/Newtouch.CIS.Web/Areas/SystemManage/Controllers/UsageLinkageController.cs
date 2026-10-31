@@ -95,7 +95,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         public IActionResult DeleteForm(string keyValue)
         {
             var entity = _sysUsageLinkageRepo.FindEntity(keyValue);
-            if (entity == null) return Success("Xóa thành công。");
+            if (entity == null) return Success("Xóa thành công.");
             return _sysUsageLinkageRepo.Delete(entity) > 0 ? Success("Xóa thành công.") : Error("Xóathất bại.");
         }
     }

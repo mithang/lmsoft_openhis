@@ -112,7 +112,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _occupationCode = "";
         /// <summary>
-        /// chức业Mã
+        /// Mã nghề nghiệp
         /// </summary>
         public string occupationCode
         {
@@ -122,7 +122,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _occupation = "";
         /// <summary>
-        /// chức业
+        /// Nghề nghiệp
         /// </summary>
         public string occupation
         {
@@ -372,7 +372,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
     public class ConfigurationInfo
     {
         /// <summary>
-        /// 乡trấn
+        /// Xã/trấn
         /// </summary>
         public string xz { get; set; }
 

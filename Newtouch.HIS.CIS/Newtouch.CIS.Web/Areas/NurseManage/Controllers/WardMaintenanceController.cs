@@ -339,7 +339,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 return Error(isOutAreaMsg.Split('|')[1]);
             }
             var patOutMsg = _WardMaintenanceDmnService.SavaPatDiagnosis(patOutAreaVO, saveDiagnosisDto);
-            return patOutMsg.Split('|')[0] == "T" ? Success("Lưu thành công。") : Error(patOutMsg.Split('|')[1]);
+            return patOutMsg.Split('|')[0] == "T" ? Success("Lưu thành công.") : Error(patOutMsg.Split('|')[1]);
         }
 
         public IActionResult AttributesPlusRoomForm(string keyWord)
@@ -395,7 +395,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 rq = patOutAreaVO.zdrq
             };
             var patOutMsg = _WardMaintenanceDmnService.SavaOutPatDiagnosis(patOutAreaVO, saveDiagnosisDto);
-            return patOutMsg.Split('|')[0] == "T" ? Success("Lưu thành công。") : Error(patOutMsg.Split('|')[1]);
+            return patOutMsg.Split('|')[0] == "T" ? Success("Lưu thành công.") : Error(patOutMsg.Split('|')[1]);
         }
 
         /// <summary>
@@ -423,7 +423,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 			//}
 			var OrganizeId = this.OrganizeId;
 			var patOutMsg = _WardMaintenanceDmnService.SavaPatDxList(PatDxList, this.OrganizeId);
-			return patOutMsg.Split('|')[0] == "T" ? Success("Lưu thành công。") : Error(patOutMsg.Split('|')[1]);
+			return patOutMsg.Split('|')[0] == "T" ? Success("Lưu thành công.") : Error(patOutMsg.Split('|')[1]);
 		}
 
 

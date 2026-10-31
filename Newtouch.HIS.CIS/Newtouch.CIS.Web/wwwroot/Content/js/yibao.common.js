@@ -15,7 +15,7 @@ $.yibao = {
     /// <param name="AKE276">đăng ký khám/Nhập việnThao tácviênMã</param>
     /// <param name="AKE277">đăng ký khám/Nhập việnThao tácviên</param>
     /// <param name="AKE189">Khám bệnhthứ tựsố/Số nhập viện</param>
-    /// <param name="CUSTNAME">购thuốc ngườiHọ tên(tự chi trả ngườiviênbắt buộc)</param>
+    /// <param name="CUSTNAME">Họ tên người mua thuốc (nhân viên tự chi trả bắt buộc)</param>
     RegClinic: function (DAC001, AKE556, AKE186, AKE162, DAE147, AKE276, AKE277, AKE189, CUSTNAME) {
         return eval('(' + this.$yibaoAX.RegClinic(DAC001, AKE556, AKE186, AKE162, DAE147, AKE276, AKE277, AKE189, CUSTNAME) + ')');
     },

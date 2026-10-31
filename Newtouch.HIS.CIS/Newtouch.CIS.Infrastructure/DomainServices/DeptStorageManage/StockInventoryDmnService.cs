@@ -316,16 +316,16 @@ LEFT JOIN NewtouchHIS_Base.dbo.wz_unit zxdw
             }
             switch (param.kcxs)
             {
-                case (int)EnumKCXS.Xslkc://显示零库存
+                case (int)EnumKCXS.Xslkc:// Hiển thị tồn kho bằng 0
                     sql.AppendLine("	AND (mx.Llsl = 0 OR mx.Sjsl = 0) ");
                     break;
-                case (int)EnumKCXS.Bxsllslwl://不显示理论数量为0
+                case (int)EnumKCXS.Bxsllslwl:// Không hiển thị số lượng lý thuyết bằng 0
                     sql.AppendLine("	AND mx.Llsl <> 0 ");
                     break;
-                case (int)EnumKCXS.Bxssjslwl://不显示实际数量为0
+                case (int)EnumKCXS.Bxssjslwl:// Không hiển thị số lượng thực tế bằng 0
                     sql.AppendLine("	AND mx.Llsl Sjsl <> 0 ");
                     break;
-                case (int)EnumKCXS.Bxslzdwl://不显示两者都为0
+                case (int)EnumKCXS.Bxslzdwl:// Không hiển thị khi cả hai đều bằng 0
                     sql.AppendLine("	AND (mx.Llsl <> 0 OR mx.Sjsl <> 0) ");
                     break;
             }

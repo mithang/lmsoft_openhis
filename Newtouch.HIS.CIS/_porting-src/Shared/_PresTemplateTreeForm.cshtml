@@ -81,7 +81,7 @@
                             if (data && data.mbmxList && data.mbmxList.length) {
                                 presTemplateFill(data);
                             }
-                            //Đặt lại Đơn thuốc lịch sử、Mẫu đơn thuốc
+                            //Đặt lại đơn thuốc lịch sử, mẫu đơn thuốc
                             cfLeftFloatHide();
                             $.modalClose("FormShowPresTemplateDetail");
                         });
@@ -103,7 +103,7 @@
             return;
         }
         var getActionStr, grid;
-        var newCfh = '';    //Phục hồi chức năng、Thuốc Tây thêm như một đơn thuốc mới
+        var newCfh = '';    //Phục hồi chức năng, thuốc Tây thêm như một đơn thuốc mới
         var isNewCf = true;
         if (pageFlag == '@Html.Raw(((int)EnumCflx.RehabPres).ToString())') {
             getActionStr = getRehbActionStr();
@@ -157,7 +157,7 @@
             else {
                 newCfh = GetNewPresNo();
             }
-            //Số thang、Cách dùng đơn thuốc、Có sắc thay không
+            //Số thang, cách dùng đơn thuốc, có sắc thay không
             if (data.tieshu) {
                 $("#tieshu").val(data.tieshu);
                 if (data.djbz) {
@@ -182,7 +182,7 @@
             else {
                 newCfh = GetNewPresNo();
             }
-            //Số thang、Cách dùng đơn thuốc、Có sắc thay không
+            //Số thang, cách dùng đơn thuốc, có sắc thay không
             if (data.tieshu) {
                 $("#tieshu").val(data.tieshu);
                 if (data.djbz) {

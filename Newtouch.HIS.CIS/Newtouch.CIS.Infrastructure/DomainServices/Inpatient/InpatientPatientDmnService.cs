@@ -310,7 +310,7 @@ FROM    dbo.zy_brxxk zyxx
         /// <param name="bq"></param>
         /// <param name="zyh"></param>
         /// <param name="xm"></param>
-        /// <param name="zybz">ởviệnCờ，nhiềucáidùng逗sốphútcắt</param>
+        /// <param name="zybz">Cờ nội trú, nhiều giá trị phân tách bằng dấu phẩy</param>
         /// <returns></returns>
         public IList<InPatientPatientSearchVO> GetInPatSearchPaginationList(Pagination pagination, string orgId, string bq, string zyh, string xm,string ch, string bqCode, string zybz = null)
         {
@@ -451,7 +451,7 @@ where zyxx.OrganizeId = @orgId";
         /// <param name="bq"></param>
         /// <param name="zyh"></param>
         /// <param name="xm"></param>
-        /// <param name="zybz">ởviệnCờ，nhiềucáidùng逗sốphútcắt</param>
+        /// <param name="zybz">Cờ nội trú, nhiều giá trị phân tách bằng dấu phẩy</param>
         /// <returns></returns>
         public IList<InPatientNursingInputVO> GetInPatSearchList(string orgId, string bq,DateTime rq,string sj, string zyh, string zybz = null)
         {

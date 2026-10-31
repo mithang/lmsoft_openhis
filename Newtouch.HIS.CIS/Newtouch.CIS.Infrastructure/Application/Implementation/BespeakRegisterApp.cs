@@ -645,7 +645,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// lắp rápTháng末trốngtrắngngàylịch
+        /// Lắp ráp các ngày trống cuối tháng của lịch
         /// </summary>
         /// <param name="maxDate"></param>
         /// <returns></returns>

@@ -46,7 +46,7 @@ namespace Newtouch.DomainServices.DeptStorageManage
          }
 //
 //         /// <summary>
-//         /// SửaTồn khoSố lượng，khôngSửađôngkếtSố lượng  Phương pháplàlôlượngSửanhaucùngLôSố lôcủavật tư，慎dùng
+//         /// Sửa số lượng tồn kho, không sửa số lượng đóng băng. Phương pháp là dùng lượng của lô này thay cho lô khác cùng số lô của vật tư, dùng thận trọng
 //         /// </summary>
 //         /// <param name="updateKcslDto"></param>
 //         /// <returns></returns>

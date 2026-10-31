@@ -73,7 +73,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public decimal? cvlserv_pay { get; set; }
         /// <summary>
-        /// 企业Bổ sungy tếbảonguy hiểmcơ sởkim chira
+        /// Chi từ quỹ BHYT bổ sung của doanh nghiệp
         /// </summary>
         public decimal? hifes_pay { get; set; }
         /// <summary>
@@ -114,7 +114,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public decimal? balc { get; set; }
         /// <summary>
-        /// Cá nhânTài khoảnchung济chitrảSố tiền
+        /// Số tiền chi trả chung từ tài khoản cá nhân
         /// </summary>
         public decimal? acct_mulaid_pay { get; set; }
         /// <summary>

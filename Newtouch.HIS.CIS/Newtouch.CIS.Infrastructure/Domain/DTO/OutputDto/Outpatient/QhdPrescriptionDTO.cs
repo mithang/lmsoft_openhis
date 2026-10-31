@@ -86,7 +86,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string ZKC275 { get; set; }
         /// <summary>
-        /// trọng症tinhthầnbệnhCờ
+        /// Cờ bệnh tâm thần nặng
         /// </summary>
         public string ZKC285 { get; set; }
         /// <summary>

@@ -78,7 +78,7 @@
                                 fn: function (e) {
                                     var row = $(e.target).closest('tr.jqgrow');
                                     var rowid = row.attr('id');
-                                    MatchTCMZuhaoInfo(rowid, false);   //cùng mộtSố nhómcần khớpCách dùng、Tần suất、hết hạnNgày
+                                    MatchTCMZuhaoInfo(rowid, false);   //Cùng một số nhóm cần khớp cách dùng, tần suất, hết hạn ngày
 
                                     var Id = $("#gridTCMmedicine").getRowData(rowid).Id;
                                     var zh = $('#' + $($("#gridTCMmedicine").getRowData(rowid).zh).attr('id')).val();
@@ -148,7 +148,7 @@
                             }
                         ]
 
-                    }  //Lưu ý：Đơn vị liềuphải định ký tựởLiều lượngphía dưới，vìphía dướiCóTheonàyCơ sởđến tìmĐơn vị liềucủa。(vìselectKhông cóidcủaThuộc tính)
+                    }  //Lưu ý: đơn vị liều phải ghi ở phía dưới liều lượng, vì phía dưới căn cứ vào đây để tìm đơn vị liều. (vì select không có thuộc tính id)
                 },
                 { label: 'dwlb', name: 'dwlb', editwidth: '', align: 'center', editable: true, hidden: true },  //Không thể bỏ
                 { label: 'redundant_jldw', name: 'redundant_jldw', editwidth: '', align: 'center', editable: true, hidden: true },  //Không thể bỏ
@@ -863,7 +863,7 @@
         });
     }
 
-    //cùng mộtSố nhómcần khớpCách dùng、Tần suất、Số ngày、hết hạnNgày
+    //Cùng một số nhóm cần khớp cách dùng, tần suất, số ngày, hết hạn ngày
     function MatchTCMZuhaoInfo(rowid, validate) {
         var rtnval = true;
         var currRowZh = $("#" + rowid + "_zh").val();

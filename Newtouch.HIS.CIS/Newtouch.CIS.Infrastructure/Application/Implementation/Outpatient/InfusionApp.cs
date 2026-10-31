@@ -64,7 +64,7 @@ namespace Newtouch.Application.Implementation
             }
             #endregion
 
-            #region thứbabước：lấysettRpDetailvàsyxxsai异giá trị——lấyraThêm mớicủatruyền dịchthông tin  newData
+            #region Bước 3: lấy giá trị khác biệt giữa settRpDetail và syxx — lấy ra thông tin truyền dịch mới thêm (newData)
             var newData = ScreeningNewInfusionData(settRpDetail, syxx.ToList());
             #endregion
 

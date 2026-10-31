@@ -47,7 +47,7 @@ namespace Newtouch.Infrastructure
         /// Lấybảnđịavănmụctương ứngcủabảnđịaĐường dẫn
         /// </summary>
         /// <param name="path">nhauđốiĐường dẫn</param>
-        /// <returns>Quay lại绝đốiĐường dẫn</returns>
+        /// <returns>Trả về đường dẫn tuyệt đối</returns>
         public static string GetLocalFilePath(string path)
         {
             var configFileExportBaseDir = AppConfig.Get("LocalFileBaseDir");
@@ -68,7 +68,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// tạomột维dònghìnhmã
+        /// Tạo một mã vạch một chiều
         /// </summary>
         /// <param name="text">nội dung</param>
         /// <param name="width">rộngđộ</param>
@@ -80,7 +80,7 @@ namespace Newtouch.Infrastructure
             // System.Drawing is unavailable on this Linux host (no libgdiplus),
             // so the original Bitmap.Save path cannot run here.
             var writer = new BarcodeWriterPixelData();
-            //Sử dụngITF định dạng，không thểbịhiệnởthường dùngcủaAlipay、WeChat扫rađến
+            // Sử dụng định dạng ITF, không thể bị quét bởi Alipay, WeChat thường dùng hiện nay
             //nếunếunghĩtạocó thểbiếtloạicủacó thểlấySử dụng CODE_128 định dạng
             //writer.Format = BarcodeFormat.ITF;
             writer.Format = BarcodeFormat.CODE_128;

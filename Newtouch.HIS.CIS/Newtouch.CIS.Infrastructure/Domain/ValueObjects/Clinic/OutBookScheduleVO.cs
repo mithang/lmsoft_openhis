@@ -65,7 +65,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public string PeriodStart { get; set; }
         /// <summary>
-        /// Thời gian kết thúc断
+        /// Đoạn thời gian kết thúc
         /// </summary>
         public string PeriodEnd { get; set; }
         /// <summary>

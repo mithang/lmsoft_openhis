@@ -89,7 +89,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             isRehabDoctor = _sysUserDmnService.CheckStaffIsBelongDuty(UserIdentity.StaffId, "RehabDoctor");
             medicalInsurance = _sysConfigRepo.GetValueByCode("medicalInsurance", OrganizeId);
             iskfyzjf = _sysConfigRepo.GetValueByCode("iskfyzjf", OrganizeId);
-            ViewBag.isqfswith = _sysConfigRepo.GetValueByCode("accountqfexecute_switch", OrganizeId);//nợ phíY lệnhmởlập、Thực hiệnCông tắc
+            ViewBag.isqfswith = _sysConfigRepo.GetValueByCode("accountqfexecute_switch", OrganizeId);//Công tắc mở lập, thực hiện y lệnh khi nợ phí
         }
         #region Y lệnhThực hiệnTrang
         /// <summary>
@@ -251,7 +251,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                 && a.isjf != EnumSF.f.GetDescription() && a.yply != EnumYply.ksby.GetDescription()).ToList();
                 //MụcY lệnh
                 IList<ApiResponseVO> orderXmList = orderListAll.Where(a => (a.yzlx != Convert.ToInt32(EnumYzlx.Yp) && a.yzlx != Convert.ToInt32(EnumYzlx.Cydy) && a.yzlx != Convert.ToInt32(EnumYzlx.zcy)) || a.yfztbs != null).ToList();
-                //khôngtínhphíY lệnh、Khoachuẩn bị thuốcY lệnh 
+                //Y lệnh không tính phí, y lệnh khoa chuẩn bị thuốc
                 IList<ApiResponseVO> nofeeorderYpList = orderListAll.Where(a => (a.yzlx == Convert.ToInt32(EnumYzlx.Yp) || a.yzlx == Convert.ToInt32(EnumYzlx.Cydy) || a.yzlx == Convert.ToInt32(EnumYzlx.zcy))
                 && (a.isjf == EnumSF.f.GetDescription() || a.yply == EnumYply.ksby.GetDescription())).ToList();
                 //lĩnhthuốcSố thứ tự
@@ -279,7 +279,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                             if (successDoOrderYp.Count >= 30)
                             {
                                 AppLogger.Info("Nhà thuốcThực hiệnthành công:" + successDoOrderYp.ToArray().ToJson());
-                                //phòngdừng截断 
+                                //Ngăn bị cắt ngắn
                                 var zyhlist = successDoOrderYp.Select(p => p.zyh).Distinct();
                                 foreach (string zyh in zyhlist)
                                 {
@@ -457,7 +457,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     request.ContentType = "application/json";
                     request.CookieContainer = null;//LấyMã xác minhkhichờLấyđếncủacookiesẽkèmthêmởnàydungdụng cụtrongmặt
                     request.AllowAutoRedirect = true;
-                    request.KeepAlive = true;//xâylậpgiữ久tínhLiên kết
+                    request.KeepAlive = true;//Thiết lập kết nối duy trì
                     //request.ContentLength = cs.Length;
                     request.Host = "192.168.0.101";
                     request.UserAgent = "PostmanRuntime/7.29.2";

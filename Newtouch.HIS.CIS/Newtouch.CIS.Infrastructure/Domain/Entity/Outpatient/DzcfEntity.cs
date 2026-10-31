@@ -101,7 +101,7 @@ namespace Newtouch.Domain.Entity
         public bool? tbbz { get; set; }
 
         /// <summary>
-        /// 临giườngnguyên nhân
+        /// Nguyên nhân lâm sàng
         /// </summary>
         public string lcyx { get; set; }
 

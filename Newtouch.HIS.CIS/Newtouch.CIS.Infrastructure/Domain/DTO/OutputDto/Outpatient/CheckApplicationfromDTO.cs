@@ -80,7 +80,7 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
         public string ApplyDepartmentCode { get; set; }
         //Khoa đăng kýTên Y
         public string ApplyDepartmentName { get; set; }
-        //临giườngChẩn đoánTên
+        // Tên chẩn đoán lâm sàng
         public string DiagnoseName { get; set; }
 
         public List<Order> Order;

@@ -61,7 +61,7 @@
                 //Lần khám này   // Đơn thuốc đã thu phí vàoelseTham chiếu đơn thuốc
                 if (item.Ex2 == "current"
                     && !(!!item.Ex1 && item.Ex1.toString().toLowerCase() === "true")) {
-                    //Đặt lại Đơn thuốc lịch sử、Mẫu đơn thuốc
+                    //Đặt lại đơn thuốc lịch sử, mẫu đơn thuốc
                     cfLeftFloatHide();
 
                     //Kiểm tra thêm trùng lặp sang bên phải
@@ -305,7 +305,7 @@
                                                 }
                                             }
                                         });
-                                        //Thuốc Đông ySố thang、Cách dùng、Sắc thay mang vào
+                                        //Số thang thuốc Đông y, cách dùng, sắc thay mang vào
                                         if ($("#gridzycf").jqGrid('getRowData_AllLine').length == 0
                                             && this.tieshu) {
                                             $('#tieshu').val(this.tieshu);
@@ -334,7 +334,7 @@
                                                 }
                                             }
                                         });
-                                        //Thuốc Đông ySố thang、Cách dùng、Sắc thay mang vào
+                                        //Số thang thuốc Đông y, cách dùng, sắc thay mang vào
                                         if ($("#gridzycfnew").jqGrid('getRowData_AllLine').length == 0
                                             && this.tieshu) {
                                             $('#tieshu').val(this.tieshu);
@@ -378,7 +378,7 @@
                                         }
                                     }
                                 });
-                                //Đặt lại Đơn thuốc lịch sử、Mẫu đơn thuốc
+                                //Đặt lại đơn thuốc lịch sử, mẫu đơn thuốc
                                 cfLeftFloatHide();
                                 $.modalClose("FormShowHistoryPresForm");
                             });

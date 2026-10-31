@@ -212,7 +212,7 @@ namespace Newtouch.CIS.Web.Controllers
             //kéolấyđăng ký khámthông tin
             var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RegisteredInfoResponse>>(
                 "/api/Patient/OutPatientRegistrationQuery", reqObj);
-            if (apiResp == null || apiResp.data == null) return Error("Gọi giao diệnthất bại【" + apiResp?.msg + apiResp?.sub_msg + "】");
+            if (apiResp == null || apiResp.data == null) return Error("Gọi giao diện thất bại 【" + apiResp?.msg + apiResp?.sub_msg + "】");
 
             var showUnTreateDays = _sysConfigRepo.GetValueByCode("ShowUnTreateDays", this.OrganizeId);
             var unTreateDays = 3;
@@ -500,7 +500,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <param name="bq"></param>
         /// <param name="zyh"></param>
         /// <param name="xm"></param>
-        /// <param name="zybz">ởviệnCờ，nhiềucáidùng逗sốphútcắt</param>
+        /// <param name="zybz">Cờ nội trú, nhiều cái dùng dấu phẩy phân tách</param>
         /// <returns></returns>
         [HttpGet]
         [HandlerAjaxOnly]

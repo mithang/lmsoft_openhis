@@ -20,7 +20,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
         public string xuetang { get; set; }
         public decimal? tiwen { get; set; }
         /// <summary>
-        /// chức业
+        /// Nghề nghiệp
         /// </summary>
         public string zy { get; set; }
         /// <summary>

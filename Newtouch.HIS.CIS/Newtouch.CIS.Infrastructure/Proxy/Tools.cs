@@ -92,7 +92,7 @@ namespace Newtouch.CIS.Proxy
         {
             switch (hf)
             {
-                case 0://chưa婚
+                case 0:// chưa kết hôn
                     return "10";
                 case 1://đã kết hôn
                     return "20";

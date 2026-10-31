@@ -90,7 +90,7 @@ namespace Newtouch.CIS.Web.Areas.QueueManage.Controllers
             };
             var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<SignInStateRequest>>(
                  "api/SignInAppointment/SignInState", reqObj);
-            if (apiResp.msg != null) return Success("Gọi giao diệnthất bại【" + apiResp.msg + apiResp.sub_msg + "】");
+            if (apiResp.msg != null) return Success("Gọi giao diện thất bại 【" + apiResp.msg + apiResp.sub_msg + "】");
             return Success();
         }
 

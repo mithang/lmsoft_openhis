@@ -1,12 +1,12 @@
 /**
- * author：xyzsyx@163.com ởSử dụngtrong遇đếnhỏiđềhoặcpháthiệnbughơnhoặccókỹ thuật交dòngyêutốtcủa朋友vui lòngphátbưumụcđếntôicủaemail，lớnnhàmộttừhọc习，mộttừvàobước！
+ * author: xyzsyx@163.com. Trong quá trình sử dụng nếu gặp vấn đề, phát hiện bug, hoặc có ý tưởng trao đổi kỹ thuật tốt, bạn bè vui lòng gửi email cho tôi, cùng nhau học tập, cùng nhau tiến bước!
  *
  *
- * Khởi tạogọiPhương pháp  ởjscủaonloadsự kiệnhoặcjqcủa$(document).ready()trongmặtgọistepBar.init(id, option)tứccó thể。
+ * Phương pháp gọi khởi tạo: trong sự kiện onload của js hoặc $(document).ready() của jq, gọi stepBar.init(id, option) là được.
  * đầu tiêntham sốlàstepBardungdụng cụcủaid，bắt buộc，cho phéptruyềnvàocủaGiá trịgóigồmVDdưới：
  *     jQueryđối tượng
  *     javascriptđối tượng
- *     phần tử DOM（có thểchuyểnhóalàIDcủachữkýchuỗi，VD “stepBar” || “#stepBar”） 纠sai：saijQueryđối tượngcủa“#”viếtthành“.”cũngcùngdạngcó thểbiếtloạirađến，nhưngCóphảicầnbảochứng lầntham sốcó thểchuyểnhóathành元tốID
+ *     Phần tử DOM (có thể chuyển hóa là ID của chuỗi ký tự, VD “stepBar” || “#stepBar”). Sửa sai: đối tượng jQuery sai viết “#” thành “.” cũng cùng dạng có thể nhận biết ra, nhưng phải cần bảo chứng tham số lần này có thể chuyển hóa thành ID của phần tử.
  * thứhaicáitham sốlàmộtđối tượngtrực tiếplượng，tùy chọn，góichứaVDdướicủakhôngcáihoặcnhiềucái
  *     step                string number   Mục tiêuvàođộ  Mặc địnhlà1（thứmộtbước），tùy chọn
  *     change              boolean    Cài đặtchènmụcCóKhôngcó thểbịThao tác，tùy chọn  Mặc địnhfalse

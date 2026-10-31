@@ -123,7 +123,7 @@ namespace Newtouch.Domain.ValueObjects.Inpatient
         public decimal? kl { get; set; }
 
         /// <summary>
-        /// mở票Ngày
+        /// Ngày lập phiếu
         /// </summary>
         public string kprq { get; set; }
 

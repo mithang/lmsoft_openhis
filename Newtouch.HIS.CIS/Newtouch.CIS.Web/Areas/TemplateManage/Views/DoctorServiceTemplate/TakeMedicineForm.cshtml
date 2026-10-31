@@ -143,7 +143,7 @@
                             }
                         ]
 
-                    }, editrules: { required: true }   //Lưu ý：Đơn vị liềuphải định ký tựởLiều lượngphía dưới，vìphía dướiCóTheonàyCơ sởđến tìmĐơn vị liềucủa。(vìselectKhông cóidcủaThuộc tính)
+                    }, editrules: { required: true }   //Lưu ý: đơn vị liều phải ghi ở phía dưới liều lượng, vì phía dưới căn cứ vào đây để tìm đơn vị liều. (vì select không có thuộc tính id)
                 },
                 { label: 'dwlb', name: 'dwlb', editwidth: '', align: 'center', editable: true, hidden: true },  //Không thể bỏ
                 { label: 'redundant_jldw', name: 'redundant_jldw', editwidth: '', align: 'center', editable: true, hidden: true },  //Không thể bỏ
@@ -376,7 +376,7 @@
 
       function caltakesl(rowid) {
         if ($("#" + rowid + "_yldwwwwwww").val() == "1") {//dùnglượngĐơn vịđợitạiSố ngàykhiTính toánTổng lượng，Khôngthìkhôngquản
-            //0 biểu thịTổng lượngĐơn vị，khôngdùngTính toán。1 biểu thịSố ngàyĐơn vị，Tính toánTổng lượng
+            //0 biểu thị đơn vị tổng lượng, không tính toán. 1 biểu thị đơn vị số ngày, tính toán tổng lượng
             var yldwval = $("#" + rowid + "_yldwwwwwww").val();
             var yl = $("#" + rowid + "_yl").val();
             if (yldwval == "0") {

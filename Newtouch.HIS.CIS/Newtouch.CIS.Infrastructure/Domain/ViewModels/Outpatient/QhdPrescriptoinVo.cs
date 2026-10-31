@@ -39,7 +39,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         /// </summary>
         public string AKE002 { get; set; }
         /// <summary>
-        /// 违phảnquythìTên
+        /// Tên quy tắc vi phạm
         /// </summary>
         public string BZE868 { get; set; }
         /// <summary>

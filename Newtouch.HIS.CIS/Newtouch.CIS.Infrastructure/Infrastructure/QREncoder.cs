@@ -23,7 +23,7 @@ namespace Newtouch.Infrastructure
         /// <param name="pixel">tốtốđiểmlớnnhỏ</param>
         /// <param name="iconPath">Biểu tượngĐường dẫn (ignored when iconSize is 0)</param>
         /// <param name="iconSize">Biểu tượngkích thước</param>
-        /// <param name="iconBorder">Biểu tượngbênkhung厚độ</param>
+        /// <param name="iconBorder">Độ dày khung bên của biểu tượng</param>
         /// <param name="whiteEdge">Mã QRtrắngbên (quiet zone)</param>
         /// <returns>PNG bytes (grayscale)</returns>
         public static byte[] Code(string msg, int version, int pixel, string iconPath, int iconSize, int iconBorder, bool whiteEdge)

@@ -81,7 +81,7 @@ namespace Newtouch.DomainServices
             }
             OutpatientJYDDto dto = new OutpatientJYDDto();
             dto.PatientInfo = GetOutpatientInfo(orgId, mzh);
-            string sql = @" select * from ( select row_number()over(partition by ztmc order by a.createtime) num,(case a.cflx  when 4 then 'Xét nghiệmPhiếu' when 5 then 'Kiểm traPhiếu' when 6 then '项目处方单' end)cflxmc,
+            string sql = @" select * from ( select row_number()over(partition by ztmc order by a.createtime) num,(case a.cflx  when 4 then 'Xét nghiệmPhiếu' when 5 then 'Kiểm traPhiếu' when 6 then 'Đơn thuốc hạng mục' end)cflxmc,
 a.cflx,a.cfh,(b.dj*b.sl)zje,a.createtime, ztmc xmmc,b.dj,b.sl,c.name zxks,d.name sqys,e.name sqks
 from xt_cf a with(nolock)
 left join xt_cfmx b with(nolock) on a.cfid=b.cfid and a.organizeid=b.organizeid  

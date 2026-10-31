@@ -17,7 +17,7 @@ namespace Newtouch.Domain.IRepository
         int DeleteById(string id);
 
         /// <summary>
-        /// 赴hẹn
+        /// Đến hẹn
         /// </summary>
         /// <param name="id"></param>
         /// <param name="arrivalDate"></param>

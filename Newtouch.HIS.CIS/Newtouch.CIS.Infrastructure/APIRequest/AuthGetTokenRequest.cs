@@ -3,7 +3,7 @@
 namespace Newtouch.CIS.APIRequest
 {
     /// <summary>
-    /// lấy关phímthông tin（Người dùngtên、Mật khẩuđợi）đổilấyTruy cậpmã thông báo
+    /// Lấy thông tin quan trọng (tên đăng nhập, mật khẩu, v.v.) để đổi lấy mã truy cập
     /// </summary>
     public class AuthGetTokenRequest : RequestBase
     {

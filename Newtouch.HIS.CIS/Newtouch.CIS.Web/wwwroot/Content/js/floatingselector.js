@@ -75,7 +75,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                 $divContainer.find('ul').css('width', options.tableWidth);
             }
             options.container = $divContainer;
-            options.bindclick();//gắnnhiềuchọncủaxác nhậnĐóngsự kiện、đỉnhbộĐiều kiện lọcsự kiện
+            options.bindclick();//Gắn sự kiện đóng xác nhận của chọn nhiều, sự kiện điều kiện lọc ở đầu
         }
         else {
             options.container = $divContainer;

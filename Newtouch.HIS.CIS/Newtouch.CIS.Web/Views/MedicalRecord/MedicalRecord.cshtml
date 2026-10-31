@@ -47,7 +47,7 @@
     //CóKhôngbậtlis pacsbáo cáoĐăng ký
     var IsreportOpen = SysConfigReader.String("IsreportOpen");
     var sfxmztbs = SysConfigReader.String("sfxmztbs");//Bộ mẫuMụcCóKhônghợpvàHiển thị
-    var SkipPatientList = SysConfigReader.String("SkipPatientList");//Lưu、Kết thúcKhám bệnhCóKhôngQuay lạibệnh ngườidanh sách
+    var SkipPatientList = SysConfigReader.String("SkipPatientList");//Lưu, kết thúc khám bệnh có quay lại danh sách bệnh nhân hay không
     var openblbookprint = SysConfigReader.String("blbookprint");//CóKhôngKích hoạtHồ sơbảnIn
     var ControlsyyfCode = SysConfigReader.String("sydyfpz");//truyền dịchCách dùngcấu hình
                                                             //Nhập việnchứngIn
@@ -1288,7 +1288,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     //    var zdname = $(this).val();
     //    var zdcode = $(this).attr('data-zdCode');
     //    if (!zdcode && !!zdname) {
-    //        $.modalAlert("Chẩn đoán【"+zdname+"】khôngcó thểdùng", "warning");
+    //        $.modalAlert("Chẩn đoán 【" + zdname + "】 không thể dùng", "warning");
     //    }
     //});
 
@@ -1297,7 +1297,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
     //    var zdname = $(this).val();
     //    var zdcode = $(this).attr('data-zdCode');
     //    if (!zdcode && !!zdname) {
-    //        $.modalAlert("Chẩn đoán【"+zdname+"】khôngcó thểdùng", "warning");
+    //        $.modalAlert("Chẩn đoán 【" + zdname + "】 không thể dùng", "warning");
     //    }
     //});
     //tảicây
@@ -1360,7 +1360,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                     if(window.currPatientInfo.jzId != item.id){
                                         //chỉcómộtloạicó thểcó thể，treođãhaicáiKhoa，KhôngthìphảicầntrướcKết thúctrướcmột
                                         //biểu thịvàođếncủaCómớicủaKhám bệnh
-                                        //mớiKhám bệnh，khôngcho phéptriểnhiện“Đang khám bệnh”củanội dung；“Đã kết thúc”củacó thểlấytriểnhiện。
+                                        //Khám bệnh mới, không cho phép hiển thị nội dung “Đang khám bệnh”; nội dung “Đã kết thúc” có thể lấy hiển thị.
                                         $.modalAlert("Không được xem nội dung lần khám trước", 'warning');
                                         return;
                                     }
@@ -1375,7 +1375,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                 else{
                                     EnabledControls();
                                 }
-                                //điềntất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
+                                //Điền tất cả văn bản, đơn thuốc, đơn thuốc lịch sử, grid danh sách
                                 fillData(item, ajaxresp, reqSource);
                                 jzyyxx();
                             }
@@ -1428,7 +1428,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                     //        $.modalConfirm("sẽthayđổiHồ sơChi tiếtcủanội dung，CóKhôngkếtiếp？", function (flag) {
                     //            $('#form1 .minusToggleCircle').trigger('click');  //trướckhôi phục
                     //            if (flag) {
-                    //                điềntất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
+                    //                điền tất cả văn bản, đơn thuốc, đơn thuốc lịch sử, grid danh sách
                     //                fillData(item, ajaxresp);
                     //            }
                     //            else {
@@ -2832,7 +2832,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         type: "POST",
                         success: function(data) {
                             $.modalAlert("Hủy bỏthành công", 'warning');
-                            //Xóa trắng tất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
+                            //Xóa trắng tất cả văn bản, đơn thuốc, đơn thuốc lịch sử, grid danh sách
                             newtouch_globalevent_f4();
                         }
                     });
@@ -2932,7 +2932,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             zdObj.ywxs = $($('#tablexyzd .ywxsText')[i]).val();
             zdObj.ywlx = $($('#tablexyzd .xyywtlxText')[i]).val();
             if (!zdObj.zdCode && !!zdObj.zdmc) {
-                $.modalAlert("Bệnh nhânChẩn đoán【" + zdObj.zdmc + "] không khả dụng, vui lòng chọn lại", 'warning');
+                $.modalAlert("Bệnh nhân chẩn đoán 【" + zdObj.zdmc + "】 không khả dụng, vui lòng chọn lại", 'warning');
                 return;
             }
             if (!!zdObj.zdCode && !!zdObj.zdmc) {
@@ -2962,7 +2962,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
             zdObj.zhCode = $($('#tablezyzd .zhText')[i]).attr('data-zhCode');
             zdObj.zdbz = $($('#tablezyzd .zyzdbzText')[i]).val();
             if (!zdObj.zdCode && !!zdObj.zdmc) {
-                $.modalAlert("Bệnh nhânChẩn đoán【" + zdObj.zdmc + "] không khả dụng, vui lòng chọn lại", 'warning');
+                $.modalAlert("Bệnh nhân chẩn đoán 【" + zdObj.zdmc + "】 không khả dụng, vui lòng chọn lại", 'warning');
                 return;
             }
             if (!!zdObj.zdCode && !!zdObj.zdmc) {
@@ -3064,24 +3064,24 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         /*Số lượng/Đơn giá/Số tiềnđềukhônglàtrống*/
                         if (cfDtoArray[i].cfHtml[j].xmCode == null || cfDtoArray[i].cfHtml[j].xmCode == "" || cfDtoArray[i].cfHtml[j].sl == "" || cfDtoArray[i].cfHtml[j].je == "") {
                             rs = false;
-                            msg = (cflx == "cgxmcf" ? "Thường quyMụcĐơn thuốc" : "Phục hồi chức năngĐơn thuốc") + "Dòng thứ " + (j + 1) + " dòng Số lượng/Đơn giá/Số tiềntrong có một hoặc nhiều giá trị trống，vui lòng kiểm tra！";
+                            msg = (cflx == "cgxmcf" ? "Đơn thuốc mục thường quy" : "Đơn thuốc phục hồi chức năng") + "Dòng thứ " + (j + 1) + " dòng, số lượng/đơn giá/số tiền có một hoặc nhiều giá trị trống, vui lòng kiểm tra!";
                             break;
                         }
                         if (cfDtoArray[i].cfHtml[j].zxks == "") {
                             rs = false;
-                            msg = (cflx == "cgxmcf" ? "Thường quyMụcĐơn thuốc" : "Phục hồi chức năngĐơn thuốc") + "Dòng thứ " + (j + 1) + " dòng 【Khoa thực hiện】có giá trị trống，vui lòng kiểm tra！";
+                            msg = (cflx == "cgxmcf" ? "Đơn thuốc mục thường quy" : "Đơn thuốc phục hồi chức năng") + "Dòng thứ " + (j + 1) + " dòng 【Khoa thực hiện】 có giá trị trống, vui lòng kiểm tra!";
                             break;
                         }
                     }
                     else {
                         if (cfDtoArray[i].cfHtml[j].ypCode == null || cfDtoArray[i].cfHtml[j].ypCode == "" || cfDtoArray[i].cfHtml[j].sl == "" || cfDtoArray[i].cfHtml[j].je == "") {
                             rs = false;
-                            msg = (cflx == "xycf" ? "Thuốc TâyĐơn thuốc" : "Thuốc YHCTĐơn thuốc") + "Dòng thứ " + (j + 1) + " dòng Số lượng/Đơn giá/Số tiềntrong có một hoặc nhiều giá trị trống，vui lòng kiểm tra！";
+                            msg = (cflx == "xycf" ? "Đơn thuốc thuốc Tây" : "Đơn thuốc thuốc YHCT") + "Dòng thứ " + (j + 1) + " dòng, số lượng/đơn giá/số tiền có một hoặc nhiều giá trị trống, vui lòng kiểm tra!";
                             break;
                         }
                     }
 
-                    /*ThuốchoặcMụclàtrống、Số lượng/Đơn giá/Số tiềnkhôngtoànlàtrống，thìxemcùngtrốngdòngvàXóadòng*/
+                    /*Thuốc hoặc mục trống, số lượng/đơn giá/số tiền không toàn trống, thì coi là dòng trống và xóa dòng*/
                     //cfDtoArray[i].cfHtml.splice(j, 1);
                     //j--;
                     //cfmxCount--;
@@ -3124,7 +3124,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                         $.modalAlert(data.message, 'warning');
                     }
                     if("@SkipPatientList"=="true"){
-                        newtouch_globalevent_f4();  //Xóa trắng tất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
+                        newtouch_globalevent_f4();  //Xóa trắng tất cả văn bản, đơn thuốc, đơn thuốc lịch sử, grid danh sách
                         $('#myTab a:first').trigger('click');   //nhảyđếndanh sáchtrang
                         window.$("#btn_search").trigger('click'); //Làm mớiDanh sách bệnh nhân
                     }
@@ -3199,14 +3199,14 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                             $.modalAlert("Thông tin vi phạm duyệt trước:" + bfDataReturn.output.result[0].vola_cont, 'error');
                         }
                         else {
-                           // $.modalAlert("Bảo hiểm y tếLưu thành công，nhưngPhê duyệtthất bại：【" + bfDataReturn.err_msg + "】vui lòngliênhệHISKỹ sư", 'error');
+                           // $.modalAlert("Bảo hiểm y tế lưu thành công, nhưng phê duyệt thất bại: 【" + bfDataReturn.err_msg + "】, vui lòng liên hệ kỹ sư HIS", 'error');
                         }
                     } else {
 
                     }
                 }
                 else {
-                    //$.modalAlert("Bảo hiểm y tếLưu thành công，nhưngPhê duyệtPhê duyệtthất bại：【" + bfDataReturn.err_msg + "】vui lòngliênhệHISKỹ sư", 'error');
+                    //$.modalAlert("Bảo hiểm y tế lưu thành công, nhưng phê duyệt thất bại: 【" + bfDataReturn.err_msg + "】, vui lòng liên hệ kỹ sư HIS", 'error');
                 }
             }
         })
@@ -3542,7 +3542,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
         });
     }
 
-    //Xóa trắng tất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
+    //Xóa trắng tất cả văn bản, đơn thuốc, đơn thuốc lịch sử, grid danh sách
     function newtouch_event_f4(){
         window.alldataArray=[];
         window.historydataArray=[];
@@ -4633,7 +4633,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 				} else {
 					errorCode = ret.errorCode;
 					$.modalAlert("Gửithất bại" + errorCode, 'error');
-					//return "Lưu thất bại,thất bạinguyên nhânCó:" + errorCode + "。";
+					//return "Lưu thất bại, nguyên nhân thất bại có: " + errorCode + ".";
 				}
 			}
 		});
@@ -4670,7 +4670,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 							} else {
 								errorCode = ret.errorCode;
 								$.modalAlert("Hủy bỏthất bại" + errorCode, 'error');
-								//return "Lưu thất bại,thất bạinguyên nhânCó:" + errorCode + "。";
+								//return "Lưu thất bại, nguyên nhân thất bại có: " + errorCode + ".";
 							}
 						}
 					});
@@ -4725,7 +4725,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 				} else {
 					errorCode = ret.errorCode;
 					$.modalAlert("Tra cứuDuyệtKết quảthất bại" + errorCode, 'error');
-					//return "Lưu thất bại,thất bạinguyên nhânCó:" + errorCode + "。";
+					//return "Lưu thất bại, nguyên nhân thất bại có: " + errorCode + ".";
 				}
 			}
 		});
@@ -4746,7 +4746,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
 				} else {
 					errorCode = ret.errorCode;
 					$.modalAlert("Tra cứuLấy thuốcKết quảthất bại" + errorCode, 'error');
-					//return "Lưu thất bại,thất bạinguyên nhânCó:" + errorCode + "。";
+					//return "Lưu thất bại, nguyên nhân thất bại có: " + errorCode + ".";
 				}
 			}
 		});
@@ -4840,7 +4840,7 @@ Các chức năng khác của trang vẫn hoạt động bình thường.
                                 }
                             }
                         });
-                        //Thuốc Đông ydánsố、Cách dùng、sắc hộmangvào
+                        //Số thang thuốc Đông y, cách dùng, sắc thay mang vào
                         if ($("#gridzycf").jqGrid('getRowData_AllLine').length == 0
                             && this.tieshu) {
                             //$('#tieshu').val(this.tieshu);

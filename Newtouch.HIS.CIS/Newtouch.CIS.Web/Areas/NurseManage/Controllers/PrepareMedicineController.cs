@@ -203,7 +203,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
 
         /// <summary>
-        /// Giá bán buônTổng số tiền、Giá bán lẻTổng số tiềnTra cứu
+        /// Tra cứu tổng số tiền giá bán buôn, giá bán lẻ
         /// </summary>
         /// <param name="startTime">Thời gian bắt đầu</param>
         /// <param name="endTime">Thời gian kết thúc</param>

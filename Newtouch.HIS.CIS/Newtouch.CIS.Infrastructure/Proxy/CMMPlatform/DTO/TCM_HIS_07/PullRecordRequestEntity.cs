@@ -100,7 +100,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string individualHis { get; set; }
 
         /// <summary>
-        /// Thángqua婚dụcsử
+        /// Tiền sử kinh nguyệt, hôn nhân và sinh đẻ
         /// </summary>
         public string mcObstetrical { get; set; }
 
@@ -110,12 +110,12 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string fhx { get; set; }
 
         /// <summary>
-        /// 望khám
+        /// Vọng chẩn (quan sát)
         /// </summary>
         public string inspection { get; set; }
 
         /// <summary>
-        /// 闻khám
+        /// Văn chẩn (nghe/ngửi)
         /// </summary>
         public string smelling { get; set; }
 
@@ -125,7 +125,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_07
         public string palpation { get; set; }
 
         /// <summary>
-        /// 辨chứngcầnđiểm
+        /// Điểm cần thiết của biện chứng
         /// </summary>
         public string syndrome { get; set; }
 

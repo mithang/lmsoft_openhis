@@ -126,7 +126,7 @@
                                     var row = $(e.target).closest('tr.jqgrow');
                                     var rowid = row.attr('id');
                                     calitemsl(rowid);
-                                    CalculateConsumablesEachLineSlAndJe(rowid);   //Tính toán Tổng số lượng chi tiết、Số tiền chi tiết và số tiền đơn thuốc
+                                    CalculateConsumablesEachLineSlAndJe(rowid);   //Tính toán tổng số lượng chi tiết, số tiền chi tiết và số tiền đơn thuốc
                                 }
                             }
                         ]
@@ -383,7 +383,7 @@
                         $("#" + rowid + "_dwwwwwww").val(dw);
                         $("#" + rowid + "_dwlb").val("4");
                     }
-                    CalculateConsumablesEachLineSlAndJe(rowid);   //Tính toán Tổng số lượng chi tiết、Số tiền chi tiết và số tiền đơn thuốc
+                    CalculateConsumablesEachLineSlAndJe(rowid);   //Tính toán tổng số lượng chi tiết, số tiền chi tiết và số tiền đơn thuốc
                 }
             });
         }
@@ -412,13 +412,13 @@
                 }
                 debugger;
                 calitemsl(rowid);
-                CalculateConsumablesEachLineSlAndJe(rowid);   //Tính toán Tổng số lượng chi tiết、Số tiền chi tiết và số tiền đơn thuốc
+                CalculateConsumablesEachLineSlAndJe(rowid);   //Tính toán tổng số lượng chi tiết, số tiền chi tiết và số tiền đơn thuốc
             }
         });
 
         $("#" + rowid + "_ypjl").keyup(function () {
             calitemsl(rowid);
-            CalculateConsumablesEachLineSlAndJe(rowid);   //Tính toán Tổng số lượng chi tiết、Số tiền chi tiết và số tiền đơn thuốc
+            CalculateConsumablesEachLineSlAndJe(rowid);   //Tính toán tổng số lượng chi tiết, số tiền chi tiết và số tiền đơn thuốc
         });
         $("#" + rowid + "_zxksmc").newtouchBatchFloatingSelector({
             height: 170,

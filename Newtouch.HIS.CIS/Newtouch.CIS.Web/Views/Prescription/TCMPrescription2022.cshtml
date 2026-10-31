@@ -979,7 +979,7 @@
             var currRowSl = $('#' + rowid + '_sl').val(); //Số lượng
             var currRowDj = $('#' + rowid + '_dj').val();
 
-            //điều kiện tiên quyết：Thuốc Đông ycủaĐơn vị、Đơn vị liềucầnBảo trìcủanhất quán
+            //Điều kiện tiên quyết: đơn vị và đơn vị liều của thuốc Đông y cần được duy trì nhất quán
             if (currRowDj && parseFloat(currRowSl) > 0) {
                 //Đơn giá Số lượng khônglàtrống
                 currRowZe = roundingBy4she6ru5chengshuang(parseFloat(currRowDj) * parseFloat(currRowSl),2);
@@ -994,7 +994,7 @@
             var currRowSl = $('#' + rowid + '_sl2').val(); //Số lượng
             var currRowDj = $('#' + rowid + '_dj2').val();
             var currRowZe2;
-            //điều kiện tiên quyết：Thuốc Đông ycủaĐơn vị、Đơn vị liềucầnBảo trìcủanhất quán
+            //Điều kiện tiên quyết: đơn vị và đơn vị liều của thuốc Đông y cần được duy trì nhất quán
             if (currRowDj && parseFloat(currRowSl) > 0) {
                 //Đơn giá Số lượng khônglàtrống
                 currRowZe2 = roundingBy4she6ru5chengshuang(parseFloat(currRowDj) * parseFloat(currRowSl), 2);
@@ -1015,7 +1015,7 @@
         var currRowDj = $('#' + rowid + '_dj').val();
         var currRowSl2 = $('#' + rowid + '_sl2').val(); //Số lượng
         var currRowDj2 = $('#' + rowid + '_dj2').val();
-        //điều kiện tiên quyết：Thuốc Đông ycủaĐơn vị、Đơn vị liềucầnBảo trìcủanhất quán
+        //Điều kiện tiên quyết: đơn vị và đơn vị liều của thuốc Đông y cần được duy trì nhất quán
         if (currRowDj && parseFloat(currRowSl) > 0) {
             //Đơn giá Số lượng khônglàtrống
             currRowZe = roundingBy4she6ru5chengshuang(parseFloat(currRowDj) * parseFloat(currRowSl), 2);

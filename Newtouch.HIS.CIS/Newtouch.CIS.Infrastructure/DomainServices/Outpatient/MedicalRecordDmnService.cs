@@ -862,7 +862,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                                         cfCreator = dbPresEnitty.CreatorCode;
                                         sqdh = dbPresEnitty.sqdh;
                                         //bảngtrongđãtồn tạiởĐơn thuốc，trướcXóa chi tiếtvàXóachínhghi chép，lạiThêm mới
-                                        //chi tiếtLặp lại hướnggâycfchínhbảngnhiều lầnDelete  tạmkhiquy避 chờưuhóa
+                                        // Chi tiết lặp lại khiến bảng chính của đơn thuốc bị Delete nhiều lần, tạm thời tránh, chờ tối ưu hóa
                                         if (lastEty == null || lastEty.cfId != dbPresEnitty.cfId)
                                         {
                                             db.Delete(dbPresEnitty);
@@ -1334,7 +1334,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     bool? sfbz = null;
                     if (apiRespPush.data.settledCfhList != null && apiRespPush.data.settledCfhList.Contains(pres.cfh))
                     {
-                        sfbz = true;   //lịch sửCập nhậtdi漏
+                        sfbz = true;   // Cập nhật lịch sử bị bỏ sót
                     }
                     _prescriptionRepo.UpdateChargeStatus(pres.cfh, true, sfbz, orgId, opr);//hơnĐơn thuốc mớiđẩyTrạng thái
                 }

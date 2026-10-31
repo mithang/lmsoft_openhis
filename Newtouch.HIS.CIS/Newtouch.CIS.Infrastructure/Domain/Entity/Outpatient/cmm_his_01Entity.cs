@@ -65,12 +65,12 @@ namespace Newtouch.Domain.Entity
         public string cardNo { get; set; }
 
         /// <summary>
-        /// chức业Mã
+        /// Mã nghề nghiệp
         /// </summary>
         public string occupationCode { get; set; }
 
         /// <summary>
-        /// chức业
+        /// Nghề nghiệp
         /// </summary>
         public string occupation { get; set; }
 

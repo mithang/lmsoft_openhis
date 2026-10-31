@@ -22,7 +22,7 @@ namespace Newtouch.Domain.ValueObjects
         public string yplb { get; set; }
 
         /// <summary>
-        /// Thuốc熟悉
+        /// Thuộc tính thuốc
         /// </summary>
         public string ypsx { get; set; }
 

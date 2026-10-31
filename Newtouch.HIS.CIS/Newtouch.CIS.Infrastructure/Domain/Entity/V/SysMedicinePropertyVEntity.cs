@@ -117,7 +117,7 @@ namespace Newtouch.Domain.Entity
         public string ypflCode { get; set; }
 
         /// <summary>
-        /// ghisổLoại    0：mỗi顿lấychỉnhThu phí1：Làm tròn theo lầnThu phí
+        /// Loại ghi sổ: 0: thu phí làm tròn theo bữa 1: thu phí làm tròn theo lần
         /// </summary>
         public string jzlx { get; set; }
 

@@ -12,7 +12,7 @@ namespace Newtouch.CIS.APIRequest.Dto
         public string mzyyghId { get; set; }
 
         /// <summary>
-        /// 赴hẹnThời gian
+        /// Thời gian đến hẹn
         /// </summary>
         public DateTime arrivalDate { get; set; }
 

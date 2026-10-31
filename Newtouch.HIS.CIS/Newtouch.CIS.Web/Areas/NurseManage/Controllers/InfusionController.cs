@@ -86,7 +86,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return View();
         }
         /// <summary>
-        /// không良phảnứngThuốcQuản lý
+        /// Quản lý phản ứng bất lợi của thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult DrugReactManage()
@@ -243,7 +243,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         }
 
         /// <summary>
-        /// In瓶dán
+        /// In nhãn chai
         /// </summary>
         /// <returns></returns>
         public IActionResult PrintBottleLabel(string tags)
@@ -362,7 +362,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         {
             OperatorModel user = this.UserIdentity;
             var patOutMsg = _OutpatientNurseDmnService.SavaLgdj(lgdjlist, this.OrganizeId, user);
-            return patOutMsg == "T" ? Success("Lưu thành công。") : Error(patOutMsg);
+            return patOutMsg == "T" ? Success("Lưu thành công.") : Error(patOutMsg);
         }
     }
 }

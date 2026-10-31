@@ -51,7 +51,7 @@ namespace Newtouch.Domain.DTO.InterfaceSync
         ERROR = 20000,
 
         /// <summary>
-        /// nghiệp vụchỗlýthất bại:	cụ thểthểthất bạinguyên nhântham số见giao diệnQuay lạicủaLỗimã    
+        /// Xử lý nghiệp vụ thất bại: nguyên nhân thất bại cụ thể xem mã lỗi trả về của giao diện
         /// </summary>
         FAIL = 40004
     }

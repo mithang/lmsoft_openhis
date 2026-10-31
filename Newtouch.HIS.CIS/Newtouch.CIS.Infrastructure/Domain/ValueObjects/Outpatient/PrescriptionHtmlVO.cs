@@ -291,7 +291,7 @@ namespace Newtouch.Domain.ValueObjects
         #endregion
 
         /// <summary>
-        /// 临giườngnguyên nhân
+        /// Nguyên nhân lâm sàng
         /// </summary>
         public string lcyx { get; set; }
         /// <summary>

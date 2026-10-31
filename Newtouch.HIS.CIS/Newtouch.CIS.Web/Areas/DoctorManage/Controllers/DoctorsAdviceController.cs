@@ -77,7 +77,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             ViewBag.ISWithRehabSuggestion = _sysConfigRepo.GetBoolValueByCode("IS_WithRehabSuggestion", this.OrganizeId, false);//Phục hồi chức năngĐơn thuốcCóKhôngTrích dẫnĐiều trịxâynghị
                                                                                                                                 
             var frequencyStr = _sysConfigRepo.GetValueByCode("FrequencyStr", OrganizeId) ?? "";//Tạm thờiTần suấtchuỗi phútcắtcủaTần suấtMãchữkýchuỗiVDVD：00,01
-            ViewBag.isqfswith = _sysConfigRepo.GetValueByCode("accountqfexecute_switch", OrganizeId);//nợ phíY lệnhmởlập、Thực hiệnCông tắc
+            ViewBag.isqfswith = _sysConfigRepo.GetValueByCode("accountqfexecute_switch", OrganizeId);//Công tắc mở lập, thực hiện y lệnh khi nợ phí
             ViewBag.isopenPriorReview = _sysConfigRepo.GetValueByCode("OpenPriorReview", OrganizeId);//CóKhôngbậtviệctrướcPhê duyệtgiao diện
             ViewBag.openYjzxSwitch = _sysConfigRepo.GetValueByCode("openYjzxSwitch", OrganizeId); //Công tắc：kỹ thuật y họcQuản lýCóKhôngKích hoạt 
             if (!string.IsNullOrWhiteSpace(frequencyStr))
@@ -305,7 +305,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         }
 
         /// <summary>
-        /// Dừng、Hủy bỏY lệnh
+        /// Dừng, hủy bỏ y lệnh
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="tzsj"></param>

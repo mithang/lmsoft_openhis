@@ -13,7 +13,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
     public class MeettingResponse
     {
         /// <summary>
-        /// là音xemtần suấtTài khoảnlấy Secret làkhóa bí mậtvàodòng AES đốigọi làthêmmậtsaucủakếtnếu，gọi音xemtần suấtphụcvụcầndùngđến，vui lònggiảimậtsauSử dụng
+        /// Tài khoản âm thanh/hình ảnh; Secret là khóa bí mật, kết quả trả về của lệnh gọi được mã hóa AES; khi gọi dịch vụ âm thanh/hình ảnh cần dùng đến, vui lòng giải mã rồi sử dụng
         /// </summary>
         public string rtcuserid { get; set; }
         /// <summary>

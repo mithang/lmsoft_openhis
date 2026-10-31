@@ -13,7 +13,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public int cflx { get; set; }
         /// <summary>
-        /// Đơn thuốcLoại细phút EnumCflx
+        /// Loại đơn thuốc chi tiết (EnumCflx)
         /// </summary>
         public int cflxxf { get; set; }
         /// <summary>

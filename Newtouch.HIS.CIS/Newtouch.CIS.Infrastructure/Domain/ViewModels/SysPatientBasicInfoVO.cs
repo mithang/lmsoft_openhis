@@ -28,7 +28,7 @@ namespace Newtouch.Domain.ViewModels
         public string brxzmc { get; set; }
 
         /// <summary>
-        /// bảnviện磁Số thẻ（góigồmBảo hiểm y tếnghỉ hưubệnh nhân），hoặcBảo hiểm y tếSố thẻ
+        /// Số thẻ từ của bệnh viện (gồm bệnh nhân BHYT nghỉ hưu), hoặc số thẻ BHYT
         /// </summary>
         public string blh { get; set; }
 
@@ -178,7 +178,7 @@ namespace Newtouch.Domain.ViewModels
         public string pzzd { get; set; }
 
         /// <summary>
-        /// --2006-07-9 Hủy???tài khoảnquythì，nhàgiườngquyết toán，ởđổilượngtruyềnkhilấyâmsố，khôngSửabảng      --2006.07.09 khôngcho phéptựđộngLưu ýbántài khoản，làđãkhôngvànhàgiườngrútgiườngthất bạiHỗn hợp淆   âmtài khoảnchỉcómộtchứanghĩa，thìlàrútgiườngthất bại      Đơn vịđặchẹn帐số、Cá nhânđặchẹn帐số from xtzh   khitài khoảnlàâmsốkhi，biểu thịnàytài khoảnđãbịHệ thốngtựđộngLưu ýbán(Hạn hiệu lựcđãqua、hoặcnhàgiườnggiao dịchthành công，nhưnglàrútgiườngthất bại。)
+        /// -- 2006-07-09: Khi hủy tài khoản, giường bệnh quyết toán, khi đổi lượng truyền lấy số âm, không sửa bảng. -- 2006.07.09: Không cho phép tự động ghi chú bán tài khoản; trường hợp đã không (rút giường) và rút giường thất bại lẫn lộn. Tài khoản âm chỉ có một ý nghĩa, đó là rút giường thất bại. Số tài khoản đặt hẹn của đơn vị, số tài khoản đặt hẹn cá nhân lấy từ xtzh. Khi tài khoản là số âm, biểu thị tài khoản này đã bị hệ thống tự động ghi chú bán (hạn hiệu lực đã qua, hoặc giao dịch giường bệnh thành công nhưng rút giường thất bại.)
         /// </summary>
         public int? zh { get; set; }
 
@@ -208,7 +208,7 @@ namespace Newtouch.Domain.ViewModels
         public string mz { get; set; }
 
         /// <summary>
-        /// chức业
+        /// Nghề nghiệp
         /// </summary>
         public string zy { get; set; }
 
@@ -223,7 +223,7 @@ namespace Newtouch.Domain.ViewModels
         public string yddh { get; set; }
 
         /// <summary>
-        /// 0.Khác 1.住宅 2.công ty
+        /// 0: Khác 1: Nhà ở 2: Công ty
         /// </summary>
         public byte? dzxz { get; set; }
 
@@ -384,7 +384,7 @@ namespace Newtouch.Domain.ViewModels
         public string CardNo { get; set; }
 
         /// <summary>
-        /// thẻLoại 1-虚拟吗  2-Bảo hiểm y tếgiao dịchthẻ  3-BHYT nông thôn mớigiao dịchthẻ
+        /// Loại thẻ: 1 - thẻ ảo 2 - thẻ giao dịch BHYT 3 - thẻ giao dịch BHYT nông thôn mới
         /// </summary>
         public string CardType { get; set; }
 

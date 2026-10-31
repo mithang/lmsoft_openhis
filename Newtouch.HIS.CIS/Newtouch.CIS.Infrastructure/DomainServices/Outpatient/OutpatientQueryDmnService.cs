@@ -59,7 +59,7 @@ gh.zdmc,
 jz.kh jzkh,
 case when jz.fzbz<>0 then Convert(varchar(50),jzrq,23)  else null end fzrq,
 Convert(varchar(50),jz.csny,23) csny,jz.zjh,brxzmc,'' ylzh,
-case hy when '1' then '未婚' when '2' then '已婚' else 'Khong ro' end hy,
+case hy when '1' then 'Chưa kết hôn' when '2' then 'Đã kết hôn' else 'Khong ro' end hy,
 zy,mzmc mz , '' xx,
 case when jz.fzbz<>0 then null else Convert(varchar(50),jz.ghczsj,23)  end czrq,
 dh,xian_dz,dwmc,dwdh,lxrgx,lxr,lxrdh,'' lxrdw,jjlxr_dz

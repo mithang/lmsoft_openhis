@@ -110,7 +110,7 @@
     var contentStartTop;
     var contentStartLeft;
     var ord = 0; //Hô hấpxếpSố thứ tự
-    //Huyết áp、Mạch、Hô hấp、Nhiệt độ
+    //Huyết áp, mạch, hô hấp, nhiệt độ
     var twArr = [42, 41, 40, 39, 38, 37, 36, 35, 34,33];
     var hxArr = [100,80, 70, 60, 50, 40, 30, 20, 10, 0];
     var mbArr = [180, 160, 140, 120, 100, 80, 60, 40, 20,0];
@@ -450,8 +450,8 @@
             //dòng cuối cùngkhôngthêmthô
             var bold = i == (twArr.length - 1 - 1) ? '' : 'bold';
             drawLine(left, top, twLastLeft - left, colr, '', bold);
-            //phía tráiHuyết áp、Mạch、Hô hấp、Nhiệt độ
-            if (i == 0) {  //chl 42℃ dựaphía dướiHiển thị khôngchiếmdùng【Nhiệt độ】Hiển thịVị trí
+            //Phía trái: huyết áp, mạch, hô hấp, nhiệt độ
+            if (i == 0) {  //Chỉ 42℃ hiển thị ở phía dưới, không chiếm vị trí hiển thị 【Nhiệt độ】
                 var ileft = left - ((contentStartLeft - origin.x) / 2) * 0 - 28;
 
                 $div = $('<div style="position:absolute;text-align:center;left:' + ileft + 'px;top:' + (top - (sspace * 3.5) - 1) + 'px;width:' + sspacewidth + 'px;height:' + spc + 'px;line-height:' + spc + 'px;">'
@@ -814,7 +814,7 @@
             }
         }
 
-        //phía tráiHuyết áp、Mạch、Hô hấp、Nhiệt độ đường dọc+văn bản
+        //Phía trái: huyết áp, mạch, hô hấp, nhiệt độ, đường dọc + văn bản
         for (var i = 0; i < 2; i++) {
             var left = origin.x + ((contentStartLeft - origin.x) / 2) * i;
             var top = contentStartTop;

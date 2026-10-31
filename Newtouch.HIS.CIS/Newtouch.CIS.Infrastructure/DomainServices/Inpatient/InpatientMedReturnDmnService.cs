@@ -244,7 +244,7 @@ and exists (
                                 db.Commit();
                             }
                         }
-                        else //hoàng杉杉Sửatại2019.05.24 Nhà thuốcKho thuốcyêu cầuQuay lạikhôngHỗ trợ （5 Thuốcđãtrả 6 Đã gửi đơntrảthuốc） hailoạitình hình，sởlấykhônglàmchỗlý
+                        else // hoàng杉杉 sửa tại 2019.05.24: Nhà thuốc/kho thuốc yêu cầu trả lại không hỗ trợ (5: thuốc đã trả; 6: đã gửi đơn trả thuốc) hai loại tình hình, vì vậy không làm xử lý
                         //if (apires.code == APIRequestHelper.ResponseResultCode.FAIL && apires.sub_msg != "")
                         //{
 

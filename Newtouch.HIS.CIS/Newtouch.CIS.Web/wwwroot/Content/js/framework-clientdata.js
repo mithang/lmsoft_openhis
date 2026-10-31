@@ -32,6 +32,6 @@ $.clientsInit = function () {
 
     //Đồng bộyêu cầu  //VDmenuphiếunội dungphảicầndùngĐồng bộphươngkiểu
     funcClientsAjax("/ClientsData/GetClientsDataJson", false);
-    //异bướcyêu cầu
+    //Yêu cầu không đồng bộ
     //funcClientsAjax("/NewtouchClientsData/GetClientsDataJson", true);
 }

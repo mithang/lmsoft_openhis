@@ -190,7 +190,7 @@
                                         var row = $(e.target).closest('tr.jqgrow');
                                         var rowid = row.attr('id');
 
-                                        CalculateConsumablesEachLineSlAndJe(rowid);   //Tính toán Tổng số lượng chi tiết、Số tiền chi tiết và số tiền đơn thuốc
+                                        CalculateConsumablesEachLineSlAndJe(rowid);   //Tính toán tổng số lượng chi tiết, số tiền chi tiết và số tiền đơn thuốc
                                     }
                             }, {
                                 type: 'keydown',
@@ -220,7 +220,7 @@
                                 //        var row = $(e.target).closest('tr.jqgrow');
                                 //        var rowid = row.attr('id');
 
-                                //        CalculateConsumablesEachLineSlAndJe(rowid);   //Tính toán Tổng số lượng chi tiết、Số tiền chi tiết và số tiền đơn thuốc
+                                //        CalculateConsumablesEachLineSlAndJe(rowid);   //Tính toán tổng số lượng chi tiết, số tiền chi tiết và số tiền đơn thuốc
                                 //    }
                                 //}
                         ]
@@ -412,7 +412,7 @@
 				var cls = parseInt($this.attr('data-cls'));
 				var mzkcsl = !!kcsl && !!cls ? (parseInt(kcsl / cls)) : 0;
 				ypkcrem($this.attr('data-yfbmCode'), $this.attr('data-sfxmCode'), mzkcsl);
-				CalculateConsumablesEachLineSlAndJe(rowid);   //Tính toán Tổng số lượng chi tiết、Số tiền chi tiết và số tiền đơn thuốc
+				CalculateConsumablesEachLineSlAndJe(rowid);   //Tính toán tổng số lượng chi tiết, số tiền chi tiết và số tiền đơn thuốc
             },
         });
         //Thực hiệnKhoa

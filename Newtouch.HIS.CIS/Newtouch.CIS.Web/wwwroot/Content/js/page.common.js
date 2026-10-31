@@ -42,7 +42,7 @@ $.fn.yfFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//Mục thu phí lớp nổi（góigồmThuốc、Mục，cũngcó thểlấyHạng mục không điều trị）
+//Lớp nổi mục thu phí (gồm thuốc, mục, cũng có thể lấy hạng mục không điều trị)
 $.fn.sfxmFloatingSelector = function (options) {
 	//Mặc địnhoptions
 	var defaults = {
@@ -53,7 +53,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 		ajaxparameters: null,   //vui lòngchỉđịnh
 		itemdbclickhandler: null,   //vui lòngchỉđịnh
 		djDecimalPlaces: 2,  //Đơn giátinhđộ Mặc định2
-		searchType: null,   //chỉđiều khiểncộthiển隐，khôngtham sốvàLọc//Tìm kiếmMục tiêu "yp,sfxm"、"yp"、"sfxm"、"yp.kc"、"sfxm.dwjls"、"yp,sfxm.dwjls"、"yp.kc,sfxm"、"yp.kc,sfxm.dwjls"
+		searchType: null,   //Chỉ điều khiển cột hiển thị ẩn, không tham số và lọc //Tìm kiếm mục tiêu "yp,sfxm", "yp", "sfxm", "yp.kc", "sfxm.dwjls", "yp,sfxm.dwjls", "yp.kc,sfxm", "yp.kc,sfxm.dwjls"
 		showColModel: null,   //có thểchỉđịnh [{name:;widthratio:;},{name:;widthratio:;}] widthratiocó thểchọn
 		ypkccbjc: true,    //ThuốcTồn khoban đầubướcKiểm tra   CóKhôngbịđiều khiển CóKhôngTồn kho0
 
@@ -620,7 +620,7 @@ $.fn.ztFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//Bác sĩtrạm--》văn bảnnhập--》chỉhiển thịvăn bảnkhungNút
+//Trạm bác sĩ --> Nhập văn bản --> Chỉ hiển thị nút khung văn bản
 //$.fn.zsFloatingSelector = function (options) {
 //    var defaults = {
 //        width: 400,

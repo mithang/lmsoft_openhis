@@ -141,7 +141,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string gjybdm { get; set; }
 
         /// <summary>
-        /// 微mềmEmail
+        /// Email Microsoft
         /// </summary>
 
         public string MsEmail { get; set; }

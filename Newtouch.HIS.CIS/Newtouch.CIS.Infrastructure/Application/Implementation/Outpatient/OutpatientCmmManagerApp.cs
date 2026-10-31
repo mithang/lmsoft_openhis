@@ -361,7 +361,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// quy范Đơn thuốcthông tin
+        /// Chuẩn hóa thông tin đơn thuốc
         /// </summary>
         /// <returns></returns>
         private List<DrugDataEx> FormatRpDetail(Prescription s, string organizeId, string mzzybz)

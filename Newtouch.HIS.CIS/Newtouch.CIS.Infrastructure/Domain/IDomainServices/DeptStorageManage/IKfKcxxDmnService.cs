@@ -19,7 +19,7 @@ namespace Newtouch.Domain.IDomainServices.DeptStorageManage
         /// <param name="sl">Đơn vị nhỏ nhấtSố lượng</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
-        /// <returns>Quay lại受hìnhhưởngdòng</returns>
+        /// <returns>Trả về số dòng bị ảnh hưởng</returns>
         int UpdateKcsl(string productId, string pc, string ph, string warehouseId, int sl, string organizeId, string userCode);
 
         // /// <summary>

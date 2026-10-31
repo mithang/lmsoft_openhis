@@ -124,7 +124,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         /// </summary>
         public int? ds { get; set; }
         /// <summary>
-        /// 临giườngẤn tượng
+        /// Ấn tượng lâm sàng
         /// </summary>
         public string lcyx { get; set; }
         /// <summary>

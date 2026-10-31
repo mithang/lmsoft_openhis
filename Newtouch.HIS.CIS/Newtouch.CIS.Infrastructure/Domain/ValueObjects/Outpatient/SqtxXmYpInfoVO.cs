@@ -7,7 +7,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public string ybdm { get; set; }
         /// <summary>
-        /// Tỷ lệ tự trả nhắc trướclàmột ký tự，故địnhnghĩalàint
+        /// Tỷ lệ tự trả nhắc trước là một ký tự, vì vậy định nghĩa là int
         /// </summary>
         public int zfbl { get; set; }
         /// <summary>

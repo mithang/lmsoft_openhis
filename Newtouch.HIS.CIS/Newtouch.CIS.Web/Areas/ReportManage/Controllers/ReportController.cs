@@ -171,7 +171,7 @@ namespace Newtouch.CIS.Web.Areas.ReportManage.Controllers
             ReportingServiceCom();
             return View();
         }
-        //Ngoại trú抗菌thuốcvậtĐơn thuốcsoVD
+        //Tỷ lệ đơn thuốc thuốc kháng khuẩn ngoại trú
         public IActionResult PrintKssCfPropReport()
         {
             ReportingServiceCom();

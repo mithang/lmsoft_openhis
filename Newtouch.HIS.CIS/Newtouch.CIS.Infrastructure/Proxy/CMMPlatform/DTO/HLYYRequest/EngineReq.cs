@@ -96,13 +96,13 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string Pregnancy { get; set; } // làKhôngmang thai
         
         [XmlElement("timeOfPreg")]
-        public string TimeOfPreg { get; set; } // 孕kỳ
+        public string TimeOfPreg { get; set; } // Thời kỳ mang thai
         
         [XmlElement("disease")]
         public string Disease { get; set; } // làKhôngBệnh mạn tính
         
         [XmlElement("breastFeeding")]
-        public string BreastFeeding { get; set; } // làKhông哺乳
+        public string BreastFeeding { get; set; } // Có cho con bú hay không
         
         [XmlElement("dialysis")]
         public string Dialysis { get; set; } // làKhôngThẩm tách
@@ -142,10 +142,10 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string IncisionType { get; set; } // cắtmiệngLoại
         
         [XmlElement("incisionStatus")]
-        public string IncisionStatus { get; set; } // 愈hợpLoại
+        public string IncisionStatus { get; set; } // Loại liền vết thương
         
         [XmlElement("inplant")]
-        public string Inplant { get; set; } // làKhôngcó植vàovật
+        public string Inplant { get; set; } // Có vật cấy ghép hay không
     }
 
     [XmlRoot("Prescription")]
@@ -233,7 +233,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string EndTime { get; set; } // Thời gian kết thúc
         
         [XmlElement("specialPromote")]
-        public string SpecialPromote { get; set; } // sắc煮Phương pháp
+        public string SpecialPromote { get; set; } // Phương pháp sắc thuốc
         
         [XmlElement("continueDays")]
         public string ContinueDays { get; set; } // liên tụcThời gian

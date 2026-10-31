@@ -200,7 +200,7 @@ namespace Newtouch.Infrastructure
                 // sẽbămkếtnếuchuyểnđổilàmườisáuvàochếchữkýchuỗi
                 string hashString = BitConverter.ToString(hashBytes).Replace("-", "");
 
-                // 截lấytrước 6 cáichữkýlàmlàngắnchuỗi
+                // Lấy 6 ký tự đầu làm chuỗi ngắn
                 return hashString.Substring(0, 6);
             }
         }

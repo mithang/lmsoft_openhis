@@ -62,7 +62,7 @@ namespace Newtouch.DomainServices
         public IList<OutpatientNursequeryVO> OutpatientNursequery(Pagination pagination, string patList, string orgId)
         {
             string sql = @" select a.cfmxId,c.mzh,c.blh,c.xm,a.ypmc,a.zh,a.CreateTime kssj,a.ypCode
- ,(a.ypmc + ' ' + d.ypgg + ' ' + convert(varchar(8), a.sl) + a.dw + ' (剂量)' + convert(varchar(8), a.mcjl) + a.mcjldw + ' ' + e.yzpcmc + ' ' + f.yfmc) cfmxnr
+ ,(a.ypmc + ' ' + d.ypgg + ' ' + convert(varchar(8), a.sl) + a.dw + ' (Liều lượng)' + convert(varchar(8), a.mcjl) + a.mcjldw + ' ' + e.yzpcmc + ' ' + f.yfmc) cfmxnr
  ,(case when xb = 'Nữ' then '2'else'1' end) sex
    from xt_cfmx(nolock) a
  left join xt_cf(nolock) b on a.cfId = b.cfId and b.zt='1' and a.OrganizeId=b.OrganizeId

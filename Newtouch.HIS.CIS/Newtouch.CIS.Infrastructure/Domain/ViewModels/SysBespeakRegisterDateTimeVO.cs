@@ -19,7 +19,7 @@ namespace Newtouch.Domain.ViewModels
         public string regDate { get; set; }
 
         /// <summary>
-        /// 星kỳ
+        /// Thứ trong tuần
         /// </summary>
         public string week { get; set; }
 

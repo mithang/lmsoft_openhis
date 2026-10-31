@@ -100,7 +100,7 @@ namespace Newtouch.Repository
 			//                drop table #tmp");
 			//            return this.FindList<InpatientVitalSignsDto>(sb.ToString(), pars.ToArray());
 
-			//2021-2-2 giải决Chinese_PRC_CI_AS sửalàTra cứutồn tạitrữquatrình
+			//2021-2-2: giải quyết việc dùng Chinese_PRC_CI_AS khi tra cứu stored procedure đã tồn tại
 			var pars = new List<SqlParameter>();
 			pars.Add(new SqlParameter("@orgId", orgId));
 			pars.Add(new SqlParameter("@kssj", kssj.Value.Date));
@@ -233,7 +233,7 @@ where OrganizeId = @orgId and zt = '1'");
 
         /*****************************************************************/
         /// <summary>
-        /// LấyPhiếu đo ba chỉ số绘chếsởcầnDữ liệu
+        /// Lấy dữ liệu cần thiết để vẽ phiếu đo ba chỉ số
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>

@@ -97,7 +97,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 
 
 
-        #region Bác sĩtrạm--》Văn bảnNhập--》Chỉ địnhvăn bảnkhungNút
+        #region Trạm bác sĩ --> Nhập văn bản --> Nút khung văn bản chỉ định
         //public IActionResult surgery_record()
         //{
             

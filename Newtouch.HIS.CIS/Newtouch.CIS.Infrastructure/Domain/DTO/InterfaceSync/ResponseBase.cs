@@ -12,7 +12,7 @@ namespace Newtouch.Domain.DTO.InterfaceSync
         public ResponseResultCode code { get; set; }
         //
         // háicần:
-        //     网关Quay lạimãMô tả
+        //     Mô tả mã trả về của cổng (gateway)
         public string msg { get; set; }
         //
         // háicần:

@@ -98,12 +98,12 @@ namespace Newtouch.Domain.Entity
         public bool? djbz { get; set; }
 
         /// <summary>
-        /// Đồng bộCờ，làKhôngđãĐồng bộđếnHIS（saukiểm tralàKhôngđãĐồng bộ sửathànhtheo赖Thao tácghi chépbảng）
+        /// Cờ đồng bộ: đã đồng bộ đến HIS hay chưa (sau khi kiểm tra, nếu đã đồng bộ thì sửa theo bảng ghi chép thao tác)
         /// </summary>
         public bool? tbbz { get; set; }
 
         /// <summary>
-        /// 临giườngnguyên nhân
+        /// Nguyên nhân lâm sàng
         /// </summary>
         public string lcyx { get; set; }
         /// <summary>

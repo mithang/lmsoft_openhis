@@ -73,7 +73,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public int bespeakNo { get; set; }
 
         /// <summary>
-        /// 赴hẹnThời gian
+        /// Thời gian đến hẹn
         /// </summary>
         public DateTime? arrivalDate { get; set; }
 

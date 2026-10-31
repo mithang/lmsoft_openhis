@@ -299,7 +299,7 @@
 			if ('@djzhqsj' == "1") {
 			url = "/PatientList/GetdjzList";
 		}
-        } else if ($("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.Treating)' || $("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.Treated)') {   //Đang khám bệnh、Đã khám bệnh
+        } else if ($("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.Treating)' || $("input[name='optionsRadios']:checked").val() == '@((int)EnumJzzt.Treated)') {   //Đang khám bệnh, đã khám bệnh
             url = "/PatientList/SelectTreatingOrTreatedList";
             djz = "0";
 		}
@@ -412,7 +412,7 @@
         selRowData.mjzbz = $('#mjzbz option:selected').val();
         window.currPatientInfo = selRowData;
         $('#tip_yfly').unbind('change'); //đitrừMặc địnhNhà thuốcchangesự kiện
-        //Xóa trắng tất cảvăn bản、Đơn thuốc、Đơn thuốc lịch sử、griddanh sách
+        //Xóa trắng tất cả văn bản, đơn thuốc, đơn thuốc lịch sử, grid danh sách
         newtouch_globalevent_f4();  //ởbệnhVDtrang
 
         //Hiển thịThông tin bệnh nhân

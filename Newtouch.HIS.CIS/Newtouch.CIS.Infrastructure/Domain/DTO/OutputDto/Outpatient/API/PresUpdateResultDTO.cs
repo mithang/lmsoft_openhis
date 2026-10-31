@@ -8,7 +8,7 @@ namespace Newtouch.Domain.DTO.OutputDto
     public class PresUpdateResultDTO
     {
         /// <summary>
-        /// đãkếtĐơn thuốc Số đơn thuốc List（哪些đãkếtđã cònyêu cầuCập nhật）
+        /// Danh sách số đơn thuốc đã quyết toán (những đơn đã quyết toán còn cần cập nhật)
         /// </summary>
         public IList<string> settledCfhList { get; set; }
     }

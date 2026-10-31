@@ -97,7 +97,7 @@ namespace NewtouchCIS.Infrastructure
             try
             {
                 string line;
-                // tạomột StreamReader củathựcVDđếnđọclấyvănmục ,using ngữ句cũngcó thểĐóng StreamReader
+                // Tạo một thể hiện (instance) của StreamReader để đọc file, câu lệnh using cũng có thể đóng StreamReader
                 using (System.IO.StreamReader sr = new System.IO.StreamReader(filePath))
                 {
                     // từvănmụcđọclấyvàHiển thịdòng，thẳngđếnvănmụccủacuối 

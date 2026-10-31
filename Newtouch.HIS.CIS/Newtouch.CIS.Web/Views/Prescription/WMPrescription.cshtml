@@ -312,7 +312,7 @@
                         fn: function (e) {
                                var row = $(e.target).closest('tr.jqgrow');
                                     var rowid = row.attr('id');
-                                    MatchWMZuhaoInfo(rowid);   //cùng mộtSố nhómcần khớpCách dùng、Tần suất、Số ngày、hết hạnNgày
+                                    MatchWMZuhaoInfo(rowid);   //Cùng một số nhóm cần khớp cách dùng, tần suất, số ngày, hết hạn ngày
 
                                     var cfh = $("#gridxycf").getRowData(rowid).cfh;
                                     var zh = $('#' + $($("#gridxycf").getRowData(rowid).zh).attr('id')).val();
@@ -420,7 +420,7 @@
                                 }
                         ]
 
-                    }   //Lưu ý：Đơn vị liềuphải định ký tựởLiều lượngphía dưới，vìphía dướiCóTheonàyCơ sởđến tìmĐơn vị liềucủa。(vìselectKhông cóidcủaThuộc tính)
+                    }   //Lưu ý: đơn vị liều phải ghi ở phía dưới liều lượng, vì phía dưới căn cứ vào đây để tìm đơn vị liều. (vì select không có thuộc tính id)
                 },
                 { label: 'redundant_jldw', name: 'redundant_jldw', width: 40, editwidth: '', align: 'center', editable: true, hidden: true },  //Không thể bỏ từ điểnjldw
                 { label: 'mcjldwwwwwww', name: 'mcjldwwwwwww', width: 40, editwidth: '', align: 'center', editable: true, hidden: true },  //Không thể bỏ Đã chọncủa
@@ -781,7 +781,7 @@
         CalculateWMPresAmount();  //Tính toánĐơn thuốccủaSố tiền
     }
 
-    //cùng mộtSố nhómcần khớpCách dùng、Tần suất//、Số ngày、hết hạnNgày
+    //Cùng một số nhóm cần khớp cách dùng, tần suất, số ngày, hết hạn ngày
     function MatchWMZuhaoInfo(rowid) {
         var currRowZh = $("#" + rowid + "_zh").val();
         if (currRowZh) {

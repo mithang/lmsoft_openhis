@@ -445,7 +445,7 @@ namespace Newtouch.DomainServices.Inpatient
                         var frequencyLs = (frequencyStr.Split(',') ?? new string[0]).ToList();
                         string ssyzcfId;
                         //Y lệnhđối tượngGán giá trị  
-                        if ("临".Equals(item.yzlb) || item.yzlx == (int)EnumYzlx.Cydy || item.yzlx == (int)EnumYzlx.zcy || frequencyLs.Exists(p => p == item.pcCode))//Tạm thờiTần suất
+                        if ("临".Equals(item.yzlb) || item.yzlx == (int)EnumYzlx.Cydy || item.yzlx == (int)EnumYzlx.zcy || frequencyLs.Exists(p => p == item.pcCode))// Tần suất tạm thời
                         {
                             ssyzcfId = item.Id;
                             //Dữ liệukhotìmkhôngđếnnàyY lệnhghi chépcủalời，thìThêm mới
@@ -2806,7 +2806,7 @@ and idl.name=@ypyfmc
                 bEAN.WEIGHT = 0;                    //thểtrọng(kg)
                 bEAN.IS_TRAN_IN_HOSPITAL = "0";       //làKhôngchuyểnNhập viện0：Không；1：là
                 bEAN.IS_PREGNANCY = "0";              //làKhôngmang thai0：Không；1：là
-                bEAN.IS_SUCKLING = "0";               //làKhông哺乳kỳ0：Không；1：là
+                bEAN.IS_SUCKLING = "0";               // Có phải thời kỳ cho con bú: 0: Không; 1: Có
                 bEAN.HIS_BILL_NO = yzh;               //Thu phíphiếusố phiếu
                 bEAN.HARD_ILL_FLAG = "0";             //làKhôngđặcbệnhchậmbệnhphiếucứCờ0：Không；1：là
                 bEAN.HARD_ILL_CODE = "";             //chậmbệnhđặcbệnhMã。nếunếuphiếucứlàchậmbệnhđặcbệnhphiếucứ，cầnnhắccung cấpMãhoặccó thểđủtừMã chẩn đoántìmđếntương ứngcủachậmbệnhđặcbệnh

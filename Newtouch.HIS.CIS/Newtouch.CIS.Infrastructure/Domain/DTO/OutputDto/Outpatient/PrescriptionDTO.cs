@@ -56,7 +56,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public bool? djbz { get; set; }
 
         /// <summary>
-        /// 临giườngnguyên nhân
+        /// Nguyên nhân lâm sàng
         /// </summary>
         public string lcyx { get; set; }
         /// <summary>

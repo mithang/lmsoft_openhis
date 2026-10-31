@@ -92,7 +92,7 @@ namespace Newtouch.CIS.Web.Areas.ClinicManage.Controllers
                 ScheduId = scheduId,
                 ghxz = "0",//tự chi trả
                 PayWay = "3",//Alipay
-                PayFee = regFree,//0元
+                PayFee = regFree,//0 đồng
                 PayLsh = payLsh
             };
             var ghReqObj = new

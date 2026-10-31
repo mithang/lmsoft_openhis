@@ -30,7 +30,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// 赴hẹn
+        /// Đến hẹn
         /// </summary>
         /// <param name="id"></param>
         /// <param name="arrivalDate"></param>

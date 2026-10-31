@@ -61,7 +61,7 @@
                 //bản lầnKhám bệnh   // Đã thu phíĐơn thuốcvàoelseTrích dẫnĐơn thuốc
                 if (item.Ex2 == "current"
                     && !(!!item.Ex1 && item.Ex1.toString().toLowerCase() === "true")) {
-                    //Đặt lại Đơn thuốc lịch sử、Đơn thuốcmẫu
+                    //Đặt lại đơn thuốc lịch sử, mẫu đơn thuốc
                     cfLeftFloatHide();
 
                     //trùng lặpThêmđếnphảibêncủakiểm tra
@@ -305,7 +305,7 @@
                                                 }
                                             }
                                         });
-                                        //Thuốc Đông ydánsố、Cách dùng、sắc hộmangvào
+                                        //Số thang thuốc Đông y, cách dùng, sắc thay mang vào
                                         if ($("#gridzycf").jqGrid('getRowData_AllLine').length == 0
                                             && this.tieshu) {
                                             $('#tieshu').val(this.tieshu);
@@ -334,7 +334,7 @@
                                                 }
                                             }
                                         });
-                                        //Thuốc Đông ydánsố、Cách dùng、sắc hộmangvào
+                                        //Số thang thuốc Đông y, cách dùng, sắc thay mang vào
                                         if ($("#gridzycfnew").jqGrid('getRowData_AllLine').length == 0
                                             && this.tieshu) {
                                             $('#tieshu').val(this.tieshu);
@@ -378,7 +378,7 @@
                                         }
                                     }
                                 });
-                                //Đặt lại Đơn thuốc lịch sử、Đơn thuốcmẫu
+                                //Đặt lại đơn thuốc lịch sử, mẫu đơn thuốc
                                 cfLeftFloatHide();
                                 $.modalClose("FormShowHistoryPresForm");
                             });

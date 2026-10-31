@@ -506,7 +506,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// LưuKhám bệnhghi chép、Chẩn đoán、Hồ sơ、Đơn thuốc、Đơn thuốcchi tiết
+        /// Lưu ghi chép khám bệnh, chẩn đoán, hồ sơ, đơn thuốc, chi tiết đơn thuốc
         /// </summary>
         /// <param name="jzObject"></param>
         /// <param name="xyzdList"></param>
@@ -544,8 +544,8 @@ namespace Newtouch.CIS.Web.Controllers
                      "api/SignInAppointment/SignInState", reqObj);
                 if (apiResp.msg != null || apiResp.sub_msg != null)
                 {
-                    LogCore.Error("Check-inTrạng tháiSửaGọi giao diệnthất bại【" + apiResp.msg + apiResp.sub_msg + "】");
-                    throw new FailedException("Check-inTrạng tháiSửaGọi giao diệnthất bại【" + apiResp.msg + apiResp.sub_msg + "】");
+                    LogCore.Error("Sửa trạng thái check-in, gọi giao diện thất bại 【" + apiResp.msg + apiResp.sub_msg + "】");
+                    throw new FailedException("Sửa trạng thái check-in, gọi giao diện thất bại 【" + apiResp.msg + apiResp.sub_msg + "】");
                 }
             }
 
@@ -944,7 +944,7 @@ namespace Newtouch.CIS.Web.Controllers
             //int mbqx = Convert.ToInt32((sysStaffEntity.mbqx == null || sysStaffEntity.mbqx == "") ? "1" : sysStaffEntity.mbqx);
             //if (mbqx == 3)
             //{
-            //    mbqx = 2;  //dotại ngườiviênQuyền mẫuBảo trìtrong3làKhu bệnh，Ngoại trú3làToàn viện，故này3降档là2Khoa
+            //    mbqx = 2;  //Do quyền mẫu bảo trì của nhân viên: 3 là khu bệnh, ngoại trú 3 là toàn viện, nên 3 này hạ xuống 2 là khoa
             //}
             int mbqx = (int)EnumCfMbLx.hospital;
             var data = new List<object>();
@@ -1694,7 +1694,7 @@ namespace Newtouch.CIS.Web.Controllers
         public IActionResult OpenExe(string sqdh)
         {
             System.Diagnostics.Process p = new System.Diagnostics.Process();
-            p.StartInfo.FileName = "C:\\Users\\len\\Desktop\\金马扬名电子病历\\GoldHISManager.exe";//cầnkhởiđộngcủatrìnhthứ tựtên 
+            p.StartInfo.FileName = "C:\\Users\\len\\Desktop\\金马扬名电子病历\\GoldHISManager.exe";//tên chương trình cần khởi động
             p.StartInfo.Arguments = "G_HisApply.ReqNO='"+sqdh+"'" + " ";
             p.Start();//khởiđộng
             return Content("");
@@ -1766,7 +1766,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Lưubảngphiếu（Thêm mới、Sửa）
+        /// Lưu bảng phiếu (Thêm mới, Sửa)
         /// </summary>
         /// <param name="entity">thựcthểđối tượng</param>
         /// <param name="keyValue">Khóa chínhGiá trị</param>

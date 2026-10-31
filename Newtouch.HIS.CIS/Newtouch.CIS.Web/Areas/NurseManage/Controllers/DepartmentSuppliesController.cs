@@ -46,7 +46,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return View();
         }
 
-        #region  废弃Mã  
+        #region Mã đã bỏ
         /// <summary>
         /// đăng kýlĩnhphiếusố
         /// </summary>

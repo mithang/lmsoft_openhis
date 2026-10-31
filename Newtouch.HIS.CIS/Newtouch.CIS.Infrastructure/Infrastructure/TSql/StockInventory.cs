@@ -187,8 +187,8 @@ BEGIN
 	RETURN;
 END 
 
---thực tếTồn khosolýluậnít，thìưutrướctừgần nhấtNhập khocủaLôgiảm，khôngđủthìtheoLô倒thứ tự逐cáikhấu
-DECLARE @sysl INT;--Số lượng còn lại，mỗi lần抵hủysaucủaSố lượng
+-- Khi số tồn kho thực tế ít hơn số lý thuyết, thì ưu tiên giảm từ lô nhập kho gần nhất, không đủ thì khấu trừ lần lượt theo thứ tự ngược của lô
+DECLARE @sysl INT;-- Số lượng còn lại, số lượng sau mỗi lần bù trừ
 SET @sysl=@sl;
 WHILE EXISTS(SELECT 1 FROM #tmpData WHERE sjsl>0)
 BEGIN
@@ -197,7 +197,7 @@ BEGIN
 		BREAK;
 	END 
 	
-	--còncóTồn kho còn lạichưaphầnphối，kếtiếp寻tìmkýhợpcầncầucủaLôthựchiệnkhấuTồn kho
+	-- Còn tồn kho còn lại chưa phân phối, tiếp tục tìm lô phù hợp yêu cầu để thực hiện khấu trừ tồn kho
 	SELECT TOP 1 @pdmxId=pdmxId,@sjsl=sjsl FROM #tmpData WHERE sjsl>0 ORDER BY pc DESC
 	SET @sysl=@sysl+@sjsl;
 	IF (@sysl<=0)
