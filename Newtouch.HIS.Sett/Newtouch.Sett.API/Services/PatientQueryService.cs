@@ -53,7 +53,7 @@ namespace Newtouch.Sett.API.Services
 
         public ResponseBaseOld Query(OutPatientRegistrationQueryRequest req)
         {
-            if (req == null) return ResponseBaseOld.Fail("Request rỗng");
+            if (req == null) return ResponseBaseOld.Fail("Request rỗng hoặc không hợp lệ");
 
             var org = string.IsNullOrWhiteSpace(req.OrganizeId) ? _db.TopOrganizeId : req.OrganizeId.Trim();
             if (string.IsNullOrWhiteSpace(org))

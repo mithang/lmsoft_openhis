@@ -21,7 +21,7 @@ namespace Newtouch.Sett.API.Controllers
         [HttpPost("OutPatientRegistrationQuery")]
         public ResponseBaseOld OutPatientRegistrationQuery([FromBody] OutPatientRegistrationQueryRequest req)
         {
-            if (req == null) return ResponseBaseOld.Fail("Request rỗng");
+            if (req == null) return ResponseBaseOld.Fail("Request rỗng hoặc không hợp lệ");
             try
             {
                 return _svc.Query(req);

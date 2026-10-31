@@ -23,7 +23,7 @@ namespace Newtouch.Sett.API.Controllers
         [HttpPost("BookingESB")]
         public ResponseBaseOld BookingESB([FromBody] BookingRequest req)
         {
-            if (req == null) return ResponseBaseOld.Fail("Request rỗng");
+            if (req == null) return ResponseBaseOld.Fail("Request rỗng hoặc không hợp lệ");
             try
             {
                 return _svc.Dispatch(req);
@@ -45,7 +45,7 @@ namespace Newtouch.Sett.API.Controllers
 
         private ResponseBaseOld Run(string action, BookingRequest req)
         {
-            if (req == null) return ResponseBaseOld.Fail("Request rỗng");
+            if (req == null) return ResponseBaseOld.Fail("Request rỗng hoặc không hợp lệ");
             try
             {
                 return _svc.Dispatch(action, req, new ParaData(req.paradata));
@@ -82,7 +82,7 @@ namespace Newtouch.Sett.API.Controllers
 
         private ResponseBaseOld Run(string action, BookingRequest req)
         {
-            if (req == null) return ResponseBaseOld.Fail("Request rỗng");
+            if (req == null) return ResponseBaseOld.Fail("Request rỗng hoặc không hợp lệ");
             try
             {
                 return _svc.Dispatch(action, req, new ParaData(req.paradata));
