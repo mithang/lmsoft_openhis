@@ -80,7 +80,9 @@ namespace Newtouch.MR.ManageSystem.DomainServices
             }
             else
             {
-                sql = @"select ssdm,ssmc,zjm,ssjb from [Newtouch_OR].[dbo].[OR_Operation] with(nolock) where OrganizeId=@orgId and zt='1' ";
+                var topCount = 100;
+                if (showItems != null && int.TryParse(showItems.Value, out var parsedTop) && parsedTop > 0) topCount = parsedTop;
+                sql = @"select top " + topCount + @" ssdm,ssmc,zjm,ssjb from [Newtouch_OR].[dbo].[OR_Operation] with(nolock) where OrganizeId=@orgId and zt='1' ";
             }
 
             if (!string.IsNullOrWhiteSpace(keyword))
