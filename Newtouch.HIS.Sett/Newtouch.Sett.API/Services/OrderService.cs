@@ -533,9 +533,13 @@ group by dd.dlCode,dd.dlmc,dd.sfxm,dd.sfxmmc,dd.dj,dd.jfdw,dd.zfxz,dd.zzfbz,dd.z
             foreach (var e in expired)
             {
                 var no = SettDb.Str(e, "OrderNo");
-                using (var cmd = new SqlCommand("update order_info set OrderStu=@zf, memo=isnull(memo,'')+'|Het han huy khoa don hang (" + appId + ":" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + ")', LastModifierCode=@user, LastModifyTime=getdate() where OrderNo=@no and OrganizeId=@org", conn))
+                // SECURITY (chu ky 4): memo phai qua tham so @memo nhu OrderCancel/LockerApply
+                // trong cung file — khong noi appId (do caller gui, khong validation) vao chuoi SQL.
+                var memo = "|Het han huy khoa don hang (" + appId + ":" + DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss.fff") + ")";
+                using (var cmd = new SqlCommand("update order_info set OrderStu=@zf, memo=isnull(memo,'')+@memo, LastModifierCode=@user, LastModifyTime=getdate() where OrderNo=@no and OrganizeId=@org", conn))
                 {
                     cmd.Parameters.Add(SettDb.P("@zf", SettConstants.OrderStuZf));
+                    cmd.Parameters.Add(SettDb.P("@memo", memo));
                     cmd.Parameters.Add(SettDb.P("@user", appId));
                     cmd.Parameters.Add(SettDb.P("@no", no));
                     cmd.Parameters.Add(SettDb.P("@org", orgId));
