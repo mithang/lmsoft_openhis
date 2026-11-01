@@ -1099,6 +1099,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                 ObsoletePresVO vo = new ObsoletePresVO();
                 vo.cflx = item.cflx;
                 vo.cfh = item.cfh;
+                zfcfList.Add(vo);
             }
 
             //giao diệnnội dung
