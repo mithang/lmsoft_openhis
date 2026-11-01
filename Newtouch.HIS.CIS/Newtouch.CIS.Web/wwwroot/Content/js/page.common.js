@@ -152,7 +152,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 			{
 				label: 'Tồn kho', name: 'clkcsl', formatter: function (cellvalue, a, b) {
 					//chocủakcslCóĐơn vị nhỏ nhấtcủa,đâycầnHiển thịNgoại trú/Đơn vị nhập việncủaSố lượng
-					return b.yzlx === '1' ? (!!b.kcsl && !!b.cls ? (parseInt(b.kcsl / b.cls)) : 'không') : '';
+					return b.yzlx === '1' ? (!!b.kcsl && !!b.cls ? (parseInt(b.kcsl / b.cls)) : 'Không có') : '';
 				}, widthratio: 4, hidden: true
 			},
 			{
@@ -444,12 +444,12 @@ $.fn.sfxmFloatingSelector = function (options) {
 		options.itemdbclickhandleBefore = function ($iiithis) {
 			
 			if ($iiithis.attr('data-yzlx') == '1') {
-				if ((!isNaN($iiithis.attr('data-clkcsl')) && parseInt($iiithis.attr('data-clkcsl')) <= 0) || $iiithis.attr('data-clkcsl') == '无') {
-					$.modalAlert("Không thểKêkhôngTồn khoThuốc", 'warning');
+				if ((!isNaN($iiithis.attr('data-clkcsl')) && parseInt($iiithis.attr('data-clkcsl')) <= 0) || $iiithis.attr('data-clkcsl') == 'Không có') {
+					$.modalAlert("Không thể kê thuốc không có tồn kho", 'warning');
 					return false;
 				}
 				if ($iiithis.attr('data-kzbz') == '控制') {
-					$.modalAlert("Không thểKêKiểm soátThuốc", 'warning');
+					$.modalAlert("Không thể kê thuốc bị kiểm soát", 'warning');
 					return false;
 				}
 			}

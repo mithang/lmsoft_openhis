@@ -618,7 +618,7 @@
         var allData = $("#gridzycf").jqGrid('getRowData_AllLine');
         if(!!!allData || !!!allData.length || allData.length == 0){
             $('#tdTCMTotalAmount').html('');  //Xóa trắng trước
-            $('#tdTCMTotalAmount').append('<label style="color:red;">￥' + 0.00 + '</label>');
+            $('#tdTCMTotalAmount').append('<label style="color:red;">₫' + 0.00 + '</label>');
             return;
         }
         //allDatanhắctrướckiểm tra danh sáchtrongchỉcó thểmộtĐơn thuốc
@@ -651,7 +651,7 @@
         }
 
         $('#tdTCMTotalAmount').html('');  //Xóa trắng trước
-        $('#tdTCMTotalAmount').append('<label style="color:red;">￥' + totalAmount + '</label>');
+        $('#tdTCMTotalAmount').append('<label style="color:red;">₫' + totalAmount + '</label>');
     }
 
     //CóKhôngsắc hộ,liên kếtChi phí

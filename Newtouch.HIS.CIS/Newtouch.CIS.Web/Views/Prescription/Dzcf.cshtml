@@ -1187,10 +1187,10 @@
 		$('#tabledzcfPresAmount').html('');   //Xóa trắng trước
         for (var i = 0; i < presClassificationArr.length; i++) {
             totalAmount = roundingBy4she6ru5chengshuang((parseFloat(totalAmount) + parseFloat(presClassificationArr[i].cfje)), 2);  //Tính toánTổng số tiền
-			$('#tabledzcfPresAmount').append('<tr><th class="formTitle">Số đơn thuốc:</th><td class="formValue"><label style="color:red;">' + presClassificationArr[i].cfh + '</label></td><th class="formTitle">Số tiền tham khảo:</th><td class="formValue"><label style="color:red;">￥' + presClassificationArr[i].cfje + '</label></td><th class="formTitle">Đơn thuốcHiệu lựcSố ngày:</th><td class="formValue"><label style="color:red;">' + 3 + ' ngày' +'</label></td></tr>');
+			$('#tabledzcfPresAmount').append('<tr><th class="formTitle">Số đơn thuốc:</th><td class="formValue"><label style="color:red;">' + presClassificationArr[i].cfh + '</label></td><th class="formTitle">Số tiền tham khảo:</th><td class="formValue"><label style="color:red;">₫' + presClassificationArr[i].cfje + '</label></td><th class="formTitle">Đơn thuốcHiệu lựcSố ngày:</th><td class="formValue"><label style="color:red;">' + 3 + ' ngày' +'</label></td></tr>');
         }
 		$('#tddzcfTotalAmount').html('');  //Xóa trắng trước
-		$('#tddzcfTotalAmount').append('<label style="color:red;">￥' + totalAmount + '</label>');
+		$('#tddzcfTotalAmount').append('<label style="color:red;">₫' + totalAmount + '</label>');
     }
 
     //Thuốc thang Đông yNút

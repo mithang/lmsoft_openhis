@@ -97,7 +97,7 @@ $.fn.sfxmFloatingSelector = function (options) {
             {
                 label: 'Tồn kho', name: 'clkcsl', formatter: function (cellvalue, a, b) {
                     //được chokcsllà của đơn vị tối thiểu,Ở đây cần hiển thị khám ngoại trú/Số lượng đơn vị nội trú
-                    return b.yzlx === '1' || b.yzlx === '3' ? (!!b.kcsl && !!b.cls ? (parseInt(b.kcsl / b.cls)) : '无') : '';
+                    return b.yzlx === '1' || b.yzlx === '3' ? (!!b.kcsl && !!b.cls ? (parseInt(b.kcsl / b.cls)) : 'Không có') : '';
                 }, widthratio: 6, hidden: true
             },
             {
@@ -238,7 +238,7 @@ $.fn.sfxmFloatingSelector = function (options) {
     if (options.searchType.indexOf('yp.kc') >= 0 && options.ypkccbjc === true) {
         options.itemdbclickhandleBefore = function ($iiithis) {
             if ($iiithis.attr('data-yzlx') == '1') {
-                if ((!isNaN($iiithis.attr('data-clkcsl')) && parseInt($iiithis.attr('data-clkcsl')) <= 0) || $iiithis.attr('data-clkcsl') == '无') {
+                if ((!isNaN($iiithis.attr('data-clkcsl')) && parseInt($iiithis.attr('data-clkcsl')) <= 0) || $iiithis.attr('data-clkcsl') == 'Không có') {
                     $.modalAlert("Không thể kê thuốc không có tồn kho", 'warning');
                     return false;
                 }

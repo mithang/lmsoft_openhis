@@ -511,10 +511,10 @@
         $('#tableConsumablesPresAmount').html('');   //Xóa trắng trước
         for (var i = 0; i < presClassificationArr.length; i++) {
             totalAmount = roundingBy4she6ru5chengshuang((parseFloat(totalAmount) + parseFloat(presClassificationArr[i].cfje)), 2);  //Tính toánTổng số tiền
-            $('#tableConsumablesPresAmount').append('<tr><th class="formTitle">Số đơn thuốc:</th><td class="formValue"><label style="color:red;">' + presClassificationArr[i].cfh + '</label></td><th class="formTitle">Số tiền:</th><td class="formValue"><label style="color:red;">￥' + presClassificationArr[i].cfje + '</label></td></tr>');
+            $('#tableConsumablesPresAmount').append('<tr><th class="formTitle">Số đơn thuốc:</th><td class="formValue"><label style="color:red;">' + presClassificationArr[i].cfh + '</label></td><th class="formTitle">Số tiền:</th><td class="formValue"><label style="color:red;">₫' + presClassificationArr[i].cfje + '</label></td></tr>');
         }
         $('#tdConsumablesTotalAmount').html('');  //Xóa trắng trước
-        $('#tdConsumablesTotalAmount').append('<label style="color:red;">￥' + totalAmount + '</label>');
+        $('#tdConsumablesTotalAmount').append('<label style="color:red;">₫' + totalAmount + '</label>');
     }
 
     //Đơn thuốc mới Nút

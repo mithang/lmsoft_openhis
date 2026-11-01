@@ -938,7 +938,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             var data = list.Select(p => new
             {
                 jsnm = p.jsnm,
-                Text = p.CreateTime.ToString("yyyy-MM-dd ￥") + Math.Round(p.zje, 2).ToString()
+                Text = p.CreateTime.ToString("yyyy-MM-dd ₫") + Math.Round(p.zje, 2).ToString()
             });
             return Content(data.ToJson());
         }
