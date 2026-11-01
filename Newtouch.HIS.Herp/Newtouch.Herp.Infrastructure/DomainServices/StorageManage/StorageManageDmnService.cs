@@ -999,7 +999,7 @@ INNER JOIN dbo.rel_productWarehouse(NOLOCK) rpw ON rpw.OrganizeId = wz.OrganizeI
 WHERE kcxx.OrganizeId=@orgId AND kcxx.warehouseId=@kfId
 	AND kcxx.zt='1'
 	AND kcxx.kcsl>0 
-	AND DATEADD(day,@gqyj ,yxq)<GETDATE()  or  DATEDIFF(MONTH, GETDATE(),yxq) <='1'
+	AND (DATEADD(day,@gqyj ,yxq)<GETDATE()  or  DATEDIFF(MONTH, GETDATE(),yxq) <='1')
 ";
             var partm = new SugarParameter[] {
                 new SugarParameter("@kfId", kfId),
