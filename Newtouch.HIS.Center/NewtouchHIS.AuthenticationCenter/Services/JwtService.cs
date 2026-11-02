@@ -197,7 +197,7 @@ namespace NewtouchHIS.Lib.Services
             //Lưu refresh token vào cachetokenThời gian hết hạn
             _cachelper.SetCache($"RefreshTokenExpiry:{refreshToken}", DateTime.Now.AddSeconds(refreshTokenExpiry.TotalSeconds), refreshTokenExpiry);
             //result.SetSuccess(new JWTToken() { Token = token });
-            Console.WriteLine($"client_id:{clientId}Lấytoken,Thời hạn hiệu lực:{sessionExpiryTime.ToString("yyyy-MM-dd HH:mm:ss")},token_present={!string.IsNullOrEmpty(token)},token_prefix={(token?.Length >= 8 ? token.Substring(0, 8) : token)}"); // SECURITY (G7): khong ghi JWT day du vao log
+            Console.WriteLine($"client_id:{clientId}Lấytoken,Thời hạn hiệu lực:{sessionExpiryTime.ToString("yyyy-MM-dd HH:mm:ss")},token_present={!string.IsNullOrEmpty(token)}"); // SECURITY (G7): khong ghi JWT day du vao log
             return result;
         }
 

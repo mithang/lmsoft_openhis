@@ -158,9 +158,7 @@ namespace NewtouchHIS.Base.DomainService
                 {
                     int beginNum = i * point;
                     var copy = recips;
-                    int endNum = (i + 1) * point;
-                    int lastNum = copy.Count() - i * point;
-                    var userList = copy.GetRange(beginNum, endNum > copy.Count ? (copy.Count() - i * point) : endNum);
+                    var userList = copy.GetRange(beginNum, Math.Min(point, copy.Count - beginNum));
 
                     var ientity = vo.Adapt<MsgNoticeQueueEntity>();
                     ientity.Recipient = string.Join(",", userList);
