@@ -150,6 +150,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
 			return Content(data.ToJson());
 		}
 
+		[NonAction]
 		public int SubmitForm(bafeeRelEntity entity)
 		{
 			if (string.IsNullOrWhiteSpace(entity.OrganizeId))

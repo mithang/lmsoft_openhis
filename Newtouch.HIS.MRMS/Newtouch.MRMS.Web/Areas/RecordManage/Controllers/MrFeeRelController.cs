@@ -65,6 +65,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
             return Content(entity.ToJson());
         }
 
+        [NonAction]
         public int SubmitForm(bafeeRelVO entity)
         {
             if (string.IsNullOrWhiteSpace(entity.OrganizeId))

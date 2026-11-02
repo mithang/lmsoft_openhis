@@ -238,6 +238,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="orderListAll">Apilist</param>
         /// <param name="Vzxsj">Thực hiệnThời gian</param>
         /// <returns></returns>
+        [NonAction]
         public string doOrderExecution(IList<ApiResponseVO> orderListAll, DateTime Vzxsj, int? yzxz = null)
         {
             try
@@ -382,6 +383,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// Thực hiệnY lệnhkhi,kiểm traNgày nhập viện+vật tưVật tư tiêu haoTồn khokiểm tra
         /// </summary>
         /// <param name="patlist"></param>
+        [NonAction]
         public void Validatepatryrq(string patlist, DateTime Vzxsj)
         {
             if (string.IsNullOrWhiteSpace(patlist))
