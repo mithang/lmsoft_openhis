@@ -11,6 +11,7 @@ using NewtouchHIS.Lib.Services.HttpService;
 using Newtouch.MRQC.Domain;
 using Newtouch.MRQC.DomainServices;
 using Newtouch.MRQC.Repository;
+using Newtouch.MRQC.Web.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -45,6 +46,9 @@ builder.Services.AddScoped<IQcItemDataRepo, QcItemDataRepo>();
 
 builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
+    // Cycle 33: query-string dates bind InvariantCulture in stock ASP.NET Core,
+    // so dd/MM/yyyy view values mis-bound on GET. Provider runs first.
+    options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider());
     options.Filters.Add(typeof(LogTrackingAttribute));
     options.Filters.Add(typeof(FrameworkAuthorizationFilter));
 });
