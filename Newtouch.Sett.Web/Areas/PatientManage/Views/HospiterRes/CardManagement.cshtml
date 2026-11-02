@@ -236,7 +236,7 @@
                     data: { "CardId": rowdata.CardId },
                     type: "POST",
                     success: function (req) {
-                        if (req.message == "Hủy bỏ thành công") {
+                        if (req.message == "Hủy bỏ Thành công") {
                             $("#gridList").jqGrid('setGridParam', {
                                 postData: { patId: rowdata.patId },
                             }).trigger('reloadGrid');

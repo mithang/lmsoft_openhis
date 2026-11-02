@@ -279,7 +279,7 @@
                             cqybjyDenySettleReturn,//hoànphísaunộpdễtrảquayđốitượng
                             mztfProDto,
                             function (hisSuccessAjaxResp) {
-                                if (hisSuccessAjaxResp && hisSuccessAjaxResp.message !== 'Hoàn phí thành công') {
+                                if (hisSuccessAjaxResp && hisSuccessAjaxResp.state !== 'success') {
                                     $.modalAlert(hisSuccessAjaxResp.message, 'error');
                                 } else {
                                     $.modalAlert("HIS đảo ngược quyết toán thành công", 'success');

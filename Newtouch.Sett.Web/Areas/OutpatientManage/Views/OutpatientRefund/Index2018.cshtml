@@ -1036,7 +1036,7 @@
                                                     mztfProDto,
                                                     function (hisSuccessAjaxResp) {
                                                         //3. modalAlertthông tin chênh lệch  xem tham số truyền
-                                                        if (hisSuccessAjaxResp && hisSuccessAjaxResp.message !== 'Hoàn phí thành công') {
+                                                        if (hisSuccessAjaxResp && hisSuccessAjaxResp.state !== 'success') {
                                                             $.modalAlert(hisSuccessAjaxResp.message, 'error');
                                                         } else {
                                                             $.modalAlert("Chi phí đã hoàn<br/><b>Hoàn chênh lệch thanh toán:<span style='color:red;'>" +
@@ -1596,7 +1596,7 @@
                     //2. HIShoàn phí
                     YbHISRefundSettlement(hcybfeeRelated, tjsxmDictObj, tmxzje, hcybjsh, newwjybjsh, newybfeeRelated, function (hisSuccessAjaxResp) {
                         //3. modalAlertthông tin chênh lệch
-                        if (hisSuccessAjaxResp && hisSuccessAjaxResp.message !== 'Hoàn phí thành công') {
+                        if (hisSuccessAjaxResp && hisSuccessAjaxResp.state !== 'success') {
                             $.modalAlert(hisSuccessAjaxResp.message, 'error');
                         }
                         else {
@@ -1627,7 +1627,7 @@
                     //2. HIShoàn phí
                     YbHISRefundSettlement(hcybfeeRelated, tjsxmDictObj, tmxzje, hcybjsh, newwjybjsh, newybfeeRelated, function (hisSuccessAjaxResp) {
                         //3. alertđã hoàn xong
-                        if (hisSuccessAjaxResp && hisSuccessAjaxResp.message !== 'Hoàn phí thành công') {
+                        if (hisSuccessAjaxResp && hisSuccessAjaxResp.state !== 'success') {
                             $.modalAlert(hisSuccessAjaxResp.message, 'error');
                         }
                         else {
