@@ -104,7 +104,8 @@ and not exists(select 1 from zy_tyjl  b with(nolock)
             if (!string.IsNullOrWhiteSpace(kssj) && !string.IsNullOrWhiteSpace(jssj))
             {
                 sql += " and zxrq between @kssj and @jssj ";
-                jssj = Convert.ToDateTime(jssj).ToString("yyyy-MM-dd")+" 23:59:59";
+                kssj = SqlDateStringHelper.NormalizeDate(kssj);
+                jssj = SqlDateStringHelper.NormalizeDate(jssj) + " 23:59:59";
             }
 
             if (string.IsNullOrWhiteSpace(ReturnZcyMed) || ReturnZcyMed=="0")

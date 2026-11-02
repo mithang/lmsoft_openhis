@@ -1109,8 +1109,8 @@ where organizeid=@orgId and zyh=@zyh ";
                 var sql = @" exec usp_sync_basy_Exportscv @orgId,@kssj,@jssj";
                 DataTable dt = this.SqlQueryForDataTatable(sql,
                     new SugarParameter("@orgId", orgId ?? ""),
-                    new SugarParameter("@kssj", kssj ?? ""),
-                    new SugarParameter("@jssj", jssj ?? ""));
+                    new SugarParameter("@kssj", SqlDateStringHelper.NormalizeDate(kssj) ?? ""),
+                    new SugarParameter("@jssj", SqlDateStringHelper.NormalizeDate(jssj) ?? ""));
                 string TemplatePath = AppSettings.GetConfig("MedicalRecordExport");
                 string FullFileName = AppSettings.GetConfig("MedicalRecordExport") + "N041_武胜瑞康精神病专科医院.csv";
                 if (Directory.Exists(TemplatePath))
@@ -1159,8 +1159,8 @@ where organizeid=@orgId and zyh=@zyh ";
                 var sql = @" exec usp_sync_basy_Exportscvfy @orgId,@kssj,@jssj";
                 DataTable dt = this.SqlQueryForDataTatable(sql,
                     new SugarParameter("@orgId", orgId ?? ""),
-                    new SugarParameter("@kssj", kssj ?? ""),
-                    new SugarParameter("@jssj", jssj ?? ""));
+                    new SugarParameter("@kssj", SqlDateStringHelper.NormalizeDate(kssj) ?? ""),
+                    new SugarParameter("@jssj", SqlDateStringHelper.NormalizeDate(jssj) ?? ""));
                 string TemplatePath = AppSettings.GetConfig("MedicalRecordExport");
                 string FullFileName = AppSettings.GetConfig("MedicalRecordExport")+"N043_武胜瑞康精神病专科医院.csv";
                 if (Directory.Exists(TemplatePath))

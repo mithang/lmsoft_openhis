@@ -60,8 +60,8 @@ where a.zt=1 and a.OrganizeId=@orgId
             parlist.Add(new SqlParameter("@ksCode", ksCode));
             parlist.Add(new SqlParameter("@ysgh", ysgh));
             parlist.Add(new SqlParameter("@sqzt", sqzt));
-            parlist.Add(new SqlParameter("@kssj", kssj + " 00:00:00"));
-            parlist.Add(new SqlParameter("@jssj", jssj + " 23:59:59"));
+            parlist.Add(new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDate(kssj) + " 00:00:00"));
+            parlist.Add(new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDate(jssj) + " 23:59:59"));
             parlist.Add(new SqlParameter("@userCode", userCode));
             return this.QueryWithPage<ClinicApplyInfoVO>(sql, pagination, parlist.ToArray(), false);
         }

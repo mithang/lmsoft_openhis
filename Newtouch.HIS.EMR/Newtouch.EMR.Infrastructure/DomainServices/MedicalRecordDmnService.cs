@@ -574,12 +574,12 @@ where  b.cflx='4' and a.mzh=@zymzh  and a.OrganizeId=@orgId and a.zt=1";
                 if (!string.IsNullOrEmpty(kssj))
                 {
                     sql += " and b.CreateTime>=@kssj ";
-                    par.Add(new SugarParameter("@kssj", kssj));
+                    par.Add(new SugarParameter("@kssj", SqlDateStringHelper.NormalizeDateTime(kssj)));
                 }
                 if (!string.IsNullOrEmpty(jssj))
                 {
                     sql += " and b.CreateTime<=@jssj ";
-                    par.Add(new SugarParameter("@jssj", jssj));
+                    par.Add(new SugarParameter("@jssj", SqlDateStringHelper.NormalizeDateTime(jssj)));
                 }
                 sql += ") q where q.rn=1 group by OrganizeId,xm,lissqdh,sqdh,syncStatus order by sqsj desc";
             }
@@ -601,12 +601,12 @@ where  yzlx='6' and a.zyh=@zymzh  and a.OrganizeId=@orgId and a.zt=1";
                 if (!string.IsNullOrEmpty(kssj))
                 {
                     sql += " and CreateTime>=@kssj ";
-                    par.Add(new SugarParameter("@kssj", kssj));
+                    par.Add(new SugarParameter("@kssj", SqlDateStringHelper.NormalizeDateTime(kssj)));
                 }
                 if (!string.IsNullOrEmpty(jssj))
                 {
                     sql += " and CreateTime<=@jssj ";
-                    par.Add(new SugarParameter("@jssj", jssj));
+                    par.Add(new SugarParameter("@jssj", SqlDateStringHelper.NormalizeDateTime(jssj)));
                 }
                 sql += ") c WHERE rn = 1 group by OrganizeId ,xm,lissqdh,sqdh,syncstatus order by sqsj desc";
             }
@@ -647,12 +647,12 @@ where  b.cflx='5' and a.mzh=@zymzh  and a.OrganizeId=@orgId and a.zt=1 and d.zt=
                 if (!string.IsNullOrEmpty(kssj))
                 {
                     sql += " and b.CreateTime>=@kssj ";
-                    par.Add(new SugarParameter("@kssj", kssj));
+                    par.Add(new SugarParameter("@kssj", SqlDateStringHelper.NormalizeDateTime(kssj)));
                 }
                 if (!string.IsNullOrEmpty(jssj))
                 {
                     sql += " and b.CreateTime<=@jssj ";
-                    par.Add(new SugarParameter("@jssj", jssj));
+                    par.Add(new SugarParameter("@jssj", SqlDateStringHelper.NormalizeDateTime(jssj)));
                 }
                 sql += ") c WHERE rn = 1 group by OrganizeId,xm,lissqdh,sqdh,syncStatus order by sqsj desc";
             }
@@ -674,12 +674,12 @@ where  yzlx='7' and a.zyh=@zymzh  and a.OrganizeId=@orgId and a.zt=1";
                 if (!string.IsNullOrEmpty(kssj))
                 {
                     sql += " and CreateTime>=@kssj ";
-                    par.Add(new SugarParameter("@kssj", kssj));
+                    par.Add(new SugarParameter("@kssj", SqlDateStringHelper.NormalizeDateTime(kssj)));
                 }
                 if (!string.IsNullOrEmpty(jssj))
                 {
                     sql += " and CreateTime<=@jssj ";
-                    par.Add(new SugarParameter("@jssj", jssj));
+                    par.Add(new SugarParameter("@jssj", SqlDateStringHelper.NormalizeDateTime(jssj)));
                 }
                 sql += ") c WHERE rn = 1 group by OrganizeId ,xm,lissqdh,sqdh,syncstatus order by sqsj desc";
             }

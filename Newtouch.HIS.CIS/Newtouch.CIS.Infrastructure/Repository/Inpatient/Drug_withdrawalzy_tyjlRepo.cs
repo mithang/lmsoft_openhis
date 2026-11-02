@@ -19,6 +19,8 @@ namespace Newtouch.Repository.Inpatient
 
         public IList<DrugwithdrawalTreeVO> Griddata(string patInfo, string keyword, string kssj, string jssj, string orgId)
         {
+            kssj = SqlDateStringHelper.NormalizeDateTime(kssj);
+            jssj = SqlDateStringHelper.NormalizeDateTime(jssj);
             //Tên thuốckhônglàtrốngkhi
             if (!string.IsNullOrWhiteSpace(keyword))
             {

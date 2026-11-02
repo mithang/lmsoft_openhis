@@ -2022,8 +2022,8 @@ WHERE (
             }
             var par = new List<SqlParameter>();
             par.Add(new SqlParameter("@keyword", "%" + keyword + "%"));
-            par.Add(new SqlParameter("@kssj", kssj));
-            par.Add(new SqlParameter("@jssj", jssj));
+            par.Add(new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDateTime(kssj)));
+            par.Add(new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDateTime(jssj)));
             par.Add(new SqlParameter("@orgId", orgId));
             par.Add(new SqlParameter("@jzysgh", jzysgh));
             var list = this.QueryWithPage<OutpatientLogQueryVO>(sb.ToString(), pagination, par.ToArray());
@@ -2161,8 +2161,8 @@ WHERE (
             }
             var par = new List<SqlParameter>();
             par.Add(new SqlParameter("@keyword", "%" + keyword + "%"));
-            par.Add(new SqlParameter("@kssj", kssj));
-            par.Add(new SqlParameter("@jssj", jssj));
+            par.Add(new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDateTime(kssj)));
+            par.Add(new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDateTime(jssj)));
             par.Add(new SqlParameter("@orgId", orgId));
             par.Add(new SqlParameter("@jzysgh", jzysgh));
             var list = this.FindList<OutpatientLogQueryVO>(sb.ToString(), par.ToArray()).OrderBy(p => p.jzsj).OrderBy(v => v.mzh).ToList();
@@ -2882,12 +2882,12 @@ where  b.cflx='4' and a.mzh=@zymzh  and a.OrganizeId=@orgId and a.zt=1";
                 if (!string.IsNullOrEmpty(kssj))
                 {
                     sql += " and b.CreateTime>=@kssj ";
-                    par.Add(new SqlParameter("@kssj", kssj));
+                    par.Add(new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDateTime(kssj)));
                 }
                 if (!string.IsNullOrEmpty(jssj))
                 {
                     sql += " and b.CreateTime<=@jssj ";
-                    par.Add(new SqlParameter("@jssj", jssj));
+                    par.Add(new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDateTime(jssj)));
                 }
                 sql += ") q where q.rn=1 group by OrganizeId,xm,lissqdh,sqdh,syncStatus order by sqsj desc";
             }
@@ -2909,12 +2909,12 @@ left join  zy_brxxk b on a.zyh=b.zyh and a.organizeId=b.organizeId and a.zt=b.zt
                 if (!string.IsNullOrEmpty(kssj))
                 {
                     sql += " and a.CreateTime>=@kssj ";
-                    par.Add(new SqlParameter("@kssj", kssj));
+                    par.Add(new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDateTime(kssj)));
                 }
                 if (!string.IsNullOrEmpty(jssj))
                 {
                     sql += " and a.CreateTime<=@jssj ";
-                    par.Add(new SqlParameter("@jssj", jssj));
+                    par.Add(new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDateTime(jssj)));
                 }
                 sql += ") c WHERE rn = 1 group by OrganizeId ,xm,lissqdh,sqdh,syncstatus,blh order by sqsj desc";
             }
@@ -3035,12 +3035,12 @@ where  b.cflx='5' and a.mzh=@zymzh  and a.OrganizeId=@orgId and a.zt=1 and d.zt=
                 if (!string.IsNullOrEmpty(kssj))
                 {
                     sql += " and b.CreateTime>=@kssj ";
-                    par.Add(new SqlParameter("@kssj", kssj));
+                    par.Add(new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDateTime(kssj)));
                 }
                 if (!string.IsNullOrEmpty(jssj))
                 {
                     sql += " and b.CreateTime<=@jssj ";
-                    par.Add(new SqlParameter("@jssj", jssj));
+                    par.Add(new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDateTime(jssj)));
                 }
                 sql += ") c WHERE rn = 1 group by OrganizeId,xm,lissqdh,sqdh,syncStatus order by sqsj desc";
             }
@@ -3062,12 +3062,12 @@ where  yzlx='7' and a.zyh=@zymzh  and a.OrganizeId=@orgId and a.zt=1 and yzzt='2
                 if (!string.IsNullOrEmpty(kssj))
                 {
                     sql += " and CreateTime>=@kssj ";
-                    par.Add(new SqlParameter("@kssj", kssj));
+                    par.Add(new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDateTime(kssj)));
                 }
                 if (!string.IsNullOrEmpty(jssj))
                 {
                     sql += " and CreateTime<=@jssj ";
-                    par.Add(new SqlParameter("@jssj", jssj));
+                    par.Add(new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDateTime(jssj)));
                 }
                 sql += ") c WHERE rn = 1 group by OrganizeId ,xm,lissqdh,sqdh,syncstatus order by sqsj desc";
             }

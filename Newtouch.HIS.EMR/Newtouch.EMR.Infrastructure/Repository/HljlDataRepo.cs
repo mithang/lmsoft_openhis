@@ -1,6 +1,7 @@
 using NewtouchHIS.Lib.Framework.Operator;
 using DbConfigHelper;
 using NewtouchHIS.Lib.Base.Model;
+using Newtouch.EMR.Infrastructure;
 using Newtouch.EMR.Domain.Entity;
 using Newtouch.EMR.Domain.IRepository;
 using Newtouch.EMR.Domain.ValueObjects;
@@ -157,8 +158,8 @@ order by jlwzsj,jlrq ";
                 new SugarParameter("@orgId", orgId),
                 new SugarParameter("@zyh", zyh),
                 new SugarParameter("@blId", blId),
-                new SugarParameter("@kssj", kssj??DateTime.Now.ToString("yyyy-MM-dd")),
-                new SugarParameter("@jssj", jssj??DateTime.Now.AddDays(1).ToString("yyyy-MM-dd"))
+                new SugarParameter("@kssj", SqlDateStringHelper.NormalizeDate(kssj) ?? DateTime.Now.ToString("yyyy-MM-dd")),
+                new SugarParameter("@jssj", SqlDateStringHelper.NormalizeDate(jssj) ?? DateTime.Now.AddDays(1).ToString("yyyy-MM-dd"))
             });
 
 
@@ -191,8 +192,8 @@ and a.zyh=@zyh and a.mbId=@mbbh and a.OrganizeId=@orgId and b.jlwzsj between @ks
                 new SugarParameter("@zyh", zyh ?? ""),
                 new SugarParameter("@mbbh", (mbbh ?? "").Trim()),
                 new SugarParameter("@orgId", orgId ?? ""),
-                new SugarParameter("@kssj", kssj ?? ""),
-                new SugarParameter("@jssj", (jssj ?? "") + " 23:59:59")
+                new SugarParameter("@kssj", SqlDateStringHelper.NormalizeDate(kssj) ?? ""),
+                new SugarParameter("@jssj", (SqlDateStringHelper.NormalizeDate(jssj) ?? "") + " 23:59:59")
             });
         }
     }

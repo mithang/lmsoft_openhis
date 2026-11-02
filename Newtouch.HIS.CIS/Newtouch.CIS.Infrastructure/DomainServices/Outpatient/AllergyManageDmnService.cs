@@ -80,12 +80,12 @@ INNER JOIN [Newtouch_CIS].[dbo].[xt_cfmx] c on b.cfId = c.cfId and b.OrganizeId 
             if (!string.IsNullOrWhiteSpace(kssj))
             {
                 sql += " and a.CreateTime > @kssj";
-                pars.Add(new SqlParameter("@kssj", kssj));
+                pars.Add(new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDateTime(kssj)));
             }
             if (!string.IsNullOrWhiteSpace(jssj))
             {
                 sql += " and a.CreateTime <= @jssj";
-                pars.Add(new SqlParameter("@jssj", jssj));
+                pars.Add(new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDateTime(jssj)));
             }
             if (!string.IsNullOrWhiteSpace(PsItemCodeWhere))
             {
@@ -152,12 +152,12 @@ INNER JOIN [Newtouch_CIS].[dbo].[xt_cfmx] c on b.cfId = c.cfId and b.OrganizeId 
             if (!string.IsNullOrWhiteSpace(kssj))
             {
                 sql += " and b.CreateTime > @kssj";
-                pars.Add(new SqlParameter("@kssj", kssj));
+                pars.Add(new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDateTime(kssj)));
             }
             if (!string.IsNullOrWhiteSpace(jssj))
             {
                 sql += " and b.CreateTime <= @jssj";
-                pars.Add(new SqlParameter("@jssj", jssj));
+                pars.Add(new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDateTime(jssj)));
             }
             if (!string.IsNullOrWhiteSpace(PsItemCodeWhere))
             {

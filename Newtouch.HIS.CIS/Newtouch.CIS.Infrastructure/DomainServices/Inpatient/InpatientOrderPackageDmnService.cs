@@ -666,8 +666,8 @@ and OrganizeId=@orgId
             par.Add(new SqlParameter("@type", type));
             if (kssj != null && jssj != null & kssj != "" & jssj != "")
             {
-                par.Add(new SqlParameter("@kssj", kssj));
-                par.Add(new SqlParameter("@jssj", jssj));
+                par.Add(new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDateTime(kssj)));
+                par.Add(new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDateTime(jssj)));
             }
             par.Add(new SqlParameter("@orgId", orgId));
             sqlstr.Append(@" order by CreateTime");

@@ -209,7 +209,7 @@ and not exists(select 1 from mr_basy m with(nolock) where a.organizeid=m.organiz
 
             if (!string.IsNullOrWhiteSpace(kssj) && !string.IsNullOrWhiteSpace(jssj))
             {
-                sql += " and cqrq between '" + kssj + "' and '" + jssj + "'+' 23:59:59'  ";
+                sql += " and cqrq between '" + SqlDateStringHelper.NormalizeDate(kssj) + "' and '" + SqlDateStringHelper.NormalizeDate(jssj) + "'+' 23:59:59'  ";
             }
 
             //Đang nằm viện

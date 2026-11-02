@@ -35,8 +35,8 @@ and jz.zlkssj between @kssj and @jssj
 ";
             IList<SqlParameter> parlist = new List<SqlParameter>();
             parlist.Add(new SqlParameter("@orgId", orgId));
-            parlist.Add(new SqlParameter("@kssj", kssj));
-            parlist.Add(new SqlParameter("@jssj", jssj + " 23:59:59"));
+            parlist.Add(new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDate(kssj)));
+            parlist.Add(new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDate(jssj) + " 23:59:59"));
             if (ysgh!=null&& ysgh!="")
             {
                 sql += " and jz.jzys=@ysgh";
@@ -82,8 +82,8 @@ and jz.jzys=@ysgh";
 
             return this.QueryWithPage<OutpatientConsultDetailVO>(sql, pagination, new[] {
                 new SqlParameter("@orgId", orgId),
-                new SqlParameter("@kssj", kssj),
-                new SqlParameter("@jssj", jssj + " 23:59:59"),
+                new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDate(kssj)),
+                new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDate(jssj) + " 23:59:59"),
                 new SqlParameter("@ysgh", ysgh),
                 new SqlParameter("@keyword", "%" + keyword.Trim() + "%")
             }, false);
@@ -124,8 +124,8 @@ ks.Name ";
             IList<OutpatientDetailVO> vo = this.QueryWithPage<OutpatientDetailVO>(sql, pagination, new[] {
                 new SqlParameter("@orgId", orgId),
                 new SqlParameter("@jzys", yscode),
-                new SqlParameter("@kssj", kssj),
-                new SqlParameter("@jssj", jssj + " 23:59:59"),
+                new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDate(kssj)),
+                new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDate(jssj) + " 23:59:59"),
             });
             return vo;
         }
@@ -186,8 +186,8 @@ and yy.yyys=@jzys
                 IList<OutpatientReservationVO> vo = this.QueryWithPage<OutpatientReservationVO>(sql, pagination, new[] {
                 new SqlParameter("@orgId", orgId),
                 new SqlParameter("@jzys", yscode),
-                new SqlParameter("@kssj", kssj),
-                new SqlParameter("@jssj", jssj + " 23:59:59"),
+                new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDate(kssj)),
+                new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDate(jssj) + " 23:59:59"),
                 new SqlParameter("@xm", xm),
             });
                 return vo;
