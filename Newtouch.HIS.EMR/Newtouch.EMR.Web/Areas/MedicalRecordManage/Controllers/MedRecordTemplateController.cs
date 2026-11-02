@@ -297,6 +297,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
 
         //Xử lý kết quả thao tác để tạo trình soạn thảo có nội dung tài liệu
+        [NonAction]
         public void IsExistDir(string path)
         {
             if (Directory.Exists(WebPath.Map(path)) == false)//Nếu không tồn tại thì tạo thư mục file

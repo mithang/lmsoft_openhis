@@ -1396,6 +1396,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// Đường dẫn lưu trữ bệnh án có tồn tại hay không
         /// </summary>
         /// <param name="path"></param>
+        [NonAction]
         public void IsExistDir(string path)
         {
             if (Directory.Exists(WebPath.Map(path)) == false)//Nếu không tồn tại thì tạo thư mục file
@@ -2311,6 +2312,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             return diaglist;
         }
 
+        [NonAction]
         public void TbDataSavebyWriter(string DataSource, WebWriterControlEngine eng, string blId)
         {
             var tables = eng.Document.Tables;
@@ -2570,6 +2572,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         // Merge two record XML documents by appending B's content nodes into A.
         // (Original used DCSoft XTextDocument append mode; System.Xml gives the
         // same result for these plain record documents.)
+        [NonAction]
         public void MergeXML(string readUrlA, string readUrlB, string saveUrl)
         {
             var docA = new System.Xml.XmlDocument();
