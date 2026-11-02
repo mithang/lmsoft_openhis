@@ -10,6 +10,7 @@ using Newtouch.Herp.Domain.IRepository.Purchase;
 using Newtouch.Herp.Infrastructure;
 using Newtouch.Infrastructure.EF;
 using System;
+using System.Globalization;
 using System.Collections.Generic;
 using SqlSugar;
 using System.IO;
@@ -360,7 +361,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     entity.FPDM = node["FPDM"].InnerText;
                     entity.FPH = node["FPH"].InnerText;
                     entity.FPRQ = node["FPRQ"].InnerText;
-                    entity.FPHSZJE = decimal.Parse(node["FPHSZJE"].InnerText);
+                    entity.FPHSZJE = decimal.Parse(node["FPHSZJE"].InnerText, CultureInfo.InvariantCulture);
                     entity.QYBM = node["QYBM"].InnerText;
                     entity.YYBM = node["YYBM"].InnerText;
                     entity.PSDBM = node["PSDBM"].InnerText;
@@ -378,14 +379,14 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     entity.SCPH = node["SCPH"].InnerText;
                     entity.SCRQ = node["SCRQ"].InnerText;
                     //entity.YXEQ = node["YXEQ"].InnerText;
-                    entity.SPSL = decimal.Parse(node["SPSL"].InnerText);
-                    entity.WSDJ = decimal.Parse(node["WSDJ"].InnerText);
-                    entity.HSDJ = decimal.Parse(node["HSDJ"].InnerText);
-                    entity.SL = decimal.Parse(node["SL"].InnerText);
-                    entity.SE = decimal.Parse(node["SE"].InnerText);
-                    entity.HSJE = decimal.Parse(node["HSJE"].InnerText);
-                    entity.PFJ = decimal.Parse(node["PFJ"].InnerText);
-                    entity.LSJ = decimal.Parse(node["LSJ"].InnerText);
+                    entity.SPSL = decimal.Parse(node["SPSL"].InnerText, CultureInfo.InvariantCulture);
+                    entity.WSDJ = decimal.Parse(node["WSDJ"].InnerText, CultureInfo.InvariantCulture);
+                    entity.HSDJ = decimal.Parse(node["HSDJ"].InnerText, CultureInfo.InvariantCulture);
+                    entity.SL = decimal.Parse(node["SL"].InnerText, CultureInfo.InvariantCulture);
+                    entity.SE = decimal.Parse(node["SE"].InnerText, CultureInfo.InvariantCulture);
+                    entity.HSJE = decimal.Parse(node["HSJE"].InnerText, CultureInfo.InvariantCulture);
+                    entity.PFJ = decimal.Parse(node["PFJ"].InnerText, CultureInfo.InvariantCulture);
+                    entity.LSJ = decimal.Parse(node["LSJ"].InnerText, CultureInfo.InvariantCulture);
                     entity.ZCZH = node["ZCZH"].InnerText;
                     tmpList.Add(entity);
                 }
@@ -538,7 +539,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                     entity.SCPH = node["SCPH"].InnerText;
                     entity.SCRQ = node["SCRQ"].InnerText;
                     entity.YXRQ = node["YXRQ"].InnerText;
-                    entity.PSL = decimal.Parse(node["PSL"].InnerText);
+                    entity.PSL = decimal.Parse(node["PSL"].InnerText, CultureInfo.InvariantCulture);
                     tmpList.Add(entity);
                 }
 
@@ -837,7 +838,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                         entity.FPDM = node["FPDM"].InnerText;
                         entity.FPH = node["FPH"].InnerText;
                         entity.FPRQ = node["FPRQ"].InnerText;
-                        entity.FPHSZJE = decimal.Parse(node["FPHSZJE"].InnerText);
+                        entity.FPHSZJE = decimal.Parse(node["FPHSZJE"].InnerText, CultureInfo.InvariantCulture);
                         entity.QYBM = node["QYBM"].InnerText;
                         entity.YYBM = node["YYBM"].InnerText;
                         entity.PSDBM = node["PSDBM"].InnerText;
@@ -1166,7 +1167,7 @@ namespace Newtouch.Herp.DomainServices.Purchase
                         if (node.SelectSingleNode("SCPH") != null) { entity.SCPH = node["SCPH"].InnerText; }
                         if (node.SelectSingleNode("SCRQ") != null) { entity.SCRQ = node["SCRQ"].InnerText; }
                         if (node.SelectSingleNode("YXRQ") != null) { entity.YXRQ = node["YXRQ"].InnerText; }
-                        if (node.SelectSingleNode("PSL") != null) { entity.PSL = decimal.Parse(node["PSL"].InnerText); }
+                        if (node.SelectSingleNode("PSL") != null) { entity.PSL = decimal.Parse(node["PSL"].InnerText, CultureInfo.InvariantCulture); }
 
                         outStruct.Add(entity);
                     }
@@ -1272,14 +1273,14 @@ namespace Newtouch.Herp.DomainServices.Purchase
                         if (node.SelectSingleNode("SCPH") != null) { entity.SCPH = node["SCPH"].InnerText; }
                         if (node.SelectSingleNode("SCRQ") != null) { entity.SCRQ = node["SCRQ"].InnerText; }
                         if (node.SelectSingleNode("YXRQ") != null) { entity.YXRQ = node["YXRQ"].InnerText; }
-                        if (node.SelectSingleNode("SPSL") != null) { entity.SPSL = decimal.Parse(node["SPSL"].InnerText); }
-                        if (node.SelectSingleNode("WSDJ") != null) { entity.WSDJ = decimal.Parse(node["WSDJ"].InnerText); }
-                        if (node.SelectSingleNode("HSDJ") != null) { entity.HSDJ = decimal.Parse(node["HSDJ"].InnerText); }
-                        if (node.SelectSingleNode("SL") != null) { entity.SL = decimal.Parse(node["SL"].InnerText); }
-                        if (node.SelectSingleNode("SE") != null) { entity.SE = decimal.Parse(node["SE"].InnerText); }
-                        if (node.SelectSingleNode("HSJE") != null) { entity.HSJE = decimal.Parse(node["HSJE"].InnerText); }
-                        if (node.SelectSingleNode("PFJ") != null) { entity.PFJ = decimal.Parse(node["PFJ"].InnerText); }
-                        if (node.SelectSingleNode("LSJ") != null) { entity.LSJ = decimal.Parse(node["LSJ"].InnerText); }
+                        if (node.SelectSingleNode("SPSL") != null) { entity.SPSL = decimal.Parse(node["SPSL"].InnerText, CultureInfo.InvariantCulture); }
+                        if (node.SelectSingleNode("WSDJ") != null) { entity.WSDJ = decimal.Parse(node["WSDJ"].InnerText, CultureInfo.InvariantCulture); }
+                        if (node.SelectSingleNode("HSDJ") != null) { entity.HSDJ = decimal.Parse(node["HSDJ"].InnerText, CultureInfo.InvariantCulture); }
+                        if (node.SelectSingleNode("SL") != null) { entity.SL = decimal.Parse(node["SL"].InnerText, CultureInfo.InvariantCulture); }
+                        if (node.SelectSingleNode("SE") != null) { entity.SE = decimal.Parse(node["SE"].InnerText, CultureInfo.InvariantCulture); }
+                        if (node.SelectSingleNode("HSJE") != null) { entity.HSJE = decimal.Parse(node["HSJE"].InnerText, CultureInfo.InvariantCulture); }
+                        if (node.SelectSingleNode("PFJ") != null) { entity.PFJ = decimal.Parse(node["PFJ"].InnerText, CultureInfo.InvariantCulture); }
+                        if (node.SelectSingleNode("LSJ") != null) { entity.LSJ = decimal.Parse(node["LSJ"].InnerText, CultureInfo.InvariantCulture); }
                         if (node.SelectSingleNode("ZCZH") != null) { entity.ZCZH = node["ZCZH"].InnerText; }
 
 
@@ -1398,8 +1399,8 @@ namespace Newtouch.Herp.DomainServices.Purchase
                         if (node.SelectSingleNode("SCQY") != null) { entity.SCQY = node["SCQY"].InnerText;}
                         if (node.SelectSingleNode("CGGGXH") != null) { entity.CGGGXH = node["CGGGXH"].InnerText;}
                         if (node.SelectSingleNode("PSSM") != null) { entity.PSSM = node["PSSM"].InnerText;}
-                        if (node.SelectSingleNode("CGSL") != null) { entity.CGSL = decimal.Parse(node["CGSL"].InnerText);}
-                        if (node.SelectSingleNode("CGDJ") != null) { entity.CGDJ = decimal.Parse(node["CGDJ"].InnerText);}
+                        if (node.SelectSingleNode("CGSL") != null) { entity.CGSL = decimal.Parse(node["CGSL"].InnerText, CultureInfo.InvariantCulture);}
+                        if (node.SelectSingleNode("CGDJ") != null) { entity.CGDJ = decimal.Parse(node["CGDJ"].InnerText, CultureInfo.InvariantCulture);}
                         if (node.SelectSingleNode("SFJJ") != null) { entity.SFJJ = node["SFJJ"].InnerText;}
                         if (node.SelectSingleNode("PSYQ") != null) { entity.PSYQ = node["PSYQ"].InnerText;}
                         if (node.SelectSingleNode("CWXX") != null) { entity.CWXX = node["CWXX"].InnerText;}
@@ -1524,8 +1525,8 @@ namespace Newtouch.Herp.DomainServices.Purchase
                         if (node.SelectSingleNode("YXRQ") != null) { entity.YXRQ = node["YXRQ"].InnerText; }
                         if (node.SelectSingleNode("PSMXTMLX") != null) { entity.PSMXTMLX = node["PSMXTMLX"].InnerText; }
                         if (node.SelectSingleNode("PSMXTM") != null) { entity.PSMXTM = node["PSMXTM"].InnerText; }
-                        if (node.SelectSingleNode("THSL") != null) { entity.THSL = decimal.Parse(node["THSL"].InnerText); }
-                        if (node.SelectSingleNode("THDJ") != null) { entity.THDJ = decimal.Parse(node["THDJ"].InnerText); }
+                        if (node.SelectSingleNode("THSL") != null) { entity.THSL = decimal.Parse(node["THSL"].InnerText, CultureInfo.InvariantCulture); }
+                        if (node.SelectSingleNode("THDJ") != null) { entity.THDJ = decimal.Parse(node["THDJ"].InnerText, CultureInfo.InvariantCulture); }
                         if (node.SelectSingleNode("THYY") != null) { entity.THYY = node["THYY"].InnerText; }
                         if (node.SelectSingleNode("CGFS") != null) { entity.CGFS = node["CGFS"].InnerText; }
                         if (node.SelectSingleNode("XTBM") != null) { entity.XTBM = node["XTBM"].InnerText; }
@@ -1817,10 +1818,10 @@ namespace Newtouch.Herp.DomainServices.Purchase
                         OutputStructYY161 entity = new OutputStructYY161();
                         if (node.SelectSingleNode("PSMXBH") != null) { entity.PSMXBH = node["PSMXBH"].InnerText; }
                         if (node.SelectSingleNode("PSMXZT") != null) { entity.PSMXZT = node["PSMXZT"].InnerText; }
-                        if (node.SelectSingleNode("YYYTGS") != null) { entity.YYYTGS = decimal.Parse(node["YYYTGS"].InnerText); }
-                        if (node.SelectSingleNode("YYYBGS") != null) { entity.YYYBGS = decimal.Parse(node["YYYBGS"].InnerText); }
-                        if (node.SelectSingleNode("YSYTGS") != null) { entity.YSYTGS = decimal.Parse(node["YSYTGS"].InnerText); }
-                        if (node.SelectSingleNode("YSYBGS") != null) { entity.YSYBGS = decimal.Parse(node["YSYBGS"].InnerText); }
+                        if (node.SelectSingleNode("YYYTGS") != null) { entity.YYYTGS = decimal.Parse(node["YYYTGS"].InnerText, CultureInfo.InvariantCulture); }
+                        if (node.SelectSingleNode("YYYBGS") != null) { entity.YYYBGS = decimal.Parse(node["YYYBGS"].InnerText, CultureInfo.InvariantCulture); }
+                        if (node.SelectSingleNode("YSYTGS") != null) { entity.YSYTGS = decimal.Parse(node["YSYTGS"].InnerText, CultureInfo.InvariantCulture); }
+                        if (node.SelectSingleNode("YSYBGS") != null) { entity.YSYBGS = decimal.Parse(node["YSYBGS"].InnerText, CultureInfo.InvariantCulture); }
 
 
                         outStruct.Add(entity);

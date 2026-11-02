@@ -4,6 +4,7 @@ using Newtouch.Core.Common.Utils;
 using Newtouch.HIS.Domain.DTO.PharmacyDrugStorage;
 using Newtouch.HIS.Domain.IDomainServices.PharmacyDrugStorage;
 using System;
+using System.Globalization;
 using Newtouch.Tools;
 using System.Collections.Generic;
 using SqlSugar;
@@ -550,7 +551,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                         OutputStructYY004 entity = new OutputStructYY004();
                         entity.FPH = node["FPH"].InnerText;
                         entity.FPRQ = node["FPRQ"].InnerText;
-                        entity.FPHSZJE = decimal.Parse(node["FPHSZJE"].InnerText);
+                        entity.FPHSZJE = decimal.Parse(node["FPHSZJE"].InnerText, CultureInfo.InvariantCulture);
                         entity.YQBM = node["YQBM"].InnerText;
                         entity.YYBM = node["YYBM"].InnerText;
                         entity.PSDBM = node["PSDBM"].InnerText;
@@ -564,19 +565,19 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                         entity.ZXSPBM = node["ZXSPBM"].InnerText;
                         entity.SCPH = node["SCPH"].InnerText;
                         entity.SCRQ = node["SCRQ"].InnerText;
-                        entity.SPSL = decimal.Parse(node["SPSL"].InnerText);
+                        entity.SPSL = decimal.Parse(node["SPSL"].InnerText, CultureInfo.InvariantCulture);
                         entity.GLMXBH = node["GLMXBH"].InnerText;
                         entity.XSDDH = node["XSDDH"].InnerText;
                         var SXH = node["SXH"].InnerText == "" ? "0" : node["SXH"].InnerText;
                         entity.SXH = int.Parse(SXH);
                         entity.YXRQ = node["YXRQ"].InnerText;
-                        entity.WSDJ = decimal.Parse(node["WSDJ"].InnerText);
-                        entity.HSDJ = decimal.Parse(node["HSDJ"].InnerText);
-                        entity.SL = decimal.Parse(node["SL"].InnerText);
-                        entity.SE = decimal.Parse(node["SE"].InnerText);
-                        entity.HSJE = decimal.Parse(node["HSJE"].InnerText);
-                        entity.PFJ = decimal.Parse(node["PFJ"].InnerText);
-                        entity.LSJ = decimal.Parse(node["LSJ"].InnerText);
+                        entity.WSDJ = decimal.Parse(node["WSDJ"].InnerText, CultureInfo.InvariantCulture);
+                        entity.HSDJ = decimal.Parse(node["HSDJ"].InnerText, CultureInfo.InvariantCulture);
+                        entity.SL = decimal.Parse(node["SL"].InnerText, CultureInfo.InvariantCulture);
+                        entity.SE = decimal.Parse(node["SE"].InnerText, CultureInfo.InvariantCulture);
+                        entity.HSJE = decimal.Parse(node["HSJE"].InnerText, CultureInfo.InvariantCulture);
+                        entity.PFJ = decimal.Parse(node["PFJ"].InnerText, CultureInfo.InvariantCulture);
+                        entity.LSJ = decimal.Parse(node["LSJ"].InnerText, CultureInfo.InvariantCulture);
                         entity.PZWH = node["PZWH"].InnerText;
 
                         tmpList.Add(entity);
@@ -734,7 +735,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                         if (node.SelectSingleNode("BZDWXZ") != null) { entity.BZDWXZ = node["BZDWXZ"].InnerText; }
                         if (node.SelectSingleNode("BZDWMC") != null) { entity.BZDWMC = node["BZDWMC"].InnerText; }
                         if (node.SelectSingleNode("YYDWMC") != null) { entity.YYDWMC = node["YYDWMC"].InnerText; }
-                        if (node.SelectSingleNode("BZNHSL") != null) { entity.BZNHSL=decimal.Parse(node["BZNHSL"].InnerText); }
+                        if (node.SelectSingleNode("BZNHSL") != null) { entity.BZNHSL=decimal.Parse(node["BZNHSL"].InnerText, CultureInfo.InvariantCulture); }
                         if (node.SelectSingleNode("SCQYMC") != null) { entity.SCQYMC = node["SCQYMC"].InnerText; }
                         if (node.SelectSingleNode("SCPH") != null) { entity.SCPH = node["SCPH"].InnerText; }
                         if (node.SelectSingleNode("SCRQ") != null) { entity.SCRQ = node["SCRQ"].InnerText; }
@@ -743,7 +744,7 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
                         if (node.SelectSingleNode("XSDDH") != null) { entity.XSDDH = node["XSDDH"].InnerText; }
                         if (node.SelectSingleNode("DDMXBH") != null) { entity.DDMXBH = node["DDMXBH"].InnerText; }
                         if (node.SelectSingleNode("SXH") != null) { entity.SXH=int.Parse(node["SXH"].InnerText);}
-                        if (node.SelectSingleNode("PSL") != null) { entity.PSL =decimal.Parse(node["PSL"].InnerText); }
+                        if (node.SelectSingleNode("PSL") != null) { entity.PSL =decimal.Parse(node["PSL"].InnerText, CultureInfo.InvariantCulture); }
                         tmpList.Add(entity);
                     }
                     var param = yqbm;
