@@ -1,6 +1,7 @@
 using Newtouch.Domain.IDomainServices;
 using Newtouch.CIS.Web.Models;
 using Newtouch.CIS.Web.Attributes;
+using Newtouch.CIS.Web.Helpers;
 using NewtouchHIS.Lib.Framework.Operator;
 using NewtouchHIS.Lib.Base.Extension;
 using Newtouch.CIS.Repository;
@@ -1657,11 +1658,11 @@ namespace Newtouch.CIS.Web.Controllers
                 return Error("Lấy thông tin khám bệnh của bệnh nhân thất bại, vui lòng chọn lại bệnh nhân rồi thử lại");
             }
             decimal? decimalNull = null;
-            entity.xuetang = (string.IsNullOrEmpty(xuetang) ? decimalNull : Convert.ToDecimal(xuetang));
+            entity.xuetang = (string.IsNullOrEmpty(xuetang) ? decimalNull : DecimalParseHelper.ParseDecimal(xuetang));
             entity.xuetangclfs = xuetangclfs;
-            entity.tiwen = string.IsNullOrEmpty(tiwen) ? decimalNull : Convert.ToDecimal(tiwen);
-            entity.shousuoya = string.IsNullOrEmpty(shousuoya) ? decimalNull : Convert.ToDecimal(shousuoya);
-            entity.shuzhangya = string.IsNullOrEmpty(shuzhangya) ? decimalNull : Convert.ToDecimal(shuzhangya);
+            entity.tiwen = string.IsNullOrEmpty(tiwen) ? decimalNull : DecimalParseHelper.ParseDecimal(tiwen);
+            entity.shousuoya = string.IsNullOrEmpty(shousuoya) ? decimalNull : DecimalParseHelper.ParseDecimal(shousuoya);
+            entity.shuzhangya = string.IsNullOrEmpty(shuzhangya) ? decimalNull : DecimalParseHelper.ParseDecimal(shuzhangya);
             _treatmentRepo.Update(entity);
             _medicalRecordRepo.Update(blEntity);
             return Success();

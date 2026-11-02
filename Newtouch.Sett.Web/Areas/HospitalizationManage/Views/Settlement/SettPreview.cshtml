@@ -110,7 +110,7 @@
                         <td class="text-left"></td>
                         <th class="text-right" style="font-weight:700;">Số phải thu:</th>
                         <td class="text-left" id="tdYsk">
-                            <span>@Model.yingshoukuan.ToString("0.00")</span>
+                            <span>@Model.yingshoukuan.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture)</span>
                         </td>
                     </tr>
                     <tr>
@@ -192,7 +192,7 @@
         $("#ddlZYJSChargeType").val($('#ddlZYJSChargeType option:first').attr('value'));
         $('#ddlZYJSChargeType option[value=' + yjjzhzffs + ']').attr('disabled', 'disabled').trigger("change");
 
-        $('#tbZhszGridList').newtouchLocalDataGrid(null, [{ zffs: yjjzhzffs, zffsmc: yjjzhzffsmc, zfje: '@(Model.zhye.ToString("0.00"))', zfzh: "@((Model.HospSettPatInfo.zyyjjzh ?? 0) > 0 ? Model.HospSettPatInfo.zyyjjzh.Value.ToString() : "")" }]);
+        $('#tbZhszGridList').newtouchLocalDataGrid(null, [{ zffs: yjjzhzffs, zffsmc: yjjzhzffsmc, zfje: '@(Model.zhye.ToString("0.00", System.Globalization.CultureInfo.InvariantCulture))', zfzh: "@((Model.HospSettPatInfo.zyyjjzh ?? 0) > 0 ? Model.HospSettPatInfo.zyyjjzh.Value.ToString() : "")" }]);
     });
 
     function btn_add() {
@@ -274,7 +274,7 @@
         postData['expectedcyrq'] = '@(Model.expectedcyrq)';  //
         postData['expectedyjjzhye'] = '@(Model.zhye)';  //
         //Số tiềnquyết toán kỳ vọng Ngăn thay đổi trong quá trình
-        postData['expectedjsje'] = @(Model.expectedjsje);
+        postData['expectedjsje'] = @(Model.expectedjsje.ToString(System.Globalization.CultureInfo.InvariantCulture));
         //Tiền thừa kỳ vọng Ngăn thay đổi trong quá trình
         postData['expectedzhaoling'] = $('#tdZhaoling span').text();
         if($('#tdZhaoling span').text() && parseFloat($.trim($('#tdZhaoling span').text())) < 0){

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtouch.Sett.Domain;
+using Newtouch.Sett.Web.Helpers;
 using NewtouchHIS.Lib.Framework.Operator;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Model;
@@ -487,7 +488,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             var confEntity = _sysConfigRepo.GetByCode("OrderSwitch", OperatorProvider.GetCurrent().OrganizeId);
             if (confEntity != null && "T".Equals(confEntity.Value.Trim().ToUpper()))
             {
-                return Content(_outpatientRegApp.Book(gh, Convert.ToDecimal(ssk), fph, isCkf, isGbf, updateBrxz).ToString());
+                return Content(_outpatientRegApp.Book(gh, DecimalParseHelper.ParseDecimal(ssk), fph, isCkf, isGbf, updateBrxz).ToString());
             }
             return null;
         }

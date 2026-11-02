@@ -291,15 +291,15 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
             gh.gsrdh = gsrdh;
             gh.zdicd10 = zdicd10;
             gh.zdmc = zdmc;
-            gh.ghf = Convert.ToDecimal(ghf);
-            gh.zlf = Convert.ToDecimal(zlf);
-            gh.ckf = Convert.ToDecimal(ckf);
-            gh.gbf = Convert.ToDecimal(gbf);
+            gh.ghf = DecimalParseHelper.ParseDecimal(ghf);
+            gh.zlf = DecimalParseHelper.ParseDecimal(zlf);
+            gh.ckf = DecimalParseHelper.ParseDecimal(ckf);
+            gh.gbf = DecimalParseHelper.ParseDecimal(gbf);
             if(zzjm== "true") gh.zzjm = true;
             else gh.zzjm = false;
             gh.kh = kh;
 
-            _outpatientRegApp.Save(gh, Convert.ToDecimal(ysk), Convert.ToDecimal(ssk),fph);
+            _outpatientRegApp.Save(gh, DecimalParseHelper.ParseDecimal(ysk), DecimalParseHelper.ParseDecimal(ssk),fph);
             return Success("Lưu thành công");
         }
 

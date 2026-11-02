@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtouch.Sett.Domain;
+using Newtouch.Sett.Web.Helpers;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Model;
 using NewtouchHIS.Lib.Base.Exceptions;
@@ -281,7 +282,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         [HttpPost]
                 public IActionResult AddCfInfo(List<OutpatChargeDto> chargeDto, string kh, string fph, string xjzffs, string xjzffsbh, string zfje, string ysk, string zl)
         {
-            var settDto = _outPatChargeApp.OutPatChargeSett(chargeDto, kh, fph, xjzffs, xjzffsbh, Convert.ToDecimal(zfje), Convert.ToDecimal(ysk), Convert.ToDecimal(zl));
+            var settDto = _outPatChargeApp.OutPatChargeSett(chargeDto, kh, fph, xjzffs, xjzffsbh, DecimalParseHelper.ParseDecimal(zfje), DecimalParseHelper.ParseDecimal(ysk), DecimalParseHelper.ParseDecimal(zl));
             return Success("", settDto);
         }
 
@@ -655,7 +656,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// <returns></returns>
         // ChongQing 99 VO carries money/count fields as strings; HOS-typed entity needs parsing.
         private static int ParseInt(string s) { int v; return int.TryParse(s, out v) ? v : 0; }
-        private static decimal? ParseDec(string s) { decimal v; return decimal.TryParse(s, out v) ? (decimal?)v : null; }
+        private static decimal? ParseDec(string s) { decimal v; return DecimalParseHelper.TryParseDecimal(s, out v) ? (decimal?)v : null; }
 
         public IActionResult SaveChongQing99HQ(Output_2207VO entity,string jslb)
 	    {

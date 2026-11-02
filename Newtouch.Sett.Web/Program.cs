@@ -230,6 +230,11 @@ builder.Services.AddControllersWithViews().AddMvcOptions(options =>
     // first and accepts the exact formats the views send (dd/MM first, then
     // ISO, then the US form the invariant binder accepted).
     options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider());
+    // Cycle 56: form-POST decimals bind CurrentCulture (vi-VN), where '.'
+    // is the group separator, so dot-decimal view values ("1234.56" from
+    // toFixed(2)) bound as 123456. This provider runs first and accepts
+    // both dot-decimal and vi-VN comma-decimal values (dot first).
+    options.ModelBinderProviders.Insert(0, new DecimalModelBinderProvider());
     options.Filters.Add(typeof(LogTrackingAttribute));
     options.Filters.Add(typeof(FrameworkAuthorizationFilter));
 });

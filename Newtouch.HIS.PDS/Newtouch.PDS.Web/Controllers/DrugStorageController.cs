@@ -1,5 +1,6 @@
 using NewtouchHIS.Lib.Base.Model;
 using NewtouchHIS.Lib.Base.Extension;
+using Newtouch.PDS.Web.Helpers;
 using Newtouch.Infrastructure.EF;
 using System;
 using System.Net;
@@ -339,10 +340,10 @@ namespace Newtouch.HIS.Web.Controllers
                 OrganizeId = OperatorProvider.GetCurrent().OrganizeId,
                 yfbmCode = Constants.CurrentYfbm.yfbmCode,
                 ypCode = ypCode,
-                pfj = Convert.ToDecimal(pfj),
-                lsj = Convert.ToDecimal(lsj),
-                ypfj = Convert.ToDecimal(ypfj),
-                ylsj = Convert.ToDecimal(ylsj),
+                pfj = DecimalParseHelper.ParseDecimal(pfj),
+                lsj = DecimalParseHelper.ParseDecimal(lsj),
+                ypfj = DecimalParseHelper.ParseDecimal(ypfj),
+                ylsj = DecimalParseHelper.ParseDecimal(ylsj),
                 shzt = "0",
                 xglx = "tj",
                 tzsj = DateTime.Now,
