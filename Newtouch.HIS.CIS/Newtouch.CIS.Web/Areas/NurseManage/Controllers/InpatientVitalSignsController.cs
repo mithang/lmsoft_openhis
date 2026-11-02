@@ -224,20 +224,6 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     new ExcelColumn("tw","Nhiệt độ"),
                     new ExcelColumn("mb","Mạch"),
                     new ExcelColumn("hx","Hô hấp"),
-                     new ExcelColumn("tiwen","Nhiệt độ"),
-                      new ExcelColumn("xueya","Huyết áp"),
-                       new ExcelColumn("cfz","Khám lần đầu/tái khám"),
-                        new ExcelColumn("zs","Triệu chứng chính"),
-                        new ExcelColumn("xyzdmc","Chẩn đoánTên"),
-                        new ExcelColumn("clfa","Xử lý"),
-                        new ExcelColumn("fzjc","Kiểm tra hỗ trợ"),
-                         new ExcelColumn("ysqz","Chữ ký bác sĩ"),
-                          new ExcelColumn("sfzh","Hiệu lựcSố giấy tờ"),
-                          new ExcelColumn("ContactNum","Điện thoại"),
-                    new ExcelColumn("ghksmc","Chuyên khoa"),
-                    new ExcelColumn("xuetang","Đường huyết"),
-                    new ExcelColumn("xbs","Bệnh sử hiện tại"),
-                    new ExcelColumn("bz","Ghi chú"),
             };
             var sheet = new ExcelSheet()
             {

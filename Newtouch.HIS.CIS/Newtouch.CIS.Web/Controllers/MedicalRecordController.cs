@@ -1325,7 +1325,6 @@ namespace Newtouch.CIS.Web.Controllers
                     new ExcelColumn("ghksmc","Chuyên khoa"),
                     new ExcelColumn("xuetang","Đường huyết"),
                     new ExcelColumn("xbs","Bệnh sử hiện tại"),
-                    new ExcelColumn("bz","Ghi chú"),
             };
             var sheet = new ExcelSheet()
             {
