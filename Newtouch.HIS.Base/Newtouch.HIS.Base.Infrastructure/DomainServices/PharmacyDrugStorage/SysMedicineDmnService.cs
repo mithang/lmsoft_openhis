@@ -283,34 +283,34 @@ left join  xt_mldz mldz on xm.sfxmCode=mldz.code
 		        case "1":
 			    sql =  @"select top 200 * from (
 select 
-Mã thuốc ypdm
-,Nguồn dữ liệu sjly
-,Tên đăng ký zcmc
-,Tên thương mại spmc
+药品代码 ypdm
+,数据来源 sjly
+,注册名称 zcmc
+,商品名称 spmc
 ,注册剂型 zcjx
 ,实际剂型 sjjx
 ,注册规格 zcgg
 ,实际规格 sjgg
-,Chất liệu bao bì bzcz
-,Số lượng đóng gói nhỏ nhất zxbzsl
-,Đơn vị bào chế nhỏ nhất zxzjdw
-,Đơn vị đóng gói nhỏ nhất zxbzdw
-,Doanh nghiệp dược ypqy
+,包装材质 bzcz
+,最小包装数量 zxbzsl
+,最小制剂单位 zxzjdw
+,最小包装单位 zxbzdw
+,药品企业 ypqy
 ,上市药品持有人 shypcyr
-,Số đăng ký pzwh
+,批准文号 pzwh
 ,原批准文号 ypzwh
 ,药品本位码 ypbwm
 ,分包装企业名称 fbzqymc
-,Doanh nghiệp sản xuất scqy
+,生产企业 scqy
 ,市场状态 sczt
-,Tên thuốc BHYT ybypmc
+,医保药品名称 ybypmc
 ,[2021版甲乙类] ybjyl
-,Dạng bào chế BHYT ybjx
-,Số hiệu bh
-,Ghi chú bz
-,Loại A/B jyl
-,Ghi chú1 bz1
-,[Ghi chú（特殊属性标识）] bztssxbs
+,医保剂型 ybjx
+,编号 bh
+,备注 bz
+,甲乙类 jyl
+,备注1 bz1
+,[备注（特殊属性标识）] bztssxbs
 ,医保支付标准 ybzfbz
 ,pym
 from dbo.gb_ypxx 
@@ -507,17 +507,17 @@ from G_yb_wm_tcmpat_info_b
 					sql = @"select top 200 * from(
 select 
 耗材代码 hcdm
-,Phân loại cấp 1 yjfl
-,Phân loại cấp 2 ejfl
-,Phân loại cấp 3 sjfl
+,一级分类 yjfl
+,二级分类 ejfl
+,三级分类 sjfl
 ,单件产品名称 ybtym
-,Chất liệu cz
-,Đặc điểm tz
-,Số đăng ký lưu hành zcbah
+,材质 cz
+,特征 tz
+,注册备案号 zcbah
 ,单件产品名称 djcpmc
-,Doanh nghiệp vật tư hcqy
-,Số quy cách mẫu ggxhs
-,Người đăng ký zcbar
+,耗材企业 hcqy
+,规格型号数 ggxhs
+,注册备案人 zcbar
 ,ybxz
 ,pym
 from gb_clxx )a where 1=1 ";
@@ -697,15 +697,15 @@ from G_yb_mcs_info_b )a where 1=1 ";
 				case "1":
 					sql = @"select top 200 * from(
 select
-Mã truyền quyết toán jscsbm
-,Mã hạng mục quốc gia gjxmdm
-,Tên hạng mục quốc gia gjxmmc
-,Mã bm
-,Tên hạng mục xmmc
-,Nội hàm hạng mục xmnh
-,Nội dung loại trừ cwnr
-,Đơn vị tính giá jjdw
-,Mô tả sm
+结算传输编码 jscsbm
+,国家项目代码 gjxmdm
+,国家项目名称 gjxmmc
+,编码 bm
+,项目名称 xmmc
+,项目内涵 xmnh
+,除外内容 cwnr
+,计价单位 jjdw
+,说明 sm
 ,ybxz
 ,pym
 from gb_sfxm)a where 1=1 ";
