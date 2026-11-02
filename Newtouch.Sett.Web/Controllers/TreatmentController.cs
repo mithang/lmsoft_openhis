@@ -87,6 +87,13 @@ namespace Newtouch.Sett.Web.Controllers
             }
             foreach (var token in jar)
             {
+                if (token.Type != JTokenType.Object)
+                {
+                    return Error("Dữ liệu gửi lên không đúng định dạng.");
+                }
+            }
+            foreach (var token in jar)
+            {
                 var jobjar = JObject.Parse(token.ToString());
                 var zhcodetj = Str(jobjar, "zhcode");
                 var sfxmmc = Str(jobjar, "zlxmmc");
