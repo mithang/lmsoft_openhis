@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using Newtouch.EMR.Web.Helpers;
 using NewtouchHIS.Framework.Web.Implementation;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Filter;
@@ -62,6 +63,9 @@ foreach (var asmName in new[] { "Newtouch.EMR.Infrastructure", "NewtouchHIS.Base
 
 builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
+    // Cycle 36: query-string dates bind InvariantCulture in stock ASP.NET Core,
+    // so dd/MM/yyyy view values mis-bound on GET. Provider runs first.
+    options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider());
     options.Filters.Add(typeof(LogTrackingAttribute));
     options.Filters.Add(typeof(FrameworkAuthorizationFilter));
 });
