@@ -202,7 +202,7 @@ namespace Newtouch.DomainServices.Inpatient
                                     var tzsj = new DateTime();
                                     if (!string.IsNullOrWhiteSpace(item.ts.ToString()))
                                     {
-                                        tzsj = DateTime.Parse(item.kssj).AddDays(item.ts.ToInt());
+                                        tzsj = ParseKssj(item).AddDays(item.ts.ToInt());
                                     }
                                     ssyzcfId = item.Id;
                                     if (!EditCQdoctorService(item, orgId, ref dto, tzsj))
@@ -236,6 +236,10 @@ namespace Newtouch.DomainServices.Inpatient
                     }
                 }
                 SavedoctorService(dto, orgId);
+            }
+            catch (FailedException fe)
+            {
+                throw new FailedException("Y lệnhLưu thất bại，" + fe.Message);
             }
             catch (Exception e)
             {
@@ -466,7 +470,7 @@ namespace Newtouch.DomainServices.Inpatient
                             var tzsj = new DateTime();
                             if (!string.IsNullOrWhiteSpace(item.ts.ToString()))
                             {
-                                tzsj = DateTime.Parse(item.kssj).AddDays(item.ts.ToInt());
+                                tzsj = ParseKssj(item).AddDays(item.ts.ToInt());
                             }
                             ssyzcfId = item.Id;
                             if (!EditCQdoctorService(item, orgId, ref dto, tzsj))
@@ -498,6 +502,10 @@ namespace Newtouch.DomainServices.Inpatient
                 }
                 SavedoctorService(dto, orgId);
 
+            }
+            catch (FailedException fe)
+            {
+                throw new FailedException("Y lệnhLưu thất bại，" + fe.Message);
             }
             catch (Exception e)
             {
@@ -686,6 +694,24 @@ namespace Newtouch.DomainServices.Inpatient
             return responsexml;
         }
         #endregion
+        DateTime ParseKssj(DoctorServiceRequestDto item)
+        {
+            if (!DateTime.TryParse(item.kssj, out var kssj))
+            {
+                throw new FailedException("kssj không đúng định dạng ngày giờ: " + item.kssj);
+            }
+            return kssj;
+        }
+
+        DateTime ParseYzzdsj(DoctorServiceRequestDto item)
+        {
+            if (!DateTime.TryParse(item.yzzdsj, out var yzzdsj))
+            {
+                throw new FailedException("yzzdsj không đúng định dạng ngày giờ: " + item.yzzdsj);
+            }
+            return yzzdsj;
+        }
+
         /// <summary>
         /// tăng thêmY lệnhChẩn đoán
         /// </summary>
@@ -704,7 +730,7 @@ namespace Newtouch.DomainServices.Inpatient
                 entity.yzId = guid;
                 entity.yzh = item.yzh;
                 entity.zyh = item.zyh;
-                entity.zdsj = DateTime.Parse(item.yzzdsj);
+                entity.zdsj = ParseYzzdsj(item);
                 entity.icd10 = item.yzzdid;
                 entity.zdmc = item.yzzdmc;
                 entity.yztag = item.yztag;
@@ -766,7 +792,7 @@ namespace Newtouch.DomainServices.Inpatient
                 editlsyz.ztnr = item.ztnr;
                 editlsyz.yznr = item.yznr;
                 editlsyz.ypyfdm = item.ypyfdm;
-                editlsyz.kssj = DateTime.Parse(item.kssj);
+                editlsyz.kssj = ParseKssj(item);
                 editlsyz.sl = item.sl;
                 editlsyz.ztId = item.ztId;
                 editlsyz.ztmc = item.ztmc;
@@ -813,7 +839,7 @@ namespace Newtouch.DomainServices.Inpatient
             lsyz.dw = item.dwwwwwww;
             lsyz.zbbz = item.zbbzzzzzzz;
             lsyz.OrganizeId = orgId;
-            lsyz.kssj = DateTime.Parse(item.kssj);
+            lsyz.kssj = ParseKssj(item);
             lsyz.nlmddm = item.nlmddm;
             lsyz.djbz = item.djbzzzzzzz;
             lsyz.cydybz = item.cydybzzzzzzz;
@@ -876,7 +902,7 @@ namespace Newtouch.DomainServices.Inpatient
                 Editcqyz.ypjl = item.ypjl;
                 Editcqyz.ztnr = item.ztnr;
                 Editcqyz.yznr = item.yznr;
-                Editcqyz.kssj = DateTime.Parse(item.kssj);
+                Editcqyz.kssj = ParseKssj(item);
                 if (tzsj != DateTime.MinValue)
                 {
                     Editcqyz.tzsj = tzsj;
@@ -936,7 +962,7 @@ namespace Newtouch.DomainServices.Inpatient
             cqyz.isjf = item.isjffffff;
             cqyz.yztag = item.yztag;
             cqyz.OrganizeId = orgId;
-            cqyz.kssj = DateTime.Parse(item.kssj);
+            cqyz.kssj = ParseKssj(item);
             if (tzsj != DateTime.MinValue)
             {
                 cqyz.tzsj = tzsj;
