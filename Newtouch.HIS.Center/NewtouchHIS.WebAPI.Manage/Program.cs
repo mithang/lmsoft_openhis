@@ -10,6 +10,7 @@ using Microsoft.AspNetCore.Mvc.Authorization;
 using NewtouchHIS.Lib.Services.DrgGroup;
 using NewtouchHIS.Lib.Base.Utilities;
 using NewtouchHIS.Lib.Services.SignalR;
+using NewtouchHIS.WebAPI.Manage.Converters;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -55,6 +56,10 @@ builder.Services.AddControllers(options =>
             options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
             options.SerializerSettings.Formatting = Formatting.Indented;
             options.SerializerSettings.DateFormatString = "yyyy-MM-dd HH:mm:ss.fff";//Xử lý toàn cục Định dạng thời gian trả về
+            //Cycle 52: converter ngày JSON (dd/MM trước, ISO/US giữ nguyên).
+            //WriteJson tái tạo đúng format đã pin ở trên nên response không đổi dạng.
+            options.SerializerSettings.Converters.Add(new ViDateTimeJsonConverter());
+            options.SerializerSettings.Converters.Add(new ViNullableDateTimeJsonConverter());
             //options.SerializerSettings.DateTimeZoneHandling = DateTimeZoneHandling.Local;//Xử lý toàn cục Nhận thời gian và xử lý bản địa hóa
             //var dateConverter = new Newtonsoft.Json.Converters.IsoDateTimeConverter
             //{
