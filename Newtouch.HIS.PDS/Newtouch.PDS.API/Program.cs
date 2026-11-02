@@ -214,7 +214,17 @@ builder.Services.AddCors(options =>
 // hoa/thường, không lỗi khi DTO khai báo lại OrganizeId khác case — trường hợp
 // SysPharmacyDepartmentRequestDto.organizeId làm System.Text.Json ném HTTP 500).
 // Dùng Newtonsoft cho [FromBody] để khớp hành vi gốc.
-builder.Services.AddControllers().AddNewtonsoftJson().ConfigureApiBehaviorOptions(o => o.SuppressModelStateInvalidFilter = true);
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    // Converter ngày JSON (cycle 47, mirror Sett.API C44 / CIS.API C45 / EMR.API C46):
+    // Newtonsoft mặc định đọc chuỗi ngày bằng InvariantCulture nên "01/10/2024"
+    // bị đọc nhầm thành 10/01/2024 — converter dùng danh sách format của
+    // DateTimeModelBinder (dd/MM trước) để JSON dd/MM bind đúng; KHÔNG đổi
+    // Culture toàn cục (CreateResponse serialize bằng settings riêng, nhưng
+    // tránh mọi tác dụng phụ lên response).
+    options.SerializerSettings.Converters.Add(new Newtouch.PDS.API.Converters.ViDateTimeJsonConverter());
+    options.SerializerSettings.Converters.Add(new Newtouch.PDS.API.Converters.ViNullableDateTimeJsonConverter());
+}).ConfigureApiBehaviorOptions(o => o.SuppressModelStateInvalidFilter = true);
 
 var app = builder.Build();
 
