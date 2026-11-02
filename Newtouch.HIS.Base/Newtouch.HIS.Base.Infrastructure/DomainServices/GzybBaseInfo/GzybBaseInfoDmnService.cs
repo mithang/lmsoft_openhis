@@ -35,6 +35,29 @@ namespace Newtouch.HIS.DomainServices
 
         public string Header(string tbname)
         {
+            // Whitelist: only the fixed Guizhou catalog tables mapped by the
+            // callers' switches may reach SQL as a table name. Anything else
+            // (including raw HTTP input via the switch default case) fails
+            // closed: return null, which the callers already map to "0"/"0000".
+            switch (tbname)
+            {
+                case "G_yb_wm_tcmpat_info_b":
+                case "G_yb_tcmherb_info_b":
+                case "G_yb_selfprep_info_b":
+                case "G_yb_trt_serv_b":
+                case "G_yb_mcs_info_b":
+                case "G_yb_diag_list_b":
+                case "G_yb_oprn_std_b":
+                case "G_yb_opsp_dise_list_b":
+                case "G_yb_dise_setl_list_b":
+                case "G_yb_daysrg_trt_list_b":
+                case "G_yb_tmor_mpy_b":
+                case "G_yb_tcm_diag_b":
+                case "G_yb_tcmsymp_type_b":
+                    break;
+                default:
+                    return null;
+            }
             var sql = "select   CASE when isnull(VER,'')  =''  or VER='无' then VER_NAME ELSE  VER END ver from " + tbname + " a with(nolock) order by a.VER DESC";
 
             return this.FirstOrDefault<string>(sql);
