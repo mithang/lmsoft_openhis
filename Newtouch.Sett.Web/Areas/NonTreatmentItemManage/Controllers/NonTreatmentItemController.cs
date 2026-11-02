@@ -83,7 +83,15 @@ namespace Newtouch.Sett.Web.Areas.NonTreatmentItemManage.Controllers
         /// <returns></returns>
         public IActionResult SaveBilling(string data)
         {
-            var jzList = JsonConvert.DeserializeObject<List<NonTreatmentItemBillingEntity>>(data);
+            List<NonTreatmentItemBillingEntity> jzList;
+            try
+            {
+                jzList = JsonConvert.DeserializeObject<List<NonTreatmentItemBillingEntity>>(data);
+            }
+            catch (JsonException)
+            {
+                return Error("Dữ liệu gửi lên không đúng định dạng.");
+            }
             List<NonTreatmentItemBillingEntity> billingList = new List<NonTreatmentItemBillingEntity>();
             foreach (var item in jzList)
             {
@@ -208,7 +216,15 @@ namespace Newtouch.Sett.Web.Areas.NonTreatmentItemManage.Controllers
             {
                 throw new FailedCodeException("SYS_GET_ORGANIZATIONAL_FAILURE");
             }
-            var jzList = JsonConvert.DeserializeObject<List<NonTreatmentItemBillingInfoVO>>(data);
+            List<NonTreatmentItemBillingInfoVO> jzList;
+            try
+            {
+                jzList = JsonConvert.DeserializeObject<List<NonTreatmentItemBillingInfoVO>>(data);
+            }
+            catch (JsonException)
+            {
+                return Error("Dữ liệu gửi lên không đúng định dạng.");
+            }
             List<NonTreatmentItemBillingEntity> billingList = new List<NonTreatmentItemBillingEntity>();
             foreach (var item in jzList)
             {

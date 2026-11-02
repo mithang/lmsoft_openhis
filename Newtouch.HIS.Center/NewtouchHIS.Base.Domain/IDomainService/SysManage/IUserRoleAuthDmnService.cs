@@ -19,7 +19,7 @@ namespace NewtouchHIS.Base.Domain.IDomainService
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="userIds"></param>
-        void submitRoleUser(string roleId, List<FirstSecond> userList, string usercode);
+        Task submitRoleUser(string roleId, List<FirstSecond> userList, string usercode);
         /// <summary>
         /// Cập nhật người dùng Quan hệ gắn vai trò
         /// </summary>

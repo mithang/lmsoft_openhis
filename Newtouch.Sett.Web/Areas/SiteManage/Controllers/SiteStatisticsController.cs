@@ -200,13 +200,21 @@ namespace Newtouch.Sett.Web.Areas.SiteManage.Controllers
         
         public IActionResult savefile(string srxx, string srxxList, string cbxxList, string keyvalue, string fjxx)
         {
-                        var vo = new SiteCostEarningVO
+            SiteCostEarningVO vo;
+            try
             {
-                srxx = JsonConvert.DeserializeObject<jgssEarningVO>(srxx),
-                srxxList = JsonConvert.DeserializeObject<List<jgssEarningGridVO>>(srxxList),
-                cbxxList = JsonConvert.DeserializeObject<List<jgssCostVO>>(cbxxList),
-                fjxx = JsonConvert.DeserializeObject<List<jgssAttachmentVO>>(fjxx),
-            };
+                vo = new SiteCostEarningVO
+                {
+                    srxx = JsonConvert.DeserializeObject<jgssEarningVO>(srxx),
+                    srxxList = JsonConvert.DeserializeObject<List<jgssEarningGridVO>>(srxxList),
+                    cbxxList = JsonConvert.DeserializeObject<List<jgssCostVO>>(cbxxList),
+                    fjxx = JsonConvert.DeserializeObject<List<jgssAttachmentVO>>(fjxx),
+                };
+            }
+            catch (JsonException)
+            {
+                return Error("Dữ liệu gửi lên không đúng định dạng.");
+            }
 
             if (Request.Form.Files.Count > 0)
             {

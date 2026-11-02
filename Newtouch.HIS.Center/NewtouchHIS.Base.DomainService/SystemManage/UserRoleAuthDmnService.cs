@@ -48,7 +48,7 @@ namespace NewtouchHIS.Base.DomainService
         /// </summary>
         /// <param name="roleId"></param>
         /// <param name="userIds"></param>
-        public async void submitRoleUser(string roleId, List<FirstSecond> userList, string usercode)
+        public async Task submitRoleUser(string roleId, List<FirstSecond> userList, string usercode)
         {
             var roleEntity = await GetByWhere<SysRoleEntity>(p => p.Id == roleId);
             if (roleEntity == null)

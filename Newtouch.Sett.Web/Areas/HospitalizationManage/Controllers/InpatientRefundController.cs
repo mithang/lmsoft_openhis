@@ -119,7 +119,15 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             {
                 throw new FailedException("Thiếu chi tiết hoàn phí");
             }
-            var list = JsonConvert.DeserializeObject<List<InpatientRefundJsonVO>>(data);
+            List<InpatientRefundJsonVO> list;
+            try
+            {
+                list = JsonConvert.DeserializeObject<List<InpatientRefundJsonVO>>(data);
+            }
+            catch (JsonException)
+            {
+                return Error("Dữ liệu gửi lên không đúng định dạng.");
+            }
             //Bảng tính phí mục
             List<HospItemBillingEntity> xmjfbEntitylist = new List<HospItemBillingEntity>();
             //Bảng tính phí thuốc

@@ -137,9 +137,9 @@ namespace HIS.SSO.Areas.SysManage.Controllers
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public ActionResult submitRoleUser(string roleId, List<FirstSecond> userList)
+        public async Task<ActionResult> submitRoleUser(string roleId, List<FirstSecond> userList)
         {
-            _userRoleAuthDmnService.submitRoleUser(roleId, userList, UserIdentity.UserCode);
+            await _userRoleAuthDmnService.submitRoleUser(roleId, userList, UserIdentity.UserCode);
             return (ActionResult)Success("Thao tác thành công");
         }
         public async Task<ActionResult> DeleteForm(string keyValue)

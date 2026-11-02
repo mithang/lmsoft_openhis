@@ -49,7 +49,15 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
                     item.mzzyh = mzzyh;
                 }
             }
-            var delIds = JsonConvert.DeserializeObject<List<string>>(delRowIds);
+            List<string> delIds;
+            try
+            {
+                delIds = JsonConvert.DeserializeObject<List<string>>(delRowIds);
+            }
+            catch (JsonException)
+            {
+                return Error("Dữ liệu gửi lên không đúng định dạng.");
+            }
             string orgId = this.OrganizeId;
 
             _TherapistSuggestionDmnService.SaveData(mxList, delIds, orgId);

@@ -85,7 +85,15 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         public IActionResult btnReturn(string kh, int jsnm, string refundData)
         { 
             bool isReturnAll = true;
-            var GridViewMx = JsonConvert.DeserializeObject<List<GridViewMx>>(refundData);
+            List<GridViewMx> GridViewMx;
+            try
+            {
+                GridViewMx = JsonConvert.DeserializeObject<List<GridViewMx>>(refundData);
+            }
+            catch (JsonException)
+            {
+                return Error("Dữ liệu gửi lên không đúng định dạng.");
+            }
             //foreach (var da in GridViewMx)
             //{
             //    string[] sArray = da.IS_RETURN.Split(',');
