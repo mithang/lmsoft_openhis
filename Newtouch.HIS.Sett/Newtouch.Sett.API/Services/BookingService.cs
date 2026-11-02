@@ -340,10 +340,26 @@ where a.[OrganizeId]=@orgId and a.zt='1' and OutDate>=@limitdate and IsBook='1' 
                 SettDb.P("@orgId", orgId),
                 SettDb.P("@limitdate", DateTime.Now.ToString("yyyy-MM-dd"))
             };
-            if (!string.IsNullOrWhiteSpace(scheduId)) { sql += " and ScheduId=@Id"; ps.Add(SettDb.P("@Id", Convert.ToDecimal(scheduId))); }
-            if (!string.IsNullOrWhiteSpace(outDate)) { sql += " and OutDate=@date"; ps.Add(SettDb.P("@date", Convert.ToDateTime(outDate))); }
-            if (!string.IsNullOrWhiteSpace(fromDate)) { sql += " and OutDate>=@datefrom"; ps.Add(SettDb.P("@datefrom", Convert.ToDateTime(fromDate))); }
-            if (!string.IsNullOrWhiteSpace(toDate)) { sql += " and OutDate<=@dateto"; ps.Add(SettDb.P("@dateto", Convert.ToDateTime(toDate))); }
+            if (!string.IsNullOrWhiteSpace(scheduId))
+            {
+                if (!decimal.TryParse(scheduId, out var scheduIdValue)) throw new FailException("Mã lịch trực không đúng định dạng.");
+                sql += " and ScheduId=@Id"; ps.Add(SettDb.P("@Id", scheduIdValue));
+            }
+            if (!string.IsNullOrWhiteSpace(outDate))
+            {
+                if (!DateTime.TryParse(outDate, out var outDateValue)) throw new FailException("Ngày khám không đúng định dạng.");
+                sql += " and OutDate=@date"; ps.Add(SettDb.P("@date", outDateValue));
+            }
+            if (!string.IsNullOrWhiteSpace(fromDate))
+            {
+                if (!DateTime.TryParse(fromDate, out var fromDateValue)) throw new FailException("Ngày bắt đầu không đúng định dạng.");
+                sql += " and OutDate>=@datefrom"; ps.Add(SettDb.P("@datefrom", fromDateValue));
+            }
+            if (!string.IsNullOrWhiteSpace(toDate))
+            {
+                if (!DateTime.TryParse(toDate, out var toDateValue)) throw new FailException("Ngày kết thúc không đúng định dạng.");
+                sql += " and OutDate<=@dateto"; ps.Add(SettDb.P("@dateto", toDateValue));
+            }
             if (!string.IsNullOrWhiteSpace(ks)) { sql += " and czks=@czks"; ps.Add(SettDb.P("@czks", ks)); }
             if (!string.IsNullOrWhiteSpace(ysgh)) { sql += " and ysgh=@ysgh"; ps.Add(SettDb.P("@ysgh", ysgh)); }
             if (!string.IsNullOrWhiteSpace(regType)) { sql += " and RegType=@RegType"; ps.Add(SettDb.P("@RegType", regType)); }

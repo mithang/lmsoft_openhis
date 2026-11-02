@@ -299,7 +299,10 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         public IActionResult CreateSchedule(Pagination pagination,string time) {
            
             var orgId = OrganizeId;
-            var Time = Convert.ToDateTime(time);
+            if (!DateTime.TryParse(time, out var Time))
+            {
+                return Error("Thời gian không đúng định dạng, vui lòng kiểm tra lại.");
+            }
             //thực thi thủ tục lưu trữ
             string zlxmzhconf = _sysConfigRepo.GetValueByCode("EnableZlxmGroup", orgId);
             if (!string.IsNullOrWhiteSpace(zlxmzhconf) && zlxmzhconf == "1")

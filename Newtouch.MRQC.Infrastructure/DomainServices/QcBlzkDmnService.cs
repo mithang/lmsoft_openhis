@@ -1,3 +1,4 @@
+using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Framework.Operator;
 using Newtouch.MRQC.Domain;
 using Newtouch.MRQC.Domain.Entity.QcItemManage;
@@ -17,11 +18,20 @@ namespace Newtouch.MRQC.DomainServices
             string organizeId = OperatorProvider.GetCurrent().OrganizeId;
             string userCode = OperatorProvider.GetCurrent().UserCode;
             var db = MrqcDb.GetConnection();
+            // SqlSugar UseTran nuốt exception (đã kiểm chứng bằng harness trên assembly thật
+            // + probe live: update Id không tồn tại trả "thành công" giả, không ghi gì).
+            // Vì vậy không ném trong lambda; ghi cờ rồi ném ngoài transaction.
+            bool targetFound = true;
             db.Ado.UseTran(() =>
             {
                 if (entityvo.czlx == "update")
                 {
                     var entity = db.Queryable<QcItemDataEntity>().First(p => p.Id == entityvo.Id);
+                    if (entity == null)
+                    {
+                        targetFound = false;
+                        return;
+                    }
                     entity.Bllmbmc = entityvo.Bllmbmc;
                     entity.Name = entityvo.Name;
                     entity.Score = entityvo.Score;
@@ -59,6 +69,10 @@ namespace Newtouch.MRQC.DomainServices
                     db.Insertable(entity).ExecuteCommand();
                 }
             });
+            if (!targetFound)
+            {
+                throw new FailedException("Cập nhật thất bại, không tìm thấy hạng mục kiểm soát chất lượng!");
+            }
         }
 
         public IList<ScoreItemVo> Getybbxbldata(string bllx, string orgId, string zyh)

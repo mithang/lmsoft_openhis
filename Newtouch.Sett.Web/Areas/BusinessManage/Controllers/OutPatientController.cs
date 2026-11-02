@@ -267,23 +267,35 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
         public IActionResult Save(string patid, string brxz, string brxzbh, string ghly, string mjzbz, string ksbh, string ks, string rybh, string ys, string ghlxbh, string ghlx, string ghzbbh, string ghzb, string jzxh, string fzbz, string jzbz, string ghzt, string ghxz, string dbxm, string gsrdh, string zdicd10, string zdmc, string ghf, string zlf, string ckf, string gbf, string zzjm,string kh, string ysk,string ssk,string fph)
         {
             OutPatientRegEntity gh = new OutPatientRegEntity();
-            gh.patid = Convert.ToInt32(patid);
+            if (!int.TryParse(patid, out var patidValue)) return Error("Mã bệnh nhân không đúng định dạng.");
+            gh.patid = patidValue;
             gh.brxz = brxz;
-            gh.brxzbh = Convert.ToInt32(brxzbh);
+            if (!int.TryParse(brxzbh, out var brxzbhValue)) return Error("Mã đối tượng bệnh nhân không đúng định dạng.");
+            gh.brxzbh = brxzbhValue;
             gh.ghly = ghly;
             gh.mjzbz = mjzbz;
-            gh.ksbh = Convert.ToInt32(ksbh);
+            if (!int.TryParse(ksbh, out var ksbhValue)) return Error("Mã khoa không đúng định dạng.");
+            gh.ksbh = ksbhValue;
             gh.ks = ks;
-            if (rybh != "") gh.rybh = Convert.ToInt32(rybh);
+            if (rybh != "")
+            {
+                if (!int.TryParse(rybh, out var rybhValue)) return Error("Mã nguồn bệnh nhân không đúng định dạng.");
+                gh.rybh = rybhValue;
+            }
             else gh.rybh = 0;
-            gh.ys = Convert.ToInt16(ys);
+            if (!short.TryParse(ys, out var ysValue)) return Error("Mã bác sĩ không đúng định dạng.");
+            gh.ys = ysValue;
             gh.ghlx = ghlx;
-            gh.ghlxbh = Convert.ToInt32(ghlxbh);
+            if (!int.TryParse(ghlxbh, out var ghlxbhValue)) return Error("Mã loại đăng ký không đúng định dạng.");
+            gh.ghlxbh = ghlxbhValue;
             gh.ghzb = ghzb;
-            gh.ghzbbh = Convert.ToInt32(ghzbbh);
+            if (!int.TryParse(ghzbbh, out var ghzbbhValue)) return Error("Mã giờ đăng ký không đúng định dạng.");
+            gh.ghzbbh = ghzbbhValue;
             gh.ghzb = ghzb;
-            gh.jzxh = Convert.ToInt16(jzxh);
-            gh.fzbz = Convert.ToByte(fzbz);
+            if (!short.TryParse(jzxh, out var jzxhValue)) return Error("Số thứ tự khám không đúng định dạng.");
+            gh.jzxh = jzxhValue;
+            if (!byte.TryParse(fzbz, out var fzbzValue)) return Error("Cờ miễn phí không đúng định dạng.");
+            gh.fzbz = fzbzValue;
             gh.jzbz = jzbz;
             gh.ghzt = ghzt;
             gh.ghxz = ghzt;
