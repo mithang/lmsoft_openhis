@@ -35,7 +35,16 @@ builder.Services.AddSingleton<PatientQueryService>();
 
 // Newtonsoft bắt buộc: BookingRequest.paradata là JObject, System.Text.Json
 // không deserialise được; 8016 cũng serialise bằng Newtonsoft.
-builder.Services.AddControllers().AddNewtonsoftJson();
+// Converter ngày (vòng 44): Newtonsoft parse chuỗi ngày bằng InvariantCulture
+// nên "01/10/2024" trong JSON body bị đọc nhầm MM/dd; converter dùng đúng
+// format list của DateTimeModelBinder (dd/MM trước, rồi ISO, US-form giữ
+// nguyên) cho member DateTime/DateTime?. Cố tình không đổi Culture toàn cục
+// để format ngày trong response không đổi; JObject paradata không bị ảnh hưởng.
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    options.SerializerSettings.Converters.Add(new Newtouch.Sett.API.Converters.ViDateTimeJsonConverter());
+    options.SerializerSettings.Converters.Add(new Newtouch.Sett.API.Converters.ViNullableDateTimeJsonConverter());
+});
 builder.Services.AddCors(options =>
 {
     options.AddDefaultPolicy(policy => policy.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
