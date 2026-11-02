@@ -5,6 +5,7 @@ using Microsoft.Extensions.Logging;
 using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Model;
+using System.Text.RegularExpressions;
 
 namespace NewtouchHIS.Lib.Base.Middleware
 {
@@ -37,12 +38,59 @@ namespace NewtouchHIS.Lib.Base.Middleware
             }
         }
 
+        // SECURITY (C91): khong ghi session token / gia tri nhay cam trong query string vao log.
+        // Query tuan tu hoa thanh danh sach Key/Value (khong phai object phang) nen regex dang JSON
+        // cua G7 khong bat duoc — redact theo key truoc khi tuan tu hoa, roi ap regex G7 them mot lop.
+        private static string ScrubbedQuery(IQueryCollection query)
+        {
+            var items = new List<KeyValuePair<string, string[]>>(query.Count);
+            foreach (var kv in query)
+            {
+                var values = kv.Value.ToArray();
+                for (int i = 0; i < values.Length; i++)
+                {
+                    if (IsSensitiveQueryKey(kv.Key) || LooksLikeJwt(values[i]))
+                    {
+                        values[i] = "<redacted>";
+                    }
+                }
+                items.Add(new KeyValuePair<string, string[]>(kv.Key, values));
+            }
+            return Scrub(items.ToJson());
+        }
+
+        private static bool IsSensitiveQueryKey(string key)
+        {
+            return key.IndexOf("token", StringComparison.OrdinalIgnoreCase) >= 0
+                || key.IndexOf("password", StringComparison.OrdinalIgnoreCase) >= 0
+                || key.IndexOf("pwd", StringComparison.OrdinalIgnoreCase) >= 0
+                || key.IndexOf("secret", StringComparison.OrdinalIgnoreCase) >= 0;
+        }
+
+        private static bool LooksLikeJwt(string? v)
+        {
+            return v != null && Regex.IsMatch(v, @"^eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+$");
+        }
+
+        // Mau G7 (LogTrackingAttribute.Scrub): khong ghi JWT, gia tri Token, mat khau dang hash vao log.
+        private static string Scrub(string? s)
+        {
+            if (string.IsNullOrEmpty(s)) return s ?? string.Empty;
+            // JWT dang eyJ.xxx.yyy
+            s = Regex.Replace(s, @"eyJ[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+\.[A-Za-z0-9_-]+", "eyJ<jwt-redacted>");
+            // Truong "Token": "..." (ke ca khi khong dung dang JWT)
+            s = Regex.Replace(s, @"""[^""]*[Tt]oken[^""]*""\s*:\s*""[^""]*""", m => m.Value.Substring(0, m.Value.IndexOf(':') + 1) + @"""<redacted>""");
+            // Truong mat khau dang hash trong request login
+            s = Regex.Replace(s, @"""[^""]*[Pp]assword[^""]*""\s*:\s*""[^""]*""", m => m.Value.Substring(0, m.Value.IndexOf(':') + 1) + @"""<redacted>""");
+            return s;
+        }
+
         private async Task HandleException(HttpContext context, Exception e)
         {
             context.Response.StatusCode = 200;
             context.Response.ContentType = "text/json;charset=utf-8;";
             string error = "";
-            string logError = $"PATH:{context.Request.Path}\nRequest:{context.Request.Query.ToJson()}";
+            string logError = $"PATH:{context.Request.Path}\nRequest:{ScrubbedQuery(context.Request.Query)}";
             _logger.LogError(logError);
             if (environment.IsDevelopment())
             {
