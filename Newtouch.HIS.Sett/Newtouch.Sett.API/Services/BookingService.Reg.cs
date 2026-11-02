@@ -34,7 +34,7 @@ namespace Newtouch.Sett.API.Services
                 var bookId = para.Get("bookId");
                 var kh = para.Get("kh");
                 decimal payFee;
-                if (!decimal.TryParse(para.Get("PayFee"), out payFee))
+                if (!DecimalParseHelper.TryParseDecimal(para.Get("PayFee"), out payFee))
                     return ResponseBaseOld.Fail("Thông tin quan trọng không được để trống");
                 Dictionary<string, object> book;
                 using (var cmd = new SqlCommand(@"select top 1 * from mz_gh_book with(nolock) where BookId=@bid and yyzt=@book and zt='1' and OrganizeId=@org and OutDate>=@today", conn))

@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
 using Newtouch.Sett.Domain;
+using Newtouch.Sett.Web.Helpers;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Model;
 using Newtonsoft.Json.Linq;
@@ -87,7 +88,7 @@ namespace Newtouch.Sett.Web.Controllers
                     ord = int.TryParse(Str(jobjar, "ord"), out var ord) ? ord : (int?)null,
                     zlxm = Str(jobjar, "zlxm"),
                     zlxmmc = sfxmmc,
-                    price = decimal.TryParse(Str(jobjar, "price"), out var price) ? price : 0m,
+                    price = DecimalParseHelper.TryParseDecimal(Str(jobjar, "price"), out var price) ? price : 0m,
                     zlxmpy = Str(jobjar, "zlxmpy"),
                     OrganizeId = orgId ?? OrganizeId,
                     sfdl = Str(jobjar, "sfdlcode"),

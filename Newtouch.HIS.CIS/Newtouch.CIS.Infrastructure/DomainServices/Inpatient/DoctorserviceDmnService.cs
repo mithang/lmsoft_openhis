@@ -586,7 +586,13 @@ namespace Newtouch.DomainServices.Inpatient
             kc21.AAC003 = patientobj.xm;
             kc21.AAE135 = patientobj.sfzh;
             kc21.AAC004 = patientobj.sex;
-            kc21.BAE450 = Convert.ToDecimal(brxx.age);
+            // Cycle 61: two-stage parse (dot-decimal first, explicit vi-VN
+            // fallback). Convert.ToDecimal under vi-VN mis-reads "36.5" as
+            // 365. The null branch preserves Convert.ToDecimal((string)null)
+            // == 0m; non-null values keep the old FormatException on garbage.
+            // Guizhou-gated flow (KC21 insurance XML), unreachable in a VN
+            // deployment, but the parse is format-independent and harmless.
+            kc21.BAE450 = brxx.age == null ? 0m : DecimalParseHelper.ParseDecimal(brxx.age);
             kc21.AAE011 = patientobj.CreatorCode;
             kc21.AAE036 = DateTime.Now.ToString("yyyyMMddHHmmss");
             request.KC21XML = kc21;

@@ -597,7 +597,7 @@ group by dd.dlCode,dd.dlmc,dd.sfxm,dd.sfxmmc,dd.dj,dd.jfdw,dd.zfxz,dd.zzfbz,dd.z
             var orderNo = para.Get("OrderNo");
             var kh = para.Get("CardNo");
             decimal amt;
-            if (string.IsNullOrWhiteSpace(orderNo) || string.IsNullOrWhiteSpace(kh) || !decimal.TryParse(para.Get("OrderAmt"), out amt) || amt <= 0)
+            if (string.IsNullOrWhiteSpace(orderNo) || string.IsNullOrWhiteSpace(kh) || !DecimalParseHelper.TryParseDecimal(para.Get("OrderAmt"), out amt) || amt <= 0)
                 return ResponseBaseOld.Fail("Thông tin quan trọng(OrderNo,kh) không được để trống");
             using (var conn = _db.OpenSett())
             {
@@ -656,7 +656,7 @@ group by dd.dlCode,dd.dlmc,dd.sfxm,dd.sfxmmc,dd.dj,dd.jfdw,dd.zfxz,dd.zzfbz,dd.z
             }
             if (order == null) throw new FailException("Thanh toán thất bại, thông tin đơn hàng đã hết hạn, vui lòng làm mới trạng thái đơn hàng");
             decimal payFee;
-            if (!decimal.TryParse(para.Get("PayFee"), out payFee) || (SettDb.Dec(order, "OrderAmt") ?? 0m) != payFee)
+            if (!DecimalParseHelper.TryParseDecimal(para.Get("PayFee"), out payFee) || (SettDb.Dec(order, "OrderAmt") ?? 0m) != payFee)
                 throw new FailException("Số tiền đơn hàng không khớp số tiền thanh toán");
             var cardNo = para.Get("CardNo");
             var visitNo = para.Get("VisitNo");
