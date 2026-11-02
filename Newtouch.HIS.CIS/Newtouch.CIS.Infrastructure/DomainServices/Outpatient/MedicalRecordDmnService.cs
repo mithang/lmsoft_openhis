@@ -68,7 +68,35 @@ namespace Newtouch.DomainServices
         private readonly IPresTemplateRepo _presTemplateEntityRepo;
         private readonly IPrescriptionDetailRepo _prescriptionDetailEntityRepo;
         private readonly IPresTemplateDmnService _presTemplateDmnService;
-        
+
+        // Allowlist ORDER BY của usp_interface_OutPatientRegistrationQuery
+        // (dùng chung với Sett.API PatientQueryService): đúng 44 alias đầu
+        // ra của SELECT trong thân proc. sp_QueryWithPage của vendor nối
+        // @sidx/@sord vào ORDER BY rồi exec(@pageSql) không kiểm tra gì,
+        // nên mọi giá trị ngoài allowlist đều bị chặn trước khi gọi proc.
+        // Cả 2 caller hiện tại đều đặt sidx="operatingTime" phía server.
+        private static readonly Dictionary<string, string> DjzSortableColumns =
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                { "mzh", "mzh" }, { "blh", "blh" },
+                { "jiuzhenbz", "jiuzhenbz" }, { "jiuzhenbzValue", "jiuzhenbzValue" },
+                { "ys", "ys" }, { "ysxm", "ysxm" }, { "ks", "ks" }, { "ksmc", "ksmc" },
+                { "brxz", "brxz" }, { "brxzmc", "brxzmc" }, { "brxm", "brxm" },
+                { "maritalStatus", "maritalStatus" }, { "maritalStatusValue", "maritalStatusValue" },
+                { "zjlx", "zjlx" }, { "zjlxValue", "zjlxValue" }, { "zjh", "zjh" },
+                { "idCardNo", "idCardNo" }, { "ContactNum", "ContactNum" },
+                { "sex", "sex" }, { "sexValue", "sexValue" }, { "birth", "birth" },
+                { "status", "status" }, { "statusValue", "statusValue" },
+                { "province", "province" }, { "city", "city" }, { "county", "county" },
+                { "ADDRESS", "ADDRESS" }, { "ghsj", "ghsj" },
+                { "contPerName", "contPerName" }, { "contPerPhoneNum", "contPerPhoneNum" },
+                { "contPerRel", "contPerRel" }, { "contPerRelValue", "contPerRelValue" },
+                { "UpdateTime", "UpdateTime" }, { "operatingTime", "operatingTime" },
+                { "mjzbz", "mjzbz" }, { "ybjsh", "ybjsh" }, { "sbbh", "sbbh" },
+                { "cbdbm", "cbdbm" }, { "fzbz", "fzbz" }, { "mjzbzValue", "mjzbzValue" },
+                { "py", "py" }, { "kh", "kh" }, { "nlshow", "nlshow" },
+                { "grbh", "grbh" }, { "queno", "queno" }
+            };
         
         public MedicalRecordDmnService() : base()
         {
@@ -3192,6 +3220,18 @@ WHERE zt = '1' and organizeId = @orgId and sfxmCode = @sfxmCode";
             pagination.page = pagination.page <= 0 ? 1 : pagination.page;
             pagination.rows = pagination.rows <= 0 ? 100000 : pagination.rows;  //khôngphúttrang
             pagination.sidx = string.IsNullOrWhiteSpace(pagination.sidx) ? "UpdateTime" : pagination.sidx;
+            // Fail-closed: sidx/sord chảy vào sp_QueryWithPage (ORDER BY +
+            // exec) — chỉ alias trong allowlist + asc/desc mới được gọi proc.
+            string djzSidx;
+            if (!DjzSortableColumns.TryGetValue(pagination.sidx.Trim(), out djzSidx))
+                throw new ArgumentException("pagination.sidx không hợp lệ: " + pagination.sidx);
+            pagination.sidx = djzSidx;
+            var djzSord = (pagination.sord ?? "").Trim();
+            if (djzSord.Length > 0
+                && !string.Equals(djzSord, "asc", StringComparison.OrdinalIgnoreCase)
+                && !string.Equals(djzSord, "desc", StringComparison.OrdinalIgnoreCase))
+                throw new ArgumentException("pagination.sord không hợp lệ: " + pagination.sord);
+            pagination.sord = djzSord.Length == 0 ? "" : (string.Equals(djzSord, "asc", StringComparison.OrdinalIgnoreCase) ? "asc" : "desc");
 
             paraList.Add(new SqlParameter("@page", pagination.page));
             paraList.Add(new SqlParameter("@rows", pagination.rows));

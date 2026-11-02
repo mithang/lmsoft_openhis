@@ -1,5 +1,7 @@
 using Microsoft.Data.SqlClient;
 using Newtouch.Sett.API.Models;
+using System;
+using System.Collections.Generic;
 using System.Data;
 using System.Text.RegularExpressions;
 
@@ -44,12 +46,46 @@ namespace Newtouch.Sett.API.Services
     ///   bản gốc, không tạo bản proc staging riêng để khỏi lệch vendor.
     /// - Giới hạn vendor: @ksCode của proc là VARCHAR(50) — danh sách khoa dài
     ///   hơn sẽ bị cắt ở tầng proc, giống hệt caller gốc.
+    /// - @sidx/@sord cũng chảy thẳng vào sp_QueryWithPage của vendor, proc
+    ///   này nối chúng vào ORDER BY rồi exec(@pageSql) không kiểm tra gì —
+    ///   ORDER BY injection (nối thêm câu lệnh bằng ';' cũng chạy được).
+    ///   Endpoint validate allowlist trước khi gọi: sidx phải là đúng một
+    ///   alias đầu ra của SELECT trong proc, sord chỉ asc/desc; còn lại
+    ///   Fail, không thực thi SQL.
     /// </summary>
     public class PatientQueryService
     {
         private readonly SettDb _db;
 
         public PatientQueryService(SettDb db) { _db = db; }
+
+        // Allowlist ORDER BY của usp_interface_OutPatientRegistrationQuery:
+        // đúng 44 alias đầu ra của SELECT trong thân proc (đo từ
+        // OBJECT_DEFINITION, DB Sett), key không phân biệt hoa/thường,
+        // value là tên chuẩn gửi xuống SQL. Mọi tên khác (kể cả biểu thức
+        // CASE, nhiều cột, tên cột không có trong SELECT) đều bị chặn.
+        private static readonly Dictionary<string, string> SortableColumns =
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                { "mzh", "mzh" }, { "blh", "blh" },
+                { "jiuzhenbz", "jiuzhenbz" }, { "jiuzhenbzValue", "jiuzhenbzValue" },
+                { "ys", "ys" }, { "ysxm", "ysxm" }, { "ks", "ks" }, { "ksmc", "ksmc" },
+                { "brxz", "brxz" }, { "brxzmc", "brxzmc" }, { "brxm", "brxm" },
+                { "maritalStatus", "maritalStatus" }, { "maritalStatusValue", "maritalStatusValue" },
+                { "zjlx", "zjlx" }, { "zjlxValue", "zjlxValue" }, { "zjh", "zjh" },
+                { "idCardNo", "idCardNo" }, { "ContactNum", "ContactNum" },
+                { "sex", "sex" }, { "sexValue", "sexValue" }, { "birth", "birth" },
+                { "status", "status" }, { "statusValue", "statusValue" },
+                { "province", "province" }, { "city", "city" }, { "county", "county" },
+                { "ADDRESS", "ADDRESS" }, { "ghsj", "ghsj" },
+                { "contPerName", "contPerName" }, { "contPerPhoneNum", "contPerPhoneNum" },
+                { "contPerRel", "contPerRel" }, { "contPerRelValue", "contPerRelValue" },
+                { "UpdateTime", "UpdateTime" }, { "operatingTime", "operatingTime" },
+                { "mjzbz", "mjzbz" }, { "ybjsh", "ybjsh" }, { "sbbh", "sbbh" },
+                { "cbdbm", "cbdbm" }, { "fzbz", "fzbz" }, { "mjzbzValue", "mjzbzValue" },
+                { "py", "py" }, { "kh", "kh" }, { "nlshow", "nlshow" },
+                { "grbh", "grbh" }, { "queno", "queno" }
+            };
 
         public ResponseBaseOld Query(OutPatientRegistrationQueryRequest req)
         {
@@ -82,7 +118,17 @@ namespace Newtouch.Sett.API.Services
             if (rows <= 0) rows = 150;
             var sidx = string.IsNullOrWhiteSpace(req.pagination?.sidx) ? (req.sidx ?? "") : req.pagination.sidx;
             if (string.IsNullOrWhiteSpace(sidx)) sidx = "operatingTime";
-            var sord = req.pagination?.sord ?? req.sord ?? "";
+            sidx = sidx.Trim();
+            string canonicalSidx;
+            if (!SortableColumns.TryGetValue(sidx, out canonicalSidx))
+                return ResponseBaseOld.Fail("sidx không hợp lệ");
+            sidx = canonicalSidx;
+            var sord = (req.pagination?.sord ?? req.sord ?? "").Trim();
+            if (sord.Length > 0
+                && !string.Equals(sord, "asc", StringComparison.OrdinalIgnoreCase)
+                && !string.Equals(sord, "desc", StringComparison.OrdinalIgnoreCase))
+                return ResponseBaseOld.Fail("sord không hợp lệ");
+            sord = sord.Length == 0 ? "" : (string.Equals(sord, "asc", StringComparison.OrdinalIgnoreCase) ? "asc" : "desc");
 
             try
             {
