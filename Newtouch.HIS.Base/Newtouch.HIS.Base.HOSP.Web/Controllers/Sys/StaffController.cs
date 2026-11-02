@@ -173,7 +173,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
 			if (rest)
 			{
-				return PhysicalFile(filePath, "application/x-xls", path.Replace("\\", ""));
+				return File(System.IO.File.ReadAllBytes(filePath), "application/x-xls", path.Replace("\\", ""));
 			}
 			else
 			{

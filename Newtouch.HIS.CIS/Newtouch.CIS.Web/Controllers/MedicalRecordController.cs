@@ -1298,7 +1298,8 @@ namespace Newtouch.CIS.Web.Controllers
         public IActionResult Export(string keyword, string kssj, string jssj, string jzysgh, string hznl, string xtxy, string qbdc)
         {
             var data = _medicalRecordDmnService.GetLogGridList(keyword, kssj, jssj, this.UserIdentity.rygh, this.OrganizeId, hznl, xtxy, qbdc);
-            var path = DateTime.Now.ToString("\\\\Ngoại trúNhật kýTra cứuyyyyMMdd\\\\HHmmssfff") + ".xls";
+            var now = DateTime.Now;
+            var path = "\\Ngoại trúNhật kýTra cứu" + now.ToString("yyyyMMdd") + "\\" + now.ToString("HHmmssfff") + ".xls";
             var filePath = CommmHelper.GetLocalFilePath("\\ExcelXuất\\Ngoại trúNhật kýTra cứu" + path);
             var cols = new List<ExcelColumn>()
             {
@@ -1335,7 +1336,7 @@ namespace Newtouch.CIS.Web.Controllers
             var result = data.ToExcel(filePath, sheet);
             if (result)
             {
-                return File(filePath, "application/x-xls", path.Replace("\\", ""));
+                return File(System.IO.File.ReadAllBytes(filePath), "application/x-xls", path.Replace("\\", ""));
             }
             else
             {

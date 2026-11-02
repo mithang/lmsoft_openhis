@@ -1,4 +1,6 @@
+using System;
 using System.IO;
+using NewtouchHIS.Lib.Base.Exceptions;
 
 namespace Newtouch.Sett.Web.Helpers
 {
@@ -19,7 +21,16 @@ namespace Newtouch.Sett.Web.Helpers
             }
             var normalized = (path ?? "").Replace('\\', Path.DirectorySeparatorChar)
                 .Replace('/', Path.DirectorySeparatorChar);
-            var filePath = Path.Combine(baseDir, normalized.TrimStart(Path.DirectorySeparatorChar));
+            // Fail closed: the resolved path must stay inside the uploads base.
+            // Client-controlled segments (blh, multipart file name) may contain
+            // ".." — resolve them and reject anything that escapes the base
+            // instead of writing outside it (cycle-82 containment pattern).
+            var baseFull = Path.GetFullPath(baseDir);
+            var filePath = Path.GetFullPath(Path.Combine(baseFull, normalized.TrimStart(Path.DirectorySeparatorChar)));
+            if (!filePath.StartsWith(baseFull + Path.DirectorySeparatorChar, StringComparison.Ordinal))
+            {
+                throw new FailedException("Đường dẫn tải lên không hợp lệ.");
+            }
             var dir = Path.GetDirectoryName(filePath);
             if (!string.IsNullOrEmpty(dir) && !Directory.Exists(dir))
             {

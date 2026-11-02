@@ -16,16 +16,17 @@ namespace Newtouch.Infrastructure
         /// <returns></returns>
         public static string GetLocalFilePath(string path)
         {
+            // No Windows D:\ drive on Linux: fall back to the OS temp dir
+            // (same mapping as the CIS/PDS ports of this helper).
             var configFileExportBaseDir = ConfigurationHelper.GetAppConfigValue("LocalFileBaseDir");
             if (string.IsNullOrWhiteSpace(configFileExportBaseDir))
             {
-                configFileExportBaseDir = "D:\\";
+                configFileExportBaseDir = System.IO.Path.GetTempPath();
             }
-            var filePath = (configFileExportBaseDir + path).Replace("\\\\", "\\");
-
-            var iIndex = filePath.LastIndexOf("\\");
-            var dirPath = filePath.Substring(0, iIndex);
-            if (!System.IO.Directory.Exists(dirPath))
+            var normalized = (path ?? "").Replace('\\', System.IO.Path.DirectorySeparatorChar).Replace('/', System.IO.Path.DirectorySeparatorChar);
+            var filePath = System.IO.Path.Combine(configFileExportBaseDir, normalized.TrimStart(System.IO.Path.DirectorySeparatorChar));
+            var dirPath = System.IO.Path.GetDirectoryName(filePath);
+            if (!string.IsNullOrWhiteSpace(dirPath) && !System.IO.Directory.Exists(dirPath))
             {
                 System.IO.Directory.CreateDirectory(dirPath);
             }

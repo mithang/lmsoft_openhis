@@ -498,7 +498,7 @@ namespace Newtouch.HIS.Web.Controllers
 
 			if (rest)
 			{
-				return File(filePath, "application/x-xls", path.Replace("\\", ""));
+				return File(System.IO.File.ReadAllBytes(filePath), "application/x-xls", path.Replace("\\", ""));
 			}
 			else
 			{

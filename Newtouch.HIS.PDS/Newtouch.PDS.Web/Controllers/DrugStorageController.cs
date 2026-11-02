@@ -984,7 +984,7 @@ namespace Newtouch.HIS.Web.Controllers
             if (rest)
             {
                 ViewBag.filePath = filePath;
-                return File(filePath, "application/x-xls", path.Replace("\\", ""));
+                return File(System.IO.File.ReadAllBytes(filePath), "application/x-xls", path.Replace("\\", ""));
             }
             else
             {

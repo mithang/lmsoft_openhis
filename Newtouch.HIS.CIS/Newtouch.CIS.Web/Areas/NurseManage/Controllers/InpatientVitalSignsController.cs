@@ -212,7 +212,8 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         public IActionResult Export(DateTime? kssj, DateTime? jssj, string zyh)
         {
             var data = _inpatientVitalSignsRepo.GetList(OrganizeId,kssj,jssj,zyh).ToList();
-            var path = DateTime.Now.ToString("\\\\Nhập điều dưỡngTra cứuyyyyMMdd\\\\HHmmssfff") + ".xls";
+            var now = DateTime.Now;
+            var path = "\\Nhập điều dưỡngTra cứu" + now.ToString("yyyyMMdd") + "\\" + now.ToString("HHmmssfff") + ".xls";
             var filePath = CommmHelper.GetLocalFilePath("\\ExcelXuất\\Nhập điều dưỡngTra cứu" + path);
             var cols = new List<ExcelColumn>()
             {
@@ -234,7 +235,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             var result = data.ToExcel(filePath, sheet);
             if (result)
             {
-                return File(filePath, "application/x-xls", path.Replace("\\", ""));
+                return File(System.IO.File.ReadAllBytes(filePath), "application/x-xls", path.Replace("\\", ""));
             }
             else
             {
