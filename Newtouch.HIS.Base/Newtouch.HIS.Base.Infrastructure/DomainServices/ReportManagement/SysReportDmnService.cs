@@ -52,14 +52,15 @@ convert(varchar(50),b.ReportCode) ReportCode
  ) b 
 where 1=1
  ";
+            var par = new List<SqlParameter>();
             if (ReportType != null && ReportType != "")
             {
-                sql += @" and (b.reporttype=" + ReportType + " or b.reporttype=0) ";
+                sql += @" and (b.reporttype=@ReportType or b.reporttype=0) ";
+                par.Add(new SqlParameter("@ReportType", ReportType));
             }
-            var par = new List<SqlParameter>();
             if (keyword != null && keyword != "")
             {
-                sql += @" and b.reportname like '%" + keyword + @"%' union all
+                sql += @" and b.reportname like @keyword union all
 select convert(varchar(50),a.reportid) id,
 convert(varchar(50),case parentId when 0 then null else parentId end) parentId,
 case parentId when 0 then a.SystemName else a.ReportName end ReportName,
@@ -70,6 +71,7 @@ convert(varchar(50), a.ReportCode)  ReportCode
   from dbo.Sys_Report a
  where a.zt = '1' and a.ParentId = 0
  ";
+                par.Add(new SqlParameter("@keyword", "%" + keyword + "%"));
             }
             return this.FindList<ReortListVO>(sql, par.ToArray());
         }
