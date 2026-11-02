@@ -1140,7 +1140,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
 
             var apiRespPush = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse>(
                 "/api/Prescription/Cancel", reqObj);
-            if (apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
+            if (apiRespPush == null || apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
                 //ghingàychí
                 AppLogger.Instance.Warn(string.Format("Đẩy giao diện hủy đơn thuốc thất bại，Khám bệnhId：" + jzId + "Thời gian đẩy" + DateTime.Now));
@@ -1176,7 +1176,7 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                 };
                 //đẩyKhám bệnhTrạng thái
                 var apiResp1 = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Patient/OutPatientUpdateConsultationStatus", reqObj1);
-                if (apiResp1.code != APIRequestHelper.ResponseResultCode.SUCCESS)
+                if (apiResp1 == null || apiResp1.code != APIRequestHelper.ResponseResultCode.SUCCESS)
                 {
                     AppLogger.Instance.Warn(string.Format("đẩyKhám bệnhTrạng tháithất bại，Số khám ngoại trú：" + jzObject.mzh + "Thời gian đẩy" + DateTime.Now));//ghingàychís
                 }
@@ -1202,7 +1202,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     };
                     //đẩyChẩn đoán
                     var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Patient/OutPatientUpdateDiagnosis", reqObj);
-                    if (apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
+                    if (apiResp == null || apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
                     {
                         AppLogger.Instance.Warn(string.Format("đẩyChẩn đoánthất bại，Số khám ngoại trú：" + jzObject.mzh + "Thời gian đẩy" + DateTime.Now));//ghingàychí
                     }
@@ -1351,7 +1351,8 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
             };
 
             var apiRespPush = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<PresUpdateResultDTO>>("/api/Prescription/UpdateAllForOutNo", reqPush);
-            if (apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
+            var pushSucceeded = apiRespPush != null && apiRespPush.code == APIRequestHelper.ResponseResultCode.SUCCESS;
+            if (!pushSucceeded)
             {
                 pushResult = false;
                 AppLogger.Instance.Warn(string.Format("đẩyĐơn thuốcthất bại，Số khám ngoại trú：" + reqPush.mzh + "Đơn thuốcId：" + cfId + "Thời gian đẩy" + DateTime.Now));//ghingàychí
@@ -1361,7 +1362,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                 foreach (var pres in presList)
                 {
                     bool? sfbz = null;
-                    if (apiRespPush.data.settledCfhList != null && apiRespPush.data.settledCfhList.Contains(pres.cfh))
+                    if (apiRespPush.data != null && apiRespPush.data.settledCfhList != null && apiRespPush.data.settledCfhList.Contains(pres.cfh))
                     {
                         sfbz = true;   // Cập nhật lịch sử bị bỏ sót
                     }
@@ -1376,7 +1377,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                 objectType = "cf",
                 objectKey = pres.cfh,
                 actionType = "sendtohis",
-                result = apiRespPush.code == APIRequestHelper.ResponseResultCode.SUCCESS ? "1" : "0"
+                result = pushSucceeded ? "1" : "0"
             }))
             {
                 actionEntity.Create(true);
@@ -1408,6 +1409,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
 
             var result = "";
             var apiRespPush = new APIRequestHelper.DefaultResponse();
+            var pushSucceeded = false;
             try
             {
                 var items = rpDetail.Where(c => c.sfzt == null && (c.ztId ==""  ||c.ztId==null) && c.xmCode == null).Select(p => new
@@ -1444,7 +1446,16 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     TimeStamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                 };
                 apiRespPush = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("api/ResourcesOperate/OutpatientBookModify", reqPush, autoAppendToken: false);
-                result = apiRespPush.code == APIRequestHelper.ResponseResultCode.SUCCESS ? "" : apiRespPush.sub_msg;
+                if (apiRespPush == null)
+                {
+                    AppLogger.Instance.Warn("Đẩy đơn thuốc đến nhà thuốc thất bại, số đơn thuốc: " + cfh);
+                    result = "Đẩy đơn thuốc đến nhà thuốc thất bại";
+                }
+                else
+                {
+                    result = apiRespPush.code == APIRequestHelper.ResponseResultCode.SUCCESS ? "" : apiRespPush.sub_msg;
+                }
+                pushSucceeded = apiRespPush != null && apiRespPush.code == APIRequestHelper.ResponseResultCode.SUCCESS;
             }
             catch (Exception e)
             {
@@ -1460,7 +1471,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     objectType = "cf",
                     objectKey = cfh,
                     actionType = "sendtopds.modify",
-                    result = apiRespPush.code == APIRequestHelper.ResponseResultCode.SUCCESS ? "1" : "0",
+                    result = pushSucceeded ? "1" : "0",
                     Id = Guid.NewGuid().ToString(),
                     CreatorCode = operatorCode,
                     CreateTime = DateTime.Now,
@@ -1493,6 +1504,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
 
             var result = "";
             var apiRespPush = new APIRequestHelper.DefaultResponse();
+            var pushSucceeded = false;
             try
             {
                 var items = rpDetail.Where(c => c.xmCode == null).Select(p => new
@@ -1530,7 +1542,16 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     TimeStamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                 };
                 apiRespPush = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("api/ResourcesOperate/OutpatientBook", reqPush, autoAppendToken: false);
-                result = apiRespPush.code == APIRequestHelper.ResponseResultCode.SUCCESS ? "" : apiRespPush.sub_msg;
+                if (apiRespPush == null)
+                {
+                    AppLogger.Instance.Warn("Đẩy đơn thuốc đến nhà thuốc thất bại, số đơn thuốc: " + cfh);
+                    result = "Đẩy đơn thuốc đến nhà thuốc thất bại";
+                }
+                else
+                {
+                    result = apiRespPush.code == APIRequestHelper.ResponseResultCode.SUCCESS ? "" : apiRespPush.sub_msg;
+                }
+                pushSucceeded = apiRespPush != null && apiRespPush.code == APIRequestHelper.ResponseResultCode.SUCCESS;
             }
             catch (Exception e)
             {
@@ -1546,7 +1567,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     objectType = "cf",
                     objectKey = cfh,
                     actionType = "sendtopds",
-                    result = apiRespPush.code == APIRequestHelper.ResponseResultCode.SUCCESS ? "1" : "0",
+                    result = pushSucceeded ? "1" : "0",
                     Id = Guid.NewGuid().ToString(),
                     CreatorCode = operatorCode,
                     CreateTime = DateTime.Now,
@@ -1803,7 +1824,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
 
             var apiRespPush = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse>(
                 "/api/Prescription/Cancel", reqObj);
-            if (apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
+            if (apiRespPush == null || apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
                 //ghingàychí
                 AppLogger.Instance.Warn(string.Format("Đẩy giao diện hủy đơn thuốc thất bại，chId：" + cfId + "Thời gian đẩy" + DateTime.Now));
@@ -1840,7 +1861,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
 
             var apiRespPush = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>(
                 "/api/ResourcesOperate/OutpatientCancelAllBook", reqObj);
-            if (apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
+            if (apiRespPush == null || apiRespPush.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
                 //ghingàychí
                 AppLogger.Instance.Warn(string.Format("đẩyPDSHủy đơn thuốcgiao diệnthất bại，chId：" + cfId + "Thời gian đẩy" + DateTime.Now));
