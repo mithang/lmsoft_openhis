@@ -1,4 +1,5 @@
 using System;
+using System.Globalization;
 using DbConfigHelper;
 using Newtouch.CIS.Proxy.ServiceReferenceSqsq;
 using Newtouch.Infrastructure.EF;
@@ -2725,8 +2726,8 @@ and idl.name=@ypyfmc
                     }
                     rOW.GIVE_MEDI_WAY = GIVE_MEDI_WAY;
                     rOW.IM_MONEY = sbzje;
-                    rOW.REAL_NUMBER = item.sl.ToString("F3");
-                    rOW.REAL_MONEY = sbzje.ToString("F3");
+                    rOW.REAL_NUMBER = item.sl.ToString("F3", CultureInfo.InvariantCulture);
+                    rOW.REAL_MONEY = sbzje.ToString("F3", CultureInfo.InvariantCulture);
                     rOW.DOCTOR_LEVEL_CODE = "1";
                     rOW.DOCTOR_DUTY_CODE = "234";
                     rOW.COL1 = "";

@@ -161,7 +161,7 @@ namespace Newtouch.HIS.Web.Controllers
             var eOpr = OperatorProvider.GetCurrent();
             if (eOpr != null && eOpr.token == access_token)
             {
-                if (!string.IsNullOrWhiteSpace(returnUrl))
+                if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                 {
                     return Redirect(returnUrl);
                 }
@@ -264,7 +264,7 @@ namespace Newtouch.HIS.Web.Controllers
         private IActionResult QuickLoginSuccess(string account, string organizeId, string returnUrl, string withToken, System.Action acBeforeRedirect)
         {
             try { acBeforeRedirect?.Invoke(); } catch { }
-            if (OperatorProvider.GetCurrent() != null && !string.IsNullOrWhiteSpace(returnUrl))
+            if (OperatorProvider.GetCurrent() != null && !string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
             {
                 return Redirect(returnUrl);
             }

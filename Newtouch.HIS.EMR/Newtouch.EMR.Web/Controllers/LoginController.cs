@@ -75,7 +75,7 @@ namespace Newtouch.EMR.Web.Controllers
             var eOpr = OperatorProvider.GetCurrent();
             if (eOpr != null && eOpr.token == access_token)
             {
-                if (!string.IsNullOrWhiteSpace(returnUrl))
+                if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
                 {
                     return Redirect(returnUrl);
                 }
