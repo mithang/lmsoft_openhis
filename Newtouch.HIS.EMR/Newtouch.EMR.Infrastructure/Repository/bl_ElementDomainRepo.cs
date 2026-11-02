@@ -132,6 +132,24 @@ namespace Newtouch.EMR.Repository
             }
         }
 
+        #region Bảo vệ định danh SQL (tên bảng/cột từ từ điển)
+        // Tên bảng/cột lấy từ hàng từ điển DB không bao giờ được nội suy trực tiếp:
+        // chỉ chấp nhận định danh [A-Za-z_][A-Za-z0-9_]*, còn lại fail-closed
+        // (ném FailedException, không thực thi SQL). Mọi giá trị từ điển đang có
+        // trong DB demo (TB_BL_RYJL/TB_BL_CYJL/TB_BL_BCJL, bl_bcjl/...,
+        // ADM_TIME/...) đều khớp mẫu này — kiểm chứng chỉ-đọc ngày 02/11/2026.
+        private static readonly Regex _sqlIdentifierRegex = new Regex(@"^[A-Za-z_][A-Za-z0-9_]*$", RegexOptions.Compiled);
+
+        private static string RequireValidSqlIdentifier(string identifier)
+        {
+            if (string.IsNullOrWhiteSpace(identifier) || !_sqlIdentifierRegex.IsMatch(identifier))
+            {
+                throw new FailedException("Tên bảng/cột cấu trúc bệnh án không hợp lệ, không thể ghi dữ liệu!");
+            }
+            return identifier;
+        }
+        #endregion
+
         #region Lưu trữ chuyển đổi bảng dọc cấu trúc bệnh án sang bảng ngang
         public void BljghDataDealwith(BljghReq req)
         {
@@ -160,11 +178,18 @@ namespace Newtouch.EMR.Repository
             if (string.IsNullOrEmpty(bljgTable))
                 return;
 
+            // Fail-closed: tên bảng từ từ điển phải là định danh hợp lệ trước mọi câu lệnh.
+            RequireValidSqlIdentifier(bljgTable);
+
             if (req.delzt=="0")
             {
-                string deletesql = $@" update {bljgTable} set bz='0',LastModifyTime=getdate(),LastModifierCode='{req.czr}' 
-   where bl_pzhm='{req.blId}' and organizeid='{req.organizeId}' ";
+                // FIX SQLi: tham số hóa czr/blId/organizeId (trước đây nội suy trực tiếp).
+                string deletesql = $@" update {bljgTable} set bz='0',LastModifyTime=getdate(),LastModifierCode=@czr
+   where bl_pzhm=@blId and organizeid=@orgId ";
                 this.ExecuteSqlCommand(deletesql, new SugarParameter[] {
+                    new SugarParameter("@czr", req.czr ?? ""),
+                    new SugarParameter("@blId", req.blId ?? ""),
+                    new SugarParameter("@orgId", req.organizeId ?? "")
                            });
                 return;
             }
@@ -200,19 +225,35 @@ namespace Newtouch.EMR.Repository
             {
                 string sqlInsert = "";
                 try {
+                    // FIX SQLi: tham số hóa mọi giá trị; tên cột từ từ điển phải là định danh hợp lệ.
+                    foreach (var col in jgmxEntity)
+                    {
+                        RequireValidSqlIdentifier(col.Table_Column_Code);
+                    }
+                    var insertPara = new List<SugarParameter>();
+                    insertPara.Add(new SugarParameter("@orgId", req.organizeId ?? ""));
+                    insertPara.Add(new SugarParameter("@zyh", req.zyh ?? ""));
+                    insertPara.Add(new SugarParameter("@bllx", req.bllx ?? ""));
+                    insertPara.Add(new SugarParameter("@blId", req.blId ?? ""));
+                    insertPara.Add(new SugarParameter("@blrq", (object)blwsentity.blrq ?? DBNull.Value));
+                    insertPara.Add(new SugarParameter("@xmlConten", blwsentity.xmlConten ?? ""));
+                    insertPara.Add(new SugarParameter("@base64", xmlcontentBase64));
+                    insertPara.Add(new SugarParameter("@czr", req.czr ?? ""));
                     string insertCol = $@" insert into {bljgTable} ([OrganizeId],[ZYH],[BL_TYPE],[BL_PZHM],[BL_RECORD_DATE],[BL_TEXT],[BL_BASE64],CreateTime,CreatorCode,bz,";
-                    string insertVal = $@" values('{req.organizeId}','{req.zyh}','{req.bllx}','{req.blId}','{blwsentity.blrq}','{blwsentity.xmlConten}','{xmlcontentBase64}',getdate(),'{req.czr}',1,";
+                    string insertVal = @" values(@orgId,@zyh,@bllx,@blId,@blrq,@xmlConten,@base64,getdate(),@czr,1,";
+                    int evIdx = 0;
                     foreach (var item in jgmxEntity)
                     {
                         insertCol += item.Table_Column_Code + ",";
-                        insertVal += string.IsNullOrWhiteSpace(item.Element_Value) ? "NULL" + "," : "'" + item.Element_Value.Replace(" ", " ") + "'" + ",";
+                        string evParam = "@ev" + evIdx++;
+                        insertVal += evParam + ",";
+                        insertPara.Add(new SugarParameter(evParam, string.IsNullOrWhiteSpace(item.Element_Value) ? (object)DBNull.Value : (object)item.Element_Value.Replace('\u3000', ' ')));
                     }
                     insertCol = insertCol.Substring(0, insertCol.Length - 1) + ")";
                     insertVal = insertVal.Substring(0, insertVal.Length - 1) + ")";
 
                     sqlInsert = insertCol + insertVal;
-                    this.ExecuteSqlCommand(sqlInsert, new SugarParameter[] {
-                           });
+                    this.ExecuteSqlCommand(sqlInsert, insertPara.ToArray());
                 }
                 catch (Exception e)
                 {
@@ -224,16 +265,29 @@ namespace Newtouch.EMR.Repository
             {
                 string updatesql = "";
                 try {
-                    updatesql = $@" update {bljgTable} set BL_TEXT='{blwsentity.xmlConten}' ,BL_BASE64='{xmlcontentBase64}',LastModifyTime=getdate(),LastModifierCode='{req.czr}', ";
+                    // FIX SQLi: tham số hóa mọi giá trị; tên cột từ từ điển phải là định danh hợp lệ.
+                    foreach (var col in jgmxEntity)
+                    {
+                        RequireValidSqlIdentifier(col.Table_Column_Code);
+                    }
+                    var updatePara = new List<SugarParameter>();
+                    updatePara.Add(new SugarParameter("@xmlConten", blwsentity.xmlConten ?? ""));
+                    updatePara.Add(new SugarParameter("@base64", xmlcontentBase64));
+                    updatePara.Add(new SugarParameter("@czr", req.czr ?? ""));
+                    updatePara.Add(new SugarParameter("@blId", req.blId ?? ""));
+                    updatePara.Add(new SugarParameter("@zyh", req.zyh ?? ""));
+                    updatesql = $@" update {bljgTable} set BL_TEXT=@xmlConten ,BL_BASE64=@base64,LastModifyTime=getdate(),LastModifierCode=@czr, ";
+                    int uvIdx = 0;
                     foreach (var item in jgmxEntity)
                     {
-                        var d = string.IsNullOrWhiteSpace(item.Element_Value)?string.Empty:item.Element_Value.Replace(" ", " ");
-                        updatesql += $@"{item.Table_Column_Code} " + $@"='{d}',";
+                        var d = string.IsNullOrWhiteSpace(item.Element_Value) ? string.Empty : item.Element_Value.Replace('\u3000', ' ');
+                        string uvParam = "@uv" + uvIdx++;
+                        updatesql += item.Table_Column_Code + " =" + uvParam + ",";
+                        updatePara.Add(new SugarParameter(uvParam, d));
                     }
                     updatesql = updatesql.Substring(0, updatesql.Length - 1);
-                    updatesql = updatesql + $@" where bl_pzhm='{req.blId}' and zyh='{req.zyh}' and bz=1";
-                    this.ExecuteSqlCommand(updatesql, new SugarParameter[] {
-                           });
+                    updatesql = updatesql + @" where bl_pzhm=@blId and zyh=@zyh and bz=1";
+                    this.ExecuteSqlCommand(updatesql, updatePara.ToArray());
                 }
                 catch (Exception e) {
                     string rc = req.zyh + "|" + req.bllx + "|" + req.blId + "|" + req.blmc;
@@ -245,6 +299,7 @@ namespace Newtouch.EMR.Repository
 
         public BlwsInfoVo GetBljlInfo(string tableName,string blId,string orgId)
         {
+            RequireValidSqlIdentifier(tableName);
             string sql = $@"select dzbl_id
  ,ksmc,ksdm,qmrq,czydm_zzys,a.blrq,a.creatorcode,b.xmlConten from  {tableName}  a
 join zy_meddocs_relation b on a.Id=b.blId and a.organizeid=b.organizeid
@@ -277,6 +332,7 @@ where a.id=@blId and a.organizeId=@orgId and a.zt='1' ";
 
         public int IsCrossDataExist(string tableName,string zyh,string orgId,string blId)
         {
+            RequireValidSqlIdentifier(tableName);
             string sql = $@"select count(1) from {tableName} where zyh=@zyh and organizeId=@orgId and BL_PZHM=@blId and bz=1  ";
 
             var para = new List<SugarParameter>();
@@ -290,10 +346,11 @@ where a.id=@blId and a.organizeId=@orgId and a.zt='1' ";
         {
             string sql = $@"select Table_Column_Code,Table_Colunn_Name,Element_ID,Element_Name,'' Element_Value from bl_ElementDomain jg
 join bl_ElementDomain_Detail jgmx on jgmx.ElementId=jg.Id and jgmx.organizeId=jg.organizeId and jgmx.zt=1 and sybz=1 
-where jg.Table_EngLish_Name='{tableName}' and jg.organizeId=@orgId and jg.zt=1  ";
+where jg.Table_EngLish_Name=@tableName and jg.organizeId=@orgId and jg.zt=1  ";
 
             var para = new List<SugarParameter>();
             para.Add(new SugarParameter("@orgId", orgId));
+            para.Add(new SugarParameter("@tableName", tableName ?? ""));
             return this.FindList<ElementTablStructureVo>(sql, para.ToArray());
         }
 
