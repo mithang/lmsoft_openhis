@@ -65,7 +65,15 @@ foreach (var asmName in new[] { "Newtouch.EMR.Infrastructure", "NewtouchHIS.Base
     }
 }
 
-builder.Services.AddControllers().AddNewtonsoftJson();
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    // Cycle 46: converter ngày JSON (mirror Sett.API vòng 44 / CIS.API vòng 45)
+    // — JSON dd/MM/yyyy bind đúng; KHÔNG đổi Culture toàn cục (mọi response
+    // đều qua CreateResponse với JsonConvert.SerializeObject mặc định nên
+    // không bị ảnh hưởng, nhưng tránh mọi tác dụng phụ lên response).
+    options.SerializerSettings.Converters.Add(new Newtouch.EMR.API.Converters.ViDateTimeJsonConverter());
+    options.SerializerSettings.Converters.Add(new Newtouch.EMR.API.Converters.ViNullableDateTimeJsonConverter());
+});
 var app = builder.Build();
 
 app.UseRouting();
