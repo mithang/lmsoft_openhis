@@ -12,6 +12,7 @@ using NewtouchHIS.Lib.Base.Middleware;
 using NewtouchHIS.Lib.Framework.Filter;
 using NewtouchHIS.Lib.Services.HttpService;
 using Newtouch.CIS.Web.Hubs;
+using Newtouch.CIS.Web.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -193,6 +194,9 @@ builder.Services.AddScoped<Newtouch.HIS.Domain.IRepository.IWMDiagnosisRepo, New
 
 builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
+    // Cycle 24: query-string dates bind InvariantCulture in stock ASP.NET Core,
+    // so dd/MM/yyyy view values bound null/MinValue on GET. Provider runs first.
+    options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider());
     options.Filters.Add(typeof(LogTrackingAttribute));
     options.Filters.Add(typeof(FrameworkAuthorizationFilter));
 });
