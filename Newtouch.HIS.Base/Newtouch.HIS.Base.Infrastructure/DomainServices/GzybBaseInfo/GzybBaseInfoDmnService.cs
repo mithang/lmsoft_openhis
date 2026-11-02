@@ -67,7 +67,7 @@ namespace Newtouch.HIS.DomainServices
         {
             var sqlstr = "";
             var pars = new List<SqlParameter>();
-            switch (mlbh.Trim())
+            switch ((mlbh ?? string.Empty).Trim())
             {
                 case "1301":
                     sqlstr = @"select  

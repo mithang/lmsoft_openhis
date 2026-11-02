@@ -45,9 +45,9 @@ namespace Newtouch.HIS.DomainServices.PharmacyDrugStorage
             }
             DbParameter[] par = new DbParameter[]
             {
-                new SqlParameter("@genname", "%"+genname.Trim()+"%"),
+                new SqlParameter("@genname", "%"+(genname ?? "").Trim()+"%"),
                 new SqlParameter("@medListCodg", "%"+medListCodg+"%"),
-                new SqlParameter("@listType", "%"+listType.Trim()+"%"),
+                new SqlParameter("@listType", "%"+(listType ?? "").Trim()+"%"),
                 new SqlParameter("@zt", "%"+zt+"%"),
             };
             return this.QueryWithPage<SysMedicineElectronicPrescriptionVO>(sql, pagination,par

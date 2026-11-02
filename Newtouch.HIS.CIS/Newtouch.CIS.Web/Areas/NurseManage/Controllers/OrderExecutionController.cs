@@ -83,7 +83,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             this._OrderExecutionDmnService = OrderExecutionDmnService;
             var wnesV = _sysConfigRepo.GetValueByCode("wordsNeedExecuteSwitch", OrganizeId);
             if (string.IsNullOrWhiteSpace(wnesV)) wnes = false;
-            if ("true".Equals(wnesV.ToLower().Trim()) || "t".Equals(wnesV.ToLower().Trim())) wnes = true;
+            else if ("true".Equals(wnesV.ToLower().Trim()) || "t".Equals(wnesV.ToLower().Trim())) wnes = true;
             IsRehabAuthtoNurse = _sysConfigRepo.GetValueByCode("IsRehabAuthtoNurse", this.OrganizeId);
             isNurse = _sysUserDmnService.CheckStaffIsBelongDuty(UserIdentity.StaffId, "Nurse");
             isRehabDoctor = _sysUserDmnService.CheckStaffIsBelongDuty(UserIdentity.StaffId, "RehabDoctor");

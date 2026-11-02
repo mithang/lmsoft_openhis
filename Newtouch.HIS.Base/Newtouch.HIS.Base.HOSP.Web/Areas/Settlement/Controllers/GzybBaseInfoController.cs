@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.Settlement.Controllers
             }
             var data = new
             {
-                bbh =  _IGzybBaseInfoDmnService.Header(tbname.Trim()) ?? "0"
+                bbh =  _IGzybBaseInfoDmnService.Header(tbname?.Trim()) ?? "0"
             };
             return Content(data.ToJson());
         }

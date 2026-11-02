@@ -1871,11 +1871,19 @@ namespace Newtouch.CIS.Web.Controllers
         /// <returns></returns>
         public IActionResult SubmitDiag(string zdmc, string zdbm, string type, string icd, string py, string qxkz = null)
         {
+            if (string.IsNullOrWhiteSpace(zdmc) || string.IsNullOrWhiteSpace(zdbm) || string.IsNullOrWhiteSpace(type) || string.IsNullOrWhiteSpace(icd))
+            {
+                return Error("Tên chẩn đoán, mã chẩn đoán, loại chẩn đoán và mã ICD không được để trống.");
+            }
 
             if (string.IsNullOrEmpty(py))
             {
                 var Dpy = _ComDiagnosisRepo.Getzdpy(zdmc, zdbm);
-                py = Dpy[0].py;
+                if (Dpy == null || Dpy.Count == 0)
+                {
+                    return Error("Không tìm thấy mã pinyin cho chẩn đoán đã chọn.");
+                }
+                py = Dpy[0].py ?? string.Empty;
             }
 
             ComDiagnosisEntity entity = new ComDiagnosisEntity();

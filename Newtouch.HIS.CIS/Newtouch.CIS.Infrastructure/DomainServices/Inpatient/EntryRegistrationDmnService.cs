@@ -305,7 +305,7 @@ FROM    dbo.zy_brxxk zyxx
             if (!string.IsNullOrWhiteSpace(keyword))
             {
                 sqlStr.Append(" AND  zyxx.xm like @keyword");
-
+                parlist.Add(new SqlParameter("@keyword", "%" + keyword.Trim() + "%"));
             }
             if (ksrq.HasValue)
             {
@@ -325,7 +325,6 @@ FROM    dbo.zy_brxxk zyxx
             sqlStr.Append(" and zyxx.zt='1' and cw.zt='1'");
             sqlStr.Append(" and zyxx.zybz=@zybz");
             sqlStr.Append(" and zyxx.OrganizeId=@orgId");
-            parlist.Add(new SqlParameter("@keyword", "%" + keyword.Trim() + "%"));
             parlist.Add(new SqlParameter("@zybz", (int)EnumZYBZ.Djz));
             parlist.Add(new SqlParameter("@orgId", orgId));
             return this.QueryWithPage<OutAreapatientInfo>(sqlStr.ToString(), pagination, parlist.ToArray()).ToList();
