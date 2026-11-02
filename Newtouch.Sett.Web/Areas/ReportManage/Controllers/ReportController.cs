@@ -1012,6 +1012,14 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
 		/// <returns></returns>
 		public IActionResult DCQuery_dbf(string types, string ksrq, string jsrq)
 		{
+			// chặn xóa file .dbf tùy ý qua tham số types: chỉ chấp nhận đúng các
+			// loại mà switch phía dưới xử lý; mọi giá trị khác dừng ngay trước
+			// khi tính đường dẫn và xóa file
+			var allowedTypes = new[] { "1", "2", "3", "4", "5", "Q", "R", "S", "W", "E" };
+			if (string.IsNullOrEmpty(types) || !allowedTypes.Contains(types))
+			{
+				return Content(new { path = "" }.ToJson());
+			}
 			string year = DateTime.Now.ToString("yy");
 			int mone= DateTime.Now.Month;
 			string Month = mone.ToString();

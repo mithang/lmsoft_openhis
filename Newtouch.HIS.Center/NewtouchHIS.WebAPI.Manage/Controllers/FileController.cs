@@ -117,9 +117,16 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
         [Route("FileDelete")]
         public async Task<IActionResult> FileDelete(string filepath)
         {
-            if (System.IO.File.Exists(filepath))
+            // chặn xóa file tùy ý: chỉ cho phép xóa file nằm dưới thư mục gốc của app
+            if (!string.IsNullOrWhiteSpace(filepath))
             {
-                System.IO.File.Delete(filepath);
+                var appRoot = Path.GetFullPath(Directory.GetCurrentDirectory()).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                var fullPath = Path.GetFullPath(filepath);
+                if (fullPath.StartsWith(appRoot + Path.DirectorySeparatorChar, StringComparison.Ordinal)
+                    && System.IO.File.Exists(fullPath))
+                {
+                    System.IO.File.Delete(fullPath);
+                }
             }
             return new JsonResult("ok");
         }

@@ -66,9 +66,13 @@ namespace NewtouchHIS.Lib.Framework.Filter
                                 message = "Đăng nhập hết hạn",
                             }.ToJson()
                         };
+                        return;
                     }
-
-                    filtercontext.Result = new RedirectResult("/Login/Index");
+                    else
+                    {
+                        filtercontext.Result = new RedirectResult("/Login/Index");
+                        return;
+                    }
                 }
             }
 

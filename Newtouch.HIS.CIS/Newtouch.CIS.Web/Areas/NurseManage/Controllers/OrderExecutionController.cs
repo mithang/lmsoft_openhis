@@ -618,10 +618,26 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
                             try
                             {
-                                // tạoduy nhấtmộtvănmụctên
-                                var fileName = file.FileName;
-                                var fileUrl = "~/ReportUploads/" + DateTime.Now.ToString("yyyyMMdd") + "/" + model.sqdh+"/";
-                                var path = Path.Combine(WebPath.MapPath("~/ReportUploads/"+ DateTime.Now.ToString("yyyyMMdd") + "/"+model.sqdh), fileName);
+                                // tạoduy nhấtmộtvănmụctên — chặn path traversal:
+                                // tên file do client gửi có thể chứa ../ ; sqdh cũng là input
+                                // thô, nên chỉ giữ phần tên file và kiểm tra containment.
+                                var safeFileName = Path.GetFileName(file.FileName.Replace('\\', '/'));
+                                var sqdh = model.sqdh ?? "";
+                                if (string.IsNullOrWhiteSpace(safeFileName) || safeFileName == "." || safeFileName == ".."
+                                    || sqdh.IndexOfAny(new[] { '/', '\\' }) >= 0 || sqdh == "." || sqdh == "..")
+                                {
+                                    errorMessages.Add($"{file.FileName} Tên tập tin hoặc số phiếu không hợp lệ");
+                                    continue;
+                                }
+                                var fileName = safeFileName;
+                                var fileUrl = "~/ReportUploads/" + DateTime.Now.ToString("yyyyMMdd") + "/" + sqdh + "/";
+                                var uploadRoot = Path.GetFullPath(WebPath.MapPath("~/ReportUploads/")).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                                var path = Path.GetFullPath(Path.Combine(uploadRoot, DateTime.Now.ToString("yyyyMMdd"), sqdh, fileName));
+                                if (!path.StartsWith(uploadRoot + Path.DirectorySeparatorChar, StringComparison.Ordinal))
+                                {
+                                    errorMessages.Add($"{file.FileName} Đường dẫn tải lên không hợp lệ");
+                                    continue;
+                                }
                                 // xácbảoTải lênDanh mụctồn tạiở
                                 Directory.CreateDirectory(Path.GetDirectoryName(path));
 
@@ -684,8 +700,17 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <returns></returns>
         public IActionResult Download(string fileName)
         {
-            //var path = Path.Combine(Server.WebPath.MapPath("~/Uploads"), fileName);
-            var path = WebPath.MapPath(fileName);
+            // chặn path traversal: chỉ cho phép đọc file nằm dưới thư mục upload
+            if (string.IsNullOrWhiteSpace(fileName))
+            {
+                return NotFound();
+            }
+            var uploadRoot = Path.GetFullPath(WebPath.MapPath("~/ReportUploads/")).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+            var path = Path.GetFullPath(WebPath.MapPath(fileName));
+            if (!path.StartsWith(uploadRoot + Path.DirectorySeparatorChar, StringComparison.Ordinal))
+            {
+                return NotFound();
+            }
             if (System.IO.File.Exists(path))
             {
                 var fileBytes = System.IO.File.ReadAllBytes(path);
