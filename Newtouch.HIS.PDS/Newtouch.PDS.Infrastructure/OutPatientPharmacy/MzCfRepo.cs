@@ -78,10 +78,16 @@ WHERE cfh=@cfh and OrganizeId=@OrganizeId and zt='1'
         public int UpdateFybzToWFByCfh(List<string> cfhs, string organizeId)
         {
             if (cfhs == null || cfhs.Count <= 0) return 0;
-            var strCfh = new StringBuilder();
-            cfhs.ForEach(p => { strCfh.Append("'" + p + "',"); });
-            string sql = string.Format(" UPDATE dbo.mz_cf SET fybz='0' WHERE cfh IN ({0}) AND OrganizeId = '{1}' AND fybz='1' ;", strCfh.ToString().Trim(','), organizeId);
-            return ExecuteSqlCommand(sql);
+            var param = new List<SugarParameter>();
+            var placeholders = new StringBuilder();
+            for (int i = 0; i < cfhs.Count; i++)
+            {
+                placeholders.Append("@cfh" + i + ",");
+                param.Add(new SugarParameter("@cfh" + i, cfhs[i] ?? ""));
+            }
+            param.Add(new SugarParameter("@OrganizeId", organizeId ?? ""));
+            string sql = string.Format(" UPDATE dbo.mz_cf SET fybz='0' WHERE cfh IN ({0}) AND OrganizeId = @OrganizeId AND fybz='1' ;", placeholders.ToString().Trim(','));
+            return ExecuteSqlCommand(sql, param.ToArray());
         }
 
         /// <summary>
