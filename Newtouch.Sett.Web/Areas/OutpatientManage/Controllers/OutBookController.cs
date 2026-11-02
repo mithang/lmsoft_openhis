@@ -282,9 +282,22 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             var orgId = OrganizeId;
             var User = UserIdentity.UserName;
             var Time = DateTime.Now;
-            for (int i = 0; i < timestr.Split(',').Length; i++)
+            if (string.IsNullOrWhiteSpace(timestr))
             {
-                _OutBookDmnService.InsertghpbTime(timestr.Split(',')[i].Split('-')[0], timestr.Split(',')[i].Split('-')[1], orgId, User, Time,i+1);
+                return Error("Dữ liệu thời gian không đúng định dạng.");
+            }
+            var segments = timestr.Split(',');
+            foreach (var segment in segments)
+            {
+                if (segment.Split('-').Length < 2)
+                {
+                    return Error("Dữ liệu thời gian không đúng định dạng.");
+                }
+            }
+            for (int i = 0; i < segments.Length; i++)
+            {
+                var parts = segments[i].Split('-');
+                _OutBookDmnService.InsertghpbTime(parts[0], parts[1], orgId, User, Time, i + 1);
             }
             return Success("Thao tác thành công.");
         }

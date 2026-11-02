@@ -196,7 +196,12 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             }
             if (mbObj.tcfw == (int)EnumTcfw.Ward)//Khu bệnh
             {
-                mbObj.WardCode = _iBaseDataDmnService.GetWardListByStaffGh(UserIdentity.rygh, OrganizeId).FirstOrDefault().bqCode;
+                var ward = _iBaseDataDmnService.GetWardListByStaffGh(UserIdentity.rygh, OrganizeId).FirstOrDefault();
+                if (ward == null)
+                {
+                    return Error("Nhân viên chưa được phân khu bệnh, không thể lưu mẫu khu bệnh.");
+                }
+                mbObj.WardCode = ward.bqCode;
             }
             _inpatientOrderPackageDmnService.saveAsTemplate(mbObj, mxList, OrganizeId);
             return Success();
@@ -210,7 +215,10 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
         public IActionResult GetTreeList(int tcfw, string yzlx)
         {
             var treeList = new List<TreeViewModel>();
-            int linqyzlx = int.Parse(yzlx);
+            if (!int.TryParse(yzlx, out var linqyzlx))
+            {
+                return Error("Loại y lệnh không hợp lệ.");
+            }
             var alldata = _inpatientOrderPackageRepo.IQueryable().Where(p => p.tcfw == tcfw && p.tclx == linqyzlx && p.OrganizeId == OrganizeId && p.zt == "1").OrderBy(a => a.CreateTime).ThenBy(a => a.tcmc).ToList();
             switch (tcfw)
             {
@@ -221,7 +229,11 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
                     alldata.Where(p => p.DeptCode == UserIdentity.DepartmentCode);
                     break;
                 case (int)EnumTcfw.Ward:
-                    alldata.Where(p => p.WardCode == _iBaseDataDmnService.GetWardListByStaffGh(UserIdentity.rygh, OrganizeId).FirstOrDefault().bqCode);
+                    var ward = _iBaseDataDmnService.GetWardListByStaffGh(UserIdentity.rygh, OrganizeId).FirstOrDefault();
+                    if (ward != null)
+                    {
+                        alldata.Where(p => p.WardCode == ward.bqCode);
+                    }
                     break;
                 case (int)EnumTcfw.Hosp:
                     alldata.Where(p => p.ysgh == "*" && p.DeptCode == "*" && p.WardCode == "*");

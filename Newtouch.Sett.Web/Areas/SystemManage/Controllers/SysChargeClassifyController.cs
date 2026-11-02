@@ -76,7 +76,11 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             var entity = new SysChargeClassificationEntity();
             if (!string.IsNullOrWhiteSpace(keyValue))
             {
-                entity = _SysChargeClassifyApp.GetForm(int.Parse(keyValue));
+                if (!int.TryParse(keyValue, out var keyId))
+                {
+                    return Error("Mã phân loại không hợp lệ.");
+                }
+                entity = _SysChargeClassifyApp.GetForm(keyId);
             }
             else
             {

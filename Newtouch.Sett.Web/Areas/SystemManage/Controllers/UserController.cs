@@ -168,7 +168,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
                 }
 
                 parentDeptList.ToList().ForEach(id => {
-                    var deptItem = detpData.Where(p => p.Id == id).First();
+                    var deptItem = detpData.Where(p => p.Id == id).FirstOrDefault();
                     if (deptItem != null)
                     {
                         TreeViewModel deptTree = new TreeViewModel();

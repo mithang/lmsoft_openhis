@@ -1128,62 +1128,92 @@ order by SSOrder ";
             if (!string.IsNullOrWhiteSpace(vo.RYTJ))
             {
                 Dictionary<string, string> rytjdic = EFDBBaseFuncHelper.GetEnumDescription<EnumRYTJ>();
-                EnumRYTJ enumRytj = (EnumRYTJ)Enum.Parse(typeof(EnumRYTJ), vo.RYTJ.ToString());
-                relEty.RYTJ = rytjdic[enumRytj.ToString()];
+                if (!Enum.TryParse(vo.RYTJ, out EnumRYTJ enumRytj) || !rytjdic.TryGetValue(enumRytj.ToString(), out var rytjDesc))
+                {
+                    throw new FailedException("Cách thức nhập viện không hợp lệ.");
+                }
+                relEty.RYTJ = rytjDesc;
             }
             if (!string.IsNullOrWhiteSpace(vo.XB))
             {
                 Dictionary<string, string> xbdic = EFDBBaseFuncHelper.GetEnumDescription<EnumMRSex>();
-                EnumMRSex enumSex = (EnumMRSex)Enum.Parse(typeof(EnumMRSex), vo.XB.ToString());
-                relEty.XB = xbdic[enumSex.ToString()];
+                if (!Enum.TryParse(vo.XB, out EnumMRSex enumSex) || !xbdic.TryGetValue(enumSex.ToString(), out var xbDesc))
+                {
+                    throw new FailedException("Giới tính không hợp lệ.");
+                }
+                relEty.XB = xbDesc;
             }
             if (!string.IsNullOrWhiteSpace(vo.BQFX))
             {
                 Dictionary<string, string> bqfxdic = EFDBBaseFuncHelper.GetEnumDescription<EnumBqfx>();
-                EnumBqfx enumbqfx = (EnumBqfx)Enum.Parse(typeof(EnumBqfx), vo.BQFX.ToString());
-                relEty.BQFX = bqfxdic[enumbqfx.ToString()];
+                if (!Enum.TryParse(vo.BQFX, out EnumBqfx enumbqfx) || !bqfxdic.TryGetValue(enumbqfx.ToString(), out var bqfxDesc))
+                {
+                    throw new FailedException("Giá trị BQFX không hợp lệ.");
+                }
+                relEty.BQFX = bqfxDesc;
             }
             if (!string.IsNullOrWhiteSpace(vo.LYFS))
             {
                 Dictionary<string, string> lyfsdic = EFDBBaseFuncHelper.GetEnumDescription<EnumLyfs>();
-                EnumLyfs enumlyfs = (EnumLyfs)Enum.Parse(typeof(EnumLyfs), vo.LYFS.ToString());
-                relEty.LYFS = lyfsdic[enumlyfs.ToString()];
+                if (!Enum.TryParse(vo.LYFS, out EnumLyfs enumlyfs) || !lyfsdic.TryGetValue(enumlyfs.ToString(), out var lyfsDesc))
+                {
+                    throw new FailedException("Phương thức ra viện không hợp lệ.");
+                }
+                relEty.LYFS = lyfsDesc;
             }
             if (!string.IsNullOrWhiteSpace(vo.BAZL))
             {
                 Dictionary<string, string> bazldic = EFDBBaseFuncHelper.GetEnumDescription<EnumBazl>();
-                EnumBazl enumbazl = (EnumBazl)Enum.Parse(typeof(EnumBazl), vo.BAZL.ToString());
-                relEty.BAZL = bazldic[enumbazl.ToString()];
+                if (!Enum.TryParse(vo.BAZL, out EnumBazl enumbazl) || !bazldic.TryGetValue(enumbazl.ToString(), out var bazlDesc))
+                {
+                    throw new FailedException("Giá trị BAZL không hợp lệ.");
+                }
+                relEty.BAZL = bazlDesc;
             }
             if (!string.IsNullOrWhiteSpace(vo.XX))
             {
                 Dictionary<string, string> xxdic = EFDBBaseFuncHelper.GetEnumDescription<EnumBloodType>();
-                EnumBloodType enumxx = (EnumBloodType)Enum.Parse(typeof(EnumBloodType), vo.XX.ToString());
-                relEty.XX = xxdic[enumxx.ToString()];
+                if (!Enum.TryParse(vo.XX, out EnumBloodType enumxx) || !xxdic.TryGetValue(enumxx.ToString(), out var xxDesc))
+                {
+                    throw new FailedException("Nhóm máu không hợp lệ.");
+                }
+                relEty.XX = xxDesc;
             }
             if (!string.IsNullOrWhiteSpace(vo.RH))
             {
                 Dictionary<string, string> rhdic = EFDBBaseFuncHelper.GetEnumDescription<EnumBloodTypeRH>();
-                EnumBloodTypeRH enumrh = (EnumBloodTypeRH)Enum.Parse(typeof(EnumBloodTypeRH), vo.RH.ToString());
-                relEty.RH = rhdic[enumrh.ToString()];
+                if (!Enum.TryParse(vo.RH, out EnumBloodTypeRH enumrh) || !rhdic.TryGetValue(enumrh.ToString(), out var rhDesc))
+                {
+                    throw new FailedException("Yếu tố Rh không hợp lệ.");
+                }
+                relEty.RH = rhDesc;
             }
             if (!string.IsNullOrWhiteSpace(vo.LYFS))
             {
                 Dictionary<string, string> lyfsdic = EFDBBaseFuncHelper.GetEnumDescription<EnumLyfs>();
-                EnumLyfs enumlyfs = (EnumLyfs)Enum.Parse(typeof(EnumLyfs), vo.LYFS.ToString());
-                relEty.LYFS = lyfsdic[enumlyfs.ToString()];
+                if (!Enum.TryParse(vo.LYFS, out EnumLyfs enumlyfs) || !lyfsdic.TryGetValue(enumlyfs.ToString(), out var lyfsDesc))
+                {
+                    throw new FailedException("Phương thức ra viện không hợp lệ.");
+                }
+                relEty.LYFS = lyfsDesc;
             }
             if (!string.IsNullOrWhiteSpace(vo.SXFY))
             {
                 Dictionary<string, string> lyfsdic = EFDBBaseFuncHelper.GetEnumDescription<EnumSXFY>();
-                EnumSXFY enumSXFY = (EnumSXFY)Enum.Parse(typeof(EnumSXFY), vo.SXFY.ToString());
-                relEty.SXFY = lyfsdic[enumSXFY.ToString()];
+                if (!Enum.TryParse(vo.SXFY, out EnumSXFY enumSXFY) || !lyfsdic.TryGetValue(enumSXFY.ToString(), out var sxfyDesc))
+                {
+                    throw new FailedException("Giá trị SXFY không hợp lệ.");
+                }
+                relEty.SXFY = sxfyDesc;
             }
             if (!string.IsNullOrWhiteSpace(vo.BYYY))
             {
                 Dictionary<string, string> lyfsdic = EFDBBaseFuncHelper.GetEnumDescription<EnumBYYY>();
-                EnumBYYY enumBYYY = (EnumBYYY)Enum.Parse(typeof(EnumBYYY), vo.BYYY.ToString());
-                relEty.BYYY = lyfsdic[enumBYYY.ToString()];
+                if (!Enum.TryParse(vo.BYYY, out EnumBYYY enumBYYY) || !lyfsdic.TryGetValue(enumBYYY.ToString(), out var byyyDesc))
+                {
+                    throw new FailedException("Giá trị BYYY không hợp lệ.");
+                }
+                relEty.BYYY = byyyDesc;
             }
 
             relEty.BLZDDM = relvo.R_BLZDDM == null ? relEty.BLZDDM : relvo.R_BLZDDM;

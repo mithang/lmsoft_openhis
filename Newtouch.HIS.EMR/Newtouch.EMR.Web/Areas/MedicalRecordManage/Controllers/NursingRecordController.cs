@@ -81,20 +81,46 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         public IActionResult SubmitSrl(string srlstr,string zyh,string rq,string sj,string bllx)
         {
             var orgId = OrganizeId;
-            _nursingRecordDmnService.DeleteSrl(orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
-            for (int i = 0; i < srlstr.Split(',').Length; i++)
+            if (string.IsNullOrWhiteSpace(srlstr))
             {
-                _nursingRecordDmnService.SubmitSrl(srlstr.Split(',')[i].Split('|')[0], srlstr.Split(',')[i].Split('|')[1], srlstr.Split(',')[i].Split('|')[2], srlstr.Split(',')[i].Split('|')[3], orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
+                return Error("Dữ liệu bản ghi điều dưỡng không đúng định dạng.");
+            }
+            var segments = srlstr.Split(',');
+            foreach (var segment in segments)
+            {
+                if (segment.Split('|').Length < 4)
+                {
+                    return Error("Dữ liệu bản ghi điều dưỡng không đúng định dạng.");
+                }
+            }
+            _nursingRecordDmnService.DeleteSrl(orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
+            for (int i = 0; i < segments.Length; i++)
+            {
+                var parts = segments[i].Split('|');
+                _nursingRecordDmnService.SubmitSrl(parts[0], parts[1], parts[2], parts[3], orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
             }
             return Success("Thao tác thành công。");
         }
         public IActionResult SubmitScl(string srlstr, string zyh, string rq, string sj, string bllx)
         {
             var orgId = OrganizeId;
-            _nursingRecordDmnService.DeleteScl(orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
-            for (int i = 0; i < srlstr.Split(',').Length; i++)
+            if (string.IsNullOrWhiteSpace(srlstr))
             {
-                _nursingRecordDmnService.SubmitScl(srlstr.Split(',')[i].Split('|')[0], srlstr.Split(',')[i].Split('|')[1], srlstr.Split(',')[i].Split('|')[2], srlstr.Split(',')[i].Split('|')[3], orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
+                return Error("Dữ liệu bản ghi điều dưỡng không đúng định dạng.");
+            }
+            var segments = srlstr.Split(',');
+            foreach (var segment in segments)
+            {
+                if (segment.Split('|').Length < 4)
+                {
+                    return Error("Dữ liệu bản ghi điều dưỡng không đúng định dạng.");
+                }
+            }
+            _nursingRecordDmnService.DeleteScl(orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
+            for (int i = 0; i < segments.Length; i++)
+            {
+                var parts = segments[i].Split('|');
+                _nursingRecordDmnService.SubmitScl(parts[0], parts[1], parts[2], parts[3], orgId, zyh, rq, sj, bllx, UserIdentity.UserCode);
             }
             return Success("Thao tác thành công。");
         }

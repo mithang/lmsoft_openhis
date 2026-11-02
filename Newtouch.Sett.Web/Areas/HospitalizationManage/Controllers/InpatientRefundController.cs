@@ -145,7 +145,10 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
                     {
                         throw new FailedCodeException("HOSPREFUND_YPJFBBH_IS_EMPTY");
                     }
-                    var jfbbh = Convert.ToInt32(item.jfbbh);
+                    if (!int.TryParse(item.jfbbh, out var jfbbh))
+                    {
+                        return Error("Số chứng từ hoàn phí không hợp lệ.");
+                    }
                     var oldDrugEntity = _hospDrugBillingRepo.IQueryable().Where(a => a.jfbbh == jfbbh && a.zt=="1" && a.OrganizeId == orgId ).ToList().FirstOrDefault();
                     HospDrugBillingEntity entity = new HospDrugBillingEntity();
                     entity = oldDrugEntity.Clone();
@@ -167,7 +170,10 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
                     jfbbhar = string.IsNullOrWhiteSpace(item.jfbbhs) ? item.jfbbh.Split(',') : item.jfbbhs.Split(',');
                     foreach (var zh in jfbbhar)
                     {
-                        var jfbbh = Convert.ToInt32(zh);
+                        if (!int.TryParse(zh, out var jfbbh))
+                        {
+                            return Error("Số chứng từ hoàn phí không hợp lệ.");
+                        }
                         var oldItemEntity = _hospItemBillingRepo.IQueryable().Where(a => a.jfbbh == jfbbh && a.zt == "1" && a.OrganizeId == orgId).ToList().FirstOrDefault();
 
                         HospItemBillingEntity entity = new HospItemBillingEntity();

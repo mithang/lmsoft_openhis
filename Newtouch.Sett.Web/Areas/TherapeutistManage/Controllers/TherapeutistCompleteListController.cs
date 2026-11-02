@@ -177,7 +177,11 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
                 return Content("");
                 //throw FailedException("loạiloạihoặcthời giangiữalàrỗng!");
             }
-            time = (int.Parse(time) + 1).ToString();
+            if (!int.TryParse(time, out var timeVal))
+            {
+                return Error("Thời gian không hợp lệ.");
+            }
+            time = (timeVal + 1).ToString();
             var data = _therapeutistCompleteDmnService.GetVisitDetailSC(pagination, OrganizeId, type, time);
             var list = new
             {

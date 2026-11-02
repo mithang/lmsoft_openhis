@@ -1774,6 +1774,10 @@ namespace Newtouch.CIS.Web.Controllers
         /// <returns></returns>
         public IActionResult blctSubmitForm(BlctglEntity entity, string keyValue)
         {
+            if (!int.TryParse(Request.Query["mlqx"].ToString(), out var mlqxVal))
+            {
+                return Error("Mã danh mục không hợp lệ.");
+            }
 
             if (!string.IsNullOrEmpty(entity.ID))
             {
@@ -1784,7 +1788,7 @@ namespace Newtouch.CIS.Web.Controllers
                 if (Request.Query["type"].ToString() == "mulu")
                 {
                     entity.parentId = "0";
-                    entity.qx = Convert.ToInt32(Request.Query["mlqx"]);
+                    entity.qx = mlqxVal;
                     entity.mc = Request.Query["mlmc"].ToString().Trim(trimstr);
                 }
                 else
@@ -1805,7 +1809,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 entity.ctnr = entity.ctnr.ToString().Trim(trimstr);
             }
-            entity.qx = Convert.ToInt32(Request.Query["mlqx"]);
+            entity.qx = mlqxVal;
             _blctglRepo.SubmitForm(entity, entity.ID);
             return Success("Thao tác thành công.");
         }
@@ -1826,7 +1830,11 @@ namespace Newtouch.CIS.Web.Controllers
             string mlmc = "";
             if (entity != null)
             {
-                mlmc = _blctglRepo.FindEntity(entity.parentId).mc;
+                var parent = _blctglRepo.FindEntity(entity.parentId);
+                if (parent != null)
+                {
+                    mlmc = parent.mc;
+                }
             }
             var data = new
             {

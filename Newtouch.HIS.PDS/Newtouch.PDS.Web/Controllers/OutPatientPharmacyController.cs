@@ -380,7 +380,7 @@ namespace Newtouch.HIS.Web.Controllers
         {
 
             var rpList = _mzCfRepo.GetRpInfo(Constants.CurrentYfbm.yfbmCode, cardNo, xm, EnumFybz.Wp, OrganizeId);
-            if (rpList == null)
+            if (rpList == null || rpList.Count == 0)
             {
                 return Content(null);
             }
