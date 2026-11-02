@@ -12,6 +12,7 @@ using Newtouch.OR.ManageSystem.Domain.IDomainServices;
 using Newtouch.OR.ManageSystem.Domain.IRepository;
 using Newtouch.OR.ManageSystem.DomainServices;
 using Newtouch.OR.ManageSystem.Repository;
+using Newtouch.OR.ManageSystem.Web.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -63,6 +64,9 @@ builder.Services.AddControllersWithViews().AddMvcOptions(options =>
 {
     options.Filters.Add(typeof(LogTrackingAttribute));
     options.Filters.Add(typeof(FrameworkAuthorizationFilter));
+    // DateTime binder (cycle 39): query strings bind InvariantCulture, so the
+    // views' dd/MM/yyyy values mis-bound on GET; see Helpers/DateTimeModelBinder.cs.
+    options.ModelBinderProviders.Insert(0, new DateTimeModelBinderProvider());
 });
 var app = builder.Build();
 
