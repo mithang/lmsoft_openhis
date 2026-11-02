@@ -218,7 +218,14 @@ builder.Services.AddCors(options =>
 // SuppressModelStateInvalidFilter để lỗi deserialize (Timestamp thật sự không
 // hợp lệ) rơi vào CommonExecute và trả envelope SOMEARGUMENTS_IS_REQUIRED thay
 // vì 400 trần; Timestamp thiếu/null vẫn trả TIMESTAMP_IS_REQUIRED như cũ.
-builder.Services.AddControllers().AddNewtonsoftJson().ConfigureApiBehaviorOptions(o => o.SuppressModelStateInvalidFilter = true);
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    // Cycle 45: converter ngày JSON (mirror Sett.API vòng 44) — JSON dd/MM/yyyy
+    // bind đúng; KHÔNG đổi Culture toàn cục (CreateResponse serialize bằng
+    // settings riêng, nhưng tránh mọi tác dụng phụ lên response).
+    options.SerializerSettings.Converters.Add(new Newtouch.CIS.API.Converters.ViDateTimeJsonConverter());
+    options.SerializerSettings.Converters.Add(new Newtouch.CIS.API.Converters.ViNullableDateTimeJsonConverter());
+}).ConfigureApiBehaviorOptions(o => o.SuppressModelStateInvalidFilter = true);
 
 var app = builder.Build();
 app.UseCors("AllowAll");
