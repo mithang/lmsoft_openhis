@@ -106,6 +106,24 @@ border-top-right-radius: 5px;
 .login .login-foot{ font-size: 14px;color: #cccccc; position: absolute; left: 10%; 
 bottom: 10px;}
 
+/* R-24: man hinh hep (mobile/tablet doc) — bo co dan theo ti le cua resize() (dat width/transform
+   inline tren body), dung bo cuc co dinh vua khung hinh thay vi phong to 1920px roi thu nho.
+   Chi anh huong <=991px; desktop giu nguyen. */
+@media (max-width: 991px) {
+    body {
+        width: auto !important;
+        transform: none !important;
+    }
+    .login .login-head {
+        width: auto;
+        margin: 10px 15px;
+    }
+    .login .login-con .login-a .login-b {
+        float: none;
+        margin: 100px auto 0;
+    }
+}
+
 .code{      
 background-image:url(w1.jpg);      
 font-family:Arial;      
