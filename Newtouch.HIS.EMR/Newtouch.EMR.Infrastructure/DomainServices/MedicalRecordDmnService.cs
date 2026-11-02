@@ -66,8 +66,11 @@ namespace Newtouch.EMR.DomainServices
         public void LockRecord(string blid, string bllx, string OrganizeId, string UserCode, int isLock)
         {
             var bllxtb = _BllxRepo.FindEntity(p => p.OrganizeId == OrganizeId && p.zt == "1" && p.bllx == bllx);
+            // R-49: tham số hóa LastModifierCode (trước đây nối UserCode trực tiếp).
+            // Tên bảng bllxtb.relTB vẫn nối chuỗi (không tham số hóa được) — lấy từ DB
+            // (bl_bllx, đã validate ở SubmitForm), không phải input trực tiếp của user.
             string sql = @"update a
-                        set a.IsLock = @IsLock,a.LastModifierCode = '" + UserCode + @"',a.LastModifyTime = getdate()
+                        set a.IsLock = @IsLock,a.LastModifierCode = @UserCode,a.LastModifyTime = getdate()
                         from " + bllxtb.relTB + @" a
                         where a.id = @id and a.OrganizeId = @OrgId ";
             try
@@ -76,6 +79,7 @@ namespace Newtouch.EMR.DomainServices
                 para.Add(new SugarParameter("@OrgId", OrganizeId));
                 para.Add(new SugarParameter("@Id", blid));
                 para.Add(new SugarParameter("@IsLock", isLock));
+                para.Add(new SugarParameter("@UserCode", UserCode ?? ""));
                 this.ExecuteSqlCommand(sql, para.ToArray());
             }
             catch (FailedException ex)
