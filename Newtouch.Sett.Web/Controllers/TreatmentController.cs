@@ -3,6 +3,7 @@ using Newtouch.Sett.Domain;
 using Newtouch.Sett.Web.Helpers;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Model;
+using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using System;
 
@@ -71,7 +72,19 @@ namespace Newtouch.Sett.Web.Controllers
         [HttpPost]
         public IActionResult rowdata(string dataset, string orgId = null)
         {
-            var jar = JArray.Parse(dataset);
+            JArray jar;
+            try
+            {
+                jar = JArray.Parse(dataset);
+            }
+            catch (JsonException)
+            {
+                return Error("Dữ liệu gửi lên không đúng định dạng.");
+            }
+            catch (ArgumentNullException)
+            {
+                return Error("Dữ liệu gửi lên không đúng định dạng.");
+            }
             foreach (var token in jar)
             {
                 var jobjar = JObject.Parse(token.ToString());
