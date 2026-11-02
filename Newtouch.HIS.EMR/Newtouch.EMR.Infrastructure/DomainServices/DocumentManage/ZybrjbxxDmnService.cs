@@ -717,7 +717,7 @@ where cwcode = @cw and zt = '1' and OrganizeId = @orgId and bqcode=@bq  ";
                             new SugarParameter("@user", user.rygh),
                             new SugarParameter("@OrganizeId", OrganizeId)
                 });
-            return bjqx.First().bjqx;
+            return bjqx.FirstOrDefault()?.bjqx;
         }
     }
 }

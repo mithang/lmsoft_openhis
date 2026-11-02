@@ -146,6 +146,10 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers.Sys
             var expertList = expert.Split(',');
             foreach (var gh in expertList) {
                 var staff = _sysStaffRepo.IQueryable().Where(p => p.gh == gh && p.OrganizeId == this.OrganizeId && p.zt == "1").FirstOrDefault();
+                if (staff == null)
+                {
+                    return Error("Không tìm thấy nhân viên.");
+                }
                 SysConsultEntity entity= new SysConsultEntity();
                 entity.zsmc = staff.Name + "Phòng khám chuyên gia";
                 entity.zsCode = staff.py + "ZJZS";
@@ -176,7 +180,12 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers.Sys
         public IActionResult CreateNormalConsult( string ksCode,int zssl)
         {
             //Tên khoa
-            var ksmc=_sysDepartmentRepository.IQueryable().Where(p => p.Code == ksCode && p.OrganizeId == this.OrganizeId && p.zt == "1").FirstOrDefault().Name;
+            var dept = _sysDepartmentRepository.IQueryable().Where(p => p.Code == ksCode && p.OrganizeId == this.OrganizeId && p.zt == "1").FirstOrDefault();
+            if (dept == null)
+            {
+                return Error("Không tìm thấy khoa.");
+            }
+            var ksmc = dept.Name;
             //Số thứ tự phòng khám lớn nhất thuộc khoa
             var maxConsult = _sysConsultRepo.IQueryable().Where(p => p.ksCode == ksCode && p.OrganizeId == this.OrganizeId && p.zt == "1").OrderByDescending(p => p.xh).FirstOrDefault();
             var num = maxConsult == null ? 0 : maxConsult.xh;
