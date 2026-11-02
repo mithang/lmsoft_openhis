@@ -1289,7 +1289,7 @@ left join NewtouchHIS_PDS.dbo.zy_ypyzzxph d with(nolock) on b.OrganizeId = d.Org
 left JOIN NewtouchHIS_Base.dbo.xt_ypjx(NOLOCK) e on e.jxCode = c.jx AND e.zt = '1'
 left JOIN NewtouchHIS_Base.dbo.V_S_xt_ypsx ypsx ON ypsx.ypId = c.ypId AND ypsx.OrganizeId = c.OrganizeId
 where a.ypyzxxId = b.Id and a.OrganizeId = b.OrganizeId and a.OrganizeId = @OrganizeId
-and a.CreateTime BETWEEN '" + kssj + "' AND '" + jssj + "'";
+and a.CreateTime BETWEEN @kssj AND @jssj";
 
             if (!string.IsNullOrWhiteSpace(xm))
             {
@@ -1324,6 +1324,8 @@ group by zh,zyh,patientName,ypmc,id,cw,slStr,jxmc,ypgg,pcmc,ylStr,yznr,yzxzmc,zl
                 new SqlParameter("@ypmc", ypmc??""),
                 new SqlParameter("@cw", cw??""),
                 new SqlParameter("@zyh", zyh??""),
+                new SqlParameter("@kssj", kssj),
+                new SqlParameter("@jssj", jssj),
         };
 
             return QueryWithPage<OrdersDrugsVO>(sql, pagination, parms.ToArray(), false);

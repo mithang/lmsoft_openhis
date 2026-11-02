@@ -14,6 +14,7 @@ using Newtouch.Infrastructure;
 using NewtouchHIS.Lib.Base.Extension;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Reflection;
 using System.Text;
@@ -136,8 +137,8 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
                 return new List<bl_hljl_ybEntity>();
             var pars = new List<SugarParameter>();
             pars.Add(new SugarParameter("@orgId", orgId));
-            pars.Add(new SugarParameter("@kssj", kssj.Value.ToString()));
-            pars.Add(new SugarParameter("@jssj", jssj.Value.AddDays(1).ToString()));
+            pars.Add(new SugarParameter("@kssj", kssj.Value.ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)));
+            pars.Add(new SugarParameter("@jssj", jssj.Value.AddDays(1).ToString("yyyy-MM-dd HH:mm:ss", CultureInfo.InvariantCulture)));
             if (!string.IsNullOrWhiteSpace(zyh))
             {
                 sql += " and zyh=@zyh";
