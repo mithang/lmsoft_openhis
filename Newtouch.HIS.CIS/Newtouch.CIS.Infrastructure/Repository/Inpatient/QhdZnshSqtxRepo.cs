@@ -30,24 +30,22 @@ namespace Newtouch.Repository.Inpatient
         public void SubmitForm(QhdZnshSqtxEntity entity,out string rzid, string keyValue=null)
         {
             var keyId = "";
-            try {
-                if (!string.IsNullOrEmpty(keyValue))
-                {
-                    var dbEntity = this.FindEntity(keyValue);
-                    dbEntity.XmlResponse = entity.XmlResponse;
-                    dbEntity.Modify(keyValue);
-                    this.Update(dbEntity);
-                    keyId = dbEntity.Id;
-                }
-                else
-                {
-                    entity.Create(true);
-                    this.Insert(entity);
-                    keyId = entity.Id;
-                }
-               
+            // C130: bo catch (Exception) { } — loi Insert/Update truoc day bi nuot, caller tra
+            // Success gia trong khi khong ghi duoc gi; de exception toi global handler.
+            if (!string.IsNullOrEmpty(keyValue))
+            {
+                var dbEntity = this.FindEntity(keyValue);
+                dbEntity.XmlResponse = entity.XmlResponse;
+                dbEntity.Modify(keyValue);
+                this.Update(dbEntity);
+                keyId = dbEntity.Id;
             }
-            catch (Exception er) { }
+            else
+            {
+                entity.Create(true);
+                this.Insert(entity);
+                keyId = entity.Id;
+            }
             rzid = keyId;
         }
     }

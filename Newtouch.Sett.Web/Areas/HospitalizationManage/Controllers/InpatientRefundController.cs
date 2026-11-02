@@ -178,6 +178,12 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
                         HospItemBillingEntity entity = new HospItemBillingEntity();
                         entity = oldItemEntity.Clone();
+                        // C130: ztbh khac rong ma ztsl null/0 thi phep chia sl/ztsl.Value ben duoi nem
+                        // (InvalidOperationException/DivideByZeroException) — bao loi sach truoc khi tinh.
+                        if (!string.IsNullOrWhiteSpace(entity.ztbh) && (!entity.ztsl.HasValue || entity.ztsl.Value == 0))
+                        {
+                            return Error("Số lượng gói không hợp lệ, không thể tính số lượng hoàn phí.");
+                        }
                         entity.jfbbh = SettKeyHelper.GetNewPrimaryKeyInt("zy_xmjfb");
                         entity.sl =string.IsNullOrWhiteSpace(entity.ztbh)? 0 - item.tsl.Value: 0 - (item.tsl.Value*(entity.sl/ entity.ztsl.Value));
                         entity.ztsl = string.IsNullOrWhiteSpace(entity.ztbh) ? 0-entity.ztsl : 0-(entity.ztsl - item.tsl);

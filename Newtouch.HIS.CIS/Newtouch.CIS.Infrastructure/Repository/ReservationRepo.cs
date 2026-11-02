@@ -29,12 +29,10 @@ namespace Newtouch.Repository
         /// <param name="keyValue">Khóa chínhGiá trị</param>
         public void SubmitForm(ReservationEntity entity)
         {
-            try
-            {
-                entity.Create(true);
-                this.Insert(entity);
-            }
-            catch (Exception er) { }
+            // C130: bo catch (Exception) { } — loi Insert truoc day bi nuot, caller tra
+            // Content("") gia trong khi khong ghi duoc gi; de exception toi global handler.
+            entity.Create(true);
+            this.Insert(entity);
         }
     }
 }

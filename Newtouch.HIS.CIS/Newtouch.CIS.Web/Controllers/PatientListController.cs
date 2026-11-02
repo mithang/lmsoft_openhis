@@ -153,6 +153,11 @@ namespace Newtouch.CIS.Web.Controllers
             // chua cau hinh / khong toi duoc) thi tra loi giao dien that bai chu
             // khong NRE o apiResp.data; list null thi luoi rong dung dang.
             pagination = pagination ?? new Pagination();
+            // C130: rows <= 0 thi phep chia Count/rows o cuoi action nem DivideByZeroException.
+            if (pagination.rows.HasValue && pagination.rows.Value <= 0)
+            {
+                return Error("Số dòng mỗi trang phải lớn hơn 0.");
+            }
 
             #region LấyKhoa khám
 
@@ -575,6 +580,11 @@ namespace Newtouch.CIS.Web.Controllers
 
 		public IActionResult GetdjzList(Pagination pagination, string keyword, int mjzbz)
 		{
+			// C130: rows <= 0 thi phep chia Count/rows o cuoi action nem DivideByZeroException.
+			if (pagination != null && pagination.rows.HasValue && pagination.rows.Value <= 0)
+			{
+				return Error("Số dòng mỗi trang phải lớn hơn 0.");
+			}
 			pagination.sidx = " SBXH ";
 			var data = _treatmentRepo.GetdjzList(pagination, keyword, mjzbz);
 			var apiRespList = new List<TreatEntityObj>();

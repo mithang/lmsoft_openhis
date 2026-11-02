@@ -220,7 +220,9 @@ AND cfmx.yfCode in (select col from f_split(@yfCode,',') where col>'') ";
 		public int InsertNewMzsyypxx(OutpatientSettledRpQueryResponseDTO item, string organizeId, string creatorCode)
         {
             if (item == null) return 0;
-            var d = Math.Ceiling(Convert.ToDecimal(item.sl / item.zxcs));
+            // C130: zxcs null hoac 0 thi khong chia duoc (giong guard null -> 1 o @zcs ben duoi);
+            // truoc day Convert.ToDecimal(null)/chia 0 nem ngay ca khi phep tinh nay khong dung toi.
+            var d = (item.zxcs == null || item.zxcs == 0) ? 1 : Math.Ceiling(Convert.ToDecimal(item.sl / item.zxcs));
             const string sql = @"
 IF EXISTS(SELECT 1 FROM dbo.mz_syypxx(NOLOCK) WHERE jsmxnm=@jsmxnm AND cfmxId=@cfmxId)
 BEGIN
@@ -282,7 +284,7 @@ END
                 new SqlParameter("@jldw", item.jldw ?? ""),
                 new SqlParameter("@yfCode", item.yfCode ?? ""),
                 new SqlParameter("@pcCode", item.pcCode ?? ""),
-                new SqlParameter("@zcs", item.zxcs==null? 1 : Math.Ceiling(Convert.ToDecimal(item.sl/item.zxcs))),
+                new SqlParameter("@zcs", (item.zxcs == null || item.zxcs == 0) ? 1 : Math.Ceiling(Convert.ToDecimal(item.sl / item.zxcs))),
                 new SqlParameter("@yzxcs", "0"),
                 new SqlParameter("@CreatorCode", creatorCode),
                 item.yl == null ? new SqlParameter("@yl", DBNull.Value) : new SqlParameter("@yl", item.yl),
