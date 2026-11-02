@@ -74,25 +74,34 @@ namespace Newtouch.EMR.DomainServices
 			                     and a.id=c.mbId and a.organizeid=c.organizeid )";
 
 
+            var bllxInValues = new List<string>();
             bl_bllxEntity mbety = _BllxRepo.FindEntity(p => p.bllx == bllx && p.OrganizeId == OrgId && p.zt == "1");
             if (mbety!=null && string.IsNullOrWhiteSpace(mbety.ParentId))
             {
-                string bllxlist = "'" + bllx + "'";
+                bllxInValues.Add(bllx);
                 var list = _CommonDmnService.GetBllxListDetail(OrgId, mbety.Id, null,"2");
                 if (list != null && list.Count > 0)
                 {
-                    
                     foreach (var item in list)
                     {
-                        bllxlist +=",'"+ item.bllx+"'";
+                        bllxInValues.Add(item.bllx);
                     }
                 }
-                sql += " and bllx in(" + bllxlist + ") ";
+                var bllxInNames = new List<string>();
+                for (int i = 0; i < bllxInValues.Count; i++)
+                {
+                    bllxInNames.Add("@bllxIn" + i);
+                }
+                sql += " and bllx in(" + string.Join(",", bllxInNames) + ") ";
             }
             else {
                 sql += " and bllx=@bllx ";
             }
             var para = new List<SugarParameter>();
+            for (int i = 0; i < bllxInValues.Count; i++)
+            {
+                para.Add(new SugarParameter("@bllxIn" + i, bllxInValues[i]));
+            }
             para.Add(new SugarParameter("@OrgId", OrgId));
             para.Add(new SugarParameter("@mbqx", mbqx));
             para.Add(new SugarParameter("@staffId", user.StaffId));
