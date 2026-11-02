@@ -143,17 +143,18 @@ namespace Newtouch.OR.ManageSystem.Repository
 
 			if (type && string.IsNullOrWhiteSpace(keyword))
 			{
-				string count = showItems == null ? "100" : showItems.Value;
-				sql = "select top " + count + " ssdm,ssmc,zjm,ssjb from [Newtouch_OR].[dbo].[OR_Operation] a with(nolock) " +
+				var topCount = 100;
+				if (showItems != null && int.TryParse(showItems.Value, out var parsedTop) && parsedTop > 0) topCount = parsedTop;
+				sql = "select top " + topCount + " ssdm,ssmc,zjm,ssjb from [Newtouch_OR].[dbo].[OR_Operation] a with(nolock) " +
 					"where OrganizeId=@orgId and zt='1'" ;
 
 				var list = this.FindList<SysOpListDto>(sql, new SugarParameter[] {
 				new SugarParameter("@orgId",orgId),
 				new SugarParameter("@date",dd) });
 
-				if (list == null || list.Count < Convert.ToInt32(count))
+				if (list == null || list.Count < topCount)
 				{
-					sql = @"select top " + count + " ssdm,ssmc,zjm,ssjb from [Newtouch_OR].[dbo].[OR_Operation] with(nolock) where OrganizeId=@orgId and zt='1' ";
+					sql = @"select top " + topCount + " ssdm,ssmc,zjm,ssjb from [Newtouch_OR].[dbo].[OR_Operation] with(nolock) where OrganizeId=@orgId and zt='1' ";
 				}
 				else
 				{

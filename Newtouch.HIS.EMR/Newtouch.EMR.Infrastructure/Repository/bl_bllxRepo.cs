@@ -27,6 +27,14 @@ namespace Newtouch.EMR.Repository
         /// <param name="keyValue">Giá trị khóa chính</param>
         public void SubmitForm(bl_bllxEntity entity, string keyValue)
         {
+            // relTB là tên bảng nghiệp vụ nối trực tiếp vào SQL (dòng select 1 from bên dưới);
+            // chỉ chấp nhận định danh bảng [schema.]bảng, chặn mọi giá trị tự do khác ngay tại
+            // điểm ghi duy nhất (cả thêm mới gốc và sửa gốc đều lưu relTB từ entity khi ParentId rỗng).
+            if (string.IsNullOrWhiteSpace(entity.ParentId) && !string.IsNullOrWhiteSpace(entity.relTB)
+                && !System.Text.RegularExpressions.Regex.IsMatch(entity.relTB, @"^[A-Za-z_][A-Za-z0-9_]*(\.[A-Za-z_][A-Za-z0-9_]*)?$"))
+            {
+                throw new FailedException("Vui lòng kiểm tra liên kết bảng nghiệp vụ!");
+            }
             string sql = "";
             if (!string.IsNullOrEmpty(keyValue))
             {
