@@ -40,6 +40,38 @@ namespace Newtouch.DomainServices
 
         }
 
+        // Allowlist ORDER BY của proc vendor
+        // usp_zy_OrderExecutionGetOrderExecutionYZList: đúng 33 alias đầu
+        // ra của SELECT nhánh đầu trong thân proc (đo từ OBJECT_DEFINITION,
+        // DB CIS; nhánh 2/3 của UNION chỉ đổi tên cột theo vị trí, cùng tập
+        // cột). Proc chuyển @sidx/@sord thẳng vào sp_QueryWithPage của
+        // vendor, proc này nối chúng vào ORDER BY rồi exec(@pageSql) không
+        // kiểm tra gì, nên mọi giá trị ngoài allowlist đều bị chặn trước
+        // khi gọi proc. Khác với allowlist một cột ở Getdjzlist: lưới y
+        // lệnh đang chạy gửi sidx mặc định nhiều cột
+        // 'yzh desc,kssj,zyh,yzlx,zh,px' (cả 2 view gọi GetGridJson), nên
+        // mỗi hạng sắp xếp cách nhau bởi dấu phẩy đều phải là một alias
+        // trong allowlist, kèm hướng asc/desc tùy chọn; sord riêng vẫn chỉ
+        // asc/desc. Mọi dạng khác (biểu thức CASE, nhiều cột không thuộc
+        // allowlist, câu lệnh nối bằng ';') đều bị chặn, không thực thi SQL.
+        private static readonly Dictionary<string, string> YzSortableColumns =
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                { "hzxm", "hzxm" }, { "zyh", "zyh" }, { "yzid", "yzid" },
+                { "yzxz", "yzxz" }, { "yzxzsm", "yzxzsm" },
+                { "kssj", "kssj" }, { "xmdm", "xmdm" }, { "xmmc", "xmmc" },
+                { "ypjl", "ypjl" }, { "yzmc", "yzmc" }, { "yzjl", "yzjl" },
+                { "yfmc", "yfmc" }, { "yzpcmc", "yzpcmc" }, { "dj", "dj" },
+                { "tzsj", "tzsj" }, { "tzysgh", "tzysgh" }, { "tzr", "tzr" },
+                { "shr", "shr" }, { "yzlx", "yzlx" }, { "zxsj", "zxsj" },
+                { "zh", "zh" }, { "zh1", "zh1" }, { "zxr", "zxr" },
+                { "isjf", "isjf" }, { "yztag", "yztag" },
+                { "yztagName", "yztagName" }, { "je", "je" },
+                { "sl", "sl" }, { "slstr", "slstr" }, { "yzh", "yzh" },
+                { "isfsyz", "isfsyz" }, { "px", "px" },
+                { "deptCode", "deptCode" }
+            };
+
         //public IList<InpWardPatTreeVO> GetPatWardTree(string staffId, DateTime Vzxsj)
         //{
         //    string sql = @"select a.OrganizeId, b.bqCode,c.bqmc,d.zyh,d.hzxm
@@ -172,6 +204,43 @@ group by a.organizeid, a.userid,a.staffid,a.account,a.gh,a.name ,b.bqcode,c.bqmc
         /// <returns></returns>
         public IList<OrderExecutionVO> GetOrderExecutionYZList(ref Pagination pagination, string patList, string orgId, string Vzxsj,bool wnes, string IsRehabAuthtoNurse = null, bool Iskf = false,string zxks=null)
         {
+            // Fail-closed: sidx/sord chảy vào sp_QueryWithPage (ORDER BY +
+            // exec) qua proc vendor — chỉ hạng sắp xếp trong allowlist +
+            // asc/desc mới được gọi proc; sidx rỗng cũng bị chặn (lưới
+            // luôn gửi sortname, không có luồng hợp lệ nào để trống).
+            if (string.IsNullOrWhiteSpace(pagination.sidx))
+                throw new ArgumentException("pagination.sidx không hợp lệ: " + pagination.sidx);
+            var canonicalTerms = new List<string>();
+            foreach (var rawTerm in pagination.sidx.Split(','))
+            {
+                var term = rawTerm.Trim();
+                if (term.Length == 0)
+                    throw new ArgumentException("pagination.sidx không hợp lệ: " + pagination.sidx);
+                var parts = term.Split(new[] { ' ', '\t' }, StringSplitOptions.RemoveEmptyEntries);
+                if (parts.Length < 1 || parts.Length > 2)
+                    throw new ArgumentException("pagination.sidx không hợp lệ: " + pagination.sidx);
+                string canonicalAlias;
+                if (!YzSortableColumns.TryGetValue(parts[0], out canonicalAlias))
+                    throw new ArgumentException("pagination.sidx không hợp lệ: " + pagination.sidx);
+                if (parts.Length == 2)
+                {
+                    if (!string.Equals(parts[1], "asc", StringComparison.OrdinalIgnoreCase)
+                        && !string.Equals(parts[1], "desc", StringComparison.OrdinalIgnoreCase))
+                        throw new ArgumentException("pagination.sidx không hợp lệ: " + pagination.sidx);
+                    canonicalTerms.Add(canonicalAlias + " " + parts[1].ToLowerInvariant());
+                }
+                else
+                {
+                    canonicalTerms.Add(canonicalAlias);
+                }
+            }
+            pagination.sidx = string.Join(",", canonicalTerms);
+            var canonicalSord = (pagination.sord ?? "").Trim();
+            if (canonicalSord.Length > 0
+                && !string.Equals(canonicalSord, "asc", StringComparison.OrdinalIgnoreCase)
+                && !string.Equals(canonicalSord, "desc", StringComparison.OrdinalIgnoreCase))
+                throw new ArgumentException("pagination.sord không hợp lệ: " + pagination.sord);
+            pagination.sord = canonicalSord.Length == 0 ? "" : (string.Equals(canonicalSord, "asc", StringComparison.OrdinalIgnoreCase) ? "asc" : "desc");
             var inParameters = new List<SqlParameter>();
             inParameters.Add(new SqlParameter("@patList", patList));
             inParameters.Add(new SqlParameter("@vzxsj", Vzxsj));

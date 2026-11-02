@@ -26,7 +26,28 @@ namespace Newtouch.HIS.DomainServices
     {
         private SysPharmacyDepartmentMedicineRepo sysPharmacyDepartmentMedicineRepo;
 
-        
+        // Allowlist ORDER BY của proc vendor YP_XT_BBMYPXXK: đúng 25 alias
+        // đầu ra của SELECT trong thân proc (đo từ OBJECT_DEFINITION, DB
+        // PDS). Proc nối @orderByParam vào ROW_NUMBER() OVER (ORDER BY ...)
+        // rồi exec(@pageSql) không kiểm tra gì, nên mọi giá trị ngoài
+        // allowlist đều bị chặn trước khi gọi proc. sidx chỉ nhận đúng một
+        // alias (phương thức này không có caller, không có dạng sắp xếp
+        // nhiều cột hợp lệ nào cần giữ); sord chỉ asc/desc.
+        private static readonly Dictionary<string, string> SortableColumns =
+            new Dictionary<string, string>(StringComparer.OrdinalIgnoreCase)
+            {
+                { "ypId", "ypId" }, { "ypCode", "ypCode" },
+                { "ypmc", "ypmc" }, { "ycmc", "ycmc" }, { "ypgg", "ypgg" },
+                { "kcsl", "kcsl" }, { "Zcxh", "Zcxh" }, { "syzt", "syzt" },
+                { "klsl", "klsl" }, { "YkKcsl", "YkKcsl" },
+                { "YkDw", "YkDw" }, { "deptdw", "deptdw" },
+                { "lsj", "lsj" }, { "pfj", "pfj" }, { "jxmc", "jxmc" },
+                { "Ypkw", "Ypkw" }, { "Pxfs1", "Pxfs1" },
+                { "Pxfs2", "Pxfs2" }, { "Kcsx", "Kcsx" },
+                { "Kcxx", "Kcxx" }, { "Jhd", "Jhd" }, { "Jhl", "Jhl" },
+                { "yplb", "yplb" }, { "ypzt", "ypzt" }, { "Sysx", "Sysx" }
+            };
+
         /// <summary>
         /// Thông tin thuốc của bộ phận này Truy vấn
         /// </summary>
@@ -40,6 +61,19 @@ namespace Newtouch.HIS.DomainServices
             {
                 throw new Exception("pagination.sidx is required");
             }
+            // Fail-closed: sidx/sord chảy vào ORDER BY của proc vendor —
+            // chỉ alias trong allowlist + asc/desc mới được gọi proc.
+            string canonicalSidx;
+            if (!SortableColumns.TryGetValue(pagination.sidx.Trim(), out canonicalSidx))
+                throw new ArgumentException("pagination.sidx không hợp lệ: " + pagination.sidx);
+            var canonicalSord = (pagination.sord ?? "").Trim();
+            if (canonicalSord.Length > 0
+                && !string.Equals(canonicalSord, "asc", StringComparison.OrdinalIgnoreCase)
+                && !string.Equals(canonicalSord, "desc", StringComparison.OrdinalIgnoreCase))
+                throw new ArgumentException("pagination.sord không hợp lệ: " + pagination.sord);
+            canonicalSord = canonicalSord.Length == 0 ? "" : (string.Equals(canonicalSord, "asc", StringComparison.OrdinalIgnoreCase) ? "asc" : "desc");
+            pagination.sidx = canonicalSidx;
+            pagination.sord = canonicalSord;
             var sortby = pagination.sidx;
             if (!string.IsNullOrWhiteSpace(pagination.sord) && pagination.sord.ToUpper() != "ASC")
             {
