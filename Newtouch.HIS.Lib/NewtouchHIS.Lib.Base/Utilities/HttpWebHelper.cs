@@ -98,21 +98,17 @@ namespace NewtouchHIS.Lib.Base.Utilities
         {
             // SECURITY (G7): cookie phien luon co HttpOnly + SameSite=Lax; Secure chi khi request la HTTPS
             // (hien tai chay HTTP nen Secure=false, neu set Secure=true mu se hong login).
-            // Quirk giu nguyen: chi ghi khi cookie chua ton tai; cookie cu van dung duoc den khi dang nhap lai.
+            // FIX (C105): ghi de (xoa roi ghi lai, giong overload 3 tham so). Quirk cu "chi ghi khi
+            // cookie chua ton tai" khien khoa phien moi vua tao khong bao gio toi duoc trinh duyet
+            // khi trinh duyet dang giu cookie cu het han (vd: WriteLoginUserCookie nhan phien SSO
+            // qua ?appId=), lam hong viec nhan phien SSO cua nguoi dung quay lai.
+            RemoveCookie(strName);
             CookieOptions options = new CookieOptions();
             options.HttpOnly = true;
             options.SameSite = SameSiteMode.Lax;
             options.Secure = HttpCurrent.Request.IsHttps;
 
-            var cookie = HttpCurrent.Request.Cookies[strName];
-            if (cookie == null)
-            {
-                HttpCurrent.Response.Cookies.Append(strName, strValue, options);
-            }
-            else
-            {
-
-            }
+            HttpCurrent.Response.Cookies.Append(strName, strValue, options);
 
         }
 

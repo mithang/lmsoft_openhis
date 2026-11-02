@@ -153,7 +153,13 @@ namespace NewtouchHIS.Lib.Framework.Operator
 
             if (string.IsNullOrWhiteSpace(encryptedResult))
             {
-                HttpWebHelper.RemoveCookie(_loginUserKey);
+                // C105: request nay vua nhan phien SSO (?appId=) va da ghi khoa moi vao
+                // response thi khong xoa cookie: cookie trong request la khoa cu het han,
+                // con khoa moi trong response moi la khoa dung cho request ke tiep.
+                if (httpContext.Items["Newtouch_LoginUserKey_Written"] == null)
+                {
+                    HttpWebHelper.RemoveCookie(_loginUserKey);
+                }
                 return null;
             }
 
@@ -404,6 +410,9 @@ namespace NewtouchHIS.Lib.Framework.Operator
             var redisKey = Guid.NewGuid().ToString();
             HttpWebHelper.WriteCookie(_loginUserKey, redisKey);
             RedisHelper.SetString(redisKey, json, new TimeSpan(0, _LoginStatusKeepMinute, 0));
+            // C105: danh dau khoa phien moi vua ghi trong request nay, de GetCurrent()
+            // (doc cookie cu trong request) khong xoa no khoi response khi Redis miss.
+            httpContext.Items["Newtouch_LoginUserKey_Written"] = redisKey;
 
         }
     }
