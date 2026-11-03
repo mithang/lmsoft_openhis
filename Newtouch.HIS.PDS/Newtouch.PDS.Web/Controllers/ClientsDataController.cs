@@ -55,6 +55,17 @@ namespace Newtouch.HIS.Web.Controllers
             var yearMin = DateTime.Now.Year - 5;
             var yearMax = DateTime.Now.Year + 1;
             var opr = OperatorProvider.GetCurrent();
+            // Controller mang [HandlerLogin] nên request ẩn danh vẫn vào đây:
+            // không có session thì trả dữ liệu rỗng hợp lệ thay vì NRE ở
+            // opr.OrganizeId phía dưới (mẫu HOSP ClientsDataController).
+            if (opr == null)
+            {
+                return Content(new
+                {
+                    dataItems = new Dictionary<string, object>(),
+                    authorizeMenu = (object)null,
+                }.ToJson());
+            }
             if (opr != null)
             {
                 var configVal = _sysConfigRepo.GetValueByCode("Hosp_Year_Start", opr.OrganizeId);

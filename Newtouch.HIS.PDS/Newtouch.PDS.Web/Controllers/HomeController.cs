@@ -58,7 +58,14 @@ namespace Newtouch.HIS.Web.Controllers
         [HttpGet]
         public override IActionResult Index()
         {
-            var cookieLoginFlag = Request.Cookies[Constants.AppId + "_" + OperatorProvider.GetCurrent().UserCode + "_" + "LoginFlag"];
+            // Home mang [HandlerLogin] nên request ẩn danh vẫn vào đây:
+            // không có session thì về Login thay vì NRE ở GetCurrent().UserCode.
+            var opr = OperatorProvider.GetCurrent();
+            if (opr == null)
+            {
+                return Redirect("/Login/Index");
+            }
+            var cookieLoginFlag = Request.Cookies[Constants.AppId + "_" + opr.UserCode + "_" + "LoginFlag"];
             ViewBag.cookieLoginFlag = cookieLoginFlag;
             return base.Index();
         }
@@ -68,8 +75,13 @@ namespace Newtouch.HIS.Web.Controllers
         /// </summary>
         /// <returns></returns>
         public IActionResult SetUserPharmacyForm()
-        {            
-            ViewBag.yfbmList = _sysUserDmnService.GetYfbmListByUserId(OperatorProvider.GetCurrent().UserId, OperatorProvider.GetCurrent().OrganizeId);
+        {
+            var opr = OperatorProvider.GetCurrent();
+            if (opr == null)
+            {
+                return Redirect("/Login/Index");
+            }
+            ViewBag.yfbmList = _sysUserDmnService.GetYfbmListByUserId(opr.UserId, opr.OrganizeId);
             return View();
         }
 
@@ -181,12 +193,19 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         public IActionResult SetUserPharmacy(string yfbmCode, string mzzybz, string yfbmjb, string yfbmmc)
         {
+            // [HandlerLogin]: request ẩn danh vẫn vào đây; chặn trước khi
+            // chạm Constants.CurrentYfbm (bản thân getter cũng deref GetCurrent()).
+            var curOpr = OperatorProvider.GetCurrent();
+            if (curOpr == null)
+            {
+                return Error("Phiên đăng nhập đã hết hạn, vui lòng đăng nhập lại.");
+            }
             var opr = Constants.CurrentYfbm;
             opr.yfbmCode = yfbmCode;
             opr.yfbmjb = yfbmjb;
             opr.mzzybz = mzzybz;
             opr.yfbmmc = yfbmmc;
-            Constants.SetCurrentYfbm(OperatorProvider.GetCurrent().UserId, opr);
+            Constants.SetCurrentYfbm(curOpr.UserId, opr);
             return Success("Chuyển thành công");
         }
 

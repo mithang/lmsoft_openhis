@@ -196,7 +196,9 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                 SysPatientMedicalRecordDetailEntity mEntity = null;
                 if (!string.IsNullOrWhiteSpace(sdbKeyId))
                 {
-                    mEntity = existDetails.Where(p => p.Id == sdbKeyId).FirstOrDefault();
+                    // existDetails null khi keyValue rỗng (bản ghi mới): không
+                    // có chi tiết cũ để tra, coi như không tìm thấy.
+                    mEntity = existDetails?.Where(p => p.Id == sdbKeyId).FirstOrDefault();
                 }
                 if (mEntity == null)
                 {

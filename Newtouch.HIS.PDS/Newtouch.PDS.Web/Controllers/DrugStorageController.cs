@@ -393,6 +393,10 @@ namespace Newtouch.HIS.Web.Controllers
         ///  <returns></returns>
         public IActionResult MedicineAdjustPriceApproval(string ypCodeStr, int operationType)
         {
+            if (string.IsNullOrWhiteSpace(ypCodeStr))
+            {
+                return Error("Mã thuốc không được để trống");
+            }
             var ypCodeList = new ArrayList(ypCodeStr.TrimEnd(',').Split(','));
 
             if (operationType == (int)EnumPriceAdjustOperationType.Execute) //Thực hiện
