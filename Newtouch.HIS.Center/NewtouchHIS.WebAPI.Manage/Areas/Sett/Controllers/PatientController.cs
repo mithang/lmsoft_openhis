@@ -62,8 +62,15 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         [HttpPost]
         public async Task<ResponseBase> InHosPatientQueryAsync(RequestBus<SearchPatientRequest> request)
         {
+            // Vòng 171: Data null + envelope hợp lệ → request.Data!.ywlx gây NRE
+            // (probe: code 20000). Trả FAIL trước khi deref, theo mẫu guard
+            // Data null của các action LIS cùng file.
+            if (request.Data == null)
+            {
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(zjh,kh,xm) không được để trống" };
+            }
             var apiReq = InitController.BuildBookRequest(request, null, null).Adapt<BookingRequest>();
-            request.Data!.ywlx = EnumBusType.zy.ToString();
+            request.Data.ywlx = EnumBusType.zy.ToString();
             apiReq.paradata = request.Data;
             var resp = await _httpClient.PostAsync<ResponseBaseOld>($"{SettHttpUrl}{PatientAnonRoute}/InHosPatientQuery", apiReq.ToJson());
             return InitController.BuildResponseBase(resp);

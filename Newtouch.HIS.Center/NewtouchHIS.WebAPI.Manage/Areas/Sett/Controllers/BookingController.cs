@@ -61,10 +61,17 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         [HttpPost]
         public async Task<ResponseBase> GetOutScheduleAsync(RequestBus<ScheduleRequest> request)
         {
-            if(request.Data == null || request.Data.ksrq==null || request.Data.jsrq == null)
+            // Vòng 171: Data null + envelope hợp lệ → nhánh cũ gán request.Data!
+            // gây NRE (probe: code 20000). Tách riêng: Data null trả FAIL,
+            // còn thiếu ngày thì giữ nguyên hành vi mặc định ngày như cũ.
+            if (request.Data == null)
             {
-                request.Data!.ksrq = DateTime.Now.AddDays(1).Date;
-                request.Data!.jsrq = DateTime.Now.AddDays(14).Date;
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(ksrq,jsrq) không được để trống" };
+            }
+            if (request.Data.ksrq == null || request.Data.jsrq == null)
+            {
+                request.Data.ksrq = DateTime.Now.AddDays(1).Date;
+                request.Data.jsrq = DateTime.Now.AddDays(14).Date;
             }
             var apiReq = InitController.BuildBookRequest(request, "Y009", null).Adapt<BookingRequest>();
             apiReq.paradata = request.Data;
@@ -80,10 +87,17 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.Sett.Controllers
         [HttpPost]
         public async Task<ResponseBase> GetOutSchedulePageAsync(RequestBus<Pagination<ScheduleRequest>> request)
         {
-            if (request.Data == null || request.Data!.filter!.ksrq == null || request.Data!.filter!.jsrq == null)
+            // Vòng 171: Data null hoặc filter null + envelope hợp lệ → nhánh cũ
+            // gán request.Data!.filter! gây NRE (probe: code 20000). Trả FAIL;
+            // còn thiếu ngày thì giữ nguyên hành vi mặc định ngày như cũ.
+            if (request.Data == null || request.Data.filter == null)
             {
-                request.Data!.filter!.ksrq = DateTime.Now.AddDays(1).Date;
-                request.Data!.filter!.jsrq = DateTime.Now.AddDays(14).Date;
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(ksrq,jsrq) không được để trống" };
+            }
+            if (request.Data.filter.ksrq == null || request.Data.filter.jsrq == null)
+            {
+                request.Data.filter.ksrq = DateTime.Now.AddDays(1).Date;
+                request.Data.filter.jsrq = DateTime.Now.AddDays(14).Date;
             }
             var groupReq = request.Data==null?new SchedulePageRequest(): request.Data.filter.Adapt<SchedulePageRequest>();
             groupReq.pagination = new Pagination

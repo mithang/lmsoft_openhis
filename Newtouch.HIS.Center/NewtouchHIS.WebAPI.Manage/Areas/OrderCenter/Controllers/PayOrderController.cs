@@ -156,6 +156,12 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.OrderCenter.Controllers
         [HttpPost]
         public async Task<ResponseBase> BillOrderPayAsync(RequestBus<OrderPayRequest> request)
         {
+            // Vòng 171: Data null + envelope hợp lệ → request.Data!.OrderType
+            // gây NRE (probe: code 20000) trước khi gọi downstream. Trả FAIL.
+            if (request.Data == null)
+            {
+                return new ResponseBase { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng(OrderType) không được để trống" };
+            }
             var apiReq = InitController.BuildBookRequest(request, null, null).Adapt<BookingRequest>();
             apiReq.paradata = request.Data;
             ResponseBaseOld resp = new ResponseBaseOld();

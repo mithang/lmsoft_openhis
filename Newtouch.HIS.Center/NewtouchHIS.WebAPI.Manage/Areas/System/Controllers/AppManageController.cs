@@ -41,6 +41,13 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.System.Controllers
         [Route("AddApplication")]
         public async Task<BusResult<SysAuthAppEntity>> AddApplicationAsync(RequestBus<AuthAppVO> request)
         {
+            // Vòng 171: Data null + envelope hợp lệ → AddAuthApp deref authApp
+            // gây NRE (probe: code 20000). Trả FAIL với đúng thông điệp mà
+            // service vẫn dùng cho trường trống, trước khi gọi service.
+            if (request.Data == null)
+            {
+                return new BusResult<SysAuthAppEntity> { code = ResponseResultCode.FAIL, msg = "Thông tin quan trọng không được để trống (Id ứng dụng, tên ứng dụng, loại cấp quyền)" };
+            }
             var data = await _appManageDmn.AddAuthApp(request.Data);
             return new BusResult<SysAuthAppEntity> { code = ResponseResultCode.SUCCESS, Data = data };
         }
