@@ -1310,10 +1310,17 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             for (int i = 0; i < finfo.Length; i++)
             {
                 BackuptimetreeVO treelist = new BackuptimetreeVO();
+                // FIX-189: ten file ngan hon strlength (doctype do request dieu khien) hoac tien to
+                // ngay ngan hon 12 ky tu se lam Substring nem ArgumentOutOfRangeException; bo qua
+                // file khong dung dinh dang thay vi crash ca action.
+                if (finfo[i].Name.Length <= strlength)
+                {
+                    continue;
+                }
                 string str = finfo[i].Name.Substring(0, finfo[i].Name.Length - strlength);
                 string[] sArray = str.Split(new char[2] { 'j', '-' });
 
-                if (sArray != null && sArray.Length >= 3 && sArray[2] == blxtmc_yj)
+                if (sArray != null && sArray.Length >= 3 && sArray[0].Length >= 12 && sArray[2] == blxtmc_yj)
                 {
                     string sj = sArray[0].Substring(0, 4) + "-" + sArray[0].Substring(4, 2) + "-" + sArray[0].Substring(6, 2);
 
