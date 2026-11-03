@@ -429,7 +429,7 @@ on a.applyno=b.applyno and b.px=1
         {
             ORApplyInfoEntity ety = new ORApplyInfoEntity();
             ety.OrganizeId = dto.organizeid;
-            ety.Id = new Guid().ToString();
+            ety.Id = Guid.NewGuid().ToString();
             ety.Applyno = EFDBBaseFuncHelper.GetOPApplyNo(pat.OrganizeId);
             ety.zyh = pat.zyh;
             ety.xm = pat.xm;
