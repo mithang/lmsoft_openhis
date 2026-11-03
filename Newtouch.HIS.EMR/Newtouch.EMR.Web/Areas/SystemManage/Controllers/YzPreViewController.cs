@@ -95,12 +95,47 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
             string ml = AppDomain.CurrentDomain.BaseDirectory;
 
             ml = ml.Substring(0, ml.Length - 1);
-            string xml = System.IO.File.ReadAllText($"{ml}{filename}");
+            var readPath = $"{ml}{filename}";
+            if (!IsTemplatePathWithinBase(readPath))
+            {
+                return Error("Đường dẫn mẫu không hợp lệ.");
+            }
+            string xml = System.IO.File.ReadAllText(readPath);
             BlTemplateVo vo = new BlTemplateVo();
             vo.xmldata = xml;
             return Content(vo.ToJson());
             //return Content(data.ToJson()); ;
         }
         #endregion
+
+        // Fail-closed containment cho đường dẫn mẫu (vòng 179, cùng mẫu vòng 145):
+        // mọi đường dẫn file suy ra từ mblj trong DB phải nằm trong thư mục gốc
+        // của ứng dụng; đường dẫn thoát ra ngoài (../, tuyệt đối) bị từ chối
+        // trước mọi thao tác đọc. Lưu ý: GetFullPath giữ nguyên dấu / cuối của
+        // BaseDirectory nên phải trim trước khi nối thêm separator, nếu không
+        // mọi đường dẫn trong thư mục gốc đều bị từ chối sai.
+        [NonAction]
+        private string TemplateBaseDir()
+        {
+            var baseDir = System.IO.Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory);
+            if (baseDir.Length > 1)
+            {
+                baseDir = baseDir.TrimEnd(System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar);
+            }
+            return baseDir;
+        }
+
+        [NonAction]
+        private bool IsTemplatePathWithinBase(string candidatePath)
+        {
+            var baseDir = TemplateBaseDir();
+            var fullPath = System.IO.Path.GetFullPath(candidatePath);
+            if (fullPath.Length > 1)
+            {
+                fullPath = fullPath.TrimEnd(System.IO.Path.DirectorySeparatorChar, System.IO.Path.AltDirectorySeparatorChar);
+            }
+            return fullPath.Length > baseDir.Length
+                && fullPath.StartsWith(baseDir + System.IO.Path.DirectorySeparatorChar, StringComparison.Ordinal);
+        }
     }
 }
