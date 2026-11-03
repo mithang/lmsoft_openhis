@@ -1,4 +1,5 @@
 using Newtouch.Infrastructure;
+using NewtouchHIS.Lib.Base.Exceptions;
 using FrameworkBase.MultiOrg.Infrastructure;
 using FrameworkBase.MultiOrg.Repository;
 using Newtouch.HIS.Domain.Entity.PharmacyDrugStorage;
@@ -23,6 +24,7 @@ namespace Newtouch.HIS.Repository.PharmacyDrugStorage
             if (!string.IsNullOrEmpty(keyValue))
             {
                 var dbEntity = this.FindEntity(p => p.cgmxId == keyValue);
+                if (dbEntity == null) throw new FailedException("Không tìm thấy chi tiết đơn mua hàng.");
                 //properties
                 dbEntity.Modify(keyValue);
                 this.Update(dbEntity);

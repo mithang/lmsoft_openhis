@@ -477,15 +477,15 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             {
                 if (string.IsNullOrWhiteSpace(blid))
                 {
-                    blid = this.Request.Form["blid"];
+                    blid = this.Request.Form["blid"].ToString();
                 }
                 if (string.IsNullOrWhiteSpace(zyh))
                 {
-                    zyh = this.Request.Form["zyh"];
+                    zyh = this.Request.Form["zyh"].ToString();
                 }
                 if (string.IsNullOrWhiteSpace(mzh))
                 {
-                    mzh = this.Request.Form["mzh"];
+                    mzh = this.Request.Form["mzh"].ToString();
                 }
 
                 blid = blid.Trim();
@@ -494,7 +494,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 bllx = this.Request.Form["bllx"].ToString().Trim();//== null ? bllx : Convert.ToInt32(this.Request.Form["bllx"]);  
                 if (string.IsNullOrWhiteSpace(bllj))
                 {
-                    bllj = this.Request.Form["bllj"];
+                    bllj = this.Request.Form["bllj"].ToString();
                 }
                 if (string.IsNullOrWhiteSpace(blxtmc_yj))
                 {

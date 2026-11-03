@@ -1,4 +1,5 @@
 using Newtouch.Infrastructure;
+using NewtouchHIS.Lib.Base.Exceptions;
 using Newtouch.HIS.Domain.Entity;
 using Newtouch.HIS.Domain.IRepository;
 using Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage;
@@ -33,6 +34,7 @@ namespace Newtouch.HIS.Repository
                 foreach (var item in inventoryInfoList)
                 {
                     var entity = db.FindEntity<SysMedicineInventoryDetailEntity>(p => p.pdmxId == item.pdmxId);
+                    if (entity == null) throw new FailedException("Không tìm thấy chi tiết kiểm kê.");
                     entity.Sjsl = item.sjsl;
                     entity.zsm = item.zsm;
                     entity.sfcl = item.sfcl;
@@ -55,6 +57,7 @@ namespace Newtouch.HIS.Repository
                 foreach (var item in inventoryInfoList)
                 {
                     var entity = db.FindEntity<SysMedicineInventoryDetailEntity>(p => p.pdmxId == item.pdmxId);
+                    if (entity == null) throw new FailedException("Không tìm thấy chi tiết kiểm kê.");
                     entity.zsm = item.zsm;
                     entity.sfcl = item.sfcl;
                     entity.Modify();

@@ -1,4 +1,5 @@
 using Newtouch.Infrastructure;
+using NewtouchHIS.Lib.Base.Exceptions;
 using FrameworkBase.MultiOrg.Infrastructure;
 using FrameworkBase.MultiOrg.Repository;
 using Newtouch.HIS.Domain.Entity.Purchase;
@@ -47,6 +48,7 @@ namespace Newtouch.HIS.Repository.Purchase
         public int LocationStateUpdate(string Id, string orgId, int psdzt)
         {
             var dbEntity = this.FindEntity(p => p.Id == Id);
+            if (dbEntity == null) throw new FailedException("Không tìm thấy điểm giao hàng.");
             //properties
             dbEntity.psdzt = psdzt;//psdzt 1Đã lưu 2Đã truyền báo 3Đã hủy bỏ
             dbEntity.Modify(Id);

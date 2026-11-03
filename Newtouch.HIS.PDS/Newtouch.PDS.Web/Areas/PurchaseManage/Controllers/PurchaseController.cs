@@ -15,7 +15,7 @@ using Newtouch.Core.Common;
 namespace Newtouch.HIS.Web.Areas.PurchaseManage.Controllers
 {
     [Area("PurchaseManage")]
-    public class PurchaseController : OrgControllerBase
+    public class PurchaseController : ControllerBase
     {
         // GET: PurchaseManage/Purchase
 

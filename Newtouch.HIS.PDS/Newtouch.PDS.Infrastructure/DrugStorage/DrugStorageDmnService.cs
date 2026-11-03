@@ -226,6 +226,7 @@ order by kc.ypdm , kc.yxq
 				{
 					//Đóng băng tồn kho
 					var kcEntity = db.FindEntity<SysMedicineStockInfoEntity>(p => p.kcId == item.kcId);
+					if (kcEntity == null) throw new FailedException("Không tìm thấy thông tin tồn kho");
 					if (kcEntity.kcsl - kcEntity.djsl < item.Sl * item.Ckzhyz)
 					{
 						throw new FailedCodeException("AVAILABLE_QUANTITY_LESS_THAN_FREEZING_QUANTITY");

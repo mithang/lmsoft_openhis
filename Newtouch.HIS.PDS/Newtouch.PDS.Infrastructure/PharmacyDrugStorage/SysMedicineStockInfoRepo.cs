@@ -31,6 +31,7 @@ namespace Newtouch.HIS.Repository
         public void UpdateDjsl(string kcId, int djsl)
         {
             var entity = this.FindEntity(p => p.kcId == kcId);
+            if (entity == null) throw new FailedException("Không tìm thấy thông tin tồn kho");
             if (entity.kcsl - entity.djsl < djsl)
             {
                 throw new FailedException("Số lượng khả dụng ít hơn Số lượng đóng băng");

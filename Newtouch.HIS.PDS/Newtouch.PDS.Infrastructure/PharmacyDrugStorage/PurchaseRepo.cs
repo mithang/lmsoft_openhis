@@ -1,6 +1,7 @@
 using Newtouch.HIS.Domain.DTO.PharmacyDrugStorage;
 using FrameworkBase.MultiOrg.Infrastructure;
 using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Exceptions;
 using FrameworkBase.MultiOrg.Repository;
 using NewtouchHIS.Lib.Framework.Operator;
 using Newtouch.Core.Common;
@@ -75,6 +76,7 @@ cg.zwdhrq, cg.jls, cg.ddzt, cg.CreateTime, cg.CreatorCode, cg.gysCode, cg.gysNam
         public void PurchaseDelete(string cgId, string orgId )
         {
                 var dbEntity = this.FindEntity(p => p.cgId == cgId);
+                if (dbEntity == null) throw new FailedException("Không tìm thấy đơn mua hàng.");
                 //properties
                 dbEntity.zt = "0";
                 dbEntity.Modify(cgId);
@@ -109,6 +111,7 @@ cg.zwdhrq, cg.jls, cg.ddzt, cg.CreateTime, cg.CreatorCode, cg.gysCode, cg.gysNam
         public void PurchaseDdbhUpdate(string cgId, string ddbh, string orgId)
         {
             var dbEntity = this.FindEntity(p => p.cgId == cgId);
+            if (dbEntity == null) throw new FailedException("Không tìm thấy đơn mua hàng.");
             //properties
             dbEntity.ddbh = ddbh;
             dbEntity.Modify(cgId);
@@ -120,6 +123,7 @@ cg.zwdhrq, cg.jls, cg.ddzt, cg.CreateTime, cg.CreatorCode, cg.gysCode, cg.gysNam
             if (!string.IsNullOrEmpty(keyValue))
             {
                 var dbEntity = this.FindEntity(p => p.cgId == keyValue);
+                if (dbEntity == null) throw new FailedException("Không tìm thấy đơn mua hàng.");
                 dbEntity.ddlx = entity.ddlx;
                 dbEntity.czlx = entity.czlx;
                 dbEntity.jls = entity.jls;

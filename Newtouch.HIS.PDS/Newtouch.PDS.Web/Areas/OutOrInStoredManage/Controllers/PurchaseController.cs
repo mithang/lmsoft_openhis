@@ -23,7 +23,7 @@ using Microsoft.AspNetCore.Mvc;
 namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 {
     [Area("OutOrInStoredManage")]
-    public class PurchaseController : OrgControllerBase
+    public class PurchaseController : ControllerBase
     {
         private readonly IPurchaseRepo _purchaseRepo;
         private readonly IPurchaseDetailRepo _purchaseDetailRepo;
