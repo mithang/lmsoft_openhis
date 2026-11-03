@@ -1649,13 +1649,13 @@ namespace Newtouch.CIS.Web.Controllers
             MedicalRecordEntity blEntity = _medicalRecordRepo
                 .IQueryable(p => p.jzId == jzid && p.OrganizeId == this.OrganizeId && p.zt == "1")
                 .FirstOrDefault();
-            if (!string.IsNullOrEmpty(fbrq))
-            {
-                blEntity.fbsj = Convert.ToDateTime(fbrq);
-            }
             if (entity == null || blEntity == null)
             {
                 return Error("Lấy thông tin khám bệnh của bệnh nhân thất bại, vui lòng chọn lại bệnh nhân rồi thử lại");
+            }
+            if (!string.IsNullOrEmpty(fbrq))
+            {
+                blEntity.fbsj = Convert.ToDateTime(fbrq);
             }
             decimal? decimalNull = null;
             entity.xuetang = (string.IsNullOrEmpty(xuetang) ? decimalNull : DecimalParseHelper.ParseDecimal(xuetang));

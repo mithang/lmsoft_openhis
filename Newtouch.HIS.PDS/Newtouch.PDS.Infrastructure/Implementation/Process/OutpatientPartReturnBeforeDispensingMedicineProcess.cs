@@ -54,6 +54,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
         {
             try
             {
+                Request.Items.RemoveAll(p => p.sl <= 0);
                 Parallel.ForEach(Request.Items, p =>
                 {
                     if (p.zhyz != 0) return;
@@ -61,7 +62,6 @@ namespace Newtouch.HIS.Application.Implementation.Process
                     if (ypxx == null) throw new Exception("Không tìm thấy mã là【" + p.ypdm + "】của thuốc。");
                     if (ypxx.mzcls == null) throw new Exception("Mã thuốc là【" + p.ypdm + "】Số chia lẻ ngoại trú của thuốc trống。");
                     p.zhyz = (int)ypxx.mzcls;
-                    if (p.sl <= 0) Request.Items.Remove(p);
                 });
             }
             catch (Exception e)

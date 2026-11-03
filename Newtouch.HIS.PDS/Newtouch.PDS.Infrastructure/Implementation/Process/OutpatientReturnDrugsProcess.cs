@@ -44,13 +44,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
 
         protected override void BeforeAction(ActResult actResult)
         {
-            Parallel.ForEach(Request.tyDrugDetail, p =>
-            {
-                if (p.sl <= 0)
-                {
-                    Request.tyDrugDetail.Remove(p);
-                }
-            });
+            Request.tyDrugDetail.RemoveAll(p => p.sl <= 0);
             if (Request.tyDrugDetail.Count != 0)
             {
                 return;

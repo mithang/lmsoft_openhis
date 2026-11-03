@@ -266,7 +266,9 @@ WHERE pc=@pc AND ph=@ph AND ypdm=@ypCode AND OrganizeId=@OrganizeId AND yfbmCode
         public int UpdateExpired(string kcId, string yxq)
         {
             var entity = this.FindEntity(kcId);
-            entity.yxq = Convert.ToDateTime(yxq);
+            if (entity == null) throw new FailedException("Không tìm thấy thông tin tồn kho");
+            if (!DateTime.TryParse(yxq, out var yxqDate)) throw new FailedException("Hạn dùng không đúng định dạng ngày giờ");
+            entity.yxq = yxqDate;
             entity.Modify();
             return this.Update(entity);
 
