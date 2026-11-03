@@ -20,7 +20,7 @@ namespace Newtouch.HIS.Application
         /// <returns></returns>
         public SysModuleButtonEntity GetForm(string keyValue)
         {
-            return _moduleButtonRepository.FindEntity(keyValue);
+            return _moduleButtonRepository.FindEntity(p => p.Id == keyValue);
         }
 
         /// <summary>

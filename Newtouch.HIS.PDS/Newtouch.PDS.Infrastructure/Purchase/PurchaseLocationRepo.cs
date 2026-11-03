@@ -46,7 +46,7 @@ namespace Newtouch.HIS.Repository.Purchase
         //Cập nhật trạng thái điểm giao hàng
         public int LocationStateUpdate(string Id, string orgId, int psdzt)
         {
-            var dbEntity = this.FindEntity(Id);
+            var dbEntity = this.FindEntity(p => p.Id == Id);
             //properties
             dbEntity.psdzt = psdzt;//psdzt 1Đã lưu 2Đã truyền báo 3Đã hủy bỏ
             dbEntity.Modify(Id);

@@ -225,7 +225,7 @@ order by kc.ypdm , kc.yxq
 				foreach (var item in ioReceiptDetailList)
 				{
 					//Đóng băng tồn kho
-					var kcEntity = db.FindEntity<SysMedicineStockInfoEntity>(item.kcId);
+					var kcEntity = db.FindEntity<SysMedicineStockInfoEntity>(p => p.kcId == item.kcId);
 					if (kcEntity.kcsl - kcEntity.djsl < item.Sl * item.Ckzhyz)
 					{
 						throw new FailedCodeException("AVAILABLE_QUANTITY_LESS_THAN_FREEZING_QUANTITY");

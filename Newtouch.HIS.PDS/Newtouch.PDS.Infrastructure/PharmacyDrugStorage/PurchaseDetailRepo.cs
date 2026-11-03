@@ -22,7 +22,7 @@ namespace Newtouch.HIS.Repository.PharmacyDrugStorage
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
-                var dbEntity = this.FindEntity(keyValue);
+                var dbEntity = this.FindEntity(p => p.cgmxId == keyValue);
                 //properties
                 dbEntity.Modify(keyValue);
                 this.Update(dbEntity);

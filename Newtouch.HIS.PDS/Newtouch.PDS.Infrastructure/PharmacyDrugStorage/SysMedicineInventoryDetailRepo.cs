@@ -32,7 +32,7 @@ namespace Newtouch.HIS.Repository
             {
                 foreach (var item in inventoryInfoList)
                 {
-                    var entity = db.FindEntity<SysMedicineInventoryDetailEntity>(item.pdmxId);
+                    var entity = db.FindEntity<SysMedicineInventoryDetailEntity>(p => p.pdmxId == item.pdmxId);
                     entity.Sjsl = item.sjsl;
                     entity.zsm = item.zsm;
                     entity.sfcl = item.sfcl;
@@ -54,7 +54,7 @@ namespace Newtouch.HIS.Repository
             {
                 foreach (var item in inventoryInfoList)
                 {
-                    var entity = db.FindEntity<SysMedicineInventoryDetailEntity>(item.pdmxId);
+                    var entity = db.FindEntity<SysMedicineInventoryDetailEntity>(p => p.pdmxId == item.pdmxId);
                     entity.zsm = item.zsm;
                     entity.sfcl = item.sfcl;
                     entity.Modify();

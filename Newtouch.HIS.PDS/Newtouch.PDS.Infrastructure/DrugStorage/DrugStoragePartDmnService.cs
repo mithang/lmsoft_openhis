@@ -482,7 +482,7 @@ where crkId = @crkId and a.zt='1'
 			using (var db = new EFDbTransaction().BeginTrans())
 			{
 				//Xóa bảng xuất nhập kho
-				var inventoryEntity = db.FindEntity<SysMedicineStorageIOReceiptEntity>(crkId);
+				var inventoryEntity = db.FindEntity<SysMedicineStorageIOReceiptEntity>(p => p.crkId == crkId);
 				db.Delete(inventoryEntity);
 				//Xóa bảng chi tiết xuất nhập kho
 				var inventoryDetailEntityList = db.IQueryable<SysMedicineStorageIOReceiptDetailEntity>().Where(a => a.crkId == crkId).ToList();

@@ -784,7 +784,7 @@ AND pdxx.yfbmCode = @yfbmCode
             using (var db = new EFDbTransaction().BeginTrans())
             {
                 //Xóa bảng kiểm kê
-                var inventoryEntity = db.FindEntity<SysMedicineInventoryEntity>(pdId);
+                var inventoryEntity = db.FindEntity<SysMedicineInventoryEntity>(p => p.pdId == pdId);
                 db.Delete(inventoryEntity);
                 //Xóa bảng chi tiết kiểm kê
                 var inventoryDetailEntityList = db.IQueryable<SysMedicineInventoryDetailEntity>().Where(a => a.pdId == pdId).ToList();

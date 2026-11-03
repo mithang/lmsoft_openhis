@@ -51,7 +51,7 @@ namespace Newtouch.HIS.Application
         /// <returns></returns>
         public SysRoleEntity GetForm(string keyValue)
         {
-            return _roleRepository.FindEntity(keyValue);
+            return _roleRepository.FindEntity(p => p.Id == keyValue);
         }
 
         /// <summary>

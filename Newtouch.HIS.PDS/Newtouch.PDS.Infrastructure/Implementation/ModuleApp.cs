@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Application
         /// <returns></returns>
         public SysModuleEntity GetForm(string keyValue)
         {
-            return _moduleRepository.FindEntity(keyValue);
+            return _moduleRepository.FindEntity(p => p.Id == keyValue);
         }
 
         /// <summary>

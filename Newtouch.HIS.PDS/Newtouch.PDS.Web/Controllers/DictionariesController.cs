@@ -58,7 +58,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         public IActionResult GetSyyyFormJson(string keyValue)
         {
-            return Content(_ISysMedicineProfitLossReasonRepo.FindEntity(keyValue).ToJson());
+            return Content(_ISysMedicineProfitLossReasonRepo.FindEntity(p => p.syyyId == keyValue).ToJson());
         }
 
         /// <summary>
@@ -124,7 +124,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         public IActionResult GetFypzFormJson(string keyValue)
         {
-            return Content(_ISysDispensingaConfigRepo.FindEntity(keyValue).ToJson());
+            return Content(_ISysDispensingaConfigRepo.FindEntity(p => p.Id == keyValue).ToJson());
         }
         /// <summary>
         /// Lưu biểu mẫu(Thêm mới,Sửa)
@@ -254,7 +254,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         public IActionResult GetKsFypzFormJson(string keyValue)
         {
-            return Content(_ISysYpksfypzEntityRepo.FindEntity(keyValue).ToJson());
+            return Content(_ISysYpksfypzEntityRepo.FindEntity(p => p.Id == keyValue).ToJson());
         }
         /// <summary>
         /// Lưu biểu mẫu(Thêm mới,Sửa)

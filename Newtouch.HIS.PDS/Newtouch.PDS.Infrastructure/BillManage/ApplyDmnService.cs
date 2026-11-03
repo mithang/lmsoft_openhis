@@ -244,7 +244,7 @@ SELECT @@ROWCOUNT;
         private void UpdateSld(Newtouch.Infrastructure.EFDbTransaction db, string sldId, List<ApplyOutStockVEntity> group)
         {
             #region Sửa thông tin bảng chính
-            var sldEntity = sldRepo.FindEntity(sldId);
+            var sldEntity = sldRepo.FindEntity(p => p.sldId == sldId);
             if (sldEntity == null) throw new Exception(string.Format("Không tìm thấy khóa chính là【{0}】đơn lĩnh của", sldId));
             sldEntity.ffzt = IsPartProvide(group) ? (int)EnumSLDDeliveryStatus.Part : (int)EnumSLDDeliveryStatus.All;
             sldEntity.Modify();
@@ -254,7 +254,7 @@ SELECT @@ROWCOUNT;
             #region Sửa thông tin bảng chi tiết
             group.ForEach(p =>
             {
-                var mx = sldmxRepo.FindEntity(p.sldmxId);
+                var mx = sldmxRepo.FindEntity(m => m.sldmxId == p.sldmxId);
                 if (mx == null) throw new Exception(string.Format("Không tìm thấy khóa chính là【{0}】chi tiết đơn lĩnh của", p.sldmxId));
                 mx.yfsl = mx.yfsl + p.xfsl;
                 mx.Modify();
