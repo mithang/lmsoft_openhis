@@ -2,6 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Hosting.Internal;
 using NewtouchHIS.Lib.Base;
+using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Base.Model;
 using Spire.Xls;
 using System.Net.Http.Headers;
@@ -52,6 +53,15 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
         [Route("WebUploaFile")]
         public async Task<Dictionary<string, string>> UploadFileForWebAsync()
         {
+            // Không phải form multipart thì Request.Form ném InvalidDataException;
+            // coi như không có tệp (giống trường hợp form không có file + tiền lệ Herp LicenceController).
+            if (!HttpContext.Request.HasFormContentType)
+            {
+                return new Dictionary<string, string>()
+                {
+                    ["fileContent"] = string.Empty
+                };
+            }
             var fileStream = HttpContext.Request.Form.Files.FirstOrDefault()?.OpenReadStream();
             var fileContent = new StringBuilder();
             if (fileStream != null)
@@ -80,7 +90,12 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
         public async Task<IActionResult> DrgExcelUpload(IFormFile file)
         {
             var filename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName; // Tên tệp gốc(bao gồm đường dẫn)
-            var extName = filename.Substring(filename.LastIndexOf('.')).Replace("\"", "");// Phần mở rộng
+            var dotIdx = string.IsNullOrEmpty(filename) ? -1 : filename.LastIndexOf('.');
+            if (dotIdx < 0)
+            {
+                throw new FailedException("Tên tệp tải lên phải có phần mở rộng.");
+            }
+            var extName = filename.Substring(dotIdx).Replace("\"", "");// Phần mở rộng
             string shortfilename = $"{Guid.NewGuid()}{extName}";// Tên tệp mới
             string fileSavePath = $"{Directory.GetCurrentDirectory()}{fileManageConf.DrgDataFileDirPathWithDate ?? "/File/Drg/"}"; //Thư mục tạm của tệp,sau khi nhập xong Xóa
             filename = fileSavePath + shortfilename; // Tên tệp mới(bao gồm đường dẫn)

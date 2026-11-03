@@ -23,7 +23,13 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             var result = new BusResult<DrgGroupResult>();
             if (record.versionPolicy == null)
             {
-                record.versionPolicy = (int)Enum.Parse(typeof(EnumDrgGrouperType), record.version);
+                if (!Enum.TryParse<EnumDrgGrouperType>(record.version, out var versionParsed))
+                {
+                    result.code = ResponseResultCode.FAIL;
+                    result.msg = "Tạm thời chưa hỗ trợ phân tích nhóm DRG cho khu vực này";
+                    return result;
+                }
+                record.versionPolicy = (int)versionParsed;
             }
             if (_drgGrouperPolicy.TryGetValue((EnumDrgGrouperTypePolicy)record.versionPolicy, out var groupVersion))
             {
@@ -45,7 +51,13 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             var result = new BusResult<List<DrgGroupResult>>();
             if (record.versionPolicy == null)
             {
-                record.versionPolicy = (int)Enum.Parse(typeof(EnumDrgGrouperType), record.version);
+                if (!Enum.TryParse<EnumDrgGrouperType>(record.version, out var versionParsed))
+                {
+                    result.code = ResponseResultCode.FAIL;
+                    result.msg = "Tạm thời chưa hỗ trợ phân tích nhóm DRG cho khu vực này";
+                    return result;
+                }
+                record.versionPolicy = (int)versionParsed;
             }
             if (_drgGrouperPolicy.TryGetValue((EnumDrgGrouperTypePolicy)record.versionPolicy, out var groupVersion))
             {
@@ -68,7 +80,13 @@ namespace NewtouchHIS.Lib.Services.DrgGroup
             var result = new BusResult<DrgGroupFileResult>();
             if (record.versionPolicy == null)
             {
-                record.versionPolicy = (int)Enum.Parse(typeof(EnumDrgGrouperType), record.version);
+                if (!Enum.TryParse<EnumDrgGrouperType>(record.version, out var versionParsed))
+                {
+                    result.code = ResponseResultCode.FAIL;
+                    result.msg = "Tạm thời chưa hỗ trợ phân tích nhóm DRG cho khu vực này";
+                    return result;
+                }
+                record.versionPolicy = (int)versionParsed;
             }
             if (_drgGrouperPolicy.TryGetValue((EnumDrgGrouperTypePolicy)record.versionPolicy, out var groupVersion))
             {
