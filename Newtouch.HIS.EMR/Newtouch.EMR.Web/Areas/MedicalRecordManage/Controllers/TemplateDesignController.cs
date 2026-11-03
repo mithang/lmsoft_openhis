@@ -61,7 +61,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
             if (!string.IsNullOrWhiteSpace(mbbh))
             {
 
-                if (int.Parse(totals.ToString()) > 0)
+                if (!int.TryParse(totals, out var totalsVal))
+                {
+                    return Error("Tổng số không hợp lệ.");
+                }
+                if (totalsVal > 0)
                 {
                     var bl = _HljlDataRepo.blIdselect(zyh, mbbh, this.OrganizeId);
                     foreach (var item in bl)
@@ -85,6 +89,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage.Controllers
                     }
                     if (string.IsNullOrWhiteSpace(blId))
                     {
+                        if (string.IsNullOrWhiteSpace(zyh))
+                        {
+                            return Error("Số zyh không được để trống.");
+                        }
                         string ywid = zyh.Trim();
                         var mb = _bl_mblbRepo.GetTemplateById(mbbh);
                         string BLMC = DateTime.Now.ToString("ddHHmm") + mb.mbmc.Replace("模板", "");

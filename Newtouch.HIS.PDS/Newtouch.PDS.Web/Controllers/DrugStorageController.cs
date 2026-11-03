@@ -334,6 +334,10 @@ namespace Newtouch.HIS.Web.Controllers
             {
                 throw new FailedCodeException("THERE_ARE_UNRECOGNIZED_RECORDS_OF_THE_DRUG_AND_CAN_NOT_BE_REAPPLIED");
             }
+            if (!DateTime.TryParse(zxsj, out var zxsjVal))
+            {
+                throw new FailedException("Thời gian thực hiện không đúng định dạng.");
+            }
             var entity = new SysMedicinePriceAdjustmentEntity
             {
                 yptjId = Guid.NewGuid().ToString(),
@@ -348,7 +352,7 @@ namespace Newtouch.HIS.Web.Controllers
                 xglx = "tj",
                 tzsj = DateTime.Now,
                 tzwj = tzwj,
-                zxsj = Convert.ToDateTime(zxsj),
+                zxsj = zxsjVal,
                 tzczy = OperatorProvider.GetCurrent().UserCode,
                 shczy = null,
                 zxczy = null,

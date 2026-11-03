@@ -198,7 +198,11 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             }
             if (!string.IsNullOrWhiteSpace(entity.fjCode))
             {
-                entity.fjmc = ((Newtouch.Infrastructure.EnumSffjdlmc)int.Parse(entity.fjCode)).ToString();
+                if (!int.TryParse(entity.fjCode, out var fjCodeVal))
+                {
+                    throw new FailedException("Phân loại sở thuộc không đúng định dạng.");
+                }
+                entity.fjmc = ((Newtouch.Infrastructure.EnumSffjdlmc)fjCodeVal).ToString();
             }
             entity.zt = entity.zt == "true" ? "1" : "0";
             if (string.IsNullOrWhiteSpace(entity.OrganizeId))
