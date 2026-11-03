@@ -475,7 +475,11 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                 }
                
                 var presTemplateEntity = this.FirstOrDefault<InspectionTemplateVO>(sqlllll, new[] { new SqlParameter("@mbId", cfTemplateGroupPackageEntity.mbId), new SqlParameter("@orgId", orgId) });
-                    
+                if (presTemplateEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy mẫu đơn thuốc.");
+                }
+
                 PrescriptionEntity presEntity = new PrescriptionEntity()
                 {
                     cfId = presTemplateEntity.mbId,
@@ -586,6 +590,10 @@ WHERE cfmx.zt='1' AND cf.zt='1'
                     {
                         const string sql1 = @"SELECT TOP 1 * FROM dbo.xt_jz(NOLOCK) WHERE jzId=@jzId ";
                         var dbJzEntity = db.FirstOrDefault<TreatmentEntity>(sql1, new DbParameter[] { new SqlParameter("@jzId", jzObject.jzId) });
+                        if (dbJzEntity == null)
+                        {
+                            throw new FailedException("Không tìm thấy ghi chép khám bệnh.");
+                        }
                         dbJzEntity.tizhong = jzObject.tizhong;
                         dbJzEntity.tiwen = jzObject.tiwen;
                         dbJzEntity.maibo = jzObject.maibo;
