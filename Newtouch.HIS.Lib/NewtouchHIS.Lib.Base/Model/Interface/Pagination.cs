@@ -39,6 +39,14 @@
             {
                 if (records > 0)
                 {
+                    // C153: rows <= 0 thi phep chia records % rows nem DivideByZeroException.
+                    // QueryWithPage chi clamp bien cuc bo rows, khong sua pagination.rows,
+                    // nen controller doc pagination.total sau FindList van nem.
+                    // rows == null giu nguyen semantics cu (toan tu lifted tra null).
+                    if (this.rows.HasValue && this.rows.Value <= 0)
+                    {
+                        return 0;
+                    }
                     return records % this.rows == 0 ? records / this.rows : records / this.rows + 1;
                 }
                 else

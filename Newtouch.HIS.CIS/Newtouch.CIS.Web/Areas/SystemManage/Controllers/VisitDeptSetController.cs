@@ -46,6 +46,12 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         public IActionResult GetGridJson(Pagination pagination, string keyword)
         {
+            // C153: rows <= 0 thi phep chia Count/rows o duoi nem DivideByZeroException
+            // (mau C130 tai PatientListController).
+            if (pagination != null && pagination.rows.HasValue && pagination.rows.Value <= 0)
+            {
+                return Error("Số dòng mỗi trang phải lớn hơn 0.");
+            }
             keyword = string.IsNullOrWhiteSpace(keyword) ? "Doctor" : keyword;
             var rows = _sysUserDmnService.GetStaffByDutyCode(OrganizeId, keyword);
             var total = Math.Ceiling(Convert.ToDecimal(rows.Count) / (pagination.rows ?? 20));
