@@ -93,7 +93,10 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
             var dotIdx = string.IsNullOrEmpty(filename) ? -1 : filename.LastIndexOf('.');
             // Tên như "file." có dấu chấm cuối nhưng phần mở rộng rỗng: từ chối như tên không có phần mở rộng.
             var extName = dotIdx < 0 ? string.Empty : filename.Substring(dotIdx).Replace("\"", ""); // Phần mở rộng
-            if (dotIdx < 0 || extName.Length <= 1)
+            // Phần mở rộng chứa dấu phân cách thư mục (từ tên file crafted kiểu "a.txt/../x")
+            // không bao giờ là phần mở rộng thật: từ chối như tên không có phần mở rộng, thay vì
+            // để File.Create ném ngoại lệ kèm đường dẫn tuyệt đối của server.
+            if (dotIdx < 0 || extName.Length <= 1 || extName.IndexOfAny(new[] { '/', '\\' }) >= 0)
             {
                 throw new FailedException("Tên tệp tải lên phải có phần mở rộng.");
             }

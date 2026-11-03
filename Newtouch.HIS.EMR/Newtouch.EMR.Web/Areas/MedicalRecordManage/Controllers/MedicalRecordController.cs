@@ -71,6 +71,24 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// </summary>
         public static string KeepBackupFileDays = EmrConfig.GetAppConfigValue("KeepBackupFileDays");
         public static string BlFilePath = EmrConfig.GetAppConfigValue("BlFilePath");
+        // Kiểm tra đường dẫn đích nằm trong thư mục cha dự kiến (mẫu
+        // containment vòng 145/179 nhưng lấy thư mục đích làm gốc, không
+        // lấy thư mục nội dung: file ghi phải ở trong đúng thư mục bllj).
+        // Fail-closed: lỗi chuẩn hóa đường dẫn cũng bị từ chối.
+        private static bool IsPathWithinDir(string candidatePath, string parentDir)
+        {
+            try
+            {
+                var baseDir = Path.GetFullPath(parentDir).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                var fullPath = Path.GetFullPath(candidatePath);
+                return fullPath.StartsWith(baseDir + Path.DirectorySeparatorChar, StringComparison.Ordinal);
+            }
+            catch
+            {
+                return false;
+            }
+        }
+
         public static string EditorRegCode = EmrConfig.GetAppConfigValue("EditorRegCode");
         private readonly string IsEnableWebEditor = EmrConfig.GetAppConfigValue("EnableWebHomePage");
         private readonly string YBOrgCode = EmrConfig.GetAppConfigValue("YBOrgCode");
@@ -171,6 +189,12 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             {
                 ywid = mzh.Trim();
             }
+            // ywid (số zyh/mzh) là mã định danh, không bao giờ chứa dấu phân
+            // cách thư mục: từ chối để không tạo thư mục ngoài thư mục ngày.
+            if (ywid.IndexOfAny(new[] { '/', '\\' }) >= 0)
+            {
+                return Error("Đường dẫn lưu trữ không hợp lệ.");
+            }
             if (Request.Method == "GET")
             {
                 if (mb != null && !string.IsNullOrWhiteSpace(mb.mblj))
@@ -249,6 +273,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                             string xmlConten = Encoding.UTF8.GetString(decodedBytes);
                             //var xmlConten1 = eng.Document.InnerText;
                             currentFileName = WebPath.Map(path);
+                            if (!IsPathWithinDir(currentFileName + BLMC + ".xml", currentFileName))
+                            {
+                                return Error("Đường dẫn lưu trữ không hợp lệ.");
+                            }
                             System.IO.File.WriteAllText(currentFileName + BLMC + ".xml", xmlConten);
                             //eng.SaveDocument(currentFileName + BLMC + ".xml", null);
                             //eng.LoadDocument(currentFileName + BLMC + ".xml", null);
@@ -521,6 +549,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                     {
                         byte[] decodedBytes = Convert.FromBase64String(submitXml);
                         string xmldata = Encoding.UTF8.GetString(decodedBytes);
+                        if (!IsPathWithinDir(currentFileName + blxtmc_hj.Trim() + ".xml", currentFileName))
+                        {
+                            return Error("Đường dẫn lưu trữ không hợp lệ.");
+                        }
                         System.IO.File.WriteAllText(currentFileName + blxtmc_hj.Trim() + ".xml", xmldata);
 
                         //eng.SaveDocument(currentFileName + blxtmc_hj.Trim() + ".xml", null);
@@ -2656,6 +2688,12 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             {
                 ywid = mzh.Trim();
             }
+            // ywid (số zyh/mzh) là mã định danh, không bao giờ chứa dấu phân
+            // cách thư mục: từ chối để không tạo thư mục ngoài thư mục ngày.
+            if (ywid.IndexOfAny(new[] { '/', '\\' }) >= 0)
+            {
+                return Error("Đường dẫn lưu trữ không hợp lệ.");
+            }
             string DataSource = "";
             var mbety = _bl_mblbRepo.FindEntity(mbbh);
             if (mbety != null && mbety.EnableDataLoad == "1" && !string.IsNullOrWhiteSpace(mbety.DataSource))
@@ -2669,6 +2707,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             byte[] decodedBytes = Convert.FromBase64String(submitData);
             string xmlConten = Encoding.UTF8.GetString(decodedBytes);
             string currentFileName = WebPath.Map(path);
+            if (!IsPathWithinDir(currentFileName + BLMC + ".html", currentFileName))
+            {
+                return Error("Đường dẫn lưu trữ không hợp lệ.");
+            }
             System.IO.File.WriteAllText(currentFileName + BLMC + ".html", xmlConten);
             string BLID = "";
             if (!string.IsNullOrWhiteSpace(mzh))
@@ -2748,12 +2790,20 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             {
                 //Phán đoán đường dẫn có tồn tại hay không,Tạo thư mục
                 string path = Getaddress + zyh;
+                if (!IsPathWithinDir(path, Getaddress))
+                {
+                    return Error("Đường dẫn lưu trữ không hợp lệ.");
+                }
                 if (Directory.Exists(path) == false)
                 {
                     Directory.CreateDirectory(path);
                 }
                 path = path + "\\";
                 //Lưu địa chỉ tệp sao lưu
+                if (!IsPathWithinDir(path + nameblxtmc.Trim() + ".html", Getaddress))
+                {
+                    return Error("Đường dẫn lưu trữ không hợp lệ.");
+                }
                 System.IO.File.WriteAllText(path + nameblxtmc.Trim() + ".html", htmldata);
             }
             BlTemplateVo vo = new BlTemplateVo();
@@ -2771,6 +2821,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             byte[] decodedBytes = Convert.FromBase64String(submitData);
             string xmldata = Encoding.UTF8.GetString(decodedBytes);
             blxtmc_yj = blxtmc_yj.Trim();
+            if (!IsPathWithinDir(currentFileName + blxtmc_yj.Trim() + ".html", currentFileName))
+            {
+                return Error("Đường dẫn lưu trữ không hợp lệ.");
+            }
             System.IO.File.WriteAllText(currentFileName + blxtmc_yj.Trim() + ".html", xmldata);
             var medicalRecord = new medicalRecordVO();
             medicalRecord.ID = blid;
