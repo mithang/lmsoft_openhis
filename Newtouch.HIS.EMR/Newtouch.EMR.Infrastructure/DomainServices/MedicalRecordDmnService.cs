@@ -102,6 +102,7 @@ namespace Newtouch.EMR.DomainServices
                 //Bệnh án nhập viện
                 case "1":
                     var rybl = _bl_ryblRepo.bl_ryblGetByID(blid);
+                    if (rybl == null) throw new FailedException("Không tìm thấy bệnh án.");
                     medicalRecordVO.blxtml = rybl.blxtml;
                     medicalRecordVO.blxtmc_yj = rybl.blxtmc_yj;
                     medicalRecordVO.IsLock = rybl.IsLock;
@@ -110,6 +111,7 @@ namespace Newtouch.EMR.DomainServices
                 //Ghi chép diễn biến bệnh
                 case "2":
                     var bcjl = _bl_bcjlRepo.bl_bcjlGetByID(blid);
+                    if (bcjl == null) throw new FailedException("Không tìm thấy bệnh án.");
                     medicalRecordVO.blxtml = bcjl.blxtml;
                     medicalRecordVO.blxtmc_yj = bcjl.blxtmc_yj;
                     medicalRecordVO.IsLock = bcjl.IsLock;
@@ -118,6 +120,7 @@ namespace Newtouch.EMR.DomainServices
                 //Văn bản y tế
                 case "3":
                     var ylws = _bl_zqwsRepo.bl_zqwsGetByID(blid);
+                    if (ylws == null) throw new FailedException("Không tìm thấy bệnh án.");
                     medicalRecordVO.blxtml = ylws.blxtml;
                     medicalRecordVO.blxtmc_yj = ylws.blxtmc_yj;
                     medicalRecordVO.IsLock = ylws.IsLock;
@@ -126,6 +129,7 @@ namespace Newtouch.EMR.DomainServices
                 //Ghi chép điều dưỡng
                 case "4":
                     var hljl = _bl_hljlRepo.bl_hljlGetByID(blid);
+                    if (hljl == null) throw new FailedException("Không tìm thấy bệnh án.");
                     medicalRecordVO.blxtml = hljl.blxtml;
                     medicalRecordVO.blxtmc_yj = hljl.blxtmc_yj;
                     medicalRecordVO.IsLock = hljl.IsLock;
@@ -134,6 +138,7 @@ namespace Newtouch.EMR.DomainServices
                 //Trang đầu bệnh án
                 case "5":
                     var basy = _BlbasyRepo.bl_basyGetByID(blid);
+                    if (basy == null) throw new FailedException("Không tìm thấy bệnh án.");
                     medicalRecordVO.blxtml = basy.blxtml;
                     medicalRecordVO.blxtmc_yj = basy.blxtmc_yj;
                     medicalRecordVO.IsLock = basy.IsLock;
@@ -142,6 +147,7 @@ namespace Newtouch.EMR.DomainServices
                 //Đánh giá phục hồi chức năng
                 case "6":
                     var kfpg = _bl_patrecordsRepo.GetpatrecordsByID(blid);
+                    if (kfpg == null) throw new FailedException("Không tìm thấy bệnh án.");
                     medicalRecordVO.blxtml = kfpg.blxtml;
                     medicalRecordVO.blxtmc_yj = kfpg.blxtmc_yj;
                     medicalRecordVO.IsLock = kfpg.IsLock;
@@ -500,6 +506,7 @@ namespace Newtouch.EMR.DomainServices
         {
             var medicalRecordVO = new medicalRecordVO();
             var bl = _bl_patrecordsRepo.GetpatrecordsByID(blid);
+            if (bl == null) throw new FailedException("Không tìm thấy bệnh án.");
             medicalRecordVO.blxtml = bl.blxtml;
             medicalRecordVO.blxtmc_yj = bl.blxtmc_yj;
             medicalRecordVO.IsLock = bl.IsLock;

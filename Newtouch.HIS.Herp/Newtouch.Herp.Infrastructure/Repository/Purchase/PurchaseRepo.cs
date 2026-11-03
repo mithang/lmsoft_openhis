@@ -1,4 +1,5 @@
 using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Exceptions;
 using Newtouch.Herp.Domain.Entity;
 using SqlSugar;
 using Newtouch.Herp.Domain.IRepository;
@@ -42,6 +43,7 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
         public void PurchaseDelete(string cgId, string orgId)
         {
             var dbEntity = this.FindEntity(p => p.cgId == cgId);
+            if (dbEntity == null) throw new FailedException("Không tìm thấy đơn mua hàng.");
             //properties
             dbEntity.zt = "0";
             dbEntity.Modify(cgId);
@@ -51,6 +53,7 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
         public void PurchaseStateUpdate(string cgId, int ddzt, string orgId)
         {
             var dbEntity = this.FindEntity(p => p.cgId == cgId);
+            if (dbEntity == null) throw new FailedException("Không tìm thấy đơn mua hàng.");
             //properties
             dbEntity.ddzt = ddzt;
             dbEntity.Modify(cgId);
@@ -68,6 +71,7 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
         public void PurchaseDdbhUpdate(string cgId, string ddbh, string orgId)
         {
             var dbEntity = this.FindEntity(p => p.cgId == cgId);
+            if (dbEntity == null) throw new FailedException("Không tìm thấy đơn mua hàng.");
             //properties
             dbEntity.ddbh = ddbh;
             dbEntity.Modify(cgId);
@@ -80,6 +84,7 @@ and createtime BETWEEN @kssj  AND  @jssj+' 23:59:59' ";
             if (!string.IsNullOrEmpty(keyValue))
             {
                 var dbEntity = this.FindEntity(p => p.cgId == keyValue);
+                if (dbEntity == null) throw new FailedException("Không tìm thấy đơn mua hàng.");
                 //properties
                 dbEntity.cgId = entity.cgId;
                 dbEntity.czlx = entity.czlx;
