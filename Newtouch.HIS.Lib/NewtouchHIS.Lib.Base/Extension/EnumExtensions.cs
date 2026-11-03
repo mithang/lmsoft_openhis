@@ -43,6 +43,13 @@ namespace NewtouchHIS.Lib.Base.Extension
         public static string GetDescription(this System.Enum enumValue)
         {
             FieldInfo fieldInfo = enumValue.GetType().GetField(enumValue.ToString());
+            if (fieldInfo == null)
+            {
+                // Gia tri enum ngoai khoang (VD: (EnumYzlx)999 tu tham so request/DB):
+                // GetField tra null, deref cu gay NRE. Tra ve dang so nhu
+                // nhanh fallback san co ben duoi, khop ban an toan o Sett HosHelpers.
+                return enumValue.ToString();
+            }
             DescriptionAttribute[] attrs =
                 fieldInfo.GetCustomAttributes(typeof(DescriptionAttribute), false) as DescriptionAttribute[];
 

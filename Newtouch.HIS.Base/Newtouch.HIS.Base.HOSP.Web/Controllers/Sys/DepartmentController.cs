@@ -182,7 +182,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         public IActionResult UpdateDeptWard(string keyValue, string wardList)
         {
             var deptInfo = _sysDepartmentRepository.FindEntity(keyValue);
-            if (deptInfo != null || deptInfo.OrganizeId != "")
+            if (deptInfo != null && deptInfo.OrganizeId != "")
             {
                 string OrganizeId = deptInfo.OrganizeId;
                 _sysOrganizeDmnService.UpdateDepartmentWard(keyValue, (wardList ?? "").Split(','), OrganizeId);
