@@ -71,9 +71,13 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
     // — JSON dd/MM/yyyy bind đúng; KHÔNG đổi Culture toàn cục (mọi response
     // đều qua CreateResponse với JsonConvert.SerializeObject mặc định nên
     // không bị ảnh hưởng, nhưng tránh mọi tác dụng phụ lên response).
+    // F-API-02 (cycle 167, mẫu CIS.API/PDS.API): SuppressModelStateInvalidFilter
+    // để lỗi deserialize JSON (body sai định dạng, Timestamp không hợp lệ) rơi
+    // vào CommonExecute và trả envelope thay vì HTTP 400 problem-details trần
+    // của [ApiController]; BljgDataController đã guard model null (xem action).
     options.SerializerSettings.Converters.Add(new Newtouch.EMR.API.Converters.ViDateTimeJsonConverter());
     options.SerializerSettings.Converters.Add(new Newtouch.EMR.API.Converters.ViNullableDateTimeJsonConverter());
-});
+}).ConfigureApiBehaviorOptions(o => o.SuppressModelStateInvalidFilter = true);
 var app = builder.Build();
 
 app.UseRouting();

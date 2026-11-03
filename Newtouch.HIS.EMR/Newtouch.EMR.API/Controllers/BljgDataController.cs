@@ -31,10 +31,15 @@ namespace Newtouch.EMR.API.Controllers
         [IgnoreTokenDecrypt]
         public ContentResult BljghDataDealwith([FromBody] BljghReq par)
         {
-            par.Timestamp = DateTime.Now;
+            // F-API-02 (cycle 167): KHÔNG gán par.Timestamp ở đây — với
+            // SuppressModelStateInvalidFilter, body rỗng/sai định dạng cho par
+            // null và deref ở đây ném NRE ngoài CommonExecute (HTTP 500). Gán
+            // trong lambda để null rơi vào try/catch của CommonExecute và trả
+            // envelope lỗi sạch như các action khác (req chính là par).
             Action<BljghReq, DefaultResponse> ac = (req, resp) =>
             {
-                _bljsRepo.BljghDataDealwith(par);
+                req.Timestamp = DateTime.Now;
+                _bljsRepo.BljghDataDealwith(req);
                 resp.data = null;
                 resp.code = APIRequestHelper.ResponseResultCode.SUCCESS;
             };

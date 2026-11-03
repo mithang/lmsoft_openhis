@@ -75,7 +75,21 @@ foreach (var type in infraAsm.GetTypes())
     }
 }
 builder.Services.AddSingleton<Newtouch.HIS.Repository.ICache, Newtouch.HIS.Repository.MemoryICache>();
-builder.Services.AddControllers();
+// F-API-02 (cycle 167, mẫu CIS.API/PDS.API): [ApiController] mặc định chặn request bằng
+// HTTP 400 problem-details trước khi vào action, và System.Text.Json chỉ parse
+// Timestamp dạng ISO 8601. Formatter gốc của Web API Framework là Newtonsoft:
+// chấp nhận cả "yyyy-MM-dd HH:mm:ss" (định dạng RequestBase mô tả) lẫn ISO 8601.
+// SuppressModelStateInvalidFilter để lỗi deserialize (Timestamp thật sự không
+// hợp lệ) rơi vào CommonExecute và trả envelope SOMEARGUMENTS_IS_REQUIRED thay
+// vì 400 trần; Timestamp thiếu/null vẫn trả TIMESTAMP_IS_REQUIRED như cũ.
+builder.Services.AddControllers().AddNewtonsoftJson(options =>
+{
+    // Converter ngày JSON (cycle 167, mirror CIS.API vòng 45) — JSON dd/MM/yyyy
+    // bind đúng; KHÔNG đổi Culture toàn cục (CreateResponse serialize bằng
+    // settings riêng, nhưng tránh mọi tác dụng phụ lên response).
+    options.SerializerSettings.Converters.Add(new Newtouch.HIS.Base.HOSP.API.Converters.ViDateTimeJsonConverter());
+    options.SerializerSettings.Converters.Add(new Newtouch.HIS.Base.HOSP.API.Converters.ViNullableDateTimeJsonConverter());
+}).ConfigureApiBehaviorOptions(o => o.SuppressModelStateInvalidFilter = true);
 builder.Services.AddSignalR();
 
 var app = builder.Build();
