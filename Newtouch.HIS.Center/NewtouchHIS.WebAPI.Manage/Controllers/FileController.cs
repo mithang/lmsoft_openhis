@@ -91,11 +91,12 @@ namespace NewtouchHIS.WebAPI.Manage.Controllers
         {
             var filename = ContentDispositionHeaderValue.Parse(file.ContentDisposition).FileName; // Tên tệp gốc(bao gồm đường dẫn)
             var dotIdx = string.IsNullOrEmpty(filename) ? -1 : filename.LastIndexOf('.');
-            if (dotIdx < 0)
+            // Tên như "file." có dấu chấm cuối nhưng phần mở rộng rỗng: từ chối như tên không có phần mở rộng.
+            var extName = dotIdx < 0 ? string.Empty : filename.Substring(dotIdx).Replace("\"", ""); // Phần mở rộng
+            if (dotIdx < 0 || extName.Length <= 1)
             {
                 throw new FailedException("Tên tệp tải lên phải có phần mở rộng.");
             }
-            var extName = filename.Substring(dotIdx).Replace("\"", "");// Phần mở rộng
             string shortfilename = $"{Guid.NewGuid()}{extName}";// Tên tệp mới
             string fileSavePath = $"{Directory.GetCurrentDirectory()}{fileManageConf.DrgDataFileDirPathWithDate ?? "/File/Drg/"}"; //Thư mục tạm của tệp,sau khi nhập xong Xóa
             filename = fileSavePath + shortfilename; // Tên tệp mới(bao gồm đường dẫn)
