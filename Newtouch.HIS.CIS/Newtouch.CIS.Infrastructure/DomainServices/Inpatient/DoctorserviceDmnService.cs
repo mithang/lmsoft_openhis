@@ -202,7 +202,7 @@ namespace Newtouch.DomainServices.Inpatient
                                     var tzsj = new DateTime();
                                     if (!string.IsNullOrWhiteSpace(item.ts.ToString()))
                                     {
-                                        tzsj = ParseKssj(item).AddDays(item.ts.ToInt());
+                                        tzsj = AddDaysChecked(ParseKssj(item), item.ts.ToInt());
                                     }
                                     ssyzcfId = item.Id;
                                     if (!EditCQdoctorService(item, orgId, ref dto, tzsj))
@@ -470,7 +470,7 @@ namespace Newtouch.DomainServices.Inpatient
                             var tzsj = new DateTime();
                             if (!string.IsNullOrWhiteSpace(item.ts.ToString()))
                             {
-                                tzsj = ParseKssj(item).AddDays(item.ts.ToInt());
+                                tzsj = AddDaysChecked(ParseKssj(item), item.ts.ToInt());
                             }
                             ssyzcfId = item.Id;
                             if (!EditCQdoctorService(item, orgId, ref dto, tzsj))
@@ -710,6 +710,18 @@ namespace Newtouch.DomainServices.Inpatient
                 throw new FailedException("yzzdsj không đúng định dạng ngày giờ: " + item.yzzdsj);
             }
             return yzzdsj;
+        }
+
+        DateTime AddDaysChecked(DateTime kssj, int ts)
+        {
+            // AddDays(ts) ném ArgumentOutOfRangeException khi kết quả vượt
+            // ngoài [DateTime.MinValue, DateTime.MaxValue]; chỉ từ chối đúng
+            // các giá trị gây tràn, giữ nguyên mọi giá trị hợp lệ.
+            if (ts < (DateTime.MinValue - kssj).TotalDays || ts > (DateTime.MaxValue - kssj).TotalDays)
+            {
+                throw new FailedException("ts không đúng phạm vi ngày giờ: " + ts);
+            }
+            return kssj.AddDays(ts);
         }
 
         /// <summary>

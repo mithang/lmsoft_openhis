@@ -556,6 +556,12 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
         {
             if (entity != null && entity.Count() > 0)
             {
+                // sjd rỗng + flag != "1": int.Parse(sjd.ToString()) ném
+                // FormatException trong transaction, sau khi đã xóa/chèn.
+                if (flag != "1" && !sjd.HasValue)
+                {
+                    throw new FailedException("sjd không được để trống.");
+                }
                 using (var db = new EFDbTransaction().BeginTrans())
                 {
                     foreach (var item in entity)
@@ -578,7 +584,7 @@ left join [NewtouchHIS_Base].[dbo].[V_S_xt_bq] c with(nolock) on c.bqcode=b.ward
                             item.zdysjd = sjd.ToString();
                         }
                         else {
-                            item.sj =int.Parse(sjd.ToString());
+                            item.sj = sjd.Value;
                         }
                         db.Insert(item);
                     }

@@ -771,6 +771,13 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         {
             try
             {
+                // zh là số nhóm: validate trước mọi ghi — int.Parse(zh) trong
+                // addcqyz ném FormatException sau khi các dòng binding-fee đã
+                // ghi, và catch bên dưới trả Success() (fake success).
+                if (!string.IsNullOrWhiteSpace(zh) && !int.TryParse(zh, out _))
+                {
+                    return Error("Số nhóm (zh) không đúng định dạng số.");
+                }
 
 
                 //var bindinglist = _medicalAdviceBindingFeeRepo.IQueryable().Where(p => p.zyh == zyh && p.OrganizeId == OrganizeId && p.yzh == yzh && p.zt == "1").ToList();

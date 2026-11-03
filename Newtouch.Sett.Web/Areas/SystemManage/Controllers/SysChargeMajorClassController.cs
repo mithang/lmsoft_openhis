@@ -100,8 +100,11 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             var entity = new SysChargeCategoryEntity();
             if (!string.IsNullOrWhiteSpace(keyValue))
             {
-                
-                entity = _SysChargeMajorClassApp.GetForm(int.Parse(keyValue));
+                if (!int.TryParse(keyValue, out var keyId))
+                {
+                    return Error("Mã không hợp lệ.");
+                }
+                entity = _SysChargeMajorClassApp.GetForm(keyId);
             }
             else
             {

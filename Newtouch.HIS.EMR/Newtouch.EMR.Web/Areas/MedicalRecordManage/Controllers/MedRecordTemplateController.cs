@@ -332,8 +332,56 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         }
 
         #region  dc5.0 Cách thực hiện
+        // Fail-closed containment cho đường dẫn mẫu (vòng 145): mọi đường dẫn
+        // file suy ra từ templateUrl của request phải nằm trong thư mục gốc
+        // của ứng dụng; đường dẫn thoát ra ngoài (../, tuyệt đối) bị từ chối
+        // trước mọi thao tác đọc/ghi. Cùng pattern SettFileHelper (vòng 114).
+        // Lưu ý: GetFullPath giữ nguyên dấu / cuối của BaseDirectory nên
+        // phải trim trước khi nối thêm separator, nếu không mọi đường dẫn
+        // trong thư mục gốc đều bị từ chối sai.
+        [NonAction]
+        private string TemplateBaseDir()
+        {
+            var baseDir = Path.GetFullPath(AppDomain.CurrentDomain.BaseDirectory);
+            if (baseDir.Length > 1)
+            {
+                baseDir = baseDir.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+            }
+            return baseDir;
+        }
+
+        [NonAction]
+        private bool IsTemplatePathWithinBase(string candidatePath)
+        {
+            var baseDir = TemplateBaseDir();
+            var fullPath = Path.GetFullPath(candidatePath);
+            if (fullPath.Length > 1)
+            {
+                fullPath = fullPath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+            }
+            return fullPath.Length > baseDir.Length
+                && fullPath.StartsWith(baseDir + Path.DirectorySeparatorChar, StringComparison.Ordinal);
+        }
+
+        [NonAction]
+        private bool IsTemplatePathWithinBaseOrBase(string candidatePath)
+        {
+            var baseDir = TemplateBaseDir();
+            var fullPath = Path.GetFullPath(candidatePath);
+            if (fullPath.Length > 1)
+            {
+                fullPath = fullPath.TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+            }
+            return string.Equals(fullPath, baseDir, StringComparison.Ordinal)
+                || fullPath.StartsWith(baseDir + Path.DirectorySeparatorChar, StringComparison.Ordinal);
+        }
+
         public IActionResult GetTemplateXml(string templateUrl)
         {
+            if (string.IsNullOrWhiteSpace(templateUrl))
+            {
+                return Error("Đường dẫn mẫu không hợp lệ.");
+            }
             string[] arr = templateUrl.Split('\\');
             string filename = arr.LastOrDefault();
             string ml = AppDomain.CurrentDomain.BaseDirectory;
@@ -343,32 +391,39 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 if (arr[item].Contains(".xml"))
                 {
                     var xmlfile = ml + tempaleUrl + arr[item];
-                    var t = System.IO.File.Exists((xmlfile));
                     if (!System.IO.File.Exists((xmlfile)))
                     {
-                        //var defalutxml = "<XTextDocumentxmlns:xsi=\"http://www.w3.org/2001/XMLSchema-instance\"xmlns:xsd=\"http://www.w3.org/2001/XMLSchema\"EditorVersionString=\"1.2023.2.14\"></XTextDocument>";
-                        //System.IO.Directory.CreateDirectory(ml + tempaleUrl);
-                        var d = $"{ml}{tempaleUrl}{filename}";
-                        System.IO.File.WriteAllText($"{ml}{tempaleUrl}{filename}", "");
-                        //args.Handled = true;
-                        //return;
+                        var createPath = $"{ml}{tempaleUrl}{filename}";
+                        if (!IsTemplatePathWithinBase(createPath))
+                        {
+                            return Error("Đường dẫn mẫu không hợp lệ.");
+                        }
+                        System.IO.File.WriteAllText(createPath, "");
                     }
                     tempaleUrl += arr[item];
                 }
                 else
                 {
-                    var d = arr[item];
-                    var dd = ml + tempaleUrl + arr[item];
-                    if (!System.IO.Directory.Exists(ml + tempaleUrl + arr[item]))
+                    var dirPath = ml + tempaleUrl + arr[item];
+                    if (!System.IO.Directory.Exists(dirPath))
                     {
-                        System.IO.Directory.CreateDirectory(ml + tempaleUrl + arr[item]);
+                        if (!IsTemplatePathWithinBaseOrBase(dirPath))
+                        {
+                            return Error("Đường dẫn mẫu không hợp lệ.");
+                        }
+                        System.IO.Directory.CreateDirectory(dirPath);
                     }
                     tempaleUrl += arr[item] + "\\";
 
                 }
             }
             //string filename = args.FileName + ".xml";
-            string xml = System.IO.File.ReadAllText($"{ml}{tempaleUrl}");
+            var readPath = $"{ml}{tempaleUrl}";
+            if (!IsTemplatePathWithinBase(readPath))
+            {
+                return Error("Đường dẫn mẫu không hợp lệ.");
+            }
+            string xml = System.IO.File.ReadAllText(readPath);
             BlTemplateVo vo = new BlTemplateVo();
             vo.xmldata = xml;
             return Content(vo.ToJson());
@@ -399,6 +454,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         public IActionResult SaveTemplateXml(string templateUrl,string templateData)
         {
+            if (string.IsNullOrWhiteSpace(templateUrl) || !templateUrl.EndsWith(".xml", StringComparison.OrdinalIgnoreCase))
+            {
+                return Error("Đường dẫn mẫu không hợp lệ.");
+            }
             string filename = templateUrl;
             byte[] decodedBytes = Convert.FromBase64String(templateData);
             string xmlString = Encoding.UTF8.GetString(decodedBytes);
@@ -409,7 +468,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 System.IO.Directory.CreateDirectory(ml + "File");
             }
             var d = $"{ml}{filename}";
-            System.IO.File.WriteAllText($"{ml}{filename}", xmlString);
+            if (!IsTemplatePathWithinBase(d))
+            {
+                return Error("Đường dẫn mẫu không hợp lệ.");
+            }
+            System.IO.File.WriteAllText(d, xmlString);
             return Success();
         }
         #endregion
@@ -419,6 +482,10 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         #region openeditor
         public IActionResult GetTemplateHtml(string templateUrl)
         {
+            if (string.IsNullOrWhiteSpace(templateUrl))
+            {
+                return Error("Đường dẫn mẫu không hợp lệ.");
+            }
             templateUrl = templateUrl.Replace("xml","html");
             string[] arr = templateUrl.Split('\\');
             string filename = arr.LastOrDefault();
@@ -429,32 +496,49 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 if (arr[item].Contains(".html"))
                 {
                     var xmlfile = ml + tempaleUrl + arr[item];
-                    var t = System.IO.File.Exists((xmlfile));
                     if (!System.IO.File.Exists((xmlfile)))
                     {
-                        var d = $"{ml}{tempaleUrl}{filename}";
-                        System.IO.File.WriteAllText($"{ml}{tempaleUrl}{filename}", "<body data-hm-papersize=\"A4_portrait$top:5mm#right:5mm#bottom:5mm#left:5mm\" meta_json=\"\" style=\"\" class=\"\"><table class=\"dashed-border font-normal\" style=\"width: 100%; table-layout: auto;\" data-hm-table=\"true\" hm-table-id=\"ef00d3b996d222f2e8e56ef5e19a40486\" _paperheader=\"true\"><colgroup><col style=\"width: 17.1897%;\"><col style=\"width: 37.9707%;\"><col style=\"width: 19.8396%;\"><col style=\"width: 25%;\"></colgroup><tbody><tr><td style=\"width: 100%; text-align: center;\" colspan=\"4\"><p><br></p></td></tr><tr><td style=\"width: 100%; text-align: center;\" colspan=\"4\">Tiêu đề trang</td></tr><tr><td style=\"width: 17.1897%; border-bottom: 1px solid black;\"><br></td><td style=\"width: 37.9707%; border-bottom: 1px solid black;\"><br></td><td style=\"width: 19.8396%; border-bottom: 1px solid black;\"><br></td><td style=\"width: 25%; border-bottom: 1px solid black;\"><br></td></tr></tbody></table><p><br><span data-cke-bookmark=\"1\" style=\"display: none;\">&nbsp;</span>　　</p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><table class=\"dashed-border font-normal\" style=\"width: 100%; table-layout: auto;\" data-hm-table=\"true\" hm-table-id=\"e5765dc780bff98a90954d12e022e605d\" _paperfooter=\"true\"><colgroup><col style=\"width: 100%;\"></colgroup><tbody><tr><td style=\"width: 100%; text-align: center; border-top-width: 1px; border-top-style: solid;\">Trang <span contenteditable=\"false\" class=\"page\"> </span></td></tr></tbody></table></body>");
+                        var createPath = $"{ml}{tempaleUrl}{filename}";
+                        if (!IsTemplatePathWithinBase(createPath))
+                        {
+                            return Error("Đường dẫn mẫu không hợp lệ.");
+                        }
+                        System.IO.File.WriteAllText(createPath, "<body data-hm-papersize=\"A4_portrait$top:5mm#right:5mm#bottom:5mm#left:5mm\" meta_json=\"\" style=\"\" class=\"\"><table class=\"dashed-border font-normal\" style=\"width: 100%; table-layout: auto;\" data-hm-table=\"true\" hm-table-id=\"ef00d3b996d222f2e8e56ef5e19a40486\" _paperheader=\"true\"><colgroup><col style=\"width: 17.1897%;\"><col style=\"width: 37.9707%;\"><col style=\"width: 19.8396%;\"><col style=\"width: 25%;\"></colgroup><tbody><tr><td style=\"width: 100%; text-align: center;\" colspan=\"4\"><p><br></p></td></tr><tr><td style=\"width: 100%; text-align: center;\" colspan=\"4\">Tiêu đề trang</td></tr><tr><td style=\"width: 17.1897%; border-bottom: 1px solid black;\"><br></td><td style=\"width: 37.9707%; border-bottom: 1px solid black;\"><br></td><td style=\"width: 19.8396%; border-bottom: 1px solid black;\"><br></td><td style=\"width: 25%; border-bottom: 1px solid black;\"><br></td></tr></tbody></table><p><br><span data-cke-bookmark=\"1\" style=\"display: none;\">&nbsp;</span>　　</p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><p><br></p><table class=\"dashed-border font-normal\" style=\"width: 100%; table-layout: auto;\" data-hm-table=\"true\" hm-table-id=\"e5765dc780bff98a90954d12e022e605d\" _paperfooter=\"true\"><colgroup><col style=\"width: 100%;\"></colgroup><tbody><tr><td style=\"width: 100%; text-align: center; border-top-width: 1px; border-top-style: solid;\">Trang <span contenteditable=\"false\" class=\"page\"> </span></td></tr></tbody></table></body>");
                     }
                     tempaleUrl += arr[item];
                 }
                 else
                 {
-                    if (!System.IO.Directory.Exists(ml + tempaleUrl + arr[item]))
+                    var dirPath = ml + tempaleUrl + arr[item];
+                    if (!System.IO.Directory.Exists(dirPath))
                     {
-                        System.IO.Directory.CreateDirectory(ml + tempaleUrl + arr[item]);
+                        if (!IsTemplatePathWithinBaseOrBase(dirPath))
+                        {
+                            return Error("Đường dẫn mẫu không hợp lệ.");
+                        }
+                        System.IO.Directory.CreateDirectory(dirPath);
                     }
                     tempaleUrl += arr[item] + "\\";
 
                 }
             }
-            string xml = System.IO.File.ReadAllText($"{ml}{tempaleUrl}");
+            var readPath = $"{ml}{tempaleUrl}";
+            if (!IsTemplatePathWithinBase(readPath))
+            {
+                return Error("Đường dẫn mẫu không hợp lệ.");
+            }
+            string xml = System.IO.File.ReadAllText(readPath);
             BlTemplateVo vo = new BlTemplateVo();
             vo.xmldata = xml;
             return Content(vo.ToJson());
         }
         public IActionResult SaveTemplateHtml(string templateUrl, string templateData)
         {
-            string filename = templateUrl.Replace("xml", "html");
+            string filename = string.IsNullOrWhiteSpace(templateUrl) ? "" : templateUrl.Replace("xml", "html");
+            if (string.IsNullOrWhiteSpace(filename) || !filename.EndsWith(".html", StringComparison.OrdinalIgnoreCase))
+            {
+                return Error("Đường dẫn mẫu không hợp lệ.");
+            }
             byte[] decodedBytes = Convert.FromBase64String(templateData);
             string xmlString = Encoding.UTF8.GetString(decodedBytes);
             string ml = AppDomain.CurrentDomain.BaseDirectory;
@@ -464,7 +548,11 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 System.IO.Directory.CreateDirectory(ml + "File");
             }
             var d = $"{ml}{filename}";
-            System.IO.File.WriteAllText($"{ml}{filename}", xmlString);
+            if (!IsTemplatePathWithinBase(d))
+            {
+                return Error("Đường dẫn mẫu không hợp lệ.");
+            }
+            System.IO.File.WriteAllText(d, xmlString);
             return Success();
         }
         #endregion
