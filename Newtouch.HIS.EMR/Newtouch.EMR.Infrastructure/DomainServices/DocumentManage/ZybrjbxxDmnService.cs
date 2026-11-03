@@ -538,7 +538,8 @@ FROM    dbo.zy_brjbxx zyxx  with(nolock)
 
             if (!string.IsNullOrWhiteSpace(cyts))
             {
-                int ts = Convert.ToInt16(cyts);
+                if (!short.TryParse(cyts, out short tsValue)) throw new FailedException("Số ngày không đúng định dạng số.");
+                int ts = tsValue;
                 if (ts > 0)
                 {
                     string rq = DateTime.Now.AddDays(-ts + 1).ToString("yyyy-MM-dd");
@@ -593,13 +594,21 @@ FROM    dbo.zy_brjbxx zyxx  with(nolock)
         public void UpdtPatMedRecord(string blId, string blgxId, string OrgId, OperatorModel user)
         {
             var gxEty = _ZymeddocsrelationRepo.FindEntity(p => p.Id == blgxId);
-            if (gxEty.OrganizeId == OrgId && gxEty.blId == blId)
+            if (gxEty != null && gxEty.OrganizeId == OrgId && gxEty.blId == blId)
             {
+                if (string.IsNullOrWhiteSpace(gxEty.bllx))
+                {
+                    throw new FailedException("Thông tin bệnh án bất thường, vui lòng lấy lại để tiếp tục");
+                }
                 gxEty.zt = "0";
 
+                var bllxmc = _BllxRepo.FindEntity(p => p.bllx.Substring(0, 1) == gxEty.bllx.Substring(0, 1) && p.OrganizeId == OrgId && p.zt == "1");
+                if (bllxmc == null)
+                {
+                    throw new FailedException("Thông tin bệnh án bất thường, vui lòng lấy lại để tiếp tục");
+                }
                 try
                 {
-                    var bllxmc = _BllxRepo.FindEntity(p => p.bllx.Substring(0, 1) == gxEty.bllx.Substring(0, 1) && p.OrganizeId == OrgId && p.zt == "1");
                     string sql = @"update a
                         set a.zt = 0,a.LastModifierCode = '" + user.rygh + @"',a.LastModifyTime = getdate()
                         from " + bllxmc.relTB + @" a

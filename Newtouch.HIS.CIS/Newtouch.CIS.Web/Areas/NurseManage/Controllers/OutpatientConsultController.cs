@@ -259,6 +259,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 
         public IActionResult isDoctorRepeat(List<OutpatientConsultDoctorVO> zsyslist)
         {
+            if (zsyslist == null || zsyslist.Count == 0)
+            {
+                return Content("[]");
+            }
             var zsStr = "";
             var ghStr = "";
             foreach (var zsys in zsyslist)

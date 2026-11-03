@@ -89,8 +89,9 @@ where a.zt='1' and a.sqzt<> " + (int)EnumSqzt.yqx;
                 }
                 if (!string.IsNullOrWhiteSpace(dto.keyword))
                 {
-                    sql += " and (a.zyh=@keyword or a.xm like '%" + dto.keyword + "%')";
+                    sql += " and (a.zyh=@keyword or a.xm like @keywordLike)";
                     para.Add(new SugarParameter("@keyword", dto.keyword));
+                    para.Add(new SugarParameter("@keywordLike", "%" + dto.keyword + "%"));
                 }
                 if (!string.IsNullOrWhiteSpace(dto.sszt))
                 {

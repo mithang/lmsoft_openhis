@@ -99,7 +99,8 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             int? xz = null;
             if (accountConfig == "ON" && !string.IsNullOrWhiteSpace(zhxz))
             {
-                xz = Convert.ToInt16(zhxz);
+                if (!short.TryParse(zhxz, out short xzValue)) throw new FailedException("Tính chất tài khoản không đúng định dạng số.");
+                xz = xzValue;
                 var zyzh = _inpatientAccountRepo.IQueryable().Where(p =>
                     p.zyh == zyh && p.zhxz == xz && p.OrganizeId == OrganizeId &&
                     p.zt == "1");
@@ -110,7 +111,21 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             }
             else
             {
-                xz = Convert.ToInt16(zhxz);
+                // Nhánh else chạy cả khi zhxz rỗng: Convert.ToInt16(null) vốn trả 0,
+                // Convert.ToInt16("") vốn ném FormatException — giữ 0 cho null,
+                // báo lỗi sạch cho chuỗi rỗng/khoảng trắng/sai định dạng.
+                if (zhxz == null)
+                {
+                    xz = 0;
+                }
+                else if (!short.TryParse(zhxz, out short xzValue))
+                {
+                    throw new FailedException("Tính chất tài khoản không đúng định dạng số.");
+                }
+                else
+                {
+                    xz = xzValue;
+                }
                 var zh = _inpatientAccountRepo.IQueryable().Where(p => p.zyh == zyh && p.OrganizeId == OrganizeId && p.zt == "1");
                 if (zh != null && zh.Count() > 0)
                 {

@@ -73,6 +73,10 @@ namespace Newtouch.MR.ManageSystem.DomainServices
 
         public medicalRecordVO GetMedicalRecord(string blid, string bllx,string organizeId)
         {
+            if (string.IsNullOrWhiteSpace(bllx))
+            {
+                throw new FailedException("Loại bệnh án không được để trống.");
+            }
             var medicalRecordVO = new medicalRecordVO();
             
             switch (bllx.Substring(0,1))

@@ -918,7 +918,10 @@ namespace Newtouch.CIS.Web.Controllers
             var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<List<MedicalRecordInfoResponse>>>(
                 "/api/Patient/PatientMedicalRecordQuery", reqObj);
 
-            ghsj = ghsj.Substring(0, 8);
+            if (apiResp == null || apiResp.data == null)
+            {
+                return Content("[]");
+            }
             var list = apiResp.data.ToList();
 
             return Content(list.ToJson());
@@ -1553,9 +1556,18 @@ namespace Newtouch.CIS.Web.Controllers
 
         public IActionResult SaveBarCodeByYzh(string yzlist)
         {
-            var yzh = yzlist.Substring(1).Split(',');
+            if (string.IsNullOrWhiteSpace(yzlist))
+            {
+                return Content("");
+            }
+            // JS gửi ",YZH1,YZH2" (dấu phẩy đầu): chỉ bỏ đúng 1 dấu phẩy đầu nếu có.
+            var yzh = (yzlist.StartsWith(",") ? yzlist.Substring(1) : yzlist).Split(',');
             foreach (var item in yzh)
             {
+                if (string.IsNullOrWhiteSpace(item))
+                {
+                    continue;
+                }
                 var entity = _mzzybarcodeRepo.IQueryable(p => p.yzh == item && p.OrganizeId == this.OrganizeId && p.zt == "1").FirstOrDefault();
                 if (entity == null)
                 {

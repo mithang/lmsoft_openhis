@@ -185,14 +185,35 @@ where zt='1'  and organizeid=@orgId and  Lev!=1";
 			if (!string.IsNullOrWhiteSpace(ids))
 			{
 				pars = pars ?? new List<SugarParameter>();
-				sql.Append(" and b.id in ("+ids+")");
-				pars.Add(new SugarParameter("@ids", ids));
+				var idList = ids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+					.Select(s => s.Trim())
+					.Where(s => s.Length > 0)
+					.ToList();
+				if (idList.Count == 0)
+				{
+					sql.Append(" and 1=0");
+				}
+				else
+				{
+					var inNames = new List<string>();
+					for (int i = 0; i < idList.Count; i++)
+					{
+						string pname = "@id" + i;
+						inNames.Add(pname);
+						pars.Add(new SugarParameter(pname, idList[i]));
+					}
+					sql.Append(" and b.id in (" + string.Join(",", inNames) + ")");
+				}
 			}
 			return this.QueryWithPage<bafeeRelVO>(sql.ToString(), pagination, pars == null ? null : pars.ToArray());
 		}
 
 		public string confirmEnding(string str, string target)
 		{
+			if (string.IsNullOrEmpty(str))
+			{
+				return str;
+			}
 			if (str.EndsWith(target))
 			{
 				return str.Substring(0, str.Length-target.Length);
@@ -311,27 +332,29 @@ from  [NewtouchHIS_Base].[dbo].[V_S_xt_sfxm] a with(nolock)
 where sfxmCode in({0}) and OrganizeId=@orgId 
 --and not exists(select 1 from mr_dic_sfxmrel b with(nolock) where a.sfxmCode=b.sfxm and b.zt='1')
 ";
-                    string pids = "";
-                    string[] idss = ids.Split(',');
-                    foreach (string id in idss)
+                    var idList = ids.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries)
+                        .Select(s => s.Trim())
+                        .Where(s => s.Length > 0)
+                        .ToList();
+                    if (idList.Count == 0)
                     {
-                        if (!string.IsNullOrWhiteSpace(id))
-                        {
-                            if (pids == "")
-                            {
-                                pids = "'" + id + "'";
-                            }
-                            else {
-                                pids += ",'" + id + "'";
-                            }
-                        }
+                        throw new FailedException("Nhóm thu phí bệnh án và nhóm thu phí HIS không được để trống!");
                     }
-                    sql = string.Format(sql, pids);
-                    int cnt= this.ExecuteSqlCommand(sql, new SugarParameter[] {
+                    var inNames = new List<string>();
+                    var pars = new List<SugarParameter>
+                    {
                         new SugarParameter("@code",code),
                         new SugarParameter("@user",user),
                         new SugarParameter("@orgId",orgId)
-                    });
+                    };
+                    for (int i = 0; i < idList.Count; i++)
+                    {
+                        string pname = "@id" + i;
+                        inNames.Add(pname);
+                        pars.Add(new SugarParameter(pname, idList[i]));
+                    }
+                    sql = string.Format(sql, string.Join(",", inNames));
+                    int cnt = this.ExecuteSqlCommand(sql, pars.ToArray());
                 }
                 catch (Exception ex)
                 {

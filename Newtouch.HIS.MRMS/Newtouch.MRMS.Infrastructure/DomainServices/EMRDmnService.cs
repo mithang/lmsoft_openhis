@@ -137,7 +137,8 @@ and not exists(select 1 from mr_basy m with(nolock) where a.organizeid=m.organiz
 
             if (!string.IsNullOrWhiteSpace(cyts))
             {
-                int ts = Convert.ToInt16(cyts);
+                if (!short.TryParse(cyts, out short tsValue)) throw new FailedException("Số ngày không đúng định dạng số.");
+                int ts = tsValue;
                 if (ts > 0)
                 {
                     string rq = DateTime.Now.AddDays(-ts + 1).ToString("yyyy-MM-dd");

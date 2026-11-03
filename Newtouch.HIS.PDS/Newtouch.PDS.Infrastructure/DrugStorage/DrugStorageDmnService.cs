@@ -617,14 +617,14 @@ AND a.Slbm LIKE @slbm
 			};
 			if (!string.IsNullOrWhiteSpace(txtStartDate))
 			{
-				var startT = Convert.ToDateTime(txtStartDate);
+				if (!DateTime.TryParse(txtStartDate, out var startT)) throw new FailedException("Ngày bắt đầu không đúng định dạng ngày giờ: " + txtStartDate);
 				startT = startT < Constants.MinDateTime ? Constants.MinDateTime : startT;
 				strSql.AppendLine("AND a.CreateTime>=@startTime ");
 				par.Add(new SugarParameter("@startTime", startT.ToString("yyyy-MM-dd HH:mm:ss")));
 			}
 			if (!string.IsNullOrWhiteSpace(txtEndDate))
 			{
-				var endT = Convert.ToDateTime(txtEndDate);
+				if (!DateTime.TryParse(txtEndDate, out var endT)) throw new FailedException("Ngày kết thúc không đúng định dạng ngày giờ: " + txtEndDate);
 				endT = endT < Constants.MinDateTime ? Constants.MinDateTime : endT;
 				strSql.AppendLine("AND a.CreateTime<=@endTime ");
 				par.Add(new SugarParameter("@endTime", endT.ToString("yyyy-MM-dd HH:mm:ss")));

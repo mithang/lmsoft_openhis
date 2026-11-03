@@ -77,8 +77,10 @@ where a.organizeid=@orgId and a.zt='1'
             if(!string.IsNullOrWhiteSpace(cyksrq)&&!string.IsNullOrWhiteSpace(cyjsrq))
             {
                 sql += " and a.CYSJ >= @ksrq and a.CYSJ < @jsrq ";
-                string ksrq = Convert.ToDateTime(cyksrq).ToString("yyyy-MM-dd");
-                string jsrq = Convert.ToDateTime(cyjsrq).AddDays(1).ToString("yyyy-MM-dd");
+                if (!DateTime.TryParse(cyksrq, out var ksrqValue)) throw new FailedException("Ngày bắt đầu không đúng định dạng ngày giờ: " + cyksrq);
+                if (!DateTime.TryParse(cyjsrq, out var jsrqValue)) throw new FailedException("Ngày kết thúc không đúng định dạng ngày giờ: " + cyjsrq);
+                string ksrq = ksrqValue.ToString("yyyy-MM-dd");
+                string jsrq = jsrqValue.AddDays(1).ToString("yyyy-MM-dd");
                 para.Add(new SugarParameter("@ksrq", ksrq));
                 para.Add(new SugarParameter("@jsrq", jsrq));
             }
@@ -830,7 +832,8 @@ order by SSOrder ";
             ety.ZYH = vo.ZYH;
             if(!string.IsNullOrWhiteSpace(vo.CSRQ))
             {
-                ety.CSRQ = Convert.ToDateTime(vo.CSRQ);
+                if (!DateTime.TryParse(vo.CSRQ, out var csrq)) throw new FailedException("CSRQ không đúng định dạng ngày giờ: " + vo.CSRQ);
+                ety.CSRQ = csrq;
             }           
             ety.NL = vo.NL;
             ety.GJ = vo.GJ;
@@ -858,8 +861,9 @@ order by SSOrder ";
             ety.RYTJ = vo.RYTJ;
             if (!string.IsNullOrWhiteSpace(vo.RYSJ))
             {
-                ety.RYSJ = Convert.ToDateTime(vo.RYSJ);
-                ety.RYSJS = Convert.ToDateTime(vo.RYSJ).Hour;
+                if (!DateTime.TryParse(vo.RYSJ, out var rysj)) throw new FailedException("RYSJ không đúng định dạng ngày giờ: " + vo.RYSJ);
+                ety.RYSJ = rysj;
+                ety.RYSJS = rysj.Hour;
             }
 
             ety.RYKB = vo.RYKB;
@@ -868,8 +872,9 @@ order by SSOrder ";
 
             if (!string.IsNullOrWhiteSpace(vo.CYSJ))
             {
-                ety.CYSJ = Convert.ToDateTime(vo.CYSJ);
-                ety.CYSJS = Convert.ToDateTime(vo.CYSJ).Hour;
+                if (!DateTime.TryParse(vo.CYSJ, out var cysj)) throw new FailedException("CYSJ không đúng định dạng ngày giờ: " + vo.CYSJ);
+                ety.CYSJ = cysj;
+                ety.CYSJS = cysj.Hour;
             }
             ety.CYKB = vo.CYKB;
             ety.CYBF = vo.CYBF;
@@ -881,7 +886,8 @@ order by SSOrder ";
             ety.QJCGCS = vo.QJCGCS;
             if (!string.IsNullOrWhiteSpace(vo.QZRQ))
             {
-                ety.QZRQ = Convert.ToDateTime(vo.QZRQ);
+                if (!DateTime.TryParse(vo.QZRQ, out var qzrq)) throw new FailedException("QZRQ không đúng định dạng ngày giờ: " + vo.QZRQ);
+                ety.QZRQ = qzrq;
             }
             ety.ZQSS = vo.ZQSS;
             ety.BRLY = "1";
@@ -909,7 +915,8 @@ order by SSOrder ";
             ety.ZKHS = vo.ZKHS;
             if (!string.IsNullOrWhiteSpace(vo.ZKRQ))
             {
-                ety.ZKRQ = Convert.ToDateTime(vo.ZKRQ);
+                if (!DateTime.TryParse(vo.ZKRQ, out var zkrq)) throw new FailedException("ZKRQ không đúng định dạng ngày giờ: " + vo.ZKRQ);
+                ety.ZKRQ = zkrq;
             }
             ety.LYFS = vo.LYFS == null ? "9" : vo.LYFS;
             ety.YZZY_YLJG = vo.YZZY_YLJG;

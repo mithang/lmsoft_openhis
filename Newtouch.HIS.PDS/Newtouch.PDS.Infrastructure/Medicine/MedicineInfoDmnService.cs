@@ -1,4 +1,5 @@
 using NewtouchHIS.Lib.Base.Extension;
+using NewtouchHIS.Lib.Base.Exceptions;
 using System;
 using NewtouchHIS.Lib.Base.Model;
 using System.Collections.Generic;
@@ -327,14 +328,14 @@ WHERE   dj.OrganizeId=@Organizeid
             };
             if (!string.IsNullOrWhiteSpace(vo.begindate))
             {
-                var bt = Convert.ToDateTime(vo.begindate);
+                if (!DateTime.TryParse(vo.begindate, out var bt)) throw new FailedException("Ngày bắt đầu không đúng định dạng ngày giờ: " + vo.begindate);
                 bt = bt < Constants.MinDateTime ? Constants.MinDateTime : bt;
                 strSql.AppendLine(@"        AND dj.Czsj >= @startTime ");
                 parms.Add(new SugarParameter("@startTime", bt.ToString(Constants.DateTimeFormat)));
             }
             if (!string.IsNullOrWhiteSpace(vo.enddate))
             {
-                var et = Convert.ToDateTime(vo.enddate);
+                if (!DateTime.TryParse(vo.enddate, out var et)) throw new FailedException("Ngày kết thúc không đúng định dạng ngày giờ: " + vo.enddate);
                 et = et < Constants.MinDateTime ? Constants.MinDateTime : et;
                 strSql.AppendLine(@"        AND dj.Czsj <= @endTime ");
                 parms.Add(new SugarParameter("@endTime", et.ToString(Constants.DateTimeFormat)));
@@ -347,7 +348,8 @@ WHERE   dj.OrganizeId=@Organizeid
             strSql.AppendLine("        AND (dj.djlx =" + (int)EnumDanJuLX.zhijiefayao + " OR dj.djlx=" + (int)EnumDanJuLX.shenlingfayao + ") ");
             if (vo.djlx != "-1" && !string.IsNullOrWhiteSpace(vo.djlx))
             {
-                strSql.AppendLine("        AND dj.djlx=" + vo.djlx);
+                strSql.AppendLine("        AND dj.djlx=@djlx");
+                parms.Add(new SugarParameter("@djlx", vo.djlx));
             }
             return QueryWithPage<HandOutMedicineQueryVO>(strSql.ToString(), pagination, parms.ToArray());
         }

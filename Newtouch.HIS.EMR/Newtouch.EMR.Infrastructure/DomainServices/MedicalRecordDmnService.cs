@@ -92,6 +92,10 @@ namespace Newtouch.EMR.DomainServices
 
         public medicalRecordVO GetMedicalRecord(string blid, string bllx)
         {
+            if (string.IsNullOrWhiteSpace(bllx))
+            {
+                throw new FailedException("Loại bệnh án không được để trống.");
+            }
             var medicalRecordVO = new medicalRecordVO();
             switch (bllx.Substring(0, 1))
             {
@@ -155,6 +159,10 @@ namespace Newtouch.EMR.DomainServices
         /// <param name="Entity"></param>
         public void MedicalRecordSave(medicalRecordVO medicalRecord, ZymeddocsrelationEntity Entity)
         {
+            if (medicalRecord == null || string.IsNullOrWhiteSpace(medicalRecord.bllx))
+            {
+                throw new FailedException("Loại bệnh án không được để trống.");
+            }
 
             switch (medicalRecord.bllx.Substring(0, 1))
             {

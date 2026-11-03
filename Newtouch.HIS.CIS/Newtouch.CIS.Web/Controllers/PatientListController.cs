@@ -515,10 +515,13 @@ namespace Newtouch.CIS.Web.Controllers
 			//TheoStaffIdLấyKhu bệnh
 			var bqCodeList = _inpatientPatientDmnService.GetWardCodeByStaffId(StaffId,this.OrganizeId);
 			var bqCode = "";
-			foreach (var obj in bqCodeList) {
+			foreach (var obj in bqCodeList ?? new List<string>()) {
 				bqCode += obj + ",";
 			}
-			bqCode = bqCode.Substring(0, bqCode.Length - 1);
+			if (bqCode.Length > 0)
+			{
+				bqCode = bqCode.Substring(0, bqCode.Length - 1);
+			}
 			var data = new
             {
                 rows = _inpatientPatientDmnService.GetInPatSearchPaginationList(pagination, this.OrganizeId, bq, zyh, xm, ch, bqCode,zybz),

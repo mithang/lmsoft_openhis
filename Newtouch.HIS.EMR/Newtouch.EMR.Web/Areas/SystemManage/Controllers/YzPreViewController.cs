@@ -87,6 +87,10 @@ namespace Newtouch.EMR.Web.Areas.SystemManage.Controllers
         public IActionResult GetPrintTempleate(string templateName)
         {
             var data = _blmbRepo.FindEntity(p => p.mbmc == templateName && p.OrganizeId == this.OrganizeId && p.zt == "1");
+            if (data == null || string.IsNullOrWhiteSpace(data.mblj))
+            {
+                return Error("Không tìm thấy mẫu in.");
+            }
             string filename = data.mblj;
             string ml = AppDomain.CurrentDomain.BaseDirectory;
 

@@ -245,7 +245,7 @@ where organizeid=@org and blh=@blh and ks=@ks and convert(date,ghrq)=convert(dat
         {
             if (!string.IsNullOrWhiteSpace(queueNo))
             {
-                short j = Convert.ToInt16(queueNo);
+                if (!short.TryParse(queueNo, out short j)) throw new FailException("Số thứ tự không đúng định dạng số.");
                 var m = GetRegMzh(conn, tx, orgId, patid, scheduId, ks, user, j, outDate);
                 return Tuple.Create(j, m);
             }

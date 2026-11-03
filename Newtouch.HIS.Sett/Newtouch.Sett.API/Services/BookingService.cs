@@ -451,7 +451,8 @@ where a.zt='1' and a.OrganizeId=@orgId";
             if (!string.IsNullOrWhiteSpace(ksrq) && !string.IsNullOrWhiteSpace(jsrq))
             {
                 ps.Add(SettDb.P("@ksrq", ksrq));
-                ps.Add(SettDb.P("@jsrq", Convert.ToDateTime(jsrq).AddDays(1).ToString("yyyy-MM-dd")));
+                if (!DateTime.TryParse(jsrq, out var jsrqValue)) throw new FailException("Ngày kết thúc không đúng định dạng.");
+                ps.Add(SettDb.P("@jsrq", jsrqValue.AddDays(1).ToString("yyyy-MM-dd")));
             }
             else
             {

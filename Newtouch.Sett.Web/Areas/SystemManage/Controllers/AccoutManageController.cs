@@ -50,7 +50,8 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         {
             if (!string.IsNullOrWhiteSpace(zhxz))
             {
-                var zhInfo = _accountApp.GetZhyeByPatid(patid, Convert.ToInt16(zhxz));
+                if (!short.TryParse(zhxz, out short xzValue)) return Error("Tính chất tài khoản không đúng định dạng số.");
+                var zhInfo = _accountApp.GetZhyeByPatid(patid, xzValue);
                 return Success(null, zhInfo);
             }
             else

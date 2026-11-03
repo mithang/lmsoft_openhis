@@ -2,6 +2,7 @@ using Newtouch.EMR.Domain.Entity;
 using Newtouch.EMR.Domain.IRepository;
 using Newtouch.Infrastructure;
 using System.Collections.Generic;
+using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Base.Model;
 using System.Text;
 using Newtouch.EMR.Domain.BusinessObjects;
@@ -56,7 +57,8 @@ namespace Newtouch.EMR.Repository
                 dbEntity.xb = entity.xb;
                 if (!string.IsNullOrWhiteSpace(entity.csny))
                 {
-                    dbEntity.csny = Convert.ToDateTime(entity.csny);
+                    if (!DateTime.TryParse(entity.csny, out var csny)) throw new FailedException("csny không đúng định dạng ngày giờ: " + entity.csny);
+                    dbEntity.csny = csny;
                 }               
                 dbEntity.nl = entity.nl;
                 dbEntity.zy = entity.zy;
@@ -89,7 +91,8 @@ namespace Newtouch.EMR.Repository
                 dbEntity.ryys = entity.ryys;
                 if (!string.IsNullOrWhiteSpace(entity.qzrq))
                 {
-                    dbEntity.qzrq = Convert.ToDateTime(entity.qzrq);
+                    if (!DateTime.TryParse(entity.qzrq, out var qzrq)) throw new FailedException("qzrq không đúng định dạng ngày giờ: " + entity.qzrq);
+                    dbEntity.qzrq = qzrq;
                 }
                 dbEntity.cydz = entity.cydz;
                 dbEntity.cyqk = entity.cyqk;
@@ -417,7 +420,8 @@ namespace Newtouch.EMR.Repository
                 dbEntity.xb = entity.xb;
                 if (!string.IsNullOrWhiteSpace(entity.csny))
                 {
-                    dbEntity.csny = Convert.ToDateTime(entity.csny);
+                    if (!DateTime.TryParse(entity.csny, out var csny)) throw new FailedException("csny không đúng định dạng ngày giờ: " + entity.csny);
+                    dbEntity.csny = csny;
                 }
                 dbEntity.nl = entity.nl;
                 dbEntity.zy = entity.zy;
@@ -450,7 +454,8 @@ namespace Newtouch.EMR.Repository
                 dbEntity.ryys = entity.ryys;
                 if (!string.IsNullOrWhiteSpace(entity.qzrq))
                 {
-                    dbEntity.qzrq = Convert.ToDateTime(entity.qzrq);
+                    if (!DateTime.TryParse(entity.qzrq, out var qzrq)) throw new FailedException("qzrq không đúng định dạng ngày giờ: " + entity.qzrq);
+                    dbEntity.qzrq = qzrq;
                 }
                 dbEntity.cydz = entity.cydz;
                 dbEntity.cyqk = entity.cyqk;

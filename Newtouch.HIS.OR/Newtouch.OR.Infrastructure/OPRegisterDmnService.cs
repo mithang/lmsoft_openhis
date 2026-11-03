@@ -1,4 +1,5 @@
 using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Exceptions;
 using Newtouch.OR.ManageSystem.Domain.IDomainServices;
 using Newtouch.OR.ManageSystem.Domain.ValueObjects;
 using System;
@@ -130,8 +131,10 @@ where zt='1' and OrganizeId=@orgId ");
             if (!string.IsNullOrWhiteSpace(ksrq) && !string.IsNullOrWhiteSpace(jsrq))
             {
                 sql.Append(" and sskssj>=@ksrq  and ssjssj<@jsrq");
-                pars.Add(new SugarParameter("@ksrq", Convert.ToDateTime(ksrq).ToString("yyyy-MM-dd") ));
-                pars.Add(new SugarParameter("@jsrq", Convert.ToDateTime(jsrq).AddDays(1).ToString("yyyy-MM-dd")));
+                if (!DateTime.TryParse(ksrq, out var ksrqValue)) throw new FailedException("Ngày bắt đầu không đúng định dạng ngày giờ: " + ksrq);
+                if (!DateTime.TryParse(jsrq, out var jsrqValue)) throw new FailedException("Ngày kết thúc không đúng định dạng ngày giờ: " + jsrq);
+                pars.Add(new SugarParameter("@ksrq", ksrqValue.ToString("yyyy-MM-dd")));
+                pars.Add(new SugarParameter("@jsrq", jsrqValue.AddDays(1).ToString("yyyy-MM-dd")));
             }
 
             return this.FindList<RegistrationListVO>(sql.ToString(), pars.ToArray());

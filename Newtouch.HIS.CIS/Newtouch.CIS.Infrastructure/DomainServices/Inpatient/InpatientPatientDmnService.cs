@@ -348,7 +348,7 @@ where zyxx.OrganizeId = @orgId";
                 pars.Add(new SqlParameter("@zybz", zybz));
 			}
 
-            string[] bqArr = bqCode.Split(',');
+            string[] bqArr = (bqCode ?? "").Split(',');
             string bqstr = "";
             if (!string.IsNullOrWhiteSpace(bqCode))
             {
@@ -366,7 +366,16 @@ where zyxx.OrganizeId = @orgId";
                 }
             }
 
-				sql += " and bqcode in ( "+ bqstr + " )";			
+            if (string.IsNullOrWhiteSpace(bqstr))
+            {
+                // Nhân viên chưa gắn khu bệnh nào: không thấy bệnh nhân nào,
+                // tránh lỗi cú pháp SQL "in ( )" khi bqCode rỗng.
+                sql += " and 1=0";
+            }
+            else
+            {
+                sql += " and bqcode in ( " + bqstr + " )";
+            }
 
 			return this.QueryWithPage<InPatientPatientSearchVO>(sql, pagination, pars.ToArray());
         }
@@ -625,15 +634,18 @@ where OrganizeId=@orgId and zt='1'
 and exists(select 1 from [NewtouchHIS_Sett].dbo.xt_brjbxx b with(nolock),zy_brxxk c with(nolock)
 where a.OrganizeId=b.OrganizeId and a.patid=b.patid and b.OrganizeId=c.OrganizeId and b.zt='1' and c.zt='1' and b.blh=c.blh and c.zyh=@zyh 
 ) ";
-            if (!string.IsNullOrWhiteSpace(zhxz))
-            {
-                sql += " and a.zhxz=" + Convert.ToInt16(zhxz);
-            }
-            var list= this.FindList<InpatientBasicInfoVO>(sql, new SqlParameter[]
+            var pars = new List<SqlParameter>
             {
                 new SqlParameter("@orgId", orgId),
                 new SqlParameter("@zyh", zyh)
-            });
+            };
+            if (!string.IsNullOrWhiteSpace(zhxz))
+            {
+                if (!short.TryParse(zhxz, out short zhxzValue)) throw new FailedException("Tính chất tài khoản không đúng định dạng số.");
+                sql += " and a.zhxz=@zhxz";
+                pars.Add(new SqlParameter("@zhxz", zhxzValue));
+            }
+            var list = this.FindList<InpatientBasicInfoVO>(sql, pars.ToArray());
             if (list != null && list.Count > 0)
             {
                 if (list.Count > 1)

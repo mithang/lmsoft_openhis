@@ -137,7 +137,8 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
             accountConfig = _sysConfigRepo.GetValueByCode("EnableHospitalAccount", this.OrganizeId);
             if (accountConfig == "ON" && !string.IsNullOrWhiteSpace(zhxz))
             {
-                xz = Convert.ToInt16(zhxz);
+                if (!short.TryParse(zhxz, out short xzValue)) throw new FailedException("Tính chất tài khoản không đúng định dạng số.");
+                xz = xzValue;
                 var zyzh = _sysAccountRepo.IQueryable().Where(p =>
                     p.patid == patid && p.zhxz == xz && p.OrganizeId == OrganizeId &&
                     p.zt == "1");
@@ -262,7 +263,8 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         {
             if (!string.IsNullOrWhiteSpace(zhxz))
             {
-                var zhInfo = _accountApp.GetZhyeByPatid(patid, Convert.ToInt16(zhxz));
+                if (!short.TryParse(zhxz, out short xzValue)) return Error("Tính chất tài khoản không đúng định dạng số.");
+                var zhInfo = _accountApp.GetZhyeByPatid(patid, xzValue);
                 return Success(null, zhInfo);
             }
             else
