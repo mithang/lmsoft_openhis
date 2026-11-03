@@ -171,6 +171,15 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 {
                     blmb.mblj = WebPath.Map(blmb.mblj);
                     blmb.Memo = WebPath.Map(blmb.Memo);
+                    // Fail-closed containment (vòng 193, cùng họ guard vòng
+                    // 145/183): nguồn và đích của thao tác chuyển mẫu phải
+                    // nằm trong cây thư mục ứng dụng; đường dẫn tuyệt đối
+                    // ngoài cây ứng dụng hoặc ../ thoát ra ngoài bị từ chối
+                    // trước khi sao chép.
+                    if (!IsPathWithinAppRoot(blmb.mblj) || !IsPathWithinAppRoot(blmb.Memo))
+                    {
+                        return Error("Đường dẫn mẫu không hợp lệ.");
+                    }
                     _BlmblbDmnService.BlConvertToTemplateProcess(blmb);
                 }
             }
@@ -374,6 +383,25 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             }
             return string.Equals(fullPath, baseDir, StringComparison.Ordinal)
                 || fullPath.StartsWith(baseDir + Path.DirectorySeparatorChar, StringComparison.Ordinal);
+        }
+
+        // Fail-closed containment theo thư mục gốc ứng dụng (vòng 193):
+        // WebPath.Map giải "~/..." tương đối với thư mục làm việc hiện tại,
+        // nên mọi đường dẫn "~/..." hợp lệ đều nằm trong cây này; đường dẫn
+        // tuyệt đối ngoài cây ứng dụng hoặc ../ thoát ra ngoài bị từ chối.
+        [NonAction]
+        private bool IsPathWithinAppRoot(string candidatePath)
+        {
+            try
+            {
+                var baseDir = Path.GetFullPath(Directory.GetCurrentDirectory()).TrimEnd(Path.DirectorySeparatorChar, Path.AltDirectorySeparatorChar);
+                var fullPath = Path.GetFullPath(candidatePath);
+                return fullPath.StartsWith(baseDir + Path.DirectorySeparatorChar, StringComparison.Ordinal);
+            }
+            catch
+            {
+                return false;
+            }
         }
 
         public IActionResult GetTemplateXml(string templateUrl)

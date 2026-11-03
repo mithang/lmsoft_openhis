@@ -2660,13 +2660,26 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             BlTemplateVo vo = new BlTemplateVo();
             string currentFileName = WebPath.Map(BlTemplatePath + "newFile.html");
             var mb = _bl_mblbRepo.GetTemplateById(mbbh);
-            if (mb != null && !string.IsNullOrWhiteSpace(mb.mblj)) {
+            if (mb == null)
+            {
+                return Error("Không tìm thấy mẫu bệnh án.");
+            }
+            if (!string.IsNullOrWhiteSpace(mb.mblj)) {
                 mb.mblj = mb.mblj.Replace("xml", "html");
-                currentFileName = WebPath.Map(mb.mblj);
-                // Tải mẫu
-                if (System.IO.File.Exists(currentFileName) == false)//Nếu không tồn tại thì mở mẫu mặc định
+                var mappedTemplate = WebPath.Map(mb.mblj);
+                // Fail-closed containment (vòng 193, cùng mẫu vòng 183): chỉ
+                // đọc mẫu nằm trong thư mục mẫu; đường dẫn thoát ra ngoài
+                // (../, tuyệt đối, kể cả qua hàng mblj trong DB) thì dùng mẫu
+                // mặc định như khi tệp không tồn tại — không để lộ nội dung
+                // tệp ngoài thư mục mẫu.
+                if (IsPathWithinDir(mappedTemplate, WebPath.Map(BlTemplatePath)))
                 {
-                    currentFileName = WebPath.Map(BlTemplatePath + "newFile.html");
+                    currentFileName = mappedTemplate;
+                    // Tải mẫu
+                    if (System.IO.File.Exists(currentFileName) == false)//Nếu không tồn tại thì mở mẫu mặc định
+                    {
+                        currentFileName = WebPath.Map(BlTemplatePath + "newFile.html");
+                    }
                 }
                 if (mb.bllx == "5")
                 {
@@ -2884,6 +2897,13 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 string blid = backValue.Split('|')[1];
                 //Tìm bản sao lưu
                 string backuplj = WebPath.Map(BlBackupFilePath + zyh + "/" + nameblxtmc.Trim() + doctype);
+                // Fail-closed containment (vòng 193, cùng mẫu vòng 183):
+                // chỉ đọc bản sao lưu nằm trong thư mục sao lưu; zyh /
+                // tên tệp / doctype thoát ra ngoài (../, tuyệt đối) bị từ chối.
+                if (!IsPathWithinDir(backuplj, WebPath.Map(BlBackupFilePath)))
+                {
+                    return Error("Đường dẫn lưu trữ không hợp lệ.");
+                }
                 if (System.IO.File.Exists(backuplj) == false)//Nếu không tồn tại thì mở mẫu mặc định
                 {
                     backuplj = WebPath.Map(BlTemplatePath + "newFile"+ doctype);

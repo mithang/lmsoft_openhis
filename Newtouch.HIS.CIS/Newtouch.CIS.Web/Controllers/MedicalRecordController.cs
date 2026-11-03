@@ -1706,11 +1706,22 @@ namespace Newtouch.CIS.Web.Controllers
         }
         public IActionResult OpenExe(string sqdh)
         {
-            System.Diagnostics.Process p = new System.Diagnostics.Process();
-            p.StartInfo.FileName = "C:\\Users\\len\\Desktop\\金马扬名电子病历\\GoldHISManager.exe";//tên chương trình cần khởi động
-            p.StartInfo.Arguments = "G_HisApply.ReqNO='"+sqdh+"'" + " ";
-            p.Start();//khởiđộng
-            return Content("");
+            // Windows-only (vòng 193): GoldHISManager.exe là chương trình
+            // ngoài chỉ chạy trên máy Windows; trên máy chủ Linux không khởi
+            // động được — trả lỗi sạch thay vì để lộ đường dẫn máy chủ trong
+            // thông điệp ngoại lệ. Không dùng shell nên sqdh không chèn lệnh.
+            try
+            {
+                System.Diagnostics.Process p = new System.Diagnostics.Process();
+                p.StartInfo.FileName = "C:\\Users\\len\\Desktop\\金马扬名电子病历\\GoldHISManager.exe";//tên chương trình cần khởi động
+                p.StartInfo.Arguments = "G_HisApply.ReqNO='" + sqdh + "'" + " ";
+                p.Start();//khởiđộng
+                return Content("");
+            }
+            catch
+            {
+                return Error("Chương trình ngoài chưa khả dụng trên máy chủ này.");
+            }
         }
         public IActionResult SyncToPDSRequest(string rq)
         {
