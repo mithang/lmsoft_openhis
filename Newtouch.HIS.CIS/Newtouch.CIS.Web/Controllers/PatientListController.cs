@@ -275,7 +275,8 @@ namespace Newtouch.CIS.Web.Controllers
             var tlist = new
             {
                 rows = apiRespList,
-                total = Math.Ceiling(Convert.ToDecimal(apiRespList.Count / pagination.rows)),
+                // C207: chia decimal TRUOC Ceiling (truoc day int/int cat phan du -> total=0 khi Count<rows); rows null giu 0 nhu cu.
+                total = pagination.rows.HasValue ? Math.Ceiling(Convert.ToDecimal(apiRespList.Count) / pagination.rows.Value) : 0,
                 page = apiResp.data.pagination?.page ?? pagination.page,
                 records = apiRespList.Count
             };
@@ -690,7 +691,8 @@ namespace Newtouch.CIS.Web.Controllers
 			var tlist = new
 			{
 				rows = apiRespList,
-				total = Math.Ceiling(Convert.ToDecimal(apiRespList.Count / pagination.rows)),
+				// C207: chia decimal TRUOC Ceiling (truoc day int/int cat phan du -> total=0 khi Count<rows); rows null giu 0 nhu cu.
+				total = pagination.rows.HasValue ? Math.Ceiling(Convert.ToDecimal(apiRespList.Count) / pagination.rows.Value) : 0,
 				page = 1,
 				records = apiRespList.Count
 			};
