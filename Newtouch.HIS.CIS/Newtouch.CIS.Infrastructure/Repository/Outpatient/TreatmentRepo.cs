@@ -110,9 +110,15 @@ from [192.168.0.100].[bshrp].[dbo].[kk_1] a
 left join NewtouchHIS_Sett..mz_gh b  on b.ecToken is not null and b.ecToken=a.SBXH and b.zt='1'
 )q where ecToken is null and PSN_NAME like @keyword
 ";
+			// C209: keyword rong/whitespace/null -> pattern LIKE '%%' gay NRE
+			// trong tang SqlSugar (probe goodcopy: "", " ", null deu NRE,
+			// keyword khac rong thi truy van toi SQL Server). '%' tuong
+			// duong '%%' ve ngu nghia LIKE (khop moi PSN_NAME khac null;
+			// NULL bi loai o ca hai); keyword khac rong giu nguyen.
+			var keywordPattern = string.IsNullOrWhiteSpace(keyword) ? "%" : "%" + keyword.Trim() + "%";
 			var parlist = new List<SqlParameter>{
 				 new SqlParameter("@orgId", mjzbz),
-				  new SqlParameter("@keyword", '%'+keyword.Trim()+'%'),
+				  new SqlParameter("@keyword", keywordPattern),
 			};
 
 			return QueryWithPage<PatientRegInfoDTO>(sql, pagination, parlist.ToArray());
