@@ -9,19 +9,23 @@
 - Kết luận: 1.564 file `.cshtml`; layout thật là `_Index`/`_Form`; CSS khung ở static host 41142 ngoài repo; điểm đặt design system là `scripts/redesign/assets/` + `sync-assets.sh`; `redesign-tokens.css` giống hệt nhau ở cả 11 portal (md5 `e14e0ef8…`); stack đóng Bootstrap 3.3.4 / jQuery 2.1.1 / jqGrid 5.1.0.
 - 3 file docs này được tạo trong cùng vòng U1 (commit riêng, xem git log).
 
-## U2 — Phase 2: Đối chiếu runtime + Pilot (ĐANG CHUẨN BỊ)
+## U2 — Phase 2: Đối chiếu runtime + Pilot (2026-11-04, HOÀN THÀNH)
 
-- [ ] Đối chiếu host 41142 đang chạy thuộc bản sao static nào (`lmsoft_openhis/` hay `lmsoft_openhis_run/`); xác minh bất thường PDS thiếu jQuery core; xác minh nguồn menu runtime của Base Web.
-- [ ] Chọn 1 trang đại diện (trang danh sách jqGrid có dữ liệu demo, thuộc portal có shell) — ghi lý do chọn.
-- [ ] Chụp baseline (trước) của trang pilot + trang form cùng portal.
-- [ ] Mở rộng token trong `scripts/redesign/assets/`, sync, build 0 lỗi, chụp sau, kiểm chứng hành vi theo DESIGN_SYSTEM.md §7.
-- [ ] Commit + push có kiểm chứng `git ls-remote`.
+- Đối chiếu runtime: host 41142 đang phục vụ **bản run-copy** `lmsoft_openhis_run/Newtouch.HIS.Static` (md5 body HTTP trùng run-copy 6/6 file, khác bản gốc 4/6). Không sửa static host.
+- Trang pilot: **SSO `/SysManage/SysRole/Index`** (lưới jqGrid, 5 vai trò demo, toolbar 4 nút + tìm kiếm + phân trang) + form `/SysManage/SysRole/Form` cùng portal. Chạy cổng tạm 25211, DB `*_STG`, đăng nhập thật 000000, 0 ghi demo.
+- Thay đổi: CHỈ CSS, 14 file, `+1388/−12` (commit `c94a9134`, push đã kiểm chứng `ls-remote`): mở rộng `scripts/redesign/assets/redesign-tokens.css` (+111/−1, 8 token mới từ palette đang chạy) + `redesign-portal.css` (+28, shell SSOIndex), sync sang 11 portal (md5 tokens giống hệt 11/11). Build SSO Release 0 lỗi, DLL không đổi. Không sửa Razor/controller/model/API/DB/auth.
+- Bằng chứng: `~/workspace/shots-uiux-pilot/before|after/` (login/shell/pilot/form/ssoindex). Khác biệt thị giác CÓ ở lưới/form (header lưới đậm + vạch dưới 2px `#00a0ea`, nền pager, nhãn form đậm, panel bo 6px + bóng); chiều cao hàng giữ 30,5px, mật độ dữ liệu không đổi. Hành vi trước=sau: 5 hàng/dữ liệu giống hệt, 6 input form giống hệt, menu 30 link shell / 109 link SSOIndex giống hệt, login md5 giống hệt. LƯU Ý: tìm kiếm SysRole không lọc + nút next phân trang không sang trang là lỗi hành vi CÓ SẴN (đọc code: `GetPagintionList` bỏ qua keyword), KHÔNG sửa vì ngoài phạm vi UI-only — ghi vào limitation.
+- Chưa xác minh: PDS thiếu jQuery core ở runtime (chỉ có bằng chứng tĩnh); shell SSO `/Home/Index` không nạp token nên không hưởng đổi mới (xem limitation).
+
+## U3 — Triển khai 10 portal còn lại + overlay prod (ĐANG CHẠY)
+
+3 worker song song: R1 (SSO overlay live + CIS + EMR), R2 (Herp + MRMS + OR), R3 (PDS + MRQC + Sett + Base Web + Base HOSP Web). Mỗi portal: goodcopy cổng tạm trước/sau + kiểm chứng hành vi, xác định vị trí CSS đang được phục vụ bằng thực nghiệm, overlay file CSS mới vào đúng vị trí prod (backup file cũ + manifest md5), kiểm chứng live trên cổng prod rồi trả về shed. Worker không commit code.
 
 ## Triển khai 11 portal (Phase 7)
 
 | Portal | Cổng | Trạng thái | Commit | Ảnh trước/sau |
 |---|---|---|---|---|
-| SSO | 5208 | Chưa làm | — | — |
+| SSO | 5208 | Pilot xong (cổng tạm, chưa overlay prod) | `c94a9134` | `shots-uiux-pilot/` |
 | CIS | 5234 | Chưa làm | — | — |
 | EMR | 5235 | Chưa làm | — | — |
 | Herp | 5236 | Chưa làm | — | — |
@@ -62,3 +66,6 @@ Yêu cầu user 04/11/2026 ~08:54 ICT: chụp TOÀN BỘ chức năng/màn hình
 - Mọi cải tiến giao diện đòi đổi workflow/quyền/hành vi — giữ nguyên, ghi vào đây khi gặp.
 - Màn hình cần dữ liệu/quyền mà staging chặn (credential STG chưa có quyết định) — ghi rõ ở bảng chụp ảnh, không chụp giả.
 - Nguồn gốc 2 file lạ không phần mở rộng trong `Views/Login/` của Base Web/Base HOSP — việc kiểm tra riêng, ngoài chương trình này.
+- Lỗi hành vi có sẵn phát hiện ở pilot (vòng sửa logic riêng, không thuộc UI-only): tìm kiếm SysRole không lọc (GetPagintionList bỏ qua keyword); nút next phân trang SysRole không sang trang. Form SysRole không đạt sự kiện `load` (request nền treo) ở cả 2 pha — ghi nhận, chưa rõ nguyên nhân.
+- Shell SSO `/Home/Index` không nạp token: muốn đổi mới shell này phải đụng layout/route — cần quyết định riêng; hiện chỉ SSOIndex hưởng token qua `redesign-portal.css`.
+- PDS thiếu jQuery core ở runtime: chờ vòng U3 xác minh (nhóm R3).
