@@ -87,7 +87,15 @@ namespace Newtouch.Herp.Application.Implementation
             {
                 legalFileUploadExt = ".jpg,.bmp,.png,.ppt,.pptx,.xls,.xlsx,.doc,.docx,.pdf";
             }
-            return legalFileUploadExt.ToLower().Contains(ext.ToLower());
+            // Exact token match: the previous whitelist-string Contains() accepted
+            // any substring, so ".p" (prefix of ".ppt"), ".j", ".b", ".x", ".d"
+            // passed validation and were saved to Upload/licence. Same exact-match
+            // rule as ProductApp.ValidateExt in this tree.
+            foreach (var allowed in legalFileUploadExt.Split(','))
+            {
+                if (string.Equals(allowed.Trim(), ext, StringComparison.OrdinalIgnoreCase)) return true;
+            }
+            return false;
         }
 
         /// <summary>

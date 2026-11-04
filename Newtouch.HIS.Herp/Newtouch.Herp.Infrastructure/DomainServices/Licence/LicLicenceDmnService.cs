@@ -52,14 +52,19 @@ SELECT lic.Id, lit.typeName, lic.objectName, lic.licenceNo, lib.belonged, lic.qx
 FROM dbo.lic_licence(NOLOCK) lic
 LEFT JOIN dbo.lic_licenceType(NOLOCK) lit ON lit.Id=lic.licenceTypeId AND lit.zt='1'
 LEFT JOIN dbo.lic_licenceBelonged(NOLOCK) lib ON lib.Id=lic.belongedId AND lib.zt='1'
-WHERE (lic.licenceNo LIKE '%'+@keyWord+'%' OR lic.objectName LIKE '%'+@keyWord+'%')
+WHERE (lic.licenceNo LIKE '%'+@keyWord+'%' ESCAPE '\' OR lic.objectName LIKE '%'+@keyWord+'%' ESCAPE '\')
 AND (lic.belongedId =@belongedId or ''=@belongedId)
 AND (lic.licenceTypeId =@licenceTypeId or ''=@licenceTypeId)
 AND lic.OrganizeId=@OrganizeId
 ";
+            // Escape LIKE pattern metacharacters so the keyword is matched
+            // literally: without this, '%' matched every row and '_' matched
+            // any single character. Normal keywords (no '\', '%', '_') produce
+            // the identical pattern as before.
+            var safeKeyWord = (keyWord ?? "").Replace("\\", "\\\\").Replace("%", "\\%").Replace("_", "\\_");
             var param = new SugarParameter[]
             {
-                new SugarParameter("@keyWord", keyWord ?? ""),
+                new SugarParameter("@keyWord", safeKeyWord),
                 new SugarParameter("@belongedId", belongedId ?? ""),
                 new SugarParameter("@licenceTypeId", licenceTypeId ?? ""),
                 new SugarParameter("@OrganizeId", organizeId ?? "")
