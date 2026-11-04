@@ -74,7 +74,9 @@ namespace NewtouchHIS.DrgGroup.chs_drg_11
                 String header = (new StreamReader(File.OpenRead(file))).ReadLine();
                 var cols_for_search = header.Split(',');
                 var col_index = cols.Select(x => Array.IndexOf(cols_for_search, x)).ToArray();
-                if (col_index.Length != cols.Length)
+                // Array.IndexOf trả -1 khi cột yêu cầu vắng mặt trong header: chặn fail-closed
+                // thay vì IndexOutOfRangeException tại Split(',')[y] khi liệt kê.
+                if (col_index.Contains(-1))
                 {
                     Console.WriteLine("Tên trường không khớp với tệp CSV");
                     throw new InvalidOperationException("Tên trường không khớp với tệp CSV");
@@ -96,7 +98,9 @@ namespace NewtouchHIS.DrgGroup.chs_drg_11
                 String header = await new StreamReader(File.OpenRead(file)).ReadLineAsync();
                 var cols_for_search = header.Split(',');
                 var col_index = cols.Select(x => Array.IndexOf(cols_for_search, x)).ToArray();
-                if (col_index.Length != cols.Length)
+                // Array.IndexOf trả -1 khi cột yêu cầu vắng mặt trong header: chặn fail-closed
+                // thay vì IndexOutOfRangeException tại Split(',')[y] khi liệt kê.
+                if (col_index.Contains(-1))
                 {
                     Console.WriteLine("Tên trường không khớp với tệp CSV");
                     throw new InvalidOperationException("Tên trường không khớp với tệp CSV");
