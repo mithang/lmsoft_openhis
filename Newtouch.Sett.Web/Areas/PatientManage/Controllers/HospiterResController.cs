@@ -556,7 +556,11 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
 		public IActionResult GetinpatientInfo(string patid)
         {
             bool result;
-            var _vo = _PatientBasicInfoDmnService.GetPatBasicCardInfo(patid, out result, OrganizeId)[0];
+            var cardList = _PatientBasicInfoDmnService.GetPatBasicCardInfo(patid, out result, OrganizeId);
+            // Dich vu co the tra ve danh sach rong (khong tim thay benh nhan / truy van chua trien khai):
+            // lay [0] truc tiep se gay ArgumentOutOfRangeException. Dung VO rong de giu dung contract
+            // tra ve JSON; zyh rong -> bo qua tra cuu S04, JS di nhanh loadPatiInfo nhu truoc.
+            var _vo = cardList != null && cardList.Count > 0 ? cardList[0] : new SysHosBasicInfoVO();
             if (!string.IsNullOrWhiteSpace(_vo.zyh))
             {
               var S04entity=  _iGuianXnhS04InfoRepo.FindEntity(p=>p.zyh==_vo.zyh&&p.OrganizeId==OrganizeId);

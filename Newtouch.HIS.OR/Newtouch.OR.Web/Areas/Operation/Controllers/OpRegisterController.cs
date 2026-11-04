@@ -1,4 +1,5 @@
 using NewtouchHIS.Framework.Web.Controllers;
+using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Base.Model;
 using Newtouch.OR.ManageSystem.Domain.Entity;
 using Newtouch.OR.ManageSystem.Domain.IDomainServices;
@@ -139,6 +140,18 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
 			return Success("Thao tác thành công.");
         }
 
+        // Tra ve ten nhan vien theo ma; nem FailedException ro rang thay vi
+        // ArgumentOutOfRangeException khi GetStafflist tra ve danh sach rong (ma khong ton tai).
+        private string GetStaffNameByGh(string gh)
+        {
+            var staffList = _CommonDmnService.GetStafflist(gh, OrganizeId);
+            if (staffList == null || staffList.Count == 0)
+            {
+                throw new FailedException("Không tìm thấy nhân viên có mã: " + gh);
+            }
+            return staffList[0].ryxm;
+        }
+
         //Lấy danh sách hồ sơ nhân viên theo thông tin nhân viên y tế
         public List<OROpStaffRecordEntity> getStaffRecordList(RegistrationListVO entity,string ssxh) {
             List<OROpStaffRecordEntity> list = new List<OROpStaffRecordEntity>();
@@ -149,7 +162,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
                 staff.ssxh = ssxh;
                 staff.rylb = "1";
                 staff.rygh = entity.ysgh;
-                staff.ryxm = _CommonDmnService.GetStafflist(entity.ysgh, OrganizeId)[0].ryxm;
+                staff.ryxm = GetStaffNameByGh(entity.ysgh);
                 staff.px = 1;
                 staff.zt = "1";
                 staff.OrganizeId = OrganizeId;
@@ -162,7 +175,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
                 staff.ssxh = ssxh;
                 staff.rylb = "2";
                 staff.rygh = entity.zlys1;
-                staff.ryxm = _CommonDmnService.GetStafflist(entity.zlys1, OrganizeId)[0].ryxm;
+                staff.ryxm = GetStaffNameByGh(entity.zlys1);
                 staff.px = 1;
                 staff.zt = "1";
                 staff.OrganizeId = OrganizeId;
@@ -175,7 +188,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
                 staff.ssxh = ssxh;
                 staff.rylb = "2";
                 staff.rygh = entity.zlys2;
-                staff.ryxm = _CommonDmnService.GetStafflist(entity.zlys2, OrganizeId)[0].ryxm;
+                staff.ryxm = GetStaffNameByGh(entity.zlys2);
                 staff.px = 2;
                 staff.zt = "1";
                 staff.OrganizeId = OrganizeId;
@@ -189,7 +202,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
                 staff.ssxh = ssxh;
                 staff.rylb = "3";
                 staff.rygh = entity.xhhs;
-                staff.ryxm = _CommonDmnService.GetStafflist(entity.xhhs, OrganizeId)[0].ryxm;
+                staff.ryxm = GetStaffNameByGh(entity.xhhs);
                 staff.px = 1;
                 staff.zt = "1";
                 staff.OrganizeId = OrganizeId;
@@ -202,7 +215,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
                 staff.ssxh = ssxh;
                 staff.rylb = "4";
                 staff.rygh = entity.xshs;
-                staff.ryxm = _CommonDmnService.GetStafflist(entity.xshs, OrganizeId)[0].ryxm;
+                staff.ryxm = GetStaffNameByGh(entity.xshs);
                 staff.px = 1;
                 staff.zt = "1";
                 staff.OrganizeId = OrganizeId;
@@ -215,7 +228,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
                 staff.ssxh = ssxh;
                 staff.rylb = "5";
                 staff.rygh = entity.mzys;
-                staff.ryxm = _CommonDmnService.GetStafflist(entity.mzys, OrganizeId)[0].ryxm;
+                staff.ryxm = GetStaffNameByGh(entity.mzys);
                 staff.px = 1;
                 staff.zt = "1";
                 staff.OrganizeId = OrganizeId;
