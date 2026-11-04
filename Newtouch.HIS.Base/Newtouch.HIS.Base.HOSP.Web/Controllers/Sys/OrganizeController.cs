@@ -79,7 +79,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             var data = _sysOrganizeRepository.GetListByParentOrg(topOrgId);
             if (!string.IsNullOrEmpty(keyword))
             {
-                data = data.TreeWhere(t => t.Name.Contains(keyword) || t.Code.Contains(keyword), parentId: "ParentId");
+                data = data.TreeWhere(t => t.Name.Contains(keyword, System.StringComparison.OrdinalIgnoreCase) || t.Code.Contains(keyword, System.StringComparison.OrdinalIgnoreCase), parentId: "ParentId");
             }
             var treeList = new List<TreeGridModel>();
             foreach (var item in data)
