@@ -466,7 +466,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 		public IActionResult UpdateStaffWard(string keyValue, string wardList)
 		{
 			SysStaffEntity staffInfo = _sysStaffRepo.FindEntity(keyValue);
-			if (staffInfo != null || staffInfo.OrganizeId != "")
+			if (staffInfo != null && staffInfo.OrganizeId != "")
 			{
 				string OrganizeId = staffInfo.OrganizeId;
 				_sysStaffDmnService.UpdateStaffWard(keyValue, (wardList ?? "").Split(','), OrganizeId);
@@ -542,7 +542,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         public IActionResult UpdateStaffConsult(string keyValue, string zsCode)
         {
             SysStaffEntity staffInfo = _sysStaffRepo.FindEntity(keyValue);
-            if (staffInfo != null || staffInfo.OrganizeId != "")
+            if (staffInfo != null && staffInfo.OrganizeId != "")
             {
                 string OrganizeId = staffInfo.OrganizeId;
                 _sysStaffDmnService.UpdateStaffConsult(keyValue, zsCode , OrganizeId);

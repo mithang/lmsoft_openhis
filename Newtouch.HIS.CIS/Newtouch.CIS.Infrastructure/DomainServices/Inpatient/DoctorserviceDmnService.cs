@@ -3374,7 +3374,7 @@ where id=@yzid");
                         newcqyz.ztsl = null;
                         newcqyz.dcztbs = null;
                         newcqyz.isfsyz = "1";
-                        if (item.yzlx == "1"&& (yzh == null && yzh == ""))
+                        if (item.yzlx == "1"&& (yzh == null || yzh == ""))
                         {
                             newcqyz.Px = cqpx;
                             cqpx += 1;
