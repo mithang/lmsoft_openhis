@@ -65,3 +65,28 @@
 .text-title{
     font-weight:bold;
 }
+/* U5-SHELL (2026-11-04): carousel WorkSpace (/Home/Index iframe + /Home/WorkSpace).
+   NGUYEN NHAN: .app-item (inline <style> trong WorkSpace.cshtml) width:20% thang
+   .col-xs-4 (33,33%), va .label (Bootstrap) white-space:nowrap nen nhan dai tieng
+   Viet (do ~341px) khong xuong dong ma tran ~177px sang the ke ben. Chi sua trinh
+   bay trong pham vi #myCarousel, desktop (>=769px) de giu nguyen ban sua mobile
+   SSO-07 (max-width:768px) trong WorkSpace.cshtml. Khong doi mau sac, thu tu,
+   onclick, carousel control/indicator, hay chieu cao banner. */
+@media (min-width: 769px) {
+    #myCarousel .app-item {
+        width: calc((100% - 4rem) / 3);
+        min-height: 100px;
+        margin-left: 2rem;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        white-space: normal;
+        line-height: 1.4;
+        overflow-wrap: break-word;
+    }
+
+    #myCarousel .app-item:first-child {
+        margin-left: 0;
+    }
+}
