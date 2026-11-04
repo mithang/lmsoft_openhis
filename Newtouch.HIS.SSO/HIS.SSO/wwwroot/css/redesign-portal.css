@@ -11,7 +11,35 @@
    Lưu ý: portal có HAI div id="nav-col" (menu + footer .login-foot,
    id trùng là lỗi markup sẵn có, không sửa ở đây). Rule drawer dùng
    :not(.login-foot) để chỉ nhắm khối menu, không chạm footer.
+   Bổ sung pilot U2 (desktop, ngoài media query bên dưới): chỉ đổi
+   trình bày hover/focus của mục menu do $.LoadNavTree() sinh ra
+   (a.dropdown-toggle, ul.submenu > a.menuItem, giữ nguyên class/ID)
+   và viền dưới thanh tab .content-tabs. Không đổi cấu trúc shell,
+   không đổi cơ chế đổi skin, không ẩn mục menu nào.
    ===================================================================== */
+
+/* ---- Desktop: sidebar + tab (SSOIndex, token nạp trước file này) ------- */
+/* Mục menu con: vạch trái trong suốt, hover hiện vạch primary + nền nhạt. */
+#sidebar-nav .submenu .menuItem {
+    border-left: 3px solid transparent;
+}
+
+#sidebar-nav .submenu .menuItem:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: var(--rd-primary);
+}
+
+/* Focus nhìn thấy được cho cả mục cha lẫn mục con của menu. */
+#sidebar-nav .dropdown-toggle:focus-visible,
+#sidebar-nav .submenu .menuItem:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: -2px;
+}
+
+/* Thanh tab: viền dưới phân tầng với vùng nội dung iframe. */
+.content-tabs {
+    border-bottom: 1px solid var(--rd-border);
+}
 
 /* Nút hamburger: ẩn trên desktop, luôn thấy được dưới 992px. */
 .rd-nav-toggle {

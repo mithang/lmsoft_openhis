@@ -39,6 +39,23 @@
        để dấu xếp chồng (ế, ữ, ộ, ấ) không bị cắt. */
     --rd-line-height: 1.5;
     --rd-line-height-heading: 1.35;
+    /* Bổ sung pilot U2 (DESIGN_SYSTEM.md §2, giá trị lấy từ palette đang
+       chạy, đã đối chiếu file thật trên static host run-copy):
+       --rd-focus/--rd-focus-shadow: Bootstrap 3 .form-control:focus
+       (bootstrap.min.css); --rd-grid-header-bg: framework-ui.css
+       ".ui-jqgrid .table-bordered th"; --rd-grid-header-accent: màu
+       .btn-primary đang chạy (framework-ui.css override #00a0ea) —
+       KHÔNG override .btn-primary, chỉ dùng làm vạch nhấn header lưới;
+       --rd-grid-row-hover: Bootstrap 3 .table-hover; --rd-grid-row-selected:
+       tint 12% của #00a0ea; shadow 2 mức theo §2.3. */
+    --rd-focus: #66afe9;
+    --rd-focus-shadow: rgba(102, 175, 233, 0.6);
+    --rd-grid-header-bg: #f6f7fb;
+    --rd-grid-header-accent: #00a0ea;
+    --rd-grid-row-hover: #f5f5f5;
+    --rd-grid-row-selected: rgba(0, 160, 234, 0.12);
+    --rd-shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.08);
+    --rd-shadow-md: 0 2px 8px rgba(0, 0, 0, 0.12);
 }
 
 /* ---- 2. Chữ + chống tràn (áp dụng mọi trang dùng layout này) -------- */
@@ -116,7 +133,100 @@ img {
     max-width: 100%;
 }
 
-/* ---- 6. Mobile (viewport giả lập, không app native) ------------------- */
+/* ---- 6. Lưới jqGrid + toolbar + form + panel (pilot U2) ----------------
+   Chỉ đổi trình bày: màu nền/viền/bóng/bo góc/font-weight/outline.
+   KHÔNG đổi padding/chiều cao hàng (giữ mật độ dữ liệu), KHÔNG đổi
+   display/position/overflow của .ui-jqgrid*, KHÔNG đổi tên class/ID,
+   KHÔNG override .btn-primary (màu nút do theme skin giữ). Độ ưu tiên:
+   selector dùng thêm phần tử cha để thắng framework-ui.css ở cả
+   _Index (token nạp sau) lẫn _Form (framework-ui.css nạp sau token). */
+/* Header lưới: giữ nền #f6f7fb đang chạy, thêm vạch nhấn dưới 2px bằng
+   màu accent đang chạy + chữ đậm hơn để phân tầng tiêu đề. */
+.ui-jqgrid .ui-jqgrid-hdiv .ui-jqgrid-htable th {
+    background: var(--rd-grid-header-bg);
+    border-bottom: 2px solid var(--rd-grid-header-accent);
+    font-weight: 600;
+    color: var(--rd-text);
+}
+
+/* Hàng lưới: hover và hàng được chọn chỉ đổi nền, giữ nguyên chiều cao. */
+.ui-jqgrid-btable tbody tr.jqgrow:hover > td {
+    background: var(--rd-grid-row-hover);
+}
+
+.ui-jqgrid-btable tbody tr.jqgrow.ui-state-highlight > td,
+.ui-jqgrid-btable tbody tr.jqgrow.success > td {
+    background: var(--rd-grid-row-selected);
+}
+
+/* Pager: nền nhạt + chữ phụ, nút phân trang hover chỉ đổi nền. */
+.ui-jqgrid .ui-jqgrid-pager {
+    background: var(--rd-grid-header-bg);
+    border-top: 1px solid var(--rd-border);
+}
+
+.ui-jqgrid .ui-paging-info {
+    color: var(--rd-text-muted);
+}
+
+.ui-jqgrid .ui-pg-button:hover {
+    background: var(--rd-grid-row-hover);
+}
+
+/* Toolbar: bóng nhẹ + bo góc token, focus nhìn thấy được; thứ tự và
+   màu nút giữ nguyên. */
+.toolbar .btn {
+    border-radius: var(--rd-radius);
+    box-shadow: var(--rd-shadow-sm);
+}
+
+.toolbar .btn:hover {
+    box-shadow: var(--rd-shadow-md);
+}
+
+.toolbar .btn:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: 1px;
+}
+
+/* Form (table.form): nhãn đậm hơn, giữ nguyên chiều rộng 90px/210px do
+   layout quyết; input focus dùng viền + bóng Bootstrap đang chạy.
+   Phạm vi hẹp (chỉ trong table.form và ô tìm kiếm topPanel) để không
+   đổi focus toàn cục ngoài ý muốn. */
+table.form th.formTitle {
+    color: var(--rd-text);
+    font-weight: 600;
+}
+
+table.form .formValue .form-control:focus {
+    border-color: var(--rd-focus);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px var(--rd-focus-shadow);
+    outline: none;
+}
+
+.topPanel .search .form-control:focus {
+    border-color: var(--rd-focus);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, 0.075), 0 0 8px var(--rd-focus-shadow);
+    outline: none;
+}
+
+/* Panel: bo góc card + bóng nhẹ, giữ nguyên màu viền của framework.
+   Selector div.panel / .panel.panel-default để thắng Bootstrap ở cả
+   _Index lẫn _Form (Bootstrap nạp sau token trong _Form). */
+div.panel {
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+}
+
+.panel.panel-default > .panel-heading {
+    background: var(--rd-grid-header-bg);
+}
+
+.panel .panel-title {
+    font-weight: 600;
+}
+
+/* ---- 7. Mobile (viewport giả lập, không app native) ------------------- */
 @media (max-width: 767px) {
     /* Toolbar: bỏ float (theme đặt .toolbar{float:left}), xếp hàng
        co được, nút đủ 44px chạm (§9.5). Chỉ áp dụng dưới 768px để
