@@ -37,6 +37,22 @@ namespace Newtouch.HIS.DomainServices
 		}
 
 		/// <summary>
+		/// Ánh xạ nhãn loại A/B của danh mục BHYT (jyl/ybxz) sang mã zfxz ("4"/"5"/"6", còn lại "1").
+		/// Nhãn nguồn là ký tự Hán 甲/乙/丙 (gb_ypxx: 68220 甲 + 68215 乙) hoặc chữ cái Latin A/B/C;
+		/// mô tả enum đã Việt hóa ("Loại A") nên biểu thức cũ Description.Contains(token) không bao
+		/// giờ khớp và mọi hàng đều rơi về "1". Kiểm tra trên chính token, giữ thứ tự J→Y→B và giá
+		/// trị mặc định "1" như biểu thức cũ.
+		/// </summary>
+		private static string MapZfxzFromYbClass(string value)
+		{
+			if (string.IsNullOrWhiteSpace(value)) return "1";
+			if (value.Contains("甲") || value.Contains("A")) return "4";
+			if (value.Contains("乙") || value.Contains("B")) return "5";
+			if (value.Contains("丙") || value.Contains("C")) return "6";
+			return "1";
+		}
+
+		/// <summary>
 		/// Lấy thông tin thuốc hệ thống thuộc tổ chức hiện tại
 		/// </summary>
 		/// <returns></returns>
@@ -420,7 +436,7 @@ from G_yb_wm_tcmpat_info_b
 					if (!string.IsNullOrEmpty(ybxx.jyl))
 					{
 						ypsxEntity.ybbz = "1";//Tồn tại mã BHYT quốc gia Không xem thuộc tính bản thân thuốc Trực tiếp mặc định BHYT
-						ypEntity.zfxz = EnumZFXZv2.J.GetDescription().Contains(ybxx.jyl) ? "4" : EnumZFXZv2.Y.GetDescription().Contains(ybxx.jyl) ? "5" : EnumZFXZv2.B.GetDescription().Contains(ybxx.jyl) ? "6" : "1";
+						ypEntity.zfxz = MapZfxzFromYbClass(ybxx.jyl);
 					}
 
 					db.Update(ypEntity);
@@ -608,7 +624,7 @@ from G_yb_mcs_info_b )a where 1=1 ";
 					if (!string.IsNullOrEmpty(ybxx.ybxz))
 					{
 						sfxmEntity.ybbz = "1";
-						sfxmEntity.zfxz= EnumZFXZv2.J.GetDescription().Contains(ybxx.ybxz) ? "4" : EnumZFXZv2.Y.GetDescription().Contains(ybxx.ybxz) ? "5" : EnumZFXZv2.B.GetDescription().Contains(ybxx.ybxz) ? "6" : "1";
+						sfxmEntity.zfxz = MapZfxzFromYbClass(ybxx.ybxz);
 					}
 					if(!string.IsNullOrEmpty(ybxx.zcbah))
 					{
@@ -771,7 +787,7 @@ from G_yb_ylfuxm_new_list_b)a where 1=1 ";
 					if (!string.IsNullOrEmpty(ybxx.ybxz))
 					{
 						sfxmEntity.ybbz = "1";
-						sfxmEntity.zfxz = EnumZFXZv2.J.GetDescription().Contains(ybxx.ybxz) ? "4" : EnumZFXZv2.Y.GetDescription().Contains(ybxx.ybxz) ? "5" : EnumZFXZv2.B.GetDescription().Contains(ybxx.ybxz) ? "6" : "1";
+						sfxmEntity.zfxz = MapZfxzFromYbClass(ybxx.ybxz);
 					}
 
 					db.Update(sfxmEntity);
