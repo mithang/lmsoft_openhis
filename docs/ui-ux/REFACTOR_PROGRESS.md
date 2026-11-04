@@ -85,3 +85,66 @@ Yêu cầu user 04/11/2026 ~08:54 ICT: chụp TOÀN BỘ chức năng/màn hình
 - **Chữ Hán trang login**: 0 ký tự Hán trong markup 11 view login + partial `_FrontReference` (đã quét lại). Logo là ảnh chứa chữ Hán khắc trong ảnh — KHÔNG sửa/thay, chờ quyết định: `NewTouch.png` (10 portal, `天天开源`), `001.png` (Base Web, `应用后台管理系统`), `bj-01.jpg` bản B (Herp/MRMS/OR/MRQC/Sett, ký tự `云` mờ), `bj-01.jpg` bản Base-Web (chữ Hán nhỏ trên huy hiệu). Tên font `微软雅黑`/`宋体` trong `login.css` là định danh font, giữ nguyên.
 - **Ghi nhận mới, chưa sửa, cần quyết định**: (1) Sidebar chung bị cắt nhãn dài ở EMR/MRMS/PDS/SSO — do `framework-ui.css` (cấm sửa), cần quyết định cơ chế override chung. (2) Ứng viên PDS Default (thẻ KPI tràn đáy ở bề rộng iframe) và EMR Default (danh sách chồng cột ngày) — cần worker có quyền sửa view + restart cổng shed + đăng nhập live. (3) Nhãn "truy cập nhanh" SSO xuống dòng là quirk đọc được, giữ nguyên.
 - Trạng thái sau U5: HEAD `e797eec2` = `origin/V2.2`; cây chính `openhis-core` còn 4 file CSS chưa commit nhưng nội dung khớp đúng remote tip (overlay phục vụ prod) + file bẩn có từ trước `roles-shots-progress.md`. Vòng tiếp theo chỉ khi có dữ liệu/quyết định mới hoặc user ra lệnh mới — KHÔNG phải hoàn thành 10.000 vòng.
+
+## U6 — Thay toàn bộ ảnh/icon chứa chữ Hán bằng tiếng Việt (2026-11-04, HOÀN THÀNH, đã kiểm chứng trực quan + live SSO)
+
+- Lệnh user 13:45 ICT: mọi icon chứa chữ Hán đều thay bằng tiếng Việt, toàn bộ source. Phạm vi: CHỈ byte file ảnh trong cây thật (loại trừ `sett-stage-*`, `herp-*-tmp`, `*tmp`, `_porting-src`, run-copy, `bin/obj`); 0 đổi logic/controller/model/API/DB/auth/route/JS; 0 tham chiếu view/css đổi (giữ đúng tên file/kích thước vị trí, trừ 3 nhãn `tj_*` xem dưới).
+- Kiểm kê: 880 file ảnh, 318 distinct sha256, 277 tên file chứa ký tự CJK. Kiểm tra trực quan 318 distinct qua contact sheet (3 worker) + điều phối viên đọc trực tiếp các file nghi vấn. Kết luận chữ Hán: 41 distinct (32 logo/nền lớn + 4 nhỏ + 5 glyph `.ico`).
+- ĐÃ THAY: **112 file / 36 distinct**. Backup toàn bộ file gốc tại `~/workspace/img-backup-u6/` (MANIFEST.csv: đường dẫn + sha256 + kích thước). Logo thương hiệu mới "Viet HIS" (chữ thập teal + nhịp tim, bản canonical `scripts/redesign/assets/viet-his-logo.png`, 1600px PNG từ file webp đã duyệt) — dựng lockup PIL theo đúng kích thước từng vị trí, giữ nền gốc (xanh trên nền sáng, trắng trên nền trong suốt). 0 lượt `media.generate_image` dùng trong U6 (ngân sách 4, không cần).
+- Nền `bj-01.*`: 17 file họ này — 11 file ghi đè bằng byte bản sạch A (đã kiểm chứng trực tiếp: không watermark `云`, không chữ Hán; 6 bản đã là bản A nên giữ nguyên, không ghi). `bj-01.png` (PDS login) mã hóa lại PNG từ bản A.
+- Minh họa chào mừng `index.png` (CIS/Herp): phủ dòng chữ Hán bằng nội suy nền theo hàng + vẽ lại tiếng Việt ("Chào mừng đến với Trạm làm việc phối hợp y tế" / "Chào mừng đến với Hệ thống Dược"), giữ `WELCOME` và toàn bộ hình.
+- Nhãn trạng thái `tj_*` (EMR, `<img>` không fix kích thước): "Trả lại" / "Đã gửi" / "Đã ký nhận", giữ viền đỏ; **rộng hơn gốc** (56/59/94px thay vì 50px) vì tiếng Việt không đọc được ở 50px — ngoại lệ duy nhất về kích thước, ghi rõ tại đây.
+- Nút `login-submit.png`: nút xanh + chữ trắng "Đăng nhập". `login_failed.png` (0 caller): bong bóng giữ nguyên, chữ thành "Tài khoản không tồn tại / Đăng nhập thất bại". Thương hiệu thanh toán: KHÔNG vẽ lại logo — chỉ thay chú thích Hán bằng wordmark Latin quốc tế (`WeChat Pay` xanh lá, `Alipay` xanh dương) trên trang About.
+- Bảng thay thế (gốc → bản mới; hash rút gọn 12 ký tự):
+
+| File gốc | Kích thước | Hash gốc | Số bản | Bản thay thế |
+|---|---|---|---|---|
+| `001.png` | [227, 49] | `f806fb891884…` | 1 | `lockup-blue-227x49.png` |
+| `002.png` | [137, 24] | `af2bc470653f…` | 1 | `lockup-blue-137x24.png` |
+| `002.png` | [139, 49] | `f54d8afc4ab8…` | 1 | `lockup-blue-139x49.png` |
+| `LOGO_login.png` | [137, 24] | `af2bc470653f…` | 11 | `lockup-blue-137x24.png` |
+| `LOGO_login.png` | [60, 18] | `009704473ef2…` | 1 | `textonly-blue-60x18.png` |
+| `LOGO_login1.png` | [134, 21] | `5c9f5654cb1f…` | 8 | `lockup-blue-134x21.png` |
+| `Ne1111wTouch.png` | [200, 70] | `0125257f7c5d…` | 1 | `lockup-blue-200x70.png` |
+| `NewT1111ouch1.jpg` | [284, 49] | `33d0d3aea634…` | 1 | `lockup-blue-284x49.png` |
+| `NewTo1111uch1.png` | [284, 49] | `2f66795ad011…` | 1 | `lockup-blue-284x49.png` |
+| `NewTouch.png` | [254, 56] | `f86dd5a55414…` | 11 | `lockup-blue-254x56.png` |
+| `NewTouch1.png` | [139, 49] | `f54d8afc4ab8…` | 1 | `lockup-blue-139x49.png` |
+| `NewTouch1.png` | [200, 70] | `0125257f7c5d…` | 1 | `lockup-blue-200x70.png` |
+| `NewTouch1.png` | [227, 49] | `0813661eaea1…` | 1 | `lockup-blue-227x49.png` |
+| `NewTouch1.png` | [229, 49] | `7b9a958de1e8…` | 1 | `lockup-blue-229x49.png` |
+| `NewTouch2.png` | [336, 49] | `d6fde08d0fbe…` | 1 | `lockup-blue-336x49.png` |
+| `alipay.jpg` | [85, 28] | `7f7490562dcd…` | 10 | `wm-alipay-85x28.png` |
+| `bj-01.jpg` | [1920, 600] | `36898a0e4b45…` | 5 | `bj01-clean-bytes` |
+| `bj-01.jpg` | [1920, 600] | `76341c13c8be…` | 1 | `bj01-clean-bytes` |
+| `bj-01.png` | [1920, 600] | `f3d4ac12470c…` | 2 | `bj01-clean.png` |
+| `bj-011.jpg` | [1920, 600] | `76341c13c8be…` | 1 | `bj01-clean-bytes` |
+| `bj-0111.jpg` | [1920, 600] | `94f7dc603904…` | 1 | `bj01-clean-bytes` |
+| `index.png` | [1167, 680] | `66d5304fa5bb…` | 1 | `index-vn-66d5304fa5bb.png` |
+| `index.png` | [1167, 680] | `c8eb5e99ad58…` | 1 | `index-vn-c8eb5e99ad58.png` |
+| `log1111o2.png` | [220, 60] | `fbe63ae6bacc…` | 1 | `lockup-white-220x60.png` |
+| `login-submit.png` | [180, 38] | `05b14b12e9cd…` | 11 | `btn-login-180x38.png` |
+| `login_failed.png` | [529, 372] | `1e03b1571f6e…` | 2 | `login-failed-vn.png` |
+| `logo-02.png` | [49, 50] | `431eb78ac571…` | 1 | `icon-square-49x50.png` |
+| `logo.png` | [180, 60] | `fc3767bdeec0…` | 4 | `lockup-white-180x60.png` |
+| `logo1.png` | [220, 60] | `6ad24dc5a6f3…` | 1 | `lockup-white-220x60.png` |
+| `logo1.png` | [220, 60] | `719bc2b0d96a…` | 1 | `lockup-white-220x60.png` |
+| `logo1.png` | [220, 60] | `7fb93900c4fb…` | 9 | `lockup-white-220x60.png` |
+| `logo1.png` | [220, 60] | `fbe63ae6bacc…` | 1 | `lockup-white-220x60.png` |
+| `tj_th.png` | [50, 21] → [56, 21] | `26a8f5b69a75…` | 2 | `lbl-th.png` |
+| `tj_yqs.png` | [50, 21] → [94, 21] | `ce6eff54a07d…` | 2 | `lbl-yqs.png` |
+| `tj_ytj.png` | [50, 21] → [59, 21] | `1f03cbf3f98d…` | 2 | `lbl-ytj.png` |
+| `wechat.jpg` | [112, 28] | `fdac18c662e7…` | 11 | `wm-wechat-112x28.png` |
+
+- CHƯA THAY, giữ nguyên + lý do (cần quyết định user, không tự vẽ):
+  - 5 glyph ngôn ngữ `.ico` (`简`/`繁` chuyển đổi giản/phồn thể, `繁`, `维` Duy Ngô Nhĩ, `藏` Tạng) + 1 `都昌.ico` (monogram DC, không đọc được): nút chọn ngôn ngữ của DCSoft ActiveX (stub Windows-only trên Linux); đổi nghĩa nút cần quyết định sản phẩm.
+  - `1507771468.png` (logo vendor Đô Xương `都昌信息` + pinyin): thương hiệu bên thứ ba, 0 caller.
+  - `signet.gif` (con dấu công ty Thượng Hải `报价专用章`): làm con dấu giả là không an toàn; chỉ dùng ở trang ExampleManage của Sett.
+  - Ảnh chụp màn hình/tài liệu: `检查.png`, `检验.png` (form tiếng Hán chụp màn hình), `代码保护.png` (.NET Reactor + watermark Windows): 0 caller, thay = bịa bằng chứng.
+  - `home_06.png` (glyph `号`), `home_09.png` (glyph không đọc được), `iconleft1.png` (tab dọc kết thúc `历史`): 0 caller, nghĩa không xác định chắc, để nguyên. `logo-02.png` ĐÃ thay (icon vuông Viet HIS, có trong bảng trên).
+  - 3 mã QR (`weixin.png`, `weipayimg.png`, `alipayimg.png`): pixel không có chữ; payload không giải mã được (không có decoder) — để nguyên, ghi rõ giới hạn.
+  - `fy.png`: đã xác minh trực tiếp là chữ cái Latin "H", không phải chữ Hán — giữ nguyên.
+  - 277 tên file chứa CJK (chủ yếu `.ico` toolbar DCSoft + ảnh nha khoa CIS): chỉ tên file, pixel sạch; đổi tên phá vỡ tham chiếu/DCSoft load — giữ nguyên, cần quyết định đổi tên riêng.
+  - Tên font `微软雅黑`/`宋体` trong CSS là định danh font hệ thống, giữ nguyên (đã ghi ở U5).
+- Kiểm chứng live: thực hiện sau khi commit nội dung (overlay đúng thư mục phục vụ SSO 5208, chụp login + đăng nhập thật 000000; các portal shed chụp theo mẫu U3) — kết quả ghi trong báo cáo handoff U6, không ghi trước tại đây.
+- Trạng thái: KHÔNG phải hoàn thành 10.000 vòng; U6 là một chương trình, xong khi bảng trên + kiểm chứng live hoàn tất.
