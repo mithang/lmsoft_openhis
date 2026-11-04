@@ -15,9 +15,11 @@
 .login .login-con .login-a .login-b{float: right;width: 280px;height:300px;margin-right: 100px;margin-top: 100px;background: #fff; border-radius: 5px; padding: 0 40px;}
 .login .login-con .login-a .login-b .login-b-a{height: 46px;line-height: 46px;font-size: 16px;font-weight: bold; text-align: center;width: 100%; border-bottom: 2px solid  #eee; position: relative; }
 .tips_msg {color:red;font-size:15px;}
+/* U5-login: tab tieng Viet can >182px (do live); nowrap de khong xuong 2 dong de len #txt_account. */
  .lo_mod {
     display: block;
-    width: 119px;
+    width: 200px;
+    white-space: nowrap;
     margin: 10px auto 0;
     
     height: 46px;
