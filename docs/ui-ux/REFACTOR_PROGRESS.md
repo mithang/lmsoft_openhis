@@ -17,25 +17,30 @@
 - Bằng chứng: `~/workspace/shots-uiux-pilot/before|after/` (login/shell/pilot/form/ssoindex). Khác biệt thị giác CÓ ở lưới/form (header lưới đậm + vạch dưới 2px `#00a0ea`, nền pager, nhãn form đậm, panel bo 6px + bóng); chiều cao hàng giữ 30,5px, mật độ dữ liệu không đổi. Hành vi trước=sau: 5 hàng/dữ liệu giống hệt, 6 input form giống hệt, menu 30 link shell / 109 link SSOIndex giống hệt, login md5 giống hệt. LƯU Ý: tìm kiếm SysRole không lọc + nút next phân trang không sang trang là lỗi hành vi CÓ SẴN (đọc code: `GetPagintionList` bỏ qua keyword), KHÔNG sửa vì ngoài phạm vi UI-only — ghi vào limitation.
 - Chưa xác minh: PDS thiếu jQuery core ở runtime (chỉ có bằng chứng tĩnh); shell SSO `/Home/Index` không nạp token nên không hưởng đổi mới (xem limitation).
 
-## U3 — Triển khai 10 portal còn lại + overlay prod (ĐANG CHẠY)
+## U3 — Triển khai 10 portal còn lại + overlay prod (2026-11-04, HOÀN THÀNH, đã kiểm chứng)
 
-3 worker song song: R1 (SSO overlay live + CIS + EMR), R2 (Herp + MRMS + OR), R3 (PDS + MRQC + Sett + Base Web + Base HOSP Web). Mỗi portal: goodcopy cổng tạm trước/sau + kiểm chứng hành vi, xác định vị trí CSS đang được phục vụ bằng thực nghiệm, overlay file CSS mới vào đúng vị trí prod (backup file cũ + manifest md5), kiểm chứng live trên cổng prod rồi trả về shed. Worker không commit code.
+- 3 worker song song (R1: SSO/CIS/EMR; R2: Herp/MRMS/OR; R3: PDS/MRQC/Sett/Base/Base HOSP). Không commit code trong U3 (CSS đã commit ở c94a9134). Không sửa DLL/deps.json, không sửa shed-apps.txt/recovery.sh/MEMORY.md, không động static host.
+- Cơ chế phục vụ CSS xác nhận bằng thực nghiệm ở cả 3 nhóm: CSS được phục vụ từ **project `wwwroot` qua manifest static-web-assets** (`ContentRoots` trỏ tới project `wwwroot`); thư mục bin không có `wwwroot` (trừ bản sao chết của SSO). Cổng tạm thật không khả thi vì `UseUrls` hardcode thắng mọi override — các lần chạy đều bind cổng prod trong lúc shed, 1 process tại 1 thời điểm, kill đúng PID, đã trả về shed.
+- Mỗi portal: backup CSS cũ + manifest md5, goodcopy trước/sau + kiểm chứng hành vi (lưới/form/menu), overlay đúng vị trí phục vụ, kiểm chứng live trên cổng prod. Ảnh: `~/workspace/shots-uiux-rollout/<portal>/{before,after,live}/`; backup: `~/workspace/css-backup-u3/`.
+- Đối chiếu cuối vòng (điều phối viên): **11/11 file tokens = md5 mới `93ccb53c`**, khớp HEAD; `git status` chỉ còn file bẩn có từ trước; 10 cổng shed đã xuống, SSO 5208 vẫn chạy.
+- Đóng 2 bất thường Phase 1: (1) PDS jQuery — jQuery 2.1.1 được nạp động bởi `jquery.choose.js` qua `document.write` (DOM live có, HTML nguồn không) — không phải lỗi, không sửa. (2) Nguồn menu Base Web — markup CỨNG trong `Views/Home/Index.cshtml`, `GetClientsDataJson` không trả `authorizeMenu` — đã xác minh runtime.
+- Ghi nhận mới (không sửa, xem limitation): MRQC `/QualityControlManage/MedicalCenter/Index` báo jQuery 1.7.2 (file `/Scripts/jquery.min.js` cũ nạp cuối, ghi đè 2.1.1); Base HOSP sidebar trống khi chạy độc lập (authorizeMenu trống); nhiều lưới STG 0 hàng là trạng thái dữ liệu thật (so sánh hành vi vẫn đầy đủ ở mức khung/toolbar/tìm kiếm/form).
 
 ## Triển khai 11 portal (Phase 7)
 
 | Portal | Cổng | Trạng thái | Commit | Ảnh trước/sau |
 |---|---|---|---|---|
-| SSO | 5208 | Pilot xong (cổng tạm, chưa overlay prod) | `c94a9134` | `shots-uiux-pilot/` |
-| CIS | 5234 | Chưa làm | — | — |
-| EMR | 5235 | Chưa làm | — | — |
-| Herp | 5236 | Chưa làm | — | — |
-| MRMS | 5232 | Chưa làm | — | — |
-| OR | 5231 | Chưa làm | — | — |
-| PDS | 5237 | Chưa làm | — | — |
-| MRQC | 5220 | Chưa làm | — | — |
-| Sett | 5221 | Chưa làm | — | — |
-| Base Web | 5238 | Chưa làm | — | — |
-| Base HOSP Web | 5233 | Chưa làm | — | — |
+| SSO | 5208 | Xong: pilot + overlay live, không restart | `c94a9134` | `shots-uiux-pilot/` + `shots-uiux-rollout/sso/` |
+| CIS | 5234 | Xong: before/after/live | — (CSS ở `c94a9134`) | `shots-uiux-rollout/cis/` |
+| EMR | 5235 | Xong: before/after/live | — (CSS ở `c94a9134`) | `shots-uiux-rollout/emr/` |
+| Herp | 5236 | Xong: before/after/live | — (CSS ở `c94a9134`) | `shots-uiux-rollout/herp/` |
+| MRMS | 5232 | Xong: before/after/live + đổi skin | — (CSS ở `c94a9134`) | `shots-uiux-rollout/mrms/` |
+| OR | 5231 | Xong: before/after/live | — (CSS ở `c94a9134`) | `shots-uiux-rollout/or/` |
+| PDS | 5237 | Xong: before/after/live + kết luận jQuery | — (CSS ở `c94a9134`) | `shots-uiux-rollout/pds/` |
+| MRQC | 5220 | Xong: before/after/live | — (CSS ở `c94a9134`) | `shots-uiux-rollout/mrqc/` |
+| Sett | 5221 | Xong: before/after/live | — (CSS ở `c94a9134`) | `shots-uiux-rollout/sett/` |
+| Base Web | 5238 | Xong: before/after/live + nguồn menu | — (CSS ở `c94a9134`) | `shots-uiux-rollout/base/` |
+| Base HOSP Web | 5233 | Xong: before/after/live | — (CSS ở `c94a9134`) | `shots-uiux-rollout/basehosp/` |
 
 Quy tắc triển khai: token dùng chung qua assets + sync (không sửa lẻ từng portal trừ `login.css`/điểm riêng đã ghi trong PORTAL_INVENTORY.md §4); mỗi portal build 0 lỗi + screenshot trước/sau + kiểm chứng hành vi rồi mới sang portal tiếp theo; KHÔNG overlay prod trong vòng pilot — triển khai prod theo quy tắc publish an toàn (từng file tại chỗ, giữ backup, kiểm chứng login thật) ở vòng triển khai riêng.
 
@@ -68,4 +73,6 @@ Yêu cầu user 04/11/2026 ~08:54 ICT: chụp TOÀN BỘ chức năng/màn hình
 - Nguồn gốc 2 file lạ không phần mở rộng trong `Views/Login/` của Base Web/Base HOSP — việc kiểm tra riêng, ngoài chương trình này.
 - Lỗi hành vi có sẵn phát hiện ở pilot (vòng sửa logic riêng, không thuộc UI-only): tìm kiếm SysRole không lọc (GetPagintionList bỏ qua keyword); nút next phân trang SysRole không sang trang. Form SysRole không đạt sự kiện `load` (request nền treo) ở cả 2 pha — ghi nhận, chưa rõ nguyên nhân.
 - Shell SSO `/Home/Index` không nạp token: muốn đổi mới shell này phải đụng layout/route — cần quyết định riêng; hiện chỉ SSOIndex hưởng token qua `redesign-portal.css`.
-- PDS thiếu jQuery core ở runtime: chờ vòng U3 xác minh (nhóm R3).
+- PDS thiếu jQuery core ở runtime: chờ vòng U3 xác minh (nhóm R3). → ĐÃ ĐÓNG ở U3: jQuery 2.1.1 nạp động qua `jquery.choose.js` + `document.write`, không phải lỗi.
+- Ghi nhận mới ở U3 (không sửa, cần quyết định riêng nếu muốn động vào): MRQC trang MedicalCenter báo jQuery 1.7.2 do `/Scripts/jquery.min.js` cũ nạp cuối ghi đè 2.1.1; Base HOSP sidebar trống khi chạy độc lập (authorizeMenu trống); shell SSO `/Home/Index` và EMR `/Home/Index` không nạp token (chỉ SSOIndex/EMR Default có) — muốn phủ token cho 2 shell này phải đụng layout/route.
+- Giới hạn kiểm chứng U3: cổng tạm thật không làm được do `UseUrls` hardcode (chạy trên cổng prod đang shed, cô lập tuần tự); nhiều lưới STG 0 hàng là dữ liệu thật — so sánh hành vi ở mức khung/toolbar/tìm kiếm/form, "lưới có dữ liệu" chỉ đạt ở một số trang (SSO SysRole 5 hàng, CIS VisitDeptSet 2, EMR MedRecordTemplate 15, MRMS MrDept 37, OR OpRoom 2, PDS FypzIndex 2).
