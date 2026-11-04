@@ -48,21 +48,21 @@ Quy tắc triển khai: token dùng chung qua assets + sync (không sửa lẻ t
 
 Yêu cầu user 04/11/2026 ~08:54 ICT: chụp TOÀN BỘ chức năng/màn hình theo từng portal, đủ 11 portal và đủ mọi chức năng trong từng portal; lập danh mục route/menu từng portal, chụp từng màn hình đã đăng nhập (000000), đối chiếu danh mục, ghi rõ màn hình nào không chụp được và lý do thật, không bịa, không bỏ sót thầm lặng. Ảnh lưu theo từng portal dưới `~/workspace/shots-uiux/<portal>/`.
 
-| Portal | Tổng route/menu | Đã chụp | Chưa chụp được (lý do thật) |
-|---|---|---|---|
-| SSO | — | 0 | — |
-| CIS | — | 0 | — |
-| EMR | — | 0 | — |
-| Herp | — | 0 | — |
-| MRMS | — | 0 | — |
-| OR | — | 0 | — |
-| PDS | — | 0 | — |
-| MRQC | — | 0 | — |
-| Sett | — | 0 | — |
-| Base Web | — | 0 | — |
-| Base HOSP Web | — | 0 | — |
+| Portal | Tổng route/menu | Đã chụp | Chưa chụp được (lý do thật) | Ảnh trên đĩa |
+|---|---|---|---|---|
+| SSO | 17 | 17 | 0 | 19 |
+| CIS | 233 | 233 | 0 | 238 |
+| EMR | 72 | 72 | 0 | 76 |
+| Herp | 102 | 102 | 0 | 131 |
+| MRMS | 57 | 57 | 0 | 75 |
+| OR | 37 | 37 | 0 (3 ảnh là JSON lỗi view-not-found) | 50 |
+| PDS | 168 | 135 | 33 route HTTP 404 thân rỗng (28 không có action/controller, 5 có action+view vẫn 404) | 140 |
+| MRQC | 11 | 11 | 0 | 17 |
+| Sett | 491 | 445 | 46 route HTTP 404 thân rỗng (view tồn tại nhưng không có action/controller phục vụ) | 447 |
+| Base Web | 42 | 41 | 1 route chết 404 (`/Organize/Applications`, view mồ côi) | 43 |
+| Base HOSP Web | 167 | 162 | 5 route chết 404 (không có action/tham chiếu trong code) | 173 |
 
-**Tổng ảnh: 0. Độ phủ: chưa đo.**
+**U4 DONE (2026-11-04, điều phối viên + 5 worker, đã kiểm chứng độc lập): tổng danh mục 1.397 route, đã chụp 1.312, chưa chụp 85 (tất cả đều là route chết 404 có bằng chứng curl + trình duyệt, liệt kê từng mục trong file COVERAGE của từng portal). Tổng ảnh trên đĩa: 1.409 file PNG (gồm login/home/menu-nav/biến thể có id thật). Chụp bằng Playwright + Firefox, viewport 1366×900, đăng nhập thật 000000, DB `*_STG`, 0 ghi DB demo, không sửa code; mọi cổng module đã trả về shed, 6 cổng lõi nguyên vẹn. Danh mục + kết quả chi tiết từng route: `~/workspace/shots-uiux/<portal>/COVERAGE.md` (portal trong bảng: sso, cis, emr, herp, mrms, or, pds, mrqc, sett, base-web, base-hosp). Mẫu số = union route GET-view trong code + link menu runtime, khử trùng; partial/fragment không route trực tiếp liệt kê riêng trong COVERAGE, không tính là màn hình. Bất thường mới phát hiện trong U4 (chỉ ghi, không sửa — chi tiết trong COVERAGE từng portal): logo/chữ tiếng Trung trên trang login các portal; chữ "chào mừng"/"đăng nhập" chồng lấn ở login SSO/Base HOSP; Base HOSP sidebar trống khi chạy độc lập; shell SSO/EMR `/Home/Index` không nạp token; MRQC MedicalCenter chạy jQuery 1.7.2 (ghi đè 2.1.1); CIS logo login chữ Trung Quốc + lỗi nền NullReferenceException ở 2 API lưới; 9 route Sett trả JSON lỗi thay vì trang; 13 route Sett trắng hoàn toàn khi mở trực tiếp (fragment view); Form SysRole/SysModule SSO không nạp dữ liệu với keyValue thật.**
 
 ## Limitation / mục chờ quyết định (không tự quyết, không bịa)
 
