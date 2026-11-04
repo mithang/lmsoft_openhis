@@ -161,9 +161,14 @@ where a.OrganizeId = @orgId
             }
             if (jssj != null)
             {
-                strMzSql.Append(@" AND jz.ghsj <= @jssj ");
-                strZySql.Append(@" AND a.ryrq <= @jssj ");
-                inSqlParameterList.Add(new SqlParameter("@jssj", jssj));
+                // C202: jssj là tham số theo ngày (view gửi dd/MM/yyyy, binder cho nửa đêm đầu ngày).
+                // So sánh <= với nửa đêm sẽ loại toàn bộ lượt khám trong ngày kết thúc (ghsj/ryrq sau
+                // 00:00:00). Chuẩn trong cây là chặn trên = nửa đêm ngày hôm sau + so sánh < (mẫu
+                // EntryRegistration/InpatientPatient/Zybrjbxx: @jsrq = jsrq.Value.AddDays(1).Date, cqrq < @jssj).
+                var jssjBound = jssj.Value.Date < DateTime.MaxValue.Date ? jssj.Value.Date.AddDays(1) : jssj.Value;
+                strMzSql.Append(@" AND jz.ghsj < @jssj ");
+                strZySql.Append(@" AND a.ryrq < @jssj ");
+                inSqlParameterList.Add(new SqlParameter("@jssj", jssjBound));
             }
             if (!string.IsNullOrEmpty(jszt))
             {
