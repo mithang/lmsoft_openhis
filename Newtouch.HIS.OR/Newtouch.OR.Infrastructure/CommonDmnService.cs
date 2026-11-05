@@ -92,7 +92,10 @@ where zt='1' and organizeid=@orgId
         }
         public IList<OperationDicVO> GetOperations(string[] ssdm, string orgId)
         {
-            if (ssdm.Length == 0)
+            // FA-009: null ssdm (GetOperationAjax khi ssdm trong) truoc day NRE o
+            // ssdm.Length; coi null nhu rong (giong overload goi truc tiep khi
+            // model binder tra mang rong) thay vi doi hanh vi khi co du lieu.
+            if (ssdm == null || ssdm.Length == 0)
             {
                 throw new FailedException("Mã phẫu thuật không được để trống");
             }

@@ -90,7 +90,20 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
         }
 
         public IActionResult getRegistrationInfo(string ArrangeId, string sqzt) {
+			// FA-009: ArrangeId trong truoc day xuong service gay loi SQL
+			// "@arrangeId" chua khai bao; ArrangeId khong ton tai truoc day
+			// NRE o result.applyno. Ca hai tra VO rong (form dang ky trong)
+			// thay vi loi — trang dang ky sau mo mo cho lich chua dang ky can
+			// dang nay, UI luon gui ArrangeId da chon tu luoi.
+			if (string.IsNullOrWhiteSpace(ArrangeId))
+			{
+				return Content(new RegistrationListVO().ToJson());
+			}
 			var result = _OPRegisterDmnService.getRegistrationInfo(OrganizeId,ArrangeId, sqzt);
+			if (result == null)
+			{
+				return Content(new RegistrationListVO().ToJson());
+			}
             result.ss= _ORApplyInfoExpandRepo.getApplyExtendByApplyno(OrganizeId, result.applyno);
             if (!string.IsNullOrWhiteSpace(result.zlys1) && string.IsNullOrWhiteSpace(result.zlys1name))
             {

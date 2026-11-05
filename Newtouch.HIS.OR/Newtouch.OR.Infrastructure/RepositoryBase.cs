@@ -32,6 +32,15 @@ namespace Newtouch.OR.ManageSystem.Repository
 
         public T FindEntity(string keyValue)
         {
+            // FA-009: key trong truoc day day null xuong InSingle, SqlSugar suy
+            // tham so kieu int so sanh voi cot Id GUID gay loi SQL "Conversion
+            // failed ... to data type int" (bang co du lieu); key khong hop le
+            // tra null giong key khong ton tai. Cac SubmitForm deu guard
+            // !IsNullOrEmpty truoc khi goi FindEntity nen khong doi write-path.
+            if (string.IsNullOrWhiteSpace(keyValue))
+            {
+                return null;
+            }
             return Db.Queryable<T>().InSingle(keyValue);
         }
 

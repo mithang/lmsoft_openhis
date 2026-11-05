@@ -198,7 +198,20 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
 
         public IActionResult GetArrangeObjByApplyId(string ApplyId)
         {
+            // FA-009: ApplyId trong truoc day xuong service gay loi SQL
+            // "@ApplyId" chua khai bao; ApplyId khong ton tai truoc day NRE o
+            // result.zlys1. Ca hai tra VO rong (form xep lich trong) thay vi
+            // loi — trang ArrangementDetail mo cho don chua xep lich can dang
+            // nay, UI luon gui ApplyId that khi co du lieu.
+            if (string.IsNullOrWhiteSpace(ApplyId))
+            {
+                return Content(new ArrangeListVO().ToJson());
+            }
             var result = _OpArrangementDmnService.GetArrangeObjByApplyId(ApplyId, OrganizeId);
+            if (result == null)
+            {
+                return Content(new ArrangeListVO().ToJson());
+            }
             if (!string.IsNullOrWhiteSpace(result.zlys1) && string.IsNullOrWhiteSpace(result.zlys1name))
             {
                 result.zlys1name = _sysStaff.GetNameByGh(result.zlys1, OrganizeId);
@@ -226,6 +239,14 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.Operation.Controllers
         {
             ApplyVO applyVO = new ApplyVO();
             var entity = _OpArrangementDmnService.GetApplyInfoByKey(keyValue, OrganizeId);
+            // FA-009: key khong ton tai truoc day NRE o entity.sqzt; tra VO
+            // rong (form trong) thay vi loi. Khong guard key trong: service
+            // hien tra dong dau tien cho key trong (hanh vi san co, khong phai
+            // UI path — UI luon gui key that).
+            if (entity == null)
+            {
+                return Content(applyVO.ToJson());
+            }
             if (entity.sqzt == null)
             {
                 entity.sqzt = "1";

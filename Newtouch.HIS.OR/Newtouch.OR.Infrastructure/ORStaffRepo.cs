@@ -145,7 +145,9 @@ where zt != 0";
 			//}
 			var result = this.FindList<ORStaffEntity>(sql, new SugarParameter[] {
 				new SugarParameter("@organizeId", organizeId),
-				new SugarParameter("@keyword", "%" + keyword.Trim() + "%"),
+				// FA-009: keyword null truoc day NRE o keyword.Trim(); null coi
+				// nhu khong loc (like '%%'), giong khi UI gui keyword rong.
+				new SugarParameter("@keyword", "%" + (keyword ?? "").Trim() + "%"),
 			});
 			return result;
 		}
