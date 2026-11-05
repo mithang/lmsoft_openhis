@@ -53,7 +53,11 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             }
             if (string.IsNullOrWhiteSpace(orgId) || string.IsNullOrWhiteSpace(dutyCode))
             {
-                return null;
+                // FA-015R: ASP.NET Core rejects "return null" from an IActionResult
+                // action ("Cannot return null...") on every bare call; FA-012/FA-014
+                // class-A precedent returns an empty body instead. No route,
+                // contract, or permission change.
+                return Content("");
             }
             var list = this._sysUserDmnService.GetStaffByDutyCode(orgId, dutyCode);
             if (!string.IsNullOrWhiteSpace(ks))
