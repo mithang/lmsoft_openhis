@@ -26,6 +26,16 @@
        Nạp token ngay sau framework-theme.css (như SSOIndex/EMR Default) để shell hưởng
        đổi mới giao diện + override sidebar chung (không đổi layout/route, chỉ thêm 1 <link> CSS). *@
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-tokens.css", false)" rel="stylesheet" />
+    @* U7-005: shell này trước đây chỉ nạp token, không nạp redesign-portal.css
+       nên các sửa shell (sidebar 2 dòng đè icon, mục data-appid="MR") không có
+       hiệu lực. Nạp portal.css ngay sau token, đúng thứ tự như SSOIndex/EMR;
+       chỉ thêm 1 <link> CSS, không đổi layout/route. Không nạp
+       redesign-portal.js: Index không có markup drawer (nút #rd-nav-toggle /
+       #rd-drawer-overlay chỉ có ở SSOIndex). Dashboard trong iframe
+       /Home/Default không dùng file này. Lưu ý: KHÔNG neo rule bằng class body
+       (theme JS ghi đè toàn bộ class body lúc chạy) — portal.css neo bằng
+       body[data-appid="MR"] thay thế. *@
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-portal.css", false)" rel="stylesheet" />
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-clientdata.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
@@ -49,9 +59,18 @@
         }
     </style>
 </head>
+@* U7-005: AppId viết literal như EMR (@("EMR")) / Herp ("Herp"):
+   AppSettings.GetConfig("AppId") render RỖNG ở đây vì AppId nằm trong
+   BusinessConfig (appsettings.json:20), không phải key gốc — data-appid
+   rỗng làm rule portal.css body[data-appid="MR"] không khớp (đo live
+   vòng 1: span vẫn inline, 4 nhãn 2 dòng vẫn đè icon) và theme JS
+   (framework-ui.js đọc data-appid) cũng nhận "". Giá trị "MR" là đúng
+   BusinessConfig.AppId đã cấu hình; chỉ đổi cách đọc, không đổi giá trị
+   hay hành vi. Các GetConfig khác trên thẻ này (Is_LoadNavTree,
+   Is_NavPageLoadMoniter) vẫn giữ nguyên — ngoài phạm vi. *@
 <body style="overflow: hidden;" class="hold-transition skin-black sidebar-mini"
       onload="Onload()"
-      data-appid="@(AppSettings.GetConfig("AppId"))"
+      data-appid="@("MR")"
       data-loadnavtree="@(AppSettings.GetConfig("Is_LoadNavTree"))"
       data-NavPageLoadMoniter="@(AppSettings.GetConfig("Is_NavPageLoadMoniter"))">
     <div id="ajax-loader" style="cursor: progress; position: fixed; top: -50%; left: -50%; width: 200%; height: 200%; background: #fff; z-index: 10000; overflow: hidden;">

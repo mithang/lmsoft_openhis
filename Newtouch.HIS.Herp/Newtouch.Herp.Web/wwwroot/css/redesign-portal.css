@@ -592,3 +592,39 @@ body[data-appid="Herp"] #container .rd-empty .rd-empty-action a:focus-visible {
     outline: 2px solid var(--rd-focus);
     outline-offset: 2px;
 }
+
+/* ---- U7-005 (MRMS, desktop): /Home/Index --------------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe /tmp/u7mrms-before/):
+   - Nhãn menu 2 dòng đè icon: 4/18 mục cấp 1 ('Cai dat he thong thu
+     phi', 'Quan ly nguon so kham', 'Ho so dieu duong noi tru', 'Bao
+     tri ho so dieu duong') có span_x=20 = icon_x (overlap=true), 14
+     mục 1 dòng span_x=45 không đè. Cùng nguyên nhân U7-003 (EMR):
+     span inline + theme margin-left:25px chỉ đẩy DÒNG ĐẦU, dòng wrap
+     sau bắt đầu ở mép padding x=20, đè lên icon absolute. Sửa: span
+     display:block để margin áp cho cả hộp, mọi dòng thẳng hàng x=45.
+     Neo bằng body[data-appid="MR"] — AppId của MRMS là "MR" (không
+     phải "MRMS"); theme JS ghi đè toàn bộ class body lúc chạy nên
+     không neo bằng class (bài học U7-003).
+   - 2 rule chung U7-001 trong file này (sidebar padding 6px /
+     min-height 40px + .login-foot height:auto) tự áp dụng cho MRMS
+     khi file được nạp (cùng markup #page-wrapper/#sidebar-nav);
+     shell MRMS KHÔNG có .login-foot (chỉ Login view có) nên rule
+     footer ở đây không có hiệu lực — menu 18 mục kết thúc y=860,
+     không đè lên gì, chỉ gọn lại ~802. Không đổi mục menu, thứ tự,
+     đích hay chữ.
+   - User '000000' trơ trụi: sửa ở _IndexHeaderNav.cshtml theo mẫu
+     SSO/EMR (UserName【UserCode】, dữ liệu operator thật: staff link
+     của 000000 là 'Quan tri vien', đã kiểm chứng bằng SQL).
+   - Header 'Benh vien Newtouch HIS' KHÔNG sửa ở đây: đó là
+     ViewBag.OrgName = Sys_Organize.Name thật của org demo trong DB
+     (đã kiểm chứng bằng SQL: 6d5752a7-… 'Benh vien Newtouch HIS');
+     đổi tên org là đổi dữ liệu thật, thuộc quyết định tên bệnh viện
+     thật đang chờ user. Logo header ĐÃ là Viet HIS (logo1.png, U6).
+   - Dashboard (KPI/biểu đồ/tin tức) nằm trong iframe /Home/Default
+     — tài liệu riêng, portal.css KHÔNG với tới; các sửa đó nằm trong
+     <style> riêng của Default.cshtml (icon KPI, nhãn h5 tràn thẻ,
+     nhãn trục x '8 tháng' trùng, legend donut, title tin tức).
+   Chỉ trình bày; không đổi mục menu, thứ tự, đích, chữ hay dữ liệu. */
+body[data-appid="MR"] #page-wrapper:not(.nav-small) #sidebar-nav .nav > li > a > span {
+    display: block;
+}

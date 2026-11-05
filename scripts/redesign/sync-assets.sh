@@ -60,10 +60,18 @@ copy_one "$SRC/redesign-portal.js" "$dest/js/redesign-portal.js"
 # Layout = null độc lập, nạp portal.css trực tiếp (mục
 # body[data-appid="Herp"] trong file này chỉ nhắm trang đó nên không ảnh
 # hưởng portal khác).
+# U7-005: portal.css cũng sync sang MRMS — /Home/Index của MRMS là shell
+# AdminLTE cùng markup với SSO/EMR (#page-wrapper, #sidebar-nav do
+# $.LoadNavTree() dựng) nên 2 rule chung U7-001 (sidebar padding 6px /
+# min-height 40px + footer height:auto) áp dụng luôn cho MRMS; mục
+# body[data-appid="MR"] trong file này chỉ chứa rule riêng MRMS
+# (AppId là "MR", không phải "MRMS"). Dashboard trong iframe /Home/Default
+# KHÔNG dùng file này (xem Default.cshtml).
 PORTAL_CSS_APPS=(
   "Newtouch.HIS.CIS/Newtouch.CIS.Web"
   "Newtouch.HIS.EMR/Newtouch.EMR.Web"
   "Newtouch.HIS.Herp/Newtouch.Herp.Web"
+  "Newtouch.HIS.MRMS/Newtouch.MRMS.Web"
 )
 for app in "${PORTAL_CSS_APPS[@]}"; do
   dest="$ROOT/$app/wwwroot"
