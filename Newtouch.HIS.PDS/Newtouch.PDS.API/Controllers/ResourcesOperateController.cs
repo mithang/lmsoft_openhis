@@ -13,16 +13,15 @@ namespace Newtouch.PDS.API.Controllers
     /// Bản Core inject IResourcesOperateApp qua DI nên các action chạy thật.
     /// OutpatientPartReturnBeforeDispensingMedicine mang [IgnoreTokenDecrypt] như gốc;
     /// ở bản port toàn bộ token đều dùng thô nên attribute chỉ còn ý nghĩa ghi chú.
-    /// QA PHASE 2 (API-03): chỉ 4 action gắn [DefaultAuthorize] (CancelPartBook,
-    /// CancelAllBook, CancelDjYpReturn, CancelArrangement — caller mang token được
-    /// hoặc không có caller tokenless). 5 action còn lại KHÔNG gắn vì caller thật
-    /// gọi tokenless có chủ đích: Book/BookModify (CIS MedicalRecordDmnService,
-    /// autoAppendToken: false), OutpatientCommit + PartReturnBeforeDispensing
-    /// (Sett Web Task.Run/refund thread, autoAppendToken: false),
-    /// HospitalizatiionReturnDispensingMedicine (CIS InpatientMedReturnDmnService,
-    /// autoAppendToken: false). Gắn auth vào 5 action này sẽ phá luồng thật;
-    /// chúng phải được chặn ở tầng mạng (chỉ host CIS/Sett được tới PDS API),
-    /// xem báo cáo qa-phase2/api-auth.md.
+    /// BA-002 (F-API-01): 5 action còn lại (OutpatientBook, OutpatientBookModify,
+    /// OutpatientCommit, OutpatientPartReturnBeforeDispensingMedicine,
+    /// HospitalizatiionReturnDispensingMedicine) nay gắn [DefaultAuthorize] — cùng
+    /// cơ chế như StockController: caller CIS/Sett gửi JWT app AuthCenter qua header
+    /// Bearer (đã bỏ autoAppendToken:false ở các call-site), PDS.API kiểm chứng bằng
+    /// cache Redis DB1 của AuthCenter. TRIỂN KHAI NGUYÊN TỬ với CIS/Sett như ghi chú
+    /// ở StockController. LƯU Ý: helper SitePDSAPIHelper của Sett trong cây này vẫn
+    /// là stub trả default(T) — 2 call-site Sett được chuyển token để tương thích
+    /// trước khi stub được thay bằng helper thật.
     /// </summary>
     [ApiController]
     [Route("api/ResourcesOperate")]
@@ -37,6 +36,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("OutpatientBook")]
+        [DefaultAuthorize]
         public IActionResult OutpatientBook([FromBody] OutpatientBookRequestDTO par)
         {
             var response = CommonExecute<OutpatientBookRequestDTO, DefaultResponse>((req, resp) =>
@@ -48,6 +48,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("OutpatientBookModify")]
+        [DefaultAuthorize]
         public IActionResult OutpatientBookModify([FromBody] OutpatientBookModifyRequestDTO par)
         {
             var response = CommonExecute<OutpatientBookModifyRequestDTO, DefaultResponse>((req, resp) =>
@@ -105,6 +106,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("OutpatientCommit")]
+        [DefaultAuthorize]
         public IActionResult OutpatientCommit([FromBody] OutpatientCommitRequestDTO request)
         {
             var response = CommonExecute<OutpatientCommitRequestDTO, DefaultResponse>((req, resp) =>
@@ -117,6 +119,7 @@ namespace Newtouch.PDS.API.Controllers
 
         [HttpPost("OutpatientPartReturnBeforeDispensingMedicine")]
         [IgnoreTokenDecrypt]
+        [DefaultAuthorize]
         public IActionResult OutpatientPartReturnBeforeDispensingMedicine([FromBody] OutpatientPartReturnBeforeDispensingMedicineRequestDTO request)
         {
             var response = CommonExecute<OutpatientPartReturnBeforeDispensingMedicineRequestDTO, DefaultResponse>((req, resp) =>
@@ -140,6 +143,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("HospitalizatiionReturnDispensingMedicine")]
+        [DefaultAuthorize]
         public IActionResult HospitalizatiionReturnDispensingMedicine([FromBody] HospitalizatiionReturnDispensingMedicineRequestDTO request)
         {
             var response = CommonExecute<HospitalizatiionReturnDispensingMedicineRequestDTO, DefaultResponse>((req, resp) =>

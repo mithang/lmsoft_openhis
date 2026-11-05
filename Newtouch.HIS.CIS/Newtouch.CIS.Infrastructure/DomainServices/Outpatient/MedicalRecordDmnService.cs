@@ -1453,7 +1453,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     OrganizeId = jzObject.OrganizeId,
                     TimeStamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                 };
-                apiRespPush = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("api/ResourcesOperate/OutpatientBookModify", reqPush, autoAppendToken: false);
+                apiRespPush = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("api/ResourcesOperate/OutpatientBookModify", reqPush);
                 if (apiRespPush == null)
                 {
                     AppLogger.Instance.Warn("Đẩy đơn thuốc đến nhà thuốc thất bại, số đơn thuốc: " + cfh);
@@ -1549,7 +1549,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                     OrganizeId = jzObject.OrganizeId,
                     TimeStamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                 };
-                apiRespPush = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("api/ResourcesOperate/OutpatientBook", reqPush, autoAppendToken: false);
+                apiRespPush = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("api/ResourcesOperate/OutpatientBook", reqPush);
                 if (apiRespPush == null)
                 {
                     AppLogger.Instance.Warn("Đẩy đơn thuốc đến nhà thuốc thất bại, số đơn thuốc: " + cfh);
@@ -1670,7 +1670,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                             TimeStamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                         };
                         var apiRespPush = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>(
-                                     "api/ResourcesOperate/OutpatientBookModify", reqPush, autoAppendToken: false);
+                                     "api/ResourcesOperate/OutpatientBookModify", reqPush);
                         var actionEntity = new SysObjectActionRecordEntity() { };
                         actionEntity.OrganizeId = cf.OrganizeId;
                         actionEntity.objectType = "cf";
@@ -1694,7 +1694,7 @@ where zyzd.zdlx = 1 and jzId = @jzId and zyzd.zt = '1'", new[] { new SqlParamete
                             TimeStamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")
                         };
                         var apiRespPush = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>(
-                                     "api/ResourcesOperate/OutpatientBook", reqPush, autoAppendToken: false);
+                                     "api/ResourcesOperate/OutpatientBook", reqPush);
                         var actionEntity = new SysObjectActionRecordEntity() { };
                         actionEntity.OrganizeId = cf.OrganizeId;
                         actionEntity.objectType = "cf";

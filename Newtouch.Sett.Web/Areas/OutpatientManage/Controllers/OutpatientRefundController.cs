@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using Newtouch.Sett.Domain;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Model;
@@ -141,7 +142,29 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         public IActionResult btnReturn(string blh, int jsnm, string refundData)
         {
             bool isReturnAll;
-            var GridViewMx = refundData.ToList<GridViewMx>();
+            // FA-014-B4 (BA-012): refundData null/rỗng hoặc sai định dạng JSON trước đây
+            // rơi xuống ToList() trả null rồi _IRefundApp.btnReturnInAcc nhận list null
+            // (NRE ở tầng service). Chặn ngay ở controller, đúng mẫu action kề bên
+            // OutpatientManage/RefundController.btnReturn (Error "Dữ liệu gửi lên
+            // không đúng định dạng."). Bản thân luồng hoàn phí (ghi DB) vẫn CHƯA
+            // kiểm chứng live (chặn STG credential).
+            if (string.IsNullOrWhiteSpace(refundData))
+            {
+                return Error("Dữ liệu gửi lên không đúng định dạng.");
+            }
+            List<GridViewMx> GridViewMx;
+            try
+            {
+                GridViewMx = refundData.ToList<GridViewMx>();
+            }
+            catch (JsonException)
+            {
+                return Error("Dữ liệu gửi lên không đúng định dạng.");
+            }
+            if (GridViewMx == null)
+            {
+                return Error("Dữ liệu gửi lên không đúng định dạng.");
+            }
             var result = _IRefundApp.btnReturnInAcc(blh, GridViewMx, jsnm, out isReturnAll);
             if (result)
             {
@@ -437,7 +460,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
             };
             var apiResp = SitePDSAPIHelper.Request<APIRequestHelper.DefaultResponse>(
-                "api/ResourcesOperate/OutpatientPartReturnBeforeDispensingMedicine", reqObj, autoAppendToken: false);
+                "api/ResourcesOperate/OutpatientPartReturnBeforeDispensingMedicine", reqObj);
 
             if (apiResp != null && apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {

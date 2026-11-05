@@ -14,18 +14,22 @@ namespace Newtouch.PDS.API.Controllers
     /// Bản Core inject IDrugStorageApp qua DI nên các action chạy thật.
     /// GHI CHÚ: các action gốc mang [HandlerAuthorizeIgnore] — đó là attribute của MVC
     /// (Web.Core), không có tác dụng trong pipeline Web API; CommonExecute vẫn chạy
-    /// Authorize như thường. Không action nào mang [DefaultAuthorize] nên request không
-    /// token vẫn qua khi có Timestamp, đúng hành vi gốc.
+    /// Authorize như thường. BA-002: cả 5 action nay mang [DefaultAuthorize] nên
+    /// request không token hợp lệ không còn qua khi chỉ có Timestamp.
     /// GHI CHÚ 2: các action PrepareMedicine... gán resp.msg (không phải data) như gốc —
     /// ResponseBase của bản port có trường msg chính vì vậy.
-    /// QA PHASE 2 (API-03/API-07a): (a) KHÔNG gắn [DefaultAuthorize] ở controller
-    /// này — caller thật là CIS Web/DomainServices gọi với autoAppendToken: false
-    /// (xếp/hủy xếp thuốc từ luồng duyệt y lệnh, không mang token user); gắn auth
-    /// sẽ phá luồng đó. Bề mặt này phải chặn ở tầng mạng (chỉ host CIS được tới
-    /// PDS API), xem báo cáo qa-phase2/api-auth.md. (b) Domain service nuốt
-    /// exception và trả ex.Message làm chuỗi kết quả ("" = thành công) — trước
-    /// đây controller gán code SUCCESS vô điều kiện nên NRE trả về 10000 kèm
-    /// text exception; nay chuỗi khác rỗng → code FAIL (NRE → thông điệp chung).
+    /// BA-002 (F-API-01): cả 5 action gắn [DefaultAuthorize] — trước đây request
+    /// không token vẫn qua khi có Timestamp (lỗ hổng anon 5337). Caller thật duy
+    /// nhất là CIS (SiteYfykAPIHelper, đã chuyển sang gửi token: xem các call-site
+    /// đã bỏ autoAppendToken:false) với token JWT app của AuthCenter 8015 qua
+    /// header Bearer; ApiControllerBase.Authorize nay đọc header đó và kiểm chứng
+    /// JWT bằng cache Redis DB1 của AuthCenter (TokenStore.GetIdentityFromAuthCenterJwt),
+    /// token GUID nội bộ (api/Auth/GetToken) vẫn tra DB0. TRIỂN KHAI NGUYÊN TỬ:
+    /// phải deploy PDS.API + CIS (+ Sett cho ResourcesOperate) cùng một đợt — chỉ
+    /// deploy PDS.API mà CIS chưa gửi token sẽ phá cả 10 luồng (TOKEN_IS_REQUIRED);
+    /// chỉ deploy CIS thì vô hại (PDS.API cũ bỏ qua header). Không còn phương án
+    /// localhost-trust: cổng 5337 vẫn bind 127.0.0.1 nhưng đó chỉ là lớp mạng,
+    /// không thay cho auth.
     /// </summary>
     [ApiController]
     [Route("api/Stock")]
@@ -40,6 +44,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("query")]
+        [DefaultAuthorize]
         public IActionResult Query([FromBody] StockQueryRequestDTO par)
         {
             var response = CommonExecute<StockQueryRequestDTO, DefaultResponse>((req, resp) =>
@@ -51,6 +56,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("PrepareMedicine")]
+        [DefaultAuthorize]
         public IActionResult PrepareMedicine([FromBody] PrepareMedicineDTO par)
         {
             var response = CommonExecute<PrepareMedicineDTO, DefaultResponse>((req, resp) =>
@@ -61,6 +67,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("WithdrawalPreparation")]
+        [DefaultAuthorize]
         public IActionResult WithdrawalPreparation([FromBody] WithdrawalPrepareDTO par)
         {
             var response = CommonExecute<WithdrawalPrepareDTO, DefaultResponse>((req, resp) =>
@@ -71,6 +78,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("PrepareMedicineReturn")]
+        [DefaultAuthorize]
         public IActionResult PrepareMedicineReturn([FromBody] PrepareMedicineReturnDTO par)
         {
             var response = CommonExecute<PrepareMedicineReturnDTO, DefaultResponse>((req, resp) =>
@@ -81,6 +89,7 @@ namespace Newtouch.PDS.API.Controllers
         }
 
         [HttpPost("WithdrawalPreparationReturn")]
+        [DefaultAuthorize]
         public IActionResult WithdrawalPreparationReturn([FromBody] WithdrawalPrepareDTO par)
         {
             var response = CommonExecute<WithdrawalPrepareDTO, DefaultResponse>((req, resp) =>

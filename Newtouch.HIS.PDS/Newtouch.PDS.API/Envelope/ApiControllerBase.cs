@@ -34,10 +34,11 @@ namespace Newtouch.PDS.API.Envelope
     /// - sub_msg của lỗi hệ thống chỉ chứa Exception.Message, KHÔNG kèm StackTrace
     ///   (gốc kèm cả stacktrace — rò rỉ nội bộ ra ngoài API công khai).
     /// - Token được dùng thô làm key Redis (xem ghi chú TokenStore về TokenDecryptFilter).
-    /// - Không có controller/action nào của PDS mang [DefaultAuthorize] (đã grep toàn bộ
-    ///   cây API gốc) nên request không token vẫn qua Authorize khi có Timestamp — đúng
-    ///   hành vi gốc, giống Query của OR.API/MRMS.API. Token khi được gửi thì vẫn bị kiểm
-    ///   tra đầy đủ (type bắt buộc, hết hạn, type không khớp).
+    /// - BA-002: Authorize chấp nhận token qua header Authorization: Bearer
+    ///   (đường gửi thật của CIS/Sett) bên cạnh Token trong body; JWT của
+    ///   AuthCenter được kiểm chứng bằng cache Redis DB1 của AuthCenter, token
+    ///   GUID nội bộ của PDS (api/Auth/GetToken) tra Redis DB0 như cũ. Action
+    ///   mang [DefaultAuthorize] bắt buộc phải có identity hợp lệ.
     /// </summary>
     public abstract class ApiControllerBase : ControllerBase
     {
@@ -204,24 +205,61 @@ namespace Newtouch.PDS.API.Envelope
         protected void Authorize(string token, string tokenType)
         {
             Identity = null;
+            // BA-002: client nội bộ (CIS/Sett, SiteAPIRequestHelperBase) gửi
+            // token qua header "Authorization: Bearer <token>", KHÔNG qua body
+            // (HttpPostWithToken) — pipeline này trước đây không đọc header nên
+            // token đó bị bỏ qua hoàn toàn. Ưu tiên Token trong body (hành vi
+            // gốc), thiếu thì lấy từ header. Token đi header không kèm
+            // TokenType nên không bắt TokenTypeRequired cho đường này — loại
+            // token được xác lập bởi chính đường kiểm chứng (GUID Redis giữ
+            // TokenType đã lưu; JWT AuthCenter suy ra WebApi/Web từ key cache
+            // khớp) — xem ghi chú GetIdentityFromAuthCenterJwt.
+            var tokenFromHeader = false;
+            if (string.IsNullOrWhiteSpace(token))
+            {
+                var authHeader = HttpContext?.Request?.Headers["Authorization"].ToString();
+                if (!string.IsNullOrWhiteSpace(authHeader)
+                    && authHeader.StartsWith("Bearer ", StringComparison.OrdinalIgnoreCase))
+                {
+                    token = authHeader.Substring("Bearer ".Length).Trim();
+                    tokenFromHeader = !string.IsNullOrWhiteSpace(token);
+                }
+            }
             if (!string.IsNullOrWhiteSpace(token))
             {
-                if (string.IsNullOrWhiteSpace(tokenType))
-                    throw new TokenTypeRequiredException();
-                var resolved = _tokenStore.GetIdentity(token, tokenType);
-                if (resolved != null
-                    && !string.IsNullOrWhiteSpace(resolved.Account)
-                    && !string.IsNullOrWhiteSpace(resolved.UserId ?? resolved.UserCode))
+                // Nhánh JWT (AuthCenter 8015, dạng x.y.z): kiểm chứng bằng
+                // cache Redis của AuthCenter, KHÔNG tra như GUID. JWT không
+                // bao giờ là key Redis DB0 nên rẽ nhánh trước khi đòi TokenType.
+                if (IsJwtShape(token))
                 {
-                    if (!string.IsNullOrWhiteSpace(resolved.TokenType)
-                        && !string.IsNullOrWhiteSpace(tokenType)
-                        && !string.Equals(resolved.TokenType, tokenType, StringComparison.OrdinalIgnoreCase))
+                    var jwtIdentity = _tokenStore.GetIdentityFromAuthCenterJwt(token);
+                    if (jwtIdentity == null)
+                        throw new TokenExpiredException();
+                    if (!string.IsNullOrWhiteSpace(tokenType)
+                        && !string.IsNullOrWhiteSpace(jwtIdentity.TokenType)
+                        && !string.Equals(jwtIdentity.TokenType, tokenType, StringComparison.OrdinalIgnoreCase))
                         throw new TokenTypeNotMatchException();
-                    Identity = resolved;
+                    Identity = jwtIdentity;
                 }
                 else
                 {
-                    throw new TokenExpiredException();
+                    if (string.IsNullOrWhiteSpace(tokenType) && !tokenFromHeader)
+                        throw new TokenTypeRequiredException();
+                    var resolved = _tokenStore.GetIdentity(token, tokenType);
+                    if (resolved != null
+                        && !string.IsNullOrWhiteSpace(resolved.Account)
+                        && !string.IsNullOrWhiteSpace(resolved.UserId ?? resolved.UserCode))
+                    {
+                        if (!string.IsNullOrWhiteSpace(resolved.TokenType)
+                            && !string.IsNullOrWhiteSpace(tokenType)
+                            && !string.Equals(resolved.TokenType, tokenType, StringComparison.OrdinalIgnoreCase))
+                            throw new TokenTypeNotMatchException();
+                        Identity = resolved;
+                    }
+                    else
+                    {
+                        throw new TokenExpiredException();
+                    }
                 }
             }
             if (Identity == null && NeedsAuthorize())
@@ -230,6 +268,15 @@ namespace Newtouch.PDS.API.Envelope
                     throw new TokenRequiredException();
                 throw new TokenExpiredException();
             }
+        }
+
+        private static bool IsJwtShape(string token)
+        {
+            var parts = token.Split('.');
+            return parts.Length == 3
+                && !string.IsNullOrWhiteSpace(parts[0])
+                && !string.IsNullOrWhiteSpace(parts[1])
+                && !string.IsNullOrWhiteSpace(parts[2]);
         }
 
         private bool NeedsAuthorize()

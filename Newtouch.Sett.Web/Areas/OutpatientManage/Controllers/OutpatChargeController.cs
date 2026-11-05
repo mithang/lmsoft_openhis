@@ -1069,7 +1069,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                                 TimeStamp = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")//,
                                 //Token = token
                             };
-                            var apiResp = SitePDSAPIHelper.Request<APIRequestHelper.DefaultResponse>("api/ResourcesOperate/OutpatientCommit", reqObj, autoAppendToken: false,httpContext: context);
+                            var apiResp = SitePDSAPIHelper.Request<APIRequestHelper.DefaultResponse>("api/ResourcesOperate/OutpatientCommit", reqObj, httpContext: context);
 
                             LogCore.Info("OutpatientCommit response", apiResp.ToJson());
                             AppLogger.Info(apiResp != null

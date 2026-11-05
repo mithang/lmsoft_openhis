@@ -149,7 +149,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                     ClientNo = Guid.NewGuid(),
                     TimeStamp = DateTime.Now.ToString()
                 };
-                var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/query", request, autoAppendToken: false);
+                var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/query", request);
                 if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.data != null)
                 {
                     StockQueryResponseDTO successDoOrder = Newtouch.CIS.Compat.Tools.Json.ToObject<StockQueryResponseDTO>(apires.data.ToString()); //giao diệnQuay lạiDữ liệu 

@@ -235,7 +235,7 @@ and exists (
                         };
                         //gọiNhà thuốcKho thuốcgiao diệnyêu cầutrảthuốc,Quay lạiIsSucceed==true thìTất cảthành công,nếufalse thìnhậnlàTất cảthất bại 
                         var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>(
-                        "/api/ResourcesOperate/HospitalizatiionReturnDispensingMedicine", reqobj, autoAppendToken: false);
+                        "/api/ResourcesOperate/HospitalizatiionReturnDispensingMedicine", reqobj);
 
                         if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS)
                         {

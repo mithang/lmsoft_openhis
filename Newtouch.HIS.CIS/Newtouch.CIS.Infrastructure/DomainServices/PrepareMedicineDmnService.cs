@@ -421,7 +421,7 @@ FROM (
                 }
                 if (Djnr.issavesubmit == "1")
                 {
-                    var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/PrepareMedicineReturn", request, autoAppendToken: false);
+                    var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/PrepareMedicineReturn", request);
                     if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.msg == "")
                     {
                         return "LưuvàGửithành công！";
@@ -683,7 +683,7 @@ where ypdm=@ypbm and ph=@ph and pc=@pc and OrganizeId=@orgId  and yfbmCode=@yfbm
                     yhgh = user.rygh,
                     shzt = "1",
                 };
-                var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/WithdrawalPreparationReturn", request, autoAppendToken: false);
+                var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/WithdrawalPreparationReturn", request);
                 if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.msg == "")
                 {
                     string sql = "update zy_ksbyth set thzt='4' where djh=@djh and OrganizeId=@orgId and zt='1' ";

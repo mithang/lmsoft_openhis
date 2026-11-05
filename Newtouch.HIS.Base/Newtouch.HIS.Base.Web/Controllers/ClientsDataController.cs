@@ -1,5 +1,4 @@
 using Newtouch.HIS.Domain.IDomainServices;
-using NewtouchHIS.Lib.Framework.Attributes;
 using NewtouchHIS.Lib.Framework.Filter;
 using Newtouch.HIS.Domain.IRepository;
 using NewtouchHIS.Lib.Base.Model;
@@ -12,7 +11,13 @@ using Newtouch.Infrastructure;
 
 namespace Newtouch.HIS.Base.Web.Controllers
 {
-    [HandlerLogin]
+    // BA-001 (FA-017-B2): KHÔNG mang [HandlerLogin] nữa — attribute đó miễn
+    // controller khỏi FrameworkAuthorizationFilter toàn cục (Program.cs) nên
+    // request ẩn danh vẫn nhận đủ từ điển + top org (13KB). Endpoint này chỉ
+    // được framework-clientdata.js gọi, mà file đó chỉ Home/Index load, và
+    // Home/Index đã redirect ẩn danh về /Login/Index — nên bắt auth ở đây
+    // không phá luồng bootstrap của client đã đăng nhập; request ẩn danh
+    // (AJAX) nhận SESSION_TIMEOUT như mọi controller khác, không còn dữ liệu.
     public class ClientsDataController : Controller
     {
         private readonly ISysItemsRepository _sysItemsRepository;

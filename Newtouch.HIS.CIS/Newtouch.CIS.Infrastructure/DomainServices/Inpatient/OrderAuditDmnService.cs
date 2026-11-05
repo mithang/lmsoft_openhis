@@ -1451,7 +1451,7 @@ AND (c.bqmc LIKE '%'+@keyword+'%' OR c.py LIKE '%'+@keyword+'%' OR a.bqCode LIKE
                         byxx.lsj = byxx.yklsj.ToString();
                         byxx.yplb = byxx.dlmc;
                     }
-                    var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/PrepareMedicine", request, autoAppendToken: false);
+                    var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/PrepareMedicine", request);
                     if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.msg == "")
                     {
                         return "LưuvàGửithành công！";
@@ -1521,7 +1521,7 @@ select * from  zy_bqksbymx where  OrganizeId=@orgId and zt='1' and byId=@byId
                     yhgh = user.rygh,
                     yplist = bYDjInfo
                 };
-                var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/PrepareMedicine", request, autoAppendToken: false);
+                var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/PrepareMedicine", request);
                 if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.msg == "")
                 {
                     string sql = "update zy_bqksby set shzt='1' where Id=@Id and OrganizeId=@orgId and zt='1' ";
@@ -1560,7 +1560,7 @@ select * from  zy_bqksbymx where  OrganizeId=@orgId and zt='1' and byId=@byId
                     yhgh = user.rygh,
                     shzt = "1",
                 };
-                var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/WithdrawalPreparation", request, autoAppendToken: false);
+                var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/WithdrawalPreparation", request);
                 if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.msg == "")
                 {
                     string sql = "update zy_bqksby set shzt='0' where djh=@djh and OrganizeId=@orgId and zt='1' ";
