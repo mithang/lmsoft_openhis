@@ -76,7 +76,10 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         [Obsolete("please use SysChargeItemController.GetChargeItemSelectData(string keyword)")]
         public IActionResult GetxmSelect()
         {
-            return null;
+            // FA-016: literal `return null` crashed every call with the
+            // Cannot-return-null framework error (FA-012/FA-014/FA-015R class-A
+            // precedent). Obsolete stub action: empty body, no contract change.
+            return Content("");
         }
 
         /// <summary>

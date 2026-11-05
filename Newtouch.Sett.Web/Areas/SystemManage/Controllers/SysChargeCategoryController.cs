@@ -63,18 +63,25 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         public IActionResult GetsfdlJson(string keyword)
         {
+            // FA-016: GetBoolValueByCode returns null when YXZ_SETT_1010 is absent
+            // (STG has no such row) — the old `iszytfyp.Value` threw
+            // "Nullable object must have a value" on EVERY call. Null now takes
+            // the show-medicines branch, exactly the old `Value == false` branch;
+            // `Value == true` still filters out 01/02/03. Keyword/py are also
+            // null-guarded (bare call passed null into IndexOf).
             var iszytfyp = _sysConfigRepo.GetBoolValueByCode("YXZ_SETT_1010", OrganizeId);//độngtrạng tháithamsố:nhập việnviệnhoànphílàkhônghoànthuốcphẩmphídùng
             var sysDls = new List<SysChargeCategoryVEntity>();
-            if (iszytfyp.Value == false)
+            if (iszytfyp == null || iszytfyp.Value == false)
             {//hiển thịhiển thịthuốcphẩm
                 sysDls = _sysChargeCategoryRepo.GetLazyList(this.OrganizeId).ToList();
             }
             else {//khônghiển thịhiển thịthuốcphẩm
                 sysDls = _sysChargeCategoryRepo.GetLazyList(this.OrganizeId).Where(p => p.dlCode != "01" && p.dlCode != "02" && p.dlCode != "03").ToList();
-            } 
+            }
             //sysDls = sysDls.Where(p=>p.py.Contains(keyword)||p.dlmc.Contains(keyword)).ToList();
-            sysDls = sysDls.Where(p => p.py.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0
-            || p.dlmc.IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
+            keyword = keyword ?? string.Empty;
+            sysDls = sysDls.Where(p => (p.py ?? string.Empty).IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0
+            || (p.dlmc ?? string.Empty).IndexOf(keyword, StringComparison.OrdinalIgnoreCase) >= 0).ToList();
             return Content(sysDls.ToJson());
         }
         

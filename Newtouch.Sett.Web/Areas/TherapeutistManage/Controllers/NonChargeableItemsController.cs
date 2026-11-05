@@ -74,7 +74,11 @@ namespace Newtouch.Sett.Web.Areas.TherapeutistManage.Controllers
         /// <returns></returns>
         public IActionResult GetFormJson(AdjustStaffHourVO vo)
         {
-            var data = _therapeutistCompleteDmnService.GetStaffWorkedHour(OrganizeId, vo.ysgh, vo.syear.ToString(), vo.smonth.ToString());
+            // FA-016: AdjustStaffHourVO props are all `object`; a bare call binds
+            // them null, so `vo.syear.ToString()` threw NullReferenceException.
+            // Nulls pass through as empty filter strings; the service answer
+            // (null/rows) is unchanged for populated calls.
+            var data = _therapeutistCompleteDmnService.GetStaffWorkedHour(OrganizeId, vo?.ysgh?.ToString() ?? string.Empty, vo?.syear?.ToString() ?? string.Empty, vo?.smonth?.ToString() ?? string.Empty);
             return Content(data.ToJson());
         }
 
