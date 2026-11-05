@@ -628,3 +628,164 @@ body[data-appid="Herp"] #container .rd-empty .rd-empty-action a:focus-visible {
 body[data-appid="MR"] #page-wrapper:not(.nav-small) #sidebar-nav .nav > li > a > span {
     display: block;
 }
+
+/* ---- U7-006 (OR, desktop): /Home/Index --------------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe /tmp/u7or-before/):
+   trang Layout = null, HTML độc lập, stylesheet DUY NHẤT là
+   bootstrap.min.css generic từ static host (200) + 6 dòng <style>
+   inline (body padding 20px, sans-serif; h4 gạch chân; li padding
+   4px). Không layout, không header/chrome, không token, không
+   portal.css (/css/redesign-portal.css 404 — chưa sync sang OR
+   wwwroot; tokens 200 nhưng trang không nạp). Kết quả: h1 x=20 y=40
+   rộng 1326px, 3 nhóm link xanh trơn trên nền trắng, ~60% viewport
+   trống dưới "Đăng xuất". Sửa: Index.cshtml nạp tokens + file này
+   (giữ link bootstrap — đang 200, chỉ là nền base; bỏ 2 <style>
+   inline, nội dung đã dời vào đây) và bọc nội dung thật trong
+   header + main căn giữa; mọi rule dưới đây chỉ nhắm
+   body[data-appid="OR"] (AppId "OR" theo BusinessConfig trong
+   appsettings.json — ghi literal, không đọc config lúc chạy, bài học
+   U7-005; trang độc lập không có theme JS nhưng neo data-appid vẫn
+   là cách chắc nhất). 13 link + Đăng xuất, đích, nhãn, tiêu đề nhóm
+   và toàn bộ chữ gốc giữ nguyên 100% (so sánh probe trước/sau);
+   chữ mới duy nhất là brand "Viet HIS" trong header — chrome chung
+   như shell SSO/Base Web và như CIS (U7-002). Đăng xuất dời từ cuối
+   trang lên header (cùng href, cùng chữ) thành nút. KHÔNG bịa
+   KPI/biểu đồ/widget hay dữ liệu giả; 3 thẻ nhóm chỉ trình bày lại
+   danh sách link thật; không thêm/bớt link hay đích nào. Không
+   reset box-sizing toàn cục (Bootstrap đã border-box; bài học
+   U7-004). -------- */
+body[data-appid="OR"] {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--rd-text);
+    background: var(--rd-bg-muted);
+    line-height: var(--rd-line-height);
+}
+
+/* Header: dải primary + brand, Đăng xuất thành nút bên phải. */
+body[data-appid="OR"] .rd-or-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--rd-space-4);
+    background: var(--rd-primary);
+    color: #fff;
+    padding: var(--rd-space-3) var(--rd-space-6);
+}
+
+body[data-appid="OR"] .rd-or-brand {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: var(--rd-line-height-heading);
+}
+
+body[data-appid="OR"] .rd-or-logout {
+    display: inline-block;
+    padding: 6px 14px;
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    white-space: nowrap;
+}
+
+body[data-appid="OR"] .rd-or-logout:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
+}
+
+body[data-appid="OR"] .rd-or-logout:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* Khung nội dung: giới hạn bề rộng, căn giữa — hết "trắng chết". */
+body[data-appid="OR"] .rd-or-main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: var(--rd-space-6) var(--rd-space-6) 48px;
+}
+
+body[data-appid="OR"] .rd-or-title {
+    margin: var(--rd-space-2) 0 var(--rd-space-2);
+    font-size: 24px;
+    line-height: var(--rd-line-height-heading);
+}
+
+body[data-appid="OR"] .rd-or-intro {
+    margin: 0 0 var(--rd-space-4);
+    color: var(--rd-text-muted);
+}
+
+/* 3 nhóm thật: lưới 3 cột, mỗi nhóm thành 1 thẻ. */
+body[data-appid="OR"] .rd-or-groups {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--rd-space-4);
+    align-items: start;
+}
+
+body[data-appid="OR"] .rd-or-group {
+    background: #fff;
+    border: 1px solid var(--rd-border);
+    border-top: 4px solid var(--rd-primary);
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+    overflow: hidden;
+}
+
+body[data-appid="OR"] .rd-or-group h4 {
+    margin: 0;
+    padding: var(--rd-space-4) var(--rd-space-4) var(--rd-space-3);
+    font-size: 16px;
+    line-height: var(--rd-line-height-heading);
+    border-bottom: 1px solid var(--rd-border);
+}
+
+body[data-appid="OR"] .rd-or-group ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--rd-space-2) 0;
+}
+
+/* Mỗi link thật thành 1 hàng bấm được trong thẻ nhóm. */
+body[data-appid="OR"] .rd-or-tile a {
+    display: block;
+    padding: var(--rd-space-2) var(--rd-space-4);
+    color: var(--rd-text);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+body[data-appid="OR"] .rd-or-tile a:hover {
+    color: var(--rd-primary);
+    background: var(--rd-bg-muted);
+}
+
+body[data-appid="OR"] .rd-or-tile a:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: -2px;
+}
+
+@media (max-width: 767px) {
+    body[data-appid="OR"] .rd-or-header {
+        padding: var(--rd-space-3) var(--rd-space-4);
+    }
+
+    body[data-appid="OR"] .rd-or-main {
+        padding: var(--rd-space-4) var(--rd-space-4) 32px;
+    }
+
+    body[data-appid="OR"] .rd-or-groups {
+        grid-template-columns: 1fr;
+    }
+
+    body[data-appid="OR"] .rd-or-tile a {
+        padding: var(--rd-space-3) var(--rd-space-4);
+    }
+}

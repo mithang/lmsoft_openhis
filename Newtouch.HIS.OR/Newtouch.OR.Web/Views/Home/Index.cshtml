@@ -6,6 +6,16 @@
     Framework và ở deployment này do SSO phục vụ, nên trang chủ của riêng
     OR được dựng thành bảng điều hướng theo đúng các khu vực của module —
     không bịa thêm tính năng, mọi link đều là route đang chạy của OR.
+
+    U7-006 (chỉ trình bày): trang Layout = null độc lập; stylesheet duy
+    nhất trước đây là bootstrap.min.css generic từ static host + 2
+    <style> inline nên trang render link xanh trơn trên nền trắng.
+    Nay nạp thêm tokens + redesign-portal.css (đã sync sang OR wwwroot),
+    bọc nội dung thật trong header + main căn giữa, 3 nhóm link thật
+    thành 3 thẻ (mục body[data-appid="OR"] trong portal.css). Giữ
+    nguyên 13 link + Đăng xuất, đích, nhãn, tiêu đề nhóm và chữ gốc;
+    Đăng xuất dời lên header thành nút (cùng href, cùng chữ); chữ mới
+    duy nhất là brand "Viet HIS" trong header, như shell SSO/Base Web.
 *@
 <!DOCTYPE html>
 <html lang="vi">
@@ -14,52 +24,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Trang chủ — Hệ thống phòng mổ</title>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
-    <style>
-        body { padding: 20px; font-family: sans-serif; }
-        .or-group { margin-bottom: 24px; }
-        .or-group h4 { border-bottom: 1px solid #ddd; padding-bottom: 6px; }
-        .or-group ul { list-style: none; padding-left: 0; }
-        .or-group li { padding: 4px 0; }
-    </style>
-    <style>
-        @@media (max-width: 767px) { body { padding: 16px !important; } .or-group li { padding: 10px 0; } .or-group li a { display: inline-block; padding: 6px 0; } }
-    </style>
+    <link href="/css/redesign-tokens.css" rel="stylesheet" />
+    <link href="/css/redesign-portal.css" rel="stylesheet" />
 </head>
-<body>
-    <h1>Trang chủ — Hệ thống phòng mổ</h1>
-    <p>Chọn một khu vực làm việc dưới đây.</p>
+<body data-appid="OR">
+    <header class="rd-or-header">
+        <span class="rd-or-brand">Viet HIS</span>
+        <a class="rd-or-logout" href="/Login/OutLogin">Đăng xuất</a>
+    </header>
+    <main class="rd-or-main">
+        <h1 class="rd-or-title">Trang chủ — Hệ thống phòng mổ</h1>
+        <p class="rd-or-intro">Chọn một khu vực làm việc dưới đây.</p>
 
-    <div class="or-group">
-        <h4>Đăng ký và sắp xếp phẫu thuật</h4>
-        <ul>
-            <li><a href="/Operation/OpApply/Index">Danh sách bệnh nhân nội trú chờ đăng ký phẫu thuật</a></li>
-            <li><a href="/Operation/OpApply/ApplyIndex">Đăng ký phẫu thuật</a></li>
-            <li><a href="/Operation/OpArrangement/Index">Sắp xếp phẫu thuật</a></li>
-            <li><a href="/Operation/OpRegister/Index">Đăng ký sau mổ</a></li>
-        </ul>
-    </div>
+        <div class="rd-or-groups">
+            <section class="rd-or-group">
+                <h4>Đăng ký và sắp xếp phẫu thuật</h4>
+                <ul>
+                    <li class="rd-or-tile"><a href="/Operation/OpApply/Index">Danh sách bệnh nhân nội trú chờ đăng ký phẫu thuật</a></li>
+                    <li class="rd-or-tile"><a href="/Operation/OpApply/ApplyIndex">Đăng ký phẫu thuật</a></li>
+                    <li class="rd-or-tile"><a href="/Operation/OpArrangement/Index">Sắp xếp phẫu thuật</a></li>
+                    <li class="rd-or-tile"><a href="/Operation/OpRegister/Index">Đăng ký sau mổ</a></li>
+                </ul>
+            </section>
 
-    <div class="or-group">
-        <h4>Danh mục</h4>
-        <ul>
-            <li><a href="/Operation/OpOperation/Index">Quản lý phẫu thuật</a></li>
-            <li><a href="/Operation/OpRoom/Index">Quản lý phòng mổ</a></li>
-            <li><a href="/Operation/OPStaff/Index">Nhân sự phẫu thuật</a></li>
-            <li><a href="/Operation/OPAnesthesia/Index">Phương pháp gây mê</a></li>
-            <li><a href="/Operation/OpNotchGrade/Index">Cấp độ vết mổ</a></li>
-            <li><a href="/SystemManage/SysChargeTemplate/ChargeTemplateIndex">Mẫu thu phí</a></li>
-        </ul>
-    </div>
+            <section class="rd-or-group">
+                <h4>Danh mục</h4>
+                <ul>
+                    <li class="rd-or-tile"><a href="/Operation/OpOperation/Index">Quản lý phẫu thuật</a></li>
+                    <li class="rd-or-tile"><a href="/Operation/OpRoom/Index">Quản lý phòng mổ</a></li>
+                    <li class="rd-or-tile"><a href="/Operation/OPStaff/Index">Nhân sự phẫu thuật</a></li>
+                    <li class="rd-or-tile"><a href="/Operation/OPAnesthesia/Index">Phương pháp gây mê</a></li>
+                    <li class="rd-or-tile"><a href="/Operation/OpNotchGrade/Index">Cấp độ vết mổ</a></li>
+                    <li class="rd-or-tile"><a href="/SystemManage/SysChargeTemplate/ChargeTemplateIndex">Mẫu thu phí</a></li>
+                </ul>
+            </section>
 
-    <div class="or-group">
-        <h4>Báo cáo</h4>
-        <ul>
-            <li><a href="/ReportManage/Report/Index">Báo cáo phòng mổ</a></li>
-            <li><a href="/Operation/OpFeeReport/Index">Báo cáo chi phí phẫu thuật</a></li>
-            <li><a href="/Operation/OpRegisterReport/Index">Sổ đăng ký phẫu thuật</a></li>
-        </ul>
-    </div>
-
-    <p><a href="/Login/OutLogin">Đăng xuất</a></p>
+            <section class="rd-or-group">
+                <h4>Báo cáo</h4>
+                <ul>
+                    <li class="rd-or-tile"><a href="/ReportManage/Report/Index">Báo cáo phòng mổ</a></li>
+                    <li class="rd-or-tile"><a href="/Operation/OpFeeReport/Index">Báo cáo chi phí phẫu thuật</a></li>
+                    <li class="rd-or-tile"><a href="/Operation/OpRegisterReport/Index">Sổ đăng ký phẫu thuật</a></li>
+                </ul>
+            </section>
+        </div>
+    </main>
 </body>
 </html>

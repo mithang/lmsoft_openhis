@@ -67,11 +67,16 @@ copy_one "$SRC/redesign-portal.js" "$dest/js/redesign-portal.js"
 # body[data-appid="MR"] trong file này chỉ chứa rule riêng MRMS
 # (AppId là "MR", không phải "MRMS"). Dashboard trong iframe /Home/Default
 # KHÔNG dùng file này (xem Default.cshtml).
+# U7-006: portal.css cũng sync sang OR — /Home/Index của OR là trang
+# Layout = null độc lập, nạp portal.css trực tiếp (mục
+# body[data-appid="OR"] trong file này chỉ nhắm trang đó nên không ảnh
+# hưởng portal khác).
 PORTAL_CSS_APPS=(
   "Newtouch.HIS.CIS/Newtouch.CIS.Web"
   "Newtouch.HIS.EMR/Newtouch.EMR.Web"
   "Newtouch.HIS.Herp/Newtouch.Herp.Web"
   "Newtouch.HIS.MRMS/Newtouch.MRMS.Web"
+  "Newtouch.HIS.OR/Newtouch.OR.Web"
 )
 for app in "${PORTAL_CSS_APPS[@]}"; do
   dest="$ROOT/$app/wwwroot"
