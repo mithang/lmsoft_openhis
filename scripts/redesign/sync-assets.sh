@@ -78,6 +78,10 @@ copy_one "$SRC/redesign-portal.js" "$dest/js/redesign-portal.js"
 # PDS; mục body[data-appid="PDS"] trong file này chỉ chứa rule riêng PDS
 # (sidebar span 2 dòng, username 110px). Dashboard trong iframe
 # /Home/Default KHÔNG dùng file này (xem Default.cshtml).
+# U7-008: portal.css cũng sync sang MRQC — /Home/Index của MRQC là trang
+# Layout = null độc lập, nạp portal.css trực tiếp (mục
+# body[data-appid="MRQC"] trong file này chỉ nhắm trang đó nên không ảnh
+# hưởng portal khác).
 PORTAL_CSS_APPS=(
   "Newtouch.HIS.CIS/Newtouch.CIS.Web"
   "Newtouch.HIS.EMR/Newtouch.EMR.Web"
@@ -85,6 +89,7 @@ PORTAL_CSS_APPS=(
   "Newtouch.HIS.MRMS/Newtouch.MRMS.Web"
   "Newtouch.HIS.OR/Newtouch.OR.Web"
   "Newtouch.HIS.PDS/Newtouch.PDS.Web"
+  "Newtouch.MRQC.Web"
 )
 for app in "${PORTAL_CSS_APPS[@]}"; do
   dest="$ROOT/$app/wwwroot"

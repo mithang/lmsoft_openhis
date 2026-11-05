@@ -841,3 +841,167 @@ body[data-appid="PDS"] .profile-dropdown > a > span {
     white-space: nowrap;
     overflow: visible;
 }
+
+/* ---- U7-008 (MRQC, desktop): /Home/Index -------------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe /tmp/u7mrqc-before/):
+   trang Layout = null, HTML độc lập, stylesheet DUY NHẤT là
+   bootstrap.min.css generic từ static host (200) + <style> inline
+   (media query mobile) và body style inline (padding 30px,
+   sans-serif). Không layout, không header/chrome, không token,
+   không portal.css (/css/redesign-portal.css 404 — chưa sync sang
+   MRQC wwwroot; tokens 200 nhưng trang không nạp). Kết quả: h1
+   x=30 y=50 rộng 1306px, 2 nhóm link xanh trơn trên nền trắng, ~75%
+   viewport trống dưới "Đăng xuất". Sửa: Index.cshtml nạp tokens +
+   file này (giữ link bootstrap — đang 200, chỉ là nền base; bỏ
+   <style> inline và body style inline, nội dung đã dời vào đây) và
+   bọc nội dung thật trong header + main căn giữa; mọi rule dưới đây
+   chỉ nhắm body[data-appid="MRQC"] (AppId "MRQC" theo BusinessConfig
+   trong appsettings.json — ghi literal, không đọc config lúc chạy,
+   bài học U7-005; trang độc lập không có theme JS nhưng neo
+   data-appid vẫn là cách chắc nhất). 7 link + Đăng xuất, đích, nhãn,
+   tiêu đề nhóm và toàn bộ chữ gốc giữ nguyên 100% (so sánh probe
+   trước/sau); link "Danh sách nhân sự theo vị trí (JSON)" giữ
+   nguyên đích JSON, trình bày như 1 tile như các link khác — không
+   đổi đích, không giấu. Chữ mới duy nhất là brand "Viet HIS" trong
+   header — chrome chung như shell SSO/Base Web và như CIS/OR
+   (U7-002/U7-006). Đăng xuất dời từ cuối trang lên header (cùng
+   href, cùng chữ) thành nút. KHÔNG bịa KPI/biểu đồ/widget hay dữ
+   liệu giả; 2 thẻ nhóm chỉ trình bày lại danh sách link thật; không
+   thêm/bớt link hay đích nào. Không reset box-sizing toàn cục
+   (Bootstrap đã border-box; bài học U7-004). -------- */
+body[data-appid="MRQC"] {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--rd-text);
+    background: var(--rd-bg-muted);
+    line-height: var(--rd-line-height);
+}
+
+/* Header: dải primary + brand, Đăng xuất thành nút bên phải. */
+body[data-appid="MRQC"] .rd-mrqc-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--rd-space-4);
+    background: var(--rd-primary);
+    color: #fff;
+    padding: var(--rd-space-3) var(--rd-space-6);
+}
+
+body[data-appid="MRQC"] .rd-mrqc-brand {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: var(--rd-line-height-heading);
+}
+
+body[data-appid="MRQC"] .rd-mrqc-logout {
+    display: inline-block;
+    padding: 6px 14px;
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    white-space: nowrap;
+}
+
+body[data-appid="MRQC"] .rd-mrqc-logout:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
+}
+
+body[data-appid="MRQC"] .rd-mrqc-logout:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* Khung nội dung: giới hạn bề rộng, căn giữa — hết "trắng chết". */
+body[data-appid="MRQC"] .rd-mrqc-main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: var(--rd-space-6) var(--rd-space-6) 48px;
+}
+
+body[data-appid="MRQC"] .rd-mrqc-title {
+    margin: var(--rd-space-2) 0 var(--rd-space-2);
+    font-size: 24px;
+    line-height: var(--rd-line-height-heading);
+}
+
+body[data-appid="MRQC"] .rd-mrqc-intro {
+    margin: 0 0 var(--rd-space-4);
+    color: var(--rd-text-muted);
+}
+
+/* 2 nhóm thật: lưới 2 cột, mỗi nhóm thành 1 thẻ. */
+body[data-appid="MRQC"] .rd-mrqc-groups {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--rd-space-4);
+    align-items: start;
+}
+
+body[data-appid="MRQC"] .rd-mrqc-group {
+    background: #fff;
+    border: 1px solid var(--rd-border);
+    border-top: 4px solid var(--rd-primary);
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+    overflow: hidden;
+}
+
+body[data-appid="MRQC"] .rd-mrqc-group h3 {
+    margin: 0;
+    padding: var(--rd-space-4) var(--rd-space-4) var(--rd-space-3);
+    font-size: 16px;
+    line-height: var(--rd-line-height-heading);
+    border-bottom: 1px solid var(--rd-border);
+}
+
+body[data-appid="MRQC"] .rd-mrqc-group ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--rd-space-2) 0;
+}
+
+/* Mỗi link thật thành 1 hàng bấm được trong thẻ nhóm — kể cả link
+   tới endpoint JSON, trình bày như các link khác, đích giữ nguyên. */
+body[data-appid="MRQC"] .rd-mrqc-tile a {
+    display: block;
+    padding: var(--rd-space-2) var(--rd-space-4);
+    color: var(--rd-text);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+body[data-appid="MRQC"] .rd-mrqc-tile a:hover {
+    color: var(--rd-primary);
+    background: var(--rd-bg-muted);
+}
+
+body[data-appid="MRQC"] .rd-mrqc-tile a:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: -2px;
+}
+
+@media (max-width: 767px) {
+    body[data-appid="MRQC"] .rd-mrqc-header {
+        padding: var(--rd-space-3) var(--rd-space-4);
+    }
+
+    body[data-appid="MRQC"] .rd-mrqc-main {
+        padding: var(--rd-space-4) var(--rd-space-4) 32px;
+    }
+
+    body[data-appid="MRQC"] .rd-mrqc-groups {
+        grid-template-columns: 1fr;
+    }
+
+    body[data-appid="MRQC"] .rd-mrqc-tile a {
+        padding: var(--rd-space-3) var(--rd-space-4);
+    }
+}

@@ -1,3 +1,14 @@
+@* U7-008 (chỉ trình bày): trang Layout = null độc lập; stylesheet duy
+   nhất trước đây là bootstrap.min.css generic từ static host + 1
+   <style> inline và body style inline nên trang render link xanh trơn
+   trên nền trắng. Nay nạp thêm tokens + redesign-portal.css (đã sync
+   sang MRQC wwwroot), bọc nội dung thật trong header + main căn giữa,
+   2 nhóm link thật thành 2 thẻ (mục body[data-appid="MRQC"] trong
+   portal.css). Giữ nguyên 7 link + Đăng xuất, đích, nhãn, tiêu đề
+   nhóm và chữ gốc; link JSON giữ nguyên đích, trình bày như các link
+   khác; Đăng xuất dời lên header thành nút (cùng href, cùng chữ);
+   chữ mới duy nhất là brand "Viet HIS" trong header, như shell
+   SSO/Base Web. *@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -5,26 +16,38 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Trang chủ — Kiểm soát chất lượng bệnh án</title>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
-    <style>
-        @@media (max-width: 767px) { body { padding: 16px !important; } }
-    </style>
+    <link href="/css/redesign-tokens.css" rel="stylesheet" />
+    <link href="/css/redesign-portal.css" rel="stylesheet" />
 </head>
-<body style="padding: 30px; font-family: sans-serif;">
-    <h1>Trang chủ — Kiểm soát chất lượng bệnh án</h1>
-    <p>Trang chủ của ứng dụng kiểm soát chất lượng. Các chức năng dưới đây đều thuộc ứng dụng này.</p>
-    <h3>Kiểm soát chất lượng</h3>
-    <ul>
-        <li><a href="/QualityControlManage/MedicalCenter/Index">Trung tâm kiểm soát chất lượng</a></li>
-        <li><a href="/QualityControlManage/MedicalCenter/MessageQuery">Tra cứu tin nhắn kiểm soát chất lượng</a></li>
-        <li><a href="/QualityControlManage/MedicalCenter/QcMessageManage">Quản lý tin nhắn kiểm soát chất lượng</a></li>
-        <li><a href="/QualityControlManage/MedicalCenter/ScoreFrom">Chấm điểm kiểm soát chất lượng</a></li>
-        <li><a href="/QualityControlManage/Apply/Index">Đơn đăng ký hồ sơ kiểm soát chất lượng</a></li>
-        <li><a href="/QualityControlManage/SysItem/Index">Bảo trì hạng mục kiểm soát chất lượng</a></li>
-    </ul>
-    <h3>Hệ thống</h3>
-    <ul>
-        <li><a href="/SystemManage/Common/GetStaffListByDutyCode?dutyCode=">Danh sách nhân sự theo vị trí (JSON)</a></li>
-    </ul>
-    <p><a href="/Login/OutLogin">Đăng xuất</a></p>
+<body data-appid="MRQC">
+    <header class="rd-mrqc-header">
+        <span class="rd-mrqc-brand">Viet HIS</span>
+        <a class="rd-mrqc-logout" href="/Login/OutLogin">Đăng xuất</a>
+    </header>
+    <main class="rd-mrqc-main">
+        <h1 class="rd-mrqc-title">Trang chủ — Kiểm soát chất lượng bệnh án</h1>
+        <p class="rd-mrqc-intro">Trang chủ của ứng dụng kiểm soát chất lượng. Các chức năng dưới đây đều thuộc ứng dụng này.</p>
+
+        <div class="rd-mrqc-groups">
+            <section class="rd-mrqc-group">
+                <h3>Kiểm soát chất lượng</h3>
+                <ul>
+                    <li class="rd-mrqc-tile"><a href="/QualityControlManage/MedicalCenter/Index">Trung tâm kiểm soát chất lượng</a></li>
+                    <li class="rd-mrqc-tile"><a href="/QualityControlManage/MedicalCenter/MessageQuery">Tra cứu tin nhắn kiểm soát chất lượng</a></li>
+                    <li class="rd-mrqc-tile"><a href="/QualityControlManage/MedicalCenter/QcMessageManage">Quản lý tin nhắn kiểm soát chất lượng</a></li>
+                    <li class="rd-mrqc-tile"><a href="/QualityControlManage/MedicalCenter/ScoreFrom">Chấm điểm kiểm soát chất lượng</a></li>
+                    <li class="rd-mrqc-tile"><a href="/QualityControlManage/Apply/Index">Đơn đăng ký hồ sơ kiểm soát chất lượng</a></li>
+                    <li class="rd-mrqc-tile"><a href="/QualityControlManage/SysItem/Index">Bảo trì hạng mục kiểm soát chất lượng</a></li>
+                </ul>
+            </section>
+
+            <section class="rd-mrqc-group">
+                <h3>Hệ thống</h3>
+                <ul>
+                    <li class="rd-mrqc-tile"><a href="/SystemManage/Common/GetStaffListByDutyCode?dutyCode=">Danh sách nhân sự theo vị trí (JSON)</a></li>
+                </ul>
+            </section>
+        </div>
+    </main>
 </body>
 </html>
