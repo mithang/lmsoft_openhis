@@ -82,6 +82,10 @@ copy_one "$SRC/redesign-portal.js" "$dest/js/redesign-portal.js"
 # Layout = null độc lập, nạp portal.css trực tiếp (mục
 # body[data-appid="MRQC"] trong file này chỉ nhắm trang đó nên không ảnh
 # hưởng portal khác).
+# U7-009: portal.css cũng sync sang Sett — /Home/Index của Sett là trang
+# Layout = null độc lập, nạp portal.css trực tiếp (mục
+# body[data-appid="Sett"] trong file này chỉ nhắm trang đó nên không ảnh
+# hưởng portal khác).
 PORTAL_CSS_APPS=(
   "Newtouch.HIS.CIS/Newtouch.CIS.Web"
   "Newtouch.HIS.EMR/Newtouch.EMR.Web"
@@ -90,6 +94,7 @@ PORTAL_CSS_APPS=(
   "Newtouch.HIS.OR/Newtouch.OR.Web"
   "Newtouch.HIS.PDS/Newtouch.PDS.Web"
   "Newtouch.MRQC.Web"
+  "Newtouch.Sett.Web"
 )
 for app in "${PORTAL_CSS_APPS[@]}"; do
   dest="$ROOT/$app/wwwroot"

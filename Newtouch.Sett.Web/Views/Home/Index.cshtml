@@ -1,3 +1,16 @@
+@* U7-009 (chỉ trình bày): trang Layout = null độc lập; stylesheet duy
+   nhất trước đây là bootstrap.min.css generic từ static host + 1
+   <style> inline và body style inline nên trang render link xanh trơn
+   trên nền trắng. Nay nạp thêm tokens + redesign-portal.css (đã sync
+   sang Sett wwwroot), bọc nội dung thật trong header + main căn giữa,
+   4 nhóm link thật thành 4 thẻ (mục body[data-appid="Sett"] trong
+   portal.css). Giữ nguyên 31 link + Đăng xuất, đích, nhãn, tiêu đề
+   nhóm và chữ gốc; các link demo/kỹ thuật ("Ví dụ biểu đồ",
+   "Ví dụ mã QR", "Sao lưu cơ sở dữ liệu", "Giám sát máy chủ",
+   "Thống kê site") giữ nguyên đích, trình bày như các link khác;
+   Đăng xuất dời lên header thành nút (cùng href, cùng chữ);
+   chữ mới duy nhất là brand "Viet HIS" trong header, như shell
+   SSO/Base Web. *@
 <!DOCTYPE html>
 <html lang="vi">
 <head>
@@ -5,56 +18,74 @@
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Trang chủ — Quản lý thu phí và quyết toán</title>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/js/bootstrap/bootstrap.min.css")" rel="stylesheet" />
-    <style>
-        @@media (max-width: 767px) { body { padding: 16px !important; } }
-    </style>
+    <link href="/css/redesign-tokens.css" rel="stylesheet" />
+    <link href="/css/redesign-portal.css" rel="stylesheet" />
 </head>
-<body style="padding: 30px; font-family: sans-serif;">
-    <h1>Trang chủ — Quản lý thu phí và quyết toán</h1>
-    <p>Trang chủ của ứng dụng thanh toán / thu phí. Mỗi liên kết dưới đây trỏ tới một trang có thật của ứng dụng này.</p>
-    <h3>Nghiệp vụ thu phí / quyết toán</h3>
-    <ul>
-        <li><a href="/BusinessManage/Refund/Index">Hoàn phí</a></li>
-        <li><a href="/OutpatientManage/OutpatCharge/ChargeIndex">Thu phí ngoại trú</a></li>
-        <li><a href="/OutpatientManage/OutBook/Index">Đặt lịch khám</a></li>
-        <li><a href="/HospitalizationManage/BookkeepInHos/Index">Ghi sổ nội trú</a></li>
-        <li><a href="/HospitalizationManage/DischargeSettle/Index">Quyết toán ra viện</a></li>
-        <li><a href="/HospitalizationManage/Settlement/Index">Quyết toán</a></li>
-        <li><a href="/NonTreatmentItemManage/NonTreatmentItem/Bookkeeping">Ghi sổ hạng mục không điều trị</a></li>
-        <li><a href="/DaySettleManage/DaySettle/ApplicationIndex">Quyết toán ngày</a></li>
-        <li><a href="/DaySettleManage/DaySettle/DzrIndex">Đối chiếu sổ sách ngày</a></li>
-        <li><a href="/FeeConfirmManage/FeeConfirm/Index">Xác nhận phí</a></li>
-        <li><a href="/PayManage/MicroPay/MicroPayQuery">Thanh toán vi mô</a></li>
-    </ul>
-    <h3>Bệnh nhân</h3>
-    <ul>
-        <li><a href="/PatientManage/PatientCenter/Index">Trung tâm bệnh nhân</a></li>
-        <li><a href="/PatientManage/PatientInHosList/Index">Danh sách bệnh nhân nội trú</a></li>
-        <li><a href="/PatientManage/HospiterRes/Index">Tiếp nhận nội trú</a></li>
-    </ul>
-    <h3>Báo cáo / truy vấn / DRG / BHYT</h3>
-    <ul>
-        <li><a href="/ReportManage/Report/ChargeTypeQuery">Báo cáo theo loại phí</a></li>
-        <li><a href="/ReportManage/Echarts/PerformanceIndicator">Biểu đồ chỉ số hiệu suất</a></li>
-        <li><a href="/DeanInquiryManage/BusinessRanking/Index">Xếp hạng kinh doanh</a></li>
-        <li><a href="/DRGManage/DRGUpload/Index">Upload DRG</a></li>
-        <li><a href="/JGManage/JGUpload/Index">Upload JG</a></li>
-        <li><a href="/InsuranceManage/CommercialInsurance/Index">Bảo hiểm thương mại</a></li>
-        <li><a href="/KnowledgeBaseManage/MedicalInsurance/Index">Cơ sở tri thức BHYT</a></li>
-        <li><a href="/KPI/MedicalOrg/Index">KPI tổ chức y tế</a></li>
-        <li><a href="/TherapeutistManage/TherapistAdvice/Index">Y lệnh trị liệu</a></li>
-        <li><a href="/IssueTreatRecord/ComfirmIssue/Index">Xác nhận phát hành hồ sơ điều trị</a></li>
-    </ul>
-    <h3>Hệ thống / kỹ thuật</h3>
-    <ul>
-        <li><a href="/SystemManage/Area/Index">Danh mục khu vực</a></li>
-        <li><a href="/SystemManage/Organize/Index">Danh mục tổ chức</a></li>
-        <li><a href="/SystemSecurity/DbBackup/Index">Sao lưu cơ sở dữ liệu</a></li>
-        <li><a href="/SystemSecurity/ServerMonitoring/Index">Giám sát máy chủ</a></li>
-        <li><a href="/SiteManage/SiteStatistics/Index">Thống kê site</a></li>
-        <li><a href="/HighchartsManage/Highcharts/Sample1">Ví dụ biểu đồ</a></li>
-        <li><a href="/ExampleManage/BarCode/Index">Ví dụ mã QR</a></li>
-    </ul>
-    <p><a href="/Login/OutLogin">Đăng xuất</a></p>
+<body data-appid="Sett">
+    <header class="rd-sett-header">
+        <span class="rd-sett-brand">Viet HIS</span>
+        <a class="rd-sett-logout" href="/Login/OutLogin">Đăng xuất</a>
+    </header>
+    <main class="rd-sett-main">
+        <h1 class="rd-sett-title">Trang chủ — Quản lý thu phí và quyết toán</h1>
+        <p class="rd-sett-intro">Trang chủ của ứng dụng thanh toán / thu phí. Mỗi liên kết dưới đây trỏ tới một trang có thật của ứng dụng này.</p>
+
+        <div class="rd-sett-groups">
+            <section class="rd-sett-group">
+                <h3>Nghiệp vụ thu phí / quyết toán</h3>
+                <ul>
+                    <li class="rd-sett-tile"><a href="/BusinessManage/Refund/Index">Hoàn phí</a></li>
+                    <li class="rd-sett-tile"><a href="/OutpatientManage/OutpatCharge/ChargeIndex">Thu phí ngoại trú</a></li>
+                    <li class="rd-sett-tile"><a href="/OutpatientManage/OutBook/Index">Đặt lịch khám</a></li>
+                    <li class="rd-sett-tile"><a href="/HospitalizationManage/BookkeepInHos/Index">Ghi sổ nội trú</a></li>
+                    <li class="rd-sett-tile"><a href="/HospitalizationManage/DischargeSettle/Index">Quyết toán ra viện</a></li>
+                    <li class="rd-sett-tile"><a href="/HospitalizationManage/Settlement/Index">Quyết toán</a></li>
+                    <li class="rd-sett-tile"><a href="/NonTreatmentItemManage/NonTreatmentItem/Bookkeeping">Ghi sổ hạng mục không điều trị</a></li>
+                    <li class="rd-sett-tile"><a href="/DaySettleManage/DaySettle/ApplicationIndex">Quyết toán ngày</a></li>
+                    <li class="rd-sett-tile"><a href="/DaySettleManage/DaySettle/DzrIndex">Đối chiếu sổ sách ngày</a></li>
+                    <li class="rd-sett-tile"><a href="/FeeConfirmManage/FeeConfirm/Index">Xác nhận phí</a></li>
+                    <li class="rd-sett-tile"><a href="/PayManage/MicroPay/MicroPayQuery">Thanh toán vi mô</a></li>
+                </ul>
+            </section>
+
+            <section class="rd-sett-group">
+                <h3>Bệnh nhân</h3>
+                <ul>
+                    <li class="rd-sett-tile"><a href="/PatientManage/PatientCenter/Index">Trung tâm bệnh nhân</a></li>
+                    <li class="rd-sett-tile"><a href="/PatientManage/PatientInHosList/Index">Danh sách bệnh nhân nội trú</a></li>
+                    <li class="rd-sett-tile"><a href="/PatientManage/HospiterRes/Index">Tiếp nhận nội trú</a></li>
+                </ul>
+            </section>
+
+            <section class="rd-sett-group">
+                <h3>Báo cáo / truy vấn / DRG / BHYT</h3>
+                <ul>
+                    <li class="rd-sett-tile"><a href="/ReportManage/Report/ChargeTypeQuery">Báo cáo theo loại phí</a></li>
+                    <li class="rd-sett-tile"><a href="/ReportManage/Echarts/PerformanceIndicator">Biểu đồ chỉ số hiệu suất</a></li>
+                    <li class="rd-sett-tile"><a href="/DeanInquiryManage/BusinessRanking/Index">Xếp hạng kinh doanh</a></li>
+                    <li class="rd-sett-tile"><a href="/DRGManage/DRGUpload/Index">Upload DRG</a></li>
+                    <li class="rd-sett-tile"><a href="/JGManage/JGUpload/Index">Upload JG</a></li>
+                    <li class="rd-sett-tile"><a href="/InsuranceManage/CommercialInsurance/Index">Bảo hiểm thương mại</a></li>
+                    <li class="rd-sett-tile"><a href="/KnowledgeBaseManage/MedicalInsurance/Index">Cơ sở tri thức BHYT</a></li>
+                    <li class="rd-sett-tile"><a href="/KPI/MedicalOrg/Index">KPI tổ chức y tế</a></li>
+                    <li class="rd-sett-tile"><a href="/TherapeutistManage/TherapistAdvice/Index">Y lệnh trị liệu</a></li>
+                    <li class="rd-sett-tile"><a href="/IssueTreatRecord/ComfirmIssue/Index">Xác nhận phát hành hồ sơ điều trị</a></li>
+                </ul>
+            </section>
+
+            <section class="rd-sett-group">
+                <h3>Hệ thống / kỹ thuật</h3>
+                <ul>
+                    <li class="rd-sett-tile"><a href="/SystemManage/Area/Index">Danh mục khu vực</a></li>
+                    <li class="rd-sett-tile"><a href="/SystemManage/Organize/Index">Danh mục tổ chức</a></li>
+                    <li class="rd-sett-tile"><a href="/SystemSecurity/DbBackup/Index">Sao lưu cơ sở dữ liệu</a></li>
+                    <li class="rd-sett-tile"><a href="/SystemSecurity/ServerMonitoring/Index">Giám sát máy chủ</a></li>
+                    <li class="rd-sett-tile"><a href="/SiteManage/SiteStatistics/Index">Thống kê site</a></li>
+                    <li class="rd-sett-tile"><a href="/HighchartsManage/Highcharts/Sample1">Ví dụ biểu đồ</a></li>
+                    <li class="rd-sett-tile"><a href="/ExampleManage/BarCode/Index">Ví dụ mã QR</a></li>
+                </ul>
+            </section>
+        </div>
+    </main>
 </body>
 </html>

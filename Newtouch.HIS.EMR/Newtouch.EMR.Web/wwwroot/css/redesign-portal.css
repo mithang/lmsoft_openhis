@@ -1005,3 +1005,170 @@ body[data-appid="MRQC"] .rd-mrqc-tile a:focus-visible {
         padding: var(--rd-space-3) var(--rd-space-4);
     }
 }
+
+/* ---- U7-009 (Sett, desktop): /Home/Index -------------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe /tmp/u7sett-before/):
+   trang Layout = null, HTML độc lập, stylesheet DUY NHẤT là
+   bootstrap.min.css generic từ static host (200) + <style> inline
+   (media query mobile) và body style inline (padding 30px,
+   sans-serif). Không layout, không header/chrome, không token,
+   không portal.css (/css/redesign-portal.css 404 — chưa sync sang
+   Sett wwwroot; tokens 200 nhưng trang không nạp). Kết quả: h1
+   x=30 y=50 rộng 1306px, 4 nhóm link xanh trơn trên nền trắng, phần
+   dưới danh sách bị cắt khỏi viewport 1366x900, không có scroll
+   affordance. Sửa: Index.cshtml nạp tokens + file này (giữ link
+   bootstrap — đang 200, chỉ là nền base; bỏ <style> inline và body
+   style inline, nội dung đã dời vào đây) và bọc nội dung thật trong
+   header + main căn giữa; mọi rule dưới đây chỉ nhắm
+   body[data-appid="Sett"] (AppId "Sett" theo BusinessConfig trong
+   appsettings.json — ghi literal, không đọc config lúc chạy, bài học
+   U7-005). 31 link + Đăng xuất, đích, nhãn, tiêu đề nhóm và toàn bộ
+   chữ gốc giữ nguyên 100% (so sánh probe trước/sau); các link demo/
+   kỹ thuật ("Ví dụ biểu đồ", "Ví dụ mã QR", "Sao lưu cơ sở dữ liệu",
+   "Giám sát máy chủ", "Thống kê site") giữ nguyên đích, trình bày
+   như 1 tile như các link khác — không đổi đích, không giấu, không
+   xóa. Chữ mới duy nhất là brand "Viet HIS" trong header — chrome
+   chung như shell SSO/Base Web và như CIS/OR/MRQC (U7-002/U7-006/
+   U7-008). Đăng xuất dời từ cuối trang lên header (cùng href, cùng
+   chữ) thành nút. KHÔNG bịa KPI/biểu đồ/widget hay dữ liệu giả; 4 thẻ
+   nhóm chỉ trình bày lại danh sách link thật; không thêm/bớt link hay
+   đích nào. Trang dài (31 link) nên cuộn dọc là bình thường; shot
+   viewport 1366x900 chỉ thấy phần đầu — ghi rõ trong báo cáo. Không
+   reset box-sizing toàn cục (Bootstrap đã border-box; bài học
+   U7-004). -------- */
+body[data-appid="Sett"] {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--rd-text);
+    background: var(--rd-bg-muted);
+    line-height: var(--rd-line-height);
+}
+
+/* Header: dải primary + brand, Đăng xuất thành nút bên phải. */
+body[data-appid="Sett"] .rd-sett-header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--rd-space-4);
+    background: var(--rd-primary);
+    color: #fff;
+    padding: var(--rd-space-3) var(--rd-space-6);
+}
+
+body[data-appid="Sett"] .rd-sett-brand {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: var(--rd-line-height-heading);
+}
+
+body[data-appid="Sett"] .rd-sett-logout {
+    display: inline-block;
+    padding: 6px 14px;
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    background: transparent;
+    border: 1px solid rgba(255, 255, 255, 0.7);
+    border-radius: 16px;
+    white-space: nowrap;
+}
+
+body[data-appid="Sett"] .rd-sett-logout:hover {
+    background: rgba(255, 255, 255, 0.15);
+    border-color: #fff;
+}
+
+body[data-appid="Sett"] .rd-sett-logout:focus-visible {
+    outline: 2px solid #fff;
+    outline-offset: 2px;
+}
+
+/* Khung nội dung: giới hạn bề rộng, căn giữa — hết "trắng chết". */
+body[data-appid="Sett"] .rd-sett-main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: var(--rd-space-6) var(--rd-space-6) 48px;
+}
+
+body[data-appid="Sett"] .rd-sett-title {
+    margin: var(--rd-space-2) 0 var(--rd-space-2);
+    font-size: 24px;
+    line-height: var(--rd-line-height-heading);
+}
+
+body[data-appid="Sett"] .rd-sett-intro {
+    margin: 0 0 var(--rd-space-4);
+    color: var(--rd-text-muted);
+}
+
+/* 4 nhóm thật: lưới 2 cột, mỗi nhóm thành 1 thẻ. */
+body[data-appid="Sett"] .rd-sett-groups {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: var(--rd-space-4);
+    align-items: start;
+}
+
+body[data-appid="Sett"] .rd-sett-group {
+    background: #fff;
+    border: 1px solid var(--rd-border);
+    border-top: 4px solid var(--rd-primary);
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+    overflow: hidden;
+}
+
+body[data-appid="Sett"] .rd-sett-group h3 {
+    margin: 0;
+    padding: var(--rd-space-4) var(--rd-space-4) var(--rd-space-3);
+    font-size: 16px;
+    line-height: var(--rd-line-height-heading);
+    border-bottom: 1px solid var(--rd-border);
+}
+
+body[data-appid="Sett"] .rd-sett-group ul {
+    list-style: none;
+    margin: 0;
+    padding: var(--rd-space-2) 0;
+}
+
+/* Mỗi link thật thành 1 hàng bấm được trong thẻ nhóm — kể cả link
+   demo/kỹ thuật, trình bày như các link khác, đích giữ nguyên. */
+body[data-appid="Sett"] .rd-sett-tile a {
+    display: block;
+    padding: var(--rd-space-2) var(--rd-space-4);
+    color: var(--rd-text);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+body[data-appid="Sett"] .rd-sett-tile a:hover {
+    color: var(--rd-primary);
+    background: var(--rd-bg-muted);
+}
+
+body[data-appid="Sett"] .rd-sett-tile a:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: -2px;
+}
+
+@media (max-width: 767px) {
+    body[data-appid="Sett"] .rd-sett-header {
+        padding: var(--rd-space-3) var(--rd-space-4);
+    }
+
+    body[data-appid="Sett"] .rd-sett-main {
+        padding: var(--rd-space-4) var(--rd-space-4) 32px;
+    }
+
+    body[data-appid="Sett"] .rd-sett-groups {
+        grid-template-columns: 1fr;
+    }
+
+    body[data-appid="Sett"] .rd-sett-tile a {
+        padding: var(--rd-space-3) var(--rd-space-4);
+    }
+}
