@@ -221,7 +221,8 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         [HttpPost]
                 public IActionResult GetYPItemInfo(string keyword)
         {
-            return keyword == null ? null : Json(_outPatChargeApp.GetYpItemInfo(keyword.Trim().Replace("'", "").Replace(",", "").Replace("%", "")));
+            if (keyword == null) { return Content(""); }
+            return Json(_outPatChargeApp.GetYpItemInfo(keyword.Trim().Replace("'", "").Replace(",", "").Replace("%", "")));
         }
 
         /// <summary>
@@ -432,7 +433,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                 xnhgrbm = xnhgrbm
             };
             var tdata = _outChargeDmnService.GetPatientGridJson(OrganizeId);
-            var data = JsonConvert.DeserializeObject<List<OutPatientRegVO>>(tdata) ?? new List<OutPatientRegVO>();
+            var data = string.IsNullOrWhiteSpace(tdata) ? new List<OutPatientRegVO>() : (JsonConvert.DeserializeObject<List<OutPatientRegVO>>(tdata) ?? new List<OutPatientRegVO>());
             if (data.Count == 0) return Content(result.ToJson());
 
             var entity = _sysPatientBasicInfoRepo.FindEntity(p => //p.xnhgrbm == xnhgrbm &&
@@ -719,7 +720,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                 jzid=model.mdtrt_id,
                 yllb=model.med_type,
                 rybh=model.psn_no,
-                cfh = ybUpList.cflist.Count > 0 ? ybUpList.cflist[0].cfh : ""
+                cfh = ybUpList != null && ybUpList.cflist != null && ybUpList.cflist.Count > 0 ? ybUpList.cflist[0].cfh : ""
             };
 		    return Content(data.ToJson());
 		}
@@ -933,7 +934,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         {
             if (string.IsNullOrWhiteSpace(mzh))
             {
-                return null;
+                return Content("");
             }
             var list = _outChargeDmnService.GetOutpatientSettArrearageVOList(mzh, OrganizeId);
             var data = list.Select(p => new

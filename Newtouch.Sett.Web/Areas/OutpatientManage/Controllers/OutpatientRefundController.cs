@@ -173,7 +173,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         {
             if (string.IsNullOrEmpty(mzh) || !kssj.HasValue || !jssj.HasValue)
             {
-                return null;
+                return Content("");
             }
             var list = _refundService.RefundableJsQuery(this.OrganizeId, kssj, jssj, mzh);
             return Content(list.ToJson());
@@ -183,7 +183,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         {
             if (string.IsNullOrEmpty(mzh) || !kssj.HasValue || !jssj.HasValue)
             {
-                return null;
+                return Content("");
             }
             var list = _refundService.RefundableGuiAnJsQuery(this.OrganizeId, kssj, jssj, mzh);
             return Content(list.ToJson());
@@ -201,7 +201,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         {
             if (jsnm <= 0)
             {
-                return null;
+                return Content("");
             }
             var list = _refundService.RefundableQuery(this.OrganizeId, jsnm);
             var ztlist = list.Where(p => p.ztId != null && p.ztId != "").ToList();
@@ -641,7 +641,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         {
             if (string.IsNullOrEmpty(mzh) || !kssj.HasValue || !jssj.HasValue)
             {
-                return null;
+                return Content("");
             }
             var list = _refundService.RefundableChongQingQuery(this.OrganizeId, kssj, jssj, mzh);
             return Content(list.ToJson());

@@ -544,7 +544,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 			var ghdata = _iOutPatChargeDmnService.GetChongQingGHMzjs(ghlx, zlxm, isCkf, isGbf, this.OrganizeId);
 		    decimal ybje = Convert.ToDecimal(0.0000);
 		    decimal zfje = Convert.ToDecimal(0.0000);
-			foreach (var item in ghdata)
+			if (ghdata != null) foreach (var item in ghdata)
 		    {
 				//xác địnhkhoản mụclàBHYTkhoản mụchay tự chi trảkhoản mục,ở đây vìlàsypcchắc chắnlànull,vì vậy khi tra cứu trước tiên dùng trường này làmlàBHYTdấu hiệugán trường,có thể không thêm trường mới nữa
 			    if (item.issc==1)

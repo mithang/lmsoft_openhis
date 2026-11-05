@@ -111,7 +111,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         {
             if (string.IsNullOrWhiteSpace(keyValue))
             {
-                return null;
+                return Content("");
             }
 
             var main = _sysPatientMedicalRecordDmnService.GetMedicalRecordById(keyValue);

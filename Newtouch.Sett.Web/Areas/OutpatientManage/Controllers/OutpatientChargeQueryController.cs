@@ -80,7 +80,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                 records = pagination.records
             };
 
-            var jsnms = string.Join(",", list.Select(p => p.jsnm).Distinct());
+            var jsnms = list == null ? "" : string.Join(",", list.Select(p => p.jsnm).Distinct());
             if (!string.IsNullOrWhiteSpace(jsnms))
             {
                 var zffsList = _outPatienChargeQueryDmnService.GetSettZffsResultList(this.OrganizeId, jsnms);
@@ -112,7 +112,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                 records = pagination.records
             };
 
-            var jsnms = string.Join(",", list.Select(p => p.jsnm).Distinct());
+            var jsnms = list == null ? "" : string.Join(",", list.Select(p => p.jsnm).Distinct());
             if (!string.IsNullOrWhiteSpace(jsnms))
             {
                 var zffsList = _outPatienChargeQueryDmnService.GetSettZffsResultList(this.OrganizeId, jsnms);

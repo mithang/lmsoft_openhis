@@ -227,7 +227,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
                 default:
                     break;
             }
-            var data = _iG_yb_daysrg_trt_list_bRepo.Header(tbname.Trim()) ?? "0000";
+            var data = _iG_yb_daysrg_trt_list_bRepo.Header((tbname ?? "").Trim()) ?? "0000";
             return Content(data == "null" ? "0000" : data);
         }
 
@@ -785,7 +785,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         {
             //var patChargeInfo = _outPatChargeApp.GetOutPatBasicInfoInRegister(blh, kh, zjh, cardType, ly, CardId);
             //return Success("Gửi thành công", patChargeInfo);
-            return null;
+            return Content("");
         }
 
         #region Quý An Dữ liệu BHYT
