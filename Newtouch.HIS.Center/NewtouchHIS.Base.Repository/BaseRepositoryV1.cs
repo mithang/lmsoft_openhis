@@ -545,23 +545,57 @@ namespace NewtouchHIS.Base.Repository
 
         /// <summary>
         /// Sử dụng transaction ,Không có giá trị trả về
+        /// BA-005: SqlSugar Ado.UseTran NUỐT ngoại lệ (trả DbResult
+        /// IsSuccess=false thay vì ném) nên wrapper cũ để lọt "thành công"
+        /// giả cho caller nào không kiểm tra IsSuccess. Wrapper này gọi
+        /// errorCallBack như cũ rồi NÉM LẠI exception để lỗi không bao giờ
+        /// bị nuốt. LƯU Ý: class này hiện KHÔNG được biên dịch (csproj
+        /// &lt;Compile Remove="BaseRepositoryV1.cs" /&gt;) và IBaseRepositoryV1
+        /// không có implementation nào khác — sửa để source đúng nếu sau này
+        /// include lại, không ảnh hưởng runtime hiện tại.
         /// </summary>
         /// <param name="action">Hành động thực thi</param>
         /// <param name="errorCallBack">Callback lỗi</param>
         public DbResult<bool> UseTran(Action action, Action<Exception> errorCallBack)
         {
-            return context.Ado.UseTran(action, errorCallBack); ;
+            // BA-005: bắt exception gốc trong callback rồi ném lại nguyên vẹn
+            // (giữ type + stack qua ExceptionDispatchInfo) thay vì trả
+            // DbResult thất bại im lặng như SqlSugar mặc định.
+            Exception captured = null;
+            var result = context.Ado.UseTran(action, ex =>
+            {
+                captured = ex;
+                errorCallBack?.Invoke(ex);
+            });
+            if (captured != null)
+            {
+                System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(captured).Throw();
+            }
+            return result;
         }
 
         /// <summary>
         /// Sử dụng transaction,Có giá trị trả về
+        /// BA-005: như UseTran(Action) — gọi errorCallBack như cũ rồi ném lại
+        /// lỗi thay vì để SqlSugar nuốt (xem ghi chú ở trên).
         /// </summary>
         /// <typeparam name="S">Kiểu giá trị trả về</typeparam>
         /// <param name="func">Hành động thực thi</param>
         /// <param name="errorCallBack">Callback lỗi</param>
         public DbResult<S> UseTran<S>(Func<S> func, Action<Exception> errorCallBack)
         {
-            return context.Ado.UseTran(func, errorCallBack);
+            // BA-005: như UseTran(Action) — ném lại exception gốc, không nuốt.
+            Exception captured = null;
+            var result = context.Ado.UseTran(func, ex =>
+            {
+                captured = ex;
+                errorCallBack?.Invoke(ex);
+            });
+            if (captured != null)
+            {
+                System.Runtime.ExceptionServices.ExceptionDispatchInfo.Capture(captured).Throw();
+            }
+            return result;
         }
 
         #endregion

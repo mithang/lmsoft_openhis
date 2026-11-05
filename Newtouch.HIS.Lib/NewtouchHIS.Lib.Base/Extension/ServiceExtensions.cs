@@ -43,15 +43,52 @@ namespace NewtouchHIS.Lib.Base.Extension
             #region Tiêm phụ thuộc
             var baseType = typeof(IDependency);
             var path = AppDomain.CurrentDomain.RelativeSearchPath ?? AppDomain.CurrentDomain.BaseDirectory;
-            var getFiles = Directory.GetFiles(path, "*.dll");  //.Where(o=>o.Match())
-            var referencedAssemblies = getFiles.Select(Assembly.LoadFrom).ToList();  //.Select(o=> Assembly.LoadFrom(o))         
+            // BA-006: Directory.GetFiles trả về theo thứ tự readdir thô (không
+            // sắp xếp) nên thứ tự quét từng quyết định service nào được đăng
+            // ký — b73a1026 đã sửa phần marker, nhưng thứ tự vẫn quyết định
+            // implementation nào thắng khi 2 class cùng implement 1 interface
+            // (MS DI: đăng ký sau thắng khi resolve đơn) và vẫn là đầu vào
+            // của Mapster Scan. Sắp xếp theo tên file để thứ tự quét là xác
+            // định trên mọi thư mục deploy.
+            var getFiles = Directory.GetFiles(path, "*.dll")
+                .OrderBy(f => Path.GetFileName(f), StringComparer.Ordinal)
+                .ToList();
+            // Một DLL không load được không được giết toàn bộ quá trình quét.
+            // - LoadFrom: chỉ bỏ qua file .dll không phải assembly .NET
+            //   (BadImageFormatException, VD DLL native trong thư mục bin);
+            //   lỗi load file khác vẫn ném như cũ.
+            // - DefinedTypes: assembly lỗi một phần (thiếu DLL phụ thuộc, hoặc
+            //   type không có implementation trên runtime hiện tại — tiền lệ:
+            //   NPOI.Core từng làm abort cả startup, xem ghi chú trong CIS
+            //   ExcelHelper) thì chỉ lấy các type còn load được. Đánh đổi có
+            //   chủ ý: service của assembly lỗi sẽ thiếu và lộ ra khi resolve
+            //   với lỗi "Unable to resolve service" rõ ràng, thay vì abort
+            //   toàn bộ startup vì một assembly hỏng.
+            var referencedAssemblies = new List<Assembly>();
+            foreach (var file in getFiles)
+            {
+                try
+                {
+                    referencedAssemblies.Add(Assembly.LoadFrom(file));
+                }
+                catch (BadImageFormatException)
+                {
+                    // File .dll không phải assembly .NET: bỏ qua.
+                    continue;
+                }
+            }
 
-            //var ss = referencedAssemblies.SelectMany(o => o.GetTypes());
             var types = referencedAssemblies
-                        .SelectMany(a => a.DefinedTypes)
+                        .SelectMany(a => GetLoadableDefinedTypes(a))
                         .Select(type => type.AsType())
                         .Where(x => x != baseType && baseType.IsAssignableFrom(x)).ToList();
-            var implementTypes = types.Where(x => x.IsClass).ToList();
+            var implementTypes = types.Where(x => x.IsClass)
+                        // Sắp xếp để khi 2 class cùng implement 1 domain
+                        // interface thì class thắng (đăng ký sau, MS DI resolve
+                        // đơn lấy registration cuối) luôn là class có FullName
+                        // lớn nhất theo Ordinal — xác định, không phụ thuộc
+                        // thứ tự thư mục.
+                        .OrderBy(x => x.FullName, StringComparer.Ordinal).ToList();
             var interfaceTypes = types.Where(x => x.IsInterface).ToList();
             // Marker interfaces must never be registration targets. Every domain
             // interface inherits one of them, so the old FirstOrDefault over the
@@ -79,7 +116,11 @@ namespace NewtouchHIS.Lib.Base.Extension
                 {
                     // Marker-only class (no domain interface): keep the old
                     // behaviour so it stays resolvable exactly as before.
-                    var fallbackInterfaceType = interfaceTypes.FirstOrDefault(x => x.IsAssignableFrom(implementType));
+                    // BA-006: sắp xếp để fallback cũng xác định, không phụ
+                    // thuộc thứ tự quét (hiện cây không có class marker-only).
+                    var fallbackInterfaceType = interfaceTypes
+                        .OrderBy(x => x.FullName, StringComparer.Ordinal)
+                        .FirstOrDefault(x => x.IsAssignableFrom(implementType));
                     if (fallbackInterfaceType == null)
                         continue;
                     domainInterfaces.Add(fallbackInterfaceType);
@@ -107,6 +148,27 @@ namespace NewtouchHIS.Lib.Base.Extension
         }
 
         /// <summary>
+        /// BA-006: DefinedTypes của một assembly. Nếu assembly chứa type không
+        /// load được (VD thiếu assembly phụ thuộc, hoặc type không có
+        /// implementation trên runtime hiện tại — tiền lệ NPOI.Core), trả về
+        /// các type còn load được thay vì để ReflectionTypeLoadException giết
+        /// toàn bộ quá trình quét. Assembly lỗi hoàn toàn (không type nào load
+        /// được) đóng góp rỗng.
+        /// </summary>
+        private static IEnumerable<TypeInfo> GetLoadableDefinedTypes(Assembly assembly)
+        {
+            try
+            {
+                return assembly.DefinedTypes;
+            }
+            catch (ReflectionTypeLoadException ex)
+            {
+                return ex.Types.Where(t => t != null)
+                    .Select(t => System.Reflection.IntrospectionExtensions.GetTypeInfo(t!));
+            }
+        }
+
+        /// <summary>
         /// automapper Inject
         /// </summary>
         /// <param name="services"></param>
@@ -115,7 +177,7 @@ namespace NewtouchHIS.Lib.Base.Extension
         public static IServiceCollection AddAutoMapDependencyService(this IServiceCollection services, List<Assembly> assemblies)
         {
             var baseType = typeof(Profile);
-            var profiles = assemblies.SelectMany(a => a.DefinedTypes)
+            var profiles = assemblies.SelectMany(a => GetLoadableDefinedTypes(a))
                         .Select(type => type.AsType()).Where(x => x != baseType && baseType.IsAssignableFrom(x)).ToArray();
             //services.AddAutoMapper(typeof(MappingProfile));
             //services.AddAutoMapper(profiles);
@@ -134,12 +196,40 @@ namespace NewtouchHIS.Lib.Base.Extension
             // var config = TypeAdapterConfig.GlobalSettings;
             services.AddSingleton(config);
             var baseType = typeof(IRegister);
-            var profiles = assemblies.SelectMany(a => a.DefinedTypes)
+            var profiles = assemblies.SelectMany(a => GetLoadableDefinedTypes(a))
                   .Select(type => type.AsType()).Where(x => x != baseType && baseType.IsAssignableFrom(x)).ToArray();
-            config.Scan(assemblies.ToArray());
+            // BA-006: Mapster Scan cũng reflect toàn bộ assembly; assembly lỗi
+            // một phần không được giết startup — quét lại chỉ với các assembly
+            // enumerate sạch (assembly lỗi đóng góp 0 profile load được nên bỏ
+            // qua nó ở đây nhất quán với quá trình quét chính ở trên).
+            try
+            {
+                config.Scan(assemblies.ToArray());
+            }
+            catch (ReflectionTypeLoadException)
+            {
+                config.Scan(assemblies.Where(IsFullyLoadable).ToArray());
+            }
 
             //services.AddScoped<IMapper, ServiceMapper>();
             return services;
+        }
+
+        /// <summary>
+        /// BA-006: true khi mọi type của assembly đều enumerate được (dùng
+        /// cho fallback của Mapster Scan — chỉ chạy trên đường exception).
+        /// </summary>
+        private static bool IsFullyLoadable(Assembly assembly)
+        {
+            try
+            {
+                _ = assembly.DefinedTypes.Count();
+                return true;
+            }
+            catch (ReflectionTypeLoadException)
+            {
+                return false;
+            }
         }
         #endregion
 

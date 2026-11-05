@@ -36,11 +36,14 @@ builder.Services.AddSingleton<IHttpClientHelper, HttpClientHelper>();
 builder.Services.AddSingleton<IAuthCenterAppService, AuthCenterAppService>();
 builder.Services.AddWebServiceBase(builder.Configuration);
 // PINNED (integration fix, proven by the DepartmentManage port):
-// AddWebServiceBase's AddDependencyService scans bin/*.dll in raw directory
-// order and registers each IDependency implementer under the FIRST assignable
-// interface it meets. In some bin layouts that is IScopedDependency for
-// LoginAppService, leaving ILoginAppService unregistered and breaking
-// LoginController activation. Pin the correct mapping explicitly here.
+// AddWebServiceBase's AddDependencyService used to scan bin/*.dll in raw
+// directory order and register each IDependency implementer under the FIRST
+// assignable interface it met — in some bin layouts that was
+// IScopedDependency for LoginAppService, leaving ILoginAppService
+// unregistered and breaking LoginController activation. The scan now
+// registers every domain interface (b73a1026) and sorts its enumeration
+// (BA-006), so this pin is belt-and-braces: it keeps the exact mapping
+// explicit here and wins over any duplicate scan registration.
 builder.Services.AddScoped<ILoginAppService, LoginAppService>();
 // Herp-local IPv4-forcing helper MUST be registered after AddWebServiceBase
 // so it replaces the vendor HttpClientHelper (whose default dual-mode sockets
