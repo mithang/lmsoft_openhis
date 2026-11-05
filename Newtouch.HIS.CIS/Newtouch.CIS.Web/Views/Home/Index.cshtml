@@ -8,24 +8,36 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>@ViewBag.Title</title>
-    <link href="/css/framework-theme.css" rel="stylesheet" />
+    @* U7-002: link /css/framework-theme.css cũ đã XÓA — file này 404 live
+       (chưa từng được port sang CIS wwwroot; wwwroot/css chỉ có
+       redesign-tokens.css) nên trang render không một rule CSS nào.
+       Thay bằng design system chung: token trước, portal.css sau
+       (chỉ thêm 2 <link> CSS + class/wrapper trình bày; không đổi
+       tiêu đề, chữ, link, đích hay route). *@
+    <link href="/css/redesign-tokens.css" rel="stylesheet" />
+    <link href="/css/redesign-portal.css" rel="stylesheet" />
 </head>
-<body style="font-family:Arial,Helvetica,sans-serif;margin:30px;">
-    <h2>CIS - Hệ thống thông tin lâm sàng (bản port .NET 6)</h2>
-    <p>Trang portal chính được phục vụ bởi SSO. Các phân hệ CIS:</p>
-    <ul>
-        <li><a href="/ClinicManage/ClinicApply/Index">Quản lý phòng khám (ClinicManage)</a></li>
-        <li><a href="/DoctorManage/DoctorsAdvice/Index">Quản lý bác sĩ (DoctorManage)</a></li>
-        <li><a href="/NurseManage/InpatientList/Index">Quản lý điều dưỡng (NurseManage)</a></li>
-        <li><a href="/QueueManage/QueueInfo/Index">Quản lý hàng đợi (QueueManage)</a></li>
-        <li><a href="/ReportManage/Report/Index">Báo cáo (ReportManage)</a></li>
-        @* QA-phase2 CIS-07: /SystemManage/BaseData/Index khong co controller
-           (controller that la SysBaseDataController, chi co endpoint du lieu)
-           nen link cu tra 404 rong. Tro ve trang SystemManage that dang chay
-           (AuxiliaryDictionary/Index co view + base Index) thay vi tao stub. *@
-        <li><a href="/SystemManage/AuxiliaryDictionary/Index">Quản trị hệ thống (SystemManage)</a></li>
-        <li><a href="/TemplateManage/PresTemplate/Index">Quản lý mẫu (TemplateManage)</a></li>
-    </ul>
-    <p>Chức năng gốc: <a href="/MedicalRecord/Index">Bệnh án ngoại trú</a> | <a href="/PatientList/Index">Danh sách bệnh nhân</a> | <a href="/Prescription/Index">Đơn thuốc</a></p>
+<body class="cis-home">
+    <header class="cis-header">
+        <span class="cis-brand">Viet HIS</span>
+    </header>
+    <main class="cis-main">
+        <h2 class="cis-title">CIS - Hệ thống thông tin lâm sàng (bản port .NET 6)</h2>
+        <p class="cis-intro">Trang portal chính được phục vụ bởi SSO. Các phân hệ CIS:</p>
+        <ul class="cis-grid">
+            <li class="cis-card"><a href="/ClinicManage/ClinicApply/Index">Quản lý phòng khám (ClinicManage)</a></li>
+            <li class="cis-card"><a href="/DoctorManage/DoctorsAdvice/Index">Quản lý bác sĩ (DoctorManage)</a></li>
+            <li class="cis-card"><a href="/NurseManage/InpatientList/Index">Quản lý điều dưỡng (NurseManage)</a></li>
+            <li class="cis-card"><a href="/QueueManage/QueueInfo/Index">Quản lý hàng đợi (QueueManage)</a></li>
+            <li class="cis-card"><a href="/ReportManage/Report/Index">Báo cáo (ReportManage)</a></li>
+            @* QA-phase2 CIS-07: /SystemManage/BaseData/Index khong co controller
+               (controller that la SysBaseDataController, chi co endpoint du lieu)
+               nen link cu tra 404 rong. Tro ve trang SystemManage that dang chay
+               (AuxiliaryDictionary/Index co view + base Index) thay vi tao stub. *@
+            <li class="cis-card"><a href="/SystemManage/AuxiliaryDictionary/Index">Quản trị hệ thống (SystemManage)</a></li>
+            <li class="cis-card"><a href="/TemplateManage/PresTemplate/Index">Quản lý mẫu (TemplateManage)</a></li>
+        </ul>
+        <p class="cis-origins">Chức năng gốc: <a class="cis-chip" href="/MedicalRecord/Index">Bệnh án ngoại trú</a> | <a class="cis-chip" href="/PatientList/Index">Danh sách bệnh nhân</a> | <a class="cis-chip" href="/Prescription/Index">Đơn thuốc</a></p>
+    </main>
 </body>
 </html>

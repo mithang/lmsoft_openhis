@@ -95,6 +95,150 @@
     display: none;
 }
 
+/* ---- U7-002 (CIS, desktop): /Home/Index --------------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe-live-before.json):
+   trang Layout = null, HTML độc lập, stylesheet DUY NHẤT
+   /css/framework-theme.css trả 404 (file chưa từng được port sang
+   CIS wwwroot — wwwroot/css chỉ có redesign-tokens.css), nên trình
+   duyệt render serif mặc định + link xanh trên nền trắng, ~80%
+   viewport trống. Sửa: Index.cshtml nạp tokens + file này; mọi rule
+   dưới đây chỉ nhắm body.cis-home (duy nhất trang này), chỉ đổi trình
+   bày. 10 link, đích, nhãn và toàn bộ chữ gốc giữ nguyên 100%
+   (so sánh probe trước/sau); chữ mới duy nhất là brand "Viet HIS"
+   trong header — chrome chung như shell SSO/Base Web. KHÔNG bịa
+   KPI/biểu đồ/widget hay dữ liệu giả. Header + lưới thẻ chỉ trình
+   bày lại danh sách link thật; không thêm link/đích nào mới. -------- */
+body.cis-home,
+body.cis-home * {
+    box-sizing: border-box;
+}
+
+body.cis-home {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--rd-text);
+    background: var(--rd-bg-muted);
+    line-height: var(--rd-line-height);
+}
+
+/* Header: dải primary + brand, như shell các portal khác. */
+.cis-header {
+    background: var(--rd-primary);
+    color: #fff;
+    padding: var(--rd-space-3) var(--rd-space-6);
+}
+
+.cis-brand {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: var(--rd-line-height-heading);
+}
+
+/* Khung nội dung: giới hạn bề rộng, căn giữa — hết "80% trắng chết". */
+.cis-main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: var(--rd-space-6) var(--rd-space-6) 48px;
+}
+
+.cis-title {
+    margin: var(--rd-space-2) 0 var(--rd-space-2);
+    font-size: 24px;
+    line-height: var(--rd-line-height-heading);
+}
+
+.cis-intro {
+    margin: 0 0 var(--rd-space-4);
+    color: var(--rd-text-muted);
+}
+
+/* 7 phân hệ: lưới 3 cột, mỗi link thật thành 1 thẻ. */
+.cis-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--rd-space-4);
+}
+
+.cis-card {
+    background: #fff;
+    border: 1px solid var(--rd-border);
+    border-left: 4px solid var(--rd-primary);
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+}
+
+.cis-card a {
+    display: block;
+    padding: var(--rd-space-4);
+    color: var(--rd-text);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+.cis-card:hover {
+    border-color: var(--rd-primary);
+    box-shadow: var(--rd-shadow-md);
+}
+
+.cis-card a:hover {
+    color: var(--rd-primary);
+}
+
+.cis-card a:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: 2px;
+}
+
+/* Chức năng gốc: 3 link thật thành chip; dấu " | " gốc giữ nguyên
+   giữa các chip nên visible text trước/sau giống hệt. */
+.cis-origins {
+    margin: var(--rd-space-6) 0 0;
+    padding: var(--rd-space-4);
+    background: #fff;
+    border: 1px solid var(--rd-border);
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+}
+
+.cis-chip {
+    display: inline-block;
+    margin: var(--rd-space-1) 2px;
+    padding: 6px 12px;
+    color: var(--rd-primary);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    background: var(--rd-bg-muted);
+    border: 1px solid var(--rd-border);
+    border-radius: 16px;
+}
+
+.cis-chip:hover {
+    color: #fff;
+    background: var(--rd-primary);
+    border-color: var(--rd-primary);
+}
+
+.cis-chip:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+    .cis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cis-main {
+        padding: var(--rd-space-4) var(--rd-space-4) 32px;
+    }
+}
+
 @media (max-width: 991px) {
     /* Nút hamburger 44x44, đặt cạnh logo trong header portal. */
     .rd-nav-toggle {

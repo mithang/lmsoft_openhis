@@ -1,0 +1,320 @@
+/* =====================================================================
+   redesign-portal.css — Shell portal SSO trên mobile, chặng 3 redesign
+   Nguồn chuẩn: openhis-core/scripts/redesign/assets/
+   Đồng bộ vào SSO wwwroot bằng scripts/redesign/sync-assets.sh.
+   Nạp trong Views/Home/SSOIndex.cshtml (portal shell, Layout = null).
+   Cơ chế collapse/pushmenu sẵn có KHÔNG bị thay: nút #make-small-nav
+   và class nav-small trên desktop giữ nguyên. File này CHỈ thêm lớp
+   drawer dưới 992px (DESIGN §3.5) — desktop không bị đổi một pixel nào
+   bởi các rule dưới đây (toàn bộ nằm trong media max-width:991px,
+   trừ nút toggle vốn display:none trên desktop).
+   Lưu ý: portal có HAI div id="nav-col" (menu + footer .login-foot,
+   id trùng là lỗi markup sẵn có, không sửa ở đây). Rule drawer dùng
+   :not(.login-foot) để chỉ nhắm khối menu, không chạm footer.
+   Bổ sung pilot U2 (desktop, ngoài media query bên dưới): chỉ đổi
+   trình bày hover/focus của mục menu do $.LoadNavTree() sinh ra
+   (a.dropdown-toggle, ul.submenu > a.menuItem, giữ nguyên class/ID)
+   và viền dưới thanh tab .content-tabs. Không đổi cấu trúc shell,
+   không đổi cơ chế đổi skin, không ẩn mục menu nào.
+   ===================================================================== */
+
+/* ---- Desktop: sidebar + tab (SSOIndex, token nạp trước file này) ------- */
+/* Mục menu con: vạch trái trong suốt, hover hiện vạch primary + nền nhạt. */
+#sidebar-nav .submenu .menuItem {
+    border-left: 3px solid transparent;
+}
+
+#sidebar-nav .submenu .menuItem:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: var(--rd-primary);
+}
+
+/* Focus nhìn thấy được cho cả mục cha lẫn mục con của menu. */
+#sidebar-nav .dropdown-toggle:focus-visible,
+#sidebar-nav .submenu .menuItem:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: -2px;
+}
+
+/* Thanh tab: viền dưới phân tầng với vùng nội dung iframe. */
+.content-tabs {
+    border-bottom: 1px solid var(--rd-border);
+}
+
+/* Nút hamburger: ẩn trên desktop, luôn thấy được dưới 992px. */
+.rd-nav-toggle {
+    display: none;
+}
+
+/* Nút đóng drawer: chỉ tồn tại trong drawer mobile. */
+.rd-drawer-close {
+    display: none;
+}
+
+/* ---- U7-001 (SSO, desktop): shell /Home/Index -------------------------
+   Chỉ trình bày, đã đo live ở 1366x900 (probe /tmp/u7sso-probe*.json):
+   - Sidebar: 18 mục x 44px (padding 8px dọc) = 792px, kết thúc y=866,
+     footer tuyệt đối y=855..900 đè lên mục cuối 11px và footer cần 68px
+     nhưng chỉ cao 45px (height:5% inline) nên chữ bản quyền bị cắt.
+     Nới lỏng bằng cách thu padding dọc mục menu 8px -> 6px (tiết kiệm
+     18x4=72px, menu kết thúc ~y=794) + footer height:auto.
+     KHÔNG đổi mục menu, thứ tự, đích, hay cơ chế skin/nav-small.
+   - Footer .login-foot: inline style width:14%/height:5% giữ nguyên;
+     height:auto cần !important mới thắng inline style. box-sizing bắt
+     buộc vì trang này KHÔNG có reset border-box của Bootstrap
+     (div thường đo được content-box) — không có nó padding sẽ làm
+     footer rộng hơn sidebar 191px. Chữ + link giữ nguyên 100%.
+   Toàn bộ rule trong mục này chỉ nhắm #sidebar-nav / #nav-col.login-foot
+   của shell SSO nên không ảnh hưởng portal khác (portal.css chỉ sync
+   sang SSO, xem sync-assets.sh). ---------------------------------------- */
+/* U7-001b: padding 6px ĐÃ có hiệu lực live (đo được paddingTop 6px) nhưng
+   chiều cao mục vẫn 44px vì redesign-tokens.css (file token CHUNG, sync
+   11 portal) ghim `#page-wrapper:not(.nav-small) #sidebar-nav .nav >
+   li > a { min-height: 44px }` — specificity (2,2,2) thắng rule cũ
+   (1,1,3). KHÔNG đổi token chung (ảnh hưởng 11 portal, ngoài phạm vi
+   SSO): override riêng cho shell SSO bằng selector cụ thể hơn (2,2,3),
+   portal.css nạp SAU token nên thắng chắc. 18 mục x 40px = 720px, menu
+   kết thúc ~y=770, cách footer (bắt đầu ~y=817) 47px — dứt điểm đè lên
+   mục cuối. Chỉ nhắm mục cấp 1; mục con .submenu không đổi. */
+#page-wrapper:not(.nav-small) #sidebar-nav ul.nav > li > a {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    min-height: 40px;
+}
+
+#nav-col.login-foot {
+    box-sizing: border-box;
+    height: auto !important;
+    min-height: 0;
+    padding: 8px 8px 10px;
+    line-height: 1.45;
+}
+
+/* Lớp phủ: chặn bấm vào nội dung phía sau khi drawer mở. */
+#rd-drawer-overlay {
+    display: none;
+}
+
+/* ---- U7-002 (CIS, desktop): /Home/Index --------------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe-live-before.json):
+   trang Layout = null, HTML độc lập, stylesheet DUY NHẤT
+   /css/framework-theme.css trả 404 (file chưa từng được port sang
+   CIS wwwroot — wwwroot/css chỉ có redesign-tokens.css), nên trình
+   duyệt render serif mặc định + link xanh trên nền trắng, ~80%
+   viewport trống. Sửa: Index.cshtml nạp tokens + file này; mọi rule
+   dưới đây chỉ nhắm body.cis-home (duy nhất trang này), chỉ đổi trình
+   bày. 10 link, đích, nhãn và toàn bộ chữ gốc giữ nguyên 100%
+   (so sánh probe trước/sau); chữ mới duy nhất là brand "Viet HIS"
+   trong header — chrome chung như shell SSO/Base Web. KHÔNG bịa
+   KPI/biểu đồ/widget hay dữ liệu giả. Header + lưới thẻ chỉ trình
+   bày lại danh sách link thật; không thêm link/đích nào mới. -------- */
+body.cis-home,
+body.cis-home * {
+    box-sizing: border-box;
+}
+
+body.cis-home {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--rd-text);
+    background: var(--rd-bg-muted);
+    line-height: var(--rd-line-height);
+}
+
+/* Header: dải primary + brand, như shell các portal khác. */
+.cis-header {
+    background: var(--rd-primary);
+    color: #fff;
+    padding: var(--rd-space-3) var(--rd-space-6);
+}
+
+.cis-brand {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: var(--rd-line-height-heading);
+}
+
+/* Khung nội dung: giới hạn bề rộng, căn giữa — hết "80% trắng chết". */
+.cis-main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: var(--rd-space-6) var(--rd-space-6) 48px;
+}
+
+.cis-title {
+    margin: var(--rd-space-2) 0 var(--rd-space-2);
+    font-size: 24px;
+    line-height: var(--rd-line-height-heading);
+}
+
+.cis-intro {
+    margin: 0 0 var(--rd-space-4);
+    color: var(--rd-text-muted);
+}
+
+/* 7 phân hệ: lưới 3 cột, mỗi link thật thành 1 thẻ. */
+.cis-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--rd-space-4);
+}
+
+.cis-card {
+    background: #fff;
+    border: 1px solid var(--rd-border);
+    border-left: 4px solid var(--rd-primary);
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+}
+
+.cis-card a {
+    display: block;
+    padding: var(--rd-space-4);
+    color: var(--rd-text);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+.cis-card:hover {
+    border-color: var(--rd-primary);
+    box-shadow: var(--rd-shadow-md);
+}
+
+.cis-card a:hover {
+    color: var(--rd-primary);
+}
+
+.cis-card a:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: 2px;
+}
+
+/* Chức năng gốc: 3 link thật thành chip; dấu " | " gốc giữ nguyên
+   giữa các chip nên visible text trước/sau giống hệt. */
+.cis-origins {
+    margin: var(--rd-space-6) 0 0;
+    padding: var(--rd-space-4);
+    background: #fff;
+    border: 1px solid var(--rd-border);
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+}
+
+.cis-chip {
+    display: inline-block;
+    margin: var(--rd-space-1) 2px;
+    padding: 6px 12px;
+    color: var(--rd-primary);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    background: var(--rd-bg-muted);
+    border: 1px solid var(--rd-border);
+    border-radius: 16px;
+}
+
+.cis-chip:hover {
+    color: #fff;
+    background: var(--rd-primary);
+    border-color: var(--rd-primary);
+}
+
+.cis-chip:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+    .cis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cis-main {
+        padding: var(--rd-space-4) var(--rd-space-4) 32px;
+    }
+}
+
+@media (max-width: 991px) {
+    /* Nút hamburger 44x44, đặt cạnh logo trong header portal. */
+    .rd-nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        float: left;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        font-size: 20px;
+        line-height: 1;
+        margin: 3px 4px 0 0;
+        color: #fff;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .rd-nav-toggle:focus {
+        outline: 2px solid #fff;
+        outline-offset: -2px;
+    }
+
+    /* Drawer: khối menu trượt từ trái, phủ lên nội dung. Khi đóng,
+       translate ra ngoài viewport (không dùng display:none để giữ
+       transition và để nút đóng/focus không nhảy layout). */
+    #page-wrapper > .row > #nav-col:not(.login-foot) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 280px;
+        max-width: 85vw;
+        z-index: 1040;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background: #2c3e50;
+        transform: translateX(-102%);
+        transition: transform 0.2s ease;
+    }
+
+    body.rd-drawer-open #page-wrapper > .row > #nav-col:not(.login-foot) {
+        transform: translateX(0);
+    }
+
+    /* Nút đóng trong drawer. */
+    body.rd-drawer-open .rd-drawer-close {
+        display: block;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 44px;
+        height: 44px;
+        font-size: 22px;
+        line-height: 1;
+        color: #fff;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    /* Overlay phủ toàn viewport, dưới drawer, trên nội dung. */
+    body.rd-drawer-open #rd-drawer-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 1030;
+        background: rgba(0, 0, 0, 0.45);
+    }
+
+    /* Khóa cuộn nền: body portal vốn đã có inline style
+       overflow:hidden nên trang nền không cuộn được; class này chỉ
+       khẳng định lại trạng thái khi drawer mở. */
+    body.rd-drawer-open {
+        overflow: hidden;
+    }
+}

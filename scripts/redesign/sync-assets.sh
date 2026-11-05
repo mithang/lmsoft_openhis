@@ -47,4 +47,16 @@ copy_one "$SRC/redesign-tokens.css" "$dest/css/redesign-tokens.css"
 copy_one "$SRC/redesign-grid.js" "$dest/js/redesign-grid.js"
 copy_one "$SRC/redesign-portal.css" "$dest/css/redesign-portal.css"
 copy_one "$SRC/redesign-portal.js" "$dest/js/redesign-portal.js"
+# U7-002: portal.css cũng sync sang CIS — /Home/Index của CIS là trang
+# Layout = null, nạp portal.css trực tiếp (mục body.cis-home trong file
+# này chỉ nhắm trang đó nên không ảnh hưởng portal khác). Các portal
+# còn lại (U7-003+) thêm vào danh sách này khi tới lượt.
+PORTAL_CSS_APPS=(
+  "Newtouch.HIS.CIS/Newtouch.CIS.Web"
+)
+for app in "${PORTAL_CSS_APPS[@]}"; do
+  dest="$ROOT/$app/wwwroot"
+  [ -d "$ROOT/$app" ] || { echo "SKIP (không thấy project): $app"; continue; }
+  copy_one "$SRC/redesign-portal.css" "$dest/css/redesign-portal.css"
+done
 echo "DONE. Nguồn chuẩn: $SRC (sửa ở đó, đừng sửa wwwroot tay)."
