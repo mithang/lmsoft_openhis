@@ -1172,3 +1172,56 @@ body[data-appid="Sett"] .rd-sett-tile a:focus-visible {
         padding: var(--rd-space-3) var(--rd-space-4);
     }
 }
+
+/* ---- U7-010 (Base Web, desktop): /Home/Index ---------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe /tmp/u7baseweb-before/):
+   - Watermark đám mây mờ ở đáy sidebar: theme (static host)
+     framework-theme.source.css:1570 ghim
+     `.theme-blue-gradient #nav-col, .theme-blue-gradient #page-wrapper
+     { background: url(/img/logo-03.png) right bottom no-repeat
+     #293038; }` — logo đám mây NewTouch cũ. KHÔNG sửa static host
+     (run-copy, repo riêng; sửa ở đó đổi cả prod ngay): override ở
+     đây, background-image:none, giữ màu nền #293038. Đo live trước:
+     navcol_bg = url(41142/img/logo-03.png); sau sửa phải là none.
+     Specificity (1,1,1) thắng rule theme (1,1,0); portal.css nạp sau
+     theme. Neo bằng body[data-appid="BASE.BASE"] — AppId render thật
+     từ server (Constants.AppId đọc BusinessConfig; probe thấy
+     data-appid="BASE.BASE", body class đã bị theme JS ghi đè thành
+     'theme-blue-gradient pace-done' nên không neo bằng class, bài học
+     U7-003). KHÔNG cần hardcode literal (khác MRMS: ở đây Constants
+     đọc đúng BusinessConfig, không rỗng).
+   - Username '000000' trơ trụi: span .profile-dropdown chỉ render
+     UserCode (đo live: text '000000', 70x35px, scrollW==clientW —
+     không cắt, chỉ thiếu tên). Sửa theo mẫu SSO/EMR/MRMS (UserName
+     【UserCode】, dữ liệu operator thật: staff link của 000000 là
+     'Quan tri vien', đã kiểm chứng bằng SQL trên NewtouchHIS_Base)
+     + rule dưới đây (mẫu PDS): display:inline-block, width:auto
+     !important, white-space:nowrap để anchor pull-right tự nới sang
+     trái, không đè khối khác. Chữ không đổi ngoài tên thật.
+   - Sidebar: 3 mục cấp 1 đều 1 dòng, span_x=45, icon_x=20,
+     overlap=false (đo live) — KHÔNG thêm rule span display:block
+     (không có lỗi đo được; khác EMR/MRMS/PDS). 2 rule chung U7-001
+     trong file này (sidebar padding 6px/min-height 40px) tự áp dụng
+     (cùng markup #page-wrapper/#sidebar-nav); shell này KHÔNG có
+     .login-foot nên rule footer không có hiệu lực — không có footer
+     để cắt chữ (Index.cshtml không render footer).
+   - Logo header ĐÃ là Viet HIS (logo1.png, U6 — đo live logo_bg) nên
+     không sửa logo. Dashboard (tile/biểu đồ/panel phải) nằm trong
+     iframe /Home/Default — tài liệu riêng, portal.css KHÔNG với tới;
+     các sửa đó nằm trong <style> + script riêng của Default.cshtml
+     (nhãn trục x '8Tháng' trùng, thẻ tile tràn 4–28px, trạng thái
+     rỗng panel phải, icon tile).
+   Chỉ trình bày; không đổi mục menu, thứ tự, đích, chữ hay dữ liệu.
+   Không reset box-sizing toàn cục (bài học U7-004). -------- */
+body[data-appid="BASE.BASE"] #nav-col,
+body[data-appid="BASE.BASE"] #page-wrapper {
+    background-image: none;
+}
+
+body[data-appid="BASE.BASE"] .profile-dropdown > a > span {
+    display: inline-block;
+    width: auto !important;
+    max-width: none;
+    white-space: nowrap;
+    overflow: visible;
+}

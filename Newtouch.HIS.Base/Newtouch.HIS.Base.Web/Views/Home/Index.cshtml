@@ -19,6 +19,20 @@
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/dialog/dialog.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/cookie/jquery.cookie.js")"></script>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" id="color-skin" />
+    @* U7-010: shell này trước đây chỉ nạp theme, không nạp tokens +
+       redesign-portal.css nên các sửa shell (watermark logo-03.png ở
+       đáy sidebar, username '000000' trơ trụi, 2 rule chung U7-001)
+       không có hiệu lực — portal.css trước đây còn 404 (chưa sync
+       sang Base Web wwwroot). Nạp tokens + portal.css ngay sau theme,
+       đúng thứ tự như SSOIndex/EMR/MRMS/PDS; chỉ thêm 2 <link> CSS,
+       không đổi layout/route. Dashboard trong iframe /Home/Default
+       không dùng file này (xem Default.cshtml). Lưu ý: KHÔNG neo rule
+       bằng class body (theme JS ghi đè toàn bộ class body lúc chạy
+       thành 'theme-blue-gradient pace-done') — portal.css neo bằng
+       body[data-appid="BASE.BASE"] thay thế (AppId render thật từ
+       server, probe đã thấy data-appid="BASE.BASE"). *@
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-tokens.css", false)" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-portal.css", false)" rel="stylesheet" />
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/framework-clientdata.js", false)"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/newtouch-clientdata.js", false)"></script>
@@ -103,7 +117,15 @@
                             <li class="dropdown profile-dropdown">
                                 <a href="#" class="dropdown" data-toggle="dropdown">
                                     <i class="fa fa-user" style="float: left; margin-right: 5px; width: 25px; font-size: x-large; padding-top: 5px;"></i>
-                                    <span class="hidden-xs">@OperatorProvider.GetCurrent().UserCode</span>
+                                    @* U7-010: hiện tên + mã như shell SSO/EMR/MRMS
+                                       (UserName【UserCode】) thay vì chỉ mã '000000'
+                                       trơ trụi; chỉ trình bày, dữ liệu operator giữ
+                                       nguyên (UserName lấy từ staff link của tài
+                                       khoản, 000000 = 'Quan tri vien', đã kiểm chứng
+                                       bằng SQL trên NewtouchHIS_Base). Kiểu hiển thị
+                                       (inline-block, không cắt) nằm trong
+                                       redesign-portal.css, mẫu PDS. *@
+                                    <span class="hidden-xs">@OperatorProvider.GetCurrent().UserName【@OperatorProvider.GetCurrent().UserCode】</span>
                                 </a>
                                 <ul class="dropdown-menu pull-right">
                                     @*<li><a class="menuItem" data-id="userInfo" href="/SystemManage/User/Info"><i class="fa fa-user"></i>Thông tin cá nhân</a></li>

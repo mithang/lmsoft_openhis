@@ -86,6 +86,13 @@ copy_one "$SRC/redesign-portal.js" "$dest/js/redesign-portal.js"
 # Layout = null độc lập, nạp portal.css trực tiếp (mục
 # body[data-appid="Sett"] trong file này chỉ nhắm trang đó nên không ảnh
 # hưởng portal khác).
+# U7-010: portal.css cũng sync sang Base Web — /Home/Index của Base Web là
+# shell AdminLTE cùng markup với SSO/EMR/MRMS/PDS (#page-wrapper,
+# #sidebar-nav) nên 2 rule chung U7-001 (sidebar padding 6px /
+# min-height 40px + .login-foot height:auto) áp dụng luôn cho Base Web;
+# mục body[data-appid="BASE.BASE"] trong file này chỉ chứa rule riêng
+# Base Web (watermark logo-03.png, username). Dashboard trong iframe
+# /Home/Default KHÔNG dùng file này (xem Default.cshtml).
 PORTAL_CSS_APPS=(
   "Newtouch.HIS.CIS/Newtouch.CIS.Web"
   "Newtouch.HIS.EMR/Newtouch.EMR.Web"
@@ -95,6 +102,7 @@ PORTAL_CSS_APPS=(
   "Newtouch.HIS.PDS/Newtouch.PDS.Web"
   "Newtouch.MRQC.Web"
   "Newtouch.Sett.Web"
+  "Newtouch.HIS.Base/Newtouch.HIS.Base.Web"
 )
 for app in "${PORTAL_CSS_APPS[@]}"; do
   dest="$ROOT/$app/wwwroot"
