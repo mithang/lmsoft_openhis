@@ -66,7 +66,13 @@
         <li class="dropdown profile-dropdown">
             <a href="#" class="dropdown" data-toggle="dropdown">
                 <i class="fa fa-user" style="float: left; margin-right: 5px; width: 25px; font-size: x-large; padding-top: 5px;"></i>
-                <span class="hidden-xs" style="width:120px;">@opr.UserName【@opr.UserCode】</span>
+                @* U7-001: span tên user từng fix cứng width:120px trong khi chuỗi
+                   "Quan tri vien【000000】" cần 132px nên bị cắt "Quan tri vien【0000…"
+                   (đo live: scrollWidth 132 > clientWidth 120). width:auto để vừa
+                   đúng tên hiển thị; max-width:200px + overflow/ellipsis sẵn có của
+                   framework vẫn cắt tên dài hơn bằng "…" như trước. Không đổi text,
+                   icon, dropdown hay hành vi đăng xuất. *@
+                <span class="hidden-xs" style="width:auto;max-width:200px;">@opr.UserName【@opr.UserCode】</span>
             </a>
 
             <ul class="dropdown-menu pull-right">

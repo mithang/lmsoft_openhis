@@ -51,6 +51,45 @@
     display: none;
 }
 
+/* ---- U7-001 (SSO, desktop): shell /Home/Index -------------------------
+   Chỉ trình bày, đã đo live ở 1366x900 (probe /tmp/u7sso-probe*.json):
+   - Sidebar: 18 mục x 44px (padding 8px dọc) = 792px, kết thúc y=866,
+     footer tuyệt đối y=855..900 đè lên mục cuối 11px và footer cần 68px
+     nhưng chỉ cao 45px (height:5% inline) nên chữ bản quyền bị cắt.
+     Nới lỏng bằng cách thu padding dọc mục menu 8px -> 6px (tiết kiệm
+     18x4=72px, menu kết thúc ~y=794) + footer height:auto.
+     KHÔNG đổi mục menu, thứ tự, đích, hay cơ chế skin/nav-small.
+   - Footer .login-foot: inline style width:14%/height:5% giữ nguyên;
+     height:auto cần !important mới thắng inline style. box-sizing bắt
+     buộc vì trang này KHÔNG có reset border-box của Bootstrap
+     (div thường đo được content-box) — không có nó padding sẽ làm
+     footer rộng hơn sidebar 191px. Chữ + link giữ nguyên 100%.
+   Toàn bộ rule trong mục này chỉ nhắm #sidebar-nav / #nav-col.login-foot
+   của shell SSO nên không ảnh hưởng portal khác (portal.css chỉ sync
+   sang SSO, xem sync-assets.sh). ---------------------------------------- */
+/* U7-001b: padding 6px ĐÃ có hiệu lực live (đo được paddingTop 6px) nhưng
+   chiều cao mục vẫn 44px vì redesign-tokens.css (file token CHUNG, sync
+   11 portal) ghim `#page-wrapper:not(.nav-small) #sidebar-nav .nav >
+   li > a { min-height: 44px }` — specificity (2,2,2) thắng rule cũ
+   (1,1,3). KHÔNG đổi token chung (ảnh hưởng 11 portal, ngoài phạm vi
+   SSO): override riêng cho shell SSO bằng selector cụ thể hơn (2,2,3),
+   portal.css nạp SAU token nên thắng chắc. 18 mục x 40px = 720px, menu
+   kết thúc ~y=770, cách footer (bắt đầu ~y=817) 47px — dứt điểm đè lên
+   mục cuối. Chỉ nhắm mục cấp 1; mục con .submenu không đổi. */
+#page-wrapper:not(.nav-small) #sidebar-nav ul.nav > li > a {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    min-height: 40px;
+}
+
+#nav-col.login-foot {
+    box-sizing: border-box;
+    height: auto !important;
+    min-height: 0;
+    padding: 8px 8px 10px;
+    line-height: 1.45;
+}
+
 /* Lớp phủ: chặn bấm vào nội dung phía sau khi drawer mở. */
 #rd-drawer-overlay {
     display: none;

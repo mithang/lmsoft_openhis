@@ -3,33 +3,71 @@
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <style>
+    /* U7-001: nhãn truy cập nhanh từng bị cắt — li cao cố định 20px trong
+       khi nhãn 16px xuống 2 dòng cần ~45px (đo live: li scrollH 48 >
+       clientH 20, dòng 2 "tru"/"noi tru" tràn; ul cao 90px chỉ hiện 2/3
+       hàng, hàng 3 gồm 3 mục bị ẩn hẳn, scrollH 120 > 90). Cho li cao tự
+       động theo số dòng (line-height 1.4, xuống dòng gọn trong li), thu
+       rộng 180px -> 160px để vừa 6 mục/hàng (13 mục = 3 hàng), ul cao tự
+       động theo nội dung. Không đổi mục, text, icon, đích hay hành vi
+       click/dblclick (JS createli giữ nguyên). */
     .ul-ConvenientMenu {
         width: 100%;
-        height: 90px;
+        height: auto;
+        min-height: 90px;
         list-style: none;
         padding: 0;
         overflow-y: auto;
     }
 
         .ul-ConvenientMenu li {
-            margin: 10px;
+            margin: 6px 10px;
             display: inline;
             float: left;
-            height: 20px;
-            width: 180px;
+            height: auto;
+            min-height: 20px;
+            width: 160px;
             border: 0px solid #ccc;
             border-radius: 5px 5px 0 0;
+            line-height: 1.4;
             /*-webkit-box-shadow: #666 3px 4px 8px;
                                                                                     -moz-box-shadow: #666 3px 4px 8px;
                                                                                     box-shadow: #666 3px 4px 8px;*/
         }
 
+    /* U7-001: khung thống kê/biểu đồ đang là số 0 thật (demo data, KHÔNG
+       bịa số) nhưng trông như vùng trắng trống không có biên. Khoanh 2 cột
+       thành card nhẹ (viền + bo góc) để vùng trống đọc được như empty-state
+       có chủ ý; giá trị 0, tiêu đề, nhãn biểu đồ giữ nguyên 100%.
+       box-sizing bắt buộc (trang này content-box): không có nó viền 1px
+       làm 2 cột 50% + 2px -> cột biểu đồ rớt xuống hàng dưới. */
+    #dv_table > .col-sm-6 {
+        box-sizing: border-box;
+        border: 1px solid #e5e7eb;
+        border-radius: 6px;
+    }
+
+    #leavechart {
+        background-color: #fbfcfd;
+    }
+
+    /* U7-001: trang này KHÔNG có reset border-box của Bootstrap (div thường
+       đo live được content-box) nên padding 15% hai bên CỘNG thêm vào
+       width:100%: banner rộng 1153+346=1501px, thẻ thứ 3 tràn khỏi viewport
+       và bị cắt (đo live: .carousel-inner scrollW 1501 > clientW 1153).
+       box-sizing:border-box + padding ngang 2rem giữ banner đúng 1153px;
+       3 thẻ U5 (calc((100%-4rem)/3)) vừa khít, nhãn xuống dòng gọn trong
+       thẻ (flex + min-height 100px giữ nguyên). Giảm padding dọc 3rem/1rem
+       -> 1.5rem để banner 140px vẫn chứa đủ thẻ 100px (140-36=104), đồng
+       thời bù chiều cao tăng thêm của danh sách truy cập nhanh bên dưới.
+       Mobile (max-width:768px) giữ nguyên bản sửa SSO-07 bên dưới. */
     .app-blocktheme-blue {
         width: 100%;
         height: 140px;
         border: solid 1px #abcdef;
         background-color: #ADD8E6;
-        padding: 3rem 15% 1rem 15%;
+        box-sizing: border-box;
+        padding: 1.5rem 2rem;
     }
 
     .app-item {

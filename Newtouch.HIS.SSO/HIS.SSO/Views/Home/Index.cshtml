@@ -25,6 +25,13 @@
        Nạp token ngay sau framework-theme.css, đúng vị trí như SSOIndex, để shell hưởng đổi mới
        giao diện + override sidebar chung (không đổi layout/route, chỉ thêm 1 <link> CSS). *@
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-tokens.css", false)" rel="stylesheet" />
+    @* U7-001: shell này trước đây chỉ nạp token, không nạp redesign-portal.css
+       (chỉ SSOIndex có) nên các sửa shell SSO (sidebar/footer/drawer-close)
+       không có hiệu lực ở /Home/Index. Nạp portal.css ngay sau token, đúng
+       thứ tự như SSOIndex; chỉ thêm 1 <link> CSS, không đổi layout/route.
+       Không nạp redesign-portal.js: Index không có markup drawer
+       (nút #rd-nav-toggle / #rd-drawer-overlay chỉ có ở SSOIndex). *@
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-portal.css", false)" rel="stylesheet" />
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-clientdata.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
