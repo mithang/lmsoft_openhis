@@ -196,6 +196,12 @@ namespace Newtouch.CIS.Web.Controllers
         /// <returns></returns>
         public IActionResult GetIntegrateEmrUrl(string mzh, string jzys)
         {
+            // FA-005: empty mzh NRE'd inside the integration app; AeUrl/HEALUrl
+            // already guard this with the same message.
+            if (string.IsNullOrWhiteSpace(mzh))
+            {
+                return Error("Số khám ngoại trú không được để trống");
+            }
             string response;
             var result = _outpatientCmmManagerApp.GetIntegrateEmrUrl(mzh, jzys, OrganizeId, out response);
             return string.IsNullOrWhiteSpace(result) ? Success("", response) : Error(result);
@@ -304,6 +310,12 @@ namespace Newtouch.CIS.Web.Controllers
         /// <returns></returns>
         public JsonResult GetIntegrateRcRequsetParam(string blh, string mzh, string jzys)
         {
+            // FA-005: empty mzh NRE'd inside the integration app; null JSON
+            // matches the ExtractIntegrate* empty-result shape.
+            if (string.IsNullOrWhiteSpace(mzh))
+            {
+                return Json((object)null);
+            }
             if (string.IsNullOrWhiteSpace(jzys)) jzys = UserIdentity.UserCode;
             var result = _outpatientCmmManagerApp.GetIntegrateRCRequsetParam(blh, mzh, jzys, OrganizeId);
             return Json(result);

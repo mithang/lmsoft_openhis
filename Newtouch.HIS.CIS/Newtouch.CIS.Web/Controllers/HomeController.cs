@@ -45,6 +45,12 @@ namespace Newtouch.CIS.Web.Controllers
         public IActionResult GetNewFieldUniqueValue(string fieldName, string initFormat = "", int initFieldLength = 0)
         {
             var orgId = OperatorProvider.GetCurrent()?.OrganizeId;
+            // FA-005: blank fieldName reached the serial INSERT and surfaced a
+            // DB exception ("Cannot insert NULL into EntityFieldName").
+            if (string.IsNullOrWhiteSpace(fieldName))
+            {
+                return Content(new AjaxResult { state = ResultType.error.ToString(), message = "Tên trường không được để trống" }.ToJson());
+            }
             if (string.IsNullOrWhiteSpace(initFormat) && initFieldLength > 0)
             {
                 initFormat = "{0:D" + initFieldLength + "}";

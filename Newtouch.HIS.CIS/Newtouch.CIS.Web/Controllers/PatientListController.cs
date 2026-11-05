@@ -113,10 +113,15 @@ namespace Newtouch.CIS.Web.Controllers
         public IActionResult GetInPatientInfo(string zyh)
         {
             var data = _treatmentDmnService.GetInPatientInfo(zyh,OrganizeId);
-            var ryDiaList = _inpatientPatientDiagnosisRepo.SelectDiagData(zyh, OrganizeId, "1");
-            var cyDiaList = _inpatientPatientDiagnosisRepo.SelectDiagData(zyh, OrganizeId, "2");
-            data.ryzdList = ryDiaList;
-            data.cyzdList = cyDiaList;
+            // FA-005: unknown zyh gives null data — previously NRE'd below.
+            // Null data serialises to "null" (same as GetTreatEntityByMzh).
+            if (data != null)
+            {
+                var ryDiaList = _inpatientPatientDiagnosisRepo.SelectDiagData(zyh, OrganizeId, "1");
+                var cyDiaList = _inpatientPatientDiagnosisRepo.SelectDiagData(zyh, OrganizeId, "2");
+                data.ryzdList = ryDiaList;
+                data.cyzdList = cyDiaList;
+            }
 
             return Content(data.ToJson());
         }

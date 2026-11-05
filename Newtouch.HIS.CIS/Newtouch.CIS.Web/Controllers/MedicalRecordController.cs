@@ -78,7 +78,7 @@ namespace Newtouch.CIS.Web.Controllers
         private readonly IClinicApplyRepo _clinicApplyRepo;
         private readonly IClinicDmnService _clinicDmnService;
 
-        public MedicalRecordController(IMedicalRecordDmnService medicalRecordDmnService, ITreatmentRepo treatmentRepo, IAuxiliaryDictionaryRepo auxiliaryDictionaryRepo, IMRTemplateRepo mRTemplateRepo, ISysConfigRepo sysConfigRepo, IIDBDmnService idbDmnService, ITTCataloguesComparisonDmnService tTCataloguesComparisonDmnService, ISysStaffRepo sysStaffRepo, IReportDmnService reportDmnService, IOutpatientCmmManagerApp outpatientCmmManagerApp, IUsedDiagnosisRepo usedDiagnosisRepo, IMedicalRecordRepo medicalRecordRepo, IQhdZnshSqtxRepo qhdznshsqtxRepo, IMzZyBarCodeRepo mzzybarcodeRepo, IBlctglRepo blctglRepo, IComDiagnosisRepo comDiagnosisRepo, IReservationRepo reservationRepo, IAdmissionNoticeRepo admissionNoticeRepo, IClinicApplyRepo clinicApplyRepo, IClinicDmnService clinicDmnService)
+        public MedicalRecordController(IMedicalRecordDmnService medicalRecordDmnService, ITreatmentRepo treatmentRepo, IAuxiliaryDictionaryRepo auxiliaryDictionaryRepo, IMRTemplateRepo mRTemplateRepo, ISysConfigRepo sysConfigRepo, IIDBDmnService idbDmnService, ITTCataloguesComparisonDmnService tTCataloguesComparisonDmnService, ISysStaffRepo sysStaffRepo, IReportDmnService reportDmnService, IOutpatientCmmManagerApp outpatientCmmManagerApp, IUsedDiagnosisRepo usedDiagnosisRepo, IMedicalRecordRepo medicalRecordRepo, IQhdZnshSqtxRepo qhdznshsqtxRepo, IMzZyBarCodeRepo mzzybarcodeRepo, IBlctglRepo blctglRepo, IComDiagnosisRepo comDiagnosisRepo, IReservationRepo reservationRepo, IAdmissionNoticeRepo admissionNoticeRepo, IClinicApplyRepo clinicApplyRepo, IClinicDmnService clinicDmnService, IVisitDeptSetRepo visitDeptSetRepo)
         {
             this._medicalRecordDmnService = medicalRecordDmnService;
             this._treatmentRepo = treatmentRepo;
@@ -100,6 +100,9 @@ namespace Newtouch.CIS.Web.Controllers
             this._admissionNoticeRepo = admissionNoticeRepo;
             this._clinicApplyRepo = clinicApplyRepo;
             this._clinicDmnService = clinicDmnService;
+            // FA-005: visitDeptSetRepo was declared but never assigned (no ctor
+            // param) — Getdjzlist line 1986 NRE'd on every call. FA-004 ctor-restore precedent.
+            this.visitDeptSetRepo = visitDeptSetRepo;
         }
         /// <summary>
         /// Hồ sơ
@@ -908,7 +911,9 @@ namespace Newtouch.CIS.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(ghsj))
             {
-                return null;
+                // FA-005: returning null from an IActionResult action is a 500;
+                // [] matches this action's own apiResp-null branch below.
+                return Content("[]");
             }
 
             var reqObj = new
@@ -1007,7 +1012,9 @@ namespace Newtouch.CIS.Web.Controllers
                 rowlist = resultobj.RESPONSEDATA.OUTPUT;
                 return Content(rowlist.ToJson());
             }
-            return null;
+            // FA-005: returning null from an IActionResult action is a 500
+            // ("Cannot return null"); empty result keeps the array shape.
+            return Content("[]");
         }
 
         /// <summary>
@@ -1082,6 +1089,11 @@ namespace Newtouch.CIS.Web.Controllers
                         //LấyKhoatương ứng
                         FirstSecondThird ksobj = _tTCataloguesComparisonDmnService.GetTTItem(this.OrganizeId, "ks", this.UserIdentity.DepartmentCode, "sqtx");
                         //LấyKhám bệnhLoạitương ứng
+                        // FA-005: patjzInfo is null for an unknown mzh — previously NRE here.
+                        if (patjzInfo == null)
+                        {
+                            return Error("Lấy thông tin khám bệnh của bệnh nhân thất bại, vui lòng chọn lại bệnh nhân rồi thử lại");
+                        }
                         FirstSecondThird jzlxobj = _tTCataloguesComparisonDmnService.GetTTItem(this.OrganizeId, "jzlx", patjzInfo.mjzbz.ToString(), "sqtx");
 
 
@@ -1590,6 +1602,12 @@ namespace Newtouch.CIS.Web.Controllers
         public IActionResult fastPrint(string jsonstr)
         {
             var item = Newtouch.CIS.Compat.Tools.Json.ToObject<Outpatientfastreportreq>(jsonstr);
+            // FA-005: null/invalid jsonstr made item null and item.title NRE'd;
+            // unknown titles already return Success with empty data — same shape.
+            if (item == null)
+            {
+                return Success("", "");
+            }
             var j = "";
             switch (item.title)
             {
@@ -1938,7 +1956,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <returns></returns>
         public IActionResult GetDiagsAdmin(string type, string keyword, string lx)
         {
-            var entity = _ComDiagnosisRepo.GetComDiagnosisAdmin(this.UserIdentity.UserCode, this.UserIdentity.DepartmentCode, this.OrganizeId, type, keyword.Trim(), lx);
+            var entity = _ComDiagnosisRepo.GetComDiagnosisAdmin(this.UserIdentity.UserCode, this.UserIdentity.DepartmentCode, this.OrganizeId, type, (keyword ?? string.Empty).Trim(), lx);
 
             return Content(entity.ToJson());
         }
@@ -1950,7 +1968,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <returns></returns>
         public IActionResult GetDiags(string type, string keyword,string lx)
         {
-            var entity = _ComDiagnosisRepo.GetComDiagnosis(this.UserIdentity.UserCode, this.UserIdentity.DepartmentCode, this.OrganizeId, type, keyword.Trim(), lx);
+            var entity = _ComDiagnosisRepo.GetComDiagnosis(this.UserIdentity.UserCode, this.UserIdentity.DepartmentCode, this.OrganizeId, type, (keyword ?? string.Empty).Trim(), lx);
             
             return Content(entity.ToJson());
         }
@@ -2248,6 +2266,12 @@ namespace Newtouch.CIS.Web.Controllers
             //if (jzzt=="1") {//Chờ khám bệnh
             //Lấymâyphòng khámBệnh nhânHồ sơ
             var applyInfo = _clinicApplyRepo.GetYczl(Id, this.OrganizeId);
+            // FA-005: unknown Id gives null applyInfo (and possibly null patInfo);
+            // previously NRE'd at applyInfo.sqlsh below.
+            if (applyInfo == null || patInfo == null)
+            {
+                return Error("Không tìm thấy thông tin khám từ xa cho mã đã chọn.");
+            }
             var blDataObj = new
             {
                 ApplyId = applyInfo.sqlsh,
