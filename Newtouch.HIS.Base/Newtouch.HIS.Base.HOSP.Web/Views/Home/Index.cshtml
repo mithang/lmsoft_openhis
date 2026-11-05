@@ -30,6 +30,11 @@
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/skins/_all-skins.css")" rel="stylesheet" />
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/AdminLTE.min.css")" rel="stylesheet" />
+    @* U7-011: nạp hệ design chung (tokens + portal.css, mẫu U7-002..U7-010):
+       portal.css chứa rule riêng HOSP (watermark, username, empty-state
+       sidebar); không sửa framework-ui.css / framework-theme.css. *@
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-tokens.css", false)" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-portal.css", false)" rel="stylesheet" />
     <script type="text/javascript">
         if (window.isIElte8()) {
             var cssurl = '@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-ui-ie-lte8.css")';
@@ -84,7 +89,15 @@
                             <li class="dropdown profile-dropdown">
                                 <a href="#" class="dropdown" data-toggle="dropdown">
                                     <i class="fa fa-user" style="float: left; margin-right: 5px; width: 25px; font-size: x-large; padding-top: 5px;"></i>
-                                    <span class="hidden-xs">@OperatorProvider.GetCurrent().UserCode</span>
+                                    @* U7-011: hiện tên + mã như shell SSO/EMR/MRMS/PDS/Base Web
+                                       (UserName【UserCode】) thay vì chỉ mã '000000'
+                                       trơ trụi; chỉ trình bày, dữ liệu operator giữ
+                                       nguyên (UserName lấy từ staff link của tài
+                                       khoản, 000000 = 'Quan tri vien', đã kiểm chứng
+                                       bằng SQL trên NewtouchHIS_Base). Kiểu hiển thị
+                                       (inline-block, không cắt) nằm trong
+                                       redesign-portal.css, mẫu PDS/Base Web. *@
+                                    <span class="hidden-xs">@OperatorProvider.GetCurrent().UserName【@OperatorProvider.GetCurrent().UserCode】</span>
                                 </a>
                                 <ul class="dropdown-menu pull-right">
                                     <li><a class="menuItem" data-id="userInfo" href="/User/PersonalInfo"><i class="fa fa-user"></i>Thông tin cá nhân</a></li>
@@ -233,6 +246,22 @@
                             </ul>
                                         }
                                     }
+                            @* U7-011: sidebar HOSP rỗng THẬT với tài khoản này —
+                               menu chỉ dựng từ authorizeMenu (LoadNavTree đọc
+                               top.clients.authorizeMenu) mà endpoint
+                               /ClientsData/GetClientsDataJson trả "[]" (role lấy
+                               từ UnionDb, menu đọc BaseDb, id vai trò không
+                               khớp — xem báo cáo U7-011; KHÔNG bịa mục menu,
+                               KHÔNG sửa logic/DB). Khối này nằm NGOÀI các
+                               <ul> nên index.common.js (xóa html ul đầu +
+                               LoadNavTree) không chạm tới; CSS :has() trong
+                               redesign-portal.css tự ẩn nó khi sidebar có
+                               mục. Chỉ trình bày, không thêm/bớt đích nào. *@
+                            <div class="rd-hosp-sidebar-empty">
+                                <div class="rd-hosp-sidebar-empty-icon">&#9776;</div>
+                                <p>Chưa có mục menu nào cho tài khoản này.</p>
+                                <p>Mở tab <b>Trang chủ</b> để dùng bảng điều khiển.</p>
+                            </div>
 
                             </div>
                         </div>
@@ -252,7 +281,12 @@
                         </button>
                         <nav class="page-tabs menuTabs">
                             <div class="page-tabs-content" style="margin-left: 0px;">
-                                @*<a href="javascript:;" class="menuTab active" data-id="/Home/Default">Trang chủ</a>*@
+                                @* U7-011: mở lại tab Trang chủ như shell Base Web
+                                   cùng mẫu (Index.cshtml Base Web dòng 282):
+                                   trước đây bị comment nên không có tab nào,
+                                   vùng nội dung trắng hoàn toàn. Tab này chỉ
+                                   mở iframe /Home/Default sẵn có bên dưới. *@
+                                <a href="javascript:;" class="menuTab active" data-id="/Home/Default">Trang chủ</a>
                             </div>
                         </nav>
                         <button class="roll-nav roll-right tabRight">
@@ -273,8 +307,14 @@
                     </div>
                     <div class="content-iframe" style="background-color: #f9f9f9; overflow: hidden;">
                         <div class="mainContent" id="content-main" style="margin: 10px; margin-bottom: 0px; padding: 0;">
-                            @*<iframe class="Newtouch_iframe" width="100%" height="100%" src="/Home/Default" frameborder="0" data-id="/Home/Default"></iframe>
-                            <iframe class="Newtouch_iframe" width="100%" height="100%" src="/Home/About" frameborder="0" data-id="/Home/About"></iframe>*@
+                            @* U7-011: mở lại 2 iframe như shell Base Web cùng mẫu
+                               (Index.cshtml Base Web dòng 303-304): /Home/Default
+                               là view sẵn có của portal (bảng điều khiển thật,
+                               dữ liệu qua GetVisitNum), /Home/About là trang
+                               giới thiệu sẵn có. Trước đây bị comment nên
+                               content-main rỗng 0 con, nội dung trắng 100%. *@
+                            <iframe class="Newtouch_iframe" width="100%" height="100%" src="/Home/Default" frameborder="0" data-id="/Home/Default"></iframe>
+                            <iframe class="Newtouch_iframe" width="100%" height="100%" src="/Home/About" frameborder="0" data-id="/Home/About"></iframe>
                         </div>
                     </div>
                 </div>

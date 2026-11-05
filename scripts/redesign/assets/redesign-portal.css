@@ -1225,3 +1225,108 @@ body[data-appid="BASE.BASE"] .profile-dropdown > a > span {
     white-space: nowrap;
     overflow: visible;
 }
+
+/* ---- U7-011 (Base HOSP, desktop): /Home/Index ---------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe u7-basehosp/before/):
+   - Sidebar rỗng THẬT, không phải lỗi trình bày: menu chỉ dựng từ
+     authorizeMenu — index.common.js xóa ul đầu rồi $.LoadNavTree()
+     render top.clients.authorizeMenu; endpoint
+     /ClientsData/GetClientsDataJson trả HTTP 200, authorizeMenu = "[]"
+     (0 mục, dataItems 73 khóa — endpoint sống, menu rỗng). Vì sao rỗng:
+     lúc đăng nhập RoleIdList lấy từ Newtouch_Union (SysRoleDmnService
+     _mainDB = MainDB = "UnionDb"; id vai trò HospAdministrator của
+     000000 ở Union là 490e5ee1-...) còn GetMenuListByTopOrg đọc
+     Sys_RoleAuthorize qua RepositoryBase → BaseDb = NewtouchHIS_Base,
+     nơi id đó có 0 dòng ủy quyền (id HospAdministrator ở Base là
+     1f827896-...; kiểm chứng bằng SQL cả 2 chiều). Sửa gốc cần đổi
+     logic/DB (thống nhất nguồn id vai trò) — NGOÀI phạm vi visual-only
+     của U7, KHÔNG sửa ở đây, KHÔNG bịa mục menu. Menu dự phòng render
+     server trong Index.cshtml lại nằm trong `if (IsRoot)` mà IsRoot
+     luôn false từ khi giai đoạn 7 gỡ backdoor root → không bao giờ hiện.
+     Via-SSO cũng không hiện menu: SSO GetUALoginAddres trả data null
+     (AppAPIHostName không có mục HOSP), HOSP không có action UALogin,
+     và [HandlerLogin] trên Login+Home controller bỏ qua filter vốn
+     adopt session ?appId= — đo live SSO → HOSP dừng ở /Login/Index.
+     Sửa trình bày ở đây: (1) khối empty-state thật trong #sidebar-nav
+     (nằm NGOÀI các <ul> nên JS xóa/load menu không chạm tới; :has()
+     tự ẩn khi sidebar có mục); (2) mở lại tab Trang chủ + iframe
+     /Home/Default như shell Base Web cùng mẫu (view sẵn có, dữ liệu
+     thật qua GetVisitNum — trước đây bị comment nên nội dung trắng
+     100%, 0 iframe, 0 tab); (3) watermark logo-03.png, username,
+     footer — cùng mẫu U7-010.
+   - Watermark đám mây mờ ở đáy sidebar: theme (static host)
+     framework-theme.source.css:1570 ghim
+     `.theme-blue-gradient #nav-col, .theme-blue-gradient #page-wrapper
+     { background: url(/img/logo-03.png) right bottom no-repeat
+     #293038; }`. KHÔNG sửa static host (run-copy, repo riêng): override
+     ở đây, background-image:none, giữ màu nền #293038. Đo live trước:
+     navcol_bg = url(41142/img/logo-03.png); sau sửa phải là none.
+     Neo bằng body[data-appid="newtouch.base.web"] — AppId render thật
+     từ server (probe thấy data-appid="newtouch.base.web", body class đã
+     bị theme JS ghi đè nên không neo bằng class, bài học U7-003).
+   - Username '000000' trơ trụi: span .profile-dropdown chỉ render
+     UserCode (đo live: text '000000', 70x35px, scrollW==clientW —
+     không cắt, chỉ thiếu tên). Sửa theo mẫu SSO/EMR/MRMS/PDS/Base Web
+     (UserName【UserCode】, dữ liệu operator thật: staff link của 000000
+     là 'Quan tri vien', đã kiểm chứng bằng SQL trên NewtouchHIS_Base)
+     + rule dưới đây (mẫu PDS/Base Web): display:inline-block,
+     width:auto !important, white-space:nowrap. Chữ không đổi ngoài tên
+     thật. Header 'Benh vien Newtouch HIS' KHÔNG đổi — tên org thật
+     trong Sys_Organize, thuộc quyết định tên bệnh viện thật của user.
+   - Footer .login-foot cắt chữ (đo live: cao 45px, scrollH 64 >
+     clientH 45, y=855..900): rule chung U7-001 trong file này
+     (#nav-col.login-foot height:auto !important) tự áp dụng — không
+     thêm rule riêng; đo lại live sau sửa.
+   - Logo header ĐÃ là Viet HIS (logo1.png, U6 — đo live logo_bg) nên
+     không sửa logo. Dashboard (tile/biểu đồ/panel phải) nằm trong
+     iframe /Home/Default — tài liệu riêng, portal.css KHÔNG với tới;
+     các sửa đó nằm trong Default.cshtml (nhãn trục x '8Tháng' trùng,
+     tile tràn, icon tile — đo live vòng sau).
+   Chỉ trình bày; không đổi mục menu, thứ tự, đích, chữ hay dữ liệu.
+   Không reset box-sizing toàn cục (bài học U7-004). -------- */
+body[data-appid="newtouch.base.web"] #nav-col,
+body[data-appid="newtouch.base.web"] #page-wrapper {
+    background-image: none;
+}
+
+body[data-appid="newtouch.base.web"] .profile-dropdown > a > span {
+    display: inline-block;
+    width: auto !important;
+    max-width: none;
+    white-space: nowrap;
+    overflow: visible;
+}
+
+/* Empty-state thật của sidebar (U7-011): chỉ hiện khi sidebar không có
+   mục menu nào — khi LoadNavTree dựng được mục, :has() ẩn khối này.
+   Nằm ngoài các <ul> nên JS không xóa; không chứa link/đích nào. */
+body[data-appid="newtouch.base.web"] #sidebar-nav .rd-hosp-sidebar-empty {
+    margin: 16px 12px;
+    padding: 16px 12px;
+    border: 1px dashed #4a5568;
+    border-radius: 8px;
+    background: rgba(255, 255, 255, 0.04);
+    color: #cbd5e0;
+    font-size: 13px;
+    line-height: 1.5;
+    text-align: center;
+}
+
+body[data-appid="newtouch.base.web"] #sidebar-nav .rd-hosp-sidebar-empty-icon {
+    font-size: 22px;
+    line-height: 1;
+    margin-bottom: 8px;
+    color: #7f8c9b;
+}
+
+body[data-appid="newtouch.base.web"] #sidebar-nav .rd-hosp-sidebar-empty p {
+    margin: 0 0 6px;
+}
+
+body[data-appid="newtouch.base.web"] #sidebar-nav .rd-hosp-sidebar-empty p:last-child {
+    margin-bottom: 0;
+}
+
+body[data-appid="newtouch.base.web"] #sidebar-nav:has(.nav > li) .rd-hosp-sidebar-empty {
+    display: none;
+}

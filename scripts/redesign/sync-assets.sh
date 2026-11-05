@@ -93,6 +93,14 @@ copy_one "$SRC/redesign-portal.js" "$dest/js/redesign-portal.js"
 # mục body[data-appid="BASE.BASE"] trong file này chỉ chứa rule riêng
 # Base Web (watermark logo-03.png, username). Dashboard trong iframe
 # /Home/Default KHÔNG dùng file này (xem Default.cshtml).
+# U7-011: portal.css cũng sync sang Base HOSP — /Home/Index của Base HOSP là
+# shell AdminLTE cùng markup với SSO/EMR/MRMS/PDS/Base Web (#page-wrapper,
+# #sidebar-nav do $.LoadNavTree() dựng, .login-foot) nên 2 rule chung U7-001
+# (sidebar padding 6px/min-height 40px + .login-foot height:auto) tự áp dụng
+# cho HOSP; mục body[data-appid="newtouch.base.web"] trong file này chỉ chứa
+# rule riêng HOSP (watermark logo-03.png, username, empty-state sidebar —
+# sidebar HOSP rỗng thật vì authorizeMenu "[]", xem mục U7-011 trong file).
+# Dashboard trong iframe /Home/Default KHÔNG dùng file này (xem Default.cshtml).
 PORTAL_CSS_APPS=(
   "Newtouch.HIS.CIS/Newtouch.CIS.Web"
   "Newtouch.HIS.EMR/Newtouch.EMR.Web"
@@ -103,6 +111,7 @@ PORTAL_CSS_APPS=(
   "Newtouch.MRQC.Web"
   "Newtouch.Sett.Web"
   "Newtouch.HIS.Base/Newtouch.HIS.Base.Web"
+  "Newtouch.HIS.Base/Newtouch.HIS.Base.HOSP.Web"
 )
 for app in "${PORTAL_CSS_APPS[@]}"; do
   dest="$ROOT/$app/wwwroot"

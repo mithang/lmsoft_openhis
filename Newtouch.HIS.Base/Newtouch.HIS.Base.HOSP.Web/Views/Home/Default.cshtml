@@ -49,7 +49,7 @@
             });
 
             var lineChartData = {
-                labels: ["1Tháng", "2Tháng", "3Tháng", "4Tháng", "5Tháng", "6Tháng", "7Tháng", "8Tháng", "8Tháng", "10Tháng", "11Tháng", "12Tháng"],
+                labels: ["1Tháng", "2Tháng", "3Tháng", "4Tháng", "5Tháng", "6Tháng", "7Tháng", "8Tháng", "9Tháng", "10Tháng", "11Tháng", "12Tháng"],
                 datasets: [
                     {
                         label: "My First dataset",
@@ -126,8 +126,11 @@
             ];
             // REDESIGN home-responsive: doughnut toàn 0 vẽ trắng trơn — thay bằng
             // trạng thái rỗng trung tính + nút tải lại, không bịa số liệu.
+            // U7-011: thêm class trình bày rd-empty-panel cho panel-body để CSS
+            // căn giữa dọc trạng thái rỗng trong khung 350px (xem <style> dưới);
+            // class chỉ gắn ở nhánh rỗng này nên khi có dữ liệu layout không đổi.
             if (outpatientCount + inpatientCount === 0) {
-                $("#leavechart").closest(".panel-body").html('<div class="rd-empty"><div style="font-size:28px;">&#9432;</div><p>Chưa có số liệu lượt khám để vẽ biểu đồ.</p><p class="rd-empty-action"><button type="button" class="btn btn-default" onclick="location.reload()">Tải lại</button></p></div>');
+                $("#leavechart").closest(".panel-body").addClass("rd-empty-panel").html('<div class="rd-empty"><div style="font-size:28px;">&#9432;</div><p>Chưa có số liệu lượt khám để vẽ biểu đồ.</p><p class="rd-empty-action"><button type="button" class="btn btn-default" onclick="location.reload()">Tải lại</button></p></div>');
                 return;
             }
             var ctx = document.getElementById("leavechart").getContext("2d");
@@ -143,6 +146,37 @@
     <style>
         #areascontent { min-width: 0; }
         .dashboard-stats-item h5, .dashboard-stats-item h4 { padding-right: 40px; line-height: 1.35; }
+        @* U7-011: nhãn tile tràn thẻ + trạng thái rỗng panel phải (đo live
+           vòng 1, probe u7-basehosp/after/):
+           - Cả 5 thẻ tile hiện scrollH 109 > clientH 105 (thẻ thứ 4,
+             "Thực hiện ghi nợ nội trú" 3 dòng, scrollH 133): thẻ cao
+             105px, padding 20px + h4 2–3 dòng + margin mặc định của
+             Bootstrap vượt 105px. Sửa chỉ trình bày (mẫu U7-010 Base
+             Web, U7-007 PDS): padding 10px 14px + h4 margin 0 +
+             line-height 1.35, KHÔNG đổi height 105px nên khối biểu đồ
+             dưới không xê dịch, KHÔNG đổi nhãn/đích/icon. Không reset
+             box-sizing toàn cục (bài học U7-004). Neo #areascontent
+             (1,1,0) để thắng rule gốc `.dashboard-stats-item
+             { padding: 20px; }` ở <style> cuối <body> (bài học vòng 2
+             của U7-010), không dùng !important.
+           - Panel phải trống: .rd-empty đã có sẵn (tokens) nhưng dính
+             mép trên panel-body cao 177px, panel chỉ cao 215px trong
+             khung ngoài 350px nên dưới thừa ~135px trắng. Căn giữa dọc
+             bằng flex trên .panel-body.rd-empty-panel (class chỉ gắn ở
+             nhánh rỗng trong GetLeaveChart, khi có dữ liệu không gắn
+             nên biểu đồ doughnut + legend + số liệu không bị ảnh hưởng);
+             panel-body cao 308px + heading ~41px ≈ 349px, vừa khung
+             350px. Câu chữ + nút "Tải lại" giữ nguyên.
+           - Icon trang trí 90px mờ 0.3 cắt qua chữ nhãn ở cả 5 thẻ
+             (đo live icon_text_overlap=true 5/5): giảm độ mờ icon xuống
+             0.18 (chỉ trình bày, không đổi kích thước/vị trí/nhãn/icon):
+             chữ trắng nổi hẳn lên trên glyph mờ. Neo #areascontent để
+             thắng rule gốc `.dashboard-stats-item .stat-icon` ở <style>
+             cuối <body>. *@
+        #areascontent .dashboard-stats-item { padding: 10px 14px; }
+        #areascontent .dashboard-stats-item h4 { margin-top: 0; margin-bottom: 0; line-height: 1.35; }
+        #areascontent .dashboard-stats-item .stat-icon { opacity: .18; }
+        .rd-empty-panel { height: 308px; display: flex; align-items: center; justify-content: center; }
         @@media (max-width: 991px) {
             #areascontent .rows > div { float: none !important; width: 100% !important; }
             #areascontent .rows > div > div { height: auto !important; }
@@ -184,9 +218,16 @@
                         <div class="dashboard-stats">
                             <div class="dashboard-stats-item" style="background-color: #fc8675;">
                                 @*<h2 class="m-top-none">8</h2>*@
+                                @* U7-011: icon tile cũ là glyph chung chung
+                                   không đúng nghĩa (person/hard-drive/cart/
+                                   gavel/truck, như MRMS trước U7-005, Base Web
+                                   U7-010); đổi class-only sang glyph FA 4.7
+                                   đúng nghĩa nghiệp vụ ghi nợ/hoàn phí, giữ
+                                   nguyên vị trí/kích thước/độ mờ. Nhãn + đích
+                                   + màu nền thẻ giữ nguyên 100%. *@
                                 <h4>Ghi nợ ngoại trú</h4>
                                 <div class="stat-icon">
-                                    <i class="fa fa-user fa-3x"></i>
+                                    <i class="fa fa-money fa-3x"></i>
                                 </div>
                             </div>
                         </div>
@@ -197,7 +238,7 @@
                                 @*<h2 class="m-top-none">12</h2>*@
                                 <h4>Hoàn phí ngoại trú</h4>
                                 <div class="stat-icon">
-                                    <i class="fa fa-hdd-o fa-3x"></i>
+                                    <i class="fa fa-undo fa-3x"></i>
                                 </div>
                             </div>
                         </div>
@@ -208,7 +249,7 @@
                                 @*<h2 class="m-top-none">2</h2>*@
                                 <h4>Ghi nợ nội trú</h4>
                                 <div class="stat-icon">
-                                    <i class="fa fa-shopping-cart fa-3x"></i>
+                                    <i class="fa fa-credit-card fa-3x"></i>
                                 </div>
                             </div>
                         </div>
@@ -219,7 +260,7 @@
                                 @*<h2 class="m-top-none">6</h2>*@
                                 <h4>Thực hiện ghi nợ nội trú</h4>
                                 <div class="stat-icon">
-                                    <i class="fa fa-gavel fa-3x"></i>
+                                    <i class="fa fa-file-text-o fa-3x"></i>
                                 </div>
                             </div>
                         </div>
@@ -230,7 +271,7 @@
                                 @*<h2 class="m-top-none">268</h2>*@
                                 <h4>Hoàn phí nội trú</h4>
                                 <div class="stat-icon">
-                                    <i class="fa fa-truck fa-3x"></i>
+                                    <i class="fa fa-reply fa-3x"></i>
                                 </div>
                             </div>
                         </div>
