@@ -1,0 +1,594 @@
+/* =====================================================================
+   redesign-portal.css — Shell portal SSO trên mobile, chặng 3 redesign
+   Nguồn chuẩn: openhis-core/scripts/redesign/assets/
+   Đồng bộ vào SSO wwwroot bằng scripts/redesign/sync-assets.sh.
+   Nạp trong Views/Home/SSOIndex.cshtml (portal shell, Layout = null).
+   Cơ chế collapse/pushmenu sẵn có KHÔNG bị thay: nút #make-small-nav
+   và class nav-small trên desktop giữ nguyên. File này CHỈ thêm lớp
+   drawer dưới 992px (DESIGN §3.5) — desktop không bị đổi một pixel nào
+   bởi các rule dưới đây (toàn bộ nằm trong media max-width:991px,
+   trừ nút toggle vốn display:none trên desktop).
+   Lưu ý: portal có HAI div id="nav-col" (menu + footer .login-foot,
+   id trùng là lỗi markup sẵn có, không sửa ở đây). Rule drawer dùng
+   :not(.login-foot) để chỉ nhắm khối menu, không chạm footer.
+   Bổ sung pilot U2 (desktop, ngoài media query bên dưới): chỉ đổi
+   trình bày hover/focus của mục menu do $.LoadNavTree() sinh ra
+   (a.dropdown-toggle, ul.submenu > a.menuItem, giữ nguyên class/ID)
+   và viền dưới thanh tab .content-tabs. Không đổi cấu trúc shell,
+   không đổi cơ chế đổi skin, không ẩn mục menu nào.
+   ===================================================================== */
+
+/* ---- Desktop: sidebar + tab (SSOIndex, token nạp trước file này) ------- */
+/* Mục menu con: vạch trái trong suốt, hover hiện vạch primary + nền nhạt. */
+#sidebar-nav .submenu .menuItem {
+    border-left: 3px solid transparent;
+}
+
+#sidebar-nav .submenu .menuItem:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-left-color: var(--rd-primary);
+}
+
+/* Focus nhìn thấy được cho cả mục cha lẫn mục con của menu. */
+#sidebar-nav .dropdown-toggle:focus-visible,
+#sidebar-nav .submenu .menuItem:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: -2px;
+}
+
+/* Thanh tab: viền dưới phân tầng với vùng nội dung iframe. */
+.content-tabs {
+    border-bottom: 1px solid var(--rd-border);
+}
+
+/* Nút hamburger: ẩn trên desktop, luôn thấy được dưới 992px. */
+.rd-nav-toggle {
+    display: none;
+}
+
+/* Nút đóng drawer: chỉ tồn tại trong drawer mobile. */
+.rd-drawer-close {
+    display: none;
+}
+
+/* ---- U7-001 (SSO, desktop): shell /Home/Index -------------------------
+   Chỉ trình bày, đã đo live ở 1366x900 (probe /tmp/u7sso-probe*.json):
+   - Sidebar: 18 mục x 44px (padding 8px dọc) = 792px, kết thúc y=866,
+     footer tuyệt đối y=855..900 đè lên mục cuối 11px và footer cần 68px
+     nhưng chỉ cao 45px (height:5% inline) nên chữ bản quyền bị cắt.
+     Nới lỏng bằng cách thu padding dọc mục menu 8px -> 6px (tiết kiệm
+     18x4=72px, menu kết thúc ~y=794) + footer height:auto.
+     KHÔNG đổi mục menu, thứ tự, đích, hay cơ chế skin/nav-small.
+   - Footer .login-foot: inline style width:14%/height:5% giữ nguyên;
+     height:auto cần !important mới thắng inline style. box-sizing bắt
+     buộc vì trang này KHÔNG có reset border-box của Bootstrap
+     (div thường đo được content-box) — không có nó padding sẽ làm
+     footer rộng hơn sidebar 191px. Chữ + link giữ nguyên 100%.
+   U7-003: file này nay cũng sync sang EMR (cùng markup shell) nên 2 rule
+   chung trên (sidebar + footer) cũng áp dụng cho EMR — đã đo live là
+   đúng liều cho EMR (menu 18 mục, footer inline height:70px, menu kết
+   thúc y=860 đè footer y=830 30px, footer scrollH 99 > clientH 70).
+   Toàn bộ rule trong mục này chỉ nhắm #sidebar-nav / #nav-col.login-foot
+   của shell (SSO, và từ U7-003 cả EMR — cùng markup); portal.css sync
+   sang SSO, CIS, EMR (xem sync-assets.sh), mục CIS/EMR chỉ nhắm body
+   riêng của chúng nên không ảnh hưởng portal khác. ---------------------- */
+/* U7-001b: padding 6px ĐÃ có hiệu lực live (đo được paddingTop 6px) nhưng
+   chiều cao mục vẫn 44px vì redesign-tokens.css (file token CHUNG, sync
+   11 portal) ghim `#page-wrapper:not(.nav-small) #sidebar-nav .nav >
+   li > a { min-height: 44px }` — specificity (2,2,2) thắng rule cũ
+   (1,1,3). KHÔNG đổi token chung (ảnh hưởng 11 portal, ngoài phạm vi
+   SSO): override riêng cho shell SSO bằng selector cụ thể hơn (2,2,3),
+   portal.css nạp SAU token nên thắng chắc. 18 mục x 40px = 720px, menu
+   kết thúc ~y=770, cách footer (bắt đầu ~y=817) 47px — dứt điểm đè lên
+   mục cuối. Chỉ nhắm mục cấp 1; mục con .submenu không đổi. */
+#page-wrapper:not(.nav-small) #sidebar-nav ul.nav > li > a {
+    padding-top: 6px;
+    padding-bottom: 6px;
+    min-height: 40px;
+}
+
+#nav-col.login-foot {
+    box-sizing: border-box;
+    height: auto !important;
+    min-height: 0;
+    padding: 8px 8px 10px;
+    line-height: 1.45;
+}
+
+/* Lớp phủ: chặn bấm vào nội dung phía sau khi drawer mở. */
+#rd-drawer-overlay {
+    display: none;
+}
+
+/* ---- U7-002 (CIS, desktop): /Home/Index --------------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe-live-before.json):
+   trang Layout = null, HTML độc lập, stylesheet DUY NHẤT
+   /css/framework-theme.css trả 404 (file chưa từng được port sang
+   CIS wwwroot — wwwroot/css chỉ có redesign-tokens.css), nên trình
+   duyệt render serif mặc định + link xanh trên nền trắng, ~80%
+   viewport trống. Sửa: Index.cshtml nạp tokens + file này; mọi rule
+   dưới đây chỉ nhắm body.cis-home (duy nhất trang này), chỉ đổi trình
+   bày. 10 link, đích, nhãn và toàn bộ chữ gốc giữ nguyên 100%
+   (so sánh probe trước/sau); chữ mới duy nhất là brand "Viet HIS"
+   trong header — chrome chung như shell SSO/Base Web. KHÔNG bịa
+   KPI/biểu đồ/widget hay dữ liệu giả. Header + lưới thẻ chỉ trình
+   bày lại danh sách link thật; không thêm link/đích nào mới. -------- */
+body.cis-home,
+body.cis-home * {
+    box-sizing: border-box;
+}
+
+body.cis-home {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--rd-text);
+    background: var(--rd-bg-muted);
+    line-height: var(--rd-line-height);
+}
+
+/* Header: dải primary + brand, như shell các portal khác. */
+.cis-header {
+    background: var(--rd-primary);
+    color: #fff;
+    padding: var(--rd-space-3) var(--rd-space-6);
+}
+
+.cis-brand {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: var(--rd-line-height-heading);
+}
+
+/* Khung nội dung: giới hạn bề rộng, căn giữa — hết "80% trắng chết". */
+.cis-main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: var(--rd-space-6) var(--rd-space-6) 48px;
+}
+
+.cis-title {
+    margin: var(--rd-space-2) 0 var(--rd-space-2);
+    font-size: 24px;
+    line-height: var(--rd-line-height-heading);
+}
+
+.cis-intro {
+    margin: 0 0 var(--rd-space-4);
+    color: var(--rd-text-muted);
+}
+
+/* 7 phân hệ: lưới 3 cột, mỗi link thật thành 1 thẻ. */
+.cis-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--rd-space-4);
+}
+
+.cis-card {
+    background: #fff;
+    border: 1px solid var(--rd-border);
+    border-left: 4px solid var(--rd-primary);
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+}
+
+.cis-card a {
+    display: block;
+    padding: var(--rd-space-4);
+    color: var(--rd-text);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+.cis-card:hover {
+    border-color: var(--rd-primary);
+    box-shadow: var(--rd-shadow-md);
+}
+
+.cis-card a:hover {
+    color: var(--rd-primary);
+}
+
+.cis-card a:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: 2px;
+}
+
+/* Chức năng gốc: 3 link thật thành chip; dấu " | " gốc giữ nguyên
+   giữa các chip nên visible text trước/sau giống hệt. */
+.cis-origins {
+    margin: var(--rd-space-6) 0 0;
+    padding: var(--rd-space-4);
+    background: #fff;
+    border: 1px solid var(--rd-border);
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+}
+
+.cis-chip {
+    display: inline-block;
+    margin: var(--rd-space-1) 2px;
+    padding: 6px 12px;
+    color: var(--rd-primary);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    background: var(--rd-bg-muted);
+    border: 1px solid var(--rd-border);
+    border-radius: 16px;
+}
+
+.cis-chip:hover {
+    color: #fff;
+    background: var(--rd-primary);
+    border-color: var(--rd-primary);
+}
+
+.cis-chip:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+    .cis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cis-main {
+        padding: var(--rd-space-4) var(--rd-space-4) 32px;
+    }
+}
+
+@media (max-width: 991px) {
+    /* Nút hamburger 44x44, đặt cạnh logo trong header portal. */
+    .rd-nav-toggle {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        float: left;
+        width: 44px;
+        height: 44px;
+        min-width: 44px;
+        font-size: 20px;
+        line-height: 1;
+        margin: 3px 4px 0 0;
+        color: #fff;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+    }
+
+    .rd-nav-toggle:focus {
+        outline: 2px solid #fff;
+        outline-offset: -2px;
+    }
+
+    /* Drawer: khối menu trượt từ trái, phủ lên nội dung. Khi đóng,
+       translate ra ngoài viewport (không dùng display:none để giữ
+       transition và để nút đóng/focus không nhảy layout). */
+    #page-wrapper > .row > #nav-col:not(.login-foot) {
+        position: fixed;
+        top: 0;
+        left: 0;
+        bottom: 0;
+        width: 280px;
+        max-width: 85vw;
+        z-index: 1040;
+        overflow-y: auto;
+        overflow-x: hidden;
+        background: #2c3e50;
+        transform: translateX(-102%);
+        transition: transform 0.2s ease;
+    }
+
+    body.rd-drawer-open #page-wrapper > .row > #nav-col:not(.login-foot) {
+        transform: translateX(0);
+    }
+
+    /* Nút đóng trong drawer. */
+    body.rd-drawer-open .rd-drawer-close {
+        display: block;
+        position: absolute;
+        top: 4px;
+        right: 4px;
+        width: 44px;
+        height: 44px;
+        font-size: 22px;
+        line-height: 1;
+        color: #fff;
+        background: transparent;
+        border: 0;
+        cursor: pointer;
+        z-index: 1;
+    }
+
+    /* Overlay phủ toàn viewport, dưới drawer, trên nội dung. */
+    body.rd-drawer-open #rd-drawer-overlay {
+        display: block;
+        position: fixed;
+        inset: 0;
+        z-index: 1030;
+        background: rgba(0, 0, 0, 0.45);
+    }
+
+    /* Khóa cuộn nền: body portal vốn đã có inline style
+       overflow:hidden nên trang nền không cuộn được; class này chỉ
+       khẳng định lại trạng thái khi drawer mở. */
+    body.rd-drawer-open {
+        overflow: hidden;
+    }
+}
+
+/* ---- U7-003 (EMR, desktop): /Home/Index --------------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe /tmp/u7emr-before/):
+   - Nhãn menu 2 dòng lệch dòng: span inline + margin-left:25px (theme)
+     chỉ đẩy DÒNG ĐẦU (margin của inline box chỉ áp ở đầu dòng đầu),
+     dòng wrap sau bắt đầu ở mép padding x=20, đè lên icon absolute
+     (đã đo: 'Cai' x=45, 'phi' x=20, icon x=20 — 'phi'/'kham' chồng lên
+     icon bánh răng). KHÔNG có cắt thật: scrollH==clientH ở cả 18 mục
+     (wrap của token BA-012 đã hoạt động). Sửa: span display:block
+     để margin-left áp cho cả hộp, mọi dòng thẳng hàng ở x=45; chiều
+     cao mục không đổi (48px cho nhãn 2 dòng, 40px cho 1 dòng sau rule
+     chung U7-001). Neo bằng body[data-appid="EMR"] (thuộc tính render
+     từ server, KHÔNG dùng class body: theme JS ghi đè toàn bộ class
+     của body thành 'theme-blue-gradient pace-done' lúc chạy — đã đo
+     live vòng 1: class emr-home tĩnh bị xóa nên rule body.emr-home
+     không khớp, span vẫn inline, 'phi' vẫn x=20).
+   - Menu đè footer + footer cắt chữ: menu kết thúc y=860, footer bắt
+     đầu y=830 (đè 30px); footer scrollH 99 > clientH 70 (inline
+     height:70px). Sửa bằng 2 rule chung U7-001 đã có trong file này
+     (sidebar padding 6px/min-height 40px + .login-foot height:auto
+     !important) — tự áp dụng cho EMR khi file này được nạp, không
+     cần rule trùng riêng EMR. Đo live sau để xác nhận.
+   - User '000000' trơ trụi: sửa ở _IndexHeaderNav.cshtml theo mẫu SSO
+     (UserName【UserCode】, inline width:auto/max-width:200px).
+   - Nút tab 'TrangKýThao tác' KHÔNG sửa ở đây: đó là text gốc trong
+     _IndexContentWrapper.cshtml:35 (không phải lỗi khoảng cách hiển
+     thị — CSS không chèn được khoảng trắng trong text node), cần
+     quyết định text; giữ nguyên và báo NOT FIXED.
+   Chỉ trình bày; không đổi mục menu, thứ tự, đích, chữ hay dữ liệu. */
+body[data-appid="EMR"] #page-wrapper:not(.nav-small) #sidebar-nav .nav > li > a > span {
+    display: block;
+}
+
+/* ---- U7-004 (Herp, desktop): /Home/Index --------------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe /tmp/u7herp-before/):
+   - Nav thô: <p> chứa 13 link + dấu "|" là text node, wrap 2 dòng
+     (y=93..129), không header, không user info, logout chỉ là 1 link
+     trong dòng. Trang là HTML độc lập (Layout=null), body chỉ có
+     inline style padding 20px 30px; KHÔNG có theme JS nên không cần
+     né class body, nhưng vẫn neo bằng body[data-appid="Herp"]
+     (thuộc tính render từ server, theo bài học U7-003).
+     Sửa ở Index.cshtml (chỉ trình bày): <header> brand "Viet HIS" +
+     h1 gốc + <nav> flex chứa đúng 13 link cũ (thứ tự/chữ/đích giữ
+     nguyên, bỏ text node "|", logout thêm class trình bày để đẩy
+     phải + kiểu nút). Không thêm/bớt link hay đích nào.
+   - Icon KPI đầu tiên: HTML thẻ do server sinh (HomeApp.cs
+     AssembleZkfNeedDelaHtml) render chữ "₫" 42px trong khi 4 thẻ còn
+     lại dùng <i class="fa fa-*-3x"> = 90px (đo live: span 22x48px
+     vs icon FA 90x90px). KHÔNG đổi HomeApp.cs (đổi đó phải rebuild
+     Infrastructure DLL + swap thêm 1 DLL): CSS thay glyph chữ bằng
+     icon FontAwesome fa-money (\f0d6, đúng nghĩa "điều chỉnh giá")
+     90px qua ::before, ẩn chữ ₫ bằng font-size:0. Giá trị 0 + nhãn
+     + màu nền thẻ giữ nguyên 100%.
+   - "Th.12" bị cắt: Chart.js v1 set canvas inline width:834px
+     (= đúng bề rộng panel-body) NHƯNG canvas còn có padding-right:
+     10px inline với box-sizing content-box mặc định nên border-box
+     = 844px, tràn phải panel 29px (canvas right=893, panel right=
+     864, đo live); nửa phải nhãn "Th.12" (tới x≈876) bị cột phải
+     (float:right, nền trắng, bắt đầu x≈876) đè lên — xem crop
+     /tmp/u7herp-before/th12-crop.png. Sửa CSS-only: width:100%
+     !important + box-sizing:border-box !important lên #PSIStatistics
+     (padding 10px nằm TRONG 100%) nên bitmap 834px co hiển thị về
+     ~804px, mép phải nhãn còn ~14px trước mép panel. Không đổi JS
+     vẽ biểu đồ, không đổi dữ liệu (3 series x 12 tháng toàn 0 thật).
+     Bài học vòng 2 (đo live sau sửa): width:100% KHÔNG đủ — div
+     .panel-body chứa canvas có inline style width:100% với
+     content-box nên content của nó rộng 834px (bằng đúng bề rộng
+     trong của khung 836px, tức tự nó đã tràn 20px padding ra ngoài
+     khung), canvas 100% theo đó vẫn tràn phải panel 9px (right=875
+     so với panel 866). Sửa: width:calc(100% - 20px) !important để
+     canvas thụt phải 20px, mép phải còn cách mép panel ~11px (đối
+     xứng mép trái 11px). Không đổi inline width của .panel-body
+     (đổi đó phải sửa .cshtml + rebuild chỉ để lấy 20px).
+   - Panel phải trống: GetRkCountByLx trả [] nên JS đã render trạng
+     thái rỗng .rd-empty (định nghĩa chung ở tokens, đã có sẵn) với
+     đúng câu "Chưa có số liệu nhập kho trong năm nay." + link thật
+     "Xem quản lý mua sắm". Chỉ trình bày: căn giữa dọc trong
+     #container cao 300px (transform trên .rd-empty, không chạm
+     #container để Highcharts khi có dữ liệu không bị ảnh hưởng) +
+     link hành động thành nút primary thật (class .btn.btn-default
+     hiện render như link gạch chân vì theme không có kiểu nút).
+   - Cảnh báo + KPI + biểu đồ: giữ nguyên giá trị/dữ liệu; chỉ thêm
+     radius/shadow/hover cho thẻ KPI và khung panel, alert thành
+     thanh cảnh báo có viền trái. Chỉ trình bày; không đổi link,
+     thứ tự, chữ, KPI, dữ liệu biểu đồ hay route.
+   - Bài học vòng 1 (đo live sau sửa): KHÔNG dùng rule border-box
+     toàn cục `body[data-appid="Herp"] *` — thẻ KPI có height:105px
+     inline + padding 20px với content-box nên cao thật 145px; ép
+     border-box còn 105px, nhãn h5 tràn khỏi vùng content và bị
+     overflow:hidden cắt nửa chữ ở đáy thẻ (đã thấy ở after vòng 1).
+     Giữ content-box gốc của thẻ; chỉ #PSIStatistics cần border-box
+     riêng (đã có !important). -------------------------------------- */
+body[data-appid="Herp"] {
+    padding: 0 !important;
+    margin: 0;
+    font-family: sans-serif;
+    color: var(--rd-text);
+    background: var(--rd-bg-muted);
+    line-height: var(--rd-line-height);
+}
+
+/* Header: dải primary + brand, như shell các portal khác (mẫu CIS). */
+body[data-appid="Herp"] .rd-herp-header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--rd-space-4);
+    flex-wrap: wrap;
+    background: var(--rd-primary);
+    color: #fff;
+    padding: var(--rd-space-3) 30px;
+}
+
+body[data-appid="Herp"] .rd-herp-brand {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: var(--rd-line-height-heading);
+    white-space: nowrap;
+}
+
+body[data-appid="Herp"] .rd-herp-header h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: var(--rd-line-height-heading);
+    color: #fff;
+}
+
+/* Nav: 13 link thật thành pill, wrap tự nhiên; logout đẩy phải. */
+body[data-appid="Herp"] .rd-herp-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    padding: var(--rd-space-3) 30px;
+    background: #fff;
+    border-bottom: 1px solid var(--rd-border);
+}
+
+body[data-appid="Herp"] .rd-herp-nav a {
+    display: inline-block;
+    padding: 6px 12px;
+    color: var(--rd-text);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    background: var(--rd-bg-muted);
+    border: 1px solid var(--rd-border);
+    border-radius: 16px;
+}
+
+body[data-appid="Herp"] .rd-herp-nav a:hover {
+    color: var(--rd-primary);
+    background: #fff;
+    border-color: var(--rd-primary);
+}
+
+body[data-appid="Herp"] .rd-herp-nav a:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: 2px;
+}
+
+body[data-appid="Herp"] .rd-herp-nav a.rd-herp-logout {
+    margin-left: auto;
+    color: #fff;
+    background: var(--rd-primary);
+    border-color: var(--rd-primary);
+}
+
+body[data-appid="Herp"] .rd-herp-nav a.rd-herp-logout:hover {
+    color: #fff;
+    background: #286090;
+    border-color: #286090;
+}
+
+/* Cảnh báo tồn kho / quá hạn: thanh cảnh báo, chữ + số giữ nguyên. */
+body[data-appid="Herp"] #p_msgalert {
+    margin: var(--rd-space-4) 30px 0;
+    padding: 10px var(--rd-space-4);
+    color: var(--rd-text);
+    background: #fff;
+    border: 1px solid var(--rd-border);
+    border-left: 4px solid #f0ad4e;
+    border-radius: var(--rd-radius-card);
+}
+
+/* Nội dung: giữ padding ngang 30px như body inline cũ. */
+body[data-appid="Herp"] #areascontent {
+    padding: var(--rd-space-4) 30px 30px;
+}
+
+/* Khung panel + thẻ KPI: radius/shadow/hover, màu nền gốc giữ nguyên. */
+body[data-appid="Herp"] #areascontent .rows {
+    border-radius: var(--rd-radius-card);
+}
+
+body[data-appid="Herp"] #areascontent .rows > .panel {
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+}
+
+body[data-appid="Herp"] #areascontent .rows + .rows > div > div {
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+}
+
+body[data-appid="Herp"] .dashboard-stats-item {
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+body[data-appid="Herp"] .dashboard-stats-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--rd-shadow-md);
+}
+
+/* Icon KPI đầu tiên: chữ "₫" -> icon FontAwesome fa-money 90px,
+   bằng đúng 4 icon fa-3x còn lại (90px, đo live). */
+body[data-appid="Herp"] .dashboard-stats-item .stat-icon span {
+    font-size: 0 !important;
+}
+
+body[data-appid="Herp"] .dashboard-stats-item .stat-icon span::before {
+    content: "\f0d6";
+    font-family: FontAwesome;
+    font-size: 90px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+/* Biểu đồ: canvas vừa trong panel (xem ghi chú "Th.12" ở đầu mục). */
+body[data-appid="Herp"] #PSIStatistics {
+    box-sizing: border-box !important;
+    width: calc(100% - 20px) !important;
+    max-width: calc(100% - 20px) !important;
+}
+
+/* Panel phải: trạng thái rỗng căn giữa dọc trong #container 300px;
+   chỉ chạm .rd-empty (khi có dữ liệu Highcharts vẽ, không bị ảnh
+   hưởng); link hành động thành nút primary. */
+body[data-appid="Herp"] #container .rd-empty {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+body[data-appid="Herp"] #container .rd-empty .rd-empty-action a {
+    display: inline-block;
+    padding: 8px 16px;
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    background: var(--rd-primary);
+    border: 1px solid var(--rd-primary);
+    border-radius: 4px;
+}
+
+body[data-appid="Herp"] #container .rd-empty .rd-empty-action a:hover {
+    color: #fff;
+    background: #286090;
+    border-color: #286090;
+}
+
+body[data-appid="Herp"] #container .rd-empty .rd-empty-action a:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: 2px;
+}

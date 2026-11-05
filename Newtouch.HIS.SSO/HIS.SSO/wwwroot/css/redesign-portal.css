@@ -355,3 +355,240 @@ body.cis-home {
 body[data-appid="EMR"] #page-wrapper:not(.nav-small) #sidebar-nav .nav > li > a > span {
     display: block;
 }
+
+/* ---- U7-004 (Herp, desktop): /Home/Index --------------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe /tmp/u7herp-before/):
+   - Nav thô: <p> chứa 13 link + dấu "|" là text node, wrap 2 dòng
+     (y=93..129), không header, không user info, logout chỉ là 1 link
+     trong dòng. Trang là HTML độc lập (Layout=null), body chỉ có
+     inline style padding 20px 30px; KHÔNG có theme JS nên không cần
+     né class body, nhưng vẫn neo bằng body[data-appid="Herp"]
+     (thuộc tính render từ server, theo bài học U7-003).
+     Sửa ở Index.cshtml (chỉ trình bày): <header> brand "Viet HIS" +
+     h1 gốc + <nav> flex chứa đúng 13 link cũ (thứ tự/chữ/đích giữ
+     nguyên, bỏ text node "|", logout thêm class trình bày để đẩy
+     phải + kiểu nút). Không thêm/bớt link hay đích nào.
+   - Icon KPI đầu tiên: HTML thẻ do server sinh (HomeApp.cs
+     AssembleZkfNeedDelaHtml) render chữ "₫" 42px trong khi 4 thẻ còn
+     lại dùng <i class="fa fa-*-3x"> = 90px (đo live: span 22x48px
+     vs icon FA 90x90px). KHÔNG đổi HomeApp.cs (đổi đó phải rebuild
+     Infrastructure DLL + swap thêm 1 DLL): CSS thay glyph chữ bằng
+     icon FontAwesome fa-money (\f0d6, đúng nghĩa "điều chỉnh giá")
+     90px qua ::before, ẩn chữ ₫ bằng font-size:0. Giá trị 0 + nhãn
+     + màu nền thẻ giữ nguyên 100%.
+   - "Th.12" bị cắt: Chart.js v1 set canvas inline width:834px
+     (= đúng bề rộng panel-body) NHƯNG canvas còn có padding-right:
+     10px inline với box-sizing content-box mặc định nên border-box
+     = 844px, tràn phải panel 29px (canvas right=893, panel right=
+     864, đo live); nửa phải nhãn "Th.12" (tới x≈876) bị cột phải
+     (float:right, nền trắng, bắt đầu x≈876) đè lên — xem crop
+     /tmp/u7herp-before/th12-crop.png. Sửa CSS-only: width:100%
+     !important + box-sizing:border-box !important lên #PSIStatistics
+     (padding 10px nằm TRONG 100%) nên bitmap 834px co hiển thị về
+     ~804px, mép phải nhãn còn ~14px trước mép panel. Không đổi JS
+     vẽ biểu đồ, không đổi dữ liệu (3 series x 12 tháng toàn 0 thật).
+     Bài học vòng 2 (đo live sau sửa): width:100% KHÔNG đủ — div
+     .panel-body chứa canvas có inline style width:100% với
+     content-box nên content của nó rộng 834px (bằng đúng bề rộng
+     trong của khung 836px, tức tự nó đã tràn 20px padding ra ngoài
+     khung), canvas 100% theo đó vẫn tràn phải panel 9px (right=875
+     so với panel 866). Sửa: width:calc(100% - 20px) !important để
+     canvas thụt phải 20px, mép phải còn cách mép panel ~11px (đối
+     xứng mép trái 11px). Không đổi inline width của .panel-body
+     (đổi đó phải sửa .cshtml + rebuild chỉ để lấy 20px).
+   - Panel phải trống: GetRkCountByLx trả [] nên JS đã render trạng
+     thái rỗng .rd-empty (định nghĩa chung ở tokens, đã có sẵn) với
+     đúng câu "Chưa có số liệu nhập kho trong năm nay." + link thật
+     "Xem quản lý mua sắm". Chỉ trình bày: căn giữa dọc trong
+     #container cao 300px (transform trên .rd-empty, không chạm
+     #container để Highcharts khi có dữ liệu không bị ảnh hưởng) +
+     link hành động thành nút primary thật (class .btn.btn-default
+     hiện render như link gạch chân vì theme không có kiểu nút).
+   - Cảnh báo + KPI + biểu đồ: giữ nguyên giá trị/dữ liệu; chỉ thêm
+     radius/shadow/hover cho thẻ KPI và khung panel, alert thành
+     thanh cảnh báo có viền trái. Chỉ trình bày; không đổi link,
+     thứ tự, chữ, KPI, dữ liệu biểu đồ hay route.
+   - Bài học vòng 1 (đo live sau sửa): KHÔNG dùng rule border-box
+     toàn cục `body[data-appid="Herp"] *` — thẻ KPI có height:105px
+     inline + padding 20px với content-box nên cao thật 145px; ép
+     border-box còn 105px, nhãn h5 tràn khỏi vùng content và bị
+     overflow:hidden cắt nửa chữ ở đáy thẻ (đã thấy ở after vòng 1).
+     Giữ content-box gốc của thẻ; chỉ #PSIStatistics cần border-box
+     riêng (đã có !important). -------------------------------------- */
+body[data-appid="Herp"] {
+    padding: 0 !important;
+    margin: 0;
+    font-family: sans-serif;
+    color: var(--rd-text);
+    background: var(--rd-bg-muted);
+    line-height: var(--rd-line-height);
+}
+
+/* Header: dải primary + brand, như shell các portal khác (mẫu CIS). */
+body[data-appid="Herp"] .rd-herp-header {
+    display: flex;
+    align-items: baseline;
+    gap: var(--rd-space-4);
+    flex-wrap: wrap;
+    background: var(--rd-primary);
+    color: #fff;
+    padding: var(--rd-space-3) 30px;
+}
+
+body[data-appid="Herp"] .rd-herp-brand {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: var(--rd-line-height-heading);
+    white-space: nowrap;
+}
+
+body[data-appid="Herp"] .rd-herp-header h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 600;
+    line-height: var(--rd-line-height-heading);
+    color: #fff;
+}
+
+/* Nav: 13 link thật thành pill, wrap tự nhiên; logout đẩy phải. */
+body[data-appid="Herp"] .rd-herp-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    padding: var(--rd-space-3) 30px;
+    background: #fff;
+    border-bottom: 1px solid var(--rd-border);
+}
+
+body[data-appid="Herp"] .rd-herp-nav a {
+    display: inline-block;
+    padding: 6px 12px;
+    color: var(--rd-text);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    background: var(--rd-bg-muted);
+    border: 1px solid var(--rd-border);
+    border-radius: 16px;
+}
+
+body[data-appid="Herp"] .rd-herp-nav a:hover {
+    color: var(--rd-primary);
+    background: #fff;
+    border-color: var(--rd-primary);
+}
+
+body[data-appid="Herp"] .rd-herp-nav a:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: 2px;
+}
+
+body[data-appid="Herp"] .rd-herp-nav a.rd-herp-logout {
+    margin-left: auto;
+    color: #fff;
+    background: var(--rd-primary);
+    border-color: var(--rd-primary);
+}
+
+body[data-appid="Herp"] .rd-herp-nav a.rd-herp-logout:hover {
+    color: #fff;
+    background: #286090;
+    border-color: #286090;
+}
+
+/* Cảnh báo tồn kho / quá hạn: thanh cảnh báo, chữ + số giữ nguyên. */
+body[data-appid="Herp"] #p_msgalert {
+    margin: var(--rd-space-4) 30px 0;
+    padding: 10px var(--rd-space-4);
+    color: var(--rd-text);
+    background: #fff;
+    border: 1px solid var(--rd-border);
+    border-left: 4px solid #f0ad4e;
+    border-radius: var(--rd-radius-card);
+}
+
+/* Nội dung: giữ padding ngang 30px như body inline cũ. */
+body[data-appid="Herp"] #areascontent {
+    padding: var(--rd-space-4) 30px 30px;
+}
+
+/* Khung panel + thẻ KPI: radius/shadow/hover, màu nền gốc giữ nguyên. */
+body[data-appid="Herp"] #areascontent .rows {
+    border-radius: var(--rd-radius-card);
+}
+
+body[data-appid="Herp"] #areascontent .rows > .panel {
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+}
+
+body[data-appid="Herp"] #areascontent .rows + .rows > div > div {
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+}
+
+body[data-appid="Herp"] .dashboard-stats-item {
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+body[data-appid="Herp"] .dashboard-stats-item:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--rd-shadow-md);
+}
+
+/* Icon KPI đầu tiên: chữ "₫" -> icon FontAwesome fa-money 90px,
+   bằng đúng 4 icon fa-3x còn lại (90px, đo live). */
+body[data-appid="Herp"] .dashboard-stats-item .stat-icon span {
+    font-size: 0 !important;
+}
+
+body[data-appid="Herp"] .dashboard-stats-item .stat-icon span::before {
+    content: "\f0d6";
+    font-family: FontAwesome;
+    font-size: 90px;
+    font-weight: 400;
+    line-height: 1;
+}
+
+/* Biểu đồ: canvas vừa trong panel (xem ghi chú "Th.12" ở đầu mục). */
+body[data-appid="Herp"] #PSIStatistics {
+    box-sizing: border-box !important;
+    width: calc(100% - 20px) !important;
+    max-width: calc(100% - 20px) !important;
+}
+
+/* Panel phải: trạng thái rỗng căn giữa dọc trong #container 300px;
+   chỉ chạm .rd-empty (khi có dữ liệu Highcharts vẽ, không bị ảnh
+   hưởng); link hành động thành nút primary. */
+body[data-appid="Herp"] #container .rd-empty {
+    position: relative;
+    top: 50%;
+    transform: translateY(-50%);
+}
+
+body[data-appid="Herp"] #container .rd-empty .rd-empty-action a {
+    display: inline-block;
+    padding: 8px 16px;
+    color: #fff;
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    background: var(--rd-primary);
+    border: 1px solid var(--rd-primary);
+    border-radius: 4px;
+}
+
+body[data-appid="Herp"] #container .rd-empty .rd-empty-action a:hover {
+    color: #fff;
+    background: #286090;
+    border-color: #286090;
+}
+
+body[data-appid="Herp"] #container .rd-empty .rd-empty-action a:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: 2px;
+}

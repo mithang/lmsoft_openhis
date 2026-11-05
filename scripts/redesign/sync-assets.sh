@@ -56,9 +56,14 @@ copy_one "$SRC/redesign-portal.js" "$dest/js/redesign-portal.js"
 # do $.LoadNavTree() dựng) nên 2 rule chung U7-001 (sidebar padding 6px /
 # min-height 40px + footer height:auto) áp dụng luôn cho EMR; mục
 # body[data-appid="EMR"] trong file này chỉ chứa rule riêng EMR.
+# U7-004: portal.css cũng sync sang Herp — /Home/Index của Herp là trang
+# Layout = null độc lập, nạp portal.css trực tiếp (mục
+# body[data-appid="Herp"] trong file này chỉ nhắm trang đó nên không ảnh
+# hưởng portal khác).
 PORTAL_CSS_APPS=(
   "Newtouch.HIS.CIS/Newtouch.CIS.Web"
   "Newtouch.HIS.EMR/Newtouch.EMR.Web"
+  "Newtouch.HIS.Herp/Newtouch.Herp.Web"
 )
 for app in "${PORTAL_CSS_APPS[@]}"; do
   dest="$ROOT/$app/wwwroot"

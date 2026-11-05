@@ -7,6 +7,10 @@
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" />
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-tokens.css", false)" rel="stylesheet" />
+    @* U7-004: nạp design system chung (portal.css) như CIS/EMR — chỉ thêm
+       1 <link> CSS; rule riêng Herp neo bằng body[data-appid="Herp"].
+       Không đổi layout/route, không đổi chữ/link/đích/dữ liệu. *@
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-portal.css", false)" rel="stylesheet" />
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/common.css")" rel="stylesheet" />
     <style>
         .dashboard-stats { float: left; width: 20%; }
@@ -53,23 +57,30 @@
         }
     </style>
 </head>
-<body style="padding: 20px 30px; font-family: sans-serif;">
-    <h1>Trang chủ — Hệ thống quản lý vật tư</h1>
-    <p>
-        <a href="/WarehouseManage/Warehouse/Index">Quản lý kho</a> |
-        <a href="/BillManage/ApplyBill/Query">Quản lý phiếu</a> |
-        <a href="/DeliveryManage/DeliveryQuery/Index">Quản lý giao hàng</a> |
-        <a href="/DepartmentManage/Department/Index">Quản lý khoa phòng</a> |
-        <a href="/LicenceManage/Licence/Index">Quản lý giấy phép</a> |
-        <a href="/ProductManage/Product/Index">Quản lý vật tư</a> |
-        <a href="/PurchaseManage/Purchase/Index">Quản lý mua sắm</a> |
-        <a href="/StorageManage/Storage/WarehouseStorageQuery">Quản lý tồn kho</a> |
-        <a href="/SupplierManage/Supplier/Index">Quản lý nhà cung cấp</a> |
-        <a href="/SystemManage/SystemManage/Index">Quản lý hệ thống</a> |
-        <a href="/Report/Index">Báo cáo (SSRS — cần máy chủ báo cáo riêng)</a> |
-        <a href="/Home/KfChange">Chuyển kho hiện tại</a> |
-        <a href="/Login/OutLogin">Đăng xuất</a>
-    </p>
+<body style="padding: 20px 30px; font-family: sans-serif;" data-appid="Herp">
+    @* U7-004: dòng link thô -> header + nav đúng nghĩa (chỉ trình bày):
+       brand "Viet HIS" + h1 gốc trong header; 13 link cũ giữ nguyên
+       thứ tự/chữ/đích, bỏ text node "|" (CSS gap thay dấu phân cách),
+       "Đăng xuất" giữ nguyên đích, thêm class trình bày để đẩy phải. *@
+    <header class="rd-herp-header">
+        <span class="rd-herp-brand">Viet HIS</span>
+        <h1>Trang chủ — Hệ thống quản lý vật tư</h1>
+    </header>
+    <nav class="rd-herp-nav" aria-label="Phân hệ quản lý vật tư">
+        <a href="/WarehouseManage/Warehouse/Index">Quản lý kho</a>
+        <a href="/BillManage/ApplyBill/Query">Quản lý phiếu</a>
+        <a href="/DeliveryManage/DeliveryQuery/Index">Quản lý giao hàng</a>
+        <a href="/DepartmentManage/Department/Index">Quản lý khoa phòng</a>
+        <a href="/LicenceManage/Licence/Index">Quản lý giấy phép</a>
+        <a href="/ProductManage/Product/Index">Quản lý vật tư</a>
+        <a href="/PurchaseManage/Purchase/Index">Quản lý mua sắm</a>
+        <a href="/StorageManage/Storage/WarehouseStorageQuery">Quản lý tồn kho</a>
+        <a href="/SupplierManage/Supplier/Index">Quản lý nhà cung cấp</a>
+        <a href="/SystemManage/SystemManage/Index">Quản lý hệ thống</a>
+        <a href="/Report/Index">Báo cáo (SSRS — cần máy chủ báo cáo riêng)</a>
+        <a href="/Home/KfChange">Chuyển kho hiện tại</a>
+        <a class="rd-herp-logout" href="/Login/OutLogin">Đăng xuất</a>
+    </nav>
     <p id="p_msgalert" style="color:#6b7280;">Đang tải cảnh báo…</p>
     <div id="areascontent">
         <div class="rows" style="margin-bottom: 1%; border: 1px solid #e6e6e6; overflow: hidden; padding-left: 1px;">
