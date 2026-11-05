@@ -58,7 +58,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         public IActionResult BtnQuery( string zyh, string brxm, string yrh, string sfks, string zxks, string xmmc)
        {
             var data = new List<GridZyXmYpjfb>();
-            if (string.IsNullOrWhiteSpace(zyh.Trim()))
+            if (string.IsNullOrWhiteSpace(zyh))
             {
                 throw new FailedCodeException("HOSP_ZYH_IS_EMPTY");
               
