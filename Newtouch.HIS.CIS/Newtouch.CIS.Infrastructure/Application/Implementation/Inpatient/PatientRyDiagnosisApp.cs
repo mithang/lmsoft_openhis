@@ -37,6 +37,10 @@ namespace Newtouch.Application.Implementation
                 OrganizeId = organizeId
             };
             var apiRespzd = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<List<PatientRyDiagnosisDto>>>("/api/Patient/PatientRyDiagnosisQuery", patInfoReq);
+            if (apiRespzd == null)
+            {
+                throw new Exception("Sett API /api/Patient/PatientRyDiagnosisQuery không trả kết quả (endpoint chưa có trên Sett-API).");
+            }
             if (apiRespzd.code != APIRequestHelper.ResponseResultCode.SUCCESS)
             {
                 throw new Exception(apiRespzd.sub_msg);

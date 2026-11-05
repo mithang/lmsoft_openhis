@@ -35,10 +35,11 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         private readonly ISysUserDmnService sysuserDmnService;
         private readonly IPrepareMedicineDmnService _prepareMedicineDmnService;
 
-        public PrepareMedicineController(IPrepareMedicineApp prepareMedicineApp, IPrepareMedicineDmnService prepareMedicineDmnService)
+        public PrepareMedicineController(IPrepareMedicineApp prepareMedicineApp, IPrepareMedicineDmnService prepareMedicineDmnService, ISysUserDmnService sysuserDmnService)
         {
             this._prepareMedicineApp = prepareMedicineApp;
             this._prepareMedicineDmnService = prepareMedicineDmnService;
+            this.sysuserDmnService = sysuserDmnService;
         }
 
         // GET: NurseManage/PrepareMedicine

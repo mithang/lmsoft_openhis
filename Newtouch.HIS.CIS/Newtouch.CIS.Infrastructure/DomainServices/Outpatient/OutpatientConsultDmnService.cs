@@ -50,7 +50,7 @@ and ghrq >=@ghrq+' 00:00:00' and ghrq<=@ghrq+' 23:59:59'
 
             return this.QueryWithPage<OutpatientConsultVO>(sql, pagination, new[] {
                 new SqlParameter("@ksCode", ksCode),
-                new SqlParameter("@keyword", "%"+keyword.Trim()+"%"),
+                new SqlParameter("@keyword", "%"+(keyword ?? "").Trim()+"%"),
                 new SqlParameter("@ghrq", ghrq),
                 new SqlParameter("@orgId", orgId)
             }, false);
@@ -85,7 +85,7 @@ and ghrq >=@ghrq+' 00:00:00' and ghrq<=@ghrq+' 23:59:59'
 
             return this.QueryWithPage<OutpatientConsultVO>(sql, pagination, new[] {
                 new SqlParameter("@ksCode", ksCode),
-                new SqlParameter("@keyword", "%"+keyword.Trim()+"%"),
+                new SqlParameter("@keyword", "%"+(keyword ?? "").Trim()+"%"),
                 new SqlParameter("@ghrq", ghrq),
                 new SqlParameter("@orgId", orgId)
             }, false);
@@ -202,7 +202,7 @@ and ghrq >=@ghrq+' 00:00:00' and ghrq<=@ghrq+' 23:59:59'
 
             var inParameters = new List<SqlParameter>();
             inParameters.Add(new SqlParameter("@ksCode", ksCode));
-            inParameters.Add(new SqlParameter("@keyword", keyword.Trim()));
+            inParameters.Add(new SqlParameter("@keyword", (keyword ?? "").Trim()));
             inParameters.Add(new SqlParameter("@ghrq", ghrq));
             inParameters.Add(new SqlParameter("@orgId", orgId));
             return this.FindList<OutpatientConsultVO>("exec usp_mz_GetConsultCall @ksCode,@ghrq,@orgId,@keyword", inParameters.ToArray());
@@ -225,7 +225,7 @@ and ghrq >=@ghrq+' 00:00:00' and ghrq<=@ghrq+' 23:59:59'
                 sql += " and (@keyValue='%%' or Name like @keyValue or Code like @keyValue)";
             }
             return this.QueryWithPage<RehabVO>(sql, pagination, new[] { new SqlParameter("@orgId", orgId)
-                ,new SqlParameter("@keyValue", "%"+keyValue.Trim()+"%")});
+                ,new SqlParameter("@keyValue", "%"+(keyValue ?? "").Trim()+"%")});
         }
 
         /// <summary>

@@ -93,7 +93,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         {
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                return null;
+                return Error("Vui lòng chọn số nhập viện.");
             }
             var data =  _IExceReportPrintDmnService.GetExecDetailGridJson(OrganizeId, zyh, zxsj, zxdlb,yzxz);
             return Content(data.ToJson());
@@ -103,7 +103,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         {
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                return null;
+                return Error("Vui lòng chọn số nhập viện.");
             }
             var rowData = _IExceReportPrintDmnService.QueryExecDetailGridJson(pagination, OrganizeId, zyh, zxsj, zxsjend, zxdlb,yzxz);
             var data = new

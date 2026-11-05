@@ -24,6 +24,12 @@ namespace Newtouch.Application.Implementation
 
         private readonly IPrepareMedicineDmnService _preparemMedicineDmnService;
 
+        public PrepareMedicineApp(IPrepareMedicineDmnService prepareMedicineDmnService, ISysMedicineProfitLossReasonRepo sysMedicineProfitLossReasonRepo)
+        {
+            this._preparemMedicineDmnService = prepareMedicineDmnService;
+            this._sysMedicineProfitLossReasonRepo = sysMedicineProfitLossReasonRepo;
+        }
+
         #region Báo hỏng báo thừa
         /// <summary>
         /// Theolãi lỗLoạiLấynguyên nhân lãi lỗ

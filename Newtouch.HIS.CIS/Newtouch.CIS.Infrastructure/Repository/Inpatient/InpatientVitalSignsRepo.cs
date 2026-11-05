@@ -103,10 +103,10 @@ namespace Newtouch.Repository
 			//2021-2-2: giải quyết việc dùng Chinese_PRC_CI_AS khi tra cứu stored procedure đã tồn tại
 			var pars = new List<SqlParameter>();
 			pars.Add(new SqlParameter("@orgId", orgId));
-			pars.Add(new SqlParameter("@kssj", kssj.Value.Date));
-			pars.Add(new SqlParameter("@jssj", jssj.Value.Date.AddDays(1)));
-			pars.Add(new SqlParameter("@zyh", "%" + zyh.Trim() + "%"));
-			pars.Add(new SqlParameter("@wardCode", "%" + wardCode.Trim() + "%"));
+			pars.Add(new SqlParameter("@kssj", (object)kssj?.Date ?? DBNull.Value));
+			pars.Add(new SqlParameter("@jssj", (object)jssj?.Date.AddDays(1) ?? DBNull.Value));
+			pars.Add(new SqlParameter("@zyh", "%" + (zyh ?? "").Trim() + "%"));
+			pars.Add(new SqlParameter("@wardCode", "%" + (wardCode ?? "").Trim() + "%"));
 			pars.Add(new SqlParameter("@isShowDelete", isShowDelete));
 			return this.FindList<InpatientVitalSignsDto>("EXEC [dbo].[InpatientVitalSigns] @orgId=@orgId,@kssj=@kssj,@jssj=@jssj,@zyh=@zyh ,@wardCode=@wardCode,@isShowDelete=@isShowDelete", pars.ToArray());
 

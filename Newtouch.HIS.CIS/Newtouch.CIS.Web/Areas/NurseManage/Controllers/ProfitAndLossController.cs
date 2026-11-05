@@ -33,11 +33,12 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         private readonly ISysUserDmnService sysuserDmnService;
         private readonly IStockInventoryApp _stockInventoryApp;
 
-        public ProfitAndLossController(IDeptKcSyyyRepo iDeptKcSyyyRepo, IKcSyxxDmnService kcSyxxDmnService, IStockInventoryApp stockInventoryApp)
+        public ProfitAndLossController(IDeptKcSyyyRepo iDeptKcSyyyRepo, IKcSyxxDmnService kcSyxxDmnService, IStockInventoryApp stockInventoryApp, ISysUserDmnService sysuserDmnService)
         {
             this._iDeptKcSyyyRepo = iDeptKcSyyyRepo;
             this._kcSyxxDmnService = kcSyxxDmnService;
             this._stockInventoryApp = stockInventoryApp;
+            this.sysuserDmnService = sysuserDmnService;
         }
 
         #region Nguyên nhân thừa thiếuBảo trì
