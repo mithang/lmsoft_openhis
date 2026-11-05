@@ -55,8 +55,45 @@ namespace Newtouch.DomainServices.Inpatient
         private readonly ITTCataloguesComparisonDmnService _tTCataloguesComparisonDmnService;
         private readonly IInpatientLongTermOrderRepo _InpatientLongTermOrderRepo;
         private readonly IQhdZnshSqtxRepo _qhdznshsqtxRepo;
-        public DoctorserviceDmnService() : base()
-        { }
+        /// <summary>
+        /// Khởi tạo bằng constructor injection (BA-003 Q-C215-2).
+        /// Trước đây ctor rỗng, 12 field readonly không bao giờ được gán, nên
+        /// mọi phương thức chạm tới repo đều NullReferenceException (live probe
+        /// C215 diag 2026-11-04: NRE tại SubmitdoctorServiceV2:334).
+        /// Không giữ ctor không tham số: DI sẽ fail-fast lúc khởi động nếu thiếu
+        /// đăng ký, thay vì NRE lúc chạy. Cả 12 dependency đều đã đăng ký
+        /// AddScoped trong CIS.Web/Program.cs và CIS.API/Program.cs.
+        /// Hai field cùng kiểu IInpatientLongTermOrderRepo (_inpatientLongTermOrderRepo
+        /// và _InpatientLongTermOrderRepo, lỗi đặt tên của vendor) dùng chung một
+        /// instance scoped từ cùng một tham số.
+        /// </summary>
+        public DoctorserviceDmnService(
+            ISysConfigRepo sysConfigRepo,
+            IInpatientPatientInfoRepo inpatientPatientInfoRepo,
+            IInpatientLongTermOrderRepo inpatientLongTermOrderRepo,
+            IInpatientSTATOrderRepo inpatientSTATOrderRepo,
+            IInpatientMedicinejxCodeComparedRepo inpatientMedicinejxCodeComparedRepo,
+            IInpatientDietDetailSplitRepo inpatientDietDetailSplitRepo,
+            IInpatientDietBaseRepo inpatientDietBaseRepo,
+            IMedicalRecordDmnService medicalRecordDmnService,
+            IInpatientPatientDoctorRepo inpatientpatientdoctorRepo,
+            ITTCataloguesComparisonDmnService tTCataloguesComparisonDmnService,
+            IQhdZnshSqtxRepo qhdznshsqtxRepo)
+            : base()
+        {
+            _sysConfigRepo = sysConfigRepo;
+            _inpatientPatientInfoRepo = inpatientPatientInfoRepo;
+            _inpatientLongTermOrderRepo = inpatientLongTermOrderRepo;
+            _inpatientSTATOrderRepo = inpatientSTATOrderRepo;
+            _inpatientMedicinejxCodeComparedRepo = inpatientMedicinejxCodeComparedRepo;
+            _InpatientDietDetailSplitRepo = inpatientDietDetailSplitRepo;
+            _InpatientDietBaseRepo = inpatientDietBaseRepo;
+            _medicalRecordDmnService = medicalRecordDmnService;
+            _inpatientpatientdoctorRepo = inpatientpatientdoctorRepo;
+            _tTCataloguesComparisonDmnService = tTCataloguesComparisonDmnService;
+            _InpatientLongTermOrderRepo = inpatientLongTermOrderRepo;
+            _qhdznshsqtxRepo = qhdznshsqtxRepo;
+        }
 
         #region Y lệnhnhập
         /// <summary>
@@ -769,7 +806,7 @@ namespace Newtouch.DomainServices.Inpatient
         /// <returns></returns>
         bool EditLSdoctorService(DoctorServiceRequestDto item, string orgId, ref SaveDoctorServiceDto dto)
         {
-            var edititem = _inpatientSTATOrderRepo.FindEntity(p => p.Id == item.Id && p.zt == "1");
+            var edititem = _inpatientSTATOrderRepo.IQueryable(p => p.Id == item.Id && p.zt == "1").FirstOrDefault();
             if (edititem != null)//SửaY lệnh tạm thời
             {
                 //ThuốcSửa Cách dùngtương ứngBộ mẫutrướcHủy bỏởtạo
@@ -826,7 +863,7 @@ namespace Newtouch.DomainServices.Inpatient
             }
 
             //từDài hạnchuyểnđếnY lệnh tạm thời trước đâyY lệnh dài hạnCài đặtthànhVô hiệu,lạiThêm mớiY lệnh tạm thời
-            var edititemtrans = _inpatientLongTermOrderRepo.FindEntity(p => p.Id == item.Id && p.zt == "1");
+            var edititemtrans = _inpatientLongTermOrderRepo.IQueryable(p => p.Id == item.Id && p.zt == "1").FirstOrDefault();
             if (edititemtrans == null) return false;
             if (edititemtrans.xmdm != item.xmdm)
             {
@@ -880,7 +917,7 @@ namespace Newtouch.DomainServices.Inpatient
         /// <returns></returns>
         bool EditCQdoctorService(DoctorServiceRequestDto item, string orgId, ref SaveDoctorServiceDto dto, DateTime? tzsj = null)
         {
-            var Edititem = _inpatientLongTermOrderRepo.FindEntity(p => p.Id == item.Id && p.zt == "1");
+            var Edititem = _inpatientLongTermOrderRepo.IQueryable(p => p.Id == item.Id && p.zt == "1").FirstOrDefault();
             if (Edititem != null)//SửaY lệnh dài hạn
             {
                 if (item.yzlx != (int)EnumYzlx.ssyz && Edititem.xmdm != item.xmdm)
@@ -939,7 +976,7 @@ namespace Newtouch.DomainServices.Inpatient
             }
             else
             {//từY lệnh tạm thờichuyểnđếnY lệnh dài hạn trước đâyY lệnh tạm thờiCài đặtthànhVô hiệu,lạiThêm mớiY lệnh dài hạn
-                var Edititemtrans = _inpatientSTATOrderRepo.FindEntity(p => p.Id == item.Id && p.zt == "1");
+                var Edititemtrans = _inpatientSTATOrderRepo.IQueryable(p => p.Id == item.Id && p.zt == "1").FirstOrDefault();
                 if (Edititemtrans != null)
                 {
                     if (Edititemtrans.xmdm != item.xmdm)
@@ -1023,10 +1060,14 @@ namespace Newtouch.DomainServices.Inpatient
                 var ssIds = item.yszsval.Split(',');
                 if (ssIds != null)
                 {
-                    for (int i = 0; i < ssIds.Length - 1; i++)
+                    for (int i = 0; i < ssIds.Length; i++)
                     {
                         var v = ssIds[i];
-                        var nameentity = _InpatientDietBaseRepo.FindEntity(p => p.Id == v && p.zt == "1" && p.OrganizeId == orgId);
+                        if (string.IsNullOrWhiteSpace(v))
+                        {
+                            continue;
+                        }
+                        var nameentity = _InpatientDietBaseRepo.IQueryable(p => p.Id == v && p.zt == "1" && p.OrganizeId == orgId).FirstOrDefault();
                         if (nameentity == null)
                         {
                             throw new FailedException("thiếuăn uốngcơ sởcơ sở");
