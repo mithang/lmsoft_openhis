@@ -64,9 +64,14 @@
      buộc vì trang này KHÔNG có reset border-box của Bootstrap
      (div thường đo được content-box) — không có nó padding sẽ làm
      footer rộng hơn sidebar 191px. Chữ + link giữ nguyên 100%.
+   U7-003: file này nay cũng sync sang EMR (cùng markup shell) nên 2 rule
+   chung trên (sidebar + footer) cũng áp dụng cho EMR — đã đo live là
+   đúng liều cho EMR (menu 18 mục, footer inline height:70px, menu kết
+   thúc y=860 đè footer y=830 30px, footer scrollH 99 > clientH 70).
    Toàn bộ rule trong mục này chỉ nhắm #sidebar-nav / #nav-col.login-foot
-   của shell SSO nên không ảnh hưởng portal khác (portal.css chỉ sync
-   sang SSO, xem sync-assets.sh). ---------------------------------------- */
+   của shell (SSO, và từ U7-003 cả EMR — cùng markup); portal.css sync
+   sang SSO, CIS, EMR (xem sync-assets.sh), mục CIS/EMR chỉ nhắm body
+   riêng của chúng nên không ảnh hưởng portal khác. ---------------------- */
 /* U7-001b: padding 6px ĐÃ có hiệu lực live (đo được paddingTop 6px) nhưng
    chiều cao mục vẫn 44px vì redesign-tokens.css (file token CHUNG, sync
    11 portal) ghim `#page-wrapper:not(.nav-small) #sidebar-nav .nav >
@@ -93,6 +98,150 @@
 /* Lớp phủ: chặn bấm vào nội dung phía sau khi drawer mở. */
 #rd-drawer-overlay {
     display: none;
+}
+
+/* ---- U7-002 (CIS, desktop): /Home/Index --------------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe-live-before.json):
+   trang Layout = null, HTML độc lập, stylesheet DUY NHẤT
+   /css/framework-theme.css trả 404 (file chưa từng được port sang
+   CIS wwwroot — wwwroot/css chỉ có redesign-tokens.css), nên trình
+   duyệt render serif mặc định + link xanh trên nền trắng, ~80%
+   viewport trống. Sửa: Index.cshtml nạp tokens + file này; mọi rule
+   dưới đây chỉ nhắm body.cis-home (duy nhất trang này), chỉ đổi trình
+   bày. 10 link, đích, nhãn và toàn bộ chữ gốc giữ nguyên 100%
+   (so sánh probe trước/sau); chữ mới duy nhất là brand "Viet HIS"
+   trong header — chrome chung như shell SSO/Base Web. KHÔNG bịa
+   KPI/biểu đồ/widget hay dữ liệu giả. Header + lưới thẻ chỉ trình
+   bày lại danh sách link thật; không thêm link/đích nào mới. -------- */
+body.cis-home,
+body.cis-home * {
+    box-sizing: border-box;
+}
+
+body.cis-home {
+    margin: 0;
+    font-family: Arial, Helvetica, sans-serif;
+    color: var(--rd-text);
+    background: var(--rd-bg-muted);
+    line-height: var(--rd-line-height);
+}
+
+/* Header: dải primary + brand, như shell các portal khác. */
+.cis-header {
+    background: var(--rd-primary);
+    color: #fff;
+    padding: var(--rd-space-3) var(--rd-space-6);
+}
+
+.cis-brand {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: var(--rd-line-height-heading);
+}
+
+/* Khung nội dung: giới hạn bề rộng, căn giữa — hết "80% trắng chết". */
+.cis-main {
+    max-width: 1080px;
+    margin: 0 auto;
+    padding: var(--rd-space-6) var(--rd-space-6) 48px;
+}
+
+.cis-title {
+    margin: var(--rd-space-2) 0 var(--rd-space-2);
+    font-size: 24px;
+    line-height: var(--rd-line-height-heading);
+}
+
+.cis-intro {
+    margin: 0 0 var(--rd-space-4);
+    color: var(--rd-text-muted);
+}
+
+/* 7 phân hệ: lưới 3 cột, mỗi link thật thành 1 thẻ. */
+.cis-grid {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: var(--rd-space-4);
+}
+
+.cis-card {
+    background: #fff;
+    border: 1px solid var(--rd-border);
+    border-left: 4px solid var(--rd-primary);
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+}
+
+.cis-card a {
+    display: block;
+    padding: var(--rd-space-4);
+    color: var(--rd-text);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+}
+
+.cis-card:hover {
+    border-color: var(--rd-primary);
+    box-shadow: var(--rd-shadow-md);
+}
+
+.cis-card a:hover {
+    color: var(--rd-primary);
+}
+
+.cis-card a:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: 2px;
+}
+
+/* Chức năng gốc: 3 link thật thành chip; dấu " | " gốc giữ nguyên
+   giữa các chip nên visible text trước/sau giống hệt. */
+.cis-origins {
+    margin: var(--rd-space-6) 0 0;
+    padding: var(--rd-space-4);
+    background: #fff;
+    border: 1px solid var(--rd-border);
+    border-radius: var(--rd-radius-card);
+    box-shadow: var(--rd-shadow-sm);
+}
+
+.cis-chip {
+    display: inline-block;
+    margin: var(--rd-space-1) 2px;
+    padding: 6px 12px;
+    color: var(--rd-primary);
+    font-weight: 600;
+    line-height: 1.4;
+    text-decoration: none;
+    background: var(--rd-bg-muted);
+    border: 1px solid var(--rd-border);
+    border-radius: 16px;
+}
+
+.cis-chip:hover {
+    color: #fff;
+    background: var(--rd-primary);
+    border-color: var(--rd-primary);
+}
+
+.cis-chip:focus-visible {
+    outline: 2px solid var(--rd-focus);
+    outline-offset: 2px;
+}
+
+@media (max-width: 767px) {
+    .cis-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .cis-main {
+        padding: var(--rd-space-4) var(--rd-space-4) 32px;
+    }
 }
 
 @media (max-width: 991px) {
@@ -173,4 +322,36 @@
     body.rd-drawer-open {
         overflow: hidden;
     }
+}
+
+/* ---- U7-003 (EMR, desktop): /Home/Index --------------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe /tmp/u7emr-before/):
+   - Nhãn menu 2 dòng lệch dòng: span inline + margin-left:25px (theme)
+     chỉ đẩy DÒNG ĐẦU (margin của inline box chỉ áp ở đầu dòng đầu),
+     dòng wrap sau bắt đầu ở mép padding x=20, đè lên icon absolute
+     (đã đo: 'Cai' x=45, 'phi' x=20, icon x=20 — 'phi'/'kham' chồng lên
+     icon bánh răng). KHÔNG có cắt thật: scrollH==clientH ở cả 18 mục
+     (wrap của token BA-012 đã hoạt động). Sửa: span display:block
+     để margin-left áp cho cả hộp, mọi dòng thẳng hàng ở x=45; chiều
+     cao mục không đổi (48px cho nhãn 2 dòng, 40px cho 1 dòng sau rule
+     chung U7-001). Neo bằng body[data-appid="EMR"] (thuộc tính render
+     từ server, KHÔNG dùng class body: theme JS ghi đè toàn bộ class
+     của body thành 'theme-blue-gradient pace-done' lúc chạy — đã đo
+     live vòng 1: class emr-home tĩnh bị xóa nên rule body.emr-home
+     không khớp, span vẫn inline, 'phi' vẫn x=20).
+   - Menu đè footer + footer cắt chữ: menu kết thúc y=860, footer bắt
+     đầu y=830 (đè 30px); footer scrollH 99 > clientH 70 (inline
+     height:70px). Sửa bằng 2 rule chung U7-001 đã có trong file này
+     (sidebar padding 6px/min-height 40px + .login-foot height:auto
+     !important) — tự áp dụng cho EMR khi file này được nạp, không
+     cần rule trùng riêng EMR. Đo live sau để xác nhận.
+   - User '000000' trơ trụi: sửa ở _IndexHeaderNav.cshtml theo mẫu SSO
+     (UserName【UserCode】, inline width:auto/max-width:200px).
+   - Nút tab 'TrangKýThao tác' KHÔNG sửa ở đây: đó là text gốc trong
+     _IndexContentWrapper.cshtml:35 (không phải lỗi khoảng cách hiển
+     thị — CSS không chèn được khoảng trắng trong text node), cần
+     quyết định text; giữ nguyên và báo NOT FIXED.
+   Chỉ trình bày; không đổi mục menu, thứ tự, đích, chữ hay dữ liệu. */
+body[data-appid="EMR"] #page-wrapper:not(.nav-small) #sidebar-nav .nav > li > a > span {
+    display: block;
 }

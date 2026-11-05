@@ -161,6 +161,67 @@
         border: 1px solid #ddd;
         border-radius: 4px;
     }
+
+    /* U7-003: trạng thái trống + vừa khung cho danh sách thẻ giường.
+       - .ul-zbq:empty: JS xóa hết <li> và không thêm gì khi AJAX trả 0
+         dòng (đã đo live: children=0, :empty=true, records=0) nên khối
+         này chỉ hiện khi thật sự trống; có dòng nào là tự hết hiệu lực
+         (rule :empty không còn khớp). Không bịa hàng/số liệu — chỉ là
+         thông báo trống + gợi ý đổi bộ lọc; số 'Tìm thấy 0' ở chân
+         trang giữ nguyên là dữ liệu thật.
+       - #div_zbq: JS đặt height = window.height-55 nên chân trang
+         'Tìm thấy … Dòng bản ghi' rơi dưới fold ~33px (đã đo live);
+         height calc(100vh-92px) !important đưa chân trang vào viewport
+         (chỉ trình bày chiều cao, không đổi logic JS).
+       - Khung chọn khu (select2): select gốc 1x1 bị ẩn, khung hiển thị
+         ~110px cắt tên khu ('Khu 1 Khoa …' — cả 3 khu cắt giống nhau,
+         không phân biệt được); min-width 220px hiện đủ tên khu dài nhất
+         'Khu 1 Khoa Y hoc co truyen'. */
+    .ul-zbq:empty {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        min-height: 320px;
+        /* 95% trừ 32px = margin trên+dưới 16px: nếu giữ 95% thì chân
+           trang pager bị đẩy xuống dưới fold ~18px (đã đo live vòng 1:
+           footer bottom y=818 > viewport iframe 800); trừ margin thì
+           footer về y≈785, còn ~15px. Khi có dòng thì rule :empty hết
+           hiệu lực, ul lại cao 95% như cũ, footer vẫn vừa khung. */
+        height: calc(95% - 32px);
+        width: auto;
+        margin: 16px;
+        border: 1px dashed #c3ccd4;
+        border-radius: 8px;
+        background: #f8fafb;
+    }
+
+        .ul-zbq:empty::before {
+            content: "\f236";
+            font-family: FontAwesome;
+            font-size: 44px;
+            line-height: 1;
+            color: #9fb3c0;
+        }
+
+        .ul-zbq:empty::after {
+            content: "Không có bệnh nhân nào theo bộ lọc hiện tại\A Thử đổi khu bệnh, loại bệnh nhân hoặc từ khóa tìm kiếm.";
+            white-space: pre-line;
+            text-align: center;
+            color: #5b6b7a;
+            font-size: 15px;
+            line-height: 1.6;
+            margin-top: 12px;
+            padding: 0 24px;
+        }
+
+    #div_zbq {
+        height: calc(100vh - 92px) !important;
+    }
+
+    #sel_inpatientArea + .select2-container {
+        min-width: 220px !important;
+    }
 </style>
 <ul class="nav nav-tabs navb-bg" role="tablist">
     <li role="presentation" id="linkzbq" class="active">

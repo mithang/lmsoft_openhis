@@ -51,8 +51,14 @@ copy_one "$SRC/redesign-portal.js" "$dest/js/redesign-portal.js"
 # Layout = null, nạp portal.css trực tiếp (mục body.cis-home trong file
 # này chỉ nhắm trang đó nên không ảnh hưởng portal khác). Các portal
 # còn lại (U7-003+) thêm vào danh sách này khi tới lượt.
+# U7-003: portal.css cũng sync sang EMR — /Home/Index của EMR là shell
+# AdminLTE cùng markup với SSO (2 div #nav-col, .login-foot, #sidebar-nav
+# do $.LoadNavTree() dựng) nên 2 rule chung U7-001 (sidebar padding 6px /
+# min-height 40px + footer height:auto) áp dụng luôn cho EMR; mục
+# body[data-appid="EMR"] trong file này chỉ chứa rule riêng EMR.
 PORTAL_CSS_APPS=(
   "Newtouch.HIS.CIS/Newtouch.CIS.Web"
+  "Newtouch.HIS.EMR/Newtouch.EMR.Web"
 )
 for app in "${PORTAL_CSS_APPS[@]}"; do
   dest="$ROOT/$app/wwwroot"
