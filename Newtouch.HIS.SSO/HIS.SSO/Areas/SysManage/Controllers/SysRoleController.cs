@@ -63,7 +63,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
         }
         public async Task<ActionResult> GetGridJson(Pagination pagination, string keyword, string OrganizeId)
         {
-
+            pagination ??= new Pagination();
             pagination.sidx = "CreateTime desc";
             pagination.sord = "asc";
             if (string.IsNullOrWhiteSpace(OrganizeId))
@@ -75,9 +75,26 @@ namespace HIS.SSO.Areas.SysManage.Controllers
                 return null;    //không trả về
             }
 
+            // FA-001: GetPagintionList bỏ qua keyword và không điền
+            // pagination.records, nên ô tìm kiếm không lọc và footer lưới
+            // luôn báo "trên tổng số 0 trang". Lọc + đếm + cắt trang tại
+            // controller (chỉ action này gọi service đó theo cách này);
+            // thứ tự hàng giữ nguyên như service trả về.
+            var list = await _sysRoleDmnService.GetPagintionList(OrganizeId, keyword) ?? new List<SysRoleEntity>();
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                list = list.Where(p => (p.Name != null && p.Name.Contains(keyword, StringComparison.OrdinalIgnoreCase))
+                    || (p.Code != null && p.Code.Contains(keyword, StringComparison.OrdinalIgnoreCase))).ToList();
+            }
+            pagination.records = list.Count;
+            var rows = list;
+            if (pagination.page.HasValue && pagination.rows.HasValue && pagination.page.Value > 0 && pagination.rows.Value > 0)
+            {
+                rows = list.Skip((pagination.page.Value - 1) * pagination.rows.Value).Take(pagination.rows.Value).ToList();
+            }
             var data = new
             {
-                rows = await _sysRoleDmnService.GetPagintionList(OrganizeId, keyword),
+                rows,
                 pagination.total,
                 pagination.page,
                 pagination.records
@@ -95,6 +112,14 @@ namespace HIS.SSO.Areas.SysManage.Controllers
 
         public async Task<ActionResult> GetFormJson(string keyValue)
         {
+            // FA-001: keyValue rỗng làm service GetForm ném "Index was out
+            // of range" (data[0] trên danh sách rỗng). UI chỉ gọi khi có
+            // keyValue; trả "null" như GetFormJson của SysModule khi không
+            // tìm thấy thực thể, thay vì lỗi 500 dạng JSON.
+            if (string.IsNullOrWhiteSpace(keyValue))
+            {
+                return Content("null");
+            }
             var data = await _sysRoleDmnService.GetForm(keyValue);
             return Content(data.ToJson());
         }

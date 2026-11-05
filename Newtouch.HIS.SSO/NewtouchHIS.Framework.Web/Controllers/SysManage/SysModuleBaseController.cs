@@ -153,6 +153,13 @@ namespace NewtouchHIS.Framework.Web.Controllers.SysManage
                 var rootMenu = await _sysConfigDmn.GetMenuListbyAppId(OrganizeId, ConfigInitHelper.SysConfig.AppId, UserIdentity.UserId, false, false);
                 return Content(rootMenu?.ToJson());
             }
+            // FA-001: POST không body làm request.queryParams null và dòng
+            // dưới ném NullReferenceException. UI (bootstrapTable) luôn gửi
+            // queryParams; body rỗng trả "" như GetAppMenuTreeGridJson.
+            if (request?.queryParams == null)
+            {
+                return Content("");
+            }
             var data = await _sysConfigDmn.GetMenuList(OrganizeId, UserIdentity.RoleIdList, UserIdentity.IsRoot, UserIdentity.IsAdministrator, UserIdentity.UserId, request.queryParams.validLimit ?? false);
             if (data == null || data.Count == 0)
             {
