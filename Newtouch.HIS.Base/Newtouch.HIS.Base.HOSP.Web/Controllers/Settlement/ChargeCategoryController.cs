@@ -36,6 +36,11 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         [HandlerAjaxOnly]
         public IActionResult GetTreeSelectJson(string organizeId, string treeidFieldName = "Code")
         {
+            // FA-018: empty organizeId must behave like an unknown org (empty tree), not NRE on Equals.
+            if (string.IsNullOrEmpty(organizeId))
+            {
+                return Content("[]");
+            }
             var data = _SysChargeCategoryRepo.GetValidList(organizeId);
             var data1 = _SysChargeCategoryBaseRepo.GetValidList(organizeId);
             var treeList = new List<TreeSelectModel>();
@@ -98,6 +103,11 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         /// <returns></returns>
         public IActionResult GetTreeGridJson(string organizeId, string zt,string keyword)
         {
+            // FA-018: empty organizeId must behave like an unknown org (empty tree), not NRE on Equals.
+            if (string.IsNullOrEmpty(organizeId))
+            {
+                return Content("[]");
+            }
             if (!organizeId.Equals("*"))
             {
                 //Dữ liệu không cơ sở
@@ -235,12 +245,22 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             if ("*".Equals(organizeId))
             {
                 var entity = _SysChargeCategoryBaseRepo.FindEntity(val => val.dlId == dlId);
+                // FA-018: unknown key must fail faithfully, not NRE on the null entity.
+                if (entity == null)
+                {
+                    return Error("Thao tác thất bại.");
+                }
                 entity.zt = zt;
                 _SysChargeCategoryBaseRepo.Update(entity);
             }
             else
             {
                 var entity = _SysChargeCategoryRepo.FindEntity(val => val.dlId == dlId);
+                // FA-018: unknown key must fail faithfully, not NRE on the null entity.
+                if (entity == null)
+                {
+                    return Error("Thao tác thất bại.");
+                }
                 entity.zt = zt;
                 _SysChargeCategoryRepo.Update(entity);
             }

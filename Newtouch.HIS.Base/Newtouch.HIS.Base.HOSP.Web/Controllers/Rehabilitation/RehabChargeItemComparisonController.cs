@@ -3,6 +3,7 @@ using NewtouchHIS.Lib.Framework.Attributes;
 using NewtouchHIS.Lib.Framework.Filter;
 using Newtouch.HIS.Domain.Entity;
 using Newtouch.HIS.Domain.IDomainServices.Rehabilitation;
+using Newtouch.HIS.Domain.ValueObjects.Rehabilitation;
 using Newtouch.HIS.Domain.IRepository;
 using NewtouchHIS.Lib.Base.Model;
 using NewtouchHIS.Lib.Base.Extension;
@@ -92,7 +93,8 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         {
             if (string.IsNullOrEmpty(OrganizeId))
             {
-                return null;
+                // FA-018: framework rejects a null action result; return an empty list instead.
+                return Json(new List<RehabChargeItemVO>());
             }
             var list = _rehabilitationDmnService.GetRehabChargeItemList(keyword, OrganizeId);
             return Json(list);
@@ -108,7 +110,8 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         {
             if (string.IsNullOrEmpty(orgId))
             {
-                return null;
+                // FA-018: framework rejects a null action result; return an empty list instead.
+                return Json(new List<SysChargeItemVO>());
             }
             var list = _rehabilitationDmnService.GetHisBindSelect(keyword, orgId);
             return Json(list);

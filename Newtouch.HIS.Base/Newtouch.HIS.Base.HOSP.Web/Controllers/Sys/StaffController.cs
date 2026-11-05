@@ -483,6 +483,11 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
 		public int checkEamil(string MsEmail)
 		{
+			// FA-018: Regex.IsMatch throws on a null input; empty means invalid (0), per contract.
+			if (string.IsNullOrEmpty(MsEmail))
+			{
+				return 0;
+			}
 			var checkEmail = @"^\w+([-+.]\w+)*@\w+([-.]\w+)*\.\w+([-.]\w+)*$";
 			Regex regex = new Regex(checkEmail);
 			if (!regex.IsMatch(MsEmail))

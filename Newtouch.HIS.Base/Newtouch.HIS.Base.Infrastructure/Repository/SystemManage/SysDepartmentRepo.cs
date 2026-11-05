@@ -156,8 +156,9 @@ namespace Newtouch.HIS.Repository
             {
                 sql += " and (@keyValue='%%' or Name like @keyValue or Code like @keyValue)";
             }
+            // FA-018: keyValue.Trim() runs even when the SQL condition is skipped; null must not NRE.
             return this.FindList<SysDepartmentEntity>(sql, new[] { new SqlParameter("@orgId", orgId)
-                ,new SqlParameter("@keyValue", "%"+keyValue.Trim()+"%")});
+                ,new SqlParameter("@keyValue", "%"+(keyValue ?? string.Empty).Trim()+"%")});
         }
 
     }

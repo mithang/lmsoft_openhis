@@ -145,6 +145,11 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             if ("*".Equals( organizeId))
             {
                 var entity = _sysChargeItemBaseRepo.FindEntity(p => p.sfxmId == sfxmId);
+                // FA-018: unknown key must fail faithfully, not NRE on the null entity.
+                if (entity == null)
+                {
+                    return Error("Thao tác thất bại.");
+                }
                 entity.zt= zt;
                 entity.LastModifyTime = DateTime.Now;
                 _sysChargeItemBaseRepo.Update(entity.ToJson().ToObject<SysChargeItemBaseEntity>());
@@ -152,6 +157,11 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             else
             {
                 var entity = _sysChargeItemRepo.FindEntity(p => p.sfxmId == sfxmId);
+                // FA-018: unknown key must fail faithfully, not NRE on the null entity.
+                if (entity == null)
+                {
+                    return Error("Thao tác thất bại.");
+                }
                 entity.zt= zt;
                 entity.LastModifyTime = DateTime.Now;
                 _sysChargeItemRepo.Update(entity);
