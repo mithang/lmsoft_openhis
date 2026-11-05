@@ -41,7 +41,10 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             if (bwlx=="jc")
             {
                 var jcdata= _baseDataDmnService.GetJcListByOrg(this.OrganizeId).ToList();
-                jcdata = jcdata.Where(t =>t.bwflCode.Contains(keyword)|| t.bwflmc.Contains(keyword) || t.bwmc.Contains(keyword) || t.bwCode.Contains(keyword)).ToList();
+                if (!string.IsNullOrEmpty(keyword))
+                {
+                    jcdata = jcdata.Where(t =>t.bwflCode.Contains(keyword)|| t.bwflmc.Contains(keyword) || t.bwmc.Contains(keyword) || t.bwCode.Contains(keyword)).ToList();
+                }
                 return Content(jcdata.ToJson());
             }
             var data = _sysBodyPartsRepo.GetListByOrg(this.OrganizeId).ToList();
@@ -145,7 +148,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             var data = _baseDataDmnService.GetSysBodyJcBwFl(this.OrganizeId);
             if (!string.IsNullOrWhiteSpace(keyword))
             {
-                data = data.Where(a => a.bwflCode.Contains(keyword) || a.bwflmc.Contains(keyword)).ToList();
+                data = data.Where(a => (a.bwflCode ?? "").Contains(keyword) || (a.bwflmc ?? "").Contains(keyword)).ToList();
             }
             return Content(data.ToJson());
         }

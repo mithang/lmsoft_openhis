@@ -133,11 +133,11 @@ namespace Newtouch.CIS.Web.Areas.TemplateManage.Controllers
                 case (int)EnumCflx.InspectionPres:
                 case (int)EnumCflx.ExaminationPres:
                     int type = cflx == (int)EnumCflx.InspectionPres ? 1 : 2;
-                    var jyjcdata = _groupPackageRepo.IQueryable().Where(a => a.OrganizeId == this.OrganizeId && a.zt == "1" && a.Type == type && a.ztmc.Contains(mbKeyword)).Select(a => new { mbmc = a.ztmc, cflx = (a.Type == 1 ? (int)EnumCflx.InspectionPres : (int)EnumCflx.ExaminationPres), mbId = a.ztId, a.CreateTime, a.LastModifyTime }).OrderBy(a => a.cflx).ThenByDescending(a => a.CreateTime).ToList();
+                    var jyjcdata = _groupPackageRepo.IQueryable().Where(a => a.OrganizeId == this.OrganizeId && a.zt == "1" && a.Type == type && a.ztmc.Contains(mbKeyword ?? "")).Select(a => new { mbmc = a.ztmc, cflx = (a.Type == 1 ? (int)EnumCflx.InspectionPres : (int)EnumCflx.ExaminationPres), mbId = a.ztId, a.CreateTime, a.LastModifyTime }).OrderBy(a => a.cflx).ThenByDescending(a => a.CreateTime).ToList();
                     return Content(jyjcdata.ToJson());
                 default:
                     var data1 = _presTemplateRepo.IQueryable().Where(a => a.OrganizeId == this.OrganizeId && a.mblx == mblx && (a.cflx == cflx || cflx == 0) && a.zt == "1" && a.mbmc.Contains(mbKeyword) && (mblx == 1 ? a.ysgh == this.UserIdentity.rygh : (mblx == 2 ? a.ksCode == this.UserIdentity.DepartmentCode : 1 == 1))).Select(a => new { a.mbmc, a.cflx, a.mbId, a.CreateTime, a.LastModifyTime }).OrderBy(a => a.cflx).ThenByDescending(a => a.CreateTime).ToList();
-                    var jyjcdata1 = _groupPackageRepo.IQueryable().Where(a => a.OrganizeId == this.OrganizeId && a.zt == "1" && a.ztmc.Contains(mbKeyword)).Select(a => new { mbmc = a.ztmc, cflx = (a.Type == 1 ? (int)EnumCflx.InspectionPres : (int)EnumCflx.ExaminationPres), mbId = a.ztId, a.CreateTime, a.LastModifyTime }).OrderBy(a => a.cflx).ThenByDescending(a => a.CreateTime).ToList();
+                    var jyjcdata1 = _groupPackageRepo.IQueryable().Where(a => a.OrganizeId == this.OrganizeId && a.zt == "1" && a.ztmc.Contains(mbKeyword ?? "")).Select(a => new { mbmc = a.ztmc, cflx = (a.Type == 1 ? (int)EnumCflx.InspectionPres : (int)EnumCflx.ExaminationPres), mbId = a.ztId, a.CreateTime, a.LastModifyTime }).OrderBy(a => a.cflx).ThenByDescending(a => a.CreateTime).ToList();
                     data1 = data1.Concat(jyjcdata1).ToList();
                     return Content(data1.ToJson());
             }

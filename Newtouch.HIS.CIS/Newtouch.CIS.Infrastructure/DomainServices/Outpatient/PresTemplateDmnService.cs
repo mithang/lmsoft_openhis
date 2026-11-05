@@ -21,9 +21,9 @@ namespace Newtouch.DomainServices
         private readonly IPresTemplateRepo _presTemplateRepo;
         private readonly IPresTemplateDetailRepo _presTemplateDetailRepo;
 
-        public PresTemplateDmnService() : base()
+        public PresTemplateDmnService(IPresTemplateRepo presTemplateRepo) : base()
         {
-
+            this._presTemplateRepo = presTemplateRepo;
         }
 
         /// <summary>

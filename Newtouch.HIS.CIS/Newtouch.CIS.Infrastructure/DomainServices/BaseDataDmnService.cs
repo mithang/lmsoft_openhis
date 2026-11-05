@@ -21,9 +21,10 @@ namespace Newtouch.DomainServices
 		private readonly ICache _cache;
 		private readonly ISysConfigRepo _sysConfigRepo;
 
-		public BaseDataDmnService(ICache cache) : base()
+		public BaseDataDmnService(ICache cache, ISysConfigRepo sysConfigRepo) : base()
 		{
 			this._cache = cache;
+			this._sysConfigRepo = sysConfigRepo;
 		}
 
 		/// <summary>

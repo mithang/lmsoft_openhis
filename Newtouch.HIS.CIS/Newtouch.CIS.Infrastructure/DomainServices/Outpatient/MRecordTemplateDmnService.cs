@@ -25,9 +25,10 @@ namespace Newtouch.DomainServices
         private readonly IMRTemplateWMDiagnosisRepo _mrTemplateWMDiagnosisRepo;
         private readonly IMRTemplateTCMDiagnosisRepo _mrTemplateTCMDiagnosisRepo;
         private readonly ICfTemplateGroupPackageRepo _cfTemplateGroupPackageRepo;
-        public MRecordTemplateDmnService() : base()
+        public MRecordTemplateDmnService(IMRTemplateRepo mRTemplateRepo, ICfTemplateGroupPackageRepo cfTemplateGroupPackageRepo) : base()
         {
-
+            this._mRTemplateRepo = mRTemplateRepo;
+            this._cfTemplateGroupPackageRepo = cfTemplateGroupPackageRepo;
         }
         public List<MRTemplateListBO> SelectTemplateList(int mblx, string orgId, string deptCode,string userCode)
         {

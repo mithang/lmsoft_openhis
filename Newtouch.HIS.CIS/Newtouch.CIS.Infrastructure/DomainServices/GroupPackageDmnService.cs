@@ -18,8 +18,9 @@ namespace Newtouch.DomainServices
     {
         private readonly IGroupPackageRepo _groupPackageRepo;
         private readonly IGroupPackageItemRepo _groupPackageItemRepo;
-        public GroupPackageDmnService() : base()
+        public GroupPackageDmnService(IGroupPackageRepo groupPackageRepo) : base()
         {
+            this._groupPackageRepo = groupPackageRepo;
         }
 
         /// <summary>
