@@ -78,6 +78,10 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
 
         public IActionResult ValidateRepeat(List<DSrepeatRequestVO> req, string zyh)
         {
+            if (req == null || req.Count == 0)
+            {
+                return Error("Thiếu dữ liệu y lệnh.");
+            }
             var predata = _doctorserviceDmnService.DSTransferCL(req, OrganizeId);
             var data = _doctorserviceDmnService.DoctorserviceValidate(predata, zyh, OrganizeId);
             return Content(data.ToJson());
@@ -166,7 +170,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             }
             catch (Exception ex)
             {
-                return "F|" + ex.InnerException.ToString();
+                return "F|" + (ex.InnerException?.ToString() ?? ex.Message);
             }
         }
 
@@ -182,6 +186,10 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// <returns></returns>
         public IActionResult GetqhdyzSqtxData(List<DoctorServiceRequestDto> reqdoctorservices , InpatientInfo brxx,string yzcfh)
         {
+            if (reqdoctorservices == null || reqdoctorservices.Count == 0)
+            {
+                return Error("Thiếu dữ liệu y lệnh.");
+            }
             var jlId = "";
             if (reqdoctorservices[0].yzlx == (int)EnumYzlx.Wz || reqdoctorservices[0].yzlx == (int)EnumYzlx.oper)
             {
@@ -215,6 +223,10 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// <returns></returns>
         public IActionResult GetPriorReviewData(List<DoctorServiceRequestDto> reqdoctorservices, InpatientInfo brxx,string yzcfh, string GetMAC)
         {
+            if (reqdoctorservices == null || reqdoctorservices.Count == 0)
+            {
+                return Error("Thiếu dữ liệu y lệnh.");
+            }
             if (reqdoctorservices[0].yzlx == (int)EnumYzlx.Wz || reqdoctorservices[0].yzlx == (int)EnumYzlx.oper)
             {
                 return Content(null);

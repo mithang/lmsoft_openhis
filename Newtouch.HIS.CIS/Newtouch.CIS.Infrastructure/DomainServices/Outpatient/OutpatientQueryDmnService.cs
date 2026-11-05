@@ -85,7 +85,7 @@ and jz.jzys=@ysgh";
                 new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDate(kssj)),
                 new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDate(jssj) + " 23:59:59"),
                 new SqlParameter("@ysgh", ysgh),
-                new SqlParameter("@keyword", "%" + keyword.Trim() + "%")
+                new SqlParameter("@keyword", "%" + (keyword ?? string.Empty).Trim() + "%")
             }, false);
         }
         public IList<OutpatientDetailVO> GetOutpatientDetailGridJson(Pagination pagination, string orgId, string kssj, string jssj,string yscode)

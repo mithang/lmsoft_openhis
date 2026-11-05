@@ -223,20 +223,20 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             switch (tcfw)
             {
                 case (int)EnumTcfw.Person:
-                    alldata.Where(p => p.ysgh == UserIdentity.rygh);
+                    alldata = alldata.Where(p => p.ysgh == UserIdentity.rygh).ToList();
                     break;
                 case (int)EnumTcfw.Dept:
-                    alldata.Where(p => p.DeptCode == UserIdentity.DepartmentCode);
+                    alldata = alldata.Where(p => p.DeptCode == UserIdentity.DepartmentCode).ToList();
                     break;
                 case (int)EnumTcfw.Ward:
                     var ward = _iBaseDataDmnService.GetWardListByStaffGh(UserIdentity.rygh, OrganizeId).FirstOrDefault();
                     if (ward != null)
                     {
-                        alldata.Where(p => p.WardCode == ward.bqCode);
+                        alldata = alldata.Where(p => p.WardCode == ward.bqCode).ToList();
                     }
                     break;
                 case (int)EnumTcfw.Hosp:
-                    alldata.Where(p => p.ysgh == "*" && p.DeptCode == "*" && p.WardCode == "*");
+                    alldata = alldata.Where(p => p.ysgh == "*" && p.DeptCode == "*" && p.WardCode == "*").ToList();
                     break;
                 default: break;
             }

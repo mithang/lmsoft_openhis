@@ -652,8 +652,6 @@ LEFT JOIN NewtouchHIS_Base..xt_sfxm sfxm ON sfxm.sfxmCode = lsyz.xmdm AND sfxm.z
 where yzlx=@type
 and zt='1'
 and zyh=@zyh
-and CreateTime>=@kssj
-and CreateTime<=@jssj
 and OrganizeId=@orgId
 ");
 
@@ -666,6 +664,8 @@ and OrganizeId=@orgId
             par.Add(new SqlParameter("@type", type));
             if (kssj != null && jssj != null & kssj != "" & jssj != "")
             {
+                sqlstr.Append(@" and CreateTime>=@kssj
+and CreateTime<=@jssj");
                 par.Add(new SqlParameter("@kssj", SqlDateStringHelper.NormalizeDateTime(kssj)));
                 par.Add(new SqlParameter("@jssj", SqlDateStringHelper.NormalizeDateTime(jssj)));
             }
