@@ -720,6 +720,10 @@ namespace Newtouch.HIS.Web.Controllers
                 TimeStamp = DateTime.Now
             };
             var apiResp = SiteSettAPIHelper.Request<object, DefaultResponse>("api/OutpatientPharmacy/GetfyMainInfoList", reqObj);
+            if (apiResp == null || apiResp.data == null)
+            {
+                return Content("");
+            }
             return Content(apiResp.data.ToJson());
         }
 
@@ -732,7 +736,7 @@ namespace Newtouch.HIS.Web.Controllers
         {
             if (string.IsNullOrEmpty(cfh))
             {
-                return null;
+                return Content("");
             }
             var reqObj = new
             {
@@ -1317,7 +1321,7 @@ namespace Newtouch.HIS.Web.Controllers
         {
             if (string.IsNullOrEmpty(pCfh))
             {
-                return null;
+                return Content("");
             }
             var reqObj = new
             {

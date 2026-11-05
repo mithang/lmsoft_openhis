@@ -664,7 +664,7 @@ AND mxph.fyyf=@YfbmCode
                 new SugarParameter("@startTime", startTime),
                 new SugarParameter("@endTime", endTime),
                 new SugarParameter("@yfbmCode", yfbmCode),
-                new SugarParameter("@srm", keyWork.Trim()??""),
+                new SugarParameter("@srm", (keyWork ?? "").Trim()),
                 new SugarParameter("@organizeId", organizeId??"")
             };
             return FindList<DrugDeliveryEntity>(TSqlOutpatient.drug_deliver_statistics, param);

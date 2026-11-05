@@ -186,7 +186,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
             int gqyjz = -SysConfigReader.Int("GET_YFGQYG");//Giá trị cảnh báo hết hạn
             var stockTotalList = new
 			{
-				rows = drugStorageDmnService.SelectExpiredDrugs(pagination, keyword.Trim(), gpyf, Constants.CurrentYfbm.yfbmCode, OrganizeId, gqyjcode, gqyjz, noShow0Kc),
+				rows = drugStorageDmnService.SelectExpiredDrugs(pagination, (keyword ?? "").Trim(), gpyf, Constants.CurrentYfbm.yfbmCode, OrganizeId, gqyjcode, gqyjz, noShow0Kc),
 				total = pagination.total,
 				page = pagination.page,
 				records = pagination.records

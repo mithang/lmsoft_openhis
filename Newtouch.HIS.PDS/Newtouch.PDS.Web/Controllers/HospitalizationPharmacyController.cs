@@ -323,7 +323,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         public IActionResult GetDeptApplySendList(string SqdArr)
         {
-            string SqdArrs = SqdArr.Trim().Trim(',');
+            string SqdArrs = (SqdArr ?? "").Trim().Trim(',');
             if (string.IsNullOrWhiteSpace(SqdArrs)) return Content("");
             var result = _idispenseIndexInfoDmnService.SelectDeptApplySendList(SqdArr,OrganizeId, Constants.CurrentYfbm.yfbmCode);
             

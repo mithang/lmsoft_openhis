@@ -73,8 +73,8 @@ WHERE yp.OrganizeId =@OrganizeId
             {
                 new SugarParameter("@yfbmCode", Constants.CurrentYfbm.yfbmCode),
                 new SugarParameter("@OrganizeId", OperatorProvider.GetCurrent().OrganizeId),
-                new SugarParameter("@kczt", tybz.Trim()),
-                new SugarParameter("@bmypxxzt", zt.Trim())
+                new SugarParameter("@kczt", (tybz ?? "").Trim()),
+                new SugarParameter("@bmypxxzt", (zt ?? "").Trim())
             };
             if (!string.IsNullOrWhiteSpace(inputCode))
             {

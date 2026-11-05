@@ -65,31 +65,11 @@ namespace Newtouch.HIS.Web.Controllers
         /// 
         /// </summary>
         /// <returns></returns>
-        [HttpGet]
-        public new IActionResult OutLogin()
-        {
-            var opr = OperatorProvider.GetCurrent();
-            if (opr != null)
-            {
-                WriteOutLoginLog();
-
-                OperatorProvider.RemoveCurrent();
-            }
-            HttpContext.Session.Clear();
-            HttpContext.Session.Clear();
-            var userCode = "";
-            if (opr != null) { userCode = opr.UserCode; }
-            var cookieLoginFlag = Request.Cookies[Constants.AppId + "_" + userCode + "_" + "LoginFlag"];
-            if (string.IsNullOrWhiteSpace(cookieLoginFlag))
-            {
-                return RedirectToAction("Index", "Login");
-            }
-            Response.Cookies.Delete(Constants.AppId + "_" + userCode + "_" + "LoginFlag");
-
-            var url = ConfigurationHelper.GetAppConfigValue("SSOOutLogin");  //ThoátSSOĐăng nhập
-
-            return Redirect(url);
-        }
+        // NOTE (FA-010, theo FA-006/FA-008): no own OutLogin here on purpose.
+        // LoginBaseController.OutLogin is non-virtual; redeclaring it made routing
+        // ambiguous (AmbiguousMatchException, HTTP 500 on every /Login/OutLogin)
+        // because ASP.NET Core discovers both the base and the hiding method as
+        // actions. Base OutLogin removes the session and redirects to /Login/Index.
 
         /// <summary>
         /// 
@@ -220,35 +200,14 @@ namespace Newtouch.HIS.Web.Controllers
         /// </summary>
         /// <param name="appId"></param>
         /// <returns></returns>
-        public new IActionResult GetUALoginAddres(string appId)
-        {
-            string addr = null;
-            if (!string.IsNullOrWhiteSpace(appId))
-            {
-                appId = appId + "_UALoginAddress";
-                addr = ConfigurationHelper.GetAppConfigValue(appId);
-            }
-            if (!string.IsNullOrWhiteSpace(addr))
-            {
-                var token = OperatorProvider.GetCurrentToken();
-                if (!string.IsNullOrWhiteSpace(token))
-                {
-                    if (addr.IndexOf('?') < 0)
-                    {
-                        addr += "?access_token=" + token;
-                    }
-                    else
-                    {
-                        addr += "&access_token=" + token;
-                    }
-                }
-                else
-                {
-                    addr = null;    //Được coi lànull
-                }
-            }
-            return Content(new AjaxResult { state = ResultType.success.ToString(), data = addr }.ToJson());
-        }
+        // NOTE (FA-010, theo FA-008): no own GetUALoginAddres here on purpose.
+        // LoginBaseController.GetUALoginAddres is non-virtual and resolves the
+        // address from BusinessConfig (success + null data when unconfigured);
+        // redeclaring it made routing ambiguous (AmbiguousMatchException,
+        // HTTP 500 on every /Login/GetUALoginAddres) because ASP.NET Core
+        // discovers both the base and the hiding method as actions.
+        // PDS appsettings defines no {appId}_UALoginAddress key, so the derived
+        // lookup always returned null data here; base is a strict improvement.
 
 
         #endregion

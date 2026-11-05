@@ -63,7 +63,7 @@ namespace Newtouch.HIS.Web.Controllers
         {
             if (string.IsNullOrWhiteSpace(fybm))
             {
-                return null;
+                return Content("");
             }
             var data = _departmentMedicineInfoDmnService.GetRequisitionDepartmentMedicineSeleVOList((keyword ?? "").Trim(), fybm, OperatorProvider.GetCurrent().OrganizeId);
             return Content(data.ToJson());
@@ -130,7 +130,7 @@ namespace Newtouch.HIS.Web.Controllers
                     allUseableFfzt = "0,1";
                     break;
                 default:
-                    return null;
+                    return Content("");
             }
 
             var receiptMaininfoList = new
