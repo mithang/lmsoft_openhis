@@ -789,3 +789,55 @@ body[data-appid="OR"] .rd-or-tile a:focus-visible {
         padding: var(--rd-space-3) var(--rd-space-4);
     }
 }
+
+/* ---- U7-007 (PDS, desktop): /Home/Index --------------------------------
+   Nguyên nhân gốc (đã đo live 2026-11-05, probe /tmp/u7pds-before/):
+   - Logo header vẫn "云HIS": #logo dùng background-image logo2.png —
+     cùng file logo trắng 220x60 mà U6 đã thay ở logo1.png (f84c7b13
+     thay logo1.png 5473 -> 4467 bytes, bỏ sót logo2.png: sha256
+     7fb93900... = đúng hash gốc của logo1.png trong MANIFEST U6).
+     Sửa ở Index.cshtml: đổi tham chiếu logo2.png -> logo1.png (asset
+     Viet HIS sẵn có trong PDS wwwroot, cùng kích thước 220x60, không
+     thêm file mới, không sửa binary ảnh). Không có rule logo ở đây.
+   - Nhãn menu 2 dòng đè icon: 4/18 mục cấp 1 ('Cai dat he thong thu
+     phi', 'Quan ly nguon so kham', 'Ho so dieu duong noi tru', 'Bao
+     tri ho so dieu duong') có span_x=20 = icon_x (overlap=true), 14
+     mục 1 dòng span_x=45 không đè. Cùng nguyên nhân U7-003 (EMR) /
+     U7-005 (MRMS): span inline + theme margin-left:25px chỉ đẩy
+     DÒNG ĐẦU, dòng wrap sau bắt đầu ở mép padding x=20, đè lên icon
+     absolute. Sửa: span display:block để margin áp cho cả hộp, mọi
+     dòng thẳng hàng x=45. Neo bằng body[data-appid="PDS"] — AppId
+     "PDS" render thật từ server (Constants.AppId, probe đã thấy
+     data-appid="PDS"); theme JS ghi đè toàn bộ class body lúc chạy
+     (bodyClass "theme-blue-gradient pace-done") nên không neo bằng
+     class (bài học U7-003).
+   - Username bị cắt: span inline style width:110px, text thật
+     '000000【Nha thuoc Y hoc co truyen】' cần 205px (scrollW 205 >
+     clientW 110). Sửa: width:auto !important (thắng inline style) +
+     white-space:nowrap, display:inline-block để width có hiệu lực;
+     anchor pull-right tự nới sang trái, không đè khối tin nhắn
+     (đo live sau sửa). Không đổi chữ — tên nhà thuốc là dữ liệu thật.
+   - Footer/menu: 2 rule chung U7-001 trong file này (sidebar padding
+     6px / min-height 40px + .login-foot height:auto) tự áp dụng cho
+     PDS khi file được nạp (cùng markup #page-wrapper/#sidebar-nav;
+     PDS CÓ .login-foot, khác MRMS): menu kết thúc y=860 đè footer
+     y=855 5px, footer scrollH 68 > clientH 45 (height:5% inline);
+     sau sửa menu ~18x40px kết thúc ~y=772, footer height:auto hiện
+     đủ 68px. Không đổi mục menu, thứ tự, đích hay chữ.
+   - Dashboard (KPI/biểu đồ/panel phải) nằm trong iframe /Home/Default
+     — tài liệu riêng, portal.css KHÔNG với tới; các sửa đó nằm trong
+     <style> riêng của Default.cshtml (nhãn h5 tràn thẻ 105px, nhãn
+     trục x 'Thg 8' trùng, trạng thái rỗng căn giữa dọc).
+   Chỉ trình bày; không đổi mục menu, thứ tự, đích, chữ hay dữ liệu.
+   Không reset box-sizing toàn cục (bài học U7-004). -------- */
+body[data-appid="PDS"] #page-wrapper:not(.nav-small) #sidebar-nav .nav > li > a > span {
+    display: block;
+}
+
+body[data-appid="PDS"] .profile-dropdown > a > span {
+    display: inline-block;
+    width: auto !important;
+    max-width: none;
+    white-space: nowrap;
+    overflow: visible;
+}

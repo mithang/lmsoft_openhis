@@ -29,6 +29,16 @@
        Nạp token ngay sau framework-theme.css (như SSOIndex/EMR Default) để shell hưởng
        đổi mới giao diện + override sidebar chung (không đổi layout/route, chỉ thêm 1 <link> CSS). *@
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-tokens.css", false)" rel="stylesheet" />
+    @* U7-007: shell này trước đây chỉ nạp token, không nạp redesign-portal.css
+       nên các sửa shell (sidebar 2 dòng đè icon, username 110px, footer
+       .login-foot, 2 rule chung U7-001) không có hiệu lực — portal.css
+       trước đây còn 404 (chưa sync sang PDS wwwroot). Nạp portal.css
+       ngay sau token, đúng thứ tự như SSOIndex/EMR/MRMS; chỉ thêm
+       1 <link> CSS, không đổi layout/route. Dashboard trong iframe
+       /Home/Default không dùng file này. Lưu ý: KHÔNG neo rule bằng
+       class body (theme JS ghi đè toàn bộ class body lúc chạy) —
+       portal.css neo bằng body[data-appid="PDS"] thay thế. *@
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-portal.css", false)" rel="stylesheet" />
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
     <script src="/js/pds-vi.js"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/framework-clientdata.js", false)"></script>
@@ -112,7 +122,12 @@
                         aria-label="Mở menu" aria-expanded="false" aria-controls="sidebar-nav">
                     <i class="fa fa-bars" aria-hidden="true"></i><span>Menu</span>
                 </button>
-                <a href="#" id="logo" class="navbar-brand" style="background-image:url(/Content/img/logo2.png); background-size:100%"></a>
+                @* U7-007: logo header trước đây dùng logo2.png — file logo trắng
+                   "云HIS" mà U6 bỏ sót (U6 chỉ thay logo1.png; logo2.png giữ
+                   nguyên hash gốc). Đổi tham chiếu sang logo1.png: asset
+                   Viet HIS sẵn có trong PDS wwwroot, cùng kích thước 220x60,
+                   không thêm file mới, không sửa binary ảnh. *@
+                <a href="#" id="logo" class="navbar-brand" style="background-image:url(/Content/img/logo1.png); background-size:100%"></a>
 				<div class="clearfix">
 					<div class="nav-no-collapse navbar-left pull-left hidden-sm hidden-xs">
                         <ul class="nav navbar-nav pull-left">
