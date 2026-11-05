@@ -125,7 +125,13 @@ namespace Newtouch.Sett.Web.Areas.BusinessManage.Controllers
         /// <returns></returns>
         public IActionResult RegisteringList(string list)
         {
-            return null;
+            // FA-012: ASP.NET Core throws "Cannot return null from an action
+            // method" for a null IActionResult (live probe: HTTP 200 + error
+            // JSON on every call); Framework MVC treated null as an empty
+            // result. Return empty content, same repair as FA-010 (PDS
+            // return-null -> Content('')). No caller in-tree; no service
+            // exists for this list, so no data contract is invented here.
+            return Content("");
         }
         /// <summary>
         /// đượclấytreosốphí Phí chẩn trị Phí thẻ từ Phí làm thẻ
