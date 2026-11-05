@@ -42,10 +42,27 @@ namespace NewtouchHIS.Framework.Web.Controllers
         [HttpGet]
         public virtual IActionResult GetAuthCode()
         {
+            // BA-011: captcha đang TẮT (Is_CheckChkCode=false) ở mọi portal nên
+            // không trang login nào yêu cầu ảnh này (cả 11 view login đều đặt
+            // <img id="imgcode" src="~/Login/GetAuthCode"> trong khối
+            // if (isCheckChkCode)). Khi captcha tắt, trả 404 thay vì chạm tới
+            // System.Drawing (CommonTools.GetVerifyCode dùng Bitmap/Graphics —
+            // cần libgdiplus trên Linux, lỗi "type initializer for 'Gdip' threw
+            // an exception"); một cú hit trực tiếp vào URL không được 500 nữa.
+            // KHÔNG bật captcha ở đây; nếu sau này bật lại Is_CheckChkCode thì
+            // vẫn cần libgdiplus trên máy chủ Linux (xem BA011-DECISIONS.md).
+            if (!(ConfigInitHelper.SysConfig.Is_CheckChkCode ?? true))
+            {
+                return NotFound();
+            }
             var clientId = HttpWebHelper.GetCookie(ConfigInitHelper.SysConfig.AppId + "_ClientId");
             string code;
             CommonTools gen = new CommonTools();
             var stream = gen.GetVerifyCode(out code);
+            if (stream == null || stream.Length == 0)
+            {
+                return StatusCode(500, "Không tạo được mã xác minh.");
+            }
 
             //mã xác minh 5có hiệu lực trong vài phút
             RedisHelper.SetString(clientId + "_chkCode", code, new TimeSpan(0, 5, 0));

@@ -291,10 +291,15 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// </summary>
         /// <param name="inpId"></param>
         /// <returns></returns>
-        public bool GuiAnXnhDelFeeDetails(string inpId, out string delMsg)
+        // FA-013-B4 (BA-012): action cũ khai báo `bool F(string inpId, out string delMsg)`;
+        // model binding của ASP.NET Core không bind được tham số `out` (ByRef) nên
+        // gọi route này lập tức lỗi "Type must not be ByRef". Viết lại thành
+        // IActionResult đúng mẫu 2 action kề bên (GuiAnXnhSettCancel/GuiAnXnhCyblCancel),
+        // giữ nguyên thông điệp "chưa chuyển đổi" và tham số inpId (tương thích route).
+        // Chức năng xóa thật vẫn chưa được chuyển đổi — KHÔNG bịa dữ liệu xóa.
+        public IActionResult GuiAnXnhDelFeeDetails(string inpId)
         {
-            delMsg = "Chức năng xóaChi tiết đã tải lên BHYT GuiAn chưa được chuyển đổi sang .NET Core trong giai đoạn này.";
-            return false;
+            return Error("Chức năng xóaChi tiết đã tải lên BHYT GuiAn chưa được chuyển đổi sang .NET Core trong giai đoạn này.");
         }
         /// <summary>
         /// Lấy mã nhập viện theo mã cá nhân(Nông thôn mới)

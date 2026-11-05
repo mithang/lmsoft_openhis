@@ -301,3 +301,42 @@ div.panel {
         gap: var(--rd-space-3);
     }
 }
+
+/* BA-012 — Sidebar: nhãn menu dài tiếng Việt bị cắt.
+   Nguyên nhân (đã xác minh trong file gốc ở static host, CẤM SỬA):
+   framework-theme.css đặt link menu cấp 1
+   `#sidebar-nav .nav > li > a { height:44px; line-height:28px; overflow:hidden }`
+   (padding 8px trên/dưới nên hộp nội dung chỉ vừa đúng 1 dòng) và mục "common"
+   `#sidebar-nav .nav > li.common a { height:34px; white-space:nowrap }` +
+   `span { white-space:nowrap }` — nhãn dài xuống dòng thứ 2 thì bị giấu,
+   nhãn common thì tràn khỏi hộp 220px. Menu do $.LoadNavTree() (Newtouch-ui.js)
+   dựng từ authorizeMenu, KHÔNG render từ Razor nên không sửa markup được.
+   Cơ chế override chung (quyết định BA-012): ghi đè ở file token chuẩn này —
+   đã sync giống hệt sang 11 portal, nạp SAU framework-theme.css ở _Index/_Form
+   và ở 4 shell (SSO/EMR/MRMS/PDS Home/Index sau khi gắn thêm link token).
+   Chỉ áp dụng khi sidebar đang mở rộng (#page-wrapper KHÔNG có .nav-small):
+   chế độ thu gọn 64px (icon-only, span display:none) giữ nguyên. Độ ưu tiên
+   (2,2,2) cao hơn quy tắc gốc (1,1,2)/(1,2,2) nên thắng mà không cần !important.
+   Mục 1 dòng giữ nguyên 44px (min-height); nhãn dài xuống 2 dòng thay vì bị cắt.
+   Submenu (.submenu > li > a: display:block, line-height:38px, không height/
+   overflow cố định) vốn đã xuống dòng tự do nên không cần ghi đè. */
+#page-wrapper:not(.nav-small) #sidebar-nav .nav > li > a {
+    height: auto;
+    min-height: 44px;
+    overflow: visible;
+    line-height: 1.35;
+}
+
+#page-wrapper:not(.nav-small) #sidebar-nav .nav > li > a > span {
+    white-space: normal;
+}
+
+#page-wrapper:not(.nav-small) #sidebar-nav .nav > li.common a {
+    height: auto;
+    min-height: 34px;
+    white-space: normal;
+}
+
+#page-wrapper:not(.nav-small) #sidebar-nav .nav > li.common a > span {
+    white-space: normal;
+}

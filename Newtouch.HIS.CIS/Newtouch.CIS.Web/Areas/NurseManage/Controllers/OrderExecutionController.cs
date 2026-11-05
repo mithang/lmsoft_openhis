@@ -511,10 +511,10 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         {
             return View();
         }
-        public IActionResult ApplyFormUploadForm()
-        {
-            return View();
-        }
+        // BA-007 (2026-11-05): action ApplyFormUploadForm() đã xóa — route chết đã chứng minh:
+        // không caller nào trong code/JS/view/menu-DB (Base/CIS demo+STG) trỏ tới URL này;
+        // view ApplyFormUploadForm.cshtml không tồn tại; luồng upload thật đã chạy qua
+        // ApplyFormUpload?sqdh=... + ApplyFormUpload.cshtml (không đụng tới).
         /// <summary>
         /// kỹ thuật y họcKhoachờThực hiệnPhiếu
         /// </summary>

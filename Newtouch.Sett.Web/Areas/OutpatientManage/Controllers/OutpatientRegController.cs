@@ -490,7 +490,10 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             {
                 return Content(_outpatientRegApp.Book(gh, DecimalParseHelper.ParseDecimal(ssk), fph, isCkf, isGbf, updateBrxz).ToString());
             }
-            return null;
+            // FA-014-B4 (BA-012): nhánh cũ rơi xuống `return null` — ASP.NET Core ném
+            // InvalidOperationException khi action trả về null. Trả lỗi tường minh
+            // (cùng helper Error() của ControllerBase) thay vì null.
+            return Error("Chức năng đặt trước chưa được bật (cấu hình OrderSwitch chưa đặt T).");
         }
 
         #endregion

@@ -21,6 +21,10 @@
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/dialog/dialog.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/cookie/jquery.cookie.js")"></script>
     <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" id="color-skin" />
+    @* BA-012: shell này (Layout = null) trước đây không nạp redesign-tokens.css — chỉ EMR Default có.
+       Nạp token ngay sau framework-theme.css, đúng vị trí như EMR Default, để shell hưởng đổi mới
+       giao diện + override sidebar chung (không đổi layout/route, chỉ thêm 1 <link> CSS). *@
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-tokens.css", false)" rel="stylesheet" />
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-ui.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/framework-clientdata.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/Newtouch-ui.js")"></script>

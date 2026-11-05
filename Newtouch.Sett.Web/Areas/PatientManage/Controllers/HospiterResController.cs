@@ -678,7 +678,10 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         public IActionResult PrintWDInfo(WDInfoVO print)
         {
 
-            if (string.IsNullOrWhiteSpace(print.patid) || print == null)
+            // FA-014-B4 (BA-012): thứ tự kiểm tra cũ `print.patid == ... || print == null`
+            // truy cập print.patid TRƯỚC khi kiểm tra null nên print null sẽ NRE thay vì
+            // trả lỗi như ý định. Đảo thứ tự: kiểm tra null trước.
+            if (print == null || string.IsNullOrWhiteSpace(print.patid))
             {
                 return Error("Thông tin cơ bản của bệnh nhân chưa đầy đủ，Không thể in Vòng đeo tay");
             }

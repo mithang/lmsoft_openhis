@@ -520,15 +520,24 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         {
             try
             {
+                // FA-014-B4 (BA-012): guard cũ chỉ đặt cờ isSuccess=false/state="0" rồi
+                // RƠI XUỐNG tiếp — vẫn gọi ZFToXNH_Step_4, GetZfToXnhPatInfo và API S04
+                // từ xa với zyh rỗng (guard chết). Trả lỗi ngay, đúng định dạng JSON
+                // mà action này vẫn trả (state/message) và JS gọi (InPatientQueryIndex
+                // kiểm tra ajaxresp.state != "1" rồi hiện modalAlert).
+                if (string.IsNullOrEmpty(zyh))
+                {
+                    var errData = new
+                    {
+                        state = "0",
+                        message = "Mã nhập viện không được để trống，Vui lòng thử lại！"
+                    };
+                    return Content(errData.ToJson());
+                }
+
                 bool isSuccess = true;
                 string message = string.Empty;
                 string state = "1";
-                if (string.IsNullOrEmpty(zyh))
-                {
-                    isSuccess = false;
-                    state = "0";
-                    message = "Mã nhập viện không được để trống，Vui lòng thử lại！";
-                }
 
                 string msg1 = "";
                 bool step04 = _inpatientApp.ZFToXNH_Step_4(zyh, patInfo.xnhgrbm, patInfo.xm, out msg1);
