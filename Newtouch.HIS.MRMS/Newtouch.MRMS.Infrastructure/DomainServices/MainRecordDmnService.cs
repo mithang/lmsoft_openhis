@@ -181,6 +181,14 @@ where organizeid=@orgId and zyh=@zyh and zt='1' ";
                 new SugarParameter("@zyh",zyh)
             }).FirstOrDefault();
 
+            // FA-008: vo null khi khong co hang V_EMR_MrBasy; goi
+            // GetMainRecordZyFeeDetail(vo...) ben duoi gay NRE (vo.GetType()).
+            // Khoi phuc y dinh cua vendor (block comment ben duoi): bao loi ro.
+            if (vo == null)
+            {
+                throw new FailedException("Không tìm thấy thông tin bệnh án của bệnh nhân, vui lòng liên hệ quản trị viên.");
+            }
+
             vo = GetMainRecordZyFeeDetail(vo, orgId, zyh);
             //if(vo!=null)
             //{

@@ -43,9 +43,13 @@ namespace Newtouch.MRMS.Web.Controllers
             return Content(new { state = "error", message = "Đăng nhập UA ngoài không khả dụng trong triển khai này (không có máy chủ UA)." }.ToJson());
         }
 
-        public IActionResult GetUALoginAddres(string appId)
-        {
-            return Content(new { state = "error", message = "Đăng nhập UA ngoài không khả dụng trong triển khai này (không có máy chủ UA)." }.ToJson());
-        }
+        // NOTE (FA-008, theo FA-006): no own GetUALoginAddres here on purpose.
+        // LoginBaseController.GetUALoginAddres is non-virtual and resolves the
+        // address from BusinessConfig (success + null data when unconfigured);
+        // redeclaring it made routing ambiguous (AmbiguousMatchException,
+        // HTTP 500 on every /Login/GetUALoginAddres) because ASP.NET Core
+        // discovers both the base and the hiding method as actions.
+        // UALogin (own stub above) is untouched: UA login itself stays an
+        // explicit error in this deployment.
     }
 }

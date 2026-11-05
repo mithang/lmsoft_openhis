@@ -62,9 +62,17 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
         #region Trang chức năng ký nhận bệnh án
         public IActionResult PatList(Pagination pagination, string keyword, string zyh, string type, string cyts, string blzt,string kssj,string jssj)
         {
+            // FA-008: Convert.ToInt32(type) nem FormatException khi type khong
+            // phai so (error JSON "Input string was not in a correct format.");
+            // null -> 0 nhu cu; so hop le giu nguyen; rac -> Error ro rang.
+            int typeCode = 0;
+            if (!string.IsNullOrWhiteSpace(type) && !int.TryParse(type, out typeCode))
+            {
+                return Error("Loại truy vấn không hợp lệ.");
+            }
             var chargeQueryList = new
             {
-                rows = _EMRDmnService.GetPagintionList(pagination, keyword, zyh, null, blzt, this.UserIdentity.rygh, this.OrganizeId, Convert.ToInt32(type),kssj,jssj),
+                rows = _EMRDmnService.GetPagintionList(pagination, keyword, zyh, null, blzt, this.UserIdentity.rygh, this.OrganizeId, typeCode,kssj,jssj),
                 total = pagination.total,
                 page = pagination.page,
                 records = pagination.records

@@ -152,6 +152,14 @@ namespace Newtouch.MRMS.Web.Areas.MRHomePage.Controllers
                 entity = _MainRecordDmnService.GetMainRecord(OrganizeId, keyValue);
             }
 
+            // FA-008: GetMainRecord/GetMainRecordbybrjbxx tra null khi keyValue/
+            // zyh khong co hang (vd keyValue=BAH thay vi Id); truyen null vao
+            // GetMainRecordZyFeeDetail gay NRE (error JSON "Object reference...").
+            if (entity == null)
+            {
+                return Error("Không tìm thấy trang đầu bệnh án.");
+            }
+
            // var data = _MainRecordDmnService.GetMainRecordZyFeeDetail(entity, OrganizeId, zyh);
             var data = _MainRecordDmnService.GetMainRecordZyFeeDetail(entity, OrganizeId, zyh);
             return Content(data.ToJson());
