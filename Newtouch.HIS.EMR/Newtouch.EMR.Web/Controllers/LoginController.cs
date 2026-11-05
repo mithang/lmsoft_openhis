@@ -49,16 +49,11 @@ namespace Newtouch.EMR.Web.Controllers
             return base.Index();
         }
 
-        /// <summary>
-        /// Logout: drop the operator identity and return to the login page.
-        /// (No server-side Session middleware on Core, so there is no Session to abandon.)
-        /// </summary>
-        [HttpGet]
-        public IActionResult OutLogin()
-        {
-            OperatorProvider.RemoveCurrent();
-            return RedirectToAction("Index", "Login");
-        }
+        // NOTE (FA-006): no own OutLogin here on purpose. LoginBaseController.OutLogin
+        // is non-virtual and does the same (RemoveCurrent + redirect Login/Index,
+        // plus LoginFromFlag cleanup); redeclaring it made routing ambiguous
+        // (AmbiguousMatchException, HTTP 500 on every /Login/OutLogin) because
+        // ASP.NET Core discovers both the base and the hiding method as actions.
 
         #region Đăng nhập ủy quyền thống nhất
 

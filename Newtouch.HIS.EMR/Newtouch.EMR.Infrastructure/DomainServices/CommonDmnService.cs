@@ -272,7 +272,7 @@ where a.[OrganizeId]=@orgId and a.zt='1'
         public IList<BlmbqxkzEntity> GetblmbDuty(string blmbId, OperatorModel user)
         {
             string sql = @"select isnull(b.Id,newid())Id,mbId,a.Code dutyCode,a.Name dutyName,case when ''='' and (a.Code='Doctor' or a.Code='Nurse')   then 2 else isnull( ctrlLevel,0) end ctrlLevel,case when ''='' and (a.Code='Doctor' or a.Code='Nurse')   then 'Quyền đọc/ghi' else  ctrlLevelDesc end ctrlLevelDesc,
-                            getdate() CreateTime ,@User CreatorCode,null LastModifyTime,null LastModifierCode,isnull(b.zt,1) zt,@OrgId OrganizeId
+                            getdate() CreateTime ,@User CreatorCode,CAST(NULL AS datetime) LastModifyTime,CAST(NULL AS nvarchar(50)) LastModifierCode,isnull(b.zt,1) zt,@OrgId OrganizeId
                             from [NewtouchHIS_Base].[dbo].[V_S_Sys_Duty] a with(nolock) 
                             left join [bl_mbqxkz] b with(nolock) on a.Code=b.dutyCode and b.mbid=@mbId and b.OrganizeId=@OrgId 
                             where a.zt=1";

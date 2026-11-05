@@ -62,7 +62,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 {
                     id = data.Id.ToString(),
                     value = data.Table_Name,
-                    text = data.Table_Name,
+                    text = data.Table_Name ?? "",
                     Ex1 = data.Table_EngLish_Name,
                     Ex2=data.Regex,
                     Ex3=data.Bllx,

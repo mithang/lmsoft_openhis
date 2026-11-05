@@ -43,7 +43,6 @@ LEFT JOIN NewtouchHIS_Sett.dbo.xt_brjbxx(NOLOCK)  xx on jz.blh=xx.blh and jz.Org
 WHERE jz.zt='1' 
 AND jz.OrganizeId=@orgId 
 AND jzzt<>" + ((int)EnumJzzt.NotYetTreate).ToString()+@"
---AND ss.DepartmentCode=jz.jzks 
 ";
             var parlist = new List<SugarParameter>
             {

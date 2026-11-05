@@ -1777,6 +1777,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         public string editorPross(string str)
         {
+            if (str == null) return "";
             string oldstr = "span style=&quot;color:black;font-size:9pt;background-color:white";
             string tip = "style=\"position:relative;left:4px;top:1px";
             return str.Replace(oldstr + "&quot;&gt; 常", oldstr + ";display:none&quot;&gt; 常")

@@ -246,6 +246,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         public IActionResult MedRecordTreeEditJson(string keyValue, string bllx,string zyh)
         {
             var pat = _ZybrjbxxRepo.FindEntity(p => p.zyh == zyh && p.OrganizeId == OrganizeId);
+            if (pat == null) return Error("Không tìm thấy bệnh nhân.");
 
             MedRecordTreeEditVO data = new MedRecordTreeEditVO();
             data.bllxId = keyValue;
@@ -439,6 +440,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             var zybrxx = _zybrjbxxRepo.FindEntity(p => p.zyh == zyh && p.OrganizeId == this.OrganizeId && p.zt == "1");
 
             var rulseentity = mrwritingrulesRepo.FindEntity(p => p.Bllx == bllx && p.OrganizeId == this.OrganizeId && p.zt == "1");
+            if (zybrxx == null) return Error("Không tìm thấy bệnh nhân.");
             var rulsdate = zybrxx.ryrq;
             if (rulseentity != null )
             {

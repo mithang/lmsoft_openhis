@@ -127,6 +127,7 @@ from bl_mbqxkz c with(nolock),NewtouchHIS_Base.dbo.V_C_Sys_StaffDuty d
 where c.OrganizeId=@orgId and mbId =@mbbh
 and c.dutyCode = d.DutyCode and d.StaffGh = @user ";
             }
+            if (string.IsNullOrWhiteSpace(sql)) return null;
             return this.FirstOrDefault<PatMedRecordTreeVO>(sql, new SugarParameter[] {
                 new SugarParameter("blId",blId??""),
                 new SugarParameter("mbbh",mbbh??""),
@@ -154,6 +155,7 @@ and a.jlwzsj between @kssj and @jssj
 order by jlwzsj,jlrq ";
             }
             
+            if (string.IsNullOrWhiteSpace(sql)) return new List<HljldataVO>();
             return FindList<HljldataVO>(sql, new[] {
                 new SugarParameter("@orgId", orgId),
                 new SugarParameter("@zyh", zyh),
