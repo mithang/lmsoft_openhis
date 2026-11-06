@@ -29,8 +29,9 @@
     <Reference Include="NewtouchHIS.Framework.Web">
       <HintPath>..\..\his-dll-common\Net6\NewtouchHIS.Framework.Web.dll</HintPath>
     </Reference>
+    <!-- NX11-001: Lib.Framework run-copy Oct 26 stale (7ce459d4) -> his-dll-common/Net6 (69ce92a1, build tuoi Release tu HEAD 4f88a51b; API-identical run-copy, 37 dong apidump nx11; DLL moi them vao his-dll-common vi truoc day chua co). Mau NX10-001. -->
     <Reference Include="NewtouchHIS.Lib.Framework">
-      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Framework.dll</HintPath>
+      <HintPath>..\..\his-dll-common\Net6\NewtouchHIS.Lib.Framework.dll</HintPath>
     </Reference>
     <!-- NX5-001: Lib.Base run-copy (fa27fc8f, thieu SiteBaseHospWebHost/UseTranStrict) -> his-dll-common/Net6 (5a54af46), mau NX-004/NX3-003/NX4-003. Khong goi truc tiep 2 member moi (grep 0 hit) nen redirect an toan. Redirect KHONG het MSB3277 (xung dot truyen dan) — dinh chinh NX4-003. -->
     <Reference Include="NewtouchHIS.Lib.Base">
@@ -40,8 +41,9 @@
     <Reference Include="NewtouchHIS.Lib.Redis">
       <HintPath>..\..\his-dll-common\Net6\NewtouchHIS.Lib.Redis.dll</HintPath>
     </Reference>
+    <!-- NX11-001: Lib.Services run-copy Oct 26 (350ca891) -> his-dll-common/Net6 (91cea542, API-identical run-copy + build tuoi HEAD, 126 dong apidump nx11, diff rong ca 3 chieu; giu ban his-dll-common san co theo tien le DrgGroup NX10-001). -->
     <Reference Include="NewtouchHIS.Lib.Services">
-      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Services.dll</HintPath>
+      <HintPath>..\..\his-dll-common\Net6\NewtouchHIS.Lib.Services.dll</HintPath>
     </Reference>
     <!-- NX9-001: Base.Domain run-copy Oct 26 stale (26cec002, submitRoleUser void -> CS4008 + bug crash C124 async void) -> his-dll-common/Net6 (a10bb9a9, build tuoi tu HEAD d9154270, NX8-003 refresh; reflection API-identical carrier NX7 7272d4ba per NX8-001). Mau NX5-001/NX8-001. -->
     <Reference Include="NewtouchHIS.Base.Domain">
