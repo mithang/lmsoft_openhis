@@ -20,6 +20,7 @@ using Newtouch.Core.Common.Utils;
 using System.Diagnostics;
 using Newtouch.Common;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using Newtouch.Common.Web;
 using NewtouchHIS.Lib.Framework.Attributes;
 
@@ -150,49 +151,30 @@ namespace Newtouch.HIS.Web.Controllers
                     return RedirectToAction("Index", "Home");
                 }
             }
-            var aaa = ConfigurationHelper.GetAppConfigValue("UAUserInfoGetAPI");
-            if (string.IsNullOrWhiteSpace(aaa))
+            OperatorModel opr = null;
+            try
             {
-                return RedirectToAction("Index", "Login");  //Chưa cấu hình đổi danh tínhAPIĐịa chỉ
-            }
-            //tớiAPIYêu cầu đổi danh tính
-            var sw = new Stopwatch();
-            sw.Start();
-            var reqObj = new
-            {
-                Timestamp = DateTime.Now,
-                AppId = Constants.AppId,
-                access_token = access_token
-            };
-            var apiResp = Tools.Net.HttpClientHelper.HttpPostStringAndRead<APIRequestHelper.DefaultResponse>(ConfigurationHelper.GetAppConfigValue("UAUserInfoGetAPI"), Tools.Json.ToJson(reqObj), contentType: Newtouch.Core.Common.Utils.HttpClientHelper.EnumContentType.json);
-            AppLogger.Info(string.Format("{0}Ủy quyền đăng nhập thống nhất，Lấy danh tínhAPIThời gian tốn yêu cầu{1}ms", Constants.AppId, sw.ElapsedMilliseconds));
-            sw.Reset();
-            if (apiResp.code != APIRequestHelper.ResponseResultCode.SUCCESS)
-            {
-                return RedirectToAction("Index", "Login");  //Đổi danh tính thất bại
-            }
-            sw.Start();
-            string account = "", organizeId = "";
-            var jObj = Tools.Json.ToJObject(apiResp.data.ToString());
-            foreach (JProperty prop in jObj.Properties())
-            {
-                if (prop.Name == "Account")
+                var json = NewtouchHIS.Lib.Base.Utilities.RedisHelper.GetString(access_token);
+                if (!string.IsNullOrWhiteSpace(json) && json != "SIDELINED")
                 {
-                    account = prop.Value.ToString();
-                }
-                else if (prop.Name == "OrganizeId")
-                {
-                    organizeId = prop.Value.ToString();
+                    opr = JsonConvert.DeserializeObject<OperatorModel>(json);
                 }
             }
-
-            Action acBeforeRedirect = () =>
+            catch
             {
-                AppLogger.Info(string.Format("{0}Ủy quyền đăng nhập thống nhất，QuickLoginSuccessThời gian tốn{1}ms", Constants.AppId, sw.ElapsedMilliseconds));
-                sw.Stop();
-            };
+                opr = null;
+            }
+            if (opr == null || (string.IsNullOrWhiteSpace(opr.UserId) && string.IsNullOrWhiteSpace(opr.UserCode)))
+            {
+                return RedirectToAction("Index", "Login"); // Token het han/khong hop le
+            }
 
-            return QuickLoginSuccess(account, organizeId, returnUrl: returnUrl, withToken: access_token, acBeforeRedirect: acBeforeRedirect);
+            OperatorProvider.AddCurrent(opr);
+            if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         /// <summary>

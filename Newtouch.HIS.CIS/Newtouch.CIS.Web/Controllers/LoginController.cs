@@ -12,6 +12,7 @@ using NewtouchHIS.Lib.Base.Utilities;
 using NewtouchHIS.Lib.Framework.Attributes;
 using NewtouchHIS.Lib.Framework.Operator;
 using Newtonsoft.Json.Linq;
+using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
 using System.Net.Http;
@@ -62,7 +63,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <summary>
         /// Đăng nhập ủy quyền thống nhất
         /// </summary>
-        public async Task<IActionResult> UALogin(string access_token, string returnUrl)
+        public IActionResult UALogin(string access_token, string returnUrl)
         {
             if (string.IsNullOrWhiteSpace(access_token))
             {
@@ -82,43 +83,30 @@ namespace Newtouch.CIS.Web.Controllers
                 }
             }
 
-            var uaApi = _config?["UAUserInfoGetAPI"];
-            if (string.IsNullOrWhiteSpace(uaApi))
-            {
-                return RedirectToAction("Index", "Login"); //Chưa cấu hình API địa chỉ
-            }
-
-            //Tới API yêu cầu đổi lấy danh tính
-            var sw = new Stopwatch();
-            sw.Start();
-            var reqObj = new
-            {
-                Timestamp = DateTime.Now,
-                AppId = Constants.AppId,
-                access_token = access_token
-            };
+            OperatorModel opr = null;
             try
             {
-                var handler = new HttpClientHandler { UseProxy = false };
-                using (var http = new HttpClient(handler))
+                var json = RedisHelper.GetString(access_token);
+                if (!string.IsNullOrWhiteSpace(json) && json != "SIDELINED")
                 {
-                    var resp = await http.PostAsync(uaApi,
-                        new StringContent(Newtonsoft.Json.JsonConvert.SerializeObject(reqObj), Encoding.UTF8, "application/json"));
-                    var body = await resp.Content.ReadAsStringAsync();
-                    var jResp = JObject.Parse(body);
-                    if (jResp["code"]?.ToString() != "0" && jResp["code"]?.ToString()?.ToUpper() != "SUCCESS")
-                    {
-                        return RedirectToAction("Index", "Login"); //Đổi lấy danh tính thất bại
-                    }
-                    sw.Stop();
-                    // Core has no QuickLoginSuccess equivalent: fall back to normal login.
-                    return RedirectToAction("Index", "Login");
+                    opr = JsonConvert.DeserializeObject<OperatorModel>(json);
                 }
             }
             catch
             {
-                return RedirectToAction("Index", "Login"); //Đổi lấy danh tính thất bại
+                opr = null;
             }
+            if (opr == null || (string.IsNullOrWhiteSpace(opr.UserId) && string.IsNullOrWhiteSpace(opr.UserCode)))
+            {
+                return RedirectToAction("Index", "Login"); // Token het han/khong hop le
+            }
+
+            OperatorProvider.AddCurrent(opr);
+            if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         /// <summary>

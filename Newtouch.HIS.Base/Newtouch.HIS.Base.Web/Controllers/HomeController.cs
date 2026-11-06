@@ -13,7 +13,8 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.HIS.Base.Web.Controllers
 {
-    [HandlerLogin]
+    // NX16-001: bo [HandlerLogin] (mau HOSP NX2-002) de duong adopt ?appId= chay duoc.
+    // Cac guard null-opr trong action duoc giu lai lam phong thu sau filter.
     public class HomeController : Controller
     {
         private readonly ICommonDmnService _commonDmnService;
@@ -27,7 +28,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            // Home mang [HandlerLogin] nên filter không chặn request ẩn danh:
+            // NX16-001: [HandlerLogin] da bo — filter chan request an danh truoc khi vao day:
             // không có session thì về Login (mẫu Organize) thay vì NRE kèm
             // stack trace ở GetCurrent().UserCode như trước.
             var opr = OperatorProvider.GetCurrent();

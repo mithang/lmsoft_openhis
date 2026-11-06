@@ -26,7 +26,9 @@ namespace Newtouch.HIS.Web.Controllers
     /// <summary>
     /// Trang chủ
     /// </summary>
-    [HandlerLogin]
+    // NX16-001: bo [HandlerLogin] (mau HOSP NX2-002) de duong adopt ?appId= chay duoc:
+    // FrameworkAuthorizationFilter se chan request an danh truoc khi vao action.
+    // Cac guard null-opr trong action duoc giu lai lam phong thu sau filter.
     public class HomeController : NewtouchHIS.Framework.Web.Controllers.HomeController
     {
         private readonly ISysUserExDmnService _sysUserDmnService;
@@ -58,7 +60,7 @@ namespace Newtouch.HIS.Web.Controllers
         [HttpGet]
         public override IActionResult Index()
         {
-            // Home mang [HandlerLogin] nên request ẩn danh vẫn vào đây:
+            // NX16-001: [HandlerLogin] da bo — request an danh bi filter chan truoc khi vao day;
             // không có session thì về Login thay vì NRE ở GetCurrent().UserCode.
             var opr = OperatorProvider.GetCurrent();
             if (opr == null)
@@ -193,7 +195,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         public IActionResult SetUserPharmacy(string yfbmCode, string mzzybz, string yfbmjb, string yfbmmc)
         {
-            // [HandlerLogin]: request ẩn danh vẫn vào đây; chặn trước khi
+            // NX16-001: [HandlerLogin] da bo — request an danh bi filter chan; giu guard phong thu:
             // chạm Constants.CurrentYfbm (bản thân getter cũng deref GetCurrent()).
             var curOpr = OperatorProvider.GetCurrent();
             if (curOpr == null)

@@ -13,6 +13,7 @@ using NewtouchHIS.Lib.Base.Model;
 using NewtouchHIS.Lib.Base.Utilities;
 using NewtouchHIS.Lib.Framework.Operator;
 using NewtouchHIS.Lib.Framework.Attributes;
+using Newtonsoft.Json;
 
 namespace Newtouch.Herp.Web.Controllers
 {
@@ -24,11 +25,10 @@ namespace Newtouch.Herp.Web.Controllers
     /// not administrators are rejected, exactly as the original did.
     /// UALogin is restored with the original's pre-exchange branches (empty
     /// token -&gt; login page; already-logged-in same token -&gt; returnUrl/Home).
-    /// The full token-exchange success path is NOT reproduced: it called an
-    /// external UAUserInfoGetAPI host and QuickLoginSuccess, neither of which
-    /// exists in the .NET 6 base or this deployment's config, so a token that
-    /// is not already the current session token falls through to the login
-    /// page exactly like the original's missing-config / failed-fetch branch.
+    /// NX16-001: the token-exchange success path IS now reproduced via the
+    /// HOSP pattern (NX2-002) — mint Redis-truc-tiep from access_token (the
+    /// SSO session key in shared Redis), NOT via the external UAUserInfoGetAPI
+    /// host / QuickLoginSuccess (neither exists in this deployment).
     /// No fake identity is ever created here.
     /// </summary>
     [HandlerLogin]
@@ -105,10 +105,30 @@ namespace Newtouch.Herp.Web.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            // Không có máy chủ UAUserInfoGetAPI trong cấu hình triển khai này
-            // (và bản gốc cũng về trang đăng nhập khi chưa cấu hình hoặc
-            // đổi danh tính thất bại): không tạo danh tính giả.
-            return RedirectToAction("Index", "Login");
+            OperatorModel opr = null;
+            try
+            {
+                var json = RedisHelper.GetString(access_token);
+                if (!string.IsNullOrWhiteSpace(json) && json != "SIDELINED")
+                {
+                    opr = JsonConvert.DeserializeObject<OperatorModel>(json);
+                }
+            }
+            catch
+            {
+                opr = null;
+            }
+            if (opr == null || (string.IsNullOrWhiteSpace(opr.UserId) && string.IsNullOrWhiteSpace(opr.UserCode)))
+            {
+                return RedirectToAction("Index", "Login"); // Token het han/khong hop le
+            }
+
+            OperatorProvider.AddCurrent(opr);
+            if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         [HttpGet]

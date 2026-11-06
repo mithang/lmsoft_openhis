@@ -7,6 +7,8 @@ using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Model;
 using NewtouchHIS.Lib.Base.Utilities;
 using NewtouchHIS.Lib.Framework.Attributes;
+using NewtouchHIS.Lib.Framework.Operator;
+using Newtonsoft.Json;
 
 namespace Newtouch.MRMS.Web.Controllers
 {
@@ -36,11 +38,50 @@ namespace Newtouch.MRMS.Web.Controllers
         }
 
         /// <summary>
-        /// Bên ngoài UA callback đăng nhập không có máy chủ tương ứng trong triển khai này, Báo lỗi rõ ràng thay vì thất bại thầm lặng.
+        /// NX16-001: port mau HOSP (NX2-002) — mint Redis-truc-tiep tu access_token
+        /// (khoa phien SSO trong Redis dung chung); thay stub tra loi JSON truoc day.
         /// </summary>
         public IActionResult UALogin(string access_token, string returnUrl)
         {
-            return Content(new { state = "error", message = "Đăng nhập UA ngoài không khả dụng trong triển khai này (không có máy chủ UA)." }.ToJson());
+            if (string.IsNullOrWhiteSpace(access_token))
+            {
+                return RedirectToAction("Index", "Login"); // Thieu token
+            }
+
+            var eOpr = OperatorProvider.GetCurrent();
+            if (eOpr != null && eOpr.token == access_token)
+            {
+                if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+                return RedirectToAction("Index", "Home");
+            }
+
+            OperatorModel opr = null;
+            try
+            {
+                var json = RedisHelper.GetString(access_token);
+                if (!string.IsNullOrWhiteSpace(json) && json != "SIDELINED")
+                {
+                    opr = JsonConvert.DeserializeObject<OperatorModel>(json);
+                }
+            }
+            catch
+            {
+                opr = null;
+            }
+            if (opr == null || (string.IsNullOrWhiteSpace(opr.UserId) && string.IsNullOrWhiteSpace(opr.UserCode)))
+            {
+                return RedirectToAction("Index", "Login"); // Token het han/khong hop le
+            }
+
+            OperatorProvider.AddCurrent(opr);
+            if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         // NOTE (FA-008, theo FA-006): no own GetUALoginAddres here on purpose.
@@ -49,7 +90,7 @@ namespace Newtouch.MRMS.Web.Controllers
         // redeclaring it made routing ambiguous (AmbiguousMatchException,
         // HTTP 500 on every /Login/GetUALoginAddres) because ASP.NET Core
         // discovers both the base and the hiding method as actions.
-        // UALogin (own stub above) is untouched: UA login itself stays an
-        // explicit error in this deployment.
+        // NX16-001: UALogin above now mints via Redis like HOSP (NX2-002);
+        // the stub error is gone.
     }
 }
