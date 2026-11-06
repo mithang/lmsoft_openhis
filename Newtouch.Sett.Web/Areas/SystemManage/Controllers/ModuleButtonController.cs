@@ -49,7 +49,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
         [HttpPost]
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysModuleButtonEntity moduleButtonEntity, string keyValue)
         {
             moduleButtonEntity.zt = moduleButtonEntity.zt == "true" ? "1" : "0";

@@ -73,7 +73,7 @@
         var postData = $("#form1").formSerialize();
         postData["ModuleId"] = moduleId;
         $.submitForm({
-            url: "/ModuleButton/SubmitForm?keyValue=" + keyValue,
+            url: "/SystemManage/ModuleButton/SubmitForm?keyValue=" + keyValue,
             param: postData,
             success: function () {
                 top.modulebutton.$("#gridList").resetSelection();
