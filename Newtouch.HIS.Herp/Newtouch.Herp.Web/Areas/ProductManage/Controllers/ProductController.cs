@@ -85,6 +85,7 @@ namespace Newtouch.Herp.Web.Areas.ProductManage.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitUnit(ProductUnitRelVo productUnitRelVo)
         {
             return _productApp.SubmitRelProductUnit(productUnitRelVo, OrganizeId) > 0 ? Success("Thao tác thành công") : Error("Thao tác thất bại");

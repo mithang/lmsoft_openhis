@@ -212,6 +212,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SaveInStorageInfo(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {
             crkdj.auditState = ((int)EnumAuditState.Waiting).ToString();
@@ -220,6 +221,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult TemporaryStorageInStorageInfo(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {
             crkdj.auditState = ((int)EnumAuditState.Temporary).ToString();
@@ -287,6 +289,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SaveDirectDelivery(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {
             var result = _storageApp.DirectDeliverySubmit(crkdj, crkdjmx);
@@ -315,6 +318,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SaveDeliveryOfReturn(KfCrkdjEntity crkdj, KfCrkmxEntity[] crkdjmx)
         {
             var result = _storageApp.DeliveryOfReturnSubmit(crkdj, crkdjmx);

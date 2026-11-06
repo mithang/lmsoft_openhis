@@ -267,7 +267,7 @@
         $.najax({
             type: "Post",
             url: "/SupplierManage/Supplier/SubmitContacts",
-            data: param,
+            data: $.extend({}, param, { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() }),
             dataType: "json",
             success: function (data) {
                 LoadContacts();

@@ -67,6 +67,7 @@ namespace Newtouch.Herp.Web.Areas.StorageManage.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult CarryOverProduct()
         {
             var ret = _kcKcjzDmnService.CarryOverProduct(Constants.CurrentKf.currentKfId, OrganizeId, OperatorProvider.GetCurrent().UserCode);

@@ -237,7 +237,7 @@
         $.najax({
             url: "/StorageManage/Storage/SaveDirectDelivery",
             type: "POST",
-            data: { crkdj: crkdj, crkdjmx: djmx },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  crkdj: crkdj, crkdjmx: djmx },
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {

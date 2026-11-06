@@ -552,7 +552,7 @@
         $.najax({
             type: "Post",
             url: "/ProductManage/Product/SubmitUnit",
-            data: param,
+            data: $.extend({}, param, { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() }),
             dataType: "json",
             success: function (data) {
                 LoadUnit();

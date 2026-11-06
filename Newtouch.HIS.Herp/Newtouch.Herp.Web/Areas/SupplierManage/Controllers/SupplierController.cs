@@ -123,6 +123,7 @@ namespace Newtouch.Herp.Web.Areas.SupplierManage.Controllers
         /// <param name="contactInfo"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitContacts(SupplierContactVO contactInfo)
         {
             if (contactInfo != null && !string.IsNullOrWhiteSpace(contactInfo.id))

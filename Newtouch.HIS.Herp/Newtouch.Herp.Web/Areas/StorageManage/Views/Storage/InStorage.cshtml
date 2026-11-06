@@ -652,7 +652,7 @@
         $.najax({
             url: "/StorageManage/Storage/SaveInStorageInfo",
             dataType: "json",
-            data: { crkdj: crkdj, crkdjmx: djmx },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  crkdj: crkdj, crkdjmx: djmx },
             type: "POST",
             success: function (data) {
                 if (data.state === 'success') {
@@ -691,7 +691,7 @@
         $.najax({
             url: "/StorageManage/Storage/TemporaryStorageInStorageInfo",
             dataType: "json",
-            data: { crkdj: crkdj, crkdjmx: djmx },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  crkdj: crkdj, crkdjmx: djmx },
             type: "POST",
             success: function (data) {
                 if (data.state === 'success') {
