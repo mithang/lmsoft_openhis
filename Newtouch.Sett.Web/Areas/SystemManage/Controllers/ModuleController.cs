@@ -27,11 +27,13 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         private readonly ISysModuleExRepo _sysModuleRepo;
         private readonly ISysModuleDmnService _sysModuleDmnService;
         private readonly Newtouch.Sett.Domain.IUserRoleAuthDmnService _userRoleAuthDmnService;
-        public ModuleController(ISysModuleExRepo sysModuleRepo, ISysModuleDmnService sysModuleDmnService, Newtouch.Sett.Domain.IUserRoleAuthDmnService userRoleAuthDmnService)
+        private readonly IModuleApp _moduleApp;
+        public ModuleController(ISysModuleExRepo sysModuleRepo, ISysModuleDmnService sysModuleDmnService, Newtouch.Sett.Domain.IUserRoleAuthDmnService userRoleAuthDmnService, IModuleApp moduleApp)
         {
             _sysModuleRepo = sysModuleRepo;
             _sysModuleDmnService = sysModuleDmnService;
             _userRoleAuthDmnService = userRoleAuthDmnService;
+            _moduleApp = moduleApp;
         }
 
 
@@ -86,6 +88,82 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             // chung minh bang endpoint diagnostic tam, da revert).
             return Content(treeList.TreeViewJson("0"));
         }
+
+        #region Quản lý menu (NX14-001)
+        // Port 5 action tu PDS ModuleController — truoc day controller Sett
+        // chi co GetModuleTreeJsonByName + Organizes, ca 5 duong nay 404
+        // (F-NX13-001; vendor Sett goc cung thieu). Theo quy uoc Sett:
+        // KHONG [HandlerAjaxOnly]/[ValidateAntiForgeryToken] nhu PDS
+        // (NX8-002: view Sett post tran khong gui token); topOrgId lay tu
+        // SysConfigReader nhu ModuleButtonController/RoleAuthorizeController.
+
+        /// <summary>
+        /// Thả xuống (Chọn thực đơn Chỉnh sửa Cấp trên) — Form.cshtml:97
+        /// bind ParentId vao day.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult GetTreeSelectJson()
+        {
+            var data = _moduleApp.GetValidList();
+            var treeList = new List<TreeSelectModel>();
+            foreach (SysModuleEntity item in data)
+            {
+                TreeSelectModel treeModel = new TreeSelectModel();
+                treeModel.id = item.Id;
+                treeModel.text = item.Name;
+                treeModel.parentId = item.ParentId;
+                treeList.Add(treeModel);
+            }
+            return Content(treeList.TreeSelectJson());
+        }
+
+        /// <summary>
+        /// Grid cây menu — Index.cshtml:64.
+        /// </summary>
+        /// <returns></returns>
+        [HttpGet]
+        public IActionResult GetTreeGridJson(string keyword)
+        {
+            var data = _sysModuleDmnService.GetTreeGridList(SysConfigReader.String("Top_OrganizeId"), keyword);
+            var treeList = new List<TreeGridModel>();
+            foreach (SysModuleVO item in data)
+            {
+                TreeGridModel treeModel = new TreeGridModel();
+                bool hasChildren = data.Count(t => t.ParentId == item.Id) == 0 ? false : true;
+                treeModel.id = item.Id;
+                treeModel.isLeaf = hasChildren;
+                treeModel.parentId = item.ParentId;
+                treeModel.expanded = hasChildren;
+                treeModel.entityJson = item.ToJson();
+                treeList.Add(treeModel);
+            }
+            return Content(treeList.TreeGridJson());
+        }
+
+        [HttpGet]
+        public IActionResult GetFormJson(string keyValue)
+        {
+            var data = _moduleApp.GetForm(keyValue);
+            return Content(data.ToJson());
+        }
+
+        [HttpPost]
+        public IActionResult SubmitForm(SysModuleEntity moduleEntity, string keyValue)
+        {
+            moduleEntity.zt = moduleEntity.zt == "true" ? "1" : "0";
+            _sysModuleDmnService.SubmitForm(moduleEntity, keyValue, SysConfigReader.String("Top_OrganizeId"));
+            return Success("Thao tác thành công。");
+        }
+
+        [HttpPost]
+        public IActionResult DeleteForm(string keyValue)
+        {
+            _moduleApp.DeleteForm(keyValue);
+            return Success("Xóa thành công。");
+        }
+
+        #endregion
 
         #region Phân quyền Cơ sở
         // NX8-002: port tu PDS ModuleController (itemType = 1, module) + theo

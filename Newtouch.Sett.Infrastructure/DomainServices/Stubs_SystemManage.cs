@@ -1,5 +1,6 @@
 using Newtouch.Sett.Domain;
 using Newtouch.Sett.Infrastructure;
+using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Framework.Operator;
 using SqlSugar;
 using System;
@@ -218,6 +219,46 @@ namespace Newtouch.Sett.DomainServices
 
     public class ModuleApp : IModuleApp
     {
+        // NX14-001 (D-NX14-001): port that tu PDS ModuleApp — truoc day class
+        // rong, interface rong; ModuleController.GetFormJson/DeleteForm/
+        // GetTreeSelectJson can 3 method nay. DB dich: Sett DB (SettDb),
+        // SQL tho theo mau NX8-002/NX9-002 (khong dung EF nhu PDS).
+        public void DeleteForm(string keyValue)
+        {
+            if (string.IsNullOrWhiteSpace(keyValue))
+            {
+                throw new FailedException("Vui lòng chọn một dòng thông tin.");
+            }
+            var childCount = SettDb.GetConnection().Ado.GetInt(
+                "select count(1) from Sys_Module where ParentId = @id",
+                new SugarParameter[] { new SugarParameter("@id", keyValue) });
+            if (childCount > 0)
+            {
+                throw new FailedException("Xóa thất bại! Đối tượng thao tác chứa dữ liệu cấp dưới.");
+            }
+            SettDb.GetConnection().Ado.ExecuteCommand(
+                "delete from Sys_Module where Id = @id",
+                new SugarParameter[] { new SugarParameter("@id", keyValue) });
+        }
+
+        public SysModuleEntity GetForm(string keyValue)
+        {
+            if (string.IsNullOrWhiteSpace(keyValue))
+            {
+                return null;
+            }
+            return SettDb.GetConnection().SqlQueryable<SysModuleEntity>(
+                    "select * from Sys_Module where Id = @id")
+                .AddParameters(new SugarParameter[] { new SugarParameter("@id", keyValue) })
+                .First();
+        }
+
+        public List<SysModuleEntity> GetValidList()
+        {
+            return SettDb.GetConnection().SqlQueryable<SysModuleEntity>(
+                    "select * from Sys_Module where zt = '1' order by px")
+                .ToList();
+        }
     }
 
     public class ModuleButtonApp : IModuleButtonApp
@@ -885,6 +926,119 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)")
                 .AddParameters(new SugarParameter[] {
                     new SugarParameter("@topOrganizeId", (object)topOrgId ?? DBNull.Value)
                 }).ToList();
+        }
+
+        // NX14-001 (D-NX14-001): port tu PDS SysModuleDmnService.SubmitForm.
+        // PDS dung EF (Modify/Create + EFDbTransaction); Sett dung SQL tho
+        // qua SettDb (mau NX8-002). Update 0 row -> FailedException (khong
+        // tra success gia — bai hoc BA-005/UseTranStrict). Insert moi: Id
+        // Guid moi + CreateTime/CreatorCode; neu co topOrgId thi tu dong
+        // chen 1 row uy quyen to chuc (ItemType=1) nhu PDS.
+        public void SubmitForm(SysModuleEntity moduleEntity, string keyValue, string topOrgId = null)
+        {
+            if (moduleEntity == null)
+            {
+                throw new FailedException("Dữ liệu menu trống.");
+            }
+            var creatorCode = OperatorProvider.GetCurrent() == null
+                ? string.Empty
+                : OperatorProvider.GetCurrent().UserCode;
+            var pars = new SugarParameter[]
+            {
+                new SugarParameter("@parentId", (object)moduleEntity.ParentId ?? DBNull.Value),
+                new SugarParameter("@name", (object)moduleEntity.Name ?? DBNull.Value),
+                new SugarParameter("@enName", (object)moduleEntity.EnName ?? DBNull.Value),
+                new SugarParameter("@code", (object)moduleEntity.Code ?? DBNull.Value),
+                new SugarParameter("@icon", (object)moduleEntity.Icon ?? DBNull.Value),
+                new SugarParameter("@urlAddress", (object)moduleEntity.UrlAddress ?? DBNull.Value),
+                new SugarParameter("@target", (object)moduleEntity.Target ?? DBNull.Value),
+                new SugarParameter("@px", (object)moduleEntity.px ?? DBNull.Value),
+                new SugarParameter("@description", (object)moduleEntity.Description ?? DBNull.Value),
+                new SugarParameter("@zt", (object)moduleEntity.zt ?? DBNull.Value),
+                new SugarParameter("@organizeId", (object)moduleEntity.OrganizeId ?? DBNull.Value),
+                new SugarParameter("@appId", (object)moduleEntity.AppId ?? DBNull.Value),
+                new SugarParameter("@creatorCode", (object)creatorCode ?? DBNull.Value),
+            };
+            if (!string.IsNullOrEmpty(keyValue))
+            {
+                var allPars = pars.Concat(new SugarParameter[]
+                {
+                    new SugarParameter("@id", keyValue),
+                }).ToArray();
+                var affected = SettDb.GetConnection().Ado.ExecuteCommand(
+                    @"update Sys_Module set ParentId = @parentId, Name = @name,
+EnName = @enName, Code = @code, Icon = @icon, UrlAddress = @urlAddress,
+Target = @target, px = @px, Description = @description, zt = @zt,
+OrganizeId = @organizeId, AppId = @appId,
+LastModifyTime = GETDATE(), LastModifierCode = @creatorCode
+where Id = @id", allPars);
+                if (affected == 0)
+                {
+                    throw new FailedException("Không tìm thấy menu cần sửa.");
+                }
+            }
+            else
+            {
+                var newId = Guid.NewGuid().ToString();
+                var insertPars = pars.Concat(new SugarParameter[]
+                {
+                    new SugarParameter("@id", newId),
+                }).ToArray();
+                SettDb.GetConnection().Ado.ExecuteCommand(
+                    @"insert into Sys_Module(Id, ParentId, Name, EnName, Code, Icon,
+UrlAddress, Target, px, Description, CreateTime, CreatorCode, zt, OrganizeId, AppId)
+values(@id, @parentId, @name, @enName, @code, @icon, @urlAddress, @target,
+@px, @description, GETDATE(), @creatorCode, @zt, @organizeId, @appId)", insertPars);
+                if (!string.IsNullOrWhiteSpace(topOrgId))
+                {
+                    SettDb.GetConnection().Ado.ExecuteCommand(
+                        @"insert into Sys_OrganizeAuthorize(Id, TopOrganizeId, ItemId, ItemType, CreateTime, CreatorCode, zt)
+values(newid(), @topOrganizeId, @moduleId, 1, GETDATE(), @creatorCode, '1')",
+                        new SugarParameter[]
+                        {
+                            new SugarParameter("@topOrganizeId", topOrgId),
+                            new SugarParameter("@moduleId", newId),
+                            new SugarParameter("@creatorCode", (object)creatorCode ?? DBNull.Value),
+                        });
+                }
+            }
+        }
+
+        // NX14-001 (D-NX14-001): grid Module/Index.cshtml can toan bo module +
+        // cot IsOpenToOrg. Mau UNION cua GetMenuButtonListByTopOrg (NX9-002),
+        // ap dung cho Sys_Module, ItemType=1; loc keyword theo Name nhu PDS.
+        public IList<SysModuleVO> GetTreeGridList(string topOrgId, string keyword)
+        {
+            var sql = @"select * from
+(
+select a.*, cast(1 as bit) IsOpenToOrg
+from Sys_Module a
+left join Sys_OrganizeAuthorize b
+on a.Id = b.ItemId
+where b.ItemType = 1
+and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)
+union
+select a.*, cast(0 as bit) IsOpenToOrg
+from Sys_Module a
+where a.Id not in
+(
+    select a.Id
+    from Sys_Module a
+    left join Sys_OrganizeAuthorize b
+    on a.Id = b.ItemId
+    where b.ItemType = 1
+    and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)
+)
+) as t order by px";
+            var data = SettDb.GetConnection().SqlQueryable<SysModuleVO>(sql)
+                .AddParameters(new SugarParameter[] {
+                    new SugarParameter("@topOrganizeId", (object)topOrgId ?? DBNull.Value)
+                }).ToList();
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                data = data.Where(t => (t.Name ?? "").Contains(keyword)).ToList();
+            }
+            return data;
         }
 
         public object ModuleButtonSubmitForm(object p0, object p1, object p2)

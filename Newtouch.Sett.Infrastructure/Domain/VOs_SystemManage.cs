@@ -91,14 +91,36 @@ namespace Newtouch.Sett.Domain
 
     // FrameworkBase.MultiOrg binary entity (Sys_Module table); props from
     // ModuleController + RoleAuthorizeController usage only.
+    // NX14-001 (D-NX14-001): mo rong du 17 cot cua Sys_Module tren Sett DB
+    // (da doi chieu INFORMATION_SCHEMA.COLUMNS) theo mau PDS SysModuleEntity
+    // de port GetFormJson/SubmitForm/DeleteForm/GetTreeGridJson — Form.cshtml
+    // bind EnName/Target/px/zt/Description, grid can cac cot do + audit.
     public class SysModuleEntity
     {
         public string Id { get; set; }
         public string ParentId { get; set; }
         public string Name { get; set; }
+        public string EnName { get; set; }
         public string Code { get; set; }
-        public string UrlAddress { get; set; }
         public string Icon { get; set; }
+        public string UrlAddress { get; set; }
+        public string Target { get; set; }
+        public int? px { get; set; }
+        public string Description { get; set; }
+        public DateTime CreateTime { get; set; }
+        public string CreatorCode { get; set; }
+        public DateTime? LastModifyTime { get; set; }
+        public string LastModifierCode { get; set; }
+        public string zt { get; set; }
+        public string OrganizeId { get; set; }
+        public string AppId { get; set; }
+    }
+
+    // NX14-001: VO cho GetTreeGridList — nhu SysModuleButtonVO (NX9-002):
+    // grid Module/Index.cshtml can cot IsOpenToOrg ("Co mo hay khong").
+    public class SysModuleVO : SysModuleEntity
+    {
+        public bool IsOpenToOrg { get; set; }
     }
 
     public class SysModuleButtonEntity

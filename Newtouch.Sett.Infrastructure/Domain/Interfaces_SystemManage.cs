@@ -72,7 +72,11 @@ namespace Newtouch.Sett.Domain
 
     public interface IModuleApp
     {
-        // no calls observed
+        // NX14-001 (D-NX14-001): port tu PDS IModuleApp — ModuleController
+        // can 3 method nay (truoc day interface rong, class stub rong).
+        void DeleteForm(string keyValue);
+        SysModuleEntity GetForm(string keyValue);
+        List<SysModuleEntity> GetValidList();
     }
 
     public interface IModuleButtonApp
@@ -265,6 +269,12 @@ namespace Newtouch.Sett.Domain
         List<SysModuleButtonEntity> GetOpenMenuButtonListByTopOrg(string topOrgId);
         IList<SysModuleEntity> GetOpenMenuListByTopOrg(string topOrgId);
         object ModuleButtonSubmitForm(object p0, object p1, object p2);
+        // NX14-001 (D-NX14-001): port tu PDS SysModuleDmnService — Module
+        // add/edit dung SubmitForm (update neu keyValue, insert + tu dong
+        // uy quyen to chuc neu chua co); grid Module/Index dung
+        // GetTreeGridList (toan bo module + co IsOpenToOrg).
+        void SubmitForm(SysModuleEntity moduleEntity, string keyValue, string topOrgId = null);
+        IList<SysModuleVO> GetTreeGridList(string topOrgId, string keyword);
         void UpdateAuthOrganizeList(string moduleId, string orgList, int itemType);
     }
 
