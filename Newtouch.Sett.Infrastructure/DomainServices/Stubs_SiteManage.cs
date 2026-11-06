@@ -91,7 +91,7 @@ namespace Newtouch.Sett.DomainServices
             SELECT Sys_Organize.* FROM cteTree INNER JOIN Sys_Organize ON cteTree.Id = Sys_Organize.ParentId and Sys_Organize.zt = '1')
         SELECT * FROM cteTree";
             return SettDb.GetBaseConnection().SqlQueryable<SysOrganizeVEntity>(sql)
-                .AddParameters(new SugarParameter("@parentOrgId", parentOrgId)).ToList();
+                .AddParameters(new SugarParameter[] { new SugarParameter("@parentOrgId", parentOrgId) }).ToList();
         }
 
         public IList<SysOrganizeVEntity> GetValidTopOrgList()
