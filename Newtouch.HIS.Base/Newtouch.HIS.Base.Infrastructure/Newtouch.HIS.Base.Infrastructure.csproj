@@ -17,8 +17,25 @@
 
   <ItemGroup>
     <!-- net6.0 vendor base layer (read-only references; run copy is never modified) -->
+    <!-- NX4-003: Lib.Base KHONG dung run-copy nua — DLL run-copy fa27fc8f (Oct 26,
+         truoc BA-005) thieu UseTranStrict va SiteBaseHospWebHost; run-copy tuyet
+         doi khong sua. Tro sang build-reference trong repo (his-dll-common/Net6,
+         5a54af46, co ca hai) theo dung mau NX-004 (MRQC) / NX3-003 (HOSP.Web):
+         build khong duoc phu thuoc vao thu muc deploy live; ban trong repo la
+         tham chieu co kiem soat va tuoi hon. Infrastructure khong goi truc tiep
+         UseTranStrict/SiteBaseHospWebHost (grep 0 hit) nen redirect an toan.
+         DINH CHINH NX3: warning MSB3277 con lai trong log build HOSP.Web cua NX3
+         KHONG phai xung dot Lib.Base — 10 block MSB3277 deu la xung dot truyen dan
+         (Microsoft.Extensions.Options, Microsoft.IdentityModel.Tokens,
+         System.Drawing.Common), 0 block nao xung dot NewtouchHIS.Lib.Base
+         (duong run-copy Lib.Base.dll chi xuat hien ben trong cac block do).
+         Redirect nay KHONG duoc bao la het MSB3277; so sanh log build truoc/sau.
+         Cac DLL vendor khac (Lib.Framework, DataBaseSvr, Framework.Web) giu
+         nguyen HintPath run-copy. GHI CHU: Base.Web va Base.HOSP.API van tro
+         run-copy Lib.Base (giong CIS/EMR/Herp/MRMS/OR/PDS/Sett — loi nay co khap
+         cay); de chuong trinh rieng, khong mo rong trong NX4-003. -->
     <Reference Include="NewtouchHIS.Lib.Base">
-      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Base.dll</HintPath>
+      <HintPath>..\..\his-dll-common\Net6\NewtouchHIS.Lib.Base.dll</HintPath>
     </Reference>
     <Reference Include="NewtouchHIS.Lib.Framework">
       <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Framework.dll</HintPath>
