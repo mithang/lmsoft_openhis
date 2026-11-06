@@ -1114,7 +1114,7 @@ where ypId=@ypId");
             modelypsx.mbxl = model.mbxl;
             modelypsx.mryf = model.mryf;
             modelypsx.ybgg = model.ybgg;
-            //modelypsx.zt = model.zt;
+            modelypsx.zt = model.zt;
 
             #endregion
         }
