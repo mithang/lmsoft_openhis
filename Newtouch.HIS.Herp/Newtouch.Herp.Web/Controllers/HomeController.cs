@@ -40,7 +40,11 @@ namespace Newtouch.Herp.Web.Controllers
             _sysConfigRepo = sysConfigRepo;
         }
 
-        public IActionResult Index()
+        // MUST be override: BaseController (tổ tiên của ControllerBase) đã định nghĩa
+        // virtual Index() [HttpGet][HandlerAuthorize] { return View(); }. Khai báo
+        // không override sẽ bị action discovery chọn method gốc -> ViewBag rỗng
+        // (đây là nguyên nhân header OrgName rỗng sau commit 03f64d72).
+        public override IActionResult Index()
         {
             // D-SHELL-002: cấp đủ 3 ViewBag org theo mẫu MRMS (1 org duy nhất,
             // tên đọc từ [NewtouchHIS_Base]..Sys_Organize; không bịa org).
