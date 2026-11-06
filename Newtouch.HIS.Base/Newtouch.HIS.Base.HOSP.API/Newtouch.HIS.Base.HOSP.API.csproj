@@ -32,8 +32,9 @@
     <Reference Include="NewtouchHIS.Lib.Framework">
       <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Framework.dll</HintPath>
     </Reference>
+    <!-- NX5-001: Lib.Base run-copy (fa27fc8f, thieu SiteBaseHospWebHost/UseTranStrict) -> his-dll-common/Net6 (5a54af46), mau NX-004/NX3-003/NX4-003. Khong goi truc tiep 2 member moi (grep 0 hit) nen redirect an toan. Redirect KHONG het MSB3277 (xung dot truyen dan) — dinh chinh NX4-003. -->
     <Reference Include="NewtouchHIS.Lib.Base">
-      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Base.dll</HintPath>
+      <HintPath>..\..\his-dll-common\Net6\NewtouchHIS.Lib.Base.dll</HintPath>
     </Reference>
     <Reference Include="NewtouchHIS.Lib.Redis">
       <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Redis.dll</HintPath>
