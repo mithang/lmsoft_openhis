@@ -53,6 +53,11 @@ namespace Newtouch.HIS.Domain.Entity
         /// <summary>
         /// 
         /// </summary>
+        // NX21-003 (D-NX21-003): khong co cot 'ysbz' trong bang Sys_Staff
+        // (kiem chung INFORMATION_SCHEMA tren NewtouchHIS_Base); SqlSugar map moi
+        // property mac dinh -> SELECT/INSERT/UPDATE deu loi "Invalid column
+        // name 'ysbz'". Khoi phuc hanh vi EF goc bang IsIgnore. Khong DDL (cam).
+        [SugarColumn(IsIgnore = true)]
         public byte ysbz { get; set; }
 
         /// <summary>

@@ -38,6 +38,11 @@ namespace Newtouch.HIS.Domain.Entity
         /// <summary>
         /// 
         /// </summary>
+        // NX21-003 (D-NX21-003): khong co cot 'TopOrganizeId' trong bang xt_yfck
+        // (kiem chung INFORMATION_SCHEMA tren NewtouchHIS_Base); SqlSugar map moi
+        // property mac dinh -> SELECT/INSERT/UPDATE deu loi "Invalid column
+        // name 'TopOrganizeId'". Khoi phuc hanh vi EF goc bang IsIgnore. Khong DDL (cam).
+        [SugarColumn(IsIgnore = true)]
         public string TopOrganizeId { get; set; }
 
         /// <summary>

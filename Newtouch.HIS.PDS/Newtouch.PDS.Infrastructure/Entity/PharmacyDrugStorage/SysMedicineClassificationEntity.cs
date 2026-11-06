@@ -33,21 +33,41 @@ namespace Newtouch.HIS.Domain.Entity
         /// <summary>
         /// 
         /// </summary>
+        // NX21-003 (D-NX21-003): khong co cot 'OrganizeId' trong bang xt_ypfl
+        // (kiem chung INFORMATION_SCHEMA tren NewtouchHIS_Base); SqlSugar map moi
+        // property mac dinh -> SELECT/INSERT/UPDATE deu loi "Invalid column
+        // name 'OrganizeId'". Khoi phuc hanh vi EF goc bang IsIgnore. Khong DDL (cam).
+        [SugarColumn(IsIgnore = true)]
         public string OrganizeId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        // NX21-003 (D-NX21-003): khong co cot 'TopOrganizeId' trong bang xt_ypfl
+        // (kiem chung INFORMATION_SCHEMA tren NewtouchHIS_Base); SqlSugar map moi
+        // property mac dinh -> SELECT/INSERT/UPDATE deu loi "Invalid column
+        // name 'TopOrganizeId'". Khoi phuc hanh vi EF goc bang IsIgnore. Khong DDL (cam).
+        [SugarColumn(IsIgnore = true)]
         public string TopOrganizeId { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        // NX21-003 (D-NX21-003): khong co cot 'flid' trong bang xt_ypfl
+        // (kiem chung INFORMATION_SCHEMA tren NewtouchHIS_Base); SqlSugar map moi
+        // property mac dinh -> SELECT/INSERT/UPDATE deu loi "Invalid column
+        // name 'flid'". Khoi phuc hanh vi EF goc bang IsIgnore. Khong DDL (cam).
+        [SugarColumn(IsIgnore = true)]
         public string flid { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        // NX21-003 (D-NX21-003): khong co cot 'flmc' trong bang xt_ypfl
+        // (kiem chung INFORMATION_SCHEMA tren NewtouchHIS_Base); SqlSugar map moi
+        // property mac dinh -> SELECT/INSERT/UPDATE deu loi "Invalid column
+        // name 'flmc'". Khoi phuc hanh vi EF goc bang IsIgnore. Khong DDL (cam).
+        [SugarColumn(IsIgnore = true)]
         public string flmc { get; set; }
 
         /// <summary>

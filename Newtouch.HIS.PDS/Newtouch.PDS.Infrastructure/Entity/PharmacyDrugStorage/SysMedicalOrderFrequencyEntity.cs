@@ -43,11 +43,21 @@ namespace Newtouch.HIS.Domain.Entity
         /// <summary>
         /// 
         /// </summary>
+        // NX21-003 (D-NX21-003): khong co cot 'zxzq2' trong bang xt_yzpc
+        // (kiem chung INFORMATION_SCHEMA tren NewtouchHIS_Base); SqlSugar map moi
+        // property mac dinh -> SELECT/INSERT/UPDATE deu loi "Invalid column
+        // name 'zxzq2'". Khoi phuc hanh vi EF goc bang IsIgnore. Khong DDL (cam).
+        [SugarColumn(IsIgnore = true)]
         public string zxzq2 { get; set; }
 
         /// <summary>
         /// 
         /// </summary>
+        // NX21-003 (D-NX21-003): khong co cot 'zxzq4' trong bang xt_yzpc
+        // (kiem chung INFORMATION_SCHEMA tren NewtouchHIS_Base); SqlSugar map moi
+        // property mac dinh -> SELECT/INSERT/UPDATE deu loi "Invalid column
+        // name 'zxzq4'". Khoi phuc hanh vi EF goc bang IsIgnore. Khong DDL (cam).
+        [SugarColumn(IsIgnore = true)]
         public string zxzq4 { get; set; }
 
         /// <summary>
