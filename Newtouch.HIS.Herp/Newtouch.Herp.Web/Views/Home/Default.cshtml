@@ -1,0 +1,336 @@
+﻿@* SHELL-B (D-SHELL-003): dashboard hien tai doi tu Index.cshtml sang day —
+   nguyen 13 link nav tren home cu da bo (khong con tren home; menu sidebar
+   lay tu authorizeMenu theo D-SHELL-007, cac link cu van vao duoc bang URL
+   truc tiep). Cac endpoint GetNeedDealDiv/GetPsiByKf/GetRkCountByLx/getmesquery/
+   GetPendingCount + hanh vi mo tab qua top.top.$.Newtouchtab giu nguyen. *@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Trang chủ — Hệ thống quản lý vật tư</title>
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-font.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/framework-theme.css")" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-tokens.css", false)" rel="stylesheet" />
+    @* U7-004: nạp design system chung (portal.css) như CIS/EMR — chỉ thêm
+       1 <link> CSS; rule riêng Herp neo bằng body[data-appid="Herp"].
+       Không đổi layout/route, không đổi chữ/link/đích/dữ liệu. *@
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/redesign-portal.css", false)" rel="stylesheet" />
+    <link href="@MvcHelper.GetStaticResourceScriptUrl("~/css/common.css")" rel="stylesheet" />
+    <style>
+        .dashboard-stats { float: left; width: 20%; }
+        .dashboard-stats-item { position: relative; overflow: hidden; color: #fff; cursor: pointer; height: 105px; margin-right: 25px; margin-bottom: 10px; padding: 20px 20px; }
+        .dashboard-stats-item .m-top-none { margin-top: 2px; }
+        .dashboard-stats-item h2 { font-size: 35px; font-family: inherit; line-height: 1.1; font-weight: 500; }
+        .dashboard-stats-item h5 { font-size: 14px; font-family: inherit; margin-top: 3px; line-height: 1.1; }
+        .dashboard-stats-item .stat-icon { position: absolute; top: 10px; right: 10px; font-size: 30px; opacity: .3; }
+        .panel-default { border: none; border-radius: 0; margin-bottom: 0; box-shadow: none; -webkit-box-shadow: none; }
+        .panel-default > .panel-heading { color: #777; background-color: #fff; border-color: #e6e6e6; padding: 10px 10px; }
+        .panel-default > .panel-body { padding: 10px; padding-bottom: 0; }
+    </style>
+    @* REDESIGN home-responsive (chặng C): dashboard trong iframe co giãn theo viewport.
+       KPI: desktop giữ tối đa 5 thẻ/hàng (float gốc), tablet 3 cột, mobile 2 cột
+       (class .rd-kpi-grid của foundation + rule con ở đây vì thẻ KPI dùng float 20%);
+       2 cột biểu đồ xếp dọc ở <=991px; không scale, không thu nhỏ font. *@
+    <style>
+        #areascontent { min-width: 0; }
+        @@media (max-width: 767px) { body { padding: 16px !important; } }
+        .dashboard-stats-item h5, .dashboard-stats-item h4 { padding-right: 40px; line-height: 1.35; }
+        @@media (max-width: 991px) {
+            #areascontent .rows > div { float: none !important; width: 100% !important; }
+            #areascontent .rows > div > div { height: auto !important; }
+            #container { min-width: 0 !important; width: 100% !important; }
+            canvas { max-width: 100% !important; }
+        }
+        @@media (max-width: 767px) {
+            .rd-kpi-grid { display: grid !important; grid-template-columns: 1fr 1fr; gap: 12px; }
+            .rd-kpi-grid::before, .rd-kpi-grid::after { display: none !important; content: none !important; }
+            .rd-kpi-grid > * { float: none !important; width: auto !important; }
+            .rd-kpi-grid .dashboard-stats, .rd-kpi-grid .dashboard-statss { float: none !important; width: auto !important; }
+            .rd-kpi-grid .dashboard-stats-item { margin-right: 0 !important; height: auto !important; min-height: 105px; padding: 16px 12px; }
+            .rd-kpi-grid .dashboard-stats-item h2 { font-size: 28px; line-height: 1.2; }
+            .rd-kpi-grid .dashboard-stats-item h5, .rd-kpi-grid .dashboard-stats-item h4 { line-height: 1.35; white-space: normal; }
+            .rd-kpi-grid .dashboard-stats-item .stat-icon { font-size: 22px; }
+        }
+        @@media (min-width: 768px) and (max-width: 991px) {
+            .rd-kpi-grid { display: grid !important; grid-template-columns: repeat(3, 1fr); gap: 12px; }
+            .rd-kpi-grid::before, .rd-kpi-grid::after { display: none !important; content: none !important; }
+            .rd-kpi-grid > * { float: none !important; width: auto !important; }
+            .rd-kpi-grid .dashboard-stats, .rd-kpi-grid .dashboard-statss { float: none !important; width: auto !important; }
+            .rd-kpi-grid .dashboard-stats-item { margin-right: 0 !important; height: auto !important; min-height: 105px; }
+            .rd-kpi-grid .dashboard-stats-item h5, .rd-kpi-grid .dashboard-stats-item h4 { line-height: 1.35; white-space: normal; }
+        }
+    </style>
+</head>
+<body style="padding: 20px 30px; font-family: sans-serif;" data-appid="Herp">
+    <p id="p_msgalert" style="color:#6b7280;">Đang tải cảnh báo…</p>
+    <div id="areascontent">
+        <div class="rows" style="margin-bottom: 1%; border: 1px solid #e6e6e6; overflow: hidden; padding-left: 1px;">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                    <i class="fa fa-line-chart fa-lg" style="padding-right: 5px;"></i>Số lượng cần xử lý
+                </div>
+                <div class="panel-body rd-kpi-grid" style="width:100%" id="dv_needDeal"></div>
+            </div>
+        </div>
+        <div class="rows" style="overflow: hidden;">
+            <div style="float: left; width: 64%;">
+                <div style="height: 380px; border: 1px solid #e6e6e6; background-color: #fff;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading">
+                            <i class="fa fa-area-chart fa-lg" style="margin-right:5px;"></i>Thống kê nhập–xuất–tồn
+                            <div style="float: right">
+                                <span style="font-weight: 500;"><i id="i_Item1" class="fa fa-square" style="font-size: 15px; padding:0 2px; vertical-align: middle;"></i></span>
+                                <span style="margin-left: 10px; font-weight: 500;"><i id="i_Item2" class="fa fa-square" style="font-size: 15px; padding:0 2px; vertical-align: middle; "></i></span>
+                                <span style="margin-left: 10px; font-weight: 500;"><i id="i_Item3" class="fa fa-square" style=" font-size: 15px; padding:0 2px; vertical-align: middle; "></i></span>
+                            </div>
+                        </div>
+                        <div class="panel-body" style="padding-bottom: 0;width:100%;">
+                            <canvas id="PSIStatistics" style="height: 285px; width: 100%; padding-right: 10px;"></canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div style="float: right; width: 35%;">
+                <div style="height: 380px; border: 1px solid #e6e6e6; background-color: #fff;">
+                    <div class="panel panel-default">
+                        <div class="panel-heading"><i style="margin-right:5px;" class="fa fa-pie-chart fa-lg"></i>Thống kê nhập kho năm nay</div>
+                        <div class="panel-body">
+                            <div id="container" style="min-width:350px;height:300px"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/jquery/jquery-2.1.1.min.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/charts/Chart.js")"></script>
+    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/highcharts/highcharts.js", false)"></script>
+    <script type="text/javascript">
+        $(function () {
+            GetNeedDealDiv();
+            GetPSIByKf();
+            GetRKCountByLx();
+            GetMsgQuery();
+            $("#dv_needDeal").on("click", "div", function () {
+                // Trong portal thì mở tab, mở độc lập thì điều hướng trực tiếp.
+                var menuName = $(this).attr("menuName"), menuUrl = $(this).attr("menuUrl");
+                try {
+                    if (top.top.$ && top.top.$.Newtouchtab) {
+                        top.top.$.Newtouchtab.tryCloseTab({ name: menuName, url: menuUrl });
+                        top.top.$.Newtouchtab.addTabWithOutMenu({ name: menuName, enName: "", url: menuUrl });
+                        return;
+                    }
+                } catch (e) { /* khác origin với khung cha: rơi về điều hướng trực tiếp */ }
+                if (menuUrl) { window.location = menuUrl; }
+            });
+        });
+
+        // Lấy khối "cần xử lý"
+        function GetNeedDealDiv() {
+            $.ajax({
+                type: "Get",
+                url: "/Home/GetNeedDealDiv?r=" + Math.random(),
+                dataType: "json",
+                success: function (ajaxresp) {
+                    if (ajaxresp != null && ajaxresp.state === "success") {
+                        $("#dv_needDeal").html(ajaxresp.data);
+                        GetPendingCount();
+                    }
+                }
+            });
+        }
+
+        // Lấy thống kê theo tháng
+        function GetPSIByKf() {
+            $.ajax({
+                type: "Get",
+                url: "/Home/GetPsiByKf?r=" + Math.random(),
+                dataType: "json",
+                success: function (ajaxresp) {
+                    if (ajaxresp != null && ajaxresp.length > 2) {
+                        GetPSIStatisticsChart(ajaxresp);
+                        $("#i_Item1").html(ajaxresp[0].ItemName);
+                        $("#i_Item1").css("color", "#7cb5ec");
+                        $("#i_Item2").html(ajaxresp[1].ItemName);
+                        $("#i_Item2").css("color", "#434348");
+                        $("#i_Item3").html(ajaxresp[2].ItemName);
+                        $("#i_Item3").css("color", "#90ed7d");
+                    }
+                }
+            });
+        }
+
+        // Vẽ biểu đồ đường (Chart.js v1, đúng API bản gốc dùng)
+        function GetPSIStatisticsChart(monthlySummary) {
+            // Bản gốc ghi nhầm nhãn tháng 9 thành tháng 8 (2 lần tháng 8); bản này sửa thành Th.9.
+            var lineChartData = {
+                labels: ["Th.1", "Th.2", "Th.3", "Th.4", "Th.5", "Th.6", "Th.7", "Th.8", "Th.9", "Th.10", "Th.11", "Th.12"],
+                datasets: [
+                    {
+                        label: monthlySummary[0].ItemName,
+                        fillColor: "rgba(124, 181, 236,0.2)",
+                        strokeColor: "rgba(124, 181, 236,1)",
+                        pointColor: "rgba(124, 181, 236,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(124, 181, 236,1)",
+                        data: [monthlySummary[0].January,
+                        monthlySummary[0].February,
+                        monthlySummary[0].March,
+                        monthlySummary[0].April,
+                        monthlySummary[0].May,
+                        monthlySummary[0].June,
+                        monthlySummary[0].July,
+                        monthlySummary[0].August,
+                        monthlySummary[0].September,
+                        monthlySummary[0].October,
+                        monthlySummary[0].November,
+                        monthlySummary[0].December]
+                    },
+                    {
+                        label: monthlySummary[1].ItemName,
+                        fillColor: "rgba(60, 60, 60,0.2)",
+                        strokeColor: "rgba(60, 60, 60,1)",
+                        pointColor: "rgba(60, 60, 60,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(60, 60, 60,1)",
+                        data: [monthlySummary[1].January,
+                        monthlySummary[1].February,
+                        monthlySummary[1].March,
+                        monthlySummary[1].April,
+                        monthlySummary[1].May,
+                        monthlySummary[1].June,
+                        monthlySummary[1].July,
+                        monthlySummary[1].August,
+                        monthlySummary[1].September,
+                        monthlySummary[1].October,
+                        monthlySummary[1].November,
+                        monthlySummary[1].December]
+                    },
+                    {
+                        label: monthlySummary[2].ItemName,
+                        fillColor: "rgba(144, 237, 125,0.2)",
+                        strokeColor: "rgba(144, 237, 125,1)",
+                        pointColor: "rgba(144, 237, 125,1)",
+                        pointStrokeColor: "#fff",
+                        pointHighlightFill: "#fff",
+                        pointHighlightStroke: "rgba(144, 237, 125,1)",
+                        data: [monthlySummary[2].January,
+                        monthlySummary[2].February,
+                        monthlySummary[2].March,
+                        monthlySummary[2].April,
+                        monthlySummary[2].May,
+                        monthlySummary[2].June,
+                        monthlySummary[2].July,
+                        monthlySummary[2].August,
+                        monthlySummary[2].September,
+                        monthlySummary[2].October,
+                        monthlySummary[2].November,
+                        monthlySummary[2].December]
+                    }
+                ]
+            }
+            var ctx = document.getElementById("PSIStatistics").getContext("2d");
+            window.myLine = new Chart(ctx).Line(lineChartData, {
+                responsive: false,
+                bezierCurve: false
+            });
+        }
+
+        // Lấy thống kê nhập kho theo loại phiếu
+        function GetRKCountByLx() {
+            $.ajax({
+                type: "Get",
+                url: "/Home/GetRkCountByLx",
+                dataType: "json",
+                success: function (ajaxresp) {
+                    if (ajaxresp != null) {
+                        GetLeaveChart(ajaxresp);
+                    }
+                }
+            });
+        }
+
+        // Vẽ biểu đồ tròn
+        // REDESIGN home-responsive: panel trống không để trắng trơn — trạng thái rỗng
+        // trung tính + hành động tiếp theo, không bịa số liệu.
+        function GetLeaveChart(pData) {
+            var total = 0;
+            if (pData) { for (var i = 0; i < pData.length; i++) { total += Number(pData[i].y) || 0; } }
+            if (!pData || pData.length === 0 || total === 0) {
+                $("#container").html('<div class="rd-empty"><div style="font-size:28px;">&#9432;</div><p>Chưa có số liệu nhập kho trong năm nay.</p><p class="rd-empty-action"><a class="btn btn-default" href="/PurchaseManage/Purchase/Index">Xem quản lý mua sắm</a></p></div>');
+                return;
+            }
+            Highcharts.chart('container', {
+                chart: {
+                    plotBackgroundColor: null,
+                    plotBorderWidth: null,
+                    plotShadow: false,
+                    type: 'pie'
+                },
+                title: {
+                    text: ''
+                },
+                tooltip: {
+                    pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b><br/>Tổng số: {point.y:,.0f}'
+                },
+                plotOptions: {
+                    pie: {
+                        allowPointSelect: true,
+                        cursor: 'pointer',
+                        dataLabels: {
+                            enabled: false
+                        },
+                        showInLegend: true
+                    }
+                },
+                series: [{
+                    name: 'Tỷ trọng',
+                    colorByPoint: true,
+                    data: pData
+                }]
+            });
+            $(".highcharts-credits").hide();
+        }
+
+        // Lấy tổng số cần xử lý, đổ vào các thẻ dashboard
+        function GetPendingCount() {
+            $.ajax({
+                type: "Get",
+                url: "/Home/GetPendingCount?r=" + Math.random(),
+                dataType: "json",
+                success: function (ajaxresp) {
+                    if (ajaxresp != null) {
+                        $("#h_tjshCount").html(ajaxresp.tjshCount);
+                        $("#h_tjwzCount").html(ajaxresp.tjwzCount);
+                        $("#h_ckdshCount").html(ajaxresp.ckdshCount);
+                        $("#h_wbrkCount").html(ajaxresp.wbrkCount);
+                        $("#h_nbthCount").html(ajaxresp.nbthCount);
+                        $("#h_rkdshCount").html(ajaxresp.rkdshCount);
+                        $("#h_expriedWzCount").html(ajaxresp.expriedWzCount);
+                    }
+                }
+            });
+        }
+
+        // Lấy cảnh báo tồn kho / quá hạn
+        function GetMsgQuery() {
+            $.ajax({
+                type: "Post",
+                url: "/Home/getmesquery",
+                dataType: "json",
+                success: function (da) {
+                    if (da != null) {
+                        $("#p_msgalert").html("Cảnh báo tồn kho: <b>" + da.kcyj + "</b> mặt hàng &nbsp;|&nbsp; Cảnh báo quá hạn: <b>" + da.gqyj + "</b> mặt hàng");
+                    }
+                },
+                error: function () {
+                    $("#p_msgalert").html("Không tải được cảnh báo tồn kho / quá hạn.");
+                }
+            });
+        }
+    </script>
+</body>
+</html>
