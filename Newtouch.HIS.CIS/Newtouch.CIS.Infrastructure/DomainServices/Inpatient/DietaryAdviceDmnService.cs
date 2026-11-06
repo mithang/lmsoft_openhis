@@ -20,13 +20,18 @@ namespace Newtouch.DomainServices.Inpatient
     {
         private readonly IInpatientDietBaseRepo _inpatientDietBaseRepo;
         /// <summary>
-        /// Mặc địnhHàm khởi tạosố
+        /// Khởi tạo bằng constructor injection (NX-001, mẫu BA-003 DoctorserviceDmnService).
+        /// Trước đây ctor rỗng, field readonly _inpatientDietBaseRepo không bao giờ
+        /// được gán, nên SubmitService chạm tới _inpatientDietBaseRepo.IQueryable()
+        /// là NullReferenceException ngay khi có dữ liệu (reqdietaryservices.Count > 0).
+        /// Không giữ ctor không tham số: DI sẽ fail-fast lúc khởi động nếu thiếu
+        /// đăng ký, thay vì NRE lúc chạy. Dependency đã đăng ký AddScoped trong
+        /// CIS.Web/Program.cs:125 và CIS.API/Program.cs:140.
         /// </summary>
-        /// <param name="databaseFactory">EFtrêndướivănNhà máy</param>
-        public DietaryAdviceDmnService()
+        public DietaryAdviceDmnService(IInpatientDietBaseRepo inpatientDietBaseRepo)
             : base()
         {
-
+            _inpatientDietBaseRepo = inpatientDietBaseRepo;
         }
         public DAFormVO GetFormJson(string keyvalue)
         {
