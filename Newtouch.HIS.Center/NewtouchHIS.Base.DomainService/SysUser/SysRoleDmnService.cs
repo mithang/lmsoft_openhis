@@ -57,7 +57,10 @@ namespace NewtouchHIS.Base.DomainService
         public async Task DeleteForm(string keyValue)
         {
             var result = await GetByWhere<SysRoleEntity>(DBEnum.UnionDb.ToString(), p => p.zt == "1" && p.Id == keyValue);
-            if (result == null)
+            // NX8-003 (D-NX8-003): GetByWhere tra [] chu khong tra null khi
+            // khong co row — guard cu (result == null) chet nen result[0] nem
+            // "Index was out of range" thay vi FailedException da viet san.
+            if (result == null || result.Count == 0)
             {
                 throw new FailedException("Xóa thất bại,Truy vấn không có thông tin");
             }
@@ -136,11 +139,13 @@ namespace NewtouchHIS.Base.DomainService
             return data;
         }
 
-        public async Task<SysRoleEntity> GetForm(string keyword)
+        // NX8-003 (D-NX8-003): data[0] nem "Index was out of range" khi Id
+        // khong ton tai; tra null de GetFormJson (SSO + Sett) serialize thanh
+        // "null" nhu tien le FA-001/SysModule khi khong tim thay thuc the.
+        public async Task<SysRoleEntity?> GetForm(string keyword)
         {
             var data = await GetByWhere<SysRoleEntity>(p => p.Id == keyword);
-            SysRoleEntity sysRoleEntity = data[0];
-            return sysRoleEntity;
+            return data.FirstOrDefault();
         }
     }
 }

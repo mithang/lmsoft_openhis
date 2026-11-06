@@ -53,11 +53,11 @@ namespace NewtouchHIS.Base.Domain.Organize
         Task<List<SysRoleEntity>> GetPagintionList(string orgId, string? keyword = null);
 
         /// <summary>
-        /// Lấy thực thể vai trò
+        /// Lấy thực thể vai trò (trả null khi không tìm thấy — NX8-003)
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>
-        Task<SysRoleEntity> GetForm(string keyword);
+        Task<SysRoleEntity?> GetForm(string keyword);
         /// <summary>
         /// Danh sách vai trò hệ thống
         /// </summary>
