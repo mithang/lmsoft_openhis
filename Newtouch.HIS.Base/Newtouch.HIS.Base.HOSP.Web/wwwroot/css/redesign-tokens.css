@@ -210,6 +210,16 @@ table.form .formValue .form-control:focus {
     outline: none;
 }
 
+/* NX15: 4 view Form của HOSP (Role/Staff/ReportManagement Form+MianForm)
+   mang inline style "width: 98%; margin-left: -34px" trên div.panel-body,
+   đẩy bảng form sang trái 8px khỏi viewport nên nhãn phải dài nhất
+   ("Thứ tự hiển thị:" ở Role/Form) bị cắt mất chữ đầu. Ghi đè margin về 0
+   (giữ width 98%): chỉ thắng inline style này, không đụng layout khác.
+   !important là bắt buộc vì đây là inline style. */
+div.panel-body[style*="margin-left: -34px"] {
+    margin-left: 0 !important;
+}
+
 /* Panel: bo góc card + bóng nhẹ, giữ nguyên màu viền của framework.
    Selector div.panel / .panel.panel-default để thắng Bootstrap ở cả
    _Index lẫn _Form (Bootstrap nạp sau token trong _Form). */
@@ -228,6 +238,13 @@ div.panel {
 
 /* ---- 7. Mobile (viewport giả lập, không app native) ------------------- */
 @media (max-width: 767px) {
+    /* NX15: footer bản quyền trong sidebar (#nav-col.login-foot, inline
+       width:14%) ở mobile chỉ còn ~54px nên chữ xếp dọc thành dải hẹp
+       không đọc được; ẩn hẳn dưới 768px (sidebar mobile vốn đã thu gọn). */
+    #nav-col.login-foot {
+        display: none;
+    }
+
     /* Toolbar: bỏ float (theme đặt .toolbar{float:left}), xếp hàng
        co được, nút đủ 44px chạm (§9.5). Chỉ áp dụng dưới 768px để
        desktop giữ nguyên bố cục đang chạy. */
