@@ -1,7 +1,11 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtouch.EMR.Web.Models;
+using NewtouchHIS.Lib.Base;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Utilities;
 using NewtouchHIS.Lib.DataBaseSvr;
+using NewtouchHIS.Lib.Framework.Operator;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -11,8 +15,12 @@ namespace Newtouch.EMR.Web.Controllers
 {
     /// <summary>
     /// Home landing page + the two Home actions the EMR views call.
-    /// The Framework portal frame is replaced by a minimal landing view (same as MRQC);
-    /// EMR business pages are opened directly from the SSO portal menus.
+    /// SHELL-C (S5-7, D-SHELL-002): the portal frame is INTACT (Index 357
+    /// lines, shell + 4 partials); Index() now supplies the 3 org ViewBags
+    /// the shell reads (single-org MRQC pattern: org name from BaseDb via
+    /// SqlSugarDbContext; EMR has no organize service) + loginFromFlag as
+    /// in the original; UserOrgChoose()/SwithOrg() added (view + header
+    /// prompt already call them, both actions were missing -> 404).
     /// Note: the original HomeController declared _sysConfigRepo/_sysUserDmnService fields
     /// with no constructor, so the original SyncSysConfigParams could never run; the
     /// Core version implements it directly on the Base DB instead.
@@ -21,7 +29,61 @@ namespace Newtouch.EMR.Web.Controllers
     {
         public IActionResult Index()
         {
+            var opr = OperatorProvider.GetCurrent();
+            if (opr == null)
+            {
+                return Redirect("/Login/Index");
+            }
+            ViewBag.loginFromFlag = HttpWebHelper.GetCookie(ConfigInitHelper.SysConfig.AppId + "_LoginFromFlag") ?? "UNKNOWN";
+            string orgId = opr.OrganizeId ?? "";
+            string orgName = GetOrgName(orgId);
+            ViewBag.MediOrgList = new List<SysOrganizeV>
+            {
+                new SysOrganizeV { Id = orgId, Name = orgName }
+            };
+            ViewBag.OrgName = orgName;
+            ViewBag.NeedChooseOrg = false;
             return View();
+        }
+
+        public IActionResult UserOrgChoose()
+        {
+            var opr = OperatorProvider.GetCurrent();
+            string orgId = opr?.OrganizeId ?? "";
+            ViewBag.MediOrgList = new List<SysOrganizeV>
+            {
+                new SysOrganizeV { Id = orgId, Name = GetOrgName(orgId) }
+            };
+            return View();
+        }
+
+        /// <summary>
+        /// Doi org hep don-org (mau MRMS/Sett/MRQC/CIS): chi chap nhan doi ve
+        /// dung org hien tai; doi sang org khac tra loi (luong da-org day du
+        /// nam trong base nhi phan FrameworkBase.MultiOrg da mat).
+        /// </summary>
+        public IActionResult SwithOrg(string dstnOrgId)
+        {
+            var opr = OperatorProvider.GetCurrent();
+            if (opr != null && string.Equals(dstnOrgId, opr.OrganizeId, StringComparison.OrdinalIgnoreCase))
+            {
+                return Content(new { state = "success" }.ToJson());
+            }
+            return Content(new { state = "error", message = "Chuyển đổi cơ sở y tế khác không khả dụng trong triển khai đơn cơ sở này." }.ToJson());
+        }
+
+        private static string GetOrgName(string orgId)
+        {
+            string orgName = orgId;
+            try
+            {
+                var name = SqlSugarDbContext.Db.GetConnection("BaseDb").Ado.GetString(
+                    "select top 1 Name from [NewtouchHIS_Base].[dbo].[Sys_Organize] with(nolock) where Id = @id",
+                    new SugarParameter("@id", orgId));
+                if (!string.IsNullOrWhiteSpace(name)) orgName = name;
+            }
+            catch { /* fall back to org id */ }
+            return orgName;
         }
 
         /// <summary>
