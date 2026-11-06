@@ -914,6 +914,20 @@ where ypId=@ypId");
                        new SugarParameter("@tsypbz", ypEntity.tsypbz),
                         };
                         db.ExecuteSqlCommand(strSql.ToString(), paraList);
+                        // Lấy ypId vừa sinh cho dòng xt_ypsx: trước đây ypsxEntity.ypId
+                        // luôn = 0 nên mọi lần sửa thuốc vừa tạo đều NRE (không tìm
+                        // thấy dòng xt_ypsx theo ypId). Không dùng SCOPE_IDENTITY() dạng
+                        // scalar (FirstOrDefault<int> trả 0 ở SqlSugar bản này); tra lại
+                        // dòng vừa chèn theo (ypCode, OrganizeId) — cùng mẫu
+                        // FirstOrDefault<SysMedicineBaseVO> đã dùng ở nhánh update,
+                        // cùng transaction nên thấy dòng chưa commit của chính mình.
+                        var inserted = db.FirstOrDefault<SysMedicineBaseVO>("select * from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + ".dbo.xt_yp where ypCode=@ypCode and OrganizeId=@OrganizeId order by ypId desc", new SugarParameter("@ypCode", ypEntity.ypCode), new SugarParameter("@OrganizeId", ypEntity.OrganizeId));
+                        if (inserted == null || inserted.ypId <= 0)
+                        {
+                            throw new FailedException("Không lấy được mã thuốc vừa tạo");
+                        }
+                        ypEntity.ypId = inserted.ypId;
+                        ypsxEntity.ypId = inserted.ypId;
 
                         //Chèn thuộc tính thuốc
                         var strSql2 = new StringBuilder();
