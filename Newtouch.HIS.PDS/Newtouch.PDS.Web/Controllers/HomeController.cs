@@ -1,5 +1,6 @@
 using NewtouchHIS.Lib.Framework.Attributes;
 using NewtouchHIS.Lib.Base.Extension;
+using NewtouchHIS.Lib.DataBaseSvr;
 using NewtouchHIS.Framework.Web.Implementation;
 using NewtouchHIS.Lib.Framework.Filter;
 using NewtouchHIS.Lib.Base.Model;
@@ -20,6 +21,7 @@ using Newtouch.HIS.Domain.DO;
 using Newtouch.HIS.Domain.IRepository;
 using Newtouch.Infrastructure.Model;
 using Newtouch.HIS.Domain.ValueObjects;
+using SqlSugar;
 
 namespace Newtouch.HIS.Web.Controllers
 {
@@ -69,6 +71,26 @@ namespace Newtouch.HIS.Web.Controllers
             }
             var cookieLoginFlag = Request.Cookies[Constants.AppId + "_" + opr.UserCode + "_" + "LoginFlag"];
             ViewBag.cookieLoginFlag = cookieLoginFlag;
+            // SHELL-C (S5-15, D-SHELL-002): Index doc 3 ViewBag org (truoc day
+            // base.Index() bare tra null) — mau don-org MRQC: ten org doc truc
+            // tiep tu BaseDb (PDS ISysOrganizeDmnService khong co
+            // GetNameByOrgId/GetMedicalOrganizeListByUserId).
+            string orgId = opr.OrganizeId ?? "";
+            string orgName = orgId;
+            try
+            {
+                var name = SqlSugarDbContext.Db.GetConnection("BaseDb").Ado.GetString(
+                    "select top 1 Name from [NewtouchHIS_Base].[dbo].[Sys_Organize] with(nolock) where Id = @id",
+                    new SugarParameter("@id", orgId));
+                if (!string.IsNullOrWhiteSpace(name)) orgName = name;
+            }
+            catch { /* fall back to org id */ }
+            ViewBag.MediOrgList = new List<SysOrganizeVEntity>
+            {
+                new SysOrganizeVEntity { Id = orgId, Name = orgName }
+            };
+            ViewBag.OrgName = orgName;
+            ViewBag.NeedChooseOrg = false;
             return base.Index();
         }
 
