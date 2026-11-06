@@ -1,5 +1,10 @@
 ﻿@using NewtouchHIS.Lib.Framework.Operator;
 
+@* NX24-CSRF2 (D-NX24-003): Home/Index + SSOIndex đều Layout = null nên không
+   hưởng @Html.AntiForgeryToken() của layout _Index; render token ngay trong
+   partial này để caller SaveShortcutMenu (dòng 124) có token gửi kèm. *@
+@Html.AntiForgeryToken()
+
 @{
     var opr = OperatorProvider.GetCurrent();
 }
