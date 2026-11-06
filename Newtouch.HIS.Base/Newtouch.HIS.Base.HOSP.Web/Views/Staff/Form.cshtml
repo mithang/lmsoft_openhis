@@ -347,6 +347,7 @@
 
         var formData = new FormData();
         formData.append("file", $("#dzqmUpload")[0].files[0]);
+        formData.append("__RequestVerificationToken", $('[name=__RequestVerificationToken]').val());
         var Picture = $('#form1 [name="dzqmUpload"]').prop('files');//Ảnh
 
         $.submitForm({

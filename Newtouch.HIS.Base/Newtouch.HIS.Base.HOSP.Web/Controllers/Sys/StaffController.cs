@@ -221,6 +221,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 		}
 		[HttpPost]
 		[HandlerAjaxOnly]
+		[ValidateAntiForgeryToken]
 		public IActionResult FileUpLoad(string staffId, string orgId)
 		{
 			var pUpImage = Request.Form.Files["file"];

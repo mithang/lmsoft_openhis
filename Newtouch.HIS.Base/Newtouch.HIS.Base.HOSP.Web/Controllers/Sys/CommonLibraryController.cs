@@ -135,6 +135,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult Sync(List<int> idList,string organizeId,string Type)
         {
             //Mặc định lấy tổ chức của người dùng đang đăng nhập

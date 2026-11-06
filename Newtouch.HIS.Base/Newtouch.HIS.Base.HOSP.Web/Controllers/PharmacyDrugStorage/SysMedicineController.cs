@@ -145,6 +145,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult YibaoUploadApi(int ypId, string flag)
         {
             if (ypId <= 0)

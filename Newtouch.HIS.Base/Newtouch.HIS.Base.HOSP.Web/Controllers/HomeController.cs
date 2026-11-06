@@ -125,6 +125,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         /// <param name="orgId"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SwithOrg(string dstnOrgId)
         {
             var opr = OperatorProvider.GetCurrent();

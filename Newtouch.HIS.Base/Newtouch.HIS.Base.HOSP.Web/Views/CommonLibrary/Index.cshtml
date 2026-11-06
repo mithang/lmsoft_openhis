@@ -455,7 +455,7 @@
         $.najax({
             url: "/CommonLibrary/Sync",
             type: "POST",
-            data: {Type:"yp",idList :selectedIdList,organizeId: $("#OrganizeId").val()},
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), Type:"yp",idList :selectedIdList,organizeId: $("#OrganizeId").val()},
             dataType: "json",
             async: false,
             success: function (data) {
@@ -517,7 +517,7 @@
         $.najax({
             url: "/SysMedicine/YibaoUploadApi",
             type: "POST",
-            data: { ypId: row.ypId, flag: row.zt },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  ypId: row.ypId, flag: row.zt },
             dataType: "json",
             async: false,
             success: function (data) {
@@ -646,7 +646,7 @@
         $.najax({
             url: "/CommonLibrary/Sync",
             type: "POST",
-            data: {Type:"sfdl",idList :selectedIdList,organizeId: $("#OrganizeId").val()},
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), Type:"sfdl",idList :selectedIdList,organizeId: $("#OrganizeId").val()},
             dataType: "json",
             async: false,
             success: function (data) {
@@ -797,7 +797,7 @@
         $.najax({
             url: "/CommonLibrary/Sync",
             type: "POST",
-            data: {Type:"hc",idList :selectedIdList,organizeId: $("#OrganizeId").val()},
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), Type:"hc",idList :selectedIdList,organizeId: $("#OrganizeId").val()},
             dataType: "json",
             async: false,
             success: function (data) {
@@ -926,7 +926,7 @@
         $.najax({
             url: "/CommonLibrary/Sync",
             type: "POST",
-            data: {Type:"sfxm",idList :selectedIdList,organizeId: $("#OrganizeId").val()},
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), Type:"sfxm",idList :selectedIdList,organizeId: $("#OrganizeId").val()},
             dataType: "json",
             async: false,
             success: function (data) {
@@ -1023,7 +1023,7 @@
         $.najax({
             url: "/CommonLibrary/Sync",
             type: "POST",
-            data: {Type:"yzpc",idList :selectedIdList,organizeId: $("#OrganizeId").val()},
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), Type:"yzpc",idList :selectedIdList,organizeId: $("#OrganizeId").val()},
             dataType: "json",
             async: false,
             success: function (data) {

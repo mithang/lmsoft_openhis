@@ -234,7 +234,7 @@
         $.najax({
             url: "/SysChargeItem/YibaoUploadApi",
             type: "POST",
-            data: { sfxmId: row.sfxmId, flag: row.zt },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  sfxmId: row.sfxmId, flag: row.zt },
             dataType: "json",
             async: false,
             success: function (data) {

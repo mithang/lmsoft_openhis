@@ -26,7 +26,7 @@
     function SwithOrg(dstnOrgId) {
         $.najax({
             url: "/Home/SwithOrg",
-            data: { dstnOrgId: dstnOrgId },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  dstnOrgId: dstnOrgId },
             type: "post",
             dataType: "json",
             success: function (data) {
