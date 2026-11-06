@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using Newtouch.Sett.Domain;
 using Newtouch.Sett.Infrastructure;
 using NewtouchHIS.Lib.Base;
@@ -32,6 +33,241 @@ namespace Newtouch.Sett.DomainServices
             public object GetWardbyDept(object p0, object p1, object p2)
         {
             return null;
+        }
+
+        // SHELL-A: port thật từ vendor
+        // Newtouch.HIS.DomainServices/CommonDmnService.cs (GetVisitNum /
+        // GetWeekNum / GetLastWeek) — SQL verbatim, chỉ đổi FindList EF
+        // thành SettDb SqlQueryable; chỉ đọc, không ghi. Được Home/Default
+        // gọi qua /Home/GetVisitNum, /Home/GetWeekNum, /Home/GetLastWeek.
+        public VisitNumBO GetVisitNum(string configmethod, string orgId = null)
+        {
+            var method = (configmethod ?? "").ToLower();
+            var outpatientlist = new List<OutpatientVisitNumVO>();
+            var sqlStr = new StringBuilder();
+            sqlStr.Append(@"--Năm hiện tại
+                DECLARE @currYear varchar(30)=(Convert(varchar, year(getdate()),10))
+                --Tháng hiện tại
+                DECLARE @currYearMoth varchar(30)
+                SET @currYearMoth=@currYear+'01';
+                SELECT col, isnull(num1,0) num FROM [dbo].[f_split](''+@currYear+'01,'+@currYear+'02,'+@currYear+'03,'+@currYear+'04,'+@currYear+'05,'+@currYear+'06,'+@currYear+'07,'+@currYear+'08,'+@currYear+'09,'+@currYear+'10,'+@currYear+'11,'+@currYear+'12',',')
+                LEFT JOIN
+                (
+	                select groupDate, count(1) num1 from
+	                (
+	                select distinct CONVERT(varchar(6), groupDate, 112) groupDate, patid
+	                from
+	                (");
+            if (method == "reg")
+            {
+                sqlStr.Append(@"   SELECT    CONVERT(VARCHAR(6), ISNULL(gh.ghrq,
+                                                              CreateTime), 112) AS groupDate,
+                                                    mzh patid
+                                          FROM      mz_gh gh
+                                          WHERE gh.zt = '1'
+                                                    AND ISNULL(gh.ghzt, '') <> '2'
+                                                    AND OrganizeId = @orgId
+                                                    AND CONVERT(VARCHAR(6), ISNULL(gh.ghrq,
+                                                              CreateTime), 112) >= @currYearMoth");
+            }
+            else if (method == "exce")
+            {
+                sqlStr.Append(@"  SELECT  CONVERT(VARCHAR(6), zx.zxsj, 112) AS groupDate ,
+                        jh.patid
+                FROM    dbo.mz_jzjhmxzx (NOLOCK) zx
+                        LEFT JOIN dbo.mz_jzjhmx mx ON mx.jzjhmxId = zx.jzjhmxId
+                                                      AND mx.OrganizeId = @orgId
+                        INNER JOIN dbo.mz_jzjh jh ON jh.jzjhId = mx.jzjhId
+                                                     AND jh.OrganizeId = @orgId
+                WHERE   zx.zt = '1'
+                        AND zx.OrganizeId = @orgId
+                        AND CONVERT(VARCHAR(6), zx.zxsj, 112) >= @currYearMoth");
+            }
+            else
+            {
+                sqlStr.Append(@" select convert(varchar(6),
+		                isnull(ssrq, sfrq),
+		                112) AS groupDate , patid
+	                from mz_xm  where zt = '1' and OrganizeId=@orgId and convert(varchar(6),isnull(ssrq, sfrq), 112) >=@currYearMoth");
+            }
+            sqlStr.Append(@")aaa
+	                ) bbb
+	                group by bbb.groupDate
+                    ) AS a
+                    ON a.groupDate=col
+                    ORDER BY col");
+            outpatientlist = SettDb.GetConnection().SqlQueryable<OutpatientVisitNumVO>(sqlStr.ToString())
+                .AddParameters(new SugarParameter[] { new SugarParameter("@orgId", orgId) }).ToList();
+
+            var inpatientList = new List<InpatientVisitNumVO>();
+            var sqlStr3 = new StringBuilder();
+            List<InpatientVisitBasicVO> zyList = null;
+            sqlStr3.Append(@"select zyh, zybz, ryrq, cyrq
+                                    from zy_brjbxx
+                                    where zt = '1' and zybz <> 9
+                                    and OrganizeId = @orgId
+                                     AND ( zybz <> 3
+                                      AND ( ryrq >= @startTime
+                                            AND ryrq < @entTime
+                                          )
+                                      OR ( cyrq >= @startTime
+                                           AND cyrq < @entTime
+                                         ))");
+            zyList = SettDb.GetConnection().SqlQueryable<InpatientVisitBasicVO>(sqlStr3.ToString())
+                .AddParameters(new SugarParameter[] {
+                    new SugarParameter("@orgId", orgId),
+                    new SugarParameter("@startTime", new DateTime(DateTime.Now.Year, 1, 1)),
+                    new SugarParameter("@entTime", new DateTime(DateTime.Now.Year + 1, 1, 1)),
+                }).ToList();
+
+            var nowYear = DateTime.Now.Year;
+            var nowMonth = DateTime.Now.Month;
+            string ycy = ((int)EnumZYBZ.Ycy).ToString();
+            for (var i = 0; i < 12; i++)
+            {
+                var num = 0;
+                if (i < nowMonth)
+                {
+                    num = zyList.Count(p =>
+                    (p.ryrq >= new DateTime(nowYear, (i + 1), 1)
+                    && p.ryrq < new DateTime(nowYear, (i + 1), 1).AddMonths(1)
+                    || (p.cyrq >= new DateTime(nowYear, (i + 1), 1)
+                    && p.cyrq < new DateTime(nowYear, (i + 1), 1).AddMonths(1)))
+                    || (p.zybz != ycy && p.ryrq < new DateTime(nowYear, (i + 1), 1)));
+                }
+                inpatientList.Add(new InpatientVisitNumVO()
+                {
+                    num = num,
+                });
+            }
+
+            return new VisitNumBO
+            {
+                OutpatientList = outpatientlist,
+                InpatientList = inpatientList,
+                zyrs = zyList.Count,
+            };
+        }
+
+        public MonthVisitNumBO GetWeekNum(string configmethod, string orgId)
+        {
+            var method = (configmethod ?? "").ToLower();
+            List<OutpatientWeekVisitNumVO> outpatientlist = null;
+            var basic = @"WITH    cteTree
+                              AS ( SELECT   DATEADD(wk, DATEDIFF(wk, 0, GETDATE()), 0) wbegin ,
+                                            GETDATE() wend
+                                   UNION ALL
+                                   SELECT   DATEADD(d, -7, wbegin) wbegin ,
+                                            DATEADD(d, -1, wbegin) wend
+                                   FROM     cteTree
+                                   WHERE    wbegin > DATEADD(wk, -9,
+                                         DATEADD(wk,
+                                                 DATEDIFF(wk, 0, GETDATE()), 0)))";
+            var sqlStr = new StringBuilder(basic);
+            if (method == "reg")
+            {
+                sqlStr.Append(@"    SELECT DISTINCT
+                                    CONVERT(VARCHAR(10), aaa.wbegin, 25) wbegin ,
+                                    CONVERT(VARCHAR(10), aaa.wend, 25) wend ,
+                                    COUNT(1) num
+                            FROM    ( SELECT  DISTINCT  cte.wbegin ,
+                                                cte.wend ,
+                                                CONVERT(VARCHAR(10), ISNULL(ghrq, CreateTime), 25) AS vDate ,
+                                                mzh
+                                      FROM      dbo.mz_gh
+                                                INNER JOIN cteTree cte ON CONVERT(VARCHAR(10), ISNULL(ghrq,
+                                                                                      CreateTime), 25) >= cte.wbegin
+                                                                          AND CONVERT(VARCHAR(10), ISNULL(ghrq,
+                                                                                      CreateTime), 25) < cte.wend
+                                      WHERE     zt = '1' and ISNULL(ghzt, '') <> '2'
+                                                AND OrganizeId =@orgId
+                                    ) aaa
+                            GROUP BY aaa.wbegin ,
+                                    aaa.wend;");
+            }
+            else
+            {
+                sqlStr.Append(@"    SELECT DISTINCT
+                                    CONVERT(VARCHAR(10), aaa.wbegin, 25) wbegin,
+                                    CONVERT(VARCHAR(10), aaa.wend, 25) wend ,
+                                    COUNT(1) num
+                            FROM    ( SELECT  DISTINCT  cte.wbegin ,
+                                                cte.wend ,
+                                                CONVERT(VARCHAR(10), ISNULL(ssrq, sfrq), 25) AS vDate ,
+                                                patid
+                                      FROM      mz_xm
+                                                INNER JOIN cteTree cte ON CONVERT(VARCHAR(10), ISNULL(ssrq,
+                                                                                      CreateTime), 25) >= cte.wbegin
+                                                                          AND CONVERT(VARCHAR(10), ISNULL(ssrq,
+                                                                                      CreateTime), 25) < cte.wend
+                                      WHERE     zt = '1'
+                                                AND OrganizeId = @orgId
+                                    ) aaa
+                            GROUP BY aaa.wbegin ,
+                                    aaa.wend;");
+            }
+            outpatientlist = SettDb.GetConnection().SqlQueryable<OutpatientWeekVisitNumVO>(sqlStr.ToString())
+                .AddParameters(new SugarParameter[] { new SugarParameter("@orgId", orgId) }).ToList();
+
+            var sqlStr3 = new StringBuilder(basic);
+            var inpatientList = new List<OutpatientWeekVisitNumVO>();
+            List<InpatientVisitBasicVO> zyList = null;
+            sqlStr3.Append(@"     SELECT  CONVERT(VARCHAR(10), cte.wbegin, 25) wbegin,
+                                    CONVERT(VARCHAR(10), cte.wend, 25)  wend,
+                                    zyh ,
+                                    zybz ,
+                                    ryrq ,
+                                    cyrq
+                            FROM    zy_brjbxx
+                                    INNER JOIN cteTree cte ON CONVERT(VARCHAR(10), ryrq, 25) >= cte.wbegin
+                                                              AND CONVERT(VARCHAR(10), ryrq, 25) < cte.wend
+                            WHERE   zt = '1'
+                                    AND zybz <> 9
+                                    AND OrganizeId = @orgId");
+            zyList = SettDb.GetConnection().SqlQueryable<InpatientVisitBasicVO>(sqlStr3.ToString())
+                .AddParameters(new SugarParameter[] { new SugarParameter("@orgId", orgId) }).ToList();
+            string ycy = ((int)EnumZYBZ.Ycy).ToString();
+            var LastWeekInfo = GetLastWeek();
+            if (LastWeekInfo != null && LastWeekInfo.Count() > 0)
+            {
+                for (int i = 0; i < LastWeekInfo.Count(); i++)
+                {
+                    var Num = zyList.Count(p =>
+                      (p.ryrq >= DateTime.Parse(LastWeekInfo[i].wbegin)
+                      && p.ryrq < DateTime.Parse(LastWeekInfo[i].wend)
+                      || (p.cyrq >= DateTime.Parse(LastWeekInfo[i].wbegin)
+                      && p.cyrq < DateTime.Parse(LastWeekInfo[i].wend)))
+                      || (p.zybz != ycy && p.ryrq < DateTime.Parse(LastWeekInfo[i].wbegin)));
+                    inpatientList.Add(new OutpatientWeekVisitNumVO()
+                    {
+                        num = Num,
+                        wbegin = LastWeekInfo[i].wbegin.ToString(),
+                        wend = LastWeekInfo[i].wend.ToString()
+                    });
+                }
+            }
+            return new MonthVisitNumBO
+            {
+                OutpatientList = outpatientlist,
+                InpatientList = inpatientList
+            };
+        }
+
+        public List<LastWeekInfo> GetLastWeek()
+        {
+            return SettDb.GetConnection().SqlQueryable<LastWeekInfo>(@"WITH    cteTree
+                              AS(SELECT    DATEADD(wk, DATEDIFF(wk, 0, GETDATE()), 0) wbegin ,
+                                            GETDATE() wend
+                                   UNION ALL
+                                   SELECT   DATEADD(d, -7, wbegin) wbegin,
+                                            DATEADD(d, -1, wbegin) wend
+                                   FROM     cteTree
+                                   WHERE    wbegin > DATEADD(wk, -9,
+                                         DATEADD(wk,
+                                                 DATEDIFF(wk, 0, GETDATE()), 0)))
+                                     SELECT  CONVERT(VARCHAR(10), wbegin, 25) wbegin ,
+                                                CONVERT(VARCHAR(10), wend, 25) wend
+                                        FROM    cteTree ORDER BY wbegin").ToList();
         }
 }
 

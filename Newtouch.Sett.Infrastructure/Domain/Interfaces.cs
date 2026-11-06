@@ -19,6 +19,13 @@ namespace Newtouch.Sett.Domain
     {
         string Gzyb_GetJyyzmByJylsh(object p0, object p1);
             object GetWardbyDept(object p0, object p1, object p2);
+
+        // SHELL-A: source-true from vendor Newtouch.Domain/IDomainServices/
+        // ICommonDmnService.cs — read-only visit-count queries used by
+        // Home/Default's charts (GetVisitNum/GetWeekNum/GetLastWeek).
+        VisitNumBO GetVisitNum(string configmethod, string orgId = null);
+        MonthVisitNumBO GetWeekNum(string configmethod, string orgId);
+        List<LastWeekInfo> GetLastWeek();
 }
 
     public interface ICqybMedicalInPut02Repo

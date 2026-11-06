@@ -1211,6 +1211,31 @@ and zt = '1'";
             throw new NotSupportedException("Chức năng ghi/chỉnh sửa này chưa được triển khai trong bản .NET Core (chỉ xác minh đọc).");
         }
 
+        // SHELL-A: port thật từ vendor
+        // Newtouch.HIS.DomainServices/SystemManage/SysRoleShortcutMenuDmnService.cs
+        // — SQL verbatim, chỉ đổi FindList EF thành SettDb SqlQueryable; chỉ
+        // đọc. Được Home/Default gọi qua ViewBag.ShortcutMenuList.
+        public IList<SysShortcutMenuEntity> GetAuthedSCMList(IList<string> roleIdList, string orgId)
+        {
+            if (roleIdList == null || roleIdList.Count == 0 || string.IsNullOrWhiteSpace(orgId))
+            {
+                return new List<SysShortcutMenuEntity>();
+            }
+            var sql = @"select * from (select distinct a.* from Sys_ShortcutMenu a
+left join Sys_RoleShortcutMenu b
+on a.Id = b.SCMId
+where a.zt = '1' and b.zt = '1' and b.OrganizeId = @orgId
+and b.RoleId in (select * from dbo.f_split(@jsnmStr, ','))
+) as sc
+order by isnull(px, 99999), CreateTime desc";
+            return SettDb.GetConnection().SqlQueryable<SysShortcutMenuEntity>(sql)
+                .AddParameters(new SugarParameter[]
+                {
+                    new SugarParameter("@orgId", orgId),
+                    new SugarParameter("@jsnmStr", string.Join(",", roleIdList)),
+                }).ToList();
+        }
+
     }
 
     public class SysShortcutMenuRepo : ISysShortcutMenuRepo

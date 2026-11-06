@@ -66,14 +66,37 @@ namespace Newtouch.Sett.DomainServices
 
     public class SysOrganizeDmnService : ISysOrganizeDmnService
     {
+        // SHELL-A: port thật từ vendor
+        // Newtouch.HIS.DomainServices/SystemManage/SysOrganizeDmnService.cs
+        // (GetMedicalOrganizeListByUserId / GetNameByOrgId) — SQL verbatim,
+        // chỉ đổi FindList/FirstOrDefault EF thành SettDb.GetBaseConnection()
+        // SqlQueryable; chỉ đọc. Stub cũ trả []/null nên header shell không
+        // hiện được tên cơ sở (xem NX6-002/NX8-002-fix: cùng lớp, cùng mẫu).
         public IList<SysOrganizeVEntity> GetMedicalOrganizeListByUserId(string userId)
         {
-            return new List<SysOrganizeVEntity>();
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                return new List<SysOrganizeVEntity>();
+            }
+            var sql = @"select distinct c.* from Sys_UserStaff a
+left join Sys_Staff b
+on a.StaffId = b.Id
+left join Sys_Organize c
+on b.OrganizeId = c.Id
+where a.zt = '1' and b.zt = '1' and c.zt = '1' and c.Id is not null and a.UserId = @userId";
+            return SettDb.GetBaseConnection().SqlQueryable<SysOrganizeVEntity>(sql)
+                .AddParameters(new SugarParameter[] { new SugarParameter("@userId", userId) }).ToList();
         }
 
         public string GetNameByOrgId(string orgId)
         {
-            return null;
+            if (string.IsNullOrWhiteSpace(orgId))
+            {
+                return null;
+            }
+            return SettDb.GetBaseConnection().Ado.GetString(
+                "select Name from Sys_Organize where Id = @orgId",
+                new SugarParameter[] { new SugarParameter("@orgId", orgId) });
         }
 
         // NX6-002: port that — goc Base SysOrganizeRepo.GetValidListByParentOrg

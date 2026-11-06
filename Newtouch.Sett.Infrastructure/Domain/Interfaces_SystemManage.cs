@@ -326,6 +326,11 @@ namespace Newtouch.Sett.Domain
     {
         List<string> GetAuthedRoleIdList(object p0, object p1);
         object UpdateAuthRoleList(object p0, object p1, object p2);
+
+        // SHELL-A: source-true tu vendor Newtouch.Domain/IDomainServices/
+        // SystemManage/ISysRoleShortcutMenuDmnService.cs — menu nhanh da
+        // uy quyen theo vai tro + org, dung cho Home/Default.
+        IList<SysShortcutMenuEntity> GetAuthedSCMList(IList<string> roleIdList, string orgId);
     }
 
     public interface ISysShortcutMenuRepo

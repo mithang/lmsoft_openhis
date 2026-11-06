@@ -118,7 +118,21 @@ namespace Newtouch.Sett.Domain
 
     public class SysShortcutMenuEntity
     {
-        public object zt { get; set; }
+        // SHELL-A: source-true fields tu vendor
+        // Newtouch.Domain/Entity/SystemManage/SysShortcutMenuEntity.cs. Stub
+        // cu chi co zt (object) nen Default.cshtml khong doc duoc
+        // Code/Name/UrlAddress/ImgPath.
+        public string Id { get; set; }
+        public string Name { get; set; }
+        public string Code { get; set; }
+        public string UrlAddress { get; set; }
+        public string ImgPath { get; set; }
+        public int? px { get; set; }
+        public DateTime CreateTime { get; set; }
+        public string CreatorCode { get; set; }
+        public DateTime? LastModifyTime { get; set; }
+        public string LastModifierCode { get; set; }
+        public string zt { get; set; }
     }
 
     public class TTCataloguesComparisonDetailEntity
