@@ -1,4 +1,6 @@
 using Newtouch.Sett.Domain;
+using Newtouch.Sett.Infrastructure;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 
@@ -74,9 +76,22 @@ namespace Newtouch.Sett.DomainServices
             return null;
         }
 
+        // NX6-002: port that — goc Base SysOrganizeRepo.GetValidListByParentOrg
+        // (CTE de quy tren Sys_Organize, BaseDb). Truoc day stub tra [] nen
+        // Organize/GetChildTreeSelectJson + moi cay co so (SysChargeItem...) deu
+        // rong live; nay tra cay co so that.
         public List<SysOrganizeVEntity> GetValidListByParentOrg(string parentOrgId)
         {
-            return new List<SysOrganizeVEntity>();
+            if (string.IsNullOrWhiteSpace(parentOrgId))
+            {
+                return new List<SysOrganizeVEntity>();
+            }
+            var sql = @"WITH cteTree AS (SELECT * FROM Sys_Organize WHERE Id = @parentOrgId and zt = '1'
+            UNION ALL
+            SELECT Sys_Organize.* FROM cteTree INNER JOIN Sys_Organize ON cteTree.Id = Sys_Organize.ParentId and Sys_Organize.zt = '1')
+        SELECT * FROM cteTree";
+            return SettDb.GetBaseConnection().SqlQueryable<SysOrganizeVEntity>(sql)
+                .AddParameters(new SugarParameter("@parentOrgId", parentOrgId)).ToList();
         }
 
         public IList<SysOrganizeVEntity> GetValidTopOrgList()

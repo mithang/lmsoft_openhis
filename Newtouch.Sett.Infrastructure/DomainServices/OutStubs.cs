@@ -1201,13 +1201,50 @@ where gh.OrganizeId = @orgId and gh.zt = '1'";
 
     public class SysDepartmentRepo : ISysDepartmentRepo
     {
+        // NX6-002: port that — goc PDS SysDepartmentRepo.GetList (V_S_Sys_Department,
+        // BaseDb; o day dung bang Sys_Department voi cot tuong minh, cung ket qua).
+        // LUU Y ve chu ky Sett: overload 2-tham-so dat ten tham so thu 2 la `keyword`,
+        // nhung MOI caller live deu truyen "1" (= zt, theo mau PDS
+        // GetList(orgId, zt, keyword) — PDS khong co overload 2-tham-so); vi vay
+        // tham so thu 2 duoc hieu la zt. GetList 1-tham-so (keyword null) = khong
+        // loc zt, giong PDS GetList(orgId).
         public IList<SysDepartmentVEntity> GetList(string orgId, string keyword = null)
         {
-            return new List<SysDepartmentVEntity>();
+            if (string.IsNullOrWhiteSpace(orgId))
+            {
+                return new List<SysDepartmentVEntity>();
+            }
+            const string cols = "Id, OrganizeId, ParentId, Name, Code, yjbz, mzzybz, py, zt";
+            var sql = "select " + cols + " from Sys_Department where OrganizeId = @orgId";
+            var pars = new List<SugarParameter> { new SugarParameter("@orgId", orgId) };
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                sql += " and zt = @zt";
+                pars.Add(new SugarParameter("@zt", keyword));
+            }
+            return SettDb.GetBaseConnection().SqlQueryable<SysDepartmentVEntity>(sql)
+                .AddParameters(pars.ToArray()).ToList();
         }
         public IList<SysDepartmentVEntity> GetList(string orgId, string zt, string keyword)
         {
-            return new List<SysDepartmentVEntity>();
+            if (string.IsNullOrWhiteSpace(orgId))
+            {
+                return new List<SysDepartmentVEntity>();
+            }
+            const string cols = "Id, OrganizeId, ParentId, Name, Code, yjbz, mzzybz, py, zt";
+            var sql = "select " + cols + " from Sys_Department where OrganizeId = @orgId and zt = @zt";
+            var pars = new List<SugarParameter>
+            {
+                new SugarParameter("@orgId", orgId),
+                new SugarParameter("@zt", string.IsNullOrWhiteSpace(zt) ? "1" : zt)
+            };
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                sql += " and (Name like @keyword or Code like @keyword or py like @keyword)";
+                pars.Add(new SugarParameter("@keyword", "%" + keyword.Trim() + "%"));
+            }
+            return SettDb.GetBaseConnection().SqlQueryable<SysDepartmentVEntity>(sql)
+                .AddParameters(pars.ToArray()).ToList();
         }
         public SysDepartmentVEntity GetByCode(string code, string orgId)
         {
@@ -1296,9 +1333,45 @@ where gh.OrganizeId = @orgId and gh.zt = '1'";
         {
             return CheckStaffIsBelongDuty((object)staffId, (object)duty);
         }
+        // NX6-002: port that — goc Base SysUserDmnService.GetSatffVOListByOrg
+        // (Sys_Staff/Sys_UserStaff/Sys_User, BaseDb). @topOrgId o goc la
+        // Constants.TopOrganizeId (cau hinh); o day doc tu dong Sys_Organize
+        // cua org (demo org chinh la top org). keyword loc theo Ten/Ma nhan vien
+        // (giong bo loc keyword cua StaffController.GetStaffByDutyCode + o tim
+        // kiem cua view SysUser/Selector).
         public List<SysUserStaffVO> GetSatffVOListByOrg(string orgId, string keyword)
         {
-            return new List<SysUserStaffVO>();
+            if (string.IsNullOrWhiteSpace(orgId))
+            {
+                return new List<SysUserStaffVO>();
+            }
+            var topOrgId = SettDb.GetBaseConnection().Ado.SqlQuery<string>(
+                "select TopOrganizeId from Sys_Organize where Id = @orgId",
+                new SugarParameter("@orgId", orgId)).FirstOrDefault();
+            if (string.IsNullOrWhiteSpace(topOrgId))
+            {
+                topOrgId = orgId;
+            }
+            var sql = @"select c.Id UserId, c.Account UserCode, a.Id StaffId, a.gh gh, a.DepartmentCode, a.Name
+from Sys_Staff a
+left join Sys_UserStaff b on b.StaffId = a.Id
+left join Sys_User c on b.UserId = c.Id
+where a.zt = '1' and b.zt = '1' and c.zt = '1'
+and c.TopOrganizeId = @topOrgId
+and c.Id is not null
+and a.OrganizeId = @orgId";
+            var pars = new List<SugarParameter>
+            {
+                new SugarParameter("@orgId", orgId),
+                new SugarParameter("@topOrgId", topOrgId)
+            };
+            if (!string.IsNullOrWhiteSpace(keyword))
+            {
+                sql += " and (a.Name like @kw or a.gh like @kw)";
+                pars.Add(new SugarParameter("@kw", "%" + keyword.Trim() + "%"));
+            }
+            return SettDb.GetBaseConnection().SqlQueryable<SysUserStaffVO>(sql)
+                .AddParameters(pars.ToArray()).ToList();
         }
 }
 
