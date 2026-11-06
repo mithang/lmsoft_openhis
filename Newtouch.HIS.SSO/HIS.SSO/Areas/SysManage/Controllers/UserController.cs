@@ -44,6 +44,27 @@ namespace HIS.SSO.Areas.SysManage.Controllers
             ViewBag.TopOrganizeId = this.UserIdentity?.TopOrganizeId;
             return View();
         }
+        /// <summary>
+        /// cập nhật vai trò người dùng
+        /// (NX26-404, D-NX26-404-002: port verbatim từ SysUserBaseController.UpdateUserRole —
+        /// base class đó không có subclass nào trong toàn cây nên action không tới được qua
+        /// route /SysManage/User/UpdateUserRole mà UserRoles.cshtml post tới; SSO UserController
+        /// đã inject sẵn IUserRoleAuthDmnService (Center) với đúng signature này.
+        /// Caller $.submitForm tự chèn __RequestVerificationToken từ _Form.cshtml nên gắn
+        /// [ValidateAntiForgeryToken] không cần sửa caller.)
+        /// </summary>
+        /// <param name="keyValue"></param>
+        /// <param name="organizeId"></param>
+        /// <param name="roleList"></param>
+        /// <returns></returns>
+        [HttpPost]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> UpdateUserRole(string keyValue, string organizeId, List<string> roleList)
+        {
+            var result = await _userRoleAuthDmnService.UpdateUserRole(keyValue, organizeId, roleList, UserIdentity.UserCode);
+            return result ? Success("Thao tác thành công (hiệu lực khi người dùng đăng nhập lại)") : Error("Thao tác thất bại");
+        }
         public async Task<ActionResult> GetPagintionGridJson(string organizeId, string keyValue = null)
         {
             var data = await _sysUserDmnService.GetSatffVOListByOrgorKeyvalue(OrganizeId, keyValue);
