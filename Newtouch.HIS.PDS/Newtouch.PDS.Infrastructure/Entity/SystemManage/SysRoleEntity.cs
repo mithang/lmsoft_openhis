@@ -25,8 +25,16 @@ namespace Newtouch.HIS.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// 
+        ///
         /// </summary>
+        // NX20-004 (D-NX20-004): cot nay KHONG ton tai trong bang
+        // Sys_Role (live + scratch deu 11 cot, khong co TopOrganizeId).
+        // SqlSugar map moi property mac dinh -> moi SELECT/INSERT/UPDATE
+        // deu loi "Invalid column name 'TopOrganizeId'" (harness NX20
+        // chung minh: ca guard lan insert that deu SqlException). Ban
+        // goc EF chi map cot da cau hinh nen property thua bi bo qua —
+        // khoi phuc dung hanh vi do bang IsIgnore. Khong DDL (cam).
+        [SugarColumn(IsIgnore = true)]
         public string TopOrganizeId { get; set; }
 
         /// <summary>

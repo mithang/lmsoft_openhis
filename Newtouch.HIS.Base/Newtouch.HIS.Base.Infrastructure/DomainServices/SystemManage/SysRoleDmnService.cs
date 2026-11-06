@@ -26,6 +26,13 @@ namespace Newtouch.HIS.DomainServices
             using (var db = new DbTrans())
             {
                 var dbRoleEntity = db.IQueryable<SysRoleEntity>(p => p.Id == keyValue).FirstOrDefault();
+                // NX20-003 (D-NX20-003): FirstOrDefault tra null khi keyValue
+                // khong ton tai — deref .Code cu gay NRE; chan bang loi
+                // nghiep vu theo mau NX18-001 (Center SysRoleDmnService).
+                if (dbRoleEntity == null)
+                {
+                    throw new FailedException("Không tìm thấy vai trò cần xóa");
+                }
                 if (dbRoleEntity.Code == "Administrator")
                 {
                     throw new FailedException("MãAdministratorđược hệ thống giữ lại, không thể xóa");
@@ -60,6 +67,12 @@ namespace Newtouch.HIS.DomainServices
                 if (!string.IsNullOrEmpty(keyValue))
                 {
                     var dbRoleEntity = db.IQueryable<SysRoleEntity>(p => p.Id == keyValue).FirstOrDefault();
+                    // NX20-003 (D-NX20-003): nhu DeleteForm tren — chan
+                    // NRE bang loi nghiep vu theo mau NX18-001.
+                    if (dbRoleEntity == null)
+                    {
+                        throw new FailedException("Không tìm thấy vai trò cần sửa");
+                    }
 
                     dbRoleEntity.Name = roleEntity.Name;
                     dbRoleEntity.Code = roleEntity.Code;

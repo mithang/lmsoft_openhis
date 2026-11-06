@@ -1,9 +1,11 @@
 using Newtouch.Infrastructure;
 using Newtouch.HIS.Domain.IDomainServices;
 using System.Collections.Generic;
+using System.Linq;
 using FrameworkBase.MultiOrg.DmnService;
 using FrameworkBase.MultiOrg.Infrastructure;
 using Newtouch.HIS.Domain.Entity;
+using NewtouchHIS.Lib.Base.Exceptions;
 
 
 namespace Newtouch.HIS.DomainServices
@@ -43,6 +45,18 @@ namespace Newtouch.HIS.DomainServices
             {
                 if (!string.IsNullOrEmpty(keyValue))
                 {
+                    // NX20-003 (D-NX20-003): db.Update im lang khi Id khong
+                    // ton tai (0 row) roi van xoa + chen lai authorize va
+                    // commit success — chan bang loi nghiep vu theo mau
+                    // NX18-001. Chu y: EFDbTransaction.FirstOrDefault/
+                    // FindEntity dung .First() (nem khi rong) nen guard
+                    // phai dung IQueryable(...).FirstOrDefault() (LINQ
+                    // tren list trong bo nho, tra null khi thieu).
+                    var dbRoleEntity = db.IQueryable<SysRoleEntity>(p => p.Id == keyValue).FirstOrDefault();
+                    if (dbRoleEntity == null)
+                    {
+                        throw new FailedException("Không tìm thấy vai trò cần sửa");
+                    }
                     List<string> igone = new List<string>();
                     db.Update(roleEntity);
                 }

@@ -310,6 +310,13 @@ namespace Newtouch.Infrastructure
             foreach (var p in props)
             {
                 if (skip.Contains(p.Name)) continue;
+                // NX20-004: ton trong [SugarColumn(IsIgnore = true)] nhu
+                // chinh SqlSugar (vd. SysRoleEntity.TopOrganizeId,
+                // SysRoleAuthorizeEntity.ItemType — property thua, khong
+                // co cot trong bang). Truoc day helper tu build SET tu
+                // moi property nen UPDATE luon loi "Invalid column name".
+                var scIgnore = p.GetCustomAttributes(typeof(SugarColumn), true).OfType<SugarColumn>().FirstOrDefault();
+                if (scIgnore != null && scIgnore.IsIgnore) continue;
                 if (dstnFieldNameList != null && dstnFieldNameList.Any())
                 {
                     if (!dstnFieldNameList.Contains(p.Name, StringComparer.OrdinalIgnoreCase) && !always.Contains(p.Name)) continue;
