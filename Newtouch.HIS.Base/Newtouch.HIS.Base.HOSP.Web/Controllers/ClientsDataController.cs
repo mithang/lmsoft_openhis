@@ -21,17 +21,19 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         private readonly ISysItemsRepository _sysItemsRepository;
         private readonly ISysItemsDetailRepository _sysItemsDetailRepository;
         private readonly ISysModuleDmnService _sysModuleDmnService;
+        private readonly IUserRoleAuthDmnService _userRoleAuthDmnService;
         private readonly ISysOrganizeRepository _sysOrganizeRepository;
         private readonly ISysDepartmentRepository _sysDepartRepo;
 
         public ClientsDataController(ISysItemsRepository sysItemsRepository
-            , ISysItemsDetailRepository sysItemsDetailRepository, ISysModuleDmnService sysModuleDmnService, ISysOrganizeRepository sysOrganizeRepository, ISysDepartmentRepository sysDepartRepo)
+            , ISysItemsDetailRepository sysItemsDetailRepository, ISysModuleDmnService sysModuleDmnService, ISysOrganizeRepository sysOrganizeRepository, ISysDepartmentRepository sysDepartRepo, IUserRoleAuthDmnService userRoleAuthDmnService)
         {
             this._sysItemsRepository = sysItemsRepository;
             this._sysItemsDetailRepository = sysItemsDetailRepository;
             this._sysModuleDmnService = sysModuleDmnService;
             this._sysOrganizeRepository = sysOrganizeRepository;
             this._sysDepartRepo = sysDepartRepo;
+            this._userRoleAuthDmnService = userRoleAuthDmnService;
         }
 
         [HttpGet]
@@ -119,11 +121,26 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             {
                 return null;
             }
-            else
+            // Thu session RoleIdList truoc (khong doi hanh vi cu).
+            var menuList = _sysModuleDmnService.GetMenuListByTopOrg(opr.OrganizeId, opr.RoleIdList, opr.IsRoot, opr.IsAdministrator);
+            if (menuList == null || menuList.Count == 0)
             {
-                return ToMenuJson(_sysModuleDmnService.GetMenuListByTopOrg(opr.OrganizeId, opr.RoleIdList, opr.IsRoot, opr.IsAdministrator), null);
-
+                // BHOSP-001: RoleIdList trong session duoc xay tu MainDB=UnionDb,
+                // con menu query chay tren Base -> GUID Union khong khop quyen
+                // Base nen menu rong. Re-resolve quyen tren chinh DB menu cua
+                // user nay (chi doc, chi quyen Base that cua chinh user) roi thu lai.
+                var baseRoleIds = _userRoleAuthDmnService.GetUserRoleList(opr.UserId, opr.OrganizeId)
+                    ?.Select(p => p.Id).ToList();
+                if (baseRoleIds != null && baseRoleIds.Count > 0)
+                {
+                    menuList = _sysModuleDmnService.GetMenuListByTopOrg(opr.OrganizeId, baseRoleIds, opr.IsRoot, opr.IsAdministrator);
+                }
             }
+            if (menuList == null)
+            {
+                return "[]";
+            }
+            return ToMenuJson(menuList, null);
         }
 
         private string ToMenuJson(IList<SysModuleEntity> data, string parentId)
