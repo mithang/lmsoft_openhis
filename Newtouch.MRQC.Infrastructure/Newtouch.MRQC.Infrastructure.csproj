@@ -27,8 +27,9 @@
     <Reference Include="NewtouchHIS.Lib.Framework">
       <HintPath>..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Framework.dll</HintPath>
     </Reference>
+    <!-- NX10-001: Lib.DataBaseSvr run-copy Oct 26 (e45da48d) -> his-dll-common/Net6 (e45da48d, byte-identical run-copy; API-identical build tuoi HEAD, 8 dong apidump). -->
     <Reference Include="NewtouchHIS.Lib.DataBaseSvr">
-      <HintPath>..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\HIS.BaseAPI\bin\Release\net6.0\NewtouchHIS.Lib.DataBaseSvr.dll</HintPath>
+      <HintPath>..\his-dll-common\Net6\NewtouchHIS.Lib.DataBaseSvr.dll</HintPath>
     </Reference>
   </ItemGroup>
 
