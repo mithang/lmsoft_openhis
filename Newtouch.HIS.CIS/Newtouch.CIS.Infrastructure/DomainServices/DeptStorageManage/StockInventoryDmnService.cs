@@ -29,7 +29,8 @@ namespace Newtouch.DomainServices.DeptStorageManage
         private readonly IKcSyxxRepo _kcSyxxRepo;
 
         // NX3-001: ctor injection (mau NX2-003/BA-003) — xoa ctor rong, truoc day
-        // 2 field luon null (CS0649) nen GetPdSj/GetHangUpPdDates NRE.
+        // 2 field luon null (CS0649) nen InsertSyxxBatch NRE (chi method nay dung
+        // 2 field; GetPdSj/GetHangUpPdDates/QueryInventoryInfoList khong dung).
         public StockInventoryDmnService(IKfKcxxDmnService kfKcxxDmnService, IKcSyxxRepo kcSyxxRepo) : base()
         {
             _kfKcxxDmnService = kfKcxxDmnService;

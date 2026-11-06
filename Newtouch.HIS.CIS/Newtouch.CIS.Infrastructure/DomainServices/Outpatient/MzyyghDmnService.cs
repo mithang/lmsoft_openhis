@@ -24,7 +24,9 @@ namespace Newtouch.DomainServices
         private readonly IMzyyghRepo _mzyyghRepo;
         private readonly ISysBespeakRegisterRepo _sysBespeakRegisterRepo;
         // NX3-001: ctor injection (mau NX2-003/BA-003) — xoa ctor rong, truoc day
-        // 2 field luon null (CS0649) nen SelectMzyyghDetail/MzBespeakRegisterQuery NRE.
+        // 2 field luon null (CS0649) nen SelectAlreadyBespeakRegisterCount NRE
+        // (chi method nay dung 2 field; SelectMzyyghDetail/MzBespeakRegisterQuery
+        // dung SQL truc tiep, khong dung field).
         public MzyyghDmnService(IMzyyghRepo mzyyghRepo, ISysBespeakRegisterRepo sysBespeakRegisterRepo) : base()
         {
             _mzyyghRepo = mzyyghRepo;
