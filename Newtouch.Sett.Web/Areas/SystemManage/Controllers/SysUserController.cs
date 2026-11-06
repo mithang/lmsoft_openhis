@@ -28,7 +28,8 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
     // Sett; de probe/kieu goi thuong deu chay). Khong cache (theo ban HOSP).
     // Nhan rolerelatioinuser: dung IOutPatientChargeQueryDmnService
     // .GetCurUserIdListRoleId nhu f_GetSysUserSelectorTreeQ cua UserController
-    // (dich vu nay hien van la stub tra [] — gioi han co san, ghi nhan rieng).
+    // (NX7-004: da port that theo SQL goc vendor, doc Sys_UserRole/Sys_Role
+    // tren SettDb — truoc day stub tra [] nen khong bao gio check truoc).
     [Area("SystemManage")]
 
     public class SysUserController : Newtouch.Sett.Web.Controllers.ControllerBase

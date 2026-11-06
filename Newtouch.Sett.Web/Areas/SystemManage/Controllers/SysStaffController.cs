@@ -23,9 +23,13 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
     // RehabDoctor...) hong live. Du lieu cay dung dich vu that cua Sett
     // (NX6-002: GetValidListByParentOrg + GetList khoa + GetSatffVOListByOrg).
     // Khong cache (theo ban HOSP; PDS cache 30 phut — bo qua de tranh cay cu).
-    // dutyCode: view truyen len nhung ban goc PDS/HOSP KHONG loc theo duty
-    // (action khong nhan tham so nay) — giu dung hanh vi vendor, ghi nhan de
-    // quyet dinh san pham rieng (khong tu y loc).
+    // dutyCode (NX7-003): view truyen len, ban goc PDS/HOSP KHONG loc theo duty
+    // (action khong nhan tham so nay). NX7 quyet dinh BA/PM loc THAT vi du
+    // lieu loc co san (V_C_Sys_StaffDuty o BaseDb: Doctor 2, RehabDoctor 1,
+    // Nurse 2 o org demo) va caller truyen RehabDoctor voi y nghia loc dung
+    // — khong loc thi dialog tra toan bo nhan su, sai y dinh caller. Loc
+    // theo StaffGh (ma nhan su, duy nhat) tu GetStaffByDutyCode; dutyCode
+    // rong/khong co thi khong loc (giong cu).
     [Area("SystemManage")]
 
     public class SysStaffController : Newtouch.Sett.Web.Controllers.ControllerBase
@@ -55,7 +59,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         /// </summary>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        public IActionResult GetStaffSelecotrTree(string organizeId = null, string keyValue = null, string from = null, bool isShowEmpty = false, bool isExpand = true, string initIdSelected = null)
+        public IActionResult GetStaffSelecotrTree(string organizeId = null, string keyValue = null, string from = null, bool isShowEmpty = false, bool isExpand = true, string initIdSelected = null, string dutyCode = null)
         {
             if (string.IsNullOrWhiteSpace(organizeId))
             {
@@ -69,6 +73,15 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
                 var orgDetpData = _sysDepartmentRepo.GetList(orgItem.Id);
                 //Tap hop nhan su cua co so
                 var orgStaffData = _sysUserDmnService.GetSatffVOListByOrg(orgItem.Id, null);
+                // NX7-003: loc that theo dutyCode khi view truyen len (vd
+                // RehabDoctor). Lay tap gh co duty do o org nay roi loc;
+                // dutyCode rong thi giu toan bo (khong doi hanh vi cu).
+                if (!string.IsNullOrWhiteSpace(dutyCode))
+                {
+                    var dutyGhs = _sysUserDmnService.GetStaffByDutyCode(orgItem.Id, dutyCode)
+                        .Select(p => p.StaffGh).ToHashSet();
+                    orgStaffData = orgStaffData.Where(p => dutyGhs.Contains(p.gh)).ToList();
+                }
                 #region Tat ca khoa thuoc co so
                 foreach (var deptItem in orgDetpData)
                 {

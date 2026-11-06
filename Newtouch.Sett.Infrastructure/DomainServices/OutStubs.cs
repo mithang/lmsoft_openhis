@@ -634,9 +634,31 @@ namespace Newtouch.Sett.DomainServices
         {
             return null;
         }
+        // NX7-004: port that — SQL goc vendor (Sett OutPatientChargeQueryDmnService
+        // .GetCurUserIdListRoleId, cay tham chieu). Truoc day stub tra [] nen
+        // nhanh rolerelatioinuser cua cay SysUser khong bao gio check truoc
+        // user da gan vai tro. Dung SettDb.GetConnection() (= NewtouchHIS_Sett):
+        // lien ket vai tro-user cua cac vai tro Sett nam o DB Sett (vd role
+        // 9971e7fe co 5 row o Sett, 0 row o Base; role HospAdministrator
+        // 50210aca gan ca 000000 + xzadmin) — da chung minh bang sqlcmd chi-doc.
+        // SQL giu nguyen ban goc (nolock + left join Sys_Role), chi them
+        // guard roleId rong; tham so hoa @roleId theo mau SysDepartmentRepo
+        // trong cung file (SugarParameter[], khong truyen le).
         public IList<RoleUnionUser> GetCurUserIdListRoleId(string roleId)
         {
-            return new List<RoleUnionUser>();
+            if (string.IsNullOrWhiteSpace(roleId))
+            {
+                return new List<RoleUnionUser>();
+            }
+            var sql = @"select distinct UserId First, b.OrganizeId Second
+from Sys_UserRole(nolock) a
+left join Sys_Role(nolock) b
+on a.RoleId = b.Id
+where a.zt = '1'
+and b.Id = @roleId";
+            return SettDb.GetConnection().SqlQueryable<RoleUnionUser>(sql)
+                .AddParameters(new SugarParameter[] {
+                    new SugarParameter("@roleId", roleId) }).ToList();
         }
 
     }
@@ -1326,9 +1348,25 @@ where gh.OrganizeId = @orgId and gh.zt = '1'";
             return false;
         }
 
+        // NX7-003: port that — mau CIS SysUserDmnService.GetStaffByDutyCode
+        // (SELECT * FROM V_C_Sys_StaffDuty WHERE zt='1' AND OrganizeId=@orgId
+        // AND DutyCode=@duty). Truoc day stub tra [] nen cac action
+        // ReportController.GetStaffByDutyCode/GetdoctorByDutyCode va
+        // OutpatientRegScheduleController.GetStaffByDutyCode luon tra rong.
+        // View V_C_Sys_StaffDuty nam o BaseDb (NewtouchHIS_Base), KHONG phai
+        // SettDb — da chung minh bang sqlcmd chi-doc; du lieu that co san:
+        // Doctor 2, RehabDoctor 1 (000000), Nurse 2 o org demo 6d5752a7.
         public List<StaffDutyVO> GetStaffByDutyCode(string orgId, string dutyCode)
         {
-            return new List<StaffDutyVO>();
+            if (string.IsNullOrWhiteSpace(orgId))
+            {
+                return new List<StaffDutyVO>();
+            }
+            var sql = "SELECT * FROM V_C_Sys_StaffDuty WHERE zt = '1' AND OrganizeId = @orgId AND DutyCode = @duty";
+            return SettDb.GetBaseConnection().SqlQueryable<StaffDutyVO>(sql)
+                .AddParameters(new SugarParameter[] {
+                    new SugarParameter("@orgId", orgId),
+                    new SugarParameter("@duty", dutyCode ?? "") }).ToList();
         }
         public bool CheckStaffIsBelongDuty(string staffId, string duty)
         {
