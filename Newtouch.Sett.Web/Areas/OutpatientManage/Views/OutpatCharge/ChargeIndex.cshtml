@@ -1294,7 +1294,7 @@
         $.najax({
             type: "POST",
             url: "/OutpatientManage/OutpatCharge/AddCfInfo",
-            data: { chargeDto: allJson, kh: kh, fph: fph, xjzffs: xjzffs, xjzffsbh: xjzffsbh, zfje: zfje, ysk: ysk, zl: zl },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  chargeDto: allJson, kh: kh, fph: fph, xjzffs: xjzffs, xjzffsbh: xjzffsbh, zfje: zfje, ysk: ysk, zl: zl },
             dataType: "json",
             cache: false, //sửa chữaiebộ nhớ đệm
             success: function (ajaxresp) {

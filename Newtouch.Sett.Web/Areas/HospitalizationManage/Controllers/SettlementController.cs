@@ -120,6 +120,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult CancelGetStatusDetail(string zyh, string kh)
         {
             var dto = _hospSettCancelApp.GetPatHospStatusDetail(zyh, kh);

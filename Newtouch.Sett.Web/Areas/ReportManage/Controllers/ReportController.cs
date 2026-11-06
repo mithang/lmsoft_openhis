@@ -347,6 +347,7 @@ namespace Newtouch.Sett.Web.Areas.ReportManage.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SynInpatientDayFee(string zyh)
         {
             if(!string.IsNullOrWhiteSpace(zyh))

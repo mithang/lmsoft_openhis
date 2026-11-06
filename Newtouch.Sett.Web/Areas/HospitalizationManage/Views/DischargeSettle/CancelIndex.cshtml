@@ -428,7 +428,7 @@
         $.najax({
             url: "/HospitalizationManage/DischargeSettle/DoCancel",
             dataType: "json",
-            data: { zyh: zyh, expectedjsnm: jsnm, cancelReason: $.trim($('#txtCancelReason').val()), cancelyblsh: setl_id }, //Mãquyết toán kỳ vọng Ngăn thay đổi trong quá trình
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  zyh: zyh, expectedjsnm: jsnm, cancelReason: $.trim($('#txtCancelReason').val()), cancelyblsh: setl_id }, //Mãquyết toán kỳ vọng Ngăn thay đổi trong quá trình
             type: "POST",
             success: function (data) {
                 if (!!isYbjyjz) {
@@ -457,7 +457,7 @@
         $.najax({
             url: "/HospitalizationManage/DischargeSettle/DoCancel",
             dataType: "json",
-            data: { zyh: zyh, expectedjsnm: jsnm, cancelReason: $.trim($('#txtCancelReason').val()), cancelyblsh: cancelyblsh }, //Mãquyết toán kỳ vọng Ngăn thay đổi trong quá trình
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  zyh: zyh, expectedjsnm: jsnm, cancelReason: $.trim($('#txtCancelReason').val()), cancelyblsh: cancelyblsh }, //Mãquyết toán kỳ vọng Ngăn thay đổi trong quá trình
             type: "POST",
             success: function (data) {
                 //BHYT Quảng Tâyđặccó

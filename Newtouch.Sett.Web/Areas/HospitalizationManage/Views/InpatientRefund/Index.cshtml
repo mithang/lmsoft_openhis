@@ -376,7 +376,7 @@
         $.najax({
             url: "/HospitalizationManage/InpatientRefund/SaveRefund",
             dataType: "json",
-            data: { data: lastdata, zyh: $.trim($("#zyh").val()) },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  data: lastdata, zyh: $.trim($("#zyh").val()) },
             type: "POST",
             success: function (data) {
                 top.top.window.frames['FormShowRefundConfirmDialog'].$.modalClose();

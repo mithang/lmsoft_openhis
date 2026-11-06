@@ -109,7 +109,7 @@
         //Đồng bộ chi phí
         $.ajax({
             url: "/ReportManage/Report/SynInpatientDayFee",
-            data: { zyh: $('#zyh').val() },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  zyh: $('#zyh').val() },
             dataType: "json",
             type: "POST",
             async: false,

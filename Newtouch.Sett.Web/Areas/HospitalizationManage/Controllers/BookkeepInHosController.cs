@@ -530,6 +530,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult StopAccountingPlan(string jzjhmxIdStr, DateTime? stopDate
             , string from)
         {

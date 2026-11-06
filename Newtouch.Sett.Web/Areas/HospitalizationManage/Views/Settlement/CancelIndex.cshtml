@@ -211,7 +211,7 @@
             $.najax({
                 type: "POST",
                 url: "/HospitalizationManage/Settlement/CancelGetStatusDetail",
-                data: { zyh: zyh, kh: kh },
+                data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  zyh: zyh, kh: kh },
                 dataType: "json",
                 success: function (ajaxresp) {
                     //Thông tin cơ bản bệnh nhân nhập viện

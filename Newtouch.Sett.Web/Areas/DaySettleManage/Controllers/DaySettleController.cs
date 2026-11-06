@@ -94,6 +94,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
         /// <param name="zyh"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
 
         public IActionResult SaveOutpatientDaySettle()
         {
@@ -117,6 +118,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
         /// <param name="zyh"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
 
         public IActionResult SaveInpatientDaySettle()
         {
@@ -140,6 +142,7 @@ namespace Newtouch.Sett.Web.Areas.DaySettleManage.Controllers
         /// <param name="zyh"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
 
         public IActionResult CancleDaySettleInfo(string Id)
         {

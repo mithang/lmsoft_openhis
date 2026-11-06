@@ -108,6 +108,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SaveRefund(string data,string zyh)
         {
             var orgId = this.OrganizeId;

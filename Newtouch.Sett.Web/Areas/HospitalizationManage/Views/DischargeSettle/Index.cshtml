@@ -422,7 +422,7 @@
                     $.najax({
                         url: "/HospitalizationManage/DischargeSettle/SaveSettle",
                         dataType: "json",
-                        data: { zyh: zyh, expectedcyrq: feeRelated.cyrq, fph: feeRelated.fph, feeRelated: feeRelated, ybfeeRelated: ybjyFeeReturn, xnhfeeRelated: s13OtherResponseDto, jslx: hzjslx, outTradeNo: outTradeNo },
+                        data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  zyh: zyh, expectedcyrq: feeRelated.cyrq, fph: feeRelated.fph, feeRelated: feeRelated, ybfeeRelated: ybjyFeeReturn, xnhfeeRelated: s13OtherResponseDto, jslx: hzjslx, outTradeNo: outTradeNo },
                         type: "POST",
                         success: function (ajaxresp) {
                             var message = "";
@@ -526,7 +526,7 @@
                     $.najax({
                         url: "/HospitalizationManage/DischargeSettle/SaveSettle",
                         dataType: "json",
-                        data: { zyh: zyh, expectedcyrq: feeRelated.cyrq, fph: feeRelated.fph, feeRelated: feeRelated, ybfeeRelated: ybjyFeeReturn, xnhfeeRelated: s13OtherResponseDto, jslx: hzjslx, outTradeNo: outTradeNo },
+                        data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  zyh: zyh, expectedcyrq: feeRelated.cyrq, fph: feeRelated.fph, feeRelated: feeRelated, ybfeeRelated: ybjyFeeReturn, xnhfeeRelated: s13OtherResponseDto, jslx: hzjslx, outTradeNo: outTradeNo },
                         type: "POST",
                         success: function (ajaxresp) {
                             var message = "";

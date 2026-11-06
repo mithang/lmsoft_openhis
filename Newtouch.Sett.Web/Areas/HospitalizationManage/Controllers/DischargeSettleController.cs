@@ -476,6 +476,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SaveSettle(string zyh, DateTime expectedcyrq, string fph, InpatientSettFeeRelatedDTO feeRelated
             , CQZyjs05Dto ybfeeRelated, S13OtherResponseDTO xnhfeeRelated, string jslx
             , string outTradeNo)
@@ -555,6 +556,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult DoCancel(string zyh, int expectedjsnm, string cancelReason, string cancelyblsh)
         {
             string outTradeNo;

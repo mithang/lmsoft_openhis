@@ -314,7 +314,7 @@
         $.najax({
             type: "POST",
             url: "/HospitalizationManage/BookkeepInHos/StopAccountingPlan",
-            data: { jzjhmxIdStr: jzjhmxIdStr, from: from },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  jzjhmxIdStr: jzjhmxIdStr, from: from },
             dataType: "json",
             success: function (ajaxresp) {
                 $.modalAlert(ajaxresp.message, 'success');

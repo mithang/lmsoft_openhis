@@ -281,6 +281,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// <param name="zl">tiền thừa</param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
                 public IActionResult AddCfInfo(List<OutpatChargeDto> chargeDto, string kh, string fph, string xjzffs, string xjzffsbh, string zfje, string ysk, string zl)
         {
             var settDto = _outPatChargeApp.OutPatChargeSett(chargeDto, kh, fph, xjzffs, xjzffsbh, DecimalParseHelper.ParseDecimal(zfje), DecimalParseHelper.ParseDecimal(ysk), DecimalParseHelper.ParseDecimal(zl));
