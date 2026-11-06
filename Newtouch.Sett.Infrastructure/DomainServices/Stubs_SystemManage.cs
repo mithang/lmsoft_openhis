@@ -166,6 +166,33 @@ namespace Newtouch.Sett.DomainServices
 
     public class ItemsApp : IItemsApp
     {
+        // NX23-002 (D-NX23-002): port that GetList() — vendor Sett KHONG CO
+        // implementation goc trong source (khong co IItemsApp.cs /
+        // ItemsApp.cs trong lmsoft_openhis; ItemsTypeController chi tham
+        // chieu interface tu assembly bien dich san) va bang Sys_Items
+        // KHONG TON TAI trong Sett DB (NewtouchHIS_Sett: 0 bang
+        // Sys_Items/Sys_ItemsDetail, 0 view Items). Du lieu tu dien song
+        // o Base DB: dbo.Sys_Items 73 rows (72 zt='1', 1 zt='0'
+        // BodyTempMed), doc qua SettDb.GetBaseConnection() nhu
+        // ComController (V_S_Sys_Items) + vendor Base ItemDmnService
+        // (Sys_Items zt='1'). Map cot Base (Id/ParentId/Name/Code/
+        // Description) -> ItemsEntity F_ (F_ParentId/F_EnCode/F_FullName/
+        // F_Description); F_IsTree/F_Layers khong co cot tuong ung -> null.
+        // Loc zt='1' nhu DutyApp.GetList sibling + Base ItemDmnService +
+        // ItemsDetailRepository (d.zt=1); ORDER BY px, Name (px NULL tren
+        // ca 72 row nen can sort phu de cay on dinh). Chi doc;
+        // GetForm/SubmitForm/DeleteForm giu stub (duong ghi can STG,
+        // ngoai scope NX23-002).
+        public List<ItemsEntity> GetList()
+        {
+            return SettDb.GetBaseConnection().SqlQueryable<ItemsEntity>(
+                    @"select Id, ParentId as F_ParentId, Code as F_EnCode,
+Name as F_FullName, Description as F_Description,
+CreateTime, CreatorCode, LastModifyTime, LastModifierCode,
+px, zt from dbo.Sys_Items where zt = '1' order by px, Name")
+                .ToList();
+        }
+
         public object DeleteForm(object p0)
         {
             throw new NotSupportedException("Chức năng ghi/chỉnh sửa này chưa được triển khai trong bản .NET Core (chỉ xác minh đọc).");
@@ -174,11 +201,6 @@ namespace Newtouch.Sett.DomainServices
         public IItemsApp_GetFormDto GetForm(object p0)
         {
             return new IItemsApp_GetFormDto();
-        }
-
-        public List<ItemsEntity> GetList()
-        {
-            return new List<ItemsEntity>();
         }
 
         public object SubmitForm(object p0, object p1)
