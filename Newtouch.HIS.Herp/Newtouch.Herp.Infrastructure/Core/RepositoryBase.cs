@@ -55,7 +55,24 @@ namespace Newtouch.Herp.Domain.IRepository
 
         public int Insert(T entity)
         {
-            return Db.Insertable(entity).ExecuteCommand();
+            // NX26 (D-NX26-KF-001): the original EF6 base backfilled DB-generated
+            // identity values onto the entity; SqlSugar ExecuteCommand does not,
+            // so callers linking details via the header Id (kf_crkdj -> kf_crkmx.crkId)
+            // silently got Id=0. ExecuteReturnIdentity returns the new identity for
+            // identity columns and 0 (no throw) for explicit-Id tables (harness-proven
+            // on SqlSugarCore 5.1.4.100), so backfill only when a real identity comes
+            // back. Return stays 1 on success (throws on SQL error, as before).
+            var identity = Db.Insertable(entity).ExecuteReturnIdentity();
+            if (identity != null && long.TryParse(identity.ToString(), out var id) && id > 0)
+            {
+                var prop = typeof(T).GetProperties().FirstOrDefault(p =>
+                    p.GetCustomAttributes(typeof(SugarColumn), true).OfType<SugarColumn>().Any(a => a.IsIdentity));
+                if (prop != null && prop.CanWrite)
+                {
+                    prop.SetValue(entity, Convert.ChangeType(id, prop.PropertyType));
+                }
+            }
+            return 1;
         }
 
         public int Insert(List<T> entities)
