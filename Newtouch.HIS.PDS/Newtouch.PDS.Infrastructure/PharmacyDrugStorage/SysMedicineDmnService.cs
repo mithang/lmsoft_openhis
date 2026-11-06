@@ -698,19 +698,19 @@ AND x.OrganizeId=@OrganizeId
                 {
                     using (var db = new EFDbTransaction().BeginTrans())
                     {
-                        var ypSql = "select * from [NewtouchHIS_Base].dbo.xt_yp where zt=1 and ypId = @ypId";
+                        var ypSql = "select * from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + ".dbo.xt_yp where zt=1 and ypId = @ypId";
                         var parList = new List<SugarParameter>
                         {
                             new SugarParameter("@ypId", ypId),
                         };
                         var ypEntity = FirstOrDefault<SysMedicineBaseVO>(ypSql, parList.ToArray());
 
-                        var ypsxSql = "select * from [NewtouchHIS_Base].dbo.xt_ypsx where zt=1 and ypId = @ypId";
+                        var ypsxSql = "select * from " + DbNames.Name("BaseDb", "NewtouchHIS_Base") + ".dbo.xt_ypsx where zt=1 and ypId = @ypId";
                         var parList2 = new List<SugarParameter>
                         {
                             new SugarParameter("@ypId", ypId),
                         };
-                        var ypsxEntity = FirstOrDefault<SysMedicinePropertyBaseVO>(ypsxSql, parList.ToArray());
+                        var ypsxEntity = FirstOrDefault<SysMedicinePropertyBaseVO>(ypsxSql, parList2.ToArray());
 
                         model.ypId = ypId.Value;
                         ypEntity.pfj = model.pfj;
