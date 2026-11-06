@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Newtouch.Sett.Domain;
 using Newtouch.Sett.Infrastructure;
+using NewtouchHIS.Lib.Base;
 using SqlSugar;
 
 namespace Newtouch.Sett.DomainServices
@@ -1335,19 +1336,21 @@ where gh.OrganizeId = @orgId and gh.zt = '1'";
         }
         // NX6-002: port that — goc Base SysUserDmnService.GetSatffVOListByOrg
         // (Sys_Staff/Sys_UserStaff/Sys_User, BaseDb). @topOrgId o goc la
-        // Constants.TopOrganizeId (cau hinh); o day doc tu dong Sys_Organize
-        // cua org (demo org chinh la top org). keyword loc theo Ten/Ma nhan vien
-        // (giong bo loc keyword cua StaffController.GetStaffByDutyCode + o tim
-        // kiem cua view SysUser/Selector).
+        // Constants.TopOrganizeId (BusinessConfig.Top_OrganizeId trong
+        // appsettings.json) — o day doc qua ConfigInitHelper.SysConfig nhu
+        // vendor. KHONG dung cot TopOrganizeId cua dong Sys_Organize: du lieu
+        // demo dat cot nay = org cha (d8ee85f8...) trong khi Sys_User
+        // .TopOrganizeId = org demo (6d5752a7...) — dung cot nay tra [] live
+        // (da chung minh bang probe + sqlcmd). keyword loc theo Ten/Ma nhan
+        // vien (giong bo loc keyword cua StaffController.GetStaffByDutyCode
+        // + o tim kiem cua view SysUser/Selector).
         public List<SysUserStaffVO> GetSatffVOListByOrg(string orgId, string keyword)
         {
             if (string.IsNullOrWhiteSpace(orgId))
             {
                 return new List<SysUserStaffVO>();
             }
-            var topOrgId = SettDb.GetBaseConnection().Ado.SqlQuery<string>(
-                "select TopOrganizeId from Sys_Organize where Id = @orgId",
-                new SugarParameter("@orgId", orgId)).FirstOrDefault();
+            var topOrgId = ConfigInitHelper.SysConfig?.Top_OrganizeId;
             if (string.IsNullOrWhiteSpace(topOrgId))
             {
                 topOrgId = orgId;
