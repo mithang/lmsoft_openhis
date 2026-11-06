@@ -14,6 +14,15 @@ namespace Newtouch.HIS.Web.Controllers.Base
         private readonly ISysOrganizeDmnService _sysOrganizeDmnService;
         private readonly ISysModuleDmnService _sysModuleDmnService;
 
+        // NX-007: port dung — file goc thieu ctor nen 2 field readonly khong bao
+        // gio duoc gan (compile 0 loi nhung runtime NRE ngay call dau). Ca 2
+        // service da dang ky Singleton trong Program.cs (:140, :143).
+        public OrganizeController(ISysOrganizeDmnService sysOrganizeDmnService, ISysModuleDmnService sysModuleDmnService)
+        {
+            _sysOrganizeDmnService = sysOrganizeDmnService;
+            _sysModuleDmnService = sysModuleDmnService;
+        }
+
 
         //Thả xuống Nguồn dữ liệu
         [HttpGet]

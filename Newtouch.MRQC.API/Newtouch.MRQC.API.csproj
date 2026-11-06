@@ -40,8 +40,13 @@
     <Reference Include="NewtouchHIS.Lib.Framework">
       <HintPath>..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Framework.dll</HintPath>
     </Reference>
+    <!-- NX-004: nhu MRQC.Web/Infra — run-copy Lib.Base cu (truoc BA-005).
+         API tu no build 0 loi (khong goi truc tiep UseTranStrict) nhung
+         bin output bi DLL cu (fa27fc8f) de len DLL moi cua Infra -> runtime
+         goi QcBlzk UseTranStrict se MissingMethodException. Tro sang
+         build-reference trong repo (his-dll-common/Net6, NX-006 refresh). -->
     <Reference Include="NewtouchHIS.Lib.Base">
-      <HintPath>..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Base.dll</HintPath>
+      <HintPath>..\his-dll-common\Net6\NewtouchHIS.Lib.Base.dll</HintPath>
     </Reference>
     <Reference Include="NewtouchHIS.Lib.Redis">
       <HintPath>..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Redis.dll</HintPath>

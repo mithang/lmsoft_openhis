@@ -24,6 +24,23 @@ namespace Newtouch.HIS.Web.Controllers
         private readonly ISysUserExDmnService _sysUserDmnService;
         private readonly IUserRoleAuthDmnService _userRoleAuthDmnService;
 
+        // NX-007: port dung — file goc thieu ctor nen 6 field readonly khong bao
+        // gio duoc gan (compile 0 loi nhung runtime NRE ngay call dau). Ca 6
+        // service da dang ky Singleton trong Program.cs (:68, :69, :94, :95,
+        // :158, :165). Luu y: _moduleApp/_moduleButtonApp/_roleAuthorizeApp/
+        // _sysUserDmnService hien khong dung trong file (chi _roleApp va
+        // _userRoleAuthDmnService duoc goi) — giu nguyen khai bao goc cua vendor,
+        // khong cat bot dependency.
+        public RoleController(IRoleApp roleApp, IModuleApp moduleApp, IModuleButtonApp moduleButtonApp, IRoleAuthorizeApp roleAuthorizeApp, ISysUserExDmnService sysUserDmnService, IUserRoleAuthDmnService userRoleAuthDmnService)
+        {
+            _roleApp = roleApp;
+            _moduleApp = moduleApp;
+            _moduleButtonApp = moduleButtonApp;
+            _roleAuthorizeApp = roleAuthorizeApp;
+            _sysUserDmnService = sysUserDmnService;
+            _userRoleAuthDmnService = userRoleAuthDmnService;
+        }
+
         //Danh sách vai trò gridjson
         [HttpGet]
         [HandlerAjaxOnly]

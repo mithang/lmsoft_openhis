@@ -15,8 +15,14 @@
 
   <ItemGroup>
     <!-- net6.0 vendor base layer (read-only references; run copy is never modified) -->
+    <!-- NX-004: Lib.Base KHONG dung run-copy nua — DLL run-copy (Oct 26, truoc
+         BA-005) thieu UseTranStrict (AdoTranExtensions, commit 4714f6b6) nen
+         build sach loi CS1061 x2 o QcBlzkDmnService.cs:30,113. Tro sang
+         build-reference trong repo (his-dll-common/Net6, NX-006 refresh tu
+         HEAD) theo dung quy uoc cua Center/Lib/SSO. Cac DLL vendor khac
+         giu nguyen HintPath run-copy (khong doi boi BA-005/006). -->
     <Reference Include="NewtouchHIS.Lib.Base">
-      <HintPath>..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Base.dll</HintPath>
+      <HintPath>..\his-dll-common\Net6\NewtouchHIS.Lib.Base.dll</HintPath>
     </Reference>
     <Reference Include="NewtouchHIS.Lib.Framework">
       <HintPath>..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Framework.dll</HintPath>
