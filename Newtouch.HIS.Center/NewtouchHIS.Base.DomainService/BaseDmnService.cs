@@ -126,6 +126,15 @@ namespace NewtouchHIS.Base.DomainService
                 var v = prop.GetValue(entity);
                 if (v != null && !string.IsNullOrWhiteSpace(v.ToString()))
                 {
+                    //D-NX25-001: VO truy vấn có thể mang trường không thuộc entity đích
+                    //(vd SysPatIndexVO.kh/klx là trường của xt_card, brxz không có cột trong
+                    //xt_brjbxx) — bỏ qua thay vì để Expression.Property throw ArgumentException
+                    //làm cả truy vấn lỗi 20000. Caller phải tự xử lý các trường đó qua bảng
+                    //liên quan (xem PatientInfoDmnService.PatientQuery).
+                    if (typeof(T).GetProperty(prop.Name) == null)
+                    {
+                        continue;
+                    }
                     var paramValue = Expression.Constant(v, prop.PropertyType);
                     var entityProperty = Expression.Property(t, prop.Name);
                     var p = Expression.Convert(paramValue, entityProperty.Type);

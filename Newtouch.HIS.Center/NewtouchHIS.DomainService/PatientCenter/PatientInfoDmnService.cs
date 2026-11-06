@@ -27,8 +27,30 @@ namespace NewtouchHIS.DomainService.PatientCenter
                 throw new FailedException("Vui lòng nhập họ tên");
             }
             //Tìm thông tin bệnh nhân
+            //D-NX25-001: kh = số thẻ (xt_card.CardNo), klx = loại thẻ (xt_card.CardType) —
+            //không phải cột của xt_brjbxx nên không đưa vào AssembledWhereEqual mà tra cứu
+            //qua xt_card trước, rồi giới hạn kết quả bệnh nhân theo patid của thẻ tìm được.
+            //Không tìm thấy thẻ khớp → lỗi nghiệp vụ 40004, không phải ngoại lệ 20000.
+            List<int>? cardPatids = null;
+            if (!string.IsNullOrWhiteSpace(patIndex.kh))
+            {
+                var cardsByNo = await baseDal.GetByWhereWithAttr<SysPatCardEntity>(p => p.CardNo == patIndex.kh && p.OrganizeId == patIndex.OrganizeId && p.zt == "1");
+                if (!string.IsNullOrWhiteSpace(patIndex.klx))
+                {
+                    cardsByNo = cardsByNo?.Where(p => p.CardType == patIndex.klx).ToList();
+                }
+                if (cardsByNo == null || cardsByNo.Count == 0)
+                {
+                    throw new FailedException("Không tìm thấy thông tin bệnh nhân liên quan");
+                }
+                cardPatids = cardsByNo.Select(p => p.patid).Distinct().ToList();
+            }
             var where = AssembledWhereEqual<SysPatientBasicInfoEntity, SysPatIndexVO>(patIndex);
             var pats = await baseDal.GetListAsync(where);
+            if (cardPatids != null && pats != null)
+            {
+                pats = pats.Where(p => cardPatids.Contains(p.patid)).ToList();
+            }
             if (pats == null || pats.Count == 0 || pats.FirstOrDefault()?.patid <= 0)
             {
                 throw new FailedException("Không tìm thấy thông tin bệnh nhân liên quan");
@@ -39,11 +61,15 @@ namespace NewtouchHIS.DomainService.PatientCenter
             if (card.Count > 0)
             {
                 pat.brxz = brxz == null ? (string.IsNullOrWhiteSpace(pat.brxz) ? ((int)EnumBrxz.zf).ToString().ToString() : pat.brxz) : ((int)brxz).ToString();
-                pat.kh = card.Where(p => p.brxz == ((int)EnumBrxz.zf).ToString()).FirstOrDefault()?.CardNo;
-                if (string.IsNullOrWhiteSpace(pat.kh))
-                {
-                    pat.kh = card.FirstOrDefault()?.CardNo;
-                }
+                //D-NX25-001: ưu tiên thẻ đúng loại (klx) khi chọn số thẻ trả về; giữ nguyên
+                //fallback cũ (thẻ tự chi trả rồi thẻ đầu tiên) khi không có klx/không khớp.
+                var khCard = !string.IsNullOrWhiteSpace(patIndex.klx)
+                    ? card.FirstOrDefault(p => p.CardType == patIndex.klx)
+                    : null;
+                khCard ??= card.FirstOrDefault(p => p.brxz == ((int)EnumBrxz.zf).ToString());
+                khCard ??= card.FirstOrDefault();
+                pat.kh = khCard?.CardNo;
+                pat.klx = khCard?.CardType ?? pat.klx;
             }
             return pat.Adapt<SysPatInfoVO>();
         }
