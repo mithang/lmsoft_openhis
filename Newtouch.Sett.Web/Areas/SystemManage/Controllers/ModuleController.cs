@@ -78,7 +78,13 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
                 tree.hasChildren = hasChildren;
                 treeList.Add(tree);
             }
-            return Content(treeList.TreeViewJson());
+            // NX10-002-B: phai truyen "0" tuong minh. TreeViewJson() khong doi
+            // so cua Sett (Newtouch.Sett.Domain.TreeViewExtensions) coi root
+            // la parentId null/rong, trong khi vong lap tren gan moi node
+            // parentId="0" theo mau vendor (Framework TreeViewJson mac dinh
+            // "0") — goi khong doi so tra "[]" du data da co 7 node (da
+            // chung minh bang endpoint diagnostic tam, da revert).
+            return Content(treeList.TreeViewJson("0"));
         }
 
         #region Phân quyền Cơ sở
