@@ -110,6 +110,14 @@ namespace Newtouch.Sett.Domain
         public string zt { get; set; }
     }
 
+    // NX9-002: VO cho GetMenuButtonListByTopOrg — nhu PDS SysModuleButtonVO
+    // (entity + co IsOpenToOrg tu JOIN Sys_OrganizeAuthorize); grid
+    // ModuleButton/Index.cshtml:48 can cot IsOpenToOrg ("Có mở hay không").
+    public class SysModuleButtonVO : SysModuleButtonEntity
+    {
+        public bool IsOpenToOrg { get; set; }
+    }
+
     public class SysRoleAuthorizeEntity
     {
         public string ItemId { get; set; }

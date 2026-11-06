@@ -256,17 +256,22 @@ namespace Newtouch.Sett.Domain
         void AuthAllOrganize(string moduleId, int itemType);
         void AuthCancelAllOrganize(string moduleId, int itemType);
         IList<SysOrganizeVEntity> GetAuthedOrgListByModuleId(string itemId, int itemType);
-        object GetMenuButtonListByTopOrg(object p0, object p1);
-        List<SysModuleEntity> GetMenuList(object p0, object p1, object p2, object p3);
-        List<SysModuleButtonEntity> GetOpenMenuButtonListByTopOrg(object p0);
-        IList<SysModuleEntity> GetOpenMenuListByTopOrg(object p0);
+        // NX9-002: re-type tu object sang signature that theo mau PDS/vendor
+        // (caller truyen dung kieu nay: ModuleController, ModuleButtonController,
+        // RoleAuthorizeController). GetMenuList = PDS GetMenuListByTopOrg
+        // (topOrgId, roleIdList, isRoot, isAdministrator).
+        IList<SysModuleButtonVO> GetMenuButtonListByTopOrg(string topOrgId, string moduleId);
+        List<SysModuleEntity> GetMenuList(string topOrgId, IList<string> roleIdList, bool isRoot, bool isAdministrator);
+        List<SysModuleButtonEntity> GetOpenMenuButtonListByTopOrg(string topOrgId);
+        IList<SysModuleEntity> GetOpenMenuListByTopOrg(string topOrgId);
         object ModuleButtonSubmitForm(object p0, object p1, object p2);
         void UpdateAuthOrganizeList(string moduleId, string orgList, int itemType);
     }
 
     public interface ISysModuleExRepo
     {
-        List<SysModuleEntity> GetModuleTreeJsonByName(object p0);
+        // NX9-002: re-type param object -> string (caller truyen name).
+        List<SysModuleEntity> GetModuleTreeJsonByName(string name);
     }
 
     public interface ISysParameterConfigApp

@@ -687,11 +687,13 @@ namespace Newtouch.Sett.DomainServices
         // Doc dung kieu PDS (join [NewtouchHIS_Base]..V_S_Sys_Organize) vi
         // Sett khong co bang/view Sys_Organize local — kieu Base.Infrastructure
         // (join Sys_Organize local) se loi o Sett DB.
-        // Luu y: chua co duong chay nao cua Sett doc Sys_OrganizeAuthorize
-        // (menu sidebar doc Sys_RoleAuthorize tren Union) — man Organizes tu
-        // nhat quan (ghi -> doc lai thay) va sua luon luong ModuleButton
-        // type-2 dang co (truoc day doc tra [], ghi nem NotSupportedException);
-        // consumer GetOpenMenuListByTopOrg van stub, de NX9.
+        // Luu y: truoc NX9, chua co duong chay nao cua Sett doc
+        // Sys_OrganizeAuthorize (menu sidebar doc Sys_RoleAuthorize tren
+        // Union) — man Organizes tu nhat quan (ghi -> doc lai thay) va sua
+        // luon luong ModuleButton type-2 dang co. NX9-002 port consumer:
+        // GetOpenMenuListByTopOrg + GetOpenMenuButtonListByTopOrg (cay phan
+        // quyen vai tro), GetMenuList (loc cay Module theo vai tro),
+        // GetMenuButtonListByTopOrg (grid nut ModuleButton), xem D-NX9-002.
         public void AuthAllOrganize(string moduleId, int itemType)
         {
             if (string.IsNullOrWhiteSpace(moduleId))
@@ -749,24 +751,140 @@ else
                 }).ToList();
         }
 
-        public object GetMenuButtonListByTopOrg(object p0, object p1)
+        // NX9-002 (D-NX9-002): 5 method doc menu/cay — port that theo mau PDS
+        // SysModuleDmnService + vendor Sett goc
+        // (lmsoft_openhis/Newtouch.HIS.Sett/.../SysModuleDmnService.cs +
+        // SysModuleRepo.cs). DB dich: Sett DB (SettDb.GetConnection()),
+        // nhu NX8-002 Organizes. DOI LECH vs PDS (ghi ro trong tung method):
+        // (1) GetMenuList viet bang SQL tho (stub class khong co field repo
+        // IQueryable nhu PDS); (2) nhanh vai tro KHONG loc ItemType=1 tren
+        // Sys_RoleAuthorize vi cot nay khong ton tai o Sett DB (9 cot — cung
+        // drift nhu DDL NX2 Role, chua chay); (3) roleIdList null -> [] thay
+        // vi null nhu PDS (de caller khoi NRE); (4) nhanh isAdministrator lay
+        // du 4 ten cua vendor Sett (PDS port thieu 系统用户).
+        public IList<SysModuleButtonVO> GetMenuButtonListByTopOrg(string topOrgId, string moduleId)
         {
-            return null;
+            // PDS GetMenuButtonListByTopOrg verbatim (Sys_OrganizeAuthorize
+            // CO cot ItemType o Sett DB). Grid ModuleButton/Index.cshtml:48
+            // can cot IsOpenToOrg.
+            var sql = @"select * from
+(
+select a.*, cast(1 as bit) IsOpenToOrg
+from Sys_ModuleButton a
+left join Sys_OrganizeAuthorize b
+on a.Id = b.ItemId
+where b.ItemType = 2 and a.ModuleId = @moduleId
+and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)
+union
+(
+select a.*, cast(0 as bit) IsOpenToOrg
+from Sys_ModuleButton a
+where a.ModuleId = @moduleId
+and Id not in
+(
+    select a.Id IsOpenToOrg
+    from Sys_ModuleButton a
+    left join Sys_OrganizeAuthorize b
+    on a.Id = b.ItemId
+    where b.ItemType = 2 and a.ModuleId = @moduleId
+    and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)
+))
+) as t";
+            return SettDb.GetConnection().SqlQueryable<SysModuleButtonVO>(sql)
+                .AddParameters(new SugarParameter[] {
+                    new SugarParameter("@topOrganizeId", (object)topOrgId ?? DBNull.Value),
+                    new SugarParameter("@moduleId", (object)moduleId ?? DBNull.Value)
+                }).ToList();
         }
 
-        public List<SysModuleEntity> GetMenuList(object p0, object p1, object p2, object p3)
+        public List<SysModuleEntity> GetMenuList(string topOrgId, IList<string> roleIdList, bool isRoot, bool isAdministrator)
         {
-            return new List<SysModuleEntity>();
+            // PDS GetMenuListByTopOrg, viet lai bang SQL tho qua SettDb.
+            if (isRoot)
+            {
+                // Vendor goc: 系统管理/系统菜单/菜单管理/FailMsg配置/快捷菜单
+                // (ten da dich; "Quan ly menu" hien khong co row nao trong
+                // Sett Sys_Module nen nhanh nay khop 4/5 ten — vo hai).
+                return GetMenuListByNames(new[] { "Quan ly he thong", "Menu he thong", "Quan ly menu", "Cau hinh FailMsg", "Menu tac vu" });
+            }
+            if (isAdministrator)
+            {
+                // Vendor goc: 系统管理/角色管理/系统角色/系统用户 ("Vai tro
+                // he thong" hien khong co row nao trong Sett Sys_Module).
+                return GetMenuListByNames(new[] { "Quan ly he thong", "Quan ly vai tro", "Vai tro he thong", "Nguoi dung he thong" });
+            }
+            // Nhanh vai tro: roleIdList null/rong -> [] (PDS tra null; tra []
+            // de caller ModuleController.GetModuleTreeJsonByName khoi NRE o
+            // authedList.Any — ket qua hien thi nhu nhau: 0 node).
+            if (roleIdList == null || roleIdList.Count == 0)
+            {
+                return new List<SysModuleEntity>();
+            }
+            var pars = new List<SugarParameter> {
+                new SugarParameter("@topOrgId", (object)topOrgId ?? DBNull.Value)
+            };
+            var inList = new List<string>();
+            for (int i = 0; i < roleIdList.Count; i++)
+            {
+                inList.Add("@r" + i);
+                pars.Add(new SugarParameter("@r" + i, roleIdList[i]));
+            }
+            // DOI LECH vs PDS (ghi ro): Sys_RoleAuthorize o Sett DB KHONG CO
+            // cot ItemType (9 cot — cung drift nhu DDL NX2 Role, chua chay)
+            // nen KHONG loc ItemType=1 nhu PDS; an toan vi Id module vs Id
+            // nut la 2 khong gian GUID khong trung nhau (khop ItemId vao
+            // Sys_Module.Id thi chi module moi khop).
+            var sql = $@"
+SELECT a.* FROM Sys_Module a WHERE a.zt = '1'
+AND a.Id IN (SELECT ItemId FROM Sys_OrganizeAuthorize WHERE zt = '1' AND ItemType = 1 AND (TopOrganizeId = '*' OR TopOrganizeId = @topOrgId))
+AND a.Id IN (SELECT ItemId FROM Sys_RoleAuthorize WHERE zt = '1' AND RoleId IN ({string.Join(",", inList)}))
+ORDER BY a.px";
+            return SettDb.GetConnection().SqlQueryable<SysModuleEntity>(sql)
+                .AddParameters(pars.ToArray()).ToList();
         }
 
-        public List<SysModuleButtonEntity> GetOpenMenuButtonListByTopOrg(object p0)
+        private List<SysModuleEntity> GetMenuListByNames(string[] names)
         {
-            return new List<SysModuleButtonEntity>();
+            var pars = new List<SugarParameter>();
+            var inList = new List<string>();
+            for (int i = 0; i < names.Length; i++)
+            {
+                inList.Add("@n" + i);
+                pars.Add(new SugarParameter("@n" + i, names[i]));
+            }
+            var sql = $"SELECT * FROM Sys_Module WHERE zt = '1' AND Name IN ({string.Join(",", inList)}) ORDER BY px";
+            return SettDb.GetConnection().SqlQueryable<SysModuleEntity>(sql)
+                .AddParameters(pars.ToArray()).ToList();
         }
 
-        public IList<SysModuleEntity> GetOpenMenuListByTopOrg(object p0)
+        public List<SysModuleButtonEntity> GetOpenMenuButtonListByTopOrg(string topOrgId)
         {
-            return new List<SysModuleEntity>();
+            // PDS GetOpenMenuButtonListByTopOrg verbatim.
+            return SettDb.GetConnection().SqlQueryable<SysModuleButtonEntity>(@"select a.*
+from Sys_ModuleButton a
+left join Sys_OrganizeAuthorize b
+on a.Id = b.ItemId
+where b.ItemType = 2
+and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)")
+                .AddParameters(new SugarParameter[] {
+                    new SugarParameter("@topOrganizeId", (object)topOrgId ?? DBNull.Value)
+                }).ToList();
+        }
+
+        public IList<SysModuleEntity> GetOpenMenuListByTopOrg(string topOrgId)
+        {
+            // PDS GetOpenMenuListByTopOrg verbatim. Dung boi
+            // RoleAuthorizeController.GetPermissionTree (cay phan quyen vai
+            // tro) — day la consumer dau tien cua Organizes (NX8-002).
+            return SettDb.GetConnection().SqlQueryable<SysModuleEntity>(@"select a.*
+from Sys_Module a
+left join Sys_OrganizeAuthorize b
+on a.Id = b.ItemId
+where b.ItemType = 1
+and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)")
+                .AddParameters(new SugarParameter[] {
+                    new SugarParameter("@topOrganizeId", (object)topOrgId ?? DBNull.Value)
+                }).ToList();
         }
 
         public object ModuleButtonSubmitForm(object p0, object p1, object p2)
@@ -816,9 +934,24 @@ from [NewtouchHIS_Base]..V_S_Sys_Organize where Id in (
 
     public class SysModuleExRepo : ISysModuleExRepo
     {
-        public List<SysModuleEntity> GetModuleTreeJsonByName(object p0)
+        // NX9-002 (D-NX9-002): port that theo vendor Sett goc
+        // (lmsoft_openhis/Newtouch.HIS.Sett/Newtouch.Repository/SystemManage/
+        // SysModuleRepo.cs:29) verbatim — module co ten @name + cac con cua
+        // no (zt='1'). Dung boi ModuleController.GetModuleTreeJsonByName.
+        public List<SysModuleEntity> GetModuleTreeJsonByName(string name)
         {
-            return new List<SysModuleEntity>();
+            var sql = @"SELECT *
+                            FROM Sys_Module
+                            WHERE (parentId = (SELECT Id
+                                                FROM Sys_Module
+                                                WHERE Name = @name
+                                                 )
+                                or Name = @name)
+and zt = '1'";
+            return SettDb.GetConnection().SqlQueryable<SysModuleEntity>(sql)
+                .AddParameters(new SugarParameter[] {
+                    new SugarParameter("@name", (object)name ?? DBNull.Value)
+                }).ToList();
         }
 
     }
