@@ -56,22 +56,22 @@ namespace NewtouchHIS.Lib.Common
             /// Bảo hiểm y tế cho người lao động
             /// </summary>
             [Description("Bảo hiểm y tế cho người lao động")]
-            zg = 1,
+            zg = 11,
             /// <summary>
             /// Bảo hiểm y tế cho cư dân
             /// </summary>
             [Description("Bảo hiểm y tế cho cư dân")]
-            jm = 2,
+            jm = 12,
             /// <summary>
             /// Nghỉ hưu
             /// </summary>
             [Description("Nghỉ hưu")]
-            lx = 3,
+            lx = 13,
             /// <summary>
             /// Bảo hiểm y tế thông thường
             /// </summary>
             [Description("Bảo hiểm y tế thông thường")]
-            pt = 11,
+            pt = 1,
         }
         /// <summary>
         /// Trạng thái khám từ xa

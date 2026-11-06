@@ -1602,22 +1602,22 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             /// BHYT công nhân viên chức
             /// </summary>
             [Description("BHYT công nhân viên chức")]
-            zg = 1,
+            zg = 11,
             /// <summary>
             /// BHYT cư dân
             /// </summary>
             [Description("BHYT cư dân")]
-            jm = 2,
+            jm = 12,
             /// <summary>
             /// Nghỉ hưu theo chế độ
             /// </summary>
             [Description("Nghỉ hưu theo chế độ")]
-            lx = 3,
+            lx = 13,
             /// <summary>
             /// BHYT thông thường
             /// </summary>
             [Description("BHYT thông thường")]
-            pt = 11,
+            pt = 1,
         }
         /// <summary>
         /// Trạng thái đơn hàng0:Chờ thanh toán 1:Đang thanh toán  2:Đã thanh toán 3:Đã hoàn tiền 4:Đã hủy

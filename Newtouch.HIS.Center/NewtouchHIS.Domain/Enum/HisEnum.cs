@@ -100,22 +100,22 @@ namespace NewtouchHIS.Domain.Enum
             /// BHYT công nhân viên chức
             /// </summary>
             [Description("BHYT công nhân viên chức")]
-            zg = 1,
+            zg = 11,
             /// <summary>
             /// BHYT cư dân
             /// </summary>
             [Description("BHYT cư dân")]
-            jm = 2,
+            jm = 12,
             /// <summary>
             /// Nghỉ hưu theo chế độ
             /// </summary>
             [Description("Nghỉ hưu theo chế độ")]
-            lx = 3,
+            lx = 13,
             /// <summary>
             /// BHYT thông thường
             /// </summary>
             [Description("BHYT thông thường")]
-            pt = 11,
+            pt = 1,
         }
 
     }
