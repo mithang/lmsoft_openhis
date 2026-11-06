@@ -24,8 +24,19 @@ namespace Newtouch.DomainServices.Inpatient
 	public class WardMaintenanceDmnService : DmnServiceBase, IWardMaintenanceDmnService
 	{
         private readonly IHospInterfaceSyncDmnService _hospInterfaceSyncDmnService;
-        public WardMaintenanceDmnService() : base()
-		{ }
+        /// <summary>
+        /// Khởi tạo bằng constructor injection (NX2-003, mẫu BA-003 / NX-001).
+        /// Trước đây ctor rỗng, field readonly _hospInterfaceSyncDmnService không
+        /// bao giờ được gán (CS0649), nên SavaPatDiagnosis chạm tới
+        /// _hospInterfaceSyncDmnService.UpdateOccupyByCode(...) là
+        /// NullReferenceException. Không giữ ctor không tham số: DI sẽ fail-fast
+        /// lúc khởi động nếu thiếu đăng ký, thay vì NRE lúc chạy. Dependency đã
+        /// đăng ký AddScoped trong CIS.Web/Program.cs:101 và CIS.API/Program.cs:116.
+        /// </summary>
+        public WardMaintenanceDmnService(IHospInterfaceSyncDmnService hospInterfaceSyncDmnService) : base()
+        {
+            _hospInterfaceSyncDmnService = hospInterfaceSyncDmnService;
+        }
 		public List<BedItemsVO> GetBedItems(WardMaintenanceRequestDto req)
 		{
 			var sqlstr = new StringBuilder();

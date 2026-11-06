@@ -101,7 +101,16 @@ namespace Newtouch.DomainServices.Inpatient
             }
             catch (Exception e)
             {
-                throw new FailedException("Mục thu phíLưu thất bại，" + ((Newtouch.CIS.Compat.FailedException)e).Msg);
+                // NX2-003: không ép kiểu vô điều kiện sang FailedException — e có thể
+                // là NullReferenceException (vd field repo null) hay lỗi DB, khi đó
+                // phép ép kiểu cũ ném InvalidCastException và che mất lỗi gốc.
+                // FailedException thật giữ nguyên error shape cũ (tiền tố + Msg gốc);
+                // exception khác trả đúng business error với Message gốc.
+                if (e is Newtouch.CIS.Compat.FailedException failedException)
+                {
+                    throw new FailedException("Mục thu phíLưu thất bại，" + failedException.Msg);
+                }
+                throw new FailedException("Mục thu phíLưu thất bại，" + e.Message);
             }
         }
 

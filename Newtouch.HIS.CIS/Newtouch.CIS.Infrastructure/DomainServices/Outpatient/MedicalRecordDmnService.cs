@@ -98,9 +98,56 @@ namespace Newtouch.DomainServices
                 { "grbh", "grbh" }, { "queno", "queno" }
             };
         
-        public MedicalRecordDmnService() : base()
+        /// <summary>
+        /// Khởi tạo bằng constructor injection (NX2-003, mẫu BA-003 DoctorserviceDmnService / NX-001).
+        /// Trước đây ctor rỗng, 16 field readonly không bao giờ được gán (13 CS0649 +
+        /// 3 CS0169 chưa từng dùng: _tcmDiagnosisRepo, _presTemplateEntityRepo,
+        /// _prescriptionDetailEntityRepo — vẫn inject theo tiền lệ BA-003, field chết
+        /// giữ nguyên inject mà không dùng), nên mọi phương thức chạm tới field là
+        /// NullReferenceException (vd SelectNodeContent: _treatmentRepo.IQueryable()).
+        /// Không giữ ctor không tham số: DI sẽ fail-fast lúc khởi động nếu thiếu
+        /// đăng ký, thay vì NRE lúc chạy. _baseDataDmnService và _baseDataDmnService2
+        /// cùng kiểu IBaseDataDmnService (2 field dùng chung 1 interface, DI inject
+        /// cùng instance cho cả 2 tham số); tương tự IPrescriptionDetailRepo dùng
+        /// cho _prescriptionDetailRepo và _prescriptionDetailEntityRepo.
+        /// Tất cả 16 dependency đã đăng ký AddScoped trong CIS.Web/Program.cs và
+        /// CIS.API/Program.cs. yysz_esbBM khởi tạo inline từ AppConfig, không phải
+        /// tham số ctor, giữ nguyên.
+        /// </summary>
+        public MedicalRecordDmnService(IWMDiagnosisRepo wmDiagnosisRepo,
+            ITCMDiagnosisRepo tcmDiagnosisRepo,
+            IMedicalRecordRepo medicalRecordRepo,
+            IPrescriptionRepo prescriptionRepo,
+            IPrescriptionDetailRepo prescriptionDetailRepo,
+            ITreatmentRepo treatmentRepo,
+            ISysObjectActionRecordRepo sysObjectActionRecordRepo,
+            IBaseDataDmnService baseDataDmnService,
+            IBaseDataDmnService baseDataDmnService2,
+            ITTCataloguesComparisonDmnService tTCataloguesComparisonDmnService,
+            IQhdZnshSqtxRepo qhdznshsqtxRepo,
+            ISysConfigRepo sysConfigRepo,
+            IMRecordTemplateDmnService mRecordTemplateDmnService,
+            IPresTemplateRepo presTemplateEntityRepo,
+            IPrescriptionDetailRepo prescriptionDetailEntityRepo,
+            IPresTemplateDmnService presTemplateDmnService)
+            : base()
         {
-
+            _wmDiagnosisRepo = wmDiagnosisRepo;
+            _tcmDiagnosisRepo = tcmDiagnosisRepo;
+            _medicalRecordRepo = medicalRecordRepo;
+            _prescriptionRepo = prescriptionRepo;
+            _prescriptionDetailRepo = prescriptionDetailRepo;
+            _treatmentRepo = treatmentRepo;
+            _sysObjectActionRecordRepo = sysObjectActionRecordRepo;
+            _baseDataDmnService = baseDataDmnService;
+            _baseDataDmnService2 = baseDataDmnService2;
+            _tTCataloguesComparisonDmnService = tTCataloguesComparisonDmnService;
+            _qhdznshsqtxRepo = qhdznshsqtxRepo;
+            _sysConfigRepo = sysConfigRepo;
+            _mRecordTemplateDmnService = mRecordTemplateDmnService;
+            _presTemplateEntityRepo = presTemplateEntityRepo;
+            _prescriptionDetailEntityRepo = prescriptionDetailEntityRepo;
+            _presTemplateDmnService = presTemplateDmnService;
         }
 
         /// <summary>

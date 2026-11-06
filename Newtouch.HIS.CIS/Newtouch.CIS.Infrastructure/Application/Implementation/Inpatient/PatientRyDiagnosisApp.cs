@@ -24,6 +24,24 @@ namespace Newtouch.Application.Implementation
         private readonly IInpatientPatientInfoRepo _inpatientPatientInfoRepo;
 
         /// <summary>
+        /// Khởi tạo bằng constructor injection (NX2-003, mẫu BA-003 / NX-001).
+        /// Trước đây không có ctor tường minh (ctor rỗng ngầm định), 2 field
+        /// readonly không bao giờ được gán (CS0649), nên SavaInPatDiagnosis chạm
+        /// tới _inpatientPatientDiagnosisRepo.SelectData(...) /
+        /// _inpatientPatientInfoRepo.GetByZyh(...) là NullReferenceException.
+        /// Không giữ ctor không tham số: DI sẽ fail-fast lúc khởi động nếu thiếu
+        /// đăng ký, thay vì NRE lúc chạy. Cả 2 dependency đã đăng ký AddScoped
+        /// trong CIS.Web/Program.cs và CIS.API/Program.cs.
+        /// </summary>
+        public PatientRyDiagnosisApp(IInpatientPatientDiagnosisRepo inpatientPatientDiagnosisRepo,
+            IInpatientPatientInfoRepo inpatientPatientInfoRepo)
+            : base()
+        {
+            _inpatientPatientDiagnosisRepo = inpatientPatientDiagnosisRepo;
+            _inpatientPatientInfoRepo = inpatientPatientInfoRepo;
+        }
+
+        /// <summary>
         /// LấyChẩn đoán nhập việnthông tin
         /// </summary>
         /// <param name="zhy"></param>
