@@ -45,6 +45,13 @@ builder.Services.AddScoped<NewtouchHIS.Base.Domain.Organize.ISysUserVDmnService,
 builder.Services.AddScoped<NewtouchHIS.Base.Domain.Organize.ISysStaffDmnService, NewtouchHIS.Base.DomainService.SysStaffDmnService>();
 builder.Services.AddScoped<NewtouchHIS.Base.Domain.Organize.ISysDepartmentDmnService, NewtouchHIS.Base.DomainService.SysDepartmentDmnService>();
 builder.Services.AddScoped<NewtouchHIS.Base.Domain.Organize.ISysRoleDmnService, NewtouchHIS.Base.DomainService.SysRoleDmnService>();
+// NX7-001: dang ky them 4 service Base de SysModule/SysRoleController (port tu SSO) resolve duoc.
+// Sett khong dung AddDependencyService (scan) nhu SSO/CIS nen dang ky thu cong tung cai,
+// cung kieu voi 4 dong tren. ISysRoleDmnService da co san tu truoc (dong ngay tren).
+builder.Services.AddScoped<NewtouchHIS.Base.Domain.IDomainService.ISysModuleDmnService, NewtouchHIS.Base.DomainService.SysManage.SysModuleDmnService>();
+builder.Services.AddScoped<NewtouchHIS.Base.Domain.IDomainService.ISysConfigDmnService, NewtouchHIS.Base.DomainService.SysManage.SysConfigDmnService>();
+builder.Services.AddScoped<NewtouchHIS.Base.Domain.IDomainService.IRoleAuthorizeApp, NewtouchHIS.Base.DomainService.RoleAuthorizeApp>();
+builder.Services.AddScoped<NewtouchHIS.Base.Domain.IDomainService.IUserRoleAuthDmnService, NewtouchHIS.Base.DomainService.UserRoleAuthDmnService>();
 builder.Services.AddScoped<ICancelOutpatientRegDmnService, CancelOutpatientRegDmnService>();
 builder.Services.AddScoped<ICommonDmnService, CommonDmnService>();
 builder.Services.AddScoped<ICqybMedicalInPut02Repo, CqybMedicalInPut02Repo>();
