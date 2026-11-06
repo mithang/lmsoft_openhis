@@ -149,7 +149,8 @@
         });
     }
 
-    @* NX6-001: bo btn_authorg — /SystemManage/Module/Organizes 404 (khong action Organizes tren ModuleController Sett; ban goc vendor co o PDS ModuleController + view Organizes.cshtml, can port rieng — khong tro sang ModuleButton/Organizes vi do la phan quyen nut (type 2), khac ngu nghia module (type 1)). *@
+    @* NX6-001: bo btn_authorg — /SystemManage/Module/Organizes 404 (khong action Organizes tren ModuleController Sett; ban goc vendor co o PDS ModuleController + view Organizes.cshtml — khong tro sang ModuleButton/Organizes vi do la phan quyen nut (type 2), khac ngu nghia module (type 1)).
+       NX7-005: KHONG port trong NX7 (hoan lai, khong phai bo vinh vien). Ly do: khong co caller/menu song (0 menu row); port can ca dich vu — GetAuthedOrgListByModuleId + 3 ghi UpdateAuthOrganizeList/AuthAll/AuthCancel deu la stub o Sett SysModuleDmnService — va chua xac dinh DB dich cho Sys_OrganizeAuthorize (ca Base lan Sett deu co bang; ghi nham DB se hong phan quyen menu). Vong sau can xac minh DB dich + SplitToTable truoc khi port. *@
 </script>
 @if (OperatorProvider.GetCurrent().IsRoot)
 {

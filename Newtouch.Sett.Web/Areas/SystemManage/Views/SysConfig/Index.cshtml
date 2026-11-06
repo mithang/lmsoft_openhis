@@ -179,6 +179,7 @@
         });
     }
 
-    @* NX6-001: bo btn_template — /SystemManage/SysConfig/TemplateIndex 404 (khong action TemplateIndex tren SysConfigController Sett; view goc vendor co o CIS/EMR TemplateIndex.cshtml, can port rieng — khong tro sang ConfigsPreviewIndex vi khac chuc nang). *@
+    @* NX6-001: bo btn_template — /SystemManage/SysConfig/TemplateIndex 404 (khong action TemplateIndex tren SysConfigController Sett; khong tro sang ConfigsPreviewIndex vi khac chuc nang).
+       NX7-005: DINH CHINH NX6-001 + DONG muc: KHONG co ban goc vendor that de port — action TemplateIndex o EMR chi la stub tra SysManageNotice, CIS khong co SysConfigController, cay tham chieu cung khong co action nao; chi ton tai file view TemplateIndex.cshtml. Day la vendor gap (giong SysModule/SysRole truoc NX7-001), khong phai chuc nang thieu port. Nut giu nguyen da bo. *@
 
 </script>
