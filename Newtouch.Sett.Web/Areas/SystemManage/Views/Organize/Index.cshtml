@@ -86,17 +86,7 @@
             }
         })
     }
-    function btn_details() {
-        var keyValue = $("#gridList").jqGridRowValue().Id;
-        $.modalOpen({
-            id: "Details",
-            title: "Xem tổ chức",
-            url: "/SystemManage/Organize/Details?r=" + Math.random() + "&keyValue=" + keyValue,
-            width: "700px",
-            height: "560px",
-            btn: null,
-        });
-    }
+    @* NX6-001: bo btn_details — /SystemManage/Organize/Details 404 (khong action Details, khong view Details trong toan bo cay; Form la form sua, khong phai xem). *@
 </script>
 
 <div class="topPanel">
@@ -112,7 +102,7 @@
                 <li class="first">Đã chọn<span>1</span>mục</li>
                 <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa Cơ sở</a></li>
                 <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa Cơ sở</a></li>
-                <li><a id="NF-Details" authorize="yes" onclick="btn_details()"><i class="fa fa-search-plus"></i>Xem tổ chức</a></li>
+                @* NX6-001: bo nut "Xem tổ chức" (btn_details) — route Details 404. *@
             </ul>
             <a href="javascript:;" class="close"></a>
         </div>

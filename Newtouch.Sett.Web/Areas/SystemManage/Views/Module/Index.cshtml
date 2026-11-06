@@ -20,9 +20,7 @@
             <div class="btn-group">
                 <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
             </div>
-            <div class="btn-group">
-                <a class="btn btn-primary" onclick="btn_authorg()"><i class="fa fa-gavel"></i>Phân quyền cơ sở</a>
-            </div>
+            @* NX6-001: bo nut "Phân quyền cơ sở" (btn_authorg) — route Module/Organizes 404. *@
         }
         @if (OperatorProvider.GetCurrent().IsRoot || OperatorProvider.GetCurrent().IsAdministrator)
         {
@@ -151,23 +149,7 @@
         });
     }
 
-    function btn_authorg() {
-        var keyValue = $("#gridList").jqGridRowValue().Id;
-        if (!!!keyValue) {
-            $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
-            return;
-        }
-        $.modalOpen({
-            id: "Form",
-            title: "Phân quyền cơ sở",
-            url: "/SystemManage/Module/Organizes?keyValue=" + keyValue,
-            width: "350px",
-            height: "550px",
-            callBack: function (iframeId) {
-                top.frames[iframeId].submitForm();
-            }
-        });
-    }
+    @* NX6-001: bo btn_authorg — /SystemManage/Module/Organizes 404 (khong action Organizes tren ModuleController Sett; ban goc vendor co o PDS ModuleController + view Organizes.cshtml, can port rieng — khong tro sang ModuleButton/Organizes vi do la phan quyen nut (type 2), khac ngu nghia module (type 1)). *@
 </script>
 @if (OperatorProvider.GetCurrent().IsRoot)
 {

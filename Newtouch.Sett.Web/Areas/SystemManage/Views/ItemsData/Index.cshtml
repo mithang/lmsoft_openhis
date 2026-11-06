@@ -93,17 +93,7 @@
             }
         })
     }
-    function btn_details() {
-        var keyValue = $("#gridList").jqGridRowValue().Id;
-        $.modalOpen({
-            id: "Details",
-            title: "Xem Từ điển",
-            url: "/SystemManage/ItemsData/Details?keyValue=" + keyValue + "&r=" + Math.random(),
-            width: "450px",
-            height: "470px",
-            btn: null,
-        });
-    }
+    @* NX6-001: bo btn_details — /SystemManage/ItemsData/Details 404 (khong action Details, khong view Details trong toan bo cay; Form la form sua, khong phai xem). *@
     function btn_itemstype() {
         $.modalOpen({
             id: "ItemsType",
@@ -133,10 +123,10 @@
                     </ul>
                 </div>
                 <div class="operate">
+    @* NX6-001: bo nut "Xem Từ điển" (btn_details) — route Details 404, xem NX6-001. *@
                     <ul class="nav nav-pills">
                         <li class="first">Đã chọn<span>1</span>mục</li>
                         <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa Từ điển</a></li>
-                        <li><a id="NF-Details" authorize="yes" onclick="btn_details()"><i class="fa fa-search-plus"></i>Xem Từ điển</a></li>
                     </ul>
                     <a href="javascript:;" class="close"></a>
                 </div>

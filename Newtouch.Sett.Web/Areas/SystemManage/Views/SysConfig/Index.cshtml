@@ -12,13 +12,7 @@
         </div>
         <div class="btn-group">
             <a class="btn btn-primary" onclick="btn_add()"><i class="fa fa-plus"></i>Tạo mới</a>
-            @if (opeator.IsAdministrator || opeator.IsRoot || true)
-            {
-                <a class="btn btn-primary dropdown-toggle" data-toggle="dropdown"><span class="caret"></span></a>
-                <ul class="dropdown-menu pull-right">
-                    <li><a onclick="btn_template()" href="javascript:void(0)">cấu hình Mẫu Quản lý</a></li>
-                </ul>
-            }
+            @* NX6-001: bo dropdown "cấu hình Mẫu Quản lý" (btn_template) — route TemplateIndex 404, dropdown chi co 1 muc nay. *@
         </div>
         <div class="btn-group">
             <a class="btn btn-primary" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa</a>
@@ -185,17 +179,6 @@
         });
     }
 
-    function btn_template()
-    {
-        $.modalOpen({
-            id: "Template",
-            title: "cấu hình Mẫu",
-            url: "/SystemManage/SysConfig/TemplateIndex",
-            width: "900px",
-            height: "500px",
-            btn: null,
-        });
-
-    }
+    @* NX6-001: bo btn_template — /SystemManage/SysConfig/TemplateIndex 404 (khong action TemplateIndex tren SysConfigController Sett; view goc vendor co o CIS/EMR TemplateIndex.cshtml, can port rieng — khong tro sang ConfigsPreviewIndex vi khac chuc nang). *@
 
 </script>

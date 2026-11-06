@@ -63,17 +63,7 @@
             }
         })
     }
-    function btn_details() {
-        var keyValue = $("#gridList").jqGridRowValue().Id;
-        $.modalOpen({
-            id: "Details",
-            title: "Xem Phân loại",
-            url: "/SystemManage/ItemsType/Details?keyValue=" + keyValue + "&r=" + Math.random(),
-            width: "450px",
-            height: "510px",
-            btn: null,
-        });
-    }
+    @* NX6-001: bo btn_details — /SystemManage/ItemsType/Details 404 (khong action Details, khong view Details trong toan bo cay; Form la form sua, khong phai xem). *@
 </script>
 <div class="topPanel" style="border: 0px;">
     <div class="search">
@@ -101,7 +91,7 @@
             <ul class="nav nav-pills">
                 <li class="first">Đã chọn<span>1</span>mục</li>
                 <li><a onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa Phân loại</a></li>
-                <li><a onclick="btn_details()"><i class="fa fa-search-plus"></i>Xem Phân loại</a></li>
+                @* NX6-001: bo nut "Xem Phân loại" (btn_details) — route Details 404. *@
             </ul>
             <a href="javascript:;" class="close"></a>
         </div>
