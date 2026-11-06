@@ -31,8 +31,15 @@
     <Reference Include="NewtouchHIS.Lib.Framework">
       <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Framework.dll</HintPath>
     </Reference>
+    <!-- NX3-003: Lib.Base KHONG dung run-copy nua — DLL run-copy fa27fc8f (Oct 26,
+         truoc BA-005) thieu UseTranStrict va SiteBaseHospWebHost (BusinessConfig.cs:106,
+         NX2-002). Tro sang build-reference trong repo (his-dll-common/Net6, NX-006
+         refresh + NX3-003 refresh tu HEAD) theo dung mau NX-004 (MRQC) va quy uoc
+         cua Center/Lib/SSO. Cac DLL vendor khac giu nguyen HintPath run-copy.
+         HOSP.Web khong goi truc tiep SiteBaseHospWebHost (chi SSO doc qua reflection,
+         SSO build Lib.Base tu source qua ProjectReference) nen redirect an toan. -->
     <Reference Include="NewtouchHIS.Lib.Base">
-      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Base.dll</HintPath>
+      <HintPath>..\..\his-dll-common\Net6\NewtouchHIS.Lib.Base.dll</HintPath>
     </Reference>
     <Reference Include="NewtouchHIS.Lib.Redis">
       <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Redis.dll</HintPath>
