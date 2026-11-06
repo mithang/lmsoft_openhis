@@ -74,11 +74,56 @@ namespace Newtouch.CIS.Web.Controllers
             var data = new
             {
                 itemDetails = this.GetItemDetailsList(),
-                enums = this.GetEnumList(typeof(Newtouch.Infrastructure.Constants).Namespace),
+                enums = GetClientEnums(),
                 ypjxyfdy = _baseDataDmnService.GetMediFormlUsageList(),
                 ypyf = _baseDataDmnService.GetMediUsageList(),
             };
             return Content(data.ToJson());
+        }
+
+        // NX20-001 (D-NX20-001): enum list bang reflection DONG BO tren
+        // assembly CIS.Infrastructure (typeof(CisClientEnum).Assembly).
+        // KHONG dung ClientsDataBaseController.GetEnumList o day: no tra
+        // Task<object> (async + Task.Run) ma action nay KHONG await — dua
+        // Task song vao object roi ToJson() lam Newtonsoft di bo Task ->
+        // state machine -> treo request (F-NX18-001: 40-90s, 0 byte; tach
+        // endpoint da chung minh: db 0,149s, itemdetails 0,046s, throw
+        // 0,13s, enums-sync 0,02s, taskwait/taskresult 0,02-0,13s — chi
+        // part enums (Task + ToJson) treo). Ngoai ra Assembly.Load theo
+        // ten "Newtouch.Infrastructure" luon loi FileNotFound (khong co
+        // DLL ten do; assembly that la Newtouch.CIS.Infrastructure) nen
+        // await cung chi doi treo thanh 500 nhanh. Logic quet y het
+        // GetAsyncClientsDataJson (RS-06) — chi reflection, khong cham
+        // DB — va shape {Type, Items} giong het de frontend tieu thu
+        // nhu cu.
+        // RS-06: _Index bootstrap chi lay endpoint nay de dung
+        // window.clients.enums, nhung endpoint goc KHONG tra enums (ban
+        // goc lay enums tu GetClientsDataJson cua portal frame, von
+        // khong co trong ban port doc lap). He qua: moi select
+        // data-EnumType (vd. #mjzbz EnumOutPatientType) deu ve rong va
+        // framework-ui hien "No results found" -> cis-vi doi thanh
+        // "Khong co du lieu". Bo sung enums tai day theo dung logic
+        // goc cua ClientsDataBaseController.GetEnumList (quet assembly
+        // Base.Domain, lay cac enum long trong cac lop *ClientEnum):
+        // chi reflection, khong cham DB, khong lam cham endpoint.
+        // Chu y: EnumOutPatientType cua #mjzbz nam trong SettClientEnum
+        // (khong phai CisClientEnum) nen chi quet CisClientEnum la thieu.
+        // framework-ui $.enum.getItems doi {Type, Items}, Items gom
+        // {Name, Value, Desc} (xem EnumExtensions
+        // .getEnumNameValueDescInfo); framework chi nhan khi dung 1 ban
+        // ghi/Type, nen voi ten enum lap lai o nhieu lop (vd. EnumZdlx)
+        // lay ban dau tien thay vi gop nhu ban goc (gop se lam rong ca
+        // loai do). Day la du lieu enum tinh cua code, khong phai du
+        // lieu demo/STG.
+        private static List<object> GetClientEnums()
+        {
+            return typeof(CisClientEnum).Assembly.GetTypes()
+                .Where(t => t.IsEnum && t.FullName != null
+                    && t.FullName.Contains("EnumExtend") && t.FullName.Contains("ClientEnum"))
+                .GroupBy(t => t.Name)
+                .Select(g => g.First())
+                .Select(t => new { Type = t.Name, Items = t.getEnumNameValueDescInfo() })
+                .ToList<object>();
         }
 
         /// <summary>
@@ -97,32 +142,7 @@ namespace Newtouch.CIS.Web.Controllers
                 sysPatientNatureList = _sysNationalityRepo.GetBRXZList(opr.OrganizeId);//Tính chất bệnh nhân,báobánchính sách
             }
 
-            // RS-06: _Index bootstrap chi lay endpoint nay de dung
-            // window.clients.enums, nhung endpoint goc KHONG tra enums (ban
-            // goc lay enums tu GetClientsDataJson cua portal frame, von
-            // khong co trong ban port doc lap). He qua: moi select
-            // data-EnumType (vd. #mjzbz EnumOutPatientType) deu ve rong va
-            // framework-ui hien "No results found" -> cis-vi doi thanh
-            // "Khong co du lieu". Bo sung enums tai day theo dung logic
-            // goc cua ClientsDataBaseController.GetEnumList (quet assembly
-            // Base.Domain, lay cac enum long trong cac lop *ClientEnum):
-            // chi reflection, khong cham DB, khong lam cham endpoint.
-            // Chu y: EnumOutPatientType cua #mjzbz nam trong SettClientEnum
-            // (khong phai CisClientEnum) nen chi quet CisClientEnum la thieu.
-            // framework-ui $.enum.getItems doi {Type, Items}, Items gom
-            // {Name, Value, Desc} (xem EnumExtensions
-            // .getEnumNameValueDescInfo); framework chi nhan khi dung 1 ban
-            // ghi/Type, nen voi ten enum lap lai o nhieu lop (vd. EnumZdlx)
-            // lay ban dau tien thay vi gop nhu ban goc (gop se lam rong ca
-            // loai do). Day la du lieu enum tinh cua code, khong phai du
-            // lieu demo/STG.
-            var cisEnums = typeof(CisClientEnum).Assembly.GetTypes()
-                .Where(t => t.IsEnum && t.FullName != null
-                    && t.FullName.Contains("EnumExtend") && t.FullName.Contains("ClientEnum"))
-                .GroupBy(t => t.Name)
-                .Select(g => g.First())
-                .Select(t => new { Type = t.Name, Items = t.getEnumNameValueDescInfo() })
-                .ToList();
+            var cisEnums = GetClientEnums();
             var data = new
             {
                 enums = cisEnums,
