@@ -1,6 +1,7 @@
 using Newtouch.Sett.Domain;
 using Newtouch.Sett.Infrastructure;
 using NewtouchHIS.Lib.Base.Exceptions;
+using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Framework.Operator;
 using SqlSugar;
 using System;
@@ -956,6 +957,13 @@ and (b.TopOrganizeId = '*' or b.TopOrganizeId = @topOrganizeId)")
         // tra success gia — bai hoc BA-005/UseTranStrict). Insert moi: Id
         // Guid moi + CreateTime/CreatorCode; neu co topOrgId thi tu dong
         // chen 1 row uy quyen to chuc (ItemType=1) nhu PDS.
+        // D-NX24-001: 2 insert (Sys_Module + Sys_OrganizeAuthorize) boc
+        // trong 1 UseTranStrict tren CUNG 1 connection (var db lay 1 lan —
+        // SettDb.GetConnection() moi lan co the tra provider khac, goi lai
+        // trong lambda se roi khoi transaction). Insert 2 loi -> rollback
+        // ca insert 1 (khong con row module mo coi), loi nem lai cho caller
+        // thay vi success gia (gap D-NX23-002b). Nhanh update (1 lenh, da
+        // nem FailedException khi 0 row) giu nguyen, khong can transaction.
         public void SubmitForm(SysModuleEntity moduleEntity, string keyValue, string topOrgId = null)
         {
             if (moduleEntity == null)
@@ -1006,23 +1014,27 @@ where Id = @id", allPars);
                 {
                     new SugarParameter("@id", newId),
                 }).ToArray();
-                SettDb.GetConnection().Ado.ExecuteCommand(
-                    @"insert into Sys_Module(Id, ParentId, Name, EnName, Code, Icon,
+                var db = SettDb.GetConnection();
+                db.Ado.UseTranStrict(() =>
+                {
+                    db.Ado.ExecuteCommand(
+                        @"insert into Sys_Module(Id, ParentId, Name, EnName, Code, Icon,
 UrlAddress, Target, px, Description, CreateTime, CreatorCode, zt, OrganizeId, AppId)
 values(@id, @parentId, @name, @enName, @code, @icon, @urlAddress, @target,
 @px, @description, GETDATE(), @creatorCode, @zt, @organizeId, @appId)", insertPars);
-                if (!string.IsNullOrWhiteSpace(topOrgId))
-                {
-                    SettDb.GetConnection().Ado.ExecuteCommand(
-                        @"insert into Sys_OrganizeAuthorize(Id, TopOrganizeId, ItemId, ItemType, CreateTime, CreatorCode, zt)
+                    if (!string.IsNullOrWhiteSpace(topOrgId))
+                    {
+                        db.Ado.ExecuteCommand(
+                            @"insert into Sys_OrganizeAuthorize(Id, TopOrganizeId, ItemId, ItemType, CreateTime, CreatorCode, zt)
 values(newid(), @topOrganizeId, @moduleId, 1, GETDATE(), @creatorCode, '1')",
-                        new SugarParameter[]
-                        {
-                            new SugarParameter("@topOrganizeId", topOrgId),
-                            new SugarParameter("@moduleId", newId),
-                            new SugarParameter("@creatorCode", (object)creatorCode ?? DBNull.Value),
-                        });
-                }
+                            new SugarParameter[]
+                            {
+                                new SugarParameter("@topOrganizeId", topOrgId),
+                                new SugarParameter("@moduleId", newId),
+                                new SugarParameter("@creatorCode", (object)creatorCode ?? DBNull.Value),
+                            });
+                    }
+                });
             }
         }
 
