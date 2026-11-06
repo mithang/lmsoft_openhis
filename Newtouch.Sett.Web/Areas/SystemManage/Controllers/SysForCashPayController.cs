@@ -46,7 +46,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         [HttpPost]
 
         //[HandlerAuthorize]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteForm(int keyValue)
         {
 

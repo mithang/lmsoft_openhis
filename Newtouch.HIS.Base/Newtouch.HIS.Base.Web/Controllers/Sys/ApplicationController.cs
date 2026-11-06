@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
 
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysApplicationEntity entity, string keyValue)
         {
             entity.zt = entity.zt == "true" ? "1" : "0";
@@ -67,7 +67,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateAuthOrganizeList(string keyValue, string orgList)
         {
             if (!string.IsNullOrWhiteSpace(keyValue) && !string.IsNullOrWhiteSpace(orgList))
@@ -84,7 +84,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult AuthAllOrganize(string keyValue)
         {
             if (!string.IsNullOrWhiteSpace(keyValue))
@@ -101,7 +101,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult AuthCancelAllOrganize(string keyValue)
         {
             if (!string.IsNullOrWhiteSpace(keyValue))

@@ -93,7 +93,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysModuleEntity moduleEntity, string keyValue)
         {
             if (string.IsNullOrEmpty(keyValue))
@@ -127,7 +127,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         //[HandlerAuthorize]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteForm(string keyValue)
         {
             _moduleApp.DeleteForm(keyValue);

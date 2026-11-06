@@ -305,6 +305,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <param name="remark"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitExec(string syIds, string seatNum, string zt, string dispenser, string executor,DateTime? sykssj,DateTime? syjssj, string remark)
         {
             if (string.IsNullOrWhiteSpace(syIds)) return Error("Vui lòng truyền vào thuốc cần thực hiện");

@@ -85,6 +85,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysBodyPartsEntity entity, string keyValue)
         {
             entity.zt = entity.zt == "true" ? "1" : "0";
@@ -97,6 +98,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult jcbwSubmitForm(Pacs_ExamBodyPartsEntity entity, string keyValue)
         {
             entity.zt = entity.zt == "true" ? "1" : "0";

@@ -85,7 +85,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
         [HttpPost]
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysRoleEntity roleEntity, string permissionIds, string keyValue)
         {
             roleEntity.TopOrganizeId = SysConfigReader.String("Top_OrganizeId");
@@ -98,7 +98,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         [HttpPost]
 
         //[HandlerAuthorize]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteForm(string keyValue)
         {
             _roleApp.DeleteForm(keyValue);

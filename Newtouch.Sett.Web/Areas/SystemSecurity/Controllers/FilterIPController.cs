@@ -56,7 +56,7 @@ namespace Newtouch.Sett.Web.Areas.SystemSecurity.Controllers
         }
         [HttpPost]
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(FilterIPEntity filterIPEntity, string keyValue)
         {
             _filterIPApp.SubmitForm(filterIPEntity, keyValue);
@@ -65,7 +65,7 @@ namespace Newtouch.Sett.Web.Areas.SystemSecurity.Controllers
         [HttpPost]
 
         //[HandlerAuthorize]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteForm(string keyValue)
         {
             _filterIPApp.DeleteForm(keyValue);

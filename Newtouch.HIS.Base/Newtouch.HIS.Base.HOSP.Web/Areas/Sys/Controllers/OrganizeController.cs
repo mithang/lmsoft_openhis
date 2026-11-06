@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Areas.Sys.Controllers
 
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysOrganizeEntity entity, string keyValue)
         {
             if (string.IsNullOrWhiteSpace(entity.Code))

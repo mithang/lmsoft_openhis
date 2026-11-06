@@ -182,7 +182,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(bl_hljl_ybEntity entity, string keyValue)
         {
             entity.OrganizeId = this.OrganizeId;
@@ -198,7 +198,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitFormWZ(bl_hljl_wzEntity entity, string keyValue)
         {
             entity.OrganizeId = this.OrganizeId;
@@ -214,7 +214,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitFormSS(bl_hljl_ssEntity entity, string keyValue)
         {
             entity.OrganizeId = this.OrganizeId;

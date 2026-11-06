@@ -134,7 +134,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysDiagnosisEntity entity, int? keyValue)
         {
             entity.zt = entity.zt == "true" ? "1" : "0";
@@ -160,7 +160,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 		/// <returns></returns>
 		[HttpPost]
 		[HandlerAjaxOnly]
-		//[ValidateAntiForgeryToken]
+		[ValidateAntiForgeryToken]
 		public IActionResult SurSubmitForm(SurgeryEntity entity, int? keyValue)
 		{
 			_syssurgeryrepo.SubmitForm(entity, keyValue);

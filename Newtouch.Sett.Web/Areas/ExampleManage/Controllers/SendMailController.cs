@@ -26,7 +26,7 @@ namespace Newtouch.Sett.Web.Areas.ExampleManage.Controllers
     {
         [HttpPost]
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         
         public IActionResult SendMail(string account, string title, string content)
         {

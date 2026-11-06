@@ -193,6 +193,7 @@ namespace NewtouchHIS.Framework.Web.Controllers.SysManage
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SubmitForm(MenuAddRequest moduleEntity, string? keyValue = null)
         {
             if (string.IsNullOrEmpty(keyValue))
@@ -238,6 +239,7 @@ namespace NewtouchHIS.Framework.Web.Controllers.SysManage
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> DeleteForm(string keyValue)
         {
             if (string.IsNullOrEmpty(keyValue))

@@ -475,6 +475,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitAccountingPlan(string zyh, IList<InpatientAccountingPlanItemDto> xmList)
         {
             _bookkeepInpatientApp.SubmitAccountingPlan(zyh, xmList);
@@ -515,6 +516,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult ExecuteAccountingPlan(DateTime? zxrq, IList<zxGirdDto> zxItem, string from = null)
         {
             _bookkeepInpatientApp.ExecuteAccountingPlan(zxItem, zxrq, from);
@@ -693,6 +695,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SavepatientAcountInfo(OutpatAccBasicInfoDto bacDto, List<OutpatAccGridInfoDto> xmList)
         {
             _outpatientApp.SaveoutpatientAccountInfo(bacDto, xmList, OrganizeId);
@@ -919,6 +922,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult UnSettedItemFeeConfirm(string zyh, DateTime startTime, DateTime endTime, int? expectedCount)
         {
             if (string.IsNullOrWhiteSpace(zyh))
@@ -993,6 +997,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult DischargeSettlement(string zyh, DateTime cyrq)
         {
             if (string.IsNullOrWhiteSpace(zyh))

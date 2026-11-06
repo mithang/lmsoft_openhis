@@ -709,6 +709,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult PartialSettleSave(string zyh, DateTime startTime, DateTime endTime, string fph, InpatientSettFeeRelatedDTO feeRelated
             , CQZyjs05Dto ybfeeRelated, string jslx
             , string outTradeNo)

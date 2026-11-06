@@ -103,7 +103,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult submitForm(SysMedicineVO model, List<string> p, string ypCode, int? keyValue)
         {
             model.zt = model.zt == "true" ? "1" : "0";

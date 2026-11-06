@@ -224,7 +224,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers.Settlement
 
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateAuthority(string gh, string organizeId,string keyword,string AuthorityList)
         {
             _sysMedicineAuthorityRelationRepo.UpdateAuthority(gh,organizeId, (AuthorityList ?? "").Split(','));

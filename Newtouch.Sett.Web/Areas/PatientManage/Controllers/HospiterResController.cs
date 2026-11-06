@@ -378,6 +378,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         /// <returns></returns>
         [HttpPost]
 
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysHosBasicInfoVO PatientBasicAndCardInfoVO)
         {
             _PatientBasicInfoDmnService.SavePatBasicCardInfo(PatientBasicAndCardInfoVO, this.OrganizeId, UserIdentity.UserCode);
@@ -694,7 +695,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         #region ngoại trú đăng ký khám
         [HttpPost]
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult InpatientSubmit(OutpatientRegistEntity OutpatientRegistEntity, int? keyValue)
         {
             OutpatientRegistEntity.ghf = 0m;

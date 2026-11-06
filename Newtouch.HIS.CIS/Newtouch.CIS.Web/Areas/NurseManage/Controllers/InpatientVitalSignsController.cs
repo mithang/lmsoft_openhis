@@ -200,7 +200,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(InpatientVitalSignsEntity entity, string keyValue)
         {
             entity.OrganizeId = this.OrganizeId;

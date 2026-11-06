@@ -102,7 +102,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
 
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysItemsEntity entity, string keyValue)
         {
             entity.ParentId = (string.IsNullOrWhiteSpace(entity.ParentId) || entity.ParentId == "0")

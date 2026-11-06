@@ -131,6 +131,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(string keyValue, string blh
             , DateTime rq
             , string zt, string bz

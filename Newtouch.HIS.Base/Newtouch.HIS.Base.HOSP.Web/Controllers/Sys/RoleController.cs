@@ -75,7 +75,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysRoleEntity roleEntity, string permissionIds, string keyValue)
         {
             roleEntity.zt = roleEntity.zt == "true" ? "1" : "0";
@@ -87,7 +87,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         //[HandlerAuthorize]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteForm(string keyValue)
         {
             _roleApp.DeleteForm(keyValue);

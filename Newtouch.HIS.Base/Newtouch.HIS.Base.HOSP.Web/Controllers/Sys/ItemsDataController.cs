@@ -85,7 +85,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         //Lưu,Sửa
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysItemsDetailEntity itemsDetailEntity, string keyValue)
         {
             itemsDetailEntity.TopOrganizeId = "*";

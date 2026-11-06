@@ -128,6 +128,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         [HttpPost]
 
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateAuthRoleList(string keyValue, string roleList)
         {
             _sysRoleShortcutMenuDmnService.UpdateAuthRoleList(keyValue, roleList, this.OrganizeId);

@@ -59,7 +59,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
 
         [HttpPost]
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteForm(string keyValue)
         {
             _moduleButtonApp.DeleteForm(keyValue);
@@ -85,7 +85,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         [HttpPost]
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateAuthOrganizeList(string keyValue, string orgList)
         {
             if (!string.IsNullOrWhiteSpace(keyValue))
@@ -102,7 +102,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         [HttpPost]
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult AuthAllOrganize(string keyValue)
         {
             if (!string.IsNullOrWhiteSpace(keyValue))
@@ -119,7 +119,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         [HttpPost]
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult AuthCancelAllOrganize(string keyValue)
         {
             if (!string.IsNullOrWhiteSpace(keyValue))

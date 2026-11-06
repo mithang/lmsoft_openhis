@@ -40,7 +40,7 @@ namespace Newtouch.Sett.Web.Areas.SystemSecurity.Controllers
         }
         [HttpPost]
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(DbBackupEntity dbBackupEntity)
         {
             dbBackupEntity.F_FilePath = SettPathHelper.MapPath("~/Resource/DbBackup/" + dbBackupEntity.F_FileName + ".bak");
@@ -51,7 +51,7 @@ namespace Newtouch.Sett.Web.Areas.SystemSecurity.Controllers
         [HttpPost]
 
         //[HandlerAuthorize]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteForm(string keyValue)
         {
             _dbBackupApp.DeleteForm(keyValue);

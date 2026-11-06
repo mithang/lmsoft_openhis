@@ -71,7 +71,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysTCMSyndromeEntity entity, int? keyValue)
         {
             entity.zt = entity.zt == "true" ? "1" : "0";

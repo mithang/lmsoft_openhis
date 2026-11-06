@@ -75,6 +75,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitSett(string zyh, DateTime expectedcyrq, decimal expectedyjjzhye, decimal expectedjsje, string fph, decimal expectedzhaoling, string xjzfListStr, decimal shishoukuan)
         {
             var successresult = _outHospSettApp.SaveSett(zyh, expectedcyrq, fph, expectedyjjzhye, expectedjsje, expectedzhaoling, xjzfListStr, shishoukuan);
@@ -133,6 +134,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitCancel(string zyh, int expectedjsnm, string cancelReason)
         {
             _hospSettCancelApp.DoCancel(zyh, expectedjsnm, cancelReason);

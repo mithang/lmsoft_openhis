@@ -108,7 +108,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         [HttpPost]
 
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult ChargeTemplate_SubmitForm(SysChargeTemplateEntity entity, string xmListStr)
         {
             entity.zt = entity.zt == "true" ? "1" : "0";

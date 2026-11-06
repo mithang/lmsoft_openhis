@@ -87,7 +87,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysUserEntity userEntity, SysUserLogOnEntity userLogOnEntity, string keyValue)
         {
             userEntity.TopOrganizeId = Constants.TopOrganizeId;
@@ -106,7 +106,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         //[HandlerAuthorize]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitRevisePassword(string userPassword, string keyValue)
         {
             _sysUserApp.RevisePassword(userPassword, keyValue);
@@ -116,7 +116,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         //[HandlerAuthorize]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult DisabledAccount(string keyValue)
         {
             _sysUserLogOnRepository.UpdateLockedStatus(keyValue, true);
@@ -126,7 +126,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         [HttpPost]
         [HandlerAjaxOnly]
         //[HandlerAuthorize]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult EnabledAccount(string keyValue)
         {
             _sysUserLogOnRepository.UpdateLockedStatus(keyValue, false);
@@ -366,6 +366,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateUserRole(string keyValue, string organizeId, string roleList)
         {
             _userRoleAuthDmnService.UpdateUserRole(keyValue, organizeId, (roleList ?? "").Split(','));

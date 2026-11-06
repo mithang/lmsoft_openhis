@@ -61,6 +61,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(InspectionCategoryEntity entity, string keyValue)
         {
             entity.zt = entity.zt == "true" ? "1" : "0";

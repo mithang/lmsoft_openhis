@@ -450,6 +450,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(PatientVitalSignsEntity entity, string keyValue)
         {
             entity.zt = "1";

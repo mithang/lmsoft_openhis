@@ -66,6 +66,7 @@ namespace HIS.SSO.Areas.SysManage.Controllers
             return View();
         }
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> SubmitMenuSync(List<SysModuleExtendVO> list, string parentMenu, string parentMenuId, string fromAppId)
         {
             //menu hiện có đã chọn

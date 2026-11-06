@@ -104,7 +104,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysDepartmentEntity entity, string keyValue)
         {
             entity.zt = entity.zt == "true" ? "1" : "0";
@@ -178,7 +178,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateDeptWard(string keyValue, string wardList)
         {
             var deptInfo = _sysDepartmentRepository.FindEntity(keyValue);

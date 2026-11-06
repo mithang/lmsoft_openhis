@@ -8,6 +8,7 @@
     }
 </style>
 <form id="form1" method="post" action="/PatientManage/SysPatientMedicalRecord/SubmitForm" enctype="multipart/form-data">
+    @Html.AntiForgeryToken()
     <div style="padding-top: 20px; margin-right: 30px;">
         <table class="form">
             <tr>

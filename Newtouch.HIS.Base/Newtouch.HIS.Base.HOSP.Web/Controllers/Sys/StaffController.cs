@@ -205,7 +205,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
 		[HttpPost]
 		[HandlerAjaxOnly]
-		//[ValidateAntiForgeryToken]
+		[ValidateAntiForgeryToken]
 		public IActionResult SubmitForm(SysStaffEntity entity, string keyValue, bool asLoginUser, string dutyList)
 		{
 			var staffId = "";
@@ -305,7 +305,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
 		[HttpPost]
 		[HandlerAjaxOnly]
-		//[ValidateAntiForgeryToken]
+		[ValidateAntiForgeryToken]
 		public IActionResult UpdateStaffDuty(string keyValue, string dutyList)
 		{
 			_sysStaffDmnService.UpdateStaffDuty(keyValue, (dutyList ?? "").Split(','));
@@ -462,7 +462,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
 		[HttpPost]
 		[HandlerAjaxOnly]
-		//[ValidateAntiForgeryToken]
+		[ValidateAntiForgeryToken]
 		public IActionResult UpdateStaffWard(string keyValue, string wardList)
 		{
 			SysStaffEntity staffInfo = _sysStaffRepo.FindEntity(keyValue);
@@ -543,7 +543,7 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateStaffConsult(string keyValue, string zsCode)
         {
             SysStaffEntity staffInfo = _sysStaffRepo.FindEntity(keyValue);

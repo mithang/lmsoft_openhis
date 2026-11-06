@@ -149,6 +149,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysModuleEntity moduleEntity, string keyValue)
         {
             moduleEntity.zt = moduleEntity.zt == "true" ? "1" : "0";
@@ -157,6 +158,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult DeleteForm(string keyValue)
         {
             _moduleApp.DeleteForm(keyValue);
@@ -188,6 +190,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         /// <param name="orgList"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult UpdateAuthOrganizeList(string keyValue, string orgList)
         {
             if (!string.IsNullOrWhiteSpace(keyValue))
@@ -203,6 +206,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         /// <param name="keyValue"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AuthAllOrganize(string keyValue)
         {
             if (!string.IsNullOrWhiteSpace(keyValue))
@@ -218,6 +222,7 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
         /// <param name="keyValue"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult AuthCancelAllOrganize(string keyValue)
         {
             if (!string.IsNullOrWhiteSpace(keyValue))

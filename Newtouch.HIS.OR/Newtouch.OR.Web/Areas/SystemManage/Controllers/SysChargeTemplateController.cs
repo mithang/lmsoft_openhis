@@ -64,7 +64,7 @@ namespace Newtouch.OR.ManageSystem.Web.Areas.SystemManage.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
+        [ValidateAntiForgeryToken]
         public IActionResult ChargeTemplate_SubmitForm(SysChargeTemplateDto entity, string xmListStr)
         {
             var opdept = _sysConfigRepo.GetValueByCode("OperationDeptConfig", this.OrganizeId);
