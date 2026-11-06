@@ -14,10 +14,12 @@ using Newtouch.HIS.Domain.IRepository;
 using Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage;
 using Newtouch.Infrastructure;
 using Newtouch.Tools;
+using Newtouch.PDS.Requset.PharmacyDepartment;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
+using System.Text;
 
 using Microsoft.AspNetCore.Mvc;
 
@@ -30,7 +32,7 @@ namespace Newtouch.HIS.Web.Controllers
         private readonly ISysMedicineBaseDmnService _sysMedicineBaseDmnService;
         private readonly ISysPharmacyDepartmentBaseDmnService _sysPharmacyDepartmentBaseDmnService;
         private readonly ISysPharmacyDepartmentDmnService _sysPharmacyDepartmentDmnService;
-        //private readonly ISysPharmacyDepartmentApp _sysPharmacyDepartmentApp;
+        private readonly ISysPharmacyDepartmentApp _sysPharmacyDepartmentApp;
         private readonly ISysPharmacyDepartmentMedicineRepo _sysPharmacyDepartmentMedicineRepo;
 
 
@@ -40,7 +42,7 @@ namespace Newtouch.HIS.Web.Controllers
             ,ISysMedicineBaseDmnService sysMedicineBaseDmnService
             , ISysPharmacyDepartmentBaseDmnService sysPharmacyDepartmentBaseDmnService
             ,ISysPharmacyDepartmentDmnService sysPharmacyDepartmentDmnService
-            //, ISysPharmacyDepartmentApp sysPharmacyDepartmentApp
+            , ISysPharmacyDepartmentApp sysPharmacyDepartmentApp
             , ISysPharmacyDepartmentMedicineRepo sysPharmacyDepartmentMedicineRepo
             )
         {
@@ -49,7 +51,7 @@ namespace Newtouch.HIS.Web.Controllers
             this._sysMedicineBaseDmnService = sysMedicineBaseDmnService;
             this._sysPharmacyDepartmentBaseDmnService = sysPharmacyDepartmentBaseDmnService;
             this._sysPharmacyDepartmentDmnService = sysPharmacyDepartmentDmnService;
-            //this._sysPharmacyDepartmentApp = sysPharmacyDepartmentApp;
+            this._sysPharmacyDepartmentApp = sysPharmacyDepartmentApp;
             this._sysPharmacyDepartmentMedicineRepo = sysPharmacyDepartmentMedicineRepo;
         }
 
@@ -109,29 +111,111 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="ypCode"></param>
         /// <param name="keyValue"></param>
         /// <returns></returns>
-        //[HttpPost]
-        //[HandlerAjaxOnly]
-        //[ValidateAntiForgeryToken]
-        //public IActionResult submitForm(SysMedicineVO model, List<string> p, string ypCode, int? keyValue)
-        //{
-        //    model.zt = model.zt == "true" ? "1" : "0";
-        //    model.ycmc = model.ycmc ?? "";
-        //    //model.ybbz = model.ybbz == "true" ? "1" : "0";
-        //    if (string.IsNullOrWhiteSpace(model.OrganizeId))
-        //    {
-        //        throw new FailedException("Vui lòng chọn tổ chức");
-        //    }
+        [HttpPost]
+        [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
+        public IActionResult submitForm(SysMedicineVO model, List<string> p, string ypCode, int? keyValue)
+        {
+            model.zt = model.zt == "true" ? "1" : "0";
+            model.ycmc = model.ycmc ?? "";
+            //model.ybbz = model.ybbz == "true" ? "1" : "0";
+            if (string.IsNullOrWhiteSpace(model.OrganizeId))
+            {
+                throw new FailedException("Vui lòng chọn tổ chức");
+            }
 
-        //    if (!_sysOrganizeDmnService.IsMedicalOrganize(model.OrganizeId))
-        //    {
-        //        throw new FailedException("Vui lòng chọn cơ sở y tế(Bệnh viện hoặc phòng khám)");
-        //    }
-        //    _sysMedicineDmnService.SubmitMedicine(model, keyValue);
-        //    var t = _sysPharmacyDepartmentApp.SubmitEmpowermentPharmacyDepartment(keyValue, ypCode, OrganizeId, UserIdentity.UserCode, p);
+            if (!_sysOrganizeDmnService.IsMedicalOrganize(model.OrganizeId) && !model.OrganizeId.Equals("*"))
+            {
+                throw new FailedException("Vui lòng chọn cơ sở y tế(Bệnh viện hoặc phòng khám)");
+            }
+            _sysMedicineDmnService.SubmitMedicine(model, keyValue);
+            var t = SubmitEmpowermentPharmacyDepartment(p, ypCode, model.OrganizeId, keyValue);
+            var msg = string.IsNullOrWhiteSpace(t) ? "Thao tác thành công." : ("Lưu thông tin thuốc thành công,nhưng ủy quyền nhà thuốc/kho thuốc thất bại," + t);
+            return Success(msg);
+        }
 
-        //    var msg = string.IsNullOrWhiteSpace(t) ? "Thao tác thành công." : ("Lưu thông tin thuốc thành công,Nhưng ủy quyền nhà thuốc kho thuốc thất bại," + t);
-        //    return Success(msg);
-        //}
+        /// <summary>
+        /// Ủy quyền nhà thuốc/kho thuốc cho thuốc vừa lưu (PDS DTO API nội bộ).
+        /// Khác HOSP: HOSP gọi SubmitEmpowermentPharmacyDepartment qua PDS API từ xa
+        /// (SitePdsApiHelper); PDS gọi thẳng ISysPharmacyDepartmentApp nội bộ —
+        /// cùng impl mà PDS.API/PharmacyDepartmentController đang dùng live.
+        /// Thêm mới (keyValue null): EmpowermentPharmacyDepartment từng kho;
+        /// sửa (keyValue có): EmpowermentPharmacyDepartmentAndRemoveOld (xóa hết rồi cấp lại).
+        /// View trả false khi không chọn kho nào (AssembleEmpowermentPharmacyDepartment)
+        /// nên phải lọc bỏ "false" — model binder chuyển thành ["false"].
+        /// </summary>
+        private string SubmitEmpowermentPharmacyDepartment(List<string> p, string ypCode, string organizeId, int? keyValue)
+        {
+            var epds = (p ?? new List<string>())
+                .Where(x => !string.IsNullOrWhiteSpace(x) && !x.Equals("false", StringComparison.OrdinalIgnoreCase))
+                .Distinct().ToList();
+            if (epds.Count == 0 || string.IsNullOrWhiteSpace(ypCode))
+            {
+                return "";
+            }
+            if (keyValue == null)
+            {
+                var result = new StringBuilder();
+                foreach (var code in epds)
+                {
+                    result.Append(_sysPharmacyDepartmentApp.EmpowermentPharmacyDepartment(new EmpowermentPharmacyDepartmentRequestDto
+                    {
+                        bmypId = Guid.NewGuid().ToString(),
+                        yfbmCode = code,
+                        Ypdm = ypCode,
+                        OrganizeId = organizeId,
+                        Ypkw = "",
+                        Zcxh = "",
+                        px = null,
+                        Pxfs1 = "",
+                        Pxfs2 = "",
+                        Kcsx = 0,
+                        Kcxx = 0,
+                        Jhd = 0,
+                        Jhl = 0,
+                        Ypsxdm = null,
+                        Sysx = 0,
+                        Ylsx = 0,
+                        zt = "1",
+                        CreateTime = DateTime.Now,
+                        CreatorCode = UserIdentity.UserCode,
+                        LastModifierCode = "",
+                        LastModifyTime = null,
+                        Timestamp = DateTime.Now
+                    }));
+                }
+                return result.ToString();
+            }
+            var request = new EmpowermentPharmacyDepartmentAndRemoveOldRequestDto
+            {
+                epds = epds.Select(code => new EmpowermentPharmacyDepartment
+                {
+                    bmypId = Guid.NewGuid().ToString(),
+                    yfbmCode = code,
+                    Ypdm = ypCode,
+                    OrganizeId = organizeId,
+                    Ypkw = "",
+                    Zcxh = "",
+                    px = null,
+                    Pxfs1 = "",
+                    Pxfs2 = "",
+                    Kcsx = 0,
+                    Kcxx = 0,
+                    Jhd = 0,
+                    Jhl = 0,
+                    Ypsxdm = null,
+                    Sysx = 0,
+                    Ylsx = 0,
+                    zt = "1",
+                    CreateTime = DateTime.Now,
+                    CreatorCode = UserIdentity.UserCode,
+                    LastModifierCode = "",
+                    LastModifyTime = null
+                }).ToList(),
+                Timestamp = DateTime.Now
+            };
+            return _sysPharmacyDepartmentApp.EmpowermentPharmacyDepartmentAndRemoveOld(request);
+        }
 
         /// <summary>
         /// Khi sửa thông tin,Mang thông tin tới trang mới
