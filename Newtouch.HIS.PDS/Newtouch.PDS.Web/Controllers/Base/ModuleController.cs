@@ -16,6 +16,18 @@ namespace Newtouch.HIS.Web.Controllers
     public class ModuleController : ControllerBase
     {
         private readonly ISysModuleDmnService _sysModuleDmnService;
+        private readonly IModuleApp _moduleApp;
+
+        // NX2-001: file goc dung _moduleApp (GetTreeSelectJson/GetFormJson/
+        // DeleteForm) nhung khong khai bao field va khong co ctor; field
+        // _sysModuleDmnService cung khong bao gio duoc gan (runtime NRE).
+        // Ca 2 service da dang ky Singleton trong Program.cs (IModuleApp :68,
+        // ISysModuleDmnService :140).
+        public ModuleController(IModuleApp moduleApp, ISysModuleDmnService sysModuleDmnService)
+        {
+            _moduleApp = moduleApp;
+            _sysModuleDmnService = sysModuleDmnService;
+        }
 
 
         //Thả xuống(Chọn thực đơn Chỉnh sửa Cấp trên)

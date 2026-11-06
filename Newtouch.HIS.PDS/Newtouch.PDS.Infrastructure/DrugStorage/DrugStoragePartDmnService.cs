@@ -60,6 +60,13 @@ GROUP BY s.dlmc,s.ypmc,s.ypCode,s.ypgg,s.bmdw,s.zhyz,s.bzs,s.bzdw,s.zxdw,s.pzwh,
 			return FindList<DrugStockInfoVEntity>(sql, param);
 		}
 
+		// NX2-001: alias truc tiep sang overload GetDrugAndStock(ckbm, rkbm,
+		// keyWord, organizeid) da co (xem interface).
+		public List<DrugStockInfoVEntity> GetDrugStock(string yfbmCode, string curYfbmCode, string keyword, string orgId)
+		{
+			return GetDrugAndStock(yfbmCode, curYfbmCode, keyword, orgId);
+		}
+
 		/// <summary>
 		/// Lấy thông tin thuốc và tồn kho của bộ phận hiện tại  (Nhập kho từ ngoài)
 		/// </summary>

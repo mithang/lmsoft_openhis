@@ -52,6 +52,27 @@ namespace Newtouch.HIS.DomainServices.BillManage
             }
         }
 
+        // NX2-001: rollback receipt vua tao khi ApplyProcess that bai.
+        // Body lay nguyen mau DeleteCrkDj (DrugStorageDmnService, cung thao
+        // tac xoa header + detail trong 1 transaction). userCode khong dung
+        // vi day la xoa rollback, khong phai huy nghiep vu co nguoi duyet.
+        public void Cancel(string crkId, string userCode)
+        {
+            using (var db = new EFDbTransaction().BeginTrans())
+            {
+                //Xóa bảng xuất nhập kho
+                var inventoryEntity = db.FindEntity<SysMedicineStorageIOReceiptEntity>(p => p.crkId == crkId);
+                db.Delete(inventoryEntity);
+                //Xóa bảng chi tiết xuất nhập kho
+                var inventoryDetailEntityList = db.IQueryable<SysMedicineStorageIOReceiptDetailEntity>().Where(a => a.crkId == crkId).ToList();
+                foreach (var item in inventoryDetailEntityList)
+                {
+                    db.Delete(item);
+                }
+                db.Commit();
+            }
+        }
+
         /// <summary>
         /// Lấy thông tin chính đơn lĩnh
         /// </summary>

@@ -1102,6 +1102,12 @@ AND a.zt='1'
             };
             return FindList<SysPharmacyDepartmentVEntity>(strSql, param).ToList();
         }
+
+        // NX2-001: uy thac cho GetTheUpperYkbmCodeList da co (xem interface).
+        public IList<SysPharmacyDepartmentVEntity> GetYfbmList(string keyword, string orgId)
+        {
+            return GetTheUpperYkbmCodeList(keyword, Constants.CurrentYfbm.yfbmCode, orgId);
+        }
         #endregion
 
         #region  Lấy nhà thuốc theo mã kho thuốc

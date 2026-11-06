@@ -1,3 +1,4 @@
+using System;
 using Newtouch.Core.Common;
 using NewtouchHIS.Lib.Base.Model;
 using Newtouch.HIS.Domain.Entity;
@@ -58,6 +59,33 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <param name="sldId"></param>
         /// <returns></returns>
         List<SysMedicineReDetailVO> GetMedicineDetail(string sldId);
+
+        /// <summary>
+        /// Lấy danh sách đơn lĩnh chờ nhập kho điều chuyển (Transfer.RequestInfo).
+        /// </summary>
+        /// <param name="sldh">Số đơn lĩnh</param>
+        /// <param name="curYfbmCode">Bộ phận lĩnh hiện tại (nhà thuốc nhận)</param>
+        /// <param name="fybm">Bộ phận xuất kho (lọc theo Ckbm)</param>
+        /// <param name="ffzt">Trạng thái phát thuốc ("-1" = tất cả)</param>
+        /// <param name="startDate">Ngày bắt đầu</param>
+        /// <param name="endDate">Ngày kết thúc</param>
+        /// <returns></returns>
+        // NX2-001: method vendor goi trong TransferController.RequestInfo
+        // khong con trong code. Implement bang cach uy thac cho
+        // GetMedicineRequestInfo da co (cung service, SQL that tren
+        // XT_YP_SLD): Slbm = nha thuoc hien tai (ben nhan), roi loc them
+        // theo Ckbm == fybm o memory. Ngay mac dinh (<= MinDateTime) duoc
+        // truyen "" de ham goc khong loc ngay. Composition, can kiem chung live.
+        IList<SysMedicineReInfoVO> GetTransferOrders(string sldh, string curYfbmCode, string fybm, string ffzt, DateTime startDate, DateTime endDate);
+
+        /// <summary>
+        /// Lấy thông tin thuốc của một đơn lĩnh (Transfer.RequestMedicineInfo).
+        /// </summary>
+        /// <param name="sldId"></param>
+        /// <returns></returns>
+        // NX2-001: method vendor khong con trong code; alias truc tiep sang
+        // GetMedicineDetail da co (cung service, SQL that). Composition.
+        List<SysMedicineReDetailVO> GetSldInfo(string sldId);
 
         /// <summary>
         /// Nhập kho
@@ -161,6 +189,21 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <param name="organizeid"></param>
         /// <returns></returns>
         List<DrugStockInfoVEntity> GetDrugAndStock(string ckbm, string rkbm, string keyWord, string organizeid);
+
+        /// <summary>
+        /// Lấy danh sách thuốc cần lĩnh cho nhập kho điều chuyển
+        /// (Transfer.DrugStockSearch). yfbmCode = kho xuất, curYfbmCode =
+        /// kho nhập (nhà thuốc hiện tại).
+        /// </summary>
+        /// <param name="yfbmCode"></param>
+        /// <param name="curYfbmCode"></param>
+        /// <param name="keyword"></param>
+        /// <param name="orgId"></param>
+        /// <returns></returns>
+        // NX2-001: method vendor khong con trong code; alias truc tiep sang
+        // overload GetDrugAndStock(ckbm, rkbm, keyWord, organizeid) da co
+        // (cung service, SQL that). Composition.
+        List<DrugStockInfoVEntity> GetDrugStock(string yfbmCode, string curYfbmCode, string keyword, string orgId);
 
         /// <summary>
         /// Lấy thông tin thuốc và tồn kho của bộ phận hiện tại  (Nhập kho từ ngoài)

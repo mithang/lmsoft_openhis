@@ -29,6 +29,26 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         private readonly IHandOutMedicineDmnService _handOutMedicineDmnService;
         private readonly ISysPharmacyDepartmentMedicineRepo _sysPharmacy;
 
+        // NX2-001: file goc thieu ctor nen 7 field readonly khong bao gio
+        // duoc gan (runtime NRE). Ca 7 service/repo da dang ky Singleton
+        // trong Program.cs (:44, :56, :57, :81, :132, :133, :147).
+        public TransferController(IPharmacyDrugStorageDmnService pharmacyDrugStorageDmnService,
+            ISysMedicineStorageIOReceiptRepo djRepo,
+            ISysMedicineStorageIOReceiptDetailRepo djmxRepo,
+            IApplyDmnService applyDmnService,
+            IDrugStorageDmnService drugStorageDmnService,
+            IHandOutMedicineDmnService handOutMedicineDmnService,
+            ISysPharmacyDepartmentMedicineRepo sysPharmacy)
+        {
+            _pharmacyDrugStorageDmnService = pharmacyDrugStorageDmnService;
+            _djRepo = djRepo;
+            _djmxRepo = djmxRepo;
+            _applyDmnService = applyDmnService;
+            _drugStorageDmnService = drugStorageDmnService;
+            _handOutMedicineDmnService = handOutMedicineDmnService;
+            _sysPharmacy = sysPharmacy;
+        }
+
         /// <summary>
         /// Xin điều chuyển 
         /// GET: OutOrInStoredManage/Transfer/Apply
@@ -45,12 +65,15 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
             var numbStr = $"{DateTime.Now.ToString("yyyyMMddHHmmss")}";
             var numbInt = Convert.ToInt64(numbStr);
             var newDjh = $"{_prefix}{numbStr}";
-            while (RedisHelper.Exists(newDjh))
+            // NX2-001: RedisHelper mo ho giua Newtouch.Core.Redis va
+            // Newtouch.Tools (ca 2 deu co trong Shims, cung uy thac ve 1
+            // store in-memory). Fully-qualify ve Core.Redis (ban wrapper).
+            while (Newtouch.Core.Redis.RedisHelper.Exists(newDjh))
             {
                 numbInt += 1;
                 newDjh = $"{_prefix}{numbInt}";
             }
-            RedisHelper.StringSet(newDjh, numbInt.ToString(), (DateTime.Now.AddMinutes(2) - DateTime.Now));
+            Newtouch.Core.Redis.RedisHelper.StringSet(newDjh, numbInt.ToString(), (DateTime.Now.AddMinutes(2) - DateTime.Now));
 
             return Content(newDjh);
         }
@@ -126,7 +149,9 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
                     CreatorCode = dj.CreatorCode,
                 });
             }
-            if (djmx.IsEmpty())
+            // NX2-001: khong co extension List<T>.IsEmpty trong codebase;
+            // Count == 0 la equivalent truc tiep, khong them extension moi.
+            if (djmx.Count == 0)
             {
                 return Error("Vui lòng nhập chi tiết thuốc điều chuyển");
             }
@@ -141,7 +166,13 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
 
             #region Đơn lĩnh
 
-            djInfoDTO.djlx = (int)EnumSldlx.shenqingdiaobodan;
+            // NX2-001: dong goc `djInfoDTO.djlx = (int)EnumSldlx.shenqingdiaobodan;`
+            // da XOA — EnumSldlx khong ton tai o bat cu dau trong repo, va gia
+            // tri nay khong co consumer: ApplyProcess (consumer duy nhat cua
+            // DjInfoDTO o flow nay) khong doc Request.djlx (Validata chi check
+            // mx, BeforeAction khong copy djlx, SysMedicineRequisitionEntity
+            // khong co field sldlx), ProcessorBase cung khong doc djlx. Xoa
+            // dong chet, khong bia gia tri enum. Xem bao cao NX2-001.
             djInfoDTO.rkbm = Constants.CurrentYfbm.yfbmCode;
             var result = new ApplyProcess(djInfoDTO).Process();
             if (!result.IsSucceed)

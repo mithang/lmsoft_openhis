@@ -164,18 +164,62 @@ namespace NewtouchHIS.Lib.Base.Extension
 namespace NewtouchHIS.Lib.Base.Utilities
 {
     /// <summary>Predicate starter (the referenced Lib.Base DLL predates this type).</summary>
+    // NX2-001: ban goc dung Expression.Invoke (mau PredicateBuilder co dien).
+    // SqlSugar 5.1.4.100 KHONG dich duoc node Invoke — no render thanh rong,
+    // SQL live that: WHERE ((( 1 = 1 ) AND) AND ) -> SQL Server bao
+    // "Incorrect syntax near ')'" (Role GetGridJson). Viet lai bang
+    // ReplaceExpressionVisitor y nhu ban source trong Lib.Base
+    // (Utilities/PredicateBuilder.cs — file do bi <Compile Remove> khoi
+    // build Lib.Base nen shim nay moi ton tai). Harness tren SqlSugar that
+    // chung minh ban nay sinh SQL day du; ban Invoke sinh SQL thieu menh de.
+    // Anh huong: moi noi dung PredicateBuilder trong PDS (RoleApp,
+    // SysItemsDetailRepo) — sua 1 cho, khoi ca class.
     public static class PredicateBuilder
     {
         public static System.Linq.Expressions.Expression<System.Func<T, bool>> GetTrue<T>() { return f => true; }
+        public static System.Linq.Expressions.Expression<System.Func<T, bool>> GetFalse<T>() { return f => false; }
+
         public static System.Linq.Expressions.Expression<System.Func<T, bool>> And<T>(this System.Linq.Expressions.Expression<System.Func<T, bool>> first, System.Linq.Expressions.Expression<System.Func<T, bool>> second)
         {
-            var invoked = System.Linq.Expressions.Expression.Invoke(second, first.Parameters);
-            return System.Linq.Expressions.Expression.Lambda<System.Func<T, bool>>(System.Linq.Expressions.Expression.AndAlso(first.Body, invoked), first.Parameters);
+            return first.AndAlso<T>(second, System.Linq.Expressions.Expression.AndAlso);
         }
+
         public static System.Linq.Expressions.Expression<System.Func<T, bool>> Or<T>(this System.Linq.Expressions.Expression<System.Func<T, bool>> first, System.Linq.Expressions.Expression<System.Func<T, bool>> second)
         {
-            var invoked = System.Linq.Expressions.Expression.Invoke(second, first.Parameters);
-            return System.Linq.Expressions.Expression.Lambda<System.Func<T, bool>>(System.Linq.Expressions.Expression.OrElse(first.Body, invoked), first.Parameters);
+            return first.AndAlso<T>(second, System.Linq.Expressions.Expression.OrElse);
+        }
+
+        private static System.Linq.Expressions.Expression<System.Func<T, bool>> AndAlso<T>(this System.Linq.Expressions.Expression<System.Func<T, bool>> expr1, System.Linq.Expressions.Expression<System.Func<T, bool>> expr2, System.Func<System.Linq.Expressions.Expression, System.Linq.Expressions.Expression, System.Linq.Expressions.BinaryExpression> func)
+        {
+            var parameter = System.Linq.Expressions.Expression.Parameter(typeof(T));
+
+            var leftVisitor = new ReplaceExpressionVisitor(expr1.Parameters[0], parameter);
+            var left = leftVisitor.Visit(expr1.Body);
+
+            var rightVisitor = new ReplaceExpressionVisitor(expr2.Parameters[0], parameter);
+            var right = rightVisitor.Visit(expr2.Body);
+
+            return System.Linq.Expressions.Expression.Lambda<System.Func<T, bool>>(
+                func(left, right), parameter);
+        }
+
+        private class ReplaceExpressionVisitor : System.Linq.Expressions.ExpressionVisitor
+        {
+            private readonly System.Linq.Expressions.Expression _oldValue;
+            private readonly System.Linq.Expressions.Expression _newValue;
+
+            public ReplaceExpressionVisitor(System.Linq.Expressions.Expression oldValue, System.Linq.Expressions.Expression newValue)
+            {
+                _oldValue = oldValue;
+                _newValue = newValue;
+            }
+
+            public override System.Linq.Expressions.Expression Visit(System.Linq.Expressions.Expression node)
+            {
+                if (node == _oldValue)
+                    return _newValue;
+                return base.Visit(node);
+            }
         }
     }
 }

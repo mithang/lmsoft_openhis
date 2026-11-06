@@ -100,6 +100,15 @@ namespace Newtouch.HIS.Domain.DTO.OutOrInStoredOperate
         public decimal? jj { get; set; }
 
         /// <summary>
+        /// Giá nhập đơn vị nhỏ nhất (dùng tính Zje trong Transfer.SubmitApply).
+        /// </summary>
+        // NX2-001: field vendor dung trong TransferController (item.zxdwjj)
+        // khong co trong DTO nay. Ten + kieu decimal lay tu DTO anh em cung
+        // domain FrozenStockAndGenerateCrkdjDTO.zxdwjj (decimal) va cot
+        // s.zxdwjj trong SQL DrugStoragePartDmnService (so thuc).
+        public decimal zxdwjj { get; set; }
+
+        /// <summary>
         /// Giá bán buôn đơn vị kho thuốc
         /// </summary>
         public decimal ykpfj { get; set; }

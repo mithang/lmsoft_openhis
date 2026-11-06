@@ -81,5 +81,19 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <returns></returns>
         List<ReceiptQueryDetailVO> SelectOutOrInStorageBillDetail(string crkId, int djlx);
         List<DrupreparationMXVO> SelectDrupreparationInfoMX(string byid);
+
+        /// <summary>
+        /// Hủy chứng từ xuất nhập kho vừa tạo khi quy trình sau đó thất bại
+        /// (Transfer.SubmitApply gọi khi ApplyProcess thất bại để rollback
+        /// receipt vừa insert trong cùng request).
+        /// </summary>
+        /// <param name="crkId">Id chứng từ xt_yp_crkdj vừa tạo</param>
+        /// <param name="userCode">Mã người thao tác (ghi nhận, hiện chưa dùng
+        /// trong thao tác xóa rollback)</param>
+        // NX2-001: method vendor khong con trong code. Implement theo dung mau
+        // DeleteCrkDj da co tren IDrugStorageDmnService (xoa header + detail
+        // trong 1 transaction) — dung cho rollback receipt vua tao, khong phai
+        // huy chung tu nghiep vu da duyet. Composition, can kiem chung live.
+        void Cancel(string crkId, string userCode);
     }
 }

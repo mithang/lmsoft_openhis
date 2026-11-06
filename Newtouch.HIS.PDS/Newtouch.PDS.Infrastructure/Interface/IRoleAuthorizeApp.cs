@@ -8,12 +8,14 @@ namespace Newtouch.HIS.Application.Interface
     /// </summary>
     public interface IRoleAuthorizeApp
     {
-        ///// <summary>
-        ///// Lấy danh sách ủy quyền vai trò
-        ///// </summary>
-        ///// <param name="roleId"></param>
-        ///// <returns></returns>
-        //List<SysRoleAuthorizeEntity> GetValidList(string roleId);
+        /// <summary>
+        /// Lấy danh sách ủy quyền vai trò
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        // NX2-001: bo comment, khoi phuc method (controller RoleAuthorize
+        // goi GetValidList; impl trong RoleAuthorizeApp query Sys_RoleAuthorize).
+        List<SysRoleAuthorizeEntity> GetValidList(string roleId);
 
         /// <summary>
         /// Kiểm tra quyền truy cập

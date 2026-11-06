@@ -677,6 +677,30 @@ GROUP BY d.Slbm ,M.sldmxId ,m.sldId ,d.sldh ,M.ypcode ,J.ypmc, ypsx.ypgg ,J.py ,
 			return FindList<SysMedicineReDetailVO>(strSql.ToString(), par);
 		}
 
+		// NX2-001: uy thac cho GetMedicineRequestInfo da co (xem interface).
+		// Controller truyen DateTime khong-nullable: ngay <= MinDateTime
+		// (1970-01-01, tuc khong chon ngay) doi thanh "" de ham goc khong loc
+		// ngay — neu truyen thang "0001-01-01" thi bo loc endDate se loai het.
+		// rows = int.MaxValue vi vendor tra toan bo danh sach (controller
+		// khong phan trang, chi ToJson truc tiep).
+		public IList<SysMedicineReInfoVO> GetTransferOrders(string sldh, string curYfbmCode, string fybm, string ffzt, DateTime startDate, DateTime endDate)
+		{
+			string txtStartDate = startDate > Constants.MinDateTime ? startDate.ToString("yyyy-MM-dd") : "";
+			string txtEndDate = endDate > Constants.MinDateTime ? endDate.ToString("yyyy-MM-dd") : "";
+			var rows = GetMedicineRequestInfo(new Pagination { page = 1, rows = int.MaxValue }, sldh, curYfbmCode, ffzt, txtStartDate, txtEndDate);
+			if (!string.IsNullOrWhiteSpace(fybm))
+			{
+				rows = rows.Where(t => t.Ckbm == fybm).ToList();
+			}
+			return rows;
+		}
+
+		// NX2-001: alias truc tiep sang GetMedicineDetail da co (xem interface).
+		public List<SysMedicineReDetailVO> GetSldInfo(string sldId)
+		{
+			return GetMedicineDetail(sldId);
+		}
+
 		/// <summary>
 		/// Chấm dứt trạng thái xuất kho theo đơn lĩnh
 		/// </summary>

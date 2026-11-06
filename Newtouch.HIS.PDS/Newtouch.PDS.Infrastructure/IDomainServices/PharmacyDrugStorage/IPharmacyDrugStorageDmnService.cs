@@ -206,6 +206,19 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <param name="orgId"></param>
         /// <returns></returns>
         IList<SysPharmacyDepartmentVEntity> GetTheUpperYkbmCodeList(string keyword, string yfbmCode, string orgId);
+        /// <summary>
+        /// Lấy danh sách nhà thuốc (điểm xuất kho) cho màn xin điều chuyển.
+        /// </summary>
+        /// <param name="keyword"></param>
+        /// <param name="orgId"></param>
+        /// <returns></returns>
+        // NX2-001: method vendor goi trong TransferController.GetYfbmList
+        // khong con trong code. Implement bang cach uy thac cho
+        // GetTheUpperYkbmCodeList da co (cung service, SQL that tren
+        // xt_yp_fypz + V_S_xt_yfbm): nha thuoc cap tren cua nha thuoc hien
+        // tai chinh la tap nguon hop le de xin dieu chuyen. Day la composition,
+        // khong phai khoi phuc vendor — can kiem chung live.
+        IList<SysPharmacyDepartmentVEntity> GetYfbmList(string keyword, string orgId);
         #endregion
 
         #region  Lấy nhà thuốc theo mã kho thuốc

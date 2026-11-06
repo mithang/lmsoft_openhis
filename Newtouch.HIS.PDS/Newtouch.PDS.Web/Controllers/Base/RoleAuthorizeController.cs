@@ -15,6 +15,16 @@ namespace Newtouch.HIS.Web.Controllers
         private readonly IRoleAuthorizeApp _roleAuthorizeApp;
         private readonly ISysModuleDmnService _sysModuleDmnService;
 
+        // NX2-001: file goc thieu ctor nen 2 field readonly khong bao gio duoc
+        // gan (compile 0 loi nhung runtime NRE ngay call dau). Ca 2 service da
+        // dang ky Singleton trong Program.cs (IRoleAuthorizeApp :95,
+        // ISysModuleDmnService :140).
+        public RoleAuthorizeController(IRoleAuthorizeApp roleAuthorizeApp, ISysModuleDmnService sysModuleDmnService)
+        {
+            _roleAuthorizeApp = roleAuthorizeApp;
+            _sysModuleDmnService = sysModuleDmnService;
+        }
+
 
         public IActionResult GetPermissionTree(string roleId)
         {

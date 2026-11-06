@@ -20,6 +20,19 @@ namespace Newtouch.HIS.Application
         private readonly ISysModuleRepo _sysModuleRepo;
 
         /// <summary>
+        /// Lấy danh sách ủy quyền vai trò
+        /// </summary>
+        /// <param name="roleId"></param>
+        /// <returns></returns>
+        // NX2-001: khoi phuc theo dung mau query da co trong
+        // GetAuthorizeActionModelList (zt == "1" + RoleId) — chi loc theo
+        // roleId, khong loc theo module nhu ham kia.
+        public List<SysRoleAuthorizeEntity> GetValidList(string roleId)
+        {
+            return _roleAuthorizeRepo.IQueryable(t => t.zt == "1" && t.RoleId == roleId).ToList();
+        }
+
+        /// <summary>
         /// Kiểm tra quyền truy cập
         /// </summary>
         /// <param name="roleIdList"></param>

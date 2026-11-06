@@ -55,7 +55,12 @@ namespace Newtouch.HIS.Web.Controllers
         public IActionResult submitForm_AntibioticType(SysMedicineAntibioticTypeVO AntibioticType)
         {
             SysMedicineAntibioticTypeVO entity = new SysMedicineAntibioticTypeVO();
-            entity = AntibioticType.MapperTo(entity);
+            // NX2-001: MapperTo khong co overload 1 tham so (chi co 2 overload
+            // generic 0-tham-so trong Shims/MapperExtensions.cs). Dung overload
+            // JSON round-trip MapperTo<SysMedicineAntibioticTypeVO>() — cung kieu
+            // copy (serialize AntibioticType roi deserialize ve cung VO), entity
+            // vua new xong roi gan lai ngay nen ngu nghia giu nguyen.
+            entity = AntibioticType.MapperTo<SysMedicineAntibioticTypeVO>();
             entity.OrganizeId = OrganizeId;
             entity.zt = "1";
             _ISysMedicineAntibioticTypeDmnService.SubmitForm(entity);
