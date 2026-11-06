@@ -96,6 +96,7 @@ namespace HIS.SSO.Controllers
 		/// <returns></returns>
 		[HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public async virtual Task<IActionResult> SaveShortcutMenu(ShorcutMenuModel request)
         {
             if (string.IsNullOrWhiteSpace(request.returnUrl))

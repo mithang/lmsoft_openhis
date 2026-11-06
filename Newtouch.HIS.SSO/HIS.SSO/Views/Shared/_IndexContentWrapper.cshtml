@@ -122,7 +122,7 @@
         }
         $.ajax({
             url: "/Home/SaveShortcutMenu",
-            data: { "request": theRequest },  
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  "request": theRequest },  
             type: "post",
             dataType: "json",
             success: function (data) {
