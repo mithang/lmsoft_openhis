@@ -1,5 +1,4 @@
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Configuration;
 using NewtouchHIS.Base.Domain.Organize;
 using NewtouchHIS.Framework.Web.Controllers;
 using NewtouchHIS.Framework.Web.Implementation;
@@ -13,9 +12,7 @@ using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System;
 using System.Diagnostics;
-using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
 
 namespace Newtouch.OR.ManageSystem.Web.Controllers
 {
@@ -32,12 +29,9 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
     [HandlerLogin]
     public class LoginController : LoginBaseController
     {
-        private static IConfiguration _staticConfig;
-
-        public LoginController(ILoginAppService loginApp, ISysUserVDmnService sysUserVDmn, IConfiguration config)
+        public LoginController(ILoginAppService loginApp, ISysUserVDmnService sysUserVDmn)
             : base(loginApp, sysUserVDmn)
         {
-            _staticConfig = config;
         }
 
         public override void OprBeforeSave(OperatorModel opr)
@@ -102,50 +96,15 @@ namespace Newtouch.OR.ManageSystem.Web.Controllers
             return RedirectToAction("Index", "Home");
         }
 
-        /// <summary>
-        /// Khởi động trước ủy quyền thống nhất（Mở khởi động trướcCISTrang）
-        /// </summary>
-        public static void UALoginPre(OperatorModel opr)
-        {
-            try
-            {
-                if (opr != null && !string.IsNullOrWhiteSpace(opr.OrganizeId))
-                {
-                    var appId = "Sett";
-                    if (!string.IsNullOrWhiteSpace(appId))
-                    {
-                        var addrList = new System.Collections.Generic.List<string>();
-                        var addrKey = appId + "_UALoginPreAddress";
-                        var iaddr = _staticConfig?[addrKey];
-                        if (!string.IsNullOrWhiteSpace(iaddr))
-                        {
-                            addrList.Add(iaddr);
-                        }
-                        addrKey = appId + "_UALoginPreAddress2";
-                        iaddr = _staticConfig?[addrKey];
-                        if (!string.IsNullOrWhiteSpace(iaddr))
-                        {
-                            addrList.Add(iaddr);
-                        }
-                        var handler = new HttpClientHandler { UseProxy = false };
-                        foreach (var addr in addrList)
-                        {
-                            if (!string.IsNullOrWhiteSpace(addr))
-                            {
-                                var addr1 = addr + "?account=" + opr.UserCode + "&organizeId=" + opr.OrganizeId;
-                                Task.Run(async () => { using (var http = new HttpClient(handler)) { await http.GetStringAsync(addr1); } });
-                                var addr2 = addr + "?configOrganizeId=" + opr.OrganizeId;
-                                Task.Run(async () => { using (var http = new HttpClient(handler)) { await http.GetStringAsync(addr2); } });
-                                var addr3 = addr + "?outPatientRegistrationQueryPreOrganizeId=" + opr.OrganizeId;
-                                Task.Run(async () => { using (var http = new HttpClient(handler)) { await http.GetStringAsync(addr3); } });
-                            }
-                        }
-                    }
-                }
-            }
-            catch
-            {
-            }
-        }
+        // NX18-002 (du thao D-NX18-002): UALoginPre DA XOA khoi file nay.
+        // Ly do: 0 caller repo-wide (grep .cs/.cshtml/.js); key cau hinh
+        // Sett_UALoginPreAddress(2) khong ton tai o bat ky appsettings nao
+        // nen ham duoc goi cung la no-op (addrList rong); endpoint dich
+        // UALoginPre khong co o cay port (vendor CIS/MRQC co action nay
+        // nhung port khong port sang) nen khong the wire sau AddCurrent.
+        // Hanh vi UALogin truoc/sau xoa khong doi (ham khong bao gio duoc
+        // goi); probe truoc xoa (NX18, OR 5231): token gia -> 302 /,
+        // 0 cookie, GET / -> 200 login. CHUA live-proven sau xoa (can
+        // redeploy + probe lai; coordinator quyet).
     }
 }

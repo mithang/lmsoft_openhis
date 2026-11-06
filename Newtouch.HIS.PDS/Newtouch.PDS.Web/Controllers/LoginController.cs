@@ -199,18 +199,5 @@ namespace Newtouch.HIS.Web.Controllers
             try { AppLogger.Info(string.Format("{0}Thoát đăng nhập", Constants.AppId)); } catch { }
         }
 
-        // SSO token-login fallback (FrameworkBase LoginController.QuickLoginSuccess is binary-only):
-        // with no validated operator session, fall back to the normal login page rather than
-        // minting a session from an unverified token. Documented stub, not a silent success.
-        private IActionResult QuickLoginSuccess(string account, string organizeId, string returnUrl, string withToken, System.Action acBeforeRedirect)
-        {
-            try { acBeforeRedirect?.Invoke(); } catch { }
-            if (OperatorProvider.GetCurrent() != null && !string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
-            {
-                return Redirect(returnUrl);
-            }
-            return RedirectToAction("Index", "Login");
-        }
-
     }
 }
