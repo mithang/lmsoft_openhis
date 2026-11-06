@@ -70,6 +70,7 @@ namespace Newtouch.Sett.Web.Controllers
         }
 
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult rowdata(string dataset, string orgId = null)
         {
             JArray jar;

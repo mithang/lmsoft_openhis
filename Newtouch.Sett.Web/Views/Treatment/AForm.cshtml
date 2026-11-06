@@ -322,7 +322,7 @@
         $.najax({
             url: "/Treatment/rowdata",
             dataType: "json",
-            data: { dataset: dataset, orgId: $.request('orgId') },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), dataset: dataset, orgId: $.request('orgId') },
             traditional: true,
             type: "POST",
             success: function (data) {

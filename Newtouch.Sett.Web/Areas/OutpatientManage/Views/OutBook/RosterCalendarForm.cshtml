@@ -605,7 +605,7 @@
         $.najax({
             url: "/Treatment/rowdata",
             dataType: "json",
-            data: { dataset: dataset },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), dataset: dataset },
             traditional: true,
             type: "POST",
             success: function (data) {
