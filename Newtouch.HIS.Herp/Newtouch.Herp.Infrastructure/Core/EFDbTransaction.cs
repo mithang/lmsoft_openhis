@@ -1,3 +1,4 @@
+using Newtouch.Herp.Domain.IRepository;
 using SqlSugar;
 using System;
 using System.Collections.Generic;
@@ -51,16 +52,55 @@ namespace Newtouch.Infrastructure.EF
 
         public int Insert<T>(T entity) where T : class, new()
         {
-            int n = Db.Insertable(entity).ExecuteCommand();
-            _affected += n;
-            return n;
+            // NX27 (D-NX27-HERP-002): same identity backfill as
+            // RepositoryBase.Insert — the EF-era base backfilled DB-generated
+            // identities; ExecuteCommand does not, so callers that read the Id
+            // after an in-transaction insert (PurchasingOrderApp re-reads the
+            // order by orderNo to work around Id<=0; PurchasingPlanApp details
+            // link purchaseId from the header) got Id=0. ExecuteReturnIdentity
+            // runs SCOPE_IDENTITY() on this transaction's connection, so the
+            // value is correct inside the transaction. _affected/return stay 1
+            // on success (throws on SQL error, as before); explicit-Id tables
+            // return 0 from ExecuteReturnIdentity and are left untouched.
+            var identity = Db.Insertable(entity).ExecuteReturnIdentity();
+            SqlSugarIdentity.Apply(entity, identity);
+            _affected += 1;
+            return 1;
         }
 
         public int Insert<T>(List<T> entities) where T : class, new()
         {
-            int n = Db.Insertable(entities).ExecuteCommand();
-            _affected += n;
-            return n;
+            // NX27 (D-NX27-HERP-002): list overload backfills each row's
+            // identity, same rationale as RepositoryBase.Insert(List<T>).
+            // Row-by-row through the same ExecuteReturnIdentity primitive, on
+            // this transaction's connection. Callers always run this inside
+            // BeginTrans, but guard anyway: if no ambient transaction is running,
+            // wrap the loop in one so a mid-list failure stays atomic, exactly
+            // like the old ExecuteCommand batch. Null/empty lists keep the old
+            // single-call behaviour verbatim.
+            if (entities == null || entities.Count == 0)
+            {
+                int n = Db.Insertable(entities).ExecuteCommand();
+                _affected += n;
+                return n;
+            }
+            var ownTran = Db.Ado.IsNoTran();
+            if (ownTran) Db.Ado.BeginTran();
+            try
+            {
+                var total = 0;
+                foreach (var entity in entities)
+                {
+                    total += Insert(entity);
+                }
+                if (ownTran) Db.Ado.CommitTran();
+                return total;
+            }
+            catch
+            {
+                if (ownTran) { try { Db.Ado.RollbackTran(); } catch { /* already rolled back */ } }
+                throw;
+            }
         }
 
         public int Update<T>(T entity) where T : class, new()

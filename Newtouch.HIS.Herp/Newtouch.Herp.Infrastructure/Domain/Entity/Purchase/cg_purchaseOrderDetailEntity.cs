@@ -14,7 +14,7 @@ namespace Newtouch.Herp.Domain.Entity
         /// <summary>
         /// Khóa chính ID
         /// </summary>
-        [SugarColumn(IsPrimaryKey = true)]
+        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public long Id { get; set; }
 
         /// <summary>

@@ -24,6 +24,29 @@ namespace Newtouch.Herp.Domain.IRepository
     }
 
     /// <summary>
+    /// Shared identity-backfill helper (NX26 D-NX26-KF-001, extended NX27
+    /// D-NX27-HERP-002): the original EF6 base backfilled DB-generated identity
+    /// values onto the entity; SqlSugar ExecuteCommand does not. Used by
+    /// RepositoryBase and EFDbTransaction (same assembly) so every insert path
+    /// backfills the same way. No-op when the DB returns no identity (&lt;=0)
+    /// or the entity has no IsIdentity property (explicit-Id tables).
+    /// </summary>
+    internal static class SqlSugarIdentity
+    {
+        internal static void Apply<T>(T entity, object identity)
+        {
+            if (identity == null) return;
+            if (!long.TryParse(identity.ToString(), out var id) || id <= 0) return;
+            var prop = typeof(T).GetProperties().FirstOrDefault(p =>
+                p.GetCustomAttributes(typeof(SugarColumn), true).OfType<SugarColumn>().Any(a => a.IsIdentity));
+            if (prop != null && prop.CanWrite)
+            {
+                prop.SetValue(entity, Convert.ChangeType(id, prop.PropertyType));
+            }
+        }
+    }
+
+    /// <summary>
     /// SqlSugar generic repository. Replaces FrameworkBase RepositoryBase&lt;T&gt;
     /// (EF6 + Newtouch.Infrastructure.EF, Framework-only, no source).
     /// SQL helpers mirror the old base's raw-SQL surface so repo implementations
@@ -63,21 +86,48 @@ namespace Newtouch.Herp.Domain.IRepository
             // on SqlSugarCore 5.1.4.100), so backfill only when a real identity comes
             // back. Return stays 1 on success (throws on SQL error, as before).
             var identity = Db.Insertable(entity).ExecuteReturnIdentity();
-            if (identity != null && long.TryParse(identity.ToString(), out var id) && id > 0)
-            {
-                var prop = typeof(T).GetProperties().FirstOrDefault(p =>
-                    p.GetCustomAttributes(typeof(SugarColumn), true).OfType<SugarColumn>().Any(a => a.IsIdentity));
-                if (prop != null && prop.CanWrite)
-                {
-                    prop.SetValue(entity, Convert.ChangeType(id, prop.PropertyType));
-                }
-            }
+            SqlSugarIdentity.Apply(entity, identity);
             return 1;
         }
 
         public int Insert(List<T> entities)
         {
-            return Db.Insertable(entities).ExecuteCommand();
+            // NX27 (D-NX27-HERP-002): the single-entity Insert above backfills,
+            // but this list overload did not — callers inserting identity rows in
+            // bulk (PurchasingPlanApp details, WbrkAdopt kcxx, price-adjustment
+            // profit/loss) kept Id=0 on every row. SqlSugar has no bulk
+            // identity-return API (harness-proven: ExecuteCommandIdentityIntoEntity
+            // on a list backfills only the FIRST row's Id), so insert row-by-row
+            // through the same ExecuteReturnIdentity primitive. The old
+            // ExecuteCommand batch was atomic on partial failure (harness-proven:
+            // a NULL in row 3 leaves 0 rows), so when no ambient transaction is
+            // running, wrap the loop in one of our own (BeginTran/Commit, rollback
+            // + rethrow on error); inside an EFDbTransaction the ambient
+            // transaction already makes the batch atomic. Return stays the total
+            // row count (throws on SQL error, as before). Null/empty lists keep
+            // the old single-call behaviour verbatim (ExecuteCommandIdentityIntoEntity
+            // throws TargetException on an empty list; ExecuteCommand returns 0).
+            if (entities == null || entities.Count == 0)
+            {
+                return Db.Insertable(entities).ExecuteCommand();
+            }
+            var ownTran = Db.Ado.IsNoTran();
+            if (ownTran) Db.Ado.BeginTran();
+            try
+            {
+                var total = 0;
+                foreach (var entity in entities)
+                {
+                    total += Insert(entity);
+                }
+                if (ownTran) Db.Ado.CommitTran();
+                return total;
+            }
+            catch
+            {
+                if (ownTran) { try { Db.Ado.RollbackTran(); } catch { /* already rolled back */ } }
+                throw;
+            }
         }
 
         public int Update(T entity)
