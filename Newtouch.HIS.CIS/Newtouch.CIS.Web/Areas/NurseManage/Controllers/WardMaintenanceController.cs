@@ -432,8 +432,8 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
 		/// <summary>
 		/// LưuNhập việngiườngthẻ
 		/// </summary>
-		//[HttpPost]
-		//[HandlerAjaxOnly]
+		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public IActionResult SavaBedCard(InpatientBedCardEntity entity, string zyh)
 		{
 			entity.OrganizeId = OrganizeId;

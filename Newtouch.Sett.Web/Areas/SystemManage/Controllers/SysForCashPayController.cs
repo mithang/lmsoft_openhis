@@ -37,6 +37,8 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(SysCashPaymentModelEntity SysForCashPayEntity, int? keyValue)
         {
             _SysForCashPayApp.SubmitForm(SysForCashPayEntity, keyValue);

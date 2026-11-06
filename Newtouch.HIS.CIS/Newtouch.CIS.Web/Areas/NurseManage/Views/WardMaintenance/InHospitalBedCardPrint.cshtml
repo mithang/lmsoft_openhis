@@ -208,7 +208,8 @@
 			url: "/NurseManage/WardMaintenance/SavaBedCard",
 			data: {
 				entity: entity,
-				zyh: '@ViewBag.zyh'
+				zyh: '@ViewBag.zyh',
+				__RequestVerificationToken: $('[name=__RequestVerificationToken]').val()
 			},
             dataType: "json",
             async:false,
