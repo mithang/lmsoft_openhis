@@ -210,6 +210,16 @@ table.form .formValue .form-control:focus {
     outline: none;
 }
 
+/* NX16: SysRole/Form của SSO mang inline style "width: 98%; margin-left: -34px"
+   trên div.panel-body (cùng mẫu vendor với HOSP NX15-003), đẩy bảng form sang
+   trái 8px khỏi viewport nên nhãn dài nhất ("Thứ tự hiển thị:") bị cắt
+   (đo live: textX=-4 trước sửa). Ghi đè margin về 0 (giữ width 98%):
+   chỉ thắng inline style này, không đụng layout khác. !important là bắt buộc
+   vì đây là inline style. */
+div.panel-body[style*="margin-left: -34px"] {
+    margin-left: 0 !important;
+}
+
 /* Panel: bo góc card + bóng nhẹ, giữ nguyên màu viền của framework.
    Selector div.panel / .panel.panel-default để thắng Bootstrap ở cả
    _Index lẫn _Form (Bootstrap nạp sau token trong _Form). */
