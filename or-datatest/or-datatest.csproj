@@ -14,8 +14,9 @@
     <PackageReference Include="StackExchange.Redis" Version="2.6.122" />
   </ItemGroup>
   <ItemGroup>
+    <!-- NX6-006: Lib.Base run-copy -> his-dll-common/Net6 (5a54af46), mau NX5-001. or-datatest la project test, khong phai carrier, khong redeploy. -->
     <Reference Include="NewtouchHIS.Lib.Base">
-      <HintPath>..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Base.dll</HintPath>
+      <HintPath>..\his-dll-common\Net6\NewtouchHIS.Lib.Base.dll</HintPath>
     </Reference>
     <Reference Include="NewtouchHIS.Lib.Framework">
       <HintPath>..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Framework.dll</HintPath>
