@@ -94,6 +94,23 @@ namespace NewtouchHIS.Base.DomainService
                 }
             }
             var result = await GetByWhere<SysRoleEntity>(DBEnum.UnionDb.ToString(), p => p.zt == "1" && p.Id == keyValue);
+            // NX18-001 (du thao D-NX18-001): keyValue khong rong ma khong tim
+            // thay row (Id la, hoac row da xoa mem zt=0) thi bao loi nghiep vu
+            // TRUOC khi cham DB. Nhanh else cu Add(roleEntity) truc tiep:
+            // controller chi goi NewEntity (set CreatorCode) khi keyValue
+            // rong, nen moi edit voi Id la deu roi vao INSERT thieu
+            // CreatorCode -> loi SQL tho "Cannot insert NULL into CreatorCode"
+            // (F-NX17-001, probe NX17). Day khong phai upsert chay duoc: Id
+            // moi luon la Guid moi o controller (nhanh NewEntity), khong co
+            // duong nao tao row moi voi Id do client dua. Tien le: DeleteForm
+            // cung file (NX8-003, Count==0 -> FailedException) + SysModule
+            // UpdateEntity "Khong tim thay menu lien quan" (NX14-001).
+            // Chi doi nhanh loi nay: insert that (keyValue rong) va update
+            // that (Id ton tai) khong doi.
+            if (!string.IsNullOrWhiteSpace(keyValue) && (result == null || result.Count == 0))
+            {
+                throw new FailedException("Không tìm thấy vai trò cần sửa");
+            }
             if (result != null && result.Count > 0 && keyValue != null && keyValue != "")
             {
                 if (result[0] != null)
