@@ -63,6 +63,8 @@ namespace Newtouch.MRMS.Web.Controllers
             return View();
         }
 
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SwithOrg(string dstnOrgId)
         {
             var opr = OperatorProvider.GetCurrent();
