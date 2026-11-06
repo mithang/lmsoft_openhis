@@ -359,7 +359,7 @@
         });
         $.najax({
             url: "/SystemManage/BespeakRegisterManage/SubmitForm",
-            data: { regData: regData},
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  regData: regData},
             dataType: "json",
             type: "POST",
             success: function (res) {

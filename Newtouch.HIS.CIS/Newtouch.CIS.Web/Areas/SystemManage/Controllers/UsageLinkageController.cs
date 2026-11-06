@@ -72,6 +72,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(string keyValue)
         {
             var sysUsageLinkageEntity = new SysUsageLinkageEntity

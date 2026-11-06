@@ -102,6 +102,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult CarryOverProduct()
         {
             var ret = _kcKcjzDmnService.CarryOverProduct(Constants.DeptCode, OrganizeId, OperatorProvider.GetCurrent().UserCode);

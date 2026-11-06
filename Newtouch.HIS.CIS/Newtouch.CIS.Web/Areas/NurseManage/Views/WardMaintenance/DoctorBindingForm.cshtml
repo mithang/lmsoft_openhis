@@ -162,7 +162,7 @@
         $.ajax({
             type: "POST",
             url: "/NurseManage/WardMaintenance/SavaBindDocs",
-            data: { mxList: gridData,zyh:'@ViewBag.zyh' },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  mxList: gridData,zyh:'@ViewBag.zyh' },
             dataType: "json",
             async:false,
             success: function () {

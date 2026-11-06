@@ -114,6 +114,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SavaBindItems(List<BedItemsVO> mxList, string bedCode,string zyh)
         {
             var saveItemsDto = new WardMaintenanceRequestDto
@@ -308,6 +309,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SavaBindDocs(List<BedDocsVO> mxList, string zyh)
         {
             var saveDocsDto = new patRequestDto

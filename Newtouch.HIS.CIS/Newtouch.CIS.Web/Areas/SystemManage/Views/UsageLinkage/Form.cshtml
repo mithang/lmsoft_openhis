@@ -91,7 +91,7 @@
         }
         $.najax({
             url: "/SystemManage/UsageLinkage/SubmitForm",
-            data: {
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), 
                 keyValue: keyValue,
                 yfCode: $("#selyf").attr("attr-yfCode"),
                 sfxmCode: $("#selitem").attr("attr-xmCode"),

@@ -148,6 +148,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         /// </summary>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitForm(List<SysBespeakRegisterEntity> regData)
         {
             var result = _bespeakRegisterApp.SubmitForm(regData);
