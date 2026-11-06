@@ -61,6 +61,7 @@ namespace NewtouchHIS.Framework.Web.Controllers.SysManage
         }
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public async Task<IActionResult> NoticeStuRead(string keyValue)
         {
             if(!string.IsNullOrEmpty(keyValue))

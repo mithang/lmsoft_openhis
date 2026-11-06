@@ -332,7 +332,7 @@
         if (!!id && !!selrow && selrow.NoticeStu == '@((int)NoticeStuEnum.Send)') {
             $.najax({
                 url: "/SysManage/Notice/NoticeStuRead",
-                data: { keyValue: id },
+                data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(), keyValue: id },
                 dataType: "json",
                 type: "POST",
                 success: function (data) {
