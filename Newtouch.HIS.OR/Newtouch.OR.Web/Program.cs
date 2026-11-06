@@ -1,5 +1,6 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using NewtouchHIS.Framework.Web.Implementation;
@@ -36,6 +37,10 @@ builder.Services.AddLibLogging();
 builder.Services.AddSingleton<IHttpClientHelper, HttpClientHelper>();
 builder.Services.AddSingleton<IAuthCenterAppService, AuthCenterAppService>();
 builder.Services.AddWebServiceBase(builder.Configuration);
+
+// SHELL-B: OrConfig.Config = builder.Configuration (mẫu EmrConfig) — Index.cshtml
+// đọc Is_LoadNavTree / Is_NavPageLoadMoniter qua OrConfig.GetAppConfigValue.
+OrConfig.Config = builder.Configuration;
 
 // OR domain services
 builder.Services.AddScoped<ICommonDmnService, CommonDmnService>();
@@ -92,3 +97,22 @@ app.UseEndpoints(endpoints =>
 });
 
 app.Run();
+
+/// <summary>
+/// Static configuration shim replacing Framework ConfigurationHelper.GetAppConfigValue
+/// (SHELL-B, mẫu EmrConfig). Reads the AppSettings section of appsettings.json,
+/// falling back to BusinessConfig keys and then empty string.
+/// </summary>
+public static class OrConfig
+{
+    public static IConfiguration Config { get; set; }
+
+    public static string GetAppConfigValue(string key)
+    {
+        if (Config == null) return "";
+        return Config["AppSettings:" + key]
+            ?? Config["BusinessConfig:" + key]
+            ?? Config[key]
+            ?? "";
+    }
+}

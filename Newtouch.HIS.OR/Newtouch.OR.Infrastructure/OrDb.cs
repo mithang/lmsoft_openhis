@@ -15,5 +15,12 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
         {
             return SqlSugarDbContext.Db.GetConnection("OrDb");
         }
+
+        /// <summary>Base DB connection (NewtouchHIS_Base) — org-name lookup for the
+        /// Home shell (SHELL-B, D-SHELL-002, same as HerpDb/MrmsDb pattern).</summary>
+        public static SqlSugarProvider GetBaseConnection()
+        {
+            return SqlSugarDbContext.Db.GetConnection("BaseDb");
+        }
     }
 }
