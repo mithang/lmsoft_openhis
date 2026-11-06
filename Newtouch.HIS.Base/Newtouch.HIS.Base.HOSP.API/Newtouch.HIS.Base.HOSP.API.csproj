@@ -42,8 +42,9 @@
     <Reference Include="NewtouchHIS.Lib.Services">
       <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Services.dll</HintPath>
     </Reference>
+    <!-- NX9-001: Base.Domain run-copy Oct 26 stale (26cec002, submitRoleUser void -> CS4008 + bug crash C124 async void) -> his-dll-common/Net6 (a10bb9a9, build tuoi tu HEAD d9154270, NX8-003 refresh; reflection API-identical carrier NX7 7272d4ba per NX8-001). Mau NX5-001/NX8-001. -->
     <Reference Include="NewtouchHIS.Base.Domain">
-      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Base.Domain.dll</HintPath>
+      <HintPath>..\..\his-dll-common\Net6\NewtouchHIS.Base.Domain.dll</HintPath>
     </Reference>
     <Reference Include="NewtouchHIS.DrgGroup.chs_drg_11">
       <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.DrgGroup.chs_drg_11.dll</HintPath>
@@ -51,11 +52,13 @@
     <Reference Include="NewtouchHIS.DrgGroup.wuhan_2022">
       <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.DrgGroup.wuhan_2022.dll</HintPath>
     </Reference>
+    <!-- NX9-001: Base.DomainService run-copy Oct 26 stale (064ee357, submitRoleUser void + thieu DbNames helper + login-failure-limit) -> his-dll-common/Net6 (15d3e298, build tuoi tu HEAD d9154270, NX8-003 refresh, mang guard SysRole GetForm/DeleteForm). -->
     <Reference Include="NewtouchHIS.Base.DomainService">
-      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\HIS.BaseAPI\bin\Release\net6.0\NewtouchHIS.Base.DomainService.dll</HintPath>
+      <HintPath>..\..\his-dll-common\Net6\NewtouchHIS.Base.DomainService.dll</HintPath>
     </Reference>
+    <!-- NX9-001: Base.Repository run-copy Oct 26 stale (f722ede3) -> his-dll-common/Net6 (d8da4214, build tuoi tu HEAD; reflection API-identical run-copy nen khong doi hanh vi, chi dong bo vintage). -->
     <Reference Include="NewtouchHIS.Base.Repository">
-      <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\HIS.BaseAPI\bin\Release\net6.0\NewtouchHIS.Base.Repository.dll</HintPath>
+      <HintPath>..\..\his-dll-common\Net6\NewtouchHIS.Base.Repository.dll</HintPath>
     </Reference>
     <Reference Include="NewtouchHIS.Lib.DataBaseSvr">
       <HintPath>..\..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\HIS.BaseAPI\bin\Release\net6.0\NewtouchHIS.Lib.DataBaseSvr.dll</HintPath>

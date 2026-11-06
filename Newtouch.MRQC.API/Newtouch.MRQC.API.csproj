@@ -54,8 +54,9 @@
     <Reference Include="NewtouchHIS.Lib.Services">
       <HintPath>..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Lib.Services.dll</HintPath>
     </Reference>
+    <!-- NX9-001: Base.Domain run-copy Oct 26 stale (26cec002, submitRoleUser void -> CS4008 + bug crash C124 async void) -> his-dll-common/Net6 (a10bb9a9, build tuoi tu HEAD d9154270, NX8-003 refresh; reflection API-identical carrier NX7 7272d4ba per NX8-001). Mau NX5-001/NX8-001. -->
     <Reference Include="NewtouchHIS.Base.Domain">
-      <HintPath>..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\NewtouchHIS.Framework.Web\bin\Release\net6.0\NewtouchHIS.Base.Domain.dll</HintPath>
+      <HintPath>..\his-dll-common\Net6\NewtouchHIS.Base.Domain.dll</HintPath>
     </Reference>
     <Reference Include="NewtouchHIS.Lib.DataBaseSvr">
       <HintPath>..\..\lmsoft_openhis_run\Newtouch.HIS.SSO\HIS.BaseAPI\bin\Release\net6.0\NewtouchHIS.Lib.DataBaseSvr.dll</HintPath>
