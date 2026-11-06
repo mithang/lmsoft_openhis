@@ -355,5 +355,13 @@ namespace Newtouch.Sett.Domain
     public interface IUserRoleAuthDmnService
     {
         object submitRoleUser(object p0, object p1);
+
+        // NX10-002 (D-NX10-002): port that tu vendor Sett
+        // UserRoleAuthDmnService.GetUserRoleList(userId, orgId). SQL goc
+        // verbatim TRU dieu kien a.OrganizeId = @orgId vi cot OrganizeId
+        // KHONG TON TAI trong Sett Sys_UserRole (9 cot, kiem chung bang
+        // sqlcmd chi doc; PDS port cung bo tham so org). DB dich: Sett DB.
+        // userId null/rong -> [] (khong tra null).
+        IList<SysRoleEntity> GetUserRoleList(string userId);
     }
 }

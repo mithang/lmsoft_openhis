@@ -11,38 +11,42 @@ namespace Newtouch.Sett.Domain
     /// matched nodes plus their ancestors so the tree stays connected.
     /// The id property is "Id" when present, else "brxzbh" (patient-nature
     /// trees); the parent property name comes from the parentId argument.
-    /// With stub (empty) data this is just a filter; documented as a
-    /// reconstruction, not a verified Framework port.
+    /// NX10-002 (D-NX10-002-AMEND): the previous body kept matched nodes
+    /// plus their DESCENDANTS (code contradicted this comment and the
+    /// independent HOSP.Web/Shims TreeWhereCore port, and defeated the
+    /// authorization filter in ModuleController by exposing unauthorised
+    /// children of an authorised parent). Now ancestor-keeping, mirroring
+    /// HOSP TreeWhereCore (walk ParentId up to the root, guard 10000).
     /// </summary>
     public static class TreeWhereExtensions
     {
         public static List<T> TreeWhere<T>(this List<T> list, Func<T, bool> predicate, string parentId = "ParentId")
         {
             if (list == null) return new List<T>();
-            var matched = list.Where(predicate).ToList();
-            if (matched.Count == 0) return matched;
             var idProp = typeof(T).GetProperty("Id") ?? typeof(T).GetProperty("brxzbh");
             var parentProp = typeof(T).GetProperty(parentId);
-            if (idProp == null || parentProp == null) return matched;
-            var keep = new HashSet<T>(matched);
-            var ids = new HashSet<string>(matched.Select(m => Convert.ToString(idProp.GetValue(m))));
-            bool added;
-            do
+            if (idProp == null || parentProp == null) return list.Where(predicate).ToList();
+            var byId = new Dictionary<object, T>();
+            foreach (var item in list)
             {
-                added = false;
-                foreach (var item in list)
+                var id = idProp.GetValue(item);
+                if (id != null && !byId.ContainsKey(id)) byId[id] = item;
+            }
+            var keep = new HashSet<T>();
+            foreach (var item in list.Where(predicate))
+            {
+                var cur = item;
+                int guard = 0;
+                while (cur != null && keep.Add(cur) && guard++ < 10000)
                 {
-                    if (keep.Contains(item)) continue;
-                    var pid = Convert.ToString(parentProp.GetValue(item));
-                    if (pid != null && ids.Contains(pid))
-                    {
-                        keep.Add(item);
-                        ids.Add(Convert.ToString(idProp.GetValue(item)));
-                        added = true;
-                    }
+                    var p = parentProp.GetValue(cur);
+                    if (p == null) break;
+                    if (p is string ps && string.IsNullOrEmpty(ps)) break;
+                    if (!byId.TryGetValue(p, out var parent)) break;
+                    cur = parent;
                 }
-            } while (added);
-            return list.Where(keep.Contains).ToList();
+            }
+            return list.Where(x => keep.Contains(x)).ToList();
         }
     }
 }

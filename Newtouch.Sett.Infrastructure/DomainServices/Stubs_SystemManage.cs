@@ -1156,5 +1156,30 @@ and zt = '1'";
             return null;
         }
 
+        public IList<SysRoleEntity> GetUserRoleList(string userId)
+        {
+            // NX10-002 (D-NX10-002): port that tu vendor Sett
+            // UserRoleAuthDmnService.GetUserRoleList, SQL goc verbatim tru
+            // dieu kien a.OrganizeId = @orgId (cot khong ton tai trong Sett
+            // Sys_UserRole — 9 cot; PDS port cung bo tham so org). DB dich:
+            // Sett DB qua SettDb (Sys_UserRole + Sys_Role local; join
+            // [NewtouchHIS_Base]..V_C_Sys_User chi nhu vendor, khong loc).
+            // userId null/rong -> [] (khong tra null, tranh NRE o caller).
+            if (string.IsNullOrWhiteSpace(userId))
+            {
+                return new List<SysRoleEntity>();
+            }
+            var sql = @"select distinct c.* from Sys_UserRole a
+left join [NewtouchHIS_Base].[dbo].V_C_Sys_User b
+on a.UserId = b.Id
+left join Sys_Role c
+on a.RoleId = c.Id
+where a.UserId = @userId and a.zt = '1' and c.zt = '1'";
+            return SettDb.GetConnection().SqlQueryable<SysRoleEntity>(sql)
+                .AddParameters(new SugarParameter[] {
+                    new SugarParameter("@userId", userId)
+                }).ToList();
+        }
+
     }
 }

@@ -26,10 +26,12 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
     {
         private readonly ISysModuleExRepo _sysModuleRepo;
         private readonly ISysModuleDmnService _sysModuleDmnService;
-        public ModuleController(ISysModuleExRepo sysModuleRepo, ISysModuleDmnService sysModuleDmnService)
+        private readonly Newtouch.Sett.Domain.IUserRoleAuthDmnService _userRoleAuthDmnService;
+        public ModuleController(ISysModuleExRepo sysModuleRepo, ISysModuleDmnService sysModuleDmnService, Newtouch.Sett.Domain.IUserRoleAuthDmnService userRoleAuthDmnService)
         {
             _sysModuleRepo = sysModuleRepo;
             _sysModuleDmnService = sysModuleDmnService;
+            _userRoleAuthDmnService = userRoleAuthDmnService;
         }
 
 
@@ -45,6 +47,21 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             {
                 var authedList = _sysModuleDmnService.GetMenuList(this.OrganizeId
                     , this.UserIdentity.RoleIdList, this.UserIdentity.IsRoot, this.UserIdentity.IsAdministrator);
+                if ((authedList == null || authedList.Count == 0) && this.UserIdentity != null)
+                {
+                    // NX10-002 (D-NX10-002, mau BHOSP-001): RoleIdList trong
+                    // session duoc xay tu Union DB, con GetMenuList chay tren
+                    // Sett DB nen GUID Union khong khop quyen Sett -> cay 0
+                    // node. Re-resolve quyen tren chinh Sett DB cua user nay
+                    // (chi doc, chi quyen Sett that cua chinh user) roi thu lai.
+                    var settRoles = _userRoleAuthDmnService.GetUserRoleList(this.UserIdentity.UserId ?? string.Empty);
+                    if (settRoles != null && settRoles.Count > 0)
+                    {
+                        var settRoleIds = settRoles.Select(p => p.Id).ToList();
+                        authedList = _sysModuleDmnService.GetMenuList(this.OrganizeId
+                            , settRoleIds, this.UserIdentity.IsRoot, this.UserIdentity.IsAdministrator);
+                    }
+                }
                 data = data.TreeWhere(p => authedList.Any(i => i.Id == p.Id), parentId:"ParentId");
             }
             var treeList = new List<TreeViewModel>();
