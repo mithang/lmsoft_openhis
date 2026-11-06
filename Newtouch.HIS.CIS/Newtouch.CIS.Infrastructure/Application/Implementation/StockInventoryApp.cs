@@ -24,6 +24,15 @@ namespace Newtouch.Application.Implementation
         private readonly IKcPdxxRepo _kcPdxxRepo;
         private readonly IKcPdxxmxRepo _kcPdxxmxRepo;
 
+        // NX3-001: ctor injection (mau NX2-003/BA-003) — truoc day khong co ctor,
+        // 3 field luon null (CS0649) nen StartInventory/SaveInventoryInfo NRE.
+        public StockInventoryApp(IStockInventoryDmnService stockInventoryDmnService, IKcPdxxRepo kcPdxxRepo, IKcPdxxmxRepo kcPdxxmxRepo) : base()
+        {
+            _stockInventoryDmnService = stockInventoryDmnService;
+            _kcPdxxRepo = kcPdxxRepo;
+            _kcPdxxmxRepo = kcPdxxmxRepo;
+        }
+
         /// <summary>
         /// Bắt đầuKiểm kê
         /// </summary>

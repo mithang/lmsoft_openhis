@@ -44,6 +44,19 @@ namespace Newtouch.Application.Implementation
         private readonly ISysStaffRepo _sysStaffRepo;
         private readonly ICmmHis02RecordDmnService _comCmmHis02RecordDmnService;
 
+        // NX3-001: ctor injection (mau NX2-003/BA-003) — truoc day khong co ctor,
+        // 5 field dung that + _treatmentRepo (CS0169, chet nhung van inject theo
+        // tien le BA-003 nhu NX2-003) luon null (CS0649) nen TcmHis01 NRE.
+        public OutpatientCmmManagerApp(ISysConfigRepo sysConfigRepo, ITreatmentRepo treatmentRepo, IBaseDataDmnService baseDataDmnService, ICmmHis01Repo cmmHis01Repo, ISysStaffRepo sysStaffRepo, ICmmHis02RecordDmnService comCmmHis02RecordDmnService) : base()
+        {
+            _sysConfigRepo = sysConfigRepo;
+            _treatmentRepo = treatmentRepo;
+            _baseDataDmnService = baseDataDmnService;
+            _cmmHis01Repo = cmmHis01Repo;
+            _sysStaffRepo = sysStaffRepo;
+            _comCmmHis02RecordDmnService = comCmmHis02RecordDmnService;
+        }
+
         #region TCM_HIS_01
 
         /// <summary>

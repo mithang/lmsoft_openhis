@@ -15,6 +15,13 @@ namespace Newtouch.Application.Implementation
     {
         private readonly IVisitDeptSetRepo _visitDeptSetRepo;
 
+        // NX3-001: ctor injection (mau NX2-003/BA-003) — truoc day khong co ctor,
+        // field _visitDeptSetRepo luon null (CS0649) nen SubmitForm/GetGridJson NRE.
+        public VisitDeptSetApp(IVisitDeptSetRepo visitDeptSetRepo) : base()
+        {
+            _visitDeptSetRepo = visitDeptSetRepo;
+        }
+
         /// <summary>
         /// Gửibảngphiếu
         /// </summary>

@@ -23,12 +23,12 @@ namespace Newtouch.DomainServices
     {
         private readonly IMzyyghRepo _mzyyghRepo;
         private readonly ISysBespeakRegisterRepo _sysBespeakRegisterRepo;
-        /// <summary>
-        /// Khởi tạo
-        /// </summary>
-        /// <param name="databaseFactory"></param>
-        public MzyyghDmnService() : base()
+        // NX3-001: ctor injection (mau NX2-003/BA-003) — xoa ctor rong, truoc day
+        // 2 field luon null (CS0649) nen SelectMzyyghDetail/MzBespeakRegisterQuery NRE.
+        public MzyyghDmnService(IMzyyghRepo mzyyghRepo, ISysBespeakRegisterRepo sysBespeakRegisterRepo) : base()
         {
+            _mzyyghRepo = mzyyghRepo;
+            _sysBespeakRegisterRepo = sysBespeakRegisterRepo;
         }
 
         /// <summary>
