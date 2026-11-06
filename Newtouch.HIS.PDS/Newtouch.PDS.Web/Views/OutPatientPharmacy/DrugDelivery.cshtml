@@ -166,7 +166,7 @@
         $.najax({
             type: "POST",
             url: "/OutPatientPharmacy/ExecAllDeliveryDrug",
-            data: { cfh: cfh },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  cfh: cfh },
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {

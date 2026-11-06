@@ -75,6 +75,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitRequisition(string sldh, string fybmCode, IList<RequisitionDepartmentMedicineSubmitItemVO> slmxList)
         {
             if (string.IsNullOrWhiteSpace(sldh))

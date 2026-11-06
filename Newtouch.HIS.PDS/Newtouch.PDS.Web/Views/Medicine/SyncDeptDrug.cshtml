@@ -127,7 +127,7 @@
             type: "POST",
             url: "/Medicine/FreshList",
             dataType: "json",
-            data: { "yp": items, "opereateType": opereateType },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  "yp": items, "opereateType": opereateType },
             success: function (ajaxresp) {
                 if (ajaxresp.state === 'success') {
                     $.currentWindow().$("#gridList").trigger("reloadGrid");

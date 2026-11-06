@@ -354,7 +354,7 @@
         $.najax({
             type: "POST",
             url: "/BillManage/ApplyBill/SubmitApplyOutStock",
-            data: { fymx: fymx},
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  fymx: fymx},
             dataType: "json",
             success: function (res) {
                 if (res.state === "success") {

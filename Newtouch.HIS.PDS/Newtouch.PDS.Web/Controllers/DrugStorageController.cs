@@ -81,6 +81,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="crkdjmx">Chi tiết chứng từ xuất nhập kho</param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SaveInStorageInfo(SysMedicineStorageIOReceiptEntity crkdj, SysMedicineStorageIOReceiptDetailEntity[] crkdjmx)
         {
             var ioReceiptEntity = new SysMedicineStorageIOReceiptEntity
@@ -790,6 +791,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult CarryOverMedicine()
         {
             _drugStorageApp.CarryOverMedicine(Constants.CurrentYfbm.yfbmCode, OrganizeId);

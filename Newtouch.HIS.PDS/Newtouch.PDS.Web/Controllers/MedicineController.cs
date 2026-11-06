@@ -112,6 +112,7 @@ namespace Newtouch.HIS.Web.Controllers
 		/// <param name="opereateType">0:Thêm  1:Xóa</param>
 		/// <returns></returns>
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public IActionResult FreshList(string[] yp, int opereateType)
 		{
 			var result = _medicineInfoDmnService.FreshList(yp, opereateType, OrganizeId, Constants.CurrentYfbm.yfbmCode);

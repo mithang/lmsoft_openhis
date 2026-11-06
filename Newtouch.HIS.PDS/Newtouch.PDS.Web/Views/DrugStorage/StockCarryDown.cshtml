@@ -82,6 +82,7 @@
                                 if (flag) {
                                     $.najax({
                                         url: "/DrugStorage/CarryOverMedicine",
+                                        data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() },
                                         type: "POST",
                                         dataType: "json",
                                         success: function (ajaxresp) {

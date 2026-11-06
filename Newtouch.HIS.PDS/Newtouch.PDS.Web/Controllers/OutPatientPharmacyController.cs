@@ -677,6 +677,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="patients"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult DrugArrangementV2(patientInfoVO[] patients)
         {
             if (patients == null || patients.Length <= 0)
@@ -1094,6 +1095,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="patients"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult ExecAllDeliveryDrug(patientInfoVO[] patients)
         {
             var cfhls = new List<string>();
@@ -1358,6 +1360,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <param name="tyParam"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult ExecReturnStorage(tyParam[] tyParam)
         {
             var tyInfo = new tyInfo

@@ -16,6 +16,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         /// </summary>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitReturnInward(DjInfoDTO djInfoDto)
         {
             djInfoDto.djlx = (int)EnumDanJuLX.neibufayaotuihui;

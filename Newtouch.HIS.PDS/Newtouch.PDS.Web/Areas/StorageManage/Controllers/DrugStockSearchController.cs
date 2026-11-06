@@ -154,6 +154,7 @@ namespace Newtouch.HIS.Web.Areas.StorageManage.Controllers
 		/// <param name="zt"></param>
 		/// <returns></returns>
 		[HttpPost]
+		[ValidateAntiForgeryToken]
 		public IActionResult UpdateKcxxZt(string ypdm, string ph, string pc, string zt)
 		{
 			return _kcxxRepo.UpdateZt(ypdm, ph, pc, zt, Constants.CurrentYfbm.yfbmCode, OrganizeId) > 0 ? Success() : Error("Sửa trạng thái kiểm tra tồn kho thất bại");

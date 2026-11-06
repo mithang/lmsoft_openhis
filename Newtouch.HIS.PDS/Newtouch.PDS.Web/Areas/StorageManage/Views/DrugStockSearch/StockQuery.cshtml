@@ -321,7 +321,7 @@
         $.najax({
             url: "/StorageManage/DrugStockSearch/UpdateKcxxZt",
             type: "POST",
-            data: { ypdm: ypdm, ph: ph, pc: pc, zt: zt },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  ypdm: ypdm, ph: ph, pc: pc, zt: zt },
             dataType: "json",
             success: function (data) {
                 if (data.state === 'success') {

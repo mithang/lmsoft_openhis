@@ -311,7 +311,7 @@
                     $.najax({
                         type: "POST",
                         url: "/OutPatientPharmacy/ExecReturnStorage",
-                        data: { tyParam: tymx },
+                        data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  tyParam: tymx },
                         dataType: "json",
                         success: function (res) {
                             if (res.state === "success") {

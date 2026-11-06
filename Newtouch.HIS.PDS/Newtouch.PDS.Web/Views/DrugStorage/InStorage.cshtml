@@ -616,7 +616,7 @@
         $.najax({
             url: "/DrugStorage/SaveInStorageInfo",
             dataType: "json",
-            data: { crkdj: crkdj, crkdjmx: djmx },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  crkdj: crkdj, crkdjmx: djmx },
             type: "POST",
             async: false,
             success: function (data) {

@@ -121,7 +121,7 @@
                             $.najax({
                                 url: "/PharmacyDrugStorage/CarryOverMedicine",
                                 type: "POST",
-                                data: { zq: zq, kssj: lastCarryTime, jssj: currJzsj },
+                                data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  zq: zq, kssj: lastCarryTime, jssj: currJzsj },
                                 dataType: "json",
                                 success: function (ajaxresp) {
                                     if (ajaxresp.state === 'success') {

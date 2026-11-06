@@ -251,7 +251,7 @@
                 url: "/OutPatientPharmacy/DrugArrangementV2",
                 dataType: "json",
                 type: "Post",
-                data: { patients: pats },
+                data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  patients: pats },
                 cache: false,
                 success: function (res) {
                     if (res.state === "success") {
@@ -284,7 +284,7 @@
             url: "/OutPatientPharmacy/DrugArrangementV2",
             dataType: "json",
             type: "Post",
-            data: { patients: patient },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  patients: patient },
             cache: false,
             success: function (res) {
                 if (res.state === "success") {

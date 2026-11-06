@@ -128,6 +128,7 @@ namespace Newtouch.HIS.Web.Areas.BillManage.Controllers
         /// <param name="fymx"></param>
         /// <returns></returns>
         [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitApplyOutStock(List<ApplyOutStockVEntity> fymx, string slbm)
         {
             var processResult = new SubmitApplyOutStockProcess(fymx).Process();

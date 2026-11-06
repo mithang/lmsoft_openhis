@@ -480,7 +480,7 @@
         $.najax({
             type: "POST",
             url: "/Pharmacy/SubmitRequisition",
-            data: postData,
+            data: $.extend({}, postData, { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val() }),
             dataType: "json",
             success: function (ajaxresp) {
                 if (ajaxresp.state === 'success') {

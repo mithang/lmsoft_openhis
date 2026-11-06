@@ -150,6 +150,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <returns></returns>
         [HttpPost]
         [HandlerAjaxOnly]
+        [ValidateAntiForgeryToken]
         public IActionResult SubmitPersonalPassword(string newpwd)
         {
             _sysUserDmnService.RevisePassword(newpwd, this.UserIdentity.UserId);

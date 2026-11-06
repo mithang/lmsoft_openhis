@@ -485,7 +485,7 @@
                 type: "POST",
                 url: "/OutPatientPharmacy/ExecAllDeliveryDrug",
                 dataType: "json",
-                data: { patients: patient },
+                data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  patients: patient },
                 success: function (res) {
                     if (res.state === "success") {
                         printRpDetailV2(res.data);
@@ -555,7 +555,7 @@
             $.najax({
                 type: "POST",
                 url: "/OutPatientPharmacy/ExecAllDeliveryDrug",
-                data: { patients: pats },
+                data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  patients: pats },
                 dataType: "json",
                 success: function (res) {
                     if (res.state === "success") {
