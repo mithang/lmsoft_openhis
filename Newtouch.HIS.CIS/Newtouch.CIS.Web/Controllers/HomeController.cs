@@ -1,10 +1,15 @@
 using Microsoft.AspNetCore.Mvc;
+using Newtouch.Domain.Entity;
 using Newtouch.Domain.IDomainServices;
 using Newtouch.Domain.ViewModels;
 using Newtouch.Infrastructure;
+using NewtouchHIS.Lib.Base;
 using NewtouchHIS.Lib.Base.Extension;
 using NewtouchHIS.Lib.Base.Model;
+using NewtouchHIS.Lib.Base.Utilities;
+using NewtouchHIS.Lib.DataBaseSvr;
 using NewtouchHIS.Lib.Framework.Operator;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,8 +17,13 @@ using System.Linq;
 namespace Newtouch.CIS.Web.Controllers
 {
     /// <summary>
-    /// CIS landing page (the original portal frame views depended on Framework-only
-    /// helpers; this is a minimal landing page linking to each Area's main page).
+    /// CIS portal home (SHELL-C: khung shell goc 329 dong da khoi phuc tren
+    /// Views/Home/Index.cshtml, tham chieu lai 4 partial _Index* mo coi +
+    /// _FrontReference/_BrowseAdaptiveSupport; Default.cshtml 17 dong giu
+    /// nguyen nhu goc + action Default() theo D-SHELL-003).
+    /// ViewBag org theo D-SHELL-002 (mau HOSP/MRMS don-org): CIS khong co
+    /// organize service day du (ISysOrganizeDmnService chi co GetCodeByOrgId)
+    /// nen ten org doc truc tiep tu BaseDb nhu MRQC (SqlSugarDbContext).
     /// Home actions that live views still call are ported here (parity audit
     /// 2026-10-27): GetNewFieldUniqueValue (called by SystemManage Form views),
     /// MSGQuery + NoticeReadSync (called by Views/Home/_IndexHeaderNav).
@@ -35,7 +45,72 @@ namespace Newtouch.CIS.Web.Controllers
 
         public IActionResult Index()
         {
+            var opr = OperatorProvider.GetCurrent();
+            if (opr == null)
+            {
+                return Redirect("/Login/Index");
+            }
+            // Goc CIS: Index() chi set loginFromFlag roi base.Index() (base nhi
+            // phan cap ViewBag org). Port tu cap du 3 ViewBag theo D-SHELL-002.
+            ViewBag.loginFromFlag = HttpWebHelper.GetCookie(ConfigInitHelper.SysConfig.AppId + "_LoginFromFlag") ?? "UNKNOWN";
+            string orgId = opr.OrganizeId ?? "";
+            string orgName = GetOrgName(orgId);
+            ViewBag.MediOrgList = new List<SysOrganizeVEntity>
+            {
+                new SysOrganizeVEntity { Id = orgId, Name = orgName }
+            };
+            ViewBag.OrgName = orgName;
+            ViewBag.NeedChooseOrg = false;
             return View();
+        }
+
+        /// <summary>
+        /// Tab mac dinh /Home/Default (D-SHELL-003). View 17 dong goc CIS cung
+        /// la trang rong nen giu nguyen, khong bia dashboard.
+        /// </summary>
+        public IActionResult Default()
+        {
+            return View();
+        }
+
+        public IActionResult UserOrgChoose()
+        {
+            var opr = OperatorProvider.GetCurrent();
+            string orgId = opr?.OrganizeId ?? "";
+            ViewBag.MediOrgList = new List<SysOrganizeVEntity>
+            {
+                new SysOrganizeVEntity { Id = orgId, Name = GetOrgName(orgId) }
+            };
+            return View();
+        }
+
+        /// <summary>
+        /// Doi org hep don-org (mau MRMS/Sett/MRQC): chi chap nhan doi ve dung
+        /// org hien tai; doi sang org khac tra loi (luong da-org day du nam
+        /// trong base nhi phan FrameworkBase.MultiOrg da mat).
+        /// </summary>
+        public IActionResult SwithOrg(string dstnOrgId)
+        {
+            var opr = OperatorProvider.GetCurrent();
+            if (opr != null && string.Equals(dstnOrgId, opr.OrganizeId, StringComparison.OrdinalIgnoreCase))
+            {
+                return Content(new { state = "success" }.ToJson());
+            }
+            return Content(new { state = "error", message = "Chuyển đổi cơ sở y tế khác không khả dụng trong triển khai đơn cơ sở này." }.ToJson());
+        }
+
+        private static string GetOrgName(string orgId)
+        {
+            string orgName = orgId;
+            try
+            {
+                var name = SqlSugarDbContext.Db.GetConnection("BaseDb").Ado.GetString(
+                    "select top 1 Name from [NewtouchHIS_Base].[dbo].[Sys_Organize] with(nolock) where Id = @id",
+                    new SugarParameter("@id", orgId));
+                if (!string.IsNullOrWhiteSpace(name)) orgName = name;
+            }
+            catch { /* fall back to org id */ }
+            return orgName;
         }
 
         /// <summary>
