@@ -62,6 +62,8 @@ namespace Newtouch.EMR.Web.Controllers
         /// dung org hien tai; doi sang org khac tra loi (luong da-org day du
         /// nam trong base nhi phan FrameworkBase.MultiOrg da mat).
         /// </summary>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SwithOrg(string dstnOrgId)
         {
             var opr = OperatorProvider.GetCurrent();
