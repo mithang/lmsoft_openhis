@@ -113,7 +113,8 @@
         <div class="loading-content" onclick="$.loading(false)">Đang tải dữ liệu，Vui lòng chờ…</div>
     </div>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/index.common.js")"></script>
-    <script src="@MvcHelper.GetStaticResourceScriptUrl("~/Content/js/index.js", false)"></script>
+    @* SHELL-C S5-27 (D-SHELL-006): link Content/js/index.js da XOA — file goc
+       MRMS 0 byte, file port cung 0 byte (script no-op). *@
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/indextab.js")"></script>
     <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/loading/pace.min.js")"></script>
     <script type="text/javascript">
