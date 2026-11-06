@@ -181,6 +181,7 @@ order by sxh
         /// <param name="orgId"></param>
         /// <param name="yfbmCode"></param>
         /// <returns></returns>
+        // NX9-004 (D-NX9-004): cung loi yp.pzwh tren V_S_xt_yp (chua tung probe live) -> LEFT JOIN V_S_xt_ypsx (yp o day la LEFT JOIN) + ISNULL(ypsx.pzwh,'').
         public List<PurchaseStoreDTO> QueryPurchaseStorebyId(string cgId, string orgId,string yfbmCode)
         {
 
@@ -192,12 +193,13 @@ FROM (
 		cgmx.dcpsbs,cgmx.bzsm,cgmx.dw,cgmx.zje,cgmx.yqbm,gys.gysmc yqmc,
 		sfdl.dlmc, (kcxx.kcsl-kcxx.djsl) kykc,
 		dbo.f_getyfbmDw(@yfbmCode, bmypxx.Ypdm, @orgId) bmdw
-		,dbo.f_getyfbmZhyz(@yfbmCode, bmypxx.Ypdm, bmypxx.OrganizeId) zhyz, yp.bzs, yp.bzdw, yp.zxdw, ISNULL(yp.pzwh,'') pzwh,yp.ycmc
+		,dbo.f_getyfbmZhyz(@yfbmCode, bmypxx.Ypdm, bmypxx.OrganizeId) zhyz, yp.bzs, yp.bzdw, yp.zxdw, ISNULL(ypsx.pzwh,'') pzwh,yp.ycmc
 		,yp.lsj/yp.bzs zxdwlsj,yp.pfj/yp.bzs zxdwpfj,yp.lsj yklsj,yp.pfj ykpfj
 	FROM xt_yp_cgmx cgmx (nolock)
 	INNER JOIN xt_yp_bmypxx(NOLOCK) bmypxx ON cgmx.ypCode=bmypxx.Ypdm AND cgmx.OrganizeId=bmypxx.OrganizeId and  bmypxx.yfbmCode=@yfbmCode
 	LEFT JOIN dbo.xt_yp_kcxx(NOLOCK) kcxx ON kcxx.ypdm=cgmx.ypCode  AND kcxx.OrganizeId=cgmx.OrganizeId AND kcxx.zt='1' AND kcxx.yfbmCode=@yfbmCode
 	LEFT JOIN [NewtouchHIS_Base].dbo.V_S_xt_yp yp (nolock) on cgmx.ypCode =yp.ypCode and cgmx.OrganizeId=yp.OrganizeId and cgmx.zt=yp.zt
+	LEFT JOIN [NewtouchHIS_Base].dbo.V_S_xt_ypsx ypsx (nolock) on yp.ypId=ypsx.ypId and yp.OrganizeId=ypsx.OrganizeId
 	LEFT JOIN [NewtouchHIS_Base].[dbo].[xt_ypgys] gys (nolock) on cgmx.yqbm=gys.gysCode and cgmx.OrganizeId=gys.OrganizeId and cgmx.zt=gys.zt
 	LEFT JOIN NewtouchHIS_Base.dbo.V_S_xt_sfdl sfdl ON sfdl.dlCode=yp.dlCode AND sfdl.OrganizeId=bmypxx.OrganizeId AND sfdl.zt='1'
 	WHERE cgmx.zt = '1'

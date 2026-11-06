@@ -74,6 +74,7 @@ GROUP BY s.dlmc,s.ypmc,s.ypCode,s.ypgg,s.bmdw,s.zhyz,s.bzs,s.bzdw,s.zxdw,s.pzwh,
 		/// <param name="keyWord"></param>
 		/// <param name="organizeid"></param>
 		/// <returns></returns>
+		// NX9-004 (D-NX9-004): V_S_xt_yp KHONG co cot pzwh (sqlcmd: 45 cot, COUNT pzwh=0) -> ISNULL(yp.pzwh) nem "Invalid column name 'pzwh'" live; JOIN V_S_xt_ypsx nhu overload 4-tham-so + ISNULL(ypsx.pzwh,'').
 		public List<DrugStockInfoVEntity> GetDrugAndStock(string currentYfbmCode, string keyWord, string organizeid)
 		{
 			const string sql = @"
@@ -84,10 +85,11 @@ SELECT s.dlmc,s.ypmc,s.ypCode ypdm,s.ypgg gg,SUM(s.kykc) kykc, dbo.f_getComplexY
 FROM 
 (
 	SELECT sfdl.dlmc, yp.ypmc, bmypxx.Ypdm ypCode, yp.ypgg, (kcxx.kcsl-kcxx.djsl) kykc, dbo.f_getyfbmDw(@yfbmCode, bmypxx.Ypdm, @Organizeid) bmdw
-	, dbo.f_getyfbmZhyz(@YfbmCode, bmypxx.Ypdm, bmypxx.OrganizeId) zhyz, yp.bzs, yp.bzdw, yp.zxdw, ISNULL(yp.pzwh,'') pzwh,yp.ycmc
+	, dbo.f_getyfbmZhyz(@YfbmCode, bmypxx.Ypdm, bmypxx.OrganizeId) zhyz, yp.bzs, yp.bzdw, yp.zxdw, ISNULL(ypsx.pzwh,'') pzwh,yp.ycmc
 	,yp.lsj/yp.bzs zxdwlsj,yp.pfj/yp.bzs zxdwpfj,yp.lsj yklsj,yp.pfj ykpfj,yp.gjybdm
 	FROM dbo.xt_yp_bmypxx(NOLOCK) bmypxx
 	INNER JOIN NewtouchHIS_Base.dbo.V_S_xt_yp yp ON yp.ypCode=bmypxx.Ypdm AND yp.OrganizeId=bmypxx.OrganizeId 
+	INNER JOIN NewtouchHIS_Base.dbo.V_S_xt_ypsx ypsx ON ypsx.ypId=yp.ypId AND ypsx.OrganizeId=bmypxx.OrganizeId
 	LEFT JOIN dbo.xt_yp_kcxx(NOLOCK) kcxx ON kcxx.ypdm=bmypxx.Ypdm AND kcxx.yfbmCode=bmypxx.yfbmCode AND kcxx.OrganizeId=bmypxx.OrganizeId AND kcxx.zt='1'
 	LEFT JOIN NewtouchHIS_Base.dbo.V_S_xt_sfdl sfdl ON sfdl.dlCode=yp.dlCode AND sfdl.OrganizeId=bmypxx.OrganizeId AND sfdl.zt='1'
 	WHERE bmypxx.yfbmCode=@yfbmCode
@@ -295,6 +297,7 @@ FROM (
 		/// <param name="show0kc">Có hiển thị tồn kho bằng 0 không  0-Không hiển thị 1-Hiển thị</param>
 		/// <param name="organizeid"></param>
 		/// <returns></returns>
+		// NX9-004 (D-NX9-004): cung loi yp.pzwh + them yp.kcyjz (V_S_xt_yp cung khong co kcyjz; chi bang xt_ypsx co) -> JOIN bang xt_ypsx(NOLOCK) (tien le DrugStorageDmnService.cs:70) + ypsx.pzwh / ypsx.kcyjz.
 		public IList<DrugStockInfoVEntity> GetDrugAndStock(Pagination pagination, string yfbmCode, string keyWord, string tybz, string kczt, string show0kc, string organizeid, string kcyjcode,string iskcyjz=null)
 		{
 			var sql = new System.Text.StringBuilder(@"
@@ -307,12 +310,13 @@ SELECT s.dlmc,s.ypmc,s.ypCode ypdm,s.py,s.ypgg gg,s.bmdw dw,s.bzdw,s.zxdw,s.pzwh
 ,CONCAT(CONVERT(NUMERIC(11,4),s.zxdwpfj*s.zhyz),'đ/',s.bmdw) pfjdjdw,gjybdm
 FROM (
 	SELECT sfdl.dlmc, yp.ypmc, yp.py, bmypxx.Ypdm ypCode,yp.ycmc, yp.ypgg
-	,SUM(ISNULL((kcxx.kcsl-kcxx.djsl),0)) kykc,SUM(ISNULL(kcxx.kcsl,0)) kcsl,kcyjz
+	,SUM(ISNULL((kcxx.kcsl-kcxx.djsl),0)) kykc,SUM(ISNULL(kcxx.kcsl,0)) kcsl,ypsx.kcyjz
 	,dbo.f_getyfbmDw(@yfbmCode, bmypxx.Ypdm, @Organizeid) bmdw
-	,dbo.f_getyfbmZhyz(@YfbmCode, bmypxx.Ypdm, bmypxx.OrganizeId) zhyz, yp.bzs, yp.bzdw, yp.zxdw, ISNULL(yp.pzwh,'') pzwh
+	,dbo.f_getyfbmZhyz(@YfbmCode, bmypxx.Ypdm, bmypxx.OrganizeId) zhyz, yp.bzs, yp.bzdw, yp.zxdw, ISNULL(ypsx.pzwh,'') pzwh
 	,yp.lsj/yp.bzs zxdwlsj,yp.pfj/yp.bzs zxdwpfj,yp.lsj yklsj,yp.pfj ykpfj,yp.gjybdm
 	FROM dbo.xt_yp_bmypxx(NOLOCK) bmypxx
 	INNER JOIN NewtouchHIS_Base.dbo.V_S_xt_yp yp ON yp.ypCode=bmypxx.Ypdm AND yp.OrganizeId=bmypxx.OrganizeId 
+	INNER JOIN NewtouchHIS_Base.dbo.xt_ypsx(NOLOCK) ypsx ON ypsx.ypId=yp.ypId AND ypsx.zt='1' AND ypsx.OrganizeId=bmypxx.OrganizeId
 	LEFT JOIN dbo.xt_yp_kcxx(NOLOCK) kcxx ON kcxx.ypdm=bmypxx.Ypdm AND kcxx.yfbmCode=bmypxx.yfbmCode AND kcxx.OrganizeId=bmypxx.OrganizeId 
 	LEFT JOIN NewtouchHIS_Base.dbo.V_S_xt_sfdl sfdl ON sfdl.dlCode=yp.dlCode AND sfdl.OrganizeId=bmypxx.OrganizeId AND sfdl.zt='1'
 	WHERE bmypxx.yfbmCode=@yfbmCode
@@ -343,7 +347,7 @@ FROM (
 				param.Add(new SugarParameter("@kcyjcode", kcyjcode));
 			}
 			sql.AppendLine(@"	GROUP BY sfdl.dlmc, yp.ypmc, yp.py, bmypxx.Ypdm,yp.ycmc, yp.ypgg,yp.lsj,yp.bzs,yp.pfj,bmypxx.OrganizeId,yp.bzdw
-	, yp.zxdw, yp.pzwh,yp.gjybdm,yp.kcyjz
+	, yp.zxdw, ypsx.pzwh,yp.gjybdm,ypsx.kcyjz
 ) s
 ");
             if (!string.IsNullOrWhiteSpace(iskcyjz))//Cảnh báo tồn kho tạo kế hoạch mua hàng để dùng
