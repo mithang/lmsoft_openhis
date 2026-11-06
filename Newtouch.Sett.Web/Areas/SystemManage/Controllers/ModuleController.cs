@@ -64,5 +64,69 @@ namespace Newtouch.Sett.Web.Areas.SystemManage.Controllers
             return Content(treeList.TreeViewJson());
         }
 
+        #region Phân quyền Cơ sở
+        // NX8-002: port tu PDS ModuleController (itemType = 1, module) + theo
+        // mau anh em Sett ModuleButtonController (type 2): KHONG gan
+        // [HandlerAjaxOnly]/[ValidateAntiForgeryToken] nhu PDS — view Sett
+        // post $.submitForm tran (khong gui token) giong ModuleButton.
+        // Dich vu: Sett SysModuleDmnService (Sett DB) — xem D-NX8-002.
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        public IActionResult Organizes()
+        {
+            return View();
+        }
+
+        /// <summary>
+        /// Phân quyền cho tổ chức chỉ định
+        /// </summary>
+        /// <param name="keyValue"></param>
+        /// <param name="orgList"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult UpdateAuthOrganizeList(string keyValue, string orgList)
+        {
+            if (!string.IsNullOrWhiteSpace(keyValue))
+            {
+                _sysModuleDmnService.UpdateAuthOrganizeList(keyValue, orgList, 1);
+            }
+            return Success("Thao tác thành công。");
+        }
+
+        /// <summary>
+        /// Phân quyền cho tất cả tổ chức
+        /// </summary>
+        /// <param name="keyValue"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult AuthAllOrganize(string keyValue)
+        {
+            if (!string.IsNullOrWhiteSpace(keyValue))
+            {
+                _sysModuleDmnService.AuthAllOrganize(keyValue, 1);
+            }
+            return Success("Thao tác thành công。");
+        }
+
+        /// <summary>
+        /// Hủy tất cả phân quyền (Tổ chức)
+        /// </summary>
+        /// <param name="keyValue"></param>
+        /// <returns></returns>
+        [HttpPost]
+        public IActionResult AuthCancelAllOrganize(string keyValue)
+        {
+            if (!string.IsNullOrWhiteSpace(keyValue))
+            {
+                _sysModuleDmnService.AuthCancelAllOrganize(keyValue, 1);
+            }
+            return Success("Thao tác thành công。");
+        }
+
+        #endregion
+
     }
 }

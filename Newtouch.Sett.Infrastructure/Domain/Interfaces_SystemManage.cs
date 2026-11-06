@@ -248,15 +248,20 @@ namespace Newtouch.Sett.Domain
 
     public interface ISysModuleDmnService
     {
-        object AuthAllOrganize(object p0, object p1);
-        object AuthCancelAllOrganize(object p0, object p1);
-        IList<SysOrganizeVEntity> GetAuthedOrgListByModuleId(object p0, object p1);
+        // NX8-002: 4 method phan quyen co so (Organizes) — truoc day stub object,
+        // nay typed that theo mau PDS SysModuleDmnService (DB dich: Sett DB;
+        // xem D-NX8-002). Chi ModuleButtonController/OrganizeController goi
+        // 4 method nay (itemType 1 = module, 2 = nut menu) nen doi signature
+        // khong anh huong caller khac.
+        void AuthAllOrganize(string moduleId, int itemType);
+        void AuthCancelAllOrganize(string moduleId, int itemType);
+        IList<SysOrganizeVEntity> GetAuthedOrgListByModuleId(string itemId, int itemType);
         object GetMenuButtonListByTopOrg(object p0, object p1);
         List<SysModuleEntity> GetMenuList(object p0, object p1, object p2, object p3);
         List<SysModuleButtonEntity> GetOpenMenuButtonListByTopOrg(object p0);
         IList<SysModuleEntity> GetOpenMenuListByTopOrg(object p0);
         object ModuleButtonSubmitForm(object p0, object p1, object p2);
-        object UpdateAuthOrganizeList(object p0, object p1, object p2);
+        void UpdateAuthOrganizeList(string moduleId, string orgList, int itemType);
     }
 
     public interface ISysModuleExRepo

@@ -20,7 +20,10 @@
             <div class="btn-group">
                 <a class="btn btn-primary" onclick="btn_delete()"><i class="fa fa-pencil-square-o"></i>Xóa</a>
             </div>
-            @* NX6-001: bo nut "Phân quyền cơ sở" (btn_authorg) — route Module/Organizes 404. *@
+            <div class="btn-group">
+                <a class="btn btn-primary" onclick="btn_authorg()"><i class="fa fa-gavel"></i>Phân quyền cơ sở</a>
+            </div>
+            @* NX8-002: khoi phuc nut (bo o NX6-001 vi route 404) — action + view + dich vu da port that. *@
         }
         @if (OperatorProvider.GetCurrent().IsRoot || OperatorProvider.GetCurrent().IsAdministrator)
         {
@@ -149,8 +152,24 @@
         });
     }
 
-    @* NX6-001: bo btn_authorg — /SystemManage/Module/Organizes 404 (khong action Organizes tren ModuleController Sett; ban goc vendor co o PDS ModuleController + view Organizes.cshtml — khong tro sang ModuleButton/Organizes vi do la phan quyen nut (type 2), khac ngu nghia module (type 1)).
-       NX7-005: KHONG port trong NX7 (hoan lai, khong phai bo vinh vien). Ly do: khong co caller/menu song (0 menu row); port can ca dich vu — GetAuthedOrgListByModuleId + 3 ghi UpdateAuthOrganizeList/AuthAll/AuthCancel deu la stub o Sett SysModuleDmnService — va chua xac dinh DB dich cho Sys_OrganizeAuthorize (ca Base lan Sett deu co bang; ghi nham DB se hong phan quyen menu). Vong sau can xac minh DB dich + SplitToTable truoc khi port. *@
+    @* NX8-002: khoi phuc btn_authorg (bo o NX6-001; DB dich Sett DB + SplitToTable da xac minh, xem D-NX8-002). *@
+    function btn_authorg() {
+        var keyValue = $("#gridList").jqGridRowValue().Id;
+        if (!!!keyValue) {
+            $.modalAlert("Vui lòng chọn một dòng thông tin", 'warning');
+            return;
+        }
+        $.modalOpen({
+            id: "Form",
+            title: "Phân quyền cơ sở",
+            url: "/SystemManage/Module/Organizes?keyValue=" + keyValue,
+            width: "350px",
+            height: "550px",
+            callBack: function (iframeId) {
+                top.frames[iframeId].submitForm();
+            }
+        });
+    }
 </script>
 @if (OperatorProvider.GetCurrent().IsRoot)
 {

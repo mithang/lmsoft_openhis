@@ -1,4 +1,7 @@
 using Newtouch.Sett.Domain;
+using Newtouch.Sett.Infrastructure;
+using NewtouchHIS.Lib.Framework.Operator;
+using SqlSugar;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -676,19 +679,74 @@ namespace Newtouch.Sett.DomainServices
 
     public class SysModuleDmnService : ISysModuleDmnService
     {
-        public object AuthAllOrganize(object p0, object p1)
+        // NX8-002: 4 method phan quyen co so (Organizes) — port that theo mau
+        // PDS SysModuleDmnService. DB dich: Sett DB (SettDb.GetConnection() =
+        // NewtouchHIS_Sett) — xem D-NX8-002: Union khong co bang
+        // Sys_OrganizeAuthorize; Sett da co 319 row (199 ItemId khop Sett
+        // Sys_Module, 0 khop Union); dbo.SplitToTable ton tai o Sett.
+        // Doc dung kieu PDS (join [NewtouchHIS_Base]..V_S_Sys_Organize) vi
+        // Sett khong co bang/view Sys_Organize local — kieu Base.Infrastructure
+        // (join Sys_Organize local) se loi o Sett DB.
+        // Luu y: chua co duong chay nao cua Sett doc Sys_OrganizeAuthorize
+        // (menu sidebar doc Sys_RoleAuthorize tren Union) — man Organizes tu
+        // nhat quan (ghi -> doc lai thay) va sua luon luong ModuleButton
+        // type-2 dang co (truoc day doc tra [], ghi nem NotSupportedException);
+        // consumer GetOpenMenuListByTopOrg van stub, de NX9.
+        public void AuthAllOrganize(string moduleId, int itemType)
         {
-            return null;
+            if (string.IsNullOrWhiteSpace(moduleId))
+            {
+                return;
+            }
+            var sql = @"
+if exists (select 1 from Sys_Module where Id = @moduleId and @itemType = 1
+union select 1 from Sys_ModuleButton where Id = @moduleId and @itemType = 2)
+begin
+    delete from Sys_OrganizeAuthorize where ItemId = @moduleId and ItemType = @itemType
+    insert into Sys_OrganizeAuthorize(Id, TopOrganizeId, ItemId, ItemType, CreateTime, CreatorCode,zt)
+    values(newid(), '*', @moduleId, @itemType, GETDATE(), @creatorCode, '1')
+end";
+            SettDb.GetConnection().Ado.ExecuteCommand(sql, new SugarParameter[] {
+                    new SugarParameter("@moduleId", moduleId),
+                    new SugarParameter("@itemType", itemType),
+                    new SugarParameter("@creatorCode", OperatorProvider.GetCurrent().UserCode)
+                });
         }
 
-        public object AuthCancelAllOrganize(object p0, object p1)
+        public void AuthCancelAllOrganize(string moduleId, int itemType)
         {
-            return null;
+            if (string.IsNullOrWhiteSpace(moduleId))
+            {
+                return;
+            }
+            var sql = @"delete from Sys_OrganizeAuthorize where ItemId = @moduleId and ItemType = @itemType";
+            SettDb.GetConnection().Ado.ExecuteCommand(sql, new SugarParameter[] {
+                    new SugarParameter("@moduleId", moduleId),
+                    new SugarParameter("@itemType", itemType)
+                });
         }
 
-        public IList<SysOrganizeVEntity> GetAuthedOrgListByModuleId(object p0, object p1)
+        public IList<SysOrganizeVEntity> GetAuthedOrgListByModuleId(string itemId, int itemType)
         {
-            return new List<SysOrganizeVEntity>();
+            if (string.IsNullOrWhiteSpace(itemId))
+            {
+                return new List<SysOrganizeVEntity>();
+            }
+            var sql = @"if exists (select 1 from Sys_OrganizeAuthorize where ItemId = @itemId and ItemType = @itemType and TopOrganizeId = '*')
+begin 
+    --Tất cả tổ chức cấp cao nhất
+	select * from [NewtouchHIS_Base]..V_S_Sys_Organize where ParentId is null
+end
+else
+	select distinct b.* from Sys_OrganizeAuthorize a
+	left join [NewtouchHIS_Base]..V_S_Sys_Organize b
+	on a.TopOrganizeId = b.Id
+	where a.ItemId = @itemId and a.ItemType = @itemType";
+            return SettDb.GetConnection().SqlQueryable<SysOrganizeVEntity>(sql)
+                .AddParameters(new SugarParameter[] {
+                    new SugarParameter("@itemId", itemId),
+                    new SugarParameter("@itemType", itemType)
+                }).ToList();
         }
 
         public object GetMenuButtonListByTopOrg(object p0, object p1)
@@ -716,9 +774,42 @@ namespace Newtouch.Sett.DomainServices
             return null;
         }
 
-        public object UpdateAuthOrganizeList(object p0, object p1, object p2)
+        public void UpdateAuthOrganizeList(string moduleId, string orgList, int itemType)
         {
-            throw new NotSupportedException("Chức năng ghi/chỉnh sửa này chưa được triển khai trong bản .NET Core (chỉ xác minh đọc).");
+            if (string.IsNullOrWhiteSpace(moduleId))
+            {
+                return;
+            }
+            // NX8-002: orgList null coi nhu rong (xoa het) thay vi Trim(',') nem
+            // NRE nhu goc PDS — dung ngu nghia nhanh rong da co trong code
+            // vendor (chon 0 to chuc = thu hoi het).
+            var orgIdArr = (orgList ?? "").Trim(',');
+            if (string.IsNullOrWhiteSpace(orgIdArr))
+            {
+                var sql = @"
+delete from Sys_OrganizeAuthorize where ItemId = @moduleId and ItemType = @itemType
+";
+                SettDb.GetConnection().Ado.ExecuteCommand(sql, new SugarParameter[] {
+                    new SugarParameter("@moduleId", moduleId),
+                    new SugarParameter("@itemType", itemType),
+                });
+            }
+            else
+            {
+                var sql = @"
+delete from Sys_OrganizeAuthorize where ItemId = @moduleId and ItemType = @itemType
+insert into Sys_OrganizeAuthorize(Id, TopOrganizeId, ItemId, ItemType, CreateTime, CreatorCode,zt)
+select newid(), Id, @moduleId, @itemType, GETDATE(), @creatorCode, '1'
+from [NewtouchHIS_Base]..V_S_Sys_Organize where Id in (
+    select value from dbo.SplitToTable(@orgIdArr, ',')
+)";
+                SettDb.GetConnection().Ado.ExecuteCommand(sql, new SugarParameter[] {
+                    new SugarParameter("@moduleId", moduleId),
+                    new SugarParameter("@itemType", itemType),
+                    new SugarParameter("@creatorCode", OperatorProvider.GetCurrent().UserCode),
+                    new SugarParameter("@orgIdArr", "") { DbType = System.Data.DbType.AnsiString, Size = -1, Value = orgIdArr }
+                });
+            }
         }
 
     }
