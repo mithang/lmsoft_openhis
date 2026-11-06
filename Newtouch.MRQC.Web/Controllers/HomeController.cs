@@ -102,6 +102,8 @@ namespace Newtouch.MRQC.Web.Controllers
         /// FrameworkBase.MultiOrg đã mất nên không port; NeedChooseOrg=false
         /// với user 1 org nên đường này không tới được trong thực tế.
         /// </summary>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SwithOrg(string dstnOrgId)
         {
             var opr = OperatorProvider.GetCurrent();
