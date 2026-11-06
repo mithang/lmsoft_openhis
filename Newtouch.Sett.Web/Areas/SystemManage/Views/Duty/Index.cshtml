@@ -77,17 +77,10 @@
             }
         })
     }
-    function btn_details() {
-        var keyValue = $("#gridList").jqGridRowValue().Id;
-        $.modalOpen({
-            id: "Details",
-            title: "Xem chức vụ",
-            url: "/SystemManage/Duty/Details?r=" + Math.random() + "&keyValue=" + keyValue,
-            width: "450px",
-            height: "500px",
-            btn: null,
-        });
-    }
+    @* NX5-003: bo nut "Xem chuc vu" + btn_details() — mo /SystemManage/Duty/Details
+       (route 404: khong co action Details, khong co view; vendor bug, probe ?keyValue=1
+       van 404). Khong them action/view moi (bia UI, trai tien le D-BA007). Grid van
+       hien danh sach; Tao moi/Sua/Xoa giu nguyen. *@
 </script>
 
 <div class="topPanel">
@@ -103,7 +96,6 @@
                 <li class="first">Đã chọn<span>1</span>mục</li>
                 <li><a id="NF-edit" authorize="yes" onclick="btn_edit()"><i class="fa fa-pencil-square-o"></i>Sửa chức vụ</a></li>
                 <li><a id="NF-delete" authorize="yes" onclick="btn_delete()"><i class="fa fa-trash-o"></i>Xóa chức vụ</a></li>
-                <li><a id="NF-Details" authorize="yes" onclick="btn_details()"><i class="fa fa-search-plus"></i>Xem chức vụ</a></li>
             </ul>
             <a href="javascript:;" class="close"></a>
         </div>
