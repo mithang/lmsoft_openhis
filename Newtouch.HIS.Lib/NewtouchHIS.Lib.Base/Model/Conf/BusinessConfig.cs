@@ -99,6 +99,12 @@ namespace NewtouchHIS.Lib.Base.Model
         [DbTag(DBEnum.BaseDb)]
         public string? SiteBaseWebHost { get; set; } = null;
         /// <summary>
+        /// Quản lý dữ liệu cơ sở (Base HOSP) Web — NX2-002: tile SSO via-SSO
+        /// vào HOSP (GetUALoginAddres match theo AppAPIHostName == "HOSP").
+        /// </summary>
+        [DbTag(DBEnum.BaseDb)]
+        public string? SiteBaseHospWebHost { get; set; } = null;
+        /// <summary>
         /// Quản lý hậu trườngAPI
         /// </summary>      
         [DbTag(DBEnum.BaseDb)]

@@ -8,6 +8,7 @@ using NewtouchHIS.Lib.Base.Model;
 using NewtouchHIS.Lib.Base.Utilities;
 using NewtouchHIS.Lib.Framework.Attributes;
 using NewtouchHIS.Lib.Framework.Operator;
+using Newtonsoft.Json;
 
 namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 {
@@ -46,6 +47,64 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
             HttpWebHelper.RemoveCookie(ConfigInitHelper.SysConfig.AppId + "_LoginFromFlag");
 
             return base.Index();
+        }
+
+        /// <summary>
+        /// Đăng nhập ủy quyền thống nhất (tile SSO → GetUALoginAddres →
+        /// /Login/UALogin?access_token=…&amp;returnUrl=…).
+        /// NX2-002: KHÁC CIS/EMR/OR — các portal đó đổi token qua
+        /// UAUserInfoGetAPI ngoài (không cấu hình trong triển khai này nên
+        /// nhánh đó chết → về trang Login; tile via-SSO của chúng cũng chết
+        /// theo). Ở đây access_token CHÍNH LÀ khóa phiên SSO trong Redis
+        /// dùng chung (Db 0) — cùng kho mà WriteLoginUserCookie() (?appId=)
+        /// của FrameworkAuthorizationFilter dùng — nên kiểm chứng trực tiếp:
+        /// token còn hiệu lực trong Redis và JSON chứa UserId/UserCode thì
+        /// mint phiên HOSP bằng AddCurrent rồi về returnUrl. Không gọi API
+        /// ngoài, không tạo identity từ token chưa kiểm chứng: token hết hạn
+        /// / không có trong Redis / JSON rỗng → về trang Login. Nhánh đầu
+        /// (đã có phiên HOSP trùng token) mirror CIS.
+        /// </summary>
+        public IActionResult UALogin(string access_token, string returnUrl)
+        {
+            if (string.IsNullOrWhiteSpace(access_token))
+            {
+                return RedirectToAction("Index", "Login"); // Thiếu token
+            }
+
+            var eOpr = OperatorProvider.GetCurrent();
+            if (eOpr != null && eOpr.token == access_token)
+            {
+                if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+                {
+                    return Redirect(returnUrl);
+                }
+                return RedirectToAction("Index", "Home");
+            }
+
+            OperatorModel opr = null;
+            try
+            {
+                var json = RedisHelper.GetString(access_token);
+                if (!string.IsNullOrWhiteSpace(json) && json != "SIDELINED")
+                {
+                    opr = JsonConvert.DeserializeObject<OperatorModel>(json);
+                }
+            }
+            catch
+            {
+                opr = null;
+            }
+            if (opr == null || (string.IsNullOrWhiteSpace(opr.UserId) && string.IsNullOrWhiteSpace(opr.UserCode)))
+            {
+                return RedirectToAction("Index", "Login"); // Token hết hạn/không hợp lệ
+            }
+
+            OperatorProvider.AddCurrent(opr);
+            if (!string.IsNullOrWhiteSpace(returnUrl) && Url.IsLocalUrl(returnUrl))
+            {
+                return Redirect(returnUrl);
+            }
+            return RedirectToAction("Index", "Home");
         }
 
         /// <summary>

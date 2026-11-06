@@ -1,6 +1,5 @@
 using NewtouchHIS.Lib.Base.Exceptions;
 using NewtouchHIS.Lib.Base.Utilities;
-using NewtouchHIS.Lib.Framework.Attributes;
 using NewtouchHIS.Lib.Framework.Filter;
 using NewtouchHIS.Lib.Framework.Operator;
 using Newtouch.HIS.Domain.BusinessObjects;
@@ -15,7 +14,12 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace Newtouch.HIS.Base.HOSP.Web.Controllers
 {
-    [HandlerLogin]
+    // NX2-002: bo [HandlerLogin] o cap controller (theo mau CIS/EMR/OR/MRMS):
+    // FrameworkAuthorizationFilter gio chay tren moi action: (1) goi
+    // WriteLoginUserCookie() de adopt phien SSO qua ?appId= truoc khi
+    // GetCurrent(), (2) anon -> redirect /Login/Index (GET thuong) hoac JSON
+    // SESSION_TIMEOUT (AJAX). Cac guard opr==null trong action giu lai lam
+    // phong thu sau filter; hanh vi voi caller DA XAC THUC khong doi.
     public class HomeController : Controller
     {
         private readonly ISysUserDmnService _sysUserDmnService;
@@ -39,9 +43,9 @@ namespace Newtouch.HIS.Base.HOSP.Web.Controllers
         [HttpGet]
         public IActionResult Index()
         {
-            // Home mang [HandlerLogin] nên filter không chặn request ẩn danh:
-            // không có session thì về Login (mẫu Organize) thay vì NRE kèm
-            // stack trace ở GetCurrent().UserCode như trước.
+            // NX2-002: filter (khong con [HandlerLogin]) da chan request an danh
+            // truoc khi vao day, ke ca request adopt SSO ?appId= (filter adopt
+            // roi GetCurrent moi tra ve opr). Guard duoi day chi la phong thu.
             var opr = OperatorProvider.GetCurrent();
             if (opr == null)
             {
