@@ -94,9 +94,20 @@ namespace Newtouch.Sett.DomainServices
                 .AddParameters(new SugarParameter[] { new SugarParameter("@parentOrgId", parentOrgId) }).ToList();
         }
 
+        // NX8-002-fix: port that — goc PDS SysOrganizeDmnService
+        // .GetValidTopOrgList (select * from [NewtouchHIS_Base]
+        // ..V_S_Sys_Organize where ParentId is null). Truoc day stub tra []
+        // nen Organize/GetAuthOrganizeList luon tra cay rong, che mat ket qua
+        // cua GetAuthedOrgListByModuleId (NX8-002) — probe live khong phan
+        // biet duoc. Luu y du lieu demo: Sys_Organize chi co 2 row, KHONG row
+        // nao co ParentId NULL (org demo 6d5752a7 tro toi d8ee85f8 khong co
+        // row) nen cau nay van tra [] tren DB demo; tren DB benh vien that co
+        // row goc ParentId NULL thi tra dung. Khong bia ngu nghia "top org"
+        // khac (vd. ParentId treo) — giu dung SQL vendor.
         public IList<SysOrganizeVEntity> GetValidTopOrgList()
         {
-            return new List<SysOrganizeVEntity>();
+            var sql = @"select * from [NewtouchHIS_Base]..V_S_Sys_Organize where ParentId is null";
+            return SettDb.GetBaseConnection().SqlQueryable<SysOrganizeVEntity>(sql).ToList();
         }
 }
 
