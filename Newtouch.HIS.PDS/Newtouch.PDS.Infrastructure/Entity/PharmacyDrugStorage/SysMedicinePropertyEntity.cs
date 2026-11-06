@@ -156,9 +156,9 @@ namespace Newtouch.HIS.Domain.Entity
         public string xglx { get; set; }
 
         /// <summary>
-        /// 
+        /// Đơn vị cung cấp (xt_ypsx.ghdw là varchar(50) — xem D-NX22-003)
         /// </summary>
-        public int? ghdw { get; set; }
+        public string ghdw { get; set; }
 
         /// <summary>
         /// 
