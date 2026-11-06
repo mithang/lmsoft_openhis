@@ -38,11 +38,11 @@ namespace Newtouch.HIS.Domain.Entity
         // map moi property -> INSERT authorize row luon loi
         // "Invalid column name 'ItemType'". Khoi phuc hanh vi EF goc
         // (bo qua property thua) bang IsIgnore. Khong DDL (cam).
-        // GIOI HAN da ghi: doc ItemType qua entity nay tra default(0)
-        // thay vi nem — SysModuleDmnService loc ItemType==1/2 tren
-        // _sysRoleAuthorizeRepository se tra rong thay vi loi (hien
-        // tai nem); can vong sau xem lai neu menu non-admin PDS can
-        // loc theo ItemType tu bang that.
+        // GIOI HAN cu da ghi (NX20-004) da duoc xu ly o NX21-002
+        // (D-NX21-002): SysModuleDmnService khong loc ItemType tren
+        // repo nay nua ma suy loai tu tap Id cua Sys_Module /
+        // Sys_ModuleButton (dung cach RoleApp gan ItemType); doc
+        // ItemType qua entity nay van tra default(0).
         [SugarColumn(IsIgnore = true)]
         public int ItemType { get; set; }
 

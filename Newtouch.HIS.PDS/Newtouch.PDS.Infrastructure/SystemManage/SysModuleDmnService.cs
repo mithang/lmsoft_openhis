@@ -54,8 +54,18 @@ namespace Newtouch.HIS.DomainServices
                 var orgItemIdList = _sysOrganizeAuthorizeRepo.IQueryable(t => t.zt == "1" && t.ItemType == 1
 && (t.TopOrganizeId == "*" || t.TopOrganizeId == topOrgId)).Select(p => p.ItemId);
                 //tớiRoleđang mở
-                var idList = _sysRoleAuthorizeRepository.IQueryable(t => t.zt == "1" && t.ItemType == 1
-&& roleIdList.Contains(t.RoleId)).Select(p => p.ItemId);
+                // NX21-002 (D-NX21-002): Sys_RoleAuthorize KHONG co cot ItemType
+                // (NX20-004) nen khong loc ItemType tren _sysRoleAuthorizeRepository
+                // duoc nua — loc do sinh "Invalid column name 'ItemType'" (harness
+                // NX21 chung minh tren DLL cu). Suy loai theo dung cach
+                // RoleApp.SubmitForm gan ItemType: ItemId co trong Sys_Module thi
+                // la menu (1), co trong Sys_ModuleButton thi la nut (2). Day chi
+                // giao ItemId cua role voi tap Id cua Sys_Module; phep loc cuoi
+                // (org + role) tren Sys_Module giu nguyen. Khong DDL.
+                var moduleIdList = _sysModuleRepository.IQueryable().Where(p => p.zt == "1").Select(p => p.Id).ToList();
+                var roleItemIdList = _sysRoleAuthorizeRepository.IQueryable(t => t.zt == "1"
+&& roleIdList.Contains(t.RoleId)).Select(p => p.ItemId).ToList();
+                var idList = roleItemIdList.Where(id => moduleIdList.Contains(id)).ToList();
                 query = query.Where(p => orgItemIdList.Contains(p.Id) && idList.Contains(p.Id));
             }
             return query.OrderBy(t => t.px).ToList();
@@ -90,9 +100,13 @@ namespace Newtouch.HIS.DomainServices
                 //tớiorganizeđang mở
                 var orgIdList = _sysOrganizeAuthorizeRepo.IQueryable(t => t.zt == "1" && t.ItemType == 2
 && (t.TopOrganizeId == "*" || t.TopOrganizeId == topOrgId)).Select(p => p.ItemId);
-                //tớiRoleđang mở
-                var idList = _sysRoleAuthorizeRepository.IQueryable(t => t.zt == "1" && t.ItemType == 2
-&& roleIdList.Contains(t.RoleId)).Select(p => p.ItemId);
+                //tớiRoleđang mở — NX21-002 (D-NX21-002): nhu nhanh menu o tren,
+                // khong loc ItemType tren Sys_RoleAuthorize (khong co cot);
+                // giao ItemId cua role voi tap Id cua Sys_ModuleButton.
+                var buttonIdList = _moduleButtonRepo.IQueryable().Where(p => p.zt == "1").Select(p => p.Id).ToList();
+                var roleButtonItemIdList = _sysRoleAuthorizeRepository.IQueryable(t => t.zt == "1"
+&& roleIdList.Contains(t.RoleId)).Select(p => p.ItemId).ToList();
+                var idList = roleButtonItemIdList.Where(id => buttonIdList.Contains(id)).ToList();
                 query = query.Where(p => orgIdList.Contains(p.Id) && idList.Contains(p.Id));
             }
             return query.OrderBy(t => t.px).ToList();
