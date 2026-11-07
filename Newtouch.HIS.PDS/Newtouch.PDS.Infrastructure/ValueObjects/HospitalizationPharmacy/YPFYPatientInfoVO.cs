@@ -6,12 +6,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class YPFYPatientInfoVO
     {
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         public long Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -21,12 +21,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string yzh { get; set; }
 
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         public string yzId { get; set; }
 
         /// <summary>
-        /// Thực hiện y lệnhID
+        /// Thực hiện y lệnh ID
         /// </summary>
         public string zxId { get; set; }
 
@@ -288,12 +288,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class HospitalizationRpDetail : HospitalizationPatientInfo
     {
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         public string yzId { get; set; }
 
         /// <summary>
-        /// Thực hiện y lệnhID
+        /// Thực hiện y lệnh ID
         /// </summary>
         public string zxId { get; set; }
 
@@ -470,7 +470,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string applyNo { get; set; }
 
         /// <summary>
-        /// Chi tiết đơn xin trả thuốcID
+        /// Chi tiết đơn xin trả thuốc ID
         /// </summary>
         public string rdbdId { get; set; }
 

@@ -251,7 +251,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public int? px { get; set; }
 
         /// <summary>
-        /// Thuốc theoID
+        /// Thuốc theo ID
         /// </summary>
         public int ypsxId { get; set; }
 

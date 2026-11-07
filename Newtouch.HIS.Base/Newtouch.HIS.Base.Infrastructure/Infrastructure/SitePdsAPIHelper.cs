@@ -13,7 +13,7 @@ namespace Newtouch.Infrastructure
     public class SitePdsApiHelper
     {
         /// <summary>
-        /// Quyết toánAPI
+        /// Quyết toán API
         /// </summary>
         private static readonly string _sitePdsAPIHost;
 
@@ -89,7 +89,7 @@ namespace Newtouch.Infrastructure
         #region private methods
 
         /// <summary>
-        /// Quyết toánAPI Host
+        /// Quyết toán API Host
         /// </summary>
         private static string SitePdsApiHost
         {
@@ -115,7 +115,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Hệ thống quyết toánAPI Url
+        /// Hệ thống quyết toán API Url
         /// </summary>
         /// <param name="url">url VD'~/Home/Index'</param>
         /// <returns></returns>

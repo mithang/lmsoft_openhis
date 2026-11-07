@@ -27,12 +27,12 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
         /// <returns></returns>
         public string Id { get; set; }
         /// <summary>
-        /// Bệnh án điện tửID
+        /// Bệnh án điện tử ID
         /// </summary>
         /// <returns></returns>
         public decimal? dzbl_id { get; set; }
         /// <summary>
-        /// Đăng ký nhập việnID
+        /// Đăng ký nhập viện ID
         /// </summary>
         /// <returns></returns>
         public decimal? zydj_id { get; set; }

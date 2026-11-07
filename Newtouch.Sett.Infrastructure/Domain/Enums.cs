@@ -98,7 +98,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// Giao dịch BHYTLoại  0 Không giao dịch 1 thông thườnggiao dịch 2 Giao dịch bệnh nặng 3 Giao dịch giường gia đình 4 Giao dịch tai nạn lao động 5 nhập việngiao dịch 6 bảo hiểm nông nghiệpgiao dịch
+    /// Giao dịch BHYT Loại  0 Không giao dịch 1 thông thườnggiao dịch 2 Giao dịch bệnh nặng 3 Giao dịch giường gia đình 4 Giao dịch tai nạn lao động 5 nhập việngiao dịch 6 bảo hiểm nông nghiệpgiao dịch
     /// xt_brxz.ybjylx
     /// </summary>
     public enum EnumYBJYLX
@@ -189,7 +189,7 @@ namespace Newtouch.Sett.Domain
     public enum EnumSuanFaZFXZ
     {
         /// <summary>
-        /// Tự trả(cùngGiao dịch BHYTsauTự trảTiền mặt)
+        /// Tự trả(cùngGiao dịch BHYT sau Tự trảTiền mặt)
         /// </summary>
         [Description("Tự trả")]
         ZF = 0,
@@ -225,7 +225,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// ThẻLoại/ThẻCMND/CCCDphầntiêubiết
+    /// Thẻ Loại/Thẻ CMND/CCCD phần tiêu biết
     /// </summary>
     [Description("ThẻLoại")]
     public enum EnumCardType
@@ -251,7 +251,7 @@ namespace Newtouch.Sett.Domain
         [Description("Chứng từ điện tử BHYT")]
         ybdzpz = 3,
         /// <summary>
-        /// CMND/CCCDBHYTkhám
+        /// CMND/CCCD BHYT khám
         /// </summary>
         [Description("CMND/CCCD(BHYT)")]
         sfz = 4,
@@ -435,7 +435,7 @@ namespace Newtouch.Sett.Domain
     /// 0-thông thườngđăng ký khám
     /// 1-trốngđăng ký khám
     /// 2-Giường gia đìnhđăng ký khám
-    /// 3-Tự phíChuyểnBHYTđăng ký khám
+    /// 3-Tự phí Chuyển BHYT đăng ký khám
     /// 4-ghi sổ ngoại trúđăng ký khám
     /// </summary>
     public enum EnumGhxz
@@ -710,7 +710,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// BHYTĐặc biệtChờchế độ
+    /// BHYT Đặc biệtChờchế độ
     /// </summary>
     public enum EnumYBTSDY
     {
@@ -733,7 +733,7 @@ namespace Newtouch.Sett.Domain
     }
 
     /// <summary>
-    /// thích hợpdùngBHYTphương pháp 0:Bảo hiểm thành phố 1:cáiBHYT cá thể 2:Thị trấn nhỏ 3:nhỏlúccông
+    /// thích hợp dùng BHYT phương pháp 0:Bảo hiểm thành phố 1:cái BHYT cá thể 2:Thị trấn nhỏ 3:nhỏlúccông
     // A:dânchínhy tếđiều trịgiúpkhó
     // B:cũNămđể lạidặn dò C:nămbảo hiểmcũngười D:nặngkhuyết tậtnhân viên
     // E:trongnhỏhọcsinhvàtrẻ sơ sinhtrẻ nhỏtrẻ F: Khácdân cư
@@ -747,7 +747,7 @@ namespace Newtouch.Sett.Domain
         [Description("bảo hiểm thành phố")]
         cb = 1,
         /// <summary>
-        /// cáiBHYT cá thể
+        /// cái BHYT cá thể
         /// </summary>
         [Description("BHYT cá thể")]
         gtyb,
@@ -1093,7 +1093,7 @@ namespace Newtouch.Sett.Domain
         Tj = 6,
     }
     /// <summary>
-    /// BHYTthuộc tính
+    /// BHYT thuộc tính
     /// </summary>
     public enum EnumCblb
     {
@@ -1165,11 +1165,11 @@ namespace Newtouch.Sett.Domain
         dxs = 1404,
         [Description("chưa thành niên (chưa nhập học)")]
         wcn = 1405,
-        [Description("địa phươngKhác mở rộngCMND/CCCDphần")]
+        [Description("địa phương Khác mở rộng CMND/CCCD phần")]
         dfqtgkzf = 1460,
         [Description("dân cư thông thường (thành niên)")]
         ptjm = 1501,
-        [Description("địa phươngKhác mở rộngCMND/CCCDphần")]
+        [Description("địa phương Khác mở rộng CMND/CCCD phần")]
         jmdfqtgzsf = 1560,
         [Description("dân cư (người cao tuổi)")]
         jmln = 16,
@@ -1600,12 +1600,12 @@ namespace Newtouch.Sett.Domain
         [Description("Tự phí")]
         zf = 0,
         /// <summary>
-        /// người lao độngBHYT
+        /// người lao động BHYT
         /// </summary>
         [Description("người lao động BHYT")]
         zg = 11,
         /// <summary>
-        /// dân cưBHYT
+        /// dân cư BHYT
         /// </summary>
         [Description("dân cư BHYT")]
         jm = 12,
@@ -1615,7 +1615,7 @@ namespace Newtouch.Sett.Domain
         [Description("Nghỉ hưu nghỉ hưu")]
         lx = 13,
         /// <summary>
-        /// thông thườngBHYT
+        /// thông thường BHYT
         /// </summary>
         [Description("thông thường BHYT")]
         pt = 1,

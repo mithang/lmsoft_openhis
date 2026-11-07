@@ -9,7 +9,7 @@ namespace Newtouch.Domain.IRepository.DeptStorageManage
     public interface IKcPdxxRepo : IRepositoryBase<KcPdxxEntity>
     {
         /// <summary>
-        /// TheoKiểm kêIDLấyKiểm kêthông tin
+        /// Theo Kiểm kê ID Lấy Kiểm kê thông tin
         /// </summary>
         /// <param name="pdId"></param>
         /// <param name="organizeId"></param>

@@ -15,19 +15,19 @@ namespace Newtouch.HIS.Domain.Entity
     public class ZyYpyzxxEntity : IEntity<ZyYpyzxxEntity>
     {
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public long Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Thực hiện y lệnhID,Do nhà thuốc kho thuốc tự tạo,Tạo mỗi lần gọi thực hiện y lệnh
+        /// Thực hiện y lệnh ID,Do nhà thuốc kho thuốc tự tạo,Tạo mỗi lần gọi thực hiện y lệnh
         /// </summary>
         public string zxId { get; set; }
 

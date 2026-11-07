@@ -11,9 +11,9 @@ using System.Reflection;
 namespace NewtouchHIS.Base.DomainService
 {
     /// <summary>
-    /// Kế thừaDBContext,vớiservice mởISqlSugarClient Giao diện
+    /// Kế thừa DBContext,vớiservice mở ISqlSugarClient Giao diện
     /// Hỗ trợ base.Context Đổi cơ sở dữ liệu
-    /// Mặc định base.Context làTEntity đã gắnTenantAttr
+    /// Mặc định base.Context là TEntity đã gắnTenantAttr
     /// Ghi chú:Thêm,Xóa,Sửa Cấm xuyên cơ sở dữ liệu,Cấm dùngsqlcâu lệnh,nếu cần thì thêm mớiservice,Đạtbase.Context Chỉ định cơ sở dữ liệu đích
     /// </summary>
     /// <typeparam name="TEntity"></typeparam>

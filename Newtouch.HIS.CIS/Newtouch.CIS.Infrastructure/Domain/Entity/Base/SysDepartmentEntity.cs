@@ -97,7 +97,7 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public int? UploadYB { get; set; }
         /// <summary>
-        /// làKhôngTải lên BHYTsauThu hồi Thu hồi1 Thu hồi0
+        /// làKhôngTải lên BHYT sau Thu hồi Thu hồi1 Thu hồi0
         /// </summary>
         public int? RevokeYB { get; set; }
 

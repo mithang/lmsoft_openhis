@@ -15,7 +15,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// TheoIDXóa phương thức nhập/xuất kho
+        /// Theo ID Xóa phương thức nhập/xuất kho
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

@@ -111,7 +111,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
                     retMsg = _ientryRegistrationDmnService.SaveChangeAreaPatInfo(patChangeAreaRequestDto);
                 }
             }
-            //VDnếuthành công,thìsản xuấtsinhgiường ký tựgắnliên quanChi phí
+            //VD nếu thành công,thìsản xuấtsinhgiường ký tựgắnliên quanChi phí
             if (retMsg.Split('|')[0].ToString()=="T")
             {
                 patBedFeeRequestDto req = new patBedFeeRequestDto()

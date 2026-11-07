@@ -16,7 +16,7 @@ namespace Newtouch.OR.ManageSystem.Infrastructure
         public static EFDBBaseFuncHelper Instance => new EFDBBaseFuncHelper();
 
         /// <summary>
-        /// Chỉ địnhDBNgữ cảnh (kept for signature compatibility; the OR connection
+        /// Chỉ định DB Ngữ cảnh (kept for signature compatibility; the OR connection
         /// is always used — cross-DB variants pass a fully-qualified proc name
         /// through GetNewFieldUniqueValueDB instead).
         /// </summary>

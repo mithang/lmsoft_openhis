@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.Entity
     public class ZyTymxEntity : IEntity<ZyTymxEntity>
     {
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
@@ -35,12 +35,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string ypCode { get; set; }
 
         /// <summary>
-        /// Thực hiện y lệnhID
+        /// Thực hiện y lệnh ID
         /// </summary>
         public string zxId { get; set; }
 
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         public string yzId { get; set; }
 

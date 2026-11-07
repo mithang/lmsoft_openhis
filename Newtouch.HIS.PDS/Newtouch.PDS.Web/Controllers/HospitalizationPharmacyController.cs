@@ -202,8 +202,8 @@ namespace Newtouch.HIS.Web.Controllers
         /// <summary>
         /// Xóa y lệnh chỉ định
         /// </summary>
-        /// <param name="yzId">Y lệnhID</param>
-        /// <param name="zxId">Thực hiện y lệnhID</param>
+        /// <param name="yzId">Y lệnh ID</param>
+        /// <param name="zxId">Thực hiện y lệnh ID</param>
         /// <returns></returns>
         public IActionResult DeleteYzxx(string yzId, string zxId)
         {

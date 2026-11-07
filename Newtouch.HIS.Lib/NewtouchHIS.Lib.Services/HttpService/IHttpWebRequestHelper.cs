@@ -8,7 +8,7 @@
         /// <typeparam name="T"></typeparam>
         /// <param name="url"></param>
         /// <param name="data"></param>
-        /// <param name="method">mặc địnhPOST</param>
+        /// <param name="method">mặc định POST</param>
         /// <returns></returns>
         T Request<T>(string url, string data, string method = "POST");
     }

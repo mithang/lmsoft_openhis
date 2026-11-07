@@ -34,11 +34,11 @@ namespace Newtouch.PDS.Requset
         public string ErrorMsg { get; set; }
 
         /// <summary>
-        /// Trả về y lệnhID
+        /// Trả về y lệnh ID
         /// </summary>
         public string yzId { get; set; }
         /// <summary>
-        /// ThuốcCODE
+        /// Thuốc CODE
         /// </summary>
         public string ypCode { get; set; }
         /// <summary>

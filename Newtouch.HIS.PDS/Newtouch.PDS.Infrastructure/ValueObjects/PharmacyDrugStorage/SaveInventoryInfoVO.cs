@@ -6,7 +6,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
     public class SaveInventoryInfoVO
     {
         /// <summary>
-        /// Chi tiết kiểm kêID
+        /// Chi tiết kiểm kê ID
         /// </summary>
         public string pdmxId { get; set; }
 

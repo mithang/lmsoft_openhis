@@ -2,7 +2,7 @@
     ViewBag.Title = "Nhập số CMND/CCCD của bệnh nhân";
     Layout = "~/Views/Shared/_Form.cshtml";
     var from = (ViewBag.from as string) ?? "";
-    //BHYTđịa phương trực thuộc
+    //BHYT địa phương trực thuộc
     var medicalInsurance = SysConfigReader.String("Outpatient_MedicalInsurance");
 }
 <style>
@@ -49,7 +49,7 @@
         $('#sfzhId').focus();
     });
     $("#formPatsbkh").bind("keydown", function (e) {
-        // tương thíchFFvàIEvàOpera
+        // tương thích FF và IE và Opera
         var theEvent = e || window.event;
         var code = theEvent.keyCode || theEvent.which || theEvent.charCode;
         if (code == 13) {

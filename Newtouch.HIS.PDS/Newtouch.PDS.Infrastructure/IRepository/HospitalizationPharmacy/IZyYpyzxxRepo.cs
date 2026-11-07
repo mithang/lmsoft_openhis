@@ -26,7 +26,7 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <summary>
         /// Lấy thông tin y lệnh no log
         /// </summary>
-        /// <param name="yzId">Y lệnhID</param>
+        /// <param name="yzId">Y lệnh ID</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         List<ZyYpyzxxEntity> SelectDataByYzId(string yzId, string organizeId);
@@ -34,8 +34,8 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <summary>
         /// Lấy thông tin y lệnh no log
         /// </summary>
-        /// <param name="yzId">Y lệnhID</param>
-        /// <param name="zxId">Thực hiện y lệnhID</param>
+        /// <param name="yzId">Y lệnh ID</param>
+        /// <param name="zxId">Thực hiện y lệnh ID</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         List<ZyYpyzxxEntity> SelectDataByYzId(string yzId, string zxId, string organizeId);
@@ -43,8 +43,8 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <summary>
         /// Lấy thông tin y lệnh no log
         /// </summary>
-        /// <param name="yzId">Y lệnhID</param>
-        /// <param name="zxId">Thực hiện y lệnhID</param>
+        /// <param name="yzId">Y lệnh ID</param>
+        /// <param name="zxId">Thực hiện y lệnh ID</param>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
@@ -61,7 +61,7 @@ namespace Newtouch.HIS.Domain.IRepository
         int UpdateFybzTy(string yzId, string zxId, string userCode, string organizeId, Newtouch.Infrastructure.EFDbTransaction db);
 
         /// <summary>
-        /// Theo thực hiệnID,Xóa vật lý tất cả chi tiết của lần thực hiện này
+        /// Theo thực hiện ID,Xóa vật lý tất cả chi tiết của lần thực hiện này
         /// </summary>
         /// <param name="zxId"></param>
         /// <returns></returns>

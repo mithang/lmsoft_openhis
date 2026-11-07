@@ -55,7 +55,7 @@
         }
     }
     /// <summary>
-    /// DRGThông tin bệnh án nhóm
+    /// DRG Thông tin bệnh án nhóm
     /// (with lựa chọn phiên bản)
     /// </summary>
     public class DrgAreaMedicalRecord : DrgMedicalRecord
@@ -67,7 +67,7 @@
         public int? versionPolicy { get; set; }
     }
     /// <summary>
-    /// DRGThông tin bệnh án nhóm
+    /// DRG Thông tin bệnh án nhóm
     /// (with lựa chọn phiên bản,List&Array)
     /// </summary>
     public class DrgAreaMedicalRecordS

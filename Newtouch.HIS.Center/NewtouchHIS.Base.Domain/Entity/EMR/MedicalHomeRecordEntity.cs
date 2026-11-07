@@ -30,7 +30,7 @@ namespace NewtouchHIS.Base.Domain.Entity.EMR
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Sức khỏeSố thẻ
+        /// Sức khỏe Số thẻ
         /// </summary>
         /// <returns></returns>
         public string JKKH { get; set; }
@@ -159,7 +159,7 @@ namespace NewtouchHIS.Base.Domain.Entity.EMR
         public string DWYB { get; set; }
 
         /// <summary>
-        /// Người liên hệHọ tên
+        /// Người liên hệ Họ tên
         /// </summary>
         /// <returns></returns>
         public string LXRXM { get; set; }
@@ -255,7 +255,7 @@ namespace NewtouchHIS.Base.Domain.Entity.EMR
         public string MZZD { get; set; }
 
         /// <summary>
-        /// BệnhMã
+        /// Bệnh Mã
         /// </summary>
         /// <returns></returns>
         public string MZZDDM { get; set; }
@@ -273,7 +273,7 @@ namespace NewtouchHIS.Base.Domain.Entity.EMR
         public string RYZD { get; set; }
 
         /// <summary>
-        /// BệnhMã
+        /// Bệnh Mã
         /// </summary>
         /// <returns></returns>
         public string RYZDDM { get; set; }
@@ -344,7 +344,7 @@ namespace NewtouchHIS.Base.Domain.Entity.EMR
         public string WBYY { get; set; }
 
         /// <summary>
-        /// BệnhMã
+        /// Bệnh Mã
         /// </summary>
         /// <returns></returns>
         public string H23 { get; set; }
@@ -356,7 +356,7 @@ namespace NewtouchHIS.Base.Domain.Entity.EMR
         public string BLZD { get; set; }
 
         /// <summary>
-        /// BệnhMã
+        /// Bệnh Mã
         /// </summary>
         /// <returns></returns>
         public string BLZDDM { get; set; }
@@ -420,7 +420,7 @@ namespace NewtouchHIS.Base.Domain.Entity.EMR
         public string GMYW { get; set; }
 
         /// <summary>
-        /// Tử vongBệnh nhânKhám nghiệm tử thi
+        /// Tử vong Bệnh nhân Khám nghiệm tử thi
         /// </summary>
         /// <returns></returns>
         public string SWHZSJ { get; set; }
@@ -602,13 +602,13 @@ namespace NewtouchHIS.Base.Domain.Entity.EMR
         public string LYFS { get; set; }
 
         /// <summary>
-        /// Y lệnh chuyển viện,Cơ sở y tế dự kiến tiếp nhậnTổ chứcTên
+        /// Y lệnh chuyển viện,Cơ sở y tế dự kiến tiếp nhận Tổ chức Tên
         /// </summary>
         /// <returns></returns>
         public string YZZY_YLJG { get; set; }
 
         /// <summary>
-        /// Y lệnh chuyển tới cơ sở dịch vụ y tế cộng đồng/Trạm y tế xã,Cơ sở y tế dự kiến tiếp nhậnTổ chứcTên
+        /// Y lệnh chuyển tới cơ sở dịch vụ y tế cộng đồng/Trạm y tế xã,Cơ sở y tế dự kiến tiếp nhận Tổ chức Tên
         /// </summary>
         /// <returns></returns>
         public string WSY_YLJG { get; set; }
@@ -626,37 +626,37 @@ namespace NewtouchHIS.Base.Domain.Entity.EMR
         public string MD { get; set; }
 
         /// <summary>
-        /// Chấn thương sọ nãoBệnh nhânThời gian hôn mê trước khi nhập viện:ngày
+        /// Chấn thương sọ não Bệnh nhân Thời gian hôn mê trước khi nhập viện:ngày
         /// </summary>
         /// <returns></returns>
         public decimal? RYQ_T { get; set; }
 
         /// <summary>
-        /// Chấn thương sọ nãoBệnh nhânThời gian hôn mê trước khi nhập viện:giờ
+        /// Chấn thương sọ não Bệnh nhân Thời gian hôn mê trước khi nhập viện:giờ
         /// </summary>
         /// <returns></returns>
         public decimal? RYQ_XS { get; set; }
 
         /// <summary>
-        /// Chấn thương sọ nãoBệnh nhânThời gian hôn mê trước khi nhập viện:phút
+        /// Chấn thương sọ não Bệnh nhân Thời gian hôn mê trước khi nhập viện:phút
         /// </summary>
         /// <returns></returns>
         public decimal? RYQ_F { get; set; }
 
         /// <summary>
-        /// Chấn thương sọ nãoBệnh nhânThời gian hôn mê sau khi nhập viện:ngày
+        /// Chấn thương sọ não Bệnh nhân Thời gian hôn mê sau khi nhập viện:ngày
         /// </summary>
         /// <returns></returns>
         public decimal? RYH_T { get; set; }
 
         /// <summary>
-        /// Chấn thương sọ nãoBệnh nhânThời gian hôn mê sau khi nhập viện:giờ
+        /// Chấn thương sọ não Bệnh nhân Thời gian hôn mê sau khi nhập viện:giờ
         /// </summary>
         /// <returns></returns>
         public decimal? RYH_XS { get; set; }
 
         /// <summary>
-        /// Chấn thương sọ nãoBệnh nhânThời gian hôn mê sau khi nhập viện:phút
+        /// Chấn thương sọ não Bệnh nhân Thời gian hôn mê sau khi nhập viện:phút
         /// </summary>
         /// <returns></returns>
         public decimal? RYH_F { get; set; }
@@ -1022,7 +1022,7 @@ namespace NewtouchHIS.Base.Domain.Entity.EMR
         public decimal? ZCYF { get; set; }
 
         /// <summary>
-        /// Y tếTổ chứcPhí chế phẩm thuốc đông y
+        /// Y tế Tổ chức Phí chế phẩm thuốc đông y
         /// </summary>
         /// <returns></returns>
         public decimal? ZYZJF { get; set; }
@@ -1088,27 +1088,27 @@ namespace NewtouchHIS.Base.Domain.Entity.EMR
         public decimal? QTF { get; set; }
 
         /// <summary>
-        /// Kiểm traCT
+        /// Kiểm tra CT
         /// </summary>
         public string CT { get; set; }
 
         /// <summary>
-        /// Kiểm traPETCT
+        /// Kiểm tra PETCT
         /// </summary>
         public string PETCT { get; set; }
 
         /// <summary>
-        /// Kiểm tra CT hai nguồnCT
+        /// Kiểm tra CT hai nguồn CT
         /// </summary>
         public string SYCT { get; set; }
 
         /// <summary>
-        /// Kiểm traBSiêu âm
+        /// Kiểm tra B Siêu âm
         /// </summary>
         public string BC { get; set; }
 
         /// <summary>
-        /// Kiểm traXphim
+        /// Kiểm tra X phim
         /// </summary>
         public string XP { get; set; }
 
@@ -1118,7 +1118,7 @@ namespace NewtouchHIS.Base.Domain.Entity.EMR
         public string CSXDT { get; set; }
 
         /// <summary>
-        /// Kiểm traMRI
+        /// Kiểm tra MRI
         /// </summary>
         public string MRI { get; set; }
 

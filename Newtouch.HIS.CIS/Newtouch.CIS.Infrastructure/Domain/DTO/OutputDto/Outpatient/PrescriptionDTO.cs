@@ -70,7 +70,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         public List<PrescriptionDetailVO> cfmxList { get; set; }
 
         /// <summary>
-        /// Đơn thuốcnhãn JI tinhI JII tinhII MZ têsay
+        /// Đơn thuốcnhãn JI tinhI JII tinh II MZ têsay
         /// </summary>
         public string cftag { get; set; }
         public string jzId { get; set; }

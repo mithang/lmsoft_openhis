@@ -17,7 +17,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// TheoIDXóađãđặt hẹnđăng ký khám
+        /// Theo ID Xóa đã đặt hẹn đăng ký khám
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

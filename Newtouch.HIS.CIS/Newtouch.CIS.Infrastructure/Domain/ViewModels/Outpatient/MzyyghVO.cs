@@ -8,12 +8,12 @@ namespace Newtouch.Domain.ViewModels.Outpatient
     public class MzyyghVO
     {
         /// <summary>
-        /// đặt hẹnđăng ký khámID mz_yyghbảngKhóa chính
+        /// đặt hẹnđăng ký khám ID mz_yyghbảngKhóa chính
         /// </summary>
         public string Id { get; set; }
 
         /// <summary>
-        /// tổ chứckếtcấu trúcID
+        /// tổ chứckếtcấu trúc ID
         /// </summary>
         public string OrganizeId { get; set; }
 

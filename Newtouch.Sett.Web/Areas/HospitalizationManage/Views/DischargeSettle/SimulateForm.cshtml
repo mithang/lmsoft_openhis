@@ -185,7 +185,7 @@
             }
         } else {
             $.loading(false);
-            $.modalAlert("GọiBHYT22Giao diện thất bại", 'error');
+            $.modalAlert("Gọi BHYT22 Giao diện thất bại", 'error');
             return;
         }
         if (funcSuccCallback) {
@@ -359,11 +359,11 @@
 	            var ybjyFeeReturn = ybjsSettReturn.output.setlinfo;
 	            var mzjzje = 0.000;//Số tiền cứu trợ dân chính
 	            var xjzfje = 0.000;//Số tiền thanh toán tiền mặt BHYT
-	            var zfxjzf = 0.000;//khôngThanh toán tiền mặt BHYTSố tiền
+	            var zfxjzf = 0.000;//khôngThanh toán tiền mặt BHYT Số tiền
 
 	            //Số tiền thanh toán tiền mặt BHYT
 	            xjzfje = ovpraseFloat(ybjyFeeReturn.psn_cash_pay);
-	            //khôngBHYTTiền mặtSố tiền
+	            //không BHYT Tiền mặtSố tiền
 	            zfxjzf = ovpraseFloat(hisfyze) -
 			        ovpraseFloat(predata.medfee_sumamt);
 	            //Tính thanh toán tiền mặt

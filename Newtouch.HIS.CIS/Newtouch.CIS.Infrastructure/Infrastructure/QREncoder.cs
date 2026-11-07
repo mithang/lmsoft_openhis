@@ -6,7 +6,7 @@ using QRCoder;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Mã QRMãdụng cụ (ported from Framework CIS QREncoder).
+    /// Mã QR Mã dụng cụ (ported from Framework CIS QREncoder).
     /// Returns PNG bytes instead of a System.Drawing.Bitmap: GDI+ is
     /// unavailable on this Linux host (no libgdiplus). The only caller
     /// (InfusionController) base64-encodes the PNG, so behavior is preserved.
@@ -24,7 +24,7 @@ namespace Newtouch.Infrastructure
         /// <param name="iconPath">Biểu tượngĐường dẫn (ignored when iconSize is 0)</param>
         /// <param name="iconSize">Biểu tượngkích thước</param>
         /// <param name="iconBorder">Độ dày khung bên của biểu tượng</param>
-        /// <param name="whiteEdge">Mã QRtrắngbên (quiet zone)</param>
+        /// <param name="whiteEdge">Mã QR trắng bên (quiet zone)</param>
         /// <returns>PNG bytes (grayscale)</returns>
         public static byte[] Code(string msg, int version, int pixel, string iconPath, int iconSize, int iconBorder, bool whiteEdge)
         {

@@ -37,17 +37,17 @@ namespace Newtouch.HIS.Domain.DO
         public string CfmxId { get; set; }
 
         /// <summary>
-        /// Thực hiện y lệnhID
+        /// Thực hiện y lệnh ID
         /// </summary>
         public string Yzzxid { get; set; }
 
         /// <summary>
-        /// Thực hiện y lệnhID
+        /// Thực hiện y lệnh ID
         /// </summary>
         public string zxId { get; set; }
 
         /// <summary>
-        /// Cơ cấu tổ chứcID
+        /// Cơ cấu tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -93,12 +93,12 @@ namespace Newtouch.HIS.Domain.DO
         public string ypCode { get; set; }
 
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         public string yzId { get; set; }
 
         /// <summary>
-        /// Thực hiện y lệnhID
+        /// Thực hiện y lệnh ID
         /// </summary>
         public string zxId { get; set; }
 

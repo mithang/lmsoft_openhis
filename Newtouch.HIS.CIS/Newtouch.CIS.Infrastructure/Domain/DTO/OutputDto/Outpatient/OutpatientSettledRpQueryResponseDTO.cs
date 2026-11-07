@@ -32,7 +32,7 @@ namespace Newtouch.Domain.DTO
         public int cfnm { get; set; }
 
         /// <summary>
-        /// Đơn thuốcchi tiếtID
+        /// Đơn thuốcchi tiết ID
         /// </summary>
         public int cfmxId { get; set; }
 

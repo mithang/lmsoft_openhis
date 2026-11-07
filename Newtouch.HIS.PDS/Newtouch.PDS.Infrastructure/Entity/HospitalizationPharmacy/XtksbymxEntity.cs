@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.Entity
     public class XtksbymxEntity : IEntity<XtksbymxEntity>
     {
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]

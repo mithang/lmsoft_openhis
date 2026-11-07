@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Herp APIyêu cầugiúpgiúploại
+    /// Herp API yêu cầugiúpgiúploại
     /// </summary>
     public class SiteHerpAPIHelper : SiteAPIRequestHelperBase<SiteHerpAPIHelper>
     {

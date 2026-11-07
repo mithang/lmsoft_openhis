@@ -9,7 +9,7 @@ namespace Newtouch.Domain.ValueObjects.Outpatient
     public class OutpatientConsultVO
     {
         /// <summary>
-        /// đăng ký khámPhòng khámbảngKhóa chínhID
+        /// đăng ký khámPhòng khámbảngKhóa chính ID
         /// </summary>
         public int ghzsId { get; set; }
         /// <summary>

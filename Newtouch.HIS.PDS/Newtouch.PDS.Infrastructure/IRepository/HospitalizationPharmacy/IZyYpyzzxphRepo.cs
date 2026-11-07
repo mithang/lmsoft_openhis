@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.IRepository
         /// <summary>
         /// Lấy thông tin xếp thuốc nội trú hiệu lực chưa xếp kệ  Phương thức này không ghi nhật ký
         /// </summary>
-        /// <param name="yzId">Y lệnhID</param>
+        /// <param name="yzId">Y lệnh ID</param>
         /// <param name="zxId">Thực hiệnId</param>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>

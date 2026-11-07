@@ -149,7 +149,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// Hủy bỏHISphiếutờĐơn thuốc
+        /// Hủy bỏ HIS phiếu tờ Đơn thuốc
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -176,7 +176,7 @@ AND (@keyword = '%%' OR zjk.PatName LIKE @keyword
         }
 
         /// <summary>
-        /// CISĐơn thuốcDữ liệu
+        /// CIS Đơn thuốcDữ liệu
         /// </summary>
         /// <param name="Opt"></param>
         /// <param name="Brwym"></param>

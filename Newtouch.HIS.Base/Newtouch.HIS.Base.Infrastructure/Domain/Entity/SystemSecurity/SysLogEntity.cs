@@ -37,12 +37,12 @@ namespace Newtouch.HIS.Domain.Entity
         public string Type { get; set; }
 
         /// <summary>
-        /// IPĐịa chỉ
+        /// IP Địa chỉ
         /// </summary>
         public string IPAddress { get; set; }
 
         /// <summary>
-        /// IPThành phố nơi ở
+        /// IP Thành phố nơi ở
         /// </summary>
         public string IPAddressName { get; set; }
 

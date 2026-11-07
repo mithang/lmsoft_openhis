@@ -23,7 +23,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
     public class YzzxAppV2 : ProcessorFun<ZyypyzzxRequest>
     {
         private List<ZyYpyzxxEntity> _yzEntities = new List<ZyYpyzxxEntity>();
-        private string zxId = Guid.NewGuid().ToString();//Thực hiện y lệnhID
+        private string zxId = Guid.NewGuid().ToString();//Thực hiện y lệnh ID
 
         private Dictionary<string, Newtouch.HIS.Domain.Entity.SysMedicineComplexVEntity> 
             _ypDict = new Dictionary<string, Newtouch.HIS.Domain.Entity.SysMedicineComplexVEntity>();
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Application.Implementation.Process
                 foreach(var detail in Request.yzList)
                 {
                     if (string.IsNullOrWhiteSpace(detail.ypCode)) throw new Exception("Vui lòng truyền mã thuốc hiệu lực");
-                    if (string.IsNullOrWhiteSpace(detail.yzId)) throw new Exception("Vui lòng truyền y lệnh hiệu lựcID");
+                    if (string.IsNullOrWhiteSpace(detail.yzId)) throw new Exception("Vui lòng truyền y lệnh hiệu lực ID");
                     if (string.IsNullOrWhiteSpace(detail.bqCode)) throw new Exception("Vui lòng truyền mã khu bệnh hiệu lực");
                     if (string.IsNullOrWhiteSpace(detail.fyyf)) throw new Exception("Vui lòng truyền mã nhà thuốc phát thuốc hiệu lực");
                     if (detail.sl <= 0) throw new Exception("Vui lòng nhập số lượng thực hiện y lệnh hiệu lực");

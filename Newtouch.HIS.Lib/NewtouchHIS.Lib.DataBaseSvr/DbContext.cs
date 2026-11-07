@@ -53,7 +53,7 @@ namespace NewtouchHIS.Lib.DataBaseSvr
             //    IsAutoCloseConnection = true, 
 
             //});
-            //Mã gỡ lỗi dùng để inSQL 
+            //Mã gỡ lỗi dùng để in SQL 
             Db.Aop.OnLogExecuting = (sql, pars) =>
             {
                 Console.WriteLine(sql + "\r\n" +

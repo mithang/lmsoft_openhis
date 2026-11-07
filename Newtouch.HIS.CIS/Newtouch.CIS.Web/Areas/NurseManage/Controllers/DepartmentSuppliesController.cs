@@ -83,8 +83,8 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <summary>
         /// dướikéovật tưSố lôLôthông tin
         /// </summary>
-        /// <param name="proId">vật tưID</param>
-        /// <param name="gysId">Nhà cung cấpID</param>
+        /// <param name="proId">vật tư ID</param>
+        /// <param name="gysId">Nhà cung cấp ID</param>
         /// <param name="deliveryNo">phốigửiphiếusố</param>
         /// <param name="keyword"></param>
         /// <returns></returns>
@@ -168,7 +168,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(list.ToJson());
         }
         /// <summary>
-        /// Theovật tưIDLấymỗiLôTồn kho
+        /// Theo vật tư ID Lấy mỗi Lô Tồn kho
         /// </summary>
         /// <param name="proId"></param>
         /// <param name="zt">tạmkhiHiệu lựccủachi tiết  true:Có  false:Không</param>

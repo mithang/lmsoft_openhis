@@ -136,7 +136,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <summary>
         /// Kết thúcKiểm kê
         /// </summary>
-        /// <param name="pdId">Kiểm kêphiếuID</param>
+        /// <param name="pdId">Kiểm kê phiếu ID</param>
         /// <param name="autoCarryDown">null/0:khôngtựđộngkết chuyển  1:tựđộngkết chuyển</param>
         /// <returns></returns>
         public IActionResult EndInventory(long pdId, string autoCarryDown)

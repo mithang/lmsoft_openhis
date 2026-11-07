@@ -14,19 +14,19 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysMedicineStorageIOReceiptDetailEntity : IEntity<SysMedicineStorageIOReceiptDetailEntity>
     {
         /// <summary>
-        /// Chi tiết xuất nhập khoID
+        /// Chi tiết xuất nhập kho ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public string crkmxId { get; set; }
 
         /// <summary>
-        /// Từ bảng XT_YP_CRKDJKkhóa chính của
+        /// Từ bảng XT_YP_CRKDJK khóa chính của
         /// </summary>
         public string crkId { get; set; }
 
         /// <summary>
-        /// Chi tiết đơn lĩnhID
+        /// Chi tiết đơn lĩnh ID
         /// </summary>
         public string sldmxId { get; set; }
 

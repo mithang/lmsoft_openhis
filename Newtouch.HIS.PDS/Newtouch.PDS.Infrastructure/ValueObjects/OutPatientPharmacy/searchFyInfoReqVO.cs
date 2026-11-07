@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
     }

@@ -27,7 +27,7 @@ namespace Newtouch.PDS.Requset.PharmacyDepartment
         public string bmypId { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -138,7 +138,7 @@ namespace Newtouch.PDS.Requset.PharmacyDepartment
         public string bmypId { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 

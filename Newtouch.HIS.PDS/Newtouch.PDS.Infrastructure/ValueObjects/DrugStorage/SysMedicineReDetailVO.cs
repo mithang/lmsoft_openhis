@@ -5,7 +5,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class SysMedicineReDetailVO
     {
         /// <summary>
-        /// Đơn lĩnhID
+        /// Đơn lĩnh ID
         /// </summary>
         public string sldId { get; set; }
 

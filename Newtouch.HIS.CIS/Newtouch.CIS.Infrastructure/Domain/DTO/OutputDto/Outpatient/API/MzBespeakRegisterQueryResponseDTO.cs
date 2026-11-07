@@ -8,7 +8,7 @@ namespace Newtouch.Domain.DTO.OutputDto
     public class MzBespeakRegisterQueryResponseDTO
     {
         /// <summary>
-        /// Ngoại trúđặt hẹnđăng ký khámID
+        /// Ngoại trúđặt hẹnđăng ký khám ID
         /// </summary>
         public string mzyyghId { get; set; }
         

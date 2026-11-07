@@ -2533,7 +2533,7 @@
                 if (ts.p.hiddengrid) { return; }
             },
             endReq = function () {
-                //IEbug nên phải đổi chiều rộng một lần
+                //IE bug nên phải đổi chiều rộng một lần
                 if ($.isFunction(window.reSetGridWidth) && $.isFunction(window.isIE) && window.isIE()) {
                     window.reSetGridWidth();
                 }

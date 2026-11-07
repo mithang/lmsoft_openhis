@@ -13,24 +13,24 @@ namespace Newtouch.HIS.Domain.Entity
     public class ZyYpyzzxphEntity : IEntity<ZyYpyzzxphEntity>
     {
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public long Id { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         public string yzId { get; set; }
 
         /// <summary>
-        /// Thực hiện y lệnhID
+        /// Thực hiện y lệnh ID
         /// </summary>
         public string zxId { get; set; }
 
@@ -75,7 +75,7 @@ namespace Newtouch.HIS.Domain.Entity
         public int? zh { get; set; }
 
         /// <summary>
-        /// Thông tin thuốc nội trúID,zy_ypyzxxKhóa chính bảng
+        /// Thông tin thuốc nội trú ID,zy_ypyzxxKhóa chính bảng
         /// </summary>
         public long? zyypxxId { get; set; }
 

@@ -8,7 +8,7 @@ namespace Newtouch.Domain.DTO.OutputDto
     public class PatientRyDiagnosisDto
     {
         /// <summary>
-        /// Nhập việnnhiềuChẩn đoánID
+        /// Nhập việnnhiềuChẩn đoán ID
         /// </summary>
         public string rydzdId { get; set; }
         

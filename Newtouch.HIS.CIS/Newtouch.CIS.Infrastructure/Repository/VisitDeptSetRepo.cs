@@ -42,7 +42,7 @@ AND OrganizeId=@OrganizeId
         }
 
         /// <summary>
-        /// TheoIDvậtlýXóaghi chép
+        /// Theo ID vật lý Xóa ghi chép
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

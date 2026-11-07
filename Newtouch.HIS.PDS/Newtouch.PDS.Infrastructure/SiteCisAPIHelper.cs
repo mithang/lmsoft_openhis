@@ -13,7 +13,7 @@ namespace Newtouch.Infrastructure
     public class SiteCisAPIHelper
     {
         /// <summary>
-        /// Thanh toánAPI
+        /// Thanh toán API
         /// </summary>
         private static readonly string _siteCisAPIHost;
 
@@ -85,7 +85,7 @@ namespace Newtouch.Infrastructure
         #region private methods
 
         /// <summary>
-        /// Thanh toánAPI Host
+        /// Thanh toán API Host
         /// </summary>
         private static string SiteCisApiHost
         {
@@ -111,7 +111,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Hệ thống phối hợp y tếAPI Url
+        /// Hệ thống phối hợp y tế API Url
         /// </summary>
         /// <param name="url">url như'~/Home/Index'</param>
         /// <returns></returns>

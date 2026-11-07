@@ -23,7 +23,7 @@ namespace Newtouch.Application.Interface
         /// Kiểm kêLưu
         /// </summary>
         /// <param name="inventoryInfoList"></param>
-        /// <param name="pdId">Kiểm kêphiếuID</param>
+        /// <param name="pdId">Kiểm kê phiếu ID</param>
         /// <param name="noPc">  0:theoLôKiểm kê 1:khôngtheoLôKiểm kê</param>
         void SaveInventoryInfo(List<SaveInventoryDTO> inventoryInfoList, long pdId, string noPc = "0");
 

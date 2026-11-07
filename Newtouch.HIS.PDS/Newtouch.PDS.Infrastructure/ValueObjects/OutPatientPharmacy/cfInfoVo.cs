@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string ShowSfsj { get; set; }
 
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         public long Id { get; set; }
 

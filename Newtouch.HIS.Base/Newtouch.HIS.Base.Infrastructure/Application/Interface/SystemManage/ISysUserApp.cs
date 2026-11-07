@@ -35,10 +35,10 @@ namespace Newtouch.HIS.Application.Interface
         void CreateDefaultAdminToOrg(string topOrgId, string userPassword);
 
         /// <summary>
-        /// MicrosoftSSOĐăng nhập(Email)
+        /// Microsoft SSO Đăng nhập(Email)
         /// </summary>
-        /// <param name="userId">Người dùngID</param>
-        /// <param name="organizeId">Cơ sởID</param>
+        /// <param name="userId">Người dùng ID</param>
+        /// <param name="organizeId">Cơ sở ID</param>
         /// <returns></returns>
         SysUserEntity MsSsoLogin(string userId, string organizeId);
     }

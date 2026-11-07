@@ -15,7 +15,7 @@ namespace NewtouchHIS.Domain.IDomainService.EMR
         /// <returns></returns>
         Task<MedicalHomeVO> MedicalHomeQuery(string zyh, string orgId, DBEnum db = DBEnum.EmrDb);
         /// <summary>
-        /// Bệnh nhânTrang đầu bệnh án(DRGĐịnh dạng phân nhóm)
+        /// Bệnh nhânTrang đầu bệnh án(DRG Định dạng phân nhóm)
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>

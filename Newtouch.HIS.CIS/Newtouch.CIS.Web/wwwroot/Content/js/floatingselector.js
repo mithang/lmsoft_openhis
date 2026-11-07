@@ -66,7 +66,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
             //if (options.bwlx != "jc")
             $divContainer.append('<div style="height:40px;position:relative"><table class="form"> <tr> <td class="formTitle" style="width:35px">Phân loại:</td><td class="formValue"> <span class="second"><input type="text" name="makeupCo" id="makeupCo" autocomplete="off" style ="width:60px" class="makeinp" placeholder="" /></span> </td> <td class="formTitle" style="width:60px">Vị tríTên:</td><td class="formValue"> <input type = "text"  class= "btn_sr" value = "" style = "width:95px;border: 1px solid #ddd; display:table-cell;" ></td> </tr></table> <select id="bwfl" name="bwfl" class="sel sel_bwdl" size="10" style = "width: 100px;border: 1px solid rgb(153, 153, 153);position: absolute;left: 35px;top: 0px;height: 106px;margin: 31px 0px 0px;outline: none;z-index: 10001;"></select></div> ');
             $divContainer.append('<div class="' + className+'"><ul></ul>');
-            //VDnếunhiềuchọn,tăng thêmXác nhậnĐóngNút
+            //VD nếu nhiều chọn,tăng thêmXác nhậnĐóngNút
             if (options.mutiselect) {
                 $divContainer.append('<div class="ui-nfs-container_bottom" style="float: right;width: 95px;margin-top: -5px;"><input type="button" class="btn btn-primary btn_submit"  value="Xác nhận" style="display:table-cell;margin-right: 10px;"><input type = "button"  class= "btn btn-primary btn_close" value = "Đóng" style = "display:table-cell;" ></div>');
             }
@@ -281,7 +281,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
                         debugger
                         options.itemdbclickhandler($(this), options.$this); //aikích hoạtcủa,Quay lạichotrangmặt
                         if (options.isinputchangetriggered) {
-                            options.$this.trigger('focus'); //VDnếuCóinputbảnthâncủachangekích hoạt chovăn bảnkhungtiêu điểmđiểm
+                            options.$this.trigger('focus'); //VD nếu Có input bản thân của change kích hoạt chovăn bảnkhungtiêu điểmđiểm
                         }
                         if (options.itemdbclickhandleComplete) {
                             ;
@@ -310,7 +310,7 @@ $.fn.multiquencyNewtouchFloatingSelector = function (options, data) {
         //Đóng
         options.container.find('.btn_close').click(function () {
             if (options.isinputchangetriggered) {
-                options.$this.trigger('focus'); //VDnếuCóinputbảnthâncủachangekích hoạt chovăn bảnkhungtiêu điểmđiểm
+                options.$this.trigger('focus'); //VD nếu Có input bản thân của change kích hoạt chovăn bảnkhungtiêu điểmđiểm
             }
             options.container.find('ul').html(''); //xóa hiện tạitbodynội dung
             options.container.hide();
@@ -759,7 +759,7 @@ $.fn.frequencyNewtouchFloatingSelector = function (options, data) {
             options.container.on('click', 'ul li', function () {
                 options.itemdbclickhandler($(this), options.$this); //aikích hoạtcủa,Quay lạichotrangmặt
                 if (options.isinputchangetriggered) {
-                    //VDnếuCóinputbảnthâncủachangekích hoạt chovăn bảnkhungtiêu điểmđiểm
+                    //VD nếu Có input bản thân của change kích hoạt chovăn bảnkhungtiêu điểmđiểm
                     options.focusfromdbclickitem = true;
                     options.$this.trigger('focus');
                 }
@@ -1015,7 +1015,7 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
                 className = options.className
             }
             $divContainer.append('<div class="' + className + '"><ul></ul>');
-            //VDnếunhiềuchọn,tăng thêmXác nhậnĐóngNút
+            //VD nếu nhiều chọn,tăng thêmXác nhậnĐóngNút
             if (options.mutiselect) {
                 $divContainer.append('<div class="ui-nfs-container_bottom" style="float: right;width: 95px;margin-top: -5px;"><input type="button" class="btn btn-primary btn_submit"  value="Xác nhận" style="display:table-cell;margin-right: 10px;"><input type = "button"  class= "btn btn-primary btn_close" value = "Đóng" style = "display:table-cell;" ></div>');
             }
@@ -1192,7 +1192,7 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
                     {
                         options.itemdbclickhandler($(this), options.$this); //aikích hoạtcủa,Quay lạichotrangmặt
                         if (options.isinputchangetriggered) {
-                            options.$this.trigger('focus'); //VDnếuCóinputbảnthâncủachangekích hoạt chovăn bảnkhungtiêu điểmđiểm
+                            options.$this.trigger('focus'); //VD nếu Có input bản thân của change kích hoạt chovăn bảnkhungtiêu điểmđiểm
                         }
                         if (options.itemdbclickhandleComplete) {
                             ;
@@ -1221,7 +1221,7 @@ $.fn.multiFoodFloatingSelector = function (options, data) {
         //Đóng
         options.container.find('.btn_close').click(function () {
             if (options.isinputchangetriggered) {
-                options.$this.trigger('focus'); //VDnếuCóinputbảnthâncủachangekích hoạt chovăn bảnkhungtiêu điểmđiểm
+                options.$this.trigger('focus'); //VD nếu Có input bản thân của change kích hoạt chovăn bảnkhungtiêu điểmđiểm
             }
             options.container.find('ul').html(''); //xóa hiện tạitbodynội dung
             options.container.hide();

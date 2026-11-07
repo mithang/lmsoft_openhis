@@ -325,7 +325,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Success(data);
         }
         /// <summary>
-        /// TheoIDTra cứuphiếucứdanh sách
+        /// Theo ID Tra cứuphiếucứdanh sách
         /// </summary>
         /// <param name="djId"></param>
         /// <returns></returns>
@@ -336,7 +336,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
             return Content(result.ToJson());
         }
         /// <summary>
-        /// TheoIDTra cứuphiếucứchi tiết
+        /// Theo ID Tra cứuphiếucứchi tiết
         /// </summary>
         /// <param name="djId"></param>
         /// <returns></returns>

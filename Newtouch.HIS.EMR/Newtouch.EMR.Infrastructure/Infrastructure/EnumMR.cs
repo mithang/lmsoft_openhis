@@ -59,7 +59,7 @@ namespace Newtouch.EMR.Infrastructure.EnumMR
 	}
 
 	///// <summary>
-	///// Trạng thái bệnh án vàEMRChung
+	///// Trạng thái bệnh án và EMR Chung
 	///// </summary>
 	//public enum EnumRecordStu
 	//{

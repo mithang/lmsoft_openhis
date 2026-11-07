@@ -12,7 +12,7 @@ namespace Newtouch.PDS.Requset.ResourcesOperate
     public class HospitalizatiionReturnDispensingMedicineRequestDTO : RequestBase
     {
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -34,7 +34,7 @@ namespace Newtouch.PDS.Requset.ResourcesOperate
     {
 
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         [Required]
         public string yzId { get; set; }

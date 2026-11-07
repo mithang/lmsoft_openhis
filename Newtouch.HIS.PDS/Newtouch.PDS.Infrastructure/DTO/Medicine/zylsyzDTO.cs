@@ -282,7 +282,7 @@ namespace Newtouch.HIS.Domain.DTO.Medicine
         /// </summary>
         public int? syncStatus { get; set; }
         /// <summary>
-        ///  Nhãn đơn thuốc JI tinhI JII tinhII MZ Gây mê
+        ///  Nhãn đơn thuốc JI tinhI JII tinh II MZ Gây mê
         /// </summary>
         public string yztag { get; set; }
         /// <summary>

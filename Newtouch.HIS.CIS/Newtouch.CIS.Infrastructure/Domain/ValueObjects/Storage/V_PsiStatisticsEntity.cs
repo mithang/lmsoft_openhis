@@ -6,7 +6,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
     public class VPsiStatisticsEntity
     {
         /// <summary>
-        /// vật tưID
+        /// vật tư ID
         /// </summary>
         public string productId { get; set; }
 

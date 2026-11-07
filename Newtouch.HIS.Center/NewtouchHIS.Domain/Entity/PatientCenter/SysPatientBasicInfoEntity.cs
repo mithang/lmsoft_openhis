@@ -26,7 +26,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
 
 
         /// <summary>
-        /// Desc:Thẻ từ của việnSố thẻ(bao gồm bệnh nhân BHYT nghỉ hưu theo chế độ),hoặc BHYTSố thẻ
+        /// Desc:Thẻ từ của việnSố thẻ(bao gồm bệnh nhân BHYT nghỉ hưu theo chế độ),hoặc BHYT Số thẻ
         /// Default:
         /// Nullable:False
         /// </summary>           

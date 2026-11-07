@@ -8,7 +8,7 @@ namespace NewtouchHIS.Base.Domain
     public class AppFriendAuthKey
     {
         /// <summary>
-        /// Desc:Ủy quyềnID
+        /// Desc:Ủy quyền ID
         /// Default:
         /// Nullable:False
         /// </summary>           

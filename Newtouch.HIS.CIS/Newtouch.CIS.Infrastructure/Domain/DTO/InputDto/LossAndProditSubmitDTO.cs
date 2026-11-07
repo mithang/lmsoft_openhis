@@ -28,7 +28,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string syyy { get; set; }
 
         /// <summary>
-        /// nguyên nhân lãi lỗID
+        /// nguyên nhân lãi lỗ ID
         /// </summary>
         public string syyyId { get; set; }
 
@@ -43,7 +43,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string Djh { get; set; }
 
         /// <summary>
-        /// vật tưID
+        /// vật tư ID
         /// </summary>
         public string productId { get; set; }
 

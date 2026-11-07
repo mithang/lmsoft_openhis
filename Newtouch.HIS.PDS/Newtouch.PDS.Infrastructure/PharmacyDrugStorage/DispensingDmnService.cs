@@ -164,7 +164,7 @@ namespace Newtouch.HIS.DomainServices
         }
 
         /// <summary>
-        /// HISHủy thanh toán ngoại trú trả lại đóng băng
+        /// HIS Hủy thanh toán ngoại trú trả lại đóng băng
         /// </summary>
         /// <param name="mxphlist"></param>
         /// <param name="organizeId"></param>
@@ -194,7 +194,7 @@ namespace Newtouch.HIS.DomainServices
             }
         }
         /// <summary>
-        /// HISHủy thanh toán ngoại trú trả lại đóng băng
+        /// HIS Hủy thanh toán ngoại trú trả lại đóng băng
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="sl">Số lượng đơn vị nhỏ nhất</param>
@@ -456,8 +456,8 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
         /// <param name="yzId"></param>
-        /// <param name="zxId">Thực hiệnID</param>
-        /// <param name="organizeId">Tổ chứcID</param>
+        /// <param name="zxId">Thực hiện ID</param>
+        /// <param name="organizeId">Tổ chức ID</param>
         /// <param name="yfbmCode">Mã bộ phận nhà thuốc</param>
         /// <param name="creatorCode">Người tạo</param>
         /// <param name="patientName">Bệnh nhân thuộc y lệnh</param>
@@ -739,7 +739,7 @@ WHERE ypdm=@ypCode AND yfbmCode=@yfbmCode AND ph=@ph AND pc=@pc AND zt='1' AND t
         /// <returns></returns>
         public string HospitalizationDispensing(List<ZyYpyzzxphEntity> zyphLs, List<ZyYpyzxxEntity> yzLs, string userCode,out string fyid,string organizeId)
         {
-            fyid = Guid.NewGuid().ToString();//Phát thuốcID
+            fyid = Guid.NewGuid().ToString();//Phát thuốc ID
             using (var db = new EFDbTransaction().BeginTrans())
             {
                 foreach (var zyph in zyphLs)
@@ -943,7 +943,7 @@ WHERE pc=@pc AND ph=@ph AND ypdm=@ypCode AND OrganizeId=@OrganizeId AND yfbmCode
         #endregion
         #region Tạo phí hạng mục
         /// <summary>
-        /// Đồng bộ mới nhấtCPOEPhí hạng mục
+        /// Đồng bộ mới nhất CPOE Phí hạng mục
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>

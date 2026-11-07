@@ -21,7 +21,7 @@ namespace Newtouch.Infrastructure
         private readonly IDefaultDatabaseFactory _databaseFactory;
 
         /// <summary>
-        /// Mặc địnhDBNgữ cảnh
+        /// Mặc định DB Ngữ cảnh
         /// </summary>
         public static EFDBBaseFuncHelper Instance
         {
@@ -33,7 +33,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Chỉ địnhDBNgữ cảnh
+        /// Chỉ định DB Ngữ cảnh
         /// </summary>
         /// <param name="dbType"></param>
         /// <returns></returns>

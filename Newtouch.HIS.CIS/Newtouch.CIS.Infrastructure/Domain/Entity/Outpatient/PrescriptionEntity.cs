@@ -120,7 +120,7 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string sqdh { get; set; }
         /// <summary>
-        /// Đơn thuốcnhãn JI tinhI JII tinhII MZ têsay
+        /// Đơn thuốcnhãn JI tinhI JII tinh II MZ têsay
         /// </summary>
         public string cftag { get; set; }
         /// <summary>

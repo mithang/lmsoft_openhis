@@ -14,7 +14,7 @@ namespace Newtouch.PDS.Requset.PharmacyDepartment
         public string ypId { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string organizeId { get; set; }
     }

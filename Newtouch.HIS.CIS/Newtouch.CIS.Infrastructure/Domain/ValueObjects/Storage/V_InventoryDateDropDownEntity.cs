@@ -6,7 +6,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
     public class VInventoryDateDropDownEntity
     {
         /// <summary>
-        /// Kiểm kêID
+        /// Kiểm kê ID
         /// </summary>
         public long pdId { get; set; }
 

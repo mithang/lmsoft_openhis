@@ -6,7 +6,7 @@ namespace Newtouch.HIS.Domain.Entity.V
     public class SysMedicineCrkfsVEntity
     {
         /// <summary>
-        /// Phương thức xuất nhập khoID
+        /// Phương thức xuất nhập kho ID
         /// </summary>
         public int crkfsId { get; set; }
 

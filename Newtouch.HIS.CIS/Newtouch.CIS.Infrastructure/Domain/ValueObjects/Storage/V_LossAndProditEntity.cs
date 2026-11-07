@@ -27,7 +27,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string djh { get; set; }
 
         /// <summary>
-        /// vật tưID
+        /// vật tư ID
         /// </summary>
         public string productId { get; set; }
 

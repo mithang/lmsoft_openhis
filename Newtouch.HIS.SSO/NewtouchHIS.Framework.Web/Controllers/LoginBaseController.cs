@@ -154,7 +154,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
             if (!string.IsNullOrWhiteSpace(loginFromFlag))
             {
                 HttpWebHelper.RemoveCookie(ConfigInitHelper.SysConfig.AppId + "_LoginFromFlag");
-                ////thoátSSOđăng nhập
+                ////thoát SSO đăng nhập
                 //var url = ConfigurationHelper.GetAppConfigValue("SSOOutLogin");
                 //return Redirect(url);
             }

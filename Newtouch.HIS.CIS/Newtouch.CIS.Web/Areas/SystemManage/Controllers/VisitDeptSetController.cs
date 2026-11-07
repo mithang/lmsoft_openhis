@@ -89,7 +89,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// TheoIDLấyKhoa khámthông tin
+        /// Theo ID Lấy Khoa khám thông tin
         /// </summary>
         /// <param name="ysgh"></param>
         /// <param name="keyValue"></param>

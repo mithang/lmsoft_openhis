@@ -245,7 +245,7 @@ namespace Newtouch.Sett.Domain
     public class FinanceReceiptEntity
         {
             /// <summary>
-            /// tài chínhvụthudữ liệuID
+            /// tài chínhvụthudữ liệu ID
             /// </summary>
             public string cwsjId { get; set; }
     
@@ -280,7 +280,7 @@ namespace Newtouch.Sett.Domain
             public long? jssjh { get; set; }
     
             /// <summary>
-            /// tạolậpdùnghộID
+            /// tạo lập dùng hộ ID
             /// </summary>
             public string CreatorCode { get; set; }
     
@@ -295,7 +295,7 @@ namespace Newtouch.Sett.Domain
             public DateTime? LastModifyTime { get; set; }
     
             /// <summary>
-            /// nhấtsausửasửadùnghộID
+            /// nhất sau sửa sửa dùng hộ ID
             /// </summary>
             public string LastModifierCode { get; set; }
     

@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Application.Implementation
         private string _mzzybz;
 
         /// <summary>
-        /// Lấy việc cần làmHTML
+        /// Lấy việc cần làm HTML
         /// </summary>
         /// <returns></returns>
         public string AssembleNeedDealHtml()
@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Lắp ráp việc cần làm kho thuốcHTML
+        /// Lắp ráp việc cần làm kho thuốc HTML
         /// </summary>
         /// <returns></returns>
         private string AssembleYkNeedDelaHtml()
@@ -112,7 +112,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Lắp ráp việc cần làm nhà thuốc ngoại trúHTML
+        /// Lắp ráp việc cần làm nhà thuốc ngoại trú HTML
         /// </summary>
         /// <returns></returns>
         private string AssembleMzyfNeedDelaHtml()
@@ -166,7 +166,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Lắp ráp việc cần làm nhà thuốc ngoại trúHTML
+        /// Lắp ráp việc cần làm nhà thuốc ngoại trú HTML
         /// </summary>
         /// <returns></returns>
         private string AssembleMzyfNeedDelaHtmlV2()
@@ -220,7 +220,7 @@ namespace Newtouch.HIS.Application.Implementation
         }
 
         /// <summary>
-        /// Lắp ráp việc cần làm nhà thuốc nội trúHTML
+        /// Lắp ráp việc cần làm nhà thuốc nội trú HTML
         /// </summary>
         /// <returns></returns>
         private string AssembleZyyfNeedDelaHtml()

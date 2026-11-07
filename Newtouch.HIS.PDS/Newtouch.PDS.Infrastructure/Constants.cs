@@ -166,7 +166,7 @@ namespace Newtouch.Infrastructure
         /// </summary>
         public const string ClientNo = "clientNo";
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         public const string ZyId = "zxId";
         /// <summary>

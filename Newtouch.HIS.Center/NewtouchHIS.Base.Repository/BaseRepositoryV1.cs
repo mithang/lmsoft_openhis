@@ -196,7 +196,7 @@ namespace NewtouchHIS.Base.Repository
         /// TheoKhóa chínhCập nhật Cột
         /// </summary>
         /// <param name="model">Đối tượng thực thể</param>
-        /// <param name="ignoreAllNullColumns">Có hay không NULLcột không cập nhật</param>
+        /// <param name="ignoreAllNullColumns">Có hay không NULL cột không cập nhật</param>
         /// <param name="isOffIdentity">Có bỏ qua hay không Cột tự tăng</param>
         /// <param name="ignoreAllDefaultValue">Có hay không Bỏ qua cột giá trị mặc định</param>
         /// <returns></returns>
@@ -291,7 +291,7 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<T> getFirstOrDefault(Expression<Func<T, bool>> where)
         {
-            return await context.Queryable<T>().FirstAsync(where);//Truy vấn một bản ghi, không có dữ liệu thì trả vềNULL, Singlevượt quá1bản ghi sẽ báo lỗi,Firstsẽ không
+            return await context.Queryable<T>().FirstAsync(where);//Truy vấn một bản ghi, không có dữ liệu thì trả về NULL, Singlevượt quá1bản ghi sẽ báo lỗi,Firstsẽ không
         }
 
         /// <summary>

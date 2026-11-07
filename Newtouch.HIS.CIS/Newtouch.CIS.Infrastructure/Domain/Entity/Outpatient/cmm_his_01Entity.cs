@@ -18,7 +18,7 @@ namespace Newtouch.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Bệnh nhânSố hiệu(mộtBệnh nhântương ứngmộtSố hiệu,vàvàCMND/CCCDsốmãmộtmộttương ứng),tương ứnggiao diệnidchữđoạn,bảnđịaLưublh
+        /// Bệnh nhânSố hiệu(mộtBệnh nhântương ứngmộtSố hiệu,vàvà CMND/CCCD số mã một một tương ứng),tương ứnggiao diệnidchữđoạn,bảnđịaLưublh
         /// </summary>
         public string cmmId { get; set; }
 
@@ -53,7 +53,7 @@ namespace Newtouch.Domain.Entity
         public string cardTypeCode { get; set; }
 
         /// <summary>
-        /// chứngmụcLoại(Bình thườngchỉcư dânCMND/CCCDsố)
+        /// chứngmụcLoại(Bình thườngchỉcư dân CMND/CCCD số)
         /// bắt buộc
         /// </summary>
         public string cardType { get; set; }
@@ -220,7 +220,7 @@ namespace Newtouch.Domain.Entity
         public string msgID { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 

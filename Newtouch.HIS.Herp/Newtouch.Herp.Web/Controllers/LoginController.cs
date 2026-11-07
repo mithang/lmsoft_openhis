@@ -134,7 +134,7 @@ namespace Newtouch.Herp.Web.Controllers
         [HttpGet]
         public override IActionResult Index()
         {
-            //XóaSSOdấu nguồn đăng nhập
+            //Xóa SSO dấu nguồn đăng nhập
             HttpWebHelper.RemoveCookie(ConfigInitHelper.SysConfig.AppId + "_LoginFromFlag");
 
             return base.Index();

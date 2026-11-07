@@ -1088,7 +1088,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string CT { get; set; }
 
         /// <summary>
-        /// kiểm traPETCT
+        /// kiểm tra PETCT
         /// </summary>
         public string PETCT { get; set; }
 
@@ -1098,12 +1098,12 @@ namespace Newtouch.EMR.Domain.Entity
         public string SYCT { get; set; }
 
         /// <summary>
-        /// kiểm traBSiêu âm
+        /// kiểm tra B Siêu âm
         /// </summary>
         public string BC { get; set; }
 
         /// <summary>
-        /// kiểm traXPhim
+        /// kiểm tra X Phim
         /// </summary>
         public string XP { get; set; }
 
@@ -1113,7 +1113,7 @@ namespace Newtouch.EMR.Domain.Entity
         public string CSXDT { get; set; }
 
         /// <summary>
-        /// kiểm traMRI
+        /// kiểm tra MRI
         /// </summary>
         public string MRI { get; set; }
 

@@ -69,18 +69,18 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
         public string name { get; set; }
 
         /// <summary>
-        ///Chẩn đoán YHCTLoại 0:bệnhbệnh 1:hội chứng; khiChẩn đoánPhân loạilàtrongykhibắt buộc
+        ///Chẩn đoán YHCT Loại 0:bệnhbệnh 1:hội chứng; khiChẩn đoánPhân loạilàtrongykhibắt buộc
         /// bắt buộc
         /// </summary>
         public string type { get; set; }
 
         /// <summary>
-        ///Chẩn đoán YHCTphútnhóm nàynhận dạngnhaucùngcủabệnhbệnhvàhội chứngChẩn đoánlàmộtnhóm
+        ///Chẩn đoán YHCT phút nhóm nàynhận dạngnhaucùngcủabệnhbệnhvàhội chứngChẩn đoánlàmộtnhóm
         /// </summary>
         public string group { get; set; }
 
         /// <summary>
-        ///Chẩn đoán YHCTcấploại 0:chínhcầnChẩn đoán 1: lầncầnChẩn đoán
+        ///Chẩn đoán YHCT cấp loại 0:chínhcầnChẩn đoán 1: lầncầnChẩn đoán
         /// </summary>
         public string level { get; set; }
 

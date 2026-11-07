@@ -6,7 +6,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class fydisplayDetailInfo
     {
         /// <summary>
-        /// Chi tiết đơn thuốcID
+        /// Chi tiết đơn thuốc ID
         /// </summary>
         public int cfmxId { get; set; }
 

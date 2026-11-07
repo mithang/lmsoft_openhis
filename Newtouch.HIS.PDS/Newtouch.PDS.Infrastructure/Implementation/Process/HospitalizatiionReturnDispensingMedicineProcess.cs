@@ -35,12 +35,12 @@ namespace Newtouch.HIS.Application.Implementation.Process
         {
             if (Request == null) throw new FailedException("Bản tin yêu cầu không được để trống");
             if (Request.ReturnDrugDetail == null || Request.ReturnDrugDetail.Count == 0) throw new FailedException("Chi tiết trả thuốc（ReturnDrugDetail）Không được để trống");
-            if (string.IsNullOrWhiteSpace(Request.OrganizeId)) throw new FailedException("Tổ chứcID（OrganizeId）Không được để trống");
+            if (string.IsNullOrWhiteSpace(Request.OrganizeId)) throw new FailedException("Tổ chức ID（OrganizeId）Không được để trống");
             try
             {
                 Parallel.ForEach(Request.ReturnDrugDetail, p =>
                 {
-                    if (string.IsNullOrWhiteSpace(p.yzId)) throw new Exception("Y lệnhID（zxId）Không được để trống");
+                    if (string.IsNullOrWhiteSpace(p.yzId)) throw new Exception("Y lệnh ID（zxId）Không được để trống");
                     if (string.IsNullOrWhiteSpace(p.ypCode)) throw new Exception("Mã thuốc（ypCode）Không được để trống");
                     if (p.tysl < 0) throw new Exception("Số lượng trả thuốc（tysl）Không thể nhỏ hơn 0");
                     if (string.IsNullOrWhiteSpace(p.tysqr)) throw new Exception("Người xin trả thuốc（tysqr）Không được để trống");

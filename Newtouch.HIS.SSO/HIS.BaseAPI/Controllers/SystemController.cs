@@ -13,7 +13,7 @@ using NewtouchHIS.Lib.Base.Model;
 namespace HIS.BaseAPI.Controllers
 {
     /// <summary>
-    /// dùng chung cho hệ thốngAPI
+    /// dùng chung cho hệ thống API
     /// </summary>
     [Route("api/[controller]")]
     [ApiController]

@@ -13,7 +13,7 @@ namespace Newtouch.Domain.Entity
     {
 
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         [Key]
         public long Id { get; set; }
@@ -40,7 +40,7 @@ namespace Newtouch.Domain.Entity
         public string fph { get; set; }
 
         /// <summary>
-        /// Đơn thuốcchi tiếtID
+        /// Đơn thuốcchi tiết ID
         /// </summary>
         public int cfmxId { get; set; }
 

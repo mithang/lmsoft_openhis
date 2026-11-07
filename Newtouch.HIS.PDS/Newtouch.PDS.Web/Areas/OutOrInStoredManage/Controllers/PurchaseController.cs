@@ -463,7 +463,7 @@ namespace Newtouch.HIS.Web.Areas.OutOrInStoredManage.Controllers
         {
             //1.Tải lên nền tảng mua hàng Sunshine YY011
             var ddbh = _sunPurchaseDmnService.Purchase_YY011(this.OrganizeId, thId);
-            //2.LấyYY011số đơn hàng của  (YY011Bảng lưu)
+            //2.Lấy YY011 số đơn hàng của  (YY011Bảng lưu)
             //var ddbh = "00001";
             //3.Cập nhậtddbh
             //_returnedRepo.PurchaseDdbhUpdate(thId, ddbh, this.OrganizeId);

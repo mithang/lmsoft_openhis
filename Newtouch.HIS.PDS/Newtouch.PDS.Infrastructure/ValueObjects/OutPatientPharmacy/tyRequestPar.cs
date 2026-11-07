@@ -59,7 +59,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
         public string userCode { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string organizeId { get; set; }
 
@@ -101,7 +101,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string organizeId { get; set; }
 
@@ -122,7 +122,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
     public class TyRpInfo
     {
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         public string yzId { get; set; }
 
@@ -139,7 +139,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
     {
 
         /// <summary>
-        /// Thực hiện y lệnhID
+        /// Thực hiện y lệnh ID
         /// </summary>
         public string zxId { get; set; }
 
@@ -217,12 +217,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
     public class tyParam
     {
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         public string yzId { get; set; }
 
         /// <summary>
-        /// Thực hiện y lệnhID
+        /// Thực hiện y lệnh ID
         /// </summary>
         public string zxId { get; set; }
 
@@ -272,7 +272,7 @@ namespace Newtouch.HIS.Domain.ValueObjects.OutPatientPharmacy
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string organizeId { get; set; }
 

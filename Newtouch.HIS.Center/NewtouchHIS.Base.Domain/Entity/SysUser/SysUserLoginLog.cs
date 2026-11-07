@@ -45,12 +45,12 @@ namespace NewtouchHIS.Base.Domain.Entity
         /// <returns></returns>
         public string? Type { get; set; }
         /// <summary>
-        /// IPĐịa chỉ
+        /// IP Địa chỉ
         /// </summary>
         /// <returns></returns>
         public string? IPAddress { get; set; }
         /// <summary>
-        /// IPThành phố nơi đặt IP
+        /// IP Thành phố nơi đặt IP
         /// </summary>
         /// <returns></returns>
         public string? IPAddressName { get; set; }

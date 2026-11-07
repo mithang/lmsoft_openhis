@@ -104,7 +104,7 @@ namespace Newtouch.Domain.DTO.InputDto
     //public class YzDetail
     //{
     //    /// <summary>
-    //    /// Y lệnhID
+    //    /// Y lệnh ID
     //    /// </summary>
     //    public string yzId { get; set; }
 

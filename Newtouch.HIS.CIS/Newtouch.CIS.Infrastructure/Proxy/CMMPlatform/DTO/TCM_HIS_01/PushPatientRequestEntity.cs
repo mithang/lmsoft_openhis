@@ -24,7 +24,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
         private string _id = "";
 
         /// <summary>
-        ///Bệnh nhânSố hiệu(mộtBệnh nhântương ứngmộtSố hiệu,vàvàCMND/CCCDsốmãmộtmộttương ứng)
+        ///Bệnh nhânSố hiệu(mộtBệnh nhântương ứngmộtSố hiệu,vàvà CMND/CCCD số mã một một tương ứng)
         /// bắt buộc
         /// </summary>
         public string id
@@ -90,7 +90,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_01
 
         private string _cardType = "";
         /// <summary>
-        /// chứngmụcLoại(Bình thườngchỉcư dânCMND/CCCDsố)
+        /// chứngmụcLoại(Bình thườngchỉcư dân CMND/CCCD số)
         /// bắt buộc
         /// </summary>
         public string cardType

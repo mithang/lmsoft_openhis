@@ -40,7 +40,7 @@ namespace Newtouch.HIS.Repository
         /// <summary>
         /// Lấy thông tin y lệnh no log
         /// </summary>
-        /// <param name="yzId">Y lệnhID</param>
+        /// <param name="yzId">Y lệnh ID</param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
         public List<ZyYpyzxxEntity> SelectDataByYzId(string yzId, string organizeId)
@@ -134,7 +134,7 @@ AND yzId=@yzId
         }
 
         /// <summary>
-        /// Theo thực hiệnID,Xóa vật lý tất cả chi tiết của lần thực hiện này
+        /// Theo thực hiện ID,Xóa vật lý tất cả chi tiết của lần thực hiện này
         /// </summary>
         /// <param name="zxId"></param>
         /// <returns></returns>

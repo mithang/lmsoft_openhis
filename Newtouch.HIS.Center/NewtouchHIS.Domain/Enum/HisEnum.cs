@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace NewtouchHIS.Domain.Enum
 {
     /// <summary>
-    /// HISEnum nội bộ
+    /// HIS Enum nội bộ
     /// </summary>
     public class HisEnum
     {
@@ -75,7 +75,7 @@ namespace NewtouchHIS.Domain.Enum
             [Description("Thực hiện")]
             Zx = 2,
             /// <summary>
-            /// RútDC
+            /// Rút DC
             /// </summary>
             [Description("DC")]
             DC = 3,

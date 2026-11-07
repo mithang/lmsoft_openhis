@@ -138,7 +138,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
             {
                 currentFileName = AppSettings.GetConfig("DcWriterFileRoter") + "\\File\\Template\\" + "newFile.html";
             }
-            // TảiMẫu
+            // Tải Mẫu
             string htmldata = System.IO.File.ReadAllText(currentFileName);
             BlTemplateVo vo = new BlTemplateVo();
             vo.xmldata = htmldata;
@@ -163,7 +163,7 @@ namespace Newtouch.MRMS.Web.Areas.RecordManage.Controllers
         #region Khởi tạo dữ liệu
         /// <summary>
         /// Lấy thông tin cơ bản của bệnh nhân theo số nội trú
-        /// Thực thể phải có thể tuần tự hóa mới có thểBệnh ánbinding dữ liệu trong control nên sử dụngZybrjbxxVO
+        /// Thực thể phải có thể tuần tự hóa mới có thể Bệnh án binding dữ liệu trong control nên sử dụng ZybrjbxxVO
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>

@@ -13,14 +13,14 @@ namespace Newtouch.HIS.Domain.Entity.PharmacyDrugStorage
     public class PharmacyMedicineTransferEntity : IEntity<PharmacyMedicineTransferEntity>
     {
         /// <summary>
-        /// Đơn lĩnhID
+        /// Đơn lĩnh ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public long dbId { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 

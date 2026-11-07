@@ -12,7 +12,7 @@ namespace NewtouchHIS.Base.Domain.Entity
     public class SysAuthAppEntity
     {
         /// <summary>
-        /// Desc:Ủy quyềnID
+        /// Desc:Ủy quyền ID
         /// Default:
         /// Nullable:False
         /// </summary>           

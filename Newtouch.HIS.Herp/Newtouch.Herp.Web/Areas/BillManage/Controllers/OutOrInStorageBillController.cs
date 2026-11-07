@@ -171,7 +171,7 @@ namespace Newtouch.Herp.Web.Areas.BillManage.Controllers
         }
 
         /// <summary>
-        /// Theo số phiếu giao hàng và nhà cung cấpIDLấy chi tiết phiếu nhập/xuất kho
+        /// Theo số phiếu giao hàng và nhà cung cấp ID Lấy chi tiết phiếu nhập/xuất kho
         /// </summary>
         public IActionResult QueryCrkmxByDeliveryNo(string deliveryNo, string gysId, string djh)
         {

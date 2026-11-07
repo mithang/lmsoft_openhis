@@ -8,7 +8,7 @@ namespace Newtouch.Infrastructure.Common
     public static class Tools
     {
         /// <summary>
-        /// LọcSQLCâu lệnh,Ngăn chặn tiêm nhiễm
+        /// Lọc SQL Câu lệnh,Ngăn chặn tiêm nhiễm
         /// </summary>
         /// <param name="s"></param>
         /// <returns></returns>

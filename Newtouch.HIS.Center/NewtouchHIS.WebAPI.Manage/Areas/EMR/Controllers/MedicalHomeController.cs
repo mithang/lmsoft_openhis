@@ -50,7 +50,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.EMR.Controllers
             return new BusResult<MedicalHomeVO> { code = ResponseResultCode.SUCCESS, Data = data };
         }
         /// <summary>
-        /// Bệnh nhânThông tin bệnh án(DRGĐịnh dạng phân nhóm)
+        /// Bệnh nhânThông tin bệnh án(DRG Định dạng phân nhóm)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

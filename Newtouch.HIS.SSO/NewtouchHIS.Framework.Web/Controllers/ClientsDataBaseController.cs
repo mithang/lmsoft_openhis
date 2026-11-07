@@ -190,7 +190,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         //    return data;
         //}
         ///// <summary>
-        ///// CISlấy bộ nhớ đệm từ điển
+        ///// CIS lấy bộ nhớ đệm từ điển
         ///// </summary>
         ///// <returns></returns>
         //[NonAction]
@@ -206,7 +206,7 @@ namespace NewtouchHIS.Framework.Web.Controllers
         //    return data;
         //}
         ///// <summary>
-        ///// PDSlấy bộ nhớ đệm từ điển
+        ///// PDS lấy bộ nhớ đệm từ điển
         ///// </summary>
         ///// <returns></returns>
         //[NonAction]

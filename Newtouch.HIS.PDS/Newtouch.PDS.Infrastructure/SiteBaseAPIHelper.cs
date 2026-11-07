@@ -7,12 +7,12 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Base APILớp trợ giúp yêu cầu
+    /// Base API Lớp trợ giúp yêu cầu
     /// </summary>
     public class SiteBaseApiHelper
     {
         /// <summary>
-        /// BaseHệ thốngAPI
+        /// BaseHệ thống API
         /// </summary>
         private static readonly string _SiteBaseAPIHost;
 

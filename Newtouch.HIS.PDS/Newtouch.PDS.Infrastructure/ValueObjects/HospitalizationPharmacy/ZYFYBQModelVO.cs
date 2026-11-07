@@ -4,7 +4,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
 {
     public class ZYFYBQModelVO
     {
-        public int bqId { get; set; }//Khu bệnhID
+        public int bqId { get; set; }//Khu bệnh ID
         public string bqCode { get; set; }//Mã khu bệnh
         public string bqmc { get; set; }//Tên khu bệnh
         public string OrganizeId { get; set; }//Tổ chứcid

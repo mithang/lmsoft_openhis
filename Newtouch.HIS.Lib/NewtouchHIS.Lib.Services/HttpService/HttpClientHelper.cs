@@ -225,10 +225,10 @@ namespace NewtouchHIS.Lib.Services.HttpService
         /// Phương thức Get thông thường, trả về string (tham số out là mã trạng thái http)
         /// </summary>
         /// <param name="url"></param>
-        /// <param name="responseStatusCode">HTTPmã trạng thái</param>
+        /// <param name="responseStatusCode">HTTP mã trạng thái</param>
         /// <param name="timeout">Thời gian chờ yêu cầu (tính bằng mili giây)</param>
         /// <param name="userAgent"></param>
-        /// <param name="responseEncoding">Mã hóa phản hồi, mặc định khi không chỉ định làUTF8</param>
+        /// <param name="responseEncoding">Mã hóa phản hồi, mặc định khi không chỉ định là UTF8</param>
         /// <param name="cookies"></param>
         /// <returns></returns>
         public static string? HttpGetString(string url, out int responseStatusCode
@@ -257,7 +257,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
         /// <param name="url"></param>
         /// <param name="timeout">Thời gian chờ yêu cầu (tính bằng mili giây)</param>
         /// <param name="userAgent"></param>
-        /// <param name="responseEncoding">Mã hóa phản hồi, mặc định khi không chỉ định làUTF8</param>
+        /// <param name="responseEncoding">Mã hóa phản hồi, mặc định khi không chỉ định là UTF8</param>
         /// <param name="cookies"></param>
         /// <returns></returns>
         public static string HttpGetString(string url
@@ -278,11 +278,11 @@ namespace NewtouchHIS.Lib.Services.HttpService
         /// </summary>
         /// <param name="url"></param>
         /// <param name="postDataStr"></param>
-        /// <param name="responseStatusCode">HTTPmã trạng thái</param>
+        /// <param name="responseStatusCode">HTTP mã trạng thái</param>
         /// <param name="timeout">Thời gian chờ yêu cầu (tính bằng mili giây)</param>
         /// <param name="userAgent"></param>
-        /// <param name="requestEncoding">Mã hóa nội dung yêu cầu, mặc định khi không chỉ định làUTF8</param>
-        /// <param name="responseEncoding">Mã hóa phản hồi, mặc định khi không chỉ định làUTF8</param>
+        /// <param name="requestEncoding">Mã hóa nội dung yêu cầu, mặc định khi không chỉ định là UTF8</param>
+        /// <param name="responseEncoding">Mã hóa phản hồi, mặc định khi không chỉ định là UTF8</param>
         /// <param name="cookies"></param>
         /// <param name="contentType">Mặc định gửi theo dạng biểu mẫu form</param>
         /// <returns></returns>
@@ -320,8 +320,8 @@ namespace NewtouchHIS.Lib.Services.HttpService
         /// <param name="postDataStr"></param>
         /// <param name="timeout">Thời gian chờ yêu cầu (tính bằng mili giây)</param>
         /// <param name="userAgent"></param>
-        /// <param name="requestEncoding">Mã hóa nội dung yêu cầu, mặc định khi không chỉ định làUTF8</param>
-        /// <param name="responseEncoding">Mã hóa phản hồi, mặc định khi không chỉ định làUTF8</param>
+        /// <param name="requestEncoding">Mã hóa nội dung yêu cầu, mặc định khi không chỉ định là UTF8</param>
+        /// <param name="responseEncoding">Mã hóa phản hồi, mặc định khi không chỉ định là UTF8</param>
         /// <param name="cookies"></param>
         /// <param name="contentType">Mặc định gửi theo dạng biểu mẫu form</param>
         /// <returns></returns>
@@ -351,7 +351,7 @@ namespace NewtouchHIS.Lib.Services.HttpService
         /// <param name="response">HttpWebResponse</param>
         /// <param name="timeout">Thời gian chờ yêu cầu (tính bằng mili giây)</param>
         /// <param name="userAgent"></param>
-        /// <param name="responseEncoding">Mã hóa phản hồi, mặc định khi không chỉ định làUTF8</param>
+        /// <param name="responseEncoding">Mã hóa phản hồi, mặc định khi không chỉ định là UTF8</param>
         /// <param name="cookies"></param>
         /// <returns></returns>
         private static string HttpGetString(string url
@@ -403,8 +403,8 @@ namespace NewtouchHIS.Lib.Services.HttpService
         /// <param name="response">HttpWebResponse</param>
         /// <param name="timeout">Thời gian chờ yêu cầu (tính bằng mili giây)</param>
         /// <param name="userAgent"></param>
-        /// <param name="requestEncoding">Mã hóa nội dung yêu cầu, mặc định khi không chỉ định làUTF8</param>
-        /// <param name="responseEncoding">Mã hóa phản hồi, mặc định khi không chỉ định làUTF8</param>
+        /// <param name="requestEncoding">Mã hóa nội dung yêu cầu, mặc định khi không chỉ định là UTF8</param>
+        /// <param name="responseEncoding">Mã hóa phản hồi, mặc định khi không chỉ định là UTF8</param>
         /// <param name="cookies"></param>
         /// <param name="contentType">Mặc định gửi theo dạng biểu mẫu form</param>
         /// <returns></returns>

@@ -58,11 +58,11 @@ namespace NewtouchHIS.Lib.Base.Model
         /// </summary>
         public AppAPIHostConfig? AppAPIHost { get; set; } = null;
         /// <summary>
-        /// Các hệ thốngAPI AppId
+        /// Các hệ thống API AppId
         /// </summary>
         public AppAPIHostConfig? AppAPIHostName { get; set; } = null;
         /// <summary>
-        /// HISĐịa chỉ đổi Token ủy quyền thống nhất của hệ thống cũ
+        /// HIS Địa chỉ đổi Token ủy quyền thống nhất của hệ thống cũ
         /// </summary>
         public string? UALoginAddress { get; set; }
         /// <summary>
@@ -70,7 +70,7 @@ namespace NewtouchHIS.Lib.Base.Model
         /// </summary>
         public string[]? AuthAppIds { get; set; } = null;
         /// <summary>
-        /// DRGPhiên bản bộ nhóm
+        /// DRG Phiên bản bộ nhóm
         /// </summary>
         public string? DrgGroupVersion { get; set; } = null;
         /// <summary>
@@ -105,7 +105,7 @@ namespace NewtouchHIS.Lib.Base.Model
         [DbTag(DBEnum.BaseDb)]
         public string? SiteBaseHospWebHost { get; set; } = null;
         /// <summary>
-        /// Quản lý hậu trườngAPI
+        /// Quản lý hậu trường API
         /// </summary>      
         [DbTag(DBEnum.BaseDb)]
         public string? SiteBaseAPIHost { get; set; } = null;
@@ -116,7 +116,7 @@ namespace NewtouchHIS.Lib.Base.Model
         [DbTag(DBEnum.SettDb)]
         public string? SiteSettWebHost { get; set; } = null;
         /// <summary>
-        /// Hệ thống quyết toánAPI
+        /// Hệ thống quyết toán API
         /// </summary>
         [DbTag(DBEnum.SettDb)]
         public string? SiteSettAPIHost { get; set; } = null;
@@ -126,7 +126,7 @@ namespace NewtouchHIS.Lib.Base.Model
         [DbTag(DBEnum.CisDb)]
         public string? SiteCisWebHost { get; set; } = null;
         /// <summary>
-        /// Phối hợp y tế - điều dưỡngAPI
+        /// Phối hợp y tế - điều dưỡng API
         /// </summary>
         [DbTag(DBEnum.CisDb)]
         public string? SiteCisAPIHost { get; set; } = null;
@@ -136,7 +136,7 @@ namespace NewtouchHIS.Lib.Base.Model
         [DbTag(DBEnum.PdsDb)]
         public string? SiteYfykWebHost { get; set; } = null;
         /// <summary>
-        /// Nhà thuốc - kho thuốcAPI
+        /// Nhà thuốc - kho thuốc API
         /// </summary>
         [DbTag(DBEnum.PdsDb)]
         public string? SiteYfykAPIHost { get; set; } = null;
@@ -146,7 +146,7 @@ namespace NewtouchHIS.Lib.Base.Model
         [DbTag(DBEnum.EmrDb)]
         public string? SiteEmrWebHost { get; set; } = null;
         /// <summary>
-        /// Bệnh án điện tửAPI
+        /// Bệnh án điện tử API
         /// </summary>
         [DbTag(DBEnum.EmrDb)]
         public string? SiteEmrAPIHost { get; set; } = null;
@@ -156,7 +156,7 @@ namespace NewtouchHIS.Lib.Base.Model
         [DbTag(DBEnum.MrmsDb)]
         public string? SiteMrmsWebHost { get; set; } = null;
         /// <summary>
-        /// Hệ thống bệnh ánAPI
+        /// Hệ thống bệnh án API
         /// </summary>
         [DbTag(DBEnum.MrmsDb)]
         public string? SiteMrmsAPIHost { get; set; } = null;
@@ -166,7 +166,7 @@ namespace NewtouchHIS.Lib.Base.Model
         [DbTag(DBEnum.OrDb)]
         public string? SiteOrWebHost { get; set; } = null;
         /// <summary>
-        /// Hệ thống phẫu thuậtAPI
+        /// Hệ thống phẫu thuật API
         /// </summary>
         [DbTag(DBEnum.OrDb)]
         public string? SiteOrAPIHost { get; set; } = null;
@@ -175,7 +175,7 @@ namespace NewtouchHIS.Lib.Base.Model
         /// </summary>
         public string? SiteHerpWebHost { get; set; } = null;
         /// <summary>
-        /// Vật tư tiêu haoAPI
+        /// Vật tư tiêu hao API
         /// </summary>
         public string? SiteHerpAPIHost { get; set; } = null;
         /// <summary>
@@ -184,7 +184,7 @@ namespace NewtouchHIS.Lib.Base.Model
         [DbTag(DBEnum.MrQcDb)]
         public string? SiteMrqcWebHost { get; set; } = null;
         /// <summary>
-        /// Hệ thống kiểm soát chất lượngAPI
+        /// Hệ thống kiểm soát chất lượng API
         /// </summary>
         [DbTag(DBEnum.MrQcDb)]
         public string? SiteMrqcAPIHost { get; set; } = null;

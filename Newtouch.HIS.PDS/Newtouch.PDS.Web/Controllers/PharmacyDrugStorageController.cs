@@ -427,7 +427,7 @@ namespace Newtouch.HIS.Web.Controllers
         }
 
         /// <summary>
-        /// Chuyển đổi số lượng hiển thị trên trang  XXhộpXXviên
+        /// Chuyển đổi số lượng hiển thị trên trang  XX hộp XX viên
         /// </summary>
         /// <param name="sl"></param>
         /// <param name="ypCode"></param>
@@ -461,7 +461,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// <summary>
         /// Kết thúc kiểm kê
         /// </summary>
-        /// <param name="pdId">Đơn kiểm kêID</param>
+        /// <param name="pdId">Đơn kiểm kê ID</param>
         /// <param name="autoCarryDown">null/0:Không tự động kết chuyển  1:Tự động kết chuyển</param>
         /// <returns></returns>
         public IActionResult EndInventory(string pdId, string autoCarryDown)

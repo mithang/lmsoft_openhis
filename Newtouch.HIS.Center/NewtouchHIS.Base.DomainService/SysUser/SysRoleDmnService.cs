@@ -13,7 +13,7 @@ namespace NewtouchHIS.Base.DomainService
 {
     /// <summary>
     /// Vai trò hệ thống và ủy quyền
-    /// Chức năng dùng chung cho các hệ thống,DBContextChọn làm cơ sở dữ liệu chính,khuyên tham chiếu
+    /// Chức năng dùng chung cho các hệ thống,DBContext Chọn làm cơ sở dữ liệu chính,khuyên tham chiếu
     /// </summary>
     public class SysRoleDmnService : BaseDmnService<SysRoleEntity>, ISysRoleDmnService
     {

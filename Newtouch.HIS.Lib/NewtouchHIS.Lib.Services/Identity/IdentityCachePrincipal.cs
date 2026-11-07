@@ -12,12 +12,12 @@ namespace NewtouchHIS.Lib.Services
     public class IdentityCachePrincipal : IIdentityCache
     {
         /// <summary>
-        /// IHttpContextAccessorđối tượng
+        /// IHttpContextAccessor đối tượng
         /// </summary>
         private readonly IHttpContextAccessor _httpContextAccessor;
 
         /// <summary>
-        /// NếuIHttpContextAccessor.HttpContext?.UserNếu không trống lấy ClaimsPrincipal của HttpContext, ngược lại lấy của luồngCurrentPrincipal
+        /// Nếu IHttpContextAccessor.HttpContext?.UserNếu không trống lấy ClaimsPrincipal của HttpContext, ngược lại lấy của luồngCurrentPrincipal
         /// </summary>
         protected ClaimsPrincipal Principal => _httpContextAccessor!.HttpContext!.User ?? (Thread.CurrentPrincipal as ClaimsPrincipal);
 

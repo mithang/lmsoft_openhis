@@ -268,7 +268,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
                 if ((sd == "Lưu tài liệu" || sd == "Lưu tài liệu") && eng.Options.ContentRenderMode == WebWriterControlRenderMode.NormalHtmlEditable)
                 {
                     // Người dùng đã nhấn“Lưu tài liệu”Nút,
-                    // thì thửWEBtải tài liệu từ yêu cầu rồi lưu
+                    // thì thử WEB tải tài liệu từ yêu cầu rồi lưu
                     loaded = eng.LoadDocumentFromRequestFormData();
                     if (loaded)
                     {

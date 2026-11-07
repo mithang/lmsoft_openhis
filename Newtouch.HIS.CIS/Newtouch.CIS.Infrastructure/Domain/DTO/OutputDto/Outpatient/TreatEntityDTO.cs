@@ -88,7 +88,7 @@ namespace Newtouch.Domain.DTO.OutputDto
         /// </summary>
         public string zjh { get; set; }
         /// <summary>
-        /// CMND/CCCDsốmã
+        /// CMND/CCCD số mã
         /// </summary>
         public string idCardNo { get; set; }
         /// <summary>

@@ -74,7 +74,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string SubmitAppOutStock(List<ApplyOutStockVEntity> group, List<ApplyOutStockVEntity> source, string organizeId, string userCode);
 
         /// <summary>
-        /// Theo chứng từIDLấy chi tiết chứng từ xuất nhập kho
+        /// Theo chứng từ ID Lấy chi tiết chứng từ xuất nhập kho
         /// </summary>
         /// <param name="crkId"></param>
         /// <param name="djlx"></param>

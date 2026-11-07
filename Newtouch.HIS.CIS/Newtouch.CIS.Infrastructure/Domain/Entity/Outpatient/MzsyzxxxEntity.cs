@@ -13,7 +13,7 @@ namespace Newtouch.Domain.Entity
     {
 
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         [Key]
         public string Id { get; set; }

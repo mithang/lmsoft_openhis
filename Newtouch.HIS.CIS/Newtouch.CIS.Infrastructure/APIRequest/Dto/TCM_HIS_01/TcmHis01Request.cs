@@ -10,7 +10,7 @@ namespace Newtouch.CIS.APIRequest.Dto.TCM_HIS_01
     public class TcmHis01Request : RequestBase
     {
         /// <summary>
-        /// Khám bệnhID
+        /// Khám bệnh ID
         /// </summary>
         public string jzId { get; set; }
 

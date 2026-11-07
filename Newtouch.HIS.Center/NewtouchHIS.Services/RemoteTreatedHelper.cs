@@ -6,7 +6,7 @@ namespace NewtouchHIS.Services
     public class RemoteTreatedHelper
     {
         /// <summary>
-        /// Âm thanh/hình ảnhCuộc họpAPI
+        /// Âm thanh/hình ảnhCuộc họp API
         /// </summary>
         protected static string OuterMediaMeettingAPIHost
         {

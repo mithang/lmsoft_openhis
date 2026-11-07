@@ -54,7 +54,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string Diagnose { get; set; } // Chẩn đoán
         
         [XmlElement("IDCard")]
-        public string IDCard { get; set; } // CMND/CCCDsốmã
+        public string IDCard { get; set; } // CMND/CCCD số mã
         
         [XmlElement("address")]
         public string Address { get; set; } // bệnh nhânĐịa chỉ
@@ -111,7 +111,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
         public string ProxName { get; set; } // thaylàm ngườiHọ tên
         
         [XmlElement("proxIDCard")]
-        public string ProxIDCard { get; set; } // thaylàm ngườiCMND/CCCDsố
+        public string ProxIDCard { get; set; } // thaylàm người CMND/CCCD số
         
         [XmlElement("docID")]
         public string DocID { get; set; } // Bác sĩMã nhân viên
@@ -152,7 +152,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.HLYYRequest
     public class Prescription
     {
         [XmlElement("drug")]
-        public string Drug { get; set; } // ThuốcID
+        public string Drug { get; set; } // Thuốc ID
         
         [XmlElement("drugName")]
         public string DrugName { get; set; } // Tên thuốc

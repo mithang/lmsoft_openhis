@@ -6,7 +6,7 @@ namespace Newtouch.Domain.DTO.InputDto
     public class UpdateKcslDTO
     {
         /// <summary>
-        /// vật tưID
+        /// vật tư ID
         /// </summary>
         public string productId { get; set; }
 

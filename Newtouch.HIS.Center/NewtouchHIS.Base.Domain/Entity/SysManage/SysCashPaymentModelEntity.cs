@@ -37,7 +37,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string zt { get; set; }
 
         /// <summary>
-        /// Người tạoID
+        /// Người tạo ID
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -52,7 +52,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Người sửa đổi cuốiID
+        /// Người sửa đổi cuối ID
         /// </summary>
         public string LastModifierCode { get; set; }
 

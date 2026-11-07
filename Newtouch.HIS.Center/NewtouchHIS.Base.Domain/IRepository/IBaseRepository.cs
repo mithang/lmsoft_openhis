@@ -14,7 +14,7 @@ namespace NewtouchHIS.Base.Domain
     {
         #region TEntity Thao tác
         /// <summary>
-        /// TheoIDTruy vấn danh sách
+        /// Theo ID Truy vấn danh sách
         /// </summary>
         /// <param name="objId"></param>
         /// <returns></returns>
@@ -49,7 +49,7 @@ namespace NewtouchHIS.Base.Domain
         Task<bool> DeleteByIds(object[] ids);
 
         /// <summary>
-        /// TheoIDXóa
+        /// Theo ID Xóa
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>
@@ -317,7 +317,7 @@ namespace NewtouchHIS.Base.Domain
         Task<List<T>> getListBySqlQuery<T>(string db, string sql, List<DbParameter> parameters);
         #endregion
         /// <summary>
-        /// LINQTruy vấn nối hai bảng (choose db)
+        /// LINQ Truy vấn nối hai bảng (choose db)
         /// </summary>
         /// <typeparam name="T1"></typeparam>
         /// <typeparam name="T2"></typeparam>

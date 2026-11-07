@@ -29,7 +29,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public string warehouseId { get; set; }
 
         /// <summary>
-        ///  vật tưID
+        ///  vật tư ID
         /// </summary>
         public string productId { get; set; }
 
@@ -59,7 +59,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public int djsl { get; set; }
 
         /// <summary>
-        /// raNhập khochi tiếtID
+        /// raNhập khochi tiết ID
         /// </summary>
         public long crkmxId { get; set; }
 

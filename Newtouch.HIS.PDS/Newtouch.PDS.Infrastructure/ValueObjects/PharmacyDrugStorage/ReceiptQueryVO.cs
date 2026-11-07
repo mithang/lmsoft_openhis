@@ -33,7 +33,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string gysmc { get; set; }
 
         /// <summary>
-        /// Bảng chính chứng từ xuất nhập khoID
+        /// Bảng chính chứng từ xuất nhập kho ID
         /// </summary>
         public string crkId { get; set; }
 

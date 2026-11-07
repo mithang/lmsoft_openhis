@@ -34,7 +34,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public decimal? pfj { get; set; }
 
         /// <summary>
-        /// Bảng chính chứng từ xuất nhập khoID
+        /// Bảng chính chứng từ xuất nhập kho ID
         /// </summary>
         public decimal? lsj { get; set; }
 

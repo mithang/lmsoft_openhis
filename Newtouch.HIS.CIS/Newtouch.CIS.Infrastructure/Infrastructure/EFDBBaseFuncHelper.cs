@@ -19,7 +19,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Mặc địnhDBtrêndướivăn
+        /// Mặc định DB trên dưới văn
         /// </summary>
         public static EFDBBaseFuncHelper Instance
         {
@@ -30,7 +30,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// chỉđịnhDBtrêndướivăn (dbType is accepted for source compatibility; the port
+        /// chỉ định DB trên dưới văn (dbType is accepted for source compatibility; the port
         /// always uses the CIS database)
         /// </summary>
         /// <param name="dbType"></param>

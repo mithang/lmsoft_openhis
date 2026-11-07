@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.Entity
     public class ZyReturnDrugApplyBillEntity : IEntity<ZyReturnDrugApplyBillEntity>
     {
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string applyNo { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -35,7 +35,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zyh { get; set; }
 
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         public string yzId { get; set; }
 

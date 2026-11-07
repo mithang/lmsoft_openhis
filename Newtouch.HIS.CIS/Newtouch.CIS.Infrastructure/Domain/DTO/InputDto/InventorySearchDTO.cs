@@ -12,7 +12,7 @@ namespace Newtouch.Domain.DTO.InputDto
     public class InventorySearchDTO
     {
         /// <summary>
-        /// Kiểm kêID
+        /// Kiểm kê ID
         /// </summary>
         public long pdId { get; set; }
 
@@ -32,7 +32,7 @@ namespace Newtouch.Domain.DTO.InputDto
         public string wzzt { get; set; }
 
         /// <summary>
-        /// cộtloạiID
+        /// cột loại ID
         /// </summary>
         public string lb { get; set; }
 
@@ -49,12 +49,12 @@ namespace Newtouch.Domain.DTO.InputDto
     public class SaveInventoryDTO
     {
         /// <summary>
-        /// Kiểm kêchi tiếtID
+        /// Kiểm kêchi tiết ID
         /// </summary>
         public long? pdmxId { get; set; }
 
         /// <summary>
-        /// vật tưID
+        /// vật tư ID
         /// </summary>
         public string productId { get; set; }
 

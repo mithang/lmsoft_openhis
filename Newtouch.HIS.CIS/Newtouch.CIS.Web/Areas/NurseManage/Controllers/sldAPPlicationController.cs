@@ -82,8 +82,8 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         ///// <summary>
         ///// dướikéovật tưSố lôLôthông tin
         ///// </summary>
-        ///// <param name="proId">vật tưID</param>
-        ///// <param name="gysId">Nhà cung cấpID</param>
+        ///// <param name="proId">vật tư ID</param>
+        ///// <param name="gysId">Nhà cung cấp ID</param>
         ///// <param name="deliveryNo">phốigửiphiếusố</param>
         ///// <param name="keyword"></param>
         ///// <returns></returns>

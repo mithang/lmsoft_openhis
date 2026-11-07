@@ -71,37 +71,37 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// Nhập kho thuốc
         /// </summary>
-        [Description("Nhập kho thuốc")]   //Số chứng từYPRKD111111111111
+        [Description("Nhập kho thuốc")]   //Số chứng từ YPRKD111111111111
         yaopinruku = 1,
 
         /// <summary>
         /// Xuất kho ra ngoài
         /// </summary>
-        [Description("Xuất kho ra ngoài")]   //Số chứng từWBCKD111111111111
+        [Description("Xuất kho ra ngoài")]   //Số chứng từ WBCKD111111111111
         waibucuku = 2,
 
         /// <summary>
         /// Phát thuốc trực tiếp
         /// </summary>
-        [Description("Xuất kho trực tiếp")]   //Số chứng từNBFYD111111111111
+        [Description("Xuất kho trực tiếp")]   //Số chứng từ NBFYD111111111111
         zhijiefayao = 3,
 
         /// <summary>
         /// Phát thuốc theo đơn lĩnh
         /// </summary>
-        [Description("Xuất kho theo đơn lĩnh")]   //Số chứng từSLCKD111111111111
+        [Description("Xuất kho theo đơn lĩnh")]   //Số chứng từ SLCKD111111111111
         shenlingfayao = 4,
 
         /// <summary>
         /// Trả lại phát thuốc nội bộ
         /// </summary>
-        [Description("Trả lại phát thuốc nội bộ")] //Số chứng từNBFYTHD111111111111
+        [Description("Trả lại phát thuốc nội bộ")] //Số chứng từ NBFYTHD111111111111
         neibufayaotuihui = 5,
 
         /// <summary>
         /// Nhà thuốc phát thuốc cho khoa
         /// </summary>
-        [Description("Phát thuốc cho khoa")] //Số chứng từKSFYD111111111111
+        [Description("Phát thuốc cho khoa")] //Số chứng từ KSFYD111111111111
         keshifayao = 6,
 
         /// <summary>

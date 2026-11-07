@@ -32,7 +32,7 @@ namespace Newtouch.Application.Interface
         List<SysBespeakRegisterTimeVO> GetConfigureRegTime();
 
         /// <summary>
-        /// lắp rápđuổithêmdòngHTML
+        /// lắp ráp đuổi thêm dòng HTML
         /// </summary>
         /// <param name="regDatas"></param>
         /// <param name="regTimes"></param>

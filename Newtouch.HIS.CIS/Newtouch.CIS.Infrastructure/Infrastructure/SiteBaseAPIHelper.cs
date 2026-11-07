@@ -3,7 +3,7 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Base APIyêu cầugiúpgiúploại
+    /// Base API yêu cầugiúpgiúploại
     /// </summary>
     public class SiteBaseAPIHelper : SiteAPIRequestHelperBase<SiteBaseAPIHelper>
     {

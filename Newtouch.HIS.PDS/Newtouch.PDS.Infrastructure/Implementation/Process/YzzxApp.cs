@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Application.Implementation
         private readonly IZyYpyzxxRepo _zyYpyzzxRepo;
         private List<ZyYpyzxxEntity> _yzEntities;
         private readonly List<BookItemDo> _sucessList;
-        private string zxId = Guid.NewGuid().ToString();//Thực hiện y lệnhID
+        private string zxId = Guid.NewGuid().ToString();//Thực hiện y lệnh ID
 
         public YzzxApp(ZyypyzzxRequest request) : base(request)
         {
@@ -50,7 +50,7 @@ namespace Newtouch.HIS.Application.Implementation
                 Parallel.ForEach(Request.yzList, detail =>
                 {
                     if (string.IsNullOrWhiteSpace(detail.ypCode)) throw new Exception("Vui lòng truyền mã thuốc hiệu lực");
-                    if (string.IsNullOrWhiteSpace(detail.yzId)) throw new Exception("Vui lòng truyền y lệnh hiệu lựcID");
+                    if (string.IsNullOrWhiteSpace(detail.yzId)) throw new Exception("Vui lòng truyền y lệnh hiệu lực ID");
                     if (string.IsNullOrWhiteSpace(detail.bqCode)) throw new Exception("Vui lòng truyền mã khu bệnh hiệu lực");
                     if (string.IsNullOrWhiteSpace(detail.fyyf)) throw new Exception("Vui lòng truyền mã nhà thuốc phát thuốc hiệu lực");
                     if (detail.sl <= 0) throw new Exception("Vui lòng nhập số lượng thực hiện y lệnh hiệu lực");

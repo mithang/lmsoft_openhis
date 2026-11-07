@@ -13,24 +13,24 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysMedicineStorageIOReceiptEntity : IEntity<SysMedicineStorageIOReceiptEntity>
     {
         /// <summary>
-        /// Xuất nhập khoID
+        /// Xuất nhập kho ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public string crkId { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
         /// Loại chứng từ 
-        /// 1:Nhập kho thuốc  Số chứng từYPRKD111111111111
-        /// 2:Xuất kho ra ngoài  Số chứng từWBCKD111111111111
-        /// 3:Xuất kho trực tiếp  Số chứng từNBFYD111111111111
-        /// 4:Xuất kho theo đơn lĩnh  Số chứng từSLCKD111111111111
-        /// 5:Trả lại phát thuốc nội bộ    Số chứng từNBFYTHD111111111111
+        /// 1:Nhập kho thuốc  Số chứng từ YPRKD111111111111
+        /// 2:Xuất kho ra ngoài  Số chứng từ WBCKD111111111111
+        /// 3:Xuất kho trực tiếp  Số chứng từ NBFYD111111111111
+        /// 4:Xuất kho theo đơn lĩnh  Số chứng từ SLCKD111111111111
+        /// 5:Trả lại phát thuốc nội bộ    Số chứng từ NBFYTHD111111111111
         /// </summary>
         public int djlx { get; set; }
 
@@ -70,7 +70,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string Ckczy { get; set; }
 
         /// <summary>
-        /// Từ NewtouchHIS_Base.dbo.xt_ypcrkfsMã phương thức bảng 
+        /// Từ NewtouchHIS_Base.dbo.xt_ypcrkfs Mã phương thức bảng 
         /// </summary>
         public string Crkfsdm { get; set; }
 

@@ -11,7 +11,7 @@ namespace Newtouch.PDS.Requset.Zyypyz
     public class ZyypyzzxRequest : RequestBase
     {
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -32,7 +32,7 @@ namespace Newtouch.PDS.Requset.Zyypyz
     public class YzDetail
     {
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         public string yzId { get; set; }
 

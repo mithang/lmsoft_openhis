@@ -60,7 +60,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
         public string xm { get; set; }
     }
     /// <summary>
-    /// Gửi tới bên thứ baHISBệnh án
+    /// Gửi tới bên thứ ba HIS Bệnh án
     /// </summary>
     public class SendPatMedicalRecordRequest: OutpMedicalRecordVO
     {

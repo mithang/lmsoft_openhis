@@ -37,7 +37,7 @@ namespace HIS.SSO.Domain.SysManage
         /// <returns></returns>
         public string? Code { get; set; }
         /// <summary>
-        /// ứng dụngId,ví dụCIS,Sett
+        /// ứng dụngId,ví dụ CIS,Sett
         /// </summary>
         public string? AppId { get; set; }
         /// <summary>

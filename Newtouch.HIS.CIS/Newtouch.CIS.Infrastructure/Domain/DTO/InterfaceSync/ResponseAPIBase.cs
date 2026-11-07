@@ -19,7 +19,7 @@ namespace Newtouch.Domain.DTO.InterfaceSync
         public string msg { get; set; }
 
         /// <summary>
-        /// hưởngứngDữ liệu(ResponseResultCode.SUCCESSkhicủaQuay lạiDữ liệu)
+        /// hưởngứngDữ liệu(ResponseResultCode.SUCCESS khi của Quay lạiDữ liệu)
         /// </summary>
         public object data { get; set; }
     }

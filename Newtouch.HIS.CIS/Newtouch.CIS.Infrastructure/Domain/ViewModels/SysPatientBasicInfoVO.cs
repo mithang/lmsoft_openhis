@@ -8,7 +8,7 @@ namespace Newtouch.Domain.ViewModels
     public class SysPatientBasicInfoVO
     {
         /// <summary>
-        /// Bệnh nhânID
+        /// Bệnh nhân ID
         /// </summary>
         public int patid { get; set; }
 
@@ -198,7 +198,7 @@ namespace Newtouch.Domain.ViewModels
         public string gj { get; set; }
 
         /// <summary>
-        /// Liệt kêEnumHF
+        /// Liệt kê EnumHF
         /// </summary>
         public byte? hf { get; set; }
 
@@ -369,12 +369,12 @@ namespace Newtouch.Domain.ViewModels
     public class SysPatientCardDetail
     {
         /// <summary>
-        /// thẻID  Hệ thốngSố thẻbảngKhóa chính
+        /// thẻ ID  Hệ thốngSố thẻbảngKhóa chính
         /// </summary>
         public string CardId { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 

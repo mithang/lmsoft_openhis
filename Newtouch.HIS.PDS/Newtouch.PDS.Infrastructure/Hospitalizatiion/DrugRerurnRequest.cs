@@ -10,7 +10,7 @@ namespace Newtouch.PDS.Requset.Hospitalizatiion
     {
 
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         [Required]
         public string yzId { get; set; }

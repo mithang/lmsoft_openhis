@@ -169,7 +169,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
             try
             {
 
-                XmlDocument xmlDoc = new XmlDocument();//Tạo mớiXMLTệp
+                XmlDocument xmlDoc = new XmlDocument();//Tạo mới XML Tệp
 
                 //Phán đoán tệp có tồn tại hay không
                 if (System.IO.File.Exists(filePath))

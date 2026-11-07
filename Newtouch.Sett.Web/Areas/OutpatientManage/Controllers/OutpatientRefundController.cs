@@ -469,7 +469,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// HIShoàn phí(BHYT,không phảiBHYTdùng chung)
+        /// HIS hoàn phí(BHYT,không phải BHYT dùng chung)
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="jsnm"></param>

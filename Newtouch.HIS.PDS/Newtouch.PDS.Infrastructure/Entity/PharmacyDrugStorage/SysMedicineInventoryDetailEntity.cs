@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string pdmxId { get; set; }
 
         /// <summary>
-        /// Đơn kiểm kêID
+        /// Đơn kiểm kê ID
         /// </summary>
         public string pdId { get; set; }
 

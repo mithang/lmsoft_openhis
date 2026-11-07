@@ -18,7 +18,7 @@ namespace NewtouchHIS.Base.Domain.Organize
         /// <returns></returns>
         Task<PageResponseRow<List<SysUserVO>>> GetPagintionUserList(OLPagination<QueryParamsBase> request, string orgId);
         /// <summary>
-        /// TheoOrganizeIdLấy Nhân viên hệ thốngVO(và có tương ứngSysUser)
+        /// TheoOrganizeIdLấy Nhân viên hệ thống VO(và có tương ứngSysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

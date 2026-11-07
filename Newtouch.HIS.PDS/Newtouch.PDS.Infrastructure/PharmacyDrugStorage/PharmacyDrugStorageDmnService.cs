@@ -542,7 +542,7 @@ ORDER BY sfdl.px,sfdl.dlCode
         }
 
         /// <summary>
-        /// Chuyển đổi số lượng hiển thị trên trang  XXhộpXXviên
+        /// Chuyển đổi số lượng hiển thị trên trang  XX hộp XX viên
         /// </summary>
         /// <returns></returns>
         public string GetYfbmYpComplexYpSlandDw(int sl, string ypCode)
@@ -1281,7 +1281,7 @@ AND (b.Name LIKE '%'+@keyword+'%' OR b.py LIKE '%'+@keyword+'%' OR b.Code LIKE '
         /// <summary>
         /// Thực hiện y lệnh Lấy đơn giá thuốc
         /// </summary>
-        /// <param name="organizeId">Tổ chứcID</param>
+        /// <param name="organizeId">Tổ chức ID</param>
         /// <param name="yfbmCode">Nhà thuốc phát thuốc</param>
         /// <param name="ypCode">Mã thuốc</param>
         /// <returns></returns>

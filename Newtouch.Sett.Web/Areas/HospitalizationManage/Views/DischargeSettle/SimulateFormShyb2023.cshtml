@@ -99,12 +99,12 @@
         ybjyFeeReturn = ybjyFeeReturn.xxnr;
 		if (!!ybjyFeeReturn) {
 		    var xjzfje = 0.000;//Số tiền thanh toán tiền mặt BHYT
-		    var zfxjzf = 0.000;//khôngThanh toán tiền mặt BHYTSố tiền
+		    var zfxjzf = 0.000;//khôngThanh toán tiền mặt BHYT Số tiền
 		    var yjs = 0.000;//Số dư tài khoản sautạm ứng
 		    //Số tiền thanh toán tiền mặt BHYT
 		    xjzfje = ovpraseFloat(ybjyFeeReturn.qfdxjzfs) + ovpraseFloat(ybjyFeeReturn.tcdxjzfs)
                 + ovpraseFloat(ybjyFeeReturn.fjdxjzfs);
-		    //khôngBHYTTiền mặtSố tiền
+		    //không BHYT Tiền mặtSố tiền
 		    zfxjzf = ovpraseFloat(hisfyze) -
 				ovpraseFloat(ybjyFeeReturn.ybjsfwfyze);
 		    //Tính thanh toán tiền mặt

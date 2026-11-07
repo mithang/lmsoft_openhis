@@ -65,7 +65,7 @@ namespace NewtouchHIS.Lib.Base.SQLSugar
             List<string> tablename = tabledic.Values.ToList();
             //db.DbFirst.IsCreateAttribute().CreateClassFile(path);
             var db = GetInstance(dbType, dbName);
-            //ALLTất cả các bảng  
+            //ALL Tất cả các bảng  
             //List<DbTableInfo> list = db.DbMaintenance.GetTableInfoList().Where(x => x.Name.Contains("mr")).ToList();
             List<DbTableInfo> list = db.DbMaintenance.GetTableInfoList().Where(x => tablename.Contains("ALL") ? x.Name.IsNormalized() : tablename.Contains(x.Name.Trim())).ToList();
             //Tất cả các khung nhìn

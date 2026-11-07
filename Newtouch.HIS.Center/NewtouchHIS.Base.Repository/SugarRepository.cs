@@ -84,7 +84,7 @@ namespace NewtouchHIS.Base.Repository
             return i;
         }
         /// <summary>
-        /// TheoIDXóa theo danh sách
+        /// Theo ID Xóa theo danh sách
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -95,7 +95,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// TheoIDXóa
+        /// Theo ID Xóa
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -200,7 +200,7 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<TEntity> GetFirstOrDefault(Expression<Func<TEntity, bool>> where)
         {
-            return await Context.Queryable<TEntity>().FirstAsync(where);//Truy vấn một bản ghi, không có dữ liệu thì trả vềNULL, Singlevượt quá1bản ghi sẽ báo lỗi,Firstsẽ không
+            return await Context.Queryable<TEntity>().FirstAsync(where);//Truy vấn một bản ghi, không có dữ liệu thì trả về NULL, Singlevượt quá1bản ghi sẽ báo lỗi,Firstsẽ không
         }
 
         /// <summary>
@@ -426,7 +426,7 @@ namespace NewtouchHIS.Base.Repository
             return i > 0;
         }
         /// <summary>
-        /// [DB Attr]TheoIDXóa theo danh sách
+        /// [DB Attr]Theo ID Xóa theo danh sách
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -437,7 +437,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// [DB Attr]TheoIDXóa
+        /// [DB Attr]Theo ID Xóa
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -483,7 +483,7 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<T> GetFirstOrDefaultWithAttr<T>(Expression<Func<T, bool>> where)
         {
-            return await dbTran.GetConnectionScopeWithAttr<T>().Queryable<T>().Where(where).FirstAsync();//Truy vấn một bản ghi, không có dữ liệu thì trả vềNULL, Singlevượt quá1bản ghi sẽ báo lỗi,Firstsẽ không
+            return await dbTran.GetConnectionScopeWithAttr<T>().Queryable<T>().Where(where).FirstAsync();//Truy vấn một bản ghi, không có dữ liệu thì trả về NULL, Singlevượt quá1bản ghi sẽ báo lỗi,Firstsẽ không
         }
         /// <summary>
         ///  Theo điều kiện Truy vấn(Theo T củaDb Truy vấn theo đặc tính)

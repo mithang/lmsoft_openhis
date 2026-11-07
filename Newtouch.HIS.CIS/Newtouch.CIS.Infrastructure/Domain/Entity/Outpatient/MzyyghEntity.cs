@@ -23,7 +23,7 @@ namespace Newtouch.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// xt_bespeakRegister Khóa chínhID
+        /// xt_bespeakRegister Khóa chính ID
         /// </summary>
         public string brId { get; set; }
 

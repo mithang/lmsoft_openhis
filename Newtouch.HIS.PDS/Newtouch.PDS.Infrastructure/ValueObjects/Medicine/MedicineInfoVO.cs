@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string klsl { get; set; }
 
         /// <summary>
-        /// Bộ phận thuốc nàyID XT_YP_BMYPXX Khóa chính
+        /// Bộ phận thuốc này ID XT_YP_BMYPXX Khóa chính
         /// </summary>
         public string bmypId { get; set; }
         /// <summary>

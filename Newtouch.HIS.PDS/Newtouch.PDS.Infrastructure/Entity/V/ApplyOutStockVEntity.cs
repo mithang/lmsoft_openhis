@@ -11,12 +11,12 @@ namespace Newtouch.HIS.Domain.Entity.V
         public string slbm { get; set; }
 
         /// <summary>
-        /// Chi tiết đơn lĩnhID
+        /// Chi tiết đơn lĩnh ID
         /// </summary>
         public string sldmxId { get; set; }
 
         /// <summary>
-        /// Đơn lĩnhID
+        /// Đơn lĩnh ID
         /// </summary>
         public string sldId { get; set; }
 

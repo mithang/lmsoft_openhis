@@ -8,7 +8,7 @@ namespace Newtouch.Domain.ValueObjects
     public class VSelProductInfoVO
     {
         /// <summary>
-        /// vật tưID
+        /// vật tư ID
         /// </summary>
         public string Id { get; set; }
 
@@ -78,7 +78,7 @@ namespace Newtouch.Domain.ValueObjects
         public string supplierName { get; set; }
 
         /// <summary>
-        /// Đơn vị nhỏ nhấtID
+        /// Đơn vị nhỏ nhất ID
         /// </summary>
         public string zxdwId { get; set; }
 
@@ -88,7 +88,7 @@ namespace Newtouch.Domain.ValueObjects
         public string mindwmc { get; set; }
 
         /// <summary>
-        /// Khoa phòngĐơn vịID
+        /// Khoa phòngĐơn vị ID
         /// </summary>
         public string bmdwId { get; set; }
 
@@ -103,7 +103,7 @@ namespace Newtouch.Domain.ValueObjects
         public string lbmc { get; set; }
 
         /// <summary>
-        /// LoạiID
+        /// Loại ID
         /// </summary>
         public string lbId { get; set; }
     }

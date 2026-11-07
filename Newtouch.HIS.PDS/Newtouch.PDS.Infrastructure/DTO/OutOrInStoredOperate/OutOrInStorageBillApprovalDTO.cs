@@ -9,7 +9,7 @@ namespace Newtouch.HIS.Domain.DTO.OutOrInStoredOperate
     public class OutOrInStorageBillApprovalDTO
     {
         /// <summary>
-        /// Xuất nhập khoID
+        /// Xuất nhập kho ID
         /// </summary>
         public string crkId { get; set; }
 

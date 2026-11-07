@@ -14,7 +14,7 @@ namespace Newtouch.HIS.Domain.Entity
     public class MzCfmxEntity : IEntity<MzCfmxEntity>
     {
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]

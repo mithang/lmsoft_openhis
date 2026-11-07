@@ -253,7 +253,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public int? px { get; set; }
 
         /// <summary>
-        /// Thuốc theoID
+        /// Thuốc theo ID
         /// </summary>
         [SugarColumn(IsPrimaryKey = true)]
         public int ypsxId { get; set; }

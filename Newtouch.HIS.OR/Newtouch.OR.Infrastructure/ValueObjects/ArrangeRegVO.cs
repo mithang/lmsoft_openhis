@@ -25,7 +25,7 @@ namespace Newtouch.OR.ManageSystem.Domain.ValueObjects
         public string Id { get; set; }
 
         /// <summary>
-        /// Phẫu thuậtĐơn đăng kýID(ApplyInfoId)
+        /// Phẫu thuậtĐơn đăng ký ID(ApplyInfoId)
         /// </summary>
         /// <returns></returns>
         public string ApplyId { get; set; }

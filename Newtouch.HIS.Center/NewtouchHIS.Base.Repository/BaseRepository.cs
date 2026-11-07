@@ -28,7 +28,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// TheoIDXóa theo danh sách
+        /// Theo ID Xóa theo danh sách
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -39,7 +39,7 @@ namespace NewtouchHIS.Base.Repository
         }
 
         /// <summary>
-        /// TheoIDXóa
+        /// Theo ID Xóa
         /// </summary>
         /// <param name="ids"></param>
         /// <returns></returns>
@@ -133,7 +133,7 @@ namespace NewtouchHIS.Base.Repository
         /// <returns></returns>
         public async Task<TEntity> getFirstOrDefault(Expression<Func<TEntity, bool>> where)
         {
-            return await Db.Queryable<TEntity>().FirstAsync(where);//Truy vấn một bản ghi, không có dữ liệu thì trả vềNULL, Singlevượt quá1bản ghi sẽ báo lỗi,Firstsẽ không
+            return await Db.Queryable<TEntity>().FirstAsync(where);//Truy vấn một bản ghi, không có dữ liệu thì trả về NULL, Singlevượt quá1bản ghi sẽ báo lỗi,Firstsẽ không
         }
 
         /// <summary>

@@ -88,7 +88,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         {
 
             ViewBag.zyhpz = _sysConfigRepo.GetBoolValueByCode("xt_zyh", OrganizeId, true).Value ? "ON" : "OFF";
-            //Có tìm bằng số thẻ không,mặc địnhOFF,tức là mặc định phải tìm bằng số bệnh án
+            //Có tìm bằng số thẻ không,mặc định OFF,tức là mặc định phải tìm bằng số bệnh án
             ViewBag.searchpz = _sysConfigRepo.GetBoolValueByCode("register_search", OrganizeId, false).Value ? "ON" : "OFF";
             ViewBag.isDiagnosisRequired = _sysConfigRepo.GetBoolValueByCode("Inpatient_Registe_Diagnosis_Required", this.OrganizeId);
             ViewBag.CurUserCode = UserIdentity.UserCode;
@@ -442,7 +442,7 @@ namespace Newtouch.Sett.Web.Areas.PatientManage.Controllers
         public IActionResult CheckCardState(string kh, string zyh)
         {
             var blh = "";
-            //Có tìm bằng số thẻ không,mặc địnhOFF,tức là mặc định phải tìm bằng số bệnh án
+            //Có tìm bằng số thẻ không,mặc định OFF,tức là mặc định phải tìm bằng số bệnh án
             var searchpz = _sysConfigRepo.GetBoolValueByCode("register_search", OrganizeId, false).Value ? "ON" : "OFF";
             if (searchpz == "ON" && !string.IsNullOrWhiteSpace(kh))
             {

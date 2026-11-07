@@ -82,7 +82,7 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public string zhmc { get; set; }
         /// <summary>
-        /// Chẩn đoán YHCTGhi chú
+        /// Chẩn đoán YHCT Ghi chú
         /// </summary>
         public string zdbz { get; set; }
     }

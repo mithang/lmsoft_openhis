@@ -51,7 +51,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
 
         #region Thông tin bệnh nhân
         /// <summary>
-        /// Lấy phòng khám điện toán đám mâyBệnh nhânBệnh án
+        /// Lấy phòng khám điện toán đám mây Bệnh nhân Bệnh án
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -61,7 +61,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || string.IsNullOrWhiteSpace(request.Data.ApplyId))
             {
-                return new BusResult<PatMedicalRecordResponse> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId,HISĐăng kýId không được để trống" };
+                return new BusResult<PatMedicalRecordResponse> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id,HIS Đăng ký Id không được để trống" };
             }
             var clinicMr = await ClinicHttpGet<List<ClinicPatMedicalRecordDTO>>($"{ClinicApiHelper.GetPatMedicalRecord}{request.Data.ApplyId}");
             if (clinicMr == null || clinicMr.code != ((int)ClinicResponseCode.success).ToString())
@@ -73,7 +73,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         }
 
         /// <summary>
-        /// ĐẩyHISBệnh nhânBệnh án
+        /// Đẩy HIS Bệnh nhân Bệnh án
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -83,7 +83,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || string.IsNullOrWhiteSpace(request.Data.ApplyId))
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId,HISĐăng kýId không được để trống" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id,HIS Đăng ký Id không được để trống" };
             }
             var applyInfo = await _remoteTreatedDmn.TreatedApplyExtendInfo(request.Data.ApplyId, request.OrganizeId);
             if (applyInfo == null || applyInfo.sqzt == (int)EmunRemoteTreatedStu.yth || applyInfo.sqzt == (int)EmunRemoteTreatedStu.ycx)
@@ -101,7 +101,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
             return new BusResult<string> { code = ResponseResultCode.SUCCESS, Data = sendMr.data.ToJson() };
         }
         /// <summary>
-        /// ĐẩyHISBệnh nhânĐơn thuốc lần khám này
+        /// Đẩy HIS Bệnh nhân Đơn thuốc lần khám này
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -111,7 +111,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || string.IsNullOrWhiteSpace(request.Data.ApplyId))
             {
-                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId,HISĐăng kýId không được để trống" };
+                return new BusResult<string> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id,HIS Đăng ký Id không được để trống" };
             }
             var applyInfo = await _remoteTreatedDmn.TreatedApplyExtendInfo(request.Data.ApplyId, request.OrganizeId);
             if (applyInfo == null || applyInfo.sqzt == (int)EmunRemoteTreatedStu.yth || applyInfo.sqzt == (int)EmunRemoteTreatedStu.ycx)
@@ -222,7 +222,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
 
         #region Loại thông báo
         /// <summary>
-        /// Đăng ký khám chữa bệnhThông báo kết quả
+        /// Đăng ký khám chữa bệnh Thông báo kết quả
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -232,7 +232,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         {
             if (string.IsNullOrWhiteSpace(request.OrganizeId) || request.Data == null || string.IsNullOrWhiteSpace(request.Data.ApplyId))
             {
-                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Tổ chứcId,HISĐăng kýId không được để trống" };
+                return new BusResult<bool> { code = ResponseResultCode.FAIL, msg = "Tổ chức Id,HIS Đăng ký Id không được để trống" };
             }
             var applyInfo = await _remoteTreatedDmn.TreatedApplyInfo(request.Data.ApplyId, request.OrganizeId);
             if (applyInfo == null || applyInfo.sqzt == (int)EmunRemoteTreatedStu.ycx)
@@ -273,7 +273,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         {
             var header = ClinicApiHelper.HeaderItems(null);
             var resp = await _httpClient.GetAsync<ClinicResponseBase<TResponse>>(url, header);
-            //Xác thực thất bại thì lấy lạitoken
+            //Xác thực thất bại thì lấy lại token
             if (resp != null && resp.code == ((int)ClinicResponseCode.tokenfailed).ToString())
             {
                 var tokenResp = await _httpClient.GetAsync<ClinicResponseBase<ClinicTokenDTO>>(ClinicApiHelper.GetTokenRoute);
@@ -293,7 +293,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic.Controllers
         {
             var header = ClinicApiHelper.HeaderItems(null);
             var resp = await _httpClient.PostAsync<ClinicResponseBase<TResponse>>(url, request!.ToJson(), header);
-            //Xác thực thất bại thì lấy lạitoken
+            //Xác thực thất bại thì lấy lại token
             if (resp != null && resp.code == ((int)ClinicResponseCode.tokenfailed).ToString())
             {
                 var tokenResp = await _httpClient.GetAsync<ClinicResponseBase<ClinicTokenDTO>>(ClinicApiHelper.GetTokenRoute);

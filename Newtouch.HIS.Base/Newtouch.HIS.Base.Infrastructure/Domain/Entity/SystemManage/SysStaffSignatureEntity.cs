@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.Entity
         /// </summary>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// Nhân viênID
+        /// Nhân viên ID
         /// </summary>
         public string StaffId { get; set; }
 

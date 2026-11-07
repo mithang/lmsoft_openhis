@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.WebAPI.Manage.Models.Patient
 {
     /// <summary>
-    /// Bệnh nhânThông tin cơ sở đăng ký
+    /// Bệnh nhân Thông tin cơ sở đăng ký
     /// </summary>
     public class PatientRegisterBasic
     {
@@ -14,7 +14,7 @@
         /// </summary>
         public string? xm { get; set; }
         /// <summary>
-        /// BHYTSố thẻ
+        /// BHYT Số thẻ
         /// </summary>
         public string? kh { get; set; }
         /// <summary>
@@ -31,7 +31,7 @@
         public DateTime? csrq { get; set; }
     }
     /// <summary>
-    /// Bệnh nhânThông tin đăng ký
+    /// Bệnh nhân Thông tin đăng ký
     /// </summary>
     public class PatientRegisterDTO: PatientRegisterBasic
     {

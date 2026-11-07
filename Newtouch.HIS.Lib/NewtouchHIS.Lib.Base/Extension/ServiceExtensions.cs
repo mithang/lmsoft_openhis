@@ -337,7 +337,7 @@ namespace NewtouchHIS.Lib.Base.Extension
 
                 services.AddSingleton<ISqlSugarClient>(o =>
                 {
-                    //Thêm vòng lặp đa thuê baoAOP
+                    //Thêm vòng lặp đa thuê bao AOP
                     SqlSugarScope sqlSugar = new SqlSugarScope(configConnection);
                     configConnection.ForEach(c =>
                     {
@@ -375,7 +375,7 @@ namespace NewtouchHIS.Lib.Base.Extension
                             }
                         };
 
-                        ////SQLBáo lỗi
+                        ////SQL Báo lỗi
                         //client.Aop.OnError = (exp) =>
                         //{
                         //    var data = new Result
@@ -405,9 +405,9 @@ namespace NewtouchHIS.Lib.Base.Extension
                 //c.SwaggerDoc("v1", new OpenApiInfo
                 //{
                 //    Version = "v1",
-                //    Title = "OpenHISTổng hợp nguồn mởApi"
+                //    Title = "OpenHIS Tổng hợp nguồn mởApi"
                 //});
-                c.IncludeXmlComments(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{AppDomain.CurrentDomain.FriendlyName}.xml"), true);//WebAPITệp XML của dự án
+                c.IncludeXmlComments(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"{AppDomain.CurrentDomain.FriendlyName}.xml"), true);//WebAPI Tệp XML của dự án
                 //c.IncludeXmlComments(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "SugarProjectCore.xml"), true);//Tệp XML cần thiết cho các dự án khác
 
                 c.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme

@@ -27,7 +27,7 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
         public string Gender { get; set; }
         //Ngày sinh Y 
         public DateTime? Birthday { get; set; }
-        //CMND/CCCDsố Y
+        //CMND/CCCD số Y
         public string IdentityID { get; set; }
         // Khu bệnhsố
         public string WardNo { get; set; }
@@ -48,7 +48,7 @@ namespace Newtouch.Domain.DTO.OutputDto.Outpatient
         public string DoctorID { get; set; }
         // Bác sĩ đăng kýHọ tên
         public string DoctorName { get; set; }
-        // Bác sĩ đăng kýCMND/CCCD
+        // Bác sĩ đăng ký CMND/CCCD
         public string DoctorIdCard { get; set; }
         // Khám bệnhghi chépMã  Y Ngoại trú,Nhập viện,thểkiểm trasố
         public string RecordID { get; set; }

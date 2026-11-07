@@ -22,7 +22,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
 
 
         /// <summary>
-        /// Desc:Thẻ từ của việnSố thẻ(bao gồm bệnh nhân BHYT nghỉ hưu theo chế độ),hoặc BHYTSố thẻ
+        /// Desc:Thẻ từ của việnSố thẻ(bao gồm bệnh nhân BHYT nghỉ hưu theo chế độ),hoặc BHYT Số thẻ
         /// Default:
         /// Nullable:False
         /// </summary>           
@@ -453,7 +453,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets
         public string? brxz { get; set; }
 
         /// <summary>
-        /// Thẻ từ của việnSố thẻ(bao gồm bệnh nhân BHYT nghỉ hưu theo chế độ),hoặc BHYTSố thẻ
+        /// Thẻ từ của việnSố thẻ(bao gồm bệnh nhân BHYT nghỉ hưu theo chế độ),hoặc BHYT Số thẻ
         /// </summary>
         public string? blh { get; set; }
 

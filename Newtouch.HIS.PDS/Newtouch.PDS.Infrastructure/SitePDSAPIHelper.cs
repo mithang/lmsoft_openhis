@@ -6,7 +6,7 @@ namespace Newtouch.Infrastructure
     public class SitePDSAPIHelper
     {
         /// <summary>
-        /// BaseHệ thốngAPI
+        /// BaseHệ thống API
         /// </summary>
         private static readonly string SitePdsapiHost;
 

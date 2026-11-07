@@ -3,7 +3,7 @@
 namespace NewtouchHIS.Lib.Services
 {
     /// <summary>
-    /// APIThông tin danh tính người dùng do giao diện lấy qua ủy quyền - giao diện
+    /// API Thông tin danh tính người dùng do giao diện lấy qua ủy quyền - giao diện
     /// </summary>
     public interface IIdentityCache
     {

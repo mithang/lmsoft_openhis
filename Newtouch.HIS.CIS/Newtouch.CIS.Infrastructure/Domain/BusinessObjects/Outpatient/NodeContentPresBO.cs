@@ -28,7 +28,7 @@ namespace Newtouch.Domain.BusinessObjects
         public DateTime? zldzhdysj { get; set; }
 
         /// <summary>
-        /// Đồng bộđếnHIS của result
+        /// Đồng bộ đến HIS của result
         /// </summary>
         public string sendtohisResult { get; set; }
     }

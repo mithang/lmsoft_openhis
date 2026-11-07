@@ -13,19 +13,19 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysMedicineReceiptApprovalEntity : IEntity<SysMedicineReceiptApprovalEntity>
     {
         /// <summary>
-        /// Duyệt chứng từID
+        /// Duyệt chứng từ ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public string djshId { get; set; }
 
         /// <summary>
-        /// Cơ cấu tổ chứcID
+        /// Cơ cấu tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Chứng từ xuất nhập khoID
+        /// Chứng từ xuất nhập kho ID
         /// </summary>
         public string crkId { get; set; }
 

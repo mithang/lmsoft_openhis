@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.Entity
     public class OutpatientDrugRepercussionDetailEntity : IEntity<OutpatientDrugRepercussionDetailEntity>
     {
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
@@ -21,7 +21,7 @@ namespace Newtouch.HIS.Domain.Entity
         public long tfmxId { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 

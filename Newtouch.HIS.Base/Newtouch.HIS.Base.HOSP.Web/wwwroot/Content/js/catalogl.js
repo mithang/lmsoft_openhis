@@ -106,7 +106,7 @@
             break;
         case "1307":
             colModel = [
-                { label: 'Chẩn đoán bệnh tây yID', name: 'DIAG_LIST_ID', width: 100, align: 'left', hidden:true },
+                { label: 'Chẩn đoán bệnh tây y ID', name: 'DIAG_LIST_ID', width: 100, align: 'left', hidden:true },
                  { label: 'Chương', name: 'CPR', width: 30, align: 'left' },
                 { label: 'Phạm vi mã chương', name: 'CPR_CODE_SCP', width: 80, align: 'left' },
                 { label: 'Tên chương', name: 'CPR_NAME', width: 100, align: 'left' },
@@ -129,7 +129,7 @@
             break;
         case "1308":
             colModel = [
-                { label: 'Danh mục chuẩn phẫu thuậtID', name: 'OPRN_STD_LIST_ID', width: 130, align: 'left', hidden: true },
+                { label: 'Danh mục chuẩn phẫu thuật ID', name: 'OPRN_STD_LIST_ID', width: 130, align: 'left', hidden: true },
                  { label: 'Chương', name: 'CPR', width: 30, align: 'left' },
                 { label: 'Phạm vi mã chương', name: 'CPR_CODE_SCP', width: 60, align: 'left' },
                 { label: 'Tên chương', name: 'CPR_NAME', width: 100, align: 'left' },
@@ -161,7 +161,7 @@
             break;
         case "1310":
             colModel = [
-                { label: 'Danh mục quyết toán bệnhID', name: 'DISE_SETL_LIST_ID', width: 100, align: 'left', hidden: true },
+                { label: 'Danh mục quyết toán bệnh ID', name: 'DISE_SETL_LIST_ID', width: 100, align: 'left', hidden: true },
                  { label: 'Mã danh mục bệnh quyết toán theo bệnh', name: 'BYDISE_SETL_LIST_CODE', width: 100, align: 'left' },
                 { label: 'Tên bệnh quyết toán theo bệnh', name: 'BYDISE_SETL_DISE_NAME', width: 120, align: 'left' },
                 { label: 'Mã thao tác phẫu thuật giới hạn', name: 'QUA_OPRN_OPRT_CODE', width: 100, align: 'left' },
@@ -173,7 +173,7 @@
             break;
         case "1311":
             colModel = [
-                 { label: 'Danh mục điều trị phẫu thuật trong ngàyID', name: 'DAYSRG_TRT_LIST_ID', width: 100, align: 'left', hidden: true },
+                 { label: 'Danh mục điều trị phẫu thuật trong ngày ID', name: 'DAYSRG_TRT_LIST_ID', width: 100, align: 'left', hidden: true },
                  { label: 'Mã danh mục bệnh phẫu thuật trong ngày', name: 'DAYSRG_DISE_LIST_CODE', width: 120, align: 'left' },
                 { label: 'Tên bệnh phẫu thuật trong ngày', name: 'DAYSRG_DISE_NAME', width: 120, align: 'left' },
                 { label: 'Cờ hiệu lực', name: 'VALI_FLAG', width: 60, align: 'left' },
@@ -185,7 +185,7 @@
             break;
         case "1313":
             colModel = [
-                { label: 'Hình thái học khối uID', name: 'TMOR_MPY_ID', width: 100, align: 'left', hidden: true },
+                { label: 'Hình thái học khối u ID', name: 'TMOR_MPY_ID', width: 100, align: 'left', hidden: true },
                  { label: 'U bướu/Mã loại tế bào', name: 'TMOR_CELL_TYPE_CODE', width: 120, align: 'left' },
                 { label: 'U bướu/Loại tế bào', name: 'TMOR_CELL_TYPE', width: 120, align: 'left' },
                 { label: 'Mã phân loại hình thái học', name: 'MPY_TYPE_CODE', width: 100, align: 'left' },
@@ -197,7 +197,7 @@
             break;
         case "1314":
             colModel = [
-                { label: 'Chẩn đoán bệnh y học cổ truyềnID', name: 'TCM_DIAG_ID', width: 100, align: 'left', hidden: true },
+                { label: 'Chẩn đoán bệnh y học cổ truyền ID', name: 'TCM_DIAG_ID', width: 100, align: 'left', hidden: true },
                  { label: 'Chẩn đoán bệnh y học cổ truyền', name: 'CATY_CGY_CODE', width: 100, align: 'left' },
                 { label: 'Tên loại mục chuyên khoa', name: 'CATY_CGY_NAME', width: 120, align: 'left' },
                 { label: 'Mã loại mục phân loại hệ thống chuyên khoa', name: 'SPCY_SYS_TAXA_CODE', width: 120, align: 'left' },
@@ -211,7 +211,7 @@
             break;
         case "1315":
             colModel = [
-                { label: 'Chứng hậu Đông yID', name: 'TCMSYMP_ID', width: 100, align: 'left', hidden: true },
+                { label: 'Chứng hậu Đông y ID', name: 'TCMSYMP_ID', width: 100, align: 'left', hidden: true },
                  { label: 'Mã loại mục chứng hậu', name: 'SDS_CGY_CODE', width: 100, align: 'left' },
                 { label: 'Tên loại mục chứng hậu', name: 'SDS_CGY_NAME', width: 120, align: 'left' },
                 { label: 'Mã thuộc tính chứng hậu', name: 'SDS_ATTR_CODE', width: 120, align: 'left' },

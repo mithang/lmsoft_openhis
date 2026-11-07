@@ -17,7 +17,7 @@ namespace Newtouch.PDS.Requset.ResourcesOperate
         public List<ItemDetail> Items { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         [Required]
         public string OrganizeId { get; set; }

@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.DTO.DrugStorage
         public string djh { get; set; }
 
         /// <summary>
-        /// Chứng từ xuất nhập khoID
+        /// Chứng từ xuất nhập kho ID
         /// </summary>
         public string crkId { get; set; }
 

@@ -209,7 +209,7 @@ namespace Newtouch.Domain.ValueObjects
         public string klsl { get; set; }
 
         /// <summary>
-        /// bảnKhoa phòngThuốcID XT_YP_BMYPXX Khóa chính
+        /// bảnKhoa phòng Thuốc ID XT_YP_BMYPXX Khóa chính
         /// </summary>
         public string bmypId { get; set; }
         /// <summary>

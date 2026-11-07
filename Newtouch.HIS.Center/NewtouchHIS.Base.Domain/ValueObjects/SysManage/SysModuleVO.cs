@@ -31,7 +31,7 @@
         /// <returns></returns>
         public string? Code { get; set; }
         /// <summary>
-        /// Ứng dụngId,NhưCIS,Sett
+        /// Ứng dụngId,Như CIS,Sett
         /// </summary>
         public string? AppId { get; set; }
         /// <summary>

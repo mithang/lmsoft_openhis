@@ -34,7 +34,7 @@ namespace Newtouch.Application.Interface
         /// <summary>
         /// phútnhóm
         /// </summary>
-        /// <param name="tags">truyền dịchchi tiếtID</param>
+        /// <param name="tags">truyền dịchchi tiết ID</param>
         /// <param name="groupNo">Số nhóm</param>
         /// <returns></returns>
         string Grouping(List<long> tags, string groupNo);
@@ -42,7 +42,7 @@ namespace Newtouch.Application.Interface
         /// <summary>
         /// truyền dịchBắt đầu
         /// </summary>
-        /// <param name="tags">truyền dịchchi tiếtID</param>
+        /// <param name="tags">truyền dịchchi tiết ID</param>
         /// <param name="startDateTime">Thời gian bắt đầu</param>
         /// <param name="seatNum">ghếsố/Số giường</param>
         /// <returns></returns>
@@ -51,7 +51,7 @@ namespace Newtouch.Application.Interface
         /// <summary>
         /// truyền dịchKết thúc
         /// </summary>
-        /// <param name="tags">truyền dịchchi tiếtID</param>
+        /// <param name="tags">truyền dịchchi tiết ID</param>
         /// <param name="endDateTime">Thời gian kết thúc</param>
         /// <returns></returns>
         string EndInfusion(List<long> tags, DateTime endDateTime);
@@ -66,7 +66,7 @@ namespace Newtouch.Application.Interface
         /// <summary>
         /// Cài đặtghế ký tựsố
         /// </summary>
-        /// <param name="tag">Mục tiêuID</param>
+        /// <param name="tag">Mục tiêu ID</param>
         /// <param name="seatNum">ghế ký tựsố</param>
         /// <returns></returns>
         string SetSeatNum(long tag, string seatNum);

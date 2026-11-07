@@ -19,7 +19,7 @@ namespace Newtouch.Domain.IRepository
         IList<VisitDeptSetEntity> SelectData(string ysgh, string organizeId);
 
         /// <summary>
-        /// TheoIDvậtlýXóaghi chép
+        /// Theo ID vật lý Xóa ghi chép
         /// </summary>
         /// <param name="id"></param>
         /// <returns></returns>

@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysPharmacyDepartmentVEntity : IEntity<SysPharmacyDepartmentVEntity>
     {
         /// <summary>
-        /// Bộ phận nhà thuốcID
+        /// Bộ phận nhà thuốc ID
         /// </summary>
         public int yfbmId { get; set; }
 

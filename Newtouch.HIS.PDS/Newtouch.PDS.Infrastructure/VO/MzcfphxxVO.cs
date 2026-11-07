@@ -31,7 +31,7 @@ namespace Newtouch.HIS.Domain.VO
         public string ypCode { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 

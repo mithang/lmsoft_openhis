@@ -230,7 +230,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         public string tjr { get; set; }
 
         /// <summary>
-        /// Đăng ký khám đặt hẹn ngoại trúID Tương ứngNewtouch_CIS.dbo.mz_yygh.Id
+        /// Đăng ký khám đặt hẹn ngoại trú ID Tương ứngNewtouch_CIS.dbo.mz_yygh.Id
         /// </summary>
         public string yyghId { get; set; }
 
@@ -253,7 +253,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         /// </summary>
         public decimal? ScheduId { get; set; }
         /// <summary>
-        /// Khám bệnhID
+        /// Khám bệnh ID
         /// </summary>
         public string jzid { get; set; }
         public string jzpzlx { get; set; }

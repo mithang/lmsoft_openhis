@@ -15,7 +15,7 @@ namespace Newtouch.PDS.Requset
         public string cfh { get; set; }
 
         /// <summary>
-        /// Bệnh nhânID
+        /// Bệnh nhân ID
         /// </summary>
         public int patid { get; set; }
 

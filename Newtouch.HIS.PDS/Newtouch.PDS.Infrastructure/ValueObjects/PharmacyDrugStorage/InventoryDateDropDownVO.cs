@@ -3,7 +3,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class InventoryDateDropDownVO
     {
         /// <summary>
-        /// Kiểm kêID
+        /// Kiểm kê ID
         /// </summary>
         public string pdId { get; set; }
         

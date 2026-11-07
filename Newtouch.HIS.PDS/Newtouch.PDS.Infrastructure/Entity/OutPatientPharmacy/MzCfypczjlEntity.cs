@@ -13,14 +13,14 @@ namespace Newtouch.HIS.Domain.Entity
     public class MzCfypczjlEntity : IEntity<MzCfypczjlEntity>
     {
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public long Id { get; set; }
 
         /// <summary>
-        /// Chi tiết đơn ngoại trúID mz_cfmxKhóa chính bảng
+        /// Chi tiết đơn ngoại trú ID mz_cfmxKhóa chính bảng
         /// </summary>
         public long mzcfmxId { get; set; }
 

@@ -39,7 +39,7 @@ namespace NewtouchHIS.WebAPI.Manage.Models.OrderCenter
         [Required(ErrorMessage = "Thời gian thanh toán đơn hàng không được để trống")]
         public DateTime? PayTime { get; set; }
         /// <summary>
-        /// HISSố quyết toán nội bộ
+        /// HIS Số quyết toán nội bộ
         /// </summary>
         public string? SettTradeNo { get; set; }
         /// <summary>

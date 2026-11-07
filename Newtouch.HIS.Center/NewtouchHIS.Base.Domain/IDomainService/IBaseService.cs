@@ -9,14 +9,14 @@ namespace NewtouchHIS.Base.Domain
     public interface IBaseServices<TEntity> where TEntity : class
     {
         ///// <summary>
-        ///// TheoIDXóa theo danh sách
+        ///// Theo ID Xóa theo danh sách
         ///// </summary>
         ///// <param name="ids"></param>
         ///// <returns></returns>
         //Task<bool> DeleteByIds(object[] ids);
 
         ///// <summary>
-        ///// TheoIDXóa
+        ///// Theo ID Xóa
         ///// </summary>
         ///// <param name="id"></param>
         ///// <returns></returns>

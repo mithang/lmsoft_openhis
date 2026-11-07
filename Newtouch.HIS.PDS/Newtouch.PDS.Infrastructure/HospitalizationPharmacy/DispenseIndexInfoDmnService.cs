@@ -68,7 +68,7 @@ namespace Newtouch.HIS.DomainServices
             sqlParList.Add(new SugarParameter("@OrganizeId", OperatorProvider.GetCurrent().OrganizeId));//OrganizeId
             sqlParList.Add(new SugarParameter("@user_code", OperatorProvider.GetCurrent().UserCode));//Số lượng
             sqlParList.Add(new SugarParameter("@adt_tdrq", model.jdrq));// Ngày lấy hồ sơ
-            sqlParList.Add(new SugarParameter("@yzzxid", ""));//Thực hiện y lệnhID
+            sqlParList.Add(new SugarParameter("@yzzxid", ""));//Thực hiện y lệnh ID
             sqlParList.Add(outpar);
             sqlParList.Add(new SugarParameter("@as_fkcbz", "0"));//Cờ tồn kho âm 0 Không dùng tồn kho âm 1Sử dụng  
             PdsDb.GetConnection().Ado.ExecuteCommand(" Exec YP_XT_OP_PY @ai_nm,@ai_mxnm,@as_yp,"
@@ -96,7 +96,7 @@ namespace Newtouch.HIS.DomainServices
             var outpar = new SugarParameter("@a_err", "") { DbType = System.Data.DbType.AnsiString, Size = 100 };
             outpar.Direction = System.Data.ParameterDirection.Output;
             var sqlParList = new List<SugarParameter>();
-            sqlParList.Add(new SugarParameter("@a_yzId", model.zxId));//Mã nội bộ đơn thuốc/Y lệnhID
+            sqlParList.Add(new SugarParameter("@a_yzId", model.zxId));//Mã nội bộ đơn thuốc/Y lệnh ID
             sqlParList.Add(new SugarParameter("@a_yp", model.ypCode));//Thuốccode
             sqlParList.Add(new SugarParameter("@adt_tdrq", model.lyyf));//Bộ phận dược(tương ứngks)  
             sqlParList.Add(new SugarParameter("@a_yjbm", model.sl));//Số lượng
@@ -434,8 +434,8 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
         /// <summary>
         /// Xóa thông tin y lệnh
         /// </summary>
-        /// <param name="yzId">Y lệnhID</param>
-        /// <param name="zxId">Thực hiện y lệnhID</param>
+        /// <param name="yzId">Y lệnh ID</param>
+        /// <param name="zxId">Thực hiện y lệnh ID</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
         /// <returns></returns>
@@ -490,7 +490,7 @@ ORDER BY o.yzh, o.zxId, o.ypmc";
         #region  Lấy thông tin dữ liệu có thể thực hiện thao tác trả thuốc bằng cách tra chuỗi bảng chi tiết trả thuốc và bảng số lô y lệnh
 
         /// <summary>
-        /// Lấy bảng chi tiết trả thuốc,Bảng y lệnh liên kếtID
+        /// Lấy bảng chi tiết trả thuốc,Bảng y lệnh liên kết ID
         /// </summary>
         /// <returns></returns>
         public List<ModelZyTyYszyzIdInfoVO> YpTyyszyzidList()

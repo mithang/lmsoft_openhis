@@ -151,7 +151,7 @@ namespace NewtouchHIS.Base.Domain
         /// TheoKhóa chínhCập nhật Cột
         /// </summary>
         /// <param name="model">Đối tượng thực thể</param>
-        /// <param name="ignoreAllNullColumns">Có hay không NULLcột không cập nhật</param>
+        /// <param name="ignoreAllNullColumns">Có hay không NULL cột không cập nhật</param>
         /// <param name="isOffIdentity">Có bỏ qua hay không Cột tự tăng</param>
         /// <param name="ignoreAllDefaultValue">Có hay không Bỏ qua cột giá trị mặc định</param>
         /// <returns></returns>

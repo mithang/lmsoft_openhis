@@ -7,12 +7,12 @@ using static Newtouch.Common.Web.APIRequestHelper;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Hệ thống thanh toán APILớp trợ giúp yêu cầu
+    /// Hệ thống thanh toán API Lớp trợ giúp yêu cầu
     /// </summary>
     public class SiteSettAPIHelper
     {
         /// <summary>
-        /// Thanh toánAPI
+        /// Thanh toán API
         /// </summary>
         private static readonly string _SiteSettAPIHost;
 
@@ -83,7 +83,7 @@ namespace Newtouch.Infrastructure
         #region private methods
 
         /// <summary>
-        /// Thanh toánAPI Host
+        /// Thanh toán API Host
         /// </summary>
         private static string SiteSettApiHost
         {
@@ -109,7 +109,7 @@ namespace Newtouch.Infrastructure
         }
 
         /// <summary>
-        /// Hệ thống thanh toánAPI Url
+        /// Hệ thống thanh toán API Url
         /// </summary>
         /// <param name="url">url như'~/Home/Index'</param>
         /// <returns></returns>

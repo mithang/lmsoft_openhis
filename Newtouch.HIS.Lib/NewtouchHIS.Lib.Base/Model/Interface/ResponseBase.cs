@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Lib.Base.Model
 {
     /// <summary>
-    /// APIphản hồi
+    /// API phản hồi
     /// </summary>
     public class ResponseBase
     {
@@ -16,7 +16,7 @@
         public string? msg { get; set; }
 
         /// <summary>
-        /// Dữ liệu phản hồi (ResponseResultCode.SUCCESSdữ liệu trả về khi )
+        /// Dữ liệu phản hồi (ResponseResultCode.SUCCESS dữ liệu trả về khi )
         /// </summary>
         public object? data { get; set; }
 

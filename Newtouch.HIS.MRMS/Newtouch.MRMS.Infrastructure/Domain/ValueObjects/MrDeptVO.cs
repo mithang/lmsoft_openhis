@@ -26,11 +26,11 @@ namespace Newtouch.MR.ManageSystem.Domain.ValueObjects
         /// </summary>
         public string Id { get; set; }
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string organizeId { get; set; }
         /// <summary>
-        /// Khoa bệnh ánID
+        /// Khoa bệnh án ID
         /// </summary>
         public string baksId { get; set; }
         /// <summary>

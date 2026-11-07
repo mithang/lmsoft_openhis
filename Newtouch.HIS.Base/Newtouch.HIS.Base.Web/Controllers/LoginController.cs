@@ -43,7 +43,7 @@ namespace Newtouch.HIS.Base.Web.Controllers
         [HttpGet]
         public override IActionResult Index()
         {
-            //Loại bỏSSODấu nguồn đăng nhập
+            //Loại bỏ SSO Dấu nguồn đăng nhập
             HttpWebHelper.RemoveCookie(ConfigInitHelper.SysConfig.AppId + "_LoginFromFlag");
 
             return base.Index();

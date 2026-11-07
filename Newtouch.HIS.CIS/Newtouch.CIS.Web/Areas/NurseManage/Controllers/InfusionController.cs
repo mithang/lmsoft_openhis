@@ -233,7 +233,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <summary>
         /// Cài đặtghế ký tựsố
         /// </summary>
-        /// <param name="tag">Mục tiêuID</param>
+        /// <param name="tag">Mục tiêu ID</param>
         /// <param name="seatNum">ghế ký tựsố</param>
         /// <returns></returns>
         public IActionResult SetSeatNum(long tag, string seatNum)

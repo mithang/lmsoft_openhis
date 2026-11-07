@@ -476,7 +476,7 @@ namespace Newtouch.Infrastructure
     }
 
     /// <summary>
-    /// Dấu hiệu ngoại trú/nội trú  0 Chung 1 chỉNgoại trú 2 chỉNhập viện 3 Hệ thống(Ngoại trúNhập việnđềukhôngcó thểdùng)VDnếu:nhàgiường
+    /// Dấu hiệu ngoại trú/nội trú  0 Chung 1 chỉNgoại trú 2 chỉNhập viện 3 Hệ thống(Ngoại trúNhập việnđềukhôngcó thểdùng)VD nếu:nhàgiường
     /// </summary>
     public enum Enummzzybz
     {
@@ -603,7 +603,7 @@ namespace Newtouch.Infrastructure
         /// <summary>
         /// phốigửiđếnKhoa
         /// </summary>
-        [Description("Xuất kho đến khoa")] //phiếusố phiếuckZKS111111111111
+        [Description("Xuất kho đến khoa")] //phiếusố phiếu ckZKS111111111111
         chukuzhikeshi = 7,
 
         /// <summary>

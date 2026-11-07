@@ -513,7 +513,7 @@
             return false;
         }
         if (!!para.SFZH && tt != para.NL) {
-            $.modalAlert('Thông tin bệnh nhân Tuổivới số CMND/CCCDkhông khớp', 'warning');
+            $.modalAlert('Thông tin bệnh nhân Tuổi với số CMND/CCCD không khớp', 'warning');
             return false;
         }
         var qq;
@@ -525,11 +525,11 @@
         }
 
         if (!!para.SFZH && qq != para.XB) {
-            $.modalAlert('Thông tin bệnh nhân Giới tínhvới số CMND/CCCDkhông khớp', 'warning');
+            $.modalAlert('Thông tin bệnh nhân Giới tính với số CMND/CCCD không khớp', 'warning');
             return false;
         }
         if (!!para.SFZH && birthday != para.CSRQ) {
-            $.modalAlert('Thông tin bệnh nhân Ngày sinhvới số CMND/CCCDkhông khớp', 'warning');
+            $.modalAlert('Thông tin bệnh nhân Ngày sinh với số CMND/CCCD không khớp', 'warning');
             return false;
         }
         var jecheck = amtCheck();

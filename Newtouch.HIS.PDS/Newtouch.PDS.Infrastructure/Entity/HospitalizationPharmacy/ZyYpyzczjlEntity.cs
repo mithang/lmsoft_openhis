@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.Entity
     public class ZyYpyzczjlEntity : IEntity<ZyYpyzczjlEntity>
     {
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
@@ -25,17 +25,17 @@ namespace Newtouch.HIS.Domain.Entity
         public string OrganizeId { get; set; }
 
         /// <summary>
-        /// Thông tin y lệnh thuốcID zy_ypyzxxKhóa chính bảngID
+        /// Thông tin y lệnh thuốc ID zy_ypyzxxKhóa chính bảng ID
         /// </summary>
         public long ypyzxxId { get; set; }
 
         /// <summary>
-        /// Thực hiện y lệnhID
+        /// Thực hiện y lệnh ID
         /// </summary>
         public string zxId { get; set; }
 
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         public string yzId { get; set; }
 
@@ -82,7 +82,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string zytyapplyno { get; set; }
 
         /// <summary>
-        /// Đơn xin phát thuốc nội trúID
+        /// Đơn xin phát thuốc nội trú ID
         /// </summary>
         public string zyfyapplyno { get; set; }
 

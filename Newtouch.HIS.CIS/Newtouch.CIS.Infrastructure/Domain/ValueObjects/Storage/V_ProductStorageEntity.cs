@@ -10,7 +10,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string ks { get; set; }
         public string ksName { get; set; }
         /// <summary>
-        /// vật tưID
+        /// vật tư ID
         /// </summary>
         public string productId { get; set; }
 

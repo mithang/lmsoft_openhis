@@ -19,7 +19,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string userCode { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string organizeId { get; set; }
 

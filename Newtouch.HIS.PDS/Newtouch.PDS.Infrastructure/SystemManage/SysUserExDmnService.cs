@@ -182,7 +182,7 @@ where a.UserId = @userId";
         }
 
         /// <summary>
-        /// TheoOrganizeIdLấy Nhân sự hệ thốngVO(và có tương ứngSysUser)
+        /// TheoOrganizeIdLấy Nhân sự hệ thống VO(và có tương ứngSysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

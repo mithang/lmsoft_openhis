@@ -40,7 +40,7 @@ namespace Newtouch.Domain.ViewModels
         public string tmpId { get; set; }
 
         /// <summary>
-        /// xt_bespeakRegisterbảngID
+        /// xt_bespeakRegister bảng ID
         /// </summary>
         public string tabId { get; set; }
 

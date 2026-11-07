@@ -41,7 +41,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.RCIntegrateRequest
         public string mobile { get; set; }
 
         /// <summary>
-        /// 18  ký tựCMND/CCCDsố
+        /// 18  ký tự CMND/CCCD số
         /// bắt buộc
         /// </summary>
         public string certid { get; set; }

@@ -20,8 +20,8 @@ namespace Newtouch.HIS.Repository
         /// <summary>
         /// Lấy thông tin xếp thuốc nội trú hiệu lực chưa xếp kệ  Phương thức này không ghi nhật ký
         /// </summary>
-        /// <param name="yzId">Y lệnhID</param>
-        /// <param name="zxId">Thực hiện y lệnhID</param>
+        /// <param name="yzId">Y lệnh ID</param>
+        /// <param name="zxId">Thực hiện y lệnh ID</param>
         /// <param name="ypCode"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>
@@ -44,8 +44,8 @@ WHERE ypCode=@ypCode AND zxId=@zxId AND yzId=@yzId AND OrganizeId=@OrganizeId AN
         /// <summary>
         /// Lấy thông tin xếp thuốc nội trú hiệu lực chưa xếp kệ  Phương thức này không ghi nhật ký
         /// </summary>
-        /// <param name="yzId">Y lệnhID</param>
-        /// <param name="zxId">Thực hiện y lệnhID</param>
+        /// <param name="yzId">Y lệnh ID</param>
+        /// <param name="zxId">Thực hiện y lệnh ID</param>
         /// <param name="ypCode"></param>
         /// <param name="ph"></param>
         /// <param name="organizeId"></param>

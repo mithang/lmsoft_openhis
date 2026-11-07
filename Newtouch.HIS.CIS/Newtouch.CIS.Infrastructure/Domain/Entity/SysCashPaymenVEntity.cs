@@ -31,7 +31,7 @@ namespace Newtouch.Domain.Entity
         public string zt { get; set; }
 
         /// <summary>
-        /// tạoNgười dùngID
+        /// tạoNgười dùng ID
         /// </summary>
         public string CreatorCode { get; set; }
 
@@ -46,7 +46,7 @@ namespace Newtouch.Domain.Entity
         public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Sửa cuốiNgười dùngID
+        /// Sửa cuốiNgười dùng ID
         /// </summary>
         public string LastModifierCode { get; set; }
 

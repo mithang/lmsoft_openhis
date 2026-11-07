@@ -27,7 +27,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string llsl { get; set; }
         
         /// <summary>
-        /// vật tưID
+        /// vật tư ID
         /// </summary>
         public string productId { get; set; }
 
@@ -92,7 +92,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
         public string py { get; set; }
 
         /// <summary>
-        /// Kiểm kêchi tiếtID
+        /// Kiểm kêchi tiết ID
         /// </summary>
         public long pdmxId { get; set; }
         

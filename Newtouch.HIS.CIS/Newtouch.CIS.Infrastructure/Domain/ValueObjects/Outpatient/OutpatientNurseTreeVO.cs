@@ -4,7 +4,7 @@ namespace Newtouch.Domain.ValueObjects
     public class OutpatientNurseTreeVO
     {
         /// <summary>
-        /// Khám bệnhID
+        /// Khám bệnh ID
         /// </summary>
         public string jzId { get; set; }
 

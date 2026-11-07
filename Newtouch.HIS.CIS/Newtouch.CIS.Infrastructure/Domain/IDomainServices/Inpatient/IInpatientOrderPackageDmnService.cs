@@ -10,7 +10,7 @@ namespace Newtouch.Domain.IDomainServices
     {
         string saveAsTemplate(InpatientOrderPackageEntity mbObj, List<InpatientOrderPackageVO> mxList, string orgId);
         /// <summary>
-        /// TheomẫuIDtìmđếnmẫunội dung
+        /// Theo mẫu ID tìm đến mẫu nội dung
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
@@ -19,7 +19,7 @@ namespace Newtouch.Domain.IDomainServices
 
         List<HistoricalOrdersRequestDto> GetHistoricalOrders(string zyh,string type,string kssj,string jssj,string cqorls, string orgId);
         /// <summary>
-        /// TheomẫuIDtìmđếnmẫuChi tiết
+        /// Theo mẫu ID tìm đến mẫu Chi tiết
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>

@@ -8,7 +8,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
     public class MzsyypxxVO
     {
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         public long Id { get; set; }
         public string syzxId { get; set; }
@@ -30,7 +30,7 @@ namespace Newtouch.Domain.ViewModels.Outpatient
         public string fph { get; set; }
 
         /// <summary>
-        /// Đơn thuốcchi tiếtID
+        /// Đơn thuốcchi tiết ID
         /// </summary>
         public int cfmxId { get; set; }
 

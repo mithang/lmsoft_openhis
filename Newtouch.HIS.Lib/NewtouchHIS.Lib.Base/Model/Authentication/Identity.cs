@@ -1,7 +1,7 @@
 ﻿namespace NewtouchHIS.Lib.Base.Model
 {
     /// <summary>
-    /// APIDanh tính người truy cập
+    /// API Danh tính người truy cập
     /// </summary>
     public abstract class Identity
     {

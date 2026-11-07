@@ -471,7 +471,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <param name="expectedcyrq"></param>
         /// <param name="fph"></param>
         /// <param name="feeRelated">Số tiềnvàThông tin thanh toán</param>
-        /// <param name="ybfeeRelated">Liên quan BHYTThông tin phí</param>
+        /// <param name="ybfeeRelated">Liên quan BHYT Thông tin phí</param>
         /// <param name="outTradeNo">Số giao dịch thanh toán</param>
         /// <returns></returns>
         [HttpPost]
@@ -565,7 +565,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
             if (_sysConfigRepo.GetBoolValueByCode("HOSP_INTERFACE_WITH_CPOE", this.OrganizeId) == true)
             {
-                //Đồng bộzybz Chờquyết toán choCIS
+                //Đồng bộzybz Chờquyết toán cho CIS
                 Newtouch.Sett.Infrastructure.SiteCISAPIHelper.UpdateInpatientBasicInfo(new InpatientPatientInfoDTO()
                 {
                     zyh = zyh,

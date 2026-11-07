@@ -21,7 +21,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.ExtClinic
     public class TreatedApplyResultDTO
     {
         /// <summary>
-        /// Từ xaĐăng ký khám chữa bệnhID
+        /// Từ xaĐăng ký khám chữa bệnh ID
         /// </summary>
         public string id { get; set; }
         /// <summary>

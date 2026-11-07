@@ -30,7 +30,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public string ks { get; set; }
 
         /// <summary>
-        /// vật tưID
+        /// vật tư ID
         /// </summary>
         public string productId { get; set; }
 
@@ -60,7 +60,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         public int Sysl { get; set; }
 
         /// <summary>
-        /// Đơn vịID  vàgiáôphốihợpSử dụng,vàzhyzthànhbộ
+        /// Đơn vị ID  vàgiáôphốihợpSử dụng,vàzhyzthànhbộ
         /// </summary>
         public string UnitId { get; set; }
 

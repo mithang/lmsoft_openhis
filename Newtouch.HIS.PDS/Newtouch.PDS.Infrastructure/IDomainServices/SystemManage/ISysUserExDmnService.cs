@@ -41,7 +41,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         void UpdateUserRole(string keyValue, string[] roleList);
 
         /// <summary>
-        /// TheoOrganizeIdLấy Nhân sự hệ thốngVO(và có tương ứngSysUser)
+        /// TheoOrganizeIdLấy Nhân sự hệ thống VO(và có tương ứngSysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

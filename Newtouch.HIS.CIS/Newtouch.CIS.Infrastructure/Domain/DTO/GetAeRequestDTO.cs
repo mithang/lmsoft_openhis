@@ -16,7 +16,7 @@ namespace Newtouch.Domain.DTO
         public string jzys { get; set; }
 
         /// <summary>
-        /// tổ chứckếtcấu trúcID
+        /// tổ chứckếtcấu trúc ID
         /// </summary>
         public string organizeId { get; set; }
     }

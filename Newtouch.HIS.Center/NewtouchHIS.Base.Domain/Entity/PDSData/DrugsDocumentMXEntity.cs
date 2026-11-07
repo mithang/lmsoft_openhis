@@ -15,7 +15,7 @@ namespace NewtouchHIS.Base.Domain.Entity.PDSData
         public System.String crkmxId { get; set; }
 
         /// <summary>
-        /// Từ bảng XT_YP_CRKDJKcủaKhóa chính
+        /// Từ bảng XT_YP_CRKDJK của Khóa chính
         /// </summary>
         public System.String crkId { get; set; }
 

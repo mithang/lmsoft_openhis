@@ -8,12 +8,12 @@ namespace Newtouch.Domain.ViewModels
     public class TreatmentVo
     {
         /// <summary>
-        /// Khám bệnhID
+        /// Khám bệnh ID
         /// </summary>
         public string jzId { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 
@@ -232,12 +232,12 @@ namespace Newtouch.Domain.ViewModels
         public string xyzdmc { get; set; }
 
         /// <summary>
-        /// Chẩn đoán YHCTMã
+        /// Chẩn đoán YHCT Mã
         /// </summary>
         public string zyzdCode { get; set; }
 
         /// <summary>
-        /// Chẩn đoán YHCTTên
+        /// Chẩn đoán YHCT Tên
         /// </summary>
         public string zyzdmc { get; set; }
     }

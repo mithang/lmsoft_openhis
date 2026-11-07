@@ -112,7 +112,7 @@ namespace Newtouch.Domain.IDomainServices
             IList<SysMedicineUsageVEntity> ypyfList);
 
         /// <summary>
-        /// Hủy đơn thuốc(vàđẩychoHIS)
+        /// Hủy đơn thuốc(và đẩy cho HIS)
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -123,7 +123,7 @@ namespace Newtouch.Domain.IDomainServices
         void delDzcf(string orgId, string mzh, string cfId
             , out int apicflx, out string apicfh, out bool isAlertinherit);
         /// <summary>
-        /// Hủy bỏHISphiếutờ
+        /// Hủy bỏ HIS phiếu tờ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>
@@ -132,7 +132,7 @@ namespace Newtouch.Domain.IDomainServices
             , int apicflx, string apicfh);
 
         /// <summary>
-        /// Hủy bỏPDSphiếutờ
+        /// Hủy bỏ PDS phiếu tờ
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="mzh"></param>

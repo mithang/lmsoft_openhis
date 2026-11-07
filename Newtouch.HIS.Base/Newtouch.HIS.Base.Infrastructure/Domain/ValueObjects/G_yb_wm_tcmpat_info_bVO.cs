@@ -172,13 +172,13 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string CRTE_TIME { get; set; }
         //	Thời gian cập nhật dữ liệu				
         public string UPDT_TIME { get; set; }
-        ////	Người tạoID				
+        ////	Người tạo ID				
         //public string CRTER_ID { get; set; }
         ////	Tên người tạo				
         //public string CRTER_NAME { get; set; }
         ////	Tạo số hiệu tổ chức				
         //public string CRTE_OPTINS_NO { get; set; }
-        ////	Người xử lýID				
+        ////	Người xử lý ID				
         //public string OPTER_ID { get; set; }
         ////	Tên người xử lý				
         //public string OPTER_NAME { get; set; }
@@ -210,7 +210,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         //public string LSTD_LIC_HOLDER { get; set; }
         ////	Cờ ban hành				
         //public string ISU_FLAG { get; set; }
-        ////	Truyền dữ liệuID				
+        ////	Truyền dữ liệu ID				
         //public string TRAM_DATA_ID { get; set; }
         ////	Thời gian hiệu lực				
         //public DateTime? EFFT_TIME { get; set; }

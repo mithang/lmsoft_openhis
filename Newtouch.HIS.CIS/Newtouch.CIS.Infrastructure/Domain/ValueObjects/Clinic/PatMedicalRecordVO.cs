@@ -190,7 +190,7 @@ namespace Newtouch.Domain.ValueObjects.Clinic
         /// </summary>
         public string icd10 { get; set; }
         /// <summary>
-        /// Chẩn đoán YHCTGhi chú
+        /// Chẩn đoán YHCT Ghi chú
         /// </summary>
         public string zdbz { get; set; }
     }

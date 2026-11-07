@@ -337,7 +337,7 @@ namespace Newtouch.HIS.Web.Controllers
         /// </summary>
         /// <param name="p"></param>
         /// <param name="ypCode">Mã thuốc</param>
-        /// <param name="keyValue">ThuốcID</param>
+        /// <param name="keyValue">Thuốc ID</param>
         /// <returns></returns>
         //public IActionResult SubmitEmpowermentPharmacyDepartment(List<string> p, string ypCode, int? keyValue)
         //{

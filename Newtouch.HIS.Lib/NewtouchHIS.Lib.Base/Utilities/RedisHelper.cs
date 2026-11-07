@@ -178,7 +178,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         }
 
         /// <summary>
-        /// Toàn bộ List tạo lạiSET
+        /// Toàn bộ List tạo lại SET
         /// </summary>
         /// <typeparam name="T"></typeparam>
         /// <param name="key"></param>
@@ -295,7 +295,7 @@ namespace NewtouchHIS.Lib.Base.Utilities
         #endregion
 
         ///// <summary>
-        ///// LISTMột Item nào đó trong đó tạo lạiSET
+        ///// LIST Một Item nào đó trong đó tạo lại SET
         ///// </summary>
         ///// <typeparam name="T"></typeparam>
         ///// <param name="key"></param>

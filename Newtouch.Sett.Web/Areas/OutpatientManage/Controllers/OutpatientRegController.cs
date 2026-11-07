@@ -335,7 +335,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             return Success(null,data);
         }
         /// <summary>
-        /// lấyBHYTthông tin cần thiết đăng ký khám
+        /// lấy BHYT thông tin cần thiết đăng ký khám
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -369,8 +369,8 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         /// <param name="sfrq"></param>
         /// <param name="fph"></param>
         /// <param name="feeRelated"></param>
-        /// <param name="brxz">tính chất bệnh nhândo trang truyền sang,vìlàBHYTbệnh nhân có thể đăng ký số tự chi trả</param>
-        /// <param name="ybjsh">BHYTphíasố quyết toán(BHYTphía đãđăng ký khám)</param>
+        /// <param name="brxz">tính chất bệnh nhândo trang truyền sang,vì là BHYT bệnh nhân có thể đăng ký số tự chi trả</param>
+        /// <param name="ybjsh">BHYT phía số quyết toán(BHYT phía đãđăng ký khám)</param>
         /// <param name="qzjzxh">số thứ tự khám tiền tố</param>
         /// <param name="qzmzh">tiền tốsố khám ngoại trú</param>
         /// <returns></returns>
@@ -406,7 +406,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             {
                 if (!string.IsNullOrWhiteSpace(ybjsh))
                 {
-                    //BHYTphía đãđăng ký khám,HISđăng ký khámthất bại,phải hủyBHYTphíacủađăng ký khám,nhắc đăng ký lại
+                    //BHYT phía đãđăng ký khám,HIS đăng ký khámthất bại,phải hủy BHYT phía của đăng ký khám,nhắc đăng ký lại
                     //20181018tạiClientgọi
 
                 }
@@ -549,7 +549,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 		    decimal zfje = Convert.ToDecimal(0.0000);
 			if (ghdata != null) foreach (var item in ghdata)
 		    {
-				//xác địnhkhoản mụclàBHYTkhoản mụchay tự chi trảkhoản mục,ở đây vìlàsypcchắc chắnlànull,vì vậy khi tra cứu trước tiên dùng trường này làmlàBHYTdấu hiệugán trường,có thể không thêm trường mới nữa
+				//xác địnhkhoản mục là BHYT khoản mụchay tự chi trảkhoản mục,ở đây vìlàsypcchắc chắnlànull,vì vậy khi tra cứu trước tiên dùng trường này làm là BHYT dấu hiệugán trường,có thể không thêm trường mới nữa
 			    if (item.issc==1)
 			    {
 					ybje += Convert.ToDecimal(item.je);

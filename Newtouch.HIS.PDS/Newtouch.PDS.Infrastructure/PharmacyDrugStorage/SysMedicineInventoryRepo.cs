@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Repository
         }
 
         /// <summary>
-        /// Theo kiểm kêIDLấy thông tin kiểm kê
+        /// Theo kiểm kê ID Lấy thông tin kiểm kê
         /// </summary>
         /// <param name="pdId"></param>
         /// <param name="organizeId"></param>

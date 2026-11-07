@@ -3,7 +3,7 @@
 namespace NewtouchHIS.Lib.Framework.Filter
 {
     /// <summary>
-    /// MVClớp cơ sở bộ lọc
+    /// MVC lớp cơ sở bộ lọc
     /// </summary>
     public abstract class ActionFilterAttributeBase : ActionFilterAttribute
     {

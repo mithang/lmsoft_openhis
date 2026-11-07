@@ -168,7 +168,7 @@ namespace Newtouch.Infrastructure
             {
                 return false;//Kiểm tra mã kiểm tra  
             }
-            return true;//Phù hợpGB11643-1999Tiêu chuẩn  
+            return true;//Phù hợp GB11643-1999Tiêu chuẩn  
         }
 
 

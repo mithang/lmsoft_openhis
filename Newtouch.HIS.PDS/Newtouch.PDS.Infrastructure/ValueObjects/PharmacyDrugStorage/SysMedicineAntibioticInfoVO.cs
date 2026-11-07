@@ -54,12 +54,12 @@ namespace Newtouch.HIS.Domain.ValueObjects.PharmacyDrugStorage
         public decimal? pcfwEnd { get; set; }
 
         /// <summary>
-        /// DDDgiá trị
+        /// DDD giá trị
         /// </summary>
         public decimal? DDDnum { get; set; }
 
         /// <summary>
-        /// DDDĐơn vị
+        /// DDD Đơn vị
         /// </summary>
         public string DDDdw { get; set; }
 

@@ -38,7 +38,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string dlCode { get; set; }
 
         /// <summary>
-        /// Chi tiết kiểm kêID
+        /// Chi tiết kiểm kê ID
         /// </summary>
         public string pdmxId { get; set; }
 

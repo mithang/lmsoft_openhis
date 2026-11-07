@@ -11,7 +11,7 @@ namespace Newtouch.Repository
         /// <summary>
         /// Mặc địnhHàm khởi tạosố
         /// </summary>
-        /// <param name="databaseFactory">EFtrêndướivănNhà máy</param>
+        /// <param name="databaseFactory">EF trên dưới văn Nhà máy</param>
         public InpatientBedLevelChargeItemRepo()
             : base()
         {

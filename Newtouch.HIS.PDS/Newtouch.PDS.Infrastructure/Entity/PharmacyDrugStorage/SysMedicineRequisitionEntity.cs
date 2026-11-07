@@ -13,14 +13,14 @@ namespace Newtouch.HIS.Domain.Entity
     public class SysMedicineRequisitionEntity : IEntity<SysMedicineRequisitionEntity>
     {
         /// <summary>
-        /// Đơn lĩnhID
+        /// Đơn lĩnh ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true)]
         public string sldId { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 

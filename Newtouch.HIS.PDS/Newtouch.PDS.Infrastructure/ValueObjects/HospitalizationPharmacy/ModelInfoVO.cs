@@ -44,7 +44,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class DispenseBQRYXXIndexVO
     {
         public int Id { get; set; }//Khóa chính
-        public string zxId { get; set; }//Thực hiện y lệnhID
+        public string zxId { get; set; }//Thực hiện y lệnh ID
         public string zyh { get; set; }//Số nội trú
         public string xm { get; set; }//Họ tên
         public string cw { get; set; }//Giường bệnh
@@ -83,12 +83,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
     }
 
     /// <summary>
-    /// Trả thuốc nội trú,Y lệnh trạm bác sĩID
+    /// Trả thuốc nội trú,Y lệnh trạm bác sĩ ID
     /// </summary>
     public class ModelZyTyYszyzIdInfoVO
     {
-        public int yszyzId { get; set; } //Y lệnhID  yszyzid Trạm bác sĩ Y lệnhID
-        public int zxId { get; set; } //Thực hiện y lệnhID 
+        public int yszyzId { get; set; } //Y lệnh ID  yszyzid Trạm bác sĩ Y lệnh ID
+        public int zxId { get; set; } //Thực hiện y lệnh ID 
         public string yzdm { get; set; }// Mã y lệnh
     }
 
@@ -98,11 +98,11 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class ModelBQBRYZZXTYInfoVO
     {
         public int Id { get; set; }//Khóa chính
-        public string zxId { get; set; } //Thực hiện y lệnhID
+        public string zxId { get; set; } //Thực hiện y lệnh ID
         public DateTime? tdrq { get; set; } //Ngày trả hồ sơ
         public string ypCode { get; set; } //ThuốcCode
         public decimal tysl { get; set; }//Số lượng trả thuốc
-        public int tymxId { get; set; }//Chi tiết trả thuốcID
+        public int tymxId { get; set; }//Chi tiết trả thuốc ID
         public string tybz { get; set; }// Ghi chú trả thuốc
         public DateTime? tyjlrq { get; set; }//Ngày ghi trả thuốc
         public string tyxh { get; set; }//Số thứ tự trả thuốc 
@@ -122,12 +122,12 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class DispensingDrugsParam
     {
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         public string yzId { get; set; }
 
         /// <summary>
-        /// Thực hiện y lệnhID
+        /// Thực hiện y lệnh ID
         /// </summary>
         public string zxId { get; set; }
 
@@ -152,7 +152,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string organizeId { get; set; }
 

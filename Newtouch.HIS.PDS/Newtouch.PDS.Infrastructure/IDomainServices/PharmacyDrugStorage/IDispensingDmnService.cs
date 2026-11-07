@@ -49,7 +49,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string OutPatientBookCancel(List<OutpatientPrescriptionDetailBatchNumberEntity> mxphlist, string organizeId, string creatorCode);
 
         /// <summary>
-        /// HISHủy thanh toán  Trả lại đóng băng
+        /// HIS Hủy thanh toán  Trả lại đóng băng
         /// </summary>
         /// <param name="mxphlist"></param>
         /// <param name="organizeId"></param>
@@ -120,9 +120,9 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <summary>
         /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
-        /// <param name="yzId">Y lệnhID</param>
-        /// <param name="zxId">Thực hiệnID</param>
-        /// <param name="organizeId">Tổ chứcID</param>
+        /// <param name="yzId">Y lệnh ID</param>
+        /// <param name="zxId">Thực hiện ID</param>
+        /// <param name="organizeId">Tổ chức ID</param>
         /// <param name="yfbmCode">Mã bộ phận nhà thuốc</param>
         /// <param name="creatorCode">Người tạo</param>
         /// <param name="patientName">Bệnh nhân thuộc y lệnh</param>
@@ -141,7 +141,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <summary>
         /// Nội trúBookĐóng băng tồn kho và lưuzy_ypyzzxph
         /// </summary>
-        /// <param name="zxId">Thực hiệnID</param>
+        /// <param name="zxId">Thực hiện ID</param>
         /// <param name="yzDetails"></param>
         /// <param name="organizeId"></param>
         /// <returns></returns>

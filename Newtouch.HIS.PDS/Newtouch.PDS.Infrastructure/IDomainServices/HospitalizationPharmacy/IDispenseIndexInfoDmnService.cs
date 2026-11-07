@@ -39,7 +39,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         #region Trả thuốc
 
         /// <summary>
-        /// Lấy bảng chi tiết trả thuốc,Bảng y lệnh liên kếtID
+        /// Lấy bảng chi tiết trả thuốc,Bảng y lệnh liên kết ID
         /// </summary>
         /// <returns></returns>
         List<ModelZyTyYszyzIdInfoVO> YpTyyszyzidList();
@@ -76,8 +76,8 @@ namespace Newtouch.HIS.Domain.IDomainServices
         /// <summary>
         /// Xóa thông tin y lệnh
         /// </summary>
-        /// <param name="yzId">Y lệnhID</param>
-        /// <param name="zxId">Thực hiện y lệnhID</param>
+        /// <param name="yzId">Y lệnh ID</param>
+        /// <param name="zxId">Thực hiện y lệnh ID</param>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
         /// <returns></returns>

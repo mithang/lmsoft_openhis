@@ -13,19 +13,19 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
     public class KcPdxxmxEntity
     {
         /// <summary>
-        /// Khóa chính chi tiếtID
+        /// Khóa chính chi tiết ID
         /// </summary>
         [Key]
         [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public long Id { get; set; }
 
         /// <summary>
-        /// Kiểm kêchínhbảngID
+        /// Kiểm kê chính bảng ID
         /// </summary>
         public long pdId { get; set; }
 
         /// <summary>
-        /// vật tưID
+        /// vật tư ID
         /// </summary>
         public string productId { get; set; }
 

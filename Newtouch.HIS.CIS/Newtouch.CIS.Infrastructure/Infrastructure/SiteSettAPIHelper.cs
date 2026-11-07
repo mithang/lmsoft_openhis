@@ -6,7 +6,7 @@ using System;
 namespace Newtouch.Infrastructure
 {
     /// <summary>
-    /// Sett APIyêu cầugiúpgiúploại
+    /// Sett API yêu cầugiúpgiúploại
     /// </summary>
     public class SiteSettAPIHelper : SiteAPIRequestHelperBase<SiteSettAPIHelper>
     {
@@ -22,7 +22,7 @@ namespace Newtouch.Infrastructure
         private static APIRequestHelper.DefaultResponse apiResp;
 
         /// <summary>
-        /// Đồng bộThông tin bệnh nhânchoCIS
+        /// Đồng bộThông tin bệnh nhân cho CIS
         /// </summary>
         /// <param name="dto"></param>
         public static APIRequestHelper.DefaultResponse UpdateInpatientBasicInfo(InpatientPatientInfoDTO dto)

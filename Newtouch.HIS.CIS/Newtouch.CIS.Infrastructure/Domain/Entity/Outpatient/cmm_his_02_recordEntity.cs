@@ -12,7 +12,7 @@ namespace Newtouch.Domain.Entity
     public class CmmHis02RecordEntity
     {
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         [Key]
         public long Id { get; set; }
@@ -56,7 +56,7 @@ namespace Newtouch.Domain.Entity
         public string orgCode { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 

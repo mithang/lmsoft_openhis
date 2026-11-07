@@ -5,7 +5,7 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
     public class DRGEnum
     {
         /// <summary>
-        /// DRGPhiên bản bộ phân nhóm
+        /// DRG Phiên bản bộ phân nhóm
         /// </summary>
         public enum EnumDrgGrouperType
         {

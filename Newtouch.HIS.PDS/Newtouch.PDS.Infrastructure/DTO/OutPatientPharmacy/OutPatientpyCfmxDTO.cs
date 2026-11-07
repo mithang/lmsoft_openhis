@@ -25,7 +25,7 @@ namespace Newtouch.HIS.Domain.DTO.OutPatientPharmacy
         public string czh { get; set; }
 
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
     }

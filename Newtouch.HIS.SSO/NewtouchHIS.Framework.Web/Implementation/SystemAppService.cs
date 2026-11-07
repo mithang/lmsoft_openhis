@@ -65,7 +65,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
         Task<List<SysCashPaymentModelEntity>> GetSysForCashPayAsync(string request);
         Task<List<SysItemExtendVO>> GetItemDetailsListAsync(string request);
         /// <summary>
-        /// lấy những cái đã đăng kýAPPdanh sách
+        /// lấy những cái đã đăng ký APP danh sách
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -121,7 +121,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
         /// </summary>
         public string GetSysForCashPayListApi => $"{Host}api/System/GetSysForCashPayList";
         /// <summary>
-        /// lấy những cái đã đăng kýAPP
+        /// lấy những cái đã đăng ký APP
         /// </summary>
         public string GetRegAppListApi => $"{Host}api/System/GetRegAppList";
         /// <summary>
@@ -214,7 +214,7 @@ namespace NewtouchHIS.Framework.Web.Implementation
             return sysCashPaymentModelEntities;
         }
         /// <summary>
-        /// lấy những cái đã đăng kýAPPdanh sách
+        /// lấy những cái đã đăng ký APP danh sách
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>

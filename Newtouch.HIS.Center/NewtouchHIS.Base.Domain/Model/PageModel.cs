@@ -42,7 +42,7 @@
         /// </summary>
         public string? ypdm { get; set; }
         /// <summary>
-        /// Chi tiết nhập/xuất khoID
+        /// Chi tiết nhập/xuất kho ID
         /// </summary>
         public string? crkmxId { get; set; }
         /// <summary>

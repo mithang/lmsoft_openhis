@@ -65,7 +65,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-         /// trongyĐơn thuốcNEW
+         /// trongyĐơn thuốc NEW
          /// </summary>
          /// <returns></returns>
         public IActionResult TCMPrescription2022()
@@ -284,7 +284,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Tần Hoàng Đảosổphiếugiao diện(nhắccung cấpchoHIS)
+        /// Tần Hoàng Đảosổphiếugiao diện(nhắccung cấp cho HIS)
         /// </summary>
         /// <param name="Opt">giao diệnLoại:lấyGiá trị:zd(sổphiếu)</param>
         /// <param name="Brwym">bệnh ngườiduy nhấtmộtmã(bệnh ngườiởHIStrongcủaduy nhấtmộtmã,khônglàmSPcủatham sốdùng,chỉlàmhạt nhânđốidùng)</param>

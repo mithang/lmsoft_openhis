@@ -111,7 +111,7 @@ namespace Newtouch.Domain.IDomainServices
 
 
         /// <summary>
-        /// rútDC rútdccùngSố nhómcủaY lệnh
+        /// rút DC rútdccùngSố nhómcủaY lệnh
         /// </summary>
         /// <param name="yzId"></param>
         void Advicedc(string yzId, string orgId,string yzlx,string zyh,string isFeeGroup);

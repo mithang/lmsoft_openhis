@@ -86,7 +86,7 @@ namespace NewtouchHIS.Domain.Entity.EMR
         public string SZ { get; set; }
 
         /// <summary>
-        /// Desc:ITrợ
+        /// Desc:I Trợ
         /// Default:
         /// Nullable:True
         /// </summary>           
@@ -94,7 +94,7 @@ namespace NewtouchHIS.Domain.Entity.EMR
         public string YZ { get; set; }
 
         /// <summary>
-        /// Desc:IITrợ
+        /// Desc:II Trợ
         /// Default:
         /// Nullable:True
         /// </summary>           

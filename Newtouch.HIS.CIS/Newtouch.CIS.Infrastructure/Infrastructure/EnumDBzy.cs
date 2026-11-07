@@ -122,7 +122,7 @@ namespace Newtouch.Infrastructure
         [Description("Thực hiện")]
         Zx = 2,
         /// <summary>
-        /// rútDC
+        /// rút DC
         /// </summary>
         [Description("DC")]
         DC = 3,
@@ -291,12 +291,12 @@ namespace Newtouch.Infrastructure
         [Description("Cấp I")]
         I = 1,
         /// <summary>
-        /// IIcấp
+        /// II cấp
         /// </summary>
         [Description("Cấp II")]
         II = 2,
         /// <summary>
-        /// IIIcấp
+        /// III cấp
         /// </summary>
         [Description("Cấp III")]
         III = 3,
@@ -351,7 +351,7 @@ namespace Newtouch.Infrastructure
         [Description("Nguy kịch")]
         Bedying =3
     }
-    //EnumDBđãgóichứa
+    //EnumDB đã gói chứa
     //public enum EnumZdlx
     //{
     //    MainDiag=1,

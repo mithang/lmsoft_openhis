@@ -12,7 +12,7 @@ namespace Newtouch.Domain.ValueObjects.Storage
     public class VKcxxEntity
     {
         /// <summary>
-        /// vật tưID
+        /// vật tư ID
         /// </summary>
         public string productId { get; set; }
 

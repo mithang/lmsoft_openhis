@@ -50,7 +50,7 @@ namespace Newtouch.Domain.ValueObjects
         /// </summary>
         public bool? djbz { get; set; }
         /// <summary>
-        /// Đơn thuốcnhãn JI tinhI JII tinhII MZ têsay
+        /// Đơn thuốcnhãn JI tinhI JII tinh II MZ têsay
         /// </summary>
         public string cftag { get; set; }
         /// <summary>

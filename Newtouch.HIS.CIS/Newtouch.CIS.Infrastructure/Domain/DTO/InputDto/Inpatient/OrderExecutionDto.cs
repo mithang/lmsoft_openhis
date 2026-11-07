@@ -13,7 +13,7 @@ namespace Newtouch.Domain.DTO.InputDto
     public class OrderExecutionDto
     {
         /// <summary>
-        /// Y lệnhID
+        /// Y lệnh ID
         /// </summary>
         public string yzId { get; set; }
         /// <summary>

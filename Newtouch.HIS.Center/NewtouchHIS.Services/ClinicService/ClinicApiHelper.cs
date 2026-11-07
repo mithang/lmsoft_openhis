@@ -63,11 +63,11 @@ namespace NewtouchHIS.Services
         /// </summary>
         public readonly static string GetPatMedicalRecord = $"{OuterClinicSystemAPIHost}lease-backend-test/outpatient/medicalRecord/medical/";
         /// <summary>
-        /// Đồng bộHISBệnh nhânBệnh án
+        /// Đồng bộ HIS Bệnh nhânBệnh án
         /// </summary>
         public readonly static string SendHisPatMedicalRecord = $"{OuterClinicSystemAPIHost}lease-backend-test/outpatient/medicalRecord/saveAdd";
         /// <summary>
-        /// Đồng bộHISDữ liệu đơn thuốc
+        /// Đồng bộ HIS Dữ liệu đơn thuốc
         /// </summary>
         public readonly static string SendHisRecipelData = $"{OuterClinicSystemAPIHost}lease-backend-test/outpatient/medicalRecord/addRecipel";
         #endregion

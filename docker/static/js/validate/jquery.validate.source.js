@@ -987,7 +987,7 @@ $(function () {
     jQuery.validator.addMethod("isPwd", function (value, element) {
         return this.optional(element) || /^[a-zA-Z]\\w{6,12}$/.test(value);
     }, "Bắt đầu bằng chữ cái, dài từ 6-12 ký tự, chỉ được chứa chữ cái, số và dấu gạch dưới.");
-    // IPKiểm tra địa chỉ   
+    // IP Kiểm tra địa chỉ   
     jQuery.validator.addMethod("ip", function (value, element) {
         return this.optional(element) || /^(([0-9]|([0-9]\d)|(1\d\d)|(2([0-4]\d|5[0-5])))\.)(([0-9]|([0-9]\d)|(1\d\d)|(2([0-4]\d|5[0-5])))\.){2}([0-9]|([0-9]\d)|(1\d\d)|(2([0-4]\d|5[0-5])))$/.test(value);
     }, "Vui lòng điền địa chỉ IP chính xác.");

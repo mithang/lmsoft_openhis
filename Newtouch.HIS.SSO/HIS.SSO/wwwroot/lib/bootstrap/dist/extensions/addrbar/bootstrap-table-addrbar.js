@@ -2687,7 +2687,7 @@
    * sẽ nhận được"https://www.baidu.com?age=24&name=genreal"
    * ồ, cứ bỏ qua thứ tự trước sau đi...
    *
-   * bổ sung: có thể tham khảo trình duyệtURLSearchParamsđối tượng, tiện lợi và mạnh mẽ hơn.
+   * bổ sung: có thể tham khảo trình duyệt URLSearchParams đối tượng, tiện lợi và mạnh mẽ hơn.
    * xét đến tính tương thích, tạm thời không dùng công cụ này.
    */
 

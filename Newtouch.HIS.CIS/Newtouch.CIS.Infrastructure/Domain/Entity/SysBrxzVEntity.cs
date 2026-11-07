@@ -56,7 +56,7 @@ namespace Newtouch.Domain.Entity
         public string pzbz { get; set; }
 
         /// <summary>
-        /// 0 Chung 1 chỉNgoại trú 2 chỉNhập viện    3 Hệ thống(Ngoại trúNhập việnđềukhôngcó thểdùng)VDnếu:nhàgiường
+        /// 0 Chung 1 chỉNgoại trú 2 chỉNhập viện    3 Hệ thống(Ngoại trúNhập việnđềukhôngcó thểdùng)VD nếu:nhàgiường
         /// </summary>
         public string mzzybz { get; set; }
 
@@ -71,7 +71,7 @@ namespace Newtouch.Domain.Entity
         public string sqjmbz { get; set; }
 
         /// <summary>
-        /// from xt_zhxz   nếunếucóCài đặt:thìởquyết toánkhi,ưutrướckhấutrừCài đặtcủaTài khoản   (VDnếu:Hỗ trợ khó khănbệnh nhânnàychữđoạnCài đặtlà4,khiquyết toánkhi,trướckhấutrừHỗ trợ khó khănTài khoản)
+        /// from xt_zhxz   nếunếucóCài đặt:thìởquyết toánkhi,ưutrướckhấutrừCài đặtcủaTài khoản   (VD nếu:Hỗ trợ khó khănbệnh nhânnàychữđoạnCài đặtlà4,khiquyết toánkhi,trướckhấutrừHỗ trợ khó khănTài khoản)
         /// </summary>
         public string zhxz { get; set; }
 

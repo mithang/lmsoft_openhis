@@ -9,17 +9,17 @@ namespace Newtouch.HIS.Domain.Entity.V
 	public class CrkMxAll
 	{
 		/// <summary>
-		/// Chi tiết xuất nhập khoID
+		/// Chi tiết xuất nhập kho ID
 		/// </summary>
 		public string crkmxId { get; set; }
 
 		/// <summary>
-		/// Từ bảng XT_YP_CRKDJKkhóa chính của
+		/// Từ bảng XT_YP_CRKDJK khóa chính của
 		/// </summary>
 		public string crkId { get; set; }
 
 		/// <summary>
-		/// Chi tiết đơn lĩnhID
+		/// Chi tiết đơn lĩnh ID
 		/// </summary>
 		public string sldmxId { get; set; }
 

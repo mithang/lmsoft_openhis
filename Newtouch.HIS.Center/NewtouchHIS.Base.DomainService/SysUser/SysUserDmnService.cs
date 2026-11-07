@@ -174,7 +174,7 @@ namespace NewtouchHIS.Base.DomainService
         #endregion
 
         /// <summary>
-        /// TheoOrganizeIdLấy Nhân viên hệ thốngVO(và có tương ứngSysUser)
+        /// TheoOrganizeIdLấy Nhân viên hệ thống VO(và có tương ứngSysUser)
         /// </summary>
         /// <param name="userId"></param>
         /// <returns></returns>

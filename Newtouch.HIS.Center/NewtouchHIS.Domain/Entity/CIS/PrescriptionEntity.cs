@@ -68,7 +68,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         public bool? djbz { get; set; }
 
         /// <summary>
-        /// Cờ đồng bộ,Đã đồng bộ tới hay chưaHIS(sau xét có đồng bộ hay chưa đổi thành dựa vào bảng hồ sơ thao tác)
+        /// Cờ đồng bộ,Đã đồng bộ tới hay chưa HIS(sau xét có đồng bộ hay chưa đổi thành dựa vào bảng hồ sơ thao tác)
         /// </summary>
         public bool? tbbz { get; set; }
 
@@ -90,7 +90,7 @@ namespace NewtouchHIS.Domain.Entity.CIS
         /// </summary>
         public string sqdh { get; set; }
         /// <summary>
-        /// Nhãn đơn thuốc JI TinhI JII TinhII MZ Gây mê
+        /// Nhãn đơn thuốc JI TinhI JII Tinh II MZ Gây mê
         /// </summary>
         public string cftag { get; set; }
         /// <summary>

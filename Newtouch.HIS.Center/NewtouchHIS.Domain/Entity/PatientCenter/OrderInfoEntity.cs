@@ -60,12 +60,12 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
         /// </summary>
         public int? PayWay { get; set; }
         /// <summary>
-        /// HISSố quyết toán nội bộ
+        /// HIS Số quyết toán nội bộ
         /// </summary>
         public string SettTradeNo { get; set; }
         public string Memo { get; set; }
         /// <summary>
-        /// Người tạoID
+        /// Người tạo ID
         /// </summary>
        // public string CreatorCode { get; set; }
 
@@ -80,7 +80,7 @@ namespace NewtouchHIS.Domain.Entity.PatientCenter
        // public DateTime? LastModifyTime { get; set; }
 
         /// <summary>
-        /// Người sửa đổi cuốiID
+        /// Người sửa đổi cuối ID
         /// </summary>
        // public string LastModifierCode { get; set; }
 

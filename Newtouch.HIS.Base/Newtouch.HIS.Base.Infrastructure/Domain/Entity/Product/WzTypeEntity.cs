@@ -18,7 +18,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string Id { get; set; }
 
         /// <summary>
-        /// Loại cấp trênID
+        /// Loại cấp trên ID
         /// </summary>
         public string parentId { get; set; }
 

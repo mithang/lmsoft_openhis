@@ -7,7 +7,7 @@ using NewtouchHIS.Lib.Services.HttpService;
 namespace NewtouchHIS.WebAPI.Manage.Controllers
 {
     /// <summary>
-    /// APILớp cơ sở
+    /// API Lớp cơ sở
     /// </summary>
     [ApiController]
     public class ApiBaseController : ControllerBase

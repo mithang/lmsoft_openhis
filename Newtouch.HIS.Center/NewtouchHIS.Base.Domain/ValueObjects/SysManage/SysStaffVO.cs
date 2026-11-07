@@ -3,7 +3,7 @@
 namespace NewtouchHIS.Base.Domain.ValueObjects
 {
     ///<summary>
-    ///Thông tin công nhân viên chứcVO
+    ///Thông tin công nhân viên chức VO
     ///</summary>
     public partial class SysStaffVO
     {

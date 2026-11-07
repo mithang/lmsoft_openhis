@@ -60,7 +60,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
             if (!isDoctor)
             {
                 ViewBag.bhbq = _sysConfigRepo.GetBoolValueByCode("DoctorServiceTemplate", OrganizeId, true);//Nhập việnY lệnhgóiCóKhônggóichứaKhu bệnh
-                //VDnếuCóĐiều dưỡng,vàovàoNhập việnY lệnhXemtrangmặt
+                //VD nếu Có Điều dưỡng,vàovàoNhập việnY lệnhXemtrangmặt
                 return View("ZyyzQuery");
             }
             ViewBag.ysgh = UserIdentity.rygh;//Bác sĩMã nhân viên
@@ -513,7 +513,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage.Controllers
 
         #region  lis pacs Báo cáo
         /// <summary>
-        /// //TheoSố nhập việnLấyLIS/PACSbáo cáoHoàn thànhSố lượng
+        /// //TheoSố nhập viện Lấy LIS/PACS báo cáoHoàn thànhSố lượng
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>

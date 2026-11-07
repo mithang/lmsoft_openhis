@@ -94,7 +94,7 @@ namespace Newtouch.HIS.Domain.IDomainServices
         string GenerateInventoryInfo(string yfbmCode, string organizeId, string userCode);
 
         /// <summary>
-        /// Chuyển đổi số lượng hiển thị trên trang  XXhộpXXviên
+        /// Chuyển đổi số lượng hiển thị trên trang  XX hộp XX viên
         /// </summary>
         /// <returns></returns>
         string GetYfbmYpComplexYpSlandDw(int sl, string ypCode);

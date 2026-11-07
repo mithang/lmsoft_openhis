@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     public class QueryZYFYInfoReqVO
     {
         /// <summary>
-        /// Tổ chứcID
+        /// Tổ chức ID
         /// </summary>
         public string organizeId { get; set; }
 
@@ -105,7 +105,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
     {
 
         /// <summary>
-        /// Thực hiện y lệnhID
+        /// Thực hiện y lệnh ID
         /// </summary>
         public string yzId { get; set; }
         /// <summary>
@@ -155,7 +155,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string yfbmCode { get; set; }
 
         /// <summary>
-        /// Cơ cấu tổ chứcID
+        /// Cơ cấu tổ chức ID
         /// </summary>
         public string OrganizeId { get; set; }
 

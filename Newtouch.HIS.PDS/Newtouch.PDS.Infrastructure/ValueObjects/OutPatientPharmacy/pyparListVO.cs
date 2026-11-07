@@ -11,7 +11,7 @@ namespace Newtouch.HIS.Domain.ValueObjects
         public string cfh { get; set; }
 
         /// <summary>
-        /// Chi tiết đơn thuốcID
+        /// Chi tiết đơn thuốc ID
         /// </summary>
         public string cfmxId { get; set; }
 

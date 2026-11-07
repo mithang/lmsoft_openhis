@@ -39,7 +39,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             _remoteTreatedDmn = remoteTreatedDmn;
         }
         /// <summary>
-        /// Khám chữa bệnh từ xaStep1:Bên thứ baĐăng kýHISKhám chữa bệnh từ xa(Chỉ tự chi trả)
+        /// Khám chữa bệnh từ xa Step1:Bên thứ ba Đăng ký HIS Khám chữa bệnh từ xa(Chỉ tự chi trả)
         /// </summary>
         /// <param name="request"></param>
         /// <returns></returns>
@@ -97,10 +97,10 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
         }
         #region HIS Nội bộ
         /// <summary>
-        /// Khám chữa bệnh từ xaStep1:HISBác sĩ đồng ýĐăng kýKhởi xướng khám chữa bệnhCuộc họp
+        /// Khám chữa bệnh từ xa Step1:HIS Bác sĩ đồng ý Đăng ký Khởi xướng khám chữa bệnh Cuộc họp
         /// </summary>
         /// <param name="request"></param>
-        /// <returns>Cuộc họpSố,Người dùng khám chữa bệnhToken,Cuộc họpĐịa chỉ</returns>
+        /// <returns>Cuộc họp Số,Người dùng khám chữa bệnh Token,Cuộc họp Địa chỉ</returns>
         [HttpPost]
         [Route("DoctorMeetingApply")]
         public async Task<BusResult<MeettingResponse>> DoctorMeetingApplyAsync(Request<TreatedUserRequest> request)
@@ -109,7 +109,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             {
                 return new BusResult<MeettingResponse> { code = ResponseResultCode.FAIL, msg = "Thông tin tổ chức và thông tin đăng ký quan trọng không được để trống" };
             }
-            //Truy vấnĐăng kýCó bình thường hay không 
+            //Truy vấn Đăng ký Có bình thường hay không 
             var apply = await _remoteTreatedDmn.TreatedApplyInfo(request.Data.applyId, request.OrganizeId);
             if (apply == null || (apply.sqzt != (int)EmunRemoteTreatedStu.dqr && apply.sqzt != (int)EmunRemoteTreatedStu.jzz))
             {
@@ -119,12 +119,12 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             {
                 throw new FailedException($"Thời gian đăng ký khám chữa bệnh: {apply.sqsj} đã hết hạn");
             }
-            //Cả hai bên đều có thể khởi xướngCuộc họp
+            //Cả hai bên đều có thể khởi xướng Cuộc họp
             if (!(apply.sqr == request.Data.usercode || apply.ysgh == request.Data.usercode))
             {
                 return new BusResult<MeettingResponse> { code = ResponseResultCode.FAIL, msg = "Cuộc họp khám chữa bệnh phải do bác sĩ khám chữa bệnh hoặc người đăng ký khám chữa bệnh khởi tạo" };
             }
-            //Bản đăng ký nàyĐăng kýchưa tạoCuộc họpSố Tạo số phòng trò chuyện
+            //Bản đăng ký này Đăng ký chưa tạo Cuộc họp Số Tạo số phòng trò chuyện
             if (string.IsNullOrWhiteSpace(apply.mettingId) || request.Data.roomReset)
             {
                 ChatRoom cr = new ChatRoom();
@@ -149,14 +149,14 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
                 }
             }
             //Thông báo phòng khám điện toán đám mây 
-            //Đăng kýId  Đồng ý khám chữa bệnh :True Cuộc họpSố:roomid
+            //Đăng ký Id  Đồng ý khám chữa bệnh :True Cuộc họp Số:roomid
             return new BusResult<MeettingResponse> { code = ResponseResultCode.SUCCESS, Data = tokenResp };
         }
         #endregion
 
         /// <summary>
-        /// Khám chữa bệnh từ xaStep3: Người dùng thông thường tham giaCuộc họp
-        /// Giá trị trả về dùng choCuộc họpkiểm chứng trang phòng
+        /// Khám chữa bệnh từ xa Step3: Người dùng thông thường tham gia Cuộc họp
+        /// Giá trị trả về dùng cho Cuộc họp kiểm chứng trang phòng
         /// To:Bên thứ ba,HIS
         /// </summary>
         /// <param name="request"></param>
@@ -171,7 +171,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             }
             if (string.IsNullOrWhiteSpace(request.Data.roomid))
             {
-                return new BusResult<MeettingResponse> { code = ResponseResultCode.FAIL, msg = "Cuộc họpId không được để trống" };
+                return new BusResult<MeettingResponse> { code = ResponseResultCode.FAIL, msg = "Cuộc họp Id không được để trống" };
             }
             var tokenReq = new MeettingTokenRequest
             {
@@ -185,7 +185,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
         }
 
         /// <summary>
-        /// Truy vấn thông tin khám chữa bệnh by HISĐăng ký khám chữa bệnhId
+        /// Truy vấn thông tin khám chữa bệnh by HIS Đăng ký khám chữa bệnh Id
         /// To:Bên thứ ba,HIS
         /// </summary>
         /// <param name="request"></param>

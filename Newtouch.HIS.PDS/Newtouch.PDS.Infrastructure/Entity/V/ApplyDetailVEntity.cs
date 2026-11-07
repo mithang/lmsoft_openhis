@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Domain.Entity.V
     public class ApplyDetailVEntity
     {
         /// <summary>
-        /// Chi tiết đơn lĩnhID
+        /// Chi tiết đơn lĩnh ID
         /// </summary>
         public string sldmxId { get; set; }
 

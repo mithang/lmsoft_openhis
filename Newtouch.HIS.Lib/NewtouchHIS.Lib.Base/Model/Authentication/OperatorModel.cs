@@ -70,7 +70,7 @@
         public bool IsRoot { get; set; }
 
         /// <summary>
-        /// Đăng nhậpIP
+        /// Đăng nhập IP
         /// </summary>
         public string? LoginIPAddress { get; set; }
 

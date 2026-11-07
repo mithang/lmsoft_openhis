@@ -14,7 +14,7 @@ namespace NewtouchHIS.Base.Domain.ValueObjects
     public class AuthAppVO
     {
         /// <summary>
-        /// Desc:Ủy quyềnID
+        /// Desc:Ủy quyền ID
         /// Default:
         /// Nullable:False
         /// </summary>           

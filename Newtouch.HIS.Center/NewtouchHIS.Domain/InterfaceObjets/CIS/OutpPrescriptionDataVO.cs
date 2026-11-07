@@ -49,7 +49,7 @@ namespace NewtouchHIS.Domain.InterfaceObjets.CIS
         /// </summary>
         public bool? djbz { get; set; }
         /// <summary>
-        /// Nhãn đơn thuốc JI TinhI JII TinhII MZ Gây mê
+        /// Nhãn đơn thuốc JI TinhI JII Tinh II MZ Gây mê
         /// </summary>
         public string? cftag { get; set; }
         /// <summary>

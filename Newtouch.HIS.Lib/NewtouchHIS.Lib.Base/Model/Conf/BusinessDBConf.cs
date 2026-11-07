@@ -18,7 +18,7 @@ namespace NewtouchHIS.Lib.Base.Model
         /// </summary>
         public string DBConn { get; set; }
         /// <summary>
-        /// Có bật khôngDB
+        /// Có bật không DB
         /// </summary>
         public bool Enabled { get; set; } = false;
         /// <summary>

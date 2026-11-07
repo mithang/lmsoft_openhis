@@ -8,7 +8,7 @@ namespace Newtouch.HIS.Application.Interface
     public interface IHomePageStatisticsApp
     {
         /// <summary>
-        /// Lấy việc cần làmHTML
+        /// Lấy việc cần làm HTML
         /// </summary>
         /// <returns></returns>
         string AssembleNeedDealHtml();

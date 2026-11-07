@@ -13,7 +13,7 @@ namespace Newtouch.HIS.Domain.Entity.V
     {
 
         /// <summary>
-        /// Đơn lĩnhID
+        /// Đơn lĩnh ID
         /// </summary>
         public string sldId { get; set; }
 

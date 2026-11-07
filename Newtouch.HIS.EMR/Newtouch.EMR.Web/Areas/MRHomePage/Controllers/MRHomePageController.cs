@@ -227,7 +227,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                             {
                                 if (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on")
                                 {
-                                    //Đồng bộ thông tin chẩn đoán sangCISChẩn đoán ra viện
+                                    //Đồng bộ thông tin chẩn đoán sang CIS Chẩn đoán ra viện
                                     _MainRecordDmnService.SynchronizationZD(zyh, this.OrganizeId);
                                 }
                             }
@@ -241,7 +241,7 @@ namespace Newtouch.EMR.Web.Areas.MRHomePage.Controllers
                         {
                             if (dtcsxx[0].Value == "ON" || dtcsxx[0].Value == "on")
                             {
-                                //Đồng bộ thông tin chẩn đoán sangCISChẩn đoán ra viện
+                                //Đồng bộ thông tin chẩn đoán sang CIS Chẩn đoán ra viện
                                 _MainRecordDmnService.SynchronizationZD(zyh, this.OrganizeId);
                             }
                         }

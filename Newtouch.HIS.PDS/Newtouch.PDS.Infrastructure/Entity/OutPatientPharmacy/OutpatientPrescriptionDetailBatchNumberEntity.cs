@@ -55,7 +55,7 @@ namespace Newtouch.HIS.Domain.Entity
         public string czh { get; set; }
 
         /// <summary>
-        /// Chi tiết đơn ngoại trúID,mz_cfmx.Id
+        /// Chi tiết đơn ngoại trú ID,mz_cfmx.Id
         /// </summary>
         public long? cfmxId { get; set; }
 

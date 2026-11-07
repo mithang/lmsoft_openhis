@@ -24,7 +24,7 @@
         /// </summary>
         public String adrg;
         /// <summary>
-        /// DRGMã nhóm, có giá trị sau khi kiểm tra đạt, khi nhóm vào nhóm mơ hồ là*QY, khi không nhóm vào nhóm nào là00
+        /// DRG Mã nhóm, có giá trị sau khi kiểm tra đạt, khi nhóm vào nhóm mơ hồ là*QY, khi không nhóm vào nhóm nào là00
         /// </summary>
         public String drg;
         public DrgMedicalRecord record;
@@ -53,7 +53,7 @@
         /// </summary>
         public String adrg { get; set; }
         /// <summary>
-        /// DRGMã nhóm, có giá trị sau khi kiểm tra đạt, khi nhóm vào nhóm mơ hồ là*QY, khi không nhóm vào nhóm nào là00
+        /// DRG Mã nhóm, có giá trị sau khi kiểm tra đạt, khi nhóm vào nhóm mơ hồ là*QY, khi không nhóm vào nhóm nào là00
         /// </summary>
         public String drg { get; set; }
 

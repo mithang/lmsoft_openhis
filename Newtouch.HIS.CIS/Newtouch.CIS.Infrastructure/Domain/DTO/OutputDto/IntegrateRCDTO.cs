@@ -16,7 +16,7 @@ namespace Newtouch.Domain.DTO
         public string doctorName { get; set; }
 
         /// <summary>
-        /// Bệnh nhânID
+        /// Bệnh nhân ID
         /// </summary>
         public string patientId { get; set; }
 
@@ -31,7 +31,7 @@ namespace Newtouch.Domain.DTO
         public string mobile { get; set; }
 
         /// <summary>
-        /// Bệnh nhânCMND/CCCDsố
+        /// Bệnh nhân CMND/CCCD số
         /// </summary>
         public string certid { get; set; }
 

@@ -201,7 +201,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
         }
 
         /// <summary>
-        /// LấyđuổithêmdòngHTML
+        /// Lấy đuổi thêm dòng HTML
         /// </summary>
         /// <param name="lastRegDate"></param>
         /// <param name="regTime"></param>

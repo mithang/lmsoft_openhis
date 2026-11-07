@@ -53,7 +53,7 @@ namespace Newtouch.HIS.Domain.DTO.OutOrInStoredOperate
         public string ypdm { get; set; }
 
         /// <summary>
-        /// Chi tiết đơn lĩnhID
+        /// Chi tiết đơn lĩnh ID
         /// </summary>
         public string sldmxId { get; set; }
 

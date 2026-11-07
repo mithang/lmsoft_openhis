@@ -16,7 +16,7 @@ namespace NewtouchHIS.Base.DomainService.SysManage
 {
     /// <summary>
     /// Menu hệ thống
-    /// Chức năng dùng chung cho các hệ thống,DBContextChọn làm cơ sở dữ liệu chính,khuyên tham chiếu
+    /// Chức năng dùng chung cho các hệ thống,DBContext Chọn làm cơ sở dữ liệu chính,khuyên tham chiếu
     /// </summary>
     public class SysModuleDmnService : BaseDmnService<SysModuleEntity>, ISysModuleDmnService
     {
