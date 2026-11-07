@@ -149,7 +149,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
 
         #region  Thao tác văn bản bệnh án của trình soạn thảo dc
         /// <summary>
-        /// Theo mẫuIDThêm mới bệnh án
+        /// Theo mẫu ID Thêm mới bệnh án
         /// </summary>
         /// <param name="mbbh"></param>
         /// <param name="zyh"></param>
@@ -1449,7 +1449,7 @@ namespace Newtouch.EMR.Web.Areas.MedicalRecordManage
         #region Trình soạn thảo bệnh án-Khởi tạo nguồn dữ liệu
         /// <summary>
         /// Lấy thông tin cơ bản của bệnh nhân theo số nhập viện
-        /// Thực thể phải có thể tuần tự hóa mới có thể liên kết dữ liệu trong control bệnh án, vì vậy sử dụngZybrjbxxVO
+        /// Thực thể phải có thể tuần tự hóa mới có thể liên kết dữ liệu trong control bệnh án, vì vậy sử dụng ZybrjbxxVO
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>

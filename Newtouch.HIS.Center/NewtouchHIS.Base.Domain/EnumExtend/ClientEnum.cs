@@ -2255,7 +2255,7 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             [Description("Thực hiện")]
             Zx = 2,
             /// <summary>
-            /// RútDC
+            /// Rút DC
             /// </summary>
             [Description("DC")]
             DC = 3,
@@ -2419,19 +2419,19 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         public enum EnumHljb
         {
             /// <summary>
-            /// ICấp
+            /// I Cấp
             /// </summary>
-            [Description("ICấp")]
+            [Description("I Cấp")]
             I = 1,
             /// <summary>
-            /// IICấp
+            /// II Cấp
             /// </summary>
-            [Description("IICấp")]
+            [Description("II Cấp")]
             II = 2,
             /// <summary>
-            /// IIICấp
+            /// III Cấp
             /// </summary>
-            [Description("IIICấp")]
+            [Description("III Cấp")]
             III = 3,
             /// <summary>
             /// Đặc cấp
@@ -2484,7 +2484,7 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             [Description("Nguy kịch")]
             Bedying = 3
         }
-        //EnumDBĐã bao gồm
+        // EnumDB Đã bao gồm
         //public enum EnumZdlx
         //{
         //    MainDiag=1,
@@ -2915,7 +2915,7 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         }
 
         ///// <summary>
-        ///// Trạng thái bệnh án  và EMRChung
+        ///// Trạng thái bệnh án  và EMR Chung
         ///// </summary>
         //public enum EnumRecordStu
         //{
@@ -3223,9 +3223,9 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
             PETCT = 2,
             [Description("Hai nguồn")]
             SY = 3,
-            [Description("BSiêu âm")]
+            [Description("B Siêu âm")]
             Bc = 4,
-            [Description("Xphim")]
+            [Description("X phim")]
             Xp = 5,
             [Description("Siêu âm tim")]
             CSXDT = 6,
@@ -3412,13 +3412,13 @@ namespace NewtouchHIS.Base.Domain.EnumExtend
         /// </summary>
         public enum EnumSSjb
         {
-            [Description("ICấp")]
+            [Description("I Cấp")]
             yj = 1,
-            [Description("IICấp")]
+            [Description("II Cấp")]
             ej = 2,
-            [Description("IIICấp")]
+            [Description("III Cấp")]
             sj = 3,
-            [Description("IVCấp")]
+            [Description("IV Cấp")]
             fj = 4
         }
 

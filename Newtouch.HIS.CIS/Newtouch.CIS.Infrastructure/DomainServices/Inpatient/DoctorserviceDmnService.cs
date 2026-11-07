@@ -2968,7 +2968,7 @@ and idl.name=@ypyfmc
             }
         }
         /// <summary>
-        /// DIPgiao diện
+        /// DIP giao diện
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="reqdoctorservices"></param>

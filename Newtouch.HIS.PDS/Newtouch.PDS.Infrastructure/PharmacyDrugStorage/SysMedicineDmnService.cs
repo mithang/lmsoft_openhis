@@ -1013,7 +1013,7 @@ where ypId=@ypId");
         //            var ypsxEntity = db.IQueryable<SysMedicinePropertyEntity>().Where(p => p.ypId == ypId).FirstOrDefault();
         //            if (ypsxEntity == null)
         //            {
-        //                error = "HISTrong truy vấn không có thuốc này";
+        //                error = "HIS Trong truy vấn không có thuốc này";
         //                return false;
         //            }
         //            ypsxEntity.LastYBUploadTime = System.DateTime.Now;
@@ -1026,7 +1026,7 @@ where ypId=@ypId");
         //    }
         //    catch
         //    {
-        //        error = "HISCập nhật thời gian đồng bộ BHYT thuốc thất bại";
+        //        error = "HIS Cập nhật thời gian đồng bộ BHYT thuốc thất bại";
         //        return false;
         //    }
         //}

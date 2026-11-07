@@ -806,7 +806,7 @@ namespace Newtouch.CIS.Web.Controllers
                 }
                 else
                 {
-                    PerformanceMonitoring.Running(() => _medicalRecordDmnService.sendPresToHis(jzObject.mzh, OrganizeId, UserIdentity.UserCode), "SaveMedicalRecord-sendPresToHis", "Thời gian đồng bộ ghi chép đến HIS qua giao diện");//dùnggiao diệnĐồng bộđếnHIS
+                    PerformanceMonitoring.Running(() => _medicalRecordDmnService.sendPresToHis(jzObject.mzh, OrganizeId, UserIdentity.UserCode), "SaveMedicalRecord-sendPresToHis", "Thời gian đồng bộ ghi chép đến HIS qua giao diện");//dùng giao diện Đồng bộ đến HIS
                 }
             }
             catch (Exception ex)

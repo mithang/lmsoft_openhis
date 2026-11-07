@@ -699,7 +699,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
         
         /// <summary>
-        /// lấyhoàn phísau,Trùng KhánhBHYTtải lêncần thiếtdữ liệu
+        /// lấy hoàn phí sau, Trùng Khánh BHYT tải lên cần thiết dữ liệu
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -886,7 +886,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                     }
                 }
 
-                // ||false ||thanh toán khác(BHYTcó thể báo,ghi sổ v.v.)>0
+                // ||false ||thanh toán khác(BHYT có thể báo,ghi sổ v.v.)>0
                 if (bacDto.isQfyj || ((feeRelated == null || !(feeRelated.zje > 0))) || jsnmList.Count != 1) return Success(bacDto.isQfyj ? "Thao tác quyết toán trước nợ phí thành công" : "Thu phí thành công");
                 var res = new
                 {
@@ -980,7 +980,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             return Success("Thao tác thành công");
         }
         /// <summary>
-        /// đăng ký khám ngoại trúkhông tiến hànhBHYTđăng ký khi thu phí tiến hành đăng ký và cập nhật thẻ tự chi trảlàBHYTthẻ
+        /// đăng ký khám ngoại trú không tiến hành BHYT đăng ký khi thu phí tiến hành đăng ký và cập nhật thẻ tự chi trả là BHYT thẻ
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="kh"></param>
@@ -993,7 +993,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             return Success("Thao tác thành công");
         }
         /// <summary>
-        /// cập nhậtđăng ký khámBHYTkhámidsố giao dịch
+        /// cập nhật đăng ký khám BHYT khám id số giao dịch
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="jzid"></param>
@@ -1101,12 +1101,12 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             object tempData = data;
             //object tempData = new
             //{
-            //    ybjsh = data.ybjsh,    //BHYTsố quyết toán
+            //    ybjsh = data.ybjsh,    //BHYT số quyết toán
             //    sbbh = "8222212",    //số BHXH
             //    jzyy = "00", //lý do khám
-            //    ys = "000001",   //xuất việnbác sĩmã saumặt đối chiếu
-            //    ysmc = "Trương Vinh",   //xuất việnbác sĩhọ tên saumặt đối chiếu
-            //    zdicd10 = "A09.901", //chẩn đoán đầu tiênICD10
+            //    ys = "000001",   //xuất viện bác sĩ mã sau mặt đối chiếu
+            //    ysmc = "Trương Vinh",   //xuất viện bác sĩ họ tên sau mặt đối chiếu
+            //    zdicd10 = "A09.901", //chẩn đoán đầu tiên ICD10
             //    zdmc = "viêm dạ dày ruột", //tên chẩn đoán đầu tiên
             //    ks = "00000008", //khám khoa mã sau mặt đối chiếu
             //    ksmc = "khoa Y học cổ truyền",//khám khoa tên sau mặt đối chiếu
@@ -1127,7 +1127,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// BHYTkiểm tra kết nối
+        /// BHYT kiểm tra kết nối
         /// </summary>
         /// <returns></returns>
         public IActionResult YibaoConnectedTest()
@@ -1175,7 +1175,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         #endregion
 
         /// <summary>
-        /// hợp tác nông thôn mới Quý AnBHYTquyết toán
+        /// hợp tác nông thôn mới Quý An BHYT quyết toán
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>

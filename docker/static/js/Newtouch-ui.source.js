@@ -14,16 +14,16 @@ function stopDefault(e) {
 //Ngăn nổi bọt
 function stopPropagation(e) {
     e = e || window.event;
-    if (e && e.stopPropagation) {   //Nếu đã cung cấp đối tượng sự kiện thì đây là trình duyệt không phảiIEtrình duyệt
+    if (e && e.stopPropagation) {   //Nếu đã cung cấp đối tượng sự kiện thì đây là trình duyệt không phải IE trình duyệt
         e.stopPropagation();    //Do đó nó hỗ trợ phương thức stopPropagation() của W3C
     }
     else if (window.event) {
-        window.event.cancelBubble = true;  //Ngược lại, chúng ta cần dùng cáchIEđể hủy nổi bọt sự kiện
+        window.event.cancelBubble = true;  //Ngược lại, chúng ta cần dùng cách IE để hủy nổi bọt sự kiện
     }
     return false;
 }
 
-/* LấyDOMtọa độ của phần tử */
+/* Lấy DOM tọa độ của phần tử */
 var getDOMPositionPoint = function (obj) { //Lấy vị trí của phần tử so với viền body
     var t = obj.offsetTop; //Lấy lề trên của phần tử này so với vùng chứa cha tương ứng
     var l = obj.offsetLeft; //Lề trên so với vùng chứa cha tương ứng
