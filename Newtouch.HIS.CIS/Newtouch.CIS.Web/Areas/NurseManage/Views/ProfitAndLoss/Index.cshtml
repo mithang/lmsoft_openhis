@@ -532,7 +532,7 @@
         $.najax({
             url: "/NurseManage/ProfitAndLoss/LossAndProfitSubmit",
             dataType: "json",
-            data: { plist: syxx },
+            data: { __RequestVerificationToken: $('[name=__RequestVerificationToken]').val(),  plist: syxx },
             type: "POST",
             success: function (data) {
                 if (data != null && data.state === "success") {

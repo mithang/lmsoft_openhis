@@ -184,6 +184,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// </summary>
         /// <param name="plist"></param>
         /// <returns></returns>
+        [ValidateAntiForgeryToken]
         public IActionResult LossAndProfitSubmit(List<LossAndProditSubmitDTO> plist)
         {
             //todo Lấyhiện tạiKhoa
