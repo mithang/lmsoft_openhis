@@ -91,6 +91,8 @@ namespace Newtouch.Herp.Web.Controllers
         /// im lặng (shell chỉ hiện nút đổi khi MediOrgList.Count &gt; 1 nên
         /// nhánh lỗi không tới được với dữ liệu hiện tại).
         /// </summary>
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public IActionResult SwithOrg(string dstnOrgId)
         {
             var opr = OperatorProvider.GetCurrent();
