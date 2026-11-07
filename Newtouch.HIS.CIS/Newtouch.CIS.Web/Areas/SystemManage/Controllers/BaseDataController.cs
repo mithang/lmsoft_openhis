@@ -89,7 +89,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             return Json(list);
         }
         /// <summary>
-        /// Khoa dướikéo 
+        /// Khoa dưới kéo 
         /// </summary>
         /// <returns></returns>
         public IActionResult SelectDepartmentList(string keyword, string zlks)
@@ -129,7 +129,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
 		/// <summary>
-		/// Lấysắc hộphí
+		/// Lấy sắc hộp phí
 		/// </summary>
 		/// <returns></returns>
 		public JsonResult GetDjFee()
@@ -139,7 +139,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
 		/// <summary>
-		/// dài hạn/tạm thờiCờ
+		/// dài hạn/tạm thời cờ
 		/// </summary>
 		/// <returns></returns>
 		public IActionResult GetYzlb()
@@ -152,7 +152,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
 		/// <summary>
-		/// LấyBác sĩmởthuốcQuyền
+		/// Lấy bác sĩ mở thuốc quyền
 		/// </summary>
 		/// <returns></returns>
 		public int GetPermissions(string tsypzl,string dlcode,string kssqxjb)
@@ -163,7 +163,7 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
 		}
 
         /// <summary>
-        /// Hệ thốngPhòng khám
+        /// Hệ thống phòng khám
         /// </summary>
         /// <param name="keyword"></param>
         /// <returns></returns>

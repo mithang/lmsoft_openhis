@@ -7,26 +7,26 @@ namespace Newtouch.Domain.IRepository
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày:2018-06-28 13:27
-    /// Mô tả:Nhập việnChi phíchi tiếtkho
+    /// Ngày: 2018-06-28 13:27
+    /// Mô tả: Nhập viện Chi phí chi tiết kho
     /// </summary>
     public interface IInpatientFeeDetailRepo : IRepositoryBase<InpatientFeeDetailEntity>
     {
         /// <summary>
-        /// Lưubảngphiếu(Thêm mới,Sửa)
+        /// Lưu bảng phiếu (Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">thựcthểđối tượng</param>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="entity">thực thể đối tượng</param>
+        /// <param name="keyValue">Khóa chính Giá trị</param>
         void SubmitForm(InpatientFeeDetailEntity entity, string keyValue);
 
         /// <summary>
-        /// XóaDữ liệu
+        /// Xóa Dữ liệu
         /// </summary>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="keyValue">Khóa chính Giá trị</param>
         void DeleteForm(string keyValue);
 
         /// <summary>
-        /// thông quaSố nhập viện,Y lệnhTính chấtLấyThu phíthông tin
+        /// thông qua Số nhập viện, Y lệnh Tính chất Lấy Thu phí thông tin
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="zyh"></param>

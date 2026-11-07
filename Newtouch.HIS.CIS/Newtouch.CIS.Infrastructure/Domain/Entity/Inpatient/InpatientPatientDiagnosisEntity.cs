@@ -8,7 +8,7 @@ namespace Newtouch.Domain.Entity
     /// <summary>
     /// Tác giả: 冬林
     /// Ngày:2018-06-28 15:37
-    /// Mô tả:Nhập việnbệnh nhânChẩn đoánthông tin
+    /// Mô tả: Nhập viện bệnh nhân chẩn đoán thông tin
     /// </summary>
     [SugarTable("zy_PatDxInfo")]
     public class InpatientPatientDiagnosisEntity
@@ -30,16 +30,16 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// WM tâyy  TCM trongy
+        /// WM Tây y, TCM Trung y
         /// </summary>
         public string zddl { get; set; }
         /// <summary>
-        /// 1Chẩn đoán nhập viện2Xuất việnChẩn đoán
+        /// 1 chẩn đoán nhập viện 2 chẩn đoán xuất viện
         /// </summary>
         /// <returns></returns>
         public string zdlb { get; set; }
         /// <summary>
-        /// 0chínhcầnChẩn đoán1thứmộthỗ trợChẩn đoán2thứhaihỗ trợChẩn đoán3thứbahỗ trợChẩn đoán9tựđịnhnghĩaChẩn đoán
+        /// 0 chẩn đoán chính 1 chẩn đoán hỗ trợ thứ nhất 2 chẩn đoán hỗ trợ thứ hai 3 chẩn đoán hỗ trợ thứ ba 9 chẩn đoán tự định nghĩa
         /// </summary>
         /// <returns></returns>
         public string zdlx { get; set; }
@@ -79,12 +79,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0Vô hiệu1Hiệu lực
+        /// 0 Vô hiệu 1 Hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// Xuất việntình hình
+        /// Tình hình xuất viện
         /// </summary>
         public int? cyqk { get; set; }
         /// <summary>

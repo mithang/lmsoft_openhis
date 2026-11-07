@@ -8,7 +8,7 @@ namespace Newtouch.Domain.Entity
     /// <summary>
     /// Tác giả: 冬林
     /// Ngày:2018-06-28 15:37
-    /// Mô tả:Nhập việngiường ký tựSử dụngghi chépkho
+    /// Mô tả: Nhập viện giường ký tự sử dụng ghi chép kho
     /// </summary>
     [SugarTable("zy_cwsyjlk")]
     public class InpatientBedUseRecordEntity
@@ -105,7 +105,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string TransBedCode { get; set; }
         /// <summary>
-        /// (0hiện tại1chuyểngiường2chuyển khu3ra khỏi khu)
+        /// (0 hiện tại 1 chuyển giường 2 chuyển khu 3 ra khỏi khu)
         /// </summary>
         /// <returns></returns>
         public int? Status { get; set; }

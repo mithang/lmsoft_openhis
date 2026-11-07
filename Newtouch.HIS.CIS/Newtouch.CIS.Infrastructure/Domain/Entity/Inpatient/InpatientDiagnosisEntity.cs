@@ -8,7 +8,7 @@ namespace Newtouch.Domain.Entity
     /// <summary>
     /// Tạo：毛浩泽
     /// Ngày:2021-07-02 15:37
-    /// Mô tả:Nhập việnY lệnhChẩn đoánthông tin
+    /// Mô tả: Nhập viện y lệnh chẩn đoán thông tin
     /// </summary>
     [SugarTable("zy_clyzzd")]
     public class InpatientDiagnosisEntity
@@ -35,7 +35,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// Chẩn đoánThời gian
+        /// Thời gian chẩn đoán
         /// </summary>
         /// <returns></returns>
         public DateTime? zdsj { get; set; }
@@ -50,12 +50,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zdmc { get; set; }
         /// <summary>
-        /// làKhôngthuốc gây nghiện hướng thầnloạiY lệnh
+        /// Là không loại y lệnh thuốc gây nghiện hướng thần
         /// </summary>
         /// <returns></returns>
         public string yztag { get; set; }
         /// <summary>
-        /// Y lệnhThứ tự
+        /// Thứ tự y lệnh
         /// </summary>
         /// <returns></returns>
         public string yzpx { get; set; }
@@ -65,7 +65,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int? yzlx { get; set; }
         /// <summary>
-        /// Y lệnhTính chất
+        /// Tính chất y lệnh
         /// </summary>
         /// <returns></returns>
         public string yzxz { get; set; }
@@ -90,12 +90,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0Vô hiệu1Hiệu lực
+        /// 0 Vô hiệu 1 Hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// yviệnduy nhấtmộtid
+        /// Id duy nhất của bệnh viện
         /// </summary>
         /// <returns></returns>
         public string OrganizeId { get; set; }

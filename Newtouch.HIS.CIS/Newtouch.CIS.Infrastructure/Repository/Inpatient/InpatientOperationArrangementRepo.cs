@@ -13,14 +13,14 @@ namespace Newtouch.Repository
     /// <summary>
     /// Tác giả: 周珏琦
     /// Ngày:2019-01-28 13:27
-    /// Mô tả:Sắp xếp phẫu thuậtbảng
+    /// Mô tả: Sắp xếp phẫu thuật bảng
     /// </summary>
     public class InpatientOperationArrangementRepo : RepositoryBase<InpatientOperationArrangementEntity>, IInpatientOperationArrangementRepo
     {
         /// <summary>
-        /// Mặc địnhHàm khởi tạosố
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EFtrêndướivănNhà máy</param>
+        /// <param name="databaseFactory">Nhà máy ngữ cảnh EF</param>
         public InpatientOperationArrangementRepo()
             : base()
         {
@@ -28,10 +28,10 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// Lưubảngphiếu(Thêm mới,Sửa)
+        /// Lưu bảng phiếu (Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">thựcthểđối tượng</param>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="entity">thực thể đối tượng</param>
+        /// <param name="keyValue">Khóa chính giá trị</param>
         public bool SubmitForm(InpatientOperationArrangementEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -63,9 +63,9 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// XóaDữ liệu
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="keyValue">Khóa chính giá trị</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.Id == keyValue);

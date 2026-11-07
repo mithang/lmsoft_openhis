@@ -13,14 +13,14 @@ namespace Newtouch.Repository
     /// <summary>
     /// Tác giả: 冬林
     /// Ngày:2018-06-28 13:27
-    /// Mô tả:Nhập việnChi phíchi tiếtkho
+    /// Mô tả: Nhập viện chi phí chi tiết kho
     /// </summary>
     public class InpatientFeeDetailRepo : RepositoryBase<InpatientFeeDetailEntity>, IInpatientFeeDetailRepo
     {
         /// <summary>
-        /// Mặc địnhHàm khởi tạosố
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EFtrêndướivănNhà máy</param>
+        /// <param name="databaseFactory">Nhà máy ngữ cảnh EF</param>
         public InpatientFeeDetailRepo()
             : base()
         {
@@ -28,10 +28,10 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// Lưubảngphiếu(Thêm mới,Sửa)
+        /// Lưu bảng phiếu (Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">thựcthểđối tượng</param>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="entity">thực thể đối tượng</param>
+        /// <param name="keyValue">Khóa chính giá trị</param>
         public void SubmitForm(InpatientFeeDetailEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -50,16 +50,16 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// XóaDữ liệu
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="keyValue">Khóa chính giá trị</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.Id == keyValue);
         }
 
         /// <summary>
-        /// thông quaSố nhập viện,Y lệnhTính chấtLấyChi phíthông tin
+        /// thông qua Số nhập viện, Y lệnh Tính chất Lấy Chi phí thông tin
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="zyh"></param>

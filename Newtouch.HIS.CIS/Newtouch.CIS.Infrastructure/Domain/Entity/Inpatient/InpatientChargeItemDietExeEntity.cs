@@ -8,7 +8,7 @@ namespace Newtouch.Domain.Entity
     /// <summary>
     /// Tác giả: 冬林
     /// Ngày:2018-06-28 15:37
-    /// Mô tả:Nhập việnChungăn uốngyêu cầukho
+    /// Mô tả: Nhập viện chung ăn uống yêu cầu kho
     /// </summary>
     [SugarTable("zy_tyssqqk")]
     public class InpatientChargeItemDietExeEntity
@@ -120,7 +120,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public decimal zxcs { get; set; }
         /// <summary>
-        /// 0Tạm thời1Dài hạn
+        /// 0 Tạm thời 1 Dài hạn
         /// </summary>
         /// <returns></returns>
         public int zyxz { get; set; }
@@ -165,7 +165,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0Vô hiệu1Hiệu lực
+        /// 0 Vô hiệu 1 Hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }

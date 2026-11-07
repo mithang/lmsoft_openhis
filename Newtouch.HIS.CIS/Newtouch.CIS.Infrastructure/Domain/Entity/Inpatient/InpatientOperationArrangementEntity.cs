@@ -25,7 +25,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// Y lệnh tạm thờiid
+        /// Id y lệnh tạm thời
         /// </summary>
         public string lsyzid { get; set; }
         /// <summary>
@@ -34,36 +34,36 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// anxếpNgày
+        /// Ngày sắp xếp
         /// </summary>
         /// <returns></returns>
         public DateTime aprq { get; set; }
         /// <summary>
-        /// Phẫu thuậtĐịa chỉ
+        /// Địa chỉ phẫu thuật
         /// </summary>
         /// <returns></returns>
         public string ssAddr { get; set; }
         /// <summary>
-        /// gấpgấp
+        /// Khẩn cấp
         /// </summary>
         /// <returns></returns>
         public string urgent { get; set; }
         /// <summary>
-        /// Phẫu thuậtBác sĩID
+        /// ID bác sĩ phẫu thuật
         /// </summary>
         /// <returns></returns>
         public string surgeonId { get; set; }
         /// <summary>
-        /// Phẫu thuậtBác sĩHọ tên
+        /// Họ tên bác sĩ phẫu thuật
         /// </summary>
         public string surgeonName { get; set; }
         /// <summary>
-        /// giúptayID
+        /// ID trợ thủ
         /// </summary>
         /// <returns></returns>
         public string assistant { get; set; }
         /// <summary>
-        /// giúptayHọ tên
+        /// Họ tên trợ thủ
         /// </summary>
         public string assistantName { get; set; }
         /// <summary>

@@ -81,7 +81,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// Bệnh nhândựkhám
+        /// Bệnh nhân dự khám
         /// </summary>
         /// <returns></returns>
         public IActionResult PatientPreDiag()
@@ -89,7 +89,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// Bệnh nhânKhám bệnhthông tin
+        /// Bệnh nhân khám bệnh thông tin
         /// </summary>
         /// <returns></returns>
         public IActionResult PatientVisitList()
@@ -128,7 +128,7 @@ namespace Newtouch.CIS.Web.Controllers
         #endregion
 
         /// <summary>
-        /// TheoSố khám ngoại trúTra cứudấu hiệu sinh tồn
+        /// Theo số khám ngoại trú tra cứu dấu hiệu sinh tồn
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -146,7 +146,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// chưaKhám bệnhdanh sách
+        /// chưa khám bệnh danh sách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -190,7 +190,7 @@ namespace Newtouch.CIS.Web.Controllers
             var syncMethod = _sysConfigRepo.GetValueByCode("HISSyncMethod", this.OrganizeId);
             if (syncMethod == "IDB")
             {
-                //từtronggiữakhoĐồng bộ
+                // từ trong giữa kho đồng bộ
                 pagination.sidx = "ghczsj desc";
                 pagination.sord = "";
                 var list = new
@@ -212,14 +212,14 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 zzhz = zzhz == true ? "1" : "0",
                 ksCode = kcCode,
-                ysgh = mjzbz == 3 ? this.UserIdentity.rygh : "",    //Lọcchuyên giasố chỉ xemtreotựtựsốcủa
-                mjzbz = mjzbz.ToString(),  //1thông thườngNgoại trú 2gấpkhám 3chuyên giaNgoại trú
-                jiuzhenbz = ((int)EnumJzzt.NotYetTreate).ToString(),   //Khám bệnhCờ
+                ysgh = mjzbz == 3 ? this.UserIdentity.rygh : "",    // Lọc chuyên gia số chỉ xem treo tự tự số của
+                mjzbz = mjzbz.ToString(),  //1 thông thường ngoại trú 2 gấp khám 3 chuyên gia ngoại trú
+                jiuzhenbz = ((int)EnumJzzt.NotYetTreate).ToString(),   // Khám bệnh cờ
                 keyword = keyword,
                 pagination = pagination
             };
 
-            //kéolấyđăng ký khámthông tin
+            // kéo lấy đăng ký khám thông tin
             var apiResp = SiteSettAPIHelper.Request<APIRequestHelper.DefaultResponse<RegisteredInfoResponse>>(
                 "/api/Patient/OutPatientRegistrationQuery", reqObj);
             if (apiResp == null || apiResp.data == null) return Error("Gọi giao diện thất bại 【" + apiResp?.msg + apiResp?.sub_msg + "】");
@@ -242,7 +242,7 @@ namespace Newtouch.CIS.Web.Controllers
                 apiRespList.Add(new TreatEntityObj
                 {
                     mzh = item.mzh,
-                    mjzbz = Convert.ToInt32(item.mjzbz),//1thông thườngNgoại trú 2gấpkhám 3chuyên giaNgoại trú
+                    mjzbz = Convert.ToInt32(item.mjzbz),//1 thông thường ngoại trú 2 gấp khám 3 chuyên gia ngoại trú
                     blh = item.blh,
                     xm = item.brxm,
                     xb = item.sexValue,
@@ -252,7 +252,7 @@ namespace Newtouch.CIS.Web.Controllers
                     zjlx = item.zjlx,
                     zjh = item.zjh,
                     ghksmc = item.ksmc,
-                    ghys = item.ysxm,//đăng ký khámBác sĩTên(chuyên giasốkhichắcđịnhcó)
+                    ghys = item.ysxm,//đăng ký khám bác sĩ tên(chuyên gia số khi chắc định có)
                     ghsj = item.ghsj,
                     ghczsj = item.operatingTime,
                     jzzt = (int)EnumJzzt.NotYetTreate,
@@ -272,7 +272,7 @@ namespace Newtouch.CIS.Web.Controllers
                     nlshow = item.nlshow,
                     ghlybz = item.ghlybz,
                     grbh=item.grbh,
-                    zzbs = zzhz == true ? "转诊" : "",
+                    zzbs = zzhz == true ? "Chuyển tuyến" : "",
                     queno=item.queno
                 });
             }
@@ -291,7 +291,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// khingàyĐã khám bệnhdanh sách
+        /// khi ngày đã khám bệnh danh sách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -321,7 +321,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// khôi phụclạiKhám bệnh
+        /// khôi phục lại khám bệnh
         /// </summary>
         /// <param name="jzid"></param>
         /// <returns></returns>
@@ -331,7 +331,7 @@ namespace Newtouch.CIS.Web.Controllers
             return Success();
         }
         /// <summary>
-        /// Lấycuối cùngmột lầnKhám bệnh
+        /// Lấy cuối cùng một lần khám bệnh
         /// </summary>
         /// <param name="ks"></param>
         /// <param name="blh"></param>
@@ -350,7 +350,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// TheoSố bệnh ánĐồng bộBệnh nhâncủaĐơn thuốcThu phíTrạng thái
+        /// Theo số bệnh án đồng bộ bệnh nhân của đơn thuốc thu phí trạng thái
         /// </summary>
         /// <param name="blh"></param>
         /// <returns></returns>
@@ -367,7 +367,7 @@ namespace Newtouch.CIS.Web.Controllers
 
         #region Nhập việnBệnh nhânmộtxem
         /// <summary>
-        /// LấyĐang ở khu bệnhcủabệnh người
+        /// Lấy đang ở khu bệnh của bệnh người
         /// </summary>
         /// <param name="bqCode"></param>
         /// <param name="ys"></param>
@@ -391,7 +391,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Lấyđãra khỏi khubệnh người
+        /// Lấy đã ra khỏi khu bệnh người
         /// </summary>
         /// <param name="bqCode"></param>
         /// <param name="ys"></param>
@@ -433,7 +433,7 @@ namespace Newtouch.CIS.Web.Controllers
 
         #region Dấu hiệu sinh tồn
         /// <summary>
-        /// TheoSố khám ngoại trúTra cứudấu hiệu sinh tồn
+        /// Theo số khám ngoại trú tra cứu dấu hiệu sinh tồn
         /// </summary>
         /// <param name="mzh"></param>
         /// <returns></returns>
@@ -463,7 +463,7 @@ namespace Newtouch.CIS.Web.Controllers
         #region Nhập việnBệnh nhân
 
         /// <summary>
-        /// Bệnh nhân nội trúmộtxem
+        /// Bệnh nhân nội trú một xem
         /// </summary>
         /// <returns></returns>
         public IActionResult InpatientList()
@@ -485,7 +485,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Nhập việnThông tin bệnh nhân
+        /// Nhập viện thông tin bệnh nhân
         /// </summary>
         /// <returns></returns>
         public IActionResult InpatientInfo()
@@ -497,7 +497,7 @@ namespace Newtouch.CIS.Web.Controllers
         #region Nhập việnBệnh nhânChọnbậtlớp
 
         /// <summary>
-        /// Bệnh nhân nội trúchọnbậtlớp
+        /// Bệnh nhân nội trú chọn bật lớp
         /// </summary>
         /// <returns></returns>
         public IActionResult InPatSearchView()
@@ -506,7 +506,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Bệnh nhân nội trúchọnbậtlớp Nguồn dữ liệu
+        /// Bệnh nhân nội trú chọn bật lớp nguồn dữ liệu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="bq"></param>
@@ -519,7 +519,7 @@ namespace Newtouch.CIS.Web.Controllers
         public IActionResult InPatSearchInfo(Pagination pagination, string bq, string zyh, string xm,string ch, string zybz = null)
         {
 			var StaffId = this.UserIdentity.StaffId;
-			//TheoStaffIdLấyKhu bệnh
+			// Theo StaffId lấy khu bệnh
 			var bqCodeList = _inpatientPatientDmnService.GetWardCodeByStaffId(StaffId,this.OrganizeId);
 			var bqCode = "";
 			foreach (var obj in bqCodeList ?? new List<string>()) {
@@ -556,7 +556,7 @@ namespace Newtouch.CIS.Web.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// nợ phímởlập/Thực hiệnnhắcnhắc
+        /// nợ phí mở lập/Thực hiện nhắc nhắc
         /// </summary>
         /// <param name="patlist"></param>
         /// <returns></returns>
@@ -568,7 +568,7 @@ namespace Newtouch.CIS.Web.Controllers
         #endregion
 
         /// <summary>
-        /// Đăng nhậpNgười dùngCóKhôngCóchuyên giaBác sĩ
+        /// Đăng nhập người dùng có không có chuyên gia bác sĩ
         /// </summary>
         /// <returns></returns>
         public IActionResult IsExpertByLoginUser() {
@@ -578,7 +578,7 @@ namespace Newtouch.CIS.Web.Controllers
             foreach(var obj in sysStaffDutyList) {
                 if (obj.StaffGh == ysgh) {
                     if (obj.DutyCode== "zrys"||obj.DutyCode== "fzrys")
-                    {//chínhnhiệmBác sĩ phụchínhnhiệmBác sĩ
+                    {// chính nhiệm bác sĩ phụ chính nhiệm bác sĩ
                         flag = true;
                         break;
                     }
@@ -642,7 +642,7 @@ namespace Newtouch.CIS.Web.Controllers
 				ksCode = this.UserIdentity.DepartmentCode,
 				ysgh = this.UserIdentity.rygh,
 				mjzbz = "",
-				jiuzhenbz = ((int)EnumJzzt.NotYetTreate).ToString(),   //Khám bệnhCờ
+				jiuzhenbz = ((int)EnumJzzt.NotYetTreate).ToString(),   // Khám bệnh cờ
 				pagination = pagination
 			};
 
@@ -659,7 +659,7 @@ namespace Newtouch.CIS.Web.Controllers
 				apiRespList.Add(new TreatEntityObj
 				{
 					mzh = item.mzh,
-					mjzbz = Convert.ToInt32(item.mjzbz),//1thông thườngNgoại trú 2gấpkhám 3chuyên giaNgoại trú
+					mjzbz = Convert.ToInt32(item.mjzbz),//1 thông thường ngoại trú 2 gấp khám 3 chuyên gia ngoại trú
 					blh = item.blh,
 					xm = item.brxm,
 					xb = item.sexValue,
@@ -669,7 +669,7 @@ namespace Newtouch.CIS.Web.Controllers
 					zjlx = item.zjlx.ToInt(),
 					zjh = item.zjh,
 					ghksmc = item.ksmc,
-					ghys = item.ysxm,//đăng ký khámBác sĩTên(chuyên giasốkhichắcđịnhcó)
+					ghys = item.ysxm,//đăng ký khám bác sĩ tên(chuyên gia số khi chắc định có)
 					ghsj = item.ghsj.ToDate(),
 					ghczsj = item.operatingTime.ToDate(),
 					jzzt = (int)EnumJzzt.NotYetTreate,

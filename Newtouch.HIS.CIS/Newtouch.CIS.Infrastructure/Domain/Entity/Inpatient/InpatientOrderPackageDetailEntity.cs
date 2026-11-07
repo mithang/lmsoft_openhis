@@ -8,7 +8,7 @@ namespace Newtouch.Domain.Entity
     /// <summary>
     /// Tác giả: 冬林
     /// Ngày:2018-06-28 15:37
-    /// Mô tả:Nhập việnY lệnhgóichi tiết
+    /// Mô tả: Nhập viện y lệnh gói chi tiết
     /// </summary>
     [SugarTable("zy_yztcmx")]
     public class InpatientOrderPackageDetailEntity
@@ -30,12 +30,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string MainId { get; set; }
         /// <summary>
-        /// bảnđịaY lệnhphútnhómthứ tựsố
+        /// Số thứ tự nhóm y lệnh tại chỗ
         /// </summary>
         /// <returns></returns>
         public int? zh { get; set; }
         /// <summary>
-        /// Tần suấtMã
+        /// Mã tần suất
         /// </summary>
         /// <returns></returns>
         public string pcCode { get; set; }
@@ -50,17 +50,17 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int? zxzq { get; set; }
         /// <summary>
-        /// Chu kỳ thực hiệnĐơn vị -1:khôngquythìchu kỳ,0:ngày,1:giờ,2:Phút.Lưu ý:khilà-1khi,tuầnMã(zdm)làsốchữ(1234567)trongcủaBất kỳ vàicáisốchữ
+        /// Đơn vị chu kỳ thực hiện -1: không theo chu kỳ, 0: ngày, 1: giờ, 2: phút. Lưu ý: khi là -1, mã tuần (zdm) là vài chữ số bất kỳ trong (1234567)
         /// </summary>
         /// <returns></returns>
         public int? zxzqdw { get; set; }
         /// <summary>
-        /// tuầnMã
+        /// Mã tuần
         /// </summary>
         /// <returns></returns>
         public string zdm { get; set; }
         /// <summary>
-        /// Thuốcidm
+        /// Idm thuốc
         /// </summary>
         /// <returns></returns>
         public decimal? idm { get; set; }
@@ -85,17 +85,17 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int sl { get; set; }
         /// <summary>
-        /// Đơn vịLoại 0Đơn vị liều,1Đơn vị kho thuốc,2Đơn vị ngoại trú,3Đơn vị nhập viện,4vàohàngĐơn vị(chỉhiển thịY lệnhĐơn vịLoạilà0)
+        /// Loại đơn vị 0 đơn vị liều, 1 đơn vị kho thuốc, 2 đơn vị ngoại trú, 3 đơn vị nhập viện, 4 đơn vị nhập kho (chỉ hiển thị khi loại đơn vị y lệnh là 0)
         /// </summary>
         /// <returns></returns>
         public int? dwlb { get; set; }
         /// <summary>
-        /// bảnđịaLoại y lệnh 0:ThuốcY lệnh,1:Kháng sinhY lệnh,2:Kiểm traY lệnh,3:Xét nghiệmY lệnh,4:chỉhiển thịY lệnh,5:thông thườngY lệnh , 6 DừngY lệnh, 7  Xuất việnmang thuốc, 8 ăn uốngY lệnh, 9 Phẫu thuậtY lệnh   10  trongthảo dược  
+        /// Loại y lệnh tại chỗ 0: y lệnh thuốc, 1: y lệnh kháng sinh, 2: y lệnh kiểm tra, 3: y lệnh xét nghiệm, 4: y lệnh chỉ hiển thị, 5: y lệnh thông thường, 6: y lệnh dừng, 7: xuất viện mang thuốc, 8: y lệnh ăn uống, 9: y lệnh phẫu thuật, 10: y lệnh thảo dược Trung y  
         /// </summary>
         /// <returns></returns>
         public int yzlx { get; set; }
         /// <summary>
-        /// ThuốcLiều lượng
+        /// Liều lượng thuốc
         /// </summary>
         /// <returns></returns>
         public decimal? ypjl { get; set; }
@@ -105,7 +105,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string ypgg { get; set; }
         /// <summary>
-        /// Dặn dònội dung
+        /// Nội dung dặn dò
         /// </summary>
         /// <returns></returns>
         public string ztnr { get; set; }
@@ -120,7 +120,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string ypyfdm { get; set; }
         /// <summary>
-        /// 0 Chung 1 tựchuẩn bị
+        /// 0 chung 1 tự chuẩn bị
         /// </summary>
         /// <returns></returns>
         public int zbbz { get; set; }
@@ -153,7 +153,7 @@ namespace Newtouch.Domain.Entity
         public string zxksdm { get; set; }
         public string nlmd { get; set; }
         /// <summary>
-        /// dài hạn/tạm thờiCờ
+        /// Cờ dài hạn/tạm thời
         /// </summary>
         public string yzlb { get; set; }
     }

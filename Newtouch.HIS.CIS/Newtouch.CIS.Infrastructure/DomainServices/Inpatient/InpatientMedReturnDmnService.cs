@@ -28,7 +28,7 @@ namespace Newtouch.DomainServices
 
         }
         /// <summary>
-        /// LấyKhu bệnhphát thuốcBệnh nhâncây
+        /// Lấy Khu bệnh phát thuốc Bệnh nhân cây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -98,7 +98,7 @@ and e.zybz not in (" + (int)EnumZYBZ.Ycy + "," + (int)EnumZYBZ.Wry + "," + (int)
 from v_yzisfy a with(nolock) --zy_fyqqk a with(nolock)
 left join [NewtouchHIS_Base].[dbo].[V_C_xt_yp] b with(nolock) on a.[ypdm]=b.ypcode and a.OrganizeId=b.OrganizeId and b.zt='1'
 where a.OrganizeId=@orgId and a.zt='1' and a.tybz in (" + (int)EnumMedSTflag.Receive + "," + (int)EnumMedSTflag.PartReturn + @") 
-and zyh=@zyh and a.fybz in('2','3')--Tra cứuđãphát thuốcvàchưaxongtoàntrảxongcủa
+and zyh=@zyh and a.fybz in('2','3')--Tra cứu đã phát thuốc và chưa xong toàn trả xong của
 and not exists(select 1 from zy_tyjl  b with(nolock) 
 			    where b.fyid=a.id and b.zt='1') ";
             if (!string.IsNullOrWhiteSpace(kssj) && !string.IsNullOrWhiteSpace(jssj))
@@ -233,7 +233,7 @@ and exists (
                             ClientNo = Guid.NewGuid(),
                             TimeStamp = DateTime.Now.ToString()
                         };
-                        //gọiNhà thuốcKho thuốcgiao diệnyêu cầutrảthuốc,Quay lạiIsSucceed==true thìTất cảthành công,nếufalse thìnhậnlàTất cảthất bại 
+                        //gọi Nhà thuốc Kho thuốc giao diện yêu cầu trả thuốc, Quay lại IsSucceed==true thì Tất cả thành công, nếu false thì nhận là Tất cả thất bại 
                         var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>(
                         "/api/ResourcesOperate/HospitalizatiionReturnDispensingMedicine", reqobj);
 
@@ -249,7 +249,7 @@ and exists (
                         //if (apires.code == APIRequestHelper.ResponseResultCode.FAIL && apires.sub_msg != "")
                         //{
 
-                        //    var data = Tools.Json.ToObject<List<InpMedReturnResultDataDto>>(apires.data.ToString()); //giao diệnQuay lạiDữ liệu 
+                        //    var data = Tools.Json.ToObject<List<InpMedReturnResultDataDto>>(apires.data.ToString()); //giao diện Quay lại Dữ liệu 
                         //medList = "";
                         //if (data != null)
                         //{
@@ -257,7 +257,7 @@ and exists (
                         //    {
                         //        if (item.ErrorCode == "5" || item.ErrorCode == "6")
                         //        {
-                        //            //5 Thuốcđãtrả 6 Đã gửi đơntrảthuốc
+                        //            //5 Thuốc đã trả 6 Đã gửi đơn trả thuốc
                         //            var list = yzList.Where(p => p.yzId == item.yzId).Where(p => p.ypCode == item.ypCode).Where(p => p.zxrq == item.zxrq);
                         //            foreach (InpMedReturnNeedDto fyItem in list)
                         //            {
@@ -280,7 +280,7 @@ and exists (
                         //    var hastyjl = this.FindList<InpatientMedicineReturnEntity>(sql, new[] { new SqlParameter("@medList", medL), new SqlParameter("@orgId ", user.OrganizeId) });
                         //    if (hastyjl.Count > 0)
                         //    {
-                        //        //Cập nhậtphát thuốcyêu cầukhotương ứngY lệnhlàtrảthuốcTrạng thái
+                        //        //Cập nhật phát thuốc yêu cầu kho tương ứng Y lệnh là trả thuốc Trạng thái
                         //        sql = @"update a
                         //            set a.tybz=@tybz,a.LastModifierCode=@modificode,a.[LastModifyTime]=getdate()
                         //            from zy_fyqqk a 
@@ -300,18 +300,18 @@ and exists (
                         //        db.Commit();
                         //    }
                         //}
-                        //throw new FailedException("trảthuốcGửi đơn thất bại," + errMsg);
+                        //throw new FailedException("trả thuốc Gửi đơn thất bại," + errMsg);
 
                         //}
                         //else
                         {
-                            throw new FailedException("trảthuốcGửi đơn thất bại，vui lòngtrọngthử");
+                            throw new FailedException("trả thuốc Gửi đơn thất bại, vui lòng trọng thử");
                         }
                     }
                 }
                 catch (FailedException ex)
                 {
-                    throw new FailedException("trảthuốcGửi đơn thất bại，" + ex.Msg);
+                    throw new FailedException("trả thuốc Gửi đơn thất bại," + ex.Msg);
                 }
             }
             return tyxh;
@@ -331,7 +331,7 @@ and exists (
                         {
                             int ypsl = ime.ypsl;
                             if (item.yzlx == 10) {
-                                ypsl = Convert.ToInt32(ime.mcsl ?? 0)*ime.ypsl; //Thuốc Đông ycầnypsl*mỗi lầnSố lượng =Thuốc Đông ytổngSố lượng
+                                ypsl = Convert.ToInt32(ime.mcsl ?? 0)*ime.ypsl; //Thuốc Đông y cần ypsl*mỗi lần Số lượng =Thuốc Đông y tổng Số lượng
                             }
                             ime.ytsl = (ime.ytsl ?? 0) + item.tsl;
                             if (ime.ytsl == ypsl)
@@ -340,7 +340,7 @@ and exists (
                             }
                             else if (ime.ytsl > ypsl)
                             {
-                                throw new FailedException("trảthuốcSố lượngkhông thểLớn hơnphát thuốcSố lượng");
+                                throw new FailedException("trả thuốc Số lượng không thể Lớn hơn phát thuốc Số lượng");
                             } else if (ime.ytsl < ypsl) {
                                 ime.tybz = (int)EnumMedSTflag.PartReturn;
                             }
@@ -388,7 +388,7 @@ and exists (
                 }
                 catch (Exception)
                 {
-                    throw new FailedException("trảthuốcGửi đơn thất bại，vui lòngtrọngthử");
+                    throw new FailedException("trả thuốc Gửi đơn thất bại, vui lòng trọng thử");
                 }
              
             }
@@ -396,8 +396,8 @@ and exists (
                 //int flag = this.ExecuteSqlCommand(sql, para);
                 //if (flag != 0)
                 //{
-                //    //tạotrảthuốcyêu cầu
-                //    //tạotrảthuốcthứ tựsố
+                //    //tạo trả thuốc yêu cầu
+                //    //tạo trả thuốc thứ tự số
                 //    int tyxh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueIntValue("zy_tyxh", user.OrganizeId);
                 //    if (tyxh > 0)
                 //    {
@@ -424,13 +424,13 @@ and exists (
 
                 //    }
                 //    else {
-                //        throw new FailedException("trảthuốcGửi đơn thất bại(thứ tựsố),vui lòngtrọngthử");
+                //        throw new FailedException("trả thuốc Gửi đơn thất bại (thứ tự số), vui lòng trọng thử");
                 //    }
 
                 //}
                 //else
                 //{
-                //    throw new FailedException("trảthuốcGửi đơn thất bại(phát thuốcTrạng thái),vui lòngtrọngthử");
+                //    throw new FailedException("trả thuốc Gửi đơn thất bại (phát thuốc Trạng thái), vui lòng trọng thử");
                 //}
             //}
         }

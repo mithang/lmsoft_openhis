@@ -50,7 +50,7 @@ namespace Newtouch.DomainServices.Inpatient
 
                         db.Update(mbObj);
 
-                        db.Delete<InpatientOrderPackageDetailEntity>(a => a.MainId == mbObj.Id && a.OrganizeId == mbObj.OrganizeId); //trướctoànxóa,lạiThêm mới
+                        db.Delete<InpatientOrderPackageDetailEntity>(a => a.MainId == mbObj.Id && a.OrganizeId == mbObj.OrganizeId); //trước toàn xóa, lại Thêm mới
                     }
                     else
                     {
@@ -61,16 +61,16 @@ namespace Newtouch.DomainServices.Inpatient
                         db.Insert(mbObj);
                     }
 
-                    //Số nhómtạotậphợp keyThao tácgiớimặtmangquađếncủaSố nhóm,valuemáy chủtạocủaSố nhóm,nhấtcuốiLưuđếnDữ liệukho
+                    //Số nhóm tạo tập hợp key Thao tác giới mặt mang qua đến của Số nhóm, value máy chủ tạo của Số nhóm, nhất cuối Lưu đến Dữ liệu kho
                     var diczh = new Dictionary<int, int>();
                     foreach (var item in mxList)
                     {
-                        //khôngtồn tạiởTần suất,khônglàmphương phápkếtiếp.
+                        //không tồn tại ở Tần suất, không làm phương pháp kế tiếp.
                         if (string.IsNullOrWhiteSpace(item.pcCode))
                         {
                             continue;
                         }
-                        //Số nhómlạiGán giá trị
+                        //Số nhóm lại Gán giá trị
                         if (!string.IsNullOrWhiteSpace(item.zh.ToString()))
                         {
                             if (diczh.ContainsKey(item.zh.ToInt()))
@@ -85,14 +85,14 @@ namespace Newtouch.DomainServices.Inpatient
                             }
                             else
                             {
-                                //tạoSố nhóm
+                                //tạo Số nhóm
                                 var No = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("zy_cqlsyz.zh", orgId, "", false);
                                 diczh.Add(item.zh.ToInt(), No.ToInt());
                                 item.zh = No.ToInt();
                             }
                         }
 
-                        //Nội dung y lệnh định dạng:Tên thuốc Quy cách thuốc  ThuốcLiều lượng  Đơn vị liều Mã cách dùng Tên tần suất Vị trí
+                        //Nội dung y lệnh định dạng: Tên thuốc Quy cách thuốc  Thuốc Liều lượng  Đơn vị liều Mã cách dùng Tên tần suất Vị trí
                         item.yznr = item.xmmc + " "
                             + (item.ypgg ?? "")
                             + " " + (item.ypjl.ToString() ?? "")
@@ -117,10 +117,10 @@ namespace Newtouch.DomainServices.Inpatient
                         }
                         if (item.yzlx == (int)EnumYzlx.zcy)
                         {
-                            //Y lệnhđịnh dạng:Tên thuốc Quy cách mỗi lầnLiều lượng mỗi lầnĐơn vị liều Cách dùng Tần suất dánsố
+                            //Y lệnh định dạng: Tên thuốc Quy cách mỗi lần Liều lượng mỗi lần Đơn vị liều Cách dùng Tần suất dán số
                             item.yznr = item.xmmc + "  " + item.ypgg + " " + item.ypjl + item.dw + " " + item.yfmc + " " + item.pcmc + " " + item.sl + " thang";
                         }
-                        //đối tượngGán giá trị  
+                        //đối tượng Gán giá trị  
                         var addentity = item.MapperTo<InpatientOrderPackageVO, InpatientOrderPackageDetailEntity>();//AddCQdoctorService(item, orgId, tzsj);
                         addentity.OrganizeId = orgId;
                         addentity.MainId = mbObj.Id;
@@ -158,7 +158,7 @@ namespace Newtouch.DomainServices.Inpatient
                         var nameentity = _inpatientDietBaseRepo.FindEntity(p => p.Id == v && p.zt == "1"&&p.OrganizeId==orgId);
                         if (nameentity == null)
                         {
-                            throw new FailedException("thiếuăn uốngcơ sởcơ sở");
+                            throw new FailedException("thiếu ăn uống cơ sở cơ sở");
                         }
                         var entity = new InpatientDietTemplateDetailSplitEntity();
                         entity.OrganizeId = orgId;
@@ -176,7 +176,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// TheomẫuIDtìmđếnmẫuChi tiết
+        /// Theo mẫu ID tìm đến mẫu Chi tiết
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
@@ -315,7 +315,7 @@ and cyzd.zdlb='2' and cyzd.zdlx='0'
         }
     
         /// <summary>
-        /// TheomẫuIDtìmđếnmẫuChi tiết
+        /// Theo mẫu ID tìm đến mẫu Chi tiết
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
@@ -324,7 +324,7 @@ and cyzd.zdlb='2' and cyzd.zdlx='0'
         {
             if (string.IsNullOrWhiteSpace(IdList))
             {
-                throw new FailedException("thiếugói");
+                throw new FailedException("thiếu gói");
             }
 
             IdList= IdList.Substring(0,IdList.Length-1);
@@ -448,7 +448,7 @@ and cyzd.zdlb='2' and cyzd.zdlx='0'
         {
             if (string.IsNullOrWhiteSpace(mbId))
             {
-                throw new FailedException("thiếugói");
+                throw new FailedException("thiếu gói");
             }
             using (var db = new EFDbTransaction().BeginTrans())
             {
@@ -469,7 +469,7 @@ and cyzd.zdlb='2' and cyzd.zdlx='0'
 
         #region  Y lệnhdẫndùng
         /// <summary>
-        /// lịch sửY lệnhdẫndùng
+        /// lịch sử Y lệnh dẫn dùng
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
@@ -675,7 +675,7 @@ and CreateTime<=@jssj");
         }
 
         /// <summary>
-        /// dẫndùnglịch sửY lệnh
+        /// dẫn dùng lịch sử Y lệnh
         /// </summary>
         /// <param name="Id"></param>
         /// <param name="orgId"></param>
@@ -684,7 +684,7 @@ and CreateTime<=@jssj");
         {
             if (string.IsNullOrWhiteSpace(yzlistId))
             {
-                throw new FailedException("thiếugói");
+                throw new FailedException("thiếu gói");
             }
 
             yzlistId = yzlistId.Substring(0, yzlistId.Length - 1);
@@ -868,7 +868,7 @@ order by CreateTime");
             return this.FindList<HistoricalOrdersRequestDto>(sqlstr.ToString(), par.ToArray());
         }
         /// <summary>
-        /// lịch sửY lệnhsao chépdẫndùng
+        /// lịch sử Y lệnh sao chép dẫn dùng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="yzlistId"></param>
@@ -879,7 +879,7 @@ order by CreateTime");
         {
             if (string.IsNullOrWhiteSpace(yzlistId))
             {
-                throw new FailedException("thiếucầndẫndùngY lệnh");
+                throw new FailedException("thiếu cần dẫn dùng Y lệnh");
             }
 
             string sql = @"if(@yzlistId!='')

@@ -33,7 +33,7 @@ using NewtouchHIS.Lib.Base.Extension;
 namespace Newtouch.Application.Implementation
 {
     /// <summary>
-    /// Ngoại trútrongyquánQuản lý
+    /// Ngoại trú trong y quán quản lý
     /// </summary>
     public class OutpatientCmmManagerApp : AppBase, IOutpatientCmmManagerApp
     {
@@ -44,9 +44,9 @@ namespace Newtouch.Application.Implementation
         private readonly ISysStaffRepo _sysStaffRepo;
         private readonly ICmmHis02RecordDmnService _comCmmHis02RecordDmnService;
 
-        // NX3-001: ctor injection (mau NX2-003/BA-003) — truoc day khong co ctor,
-        // 5 field dung that + _treatmentRepo (CS0169, chet nhung van inject theo
-        // tien le BA-003 nhu NX2-003) luon null (CS0649) nen TcmHis01 NRE.
+        // NX3-001: ctor injection (mẫu NX2-003/BA-003) — trước đây không có ctor,
+        // 5 field dùng thật + _treatmentRepo (CS0169, chết nhưng vẫn inject theo
+        // tiền lệ BA-003 như NX2-003) luôn null (CS0649) nên TcmHis01 NRE.
         public OutpatientCmmManagerApp(ISysConfigRepo sysConfigRepo, ITreatmentRepo treatmentRepo, IBaseDataDmnService baseDataDmnService, ICmmHis01Repo cmmHis01Repo, ISysStaffRepo sysStaffRepo, ICmmHis02RecordDmnService comCmmHis02RecordDmnService) : base()
         {
             _sysConfigRepo = sysConfigRepo;
@@ -60,7 +60,7 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_01
 
         /// <summary>
-        /// Thông tin bệnh nhânTải lên
+        /// Thông tin bệnh nhân tải lên
         /// </summary>
         /// <param name="jzxx"></param>
         /// <param name="organizeId"></param>
@@ -82,10 +82,10 @@ namespace Newtouch.Application.Implementation
                 if (jzxx == null) return new Result { code = "0", desc = "Thông tin khám bệnh (jzxx) không được để trống" };
                 if (CheckIsUpload(jzxx.mzh, organizeId)) return result;
                 var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", organizeId);
-                if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration");
+                if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("Vui lòng cấu hình thông tin cơ sở chính của y quán, mã là cmm_configuration");
                 var objConfig = confInfo.ToObject<ConfigurationInfo>();
-                if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai，Vui lòng chú ý cấu trúc！");
-                if (string.IsNullOrWhiteSpace(objConfig.areaCode) || string.IsNullOrWhiteSpace(objConfig.jgdm)) throw new Exception("trongyquándòngchínhCơ sởthông tincấu hìnhCơ sởMãvàkhulĩnh vựcMãkhông thểlàtrống！");
+                if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai, vui lòng chú ý cấu trúc!");
+                if (string.IsNullOrWhiteSpace(objConfig.areaCode) || string.IsNullOrWhiteSpace(objConfig.jgdm)) throw new Exception("Mã cơ sở và mã khu vực trong cấu hình thông tin cơ sở chính của y quán không được để trống!");
                 var brxx = _baseDataDmnService.SelectXtBrjbxx(jzxx.blh, jzxx.mzh, organizeId);
 
                 var patientInfo = new Patient
@@ -164,7 +164,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// kiểm traBệnh nhânlàKhôngĐã tải lên
+        /// Kiểm tra bệnh nhân đã tải lên chưa
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="organizeId"></param>
@@ -176,7 +176,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// rơiđịayêu cầuDữ liệu
+        /// Lưu dữ liệu yêu cầu
         /// </summary>
         /// <param name="request"></param>
         /// <param name="organizeId"></param>
@@ -240,7 +240,7 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_02
 
         /// <summary>
-        /// Đồng bộ thuốcphẩm
+        /// Đồng bộ dược phẩm
         /// </summary>
         /// <param name="organizeId"></param>
         /// <param name="userCode"></param>
@@ -248,9 +248,9 @@ namespace Newtouch.Application.Implementation
         public string PushMedicineInfo(string organizeId, string userCode)
         {
             var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", organizeId);
-            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration");
+            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("Vui lòng cấu hình thông tin cơ sở chính của y quán, mã là cmm_configuration");
             var objConfig = confInfo.ToObject<ConfigurationInfo>();
-            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai，Vui lòng chú ý cấu trúc！");
+            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai, vui lòng chú ý cấu trúc!");
 
             var record = _comCmmHis02RecordDmnService.SelectNoSyncMedicines(30, organizeId);
             if (record == null || record.Count <= 0) return "";
@@ -272,11 +272,11 @@ namespace Newtouch.Application.Implementation
             parent.Wait(cts.Token);
             if (!cts.IsCancellationRequested) return "";
             LogCore.Fatal("PushMedicineInfo IsCancellationRequested", message: record.ToJson());
-            return "đẩyThảo dược Trung Hoathất bại";
+            return "Đẩy thảo dược Trung Hoa thất bại";
         }
 
         /// <summary>
-        /// Đồng bộ thuốcphẩm,vàLưuĐồng bộghi chépbảng
+        /// Đồng bộ dược phẩm, và lưu đồng bộ ghi chép bảng
         /// </summary>
         /// <param name="yp"></param>
         /// <param name="organizeId"></param>
@@ -324,7 +324,7 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_07
 
         /// <summary>
-        /// nhắclấyđiện tửHồ sơ
+        /// Lấy hồ sơ điện tử
         /// </summary>
         /// <param name="mzh">Số khám ngoại trú</param>
         /// <param name="organizeId"></param>
@@ -333,9 +333,9 @@ namespace Newtouch.Application.Implementation
         {
             if (string.IsNullOrWhiteSpace(mzh)) return null;
             var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", organizeId);
-            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration");
+            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("Vui lòng cấu hình thông tin cơ sở chính của y quán, mã là cmm_configuration");
             var objConfig = confInfo.ToObject<ConfigurationInfo>();
-            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai，Vui lòng chú ý cấu trúc！");
+            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai, vui lòng chú ý cấu trúc!");
             var request = new Receive
             {
                 serialNo = mzh,
@@ -350,19 +350,19 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_08
 
         /// <summary>
-        /// nhắclấyĐơn thuốc
+        /// Lấy đơn thuốc
         /// </summary>
         /// <param name="mzh">Số khám ngoại trú</param>
         /// <param name="organizeId"></param>
-        /// <param name="mzzybz">Dấu hiệu ngoại trú/nội trú 0-Kho thuốc  1-Ngoại trú  2-Nhập viện  3-Chung(lấyĐơn vị ngoại trú) </param>
+        /// <param name="mzzybz">Dấu hiệu ngoại trú/nội trú 0 - Kho thuốc 1 - Ngoại trú 2 - Nhập viện 3 - Chung (lấy đơn vị ngoại trú) </param>
         /// <returns></returns>
         public List<DrugDataEx> ExtractIntegrateRp(string mzh, string organizeId, string mzzybz)
         {
             if (string.IsNullOrWhiteSpace(mzh)) return null;
             var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", organizeId);
-            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration");
+            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("Vui lòng cấu hình thông tin cơ sở chính của y quán, mã là cmm_configuration");
             var objConfig = confInfo.ToObject<ConfigurationInfo>();
-            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai，Vui lòng chú ý cấu trúc！");
+            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai, vui lòng chú ý cấu trúc!");
             var request = new Receive
             {
                 serialNo = mzh,
@@ -423,13 +423,13 @@ namespace Newtouch.Application.Implementation
                                 var item = yp.FirstOrDefault().ToJson().ToObject<DrugDataEx>();
                                 if (item == null)
                                 {
-                                    errorMsg = "Thuốcthông tinchuyểnhóathất bại";
+                                    errorMsg = "Chuyển đổi thông tin thuốc thất bại";
                                     return false;
                                 }
 
                                 if (!"g".Equals((item.dw ?? "").Trim()))
                                 {
-                                    errorMsg = string.Format("【{0}】Thiếu đơn vịg", item.sfxmmc);
+                                    errorMsg = string.Format("【{0}】Thiếu đơn vị g", item.sfxmmc);
                                     cts.Cancel();
                                     return false;
                                 }
@@ -445,7 +445,7 @@ namespace Newtouch.Application.Implementation
 
                                 return true;
                             }
-                            errorMsg = "khớpđốibảnđịaThuốcthông tinthất bại";
+                            errorMsg = "Đối chiếu thông tin thuốc tại chỗ thất bại";
                             cts.Cancel();
                             return false;
 
@@ -474,7 +474,7 @@ namespace Newtouch.Application.Implementation
         #region TCM_HIS_09
 
         /// <summary>
-        /// nhắclấyChẩn đoánthông tin
+        /// Lấy thông tin chẩn đoán
         /// </summary>
         /// <param name="mzh">Số khám ngoại trú</param>
         /// <param name="organizeId"></param>
@@ -483,9 +483,9 @@ namespace Newtouch.Application.Implementation
         {
             if (string.IsNullOrWhiteSpace(mzh)) return null;
             var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", organizeId);
-            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration");
+            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("Vui lòng cấu hình thông tin cơ sở chính của y quán, mã là cmm_configuration");
             var objConfig = confInfo.ToObject<ConfigurationInfo>();
-            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai，Vui lòng chú ý cấu trúc！");
+            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai, vui lòng chú ý cấu trúc!");
             var request = new Receive
             {
                 serialNo = mzh,
@@ -498,7 +498,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// kèmthêmbảnđịaChẩn đoánMã
+        /// Thêm mã chẩn đoán tại chỗ
         /// </summary>
         /// <param name="diagInfo"></param>
         /// <param name="organizeId"></param>
@@ -533,7 +533,7 @@ namespace Newtouch.Application.Implementation
         #region Integrated Module
 
         /// <summary>
-        /// điện tửHồ sơtậpthànhmẫukhối
+        /// Mô-đun tích hợp hồ sơ điện tử
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="jzys"></param>
@@ -544,7 +544,7 @@ namespace Newtouch.Application.Implementation
         {
             response = "";
             var entity = _cmmHis01Repo.SelectDataByMzh(mzh, organizeId);
-            if (entity == null || string.IsNullOrWhiteSpace(entity.Id)) return "Chưa đẩy thông tin bệnh nhân tới y quán Trung y，Vui lòng chọn bệnh nhân trước";
+            if (entity == null || string.IsNullOrWhiteSpace(entity.Id)) return "Chưa đẩy thông tin bệnh nhân tới y quán Trung y, vui lòng chọn bệnh nhân trước";
             var emrUrlRequest = new EMRRequestEntity
             {
                 resource = "EMR_WRITE",
@@ -556,7 +556,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// biệnchứngluậnđiều trị
+        /// Biện chứng luận trị
         /// </summary>
         /// <param name="aeRequest"></param>
         /// <param name="response"></param>
@@ -565,19 +565,19 @@ namespace Newtouch.Application.Implementation
         {
             response = "";
             if (aeRequest == null || string.IsNullOrWhiteSpace(aeRequest.mzh)) return "Số khám ngoại trú không được để trống";
-            if (string.IsNullOrWhiteSpace(aeRequest.organizeId)) return "Tổ chứckhông thểđể trống";
-            if (string.IsNullOrWhiteSpace(aeRequest.jzys)) return "Khám bệnhBác sĩMã nhân viênkhông thểđể trống";
+            if (string.IsNullOrWhiteSpace(aeRequest.organizeId)) return "Tổ chức không thể để trống";
+            if (string.IsNullOrWhiteSpace(aeRequest.jzys)) return "Mã nhân viên bác sĩ khám bệnh không thể để trống";
             var entity = _cmmHis01Repo.SelectDataByMzh(aeRequest.mzh, aeRequest.organizeId);
-            if (entity == null || string.IsNullOrWhiteSpace(entity.Id)) return "Chưa đẩy thông tin bệnh nhân tới y quán Trung y，Vui lòng chọn bệnh nhân trước";
+            if (entity == null || string.IsNullOrWhiteSpace(entity.Id)) return "Chưa đẩy thông tin bệnh nhân tới y quán Trung y, vui lòng chọn bệnh nhân trước";
 
             var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", aeRequest.organizeId);
-            if (string.IsNullOrWhiteSpace(confInfo)) return "vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration";
+            if (string.IsNullOrWhiteSpace(confInfo)) return "Vui lòng cấu hình thông tin cơ sở chính của y quán, mã là cmm_configuration";
             var objConfig = confInfo.ToObject<ConfigurationInfo>();
-            if (objConfig == null) return "Thông tin cơ quan hành chính y quán Trung y cấu hình sai，Vui lòng chú ý cấu trúc！";
+            if (objConfig == null) return "Thông tin cơ quan hành chính y quán Trung y cấu hình sai, vui lòng chú ý cấu trúc!";
             var staff = _sysStaffRepo.GetValidStaffByGh(aeRequest.jzys, aeRequest.organizeId);
 
             var returnHisUrl = Newtouch.CIS.Compat.AppConfig.Get("returnHisUrl");
-            if (string.IsNullOrWhiteSpace(returnHisUrl)) return "vui lòngcấu hìnhQuay lạiDữ liệucho HIS củathaylýtrangmặtĐịa chỉ——key：returnHisUrl";
+            if (string.IsNullOrWhiteSpace(returnHisUrl)) return "Vui lòng cấu hình địa chỉ trang đại lý trả về cho HIS — key: returnHisUrl";
             var aeUrlRequest = new AERequestEntity
             {
                 resource = "AE_EDIT",
@@ -595,7 +595,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// biếtbiếtkho
+        /// Kho kiến thức
         /// </summary>
         /// <returns></returns>
         public string GetIntegrateKUrl(out string response)
@@ -609,7 +609,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// tậpthànhđiều trịchưabệnh
+        /// Tích hợp trị vị bệnh
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="mzh"></param>
@@ -621,12 +621,12 @@ namespace Newtouch.Application.Implementation
         public string GetIntegrateHEALUrl(string blh, string mzh, string zjlx, string zjh, string organizeId, out string response)
         {
             response = "";
-            if (string.IsNullOrWhiteSpace(mzh)) return "thông tincósai，Số khám ngoại trú không được để trống";
+            if (string.IsNullOrWhiteSpace(mzh)) return "Thông tin không đúng, số khám ngoại trú không được để trống";
             var entity = _cmmHis01Repo.SelectDataByMzh(mzh, organizeId);
             if (entity == null || string.IsNullOrWhiteSpace(entity.cardTypeCode) ||
                 string.IsNullOrWhiteSpace(entity.cardNo))
             {
-                return "thông tinkhôngtoàn，đẩyBệnh nhânkhithiếuchứngmụcLoạivàSố giấy tờ";
+                return "Thông tin chưa đầy đủ, khi đẩy bệnh nhân thiếu loại và số giấy tờ";
             }
 
             int tzjlx = Convert.ToInt32(entity.cardTypeCode);
@@ -641,7 +641,7 @@ namespace Newtouch.Application.Implementation
         }
 
         /// <summary>
-        /// lắp rápxatrìnhy tếtham số
+        /// Lắp ráp tham số y tế từ xa
         /// </summary>
         /// <param name="blh"></param>
         /// <param name="mzh"></param>
@@ -651,15 +651,15 @@ namespace Newtouch.Application.Implementation
         public IntegrateRcDto GetIntegrateRCRequsetParam(string blh, string mzh, string jzys, string organizeId)
         {
             var confInfo = _sysConfigRepo.GetValueByCode("cmm_configuration", organizeId);
-            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("vui lòngcấu hìnhtrongyquándòngchínhCơ sởthông tin，Mãlàcmm_configuration");
+            if (string.IsNullOrWhiteSpace(confInfo)) throw new Exception("Vui lòng cấu hình thông tin cơ sở chính của y quán, mã là cmm_configuration");
             var objConfig = confInfo.ToObject<ConfigurationInfo>();
-            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai，Vui lòng chú ý cấu trúc！");
-            if (string.IsNullOrWhiteSpace(objConfig.areaCode) || string.IsNullOrWhiteSpace(objConfig.jgdm)) throw new Exception("trongyquándòngchínhCơ sởthông tincấu hìnhCơ sởMãvàkhulĩnh vựcMãkhông thểlàtrống！");
+            if (objConfig == null) throw new Exception("Thông tin cơ quan hành chính y quán Trung y cấu hình sai, vui lòng chú ý cấu trúc!");
+            if (string.IsNullOrWhiteSpace(objConfig.areaCode) || string.IsNullOrWhiteSpace(objConfig.jgdm)) throw new Exception("Mã cơ sở và mã khu vực trong cấu hình thông tin cơ sở chính của y quán không được để trống!");
 
-            if (string.IsNullOrWhiteSpace(blh)) throw new Exception("Vui lòng chọnBệnh nhân");
-            if (string.IsNullOrWhiteSpace(mzh)) throw new Exception("Dữ liệu bất thường，Số khám ngoại trúđánhmất");
+            if (string.IsNullOrWhiteSpace(blh)) throw new Exception("Vui lòng chọn bệnh nhân");
+            if (string.IsNullOrWhiteSpace(mzh)) throw new Exception("Dữ liệu bất thường, thiếu số khám ngoại trú");
             var brxx = _baseDataDmnService.SelectXtBrjbxx(blh, mzh, organizeId);
-            if (brxx == null || brxx.Count <= 0) throw new Exception(string.Format("theoSố bệnh án【{0}】Lấybệnh nhânThông tin cơ bảnthất bại", blh));
+            if (brxx == null || brxx.Count <= 0) throw new Exception(string.Format("Lấy thông tin cơ bản bệnh nhân theo số bệnh án【{0}】thất bại", blh));
             var patientBaseInfo = brxx.FirstOrDefault();
             var staff = _sysStaffRepo.GetValidStaffByGh(jzys, organizeId);
 

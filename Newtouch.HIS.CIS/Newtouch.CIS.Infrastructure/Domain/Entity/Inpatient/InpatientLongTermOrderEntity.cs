@@ -30,38 +30,38 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// Y lệnhsố,cùng mộtY lệnhsốtronggóichứanhiềucáiyzId
+        /// Số y lệnh, cùng một số y lệnh trong gói chứa nhiều yzId
         /// </summary>
         /// <returns></returns>
         public string yzh { get; set; }
         /// <summary>
-        /// bảnđịaY lệnhphútnhómthứ tựsố
+        /// Số thứ tự nhóm y lệnh tại chỗ
         /// </summary>
         /// <returns></returns>
         public int? zh { get; set; }
         /// <summary>
-        /// Khu bệnhMã
+        /// Mã khu bệnh
         /// </summary>
         /// <returns></returns>
         public string WardCode { get; set; }
         /// <summary>
-        /// KhoaMã
+        /// Mã khoa
         /// </summary>
         /// <returns></returns>
         public string DeptCode { get; set; }
         /// <summary>
-        /// Bác sĩMã
+        /// Mã bác sĩ
         /// </summary>
         /// <returns></returns>
         public string ysgh { get; set; }
         /// <summary>
-        /// Tần suấtMã
+        /// Mã tần suất
         /// </summary>
         /// <returns></returns>
         public string pcCode { get; set; }
 
         /// <summary>
-        /// tốc độ truyền  giọt/Phút
+        /// Tốc độ truyền giọt/phút
         /// </summary>
         public int? ds { get; set; }
 
@@ -76,12 +76,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int? zxzq { get; set; }
         /// <summary>
-        /// Chu kỳ thực hiệnĐơn vị -1:khôngquythìchu kỳ,0:ngày,1:giờ,2:Phút.Lưu ý:khilà-1khi,tuầnMã(zdm)làsốchữ(1234567)trongcủaBất kỳ vàicáisốchữ
+        /// Đơn vị chu kỳ thực hiện -1: không theo chu kỳ, 0: ngày, 1: giờ, 2: phút. Lưu ý: khi là -1, mã tuần (zdm) là vài chữ số bất kỳ trong (1234567)
         /// </summary>
         /// <returns></returns>
         public int? zxzqdw { get; set; }
         /// <summary>
-        /// tuầnMã
+        /// Mã tuần
         /// </summary>
         /// <returns></returns>
         public string zdm { get; set; }
@@ -96,7 +96,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string xmmc { get; set; }
         /// <summary>
-        /// Y lệnhTrạng thái 0chờduyệt,1Phê duyệt,2Thực hiện,3Hủy(DC),4Dừng
+        /// Trạng thái y lệnh 0 chờ duyệt, 1 phê duyệt, 2 thực hiện, 3 hủy (DC), 4 dừng
         /// </summary>
         /// <returns></returns>
         public int yzzt { get; set; }
@@ -106,27 +106,27 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string dw { get; set; }
         /// <summary>
-        /// 0 Chung 1 tựchuẩn bị
+        /// 0 chung 1 tự chuẩn bị
         /// </summary>
         /// <returns></returns>
         public int zbbz { get; set; }
         /// <summary>
-        ///  Thuốc,Mụcnhậpkhi,tồn tạimỗingàySố lượng,Xuất việnmang thuốc,tồn tạiTổng lượng.văn bảnnhậpSố lượnglà0
+        /// Thuốc, khi nhập mục: có số lượng mỗi ngày, xuất viện mang thuốc, có tổng lượng. Số lượng nhập văn bản là 0
         /// </summary>
         /// <returns></returns>
         public int sl { get; set; }
         /// <summary>
-        /// Đơn vịLoại 0Đơn vị liều,1Đơn vị kho thuốc,2Đơn vị ngoại trú,3Đơn vị nhập viện,4vàohàngĐơn vị(chỉhiển thịY lệnhĐơn vịLoạilà0)
+        /// Loại đơn vị 0 đơn vị liều, 1 đơn vị kho thuốc, 2 đơn vị ngoại trú, 3 đơn vị nhập viện, 4 đơn vị nhập kho (chỉ hiển thị khi loại đơn vị y lệnh là 0)
         /// </summary>
         /// <returns></returns>
         public int? dwlb { get; set; }
         /// <summary>
-        /// bảnđịaLoại y lệnh 0:ThuốcY lệnh,1:Kháng sinhY lệnh,2:Kiểm traY lệnh,3:Xét nghiệmY lệnh,4:chỉhiển thịY lệnh,5:thông thườngY lệnh , 6 DừngY lệnh, 7  Xuất việnmang thuốc, 8 ăn uốngY lệnh, 9 Phẫu thuậtY lệnh   10  trongthảo dược  
+        /// Loại y lệnh tại chỗ 0: y lệnh thuốc, 1: y lệnh kháng sinh, 2: y lệnh kiểm tra, 3: y lệnh xét nghiệm, 4: y lệnh chỉ hiển thị, 5: y lệnh thông thường, 6: y lệnh dừng, 7: xuất viện mang thuốc, 8: y lệnh ăn uống, 9: y lệnh phẫu thuật, 10: y lệnh thảo dược Trung y  
         /// </summary>
         /// <returns></returns>
         public int yzlx { get; set; }
         /// <summary>
-        /// Bác sĩ dừngMã
+        /// Mã bác sĩ dừng
         /// </summary>
         /// <returns></returns>
         public string tzysgh { get; set; }
@@ -136,7 +136,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public DateTime? tzsj { get; set; }
         /// <summary>
-        /// DừngThao tácviênsố
+        /// Số thao tác viên dừng
         /// </summary>
         /// <returns></returns>
         public string tzr { get; set; }
@@ -146,12 +146,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string tzyy { get; set; }
         /// <summary>
-        /// Phê duyệtNgày
+        /// Ngày phê duyệt
         /// </summary>
         /// <returns></returns>
         public DateTime? shsj { get; set; }
         /// <summary>
-        /// Phê duyệtThao tácviênsố
+        /// Số thao tác viên phê duyệt
         /// </summary>
         /// <returns></returns>
         public string shr { get; set; }
@@ -161,22 +161,22 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public DateTime kssj { get; set; }
         /// <summary>
-        /// Thực hiệnNgày
+        /// Ngày thực hiện
         /// </summary>
         /// <returns></returns>
         public DateTime? zxsj { get; set; }
         /// <summary>
-        /// chobệnh nhânThực hiệnY lệnhcủaĐiều dưỡng
+        /// Điều dưỡng thực hiện y lệnh cho bệnh nhân
         /// </summary>
         /// <returns></returns>
         public string zxr { get; set; }
         /// <summary>
-        /// HủyThao tácviênsố
+        /// Số thao tác viên hủy
         /// </summary>
         /// <returns></returns>
         public string dcr { get; set; }
         /// <summary>
-        /// ThuốcLiều lượng
+        /// Liều lượng thuốc
         /// </summary>
         /// <returns></returns>
         public decimal? ypjl { get; set; }
@@ -186,7 +186,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string ypgg { get; set; }
         /// <summary>
-        /// Dặn dònội dung
+        /// Nội dung dặn dò
         /// </summary>
         /// <returns></returns>
         public string ztnr { get; set; }
@@ -246,43 +246,43 @@ namespace Newtouch.Domain.Entity
         public string zxsjd { get; set; }
         public string nlmddm { get; set; }
         /// <summary>
-        /// Kháng sinhnguyên nhân
+        /// Nguyên nhân kháng sinh
         /// </summary>
         public string kssReason { get; set; }
 
         /// <summary>
-        /// Chuyển sang tự chi trảCờ
+        /// Cờ chuyển sang tự chi trả
         /// </summary>
         public int? zzfbz { get; set; }
         /// <summary>
-        ///  Đơn thuốcnhãn JI tinhI JII tinhII MZ têsay
+        /// Nhãn đơn thuốc: tinh I, tinh II, gây mê
         /// </summary>
         public string yztag { get; set; }
         /// <summary>
-        /// làKhôngtínhphí(0:Không khôngtínhvàoChi phíchi tiết 1:là)
+        /// Là không tính phí (0: không, không tính vào chi phí chi tiết; 1: là)
         /// </summary>
         public int? isjf { get; set; }
         /// <summary>
-        /// Thực hiệntrongCờ  1 đangởThực hiện
+        /// Cờ đang thực hiện (1: đang thực hiện)
         /// </summary>
         public string zxing { get; set; }
         /// <summary>
-        /// dathửđothử(0:Không,1:là)
+        /// Thử da (0: không, 1: là)
         /// </summary>
         public string ispscs { get; set; }
         public string ztId { get; set; }
         public string ztmc { get; set; }
         public int? ztsl { get; set; }
         /// <summary>
-        /// Mục thu phíBộ mẫunhận dạng
+        /// Nhận dạng bộ mẫu mục thu phí
         /// </summary>
         public string dcztbs { get; set; }
         /// <summary>
-        /// Cách dùng thuốctương ứngMục thu phíBộ mẫu
+        /// Bộ mẫu mục thu phí tương ứng cách dùng thuốc
         /// </summary>
         public string yfztbs { get; set; }
         /// <summary>
-        /// Thuốcđếnnguồn 1:KhoaTồn kho 2:Nhà thuốc
+        /// Nguồn thuốc đến 1: Khoa tồn kho 2: Nhà thuốc
         /// </summary>
         public int? yply { get; set; }
         /// <summary>

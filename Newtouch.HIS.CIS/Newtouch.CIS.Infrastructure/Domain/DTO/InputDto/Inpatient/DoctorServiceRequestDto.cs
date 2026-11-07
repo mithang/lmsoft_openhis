@@ -5,7 +5,7 @@ using Newtouch.Domain.Entity;
 namespace Newtouch.Domain.DTO.InputDto.Inpatient
 {
     /// <summary>
-    /// LưuY lệnhkhi,viewtruyềnđếnmáy chủcủađối tượng
+    /// Đối tượng view truyền đến máy chủ khi lưu y lệnh
     /// </summary>
     public class DoctorServiceRequestDto
     {
@@ -32,11 +32,11 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         public string xmmc { get; set; }
 
         public string dwwwwwww { get; set; }//Đơn vị
-        public int zbbzzzzzzz { get; set; }//tựchuẩn bịCờ
-        public int? iszzffffff { get; set; }//Chuyển sang tự chi trảCờ
-        public int? ispscsfffff { get; set; }//dathửđothửCờ
-        public int? isjffffff { get; set; }//làKhôngtínhphí
-        public string yztag { get; set; }//thuốc gây nghiện hướng thầnY lệnh
+        public int zbbzzzzzzz { get; set; }// Tự chuẩn bị cờ
+        public int? iszzffffff { get; set; }// Cờ chuyển sang tự chi trả
+        public int? ispscsfffff { get; set; }// Thử da cờ
+        public int? isjffffff { get; set; }// Là không tính phí
+        public string yztag { get; set; }// Y lệnh thuốc gây nghiện hướng thần
 
         public decimal? ypjl { get; set; }
 
@@ -67,39 +67,39 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         public int? ts { get; set; }
 
         public string kssj { get; set; }
-        public string zxsj { get; set; }//24giờThực hiệncủaThời gian
+        public string zxsj { get; set; }// Thời gian thực hiện 24 giờ
         /// <summary>
         /// Hệ số chuyển đổi liều
         /// </summary>
         public decimal? jlzhxs { get; set; }
         /// <summary>
-        /// Nhập việnchuyểnđổihệsố
+        /// Hệ số chuyển đổi nhập viện
         /// </summary>
         public decimal? zyzhxs { get; set; }
         public string bw { get; set; }
         public string zxksdm { get; set; }
         public string zydw { get; set; }
 
-        //ăn uốngY lệnh
+        // Ăn uống y lệnh
         public string nlmd { get; set; }//mật độ năng lượng
         public string nlmddm { get; set; }//mật độ năng lượng
         public string ssyzcfId { get; set; }
 
-        public string yslb { get; set; }//ăn uốngLoại
-        public string yslbdm { get; set; }//ăn uốngLoạival
+        public string yslb { get; set; }// Loại ăn uống
+        public string yslbdm { get; set; }// Giá trị loại ăn uống
 
-        public string yszs { get; set; }//ăn uốngchỉhiển thị
-        public string yszsval { get; set; }//ăn uốngIds
+        public string yszs { get; set; }// Chỉ hiển thị ăn uống
+        public string yszsval { get; set; }// Ids ăn uống
 
-        public string ssxhdm { get; set; }//ăn uốngloạisố
-        public string ssxhval { get; set; }//ăn uốngloạisố
-        public string ssxh { get; set; }//ăn uốngloạisố
-        public string ztmbId { get; set; }//Bộ mẫusởởmẫuid
-        public string ztId { get; set; }//Bộ mẫuid
+        public string ssxhdm { get; set; }// Số loại ăn uống
+        public string ssxhval { get; set; }// Số loại ăn uống
+        public string ssxh { get; set; }// Số loại ăn uống
+        public string ztmbId { get; set; }// Id mẫu sở thuộc bộ mẫu
+        public string ztId { get; set; }// Id bộ mẫu
         public string ztmc { get; set; }//Tên bộ mẫu
 
         /// <summary>
-        /// Kháng sinhnguyên nhân
+        /// Nguyên nhân kháng sinh
         /// </summary>
         public string kssReason { get; set; }
 
@@ -110,17 +110,17 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         public string sqdh { get; set; }
 
         /// <summary>
-        /// Loại y lệnh  临-Y lệnh tạm thời；长-Y lệnh dài hạn
+        /// Loại y lệnh 临 - Y lệnh tạm thời; 长 - Y lệnh dài hạn
         /// </summary>
         public string yzlb { get; set; }
 
         /// <summary>
-        /// Y lệnhsố,cùng mộtY lệnhsốtronggóichứanhiềucáiyzId
+        /// Số y lệnh, cùng một số y lệnh trong gói chứa nhiều yzId
         /// </summary>
         public string yzh { get; set; }
 
         /// <summary>
-        /// tốc độ truyền  giọt/Phút
+        /// Tốc độ truyền giọt/phút
         /// </summary>
         public int? ds { get; set; }
         /// <summary>
@@ -128,46 +128,46 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         /// </summary>
         public string lcyx { get; set; }
         /// <summary>
-        /// Đăng kýGhi chú
+        /// Ghi chú đăng ký
         /// </summary>
         public string sqbz { get; set; }
 
         /// <summary>
-        /// sắc hộCờ
+        /// Sắc hộ cờ
         /// </summary>
         public int? djbzzzzzzz { get; set; }
         /// <summary>
-        /// Xuất việnmang thuốcCờ
+        /// Cờ xuất viện mang thuốc
         /// </summary>
         public int? cydybzzzzzzz { get; set; }
         /// <summary>
-        /// Y lệnhChẩn đoánicd10
+        /// Y lệnh chẩn đoán ICD10
         /// </summary>
         public string yzzdid { get; set; }
         /// <summary>
-        /// Y lệnhTên chẩn đoán
+        /// Tên chẩn đoán y lệnh
         /// </summary>
         public string yzzdmc { get; set; }
         /// <summary>
-        /// Y lệnhChẩn đoánThời gian
+        /// Thời gian chẩn đoán y lệnh
         /// </summary>
         public string yzzdsj { get; set; }
         /// <summary>
-        /// làKhôngMụcBộ mẫu
+        /// Là không mục bộ mẫu
         /// </summary>
         public string sfxmzt { get; set; }
         /// <summary>
-        /// Bộ mẫuSố lượng
+        /// Số lượng bộ mẫu
         /// </summary>
         public int? ztsl { get; set; }
         /// <summary>
-        /// Cách dùng thuốctương ứngBộ mẫu
+        /// Bộ mẫu tương ứng cách dùng thuốc
         /// </summary>
         public string yfztbm { get; set; }
         public string yfztbs { get; set; }
         public string dcztbs { get; set; }
         /// <summary>
-        /// Thuốcđếnnguồn 1:KhoaTồn kho 2Nhà thuốc
+        /// Nguồn thuốc đến 1: Khoa tồn kho 2: Nhà thuốc
         /// </summary>
         public int? yply { get; set; }
         public int? Px { get; set; }
@@ -227,7 +227,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
         public string cyzd { get; set; }
     }
     /// <summary>
-    /// Nhập việnY lệnhQuản lý,Thuốcdựchuẩn bịDữ liệukhi
+    /// Quản lý y lệnh nhập viện, dữ liệu thuốc chuẩn bị trước
     /// </summary>
     public class MedicineInfoDto
     {
@@ -239,7 +239,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
     }
 
     /// <summary>
-    /// Bệnh nhân nội trúmộtxem đãra khỏi khubệnh nhâncủalớp nổiĐiều kiện lọc
+    /// Điều kiện lọc của cửa sổ nổi xem bệnh nhân nội trú đã ra khỏi khu
     /// </summary>
     public class patientInfoDto
     {
@@ -283,7 +283,7 @@ namespace Newtouch.Domain.DTO.InputDto.Inpatient
     }
 
     /// <summary>
-    /// kiểm traY lệnhlàKhôngtrùng lặp
+    /// Kiểm tra y lệnh có trùng lặp không
     /// </summary>
     public class DSrepeatRequestDto
     {

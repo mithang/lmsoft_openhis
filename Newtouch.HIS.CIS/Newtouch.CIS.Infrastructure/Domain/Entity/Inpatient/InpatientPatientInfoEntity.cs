@@ -7,8 +7,8 @@ namespace Newtouch.Domain.Entity
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày:2018-06-28 15:37
-    /// Mô tả:Nhập việnThông tin bệnh nhân
+    /// Ngày: 2018-06-28 15:37
+    /// Mô tả: Nhập viện Thông tin bệnh nhân
     /// </summary>
     [SugarTable("zy_brxxk")]
     public class InpatientPatientInfoEntity
@@ -220,7 +220,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// Tần Hoàng ĐảoBảo hiểm y tếthẻCá nhânSố hiệu
+        /// Tần Hoàng Đảo Bảo hiểm y tế thẻ Cá nhân Số hiệu
         /// </summary>
         public string grbh { get; set; }
     }

@@ -22,7 +22,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// lịch sửĐơn thuốccâychi tiết
+        /// lịch sử Đơn thuốc cây chi tiết
         /// </summary>
         /// <param name="cfId"></param>
         public IList<HistoryPresFormSelectVO> GetHistoryPresDetailByCfId(string cfId)
@@ -53,39 +53,39 @@ WHERE cfmx.cfId=@cfId and cfmx.zt='1' --and cfmx.ypmc is not null
         }
 
         /// <summary>
-        /// TheocfIdhoặccfmxIdStrTra cứuchi tiết
+        /// Theo cfId hoặc cfmxIdStr Tra cứu chi tiết
         /// </summary>
         /// <param name="cflx"></param>
         /// <param name="cfId"></param>
         /// <param name="cfmxIdStr"></param>
-        /// 20190619 huangshanshan đitrừcf.zt='1'vàcfmx.zt='1'củahạnchế,có thểsao chépHủy đơn thuốc
+        /// 20190619 huangshanshan đi trừ cf.zt='1' và cfmx.zt='1' của hạn chế, có thể sao chép Hủy đơn thuốc
         /// <returns></returns>
         public List<PrescriptionDetailQueryVO> GetPresDetailList(int cflx, string cfId, string cfmxIdStr)
         { 
             var sql = "";
             var pars = new List<SqlParameter>();
             List<PrescriptionDetailQueryVO> list = new List<PrescriptionDetailQueryVO>();
-            if (cflx == (int)EnumCflx.RehabPres)   //Phục hồi chức năngĐơn thuốc
+            if (cflx == (int)EnumCflx.RehabPres)   //Phục hồi chức năng Đơn thuốc
             {
                 sql += @"
 SELECT cf.cfId, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw, 
-        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0) AS zl,   --theo mới nhấtdwjls，Tính ra tổng lượng
-        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0)*isnull(sfxm.dj,0) je,   --theo mới nhấtdwjlsvàdj，Tính ra tổng số
+        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0) AS zl,   --theo mới nhất dwjls, Tính ra tổng lượng
+        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0)*isnull(sfxm.dj,0) je,   --theo mới nhất dwjls và dj, Tính ra tổng số
         ";
             }
-            else if (cflx == (int)EnumCflx.RegularItemPres|| cflx == (int)EnumCflx.Yyhc)   //Hạng mục thông thườngĐơn thuốc  ydùngVật tư tiêu haoĐơn thuốc
+            else if (cflx == (int)EnumCflx.RegularItemPres|| cflx == (int)EnumCflx.Yyhc)   //Hạng mục thông thường Đơn thuốc  y dùng Vật tư tiêu hao Đơn thuốc
             {
                 sql += @"
 SELECT cf.cfId, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw, cfmx.ztId,cfmx.ztmc , 
-        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0) AS zl,   --theo mới nhấtdwjls，Tính ra tổng lượng
-        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0)*isnull(sfxm.dj,0) je,   --theo mới nhấtdwjlsvàdj，Tính ra tổng số
+        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0) AS zl,   --theo mới nhất dwjls, Tính ra tổng lượng
+        isnull(cfmx.mczll,0)/isnull(sfxm.dwjls,1)*isnull(cfmx.sl,0)*isnull(sfxm.dj,0) je,   --theo mới nhất dwjls và dj, Tính ra tổng số
         ";
             }
-            if (cflx == (int)EnumCflx.InspectionPres || cflx == (int)EnumCflx.ExaminationPres)   //Xét nghiệm,Kiểm traĐơn thuốc
+            if (cflx == (int)EnumCflx.InspectionPres || cflx == (int)EnumCflx.ExaminationPres)   //Xét nghiệm, Kiểm tra Đơn thuốc
             {
                 sql += @"
 SELECT cf.cfId, cfmx.xmCode, cfmx.xmmc, cfmx.mczll,cfmx.pcCode, cfmx.sl, cfmx.dw, 
-        CONVERT(DECIMAL(9,2),(isnull(cfmx.sl,0)*isnull(sfxm.dj,0))) je,   --theo mới nhấtdj，Tính ra tổng số
+        CONVERT(DECIMAL(9,2),(isnull(cfmx.sl,0)*isnull(sfxm.dj,0))) je,   --theo mới nhất dj, Tính ra tổng số
         ";
             }
             if (cflx == (int)EnumCflx.RehabPres || cflx == (int)EnumCflx.RegularItemPres || cflx == (int)EnumCflx.Yyhc || cflx == (int)EnumCflx.InspectionPres || cflx == (int)EnumCflx.ExaminationPres)
@@ -133,7 +133,7 @@ WHERE 1=1";
                     pars.Add(new SqlParameter("@cfmxIdStr", cfmxIdStr));
                 }
             }
-            if (cflx == (int)EnumCflx.WMPres || cflx == (int)EnumCflx.TCMPres) //ThuốcĐơn thuốc
+            if (cflx == (int)EnumCflx.WMPres || cflx == (int)EnumCflx.TCMPres) //Thuốc Đơn thuốc
             {
                 sql = @"
 SELECT cf.cfId, cfmx.ypCode,cfmx.ypmc,cfmx.mcjl,cfmx.mcjldw,cfmx.mcjldw AS mcjldwwwwwww
@@ -186,7 +186,7 @@ WHERE 1=1";
             return list;
         }
         /// <summary>
-        /// Bảo hiểm y tếBệnh nhânPhê duyệtMục thu phílàKhôngchứatự chi trả
+        /// Bảo hiểm y tế Bệnh nhân Phê duyệt Mục thu phí là Không chứa tự chi trả
         /// </summary>
         /// <param name="sfxmCode"></param>
         /// <param name="cflx"></param>
@@ -227,7 +227,7 @@ WHERE 1=1";
         }
 
 		/// <summary>
-		/// mởlậpvật tưMụcđôngkếtTồn khoSố lượng
+		/// mở lập vật tư Mục đông kết Tồn kho Số lượng
 		/// </summary>
 		/// <param name="cfh"></param>
 		/// <param name="orgId"></param>
@@ -247,7 +247,7 @@ WHERE 1=1";
 			return 1;
 		}
 		/// <summary>
-		/// mởlậpvật tưMụcđôngkếtTồn khoSố lượngHủy bỏ
+		/// mở lập vật tư Mục đông kết Tồn kho Số lượng Hủy bỏ
 		/// </summary>
 		/// <param name="cfh"></param>
 		/// <param name="orgId"></param>
@@ -268,7 +268,7 @@ WHERE 1=1";
 			return 1;
 		}
         /// <summary>
-        /// Bảo hiểm y tếđiện tửĐơn thuốc
+        /// Bảo hiểm y tế điện tử Đơn thuốc
         /// </summary>
         /// <param name="cfh"></param>
         /// <param name="orgId"></param>

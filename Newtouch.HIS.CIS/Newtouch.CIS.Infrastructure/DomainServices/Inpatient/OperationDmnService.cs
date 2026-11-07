@@ -26,14 +26,14 @@ namespace Newtouch.DomainServices.Inpatient
         { }
 
         /// <summary>
-        /// Sắp xếp phẫu thuậtdanh sáchTra cứu
+        /// Sắp xếp phẫu thuật danh sách Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
         /// <returns></returns>
         public List<ArrangeQueryGridVO> ArrangeQueryGridView(Pagination pagination, ArrangeQueryRequestVO req)
         {
-            if (req == null) throw new FailedException("thiếuĐiều kiện tìm kiếm");
+            if (req == null) throw new FailedException("thiếu Điều kiện tìm kiếm");
             var sqlstr = new StringBuilder(@"
          SELECT    '临' yzlb ,
                     yz.Id ,
@@ -90,7 +90,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// Sắp xếp phẫu thuậtnội dungLấy
+        /// Sắp xếp phẫu thuật nội dung Lấy
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="req"></param>
@@ -98,7 +98,7 @@ namespace Newtouch.DomainServices.Inpatient
         public ArrangementVO ArrangementForID(Pagination pagination, ArrangementRequestVO req)
         {
             if (req == null)
-                throw new FailedException("khôngphương phápLấyY lệnhthông tin");
+                throw new FailedException("không phương pháp Lấy Y lệnh thông tin");
             const string sqlstr = @" SELECT a.zyh,a.hzxm,a.yznr,b.id,CONVERT(VARCHAR(20), b.aprq,120) aprq,ssAddr,urgent,surgeonId,surgeonName,
 assistant ,assistantName ,anesthesiaType ,remark
 FROM zy_lsyz a WITH(NOLOCK) 
@@ -110,7 +110,7 @@ WHERE a.Id = @Id AND a.OrganizeId=@orgId ";
         }
 
         /// <summary>
-        /// LấyPhẫu thuậtY lệnhbệnh nhân
+        /// Lấy Phẫu thuật Y lệnh bệnh nhân
         /// </summary>
         /// <param name="psOrgId"></param>
         /// <returns></returns>
@@ -142,7 +142,7 @@ AND zyxx.zybz in ('1','2','3')
                 using (var db = new EFDbTransaction().BeginTrans())
                 {
                     InpatientFeeDetailEntity tmp = null;
-                    foreach (InpatientFeeDetailEntity item in FeeDetails)//ThêmhoặcCập nhậtcủaDữ liệu
+                    foreach (InpatientFeeDetailEntity item in FeeDetails)//Thêm hoặc Cập nhật của Dữ liệu
                     {
                         if (string.IsNullOrWhiteSpace(item.Id))
                         {
@@ -154,34 +154,34 @@ AND zyxx.zybz in ('1','2','3')
                             tmp = Exists.FirstOrDefault(p => p.Id == item.Id);
                             if (tmp != null)
                             {
-                                if (tmp.xmdm != item.xmdm || tmp.sl != item.sl)//Dữ liệucóSửa,thìCập nhật(MụchoặcSố lượngđổiđộng)
+                                if (tmp.xmdm != item.xmdm || tmp.sl != item.sl)//Dữ liệu có Sửa, thì Cập nhật (Mục hoặc Số lượng đổi động)
                                 {
                                     item.LastModifyTime = DateTime.Now;
                                     item.LastModifierCode = item.czyh;
                                     db.Update<InpatientFeeDetailEntity>(item);
                                 }
-                                Exists.Remove(tmp);//nhắclấycầnXóacủaDữ liệu
+                                Exists.Remove(tmp);//nhắc lấy cần Xóa của Dữ liệu
                             }
                         }
                     }
-                    foreach (InpatientFeeDetailEntity item in Exists)//XóacủaDữ liệu
+                    foreach (InpatientFeeDetailEntity item in Exists)//Xóa của Dữ liệu
                     {
                         item.zt = "0";
                         item.LastModifyTime = DateTime.Now;
                         item.LastModifierCode = item.czyh;
-                        db.Update<InpatientFeeDetailEntity>(item);//logictậpXóa
+                        db.Update<InpatientFeeDetailEntity>(item);//logic tập Xóa
                     }
                     db.Commit();
                 }
             }
             catch (Exception e)
             {
-                throw new FailedException("Mục thu phíLưu thất bại，" + e.Message);
+                throw new FailedException("Mục thu phí Lưu thất bại," + e.Message);
             }
         }
 
         /// <summary>
-        /// thông quaSố nhập viện,Y lệnhTính chấtLấyChi phíthông tin
+        /// thông qua Số nhập viện, Y lệnh Tính chất Lấy Chi phí thông tin
         /// </summary>
         /// <param name="OrganizeId"></param>
         /// <param name="zyh"></param>

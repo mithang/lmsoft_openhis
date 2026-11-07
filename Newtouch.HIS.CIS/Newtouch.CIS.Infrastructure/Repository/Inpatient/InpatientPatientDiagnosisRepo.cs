@@ -13,14 +13,14 @@ namespace Newtouch.Repository
     /// <summary>
     /// Tác giả: 冬林
     /// Ngày:2018-06-28 13:27
-    /// Mô tả:Nhập việnbệnh nhânChẩn đoánthông tin
+    /// Mô tả: Nhập viện bệnh nhân chẩn đoán thông tin
     /// </summary>
     public class InpatientPatientDiagnosisRepo : RepositoryBase<InpatientPatientDiagnosisEntity>, IInpatientPatientDiagnosisRepo
     {
         /// <summary>
-        /// Mặc địnhHàm khởi tạosố
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EFtrêndướivănNhà máy</param>
+        /// <param name="databaseFactory">Nhà máy ngữ cảnh EF</param>
         public InpatientPatientDiagnosisRepo()
             : base()
         {
@@ -28,10 +28,10 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// Lưubảngphiếu(Thêm mới,Sửa)
+        /// Lưu bảng phiếu (Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">thựcthểđối tượng</param>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="entity">thực thể đối tượng</param>
+        /// <param name="keyValue">Khóa chính giá trị</param>
         public void SubmitForm(InpatientPatientDiagnosisEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
@@ -50,21 +50,21 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// XóaDữ liệu
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="keyValue">Khóa chính giá trị</param>
         public void DeleteForm(string keyValue)
         {
             this.Delete(p => p.Id == keyValue);
         }
 
         /// <summary>
-        /// LấyChẩn đoánthông tin
+        /// Lấy chẩn đoán thông tin
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="organizeId"></param>
-        /// <param name="zdlb">1Chẩn đoán nhập viện2Xuất việnChẩn đoán</param>
-        /// <param name="zt">1-Hiệu lực  0-Vô hiệu</param>
+        /// <param name="zdlb">1 Chẩn đoán nhập viện 2 Xuất viện chẩn đoán</param>
+        /// <param name="zt">1-Hiệu lực 0-Vô hiệu</param>
         /// <returns></returns>
         public List<InpatientPatientDiagnosisEntity> SelectData(string zyh, string organizeId, string zdlb, string zt = "1")
         {

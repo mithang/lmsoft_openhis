@@ -8,7 +8,7 @@ namespace Newtouch.Domain.Entity
     /// <summary>
     /// Tác giả: 冬林
     /// Ngày:2018-06-28 15:37
-    /// Mô tả:Nhập việnphát thuốcyêu cầukho
+    /// Mô tả: Nhập viện phát thuốc yêu cầu kho
     /// </summary>
     [SugarTable("zy_fyqqk")]
     public class InpatientMedicineGrantEntity
@@ -130,7 +130,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int zxcs { get; set; }
         /// <summary>
-        /// (1phát thuốc 2trảthuốc)
+        /// (1 phát thuốc 2 trả thuốc)
         /// </summary>
         /// <returns></returns>
         public int? tybz { get; set; }
@@ -140,7 +140,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string fyczyh { get; set; }
         /// <summary>
-        /// (0Tạm thời1Dài hạn)
+        /// (0 Tạm thời 1 Dài hạn)
         /// </summary>
         /// <returns></returns>
         public int? yzxz { get; set; }
@@ -180,7 +180,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0Vô hiệu1Hiệu lực
+        /// 0 Vô hiệu 1 Hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }

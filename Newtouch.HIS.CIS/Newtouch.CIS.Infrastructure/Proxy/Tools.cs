@@ -2,15 +2,15 @@ using Newtouch.CIS.Compat;
 namespace Newtouch.CIS.Proxy
 {
     /// <summary>
-    /// côngcụ thểloại
+    /// công cụ thể loại
     /// </summary>
     public static class Tools
     {
         /// <summary>
-        /// LấyGiới tínhMã
+        /// Lấy Giới tính Mã
         /// </summary>
         /// <param name="gender"></param>
-        /// <returns>Quay lạitrongytương ứngcủaGiới tínhMã</returns>
+        /// <returns>Quay lại trong y tương ứng của Giới tính Mã</returns>
         public static string GetGenderCode(string gender)
         {
             switch (gender.Trim())
@@ -32,10 +32,10 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// chuyểnđổithànhtrongytương ứngcủachứngmụcMã loại
+        /// chuyển đổi thành trong y tương ứng của chứng mục Mã loại
         /// </summary>
-        /// <param name="zjlx">chứngmụcLoại</param>
-        /// <returns>trongytương ứngcủachứngmụcMã loại</returns>
+        /// <param name="zjlx">chứng mục Loại</param>
+        /// <returns>trong y tương ứng của chứng mục Mã loại</returns>
         public static string CardTypeCodeChange(int zjlx)
         {
             switch (zjlx)
@@ -53,10 +53,10 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// LấychứngmụcTên
+        /// Lấy chứng mục Tên
         /// </summary>
-        /// <param name="zjlx">cischứngmụcLoại</param>
-        /// <returns>trongytương ứngcủachứngmụcTên loại</returns>
+        /// <param name="zjlx">cis chứng mục Loại</param>
+        /// <returns>trong y tương ứng của chứng mục Tên loại</returns>
         public static string GetCardType(int zjlx)
         {
             var code = CardTypeCodeChange(zjlx);
@@ -84,7 +84,7 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// chuyểnđổithànhtrongytương ứngcủaTình trạng hôn nhânMã
+        /// chuyển đổi thành trong y tương ứng của Tình trạng hôn nhân Mã
         /// </summary>
         /// <param name="hf"></param>
         /// <returns></returns>
@@ -103,7 +103,7 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// chuyểnđổithànhtrongytương ứngcủaTình trạng hôn nhânMã
+        /// chuyển đổi thành trong y tương ứng của Tình trạng hôn nhân Mã
         /// </summary>
         /// <param name="hf"></param>
         /// <returns></returns>
@@ -133,7 +133,7 @@ namespace Newtouch.CIS.Proxy
         }
 
         /// <summary>
-        /// bảnđịabệnh nhânTính chấtchuyểntrongyquánbệnh nhânTính chất
+        /// bản địa bệnh nhân Tính chất chuyển trong y quán bệnh nhân Tính chất
         /// </summary>
         /// <param name="brxz"></param>
         /// <returns></returns>
@@ -142,10 +142,10 @@ namespace Newtouch.CIS.Proxy
             switch (brxz)
             {
                 case "1"://cục bộ tự chi trả
-                    return "2";// trongyquán tự chi trả
+                    return "2";// trong y quán tự chi trả
                 case "0"://cục bộ tự chi trả
                 default:
-                    return "1";// trongyquán tự chi trả
+                    return "1";// trong y quán tự chi trả
             }
         }
     }

@@ -64,7 +64,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// Y lệnhLưu
+        /// Y lệnh lưu
         /// </summary>
         /// <param name="reqdoctorservices"></param>
         /// <param name="deldata"></param>
@@ -88,7 +88,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         }
 
         /// <summary>
-        /// SửaY lệnhkhi,TheoY lệnhIdLấyChi tiết
+        /// Sửa y lệnh khi, theo y lệnh Id lấy chi tiết
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="yzlx"></param>
@@ -104,7 +104,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 var datass = _doctorserviceDmnService.Ssupdate(yzId, zyh, OrganizeId);
                 if (datass.Count > 0)
                 {
-                    throw new FailedException("Phẫu thuậtY lệnhKhông thểSửa");
+                    throw new FailedException("Phẫu thuật y lệnh không thể sửa");
                 }
             }
             var data = _doctorserviceApp.GetYZDetail(zyh, yzId, yzlx, OrganizeId);
@@ -122,7 +122,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             
         }
         /// <summary>
-        /// Y lệnhChẩn đoán
+        /// Y lệnh chẩn đoán
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -133,7 +133,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             return View();
         }
         /// <summary>
-        /// Cấu trúcvàgọigiao diện LấynhấtmớiTồn khoSố lượng
+        /// Cấu trúc và gọi giao diện lấy nhất mới tồn kho số lượng
         /// </summary>
         /// <param name="ypcode"></param>
         /// <returns></returns>
@@ -152,7 +152,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/query", request);
                 if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.data != null)
                 {
-                    StockQueryResponseDTO successDoOrder = Newtouch.CIS.Compat.Tools.Json.ToObject<StockQueryResponseDTO>(apires.data.ToString()); //giao diệnQuay lạiDữ liệu 
+                    StockQueryResponseDTO successDoOrder = Newtouch.CIS.Compat.Tools.Json.ToObject<StockQueryResponseDTO>(apires.data.ToString()); // giao diện quay lại dữ liệu 
                     if (successDoOrder != null && successDoOrder.drugStockInfos.Count > 0)
                     {
                         //List<DrugStockInfo> successDoOrderYp = Newtouch.CIS.Compat.Tools.Json.ToList<DrugStockInfo>();
@@ -162,10 +162,10 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 }
                 else
                 {
-                    return "F|GọiNhà thuốcKho thuốcGiao diệnthất bại";
+                    return "F|Gọi nhà thuốc kho thuốc giao diện thất bại";
                 }
 
-                return "T|Thực hiệnthành công";
+                return "T|Thực hiện thành công";
 
             }
             catch (Exception ex)
@@ -217,7 +217,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             return Success();
         }
         /// <summary>
-        /// việctrướcPhê duyệtgiao diện
+        /// việc trước phê duyệt giao diện
         /// </summary>
         /// <param name="reqdoctorservices"></param>
         /// <returns></returns>
@@ -237,7 +237,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             return Success(response);
         }
         /// <summary>
-        /// Phê duyệtphiếucứXóa
+        /// Phê duyệt phiếu cứ xóa
         /// </summary>
         /// <returns></returns>
         public IActionResult DeletePriorReview(string zyh,string yzid,string yzlx,string GetMAC)
@@ -246,7 +246,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             return Success(response);
         }
         /// <summary>
-        /// Chẩn đoánTra cứuphụcvụgiao diện
+        /// Chẩn đoán tra cứu phục vụ giao diện
         /// </summary>
         /// <returns></returns>
         public IActionResult GetDiagnoseData()
@@ -255,7 +255,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             return Success(response);
         }
         /// <summary>
-        /// bệnhánPhê duyệtphụcvụ
+        /// bệnh án phê duyệt phục vụ
         /// </summary>
         /// <param name="reqdoctorservices"></param>
         /// <returns></returns>
@@ -265,7 +265,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
             return Success(response);
         }
         /// <summary>
-        /// DRGphụcvụ
+        /// DRG phục vụ
         /// </summary>
         /// <param name="reqdoctorservices"></param>
         /// <returns></returns>
@@ -277,7 +277,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         
         
         /// <summary>
-        /// LấyY lệnhhợplýdùngthuốcthông tingiao diện
+        /// Lấy y lệnh hợp lý dùng thuốc thông tin giao diện
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="yzId"></param>
@@ -286,7 +286,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         /// <exception cref="FailedException"></exception>
         public IActionResult GetYzHlyy(List<DoctorServiceRequestDto> reqdoctorservices, string yzh)
         {
-            // tạomộtngoàibộcủa request thựcVD,chỉcầnmột
+            // tạo một ngoài bộ của request thực VD, chỉ cần một
             var request = new EngineReq
             {
                 Type = "prescription",
@@ -346,7 +346,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 string yzId = null;
                 var yzlx = doctorServiceRequestDto.yzlb;
 
-                // TheoKiểu y lệnhLấy yzId
+                // Theo kiểu y lệnh lấy yzId
                 if (yzlx.Equals("长"))
                 {
                     var entity = _inpatientLongTermOrderRepo.FindEntity(p =>
@@ -377,7 +377,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 request.Patient.DocName = data.patientInfo.ysxm;
                 
                 var pres = new Prescription();
-                // Lặp lạiThêm prescriptions
+                // Lặp lại thêm prescriptions
                 data.DoctorServiceUIRequestDto.ForEach(val =>
                 {
                     var ypjx = _medicalRecordDmnService.GetYpjx(val.xmdm, UserIdentity.OrganizeId);
@@ -392,7 +392,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                         PackUnit = val.dw,
                         UnitPrice = "",
                         Amount = "",
-                        GroupNo = val.zh.ToString(), // biểu thịCùng nhóm
+                        GroupNo = val.zh.ToString(), // biểu thị cùng nhóm
                         FirstUse = "",
                         PrepForm = ypjx ?? "",
                         AdminRoute = val.yfmcval,
@@ -417,15 +417,15 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
                 });
                 prescriptions.Add(pres);
             } 
-            //  prescriptions Thêmđến request
+            //  prescriptions thêm đến request
             request.Prescriptions = prescriptions;
             var hlyyProxy = new HlyyProxy();
             var engineRes = hlyyProxy.engine(request);
-            return Success("Tra cứuthành công", engineRes);
+            return Success("Tra cứu thành công", engineRes);
         }
        
         /// <summary>
-        /// LấyhợplýdùngthuốcThuốcMô tảsách
+        /// Lấy hợp lý dùng thuốc thuốc mô tả sách
         /// </summary>
         /// <param name="drugId"></param>
         /// <returns></returns>
@@ -433,7 +433,7 @@ namespace Newtouch.CIS.Web.Areas.DoctorManage
         {
             var hlyyProxy = new HlyyProxy();
             var hisSmsJson = hlyyProxy.GetHisSmsJson(drugId);
-            return Success("Tra cứuthành công", hisSmsJson);
+            return Success("Tra cứu thành công", hisSmsJson);
         }
 
 

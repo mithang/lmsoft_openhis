@@ -97,7 +97,7 @@ namespace Newtouch.DomainServices.Inpatient
 
         #region Y lệnhnhập
         /// <summary>
-        /// Y lệnhchuyểnđổithànhDữ liệubảngcủaTrạng thái
+        /// Y lệnh chuyển đổi thành Dữ liệu bảng của Trạng thái
         /// </summary>
         /// <param name="orgId"></param>3
         /// <param name="reqdoctorservices"></param>
@@ -120,10 +120,10 @@ namespace Newtouch.DomainServices.Inpatient
                 {
                     dto.DelIds.AddRange(deldata);
                 }
-                //thaybảngTạm thờicủaLôtậphợp
+                //thay bảng Tạm thời của Lô tập hợp
                 var FrequencyStr = _sysConfigRepo.GetValueByCode("FrequencyStr", orgId) ?? "";
                 var FequencyList = FrequencyStr.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
-                //Số nhómtạotậphợp keyThao tácgiớimặtmangquađếncủaSố nhóm,valuemáy chủtạocủaSố nhóm,nhấtcuốiLưuđếnDữ liệukho
+                //Số nhóm tạo tập hợp key Thao tác giới mặt mang qua đến của Số nhóm, value máy chủ tạo của Số nhóm, nhất cuối Lưu đến Dữ liệu kho
                 var diczh = new Dictionary<int, int>();
                 var zhreqdoctorservices = reqdoctorservices.ToJson().ToObject<List<DoctorServiceRequestDto>>();
                 if (reqdoctorservices != null && reqdoctorservices.Count > 0)
@@ -132,16 +132,16 @@ namespace Newtouch.DomainServices.Inpatient
                     var patientobj = _inpatientPatientInfoRepo.IQueryable().FirstOrDefault(p => p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1");
                     if (patientobj == null)
                     {
-                        throw new FailedException("bệnh nhânkhôngtồn tạiở");
+                        throw new FailedException("bệnh nhân không tồn tại ở");
                     }
 
                     foreach (var item in reqdoctorservices)
                     {
-                        //bệnh nhânNhập việnthông tinbảngcủaThông tin cơ bảnmangđếnY lệnhbảng
+                        //bệnh nhân Nhập viện thông tin bảng của Thông tin cơ bản mang đến Y lệnh bảng
                         item.hzxm = patientobj.xm;
                         item.WardCode = patientobj.WardCode;
                         item.DeptCode = patientobj.DeptCode;
-                        //khôngtồn tạiởTần suất,khônglàmphương phápkếtiếp.
+                        //không tồn tại ở Tần suất, không làm phương pháp kế tiếp.
                         if (string.IsNullOrWhiteSpace(item.pcCode))
                         {
                             continue;
@@ -154,7 +154,7 @@ namespace Newtouch.DomainServices.Inpatient
                                 var zhcnt = zhreqdoctorservices.Where(p => p.zh == item.zh).Count();
                                 if (zhcnt > 1)
                                 {
-                                    //Số nhómlạiGán giá trị
+                                    //Số nhóm lại Gán giá trị
                                     if (!string.IsNullOrWhiteSpace(item.zh.ToString()))
                                     {
                                         if (diczh.ContainsKey(item.zh.ToInt()))
@@ -169,7 +169,7 @@ namespace Newtouch.DomainServices.Inpatient
                                         }
                                         else
                                         {
-                                            //tạoSố nhóm
+                                            //tạo Số nhóm
                                             var No = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("zy_cqlsyz.zh", orgId, "", false);
                                             diczh.Add(item.zh.ToInt(), No.ToInt());
                                             item.zh = No.ToInt();
@@ -177,11 +177,11 @@ namespace Newtouch.DomainServices.Inpatient
                                     }
                                 }
                                 else
-                                {//Cùng nhómcnt<1củalời,thànhnhómthất bại
+                                {//Cùng nhóm cnt<1 của lời, thành nhóm thất bại
                                     item.zh = null;
                                 }
 
-                                //Nội dung y lệnh định dạng:Tên thuốc Quy cách thuốc  ThuốcLiều lượng  Đơn vị liều Mã cách dùng Tên tần suất Thời gian thực hiện Vị trí
+                                //Nội dung y lệnh định dạng: Tên thuốc Quy cách thuốc  Thuốc Liều lượng  Đơn vị liều Mã cách dùng Tên tần suất Thời gian thực hiện Vị trí
 
                                 //item.yznr = "【" + item.xmmc + " "
                                 //    + (item.ypgg ?? "")
@@ -213,16 +213,16 @@ namespace Newtouch.DomainServices.Inpatient
                                     }
                                     else
                                     {
-                                        item.yznr = (item.yslb ?? item.xmmc) + "[" + item.yszs + "]" + "  " + (item.ypjl.ToString() ?? "") + " " + (item.nlmd ?? "") + "  " + item.yfmc + "  " + item.pcmc;//thông thườngăn uống
+                                        item.yznr = (item.yslb ?? item.xmmc) + "[" + item.yszs + "]" + "  " + (item.ypjl.ToString() ?? "") + " " + (item.nlmd ?? "") + "  " + item.yfmc + "  " + item.pcmc;//thông thường ăn uống
                                     }
                                 }
                                 var ssyzcfId = "";
 
-                                //Y lệnhđối tượngGán giá trị  
-                                if (item.pcCode == fl || item.yzlx == ((int)EnumYzlx.Cydy))//Tạm thờiTần suất
+                                //Y lệnh đối tượng Gán giá trị  
+                                if (item.pcCode == fl || item.yzlx == ((int)EnumYzlx.Cydy))//Tạm thời Tần suất
                                 {
                                     ssyzcfId = item.Id;
-                                    //Dữ liệukhotìmkhôngđếnnàyY lệnhghi chépcủalời,thìThêm mới
+                                    //Dữ liệu kho tìm không đến này Y lệnh ghi chép của lời, thì Thêm mới
                                     if (!EditLSdoctorService(item, orgId, ref dto))
                                     {
                                         var addentity = AddLSdoctorService(item, orgId);
@@ -233,9 +233,9 @@ namespace Newtouch.DomainServices.Inpatient
                                         }
                                     }
                                 }
-                                else //Dài hạnTần suất
+                                else //Dài hạn Tần suất
                                 {
-                                    //TheoSố ngàytínhraThời gian dừng
+                                    //Theo Số ngày tính ra Thời gian dừng
                                     var tzsj = new DateTime();
                                     if (!string.IsNullOrWhiteSpace(item.ts.ToString()))
                                     {
@@ -268,7 +268,7 @@ namespace Newtouch.DomainServices.Inpatient
                         }
                         else
                         {
-                            throw new FailedException("thiếuTạm thờiTần suấtcấu hình");
+                            throw new FailedException("thiếu Tạm thời Tần suất cấu hình");
                         }
                     }
                 }
@@ -276,17 +276,17 @@ namespace Newtouch.DomainServices.Inpatient
             }
             catch (FailedException fe)
             {
-                throw new FailedException("Y lệnhLưu thất bại，" + fe.Message);
+                throw new FailedException("Y lệnh Lưu thất bại," + fe.Message);
             }
             catch (Exception e)
             {
 
-                throw new FailedException("Y lệnhLưu thất bại，" + e.InnerException);
+                throw new FailedException("Y lệnh Lưu thất bại," + e.InnerException);
             }
         }
 
         /// <summary>
-        /// Y lệnhchuyểnđổithànhDữ liệubảngcủaTrạng thái Dài hạn,Tạm thờikhôngđicấu hình,cóBác sĩchínhxemđiều khiển
+        /// Y lệnh chuyển đổi thành Dữ liệu bảng của Trạng thái Dài hạn, Tạm thời không đi cấu hình, có Bác sĩ chính xem điều khiển
         /// </summary>
         /// <param name="orgId"></param>3
         /// <param name="reqdoctorservices"></param>
@@ -362,21 +362,21 @@ namespace Newtouch.DomainServices.Inpatient
                 int px = 1;
                 #endregion
                 if (deldata != null && deldata.Count > 0) dto.DelIds.AddRange(deldata);
-                //Số nhómtạotậphợp keyThao tácgiớimặtmangquađếncủaSố nhóm,valuemáy chủtạocủaSố nhóm,nhấtcuốiLưuđếnDữ liệukho
+                //Số nhóm tạo tập hợp key Thao tác giới mặt mang qua đến của Số nhóm, value máy chủ tạo của Số nhóm, nhất cuối Lưu đến Dữ liệu kho
                 var diczh = new Dictionary<int, int>();
                 var zhreqdoctorservices = reqdoctorservices.ToJson().ToObject<List<DoctorServiceRequestDto>>();
                 if (reqdoctorservices != null && reqdoctorservices.Count > 0)
                 {
                     var zyh = reqdoctorservices[0].zyh;
                     var patientobj = _inpatientPatientInfoRepo.IQueryable().FirstOrDefault(p => p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1");
-                    if (patientobj == null) throw new FailedException("bệnh nhânkhôngtồn tạiở");
+                    if (patientobj == null) throw new FailedException("bệnh nhân không tồn tại ở");
 
                     //IList<DoctorServiceRequestDto> jyList = reqdoctorservices.Where(a => (a.yzlx == Convert.ToInt32(EnumYzlx.jy))).ToList();
                     //IList<DoctorServiceRequestDto> jcList = reqdoctorservices.Where(a => (a.yzlx == Convert.ToInt32(EnumYzlx.jc))).ToList();
 
                     foreach (var item in reqdoctorservices)
                     {
-                        //bệnh nhânNhập việnthông tinbảngcủaThông tin cơ bảnmangđếnY lệnhbảng
+                        //bệnh nhân Nhập viện thông tin bảng của Thông tin cơ bản mang đến Y lệnh bảng
                         item.hzxm = patientobj.xm;
                         item.WardCode = patientobj.WardCode;
                         item.DeptCode = patientobj.DeptCode;
@@ -393,14 +393,14 @@ namespace Newtouch.DomainServices.Inpatient
                         item.yzh = yzh;
                         //}
 
-                        //khôngtồn tạiởTần suất,khônglàmphương phápkếtiếp.
+                        //không tồn tại ở Tần suất, không làm phương pháp kế tiếp.
                         if (string.IsNullOrWhiteSpace(item.pcCode)) continue;
 
                         #region Số nhóm
                         var zhcnt = zhreqdoctorservices.Count(p => p.zh == item.zh);
                         if (zhcnt > 1)
                         {
-                            //Số nhómlạiGán giá trị
+                            //Số nhóm lại Gán giá trị
                             if (!string.IsNullOrWhiteSpace(item.zh.ToString()))
                             {
                                 if (diczh.ContainsKey(item.zh.ToInt()))
@@ -415,7 +415,7 @@ namespace Newtouch.DomainServices.Inpatient
                                 }
                                 else
                                 {
-                                    //tạoSố nhóm
+                                    //tạo Số nhóm
                                     var No = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueValue("zy_cqlsyz.zh", orgId, "");
                                     diczh.Add(item.zh.ToInt(), No.ToInt());
                                     item.zh = No.ToInt();
@@ -424,12 +424,12 @@ namespace Newtouch.DomainServices.Inpatient
                         }
                         else
                         {
-                            //Cùng nhómcnt<1củalời,thànhnhómthất bại
+                            //Cùng nhóm cnt<1 của lời, thành nhóm thất bại
                             item.zh = null;
                         }
                         #endregion
 
-                        #region Nội dung y lệnh định dạng：Tên thuốc Quy cách thuốc  Thuốcliều lượng  Đơn vị liều Mã cách dùng Tên tần suất Thời gian thực hiện Vị trí
+                        #region Nội dung y lệnh định dạng: Tên thuốc Quy cách thuốc  Thuốc liều lượng  Đơn vị liều Mã cách dùng Tên tần suất Thời gian thực hiện Vị trí
                         item.yznr = item.xmmc + " "
                             + (item.ypjl.ToString() ?? "")
                             + (item.dwwwwwww ?? "")
@@ -463,12 +463,12 @@ namespace Newtouch.DomainServices.Inpatient
                             }
                             else
                             {
-                                item.yznr = (item.yslb ?? item.xmmc) + "[" + item.yszs + "]" + "  " + (item.ypjl.ToString() ?? "") + " " + (item.nlmd ?? "") + "  " + item.yfmc + "  " + item.pcmc;//thông thườngăn uống
+                                item.yznr = (item.yslb ?? item.xmmc) + "[" + item.yszs + "]" + "  " + (item.ypjl.ToString() ?? "") + " " + (item.nlmd ?? "") + "  " + item.yfmc + "  " + item.pcmc;//thông thường ăn uống
                             }
                         }
                         if (item.yzlx == (int)EnumYzlx.zcy)
                         {
-                            //Y lệnhđịnh dạng:Tên thuốc Quy cách mỗi lầnLiều lượng mỗi lầnĐơn vị liều Cách dùng Tần suất dánsố
+                            //Y lệnh định dạng: Tên thuốc Quy cách mỗi lần Liều lượng mỗi lần Đơn vị liều Cách dùng Tần suất dán số
                             item.yznr = item.xmmc + "  " + item.ypgg + " " + item.ypjl + item.dwwwwwww + " " + item.yfmc + " " + item.pcmc + " " + item.sl + " thang";
                         }
                         if (item.yzlx == (int)EnumYzlx.jy)
@@ -482,15 +482,15 @@ namespace Newtouch.DomainServices.Inpatient
                         }
                         #endregion
                         var uuid = Guid.NewGuid().ToString();
-                        //thaybảngTạm thờicủaLôtậphợp
+                        //thay bảng Tạm thời của Lô tập hợp
                         var frequencyStr = _sysConfigRepo.GetValueByCode("FrequencyStr", orgId) ?? "";
                         var frequencyLs = (frequencyStr.Split(',') ?? new string[0]).ToList();
                         string ssyzcfId;
-                        //Y lệnhđối tượngGán giá trị  
+                        //Y lệnh đối tượng Gán giá trị  
                         if ("临".Equals(item.yzlb) || item.yzlx == (int)EnumYzlx.Cydy || item.yzlx == (int)EnumYzlx.zcy || frequencyLs.Exists(p => p == item.pcCode))// Tần suất tạm thời
                         {
                             ssyzcfId = item.Id;
-                            //Dữ liệukhotìmkhôngđếnnàyY lệnhghi chépcủalời,thìThêm mới
+                            //Dữ liệu kho tìm không đến này Y lệnh ghi chép của lời, thì Thêm mới
                             if (!EditLSdoctorService(item, orgId, ref dto))
                             {
                                 var addentity = AddLSdoctorService(item, orgId, uuid);
@@ -501,9 +501,9 @@ namespace Newtouch.DomainServices.Inpatient
                                 }
                             }
                         }
-                        else//Dài hạnTần suất
+                        else//Dài hạn Tần suất
                         {
-                            //TheoSố ngàytínhraThời gian dừng
+                            //Theo Số ngày tính ra Thời gian dừng
                             var tzsj = new DateTime();
                             if (!string.IsNullOrWhiteSpace(item.ts.ToString()))
                             {
@@ -542,17 +542,17 @@ namespace Newtouch.DomainServices.Inpatient
             }
             catch (FailedException fe)
             {
-                throw new FailedException("Y lệnhLưu thất bại，" + fe.Message);
+                throw new FailedException("Y lệnh Lưu thất bại," + fe.Message);
             }
             catch (Exception e)
             {
 
-                throw new FailedException("Y lệnhLưu thất bại，" + e.InnerException);
+                throw new FailedException("Y lệnh Lưu thất bại," + e.InnerException);
             }
         }
         #region Y lệnhnhắc trước
         /// <summary>
-        /// LấythứbaphươngđốichiếuGiá trị
+        /// Lấy thứ ba phương đối chiếu Giá trị
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="TTcode"></param>
@@ -571,7 +571,7 @@ namespace Newtouch.DomainServices.Inpatient
             switch (TTtype)
             {
                 case "fylb":
-                    return "91";//KhácChi phí
+                    return "91";//Khác Chi phí
                 case "sypc":
                     return "99";
                 case "yf":
@@ -582,7 +582,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// LấyY lệnhnhắc trướcDữ liệu
+        /// Lấy Y lệnh nhắc trước Dữ liệu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="reqdoctorservices"></param>
@@ -676,7 +676,7 @@ namespace Newtouch.DomainServices.Inpatient
                 row.AKE002 = item.xmmc;
                 row.AKC515 = item.xmdm;
                 row.AKC223 = item.xmmc;
-                row.AKA063 = GetTTItem(orgId, "fylb", sfdlcode, "sqtx");//KhácChi phí 
+                row.AKA063 = GetTTItem(orgId, "fylb", sfdlcode, "sqtx");//Khác Chi phí 
                 row.AKC226 = Convert.ToDecimal(item.sl);
                 row.AKA070 = string.Empty;
                 row.CKC132 = GetTTItem(orgId, "jldw", item.dwwwwwww, "sqtx");
@@ -762,7 +762,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// tăng thêmY lệnhChẩn đoán
+        /// tăng thêm Y lệnh Chẩn đoán
         /// </summary>
         /// <param name="item"></param>
         /// <param name="orgId"></param>
@@ -800,16 +800,16 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// SửaY lệnh tạm thời
+        /// Sửa Y lệnh tạm thời
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
         bool EditLSdoctorService(DoctorServiceRequestDto item, string orgId, ref SaveDoctorServiceDto dto)
         {
             var edititem = _inpatientSTATOrderRepo.IQueryable(p => p.Id == item.Id && p.zt == "1").FirstOrDefault();
-            if (edititem != null)//SửaY lệnh tạm thời
+            if (edititem != null)//Sửa Y lệnh tạm thời
             {
-                //ThuốcSửa Cách dùngtương ứngBộ mẫutrướcHủy bỏởtạo
+                //Thuốc Sửa Cách dùng tương ứng Bộ mẫu trước Hủy bỏ ở tạo
                 if (edititem.yfztbs != null)
                 {
                     var lsyzzt = _inpatientSTATOrderRepo.IQueryable(p => p.yfztbs == edititem.yfztbs && p.zyh == edititem.zyh && p.OrganizeId == orgId && p.zt == "1" && p.ztId != null).ToList();
@@ -823,7 +823,7 @@ namespace Newtouch.DomainServices.Inpatient
                 }
                 if (edititem.xmdm != item.xmdm)
                 {
-                    throw new FailedException("không thểSửaThuốc");
+                    throw new FailedException("không thể Sửa Thuốc");
                 }
 
                 var editlsyz = edititem.Clone();
@@ -862,12 +862,12 @@ namespace Newtouch.DomainServices.Inpatient
 
             }
 
-            //từDài hạnchuyểnđếnY lệnh tạm thời trước đâyY lệnh dài hạnCài đặtthànhVô hiệu,lạiThêm mớiY lệnh tạm thời
+            //từ Dài hạn chuyển đến Y lệnh tạm thời trước đây Y lệnh dài hạn Cài đặt thành Vô hiệu, lại Thêm mới Y lệnh tạm thời
             var edititemtrans = _inpatientLongTermOrderRepo.IQueryable(p => p.Id == item.Id && p.zt == "1").FirstOrDefault();
             if (edititemtrans == null) return false;
             if (edititemtrans.xmdm != item.xmdm)
             {
-                throw new FailedException("không thểSửaThuốc");
+                throw new FailedException("không thể Sửa Thuốc");
             }
             dto.DelIds.Add(item.Id);
             dto.lsyzList.Add(AddLSdoctorService(item, orgId));
@@ -878,7 +878,7 @@ namespace Newtouch.DomainServices.Inpatient
             return AddLSdoctorService(item, orgId, null);
         }
         /// <summary>
-        /// tăng thêmY lệnh tạm thời
+        /// tăng thêm Y lệnh tạm thời
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
@@ -908,7 +908,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// SửaY lệnh dài hạn
+        /// Sửa Y lệnh dài hạn
         /// </summary>
         /// <param name="item"></param>
         /// <param name="orgId"></param>
@@ -918,13 +918,13 @@ namespace Newtouch.DomainServices.Inpatient
         bool EditCQdoctorService(DoctorServiceRequestDto item, string orgId, ref SaveDoctorServiceDto dto, DateTime? tzsj = null)
         {
             var Edititem = _inpatientLongTermOrderRepo.IQueryable(p => p.Id == item.Id && p.zt == "1").FirstOrDefault();
-            if (Edititem != null)//SửaY lệnh dài hạn
+            if (Edititem != null)//Sửa Y lệnh dài hạn
             {
                 if (item.yzlx != (int)EnumYzlx.ssyz && Edititem.xmdm != item.xmdm)
                 {
-                    throw new FailedException("không thểSửaThuốc");
+                    throw new FailedException("không thể Sửa Thuốc");
                 }
-                //ThuốcSửa Cách dùngtương ứngBộ mẫutrướcHủy bỏởtạo
+                //Thuốc Sửa Cách dùng tương ứng Bộ mẫu trước Hủy bỏ ở tạo
                 if (Edititem.yfztbs != null)
                 {
                     var cqyzzt = _inpatientLongTermOrderRepo.IQueryable(p => p.yfztbs == Edititem.yfztbs && p.zyh == Edititem.zyh && p.OrganizeId == orgId && p.zt == "1" && p.ztId != null).ToList();
@@ -975,13 +975,13 @@ namespace Newtouch.DomainServices.Inpatient
                 return true;
             }
             else
-            {//từY lệnh tạm thờichuyểnđếnY lệnh dài hạn trước đâyY lệnh tạm thờiCài đặtthànhVô hiệu,lạiThêm mớiY lệnh dài hạn
+            {//từ Y lệnh tạm thời chuyển đến Y lệnh dài hạn trước đây Y lệnh tạm thời Cài đặt thành Vô hiệu, lại Thêm mới Y lệnh dài hạn
                 var Edititemtrans = _inpatientSTATOrderRepo.IQueryable(p => p.Id == item.Id && p.zt == "1").FirstOrDefault();
                 if (Edititemtrans != null)
                 {
                     if (Edititemtrans.xmdm != item.xmdm)
                     {
-                        throw new FailedException("không thểSửaThuốc");
+                        throw new FailedException("không thể Sửa Thuốc");
                     }
                     dto.DelIds.Add(item.Id);
                     dto.cqyzList.Add(AddCQdoctorService(item, orgId, tzsj));
@@ -995,7 +995,7 @@ namespace Newtouch.DomainServices.Inpatient
             return AddCQdoctorService(item, orgId, null, tzsj);
         }
         /// <summary>
-        /// tăng thêmY lệnh dài hạn
+        /// tăng thêm Y lệnh dài hạn
         /// </summary>
         /// <param name="item"></param>
         /// <param name="orgId"></param>
@@ -1030,7 +1030,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// Sửaăn uốngY lệnh
+        /// Sửa ăn uống Y lệnh
         /// </summary>
         /// <param name="item"></param>
         /// <returns></returns>
@@ -1038,7 +1038,7 @@ namespace Newtouch.DomainServices.Inpatient
         {
 
             var Edititem = _InpatientDietDetailSplitRepo.IQueryable().Where(p => p.Id == item.Id && p.zt == "1" && p.OrganizeId == orgId);
-            if (Edititem != null)//Sửaăn uốngY lệnh
+            if (Edititem != null)//Sửa ăn uống Y lệnh
             {
                 dto.DelssyzIds.Add(item.Id);
                 return true;
@@ -1046,7 +1046,7 @@ namespace Newtouch.DomainServices.Inpatient
             return false;
         }
         /// <summary>
-        /// tăng thêmăn uốngY lệnh
+        /// tăng thêm ăn uống Y lệnh
         /// </summary>
         /// <param name="item"></param>
         /// <param name="orgId"></param>
@@ -1070,7 +1070,7 @@ namespace Newtouch.DomainServices.Inpatient
                         var nameentity = _InpatientDietBaseRepo.IQueryable(p => p.Id == v && p.zt == "1" && p.OrganizeId == orgId).FirstOrDefault();
                         if (nameentity == null)
                         {
-                            throw new FailedException("thiếuăn uốngcơ sởcơ sở");
+                            throw new FailedException("thiếu ăn uống cơ sở cơ sở");
                         }
                         var entity = new InpatientDietDetailSplitEntity();
                         entity.OrganizeId = orgId;
@@ -1088,7 +1088,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// GửiY lệnhđếnDữ liệukho
+        /// Gửi Y lệnh đến Dữ liệu kho
         /// </summary>
         /// <param name="dto"></param>
         void SavedoctorService(SaveDoctorServiceDto dto, string orgId)
@@ -1141,7 +1141,7 @@ namespace Newtouch.DomainServices.Inpatient
                                 db.Update(item);
                             }
                         }
-                        //vậtlýXóa
+                        //vật lý Xóa
                         if (dto.DelIds != null && dto.DelIds.Count() > 0)
                         {
                             var sql = @"UPDATE  dbo.zy_cqyz
@@ -1169,7 +1169,7 @@ namespace Newtouch.DomainServices.Inpatient
                             new SqlParameter("@str", string.Join(",", dto.DelssyzIds))});
                         }
                     }
-                    //Cập nhậtDữ liệukhocủaSố nhóm
+                    //Cập nhật Dữ liệu kho của Số nhóm
                     db.ExecuteSqlCommand("exec dbo.refreshZH @orgId", new[] { new SqlParameter("@orgId", orgId) });
 
                     if (dto.ssyzList != null && dto.ssyzList.Count > 0)
@@ -1197,7 +1197,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// Y lệnhsao chépTạo mới
+        /// Y lệnh sao chép Tạo mới
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="OrganizeId"></param>
@@ -1212,7 +1212,7 @@ namespace Newtouch.DomainServices.Inpatient
                 {
                     var lsyz = db.FindEntity<InpatientSTATOrderEntity>(p => p.zyh == zyh && p.Id == yzId && p.yzzt == yzzt && p.OrganizeId == OrganizeId && p.zt == "1");
                     if (lsyz == null)
-                        throw new FailedException("chưatìmđếnY lệnhhoặcY lệnhkhôngDừngTrạng thái");
+                        throw new FailedException("chưa tìm đến Y lệnh hoặc Y lệnh không Dừng Trạng thái");
                     List<InpatientSTATOrderEntity> lsyzlist = new List<InpatientSTATOrderEntity>();
                     if (!string.IsNullOrWhiteSpace(lsyz.dcztbs))
                     {
@@ -1248,7 +1248,7 @@ namespace Newtouch.DomainServices.Inpatient
                 {
                     var cqyz = db.FindEntity<InpatientLongTermOrderEntity>(p => p.zyh == zyh && p.Id == yzId && p.yzzt == yzzt && p.OrganizeId == OrganizeId && p.zt == "1");
                     if (cqyz == null)
-                        throw new FailedException("chưatìmđếnY lệnhhoặcY lệnhkhôngDừngTrạng thái");
+                        throw new FailedException("chưa tìm đến Y lệnh hoặc Y lệnh không Dừng Trạng thái");
                     List<InpatientLongTermOrderEntity> cqyzlist = new List<InpatientLongTermOrderEntity>();
                     if (!string.IsNullOrWhiteSpace(cqyz.dcztbs))
                     {
@@ -1289,7 +1289,7 @@ namespace Newtouch.DomainServices.Inpatient
         #region Y lệnhmởlập
 
         /// <summary>
-        /// LấykhingàyHiệu lựcY lệnh
+        /// Lấy khi ngày Hiệu lực Y lệnh
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
@@ -1298,7 +1298,7 @@ namespace Newtouch.DomainServices.Inpatient
         {
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                throw new FailedException("Số nhập việnlàtrống");
+                throw new FailedException("Số nhập viện là trống");
             }
             var sqlstr = new StringBuilder();
             var par = new List<SqlParameter>();
@@ -1350,7 +1350,7 @@ namespace Newtouch.DomainServices.Inpatient
             return this.QueryWithPage<CurrentViewVO>(sqlstr.ToString(), pagination, par.ToArray());
         }
         /// <summary>
-        /// kiểm traY lệnhHiệu lựctính
+        /// kiểm tra Y lệnh Hiệu lực tính
         /// </summary>
         /// <param name="req"></param>
         /// <param name="zyh"></param>
@@ -1366,7 +1366,7 @@ namespace Newtouch.DomainServices.Inpatient
             return FindList<DSrepeatResponseDto>("exec doctorservicevalidate @zyh,@orgId,@yzpartable", inParameters.ToArray());
         }
         /// <summary>
-        /// Tần suấtMãchuyểnđổithànhdài hạn/tạm thờiCờ
+        /// Tần suất Mã chuyển đổi thành dài hạn/tạm thời Cờ
         /// </summary>
         /// <param name="req"></param>
         /// <param name="orgId"></param>
@@ -1376,7 +1376,7 @@ namespace Newtouch.DomainServices.Inpatient
             var response = new List<DSrepeatRequestDto>();
             if (req != null && req.Count() > 0)
             {
-                //thaybảngTạm thờicủaLôtậphợp
+                //thay bảng Tạm thời của Lô tập hợp
                 var FrequencyStr = _sysConfigRepo.GetValueByCode("FrequencyStr", orgId) ?? "";
                 var FequencyList = FrequencyStr.Split(new[] { ',' }, StringSplitOptions.RemoveEmptyEntries);
                 foreach (var item in req)
@@ -1399,7 +1399,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// TheoTần suấtCách dùngMã LấyTần suấtTên cách dùng LấyThuốccủatínhlượngĐơn vịvàĐơn vị nhập viện,Dạng bào chế
+        /// Theo Tần suất Cách dùng Mã Lấy Tần suất Tên cách dùng Lấy Thuốc của tính lượng Đơn vị và Đơn vị nhập viện, Dạng bào chế
         /// </summary>
         /// <param name="pcdm"></param>
         /// <param name="yfdm"></param>
@@ -1415,7 +1415,7 @@ namespace Newtouch.DomainServices.Inpatient
             zyzhxs = null;
             if (!string.IsNullOrWhiteSpace(yfdm))
             {
-                //LấyCách dùng
+                //Lấy Cách dùng
                 var par = new List<SqlParameter>();
                 var yfsql = new StringBuilder();
                 yfsql.Append(@"SELECT  yf.yfmc
@@ -1429,7 +1429,7 @@ namespace Newtouch.DomainServices.Inpatient
 
             if (!string.IsNullOrWhiteSpace(pcdm))
             {
-                //LấyTần suất
+                //Lấy Tần suất
                 var parpc = new List<SqlParameter>();
                 var pcsql = new StringBuilder();
                 pcsql.Append(@"SELECT  pc.yzpcmc
@@ -1442,10 +1442,10 @@ namespace Newtouch.DomainServices.Inpatient
 
             if (!string.IsNullOrWhiteSpace(ypdm) && !string.IsNullOrWhiteSpace(dwlb))
             {
-                //LấyĐơn vị thuốchộp thả xuốngcủaGiá trị
+                //Lấy Đơn vị thuốc hộp thả xuống của Giá trị
                 var paryp = new List<SqlParameter>();
                 var ypsql = new StringBuilder();
-                //Đơn vịLoạilàĐơn vị liềukhi,lấyĐơn vị nhập viện,phảncủalấyĐơn vị liều
+                //Đơn vị Loại là Đơn vị liều khi, lấy Đơn vị nhập viện, phản của lấy Đơn vị liều
                 ypsql.Append(@"SELECT  ( CASE @dwlb
                             WHEN '1' THEN zycldw
                             WHEN 4 THEN jldw
@@ -1479,7 +1479,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// LấySố lượng đơn vị tính
+        /// Lấy Số lượng đơn vị tính
         /// </summary>
         /// <param name="sfxmCode"></param>
         /// <param name="orgId"></param>
@@ -1488,7 +1488,7 @@ namespace Newtouch.DomainServices.Inpatient
         {
             if (!string.IsNullOrWhiteSpace(sfxmCode))
             {
-                //LấySố lượng đơn vị tính
+                //Lấy Số lượng đơn vị tính
                 var sqlpar = new List<SqlParameter>();
                 var par = new StringBuilder();
                 par.Append(@"select dwjls,dj from NewtouchHIS_Base..V_S_xt_sfxm where OrganizeId = @orgId
@@ -1500,7 +1500,7 @@ namespace Newtouch.DomainServices.Inpatient
             }
         }
         /// <summary>
-        /// LấyKhoa thực hiệnTên
+        /// Lấy Khoa thực hiện Tên
         /// </summary>
         /// <param name="zxksCode"></param>
         /// <param name="orgId"></param>
@@ -1509,7 +1509,7 @@ namespace Newtouch.DomainServices.Inpatient
         {
             if (!string.IsNullOrWhiteSpace(zxksCode))
             {
-                //LấySố lượng đơn vị tính
+                //Lấy Số lượng đơn vị tính
                 var sqlpar = new List<SqlParameter>();
                 var par = new StringBuilder();
                 par.Append(@"select top 1 Name from NewtouchHIS_Base..[Sys_Department] where OrganizeId = @orgId
@@ -1521,7 +1521,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// Tính toánmỗingàyTần suất
+        /// Tính toán mỗi ngày Tần suất
         /// </summary>
         /// <param name="zxdw"></param>
         /// <param name="zydw"></param>
@@ -1533,7 +1533,7 @@ namespace Newtouch.DomainServices.Inpatient
         {
             if (string.IsNullOrWhiteSpace(zxzqdw.ToString()))
             {
-                throw new FailedException("Chu kỳ thực hiệnĐơn vịkhông thểlàtrống");
+                throw new FailedException("Chu kỳ thực hiện Đơn vị không thể là trống");
             }
             float rtnsl;
             switch (zxzqdw)
@@ -1555,7 +1555,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// Tính toánThuốcSố lượng
+        /// Tính toán Thuốc Số lượng
         /// </summary>
         /// <param name="jlzhxs"></param>
         /// <param name="zyzhxs"></param>
@@ -1569,25 +1569,25 @@ namespace Newtouch.DomainServices.Inpatient
         /// <returns></returns>
         public int Getypsl(decimal? jlzhxs, decimal? zyzhxs, float ypjl, EnumYPdwlb dwlb, string orgId, int zxcs, int zxzq, EnumZxzqdw zxzqdw, string qzfs, int ts = 1)
         {
-            //hss Sửavà2019.8.8 Số lượngứngtheochiếuChu kỳ thực hiệnTính toán,vìTần suất y lệnhQOD thaybảngcáchngàymột lần,vàtrước đâyChu kỳ thực hiệncókhuloại,hướnggâycóhỏiđề.
+            //hss Sửa và 2019.8.8 Số lượng ứng theo chiếu Chu kỳ thực hiện Tính toán, vì Tần suất y lệnh QOD thay bảng cách ngày một lần, và trước đây Chu kỳ thực hiện có khu loại, hướng gây có hỏi đề.
             if (zxzqdw == EnumZxzqdw.Day)
             {
                 ts = zxzq;
             }
-            //lấychỉnhphươngkiểu
+            //lấy chỉnh phương kiểu
             //var qzfs = _sysConfigRepo.GetValueByCode("QZFS", orgId) ?? "day";
             var zysl = 0;
             if (string.IsNullOrWhiteSpace(dwlb.ToString()))
             {
-                throw new FailedException("Đơn vịLoạikhông thểlàtrống");
+                throw new FailedException("Đơn vị Loại không thể là trống");
             }
-            var qzint = ypjl * ts;//Mặc địnhĐơn vị nhập viện ,khôngcầnchuyểnđổi
+            var qzint = ypjl * ts;//Mặc định Đơn vị nhập viện, không cần chuyển đổi
             if (dwlb == EnumYPdwlb.Jldw)
-            {//Đơn vị liều chuyểnđổithànhĐơn vị liều
+            {//Đơn vị liều chuyển đổi thành Đơn vị liều
 
                 if (jlzhxs == 0 || zyzhxs == 0)
                 {
-                    throw new FailedException("Hệ số chuyển đổi liềuvàNhập việnchuyểnđổihệsốkhông thểlàtrống");
+                    throw new FailedException("Hệ số chuyển đổi liều và Nhập viện chuyển đổi hệ số không thể là trống");
                 }
                 qzint = (ypjl * ts / float.Parse(jlzhxs.ToString()) / float.Parse(zyzhxs.ToString()));
             }
@@ -1604,13 +1604,13 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         ///// <summary>
-        ///// LấyKhoa thực hiệnMã
+        ///// Lấy Khoa thực hiện Mã
         ///// </summary>
         ///// <param name="orgId"></param>
         ///// <param name="xmdm"></param>
         ///// <returns></returns>
         //string Getzxksdm(string orgId,string xmdm) {
-        //    //LấyCách dùng
+        //    //Lấy Cách dùng
         //    var par = new List<SqlParameter>();
         //    var sql = new StringBuilder();
         //    sql.Append(@"SELECT  yfbmcode
@@ -1633,7 +1633,7 @@ namespace Newtouch.DomainServices.Inpatient
         {
             if (req == null || req.zyh == null)
             {
-                throw new FailedException("thiếuĐiều kiện tìm kiếm");
+                throw new FailedException("thiếu Điều kiện tìm kiếm");
             }
 
             string yzztExpr = "";
@@ -1785,12 +1785,12 @@ namespace Newtouch.DomainServices.Inpatient
                             ) tttt WHERE   1 = 1");
             if (req != null)
             {
-                if (req.dryz)//khingàyY lệnh
+                if (req.dryz)//khi ngày Y lệnh
                 {
                     sqlstr.Append(" AND CONVERT(VARCHAR(10), tttt.CreateTime, 111) = CONVERT(VARCHAR(10), GETDATE(), 111)");
                 }
                 else if (req.wsh)
-                {//chưaPhê duyệt
+                {//chưa Phê duyệt
                     //sqlstr.Append(" AND tttt.yzzt=@yzzt");
                     par.Add(new SqlParameter("@yzzt", EnumYzzt.Ds.ToInt()));
                 }
@@ -1804,13 +1804,13 @@ namespace Newtouch.DomainServices.Inpatient
                     //sqlstr.Append(" AND tttt.yzzt <> @yzzt");
                     par.Add(new SqlParameter("@yzzt", Convert.ToInt32(EnumYzzt.Ds)));
                 }
-                //if ((!req.wsh) && req.yx == "yx")//chưaPhê duyệtđiều kiện tiên quyếtdướicủaHiệu lựcY lệnh
+                //if ((!req.wsh) && req.yx == "yx")//chưa Phê duyệt điều kiện tiên quyết dưới của Hiệu lực Y lệnh
                 //{
                 //    sqlstr.Append("  AND (tttt.yzzt=@sh or tttt.yzzt=@zx)");
                 //    par.Add(new SqlParameter("@sh", Convert.ToInt32(EnumYzzt.Sh)));
                 //    par.Add(new SqlParameter("@zx", Convert.ToInt32(EnumYzzt.Zx)));
                 //}
-                if (req.yx == "yx") //Hiệu lựcY lệnh
+                if (req.yx == "yx") //Hiệu lực Y lệnh
                 {
                     if (req.wsh)
                     {//Chờ duyệt
@@ -1847,7 +1847,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// DừngY lệnh dài hạnhoặcHủy bỏY lệnh tạm thời cùngSố nhóm
+        /// Dừng Y lệnh dài hạn hoặc Hủy bỏ Y lệnh tạm thời cùng Số nhóm
         /// </summary>
         /// <param name="yzId"></param>
         /// <param name="tzsj"></param>
@@ -1856,7 +1856,7 @@ namespace Newtouch.DomainServices.Inpatient
         {
             if (string.IsNullOrWhiteSpace(yzId))
             {
-                throw new FailedException("Y lệnhkhôngtồn tạiở");
+                throw new FailedException("Y lệnh không tồn tại ở");
             }
             using (var db = new EFDbTransaction().BeginTrans())
             {
@@ -1867,13 +1867,13 @@ namespace Newtouch.DomainServices.Inpatient
                 {
                     if (tzsj == null)
                     {
-                        throw new FailedException("thiếuThời gian dừng");
+                        throw new FailedException("thiếu Thời gian dừng");
                     }
                     if (cqyz.zxsj != null)
                     {
                         if (DateTimeManger.DateDiff(DateInterval.Second, DateTime.Parse(cqyz.zxsj.ToString()), DateTime.Parse(tzsj.ToString())) < 1)
                         {
-                            throw new FailedException("Thời gian dừngkhông thểnhỏtạiThời gian thực hiện cuối；Thời gian thực hiện cuối：" + cqyz.zxsj);
+                            throw new FailedException("Thời gian dừng không thể nhỏ tại Thời gian thực hiện cuối; Thời gian thực hiện cuối:" + cqyz.zxsj);
                         }
                     }
                     if (!string.IsNullOrWhiteSpace(cqyz.zh.ToString()))
@@ -1985,7 +1985,7 @@ namespace Newtouch.DomainServices.Inpatient
                                     }
                                     else
                                     {
-                                        throw new FailedException("Phê duyệtthông quacủaY lệnhkhông thể xóa！");
+                                        throw new FailedException("Phê duyệt thông qua của Y lệnh không thể xóa!");
                                     }
                                 }
                                 else
@@ -2022,14 +2022,14 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// vậtlýXóa,XóacùngSố nhómcủaDữ liệu
+        /// vật lý Xóa, Xóa cùng Số nhóm của Dữ liệu
         /// </summary>
         /// <param name="yzId"></param>
         public void AdviceDel(string yzId, string orgId, string yzlx, string zyh, string iszt, string conflinktoOR)
         {
             if (string.IsNullOrWhiteSpace(yzId))
             {
-                throw new FailedException("Y lệnhkhôngtồn tạiở");
+                throw new FailedException("Y lệnh không tồn tại ở");
             }
             using (var db = new EFDbTransaction().BeginTrans())
             {
@@ -2074,7 +2074,7 @@ namespace Newtouch.DomainServices.Inpatient
                 }
                 else
                 {
-                    //Xét nghiệmKiểm tralấyBộ mẫuXóa
+                    //Xét nghiệm Kiểm tra lấy Bộ mẫu Xóa
                     if (yzlx == ((int)EnumYzlx.jy).ToString() || yzlx == ((int)EnumYzlx.jc).ToString())
                     {
                         var jyjcyz = db.IQueryable<InpatientSTATOrderEntity>().Where(p => p.yzh == yzId && p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1");
@@ -2143,7 +2143,7 @@ namespace Newtouch.DomainServices.Inpatient
                                         }
                                         else
                                         {
-                                            throw new FailedException("Phê duyệtthông quacủaY lệnhkhông thể xóa！");
+                                            throw new FailedException("Phê duyệt thông qua của Y lệnh không thể xóa!");
                                         }
                                     }
                                     else
@@ -2181,7 +2181,7 @@ namespace Newtouch.DomainServices.Inpatient
                         }
                     }
                 }
-                //ăn uốngY lệnh
+                //ăn uống Y lệnh
                 var ssyzlist = db.IQueryable<InpatientDietDetailSplitEntity>().Where(p => p.MainId == yzId && p.OrganizeId == orgId && p.zt == "1");
                 if (ssyzlist != null && ssyzlist.Count() > 0)
                 {
@@ -2198,14 +2198,14 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// rútDC rútdccùngSố nhómcủaY lệnh
+        /// rút DC rút dc cùng Số nhóm của Y lệnh
         /// </summary>
         /// <param name="yzId"></param>
         public void Advicedc(string yzId, string orgId, string yzlx, string zyh, string isFeeGroup)
         {
             if (string.IsNullOrWhiteSpace(yzId))
             {
-                throw new FailedException("Y lệnhkhôngtồn tạiở");
+                throw new FailedException("Y lệnh không tồn tại ở");
             }
             try
             {
@@ -2216,7 +2216,7 @@ namespace Newtouch.DomainServices.Inpatient
                     {
                         if (cqyz.yzzt != (int)EnumYzzt.DC)
                         {
-                            throw new FailedException("Y lệnhTrạng tháikhôngđangxác");
+                            throw new FailedException("Y lệnh Trạng thái không đang xác");
                         }
                         if (!string.IsNullOrWhiteSpace(cqyz.zh.ToString()))
                         {
@@ -2228,7 +2228,7 @@ namespace Newtouch.DomainServices.Inpatient
                                     item.tzr = null;
                                     item.tzsj = null;
                                     item.yzzt = item.zxsj != null ? (int)EnumYzzt.Zx : (int)EnumYzzt.Sh;
-                                    //cóThời gian thực hiện,lấyđãThực hiệnTrạng thái,cóPhê duyệtThời gian,lấyĐã duyệtTrạng thái
+                                    //có Thời gian thực hiện, lấy đã Thực hiện Trạng thái, có Phê duyệt Thời gian, lấy Đã duyệt Trạng thái
                                     db.DetacheEntity<InpatientLongTermOrderEntity>(item);
                                     db.Update(item);
                                 }
@@ -2237,13 +2237,13 @@ namespace Newtouch.DomainServices.Inpatient
                         else
                         {
                             List<InpatientLongTermOrderEntity> cqyzzt = new List<InpatientLongTermOrderEntity>();
-                            if (!string.IsNullOrWhiteSpace(cqyz.dcztbs))//Mục thu phíBộ mẫu
+                            if (!string.IsNullOrWhiteSpace(cqyz.dcztbs))//Mục thu phí Bộ mẫu
                             {
                                 cqyzzt = db.IQueryable<InpatientLongTermOrderEntity>().Where(p => p.dcztbs == cqyz.dcztbs && p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1").ToList();
                             }
                             else
                             {
-                                if (!string.IsNullOrWhiteSpace(cqyz.yfztbs))//Thuốcmởlập Cách dùngtương ứngBộ mẫu
+                                if (!string.IsNullOrWhiteSpace(cqyz.yfztbs))//Thuốc mở lập Cách dùng tương ứng Bộ mẫu
                                     cqyzzt = db.IQueryable<InpatientLongTermOrderEntity>().Where(p => p.yfztbs == cqyz.yfztbs && p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1" && p.ztId != null).ToList();
 
                                 cqyzzt.Add(cqyz);
@@ -2254,7 +2254,7 @@ namespace Newtouch.DomainServices.Inpatient
                                 item.tzr = null;
                                 item.tzsj = null;
                                 item.yzzt = item.zxsj != null ? (int)EnumYzzt.Zx : (int)EnumYzzt.Sh;
-                                //cóThời gian thực hiện,lấyđãThực hiệnTrạng thái,cóPhê duyệtThời gian,lấyĐã duyệtTrạng thái
+                                //có Thời gian thực hiện, lấy đã Thực hiện Trạng thái, có Phê duyệt Thời gian, lấy Đã duyệt Trạng thái
                                 db.DetacheEntity<InpatientLongTermOrderEntity>(item);
                                 db.Update(item);
                             }
@@ -2262,14 +2262,14 @@ namespace Newtouch.DomainServices.Inpatient
                     }
                     else
                     {
-                        if (yzlx == ((int)EnumYzlx.jy).ToString() || yzlx == ((int)EnumYzlx.jc).ToString())//Xét nghiệmKiểm tratheoY lệnhsố
+                        if (yzlx == ((int)EnumYzlx.jy).ToString() || yzlx == ((int)EnumYzlx.jc).ToString())//Xét nghiệm Kiểm tra theo Y lệnh số
                         {
                             var jyjcyz = db.IQueryable<InpatientSTATOrderEntity>().Where(p => p.yzh == yzId && p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1");
                             if (jyjcyz != null && jyjcyz.Count() > 0)
                             {
                                 foreach (var item in jyjcyz)
                                 {
-                                    //cóThời gian thực hiện,lấyđãThực hiệnTrạng thái,cóPhê duyệtThời gian,lấyĐã duyệtTrạng thái
+                                    //có Thời gian thực hiện, lấy đã Thực hiện Trạng thái, có Phê duyệt Thời gian, lấy Đã duyệt Trạng thái
                                     item.yzzt = item.zxsj != null ? (int)EnumYzzt.Zx : (int)EnumYzzt.Sh;
                                     db.DetacheEntity<InpatientSTATOrderEntity>(item);
                                     db.Update(item);
@@ -2284,7 +2284,7 @@ namespace Newtouch.DomainServices.Inpatient
                             {
                                 if (lsyz.yzzt != (int)EnumYzzt.DC)
                                 {
-                                    throw new FailedException("Y lệnhTrạng tháikhôngđangxác");
+                                    throw new FailedException("Y lệnh Trạng thái không đang xác");
                                 }
                                 if (!string.IsNullOrWhiteSpace(lsyz.zh.ToString()))
                                 {
@@ -2293,7 +2293,7 @@ namespace Newtouch.DomainServices.Inpatient
                                     {
                                         foreach (var item in zhlist)
                                         {
-                                            //cóThời gian thực hiện,lấyđãThực hiệnTrạng thái,cóPhê duyệtThời gian,lấyĐã duyệtTrạng thái
+                                            //có Thời gian thực hiện, lấy đã Thực hiện Trạng thái, có Phê duyệt Thời gian, lấy Đã duyệt Trạng thái
                                             item.yzzt = item.zxsj != null ? (int)EnumYzzt.Zx : (int)EnumYzzt.Sh;
 
                                             db.DetacheEntity<InpatientSTATOrderEntity>(item);
@@ -2319,7 +2319,7 @@ namespace Newtouch.DomainServices.Inpatient
                                     }
                                     foreach (var lsitem in lsyzzt)
                                     {
-                                        //cóThời gian thực hiện,lấyđãThực hiệnTrạng thái,cóPhê duyệtThời gian,lấyĐã duyệtTrạng thái
+                                        //có Thời gian thực hiện, lấy đã Thực hiện Trạng thái, có Phê duyệt Thời gian, lấy Đã duyệt Trạng thái
                                         lsitem.yzzt = lsitem.zxsj != null ? (int)EnumYzzt.Zx : (int)EnumYzzt.Sh;
                                         db.DetacheEntity<InpatientSTATOrderEntity>(lsitem);
                                         db.Update(lsitem);
@@ -2341,7 +2341,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// Xuất việntoànDừng
+        /// Xuất viện toàn Dừng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="tzsj"></param>
@@ -2351,7 +2351,7 @@ namespace Newtouch.DomainServices.Inpatient
         {
             if (string.IsNullOrWhiteSpace(zyh))
             {
-                throw new FailedException("thiếuSố nhập viện");
+                throw new FailedException("thiếu Số nhập viện");
             }
             var patientobj = _inpatientPatientInfoRepo.IQueryable().FirstOrDefault(p => p.zyh == zyh && p.OrganizeId == orgId && p.zt == "1");
             try
@@ -2365,7 +2365,7 @@ namespace Newtouch.DomainServices.Inpatient
                     {
                         if (DateTimeManger.DateDiff(DateInterval.Second, DateTime.Parse(lastzxsj.ToString()), tzsj) < 1)
                         {
-                            throw new FailedException("Thời gian dừngkhông thểnhỏtạiThời gian thực hiện cuối；Thời gian thực hiện cuối：" + lastzxsj);
+                            throw new FailedException("Thời gian dừng không thể nhỏ tại Thời gian thực hiện cuối; Thời gian thực hiện cuối:" + lastzxsj);
                         }
                     }
                 }
@@ -2382,11 +2382,11 @@ namespace Newtouch.DomainServices.Inpatient
                             db.Update(cqyz);
                         }
                     }
-                    //làKhôngtạovăn bảnY lệnh
+                    //là Không tạo văn bản Y lệnh
                     bool AutoGenerateWordAdvice = _sysConfigRepo.GetBoolValueByCode("AutoGenerateWordAdvice", orgId, true).ToBool();
                     if (AutoGenerateWordAdvice)
                     {
-                        //tạomột dòngTạm thờivăn bảnY lệnh
+                        //tạo một dòng Tạm thời văn bản Y lệnh
                         var lsyz = new InpatientSTATOrderEntity()
                         {
                             xmdm = "999999999999999999",
@@ -2420,7 +2420,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// chuyển khutoànDừng
+        /// chuyển khu toàn Dừng
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -2429,7 +2429,7 @@ namespace Newtouch.DomainServices.Inpatient
         {
             if (string.IsNullOrWhiteSpace(req.zyh))
             {
-                throw new FailedException("thiếuSố nhập viện");
+                throw new FailedException("thiếu Số nhập viện");
             }
 
             var patientobj = _inpatientPatientInfoRepo.IQueryable().FirstOrDefault(p => p.zyh == req.zyh && p.OrganizeId == req.orgId && p.zt == "1");
@@ -2444,7 +2444,7 @@ namespace Newtouch.DomainServices.Inpatient
                     {
                         if (DateTimeManger.DateDiff(DateInterval.Second, DateTime.Parse(lastzxsj.ToString()), req.kssj) < 1)
                         {
-                            throw new FailedException("Thời gian bắt đầukhông thểnhỏtạiThời gian thực hiện cuối；Thời gian thực hiện cuối：" + lastzxsj);
+                            throw new FailedException("Thời gian bắt đầu không thể nhỏ tại Thời gian thực hiện cuối; Thời gian thực hiện cuối:" + lastzxsj);
                         }
                     }
                 }
@@ -2463,12 +2463,12 @@ namespace Newtouch.DomainServices.Inpatient
                             db.Update(cqyz);
                         }
                     }
-                    //làKhôngBình thườngvăn bảnY lệnh
+                    //là Không Bình thường văn bản Y lệnh
                     bool AutoGenerateWordAdvice = _sysConfigRepo.GetBoolValueByCode("AutoGenerateWordAdvice", req.orgId, true).ToBool();
 
                     if (AutoGenerateWordAdvice)
                     {
-                        //tạomột dòngTạm thờivăn bảnY lệnh
+                        //tạo một dòng Tạm thời văn bản Y lệnh
                         var lsyz = new InpatientSTATOrderEntity()
                         {
                             xmdm = "999999999999999999",
@@ -2500,14 +2500,14 @@ namespace Newtouch.DomainServices.Inpatient
         #endregion
 
         /// <summary>
-        /// Tần suất y lệnhcodeLấyTần suấtentity
+        /// Tần suất y lệnh code Lấy Tần suất entity
         /// </summary>
         /// <param name="code"></param>
         /// <param name="orgId"></param>
         /// <returns></returns>
         public SysMedicalOrderFrequencyVEntity getpcInfoByCode(string code, string orgId)
         {
-            //LấyCách dùng
+            //Lấy Cách dùng
             var par = new List<SqlParameter>();
             var yfsql = new StringBuilder();
             yfsql.Append(@"SELECT  yzpcId ,
@@ -2568,7 +2568,7 @@ where a.zt=1 and a.sfmb=@sfmb and a.OrganizeId=@orgId ";
         }
 
         /// <summary>
-        /// Cách dùngtương ứngMục thu phíBộ mẫu
+        /// Cách dùng tương ứng Mục thu phí Bộ mẫu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="yfcode"></param>
@@ -2720,7 +2720,7 @@ and idl.name=@ypyfmc
             return this.FirstOrDefault<string>(sqlstr.ToString(), par.ToArray());
         }
         /// <summary>
-        /// việctrướcPhê duyệtgiao diệnTra cứuDữ liệu
+        /// việc trước Phê duyệt giao diện Tra cứu Dữ liệu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="reqdoctorservices"></param>
@@ -2816,33 +2816,33 @@ and idl.name=@ypyfmc
                 }
                 Domain.DTO.OutputDto.BEAN bEAN = new Domain.DTO.OutputDto.BEAN();
                 Domain.DTO.OutputDto.DATA dATA = new Domain.DTO.OutputDto.DATA();
-                bEAN.CURRENT_STATUS = "1";//raNhập việnTrạng thái:1=ởviện,2=Xuất viện,3=Ngoại trú
-                bEAN.IS_ADD = "0"; //làKhôngtănglượng.Nhập việnphiếucứ thứmột lầnlàkhôngtănglượng,lấysaulàtănglượng.Ngoại trúphiếucứđềulàkhôngtănglượng. 0biểu thịkhôngtănglượng,1biểu thịtănglượng
-                bEAN.BILL_TYPE = "2"; //phiếucứLoại.1biểu thịNgoại trú,2biểu thịNhập viện
-                bEAN.HIS_BILL_ID = yzh; //Y lệnh(Đơn thuốc)phiếuID
-                bEAN.END_TIME = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");                  //quyết toánThời gian,Nhập việnkỳgiữalàgọigiao diệnphụcvụcủaHệ thốnghiện tạiThời gian.
-                bEAN.HOSPITAL_CODE = HospitalCode;   //yviệnMã(Sử dụngBảo hiểm y tếtrongtimđầuchoyviệnphútphốicủayviệnMã)
-                bEAN.HOSPITAL_NAME = HospitalName;             //yviệnTên
-                bEAN.PATIENT_CODE = patientobj.sfzh;              //tham sốbảo ngườiMã.điềnviếttham sốbảo ngườithânphầnnhận dạngsố(CMND/CCCDsố,Bảo hiểm y tếSố thẻ,Số thẻ sức khỏeđợi).
-                bEAN.PATIENT_NAME = patientobj.xm;              //tham sốbảo ngườiHọ tên
-                bEAN.PATIENT_SEX_CODE = patientobj.sex;          //Giới tínhMã
+                bEAN.CURRENT_STATUS = "1";//ra Nhập viện Trạng thái: 1=ở viện, 2=Xuất viện, 3=Ngoại trú
+                bEAN.IS_ADD = "0"; //là Không tăng lượng. Nhập viện phiếu cứ thứ một lần là không tăng lượng, lấy sau là tăng lượng. Ngoại trú phiếu cứ đều là không tăng lượng. 0 biểu thị không tăng lượng, 1 biểu thị tăng lượng
+                bEAN.BILL_TYPE = "2"; //phiếu cứ Loại. 1 biểu thị Ngoại trú, 2 biểu thị Nhập viện
+                bEAN.HIS_BILL_ID = yzh; //Y lệnh (Đơn thuốc) phiếu ID
+                bEAN.END_TIME = DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss");                  //quyết toán Thời gian, Nhập viện kỳ giữa là gọi giao diện phục vụ của Hệ thống hiện tại Thời gian.
+                bEAN.HOSPITAL_CODE = HospitalCode;   //y viện Mã(Sử dụng Bảo hiểm y tế trong tim đầu cho y viện phút phối của y viện Mã)
+                bEAN.HOSPITAL_NAME = HospitalName;             //y viện Tên
+                bEAN.PATIENT_CODE = patientobj.sfzh;              //tham số bảo người Mã.điền viết tham số bảo người thân phần nhận dạng số(CMND/CCCD số,Bảo hiểm y tế Số thẻ,Số thẻ sức khỏe đợi).
+                bEAN.PATIENT_NAME = patientobj.xm;              //tham số bảo người Họ tên
+                bEAN.PATIENT_SEX_CODE = patientobj.sex;          //Giới tính Mã
                 string csrq = DateTime.Now.ToString("yyyy-MM-dd");
                 if (patientobj.birth != null)
                 {
                     csrq = DateTime.Parse(Convert.ToString(patientobj.birth)).ToString("yyyy-MM-dd");
                 }
                 bEAN.PATIENT_BIRTH = csrq;             //Ngày sinh
-                bEAN.PERSON_TYPE_CODE = "-1";          // ngườiviênLoạiMã
-                bEAN.BENEFIT_TYPE_CODE = brxxdata.xzlx ?? "310";         //nguy hiểmloạiMã loại
-                bEAN.SEE_DOCTOR_TYPE_CODE = brxxdata.yllb;      //y tếLoạiMã
-                bEAN.IS_WITHOUT_PLACE = brxxdata.ydjy;          //làKhôngkhác địa phươngthìy,0:Không;1:là
-                bEAN.WITHOUT_PLACE_PERSON_TYPE = ""; //khác địa phương ngườiviênLoạiMã
-                bEAN.WITHOUT_PLACE_UNIT_CODE = "";   //khác địa phươngtham sốbảođịadòngchínhkhulĩnh vựcMã
-                bEAN.IN_HOSPITAL_ICD_CODE = brxxdata.ryzd;      //Chẩn đoán nhập việnMã,Ngoại trú:chínhcầnChẩn đoán;Nhập viện:Chẩn đoán nhập viện
-                bEAN.IN_HOSPITAL_ICD_NAME = brxxdata.ryzdmc;      //Chẩn đoán nhập việnTên,Ngoại trú:chínhcầnChẩn đoán;Nhập viện:Chẩn đoán nhập viện
-                bEAN.OUT_HOSPITAL_ICD_CODE = brxxdata.cyzd;     //Xuất việnMã chẩn đoán,Ngoại trú: lầncầnChẩn đoán;Nhập viện:Xuất việnChẩn đoán
-                bEAN.OUT_HOSPITAL_ICD_NAME = brxxdata.cyzdmc;     //Xuất việnTên chẩn đoán,Ngoại trú: lầncầnChẩn đoán;Nhập viện:Xuất việnChẩn đoán
-                bEAN.OUT_HOSPITAL_REASON = brxxdata.cyqk;       //Xuất việnnguyên nhân
+                bEAN.PERSON_TYPE_CODE = "-1";          // người viên Loại Mã
+                bEAN.BENEFIT_TYPE_CODE = brxxdata.xzlx ?? "310";         //nguy hiểm loại Mã loại
+                bEAN.SEE_DOCTOR_TYPE_CODE = brxxdata.yllb;      //y tế Loại Mã
+                bEAN.IS_WITHOUT_PLACE = brxxdata.ydjy;          //là Không khác địa phương thì y, 0:Không; 1:là
+                bEAN.WITHOUT_PLACE_PERSON_TYPE = ""; //khác địa phương người viên Loại Mã
+                bEAN.WITHOUT_PLACE_UNIT_CODE = "";   //khác địa phương tham số bảo địa dòng chính khu lĩnh vực Mã
+                bEAN.IN_HOSPITAL_ICD_CODE = brxxdata.ryzd;      //Chẩn đoán nhập viện Mã, Ngoại trú: chính cần Chẩn đoán; Nhập viện: Chẩn đoán nhập viện
+                bEAN.IN_HOSPITAL_ICD_NAME = brxxdata.ryzdmc;      //Chẩn đoán nhập viện Tên, Ngoại trú: chính cần Chẩn đoán; Nhập viện: Chẩn đoán nhập viện
+                bEAN.OUT_HOSPITAL_ICD_CODE = brxxdata.cyzd;     //Xuất viện Mã chẩn đoán, Ngoại trú: lần cần Chẩn đoán; Nhập viện: Xuất viện Chẩn đoán
+                bEAN.OUT_HOSPITAL_ICD_NAME = brxxdata.cyzdmc;     //Xuất viện Tên chẩn đoán, Ngoại trú: lần cần Chẩn đoán; Nhập viện: Xuất viện Chẩn đoán
+                bEAN.OUT_HOSPITAL_REASON = brxxdata.cyqk;       //Xuất viện nguyên nhân
                 bEAN.ICD1_CODE = "";                 //
                 bEAN.ICD1_NAME = "";                 //
                 bEAN.ICD2_CODE = "";                 //
@@ -2884,20 +2884,20 @@ and idl.name=@ypyfmc
                 bEAN.ICD20_CODE = "";                //
                 bEAN.ICD20_NAME = "";                //
                 bEAN.INPATIENT_NO = zyh;              //Số nhập viện(Số khám ngoại trú)
-                bEAN.OUT_HOSPITAL_OFFICE = brxxdata.ksmc;       //Xuất việnKhoa(Khu bệnh).Ngoại trúđiềnviếtKhám bệnhTên khoa,Nhập việnđiềnviếtXuất việnKhoa(Khu bệnh)Tên.điềnviếtyviện(HIS)Hệ thốngtrongbộcủaTên khoa
-                bEAN.IN_HOSPITAL_TIME = DateTime.Parse(brxxdata.rqrq).ToString("yyyy-MM-dd HH:mm:ss");          //Thời gian nhập viện.Ngoại trúlàKhám bệnhThời gian,Nhập việnlàThời gian nhập viện
-                bEAN.OUT_HOSPITAL_TIME = DateTime.Parse(brxxdata.cqrq).ToString("yyyy-MM-dd HH:mm:ss");         //Thời gian xuất viện.Ngoại trúlàKhám bệnhThời gian,Nhập việnlàThời gian xuất viện
-                bEAN.SEE_DOCTOR_TIME = DateTime.Parse(brxxdata.rqrq).ToString("yyyy-MM-dd HH:mm:ss");      //Khám bệnhThời gian.Ngoại trúlàKhám bệnhThời gian,Nhập việnlàThời gian nhập viện
+                bEAN.OUT_HOSPITAL_OFFICE = brxxdata.ksmc;       //Xuất viện Khoa (Khu bệnh). Ngoại trú điền viết Khám bệnh Tên khoa, Nhập viện điền viết Xuất viện Khoa (Khu bệnh) Tên. điền viết y viện (HIS) Hệ thống trong bộ của Tên khoa
+                bEAN.IN_HOSPITAL_TIME = DateTime.Parse(brxxdata.rqrq).ToString("yyyy-MM-dd HH:mm:ss");          //Thời gian nhập viện. Ngoại trú là Khám bệnh Thời gian, Nhập viện là Thời gian nhập viện
+                bEAN.OUT_HOSPITAL_TIME = DateTime.Parse(brxxdata.cqrq).ToString("yyyy-MM-dd HH:mm:ss");         //Thời gian xuất viện. Ngoại trú là Khám bệnh Thời gian, Nhập viện là Thời gian xuất viện
+                bEAN.SEE_DOCTOR_TIME = DateTime.Parse(brxxdata.rqrq).ToString("yyyy-MM-dd HH:mm:ss");      //Khám bệnh Thời gian. Ngoại trú là Khám bệnh Thời gian, Nhập viện là Thời gian nhập viện
                 bEAN.HEIGHT = 0;                    //thâncao(cm)
                 bEAN.WEIGHT = 0;                    //thểtrọng(kg)
-                bEAN.IS_TRAN_IN_HOSPITAL = "0";       //làKhôngchuyểnNhập viện0:Không;1:là
-                bEAN.IS_PREGNANCY = "0";              //làKhôngmang thai0:Không;1:là
+                bEAN.IS_TRAN_IN_HOSPITAL = "0";       //là Không chuyển Nhập viện 0:Không; 1:là
+                bEAN.IS_PREGNANCY = "0";              //là Không mang thai 0:Không; 1:là
                 bEAN.IS_SUCKLING = "0";               // Có phải thời kỳ cho con bú: 0: Không; 1: Có
-                bEAN.HIS_BILL_NO = yzh;               //Thu phíphiếusố phiếu
-                bEAN.HARD_ILL_FLAG = "0";             //làKhôngđặcbệnhchậmbệnhphiếucứCờ0:Không;1:là
-                bEAN.HARD_ILL_CODE = "";             //chậmbệnhđặcbệnhMã.nếunếuphiếucứlàchậmbệnhđặcbệnhphiếucứ,cầnnhắccung cấpMãhoặccó thểđủtừMã chẩn đoántìmđếntương ứngcủachậmbệnhđặcbệnh
-                bEAN.BILL_TOTAL_MONEY = djzje;          //phiếucứTổng số tiền
-                bEAN.IM_TOTAL_MONEY = sbzje;            //Bảo hiểm y tếtrongTổng số tiền(đăng kýbáoGiá trị,Bảo hiểm y tếcầntrảchoyviệncủatiền,khôngvàodòngBảo hiểm y tếbáobáncủachínhphiếuSố tiềnlà0)
+                bEAN.HIS_BILL_NO = yzh;               //Thu phí phiếu số phiếu
+                bEAN.HARD_ILL_FLAG = "0";             //là Không đặc bệnh chậm bệnh phiếu cứ Cờ 0:Không; 1:là
+                bEAN.HARD_ILL_CODE = "";             //chậm bệnh đặc bệnh Mã. nếu nếu phiếu cứ là chậm bệnh đặc bệnh phiếu cứ, cần nhắc cung cấp Mã hoặc có thể đủ từ Mã chẩn đoán tìm đến tương ứng của chậm bệnh đặc bệnh
+                bEAN.BILL_TOTAL_MONEY = djzje;          //phiếu cứ Tổng số tiền
+                bEAN.IM_TOTAL_MONEY = sbzje;            //Bảo hiểm y tế trong Tổng số tiền (đăng ký báo Giá trị, Bảo hiểm y tế cần trả cho y viện của tiền, không vào dòng Bảo hiểm y tế báo bán của chính phiếu Số tiền là 0)
                 bEAN.COL1 = "";                      //
                 bEAN.COL2 = "";                      //
                 bEAN.REMARK = "";
@@ -2909,7 +2909,7 @@ and idl.name=@ypyfmc
                 pre.DATA = dATA;
                 string responsexml = pre.XmlSerialize().Replace("<?xml version=\"1.0\"?>", "<?xml version=\"1.0\" encoding=\"utf-8\"?>");
                 var param = "serviceId{=}AUDIT00001{,}userName{=}admin{,}password{=}adm@123{,}clientMAC{=}";
-                var logstr = AuditInterface(responsexml, orgId, zyh, zlysobj.ysgh, zlysobj.ysmc, param, yzh, "医嘱审核", GetMAC);//giao diện
+                var logstr = AuditInterface(responsexml, orgId, zyh, zlysobj.ysgh, zlysobj.ysmc, param, yzh, "Duyệt y lệnh", GetMAC);//giao diện
                 return logstr;
             }
             catch (Exception e)
@@ -2920,7 +2920,7 @@ and idl.name=@ypyfmc
 
         }
         /// <summary>
-        /// bệnhánPhê duyệt
+        /// bệnh án Phê duyệt
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="reqdoctorservices"></param>
@@ -2959,7 +2959,7 @@ and idl.name=@ypyfmc
                 var ysgh = "000000";
                 var ysmc = "Quản trị viên";
                 var param = "serviceId{=}MR00001{,}userName{=}admin{,}password{=}adm@123{,}clientMAC{=}";
-                var logstr = AuditInterface(responsexml, orgId, zyh, ysgh, ysmc, param, "", "病案审核", GetMAC);//giao diện
+                var logstr = AuditInterface(responsexml, orgId, zyh, ysgh, ysmc, param, "", "Duyệt hồ sơ bệnh án", GetMAC);//giao diện
                 return logstr;
             }
             catch (Exception e)
@@ -2982,7 +2982,7 @@ and idl.name=@ypyfmc
         {
             try
             {
-                //DIPgiao diệnNhập việnThông tin cơ bản
+                //DIP giao diện Nhập viện Thông tin cơ bản
                 string HospitalCode = ConfigurationManager.AppSettings["OrganizeCodeSd"];
                 string HospitalName = ConfigurationManager.AppSettings["HospitalName"];
                 var jbxxsqlpar = new List<SqlParameter>();
@@ -2992,13 +2992,13 @@ and idl.name=@ypyfmc
                 jbxxsqlpar.Add(new SqlParameter("@yljgdm", HospitalCode));
                 jbxxsqlpar.Add(new SqlParameter("@yljgmc", HospitalName));
                 DRGDIPJBXX dRGDIPJBXX = FirstOrDefault<DRGDIPJBXX>(JBXXsql.ToString(), jbxxsqlpar.ToArray());
-                //DIPgiao diệnNhập việnthông tin
+                //DIP giao diện Nhập viện thông tin
                 var zyxxsqlpar = new List<SqlParameter>();
                 var zyxxsql = @"exec usp_zy_QueryDrg_ZYXX @orgId,@zyh";
                 zyxxsqlpar.Add(new SqlParameter("@orgId", orgId));
                 zyxxsqlpar.Add(new SqlParameter("@zyh", zyh));
                 DRGDIPZYXX dRGDIPZyxx = FirstOrDefault<DRGDIPZYXX>(zyxxsql.ToString(), zyxxsqlpar.ToArray());
-                //DIPgiao diệnThu phíthông tin
+                //DIP giao diện Thu phí thông tin
                 var sfxxsqlpar = new List<SqlParameter>();
                 var sfxxsql = @"exec usp_zy_QueryDrg_SFXX @orgId,@zyh";
                 sfxxsqlpar.Add(new SqlParameter("@orgId", orgId));
@@ -3006,7 +3006,7 @@ and idl.name=@ypyfmc
                 sfxxsqlpar.Add(new SqlParameter("@yljgdm", HospitalCode));
                 sfxxsqlpar.Add(new SqlParameter("@yljgmc", HospitalName));
                 DRGDIPSFXX dRGDIPSFXX = FirstOrDefault<DRGDIPSFXX>(sfxxsql.ToString(), sfxxsqlpar.ToArray());
-                //DIPgiao diệnKhácthông tin
+                //DIP giao diện Khác thông tin
                 DRGDIPQTXX dRGDIPQTXX = new DRGDIPQTXX();
                 dRGDIPQTXX.DDYLJG_TBBM_BM = dRGDIPZyxx.CYKB_BM;
                 dRGDIPQTXX.DDYLJG_TBBM_MC = dRGDIPZyxx.CYKB_MC;
@@ -3032,7 +3032,7 @@ and idl.name=@ypyfmc
                 var ysgh = "000000";
                 var ysmc = "Quản trị viên";
                 var param = "serviceId{=}AUDIT00101{,}userName{=}admin{,}password{=}adm@123{,}clientMAC{=}";
-                var logstr = AuditInterface(responsexml, orgId, zyh, ysgh, ysmc, param, "", "DIP接口", GetMAC);//giao diện
+                var logstr = AuditInterface(responsexml, orgId, zyh, ysgh, ysmc, param, "", "Giao diện DIP", GetMAC);//giao diện
                 return logstr;
             }
             catch (Exception e)
@@ -3041,7 +3041,7 @@ and idl.name=@ypyfmc
             }
         }
         /// <summary>
-        /// Phê duyệtphiếucứXóa
+        /// Phê duyệt phiếu cứ Xóa
         /// </summary>
         /// <returns></returns>
         public string DeletePriorReview(string zyh, string yzid, string yzlx, string OrganizeId, string GetMAC)
@@ -3078,7 +3078,7 @@ where id=@yzid");
                 var ysgh = "000000";
                 var ysmc = "Quản trị viên";
                 var param = "serviceId{=}AUDIT00002{,}userName{=}admin{,}password{=}adm@123{,}clientMAC{=}";
-                var logstr = AuditInterface(responsexml, OrganizeId, zyh, ysgh, ysmc, param, "", "单据删除", GetMAC);//giao diện
+                var logstr = AuditInterface(responsexml, OrganizeId, zyh, ysgh, ysmc, param, "", "Xóa chứng từ", GetMAC);//giao diện
                 return logstr;
             }
             catch (Exception e)
@@ -3106,7 +3106,7 @@ where id=@yzid");
                 var ysgh = "000000";
                 var ysmc = "Quản trị viên";
                 var param = "serviceId{=}ICD00001{,}userName{=}admin{,}password{=}adm@123{,}clientMAC{=}";
-                var logstr = AuditInterface(responsexml, orgId, zyh, ysgh, ysmc, param, "", "诊断查询", "");//giao diện
+                var logstr = AuditInterface(responsexml, orgId, zyh, ysgh, ysmc, param, "", "Tra cứu chẩn đoán", "");//giao diện
                 return logstr;
             }
             catch (Exception e)
@@ -3125,7 +3125,7 @@ where id=@yzid");
                     {
                         if (GetMAC == null || GetMAC == "")
                         {
-                            return "MACĐịa chỉLấythất bại！vui lòngKích hoạtBảo hiểm y tếnhỏchương trình！";
+                            return "MAC Địa chỉ Lấy thất bại! Vui lòng Kích hoạt Bảo hiểm y tế nhỏ chương trình!";
                         }
                         else
                         {
@@ -3134,7 +3134,7 @@ where id=@yzid");
                     }
                     catch (Exception ex)
                     {
-                        return "MACĐịa chỉLấythất bại！vui lòngKích hoạtBảo hiểm y tếnhỏchương trình！" + ex.Message + "";
+                        return "MAC Địa chỉ Lấy thất bại! Vui lòng Kích hoạt Bảo hiểm y tế nhỏ chương trình!" + ex.Message + "";
                     }
                     param += macAddresses;
                     var responseXML = new WebServiceClient().service(param, responsexml);
@@ -3174,7 +3174,7 @@ where id=@yzid");
 
         #region kỹ thuật y họcKhoaThực hiện
         /// <summary>
-        /// kỹ thuật y họcThực hiện
+        /// kỹ thuật y học Thực hiện
         /// </summary>
         /// <param name="jyjclist"></param>
         /// <param name="orgId"></param>
@@ -3227,11 +3227,11 @@ where id=@yzid");
             }
             catch (Exception e)
             {
-                throw new FailedException("Thực hiệnthất bại，" + e.InnerException);
+                throw new FailedException("Thực hiện thất bại," + e.InnerException);
             }
         }
         /// <summary>
-        /// kỹ thuật y họcThực hiệnSửa hạng mụclàKhôngtínhphíTrạng thái(isjf)
+        /// kỹ thuật y học Thực hiện Sửa hạng mục là Không tính phí Trạng thái (isjf)
         /// </summary>
         /// <param name="jyjclist"></param>
         /// <param name="orgId"></param>
@@ -3247,7 +3247,7 @@ where id=@yzid");
                      new SqlParameter("@str", string.Join(",", jyjclist))});
         }
         /// <summary>
-        /// Thu hồiThực hiện
+        /// Thu hồi Thực hiện
         /// </summary>
         /// <param name="jyjclist"></param>
         /// <param name="orgId"></param>
@@ -3267,7 +3267,7 @@ where id=@yzid");
         }
         #endregion
         /// <summary>
-        /// kiểm tralàKhônglàBệnh mạn tính
+        /// kiểm tra là Không là Bệnh mạn tính
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zdcode"></param>
@@ -3282,7 +3282,7 @@ where id=@yzid");
             return listjg;
         }
         /// <summary>
-        /// mởlậpSố lượnghạnchế
+        /// mở lập Số lượng hạn chế
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zdcode"></param>
@@ -3307,14 +3307,14 @@ where id=@yzid");
                         {
                             if (item.sl > listjg.mbxl)
                             {
-                                message += listjg.ypmc + "củaBệnh mạn tínhnhấtlớnmởlậpsốlà【" + listjg.mbxl + "】";
+                                message += listjg.ypmc + "của Bệnh mạn tính nhất lớn mở lập số là【" + listjg.mbxl + "】";
                             }
                             continue;
                         }
                     }
                     if (listjg.dcxl != null && item.sl > listjg.dcxl)
                     {
-                        message += listjg.ypmc + "củanhấtlớnmởlậpsốlà【" + listjg.dcxl + "】";
+                        message += listjg.ypmc + "của nhất lớn mở lập số là【" + listjg.dcxl + "】";
                     }
                 }
             }
@@ -3356,7 +3356,7 @@ where id=@yzid");
                         newcqyz.sl = int.Parse(item.sl.ToString());
                         newcqyz.dwlb = 4;
                         newcqyz.yzlx = (int)EnumYzlx.yyhc;
-                        //int yzlx = 1;//thông qualớp nổitruyềnquađếncủalà1,2 1làThuốc 2làMục
+                        //int yzlx = 1;//thông qua lớp nổi truyền qua đến của là 1, 2 1 là Thuốc 2 là Mục
                         //if (item.yzlx == "1")
                         //{
                         //    yzlx = 2;
@@ -3447,7 +3447,7 @@ where id=@yzid");
                         newlsyz.zbbz = 0;
                         newlsyz.sl = int.Parse(item.sl.ToString());
                         newlsyz.dwlb = 4;
-                        //int yzlx = 1;//thông qualớp nổitruyềnquađếncủalà1,2 1làThuốc 2làMục
+                        //int yzlx = 1;//thông qua lớp nổi truyền qua đến của là 1, 2 1 là Thuốc 2 là Mục
                         newlsyz.yzlx = (int)EnumYzlx.yyhc;
                         //if (item.yzlx == "1")
                         //{
@@ -3574,7 +3574,7 @@ where id=@yzid");
         }
 
         /// <summary>
-        /// TheoSố nhập việnLấyLIS/PACSbáo cáoHoàn thànhSố lượng
+        /// Theo Số nhập viện Lấy LIS/PACS báo cáo Hoàn thành Số lượng
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="yzh"></param>

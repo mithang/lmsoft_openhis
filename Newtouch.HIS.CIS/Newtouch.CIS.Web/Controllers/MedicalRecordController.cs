@@ -148,24 +148,24 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// câykếtcấu trúc （Lịch sửHồ sơ：chỉTra cứuSố bệnh ándướicủatất cảLịch sử）
+        /// cây kết cấu trúc (Lịch sử hồ sơ: chỉ tra cứu số bệnh án dưới của tất cả lịch sử)
         /// </summary>
         /// <returns></returns>
         public IActionResult GetTreeList(string blh, int queryDate)
         {
             if (string.IsNullOrWhiteSpace(blh))
             {
-                throw new FailedException("Dữ liệuBất thường,ThiếuSố bệnh án");
+                throw new FailedException("Dữ liệu bất thường, thiếu số bệnh án");
             }
 
             var treeList = new List<TreeViewModel>();
 
-            //Lịch sửHồ sơ
+            // Lịch sử hồ sơ
             treeList.Add(new TreeViewModel()
             {
                 id = "1",
                 value = "1",
-                text = "Lịch sửBệnh án",
+                text = "Lịch sử bệnh án",
                 parentId = null,
                 hasChildren = true,
                 isexpand = true,
@@ -176,7 +176,7 @@ namespace Newtouch.CIS.Web.Controllers
                 foreach (var item in historyList)
                 {
                     TreeViewModel mode = new TreeViewModel();
-                    mode.id = item.jzId;   //Khám bệnhId
+                    mode.id = item.jzId;   // Khám bệnh Id
                     mode.value = item.jzId;
                     mode.text = item.blmc;
                     mode.parentId = "1";
@@ -184,19 +184,19 @@ namespace Newtouch.CIS.Web.Controllers
                     mode.isexpand = false;
                     mode.Ex1 = item.jzzt.ToString();
                     mode.Ex2 = "medicalRecord";
-                    mode.Ex3 = item.lsblly.ToString();   //Lịch sửHồ sơđếnnguồn
+                    mode.Ex3 = item.lsblly.ToString();   // Lịch sử hồ sơ đến nguồn
                     mode.title = item.ghksmc + (!string.IsNullOrEmpty(item.jzysmc) ? (" " + item.jzysmc) : "");
 
                     treeList.Add(mode);
                 }
             }
 
-            //hỗ trợtừ điển
+            // hỗ trợ từ điển
             treeList.Add(new TreeViewModel()
             {
                 id = "2",
                 value = "2",
-                text = "Hỗ trợTừ điển",
+                text = "Hỗ trợ từ điển",
                 parentId = null,
                 hasChildren = true,
                 isexpand = true,
@@ -218,12 +218,12 @@ namespace Newtouch.CIS.Web.Controllers
                 treeList.Add(mode);
             }
 
-            //Hồ sơmẫu
+            // Hồ sơ mẫu
             treeList.Add(new TreeViewModel()
             {
                 id = "3",
                 value = "3",
-                text = "Bệnh ánMẫu",
+                text = "Bệnh án mẫu",
                 parentId = null,
                 hasChildren = true,
                 isexpand = true,
@@ -239,8 +239,8 @@ namespace Newtouch.CIS.Web.Controllers
         {
             var data = _medicalRecordDmnService.SelectNodeContent(jzId);
             if (pageType == "yczl" && (jzzt == "1" || jzzt == null))
-            {//Chẩn đoán từ xa  Chờ khám bệnh
-                //Lấymâyphòng khámBệnh nhânHồ sơ
+            {// Chẩn đoán từ xa chờ khám bệnh
+                // Lấy mây phòng khám bệnh nhân hồ sơ
                 var applyInfo = _clinicApplyRepo.GetYczl(Id, this.OrganizeId);
                 var blDataObj = new
                 {
@@ -272,7 +272,7 @@ namespace Newtouch.CIS.Web.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// LấyHồ sơmẫucây
+        /// Lấy hồ sơ mẫu cây
         /// </summary>
         /// <param name="mblx"></param>
         /// <returns></returns>
@@ -308,14 +308,14 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 treeList.Add(new TreeViewModel()
                 {
-                    id = item.mbId,  //mẫuId
+                    id = item.mbId,  // mẫu Id
                     value = item.mbmc,
                     text = item.mbmc,
                     parentId = "mblx_" + item.mblx.ToString(),
                     hasChildren = false,
                     isexpand = false,
                     complete = true,
-                    //Ex1 = ((int)EnumJzzt.Treating).ToString(),    //kýhợplogictập，cũnglàđãbảogiữkếtcấu trúcnhất quán，trướcbànchungdùngđiềncủaPhương pháp
+                    //Ex1 = ((int)EnumJzzt.Treating).ToString(),    // ký hợp logic tập, cũng là đã bảo giữ kết cấu trúc nhất quán, trước bàn chung dùng điền của phương pháp
                     Ex2 = "mrtemplate"
                 });
             }
@@ -323,7 +323,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Chi tiếtcâytiếtđiểm   （cố địnhđịnh）
+        /// Chi tiết cây tiết điểm (cố định định)
         /// </summary>
         /// <returns></returns>
         public IActionResult GetDetailTreeNode()
@@ -396,7 +396,7 @@ namespace Newtouch.CIS.Web.Controllers
                 {
                     id = "7",
                     value = "7",
-                    text = "Phục hồi chức năngĐơn thuốc",
+                    text = "Phục hồi chức năng đơn thuốc",
                     Code = "nc_kfcf",
                     complete = true,
                     showcheck = true,
@@ -409,7 +409,7 @@ namespace Newtouch.CIS.Web.Controllers
                 {
                     id = "8",
                     value = "8",
-                    text = "Thường quyMụcĐơn thuốc",
+                    text = "Thường quy mục đơn thuốc",
                     Code = "nc_cgxmcf",
                     complete = true,
                     showcheck = true,
@@ -420,7 +420,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "9",
                 value = "9",
-                text = "Thuốc TâyĐơn thuốc",
+                text = "Thuốc Tây đơn thuốc",
                 Code = "nc_xycf",
                 complete = true,
                 showcheck = true,
@@ -430,7 +430,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "10",
                 value = "10",
-                text = "Thuốc YHCTĐơn thuốc",
+                text = "Thuốc YHCT đơn thuốc",
                 Code = "nc_zycf",
                 complete = true,
                 showcheck = true,
@@ -442,7 +442,7 @@ namespace Newtouch.CIS.Web.Controllers
                 {
                     id = "11",
                     value = "11",
-                    text = "Xét nghiệmĐơn thuốc",
+                    text = "Xét nghiệm đơn thuốc",
                     Code = "nc_jycf",
                     complete = true,
                     showcheck = true,
@@ -452,7 +452,7 @@ namespace Newtouch.CIS.Web.Controllers
                 {
                     id = "12",
                     value = "12",
-                    text = "Kiểm traĐơn thuốc",
+                    text = "Kiểm tra đơn thuốc",
                     Code = "nc_jccf",
                     complete = true,
                     showcheck = true,
@@ -462,7 +462,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 id = "13",
                 value = "13",
-                text = "Khởi phátNgày",
+                text = "Khởi phát ngày",
                 Code = "nc_fbsj",
                 complete = true,
                 showcheck = true,
@@ -489,7 +489,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Chi tiếtcâytiếtđiểmnội dung （TheojzIdTra cứuHồ sơvàĐơn thuốcnội dung）
+        /// Chi tiết cây tiết điểm nội dung (Theo jzId tra cứu hồ sơ và đơn thuốc nội dung)
         /// </summary>
         /// <param name="jzId"></param>
         /// <returns></returns>
@@ -498,7 +498,7 @@ namespace Newtouch.CIS.Web.Controllers
             if ("mrtemplate".Equals(ex2))
             {
                 var data = _medicalRecordDmnService.SelectNodeContentByBlmb(jzId,this.OrganizeId);
-                //Hồ sơmẫu
+                // Hồ sơ mẫu
                 return Content(data.ToJson());
             }
             else
@@ -521,14 +521,14 @@ namespace Newtouch.CIS.Web.Controllers
         /// <returns></returns>
         public IActionResult SaveMedicalRecord(TreatmentEntity jzObject, List<WMDiagnosisHtmlVO> xyzdList, List<TCMDiagnosisHtmlVO> zyzdList, MedicalRecordEntity blObject, string cfDto, bool jzFinish, List<CFZDDiagnosisHtmlVO> cfzdlist)
         {
-            jzObject.jzks = this.UserIdentity.DepartmentCode;   //Khám bệnhKhoa lấyThao tác ngườiviênhiện tạiKhoa
-            jzObject.jzys = this.UserIdentity.rygh;    //Khám bệnhBác sĩ lấyThao tác ngườiviênhiện tạiMã nhân viên //cuối cùngxemkhámBác sĩMã nhân viên
-            jzObject.jzysmc = this.UserIdentity.UserName;   //cuối cùngxemkhámBác sĩTên
+            jzObject.jzks = this.UserIdentity.DepartmentCode;   // Khám bệnh khoa lấy thao tác người viên hiện tại khoa
+            jzObject.jzys = this.UserIdentity.rygh;    // Khám bệnh bác sĩ lấy thao tác người viên hiện tại mã nhân viên // cuối cùng xem khám bác sĩ mã nhân viên
+            jzObject.jzysmc = this.UserIdentity.UserName;   // cuối cùng xem khám bác sĩ tên
             jzObject.zt = "1";
             jzObject.OrganizeId = this.OrganizeId;
             if (jzFinish)
             {
-                //jzFinish:true biểu thịKết thúcKhám bệnh
+                // jzFinish:true biểu thị kết thúc khám bệnh
                 jzObject.jzzt = (int)EnumJzzt.Treated;
                 jzObject.zljssj = DateTime.Now;
             }
@@ -536,7 +536,7 @@ namespace Newtouch.CIS.Web.Controllers
             {
                 jzObject.jzzt = (int)EnumJzzt.Treating;
 
-                //Cập nhậtxếpđộiGọi sốTrạng thái:4ứngđáp
+                // Cập nhật xếp đội gọi số trạng thái: 4 ứng đáp
                 var reqObj = new
                 {
                     mzh = jzObject.mzh,
@@ -553,7 +553,7 @@ namespace Newtouch.CIS.Web.Controllers
                 }
             }
 
-            //trangmặttrênGửiquađếncủaĐơn thuốcchi tiếtdanh sách    //trọngcấu trúcĐơn thuốcDữ liệu
+            // trang mặt trên gửi qua đến của đơn thuốc chi tiết danh sách // trọng cấu trúc đơn thuốc dữ liệu
             var cfDtoList = cfDto.ToList<PrescriptionHtmlDTO>();
             var cfList = new List<PrescriptionDTO>();
             foreach (var item in cfDtoList)
@@ -585,7 +585,7 @@ namespace Newtouch.CIS.Web.Controllers
                     var matchCf = cfList.FirstOrDefault(a => a.cflx == cfitem.cflx && a.cfh == cfitem.cfh);
                     if (matchCf != null)
                     {
-                        matchCf.zje += cfitem.je;    //Trích dẫnLoại  có thểđủtrực tiếpsửađổilisttrongcủaGiá trị
+                        matchCf.zje += cfitem.je;    // Trích dẫn loại có thể đủ trực tiếp sửa đổi list trong của giá trị
                         var cfmx = new PrescriptionDetailVO();
                         cfitem.MapperTo(cfmx);
 
@@ -645,8 +645,8 @@ namespace Newtouch.CIS.Web.Controllers
                             cflx = cfitem.cflx,
                             sfbz = cfitem.sfbz ?? false,
                             zje = cfitem.je,
-                            ys = this.UserIdentity.rygh,//hiện tạiĐăng nhập ngườicủa ngườiviênMã nhân viên
-                            ks = this.UserIdentity.DepartmentCode,//hiện tạiĐăng nhập ngườicủa ngườiviênKhoa
+                            ys = this.UserIdentity.rygh,// hiện tại đăng nhập người của người viên mã nhân viên
+                            ks = this.UserIdentity.DepartmentCode,// hiện tại đăng nhập người của người viên khoa
                             tieshu = cfitem.tieshu,
                             cfyf = cfitem.cfyf,
                             djbz = cfitem.djbz,
@@ -763,22 +763,22 @@ namespace Newtouch.CIS.Web.Controllers
                 }
             }
 
-            //Kiểm traThuốccủalĩnhthuốcNhà thuốc mộttờĐơn thuốckhôngcó thểmởnhiềucáiNhà thuốc của thuốc
+            // Kiểm tra thuốc của lĩnh thuốc nhà thuốc một tờ đơn thuốc không có thể mở nhiều cái nhà thuốc của thuốc
             foreach (var cf in cfList.Where(p => p.sfbz == false && (p.cflx == (int)EnumCflx.WMPres || p.cflx == (int)EnumCflx.TCMPres)))
             {
                 if (cf.cfmxList.Select(p => p.zxks!=null&&p.sfzt!=1).Distinct().Count() > 1)
                 {
-                    throw new FailedException("Lỗi:Đơn thuốc" + cf.cfh + "Không thể kê thuốc của nhiều nhà thuốc");
+                    throw new FailedException("Lỗi: Đơn thuốc" + cf.cfh + "Không thể kê thuốc của nhiều nhà thuốc");
                 }
-                //Thuốc TâyĐơn thuốccủaSố nhóm   
-                //Đơn thuốckhôngsửa，vìHệ thốngmáychế， Số nhómcũngmộtthẳngởđổi khônghợplý？
+                // Thuốc Tây đơn thuốc của số nhóm   
+                // Đơn thuốc không sửa, vì hệ thống máy chế, số nhóm cũng một thẳng ở đổi không hợp lý?
                 if (cf.cflx != (int)EnumCflx.WMPres) continue;
                 var zhList = cf.cfmxList.Select(p => p.zh).Where(p => !string.IsNullOrWhiteSpace(p)).Distinct().ToList();
                 if (zhList.Count <= 0) continue;
                 var zhDict = new Dictionary<string, int>();
                 foreach (var zh in zhList)
                 {
-                    //liên kếtSố nhóm
+                    // liên kết số nhóm
                     var newZh = EFDBBaseFuncHelper.Instance.GetNewFieldUniqueIntValue("xt_cfmx.zh", this.OrganizeId);
                     zhDict.Add(zh, newZh);
                 }
@@ -788,10 +788,10 @@ namespace Newtouch.CIS.Web.Controllers
                 }
             }
 
-            //Phục hồi chức năngĐơn thuốcnhậpLỗi
+            // Phục hồi chức năng đơn thuốc nhập lỗi
             if (cfList.Where(p => p.sfbz == false && (p.cflx == (int)EnumCflx.RehabPres)).Any(cf => cf.cfmxList.Any(p => p.zl == 0)))
             {
-                throw new FailedException("Lỗi:Đơn thuốcNhậpLỗi");
+                throw new FailedException("Lỗi: Đơn thuốc nhập lỗi");
             }
 
             List<string> addedYpCfList;
@@ -802,7 +802,7 @@ namespace Newtouch.CIS.Web.Controllers
                 var syncMethod = _sysConfigRepo.GetValueByCode("HISSyncMethod", this.OrganizeId);
                 if (syncMethod == "IDB")
                 {
-                    _idbDmnService.SyncTo(this.OrganizeId, jzObject.mzh);//sẽmzhcủaChưa thu phíĐơn thuốc+Khám bệnhCờ đợithông tin Đồng bộđếntronggiữakho
+                    _idbDmnService.SyncTo(this.OrganizeId, jzObject.mzh);// sẽ mzh của chưa thu phí đơn thuốc + khám bệnh cờ đợi thông tin đồng bộ đến trong giữa kho
                 }
                 else
                 {
@@ -814,26 +814,26 @@ namespace Newtouch.CIS.Web.Controllers
                 LogCore.Error("SaveMedicalRecord error", ex);
                 return Success("Kê đơn thành công, nhưng đồng bộ thất bại, vui lòng đồng bộ thủ công thông tin đơn thuốc!", jzObject.jzId);
             }
-            //Quay lạijzId
+            // Quay lại jzId
             return Success(null, jzObject.jzId);
         }
 
         /// <summary>
-        /// Hủy bỏHồ sơ góigồmHồ sơChẩn đoán Đơn thuốc Đơn thuốcchi tiết
+        /// Hủy bỏ hồ sơ gói gồm hồ sơ chẩn đoán đơn thuốc đơn thuốc chi tiết
         /// </summary>
         /// <returns></returns>
         public IActionResult ObsoleteMedicalRecord(string jzId)
         {
             if (string.IsNullOrWhiteSpace(jzId))
             {
-                throw new FailedException("Dữ liệuBất thường,ThiếuKhám bệnhId");
+                throw new FailedException("Dữ liệu bất thường, thiếu khám bệnh Id");
             }
             _medicalRecordDmnService.ObsoleteMedicalRecord(jzId, this.OrganizeId);
 
             var syncMethod = _sysConfigRepo.GetValueByCode("HISSyncMethod", this.OrganizeId);
             if (syncMethod == "IDB")
             {
-                //tronggiữakho
+                // trong giữa kho
                 _idbDmnService.ObsoleteAllPresToHIS(jzId, this.OrganizeId);
             }
             else
@@ -845,7 +845,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// GửiĐơn thuốc
+        /// Gửi đơn thuốc
         /// </summary>
         /// <returns></returns>
         public IActionResult sendSinglePresToHis(string mzh, string cfId)
@@ -871,7 +871,7 @@ namespace Newtouch.CIS.Web.Controllers
         /// <returns></returns>
         public IActionResult cancelSinglePres(string mzh, string cfId)
         {
-            int apicflx;   //1Thuốc 2Mục
+            int apicflx;   // 1 thuốc 2 mục
             string cfh;
             bool isAlertinherit = false;
             _medicalRecordDmnService.cancelSinglePres(this.OrganizeId, mzh, cfId, out apicflx, out cfh, out isAlertinherit);
@@ -879,7 +879,7 @@ namespace Newtouch.CIS.Web.Controllers
             var syncMethod = _sysConfigRepo.GetValueByCode("HISSyncMethod", this.OrganizeId);
             if (syncMethod == "IDB")
             {
-                //tronggiữakho
+                // trong giữa kho
                 _idbDmnService.cancelSinglePresToHIS(this.OrganizeId, mzh, cfId, apicflx, cfh);
             }
             else
@@ -889,20 +889,20 @@ namespace Newtouch.CIS.Web.Controllers
 
             _medicalRecordDmnService.cancelSinglePresToPDS(this.OrganizeId, this.UserIdentity.UserCode, mzh, cfId, apicflx, cfh);
 
-            return Success(isAlertinherit ? "Hủy bỏthành công,Có hay khôngKế thừaĐơn thuốc" : "");
+            return Success(isAlertinherit ? "Hủy bỏ thành công, có hay không kế thừa đơn thuốc" : "");
         }
 
 
 		public IActionResult delDzcf(string mzh, string cfId)
 		{
-			int apicflx;   //1Thuốc 2Mục
+			int apicflx;   // 1 thuốc 2 mục
 			string cfh;
 			bool isAlertinherit = false;
 			_medicalRecordDmnService.delDzcf(this.OrganizeId, mzh, cfId, out apicflx, out cfh, out isAlertinherit);
-			return Success(isAlertinherit ? "Hủy bỏthành công,Có hay khôngKế thừaĐơn thuốc" : "");
+			return Success(isAlertinherit ? "Hủy bỏ thành công, có hay không kế thừa đơn thuốc" : "");
 		}
 		/// <summary>
-		/// TheoghsjTra cứuLịch sửHồ sơ（API）
+		/// Theo ghsj tra cứu lịch sử hồ sơ (API)
 		/// </summary>
 		/// <param name="blh"></param>
 		/// <param name="ghsj"></param>
@@ -976,7 +976,7 @@ namespace Newtouch.CIS.Web.Controllers
         #region LấyTrướcNhắc nhởjson
         public IActionResult GetPatJzJson(string mjzbz)
         {
-            //LấyKhám bệnhLoạitương ứng
+            // Lấy khám bệnh loại tương ứng
             FirstSecondThird jzlxobj = _tTCataloguesComparisonDmnService.GetTTItem(this.OrganizeId, "jzlx", mjzbz, "sqtx");
             var obj = new
             {
@@ -985,7 +985,7 @@ namespace Newtouch.CIS.Web.Controllers
             return Content(obj.ToJson());
         }
         /// <summary>
-        /// Tần Hoàng ĐảoĐơn thuốcnhắc trước
+        /// Tần Hoàng Đảo đơn thuốc nhắc trước
         /// </summary>
         /// <param name="strCfList"></param>
         /// <param name="mzh"></param>
@@ -1018,24 +1018,24 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Lấynhắc trướcjson
+        /// Lấy nhắc trước json
         /// </summary>
-        /// <param name="strCfList">nhắc trướcList</param>
+        /// <param name="strCfList">nhắc trước List</param>
         /// <param name="mzh">Số khám ngoại trú</param>
-        /// <param name="czlx">Thao tácLoại 1Lưu2Xóa</param>
+        /// <param name="czlx">Thao tác loại 1 lưu 2 xóa</param>
         /// <returns></returns>
         public IActionResult GetCfSqtxJson(string strCfList, string mzh, int czlx)
         {
-            //Lấyhiện tạiBệnh nhânKhám bệnhthông tin
+            // Lấy hiện tại bệnh nhân khám bệnh thông tin
             TreatmentEntity patjzInfo = _treatmentRepo.IQueryable(p => p.mzh == mzh && p.OrganizeId == this.OrganizeId && p.zt == "1").FirstOrDefault();
             var prescriptionSqtxDTO = new List<PrescriptionSqtxDTO>();
 
-            //trangmặttrênGửiquađếncủaĐơn thuốcchi tiếtdanh sách    //trọngcấu trúcĐơn thuốcDữ liệu
+            // trang mặt trên gửi qua đến của đơn thuốc chi tiết danh sách // trọng cấu trúc đơn thuốc dữ liệu
             var cfDtoList = Newtouch.CIS.Compat.Tools.Json.ToList<PrescriptionHtmlDTO>(strCfList);
             //var cfList = new List<PrescriptionDTO>();
             foreach (var item in cfDtoList)
             {
-                int zyOrder = 0; //mộtĐơn thuốcLặp lạiĐặt lạinhận dạng 0làLặp lạiBắt đầuban đầuGiá trị
+                int zyOrder = 0; // một đơn thuốc lặp lại đặt lại nhận dạng 0 là lặp lại bắt đầu ban đầu giá trị
                 string cfh = "";
                 foreach (var cfitem in item.cfHtml)
                 {
@@ -1086,9 +1086,9 @@ namespace Newtouch.CIS.Web.Controllers
                     else
                     {
                         var cf = new PrescriptionSqtxDTO() { ypcfmxList = new List<SqtxCFYP>(), xmcfmxList = new List<SqtxCFXM>() };
-                        //LấyKhoatương ứng
+                        // Lấy khoa tương ứng
                         FirstSecondThird ksobj = _tTCataloguesComparisonDmnService.GetTTItem(this.OrganizeId, "ks", this.UserIdentity.DepartmentCode, "sqtx");
-                        //LấyKhám bệnhLoạitương ứng
+                        // Lấy khám bệnh loại tương ứng
                         // FA-005: patjzInfo is null for an unknown mzh — previously NRE here.
                         if (patjzInfo == null)
                         {
@@ -1101,9 +1101,9 @@ namespace Newtouch.CIS.Web.Controllers
                         cf.JZLX = jzlxobj.First;
                         cf.MZH = mzh;
                         cf.CFH = cfitem.cfh;
-                        cf.YYKSBM = ksobj.First;   //hiện tạiĐăng nhập ngườicủa ngườiviênKhoa
+                        cf.YYKSBM = ksobj.First;   // hiện tại đăng nhập người của người viên khoa
                         cf.YYKSMC = ksobj.Second;
-                        cf.YYYSGH = this.UserIdentity.rygh;   //hiện tạiĐăng nhập ngườicủa ngườiviênMã nhân viên
+                        cf.YYYSGH = this.UserIdentity.rygh;   // hiện tại đăng nhập người của người viên mã nhân viên
                         cf.YSXM = this.UserIdentity.UserName;
                         if (cfitem.cflx == (int)EnumCflx.InspectionPres || cfitem.cflx == (int)EnumCflx.ExaminationPres || cfitem.cflx == (int)EnumCflx.RegularItemPres || cfitem.cflx == (int)EnumCflx.RehabPres)
                         {
@@ -1174,7 +1174,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
         private SqtxCFYP getYpCfJson(PrescriptionHtmlVO cfmxVo, int czlx, int zyOrder = 0)
         {
-            //LấydùngthuốcĐườngtương ứng
+            // Lấy dùng thuốc đường tương ứng
             string cfyf = cfmxVo.yfCode == null ? cfmxVo.cfyf : cfmxVo.yfCode;
             FirstSecondThird yytjobj = _tTCataloguesComparisonDmnService.GetTTItem(this.OrganizeId, "yytj", cfyf, "sqtx");
             FirstSecondThird pcobj = new FirstSecondThird();
@@ -1241,31 +1241,31 @@ namespace Newtouch.CIS.Web.Controllers
             return ypcf;
         }
         /// <summary>
-        /// LấyHủy đơn thuốcJSON
+        /// Lấy hủy đơn thuốc JSON
         /// </summary>
         /// <param name="mzh"></param>
         /// <param name="cfid"></param>
         /// <returns></returns>
         public IActionResult GetzfcfJson(string mzh, string cfid)
         {
-            //Lấyhiện tạiBệnh nhânKhám bệnhthông tin
+            // Lấy hiện tại bệnh nhân khám bệnh thông tin
             TreatmentEntity patjzInfo = _treatmentRepo.IQueryable(p => p.mzh == mzh && p.OrganizeId == this.OrganizeId && p.zt == "1").FirstOrDefault();
             int czlx = 2;
             List<PrescriptionHtmlVO> cfListHtml = _medicalRecordDmnService.GetzfcfJson(cfid);
             PrescriptionSqtxDTO cfDto = new PrescriptionSqtxDTO() { xmcfmxList = new List<SqtxCFXM>(), ypcfmxList = new List<SqtxCFYP>() };
             foreach (var item in cfListHtml)
             {
-                //LấyKhoatương ứng
+                // Lấy khoa tương ứng
                 FirstSecondThird ksobj = _tTCataloguesComparisonDmnService.GetTTItem(this.OrganizeId, "ks", this.UserIdentity.DepartmentCode, "sqtx");
-                //LấyKhám bệnhLoạitương ứng
+                // Lấy khám bệnh loại tương ứng
                 FirstSecondThird jzlxobj = _tTCataloguesComparisonDmnService.GetTTItem(this.OrganizeId, "jzlx", patjzInfo.mjzbz.ToString(), "sqtx");
                 cfDto.CFLX = item.cflx;
                 cfDto.JZLX = jzlxobj.First;
                 cfDto.MZH = mzh;
                 cfDto.CFH = item.cfh;
-                cfDto.YYKSBM = ksobj.First;   //hiện tạiĐăng nhập ngườicủa ngườiviênKhoa
+                cfDto.YYKSBM = ksobj.First;   // hiện tại đăng nhập người của người viên khoa
                 cfDto.YYKSMC = ksobj.Second;
-                cfDto.YYYSGH = this.UserIdentity.rygh;   //hiện tạiĐăng nhập ngườicủa ngườiviênMã nhân viên
+                cfDto.YYYSGH = this.UserIdentity.rygh;   // hiện tại đăng nhập người của người viên mã nhân viên
                 cfDto.YSXM = this.UserIdentity.UserName;
 
                 if (Convert.ToInt32(item.cflx) == (int)EnumCflx.InspectionPres || Convert.ToInt32(item.cflx) == (int)EnumCflx.ExaminationPres || Convert.ToInt32(item.cflx) == (int)EnumCflx.RegularItemPres || Convert.ToInt32(item.cflx) == (int)EnumCflx.RehabPres)
@@ -1295,7 +1295,7 @@ namespace Newtouch.CIS.Web.Controllers
             return View();
         }
         /// <summary>
-        /// Ngoại trúbệnh ngườingàychíTra cứu
+        /// Ngoại trú bệnh người ngày chí tra cứu
         /// </summary>
         /// <returns></returns>
         public IActionResult OutpatientPatientQuery(Pagination pagination, string keyword, string kssj, string jssj, string jzysgh, string hznl, string xtxy, string qbdc)
@@ -1314,11 +1314,11 @@ namespace Newtouch.CIS.Web.Controllers
         {
             var data = _medicalRecordDmnService.GetLogGridList(keyword, kssj, jssj, this.UserIdentity.rygh, this.OrganizeId, hznl, xtxy, qbdc);
             var now = DateTime.Now;
-            var path = "\\Ngoại trúNhật kýTra cứu" + now.ToString("yyyyMMdd") + "\\" + now.ToString("HHmmssfff") + ".xls";
-            var filePath = CommmHelper.GetLocalFilePath("\\ExcelXuất\\Ngoại trúNhật kýTra cứu" + path);
+            var path = "\\Ngoại trú Nhật ký Tra cứu" + now.ToString("yyyyMMdd") + "\\" + now.ToString("HHmmssfff") + ".xls";
+            var filePath = CommmHelper.GetLocalFilePath("\\Excel Xuất\\Ngoại trú Nhật ký Tra cứu" + path);
             var cols = new List<ExcelColumn>()
             {
-                   new ExcelColumn("jzsj","Khám bệnhNgày"),
+                   new ExcelColumn("jzsj","Khám bệnh ngày"),
                     new ExcelColumn("mzh","Số khám ngoại trú"),
                     new ExcelColumn("xm","Họ tên"),
                     new ExcelColumn("jzxm","Họ tên phụ huynh"),
@@ -1327,16 +1327,16 @@ namespace Newtouch.CIS.Web.Controllers
                      new ExcelColumn("nlshow","Tuổi"),
                      new ExcelColumn("zy","Nghề nghiệp"),
                       new ExcelColumn("dz","Địa chỉ"),
-                    new ExcelColumn("fbsj","Khởi phátNgày"),
+                    new ExcelColumn("fbsj","Khởi phát ngày"),
                      new ExcelColumn("tiwen","Nhiệt độ"),
                       new ExcelColumn("xueya","Huyết áp"),
                        new ExcelColumn("cfz","Khám lần đầu/tái khám"),
                         new ExcelColumn("zs","Triệu chứng chính"),
-                        new ExcelColumn("zdmc","Chẩn đoánTên"),
+                        new ExcelColumn("zdmc","Chẩn đoán tên"),
                         new ExcelColumn("clfa","Xử lý"),
                          new ExcelColumn("fzjc","Kiểm tra hỗ trợ"),
                          new ExcelColumn("jzysmc","Chữ ký bác sĩ"),
-                          new ExcelColumn("sfzh","Hiệu lựcSố giấy tờ"),
+                          new ExcelColumn("sfzh","Hiệu lực số giấy tờ"),
                           new ExcelColumn("ContactNum","Điện thoại"),
                     new ExcelColumn("ghksmc","Chuyên khoa"),
                     new ExcelColumn("xuetang","Đường huyết"),
@@ -1363,7 +1363,7 @@ namespace Newtouch.CIS.Web.Controllers
         #region Từ xaTra cứu
 
         /// <summary>
-        /// Trong việnBáo cáo điện timgọi
+        /// Trong viện báo cáo điện tim gọi
         /// </summary>
         /// <param name="kh"></param>
         /// <returns></returns>
@@ -1388,7 +1388,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
         
         /// <summary>
-        /// xatrìnhtimđiệnĐăng ký
+        /// xa trình tim điện đăng ký
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="sqId"></param>
@@ -1400,7 +1400,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Xét nghiệmĐăng ký
+        /// Xét nghiệm đăng ký
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="sqId"></param>
@@ -1411,7 +1411,7 @@ namespace Newtouch.CIS.Web.Controllers
             return Success("", data.ToJson());
         }
         /// <summary>
-        /// Hình ảnhĐăng ký
+        /// Hình ảnh đăng ký
         /// </summary>
         /// <param name="kh"></param>
         /// <param name="sqId"></param>
@@ -1445,7 +1445,7 @@ namespace Newtouch.CIS.Web.Controllers
 
                 string dataHash = string.Empty;
                 string sqdh = string.Empty;
-                if (dtxd)//VDnếuCóđộngtrạng tháitimđiện，thìvàodòngDữ liệuchuyểnhóa，gọiESBgiao diệnTải lênDữ liệu
+                if (dtxd)// VD nếu có động trạng thái tim điện, thì vào dòng dữ liệu chuyển hóa, gọi ESB giao diện tải lên dữ liệu
                 {
                     for (int i = 0; i < Request.Form.Files.Count; i++)
                     {
@@ -1455,7 +1455,7 @@ namespace Newtouch.CIS.Web.Controllers
                         dtxdscDto = _medicalRecordDmnService.GetJcDtxdmc(mzh, this.OrganizeId);
                         if (dtxdscDto == null)
                         {
-                            throw new FailedException("ThiếuCấu hìnhTừ xaY tếTập tin:CIS.ycyl_sysConfig");
+                            throw new FailedException("Thiếu cấu hình từ xa y tế tập tin: CIS.ycyl_sysConfig");
                         }
                         string fileName = Request.Form.Files[i].FileName;
                         sqdh = fileName.Replace(dtxdscDto.Sjscjgmc, "").Replace(".7z", "");
@@ -1536,10 +1536,10 @@ namespace Newtouch.CIS.Web.Controllers
             //    string jzlsh = string.Join(",", cfhList.ToArray());
             //    _medicalRecordDmnService.yingxiangshenqing(patid, jzlsh);
             //}
-            return Success("Tải lênthành công");
+            return Success("Tải lên thành công");
         }
         /// <summary>
-        /// Tính toánbămGiá trịchữkýchuỗi
+        /// Tính toán băm giá trị chữ ký chuỗi
         /// </summary>
         public static string ComputeHash(byte[] buffer)
         {
@@ -1641,7 +1641,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Lấythường dùngChẩn đoán
+        /// Lấy thường dùng chẩn đoán
         /// </summary>
         /// <returns></returns>
         public JsonResult Getcyzd(int type)
@@ -1733,7 +1733,7 @@ namespace Newtouch.CIS.Web.Controllers
                 System.Diagnostics.Process p = new System.Diagnostics.Process();
                 p.StartInfo.FileName = "C:\\Users\\len\\Desktop\\金马扬名电子病历\\GoldHISManager.exe";//tên chương trình cần khởi động
                 p.StartInfo.Arguments = "G_HisApply.ReqNO='" + sqdh + "'" + " ";
-                p.Start();//khởiđộng
+                p.Start();// khởi động
                 return Content("");
             }
             catch
@@ -1810,8 +1810,8 @@ namespace Newtouch.CIS.Web.Controllers
         /// <summary>
         /// Lưu bảng phiếu (Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">thựcthểđối tượng</param>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="entity">thực thể đối tượng</param>
+        /// <param name="keyValue">Khóa chính giá trị</param>
         /// <returns></returns>
         public IActionResult blctSubmitForm(BlctglEntity entity, string keyValue)
         {
@@ -1861,9 +1861,9 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Lấythựcthể
+        /// Lấy thực thể
         /// </summary>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="keyValue">Khóa chính giá trị</param>
         /// <returns></returns>
         public IActionResult GetFormJson(string keyValue)
         {
@@ -1889,7 +1889,7 @@ namespace Newtouch.CIS.Web.Controllers
 
         #region Thường dùngChẩn đoán
         /// <summary>
-        /// Hồ sơ chẩn đoánbậtkhung
+        /// Hồ sơ chẩn đoán bật khung
         /// </summary>
         /// <returns></returns>
         public IActionResult CommonDiag()
@@ -1902,7 +1902,7 @@ namespace Newtouch.CIS.Web.Controllers
         }
 
         /// <summary>
-        /// Lưuthường dùngChẩn đoán
+        /// Lưu thường dùng chẩn đoán
         /// </summary>
         /// <param name="zdmc"></param>
         /// <param name="zdbm"></param>
@@ -1946,10 +1946,10 @@ namespace Newtouch.CIS.Web.Controllers
             }
             entity.zt = "1";
             _ComDiagnosisRepo.SubmitDiag(entity);
-            return Success("Thêmthành công");
+            return Success("Thêm thành công");
         }
         /// <summary>
-        /// Lấythường dùngChẩn đoánthông tin-Quản lýgiớimặt
+        /// Lấy thường dùng chẩn đoán thông tin - Quản lý giới mặt
         /// </summary>
         /// <param name="type"></param>
         /// <param name="keyword"></param>
@@ -1961,7 +1961,7 @@ namespace Newtouch.CIS.Web.Controllers
             return Content(entity.ToJson());
         }
         /// <summary>
-        /// Lấythường dùngChẩn đoánthông tin
+        /// Lấy thường dùng chẩn đoán thông tin
         /// </summary>
         /// <param name="type"></param>
         /// <param name="keyword"></param>
@@ -1973,7 +1973,7 @@ namespace Newtouch.CIS.Web.Controllers
             return Content(entity.ToJson());
         }
         /// <summary>
-        /// LấyHồ sơ chẩn đoánthông tin
+        /// Lấy hồ sơ chẩn đoán thông tin
         /// </summary>
         /// <param name="type"></param>
         /// <param name="mzh"></param>
@@ -1986,7 +1986,7 @@ namespace Newtouch.CIS.Web.Controllers
 
         #endregion
 
-        #region Lịch sửBệnh án
+        #region Lịch sử bệnh án
         public IActionResult HistoryMedicalRecordForm()
         {
             return View();
@@ -2041,7 +2041,7 @@ namespace Newtouch.CIS.Web.Controllers
 				ksCode = kcCode,
                 ysgh = ysgh,
                 mjzbz = mjzbz.ToString(),
-                jiuzhenbz = ((int)EnumJzzt.NotYetTreate).ToString(),   //Khám bệnhCờ
+                jiuzhenbz = ((int)EnumJzzt.NotYetTreate).ToString(),   // Khám bệnh cờ
 				pagination = pagination
 			};
 
@@ -2060,7 +2060,7 @@ namespace Newtouch.CIS.Web.Controllers
 				RespList.Add(new TreatEntityObj
 				{
 					mzh = item.mzh,
-					mjzbz = Convert.ToInt32(item.mjzbz),//1thông thườngNgoại trú 2gấpkhám 3chuyên giaNgoại trú
+					mjzbz = Convert.ToInt32(item.mjzbz),//1 thông thường ngoại trú 2 gấp khám 3 chuyên gia ngoại trú
 					blh = item.blh,
 					xm = item.brxm,
 					xb = item.sexValue,
@@ -2070,7 +2070,7 @@ namespace Newtouch.CIS.Web.Controllers
 					zjlx = item.zjlx.ToInt(),
 					zjh = item.zjh,
 					ghksmc = item.ksmc,
-					ghys = item.ysxm,//đăng ký khámBác sĩTên（chuyên giasốkhichắcđịnhcó）
+					ghys = item.ysxm,//đăng ký khám bác sĩ tên(chuyên gia số khi chắc định có)
 					ghsj = item.ghsj.ToDate(),
 					ghczsj = item.operatingTime.ToDate(),
 					jzzt = (int)EnumJzzt.NotYetTreate,
@@ -2262,9 +2262,9 @@ namespace Newtouch.CIS.Web.Controllers
         public IActionResult GetyczlPat(string Id, string jzzt)
         {
             var patInfo = _clinicDmnService.getClinicPatInfo(this.OrganizeId, Id);
-            //Chờ khám bệnh,gọiphòng khámLấyHồ sơgiao diện
-            //if (jzzt=="1") {//Chờ khám bệnh
-            //Lấymâyphòng khámBệnh nhânHồ sơ
+            // Chờ khám bệnh,gọi phòng khám lấy hồ sơ giao diện
+            //if (jzzt=="1") {// Chờ khám bệnh
+            // Lấy mây phòng khám bệnh nhân hồ sơ
             var applyInfo = _clinicApplyRepo.GetYczl(Id, this.OrganizeId);
             // FA-005: unknown Id gives null applyInfo (and possibly null patInfo);
             // previously NRE'd at applyInfo.sqlsh below.
@@ -2296,7 +2296,7 @@ namespace Newtouch.CIS.Web.Controllers
             //}
             return Content(patInfo.ToJson());
 
-            //#region LấyKhoa khám
+            //#region Lấy khoa khám
 
             //var kcCode = "00000080";
             ////var visitDept = visitDeptSetRepo.SelectData(this.UserIdentity.rygh, OrganizeId);
@@ -2339,7 +2339,7 @@ namespace Newtouch.CIS.Web.Controllers
             //    ksCode = kcCode,
             //    ysgh = ysgh,
             //    mjzbz = "1",
-            //    jiuzhenbz = ((int)EnumJzzt.NotYetTreate).ToString(),   //Khám bệnhCờ
+            //    jiuzhenbz = ((int)EnumJzzt.NotYetTreate).ToString(),   // Khám bệnh cờ
             //    pagination = pagination
             //};
 
@@ -2362,7 +2362,7 @@ namespace Newtouch.CIS.Web.Controllers
             //    RespList.Add(new TreatEntityObj
             //    {
             //        mzh = item.mzh,
-            //        mjzbz = Convert.ToInt32(item.mjzbz),//1thông thườngNgoại trú 2gấpkhám 3chuyên giaNgoại trú
+            //        mjzbz = Convert.ToInt32(item.mjzbz),//1 thông thường ngoại trú 2 gấp khám 3 chuyên gia ngoại trú
             //        blh = item.blh,
             //        xm = item.brxm,
             //        xb = item.sexValue,
@@ -2372,7 +2372,7 @@ namespace Newtouch.CIS.Web.Controllers
             //        zjlx = item.zjlx.ToInt(),
             //        zjh = item.zjh,
             //        ghksmc = item.ksmc,
-            //        ghys = item.ysxm,//đăng ký khámBác sĩTên（chuyên giasốkhichắcđịnhcó）
+            //        ghys = item.ysxm,//đăng ký khám bác sĩ tên(chuyên gia số khi chắc định có)
             //        ghsj = item.ghsj.ToDate(),
             //        ghczsj = item.operatingTime.ToDate(),
             //        jzzt = (int)EnumJzzt.NotYetTreate,
@@ -2414,10 +2414,10 @@ namespace Newtouch.CIS.Web.Controllers
         [HandlerAjaxOnly]
         public IActionResult GetMzHlyy(string jzId,string cfId)
         {
-            //Lấyhiện tạiNgười dùngHồ sơthông tin
+            // Lấy hiện tại người dùng hồ sơ thông tin
             var data = _medicalRecordDmnService.SelectNodeContent(jzId);
             var orgId = XMLSerializer.GenerateShortUUIDFromString(UserIdentity.OrganizeId);
-            //Cấu trúchợplýdùngthuốctham số
+            // Cấu trúc hợp lý dùng thuốc tham số
             var request = new EngineReq
             {
                 Type = "prescription",
@@ -2434,7 +2434,7 @@ namespace Newtouch.CIS.Web.Controllers
                     PresNo = data.cfBoList.Count>0? data.cfBoList[0].presEntity.cfId:null,
                     Name = data.xm,
                     DiagnoseID = "",
-                    //Mặc địnhtâyy
+                    // Mặc định tây y
                     Diagnose =string.Join("|", data.xyzdList.Select(item => item.zdmc)),
                     IDCard = "",
                     Address = "",
@@ -2527,7 +2527,7 @@ namespace Newtouch.CIS.Web.Controllers
                 dataList.Add(engineRes);
             });
             
-            return Success("Tra cứuthành công", dataList);
+            return Success("Tra cứu thành công", dataList);
         }
         
         [HttpPost]
@@ -2537,7 +2537,7 @@ namespace Newtouch.CIS.Web.Controllers
             var hlyyProxy = new HlyyProxy();
             var hisSmsJson = hlyyProxy.GetHisSmsJson(drugId);
             
-            return Success("Tra cứuthành công", hisSmsJson);;
+            return Success("Tra cứu thành công", hisSmsJson);;
         }
         
         

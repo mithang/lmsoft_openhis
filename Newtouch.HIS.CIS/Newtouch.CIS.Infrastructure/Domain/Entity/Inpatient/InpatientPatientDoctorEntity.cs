@@ -7,8 +7,8 @@ namespace Newtouch.Domain.Entity
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày:2018-06-28 15:37
-    /// Mô tả:Nhập việnbệnh nhânBác sĩthông tinbảng
+    /// Ngày: 2018-06-28 15:37
+    /// Mô tả: Nhập viện bệnh nhân Bác sĩ thông tin bảng
     /// </summary>
     [SugarTable("zy_PatDocInfo")]
     public class InpatientPatientDoctorEntity
@@ -40,7 +40,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string ysmc { get; set; }
         /// <summary>
-        /// 0Nhập viện1chínhđiều trị2chínhnhiệm
+        /// 0 Nhập viện 1 chính điều trị 2 chính nhiệm
         /// </summary>
         /// <returns></returns>
         public int Type { get; set; }
@@ -70,7 +70,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0Vô hiệu1Hiệu lực
+        /// 0 Vô hiệu 1 Hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }

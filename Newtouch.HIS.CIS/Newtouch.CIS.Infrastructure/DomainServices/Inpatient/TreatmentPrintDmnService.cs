@@ -18,9 +18,9 @@ namespace Newtouch.DomainServices.Inpatient
     {
         private readonly ISysConfigRepo _sysConfigRepo;
         /// <summary>
-        /// Mặc địnhHàm khởi tạosố
+        /// Mặc định Hàm khởi tạo số
         /// </summary>
-        /// <param name="databaseFactory">EFtrêndướivănNhà máy</param>
+        /// <param name="databaseFactory">EF trên dưới văn Nhà máy</param>
         public TreatmentPrintDmnService()
             : base()
         {
@@ -28,7 +28,7 @@ namespace Newtouch.DomainServices.Inpatient
         }
 
         /// <summary>
-        /// LấyKhu bệnhphát thuốcBệnh nhâncây
+        /// Lấy Khu bệnh phát thuốc Bệnh nhân cây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -57,7 +57,7 @@ namespace Newtouch.DomainServices.Inpatient
                                                                               AND staff.OrganizeId = @orgId
                 inner join zy_brxxk d on d.zyh=aaa.zyh and d.OrganizeId = @orgId
                 where 1=1 ");
-            if (zyxz != null)//dài hạn/tạm thờiCờ:0:Tạm thời,1:Dài hạn
+            if (zyxz != null)//dài hạn/tạm thời Cờ: 0:Tạm thời, 1:Dài hạn
             {
                 sqlstr.Append("  and zyxz=@zyxz");
                 par.Add(new SqlParameter("@zyxz", zyxz));

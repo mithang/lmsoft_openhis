@@ -7,22 +7,22 @@ namespace Newtouch.Domain.IRepository
 {
     /// <summary>
     /// Tác giả: 周珏琦
-    /// Ngày:2019-01-30 10:23
-    /// Mô tả:Sắp xếp phẫu thuậtbảng
+    /// Ngày: 2019-01-30 10:23
+    /// Mô tả: Sắp xếp phẫu thuật bảng
     /// </summary>
     public interface IInpatientOperationArrangementRepo : IRepositoryBase<InpatientOperationArrangementEntity>
     {
         /// <summary>
-        /// Lưubảngphiếu(Thêm mới,Sửa)
+        /// Lưu bảng phiếu (Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">thựcthểđối tượng</param>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="entity">thực thể đối tượng</param>
+        /// <param name="keyValue">Khóa chính Giá trị</param>
         bool SubmitForm(InpatientOperationArrangementEntity entity, string keyValue);
 
         /// <summary>
-        /// XóaDữ liệu
+        /// Xóa Dữ liệu
         /// </summary>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="keyValue">Khóa chính Giá trị</param>
         void DeleteForm(string keyValue);
 
     }

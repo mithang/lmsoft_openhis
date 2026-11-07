@@ -8,7 +8,7 @@ namespace Newtouch.Domain.Entity
     /// <summary>
     /// Tác giả: 冬林
     /// Ngày:2018-06-28 15:37
-    /// Mô tả:Nhập việnY lệnhgói
+    /// Mô tả: Nhập viện y lệnh gói
     /// </summary>
     [SugarTable("zy_yztc")]
     public class InpatientOrderPackageEntity
@@ -30,7 +30,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string tcmc { get; set; }
         /// <summary>
-        /// Kiểu y lệnh: 0:ThuốcY lệnh,1:Kháng sinhY lệnh,2:Kiểm traY lệnh,3:Xét nghiệmY lệnh,4:chỉhiển thịY lệnh,5:thông thườngY lệnh , 6 DừngY lệnh, 7  Xuất việnmang thuốc, 8 ăn uốngY lệnh, 9 Phẫu thuậtY lệnh   10  trongthảo dược 
+        /// Kiểu y lệnh: 0: y lệnh thuốc, 1: y lệnh kháng sinh, 2: y lệnh kiểm tra, 3: y lệnh xét nghiệm, 4: y lệnh chỉ hiển thị, 5: y lệnh thông thường, 6: y lệnh dừng, 7: xuất viện mang thuốc, 8: y lệnh ăn uống, 9: y lệnh phẫu thuật, 10: y lệnh thảo dược Trung y 
         /// </summary>
         /// <returns></returns>
         public int tclx { get; set; }
@@ -40,17 +40,17 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int tcfw { get; set; }
         /// <summary>
-        /// Khu bệnhMã
+        /// Mã khu bệnh
         /// </summary>
         /// <returns></returns>
         public string WardCode { get; set; }
         /// <summary>
-        /// KhoaMã
+        /// Mã khoa
         /// </summary>
         /// <returns></returns>
         public string DeptCode { get; set; }
         /// <summary>
-        /// Bác sĩMã
+        /// Mã bác sĩ
         /// </summary>
         /// <returns></returns>
         public string ysgh { get; set; }

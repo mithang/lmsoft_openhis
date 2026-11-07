@@ -28,7 +28,7 @@ namespace Newtouch.DomainServices.Outpatient
         { }
 
         /// <summary>
-        /// LưuBệnh nhânquamẫnthông tin
+        /// Lưu Bệnh nhân quá mẫn thông tin
         /// </summary>
         /// <param name="entity"></param>
         public void SavePatAllergyInfo(AllergyEntity entity)
@@ -44,7 +44,7 @@ namespace Newtouch.DomainServices.Outpatient
         #region old
 
         /// <summary>
-        /// Ngoại trúbệnh nhânLọc
+        /// Ngoại trú bệnh nhân Lọc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -53,7 +53,7 @@ namespace Newtouch.DomainServices.Outpatient
         /// <param name="jssj"></param>
         /// <param name="orgId"></param>
         /// <param name="PsItemCode"></param>
-        /// <param name="Status">Thực hiệnTrạng thái 1đãThực hiện 0chưaThực hiện</param>
+        /// <param name="Status">Thực hiện Trạng thái 1 đã Thực hiện 0 chưa Thực hiện</param>
         /// <returns></returns>
         public IList<OutHosPatientVO> GetOutPatientPaginationList(Pagination pagination, string keyword, string ks, string kssj, string jssj, string orgId, string PsItemCode, string Status)
         {
@@ -104,7 +104,7 @@ INNER JOIN [Newtouch_CIS].[dbo].[xt_cfmx] c on b.cfId = c.cfId and b.OrganizeId 
         }
 
         /// <summary>
-        /// Nhập việnbệnh nhânLọc
+        /// Nhập viện bệnh nhân Lọc
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="keyword"></param>
@@ -113,7 +113,7 @@ INNER JOIN [Newtouch_CIS].[dbo].[xt_cfmx] c on b.cfId = c.cfId and b.OrganizeId 
         /// <param name="jssj"></param>
         /// <param name="orgId"></param>
         /// <param name="PsItemCode"></param>
-        /// <param name="Status">Thực hiệnTrạng thái 1đãThực hiện 0chưaThực hiện</param>
+        /// <param name="Status">Thực hiện Trạng thái 1 đã Thực hiện 0 chưa Thực hiện</param>
         /// <returns></returns>
         public IList<InHosPatientVO> GetInPatientPaginationList(Pagination pagination, string keyword, string ks, string kssj, string jssj, string orgId, string PsItemCode, string Status)
         {
@@ -176,7 +176,7 @@ INNER JOIN [Newtouch_CIS].[dbo].[xt_cfmx] c on b.cfId = c.cfId and b.OrganizeId 
         }
 
         /// <summary>
-        /// LấyNgoại trúBệnh nhânmởcủadathửMục
+        /// Lấy Ngoại trú Bệnh nhân mở của da thử Mục
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
@@ -204,7 +204,7 @@ INNER JOIN [Newtouch_CIS].[dbo].[xt_cfmx] c on b.cfId = c.cfId and b.OrganizeId 
         }
 
         /// <summary>
-        /// LấyBệnh nhân nội trúmởcủadathửMục
+        /// Lấy Bệnh nhân nội trú mở của da thử Mục
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
@@ -245,7 +245,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
         }
 
         /// <summary>
-        /// quamẫnthông tinTra cứu
+        /// quá mẫn thông tin Tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="Id"></param>
@@ -272,7 +272,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
         }
 
         /// <summary>
-        /// LấyKháng sinhThuốcthông tin
+        /// Lấy Kháng sinh Thuốc thông tin
         /// </summary>
         /// <param name="orgId"></param>
         /// <returns></returns>
@@ -288,7 +288,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
         }
 
         /// <summary>
-        /// LấyKháng sinhPhân loại thuốc
+        /// Lấy Kháng sinh Phân loại thuốc
         /// </summary>
         /// <param name="ypCode"></param>
         /// <param name="orgId"></param>
@@ -307,7 +307,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
         }
 
         /// <summary>
-        /// LưuBệnh nhânquamẫnthông tin
+        /// Lưu Bệnh nhân quá mẫn thông tin
         /// </summary>
         /// <param name="entity"></param>
         public void SaveAllergyInfo(AllergyEntity entity)
@@ -320,9 +320,9 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
         }
 
         /// <summary>
-        /// XóaThực hiệncủaBệnh nhânquamẫnthông tin
+        /// Xóa Thực hiện của Bệnh nhân quá mẫn thông tin
         /// </summary>
-        /// <param name="xmCode">quamẫnMụccode</param>
+        /// <param name="xmCode">quá mẫn Mục code</param>
         /// <param name="blh"></param>
         /// <param name="mzzybz"></param>
         /// <param name="orgId"></param>
@@ -345,7 +345,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
         }
 
         /// <summary>
-        /// LấyHệ thốngcấu hìnhdathửMục
+        /// Lấy Hệ thống cấu hình da thử Mục
         /// </summary>
         /// <param name="PsItemCode"></param>
         /// <returns></returns>
@@ -363,7 +363,7 @@ where a.OrganizeId = @orgId and a.zt = '1' and a.zyh=@zyh and a.yzlx=@yzlx";
                 Where = Where.Length > 1 ? Where.Substring(0, Where.Length - 1) : "";
             }
 
-            if (string.IsNullOrWhiteSpace(Where)) throw new Exception("vui lòngliênhệQuản lýviêncấu hìnhquamẫnMụccấu hìnhcósai,tham sốMã：AllergyItemSetting");
+            if (string.IsNullOrWhiteSpace(Where)) throw new Exception("vui lòng liên hệ Quản lý viên cấu hình quá mẫn Mục cấu hình có sai, tham số Mã: AllergyItemSetting");
             else {
                 return Where;
             } 

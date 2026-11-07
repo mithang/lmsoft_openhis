@@ -73,7 +73,7 @@ namespace Newtouch.DomainServices
             return this.FindList<InpWardPatTreeVO>(sql, new[] { new SqlParameter("@staffId", staffId) });
         }
         /// <summary>
-        /// LấyChờ duyệtY lệnhKhu bệnhcây
+        /// Lấy Chờ duyệt Y lệnh Khu bệnh cây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -91,13 +91,13 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// LấyChờ duyệtY lệnhBệnh nhâncây
+        /// Lấy Chờ duyệt Y lệnh Bệnh nhân cây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
         public IList<InpWardPatTreeVO> GetPatTree(string staffId, string isQX)
         {
-            //làKhôngủy quyềnĐiều dưỡngPhục hồi chức năngY lệnhThực hiệnQuyền
+            //là Không ủy quyền Điều dưỡng Phục hồi chức năng Y lệnh Thực hiện Quyền
             if (string.IsNullOrWhiteSpace(isQX))
             {
                 isQX = "1";
@@ -107,7 +107,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// LấyChờ duyệtY lệnhBệnh nhâncây
+        /// Lấy Chờ duyệt Y lệnh Bệnh nhân cây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -147,7 +147,7 @@ CONVERT(VARCHAR(25),CASE DATEDIFF(DAY, xx.ryrq,GETDATE()) WHEN 0 THEN 1 else  DA
             return this.FindList<InpWardPatTreeVO>(sql, new[] { new SqlParameter("@staffId", staffId) });
         }
         /// <summary>
-        /// LấyphúttrangY lệnhdanh sách
+        /// Lấy phút trang Y lệnh danh sách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -168,7 +168,7 @@ CONVERT(VARCHAR(25),CASE DATEDIFF(DAY, xx.ryrq,GETDATE()) WHEN 0 THEN 1 else  DA
                     return null;
                 }
             }
-            if (IsRehabAuthtoNurse == "0") //Điều dưỡngkhôngPhục hồi chức năngPhê duyệtủy quyền
+            if (IsRehabAuthtoNurse == "0") //Điều dưỡng không Phục hồi chức năng Phê duyệt ủy quyền
             {
                 strkfwhere = " and yzlx<>@yzlx ";
             }
@@ -247,7 +247,7 @@ group by iszt,zyh, yzxz,yzxzsm,xmmc,ypjl,yzmc,yzjl,yfmc,yzpcmc,tzysgh,tzr,Creato
         }
 
         /// <summary>
-        /// LấyPhục hồi chức năngY lệnhdanh sách
+        /// Lấy Phục hồi chức năng Y lệnh danh sách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -278,7 +278,7 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
             }, false);
         }
         /// <summary>
-        /// LấyphúttrangY lệnhdanh sáchbyY lệnhTính chất/Dài hạnhoặcTạm thời
+        /// Lấy phút trang Y lệnh danh sáchby Y lệnh Tính chất/Dài hạn hoặc Tạm thời
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -306,7 +306,7 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
         }
 
         /// <summary>
-        /// GửiPhê duyệtTrạng thái
+        /// Gửi Phê duyệt Trạng thái
         /// </summary>
         /// <param name="orderList"></param>
         //public void OrderAuditSubmit(OperatorModel user,IList<OrderAuditVO> orderList)
@@ -359,7 +359,7 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
         //    }
         //}
         /// <summary>
-        /// Phê duyệtDài hạn/Tạm thời/Tất cả đothửtínhcó thểkhôngnếusql tạmkhôngdùng
+        /// Phê duyệt Dài hạn/Tạm thời/Tất cả đo thử tính có thể không nếu sql tạm không dùng
         /// </summary>
         /// <param name="user"></param>
         /// <param name="patList"></param>
@@ -369,7 +369,7 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
             using (var db = new EFDbTransaction().BeginTrans())
             {
 
-                if (Yzxz == Convert.ToInt32(EnumYzxz.Cq) || Yzxz == 0) ////Phê duyệtDài hạn
+                if (Yzxz == Convert.ToInt32(EnumYzxz.Cq) || Yzxz == 0) ////Phê duyệt Dài hạn
                 {
                     var listcq = GetOrderAuditYZListbyYzxz(user.OrganizeId, patList, Convert.ToInt32(EnumYzxz.Cq));
                     if (listcq.Count > 0)
@@ -385,7 +385,7 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
                     }
                 }
 
-                if (Yzxz == Convert.ToInt32(EnumYzxz.Ls) || Yzxz == 0) //Phê duyệtTạm thời
+                if (Yzxz == Convert.ToInt32(EnumYzxz.Ls) || Yzxz == 0) //Phê duyệt Tạm thời
                 {
                     var listls = GetOrderAuditYZListbyYzxz(user.OrganizeId, patList, Convert.ToInt32(EnumYzxz.Ls));
                     if (listls.Count > 0)
@@ -423,7 +423,7 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
 
             string liscqyfzt = "";
             string lislsyfzt = "";
-            //string PSidcq = "";  //xếptrừcầnlàmchưalàm test dathử,dathửdươngtính
+            //string PSidcq = "";  //xếp trừ cần làm chưa làm test da thử, da thử dương tính
             //string PSidls = "";
             //string pssql = "";
             //string psretid = "";
@@ -434,7 +434,7 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
 
                 listls = string.Join("','", orderList.Where(p => p.yzxz == (int)EnumYzxz.Ls && p.zh1 == null).Select(p => p.yzid).Distinct().ToArray());
                 jyjcyzhs = string.Join("','", orderList.Where(p => p.yzxz == (int)EnumYzxz.Ls && p.zh1 != null).Select(p => p.zh1).Distinct().ToArray());
-                //Cách dùnggắnBộ mẫu
+                //Cách dùng gắn Bộ mẫu
                 liscqyfzt = string.Join("','", orderList.Where(p => p.yzxz == (int)EnumYzxz.Cq && p.yfztbs != null).Select(p => p.yfztbs).Distinct().ToArray());
                 lislsyfzt = string.Join("','", orderList.Where(p => p.yzxz == (int)EnumYzxz.Ls && p.yfztbs != null).Select(p => p.yfztbs).Distinct().ToArray());
 
@@ -678,7 +678,7 @@ Id in('" + listls + @"')  ;";
             }
             catch (Exception ex)
             {
-                throw new FailedException("Phê duyệtGửithất bại，" + ex.InnerException);
+                throw new FailedException("Phê duyệt Gửi thất bại," + ex.InnerException);
             }
 
         }
@@ -702,7 +702,7 @@ Id in('" + listls + @"')  ;";
             {
                 strkfwhere = " and a.yzlx<>" + (int)EnumYzlx.rehab;
             }
-            //văn bảnY lệnhMặc địnhBình thườngchờduyệtPhê duyệtcủasaulàThực hiệnTrạng thái
+            //văn bản Y lệnh Mặc định Bình thường chờ duyệt Phê duyệt của sau là Thực hiện Trạng thái
             try
             {
                 sql = "";
@@ -712,7 +712,7 @@ Id in('" + listls + @"')  ;";
                             new SqlParameter("@account", user.UserCode),
                             new SqlParameter("@OrganizeId", user.OrganizeId)
                 };
-                if (Yzxz == Convert.ToInt32(EnumYzxz.Cq) || Yzxz == 0) //Phê duyệtDài hạn
+                if (Yzxz == Convert.ToInt32(EnumYzxz.Cq) || Yzxz == 0) //Phê duyệt Dài hạn
                 {
                     //dathử
                     //                    pssql = @"select Id yzid
@@ -756,7 +756,7 @@ from zy_cqyz a
 where a.OrganizeId=@OrganizeId and a.zt=1 and yzzt in(0,3) and zyh in(select col from dbo.f_split(@zyh,',') where col>'')  " + strkfwhere;
                 }
 
-                if (Yzxz == Convert.ToInt32(EnumYzxz.Ls) || Yzxz == 0) //Phê duyệtTạm thời
+                if (Yzxz == Convert.ToInt32(EnumYzxz.Ls) || Yzxz == 0) //Phê duyệt Tạm thời
                 {
                     //                    pssql = @"select Id yzid
                     //from zy_lsyz c with(nolock)
@@ -810,7 +810,7 @@ where a.OrganizeId=@OrganizeId and a.zt=1 and yzzt in(0,3) and zyh in(select col
             }
             catch (Exception ex)
             {
-                throw new FailedException("Phê duyệtGửithất bại，" + ex.InnerException);
+                throw new FailedException("Phê duyệt Gửi thất bại," + ex.InnerException);
             }
 
             return psretid;
@@ -819,7 +819,7 @@ where a.OrganizeId=@OrganizeId and a.zt=1 and yzzt in(0,3) and zyh in(select col
         #endregion
 
         /// <summary>
-        /// Phê duyệtDài hạn/Tạm thời/Tất cả 
+        /// Phê duyệt Dài hạn/Tạm thời/Tất cả 
         /// </summary>
         /// <param name="user"></param>
         /// <param name="patList"></param>
@@ -836,7 +836,7 @@ where a.OrganizeId=@OrganizeId and a.zt=1 and yzzt in(0,3) and zyh in(select col
         //    {
         //        strkfwhere = " and a.yzlx<>" + (int)EnumYzlx.rehab;
         //    }
-        //    //văn bảnY lệnhMặc địnhBình thườngchờduyệtPhê duyệtcủasaulàThực hiệnTrạng thái
+        //    //văn bản Y lệnh Mặc định Bình thường chờ duyệt Phê duyệt của sau là Thực hiện Trạng thái
         //    try
         //    {
         //        sql = "";
@@ -846,7 +846,7 @@ where a.OrganizeId=@OrganizeId and a.zt=1 and yzzt in(0,3) and zyh in(select col
         //                            new SqlParameter("@account", user.UserCode),
         //                            new SqlParameter("@OrganizeId", user.OrganizeId)
         //                };
-        //        if (Yzxz == Convert.ToInt32(EnumYzxz.Cq) || Yzxz == 0) //Phê duyệtDài hạn
+        //        if (Yzxz == Convert.ToInt32(EnumYzxz.Cq) || Yzxz == 0) //Phê duyệt Dài hạn
         //        {
 
         //            sql += @"
@@ -862,7 +862,7 @@ where a.OrganizeId=@OrganizeId and a.zt=1 and yzzt in(0,3) and zyh in(select col
         //where a.OrganizeId=@OrganizeId and a.zt=1 and yzzt in(0,3) and zyh in(select col from dbo.f_split(@zyh,',') where col>'')  " + strkfwhere;
         //        }
 
-        //        if (Yzxz == Convert.ToInt32(EnumYzxz.Ls) || Yzxz == 0) //Phê duyệtTạm thời
+        //        if (Yzxz == Convert.ToInt32(EnumYzxz.Ls) || Yzxz == 0) //Phê duyệt Tạm thời
         //        {
         //            sql += @"
         //update a
@@ -889,7 +889,7 @@ where a.OrganizeId=@OrganizeId and a.zt=1 and yzzt in(0,3) and zyh in(select col
 
         //        //                if (hljbList != null && hljbList.Count <= 0) return;
         //        //                sql = "";
-        //        //                //Cập nhậtNhập việnThông tin bệnh nhânCấp độ chăm sóc
+        //        //                //Cập nhật Nhập viện Thông tin bệnh nhân Cấp độ chăm sóc
         //        //                foreach (var pathljb in hljbList)
         //        //                {
         //        //                    sql += @"update a
@@ -903,12 +903,12 @@ where a.OrganizeId=@OrganizeId and a.zt=1 and yzzt in(0,3) and zyh in(select col
         //    }
         //    catch (Exception ex)
         //    {
-        //        throw new FailedException("Phê duyệtGửithất bại," + ex.InnerException);
+        //        throw new FailedException("Phê duyệt Gửi thất bại," + ex.InnerException);
         //    }
 
         //}
 
-        //dathửnhậpcây
+        //da thử nhập cây
         public IList<SkintestVO> SkintestVO(string orgId, string keyword, string selectkey)
         {
             string sqlwhere = "";
@@ -923,7 +923,7 @@ where a.OrganizeId=@OrganizeId and a.zt=1 and yzzt in(0,3) and zyh in(select col
 
             if (string.IsNullOrWhiteSpace(selectkey))
             {
-                throw new FailedException("Vui lòng chọnTra cứuLoại");
+                throw new FailedException("Vui lòng chọn Tra cứu Loại");
             }
             else if (selectkey == "0")  //chưanhập
             {
@@ -1088,11 +1088,11 @@ and  a.ispscs='1' " + sqlwhere;
             }
             catch (Exception ex)
             {
-                throw new FailedException("Phê duyệtGửithất bại，" + ex.InnerException);
+                throw new FailedException("Phê duyệt Gửi thất bại," + ex.InnerException);
             }
         }
 
-        //duyệtlôNhắc nhởlàKhônglàm test dathử
+        //duyệt lô Nhắc nhở là Không làm test da thử
         public IList<DisplayinformationVO> Displayinformation(string patList, string orgId)
         {
             string sql = @"select a.Id yzid,a.zyh,a.hzxm xm,a.xmmc,(case when a.ispscs='1'  and b.Result is null then 'Chưa nhập' when b.Result<>'' then b.Remark  end) ispscs,b.Result,
@@ -1115,7 +1115,7 @@ where a.OrganizeId=@orgId and a.Id in(select col from dbo.f_split(@patList,',') 
 
         }
         /// <summary>
-        /// dathửnhập
+        /// da thử nhập
         /// </summary>
         /// <param name="user"></param>
         /// <param name="yzids"></param>
@@ -1123,7 +1123,7 @@ where a.OrganizeId=@orgId and a.Id in(select col from dbo.f_split(@patList,',') 
         {
             if (string.IsNullOrWhiteSpace(yzids))
             {
-                throw new FailedException("Vui lòng chọndathửMục");
+                throw new FailedException("Vui lòng chọn da thử Mục");
             }
             string sql = "select * from xt_gmxx with(nolock) where OrganizeId=@orgId and yzid in(select col from dbo.f_split( @yzid,',')) and zt='1'";
             var exist = FindList<AllergyEntity>(sql, new SqlParameter[] {
@@ -1132,7 +1132,7 @@ where a.OrganizeId=@orgId and a.Id in(select col from dbo.f_split(@patList,',') 
             });
             if (exist != null && exist.Count > 0)
             {
-                throw new FailedException("bộphútMụcđãnhập，vui lòngLàm mớitrangmặttrọngthử");
+                throw new FailedException("bộ phút Mục đã nhập, vui lòng Làm mới trang mặt trọng thử");
             }
             try
             {
@@ -1191,7 +1191,7 @@ and not exists(select 1 from xt_gmxx c with(nolock) where a.OrganizeId=c.Organiz
             {
                 if (cq.yzzt != (int)EnumYzzt.Ds)
                 {
-                    throw new FailedException("Y lệnhĐã duyệtthông qua，khôngphương phápSửakếtnếu");
+                    throw new FailedException("Y lệnh Đã duyệt thông qua, không phương pháp Sửa kết nếu");
                 }
             }
             else
@@ -1201,7 +1201,7 @@ and not exists(select 1 from xt_gmxx c with(nolock) where a.OrganizeId=c.Organiz
                 {
                     if (ls.yzzt != (int)EnumYzzt.Ds)
                     {
-                        return "Y lệnhĐã duyệtthông qua，khôngphương phápsửakết quả";
+                        return "Y lệnh Đã duyệt thông qua, không phương pháp sửa kết quả";
                     }
                 }
             }
@@ -1257,7 +1257,7 @@ newid(), '" + item.blh + "', '" + item.hzxm + "', '" + item.sex + "', '" + item.
 
         }
         /// <summary>
-        /// Nhập việnY lệnhphát thuốcTra cứu
+        /// Nhập viện Y lệnh phát thuốc Tra cứu
         /// </summary>
         /// <param name="xm"></param>
         /// <param name="bqCode"></param>
@@ -1332,7 +1332,7 @@ group by zh,zyh,patientName,ypmc,id,cw,slStr,jxmc,ypgg,pcmc,ylStr,yznr,yzxzmc,zl
         }
 
         /// <summary>
-        /// thông quaNhà thuốcMãLấyKhoa
+        /// thông qua Nhà thuốc Mã Lấy Khoa
         /// </summary>
         /// <param name="ykbmCode"></param>
         /// <param name="orgId"></param>
@@ -1355,7 +1355,7 @@ AND (c.bqmc LIKE '%'+@keyword+'%' OR c.py LIKE '%'+@keyword+'%' OR a.bqCode LIKE
             return FindList<SysDeptWardRelVO>(strSql.ToString(), param.ToArray());
         }
         /// <summary>
-        /// Lưuchuẩn bị thuốcPhiếu
+        /// Lưu chuẩn bị thuốc Phiếu
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orgId"></param>
@@ -1440,7 +1440,7 @@ AND (c.bqmc LIKE '%'+@keyword+'%' OR c.py LIKE '%'+@keyword+'%' OR a.bqCode LIKE
                     };
                     db.Commit();
                 }
-                if (Djnr.issavesubmit == "1")//GửiTrạng tháigửichoNhà thuốc
+                if (Djnr.issavesubmit == "1")//Gửi Trạng thái gửi cho Nhà thuốc
                 {
                     Djnr.bqbm = Djnr.rkbm;
                     foreach (var byxx in Djnr.mx)
@@ -1454,13 +1454,13 @@ AND (c.bqmc LIKE '%'+@keyword+'%' OR c.py LIKE '%'+@keyword+'%' OR a.bqCode LIKE
                     var apires = SiteYfykAPIHelper.Request<APIRequestHelper.DefaultResponse>("/api/Stock/PrepareMedicine", request);
                     if (apires.code == APIRequestHelper.ResponseResultCode.SUCCESS && apires.msg == "")
                     {
-                        return "LưuvàGửithành công！";
+                        return "Lưu và Gửi thành công!";
                     }
                     else {
-                        return "gọiNhà thuốcgiao diệnthất bại，vui lòngliênhệmởphát ngườiviên！";
+                        return "gọi Nhà thuốc giao diện thất bại, vui lòng liên hệ mở phát người viên!";
                     }
                 }
-                return "Khoachuẩn bị thuốcLưu thành công！";
+                return "Khoa chuẩn bị thuốc Lưu thành công!";
             }
             catch (Exception ex)
             {
@@ -1468,7 +1468,7 @@ AND (c.bqmc LIKE '%'+@keyword+'%' OR c.py LIKE '%'+@keyword+'%' OR a.bqCode LIKE
             }
         }
         /// <summary>
-        /// Gửichuẩn bị thuốcPhiếu
+        /// Gửi chuẩn bị thuốc Phiếu
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orgId"></param>
@@ -1490,7 +1490,7 @@ select yfbm,bqbm,ksbm,djh,shzt from  zy_bqksby where  OrganizeId=@orgId and zt='
                 var bYDjInfoDTO=FindList<BYDjInfoSubmit>(strSql.ToString(), param.ToArray());
                 if (bYDjInfoDTO == null)
                 {
-                    return "gửithất bại，phiếucứTra cứuthất bại！";
+                    return "gửi thất bại, phiếu cứ Tra cứu thất bại!";
                 }
                 BYDjInfoDTO bYDjInfo = new BYDjInfoDTO();
                 foreach (var item in bYDjInfoDTO)
@@ -1513,7 +1513,7 @@ select * from  zy_bqksbymx where  OrganizeId=@orgId and zt='1' and byId=@byId
                 bYDjInfo.mx = FindList<DjDetailDTO>(strSql2.ToString(), param2.ToArray());
                 if (bYDjInfo.mx==null)
                 {
-                    return "gửithất bại，phiếucứchi tiếtTra cứuthất bại！";
+                    return "gửi thất bại, phiếu cứ chi tiết Tra cứu thất bại!";
                 }
                 var request = new
                 {
@@ -1534,7 +1534,7 @@ select * from  zy_bqksbymx where  OrganizeId=@orgId and zt='1' and byId=@byId
                 }
                 else
                 {
-                    return "gọiNhà thuốcgiao diệnthất bại，vui lòngliênhệmởphát ngườiviên！";
+                    return "gọi Nhà thuốc giao diện thất bại, vui lòng liên hệ mở phát người viên!";
                 }
             }
             catch (Exception ex)
@@ -1543,7 +1543,7 @@ select * from  zy_bqksbymx where  OrganizeId=@orgId and zt='1' and byId=@byId
             }
         }
         /// <summary>
-        /// rútvềchuẩn bị thuốcPhiếu
+        /// rút về chuẩn bị thuốc Phiếu
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orgId"></param>
@@ -1573,7 +1573,7 @@ select * from  zy_bqksbymx where  OrganizeId=@orgId and zt='1' and byId=@byId
                 }
                 else
                 {
-                    return "gọiNhà thuốcgiao diệnthất bại，vui lòngliênhệmởphát ngườiviên！";
+                    return "gọi Nhà thuốc giao diện thất bại, vui lòng liên hệ mở phát người viên!";
                 }
             }
             catch (Exception ex)
@@ -1582,7 +1582,7 @@ select * from  zy_bqksbymx where  OrganizeId=@orgId and zt='1' and byId=@byId
             }
         }
         /// <summary>
-        /// Hủy bỏchuẩn bị thuốcPhiếu
+        /// Hủy bỏ chuẩn bị thuốc Phiếu
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orgId"></param>
@@ -1637,7 +1637,7 @@ GROUP BY s.dlmc,s.ypmc,s.ypCode,s.ypgg,s.bmdw,s.zhyz,s.bzs,s.bzdw,s.zxdw,s.pzwh,
             return FindList<DrugStockInfoVEntity>(sql, parms.ToArray());
         }
         /// <summary>
-        /// thông quaKho thuốcMãLấyphát thuốcNhà thuốc
+        /// thông qua Kho thuốc Mã Lấy phát thuốc Nhà thuốc
         /// </summary>
         /// <param name="ykbmCode"></param>
         /// <param name="organizeId"></param>
@@ -1716,7 +1716,7 @@ left join NewtouchHIS_Base.dbo.sys_department d on a.ksbm=d.code and a.OrganizeI
 
         }
         /// <summary>
-        /// Tra cứuphiếucứchi tiết
+        /// Tra cứu phiếu cứ chi tiết
         /// </summary>
         /// <param name="djId"></param>
         /// <param name="orgId"></param>
@@ -1742,7 +1742,7 @@ select a.* from zy_bqksbymx a
 
         }
         /// <summary>
-        /// Tra cứuphiếucứ
+        /// Tra cứu phiếu cứ
         /// </summary>
         /// <param name="djId"></param>
         /// <param name="orgId"></param>
@@ -1768,7 +1768,7 @@ left join NewtouchHIS_Base.dbo.sys_department d on a.ksbm=d.code and a.OrganizeI
 
         }
         /// <summary>
-         /// LấyThuốcSố lượng
+         /// Lấy Thuốc Số lượng
          /// </summary>
          /// <param name="djId"></param>
          /// <param name="orgId"></param>
@@ -1795,7 +1795,7 @@ where ypdm=@ypbm and ph=@ph and pc=@pc and OrganizeId=@orgId  and yfbmCode=@yfbm
         }
 
         /// <summary>
-        /// Lấydathửdươngtínhthông tin
+        /// Lấy da thử dương tính thông tin
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>

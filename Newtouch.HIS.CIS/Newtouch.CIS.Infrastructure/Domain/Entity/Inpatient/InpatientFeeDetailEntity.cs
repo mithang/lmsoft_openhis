@@ -8,7 +8,7 @@ namespace Newtouch.Domain.Entity
     /// <summary>
     /// Tác giả: 冬林
     /// Ngày:2018-06-28 15:37
-    /// Mô tả:Nhập việnChi phíchi tiếtkho
+    /// Mô tả: Nhập viện chi phí chi tiết kho
     /// </summary>
     [SugarTable("zy_fymxk")]
     public class InpatientFeeDetailEntity
@@ -145,12 +145,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string jzks { get; set; }
         /// <summary>
-        /// 1cố địnhđịnh0khôngcố địnhđịnh
+        /// 1 cố định 0 không cố định
         /// </summary>
         /// <returns></returns>
         public int? gdzxbz { get; set; }
         /// <summary>
-        /// -1Mục thu phí 0Thuốc
+        /// -1 Mục thu phí 0 Thuốc
         /// </summary>
         /// <returns></returns>
         public int? yzlb { get; set; }

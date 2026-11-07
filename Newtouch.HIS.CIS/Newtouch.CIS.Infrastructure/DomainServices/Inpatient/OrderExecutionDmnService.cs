@@ -99,7 +99,7 @@ namespace Newtouch.DomainServices
 
         #region Y lệnhThực hiện trangmặtTra cứu
         /// <summary>
-        /// LấychờThực hiệnY lệnhKhu bệnhcây
+        /// Lấy chờ Thực hiện Y lệnh Khu bệnh cây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -116,7 +116,7 @@ namespace Newtouch.DomainServices
             return this.FindList<InpWardPatTreeVO>(sql, new[] { new SqlParameter("@staffId", staffId) });
         }
         /// <summary>
-        /// LấychờThực hiệnY lệnhBệnh nhâncây
+        /// Lấy chờ Thực hiện Y lệnh Bệnh nhân cây
         /// </summary>
         /// <param name="staffId"></param>
         /// <returns></returns>
@@ -155,7 +155,7 @@ namespace Newtouch.DomainServices
         }
 
         /// <summary>
-        /// LấychờThực hiệnY lệnhBệnh nhâncây(góigồmvăn bảnY lệnh)
+        /// Lấy chờ Thực hiện Y lệnh Bệnh nhân cây(gói gồm văn bản Y lệnh)
         /// </summary>
         /// <param name="staffId"></param>
         /// <param name="vzxsj"></param>
@@ -196,7 +196,7 @@ group by a.organizeid, a.userid,a.staffid,a.account,a.gh,a.name ,b.bqcode,c.bqmc
         }
 
         /// <summary>
-        /// LấyphúttrangY lệnhdanh sách
+        /// Lấy phút trang Y lệnh danh sách
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -297,7 +297,7 @@ group by a.organizeid, a.userid,a.staffid,a.account,a.gh,a.name ,b.bqcode,c.bqmc
         }
 
         /// <summary>
-        /// LấyphúttrangY lệnhdanh sách(góigồmvăn bảnY lệnh)
+        /// Lấy phút trang Y lệnh danh sách(gói gồm văn bản Y lệnh)
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -340,7 +340,7 @@ FROM(
         }
 
         /// <summary>
-        /// LấyphúttrangY lệnhdanh sáchbyY lệnhTính chất/Dài hạnhoặcTạm thời tạmkhôngdùng
+        /// Lấy phút trang Y lệnh danh sáchby Y lệnh Tính chất/Dài hạn hoặc Tạm thời tạm không dùng
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="patList"></param>
@@ -368,7 +368,7 @@ FROM(
         }
 
         /// <summary>
-        /// LấyThực hiệnY lệnhApiList
+        /// Lấy Thực hiện Y lệnh ApiList
         /// </summary>
         /// <param name="orderExeList">yzid,yzxx,zyh,yzxl</param>
         /// <returns></returns>
@@ -447,7 +447,7 @@ FROM(
         }
         #endregion
 
-        #region LấyThực hiệnY lệnhApiList new 
+        #region Lấy Thực hiện Y lệnh ApiList new 
         public List<YzDetail> GetapiList(OperatorModel user, IList<ApiResponseVO> orderExeList, DateTime Vzxsj, int lyxh)
         {
             try {
@@ -522,7 +522,7 @@ FROM(
         #region Y lệnhThực hiện Thực hiệnthao tác
 
         /// <summary>
-        /// GửiThực hiện Thuốc
+        /// Gửi Thực hiện Thuốc
         /// </summary>
         /// <param name="orderList"></param>
         public string OrderExecutionSubmit(OperatorModel user, IList<YzDetail> orderExeList, int lyxh, DateTime zxrq)
@@ -550,15 +550,15 @@ FROM(
                     
                     return outParameter.Value.ToString();
                 }
-                return "T|Thực hiệnThuốcthành công";
+                return "T|Thực hiện Thuốc thành công";
             }
             catch (Exception ex)
             {
-                return "F|Thực hiệnthất bại：" + ex.InnerException;
+                return "F|Thực hiện thất bại:" + ex.InnerException;
             }
         }
         /// <summary>
-        /// Thực hiệnY lệnhthông tin ThuốcMụcThực hiện by Dài hạn/Tạm thời/Tất cả 
+        /// Thực hiện Y lệnh thông tin Thuốc Mục Thực hiện by Dài hạn/Tạm thời/Tất cả 
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orderExeList"></param>
@@ -572,7 +572,7 @@ FROM(
             {
                 if (yzxz == null || orderExeList.Count == 0)
                 {
-                    return "F|Thực hiệnthất bại：Vô hiệuThao tác，vui lòngLàm mớitrọngthử" ;
+                    return "F|Thực hiện thất bại: Vô hiệu Thao tác, vui lòng Làm mới trọng thử" ;
                 }
 
                 var zyhArr = orderExeList.Select(p => p.zyh).Distinct().ToArray();
@@ -592,16 +592,16 @@ FROM(
                 }
                 else
                 {
-                    return "F|Vô hiệuThao tác，vui lòngLàm mớitrọngthử";
+                    return "F|Vô hiệu Thao tác, vui lòng Làm mới trọng thử";
                 }
             }
             catch (Exception ex)
             {
-                return "F|Thực hiệnthất bại：" + ex.InnerException;
+                return "F|Thực hiện thất bại:" + ex.InnerException;
             }
         }
         /// <summary>
-        /// khôngtínhphí,Khoachuẩn bị thuốcmởlậpY lệnhThực hiện
+        /// không tính phí, Khoa chuẩn bị thuốc mở lập Y lệnh Thực hiện
         /// </summary>
         /// <param name="user"></param>
         /// <param name="orderExeList"></param>
@@ -633,16 +633,16 @@ FROM(
                        inParameters.ToArray());
                     return outParameter.Value.ToString();
                 }
-                return "T|Thực hiệnThuốcthành công";
+                return "T|Thực hiện Thuốc thành công";
             }
             catch (Exception ex)
             {
-                return "F|Thực hiệnthất bại：" + ex.InnerException;
+                return "F|Thực hiện thất bại:" + ex.InnerException;
             }
         }
 
         /// <summary>
-        /// Thực hiệnăn uốngChi phíMụcThực hiện(khônggóichứavăn bảnY lệnh)
+        /// Thực hiện ăn uống Chi phí Mục Thực hiện (không gói chứa văn bản Y lệnh)
         /// </summary>
         public string OrderExecutionXM(OperatorModel user, IList<ApiResponseVO> orderExeList, int lyxh, DateTime zxrq,string orgId,string medicalInsurance, int? yzxz = null)
         {
@@ -669,7 +669,7 @@ FROM(
                     }
                     else
                     {
-                        return "F|LấyThực hiệnDữ liệuthất bại，vui lòngLàm mớitrọngthử";
+                        return "F|Lấy Thực hiện Dữ liệu thất bại, vui lòng Làm mới trọng thử";
                     }
                 }
                 var yzxhlist = string.Empty;
@@ -723,12 +723,12 @@ FROM(
             }
             catch (Exception ex)
             {
-                return "F|Thực hiệnthất bại：" + ex.InnerException;
+                return "F|Thực hiện thất bại:" + ex.InnerException;
             }
         }
 
         /// <summary>
-        /// ChungMụcThực hiện
+        /// Chung Mục Thực hiện
         /// </summary>
         /// <param name="rygh"></param>
         /// <param name="orderExeList"></param>
@@ -746,7 +746,7 @@ FROM(
                 var yzxhlistbindfee = string.Empty;
                 var zyhArr = orderExeList.Select(p => p.zyh).Distinct().ToArray();
                 zyhs = string.Join(",", zyhArr);
-                if (yzxz != null)//Thực hiệnTất cả/Dài hạn,Y lệnh tạm thời
+                if (yzxz != null)//Thực hiện Tất cả/Dài hạn, Y lệnh tạm thời
                 {
                     if (!string.IsNullOrWhiteSpace(zyhs) && yzxz != null)
                     {
@@ -762,10 +762,10 @@ FROM(
                     }
                     else
                     {
-                        return "F|Vô hiệuThao tác，vui lòngLàm mớitrọngthử";
+                        return "F|Vô hiệu Thao tác, vui lòng Làm mới trọng thử";
                     }
                 }
-                else {//Thực hiệnhiện tạichọnY lệnh
+                else {//Thực hiện hiện tại chọn Y lệnh
                     foreach (var item in orderExeList)
                     {
                         //if ((item.yzlx == Convert.ToInt32(EnumYzlx.jy) || item.yzlx == Convert.ToInt32(EnumYzlx.jc)) && item.zh1 != null)
@@ -836,7 +836,7 @@ FROM(
             }
             catch (Exception ex)
             {
-                return "F|Thực hiệnthất bại：" + ex.InnerException;
+                return "F|Thực hiện thất bại:" + ex.InnerException;
             }
         }
         #endregion
@@ -862,21 +862,21 @@ FROM(
         
         #region tạoMụcChi phí
         /// <summary>
-        /// Đồng bộnhấtmớiCPOEMụcChi phí
+        /// Đồng bộ nhất mới CPOE Mục Chi phí
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="zyh"></param>
         public void SyncPatFee(string orgId, string zyh, int zxtype)
         {
-            //làKhôngKích hoạtChi phíĐồng bộnhấtmớimáychế
+            //là Không Kích hoạt Chi phí Đồng bộ nhất mới máy chế
             using (var db = new EFDbTransaction().BeginTrans())
             {
                 string sql = "";
-                if (zxtype == 0) //Đồng bộMụcChi phí
+                if (zxtype == 0) //Đồng bộ Mục Chi phí
                 {
                     sql = @" exec [NewtouchHIS_Sett]..[skd_syncxmjfbcope] @orgId=@orgId,@lqrq=@lqrq,@zyh=@zyh ";
                 }
-                else //Đồng bộ thuốcphẩmChi phí
+                else //Đồng bộ thuốc phẩm Chi phí
                 {
                     sql = @" exec [NewtouchHIS_Sett]..[skd_syncypjfbcope] @orgId=@orgId,@lqrq=@lqrq,@zyh=@zyh";
                 }
@@ -893,7 +893,7 @@ FROM(
         
         #region Thực hiệnY lệnhTra cứu
         /// <summary>
-        /// LấyThực hiệnTất cảY lệnhALLYZ
+        /// Lấy Thực hiện Tất cả Y lệnh ALLYZ
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="orgId"></param>
@@ -940,7 +940,7 @@ AND  Convert(DATE,kssj)< =Convert(DATE,@zxrq)  AND (Convert(DATE,zfsj) IS NULL O
         }
 
         /// <summary>
-        /// LấyThực hiệnTất cảY lệnhALLYZ
+        /// Lấy Thực hiện Tất cả Y lệnh ALLYZ
         /// </summary>
         /// <param name="zyh"></param>
         /// <param name="zxlx"></param>
@@ -1043,7 +1043,7 @@ and a.zyh in (select col from dbo.f_split(@zyh,',') where col>'')");
         }
 
         /// <summary>
-        /// có thểlấyThực hiệncủaY lệnhthông tin
+        /// có thể lấy Thực hiện của Y lệnh thông tin
         /// </summary>
         /// <param name="OrderList">Tzxsj,yzid,zyh,yzlx,ypmc</param>
         /// <param name="Vzxsj"></param>
@@ -1055,7 +1055,7 @@ and a.zyh in (select col from dbo.f_split(@zyh,',') where col>'')");
                 if (OrderList.Count > 0)
                 {
                     string yzidstr = string.Join("','", OrderList.Select(p => p.yzid).ToArray());
-                    //Vật tư tiêu haovật tưTồn khokiểm tra
+                    //Vật tư tiêu hao vật tư Tồn kho kiểm tra
                     List<ApiResponseVO> hclist = OrderList.Where(m =>!string.IsNullOrWhiteSpace(m.xmdm)&& m.xmdm.Contains("wz")).ToList();
                     List<HospItemFeeVO> kcxx = new List<HospItemFeeVO>(); 
                     if (hclist.Count>0) {
@@ -1064,7 +1064,7 @@ and a.zyh in (select col from dbo.f_split(@zyh,',') where col>'')");
                         foreach (var i in hcEx) {
                             var resultNum = kcxx.Where(p => p.productCode == i.productCode && p.kykc >= i.kykc).Count();
                             if (resultNum == 0)
-                                return "F|Vật tư tiêu haolà：" + i.productName + " Tồn khokhôngđủ！";
+                                return "F|Vật tư tiêu hao là:" + i.productName + " Tồn kho không đủ!";
                         }
                     }
                     string sql = @"select yzxh yzid	from zy_fymxk  with(nolock)
@@ -1075,7 +1075,7 @@ and a.zyh in (select col from dbo.f_split(@zyh,',') where col>'')");
                     }).FirstOrDefault();
                     if (ck != null && !string.IsNullOrWhiteSpace(ck.yzid))
                     {
-                        return "F|bộphútY lệnhđãThực hiện，vui lòngLàm mớitrangmặt！";
+                        return "F|bộ phút Y lệnh đã Thực hiện, vui lòng Làm mới trang mặt!";
                     }
                     foreach (var Item in OrderList)
                     {                        
@@ -1084,7 +1084,7 @@ and a.zyh in (select col from dbo.f_split(@zyh,',') where col>'')");
                            var yzentity= _InpatientLongTermOrderRepo.FindEntity(Item.yzid);
                             if (yzentity==null)
                             {
-                                return "F|tìmkhôngđếnY lệnh！";
+                                return "F|tìm không đến Y lệnh!";
                             }
                             var zxsjdaydiff = DateTimeManger.DateDiff(DateInterval.Day, DateTime.Parse(Convert.ToDateTime(Item.zxsj).ToShortDateString()), Vzxsj);
                             switch (yzentity.zxzqdw) {
@@ -1092,33 +1092,33 @@ and a.zyh in (select col from dbo.f_split(@zyh,',') where col>'')");
                                     DateTime Beforeday = Convert.ToDateTime(Vzxsj.AddDays(-1).ToShortDateString());
                                     if (Beforeday >= Convert.ToDateTime(DateTime.Now.ToShortDateString()) && Item.zxsj != null && (zxsjdaydiff / yzentity.zxzq!=1|| zxsjdaydiff % yzentity.zxzq!=0))
                                     {
-                                        return "F|Số nhập việnlà:" + Item.zyh + "củaBệnh nhân，Thuốc/Tên mụclà:" + Item.ypmc + "củaY lệnhkhông thểcách lầnThực hiện！";
+                                        return "F|Số nhập viện là:" + Item.zyh + "của Bệnh nhân, Thuốc/Tên mục là:" + Item.ypmc + "của Y lệnh không thể cách lần Thực hiện!";
                                     }
                                     break;
                                 default:break;
                             }
                         }
                     }
-                    //khóađịnhY lệnhThực hiệnTrạng thái
+                    //khóa định Y lệnh Thực hiện Trạng thái
 
-                    return "T|cócó thểThực hiệnY lệnh";
+                    return "T|có có thể Thực hiện Y lệnh";
 
                 }
                 else
                 {
-                    return "F|Không cócó thểThực hiệnY lệnh";
+                    return "F|Không có có thể Thực hiện Y lệnh";
                 }
 
             }
             catch (Exception ex)
             {
-                throw new FailedException("Thực hiệnthất bại" + ex.InnerException);
+                throw new FailedException("Thực hiện thất bại" + ex.InnerException);
             }
 
         }
 
         /// <summary>
-        /// vật tưVật tư tiêu haoTồn khokiểm tra
+        /// vật tư Vật tư tiêu hao Tồn kho kiểm tra
         /// </summary>
         /// <param name="xmCodes"></param>
         /// <param name="orgId"></param>

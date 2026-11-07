@@ -8,7 +8,7 @@ namespace Newtouch.Domain.Entity
     /// <summary>
     /// Tạo：hoàng杉杉
     /// Ngày:2018-12-12 15:37
-    /// Mô tả:Nhập việnPhí giường bệnhdùngtương ứngbảng
+    /// Mô tả: Nhập viện phí giường bệnh dùng tương ứng bảng
     /// </summary>
     [SugarTable("zy_LevelChargedy")]
     public class InpatientBedLevelChargeItemEntity
@@ -57,7 +57,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0Vô hiệu1Hiệu lực
+        /// 0 Vô hiệu 1 Hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }

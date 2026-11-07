@@ -18,14 +18,14 @@ namespace Newtouch.Repository
     /// <summary>
     /// Tác giả: 冬林
     /// Ngày:2018-06-28 13:27
-    /// Mô tả:Nhập việnbệnh nhândấu hiệu sinh tồn
+    /// Mô tả: Nhập viện bệnh nhân dấu hiệu sinh tồn
     /// </summary>
     public class InpatientVitalSignsRepo : RepositoryBase<InpatientVitalSignsEntity>, IInpatientVitalSignsRepo
     {
         /// <summary>
-        /// Mặc địnhHàm khởi tạosố
+        /// Hàm khởi tạo mặc định
         /// </summary>
-        /// <param name="databaseFactory">EFtrêndướivănNhà máy</param>
+        /// <param name="databaseFactory">Nhà máy ngữ cảnh EF</param>
         public InpatientVitalSignsRepo()
             : base()
         {
@@ -33,7 +33,7 @@ namespace Newtouch.Repository
         }
 
         /// <summary>
-        /// điều dưỡngphúttrangTra cứu
+        /// điều dưỡng phân trang tra cứu
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="orgId"></param>
@@ -113,7 +113,7 @@ namespace Newtouch.Repository
 		}
 
 		/// <summary>
-		/// điều dưỡngTra cứu(khôngphúttrang)
+		/// điều dưỡng tra cứu (không phân trang)
 		/// </summary>
 		/// <param name="pagination"></param>
 		/// <param name="orgId"></param>
@@ -148,7 +148,7 @@ where a.OrganizeId = @orgId and a.zt = '1'");
         }
 
         /// <summary>
-        /// điều dưỡngTra cứu
+        /// điều dưỡng tra cứu
         /// </summary>
         /// <param name="orgId"></param>
         /// <param name="kssj"></param>
@@ -178,29 +178,29 @@ where OrganizeId = @orgId and zt = '1'");
                 pars.Add(new SqlParameter("@searchZyh", "%" + zyh.Trim() + "%"));
             }
 
-            //theoThời gianThứ tự
+            // theo thời gian thứ tự
             sb.Append(" order by rq,sj");
 
             return this.FindList<InpatientVitalSignsEntity>(sb.ToString(), pars.ToArray());
         }
 
         /// <summary>
-        /// Lưubảngphiếu(Thêm mới,Sửa)
+        /// Lưu bảng phiếu (Thêm mới, Sửa)
         /// </summary>
-        /// <param name="entity">thựcthểđối tượng</param>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="entity">thực thể đối tượng</param>
+        /// <param name="keyValue">Khóa chính giá trị</param>
         public void SubmitForm(InpatientVitalSignsEntity entity, string keyValue)
         {
             if (!string.IsNullOrEmpty(keyValue))
             {
                 if (this.IQueryable(p => p.zyh == entity.zyh && p.rq == entity.rq && p.sj == entity.sj && p.Id != keyValue && p.zt == "1").Any())
                 {
-                    throw new FailedException("InpatientVitalSigns_Repeated_Error", "trùng lặpnhập");
+                    throw new FailedException("InpatientVitalSigns_Repeated_Error", "trùng lặp nhập");
                 }
                 var dbEntity = this.FindEntity(keyValue);
                 if (dbEntity.OrganizeId != entity.OrganizeId)
                 {
-                    throw new FailedException("Error", "Thao tácNgoại lệ");
+                    throw new FailedException("Error", "Thao tác ngoại lệ");
                 }
                 //properties
                 var ignoreProps = new List<string>() { "Id", "CreateTime", "CreatorCode" };
@@ -212,7 +212,7 @@ where OrganizeId = @orgId and zt = '1'");
             {
                 if (this.IQueryable(p => p.zyh == entity.zyh && p.rq == entity.rq && p.sj == entity.sj && p.zt == "1").Any())
                 {
-                    throw new FailedException("InpatientVitalSigns_Repeated_Error", "trùng lặpnhập");
+                    throw new FailedException("InpatientVitalSigns_Repeated_Error", "trùng lặp nhập");
                 }
                 entity.Create(true);
                 this.Insert(entity);
@@ -220,13 +220,13 @@ where OrganizeId = @orgId and zt = '1'");
         }
 
         /// <summary>
-        /// XóaDữ liệu
+        /// Xóa dữ liệu
         /// </summary>
-        /// <param name="keyValue">Khóa chínhGiá trị</param>
+        /// <param name="keyValue">Khóa chính giá trị</param>
         public void DeleteForm(string keyValue)
         {
             var dbEntity = this.FindEntity(keyValue);
-            dbEntity.zt = "0";  //Vô hiệu
+            dbEntity.zt = "0";  // Vô hiệu
             dbEntity.Modify(keyValue);
             this.Update(dbEntity);
         }

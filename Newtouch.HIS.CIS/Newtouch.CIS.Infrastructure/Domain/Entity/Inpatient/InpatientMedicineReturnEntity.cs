@@ -8,7 +8,7 @@ namespace Newtouch.Domain.Entity
     /// <summary>
     /// Tác giả: 冬林
     /// Ngày:2018-06-28 15:37
-    /// Mô tả:Nhập việntrảthuốcyêu cầukho
+    /// Mô tả: Nhập viện trả thuốc yêu cầu kho
     /// </summary>
     [SugarTable("zy_tyjl")]
     public class InpatientMedicineReturnEntity
@@ -20,26 +20,26 @@ namespace Newtouch.Domain.Entity
         [Key]
         public string Id { get; set; }
         /// <summary>
-        /// tương ứngphát thuốcghi chépId
+        /// Id ghi chép phát thuốc tương ứng
         /// </summary>
         public string fyId { get; set; }
         /// <summary>
-        /// Tổ chứcID
+        /// ID tổ chức
         /// </summary>
         /// <returns></returns>
         public string OrganizeId { get; set; }
         /// <summary>
-        /// trảthuốcthứ tựsố (dấughimột lầntrảthuốc)
+        /// Số thứ tự trả thuốc (đánh dấu một lần trả thuốc)
         /// </summary>
         /// <returns></returns>
         public decimal tyxh { get; set; }
         /// <summary>
-        /// Y lệnhthứ tựsố
+        /// Số thứ tự y lệnh
         /// </summary>
         /// <returns></returns>
         public string yzxh { get; set; }
         /// <summary>
-        /// phútnhómthứ tựsố
+        /// Số thứ tự phân nhóm
         /// </summary>
         public int? fzxh { get; set; }
         /// <summary>
@@ -53,12 +53,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string hzxm { get; set; }
         /// <summary>
-        /// Khu bệnhMã
+        /// Mã khu bệnh
         /// </summary>
         /// <returns></returns>
         public string WardCode { get; set; }
         /// <summary>
-        /// phát thuốcyêu cầuthứ tựsố
+        /// Số thứ tự yêu cầu phát thuốc
         /// </summary>
         /// <returns></returns>
         public decimal? fyqqxh { get; set; }
@@ -68,12 +68,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string ypdm { get; set; }
         /// <summary>
-        /// trảthuốcSố lượng
+        /// Số lượng trả thuốc
         /// </summary>
         /// <returns></returns>
         public int tysl { get; set; }
         /// <summary>
-        /// có thểtrảThuốcSố lượng
+        /// Số lượng thuốc có thể trả
         /// </summary>
         /// <returns></returns>
         public int ktypsl { get; set; }
@@ -88,42 +88,42 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string ypdw { get; set; }
         /// <summary>
-        /// Đơn vịhệsố
+        /// Hệ số đơn vị
         /// </summary>
         /// <returns></returns>
         public decimal? dwxs { get; set; }
         /// <summary>
-        /// Kho thuốchệsố
+        /// Hệ số kho thuốc
         /// </summary>
         /// <returns></returns>
         public decimal? ykxs { get; set; }
         /// <summary>
-        /// ThuốcĐơn giá
+        /// Đơn giá thuốc
         /// </summary>
         /// <returns></returns>
         public decimal? ypdj { get; set; }
         /// <summary>
-        /// (0 Đăng kýtrảthuốc 1 trảthuốcthành công)
+        /// (0 đăng ký trả thuốc 1 trả thuốc thành công)
         /// </summary>
         /// <returns></returns>
         public int? tyqrbz { get; set; }
         /// <summary>
-        /// trảthuốcxác nhậnthứ tựsố thaythaygốc:tyqqxh
+        /// Số thứ tự xác nhận trả thuốc thay thế tyqqxh gốc
         /// </summary>
         /// <returns></returns>
         public decimal? tyqrxh { get; set; }
         /// <summary>
-        /// trảthuốcThao tácviênMã
+        /// Mã thao tác viên trả thuốc
         /// </summary>
         /// <returns></returns>
         public string tyczydm { get; set; }
         /// <summary>
-        /// Nhà thuốctrảthuốcThao tácviênMã
+        /// Mã thao tác viên trả thuốc nhà thuốc
         /// </summary>
         /// <returns></returns>
         public string yftyczydm { get; set; }
         /// <summary>
-        /// Nhà thuốctrảthuốcNgày
+        /// Ngày trả thuốc nhà thuốc
         /// </summary>
         /// <returns></returns>
         public DateTime? yftyrq { get; set; }
@@ -148,12 +148,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0Vô hiệu1Hiệu lực
+        /// 0 Vô hiệu 1 Hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }
         /// <summary>
-        /// trảthuốcphiếusố
+        /// Số phiếu trả thuốc
         /// </summary>
         /// <returns></returns>
         public string tydh { get; set; }

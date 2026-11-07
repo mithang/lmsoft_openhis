@@ -7,8 +7,8 @@ namespace Newtouch.Domain.Entity
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày:2018-06-28 15:37
-    /// Mô tả:Y lệnh tạm thời
+    /// Ngày: 2018-06-28 15:37
+    /// Mô tả: Y lệnh tạm thời
     /// </summary>
     [SugarTable("zy_lsyz")]
     public class InpatientSTATOrderEntity
@@ -30,12 +30,12 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string zyh { get; set; }
         /// <summary>
-        /// Y lệnhsố,cùng mộtY lệnhsốtronggóichứanhiềucáiyzId
+        /// Y lệnh số, cùng một Y lệnh số trong gói chứa nhiều cái yzId
         /// </summary>
         /// <returns></returns>
         public string yzh { get; set; }
         /// <summary>
-        /// bảnđịaY lệnhphútnhómthứ tựsố
+        /// bản địa Y lệnh phút nhóm thứ tự số
         /// </summary>
         /// <returns></returns>
         public int? zh { get; set; }
@@ -61,7 +61,7 @@ namespace Newtouch.Domain.Entity
         public string pcCode { get; set; }
 
         /// <summary>
-        /// tốc độ truyền  giọt/Phút
+        /// tốc độ truyền giọt/Phút
         /// </summary>
         public int? ds { get; set; }
 
@@ -76,7 +76,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public int? zxzq { get; set; }
         /// <summary>
-        /// Chu kỳ thực hiệnĐơn vị -1:khôngquythìchu kỳ,0:ngày,1:giờ,2:Phút.Lưu ý:khilà-1khi,tuầnMã(zdm)làsốchữ(1234567)trongcủaBất kỳ vàicáisốchữ
+        /// Chu kỳ thực hiện Đơn vị -1: không quy thì chu kỳ, 0: ngày, 1: giờ, 2: Phút. Lưu ý: khi là -1 khi, tuần Mã (zdm) là số chữ (1234567) trong của Bất kỳ vài cái số chữ
         /// </summary>
         /// <returns></returns>
         public int? zxzqdw { get; set; }
@@ -96,7 +96,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string xmmc { get; set; }
         /// <summary>
-        /// Y lệnhTrạng thái 0chờduyệt,1Phê duyệt,2Thực hiện,3Hủy(DC),4Dừng
+        /// Y lệnh Trạng thái 0 chờ duyệt, 1 Phê duyệt, 2 Thực hiện, 3 Hủy (DC), 4 Dừng
         /// </summary>
         /// <returns></returns>
         public int yzzt { get; set; }
@@ -106,22 +106,22 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string dw { get; set; }
         /// <summary>
-        /// 0 Chung 1 tựchuẩn bị
+        /// 0 Chung 1 tự chuẩn bị
         /// </summary>
         /// <returns></returns>
         public int zbbz { get; set; }
         /// <summary>
-        /// Thuốc,Mụcnhậpkhi,tồn tạimỗingàySố lượng,Xuất việnmang thuốc,tồn tạiTổng lượng.văn bảnnhậpSố lượnglà0
+        /// Thuốc, Mục nhập khi, tồn tại mỗi ngày Số lượng, Xuất viện mang thuốc, tồn tại Tổng lượng. văn bản nhập Số lượng là 0
         /// </summary>
         /// <returns></returns>
         public int sl { get; set; }
         /// <summary>
-        /// Đơn vịLoại 0Đơn vị liều,1Đơn vị kho thuốc,2Đơn vị ngoại trú,3Đơn vị nhập viện,4vàohàngĐơn vị(chỉhiển thịY lệnhĐơn vịLoạilà0)
+        /// Đơn vị Loại 0 Đơn vị liều, 1 Đơn vị kho thuốc, 2 Đơn vị ngoại trú, 3 Đơn vị nhập viện, 4 vào hàng Đơn vị (chỉ hiển thị Y lệnh Đơn vị Loại là 0)
         /// </summary>
         /// <returns></returns>
         public int dwlb { get; set; }
         /// <summary>
-        /// bảnđịaLoại y lệnh 0:ThuốcY lệnh,1:Kháng sinhY lệnh,2:Kiểm traY lệnh,3:Xét nghiệmY lệnh,4:chỉhiển thịY lệnh,5:thông thườngY lệnh , 6 DừngY lệnh, 7  Xuất việnmang thuốc, 8 ăn uốngY lệnh, 9 Phẫu thuậtY lệnh   10  trongthảo dược  
+        /// bản địa Loại y lệnh 0: Thuốc Y lệnh, 1: Kháng sinh Y lệnh, 2: Kiểm tra Y lệnh, 3: Xét nghiệm Y lệnh, 4: chỉ hiển thị Y lệnh, 5: thông thường Y lệnh, 6 Dừng Y lệnh, 7 Xuất viện mang thuốc, 8 ăn uống Y lệnh, 9 Phẫu thuật Y lệnh 10 trong thảo dược  
         /// </summary>
         /// <returns></returns>
         public int yzlx { get; set; }
@@ -136,7 +136,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public DateTime? zfsj { get; set; }
         /// <summary>
-        /// DừngThao tácviênsố
+        /// Dừng Thao tác viên số
         /// </summary>
         /// <returns></returns>
         public string zfr { get; set; }
@@ -146,7 +146,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public DateTime? shsj { get; set; }
         /// <summary>
-        /// Phê duyệtThao tácviênsố
+        /// Phê duyệt Thao tác viên số
         /// </summary>
         /// <returns></returns>
         public string shr { get; set; }
@@ -166,17 +166,17 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public DateTime kssj { get; set; }
         /// <summary>
-        /// Thực hiệnNgày(Điều dưỡng)
+        /// Thực hiện Ngày (Điều dưỡng)
         /// </summary>
         /// <returns></returns>
         public DateTime? zxsj { get; set; }
         /// <summary>
-        /// chobệnh nhânThực hiệnY lệnhcủaĐiều dưỡng
+        /// cho bệnh nhân Thực hiện Y lệnh của Điều dưỡng
         /// </summary>
         /// <returns></returns>
         public string zxr { get; set; }
         /// <summary>
-        /// ThuốcLiều lượng
+        /// Thuốc Liều lượng
         /// </summary>
         /// <returns></returns>
         public decimal? ypjl { get; set; }
@@ -186,7 +186,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string ypgg { get; set; }
         /// <summary>
-        /// Dặn dònội dung
+        /// Dặn dò nội dung
         /// </summary>
         /// <returns></returns>
         public string ztnr { get; set; }
@@ -246,31 +246,31 @@ namespace Newtouch.Domain.Entity
         public string zxsjd { get; set; }
 
         public string nlmddm { get; set; }
-        // QA-phase2 (nhom B, muc 3): zy_lsyz o DB version nay KHONG co cot ztmbId
-        // (da kiem chung INFORMATION_SCHEMA ca demo lan STG; chi thieu dung cot nay),
-        // nen moi Queryable/Insert/Update qua entity nay deu loi "Invalid column
-        // name 'ztmbId'" (AdviceStop/AdviceDel). Danh dau IsIgnore thay vi doi schema
-        // demo; khong caller nao doc/ghi STAT.ztmbId (chi SQL tho o OrderExecution
-        // dung ten cot truc tiep, khong qua entity nay).
+        // QA-phase2 (nhóm B, mục 3): zy_lsyz ở DB version này KHÔNG có cột ztmbId
+        // (đã kiểm chứng INFORMATION_SCHEMA cả demo lẫn STG; chỉ thiếu đúng cột này),
+        // nên mọi Queryable/Insert/Update qua entity này đều lỗi "Invalid column
+        // name 'ztmbId'" (AdviceStop/AdviceDel). Đánh dấu IsIgnore thay vì đổi schema
+        // demo; không caller nào đọc/ghi STAT.ztmbId (chỉ SQL thô ở OrderExecution
+        // dùng tên cột trực tiếp, không qua entity này).
         [SugarColumn(IsIgnore = true)]
         public string ztmbId { get; set; }
         public string ztId { get; set; }
         public string ztmc { get; set; }
 
         /// <summary>
-        /// Kháng sinhnguyên nhân
+        /// Kháng sinh nguyên nhân
         /// </summary>
         public string kssReason { get; set; }
         /// <summary>
-        /// Loại đăng ký,truyềnđếnpacsdùng
+        /// Loại đăng ký, truyền đến pacs dùng
         /// </summary>
         public string sqlx { get; set; }
         /// <summary>
-        /// Vị tríPhương pháp
+        /// Vị trí Phương pháp
         /// </summary>
         public string bwff { get; set; }
         /// <summary>
-        /// Số phiếu,kimđốiXét nghiệmKiểm tra
+        /// Số phiếu, kim đối Xét nghiệm Kiểm tra
         /// </summary>
         public string sqdh { get; set; }
 
@@ -278,21 +278,21 @@ namespace Newtouch.Domain.Entity
 
         public string sqbz { get; set; }
         /// <summary>
-        /// PhiếuchỗlýTrạng thái(0,Đã gửi đơn 1,đãnhậnthu 2,đãHoàn thành) 
+        /// Phiếu chỗ lý Trạng thái (0, Đã gửi đơn 1, đã nhận thu 2, đã Hoàn thành) 
         /// </summary>
         public int? sqdzt { get; set; }
 
         /// <summary>
-        /// sắc hộCờ
+        /// sắc hộ Cờ
         /// </summary>
         public int? djbz { get; set; }
         /// <summary>
-        /// Xuất việnmang thuốcCờ
+        /// Xuất viện mang thuốc Cờ
         /// </summary>
         public int? cydybz { get; set; }
 
         /// <summary>
-        /// Chuyển sang tự chi trảCờ
+        /// Chuyển sang tự chi trả Cờ
         /// </summary>
         public int? zzfbz { get; set; }
         /// <summary>
@@ -300,29 +300,29 @@ namespace Newtouch.Domain.Entity
         /// </summary>
         public int? syncStatus { get; set; }
         /// <summary>
-        ///  Đơn thuốcnhãn JI tinhI JII tinhII MZ têsay
+        /// Đơn thuốc nhãn JI tinh I JII tinh II MZ tê say
         /// </summary>
         public string yztag { get; set; }
         /// <summary>
-        /// làKhôngtínhphí(0:Không khôngtínhvàoChi phíchi tiết 1:là)
+        /// là Không tính phí (0: Không không tính vào Chi phí chi tiết 1: là)
         /// </summary>
         public int? isjf { get; set; }
         /// <summary>
-        /// Thực hiệntrongCờ  1 đangởThực hiện
+        /// Thực hiện trong Cờ 1 đang ở Thực hiện
         /// </summary>
         public string zxing { get; set; }
         public string ispscs { get; set; }
         public int? ztsl { get; set; }
         /// <summary>
-        /// Mục thu phíBộ mẫunhận dạng
+        /// Mục thu phí Bộ mẫu nhận dạng
         /// </summary>
         public string dcztbs { get; set; }
         /// <summary>
-        /// Cách dùng thuốctương ứngMục thu phíBộ mẫu
+        /// Cách dùng thuốc tương ứng Mục thu phí Bộ mẫu
         /// </summary>
         public string yfztbs { get; set; }
         /// <summary>
-        /// Thuốcđếnnguồn 1:KhoaTồn kho 2:Nhà thuốc
+        /// Thuốc đến nguồn 1: Khoa Tồn kho 2: Nhà thuốc
         /// </summary>
         public int? yply { get; set; }
         /// <summary>

@@ -7,14 +7,14 @@ namespace Newtouch.Domain.Entity
 {
     /// <summary>
     /// Tác giả: 冬林
-    /// Ngày:2018-06-28 15:37
-    /// Mô tả:Y lệnh dài hạn
+    /// Ngày: 2018-06-28 15:37
+    /// Mô tả: Y lệnh dài hạn
     /// </summary>
     [SugarTable("zy_bqksby")]
     public class PreparationdrugsEntity
     {
         /// <summary>
-        /// Khóa chínhID
+        /// Khóa chính ID
         /// </summary>
         [Key]
         public string Id { get; set; }
@@ -43,7 +43,7 @@ namespace Newtouch.Domain.Entity
 
 
         /// <summary>
-        /// Sửa cuốiNgười dùng
+        /// Sửa cuối Người dùng
         /// </summary>
         public string LastModifierCode { get; set; }
         /// <summary>

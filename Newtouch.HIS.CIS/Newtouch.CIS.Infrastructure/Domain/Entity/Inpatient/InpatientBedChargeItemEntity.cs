@@ -8,7 +8,7 @@ namespace Newtouch.Domain.Entity
     /// <summary>
     /// Tác giả: 冬林
     /// Ngày:2018-06-28 15:37
-    /// Mô tả:Nhập việnPhí giường bệnhdùnggắn
+    /// Mô tả: Nhập viện phí giường bệnh dùng gắn
     /// </summary>
     [SugarTable("zy_cwbdfy")]
     public class InpatientBedChargeItemEntity
@@ -80,7 +80,7 @@ namespace Newtouch.Domain.Entity
         /// <returns></returns>
         public string LastModifierCode { get; set; }
         /// <summary>
-        /// 0Vô hiệu1Hiệu lực
+        /// 0 Vô hiệu 1 Hiệu lực
         /// </summary>
         /// <returns></returns>
         public string zt { get; set; }
