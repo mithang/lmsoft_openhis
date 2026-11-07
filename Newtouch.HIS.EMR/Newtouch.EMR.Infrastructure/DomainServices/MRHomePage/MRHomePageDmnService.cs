@@ -56,13 +56,13 @@ namespace Newtouch.EMR.DomainServices.MRHomePage
             List<SugarParameter> para = new List<SugarParameter>();
             para.Add(new SugarParameter("@orgId", orgId));
 
-            // FIX-2 C2-B4 (sua loi FIX-2B): mr_dic_common chi co o DB MRMS, khong
-            // co o DB EMR; [dbo] trong context EMR luon loi 'Invalid object name'.
-            // Di qua DbNames sang DB MRMS (STG thi Newtouch_MRMS_STG), khong tao
-            // bang moi, khong doi schema. Chon cach nay thay vi luoi rong vi
-            // YLFKFS la du lieu hien thi that cua trang dau. LUU Y: comment giai
-            // thich PHAI o ngoai chuoi SQL — ban FIX-2 dat no trong chuoi verbatim
-            // nen cac dong sau dong '--' tro thanh SQL tho va gay loi cu phap
+            // FIX-2 C2-B4 (sửa lỗi FIX-2B): mr_dic_common chỉ có ở DB MRMS, không
+            // có ở DB EMR; [dbo] trong context EMR luôn lỗi 'Invalid object name'.
+            // Đi qua DbNames sang DB MRMS (STG thì Newtouch_MRMS_STG), không tạo
+            // bảng mới, không đổi schema. Chọn cách này thay vì lưới rỗng vì
+            // YLFKFS là dữ liệu hiển thị thật của trang đầu. LƯU Ý: comment giải
+            // thích PHẢI ở ngoài chuỗi SQL — bản FIX-2 đặt nó trong chuỗi verbatim
+            // nên các dòng sau dòng '--' trở thành SQL thô và gây lỗi cú pháp
             // 'Incorrect syntax near context'.
             string sql = @"select a.Id,b.ItemName YLFKFS,a.JKKH,a.ZYCS,a.BAH,a.ZYH,a.XM,a.XB,a.NL,a.RYTJ,convert(varchar(20),a.RYSJ,120)RYSJ,convert(varchar(20),a.CYSJ,120)CYSJ,
 c.Name RYKB,d.Name CYKB,a.MZZD,a.bazt,datediff(dd,a.CYSJ,getdate()) cyts
@@ -475,9 +475,9 @@ order by SSOrder ";
                         zdety.BAH = v.BAH;
                         zdety.ZYH = v.ZYH;
                         zdety.OrganizeId = orgId;
-                        // QA-phase2: nhanh INSERT truoc day khong bao gio set
-                        // CreatorCode (cot NOT NULL) nen luon fail; Id do
-                        // RepositoryBase.EnsureStringKey tu sinh Guid.
+                        // QA-phase2: nhánh INSERT trước đây không bao giờ set
+                        // CreatorCode (cột NOT NULL) nên luôn fail; Id do
+                        // RepositoryBase.EnsureStringKey tự sinh Guid.
                         zdety.CreatorCode = userCode;
                         zdety.CreateTime = DateTime.Now;
                         zdety.RYBQ = v.RYBQ;

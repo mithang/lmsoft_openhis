@@ -518,13 +518,13 @@ namespace Newtouch.EMR.DomainServices
 
         public void TbDataSavebyWriter(IList<BlHljlData> data, string ksrq, string jsrq)
         {
-            // QA-phase2: tham so hoa bulk INSERT (truoc day noi truc tiep gia tri
-            // nhap tu DCSoft document — dau ' trong du lieu dieu duong pha vo SQL).
-            // null -> "" de khop noi chuoi cu (C# concat null thanh "").
-            // Chia nho moi lenh 50 dong (25 param/dong = 1250 < gioi han 2100).
-            // LUU Y THAY DOI HANH VI CO CHU Y: vong lap cu gan lai sqlval (=,
-            // khong phai +=) nen thuc te chi insert DONG CUOI; ban nay insert
-            // DU tat ca cac dong nhu y do union-all goc dinh lam.
+            // QA-phase2: tham số hóa bulk INSERT (trước đây nối trực tiếp giá trị
+            // nhập từ DCSoft document — dấu ' trong dữ liệu điều dưỡng phá vỡ SQL).
+            // null -> "" để khớp nối chuỗi cũ (C# concat null thành "").
+            // Chia nhỏ mỗi lệnh 50 dòng (25 param/dòng = 1250 < giới hạn 2100).
+            // LƯU Ý THAY ĐỔI HÀNH VI CÓ CHỦ Ý: vòng lặp cũ gán lại sqlval (=,
+            // không phải +=) nên thực tế chỉ insert DÒNG CUỐI; bản này insert
+            // ĐỦ tất cả các dòng như ý đồ union-all gốc định làm.
             if (data.Count > 0)
             {
                 const string sqlHead = @"INSERT INTO [dbo].[bl_hljldata]

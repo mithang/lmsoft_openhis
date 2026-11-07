@@ -36,16 +36,16 @@ namespace Newtouch.CIS.Web.Areas.SystemManage.Controllers
             this._outpatientConsultDmnService = outpatientConsultDmnService;
         }
 
-        // FIX gstack T-23: SysBaseDataController la controller du lieu (chi co
-        // endpoint JSON), khong co view Index — goc cung vay. Menu DB CIS
-        // (15 dong SystemManage) KHONG co dong nao tro toi BaseData/Index,
-        // nen khong tao view Index gia. Ke thua Index() cua base truoc day
-        // tra JSON view-not-found; chuyen huong toi thieu ve trang
-        // SystemManage that dang chay ma chinh CIS Home dang link toi
-        // (AuxiliaryDictionary/Index). Dung Redirect literal: route "default"
-        // trong Program.cs dang ky TRUOC route "areas" nen RedirectToAction
-        // (ke ca kem area) sinh URL khong area + area thanh query (da kiem
-        // chung live STG: /AuxiliaryDictionary?area=SystemManage).
+        // FIX gstack T-23: SysBaseDataController là controller dữ liệu (chỉ có
+        // endpoint JSON), không có view Index — gốc cũng vậy. Menu DB CIS
+        // (15 dòng SystemManage) KHÔNG có dòng nào trỏ tới BaseData/Index,
+        // nên không tạo view Index giả. Kế thừa Index() của base trước đây
+        // trả JSON view-not-found; chuyển hướng tối thiểu về trang
+        // SystemManage thật đang chạy mà chính CIS Home đang link tới
+        // (AuxiliaryDictionary/Index). Dùng Redirect literal: route "default"
+        // trong Program.cs đăng ký TRƯỚC route "areas" nên RedirectToAction
+        // (kể cả kèm area) sinh URL không area + area thành query (đã kiểm
+        // chứng live STG: /AuxiliaryDictionary?area=SystemManage).
         public override IActionResult Index()
         {
             return Redirect("/SystemManage/AuxiliaryDictionary/Index");

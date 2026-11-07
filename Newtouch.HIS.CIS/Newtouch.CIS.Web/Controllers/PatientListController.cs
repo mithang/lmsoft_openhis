@@ -57,15 +57,15 @@ namespace Newtouch.CIS.Web.Controllers
             this._medicalRecordDmnService = medicalRecordDmnService;
             this._treatmentDmnService = treatmentDmnService;
             this._inpatientPatientDiagnosisRepo = inpatientPatientDiagnosisRepo;
-            // FIX-2 B-CIS-04: truong nay truoc day KHONG BAO GIO duoc gan (constructor
-            // khong co tham so tuong ung, DI khong the inject field) nen moi lan goi
-            // SelectNotYetTreateList deu NRE o visitDeptSetRepo.SelectData.
+            // FIX-2 B-CIS-04: trường này trước đây KHÔNG BAO GIỜ được gán (constructor
+            // không có tham số tương ứng, DI không thể inject field) nên mỗi lần gọi
+            // SelectNotYetTreateList đều NRE ở visitDeptSetRepo.SelectData.
             this.visitDeptSetRepo = visitDeptSetRepo;
 
         }
-        // QA-phase2 CIS-01: khong co Views/PatientList/Index.cshtml nen
-        // Index() ke thua tu base tra JSON "view not found". Redirect ve
-        // action danh sach that dang chay (PatientList) thay vi bia view moi.
+        // QA-phase2 CIS-01: không có Views/PatientList/Index.cshtml nên
+        // Index() kế thừa từ base trả JSON "view not found". Redirect về
+        // action danh sách thật đang chạy (PatientList) thay vì bịa view mới.
         [HttpGet]
         public override IActionResult Index()
         {
@@ -153,10 +153,10 @@ namespace Newtouch.CIS.Web.Controllers
         /// <returns></returns>
         public IActionResult SelectNotYetTreateList(Pagination pagination, string keyword, int mjzbz,bool? zzhz)
         {
-            // FIX-2 B-CIS-04: guard dung cho — pagination null (GET khong tham so)
-            // thi tao moi thay vi NRE o pagination.sidx; API Sett tra null (host
-            // chua cau hinh / khong toi duoc) thi tra loi giao dien that bai chu
-            // khong NRE o apiResp.data; list null thi luoi rong dung dang.
+            // FIX-2 B-CIS-04: guard đúng chỗ — pagination null (GET không tham số)
+            // thì tạo mới thay vì NRE ở pagination.sidx; API Sett trả null (host
+            // chưa cấu hình / không tới được) thì trả lời giao diện thất bại chứ
+            // không NRE ở apiResp.data; list null thì lưới rỗng đúng dạng.
             pagination = pagination ?? new Pagination();
             // C130: rows <= 0 thi phep chia Count/rows o cuoi action nem DivideByZeroException.
             if (pagination.rows.HasValue && pagination.rows.Value <= 0)
@@ -280,7 +280,7 @@ namespace Newtouch.CIS.Web.Controllers
             var tlist = new
             {
                 rows = apiRespList,
-                // C207: chia decimal TRUOC Ceiling (truoc day int/int cat phan du -> total=0 khi Count<rows); rows null giu 0 nhu cu.
+                // C207: chia decimal TRƯỚC Ceiling (trước đây int/int cắt phần dư -> total=0 khi Count<rows); rows null giữ 0 như cũ.
                 total = pagination.rows.HasValue ? Math.Ceiling(Convert.ToDecimal(apiRespList.Count) / pagination.rows.Value) : 0,
                 page = apiResp.data.pagination?.page ?? pagination.page,
                 records = apiRespList.Count
@@ -697,7 +697,7 @@ namespace Newtouch.CIS.Web.Controllers
 			var tlist = new
 			{
 				rows = apiRespList,
-				// C207: chia decimal TRUOC Ceiling (truoc day int/int cat phan du -> total=0 khi Count<rows); rows null giu 0 nhu cu.
+				// C207: chia decimal TRƯỚC Ceiling (trước đây int/int cắt phần dư -> total=0 khi Count<rows); rows null giữ 0 như cũ.
 				total = pagination.rows.HasValue ? Math.Ceiling(Convert.ToDecimal(apiRespList.Count) / pagination.rows.Value) : 0,
 				page = 1,
 				records = apiRespList.Count

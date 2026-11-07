@@ -285,10 +285,10 @@ AND wz.Id=@Id
                 sql.AppendLine("SELECT @tjwzCount=COUNT(wztjId) FROM ( ");
                 sql.AppendLine("SELECT DISTINCT tj.wztjId ");
                 sql.AppendLine("FROM dbo.wz_priceAdjustment(NOLOCK) tj ");
-                // QA-phase2: tham so hoa cac gia tri enum int + ago (truoc day
-                // noi truc tiep vao SQL). Gia tri enum truyen dang string de
-                // giu nguyen phep so sanh zt='1' nhu ban cu; ago truyen int
-                // cho DATEADD. Khong doi ngu nghia truy van.
+                // QA-phase2: tham số hóa các giá trị enum int + ago (trước đây
+                // nối trực tiếp vào SQL). Giá trị enum truyền dạng string để
+                // giữ nguyên phép so sánh zt='1' như bản cũ; ago truyền int
+                // cho DATEADD. Không đổi ngữ nghĩa truy vấn.
                 sql.AppendLine("INNER JOIN dbo.rel_productWarehouse(NOLOCK) rpw ON rpw.productId=tj.productId AND rpw.warehouseId=tj.warehouseId AND rpw.zt=@enable ");
                 sql.AppendLine("WHERE tj.zxbz=@tjAlready and tj.warehouseId=@warehouseId AND tj.OrganizeId=@OrganizeId AND tj.zt=@enable AND tj.zxsj>=DATEADD(DAY, @ago, GETDATE()) ");
                 sql.AppendLine(") a ");

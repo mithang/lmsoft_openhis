@@ -19,9 +19,9 @@ namespace Newtouch.EMR.API
     /// - Token validation: unless the action carries [IgnoreTokenDecrypt], the request
     ///   must carry a token previously issued by SaveIdentity (header "token" or the
     ///   request's Token field when present); an unknown/missing token yields FAIL.
-    ///   FIX-2: goc FrameworkBase.API mang Token trong BODY (RequestBase.Token,
-    ///   mirror o PDS/MRMS/OR); ban port EMR truoc day lam mat truong nay nen
-    ///   body token bi bo qua — nay khoi phuc (header uu tien, body fallback).
+    ///   FIX-2: gốc FrameworkBase.API mang Token trong BODY (RequestBase.Token,
+    ///   mirror ở PDS/MRMS/OR); bản port EMR trước đây làm mất trường này nên
+    ///   body token bị bỏ qua — nay khôi phục (header ưu tiên, body fallback).
     /// - SaveIdentity stores the identity JSON in Redis with a 2-hour expiry and
     ///   returns a fresh Guid token. The original expiry/key format is not in source;
     ///   key "EMR:ApiIdentity:{token}" is this port's own convention.
@@ -101,9 +101,9 @@ namespace Newtouch.EMR.API
             var resp = new DefaultResponse();
             try
             {
-                // FIX-2: giai identity tu token trong BODY (RequestBase.Token)
-                // truoc khi kiem tra, de client gui token dung contract goc
-                // khong bi danh rot; header van duoc uu tien trong ResolveIdentity.
+                // FIX-2: giải identity từ token trong BODY (RequestBase.Token)
+                // trước khi kiểm tra, để client gửi token đúng contract gốc
+                // không bị đánh rớt; header vẫn được ưu tiên trong ResolveIdentity.
                 _requestIdentity = ignoreTokenDecrypt
                     ? null
                     : ResolveIdentity((request as RequestBase)?.Token);

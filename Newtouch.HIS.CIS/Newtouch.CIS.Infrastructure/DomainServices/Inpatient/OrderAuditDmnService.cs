@@ -33,12 +33,12 @@ namespace Newtouch.DomainServices
         public readonly IInpatientSTATOrderRepo _InpatientSTATOrderRepo;
         private readonly ISysConfigRepo _sysConfigRepo;
         private readonly IAllergyRepo _allergyRepo;
-        // QA-phase2 (nhom B, muc 1): _allergyRepo truoc day khai bao nhung khong bao
-        // gio duoc gan (ctor goc cua vendor cung vay), nen Inputskintestresults va
-        // Enteragain NRE ngay tai FindEntity dau tien du controller/view van goi
+        // QA-phase2 (nhóm B, mục 1): _allergyRepo trước đây khai báo nhưng không bao
+        // giờ được gán (ctor gốc của vendor cũng vậy), nên Inputskintestresults và
+        // Enteragain NRE ngay tại FindEntity đầu tiên dù controller/view vẫn gọi
         // live (NurseManage/OrderAuditController + InputresultsSkintest.cshtml).
-        // IAllergyRepo da dang ky DI san o CIS Web/API Program.cs nen chi can them
-        // tham so ctor, khong mo them duong moi.
+        // IAllergyRepo đã đăng ký DI sẵn ở CIS Web/API Program.cs nên chỉ cần thêm
+        // tham số ctor, không mở thêm đường mới.
         public OrderAuditDmnService(IInpatientLongTermOrderRepo InpatientLongTermOrderRepo,
                                     IInpatientSTATOrderRepo InpatientSTATOrderRepo,
                                     IAllergyRepo allergyRepo)
@@ -457,10 +457,10 @@ and a.OrganizeId=@orgId and a.yzlx =@kfyz and zxksdm=@zxks  AND Convert(datetime
                 //        listcq += item.yzid + "','";                        
                 //    }
                 //}
-                // QA-phase2 (nhom B, muc 5): tham so hoa 2 cau IN nay. Gia tri zh1 /
-                // yfztbs den tu orderList do client POST (khong phai chi noi bo DB),
-                // nen noi chuoi cu cho phep chen SQL qua dau '. Giu nguyen ngu nghia:
-                // union all 2 select, cung dieu kien OrganizeId/zt, cung thu tu.
+                // QA-phase2 (nhóm B, mục 5): tham số hóa 2 câu IN này. Giá trị zh1 /
+                // yfztbs đến từ orderList do client POST (không phải chỉ nội bộ DB),
+                // nên nối chuỗi cũ cho phép chèn SQL qua dấu '. Giữ nguyên ngữ nghĩa:
+                // union all 2 select, cùng điều kiện OrganizeId/zt, cùng thứ tự.
                 var cqztArr = orderList.Where(p => p.yzxz == (int)EnumYzxz.Cq && p.zh1 != null).Select(p => p.zh1).Distinct().ToArray();
                 var cqyfArr = orderList.Where(p => p.yzxz == (int)EnumYzxz.Cq && p.yfztbs != null).Select(p => p.yfztbs).Distinct().ToArray();
                 if (cqztArr.Length > 0 || cqyfArr.Length > 0)
@@ -1054,11 +1054,11 @@ and  a.ispscs='1' " + sqlwhere;
                         }
                         else
                         {
-                            // 7-fix: tham so hoa INSERT-SELECT xt_gmxx (truoc day noi
-                            // hzxm/xmdm/xmmc/psbz/Remark/user/yzid/zyh/OrganizeId truc tiep).
-                            // Dong thoi them danh sach cot tuong minh + gia tri cancel='1'
-                            // (nhu Enteragain): ban cu khong liet ke cot ma chi select 21
-                            // gia tri cho bang 22 cot nen INSERT khong bao gio chay duoc.
+                            // 7-fix: tham số hóa INSERT-SELECT xt_gmxx (trước đây nối
+                            // hzxm/xmdm/xmmc/psbz/Remark/user/yzid/zyh/OrganizeId trực tiếp).
+                            // Đồng thời thêm danh sách cột tường minh + giá trị cancel='1'
+                            // (như Enteragain): bản cũ không liệt kê cột mà chỉ select 21
+                            // giá trị cho bảng 22 cột nên INSERT không bao giờ chạy được.
                             string sql = "insert into " + DbNames.Name("CisDb", "Newtouch_CIS") + @".dbo.xt_gmxx
     ([Id],[blh],[xm],[sex],[xmCode],[xmmc],[Result],[Remark],[CreateTime],[CreatorCode],[CreatorName],
      [LastModifyTime],[LastModifierCode],[LastModifierName],[mzzybz],[yzid],[cfmxid],[OrganizeId],[zt],[gmlx],[ypCode],[cancel])

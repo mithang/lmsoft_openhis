@@ -92,7 +92,7 @@ where a.organizeid=@orgId and a.zt='1'
             if(!string.IsNullOrWhiteSpace(keyword))
             {
                 //sql += " and (charindex(@keyword,a.XM)>0 or a.ZYH=@keyword or a.BAH=@keyword  )";
-                // 7-fix: tham so hoa LIKE con (truoc day noi keyword truc tiep vao '%...%').
+                // 7-fix: tham số hóa LIKE con (trước đây nối keyword trực tiếp vào '%...%').
                 sql += " and (charindex(@keyword,a.XM)>0 or a.ZYH=@keyword or a.BAH=@keyword or  a.XM IN (select XM from  [NewtouchHIS_Sett].[dbo].[xt_brjbxx] where py like @pykeyword) )";
 				para.Add(new SugarParameter("@keyword", keyword));
 				para.Add(new SugarParameter("@pykeyword", "%" + keyword + "%"));
@@ -181,9 +181,9 @@ where organizeid=@orgId and zyh=@zyh and zt='1' ";
                 new SugarParameter("@zyh",zyh)
             }).FirstOrDefault();
 
-            // FA-008: vo null khi khong co hang V_EMR_MrBasy; goi
-            // GetMainRecordZyFeeDetail(vo...) ben duoi gay NRE (vo.GetType()).
-            // Khoi phuc y dinh cua vendor (block comment ben duoi): bao loi ro.
+            // FA-008: vỡ null khi không có hàng V_EMR_MrBasy; gọi
+            // GetMainRecordZyFeeDetail(vo...) bên dưới gây NRE (vo.GetType()).
+            // Khôi phục ý định của vendor (block comment bên dưới): báo lỗi rõ.
             if (vo == null)
             {
                 throw new FailedException("Không tìm thấy thông tin bệnh án của bệnh nhân, vui lòng liên hệ quản trị viên.");
@@ -786,7 +786,7 @@ order by SSOrder ";
                             //Ghi đèEMR
                             try
                             {
-                                // 7-fix: tham so hoa BABAH (truoc day noi truc tiep).
+                                // 7-fix: tham số hóa BABAH (trước đây nối trực tiếp).
                                 string sql = @"update " + DbNames.Name("EmrDb", "Newtouch_EMR") + @".dbo.mr_basy set BABAH=@bah,LastModifyTime=getdate(),LastModifierCode='MRMS' where organizeid=@orgId and zyh=@zyh and zt='1'";
                                 ExecuteSqlCommand(sql, new SugarParameter[] {
                                     new SugarParameter("@orgId",orgId),
@@ -1141,7 +1141,7 @@ where organizeid=@orgId and zyh=@zyh ";
         {
             try
             {
-                // 7-fix: tham so hoa goi proc (truoc day noi orgId/kssj/jssj truc tiep).
+                // 7-fix: tham số hóa gọi proc (trước đây nối orgId/kssj/jssj trực tiếp).
                 var sql = @" exec usp_sync_basy_Exportscv @orgId,@kssj,@jssj";
                 DataTable dt = this.SqlQueryForDataTatable(sql,
                     new SugarParameter("@orgId", orgId ?? ""),
@@ -1191,7 +1191,7 @@ where organizeid=@orgId and zyh=@zyh ";
         {
             try
             {
-                // 7-fix: tham so hoa goi proc (truoc day noi orgId/kssj/jssj truc tiep).
+                // 7-fix: tham số hóa gọi proc (trước đây nối orgId/kssj/jssj trực tiếp).
                 var sql = @" exec usp_sync_basy_Exportscvfy @orgId,@kssj,@jssj";
                 DataTable dt = this.SqlQueryForDataTatable(sql,
                     new SugarParameter("@orgId", orgId ?? ""),
