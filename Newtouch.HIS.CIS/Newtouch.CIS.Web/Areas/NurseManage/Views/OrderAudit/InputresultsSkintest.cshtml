@@ -1,6 +1,6 @@
 
 @{
-    ViewBag.title = "Kết quả test daNhập";
+    ViewBag.title = "Nhập kết quả test da";
     Layout = "~/Views/Shared/_Index.cshtml";
 }
 <script src="@MvcHelper.GetStaticResourceScriptUrl("~/js/wdtree/tree.js")"></script>
@@ -83,7 +83,7 @@
                     </div>
                     <div class="btn-group">
                         <a id="btn_input" class="btn btn-primary" onclick="InputResult()" style="width:80px;">
-                            <i class="fa fa-pencil-square-o"></i>Test daNhập
+                            <i class="fa fa-pencil-square-o"></i>Nhập test da
                         </a>
                     </div>
                     <div class="btn-group">
@@ -125,7 +125,7 @@
         gridList("", "0");
         gridListYl("", "1");
 
-        //tìm kiếmThông tin bệnh nhân
+        //tìm kiếm thông tin bệnh nhân
         $('#keyword').keyup(function () {
             getBqTreeList();
         });
@@ -158,7 +158,7 @@
         var patzyh = "";
         var patzyhItem = "";
 
-        //hiện tạiĐã chọnNút cha
+        //nút cha đã chọn hiện tại
         var len = 0;
         var single = 0; //CóKhôngphiếucáicontiếtđiểm
 
@@ -234,7 +234,7 @@
         $('#gridList').newtouchLocalDataGrid(null, orderList);
     }
 
-    //liên cấpĐã chọntất cảcontiếtđiểm
+    //chọn liên cấp tất cả nút con
     function checkAllSon(node) {
         $('#BqTreeList').treeview('checkNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -244,7 +244,7 @@
         }
     }
 
-    //liên cấpHủytất cảcontiếtđiểm
+    //hủy liên cấp tất cả nút con
     function uncheckAllSon(node) {
         $('#BqTreeList').treeview('uncheckNode', node.nodeId, { silent: true });
         if (node.nodes != null && node.nodes.length > 0) {
@@ -265,15 +265,15 @@
             postData: { patList: patzyh, selectkey: selectkey },
             url: "/NurseManage/OrderAudit/Inputinformation",
             height: $(window).height() - 130,    
-            shrinkToFit: true,   //true:theo tỷ lệVDkhởi tạo độ rộng cột false:Sử dụngcolModelđộ rộng đã chỉ định
+            shrinkToFit: true,   //true: theo tỷ lệ, ví dụ khởi tạo độ rộng cột; false: sử dụng độ rộng đã chỉ định trong colModel
             autowidth: true,
             colModel: [
-                { label: 'Y lệnhID', name: 'yzid', align: 'center', width: 50, hidden: true, key: true },
+                { label: 'Y lệnh ID', name: 'yzid', align: 'center', width: 50, hidden: true, key: true },
                 { label: 'zyh', name: 'zyh', align: 'center', hidden: true },
                 { label: 'blh', name: 'blh', align: 'center', hidden: true },
                 { label: 'Tên bệnh nhân', name: 'hzxm', align: 'center', width: 80 },
-                { label: 'Test daMục', name: 'xmmc', align: 'left', width: 150 },
-                { label: 'Y lệnhSố nhóm', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } },
+                { label: 'Mục test da', name: 'xmmc', align: 'left', width: 150 },
+                { label: 'Số nhóm', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } },
                 { label: 'Tính chất y lệnh', name: 'yzxzsm', align: 'center', width: 50 },
                 { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 120, formatter: function (val) { return $.getTime({ date: val }); } },
                 //{ label: 'kếtnếuGiá trị', name: 'lrjg', align: 'center', width: 100, },
@@ -316,14 +316,14 @@
             url: "/NurseManage/OrderAudit/Inputinformation",
             height: $(window).height() - 130,
             colModel: [
-                { label: 'Y lệnhID', name: 'yzid', align: 'center', width: 50, hidden: true, key: true },
+                { label: 'Y lệnh ID', name: 'yzid', align: 'center', width: 50, hidden: true, key: true },
                 { label: 'zyh', name: 'zyh', align: 'center', hidden: true },
                 { label: 'blh', name: 'blh', align: 'center', hidden: true },
                 { label: 'yzxz', name: 'yzxz', align: 'center', hidden: true },
                 { label: 'Tên bệnh nhân', name: 'hzxm', align: 'center', width: 80 },
                 { label: 'Tính chất y lệnh', name: 'yzxzsm', align: 'center', width: 50 },
-                { label: 'Test daMục', name: 'xmmc', align: 'center', width: 150 },
-                { label: 'Y lệnhSố nhóm', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } },
+                { label: 'Mục test da', name: 'xmmc', align: 'center', width: 150 },
+                { label: 'Số nhóm', name: 'zh', align: 'center', width: 70, formatter: function (val) { if (val != null) return val; else return ""; } },
                 { label: 'Giá trị kết quả', name: 'lrjg', align: 'center', width: 50, formatter: function (val) { if ((val == "阳性" || val == "Dương tính")) return "<span style='color:red;'>" + val + "</span>"; else return val; } },
                 { label: 'Thời gian bắt đầu', name: 'kssj', align: 'center', width: 100, formatter: function (val) { return $.getTime({ date: val }); } },
                 {
@@ -339,7 +339,7 @@
                         else return "";
                     }
                 },
-                //{ label: 'Dừng/Hủy bỏThời gian', name: 'tzsj', align: 'center', width: 100, hidden: true, formatter: function (val) { if (val != null) return $.getTime({ date: val }); else return ""; } },
+                //{ label: 'Thời gian dừng/hủy bỏ', name: 'tzsj', align: 'center', width: 100, hidden: true, formatter: function (val) { if (val != null) return $.getTime({ date: val }); else return ""; } },
                 //{ label: 'thuốc gây nghiện hướng thần', name: 'yztagName', align: 'center', width: 50, hidden: true },
                 //{
                 //    label: 'CóKhôngtínhphí', name: 'isjf', align: 'center', width: 50, hidden: true, formatter: function (val) {
@@ -347,7 +347,7 @@
                 //    }
                 //},
                 { label: 'Người nhập', name: 'Creator', align: 'center', width: 50 },
-                { label: 'NhậpThời gian', name: 'CreateTime', align: 'center', width: 100, formatter: function (val) { return $.getTime({ date: val }); } },
+                { label: 'Thời gian nhập', name: 'CreateTime', align: 'center', width: 100, formatter: function (val) { return $.getTime({ date: val }); } },
                 { label: 'Người cập nhật', name: 'LastModifierName', align: 'center', width: 50 },
                 { label: 'Thời gian cập nhật', name: 'LastModifyTime', align: 'center', width: 100, formatter: function (val) { return $.getTime({ date: val }); } },
                { label: 'Mã tính chất y lệnh', name: 'yzxz', align: 'center', hidden: true },
@@ -367,7 +367,7 @@
 
         });
     }
-    //làm mớiY lệnh mới
+    //làm mới y lệnh mới
     function RefreshOrder() {
         $('#gridList').jqGrid("clearGridData");
         $('#gridListylr').jqGrid("clearGridData");
@@ -386,7 +386,7 @@
             var rowData = $("#gridList").jqGrid('getRowData', selRowIds[i]);
             //strYZID.push({ yzid: rowData.yzid, yzxz: rowData.yzxz, yzlxmc: rowData.yzlx, zyh: rowData.zyh, zh1: rowData.zh1 });
             if (rowData.psbz == null || rowData.length == 0 || rowData.psbz == "" || rowData.psbz == undefined) {
-                $.modalAlert("Vui lòng chọnKết quả test da", 'warning');
+                $.modalAlert("Vui lòng chọn kết quả test da", 'warning');
                 return;
             }
             strYZID.push({
@@ -413,7 +413,7 @@
                 }
                 else {
                     setTimeout(function () {
-                        $.modalMsg('Test daNhậpthành công', 'success');
+                        $.modalMsg('Nhập test da thành công', 'success');
                         getBqTreeList();
                     }, 1000);
 
@@ -442,7 +442,7 @@
         }
         $.modalOpen({
             id: "InpatientVitalSignsForm",
-            title: "Test daNhập",
+            title: "Nhập test da",
             url: "/NurseManage/OrderAudit/Inputresults",
             width: "400px",
             height: "200px",
@@ -458,7 +458,7 @@
                         success: function (data) {
                             $("#gridList").trigger("reloadGrid");
                             if (!!data && data.state == "success") {
-                                $.modalMsg('Test daNhậpthành công', 'success');
+                                $.modalMsg('Nhập test da thành công', 'success');
                             }
                             else if (!!data && data.state == "error") {
                                 $.modalMsg(data.message, 'error');
@@ -489,11 +489,11 @@
     function InpatientVitalSignsForm2(rowId) {
         $.modalOpen({
             //id: "InpatientVitalSignsForm1111",
-            title: "Kết quả test daNhập",
+            title: "Nhập kết quả test da",
             url: "/NurseManage/OrderAudit/Inputresults?rowData="+rowId,
             width: "400px",
             height: "200px",
-            //showleftlalbel: !!!smtzId,  //Thêm mớikhiHiển thị 'xác nhận vàĐóngNút'
+            //showleftlalbel: !!!smtzId,  //Thêm mới khi hiển thị 'xác nhận và đóng nút'
             //leftlalbelchecked: true,
             //leftlalbelcheckedasClose: false,
             //callBack: function (iframeId, isClose) {
@@ -538,7 +538,7 @@
         var rowdata = jQuery("#gridListylr").jqGrid("getRowData", keyValue);
         $.modalOpen({
             id: "PsResultForm",
-            title: "Kết quả test daNhập",
+            title: "Nhập kết quả test da",
             url: "/NurseManage/OrderAudit/Inputresults",
             width: "400px",
             height: "200px",
@@ -552,7 +552,7 @@
                         success: function (data) {
                             var s = JSON.stringify(data.message);
                             if (s == "1") {
-                                $.modalMsg('Test daNhậpthành công', 'success');
+                                $.modalMsg('Nhập test da thành công', 'success');
                                 $('#gridList').jqGrid("clearGridData");
                                 $('#gridListylr').jqGrid("clearGridData");
                                 getOrderAuditList(null, null);

@@ -136,7 +136,7 @@
     F6Text = "Lịch sử Hồ sơ",
 })
 <script>
-    var medicalInsurance = '@medicalInsurance';//cấu hình địa phương BHYT:phân biệt khu vực BHYT của bệnh viện
+    var medicalInsurance = '@medicalInsurance';//cấu hình địa phương BHYT: phân biệt khu vực BHYT của bệnh viện
     $(function () {
         $("#readCard").show();
         //$("#btkhsr").css('display', 'none');
@@ -180,7 +180,7 @@
                 {
                     label: "thẻ Quản lý", name: "", width: 100, align: 'center', formatter(val, option, row) {
 
-                        return "<a class='btn btn-default' style='width:60px;font-weight:bold;textalign:center;' onclick='CardNoInfo(" + option.rowId + ")'>khám thẻ Quản lý</a>";
+                        return "<a class='btn btn-default' style='width:60px;font-weight:bold;textalign:center;' onclick='CardNoInfo(" + option.rowId + ")'>Quản lý thẻ khám bệnh</a>";
 
                     }
                 }
@@ -277,7 +277,7 @@
             async: true,
             success: function (resp) {
                 $("#btn_search").trigger("click");
-                $.modalAlert("Sửa Thành công", 'warning');
+                $.modalAlert("Sửa thành công", 'warning');
             }
         });
     }
@@ -328,7 +328,7 @@
     function newtouch_event_f6(){
         var keyValue = $("#gridList").jqGridRowValue().blh;
         if(!!!keyValue){
-            $.modalAlert("Vui lòng chọn một Bệnh nhân", "warning");
+            $.modalAlert("Vui lòng chọn một bệnh nhân", "warning");
             return;
         }
         $.modalOpen({

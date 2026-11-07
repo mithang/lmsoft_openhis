@@ -42,7 +42,7 @@
             url: "/NurseManage/OrderAudit/Displayinformation",
             height: $(window).height() - 130,
             colModel: [
-                { label: 'Y lệnhID', name: 'yzid', align: 'center', width: 50, hidden: true, key: true },
+                { label: 'Y lệnh ID', name: 'yzid', align: 'center', width: 50, hidden: true, key: true },
                 {
                     label: 'Tính chất y lệnh', name: 'yzxz', align: 'center', width: 50, formatter: function (val) {
                         return $.enum.getDescByValue("EnumYzxz", val);
@@ -51,7 +51,7 @@
                 { label: 'Họ tên', name: 'xm', align: 'center',width:80 },
                 { label: 'Tên thuốc', name: 'xmmc', align: 'center', width: 150 },
                 { label: 'Số nhóm', name: 'zh', align: 'center', width: 50 },
-                { label: 'Có hay khôngCầnTest da', name: 'ispscs', align: 'center', width: 80 },
+                { label: 'Có hay không cần test da', name: 'ispscs', align: 'center', width: 80 },
                 { label: 'Result', name: 'Result', align: 'center', width: 80, hidden: true },
                 { label: 'Kết quả test da', name: 'Remark', align: 'center', width: 80, hidden: true }
                 ,
@@ -84,13 +84,13 @@
 
             $.modalOpen({
                 id: "InpatientVitalSignsForm",
-                title: "Test daNhập",
+                title: "Nhập test da",
                 url: "/NurseManage/OrderAudit/Inputresults",
                 width: "400px",
                 height: "200px",
-                //showleftlalbel: !!!smtzId,  //Thêm mớikhiHiển thị 'xác nhận vàĐóngNút'
+                //showleftlalbel: !!!smtzId,  //Thêm mới khi hiển thị 'xác nhận và đóng nút'
                 leftlalbelchecked: true,
-                //leftlabeltext: "nốitiếpnhập",
+                //leftlabeltext: "Nhập nối tiếp",
                 leftlalbelcheckedasClose: false,
                 callBack: function (iframeId) {
                     top.frames[iframeId].AcceptClick(function (patData) {
@@ -102,8 +102,8 @@
                             type: "post",
                             success: function (data) {
                                 
-                                if (s = "Test daNhậpthành công") {
-                                    $.modalMsg('Test daNhậpthành công', 'success');
+                                if (s = "Nhập test da thành công") {
+                                    $.modalMsg('Nhập test da thành công', 'success');
                                     window.location.replace("/NurseManage/OrderAudit/AuditTips?ajaxresp=" + patzyh);
                                     
                                     $('#gridList').jqGrid("reloadGrid");

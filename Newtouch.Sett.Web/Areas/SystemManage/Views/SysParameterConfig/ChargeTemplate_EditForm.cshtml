@@ -14,7 +14,7 @@
                             <option>==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Mẫu Mã:</th>
+                    <th class="formTitle"><span class="required">*</span>Mã mẫu:</th>
                     <td class="formValue formDdlSelectorTd">
                         <input id="sfmb" name="sfmb" type="text" class="form-control required" value="" placeholder="Vui lòng nhập mã mẫu" />
                     </td>
@@ -24,7 +24,7 @@
                     <td class="formValue">
                         <input id="sfmbmc" name="sfmbmc" type="text" class="form-control required" value="" placeholder="Vui lòng nhập tên mẫu" />
                     </td>
-                    <th class="formTitle"><span class="required">*</span>Tên Viết tắt đầu:</th>
+                    <th class="formTitle"><span class="required">*</span>Tên viết tắt đầu:</th>
                     <td class="formValue formDdlSelectorTd">
                         <input id="py" name="py" type="text" class="form-control required" value=""  />
                     </td>
@@ -87,7 +87,7 @@
                             <option value="">==Vui lòng chọn==</option>
                         </select>
                     </td>
-                    <th class="formTitle">Thời lượng đơn vị(phút):</th>
+                    <th class="formTitle">Thời lượng đơn vị (phút):</th>
                     <td class="formValue">
                         <input id="duration" type="text" class="form-control" value="" />
                     </td>
@@ -228,7 +228,7 @@
 
     }
 
-    //jGridkhai báo
+    //jGrid khai báo
     function initChargeItemGrid(data) {
         $('#xmDetailListGridList').newtouchLocalDataGrid({
             height: 100,
@@ -294,20 +294,20 @@
             return;
         }
         if (((/^(\+|-)?\d+$/).test(valduration)) && (valduration < 0)) {
-            $.modalAlert("Thời lượng đơn vị là lớn hơn0số nguyên", 'warning');
+            $.modalAlert("Thời lượng đơn vị là số nguyên lớn hơn 0", 'warning');
             return;
         }
         if (((/^(\+|-)?\d+$/).test(valzll)) && (valzll < 0)) {
-            $.modalAlert("Lượng điều trị là lớn hơn0số nguyên", 'warning');
+            $.modalAlert("Lượng điều trị là số nguyên lớn hơn 0", 'warning');
             return;
         }
         if (((/^(\+|-)?\d+$/).test(valzxcs)) && (valzxcs < 0)) {
-            $.modalAlert("Số lần thực hiện lớn hơn0số nguyên", 'warning');
+            $.modalAlert("Số lần thực hiện là số nguyên lớn hơn 0", 'warning');
             return;
         }
 
         if (!valsl && !valzll) {
-            $.modalAlert("Vui lòng điền số lượng hoặc Lượng trị liệu mỗi lần", 'warning');
+            $.modalAlert("Vui lòng điền số lượng hoặc lượng trị liệu mỗi lần", 'warning');
             return;
         }
         
@@ -350,7 +350,7 @@
         }
         var postData = $("#form1").formSerialize();
 
-        //Phương thức thanh toán jsonchuỗi
+        //Chuỗi json phương thức thanh toán
         var xmArr = new Array();
         var rowIds = $("#xmDetailListGridList").getDataIDs();
         $.each(rowIds, function (idx, val) {
@@ -378,7 +378,7 @@
         }
         postData['xmListStr'] = JSON.stringify(xmArr);
         debugger
-        postData['sfmbbh'] = keyValue;  //Khóa chính,quyết địnhđịnhlàmớithêmcònlàsửasửa
+        postData['sfmbbh'] = keyValue;  //Khóa chính, quyết định là thêm mới hay sửa
         postData['ks'] = $('#dllDepartment').val();
         postData['mzzybz'] = $('#mzzybz').val();
         postData['py'] = $('#py').val();

@@ -1,6 +1,6 @@
 @using Newtouch.Domain.ViewModels;
 @{
-    ViewBag.Title = "Đăng ký hẹn khámBảo trì";
+    ViewBag.Title = "Bảo trì đăng ký hẹn khám";
     Layout = "~/Views/Shared/_Form.cshtml";
 
     var bdItems = ViewBag.defaultBespeakRegInfo as List<SysBespeakRegisterDateTimeVO>;
@@ -92,7 +92,7 @@
 <form id="form1">
     <div class="dv-left">
         <div class="panel panel-default" style="margin-bottom: 5px;">
-            <div class="panel-heading navb-bg">KhoaChọn</div>
+            <div class="panel-heading navb-bg">Chọn khoa</div>
             @*<ul class="nav nav-tabs" role="tablist" id="resources">
                     <li role="presentation" class="active">
                         <a href="#dv-dept" role="tab" data-toggle="tab" id="li_dept" aria-expanded="true">Khoa</a>
@@ -106,7 +106,7 @@
             </div>
         </div>
         <div class="panel panel-default" style="margin-bottom: 5px;">
-            <div class="panel-heading navb-bg">Chuyên giaChọn</div>
+            <div class="panel-heading navb-bg">Chọn chuyên gia</div>
             <div style="width: 300px; overflow-x: auto; margin: 0;">
                 <table id="zjGridList"></table>
             </div>
@@ -202,14 +202,14 @@
                         $("#selitem").val(data.sfxmCode);
                     }
                     else {
-                        $.modalAlert("LấyThông tinthất bại", 'error');
+                        $.modalAlert("Lấy thông tin thất bại", 'error');
                     }
                 }
             });
         };
     });
 
-    //LấyKhoathông tin
+    //Lấy thông tin khoa
     function deptGridList() {
         $deptGridList.dataGrid({
             url: "/SystemManage/SysDepartment/GetSelectJson",
@@ -217,8 +217,8 @@
             width: 250,
             postData: { organizeId: '@ViewBag.OrganizeId' },
             colModel: [
-                { label: 'KhoaMã', name: 'Code', width: 70, align: 'left' },
-                { label: 'KhoaTên', name: 'Name', width: 150, align: 'left' }
+                { label: 'Mã khoa', name: 'Code', width: 70, align: 'left' },
+                { label: 'Tên khoa', name: 'Name', width: 150, align: 'left' }
             ],
             onSelectRow: function (rowid) {
                 //dấughiKhoa
@@ -234,7 +234,7 @@
         });
     }
 
-    //LấyKhoađặt hẹn
+    //Lấy khoa đặt hẹn
     function getDeptRegData(ksCode) {
         $.najax({
             url: "/SystemManage/BespeakRegisterManage/GetRegDataHtmlByKs",
@@ -258,7 +258,7 @@
         if (ksCode == null || ksCode === "") {
             var rowid = $('#deptGridList').jqGrid('getGridParam', 'selrow');
             if (rowid == null || rowid === "") {
-                $.modalMsg("Vui lòng chọn trướcKhoa", 'error', 1500);
+                $.modalMsg("Vui lòng chọn trước khoa", 'error', 1500);
                 return;
             }
             var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
@@ -274,7 +274,7 @@
                     $('#zjGridList').newtouchLocalDataGrid(null, data);
                 }
                 else {
-                    $.modalMsg("LấyChuyên giaThông tinthất bại,Vui lòng liên hệQuản trị viên", 'error', 1500);
+                    $.modalMsg("Lấy thông tin chuyên gia thất bại, vui lòng liên hệ quản trị viên", 'error', 1500);
                 }
             }
         });
@@ -298,7 +298,7 @@
         }
     });
 
-    //LấyKhoađặt hẹn
+    //Lấy khoa đặt hẹn
     function getZjRegData(gh) {
         var rowid = $('#deptGridList').jqGrid('getGridParam', 'selrow');
         var rowData = $('#deptGridList').jqGrid('getRowData', rowid);
@@ -330,7 +330,7 @@
     function newtouch_event_f8() {
         var deptRowid = $('#deptGridList').jqGrid('getGridParam', 'selrow');
         if (!deptRowid) {
-            $.modalMsg('Vui lòng chọnKhoa', 'error', 1000);
+            $.modalMsg('Vui lòng chọn khoa', 'error', 1000);
             return;
         }
         var allChk = $("input[name=chk_reg]");
@@ -365,7 +365,7 @@
             success: function (res) {
                 if (res.state === "success") {
                     refleshData();
-                    $.modalMsg("Gửithành công", 'success');
+                    $.modalMsg("Gửi thành công", 'success');
                 } else {
                     $.modalAlert(res.message, "error");
                 }
@@ -373,7 +373,7 @@
         });
     }
 
-    //Làm mớiXếp lịchthông tin
+    //Làm mới thông tin xếp lịch
     function refleshData() {
         var rowid = $('#deptGridList').jqGrid('getGridParam', 'selrow');
         if (!rowid) {
@@ -403,7 +403,7 @@
                         buildColHtml(data);
                     }
                     else {
-                        $.modalAlert("LấyGuidthất bại,Vui lòng liên hệQuản lý", 'error');
+                        $.modalAlert("Lấy Guid thất bại, vui lòng liên hệ quản lý", 'error');
                     }
                 }
             });
@@ -459,13 +459,13 @@
                     $("#tbd_content").append(data);
                 }
                 else {
-                    $.modalAlert("LấyGuidthất bại,Vui lòng liên hệQuản lý", 'error');
+                    $.modalAlert("Lấy Guid thất bại, vui lòng liên hệ quản lý", 'error');
                 }
             }
         });
     }
 
-    //cộtChọn tất cả
+    //Chọn tất cả cột
     $("#thd_content").on("click", "input[name=chk_reg_col]", function () {
         if ($(this).is(":checked")) {
             var sourceId = this.id;
@@ -483,7 +483,7 @@
             });
         }
     });
-    //dòngChọn tất cả
+    //Chọn tất cả dòng
     $("#tbd_content").on("click", "input[name=chk_reg_row]",function () {
         if ($(this).is(":checked")) {
             $(this).parent().parent().parent().find("input[name=chk_reg]").each(function () {

@@ -1,6 +1,6 @@
 @using NewtouchHIS.Lib.Framework.Operator;
 @{
-    ViewBag.Title = "tạm ứng Quản lý";
+    ViewBag.Title = "Quản lý tạm ứng";
     Layout = "~/Views/Shared/_Index.cshtml";
     //Liên kết báo cáo biên lai nạp tiền tạm ứng
     //var yjjReportUrl = SysConfigReader.OrgReportLink("yjjsjxdy");
@@ -225,7 +225,7 @@
             alertbierror: false,
             success: function (ajaxresp) {
                 $('#gridList').jqGrid("clearGridData");
-                $("#yeCon").text("Số dư tài khoản:0.00đồng");
+                $("#yeCon").text("Số dư tài khoản: 0.00 đồng");
                 $("#txtmoney").val("");
                 $.loading(false);
                 var accPayInfoList = ajaxresp.data.accPayInfoList;
@@ -239,7 +239,7 @@
             },
             errorCallback: function (rtnval) {
                 if (rtnval.message == "缺少账户") {
-                    $.modalConfirm("Không tìm thấy bệnh nhân này tạm ứng Tài khoản,Có hay không Tạo mới", function (f) {
+                    $.modalConfirm("Không tìm thấy tài khoản tạm ứng của bệnh nhân này, có tạo mới hay không?", function (f) {
                         if (f) {
                             $.najax({
                                 type: "POST",
@@ -251,7 +251,7 @@
                                 success: function (res) {
                                     GetQuerypatientInfoAjax(patid,zyh);
                                     $('#gridList').jqGrid("clearGridData");
-                                    $("#yeCon").text("Số dư tài khoản:0.00đồng");
+                                    $("#yeCon").text("Số dư tài khoản: 0.00 đồng");
                                     $("#txtmoney").val("");
                                     //ClearMoney();
                                     //$('#yeCon').val("0.00");
@@ -316,7 +316,7 @@
         var captionCon = "Bảng thu chi tài khoản";
         captionCon += '<label style="height: 7px; width: 36px; background-color:#DDDDFF; border: 1px solid #ddd;margin-left: 40px;"></label> nạp tiền ' ;
         captionCon += '<label style="height: 7px; width: 36px; background-color:#ACD6FF; border: 1px solid #ddd;margin-left: 40px;"></label> Rút tiền ';
-        captionCon += "<span id='ye Con'>Số dư tài khoản:" + zhye + "đồng</span>";
+        captionCon += "<span id='ye Con'>Số dư tài khoản: " + zhye + " đồng</span>";
         $gridList.dataNewGrid({
             height: $(window).height() - 330,
             autowidth: false,
@@ -356,7 +356,7 @@
         if (mydata.length > 0) {
             $('.ui-jqgrid-bdiv').find(".unwritten").remove();
         }
-        $("#yeCon").text("Số dư tài khoản:" + zhye + "đồng");
+        $("#yeCon").text("Số dư tài khoản: " + zhye + " đồng");
     }
 
     var patid,
@@ -490,7 +490,7 @@
     }
     var gridIMoney = "";//Số tiền thu chi đang chọn
     var gridIpzh = ""; //Số chứng từ đang chọn
-    var gridId = "";//đang chọn hiện tạiId,Căn cứ đã hoàn hay chưa
+    var gridId = "";//Id đang chọn hiện tại, căn cứ đã hoàn hay chưa
     var RefundOutTradeNo = ""; //khitrướcchọntrongcủađặtphiếusố
     //Sự kiện nhấn
     function btn_edit() {
@@ -535,7 +535,7 @@
             $.modalAlert("Thông tin bệnh nhân không được để trống", 'warning');
         }
         if (parseFloat(money) == 0) {
-            $.modalAlert("Rút tiền Số tiền không thể là0đồng", 'warning');
+            $.modalAlert("Số tiền rút tiền không thể là 0 đồng", 'warning');
             return false;
         }
         else if ((parseFloat(money) > 0 && parseFloat(zhye) - parseFloat(money) < 0) ||
@@ -563,7 +563,7 @@
             success: function (resdata) {
                 if (resdata != null && resdata.data) {
                     $.loading(false);
-                    $.modalMsg("Hoàn tiền Thành công", 'success');
+                    $.modalMsg("Hoàn tiền thành công", 'success');
                     ClearMoney();
                     //Gọi danh sách thu chi tài khoản
                     getZhInfo(zh);
@@ -586,7 +586,7 @@
             return false;
         }
         if (parseFloat(zhye) <= 0) {
-            $.modalAlert("hiện tại Tài khoản Không có Số dư có thể hoàn", 'warning');
+            $.modalAlert("Hiện tại tài khoản không có số dư có thể hoàn", 'warning');
             return false;
         }
         var reg = /^(-?\d+)(\.\d+)?$/;
@@ -646,7 +646,7 @@
 </script>
 <script type="text/javascript">
     //Thanh toán di động
-    var payingOrFailed = null;  //trueđang thanh toán hoặc thanh toán thất bại
+    var payingOrFailed = null;  //true: đang thanh toán hoặc thanh toán thất bại
     function CheckPayOK() {
 
         var payMoney = 0;
@@ -676,11 +676,11 @@
 
         if ((payingOrFailed === null || payingOrFailed === true) && payMoney > 0) {
             payMoney = parseFloat(payMoney).toFixed(2);
-            var out_trade_no = (new Date()).getTime().toString();   //làkhôngcóVấn đề?
+            var out_trade_no = (new Date()).getTime().toString();   //là không có vấn đề?
             ToPay(out_trade_no, 'tạm ứng nạp tiền', payMoney, djjesszffs);
             payingOrFailed = true;
         }
-        return !(payingOrFailed === true); //đang thanh toán trả vềtrue,nếu không thì trả vềfalse
+        return !(payingOrFailed === true); //đang thanh toán trả về true, nếu không thì trả về false
     }
     //khởi tạo thanh toán
     function ToPay(out_trade_no, subject, total_amount, djjesszffs) {
