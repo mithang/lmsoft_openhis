@@ -1,6 +1,6 @@
 @using NewtouchHIS.Lib.Framework.Operator;
 @{
-    ViewBag.Title = "tạm ứng Quản lý";
+    ViewBag.Title = "Quản lý tạm ứng";
     Layout = "~/Views/Shared/_Index.cshtml";
     //Liên kết báo cáo biên lai nạp tiền tạm ứng
     var yjjReportUrl = SysConfigReader.OrgReportLink("yjjsjdy");
@@ -221,7 +221,7 @@
             },
             errorCallback: function (rtnval) {
                 if (rtnval.message == "缺少账户") {
-                    $.modalConfirm("Không tìm thấy bệnh nhân này tạm ứng Tài khoản,Có hay không Tạo mới", function (f) {
+                    $.modalConfirm("Không tìm thấy tài khoản tạm ứng của bệnh nhân này, có tạo mới hay không?", function (f) {
                         if (f) {
                             $.najax({
                                 type: "POST",
@@ -293,7 +293,7 @@
         var captionCon = "Bảng thu chi tài khoản";
         captionCon += '<label style="height: 7px; width: 36px; background-color:#DDDDFF; border: 1px solid #ddd;margin-left: 40px;"></label> nạp tiền ' ;
         captionCon += '<label style="height: 7px; width: 36px; background-color:#ACD6FF; border: 1px solid #ddd;margin-left: 40px;"></label> Rút tiền ';
-        captionCon += "<span id='ye Con'>Số dư tài khoản:" + zhye + "đồng</span>";
+        captionCon += "<span id='ye Con'>Số dư tài khoản: " + zhye + " đồng</span>";
         $gridList.dataNewGrid({
             height: $(window).height() - 330,
             autowidth: false,
@@ -332,7 +332,7 @@
         if (mydata.length > 0) {
             $('.ui-jqgrid-bdiv').find(".unwritten").remove();
         }
-        $("#yeCon").text("Số dư tài khoản:" + zhye + "đồng");
+        $("#yeCon").text("Số dư tài khoản: " + zhye + " đồng");
     }
 
     var patid,
@@ -457,8 +457,8 @@
     }
     var gridIMoney = "";//Số tiền thu chi đang chọn
     var gridIpzh = ""; //Số chứng từ đang chọn
-    var gridId = "";//đang chọn hiện tạiId
-    var gridtId="";//đang chọn hiện tạiId,Căn cứ đã hoàn hay chưa
+    var gridId = "";//Id đang chọn hiện tại
+    var gridtId="";//Id đang chọn hiện tại, căn cứ đã hoàn hay chưa
     //Sự kiện nhấn
     function btn_edit() {
         var szje = $("#gridList").jqGridRowValue().szje;
@@ -509,7 +509,7 @@
             return false;
         }
         if (gridIMoney != money.substring(1, money.length)) {
-            $.modalAlert("nạp tiền Số tiền và Hoàn tiền Số tiền không nhất quán,Vui lòng kiểm tra", 'warning');
+            $.modalAlert("Số tiền nạp tiền và số tiền hoàn tiền không nhất quán, vui lòng kiểm tra", 'warning');
             return false;
         }
         if (parseFloat(money) + parseFloat(zhye) < 0) {
@@ -583,7 +583,7 @@
             success: function (resdata) {
                 if (resdata != null && resdata.data) {
                     $.loading(false);
-                    $.modalMsg("Hoàn tiền Thành công", 'success');
+                    $.modalMsg("Hoàn tiền thành công", 'success');
                     ClearMoney();
                     //Gọi danh sách thu chi tài khoản
                     getZhInfo(zh);
