@@ -34,7 +34,7 @@ document.getElementById("sendButton").addEventListener("click", function (event)
 //}
 
 //$.connection.hub.start().done(function () {
-//    // 连接发送按钮来调用服务器上的NewContosoChatMessage。
+//    // Kết nối nút gửi để gọi NewContosoChatMessage trên máy chủ.
 //    $("#sendButton").click(function () {
 //        contosoChatHubProxy.server.newContosoChatMessage($("#userInput").val(), $("#messageInput").val());
 //        $("#messageInput").val('').focus();
@@ -47,7 +47,7 @@ document.getElementById("sendButton").addEventListener("click", function (event)
 ////    var li = document.createElement("li");
 ////    document.getElementById("messagesList").appendChild(li);
 
-////    li.textContent = `${user} ：${message}`;
+////    li.textContent = `${user} :${message}`;
 ////});
  
 

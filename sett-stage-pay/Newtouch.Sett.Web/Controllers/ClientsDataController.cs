@@ -14,7 +14,7 @@ using System.Threading.Tasks;
 namespace Newtouch.Sett.Web.Controllers
 {
     /// <summary>
-    /// Home/Index加载时 默认加载的 缓存数据
+    /// Dữ liệu bộ nhớ đệm được nạp mặc định khi tải Home/Index
     /// </summary>
     public class ClientsDataController : ClientsDataBaseController
     {
@@ -35,7 +35,7 @@ namespace Newtouch.Sett.Web.Controllers
         }
 
         /// <summary>
-        /// 获取同步的部分
+        /// Lấy phần đồng bộ
         /// </summary>
         [HttpGet]
         [HandlerAjaxOnly]
@@ -48,7 +48,7 @@ namespace Newtouch.Sett.Web.Controllers
         }
 
         /// <summary>
-        /// 获取异步的部分 (enums the QC pages need: ApplyTypeEnum, ApplyStatusEnum)
+        /// Lấy phần bất đồng bộ (enums the QC pages need: ApplyTypeEnum, ApplyStatusEnum)
         /// </summary>
         [HttpGet]
         [HandlerAjaxOnly]

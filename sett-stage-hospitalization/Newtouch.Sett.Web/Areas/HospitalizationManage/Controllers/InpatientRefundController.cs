@@ -181,9 +181,9 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             if (string.IsNullOrWhiteSpace(result))
             {
                 if (_hospdrugbillingRepo.getHckcWith(this.OrganizeId) > 0) {
-                    //hoàncòn扣减Vật tư tiêu haoTồn kho
-                    var hclist = xmjfbEntitylist.Where(m => m.yzwym == null && m.sfxm.Contains("wz")).ToList();//ghi sổ nhập viện所开Vật tư tiêu hao
-                    var yszhclist = xmjfbEntitylist.Where(m => m.yzwym != null && m.sfxm.Contains("wz")).ToList();//Bác sĩ站开立Vật tư tiêu hao
+                    //Hoàn trả và trừ giảm tồn kho vật tư tiêu hao
+                    var hclist = xmjfbEntitylist.Where(m => m.yzwym == null && m.sfxm.Contains("wz")).ToList();//Vật tư tiêu hao do ghi sổ nhập viện kê
+                    var yszhclist = xmjfbEntitylist.Where(m => m.yzwym != null && m.sfxm.Contains("wz")).ToList();//Vật tư tiêu hao do bác sĩ tại trạm kê
                     if (hclist.Count > 0)
                     {
                         string jfbhString = string.Join(",", xmjfbEntitylist.Where(m => m.sfxm.Contains("wz")).Select(p => p.cxzyjfbbh));
@@ -192,7 +192,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
                     if (yszhclist.Count > 0)
                         _hospdrugbillingRepo.Updatezyyz_wzkcReturn(yszhclist, this.OrganizeId, this.UserIdentity.UserCode);
                 }
-                //cập nhậtcisnhập việnBệnh nhân预览phải侧phíThẻ片thông tin
+                //Cập nhật thông tin thẻ phí ở phía phải của bản xem trước bệnh nhân nhập viện CIS
                 _hospdrugbillingRepo.Updatezy_brxxexpand(this.OrganizeId, zyh);
             }else
                 throw new FailedException(result);

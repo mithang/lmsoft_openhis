@@ -869,11 +869,11 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
                                 "api/Prescription/UpdateChargeStatus", reqObj);
                             if (apiResp != null)
                             {
-                                AppLogger.Info(string.Format("đơn thuốcThu phíTrạng tháiCập nhậtAPI同步đếnCIS，Số đơn thuốc：{0}，结果：{1}、{2}", string.Join(",", cfnmList), apiResp.code, apiResp.sub_code));
+                                AppLogger.Info(string.Format("API cập nhật trạng thái thu phí đơn thuốc đồng bộ đến CIS, số đơn thuốc: {0}, kết quả: {1}, {2}", string.Join(",", cfnmList), apiResp.code, apiResp.sub_code));
                             }
                             else
                             {
-                                AppLogger.Info(string.Format("đơn thuốcThu phíTrạng tháiCập nhậtAPI同步đếnCIS，Số đơn thuốc：{0}，结果：ChưaLấy到响应，同步Thất bại", string.Join(",", cfnmList)));
+                                AppLogger.Info(string.Format("API cập nhật trạng thái thu phí đơn thuốc đồng bộ đến CIS, số đơn thuốc: {0}, kết quả: chưa lấy được phản hồi, đồng bộ thất bại", string.Join(",", cfnmList)));
                             }
                         }
                     }
@@ -1067,9 +1067,9 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
 
                             LogCore.Info("OutpatientCommit response", apiResp.ToJson());
                             AppLogger.Info(apiResp != null
-                                ? string.Format("HISThu phí后Thuốc推送đến药房，Số đơn thuốc：{0}，结果：{1}、{2}", reqObj.Cfh, apiResp.code,
+                                ? string.Format("HIS sau thu phí đẩy thuốc đến nhà thuốc, số đơn thuốc: {0}, kết quả: {1}, {2}", reqObj.Cfh, apiResp.code,
                                     apiResp.sub_code)
-                                : string.Format("HISThu phí后Thuốc推送đến药房，Số đơn thuốc：{0}，结果：ChưaLấy到响应，同步Thất bại", reqObj.Cfh));
+                                : string.Format("HIS sau thu phí đẩy thuốc đến nhà thuốc, số đơn thuốc: {0}, kết quả: chưa lấy được phản hồi, đồng bộ thất bại", reqObj.Cfh));
                         });
                     }
                 }

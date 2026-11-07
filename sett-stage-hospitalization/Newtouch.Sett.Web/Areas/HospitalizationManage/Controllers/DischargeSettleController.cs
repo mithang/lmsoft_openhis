@@ -300,7 +300,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// Lấy mã nhập viện theo mã cá nhân（Nông thôn mới）
         /// </summary>
         /// <param name="xnhgrbm">Mã cá nhân</param>
-        /// <param name="sfjs">Cóquyết toán hay không1Đãquyết toán 0 chưa结</param>
+        /// <param name="sfjs">Có quyết toán hay không: 1 Đã quyết toán, 0 Chưa quyết toán</param>
         /// <returns></returns>
         public IActionResult GetZyhByGrbm(string xnhgrbm, string sfjs)
         {
@@ -310,7 +310,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #endregion
 
-        #region quyết toán xuất viện//（Không có thuật toán BHYT）//20190408改làCó thuật toán BHYT
+        #region Quyết toán xuất viện // (Không có thuật toán BHYT) // 20190408 sửa thành có thuật toán BHYT
 
         /// <summary>
         /// Dữ liệu truy vấn mã nhập viện（bao gồmBệnh nhânthông tinvàChi tiết tính phí） zyh hoặc kh +cardType hoặc sfz +cardType
@@ -345,7 +345,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// 带模糊Truy vấn
+        /// Truy vấn mờ
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -385,7 +385,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             return Content(data.ToJson());
         }
         /// <summary>
-        /// Truy vấnnhập việnphí账单
+        /// Truy vấn hóa đơn phí nhập viện
         /// </summary>
         /// <param name="pagination"></param>
         /// <param name="zyh"></param>
@@ -465,7 +465,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         /// <param name="zyh"></param>
         /// <param name="expectedcyrq"></param>
         /// <param name="fph"></param>
-        /// <param name="feeRelated">Số tiền及Thông tin thanh toán</param>
+        /// <param name="feeRelated">Số tiền và thông tin thanh toán</param>
         /// <param name="ybfeeRelated">Liên quan BHYTThông tin phí</param>
         /// <param name="outTradeNo">Số giao dịch thanh toán</param>
         /// <returns></returns>
@@ -479,7 +479,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// lấyquyết toán BHYT 构造入参
+        /// Lấy quyết toán BHYT, tạo tham số đầu vào
         /// </summary>
         /// <param name="zyh"></param>
         /// <returns></returns>
@@ -526,7 +526,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
 
         #endregion
 
-        #region Hủyquyết toán xuất viện//（Không có thuật toán BHYT）//20190408改làCó thuật toán BHYT
+        #region Hủy quyết toán xuất viện // (Không có thuật toán BHYT) // 20190408 sửa thành có thuật toán BHYT
 
         /// <summary>
         /// Truy vấn hủyquyết toán
@@ -570,8 +570,8 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             if (!string.IsNullOrWhiteSpace(outTradeNo) && refundAmount > 0)   //Cần hoàn trả theo đường cũ
             {
                 string errorMsg;
-                var refundReuslt = _payApp.TradeRefund(outTradeNo, refundAmount, "门诊退费", "", out errorMsg);
-                isTradeRefundError = refundReuslt == (int)EnumRefundStatus.Failed || refundReuslt == (int)EnumRefundStatus.UnKnown;    //Thất bại hoặc chưa知
+                var refundReuslt = _payApp.TradeRefund(outTradeNo, refundAmount, "Ngoại trú hoàn phí", "", out errorMsg);
+                isTradeRefundError = refundReuslt == (int)EnumRefundStatus.Failed || refundReuslt == (int)EnumRefundStatus.UnKnown;    //Thất bại hoặc chưa rõ
             }
             _hospdrugbillingRepo.Updatezy_brxxexpand(this.OrganizeId, zyh);
             var msg = "Hủyquyết toán thành công";  
@@ -618,7 +618,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
             return View();
         }
         /// <summary>
-        /// quyết toán mô phỏng Gửisau台 lưuKết quả
+        /// Gửi quyết toán mô phỏng rồi lưu kết quả
         /// </summary>
         /// <returns></returns>
         [HttpPost]
@@ -632,7 +632,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         #region private methods
 
         /// <summary>
-        /// lấyTrả vềtrong容trongcủaflaggiá trị
+        /// Lấy giá trị flag trong nội dung trả về
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>
@@ -651,7 +651,7 @@ namespace Newtouch.Sett.Web.Areas.HospitalizationManage.Controllers
         }
 
         /// <summary>
-        /// từxmltrong提取tableNamecủaDataTable
+        /// Trích xuất tableName của DataTable từ xml
         /// </summary>
         /// <param name="xml"></param>
         /// <returns></returns>

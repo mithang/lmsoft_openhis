@@ -337,7 +337,7 @@
             var saveResult = $("#gridList").saveRow(rowIds[i], null, null, null, function (callbackRowId) { }, null, null);
 
             if (!saveResult) {
-                EnableInlineEditBox();    //重启启用Chỉnh sửa Ngược lại lần sauSavelúc会Trả vềfalse
+                EnableInlineEditBox();    //Khởi động lại để bật chỉnh sửa, ngược lại lần sau khi lưu sẽ trả về false
                 return;   //Lưu thất bại，thìreturn
             }
         }

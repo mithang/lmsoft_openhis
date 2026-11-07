@@ -743,7 +743,7 @@ where gh.OrganizeId = @orgId and gh.zt = '1' and gh.CreateTime >= CONVERT(varcha
             var orgid = (string)p1;
             var sql = @"select gh.ghnm,gh.mzh,gh.blh,gh.xm,gh.zjh,gh.xb,gh.brxz,dept.Name ghksmc,gh.ks ghks,staff.Name ghysmc,gh.ys ghys,gh.ghrq,gh.ghzt,
 gh.jzbz jzzt,jz.createtime jzrq,jzdept.Name jzksmc,jz.jzks,jz.jzys,jz.jzysmc,js.fph,
-case when gh.ghzt='1' then '否' else '是' end syth,
+case when gh.ghzt='1' then 'Không' else 'Có' end syth,
 case when gh.ghzt='1' then null else thys.Name end thys,
 case when gh.ghzt='1' then null else convert(varchar(30), gh.LastModifyTime,120) end thrq
 from mz_gh(nolock) gh

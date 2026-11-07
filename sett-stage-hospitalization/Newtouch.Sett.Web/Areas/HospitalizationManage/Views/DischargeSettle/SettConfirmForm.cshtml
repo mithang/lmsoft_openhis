@@ -2,7 +2,7 @@
 @{
     ViewBag.Title = "SettConfirmForm";
     Layout = "~/Views/Shared/_Form.cshtml";
-    //quyết toán nhập việncó thể用tạm ứng
+    //Quyết toán nhập viện có thể dùng tạm ứng
     var withYjj = SysConfigReader.Bool("InpatientSettWithAdvanceAccount");
     //
     var relatedFPH = SysConfigReader.Bool("Inpatient_SettPage_RelatedFPH");
@@ -16,7 +16,7 @@
     var sfyxdzzf = SysConfigReader.Bool("Intpatient_Sett_Open_Dzzf", false);
     //Nơi quản lý BHYT，phân biệt hệ thốngsẽthực hiệnở đâuLogic BHYT
     var medicalInsurance = SysConfigReader.String("Inpatient_MedicalInsurance");
-    //Số tiềnquyết toán分币误差控制
+    //Kiểm soát sai số xu của số tiền quyết toán
     var SettPayBalance = SysConfigReader.Bool("SettPayBalance", false);
     //Mặc định có hoàn số dư hay không
     var refundyjj = SysConfigReader.String("Sett_Inpatient_RefundAccount");
@@ -385,7 +385,7 @@
     var yjjzffs = "";
     //Tổng số tiềnquyết toán
     var zje = ovpraseFloat($.request("zje"));
-    //thanh toánphải收 Số phải thu khiquyết toán（zje = Được báo + Số phải thu khiquyết toán + v.v.）
+    //Thanh toán phải thu, số phải thu khi quyết toán (zje = được báo + số phải thu khi quyết toán + v.v.)
     var orglxjzfys = ovpraseFloat($.request("xjzfys"));
     //Khi có chiết khấu thì không bằng original
     var xjzfys = orglxjzfys;    //Khi có chiết khấu thì sẽ không bằng
@@ -395,7 +395,7 @@
     var isYbjy = $.request("isYbjy");
     var brxz = $.request("brxz");
     var brxzmc = $.request("brxzmc");
-    var strdyjylsh = "";//Số流水 tài khoảnkhấu trừ，BHYT Trùng Khánh，làcập nhậtkhấu trừlưu表củajsnm
+    var strdyjylsh = "";//Số giao dịch tài khoản khấu trừ, BHYT Trùng Khánh, là bảng lưu khấu trừ cập nhật của jsnm
     var xnhjyFeeReturn;
     var isXnhjy = $.request("isXnhjy");
     var cqPatInfo = JSON.parse(sessionStorage.getItem('cqPatInfo'));
@@ -546,7 +546,7 @@
             $.modalClose();
         }
     }
-    if (brxz == 0 || brxzmc == "自费") {
+    if (brxz == 0 || brxzmc == "Tu chi tra") {
         $('.trUseZk').show();
     } else {
         $(".trUseZk").hide();
@@ -1015,11 +1015,11 @@
         }
         return true;
     }
-    //Tính theo thanh toánphải收、Phương thức thanh toán Tính tổng thực thu、Tiền thừa  không hỗ trợNhiều phương thức thanh toán
+    //Tính theo thanh toán phải thu, phương thức thanh toán: tính tổng thực thu, tiền thừa; không hỗ trợ nhiều phương thức thanh toán
     function hjsskZhaolingCal() {
-        var djje = 0.00; //代nộpSố tiền
+        var djje = 0.00; //Số tiền nộp thay
         if (!$('#zffs1').val() && $('#zfje1').val() != 0) {
-            //Chưa chọnPhương thức thanh toán，đối vớiphảiSố tiềncần置là0.00
+            //Chưa chọn phương thức thanh toán, số tiền phải thu cần đặt là 0.00
             $('#zfje1').val('0.00');
             djje = xjzfys.toFixed(2);
         }
@@ -1044,7 +1044,7 @@
 
     function hjsskZhaolingCalNew() {
         var yjjzf = ovpraseFloat($("#yjjzfje").text().trim()).toFixed(2);//Khấu trừtạm ứng
-        var djje = 0.00; //代nộpSố tiền
+        var djje = 0.00; //Số tiền nộp thay
         //var djjess = ovpraseFloat($("#djjess").val());  //Thực thu tại cửa sổ
         var djjess=CalculatedAmount();//Tổng thực thu tại cửa sổ
         var zhaoling = 0.00;
@@ -1168,7 +1168,7 @@
         }
         return !(payingOrFailed === true); //Đang thanh toán Trả vềtrue，Ngược lại trả vềfalse
     }
-    //发起thanh toán
+    //Khởi tạo thanh toán
     function ToPay(out_trade_no, subject, total_amount, djjesszffs) {
         var title = 'Thanh toán bằng mã thanh toán-' + (subject.length <= 15 ? subject : subject.substring(0, 12) + "...");
         var url = "/PayManage/MicroPay/MicroPay";
@@ -1191,13 +1191,13 @@
             }
         });
     }
-    //Thanh toán thành công-继续Gửiquyết toán
+    //Thanh toán thành công — tiếp tục gửi quyết toán
     var outTradeNo;
     function PaySuccessHandle(data) {
         payingOrFailed = false;
 
         outTradeNo = data.outTradeNo;
-        //Thanh toán di động方式纠正
+        //Điều chỉnh phương thức thanh toán di động
         if (data.payType == 1 && $('#zffs1').val() == '11') {
             $('#zffs1').val("10").trigger('change');
         }

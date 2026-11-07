@@ -134,12 +134,12 @@ namespace Newtouch.Sett.Domain
     {
         public object GetPatHospStatusDetail(string zyh, string kh)
         {
-            throw new NotSupportedException("Tra cứu trạng thái结算 nhập viện chưa được chuyển đổi trong giai đoạn này.");
+            throw new NotSupportedException("Tra cứu trạng thái quyết toán nhập viện chưa được chuyển đổi trong giai đoạn này.");
         }
 
         public HosSettPatClassifyChargePreviewDto GetHospSettPatClassifyChargePreview(string zyh, DateTime expectedcyrq, decimal jsje)
         {
-            throw new NotSupportedException("Xem trước phân loại phí结算 nhập viện chưa được chuyển đổi trong giai đoạn này.");
+            throw new NotSupportedException("Xem trước phân loại phí quyết toán nhập viện chưa được chuyển đổi trong giai đoạn này.");
         }
 
         public IList<HospFeeClassifyWithDLBO> GetHospFeeClassifyWithDLBOList(string zyh)
@@ -202,7 +202,7 @@ namespace Newtouch.Sett.Domain
 
         public SettSaveSuccessResultDto SaveSett(string zyh, DateTime expectedcyrq, string fph, decimal expectedyjjzhye, decimal expectedjsje, decimal expectedzhaoling, string xjzfListStr, decimal shishoukuan)
         {
-            throw new NotSupportedException("Lưu结算 nhập viện chưa được chuyển đổi trong giai đoạn này (không ghi DB).");
+            throw new NotSupportedException("Lưu quyết toán nhập viện chưa được chuyển đổi trong giai đoạn này (không ghi DB).");
         }
     }
 }
