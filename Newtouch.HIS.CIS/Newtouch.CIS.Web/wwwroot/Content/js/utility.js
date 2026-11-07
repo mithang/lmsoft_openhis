@@ -3,7 +3,7 @@ var len = ['十'];
 var ydm = ['年', '月', '日'];
 var hm = ['时', '分'];
 function etchinese(s) {
-    //sẽphiếucáisốchữchuyểnhóathànhtrongvăn  
+    //Chuyển đổi các chữ số trên phiếu thành chữ Hán  
     s = "" + s;
     var result = "";
     for (var i = 0; i < s.length; i++) {
@@ -12,7 +12,7 @@ function etchinese(s) {
     return result;
 }
 function specialcharacter(s) {
-    //đốiđặcđặctình hìnhvàodòngchỗlý,vàgọietchinese(s)Phương pháp,Quay lạiliên quancủatrongvăn  
+    //Xử lý trường hợp đặc biệt, gọi phương thức etchinese(s), trả về chữ Hán liên quan  
     s = "" + s;
     var result = "";
     if (s.length == 2) {
@@ -26,7 +26,7 @@ function specialcharacter(s) {
     return etchinese(s)
 }
 function transformchinese(s) {
-    //kiểm tranhậpcủaNgàyđịnh dạng,vàgọispecialcharacter(s)Phương pháp,sẽliên quansốchữchuyểnhóalàtrongvăn  
+    //Kiểm tra định dạng ngày nhập vào, gọi phương thức specialcharacter(s), chuyển các số liên quan thành chữ Hán  
     var datePat = /^(\d{2}|\d{4})(\/|-)(\d{1,2})(\2)(\d{1,2})$/;
     var matchArray = s.match(datePat);
     var ok = "";
@@ -38,17 +38,17 @@ function transformchinese(s) {
 }  
 
 function transToChineseHM(hours, minutes) {
-    // phản ánhxạcái ký tựsốdùng
+    // Các ký tự số dùng để ánh xạ
     var onesPlace = ['零', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
-    // hai ký tựsốcủacái ký tựsốphản ánhxạcóđiểmkhôngcùng
+    // Ký tự số hàng đơn vị dùng để ánh xạ
     var onesPlaceForTensDigit = ['', '一', '二', '三', '四', '五', '六', '七', '八', '九', '十']
-    // phản ánhxạmười ký tựsố
+    // Các ký tự số hàng chục dùng để ánh xạ
     var tensPlace = ['', '十', '二十', '三十', '四十', '五十']
-    // sốchữchuyểnhóalàtrongvănhàmsố
+    // Hàm chuyển đổi số thành chữ Hán
     var t = num => num <= 10 ? onesPlace[num] : tensPlace[Math.floor(num / 10)] + onesPlaceForTensDigit[Math.floor(num % 10)]
-    // sốchữThời gianchuyểnhóalàtrongvănThời gianhàmsố
-    return t(hours) + 'điểm' + t(minutes) + 'phần';
-    //return hours < 6 ? '凌晨' + t(hours) + 'điểm' + t(minutes) + 'phút' : hours < 12 ? 'trêntrưa' + t(hours) + 'điểm' + t(minutes) + 'phút' : hours < 18 ? 'dướitrưa' + t(hours - 12) + 'điểm' + t(minutes) + 'phút' : '晚trên' + t(hours - 12) + 'điểm' + t(minutes) + 'phút';
+    // Hàm chuyển đổi thời gian dạng số thành chữ Hán
+    return t(hours) + 'điểm' + t(minutes) + 'phút';
+    //return hours < 6 ? 'rạng sáng' + t(hours) + 'điểm' + t(minutes) + 'phút' : hours < 12 ? 'buổi sáng' + t(hours) + 'điểm' + t(minutes) + 'phút' : hours < 18 ? 'buổi chiều' + t(hours - 12) + 'điểm' + t(minutes) + 'phút' : 'buổi tối' + t(hours - 12) + 'điểm' + t(minutes) + 'phút';
 
 }
 

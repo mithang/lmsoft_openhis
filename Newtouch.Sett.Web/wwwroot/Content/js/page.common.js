@@ -15,7 +15,7 @@ $.fn.dutyStaffFloatingSelector = function (options) {
             { label: 'Tên khoa', name: 'ksmc', widthratio: 40 },
         ],
         itemdbclickhandler: function ($thistr, $thisinput) {
-            //bảo hiểmlưuthời giankiểmchứngvalvàdata-Namenhất quán
+            //Khi lưu, kiểm chứng val và data-Name nhất quán
             $thisinput.attr('data-label', $thistr.attr('data-StaffGh'));
             $thisinput.attr('data-ks', $thistr.attr('data-ks'));
             $thisinput.attr('data-ksmc', $thistr.attr('data-ksmc'));
@@ -25,7 +25,7 @@ $.fn.dutyStaffFloatingSelector = function (options) {
 }
 
 $.fn.sfxmFloatingSelector = function (options) {
-    //Mặc địnhoptions
+    //Mặc định options
     var defaults = {
         width: 830,
         height: 200,
@@ -33,10 +33,10 @@ $.fn.sfxmFloatingSelector = function (options) {
         url: '/SystemManage/BaseData/SelectSfxmYp',
         ajaxparameters: null,   //Vui lòng chỉ định
         itemdbclickhandler: null,   //Vui lòng chỉ định
-        djDecimalPlaces: 2,  //Độ chính xác đơn giá Mặc định2
-        searchType: null,   //Chỉ điều khiển ẩn/hiện cột,Không tham gia lọc//Mục tiêu tìm kiếm "yp,sfxm","yp","sfxm","yp.kc","sfxm.dwjls","yp,sfxm.dwjls","yp.kc,sfxm","yp.kc,sfxm.dwjls"
-        showColModel: null,   //Có thể chỉ định [{name:;widthratio:;},{name:;widthratio:;}] widthratioCó thể chọn
-        ypkccbjc: true,    //Kiểm tra sơ bộ tồn kho thuốc   Có bị kiểm soát hay không Có tồn kho hay không0
+        djDecimalPlaces: 2,  //Độ chính xác đơn giá Mặc định 2
+        searchType: null,   //Chỉ điều khiển ẩn/hiện cột, Không tham gia lọc // Mục tiêu tìm kiếm "yp,sfxm","yp","sfxm","yp.kc","sfxm.dwjls","yp,sfxm.dwjls","yp.kc,sfxm","yp.kc,sfxm.dwjls"
+        showColModel: null,   //Có thể chỉ định [{name:;widthratio:;},{name:;widthratio:;}] widthratio có thể chọn
+        ypkccbjc: true,    //Kiểm tra sơ bộ tồn kho thuốc   Có bị kiểm soát hay không, có tồn kho hay không 0
         colModel: [
             { label: 'Mã', name: 'sfxmCode', widthratio: 14 },
             { label: 'Tên', name: 'sfxmmc', widthratio: 25 },
@@ -96,7 +96,7 @@ $.fn.sfxmFloatingSelector = function (options) {
             },
             {
                 label: 'Tồn kho', name: 'clkcsl', formatter: function (cellvalue, a, b) {
-                    //được chokcsllà của đơn vị tối thiểu,Ở đây cần hiển thị khám ngoại trú/Số lượng đơn vị nội trú
+                    //được cho kcsl là của đơn vị tối thiểu, Ở đây cần hiển thị khám ngoại trú/Số lượng đơn vị nội trú
                     return b.yzlx === '1' || b.yzlx === '3' ? (!!b.kcsl && !!b.cls ? (parseInt(b.kcsl / b.cls)) : 'Không có') : '';
                 }, widthratio: 6, hidden: true
             },
@@ -217,7 +217,7 @@ $.fn.sfxmFloatingSelector = function (options) {
     }
 
     if (options.showColModel) {
-        //[{name:;widthratio:;},{name:;widthratio:;}] widthratioCó thể chọn
+        //[{name:;widthratio:;},{name:;widthratio:;}] widthratio có thể chọn
         $.each(options.colModel, function () {
             var thisCol = this;
             var matchedShow = $.jsonWhere(options.showColModel, function (v) {

@@ -38,19 +38,19 @@
 })();
 
 
-// T-02 (gstack sau redesign): guard chung cho ho dialog framework-ui.js.
+// T-02 (gstack sau redesign): guard chung cho họ dialog framework-ui.js.
 //
-// File framework-ui.js tren static host goi thang top.layer.msg/open ma khong
-// guard; khi trang chay standalone (khong co frame portal SSO cung cap layer)
-// thi moi loi AJAX (qua $.najax/$.submitForm -> $.modalMsg, vd. SD-01, PL-4)
-// va moi nut mo dialog (qua $.modalOpen, vd. SD-10) lai nem them
-// "top.layer is undefined", che loi goc / chan dialog. Block nay nap SAU
-// framework-ui.js trong _Index/_Form nen la MOT cho duy nhat moi caller
-// $.modal* di qua: khi co layer thi uy thac nguyen ven ve ban goc (hanh vi
-// trong portal frame khong doi); khi khong co layer thi dung fallback khong
-// nem loi (toast cho msg, modal DOM + iframe cho dialog, dong duoc bang
-// $.modalClose). Kiem tra layer trong try/catch de ca truong hop top
-// cross-origin cung khong nem SecurityError.
+// File framework-ui.js trên static host gọi thẳng top.layer.msg/open mà không
+// guard; khi trang chạy standalone (không có frame portal SSO cung cấp layer)
+// thì mỗi lỗi AJAX (qua $.najax/$.submitForm -> $.modalMsg, vd. SD-01, PL-4)
+// và mỗi nút mở dialog (qua $.modalOpen, vd. SD-10) lại ném thêm
+// "top.layer is undefined", che lỗi gốc / chặn dialog. Block này nạp SAU
+// framework-ui.js trong _Index/_Form nên là MỘT chỗ duy nhất mọi caller
+// $.modal* đi qua: khi có layer thì ủy thác nguyên vẹn về bản gốc (hành vi
+// trong portal frame không đổi); khi không có layer thì dùng fallback không
+// ném lỗi (toast cho msg, modal DOM + iframe cho dialog, đóng được bằng
+// $.modalClose). Kiểm tra layer trong try/catch để cả trường hợp top
+// cross-origin cũng không ném SecurityError.
 (function () {
     if (!window.jQuery) { return; }
     function hasLayer() {
@@ -78,7 +78,7 @@
         return false;
     }
 
-    // --- $.modalMsg: goc goi top.layer.msg khong guard ---
+    // --- $.modalMsg: gốc gọi top.layer.msg không guard ---
     var _modalMsg = $.modalMsg;
     $.modalMsg = function (content, type, msgtime) {
         if (hasLayer()) { return _modalMsg.apply(this, arguments); }
@@ -90,7 +90,7 @@
         setTimeout(function () { if (toast.parentNode) { toast.parentNode.removeChild(toast); } }, ms);
     };
 
-    // --- $.modalOpen: goc goi top.layer.open khong guard ---
+    // --- $.modalOpen: gốc gọi top.layer.open không guard ---
     var _modalOpen = $.modalOpen;
     $.modalOpen = function (options) {
         if (hasLayer()) { return _modalOpen.apply(this, arguments); }
@@ -178,8 +178,8 @@
         if (reg) { reg[opts.id] = backdrop; }
     };
 
-    // --- $.modalClose: ban goc da try/catch nen khong nem, nhung khong dong
-    // duoc fallback modal; o day dong fallback truoc, roi moi uy thac. ---
+    // --- $.modalClose: bản gốc đã try/catch nên không ném, nhưng không đóng
+    // được fallback modal; ở đây đóng fallback trước, rồi mới ủy thác. ---
     var _modalClose = $.modalClose;
     $.modalClose = function (iframeId) {
         var id = iframeId;

@@ -37,11 +37,11 @@
     $.modalConfirm = viConfirm;
 })();
 
-// QA phase 2 (M-10): framework-ui.js tren static host (khong sua o day) co
-// ham bindSelect() khi du lieu rong se chen option tieng Anh "No results found".
-// bindSelect goi AJAX dong bo (async:false) nen goi goc xong la option da co mat:
-// doi ngay thanh tieng Viet, ke ca text hien thi cua select2. Luu y: day KHONG
-// phai locale jqGrid — _Index von da nap grid.locale-vi.js sau grid.locale-cn.js.
+// QA phase 2 (M-10): framework-ui.js trên static host (không sửa ở đây) có
+// hàm bindSelect() khi dữ liệu rỗng sẽ chèn option tiếng Anh "No results found".
+// bindSelect gọi AJAX đồng bộ (async:false) nên gọi gốc xong là option đã có mặt:
+// đổi ngay thành tiếng Việt, kể cả text hiển thị của select2. Lưu ý: đây KHÔNG
+// phải locale jqGrid — _Index vốn đã nạp grid.locale-vi.js sau grid.locale-cn.js.
 (function () {
     if (!window.jQuery || !$.fn.bindSelect) { return; }
     var _bindSelect = $.fn.bindSelect;

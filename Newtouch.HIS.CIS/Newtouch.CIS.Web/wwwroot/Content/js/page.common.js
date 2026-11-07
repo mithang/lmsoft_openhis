@@ -1,13 +1,13 @@
-//Tần suất Chung lớp nổibộ chọn
+//Tần suất chung lớp nổi bộ chọn
 $.fn.pcFloatingSelector = function (options) {
-	//Mặc địnhoptions
+	//Mặc định options
 	var defaults = {
 		width: 280,
 		height: 280,
 		//minlength: 2,
 		focusautotrigger: true,
 		className: "ui-pc-container",
-		caption: "ChọnTần suất",
+		caption: "Chọn tần suất",
 		url: '/SystemManage/BaseData/GetOrderFrequencyList',
 		ajaxparameters: function ($thisinput) {
 			return "";
@@ -18,15 +18,15 @@ $.fn.pcFloatingSelector = function (options) {
 	$(this).frequencyNewtouchFloatingSelector(options);
 }
 
-//Cách dùng thuốc Chung lớp nổibộ chọn
+//Cách dùng thuốc chung lớp nổi bộ chọn
 $.fn.yfFloatingSelector = function (options) {
-	//Mặc địnhoptions
+	//Mặc định options
 	var defaults = {
 		width: 250,
 		height: 200,
 		//minlength: 2,
 		focusautotrigger: true,
-		caption: "ChọnCách dùng",
+		caption: "Chọn cách dùng",
 		url: '/SystemManage/SysBaseData/GetMedicineUsageList',
 		ajaxparameters: function ($thisinput) {
 			return "keyword=" + $.trim($thisinput.val());
@@ -44,18 +44,18 @@ $.fn.yfFloatingSelector = function (options) {
 
 //Lớp nổi mục thu phí (gồm thuốc, mục, cũng có thể lấy hạng mục không điều trị)
 $.fn.sfxmFloatingSelector = function (options) {
-	//Mặc địnhoptions
+	//Mặc định options
 	var defaults = {
 	    width: 1550,
 		height: 380,
 		clickautotrigger: true,
 		url: '/SystemManage/BaseData/SelectSfxmYp',
-		ajaxparameters: null,   //vui lòngchỉđịnh
-		itemdbclickhandler: null,   //vui lòngchỉđịnh
-		djDecimalPlaces: 2,  //Đơn giátinhđộ Mặc định2
-		searchType: null,   //Chỉ điều khiển cột hiển thị ẩn, không tham số và lọc //Tìm kiếm mục tiêu "yp,sfxm", "yp", "sfxm", "yp.kc", "sfxm.dwjls", "yp,sfxm.dwjls", "yp.kc,sfxm", "yp.kc,sfxm.dwjls"
-		showColModel: null,   //có thểchỉđịnh [{name:;widthratio:;},{name:;widthratio:;}] widthratiocó thểchọn
-		ypkccbjc: true,    //ThuốcTồn khoban đầubướcKiểm tra   CóKhôngbịđiều khiển CóKhôngTồn kho0
+		ajaxparameters: null,   //vui lòng chỉ định
+		itemdbclickhandler: null,   //vui lòng chỉ định
+		djDecimalPlaces: 2,  //Độ chính xác đơn giá Mặc định 2
+		searchType: null,   //Chỉ điều khiển cột hiển thị ẩn, không tham số và lọc // Tìm kiếm mục tiêu "yp,sfxm", "yp", "sfxm", "yp.kc", "sfxm.dwjls", "yp,sfxm.dwjls", "yp.kc,sfxm", "yp.kc,sfxm.dwjls"
+		showColModel: null,   //có thể chỉ định [{name:;widthratio:;},{name:;widthratio:;}] widthratio có thể chọn
+		ypkccbjc: true,    //Kiểm tra sơ bộ tồn kho thuốc   Có bị kiểm soát hay không, có tồn kho hay không 0
 
 		colModel: [
 			{ label: 'Mã', name: 'sfxmCode', widthratio: 6 },
@@ -64,11 +64,11 @@ $.fn.sfxmFloatingSelector = function (options) {
 				label: 'Quy cách', name: 'gg', widthratio: 6
 				, hidden: true
 			},
-			{ label: 'Y lệnhLoại', name: 'yzlx', hidden: true },
+			{ label: 'Loại y lệnh', name: 'yzlx', hidden: true },
 			{ label: 'Mã đầu chữ', name: 'py', widthratio: 5, hidden: true },
-			{ label: 'Thu phíLoại lớn', name: 'sfdlCode', hidden: true },
+			{ label: 'Loại thu phí lớn', name: 'sfdlCode', hidden: true },
 			{
-				label: 'Thu phíLoại lớn', name: 'sfdlmc'
+				label: 'Loại thu phí lớn', name: 'sfdlmc'
 				, widthratio: 6
 				, hidden: true
 			},
@@ -85,9 +85,9 @@ $.fn.sfxmFloatingSelector = function (options) {
 				}
 				, hidden: true
 			},
-			//{ label: 'báobánchính sách', name: 'zfxz', hidden: true },
+			//{ label: 'báo bán chính sách', name: 'zfxz', hidden: true },
 			//{
-			//    label: 'báobánchính sách', name: 'zfxzmc', widthratio: 8, formatter: function (cellvalue, a, b) {
+			//    label: 'báo bán chính sách', name: 'zfxzmc', widthratio: 8, formatter: function (cellvalue, a, b) {
 			//        return $.enum.getDescByValue("EnumZiFuXingZhi", b.zfxz);
 			//    }
 			//},
@@ -98,9 +98,9 @@ $.fn.sfxmFloatingSelector = function (options) {
 				}
 			},
 			{ label: 'Tỷ lệ tự trả', name: 'zfbl', widthratio: 3,hidden: true },
-			{ label: 'Đặc biệtThuốcDấu hiệu', name: 'tsypbz', hidden: true },
+			{ label: 'Dấu hiệu thuốc đặc biệt', name: 'tsypbz', hidden: true },
 			{
-				label: 'Đặc biệtThuốcDấu hiệu', name: 'tsypbzmc', hidden: true, formatter: function (cellvalue, a, b) {
+				label: 'Dấu hiệu thuốc đặc biệt', name: 'tsypbzmc', hidden: true, formatter: function (cellvalue, a, b) {
 					return $.enum.getDescByValue("EnumYpsx", b.tsypbz);
 				}
 			},
@@ -132,7 +132,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 					return $.enum.getDescByValue("EnumKss", b.kssqxjb);
 				} },
 			{
-			    label: 'BHYThạngiá', name: 'cxjje', formatter: function (cellvalue, a, b) {
+			    label: 'BHYT hạng giá', name: 'cxjje', formatter: function (cellvalue, a, b) {
 					if (b.cxjje == null) {
 						return "0.00"
 					}
@@ -161,7 +161,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 				}, widthratio: 3, hidden: true
 			},
 			{
-				label: 'Một lầnLiều lượng', name: 'jlfw', formatter: function (cellvalue, a, b) {
+				label: 'Liều lượng một lần', name: 'jlfw', formatter: function (cellvalue, a, b) {
 					if (b.jlfwBegin || b.jlfwEnd) {
 						return b.jlfwBegin + "-" + b.jlfwEnd;
 					}
@@ -169,7 +169,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 				}, widthratio: 7, hidden: true
 			},
 			{
-				label: 'Tần suấtPhạm vi', name: 'pcfw', formatter: function (cellvalue, a, b) {
+				label: 'Phạm vi tần suất', name: 'pcfw', formatter: function (cellvalue, a, b) {
 					if (b.pcfwBegin || b.pcfwEnd) {
 						return b.pcfwBegin + "-" + b.pcfwEnd;
 					}
@@ -182,11 +182,11 @@ $.fn.sfxmFloatingSelector = function (options) {
 				}, widthratio: 3, hidden: true
 			},
             {
-                label: 'Sản xuấtNhà sản xuất', name: 'sccj'/*, hidden: true*/, formatter: function (cellvalue, a, b) {
+                label: 'Nhà sản xuất', name: 'sccj'/*, hidden: true*/, formatter: function (cellvalue, a, b) {
                     return cellvalue == undefined ? '' : cellvalue;
                 }, widthratio: 8
             },
-            { label: 'Quốc giaBHYTMã', name: 'gjybdm', widthratio: 8 },
+            { label: 'Mã BHYT quốc gia', name: 'gjybdm', widthratio: 8 },
 			{ label: 'Ghi chú', name: 'bz' }
 		]
 	};
@@ -274,7 +274,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 			}
 		});
 		if (!!colsfxmmc && !!colgg && !!colsfdlmc && !!coldwjls && !!colyfbmmc && !!colclkcsl && !!colkzbz) {
-			//đãbịchiếmdùng50rộng
+			//Đã bị chiếm 50 độ rộng
 			switch (options.searchType) {
 				case "yp": 
 					colsfxmmc.widthratio = 10;
@@ -421,7 +421,7 @@ $.fn.sfxmFloatingSelector = function (options) {
 	}
 
 	if (options.showColModel) {
-		//[{name:;widthratio:;},{name:;widthratio:;}] widthratiocó thểchọn
+		//[{name:;widthratio:;},{name:;widthratio:;}] widthratio có thể chọn
 		$.each(options.colModel, function () {
 			var thisCol = this;
 			var matchedShow = $.jsonWhere(options.showColModel, function (v) {
@@ -459,15 +459,15 @@ $.fn.sfxmFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//Hệ thốngKhoa lớp nổibộ chọn
+//Hệ thống khoa lớp nổi bộ chọn
 $.fn.ksFloatingSelector = function (options) {
-	//Mặc địnhoptions
+	//Mặc định options
 	var defaults = {
 		width: 300,
 		height: 180,
 		//minlength: 2,
 		focusautotrigger: true,
-		caption: "ChọnKhoa",
+		caption: "Chọn khoa",
 		url: '/SystemManage/SysBaseData/SelectDepartmentList',
 		ajaxparameters: function ($thisinput) {
 		    if (!!!options.iszlks) {
@@ -486,9 +486,9 @@ $.fn.ksFloatingSelector = function (options) {
 
 	$(this).newtouchFloatingSelector(options);
 }
-//Đơn thuốcmẫulớp nổi
+//Đơn thuốc mẫu lớp nổi
 $.fn.cfzutaoFloatingSelector12 = function (options) {
-	//Mặc địnhoptions
+	//Mặc định options
 	var defaults = {
 		width: 350,
 		height: 280,
@@ -501,22 +501,22 @@ $.fn.cfzutaoFloatingSelector12 = function (options) {
 		itemdbclickhandler: null,
 		colModel: [
 			{ label: 'cfmbId', name: 'mbId', hidden: true },
-			{ label: 'MẫuTên', name: 'mbmc', widthratio: 30 },
+			{ label: 'Tên mẫu', name: 'mbmc', widthratio: 30 },
 			{
-				label: 'Đơn thuốcLoại',
+				label: 'Loại đơn thuốc',
 				name: 'cflx',
 				widthratio: 20,
 				formatter: function(value, options, row) {
-					// sẽsốchữGiá trịchuyểnđổilàHánchữ
+					// Chuyển mã số loại đơn thuốc thành tên loại
 					const prescriptionTypes = {
-						1: "Thuốc TâyĐơn thuốc",
-						2: "Thuốc YHCTĐơn thuốc",
-						3: "Xét nghiệmĐơn thuốc",
-						4: "Kiểm traĐơn thuốc",
-						5: "Phục hồi chức năngĐơn thuốc",
+						1: "Đơn thuốc Tây",
+						2: "Đơn thuốc YHCT",
+						3: "Đơn thuốc xét nghiệm",
+						4: "Đơn thuốc kiểm tra",
+						5: "Đơn thuốc phục hồi chức năng",
 						6: "Đơn thuốc hạng mục thường quy",
 					};
-					return prescriptionTypes[value] || "Loại không rõ"; // Mặc địnhGiá trịlà "Không xác địnhLoại"
+					return prescriptionTypes[value] || "Loại không rõ"; // Mặc định giá trị là "Không xác định loại"
 				}
 			},
 			{ label: 'Mô tả', name: 'Description', widthratio: 30, hidden: true},
@@ -528,9 +528,9 @@ $.fn.cfzutaoFloatingSelector12 = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//Bộ mẫu lớp nổibộ chọn
+//Bộ mẫu lớp nổi bộ chọn
 $.fn.zutaoFloatingSelector = function (options) {
-	//Mặc địnhoptions
+	//Mặc định options
 	var defaults = {
 		width: 350,
 		height: 280,
@@ -556,9 +556,9 @@ $.fn.zutaoFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//Hệ thốngVị trí lớp nổibộ chọn
+//Hệ thống vị trí lớp nổi bộ chọn
 $.fn.bwFloatingSelector = function (options, data) {
-	//Mặc địnhoptions
+	//Mặc định options
 	var defaults = {
 		width: 300,
 		height: 250,
@@ -576,9 +576,9 @@ $.fn.bwFloatingSelector = function (options, data) {
 	$(this).multiquencyNewtouchFloatingSelector(options, data);
 }
 
-//Hệ thốngVị trí lớp nổibộ chọn
+//Hệ thống vị trí lớp nổi bộ chọn
 $.fn.yxbwFloatingSelector = function (options, data) {
-	//Mặc địnhoptions
+	//Mặc định options
 	var defaults = {
 		width: 300,
 		height: 200,
@@ -597,14 +597,14 @@ $.fn.yxbwFloatingSelector = function (options, data) {
 }
 
 
-//Hệ thốngDặn dò lớp nổibộ chọn
+//Hệ thống dặn dò lớp nổi bộ chọn
 $.fn.ztFloatingSelector = function (options) {
-	//Mặc địnhoptions
+	//Mặc định options
 	var defaults = {
 		width: 300,
 		height: 280,
 		focusautotrigger: true,
-		caption: "ChọnDặn dò",
+		caption: "Chọn dặn dò",
 		url: '/SystemManage/DoctorRemark/GetSysDoctorRemark',
 		ajaxparameters: function ($thisinput) {
 			return "keyword=" + $.trim($thisinput.val());
@@ -626,7 +626,7 @@ $.fn.ztFloatingSelector = function (options) {
 //        width: 400,
 //        height: 400,
 //        focusautotrigger: true,
-//        caption: "Phẫu thuậtnội dung",
+//        caption: "Phẫu thuật nội dung",
 //        url: '/SystemManage/DoctorRemark/surgery_record',
 //        ajaxparameters: function ($thisinput) {
 //            return "keyword=" + $.trim($thisinput.val());
@@ -652,7 +652,7 @@ $.fn.zdFloatingSelector = function (options) {
 		width: 600,
 		height: 200,
 		clickautotrigger: true,
-		caption: "ChọnChẩn đoán",
+		caption: "Chọn chẩn đoán",
 		ajaxparameters: function ($thisinput) {
 			if (!!!options.ybnhlx) {
 				return "keyword=" + $thisinput.val() + "&zdlx=" + options.zdlx;
@@ -667,7 +667,7 @@ $.fn.zdFloatingSelector = function (options) {
 			{ label: 'Tên', name: 'zdmc', widthratio: 60 },
 			{ label: 'Pinyin', name: 'py', widthratio: 20 },
 			{ label: 'icd10', name: 'icd10', widthratio: 20 },
-			{ label: 'icd10Bổ sungmã', name: 'icd10fjm', hidden: true }
+			{ label: 'Mã bổ sung ICD10', name: 'icd10fjm', hidden: true }
 		]
 	};
 	var options = $.extend(defaults, options);
@@ -682,7 +682,7 @@ $.fn.zyzhFloatingSelector = function (options) {
 		width: 400,
 		height: 200,
 		clickautotrigger: true,
-		caption: "ChọnTriệu chứng",
+		caption: "Chọn triệu chứng",
 		ajaxparameters: function ($thisinput) {
 			return "keyword=" + $thisinput.val();
 		},
@@ -698,7 +698,7 @@ $.fn.zyzhFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector(options);
 }
 
-//vị trí ký tự ngườiviênbộ chọn
+//vị trí ký tự người viên bộ chọn
 $.fn.dutyStaffFloatingSelector = function (options) {
 	$(this).newtouchFloatingSelector({
 		url: '/SystemManage/SysStaff/GetStaffListByDutyCode',
@@ -711,11 +711,11 @@ $.fn.dutyStaffFloatingSelector = function (options) {
 		colModel: [
 			{ label: 'StaffGh', name: 'StaffGh', hidden: true },
 			{ label: 'ks', name: 'ks', hidden: true },
-			{ label: 'Bác sĩTên', name: 'StaffName', widthratio: 48 },
-			{ label: 'Tên khoagọi là', name: 'ksmc', widthratio: 50 },
+			{ label: 'Tên bác sĩ', name: 'StaffName', widthratio: 48 },
+			{ label: 'Tên khoa', name: 'ksmc', widthratio: 50 },
 		],
 		itemdbclickhandler: function ($thistr, $thisinput) {
-			//Lưukhikiểm travalvàdata-Namenhất quán
+			//Khi lưu, kiểm chứng val và data-Name nhất quán
 			$thisinput.attr('data-StaffGh', $thistr.attr('data-StaffGh'));
 			$thisinput.attr('data-ks', $thistr.attr('data-ks'));
 			$thisinput.attr('data-ksmc', $thistr.attr('data-ksmc'));
@@ -724,16 +724,16 @@ $.fn.dutyStaffFloatingSelector = function (options) {
 	});
 }
 
-//thông thườngăn uốngchỉhiển thị
+//thông thường ăn uống chỉ hiển thị
 $.fn.yszsFloatingSelector = function (options, data) {
-	//Mặc địnhoptions
+	//Mặc định options
 	var defaults = {
 		width: 300,
 		height: 280,
 		focusautotrigger: true,
 		isinputchangetriggered: false,
 		mutiselect: true,
-		caption: "ChọnChỉ định",
+		caption: "Chọn chỉ định",
 		url: '/NurseManage/DietaryAdvice/GetyszsList',
 		ajaxparameters: function ($thisinput) {
 			return "keyword=" + options.searchdl;
@@ -743,16 +743,16 @@ $.fn.yszsFloatingSelector = function (options, data) {
 	$(this).multiFoodFloatingSelector(options, data);
 }
 
-//Loại y lệnh(dài hạn/tạm thời) lớp nổibộ chọn
+//Loại y lệnh (dài hạn/tạm thời) lớp nổi bộ chọn
 $.fn.yzlbFloatingSelector = function (options, data) {
-	//Mặc địnhoptions
+	//Mặc định options
 	var defaults = {
 		width: 100,
 		height: 40,
 		focusautotrigger: true,
 		isinputchangetriggered: false,
 		mutiselect: true,
-		caption: "ChọnY lệnhLoại",
+		caption: "Chọn loại y lệnh",
 		url: '/SystemManage/SysBaseData/GetYzlb',
 		ajaxparameters: function ($thisinput) {
 			return "";
@@ -763,15 +763,15 @@ $.fn.yzlbFloatingSelector = function (options, data) {
 }
 
 
-//Phòng khám hệ thống lớp nổibộ chọn
+//Phòng khám hệ thống lớp nổi bộ chọn
 $.fn.zsFloatingSelector = function (options) {
-    //Mặc địnhoptions
+    //Mặc định options
     var defaults = {
         width: 300,
         height: 180,
         //minlength: 2,
         focusautotrigger: true,
-        caption: "ChọnPhòng khám",
+        caption: "Chọn phòng khám",
         url: '/SystemManage/SysBaseData/SelectConsultList',
         ajaxparameters: function ($thisinput) {
             return "ksCode=" + options.ksCode + "&keyword=" + $.trim($thisinput.val());

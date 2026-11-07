@@ -23,7 +23,7 @@ function openLocalFile() {
             //var str = base64.substr(base64.indexOf("base64,") + 7, base64.length);
             //ctl.LoadDocumentFromBase64String(str, "xml");
             $.ajax({
-                //Phải dùngpostphương thức      
+                //Phải dùng post phương thức      
                 type: "Post",
                 //Phương thức nằm ở trang nào và tên phương thức      
                 url: "http://localhost:8456/ServicePage.aspx/UploadFiles",
@@ -53,10 +53,10 @@ function MySaveFile() {
     if ($("#ljwb").text() != "") {
         var ctl = document.getElementById('myWriterControl');
         if (ctl.DCExecuteCommand('FileSave', true, null) == true) {
-            //alert("Lưu thành công.Máy chủ trả về:" + ctl.ServerMessage);
+            //alert("Lưu thành công. Máy chủ trả về:" + ctl.ServerMessage);
             savePrompt("Lưu thành công", "green");
         } else {
-            //alert("Lưu thất bại.Máy chủ trả về:" + ctl.ServerMessage);
+            //alert("Lưu thất bại. Máy chủ trả về:" + ctl.ServerMessage);
             savePrompt("Lưu thất bại", "red");
         }
     } else {
@@ -101,7 +101,7 @@ function JumpPrint(setValue) {
     document.getElementById("chkMouseDragScroll").checked = false;
     ctl.setMouseDragScrollMode(false);
 }
-//Thiết lập trong bản xem trước,sử dụng con lăn chuột để kéo
+//Thiết lập trong bản xem trước, sử dụng con lăn chuột để kéo
 function SetMouseDragScroll(setValue) {
     var ctl = document.getElementById("myWriterControl");
     ctl.setMouseDragScrollMode(setValue);
@@ -146,7 +146,7 @@ function changeview(obj) {
     // Tạo khung trình soạn thảo
     ctl.BuildFrame(function () {
         if (ctl.Options.ContentRenderMode == "PagePreviewHtml") {
-            // Chế độ trang in,thì cuộn kéo-thả bằng chuột.
+            // Chế độ trang in, thì cuộn kéo-thả bằng chuột.
             ctl.setMouseDragScrollMode(true);
         } else {
             // Không bật cuộn kéo-thả bằng chuột.
@@ -154,16 +154,16 @@ function changeview(obj) {
         }
     });
 
-    // Xử lý sự kiện sau khi tải tài liệu,Do sử dụngAJAXchế độ,không chắc chắnLoadDocumentFormFile() sự kiện này có được kích hoạt sau khi trả về hay không
+    // Xử lý sự kiện sau khi tải tài liệu, Do sử dụng AJAX chế độ, không chắc chắn LoadDocumentFormFile() sự kiện này có được kích hoạt sau khi trả về hay không
     // Vì vậy cần thiết lập mã xử lý sự kiện này trước hàm LoadDocumentFormFile().
     ctl.DocumentLoad = function () {
         // Thiết lập chế độ cuộn kéo-thả bằng chuột của control sau khi tải tài liệu
         if (this.serverPerformances) {
             document.getElementById("lblServerTime").innerHTML = "|Đã tạo" +
-                this.serverPerformances.characters + "ký tự，thời gian xử lý nhân biên tập" +
-                this.serverPerformances.serverTicks + "ms,thời gian xử lý phía máy chủ" +
-                this.serverPerformances.totalServerTicks + "ms ，thời gian xử lý phía máy khách" +
-                this.serverPerformances.clientTicks + "ms。";
+                this.serverPerformances.characters + "ký tự, thời gian xử lý nhân biên tập" +
+                this.serverPerformances.serverTicks + "ms, thời gian xử lý phía máy chủ" +
+                this.serverPerformances.totalServerTicks + "ms, thời gian xử lý phía máy khách" +
+                this.serverPerformances.clientTicks + "ms.";
         }
         var htm = $("#ljwb").text();
         if (htm != "") {
@@ -208,7 +208,7 @@ function changeAutoZoom(obj) {
     // Tạo khung trình soạn thảo
     ctl.BuildFrame(function () {
         if (ctl.Options.ContentRenderMode == "PagePreviewHtml") {
-            // Chế độ trang in,thì cuộn kéo-thả bằng chuột.
+            // Chế độ trang in, thì cuộn kéo-thả bằng chuột.
             ctl.setMouseDragScrollMode(true);
         } else {
             // Không bật cuộn kéo-thả bằng chuột.
@@ -216,17 +216,17 @@ function changeAutoZoom(obj) {
         }
     });
 
-    // Xử lý sự kiện sau khi tải tài liệu,Do sử dụngAJAXchế độ,không chắc chắnLoadDocumentFormFile() sự kiện này có được kích hoạt sau khi trả về hay không
+    // Xử lý sự kiện sau khi tải tài liệu, Do sử dụng AJAX chế độ, không chắc chắn LoadDocumentFormFile() sự kiện này có được kích hoạt sau khi trả về hay không
     // Vì vậy cần thiết lập mã xử lý sự kiện này trước hàm LoadDocumentFormFile().
     var htm = $("#ljwb").text();
     ctl.DocumentLoad = function () {
         // Thiết lập chế độ cuộn kéo-thả bằng chuột của control sau khi tải tài liệu
         if (this.serverPerformances) {
             document.getElementById("lblServerTime").innerHTML = "|Đã tạo" +
-                this.serverPerformances.characters + "ký tự，thời gian xử lý nhân biên tập" +
-                this.serverPerformances.serverTicks + "ms,thời gian xử lý phía máy chủ" +
-                this.serverPerformances.totalServerTicks + "ms ，thời gian xử lý phía máy khách" +
-                this.serverPerformances.clientTicks + "ms。";
+                this.serverPerformances.characters + "ký tự, thời gian xử lý nhân biên tập" +
+                this.serverPerformances.serverTicks + "ms, thời gian xử lý phía máy chủ" +
+                this.serverPerformances.totalServerTicks + "ms, thời gian xử lý phía máy khách" +
+                this.serverPerformances.clientTicks + "ms.";
         }
         var htm = $("#ljwb").text();
         if (htm != "") {
@@ -244,7 +244,7 @@ function changeAutoZoom(obj) {
         }
     };
 }
-// HTMLThực thi hàm này sau khi trang tải xong
+// HTML Thực thi hàm này sau khi trang tải xong
 function BuildDCWriterControlFrame() {
     // Lấy phần tử chứa control
     var ctl = document.getElementById("myWriterControl");
@@ -283,23 +283,23 @@ function BuildDCWriterControlFrame() {
     // Tạo khung trình soạn thảo
     ctl.BuildFrame(function () {
         if (ctl.Options.ContentRenderMode == "PagePreviewHtml") {
-            // Chế độ trang in,thì cuộn kéo-thả bằng chuột.
+            // Chế độ trang in, thì cuộn kéo-thả bằng chuột.
             ctl.setMouseDragScrollMode(true);
         } else {
             // Không bật cuộn kéo-thả bằng chuột.
             ctl.setMouseDragScrollMode(false);
         }
     });
-    // Xử lý sự kiện sau khi tải tài liệu,Do sử dụngAJAXchế độ,không chắc chắnLoadDocumentFormFile() sự kiện này có được kích hoạt sau khi trả về hay không
+    // Xử lý sự kiện sau khi tải tài liệu, Do sử dụng AJAX chế độ, không chắc chắn LoadDocumentFormFile() sự kiện này có được kích hoạt sau khi trả về hay không
     // Vì vậy cần thiết lập mã xử lý sự kiện này trước hàm LoadDocumentFormFile().
     ctl.DocumentLoad = function () {
         // Thiết lập chế độ cuộn kéo-thả bằng chuột của control sau khi tải tài liệu
         if (this.serverPerformances) {
             document.getElementById("lblServerTime").innerHTML = "|Đã tạo" +
-                this.serverPerformances.characters + "ký tự，thời gian xử lý nhân biên tập" +
-                this.serverPerformances.serverTicks + "ms,thời gian xử lý phía máy chủ" +
-                this.serverPerformances.totalServerTicks + "ms ，thời gian xử lý phía máy khách" +
-                this.serverPerformances.clientTicks + "ms。";
+                this.serverPerformances.characters + "ký tự, thời gian xử lý nhân biên tập" +
+                this.serverPerformances.serverTicks + "ms, thời gian xử lý phía máy chủ" +
+                this.serverPerformances.totalServerTicks + "ms, thời gian xử lý phía máy khách" +
+                this.serverPerformances.clientTicks + "ms.";
         }
         //firstFile Tải tài liệu lần đầu
         AjaxLoad("入院记录.xml");
@@ -317,20 +317,20 @@ function AjaxLoad(fileName) {
     var ctl = document.getElementById("myWriterControl");
     document.getElementById("lblServerTime").innerHTML = "|Đang tải...";
     ctl.preserveScrollPosition = true; // Khi tải tài liệu cố gắng giữ nguyên vị trí cuộn trang.
-    // Xử lý sự kiện sau khi tải tài liệu,Do sử dụngAJAXchế độ,không chắc chắnLoadDocumentFormFile() sự kiện này có được kích hoạt sau khi trả về hay không
+    // Xử lý sự kiện sau khi tải tài liệu, Do sử dụng AJAX chế độ, không chắc chắn LoadDocumentFormFile() sự kiện này có được kích hoạt sau khi trả về hay không
     // Vì vậy cần thiết lập mã xử lý sự kiện này trước hàm LoadDocumentFormFile().
     ctl.DocumentLoad = function () {
         ctl.setMouseDragScrollMode(false); // Thiết lập chế độ cuộn kéo-thả bằng chuột của control sau khi tải tài liệu
         var performances = ctl.getServerPerformances();
         if (ctl.serverPerformances) {
             document.getElementById("lblServerTime").innerHTML = "|Đã tạo" +
-                ctl.serverPerformances.characters + "ký tự，thời gian xử lý nhân biên tập" +
-                ctl.serverPerformances.serverTicks + "ms,thời gian xử lý phía máy chủ" +
-                ctl.serverPerformances.totalServerTicks + "ms ，thời gian xử lý phía máy khách" +
-                ctl.serverPerformances.clientTicks + "ms。";
+                ctl.serverPerformances.characters + "ký tự, thời gian xử lý nhân biên tập" +
+                ctl.serverPerformances.serverTicks + "ms, thời gian xử lý phía máy chủ" +
+                ctl.serverPerformances.totalServerTicks + "ms, thời gian xử lý phía máy khách" +
+                ctl.serverPerformances.clientTicks + "ms.";
         }
     }
-    // Phản hồi control ở phía máy chủEventReadFileContentsự kiện,là có thể sử dụngAJAXTải tài liệu theo chế độ.
+    // Phản hồi control ở phía máy chủ EventReadFileContent sự kiện, là có thể sử dụng AJAX Tải tài liệu theo chế độ.
     ctl.LoadDocumentFromFile(fileName, null);
 }
 function loadFile(name) {
@@ -340,7 +340,7 @@ function loadFile(name) {
         type: 'GET',
         timeout: 2000,
         error: function () {
-            alert("Tải tệp XML bị lỗi！");
+            alert("Tải tệp XML bị lỗi!");
         },
         success: function (xml) {
             var ctl = document.getElementById("myWriterControl");
@@ -350,7 +350,7 @@ function loadFile(name) {
         }
     });
 }
-// Lấyhtml
+// Lấy html
 function setHtml() {
     var html = document.getElementById('myWriterControl').SelectionHtml(); //String
     $("#zshtml").toggle();
@@ -366,7 +366,7 @@ function setHtml() {
     }
     $("#htmlcon").text(html);
 }
-// Lấyxml
+// Lấy xml
 function setXml() {
     var doc = '<?xml version="1.0" encoding="utf-8" ?>\n';
     var xml = document.getElementById('myWriterControl').SelectionXml(); //String
@@ -555,7 +555,7 @@ function MyInsertNameInputField() {
     };
     var field = ctl.DCExecuteCommand("InsertInputField", true, options);
     if (field != null) {
-        ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể làbeforeBegin,afterBegin,beforeEnd,afterEnd
+        ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể là beforeBegin, afterBegin, beforeEnd, afterEnd
     }
 }
 // Chèn trường nhập giới tính
@@ -588,7 +588,7 @@ function MyInsertSexInputField() {
     };
     var field = ctl.DCExecuteCommand("InsertInputField", true, options);
     if (field != null) {
-        ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể làbeforeBegin,afterBegin,beforeEnd,afterEnd
+        ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể là beforeBegin, afterBegin, beforeEnd, afterEnd
     }
 }
 // Chèn trường nhập ngày
@@ -607,7 +607,7 @@ function MyInsertDateInputField() {
     };
     var field = ctl.DCExecuteCommand("InsertInputField", true, options);
     if (field != null) {
-        ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể làbeforeBegin,afterBegin,beforeEnd,afterEnd
+        ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể là beforeBegin, afterBegin, beforeEnd, afterEnd
     }
 }
 
@@ -615,7 +615,7 @@ function MyInsertDateInputField() {
 function MyInsertRadioOrCheckBoxInputField(type) {
     var ctl = document.getElementById("myWriterControl");
     var options = {
-        "Name": "name001", //của hộp chọn đơnNamethuộc tính giống nhau
+        "Name": "name001", //của hộp chọn đơn Name thuộc tính giống nhau
         "Type": type, //radio,checkbox
         "ListItems": [
             {
@@ -640,7 +640,7 @@ function MyInsertRadioOrCheckBoxInputField(type) {
     };
     ctl.DCExecuteCommand("insertcheckboxorradio", true, options);
     //if (field != null) {
-    //    ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể làbeforeBegin,afterBegin,beforeEnd,afterEnd
+    //    ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể là beforeBegin, afterBegin, beforeEnd, afterEnd
     //}
 }
 
@@ -721,7 +721,7 @@ function MyInsertMedicalExpression(index, ExpressionStyle, Values) { //Công th�
     };
     var field = ctl.DCExecuteCommand("insertmedicalexpression", false, options);
     //            if (field != null) {
-    //                ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể làbeforeBegin,afterBegin,beforeEnd,afterEnd
+    //                ctl.FocusAdjacent("afterEnd", field); //Tham số đầu tiên ở đây có thể là beforeBegin, afterBegin, beforeEnd, afterEnd
     //            }
 }
 //5.0 Phiên bản
@@ -730,7 +730,7 @@ function MedicalExpressionMenuV5() {
     ctl.DCExecuteCommand('InsertMedicalExpression', true, {})
 }
 
-// OCXtải
+// OCX tải
 function MyOCX() {
     window.open("IEWebDemo.htm");
 }

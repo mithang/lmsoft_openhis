@@ -1706,7 +1706,7 @@ DCDomTools.getSelectionRange = function () {
     return null;
 };
 
-//Wu Yichao20190717: Giải mã HTML chuỗi ở frontend, yêu cầu chuỗi truyền vào phải là chuỗi đã mã hóa HTML
+//Wu Yichao 20190717: Giải mã HTML chuỗi ở frontend, yêu cầu chuỗi truyền vào phải là chuỗi đã mã hóa HTML
 DCDomTools.HTMLDecode = function (str) {
     //var div = document.createElement("div");
     //div.innerHTML = str;
@@ -1739,7 +1739,7 @@ DCDomTools.HTMLDecode = function (str) {
             });
 };
 
-//Wu Yichao20190717: Mã hóa HTML chuỗi ở frontend, yêu cầu chuỗi truyền vào phải là chuỗi HTML dạng rõ
+//Wu Yichao 20190717: Mã hóa HTML chuỗi ở frontend, yêu cầu chuỗi truyền vào phải là chuỗi HTML dạng rõ
 DCDomTools.HTMLEncode = function (str) {
     //var div = document.createElement("div");
     //div.innerText = str;
@@ -1884,7 +1884,7 @@ DCDomTools.fixAjaxSettings = function(settings , myWriterControl )
     if (myWriterControl == null) {
         myWriterControl = document.WriterControl;
     }
-    //wyc20201203:Thêm cài đặt đồng bộ/bất đồng bộ toàn cục
+    //wyc20201203: Thêm cài đặt đồng bộ/bất đồng bộ toàn cục
     if (settings.async !== undefined &&
         myWriterControl &&
         myWriterControl.Options) {
@@ -1928,14 +1928,14 @@ DCDomTools.fixAjaxSettings = function(settings , myWriterControl )
         }
     }
 
-    //wyc20221009:Xử lý tập trung việc chuyển đổi transformusebase64
+    //wyc20221009: Xử lý tập trung việc chuyển đổi transformusebase64
     if (myWriterControl != null &&
         typeof (myWriterControl.IsUseBase64Transfer) === "function" &&
         myWriterControl.IsUseBase64Transfer() === true &&
         settings.data != null &&
         typeof (settings.data) !== "object") {
-        var excludecommandname = [];//wyc20221122tạm thời để trống, sau này khi cần sẽ đưa ra
-        //wyc20221122:Xử lý các mục loại trừ, một số lệnh không truyền bằng base64
+        var excludecommandname = [];//wyc20221122 tạm thời để trống, sau này khi cần sẽ đưa ra
+        //wyc20221122: Xử lý các mục loại trừ, một số lệnh không truyền bằng base64
         var index = settings.url.indexOf("?");
         var index2 = settings.url.indexOf("=");
         var commandname = settings.url.slice(index + 1, index2)
@@ -2664,8 +2664,8 @@ DCDomTools.setMouseDragScrollMode = function (rootElement, setValue) {
 
 
 // Xóa thuộc tính trong CSS
-// tham số rootNode:nút cần thao tác
-//      deeply:có xử lý các nút con cháu hay không
+// tham số rootNode: nút cần thao tác
+//      deeply: có xử lý các nút con cháu hay không
 DCDomTools.removeCssAttribute = function (rootNode, attributeName, deeply) {
     if (rootNode.style) {
         if (rootNode.style.removeAttribute) {
@@ -2685,8 +2685,8 @@ DCDomTools.removeCssAttribute = function (rootNode, attributeName, deeply) {
 
 
 // Xóa thuộc tính CSS trong các nút con
-// tham số rootNode:nút cần thao tác
-//      deeply:có xử lý các nút con cháu hay không
+// tham số rootNode: nút cần thao tác
+//      deeply: có xử lý các nút con cháu hay không
 DCDomTools.removeChildNodesCssAttribute = function (rootNode, attributeName, deeply) {
     if (rootNode != null && rootNode.childNodes) {
         var nodes = rootNode.childNodes;
@@ -3522,7 +3522,7 @@ DCDomTools.GetAbsNextSiblingIncludeSubNode = function (element) {
     }
     var nextNode = element;
     while (nextNode != null) {
-        // Ở đâycó thể gây vòng lặp vô hạn, cần kiểm tra firstChild != element
+        // Ở đây có thể gây vòng lặp vô hạn, cần kiểm tra firstChild != element
         if (nextNode.firstChild != null && nextNode.firstChild != element ) {
             return nextNode.firstChild;
         }
@@ -3817,9 +3817,9 @@ DCDomTools.FlashElement = function (element) {
 
 //*******************************************************************************
 // Làm nhấp nháy phần tử tài liệu đã chỉ định
-// tham số element:đối tượng phần tử tài liệu
-//      count:số lần nhấp nháy
-//      borderColor:màu viền dùng khi nhấp nháy
+// tham số element: đối tượng phần tử tài liệu
+//      count: số lần nhấp nháy
+//      borderColor: màu viền dùng khi nhấp nháy
 DCDomTools.FlashElement = function (element, count, borderColor) {
     if (element == null) {
         return false;
@@ -3882,7 +3882,7 @@ DCDomTools.InvokeFlashElement = function () {
 };
 
 // Tải nội dung JSON theo URL
-// tham số: url:địa chỉ truy cập JSON; jsonName:tên dữ liệu
+// tham số: url: địa chỉ truy cập JSON; jsonName: tên dữ liệu
 DCDomTools.LoadJsonByUrl = function (url) {
     if (url == null || url.length == 0) {
         return new Object();
@@ -5204,7 +5204,7 @@ DCDomTools.GetSizeFromSpecifyFont = function (fontname, fontsize) {
     if (fontsize !== undefined && fontsize !== null && fontsize !== "") {
         fs = fontsize;
     }
-    // 20220929 xym sửa vấn đề chiều cao mục danh sách thả xuống[DCDomTools.GetSizeFromSpecifyFont]
+    // 20220929 xym sửa vấn đề chiều cao mục danh sách thả xuống [DCDomTools.GetSizeFromSpecifyFont]
     var span = document.createElement("div");
     span.id="spanformeasure"
     span.innerText = "H";
@@ -5216,7 +5216,7 @@ DCDomTools.GetSizeFromSpecifyFont = function (fontname, fontsize) {
     return length;
 };
 
-//WYC20191216:Xử lý dữ liệu hình ảnh khi phần tử nút chuyển đổi ở frontend
+//WYC20191216: Xử lý dữ liệu hình ảnh khi phần tử nút chuyển đổi ở frontend
 DCDomTools.ProcessButtonImg = function (element, eventname) {
     if (element == null || element.nodeName != "INPUT") {
         return;
@@ -5344,7 +5344,7 @@ DCDomTools.processMoveCaret = function (type) {
     }
 };
 
-//wyc20210121:Điều chỉnh mã thiết lập viền bốn chiều của phần tử
+//wyc20210121: Điều chỉnh mã thiết lập viền bốn chiều của phần tử
 DCDomTools.SetElementBorder = function (element, options) {
     if (element.hasAttribute == null || element.hasAttribute("dctype") == false) {
         return;
@@ -5539,7 +5539,7 @@ DCDomTools.ParseAttributeToObject = function (str) {
     if (str.charAt(0) == '[') {
         // Định dạng JSON
         var obj;
-        // 20220812 xym Thêm trycatch để tránh báo lỗi[DCDomTools.GetElementCustomAttributes]
+        // 20220812 xym Thêm trycatch để tránh báo lỗi [DCDomTools.GetElementCustomAttributes]
         try {
             obj = JSON.parse(str);
         } catch (error) {
@@ -5565,7 +5565,7 @@ DCDomTools.ParseAttributeToObject = function (str) {
     return resultobj;
 };
 
-//wyc20210127:Lấy các Attributes tùy chỉnh của phần tử tài liệu, chuyển cặp name:value do backend truyền thành đối tượng JSON dùng trực tiếp ở frontend
+//wyc20210127: Lấy các Attributes tùy chỉnh của phần tử tài liệu, chuyển cặp name:value do backend truyền thành đối tượng JSON dùng trực tiếp ở frontend
 DCDomTools.GetElementCustomAttributes = function (element) {
     if (element.hasAttribute && element.hasAttribute("dc_attributes") == false) {
         return null;
@@ -5576,7 +5576,7 @@ DCDomTools.GetElementCustomAttributes = function (element) {
     }
     return DCDomTools.ParseAttributeToObject(strAttributes);
 };
-//wyc20210127:Thiết lập các Attributes tùy chỉnh của phần tử tài liệu, chuyển đối tượng JSON dùng trực tiếp ở frontend thành chuỗi cặp name:value mà backend nhận dạng
+//wyc20210127: Thiết lập các Attributes tùy chỉnh của phần tử tài liệu, chuyển đối tượng JSON dùng trực tiếp ở frontend thành chuỗi cặp name:value mà backend nhận dạng
 DCDomTools.SetElementCustomAttributes = function (element, obj) {
     if (typeof (obj) !== "object" || element == undefined || element.setAttribute == undefined) {
         return false;
@@ -5597,7 +5597,7 @@ DCDomTools.SetElementCustomAttributes = function (element, obj) {
     }
 };
 
-//wyc20210712:Chế độ tải tài liệu đặc biệt, chỉ tải phần thân tài liệu hoặc đầu trang/cuối trang của nội dung cần tải và thay đổi phần liên quan của tài liệu hiện tại, các phần khác không thay đổi
+//wyc20210712: Chế độ tải tài liệu đặc biệt, chỉ tải phần thân tài liệu hoặc đầu trang/cuối trang của nội dung cần tải và thay đổi phần liên quan của tài liệu hiện tại, các phần khác không thay đổi
 DCDomTools.LoadDocumentFromHtmlTextSpecifyPart = function (doc, htmlContent, specifyLoadPart) {
     var originHeader = doc.getElementById("divXTextDocumentHeaderElement");
     var originFooter = doc.getElementById("divXTextDocumentFooterElement");
@@ -5605,7 +5605,7 @@ DCDomTools.LoadDocumentFromHtmlTextSpecifyPart = function (doc, htmlContent, spe
     tempdiv.innerHTML = htmlContent;
     var loadedHeader = tempdiv.querySelector("#divXTextDocumentHeaderElement");
     var loadedFooter = tempdiv.querySelector("#divXTextDocumentFooterElement");
-    //wyc20220713:Bổ sung thao tác khởi tạo
+    //wyc20220713: Bổ sung thao tác khởi tạo
     var win = document.WriterControl.GetContentWindow();
     if (win && win.DCWriterControllerEditor) {
         win.DCWriterControllerEditor.InitFileContentDom(loadedHeader, true);
@@ -5624,7 +5624,7 @@ DCDomTools.LoadDocumentFromHtmlTextSpecifyPart = function (doc, htmlContent, spe
             var copyHeader = originHeader.cloneNode(true);
             var copyFooter = originFooter.cloneNode(true);
             var tempdiv = document.createElement("div");
-            //wyc20220323:Điều chỉnh logic, ngày 20220713 điều chỉnh lại, thay thế trong sự kiện doc.ready
+            //wyc20220323: Điều chỉnh logic, ngày 20220713 điều chỉnh lại, thay thế trong sự kiện doc.ready
             doc.NeedReplaceHeader = copyHeader;
             doc.NeedReplaceFooter = copyFooter;
 
@@ -5647,7 +5647,7 @@ DCDomTools.LoadDocumentFromHtmlTextSpecifyPart = function (doc, htmlContent, spe
     }
 };
 
-//wyc20210713:Thiết lập khóa nội dung của phần tử tài liệu ở frontend
+//wyc20210713: Thiết lập khóa nội dung của phần tử tài liệu ở frontend
 DCDomTools.SetElementContentLock = function (element, obj) {
     var ele = null;
     if (typeof (element) == "string") {
@@ -5703,7 +5703,7 @@ DCDomTools.SetElementContentLock = function (element, obj) {
     }
 };
 
-//wyc20210818:Lấy cài đặt chế độ kết nối của phần tử nhãn
+//wyc20210818: Lấy cài đặt chế độ kết nối của phần tử nhãn
 DCDomTools.GetLabelElementContactSettings = function (element) {
     var resultobj = new Object();
     var contactaction = element.getAttribute("dc_contactaction");
@@ -5715,7 +5715,7 @@ DCDomTools.GetLabelElementContactSettings = function (element) {
     resultobj.LinkTextForContactAction = element.getAttribute("dc_linktextforcontactaction");   
     return resultobj;
 };
-//wyc20210818:Thiết lập chế độ kết nối của phần tử nhãn
+//wyc20210818: Thiết lập chế độ kết nối của phần tử nhãn
 DCDomTools.SetLabelElementContactSettings = function (element, obj) {
     if (typeof (obj) !== "object" || element == undefined || element.setAttribute == undefined) {
         return false;
@@ -5738,7 +5738,7 @@ DCDomTools.SetLabelElementContactSettings = function (element, obj) {
     }   
 };
 
-//wyc20211122:Lấy tài liệu con mà phần tử tài liệu thuộc về, ở frontend
+//wyc20211122: Lấy tài liệu con mà phần tử tài liệu thuộc về, ở frontend
 DCDomTools.GetElementOwnerSubDocument = function (element) {
     if (element == null) {
         return null;
@@ -5772,7 +5772,7 @@ DCDomTools.GetElementOwnerSubDocument = function (element) {
     return parent;
 };
 
-//wyc20220414:Kiểm tra ở frontend xem nút HTMLDOM có phải là phần tử tài liệu của trình soạn thảo hay không
+//wyc20220414: Kiểm tra ở frontend xem nút HTMLDOM có phải là phần tử tài liệu của trình soạn thảo hay không
 DCDomTools.IsDCWriterElement = function (element) {
     if (element == null) {
         return false;
@@ -5927,7 +5927,7 @@ DCDomTools.SetElementValueBindingAttr = function (element, obj) {
     return false;
 };
 
-//wyc20220823:Hàm xử lý tiếp ứng ở frontend khi chọn các checkbox có tên nhóm khác nhau nhưng ID mục trong nhóm giống nhau
+//wyc20220823: Hàm xử lý tiếp ứng ở frontend khi chọn các checkbox có tên nhóm khác nhau nhưng ID mục trong nhóm giống nhau
 DCDomTools.HandleCheckedLabelClick = function (element) {
     var input = null;
     if (element != null && element.parentElement != null) {
@@ -7189,10 +7189,10 @@ function DCIsResourceFromServicePage() {
     return "12345678" === "12345678";
 }
 
-// Khi máy khách dùng<script type="text/javascript" src="ShowDocumentImageService.aspx?js=1"></script>trích dẫn nội dung tệp JS này.
-// thì phía máy chủ cố ý thay"% # ServicePage # %"thành"12345678".lúc nàyDCIsResourceFromServicePage()giá trị trả về cố định là true.
+// Khi máy khách dùng<script type="text/javascript" src="ShowDocumentImageService.aspx?js=1"></script> trích dẫn nội dung tệp JS này.
+// thì phía máy chủ cố ý thay "% # ServicePage # %" thành "12345678". lúc này DCIsResourceFromServicePage() giá trị trả về cố định là true.
 //
-// Nếu dùng<script type="text/javascript" src="ctlReference/DCWriterControl.js"></script>để trích dẫn nội dung tệp JS, 
+// Nếu dùng<script type="text/javascript" src="ctlReference/DCWriterControl.js"></script> để trích dẫn nội dung tệp JS, 
 // thì mã này không thay đổi, thì giá trị trả về cố định là false.
 
 
@@ -7204,148 +7204,148 @@ function DCIsResourceFromServicePage() {
 // Ở đây dùng chú thích mã để giữ trước một vị trí, thực hiện thao tác thay thế trong DCSoft.Writer.Controls.Web.WC_JS.
 var AttributeNamesForWriterControlOptions = [
 	"AdditionPageTitle" , // Kiểu:System.String
-	"AJAXAsync" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"AllowCopy" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"AllowDrop" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"AllowSmallPiecesWhenMergeDocument" , // Kiểu:System.Boolean,giá trị mặc định:False
+	"AJAXAsync" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"AllowCopy" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"AllowDrop" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"AllowSmallPiecesWhenMergeDocument" , // Kiểu:System.Boolean, giá trị mặc định:False
 	"AttachedAJAXHeader" , // Kiểu:System.String
-	"AutoFixFontName" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"AutoGenerateCABFile" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"AutoGenerateOrderedList" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"AutoHeightInMobileDevice" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"AutoLine" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"AutoPostBack" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"AutoSaveIntervalInSecond" , // Kiểu:System.Int32,giá trị mặc định:0
-	"AutoZoom" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"BackgroundTextOutputMode" , // Kiểu:DCSoft.Writer.DCBackgroundTextOutputMode,giá trị mặc định:Output
+	"AutoFixFontName" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"AutoGenerateCABFile" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"AutoGenerateOrderedList" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"AutoHeightInMobileDevice" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"AutoLine" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"AutoPostBack" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"AutoSaveIntervalInSecond" , // Kiểu:System.Int32, giá trị mặc định:0
+	"AutoZoom" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"BackgroundTextOutputMode" , // Kiểu:DCSoft.Writer.DCBackgroundTextOutputMode, giá trị mặc định:Output
 	"BaseUrl" , // Kiểu:System.String
-	"BindingDataOnlyToBlankField" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"BrowserStyle" , // Kiểu:DCSoft.Common.XWebBrowsersStyle,giá trị mặc định:AutoDetect
+	"BindingDataOnlyToBlankField" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"BrowserStyle" , // Kiểu:DCSoft.Common.XWebBrowsersStyle, giá trị mặc định:AutoDetect
 	"CABUrl" , // Kiểu:System.String
 	"CABVersion" , // Kiểu:System.String
-	"Chartset" , // Kiểu:System.String,giá trị mặc định:gb2312
+	"Chartset" , // Kiểu:System.String, giá trị mặc định:gb2312
 	"CheckBoxCheckedImageBase64" , // Kiểu:System.String
 	"CheckBoxUnCheckedImageBase64" , // Kiểu:System.String
-	"ClientContextMenuType" , // Kiểu:DCSoft.Writer.Controls.WebClientContextMenuType,giá trị mặc định:None
+	"ClientContextMenuType" , // Kiểu:DCSoft.Writer.Controls.WebClientContextMenuType, giá trị mặc định:None
 	"ClientID" , // Kiểu:System.String
 	"ClientMachineName" , // Kiểu:System.String
-	"CloneTableContentWithOnlyCleanField" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"CommentPrintVisible" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"CommentVisibility" , // Kiểu:DCSoft.Writer.Controls.FunctionControlVisibility,giá trị mặc định:Auto
-	"CommentVisible" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"CompressSessionData" , // Kiểu:System.Boolean,giá trị mặc định:True
+	"CloneTableContentWithOnlyCleanField" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"CommentPrintVisible" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"CommentVisibility" , // Kiểu:DCSoft.Writer.Controls.FunctionControlVisibility, giá trị mặc định:Auto
+	"CommentVisible" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"CompressSessionData" , // Kiểu:System.Boolean, giá trị mặc định:True
 	"ContentEncoding" , // Kiểu:System.Text.Encoding
-	"ContentRenderMode" , // Kiểu:DCSoft.Writer.Controls.WebWriterControlRenderMode,giá trị mặc định:PageImage
+	"ContentRenderMode" , // Kiểu:DCSoft.Writer.Controls.WebWriterControlRenderMode, giá trị mặc định:PageImage
 	"ControlName" , // Kiểu:System.String
-	"CrossDomain" , // Kiểu:System.Boolean,giá trị mặc định:False
+	"CrossDomain" , // Kiểu:System.Boolean, giá trị mặc định:False
 	"CurrentLoadOptions" , // Kiểu:DCSoft.Writer.Controls.WebWriterControlLoadDocumentOptions
 	"CurrentUserID" , // Kiểu:System.String
 	"CurrentUserName" , // Kiểu:System.String
-	"CurrentUserPermissionLevel" , // Kiểu:System.Int32,giá trị mặc định:0
+	"CurrentUserPermissionLevel" , // Kiểu:System.Int32, giá trị mặc định:0
 	"CustomCSSString" , // Kiểu:System.String
 	"CustomizeSpanInputElementBorderCssStyle" , // Kiểu:System.String
 	"CustomLogoImage" , // Kiểu:System.String
 	"CustomSessionID" , // Kiểu:System.Int32
-	"DebugMode" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"DefaultFontName" , // Kiểu:System.String,giá trị mặc định:宋体
-	"DefaultFontSize" , // Kiểu:System.Int32,giá trị mặc định:12
+	"DebugMode" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"DefaultFontName" , // Kiểu:System.String, giá trị mặc định:宋体
+	"DefaultFontSize" , // Kiểu:System.Int32, giá trị mặc định:12
 	"DocumentBufferedName" , // Kiểu:System.String
 	"DocumentOptions" , // Kiểu:DCSoft.Writer.DocumentOptions
-	"EnableBrowseCache" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"EnabledClientContextMenu" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"EnableEncryptView" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"EnableLandscapeView" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"EnablePermission" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"EnableValueFormat" , // Kiểu:System.Boolean,giá trị mặc định:True
+	"EnableBrowseCache" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"EnabledClientContextMenu" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"EnableEncryptView" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"EnableLandscapeView" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"EnablePermission" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"EnableValueFormat" , // Kiểu:System.Boolean, giá trị mặc định:True
 	"ExcludeKeywords" , // Kiểu:System.String
-	"ExcludeLogicDeleted" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"FieldBorderPrintVisibility" , // Kiểu:DCSoft.Writer.DCRenderVisibility,giá trị mặc định:Default
-	"FixedHeader" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"ForHtmlEditable" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"FormView" , // Kiểu:DCSoft.Writer.Controls.FormViewMode,giá trị mặc định:Disable
-	"ForPrint" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"FreeSelection" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"GenerateFormElement" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"GeneratePrintPreviewPDF" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"HeaderFooterEditable" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"HeaderFooterReadOnly" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"HeaderFooterSelect" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"HeightCompress" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"ImageDataEmbedInHtml" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"IndentHtmlCode" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"InitJSUsingAJAX" , // Kiểu:System.Boolean,giá trị mặc định:False
+	"ExcludeLogicDeleted" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"FieldBorderPrintVisibility" , // Kiểu:DCSoft.Writer.DCRenderVisibility, giá trị mặc định:Default
+	"FixedHeader" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"ForHtmlEditable" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"FormView" , // Kiểu:DCSoft.Writer.Controls.FormViewMode, giá trị mặc định:Disable
+	"ForPrint" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"FreeSelection" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"GenerateFormElement" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"GeneratePrintPreviewPDF" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"HeaderFooterEditable" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"HeaderFooterReadOnly" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"HeaderFooterSelect" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"HeightCompress" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"ImageDataEmbedInHtml" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"IndentHtmlCode" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"InitJSUsingAJAX" , // Kiểu:System.Boolean, giá trị mặc định:False
 	"InnerSPBDCS" , // Kiểu:System.String
 	"InsertImageButtonID" , // Kiểu:System.String
-	"isActiveCurrentComment" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"IsMobileDevice" , // Kiểu:DCSoft.Writer.Controls.DCOptionMode,giá trị mặc định:AutoDetect
-	"isTransformLandscape" , // Kiểu:System.Boolean,giá trị mặc định:True
+	"isActiveCurrentComment" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"IsMobileDevice" , // Kiểu:DCSoft.Writer.Controls.DCOptionMode, giá trị mặc định:AutoDetect
+	"isTransformLandscape" , // Kiểu:System.Boolean, giá trị mặc định:True
 	"KBLibraryUrl" , // Kiểu:System.String
-	"KeepLineBreak" , // Kiểu:System.Boolean,giá trị mặc định:True
+	"KeepLineBreak" , // Kiểu:System.Boolean, giá trị mặc định:True
 	"LicenseServicePageUrl" , // Kiểu:System.String
-	"LocalFileMode" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"LocalServerPort" , // Kiểu:System.Int32,giá trị mặc định:2020
-	"LogUserEditTrack" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"MaxPageCount" , // Kiểu:System.Int32,giá trị mặc định:0
-	"MinContentPixelHeight" , // Kiểu:System.Int32,giá trị mặc định:0
-	"MobileLayoutMode" , // Kiểu:DCSoft.Writer.Controls.WebClientMobileLayoutMode,giá trị mặc định:None
-	"MultiDocument" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"MultiPage" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"NarrowBorder" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"OldBrowser" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"OutputBase64ServerMessage" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"OutputFieldBorderChar" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"OutputHeaderFooter" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"OutputJavaScript" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"OutputOriginUserTrackInfos" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"OutputRowHeight" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"PageBackColor" , // Kiểu:System.Drawing.Color,giá trị mặc định:Color [White]
+	"LocalFileMode" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"LocalServerPort" , // Kiểu:System.Int32, giá trị mặc định:2020
+	"LogUserEditTrack" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"MaxPageCount" , // Kiểu:System.Int32, giá trị mặc định:0
+	"MinContentPixelHeight" , // Kiểu:System.Int32, giá trị mặc định:0
+	"MobileLayoutMode" , // Kiểu:DCSoft.Writer.Controls.WebClientMobileLayoutMode, giá trị mặc định:None
+	"MultiDocument" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"MultiPage" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"NarrowBorder" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"OldBrowser" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"OutputBase64ServerMessage" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"OutputFieldBorderChar" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"OutputHeaderFooter" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"OutputJavaScript" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"OutputOriginUserTrackInfos" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"OutputRowHeight" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"PageBackColor" , // Kiểu:System.Drawing.Color, giá trị mặc định:Color [White]
 	"PageName" , // Kiểu:System.String
-	"PageShadow" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"PageTitlePosition" , // Kiểu:System.String,giá trị mặc định:TopLeft
-	"PageViewInMobileDevice" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"PageZoomRate" , // Kiểu:System.Single,giá trị mặc định:1
-	"PixelPageSpacing" , // Kiểu:System.Int32,giá trị mặc định:20
-	"PositiveSpecifyWidthFieldAsInputElement" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"PreviewUseAdvancedLayout" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"PrintCollate" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"PrintCopies" , // Kiểu:System.Int32,giá trị mặc định:1
-	"PrintENSPasWhitespace" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"PrintMode" , // Kiểu:DCSoft.Printing.DCPrintMode,giá trị mặc định:Normal
+	"PageShadow" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"PageTitlePosition" , // Kiểu:System.String, giá trị mặc định:TopLeft
+	"PageViewInMobileDevice" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"PageZoomRate" , // Kiểu:System.Single, giá trị mặc định:1
+	"PixelPageSpacing" , // Kiểu:System.Int32, giá trị mặc định:20
+	"PositiveSpecifyWidthFieldAsInputElement" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"PreviewUseAdvancedLayout" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"PrintCollate" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"PrintCopies" , // Kiểu:System.Int32, giá trị mặc định:1
+	"PrintENSPasWhitespace" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"PrintMode" , // Kiểu:DCSoft.Printing.DCPrintMode, giá trị mặc định:Normal
 	"PrintSpecifyPageIndexsString" , // Kiểu:System.String
-	"PrintZoomRate" , // Kiểu:System.Single,giá trị mặc định:1
+	"PrintZoomRate" , // Kiểu:System.Single, giá trị mặc định:1
 	"RadioBoxCheckedImageBase64" , // Kiểu:System.String
 	"RadioBoxUnCheckedImageBase64" , // Kiểu:System.String
-	"Readonly" , // Kiểu:System.Boolean,giá trị mặc định:False
+	"Readonly" , // Kiểu:System.Boolean, giá trị mặc định:False
 	"ReferencePathForDebug" , // Kiểu:System.String
-	"RegisterCodeIndex" , // Kiểu:System.Int32,giá trị mặc định:-1
+	"RegisterCodeIndex" , // Kiểu:System.Int32, giá trị mặc định:-1
 	"ResourceReferencePath" , // Kiểu:System.String
-	"SerializeParameterValue" , // Kiểu:System.Boolean,giá trị mặc định:True
+	"SerializeParameterValue" , // Kiểu:System.Boolean, giá trị mặc định:True
 	"ServerEventNameList" , // Kiểu:System.String
-	"ServerSleepForDebug" , // Kiểu:System.Int32,giá trị mặc định:0
+	"ServerSleepForDebug" , // Kiểu:System.Int32, giá trị mặc định:0
 	"ServicePageURL" , // Kiểu:System.String
-	"SessionTimeout" , // Kiểu:System.Int32,giá trị mặc định:0
-	"ShowDebugInfo" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"ShowJSVersionConflictTip" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"ShowMainDocumentBodyWhenMultiDocument" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"ShowMarginLine" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"ShowPageBorderLine" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"ShowPageLineForEdit" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"SupportActiveX" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"SupportFixedWidthInputFieldElement" , // Kiểu:System.Boolean,giá trị mặc định:True
-	"TidyHtmlForEdit" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"TidyHtmlForPrint" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"TransformUseBase64" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"UrlEncodeCountForPostData" , // Kiểu:System.Int32,giá trị mặc định:2
-	"UseClassAttribute" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"UseDCWriterMiniJS" , // Kiểu:DCSoft.Writer.DCBooleanValueHasDefault,giá trị mặc định:Default
-	"ValidateFieldUsingText" , // Kiểu:System.Boolean,giá trị mặc định:False
-	"ViewStyle" , // Kiểu:DCSoft.Writer.Serialization.Html.WriterHtmlViewStyle,giá trị mặc định:Page
-	"WorkspaceBackColor" , // Kiểu:System.Drawing.Color,giá trị mặc định:Color [AppWorkspace]
+	"SessionTimeout" , // Kiểu:System.Int32, giá trị mặc định:0
+	"ShowDebugInfo" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"ShowJSVersionConflictTip" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"ShowMainDocumentBodyWhenMultiDocument" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"ShowMarginLine" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"ShowPageBorderLine" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"ShowPageLineForEdit" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"SupportActiveX" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"SupportFixedWidthInputFieldElement" , // Kiểu:System.Boolean, giá trị mặc định:True
+	"TidyHtmlForEdit" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"TidyHtmlForPrint" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"TransformUseBase64" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"UrlEncodeCountForPostData" , // Kiểu:System.Int32, giá trị mặc định:2
+	"UseClassAttribute" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"UseDCWriterMiniJS" , // Kiểu:DCSoft.Writer.DCBooleanValueHasDefault, giá trị mặc định:Default
+	"ValidateFieldUsingText" , // Kiểu:System.Boolean, giá trị mặc định:False
+	"ViewStyle" , // Kiểu:DCSoft.Writer.Serialization.Html.WriterHtmlViewStyle, giá trị mặc định:Page
+	"WorkspaceBackColor" , // Kiểu:System.Drawing.Color, giá trị mặc định:Color [AppWorkspace]
 	"WorkspaceBackColorString" , // Kiểu:System.String
 	"WorkspaceBackgroundImage" , // Kiểu:System.String
-	"WriteJSStringResourcesInDocument" , // Kiểu:System.Boolean,giá trị mặc định:False
+	"WriteJSStringResourcesInDocument" , // Kiểu:System.Boolean, giá trị mặc định:False
 	"WriterControlWebServiceUrl" , // Kiểu:System.String
-	"WriteScriptRefence"  // Kiểu:System.Boolean,giá trị mặc định:True
+	"WriteScriptRefence"  // Kiểu:System.Boolean, giá trị mặc định:True
 
 ];
  
@@ -7831,13 +7831,13 @@ function BindingDCWriterClientControl(rootElement) {
                         responseText = responseText.responseText;
                     } 
                     if (responseText == null || responseText.length == 0) {
-                        this.appendChild(document.createTextNode("Chưa tạo nội dung nào, vui lòng kiểm tra kỹ ServicePageUrl đã cấu hình trong hệ thống【"));
+                        this.appendChild(document.createTextNode("Chưa tạo nội dung nào, vui lòng kiểm tra kỹ ServicePageUrl đã cấu hình trong hệ thống["));
                         var ae = document.createElement("a"); ///
                         ae.href = this.Options.ServicePageURL;
                         ae.target = "_blank";
                         ae.innerText = this.Options.ServicePageURL;
                         this.appendChild(ae);
-                        this.appendChild(document.createTextNode("】, vui lòng xác nhận trình duyệt có thể truy cập địa chỉ này qua mạng hoặc cổng kết nối."));
+                        this.appendChild(document.createTextNode("], vui lòng xác nhận trình duyệt có thể truy cập địa chỉ này qua mạng hoặc cổng kết nối."));
                         return;
                     }
                     //console.log(responseText);
@@ -7867,7 +7867,7 @@ function BindingDCWriterClientControl(rootElement) {
                     }
                     $(this).html(responseText);
 
-                    //zhangbin20220316 Thêmngười dùnghình ảnhtùy chỉnhgiao diện
+                    //zhangbin20220316 Thêm người dùng hình ảnh tùy chỉnh giao diện
                     var img = $(rootElement).find('img[id$="_Processing"]')[0]
                     if(img){
                         img.style.opacity = 0;
@@ -7893,7 +7893,7 @@ function BindingDCWriterClientControl(rootElement) {
                                 imgLogo.setAttribute('style','position:absolute;bottom:-15px;right:-32px')
                                 div.appendChild(imgLogo)
 
-                                //wyc20220323:điều chỉnh cách viết để tránh báo lỗi
+                                //wyc20220323: điều chỉnh cách viết để tránh báo lỗi
                                 // img.parentElement.replaceChild(div, img);
                                 img.parentElement.insertBefore(div,img)
                                 img.parentElement.removeChild(img)
@@ -7965,7 +7965,7 @@ function DCWriterEnsureJQuery(loadCallback) {
     return false;
 };
 
-// Khởi tạo điều khiển máy khách của trình soạn thảo  Yuan Yongfu2018-6-9
+// Khởi tạo điều khiển máy khách của trình soạn thảo  Yuan Yongfu 2018-6-9
 function StartDCWriterClientControl(rootElement) {
 
     //alert("bắt đầu khởi tạo điều khiển");
@@ -8090,9 +8090,9 @@ function StartDCWriterClientControl(rootElement) {
     * @returns changeOptionkhi rỗng, giá trị trả về và định dạng tham số thứ hai đều như hiển thị dưới đây: 
     * {
         "Element": "",//chính phần tử
-        "CommentText": "",//ghi chúnội dung
+        "CommentText": "",//ghi chú nội dung
         "CommentAuthor": "",//tác giả ghi chú
-        "CommentCreationTime": "",//ghi chúTạothời gian
+        "CommentCreationTime": "",//ghi chú Tạo thời gian
     * }
     * @returns changeOptioncó giá trị, true: đã hoàn thành thao tác. false: chưa hoàn thành thao tác.
     */
@@ -8108,9 +8108,9 @@ function StartDCWriterClientControl(rootElement) {
         win.DCDropdownControlManager && win.DCDropdownControlManager.CloseDropdownControl();
         var option = {
             "Element": element,//chính phần tử
-            "CommentText": element.getAttribute("commenttext"),//ghi chúnội dung
+            "CommentText": element.getAttribute("commenttext"),//ghi chú nội dung
             "CommentAuthor": element.getAttribute("commentauthor"),//tác giả ghi chú
-            "CommentCreationTime": element.getAttribute("commentcreationtime"),//ghi chúTạothời gian
+            "CommentCreationTime": element.getAttribute("commentcreationtime"),//ghi chú Tạo thời gian
         };
         if (!changeOption) {
             return option;
@@ -8134,7 +8134,7 @@ function StartDCWriterClientControl(rootElement) {
     /**
     * @method Xóa ghi chú
     * @param element ghi chúphần tử
-    * @returns true:đã hoàn thành thao tác.false:chưa hoàn thành thao tác.
+    * @returns true: đã hoàn thành thao tác. false: chưa hoàn thành thao tác.
     */
     rootElement.DeleteComment = function (element) {
         var isComment = element && element.nodeName && element.nodeName == "SPAN" && element.getAttribute("dctype") == "DocumentComment";
@@ -8169,7 +8169,7 @@ function StartDCWriterClientControl(rootElement) {
         BorderRight: true,
      },
     */
-    //@returns true:đã hoàn thành thao tác.false:chưa hoàn thành thao tác.
+    //@returns true: đã hoàn thành thao tác. false: chưa hoàn thành thao tác.
     rootElement.setTableBorderVisible = function (where, option) {
         var win = rootElement.GetContentWindow();
         if (win != null && win.WriterCommandModuleTable) {
@@ -8216,14 +8216,14 @@ function StartDCWriterClientControl(rootElement) {
     //    rootElement.DCExecuteCommand("redo");
     //};
     //@method Tải tài liệu đang sửa xuống thành tệp nội bộ
-    //@param strFormat định dạng tệp.Các định dạng tệp hiện hỗ trợ gồm xml , pdf , rtf , txt ,html , longimage(tệp hình ảnh dài)
+    //@param strFormat định dạng tệp. Các định dạng tệp hiện hỗ trợ gồm xml, pdf, rtf, txt, html, longimage (tệp hình ảnh dài)
     rootElement.DownLoadFile = function (strFormat, filename) {
         var frm = document.createElement("form");
         if (strFormat == null || strFormat.length == 0) {
             strFormat = "xml";
         }
         frm.action = rootElement.getAttribute("servicepageurl") + "?getfilecontentspecifyformat=" + strFormat;
-        //wyc20210903:Thêm tên tệp
+        //wyc20210903: Thêm tên tệp
         if (filename != null) {
             frm.action = frm.action + "&filename=" + filename.toString();
         }
@@ -8241,7 +8241,7 @@ function StartDCWriterClientControl(rootElement) {
         document.body.removeChild(frm);
     };
 
-    //wyc20221024:Thêm giao diện thiết lập điều khiển chỉ đọc
+    //wyc20221024: Thêm giao diện thiết lập điều khiển chỉ đọc
     rootElement.SetControlReadonly = function (isrd) {
         var isreadonly = null;
         if (isrd === "true" || isrd === true) {
@@ -8448,9 +8448,9 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     //@method Lấy tất cả các phần tử trường nhập liệu trong tài liệu
-    //@param excludeReadonly :Có loại trừ trường nhập liệu chỉ đọc hay không
-    //@param excludeHiddenElement :Có loại trừ trường nhập liệu ẩn hay không
-    //@param specifyRootElement :Tìm tất cả các trường nhập liệu dưới nút cha đã chỉ địnhwyc20210708
+    //@param excludeReadonly : Có loại trừ trường nhập liệu chỉ đọc hay không
+    //@param excludeHiddenElement : Có loại trừ trường nhập liệu ẩn hay không
+    //@param specifyRootElement : Tìm tất cả các trường nhập liệu dưới nút cha đã chỉ định wyc20210708
     //@param nestNode :Nút lấy được có hiển thị lồng nhau hay không zhangbin20220602
     rootElement.GetAllInputFields = function (excludeReadonly, excludeHiddenElement, specifyRootElement, nestNode) {
         var win = rootElement.GetContentWindow();
@@ -8465,7 +8465,7 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     //@method Lấy thuộc tính tùy chỉnh của phần tử tài liệu wyc20210708
-    //@param element :phần tử hoặc ID phần tử cần thiết lập
+    //@param element : phần tử hoặc ID phần tử cần thiết lập
     rootElement.GetElementCustomAttributes = function (element) {
         var ele = null;
         if (typeof (element) == "string") {
@@ -8483,8 +8483,8 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     //@method Thiết lập thuộc tính tùy chỉnh của phần tử tài liệu wyc20210708
-    //@param element :phần tử hoặc ID phần tử cần thiết lập
-    //@param obj :JSONđối tượng
+    //@param element : phần tử hoặc ID phần tử cần thiết lập
+    //@param obj :JSON đối tượng
     rootElement.SetElementCustomAttributes = function (element, obj) {
         var ele = null;
         if (typeof (element) == "string") {
@@ -8523,7 +8523,7 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     //@method Thiết lập thuộc tính tùy chỉnh của tài liệu wyc20221017
-    //@param obj :JSONđối tượng
+    //@param obj :JSON đối tượng
     rootElement.SetDocumentCustomAttributes = function (obj) {
         if (typeof (obj) !== "object") {
             return false;
@@ -8563,7 +8563,7 @@ function StartDCWriterClientControl(rootElement) {
     }
 
     //@method Lấy cài đặt chế độ kết nối của phần tử nhãn wyc20210818
-    //@param element :phần tử hoặc ID phần tử cần thiết lập
+    //@param element : phần tử hoặc ID phần tử cần thiết lập
     rootElement.GetLabelElementContactSettings = function (element) {
         var ele = null;
         if (typeof (element) == "string") {
@@ -8581,8 +8581,8 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     //@method Thiết lập chế độ kết nối của phần tử nhãn wyc20210818
-    //@param element :phần tử hoặc ID phần tử cần thiết lập
-    //@param obj :JSONđối tượng
+    //@param element : phần tử hoặc ID phần tử cần thiết lập
+    //@param obj :JSON đối tượng
     rootElement.SetLabelElementContactSettings = function (element, obj) {
         var ele = null;
         if (typeof (element) == "string") {
@@ -8600,8 +8600,8 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     //@method Thiết lập khóa nội dung của phần tử tài liệu wyc20210713
-    //@param element :phần tử hoặc ID phần tử cần thiết lập
-    //@param obj :JSONđối tượng
+    //@param element : phần tử hoặc ID phần tử cần thiết lập
+    //@param obj :JSON đối tượng
     rootElement.SetElementContentLock = function (element, obj) {
         var win = rootElement.GetContentWindow();
         if (win && win.DCDomTools) {
@@ -8610,8 +8610,8 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     //@method Thiết lập tính hiển thị của phần tử tài liệu wyc20210708
-    //@param element :phần tử hoặc ID phần tử cần thiết lập
-    //@param visible :tính hiển thị của phần tử
+    //@param element : phần tử hoặc ID phần tử cần thiết lập
+    //@param visible : tính hiển thị của phần tử
     rootElement.SetElementVisibility = function (element, visible) {
         if (visible !== true && visible !== false && visible !== "true" && visible !== "false") {
             return;
@@ -8625,7 +8625,7 @@ function StartDCWriterClientControl(rootElement) {
             ele = element;
         }
         if (ele != null && ele.hasAttribute && ele.hasAttribute("dctype") == true) {
-            //wyc20211222:Xử lý phân biệt checkbox hoặc radio 
+            //wyc20211222: Xử lý phân biệt checkbox hoặc radio 
             var dctype = ele.getAttribute("dctype");
             var isradioorcheckbox = dctype === "XTextCheckBoxElement" || dctype === "XTextRadioBoxElement";
             if (isradioorcheckbox == true) {
@@ -8643,8 +8643,8 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     //@method Thiết lập tính hiển thị khi in của phần tử tài liệu wyc20210820
-    //@param element :phần tử hoặc ID phần tử cần thiết lập
-    //@param visible :tính hiển thị khi in của phần tử, chỉ có ba tham số hợp lệ"Visible","Hidden","None"
+    //@param element : phần tử hoặc ID phần tử cần thiết lập
+    //@param visible : tính hiển thị khi in của phần tử, chỉ có ba tham số hợp lệ "Visible", "Hidden", "None"
     rootElement.SetElementPrintVisibility = function (element, visible) {
         var parameters = ["Visible", "Hidden", "None"];
         if (parameters.indexOf(visible) == -1) {
@@ -8663,7 +8663,7 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     //@method Lấy tính hiển thị khi in của phần tử tài liệu wyc20210820
-    //@param element :phần tử hoặc ID phần tử cần thiết lập
+    //@param element : phần tử hoặc ID phần tử cần thiết lập
     rootElement.GetElementPrintVisibility = function (element) {
         var ele = null;
         if (typeof (element) == "string") {
@@ -8746,7 +8746,7 @@ function StartDCWriterClientControl(rootElement) {
         }
     };
 
-    //wyc20220701:Lấy đường lưới ô của ô bảng
+    //wyc20220701: Lấy đường lưới ô của ô bảng
     rootElement.GetTableCellGridLineInfo = function (cell) {
         var win = this.GetContentWindow();
         if(win != null && !cell){
@@ -8767,7 +8767,7 @@ function StartDCWriterClientControl(rootElement) {
         }
         
     };
-    //wyc20220701:Thiết lập đường lưới ô của ô bảng
+    //wyc20220701: Thiết lập đường lưới ô của ô bảng
     rootElement.SetTableCellGridLineInfo = function (cell, options, isSelected) {
         var win = this.GetContentWindow();
         if(win != null && !cell){
@@ -8873,8 +8873,8 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     //@method Lấy nội dung văn bản đang được chọn.
-    // nativeHtml có dọn dẹp DOM HTML hay không  (true:không dọn dẹp; falsehoặc rỗng:dọn dẹp)
-    rootElement.SelectionHtml = function (nativeHtml) {//Phương thức SelectionHtml thêm tham số để xác định có dọn dẹp DOM HTML hay không (true:không dọn dẹp; falsehoặc rỗng:dọn dẹp)
+    // nativeHtml có dọn dẹp DOM HTML hay không  (true: không dọn dẹp; false hoặc rỗng: dọn dẹp)
+    rootElement.SelectionHtml = function (nativeHtml) {//Phương thức SelectionHtml thêm tham số để xác định có dọn dẹp DOM HTML hay không (true: không dọn dẹp; false hoặc rỗng: dọn dẹp)
         var win = this.GetContentWindow();
         if (win != null && win.WriterCommandModuleFile) {
             return win.WriterCommandModuleFile.getSelectionHtml(false, nativeHtml);
@@ -8943,7 +8943,7 @@ function StartDCWriterClientControl(rootElement) {
         });
         var checkboxOrRadio;
         if (XTextCheckBoxElementBaseLabel) {
-            // 20220824 xym Sửa mã lấy checkbox/radio[ctl.CurrentCheckboxOrRadio]
+            // 20220824 xym Sửa mã lấy checkbox/radio [ctl.CurrentCheckboxOrRadio]
             var span = XTextCheckBoxElementBaseLabel.parentNode || XTextCheckBoxElementBaseLabel.parentElement;
             if(span){
                 checkboxOrRadio = span.querySelector("input");
@@ -8952,7 +8952,7 @@ function StartDCWriterClientControl(rootElement) {
         return checkboxOrRadio;
     };
 
-    // Thêm giao diện lấy bản ghi bệnh trình tại vị trí con trỏ hiện tại[CurrentSubDoc()]
+    // Thêm giao diện lấy bản ghi bệnh trình tại vị trí con trỏ hiện tại [CurrentSubDoc()]
     rootElement.CurrentSubDoc = function () {
         return rootElement.CurrnetElement(function (node) {
             return (node.nodeName == "DIV" && node.getAttribute("dctype") == "XTextSubDocumentElement");
@@ -9161,10 +9161,10 @@ function StartDCWriterClientControl(rootElement) {
         var dctype = ele.getAttribute("dctype");
         var result = null
         switch (dctype) {
-            case "XTextPageInfoElement": //wyc20210823:bản đầu tiên chỉ hỗ trợ phần tử số trang
+            case "XTextPageInfoElement": //wyc20210823: bản đầu tiên chỉ hỗ trợ phần tử số trang
                 win.DCPageInfoManager.setPageInfoProperties(ele, options);
                 break;
-            case "XTextLabelElement": //wyc20220824:Bổ sung thiết lập phần tử nhãn
+            case "XTextLabelElement": //wyc20220824: Bổ sung thiết lập phần tử nhãn
                 result = win.DCInputFieldManager.SetLabelElementProperties(ele, options);
                 break;
             case "XTextInputFieldElement": 
@@ -9290,7 +9290,7 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     rootElement.getServerInfoJson = function (advanced) {
-        //wyc20221228:Ở chế độ nâng cao, backend trả về nhiều tham số hiệu năng máy chủ hơn nhưng sẽ bị giật/lag
+        //wyc20221228: Ở chế độ nâng cao, backend trả về nhiều tham số hiệu năng máy chủ hơn nhưng sẽ bị giật/lag
         var advMode = advanced === true ? "true" : "false";
         var url = this.getAttribute("servicepageurl") + "?getserverinfo=" + advMode + "&tick=" + Math.random().toString();
         var txt = DCDomTools.GetContentByUrlNotAsync(url);
@@ -9324,7 +9324,7 @@ function StartDCWriterClientControl(rootElement) {
     rootElement.InsertImageByJsonText = function (jsonText) {
         var win = this.GetContentWindow();
         if (win != null && win.DCFileUploadManager != null) {
-            // 20210726 xym InsertImageByJsonTextPhương thức thêm giá trị trả về, giá trị trả về là mảng gồm các phần tử img
+            // 20210726 xym InsertImageByJsonText Phương thức thêm giá trị trả về, giá trị trả về là mảng gồm các phần tử img
             return win.DCFileUploadManager.InsertImageByJsonText(jsonText);
         }
     };
@@ -9375,7 +9375,7 @@ function StartDCWriterClientControl(rootElement) {
         //else if (iframe.style.display != "none") {
         //    return iframe.contentWindow;
         //}
-        ////wyc20200605:Thêm cơ chế ở chế độ xem trước bắt buộc dùng frame và các chức năng liên quan ở chế độ soạn thảo
+        ////wyc20200605: Thêm cơ chế ở chế độ xem trước bắt buộc dùng frame và các chức năng liên quan ở chế độ soạn thảo
         //if (forceUseEditFrame === true) {
         //    iframe = document.getElementById(this.id + "_Frame");
         //} else if (forceUseEditFrame === false){
@@ -9591,7 +9591,7 @@ function StartDCWriterClientControl(rootElement) {
     //@method Di chuyển tiêu điểm nhập đến địa điểm đã chỉ định
     //@param sWhere đích cần di chuyển đến, các giá trị tùy chọn: beforeBegin, afterBegin, beforeEnd, afterEnd
     //@param element đối tượng phần tử cần di chuyển
-    //@returns true:đã hoàn thành thao tác, đã di chuyển vị trí điểm chèn.false:chưa hoàn thành thao tác.
+    //@returns true: đã hoàn thành thao tác, đã di chuyển vị trí điểm chèn. false: chưa hoàn thành thao tác.
     rootElement.FocusAdjacent = function (sWhere, element) {
         var win = rootElement.GetContentWindow();
         if (win != null && win.DCInputFieldManager) {
@@ -9626,7 +9626,7 @@ function StartDCWriterClientControl(rootElement) {
     //@method Sắp xếp danh sách phần tử gốc của tài liệu
     //@param sortFunction hàm so sánh nội dung hai nút
     //@root đối tượng nút gốc, nếu rỗng thì lấy phần tử chứa chính văn trong tài liệu.
-    //@returns true:thao tác đã sửa đổi nội dung tài liệu;false:không sửa đổi nội dung tài liệu.
+    //@returns true: thao tác đã sửa đổi nội dung tài liệu; false: không sửa đổi nội dung tài liệu.
     rootElement.SortRootContent = function (sortFunction, root) {
         if (root != null) {
             var result = DCDomTools.sortChildNodes(root, sortFunction);
@@ -9817,12 +9817,12 @@ function StartDCWriterClientControl(rootElement) {
             window.open(
                 startUrl + "?runclient=getexe" + dcasmversion + "&port=" + port,
                 "_blank");
-            alert("Sẽ chạy máy chủ WEB nội bộ, địa chỉ phát hành là【" + url + "】, đang tải tệp chương trình EXE, vui lòng tải xuống rồi bấm chạy tệp EXE. Sau đó lặp lại thao tác này trong trình duyệt.");
+            alert("Sẽ chạy máy chủ WEB nội bộ, địa chỉ phát hành là[" + url + "], đang tải tệp chương trình EXE, vui lòng tải xuống rồi bấm chạy tệp EXE. Sau đó lặp lại thao tác này trong trình duyệt.");
         }
         return null;
     };
 
-    //20200805:Kiểm tra WC_DCWriterFrontEndPrint của backend
+    //20200805: Kiểm tra WC_DCWriterFrontEndPrint của backend
     rootElement.LocalPrintDocument = function (options) {
         rootElement.allTimeAfterCreate()
         var showuistring = options != null && options.ShowUI != null && (options.ShowUI === true || options.ShowUI === "true") ? "true" : "false";
@@ -9839,7 +9839,7 @@ function StartDCWriterClientControl(rootElement) {
         // Lấy địa chỉ trang máy chủ
         var servicePageUrl = rootElement.GetLocalServicePageUrl();// rootElement.getAttribute("servicepageurl");
         if (servicePageUrl == null || servicePageUrl.length == 0) {
-            // thao tácthất bại
+            // thao tác thất bại
             return false;
         }
         var url = servicePageUrl + "?dcwriterfrontendprint=1"
@@ -9898,7 +9898,7 @@ function StartDCWriterClientControl(rootElement) {
         return result;
     }
 
-    //wyc20200917:Dùng dịch vụ frontend để in tài liệu hàng loạt
+    //wyc20200917: Dùng dịch vụ frontend để in tài liệu hàng loạt
     rootElement.LocalPrintDocuments = function (options) {
         rootElement.allTimeAfterCreate()
         if (options == undefined || options == null || Array.isArray(options.Files) == false) {
@@ -9913,7 +9913,7 @@ function StartDCWriterClientControl(rootElement) {
         // Lấy địa chỉ trang máy chủ
         var servicePageUrl = rootElement.GetLocalServicePageUrl();// rootElement.getAttribute("servicepageurl");
         if (servicePageUrl == null || servicePageUrl.length == 0) {
-            // thao tácthất bại
+            // thao tác thất bại
             return false;
         }
         var url = servicePageUrl + "?dcwriterfrontendprintspecifyxml=1"
@@ -10062,8 +10062,8 @@ function StartDCWriterClientControl(rootElement) {
         }
         var oPrntWin = window.open("", "_blank", "width=" + PrintWindowWidth + ",height=" + PrintWindowHeight + ",left=" + PrintWindowLeft + ",top=" + PrintWindowTop + ",menubar=yes,toolbar=no,location=no,scrollbars=yes,resizable=yes");
 
-        var html = string; //rootElement.GetPrintNowHTML(string); //wyc20220111:getprintpreviewhtml đã tích hợp getprintnowhtml
-        //wyc20221014:Khi in thì tạm thời xóa thông tin ủy quyền
+        var html = string; //rootElement.GetPrintNowHTML(string); //wyc20220111: getprintpreviewhtml đã tích hợp getprintnowhtml
+        //wyc20221014: Khi in thì tạm thời xóa thông tin ủy quyền
         var divv = document.createElement("div");
         divv.innerHTML = html;
         var hiddenitems = divv.getElementsByClassName("hiddenforprint");
@@ -10074,7 +10074,7 @@ function StartDCWriterClientControl(rootElement) {
         html = divv.innerHTML;
         /////////////////////////////////////
         oPrntWin.document.write(html);
-        // xym Sửa vấn đề in ấn[rootElement.PrintByHtml]
+        // xym Sửa vấn đề in ấn [rootElement.PrintByHtml]
         oPrntWin.document.close();
         $(oPrntWin.document).ready(function () {
             if (oPrntWin && oPrntWin.WriterCommandModuleTable && oPrntWin.WriterCommandModuleTable.setTdCustomBorder) {
@@ -10352,13 +10352,13 @@ function StartDCWriterClientControl(rootElement) {
                     || settings.ShowPermissionTip === "true")) {
                     url = url + "&showpermissiontip=true";
                 }
-                //wyc20210903:Thêm tùy chọn mở rộng hàng bảng
+                //wyc20210903: Thêm tùy chọn mở rộng hàng bảng
                 if (settings != null && (settings.InsertLastTableRowToPageBottom === true
                     || settings.InsertLastTableRowToPageBottom === "true")) {
                     url = url + "&expandtablerow=true";
                 }
 
-                //wyc20230112:Xử lýwatermarktham số
+                //wyc20230112: Xử lý watermark tham số
                 if (settings != null && typeof (settings.WaterMark) === "object") {
                     var watermarkstr = encodeURIComponent(JSON.stringify(settings.WaterMark));
                     postData = watermarkstr + "$dcwatermarksplitter$" + postData;
@@ -10473,17 +10473,17 @@ function StartDCWriterClientControl(rootElement) {
             url = url + "&showpermissiontip=true";
         }
 
-        //wyc20210903:Thêm tùy chọn mở rộng hàng bảng
+        //wyc20210903: Thêm tùy chọn mở rộng hàng bảng
         if (settings != null && (settings.InsertLastTableRowToPageBottom === true
             || settings.InsertLastTableRowToPageBottom === "true")) {
             url = url + "&expandtablerow=true";
         }
-        //wyc20220915:Thêm chức năng mở rộng hàng bảng xuống đáy trang hiện tại nhưng cố gắng không mở rộng sang trang tiếp theo
+        //wyc20220915: Thêm chức năng mở rộng hàng bảng xuống đáy trang hiện tại nhưng cố gắng không mở rộng sang trang tiếp theo
         if (settings != null && (settings.InsertLastTableRowToPageBottom2 === true
             || settings.InsertLastTableRowToPageBottom2 === "true")) {
             url = url + "&expandtablerow2=true";
         }
-        //wyc20220525:Thêm tính năng có hiển thị hiệu ứng vết (track) dạng mảnh vụn hay không
+        //wyc20220525: Thêm tính năng có hiển thị hiệu ứng vết (track) dạng mảnh vụn hay không
         if (settings != null && (settings.MorePermissionMarkPieces === true
             || settings.MorePermissionMarkPieces === "true")) {
             url = url + "&moremarkpieces=true";
@@ -10520,7 +10520,7 @@ function StartDCWriterClientControl(rootElement) {
             }
         }
 
-        //wyc20230112:Xử lýwatermarktham số
+        //wyc20230112: Xử lý watermark tham số
         if (settings != null && typeof (settings.WaterMark) === "object") {
             var watermarkstr = encodeURIComponent(JSON.stringify(settings.WaterMark));
             postData = watermarkstr + "$dcwatermarksplitter$" + postData;
@@ -10612,7 +10612,7 @@ function StartDCWriterClientControl(rootElement) {
                                     // Thu nhỏ font chỉ giữ lại hai chữ số sau dấu thập phân
                                     var zoomStr = parseFloat(autofixfontsize / nowFontSize).toFixed(2);
                                     if (zoomStr < 1) {
-                                        // 20221019 xym Tạm thời dùng zoom để thu phóng[InnerLoadPrintPreview]
+                                        // 20221019 xym Tạm thời dùng zoom để thu phóng [InnerLoadPrintPreview]
                                         span.css({ "zoom": zoomStr });
                                         // if(span.index($(win.document).find("[nowfontsize]")) == 0){
                                         //     if(span.css("zoom") != zoomStr){
@@ -10660,7 +10660,7 @@ function StartDCWriterClientControl(rootElement) {
         });
     };
 
-    //inxem trước  (theođã chỉ địnhHtml) Sửa3104gộp nhiều tài liệu và in tiếp 2020-2-25 hulijun 
+    //in xem trước (theo đã chỉ định Html) Sửa 3104 gộp nhiều tài liệu và in tiếp 2020-2-25 hulijun 
     rootElement.PrintPreviewByHtml = function (html) {
         rootElement.CheckPerformanceCounter("PrintPreviewByHtml");
         var iframeContent = document.getElementById(this.id + "_Frame");
@@ -10948,7 +10948,7 @@ function StartDCWriterClientControl(rootElement) {
         return 0;
     };
 
-    // WriteDataToTrGhi dữ liệu vào hàng bảng
+    // WriteDataToTr Ghi dữ liệu vào hàng bảng
     // tr truyền vào nút hàng bảng
     // data có thể truyền {} hoặc []
     // {}: gán giá trị theo đường dẫn liên kết nguồn dữ liệu
@@ -10991,7 +10991,7 @@ function StartDCWriterClientControl(rootElement) {
             "file": loadedfilearray,//tài liệu xml
             "format": "xml",//định dạng tài liệu xml
             "base64": base64,//Có phải là chuỗi base64 hay không
-            "type": "two",//{one:toàn bộ html, two:html bên trong body}
+            "type": "two",//{one: toàn bộ html, two: html bên trong body}
             "usesubdoc": "true",
             "forprint": "false",
             "subdocopts": opts
@@ -11101,7 +11101,7 @@ function StartDCWriterClientControl(rootElement) {
             if (smartmode === "false") {
                 htmlContent = win.WriterCommandModuleFile.GetFileContentHtml();
                 htmlContent = win.WriterCommandModuleFile.EncodeContentHtmlForPost(htmlContent);
-            //wyc20221025:Cơ chế mới truyền vào các nội dung html khác nhau
+            //wyc20221025: Cơ chế mới truyền vào các nội dung html khác nhau
             } else {
                 var obj2 = new Object();
                 var subarr = new Array();
@@ -11121,7 +11121,7 @@ function StartDCWriterClientControl(rootElement) {
                         }
                     }
                 }
-                //wyc20221026:Cần kèm theo options của frontend
+                //wyc20221026: Cần kèm theo options của frontend
                 var input = $(document.WriterControl).find("#" + document.WriterControl.id + "_WebWriterControlOptions")[0];
                 if (input != null) {
                     obj2.optstring = input.value;
@@ -11173,7 +11173,7 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     //Lấy chuỗi tài liệu bệnh trình
-    //@param fileFormat chuỗiđịnh dạng
+    //@param fileFormat chuỗi định dạng
     //@param id ID bệnh trình
     rootElement.SaveSubDocumentToBase64String = function (fileFormat, id) {
         rootElement.allTimeAfterCreate()
@@ -11237,7 +11237,7 @@ function StartDCWriterClientControl(rootElement) {
         return rootElement.GetElementInnerXmlById("divAllContainer");
     }
 
-    //wyc20220402:Lưu bất đồng bộ
+    //wyc20220402: Lưu bất đồng bộ
     rootElement.SaveDocumentToStringAsync = function (options) {
         var back = rootElement.Options.AJAXAsync;
         rootElement.Options.AJAXAsync = true;
@@ -11245,7 +11245,7 @@ function StartDCWriterClientControl(rootElement) {
         rootElement.Options.AJAXAsync = back;
     }
 
-    //wyc20220914:Lưu thành cấu trúc XML đặc biệt, chỉ để lộ các thuộc tính quan trọng trong các trường nhập liệu và phần tử hộp chọn
+    //wyc20220914: Lưu thành cấu trúc XML đặc biệt, chỉ để lộ các thuộc tính quan trọng trong các trường nhập liệu và phần tử hộp chọn
     rootElement.SaveDocumentToSpecificXMLString = function () {
         rootElement.allTimeAfterCreate()
         // Lấy địa chỉ trang máy chủ
@@ -11299,7 +11299,7 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     //Lấy chuỗi tài liệu
-    //@param fileFormat chuỗiđịnh dạng
+    //@param fileFormat chuỗi định dạng
     rootElement.SaveDocumentToString = function (options) {
         rootElement.allTimeAfterCreate()
         // Lấy địa chỉ trang máy chủ
@@ -11323,13 +11323,13 @@ function StartDCWriterClientControl(rootElement) {
         // Tạo địa chỉ URL dịch vụ b
         url = url.replace(/\+/g, "%2B");  //chuyển dịch ký tự trong tên tài liệu khi tài liệu truyền tham số: "+"
 
-        //wyc20211028:Thêm tùy chọn mở rộng hàng bảng
+        //wyc20211028: Thêm tùy chọn mở rộng hàng bảng
         if (options != null && (options.InsertLastTableRowToPageBottom === true
             || options.InsertLastTableRowToPageBottom === "true")) {
             url = url + "&expandtablerow=true";
         }
 
-        //wyc20221110:Kèm theo attributes
+        //wyc20221110: Kèm theo attributes
         if (options != null && typeof (options.AttachedCustomAttributes) === "object") {
             var attrstring = "";
             for (var i in options.AttachedCustomAttributes) {
@@ -11408,7 +11408,7 @@ function StartDCWriterClientControl(rootElement) {
 
 
     //Lấy chuỗi tài liệu
-    //@param fileFormat chuỗiđịnh dạng
+    //@param fileFormat chuỗi định dạng
     rootElement.GetXMLsByHTMLs = function (options) {
         rootElement.allTimeAfterCreate()
         // Lấy địa chỉ trang máy chủ
@@ -11492,7 +11492,7 @@ function StartDCWriterClientControl(rootElement) {
                 //var responseData = JSON.parse(responseText);
                 if (success == "true") {
                     rootElement.ServerMessage = message;//responseData.message;
-                    ////wyc20220318:Thay vì backend trả về toàn bộ tài liệu thì chỉ trả về số hàng, frontend sẽ thêm hàng
+                    ////wyc20220318: Thay vì backend trả về toàn bộ tài liệu thì chỉ trả về số hàng, frontend sẽ thêm hàng
                     //var i = parseInt(responsehtml);
                     //var win = rootElement.GetContentWindow();
                     //if (i > 0 && win && win.WriterCommandModuleTable) {
@@ -11600,7 +11600,7 @@ function StartDCWriterClientControl(rootElement) {
         return result;
     };
 
-    //wyc20210826:Lấy hình ảnh của trang tài liệu đã chỉ định
+    //wyc20210826: Lấy hình ảnh của trang tài liệu đã chỉ định
     rootElement.GetDocumentSpecifyPageImages = function (options) {
         rootElement.allTimeAfterCreate()
         var resultImage = new Array();
@@ -11665,7 +11665,7 @@ function StartDCWriterClientControl(rootElement) {
         return resultImage;
     };
 
-    //wyc20201124:Lấy danh sách vết (track) trong tài liệu
+    //wyc20201124: Lấy danh sách vết (track) trong tài liệu
     rootElement.GetDocumentUserTrackInfos = function (IsUpdate) {
         rootElement.allTimeAfterCreate()
         //debugger;
@@ -11782,7 +11782,7 @@ function StartDCWriterClientControl(rootElement) {
         $.ajax(settings);
     }
 
-    //wyc20211018:Lấy tọa độ của phần tử có ID đã cho
+    //wyc20211018: Lấy tọa độ của phần tử có ID đã cho
     rootElement.GetElementCoordinateByID = function (ids, ispreviewmode, specifyxml) {
         rootElement.allTimeAfterCreate()
         //debugger;
@@ -11852,7 +11852,7 @@ function StartDCWriterClientControl(rootElement) {
 
 
     //Lấy chuỗi Base64 của tài liệu
-    //@param fileFormat chuỗiđịnh dạng //wyc2022078 gộp vào savedocumenttostring
+    //@param fileFormat chuỗi định dạng //wyc2022078 gộp vào savedocumenttostring
     rootElement.SaveDocumentToBase64String = function (options) {
         var opt = {
             SaveBase64String: "true"
@@ -11943,7 +11943,7 @@ function StartDCWriterClientControl(rootElement) {
 
     //Lấy HTML theo XML
     //@param strXML chuỗi XML
-    //@param type {one:toàn bộ html, two:html bên trong body}
+    //@param type {one: toàn bộ html, two: html bên trong body}
     rootElement.getHtmlByXMLString = function (strXML, type) {
         rootElement.allTimeAfterCreate()
         var obj = {
@@ -12045,7 +12045,7 @@ function StartDCWriterClientControl(rootElement) {
                 var message = temparray2[0];
                 var resultstring = temparray2[1];
                 if (success == "true") {                   
-                    //if (callback) { //wyc20220802:hủy gọi lại, đổi thành tải trực tiếp HTML tài liệu
+                    //if (callback) { //wyc20220802: hủy gọi lại, đổi thành tải trực tiếp HTML tài liệu
                     //    var responseData = new Object();
                     //    responseData.result = resultstring;// DCDomTools.HTMLDecode(resultstring);
                     //    responseData.success = DCDomTools.HTMLDecode(success);
@@ -12137,7 +12137,7 @@ function StartDCWriterClientControl(rootElement) {
         $.ajax(settings);
     };
 
-    //wyc20221110:Lấy HTML xem trước sau khi gộp hỗn hợp nhiều tài liệu
+    //wyc20221110: Lấy HTML xem trước sau khi gộp hỗn hợp nhiều tài liệu
     //@param obj: {
     //    Files: [
     //        [],
@@ -12207,7 +12207,7 @@ function StartDCWriterClientControl(rootElement) {
     //            "base64": "false",//Có phải là chuỗi base64 hay không
     //            "megedoc": "false"//có gộp hay không
     //            "modefile": "xmlstring"//Chuỗi XML của tài liệu chính cung cấp đầu trang/cuối trang ở chế độ gộp bệnh trình
-    //            "splitmode": "none"//chế độ phân cách ở giữa khi gộp các tệp, "none"không phân cách, "pagebreak"sang trang mới, "linebreak", phân cách bằng ký tự xuống dòng, "line", phân cách bằng đường ngang
+    //            "splitmode": "none"//chế độ phân cách ở giữa khi gộp các tệp, "none" không phân cách, "pagebreak" sang trang mới, "linebreak", phân cách bằng ký tự xuống dòng, "line", phân cách bằng đường ngang
     //}
     rootElement.getHtmlByFiles = function (obj, callback) {
         rootElement.allTimeAfterCreate()
@@ -12270,9 +12270,9 @@ function StartDCWriterClientControl(rootElement) {
     //            "base64": "false",//Có phải là chuỗi base64 hay không
     //            "megedoc": "false"//có gộp hay không
     //            "modefile": "xmlstring"//Chuỗi XML của tài liệu chính cung cấp đầu trang/cuối trang ở chế độ gộp bệnh trình
-    //            "splitmode": "none"//chế độ phân cách ở giữa khi gộp các tệp, "none"không phân cách, "pagebreak"sang trang mới, "linebreak", phân cách bằng ký tự xuống dòng, "line", phân cách bằng đường ngang
+    //            "splitmode": "none"//chế độ phân cách ở giữa khi gộp các tệp, "none" không phân cách, "pagebreak" sang trang mới, "linebreak", phân cách bằng ký tự xuống dòng, "line", phân cách bằng đường ngang
     //            "filename": ""//tên tệp khi xuất PDF
-    //            "resulttype": ""//kiểu trả về: "DownloadFile"biểu thị tải tệp trực tiếp;"Base64String"biểu thị trả về chuỗi BASE64 của nhị phân pdf
+    //            "resulttype": ""//kiểu trả về: "DownloadFile" biểu thị tải tệp trực tiếp; "Base64String" biểu thị trả về chuỗi BASE64 của nhị phân pdf
     //            "forceblacktextcolor": "false"//Thiết lập PDF xuất ra bắt buộc dùng font màu đen
     //}
     rootElement.GetPDFByFiles = function (obj, callback) {
@@ -12532,7 +12532,7 @@ function StartDCWriterClientControl(rootElement) {
 
     //Lấy HTML theo XML
     //@param strXML chuỗi base64 của tài liệu XML
-    //@param type {one:toàn bộ html, two:html bên trong body}
+    //@param type {one: toàn bộ html, two: html bên trong body}
     rootElement.getHtmlByXMLBase64String = function (strXML, type) {
         rootElement.allTimeAfterCreate()
         // Lấy địa chỉ trang máy chủ
@@ -12612,11 +12612,11 @@ function StartDCWriterClientControl(rootElement) {
     //@param options thuộc tính bản ghi bệnh trình
     //@param element chèn vào sau phần tử đã chỉ định
     //@param async bất đồng bộ, mặc định true: bất đồng bộ, false: đồng bộ
-    //@param func gọi lạihàm function(ele){//ele là nội dung được chèn}
+    //@param func gọi lại hàm function(ele){//ele là nội dung được chèn}
     rootElement.InsertXmlString = function (xmlContent, flag, option, element, async, func) {
         var win = this.GetContentWindow();
         if (!win || (!element && win.DCWriterControllerEditor.CanInsertElementAtCurentPosition() == false)) {
-            // Khi chèn tại vị trí con trỏ, kiểm tra có thể chèn phần tử hay không[InsertXmlString,InsertXmlBase64String]
+            // Khi chèn tại vị trí con trỏ, kiểm tra có thể chèn phần tử hay không [InsertXmlString, InsertXmlBase64String]
             return false;
         }
         rootElement.allTimeAfterCreate()
@@ -12708,16 +12708,16 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     //Chèn XML
-    //@param xmlContent tài liệuchuỗi Base64
+    //@param xmlContent tài liệu chuỗi Base64
     //@param flag Có phải là bản ghi bệnh trình hay không
     //@param options thuộc tính bản ghi bệnh trình
     //@param element chèn vào sau phần tử đã chỉ định
     //@param async bất đồng bộ, mặc định true: bất đồng bộ, false: đồng bộ
-    //@param func gọi lạihàm function(ele){//ele là nội dung được chèn}
+    //@param func gọi lại hàm function(ele){//ele là nội dung được chèn}
     rootElement.InsertXmlBase64String = function (xmlContent, flag, option, element, async, func) {
         var win = this.GetContentWindow();
         if (!win || (!element && win.DCWriterControllerEditor.CanInsertElementAtCurentPosition() == false)) {
-            // Khi chèn tại vị trí con trỏ, kiểm tra có thể chèn phần tử hay không[InsertXmlString,InsertXmlBase64String]
+            // Khi chèn tại vị trí con trỏ, kiểm tra có thể chèn phần tử hay không [InsertXmlString, InsertXmlBase64String]
             return false;
         }
         rootElement.allTimeAfterCreate()
@@ -12807,7 +12807,7 @@ function StartDCWriterClientControl(rootElement) {
         }
     };
 
-    //wyc20220830:Lấy hàng loạt innerxml của các phần tử
+    //wyc20220830: Lấy hàng loạt innerxml của các phần tử
     rootElement.GetElementsInnerXmlByIDs = function (ids) {
         var win = this.GetContentWindow();
         var doc = this.GetContentDocument();
@@ -12886,7 +12886,7 @@ function StartDCWriterClientControl(rootElement) {
         }
     };
 
-    //wyc20220819:Lấy trang hiển thị nhật ký hiệu năng hệ thống
+    //wyc20220819: Lấy trang hiển thị nhật ký hiệu năng hệ thống
     rootElement.GetServerLog = function (filename) {
         var servicePageUrl = rootElement.getAttribute("servicepageurl");
         var parameter = filename != null && filename.toString ? filename : "1";
@@ -12989,7 +12989,7 @@ function StartDCWriterClientControl(rootElement) {
             console.log("Phát hiện hiện tại có trường nhập liệu hoặc ô bảng, không cho phép chèn tài liệu con");
             return;
         }
-        // 20230116 xym Cấm chèn vào vị trí ngoài chính văn[InsertSubDocuments]
+        // 20230116 xym Cấm chèn vào vị trí ngoài chính văn [InsertSubDocuments]
         if (!afterElement) {
             var currentNode = rootElement.CurrnetElement(function (node) {
                 return node.nodeName == "DIV" && node.getAttribute("dctype") == "XTextDocumentBodyElement";
@@ -13009,7 +13009,7 @@ function StartDCWriterClientControl(rootElement) {
             "file": options.Files,//tài liệu xml
             "format": "xml",//định dạng tài liệu xml
             "base64": base64,//Có phải là chuỗi base64 hay không
-            "type": "two",//{one:toàn bộ html, two:html bên trong body}
+            "type": "two",//{one: toàn bộ html, two: html bên trong body}
             "usesubdoc": "true",
             "forprint": "false",
             "subdocopts": options.Options
@@ -13103,10 +13103,10 @@ function StartDCWriterClientControl(rootElement) {
     //            "file": arr,//tài liệu xml 
     //            "format": "xml",//định dạng tài liệu xml
     //            "base64": "false",//Có phải là chuỗi base64 hay không
-    //            "type":{one:toàn bộ html, two:html bên trong body}
-    //            "position":{"start":chèn vào đầu vùng chứa đích, "end":chèn vào cuối vùng chứa đích}
+    //            "type":{one: toàn bộ html, two: html bên trong body}
+    //            "position":{"start": chèn vào đầu vùng chứa đích, "end": chèn vào cuối vùng chứa đích}
     //}
-    //async có phải bất đồng bộ hay không; mặc địnhtrue: bất đồng bộ, false:đồng bộ
+    //async có phải bất đồng bộ hay không; mặc định true: bất đồng bộ, false: đồng bộ
     rootElement.InsertXmlById = function (obj, id, async) {
         rootElement.allTimeAfterCreate()
         // Lấy địa chỉ trang máy chủ
@@ -13155,7 +13155,7 @@ function StartDCWriterClientControl(rootElement) {
                                 rootElement.HiddenAppProcessing();
                                 return;
                             } else {
-                                //wyc20221220:Nếu chỉ có một đoạn thì lấy trực tiếp nội dung trong đoạn
+                                //wyc20221220: Nếu chỉ có một đoạn thì lấy trực tiếp nội dung trong đoạn
                                 div.innerHTML = ps[0].innerHTML;
                             }
                         }
@@ -13299,7 +13299,7 @@ function StartDCWriterClientControl(rootElement) {
         rootElement.allTimeAfterCreate()
         var svcUrl = rootElement.getAttribute("servicepageurl") + "?updatedocumentoptions=1&tick=" + new Date().valueOf();
         var doc = rootElement.GetContentDocument();
-        //wyc20220322:Thêm thuộc tính
+        //wyc20220322: Thêm thuộc tính
         var scriptblock = doc.getElementById("JavaScriptTextForWebClient");
         var docbody = doc.getElementById("divDocumentBody_0");
         var viewstate = docbody.getAttribute("dcdocumentviewstate");
@@ -13478,7 +13478,7 @@ function StartDCWriterClientControl(rootElement) {
 
     //Trình soạn thảo tải chuỗi tài liệu
     //@param fileContent chuỗi tài liệu
-    //@param fileFormat chuỗiđịnh dạng
+    //@param fileFormat chuỗi định dạng
     rootElement.LoadDocumentFromString = function (fileContent, fileFormat, specifyLoadPart) {
         rootElement.allTimeAfterCreate()
         DCWriterEnsureJQuery();
@@ -13552,7 +13552,7 @@ function StartDCWriterClientControl(rootElement) {
         rootElement.allTimeBeforeAjax(settings.data)
         $.ajax(settings);
 
-        //Wu Yichao2019/3/26 Thêm tính năng có tự động lưu hay không
+        //Wu Yichao 2019/3/26 Thêm tính năng có tự động lưu hay không
         var AutoSaveIntervalInSecond = rootElement.DocumentOptions.BehaviorOptions.AutoSaveIntervalInSecond;
         if (AutoSaveIntervalInSecond != null && AutoSaveIntervalInSecond != "") {
             if (isNumber(AutoSaveIntervalInSecond) && AutoSaveIntervalInSecond > 0) { //Kiểm tra có phải là số hay không
@@ -13642,7 +13642,7 @@ function StartDCWriterClientControl(rootElement) {
 
     //Trình soạn thảo tải chuỗi Base64 của tài liệu
     //@param fileContent chuỗi tài liệu
-    //@param fileFormat chuỗiđịnh dạng
+    //@param fileFormat chuỗi định dạng
     rootElement.LoadDocumentFromBase64String = function (fileContent, fileFormat, specifyLoadPart) {
         rootElement.allTimeAfterCreate()
         DCWriterEnsureJQuery();
@@ -13715,7 +13715,7 @@ function StartDCWriterClientControl(rootElement) {
         rootElement.allTimeBeforeAjax(JSON.stringify(settings.data))
         $.ajax(settings);
 
-        //Wu Yichao2019/3/26 Thêm tính năng có tự động lưu hay không
+        //Wu Yichao 2019/3/26 Thêm tính năng có tự động lưu hay không
         var AutoSaveIntervalInSecond = rootElement.DocumentOptions.BehaviorOptions.AutoSaveIntervalInSecond;
         if (AutoSaveIntervalInSecond != null && AutoSaveIntervalInSecond != "") {
             if (isNumber(AutoSaveIntervalInSecond) && AutoSaveIntervalInSecond > 0) { //Kiểm tra có phải là số hay không
@@ -13907,7 +13907,7 @@ function StartDCWriterClientControl(rootElement) {
 
         rootElement.InnerLoadDocumentContentFromUrl(url, funcCallback, null, fileName);
 
-        //Du Kangliang2018/11/9 Thêm tính năng có tự động lưu hay không
+        //Du Kangliang 2018/11/9 Thêm tính năng có tự động lưu hay không
         // var AutoSaveIntervalInSecond = rootElement.getAttribute("AutoSaveIntervalInSecond");
         var AutoSaveIntervalInSecond = rootElement.DocumentOptions.BehaviorOptions.AutoSaveIntervalInSecond;
         if (AutoSaveIntervalInSecond != null && AutoSaveIntervalInSecond != "") {
@@ -13990,7 +13990,7 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     // Đặt lại dấu hiệu sửa đổi
-    // onlyText boolean truebiểu thị đặt lại dấu hiệu sửa đổi Text
+    // onlyText boolean true biểu thị đặt lại dấu hiệu sửa đổi Text
     // tham số mở rộng 'resetText' đặt lại văn bản 'reseltHtml' đặt lại html 'setModify' đặt tài liệu về trạng thái đã sửa đổi
     rootElement.resetModified = function (onlyText) {
         if (onlyText == null) {
@@ -14013,7 +14013,7 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     // Nội dung tài liệu của điều khiển có thay đổi hay không
-    // onlyText boolean truebiểu thị nội dung Text của tài liệu điều khiển có thay đổi hay không
+    // onlyText boolean true biểu thị nội dung Text của tài liệu điều khiển có thay đổi hay không
     rootElement.getModified = function (onlyText) {
         if (onlyText == null) {
             onlyText = false;
@@ -14090,7 +14090,7 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     // Thêm giao diện xóa chiều rộng cố định của trường nhập liệu span(removeSpecifywidth)
-    // elcó thể truyền id hoặc chính phần tử
+    // el có thể truyền id hoặc chính phần tử
     rootElement.removeSpecifywidth = function (el) {
         if (!el) {
             return null;
@@ -14173,7 +14173,7 @@ function StartDCWriterClientControl(rootElement) {
         var win = this.GetContentWindow(forceUseEditFrame);
         if (win != null && win.DCWriterCommandMananger != null) {
             var result = win.DCWriterCommandMananger.DCExecuteCommand(commandName, showUI, parameter);
-            //20190715 xuyiming: thụt đầu dòng xuất hiện dấu hỏi chấm, “&#8203;” chuyển thành dấu hỏi chấm, “/\u200B/” biểu thị xuất hiện “ký tự không nhìn thấy”
+            //20190715 xuyiming: thụt đầu dòng xuất hiện dấu hỏi chấm, "&#8203;" chuyển thành dấu hỏi chấm, "/\u200B/" biểu thị xuất hiện "ký tự không nhìn thấy"
             if (commandName.toLowerCase() == "indent") {
                 var doc = rootElement.GetContentDocument();
                 var boddy = doc.getElementsByTagName("body")[0];
@@ -14333,7 +14333,7 @@ function StartDCWriterClientControl(rootElement) {
     // Lấy tất cả các đối tượng radio hoặc checkbox trong tài liệu
     // type :radio, checkbox 
     // name: thuộc tính name của phần tử (có thể không truyền tham số: biểu thị lấy tất cả)
-    // specifyRootElement :Tìm tất cả các checkbox/radio dưới nút cha đã chỉ định
+    // specifyRootElement : Tìm tất cả các checkbox/radio dưới nút cha đã chỉ định
     rootElement.GetAllCheckboxOrRadio = function (type, name, specifyRootElement) {
         var result;
         var win = this.GetContentWindow();
@@ -14343,8 +14343,8 @@ function StartDCWriterClientControl(rootElement) {
         return result;
     }
 
-    //wyc20210512Thiết lập tính hiển thị của cột bảng
-    // tableElement :DOM bảng HTML truyền vào, bắt buộc phải là phần tử tài liệu
+    //wyc20210512 Thiết lập tính hiển thị của cột bảng
+    // tableElement : DOM bảng HTML truyền vào, bắt buộc phải là phần tử tài liệu
     // columnIndex: mã cột bảng được thiết lập, bắt đầu từ 0
     // visible: tính hiển thị của cột bảng được thiết lập, giá trị boolean
     rootElement.SetTableColumnVisible = function (tableElement, columnIndex, visible) {
@@ -14583,7 +14583,7 @@ function StartDCWriterClientControl(rootElement) {
         if (doc == null) {
             return;
         }
-        //wyc20220117:Cải tiến xử lý
+        //wyc20220117: Cải tiến xử lý
         for (var fname in doc.body) {
             if (fname.indexOf &&
                 fname.indexOf("DCExp") >= 0 &&
@@ -14792,12 +14792,12 @@ function StartDCWriterClientControl(rootElement) {
             //DCDomTools.fixAjaxSettings(settings, rootElement);
             //$.ajax( settings ).complete(function (jqXHR, textStatus) {
             //    if (jqXHR.status != 200) {
-            //        funcShowErrorMessage(rootElement, 'địa chỉ trang máy chủ đã cấu hình[' + servicePageUrl + ']kiểm tra không đạt,trạng thái HTTP là:' + xmlhttp.status);
+            //        funcShowErrorMessage(rootElement, 'địa chỉ trang máy chủ đã cấu hình[' + servicePageUrl + '] kiểm tra không đạt, trạng thái HTTP là:' + xmlhttp.status);
             //    }
             //    else {
             //        var txt = jqXHR.responseText;
             //        if (txt == null || txt.indexOf('dcwriter_test_ok') < 0) {
-            //            funcShowErrorMessage(rootElement, 'địa chỉ trang máy chủ đã cấu hình[' + servicePageUrl + ']kiểm tra không đạt, trả về:' + txt);
+            //            funcShowErrorMessage(rootElement, 'địa chỉ trang máy chủ đã cấu hình[' + servicePageUrl + '] kiểm tra không đạt, trả về:' + txt);
             //        }
             //    }
             //});
@@ -14813,7 +14813,7 @@ function StartDCWriterClientControl(rootElement) {
     };
 
     // Menu chức năng khi chọn bằng nút trái zhangbin20211216
-    // configObjđối tượng cấu hình{direction:'',element:[{type:'',style:'',text:'',exec:{}}]}
+    // configObj đối tượng cấu hình {direction:'',element:[{type:'',style:'',text:'',exec:{}}]}
     //Kiểm tra có phải nhấp đúp (double-click) hay không
     rootElement.MouseLeftSelectFlag = true
     rootElement.MouseLeftSelect = function (configObj) {
@@ -15169,7 +15169,7 @@ function StartDCWriterClientControl(rootElement) {
                     oldField = field
                 })
             }
-            // 20221206 xym Sau khi chèn phần tử thì xóa văn bản nền (background text)[SetChildElements]
+            // 20221206 xym Sau khi chèn phần tử thì xóa văn bản nền (background text) [SetChildElements]
             if(win.DCInputFieldManager.IsInputFieldElement(targetEle) == true && returnEle.length > 0){
                 $(targetEle).find(">[dctype='backgroundtext']").remove();
             }
@@ -15289,7 +15289,7 @@ function StartDCWriterClientControl(rootElement) {
 
     //zhangbin 20220816 Chẩn đoán cấu trúc cây
     //hierarchy - Expand Merge 
-    //symbol - 1,a,A,ⅰ,Ⅰ mặc định1  8544  ⅰ 8560
+    //symbol - 1,a,A,ⅰ,Ⅰ mặc định 1  8544  ⅰ 8560
     rootElement.SetDiagnosticTextById = function(ele,value,hierarchy,symbol){
         if(typeof ele == 'string'){
             ele = rootElement.GetContentDocument().getElementById(ele)
@@ -15463,7 +15463,7 @@ function StartDCWriterClientControl(rootElement) {
             win.document.close();
 
             var htmlresult = node.value;;
-            //debugger; wyc20220629ghi chú
+            //debugger; wyc20220629 ghi chú
             //if (htmlresult.indexOf("&") != -1) {
             //    htmlresult = DCDomTools.HTMLDecode(node.value);
             //}
