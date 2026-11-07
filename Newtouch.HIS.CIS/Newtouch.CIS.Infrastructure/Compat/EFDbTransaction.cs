@@ -63,7 +63,46 @@ namespace Newtouch.Infrastructure.EF
         }
         public int Insert<T>(T entity) where T : class, new()
         {
-            return Db.Insertable(entity).ExecuteCommand();
+            // NX28 (D-NX28-HERP-001): same identity backfill as CIS
+            // RepositoryBase.Insert — the EF-era base backfilled DB-generated
+            // identities; ExecuteCommand does not. ExecuteReturnIdentity runs
+            // SCOPE_IDENTITY() on this transaction's connection, so the value
+            // is correct inside the transaction. Return stays 1 on success
+            // (throws on SQL error, as before); explicit-Id tables return 0
+            // from ExecuteReturnIdentity and are left untouched.
+            var identity = Db.Insertable(entity).ExecuteReturnIdentity();
+            Newtouch.CIS.Compat.SqlSugarIdentity.Apply(entity, identity);
+            return 1;
+        }
+        public int Insert<T>(List<T> entities) where T : class, new()
+        {
+            // NX28 (D-NX28-HERP-001): list overload backfills each row's
+            // identity, same rationale as Herp NX27. Callers always run this
+            // inside BeginTrans, but guard anyway: if no ambient transaction
+            // is running, wrap the loop in one so a mid-list failure stays
+            // atomic, exactly like the old ExecuteCommand batch. Null/empty
+            // lists keep the old single-call behaviour verbatim.
+            if (entities == null || entities.Count == 0)
+            {
+                return Db.Insertable(entities).ExecuteCommand();
+            }
+            var ownTran = Db.Ado.IsNoTran();
+            if (ownTran) Db.Ado.BeginTran();
+            try
+            {
+                var total = 0;
+                foreach (var entity in entities)
+                {
+                    total += Insert(entity);
+                }
+                if (ownTran) Db.Ado.CommitTran();
+                return total;
+            }
+            catch
+            {
+                if (ownTran) { try { Db.Ado.RollbackTran(); } catch { /* already rolled back */ } }
+                throw;
+            }
         }
         public int Update<T>(T entity) where T : class, new()
         {

@@ -72,10 +72,61 @@ namespace Newtouch.CIS.Repository
 
         public int Insert(T entity)
         {
-            return Db.Insertable(entity).ExecuteCommand();
+            // NX28 (D-NX28-HERP-001): same class of fix as Herp NX26/NX27 —
+            // the EF-era base backfilled DB-generated identity values onto the
+            // entity; SqlSugar ExecuteCommand does not, so callers that read
+            // the Id after insert (InsertSyxxBatch links nothing by Id today,
+            // but EndInventory/SaveInventoryDetail flows and any future caller
+            // do) silently got Id=0 — and worse, without IsIdentity on the
+            // entity SqlSugar sent Id=0 explicitly and SQL Server rejected
+            // the insert outright ("Cannot insert explicit value for identity
+            // column"). ExecuteReturnIdentity returns the new identity for
+            // identity columns and 0 (no throw) for explicit-Id tables
+            // (harness-proven on SqlSugarCore 5.1.4.100), so backfill only
+            // when a real identity comes back. Return stays 1 on success
+            // (throws on SQL error, as before).
+            var identity = Db.Insertable(entity).ExecuteReturnIdentity();
+            Newtouch.CIS.Compat.SqlSugarIdentity.Apply(entity, identity);
+            return 1;
         }
 
-        public int Insert(System.Collections.Generic.List<T> entities) { return Db.Insertable(entities).ExecuteCommand(); }
+        public int Insert(System.Collections.Generic.List<T> entities)
+        {
+            // NX28 (D-NX28-HERP-001): list overload backfills each row's
+            // identity, same rationale as Herp NX27. SqlSugar has no bulk
+            // identity-return API (ExecuteCommandIdentityIntoEntity on a list
+            // backfills only the FIRST row's Id), so insert row-by-row
+            // through the same ExecuteReturnIdentity primitive. The old
+            // ExecuteCommand batch was atomic on partial failure, so when no
+            // ambient transaction is running, wrap the loop in one of our own
+            // (BeginTran/Commit, rollback + rethrow on error); inside an
+            // EFDbTransaction the ambient transaction already makes the batch
+            // atomic. Return stays the total row count (throws on SQL error,
+            // as before). Null/empty lists keep the old single-call behaviour
+            // verbatim (ExecuteCommandIdentityIntoEntity throws TargetException
+            // on an empty list; ExecuteCommand returns 0).
+            if (entities == null || entities.Count == 0)
+            {
+                return Db.Insertable(entities).ExecuteCommand();
+            }
+            var ownTran = Db.Ado.IsNoTran();
+            if (ownTran) Db.Ado.BeginTran();
+            try
+            {
+                var total = 0;
+                foreach (var entity in entities)
+                {
+                    total += Insert(entity);
+                }
+                if (ownTran) Db.Ado.CommitTran();
+                return total;
+            }
+            catch
+            {
+                if (ownTran) { try { Db.Ado.RollbackTran(); } catch { /* already rolled back */ } }
+                throw;
+            }
+        }
         public int Update(T entity)
         {
             var keyProp = GetKeyProperty();

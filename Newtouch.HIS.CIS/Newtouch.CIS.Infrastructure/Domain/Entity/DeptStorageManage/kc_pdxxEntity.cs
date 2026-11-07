@@ -15,6 +15,7 @@ namespace Newtouch.Domain.Entity.DeptStorageManage
         /// Khóa chính
         /// </summary>
         [Key]
+        [SugarColumn(IsPrimaryKey = true, IsIdentity = true)]
         public long Id { get; set; }
 
         /// <summary>
