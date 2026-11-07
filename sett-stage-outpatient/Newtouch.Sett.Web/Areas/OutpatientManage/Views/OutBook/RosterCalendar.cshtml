@@ -1071,7 +1071,7 @@
         }
         //bật khung sửa trong dòng
         function EnableInlineEditBox() {
-            //Gridtảihoàn thành bật sửa trong dòng   1.trướclấynơicódòngId  2.duyệtgọieditRowphương thức
+            //Gridtảihoàn thành bật sửa trong dòng   1.trướclấynơicódòngId  2.duyệt gọi editRow phương thức
             var rowIds = $("#gridList").jqGrid('getDataIDs');
             for (var i = 0; i < rowIds.length; i++) {
                 $("#gridList").jqGrid('editRow', rowIds[i], true, null, null, null, null, function (callbackRowId) {     //true: when set to true we can use [Enter] key to save the row and [Esc] to cancel editing.
