@@ -1178,7 +1178,7 @@
 
             var p = $.extend(true, {
                 unwritten: true,
-                unwrittentext: "没有找到您要的相关数据!",
+                unwrittentext: "Không tìm thấy dữ liệu liên quan mà bạn cần!",
                 url: "",
                 height: 150,
                 page: 1,
@@ -1326,8 +1326,8 @@
                 restoreCellonFail: true,
                 colFilters: {},
                 colMenu: false,
-                //加参
-                //树形多选
+                //Thêm tham số
+                //Chọn nhiều dạng cây
                 treeMultiSelect: false,
             }, $.jgrid.defaults, pin);
             //
@@ -2516,7 +2516,7 @@
                 }
                 if (dnd && ts.p.jqgdnd) { $(ts).jqGrid('gridDnD', 'updateDnD'); }
                 $(ts).triggerHandler("jqGridGridComplete");
-                //将服务器ajax返回的完整data 回调给gridComplete
+                //Đưa ajax đầy đủ mà data về callback cho gridComplete
                 if ($.isFunction(ts.p.gridComplete)) { ts.p.gridComplete.call(ts, data); }
                 $(ts).triggerHandler("jqGridAfterGridComplete");
             },
@@ -2533,7 +2533,7 @@
                 if (ts.p.hiddengrid) { return; }
             },
             endReq = function () {
-                //IEbug 得变一次宽度
+                //IEbug nên phải đổi chiều rộng một lần
                 if ($.isFunction(window.reSetGridWidth) && $.isFunction(window.isIE) && window.isIE()) {
                     window.reSetGridWidth();
                 }
@@ -3520,7 +3520,7 @@
                     }
                 }
             }
-            //扩展
+            //Mở rộng
             var _used_width = 0;
             var _colNo = 0;
             for (i = 0; i < this.p.colNames.length; i++) {
@@ -3536,7 +3536,7 @@
             for (i = 0; i < this.p.colNames.length; i++) {
                 var tooltip = ts.p.headertitles ? (" title=\"" + $.jgrid.stripHtml(ts.p.colNames[i]) + "\"") : "";
                 tmpcm = ts.p.colModel[i];
-                //扩展
+                //Mở rộng
                 var _hidden = tmpcm.hidden;
                 var _width = tmpcm.width;
                 if (_hidden != undefined) {
@@ -3804,7 +3804,7 @@
             $(ts).before(grid.hDiv).click(function (e) {
                 td = e.target;
                 if (e.target.tagName === 'LABEL') {
-                    $(e.target).closest('td').trigger('click'); //点chekbox有bug，改为触发td
+                    $(e.target).closest('td').trigger('click'); //Nhấn checkbox bị bug, đổi thành kích hoạt td
                     return false;
                 }
                 ptr = $(td, ts.rows).closest("tr.jqgrow");
@@ -4343,7 +4343,7 @@
                     });
                 }
                 else {
-                    $.each($($t).getDataIDs(), function () {    //默认所有行
+                    $.each($($t).getDataIDs(), function () {    //Mặc định tất cả các hàng
                         var thisRowData = $($t).jqGrid('getRowData', this);
                         thisRowData.jqRowId = this; //rowid
                         resall.push(thisRowData);
@@ -4353,7 +4353,7 @@
                     return resall;
                 }
                 else {
-                    return JSON.stringify(resall);  //默认return json
+                    return JSON.stringify(resall);  //Mặc địnhreturn json
                 }
             }
             catch (err) {
@@ -4361,7 +4361,7 @@
                     return [];
                 }
                 else {
-                    return '[]';  //默认return json
+                    return '[]';  //Mặc địnhreturn json
                 }
             }
         },
@@ -4807,7 +4807,7 @@
                     $t.p.colModel[lvc].width += cr;
                     $t.p.tblwidth = initwidth + cr + brd * vc + gw;
                     if (!hs && this.p.rownumbers) {
-                        $t.p.colModel[lvc].width -= (this.p.rownumWidth + 4); //用最后一列除去row的width    //row的border
+                        $t.p.colModel[lvc].width -= (this.p.rownumWidth + 4); //Dùng cột cuối cùng trừ đi width của row    //border của row
                         $t.p.tblwidth -= 2;
                     }
                     if ($t.p.tblwidth > nwidth) {

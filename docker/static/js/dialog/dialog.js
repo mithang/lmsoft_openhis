@@ -1,4 +1,4 @@
-/*! layer-v2.3 弹层组件 License LGPL  http://layer.layui.com/ By 贤心 */ ;
+/*! layer-v2.3 Thành phần lớp bật lên License LGPL  http://layer.layui.com/ By 贤心 */ ;
 ! function(a, b) {
     "use strict";
     var c, d, e = {
@@ -321,7 +321,7 @@
             if (0 === a) {
                  if ($(this).find('input').attr('class') != "footer-left-label")
                 { g.yes ? g.yes(b.index, d) : g.btn1 ? g.btn1(b.index, d) : f.close(b.index); }}
-            else if (1 === a) {//确认
+            else if (1 === a) {//Xác nhận
             if(g.showleftlalbel){
                     g.yes ? g.yes(b.index, d) : g.btn1 ? g.btn1(b.index, d) : f.close(b.index);
 
@@ -335,7 +335,7 @@
                 //if (!(e === !1)) {
                 //    if (g.no) {
                 //        g.no(b.index, d);
-                //        //f.close(b.index); //这样得手动关
+                //        //f.close(b.index); //Như vậy phải đóng thủ công
                 //    } else {
                 //        f.close(b.index);
                 //    }

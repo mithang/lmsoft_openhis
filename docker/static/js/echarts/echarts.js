@@ -11,7 +11,7 @@
 /**
  * echarts
  *
- * @desc echarts基于Canvas，纯Javascript图表库，提供直观，生动，可交互，可个性化定制的数据统计图表。
+ * @desc echartsThư viện biểu đồ Javascript thuần túy dựa trên Canvas, cung cấp biểu đồ thống kê dữ liệu trực quan, sinh động, có thể tương tác và tùy chỉnh theo cá nhân.
  * @author Kener (@Kener-林峰, kener.linfeng@gmail.com)
  *
  */
@@ -24,7 +24,7 @@ define(function (require) {
 
     var _canvasSupported = require('zrender/tool/env').canvasSupported;
     var _idBase = new Date() - 0;
-    var _instances = {};    // ECharts实例map索引
+    var _instances = {};    // EChartschỉ mục map của thực thể
     var DOM_ATTRIBUTE_KEY = '_echarts_instance_';
 
     self.version = '2.2.7';
@@ -32,7 +32,7 @@ define(function (require) {
         zrender: '2.1.1'
     };
     /**
-     * 入口方法
+     * Phương thức cổng vào
      */
     self.init = function (dom, theme) {
         var zrender = require('zrender');
@@ -47,7 +47,7 @@ define(function (require) {
 
         dom = dom instanceof Array ? dom[0] : dom;
 
-        // dom与echarts实例映射索引
+        // Chỉ mục ánh xạ giữa dom và thực thể echarts
         var key = dom.getAttribute(DOM_ATTRIBUTE_KEY);
         if (!key) {
             key = _idBase++;
@@ -55,7 +55,7 @@ define(function (require) {
         }
 
         if (_instances[key]) {
-            // 同一个dom上多次init，自动释放已有实例
+            // Khởi tạo nhiều lần trên cùng một dom sẽ tự động giải phóng thực thể đã có
             _instances[key].dispose();
         }
         _instances[key] = new Echarts(dom);
@@ -67,14 +67,14 @@ define(function (require) {
     };
 
     /**
-     * 通过id获得ECharts实例，id可在实例化后读取
+     * Lấy thực thể ECharts qua id, id có thể đọc được sau khi khởi tạo
      */
     self.getInstanceById = function (key) {
         return _instances[key];
     };
 
     /**
-     * 消息中心
+     * Trung tâm thông báo
      */
     function MessageCenter() {
         zrEvent.Dispatcher.call(this);
@@ -82,8 +82,8 @@ define(function (require) {
     zrUtil.merge(MessageCenter.prototype, zrEvent.Dispatcher.prototype, true);
 
     /**
-     * 基于zrender实现Echarts接口层
-     * @param {HtmlElement} dom 必要
+     * Lớp giao diện Echarts được triển khai dựa trên zrender
+     * @param {HtmlElement} dom Bắt buộc
      */
     function Echarts(dom) {
         // Fxxk IE11 for breaking initialization without a warrant;
@@ -99,25 +99,25 @@ define(function (require) {
         // this._island;
         // this._toolbox;
         // this._timeline;
-        // this._refreshInside;             // 内部刷新标志位
+        // this._refreshInside;             // Cờ đánh dấu làm mới nội bộ
 
         this._connected = false;
-        this._status = {                    // 用于图表间通信
+        this._status = {                    // Dùng để giao tiếp giữa các biểu đồ
             dragIn: false,
             dragOut: false,
             needRefresh: false
         };
-        this._curEventType = false;         // 破循环信号灯
-        this._chartList = [];               // 图表实例
+        this._curEventType = false;         // Đèn tín hiệu phá vòng lặp
+        this._chartList = [];               // Thực thể biểu đồ
 
         this._messageCenter = new MessageCenter();
 
-        this._messageCenterOutSide = new MessageCenter();    // Echarts层的外部消息中心，做Echarts层的消息转发
+        this._messageCenterOutSide = new MessageCenter();    // Trung tâm thông báo bên ngoài của lớp Echarts, làm nhiệm vụ chuyển tiếp thông báo của lớp Echarts
 
-        // resize方法经常被绑定到window.resize上，闭包一个this
+        // Phương thức resize thường được gắn vào window.resize, closure một this
         this.resize = this.resize();
 
-        // 初始化::构造函数
+        // Khởi tạo::hàm tạo
         this._init();
     }
 
@@ -131,7 +131,7 @@ define(function (require) {
     var ZR_EVENT = require('zrender/config').EVENT;
 
     /**
-     * 要绑定监听的zrender事件列表
+     * cần gắn lắng nghezrenderDanh sách sự kiện
      *
      * @const
      * @inner
@@ -143,16 +143,16 @@ define(function (require) {
     ];
 
     /**
-     * 对echarts的实例中的chartList属性成员，逐个进行方法调用，遍历顺序为逆序
-     * 由于在事件触发的默认行为处理中，多次用到相同逻辑，所以抽象了该方法
-     * 由于所有的调用场景里，最多只有两个参数，基于性能和体积考虑，这里就不使用call或者apply了
+     * đối với thực thể echarts, thuộc tính chartList, gọi lần lượt từng phương thức, thứ tự duyệt là ngược
+     * Vì logic giống nhau được dùng nhiều lần trong quá trình xử lý hành vi mặc định khi sự kiện kích hoạt, nên phương thức này được trừu tượng hóa
+     * Vì trong mọi trường hợp gọi, tối đa chỉ có hai tham số, nên xét về hiệu năng và kích thước, ở đây không dùng call hay apply nữa
      *
      * @inner
-     * @param {ECharts} ecInstance ECharts实例
-     * @param {string} methodName 要调用的方法名
-     * @param {*} arg0 调用参数1
-     * @param {*} arg1 调用参数2
-     * @param {*} arg2 调用参数3
+     * @param {ECharts} ecInstance EChartsthực thể
+     * @param {string} methodName Tên phương thức cần gọi
+     * @param {*} arg0 Tham số gọi1
+     * @param {*} arg1 Tham số gọi2
+     * @param {*} arg2 Tham số gọi3
      */
     function callChartListMethodReverse(ecInstance, methodName, arg0, arg1, arg2) {
         var chartList = ecInstance._chartList;
@@ -168,7 +168,7 @@ define(function (require) {
 
     Echarts.prototype = {
         /**
-         * 初始化::构造函数
+         * Khởi tạo::hàm tạo
          */
         _init: function () {
             var self = this;
@@ -184,8 +184,8 @@ define(function (require) {
                 self._messageCenter.dispatchWithContext(type, eventPackage, that);
                 self._messageCenterOutSide.dispatchWithContext(type, eventPackage, that);
 
-                // 如下注掉的代码，@see: https://github.com/ecomfe/echarts-discuss/issues/3
-                // if (type != 'HOVER' && type != 'MOUSEOUT') {    // 频繁事件直接抛出
+                // Đoạn mã đã chú thích dưới đây,@see: https://github.com/ecomfe/echarts-discuss/issues/3
+                // if (type != 'HOVER' && type != 'MOUSEOUT') {    // Sự kiện thường xuyên được ném ra trực tiếp
                 //     setTimeout(function(){
                 //         self._messageCenterOutSide.dispatchWithContext(
                 //             type, eventPackage, that
@@ -216,7 +216,7 @@ define(function (require) {
                 return self[eventBehaviors[ param.type ]](param);
             };
 
-            // 挂载关心的事件
+            // Gắn các sự kiện được quan tâm
             for (var i = 0, len = ZR_EVENT_LISTENS.length; i < len; i++) {
                 var eventName = ZR_EVENT_LISTENS[i];
                 var eventValue = ZR_EVENT[eventName];
@@ -224,17 +224,17 @@ define(function (require) {
                 _zr.on(eventValue, this._onzrevent);
             }
 
-            this.chart = {};            // 图表索引
-            this.component = {};        // 组件索引
+            this.chart = {};            // Chỉ mục biểu đồ
+            this.component = {};        // Chỉ mục thành phần
 
-            // 内置图表
-            // 孤岛
+            // Biểu đồ tích hợp sẵn
+            // Đảo
             var Island = require('./chart/island');
             this._island = new Island(this._themeConfig, this._messageCenter, _zr, {}, this);
             this.chart.island = this._island;
 
-            // 内置通用组件
-            // 工具箱
+            // Thành phần chung tích hợp sẵn
+            // Hộp công cụ
             var Toolbox = require('./component/toolbox');
             this._toolbox = new Toolbox(this._themeConfig, this._messageCenter, _zr, {}, this);
             this.component.toolbox = this._toolbox;
@@ -250,12 +250,12 @@ define(function (require) {
         },
 
         /**
-         * ECharts事件处理中心
+         * EChartsTrung tâm xử lý sự kiện
          */
         __onevent: function (param){
             param.__echartsId = param.__echartsId || this.id;
 
-            // 来自其他联动图表的事件
+            // Sự kiện từ biểu đồ liên động khác
             var fromMyself = (param.__echartsId === this.id);
 
             if (!this._curEventType) {
@@ -303,11 +303,11 @@ define(function (require) {
                 case ecConfig.EVENT.REFRESH :
                     fromMyself && this._onrefresh(param);
                     break;
-                // 鼠标同步
+                // Đồng bộ chuột
                 case ecConfig.EVENT.TOOLTIP_IN_GRID :
                 case ecConfig.EVENT.TOOLTIP_OUT_GRID :
                     if (!fromMyself) {
-                        // 只处理来自外部的鼠标同步
+                        // Chỉ xử lý đồng bộ chuột từ bên ngoài
                         var grid = this.component.grid;
                         if (grid) {
                             this._zr.trigger(
@@ -321,7 +321,7 @@ define(function (require) {
                         }
                     }
                     else if (this._connected) {
-                        // 来自自己，并且存在多图联动，空间坐标映射修改参数分发
+                        // Đến từ chính mình, và khi có liên động nhiều biểu đồ, phân phối tham số sửa đổi ánh xạ tọa độ không gian
                         var grid = this.component.grid;
                         if (grid) {
                             param.x = (param.event.zrenderX - grid.getX()) / grid.getWidth();
@@ -338,22 +338,22 @@ define(function (require) {
                 */
             }
 
-            // 多图联动，只做自己的一级事件分发，避免级联事件循环
+            // Liên động nhiều biểu đồ, chỉ phân phối sự kiện cấp một của chính mình, tránh vòng lặp sự kiện dây chuyền
             if (this._connected && fromMyself && this._curEventType === param.type) {
                 for (var c in this._connected) {
                     this._connected[c].connectedEventHandler(param);
                 }
-                // 分发完毕后复位
+                // Đặt lại sau khi phân phối xong
                 this._curEventType = null;
             }
 
-            if (!fromMyself || (!this._connected && fromMyself)) {  // 处理了完联动事件复位
+            if (!fromMyself || (!this._connected && fromMyself)) {  // Đặt lại sau khi xử lý xong sự kiện liên động
                 this._curEventType = null;
             }
         },
 
         /**
-         * 点击事件，响应zrender事件，包装后分发到Echarts层
+         * Sự kiện nhấn chuột, phản hồi sự kiện zrender, đóng gói rồi phân phối đến lớp Echarts
          */
         _onclick: function (param) {
             callChartListMethodReverse(this, 'onclick', param);
@@ -372,7 +372,7 @@ define(function (require) {
         },
 
         /**
-         * 双击事件，响应zrender事件，包装后分发到Echarts层
+         * Sự kiện nhấn đúp, phản hồi sự kiện zrender, đóng gói rồi phân phối đến lớp Echarts
          */
         _ondblclick: function (param) {
             callChartListMethodReverse(this, 'ondblclick', param);
@@ -391,7 +391,7 @@ define(function (require) {
         },
 
         /**
-         * 鼠标移入事件，响应zrender事件，包装后分发到Echarts层
+         * Sự kiện di chuột vào, phản hồi sự kiện zrender, đóng gói rồi phân phối đến lớp Echarts
          */
         _onmouseover: function (param) {
             if (param.target) {
@@ -408,7 +408,7 @@ define(function (require) {
         },
 
         /**
-         * 鼠标移出事件，响应zrender事件，包装后分发到Echarts层
+         * Sự kiện di chuột ra, phản hồi sự kiện zrender, đóng gói rồi phân phối đến lớp Echarts
          */
         _onmouseout: function (param) {
             if (param.target) {
@@ -425,10 +425,10 @@ define(function (require) {
         },
 
         /**
-         * dragstart回调，可计算特性实现
+         * dragstartHàm callback, triển khai tính năng có thể tính toán
          */
         _ondragstart: function (param) {
-            // 复位用于图表间通信拖拽标识
+            // Đặt lại cờ kéo-thả dùng cho giao tiếp giữa các biểu đồ
             this._status = {
                 dragIn: false,
                 dragOut: false,
@@ -439,28 +439,28 @@ define(function (require) {
         },
 
         /**
-         * dragging回调，可计算特性实现
+         * draggingHàm callback, triển khai tính năng có thể tính toán
          */
         _ondragenter: function (param) {
             callChartListMethodReverse(this, 'ondragenter', param);
         },
 
         /**
-         * dragstart回调，可计算特性实现
+         * dragstartHàm callback, triển khai tính năng có thể tính toán
          */
         _ondragover: function (param) {
             callChartListMethodReverse(this, 'ondragover', param);
         },
 
         /**
-         * dragstart回调，可计算特性实现
+         * dragstartHàm callback, triển khai tính năng có thể tính toán
          */
         _ondragleave: function (param) {
             callChartListMethodReverse(this, 'ondragleave', param);
         },
 
         /**
-         * dragstart回调，可计算特性实现
+         * dragstartHàm callback, triển khai tính năng có thể tính toán
          */
         _ondrop: function (param) {
             callChartListMethodReverse(this, 'ondrop', param, this._status);
@@ -468,7 +468,7 @@ define(function (require) {
         },
 
         /**
-         * dragdone回调 ，可计算特性实现
+         * dragdone hàm callback, triển khai tính năng có thể tính toán
          */
         _ondragend: function (param) {
             callChartListMethodReverse(this, 'ondragend', param, this._status);
@@ -476,7 +476,7 @@ define(function (require) {
             this._timeline && this._timeline.ondragend(param, this._status);
             this._island.ondragend(param, this._status);
 
-            // 发生过重计算
+            // Đã xảy ra tính toán lại
             if (this._status.needRefresh) {
                 this._syncBackupData(this._option);
 
@@ -492,10 +492,10 @@ define(function (require) {
         },
 
         /**
-         * 图例选择响应
+         * Phản hồi khi chọn chú giải
          */
         _onlegendSelected: function (param) {
-            // 用于图表间通信
+            // Dùng để giao tiếp giữa các biểu đồ
             this._status.needRefresh = false;
             callChartListMethodReverse(this, 'onlegendSelected', param, this._status);
 
@@ -505,10 +505,10 @@ define(function (require) {
         },
 
         /**
-         * 数据区域缩放响应
+         * Phản hồi thu phóng vùng dữ liệu
          */
         _ondataZoom: function (param) {
-            // 用于图表间通信
+            // Dùng để giao tiếp giữa các biểu đồ
             this._status.needRefresh = false;
             callChartListMethodReverse(this, 'ondataZoom', param, this._status);
 
@@ -518,22 +518,22 @@ define(function (require) {
         },
 
         /**
-         * 值域漫游响应
+         * Phản hồi di chuyển trong miền giá trị
          */
         _ondataRange: function (param) {
             this._clearEffect();
-            // 用于图表间通信
+            // Dùng để giao tiếp giữa các biểu đồ
             this._status.needRefresh = false;
             callChartListMethodReverse(this, 'ondataRange', param, this._status);
 
-            // 没有相互影响，直接刷新即可
+            // Không ảnh hưởng lẫn nhau, chỉ cần làm mới trực tiếp
             if (this._status.needRefresh) {
                 this._zr.refreshNextFrame();
             }
         },
 
         /**
-         * 动态类型切换响应
+         * Phản hồi chuyển đổi kiểu động
          */
         _onmagicTypeChanged: function () {
             this._clearEffect();
@@ -541,7 +541,7 @@ define(function (require) {
         },
 
         /**
-         * 数据视图修改响应
+         * Phản hồi sửa đổi chế độ xem dữ liệu
          */
         _ondataViewChanged: function (param) {
             this._syncBackupData(param.option);
@@ -555,7 +555,7 @@ define(function (require) {
         },
 
         /**
-         * tooltip与图表间通信
+         * tooltipgiao tiếp với biểu đồ
          */
         _tooltipHover: function (param) {
             var tipShape = [];
@@ -563,14 +563,14 @@ define(function (require) {
         },
 
         /**
-         * 还原
+         * Khôi phục
          */
         _onrestore: function () {
             this.restore();
         },
 
         /**
-         * 刷新
+         * Làm mới
          */
         _onrefresh: function (param) {
             this._refreshInside = true;
@@ -579,14 +579,14 @@ define(function (require) {
         },
 
         /**
-         * 数据修改后的反向同步dataZoom持有的备份数据
+         * Đồng bộ ngược sau khi sửa đổi dữ liệudataZoomdữ liệu sao lưu đang giữ
          */
         _syncBackupData: function (curOption) {
             this.component.dataZoom && this.component.dataZoom.syncBackupData(curOption);
         },
 
         /**
-         * 打包Echarts层的事件附件
+         * Đóng góitệp đính kèm sự kiện của lớp Echarts
          */
         _eventPackage: function (target) {
             if (target) {
@@ -627,7 +627,7 @@ define(function (require) {
                     || (series[i].matrix && series[i].matrix.length > 0)
                     || (series[i].eventList && series[i].eventList.length > 0)
                 ) {
-                    return false;   // 存在任意数据则为非空数据
+                    return false;   // Có bất kỳ dữ liệu nào thì là dữ liệu không rỗng
                 }
             }
             var loadOption = (this._option && this._option.noDataLoadingOption)
@@ -641,14 +641,14 @@ define(function (require) {
                             || this._themeConfig.noDataEffect
                             || ecConfig.noDataEffect
                 };
-            // 空数据
+            // Dữ liệu rỗng
             this.clear();
             this.showLoading(loadOption);
             return true;
         },
 
         /**
-         * 图表渲染
+         * Kết xuất biểu đồ
          */
         _render: function (magicOption) {
             this._mergeGlobalConifg(magicOption);
@@ -662,7 +662,7 @@ define(function (require) {
                 if (!_canvasSupported
                     && bgColor.indexOf('rgba') != -1
                 ) {
-                    // IE6~8对RGBA的处理，filter会带来其他颜色的影响
+                    // Cách IE6~8 xử lý RGBA, filter sẽ gây ảnh hưởng màu sắc khác
                     var cList = bgColor.split(',');
                     this.dom.style.filter = 'alpha(opacity=' +
                         cList[3].substring(0, cList[3].lastIndexOf(')')) * 100
@@ -725,7 +725,7 @@ define(function (require) {
             var ChartClass;
             var chartType;
             var chart;
-            var chartMap = {};      // 记录已经初始化的图表
+            var chartMap = {};      // Ghi lại biểu đồ đã khởi tạo
             for (var i = 0, l = magicOption.series.length; i < l; i++) {
                 chartType = magicOption.series[i].type;
                 if (!chartType) {
@@ -756,7 +756,7 @@ define(function (require) {
                 }
             }
 
-            // 已有实例但新option不带这类图表的实例释放
+            // Đã có thực thể nhưng option mới không có loại biểu đồ này thì giải phóng thực thể
             for (chartType in this.chart) {
                 if (chartType != ecConfig.CHART_TYPE_ISLAND  && !chartMap[chartType]) {
                     this.chart[chartType].dispose();
@@ -777,13 +777,13 @@ define(function (require) {
             var imgId = 'IMG' + this.id;
             var img = document.getElementById(imgId);
             if (magicOption.renderAsImage && _canvasSupported) {
-                // IE8- 不支持图片渲染形式
+                // IE8- Không hỗ trợ dạng kết xuất hình ảnh
                 if (img) {
-                    // 已经渲染过则更新显示
+                    // Đã kết xuất rồi thì cập nhật hiển thị
                     img.src = this.getDataURL(magicOption.renderAsImage);
                 }
                 else {
-                    // 没有渲染过插入img dom
+                    // Chưa kết xuất thì chènimg dom
                     img = this.getImage(magicOption.renderAsImage);
                     img.id = imgId;
                     img.style.position = 'absolute';
@@ -797,7 +797,7 @@ define(function (require) {
                 this._zr.clear();
             }
             else if (img) {
-                // 删除可能存在的img
+                // Xóaimg
                 img.parentNode.removeChild(img);
             }
             img = null;
@@ -806,7 +806,7 @@ define(function (require) {
         },
 
         /**
-         * 还原
+         * Khôi phục
          */
         restore: function () {
             this._clearEffect();
@@ -818,19 +818,19 @@ define(function (require) {
         },
 
         /**
-         * 刷新
-         * @param {Object=} param，可选参数，用于附带option，内部同步用，外部不建议带入数据修改，无法同步
+         * Làm mới
+         * @param {Object=} param, Tham số tùy chọn, dùng để kèm theo option, dùng để đồng bộ nội bộ, bên ngoài không nên đưa dữ liệu sửa đổi vào, không thể đồng bộ
          */
         refresh: function (param) {
             this._clearEffect();
             param = param || {};
             var magicOption = param.option;
 
-            // 外部调用的refresh且有option带入
+            // refresh được gọi từ bên ngoài và có option đưa vào
             if (!this._refreshInside && magicOption) {
-                // 做简单的差异合并去同步内部持有的数据克隆，不建议带入数据
-                // 开启数据区域缩放、拖拽重计算、数据视图可编辑模式情况下，当用户产生了数据变化后无法同步
-                // 如有带入option存在数据变化，请重新setOption
+                // Thực hiện hợp nhất khác biệt đơn giản để đồng bộ bản sao dữ liệu nội bộ đang giữ, không nên đưa dữ liệu vào
+                // Trong trường hợp bật thu phóng vùng dữ liệu, tính toán lại khi kéo-thả, chế độ chỉnh sửa chế độ xem dữ liệu, khi người dùng tạo ra thay đổi dữ liệu thì không thể đồng bộ
+                // Nếu có đưa vào option có thay đổi dữ liệu, vui lòng setOption
                 magicOption = this.getOption();
                 zrUtil.merge(magicOption, param.option, true);
                 zrUtil.merge(this._optionRestore, param.option, true);
@@ -840,9 +840,9 @@ define(function (require) {
             this._island.refresh(magicOption);
             this._toolbox.refresh(magicOption);
 
-            // 停止动画
+            // Dừng hoạt ảnh
             this._zr.clearAnimation();
-            // 先来后到，安顺序刷新各种图表，图表内部refresh优化检查magicOption，无需更新则不更新~
+            // Đến trước phục vụ trước, làm mới lần lượt các biểu đồ theo thứ tự, bên trong biểu đồ, refresh kiểm tra tối ưu magicOption, không cần cập nhật thì không cập nhật~
             for (var i = 0, l = this._chartList.length; i < l; i++) {
                 this._chartList[i].refresh && this._chartList[i].refresh(magicOption);
             }
@@ -851,12 +851,12 @@ define(function (require) {
         },
 
         /**
-         * 释放图表实例
+         * Giải phóng thực thể biểu đồ
          */
         _disposeChartList: function () {
             this._clearEffect();
 
-            // 停止动画
+            // Dừng hoạt ảnh
             this._zr.clearAnimation();
 
             var len = this._chartList.length;
@@ -875,28 +875,28 @@ define(function (require) {
         },
 
         /**
-         * 非图表全局属性merge~~
+         * Thuộc tính toàn cục không phải biểu đồ merge ~~
          */
         _mergeGlobalConifg: function (magicOption) {
             var mergeList = [
-                // 背景颜色
+                // Màu nền
                 'backgroundColor',
 
-                // 拖拽重计算相关
+                // Liên quan đến tính toán lại khi kéo-thả
                 'calculable', 'calculableColor', 'calculableHolderColor',
 
-                // 孤岛显示连接符
+                // Ký tự nối hiển thị của đảo
                 'nameConnector', 'valueConnector',
 
-                // 动画相关
+                // Liên quan đến hoạt ảnh
                 'animation', 'animationThreshold',
                 'animationDuration', 'animationDurationUpdate',
                 'animationEasing', 'addDataAnimation',
 
-                // 默认标志图形类型列表
+                // Danh sách kiểu hình đồ họa đánh dấu mặc định
                 'symbolList',
 
-                // 降低图表内元素拖拽敏感度，单位ms，不建议外部干预
+                // Giảm độ nhạy kéo-thả của phần tử trong biểu đồ, đơn vịms, bên ngoài không nên can thiệp
                 'DRAG_ENABLE_TIME'
             ];
 
@@ -910,7 +910,7 @@ define(function (require) {
                 }
             }
 
-            // 数值系列的颜色列表，不传则采用内置颜色，可配数组，借用zrender实例注入，会有冲突风险，先这样
+            // Danh sách màu của chuỗi số, không truyền thì dùng màu tích hợp sẵn, có thể cấu hình mảng, mượn thực thể zrender đưa vào, có nguy cơ xung đột, tạm thời như vậy
             var themeColor = magicOption.color;
             if (!(themeColor && themeColor.length)) {
                 themeColor = this._themeConfig.color || ecConfig.color;
@@ -922,17 +922,17 @@ define(function (require) {
             };
 
             if (!_canvasSupported) {
-                // 不支持Canvas的强制关闭动画
+                // Không hỗ trợCanvastắt hoạt ảnh bắt buộc
                 magicOption.animation = false;
                 magicOption.addDataAnimation = false;
             }
         },
 
         /**
-         * 万能接口，配置图表实例任何可配置选项，多次调用时option选项做merge处理
+         * Giao diện vạn năng, cấu hình mọi tùy chọn có thể cấu hình của thực thể biểu đồ, khi gọi nhiều lần option tùy chọn, thực hiện merge và xử lý
          * @param {Object} option
-         * @param {boolean=} notMerge 多次调用时option选项是默认是合并（merge）的，
-         *                   如果不需求，可以通过notMerger参数为true阻止与上次option的合并
+         * @param {boolean=} notMerge khi gọi nhiều lần option tùy chọn mặc định được hợp nhất (merge),
+         *                   nếu không cần, có thể thông qua tham số notMerge là true ngăn hợp nhất với lần trước option hợp nhất
          */
         setOption: function (option, notMerge) {
             if (!option.timeline) {
@@ -944,13 +944,13 @@ define(function (require) {
         },
 
         /**
-         * 万能接口，配置图表实例任何可配置选项，多次调用时option选项做merge处理
+         * Giao diện vạn năng, cấu hình mọi tùy chọn có thể cấu hình của thực thể biểu đồ, khi gọi nhiều lần option tùy chọn, thực hiện merge và xử lý
          * @param {Object} option
-         * @param {boolean=} notMerge 多次调用时option选项是默认是合并（merge）的，
-         *                   如果不需求，可以通过notMerger参数为true阻止与上次option的合并
-         * @param {boolean=} 默认false。keepTimeLine 表示从timeline组件调用而来，
-         *                   表示当前行为是timeline的数据切换，保持timeline，
-         *                   反之销毁timeline。 详见Issue #1601
+         * @param {boolean=} notMerge khi gọi nhiều lần option tùy chọn mặc định được hợp nhất (merge),
+         *                   nếu không cần, có thể thông qua tham số notMerge là true ngăn hợp nhất với lần trước option hợp nhất
+         * @param {boolean=} Mặc định false. keepTimeLine biểu thị từ timeline thành phần gọi đến,
+         *                   biểu thị hành vi hiện tại là timeline chuyển đổi dữ liệu, giữ timeline, 
+         *                   ngược lại hủytimeline. Xem chi tiếtIssue #1601
          */
         _setOption: function (option, notMerge, keepTimeLine) {
             if (!notMerge && this._option) {
@@ -972,8 +972,8 @@ define(function (require) {
                 return;
             }
 
-            if (this.component.dataZoom                         // 存在dataZoom控件
-                && (this._option.dataZoom                       // 并且新option也存在
+            if (this.component.dataZoom                         // Tồn tại điều khiển dataZoom
+                && (this._option.dataZoom                       // và option mới cũng tồn tại
                     || (this._option.toolbox
                         && this._option.toolbox.feature
                         && this._option.toolbox.feature.dataZoom
@@ -981,7 +981,7 @@ define(function (require) {
                     )
                 )
             ) {
-                // dataZoom同步数据
+                // Đồng bộ dữ liệu dataZoom
                 this.component.dataZoom.syncOption(this._option);
             }
             this._toolbox.reset(this._option);
@@ -990,7 +990,7 @@ define(function (require) {
         },
 
         /**
-         * 返回内部持有的当前显示option克隆
+         * Trả về bản sao option đang hiển thị hiện tại đang giữ
          */
         getOption: function () {
             var magicOption = zrUtil.clone(this._option);
@@ -1014,23 +1014,23 @@ define(function (require) {
                 }
             }
 
-            // 横轴数据还原
+            // Khôi phục dữ liệu trục ngang
             restoreOption('xAxis');
 
-            // 纵轴数据还原
+            // Khôi phục dữ liệu trục dọc
             restoreOption('yAxis');
 
-            // 系列数据还原
+            // Khôi phục dữ liệu chuỗi
             restoreOption('series');
 
             return magicOption;
         },
 
         /**
-         * 数据设置快捷接口
+         * Giao diện nhanh để cài đặt dữ liệu
          * @param {Array} series
-         * @param {boolean=} notMerge 多次调用时option选项是默认是合并（merge）的，
-         *                   如果不需求，可以通过notMerger参数为true阻止与上次option的合并。
+         * @param {boolean=} notMerge khi gọi nhiều lần option tùy chọn mặc định được hợp nhất (merge),
+         *                   nếu không cần, có thể thông qua tham số notMerge là true ngăn hợp nhất với lần trước option hợp nhất.
          */
         setSeries: function (series, notMerge) {
             if (!notMerge) {
@@ -1044,14 +1044,14 @@ define(function (require) {
         },
 
         /**
-         * 返回内部持有的当前显示series克隆
+         * Trả về bản sao series đang hiển thị hiện tại đang giữ
          */
         getSeries: function () {
             return this.getOption().series;
         },
 
         /**
-         * timelineOption接口，配置图表实例任何可配置选项
+         * timelineOptionGiao diện, cấu hình mọi tùy chọn có thể cấu hình của thực thể biểu đồ
          * @param {Object} option
          */
         _setTimelineOption: function(option) {
@@ -1067,20 +1067,20 @@ define(function (require) {
         },
 
         /**
-         * 动态数据添加
-         * 形参为单组数据参数，多组时为数据，内容同[seriesIdx, data, isShift, additionData]
-         * @param {number} seriesIdx 系列索引
-         * @param {number | Object} data 增加数据
-         * @param {boolean=} isHead 是否队头加入，默认，不指定或false时为队尾插入
-         * @param {boolean=} dataGrow 是否增长数据队列长度，默认，不指定或false时移出目标数组对位数据
-         * @param {string=} additionData 是否增加类目轴(饼图为图例)数据，附加操作同isHead和dataGrow
+         * Thêm dữ liệu động
+         * Tham số hình thức là tham số dữ liệu đơn nhóm, khi nhiều nhóm thì là dữ liệu, nội dung giống[seriesIdx, data, isShift, additionData]
+         * @param {number} seriesIdx Chỉ mục chuỗi
+         * @param {number | Object} data Thêm dữ liệu
+         * @param {boolean=} isHead Có thêm vào đầu hàng không, mặc định, không chỉ định hoặc false thì chèn vào cuối hàng
+         * @param {boolean=} dataGrow Có tăng độ dài hàng đợi dữ liệu không, mặc định, không chỉ định hoặcfalsethì loại bỏ dữ liệu đối vị của mảng đích
+         * @param {string=} additionData Có thêm trục hạng mục không (biểu đồ tròn là chú giải) dữ liệu, thao tác đính kèm giống isHead và dataGrow
          */
         addData: function (seriesIdx, data, isHead, dataGrow, additionData) {
             var params = seriesIdx instanceof Array
                 ? seriesIdx
                 : [[seriesIdx, data, isHead, dataGrow, additionData]];
 
-            //this._optionRestore 和 magicOption 都要同步
+            //this._optionRestore và magicOption đều phải đồng bộ
             var magicOption = this.getOption();
             var optionRestore = this._optionRestore;
             var self = this;
@@ -1126,7 +1126,7 @@ define(function (require) {
                             }
                         }
                         else if (optionRestore.xAxis != null && optionRestore.yAxis != null) {
-                            // x轴类目
+                            // hạng mục trục x
                             var axisData;
                             var mAxisData;
                             var axisIdx = seriesItem.xAxisIndex || 0;
@@ -1145,7 +1145,7 @@ define(function (require) {
                                 }
                             }
 
-                            // y轴类目
+                            // hạng mục trục y
                             axisIdx = seriesItem.yAxisIndex || 0;
                             if (optionRestore.yAxis[axisIdx].type === 'category') {
                                 axisData = optionRestore.yAxis[axisIdx].data;
@@ -1161,7 +1161,7 @@ define(function (require) {
                         }
                     }
 
-                    // 同步图表内状态，动画需要
+                    // Đồng bộ trạng thái trong biểu đồ, hoạt ảnh cần
                     this._option.series[seriesIdx].data = magicOption.series[seriesIdx].data;
                 }
             }
@@ -1182,17 +1182,17 @@ define(function (require) {
                 }
             }
 
-            // dataZoom同步数据
+            // Đồng bộ dữ liệu dataZoom
             this.component.dataZoom && this.component.dataZoom.syncOption(magicOption);
 
             this._option = magicOption;
             function animationDone() {
                 if (!self._zr) {
-                    return; // 已经被释放
+                    return; // Đã được giải phóng
                 }
                 self._zr.clearAnimation();
                 for (var i = 0, l = chartList.length; i < l; i++) {
-                    // 有addData动画就去掉过渡动画
+                    // Có hoạt ảnh addData thì bỏ hoạt ảnh chuyển tiếp
                     chartList[i].motionlessOnce =
                         magicOption.addDataAnimation && chartList[i].addDataAnimation;
                 }
@@ -1211,9 +1211,9 @@ define(function (require) {
         },
 
         /**
-         * 动态[标注 | 标线]添加
-         * @param {number} seriesIdx 系列索引
-         * @param {Object} markData [标注 | 标线]对象，支持多个
+         * Động[đánh dấu | đường đánh dấu]Thêm
+         * @param {number} seriesIdx Chỉ mục chuỗi
+         * @param {Object} markData [đánh dấu | đường đánh dấu]đối tượng, hỗ trợ nhiều
          */
         addMarkPoint: function (seriesIdx, markData) {
             return this._addMark(seriesIdx, markData, 'markPoint');
@@ -1238,16 +1238,16 @@ define(function (require) {
 
                 for (var key in markData) {
                     if (key === 'data') {
-                        // 数据concat
+                        // dữ liệuconcat
                         markOpt.data = markOpt.data.concat(markData.data);
                         markOptR.data = markOptR.data.concat(markData.data);
                     }
                     else if (typeof markData[key] != 'object' || markOpt[key] == null) {
-                        // 简单类型或新值直接赋值
+                        // Kiểu đơn giản hoặc giá trị mới gán trực tiếp
                         markOpt[key] = markOptR[key] = markData[key];
                     }
                     else {
-                        // 非数据的复杂对象merge
+                        // Đối tượng phức tạp không phải dữ liệumerge
                         zrUtil.merge(markOpt[key], markData[key], true);
                         zrUtil.merge(markOptR[key], markData[key], true);
                     }
@@ -1261,9 +1261,9 @@ define(function (require) {
         },
 
         /**
-         * 动态[标注 | 标线]删除
-         * @param {number} seriesIdx 系列索引
-         * @param {string} markName [标注 | 标线]名称
+         * Động[đánh dấu | đường đánh dấu]Xóa
+         * @param {number} seriesIdx Chỉ mục chuỗi
+         * @param {string} markName [đánh dấu | đường đánh dấu]Tên
          */
         delMarkPoint: function (seriesIdx, markName) {
             return this._delMark(seriesIdx, markName, 'markPoint');
@@ -1320,22 +1320,22 @@ define(function (require) {
         },
 
         /**
-         * 获取当前dom
+         * Lấydom
          */
         getDom: function () {
             return this.dom;
         },
 
         /**
-         * 获取当前zrender实例，可用于添加额为的shape和深度控制
+         * Lấyzrenderthực thể, có thể dùng để thêmshapevà điều khiển độ sâu
          */
         getZrender: function () {
             return this._zr;
         },
 
         /**
-         * 获取Base64图片dataURL
-         * @param {string} imgType 图片类型，支持png|jpeg，默认为png
+         * Lấy Base64 hình ảnh dataURL
+         * @param {string} imgType Kiểu hình ảnh, hỗ trợ png|jpeg, mặc định là png
          * @return imgDataURL
          */
         getDataURL: function (imgType) {
@@ -1344,7 +1344,7 @@ define(function (require) {
             }
 
             if (this._chartList.length === 0) {
-                // 渲染为图片
+                // Kết xuất thành hình ảnh
                 var imgId = 'IMG' + this.id;
                 var img = document.getElementById(imgId);
                 if (img) {
@@ -1352,7 +1352,7 @@ define(function (require) {
                 }
             }
 
-            // 清除可能存在的tooltip元素
+            // Xóatooltipphần tử
             var tooltip = this.component.tooltip;
             tooltip && tooltip.hideTip();
 
@@ -1372,8 +1372,8 @@ define(function (require) {
         },
 
         /**
-         * 获取img
-         * @param {string} imgType 图片类型，支持png|jpeg，默认为png
+         * Lấyimg
+         * @param {string} imgType Kiểu hình ảnh, hỗ trợ png|jpeg, mặc định là png
          * @return img dom
          */
         getImage: function (imgType) {
@@ -1385,8 +1385,8 @@ define(function (require) {
         },
 
         /**
-         * 获取多图联动的Base64图片dataURL
-         * @param {string} imgType 图片类型，支持png|jpeg，默认为png
+         * Lấy Base64 hình ảnh dataURL
+         * @param {string} imgType Kiểu hình ảnh, hỗ trợ png|jpeg, mặc định là png
          * @return imgDataURL
          */
         getConnectedDataURL: function (imgType) {
@@ -1464,8 +1464,8 @@ define(function (require) {
         },
 
         /**
-         * 获取多图联动的img
-         * @param {string} imgType 图片类型，支持png|jpeg，默认为png
+         * Lấyimg
+         * @param {string} imgType Kiểu hình ảnh, hỗ trợ png|jpeg, mặc định là png
          * @return img dom
          */
         getConnectedImage: function (imgType) {
@@ -1477,9 +1477,9 @@ define(function (require) {
         },
 
         /**
-         * 外部接口绑定事件
-         * @param {Object} eventName 事件名称
-         * @param {Object} eventListener 事件响应函数
+         * Giao diện bên ngoài gắn sự kiện
+         * @param {Object} eventName Tên sự kiện
+         * @param {Object} eventListener Hàm phản hồi sự kiện
          */
         on: function (eventName, eventListener) {
             this._messageCenterOutSide.bind(eventName, eventListener, this);
@@ -1487,9 +1487,9 @@ define(function (require) {
         },
 
         /**
-         * 外部接口解除事件绑定
-         * @param {Object} eventName 事件名称
-         * @param {Object} eventListener 事件响应函数
+         * Giao diện bên ngoài gỡ gắn sự kiện
+         * @param {Object} eventName Tên sự kiện
+         * @param {Object} eventListener Hàm phản hồi sự kiện
          */
         un: function (eventName, eventListener) {
             this._messageCenterOutSide.unbind(eventName, eventListener);
@@ -1497,8 +1497,8 @@ define(function (require) {
         },
 
         /**
-         * 多图联动
-         * @param connectTarget{ECharts | Array <ECharts>} connectTarget 联动目标
+         * Liên động nhiều biểu đồ
+         * @param connectTarget{ECharts | Array <ECharts>} connectTarget Mục tiêu liên động
          */
         connect: function (connectTarget) {
             if (!connectTarget) {
@@ -1522,8 +1522,8 @@ define(function (require) {
         },
 
         /**
-         * 解除多图联动
-         * @param connectTarget{ECharts | Array <ECharts>} connectTarget 解除联动目标
+         * Gỡ liên động nhiều biểu đồ
+         * @param connectTarget{ECharts | Array <ECharts>} connectTarget Gỡ mục tiêu liên động
          */
         disConnect: function (connectTarget) {
             if (!connectTarget || !this._connected) {
@@ -1540,33 +1540,33 @@ define(function (require) {
             }
 
             for (var k in this._connected) {
-                return k, this; // 非空
+                return k, this; // Không rỗng
             }
 
-            // 空，转为标志位
+            // Rỗng thì chuyển thành cờ đánh dấu
             this._connected = false;
             return this;
         },
 
         /**
-         * 联动事件响应
+         * Phản hồi sự kiện liên động
          */
         connectedEventHandler: function (param) {
             if (param.__echartsId != this.id) {
-                // 来自其他联动图表的事件
+                // Sự kiện từ biểu đồ liên động khác
                 this._onevent(param);
             }
         },
 
         /**
-         * 是否存在多图联动
+         * Có tồn tại liên động nhiều biểu đồ không
          */
         isConnected: function () {
             return !!this._connected;
         },
 
         /**
-         * 显示loading过渡
+         * Hiển thị loading chuyển tiếp
          * @param {Object} loadingOption
          */
         showLoading: function (loadingOption) {
@@ -1628,7 +1628,7 @@ define(function (require) {
         },
 
         /**
-         * 隐藏loading过渡
+         * Ẩnloadingchuyển tiếp
          */
         hideLoading: function () {
             this._zr.hideLoading();
@@ -1636,12 +1636,12 @@ define(function (require) {
         },
 
         /**
-         * 主题设置
+         * Cài đặt chủ đề
          */
         setTheme: function (theme) {
             if (theme) {
                if (typeof theme === 'string') {
-                    // 默认主题
+                    // Chủ đề mặc định
                     switch (theme) {
                         case 'macarons':
                             theme = require('./theme/macarons');
@@ -1657,9 +1657,9 @@ define(function (require) {
                     theme = theme || {};
                 }
 
-                // // 复位默认配置
-                // // this._themeConfig会被别的对象引用持有
-                // // 所以不能改成this._themeConfig = {};
+                // // Đặt lại cấu hình mặc định
+                // // this._themeConfigsẽ bị đối tượng khác tham chiếu và giữ
+                // // vì vậy không thể đổi thànhthis._themeConfig = {};
                 // for (var key in this._themeConfig) {
                 //     delete this._themeConfig[key];
                 // }
@@ -1667,13 +1667,13 @@ define(function (require) {
                 //     this._themeConfig[key] = zrUtil.clone(ecConfig[key]);
                 // }
 
-                // // 颜色数组随theme，不merge
+                // // Mảng màu theo theme, không merge
                 // theme.color && (this._themeConfig.color = []);
 
-                // // 默认标志图形类型列表，不merge
+                // // Danh sách kiểu hình đồ họa đánh dấu mặc định, không merge
                 // theme.symbolList && (this._themeConfig.symbolList = []);
 
-                // // 应用新主题
+                // // Áp dụng chủ đề mới
                 // zrUtil.merge(this._themeConfig, zrUtil.clone(theme), true);
                 this._themeConfig = theme;
             }
@@ -1692,7 +1692,7 @@ define(function (require) {
         },
 
         /**
-         * 视图区域大小变化更新，不默认绑定，供使用方按需调用
+         * Cập nhật khi kích thước vùng xem thay đổi, không gắn mặc định, bên sử dụng gọi khi cần
          */
         resize: function () {
             var self = this;
@@ -1700,17 +1700,17 @@ define(function (require) {
                 self._clearEffect();
                 self._zr.resize();
                 if (self._option && self._option.renderAsImage && _canvasSupported) {
-                    // 渲染为图片重走render模式
+                    // Kết xuất thành hình ảnh rồi đi lại theo render chế độ
                     self._render(self._option);
                     return self;
                 }
-                // 停止动画
+                // Dừng hoạt ảnh
                 self._zr.clearAnimation();
                 self._island.resize();
                 self._toolbox.resize();
                 self._timeline && self._timeline.resize();
-                // 先来后到，不能仅刷新自己，也不能在上一个循环中刷新，如坐标系数据改变会影响其他图表的大小
-                // 所以安顺序刷新各种图表，图表内部refresh优化无需更新则不更新~
+                // Đến trước phục vụ trước, không thể chỉ làm mới chính mình, cũng không thể làm mới trong vòng lặp trước, vì dữ liệu hệ tọa độ thay đổi sẽ ảnh hưởng đến kích thước của biểu đồ khác
+                // Vì vậy làm mới lần lượt các biểu đồ theo thứ tự, bên trong biểu đồ, refresh kiểm tra tối ưu, không cần cập nhật thì không cập nhật~
                 for (var i = 0, l = self._chartList.length; i < l; i++) {
                     self._chartList[i].resize && self._chartList[i].resize();
                 }
@@ -1727,7 +1727,7 @@ define(function (require) {
         },
 
         /**
-         * 清除已渲染内容 ，clear后echarts实例可用
+         * Xóa nội dung đã kết xuất , clearsauechartsthực thể có thể dùng được
          */
         clear: function () {
             this._disposeChartList();
@@ -1739,7 +1739,7 @@ define(function (require) {
         },
 
         /**
-         * 释放，dispose后echarts实例不可用
+         * Giải phóng,disposesauechartsthực thể không thể dùng được
          */
         dispose: function () {
             var key = this.dom.getAttribute(DOM_ATTRIBUTE_KEY);

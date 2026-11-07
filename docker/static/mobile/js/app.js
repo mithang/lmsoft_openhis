@@ -8,7 +8,7 @@
     });
 
     $(document).on($.AMUI.fullscreen.raw.fullscreenchange, function() {
-      $fullText.text($.AMUI.fullscreen.isFullscreen ? '退出全屏' : '开启全屏');
+      $fullText.text($.AMUI.fullscreen.isFullscreen ? 'Thoát toàn màn hình' : 'Bật toàn màn hình');
     });
   });
 })(jQuery);

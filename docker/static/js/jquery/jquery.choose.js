@@ -5,7 +5,7 @@
         return false;
 };
 (function (a, b) {
-    //局部函数  验证是IE浏览器，且IE版本 v及以下（是返回true，否则返回false）
+    //Hàm cục bộ: kiểm tra có phải trình duyệt IE không, và phiên bản IE là v trở xuống (đúng thì trả về true, ngược lại trả về false)
     var checkIEVersionLTE = function (v) {
         if (!window.isIE()) {
             return false;
@@ -26,7 +26,7 @@
             }
         }
     };
-    //是否是低版本的IE浏览器（IE8及以下，是返回true，否则返回false）
+    //Có phải trình duyệt IE phiên bản thấp không (IE8 trở xuống, đúng thì trả về true, ngược lại trả về false)
     window.isIElte8 = function () {
         var ck = checkIEVersionLTE(8);
         if (ck) {

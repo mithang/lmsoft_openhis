@@ -2659,17 +2659,17 @@
    */
 
   /*
-   * function: 获取浏览器地址栏中的指定参数.
-   * key: 参数名
-   * url: 默认为当前地址栏
+   * function: Lấy tham số chỉ định trong thanh địa chỉ của trình duyệt.
+   * key: Tên tham số
+   * url: Mặc định là thanh địa chỉ hiện tại
    */
   function _GET(key) {
     var url = arguments.length > 1 && arguments[1] !== undefined ? arguments[1] : window.location.search;
     /*
-     * 注意这里正则表达式的书写方法
-     * (^|&)key匹配: 直接以key开始或以&key开始的字符串
-     * 同理(&|$)表示以&结束或是直接结束的字符串
-     * ...当然, 我并不知道这种用法.
+     * Chú ý cách viết biểu thức chính quy ở đây
+     * (^|&)key khớp: chuỗi bắt đầu trực tiếp bằng key hoặc bắt đầu bằng &key
+     * Tương tự, (&|$) biểu thị chuỗi kết thúc bằng & hoặc kết thúc trực tiếp
+     * ...Tất nhiên, tôi cũng không biết cách dùng này.
      */
     var reg = new RegExp("(^|&)".concat(key, "=([^&]*)(&|$)"));
     var result = url.substr(1).match(reg);
@@ -2680,15 +2680,15 @@
   }
 
   /*
-   * function: 根据给定参数生成url地址
+   * function: Tạo địa chỉ url theo tham số đã cho
    * var dic = {name: 'genreal', age: 24}
    * var url = 'https://www.baidu.com?age=22';
    * _buildUrl(dic, url);
-   * 将得到"https://www.baidu.com?age=24&name=genreal"
-   * 哦, 忽略先后顺序吧...
+   * Sẽ nhận được"https://www.baidu.com?age=24&name=genreal"
+   * Ồ, bỏ qua thứ tự trước sau nhé...
    *
-   * 补充: 可以参考浏览器URLSearchParams对象, 更加方便和强大.
-   * 考虑到兼容性, 暂时不使用这个工具.
+   * Bổ sung: có thể tham khảo đối tượng URLSearchParams, tiện lợi và mạnh mẽ hơn.
+   * Xét đến tính tương thích, tạm thời không dùng công cụ này.
    */
 
   function _buildUrl(dict) {
@@ -2697,14 +2697,14 @@
       var _Object$entries$_i = _slicedToArray(_Object$entries[_i], 2),
         key = _Object$entries$_i[0],
         val = _Object$entries$_i[1];
-      // 搜索name=general这种形式的字符串(&是分隔符)
+      // Tìmname=generalchuỗi dạng(&là ký tự phân cách)
       var pattern = "".concat(key, "=([^&]*)");
       var targetStr = "".concat(key, "=").concat(val);
       if (val === undefined) continue;
 
       /*
-       * 如果目标url中包含了key键, 我们需要将它替换成我们自己的val
-       * 不然就直接添加好了.
+       * Nếuurlchứakeykhóa, chúng ta cần thay nó bằngval
+       * Nếu không thì thêm trực tiếp vào là được.
        */
       if (url.match(pattern)) {
         var tmp = new RegExp("(".concat(key, "=)([^&]*)"), 'gi');
@@ -2753,7 +2753,7 @@
         var _this = this,
           _get2;
         if (this.options.pagination && this.options.addrbar) {
-          // 标志位, 初始加载后关闭
+          // Cờ đánh dấu, tắt sau khi tải lần đầu
           this.addrbarInit = true;
           this.options.pageNumber = +this.getDefaultOptionValue('pageNumber', 'page');
           this.options.pageSize = +this.getDefaultOptionValue('pageSize', 'size');

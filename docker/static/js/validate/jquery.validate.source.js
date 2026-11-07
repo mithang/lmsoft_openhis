@@ -193,24 +193,24 @@
             a)
         },
         messages: {
-            required: "必填字段",
-            remote: "请修正该字段",
-            email: "请输入正确格式的电子邮件",
-            url: "请输入合法的网址",
-            date: "请输入合法的日期",
-            dateISO: "请输入合法的日期 (ISO).",
-            number: "请输入合法的数字",
-            digits: "只能输入整数",
-            creditcard: "请输入合法的信用卡号",
-            equalTo: "请再次输入相同的值",
-            accept: "请输入拥有合法后缀名的字符串",
-            maxlength: c.validator.format("请输入一个长度最多是 {0} 的字符串"),
-            minlength: c.validator.format("请输入一个长度最少是 {0} 的字符串"),
-            rangelength: c.validator.format("请输入一个长度介于 {0} 和 {1} 之间的字符串"),
-            range: c.validator.format("请输入一个介于 {0} 和 {1} 之间的值"),
-            max: c.validator.format("请输入一个最大为 {0} 的值"),
-            min: c.validator.format("请输入一个最小为 {0} 的值"),
-            mobilephone: "请输入正确格式的手机号"
+            required: "Trường bắt buộc",
+            remote: "Vui lòng sửa trường này",
+            email: "Vui lòng nhập email đúng định dạng",
+            url: "Vui lòng nhập địa chỉ web hợp lệ",
+            date: "Vui lòng nhập ngày hợp lệ",
+            dateISO: "Vui lòng nhập ngày hợp lệ (ISO).",
+            number: "Vui lòng nhập số hợp lệ",
+            digits: "Chỉ được nhập số nguyên",
+            creditcard: "Vui lòng nhập số thẻ tín dụng hợp lệ",
+            equalTo: "Vui lòng nhập lại cùng một giá trị",
+            accept: "Vui lòng nhập chuỗi có hậu tố hợp lệ",
+            maxlength: c.validator.format("Vui lòng nhập chuỗi có độ dài tối đa {0} ký tự"),
+            minlength: c.validator.format("Vui lòng nhập chuỗi có độ dài tối thiểu {0} ký tự"),
+            rangelength: c.validator.format("Vui lòng nhập chuỗi có độ dài từ {0} đến {1} ký tự"),
+            range: c.validator.format("Vui lòng nhập giá trị từ {0} đến {1}"),
+            max: c.validator.format("Vui lòng nhập giá trị tối đa là {0}"),
+            min: c.validator.format("Vui lòng nhập giá trị tối thiểu là {0}"),
+            mobilephone: "Vui lòng nhập số điện thoại di động đúng định dạng"
         },
         autoCreateRanges: false,
         prototype: {
@@ -870,153 +870,153 @@
     })
 })(jQuery);
 /*****************************************************************
-                  jQuery Validate扩展验证方法 
+                  jQuery ValidatePhương thức kiểm tra mở rộng 
 *****************************************************************/
 $(function () {
-    // 判断整数value是否等于0 
+    // Kiểm tra số nguyên value có bằng 0 
     jQuery.validator.addMethod("isIntEqZero", function (value, element) {
         value = parseInt(value);
         return this.optional(element) || value == 0;
-    }, "整数必须为0");
-    // 判断整数value是否大于0
+    }, "Số nguyên phải bằng 0");
+    // Kiểm tra số nguyên value có lớn hơn 0
     jQuery.validator.addMethod("isIntGtZero", function (value, element) {
         value = parseInt(value);
         return this.optional(element) || value > 0;
-    }, "整数必须大于0");
-    // 判断整数value是否大于或等于0
+    }, "Số nguyên phải lớn hơn 0");
+    // Kiểm tra số nguyên value có lớn hơn hoặc bằng 0
     jQuery.validator.addMethod("isIntGteZero", function (value, element) {
         value = parseInt(value);
         return this.optional(element) || value >= 0;
-    }, "整数必须大于或等于0");
-    // 判断整数value是否不等于0 
+    }, "Số nguyên phải lớn hơn hoặc bằng 0");
+    // Kiểm tra số nguyên value có khác 0 
     jQuery.validator.addMethod("isIntNEqZero", function (value, element) {
         value = parseInt(value);
         return this.optional(element) || value != 0;
-    }, "整数必须不等于0");
-    // 判断整数value是否小于0 
+    }, "Số nguyên phải khác 0");
+    // Kiểm tra số nguyên value có nhỏ hơn 0 
     jQuery.validator.addMethod("isIntLtZero", function (value, element) {
         value = parseInt(value);
         return this.optional(element) || value < 0;
-    }, "整数必须小于0");
-    // 判断整数value是否小于或等于0 
+    }, "Số nguyên phải nhỏ hơn 0");
+    // Kiểm tra số nguyên value có nhỏ hơn hoặc bằng 0 
     jQuery.validator.addMethod("isIntLteZero", function (value, element) {
         value = parseInt(value);
         return this.optional(element) || value <= 0;
-    }, "整数必须小于或等于0");
-    // 判断浮点数value是否等于0 
+    }, "Số nguyên phải nhỏ hơn hoặc bằng 0");
+    // Kiểm tra số thực value có bằng 0 
     jQuery.validator.addMethod("isFloatEqZero", function (value, element) {
         value = parseFloat(value);
         return this.optional(element) || value == 0;
-    }, "浮点数必须为0");
-    // 判断浮点数value是否大于0
+    }, "Số thực phải bằng 0");
+    // Kiểm tra số thực value có lớn hơn 0
     jQuery.validator.addMethod("isFloatGtZero", function (value, element) {
         value = parseFloat(value);
         return this.optional(element) || value > 0;
-    }, "浮点数必须大于0");
-    // 判断浮点数value是否大于或等于0
+    }, "Số thực phải lớn hơn 0");
+    // Kiểm tra số thực value có lớn hơn hoặc bằng 0
     jQuery.validator.addMethod("isFloatGteZero", function (value, element) {
         value = parseFloat(value);
         return this.optional(element) || value >= 0;
-    }, "浮点数必须大于或等于0");
-    // 判断浮点数value是否不等于0 
+    }, "Số thực phải lớn hơn hoặc bằng 0");
+    // Kiểm tra số thực value có khác 0 
     jQuery.validator.addMethod("isFloatNEqZero", function (value, element) {
         value = parseFloat(value);
         return this.optional(element) || value != 0;
-    }, "浮点数必须不等于0");
-    // 判断浮点数value是否小于0 
+    }, "Số thực phải khác 0");
+    // Kiểm tra số thực value có nhỏ hơn 0 
     jQuery.validator.addMethod("isFloatLtZero", function (value, element) {
         value = parseFloat(value);
         return this.optional(element) || value < 0;
-    }, "浮点数必须小于0");
-    // 判断浮点数value是否小于或等于0 
+    }, "Số thực phải nhỏ hơn 0");
+    // Kiểm tra số thực value có nhỏ hơn hoặc bằng 0 
     jQuery.validator.addMethod("isFloatLteZero", function (value, element) {
         value = parseFloat(value);
         return this.optional(element) || value <= 0;
-    }, "浮点数必须小于或等于0");
-    // 判断浮点型  
+    }, "Số thực phải nhỏ hơn hoặc bằng 0");
+    // Kiểm tra kiểu số thực  
     jQuery.validator.addMethod("isFloat", function (value, element) {
         return this.optional(element) || /^[-\+]?\d+(\.\d+)?$/.test(value);
-    }, "只能包含数字、小数点等字符");
-    // 匹配integer
+    }, "Chỉ được chứa số, dấu thập phân và các ký tự khác");
+    // Khớp với integer
     jQuery.validator.addMethod("isInteger", function (value, element) {
         return this.optional(element) || (/^[-\+]?\d+$/.test(value) && parseInt(value) >= 0);
-    }, "匹配integer");
-    // 判断数值类型，包括整数和浮点数
+    }, "Khớp với integer");
+    // Kiểm tra kiểu số, bao gồm số nguyên và số thực
     jQuery.validator.addMethod("isNumber", function (value, element) {
         return this.optional(element) || /^[-\+]?\d+$/.test(value) || /^[-\+]?\d+(\.\d+)?$/.test(value);
-    }, "匹配数值类型，包括整数和浮点数");
-    // 只能输入[0-9]数字
+    }, "Khớp với kiểu số, bao gồm số nguyên và số thực");
+    // Chỉ được nhập[0-9]số
     jQuery.validator.addMethod("isDigits", function (value, element) {
         return this.optional(element) || /^\d+$/.test(value);
-    }, "只能输入0-9数字");
-    // 判断中文字符 
+    }, "Chỉ được nhập số 0-9");
+    // Kiểm tra ký tự tiếng Trung 
     jQuery.validator.addMethod("isChinese", function (value, element) {
         return this.optional(element) || /^[\u0391-\uFFE5]+$/.test(value);
-    }, "只能包含中文字符。");
-    // 判断英文字符 
+    }, "Chỉ được chứa ký tự tiếng Trung.");
+    // Kiểm tra ký tự tiếng Anh 
     jQuery.validator.addMethod("isEnglish", function (value, element) {
         return this.optional(element) || /^[A-Za-z]+$/.test(value);
-    }, "只能包含英文字符。");
-    // 手机号码验证    
+    }, "Chỉ được chứa ký tự tiếng Anh.");
+    // Kiểm tra số điện thoại di động    
     jQuery.validator.addMethod("isMobile", function (value, element) {
         var length = value.length;
         return this.optional(element) || (length == 11 && /^[1][0-9][0-9]{9}$/.test(value));
-    }, "请正确填写您的手机号码。");
-    // 电话号码验证    
+    }, "Vui lòng điền đúng số điện thoại di động của bạn.");
+    // Kiểm tra số điện thoại    
     jQuery.validator.addMethod("isPhone", function (value, element) {
         var tel = /^(\(\d{3,4}\)|\d{3,4}-|\s)?\d{7,14}$/;
         return this.optional(element) || (tel.test(value));
-    }, "请正确填写您的电话号码。");
-    // 联系电话(手机/电话皆可)验证   
+    }, "Vui lòng điền đúng số điện thoại của bạn.");
+    // Số điện thoại liên hệ(điện thoại di động/điện thoại đều được)Kiểm tra   
     jQuery.validator.addMethod("isTel", function (value, element) {
         var length = value.length;
         var mobile = /^(((13[0-9]{1})|(15[0-9]{1})|(18[0-9]{1}))+\d{8})$/;
         var tel = /^(\d{3,4}-?)?\d{7,9}$/g;
         return this.optional(element) || tel.test(value) || (length == 11 && mobile.test(value));
-    }, "请正确填写您的联系方式");
-    // 匹配qq      
+    }, "Vui lòng điền đúng thông tin liên hệ của bạn");
+    // Khớp với QQ      
     jQuery.validator.addMethod("isQq", function (value, element) {
         return this.optional(element) || /^[1-9]\d{4,12}$/;
-    }, "匹配QQ");
-    // 邮政编码验证    
+    }, "Khớp với QQ");
+    // Kiểm tra mã bưu chính    
     jQuery.validator.addMethod("isZipCode", function (value, element) {
         var zip = /^[0-9]{6}$/;
         return this.optional(element) || (zip.test(value));
-    }, "请正确填写您的邮政编码。");
-    // 匹配密码，以字母开头，长度在6-12之间，只能包含字符、数字和下划线。      
+    }, "Vui lòng điền đúng mã bưu chính của bạn.");
+    // Khớp với mật khẩu, bắt đầu bằng chữ cái, dài từ6-12từ 6-12 ký tự, chỉ được chứa chữ cái, số và dấu gạch dưới.      
     jQuery.validator.addMethod("isPwd", function (value, element) {
         return this.optional(element) || /^[a-zA-Z]\\w{6,12}$/.test(value);
-    }, "以字母开头，长度在6-12之间，只能包含字符、数字和下划线。");
-    // IP地址验证   
+    }, "Bắt đầu bằng chữ cái, dài từ 6-12 ký tự, chỉ được chứa chữ cái, số và dấu gạch dưới.");
+    // IPKiểm tra địa chỉ   
     jQuery.validator.addMethod("ip", function (value, element) {
         return this.optional(element) || /^(([0-9]|([0-9]\d)|(1\d\d)|(2([0-4]\d|5[0-5])))\.)(([0-9]|([0-9]\d)|(1\d\d)|(2([0-4]\d|5[0-5])))\.){2}([0-9]|([0-9]\d)|(1\d\d)|(2([0-4]\d|5[0-5])))$/.test(value);
-    }, "请填写正确的IP地址。");
-    // 字符验证，只能包含中文、英文、数字、下划线等字符。    
+    }, "Vui lòng điền địa chỉ IP chính xác.");
+    // Kiểm tra ký tự, chỉ được chứa ký tự tiếng Trung, tiếng Anh, số, dấu gạch dưới và các ký tự khác.    
     jQuery.validator.addMethod("stringCheck", function (value, element) {
         return this.optional(element) || /^[a-zA-Z0-9\u4e00-\u9fa5-_]+$/.test(value);
-    }, "只能包含中文、英文、数字、下划线等字符");
-    // 匹配english  
+    }, "Chỉ được chứa ký tự tiếng Trung, tiếng Anh, số, dấu gạch dưới và các ký tự khác");
+    // Khớp với english  
     jQuery.validator.addMethod("isEnglish", function (value, element) {
         return this.optional(element) || /^[A-Za-z]+$/.test(value);
-    }, "匹配english");
-    // 匹配汉字  
+    }, "Khớp với english");
+    // Khớp với chữ Hán  
     jQuery.validator.addMethod("isChinese", function (value, element) {
         return this.optional(element) || /^[\u4e00-\u9fa5]+$/.test(value);
-    }, "匹配汉字");
-    // 匹配中文(包括汉字和字符) 
+    }, "Khớp với chữ Hán");
+    // Khớp với tiếng Trung(bao gồm chữ Hán và ký tự) 
     jQuery.validator.addMethod("isChineseChar", function (value, element) {
         return this.optional(element) || /^[\u0391-\uFFE5]+$/.test(value);
-    }, "匹配中文(包括汉字和字符) ");
-    // 判断是否为合法字符(a-zA-Z0-9-_)
+    }, "Khớp với tiếng Trung (bao gồm chữ Hán và ký tự) ");
+    // Kiểm tra xem có phải ký tự hợp lệ không(a-zA-Z0-9-_)
     jQuery.validator.addMethod("isRightfulString", function (value, element) {
         return this.optional(element) || /^[A-Za-z0-9_-]+$/.test(value);
-    }, "判断是否为合法字符(a-zA-Z0-9-_)");
-    // 判断是否包含中英文特殊字符，除英文"-_"字符外
+    }, "Kiểm tra xem có phải ký tự hợp lệ không (a-zA-Z0-9-_)");
+    // Kiểm tra xem có chứa ký tự đặc biệt tiếng Trung/tiếng Anh không, trừ ký tự tiếng Anh"-_"ký tự
     jQuery.validator.addMethod("isContainsSpecialChar", function (value, element) {
         var reg = RegExp(/[(\ )(\`)(\~)(\!)(\@)(\#)(\$)(\%)(\^)(\&)(\*)(\()(\))(\+)(\=)(\|)(\{)(\})(\')(\:)(\;)(\')(',)(\[)(\])(\.)(\<)(\>)(\/)(\?)(\~)(\！)(\@)(\#)(\￥)(\%)(\…)(\&)(\*)(\（)(\）)(\—)(\+)(\|)(\{)(\})(\【)(\】)(\‘)(\；)(\：)(\”)(\“)(\’)(\。)(\，)(\、)(\？)]+/);
         return this.optional(element) || !reg.test(value);
-    }, "含有中英文特殊字符");
-    //判断身份证格式是否正确
+    }, "Chứa ký tự đặc biệt tiếng Trung/tiếng Anh");
+    //Kiểm tra xem định dạng chứng minh nhân dân có chính xác không
     jQuery.validator.addMethod("isIdentity", function (value, element) {
         var iSum = 0;
         var result = true;
@@ -1029,5 +1029,5 @@ $(function () {
         for (var i = 17; i >= 0; i--) iSum += (Math.pow(2, i) % 11) * parseInt(value.charAt(17 - i), 11);
         if (iSum % 11 != 1) result = false; return result;
         return this.optional(element) || !result;
-    }, "身份证格式不正确");
+    }, "Định dạng chứng minh nhân dân không chính xác");
 });
