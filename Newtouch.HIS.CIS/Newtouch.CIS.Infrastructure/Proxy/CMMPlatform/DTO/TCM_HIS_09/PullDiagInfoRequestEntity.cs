@@ -80,7 +80,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.TCM_HIS_09
         public string group { get; set; }
 
         /// <summary>
-        ///Chẩn đoán YHCT cấp loại 0:chínhcần Chẩn đoán 1: lầncầnChẩn đoán
+        ///Chẩn đoán YHCT cấp loại 0:chínhcần Chẩn đoán 1: lầncần Chẩn đoán
         /// </summary>
         public string level { get; set; }
 

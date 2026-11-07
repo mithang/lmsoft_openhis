@@ -40,7 +40,7 @@ namespace NewtouchHIS.Lib.Services.ApiService
         /// App Lấy ủy quyền Token
         /// </summary>
         /// <param name="appId">Ứng dụng này Id</param>
-        /// <param name="accessAppId">Ứng dụng xin truy cậpId</param>
+        /// <param name="accessAppId">Ứng dụng xin truy cập Id</param>
         /// <returns></returns>
         public async Task<string> GetAppToken(string appId, string accessAppId)
         {

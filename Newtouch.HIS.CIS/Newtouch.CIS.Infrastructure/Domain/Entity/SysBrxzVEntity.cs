@@ -71,7 +71,7 @@ namespace Newtouch.Domain.Entity
         public string sqjmbz { get; set; }
 
         /// <summary>
-        /// from xt_zhxz   nếunếucó Cài đặt:thìởquyết toánkhi,ưutrướckhấutrừ Cài đặtcủa Tài khoản   (VD nếu:Hỗ trợ khó khănbệnh nhânnàychữđoạn Cài đặtlà4,khiquyết toánkhi,trướckhấutrừHỗ trợ khó khănTài khoản)
+        /// from xt_zhxz   nếunếucó Cài đặt:thìởquyết toánkhi,ưutrướckhấutrừ Cài đặtcủa Tài khoản   (VD nếu:Hỗ trợ khó khănbệnh nhânnàychữđoạn Cài đặtlà4,khiquyết toánkhi,trướckhấutrừ Hỗ trợ khó khăn Tài khoản)
         /// </summary>
         public string zhxz { get; set; }
 

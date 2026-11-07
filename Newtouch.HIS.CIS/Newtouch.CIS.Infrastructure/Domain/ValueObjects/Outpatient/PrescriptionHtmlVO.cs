@@ -168,7 +168,7 @@ namespace Newtouch.Domain.ValueObjects
         public string Remark { get; set; }
 
         /// <summary>
-        /// Khoa thực hiện(Thuốccủa Khoa dược,Xét nghiệm Kiểm tracủaKhoa thực hiện)(Phục hồi chức năng Đơn thuốccủaKhoa thực hiện)
+        /// Khoa thực hiện(Thuốccủa Khoa dược,Xét nghiệm Kiểm tracủa Khoa thực hiện)(Phục hồi chức năng Đơn thuốccủa Khoa thực hiện)
         /// </summary>
         public string zxks { get; set; }
 
@@ -275,7 +275,7 @@ namespace Newtouch.Domain.ValueObjects
         public string Remark2 { get; set; }
 
         /// <summary>
-        /// Khoa thực hiện(Thuốccủa Khoa dược,Xét nghiệm Kiểm tracủaKhoa thực hiện)(Phục hồi chức năng Đơn thuốccủaKhoa thực hiện)
+        /// Khoa thực hiện(Thuốccủa Khoa dược,Xét nghiệm Kiểm tracủa Khoa thực hiện)(Phục hồi chức năng Đơn thuốccủa Khoa thực hiện)
         /// </summary>
         public string zxks2 { get; set; }
 

@@ -651,7 +651,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
         }
 
         /// <summary>
-        /// lưuTrùng Khánhquyết toánđảo đỏ99trả vềdữ liệu
+        /// lưu Trùng Khánhquyết toánđảo đỏ99trả vềdữ liệu
         /// </summary>
         /// <param name="entity"></param>
         /// <param name="jslb"></param>
@@ -805,7 +805,7 @@ namespace Newtouch.Sett.Web.Areas.OutpatientManage.Controllers
             var accDto = _outPatChargeApp.togetherData(xmList);
             if (!(accDto != null || (cfnmList != null && cfnmList.Count > 0) || (extxmnmList != null && extxmnmList.Count > 0)))
             {
-                return Error("Thu phíThất bại, thiếu chi tiết tính phí");
+                return Error("Thu phí Thất bại, thiếu chi tiết tính phí");
             }
             IList<int> jsnmList;
             if (ybfeeRelated != null && !ybfeeRelated.IsNull())

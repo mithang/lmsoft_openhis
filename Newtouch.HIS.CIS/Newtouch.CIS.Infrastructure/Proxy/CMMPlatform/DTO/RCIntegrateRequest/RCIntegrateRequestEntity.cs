@@ -65,7 +65,7 @@ namespace Newtouch.CIS.Proxy.CMMPlatform.DTO.RCIntegrateRequest
         public string patientType { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếthẻ Số thẻhoặc Khám bệnhthẻSố thẻ
+        /// Bảo hiểm y tếthẻ Số thẻhoặc Khám bệnhthẻ Số thẻ
         /// </summary>
         public string cardId { get; set; }
 

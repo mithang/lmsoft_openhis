@@ -66,7 +66,7 @@ namespace Newtouch.CIS.Web.Areas.NurseManage.Controllers
         /// <summary>
         /// văn bảnY lệnhcần Thực hiện
         /// </summary>
-        private bool wnes;//true-văn bảnY lệnhcần Thực hiện  false-văn bảnY lệnhkhôngcầnThực hiện
+        private bool wnes;//true-văn bảnY lệnhcần Thực hiện  false-văn bảnY lệnhkhôngcần Thực hiện
         private string medicalInsurance;
         private string iskfyzjf;//Phục hồi chức năngY lệnh Có Khôngtínhphí
 

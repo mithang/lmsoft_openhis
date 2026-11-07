@@ -37,7 +37,7 @@ var getDOMPositionPoint = function (obj) { //Lấy vị trí của phần tử s
 
 //newtouch global
 window.newtouch_globalconfig = {
-    $currentActiveWindow: null,  //đang kích hoạtWindowđối tượng
+    $currentActiveWindow: null,  //đang kích hoạt Windowđối tượng
     f4opions: null,
 
 };
@@ -427,7 +427,7 @@ function initLayout(formId) {
     });
 }
 
-/* newtouch local gắn mặc địnhjGrid */
+/* newtouch local gắn mặc định jGrid */
 $.fn.newtouchLocalDataGrid = function (options, data) {
     var defaults = {
         datatype: "local",
@@ -1014,7 +1014,7 @@ $.fn.newtouchFloatingSelector = function (options) {
         })
     }
     else {
-        //doclickSự kiện kích hoạt
+        //doclick Sự kiện kích hoạt
         options.$this.click(function () {
             $('body div.ui-nfs:visible').hide();
 
@@ -1071,7 +1071,7 @@ $.newtouchAlert = function (data) {
         $('.form-control-focus').focus();   //Đặt tiêu điểm
         $('.newtouch_Readonly').attr("disabled", "disabled");
         CheckStorage();
-        //iconChuyển đổi
+        //icon Chuyển đổi
 
         $('.icontoggle').click(function () {
             var $dstnDiv = $(this).parent().prev().children('tbody.dispTbody');
@@ -1604,9 +1604,9 @@ $.LoadNavTree = function () {
     });
     $("#sidebar-nav ul").prepend(_html);
 }
-//prototypeMở rộng start
+//prototype Mở rộng start
 /**  
-* jsĐịnh dạng đối tượng thời gian; 
+* js Định dạng đối tượng thời gian; 
 * eg:format="yyyy-MM-dd hh:mm:ss";   
 */
 Date.prototype.format = function (fmt) {
@@ -1670,7 +1670,7 @@ $.dateAdd = function (date, part, value) {
     date.add(part, value);
     return date;
 }
-//ChuỗiEndWith
+//Chuỗi EndWith
 String.prototype.StartWith = function (str) {
     var reg = new RegExp("^" + str);
     return reg.test(this);
@@ -1679,7 +1679,7 @@ String.prototype.EndWith = function (str) {
     var reg = new RegExp(str + "$");
     return reg.test(this);
 };
-//prototypeMở rộng end
+//prototype Mở rộng end
 
 //Array Remove start
 Array.prototype.remove = function (from, to) {
@@ -1689,7 +1689,7 @@ Array.prototype.remove = function (from, to) {
 };
 //Array Remove end
 
-//không phân biệt chữ hoa/thườngIndexOf
+//không phân biệt chữ hoa/thường IndexOf
 String.prototype.indexOfIgnoreCase = function (str) {
     if ((this || this == '0') && (str || str == '0')) {
         return this.toLowerCase().indexOf(str.toLowerCase());

@@ -206,7 +206,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
             return new BusResult<TreatedApplyVO> { code = ResponseResultCode.SUCCESS, Data = response };
         }
         /// <summary>
-        /// Từ chốiĐăng ký khám chữa bệnh 
+        /// Từ chối Đăng ký khám chữa bệnh 
         /// To:HIS
         /// </summary>
         /// <param name="request"></param>
@@ -251,7 +251,7 @@ namespace NewtouchHIS.WebAPI.Manage.Areas.CIS.Controllers
 
         #region Hệ thống ngoài Only
         /// <summary>
-        /// Thu hồiĐăng ký khám chữa bệnh 
+        /// Thu hồi Đăng ký khám chữa bệnh 
         /// To:Bên thứ ba
         /// </summary>
         /// <param name="request"></param>

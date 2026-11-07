@@ -51,7 +51,7 @@ namespace Newtouch.Domain.DTO
         public string patientType { get; set; }
 
         /// <summary>
-        /// Bảo hiểm y tếthẻ Số thẻhoặc Khám bệnhthẻSố thẻ
+        /// Bảo hiểm y tếthẻ Số thẻhoặc Khám bệnhthẻ Số thẻ
         /// </summary>
         public string series { get; set; }
 

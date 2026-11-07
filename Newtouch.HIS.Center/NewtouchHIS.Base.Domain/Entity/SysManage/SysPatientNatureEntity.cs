@@ -55,7 +55,7 @@ namespace NewtouchHIS.Base.Domain.Entity.SysManage
         public string ybtsdy { get; set; }
 
         /// <summary>
-        /// Phạm vi chi phí giao dịch BHYT   0 Phần được ghi sổ tham gia và Tính toán(BHYT thông thường)   1 Được ghi sổ+giao dịch với tự trả theo phân loại(Thương tật)   2 Được ghi sổ+Tự trả theo phân loại+giao dịch với tự lo(Tạm thời không có)      ----cmsTrường hủy
+        /// Phạm vi chi phí giao dịch BHYT   0 Phần được ghi sổ tham gia và Tính toán(BHYT thông thường)   1 Được ghi sổ+giao dịch với tự trả theo phân loại(Thương tật)   2 Được ghi sổ+Tự trả theo phân loại+giao dịch với tự lo(Tạm thời không có)      ----cms Trường hủy
         /// </summary>
         public string jyfyfw { get; set; }
 
